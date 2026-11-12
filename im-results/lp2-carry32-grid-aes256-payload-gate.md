@@ -1,8 +1,8 @@
 # Cross-page carry words as a 32-byte AES key for the 256-cell numerical table
 
-**Status, 12 November 2026:** One source-defined, internally complete 32-byte key extraction and thirteen natural AES-256 table-payload decryptions plus two authenticated AES-256-GCM container tests were run on the original LP2 inputs. **No readable plaintext, recognized opening file signature, or independently authenticated key was recovered.** This is a bounded negative for a conditional numerical-table format, not a proof that the table cannot carry hidden data.
+**Status, 12 November 2026:** One source-defined, internally complete 32-byte key extraction and thirteen natural AES-256 table-payload decryptions, two authenticated AES-256-GCM container tests, and two historical OpenPGP-CFB framing tests were run on the original LP2 inputs. **No readable plaintext, recognized opening file signature, or independently authenticated key was recovered.** This is a bounded negative for a conditional numerical-table format, not a proof that the table cannot carry hidden data.
 
-[Reproduce with a single CommonJS test](../sims/lp2_carry32_grid_aes256_payload_sft.cjs) · [Successful original-source GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43300555630)
+[Reproduce with a single CommonJS test](../sims/lp2_carry32_grid_aes256_payload_sft.cjs) · [Successful original-source GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43302411345)
 
 ## The proposed human solve path
 
@@ -52,8 +52,22 @@ The **two conventional authenticated GCM envelopes** also fail exact authenticat
 
 The outputs have no English sentences, recognizable opening payload headers, or clear Cicada instructions. **All four embedded-IV CBC candidates also fail exact PKCS#7 final-block padding**, independently of whether their internal bytes could be language; thus they are not complete ordinary PKCS#7-padded AES-CBC messages under the fixed key/IV/source order. The normal leading-IV format is particularly natural, and its exact failure is a direct negative for that consumer. None is an ASCII armor/PEM/PGP block. Their short printable runs and byte distributions resemble opaque binary. They could conceivably contain a binary register requiring a **source-selected second step**, but the manuscript supplies no such rule here.
 
+## Historical OpenPGP CFB payload framing: independent exact key check
+
+Cicada's source-authenticated 2012–16 signed communications used OpenPGP and the format's older [RFC 4880](https://www.rfc-editor.org/rfc/rfc4880.html#section-13.9) provides a small, highly discriminating **symmetric-payload framing** distinct from generic AES ECB, CBC, CTR and AEAD. OpenPGP symmetrically encrypted content begins with a 16-byte random prefix, followed by a **repeat of its final two bytes** (the "quick check"). Decrypt the first 18 source ciphertext bytes with **AES-256-CFB, initial IV all zero** and the exact source-derived 32-byte key. The two possible historical variants, a legacy resynchronized CFB payload (Symmetrically Encrypted Data Packet) and a continuous-feedback CFB payload with SHA-1 Modification Detection Code (SEIPD v1), share this exact initial 18-byte prefix. They differ only after it. No payload reordering, guessed IV, fitted key or guessed document language is involved.
+
+| 224-byte ciphertext | Recovered first 18 plaintext bytes (hex) | Position 15 = 17? | Position 16 = 18? | MDC 0xD314 + SHA-1 |
+| --- | --- | --- | --- | --- |
+| Original unselected row-major | `01c31873cb02c309ce7e07bbf0256037b222` | **No** | No | Invalid |
+| Original unselected column-major | `0178c6a4552c89ab28047e63d18b50d716e2` | **No** | No | Invalid |
+| Artificial AES-256-CFB packet with genuine authenticated ASCII payload | `00112233445566778899aabbccddccddccdd` | **Yes** | Yes | Valid |
+
+The two source payloads **fail the 16-bit key check**, and their decoded SEIPD-v1 trailing constant bytes and SHA-1 MDC also fail. The synthetic positive encrypts a literal prefix with its specified repeated bytes, authenticates the full source-shaped message with SHA-1 MDC, then decrypts and checks both required conditions. It passes.
+
+This is an exact rejection of the *proposed carry32 key and both chosen payload orders as direct OpenPGP CFB ciphertext*, without an English-frequency or header heuristic. The printed table does **not** visibly contain a complete OpenPGP session-key wrapper, so historical CFB here is an explicitly conditional consumer. Failure cannot exclude a separately encrypted packet, a hidden KDF, or a different source instruction. The [original-source SFT](../sims/lp2_carry32_grid_aes256_payload_sft.cjs) and [passing CI run 43302411345](https://github.com/FlareZ123/liber-primus/actions/runs/43302411345) contain these exact full-message checks.
+
 ## Research decision
 
-The source-constrained **32 carry words → one byte per row → 32-byte AES key → remaining 224-byte table plaintext** route is directly tested and fails to yield a usable payload in its natural row/column, zero-IV, embedded-IV AES formats and the two conventional authenticated-GCM envelopes. It does not refute the exact count of cross-page words, Agent30's key construction, other supported consumers, different byte packing, or the possibility of an independently specified binary format. No new LP2 plaintext, secret, or destination follows.
+The source-constrained **32 carry words → one byte per row → 32-byte AES key → remaining 224-byte table plaintext** route is directly tested and fails to yield a usable payload in its natural row/column, zero-IV, embedded-IV AES formats, two conventional authenticated-GCM envelopes, and either historical OpenPGP-CFB payload framing. It does not refute the exact count of cross-page words, Agent30's key construction, other supported consumers, different byte packing, or the possibility of an independently specified binary format. No new LP2 plaintext, secret, or destination follows.
 
 Preserve the cross-page selector only as a *conditional input*. Resume this branch only if a genuinely independent source specifies AES mode/IV or a distinct authenticated use for those 32 values. Another non-source-selected IV search or arbitrary word-direction tweak would add fit freedom without recovering a clue.
