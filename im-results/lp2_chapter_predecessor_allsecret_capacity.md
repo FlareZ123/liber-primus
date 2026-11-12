@@ -4,6 +4,22 @@
 
 [Reproducer](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) · [Initial successful GitHub Actions regression](https://github.com/FlareZ123/liber-primus/actions/runs/43292429497).
 
+## Strongest result: p0 alone excludes 653,512 native excerpts for any secret lookup
+
+The **original physical p0**, independently of all other chapters, has **262 canonical GP29 runes** and 261 original in-page adjacent transitions. Give its hypothetical decoder an independent, completely arbitrary secret **29! alphabet permutation** for every possible (previous original ciphertext rune, original printed word-start bit) input state. Any target native plaintext must satisfy a fixed state-specific **one-to-one mapping** from ciphertext rune to proposed plaintext rune. The script checks every original input against every possible contiguous **262-GP-rune** native excerpt of four fixed, independently sourced corpora.
+
+| Native GP29 corpus | Every possible length-262 excerpt | Exactly compatible with any such secret alphabet tables | Last possible offset of first irreconcilable ciphertext mapping |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 218,539 | **0** | 69 |
+| Gibran | 62,853 | **0** | 63 |
+| Emerson | 324,369 | **0** | 69 |
+| Corrected Old English *Beowulf* | 47,751 | **0** | 69 |
+| **Total** | **653,512** | **0** | **69** |
+
+Every single passage produces a nonfunctional or noninjective constraint at one original p0 rune offset from **9 through 69**. The test holds under **every** possible 29-way secret alphabet assignment to those public states, even if every other physical manuscript page has its own independent secret alphabets, resets, and keys. It never assumes whole-book chapter alignment, E/O source statistics, a fixed cipher alphabet ordering, or a key guess. The source-locked proof is **about these four finite native corpora**; arbitrary plaintext from unexamined sources, a moving state *inside* p0, other languages and alternate registers remain possible.
+
+The SFT's independent **9×29×2 completely secret substitution-table synthetic cipher** encrypts and recovers all **12,956** GP29 symbols of an independent native Shakespeare plant. It also passes the **exact p0-only** identity and injectivity consistency test. Thus the exclusion is discriminating against the original ciphertext rather than a broken impossibility criterion. [Runnable original-cipher SFT](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) · [Successful CI test 43297573885](https://github.com/FlareZ123/liber-primus/actions/runs/43297573885).
+
 ## Source evidence and proof
 
 The nine original visible chapter intervals are pp0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53, and 54–55; original physical p50 contains only numerical-table cells. The canonical rune sequence and independent exact transcription agree at every position. Between the 55 page starts are **12,901** adjacent within-page transitions. **2,873** of those carry a printed word separator before the next glyph, independent of page/line wraps.
@@ -77,4 +93,4 @@ The positive test independently constructs **522** secret 29-way permutations, o
 
 The SFT instantiates both nine×29 secret predecessor-only alphabets and independent nine×29×2 alphabets for the stronger printed-boundary state, encrypting and recovering complete 12,956-rune GP-native plants. The stronger plant also passes the exact bijection-consistency inverse. The exact analytical capacity of this encrypted plant contains the planted source's E and E+O counts. The original manuscript does not satisfy the same criterion on the 89 selected native controls. The source-verified script also asserts all chapter counts, source texts, the corrected Old English control and the every-offset comparison results.
 
-**Decision:** do not invest in discovering secret alphabet tables for a chapter-static previous-cipher-only GP rotor or its simple printed-word-bit extension without an independent, stronger original clue. More than a global word boundary is needed for a general decoder. A changing phase within chapters, genuine page reset, extra historical state, variable-length encoding or a different plaintext alphabet could escape these particular frequency constraints; the manuscript supplies no tested authenticated selector for those alternatives. Direct plaintext/key recovery remains the decisive objective. Existing [256-phase GP28 gate](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel limits](lp2_boundary_single_escape_symbol_source_gate.md) concern other models and remain distinct.
+**Decision:** The p0-only original-input gate excludes fixed previous-cipher+printed-boundary GP29 secret alphabets against all 653,512 source excerpts without relying on any other page. Do not invest in fitting this stationary model without an independent historical selector. More than a global word boundary is needed for a general decoder. A changing phase within chapters, genuine page reset, extra historical state, variable-length encoding or a different plaintext alphabet could escape these particular frequency constraints; the manuscript supplies no tested authenticated selector for those alternatives. Direct plaintext/key recovery remains the decisive objective. Existing [256-phase GP28 gate](lp2-chain256-allsecret-source-gate.md) and [word-boundary channel limits](lp2_boundary_single_escape_symbol_source_gate.md) concern other models and remain distinct.
