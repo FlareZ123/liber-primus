@@ -14,7 +14,19 @@ The attribution to Schröter/Fortey remains **probable, not pixel-verified again
 
 The original LP1 p9 and LP2 p2 scans are both 2400×3600. A fixed crop around the arthropod on LP1 p9, (835, 1935, 1525, 2120), matches the horizontal reflection of the LP2 p2 crop (878, 2642, 1568, 2827). Searching only ±3 px of alignment gives dx=−2, dy=0. At grayscale threshold <100, the black-pixel intersection is 36,219 and union is 36,220 (IoU **0.9999723909**); one binary pixel differs and grayscale mean absolute error is **0.85349**. This is effectively the same raster illustration, mirrored and repositioned, not merely a similar motif.
 
-The solved LP1 p9 text is headed “An Instruction” and says “Do four unreasonable things each day” (resources/liber-primus/lp1-plaintext-reference.txt). A solver could reasonably take the mirrored reuse as a prompt to test reversal. On the repository's 201-rune p2 transcription, direct rune-sequence reversal and GP29 Atbash (index i maps to 28−i) both remain nonlinguistic; the exact transliterations are emitted by sims/lp2_p2_lp1_p9_mirror_sft.py. The corpus transcription is derived rather than independently transcribed, so this is a bounded test on that pinned transcription.
+The solved LP1 p9 text is headed “An Instruction” and says “Do four unreasonable things each day” (resources/liber-primus/lp1-plaintext-reference.txt). A solver could reasonably take the mirrored reuse as a prompt to test reversal. On the repository's 201-rune p2 transcription, direct rune-sequence reversal and GP29 Atbash (index i maps to 28−i) both remain nonlinguistic. A distinct literal horizontal-mirror readout—reverse rune order within each of the nine printed lines while preserving line order—also remains nonlinguistic. Using the pinned line lengths 21, 24, 22, 25, 23, 21, 24, 22, 19, the exact GP29 output is:
+```text
+EOGEBHNBREAMBHDLEOBTHUMOE
+JGBXNYHTHUHIRIWEAEHOPIAEOWLD
+JTFIMOEIAJBDRNGIADEINFEANGUP
+LFNGDTHSIAYCNATHDTBGOEOESLRTHID
+BHWAETFEDRHFTPXNTIOECHGE
+XEAEODUDEAWLCJJLNEAULAPFC
+GIRAHNCDOEPCIEWTLCAEIATHEAHWD
+JBLAAEODEANGEJAEWIAOHTHGTEEATH
+WUSPUIANDHEAFPJBATXUC
+```
+This rejects the simplest direct right-to-left-per-line reading of the mirrored page, not a keyed or layered use of the image. The reproducer now emits this variant as `reverse_each_printed_line`. The corpus transcription is derived rather than independently transcribed, so these remain bounded tests on that pinned transcription.
 
 The image's probable source description (two heads, one reversed, and a possibly inverted tail) does not specify which p2 rune positions correspond to those parts, nor a page boundary, key, or clock. The mirror establishes a cross-round art link and motivates one cheap reversal test; it does not yet select a complete reversible decipherment.
 
@@ -74,7 +86,7 @@ For p2 alone, applying that same IA/EA-transparent convention leaves 184 runes, 
 
 ## Decision / next useful test
 
-Do not reopen continuous standard Trifid or treat 201 = 3 × 67 as a result. The LP1 p9 ↔ LP2 p2 mirrored artwork identity is verified, but direct sequence reversal and GP29 Atbash do not produce plaintext. Keep the historical Schröter/Fortey attribution probable and the mirror as a source-visible cross-round clue, not a key. A further cipher test is justified only if a primary source or exact image source fixes how the two heads and tail map to specific original p2 rune positions and specifies the corresponding operation. Freeze that mapping before any language scoring. Without that bridge, no additional source-led decipherment is justified.
+Do not reopen continuous standard Trifid or treat 201 = 3 × 67 as a result. The LP1 p9 ↔ LP2 p2 mirrored artwork identity is verified, but direct sequence reversal, per-printed-line reversal, and GP29 Atbash do not produce plaintext. Keep the historical Schröter/Fortey attribution probable and the mirror as a source-visible cross-round clue, not a key. A further cipher test is justified only if a primary source or exact image source fixes how the two heads and tail map to specific original p2 rune positions and specifies the corresponding operation. Freeze that mapping before any language scoring. Without that bridge, no additional source-led decipherment is justified.
 
 ## Reproduction inputs and references
 

@@ -67,15 +67,28 @@ def direct_mirror_readouts(corpus_path: Path) -> dict:
         raise ValueError(f"Expected 201 p2 runes in the pinned corpus, got {len(indices)}")
     if len(corpus["translit"]) != 29:
         raise ValueError("Expected 29 GP transliterations")
+    printed_line_lengths = [21, 24, 22, 25, 23, 21, 24, 22, 19]
+    if sum(printed_line_lengths) != len(indices):
+        raise ValueError("Printed-line segmentation no longer covers all 201 p2 runes")
+    printed_lines = []
+    offset = 0
+    for length in printed_line_lengths:
+        printed_lines.append(indices[offset:offset + length])
+        offset += length
+    reverse_each_printed_line = [
+        value for line in printed_lines for value in reversed(line)
+    ]
     variants = {
         "original": indices,
         "reverse_sequence": list(reversed(indices)),
+        "reverse_each_printed_line": reverse_each_printed_line,
         "atbash_reverse_alphabet": [28 - value for value in indices],
         "atbash_and_reverse": [28 - value for value in reversed(indices)],
     }
     return {
         "p2_rune_count": len(indices),
         "p2_distinct_symbols": len(set(indices)),
+        "printed_line_lengths": printed_line_lengths,
         "direct_gp29_transliterations": {
             name: "".join(corpus["translit"][value] for value in sequence)
             for name, sequence in variants.items()
