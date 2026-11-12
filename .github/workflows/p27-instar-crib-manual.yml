@@ -18,3 +18,5 @@ jobs:
         run: node sims/p27_instar_title_source_crib_sft.cjs
       - name: Test frozen period17 and both autokey17 original-cipher holdouts
         run: node sims/lp2_2013_instar_p27_autokey17_sft.cjs
+      - name: Test all-secret monoalphabetic shell impossibility and modulo-29 base rates
+        run: node sims/lp2_p27_instar_bijection_shell_sft.cjs
