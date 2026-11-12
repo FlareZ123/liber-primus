@@ -32,6 +32,13 @@ const clauses = parable.split(".").map(str=>[...str].filter(ch=>runeToPrime.has(
 const sums = clauses.map(clause=>clause.reduce((total,rune)=>
   total+runeToPrime.get(rune),0));
 assert.deepEqual(clauses.map(clause=>clause.length),[7,30,30,28]);
+// Original typographical word separators survive the GP cipher. Slash/newline
+// wrap words, while hyphens and full stops delimit them in this solved page.
+const clauseWords = parable.split(".").map(section=>section.split("-")
+  .map(part=>[...part].filter(ch=>runeToPrime.has(ch)))
+  .filter(word=>word.length));
+const clauseWordCounts = clauseWords.filter(words=>words.length).map(words=>words.length);
+assert.deepEqual(clauseWordCounts,[1,7,6,6]);
 assert.deepEqual(sums,[449,1259,1031,1229]);
 assert.deepEqual(clauses.flat().map(r=>corpus.runes.indexOf(r)),
   solved[1].indices);
@@ -46,7 +53,12 @@ const quotients = body.map(sum=>Math.floor(sum/modulus));
 assert.deepEqual(quotients,[2,2,2]);
 assert.deepEqual(remainders,[361,133,331]);
 assert.deepEqual(remainders.slice(1),Object.values(metadata));
-assert.equal(remainders[0],19*19);
+const solvedHeadingRunes=clauses[0].length;
+const bodyWordCount=clauseWordCounts.slice(1).reduce((total,n)=>total+n,0);
+assert.equal(bodyWordCount,19);
+assert.equal(remainders[0],bodyWordCount*bodyWordCount);
+assert.equal(metadata.title,solvedHeadingRunes*bodyWordCount);
+assert.equal(metadata.elementId,Number(String(metadata.title).split("").reverse().join("")));
 assert.equal(metadata.title+metadata.elementId,464);
 const images=[...sourceHtml.matchAll(/<img src="(\d+)\.jpg"/g)].map(m=>+m[1]);
 assert.deepEqual(images,Array.from({length:58},(_,i)=>i));
@@ -65,6 +77,14 @@ console.log(JSON.stringify({
   input:"Original 95 clear-text runes of physical LP2 p57, GP prime alphabet, original archived 2014 seventh-onion HTML",
   originalClauseLengths:clauses.map(a=>a.length),
   gpPrimeSums:sums,
+  originalClauseWordCounts:clauseWordCounts,
+  bodyWordCount,
+  headingRunes:solvedHeadingRunes,
+  derivedDigitRelations:{
+    firstRemainderBodyWordsSquared:bodyWordCount*bodyWordCount,
+    htmlTitleHeadingRunesTimesBodyWords:solvedHeadingRunes*bodyWordCount,
+    htmlDivIdDecimalReverse:Number(String(metadata.title).split("").reverse().join(""))
+  },
   headingModulus:modulus,
   bodyQuotients:quotients,
   bodyRemainders:remainders,
