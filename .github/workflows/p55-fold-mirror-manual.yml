@@ -49,3 +49,14 @@ jobs:
           node-version: '22'
       - name: Reproduce fold-selected p27 title and p55 title-key gates
         run: node sims/p55_fold_fragment18_p27_title_sft.cjs
+
+  p55-final-256-known-interior:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p55+solved56+57 exact perimeter/interior and complete inversion gate
+        run: node sims/lp2_terminal256_knowninterior_ring_sft.cjs
