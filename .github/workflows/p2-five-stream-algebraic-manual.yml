@@ -30,3 +30,7 @@ jobs:
         run: g++ -std=c++20 -O3 sims/lp2_p23_26_ssss984_full_xtea_ascii_sft.cpp -o ssss-984-check
       - name: Decode all 120960 original SSSS share assignments
         run: ./ssss-984-check
+      - name: Build whole-field p2 as sixth SSSS share gate
+        run: g++ -std=c++20 -O3 sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp -o ssss-sixth-check
+      - name: Test 1209600 historical ID assignments for p2 as sixth share
+        run: ./ssss-sixth-check
