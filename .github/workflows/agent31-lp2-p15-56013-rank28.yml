@@ -29,9 +29,21 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Rank decoder syntax check failed' }
           node sims/lp2_p15_56013_rank28_original_sft.cjs $asset | Tee-Object -FilePath $out
           if ($LASTEXITCODE -ne 0) { throw 'Original source inverse or native control failed' }
+      - name: Test rank28-as-binary original envelope with exact exception uncertainty
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'lp2_p15_56013_rank28_binary_results.json'
+          node --check sims/lp2_p15_56013_rank28_binary_envelope_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Binary envelope syntax check failed' }
+          node sims/lp2_p15_56013_rank28_binary_envelope_sft.cjs $asset | Tee-Object -FilePath $out
+          if ($LASTEXITCODE -ne 0) { throw 'Original binary envelope gate failed' }
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lp2-56013-rank28-source-outputs
-          path: ${{ runner.temp }}/lp2_p15_56013_rank28_results.json
+          path: |
+            ${{ runner.temp }}/lp2_p15_56013_rank28_results.json
+            ${{ runner.temp }}/lp2_p15_56013_rank28_binary_results.json
           if-no-files-found: warn
