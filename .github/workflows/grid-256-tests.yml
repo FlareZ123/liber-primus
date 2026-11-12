@@ -10,6 +10,7 @@ on:
         options:
           - full
           - red32-rowkey-rs257
+          - stage10-gf29-hill
           - state-class
           - plaintext-autokey
           - jpeg05-p53
@@ -381,3 +382,7 @@ jobs:
           node sims/lp2_red32_gridrow_aes256_selfkey_sft.cjs
           node sims/lp2_red32_rowselector_fullcipher_aes_stream_sft.cjs
           node sims/lp2_terminal_76border_rs256_180interior_sft.cjs
+
+      - name: Original Stage10 source magic-square GF29 invertible Hill regression
+        if: ${{ inputs.probe == 'stage10-gf29-hill' }}
+        run: node sims/lp2_stage10_magic_square_gf29_hill_original_sft.cjs
