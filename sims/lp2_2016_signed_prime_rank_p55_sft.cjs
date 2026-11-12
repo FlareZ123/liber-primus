@@ -155,22 +155,40 @@ const onegramControls=[];
 for (const {name,symbols} of references) {
   const f=histogram(symbols.slice(0,43));
   let windows=0,underNative=0,underSecretRelabel=0,minNative=Infinity;
+  let minimumIdentityEdits=43,minimumIdentityEditWindows=0,identityEditSum=0;
   for(let end=43;end<=symbols.length;end++) {
     const native=sumScore(f,logs);
     const relabeled=sumScore(f.slice().sort((a,b)=>b-a),sortedLogs);
     if(native<=originalOnegram+1e-12) underNative++;
     if(relabeled<=optimalUnknownRelabel+1e-12) underSecretRelabel++;
     minNative=Math.min(minNative,native);
+    // A pure position transposition preserves original rune identities.
+    // The exact minimum replacements to match this native-window inventory
+    // is half the L1 distance between the two 29-letter count vectors.
+    const identityEdits=f.reduce((total,c,i)=>
+      total+Math.abs(c-originalCounts[i]),0)/2;
+    identityEditSum+=identityEdits;
+    if(identityEdits<minimumIdentityEdits){
+      minimumIdentityEdits=identityEdits;
+      minimumIdentityEditWindows=1;
+    }else if(identityEdits===minimumIdentityEdits){
+      minimumIdentityEditWindows++;
+    }
     windows++;
     if(end===symbols.length) break;
     f[symbols[end-43]]--;
     f[symbols[end]]++;
   }
-  onegramControls.push({name,windows,underNative,underSecretRelabel,minNative});
+  onegramControls.push({name,windows,underNative,underSecretRelabel,minNative,
+    minimumIdentityEdits,minimumIdentityEditWindows,
+    meanIdentityEdits:identityEditSum/windows});
 }
 assert.deepEqual(onegramControls.map(x=>[
   x.windows,x.underNative,x.underSecretRelabel
 ]),[[43760,0,100],[63072,0,46],[324588,0,214]]);
+assert.deepEqual(onegramControls.map(x=>[
+  x.minimumIdentityEdits,x.minimumIdentityEditWindows
+]),[[14,3],[15,5],[14,7]]);
 
 const outcomes = [];
 for (const mode of ["rank", "unrank"]) {
