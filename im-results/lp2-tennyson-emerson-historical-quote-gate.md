@@ -69,6 +69,24 @@ Full **secret bijective alphabet-map survivors are zero** in all six cases, even
 
 The invariant is narrowly scoped. Position-dependent polyalphabetic, letter-transposing, stream-encoding, altered-word-boundary or paraphrase routes can violate these equalities; those remain undecided. No new plaintext or key follows. Since each source's long quotations already failed the frozen wordlength gate, the complete source-selected **verbatim word-preserving monoalphabetic branch** is closed without adding fitted layers.
 
+## Spacing-independent recovery gate: no long quotation matches under any unknown alphabet
+
+The original printed spacing itself is now known to lack the normal prose word-length dependence ([original grammar](lp2-original-wordlength-grammar-mi.md), [line-reversal obstruction](lp2-boustrophedon-line-wordlength-invariant.md)). Consequently it is important to ask whether the source texts could still directly supply **contiguous plaintext rune substrings while their spaces were changed**. We have made that separate, stronger test, while retaining exact rune order and granting a freely unknown one-to-one **stationary GP29 alphabet**.
+
+Delete *all* printed word boundaries from each pinned original literary source after its native GP29 transliteration. For every original quotation's entire unaltered 12–160 rune cipher interval, slide over **every** source GP-rune position. A candidate survives only when **every repeated-rune equality and every distinct-rune inequality of the original ciphertext** is consistent with one unrestricted 29-rune bijection. This finite test has no fitted source location, source-specific alphabet or English score and is a genuine original-cipher necessary condition.
+
+| Pinned historical source | Flat GP rune count with ING / without | q0, q1, q3–q6 (all 18–160 runes) | Short q2, 12 runes, pattern-only survivors |
+| --- | ---: | ---: | ---: |
+| Emerson *Essays First Series* | 323,083 / 324,630 | **0** | **85 / 84** |
+| Tennyson 1832 *Lady of Shalott* | 4,236 / 4,266 | **0** | **0 / 0** |
+| Tennyson 1842 *Lady of Shalott* | 3,900 / 3,927 | **0** | **1 / 1** |
+
+The single Tennyson 1842 short-quote equality-pattern survivor begins at flat GP offset **3,359** (3,383 without ING), *inside the last letter of “FROZEN”*, yielding the contiguous GP spelling **“N SLOWLY AND HE”**. Its 12-rune equality pattern happens to match the ciphertext's two repeat positions under some arbitrary partial one-to-one alphabet mapping. The source gives **no instruction to delete spaces, use the 1842 revision, select that offset, or choose the ten mappings**; the original printed 3+9-rune word partition disagrees. In Emerson a much longer source produces 85 similar short survivors, demonstrating how easy it is for this 12-rune all-secret pattern to occur without a real decryption. This survivor is **not authenticated plaintext**.
+
+**Decisive exclusion:** For these three exact editions, the source cannot supply any of the **other six original complete quotation segments as verbatim order-preserving GP text under any fixed secret monoalphabetic substitution, even if every plaintext space is deleted or reassigned**. The only short pattern survivors are unconstrained and have no independently specified key or selection. The test does not exclude position-dependent keys, changes to ciphertext rune order, nonverbatim quotes, alternative external texts or genuinely different original-cipher constructions.
+
+The consolidated [source-locked SFT](../sims/lp2_tennyson_quote_source_sft.cjs) checks every position of every full quotation under both GP orthographies and asserts every outcome above, in addition to the preserved original word-boundary test and source-native positive controls.
+
 ## Reproduction and research consequence
 
 Run `node sims/lp2_tennyson_quote_source_sft.cjs` in the repository root. The source files, original LP2 inputs, hashes, matched positions, wrong-order control and source-native planted-positive test are included. The existing Emerson [whole-book SFT](../sims/lp2_wordlength_literary_crib_sft.cjs) independently explains and reproduces its nine-word maximum.
