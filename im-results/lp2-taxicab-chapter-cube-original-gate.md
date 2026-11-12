@@ -49,6 +49,22 @@ All original outputs remain far below the independently measured GP-native Engli
 
 The frozen experiments are sufficiently narrow to prevent regenerating the same dozens of direct geometry and red-key choices. They do **not** exclude cipher-dependent position walks, authenticated source instructions that select a different mapping, a genuinely independent secret, multi-layer transformations, different languages or binary intermediates.
 
+### Key-independent 133-column GP29 alphabet obstruction
+
+The original 2014 HTML title 133 and the original p8–14 1,729-rune chapter admit the conditional row-major **13×133** rectangular reading. Before trying more sourced 133-position keys, test an *entire all-secret family*: grant each of the 133 columns its own arbitrary 29-symbol bijection, reused across the thirteen rows. This strictly includes any direct GP29 Vigenère pad of period 133 with no page reset, as well as an unlimited secret substitution alphabet at each position of that period. Under any of these keys, the number of equal-rune pairs **within the same column** cannot change, even if a column's thirteen rows are reordered or all columns are permuted.
+
+There are exactly **133 × C(13,2) = 10,374** within-column position pairs. Original unchanged pp8–14 ciphertext has **361** equal pairs (**0.034798535**), at the random-alphabet baseline. Native GP29 prose is measured through the established longest-match Cicada transliteration, over frozen 1,729-rune windows sampled every 1,037 runes from three independent control texts:
+
+| Native control | Windows | Minimum column-equal pairs | Median | Maximum |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | 210 | **552** | 626 | 713 |
+| Gibran, *The Prophet* | 60 | **572** | 633 | 712 |
+| Emerson, *Essays* | 312 | **578** | 652 | 742 |
+
+All **582** source windows exceed the original 361 pairs. This is a necessary-invariant exclusion for these fixed native-GP English controls regardless of **all 133 secret alphabets**; unlike a key search, it cannot be rescued by choosing different alphabets at the same columns. A complete source-native 1,729-rune planted cipher, `C_i=(17P_i+(i mod133)) mod29`, recovers its plaintext exactly under the inverse of 17 and preserves all **644** planted column-pair equalities. The original-input SFT asserts the source geometry, all counts, and the positive plant.
+
+**Decision:** do not continue searching direct 133-period GP29 replacement keys, arbitrary secret per-column alphabets, or column/within-column shuffles to obtain ordinary GP-native English on this section. This does **not** rule out the 13×133 visual extraction itself, a key that changes between the thirteen rows, a larger stateful/polygraphic cipher, an alternate plaintext register, or a binary key-material use of the extracted inner row and fifth ring. The 13×133 reading remains conditional because the original HTML does not explicitly prescribe that rectangle. [Single-file reproducible test](../sims/lp2_taxicab_chapter_cube_sft.cjs).
+
 ## More constrained source instruction: shedding circumferences
 
 The authentic solved physical p57 PARABLE says we must **shed our own circumferences** and **find the divinity within**. Applying that literal operation to the **13×133 rectangle suggested by the independently archived title `133` and source-visible 13-dot marks** yields an exact, non-overlapping source-cipher partition. Strip nested clockwise perimeter rings, from outside inward:

@@ -288,6 +288,53 @@ keyedReads.sort((a,b)=>b.score-a.score);
 assert.equal(keyedReads.length,192);
 assert(keyedReads[0].score < -5.6);
 
+/**
+ * Key-independent collision invariant for any secret 29-rune bijection at
+ * each of the 133 source-selected columns, shared by all thirteen rows.
+ * Permuting rows within a column or permuting the columns also preserves
+ * the total. This tests a far larger family than the 192 fixed red keys.
+ * @param {number[]} seq An exact row-major 13x133 GP29 rectangle
+ * @returns {number}
+ */
+function count133ColumnPairs(seq) {
+  assert.equal(seq.length, 13 * 133);
+  let pairs = 0;
+  for (let col = 0; col < 133; col++) {
+    const frequencies = new Uint16Array(N);
+    for (let row = 0; row < 13; row++)
+      frequencies[seq[row * 133 + col]]++;
+    for (const count of frequencies) pairs += count * (count - 1) / 2;
+  }
+  return pairs;
+}
+const observedColumnPairs = count133ColumnPairs(third);
+assert.equal(observedColumnPairs, 361);
+const alphabetControls = [
+  ["Shakespeare", native],
+  ["Gibran", toGP(read("resources/control/gibran_prophet_58585.txt"))],
+  ["Emerson", toGP(read("resources/control/emerson_essays_2944.txt"))]
+].map(([sourceName, corpus]) => {
+  const values = [];
+  for (let start = 0; start + third.length <= corpus.length; start += 1037)
+    values.push(count133ColumnPairs(corpus.slice(start, start + third.length)));
+  values.sort((a, b) => a - b);
+  return {source: sourceName, windows: values.length, minimum: values[0],
+    median: values[Math.floor(values.length / 2)],
+    maximum: values[values.length - 1]};
+});
+assert.deepEqual(alphabetControls.map(x => x.windows), [210,60,312]);
+assert.deepEqual(alphabetControls.map(x => x.minimum), [552,572,578]);
+assert(alphabetControls.every(x => x.minimum > observedColumnPairs));
+const affinePlain = native.slice(trainLength, trainLength + third.length);
+const affineCipher = affinePlain.map((rune, i) =>
+  (17 * rune + (i % 133)) % N);
+const affineDecoded = affineCipher.map((rune, i) =>
+  (((rune - (i % 133)) % N + N) % N * 12) % N);
+assert.deepEqual(affineDecoded, affinePlain);
+assert.equal(count133ColumnPairs(affineCipher),
+  count133ColumnPairs(affinePlain));
+assert.equal(count133ColumnPairs(affinePlain), 644);
+
 const report = cases.map(([name,input,dims]) => ({
   name,n:input.length,dims,...scan(input, /** @type {[number,number,number]} */ (dims),score)
 }));
@@ -307,5 +354,9 @@ console.log(JSON.stringify({
     rectangularBest:rectangle[0],modularBest:modular[0],
     candidateCounts:[rectangle.length,modular.length]},
   sourceP0Red13Vigenere: {tested:keyedReads.length,best:keyedReads[0]},
+  source133AllSecretColumns: {originalEqualPairs:observedColumnPairs,
+    eligiblePairs:133*78,sourceControls:alphabetControls,
+    affinePlainPairs:644,affineCipherPairs:644,exactPlant:true,
+    conclusion:"All 133 independent secret per-column GP29 bijections preserve the observed 361 collision pairs; every frozen native-English window has at least 552."},
   conclusion:"Eight cube/cuboid interpretations x48, 32 rectangle, eight 331-step walks, and 192 source-red Vigenere variants, all original-negative. No unknown LP2 plaintext or key recovered."
 },null,2));
