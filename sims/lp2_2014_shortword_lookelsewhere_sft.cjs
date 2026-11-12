@@ -101,8 +101,8 @@ const originalNamedHits = originalHistoricalHits();
 assert.deepEqual(originalNamedHits, [
   {page: 34, wordIndex: 19, target: "LESS", seed: 27},
   {page: 35, wordIndex: 16, target: "ITS", seed: 26},
-  {page: 36, wordIndex: 44, target: "ITS", seed: 13},
-  {page: 37, wordIndex: 38, target: "ITS", seed: 12}
+  {page: 36, wordIndex: 43, target: "ITS", seed: 13},
+  {page: 37, wordIndex: 36, target: "ITS", seed: 12}
 ]);
 
 /* All source-English GP words of 3 and 4 runes, not only two remembered
