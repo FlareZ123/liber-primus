@@ -37,7 +37,7 @@ for rel in expected:
     targets[rel] = {
         "length": len(b), "md5": hashlib.md5(b).hexdigest(),
         "sha256": hashlib.sha256(b).hexdigest(),
-        "gitBlobSha1": hashlib.sha1(b"blob " + str(len(b)).encode() + b"\\x00" + b).hexdigest(),
+        "gitBlobSha1": hashlib.sha1(b"blob " + str(len(b)).encode() + bytes([0]) + b).hexdigest(),
     }
 assert (root / expected[0]).read_bytes() == (root / expected[1]).read_bytes()
 assert targets[expected[0]]["length"] == 3368
@@ -56,7 +56,7 @@ for rel, path in files:
     matches = list(pat.finditer(b))
     if not matches:
         continue
-    is_text = (b"\\x00" not in b) and (
+    is_text = (bytes([0]) not in b) and (
         len(b) == 0 or sum(32 <= byte <= 126 or byte in (9,10,13) for byte in b) / len(b) > 0.85
     )
     excerpts = []
