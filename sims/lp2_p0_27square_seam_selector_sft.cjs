@@ -32,6 +32,7 @@ for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
       runes++;
       continue;
     }
+    if (runes >= 729) continue; // Exclude the terminal boundary of the 729-cell input.
     if (character === '-' || character === '.') events.word.add(runes);
     if (character === '.') events.period.add(runes);
     if (character === '/') events.line.add(runes);
