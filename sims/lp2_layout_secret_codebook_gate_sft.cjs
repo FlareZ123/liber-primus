@@ -55,9 +55,13 @@ assert.equal(section, 8);
 // physically different nine-chapter candidate from the derived text sections.
 const physicalChapters = [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308];
 assert.equal(physicalChapters.reduce((a, b) => a + b, 0), source.length);
+const chapterPhase = [];
 let at = 0;
 for (const length of physicalChapters) {
-  for (let j = 0; j < length; j++) attach("visualChapter", String(j), at + j);
+  for (let j = 0; j < length; j++) {
+    attach("visualChapter", String(j), at + j);
+    chapterPhase.push(j);
+  }
   at += length;
 }
 assert.equal(at, source.length);
@@ -162,9 +166,7 @@ assert.equal(
 // preserves same-offset equal pairs across all original visual chapters.
 const chapterPad = Array.from({length: 3008}, (_, i) => (5 + 7 * i + 11 * i * i) % 29);
 const chapterPlant = native.map((p, i) => {
-  const state = Number([...groups.visualChapter].find(([, positions]) =>
-    positions.includes(i))[0]);
-  return (p + chapterPad[state]) % 29;
+  return (p + chapterPad[chapterPhase[i]]) % 29;
 });
 assert.equal(samePairs(chapterPlant, groups.visualChapter).same,
   samePairs(native, groups.visualChapter).same);
