@@ -48,6 +48,21 @@ The 2014 community's [2014 Things That Had Been XORed](https://uncovering-cicada
 
 Each comparison has **256** source bytes and 256 original LP2 table cells. No listed original-era operation reproduces an entire byte/GP29 stream. The independently documented totient operations thus do not rescue a table-key claim or suggest any fixed LP2 cipher. The repeated 256 length alone is a weak selector.
 
+## No hidden columnar transposition or static relabeling can repair these source streams
+
+The *2014* puzzle itself used a clue-selected **columnar transposition** (“the key is the order of the squares”), independently documented in the original-era [2014 stage walkthrough](https://deepwiki.com/scream314/cicada3301/4.1-2014-puzzle-stages-1-6%3A-the-onion-chain). A plausible secondary hypothesis is that an original 256-byte stream is the LP2 table with a secret columnar read order, perhaps followed by one globally secret permutation of byte/rune alphabet. This case is stronger than raw position-aligned identity and has an exact **key-independent obstruction**: any transposition, any secret global alphabet bijection, or their composition must preserve the **multiset of symbol multiplicities**. No key search is required.
+
+| Original 2014 source | Distinct raw source byte values vs B (161) | Minimum byte substitutions required after *any* reordering, with labels fixed | Minimum GP29 remainder substitutions after any reordering | Minimum GP29 quotient substitutions after any reordering |
+| --- | ---: | ---: | ---: | ---: |
+| 1033 source | 157 | 141/256 | 57/256 | 24/256 |
+| 761 source | 158 | 131/256 | 55/256 | 31/256 |
+| 3301 source | 172 | 134/256 | 54/256 | 32/256 |
+| All three source XOR | 162 | 127/256 | 60/256 | 22/256 |
+| All three per-byte totients XOR | 118 | 153/256 | 49/256 | 32/256 |
+| Source XOR and totient XOR | 160 | 138/256 | 57/256 | 28/256 |
+
+Each fixed-label minimum is exactly half the L1 distance between the two corresponding 256-element histograms. More importantly, **every** source's sorted list of nonzero symbol multiplicities differs from the B list in all three registers (256 byte, GP29 residue, 9-state quotient), so **even an arbitrary secret global bijection on the respective alphabet followed by any transposition is mathematically excluded**. At raw-byte level, the independently measurable distinct-symbol counts alone certify six of six exclusions (157/158/172/162/118/160 versus 161); GP29 residue and quotient exclusions require their full sorted frequency spectra. The source-derived candidate set is restricted to these six, not arbitrary composed cipher layers. An evolving, context-keyed map that changes byte identities is outside this invariant and requires an independent source selector.
+
 ## Director choice
 
 Do not import or republish the unlicensed 2014 source text. Preserve the pinned remote blob links, historical dates and complete matching rules above; avoid recreating already indexed duplicates. The no-selector conclusion is **finite**, confined to the enumerated repositories and frozen 3-stream mapping. A future task should be triggered by a genuinely unindexed primary artifact or a human-visible instruction selecting a non-additive operation with a held-out original LP2 prediction, rather than the number 256 or an archive's apparent independence. This audit supplies no candidate satisfying the complete p55 decoder Issue #41.
