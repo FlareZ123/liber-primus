@@ -112,6 +112,59 @@ assert.deepEqual(parityRanks.fiveRuneConsecutive, { linear: 5, affine: 6 });
 assert.deepEqual(parityRanks.five201RuneBlocks, { linear: 5, affine: 6 });
 assert.deepEqual(parityRanks.checksumPositivePlant, { linear: 4, affine: 5 });
 
+
+/** GF(2^8) example field multiplication: AES irreducible x^8+x^4+x^3+x+1. */
+function gf256Mul(left, right) {
+  let a = left, b = right, result = 0;
+  for (let i = 0; i < 8; i++) {
+    if (b & 1) result ^= a;
+    const high = a & 128;
+    a = (a << 1) & 255;
+    if (high) a ^= 0x1b;
+    b >>= 1;
+  }
+  return result;
+}
+/** @param {number} value @param {number} exponent */
+function gf256Pow(value, exponent) {
+  let out = 1;
+  for (let i = 0; i < exponent; i++) out = gf256Mul(out, value);
+  return out;
+}
+const positions = [1, 2, 3, 4, 5];
+const byteLagrange = positions.map((x, index) => positions.reduce((coeff, y, j) =>
+  index === j ? coeff :
+    gf256Mul(coeff, gf256Mul(y, gf256Pow(x ^ y, 254))), 1));
+assert.deepEqual(byteLagrange, [1, 208, 208, 209, 209]);
+/** @param {number[][]} packets @param {(v:number)=>number} encode */
+function byteShamir(packets, encode) {
+  const bytes = packets.map(packet => packet.reduce((total, rune, i) =>
+    total ^ gf256Mul(byteLagrange[i], encode(rune)), 0));
+  const printable = bytes.filter(v => v >= 32 && v <= 126).length;
+  const letters = bytes.filter(v =>
+    (v >= 65 && v <= 90) || (v >= 97 && v <= 122)).length;
+  return {
+    byteCount: bytes.length,
+    printable,
+    letters,
+    first48Hex: Buffer.from(bytes.slice(0, 48)).toString('hex'),
+  };
+}
+const gf256FiveShare = {};
+for (const [name, packets] of [
+  ['fiveConsecutive', quints],
+  ['five201RuneBlocks', blockQuints],
+]) {
+  gf256FiveShare[name] = {
+    runeIndex0: byteShamir(packets, v => v),
+    runeIndex1: byteShamir(packets, v => v + 1),
+    gpPrimeByte: byteShamir(packets, v => corpus.prime[v]),
+  };
+}
+assert.equal(gf256FiveShare.fiveConsecutive.runeIndex0.printable, 42);
+assert.equal(gf256FiveShare.fiveConsecutive.gpPrimeByte.printable, 63);
+assert.equal(gf256FiveShare.five201RuneBlocks.runeIndex0.printable, 57);
+
 const results = {
   source: {
     pages: [23, 24, 25, 26], redRunes: 16, totalRunes: source.length,
@@ -121,6 +174,7 @@ const results = {
   strideFive: strides.map(summary),
   consecutive201: blocks.map(summary),
   parityRanks,
+  gf256FiveShare,
 };
 assert.ok(Math.abs(results.folds.indexSum.ioc - 0.033084577) < 1e-6);
 assert.ok(Math.abs(results.folds.gpPrimeSum.ioc - 0.035671642) < 1e-6);
