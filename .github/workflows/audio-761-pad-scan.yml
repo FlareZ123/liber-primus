@@ -10,6 +10,7 @@ on:
         options:
           - source-bytes
           - id3-audit
+          - mpeg-audit
           - seeded-number
           - prime-start
           - decoded-pcm
@@ -40,11 +41,18 @@ jobs:
       - name: Audit source-exact 2013 ID3 frames and planted controls
         if: inputs.probe == 'id3-audit'
         run: node sims/audio761_id3_frame_audit.cjs /tmp/761.MP3
+      - name: Audit original audio frames versus matched LAME control
+        if: inputs.probe == 'mpeg-audit'
+        run: |
+          ffmpeg -hide_banner -loglevel error -f lavfi -i sine=frequency=440:sample_rate=44100:duration=3 -ac 2 -ar 44100 -c:a libmp3lame -b:a 192k -y /tmp/761-control.mp3
+          ffprobe -v error -show_entries format=duration,size:stream=codec_name,sample_rate,channels,bit_rate -of default=noprint_wrappers=1 /tmp/761.MP3
+          ffmpeg -hide_banner -loglevel warning -i /tmp/761.MP3 -f null - 2>&1
+          node sims/audio761_mpeg_frame_structure_sft.cjs /tmp/761.MP3 /tmp/761-control.mp3
       - name: Exhaustive 4 million byte offset keyskip screen
         if: inputs.probe == 'source-bytes'
         run: node sims/audio_761_pad_scan.cjs
       - name: Install FFmpeg for optional waveform-source test
-        if: inputs.probe == 'decoded-pcm'
+        if: inputs.probe == 'decoded-pcm' || inputs.probe == 'mpeg-audit'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Decode archival MP3 at native sample frequency to mono signed16 PCM
         if: inputs.probe == 'decoded-pcm'
