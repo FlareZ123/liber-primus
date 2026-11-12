@@ -40,6 +40,16 @@ The *same* initial 210 original red runes therefore form two complete **3×5×7*
 
 This construction makes the tentative footer's 3/5/7 lengths causally relevant to a clear, cheap decipherment. The source has **no printed 3×5×7 tensor** and does not affirm that the last three p54 title runes should be reversed and isolated. The finite negative retires the exact source-order paired-mix family and its eight axis reflections as directly readable GP29 prose. It does not exclude other mixing algebras, altered text registers, evolving keys or hidden external material; no plaintext was recovered.
 
+## Full p33–39 original 16×105 title-key tensor inverse
+
+An additional **source-visible input size** allows a complete original-cipher inverse rather than a decoding only of the two red105 registers. The independent original visual chapter **physical pp33–39 contains 1,680 runes**, exactly **16×(3×5×7)**. The three candidate terminal words \`MIX\`, \`ANEND\`, \`PARABLE\` have GP29 key-index vectors \`[19,10,14]\`, \`[24,9,18,9,23]\`, \`[13,24,4,24,17,20,18]\`. Build for each length n the cyclic-convolution matrix \`M[r,c]=key[(r-c+n)%n] mod29\` and tensor-compose on the x/y/z axes of each consecutive 105-rune block. The source's visual p33 chapter starts phase zero, uses original page order and no skipped rune; no secret key fitting, symbol substitutions or extra IV.
+
+All three exact 3×3, 5×5 and 7×7 matrices are invertible over GF29, so their inverse tensor recovers all **1,680** original cipher positions and re-encodes them exactly. The tentative plaintext stays statistical ciphertext: smoothed original GP trigram **−6.4161582074** versus raw **−6.5545599893**, and decoded IoC **0.03485067642** versus raw **0.03436002155**. The worst of the **selected, nonoverlapping-step 1680-rune native GP Shakespeare holdout windows** is **−2.5522654283** under the same model. A planted 1,680-rune GP-native plaintext is recovered byte-for-byte from an independent exact title-key tensor encryption. The full ciphertext inverse remains unreadable.
+
+This is a complete-section negative for the **literal 3/5/7 cyclic-convolution operator** with the proposed header as its three keys and original chapter clock. The coincidence of 1,680 with 16×105 does not independently authorize a Hill tensor or show that the p54 footer should serve as a key for p33; it only makes the proposed operation finite, reversible and source-size complete. No other 3D cipher, nonlinear mixing, altered plaintext register or general red-channel role is excluded.
+
+[Standalone original-source CJS test](../sims/lp2_red357_tensor_p33_39_sft.cjs) · [passed manual-only CI run 43250279752](https://github.com/FlareZ123/liber-primus/actions/runs/43250279752).
+
 ## Research decision
 
 The symbol inventory is the decisive obstruction to reading the 210 red-rune payload as transposed ordinary GP-native text, regardless of how rows or columns are mixed. If this row is intentionally instructive, a successful decoder must change rune identities, use a different plaintext register, or read the red material as key/cipher metadata rather than direct English. Avoid more keyless transposition sweeps. The p54 `XIM` reversal and 15×15 view need an independent page-level reading instruction before a broader search is justified.
