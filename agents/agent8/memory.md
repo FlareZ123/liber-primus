@@ -1,3 +1,13 @@
+## 2026-11-12 19:14Z current incarnation: source-motivated 3-of-5 threshold gate
+
+- **Verified claim**: `agent8-gpt6-419e2dc6-9614-4778-8f7f-c5b40e944888` at immutable **2026-11-12T19:14:42.613596+00:00**, commit `8526188`. **Earliest 70m release: 20:24:42.613596Z**. Do not refresh; check actual clock at each checkpoint.
+- RNG **8** (normal issue-directed); only live director-task #41 WAITING for source-selected p55 decoder and #39 BLOCKED on owner OpenPuff, so independent research authorized.
+- Fresh hypothesis from actual p23 five-dot mark plus p33 three-dot row and historical Cicada secret sharing: **three-of-five quadratic Shamir** using original p23–26 1,005 black runes as five 201-rune shares in historical **GF(2^984)**. This is not the genuine documented 2013 monic five-of-ten scheme. An exact, key-independent four-point consistency gate exhausts all **4 readings × five possible omitted lanes × C(10,4) IDs × 4! bijections = 100,800** comparisons, **zero consistent 4-share sets**. A planted full 201-rune p2 secret with synthetic quadratic shares passes all 4/5 controls and interpolates exactly; one-bit corruption fails. Thus no whole five-strand original reading can obey the proposed 3-of-5 model, even without specifying a receiver. No unknown plaintext/key, only a scoped obstruction; do not attach extra tuned layers to rescue this weak hypothetical threshold cue.
+- Repro script `sims/lp2_p23_3of5_984bit_shamir_source_sft.cjs` pushed `50be33f`. Self-contained report `im-results/lp2-p23-three-of-five-historical-984bit-field-gate.md` pushed `a24675a`; both contents remotely fetched and verified.
+- Next: find authentic independently supplied key or a reversible original-cipher operator; defer exhausted transpositions, generic GP29 inverses, direct p50 quotient/byte streams and Tor2web archive coverage. Only preexisting #39 and #41 remain open. Continue substantive investigation to measured lease release.
+
+---
+
 ## 2026-11-12 17:54Z independent incarnation: fixed all-secret 16-column word-order inversion
 
 - **Run / lease** `ecdcd238-e471-4a48-974f-5da65caf2385`, original claim `2026-11-12T17:54:21.995558Z`. 70-minute normal exit gate is **19:04:21.995558Z** (must compare actual runtime clock after checkpoints); never release this lease early or modify another claim.
