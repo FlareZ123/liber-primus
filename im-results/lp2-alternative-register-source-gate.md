@@ -78,6 +78,18 @@ At each position, grant a lossless deterministic encoder `C_i=f_(scope,C_(i−2)
 
 The original page scope excludes the rune-free p50; the nine chapter starts are **p0,3,8,15,23,27,33,40,54**. The physically page-reset/chapter-shared 5,642 states and maximum 11 reproduce the earlier #480 result. Joining source-visible chapters without resetting at ordinary page changes increases the distinct state total to 5,657 while retaining maximum 11. The 43 impossible continuous-book states include three two-rune contexts with **19** distinct successors. These bounds concern cipher-output capacity alone and do not imply that the source alphabet is sixteen symbols.
 
+### Word-resets exclude the 16-symbol two-history model independently of its secret key
+
+The original rune transcription includes **2,928** printed words, with `[-.&$§]` delimiters and page joins matched exactly against all 55 canonical source pages. Unlike the chapter-continuous model, a **word-reset** model always begins each word with the same two-ciphertext-history sentinel `(-1,-1)`. At that state, the first eight original source chapters individually exhibit **all 29 GP glyphs** as word-initial outputs; the ninth exhibits 26. Even a completely arbitrary secret 16-input injection cannot output 29 distinct runes at the same fixed state.
+
+| Secret-table scope, resetting at each printed word | Observed states | Largest next-output support | States exceeding 16 |
+| --- | ---: | ---: | ---: |
+| Shared across entire book | 867 | **29** | 30 |
+| Separate for each visible chapter | 4,570 | **29** | 22 |
+| Separate for each physical page | 7,973 | **28** | 51 |
+
+This is an *exact no-go* for a size-16 word-reset decoder under all three scoped architectures, including secret per-state injections. It is unaffected by any proposed mapping of 16 source symbols to 29 cipher symbols. Adding a fresh nonce, word-specific secret state, or a changing key at each word start could escape, but would require a separate authored instruction and independent key material. The chapter-continuous 16-alphabet existence proof below only survives because its state crosses printed word boundaries. The same original-corpus CJS SFT asserts the word counts, original word/page matching, all support maxima and the first-eight-chapter witness.
+
 ### Constructive reversible plant and key budget
 
 For the chapter-continuous interpretation, include the first two runes of each chapter using initial ciphertext-state sentinels `(-1,-1)` and `(-1,C_0)`. This creates **5,675 observed context states and 12,482 distinct state/output edges** over all **12,956 original runes**. A **deliberately ciphertext-fitted** table maps up to eleven observed output runes per state to different source symbols 0–15 and assigns the unused source symbols different unobserved GP glyphs. Every original rune decrypts to one of the sixteen symbols and exactly re-enciphers at its original offset. Such a construction is inevitable from the support theorem; its labels contain **no genuine recovered plaintext information**.
