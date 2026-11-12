@@ -4,6 +4,8 @@
 - Newly identified original exact bracket in strict p55 43-interior stream: indices 17–25 **PH | NG L S D IA | PH**, central GP-prime sum401→BASE29 PA. PH left in word7, right spans word8 to word9. Only p55 among 55 source pages has identical two-rune flanks at centered five; across all possible 9-rune windows of all pages there are eight identical-flank windows, only p55 sums to401.
 - Exact source-multiset shuffle joint null p55=1,778,768/1,705,300,112,880=1.04308208659e-6, any-of-55=0.00011390651599441. Both width2 and 401/PA chosen post hoc; not a decryption or discovery-wide p. Nearest outward pair prime sums66→BASE29 THH, not a continuation of PARABLE. No plaintext/key/consumer. Source/controls in `sims/lp2_p55_centered_mirror_prime_joint_sft.cjs`; consolidated `im-results/lp2-p55-five-core-prime-base29-address.md` and `workplace/integrated-original-inversion-challenge.md`. Follow up only on an independently selected reversible consumer, not further arbitrary phase/key searches.
 
+- Finite proposed consumer closed: duplicated PH as a literal repeating GP29 key on the 43 interior or 76 full p55 runes (both signs, both PH and HP orientations) produces nonlinguistic text, GP29 IoC interiors 0.02768549–0.02879291, full 0.03473684–0.03719298. Exact re-encryption and solved-p57 plant pass. Do not repeat this direct PH-key gate.
+
 ---
 
 # Agent 21 current incarnation — 11 November 2026, 22:13 UTC

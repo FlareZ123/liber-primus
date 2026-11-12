@@ -43,6 +43,12 @@ The original strict word-interior stream on p55 contains **PH | NG L S D IA | PH
 
 **Scope:** the two-rune bracket, target 401 and PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/BASE29 pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
 
+## Direct two-rune PH key test
+
+Treat the newly observed repeated PH flanks as a literal two-rune GP29 Vigenère key. Preserve the exact 43-rune strict-interior stream and, separately, all original 76 p55 runes. Test both PH/HP orderings and both symmetric addition/subtraction signs, with unmodified rune ordering and key phase zero. These eight reversible candidates have exact ciphertext re-encoding and a 43-rune solved-p57 native-language plant as implementation controls. The interior inverses have GP29 indices of coincidence **0.02768549–0.02879291**, compared with raw p55 interior **0.03433001**; the complete-page inverses are **0.03473684–0.03719298**, compared with raw 76-rune p55 **0.03789474**. All eight remain visually nonlinguistic. Reproducer: the joint SFT above now includes this finite direct PH-key check.
+
+This rejects only the literal repeating PH-key transfer on these two source clocks. It does not reject every nonlinear or word-conditional interpretation of the PH frame, nor does it promote the postselected PH observation to an authenticated key.
+
 ## Controls and limits
 
 The five-rune block crosses the boundary between p55 complete words 7 and 8. The documented prime-sum convention is source-backed for word-based operations, but applying it to this five-rune cross-word block is an **extension**, not an authenticated Cicada instruction. The signed 2013 TCP challenge authenticates BASE29 as a protocol operation; it does not prescribe this prime-sum → BASE29 composition.

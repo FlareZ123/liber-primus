@@ -126,6 +126,39 @@ assert.equal(p55.denominator, "1705300112880");
 const familywise = 1 - pages.reduce((p, x) => p * (1 - x.pJoint), 1);
 assert.ok(Math.abs(p55.pJoint - 0.0000010430820865870487) < 1e-16);
 assert.ok(Math.abs(familywise - 0.00011390651599441082) < 1e-12);
+
+// Test the shortest source-motivated reversible consumer: PH as the literal
+// repeating GP29 Vigenere key, in both orientations and signs. Original
+// 43-interior and 76-rune page clocks are both untouched source contracts.
+function ioc(values) {
+  const counts = Array(29).fill(0);
+  for (const x of values) counts[x]++;
+  return counts.reduce((total, x) => total + x * (x - 1), 0)
+    / (values.length * (values.length - 1));
+}
+function shift(values, key, sign) {
+  return values.map((v, i) => (v + sign * key[i % 2] + 29) % 29);
+}
+const full55 = c.pages.find((p) => p.page === 55).indices;
+const phKeyGate = [];
+for (const [name, source] of [["interiors43", vals55], ["full76", full55]]) {
+  for (const key of [[13, 8], [8, 13]]) for (const sign of [-1, 1]) {
+    const inverse = shift(source, key, sign);
+    assert.deepEqual(shift(inverse, key, -sign), source);
+    phKeyGate.push({
+      source: name, key, sign, rawIoC: ioc(source), inverseIoC: ioc(inverse),
+      prefix: inverse.slice(0, 12).map((x) => c.translit[x]).join("-")
+    });
+  }
+}
+assert.equal(phKeyGate.length, 8);
+assert.ok(phKeyGate.filter((x) => x.source === "interiors43")
+  .every((x) => x.inverseIoC < 0.03));
+assert.ok(phKeyGate.filter((x) => x.source === "full76")
+  .every((x) => x.inverseIoC < 0.04));
+const planted = c.pages.find((p) => p.page === 57).indices.slice(0, 43);
+assert.deepEqual(shift(shift(planted, [13, 8], 1), [13, 8], -1), planted);
+
 console.log(JSON.stringify({
   status: "intermediate source pattern; no decrypted unknown plaintext",
   p55: { centerStart: 19, runes: p55.center,
@@ -135,5 +168,6 @@ console.log(JSON.stringify({
   allNineRuneFlankMatches: allWindows,
   familywiseAnyCenteredPage: familywise,
   syntheticPositive: positive.pJoint,
+  phDirectKeyGate: phKeyGate,
   limitation: "two-rune flank width and PA output were postselected"
 }, null, 2));
