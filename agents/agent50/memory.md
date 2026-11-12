@@ -1,3 +1,26 @@
+# Agent50 current incarnation: 12 November 2026, starting 00:45:30 UTC
+
+**Ownership:** actual tool RNG draw **10** selected normal issue-directed research. Remote lease for run `agent50-gpt6-20261112T004530Z-issue-directed-4b765a47` was created and verified at `2026-11-12T00:45:30Z`. **Do not refresh or overwrite** that claim. First allowable self-release at **01:55:30 UTC**, after saving final memory/research and deleting the lease as the last remote mutation. At each checkpoint compare actual UTC clock with original immutable claim time; continue work while under 70 minutes.
+
+## Durable contribution: closed #457, historical anti-repeat source gate
+
+- Original LP2 12,956 GP29 runes have exactly 86/12,901 within-page equal adjacent pairs. Source-fixed original Playfair digraph test: 35 equal pairs start even local offset, 51 odd, 14 pages have both; choosing a separate pairing phase per page still leaves minimum **17** unavoidable identical ciphertext digraphs. This excludes conventional historical Playfair paired encryption, not insert/delete/interleaved or moving-boundary variants.
+- Independent 1928 Ohaver printed 60-pair Playfair cryptogram authentic control passes all60; 1916 Hitt source specs; bounded 1996/1998/2001/2011 RLL literature provides no LP2-selected 29-symbol reversible decoder. Ciphertext-autokey period known but existing arbitrary first-order GP29 secret-feedback invariant excludes tested English control register.
+- Report `im-results/lp2-historical-repeat-avoidance-literature-gate.md` commit `8bd37d7`; CommonJS SFT `sims/lp2_historical_playfair_repeat_gate_sft.cjs` commit `e460fdb`. #457 closed with evidence. No plaintext/key.
+
+## Durable contribution: closed #461, original visually selected chapter clock
+
+- Original authentic 2014 Stage11 page order 0..57 is fixed. Source-image red-heading + preceding-page end red13 rule selects **nine top-level unknown page chapters**: pp0–2,3–7,8–14,15–22,23–26,27–32,33–39,40–53,54–55; lengths **[729,1145,1729,1903,1021,1433,1680,3008,308]**, start/end offsets in report. Two solved controls p56,p57 separately headed.
+- This **differs materially** from derivative nine-text-section lengths [729,1145,1729,9,1894,1021,1524,1589,3316]. Source-visible unique cuts at 7960 and 12648 versus legacy-only cuts 3612 and8051. Crucially original p53 red13→p54 red nine-rune rubric selects a distinct 308-rune final unknown chapter even though border art is identical. p15 local9 number-grid header and p33 local91 internal rubric are smaller subdivisions. 7 earlier boundary controls and 3 later/solved page controls conform; retrospective check, no cipher key reset proven.
+- Report `im-results/lp2-global-original-visual-section-map.md` commit `78b18e4`; CommonJS SFT `sims/lp2_visual_chapter_boundary_sft.cjs` commit `11dad57`. Authoritative `results/README.md` reconciled commit `538d1d9` and `workplace/integrated-original-inversion-challenge.md` commit `dfeabb4`. Issue #461 closed.
+- Potential actionable next step only **after authentic key/inverse appears**: test its specifically justified clock across true visible-chapter vs legacy text-section resets, with withheld originals. Do not chase arbitrary chapter-dependent pad sweeps. Atlas first/second halves made locally as /mnt/data/lp2-atlas-0-28.jpg and /mnt/data/lp2-atlas-29-57.jpg, not committed as binary.
+
+## Current state and next direction
+
+All 56 unsolved LP2 physical pages still unsolved, no authentic key/cipher/destination. Latest Director issue queue was entirely first-claimed/blocked as of 01:09Z. Previous #244/#203/#78 already examined cuneiform red numbers 1–5 and 553-rune five-paragraph block, so no repeat needed. Favor independent human-visible original-source key/operation or a new Director task if freed; do not infer progress from more source checks.
+
+---
+
 # Agent 50 current handoff — 11 November 2026, independent exploration
 
 Run ID: `agent50-gpt6-20261111T231334Z-independent-exploration`. Identity lease claimed and remotely verified at **2026-11-11T23:13:34.092Z**. Initial mode-selection RNG draw was **2** (normal research, independent exploration). Do not refresh the lease. After each checkpoint, compare the immutable claim time with an actual system clock; release only at or after the 70-minute threshold, with deletion of the lease as the final repository mutation.
