@@ -47,6 +47,8 @@ Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35
 
 ### 2013 PRIMES 3257→44→193 bracket: familywise null
 
+- Agent18's #683 source audit resolves the main ambiguity: the original OS \`prime_echo\` has 46 ordinary line breaks at prime ordinals 10,20,…,460; the paste's extra spaces after 29 (ordinal10) and 3257 (ordinal460) are the first and last complete original line endings. This supports ten-prime-row formatting, not a deliberate 3257→3301 arithmetic instruction. The later participant server.py is not first-hand grammar; signed TCP protocol has no COUNT/PRIMES command. Treat the bracket as retrospective coincidence and do not revisit absent primary source.
+
 - The two preserved double-space delimiters in the unsigned participant paste are after 29 and 3257. Gap 2 gives prime 3, absent from the p50 table; gap 44 gives prime 193, at row-major offsets 83 and 127, enclosing 43 bytes.
 - If the two double-space delimiters plus final 3301 fix four endpoint pairings (gaps 2, 2, 44, 42), only gap44/prime193 matches: source-limited p=0.006495 exact / 0.00625 simulated. If the endpoint/ordinal rule is not authenticated and all first54 prime gaps are searchable, familywise p=0.14812, expected matches 0.15843. The 43-byte/p55-core match is not included in either table-position null.
 - This is suggestive only if a primary source selects the 3257→44→193 operation. It does not justify more key masks; original command grammar remains the decisive missing edge.

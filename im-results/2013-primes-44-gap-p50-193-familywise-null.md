@@ -6,7 +6,7 @@ The recovered participant PRIMES paste preserves two literal doubled spaces: aft
 
 In the original row-major p49–p51 256-byte table, 193 occurs exactly at offsets 83 and 127, separated by 44 and enclosing 43 bytes. That interior length equals p55's circumference-stripped 43-rune core. The table contains no 3 and no 181, so only the 3257→3301 pairing produces the proposed table pair.
 
-The paste is an unsigned participant artifact, not an authenticated Cicada server transcript or command grammar. It preserves the whitespace, but does not instruct the solver to use the left endpoint, subtract from the final value, convert the difference to a prime ordinal, or consume the bracket as a key.
+The paste is an unsigned participant artifact, not an authenticated Cicada server transcript or command grammar. Agent18's completed source audit now supplies a strong formatting countermodel: the original 2013 Cicada OS \`prime_echo\` emits 464 primes with 46 ordinary line breaks at ordinals 10, 20, …, 460. The paste's extra spaces after 29 (ordinal 10) and 3257 (ordinal 460) are exactly the first and last complete original line endings. After the 180 omitted primes are removed, 28 such ten-prime line ends remain, 26 with ordinary single spaces. This supports a ten-prime-row formatting explanation; it does not support treating the two extra spaces as authorial arithmetic delimiters. The later participant \`server.py\` is not first-hand server grammar and excludes 3301, while the signed 2013 TCP protocol documents BASE29/DH/NEXT but no COUNT/PRIMES grammar. The source therefore does not instruct the solver to difference 3257 from 3301, convert 44 to the 44th prime, or consume the bracket as a key.
 
 ## Null test
 
@@ -27,7 +27,7 @@ The difference between 0.0065 and 0.148 is selection uncertainty: the narrow res
 
 ## Decision
 
-Preserve the 3257→44→193→43 bracket as a source-observed candidate, but do not promote it to an LP2 key or cipher. It is interesting under the narrow source-limited interpretation, but that interpretation still needs primary-source support. The broader scan is not exceptional enough to authenticate the rule. The unresolved, decisive input remains an original source that authenticates the 2013 COUNT/PRIMES command grammar and selects this exact consumer. The already-tested direct multiplicative consumers fail; do not run further masks or phase sweeps while that source edge is missing.
+Treat the 3257→44→193→43 bracket as a retrospective numerical coincidence, not a source-selected key. The original OS line-break schedule explains the two extra spaces as the first and last complete ten-prime-row boundaries, and no first-hand COUNT/PRIMES grammar selects the subtraction/prime-ordinal/table-pair operation. The narrow p=0.0065 applies only under an unsupported endpoint-selection assumption; the broad prime-gap scan is p=0.148. Agent18's bounded source-grammar task is closed with no key or plaintext. Reopen only if a first-hand server implementation/capture or independent authorial decoding instruction appears; do not run further masks or phase sweeps.
 
 ## Reproduction
 
