@@ -1,0 +1,47 @@
+# Original LP2 32×8 numerical table against Cicada's historical 5-share Shamir construction
+
+**Decision (12 November 2026):** A source-motivated 5-of-8 Shamir secret-sharing interpretation of the complete 256-cell table fails at all three redundant original points under either published radix interpretation and both original-layout 32-byte share packings. No key, plaintext or continuation is recovered. This is a narrow original-cipher exclusion, not an assertion that the table cannot contain some other secret or key.
+
+## Why this is a concrete historical inverse
+
+The 2013 Cicada pklmx poster/ISO route demonstrably reconstructed an onion address from a **5-of-10 Shamir secret-sharing** process (im-results/pklmx-2013-onion-continuation-gate.md and its cited historical solver archive). Independently, LP2 prints a **32-row by 8-column** numerical table across original physical pp49–51 (scans 66.jpg–68.jpg). Conventionally the 256 two-character tokens serialize as 256 bytes. This suggests a finite recoverable key hypothesis: eight **32-byte (256-bit) shares**, any five defining a secret and the other three providing decisive algebraic consistency tests. A putative recovered 256-bit secret could then be tested as genuine symmetric key material, provided a separate LP2 source selected its consumer.
+
+The strongest objections are significant. There is no original LP2 instruction saying SSSS or marking share identifiers, and even the radix60 byte interpretation is ambiguous with radix59 because lowercase f never appears in this table. The historical 2013 five-of-ten system does not prove any connection to the 2014 LP2 table. Thus freeze the natural share layouts and genuine historical polynomial construction, ask for exact internal consistency, and reject without attempting to adapt secret coefficients.
+
+## Exact 256-bit field and frozen original input
+
+The SSSS program source defines an irreducible polynomial for every byte-multiple field size; at **degree256**, its irred_coeff lookup indexes 3*(256/8−1)=93 and yields exponents **10,5,2**. Thus its field is GF(2^256) with reduction polynomial:
+
+    X^256 + X^10 + X^5 + X^2 + 1
+
+See the original open-source [SSSS C implementation](https://github.com/osresearch/ssss/blob/master/ssss.c), specifically irred_coeff, field_init, split, and field_import. Its share identifiers are integers **1 through n**. The default optional XTEA diffusion applies to the **secret coefficient before evaluating the polynomial**, leaving the Shamir relationship among printed share values intact. Share bytes are interpreted big-endian, matching mpz_import.
+
+The frozen test is a **degree-at-most-four** polynomial fitted through only five original-share values at x=1,2,3,4,5. Values at x=6,7,8 must *each* be exactly predicted; interpolation over the actual 256-bit field makes this independent of the secret, four unknown polynomial coefficients, and diffusion. Both original layout readings have plausible editorial motivation:
+
+- **Columns:** one 32-byte share per original printed column; preserves the 32×8 arrangement.
+- **Contiguous blocks:** one 32-byte share per consecutive row-major eighth; preserves full printed row-major token order.
+
+Test each with both the conventional 60-character alphabet 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx and its same-order 59-character variant excluding lowercase f. No shift, chosen row permutation, guessed identifier, key, or offset is fitted.
+
+## Original results
+
+Each evidence row below records the **number of differing bits** between three complete 256-bit predicted share values and actual printed values at x=6,7,8. A real source instance would require **(0,0,0)** and exactly three matches.
+
+| Numeric reading | Printed packing | Differing bits, x6 / x7 / x8 | Complete matches |
+| --- | --- | --- | ---: |
+| Radix60 | eight columns | 131 / 124 / 123 | 0/3 |
+| Radix60 | consecutive 32-byte blocks | 121 / 118 / 126 | 0/3 |
+| Radix59 | eight columns | 132 / 122 / 110 | 0/3 |
+| Radix59 | consecutive 32-byte blocks | 130 / 127 / 136 | 0/3 |
+
+The differences are near the 128-bit expectation for unrelated 256-bit values. The discrepancies rule out ordinary byte-transcription mistakes as an explanation for a failed share, although source transcription uncertainties remain outside this exact gate.
+
+A deterministic synthetic control generates five independently hashed 256-bit coefficients, evaluates eight shares at x=1..8 using this exact field, checks that x6/x7/x8 all interpolate **exactly**, recovers the true constant secret at x=0, then flips one bit of the last share and confirms only its held-out comparison fails. Multiplication of seven by its inverse is also checked. Controls verify the implementation only.
+
+## Cryptanalytic consequence and next decision
+
+The original complete table is **not** a straightforward historical 2013-SSSS-style eight-share, five-threshold, 256-bit construction in either of the two source-preserving 32-byte packings under the two live numeric interpretations. The 2013 shared-secret analogy supplies **no authentic 256-bit LP2 key** by this route. No arbitrary factorization, secret-table inference, brute-forced share permutation, or speculative AES decoding follows from these failures.
+
+A successor requires a **new original clue** selecting a distinct share grouping, threshold, identifier system or byte serialization. Absent that clue, prefer source-driven attempts to discover recoverable cipher state or unknown plaintext over a larger Shamir parameter sweep.
+
+**Reproducer:** [single-file CommonJS SFT](../sims/lp2_p50_ssss_5of8_field256_sft.cjs); inputs: [canonical printed table](../resources/liber-primus/base60-grid.json) and the above linked historical SSSS source.
