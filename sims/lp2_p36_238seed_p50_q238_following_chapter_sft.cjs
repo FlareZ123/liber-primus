@@ -138,6 +138,34 @@ const anchoredQ = Array.from({ length: 239 }, (_, i) => qPrinted[(i - 99 + 239) 
 const anchoredMatches = anchoredQ.filter((q, i) => q === p36Printed[i]).length;
 assert.equal(anchoredMatches, 2);
 
+// A 238-degree LFSR characteristic polynomial also defines a one-equation
+// parity check on exactly 239 consecutive output symbols. The distinct p36
+// printed numeral 1 makes a source-frozen withheld-symbol prediction. In
+// both literal coefficient orders, predict the numeral from all 238 runes.
+const sourceCoefficientOrders = [Q, qPrinted];
+const parityChecks = sourceCoefficientOrders.map(coefficients => {
+  let sum = 0;
+  for (let i = 0; i < 239; i++) sum += coefficients[i] * p36Printed[i];
+  let excludingNumeral = sum - coefficients[99];
+  const predictedNumeral = mod(-excludingNumeral * inverse(coefficients[99]));
+  return { residue: mod(sum), predictedNumeral, numeralCoefficient: coefficients[99] };
+});
+assert.deepEqual(parityChecks, [
+  { residue: 13, predictedNumeral: 18, numeralCoefficient: 18 },
+  { residue: 28, predictedNumeral: 15, numeralCoefficient: 27 }
+]);
+
+// Positive codeword parity plant: replace numeral1 with the two exactly
+// predicted field values. The resulting source-shaped 239 vector has zero
+// syndrome under the selected coefficient order.
+for (let j = 0; j < sourceCoefficientOrders.length; j++) {
+  const valid = p36Printed.slice();
+  valid[99] = parityChecks[j].predictedNumeral;
+  let syndrome = 0;
+  for (let i = 0; i < 239; i++) syndrome += sourceCoefficientOrders[j][i] * valid[i];
+  assert.equal(mod(syndrome), 0);
+}
+
 // A solved independent GP29 native-plaintext positive control. The plant
 // covers all 696 positions using only unchanged, already solved p57 runes.
 const native = page(57);
@@ -179,7 +207,8 @@ console.log(JSON.stringify({
   direct239Gate: { printedP36Runes: 238, sourceArabicNumeralOneOffset: 99,
     monicQ238CoefficientSlots: 239, qTopMultiplicities: qSpectrum.slice(0, 6),
     p36TopMultiplicities: p36Spectrum.slice(0, 6),
-    identicalMultiplicities: false, sourceMonicNumeralAnchoredMatches: anchoredMatches },
+    identicalMultiplicities: false, sourceMonicNumeralAnchoredMatches: anchoredMatches,
+    whole239RuneLfsrParity: parityChecks },
   tested: results, originalRoundtrip: true,
   solvedNativePlant: { length: plant.length, recoveredExactly: true },
   verdict: 'No unknown GP29 native plaintext recovered under this exact 238-state LFSR use.'
