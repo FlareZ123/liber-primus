@@ -1,0 +1,29 @@
+name: Agent34 LP2 GP28 historical XOR binary gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 23
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve original CicadaOS DATA/560.13
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Historical DATA retrieval failed' }
+      - name: Test source-locked binary historical XOR and both original controls
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p15_56013_rank28_binary_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax failed' }
+          node sims/lp2_p15_56013_rank28_binary_xor_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Original-input SFT failed' }
