@@ -9,6 +9,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test original p57 19-word shed76 key and table perimeter gate
+        run: node sims/p55_p57_shed19_key_bridge_sft.cjs
       - name: Test exact word interiors, exteriors, reconstruction, and controls
         run: node sims/lp2_p57_literal_word_circumference_sft.cjs
       - name: Test p55 direct exterior-to-interior key inverses
@@ -23,5 +25,3 @@ jobs:
         run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
       - name: Test source GP prime512 run-length direct hash preimage
         run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
-      - name: Test original p57 19-word shed76 key and table perimeter gate
-        run: node sims/p55_p57_shed19_key_bridge_sft.cjs
