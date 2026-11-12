@@ -143,3 +143,11 @@ The older [OPEN-AVENUES](https://github.com/Dukotah/cicada3301/blob/master/liber
 - [mortlach/Liber-Primus-Crib-Assist](https://github.com/mortlach/Liber-Primus-Crib-Assist): crib-search tooling, not a recovered solution.
 
 For the detailed claim-by-claim audit, including the unsupported 2026 “dynamic stream / geographic cipher” Reddit claim and the README-only “full translation” repository, see [modern-public-claim-audit-2026-11-11.md](../../im-results/modern-public-claim-audit-2026-11-11.md).
+
+
+## DyrneCipher/Obsidian-Vault (pinned 17 June 2026)
+
+- [External source revision](https://github.com/DyrneCipher/Obsidian-Vault/tree/f7ee37add470aa296b0ca7d5056dec78d4e3eb04), commit `f7ee37add470aa296b0ca7d5056dec78d4e3eb04`; the publicly advertised `skills/cicada-3301-liber-primus/SKILL.md` lists 150 old OutGuess files, 75 original scans, four historical hex strings, and unverified solver notes.
+- **Exact verified duplication:** **150/150** files in `_archive/liber-primus/lp_outguessed/`, all **75** full scans, all **58** unsolved-page scans, and all **six** historical reference files including `byte-strings` have identical Git blob SHA, filenames, and sizes to the already indexed `rtkd/iddqd` collection. **289/289** source corpus objects match. The four cited byte strings are each 512 hex characters; string 4 equals all **256** decoded pp49–51 original numeric-grid bytes under the existing base60 transcription.
+- Its separately authored June 2026 notes describe already solved LP1 and p57 text as new “phonetic” discoveries and offer multiple mutually incompatible guessed English headings for original LP2 encrypted pages, with no key selector or held-out reencryption. They provide no independently attributable new LP2 plaintext, original cipher key or continuation. Do not rerun the copied OutGuess outputs or treat its `Key+Invert` heading arrays as historical decryption evidence.
+- [Detailed source-key gate and full matching procedure](../../im-results/obsidian-vault-2026-source-key-original-gate.md). New work would require a distinct creator-era source, not this retrospective public mirror.
