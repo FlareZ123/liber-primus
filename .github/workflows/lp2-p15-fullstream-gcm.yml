@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_p15_fullstream_aes128_gcm_sft.cjs
       - name: Authenticate nine original red-title source units
         run: node sims/lp2_p15_nineunit_gcm_sft.cjs
+      - name: Test source p15 AES-CTR plaintext bytes on complete LP2
+        run: node sims/lp2_p15_fullstream_ctr_sft.cjs
