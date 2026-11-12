@@ -202,6 +202,23 @@ const complementScores = {
   nativeMedian: native113Scores[Math.floor(native113Scores.length / 2)]
 };
 
+
+const cycleColumns = Array.from({ length: 11 }, (_, i) => mod(4 * i, 11));
+const cycleMapReadout = [];
+for (let row = 0; row < 11; row++) {
+  for (const col of cycleColumns) cycleMapReadout.push(p32[row * 11 + col]);
+}
+const baselineAtRingPositions = positions.map(position => {
+  const cell = baselineRoute.endpoints[position - 1];
+  return { position, cell, rune: corpus.translit[p32[cell]] };
+});
+const netDisplacement = {
+  ringRaw: ringRoute.delta,
+  baselineRaw: baselineRoute.delta,
+  ringModulo11: ringRoute.delta.map(x => mod(x, 11)),
+  baselineModulo11: baselineRoute.delta.map(x => mod(x, 11))
+};
+
 const output = {
   classification: "full-path diagnostic; no plaintext or key recovered",
   ringSelector: {
@@ -217,6 +234,20 @@ const output = {
     start: { row: startRow, col: startCol, index: startIndex, rune: "H" },
     marker: "HOMEX"
   },
+  netDisplacement,
+  baselineEndpointsAtRingSelectedWordPositions: baselineAtRingPositions,
+  repeatedShiftCycle: {
+    shift: [0, 4],
+    order: 11,
+    columns: cycleColumns,
+    row3Runes: cycleColumns.map(col => corpus.translit[p32[3 * 11 + col]]).join(" "),
+    rowwiseReadout: cycleMapReadout.map(i => corpus.translit[i]).join(""),
+    rawMapIoC: ioc(p32),
+    cycleReadoutIoC: ioc(cycleMapReadout),
+    rawMapTrigramScore: trigramScore(p32),
+    cycleReadoutTrigramScore: trigramScore(cycleMapReadout),
+    interpretation: "The natural 11-cycle rowwise permutation does not recover GP-English plaintext."
+  },
   fourMoveRingRoute: {
     moves: ringRoute.segments.map(x => ({
       byte: x.byte, direction: x.directionName, distance: x.distance,
@@ -224,6 +255,8 @@ const output = {
     })),
     endpointRunes: ringRoute.endpoints.map(i => corpus.translit[p32[i]]),
     finalCell: ringRoute.end,
+    rawDisplacement: ringRoute.delta,
+    modulo11Displacement: ringRoute.delta.map(x => mod(x, 11)),
     unitSteps: ringRoute.steps,
     uniqueCellsIncludingStart: ringRoute.unique.length,
     firstFiveCells: ringRoute.full.slice(0, 5),
@@ -235,6 +268,8 @@ const output = {
     tableInterval: [84, 127],
     moveCount: baselineBytes.length,
     finalCell: baselineRoute.end,
+    rawDisplacement: baselineRoute.delta,
+    modulo11Displacement: baselineRoute.delta.map(x => mod(x, 11)),
     endpointDistinctCount: new Set(baselineRoute.endpoints).size,
     unitSteps: baselineRoute.steps,
     uniqueCellsIncludingStart: baselineRoute.unique.length,
