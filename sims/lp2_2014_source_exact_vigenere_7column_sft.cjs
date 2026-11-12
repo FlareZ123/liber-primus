@@ -68,17 +68,18 @@ assert.deepEqual(fixedKey,
   [22,11,9,24,26,10,11,16,19,9,23,25,19,10,13,26,27,11]);
 
 /** Exact archive's reversed-rune-lookup emission into GP29 values.
- * GP rune index C gives output index (28-C-keyShift) mod29.
+ * The original rune-key order is reversed, but the output VALUE lookup is forward.
+ * Thus canonical GP plaintext index is (C + keyShift) mod29.
  * @param {number[]} src @param {number[]} shifts @returns {number[]}
  */
 function historicalInverse(src, shifts) {
-  return src.map((v, i) => (28 - v - shifts[i % shifts.length] + 58) % 29);
+  return src.map((v, i) => (v + shifts[i % shifts.length]) % 29);
 }
 /** Inverse of that historical transformation, for reencryption.
  * @param {number[]} src @param {number[]} shifts @returns {number[]}
  */
 function historicalForward(src, shifts) {
-  return historicalInverse(src, shifts);
+  return src.map((v, i) => (v - shifts[i % shifts.length] + 29) % 29);
 }
 
 /** Reproduce the 18-rune Stage04 onion-address positive.
@@ -89,8 +90,8 @@ function originalOnion(shifts) {
   return [..."ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3ᛠᛗᛇᚠᛡ"].map(symbol => {
     const i = corpus.runes.indexOf(symbol);
     if (i < 0) return symbol;
-    const output = (28 - i - shifts[clock++ % shifts.length] + 58) % 29;
-    return valuesForward[28-output][0];
+    const output = (i + shifts[clock++ % shifts.length]) % 29;
+    return valuesForward[output][0];
   }).join("");
 }
 assert.equal(originalOnion(buggyKey), "AUOWYFGL5LCSFJ3NONPM");
