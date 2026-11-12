@@ -54,6 +54,26 @@ EXPLICIT = re.compile(
 )
 URL_RE = re.compile(rb"(?:https?://|[a-z0-9-]+\.onion\b|pastebin\.com|gist\.github)", re.I)
 
+SOURCE_WINDOWS = {
+    "#cicadasolvers.freenode.log": (
+        (170815, 170855), (185115, 185150), (187565, 187590),
+        (190210, 190235), (212600, 212635), (213300, 213415),
+        (217285, 217325), (237770, 237810),
+    ),
+    "#cicadasolvers.freenode.2.log": (
+        (1760, 1790), (16260, 16295), (26160, 26195), (26630, 26670),
+    ),
+}
+LINKS = (
+    "http://sprunge.us/PBPT",
+    "http://sprunge.us/DbXN",
+    "http://sprunge.us/BbUK",
+    "http://titanpad.com/vFCy7T5p0O",
+    "http://titanpad.com/hJ8pVQ5S43",
+    "https://web.archive.org/cdx/search/cdx?url=titanpad.com%2FvFCy7T5p0O&output=json&filter=statuscode%3A200&collapse=digest",
+    "https://www.forums.unfiction.com/forums/viewtopic.php?p=1028647",
+)
+
 
 def git_blob_sha(data: bytes) -> str:
     return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\0" + data).hexdigest()
@@ -147,6 +167,15 @@ def scan_file(name: str, expected_size: int, expected_sha: str):
 
     candidates.sort(key=lambda x: (-x["score"], x["anchor_line"], x["operation_line"]))
     day_counts = Counter(d.isoformat() for d in dates if d and d >= date(2014, 5, 2))
+    targeted_contexts = []
+    for start, end in SOURCE_WINDOWS.get(name, ()):
+        targeted_contexts.append({
+            "requested_lines": [start, end],
+            "lines": [
+                {"line": k + 1, "text": lines[k].decode("utf-8", errors="replace")[:1000]}
+                for k in range(max(0, start - 1), min(len(lines), end))
+            ],
+        })
     return {
         "archive": name,
         "bytes": len(raw),
@@ -157,11 +186,32 @@ def scan_file(name: str, expected_size: int, expected_sha: str):
         "unknown_page_anchor_lines": len(anchors),
         "candidate_pairs": len(candidates),
         "top_candidates": candidates[:160],
+        "targeted_contexts": targeted_contexts,
     }
+
+
+def fetch_link(url: str):
+    request = Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (compatible; LP2 historical source audit)",
+        "Accept": "text/plain,text/html,application/json,*/*",
+    })
+    try:
+        with urlopen(request, timeout=25) as response:
+            body = response.read(250000)
+            return {
+                "url": url, "status": response.status,
+                "final_url": response.geturl(),
+                "content_type": response.headers.get("Content-Type"),
+                "bytes_read": len(body), "sha256": hashlib.sha256(body).hexdigest(),
+                "body": body.decode("utf-8", errors="replace")[:25000],
+            }
+    except Exception as exc:
+        return {"url": url, "error": f"{type(exc).__name__}: {exc}"}
 
 
 def main():
     results = [scan_file(*item) for item in FILES]
+    linked_materials = [fetch_link(url) for url in LINKS]
     report = {
         "scope": "2014-05-02 onward in three pinned IRC Git blobs",
         "method": (
@@ -170,6 +220,7 @@ def main():
             "Participant statements are not Cicada-authenticated."
         ),
         "archives": results,
+        "linked_materials": linked_materials,
         "total_candidate_pairs": sum(x["candidate_pairs"] for x in results),
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
