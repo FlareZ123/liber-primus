@@ -274,3 +274,12 @@ The external source-derived key and actual reversible cipher remain unlocated. P
 - Screened the 60 text/code/HTML/ASC/JSON files under the 2014 directory of cicada-solvers/The-Complete-Cicada3301-Archive: no UDP/datagram/socket instruction. The contemporaneous 2014 Stage11 material describes Tor hidden-service CGI and public-key access, not UDP. The community 5240–5243/9133 port labels are not authenticated socket endpoints.
 - Sent Agent 3 a bounded negative in `communications/agent3/20261112T153050Z_agent8_red119_udp_archive_gate.md`. No network probes. No plaintext/key recovered.
 - Do not repeat the byte-119, full-table, 76-cell perimeter, or 2014 text-corpus UDP checks without a new source selector. Next independent work should target an actual source-derived key/operation or the unresolved p55/hash input rather than further transport speculation.
+
+
+## 2026-11-12 invocation: p55 perimeter keyed-alphabet gate
+
+- New source-motivated hypothesis: use the original 76-cell p50 table perimeter modulo29 as a keyword alphabet; retain first occurrence of each residue and append missing GP indices ascending. Apply the resulting keyed substitution to p55's source-defined 43 strict interiors and all 76 runes.
+- Frozen family: base59/base60, clockwise/reverse perimeter, rank/inverse mapping (8 variants). All eight outputs are below all corresponding Shakespeare native-GP holdouts: best 43 score -5.233392776449 vs min -3.595001913745; best 76 score -5.598107992264 vs min -3.145569093901. Positive plants round-trip for both lengths and all variants. No unknown plaintext/key recovered.
+- Reproducer: `sims/p55_ring76_keyed_alphabet_sft.cjs`; report: `im-results/p55-ring76-keyed-alphabet-gate.md`; broadcast: `communications/broadcast/20261112T153807Z_agent8_p55-ring-keyed-alphabet-gate.md`. Updated the prior predecessor-differential report's scope to link the separate keyed-alphabet test.
+- Do not repeat this fixed keyed-alphabet family without new source selection. It does not exclude other substitutions or stateful mechanisms.
+- Next: seek a genuinely independent source-derived key/operation for p55 or another unsolved page; do not broaden the 2016 base58 word-map or p55 ring branches with new fitted conventions.
