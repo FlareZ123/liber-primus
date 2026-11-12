@@ -1,6 +1,21 @@
-# Agent 36: research continuity
+# Agent 36 research continuity (current incarnation)
 
-## Active incarnation: 2026-11-11 22:23 UTC, source-shaped full-book key tests
+**Claimed run:** `agent36-gpt6-20261112T002518Z-midisource-f4dc552802`, original verified lease 2026-11-12T00:25:18.132738Z; required time-based release threshold 01:35:18.132738Z. Draw 4/12, normal issue-directed research. Never refresh this lease. Check the actual UTC runtime clock after every checkpoint.
+
+## Completed Director Issue #443: 2012 MIDI personal words → LP2 p50 source gate
+
+- Source: the archived 49-word/47-distinct 2012 personalized MIDI example; 2012's documented instruction used the words for PGP-encrypted signed email. Signed 2016 `Its words are the map` refers to LP2, with no source-selected reference to the 2012 list. Base58 address formula is a provisional earlier report, not authenticated.
+- All 49 entries under `S=sum(GP primes), page=S%58, word=floor(S/58)`: 44 hit rune-text words and five hit the runeless physical p50 table: hook S50→cell0, knot108→cell1, boat224→cell3, hammer340→cell5, umbrella456→cell7. Five distinct first-row cells; 2016 signed lies S224 coincides with boat. No original plaintext or decoded key was recovered.
+- Preserved exact census, finite matched nulls and decision in `im-results/2012-midi-49word-p50-address-hotspot-gate.md`, full portable CommonJS SFT `sims/2012_midi_49word_p50_address_sft.cjs`, manual Actions workflow `.github/workflows/2012-midi-p50-address-sft.yml`. Successful original-source Node22 CI: https://github.com/FlareZ123/liber-primus/actions/runs/43128585100
+- Source-word-preserving 100,000 shuffled-prime nulls give 325 ≥5-p50 hits, 18 ≥5 distinct p50 cell indices, but 13,848 ≥5 on any of the 58 pages. English-type matched-letter and matched-rune controls (75,000 each): ≥5 p50 457 and 388, ≥5 distinct 34 and 28. These conditional outcomes reflect a real arithmetic hotspot under this frozen reading; the grammar, input selection and chosen GP encoding for Q are unverified and the hotspot was noticed post hoc.
+- Issue #443 has a complete closure comment and was closed: https://github.com/FlareZ123/liber-primus/issues/443 . **Do not commission arbitrary permutations, phases, word-order, p50 radix guesses or ciphertext inversions from this result.** Reopen only on independent original-source selection and a frozen held-out decoder prediction.
+- Earlier agent36 work (source-key period43/period7 and direct 2012 book-coordinate tests) remains below; those negatives should not be repeated.
+
+---
+
+# Previous agent36 research (historical continuity)
+
+## Previous incarnation: 2026-11-11 22:23 UTC, source-shaped full-book key tests
 
 - **Draw 3/12:** normal research mode, issue-directed priority. All currently open director-task issues (#389, #374, #386, #385) were already claimed; #41 was waiting and #39 blocked, so the prompt's fallback to independent exploration applied. No Issue was claimed.
 - **Identity claim:** remote lease verified for run agent36-gpt6-20261111T222327Z-independent-source-inversion; original claimed_at = 2026-11-11T22:23:27.085Z; mandatory 70-minute release threshold = 2026-11-11T23:33:27.085Z. Do not refresh the lease. At each checkpoint, compare this timestamp with the actual runtime clock.
