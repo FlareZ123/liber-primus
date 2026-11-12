@@ -174,6 +174,40 @@ function main() {
   }
   assert.deepEqual(pairCases.map(p => p.forcedEdits), [5, 3, 5, 2]);
 
+  // The other immediate 238-symbol view keeps the monic leading unit and
+  // discards the constant coefficient. It is a separate natural endpoint
+  // convention, so test it independently rather than generalizing from the
+  // nonleading coefficient stream above.
+  const alternate238 = qHigh.slice(0, -1);
+  const alternateEdits = minimumSymbolChanges(alternate238, p36, MOD);
+  assert.equal(alternate238.length, 238);
+  assert.equal(new Set(alternate238).size, MOD);
+  assert.notDeepEqual(multiplicitySpectrum(alternate238, MOD), p36Spectrum);
+  assert.equal(alternateEdits, 16);
+
+  /** @type {Array<{source: string, target: string, inputDistinct: number, outputDistinct: number, forcedEdits: number, noDeterministicMap: boolean}>} */
+  const alternatePairs = [];
+  for (const sourceKind of ['adjacent', 'halves']) {
+    for (const targetKind of ['adjacent', 'halves']) {
+      const source = packPairs(alternate238, sourceKind);
+      const target = packPairs(p36, targetKind);
+      const inputDistinct = new Set(source).size;
+      const outputDistinct = new Set(target).size;
+      const forcedEdits = minimumSymbolChanges(source, target, MOD * MOD);
+      // Distinct-output growth forbids a stationary function. The remaining
+      // 112 -> 111 case still forbids an invertible stationary function:
+      // any pair-alphabet bijection preserves multiplicity spectra exactly.
+      assert(forcedEdits > 0);
+      alternatePairs.push({
+        source: sourceKind, target: targetKind, inputDistinct,
+        outputDistinct, forcedEdits,
+        noDeterministicMap: inputDistinct < outputDistinct
+      });
+    }
+  }
+  assert.deepEqual(alternatePairs.map(p => p.forcedEdits), [2, 1, 5, 2]);
+  assert.deepEqual(alternatePairs.map(p => p.noDeterministicMap), [true, false, true, true]);
+
   // Full 841-symbol permutation + arbitrary pair-position permutation plant.
   const originalPairs = packPairs(q238, 'adjacent');
   const pairedPlant = Array.from({ length: 119 }, (_, i) =>
@@ -192,6 +226,9 @@ function main() {
     sourceGPFrequencySpectrum: rawSpectrum,
     p36GPFrequencySpectrum: p36Spectrum,
     pairedModels: pairCases,
+    alternate238Endpoint: 'retain monic coefficient, discard constant coefficient',
+    alternate238MinSymbolEdits: alternateEdits,
+    alternate238Pairs: alternatePairs,
     originalPolynomialDivisionRemainder: remainder,
     positiveControls: '29-symbol and 841-symbol blind secret-permutation plants pass'
   }, null, 2));
