@@ -1,12 +1,28 @@
 # Doublet exceptions as a possible hidden channel
 
-**Status, 11 November 2026:** three independently bounded original-input side-channel tests are negative: Agent24's repeated-letter and gap-symbol GP readings; Agent12's Base64 encoding of the known page56 digest; and Agent45's distinct 740-bit combinatorial event-mask rank interpretation of that digest. None recovers unknown LP2 plaintext, an authentic cipher key or a destination.
+**Status, 12 November 2026:** Original-input tests of repeated-letter and gap-symbol readings, a 64-byte digest channel, and combinatorial event-mask rank are negative. A further direct attempt to index the 86 quoted words with the 86 doublet events is also negative. A new within-page boundary-permutation test finds strong suppression of repeated ciphertext runes across printed word separators. These are bounded structural constraints; none recovers unknown LP2 plaintext, an authentic cipher key or a destination.
 
 ## Motivating structure
 
 Across 55 rune-bearing unsolved LP2 pages (pages 0–55, omitting the number-only page 50), 86 of 12,901 within-page adjacent ciphertext pairs are equal. The exceptions to the unusually strong same-rune suppression may in principle carry an independent message.
 
 We tested three explicit 29-symbol readings of these *events*, in manuscript order: (1) the rune value that repeats (86 symbols); (2) global rune-position gaps between successive events modulo 29 (85 symbols); and (3) within-page positions of the second rune modulo 29 (86 symbols). This is a direct channel attack, separate from analyses of the full ciphertext.
+
+## Repeat suppression crosses printed word boundaries
+
+A distinct original-cipher necessary-condition test restores the printed separators from `resources/liber-primus/lp2-transcription.txt`, whose **13,136 rune symbols** align exactly, position by position, with the canonical 58-page corpus. Only physical p0–55 are tested; the numeric-only p50 contributes no rune pairs, and cross-page adjacencies are excluded. The original 12,901 eligible pairs split at **printed hyphens or full stops**:
+
+| Within-page pair location | Identical adjacent GP29 rune pairs | Fraction |
+| --- | ---: | ---: |
+| Within a printed word (or an unbroken line wrap) | **63 / 10,028** | **0.62824%** |
+| Across a printed word or sentence separator | **23 / 2,873** | **0.80056%** |
+| All eligible within-page pairs | **86 / 12,901** | **0.66661%** |
+
+To distinguish a continuous no-repeat constraint from independently random ciphertext starts, freeze each actual preceding last-word rune, the complete multiset of actual succeeding word-start runes **within each physical page**, and every original word boundary. Uniformly permute those succeeding runes separately within each page. In **10,000** deterministic matched permutations (xorshift32 seed `0x43c1d27f`), the number of same-rune word-boundary collisions averages **100.8796** with a range of **69–140**; **0/10,000** have at most the observed 23 (add-one empirical `p=0.00009999`). The observed suppression across boundaries is therefore incompatible with this particular independent-word-start exchangeability model.
+
+This reveals a stronger **cipher continuity constraint** than merely reporting the known 86 doublets. It is consistent with a state carried across word breaks or a post-encoding anti-repeat operation spanning words, among other possibilities. It neither determines the hidden transformation nor proves the author used a continuous encryption clock. The direct 86-event-to-86-quote-word rune-index, prime-index, and one-based prime-index extractions are all nonlinguistic (IoC 0.031464, 0.034473, 0.027633 versus solved p57 control 0.059644), despite exact planted extraction controls. Correctly treating the original sentence mark at **global offset 10,320** yields 86 words in seven quotes; the earlier 85-count signature omitted this word break. The quoted-word source analysis is consolidated in [the punctuation report](punctuation-quote-channel-gate.md).
+
+[Original-input CommonJS reproducer](../sims/lp2_quote_doublet_word_boundary_sft.cjs) checks every original rune and prints the full readouts, collision counts, permutation null, and planted positives. Continue only after an independent clue specifies how to use these events to recover an actual key or message.
 
 ## Model, controls, and observed data
 
