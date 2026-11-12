@@ -51,8 +51,8 @@ function addressedKey(numbers) {
 const keyMap = new Map([
   ['printed-row/visible-value', addressedKey(rowNumbers)],
   ['clockwise-spiral/visible-value', addressedKey(spiralNumbers)],
-  ['printed-row/3301-difference-primes', addressedKey(rowNumbers.map(x => 3301 - x))],
-  ['clockwise-spiral/3301-difference-primes', addressedKey(spiralNumbers.map(x => 3301 - x))]
+  ['printed-row/abs(3301-difference)-primes', addressedKey(rowNumbers.map(x => Math.abs(3301 - x)))],
+  ['clockwise-spiral/3301-difference-primes', addressedKey(spiralNumbers.map(x => Math.abs(3301 - x)))]
 ]);
 assert.equal(keyMap.size, 4);
 assert.equal(new Set([...keyMap.values()].map(k => k.toString('hex'))).size, 4);
@@ -132,7 +132,7 @@ console.log(JSON.stringify({
   source: '2013 original DATA/560.13 indexed by original p15 displayed Fibonacci-prime square',
   originalPadSha256:digest,
   gridSha256:crypto.createHash('sha256').update(raw).digest('hex'),
-  directions:'Original visible row and independently established clockwise spiral. Direct visible values and 3301-difference source primes.',
+  directions:'Original visible row and independently established clockwise spiral. Direct visible values and absolute 3301-difference source primes.',
   keyCount:4, modeCount:3, gridLayouts:2,
   candidates:24, allPrintable, allGpByte, headers,
   bestPrintable:results.reduce((a,b) => b.printable>a.printable?b:a),
