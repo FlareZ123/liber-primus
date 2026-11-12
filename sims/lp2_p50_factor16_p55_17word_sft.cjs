@@ -80,11 +80,11 @@ assert.equal(grid.bytes.length, 256);
 assert.equal(source.length, 57);
 const factors = [
   [5, 1], [5, 1], [11, 18, 1], [24, 16, 14, 1],
-  [11, 15, 9, 1, 5, 10, 7, 20, 12, 1]
+  [11, 15, 0, 9, 1, 5, 10, 20, 12, 1]
 ];
 const low = factors.reduce(multiply, [1]); // monic degree16
 assert.equal(low.length, 17);
-assert.deepStrictEqual(low, [13, 20, 5, 8, 15, 11, 25, 7, 28, 14, 26, 2, 10, 8, 17, 25, 1]);
+assert.deepStrictEqual(low, [13, 20, 26, 12, 6, 2, 13, 26, 6, 26, 11, 7, 15, 11, 17, 25, 1]);
 const polynomial = grid.bytes.slice().reverse().map((x) => x % 29);
 assert.equal(polynomial.length, 256);
 const quotient = divideExact(polynomial, low);
@@ -120,9 +120,9 @@ assert.equal(recovered[0].length, 11);
 assert.equal(body.length + 1, p55.length);
 const candidate = recovered.map(translit);
 assert.deepStrictEqual(candidate, [
-  "CTHSUPBIAOCAEL", "FDXJ", "IAF", "GJ", "CTHAEPNGS",
-  "IAAEOESOEA", "IW", "OXSFAECTLEADWGIA", "LTAEAXU", "IUCIA",
-  "TOE", "BWEAAOAR", "OFYTTOF", "DX", "FDCXFN", "OLI", "RCY"
+  "CTHSUPBIAOCAEL", "FMIJ", "IAF", "OH", "FYLHTI",
+  "OELBIIAD", "AEOE", "LTHOBPOERHTJADS", "PNBNGWD", "LJSH",
+  "EAC", "YTHREORP", "EONGAEAEEON", "MI", "HTHPOEHB", "OLI", "RCY"
 ]);
 
 // Genuine native GP plant preserved word-for-word under the exact
