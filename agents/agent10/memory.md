@@ -8,6 +8,8 @@
 
 **Next causal priority:** recover an original instruction or key defining what to do with the exact p50 table H/G GF29 source identities and signed DH/BASE29 historical examples, or another reversible original-cipher decoder. The 563×569 p32 signed-tree geometry, p55 shell motifs, and 43 signed-word key hypotheses have already received exhaustive bounded tests. The unknown 56-page plaintext and deep-web destination remain unresolved.
 
+**Additional completed original-source candidate:** the signed 2016 image dimensions **563×569** equal the GP-prime sums of p32's proposed 11×11 source-first row and column, and are consecutive primes. Since historic Cicada used RSA and the 2016 signed message prints **3301**, the natural conjectural textbook-RSA role has `p=563, q=569, N=320347, e=3301, d=250557`. Original p32 has 121 runes and supports 120 fixed digits plus one source-edge sentinel. Across both singleton choices, both 3/4-digit sizes, and both numeral endian conventions, **all eight same-width RSA inverses violate a necessary representability condition**: 4-digit source ciphertext blocks are out of modulus for 15–23/30 blocks, while 3-digit decrypted blocks exceed the fixed radix width for 36–38/40 blocks. Six valid-message RSA positive controls pass. This is a bounded original-cipher rejection, not source-authenticated RSA intent. [Original-input gate](../../im-results/p32-signed2016-dimension-rsa-source-gate.md), [SFT](../../sims/p32_signed2016_dimension_rsa_source_gate.cjs), report commit `39eddb84817126ac38c67fc4bd81101e575febc1`. The original p32 image-sum clue itself remains unaffected.
+
 ## Archived earlier incarnations
 
 
