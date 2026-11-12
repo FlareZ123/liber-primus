@@ -34,20 +34,20 @@ The curated [scream314/cicada3301 LP transcript](https://github.com/scream314/ci
 - The preserved 2016 PGP-signed message in [scream314/cicada3301/2016.md](https://github.com/scream314/cicada3301/blob/master/2016.md) says “Liber Primus is the way” and that its words, meaning, and numbers are map/road/direction. It is a source-origin clue, but it discloses no unknown-page plaintext, key, or executable cipher operation.
 - The small IRC text files in [krisyotam/cicada3301](https://github.com/krisyotam/cicada3301/tree/main/archives/irc-logs) were searched for LP/page/decrypt/plaintext references; no qualifying unknown-page readout surfaced.
 
-### Dated May 2014 short-word progressive-shift cribs: exact local fits, failed general continuation
+### Original 23 May 2014 short-word shift guesses: authenticated participant text, no cipher key
 
-A [raw-blob-verified 24 May 2014, 23:35 `#cicadasolvers` discussion](https://github.com/FlareZ123/liber-primus/actions/runs/43036813285) supplies a rare **historically dated explicit plaintext hypothesis** for the still-unknown LP2 pages. Physical source line **188,780** of `#cicadasolvers.freenode.log` (blob SHA-1 `bdd277c14f94c34b5ae714cd00c238065beeed4e`) reports a participant's earlier candidate: page35's three-rune contraction **IT'S** under rune shifts **26,27,28**, and page34's four-rune candidate **LESS** under **27,28,0,1**. The original speaker expressly cautions that the sequence works on the single short word only, with no continuation pattern.
+The earliest identified speaker's source is **23 May 2014**, not 24 May. In the exact raw **#cicadasolvers** IRC Git blob, 18,487,233 bytes, Git blob SHA-1 **bdd277c14f94c34b5ae714cd00c238065beeed4e**, participant **idontworkfor3301** at 02:18–02:40 (source lines **186,766–186,782**) supplies the original page34/page35 short-word candidates. When asked how they found the shift, the speaker answers at lines 186,776–186,778: **“I repeated the shift 0, +1, +2.... at each starting point”**. This is direct evidence of an **exploratory sweep of starting offsets**, not a recovered key, Cicada instruction or independent known plaintext. Another participant, Mothwing, already retells the conjecture on **23 May at 17:19** (line187,146), and again on **24 May at 23:35** (line188,780), specifically cautioning that the shift works only on the isolated short words and has no continuation. [Byte-pinned original inventor and retelling, bounded source logs](https://github.com/FlareZ123/liber-primus/actions/runs/43124785871) · [exact narrow source scanner](../sims/irc_2014_shortword_crib_context_sft.py).
 
-These two proposed local conversions are exact against the canonical GP29 original ciphertext, with no resegmentation:
+The proposed original local alignments remain **mathematically exact** against the unaltered canonical GP29 runes:
 
-| Original physical page / local rune offset | Literal source GP symbols | Historical additive shifts mod29 | Alleged GP plaintext |
+| Original physical page / local rune offset | Printed ciphertext GP symbols | Found shift progression mod29 | Guessed GP plaintext |
 | --- | --- | --- | --- |
-| p34 / **81** | `OE M S X` | **27,28,0,1** | **L E S S** |
-| p35 / **78** | `P E T` | **26,27,28** | **I T S** (apostrophe carries no GP rune) |
+| p34 / **81** | OE M S X | **27,28,0,1** | **L E S S** |
+| p35 / **78** | P E T | **26,27,28** | **I T S** (apostrophe invisible in GP) |
 
-A simple shared rule fitted to these guesses is **`P_(p,j)=(C_(p,j) + 3-p+j) mod29`**, where p is the physical page and j is the zero-based **within-word** rune position. This predicts the candidate words exactly and is reversible, so it can be tested on all the other printed words without guessing additional keys. The fixed rule was applied to all complete same-page rune words on adjacent original physical pages p33–37, yielding these decoded GP29 IoCs:
+The smallest common relation fitted to just those words, **P_(p,j)=(C_(p,j)+3−p+j) mod29**, was previously inverted with exact round-trip and applied to all complete original p33–37 word segments. Its output IoCs, shown below, stay near uniform GP29 rather than ordinary GP-English:
 
-| Page | In-page runes scored | Original IoC | Fixed progressive-rule IoC |
+| Physical page | Complete-word rune count | Original IoC | Fitted word-reset inverse IoC |
 | --- | ---: | ---: | ---: |
 | 33 | 213 | 0.03312960 | **0.03312960** |
 | 34 | 259 | 0.03343210 | **0.03340217** |
@@ -55,9 +55,15 @@ A simple shared rule fitted to these guesses is **`P_(p,j)=(C_(p,j) + 3-p+j) mod
 | 36 | 236 | 0.03573747 | **0.03512441** |
 | 37 | 228 | 0.03342608 | **0.03450808** |
 
-The five outputs remain near the flat 29-symbol IoC **1/29≈0.03448276**, far from ordinary GP-English text. No surrounding coherent prose, source-selected key schedule or secondary known plaintext was recovered. This **rejects the exact per-word/page progressive shift extension**, while preserving both precise 2014 cribs as historically interesting, **unverified** local guesses. It does not rule out an otherwise specified non-word-reset cipher or historically missing key.
+**New look-elsewhere calibration:** printed page-local word-piece parser yields **2,928 pieces** including cross-page fragments; the original complete-word parser separately counts 2,896. A native-English GP lexicon is frozen from Gibran, Shakespeare and Emerson (407 unique 3-GP-rune words and 1,177 unique 4-GP-rune words, with standard digraph transliteration). Scan **all original pages**, **all original short-word pieces** and **all 29 progressive starting shifts**. Count any 4-rune English candidate on page p and any 3-rune English candidate on physical p+1 whose shifts differ by exactly −1. The actual book contains **8 qualifying linked word pairs across 7 neighboring-page pairs**; the historical **LESS/ITS** is one.
 
-[Executable SFT with original offsets, all 2,896 source words, exact round-trip and five-page controls](../sims/lp2_2014_progressive_contraction_crib_sft.cjs) was successfully executed in [manual source-audit CI run 43038110314](https://github.com/FlareZ123/liber-primus/actions/runs/43038110314). The historical IRC file is source-authentic to the verified Git blob, while the speaker is a community participant; it is **not** an authenticated Cicada key or message.
+A deterministic null rotates each page's complete original ciphertext rune stream independently under its fixed word-piece lengths, preserving per-page rune histograms and most within-page transitions, and repeats the *same dictionary and 29-seed scan*. Over **3,000 rotations** (seed **0x20143301**), its average is **5.83033 pairs**, SD **2.65986**; **24.4585%** of Monte Carlo outcomes reach or exceed the observed 8 (smoothed upper-tail probability **0.244585**). A count of qualifying neighboring page pairs gives p≈**0.20393**. Since the two English names and offsets emerged after the participant's broad starting-shift search, fixed-LESS/ITS significance is inappropriate. The familywise native-word result is **unexceptional**.
+
+The exhaustive exact target check also finds ITS-like three-rune fits on p36 and p37 under different starting shifts **13** and **12**, respectively. These additional short-word coincidences were not authenticated by the original speaker and do not continue the page34/p35 seed schedule.
+
+[Runnable original-source/English-family matched-null SFT](../sims/lp2_2014_shortword_lookelsewhere_sft.cjs), passing [manual original-input CI run 43125230242](https://github.com/FlareZ123/liber-primus/actions/runs/43125230242); [earlier full-page word-reset inverse SFT](../sims/lp2_2014_progressive_contraction_crib_sft.cjs), passing [CI run 43038110314](https://github.com/FlareZ123/liber-primus/actions/runs/43038110314).
+
+**Conclusion:** both exact local shifts are established as **original-era participant hypotheses** with a now-explicit retrospective search mechanism. They lack independent source-known plaintext, creator authentication, a global clock, and a successful original-page continuation. Do **not** use them as known plaintext controls or infer a pagewide key from their appearance.
 
 ### Large original IRC archives: access restored and 2016 Pastebin clarified
 
