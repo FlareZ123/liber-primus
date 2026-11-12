@@ -119,6 +119,45 @@ const decode = (text) => {
 };
 assert.deepEqual(encoded.map(decode), words);
 
+/*
+ * Sensitivity: grant an independent, fully secret static codebook to EACH
+ * original-image visual chapter, although no source says keys reset there.
+ * The cuts are the source-verified physical red-heading chapter cuts.
+ * A word ending exactly on a cut is fine; no codeword straddles a cut.
+ */
+const chapterCuts = [0, 729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956];
+const positioned = [];
+let cursor = 0;
+for (const word of words) {
+  positioned.push({ start: cursor, end: cursor + word.length, word });
+  cursor += word.length;
+}
+assert.equal(cursor, 12956);
+
+const chapters = [];
+for (let j = 0; j < chapterCuts.length - 1; j += 1) {
+  const lo = chapterCuts[j];
+  const hi = chapterCuts[j + 1];
+  const w = positioned.filter((x) => x.start >= lo && x.start < hi);
+  assert.ok(w.every((x) => x.end <= hi), 'chapter cut must preserve complete printed words');
+  const f = Array(29).fill(0);
+  const lone = new Set();
+  for (const entry of w) {
+    if (entry.word.length === 1) lone.add(alphabet.get(entry.word));
+    for (const rune of entry.word) f[alphabet.get(rune)] += 1;
+  }
+  assert.equal(f.reduce((a, b) => a + b, 0), hi - lo);
+  const ranked = [...lone].sort((a, b) => f[b] - f[a] || a - b);
+  const added = ranked.slice(2).reduce((sum, i) => sum + f[i], 0);
+  chapters.push({
+    chapter: j + 1, start: lo, end: hi,
+    runeCount: hi - lo, wordCount: w.length, standaloneTypes: lone.size,
+    added, minimumLetters: hi - lo + added
+  });
+}
+assert.equal(chapters.reduce((s, c) => s + c.wordCount, 0), words.length);
+assert.equal(chapters.reduce((s, c) => s + c.minimumLetters, 0), 15915);
+
 const maxMeanSix = Array.from({ length: 29 }, (_, m) => ({ m, ...lowerBound(m) }))
   .find((r) => r.meanWordLength <= 6);
 assert.equal(maxMeanSix.m, 18);
@@ -141,6 +180,7 @@ console.log(JSON.stringify({
     unavoidableTypeCollisionsWhenOnlyTwoEnglishOneLetterWords: maxMeanSix.m - 2,
     minimumLetters: maxMeanSix.minimumLetters
   },
+  sourceVisibleNineChapterBounds: { chapters, minimumLetters: 15915, minimumMeanWordLength: 15915 / words.length },
   syntheticPrefixFreeRoundTrip: true,
   caveat: 'Only static injective rune-to-nonempty alphabetic-string codebooks with exactly preserved printed word boundaries.'
 }, null, 2));
