@@ -27,6 +27,17 @@ The originally proposed LP1 **p09→LP2 p2** art match is correct, yet p09 is **
 
 The exact pixel windows are frozen in the same [source-only SFT](../sims/lp1_lp2_illustration_raster_reuse_sft.py), which asserts all original file SHA-256 values. Original p09, p13, p16, and p19 crop forms are all fixed 690×185 pixels with original grayscale values; ink tests use intensity below 100. The original p13 reflected crop and p16 unreflected crop have **perfect black-pixel identity** with p09, after the printed layout's translation. The minor p13 grayscale nonidentity is limited to pixel intensity. This is direct source evidence that the LP1 insect artwork is reused internally before appearing in LP2.
 
+### A two-illustration, unique original-page intersection: LP1 p16
+
+The **two different replicated pictures** establish source sets which a contemporary solver could independently locate without a rune-decoding guess:
+
+- LP2 p2 insect → solved LP1 pages **{9,13,16}**, from exact repeated same-size insect artwork;
+- LP2 p22 reclining footer → solved LP1 pages **{14,15,16}**, from identical full-width reclining figures on these three pages.
+
+Their intersection is **{16}**. LP1 p16 prints the source-authentic 5×5/3301 numerical square (centre **809**), adjacent to its insect; its reclining figure occupies the same original page's bottom. This uniquely recovers **a candidate reference page**, without deciding whether the authors intended the cross-page intersection or reused common artwork for visual continuity. It is a stronger route for a human to choose LP1 p16 than selecting an arbitrary single copied insect.
+
+A computational consequence is intentionally restricted: **the direct use of the exact historical 5×5/3301 square as an additive GP29 pad or a five-dimensional Hill matrix has already been screened against all 12,956 unknown LP2 runes**, with no plaintext ([existing global square gate](openpuff-magic-square-remaining-gate.md)). The original artwork does not specify how to use the square differently. Thus the intersection is a **real, source-derived candidate address**, currently lacking an untested, independently selected cipher inverse. Do not rerun the old square operations on p2 or p22 or infer plaintext from the mere intersection.
+
 ### How the tests avoid incidental visual resemblance
 
 For the reclining figure, the frozen crop is every page's original bottom band y=3150…3599, downsampled to 600×113 pixels with OpenCV INTER_AREA and thresholded at gray intensity below 160. Both unreflected and horizontally reflected matches are compared by ink intersection-over-union, across **1,972** original LP1-to-LP2 image/orientation combinations. The LP1 pp14–16 bottom bands are **exactly pixel-identical**, including JPEG-decoded gray values. This establishes a high-confidence pixel-level correspondence. The existence of the p22 mirrored-LP1 footer was previously noted in [the independent p22 illustration source gate](lp2-opening-stave-second-marker-gate.md); the exact three-source identity and exhaustive orientation census are the added measurements.
