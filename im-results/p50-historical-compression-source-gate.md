@@ -4,7 +4,9 @@
 
 ## Human-visible operations, fixed before decoding
 
-Cicada's 2014 puzzle used **bzip2 decompression** at Stage08. The original physical LP2 pp49–51 present 256 two-character numerical cells in a 32×8 layout. A returning solver might try decompressing the resulting binary data, or consuming the later authenticated **2013 BASE29** arithmetic and marked **p39 polynomial** before decompressing. Both versions supply concrete, source-defined byte strings without key fitting.
+In the authentic **2014 fifth-onion portrait** stage, the creator displayed two numbered columns with sums **1033 and 3301**, then hid a **bzip2-compressed signed text inside the image using OutGuess**. This is a documented, concrete period precedent for a source-authored octet file requiring decompression, rather than a modern codec guess ([historical 2014 participant walkthrough](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014)#The_Fifth_Onion)). The same two numbers later appear as the original manuscript's p33 cuneiform figures, and the subsequent 2014 squares used 1033/3301. Those repeated numbers are historical context and do **not** instruct a solver to apply bzip2 to an unrelated table.
+
+The original physical LP2 pp49–51 present 256 two-character numerical cells in a 32×8 layout. A returning solver might try decompressing the resulting binary data, or consuming the authenticated **2013 BASE29** arithmetic and marked **p39 polynomial** before decompressing. Both versions supply concrete, source-defined byte strings without key fitting.
 
 **Transport A, direct original table:** use the exact canonical cells in [source grid JSON](../resources/liber-primus/base60-grid.json), in printed row-major order, with its conventional 60-digit alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`. Encode each two-character token `ab` as `60·index(a)+index(b)`; all 256 values are bytes. The SHA-256 is
 
