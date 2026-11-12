@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_p2_p23_five_stream_separable_rank_sft.cjs
       - name: Check sharp quartic degree and planted controls
         run: node sims/lp2_p2_p23_polynomial_degree_gate_sft.cjs
+      - name: Check historical 984-bit SSSS against original p2 with XTEA
+        run: node sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs
