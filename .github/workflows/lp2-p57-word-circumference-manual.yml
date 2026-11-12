@@ -21,3 +21,5 @@ jobs:
         run: node sims/p55_prime401_p56_totient_direct_sft.cjs
       - name: Check 23-dot nested row-column invertibility and p57 native plant
         run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
+      - name: Test source GP prime512 run-length direct hash preimage
+        run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
