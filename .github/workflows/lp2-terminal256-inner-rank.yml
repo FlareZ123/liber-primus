@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_terminal256_local_stencil_sft.cjs
       - name: Test original 255-body carry against all-secret GF256 byte gates
         run: node sims/lp2_terminal255_gf256_original_gate_sft.cjs
+      - name: Bound every source-ordered terminal inner GF29 linear recurrence
+        run: node sims/lp2_terminal256_inner_lfsr_sft.cjs
