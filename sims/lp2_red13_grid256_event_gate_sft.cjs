@@ -194,7 +194,7 @@ function rowColumnFailures(printed) {
   let firstFail = null;
   for (let r = 1; r < 15; r++) {
     for (let c = 1; c < 15; c++) {
-      const residue = (D[r][c] - D[r][0] - D[0][c] + 58) % 29;
+      const residue = (D[r][c] - D[r][0] - D[0][c] + D[0][0] + 58) % 29;
       if (residue === 0) continue;
       all++;
       if (r < 14) unsolvedOnly++;
