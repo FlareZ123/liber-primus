@@ -164,6 +164,13 @@ const transcript = fs.readFileSync(
 const segments = transcript.split('%').slice(0, 55);
 const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
 const roleByPosition = new Map();
+const wordLengthByPosition = new Map();
+let currentWord = [];
+function finishWord() {
+  for (const position of currentWord)
+    wordLengthByPosition.set(position, currentWord.length);
+  currentWord = [];
+}
 assert.equal(segments.length, 55);
 for (let segment = 0; segment < segments.length; segment++) {
   const page = segment < 50 ? segment : segment + 1;
@@ -175,6 +182,7 @@ for (let segment = 0; segment < segments.length; segment++) {
   for (const glyph of segments[segment]) {
     if (runeIndex.has(glyph)) {
       observed.push(runeIndex.get(glyph));
+      currentWord.push(base + local);
       if (local > 0) {
         const word = Number(/[-.&$§]/u.test(separator));
         const line = Number(/[\/\r\n]/u.test(separator));
@@ -182,11 +190,16 @@ for (let segment = 0; segment < segments.length; segment++) {
       }
       local++;
       separator = '';
-    } else if (local > 0) separator += glyph;
+    } else {
+      if (/[-.&$§]/u.test(glyph)) finishWord();
+      if (local > 0) separator += glyph;
+    }
   }
   assert.deepEqual(observed, original.indices,
     'original physical LP2 page transcription ' + page);
 }
+finishWord();
+assert.equal(wordLengthByPosition.size, total);
 assert.equal(roleByPosition.size, eligible.length);
 const originalRoleCounts = Array.from({length: 4}, (_, cls) =>
   eligible.filter(x => siteSet.has(x.position) &&
@@ -201,6 +214,12 @@ const roleGroups = makeGroups(x => String(roleByPosition.get(x.position)));
 const pageRoleGroups = makeGroups(x => `${x.page}:${roleByPosition.get(x.position)}`);
 const fragmentPageRoleGroups = makeGroups(x =>
   `${fragmentIndex(x.position)}:${x.page}:${roleByPosition.get(x.position)}`);
+const lengthBucket = length => length <= 3 ? 'S' : length <= 6 ? 'M'
+  : length <= 9 ? 'L' : 'XL';
+const exactWordLengthGroups = makeGroups(x =>
+  `${fragmentIndex(x.position)}:${x.page}:${roleByPosition.get(x.position)}:${wordLengthByPosition.get(x.position)}`);
+const bucketWordLengthGroups = makeGroups(x =>
+  `${fragmentIndex(x.position)}:${x.page}:${roleByPosition.get(x.position)}:${lengthBucket(wordLengthByPosition.get(x.position))}`);
 assert.equal(physicalPages.length, 55);
 assert.equal(fragmentPage.length, 72);
 
@@ -219,6 +238,8 @@ const results = {
   source13DotBoundaries: boundaries,
   sourceWordLineDoubletCounts: originalRoleCounts,
   sourceWordLineRoleEligibleCounts: roleGroups.map(x => x.positions.length),
+  sourceWordLengthExactStrata: exactWordLengthGroups.length,
+  sourceWordLengthBucketStrata: bucketWordLengthGroups.length,
   nulls: {
     chapterCountFixed: conditionalNull(chapters, 0x48b3c201, 20000),
     physicalPageCountFixed: conditionalNull(physicalPages, 0x48b3c202, 20000),
@@ -226,7 +247,11 @@ const results = {
     wordAndLineRoleCountFixed: conditionalNull(roleGroups, 0x3301b003, 20000),
     pageAndWordLineRoleCountFixed: conditionalNull(pageRoleGroups, 0x3301b001, 20000),
     pageAndFragmentAndWordLineRoleCountFixed: conditionalNull(
-      fragmentPageRoleGroups, 0x3301b002, 20000)
+      fragmentPageRoleGroups, 0x3301b002, 20000),
+    pageFragmentRoleExactWordLengthFixed: conditionalNull(
+      exactWordLengthGroups, 0x3301c7a4, 20000),
+    pageFragmentRoleBucketWordLengthFixed: conditionalNull(
+      bucketWordLengthGroups, 0x3301c7a3, 20000)
   },
   plantedLag1: lag1GapPearson(planted)
 };
@@ -236,4 +261,6 @@ assert.ok(results.nulls.pageAnd13DotFragmentCountFixed.upperTailP < 0.02);
 assert.equal(results.nulls.wordAndLineRoleCountFixed.upperTailCount, 7);
 assert.equal(results.nulls.pageAndWordLineRoleCountFixed.upperTailCount, 115);
 assert.equal(results.nulls.pageAndFragmentAndWordLineRoleCountFixed.upperTailCount, 58);
+assert.equal(results.nulls.pageFragmentRoleExactWordLengthFixed.upperTailCount, 153);
+assert.equal(results.nulls.pageFragmentRoleBucketWordLengthFixed.upperTailCount, 95);
 console.log(JSON.stringify(results, null, 2));
