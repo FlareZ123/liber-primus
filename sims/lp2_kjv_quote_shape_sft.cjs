@@ -11,7 +11,7 @@ const path = require("node:path");
 const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 
 const KJV_COMMIT = "a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9";
-const KJV_ROOT = \`https://raw.githubusercontent.com/aruljohn/Bible-kjv/\${KJV_COMMIT}/\`;
+const KJV_ROOT = `https://raw.githubusercontent.com/aruljohn/Bible-kjv/${KJV_COMMIT}/`;
 const EXPECTED = new Map([
   [9811, {length: 58, words: 14, max: 5}],
   [10211, {length: 68, words: 13, max: 6}],
@@ -35,7 +35,7 @@ function gpWordLength(word) {
 /** @param {string} url @returns {Promise<any>} */
 async function fetchJson(url) {
   const response = await fetch(url, {signal: AbortSignal.timeout(60000)});
-  assert.ok(response.ok, \`HTTP \${response.status} for \${url}\`);
+  assert.ok(response.ok, `HTTP ${response.status} for ${url}`);
   return response.json();
 }
 
@@ -124,16 +124,16 @@ async function main() {
       totalWords += lengths.length;
       for (const [start, target] of shapes) {
         const found = matchLongestPrefix(lengths, target);
-        assert.equal(found.full, 0, \`complete quotation shape hit \${start} in \${book}\`);
+        assert.equal(found.full, 0, `complete quotation shape hit ${start} in ${book}`);
         if (found.longest > best.get(start).longest) {
           best.set(start, {longest: found.longest, book, at: found.at});
         }
       }
     }
   }
-  console.log(\`KJV edition SHA \${KJV_COMMIT}, 66 books, \${totalWords} tokens\`);
+  console.log(`KJV edition SHA ${KJV_COMMIT}, 66 books, ${totalWords} tokens`);
   for (const [start, {longest, book, at}] of best) {
-    console.log(\`LP2 global rune \${start}: longest \${longest}/\${shapes.get(start).length} KJV words; \${book} source-word offset \${at}; full matches 0\`);
+    console.log(`LP2 global rune ${start}: longest ${longest}/${shapes.get(start).length} KJV words; ${book} source-word offset ${at}; full matches 0`);
     assert.equal(longest, EXPECTED.get(start).max);
   }
   console.log("PASS: four original full-quotation shapes have zero exact KJV source matches.");
