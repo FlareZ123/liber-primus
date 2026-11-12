@@ -145,8 +145,8 @@ console.log("original candidate c0 from first five:",
  */
 function censusHistoricalShareIDs(input) {
   assert.equal(input.length, 6);
-  let assignments = 0, subsets = 0, bestErrors = 257;
-  const hits = [];
+  let assignments = 0, subsets = 0, bestErrors = 257, bestGenericErrors = 257;
+  const hits = [], genericHits = [];
   const bitDiff = value => popcount(value ^ 1n);
   for (let a = 1; a <= 5; a++)
     for (let b = a + 1; b <= 6; b++)
@@ -170,6 +170,10 @@ function censusHistoricalShareIDs(input) {
                   leading ^= products[i][permutation[i]];
                 const errors = bitDiff(leading);
                 if (errors < bestErrors) bestErrors = errors;
+                const genericErrors = popcount(leading);
+                if (genericErrors < bestGenericErrors) bestGenericErrors = genericErrors;
+                if (genericErrors === 0)
+                  genericHits.push(permutation.map(index => Number(ids[index])));
                 if (errors === 0)
                   hits.push(permutation.map(index => Number(ids[index])));
                 assignments++;
@@ -187,13 +191,16 @@ function censusHistoricalShareIDs(input) {
             }
   assert.equal(subsets, 210);
   assert.equal(assignments, 151200);
-  return {assignments, subsets, matches: hits, fewestWrongBits: bestErrors};
+  return {assignments, subsets, matches: hits, fewestWrongBits: bestErrors,
+    genericDegree4Matches: genericHits, fewestGenericWrongBits: bestGenericErrors};
 }
 
 const exhaustedIDGate = censusHistoricalShareIDs(shares.slice(0, 6));
 assert.equal(exhaustedIDGate.matches.length, 0,
   "No six original table columns can be 2013 share IDs 01..10");
 assert.equal(exhaustedIDGate.fewestWrongBits, 93);
+assert.equal(exhaustedIDGate.genericDegree4Matches.length, 0);
+assert.equal(exhaustedIDGate.fewestGenericWrongBits, 94);
 console.log("all 10P6 original first-six share ID assignments:",
   exhaustedIDGate.assignments, "exact matches 0",
   "smallest failed 256-bit relation:", exhaustedIDGate.fewestWrongBits,
@@ -212,6 +219,8 @@ const contiguousGate = censusHistoricalShareIDs(contiguousShares.slice(0, 6));
 assert.equal(contiguousGate.matches.length, 0,
   "No natural row-major 32-byte blocks can be historical SSSS shares");
 assert.equal(contiguousGate.fewestWrongBits, 92);
+assert.equal(contiguousGate.genericDegree4Matches.length, 0);
+assert.equal(contiguousGate.fewestGenericWrongBits, 91);
 console.log("row-major 8x32-byte blocks, all historical IDs:",
   contiguousGate.assignments, "exact matches 0",
   "minimum wrong bits", contiguousGate.fewestWrongBits);
@@ -251,4 +260,19 @@ assert(plantedIDGate.matches.some(ids =>
   "Historically valid scrambled 2013 share IDs must survive exhaustive check");
 console.log("PASS: known original-style arbitrary share-ID plant recovered.",
   "Candidate ID mappings:", plantedIDGate.matches.length);
+// Secondary, source-distinct textbook threshold-five convention: degree <=4
+// with a ZERO leading fifth coefficient. It fails every one of the same
+// all-ID original equations in both canonical source serializations.
+const genericPlant = plantedIds.map(id => {
+  let y = 0n;
+  for (let i = 0; i < 5; i++)
+    y ^= multiply(coeff[i], power(BigInt(id), i));
+  return y;
+});
+const genericPlantIDGate = censusHistoricalShareIDs(genericPlant.slice(0, 6));
+assert(genericPlantIDGate.genericDegree4Matches.some(ids =>
+  ids.every((id, i) => id === plantedIds[i])),
+  "Scrambled-ID textbook degree-four Shamir positive control");
+console.log("PASS: generic degree-four secondary checks also reject all original",
+  "historical ID assignments and recover the scrambled positive plant.");
 console.log("PASS 256-bit historical whole-field monic-degree5 planted sharing.");
