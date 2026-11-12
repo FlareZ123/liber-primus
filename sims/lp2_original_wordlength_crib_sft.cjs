@@ -268,12 +268,47 @@ function main() {
   assert.equal(lp1Near.candidatePairs, 582);
   assert.equal(lp1Near.matchesAtMost2, 0);
 
+  // Source-native alternative: authenticated cleartext messages from the
+  // 2012–17 puzzle progression, including the quoted Blake chorus and 2016
+  // OutGuess instruction. Strip OpenPGP armor and the embedded MIDI encrypted
+  // PGP attachment before word-length normalization.
+  const signedSources = [
+    'cicada2012-countdown-message.asc',
+    'cicada2012-midi-email.asc',
+    'cicada2013-first-onion-hello.asc',
+    'cicada2013-forest-clue.asc',
+    'cicada2013-second-onion-everything-you-need.asc',
+    'cicada2013-second-onion-icmp-echo.asc',
+    'cicada2014-stage11-message.asc',
+    'cicada2016-4gq25-outguess.asc',
+    'cicada2017-yEiTHhvF.asc'
+  ];
+  const signedLengths = [19,85,15,15,22,13,18,45,10];
+  const signedMaxima = [5,6,5,0,5,5,5,6,0];
+  const signedResults = signedSources.map((name, i) => {
+    const signedEnvelope = read('resources/historical/' + name)
+      .replace(/\r/g, '');
+    const clear = signedEnvelope.split('-----BEGIN PGP SIGNATURE-----')[0]
+      .split('- -----BEGIN PGP MESSAGE-----')[0]
+      .replace(/^[\s\S]*?Hash:\s*[A-Z0-9-]+\s*/, '');
+    const words = latinWords(clear);
+    const hits = search(unknown, words, 5);
+    assert.equal(words.length, signedLengths[i], name + ' native word count');
+    assert.equal(hits.longest, signedMaxima[i], name + ' maximum aligned length');
+    assert.equal(hits.atLeast10, 0);
+    return {file:name, words:words.length, longest:hits.longest,
+      sixOrMore:hits.best.filter(x=>x.n>=6).slice(0,2)};
+  });
+  assert.equal(signedResults.reduce((s,x)=>s+x.words,0),242);
+  assert.equal(Math.max(...signedResults.map(x=>x.longest)),6);
+
   console.log(JSON.stringify({
     claim: 'No exact ten-word source-native GP length crib in three literary texts or three authentic 2013 book-code chapters',
     scope: 'Only contiguous verbatim excerpts under exact original word boundaries and original GP spelling rule',
     unknown: {pages: 55, runes: 12956, words: 2896},
     solvedP57Positive: {words: 20, runes: 95, longest: positive.longest},
     seed: 7, controls,
+    authenticated2012to2017CleartextCribs: signedResults,
     solvedLP1CandidateCrib: {sourceWords: lp1Words.length,
       ...lp1Exact, near15: lp1Near}
   }, null, 2));
