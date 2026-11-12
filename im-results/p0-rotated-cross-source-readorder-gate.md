@@ -1,6 +1,6 @@
 # Physical p0 cross half-turn: exact source motif, bounded original-cipher readout
 
-**Classification:** **independent reproduction of previously documented p0–2 cross artwork**, plus a narrow reversed-read-order / solved-p56-key negative. No unknown LP2 plaintext, key, complete mechanism or destination is recovered. The cross geometry and pp1/pp2 reuse were previously established by Agent42, as recorded in [the original visual-clue audit](original-visual-clue-operation-map.md) and [the 27×27 opening report](lp2-27x27-published-nextblock-branching.md); the present tighter pixel numbers are NOT a new discovery.
+**Classification:** source-locked p1/p2 held-out extension of the previously documented p0–2 cross artwork, plus the narrow p0 reversed-read-order / solved-p56-key negative. The repeated 3|3 twig-rune candidate does **not** yield a reusable page-local TH readout on p1/p2. No unknown LP2 plaintext, key, complete mechanism or destination is recovered. The cross geometry and p1/p2 reuse were previously established by Agent42; this update adds the source-fixed first-rune prediction test.
 
 ## The known p0 cross half-turn: independent pixel replication
 
@@ -33,6 +33,17 @@ Agent42 previously noted the exact p0/p1/p2 cross reuse. In this independent rep
 
 The p1 and p2 crop comparisons are **exactly equal** even down to grayscale pixel errors. Source artwork reused for the three-page introductory frame is the stronger interpretation: the crosses are not a unique p0 state marker. Their intentionally rotated orientation is still conspicuous, but no original instruction says that they specify ciphertext reversal. Future interpretations must explain why the same two forms persist across three physically distinct pages. Arbitrary cross glyph counts, orientation-dependent fitted keys and claimed hidden changes in the illustrations are unwarranted.
 
+### p1/p2 held-out test of the 3|3 twig-rune candidate (11 November 2026)
+
+The separate p0 branch-rune proposal interprets each cross as a vertical stave with three branches on either side, **3|3**, which maps to **thorn / TH** under the specific Orkney 6:5:5 Younger Futhark convention described by Barnes (2003). The candidate's only source-fixed p0 text match is the first rune after p0's 13-rune red span and punctuation boundary: local offset **13**, transliteration **TH**. This is a one-page match, not yet an operation or a full crib.
+
+The repeated p1/p2 artwork supplies a natural held-out test. Both original p1 and p2 cross crops are byte-identical to each other at the same fixed coordinates; against p0, their lower-left and upper-right ink-mask IoUs are respectively **0.970428512** and **0.970937537**. Thus the same 3|3 visual form recurs on both held-out pages. Neither page has a red text span that could reproduce p0's special post-span target. At the only unambiguous page-local target, the first rune, p1 begins **A** and p2 begins **OE**, not TH. A fixed per-page rule “this repeated cross encodes the page's first rune as TH” therefore fails on both held-out pages.
+
+This does **not** disprove a p0-only semantic use of the cross or prove that it is decorative. It does reject the reusable page-local twig-rune/TH selector and removes p1/p2 as independent confirmation of the p0 coincidence. Without a second source-fixed target or an instruction explaining why only p0's post-red-span rune is selected, the p0 TH match cannot specify a cipher, key, or general page operation.
+
+The standalone [p1/p2 original-JPEG holdout SFT](../sims/lp2_p1_p2_cross_twig_rune_holdout_sft.py) pins SHA-256 for original scans 17–19, checks the fixed crops and p1/p2 crop identity, and verifies the p0 red-span boundary plus the p0/p1/p2 canonical first-rune values. It does not refit the prior p0 branch count or scan alternate positions.
+
+
 ## One constrained, reversible read-order hypothesis tested on original p0
 
 The page contains exactly **262 runes in 12 original printed lines** with line rune counts:
@@ -60,4 +71,4 @@ The two paired crosses form an almost unchanged **pp0–2 decorative frame** und
 
 **Prior-art distinction:** Agent42's source-registered result reports rotated-pair IoU **0.961925** under a different mask/crop contract, and p1/p2 artwork reuse. This study's 0.98747722 is a separate fixed-crop threshold, not a new underlying fact. The direct p56-key reversed-order readout is an additional bounded test, without plaintext.
 
-**Reproducer:** [source-fixed standalone Python test](../sims/lp2_p0_inverted_cross_source_readout_sft.py), using the unchanged original scan, original canonical GP29 transcription, and frozen native-GP Shakespeare control. All source assertions and values are embedded. The script writes no files.
+**Reproducers:** [p0 source-fixed read-order test](../sims/lp2_p0_inverted_cross_source_readout_sft.py), using the unchanged original scan, original canonical GP29 transcription, and frozen native-GP Shakespeare control; and [p1/p2 twig-rune holdout SFT](../sims/lp2_p1_p2_cross_twig_rune_holdout_sft.py), using original scans 17–19, the canonical corpus and original ink annotations. Both scripts write no files.
