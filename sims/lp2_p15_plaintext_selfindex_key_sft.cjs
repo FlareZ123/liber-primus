@@ -80,7 +80,9 @@ function solve(C, addressValues, base, sign, phase) {
   for (let r=0;r<rank;r++) K[pivot[r]]=A[r][16];
   assert(addresses.every((n,i) =>
     mod(K[i]+sign*K[(n+phase)%16])===C[n]));
-  return {status:"consistent",rank,key:K};
+  return {status:"consistent",rank,key:K,freeColumns:
+    Array.from({length:16},(_,i)=>i).filter(i=>!pivot.includes(i)),
+    reduced:A,pivot};
 }
 /** @param {number[]} symbols */
 function indexOfCoincidence(symbols) {
@@ -101,11 +103,31 @@ for (const [name,addresses] of Object.entries(values)) {
       const entry={name,base,sign,phase,status:r.status,
         rank:r.rank??null};
       if (r.key) {
-        const P=decode(original,r.key,sign,phase);
-        assert(addresses.every((n,i)=>P[n-base]===r.key[i]));
-        assert(P.every((v,i)=>mod(v+sign*r.key[(i+phase)%16])===original[i]));
-        entry.ioc=indexOfCoincidence(P);
-        entry.key=r.key;
+        // Exhaust every freely chosen secret coordinate. No zero-choice
+        // shortcut may falsely exclude a rank-deficient source cipher.
+        const count=29**r.freeColumns.length;
+        let best={ioc:-Infinity,key:null};
+        for (let choice=0;choice<count;choice++) {
+          const key=Array(16).fill(0);
+          let z=choice;
+          for (const c of r.freeColumns) {
+            key[c]=z%29;z=Math.floor(z/29);
+          }
+          for (let t=0;t<r.rank;t++) {
+            let v=r.reduced[t][16];
+            for (const c of r.freeColumns) v-=r.reduced[t][c]*key[c];
+            key[r.pivot[t]]=mod(v);
+          }
+          const P=decode(original,key,sign,phase);
+          assert(addresses.every((n,i)=>P[n-base]===key[i]));
+          assert(P.every((v,i)=>
+            mod(v+sign*key[(i+phase)%16])===original[i]));
+          const ioc=indexOfCoincidence(P);
+          if (ioc>best.ioc) best={ioc,key};
+        }
+        entry.ioc=best.ioc;
+        entry.key=best.key;
+        entry.nKeySolutions=count;
       }
       cases.push(entry);
     }
@@ -115,7 +137,9 @@ const consistent=cases.filter(c=>c.status==="consistent")
 assert.equal(cases.length,384);
 assert.equal(consistent.length,96);
 assert(Math.abs(indexOfCoincidence(original)-0.03447839786450569)<1e-12);
-assert(Math.abs(consistent[0].ioc-0.03455419399495892)<1e-12);
+assert(Math.abs(consistent[0].ioc-0.03455782830085237)<1e-12);
+assert.equal(consistent.reduce((s,c)=>s+c.nKeySolutions,0),264);
+assert(consistent.every(c=>c.ioc<0.04));
 
 // Positive: generate a complete synthetic manuscript under exactly the
 // hypothesised self-referential plaintext-key construction and invert it.
@@ -138,6 +162,7 @@ console.log(JSON.stringify({
   source:"original LP2 p0-55 GP29 ciphertext and p15 spiral",
   originalRunes:original.length, originalIoC:indexOfCoincidence(original),
   tested:cases.length,consistent:consistent.length,
+  testedCompatibleKeys:consistent.reduce((s,c)=>s+c.nKeySolutions,0),
   invalid:cases.filter(c=>c.status==="invalid_address").length,
   inconsistent:cases.filter(c=>c.status==="inconsistent").length,
   consistentBySource:counts,bestOriginal:consistent.slice(0,8),
