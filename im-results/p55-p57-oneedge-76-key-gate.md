@@ -39,6 +39,8 @@ As a matched-length native-language comparison, the repository's solved LP1 refe
 
 ## A three-way inverse: p57-shaved candidate plaintext, p55 ciphertext, p50-ring key
 
+This incremental source test is reproduced independently in [the p55/p57/p50 76-rune bridge SFT](../sims/p55_p57_shed19_key_bridge_sft.cjs); the earlier one-edge key SFT below still owns the 12 direct/differential decoders.
+
 Read the real 32×8 table's perimeter from top-left, across the top, down the right side, along the bottom from right to left, then up the left side, without repeating corners: **76 source token values**. Reverse that complete ring as the sole direction alternative. The conventional published base60 interpretation gives original bytes 0…255, reduced modulo29 for a direct GP rune pad.
 
 Under the exact candidate `C55 = shed(P57) + perimeterPad mod29` or `C55 = shed(P57) − perimeterPad mod29`, the **required** pad is `(C55 − shed(P57)) mod29`. Because both p55 and the shaved p57 are fixed original strings, **no guessed plaintext or cryptographic key is used**.
