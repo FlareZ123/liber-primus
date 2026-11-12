@@ -34,7 +34,7 @@ where k starts at zero and increments only on nonzero d; quotient symbols are re
 | p40–53 | 0.034543 | 0.035219 |
 | p54–55 | 0.033821 | 0.034435 |
 
-Across all 12,956 ciphertext runes, the decoder outputs no independently readable GP29 words or phrases. Its first 40 p0–2 transliteration characters are **STHNGGDHFRHPJTHNGLICYMIPYLSGFCOAOTWROTFU**, and its first 40 p54–55 characters are **AASTHIPFIANGXWTTFOEYAEDAJEALOETJOEFUFU**. Isolated word-like fragments within uniformly distributed text are not decryption evidence.
+Across all 12,956 ciphertext runes, the decoder outputs no independently readable GP29 words or phrases. For example, the initial transliteration excerpts are **STHNGGDHFRHPJTHNGLICYMIPYLSGFCOAOTWROTFU** from p0–2 and **AASTHIPFIANGXWTTFOEYAEDAJEALOETJOEFUFU** from p54–55. Isolated word-like fragments within uniformly distributed text are not decryption evidence.
 
 The inverse reencrypts the entire original book **12,956/12,956**. A separate positive source control uses the known p57 native-GP plaintext (95 runes), cyclically tiled to match all nine chapter lengths, encrypts with the identical quotient keys, and independently decodes **12,956/12,956** native runes; positive source IoC is **0.0723358065**. The tiled positive verifies functionality and is not presented as a matched statistical language null.
 
