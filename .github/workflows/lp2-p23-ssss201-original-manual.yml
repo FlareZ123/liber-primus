@@ -14,5 +14,5 @@ jobs:
           node-version: '22'
       - name: Test original GP29 201-rune SSSS share capacity and historical controls
         run: node sims/lp2_p23_26_ssss201_field_gate_sft.cjs
-      - name: Test original 984-bit SSSS p2 inverse and natural-secret p56 digest gate
+      - name: Test original 984-bit SSSS p2 inverse and natural-secret 2014 anend digest gate
         run: node sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs
