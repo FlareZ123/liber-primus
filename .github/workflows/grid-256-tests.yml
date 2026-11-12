@@ -75,6 +75,7 @@ on:
           - p0-word-punctuation
           - hg256-secret-alphabet
           - p50-base9
+          - p50-keypad
           - ssss256-column
           - ssss64-row
           - p50-q55
@@ -138,6 +139,10 @@ jobs:
       - name: Historical original 2013 ssss GF256-bit Shamir five-of-eight source gate
         if: ${{ inputs.probe == 'ssss256-column' }}
         run: node sims/p50_2013_ssss_256bit_column_gate_sft.cjs
+
+      - name: Original p50 BASE29 high-digit keypad direction gate
+        if: ${{ inputs.probe == 'p50-keypad' }}
+        run: node sims/p50_base29_high_digit_keypad_sft.cjs
 
       - name: Original p50 high-digit radix-9 direct payload gate
         if: ${{ inputs.probe == 'p50-base9' }}
