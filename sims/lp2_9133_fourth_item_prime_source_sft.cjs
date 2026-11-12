@@ -55,9 +55,13 @@ const p = primes(9133, 97);
 // The known p56 authentic cipher uses phi(prime) and F as interruption.
 const page56 = corpus.pages.find(page => page.page === 56).indices;
 const p56 = primes(2, 100);
-const solved = op(page56, p56, -1, true);
-assert.equal(translit(solved).slice(0, 21), "ANENDWITHINTHEDEEPWEB");
-assert(ioc(solved) > 0.06);
+let p56Counter = 0;
+const solved = page56.map((c, i) => i === 56
+  ? 0 : mod(c - (p56[p56Counter++] - 1)));
+assert.equal(translit(solved),
+  "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE");
+assert.equal(p56Counter, 84);
+assert(Math.abs(ioc(solved) - 0.0700280112044818) < 1e-12);
 
 // Plant the exact tested operator into source-native p57 plaintext, then invert.
 const sourceNative = corpus.pages.find(page => page.page === 57).indices;
