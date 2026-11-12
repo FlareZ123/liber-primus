@@ -154,6 +154,79 @@ for (const leastFirst of [false, true]) {
     decoded_sha256: sha256(decrypted.digits)
   });
 }
+
+// The adjacent full 32x8 original byte table is a second, independent
+// source-shaped RSA consumer: its 256 bytes make 128 complete 16-bit blocks.
+// No semantic claim that those bytes were intended as RSA ciphertext.
+const grid = JSON.parse(fs.readFileSync(path.join(
+  ROOT, "resources/liber-primus/base60-grid.json"), "utf8"));
+const gridBytes = grid.byte_rows.flat();
+assert.equal(gridBytes.length, 256);
+const BYTE_DOMAIN = 65536n; // 2^16 < source-pair modulus
+assert(BYTE_DOMAIN < MOD);
+function binaryCycleWalk(value, exponent) {
+  assert(value >= 0n && value < BYTE_DOMAIN);
+  let iterations = 0;
+  do {
+    value = modPow(value, exponent, MOD);
+    iterations++;
+    assert(iterations < 10000, "unexpected binary cycle");
+  } while (value >= BYTE_DOMAIN);
+  return {value: Number(value), iterations};
+}
+function transformBytePairs(bytes, exponent, littleFirst) {
+  assert.equal(bytes.length % 2, 0);
+  const result = [], iterations = [];
+  for (let i = 0; i < bytes.length; i += 2) {
+    const number = littleFirst ? bytes[i] + 256 * bytes[i+1]
+      : 256 * bytes[i] + bytes[i+1];
+    const walked = binaryCycleWalk(BigInt(number), exponent);
+    result.push(littleFirst ? walked.value & 255 : walked.value >> 8);
+    result.push(littleFirst ? walked.value >> 8 : walked.value & 255);
+    iterations.push(walked.iterations);
+  }
+  return {bytes: result, iterations};
+}
+function entropy(bytes) {
+  const counts = Array(256).fill(0);
+  for (const byte of bytes) counts[byte]++;
+  return counts.reduce((sum, c) => c
+    ? sum - c / bytes.length * Math.log2(c / bytes.length) : sum, 0);
+}
+const byteCases = [];
+const nativeBytePlant = Array.from(Buffer.from(
+  "LIBER PRIMUS AN END WITHIN THE DEEP WEB. ".repeat(8)).subarray(0, 256));
+assert.equal(nativeBytePlant.length, 256);
+for (const littleFirst of [false, true]) {
+  const decrypted = transformBytePairs(gridBytes, PRIVATE, littleFirst);
+  const replay = transformBytePairs(decrypted.bytes, EXP, littleFirst);
+  assert.deepEqual(replay.bytes, gridBytes, "original grid exact two-byte RSA roundtrip");
+
+  const encryptedPlant = transformBytePairs(nativeBytePlant, EXP, littleFirst);
+  const recoveredPlant = transformBytePairs(encryptedPlant.bytes, PRIVATE, littleFirst);
+  assert.deepEqual(recoveredPlant.bytes, nativeBytePlant,
+    "independent 256-byte ASCII plant exact RSA roundtrip");
+  const printable = decrypted.bytes.filter(byte => byte >= 32 && byte <= 126).length;
+  assert.equal(printable, littleFirst ? 93 : 88);
+  const byteEntropy = entropy(decrypted.bytes);
+  const expectedEntropy = littleFirst ? 7.168230652316841 : 7.094579273518898;
+  assert(Math.abs(byteEntropy - expectedEntropy) < 1e-12);
+  byteCases.push({
+    byte_order: littleFirst ? "little-endian uint16" : "big-endian uint16",
+    source_cells: gridBytes.length,
+    blocks: gridBytes.length / 2,
+    printable_ascii: printable,
+    byte_entropy_bits: byteEntropy,
+    byte_prefix_hex: Buffer.from(decrypted.bytes.slice(0, 32)).toString("hex"),
+    max_cycle_steps: Math.max(...decrypted.iterations),
+    mean_cycle_steps: decrypted.iterations.reduce((a,b) => a+b, 0)
+      / decrypted.iterations.length,
+    original_roundtrip: true,
+    ascii_plant_recovered: true,
+    output_sha256: crypto.createHash("sha256")
+      .update(Buffer.from(decrypted.bytes)).digest("hex")
+  });
+}
 console.log(JSON.stringify({
   premise: "LP2 p33 source primes 1033, 3301; LP1 p5 moth/totient allusion; p55 76 page-local runes",
   cipher: "source-pair RSA modulo 3409933, historical e=65537, 19 four-rune GP29 blocks, bijective cycle-walk",
@@ -162,5 +235,6 @@ console.log(JSON.stringify({
   raw_p55_ioc: indexOfCoincidence(p55),
   solved_p57_native_76_ioc: indexOfCoincidence(solvedP57.slice(0, 76)),
   cases,
+  source_grid256_two_byte_RSA_cases: byteCases,
   conclusion: "Negative: both source-shaped reversible readings remain ciphertext-like. The original sources do not specify RSA, cycle-walking or a page-local carry treatment."
 }, null, 2));
