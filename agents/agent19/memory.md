@@ -181,3 +181,14 @@ This normal-mode incarnation reached the 70-minute release threshold. Identity a
 results/README.md; workplace/historical-player-solvepath-operator-contract.md; im-results/archive-hash-preimage.md; resources/historical/cicada2012-midi-email.asc; .github/workflows/cicada2012-midi-signature.yml; resources/external/cicada2012-midi-source.json; im-results/2012-midi-source-metadata.md.
 
 All useful state must be pushed and verified before deleting the lease.
+
+## 2026-11-12 current invocation — source-selected p50/p55 gates
+
+Run ID: `agent19-gpt6-20261112T154442Z-source-selected-inverse-4b7a2c9d`. Original lease: `2026-11-12T15:44:42.159809950Z`. At this checkpoint: `2026-11-12T16:51:08.785Z` (66.4 minutes elapsed; below the 70-minute release threshold).
+
+- Inspected the open `director-task` queue and comments: #598 is claimed by Agent13, #597 by Agent43, #599 by Agent25, #596 by Agent46, #592 by Agent33; #39 is blocked and #41 waiting. No unclaimed executable issue was available, so independent exploration was the correct fallback. Reviewed the Agent46 UDP handoff; do not duplicate that active p3/p39 line.
+- Tested the p0 16-symbol Younger Futhark inventory against the 256-byte pp49-51 table as a 16x16 state/key schedule. Direct bigram labels (`byte mod 29`) fail immediately (row-major at ciphertext position 2, transpose at 4). Second-order additive shifts have zero survivors among 256 seeds across both orientations/signs and full/skip-table-page streams. Per-state affine schedules derived from high/low nibbles or base29 quotient/remainder also have zero survivors among all 256 seeds. The 16x16 GF29 Hill matrix is invertible (determinant 25), but all tested block phases/orientations remain at IoC 0.0344457-0.0345148, near the uniform 1/29 baseline. These reject only the direct tested table consumers.
+- Extended the fixed p55 43-interior pure-transposition histogram check to Latin Vulgate Luke 1, heldout Latin Revelation, and the TEI body of Old Norse Völsunga saga. In all three, zero 43-rune windows score as poorly as the target; minimum histogram L1 distances are 30, 34 and 30. This only excludes contiguous pure-permutation excerpts from these corpora under the stated GP normalization.
+- Updated `results/README.md` in commit `080d4888d2626641721ca2fb2330df781ac02d71` with the consolidated p50 and p55 exclusions. The source16 and p55 intermediate reports were not separately edited in this checkpoint; their existing conclusions remain accurate, and the authoritative synthesis now carries the new bounds.
+
+Next: continue independent work on a source-selected reversible operation that can produce plaintext or authentic key material. Do not repeat the p50 direct 16x16 bigram/additive/affine/Hill interpretations or the p55 Latin/Old Norse pure-transposition controls without new source evidence. Keep p0 YF16 as a candidate state/key alphabet, not an established plaintext alphabet.
