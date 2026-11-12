@@ -176,6 +176,38 @@ const controlSources = [
  * @param {number[]} all
  * @returns {{windows:number,chapter7EOpass:number,passesNineChapterEandEO:number,firstCompatibleOffsets:number[]}}
  */
+const originalOffsets=[];
+let absolute=0;
+for(const p of pages){
+  for(let i=1;i<p.indices.length;i++)originalOffsets.push(absolute+i);
+  absolute+=p.indices.length;
+}
+assert.equal(absolute,N);
+assert.equal(originalOffsets.length,original.length);
+/**
+ * Check the exact existence of arbitrary secret 29! substitution tables at
+ * each original (chapter,previous-cipher rune,printed word-boundary) state.
+ * @param {number[]} source Native GP sequence.
+ * @param {number} start Candidate source rune offset.
+ * @param {typeof original} rows Original or planted observed transitions.
+ * @returns {{compatible:boolean,firstConflict:number|null}}
+ */
+function exactBijection(source,start,rows){
+  const tables=new Map();
+  for(let j=0;j<rows.length;j++){
+    const r=rows[j],k=r.chapter+':'+r.q+':'+Number(r.boundary);
+    let v=tables.get(k);
+    if(!v){v={f:new Map(),inverse:new Map()};tables.set(k,v);}
+    const p=source[start+originalOffsets[j]];
+    if(v.f.has(r.c)&&v.f.get(r.c)!==p)
+      return {compatible:false,firstConflict:originalOffsets[j]};
+    if(v.inverse.has(p)&&v.inverse.get(p)!==r.c)
+      return {compatible:false,firstConflict:originalOffsets[j]};
+    v.f.set(r.c,p);v.inverse.set(p,r.c);
+  }
+  return {compatible:true,firstConflict:null};
+}
+
 function screenEveryWindow(all){
   const e=chapterLengths.map(()=>0),eo=chapterLengths.map(()=>0);
   for(let ch=0;ch<chapterLengths.length;ch++){
@@ -185,7 +217,7 @@ function screenEveryWindow(all){
     }
   }
   const result={windows:all.length-N+1,chapter7EOpass:0,
-    passesNineChapterEandEO:0,firstCompatibleOffsets:[]};
+    passesNineChapterEandEO:0,firstCompatibleOffsets:[],passesExactBijection:0,lastContradiction:null};
   for(let start=0;start+N<=all.length;start++){
     let valid=true;
     for(let ch=0;ch<chapterLengths.length;ch++){
@@ -195,6 +227,9 @@ function screenEveryWindow(all){
     if(valid){
       result.passesNineChapterEandEO++;
       if(result.firstCompatibleOffsets.length<5)result.firstCompatibleOffsets.push(start);
+      const v=exactBijection(all,start,original);
+      if(v.compatible)result.passesExactBijection++;
+      else result.lastContradiction=v;
     }
     if(start+N<all.length){
       for(let ch=0;ch<chapterLengths.length;ch++){
@@ -247,6 +282,7 @@ assert.deepEqual(controls.map((c)=>[c.minimumChapter40_53E,c.minimumChapter40_53
 assert.deepEqual(controls.map((c)=>[c.exhaustive.windows,
   c.exhaustive.chapter7EOpass,c.exhaustive.passesNineChapterEandEO]),
   [[205845,2202,52],[50159,0,0],[311675,0,0]]);
+assert(controls.every((c)=>c.exhaustive.passesExactBijection===0));
 assert.equal(controls.reduce((sum, c) => sum + c.windows, 0), 89);
 
 // Independently corrected full Old English Beowulf GP control.
@@ -266,6 +302,7 @@ assert.deepEqual([beowulfLocalE,beowulfLocalEO],[354,541]);
 const beowulfExhaustive=screenEveryWindow(beowulfSource);
 assert.deepEqual([beowulfExhaustive.windows,beowulfExhaustive.chapter7EOpass,
   beowulfExhaustive.passesNineChapterEandEO],[35057,33170,0]);
+assert.equal(beowulfExhaustive.passesExactBijection,0);
 
 // Full secret-key positive plant: all 9*29 inverse tables are independent
 // secret permutations. Recover complete native GP English, including all 55
@@ -316,6 +353,32 @@ for (const p of pages) {
 assert.equal(offset, N);
 assert.deepEqual(recovered, samplePlaintext);
 
+// Exact model-positive GP29 plant: 9 chapters * 29 predecessor runes *
+// 2 printed-boundary bits, each with a completely secret 29! permutation.
+const boundaryTables=Array.from({length:9},()=>Array.from({length:29},
+  ()=>[randomPermutation(),randomPermutation()]));
+const boundaryPlain=[],boundaryCipher=[],boundaryRows=[];
+let plantOffset=0,step=0;
+for(const pg of pages){
+  const p=samplePlaintext.slice(plantOffset,plantOffset+pg.indices.length);
+  const ciphertext=[p[0]],decrypted=[p[0]];
+  for(let i=1;i<p.length;i++){
+    const originalRow=original[step++];
+    const previous=ciphertext[i-1],bit=Number(originalRow.boundary);
+    const perm=boundaryTables[originalRow.chapter][previous][bit];
+    const encrypted=perm[p[i]];
+    ciphertext.push(encrypted);
+    decrypted.push(perm.indexOf(encrypted));
+    boundaryRows.push({...originalRow,q:previous,c:encrypted});
+  }
+  assert.deepEqual(decrypted,p);
+  boundaryPlain.push(...decrypted);boundaryCipher.push(...ciphertext);
+  plantOffset+=pg.indices.length;
+}
+assert.equal(plantOffset,N);assert.equal(step,original.length);
+assert.deepEqual(boundaryPlain,samplePlaintext);
+assert(exactBijection(samplePlaintext,0,boundaryRows).compatible);
+
 const plantedRecords = [];
 let k = 0;
 let start = 0;
@@ -343,6 +406,7 @@ console.log('controls, original word-boundary contrast, and complete 12,956-rune
 console.log(JSON.stringify({observed,chapterBoundary,controls,
   beowulf:{beowulfLocalE,beowulfLocalEO,exhaustive:beowulfExhaustive},
   positivePlant: {
-  recoveredSymbols: recovered.length, plantedE, plantedEO,
+  recoveredSymbols: recovered.length,boundaryRecoveredSymbols:boundaryPlain.length,
+  plantedE, plantedEO,
   plantedCapE, plantedCapEO, exactRoundtrip: true
-}, decision: 'Even chapter+previous-cipher+printed-word-boundary arbitrary GP29 permutations fail all 89 aligned English controls on pp40-53. Exhaustive original-length corpora leave only 52 Shakespeare positions among all pinned full-length source windows, so this is a bounded corpus-family obstruction. No plaintext or key is recovered.'}, null, 2));
+}, decision: 'All 52 frequency-compatible Shakespeare windows contradict an arbitrary secret per-state GP29 bijection. The other 602684 full-length native source windows fail chapter capacity. None of the four finite corpora can directly decode this LP2 cipher model; an exact full-length 522-secret-table native plant passes.'}, null, 2));
