@@ -1,0 +1,46 @@
+name: LP2 page 48 Dyalog payload inspection
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/lp2-p48-dyalog-inspect.yml
+      - workplace/p48-dyalog-inspect/**
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned OutGuess extraction
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe
+          curl --fail --location --retry 3 --retry-delay 2 \
+            "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/011-seventh-onion/48.jpg.bin" \
+            --output probe/48.bin
+          test "$(stat -c %s probe/48.bin)" -eq 46559
+          file probe/48.bin | tee probe/file-type.txt
+          sha256sum probe/48.bin | tee probe/source-sha256.txt
+          xxd -l 64 probe/48.bin > probe/header-64.txt
+          strings -n 4 probe/48.bin > probe/strings.txt
+      - name: Inspect objects without executing the saved latent expression
+        shell: bash
+        run: |
+          set +e
+          LX="$(cat workplace/p48-dyalog-inspect/inspect.lx)"
+          docker run --rm \
+            -v "$PWD/probe:/app:ro" \
+            dyalog/dyalog:20.0 \
+            -x "LX=$LX" > probe/dyalog-output.txt 2>&1
+          rc=$?
+          set -e
+          printf 'DYALOG_EXIT_CODE=%s\n' "$rc" >> probe/dyalog-output.txt
+          cat probe/dyalog-output.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p48-dyalog-inspection
+          path: probe/
+          if-no-files-found: error
