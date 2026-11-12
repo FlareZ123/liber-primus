@@ -1,28 +1,11 @@
-# P56 hash: canonical IPv4 dotted-quad BLAKE-512 hypothesis
+# P56 512-bit hash: canonical IPv4 participant hypotheses, decided
 
-## Why this is worth one complete test
+**Current decision (12 November 2026):** All **2³²** canonical ASCII dotted-quad addresses `a.b.c.d` have now been searched against the exact original p56 target under **original BLAKE-512** and **SHA-512**. Each algorithm returned **zero matches** in a complete 16-job GitHub Actions run. See the self-contained [exhaustive outcome and two original-input reproducers](../im-results/anend-ipv4-historical-512-full-search.md).
 
-The solved page says that a deep-web page hashes to the 512-bit target
-36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4.
-A 2014 public Cicada hash-hunt script explicitly tests the candidate that the preimage is a dotted-quad IPv4 address, using **original BLAKE-512**:
-[trizen/experimental-projects hash_bruteforce_blake.pl](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/scripts/hash_bruteforce_blake.pl#L288-L318).
+## Historical motivation, limitation, and present frontier
 
-Important correction to inherited assumptions: the committed BLAKE script has an unconditional `die $digest` at line 312, before its target comparison at lines 313–318. As published, it terminates after hashing its first candidate; its `$from = 3` comment is not evidence that any prefix was searched. The companion SHA-512 script has no such unconditional abort, but its execution coverage is not preserved. The current repository hash screen covers BLAKE2b-512, not original BLAKE-512.
+A preserved participant [original BLAKE-512 search script](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/scripts/hash_bruteforce_blake.pl) and [SHA-512 companion](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/scripts/hash_bruteforce_sha512.pl) propose that the deep-web page's 512-bit hash was the digest of an IPv4 address. The first script's unconditional `die` prevents its target comparison; the companion's asserted starting index cannot document completion. The new exhaustive original-source tests remove this historical coverage uncertainty.
 
-This is a bounded historical candidate, not a claim that the hidden page must be an IP address.
+The exact full results are [BLAKE-512 43164174106](https://github.com/FlareZ123/liber-primus/actions/runs/43164174106) and [SHA-512 43164895409](https://github.com/FlareZ123/liber-primus/actions/runs/43164895409), each with all 16 intervals completed and zero matches. Both scanners pass independent algorithm known-answer checks and preserve per-interval logs.
 
-## Frozen hypothesis and decisive test
-
-Input is exactly the canonical ASCII string a.b.c.d, with each octet rendered in ordinary decimal and no leading zeroes. Search every tuple a,b,c,d in {0,…,255}: exactly 2^32 candidates. Hash each with original BLAKE-512 (the SHA-3 finalist), comparing the 64-byte digest with the page-56 target above.
-
-The scanner is a one-block specialization for 0–15-byte inputs. Its BLAKE-512 implementation is checked against the reference implementation's one-byte-zero known-answer vector before any search starts. The reference implementation is public-domain/CC0: [veorq/BLAKE](https://github.com/veorq/BLAKE).
-
-## Decision rule
-
-- Exact digest match: preserve the candidate bytes and independently re-hash them with a second BLAKE-512 implementation before treating the IP as a real lead; then test whether it resolves to a surviving page or archive.
-- No match after all 2^32 tuples: retire only the canonical dotted-quad/original-BLAKE-512 hypothesis. Do not expand this into guessed URL schemes, arbitrary serializations, or other hash functions without a separate source selector.
-
-## Reproduction
-
-    gcc -O3 -march=native -fopenmp sims/anend_ipv4_blake512_scan.c -o /tmp/anend_ipv4_blake512_scan
-    OMP_NUM_THREADS=5 /tmp/anend_ipv4_blake512_scan 0 255
+**Research decision:** Retire plain canonical IPv4 preimages for those two digest functions. The manuscript does not itself specify an IPv4 string, a hash algorithm, or the expected bytes of the deep-web page. This exclusion is *not* an LP2 decryption, does not identify the printed hash's algorithm, and does not justify widening search to arbitrary URL formatting or passwords. The highest-value next input would be an authentic archived deep-web resource or an original source instruction narrowing the exact preimage bytes.
