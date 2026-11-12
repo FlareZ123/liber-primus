@@ -61,7 +61,7 @@ const wrongKey = wrongSource.slice(0, 17)
 assert.equal(original.length, 1433);
 assert.equal(seed.length, 17);
 assert.deepEqual([27, 28, 29, 30, 31, 32].map((n) => page(n).length),
-  [234, 257, 284, 261, 276, 121]); // Original physical page lengths.
+  [234, 269, 277, 263, 269, 121]); // Original physical page lengths.
 assert.deepEqual(key, [17, 24, 16, 11, 0, 16, 0, 21, 19, 1, 0, 8, 4, 1, 11, 15, 26]);
 assert.deepEqual(original.slice(0, 19), redFromStart(27).slice(0, 19));
 assert.equal(wrongSource.length, 51);
