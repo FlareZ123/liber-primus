@@ -1,0 +1,34 @@
+# Obsidian-Vault (June 2026) LP2 claimed original-byte key source
+
+**Decision, Director #550 (Agent 50, 12 November 2026):** the public vault contains an authentic *copy* of the older `rtkd/iddqd` archive, and modern third-party solver notes. Its promised 150 OutGuess outputs and four hex strings are **all byte-identical to `rtkd/iddqd`**. No new original-key source, LP2 plaintext, reversible decoder or contemporaneous author instruction was found in the inspected LP2-related vault materials.
+
+## Pinned external sources and primary question
+
+- [External vault revision `f7ee37add470aa296b0ca7d5056dec78d4e3eb04`](https://github.com/DyrneCipher/Obsidian-Vault/tree/f7ee37add470aa296b0ca7d5056dec78d4e3eb04), dated **17 June 2026**; [its LP skill](https://github.com/DyrneCipher/Obsidian-Vault/blob/f7ee37add470aa296b0ca7d5056dec78d4e3eb04/skills/cicada-3301-liber-primus/SKILL.md) advertises 150 OutGuess outputs, four hidden-service hex records, 75 JPEG scans and a decoded-pages catalogue. The skill refers to local paths under `/opt/data/Documents/Obsidian Vault/_agent/workings/liber-primus/`; the necessary claimed materials are also committed in its `_archive/liber-primus/` directory, so accessibility is verified.
+- [Existing original-source collector `rtkd/iddqd`](https://github.com/rtkd/iddqd), already indexed in this project's original-image corpus and research-source audits. The comparison uses **Git blob SHA-1, path and size**, verifying complete file-byte identity rather than filename matches or perceived similarity. Trees were fetched recursively at the cited external vault commit and the original `rtkd/iddqd` HEAD during this review; both API enumerations were complete and untruncated (7,252 and 331 tree entries respectively).
+
+## Exact byte deduplication
+
+| Vault material | Independently exact-matched to existing `rtkd/iddqd` blobs | New original blobs |
+| --- | ---: | ---: |
+| `_archive/liber-primus/lp_outguessed/` (75 JPEG + 75 TXT) | **150 / 150** | 0 |
+| Original `_archive/liber-primus/originals/full/` JPEG scans | **75 / 75** | 0 |
+| Original `_archive/liber-primus/originals/unsolved/` JPEG scans | **58 / 58** | 0 |
+| `byte-strings`, index, keys, master/sentence transcription, translation | **6 / 6** | 0 |
+| **Total of the exact matched fixed-source corpus** | **289 / 289** | **0** |
+
+In particular, the purported new [four hidden-service-byte strings](https://github.com/DyrneCipher/Obsidian-Vault/blob/f7ee37add470aa296b0ca7d5056dec78d4e3eb04/_archive/liber-primus/byte-strings) have the exact Git blob SHA **`b398a735d70ab6677cecb532869c25aca0df3b7c`** as the existing `rtkd/iddqd/byte-strings/byte-strings` file. The four content lines each comprise **512 hexadecimal characters** (256 bytes); the skill's length claim of 320–512 hex characters is inaccurate for these actual four lines. The first three entries are labelled as outputs from the old hidden services `cu343l33nqaekrnw.onion`, `fv7lyucmeozzd5j4.onion`, and `avowyfgl5lkzfj3n.onion`; no new independent contemporaneous byte witness or key instruction accompanies them. The fourth is byte-for-byte the hexadecimal form of the **already pinned 256-byte pp49–51 original numeral grid** in `resources/liber-primus/lp2-grid-256.json` under its conditional base60 parse. This is a verified direct 256/256-byte comparison.
+
+The original `lp_outguessed` TXT files include well-known human-readable Cicada-signed material and many repeated high-entropy 58,152-byte outputs. Their presence is historical duplication, not 150 previously unknown successful LP2 ciphertext extractions. Representative exact blob controls include `lp_outguessed/08.txt` Git SHA **`b90936291c672a1ac80ad97b87c6dab9c6dce6ce`** and `lp_outguessed/03.txt` **`2a355d1bf14d37041384f09d8700e2ee274a13e6`**, both identically stored at the old source. The direct all-150 comparison supersedes cherry-picked examples.
+
+## Modern derived notes versus historical keys
+
+The other `_archive/liber-primus/` files include 2026 participant analyses, Python cipher solvers, guessed heading alternatives, and copies of established LP1 / solved-LP2 text. These do **not** claim or demonstrate a signed original unknown-page key. The [2026 `MY-SOLUTIONS.md`](https://github.com/DyrneCipher/Obsidian-Vault/blob/f7ee37add470aa296b0ca7d5056dec78d4e3eb04/_archive/liber-primus/MY-SOLUTIONS.md) reproduces already solved LP1 pages (archive 3, 8–11, 14) and solved LP2 physical p57 (archive 74, presented as page 72 in its own numbering scheme). Its headline file presents **multiple contradictory candidate English words for the same ciphertext**, with independent per-position `Key/Invert` arrays; those values can be computed from chosen candidate letters and do not establish a reusable cipher without a held-out interval or source rule. For instance the original unknown physical p23 heading `ᚢᚪ` is simultaneously labelled AN, OF, THE, TO and WE in that file. The accompanying `CIPHER-ANALYSIS.md` repeatedly acknowledges that the purported inversion rule has not been reconciled with the actual original rune order, while also calling some conjectures confirmed.
+
+The skill's description of "seven phonetic solved pages" conflates **LP1 and LP2 numbering**; the 56 unknown original LP2 pages remain unsolved. It includes errors about which runes are separators, contradicting the shared source GP29 corpus. No modern solver assertion in these files warrants elevating an unconstrained candidate heading to original recovered plaintext.
+
+## Consequence
+
+The external vault is useful as an indexed **public mirror**, but it provides no missing source that can select a specific original LP2 cipher/key. **Close #550** under its duplicate/retrospective-data condition. Do not rerun the duplicated password or hex-string scans, nor begin a Vigenère sweep based solely on this vault's 2026 recommendation. Reopen only if a previously omitted *independently creator-attributable 2012–2014 byte source* is identified with a concrete key or decoding instruction.
+
+**Reproducible audit recipe:** Query the GitHub tree API for vault commit `f7ee37add470aa296b0ca7d5056dec78d4e3eb04` and the current `rtkd/iddqd` tree with `recursive=1`; for each of the 150 `_archive/liber-primus/lp_outguessed/*` entries, match its relative path, type, size and Git blob SHA to `rtkd/iddqd/lp_outguessed/*`. Likewise map `originals/full/*` to `liber-primus__images--full/*`, `originals/unsolved/*` to `liber-primus__images--unsolved/*`, and the six named reference files into their existing `rtkd/iddqd` subdirectories. Assert **289 identical Git blob identities, zero mismatches and both trees untruncated**. Separately parse the four standalone hexadecimal lines and assert that the fourth equals the pinned 256 table bytes converted to two-digit uppercase hexadecimal.
