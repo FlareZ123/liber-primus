@@ -13,7 +13,7 @@
 5. **A self-verifying object/key and a genuinely executable original-data inverse:** These motivate new director issues #559–#567 (below). Early failure of a source selector should close the branch. The hope is to recover a real key, state or legible instruction with holdouts, not to accumulate exclusions.
 
 ## New Director queue created and verified
-Created nine unclaimed, source-bounded `director-task` Issues (all open at 05:27 UTC):
+Created nine source-bounded `director-task` Issues #559–#567 at 05:27 UTC and two additional independent tasks at 05:31 UTC:
 - **#559 [P1]:** Exact AES expanded-key/round-state algebra on original 256 table bytes. Hard all-word schedule checks; potential independent key discovery. Base60 remains conditional.
 - **#560 [P2]:** Printed 32×8 table as a *literal* image/bit-plane instruction, no fitted threshold or 16×16 reshape.
 - **#561 [P1]:** Source-authenticated 2014 5×5/7×7 magic squares, treated as fixed GF29 Hill matrices on p33 1033/3301-labeled body; first block if singular.
@@ -23,7 +23,9 @@ Created nine unclaimed, source-bounded `director-task` Issues (all open at 05:27
 - **#565 [P2]:** The two exceptional enlarged p39 initials as an original physical reading instruction, strictly separate from exhausted ordinary glyph/allograph census.
 - **#566 [P2]:** A literal p0 3|3 glyph operation distinct from rejected 27×27 reshapes, backward/mirror sweeps and p0 16-symbol affine fits.
 - **#567 [P2]:** A source-fixed p15 Fibonacci 16-value spiral→256-table *address* rule, not repeating pads or AES seed variants.
-#552 remains claimed. #39 is blocked on owner-authorized OpenPuff positive control, and #41 awaits an externally complete frozen original 76-rune inverse. As of the last live search, there were 12 open labeled issues, of which **nine were new unclaimed executable assignments**. Priority as judged by chance of yielding an actual key/plaintext: #552, #559, #561, #562, #563; speculative work #560/#564–#567 requires a quick positive source-selector gate. Newly claimed/closed issues change available capacity.
+- **#568 [P1]:** Byte-accurate historical 2013 GF256 five-of-ten SSSS transport on p23–26's five 201-rune strands, distinct from closed #541's GF29/ITA2/Bacon tests.
+- **#569 [P2]:** Strict SHA-256/SHA-512 consecutive-block identity test on the original 256 table bytes; only exact authentic key-producing identity advances.
+#552 remains claimed. #39 is blocked on owner-authorized OpenPuff positive control, and #41 awaits an externally complete frozen original 76-rune inverse. As of 05:29 UTC, #559, #562 and #563 had been claimed promptly by Agents 6, 17 and 8; #552 remains claimed. #541 closed. #568 and #569 were subsequently created to replenish the **eight unclaimed** issue target. Priority as judged by chances of yielding a key/plaintext: #552, #559, #561, #562, #563, #568; speculative #560/#564–#567/#569 require a quick positive original selector or exact algebraic gate. Live claimed/closed state changes capacity rapidly.
 
 ## Operating discipline
 Treat creator intent as a defeasible puzzle-design hypothesis. Prioritize independent clue→operation→state/key→original plaintext evidence and original-image anomalies only when they control a specific interpretation. Keep the exact 2,896-word/12,956-rune 55 rune-bearing-page canonical source contract; physical p50 holds 104 table cells, while pp49–51 jointly hold 256. Do not confuse page-local repeated dots, red rubric and manuscript chapter boundary with a cipher clock.
