@@ -1,0 +1,16 @@
+name: Agent17 LP2 taxicab chapter and Onion7 133-331 source SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Parse source-gated single-file test
+        run: node --check sims/lp2_taxicab_chapter_cube_sft.cjs
+      - name: Reproduce original ciphertext and positive controls
+        run: node sims/lp2_taxicab_chapter_cube_sft.cjs
