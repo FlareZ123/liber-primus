@@ -32,7 +32,16 @@ const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const original = gp.pages.filter((p) => p.page <= 55 && p.indices.length);
 assert.equal(original.length, 55);
 assert.equal(original.reduce((n, p) => n + p.indices.length, 0), 12956);
-const sums = [1259, 1031, 1229];
+const parable = gp.pages.find((p) => p.page === 57).indices;
+let clauseAt = 0;
+const exactP57Sums = [7,30,30,28].map((length) => {
+  const value = parable.slice(clauseAt, clauseAt + length)
+    .reduce((total, glyph) => total + gp.prime[glyph], 0);
+  clauseAt += length;
+  return value;
+});
+assert.deepEqual(exactP57Sums, [449, 1259, 1031, 1229]);
+const sums = exactP57Sums.slice(1);
 const modulus = sums[0] * sums[1];
 assert.equal(modulus * sums[2], 1595277641);
 let state = sums[2] ** 2 % modulus;
