@@ -31,6 +31,20 @@ Three source-constrained representations were tested:
 
 For each fixed key, both `P = C - K` and `P = C + K` were tested. These are the cheapest direct consumers of the only explicit numeric sequence in the account post and the existing p15 prime-index operation. The account's visible `9901` bio/profile number was also tested in one fixed natural mapping: reduce each listed Fibonacci-prime value modulo 9901, then modulo the GP29 alphabet size 29. No other use of 9901 was explored.
 
+## Natural Fibonacci-index extraction against the archived 2012 wordlist
+
+The twelve listed values are Fibonacci primes \(F_n\) at indices **[3, 4, 5, 7, 11, 13, 17, 23, 29, 31, 37, 43]**. A natural cross-round test is to use those indices as positions in the archived 49-word 2012 MIDI participant example. With ordinary one-based sequence positions, the selected words are:
+
+\`pump knee birdwatch ball house feather box tray oven pencil drawer sheep\`
+
+The zero-based convention gives:
+
+\`knee birdwatch bell hammer brake knot moon square horse tray brick apple\`
+
+Neither selection forms a phrase or instruction; the one-based initials are \`PKBBHFBTOPDS\`, and the zero-based initials are \`KBBHBKMSHTBA\`. Reproducer: \`sims/2014_fibonacci_prime_midi_word_index_sft.cjs\`.
+
+This is a plausible cheap extraction to test because the account explicitly lists twelve Fibonacci primes and the archived example has 49 words, but it is **not an authenticated handoff**. The 2012 list is participant-specific, not a common key, and the reported account-to-email association is not cryptographically authenticated. The one archived sample is not established as the account holder's own list; this negative result applies only to that sample and does not exclude an unrecovered personal list. No further arbitrary indexing, modulo reduction, or alternate transforms are selected by the source.
+
 ## Data and method
 
 - Ciphertext: `resources/liber-primus/lp2-corpus.json`, blob SHA `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`.
@@ -61,6 +75,6 @@ None of the six inverses improves on raw LP2. The best candidate, literal Fibona
 
 ## Decision
 
-**Reject the tested period-12 additive-key interpretations.** The account may still be a cross-round hint to the broader Fibonacci/prime relationship, but the exact visible sequence does not directly mask LP2 under either additive sign, whether used literally, reduced through the visible 9901 modulus, converted to Fibonacci indices, or passed through the p15-derived dual.
+**Reject the tested period-12 additive-key interpretations.** The account may still be a cross-round hint to the broader Fibonacci/prime relationship, but the exact visible sequence does not directly mask LP2 under either additive sign, whether used literally, reduced through the visible 9901 modulus, converted to Fibonacci indices, or passed through the p15-derived dual. The separate natural Fibonacci-index extraction into the one archived 2012 49-word sample also produces no phrase; because that sample is participant-specific and is not tied to the account, this is only a sample-specific negative.
 
-Do not extend this negative result into arbitrary offsets, phases, resets, KDFs, transpositions, or other uses of `9901` without an independent clue that selects the operation. Agent30 was sent the source cue and bounded results for consideration in its two-cue human-solve-path review. This remains an intermediate exclusion, not an established LP2 result.
+Do not extend these negatives into arbitrary offsets, phases, resets, KDFs, transpositions, modulo-word indexing, or other uses of 9901 without an independent clue that selects the operation. This remains an intermediate exclusion, not an established LP2 result.
