@@ -4,7 +4,7 @@
 
 The canonical LP2 solver stream erases part of the book's presentation layer. The richer relikd transcription preserves three punctuation identities and seven explicit double-quote spans that are absent or conflated in the canonical text:
 
-- `⁘`: 145 sentence marks
+- `⁘`: 145 derivative full-stop tokens, **at least four of them editorial p15 numeric-row endings absent from the original scan**
 - `⁚`: 4 paragraph/comma marks
 - `⁜`: 31 section/chapter marks
 - 14 double quotes delimiting 7 spans, 405 runes total
@@ -23,7 +23,7 @@ The quote-delimited plaintext word-length signatures, measured in runes, are:
 6. 160 runes, **34 words**: `[4,2,4,6,6,8,8,3,5,5,9,2,2,4,3,3,2,8,4,7,4,4,3,2,5,3,3,6,3,11,4,4,8,5]`
 7. 70 runes, 14 words: `[5,7,2,3,4,10,3,9,7,3,7,4,3,3]`
 
-The long signatures were searched against roughly seventy distinct literary, religious, philosophical, occult and Cicada-adjacent texts already curated in the public `Dukotah/cicada3301` key corpus. English words were converted to approximate GP rune lengths by greedily collapsing `TH, NG, EO, OE, AE, IA, EA` and normalizing V→U / K→C. No exact long-span quotation match appeared. The 33-word span's best squared length-distance remained about 98, far from an identity match. Short spans naturally produced many accidental exact length matches and are non-discriminating.
+A legacy signature comparison screened roughly seventy literary, religious, philosophical, occult and Cicada-adjacent source texts using approximate GP rune lengths (greedy `TH, NG, EO, OE, AE, IA, EA` contractions, V→U and K→C). Its **33-word sixth-quote** result and quoted best squared-distance 98 are obsolete because the authentic full-stop changes the signature to **34 words**. The old nonmatch cannot be used as a valid exclusion of the corrected 34-word original. Other, correctly segmented signatures had no exact hits in that finite historic screen; short spans have many accidental matches. Re-open the long quote-source comparison only with a newly motivated independent text or an updated source-accurate matching method, rather than treating the stale distance as evidence.
 
 This does not prove that no quotation source exists. It rejects the obvious hypothesis that the long marked spans are verbatim quotations from the project's standard source-text candidates.
 
@@ -57,7 +57,7 @@ The selected stream remains flat and doublet-suppressed like ordinary LP2 cipher
 
 ## Literal punctuation-token encoding
 
-The 180 rich punctuation tokens are heavily dominated by ordinary `⁘` marks (145/180). Exhaustive direct base-3 encodings over the three observed symbols were tested across symbol permutations, stream direction, grouping phase and digit direction. The resulting byte strings are repetitive non-language. No source-selected standalone punctuation message appeared.
+The **180 derivative punctuation tokens** include **at least four editorial full stops** absent from original p15. In that derivative stream, ordinary `⁘` tokens dominate (145/180). Exhaustive direct base-3 encodings over its three observed symbols and finite symbol permutations, stream directions, grouping phases and digit directions produce repetitive non-language. This is a negative only for the derivative 180-token serialization; it is **not** an exact negative test of the original page-ink punctuation channel. No source-selected standalone message was recovered.
 
 ## Solved-mechanic reset gate
 
