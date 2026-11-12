@@ -16,16 +16,16 @@ For SHA-1, the first 16 schedule words are freely chosen. For every subsequent w
 W[t] = ROL1(W[t-3] XOR W[t-8] XOR W[t-14] XOR W[t-16]), t >= 16.
 ```
 
-The table provides 64 words. Thus, under any fixed byte serialization, **48 full 32-bit words / 1,536 bits are predicted independently**, with *no* secret key, initial state, plaintext, fitted constants or statistical model. Tested serializations are all 16 combinations of source-compatible radix (base60 or the documented f-omitting base59), row-major/column-major table order, forward/reverse byte order and big/little-endian 32-bit words. The original canonical base60 stream is asserted by its SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
+The table provides 64 words. Thus, under any fixed byte serialization, **48 full 32-bit words / 1,536 bits are predicted deterministically from the original first 16 words**, with *no* secret key, initial state, plaintext, fitted constants or statistical model. Tested serializations are all 16 combinations of source-compatible radix (base60 or the documented f-omitting base59), row-major/column-major table order, forward/reverse byte order and big/little-endian 32-bit words. The original canonical base60 stream is asserted by its SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 
 ## Decisive original result
 
 | Original-source reading | Predicted vs printed W16 | Exact matches among W16–W63 | Differing bits / 1,536 |
 | --- | --- | ---: | ---: |
-| Base60, printed row-major, forward, big-endian | `658ec427` vs `7aff19c0` | **0/48** | **770** |
-| Base60, printed row-major, forward, little-endian | `26c58f64` vs `c019ff7a` | **0/48** | **772** |
-| Base59, printed row-major, forward, big-endian | `6f9ccc0b` vs `78fb19bd` | **0/48** | **763** |
-| All 16 declared source readings | Every model **0/48** | **0/768 total** | **733–802** per model |
+| Base60, printed row-major, forward, big-endian | `658ec427` vs `7aff19c0` | **0/48** | **785** |
+| Base60, printed row-major, forward, little-endian | `26c58f64` vs `c019ff7a` | **0/48** | **767** |
+| Base59, printed row-major, forward, big-endian | `6f9ccc0b` vs `78fb19bd` | **0/48** | **762** |
+| All 16 declared source readings | Every model **0/48** | **0/768 total** | **743–818** per model |
 
 The SFT computes the complete original bit distances for each reading, asserts every mismatch result, checks that a synthetic 16-word seed expanded by the **same code** correctly predicts all 48 additional SHA-1 schedule words, and leaves original source tokens unchanged.
 
