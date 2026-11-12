@@ -78,6 +78,32 @@ for (const keyRule of ["low5", "mod29"]) {
 assert.deepEqual(xor.map((x) => x.valid), [68, 68, 66, 72]);
 assert.deepEqual(xor.at(-1).invalidPositions, [29, 30, 43, 44]);
 
+// Independently selected direct GP29 addition/subtraction on the same source ring.
+// A wrong secret key also round-trips, so original plaintext is the only success gate.
+const gp29 = [];
+for (const orientation of ["clockwise", "reverse"]) {
+  const key = (orientation === "clockwise" ? outer : outer.slice().reverse())
+    .map((n) => n % 29);
+  for (const sign of [-1, 1]) {
+    const decoded = ciphertext.map((c, i) => (c + sign * key[i] + 29) % 29);
+    assert.deepEqual(decoded.map((p, i) =>
+      (p - sign * key[i] + 29) % 29), ciphertext);
+    gp29.push({
+      orientation, sign,
+      ioc: ioc(decoded),
+      text: decoded.map((n) => corpus.translit[n]).join("-")
+    });
+  }
+}
+assert.ok(gp29.every((x) => x.text.split("-").length === 76));
+const expectedGp29Ic = [
+  0.03298245614035088, 0.03368421052631579,
+  0.037192982456140354, 0.036491228070175435
+];
+for (let i = 0; i < 4; i++) {
+  assert.ok(Math.abs(gp29[i].ioc - expectedGp29Ic[i]) < 1e-12);
+}
+
 const innerOriginal = inner.map((v) => v % 29);
 const innerMinusPrime = inner.map((v, i) => (v - missing[i] % 29 + 29) % 29);
 const innerPlusPrime = inner.map((v, i) => (v + missing[i]) % 29);
@@ -93,6 +119,7 @@ console.log(JSON.stringify({
   originalP55Runes: ciphertext.length,
   anonymous2013PrimeCount: missing.length,
   outerXor: xor,
+  outerGp29: gp29,
   innerPrime: {
     directResidueMatches: 3,
     directTotientMatches: 5,
@@ -102,5 +129,5 @@ console.log(JSON.stringify({
     minusPrefix: innerMinusPrime.slice(0, 35)
       .map((v) => corpus.translit[v]).join("-")
   },
-  decision: "Exact source-sized partition; neither direct consumer recovers GP29."
+  decision: "Exact source-sized partition; direct XOR and GP29 addition/subtraction do not recover readable GP29 text."
 }, null, 2));

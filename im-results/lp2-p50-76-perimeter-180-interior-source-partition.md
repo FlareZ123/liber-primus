@@ -25,12 +25,25 @@ Read the perimeter once from the **top-left** cell, along the top edge, down the
 
 The most promising of these four still emits the invalid values [29,31,29,30] in two pairs inside p55 words; the other 72 glyphs are not readable GP prose. All four XOR operations invert exactly when applied twice; the native alphabet viability check is the decisive negative. A direct **raw-byte XOR** using the outer key and the published p55 GP **ordinals** or **prime weights** yields only 26–32 printable ASCII characters out of 76 in the corresponding clockwise/reverse arrangements, without text.
 
+### Outer 76 cells → p55, direct GP29 addition/subtraction
+
+A second source-native operation uses the solved p56's additive **GP29** arithmetic rather than historical XOR. Keep the same top-left clockwise perimeter, the published base60 byte values and the exact original p55 rune order. Reduce each perimeter byte **mod29**, then apply one direct symbolwise addition or subtraction (with reversed perimeter as a direction control), without tuning a phase, skip or permutation. Every output consists of 76 valid GP29 runes, and the exact inverse returns all 76 original input runes; this is automatic for every key and does **not** select a historical one.
+
+| Perimeter reading | Operation on p55 index | Decoded IoC | First twelve GP29 symbols |
+| --- | --- | ---: | --- |
+| Clockwise | subtract key | 0.03298246 | NG Y Y IA Y I W C I S A U |
+| Clockwise | add key | 0.03368421 | NG A EO OE B L IA D EA S F J |
+| Reversed | subtract key | 0.03719298 | T L Y J X D A H F E R T |
+| Reversed | add key | 0.03649123 | Y U EO N F W I L N EO L AE |
+
+For scale, unchanged p55 IoC is **0.03789474** and authentic solved p57 GP29 prose is **0.06270997**. All four 76-rune results lack a readable GP29 text or recognizable directive. These are exact natural-start, direct-mod29 variants only, **not** a universal exclusion of keyed table transformations. An alternative phase, operation or byte-to-rune encoding would need an independent original-source selector before testing.
+
 ### Inner 180 cells → 2013 missing-prime sequence
 
 Retain the inner 30×6 source tokens in their printed row-major order. Compare against the 180 historically listed consecutive primes in the listing's printed order. Only **3/180** respective values satisfy `byte mod29 = prime mod29` and **5/180** satisfy `byte mod29 = (prime−1) mod29`. Direct source GP29 subtraction `(byte−prime) mod29` has rune IoC **0.03767846**; addition has **0.03333333**, compared with raw inner byte residues **0.03823712**. Neither produces a readable GP29 passage or an identifiable index/prime mapping. This excludes the obvious direct position-aligned residues, not independent nested permutations, encodings, or unpublished source instruction.
 
 ## Decision and reproduction
 
-The **76/180 perimeter/interior partition is exact and source-visible**. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the direct 180-place prime-removal operation gives noise. Retire these exact candidate transfers. Further tests should require original evidence selecting a different consumer and should not overinterpret the matching counts or refit position-specific exceptions.
+The **76/180 perimeter/interior partition is exact and source-visible**. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the four source-native direct additive GP29 inverses also give unreadable text; the direct 180-place prime-removal operation gives noise. Retire these exact candidate transfers. Further tests should require original evidence selecting a different consumer and should not overinterpret the matching counts or refit position-specific exceptions.
 
-The [standalone CommonJS SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs) reconstructs the 32×8 perimeter without duplicate cells, checks dimension uniqueness and p55 exact length, parses all 180 original archived primes, asserts the original source counts and direct outputs, and checks every XOR inverse. It uses [original p50 tokens](../resources/liber-primus/base60-grid.json), [original p55 runes](../resources/liber-primus/lp2-corpus.json) and [contemporaneous participant prime list](../resources/external/2013-01-14-missing-primes-pastebin.md).
+The [standalone CommonJS SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs) reconstructs the 32×8 perimeter without duplicate cells, checks dimension uniqueness and p55 exact length, parses all 180 original archived primes, asserts the original source counts and direct outputs, and checks both the XOR and GP29 additive inverses. It uses [original p50 tokens](../resources/liber-primus/base60-grid.json), [original p55 runes](../resources/liber-primus/lp2-corpus.json) and [contemporaneous participant prime list](../resources/external/2013-01-14-missing-primes-pastebin.md).
