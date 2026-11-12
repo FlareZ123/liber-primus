@@ -51,7 +51,7 @@ To distinguish source-order reading from its transposed read, the one independen
 | Source-order 32-column interleave | **0.034536657374** | 0.034434944350 |
 | Original, unchanged | **0.034542627486** | same |
 
-The 29-way uniform benchmark is 1/29≈0.03448276; full candidate prefixes remain nonlinguistic. This explicitly excludes a *direct ordinary-English GP29* reading under these four finite grid-byte pad clocks. The 3,008=32×94 divisibility by itself gives no reason to explore other table functions or row maps. The attached SFT includes exact full re-encryption, source-documented alignment, complete-output IoC, and positive native-GP plants.
+The 29-way uniform benchmark is 1/29≈0.03448276; full candidate prefixes remain nonlinguistic. This explicitly excludes a *direct ordinary-English GP29* reading under these four finite grid-byte pad clocks. The two directly source-shaped 32×94 partitions also fail a literal block-check interpretation: 32 consecutive 94-rune blocks have **0/32 GP-index-zero** and **2/32 GP-prime-zero** sums; 32 interleaved 94-rune strands have **1/32** and **1/32**, respectively, with no block satisfying both zero conditions. This is ordinary near-null frequency, unlike the specially colored first eight-rune rubric. The 3,008=32×94 divisibility by itself gives no reason to explore other table functions or row maps. The attached SFT includes exact full re-encryption, source-documented alignment, complete-output IoC, and positive native-GP plants.
 
 ## Research decision
 
