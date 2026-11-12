@@ -396,6 +396,114 @@ const fiveLaneSharedPadInvariant = {
   positiveEncryptedLanePlants: 2
 };
 
+/**
+ * Authentic geometry extension:
+ * - p7 horizontal reflection applies to each original printed line in
+ *   physical pp3-7, rather than reversing the 1145-rune chapter wholesale.
+ * - p23 180-degree reflection may operate separately on each physical page
+ *   pp23-26, rather than reversing the 1005-rune chapter wholesale.
+ * The source-visible 3 x 3 x 2 family includes those two distinct mappings,
+ * plus the prior identity and global reversals.
+ */
+/** @param {number} count @returns {number[]} */
+function identityPositions(count) {
+  return Array.from({ length: count }, (_, i) => i);
+}
+const aFullMirrorIds = [];
+let aOffset = 0;
+for (const p of [3, 4, 5, 6, 7]) {
+  for (const line of pageLines(p)) {
+    for (let j = line.length - 1; j >= 0; j--) aFullMirrorIds.push(aOffset + j);
+    aOffset += line.length;
+  }
+}
+assert.equal(aOffset, 1145);
+const bPageLengths = [
+  corpus.pages[23].indices.length - 16,
+  corpus.pages[24].indices.length,
+  corpus.pages[25].indices.length,
+  corpus.pages[26].indices.length
+];
+assert.deepEqual(bPageLengths, [197, 270, 273, 265]);
+const bEachPageReverseIds = [];
+let bOffset = 0;
+for (const length of bPageLengths) {
+  for (let j = length - 1; j >= 0; j--) bEachPageReverseIds.push(bOffset + j);
+  bOffset += length;
+}
+assert.equal(bOffset, 1005);
+const originalAOrientations = {
+  natural: identityPositions(1145),
+  chapterReverse: identityPositions(1145).reverse(),
+  horizontalPrintedLineMirror: aFullMirrorIds
+};
+const originalBOrientations = {
+  natural: identityPositions(1005),
+  chapterReverse: identityPositions(1005).reverse(),
+  rotateEachPage180: bEachPageReverseIds
+};
+/**
+ * @param {number[]} a A complete 1145-rune source window
+ * @param {number[]} b A complete 1005-rune source window
+ * @param {number[]} ai
+ * @param {number[]} bi
+ * @param {"rows"|"interleave"} order
+ * @returns {number}
+ */
+function geometricallyAlignedLaneIoc(a, b, ai, bi, order) {
+  const d = Array.from({ length: 1005 }, (_, i) => (a[ai[i]] - b[bi[i]] + 29) % 29);
+  return unpack(d, 201, order).reduce((sum, lane) => sum + ioc(lane), 0) / 5;
+}
+const physicalGeometrySettings = [];
+for (const [aOrientation, ai] of Object.entries(originalAOrientations)) {
+  for (const [bOrientation, bi] of Object.entries(originalBOrientations)) {
+    for (const order of ["rows", "interleave"]) {
+      physicalGeometrySettings.push({ aOrientation, bOrientation, order,
+        originalIoc: geometricallyAlignedLaneIoc(sourceA, sourceB, ai, bi, order) });
+    }
+  }
+}
+let geomSeed = 1337;
+/** @returns {number} */
+function geomRand() {
+  geomSeed = (Math.imul(geomSeed, 1664525) + 1013904223) >>> 0;
+  return geomSeed / 4294967296;
+}
+const geometricControlMaxima = [];
+for (let trial = 0; trial < 500; trial++) {
+  const aStart = Math.floor(geomRand() * (gpShakespeare.length - 1145));
+  const bStart = Math.floor(geomRand() * (gpGibran.length - 1005));
+  const aa = gpShakespeare.slice(aStart, aStart + 1145);
+  const bb = gpGibran.slice(bStart, bStart + 1005);
+  let maximum = -Infinity;
+  for (const setting of physicalGeometrySettings) {
+    const score = geometricallyAlignedLaneIoc(aa, bb,
+      originalAOrientations[setting.aOrientation],
+      originalBOrientations[setting.bOrientation], setting.order);
+    if (score > maximum) maximum = score;
+  }
+  geometricControlMaxima.push(maximum);
+}
+const highestGeometryOriginal = Math.max(...physicalGeometrySettings.map(x => x.originalIoc));
+const controlsAtOrBelowGeometry = geometricControlMaxima.filter(
+  x => x <= highestGeometryOriginal).length;
+assert.equal(controlsAtOrBelowGeometry, 0);
+assert.equal(physicalGeometrySettings.length, 18);
+const geometryAwareSharedPadInvariant = {
+  physicalLineLengths: [3, 4, 5, 6, 7].map(p => pageLines(p).map(line => line.length)),
+  physicalPageBLengths: bPageLengths,
+  options: physicalGeometrySettings,
+  actualOriginalHighestIoC: highestGeometryOriginal,
+  sourceNative1005RuneControlPairs: geometricControlMaxima.length,
+  sourceNativeControlMin: Math.min(...geometricControlMaxima),
+  sourceNativeControlMean: geometricControlMaxima.reduce(
+    (sum, x) => sum + x, 0) / geometricControlMaxima.length,
+  sourceNativeControlsAtOrBelowActual: controlsAtOrBelowGeometry,
+  finiteLowerTail: (controlsAtOrBelowGeometry + 1) /
+    (geometricControlMaxima.length + 1),
+  conclusion: "No original 18-way physical mirror interpretation yields the expected native GP-English five-lane common-pad difference."
+};
+
 console.log(JSON.stringify({
   hypothesis: "Five black dots select five lanes; p56 solved text/shifts may key the other two stencil-linked sections",
   originalEvidence: {
@@ -406,6 +514,7 @@ console.log(JSON.stringify({
   sourceImageP56DotOrdersAgainstSolvedControl: p56DotControls,
   sharedPadComparison,
   fiveLaneSharedPadInvariant,
+  geometryAwareSharedPadInvariant,
   candidates: results.length,
   positiveControl: "Every keyed synthetic solved-p57-native-GP plant recovers exactly.",
   decision: "No deciphered unknown text or source-authenticated lane-key instruction.",
