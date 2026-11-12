@@ -214,8 +214,7 @@ assert.deepEqual(reversiblePowers[0].first20Indices,
 assert.deepEqual(reversiblePowers[1].first20Indices,
   [11,25,11,13,16,1,15,12,26,16,8,23,22,3,9,4,5,14,18,9]);
 assert.deepEqual(reversiblePowers[2].first20Indices,
-  [28,3,18,4,4,5,26,5,19,24,17,25,4,15,14,22,7,14,0,0]
-    .map((v,i)=>i>=14?v:reversiblePowers[2].first20Indices[i]));
+  [28,3,18,4,4,5,26,5,19,24,17,25,4,15,1,20,14,22,7,14]);
 
 
 // Native-source regression: a complete p36-shaped 238-rune GP text with
