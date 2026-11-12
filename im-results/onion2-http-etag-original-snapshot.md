@@ -50,6 +50,19 @@ This second capture is independently bracketed by the original [BotSottile IRC o
 
 The published CDX `length` fields 659 and 718 include archive response metadata. The actual original HTML-body sizes **368 and 430** follow from the exact content hashes. The archived `Last-Modified` and `ETag` original headers have been recovered **only for the earlier 170-byte response**; no original headers for the later 201-byte capture are asserted.
 
+## Derived absolute publication-minute clock across the original 170–202 span
+
+The pinned [2014 contemporary interval records](../resources/cicada2014-onion2-timing.json) contain **29 directly preserved five-minute increments** for byte positions 171–201; the originally missing 190/191 pair was independently resolved at **[2,4]** five-minute units by the [two-witness MassoBot/BotSottile source gate](onion2-massobot-timing-bridge.md). The sum of **all 31 increments from byte 170 to 201 is 70 five-minute units = 350 minutes**. Anchor these records at the independently recovered file `Last-Modified: 2014-01-07 13:40:01 UTC` for the byte-170 file:
+
+| Source-grounded event | Original / derived UTC time |
+|---|---|
+| Byte 170, original Apache file mtime | **13:40:01** (independent server record) |
+| Byte 201, original 31 historical intervals later | **19:30** (minute-level, conditional on preserved intervals) |
+| Second Wayback capture containing exactly 201 bytes | **19:39:16** (independent original CDX) |
+| Byte 202, next observed 10-minute interval | **19:40** (minute-level, conditional on preserved interval) |
+
+Thus the original second archived capture lies **inside the interval predicted by the first archived file timestamp and the separately preserved arrival intervals**. The source provides **no individual exact-second server mtime** for byte 201 or 202: carrying forward the first `:01` second is illustrative, not a directly authenticated clock. A machine-readable [33-position 170–202 derived source-clock table](onion2-archival-clock-170-to-202.json) preserves each source byte, interval, witness confidence and conditional predicted UTC minute, while the [SFT](../sims/onion2_http_etag_original_sft.cjs) asserts the 70-increment sum and capture bracket. This is a reusable historical input for investigating a **known source-specified server generator**, if one is located; it cannot by itself determine byte-generation state.
+
 ## Independent server-time and IRC cross-check
 
 The ETag separates into exactly three hexadecimal fields: `b46b`, `170` and `4ef6183538e40`. These are consistent with Apache HTTP Server 2.2's documented default `FileETag INode MTime Size` for static files ([official historical documentation](https://httpd.apache.org/docs/2.2/en/mod/core.html#fileetag)). Under that convention:
@@ -64,7 +77,7 @@ This match is source-external to the locally reconstructed body SHA. It supports
 
 ## Reversible-research consequence and next decision
 
-We now have **two independently hash-authenticated original publication snapshots at 170 and 201 bytes** plus one precise file-modification second. The later 19:39:16 UTC snapshot independently confirms the byte-201 state before the 20:40 GMT+1 transition to byte 202. Previous generator research had only the final 256-byte string and incomplete 112 observed interarrival intervals. Further recoveries should pursue **other early-2014 WARC HTTP headers/ETags or original server file-rewriting code**, since each independently preserved mtime could provide another timestamp-indexed original state witness. Both successful original January 2014 CDX HTTPS bodies are now recovered to the byte, although the second's HTTP headers remain unavailable.
+We now have **two independently hash-authenticated original publication snapshots at 170 and 201 bytes**, a precise original file-modification second and a 33-position conditional absolute publication-minute schedule anchored to that second. The later 19:39:16 UTC snapshot independently confirms the byte-201 state before the 20:40 GMT+1 transition to byte 202. Previous generator research had only the final 256-byte string and incomplete 112 observed interarrival intervals. Further recoveries should pursue **other early-2014 WARC HTTP headers/ETags or original server file-rewriting code**, since each independently preserved mtime could provide another timestamp-indexed original state witness. Both successful original January 2014 CDX HTTPS bodies are now recovered to the byte, although the second's HTTP headers remain unavailable.
 
 Do not repeat the already-closed LCG, CPython-MT or byte/interval interleaving sweeps. A generator candidate must reproduce actual source bytes from a source-authenticated rule, rather than fitting a timestamp and claiming an LP2 key. An HTTP file-update clock is evidence about **publication**, not automatically about **byte generation**.
 
