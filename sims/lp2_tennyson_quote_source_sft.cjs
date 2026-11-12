@@ -395,7 +395,92 @@ for(const source of sourceFamily) {
   }
 }
 
+/**
+ * Complete, original-input source-key consumer: try each preselected
+ * Tennyson poem from its literal first GP rune as a periodic additive
+ * running key. No key-offset fitting or English model optimizer.
+ *
+ * Three source-native arithmetic directions and three natural reset
+ * clocks: whole book, each physical page, each source chapter. A genuine
+ * native GP English plaintext plant is recovered exactly.
+ */
+const runeSet=new Set(corpus.runes);
+const runePageStrings=read("resources/liber-primus/lp2-transcription.txt")
+  .split("%").slice(0,55);
+assert.equal(runePageStrings.length,55);
+const numberedRunePages=runePageStrings.map((s,i)=>({
+  page:i>=50?i+1:i,
+  symbols:[...s].filter(c=>runeSet.has(c)).map(c=>corpus.runes.indexOf(c))
+}));
+assert.equal(numberedRunePages.reduce((s,p)=>s+p.symbols.length,0),12956);
+const chapterBounds=[[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const chapterRuneGroups=chapterBounds.map(([lo,hi]) =>
+  numberedRunePages.filter(p=>p.page>=lo&&p.page<=hi)
+    .flatMap(p=>p.symbols));
+assert.deepEqual(chapterRuneGroups.map(a=>a.length),
+  [729,1145,1729,1903,1021,1433,1680,3008,308]);
+const wholeRuneStream=numberedRunePages.flatMap(p=>p.symbols);
+
+/** @param {number[]} a @returns {number} */
+function streamIoC(a) {
+  const counts=new Float64Array(29);
+  for(const x of a)counts[x]++;
+  return counts.reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1));
+}
+
+/** @param {number[]} key @param {number[][]} groups @param {number} operation */
+function decodeRunningKey(key,groups,operation) {
+  return groups.flatMap(group=>group.map((c,i)=>{
+    const k=key[i%key.length];
+    if(operation===0)return (c-k+29)%29; // C=P+K
+    if(operation===1)return (k-c+29)%29; // C=K-P
+    return (c+k)%29;                    // C=P-K
+  }));
+}
+const runningKeyGate=[];
+for(const source of sources) {
+  for(const foldIng of [true,false]) {
+    const key=poemWords(read(source.file)).flatMap(w=>nativeWord(w,foldIng));
+    assert.equal(key.length,source.id==="1832"
+      ?(foldIng?4236:4266):(foldIng?3900:3927));
+    for(const operation of [0,1,2]) {
+      const resets=[
+        ["book",[wholeRuneStream]],
+        ["page",numberedRunePages.map(p=>p.symbols)],
+        ["chapter",chapterRuneGroups]
+      ];
+      for(const [reset,groups] of resets) {
+        const decoded=decodeRunningKey(key,groups,operation);
+        assert.equal(decoded.length,12956);
+        const value=streamIoC(decoded);
+        assert(value>0.0344 && value<0.0346,
+          "Source candidate escaped original full-stream IoC gate");
+        runningKeyGate.push({
+          source:source.id,foldIng,operation,reset,keyRunes:key.length,
+          decodedRunes:decoded.length,decodedIoC:value
+        });
+      }
+    }
+  }
+}
+// Synthetic original-key consumer, with independently preserved historical
+// solved LP1 English GP text as plaintext. No fitted key.
+const knownNative=(read("resources/liber-primus/lp1-plaintext-reference.txt")
+  .toUpperCase().match(/[A-Z]+/gu)||[])
+  .flatMap(w=>nativeWord(w,true));
+const knownKey=poemWords(read(sources[0].file))
+  .flatMap(w=>nativeWord(w,true));
+const plantedCipher=knownNative.map((p,i)=>(p+knownKey[i%knownKey.length])%29);
+const recoveredPlant=decodeRunningKey(knownKey,[plantedCipher],0);
+assert.deepEqual(recoveredPlant,knownNative);
+assert(streamIoC(recoveredPlant)>0.06);
+const bestSourceIoC=Math.max(...runningKeyGate.map(x=>x.decodedIoC));
+assert(Math.abs(bestSourceIoC-0.03450661437714729)<1e-12);
+
 console.log(JSON.stringify({
+  runningKeyGate,
+  sourceNativePlantIoC:streamIoC(recoveredPlant),
   spacingIndependentMonoGate,
   allQuoteMonoGate,
   quote2AllSecretGate,
