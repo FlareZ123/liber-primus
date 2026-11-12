@@ -29,6 +29,12 @@ The number **90** also appears as a Fibonacci-derived index in the established p
 
 Importantly, the remarkable two-word ciphertext duplication \`DJU-BEI\` on p27 and p55 is absent from both the 90-word cycle and the actual first-word route. This route does not explain the independently observed bookend repetition.
 
+## Independent original solved-page negative control
+
+Apply **the identical source-prime-sum forward rule** to the 20 original printed words on solved physical p57, whose cleartext is known. Starting at its red title \`PARABLE\` gives word-index route **[0,9,15,7,13,4,3]**, entering a self-loop at index 3, with the actual GP-transliterated words \`PARABLE MUST THE SURFACE CIRCUMFERENCES TUNNELNG INSTAR\`. Starting at the first body word after that heading, a second natural original-layout convention, gives **[0,13,12,7,17,4]**, cycling through \`LICE FIND CIRCUMFERENCES WE AND TO\` (GP transliterations represent \`K\` as \`C\` and \`V\` as \`U\`). Both results are literal subsets of the supplied, *already solved* parable; their selected order is not an English instruction or sentence. The SFT proves both sequences against original rune indices, retaining printed p57 word boundaries.
+
+This is a strong caution against reading the 90-word ciphertext cycle as self-evident natural-language navigation. The source clue might refer to numbers derived *after* the ciphertext is decrypted, or an unknown operation, so the solved control does not falsify all map mechanisms.
+
 ## Exact-layout matched controls
 
 A finite shuffle test keeps the **2,896 actual word slots, lengths, and word-start physical page**. Inside each \`(page, word-length)\` stratum it permutes the multiset of *complete original GP-prime sums*. Thus 526 bins, including 87 singleton bins, preserve a page's word-length profile and the numerical values available at those word positions. For each reshuffled full book, the *whole* functional graph is rebuilt.
