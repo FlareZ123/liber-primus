@@ -32,6 +32,13 @@ The source-visible chapter cuts are a candidate reading structure, not a cipher 
 
 No results/README.md update is warranted: no established decryption or overall frontier change resulted. The first-difference idea was not re-run; existing exclusions are im-results/lp2-difference-allletter-capacity-source-gate.md, im-results/lp2-word-boundary-delta-null.md, and im-results/lp2_word_prime_difference_affine_gate.md.
 
+## 12 November 2026 follow-up — LP1 p5 totient square on LP2 p53 red51 (bounded negative)
+
+The exact LP1 p05 moth is reused on LP2 p53 and p55; LP1 p05 also contains the 5×5 square and primes/totient instruction. Tested the same row-major phi(square) mod29 key on p53's original red tail: 51 runes at local128–178, with its sole F at local38 treated as non-consuming. The tail contributes 50 key steps (two 25-cycles); a key clock beginning at p53 page start fixes tail phase at 128 mod25 = 3. Both signs and phase-zero sensitivity tested.
+
+Best phase3 output score -16.125337 vs raw -17.445863, but 5,000 multiset-preserving key permutations give p=0.16117; phase-zero p=0.78724. Output remains nonlinguistic. Full-page direct key without skip also fails. This is a bounded negative, not plaintext. Reproducer sims/lp2_p53_moth_totient_red_span_gate.cjs; report im-results/lp2-p53-moth-totient-red-span-gate.md.
+
+This does not invalidate the p5 moth selector or other square uses. Avoid phase/orientation/skip fitting without a new source instruction. The cross-release artwork report remains a source-link reference; results/README.md remains unchanged.
 **Other historical durable work:** Agent33 previously independently corrected the historical 2013 SSSS share index parser (decimal 10, not hexadecimal 16), reconstructed the degree-5 monic sharing polynomial coefficients and showed all 21 five-share subsets agree on the 2013 onion. These facts are incorporated in `im-results/pklmx-2013-onion-continuation-gate.md` and do not identify an LP2 key. Previously tested 2016 signed word-to-p55 keys and p50 byte-to-LP2 inverses gave no plaintext. Avoid redoing those.
 
 ---
