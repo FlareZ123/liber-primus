@@ -111,6 +111,59 @@ for (const reversed of [false, true]) {
     derivativeDirectAdditive.push({reversed, sign, ioc});
   }
 }
+// Calibrate the otherwise potentially appealing "222/238" count match
+// against every original 238-rune book window and all physical-page
+// 238-rune prefixes. This exact upper bound already permits arbitrary
+// alphabet relabeling and *arbitrary position permutation*.
+/** @param {number[]} bins @returns {number[]} */
+function sortedCounts(bins) { return bins.slice().sort((a, b) => a - b); }
+/** @param {number[]} spectrum @returns {number} */
+function optimalAgreement(spectrum) {
+  const target = alphabetCountSpectrum(large.slice(0, -1));
+  const sorted = sortedCounts(spectrum);
+  return sorted.reduce((sum, count, i) => sum + Math.min(count, target[i]), 0);
+}
+/** @param {number[]} values @returns {number[]} */
+function bins(values) {
+  const counts = Array(29).fill(0);
+  for (const digit of values) counts[digit]++;
+  return counts;
+}
+const p36Agreement = optimalAgreement(bins(p36));
+assert.equal(p36Agreement, 222);
+const allRunes = corpus.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
+assert.equal(allRunes.length, 12956);
+const windowSize = 238;
+const rolling = bins(allRunes.slice(0, windowSize));
+const scores = [];
+for (let offset = 0; offset + windowSize <= allRunes.length; offset++) {
+  if (offset > 0) {
+    rolling[allRunes[offset - 1]]--;
+    rolling[allRunes[offset + windowSize - 1]]++;
+  }
+  scores.push(optimalAgreement(rolling));
+}
+assert.equal(scores.length, 12719);
+const pageControls = corpus.pages.filter(p => p.page <= 55 &&
+  p.indices.length >= windowSize).map(p => ({
+    page: p.page,
+    agreement: optimalAgreement(bins(p.indices.slice(0, windowSize))),
+  }));
+assert.equal(pageControls.length, 36);
+assert.equal(pageControls.filter(p => p.agreement <= p36Agreement).length, 1);
+assert.equal(scores.filter(s => s < p36Agreement).length, 104);
+assert.equal(scores.filter(s => s === p36Agreement).length, 144);
+assert.equal(scores.filter(s => s >= p36Agreement).length, 12615);
+const calibration = {
+  p36Agreement, pagePrefixComparisons: pageControls.length,
+  p36RanksLastAmongPagePrefixComparisons: true,
+  windowSize, bookWindowComparisons: scores.length,
+  strictlyBelowP36: 104, tiedWithP36: 144, atLeastP36: 12615,
+  minimumBookAgreement: Math.min(...scores),
+  maximumBookAgreement: Math.max(...scores),
+  originalSourceMedian: scores.slice().sort((a, b) => a - b)[
+    Math.floor(scores.length / 2)],
+};
 console.log(JSON.stringify({
   source: "original base60 pp49-51, physical p3 first16 and physical p36 entire page",
   factor16CoefficientsAscending: small,
@@ -120,5 +173,6 @@ console.log(JSON.stringify({
   derivativeIoC: coincidence(derivative),
   p36OriginalIoC: coincidence(p36),
   derivativeDirectAdditive,
+  calibration,
   decision: "Neither 16+238 source-rune vector can equal its exact polynomial-factor coefficients under any global alphabet permutation, even allowing arbitrary position permutation. No original plaintext/key recovered."
 }, null, 2));
