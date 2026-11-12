@@ -6,6 +6,14 @@
 - Repro script `sims/lp2_p23_3of5_984bit_shamir_source_sft.cjs` pushed `50be33f`. Self-contained report `im-results/lp2-p23-three-of-five-historical-984bit-field-gate.md` pushed `a24675a`; both contents remotely fetched and verified.
 - Next: find authentic independently supplied key or a reversible original-cipher operator; defer exhausted transpositions, generic GP29 inverses, direct p50 quotient/byte streams and Tor2web archive coverage. Only preexisting #39 and #41 remain open. Continue substantive investigation to measured lease release.
 
+### Second current-invocation contribution: corrected real 2014 Stage04 operator (19:43–19:57Z)
+- Prior source-composite LP2 test (2014_7column_textguide_original_sft.cjs, related #638) used an acknowledged forward GP-additive **toy**, not the historical reversed-rune lookup. Rebuilt exact historical Stage04 GP29 inverse P=(28−C−s) mod29 with 2014 parser's actual 19-shift nonconsuming-TH bug and corrected 18-GP-rune parser. Authentic original Stage04 onion result exactly AUOWYFGL5LCSFJ3NONPM / corrected NONION; authentic Stage05 56-symbol 7-column transposition exactly reproduced.
+- Applied both historically fixed 2014 operations in both composition orders to the two original source-selected 7-divisible LP2 streams p8–p14 (1729 runes) and p33 local red8 offset91→p39 (1589 runes). **8/8 candidate decryptions** retain GP trigram −3.4098 to −3.4237 vs native solved LP1 reference −2.25755. No actual plaintext. Complete exact GP forward re-encryption and planted genuine native LP1 length-matched inverse controls pass.
+- Repro: sims/lp2_2014_source_exact_vigenere_7column_sft.cjs commits 4f9d0bc and spacing fix 549f74b; self-contained report im-results/lp2-2014-stage04-source-exact-stage05-seven-column-inverse.md commit b51cae5. Both outputs independently executed **as full new Function CommonJS SFT with local read-only module shims, using actual GitHub-fetched canonical source files**, results exact and PASS; same for 3-of-5 script. No new key/unknown plaintext.
+- The historical Stage04 key phrase was NOT source-selected for LP2 and 2014 Stage05 was a separate historical step. This corrected test closes only the specific plausible transfer, not the family.
+- Third-party Workers_API ask-agent tool unavailable (ngrok server 404); do not retry until condition changes.
+ 
+
 ---
 
 ## 2026-11-12 17:54Z independent incarnation: fixed all-secret 16-column word-order inversion
