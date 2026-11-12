@@ -211,6 +211,69 @@ for (const [mapping, digit] of Object.entries(digitTransforms)) {
   }
 }
 
+// Authentic LP1/p56 F-interruption convention: each of p55's only three
+// physical F glyphs may either consume one source symbol or bypass the clock.
+// Exhaust the exact 2^3 masks at each of the three fixed exponents and signs.
+// This is a finite source-justified exception check, not a fitted phase sweep.
+const fPositions = c55.flatMap((r, i) => r === 0 ? [i] : []);
+assert.deepEqual(fPositions, [15, 25, 41]);
+/**
+ * @param {number[]} cipher
+ * @param {number} exponent
+ * @param {1|-1} sign
+ * @param {number} mask
+ * @returns {number[]}
+ */
+function decodeFSchedule(cipher, exponent, sign, mask) {
+  let clock = 0;
+  return cipher.map((r, i) => {
+    const slot = fPositions.indexOf(i);
+    if (slot >= 0 && (mask & (1 << slot))) {
+      assert.equal(r, 0);
+      return 0;
+    }
+    const k = powmod(5, exponent + clock++, 761) % 29;
+    return (r + 29 + sign * k) % 29;
+  });
+}
+
+/**
+ * @param {number[]} plaintext
+ * @param {number} exponent
+ * @param {1|-1} sign
+ * @param {number} mask
+ * @returns {number[]}
+ */
+function encodeFSchedule(plaintext, exponent, sign, mask) {
+  let clock = 0;
+  return plaintext.map((r, i) => {
+    const slot = fPositions.indexOf(i);
+    if (slot >= 0 && (mask & (1 << slot))) {
+      assert.equal(r, 0);
+      return 0;
+    }
+    const k = powmod(5, exponent + clock++, 761) % 29;
+    return (r + 29 - sign * k) % 29;
+  });
+}
+const fScheduleResults = [];
+for (const exponent of [0, 311, 449]) for (const sign of /** @type {Array<1|-1>} */ ([-1, 1])) {
+  for (let mask = 0; mask < 8; mask++) {
+    const result = decodeFSchedule(c55, exponent, sign, mask);
+    assert.deepEqual(encodeFSchedule(result, exponent, sign, mask), c55);
+    const native = p57.slice(0, 76);
+    for (let slot = 0; slot < fPositions.length; slot++) {
+      if (mask & (1 << slot)) native[fPositions[slot]] = 0;
+    }
+    assert.deepEqual(decodeFSchedule(encodeFSchedule(native, exponent, sign, mask), exponent, sign, mask), native);
+    fScheduleResults.push({ exponent, sign, mask, pairCount: pairCount(result) });
+  }
+}
+assert.equal(fScheduleResults.length, 48);
+const sortedFSchedules = [...fScheduleResults].sort((a, b) => b.pairCount - a.pairCount);
+assert.deepEqual(sortedFSchedules[0], { exponent: 311, sign: -1, mask: 7, pairCount: 254 });
+assert.ok(fScheduleResults.every(({ pairCount: pairs }) => pairs / (76 * 75) < 0.04540541));
+
 const output = [];
 const expectedPairs = {
   "0:-1": 186,
@@ -248,6 +311,7 @@ process.stdout.write(JSON.stringify({
   authenticP56RecoveredRunes: known56.length,
   originalP55LiteralBase29PairOrbitGate: pairReadings,
   independentOfAnySecretPairBijection: { rawPairCount: 38, distinctOriginalPairs: 37, distinctOrbitStates: 38 },
+  allAuthenticFScheduleMasks: { evaluated: fScheduleResults.length, best: sortedFSchedules[0], belowNativeSolvedReferenceIoCFloor: true },
   originalP55DirectDecoders: output,
   result: "No candidate authentic plaintext; exact arithmetic is a provisional cross-round hypothesis"
 }, null, 2) + "\n");
