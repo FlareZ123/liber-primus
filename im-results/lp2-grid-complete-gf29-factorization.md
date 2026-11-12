@@ -36,6 +36,25 @@ The complete monic irreducible factor degrees and multiplicities are exactly **(
 
 The repeated linear factor \(X+5=X-24\) and the quadratic \(X^2+18X+11\) are **already documented** as source-derived roots by Agents 39/24. The **additional irreducible cubic, nonic and degree-238 residual** complete that decomposition. The result cannot be obtained by merely dividing out the two earlier known factors.
 
+## Original terminal256 versus the entire table: exact coprimality gate (Agent 1, 12 November 2026)
+
+**Independent source-shape premise.** The pp49–51 table has 256 physical numeric cells; the final physical LP2 pages have exactly **76 p55 original ciphertext + 85 p56 original ciphertext + 95 p57 clear runes = 256 GP29 symbols**. Separately, the source table polynomial has the exact nonconstant factorisation proved above. This suggests a simple *cyclic codeword or common-generator* interpretation: both complete 256-slot source sequences might be polynomials divisible by an author-selected factor of the table. No original Cicada text explicitly prescribes this identification, and the three terminal pages do not share one established cipher mode.
+
+A decisive original-input check requires **no selection of the putative secret factor**. Define `T(X)` from the 256 literal terminal GP29 rune indices as descending coefficients, exactly as the table's byte polynomial `P(X)` is defined above. Euclid's algorithm over GF29 calculates their *complete* polynomial GCD. Include only the two natural page-56 status interpretations (printed original ciphertext and independently authenticated solved plaintext, including exactly the one literal F interruption at local56), and either the whole-terminal printed order or its complete reversal. The original p55 and p57 are never edited. All four combinations are 256 GP29 symbols:
+
+| Terminal 256-symbol sequence | Monic GF29 GCD with complete original table P |
+| --- | --- |
+| p55 + printed p56 ciphertext + p57, printed order | **1** |
+| Same, full reversal | **1** |
+| p55 + authentic solved p56 plaintext + p57, printed order | **1** |
+| Same, full reversal | **1** |
+
+Thus **not one nonconstant polynomial factor of the table, including any of its degree1,2,3,9 or238 source factors or their products, divides any tested complete terminal polynomial**. This is an exact all-factor necessary-condition exclusion of a *literal common-factor codeword* in the frozen field and order, with no language-scoring or candidate parameter tuning. For a transparent partial checksum, dividing the completely original terminal `T` by the known monic degree16 product gives the nonzero ascending remainder
+`[22,5,12,12,15,1,28,4,17,27,3,12,22,5,13,22]`.
+The same degree16 factor divides the original table polynomial with remainder zero. A source-native **256-symbol plant** deliberately constructed as a multiple of that factor returns a GCD of degree at least16, proving the implementation has power to recognize a true shared divisor.
+
+This says nothing about table ciphertext used as a secret *keystream*, an additive/multiplicative mask, a different code over GF(29²), a nontrivial permutation of the original symbols, or a terminal-dependent stateful cipher. Its value is that the entire table-factor family can be retired as a **direct common polynomial divisor of the terminal printed/solved sequence**, without testing hypothetical individual factors or fitting a key after seeing the final pages. No unknown LP2 plaintext, authentic author-selected cyclic code or destination is recovered. [Exact CommonJS original-input SFT](../sims/lp2_terminal256_table_gf29_coprime_sft.cjs).
+
 ## New numerical alignments and intended-path hypothesis
 
 The degree of the product of *all factors except \(Q_{238}\)* is **16 = 2+2+3+9**, which matches the number of cells in the separate **4×4 Fibonacci-prime square on LP2 p15**.
