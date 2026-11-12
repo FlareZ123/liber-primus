@@ -1,0 +1,49 @@
+name: Agent13 LP2 p15 infinity-mark DATA560.13 continuation
+on:
+  push:
+    paths:
+      - 'sims/lp2_p15_56013_infinity_continuation.py'
+      - '.github/workflows/agent13-lp2-p15-infinity-continuation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  infinity-continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download original 2013 DATA/560.13 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          asset="${RUNNER_TEMP}/DATA_560.13"
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 \
+            'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output "$asset"
+          test "$(stat -c%s "$asset")" = "118818811"
+      - name: Checkout pinned MIT-licensed R40-B3 decoder
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: external/dukotah-cicada3301
+          persist-credentials: false
+      - name: Install R40-B3 runtime dependency
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4
+      - name: Run the exact infinity-continuation offset test
+        shell: bash
+        run: |
+          set -euo pipefail
+          python sims/lp2_p15_56013_infinity_continuation.py \
+            --pad "${RUNNER_TEMP}/DATA_560.13" \
+            --dukotah-root external/dukotah-cicada3301 \
+            --out "${RUNNER_TEMP}/p15-infinity-continuation"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-p15-56013-infinity-continuation
+          path: ${{ runner.temp }}/p15-infinity-continuation
+          if-no-files-found: warn
