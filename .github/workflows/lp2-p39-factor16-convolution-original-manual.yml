@@ -25,3 +25,7 @@ jobs:
         run: |
           node --check sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
           node sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
+      - name: Run source-fixed H/G quotient p39 twelve-line inverse
+        run: |
+          node --check sims/lp2_p39_q252_line_overhead_sft.cjs
+          node sims/lp2_p39_q252_line_overhead_sft.cjs
