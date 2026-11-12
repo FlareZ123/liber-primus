@@ -1,14 +1,15 @@
 'use strict';
 
 /**
- * LP2 physical pp23–26 source-delimited 5-rune Hill inverse gate.
+ * LP2 physical pp23–26 source-delimited 5-rune Hill inverse gate, two layouts.
  *
  * The source p23 contains an original five-dot figure and a red 16-rune
  * heading; the remaining 1005 GP29 ciphertext runes are exactly 201
  * consecutive five-rune blocks. Search all (29^5-1)/28 = 732541
  * projectively distinct nonzero GF29 linear forms. Every inverse row
  * of a fixed invertible 5x5 Hill cipher is one of these forms up to
- * scalar. IoC is invariant to multiplying by a nonzero field scalar.
+ * scalar. Both the original 201 consecutive quintets and the alternative
+ * five contiguous 201-rune strands are tested under the identical keyspace. IoC is invariant to multiplying by a nonzero field scalar.
  *
  * Run from any working directory with Node:
  *   node sims/lp2_p23_26_hill_exhaustive_sft.cjs
@@ -34,6 +35,10 @@ assert.equal(body.length, 1005);
 const N = 201, Q = 29;
 const columns = Array.from({ length:5 },(_,j) =>
   Uint8Array.from(Array.from({ length:N },(_,i) => body[i*5+j])));
+// Alternative complete five-strand layout: original body divided into
+// five consecutive, nonoverlapping 201-rune shares.
+const fiveBlockColumns = Array.from({length:5}, (_,j) =>
+  Uint8Array.from(body.slice(j*N,(j+1)*N)));
 const times = Array.from({length:Q},(_,x) =>
   Uint8Array.from(Array.from({length:Q},(_,y) => x*y%Q)));
 /** @param {number[]} coeff @param {Array<Uint8Array>} cols */
@@ -51,19 +56,31 @@ function projectionCounts(coeff,cols=columns) {
   for(let i=0;i<Q;i++) pairs+=hist[i]*(hist[i]-1);
   return pairs;
 }
-const scored=[], totalExpected=(Q**5-1)/(Q-1);
+const scored=[], scoredBlocks=[], totalExpected=(Q**5-1)/(Q-1);
 let tested=0, maxPairs=0, atLeast045=0;
+let maxBlockPairs=0, atLeast045Blocks=0;
 function visit(a,b,c,d,e) {
-  const pairs=projectionCounts([a,b,c,d,e]);
+  const coeff=[a,b,c,d,e];
+  const pairs=projectionCounts(coeff);
+  const blockPairs=projectionCounts(coeff,fiveBlockColumns);
   tested++;
   if(pairs>maxPairs) maxPairs=pairs;
+  if(blockPairs>maxBlockPairs) maxBlockPairs=blockPairs;
   if(pairs>=1809) atLeast045++; // 0.045*201*200 = 1809
+  if(blockPairs>=1809) atLeast045Blocks++;
   if(scored.length<10||pairs>scored[scored.length-1].pairs){
-    scored.push({coeff:[a,b,c,d,e],pairs});
+    scored.push({coeff,pairs});
     scored.sort((x,y)=>y.pairs-x.pairs);
     if(scored.length>10) scored.length=10;
   }
+  if(scoredBlocks.length<10||
+     blockPairs>scoredBlocks[scoredBlocks.length-1].pairs){
+    scoredBlocks.push({coeff,pairs:blockPairs});
+    scoredBlocks.sort((x,y)=>y.pairs-x.pairs);
+    if(scoredBlocks.length>10) scoredBlocks.length=10;
+  }
 }
+
 for(let b=0;b<Q;b++)for(let c=0;c<Q;c++)
 for(let d=0;d<Q;d++)for(let e=0;e<Q;e++)visit(1,b,c,d,e);
 for(let c=0;c<Q;c++)for(let d=0;d<Q;d++)for(let e=0;e<Q;e++)
@@ -75,6 +92,9 @@ assert.equal(tested,totalExpected);
 assert.equal(maxPairs,1788);
 assert.equal(atLeast045,0);
 assert.deepEqual(scored[0].coeff,[1,23,7,12,23]);
+assert.equal(maxBlockPairs,1770);
+assert.equal(atLeast045Blocks,0);
+assert.deepEqual(scoredBlocks[0].coeff,[1,2,9,25,1]);
 
 const vocabulary=corpus.translit.map((s,i)=>({s,i}))
   .sort((x,y)=>y.s.length-x.s.length);
@@ -184,6 +204,10 @@ console.log(JSON.stringify({
   input:{physicalPages:[23,24,25,26],headingRunes:16,bodyRunes:1005,
     blockSize:5,blocks:201},
   model:'all fixed invertible 5x5 GF29 Hill ciphers',
+  fiveBlockLayout:{fiveNonoverlapping201RuneBlocks:true,
+    maximumPairs:maxBlockPairs,maximumIoC:maxBlockPairs/(N*(N-1)),
+    classes:tested,atLeast045:atLeast045Blocks,
+    top10:scoredBlocks.map(r=>({...r,ioc:r.pairs/(N*(N-1))}))},
   classCount:tested,highestOriginalPairs:maxPairs,
   highestOriginalIoC:maxPairs/(N*(N-1)),atLeast045,
   top10:scored.map(r=>({...r,ioc:r.pairs/(N*(N-1))})),
