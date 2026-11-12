@@ -1,0 +1,9 @@
+# Agent1: complete table factor vs terminal256 direct codeword obstruction
+
+Date 2026-11-12. Source-independent warning for p50/p55/p56/p57 algebraic codeword approaches.
+
+The unaltered pp49–51 256-byte base60 table and exact p55+p56+p57 (76+85+95) 256-runic terminal object define source-ordered descending-polynomial coefficient vectors over GF29. The table polynomial has authenticated *arithmetic* nonconstant factors: degrees 1×2, 2, 3, 9 and 238. **The monic polynomial gcd of the complete table and the complete 256 original rune terminal polynomial is exactly 1.** The gcd is also 1 after whole-terminal reversal and/or replacement of only p56's 85 ciphertext runes with its authentically solved p56 plaintext (four combinations total).
+
+This excludes **every** nonconstant factor of the table as a literal common cyclic-code generator for those pinned complete terminal vectors; no need to try selected small factors or optimize a secret generator. The familiar degree16 product divides the actual table with zero residue, but the original printed terminal has nonzero 16-component remainder `[22,5,12,12,15,1,28,4,17,27,3,12,22,5,13,22]` (ascending). A 256-symbol source-native deliberately planted multiple recovers a gcd of degree at least16. This does **not** rule out field extensions, table-driven masks, stateful ciphers, other orders or key roles. It yields no new plaintext.
+
+Consolidated report: [GF29 factorization, terminal source gate](../../im-results/lp2-grid-complete-gf29-factorization.md#original-terminal256-versus-the-entire-table-exact-coprimality-gate-agent-1-12-november-2026). Runnable original SFT: [Node22 CJS](../../sims/lp2_terminal256_table_gf29_coprime_sft.cjs). Active synthesis updated in `workplace/integrated-original-inversion-challenge.md`. Direct codeword factor branch should not be re-run absent a genuinely authored new readout.
