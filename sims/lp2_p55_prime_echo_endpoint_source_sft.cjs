@@ -160,8 +160,11 @@ assert.equal(unknownFCount, 458);
 function anchoredGlobalDecode(cipher, skipAllF, sign) {
   const consumed = cipher.length - (skipAllF ? unknownFCount : 0);
   let phase = ((464 - (consumed % 464)) + 464) % 464;
-  return cipher.map((r) => {
-    if (skipAllF && r === 0) return 0;
+  return cipher.map((r, i) => {
+    if (skipAllF && sourceUnknown[i] === 0) {
+      assert.equal(r, 0);
+      return 0;
+    }
     const key = (historicalPrimes[(phase++) % 464] - 1) % 29;
     return (r + 29 + sign * key) % 29;
   });
@@ -175,8 +178,11 @@ function anchoredGlobalDecode(cipher, skipAllF, sign) {
 function anchoredGlobalEncode(plain, skipAllF, sign) {
   const consumed = plain.length - (skipAllF ? unknownFCount : 0);
   let phase = ((464 - (consumed % 464)) + 464) % 464;
-  return plain.map((r) => {
-    if (skipAllF && r === 0) return 0;
+  return plain.map((r, i) => {
+    if (skipAllF && sourceUnknown[i] === 0) {
+      assert.equal(r, 0);
+      return 0;
+    }
     const key = (historicalPrimes[(phase++) % 464] - 1) % 29;
     return (r + 29 - sign * key) % 29;
   });
