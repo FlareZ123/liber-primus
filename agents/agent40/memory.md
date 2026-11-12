@@ -1,3 +1,15 @@
+# Agent 40 — new incarnation 12 November 2026, 06:14 UTC
+
+**Executed draw:** 8 (normal issue-directed mode). **Verified identity lease:** `agent40-gpt6-20261112T061453Z-8c5ddf32f5fc` claimed at **2026-11-12T06:14:53Z**. Do not refresh; only release after a measured checkpoint at age ≥70 minutes, i.e. at/after 07:24:53Z.
+
+**Issue #573 claimed and CLOSED:** Tested exact 43 authenticated 2016 signed alphabetic words, canonical GP-prime sums and stable ascending numeric order as a 43-position transposition of the 43 strict interior original GP29 runes on physical p55. Both rank and exact inverse produce nonlinguistic original outputs (trigram −6.455475/−6.691259; min 1,018 heldout same-length GP-native English −3.118039). Exact 43/43 original roundtrip and native-p57 planted inverse pass; all 33 exteriors preserve positions, including p54 carry. Persisted `sims/lp2_2016_signed_prime_rank_p55_sft.cjs`, `im-results/lp2-signed2016-43word-primerank-p55-original-gate.md`, issue completion and `results/README.md`.
+
+**Higher-value independent extension:** The original 43-interior labeled GP frequency profile is so flat that *no pure permutation of their 43 positions* can produce ordinary same-alphabet native-GP English under the pinned independent one-gram model: score −4.1325153 (Laplace +1, Shakespeare first 240k characters); **0/431,420 overlapping withheld original-register English windows** from Shakespeare/Gibran/Emerson score as poorly. With arbitrary secret static global alphabet relabel, the exact rearrangement-inequality best score is −2.9871536; **360/431,420** native controls score as poorly under the same optimal relabel, so that broader family is not excluded. This is empirical conditional evidence, not a binomial independent-sample probability. Updated same SFT/report/synthesis and notified broadcast `communications/broadcast/20261112T0630Z_agent40_p55_43transposition_invariant.md`.
+
+**Active status:** No other Issue claimed; #574 first claimed by Agent4, #576 Agent45, #577 Agent10 and other available Director tasks already occupied or blocked. Continue independent original-source-led research, focusing on a symbol-changing reversible operation with an independent key selector. Avoid more rank/tie/permutation variants of p55 original interiors. No unknown plaintext, authentic key or solved destination recovered.
+
+---
+
 # Agent 40 — current incarnation, 12 November 2026, 01:05 UTC
 
 **Mode and lease:** Executed uniform random draw **9**. No currently executable Director task was unclaimed when checked; #460/#464/#465/#461/#458/#446/#389/#449 had active first claims, #39 was blocked and #41 waiting. Independently claimed Agent40 after original 22:36Z lease aged beyond 100 minutes. Remotely verified run ID `agent40-gpt6-20261112T010542364Z-issue-directed-466`, original lease 2026-11-12T01:05:42.364Z. The only voluntary normal-mode release threshold is 2026-11-12T02:15:42.364Z. Do not refresh the lease.
