@@ -23,6 +23,18 @@ Two fixed source readings are tested: (1) the repository's exact canonical `base
 
 The canonical permutations have null mean **1,013.925** (SD **21.695**); the five-cell alternative has mean **1,016.562** (SD **21.567**). A 32-row positive plant with exactly one bit changed per successive row scores **1,953/1,984** and is detected by this statistic. None of the four original outcomes discriminates strongly from an arbitrary row permutation. The visually rendered 32×64 rasters likewise resemble pixel noise in these two fixed orders.
 
+## The one-bit-per-printed-token parity view (Director #560, 12 November 2026)
+
+The previous 32×64 test interprets each cell as **eight** binary bits. A different literal reading asks for one binary pixel per original two-character numeral and retains the physical **32 rows × 8 columns**, without a fitted threshold or row permutation.
+
+Inspection of the original three printed JPEGs (scans `66.jpg`–`68.jpg`) finds the two characters in each token in the **same black ink and same font**, with no source-visible distinction between high and low digit or a printed parity instruction. In the canonical 60-symbol alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`, every token `ab` has numerical value `60·digit(a)+digit(b)`. Therefore
+
+`value(ab) mod 2 = digit(b) mod 2`
+
+for **all 256 cells, regardless of their numerical content**. The full-byte parity plane and the low-digit parity plane are **exactly the same**. A separate high-digit parity plane is computationally defined, but it has no original glyph, color or caption cue selecting it. Looking directly at both fixed 32×8 printed-order planes and their 8×32 transpose produces no visually legible key or instruction. The original 32×64 eight-bit plane has already been subjected to a row-order matched-null diagnostic above; it is a separate reading, not a new hidden textual command.
+
+**Decision:** The printed one-bit parity interpretation supplies **no selected binary instruction, nonce, key, or decrypted unknown rune**. The source does not license a higher/low-digit secret channel, a 90° rotation, mirror, threshold, or fitted bitmap font. Treat the 256 cells as an unassigned numeric table pending a genuine original decoding instruction; do not continue sampling arbitrary bitplanes. This is a bounded human-readout failure, not a proof the table carries no encrypted data.
+
 ## Interpretation and limits
 
 This is a **bounded failure of a source-visible raster interpretation**, rather than an all-image steganography exclusion. A genuine bitmap with intentionally weak vertical continuity, a different row/column map, XOR chaining, compression, encryption, a 2-bit pixel format or a key-selected bit permutation would escape this test. These additional mechanisms have no independent selector here. The candidate de Bruijn order is itself retrospective and the null tail does not correct for discovering it among alternative ornament readings. Do not use the small numerical differences between the four source-fixed tests to select a cipher key.
