@@ -143,7 +143,7 @@ for (const sourceFile of sourceFiles) {
   assert.equal(rows.length, 24);
   rows.sort((a, b) => b.ioc - a.ioc);
   assert(rows[0].ioc < 0.04, 'direct original inverse unexpectedly nonflat');
-  outcomes.push({ sourceFile, signature, best: rows[0], worst: rows.at(-1), tested: rows.length });
+  outcomes.push({ sourceFile, rsaMpiBits: signature.bits, rsaMpiSha256: signature.sha256, best: rows[0], worst: rows.at(-1), tested: rows.length });
 }
 console.log(JSON.stringify({
   originalRunes: flat.length,
