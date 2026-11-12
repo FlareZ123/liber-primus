@@ -1,6 +1,6 @@
 # Original cuneiform bracket becomes previous chapter length after literal-F removal
 
-**12 November 2026, Agent16. Source-exact novel alignment and one bounded failed decoder.** The physical chapter spanning pp27–32 has exactly **1,433** GP29 runes. The next chapter's cuneiform **body**, measured between its actually printed p33 local91 heading and p39 local119 red-triad boundary, has **1,468** runes, of which **35** are exact GP29 **F** (index0). Removing these gives **1,433** remaining runes. This is an original-input one-to-one pairing with the *immediately previous source chapter*. Direct GP29 addition/subtraction between paired rune values has been executed on **all 1,433 source positions** and is nonlinguistic. No key, unknown original plaintext or actual cipher operation is recovered.
+**12 November 2026, Agent16. Source-exact original chapter alignment, failed direct decoder, and all-hidden-common-pad statistical obstruction.** The physical chapter spanning pp27–32 has exactly **1,433** GP29 runes. The next chapter's cuneiform **body**, measured between its actually printed p33 local91 heading and p39 local119 red-triad boundary, has **1,468** runes, of which **35** are exact GP29 **F** (index0). Removing these gives **1,433** remaining runes. This is an original-input one-to-one pairing with the *immediately previous source chapter*. Direct GP29 addition/subtraction between paired rune values has been executed on **all 1,433 source positions** and is nonlinguistic. No key, unknown original plaintext or actual cipher operation is recovered.
 
 ## Why this is an independently recoverable candidate
 
@@ -30,8 +30,31 @@ The subtraction starts with **four runes transliterating TH–E–S–M**. The t
 
 The [standalone CommonJS SFT](../sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs) verifies the physical page lengths and brackets, **1,468/35/1,433** accounting, preserves all 35 literal Fs, decrypts both fixed signs, proves original **1,433/1,433** re-encryption and restores the exact entire 1,468-rune source layout. Its separate source-native p57 1,433-rune plant verifies the **known-hole**, source-conditioned Vigenère implementation under both signs; it does not claim to prove a general self-delimiting F-escape encoder, since a synthetic ciphertext could contain additional accidental Fs at nonreserved positions. Original input is `resources/liber-primus/lp2-corpus.json`; no synthetic language phrase is credited as recovered original plaintext.
 
+## Stronger original all-hidden shared-pad obstruction
+
+There is a second, independent potential purpose for the one-to-one 1,433-position alignment. Both chapters might be ciphertexts encrypted under the **same evolving secret additive GP29 key**, with literal Fs in the cuneiform body consuming no key. Unlike the direct chapter-as-key idea, this proposal lets **every one of the 1,433 keystream values remain secret**. It still makes one exact key-independent prediction:
+
+`A_i = PlainA_i + Pad_i mod29`, `B_i = PlainB_i + Pad_i mod29`, so `B_i−A_i = PlainB_i−PlainA_i mod29` at each aligned consumed index. No amount of secret-pad guessing can alter the pairwise differences. An even more permissive model grants the two channels an arbitrary unknown *constant* additive offset; then the best of all 29 GP29 difference bins gives the upper bound on coincident plaintext runes.
+
+On the **unchanged 1,433 original pairs**, exactly **51** letters agree for zero offset; the best unknown channel offset gives only **60** agreements, at residue12. The complete 29-bin source histogram is:
+
+`[51,37,44,47,52,56,54,41,58,55,50,51,60,43,48,47,53,57,52,55,40,54,41,57,37,54,44,54,41]`.
+
+To test native-register capacity rather than optimize a secret pad, the [single-file source-pair SFT](../sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs) GP-normalizes the existing pinned Shakespeare, Gibran and Emerson controls (with source-independent conventional GP letter aliases) and deterministically draws **5,000** independent 1,433-rune first-channel windows from each. The second-channel control uses a separately drawn 1,433-symbol window from each author's **F-filtered** sequence. This explicitly reproduces the hypothesized F-transparent cuneiform channel and is stricter to the proposed transport than treating all native text Fs as normal symbols.
+
+| Original or source-native pair (1,433 symbols) | Equal without fitted phase | Best of 29 constant shifts | Best-shift pairs ≤ original |
+| --- | ---: | ---: | ---: |
+| **Original p27–32 ↔ cuneiform non-F** | **51** | **60** | reference |
+| 5,000 Shakespeare pairs | mean 87.333, minimum 56 | mean 88.2282, **minimum 63** | **0/5,000** |
+| 5,000 Gibran pairs | mean 87.6612, minimum 50 | mean 88.5914, **minimum 66** | **0/5,000** |
+| 5,000 Emerson pairs | mean 90.9732, minimum 60 | mean 91.583, **minimum 65** | **0/5,000** |
+
+Only **1/15,000** native controls has as few as 51 zero-offset equalities (a Gibran pair with 50); **0/15,000** have a **best-shift** equality count as small as the observed **60**. These are *source-panel conditional* comparisons, not a universal English-language impossibility theorem, and the control windows are taken from continuous text without matching the **original printed word-length grammar**. A source-native positive plant uses two 1,433-rune texts and the **same arbitrary undisclosed per-position pad**, with a deterministically selected pad that yields no accidental F in its second ciphertext channel. The original GP29 difference histogram is preserved **exactly** by this planted encryption and verified without access to the pad.
+
+**Decision:** within ordinary native-GP English as represented by these three independent corpora, a single shared additive GP29 pad reused at the source-aligned 1,433 consumed positions is strongly disfavoured, even if the two channels have different hidden constant Caesar shifts. This key-independent result rejects the concrete whole-chapter common-pad explanation more decisively than another language-score sweep with a fitted key. It does not exclude an **evolving distinct pad in each chapter**, a shared *non-additive* hidden state, alternative plaintext language/register, altered original word boundaries, or a different interpretation of the 35 F glyphs. The original source still does not authorize promoting all 35 Fs to key-transparent glyphs; the arithmetic pairing could be coincidental.
+
 ## Research decision
 
-The *source-created 1,433-position pairing* may guide a later explicit key/transport search, but the minimal, historically demonstrated Vigenère reuse of the preceding chapter is rejected in both directions. The count coincidence alone cannot select encryption, bit packing, byte register, or shared-pad reuse. A successor needs an independent period-available instruction about whether all cuneiform Fs are transparent and what reversible operator combines the previous chapter with the following body. No moving cut, phase search or letter-score optimization was attempted.
+The *source-created 1,433-position pairing* may guide a later explicit key/transport search. The direct chapter-as-key Vigenère inverse is negative in both directions, and the stronger reused-hidden-additive-pad interpretation is disfavoured even with unrestricted per-position secret pads and an unknown interchapter Caesar offset. The count coincidence alone cannot select encryption, bit packing, byte register, or shared-pad reuse. A successor needs an independent period-available instruction about whether all cuneiform Fs are transparent and what reversible operator combines the previous chapter with the following body. No moving cut, phase search or letter-score optimization was attempted.
 
-**Status:** source-exact structural hypothesis; an original-cipher null for two specified direct consumers; no new unknown plaintext.
+**Status:** source-exact structural hypothesis; bounded failed direct inverses and an independently source-controlled all-hidden-common-additive-pad negative; no recovered unknown plaintext or authenticated cipher.
