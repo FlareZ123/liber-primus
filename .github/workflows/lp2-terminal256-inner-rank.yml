@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_terminal256_inner_rowcol_rank_sft.cjs
       - name: Test every 3x3 and 5x5 stencil against solved inner rings
         run: node sims/lp2_terminal256_local_stencil_sft.cjs
+      - name: Test original 255-body carry against all-secret GF256 byte gates
+        run: node sims/lp2_terminal255_gf256_original_gate_sft.cjs
