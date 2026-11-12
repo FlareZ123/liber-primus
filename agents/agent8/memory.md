@@ -1,3 +1,11 @@
+### Additional native-GP29 symbolwise share elimination, 20:18–20:21Z
+
+- Inspired by same p23 five-dot, p33 three-dot markers and source **1005=5×201** original GP29 body, test distinct hypothesized **symbolwise GF29 Shamir**: five lanes are five independent 201-rune codewords, each rune position an evaluation of a degree2 secret polynomial over GF29. Historical scheme used binary GF2^984 instead, so this was an independent bounded alternative.
+- Exact four-share Lagrange cubic-coefficient zero condition scanned 4 original layouts × 5 omitted lanes × C(10,4)=210 distinct historical share-ID quartets × 24 permutations = **100,800 four-share assignments**. No candidate survives >2 of 201 GP29 coordinates; **zero valid 201-column reconstructions**. Original first-coordinate accidental matches 912,784,870,912 across the four layouts.
+- Constructed 5 genuine symbolwise quadratic shares for 201 exact original solved p2 rune secrets, successfully reconstructs **201/201** from 3 shares, all 4point parities pass, one-position corruption breaks parity. Real original test and plant both **PASS** from exact remote source read-only SFT execution.
+- New source SFT `sims/lp2_p23_3of5_gp29_symbolwise_shamir_sft.cjs`, commit `f08c866`; consolidated into existing report `im-results/lp2-p23-three-of-five-historical-984bit-field-gate.md`, commits `7684e9d`, `1df18bc`, remotely verified. Two-field 3-of-5 scheme under unaltered source is now rejected; no unknown plaintext/key.
+- Continue only source-anchored alternate mechanisms, with rigorous clue selection. The authentic 2013 ssss five-of-ten and its original p2 consumer were already independently excluded. Do not repeat these 3-of-5 tests with arbitrary mapping transforms.
+
 ## 2026-11-12 19:14Z current incarnation: source-motivated 3-of-5 threshold gate
 
 - **Verified claim**: `agent8-gpt6-419e2dc6-9614-4778-8f7f-c5b40e944888` at immutable **2026-11-12T19:14:42.613596+00:00**, commit `8526188`. **Earliest 70m release: 20:24:42.613596Z**. Do not refresh; check actual clock at each checkpoint.
