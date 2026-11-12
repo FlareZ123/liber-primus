@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p probe
+          mkdir -p probe/data probe/app
           curl --fail --location --retry 3 --retry-delay 2 \
             "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/011-seventh-onion/48.jpg.bin" \
             --output probe/48.bin
@@ -26,13 +26,15 @@ jobs:
           sha256sum probe/48.bin | tee probe/source-sha256.txt
           xxd -l 64 probe/48.bin > probe/header-64.txt
           strings -n 4 probe/48.bin > probe/strings.txt
-      - name: Inspect objects without executing the saved latent expression
+          cp probe/48.bin probe/data/48.dws
+      - name: Inspect as a workspace without executing its latent expression
         shell: bash
         run: |
           set +e
           LX="$(cat workplace/p48-dyalog-inspect/inspect.lx)"
           docker run --rm \
-            -v "$PWD/probe:/app:ro" \
+            -v "$PWD/probe/data:/data:ro" \
+            -v "$PWD/probe/app:/app:ro" \
             dyalog/dyalog:20.0 \
             -x "LX=$LX" > probe/dyalog-output.txt 2>&1
           rc=$?
