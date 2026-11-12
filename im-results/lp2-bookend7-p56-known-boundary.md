@@ -23,10 +23,23 @@ The [SFT](../sims/lp2_bookend7_p56_source_sft.cjs) asserts the original seven po
 
 This is **not** a post-selection-corrected probability for a deliberately authored clue. It ignores higher-order source statistics, original word boundaries, cross-page selection, and the enormous collection of other mathematical and cryptographic patterns agents have considered. The word-pair repeat was previously known; once its six symbols and second occurrence were selected, the extra matching rune is roughly a **1/29** extension under an independent uniform-following-symbol null. The seven-divisibility observations were also recognized after seeing the match. A source-derived prediction or plaintext inverse is required before promoting intentionality.
 
+## Same-word-inventory controls clarify the rarity
+
+The [separate exact-word shuffle SFT](../sims/lp2_bookend_wordpair_layout_null_sft.cjs) reconstructs all **2,896** original printed unknown-cipher words, verifies that `DJU BEI` at word indices **1,462** (p27) and **2,894** (p55) is the **only repeated ordered adjacent two-word type**, and fixes the complete word-length tape. It then shuffles the *existing ciphertext words themselves*, preserving every ciphertext word and its rune count, under two differing source-consistent exchangeability assumptions. This removes the seven-rune Markov null's unsupported assumption that the original word inventory consists of independently generated uniform letters.
+
+| Conditioning of word inventory | 30,000 shuffles with any repeated ordered pair of **six or more runes** | Exact repeated `DJU BEI` pair in both locations |
+| --- | ---: | ---: |
+| Word-length and **nine original visual chapters** | **4/30,000 (0.0133%)** | **3/30,000** |
+| Word-length and **individual original physical page** | **754/30,000 (2.5133%)** | **379/30,000 (1.2633%)** |
+
+Both models preserve the original 12,956 runes, the printed word lengths, and every exact word identity; the difference lies in whether the actual page-specific word inventory is treated as given. The page-conditioned result is much less remarkable because **p55 contains only two three-rune word slots**, and they are exactly `DJU` and `BEI`; their order is a coin toss once those page assignments are held fixed. In p27, its thirteen three-rune slots admit four ordered adjacent 3+3 sites. The exact probability for this specifically named pair under those fixed page inventories is `(4/(13·12)) × (1/2) = 0.0128205`. Under chapter-conditioned inventories, the corresponding probability is `(25/(83·82)) × (1/(14·13)) = 0.00002018`. These exact fixed-pair calculations do **not** adjust for selection among other repeated word identities.
+
+The strong chapter-level effect localizes the surprise to the **cross-page co-assignment of two repeated word identities** and the terminal placement, rather than a demonstrably unusual within-page ordering. A source-derived operation tying p27 and p55 together could make that evidence actionable; neither control proves that the author planted a key. The tested probabilities are conditional on different original-data features, and none should be presented as a universal probability of intentional design.
+
 An independent public solver project already called out the same seven-gram crossing into solved material in its [Round 44 synthesis, 9–11 November 2026](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/SYNTHESIS.md). This repository's value-added is an exact independent full-source original-index reproducer and calibrated anti-doublet null; it does not claim novelty of the substring.
 
 ## Research decision
 
 Treat the exact source crossing as a **free, sealed boundary constraint** on any future p27/p55/p56 shared-state, seven-column or literal repeated-marker proposal. A candidate that selectively explains the six unknown same runes and p56's independently solved first rune, predicts a further withheld ciphertext/plaintext position, and inverses the complete original text would be meaningful. Reinterpreting the seven characters as a self-key, launching arbitrary phase searches, or treating coincidental modulo-seven structure as a historical instruction would add little.
 
-CI: [Original-source gate run 43295344134](https://github.com/FlareZ123/liber-primus/actions/runs/43295344134), Node 22, passing.
+CI: [Original-source seven-rune gate run 43295344134](https://github.com/FlareZ123/liber-primus/actions/runs/43295344134) and [original-word-inventory conditional gate run 43300412855](https://github.com/FlareZ123/liber-primus/actions/runs/43300412855), Node 22, both passing.
