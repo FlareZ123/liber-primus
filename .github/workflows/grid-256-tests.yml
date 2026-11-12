@@ -78,6 +78,7 @@ on:
           - p50-base9
           - p50-keypad
           - p50-32carry
+          - p50-carry32-aes256
           - ssss256-column
           - ssss64-row
           - p50-q55
@@ -149,6 +150,10 @@ jobs:
       - name: Original 32 page-spanning word vs eight-cell grid row gate
         if: ${{ inputs.probe == 'p50-32carry' }}
         run: node sims/lp2_crosspage_32row_eightrune_source_gate.cjs
+
+      - name: Original 32 page-spanning words, AES256 32-byte key plus 224-byte table ciphertext
+        if: ${{ inputs.probe == 'p50-carry32-aes256' }}
+        run: node sims/lp2_carry32_grid_aes256_payload_sft.cjs
 
       - name: Original p50 BASE29 high-digit keypad direction gate
         if: ${{ inputs.probe == 'p50-keypad' }}
