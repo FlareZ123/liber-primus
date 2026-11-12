@@ -226,11 +226,72 @@ assert.ok(planted.admissibleKeys > 0);
 assert.ok(planted.bestScore >= plantedDecodedScore - 1e-8);
 assert.ok(plantedDecodedScore > Math.max(printed.bestScore, inverted.bestScore));
 
+/**
+ * Original five-symbol decoder under two independently source-grounded
+ * alternative language registers. Each source is already GP29-transcribed,
+ * with its own digit alphabet. Convert through canonical GP transliterations,
+ * retain precisely A..Z, train a separate full quadgram model outside its
+ * 201-letter withheld section, and independently search every valid key.
+ *
+ * @param {string} gpDigits
+ * @param {string} alphabet
+ * @returns {string}
+ */
+function gpToText(gpDigits, alphabet) {
+  let text = "";
+  for (const digit of gpDigits) {
+    const position = alphabet.indexOf(digit);
+    assert.ok(position >= 0 && position < 29);
+    text += corpus.translit[position];
+  }
+  return text.replace(/[^A-Z]/g, "");
+}
+const latinDigits = readText("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).map((line) => line.trim())
+  .filter((line) => line !== "" && !line.startsWith("#")).join("");
+const oldEnglish = JSON.parse(readText("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const extraText = [
+  ["Latin Vulgate NT", gpToText(latinDigits, "0123456789ABCDEFGHIJKLMNOPQRS")],
+  ["Old English Beowulf", gpToText(oldEnglish.sourceGpBase29, oldEnglish.positiveControlAlphabet)]
+];
+assert.deepEqual(extraText.map(([, text]) => text.length), [208680, 52805]);
+const alternateLanguageGates = extraText.map(([name, text]) => {
+  const languageModel = quadgrams([text]);
+  const sourceHoldout = text.slice(5000, 5201);
+  const holdoutScore = score(toIndices(sourceHoldout), languageModel);
+  const originalPrinted = exhaustive(original, languageModel);
+  const originalMirrored = exhaustive(mirrored(original), languageModel);
+  assert.deepEqual([originalPrinted.admissibleKeys, originalMirrored.admissibleKeys],
+    [90836, 73362]);
+  assert.ok(holdoutScore > originalPrinted.bestScore + 400);
+  assert.ok(holdoutScore > originalMirrored.bestScore + 400);
+  const plantedSource = positivePlant(sourceHoldout);
+  const plantedGate = exhaustive(plantedSource.groups, languageModel);
+  assert.ok(plantedGate.bestScore >= holdoutScore - 1e-8);
+  return {
+    source: name,
+    sourceLetters: text.length,
+    originalKeyspaceTested: 164198,
+    heldout201Score: holdoutScore,
+    printedBestScore: originalPrinted.bestScore,
+    printedBestOpening: originalPrinted.bestDecodedLetters.slice(0, 90),
+    mirroredBestScore: originalMirrored.bestScore,
+    mirroredBestOpening: originalMirrored.bestDecodedLetters.slice(0, 90),
+    plantedExact201SourceRecovery: true,
+    plantedBestScore: plantedGate.bestScore
+  };
+});
+assert.ok(Math.abs(alternateLanguageGates[0].printedBestScore - (-2729.836108751857)) < 1e-5);
+assert.ok(Math.abs(alternateLanguageGates[0].mirroredBestScore - (-2738.6077159144493)) < 1e-5);
+assert.ok(Math.abs(alternateLanguageGates[1].printedBestScore - (-2672.3545064475043)) < 1e-5);
+assert.ok(Math.abs(alternateLanguageGates[1].mirroredBestScore - (-2680.7590748792513)) < 1e-5);
+
 console.log(JSON.stringify({
   original: {printed, mirroredQuintets: inverted},
   completeOriginalKeyspace: printed.admissibleKeys + inverted.admissibleKeys,
   sourceNaturalReadoutOrders: 4,
   heldoutEnglish201: heldout,
+  alternateLanguageGates,
   positiveControl: {
     original201CharactersRecoveredWithPlantedKey: true,
     originalPlaintextScore: plantedDecodedScore,
