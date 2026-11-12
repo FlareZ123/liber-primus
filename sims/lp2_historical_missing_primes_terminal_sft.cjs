@@ -114,6 +114,46 @@ assert.deepEqual(matched, {
   tableMinusPrimeTotientMod29: 4,
   tablePlusPrimeTotientMod29: 8,
 });
+// Family-wide 2013 BASE29-motivated GF29 affine decoder:
+// P[i] = a*(sourceTableInnerByte[i] mod29)
+//      + b*(2013 omittedPrime[i] mod29) + c (mod29).
+// Freeze exactly the printed row-major source order; a must be nonzero to
+// permit reconstructing source table symbols from known prime schedule.
+const originalMod29 = interior.map(byte => byte % 29);
+let affineBest = 0;
+let affineKeys = [];
+for (let a = 1; a < 29; a++) for (let b = 0; b < 29; b++) {
+  const residualCounts = new Uint16Array(29);
+  for (let i = 0; i < knownPlain.length; i++) {
+    const residue = (knownPlain[i] - a * originalMod29[i]
+      - b * (missing2013[i] % 29) + 29 * 2000) % 29;
+    residualCounts[residue]++;
+  }
+  for (let c = 0; c < 29; c++) {
+    const hits = residualCounts[c];
+    if (hits > affineBest) {
+      affineBest = hits;
+      affineKeys = [{ a, b, c, hits }];
+    } else if (hits === affineBest) {
+      affineKeys.push({ a, b, c, hits });
+    }
+  }
+}
+assert.equal(affineBest, 19);
+assert.deepEqual(affineKeys, [{ a: 2, b: 27, c: 8, hits: 19 }]);
+const plantAffine = { a: 7, b: 11, c: 13 };
+/** @param {number} n @returns {number} */
+function inverse29(n) {
+  for (let x = 1; x < 29; x++) if (n * x % 29 === 1) return x;
+  throw Error('GF29 nonzero scalar must have a modular inverse');
+}
+const affineSyntheticTable = knownPlain.map((plain, i) =>
+  ((plain - plantAffine.b * (missing2013[i] % 29) - plantAffine.c)
+    * inverse29(plantAffine.a) % 29 + 29 * 200) % 29);
+assert.deepEqual(affineSyntheticTable.map((byte, i) =>
+  (plantAffine.a * byte + plantAffine.b * (missing2013[i] % 29)
+    + plantAffine.c) % 29), knownPlain);
+
 const positiveTable = knownPlain.map((symbol, i) =>
   (symbol + (missing2013[i] - 1)) % 29);
 const checkPlain = positiveTable.map((byte, i) =>
@@ -197,6 +237,9 @@ console.log(JSON.stringify({
     tableInnerCells: interior.length,
     chanceExpectedMatches: expected,
     originalSourceFixedMatches: matched,
+    everyInvertibleGF29AffineTablePrimeDecoder: { parameterKeys: 28 * 29 * 29,
+      maximumKnownPlaintextMatches: affineBest, minimumMismatches: 180 - affineBest,
+      attainingKeys: affineKeys, positivePlantedRecovery: affineSyntheticTable.length },
     plantedKnownPlainExact: checkPlain.length,
   },
   source2014: {
