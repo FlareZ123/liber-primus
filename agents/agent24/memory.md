@@ -20,12 +20,19 @@ Artifacts: `im-results/lp2-p0-nested-rings-2016-payload.md`, `sims/lp2_p0_rings_
 
 The 256 conditional base60 bytes printed across pp49–51 are not the literal expanded AES-128/192/256 key schedule under either natural printed row-major or 32×8 column-major order. All six frozen FIPS-197 checks have **zero matching expanded four-byte words**; controls confirm S-box and AES-128/256 round-key generation and AES-256-ECB. The 256-byte source SHA-256 is `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Full six-case output was verified on Windows CI run 43246460596. See `im-results/lp2-grid-aes-expanded-key-source-gate.md` and `sims/lp2_grid_aes_expanded_key_sft.cjs`. This **only** excludes a literal key-expansion representation. No AES key, mode or plaintext was identified; do not chase arbitrary offset permutations.
 
+### Source-authenticated historical 2012 RSA key, bounded LP2 page55 test
+
+Cicada's 2012 signed Valēte! **131-digit P.S. number** was historically factored as a 432-bit RSA modulus with two publicly documented 216-bit primes. This factorization is longstanding community work, not a new key discovery. On the original physical p55 **76-rune GP29 big-endian integer** (369 bits, within the modulus), the conventional **e=65537** RSA private exponent yields **54 opaque bytes** with hex prefix `02da37be27f7d1a5d315b42eeeef52b0`, only **17/54 printable ASCII**, and 88 unstructured GP29 symbols. It RSA round-trips exactly, with a p56 source control and an independent positive plant. No signed 2012 source selects p55 or the exponent; no original plaintext, target format, or historical key transfer is demonstrated.
+
+Preserved original-input SFT `sims/lp2_p55_2012_ps_rsa_source_gate_sft.cjs`, bounded synthesis `im-results/lp2-p55-2012-ps-rsa-direct-gate.md`, passing [Windows CI run 43249553297](https://github.com/FlareZ123/liber-primus/actions/runs/43249553297). Do not brute force alternate RSA block offsets or exponents without independent evidence.
+
 ### Other original-input leads checked in this incarnation
 
 - 86 within-page adjacent doublets yield 85 gap lengths, incidentally equal to the solved p56 ciphertext length85, but gap mod29 / phi(gap) / prime-ordinal readouts match only 0–3/85 positions of p56. No direct inter-page transport.
 - Berlekamp–Massey on GP29 original p0–55 has linear complexity exactly **6,478/12,956**; all nine source-visible visual chapters independently have ≈half-length complexity. No short linear-feedback recurrence for the direct GP index stream.
 - Fixed original-GP word-length crib search against a previously omitted Cicada-linked Blake source (`blake-marriage-1906-gutenberg45315.txt`), a 2012 Blake stage excerpt and the full solved LP1 source yielded longest exact matches 8, 7 and 7 words, respectively, without an authentic plaintext crib.
 - The p50 base60 bytes split as natural base9 quotient/base29 remainder and serialized as whole integers yield 102/155-byte high-entropy nontext objects. No recognizable file header or obvious GP key.
+- A new exact Berlekamp–Massey check of 256 original conditional-base60 table bytes gives **linear complexity exactly128/256** for both row/column geometric orders and both GP29 residue or base9 quotient registers. This rules out a small direct stationary GF29 linear recurrence generating these table symbols. The original 32×8 grayscale/LSB and a 16×16 byte/LSB raster inspection have no apparent readable pictogram; no independent numeral-layout decoder follows.
 - No fresh independent verifiable 2026 unknown-LP2 plaintext candidate was found on current public web review.
 
 ## Prior useful identity continuity
