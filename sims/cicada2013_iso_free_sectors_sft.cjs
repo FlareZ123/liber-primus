@@ -152,6 +152,7 @@ const pvdApplication=pvd.subarray(883,1395);
 const pvdReserved=pvd.subarray(1395,2048);
 const volumeMetadata={
   applicationUseNonzero:nonzeroCount(pvdApplication),
+  applicationUseNonpadding:pvdApplication.reduce((n,x)=>n+(x!==0&&x!==32),0),
   reservedTailNonzero:nonzeroCount(pvdReserved),
   applicationAscii:(pvdApplication.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
   reservedAscii:(pvdReserved.toString("latin1").match(/[ -~]{24,}/g)||[]).slice(0,3),
