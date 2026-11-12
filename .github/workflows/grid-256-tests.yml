@@ -27,6 +27,7 @@ on:
           - byte-packet
           - redspan-zero
           - tree-tiling
+          - tree-p32-image-direct-key
           - tree-home
           - tree-direction
           - tree-continuous-degrees
@@ -83,6 +84,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original p32 source-locked signed 2016 image tile-pixel key
+        if: ${{ inputs.probe == 'tree-p32-image-direct-key' }}
+        run: node sims/lp2_p32_2016_tilepixel_direct_key_sft.cjs
+
       - name: All-secret LP2 plaintext-autokey continuous/page/word gate
         if: ${{ inputs.probe == 'plaintext-autokey' }}
         run: node sims/lp2_plaintext_autokey_allseed_gate_sft.cjs
