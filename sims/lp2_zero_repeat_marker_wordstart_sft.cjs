@@ -154,6 +154,51 @@ function inverse(ciphertext, marker) {
   });
 }
 
+/**
+ * Independently authored GP-runic cleartext from the original Liber Primus:
+ * LP1 SOME WISDOM, THE LOSS OF DIVINITY, AN INSTRUCTION, and LP2 PARABLE.
+ * These are printed literal plaintext, not model-deciphered candidates.
+ * Section numbers refer to the original master $-delimited structure.
+ *
+ * @param {string} section
+ * @returns {number[][]}
+ */
+function clearWords(section) {
+  const words = [];
+  let current = [];
+  function finish() {
+    if (current.length) words.push(current);
+    current = [];
+  }
+  for (const glyph of section) {
+    if (glyphIndex.has(glyph)) {
+      current.push(glyphIndex.get(glyph));
+    } else if (glyph === "/" || glyph === "%" || /\\s/u.test(glyph)) {
+      // Physical line/page breaks do not terminate printed words.
+    } else {
+      finish();
+    }
+  }
+  finish();
+  return words;
+}
+const masterText = read("resources/transcriptions/liber_primus_master.txt");
+const originalSolvedSections = masterText.slice(masterText.indexOf("\\n\\n") + 2)
+  .split("$");
+const solvedNative = [2, 4, 6, 17].map(section => {
+  const words = clearWords(originalSolvedSections[section]);
+  return {
+    section, runes:words.reduce((n, w) => n + w.length, 0),
+    printedWords:words.length,
+    EA:words.reduce((n, w) => n + w.filter(x => x === 28).length, 0),
+    EAstarts:words.filter(w => w[0] === 28).length
+  };
+});
+assert.deepEqual(solvedNative.map(x =>
+  [x.runes,x.printedWords,x.EA,x.EAstarts]), [
+  [157,31,2,0], [755,181,6,0], [89,18,0,0], [95,20,0,0]
+]);
+
 const references = [
   ["Shakespeare","shakespeare_first300k.txt",0x330121],
   ["Gibran","gibran_prophet_58585.txt",0x330122],
@@ -216,7 +261,7 @@ for (const [name, filename, seed] of references) {
     anyOf29MarkersNear86AndStartAtLeast23:anyMarkerJoint
   });
 }
-const report = {original, markerCount:29,
+const report = {original, solvedNative, markerCount:29,
   toleranceTotal:10, replicatesPerSource:REPLICATES, sources:sourceResults};
 assert(sourceResults.every(x =>
   x.EA.near86AndStartAtLeast23 === 0 &&
