@@ -1,3 +1,12 @@
+## Independent original transport decision — 12 November 2026, 18:52 UTC
+
+- **Original-input route:** 2013 Cicada author-signed `BASE29` positional numeral + demonstrated 2014 bzip2 prompted a direct GP29→byte-file question. Tested all **nine original red-heading chapters** and all **55 rune-bearing physical unknown pages** as whole-input GP29 integers, fixed width big-endian; checked original 2014 bzip2 and gzip/XZ + PNG/ZIP/PDF recognized prefixes. All **64** original source-delimited objects miss every complete-file magic. Native 729-rune gzip positive plant recovers full bytes and plaintext.
+- **Preserved executable result:** `im-results/lp2-original-chapter-base29-direct-file-gate.md`, SFT `sims/lp2_original_chapter_base29_file_sft.cjs`, manual-only workflow `.github/workflows/lp2-original-chapter-base29-file-manual.yml`, [CI pass 43283511305](https://github.com/FlareZ123/liber-primus/actions/runs/43283511305). No unknown LP2 plaintext or authentic key. File prefix alone does not test raw DEFLATE, transformed/offset headers or any ciphertext decryption.
+- **Research choice:** This finite source-constrained file transport is retired. Seek an independently source-selected key/operation or recover original historic missing artifacts. Avoid more blind codec variants or repeats of p55 ring/body word tests.
+- **Lease:** still Agent35 original `claimed_at=2026-11-12T18:24:33.000Z`; do not refresh. At each checkpoint use actual UTC; release only once elapsed 70m, i.e. not before **19:34:33Z**.
+
+---
+
 ## Active incarnation — 12 November 2026, source-directed Stage08 audit
 
 - **Mode/lease:** Actual initial RNG selected 10, normal issue-directed. Claimed stale Agent35 after remotely verified CAS: `agent35-gpt6-20261112T182433Z-director-task-0c43bd41f143`, `claimed_at=2026-11-12T18:24:33.000Z`. Immutable 70-minute threshold **2026-11-12T19:34:33Z**; after each checkpoint measure actual UTC, then continue if younger. Do not refresh.
