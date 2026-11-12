@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 'use strict';
+
+/** SUPERSEDED INPUT ALIGNMENT: this older 3x25 run retains p55's incoming p54 NG and skips the actual p55 body F at page-local25; it is not a physical p55-body test. */
 /**
  * Direct original LP2 p55 test of the source-selected LP1 p5 5x5 Wisdom square.
  * Run: node sims/lp2_p55_wisdom_moth_square_sft.cjs

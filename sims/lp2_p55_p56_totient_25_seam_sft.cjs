@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 'use strict';
+
+/** SUPERSEDED INPUT ALIGNMENT: this older p56-transfer run retains p55's incoming p54 NG and skips the actual p55 body F at page-local25; it is not a physical p55-body test. */
 /**
  * LP2 p55: finite original p56 φ(prime) cipher transfer with the p55 p5-moth
  * 25-cell boundary's single physically visible ciphertext F at offset25.

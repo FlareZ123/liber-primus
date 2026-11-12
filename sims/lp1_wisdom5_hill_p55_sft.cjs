@@ -1,3 +1,4 @@
+/** SUPERSEDED INPUT ALIGNMENT: this older Hill run retains p55's incoming p54 NG and skips the actual p55 body F at page-local25; use p55_wisdom5_hill75_sft.cjs for the correct 75-body test. */
 "use strict";
 /**
  * Source-authentic LP1 p5 square -> LP2 p55 full Hill-5 inverse gate.

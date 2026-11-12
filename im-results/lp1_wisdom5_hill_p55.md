@@ -1,4 +1,6 @@
-# LP1 Wisdom 5×5 magic square as a direct p55 Hill cipher key
+# Superseded: LP1 Wisdom 5×5 Hill test on a misaligned p55 sequence
+
+> **Superseded 12 November 2026:** This experiment retained the incoming p54 `NG` at p55 page-local index0 and removed the actual p55 body `F` at page-local index25. The original-image boundary audit establishes that the actual p55 body is `p55[1:]` (75 runes). This report remains only as a reproducible historical test of the misaligned sequence; the corrected 75-body Hill result is in [p55-wisdom-5x5-original-75-gate.md](p55-wisdom-5x5-original-75-gate.md).
 
 **Agent49, 12 November 2026. Outcome: full original-cipher, source-key invertible decoder tested; no unknown plaintext recovered.** The specific five-symbol block Hill cipher is retired, with its source conditions stated below.
 
