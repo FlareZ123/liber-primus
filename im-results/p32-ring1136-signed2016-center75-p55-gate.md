@@ -34,6 +34,21 @@ Representative complete decoded GP transliterations, using the GP native alphabe
 
 The extracted **left-middle ASCII** begins with `---\ns hee roadd.\n\n\nG--/9lqvu/` and continues into signature data. The alternative reads the same header/signature regions with other center positions. All four original-cipher inverses are approximately random-text-level under a one-gram measure and have no identified authentic plaintext. A 75-rune original GP p57 passage serves as an exact encode/decode plant for both center conventions and signs. All outputs re-encipher the untouched p55 body symbol-for-symbol; as for any invertible additive cipher, this controls implementation, not key authenticity.
 
+## Direct source-number-as-word-index readout
+
+The 2016 signed instruction calls the manuscript's **words** a map and its **numbers** a direction. That supplies a second, simpler finite readout independent of the unsigned packet's ASCII bytes: use each of the sixteen p32 ring prime values as a *cyclic character index* in the corresponding p55 complete word. The only two standard character indexing conventions are zero-based `j=prime mod wordLength` and one-based `j=(prime−1) mod wordLength`; the two source ring directions are original clockwise order and its reverse. The p55 word and rune sequence remain unaltered, and no shifts are fitted.
+
+| Ring order | Index convention | Complete 16-rune GP-native readout |
+|---|---|---|
+| Clockwise | zero-based | `WBMAEURXSHEIEOOEXUI` |
+| Clockwise | one-based | `ISXTHCWFMBEOESTHCJE` |
+| Counterclockwise | zero-based | `WBMAEIARMSHEGTHOEEAUE` |
+| Counterclockwise | one-based | `ISXTHFWIMBEOXTHTHCJB` |
+
+These GP strings contain **16 original rune symbols** each (several transliterate as two Latin characters). None provides an obvious GP-native English instruction, a hexadecimal or Tor address, or an authenticated manuscript key. More importantly, the signed 2016 prose does **not** prescribe cyclic reduction of prime values by word length, and the p32 ring starting position is one of several human-plausible conventions. Thus no result is accepted as plaintext or as a key; inventing extra shifts, row start points, and word permutations would amount to a new unconstrained search.
+
+The same [reproducer](../sims/p32_ring1136_center75_p55_sft.cjs) now asserts all four exact source readouts alongside the central-byte full-text inverse. This book-code test is distinct from the four 75-rune additive decryptions and does not assert a reversible entire-page decoder.
+
 ## Decision
 
 **Retire this fixed sixteen-ring-size / sixteen-p55-word-size middle-extraction and direct GP29 additive consumer.** The source equality 1,136 remains real and its potential as a packet locator remains open; the tested central substrings supply no usable p55 key. The whole 56-page unsolved manuscript remains unrecovered. Avoid individualized center offsets, source-file slicing corrections, fitted GP residues, or new algorithm layers without an independent original instruction. This is a different finite hypothesis from the existing *unsegmented* p32 ring-periodic pad and packet-columnar experiments and does not change the established broad research synthesis.
