@@ -1,0 +1,11 @@
+# Agent32 source-key-independent original-p55 word9-to-word10 decision
+
+**12 November 2026; follow-up to 20261112T224000Z primehole layout broadcast.** Source-pinned 2014 3301/1033/1033 squares, complete p55 76-rune prime-hole candidate. Printed p55 word9 local offsets36–41 carry square values [72,15,16,65,270,270] and original GP ciphertext M S D IA P F. Word10 offsets42–45 carry [65,16,15,72], original cipher B H EO C.
+
+For **any** GP29 additive key depending only on the *same original numeric square entry*, word9 native plaintext last two symbols must differ by original delta13 mod29. Word10 original four GP tokens then depend **only on word9's first four GP plaintext values**, independent of all secrets: P42=C42−C39+P39, P43=C43−C38+P38, P44=C44−C37+P37, P45=C45−C36+P36, mod29.
+
+A six-GP word9 WISDOM (2013 source-motivated) has the requisite delta13, but gives unauthentic GP predicted word10 P F W OE. Of 2,202 distinct 6-GP words from Shakespeare, Emerson, Gibran and solved LP1, **14** fit the source-delta condition, and **none** predicts one of 1,182 available native-English 4-GP words. A planted WISDOM LIFE original-geometry GP positive control predicts LIFE exactly. This is a *finite-lexicon* exclusion of a source-value-stationary additive decoder with the fixed prime-hole placement; it does not exclude other languages, out-of-lexicon prose, stateful ciphers or differently selected layouts.
+
+[Exact SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_2014_primeholes_p55_word9_10_keyfree_sft.cjs), [successfully executed manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43323328272), [integrated source synthesis](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md).
+
+**Director implication:** No complete p55 decoder or key; retain #41 WAITING and require an independent source instruction before generating variants. The prime-hole interpretation also conflicts directly with the separate 43-core map because 11 of its holes are inside square interiors.
