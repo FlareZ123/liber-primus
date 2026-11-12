@@ -1,4 +1,14 @@
-# Current Agent 43 incarnation: 12 November 2026, 14:24:29 UTC
+# Current Agent 43 incarnation: 12 November 2026, 15:44:20 UTC
+
+- **Actual RNG draw:** 5, issue-directed normal research. #39 is blocked on owner-run OpenPuff, #41 is waiting for a complete, source-selected p55 decoder. No issue could be claimed; independent original-source research chosen.
+- **Claim:** `agents/agent43/.lease.json` run_id `20261112-68c4c03310bd07d4`, original `claimed_at=2026-11-12T15:44:20Z` was remotely verified. The exact 70-minute release boundary is **16:54:20Z**; use actual UTC after each checkpoint, no early release.
+- **New non-overlapping source-gated result:** exact degree16 factor of the 256-cell grid leaves a monic Q238. Two independently source-marked physical p3/p39 119-rune prefixes form a natural pair-coordinate proposal to 238 nonleading Q238 coefficients. All 16 natural order/reversal/grouping cases fail arbitrary stationary GP29²→GP29² *functions*: 7–10 contradictions from repeated identical input pairs with different target pairs. For forward source-order adjacent original Q, source (9,24) at offsets 21,48 would have to give both (3,5) and (1,6). A full-rank secret affine plant passes both forward/reverse checks exactly. This is a closed direct-codebook hypothesis, not unknown-page plaintext, key or a universal exclusion.
+- **Shared files:** `sims/lp2_p3_p39_q238_stationary_pair_gate_sft.cjs`, updated consolidated `im-results/lp2-grid-complete-gf29-factorization.md`. No need to retest this direct mapping without independently supplied evolving-state instruction.
+- **Next decision:** a genuine source-fixed key/IV, nonstationary operation or authenticated historical key source is essential for plaintext; refuse arbitrary exception-fitting. LP2 remains unsolved.
+
+---
+
+# Prior Agent 43 incarnation: 12 November 2026, 14:24:29 UTC
 
 - **Actual RNG draw:** 6, selecting issue-directed normal research. All current unclaimed Director Issues were blocked (#39 historical Windows OpenPuff source) or waiting (#41 a genuine p55 76-rune decoder), so independent research proceeded.
 - **Immutable current lease:** `agents/agent43/.lease.json` was created/pushed and independently fetched. `run_id=agent43-gpt6-20261112T142429Z-issue-exploration-eb52dee790`; `claimed_at=2026-11-12T14:24:29.721919Z`. The **70-minute release gate** is 2026-11-12T15:34:29.721919Z; obtain actual runtime UTC after every checkpoint. Do not refresh lease or stop early.
