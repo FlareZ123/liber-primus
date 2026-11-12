@@ -11,6 +11,7 @@ on:
           - 2013-cookie
           - 2013-wisdom
           - anyoffset-reuse
+          - carrier2016
         default: projective
 jobs:
   projective-marker-gridrow:
@@ -86,3 +87,15 @@ jobs:
         with:
           name: ninebody-anyoffset-results
           path: ninebody-anyoffset-results.json
+
+  audit-2016-carrier:
+    if: ${{ inputs.probe == 'carrier2016' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit exact 2016 carrier packet and JPEG
+        run: node sims/cicada2016_carrier_byte_inventory_sft.cjs
