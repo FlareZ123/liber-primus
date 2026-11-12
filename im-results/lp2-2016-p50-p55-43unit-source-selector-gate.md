@@ -46,6 +46,12 @@ This supports the interior-extraction convention substantially more strongly tha
 
 The pinned historical archive contains the three squares in 2014/007-fifth-onion/magicsquares.txt. The next-stage 2014 sixth-onion instructions explicitly tell solvers to submit the three squares from previous puzzles; after successful submission, three additional Liber Primus pages were returned. The 2014 seventh-onion archive contains the LP2 material. Thus these are not numbers selected retrospectively from an unrelated source: the solver was required to possess these exact prior-puzzle artifacts before receiving LP2.
 
+Pinned historical source anchors:
+- [Three-square transcription](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/magicsquares.txt)
+- [2014 sixth-onion README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/README.md)
+- [Signed sixth-onion submission form](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.v2-form.html)
+- [2014 seventh-onion / LP2 archive](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/011-seventh-onion/README.md)
+
 The square orders are 5×5, 7×7, and 5×5:
 
 - Total cells: 25+49+25 = **99**.
