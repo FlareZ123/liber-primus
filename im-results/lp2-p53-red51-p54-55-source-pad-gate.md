@@ -1,6 +1,6 @@
-# P53 red passage as the fixed key for the final unknown visual chapter
+# P53 red51 and p54 red9 as fixed keys for the final unknown visual chapter
 
-**Status:** original-input finite negative; no plaintext, authentic key, or historical cipher identified. [Source-fixed executable SFT](../sims/lp2_p53_red51_to_p54_55_chapter_sft.cjs).
+**Status:** two original-input source-key transfer gates reject the specific period-51 and period-60 additive interpretations. No unknown plaintext, authentic key, or intended cipher recovered. Reproducers: [red51 transfer](../sims/lp2_p53_red51_to_p54_55_chapter_sft.cjs) and [adjacent red60 solved-boundary gate](../sims/lp2_p53_p54_red60_p56_boundary_sft.cjs).
 
 ## Why this test is a distinct plausible source operation
 
@@ -30,8 +30,26 @@ All four whole-chapter distributions remain close to the 29-way uniform IoC **0.
 
 **Reproducer:** [single-file CommonJS test](../sims/lp2_p53_red51_to_p54_55_chapter_sft.cjs) loads the canonical original 58-page GP29 corpus and ink-annotation records, asserts the p53 source runes match source transcription at local128–178, checks its prime sum 2262, asserts both target page lengths, outputs all four original-input scores and 40-rune literal candidate prefixes, exactly reciphers all four outputs, and verifies a known GP29-English planted source sentence under both fixed key representations. No additional corpus, downloaded bytes or workflow is required.
 
+## The adjacent 60-red-rune and 300-target cross-page gate
+
+An independent continuation uses the **entire visually red sequence at this handoff**: p53's **51** red runes at local offsets 128–178 followed by p54's **nine** red title runes at local offsets 0–8, totaling **60** original source symbols. The numerical table is conventionally printed in radix60, giving a possible mnemonic for this source length. No original text says to concatenate these red passages; the red 13-dot punctuation actually separates them, so this remains a conditional source-selected key rather than an author-authenticated one.
+
+After p54's nine red title glyphs, the remaining black source consists of **223** p54 runes and **76** p55 runes, totaling **299**. Including *exactly the first rune* of independently solved p56 yields **300 = 5×60** source-order symbols. This geometry gives a genuine known-plaintext check that an untestable 299-symbol unknown-only interval lacks: the original first p56 ciphertext is **AE** (GP index25), and the independently established prime-totient decryption subtracts one at the opening position to yield **A** (GP index24). Crossing the page boundary is a speculative key-continuation premise, especially because p56 demonstrably uses a different decipherment operation.
+
+Freeze the authentic 2014 Stage04 additive GP29 direction, corrected in [the historical positive-control study](lp2-2014-stage04-source-exact-stage05-seven-column-inverse.md):
+
+\[
+P_i=(C_i+R_{i\bmod60})\bmod29.
+\]
+
+Here \(R\) is the unmodified 60-rune red sequence. At the final, 300th position the actual source key is p54's final red **M** (GP index19). The observed source ciphertext AE (25) decodes to **S** (GP index15), contradicting the independently known **A** (24). There is no fitted phase, omitted rune, word reset, direction or exception to rescue the test. The complete 300-symbol original inverse has GP29 IoC **0.033489409**, versus original **0.033400223**, and its first 50 runes are visibly nonlinguistic. The 299 unknown-only prefix therefore provides no compensating language signal.
+
+A completely independent native-GP 300-symbol plant from solved p57, with A explicitly placed at its final position, recovers **300/300** GP rune indices under the same frozen forward and inverse equations; the real candidate exactly re-encrypts all **300/300** original ciphertext indices. This tests the implementation, while the **S versus A** disagreement rejects the specific proposed *cross-page red60 key transfer* without relying on an English score. [Standalone source-asserting CommonJS reproducer](../sims/lp2_p53_p54_red60_p56_boundary_sft.cjs).
+
+The 60-rune source count and the 300-symbol boundary length are source-observable numerics; a cipher specified to stop before p56 would evade this known-plaintext falsifier but still fail as a direct recognizable original GP-English reading under the same key. The chapter is not thereby decrypted, and no alternative key-selection procedure follows from the coincidence.
+
 ## Research decision
 
-The p53-to-p54 visible handoff supplies a human-motivated **candidate key location**, but **direct period-51 additive transfer is original-negative** under the two independently authenticated GP numeric encodings, phase0 and continuous-chapter clock. This rejects just those four complete-position inverses. It does not rule out that the red passage is itself encoded, serves as a book-coordinate instruction, or has a completely different consumer. The source does not prescribe such a further operation, so do not enlarge this test into unmotivated phase/salt/skip sweeps. Seek an independently authentic instruction that selects a key transformation or consumer before assigning more compute.
+The p53-to-p54 visible handoff supplies a human-motivated **candidate key location**, but **direct period-51 additive transfer is original-negative** under the two independently authenticated GP numeric encodings, phase0 and continuous-chapter clock. The distinct period-60 adjacent-red construction also fails its complete 300-position continuation at the independently solved p56 opening (S instead of A). This rejects just those four complete-position inverses. It does not rule out that the red passage is itself encoded, serves as a book-coordinate instruction, or has a completely different consumer. The source does not prescribe such a further operation, so do not enlarge this test into unmotivated phase/salt/skip sweeps. Seek an independently authentic instruction that selects a key transformation or consumer before assigning more compute.
 
 **Input anchors:** [original physical chapter segmentation](lp2-global-original-visual-section-map.md), [canonical LP2 images](../resources/liber-primus/README.md), [annotated ink](../resources/liber-primus/lp2-ink-annotations.json), [GP29 rune and prime indices](../resources/liber-primus/lp2-corpus.json).
