@@ -1,6 +1,6 @@
 # LP2 full-source rune assignment audit
 
-**Status:** complete for ordinary black-text position assignment; red spans and the p39 enlarged line remain separately unresolved. This is a transcription/source-image audit, not a decipherment.
+**Status:** complete for ordinary black-text position assignment. The p39 short-line glyph variants have now been resolved by matched original-pixel controls; earlier red-span recognition errors were independently adjudicated. This is a transcription/source-image audit, not a decipherment.
 
 ## Scope and inputs
 
@@ -38,9 +38,18 @@ These recover the four joined glyph positions in the three formerly undercounted
 
 **Native red registration correction (11 November 2026):** 68 of the 79 raw red mismatch flags arise from seven one-position displaced glyph assignments where an oversized first rune was dropped and a 13-dot terminal mark was included as I. The following 62 ordinary red glyph predictions align exactly with the *next* source label, 62/62; the source JPEGs independently show the missed initial rune. The [original-image adjudication](lp2-red-rune-image-adjudication.md) further identifies a p0 two-glyph merge causing five additional flags and six ornate red initials causing the last six black-template errors. All 79 raw red flags are thus source-accounted without a canonical rune correction; the p53 51-position reading is unchanged, with 40/40 within-red repeated-class matches. Keep the raw 79 count as a model diagnostic, not a tally of questionable source glyphs.
 
-The 83 disagreements are not ordinary black-text transcription corrections. The 79 red-span disagreements are inside the 213 annotated red positions. The four black disagreements are all on p39 line 5, a five-glyph enlarged line immediately before a three-rune red span and red 13-dot punctuation. Manual inspection of the original crop supports the existing `MSWOH` reading; it remains explicitly marked as a special-form exception rather than being silently accepted or corrected.
+The 83 disagreements are not ordinary black-text transcription corrections. The 79 red-span disagreements are inside the 213 annotated red positions. The four black disagreements are all on **physical p39 line 5**, a five-rune final line with source glyphs `ᛗᛋᚹᛟᚻ`, GP transliteration **M S W OE H** (the earlier abbreviation `MSWOH` omitted that OE is one GP rune). Original-image matched-component analysis now proves that **all five forms are ordinary printed glyphs** in the same font and size as their neighbors. The previous four OCR errors are template-model exceptions rather than four physically exceptional source symbols. Their five shapes and source positions are separately pinned in the [same-image decision SFT](../sims/lp2_p39_fiveglyph_typography_sft.py). The three widely spaced black dots to the right are source-visible punctuation, a separate motif from the five ordinary rune bodies.
 
 Among the 11,891 held-out positions on lines with exact observed component counts and no skipped components, 11,881 match the p43 nearest-template prediction; the 10 disagreements are all red-span positions. No disagreement surfaced in ordinary black text.
+
+
+### P39 short line: original-image resolution of the four supposed enlarged glyphs
+
+**Issue #599; 12 November 2026.** The earlier p43-trained 29-class OCR made four mistakes in a *single* five-rune printed line at physical p39 line 5. The original p39 image is archive `56.jpg`, SHA-256 `d1b7ea5a6ffb79709753e3565d1d46e05edbe3d82ca70c3ed6065d46b131bd00`. The five printed runes are **M S W OE H**, each exactly one canonical GP symbol. All five are printed from the same ordinary font as p39's other prose. A `RGB<160` black component mask over a fixed small p39 prose-region control set yields **212 ordinary black-glyph components** above the font-size thresholds; their median glyph height is **114 px**. The five disputed line glyphs measure **[113, 115, 114, 115, 115] px**. The alleged enlargement was an image-model interpretation, not a typography fact.
+
+For the five positions respectively, source component rectangles `(x,y,w,h)` are `(601,1616,52,113)`, `(660,1614,35,115)`, `(699,1615,35,114)`, `(737,1614,44,115)`, `(787,1614,43,115)`. Each has a **near-identical counterpart on a separate ordinary text line of the same original scan**: `(1316,1239,52,113)`, `(1317,2422,35,115)`, `(1432,1238,35,114)`, `(1169,2046,44,115)`, `(1682,2046,43,115)`. After resizing the cropped black masks to 64×64, their five mean-absolute grayscale silhouette differences are **[0.00661058, 0, 0.00573308, 0.02759696, 0.00779828]** on the 0–1 ink scale. Every independently chosen different-glyph counterpart is worse (**0.204–0.520**), and each matching glyph is at the nearest ordinary distance within this 212-element control set. Each match reproduces the source letterform independently of the OCR model.
+
+The horizontal three-dot black ornament on this p39 line and the following enlarged red initial remain separate source-visible layout features. They do not turn the five ordinary ink forms into a four-symbol hidden alphabet, order the *four OCR errors*, or supply a source-selected key/operation. There is **no new original plaintext or side-channel**. The canonical transcription requires no correction. The source-gated hypothesis of four visibly exceptional glyphs is retired. [Complete original-pixel SFT](../sims/lp2_p39_fiveglyph_typography_sft.py) · [passing original-image GitHub Actions regression](https://github.com/FlareZ123/liber-primus/actions/runs/43259668215).
 
 ## Solved-page controls and the red-ink limitation
 
@@ -79,7 +88,7 @@ The proof reads the native original JPEGs, measures their printed row centers an
 
 ## Conclusion and next decision
 
-The canonical ordinary black-text rune assignments survive the complete image audit: **no ordinary black-text correction is indicated**. All eight previously described line-registration "ambiguities" are now settled as unique source mappings; this removes a transcription-clock uncertainty without claiming a decryption. The 213 red rune identities, including the terminal p53 51-rune passage, remain subject to separate image-first review in Director #331. The p39 enlarged line is also separately flagged.
+The canonical ordinary black-text rune assignments survive the complete image audit: **no ordinary black-text correction is indicated**. All eight previously described line-registration "ambiguities" are now settled as unique source mappings; this removes a transcription-clock uncertainty without claiming a decryption. The 213 red rune identities, including the terminal p53 51-rune passage, remain subject to separate image-first review in Director #331. The p39 short final black line is ordinary typography; its four historical classifier flags are retained only as a machine-model diagnostic, as documented below.
 
 No original LP2 unknown plaintext, key, decoding operation or destination was recovered. Future source-image work should target unresolved red forms rather than rescan these eight now-unambiguous row registrations.
 

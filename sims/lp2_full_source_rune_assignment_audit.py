@@ -43,7 +43,7 @@ MANUAL_SPLITS = {
     (25, 9): {"component": 18, "cuts": [50], "trim_top": 0, "expected": "ᚳᚦ"},
 }
 SPECIAL_ARTISTIC_LINES = {
-    (39, 5): "Five enlarged black glyphs immediately precede a three-rune red span and red 13-dot mark; template disagreements here are separately annotated, not transcription corrections."
+    (39, 5): "Five ordinary-size black glyphs M,S,W,OE,H immediately precede a red13 mark and a later three-rune red span; the four p43-template OCR errors here are an exceptional classifier case, not unusual source glyph variants (source-image-verified in lp2_p39_fiveglyph_typography_sft.py)."
 }
 
 
