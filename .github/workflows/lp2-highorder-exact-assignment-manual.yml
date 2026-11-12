@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Execute original-input exact-assignment SFT
         run: node sims/lp2_highorder_cipher_context_entropy_sft.cjs
+      - name: Execute original-input plaintext-history all-secret SFT
+        run: node sims/lp2_plain_history_transducer_collision_sft.cjs
