@@ -1,0 +1,15 @@
+name: Agent29 LP2 p15 absolute-manuscript bookcode AES128 inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  absolute-square-bookcode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-square absolute rune positions as AES key material
+        run: node sims/lp2_p15_absolute_rune_bookcode_aes128_sft.cjs
