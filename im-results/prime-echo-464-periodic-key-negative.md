@@ -80,9 +80,24 @@ The terminal-root sequence was also tested as a repeating GP29 key over the 3301
 
 All remain near-uniform; none recovers English. The first-edge control and terminal-root key results are reproduced by `sims/prime_echo_forest_edge_index_gate.cjs`, pinned to the canonical corpus Git blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`.
 
+## Terminal p55 prime-echo tail before the authentic p56 reset
+
+The above full-book test assumes an arbitrary repeated 464-prime period beginning at LP2 p0. A **different original-source construction** follows from physical adjacency and the independently recovered p56 cipher: the solved p56 key begins with φ(2), φ(3), ... at local offset0, and the original 2013 `prime_echo` program ends explicitly after its **464th prime, 3301**. If p56 begins a new prime-echo cycle, physical p55 might consume the source's ending prime segment. This supplies a precommitted, position-specific 76-rune candidate without retesting unknown whole-book phases.
+
+The [new complete original-input SFT](../sims/lp2_p55_prime_echo_endpoint_source_sft.cjs) parses the actual `echo` values from the checked-in [original prime-echo shell script](../resources/historical/cicada2013-os-original-prime-echo.sh) and independently regenerates all 464 primes. The first natural boundary anchors are:
+
+- **Start-count:** p55 physical 76 runes consume the last **76** source entries, starting at the **389th prime, 2683**. If a rune is a nonconsuming literal F, the clock simply finishes before 3301.
+- **End-count:** p55 consumes exactly the number of source primes remaining after literal-F omissions, so the **last consuming p55 position always uses 3301**, immediately before p56's verified reset to2. The starting prime is deterministically adjusted by each F mask, with no free phase.
+
+Each anchor applies both GP29 additive orientations of the already solved p56 φ(prime) operator and all **eight** consume-versus-literal possibilities at the only three original p55 F positions **15, 25, 41**, for **32** complete original 76-rune decoders. No other symbol can be dropped and no other prime starts or page shifts are considered. Every decoder **re-encrypts the unchanged original p55 ciphertext** and recovers an independently source-native 76-rune solved-p57 plant under its corresponding exact F policy. The authentic p56 prime-totient known-plaintext regression recovers **85/85** true GP runes.
+
+The strongest p55 original-output collision statistic is **218/(76×75) = 0.0382456**, tied by two configurations (start-count positive with three literal Fs; end-count positive with only F41 literal). All **32** remain below the earlier-established native solved-reference **76-rune IoC floor 0.0456140**, and none starts a sustained GP-English passage. The source-verified script and complete original/plant assertions passed [manually invoked GitHub Actions run 43303033060](https://github.com/FlareZ123/liber-primus/actions/runs/43303033060).
+
+**Decision:** source-ending alignment of the *actual* 2013 prime-echo list to p55 before p56's independently solved prime2 reset fails under the documented additive and literal-F interpretations. This is an original cipher test that the previous global phase-zero 464-period sweep did not cover. A further phase, source token mapping or nonlinear operation would need an independent source selector; do not continue guesses solely to rescue the terminal length fit. It does not exclude unrelated pagewise keys or a changed plaintext register.
+
 ## Decision
 
-The direct repeating period-464 prime/totient additive stream is **rejected** as an English-like GP29 decoder for the original 12,956 unknown runes. The forest-edge / prime-position composition is also a **bounded negative**: the 464-symbol prime sample and all three inherited-phase terminal-root key variants remain near-uniform and nonlinguistic. The first-edge deletion control also produces the 3301 length, so that length match is not independent evidence for terminal-root selection.
+The direct repeating period-464 prime/totient additive stream is **rejected** as an English-like GP29 decoder for the original 12,956 unknown runes. The independently fixed terminal p55-before-p56-reset tail-of-list key, including every possible local F interruption, is also negative on its complete 76 original runes. The forest-edge / prime-position composition is also a **bounded negative**: the 464-symbol prime sample and all three inherited-phase terminal-root key variants remain near-uniform and nonlinguistic. The first-edge deletion control also produces the 3301 length, so that length match is not independent evidence for terminal-root selection.
 
 These tests close two direct serializations only. They do not invalidate the 2013 prime-list source observations or exclude a different stateful, nonlinear, table-indexed, or key-derivation role. Do not expand these branches with arbitrary phases, resets, reversals, permutations, or KDF menus. A successor requires an independent Cicada clue that selects a different reversible operation or key/state and predicts previously unexplained original ciphertext.
 
