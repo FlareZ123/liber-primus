@@ -246,6 +246,9 @@ function positive(model, kind, marker) {
   const groups = new Int16Array(cipher.length).fill(-1);
   model.positions.forEach((pos, j) => {groups[pos] = model.phases[j];});
   const markerSites = new Set(model.markers);
+  const expected = planted.map((symbol, i) =>
+    starts.has(i) ? symbol : markerSites.has(i) ? marker :
+    marker === 0 ? fold(symbol, marker) + 1 : fold(symbol, marker));
   const fake = new Array(cipher.length);
   const recovered = new Array(cipher.length);
   for (let i = 0; i < fake.length; i++) {
@@ -279,6 +282,16 @@ function positive(model, kind, marker) {
   }
   assert.equal(positives, 12815);
   assert.equal(markers, 86);
+  assert.deepEqual(recovered, expected,
+    "All original-layout positions, including literal marker sites, decode");
+  const recipher = recovered.map((plaintext, i) => {
+    if (starts.has(i)) return plaintext;
+    if (markerSites.has(i)) return fake[i - 1];
+    const k = table[groups[i]] % 28;
+    return fromRank(mod(fold(plaintext, marker) + k, 28),
+      fake[i - 1], kind);
+  });
+  assert.deepEqual(recipher, fake, "Every emitted cipher rune replays");
   const observed = equalityPairs(
     model.positions.map(i => rank(fake[i],fake[i-1],kind)), model.phases);
   const native = controlPairs(planted, model, marker);
@@ -286,6 +299,7 @@ function positive(model, kind, marker) {
   return {pageReset:model.pageReset, skipMarker:model.skipMarker,
     rankKind:kind, marker, recoveredNonmarker:positives,
     plantedMarkers:markers, originalLayoutRunes:fake.length,
+    exactRecoveredGP:expected.length, exactRecipheredGP:recipher.length,
     keyKnownRoundtrip:true, unchangedEqualityPairs:observed};
 }
 const positives = [];
