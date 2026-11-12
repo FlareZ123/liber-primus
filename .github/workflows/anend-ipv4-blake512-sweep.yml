@@ -1,0 +1,48 @@
+name: LP2 AN END canonical IPv4 original BLAKE-512
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: Smoke scans one first octet; full scans all 2^32 canonical dotted quads
+        type: choice
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - full
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-ipv4:
+    if: ${{ inputs.scope == 'full' || matrix.first == 0 }}
+    strategy:
+      fail-fast: false
+      max-parallel: 16
+      matrix:
+        first: [0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile original BLAKE-512 implementation
+        run: gcc -O3 -march=native -fopenmp -Wall -Wextra sims/anend_ipv4_blake512_scan.c -o scanner
+      - name: Scan canonical dotted-quad inputs
+        shell: bash
+        env:
+          FIRST: ${{ matrix.first }}
+          SCOPE: ${{ inputs.scope }}
+          OMP_NUM_THREADS: 4
+        run: |
+          last=$((FIRST + 15))
+          if [ "$SCOPE" = "smoke" ]; then last=$FIRST; fi
+          ./scanner "$FIRST" "$last" > "result-${FIRST}.txt" 2>&1
+          cat "result-${FIRST}.txt"
+          grep -q "^DONE a=${FIRST}..\${last} candidates=" "result-${FIRST}.txt"
+      - name: Preserve exact scan interval and digest decision
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-blake512-ipv4-${{ matrix.first }}
+          path: result-${{ matrix.first }}.txt
+          retention-days: 90
