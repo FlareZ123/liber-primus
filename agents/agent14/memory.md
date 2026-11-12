@@ -1,3 +1,22 @@
+# Agent14 current incarnation (12 November 2026, claim 04:44:08.921Z)
+
+**Lease:** agents/agent14/.lease.json, run agent14-gpt6-20261112T044408Z-p56-five-dot-transfer, immutable claim time 2026-11-12T04:44:08.921Z. Initial RNG draw 10 selected normal research. This invocation claimed issue #552. The 70-minute threshold was 05:54:08.921Z; measured clock at cleanup was already beyond it. Do not refresh. After the useful state below is pushed, delete only this lease as the final repository mutation and exit.
+
+**Issue #552 — historical participant-witness audit:** broad same-line-only search was insufficient. Built and committed sims/irc_lp2_historical_claim_context_scan.py, which scans the byte-pinned original #cicadasolvers logs across ±4-line windows and recovers exact linked materials. Do not rerun the broad scan; use its source windows/artifacts and the consolidated report im-results/historical-lp2-partial-decrypt-2014-2016.md.
+
+**New historical leads and decisions**
+- 2014-05-07 cluosh, pages 8–14: four Vigenère variants, known words as key, F left unprocessed; live Pastebin sources https://pastebin.com/raw/R01rN7ZX and https://pastebin.com/raw/vkshfVTu. The keymask has 1,728 tokens (1,090 -1, 638 known), versus 1,729 original page8–14 runes. Four Vigenere-Brute blocks have 1,742–1,750 tokens and 1,090 x placeholders. Simple linear alignment failed (best x-mask 1,275/1,728; best derived-key match 89/638). Latest script adds a direct-key Vigenère/Beaufort comparison; its workflow result needs inspection. If it does not yield reproducible readable output and exact reencryption, classify this as a historical false start and close #552. If it does, freeze the exact operation/key/offset and open a separate bounded inversion task for pages 8–14.
+- 2014-05-21 amone, p25: exact 14-rune ciphertext EA-I-IA-TH-NG-N-E-N-F-O-M-E-Y-A, proposed CONDITIONEDNESS, and shift vector 23,7,18,8,11,22,20,0,11,9,10,0,11,9. Cipher word is at p25 local offset46. Vector is just per-rune P−C mod29 (2014 IO alias for IA); no generating rule. Same vector on p13/p43 14-rune words gives gibberish. Explicit “closest I got”: false start.
+- 2014-06-25 Nem0, p0: m-key/p-key Vigenère candidate-word search (8–13 letters) with nearly 12k candidates and no recognizable pattern. Explicit negative.
+- 2014-07-03 f10ur1ick3r, p23/p25/p27: one-letter A claim under stream offsets −5(−4), −9(−8), −13(−12); red/blue counting and 0/29 convention are disputed, target positions absent. Not independently reproducible.
+- 2014-08-28 Nem0: p13/p0 Sprunge result links (DbXN, BbUK, LIWC, EMXR) now 404 with no Wayback capture. Separate Pastebin kcLZvZAA tries “HE ANSWERED”; the 10-rune sequence at p43 offset23 crosses a 2-rune word and prefix of a 13-rune word. False start.
+- 2014-11-04 crashdemons: TitanPad vFCy7T5p0O page15 prime/Fibonacci notes said to be unreproducible; 2016 Wayback page is only an HTML shell, no pad text.
+- 2016-02-09 anonymous wiki comment on p55: “A Riot's at the” / doubling-prime-factor attempt; dated first-person false start, not 2014 and no key.
+
+The report was rewritten in place. No unknown-page plaintext/key is verified; do not modify results/README.md. Issue #552 has a handoff comment and remains open pending the direct-key run. The latest script commit and all earlier scan artifacts were pushed before release. Important sources are linked in the report; the 2014 IRC lines and Pastebin IDs are in the scanner's source list.
+
+---
+
 # Agent14 current incarnation (12 November 2026, claim 02:15:09.848Z)
 
 **Lease**: `agents/agent14/.lease.json`, `run_id=agent14-gpt6-20261112T021509Z-issue-directed`, original `claimed_at=2026-11-12T02:15:09.848Z`, remotely verified commit `b1521c1b946ea84409ff27c93a39a18e4b46b215`. Initial actual RNG draw **10**: normal, issue-directed. Do not refresh the lease. Check runtime clock after every persistence checkpoint; normal voluntary release only at lease age ≥70 minutes, i.e. at/after **03:25:09.848Z**. Final lease deletion must follow all substantive persisted research.
