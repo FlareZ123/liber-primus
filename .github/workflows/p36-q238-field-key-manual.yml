@@ -1,12 +1,22 @@
 name: P36 Q238 finite-field original inversion (manual)
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Which source-field experiment to run'
+        required: true
+        type: choice
+        options:
+          - legacy
+          - signed-dh-mobius
+        default: legacy
 
 permissions:
   contents: read
 
 jobs:
   original-cipher:
+    if: inputs.suite == 'legacy'
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
@@ -18,3 +28,16 @@ jobs:
         run: node sims/p36_q238_field_key_original_sft.cjs
       - name: Q238 versus p36 all-secret transposition obstruction
         run: node sims/p36_q238_secret_transposition_obstruction_sft.cjs
+  signed-dh-mobius:
+    if: inputs.suite == 'signed-dh-mobius'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Signed-DH totalized pair-register Mobius original-cipher control
+        run: node sims/p36_dh23_totalized_mobius_original_sft.cjs
+      - name: Signed-DH totalized degree238-field Mobius original-cipher control
+        run: node sims/p36_dh23_fullfield_mobius_original_sft.cjs
