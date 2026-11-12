@@ -94,3 +94,62 @@ console.log(JSON.stringify({
   independentlyBestFits: { perimeter: bestRing, interior: innerReverse.fit, total: maxMatches, forcedEdits: 256 - maxMatches },
   plantControls: 'three source-alphabet plants exactly 76/76, 180/180, 180/180',
 }, null, 2));
+
+
+/** Reuse independent established exact p56 wording from authentic φ-prime regression. */
+const knownP56Words = 'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
+const gpTokens = corpus.translit.map((token, index) => ({token, index}))
+  .sort((a, b) => b.token.length - a.token.length);
+/** @param {string} words @returns {number[]} */
+function encodeGpWords(words) {
+  const out = [];
+  for (const word of words.split(' ')) {
+    for (let p = 0; p < word.length;) {
+      const glyph = gpTokens.find(({token}) => word.startsWith(token, p));
+      assert.ok(glyph, 'Cannot GP-encode original known plaintext');
+      out.push(glyph.index);
+      p += glyph.token.length;
+    }
+  }
+  return out;
+}
+const knownSolvableTail = [...encodeGpWords(knownP56Words), ...corpus.pages[57].indices];
+const printedTail = [...corpus.pages[56].indices, ...corpus.pages[57].indices];
+assert.equal(corpus.pages[56].indices.length, 85);
+assert.equal(corpus.pages[57].indices.length, 95);
+assert.equal(knownSolvableTail.length, 180);
+assert.equal(printedTail.length, 180);
+
+// Same 30×6 original source interior, zero fitted shifts and five natural traversals.
+const interiorRows = rows.slice(1, -1).map(row => row.slice(1, -1));
+const interiorTraversals = {
+  'original-row-major': inside,
+  'reverse-row-major': [...inside].reverse(),
+  'alternating-row-snake': interiorRows.flatMap((row, i) => i % 2 ? [...row].reverse() : row),
+  'original-column-major': Array.from({length: 6}, (_, j) => interiorRows.map(row => row[j])).flat(),
+  'alternating-column-snake': Array.from({length: 6}, (_, j) =>
+    j % 2 ? interiorRows.map(row => row[j]).reverse() : interiorRows.map(row => row[j])).flat(),
+};
+const solvedTail = {};
+for (const [traversal, symbols] of Object.entries(interiorTraversals)) {
+  const plainBound = bestStationaryMap(symbols, knownSolvableTail);
+  const printedBound = bestStationaryMap(symbols, printedTail);
+  assert.equal(plainBound.uniqueInputs, 127);
+  assert(plainBound.fit <= 135 && plainBound.fit >= 131);
+  assert(printedBound.fit <= 131 && printedBound.fit >= 128);
+  assert.equal(bestStationaryMap(symbols, knownMapPlant(symbols)).fit, 180);
+  solvedTail[traversal] = {knownPlain: plainBound.fit, printedCipher: printedBound.fit};
+}
+assert.deepEqual(solvedTail, {
+  'original-row-major': {knownPlain: 133, printedCipher: 130},
+  'reverse-row-major': {knownPlain: 131, printedCipher: 131},
+  'alternating-row-snake': {knownPlain: 131, printedCipher: 130},
+  'original-column-major': {knownPlain: 132, printedCipher: 131},
+  'alternating-column-snake': {knownPlain: 135, printedCipher: 128},
+});
+console.log(JSON.stringify({
+  receiver: 'fully solved p56 plaintext (85 GP runes) + authentic clear p57 (95 GP runes)',
+  innerSource: 'original p49–51 grid 30x6 interior, 127 distinct printed labels',
+  naturalAndTraversalFits: solvedTail, exactMapFits: 0,
+  minimumMismatches: 45, allKnownPlaintextPlants: '5 of 5 recover all 180 runes'
+}, null, 2));
