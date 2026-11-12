@@ -47,6 +47,17 @@ The model, exact original images' derived ciphertext and canonical p50 bytes wer
 
 The original candidate is indistinguishable from uniform GP29 by the simple alphabet-level check, with no readable recovered text. The positive plant proves the model's arithmetic can transport a native-language message **without breaking the exact source-established GF29 polynomial factors**. It does not identify the original cipher.
 
+## Direct 86-repeat-position sidechannel reading
+
+The source's 86 observed adjacent-equality positions among 12,901 eligible within-page transitions can themselves be specified by a colex rank among `binom(12901,86)` possible masks, costing **740.809882 bits**, also below the original grid's 800.796 available lift bits. This gives an even more concrete candidate role for the table's GF29-orthogonal information: transmit the rare-equality mask rather than the whole-letter escape correction.
+
+A source-fixed discriminating test reads original lifts as the printed row-major mixed-radix integer `U`, and the complete exact original 86-position colex rank as `Z`. Both natural direct-extraction conventions fail:
+
+- Low-position rank: `U mod binom(12901,86) != Z`.
+- Proportional high-position rank: `floor(U·binom(12901,86)/LIFT_BASE) != Z`.
+
+Their binary Hamming distances from the original mask rank are respectively **371** and **370** bits. The count and exact rank equality tests are now asserted by the same SFT. Neither result supports the literal, source-order direct-mask reading. The table could still require an unknown keyed transform, but one is not supplied by the printed marks.
+
 ## What changed in the research decision
 
 The grid's 2,048 raw bits are a loose capacity observation; isolating its **800.796 bits of mathematically GF29-factor-orthogonal lifts** yields a more precise, clue-adjacent place to look for the information missing from predecessor-excluding ciphertext schemes. An intended protocol could genuinely use this capacity without destroying the original dual factorization. The specific original natural mixed-radix arithmetic interpretation fails to recover plaintext, and **nothing in the source selects it over many alternatives**.
