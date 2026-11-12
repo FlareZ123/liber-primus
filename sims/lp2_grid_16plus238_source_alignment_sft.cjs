@@ -91,11 +91,34 @@ const tests = [
   compare("p36 238 runes vs Q238's 238 nonleading coefficients",
     corpus.pages[36].indices, large.slice(0, -1))
 ];
+/** @param {number[]} v */
+function coincidence(v) {
+  const count = Array(29).fill(0);
+  for (const n of v) count[n] += 1;
+  return count.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (v.length * (v.length - 1));
+}
+const derivative = large.slice(1).map((v, i) => (v * (i + 1)) % 29);
+assert.equal(derivative.length, 238);
+const p36 = corpus.pages[36].indices;
+const derivativeDirectAdditive = [];
+for (const reversed of [false, true]) {
+  const pad = reversed ? derivative.slice().reverse() : derivative;
+  for (const sign of [1, -1]) {
+    const decoded = p36.map((r, i) => (r + sign * pad[i] + 29) % 29);
+    const ioc = coincidence(decoded);
+    assert.ok(ioc > 0.03 && ioc < 0.04);
+    derivativeDirectAdditive.push({reversed, sign, ioc});
+  }
+}
 console.log(JSON.stringify({
   source: "original base60 pp49-51, physical p3 first16 and physical p36 entire page",
   factor16CoefficientsAscending: small,
   Q238Degree: large.length - 1,
   allSourceFactorCoefficientsMultiplyExactly: true,
   tests,
+  derivativeIoC: coincidence(derivative),
+  p36OriginalIoC: coincidence(p36),
+  derivativeDirectAdditive,
   decision: "Neither 16+238 source-rune vector can equal its exact polynomial-factor coefficients under any global alphabet permutation, even allowing arbitrary position permutation. No original plaintext/key recovered."
 }, null, 2));
