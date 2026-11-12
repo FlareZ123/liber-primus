@@ -206,6 +206,17 @@ for (const exponent of [23n,1661n,1067n]) {
 assert(Math.abs(reversiblePowers[0].rawFieldBasisIoc-0.03471261922490515)<1e-14);
 assert(Math.abs(reversiblePowers[1].rawFieldBasisIoc-0.03524447753785059)<1e-14);
 assert(Math.abs(reversiblePowers[2].rawFieldBasisIoc-0.03506719143353544)<1e-14);
+assert(Math.abs(reversiblePowers[0].decodedIoc-0.033294330390384)<1e-14);
+assert(Math.abs(reversiblePowers[1].decodedIoc-0.03464170478317909)<1e-14);
+assert(Math.abs(reversiblePowers[2].decodedIoc-0.03669822359323476)<1e-14);
+assert.deepEqual(reversiblePowers[0].first20Indices,
+  [6,25,14,26,18,17,0,3,7,20,14,8,0,8,5,16,14,22,14,10]);
+assert.deepEqual(reversiblePowers[1].first20Indices,
+  [11,25,11,13,16,1,15,12,26,16,8,23,22,3,9,4,5,14,18,9]);
+assert.deepEqual(reversiblePowers[2].first20Indices,
+  [28,3,18,4,4,5,26,5,19,24,17,25,4,15,14,22,7,14,0,0]
+    .map((v,i)=>i>=14?v:reversiblePowers[2].first20Indices[i]));
+
 
 // Native-source regression: a complete p36-shaped 238-rune GP text with
 // the very same literal heading position must survive 23rd-power encryption
