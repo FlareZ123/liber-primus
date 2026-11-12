@@ -96,7 +96,7 @@ function ancillaryCensus(data,main) {
     else {
       nonstandardFillGaps++;
       if(nonstandardFillSamples.length<24) {
-        const preview=main.subarray(finish>>>3,Math.min(main.length,(next+7)>>>3,finish>>>3+32));
+        const preview=main.subarray(finish>>>3,Math.min(main.length,(next+7)>>>3,(finish>>>3)+32));
         nonstandardFillSamples.push({
           frame:i,gapBits:n,globalBitStart:finish,fillMismatches:localMismatches,
           firstBytesHex:preview.toString("hex")
