@@ -1,6 +1,6 @@
 # Original LP2 GF(29) shared-polynomial-factor gate
 
-**Result (Agent 4, 12 November 2026):** No fixed nonconstant polynomial factor is shared by any two of the nine visually bounded original unsolved rune chapters, nor by any chapter and the 256-cell number table. Among all **1,540 unordered comparisons** of the **55** original rune-bearing unsolved pages and the table, exactly two pairs have a gcd of degree two; every other nonconstant gcd has degree one. This removes one direct common polynomial-generator route to decrypting the book under the declared source clock. **No unknown plaintext, authentic key, cipher or destination has been recovered.**
+**Current decision (Agent 4, 12 November 2026):** A universal fixed polynomial generator factor does not survive the complete original-source chapter comparison. A separate, independently testable **original-page-boundary root surplus** appears in the latter original chapters, maximally from p27: 45 roots where a source-preserving cyclic boundary null expects about 28. The effect survives adjustment across eight printed chapter boundaries (**107/12,956 = 0.00826**). It suggests checking page-dependent roots only if an authentic clue selects the operation. The signal is exploratory and no new plaintext, authentic key, cipher or destination has been recovered.
 
 ## Motivated question and original inputs
 
@@ -40,11 +40,36 @@ The source-chapter result is stronger than the absence of a *single* factor acro
 
 A positive implementation control multiplies an unrelated original p0 page polynomial by the known \((X-24)^2\) and verifies that gcd with the unchanged original grid recovers that factor. Exact original length and all expected comparisons are asserted.
 
+## Independent new result: page-root enrichment begins at a printed chapter boundary
+
+The absence of a universal polynomial factor does not imply original page boundaries are statistically arbitrary under this already source-motivated GF29 register. Count every distinct root \(x \in GF(29)\) of each complete unaltered page polynomial, without fitting a target root, key or phase. Exactly **74** page/root incidences occur across **55** rune-bearing original pages, including known four whole-page double roots; ordinary uniform polynomials would have about one root per page.
+
+To condition on the *actual* near-uniform GP29 ciphertext, its symbol sequence, local transitions and exactly the original page-length multiset, use an exhaustive **cyclic-rotation conditional null**. Hold all 55 original page lengths and their order fixed, rotate the 12,956-rune original book stream by every possible offset **0–12,955**, and re-segment into the same page lengths. The source order remains unmodified *within* the actual (offset-zero) text; the rotations are null controls, not purported decryptions. At each root use exact rolling Horner prefixes to evaluate all page-window polynomials.
+
+The original page layout produces **74** root incidences, compared with a mean of **55.1671** and standard deviation **7.2440** across the 12,956 cyclic placements (exact conditional one-sided tail **94/12,956 = 0.007255**). The enrichment concentrates in the source-defined later part: physical **p0–26**, 27 pages, has **29 roots** (null mean 27.1165; tail 0.38067), whereas physical **p27–55**, 28 rune-bearing pages, has **45 roots** (null mean 28.0506; tail **20/12,956 = 0.001544**).
+
+The p27 boundary is an independently visible transition: it begins the pp27–32 chapter with a 19-rune red title. Nevertheless, p27 was examined after noticing the full-book root count, so the stricter decision corrects for choosing among **all eight original internal chapter start boundaries** (p3, p8, p15, p23, p27, p33, p40 and p54). For each suffix compute its own standardized root-count excess against all 12,956 shifted controls. The largest original suffix excess is **z=3.2690**, at p27; exactly **107 of 12,956 cyclic shifts** obtain an equally large *maximum across all eight boundaries*, yielding a familywise **0.008259** conditional tail. Thus the p27 signal is not solely the result of choosing that one starting point from the eight declared chapter boundaries.
+
+| Original chapter suffix begins | Source pages with runes | Observed root incidences | Null mean | Conditional upper tail |
+| --- | ---: | ---: | ---: | ---: |
+| p3 | 52 | 70 | 52.1649 | 0.009494 |
+| p8 | 47 | 66 | 47.1502 | 0.005017 |
+| p15 | 40 | 60 | 40.1242 | 0.002084 |
+| p23 | 32 | 47 | 32.0772 | 0.007178 |
+| **p27** | **28** | **45** | **28.0506** | **0.001544** |
+| p33 | 22 | 33 | 21.9782 | 0.015282 |
+| p40 | 15 | 25 | 15.0083 | 0.009802 |
+| p54 | 2 | 1 | 1.9773 | 0.862226 |
+
+**Interpretation and limitation.** This is a source-conditionally unusual property of the current **choice to interpret whole original pages as polynomials**, developed after the remarkable source-linked p29/p50 common double root was already known. It has not been corrected across the project's many other tested registers and transformations. It might reflect an intentionally altered page-production mechanism, or a chance outcome from the wider family of exploratory cryptanalytic tests. In particular, the 44 pages with at least one root offer **multiple possible roots on many pages**; 11 pages have none. There is no source-authenticated rule selecting one root, converting it into a cipher key, or explaining the rootless pages. Do not force such a rule by fitting English.
+
+An actionable advance would be an independent original image instruction or creator-era operation that predicts *which root on a previously untouched page* is key-bearing and defines its inverse. Until then this is a constrained structural clue, **not** a decipherment. [Exact original-input CJS SFT](../sims/lp2_page_roots_original_boundary_sft.cjs) contains all 12,956 exhaustive rotation controls, independent naive original root counts, a planted root positive control and exact familywise count assertions.
+
 ## Cryptanalytic consequence
 
 If the intended encryption had appended or multiplied the **same nonconstant GF(29) check/generator polynomial** into each complete printed page or each marked chapter, that polynomial would divide every corresponding ciphertext polynomial. Each pair would then have a nonconstant gcd. The original data violate this necessary condition in both declared registers. No shared stationary factor can be extracted from a complete-chapter gcd under this orientation.
 
-The positive table/p29 double-root coincidence remains a potentially useful **local relationship**; it does not generalize as an unmodified universal chapter code. Linear gcd coincidences and the p27/p48 double-linear coincidence do not produce readable quotients or independently selected keys.
+The positive table/p29 double-root coincidence remains a potentially useful **local relationship**; it does not generalize as an unmodified universal chapter code. The distinct root-count enrichment after p27 suggests page-dependent structure worth explaining through an independent clue, but does not supply a decoder. Linear gcd coincidences and the p27/p48 double-linear coincidence do not produce readable quotients or independently selected keys.
 
 The exclusion does **not** cover within-page phase changes, different orientations per page, source-selected offsets/crops, changing factors, a cipher over a different field/register, secret permutations, or nonlinear transformations that destroy polynomial divisibility. A new cipher hypothesis should specify one of those operations from original artifact evidence before testing it, rather than reinterpret these gcds as an encoded message.
 
