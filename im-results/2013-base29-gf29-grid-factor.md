@@ -46,6 +46,19 @@ G_{p39}(X)=27+5X+15X^2
 This is also an exact factor of \(P(X)\), and its root **24 = 3301 mod 29** is independently supplied by the oversized Ac GP rune on p54. The two distinct factors are coprime. Their product divides the unchanged original table exactly, as checked by multiplication back to all 256 original mod29 coefficients.
 
 The 252-slot quotient has GP29 index of coincidence **0.0363308670** and is not readable plaintext. Its natural direct-additive use as a one-use GP29 key for source-selected p36 (238 runes) was tested with both signs, ascending/reversed coefficient order, and the printed-order phase 0 plus source-derived phase 151. The best held-out LP1 trigram score was **−10.9902**, worse than the worst native 238-rune window (**−8.6026**); all eight trials were ciphertext-like. The canonical BASE29 most-significant-first serialization (251 digits, formal leading zero omitted) also has zero key symbols at positions **74, 119, 139, 169, 236**, each aligned with a nonzero p36 ciphertext rune (**18, 23, 19, 2, 9**). A symbolwise multiplicative GF29 pad is therefore not an invertible DH-group key: zero is outside GF29× and would collapse these positions. The quotient remains an intermediate register, not a direct additive or multiplicative p36 key. Reproduce with [the Q252-to-p36 SFT](../sims/p50_q252_additive_key_p36_sft.cjs); this is distinct from the GF29² ElGamal quotient-transport experiment below.
+### Q252 dual-quadratic seed gate (Issue #575, 12 November 2026)
+
+The one frozen consumer proposed in #575 initializes two degree-2 registers with the exact quotient remainders Q mod H = [5,6] and Q mod G = [3,22], advances each by multiplication by X modulo its own factor, and emits the sum of their constant coefficients modulo 29. This uses the established ascending-coefficient convention, original row-major base-60 table bytes, and no fitted phase, scale, salt, reset, or alphabet relabeling. The original table-byte SHA-256 remains 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290; the resulting stream has algebraic period 24,360 and all 29 output symbols.
+
+| p36 decode | IoC | held-out LP1-GP trigram nats/rune | one-coefficient wrong-seed score | exact re-encryption |
+| --- | ---: | ---: | ---: | --- |
+| raw p36 | 0.03598908 | −11.18101 | — | — |
+| C−K | 0.03527993 | −11.06579 | −11.06432 | yes |
+| C+K | 0.03386165 | −11.06761 | −11.17094 | yes |
+
+The reference has 406 held-out native-GP windows of length 238; their trigram range is **−8.59949 to −8.06723** (median −8.40441). Both candidate outputs are well below every native window and remain visibly nonlinguistic in the original word/line layout. A 238-rune held-out native-GP plant is recovered exactly for each sign. The slightly higher C−K score is not seed-specific: changing only the first H-register seed coefficient by +1 gives −11.06432, marginally better than the proposed seed. Thus this exact recurrence/readout does not decode p36 and does not justify a second-page prediction or a recurrence-family sweep.
+
+**Interpretive boundary:** H and G remain exact conditional factors of the original 256-cell table, with the 2013 BASE29 example and p39 red triad supplying their respective coefficient triples. The table's radix-60 reading and polynomialization remain conditional/retrospective. No historical source specifies taking the quotient residues as two register states or summing their constant coefficients. The 24,360 period follows algebraically from the chosen factors; it is not an independently selected Cicada clock. Retire only this frozen Q252-seeded dual-quadratic consumer; do not promote the quotient to a key or plaintext. Reproducer: **sims/p50_q252_dual_quadratic_seed_sft.cjs**.
 
 ## The other 2013 worked example generates the p39 factor
 
