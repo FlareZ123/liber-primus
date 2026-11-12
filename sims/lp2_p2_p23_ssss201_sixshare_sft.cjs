@@ -79,69 +79,97 @@ assert.equal(highest.direction,"reverse");
 // product D over all fifteen pairwise x_i XOR x_j differences.
 // Coefficient B_i is the product of the ten differences excluding i.
 // Six source objects are valid shares iff XOR_i B_i*y_i = D.
-function coeff(xs){
-  let D=1n;
-  for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)
-    D=field.mul(D,BigInt(xs[i]^xs[j]));
-  const B=xs.map((_,k)=>{
-    let v=1n;
+function radix29(rune){
+  let v=0n;
+  for(const r of rune)v=v*29n+BigInt(r);
+  return v;
+}
+/**
+ * Exact monic degree-five six-point consistency for all source assignments.
+ * @param {{mul:(a:bigint,b:bigint)=>bigint}} g
+ * @param {{forward:bigint[],reverse:bigint[]}} grouped
+ * @param {bigint[]} p2values
+ * @param {number} degree
+ * @returns {{tested:number,matches:number,low16Matches:number,low24Matches:number,maxLeadingZeroBits:number,syntheticControl:boolean}}
+ */
+function sixPointGate(g,grouped,p2values,degree){
+  function coeff(xs){
+    let D=1n;
     for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)
-      if(i!==k&&j!==k)v=field.mul(v,BigInt(xs[i]^xs[j]));
-    return v;
-  });
-  return {D,B};
-}
-// Synthetic native-field positive control, independent of LP2 text.
-const controlIds=[1,2,3,5,7,10];
-const control=coeff(controlIds);
-const secret=0x8877665544332211n;
-const ys=controlIds.map(x=>{
-  let x5=1n;for(let j=0;j<5;j++)x5=field.mul(x5,BigInt(x));
-  return secret^x5;
-});
-let positive=control.D;
-for(let i=0;i<6;i++)positive^=field.mul(control.B[i],ys[i]);
-assert.equal(positive,0n,"valid planted degree-five scheme must match");
-// Enumerate the 6! assignments of the original six strings to each
-// six-element subset of the historical identifiers 1..10.
-const perms=[];
-function rec(prefix,remaining){
-  if(!remaining.length){perms.push(prefix);return;}
-  for(let k=0;k<remaining.length;k++)
-    rec([...prefix,remaining[k]],remaining.filter((_,j)=>j!==k));
-}
-rec([],[0,1,2,3,4,5]);
-assert.equal(perms.length,720);
-let tested=0,matches=0,low16Matches=0,low24Matches=0,maxLeadingZeroBits=0;
-for(const ids of choices6){
-  const {D,B}=coeff(ids);
-  for(const group of Object.values(lanes))for(const additional of p2){
-    const values=[...group,additional];
-    const matrix=values.map(y=>B.map(b=>field.mul(y,b)));
-    for(const perm of perms){
-      let residual=D;
-      for(let i=0;i<6;i++)residual^=matrix[perm[i]][i];
-      tested++;
-      if(residual===0n)matches++;
-      if((residual&0xffffn)===0n)low16Matches++;
-      if((residual&0xffffffn)===0n)low24Matches++;
-      const leading=976-residual.toString(2).length;
-      if(leading>maxLeadingZeroBits)maxLeadingZeroBits=leading;
+      D=g.mul(D,BigInt(xs[i]^xs[j]));
+    const B=xs.map((_,k)=>{
+      let v=1n;
+      for(let i=0;i<6;i++)for(let j=i+1;j<6;j++)
+        if(i!==k&&j!==k)v=g.mul(v,BigInt(xs[i]^xs[j]));
+      return v;
+    });
+    return {D,B};
+  }
+  // Synthetic original-field positive, independent of LP2.
+  const controlIds=[1,2,3,5,7,10];
+  const control=coeff(controlIds);
+  const secret=0x8877665544332211n;
+  let positive=control.D;
+  for(let i=0;i<6;i++){
+    let x5=1n;
+    for(let j=0;j<5;j++)x5=g.mul(x5,BigInt(controlIds[i]));
+    positive^=g.mul(control.B[i],secret^x5);
+  }
+  assert.equal(positive,0n,"planted monic degree-five six-point control failed");
+  const perms=[];
+  function rec(prefix,remaining){
+    if(!remaining.length){perms.push(prefix);return;}
+    for(let k=0;k<remaining.length;k++)
+      rec([...prefix,remaining[k]],remaining.filter((_,j)=>j!==k));
+  }
+  rec([],[0,1,2,3,4,5]);
+  assert.equal(perms.length,720);
+  let tested=0,matches=0,low16Matches=0,low24Matches=0,maxLeadingZeroBits=0;
+  for(const ids of choices6){
+    const {D,B}=coeff(ids);
+    for(const group of Object.values(grouped))for(const additional of p2values){
+      const values=[...group,additional];
+      const matrix=values.map(y=>B.map(b=>g.mul(y,b)));
+      for(const perm of perms){
+        let residual=D;
+        for(let i=0;i<6;i++)residual^=matrix[perm[i]][i];
+        tested++;
+        if(residual===0n)matches++;
+        if((residual&0xffffn)===0n)low16Matches++;
+        if((residual&0xffffffn)===0n)low24Matches++;
+        const leading=degree-residual.toString(2).length;
+        if(leading>maxLeadingZeroBits)maxLeadingZeroBits=leading;
+      }
     }
   }
+  assert.equal(tested,604800);
+  assert.equal(matches,0);
+  return {tested,matches,low16Matches,low24Matches,
+    maxLeadingZeroBits,syntheticControl:positive===0n};
 }
-assert.equal(tested,604800);
-assert.equal(matches,0);
-assert.equal(low16Matches,6);
-assert.equal(low24Matches,0);
-assert.equal(maxLeadingZeroBits,18);
+const rankSix=sixPointGate(field,lanes,p2,976);
+assert.equal(rankSix.low16Matches,6);
+assert.equal(rankSix.low24Matches,0);
+assert.equal(rankSix.maxLeadingZeroBits,18);
+const natural={
+  forward:strands.map(radix29),
+  reverse:strands.map(s=>radix29([...s].reverse()))
+};
+const p2Natural=[radix29(page2),radix29([...page2].reverse())];
+assert.ok([...natural.forward,...natural.reverse,...p2Natural]
+  .every(x=>x>=0n&&x<(1n<<984n)));
+const naturalSix=sixPointGate(gf(984,[24,9,3]),natural,p2Natural,984);
+assert.equal(naturalSix.low16Matches,4);
+assert.equal(naturalSix.low24Matches,0);
+assert.equal(naturalSix.maxLeadingZeroBits,17);
 console.log(JSON.stringify({
   source:"p2 and p23–26 original GP29, 6 x 201 runes",
   packing:"lossless predecessor-difference enumerative rank; <=7 repeats per lane",
   field:"GF(2^976), x^976+x^17+x^10+x^6+1, monic five-degree SSSS",
   fiveShare:{tested:fiveCount,maxPrintable,maxLongest,highest,known},
-  sixShare:{idSets:choices6.length,assignmentsPerSet:perms.length,
-    directions:4,tested,matches,low16Matches,low24Matches,
-    maxLeadingZeroBits,syntheticControl:positive===0n},
+  sixShareRank976:{idSets:choices6.length,assignmentsPerSet:720,
+    directions:4,...rankSix},
+  sixShareNatural984:{idSets:choices6.length,assignmentsPerSet:720,
+    directions:4,...naturalSix},
   verdict:"No exact original six-share match in the frozen source-native family"
 },null,2));
