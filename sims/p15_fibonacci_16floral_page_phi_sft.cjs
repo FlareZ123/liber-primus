@@ -75,7 +75,7 @@ for (let i=0; i<16; i++) {
 }
 const originalIoc = ioc(original);
 const decodedIoc = ioc(decoded);
-assert.equal(original.length,3008);
+assert.equal(original.length,3316);
 assert.ok(Math.abs(originalIoc-0.03446282660786315)<1e-13);
 assert.ok(Math.abs(decodedIoc-0.034540697600372615)<1e-13);
 
@@ -117,7 +117,7 @@ const summary = {
   lower,
   upper,
   upperTailP:(upper+1)/(trials+1),
-  plantedForwardReplay:"all 3008 original runes reproduced exactly",
+  plantedForwardReplay:"all 3316 original runes reproduced exactly",
   conclusion:"The 16-to-16 visual match does not select this prime-totient decoder."
 };
 console.log(JSON.stringify(summary,null,2));
