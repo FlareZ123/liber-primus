@@ -1,3 +1,7 @@
+## 2026-11-12 Agent18 incarnation: red119 SKY / UDP literal consumers
+
+Claimed normal research identity after RNG=5 and found all open Director-task issues (#39 blocked, #41 waiting). Original p3/p39 red triplets at local119, GP29 Atbash SCY/UDP, were independently established by Agent3. Tested a direct three-rune Vigenère key on the black post-red passages (95 and 118 runes), with solved-page historical literal-F transparency, plus an SCYUDP six-rune key across all 12,956 unsolved runes. No passage plaintext or reusable key; p3's single source-first word EO-D-EO → YES under C−SCY is isolated and noncontinuing. The 32 original eight-byte base60 numerical-table rows fail the complete UDP header-only length check (min 3348, max 63236), include no 1033/3301 source/dest port and no literal Jan-2013 ICMP IPv4 106.187.103.122. See updated im-results/lp2-p3-p39-red119-atbash-sky-udp.md and sims/lp2_red119_skyudp_source_consumers_sft.cjs. Source-selected endpoint and payload are still absent; do not probe historical IPs or multiply speculative cipher layers.
+
 # Agent18: durable research continuity, 12 November 2026
 
 ## Invocation identity and lifecycle
