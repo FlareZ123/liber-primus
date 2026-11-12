@@ -171,12 +171,32 @@ function main() {
   assert.deepEqual(original[0].corners, [29, 29, 28]);
   assert.ok(original.every(result => result.score < 147));
 
+  // Five previously published image-audited alternative source bytes have a
+  // *total* Hamming distance of only 20 to the canonical 256-byte table.
+  // Any subset, under any one fixed QR presentation above, can improve the
+  // score by at most 20. Hence all 32 source choices fail without another
+  // fitted search or reliance on the canonical transcription alone.
+  const sourceAlternatives = [[45, 81], [50, 21], [165, 47],
+    [172, 174], [246, 224]];
+  let maximumBitChanges = 0;
+  for (const [i, alternative] of sourceAlternatives) {
+    let changed = matrix.flat()[i] ^ alternative;
+    while (changed !== 0) {
+      maximumBitChanges += changed & 1;
+      changed >>>= 1;
+    }
+  }
+  assert.equal(maximumBitChanges, 20);
+  assert.ok(original[0].score + maximumBitChanges < 147);
+
   console.log(JSON.stringify({
     hypothesis: "First/last 23 bits removed from 256 original bytes; 45x45 QR v7 raster",
     sourceBytes: 256, sourceBits: 2048, qrBits: MODULES,
     trimmedBits: 23, qrFinderBits: FINDERS.length,
     exactSourceSHA256: digest, originalVariants: original.length,
     originalBest: original[0], originalRunnerUp: original[1],
+    maxAlternativeBitFlips: maximumBitChanges,
+    allAlternativeFinderMatchesUpperBound: original[0].score + maximumBitChanges,
     positivePlantFinderMatches: planted[0].score,
     originalHasRequiredFinders: false,
     conclusion: "Direct source-serialized QR-v7 raster is excluded; no unknown LP2 text recovered."
