@@ -1,4 +1,4 @@
-# p55 five-core prime-sum / BASE29 address
+# p55 five-core GP-prime sum and conditional GP-index address
 
 **Status: intermediate source-led clue, not an established decryption.** No unknown plaintext, authentic LP2 key, reversible mechanism, or destination is recovered.
 
@@ -25,7 +25,7 @@ A narrow reading is:
 
 The selected GP indices are **[21,20,15,23,27] = [NG,L,S,D,IA]**. Their GP-prime weights are **[79,73,53,89,107]**, summing to **401**.
 
-The ordinary BASE29 representation is **401 = 13×29 + 24**, giving digits **[13,24]**, which map to GP symbols **PA**.
+The integer identity **401 = 13×29 + 24** gives GP rune indices **[13,24]**, which spell **PA** at the beginning of solved p57 PARABLE. This conditional GP-index readout is **distinct from the signed 2013 TCP BASE29 command**: its authenticated example `BASE29 3301 → 3QO` fixes printable digit **24 = O**, so the signed positional numeral command cannot print `PA` for 401. Under the conventional complete printable alphabet `0123456789ABCDEFGHIJKLMNOPQRS`, `BASE29(401) = DO`. The original 2013 Gematria JPG separately fixes GP index24 as A. No original instruction composes p55's five-rune prime sum with the GP-index text rendering.
 
 Exact cross-page correspondences:
 - p57's red title begins with the same two GP runes, PA (PARABLE).
@@ -35,13 +35,15 @@ Exact cross-page correspondences:
 
 A weaker possible reading of [13,24] against the 43 alphabetic words of the signed 2016 message gives “the” and “road” at one-based positions 13 and 24 if the opening “Hello.” is counted and numeric-only tokens / PGP metadata are excluded. Excluding the greeting shifts those positions to “way” and “and”; this tokenizer-sensitive echo is not evidence for a cipher.
 
+**Fixed-center prime self-index (Director #503, 12 November 2026).** The centered five begin with GP rune NG (GP-prime weight **79**) and sum to **401 = prime(79)**. Thus the sum equals the ordinary prime whose ordinal is the first rune's GP-prime value. On the original 29 unsolved pages with an odd number of word-interior runes and therefore a unique center-five, **only physical p55** has this exact self-index property. A seeded 50,000-book shuffle preserving each page's original interior-rune multiset returns **202/50,000 (0.404%)** matches at p55, and **4,137/50,000 (8.274%)** manuscripts with at least one match among the 29 pages. These rates calibrate one fixed property; the property was recognized after examining the center, so they are not an unconditional discovery likelihood. No original instruction selects a continuation or a 76-rune inverse ([new SFT](../sims/p55_center5_prime_selfindex_signed_base29_sft.cjs)).
+
 ## Source-local two-rune bracket around the central five
 
-The original strict word-interior stream on p55 contains **PH | NG L S D IA | PH** at interior positions 17–25 (zero-based). The central five remain the previously established 401 → BASE29 PA candidate. The two flanking PH pairs are exact ciphertext, requiring no substitution. The left pair lies in complete p55 word 7; the right P and H span words 8 and 9 after edges are shed. Therefore the bracket becomes adjacent only upon the source-motivated stripping and concatenation. Across all 55 page-local strict-interior streams, exactly **eight** nine-rune windows have identical two-rune flanks (on pp4, 5, 6, 11, 13, 16, 45, 55), only p55 has the central sum 401, and only p55 has the symmetry at its exact centered five.
+The original strict word-interior stream on p55 contains **PH | NG L S D IA | PH** at interior positions 17–25 (zero-based). The central five remain the previously established 401 → GP-index PA candidate. The two flanking PH pairs are exact ciphertext, requiring no substitution. The left pair lies in complete p55 word 7; the right P and H span words 8 and 9 after edges are shed. Therefore the bracket becomes adjacent only upon the source-motivated stripping and concatenation. Across all 55 page-local strict-interior streams, exactly **eight** nine-rune windows have identical two-rune flanks (on pp4, 5, 6, 11, 13, 16, 45, 55), only p55 has the central sum 401, and only p55 has the symmetry at its exact centered five.
 
 **Fixed-condition exact null.** If we independently shuffle each page's original interior rune multiset and require *both* centered-five GP-prime sum 401 and identical preceding/following two-rune pairs, the p55 favorable-count fraction is **1,778,768 / 1,705,300,112,880 = 0.00000104308208659**. Over all 55 source pages, independent per-page shuffles give the familywise probability **0.00011390651599441 (0.01139065%)**. The older PA-only any-page chance is 0.10089568. The computation removes four flank symbols from the five-element prime-sum subset generating function and exactly enumerates every possible repeated ordered flank; the synthetic positive [PH, five-core, PH] gives 1/378. See the [independent joint SFT](../sims/lp2_p55_centered_mirror_prime_joint_sft.cjs).
 
-**Scope:** the two-rune bracket, target 401 and PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/BASE29 pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
+**Scope:** the two-rune bracket, target 401 and PA correspondence were selected during exploratory inspection. Consequently these probabilities are conditional diagnostics rather than valid discovery-wide evidence for author intent. No original instruction specifies two-rune flanks, an inverse or use of the 401 value as a decryption key. A direct outward GP-prime/GP-index pair reading gives 66→THH for the first two enclosing pairs, failing to continue p57's title PARABLE. The new bracket is a bounded candidate *locator* of the already-known core, not new plaintext.
 
 ## Direct two-rune PH key test
 
@@ -51,11 +53,11 @@ This rejects only the literal repeating PH-key transfer on these two source cloc
 
 ## Controls and limits
 
-The five-rune block crosses the boundary between p55 complete words 7 and 8. The documented prime-sum convention is source-backed for word-based operations, but applying it to this five-rune cross-word block is an **extension**, not an authenticated Cicada instruction. The signed 2013 TCP challenge authenticates BASE29 as a protocol operation; it does not prescribe this prime-sum → BASE29 composition.
+The five-rune block crosses the boundary between p55 complete words 7 and 8. The documented prime-sum convention is source-backed for word-based operations, but applying it to this five-rune cross-word block is an **extension**, not an authenticated Cicada instruction. The signed 2013 TCP challenge authenticates BASE29 as a printable positional-numeral operation with digit24=O; it does not prescribe the distinct prime-sum → GP-index-text composition.
 
 A permutation null preserving p55's 43 interior symbols gives **751 / 962,598 = 0.00078018** of five-symbol subsets with prime-weight sum 401 (0.0780%). Across all 55 unsolved pages, the probability that at least one page's central five sums to 401 under independent within-page shuffles is approximately **0.10089568 (10.09%)**. The p55-specific selection is essential; the p55-only figure is not a discovery-wide p-value.
 
-The same centered-five prime-sum / BASE29 calculation on solved p56 and p57 gives **HI** and **THM**, not a generic plaintext output. A quick direct repeating-additive GP29 screen using PA or PARABLE as the key on p55's 43 interiors, both signs, does not yield readable text. These negative screens reject only those immediate repeating-key interpretations.
+The same centered-five prime-sum / GP-index calculation on solved p56 and p57 gives **HI** and **THM**, not a generic plaintext output. A quick direct repeating-additive GP29 screen using PA or PARABLE as the key on p55's 43 interiors, both signs, does not yield readable text. These negative screens reject only those immediate repeating-key interpretations.
 
 ## Direct p57 word-address test (negative)
 
@@ -73,13 +75,13 @@ The historical 2013 threshold-5-of-10 SSSS mechanism is now independently recons
 
 The unique p57 red 23-dot mark separately selects the central 23 of p55's 43 interiors. That stronger selector was tested with the full DATA/560.13 artifact at the p15 source-fixed byte offset 8,952,964. Workflow 43108404847 verified the full-file hash and the historical offset-12821 XOR positive control, but both frozen GP-index and GP-prime-weight 23-byte XOR candidates produced only 11/23 printable bytes and no v2 onion address. This closes that **direct central23/XOR** interpretation at the fixed offset; the five-core prime-sum result here is not a rescue of it. See the Agent14 result in [the Agent4 handoff](../communications/agent4/20261111T2206Z_agent14_56013_central23_result.md).
 
-The raw five central p55 runes were also tested by Agent20 as a repeating GP29 Vigenère key over pages 0–54, both directions; both scored below the raw stream under independent Shakespeare and Gibran trigram models. The direct PA/PARABLE repeating-additive screens on p55's 43 interiors described above are likewise unreadable. These close the immediate direct-key readings, not the prime-sum/BASE29 block interpretation.
+The raw five central p55 runes were also tested by Agent20 as a repeating GP29 Vigenère key over pages 0–54, both directions; both scored below the raw stream under independent Shakespeare and Gibran trigram models. The direct PA/PARABLE repeating-additive screens on p55's 43 interiors described above are likewise unreadable. These close the immediate direct-key readings, not the prime-sum/GP-index block interpretation.
 
 The historical 2013 threshold-5-of-10 SSSS mechanism is now independently reconstructed (decimal share IDs; seven observed shares consistent; all 21 five-share subsets recover the same polynomial; three missing shares previously derived by Agent33). This verifies the cross-round precedent only. Agent50's p57 branch-tip circles are five per side but asymmetric (left 3 filled/2 hollow, right 5 filled) and distinct from red punctuation. The direct p49 ten-row × eight-byte GF(256) carrier model has 0/40 exact holdout predictions; this excludes only that specified carrier. No LP2 share payload or source-fixed x/y mapping is established.
 
 ## Decision
 
-Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest exploratory feature is the exact 401→BASE29 PA title echo accompanied by the newly discovered PH ... PH framing of the same centered five. Both the word-spanning sum and postselected two-rune bracket lack an original instruction selecting a real cipher.
+Retain this as a candidate **selector/checksum or human-solve-path clue**, not plaintext and not a key. Its strongest exploratory feature is the exact 401→GP-index PA title echo accompanied by the newly discovered PH ... PH framing of the same centered five. Both the word-spanning sum and postselected two-rune bracket lack an original instruction selecting a real cipher.
 
 The next useful decision is whether an independent source clue authenticates PH-framing and supplies a reversible consumer for [13,24]/PA. Retire the direct 19/20-word p57 address variants above; do not treat PA or PARABLE as an established key, do not reopen the literal 43-word-length pad, and do not run unconstrained offsets, phases, or cipher-family sweeps.
 
