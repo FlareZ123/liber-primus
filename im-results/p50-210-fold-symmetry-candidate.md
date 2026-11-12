@@ -35,8 +35,20 @@ The adjacent two-pair run is unique at sum210 when all reflection sums are scann
 
 The historical 2014 period-seven inverse/forward on the first210 bytes, pairwise mirrored XOR/addition/subtraction, simple 4×8×8 folds of the native 32×8 layout, exploratory 3×7×10 three-layer XOR/add folds, and mirrored-pair interleaving followed by period7 did not yield readable plaintext. These are bounded negatives for those direct readouts, not proof that every fold is false.
 
+## Source-selector audit (Director Issue #500; 12 November 2026)
+
+The candidate's apparent source anchors are weaker than their labels suggest:
+
+- **p14 “FOLD” is not a source-visible original heading.** It is a word recovered only under the provisional 2016 base-58 word map. That map is not an authenticated LP2 decoder. The p50 cell-3 token “3D” is produced by the same provisional map; its numeric value is also radix-dependent (base60 193 versus base59 190). Neither token independently selects a byte frame or fold.
+- The proposed 2013 `prime_echo` page/word cross-check is still inferred. The same GP-prime sums occur at p39 column 0 and p34 column 6, so the row→page/column→word grammar is not unique. The 2014 Stage5 “Do four unreasonable things each day” wording is only a weak possible fourth-word selector, not a 210-byte instruction.
+- The signed 2016 message says that numbers are direction, but it gives no fold, 210-byte length, byte-frame origin, axis, pairing order, direction, or leftover-cell rule.
+- The finite historical operator audit across archived 2012–2014 Cicada stages found explicit book-code coordinates, complete byte-stream reversal, and Atbash-ROT3, but no 210-byte slice, mirrored-pair fold, recursive arithmetic fold, or corresponding readout ([earlier-operation audit](earlier-cicada-p55-fold-operator-audit.md)). The signed 2016 FOLD/T6 mirror study likewise treats the fold as a hypothesis rather than an authenticated operation ([source-constrained report](lp2-2016-fold-t6-mirror-keyless-gate.md)).
+- The canonical p49–p51 object is a physical 256-byte, 32×8 table. Nothing selects its first 210 bytes or explains the remaining 46. The 210-sum mirror axis is derived from a conditional p32 M7 period, and the byte matches were noticed after inspecting the table. The null calculations are conditional structural evidence, not a source selector.
+
+No original or period-authenticated source therefore fixes the complete chain: choose the first 210 bytes; anchor the frame at offset zero; pair positions around i+j=210; choose the fold axis and direction; order the pairs; handle the remaining 46 cells; and define a reversible readout/encoder. The observed two-byte reversal and three equal mirrored pairs remain interesting intermediate structure, but cannot choose their own frame or operation.
+
 ## Decision
 
-Retain this as a candidate structural clue only. The unresolved premises are whether the first210 bytes are the intended slice and what original source fixes the fold/readout. The 2016 FOLD/3D map and prime_echo page-word path are provisional selectors, not authenticated instructions. Reopen only if an independent primary source fixes the 210-byte frame and a reversible operation; otherwise park.
+**Bounded no-selector result:** retain the mirror pattern as an intermediate observation only. The proposed 210-byte fold is not an established decipherment mechanism and has no source-selected inverse. Do not search shifted frames, alternative axes, pairing orders, or plaintext-scored readouts. Reopen only if an independent original clue selects the 210-byte frame and the complete reversible fold/readout; otherwise retire this 210-fold route.
 
 Run `node sims/p50_210_fold_symmetry_gate.cjs` from the repository root to reproduce the p50 cell location, mirror pairs, all-sum scan and four conditional nulls.
