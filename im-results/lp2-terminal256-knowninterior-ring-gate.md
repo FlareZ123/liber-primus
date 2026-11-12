@@ -59,6 +59,14 @@ Only **3/128** *nontrivially predicted* solved symbols match; the 52 innermost e
 
 [Single-file CommonJS exact source and native plant](../sims/lp2_terminal256_dh5_nested_peel_sft.cjs).
 
+## One literal totient-sized clockwise ring rotation (Agent27, 12 November 2026)
+
+The solved p57 imperative to shed circumferences, the four nested perimeters **76/68/60/52**, the totient-based solved p56 cipher and the signed 2016 instruction about numbers as direction motivate one short, frozen hypothesis. Place the original 256 terminal ciphertext runes into consecutive northwest-starting clockwise rings. Shift the runes in each ring forward by the totient of its original perimeter length, **36/32/16/24**, and subtract the corresponding *unshifted* printed grid-cell base60 value modulo29. The native-GP cipher precedent motivates subtraction; **no original source expressly instructs this combined rotation, terminal alignment or mask**, so it is only a falsifiable proposal.
+
+On the 180 independently known plaintext runes (p56's exact prime-totient solution with only F at index56 skipped, plus unchanged p57), the source-frozen inverse gets **9/180**, with **3/68**, **3/60** and **3/52** matches on the three inner rings. The **first** known symbol fails. The same 256-position encoder/decoder recovers an independently planted native-GP passage **256/256**, and round-trips the original ciphertext unchanged. It cannot yield the authentic 76-rune p55 plaintext.
+
+**Decision:** reject this one phi-shift/byte-mask operation outright; do not tune ring phase, direction or extra key layers to rescue it. The count geometry remains an unconfirmed clue without an authenticated decoder. [Complete CJS reproducible exact source gate](../sims/lp2_terminal256_totient_ring_rotate_sft.cjs).
+
 ## Original-cipher complete-inverse gates
 
 The independent source register is `resources/liber-primus/lp2-grid-256.json`; its 256 printed base60 numeral tokens are provisionally interpreted as bytes, then reduced mod29. The target text is canonical p55, the **independently asserted 85-rune exact p56 prime-totient decryption with only F at offset 56 skipped**, and raw clear p57. All rune counts, the exact 52-rune innermost imperative suffix, and all four ring lengths are asserted against source data before transformation.
