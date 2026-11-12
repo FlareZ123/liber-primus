@@ -132,7 +132,7 @@ function gf(degree,taps){
   }
   /** @param {bigint[]} coefficients @param {bigint} id */
   function split(coefficients,id){
-    let value=id;
+    let value=1n;
     for(let i=4;i>=0;i--)value=mul(value,id)^coefficients[i];
     return value;
   }
