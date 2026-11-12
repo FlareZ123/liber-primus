@@ -98,6 +98,126 @@ function histogramEditLowerBound(k, candidate) {
   return edits / 2;
 }
 
+
+/**
+ * Exact minimum positional changes for one fixed ciphertext-history state
+ * when any secret 29-symbol bijection is permitted. The maximum-weight
+ * assignment uses the observed ciphertext symbols as the smaller side.
+ * This is an exact Hamming optimum, unlike sorted-histogram relaxation.
+ * @param {number[]} positions
+ * @param {number[]} observed
+ * @param {number[]} candidate
+ * @returns {number}
+ */
+function statePositionalEdits(positions, observed, candidate) {
+  const forward = new Int16Array(29).fill(-1);
+  const reverse = new Int16Array(29).fill(-1);
+  let compatible = true;
+  for (const pos of positions) {
+    const a = observed[pos], b = candidate[pos];
+    if ((forward[a] >= 0 && forward[a] !== b) ||
+        (reverse[b] >= 0 && reverse[b] !== a)) {
+      compatible = false;
+      break;
+    }
+    forward[a] = b;
+    reverse[b] = a;
+  }
+  if (compatible) return 0;
+
+  const counts = Array.from({ length: 29 }, () => new Uint16Array(29));
+  const used = new Uint8Array(29);
+  for (const pos of positions) {
+    used[observed[pos]] = 1;
+    counts[observed[pos]][candidate[pos]]++;
+  }
+  const rows = [];
+  for (let a = 0; a < 29; a++) if (used[a]) rows.push(a);
+  const n = rows.length, m = 29;
+  const u = new Float64Array(n + 1);
+  const v = new Float64Array(m + 1);
+  const assigned = new Int16Array(m + 1);
+  const parent = new Int16Array(m + 1);
+  // Rectangular Hungarian algorithm, cost = -cooccurrence.
+  for (let a = 1; a <= n; a++) {
+    assigned[0] = a;
+    const minCosts = new Float64Array(m + 1).fill(Infinity);
+    const seen = new Uint8Array(m + 1);
+    let j0 = 0;
+    do {
+      seen[j0] = 1;
+      const i0 = assigned[j0];
+      let delta = Infinity, j1 = 0;
+      for (let j = 1; j <= m; j++) {
+        if (seen[j]) continue;
+        const cost = -counts[rows[i0 - 1]][j - 1] - u[i0] - v[j];
+        if (cost < minCosts[j]) {
+          minCosts[j] = cost;
+          parent[j] = j0;
+        }
+        if (minCosts[j] < delta) {
+          delta = minCosts[j];
+          j1 = j;
+        }
+      }
+      for (let j = 0; j <= m; j++) {
+        if (seen[j]) {
+          u[assigned[j]] += delta;
+          v[j] -= delta;
+        } else {
+          minCosts[j] -= delta;
+        }
+      }
+      j0 = j1;
+    } while (assigned[j0] !== 0);
+
+    do {
+      const previous = parent[j0];
+      assigned[j0] = assigned[previous];
+      j0 = previous;
+    } while (j0 !== 0);
+  }
+
+  let matches = 0;
+  for (let j = 1; j <= m; j++) {
+    if (assigned[j]) matches += counts[rows[assigned[j] - 1]][j - 1];
+  }
+  return positions.length - matches;
+}
+
+/**
+ * Exact GP29 ciphertext-context-position Hamming minimum over all unknown
+ * stationary 29-symbol permutations, one per observed k-history context.
+ * All first-k original-page runes are intentionally unconstrained.
+ * @param {number} k
+ * @param {number[]} candidate
+ * @param {number[]} observed
+ * @returns {number}
+ */
+function positionalEditMinimum(k, candidate, observed = ciphertext) {
+  const groups = new Map();
+  for (const [start, len] of pageStarts) {
+    for (let j = k; j < len; j++) {
+      const i = start + j;
+      let state = 0;
+      for (let h = i - k; h < i; h++) {
+        state = state * 29 + observed[h];
+      }
+      let positions = groups.get(state);
+      if (positions === undefined) {
+        positions = [];
+        groups.set(state, positions);
+      }
+      positions.push(i);
+    }
+  }
+  let edits = 0;
+  for (const positions of groups.values()) {
+    edits += statePositionalEdits(positions, observed, candidate);
+  }
+  return edits;
+}
+
 // Positional relabeling can require edits despite identical state histograms.
 {
   const toyCipher = [0, 1, 0, 1];
@@ -107,6 +227,10 @@ function histogramEditLowerBound(k, candidate) {
   const posEdits = [[0, 1], [1, 0]].map((key) =>
     toyCipher.reduce((n, x, i) => n + (key[x] !== toyTarget[i] ? 1 : 0), 0));
   assert.deepEqual(posEdits, [2, 2]);
+  assert.equal(statePositionalEdits([0, 1, 2, 3], toyCipher, toyTarget), 2);
+  assert.equal(statePositionalEdits([0, 1, 2, 3], toyCipher, toyCipher), 0);
+  assert.equal(statePositionalEdits([0, 1, 2], [0, 0, 0], [0, 1, 2]), 2);
+  assert.equal(statePositionalEdits([0, 1, 2], [0, 1, 2], [0, 0, 0]), 2);
 }
 
 const tokens = corpus.translit.map((s, i) => ({ s, i }))
@@ -150,7 +274,12 @@ for (const k of [2, 3, 4]) {
   for (const item of native) {
     const samples = item.blocks.map((b) => measure(k, b, ciphertext));
     const bounds = item.blocks.map((b) => histogramEditLowerBound(k, b));
+    const positional = item.blocks.map((b) => positionalEditMinimum(k, b));
+    for (let i = 0; i < bounds.length; i++) {
+      assert(positional[i] >= bounds[i]);
+    }
     bounds.sort((a, b) => a - b);
+    positional.sort((a, b) => a - b);
     controls[k][item.name] = {
       windows: samples.length,
       entropyMin: Math.min(...samples.map((s) => s.entropy)),
@@ -159,7 +288,10 @@ for (const k of [2, 3, 4]) {
       collisionMax: Math.max(...samples.map((s) => s.collisions)),
       minimumHistogramEditLowerBound: bounds[0],
       medianHistogramEditLowerBound: bounds[Math.floor(bounds.length / 2)],
-      maximumHistogramEditLowerBound: bounds.at(-1)
+      maximumHistogramEditLowerBound: bounds.at(-1),
+      minimumExactPositionalEdits: positional[0],
+      medianExactPositionalEdits: positional[Math.floor(positional.length / 2)],
+      maximumExactPositionalEdits: positional.at(-1)
     };
     if (k <= 3) {
       assert(controls[k][item.name].entropyMax < original[k].entropy);
@@ -177,6 +309,10 @@ assert.equal(original[3].collisions, 124);
 assert(Math.abs(original[3].entropy - 0.4696234031881363) < 1e-11);
 assert.equal(original[4].collisions, 6);
 assert.equal(original[4].pairs, 122);
+// Source-fixed registers: all 89 exact ciphertext-context assignments.
+assert.equal(Math.min(...Object.values(controls[2]).map((v) => v.minimumExactPositionalEdits)), 4738);
+assert.equal(Math.min(...Object.values(controls[3]).map((v) => v.minimumExactPositionalEdits)), 278);
+assert.equal(Math.min(...Object.values(controls[4]).map((v) => v.minimumExactPositionalEdits)), 8);
 
 // A key-independent invariance check under arbitrary independently chosen
 // secret permutations in each full ciphertext history state.
@@ -251,6 +387,8 @@ for (const k of [2, 3]) {
   assert(Math.abs(decoded.entropy - original[k].entropy) < 1e-10);
   assert.equal(decoded.collisions, original[k].collisions);
   assert.equal(histogramEditLowerBound(k, arbitraryDecoded), 0);
+  assert.equal(positionalEditMinimum(k, arbitraryDecoded), 0);
+  assert.equal(positionalEditMinimum(k, plaintext, plantCipher), 0);
   plants[k] = {
     recoveredRunes: plantPlain.length, plantedCipher: hC,
     arbitraryOriginalRoundtrip: true, originalDecodedEntropy: decoded.entropy
@@ -259,5 +397,5 @@ for (const k of [2, 3]) {
 console.log(JSON.stringify({
   premise: "stationary secret GP29 permutation per previous k ciphertext runes",
   N, pages: pages.length, original, controls, plants,
-  decision: "k2 and k3 separate from 89 finite native controls; k4 overlaps"
+  decision: "k2 and k3 separate from 89 finite native controls; exact positional assignment k2 requires 4738+ edits; k4 overlaps"
 }, null, 2));
