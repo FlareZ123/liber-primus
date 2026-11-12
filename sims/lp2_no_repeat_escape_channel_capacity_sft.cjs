@@ -64,14 +64,13 @@ const pages = segments.map((segment, index) => {
   const runes = runePositions.length;
   assert.equal(runes, indices.length, "transcription/corpus rune count mismatch");
 
-  // The word parser treats slash and whitespace as continuity, and any
-  // other non-rune punctuation as a word delimiter. Count each delimiter gap
-  // once, retaining its exact punctuation string as a boundary type.
+  // Count explicit typographic word-boundary punctuation between runes:
+  // hyphen, period, ampersand, dollar, or section sign. Slash/whitespace
+  // and numeric labels are not treated as word-boundary events.
   const boundaryTypes = {};
   for (let i = 1; i < runePositions.length; i++) {
     const between = chars.slice(runePositions[i - 1] + 1, runePositions[i]);
-    const delimiter = between.filter(ch =>
-      !RUNIC.test(ch) && ch !== "/" && !/\s/u.test(ch)).join("");
+    const delimiter = between.filter(ch => ".-&$§".includes(ch)).join("");
     if (delimiter) boundaryTypes[delimiter] = (boundaryTypes[delimiter] || 0) + 1;
   }
   const wordBoundaries = Object.values(boundaryTypes)
@@ -148,7 +147,7 @@ for (const page of pages) {
     delimiterTotals[type] = (delimiterTotals[type] || 0) + count;
   }
 }
-assert.deepEqual(delimiterTotals, {"-": 2708, ".": 153, ".&": 6, "-7-": 1, ".&$": 1, ".1-": 1, ".3-": 1, ".4-": 1, ".5-": 1});
+assert.deepEqual(delimiterTotals, {"-": 2708, ".": 153, ".&": 6, "--": 1, ".&$": 1, ".-": 4});
 
 console.log(JSON.stringify({
   scope: "55 unsolved rune-bearing physical pages p0-p49 and p51-p55; p50 is the runeless grid",
