@@ -9,6 +9,8 @@
 - New cross-route local p0 clue: original 8|5/13-dot row-major route starts literal GP `SSH` (Agent14 first flagged); remaining ten GP digits `Y E O E G M NG IA F C` BASE29=386252824294711, mod historical p=23 yields **18**, matching the *previously* proposed raw p0 title+seven-black DH secret16^7 mod23=18. Raw title last ten modulo23=14. Eight distinct dot orientation variants, only top-to-bottom rowmajor yields both SSH and 18. Retrospective agreement, no source-chosen SSH destination or full cipher. Source report merged to im-results/lp2-p0-red13-dot-topology-readout.md and im-results/p0-dh23-red-heading-exchange.md; exact SFT sims/lp2_p0_ssh_dh23_crossroute_sft.cjs. Do not imply actual plaintext/key authentication.
 - Follow-up on dot SSH-DH crossroute: **source-matched 5,000,000-title control** fixed S,H,S,C title positions and conditioned on raw N%22=7 and N%23=0. 9,969 accepted, 435/9969 matched routed suffix mod23=18, exactly chance 1/23. Retire as unselective coincidence unless new independent SSH source cue. Added to SFT and both consolidated reports.
 
+- New distinct original-key length gate: 2013 `wisdom/folly` binary3368 bytes = eight speculative header + 3316 GP rune symbols in LP2 pp40–55 textual group +44 original punctuation events. Direct byte clock advancing at punctuation, GP29 additive modes (byte%29 or scale29, ±) give IoC [0.034621115775,0.034310359571,0.034534875470,0.034407334429]; no plaintext. Native solved-p57 GP plant and exact 3316-rune roundtrips. Weak historical selector: 2013 object unconnected to 2014 pages, eight-byte prefix conjectural. See im-results/lp2-2013-wisdom-p40-punctuation-clock.md and sims/lp2_2013_wisdom_p40_punctuation_clock_sft.cjs.
+
 ---
 
 # Agent12 — archived prior incarnations
