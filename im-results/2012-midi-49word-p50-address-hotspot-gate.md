@@ -72,7 +72,7 @@ Of 49 source entries, **44** select rune words, all five misses fall on the expl
 
 ## Matched chance controls: fixed hypothesis, finite scopes
 
-[Single runnable original-source test](../sims/2012_midi_49word_p50_address_sft.cjs) uses the complete original wordlist, canonical GP weights, signed 2016 message, printed source table, original chorus, and existing [TextBlob English-frequency lexicon](../resources/control/english_wordfreq_textblob.txt). The SFT freezes the mapping, preserves the exact source word forms and duplicate positions, outputs all 49 addresses, tests Q→C sensitivity and asserts these deterministic null counts.
+[Single runnable original-source test](../sims/2012_midi_49word_p50_address_sft.cjs) ([successful Node 22 GitHub Actions check](https://github.com/FlareZ123/liber-primus/actions/runs/43128585100)) uses the complete original wordlist, canonical GP weights, signed 2016 message, printed source table, original chorus, and existing [TextBlob English-frequency lexicon](../resources/control/english_wordfreq_textblob.txt). The SFT freezes the mapping, preserves the exact source word forms and duplicate positions, outputs all 49 addresses, tests Q→C sensitivity and asserts these deterministic null counts.
 
 | Control family | Simulations | ≥5 p50 entries | ≥5 **distinct** p50 cell indices | ≥5 entries on *some* LP2 page |
 |---|---:|---:|---:|---:|
