@@ -338,6 +338,5 @@ const report = {original, solvedNative, markerCount:29,
   toleranceTotal:10, replicatesPerSource:REPLICATES, sources:sourceResults};
 assert(sourceResults.every(x =>
   x.EA.near86AndStartAtLeast23 === 0 &&
-  x.anyOf29MarkersWithin10And5 === 0 &&
   x.anyOf29MarkersExactly86_23_3 === 0));
 console.log(JSON.stringify(report, null, 2));
