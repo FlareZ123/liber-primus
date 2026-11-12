@@ -4,7 +4,7 @@
 
 ## Why this test is a distinct plausible source operation
 
-Original LP2 physical **p53**, scan \`70.jpg\`, ends with **51 consecutive red runes** at local GP29 offsets **128–178**, followed by the large red 13-dot end marker. The immediately following page **p54**, scan \`71.jpg\`, begins with a separate red nine-rune heading. The resulting visible final unknown chapter is precisely **p54–55, 308 runes** (232+76), independent of the older derivative text-section cuts. The floral-border artwork is unchanged across the cut. Hence the p53 red tail is an independently visible, immediately preceding finite text source which could serve as a key for the new chapter.
+Original LP2 physical **p53**, scan `70.jpg`, ends with **51 consecutive red runes** at local GP29 offsets **128–178**, followed by the large red 13-dot end marker. The immediately following page **p54**, scan `71.jpg`, begins with a separate red nine-rune heading. The resulting visible final unknown chapter is precisely **p54–55, 308 runes** (232+76), independent of the older derivative text-section cuts. The floral-border artwork is unchanged across the cut. Hence the p53 red tail is an independently visible, immediately preceding finite text source which could serve as a key for the new chapter.
 
 The red passage's GP-prime sum is **2262 = 29 × 78**; that equality supplies a checksum on its source transcription but no instruction that it is a key. The intended operation is therefore still a hypothesis. This test avoids fitting a period, offset, key value, start page, or reset from the target ciphertext.
 
@@ -12,11 +12,11 @@ The previously documented [p53 red51 → p55 17-segment triplet](p53-red51-p55-1
 
 ## Frozen map and result
 
-Let \`R[0..50]\` be the exact 51 original p53 red GP glyphs, \`C[i]\` the 308 original p54→p55 glyph indices, and \`p[x]\` the original GP prime weight of rune index \`x\`. The two directly source-standard key readings are \`K[j] = R[j]\` (GP ordinal) and \`K[j] = p[R[j]] mod 29\` (GP prime residue). For both directions, with **no free key phase**, decode
+Let `R[0..50]` be the exact 51 original p53 red GP glyphs, `C[i]` the 308 original p54→p55 glyph indices, and `p[x]` the original GP prime weight of rune index `x`. The two directly source-standard key readings are `K[j] = R[j]` (GP ordinal) and `K[j] = p[R[j]] mod 29` (GP prime residue). For both directions, with **no free key phase**, decode
 
-\`P[i] = (C[i] ± K[i mod 51]) mod 29\`, with \`i=0\` at **p54 local0**.
+`P[i] = (C[i] ± K[i mod 51]) mod 29`, with `i=0` at **p54 local0**.
 
-The p54→p55 clock is **continuous**; there is no page restart or target-dependent F-skip. These four cases exhaust the declared test, without sweeping key offsets or additional transformations. IoC is the ordinary within-stream \`sum(n_r(n_r−1))/(N(N−1))\`.
+The p54→p55 clock is **continuous**; there is no page restart or target-dependent F-skip. These four cases exhaust the declared test, without sweeping key offsets or additional transformations. IoC is the ordinary within-stream `sum(n_r(n_r−1))/(N(N−1))`.
 
 | Fixed map | Sign | 308-rune IoC | p54 IoC | p55 IoC |
 | --- | --- | ---: | ---: | ---: |
