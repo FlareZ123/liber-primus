@@ -134,6 +134,18 @@ function nonzeroCount(b){
   for(const x of b)if(x!==0)count++;
   return count;
 }
+// ISO9660 system area is reserved rather than unallocated; inspect its
+// nonzero data separately because ordinary extraction never exposes it.
+const systemArea=[];
+for(let i=0;i<16;i++){
+  const b=sector(i),n=nonzeroCount(b);
+  if(!n)continue;
+  const signatures=[];
+  for(const [kind,magic] of MAGIC)if(b.indexOf(magic)>=0)signatures.push(kind);
+  systemArea.push({lba:i,nonzeroBytes:n,signatures,
+    asciiSpans:(b.toString("latin1").match(/[\\x20-\\x7e]{24,}/g)||[])
+      .slice(0,5).map(x=>x.slice(0,170))});
+}
 const slack=[];
 for(const e of entries){
   if(e.dir||e.length%SECTOR===0)continue;
@@ -181,6 +193,9 @@ stream.on("end",()=>{
   assert.equal(sha256,EXPECTED_SHA256,"Unexpected ISO bytes");
   const summary={
     source:{size,sha256,declaredSectors,nSectors},
+    reservedSystemArea:{sectors:16,nonzeroSectors:systemArea.length,
+      totalNonzeroBytes:systemArea.reduce((s,x)=>s+x.nonzeroBytes,0),
+      records:systemArea},
     iso9660:{files:entries.filter(e=>!e.dir).length,
       directories:directoryVisited.size,
       filesWithNonzeroSlack:slack.length},
