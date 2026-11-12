@@ -44,7 +44,7 @@ def file_sha256(path: Path) -> str:
 def historical_xor_control(path: Path) -> dict[str, Any]:
     """Authentic 2013 DATA/560.13 known-plaintext and exact re-encryption control."""
     ciphertext = bytes.fromhex("28c07e1b102d4d5c4c1a376e064477e1416fcc94928765")
-    expected = b"gbyh7znm6c7ezsmr.onion\\n"
+    expected = b"gbyh7znm6c7ezsmr.onion\n"
     with path.open("rb") as f:
         f.seek(12_821)
         pad = f.read(len(ciphertext))
