@@ -97,7 +97,14 @@ assert.equal(whole.length, 12956);
 assert.equal(black.length, 12743);
 const { determinant, result: keyInverse } = inverse(key);
 assert.equal(determinant, 8, 'source red key determinant');
-const solved = corpus.pages.find(p => p.page === 57).indices;
+const sourcePage = n => corpus.pages.find(p => p.page === n).indices;
+const solved = sourcePage(57);
+const p55Body75 = sourcePage(55).slice(1);
+const terminal255 = p55Body75.concat(sourcePage(56), solved);
+const p53PlusP54 = sourcePage(53).concat(sourcePage(54).slice(0, 1));
+assert.equal(p55Body75.length, 75);
+assert.equal(terminal255.length, 255);
+assert.equal(p53PlusP54.length, 180);
 const solvedPlant = solved.slice(0, 90);
 assert.deepEqual(blocks(blocks(solvedPlant, key), keyInverse), solvedPlant,
   'authentic GP-native p57 positive control');
@@ -111,7 +118,10 @@ console.log(JSON.stringify({
   unknownBlackIoC: coincidence(black),
   originalClockResults: [
     { name: 'unknown full original', input: whole },
-    { name: 'unknown black only', input: black }
+    { name: 'unknown black only', input: black },
+    { name: 'physical p55 body 75', input: p55Body75 },
+    { name: 'terminal p55 body plus p56 and p57 255', input: terminal255 },
+    { name: 'p53 plus first rune of p54, 180', input: p53PlusP54 }
   ].map(({ name, input }) => {
     const decoded = blocks(input, keyInverse);
     const reversed = blocks(input, key);
