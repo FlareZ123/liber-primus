@@ -78,6 +78,18 @@ To account for choosing the *best of eight*, each of **500** deterministic indep
 
 Thus a five-lane shared-pad model with independently unknown static offsets fares poorly against source-native English even after giving the original cipher eight alternative alignments. The result is **conditional on the two English controls**, the original two section boundaries, and the stated exact five-lane architecture; hidden offsets that evolve *within* a lane, independent section keys, extra encryption layers or different native plaintext are beyond its proof. The original symbols and source-selected lane structures carry no recovered authentic key or plaintext.
 
+### Physical-line and page-rotation geometry
+
+The source artwork's reflections act on individual *physical pages*, while the full-chapter reverse in the preceding table is an additional hypothesis. I therefore expanded the exact cancellation test to the **18 source-framed alignments** formed by:
+
+- **pp3–7:** natural order; reverse entire 1145-rune chapter; or horizontally mirror every one of the original printed lines on each of five physical pages, while preserving line and page order.
+- **pp23–26 after the 16-rune red opening:** natural order; reverse all 1005 body runes; or rotate the body **separately on each physical page**, reversing each page's runes (body lengths **197, 270, 273, 265**).
+- **Lane layouts:** five 201-rune contiguous strips or 201 adjacent quintets.
+
+These alternatives include the previous eight and correct the overly narrow assumption that visually reflecting a *page* must reverse a *whole chapter*. No independently source-selected transposition is identified by this set. Applying the exact same physical-index permutations to **500 independently sampled native GP control pairs**, this time taking full **1145-rune Shakespeare** and **1005-rune Gibran** windows, allows each control to select its own *best of all 18*. The maximum original five-lane difference IoC remains **0.03528358**, while the smallest of the 500 source-native 18-way maxima is **0.03628856** (mean **0.03766336**). **Zero of 500** matched source-native controls has a family-max score as low as the original; the finite add-one lower-tail comparison is **1/501 ≈ 0.001996**.
+
+The physical-line extension is especially relevant to the actual stencil: p7 has horizontal reflection, while p23 has a 180° page rotation against solved p56. Neither geometrically motivated orientation rescues a shared five-lane pad. The conclusion remains conditional on a *pure shared additive keystream* (with static per-lane affine shifts that preserve symbol equality), common phase within each lane, original chapter source boundaries, and ordinary GP-English source text. A variable or keyed state evolution per source page is not tested.
+
 ## Outcome and decision
 
 The original source streams and *best* possible symbol coincidence indices among the eight configurations for each fixed span/key choice are:
