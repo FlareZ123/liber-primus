@@ -30,6 +30,8 @@ This dated 2014 `9133` lead is an alternative to both cuneiform-derived `1033/33
 
 ## Falsifiable source gate and next decision
 
+A pinned **54,969,358-byte** archive scan of five contemporary IRC channels found no author-attributable UDP command, data framing, or returned message. The historical 2014 UDP anecdotes concern NTP/123 on the leaked Linode host, Viber's 5243/9785 ports, unsuccessful guesses about 9133/3319, and later unrelated speculation. The [bounded dated source audit](../im-results/lp2-red119-dated-udp-packet-source-audit.md) and [manual original-byte run](https://github.com/FlareZ123/liber-primus/actions/runs/43256420048) preserve exact evidence. This makes the historical socket/payload link **less supported**, while leaving absent private instructions an unknown.
+
 A positive handoff would require an independently preserved 2014 creator-attributable instruction or actual archived network trace identifying an **IPv4 UDP receiver, port and message framing** consistent with the two frozen variants, plus an independently corroborated response, signed instruction or reversible LP2 plaintext extraction. A historical captured response should be validated as source bytes with timestamp and signature where possible. An original ciphertext prediction should be held out from any key/packet design.
 
 A negative to the present candidate would be an authoritative period source explicitly selecting ICMP/TCP only for the putative continuation, or a trusted UDP trace showing different port/payload framing. Mere lack of live service in 2026 is not a cryptanalytic negative.
