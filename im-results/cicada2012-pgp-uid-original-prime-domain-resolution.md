@@ -1,37 +1,111 @@
-# Cicada 2012 PGP numeric User ID: source-prescribed original meaning
+# 2012 845145127.com: page sequence, authenticated payloads and archive boundary
 
-**Agent49, 11 November 2026. Original historical route recovered; Director #288. No unknown LP2 plaintext.** The User ID `Cicada 3301 (845145127)` repeats the already-solved *2012* Cicada puzzle domain, selected by an actual creator-provided instruction. Treating its factors as a 2014 LP2 stencil/table key ignores a much stronger independent original explanation.
+## Conclusion
 
-## The historical source-prescribed computation
+`845145127.com` was a real 2012 Cicada stage. The source-supported sequence is **countdown → coordinates → whitespace payload → ten numbered images → two book-code messages → second chance**. The whitespace HTML is whitespace-only, but its decoded payload is a valid PGP clear-signed message. The earlier claim that the decoded message was unsigned is contradicted by direct signature verification.
 
-The **contemporary first-person** 2012 [ClevCode walkthrough](https://clevcode.org/cicada-3301/) preserves the original phone number (214) 390-9608 and telephone puzzle instruction: identify the **three primes associated with the original final.jpg image**, including **3301**, multiply them and append `.com`. The original image was **509×503 pixels**, both prime, as independently confirmed by the [archived original image record](https://commons.wikimedia.org/wiki/File:Cicada3301%27s_First_Message.jpg) dated 4 January 2012 and the [2012 participant walkthrough](https://3301cicada.wordpress.com/2012-2/). The actual 2012 destination then follows *without any fitting*:
+This authenticates a continuation of the **2012** puzzle. It does not provide an LP1/LP2 rune key, an LP2 cipher operation, or an authenticated LP2 destination.
+
+## Page sequence
+
+The original phone instruction used the first image's prime dimensions, 509×503, and 3301:
+
+`509 × 503 × 3301 = 845145127`
+
+The 2012 public-key User ID is `Cicada 3301 (845145127)`, matching the domain.
+
+### Countdown
+
+The first page counted down to **2012-01-09 17:00 UTC**. Its recovered image message told solvers to return at that time; the contemporary ClevCode walkthrough records the transition to the coordinate page at expiry.
+
+No byte-preserved original countdown HTML was found. The community `cicada-solvers/845145127.com` archive's `countdown/index.html` is a 2022 reconstruction (618 bytes, blob `35249f9a6fdabc265a7be7730eba250bb2a66f5e`). Its distinct 20,858-byte countdown image (blob `96522aa7d96d7f42efe16ffa807c021a93c8d436`) was added to that archive in 2023.
+
+### Coordinates
+
+The page changed at the stated expiry to an instruction to find the nearest symbol and **14 coordinate entries**. A contemporaneous 10 January 2012 forum discussion also records 14 entries.
+
+The associated `cicada.jpg` is 20,892 bytes (blob `68f9a195ae1c6d6429caa9183846de430baa3a8d`). Its archived OutGuess extraction is a PGP clear-signed list of **12** coordinates; its signature verifies under the 2012 key and was created **2012-01-08 22:34:35 UTC**. The page copy contains two additional entries absent from the signed payload:
+
+- Seoul: `37.577070, 126.813122`
+- Arkansas: `36.0665472222222, -94.1726416666667`
+
+Keep the 14 page entries and 12 signed-image entries distinct. No surviving capture establishes when or why the two extra coordinates entered the page.
+
+The earliest full page copy located is a Wayback snapshot dated **2015-06-24 03:54:46 UTC** of a *third-party local-save page* at `net-netz-blog.de/845145127.htm`, not a direct capture of `845145127.com`. The archived HTML is 78,953 bytes (blob `ec5f60d260a5e2547be4b7618491ac68b54240dc`) and embeds the 20,892-byte image. It contains an Internet Explorer “saved from” marker, AdBlock-injected CSS and the Wayback toolbar; it is not the original HTTP response. [Pinned archived page](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/blob/c3127e0e9eb5afbb582d37988d6369fe38429238/2012/websites/the%20GPS%20coordinates%20website/845145127.html).
+
+### Whitespace payload and ten images
+
+The later whitespace-only page's decoded output is a PGP clear-signed message. ClevCode documents the operation: discard non-whitespace, map tabs to 0 and spaces to 1, then group into octets. The signed payload lists:
 
 ```
-(original final.jpg width) 509 × (height) 503 × (signature) 3301
-= 845145127
-→ 845145127.com
+162667212858
+414974253863
+598852142735
+876873892385
+935691396441
+316744223127
+427566844663
+644169769482
+889296759263
+963846244281
 ```
 
-The contemporary solver records that site as the **actual next stage** with a countdown and later material. The preserved PGP public-key packet's exact numeric User ID thereby reuses a genuine historical **domain identifier**. This is the source-selected role for that number, independent of LP2.
+The signature was created **2012-01-11 05:07:59 UTC** and verifies under the Cicada key. The HTML page itself is not signed; its decoded payload is. A 2014 participant Gist calls the message unsigned, but that description conflicts with the clear-signed payload and reproducible verification.
 
-## What the suggested LP2 connection does and does not establish
+The ClevCode walkthrough maps the numbers to `http://75.119.203.244/NUMBER.jpg`; the community second-chance reconstruction records equivalent domain URLs. The filenames are grouped as follows:
 
-Exact factorization and primality are incontrovertible:
+- **29-volume / Britannica (six):** `162667212858`, `316744223127`, `414974253863`, `427566844663`, `598852142735`, `889296759263`.
+- **Fading-death / Agrippa (four):** `644169769482`, `876873892385`, `935691396441`, `963846244281`.
 
-```
-845145127 = 3301 × 503 × 509
-503 = 512 − 9
-509 = 512 − 3
-```
+The walkthrough says the images reproduce the two messages already obtained from physical QR posters. One raw numbered image, `162667212858.jpg`, survives in the `neuroretransmit/cicada` archive. Its OutGuess extraction is itself PGP clear-signed and verifies under the same key; signature time **2012-01-06 20:28:30 UTC**. The other nine original image files were not found in the reviewed archives. The two book-code messages lead to the established Britannica and Agrippa paths, not to an LP2 key.
 
-The 2014 LP2 p50 numeric table has 256 **byte cells**, and p53's 13-dot stencil occupies a 9×3 grid, but **no 2012/2014/2016/2017 original instruction prescribes** doubling the 256 table-cell count or subtracting stencil row/column dimensions from that value. Referring to `512` here as a **512-bit** boundary is a unit error: the printed 256-byte table is 2,048 bits, and twice its cell count is 512 **cells**, not 512 bits.
+The separate second-chance path sums the largest number in each family:
 
-The historic source already fixes the two non-3301 factors as the **2012 JPEG dimensions**. Hence the claimed 512−9 / 512−3 resemblance is retrospective and supplies no demonstrated LP2 cipher or new plaintext. An author could have reused the original factors later, but that requires a separate, original-source instruction selecting the stencil subtraction and an actionable reversible operation.
+`889296759263 + 963846244281 = 1853143003544`
 
-**Distinct 2014 Stage04 source correction:** Agent31's independently checked original 2014 Stage04 snapshots (Director #286) show a page beginning `<!--1033-->` followed by 512 hex characters (256 bytes), later updated to `<!--3301-->` and a larger hexadecimal/runic image payload. **The previously alleged nine-digit-prime input form was misattributed to this host**: neither original capture contains a prime-entry field or submission endpoint. The historic 2012 `845145127.com` is therefore a distinct, documented earlier puzzle destination. The User ID integer is composite, but the rejected Stage04 form premise must not be used as evidence for any later key hypothesis ([#286 source correction](https://github.com/FlareZ123/liber-primus/issues/286)).
+The `1853143003544.tk` lead and its TXT follow-up to `33091839349.tk` belong to the 2012 second-chance branch. The community reconstruction notes no direct evidence that the first `.tk` domain itself was created by 3301; a later PGP-verified message authenticates the second-chance instruction. The resulting onion is `cginiziglyaobyph.onion`. This is a continuation within the 2012 puzzle, not a transfer into Liber Primus.
 
-## Decision
+## Cryptographic verification
 
-The original source-to-operation-to-destination sequence for the PGP User ID is already known and complete: **2012 telephone prime multiplication → 845145127.com**. Retire the 2014 p50/p53 factorization-to-key proposal absent an independently documented new reuse operation. No unknown LP2 plaintext, source-selected cipher key, or destination was recovered in this run.
+The public key is `resources/historical/cicada-3301-2012-public-key.asc`.
 
-**Reproducibility:** Original 509×503 pixel image documented in the dated archival record, 2012 contemporary phone-text witness documented by two independent participant accounts, and integer factorization independently executed using `sympy.factorint` and `sympy.isprime`. The finding depends on historical original clues rather than arbitrary ciphertext-fitting.
+- Primary fingerprint: `6D85 4CD7 9333 22A6 01C3 286D 181F 01E5 7A35 090F`.
+- Signing key ID: `181F01E57A35090F`.
+- The coordinate payload, ten-filename whitespace payload and preserved `162667212858.jpg` OutGuess payload each return **Good signature**.
+- Signature times: 2012-01-08 22:34:35 UTC; 2012-01-11 05:07:59 UTC; 2012-01-06 20:28:30 UTC.
+
+GnuPG marks local owner trust `[unknown]`; this is lack of a local certification path, not a failed signature. Exact clear-signed payloads and a reproducer are in [the evidence bundle](2012-845145127/) and `sims/verify_2012_845145127_signatures.sh`.
+
+The community `whitespace_message/index.html` (7,756 bytes; blob `ee54eb231436c9b99e230e669ee45a7e9c8e855f`) is not byte-faithful: applying the documented whole-response whitespace filter to that reconstruction does not reproduce the signed message. Preserve the decoded payload, not this HTML as the exact original bitstream.
+
+## Wayback, DNS and registration
+
+A pinned independent CDX inventory contains 310 domain records. Its only two 2012 captures are:
+
+- `2012-01-11 02:24:54 UTC`: `http://845145127.com/robots.txt`, HTTP 404.
+- `2012-01-11 02:25:01 UTC`: `http://www.845145127.com/robots.txt`, HTTP 301.
+
+There is no 2012 capture of the domain root, countdown HTML, whitespace HTML or any numbered image in this inventory. The first root capture is **2013-05-17 06:50:23 UTC**, HTTP 404. The 2013 captures of `316744223127.jpg` and `935691396441.jpg` are also 404. Later 200 responses for the root and numbered paths are HTML parking/squatter pages, not original JPEGs. See the pinned [CDX JSON](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/D-archives/cdx/845145127.com.json) and [archive assessment](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/D-archives/CONFLICTS-D.md).
+
+A participant report gives the historical server IP as `75.119.203.244`. A contemporaneous scan dated 9 January 2012 19:17 EST records ports 21/FTP, 22/SSH and 80/HTTP open. This establishes service exposure, not an FTP listing or credentials; forum speculation that QR locations supplied FTP logins remains unverified. The signed filenames are documented as HTTP image paths.
+
+DNS accounts are not fully consistent: the contemporary ClevCode narrative says the DNS entry was removed, while a later participant account says it changed to `127.0.0.1` and the old IP stopped responding after files were retrieved. The two Wayback `robots.txt` captures are the hard archived timestamps; no authoritative historical DNS log establishes the exact change time or mechanism.
+
+Current WHOIS reports a creation date of **2013-03-28** and current registrant/nameserver details that do not establish continuity with the 2012 registrant. The original page references are HTTP; no 2012 certificate record was found in the reviewed source set.
+
+## LP2 decision
+
+The signed payloads authenticate a real 2012 sequence: coordinates, ten image filenames, two book-code messages and a second-chance route. They do not name Liber Primus, supply a GP29 rune sequence, specify an LP2 decoder, or yield an LP2 key. The 845145127 derivation and second-chance filename arithmetic are explained within the 2012 round. Keep this as an established historical route; **do not promote it into an LP2 cipher hypothesis**.
+
+## Sources
+
+- [ClevCode contemporary walkthrough](https://clevcode.org/cicada-3301/) — countdown, coordinate transition, whitespace decoder and numbered image paths.
+- [AllMystery 10 January 2012 discussion](https://www.allmystery.de/themen/gg81407-4) — contemporaneous coordinate page and QR/FTP speculation.
+- [2012 second-chance reconstruction](https://uncovering-cicada.fandom.com/wiki/The_second_chance_(2012)) — filename grouping and downstream route; community source.
+- [2014 participant account](https://gist.github.com/tekknolagi/8526671) — DNS/IP narrative; its unsigned-message wording conflicts with signature verification.
+- [2015 Wayback copy](https://web.archive.org/web/20150624035446/http://net-netz-blog.de/845145127.htm).
+- [Community page archive](https://github.com/cicada-solvers/845145127.com/tree/a53793a7e70b4fe07c614f38f8bbe8fcddc728a2).
+- [Independent CDX inventory](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/corpus/D-archives/cdx/845145127.com.json).
+- [Current WHOIS](https://www.whoxy.com/845145127.com) — current registration only, not a 2012 ownership record.
+
+Run `bash sims/verify_2012_845145127_signatures.sh` to verify the three preserved clear-signed payloads.
