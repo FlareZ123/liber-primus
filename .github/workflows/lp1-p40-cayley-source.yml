@@ -26,3 +26,6 @@ jobs:
 
       - name: Source-LP1 two-square corner pair-Hill inverses on linked LP2 pages
         run: node sims/lp1_square_corner_hill2_artlink_sft.cjs
+
+      - name: LP2 p22 all-F 125-keyed-rune p16 square-clock source test
+        run: node sims/lp1_p16_p22_allF_5x5_key_sft.cjs
