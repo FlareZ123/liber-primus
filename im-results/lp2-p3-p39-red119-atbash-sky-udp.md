@@ -23,6 +23,12 @@ One immediate candidate readout **does fail** without any guesswork: the complet
 
 The paired `SCY/UDP` makes an unusually specific original-source hypothesis: a returning 2014 solver might apply the previously learned Atbash to exceptionally marked red triplets, recognize the earlier sky clue and consider a different packet transport. However, neither fragment supplies the required **IP/hostname, port, message payload, return framing, date of live infrastructure, or a GP29 cipher inverse**. The 2013 participant-documented server address does not establish a 2014 live listener. Sending a UDP packet to an ordinary Tor onion is also not a supported direct transport, so a viable proposal must identify an actual period-available network endpoint instead of assuming the historical onion accepted UDP.
 
+## Held-out red-ink control: Atbash does not decode arbitrary red spans
+
+Applying the same frozen GP29 Atbash to other source-visible red fragments does **not** recover ordinary headings. For example, the original p0 red13 heading becomes `PLIAEOENUEAPTHIWD`, the p3 initial red16 becomes `HBTLWDYEOOBEOXLEOIAG`, and p33 red10 becomes `CTXDEAERNGLOE`. Most decisively, the **genuinely solved p57 red heading** spells `PARABLE` directly; applying Atbash would corrupt it to `SRARJHI`. The SFT asserts this solved-page negative control.
+
+**Interpretation:** The hypothesis must be restricted to the uniquely paired, 13-dot-bracketed, length-three red spans on p3/p39. The red ink in general is not an Atbash instruction, and it does not license applying Atbash to every other unsolved rubric. This narrow selection is externally observable before decryption but still lacks proof of author intent.
+
 ## The strongest counterexplanation and decision gate
 
 Two three-letter outputs are short enough to invite post-hoc semantics. `SCY` requires the conventional C/K phonetic normalization; `UDP` is a common internet acronym, and neither fragment includes the word `SEND`, `PORT`, an address or a separate 2014 source instruction selecting this Atbash application. It is possible that both are encrypted decorative rubrics and their matching offset119 is ordinary page composition. Statistical language hits would be unconvincing when selected after seeing the outputs.
