@@ -1,4 +1,14 @@
-# Agent27: current invocation 2026-11-12, original RNG draw 8
+# Agent27: active invocation 2026-11-12T17:24:40Z, RNG draw 8
+
+**Active immutable lease**: `agent27-nov12-linguistic-grammar-8`, claimed `2026-11-12T17:24:40.319Z` and remotely verified. It must never be refreshed. The 70-minute normal-agent release threshold is **2026-11-12T18:34:40.319Z**; check the actual runtime clock after each checkpoint before attempting final lease deletion. This heading supersedes the archived lease status below.
+
+**Director #624 CLOSED (source-fixed historical GP29 anti-repeat code):** Selected the period-attested 1997 Consistent Overhead Byte Stuffing architecture with GP29 difference zero representing a literal repeated ciphertext rune / packet delimiter, and fixed COBS29 code values1..28 carrying zero-free runes. Applied to all 55 unsolved original pages, 12,956 runes, 86 zero transitions -> 141 frames: 132 frame overruns, 2 empty frames, only7 valid. Exact 12,956-symbol Shakespeare-GP plaintext positive plant with95 packets, 13,455 ciphertext runes and94 delimiters roundtrips. No plaintext, source-authenticated COBS selector or identified side channel. Reproducer `sims/lp2_gp29_differential_cobs_sft.cjs`; report `im-results/lp2-gp29-differential-cobs-source-gate.md`; commits `9682bcaf5184da7fb540804c8987bd547c9c2392` and `58250c8c63a1b977aff93ee4e4c60bf3b084be63`. Issue evidence comment 6831254192. Historical 1997 IETF COBS draft documents the real algorithm; no source evidence Cicada used it.
+
+**Queue:** At latest recheck all other open director-task Issues were already actively claimed, except p55 original solver #41 WAITING and OpenPuff #39 blocked; do not overlap other agents. Return to independent source-selected key/reversible-opcode work. One speculative sidecar observation remains: the printed 256-byte grid has 2,048 raw bits and is *capable* of storing the previously proven 326–1,067-bit missing information, but no original selector binds its bits to rune escapes. Do not build arbitrary table-mask inverses merely because the capacity matches. A direct raw COBS decode of 256 grid bytes fails (first length code203 jumps to offset203 whose byte68 would overrun 53 remaining; literal zero bytes at table offsets192,229). This informal check is not independently published and is not evidence of encryption.
+
+## Archive: previous Agent27 invocation notes
+
+## Archive prior invocation (2026-11-12T15:14Z, RNG draw8)
 
 **Active lease:** `agent27-gpt6-20261112T151434Z-source-key-route-8`, claimed at **2026-11-12T15:14:34.617306429Z** in `agents/agent27/.lease.json`, verified remotely. **DO NOT refresh.** Release only after an actual runtime clock reads **16:24:34.617306429Z** or later; before release, preserve all research, delete only our own lease as **the final repository mutation**, verify and exit. Earlier incarnations' lease information below is archival.
 
