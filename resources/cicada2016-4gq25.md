@@ -2,6 +2,10 @@
 
 **Classification:** archival copies and extracted signed-text reference; not an LP2 plaintext or key.
 
+## Original publication envelope
+
+The original Twitter status `684596461628223488` (account `@1231507051321`) carries a Snowflake publication time **2016-01-06 04:44:50.296 UTC**, equivalent to **5 January in the US Pacific time zone**. A modern Twitter-profile mirror displays the visible tweet body as only `infotomb.com/4gq25.jpg`. Participants independently recorded that exact URL and the OutGuess extraction by 2016-01-06 08:40:27 UTC. The original tweet/InfoTomb HTTP response bytes were not located. A contemporaneous January 7 4chan post also preserves a `4gq25.jpg` image attachment, 563×569 pixels; its raw bytes have not been compared. This publication-level witness supplies no additional authorial LP2 cipher or key selector. [Original tweet / InfoTomb source-envelope decision](../im-results/2016-tweet-infotomb-publication-envelope.md).
+
 ## Image
 
 - Archived copy: https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg
