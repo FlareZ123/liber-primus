@@ -22,6 +22,9 @@ jobs:
         run: |
           python3 research/sims/anend_original_archive_docx_scan.py source > original-docx-scan.json
           python3 -c "import json; x=json.load(open('original-docx-scan.json',encoding='utf-8')); print(json.dumps({'source':x['upstream_commit'],'files':x['totals']['files'],'bytes':x['totals']['bytes'],'hit_counts':x['totals']['hit_counts'],'per_document':[{'path':d['source_path'],'hits':d['hit_counts']} for d in x['documents']]},indent=2))"
+      - name: Show document context for exact hash and page-59 hits
+        run: |
+          python3 -c "import json; x=json.load(open('original-docx-scan.json',encoding='utf-8')); print(json.dumps([{'file':d['source_path'],'hits':[{'kind':h['kind'],'excerpt':h['excerpt'][:420]} for h in d['hits'] if h['kind'] in ('specific_hash','hash_instruction','missing_page_file','missing_page_prose')]} for d in x['documents']],indent=2))"
       - name: Preserve exact source-docx hit windows
         if: always()
         uses: actions/upload-artifact@v4
