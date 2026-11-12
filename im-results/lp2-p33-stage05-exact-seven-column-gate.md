@@ -28,6 +28,19 @@ The continuous transliteration is:
 
 No meaningful p33 title, body, readable instruction or independent source text emerges. The red heading and punctuation boundaries are original visual controls, preserved as locations, and cannot be reinterpreted as seven-column cipher symbols.
 
+## Second authentic source-visible seven-multiple: complete p54–55 chapter
+
+The independently established [original red-heading chapter map](lp2-global-original-visual-section-map.md) gives **p54–55 as one 308-rune chapter**, ending in p55's own red thirteen-dot marker. Unlike p55 alone (76 runes), **308=44×7** fits the historically sourced Stage05 seven-column rowwise readout without padding. This is a distinct original-source **positive structural selector** for testing the same 1736254 operation once with one continuous chapter clock beginning at p54 local rune0. It is an arithmetic alignment, not proof of creator intent; no phase/width or changing key was fitted.
+
+The [same extended SFT](../sims/lp2_p33_stage5_row7_transfer_sft.cjs) imports the authentic Stage05 encoder/decoder, freezes the original p54+55 GP29 corpus as 44 complete seven-rune rows, asserts an exact **308-rune** forward round-trip, and prints every decoded rune. It also benchmarks the solved p57 PARABLE plaintext in the identical quadgram model. The exact original-span outputs are:
+
+| Native original GP29 interval | Original score | Source-fixed Stage05 1736254 decoded score |
+| --- | ---: | ---: |
+| pp54–55, complete 308-rune final unknown chapter | **−7.3697646645** | **−7.5363475473** |
+| Solved p57 PARABLE GP English (positive) | **−4.4206334171** | Not transformed |
+
+The decoded chapter's first nine GP symbols read **A X NG TH M IA D I U**, its joined first fifty Latinized letters read **AXNGTHMIADIUIANGMPDWNGMNGAATTHCWIIAHSAEIAEMPOGAFOOEWTYEATJUTHJE**, and its final 76-rune portion remains nonlinguistic. Its complete 308-rune token sequence is emitted by the SFT, with no selective substring scoring. The exact historical seven-column mapping makes the original ciphertext **less English-like** than before. There is no recovered plaintext or source-defined key. This rejects only this *second complete, source-segmented, frozen operator transfer*, not all block transformations.
+
 ## Readout on pinned English quadgrams
 
 Scores use the existing English quadgram file resources/control/duko_round27_english_quadgrams.txt, summed log10 probability over four-letter windows in GP transliterations. Higher scores are more English-like. The original 91 p33 runes and their decoded output both have 113 Latin letters after GP29 transliteration.
