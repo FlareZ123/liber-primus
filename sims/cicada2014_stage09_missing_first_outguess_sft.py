@@ -102,7 +102,7 @@ def main() -> None:
     )
     expected_digits = {1: b"3", 2: b"3", 3: b"0", 4: b"1"}
     for i, raw in recovered_by_index.items():
-        border = re.findall(rb"(?m)^([0-9])\\1{15}\\s*$", signed_body(raw))
+        border = re.findall(rb"(?m)^([0-9])\1{15}\s*$", signed_body(raw))
         assert border == [expected_digits[i], expected_digits[i]], (i, border)
     print("FOUR_SOURCE_DIGITS=3301; archived duplicate image4 for image1 gives 1301")
     with tempfile.TemporaryDirectory(prefix="cicada2014-stage09-gpg-") as home:
