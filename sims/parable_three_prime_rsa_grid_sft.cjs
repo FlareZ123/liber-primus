@@ -3,8 +3,11 @@
 
 // Bounded test of the candidate interpretation:
 //   N = p*q*r = 1,595,277,641 from the 2013 AUDIO/761 Parable metadata;
-//   e = 65,537 from the documented 2014 Cicada RSA stage.
-// N-as-modulus is an inference, not an author statement. Since N is only
+//   e = 65,537 from the documented 2014 Cicada RSA stage;
+//   e = 761 from the 2013 MP3 basename/TIT2 title sum and e = 3301 from
+//   its TPE1 performer field are additional source-derived candidates.
+// N-as-modulus and the two additional exponents are inferences, not author
+// statements. Since N is only
 // 31 bits, OAEP cannot fit; this tests textbook RSA only.
 //
 // Inputs tested:
@@ -85,6 +88,14 @@ function base29Fixed7(value) {
   assert.strictEqual(value, 0n);
   return out;
 }
+function base29Digits(value) {
+  const out = [];
+  do {
+    out.push(Number(value % 29n));
+    value /= 29n;
+  } while (value > 0n);
+  return out.reverse();
+}
 function ioc(xs) {
   const f = Array(29).fill(0);
   for (const x of xs) f[x]++;
@@ -146,6 +157,38 @@ const columnMatches = threeByteColumns.map(xs =>
 const lowDigit = threeByteDecrypted.map(x => Number(x % 29n));
 const lowDigitMatches = lowDigit.reduce((n, x, i) => n + (x === p56Plaintext[i] ? 1 : 0), 0);
 
+// The same original 2013 ID3 asset also supplies two small, source-derived
+// candidate exponents: the filename/TIT2 GP-prime sum 761 and TPE1 value 3301.
+// They are tested without changing the N, byte framing, or output encoding.
+const sourceExponentExtensions = [761n, 3301n].map(sourceE => {
+  const sourceD = modInverse(sourceE, phi);
+  const decrypted = threeByteBlocks.map(x => modPow(x, sourceD, N));
+  const digits = decrypted.flatMap(base29Fixed7);
+  const columns = Array.from({ length: 7 }, (_, col) =>
+    decrypted.map(x => base29Fixed7(x)[col]));
+  const low = decrypted.map(x => Number(x % 29n));
+  const roundTrip = decrypted.every((m, i) => modPow(m, sourceE, N) === threeByteBlocks[i]);
+  assert.ok(roundTrip, 'source-derived exponent RSA round-trip must pass');
+  return {
+    e: sourceE.toString(),
+    source: sourceE === 761n
+      ? '2013 MP3 basename and TIT2 title GP-prime sum'
+      : '2013 MP3 TPE1 performer field',
+    d: sourceD.toString(),
+    dBase29: base29Digits(sourceD),
+    blocks: decrypted.length,
+    decryptedBase29Runes: digits.length,
+    ioc: ioc(digits),
+    emersonGpLanguageScore: languageScore(digits, model),
+    lowDigitMatchesSolvedP56: low.reduce((n, x, i) => n + (x === p56Plaintext[i] ? 1 : 0), 0),
+    allSevenDigitColumnMatchesSolvedP56: columns.map(xs =>
+      xs.reduce((n, x, i) => n + (x === p56Plaintext[i] ? 1 : 0), 0)),
+    bestOfSevenFixedDigitColumnsMatchesSolvedP56: Math.max(...columns.map(xs =>
+      xs.reduce((n, x, i) => n + (x === p56Plaintext[i] ? 1 : 0), 0))),
+    rsaRoundTripPassed: roundTrip,
+  };
+});
+
 // Fixed-width seven-digit GP29 representation of any c < N must begin with
 // digit 0, 1, or 2. Test every possible fixed phase, allowing any static
 // permutation from rune symbols to base29 digits.
@@ -164,10 +207,14 @@ for (let phase = 0; phase < 7; phase++) {
 }
 
 const report = {
-  hypothesis: 'Three-prime textbook RSA with Parable product as N and e=65537',
+  hypothesis: 'Three-prime textbook RSA with the Parable product as N and three source-derived exponent candidates',
   provenance: {
     modulusCandidate: '2013 AUDIO/761 TXXX Parable product; p57 clause sums 1259*1031*1229',
-    exponentCandidate: 'e=65537 from the documented 2014 Cicada RSA stage',
+    exponentCandidates: [
+      { e: '65537', source: 'documented 2014 Cicada RSA stage' },
+      { e: '761', source: '2013 MP3 basename and TIT2 title GP-prime sum; candidate only' },
+      { e: '3301', source: '2013 MP3 TPE1 performer field; candidate only' },
+    ],
     status: 'cross-round inference; no source explicitly names this product as an LP2 RSA modulus',
     padding: 'OAEP cannot fit a 31-bit modulus; textbook RSA only',
   },
@@ -188,12 +235,13 @@ const report = {
       lowDigitMatchesSolvedP56: lowDigitMatches,
       bestOfSevenFixedDigitColumnsMatchesSolvedP56: Math.max(...columnMatches),
       allSevenColumnMatches: columnMatches,
+      sourceExponentExtensions,
     },
   },
   unknownLp2: {
     runes: unknown.length,
     fixedSevenDigitLeadingPhases: leadingPhases,
   },
-  conclusion: 'The tested direct textbook-RSA framings do not recover plaintext. This does not exclude other uses of the Parable number, other moduli, or source-fixed non-RSA mechanisms.',
+  conclusion: 'The direct textbook-RSA framings tested with e=65537, 761, and 3301 do not recover plaintext. The 761/3301 exponent readings remain candidate interpretations, not authenticated instructions. This does not exclude other uses of the Parable number, other moduli, or source-fixed non-RSA mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
