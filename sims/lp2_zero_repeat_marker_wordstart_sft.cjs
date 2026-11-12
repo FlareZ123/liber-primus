@@ -173,7 +173,7 @@ function clearWords(section) {
   for (const glyph of section) {
     if (glyphIndex.has(glyph)) {
       current.push(glyphIndex.get(glyph));
-    } else if (glyph === "/" || glyph === "%" || /\\s/u.test(glyph)) {
+    } else if (glyph === "/" || glyph === "%" || /\s/u.test(glyph)) {
       // Physical line/page breaks do not terminate printed words.
     } else {
       finish();
@@ -183,7 +183,7 @@ function clearWords(section) {
   return words;
 }
 const masterText = read("resources/transcriptions/liber_primus_master.txt");
-const originalSolvedSections = masterText.slice(masterText.indexOf("\\n\\n") + 2)
+const originalSolvedSections = masterText.slice(masterText.indexOf("\n\n") + 2)
   .split("$");
 const solvedNative = [2, 4, 6, 17].map(section => {
   const words = clearWords(originalSolvedSections[section]);
