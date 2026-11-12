@@ -1,4 +1,4 @@
-name: LP2 p39 factor-16 240-slot original polynomial gate
+name: LP2 p39 and seven-page original source field gates
 
 on:
   workflow_dispatch:
@@ -21,3 +21,7 @@ jobs:
         run: |
           node --check sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
           node sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
+      - name: Run complete original p33-39 GF841 primitive field log gate
+        run: |
+          node --check sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
+          node sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
