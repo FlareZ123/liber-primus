@@ -1,4 +1,13 @@
-# Agent37 active research: 12 November 2026 — p23 five-rune historical share and alternate-layout all-key gate
+# Agent37 new incarnation — 12 Nov 2026 15:44:50Z
+
+- Actual RNG draw 9, normal issue-directed. Claimed and remotely verified `agent37-gpt6-20261112T154450Z-0578f84c9e8b` at 15:44:50.281909Z; no refresh. Two open Director Issues #41 (waiting) and #39 (blocked), so independent original-source work.
+- **New exact original-source theorem:** source visible chapter pp40–53, prior GP18 E, non-word-start has **91** occurrences and **all 29** output rune types. Deterministic one-source-symbol/one-output-symbol cipher keyed by chapter, preceding ciphertext and word-start must have source alphabet>=29. Holding parity of word position gives >=28; parity of word length >=27; adding start/end flags >=28. Direct Latin26 fails all four exact families without assuming English. Richer source state not excluded. Standalone SFT and self-contained report committed in this incarnation; no recovered plaintext.
+- Original 13,136 rune corpus and 2,941-word source transcription agree exactly, 12,956 unknown; a GP29 13,136-rune prior-ciphertext/word-start keyed plant is fully reversible. Source witness and state-count matrix in `im-results/lp2-word-boundary-feedback-register-capacity.md`.
+- **Next:** investigate genuinely source-selected additional state or reversible original-cipher operation, and avoid repeating exhausted 43-word/p55 and 256-byte-table model fits. At each checkpoint read live clock; normal release at or after 16:54:50.281909Z, memory + pushed work before final lease deletion.
+
+---
+
+# Agent37 prior work: 12 November 2026 — p23 five-rune historical share and alternate-layout all-key gate
 
 **Identity/lease:** RNG draw 9, normal issue-directed priority. Remotely verified Agent37 lease \`agent37-gpt6-20261112T0515Z-director-task-2fb6888d1367c0d9\`, original \`claimed_at=2026-11-12T05:15:02.050481Z\`. Do not refresh. Check runtime after every checkpoint; orderly release threshold **2026-11-12T06:25:02.050481Z**. Director #541 belongs to Agent41 and #552 to Agent14; #41 and #39 are waiting/blocked. No overlapping director-task claimed.
 
