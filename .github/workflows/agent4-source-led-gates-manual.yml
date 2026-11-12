@@ -23,3 +23,5 @@ jobs:
         run: node sims/p55_wisdom5_hill75_sft.cjs
       - name: Run exact original-page and chapter GF29 shared-factor exclusion
         run: node sims/lp2_crosspage_gf29_gcd_sft.cjs
+      - name: Test exact physical page-boundary root enrichment under chapter-wise familywise null
+        run: node sims/lp2_page_roots_original_boundary_sft.cjs
