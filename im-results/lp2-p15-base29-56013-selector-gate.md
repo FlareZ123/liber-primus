@@ -1,6 +1,6 @@
 # LP2 p15 red-heading BASE29 coincidence and CicadaOS 560.13 transfer gate
 
-**Classification: original-input arithmetic; completed fixed original-file XOR/additive/five-bit and R40-B3 key-skip source-transfer negatives. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026; original R40-B3 run completed by Agent11, 12 November 2026.**
+**Classification: original-input arithmetic; completed fixed original-file XOR/additive/five-bit, R40-B3 key-skip, and quotient-plus-prime 16-byte direct-key source-transfer negatives. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026; original R40-B3 run completed by Agent11, 12 November 2026.**
 
 ## Why this route is attractive
 
@@ -77,6 +77,19 @@ The original same-section ciphertext has IoC **0.03449490**. The period-native X
 
 **Combined grid-offset key test.** Instead of consuming sequential file bytes, read exactly the sixteen `560.13` bytes at the source grid's underlying prime offsets and repeat that 16-byte key from the beginning of the same 1,894-rune section. This is the most literal direct way to combine the numeric square, selected historical dataset and following encrypted text without an unknown phase. For GP29 subtraction/addition with each byte reduced modulo29, original IoCs are **0.03460646 / 0.03457411**. For bytes scaled by floor(29×byte/256), original IoCs are **0.03439951 / 0.03469181**. All four streams remain nonlinguistic; none separates meaningfully from the unchanged 0.03449490 ciphertext. These results also retire this exact periodic sixteen-byte extraction.
 
+
+
+**Quotient-plus-prime sparse 16-byte key to p50 (12 November 2026).** A further fixed combination uses the p15 heading quotient **8,952,964** as the DATA/560.13 byte base and the sixteen *underlying prime values* in the clockwise Fibonacci-prime spiral as relative offsets: 2, 3, 5, 7, 13, 23, 43, 79, 149, 263, 463, 829, 1,481, 2,593, 4,507, 7,817. (The final two printed square values are absolute differences from 3301; they must not be mistaken for the primes themselves.) The full 118,818,811-byte original DATA/560.13 file was re-downloaded and checked against SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f.
+
+The sixteen bytes at quotient-plus-prime positions form two fixed 16-byte candidates for the only two natural address conventions:
+
+- Zero-based offsets: **3f6b9118a074c660c3d786b7c8c9c735**
+- One-based positions: **663fef4ddfd4c6aae88faaca2be11511**
+
+Each key was tested as repeating XOR and AES-128-ECB (the no-IV AES mode) against the original 256-byte p50 table, in row-major and column-major order. Across all eight outputs, printable counts were 85–107/256, longest ASCII runs were 4–6, no tested file header appeared, and no SHA-512 matched the p56 target. This is a bounded negative for the direct 16-byte key consumers; the sample extraction is source-motivated, but the quotient-plus-prime addition and AES-128 consumer are not explicitly instructed by the manuscript.
+
+Reproducer: **sims/lp2_p15_56013_baseprime_aes128_sft.cjs**; targeted workflow: **.github/workflows/lp2-p15-baseprime-aes128.yml**; successful CI run [43293178892](https://github.com/FlareZ123/liber-primus/actions/runs/43293178892), artifact [13978056563](https://github.com/FlareZ123/liber-primus/actions/runs/43293178892/artifacts/13978056563); compact output: **im-results/p15-baseprime-aes128-results.json**.
+
 **Secondary speculative lower-heading-offset transfer.** For comparison, use the lower p15 red heading's modulo-3301 remainder **2293** as a proposed source-pad offset. This is less independently motivated than historical offset12821. Test the **139 original p15 body runes after both red headings** as a short diagnostic:
 
 | Fixed original-input operation | Observed result |
@@ -106,6 +119,6 @@ Each clock included **17 byte offsets × five fixed bytewise builders** (`mod29`
 
 Control quality was verified in the same run: all **three** language-register licenses and all **six** relation-specific planted gates passed; the 61,440 source-independent decoy controls had **47** screen survivors (rate **0.000764974**), and the historical XOR positive control passed. The runner status was `COMPLETE`, error list empty, **0** decoded original rows, with 840.01 seconds measured runtime. The absence of survivors is a real result, although the experiment has no new plaintext or source-authenticated inverse.
 
-**Next decision:** retire this exact quotient/spiral-relative DATA/560.13 R40-B3 source transfer alongside the already negative direct-XOR, five-bit, GP29 additive and prime-offset variants above. Do not launch more file offsets, KDFs or clocks based on this coincidence. The original p15 infinity mark permits considering a separate one-step continuation hypothesis: p1598=13477=29×464+21, with 464=π(3301) and 21=F8. The corresponding base+13477 offset 8,966,441 was not in the completed 17-offset test and is not automatically a new pad candidate; it requires a separately selected consumer and Director approval. The arithmetic identity is retained as a conditional cross-round association, not a proven pad selector.
+**Next decision:** retire this exact quotient/spiral-relative DATA/560.13 R40-B3 source transfer, the direct-XOR/five-bit/GP29 additive and prime-offset variants, and the new quotient-plus-prime sparse 16-byte key as a direct repeating-XOR/AES-128-ECB consumer. The two extracted keys and all eight p50-table outputs are recorded above and in the compact result JSON; none produces readable plaintext, a recognized header, or the p56 target hash. Do not expand into arbitrary KDFs, offsets, phases, IVs, modes, or clocks without a new original-source instruction. The original p15 infinity mark permits considering a separate one-step continuation hypothesis: p1598=13477=29×464+21, with 464=π(3301) and 21=F8. The corresponding base+13477 offset 8,966,441 was not in the completed 17-offset test and is not automatically a new pad candidate; it requires a separately selected consumer and Director approval. The arithmetic identity is retained as a conditional cross-round association, not a proven pad selector.
 
 **Reproducer:** [`sims/lp2_p15_base29_56013_bridge_sft.cjs`](../sims/lp2_p15_base29_56013_bridge_sft.cjs) asserts all source digits, arithmetic, red-span uniqueness, reconstructed-pad positive control, original runic body, and exact negative readouts. Run locally with Node.js using the existing repository files. The candidate is not promoted to `results/`.

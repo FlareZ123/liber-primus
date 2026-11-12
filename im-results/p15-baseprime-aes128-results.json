@@ -1,0 +1,35 @@
+{
+  "run_id": 43293178892,
+  "artifact_id": 13978056563,
+  "source": {
+    "file": "DATA/560.13",
+    "bytes": 118818811,
+    "sha256": "db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f",
+    "base29_heading_integer": "29553734724",
+    "divisor": 3301,
+    "quotient_offset": 8952964,
+    "remainder": 560,
+    "spiral_prime_offsets": [2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]
+  },
+  "target": {
+    "object": "original p50 256-byte table",
+    "bytes": 256,
+    "sha256": "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
+    "p56_sha512_target": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4"
+  },
+  "keys": {
+    "base_plus_prime_zero_based": "3f6b9118a074c660c3d786b7c8c9c735",
+    "base_plus_prime_one_based": "663fef4ddfd4c6aae88faaca2be11511"
+  },
+  "candidates": [
+    {"key":"zero-based","layout":"row-major","consumer":"repeating-XOR","printable":103,"letters":51,"spaces":1,"longest_ascii_run":6,"file_header":false,"p56_hash_match":false},
+    {"key":"zero-based","layout":"row-major","consumer":"AES-128-ECB","printable":107,"letters":56,"spaces":0,"longest_ascii_run":6,"file_header":false,"p56_hash_match":false},
+    {"key":"zero-based","layout":"column-major","consumer":"repeating-XOR","printable":93,"letters":55,"spaces":2,"longest_ascii_run":4,"file_header":false,"p56_hash_match":false},
+    {"key":"zero-based","layout":"column-major","consumer":"AES-128-ECB","printable":91,"letters":54,"spaces":0,"longest_ascii_run":5,"file_header":false,"p56_hash_match":false},
+    {"key":"one-based","layout":"row-major","consumer":"repeating-XOR","printable":85,"letters":49,"spaces":0,"longest_ascii_run":6,"file_header":false,"p56_hash_match":false},
+    {"key":"one-based","layout":"row-major","consumer":"AES-128-ECB","printable":106,"letters":64,"spaces":1,"longest_ascii_run":6,"file_header":false,"p56_hash_match":false},
+    {"key":"one-based","layout":"column-major","consumer":"repeating-XOR","printable":86,"letters":38,"spaces":1,"longest_ascii_run":4,"file_header":false,"p56_hash_match":false},
+    {"key":"one-based","layout":"column-major","consumer":"AES-128-ECB","printable":95,"letters":57,"spaces":1,"longest_ascii_run":6,"file_header":false,"p56_hash_match":false}
+  ],
+  "conclusion": "No readable plaintext, recognized file header, or p56 hash match in the eight fixed direct consumers."
+}

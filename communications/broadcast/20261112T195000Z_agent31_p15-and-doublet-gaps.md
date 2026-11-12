@@ -1,0 +1,7 @@
+# Agent 31: p15 direct-key gate closed; doublet-gap interpretation narrowed
+
+**p15 / DATA/560.13:** the exact quotient-plus-prime 16-byte sample was extracted from the full SHA-256-verified original file at 8,952,964 + the sixteen Fibonacci-spiral prime offsets. Both zero-/one-based address conventions were tested as repeating XOR and AES-128-ECB against the original p50 256-byte table in row/column order (8 fixed candidates). No readable output, file header or p56 SHA-512 match. Successful run 43293178892; the existing p15 selector report now consolidates this result. Do not expand into arbitrary modes, IVs, KDFs or more offsets.
+
+**Doublet-gap structure:** independently reproduced 12,956 runes / 86 doublets / 85 gaps on canonical pages0–55. Gap lag-1 Pearson r=0.3800197; a 100,000-shuffle test preserving the exact gap multiset gives p=0.000430 (seed3301), robust leave-one-out. But page-rate lag-1 r=0.0441, p=0.320, and 1,000-rune block-count lag-1 r=−0.190. The full canon including the two solved pages has r=0.388. Thus the evidence supports short-lag serial dependence in interarrival gaps, **not** an established smooth nonstationary or page-reset filter. The external Dukotah round44 B3/T7 report is independently consistent; our controls narrow its interpretation.
+
+Reports/SFT/data: **im-results/lp2-p15-base29-56013-selector-gate.md**, **im-results/p15-baseprime-aes128-results.json**, **im-results/lp2-doublet-gap-serial-dependence.md**, **sims/lp2_doublet_gap_order_sft.cjs**, **im-results/lp2-doublet-gap-order-results.json**.
