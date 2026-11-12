@@ -112,6 +112,32 @@ const original = physical.flat();
 assert.equal(seed.length, 238);
 assert.equal(original.length, 696);
 
+// Exact all-secret stationary-symbol obstruction to a separate direct
+// 239-to-239 factor/printed-symbol correspondence: original p36 has a
+// literal Arabic numeral 1 after rune99 (one-based printed ordinal 100).
+// Q238 has 239 coefficients including a monic leading 1. Any injective
+// stationary relabeling and/or arbitrary position permutation must preserve
+// the sorted 29-symbol occurrence multiplicities, independently of position.
+const p36Printed = [...seed.slice(0, 99), 1, ...seed.slice(99)];
+const qPrinted = Q.slice().reverse();
+const spectrum = xs => {
+  const h = Array(29).fill(0);
+  for (const value of xs) h[value]++;
+  return h.sort((a, b) => b - a);
+};
+assert.equal(qPrinted.length, 239);
+assert.equal(p36Printed.length, 239);
+assert.equal(p36Printed[99], 1);
+assert.equal(qPrinted[0], 1);
+const p36Spectrum = spectrum(p36Printed);
+const qSpectrum = spectrum(qPrinted);
+assert.deepEqual(p36Spectrum.slice(0, 6), [14,14,14,13,13,12]);
+assert.deepEqual(qSpectrum.slice(0, 6), [15,12,11,11,11,10]);
+assert.notDeepEqual(qSpectrum, p36Spectrum);
+const anchoredQ = Array.from({ length: 239 }, (_, i) => qPrinted[(i - 99 + 239) % 239]);
+const anchoredMatches = anchoredQ.filter((q, i) => q === p36Printed[i]).length;
+assert.equal(anchoredMatches, 2);
+
 // A solved independent GP29 native-plaintext positive control. The plant
 // covers all 696 positions using only unchanged, already solved p57 runes.
 const native = page(57);
@@ -150,6 +176,10 @@ console.log(JSON.stringify({
     target: 'original p37–p39, source order', targetRunes: original.length,
     rawIoC: ioc(original) },
   factor: { qDegree: Q.length - 1, originalGridSha256: '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290' },
+  direct239Gate: { printedP36Runes: 238, sourceArabicNumeralOneOffset: 99,
+    monicQ238CoefficientSlots: 239, qTopMultiplicities: qSpectrum.slice(0, 6),
+    p36TopMultiplicities: p36Spectrum.slice(0, 6),
+    identicalMultiplicities: false, sourceMonicNumeralAnchoredMatches: anchoredMatches },
   tested: results, originalRoundtrip: true,
   solvedNativePlant: { length: plant.length, recoveredExactly: true },
   verdict: 'No unknown GP29 native plaintext recovered under this exact 238-state LFSR use.'
