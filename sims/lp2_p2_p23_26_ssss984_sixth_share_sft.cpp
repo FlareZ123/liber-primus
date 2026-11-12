@@ -103,7 +103,7 @@ int main() {
   // XOR_i(W[i] * y[i]) == D iff the degree-five coefficient is one.
   uint64_t determinant=1;
   for(int i=0;i<6;i++)for(int j=i+1;j<6;j++)
-   determinant=smallProduct(determin,uint64_t(ids[i]^ids[j]));
+   determinant=smallProduct(determinant,uint64_t(ids[i]^ids[j]));
   std::array<uint64_t,6> weight{};
   for(int omit=0;omit<6;omit++) {
    uint64_t w=1;
