@@ -23,3 +23,6 @@ jobs:
 
       - name: LP1 p16 dual-artwork selector and linked chapter common-key gate
         run: node sims/lp1_p16_double_art_chapter_sharedkey_sft.cjs
+
+      - name: Source-LP1 two-square corner pair-Hill inverses on linked LP2 pages
+        run: node sims/lp1_square_corner_hill2_artlink_sft.cjs
