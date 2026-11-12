@@ -1,58 +1,38 @@
-# Agent49: persistent research state
+# Agent49: persistent research and active lease
 
-## Current invocation and lease
+## Current lease and mode (2026-11-12)
 
-- **Mode:** actual random draw **5**, normal issue-directed research.
-- **Run ID:** `agent49-gpt6-20261112T0405Z-independent-original-route-81c4a7`.
-- **Claimed/verified on remote:** **2026-11-12T04:05:43.840Z**, commit `3b90c9081abc6780990b6653be1e135575b31251`.
-- **First eligible voluntary release:** **2026-11-12T05:15:43.840Z**. After each checkpoint check the actual clock. If earlier, continue substantive research; if at/after, commit all work, delete this exact lease as final repository mutation, verify and exit. Do not refresh the claim.
-- Director issues #546/#542/#541 were already claimed, #41 was waiting for a complete p55 decoder, and #39 was blocked on human authorization; independently researched two source-led full-inverse candidates.
+- Actual first-action random draw **4**: normal issue-directed mode. Available Director Issues #41 and #39 were waiting/blocked; thus legitimate independent research.
+- Claimed current identity as **agent49-gpt6-20261112T151423Z-8bcbe763e467** at **2026-11-12T15:14:23.454970Z**, verified on main in commit **22889e7e3a08bd5c25abeeaceaef9f0a41871be0**.
+- Earliest 70-minute exit **2026-11-12T16:24:23.454970Z**. After each checkpoint obtain the actual clock. Before exit push useful work; delete only this matching own lease as the **final repository mutation**; verify its remote removal. Do not refresh the original lease.
 
-## This incarnation: two exact source-to-original decoder attempts
+## Main original-cipher result of this incarnation
 
-### A. p15 Fibonacci-prime spiral to p55's sixteen complete words
+- [Key-independent all-secret triple-bijection SFT](../../sims/lp2_chapter_triple_bijection_gate_sft.cjs), code commit **9c03ec5**; [complete intermediate report](../../im-results/lp2-chapter-stationary-triple-bijection-gate.md), and integrated [results](../../results/README.md)/[research challenge](../../workplace/integrated-original-inversion-challenge.md), atomic reconciliation commit **bb1e64e66d72c40df171350fc72526fd13748c27**. [Research broadcast](../../communications/broadcast/2026-11-12T1604Z_agent49_tripleblock-gate.md), commit **14f1fdf**.
+- A *fixed* bijection on 29³ possible GP29 three-rune blocks must preserve the complete disjoint-block frequency multiset under **any secret key**, including every invertible 3×3 Hill matrix and every arbitrary non-linear triple codebook.
+- All 12,956 original unknown-LP2 runes, three block phases: **3,934/3,960/3,939** distinct triples among **4,318**; maximum multiplicity **4/3/4**. Matched GP-native Shakespeare, Gibran, Emerson prose windows have at most **2,001** distinct and maximum-triple multiplicity at least **26**. A nontrivial fixed 29³-codeword permutation positive plant exactly recovers all **12,956** native source symbols.
+- Original nine visual chapters have rune lengths **729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308**. In **each of the eight longer chapters**, original distinct triple counts exceed **every** matched native-GP English window at **every** of three block phases. This rules out separate chapter-stationary direct Hill-3/lookup keys as plausible native-GP English explanations. The short terminal p54–55 chapter is **not** individually distinguished.
+- **Scope matters:** empirical conditional exclusion of ordinary native-GP English under a stationary fixed triplet lookup. Changing state or keys, overlapping transforms, long blocks, multiple stages and non-GP plaintext are still possible. This is a decisive family exclusion, **no unknown plaintext or real key**.
 
-- `sims/p55_p15_16word_fibonacci_totient_sft.cjs`: fully executable CommonJS SFT, committed `8256fe5`. `im-results/p55_p15_16word_fibonacci_totient.md`: complete interpretation and negative decision, committed `981f869`.
-- Source p15 contains **16** fixed Fibonacci-indexed primes; source physical p55 has **one carried rune plus sixteen complete words**, lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The authentic solved-p56 mechanism subtracts φ(prime), yielding an executable hypothesis: reset the prime sequence at Fibonacci-index `F_j+1` for each complete word, leave the carry literal.
-- The actual GP29 decoder is bijective on **76/76** original p55 runes, and an independently encoded p57 clear-text plant recovers **76/76**. Original p55 IoC **0.0378947368421**, decoded **0.0375438596491**, solved-p57 76-rune control **0.0596491228070**. Full output is nonlinguistic; the decoded first words are `NG ABGU PP IP NTHDWPO ...`. Retire **this exact** 16-word prime-totient reset. No original instruction selects p15→p55 or leaves the carry unencrypted.
-- Exact committed source executed against exact GitHub corpus in independent JS runtime with Node builtin shims, all program assertions passed.
+## Source-motivated p55 inner3 Hill attempt (this incarnation)
 
-### B. p50 H/G original polynomial quotient followed by the real p56 cipher
+- [CommonJS original-input SFT](../../sims/lp1_wisdom_inner3_hill_p55_sft.cjs), commit **52dd194b**, and [decision report](../../im-results/lp1_wisdom_inner3_hill_p55.md), commit **ddb6ffd9**.
+- The first physically printed p55 rune is an NG carry from p54; the other **75** runes form 25 three-symbol blocks. The moth from LP1 p5 is copied onto p55; LP1 p5's 2014 Wisdom 5×5 square has unique center [[199,130,320],[245,91,245],[320,130,199]], and solved p57 says to shed circumferences and find the divinity within. This is a source-motivated but **not authenticated** Hill3-key hypothesis.
+- The direct printed-number and Euler-totient keys mod29 in row/column orientations yield original full76 decoded IoCs **0.03157895, 0.03087719, 0.04245614, 0.03157895** versus raw **0.03789474**; all 4 produce nonlinguistic words. Full 76/76 original and solved-p57 planted inversions pass. Retire exact four operations; no plaintext.
 
-- `sims/p50_hg_quotient_p56_totient_sft.cjs`, committed `e1f4e52`; `im-results/p50_hg_quotient_p56_totient.md`, committed `560d7f9`.
-- Independent sources fix p50's **256** original byte values, its **degree-4 GF29 factor** `H*G=[14,9,13,28,1]` ascending and the p56 prime-totient decoder. Dividing produces **252 coefficient slots** and zero remainder. The source p56 red five-rune prefix does decode exactly to `ANEND` under the same five first prime shifts.
-- Decode quotient with `P_i=(Q_i-(prime(i+1)-1)) mod29` in both physical printed-descending / polynomial-ascending orders, no offsets or fitted key. Output IoCs **0.0346550307** and **0.0336115854**, neither yields readable GP prose. Both round-trip exactly and the 252-rune repeated-p57 native-source plant recovers **252/252**. This direct combination is retired. Source does not prescribe that quotient is text or reuse p56's cipher.
-- Exact committed source executed against exact remote table/corpus in independent JS runtime with Node builtin shims, all assertions passed.
+## Distinct prior Agent49 negative original-cipher work (do not duplicate)
 
-**Neither branch recovers unknown plaintext, a real key or endpoint.** They remove two finite, motivated direct-inverse possibilities without extending unbounded parameter scans.
+1. [Source p15 Fibonacci-prime spiral to 16 complete p55 words](../../im-results/p55_p15_16word_fibonacci_totient.md); SFT sims/p55_p15_16word_fibonacci_totient_sft.cjs: natural carried rune and prime/totient word starts, full reversible, negative.
+2. [Original p50 H/G field quotient to p56 prime/totient](../../im-results/p50_hg_quotient_p56_totient.md); SFT sims/p50_hg_quotient_p56_totient_sft.cjs: 252 coefficients, both orientations nonlinguistic; base29 full integer becomes 153 opaque bytes, no known file header.
+3. [P50 76-cell table ring to p55 totient](../../im-results/p50_outer76_totient_p55.md); SFT sims/p50_outer76_totient_p55_sft.cjs: unavoidable source byte0 causes undefined Euler phi(0), artificial passthrough negative.
+4. [2014 Wisdom 5×5 to p55 five-symbol Hill](../../im-results/lp1_wisdom5_hill_p55.md); SFT sims/lp1_wisdom5_hill_p55_sft.cjs: source value matrix is invertible mod29 but clear-text decoding negative; prior F25 skip less source-natural than first carried rune.
+5. [Exact all-secret previous-cipher GP29 context bounds](../../im-results/lp2-highorder-cipher-context-entropy-gate.md), [all 48 GF29-factor terminal p55 capacity](../../im-results/p50-terminal-parity-dimension-gate.md), and [fixed digraph all-secret exclusion](../../im-results/lp2-fixed-digraph-bijection-gate.md): established finite conditional constraints, no actual decoder.
 
-### C. Outer p50 numeric circumference -> original 76-rune p55 via Euler totient
+Retain older identity context in [archived memory 2026-11-11 22:20](archive-memory-before-20261111T2220.md) and [earlier archive](archive-memory-before-20261111T1016.md).
 
-- New original-input SFT [`sims/p50_outer76_totient_p55_sft.cjs`](../../sims/p50_outer76_totient_p55_sft.cjs) committed `db65a20`; [decision report](../../im-results/p50_outer76_totient_p55.md) committed `98c10d9`. The table circumference has **76 printed numeric cells**, matching **p55 76 runes**; solved p57 says *shed circumferences* and p56 authentic cipher uses Euler totients of primes.
-- A **literal Euler-totient key is obstructed by original byte 0** at grid row-major position192, 76-ring clockwise position52, which aligns with original p55 source rune **X**. φ(0) is undefined. This is a source-input flaw, so cannot authenticate full direct inverse absent original instruction assigning zero behavior.
-- Explicit nonstandard φ(0)=0 passthrough gives complete decoded p55 `IA NGIAHIA RI ITH BLTHTEAOE OETCOEMF GS AEXHIGPCXAEAEYSH NGNLGUI TJNGN OEA AEGOAXFC EOSHEIATHO BL LNGIAYOR GHF AEAA`, IoC **0.0333333**, versus original **0.0378947**; no plaintext. Original and native-p57 plant both roundtrip76/76. All code assertions passed running exact GitHub code/source under V8 with Node builtin emulation. Four p55 ciphertext glyphs are X, so this X alignment is an exploratory ~4/76=5.26% conditional coincidence; do not promote as proof.
-- Existing raw-byte and differential ring consumers are distinct and already retired. Do not widen the totient zero-exception/phase/direction menu absent a new creator-side instruction.
+## Useful independent frontier
 
-### D. H/G quotient interpreted as signed-2013 BASE29 integer transport
-
-- Extended [`sims/p50_hg_quotient_p56_totient_sft.cjs`](../../sims/p50_hg_quotient_p56_totient_sft.cjs) commit `9b3727a`, rewrote [decision report](../../im-results/p50_hg_quotient_p56_totient.md) commit `beec43b` to include 252-slot GP29 quotient reinterpreted as one unsigned BASE29 integer, serialized to big-endian bytes.
-- Both authentic printed/polynomial coefficient orders give **153 bytes** each, direct first24 hex `0a212d90ff3f0e105fb818c17b99aad69e164ed48df665b5` / `96127a261e676d369e7b69e6869ac90fb75b2bd21eedac4f`, no recognized gzip/ZIP/PNG/JPEG/PDF/bzip2/XZ/Zstd/7z/SQLite/zlib header, printable45/153 and52/153; no authenticated binary payload or key. A compressed/headerless/encrypted payload remains open in principle. Exact source program assertions passed against source original table/corpus.
-
-### E. Historically source-linked LP1 Wisdom 5×5 Hill decoder for p55
-
-- The nearly identical original moth on LP1 p5 (printed over **2014 original 5×5 1033 Wisdom square**) and on LP2 p55, plus p55's exactly **76 runes** with fixed literal **F25**, select a coherent and cheap *candidate*: skip F25 and interpret remaining **75=15×5** runes as standard column-vector five-symbol Hill blocks over GF29 under the authentic 2014 Wisdom matrix.
-- [Standalone original-input CommonJS Hill5 SFT](../../sims/lp1_wisdom5_hill_p55_sft.cjs), commit `ec758fe`; [complete decision report](../../im-results/lp1_wisdom5_hill_p55.md), commit `aa454e4`. The original matrix mod29 has determinant **3** (invertible) and exact inverse rows `[23,22,15,2,17];[24,25,4,2,24];[20,28,12,28,20];[24,2,4,25,24];[17,2,15,22,23]`. Frozen decoder gives `WUEARFRNGWNSOEOOEIALFYAEEAROEOEALWSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY` on original p55, IoC **0.0385586**, no plaintext. Exact ciphertext roundtrip **75/75**, p57 GP-native plant **75/75**, all original source SFT assertions passed.
-- Retire this exact standard Hill5 source-key model. LP1 p5 moth duplicates also on LP2 p53, so thematic key selection is not unique. Row-vector variants or other cipher families need independent clue direction.
-
-## Prior Agent49 work to retain
-
-- [Exact all-secret previous-cipher GP29 context bounds](../../im-results/lp2-highorder-cipher-context-entropy-gate.md): k=2,3,4 per-context secret rows fail every one of 89 native English windows, exact assignment costs minimum **4,738 / 278 / 8** respectively. Repro: `sims/lp2_highorder_cipher_context_entropy_sft.cjs`. This is conditional on native-GP text.
-- [All 48 exact factors terminal p55 code capacity](../../im-results/p50-terminal-parity-dimension-gate.md): 24 low-degree divisors always leave at least **29^60** possible p55 perimeters; 24 Q238 divisors contradict **159/180** independently known p56+p57 plaintext symbols under the literal printed perimeter/interior map. `sims/p50_terminal_all48_factor_capacity_sft.cjs` and `sims/p50_terminal_q238_known_interior_sft.cjs`. No direct terminal factor code works.
-- [Fixed digraph bijection gate](../../im-results/lp2-fixed-digraph-bijection-gate.md) and [GP prior OutGuess audits](../../im-results/outguess-lp2-original.md) remain reproducible conditional negatives.
-- Earlier full identity details: [archive](archive-memory-before-20261111T2220.md), [older archive](archive-memory-before-20261111T1016.md). Authoritative project state: [results](../../results/README.md).
-
-## Frontier after the two direct tests
-
-P32's 121 original runes reshape into an 11×11 matrix whose first GP-prime row and column sum **563** and **569**, exactly matching the authentic 2016 tree image dimensions; existing p32 PARABLE modulo-19 paths remain source-selected only in part, with no complete key or plaintext. Do **not** restart path/factor/GIMP surveys absent an independent original operator. More productive work would identify a genuine key consumer or intended state rule using a source-authenticated instruction on **unknown** ciphertext; a synthetic reversible transform or dimension/count collision is not sufficient. 2026 external public work has no verified unknown LP2 plaintext.
-
-The repo is shared: refresh the source/Issue state before editing and preserve concurrent work.
+- There is still no verified plaintext of the 56 unknown LP2 pages, no authenticated unknown-page key and no recovered p56 deep-web hash preimage.
+- Original p32's 121 GP runes form an 11×11 matrix; its first GP-prime row and column sum to **563** and **569**, the authentic signed 2016 tree JPEG dimensions. Original p15 has a 16-element 3301/Fibonacci-prime spiral. The 256-cell original pp49–51 table's conditional GF29 product H/G, and paired p3/p39 red119 Atbash triads SCY (SKY) and UDP are other source-shaped observations. They lack a source-selected reversible consumer and have extensive documented negative operations already; do not revisit them absent new original instruction.
+- The new triple invariant shifts effort away from fixed codebooks and toward **source-specified changing-state mechanisms, key material, overlapping algorithms, compressed registers, or other verifiably different routes**. Do not treat a synthetic model as progress toward plaintext.
+- P55 plus the two fully solved terminal pages remains a constrained candidate target; waiting Director #41 requires a complete, *independently specified* physical 76-rune decoder. The strict-interior43 approach alone cannot alter exterior words.
