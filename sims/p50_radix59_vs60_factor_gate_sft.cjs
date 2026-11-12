@@ -20,6 +20,7 @@ const alphabet60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx
 const alphabet59 = alphabet60.replace('f', '');
 const modulus = 29;
 const H = [3, 26, 24];   // Signed 2013 BASE29 3301 = 3QO, ascending coefficients
+const H1033 = [1, 6, 18]; // Matched source control: BASE29 1033 = 16I
 const G = [27, 5, 15];   // Original LP2 p39 red 27,5,15, ascending coefficients
 const F = [23, 21, 11, 17, 12]; // H*G over GF(29), ascending coefficients
 
@@ -100,11 +101,16 @@ const r60 = { H: remainder(original60, H), G: remainder(original60, G), F: remai
 const r59 = { H: remainder(alternative59, H), G: remainder(alternative59, G), F: remainder(alternative59, F) };
 const reversed60 = remainder(original60.slice().reverse(), F);
 const reversed59 = remainder(alternative59.slice().reverse(), F);
+const source1033Control = {
+  base60: remainder(original60, H1033),
+  base59: remainder(alternative59, H1033),
+};
 
 assert.deepEqual(r60, { H: [0, 0], G: [0, 0], F: [0, 0, 0, 0] });
 assert.deepEqual(r59, { H: [20, 17], G: [22, 12], F: [8, 19, 1, 7] });
 assert.deepEqual(reversed60, [25, 8, 18, 24]);
 assert.deepEqual(reversed59, [14, 9, 27, 24]);
+assert.deepEqual(source1033Control, { base60: [3, 24], base59: [8, 21] });
 
 const alteredCells = original60.filter((value, index) => value !== alternative59[index]).length;
 assert.equal(alteredCells, 220);
@@ -113,6 +119,7 @@ console.log(JSON.stringify({
   interpretation: '256 printed pp49–51 cells as descending GF(29) polynomial coefficients',
   originalOrder: '32 x 8, row-major',
   factorH: H,
+  sourceMatched1033Base29QuadraticControl: { factor: H1033, remainders: source1033Control },
   factorG: G,
   factorProduct: F,
   base60: { residues: r60, reversedProductResidue: reversed60 },
