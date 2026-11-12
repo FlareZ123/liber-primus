@@ -1,0 +1,42 @@
+name: 2013 original Cicada OS ISO rootfs and wisdom-folly consumer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-iso-consumer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install read-only extraction helpers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq p7zip-full libarchive-tools
+      - name: Download contemporaneous ISO preserved at Internet Archive
+        run: |
+          curl -fLsS --retry 3 --retry-delay 3 --connect-timeout 15 --max-time 300 "https://archive.org/download/https-www.dropbox.com-s-r7sgeb5dtmzj14s-3301/3301.iso" -o original-3301.iso
+          file original-3301.iso
+          sha256sum original-3301.iso
+          stat -c "%s bytes" original-3301.iso
+      - name: Extract ISO and compressed boot filesystem without execution
+        run: |
+          mkdir -p extracted-iso extracted-rootfs
+          7z x -y -oextracted-iso original-3301.iso >/dev/null
+          find extracted-iso -type f -maxdepth 5 | sort | head -50
+          find extracted-iso -type f -iname '3301.img' -print -quit | xargs -r file
+          BOOT_IMAGE="$(find extracted-iso -type f -iname '3301.img' -print -quit)"
+          test -f "$BOOT_IMAGE"
+          gzip -dc "$BOOT_IMAGE" > original-root.cpio
+          file original-root.cpio
+          bsdtar -tf original-root.cpio | head -35 || true
+          bsdtar -xf original-root.cpio -C extracted-rootfs
+          ls -l extracted-rootfs/tmp/wisdom extracted-rootfs/tmp/folly
+      - name: Compare original bytes and enumerate executable consumer references
+        run: python sims/cicada2013_os_rootfs_consumer_sft.py extracted-rootfs
