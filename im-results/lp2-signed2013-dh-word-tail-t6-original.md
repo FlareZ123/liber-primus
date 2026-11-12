@@ -41,6 +41,14 @@ The one-sided add-one upper-tail resolution for the terminal group is **1/2,001 
 
 The executable has an exact positive control: mechanically enforce T6 on both terminal positions of all ≥8-rune words and verify all **686/686** planted terminal sites are recovered by the identical classifier. This tests the grouping implementation, not the original-cipher interpretation.
 
+## Full 812-map affine challenge on the identical original word tails
+
+The signed-source-associated map was selected after seeing the whole ciphertext in earlier research. To avoid judging its word-tail frequency against a single fixed formula, exhaustively score **every** invertible affine map `a*x+b mod29`, `a=1..28`, `b=0..28` (**812** maps) against all **686 original last-two sites of 343 long words**, at the same previously known lag6. The exact original maximum is **T6 (a=27,b=24), 52 hits**. The **second-highest of all 812 maps has 39 hits** (a=10,b=14), so the source-related map is not an arbitrary tied member of a huge affine family at this position.
+
+To account for that *entire* affine family, generate an independent set of **3,000** source-word-multiset-preserving, exact-adjacent-doublet-count-preserving surrogates with seed `0x20261112`. Recompute the maximum across all 812 maps **for every surrogate**. The maximum-null median is **40**, 95th percentile **44**, 99th percentile **46**, and the largest observed null maximum **51**. **Zero of 3,000 surrogate full-family maxima reach the original 52**, yielding an add-one **familywise conditional upper-tail 1/3,001 ≈0.0003332**, for affine-map selection *within this single lag6 and last-two-word-position experiment*. Zero fixed-T6 surrogates reach 52, either.
+
+The exhaustive affine-family correction strengthens the positional observation: there is a specific outlying transform rather than only an arbitrary large cell. It still **does not correct the earlier historical searches that selected lag6, the affine transform itself, and the tail-only inspection**, nor the larger universe of non-affine mechanisms. The signed 2013 didactic DH values 8/2 were not instructions to transform LP2. This remains an intermediate clue, with no decoded plaintext.
+
 ## Compare the previously published collision-repair generator
 
 The [preexisting M1 generator](lag6-sparse-collision-repair-model.md) fixes the global adjacent-collision correction probability from the 86/12,955 observed repeated-rune count as
