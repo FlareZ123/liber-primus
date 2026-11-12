@@ -1,6 +1,6 @@
 # Physical p36: direct square-class obstruction in the source Q238 field
 
-**Independent original-cipher decision, 12 November 2026 (Agent34).** The original 238-rune LP2 p36 is a **quadratic nonresidue in GF(29^238)** under **both** natural coefficient orders relative to the independently established original p50 field polynomial Q238. Therefore the complete p36 rune register **cannot be the square of any plaintext field element** under this model. This remains impossible after multiplication by **any unknown nonzero GP29 scalar**. No original unknown plaintext, author-selected field operation, or continuation is recovered.
+**Source-derived algebraic exclusion, 12 November 2026 (Agent34).** The original 238-rune LP2 p36 is a **quadratic nonresidue in GF(29^238)** under **both** natural coefficient orders relative to the independently established original p50 field polynomial Q238. Therefore the complete p36 rune register **cannot be any even power of a plaintext field element** under this model. This remains impossible after multiplication by **any unknown nonzero GP29 scalar**. No original unknown plaintext, author-selected field operation, or continuation is recovered.
 
 ## Why this particular inversion is motivated
 
@@ -12,7 +12,11 @@ Three distinct original features provide a relatively concrete chain:
 
 The suspected **link between** the red square, Q238 and the page is conditional. No Cicada instruction explicitly tells solvers to square or take roots in this extension field. This is one concrete full-page inverse candidate, decided by an exact solvability condition before fitting plaintext.
 
-## Exact original-runic arithmetic
+## Relation to prior research and exact original-runic arithmetic
+
+The **absolute field norm of p36 in original ascending order was already calculated as 2** by earlier Agent13 work in [the p36 DH11 field report](p36-grid238-dh11-field-multiplication-gate.md). This is an independently established source observation; the present report **does not claim a new norm/DH coincidence**. Since the Legendre character of a finite-field element equals the Legendre character of its norm, and 2 is a quadratic nonresidue modulo29, that previous norm value already implies p36's ascending-order nonsquare status. What is added here is an explicit **secret-independent even-power impossibility result for both source orientations**, plus an exact source-native square-root positive control. The reverse-order norm26 is also a nonsquare. Nothing here establishes whether Cicada intended any such field operation.
+
+
 
 Let \(c_0,\ldots,c_{237}\) be the unmodified GP29 indices on physical p36. Form these two elements:
 
@@ -29,7 +33,7 @@ For \(q=29^{238}\), Euler's criterion states that every nonzero square \(B^2\) s
 | Printed rune order as ascending coefficients | **28,0,0,…,0** (−1) | **0** |
 | Printed rune order as descending coefficients | **28,0,0,…,0** (−1) | **0** |
 
-Because 238 is even, every \(a\in\mathbb F_{29}^{\times}\) is a square in K. Equivalently, \((29^{238}-1)/2\) is divisible by 28, so \(a^{(q-1)/2}=1\) by Fermat. Hence every \(a^{-1}A\) retains quadratic character −1. **There is no plaintext B satisfying \(A=aB^2\)** for any nonzero GP29 scalar a, in either orientation. This is a source-independent secret-scalar exclusion within the exact chosen field model, stronger than a failed linguistic score.
+Because 238 is even, every \(a\in\mathbb F_{29}^{\times}\) is a square in K. Equivalently, \((29^{238}-1)/2\) is divisible by 28, so \(a^{(q-1)/2}=1\) by Fermat. Hence every \(a^{-1}A\) retains quadratic character −1. **There is no plaintext B satisfying \(A=aB^{2k}\)** for any positive integer k and any nonzero GP29 scalar a, in either orientation: every even power is a field square, as is every base-field prefactor. This includes the literal square \(k=1\) as a special case. This is a source-independent secret-scalar exclusion within the exact chosen field model, stronger than a failed linguistic score.
 
 ## Positive proof that the test recognizes real squares
 
@@ -43,7 +47,7 @@ The test is deterministic and read-only, using the existing pinned original sour
 
 ## Scope and research decision
 
-**Retire** the literal *original p36 = field-square of plaintext* hypothesis and its entire family of nonzero **base-field scalar** prefactors for both natural source orders. This does not exclude an independently specified *additive offset*, an extension-field nonsquare multiplier, an external ciphertext register, another page input or another algebraic operation. Those would require separate author-motivated instructions; their availability must not be inferred from the square-root failure.
+**Retire** the exact *original p36 = field even-power of plaintext* hypothesis and its entire family of nonzero **base-field scalar** prefactors for both natural source orders. This does not exclude an independently specified *additive offset*, an extension-field nonsquare multiplier, an external ciphertext register, another page input or another algebraic operation. Those would require separate author-motivated instructions; their availability must not be inferred from the square-root failure.
 
 The underlying 2013 BASE29 and LP2 factor matches remain exact but compositional meaning is unresolved. The p39 inscription is a mathematical square and a suggestive visual clue; it is insufficient to establish that this proposed p36 square encoder was author-intended. **No follow-on square-root family sweep is justified by this result.**
 
