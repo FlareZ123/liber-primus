@@ -23,10 +23,31 @@ The only remaining text references found in plausible startup/configuration dire
 
 All six named custom blob identities and SHA-256 digests are included in the successful JSON artifact. The full source-image file and startup configuration are stronger evidence than reconstructed 2013 first-onion/telnet server code. The installed `prime_echo` is a prime/message presentation routine and does **not** independently authenticate later `NUMBER`, `PRIMES`, `COUNT` or other first-onion command semantics.
 
+## Independent exact ISO9660 free-sector and slack audit (12 November 2026)
+
+The completed rootfs inventory covered allocated files. A genuinely distinct source-key possibility was that the 2013 *ISO itself* carried an unlisted instruction or decoder in free CD-ROM sectors, or in the final padding bytes of an allocated file. The original OS instruction "The key is all around you" is compatible with examining the supplied medium, but does **not** itself select unused sectors, a binary codec, or an LP2 key.
+
+A new read-only [original-image reproducer](../sims/cicada2013_iso_free_sectors_sft.cjs) traverses ISO9660 directory records and marks every file and directory extent, the first sixteen system sectors, all volume descriptors, the directory path tables, and El Torito boot catalog/initial load area. It then reads every remaining original sector and the byte-accurate tail slack of each allocated regular file. The input is the same **136,398,848-byte** original ISO used by #467, with SHA-256 **`784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f`**. [Successful manual GitHub Actions execution 43162325339](https://github.com/FlareZ123/liber-primus/actions/runs/43162325339), [complete machine-readable output artifact 13918137560](https://github.com/FlareZ123/liber-primus/actions/runs/43162325339/artifacts/13918137560).
+
+| Source-exact ISO9660 measurement | Observed |
+| --- | ---: |
+| Total 2,048-byte sectors | **66,601** |
+| Named ISO file records / unique directories | **11 / 5** |
+| Sectors outside assigned metadata/file/directory/boot extents | **153** |
+| Such sectors containing any nonzero byte | **1** |
+| Nonzero bytes in all 153 unassigned sectors | **162** |
+| Only nonzero sector | **LBA 19** |
+| Recognized gzip/ZIP/JPEG/PDF/ELF/PNG/XZ file signatures in unassigned sectors | **0** |
+| Allocated regular-file tails containing any nonzero slack bytes | **0** |
+
+The single nonzero unassigned sector contains an ordinary image-mastering command-line record, beginning `3.00 -o output.iso -b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table NewCDR/`. It is a short, coherent ISO builder metadata string with no corresponding ciphertext/key/LP2 instruction. The other **152** unassigned sectors are all zero; the source filesystem contains **no nonzero file-tail slack**. On this exact surviving ISO, there is therefore no available *raw orphaned file-like payload in whole unallocated sectors or in ordinary file-end padding*. The scan is deterministic and does not depend on decoders, language rankings, guessed keys or passage matching.
+
+**Scope:** This excludes that specific physical-space hiding route. The test does not inspect bit-level steganography *within* allocated ISO data, alternate content hidden inside existing compressed assets, external media, CD subchannel information absent from the ISO byte stream, or a different lost historical image. It recovers **no unknown LP2 plaintext, authentic key, cipher method, or continuation**. Further carving of the same zero-filled sectors is unnecessary absent a new source instruction selecting a nonstandard representation.
+
 ## Cryptanalytic consequence and precise stop
 
 The image makes a genuine human-observable emphasis on **1033** and **3301**, independently recorded by hardcoded prime-display pauses; that significance was already known from several stages of the puzzle. The file system contains no newly recovered standalone key, alternate prime program, additional named puzzle file, or source-selected operation assigning these constants to an unknown LP2 page.
 
 This closes [Director Issue #316](https://github.com/FlareZ123/liber-primus/issues/316) at its declared scope. Do not redo a full ISO package-wide strings hunt or reuse the two `wisdom`/`folly` objects as GP29 pads without new source input. A genuinely different lead would require a separately attributable historical artifact or explicit instruction with a *discriminating original-LP2 prediction*, rather than a new postchosen reduction of 1033 or 3301.
 
-**Limits:** This audit inventories the copied original-derived initramfs's visible filesystem and selected text paths. It does not by itself cryptographically validate a separately recovered 136MB ISO against its earliest distribution, examine unallocated sectors or hidden payloads, or exclude steganography in its three outside-initramfs assets. None of those gaps authorizes a general LP2 key search.
+**Limits:** This audit inventories the copied original-derived initramfs's visible filesystem and selected text paths. It does not by itself cryptographically validate a separately recovered 136MB ISO against its earliest distribution, exclude hidden payloads within allocated assets or steganography in its three outside-initramfs assets; full-image unallocated sectors and ordinary file-tail slack are covered by the independent source audit above. None of those gaps authorizes a general LP2 key search.
