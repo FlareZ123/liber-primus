@@ -44,6 +44,31 @@ function finderCells() {
 const FINDERS = finderCells();
 assert.equal(FINDERS.length, 147);
 
+/**
+ * ZXing Aztec full-range, seven-layer 45×45 source geometry.
+ * Reference: zxing/core/.../aztec/encoder/Encoder.java drawBullsEye,
+ * with center=22 and size=7, plus its six source-fixed orientation cells.
+ * The inner 13×13 has seven alternating Manhattan/Chebyshev square rings;
+ * mode data begins at radius 7 and is excluded except orientation cells.
+ * @returns {number[][]}
+ */
+function aztecFixedCells() {
+  const center = 22;
+  const cells = [];
+  for (let dr = -6; dr <= 6; dr++) {
+    for (let dc = -6; dc <= 6; dc++) {
+      const radius = Math.max(Math.abs(dr), Math.abs(dc));
+      cells.push([center + dr, center + dc, Number(radius % 2 === 0)]);
+    }
+  }
+  for (const [r, c] of [
+    [-7, -7], [-6, -7], [-7, -6], [7, -7], [7, -6], [7, 6]
+  ]) cells.push([center + r, center + c, 1]);
+  return cells;
+}
+const AZTEC = aztecFixedCells();
+assert.equal(AZTEC.length, 175);
+
 /** @param {number[]} bytes @param {boolean} msb */
 function bitsFromBytes(bytes, msb) {
   return bytes.flatMap(byte => Array.from({length: 8}, (_, k) =>
@@ -55,13 +80,14 @@ function bitsFromBytes(bytes, msb) {
  * @param {number} rotation Count of quarter-turns
  * @param {boolean} reflection
  * @param {boolean} inverted
+ * @param {number[][]} pattern
  * @returns {{score:number, corners:number[]}}
  */
-function scoreFinders(modules, rotation, reflection, inverted) {
+function scoreFinders(modules, rotation, reflection, inverted, pattern = FINDERS) {
   let score = 0;
   const corners = [0, 0, 0];
-  for (let i = 0; i < FINDERS.length; i++) {
-    const [row, column, expected] = FINDERS[i];
+  for (let i = 0; i < pattern.length; i++) {
+    const [row, column, expected] = pattern[i];
     let r = row;
     let c = reflection ? SIDE - 1 - column : column;
     for (let n = 0; n < rotation; n++) {
@@ -71,7 +97,7 @@ function scoreFinders(modules, rotation, reflection, inverted) {
     }
     if ((modules[r * SIDE + c] ^ Number(inverted)) === expected) {
       score++;
-      corners[Math.floor(i / 49)]++;
+      if (pattern === FINDERS) corners[Math.floor(i / 49)]++;
     }
   }
   return {score, corners};
@@ -80,7 +106,7 @@ function scoreFinders(modules, rotation, reflection, inverted) {
 /**
  * @param {number[][]} matrix Original 32x8 source, or a planted 32x8 byte matrix
  */
-function search(matrix) {
+function search(matrix, pattern = FINDERS) {
   const rowMajor = matrix.flat();
   const columnMajor = Array.from({length: 8}, (_, c) =>
     matrix.map(row => row[c])).flat();
@@ -104,7 +130,7 @@ function search(matrix) {
                 results.push({
                   order, reversedBytes, msbFirst, trim,
                   inverted, rotation, reflected,
-                  ...scoreFinders(image, rotation, reflected, inverted)
+                  ...scoreFinders(image, rotation, reflected, inverted, pattern)
                 });
               }
             }
@@ -189,6 +215,23 @@ function main() {
   assert.equal(maximumBitChanges, 20);
   assert.ok(original[0].score + maximumBitChanges < 147);
 
+  // An independently recognizable symbol has exactly the same 45x45 side:
+  // full-range Aztec Code, seven layers. The stationary 13x13 central
+  // bullseye and its six orientation bits are mandatory irrespective of
+  // Aztec payload, data-layer ECC or side-border patterns. This tests the
+  // *same* 256 source-natural raster presentations, without another key.
+  const aztec = search(matrix, AZTEC);
+  assert.equal(aztec[0].score, 105);
+  assert.ok(aztec[0].score + maximumBitChanges < AZTEC.length);
+  const plantedAztecBits = Array.from({length: MODULES}, (_, i) =>
+    plantedBits[i]);
+  for (const [r, c, value] of AZTEC) {
+    plantedAztecBits[r * SIDE + c] = value;
+  }
+  const aztecPlant = search(makeTable(plantedAztecBits.concat(
+    Array(23).fill(0))), AZTEC);
+  assert.equal(aztecPlant[0].score, AZTEC.length);
+
   console.log(JSON.stringify({
     hypothesis: "First/last 23 bits removed from 256 original bytes; 45x45 QR v7 raster",
     sourceBytes: 256, sourceBits: 2048, qrBits: MODULES,
@@ -199,6 +242,13 @@ function main() {
     allAlternativeFinderMatchesUpperBound: original[0].score + maximumBitChanges,
     positivePlantFinderMatches: planted[0].score,
     originalHasRequiredFinders: false,
+    aztecFullRange45x45: {
+      requiredFinderModules: AZTEC.length,
+      originalBest: aztec[0],
+      alternativeSourceUpperBound: aztec[0].score + maximumBitChanges,
+      plantedFinderMatches: aztecPlant[0].score,
+      originalHasRequiredFinders: false
+    },
     conclusion: "Direct source-serialized QR-v7 raster is excluded; no unknown LP2 text recovered."
   }, null, 2));
 }
