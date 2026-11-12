@@ -180,7 +180,7 @@ assert.equal(p55PayloadBytes.length, 76);
 const udpHeaderBytes = 8;
 const udpLength = udpHeaderBytes + p55PayloadBytes.length;
 assert.equal(udpLength, 84);
-assert.equal(udpLength, Number(smallFactors.filter(f => f === 2n).reduce((a) => a, 1n)) * 21); // 84 = 2^2 * 3 * 7
+assert.equal(udpLength, Number(2n * 2n * 3n * 7n)); // 84 = 2^2 * 3 * 7
 assert.equal(84n, 2n * 2n * 3n * 7n);
 const udpLengthHex = udpLength.toString(16).padStart(4, "0");
 const destinationPort = 281;
