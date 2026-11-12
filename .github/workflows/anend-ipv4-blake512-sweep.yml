@@ -16,12 +16,11 @@ permissions:
 
 jobs:
   canonical-ipv4:
-    if: ${{ inputs.scope == 'full' || matrix.first == 0 }}
     strategy:
       fail-fast: false
       max-parallel: 16
       matrix:
-        first: [0, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240]
+        first: ${{ fromJSON(inputs.scope == 'smoke' && '[0]' || '[0,16,32,48,64,80,96,112,128,144,160,176,192,208,224,240]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
