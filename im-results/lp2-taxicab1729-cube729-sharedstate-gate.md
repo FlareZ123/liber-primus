@@ -47,4 +47,4 @@ The companion read-only CommonJS SFT uses the unchanged original 729/1729 GP-ind
 
 **Decision:** Do not spend resources recovering a 729-symbol common key from this postulated 9³/10³ relationship. The original aligned equality inventories are substantially sparser than native-GP prose under a shared arbitrary per-position bijection. More importantly, the cube boundaries are not source-marked. A future independent original instruction naming a shared cube/key, an alternate plaintext register, a position-dependent state that differs between the paired blocks, or a concrete unknown-page plaintext would define a different question. The present test supplies no decrypted words and should not be promoted to `results/`.
 
-Reproducer: [`sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs`](../sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs).
+[Successful Windows / Node.js 22 source-corpus CI run 43328770013](https://github.com/FlareZ123/liber-primus/actions/runs/43328770013) completed all original, native-control and secret-bijection checks.\n\nReproducer: [`sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs`](../sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs).
