@@ -49,6 +49,25 @@ For a single fixed original-cipher test, initialize exponent `e∈{0,311,449}`, 
 
 [Exact original-input CJS SFT](../sims/lp2_761_dh5_terminal_headings_original_sft.cjs) asserts the solved headings, sums, true group order, complement inverses, original 76-rune page, eight literal-BASE29 range/subgroup gates, the 37-vs-38 all-bijection collision obstruction, six original additive-decoder pair counts, the entire 48-variant authentic-F-interruption family, positive controls, and exact forward inverses. **Decision:** this is a new source-derived, mathematically precise terminal orbit *hypothesis* with negative original direct-additive (including every three-F clock-interruption policy) and literal BASE29-group consumers. It supplies no authentic unknown plaintext or historical LP2 cipher choice. Absent an original instruction connecting the 2013 DH base to 761 and specifying how GF(761) residues become GP29 runes, do not broaden it into unrestricted projections, phases or table-derived keys.
 
+### Source-number inversion: 2013 DH modulus 23 gives an exact 76-cycle modulo 761 (Agent16, 12 November)
+
+The **signature-valid 2013 TCP-server challenge** uses prime modulus **23** in its illustrated Diffie–Hellman exchange, with base5. The independently pinned 2013 audio title has GP sum **761**, also the MP3's filename. Replacing the *historical modulus* 23 by a *generator* modulo the audio's 761 gives
+
+\[
+\operatorname{ord}_{761}(23)=76,\quad 23^{76}\equiv1\pmod{761},
+\]
+
+with **76 distinct residues** before returning to one, exactly the original physical p55 rune count. This is a complete cycle and a specific possible key clock. **The role swap is not an author instruction**: the signed example never says to use its old modulus as the base of a new exchange, and a group-order equality recognized after knowing p55's length is susceptible to selection bias. The source-related base5 under 761 has order38, as documented above, so this is a distinct but similarly retrospective construction.
+
+Freeze the simplest literal source-cued transformation before consulting language scores: starting at \(x_0=1\), advance \(x_{i+1}=23x_i\bmod761\) for exactly 76 p55 symbols, emit \(k_i=x_i\bmod29\), and try the historically used additive GP inverses \(p_i=c_i-k_i\) and \(p_i=c_i+k_i\), with no F skip, phase, alternate modulus or page-boundary alteration. The **complete original 76-rune ciphertext** has IoC 0.03789474; **both** original outputs have IoC **0.03403509**, and neither forms coherent GP English. Their literal GP transliterations are:
+
+- minus: LTHEOEORFDNGEEOUDXNAEIUYSHXYUEYNGNGDGMYSEAFJFWABXPLPTEALGXODEONGWECNITHJCXWYDLHTDGCAEAEOOEDD
+- plus: OEMYHIUJWLEDEOAAEMAOEMTHBBWTUHWYOEOPJBPFATHGFJPNNGFAEMEOEAPHLNGDAEIALOEOEEAOEDWNGMMRSRDNGYEAEOPY
+
+The [source-original complete CJS test](../sims/lp2_signed2013_dh23_mod761_p55_orbit_sft.cjs) proves order76 by enumerating all distinct group residues, asserts the 76 untouched original p55 runes, checks complete GP29 forward reversibility, and encrypts/decrypts a distinct source-native 76-rune solved-p57 positive plant under both signs. It passed in the existing [manual-only original-source workflow run 43331710185](https://github.com/FlareZ123/liber-primus/actions/runs/43331710185). A perfect roundtrip for any key is only an implementation invariant.
+
+**Decision:** This exact arithmetic gives a possible *historically sourced 76-step clock* whose direct GP29 additive use fails on original p55. It recovers no authentic key or unknown plaintext, does not supply a contemporaneous author-selected role exchange, and gives no warrant to scan phases, key projections, group elements or further exponents. Reopen only if an independently preserved instruction explicitly links the 2013 DH modulus to the 761 group and specifies a non-additive invertible consumer.
+
 ## Parable's three-prime product as a textbook RSA modulus: direct original-input format gate
 
 The independently documented TXXX number `1,595,277,641` factors into the **three prime-valued sums of the solved p57 body clauses**, `1259×1031×1229`. A possible historically recognizable interpretation is a **three-prime RSA modulus**, because the solved LP1 admonishes that primes and the totient function are sacred. This is a *hypothesis*: the author does not name RSA here, and any product of distinct primes can mathematically serve as an RSA modulus. The original MP3 title sum/filename **761** and the Cicada identifier **3301** both happen to be invertible public exponents, with respect to this modulus's `phi(N)=1,591,168,720`: their exact private exponents would be **190,271,161** and **23,137,261** respectively. Their existence does not establish a key choice.
