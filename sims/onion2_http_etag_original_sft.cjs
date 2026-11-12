@@ -67,6 +67,11 @@ assert.equal(byte201.publication_utc_minute, '2014-01-07T19:30Z');
 assert.equal(byte202.publication_utc_minute, '2014-01-07T19:40Z');
 assert.equal(byte201.value_hex, '2a');
 assert.equal(byte202.value_hex, '0b');
+const fullClock = JSON.parse(fs.readFileSync(path.join(root, 'im-results/onion2-archival-clock-142-to-256.json'), 'utf8'));
+assert.equal(fullClock.predicted_states.length, 115);
+const finalByte = fullClock.predicted_states.find(s => s.byte_position === 256);
+assert.equal(finalByte.predicted_utc_minute, '2014-01-08T04:10Z');
+assert.equal(finalByte.byte_hex, '46');
 const secondCapture = Date.parse('2014-01-07T19:39:16Z');
 assert.ok(Date.parse('2014-01-07T19:30:01Z') < secondCapture);
 assert.ok(secondCapture < Date.parse('2014-01-07T19:40:01Z'));
@@ -85,6 +90,8 @@ console.log(JSON.stringify({
   anchored_interval_minutes_byte170_to_201: interval170to201 * 5,
   inferred_byte201_publication_utc_minute: byte201.publication_utc_minute,
   inferred_byte202_publication_utc_minute: byte202.publication_utc_minute,
+  inferred_final_byte256_utc_minute: finalByte.predicted_utc_minute,
+  full_conditional_clock_positions: fullClock.predicted_states.length,
   byte170: full[169].toString(16),
   etag_inode: Number.parseInt(inodeHex, 16),
   etag_size: statSize,
