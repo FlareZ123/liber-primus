@@ -39,9 +39,31 @@ If (B_L=0), its most-significant digit must have rank zero. A single unknown 29-
 Chapter p23–26 by itself excludes **both** directions under every possible one-alphabet-per-chapter key:
 
 - **Forward, stronger same-predecessor contradiction:** segment 34 starts with `S→R` at global rune offset **5837** (p24 local118), while segment 39 starts with `S→EA` at offset **6324** (p26 local62). Both packet lengths, 133 and 41, force the first digit to zero. A one-to-one predecessor-dependent successor row cannot give two distinct glyphs the same rank, even if all 29 predecessor rows in that chapter have separate unknown permutations.
-- **Reverse, three-successor certificate:** the last digits of segment 30, 31, and 32 require zero for `X→G` at **5770** (p24 local51), `TH→IA` at **5777** (p24 local58) and `M→O` at **5824** (p24 local105). The three distinct required successor glyphs violate the two-glyph limit of *every* shared unknown rune order. Reverse direction is **not** excluded if each predecessor in each chapter has its own completely secret successor permutation; there are no rank-zero same-predecessor contradictions for that larger family.
+- **Reverse, three-successor certificate:** the last digits of segment 30, 31, and 32 require zero for `X→G` at **5770** (p24 local51), `TH→IA` at **5777** (p24 local58) and `M→O` at **5824** (p24 local105). The three distinct required successor glyphs violate the two-glyph limit of *every* shared unknown rune order. For **unrestricted raw bytes**, the reversed-digit case survives this rank-zero gate if each predecessor in each chapter has its own completely secret successor permutation. The printable-English strengthening below establishes a separate contradiction for that larger family.
 
 Thus the **complete book-continuous 87-packet, maximal-width binary encoding with any one secret GP29 order per original visual chapter is impossible on untouched ciphertext**, independent of a language model, password or cipher-key guesses. This does not exclude an encryption state that changes within a chapter, independently keyed predecessor-specific permutations, different packet boundaries, packets that preserve extra non-byte residual bits, alternate widths or a nonbinary register.
+
+## Printable-ASCII plaintext strengthens the reverse exclusion
+
+A human-readable English-register packet has a first byte within **0x20–0x7E**. Granting a fresh, entirely arbitrary secret permutation for each predecessor rune in **each of the nine chapters** still enforces a stricter maximum on the packet's first base-28 digit:
+
+\[
+B^{\mathrm{ASCII}}_L=\left\lfloor
+\frac{127\cdot256^{m-1}-1}{28^{L-1}}\right\rfloor.
+\]
+
+The threshold is exact and independent of subsequent bytes, whose values and language are unrestricted. **At least 41 of the 87 packet leaders must have digit zero** under this native printable-first-byte assumption. A forced rank-zero output from one specific preceding rune is unique within its chapter, even with 29 independently unknown chapter-local permutation rows.
+
+The original **reversed-digit** book-global packet interpretation violates that uniqueness in original red-heading chapter **p40–53**, without any unknown-key search:
+
+| Nonrepeat packet | Length and byte width | Original terminal transition | Reversed first digit requires |
+| --- | --- | --- | --- |
+| 68 | **341 digits, 204 bytes** | **R→EA**, offset **10,507** (p43 local91) | exactly rank 0 |
+| 77 | **154 digits, 92 bytes** | **R→E**, offset **11,343** (p46 local110) | exactly rank 0 |
+
+For 341 digits, the unrestricted-byte upper bound is already zero. For 154 digits, the unrestricted-byte bound is one, but demanding a printable ASCII initial byte reduces it to **zero**. There can be only one rank-zero successor of predecessor **R** under a fixed permutation row; both distinct outputs occur within the same original visual chapter. Thus **both forward and reversed 87-packet transport are mathematically impossible even under independently arbitrary chapter × predecessor secret permutations**, for the precise maximal-byte-packet model with *printable ASCII first byte in every packet*. The script asserts the original offsets and conducts a complete source-shaped positive inversion of ASCII `A` bytes.
+
+This is a **finite plaintext-register restriction**. The reversed model with genuinely unconstrained binary first bytes remains unexcluded by the necessary first-digit test, as do evolving state within a chapter, a different byte width, noncanonical residue coding, and alternative delimiters.
 
 ## Concrete natural-alphabet inverse and positive control
 
@@ -51,4 +73,4 @@ To verify the decoder is attainable on a genuine output from its proposed forwar
 
 ## Research decision
 
-**Retire** an 87-packet maximal-byte GP28 transport with any per-chapter *single secret 29-rune alphabet* in both digit directions. Its global shared-alphabet subcase is also excluded. The postselected **449→87** ordinal correspondence can remain a low-confidence reading clue; it offers no key. A productive successor would require an independently source-selected **different cipher state within a chapter, lossless residual-bit convention, or a concrete consumer of the 87 lengths**, with a frozen original-text prediction. Do not generate free-key scans or assume this segmentation is intended from the numerical equality alone.
+**Retire** an 87-packet maximal-byte GP28 transport with any per-chapter *single secret 29-rune alphabet* in both digit directions. With printable ASCII as the packet-leading byte, **also retire arbitrary per-predecessor secret rows within each chapter** in both directions. The unrestricted-binary reversed case with independent predecessor rows remains open. Its global shared-alphabet subcase is excluded. The postselected **449→87** ordinal correspondence can remain a low-confidence reading clue; it offers no key. A productive successor would require an independently source-selected **different cipher state within a chapter, lossless residual-bit convention, or a concrete consumer of the 87 lengths**, with a frozen original-text prediction. Do not generate free-key scans or assume this segmentation is intended from the numerical equality alone.
