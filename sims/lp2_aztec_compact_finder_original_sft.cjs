@@ -104,4 +104,54 @@ for (const {name, symbols, size, expected} of inputs) {
     plantedPositiveMinimumChanges: positive.minimumChanges}));
 }
 
+
+/**
+ * A second, independently testable consequence of the proposed shared core:
+ * the p32 11x11 rune array could be the center of pp0-2's 27x27 grid under
+ * any fixed secret rune substitution. Every orientation is checked.
+ *
+ * @param {number[]} openingSymbols
+ * @param {number[]} treeSymbols
+ * @returns {Array<{orientation:number, conflictingInputRunes:number, rawEqual:number, atbashEqual:number}>}
+ */
+function testSharedCore(openingSymbols, treeSymbols) {
+  const core = Array.from({length: 121}, (_, i) =>
+    openingSymbols[(8 + Math.floor(i / 11)) * 27 + 8 + (i % 11)]);
+  const outputs = [];
+  for (let orientation = 0; orientation < 8; orientation++) {
+    const mapping = Array.from({length: 29}, () => new Set());
+    let rawEqual = 0;
+    let atbashEqual = 0;
+    for (let y = 0; y < 11; y++) {
+      for (let x = 0; x < 11; x++) {
+        let cx = (orientation & 1) ? 10 - x : x;
+        let cy = (orientation & 2) ? 10 - y : y;
+        if (orientation & 4) [cx, cy] = [cy, cx];
+        const input = core[11 * cy + cx];
+        const output = treeSymbols[11 * y + x];
+        mapping[input].add(output);
+        if (input === output) rawEqual++;
+        if (28 - input === output) atbashEqual++;
+      }
+    }
+    const conflictingInputRunes = mapping.filter(values => values.size > 1).length;
+    outputs.push({orientation, conflictingInputRunes, rawEqual, atbashEqual});
+  }
+  return outputs;
+}
+
+const coreResults = testSharedCore(opening, tree);
+assert.deepEqual(coreResults.map(r => r.conflictingInputRunes),
+  [28, 28, 27, 28, 28, 28, 28, 28]);
+const plantedCore = opening.slice();
+const nativeCore = Array.from({length: 121}, (_, i) =>
+  plantedCore[(8 + Math.floor(i / 11)) * 27 + 8 + (i % 11)]);
+const relabeledCore = nativeCore.map(v => (3 * v + 7) % 29);
+assert.equal(testSharedCore(plantedCore, relabeledCore)[0].conflictingInputRunes, 0);
+console.log(JSON.stringify({test: 'p0-p2-center11-vs-p32-under-all-fixed-secret-GP29-substitutions',
+  orientationConflictingRuneCounts: coreResults.map(r => r.conflictingInputRunes),
+  rawExactMatches: coreResults.map(r => r.rawEqual),
+  fixedAtbashExactMatches: coreResults.map(r => r.atbashEqual),
+  implantedPositiveOrientation0Conflicts: 0}));
+
 console.log('PASS: direct stationary rune-to-binary compact Aztec / Rune finder incompatible with both original layouts');
