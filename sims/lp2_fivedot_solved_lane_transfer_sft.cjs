@@ -121,6 +121,52 @@ const target3 = pages3to7.flatMap(p =>
   pageLines(p).flatMap(line => line.slice().reverse()));
 assert.equal(target3.length, 1145);
 
+/**
+ * Source-control challenge: p56 contains five printed rune lines.
+ * Independent original-JPEG dot centroids, sorted by increasing x, rank by
+ * increasing y as [2,0,4,1,3] for p56, [2,4,0,3,1] for p7,
+ * and [1,3,0,4,2] for p23. See the pre-existing original-image SFT:
+ * sims/lp2_p7_p23_p56_dot_triad_sft.py
+ *
+ * If five-dot reading order selects a pre-totient rune transposition for
+ * solved p56, it must reproduce independently known plaintext under the
+ * unchanged authentic 85 cipher shifts. Try only these source-visible orders,
+ * each on printed lines, 17 quintets, and five contiguous 17-rune stripes.
+ */
+const p56Lines = transcription[55].split(/\/\s*|\n+/)
+  .map(line => [...line].filter(r => runeIndex.has(r)).map(r => runeIndex.get(r)))
+  .filter(line => line.length > 0);
+assert.deepEqual(p56Lines.map(line => line.length), [20, 19, 6, 22, 18]);
+assert.deepEqual(p56Lines.flat(), p56Cipher);
+const dotOrders = {
+  leftToRight: [0, 1, 2, 3, 4],
+  p56TopToBottom: [2, 0, 4, 1, 3],
+  p56BottomToTop: [3, 1, 4, 0, 2],
+  rightToLeft: [4, 3, 2, 1, 0],
+  p7TopToBottom: [2, 4, 0, 3, 1],
+  p23TopToBottom: [1, 3, 0, 4, 2]
+};
+/** @param {number[]} order @param {string} grouping @returns {number[]} */
+function permuteP56(order, grouping) {
+  if (grouping === "printedLines") return order.flatMap(j => p56Lines[j]);
+  const lanes = unpack(p56Cipher, 17, grouping === "quintets" ? "interleave" : "rows");
+  return pack(order.map(j => lanes[j]), 17,
+    grouping === "quintets" ? "interleave" : "rows");
+}
+const p56DotControls = [];
+for (const [orderName, order] of Object.entries(dotOrders)) {
+  for (const grouping of ["printedLines", "quintets", "stripes17"]) {
+    const rearranged = permuteP56(order, grouping);
+    const decoded = rearranged.map((v, i) => (v - p56Shifts[i] + 29) % 29);
+    const knownPlaintextMismatches = decoded.reduce(
+      (sum, v, i) => sum + (v === p56Plain[i] ? 0 : 1), 0);
+    p56DotControls.push({ orderName, grouping, knownPlaintextMismatches });
+  }
+}
+assert.equal(p56DotControls.filter(x => x.knownPlaintextMismatches === 0).length, 3);
+assert.ok(p56DotControls.every(x =>
+  x.orderName === "leftToRight" || x.knownPlaintextMismatches >= 64));
+
 const solvedControl = corpus.pages[57].indices;
 assert.equal(solvedControl.length, 95);
 const targets = [
@@ -175,6 +221,7 @@ console.log(JSON.stringify({
     p56SolvedRunes: p56Plain.length, p56AfterHeadingRunes: p56Plain.slice(5).length,
     p56PrimeClockEvents: phase
   },
+  sourceImageP56DotOrdersAgainstSolvedControl: p56DotControls,
   candidates: results.length,
   positiveControl: "Every keyed synthetic solved-p57-native-GP plant recovers exactly.",
   decision: "No deciphered unknown text or source-authenticated lane-key instruction.",
