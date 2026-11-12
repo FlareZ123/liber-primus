@@ -38,6 +38,30 @@ For every **one of the same eight original source keys/mappings**, the SFT encry
 
 The full run returned **success** at [CI run 43253039317](https://github.com/FlareZ123/liber-primus/actions/runs/43253039317), and an 8-row original/control JSON artifact was saved as [artifact 13959612607](https://github.com/FlareZ123/liber-primus/actions/runs/43253039317/artifacts/13959612607).
 
+
+## Binary-envelope continuation of the exact source-pad inverse
+
+**Agent31, 12 November 2026, completed original-file run 43265160528.** The original 2013 CicadaOS workflow used actual binary pad files. A failed GP28 prose score alone therefore leaves a distinct, source-motivated possibility: the same predecessor-exclusion inverse might carry an ordinary *binary* file serialized as one big-endian base-28 integer, rather than natural-language GP runes. No new source offset, rank alphabet or decryption key is introduced.
+
+The [read-only complete test](../sims/lp2_p15_56013_rank28_binary_envelope_sft.cjs) keeps the identical original 1,894-rune p15:9–p22:end register, original 8,952,964-byte DATA/560.13 offset, two sorted/cyclic predecessor rank conventions, two fixed pad-byte projections (byte modulo28 and floor(28×byte/256)), and two original additive signs: **eight unchanged decoders**. Treat the first rune as the transmitted GP29 register state and the next 1,893 positions as a 28-ary integer. At the ten source-visible adjacent-doublet positions, a rank decoder cannot know the underlying 28-ary digit. Instead of guessing them, compute the *exact minimum and maximum possible binary integers* by replacing each unknown digit with 0 and 27. Their shared leading bytes are guaranteed independent of all ten missing digits. No fitted erasures, bit offsets, phase changes or other binary packing variants enter this finite test.
+
+All eight original inverses produce **1,138-byte** unsigned big-endian representations and share **143–144 guaranteed leading bytes** between their erasure extremes. That is much more than required to identify a conventional file header. The original **first eight header bytes** for the frozen candidate order are:
+
+| Rank / pad projection | Decode − key | Decode + key |
+| --- | --- | --- |
+| Sorted / mod28 | 0e461795bd3d9775 | 08351de5bd229bac |
+| Sorted / scaled28 | 094251b7e6cf6780 | 0d3f30f138c9b908 |
+| Cyclic / mod28 | 13f8eca5faa82bc4 | 0de7f2f5fa52f19d |
+| Cyclic / scaled28 | 0ef5628776329b98 | 12ebb8d3d71ff488 |
+
+**Zero of eight** has the pinned byte-zero signature of PDF, PNG, ZIP, gzip, JPEG, bzip2, xz, Zstandard, SQLite, armored OpenPGP, or a valid zlib wrapper. This is an exact file-header negative at the source-fixed binary framing. It does not exclude undocumented magic-less data, a different binary codec, or encrypted/compressed content without the named headers.
+
+As an independently constructed, source-shaped positive control, encode a full **1,136-byte** buffer beginning with the PDF-1.7 signature into the exact 1,893-position GP28 base-integer representation, encrypt using each of the eight *actual DATA-derived* keys and predecessor-excluding successor rules, and overwrite precisely the **ten original adjacent-doublet locations** with equal predecessor glyphs. All eight decoders recover every unmasked true rank and provably retain **141 shared leading file bytes**, including the exact PDF-1.7 header, without any supplied erasure values. The test also verifies the 118,818,811-byte original source SHA-256 and decodes the genuine 2013 onion-message XOR control before LP2 evaluation. These controls establish detection power for a conventional file header despite the ten repeated-rune erasures.
+
+Successful [manual-only Windows Actions run 43265160528](https://github.com/FlareZ123/liber-primus/actions/runs/43265160528) stores both the earlier GP28 prose and new original binary-envelope results in [artifact 13964788908](https://github.com/FlareZ123/liber-primus/actions/runs/43265160528/artifacts/13964788908).
+
+**Updated bounded decision:** at the p15 heading's exact 2013 source-file offset, the two standard rank28 inverses fail both direct GP28 prose recovery and this one literal BASE28-as-binary-file serialization. The candidate historical file/offset remains authentic source material plus a proposed, unproven LP2 link. A further consumer should be selected from a fresh original instruction, rather than another speculative binary framing or fitted pad phase.
+
 ## Research decision
 
 **Retire the historical 2013 `DATA/560.13` source-pad at page15's exact source-derived offset as a literal mod28/scaled28 key for the two standard 28-way preceding-ciphertext exclusion-rank ciphers.** The entire fixed family fails on 1,883 original ciphertext symbols while its true-key native-English plants succeed. This is not a rejection of all possible 28-way encoders, all possible source file consumers, an unknown source selected bit packing, or a second cryptographic layer.
