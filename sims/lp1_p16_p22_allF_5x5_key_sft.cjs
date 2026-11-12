@@ -61,7 +61,12 @@ for(const [name,key] of Object.entries(keys)){
   for(const sign of [-1,1]){
     const {out,consumed}=inverse(p22,key,sign);
     assert.equal(consumed,125);
-    assert.deepEqual(inverse(out,key,-sign).out,p22);
+    // Re-encryption uses the ciphertext's frozen literal-F mask. Decoded P=F
+    // at a consuming position must still consume its key symbol.
+    let j=0;
+    const reencrypted=out.map((v,i)=>p22[i]===0?0:mod(v-sign*key[(j++)%25]));
+    assert.equal(j,125);
+    assert.deepEqual(reencrypted,p22);
     // Language GP English plant with six forced literal Fs in same locations.
     const plant=fromPage(57).filter(c=>c!==0);
     const native=Array.from({length:125},(_,i)=> {
