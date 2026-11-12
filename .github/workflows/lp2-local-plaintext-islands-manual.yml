@@ -1,0 +1,16 @@
+name: LP2 local plaintext-island source SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Full LP2 original source, controls and held-out register
+        run: node sims/lp2_local_plaintext_islands_sft.cjs
