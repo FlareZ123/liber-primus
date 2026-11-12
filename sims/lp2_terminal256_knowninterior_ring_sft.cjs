@@ -143,6 +143,28 @@ for(let corner=0;corner<4;corner++){
   }
 }
 assert(staticTests.every(x=>x.arbitrary29to29Plain.requiredExceptions>=123));
+// Even if a DIFFERENT unrestricted residue-to-rune codebook is granted to
+// each shell, the independently solved rings 2, 3 and 4 fail directly.
+const shellOffsets=[0,76,144,204,256];
+const exactTerminal=ink55.concat(plain180);
+const shellKnownControls=[];
+for(let d=1;d<=3;d++){
+  const from=shellOffsets[d],to=shellOffsets[d+1],Y=exactTerminal.slice(from,to);
+  let best=0,literal=0;
+  for(let corner=0;corner<4;corner++){
+    for(const direction of [-1,1]){
+      const path=pathFor(corner,direction).slice(from,to);
+      const X=path.map(i=>bytes[i]%29);
+      best=Math.max(best,optimalFixedMap(X,Y).bestMatches);
+      literal=Math.max(literal,X.filter((v,i)=>v===Y[i]).length);
+    }
+  }
+  shellKnownControls.push({ring:d+1,startingTerminalOffset:from,
+    knownRunes:Y.length,bestDirectMatches:literal,
+    bestUnrestrictedCodebookMatches:best,
+    minExceptions:Y.length-best});
+}
+assert.deepEqual(shellKnownControls.map(x=>x.minExceptions),[35,30,25]);
 assert(complexities.every(x=>x.linearComplexity===90));
 const innerRowMajor=[];
 for(let y=1;y<31;y++)for(let x=1;x<7;x++)innerRowMajor.push(bytes[8*y+x]%29);
@@ -230,6 +252,7 @@ console.log(JSON.stringify({
   rowMajorLiteralRegister:{directMatches:directRowMajor,
     bestUnrestrictedCodebook:rowMajorMap},
   fixedRingOrientations:staticTests,
+  independentlyKeyedKnownRingControls:shellKnownControls,
   candidateKnownInteriorKeystream:{models:complexities.length,
     minComplexity:Math.min(...complexities.map(x=>x.linearComplexity)),
     maxComplexity:Math.max(...complexities.map(x=>x.linearComplexity))},
