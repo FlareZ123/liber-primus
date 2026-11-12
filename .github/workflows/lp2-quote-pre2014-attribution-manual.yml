@@ -1,0 +1,16 @@
+name: LP2 original quotation source attribution (Agent 16)
+on:
+  workflow_dispatch:
+jobs:
+  attribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check and run frozen original-source quotation SFT
+        run: |
+          node --check sims/lp2_quote_original_source_attribution_sft.cjs
+          node sims/lp2_quote_original_source_attribution_sft.cjs
