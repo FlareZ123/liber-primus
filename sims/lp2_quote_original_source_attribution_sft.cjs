@@ -47,7 +47,7 @@ function parseOriginal(raw) {
       if (!current) start = offset;
       current += char;
       offset++;
-    } else if (char === "%" || char === "/" || /\\s/u.test(char)) {
+    } else if (char === "%" || char === "/" || /\s/u.test(char)) {
       // A physical page turn or printed wrap is not a word boundary.
     } else {
       finish();
