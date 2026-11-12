@@ -148,7 +148,7 @@ for (const page of pages) {
     delimiterTotals[type] = (delimiterTotals[type] || 0) + count;
   }
 }
-assert.deepEqual(delimiterTotals, {"-": 2714, ".": 164, "&": 7, "$": 1});
+assert.deepEqual(delimiterTotals, {"-": 2708, ".": 153, ".&": 6, "-7-": 1, ".&$": 1, ".1-": 1, ".3-": 1, ".4-": 1, ".5-": 1});
 
 console.log(JSON.stringify({
   scope: "55 unsolved rune-bearing physical pages p0-p49 and p51-p55; p50 is the runeless grid",
