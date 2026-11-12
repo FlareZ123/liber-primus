@@ -1,6 +1,6 @@
-# Exact January 2014 Onion2 HTTP response and ETag-selected publication clock
+# Two exact January 2014 Onion2 HTTP bodies and ETag-selected publication clock
 
-**Classification (12 November 2026): recovered original 368-byte historical HTTP body with a SHA-256-independent witness and one contemporaneously corroborated update second.** This fixes a real source-clock observation for the otherwise unknown 2014 onion-2 generator. It does **not** identify the producer's PRNG, imply synchronized value/timing generation, recover an LP2 key or decrypt any unknown rune. The authenticated server's implementation remains missing.
+**Classification (12 November 2026): two byte-exact reconstructed original HTTP responses (368 and 430 bytes), independently matching two January 2014 Wayback CDX SHA-1 digests, plus an independent 368-byte WARC SHA-256 and one confirmed file-update second.** This fixes a real source-clock observation for the otherwise unknown 2014 onion-2 generator. It does **not** identify the producer's PRNG, imply synchronized value/timing generation, recover an LP2 key or decrypt any unknown rune. The authenticated server's implementation remains missing.
 
 ## New primary archive constraint
 
@@ -35,6 +35,21 @@ The comment is exactly 27 ASCII bytes, followed by **one LF byte** and the first
 
 The 170th byte in the full original stream is hex **`ab`**, and the 169th is `9b`. A one-bit corruption of the recovered body changes the SHA-256 as checked by the reproducer.
 
+## Second HTTP response recovered with an independent CDX digest
+
+The [2014 Onion2 Wayback CDX index](https://github.com/Dukotah/cicada3301/blob/master/corpus/D-archives/cdx/onion_cu343l33nqaekrnw_to.json) has two successful HTTPS captures on 7 January 2014. Their RFC4648 base32 SHA-1 **content** digests allow recovery of both complete original bodies, using only the original 27-byte comment + LF + a prefix of the already archived 256-byte original hex stream:
+
+| Original archive capture, UTC | Source CDX SHA-1 (base32) | Unique matching prefix length | Recovered original HTML bytes |
+|---|---|---:|---:|
+| **14:03:33** | `TKD4KCZ3BBREBSCS6ZEXBYSRZTMDU6P2` | **170 bytes** | **368** |
+| **19:39:16** | `A2N6WJ6DSMG6NRTTJKN3YVVOIKT4RDLH` | **201 bytes** | **430** |
+
+The corresponding decoded SHA-1 hex values are `9a87c50b3b086240c852f64970e251ccd83a79fa` and `069beb27c3930de6c6734a9bbc56ae42a7c88d67`. An exhaustive exact source-prefix check tests **all 257 possibilities, 0–256 bytes**, for *both* digests; each matches **exactly one** prefix length. No language ranking, key tuning or synthetic cipher assumptions enter this recovery. The 201-byte response is preserved [as an exact historical-byte reconstruction](../resources/historical/cicada2014-onion2-20140107-201byte.html); its SHA-256 is `75c2c847998a3ccab1e17c9d9b6f5606b484f6250e2dd48df3ac3145b76ad400`. Source byte **201 = `2a`**, and source byte **202 = `0b`**.
+
+This second capture is independently bracketed by the original [BotSottile IRC observation](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5-stored/onion2-timing_BotSottile_qn8jmPJr.txt): **20:30 GMT+1, new byte `2a`, length 201** (line 2205), and **20:40 GMT+1, new byte `0b`, length 202** (line 2220). The archived snapshot timestamp, **19:39:16 UTC = 20:39:16 GMT+1**, falls during the byte-201 interval, before byte 202 was observed.
+
+The published CDX `length` fields 659 and 718 include archive response metadata. The actual original HTML-body sizes **368 and 430** follow from the exact content hashes. The archived `Last-Modified` and `ETag` original headers have been recovered **only for the earlier 170-byte response**; no original headers for the later 201-byte capture are asserted.
+
 ## Independent server-time and IRC cross-check
 
 The ETag separates into exactly three hexadecimal fields: `b46b`, `170` and `4ef6183538e40`. These are consistent with Apache HTTP Server 2.2's documented default `FileETag INode MTime Size` for static files ([official historical documentation](https://httpd.apache.org/docs/2.2/en/mod/core.html#fileetag)). Under that convention:
@@ -49,10 +64,10 @@ This match is source-external to the locally reconstructed body SHA. It supports
 
 ## Reversible-research consequence and next decision
 
-We now have a **hash-authenticated original publication snapshot at exactly 170 bytes** plus a byte-specific historical release second; previous generator research had only a later final 256-byte output and incomplete 112 observed interarrival intervals. Further recoveries should pursue **other early-2014 WARC HTTP headers/ETags or original server file-rewriting code**, since each independently preserved mtime could provide another timestamp-indexed original state witness. The current [CDX listing](https://github.com/Dukotah/cicada3301/blob/master/corpus/D-archives/cdx/onion_cu343l33nqaekrnw_to.json) also indexes 7 January 2014 HTTPS snapshots at 14:03:33 and 19:39:16 UTC, but their separate response bodies/headers were **not** recovered in this study, so no timestamp or byte count is imputed to those records.
+We now have **two independently hash-authenticated original publication snapshots at 170 and 201 bytes** plus one precise file-modification second. The later 19:39:16 UTC snapshot independently confirms the byte-201 state before the 20:40 GMT+1 transition to byte 202. Previous generator research had only the final 256-byte string and incomplete 112 observed interarrival intervals. Further recoveries should pursue **other early-2014 WARC HTTP headers/ETags or original server file-rewriting code**, since each independently preserved mtime could provide another timestamp-indexed original state witness. Both successful original January 2014 CDX HTTPS bodies are now recovered to the byte, although the second's HTTP headers remain unavailable.
 
 Do not repeat the already-closed LCG, CPython-MT or byte/interval interleaving sweeps. A generator candidate must reproduce actual source bytes from a source-authenticated rule, rather than fitting a timestamp and claiming an LP2 key. An HTTP file-update clock is evidence about **publication**, not automatically about **byte generation**.
 
-**Reproducer:** [standalone CJS original-input and tamper-positive script](../sims/onion2_http_etag_original_sft.cjs), from existing 256-byte source JSON and this original archived response. It asserts full-stream SHA, original 368-byte response SHA, 170th original byte, ETag/Last-Modified equality, exact one-second IRC clock agreement, and tamper detection. It uses only Node.js built-ins and no external package.
+**Reproducer:** [standalone CJS original-input and tamper-positive script](../sims/onion2_http_etag_original_sft.cjs), from existing 256-byte source JSON and this original archived response. It asserts full-stream SHA, original 368-byte response SHA-256, both source-CDX SHA-1 checks over all 257 candidate prefix lengths, second restored 430-byte response SHA-256, ETag/Last-Modified equality, exact one-second IRC clock agreement, and tamper detection. It uses only Node.js built-ins and no external package.
 
 **Earlier bounded generator exclusions:** [LCG + CPython MT](onion2-timing-generator-state-recovery.md), [byte/timing interleaving](onion2-timing-byte-interleavings.md), [two-witness 190–191 clock recovery](onion2-massobot-timing-bridge.md).
