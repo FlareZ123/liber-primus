@@ -79,6 +79,17 @@ An allowance for **any unknown global one-to-one relabeling of the 29 GP symbols
 
 The familywide obstruction applies to a **direct, unchanged-alphabet, pure transposition of the 43 original interior rune identities into ordinary English in native GP29 spelling**. It does not exclude substitution or any other symbol-changing layer, another language, hidden extra symbols, or a larger ciphertext register that includes the exteriors. A human-directed puzzle may conceivably provide another source-selected operation. Simply trying more position permutations or optimizing rank ties cannot fix the observed alphabet-frequency mismatch.
 
+## Separate frozen finite-field multiplication gate
+
+The historically established 29-element prime/rune field supports multiplication and division as compact, reversible alternatives to the already-tested additive word key. The authenticated signed text's **43 GP29 rune word lengths** are all 1–9, so none vanishes in F29. Align them in signed-word order with p55's 43 strict original interior runes, with no rank, secret phase, reset, extra key, or fitted parameter. The two natural fixed orientations yield:
+
+| Exact operation per position i | GP trigram log mean | Decipherment |
+| --- | ---: | --- |
+| `P_i = C_i × GP_length(word_i) mod 29` | **−6.148566** | No readable text |
+| `P_i = C_i × GP_length(word_i)⁻¹ mod 29` | **−7.181809** | No readable text |
+
+Both exact original-to-original inversions and solved-native 43/43 positive plants succeed. Independently, authentic signed GP-prime **word sums** have zero residues modulo29 at original signed-word indices **2 ('path')** and **20 ('meaning')**, where the actual aligned p55 interior ciphertext rune values are **12 and20**, both nonzero. Consequently, any literal multiplicative rule `C_i = K_i × P_i mod29` with `K_i = signed_GP_prime_sum(word_i)` is impossible at these original positions, and the inverse field rule requires dividing by zero. This excludes exact source-word prime sums as a *reversible* multiplicative field key without ad hoc exceptional handling. No unknown plaintext or historical key is recovered; source text does not expressly select multiplication. All controls and complete outputs are emitted by the same [read-only SFT](../sims/lp2_2016_signed_prime_rank_p55_sft.cjs).
+
 ## Verdict and possible successor
 
 The frozen signed-word rank and its inverse fail under the task's original-language test, while the independent frequency-only invariant extends the rejection to the entire same-alphabet pure 43-interior transposition family under the stated native-English assumption. This is stronger than the narrow rank experiment in [Director #573](https://github.com/FlareZ123/liber-primus/issues/573) but still recovers no plaintext. A future hypothesis must independently supply another operation and explain why the source numbers select it; an unconstrained variation of rank scoring or tie breaking is not justified.
