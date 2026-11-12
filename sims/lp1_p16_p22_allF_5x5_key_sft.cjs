@@ -64,7 +64,11 @@ for(const [name,key] of Object.entries(keys)){
     assert.deepEqual(inverse(out,key,-sign).out,p22);
     // Language GP English plant with six forced literal Fs in same locations.
     const plant=fromPage(57).filter(c=>c!==0);
-    const native=Array.from({length:125},(_,i)=>plant[i%plant.length]);
+    const native=Array.from({length:125},(_,i)=> {
+      let v=plant[i%plant.length];
+      if(mod(v+sign*key[i%25])===0) v=(v%28)+1;
+      return v;
+    });
     let n=0;
     const planted=p22.map(c=>c===0?0:mod(native[n]+sign*key[(n++)%25]));
     assert.equal(n,125);
