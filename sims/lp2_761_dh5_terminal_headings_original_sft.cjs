@@ -145,6 +145,66 @@ const expected56 = "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTY
 assert.equal(render(known56), expected56);
 assert.deepEqual(known56.slice(0, 5), gp("AN END"));
 
+// Exact source-authenticated BASE29 serialization hypothesis.
+// 29^2=841 > 761: one residue of the cyclic DH5 subgroup fits two GP digits.
+// Physical p55 has 76 runes, hence exactly 38 consecutive candidate pairs.
+// These four digit transformations are historical Cicada operations, not arbitrary
+// secret maps; reversed digit significance is the sole framing alternative.
+/** @type {Record<string,(x:number)=>number>} */
+const digitTransforms = {
+  identity: (x) => x,
+  atbash: (x) => 28 - x,
+  atbashPlus3: (x) => (28 - x + 3) % 29,
+  atbashMinus3: (x) => (28 - x + 26) % 29
+};
+/**
+ * @param {number[]} source
+ * @param {(x:number)=>number} digit
+ * @param {boolean} lowFirst
+ * @returns {number[]}
+ */
+function base29Pairs(source, digit, lowFirst) {
+  assert.equal(source.length % 2, 0);
+  const out = [];
+  for (let i = 0; i < source.length; i += 2) {
+    const hi = digit(source[i + (lowFirst ? 1 : 0)]);
+    const lo = digit(source[i + (lowFirst ? 0 : 1)]);
+    out.push(hi * 29 + lo);
+  }
+  return out;
+}
+
+// Positive native group-orbit plant, with exact two-digit serialization.
+const orbit = Array.from({ length: 38 }, (_, i) => powmod(5, i, 761));
+assert.equal(new Set(orbit).size, 38);
+const encodedOrbit = orbit.flatMap((n) => [Math.floor(n / 29), n % 29]);
+assert.equal(encodedOrbit.length, 76);
+assert.deepEqual(base29Pairs(encodedOrbit, digitTransforms.identity, false), orbit);
+assert.equal(orbit.filter((n) => n > 0 && n < 761 && powmod(n, 38, 761) === 1).length, 38);
+
+const pairReadings = [];
+const expectedPairCounts = {
+  "identity:false": [35, 1], "identity:true": [36, 2],
+  "atbash:false": [35, 5], "atbash:true": [33, 2],
+  "atbashPlus3:false": [34, 1], "atbashPlus3:true": [35, 1],
+  "atbashMinus3:false": [35, 2], "atbashMinus3:true": [36, 0]
+};
+for (const [mapping, digit] of Object.entries(digitTransforms)) {
+  for (const lowFirst of [false, true]) {
+    const numbers = base29Pairs(c55, digit, lowFirst);
+    const inRange = numbers.filter((n) => n > 0 && n < 761);
+    const inOrbit = inRange.filter((n) => powmod(n, 38, 761) === 1);
+    assert.deepEqual([inRange.length, inOrbit.length], expectedPairCounts[`${mapping}:${lowFirst}`]);
+    pairReadings.push({
+      mapping,
+      lowFirst,
+      validMod761Values: inRange.length,
+      membersOfOrder38Subgroup: inOrbit.length,
+      ruledOutAsLiteral38ResidueList: inRange.length !== 38 || inOrbit.length !== 38
+    });
+  }
+}
+
 const output = [];
 const expectedPairs = {
   "0:-1": 186,
@@ -180,6 +240,7 @@ process.stdout.write(JSON.stringify({
   source: "2013 signed DH5; 2013 761.MP3 original title; solved LP2 AN END/PARABLE",
   arithmetic: { headingPrimeSums: [311, 449], phi761: 760, orderOf5Modulo761: 38, originalPage55Runes: 76 },
   authenticP56RecoveredRunes: known56.length,
+  originalP55LiteralBase29PairOrbitGate: pairReadings,
   originalP55DirectDecoders: output,
   result: "No candidate authentic plaintext; exact arithmetic is a provisional cross-round hypothesis"
 }, null, 2) + "\n");
