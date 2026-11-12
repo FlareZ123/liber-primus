@@ -20,6 +20,9 @@ The explicit inverse from each rank digit and predecessor is `next = digit + (di
 
 **Decision:** There is no recovered binary artifact under this frozen procedure. High entropy alone neither authenticates encryption nor excludes compression, since compressed payloads also appear high entropy. Missing signatures at arbitrary offsets restrict only the named formats and serializations, and cannot prove the absence of a raw stream, alternate bit packing, or a binary message without a conventional header. Do not adjust byte offsets, radix, seed handling, leading-zero conventions or mark locations merely to produce a plausible file signature. A new attempt needs independently identified source syntax that selects an exact byte-packing and frame/exception rule.
 
+
+**Relation to earlier stronger work.** This fixed canonical 28-rank minimal-integer serialization is a narrow exploratory counterpoint to the already-completed [all-secret page-local 29×28 predecessor-alphabet byte-packet gate](repeat-marker-variable-byte-gate.md), whose original-input Hall/endpoint contradictions exclude a broader maximally packed whole-byte packet family. The 7,759-byte stream here uses *different* packet-leading-zero conventions and is not an independent cipher discovery; it must not be mistaken for a new reason to prioritize doublet framing. Its only incremental observation is that this one explicit no-key transport produces no recognizable named binary header at any offset. The repeated run segmentation itself is source-observed but not historically selected as an encoding rule.
+
 ## Reproduce
 
 `node sims/lp2_rank28_doublet_framing_sft.cjs`
