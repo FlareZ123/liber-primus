@@ -65,6 +65,53 @@ const extraConsumers = {
   blockFivePrimeSum: blockQuints.map(q => mod29(sum(q.map(v => corpus.prime[v])))),
   blockFiveShamir: blockQuints.map(q => mod29(sum(q.map((v, j) => v * shamir[j])))),
 };
+
+/**
+ * Exact Gaussian rank over GF(29). Detects any constant affine checksum
+ * a0*C0+...+a4*C4=b in all original five-rune groups.
+ * @param {number[][]} rows
+ * @returns {number}
+ */
+function gf29Rank(rows) {
+  const a = rows.map(row => row.map(mod29));
+  const width = a[0].length;
+  let rank = 0;
+  for (let col = 0; col < width && rank < a.length; col++) {
+    let pivot = rank;
+    while (pivot < a.length && a[pivot][col] === 0) pivot++;
+    if (pivot === a.length) continue;
+    [a[rank], a[pivot]] = [a[pivot], a[rank]];
+    let inverse = 1;
+    for (let j = 0; j < 27; j++) inverse = mod29(inverse * a[rank][col]);
+    for (let j = col; j < width; j++) a[rank][j] = mod29(a[rank][j] * inverse);
+    for (let row = rank + 1; row < a.length; row++) {
+      const factor = a[row][col];
+      for (let j = col; j < width; j++) {
+        a[row][j] = mod29(a[row][j] - factor * a[rank][j]);
+      }
+    }
+    rank++;
+  }
+  return rank;
+}
+const plantedParity = quints.map(q => [
+  ...q.slice(0, 4), mod29(sum(q.slice(0, 4))),
+]);
+const parityRanks = {
+  fiveRuneConsecutive: {
+    linear: gf29Rank(quints), affine: gf29Rank(quints.map(q => [...q, 1])),
+  },
+  five201RuneBlocks: {
+    linear: gf29Rank(blockQuints), affine: gf29Rank(blockQuints.map(q => [...q, 1])),
+  },
+  checksumPositivePlant: {
+    linear: gf29Rank(plantedParity), affine: gf29Rank(plantedParity.map(q => [...q, 1])),
+  },
+};
+assert.deepEqual(parityRanks.fiveRuneConsecutive, { linear: 5, affine: 6 });
+assert.deepEqual(parityRanks.five201RuneBlocks, { linear: 5, affine: 6 });
+assert.deepEqual(parityRanks.checksumPositivePlant, { linear: 4, affine: 5 });
+
 const results = {
   source: {
     pages: [23, 24, 25, 26], redRunes: 16, totalRunes: source.length,
@@ -73,6 +120,7 @@ const results = {
   folds: Object.fromEntries(Object.entries({ ...consumers, ...extraConsumers }).map(([key, v]) => [key, summary(v)])),
   strideFive: strides.map(summary),
   consecutive201: blocks.map(summary),
+  parityRanks,
 };
 assert.ok(Math.abs(results.folds.indexSum.ioc - 0.033084577) < 1e-6);
 assert.ok(Math.abs(results.folds.gpPrimeSum.ioc - 0.035671642) < 1e-6);
