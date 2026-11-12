@@ -1,0 +1,14 @@
+name: Agent9 2014 Stage06 three OutGuess XOR original source gate
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect source-exact three blobs and independent XOR combinations
+        run: node sims/lp2_stage06_three_outguess_xor_sft.cjs
