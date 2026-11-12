@@ -155,6 +155,13 @@ console.log(JSON.stringify({
   runicCTRAlternatives:streams.length,
   strongestGP29IoC:[...streams].sort((a,b)=>b.allIoC-a.allIoC)[0],
   strongestSectionIoC:[...streams].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],
-  directRepeatVariants:direct.length,completeRepeatPrintable:direct.filter(x=>x.printable===256).length,\n  completeRepeatGPBytes:direct.filter(x=>x.gpbyte===256).length,\n  bestRepeatPrintable:[...direct].sort((a,b)=>b.printable-a.printable)[0],\n  bestRepeatGPBytes:[...direct].sort((a,b)=>b.gpbyte-a.gpbyte)[0],\n  repeatGP29Alternatives:simpleRuna.length,\n  bestRepeatGP29IoC:[...simpleRuna].sort((a,b)=>b.allIoC-a.allIoC)[0],\n  bestRepeatSectionIoC:[...simpleRuna].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],\n  bytePositiveRecovered:true,runePositiveRecovered:true,
+  directRepeatVariants:direct.length,completeRepeatPrintable:direct.filter(x=>x.printable===256).length,
+  completeRepeatGPBytes:direct.filter(x=>x.gpbyte===256).length,
+  bestRepeatPrintable:[...direct].sort((a,b)=>b.printable-a.printable)[0],
+  bestRepeatGPBytes:[...direct].sort((a,b)=>b.gpbyte-a.gpbyte)[0],
+  repeatGP29Alternatives:simpleRuna.length,
+  bestRepeatGP29IoC:[...simpleRuna].sort((a,b)=>b.allIoC-a.allIoC)[0],
+  bestRepeatSectionIoC:[...simpleRuna].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],
+  bytePositiveRecovered:true,runePositiveRecovered:true,
   authenticatedOriginalPlaintext:false
 },null,2));
