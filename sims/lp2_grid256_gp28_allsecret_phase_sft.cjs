@@ -127,6 +127,35 @@ assert.deepEqual(original.map(m => [m.cyclic, m.sorted]), [
   [23514, 23256], [23118, 23226]
 ]);
 
+/**
+ * Original ciphertext inverse with the ACTUAL source-byte pad. No English
+ * language model is fitted; direct key candidates only report unigram IoC.
+ * @param {ReturnType<typeof slots>} model
+ * @param {"cyclic"|"sorted"} kind
+ * @param {number} marker
+ */
+function directInverse(model, kind, marker) {
+  const decoded = cipher.slice();
+  for (const i of model.markers) decoded[i] = marker;
+  model.positions.forEach((i, j) => {
+    const p = mod(rank(cipher[i], cipher[i - 1], kind) -
+      table[model.phases[j]] % 28, 28);
+    decoded[i] = marker === 0 ? p + 1 : p;
+  });
+  const counts = new Uint32Array(29);
+  for (const index of decoded) counts[index]++;
+  const numerator = counts.reduce((n, v) => n + v * (v - 1), 0);
+  const denominator = decoded.length * (decoded.length - 1);
+  return {pageReset:model.pageReset, skipMarker:model.skipMarker, kind,
+    marker, ioc:numerator / denominator,
+    first64:decoded.slice(0,64).map(i => corpus.translit[i]).join("")};
+}
+const direct = models.flatMap(model =>
+  ["cyclic","sorted"].flatMap(kind =>
+    [0,28].map(marker => directInverse(model, kind, marker))));
+assert(direct.every(model => model.ioc < 0.04),
+  "No original 256-byte GP28 direct inverse recovers native GP frequencies");
+
 const referenceFiles = [
   ["Shakespeare", "shakespeare_first300k.txt", 0x331111],
   ["Gibran", "gibran_prophet_58585.txt", 0x331122],
@@ -274,6 +303,7 @@ const output = {
   repeats:86,
   eligible:12815,
   original,
+  originalDirectBytePad:direct,
   controls,
   positives,
   conclusion:"For these source-bound key clocks, neither natural predecessor rank " +
