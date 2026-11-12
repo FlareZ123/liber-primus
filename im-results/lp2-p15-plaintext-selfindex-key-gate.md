@@ -10,7 +10,7 @@ Let `a_j` be one of six complete source-valued address lists, and `b` its zero- 
 
 `K_j + s K_{(a_j-b+phi) mod 16} = C[a_j-b] (mod 29)`.
 
-Gaussian elimination therefore solves all compatible keys **without a language model, a guessed crib, or any unknown-input fitting**. An inconsistent system is impossible under that exact variant. A consistent full-rank system fixes a unique key, whose inverse is tested on every original rune. A consistent underdetermined system is represented by one zero-free-variable witness and is insufficient to exclude all possible choices of its remaining key coordinates.
+Gaussian elimination therefore solves all compatible keys **without a language model, a guessed crib, or any unknown-input fitting**. An inconsistent system is impossible under that exact variant. A consistent full-rank system fixes a unique key, whose inverse is tested on every original rune. Every consistent underdetermined system is exhaustively completed over all free GF29 key coordinates. The final language bound therefore covers the entire exact 16-key family, including its rank-deficient possibilities.
 
 ## Frozen family and original results
 
@@ -23,13 +23,15 @@ Six lists: printed p15 16 values in spiral or printed row order; the 16 source-d
 | Consistent printed-spiral / printed-row | 10 / 16 |
 | Consistent prime-spiral / prime-row | 25 / 19 |
 | Consistent Fibonacci / Fibonacci ordinal | 9 / 17 |
-| Best original-consistent global IoC | **0.034554193995** |
+| Highest original-consistent global IoC, across **all 264 keys** | **0.034557828301** |
 | Original ciphertext global IoC | **0.034478397865** |
+| Full-rank consistent families / rank15 consistent families | 90 / 6 |
+| Fully enumerated compatible keys, including free coordinates | **264** |
 | Solved p57 GP-native plaintext IoC (context only) | **0.062709966405** |
 
-Best consistent candidate is **prime values, source spiral, one-based absolute rune addresses, +1 encrypting sign, phase12**, with unique rank16. Its recovered period16 key is GP indices `[12,19,23,4,26,8,28,14,8,1,18,26,12,25,28,2]`. Its decoded original has ciphertext-like rune frequencies and no authentic readable GP prose; exact reencryption is automatic for any algebraically admissible key. Other candidates likewise do not recover language.
+Across **all 264** exactly compatible 16-symbol keys, the maximum original global IoC is **0.034557828301**, attained by the derived prime values in source spiral, one-based absolute rune addresses, +1 encrypting sign and phase8, with rank15 and freely chosen coordinate 27. Its example full key is GP indices `[8,4,5,3,17,7,22,10,19,0,14,17,1,18,24,27]`. Every compatible variant remains below **0.04** and no output recovers readable GP prose. Algebraic consistency and exact reencryption are automatic for keys satisfying the source-address equations.
 
-The SFT checks the 12,956 original runes, source-visible 16-value arrays, every equation, every full original re-encryption, exact histogram results, and a 12,956-rune **known-plaintext planted control** whose key is derived from its own plaintext at the same addresses. The rank16 positive recovers all 16 planted key symbols and every planted plaintext rune exactly. The plant validates implementation; it does not validate author intent.
+The SFT checks the 12,956 original runes, source-visible 16-value arrays, every equation, every compatible key's full original re-encryption, exact histogram results, and a 12,956-rune **known-plaintext planted control** whose key is derived from its own plaintext at the same addresses. The rank16 positive recovers all 16 planted key symbols and every planted plaintext rune exactly. The plant validates implementation; it does not validate author intent.
 
 ## Decision
 
