@@ -72,6 +72,35 @@ const unique = [...new Map(variants.map((v)=>[v.route,v])).values()];
 assert.equal(unique.length, 8);
 assert.equal(unique.filter((v)=>v.first3==='SSH'&&v.restModulo23===18).length,1);
 assert.equal(unique.filter((v)=>v.restModulo23===18).length,1);
+
+// Source-matched null: fix the two S/H/S letters that mechanically create
+// SSH, and the final C=5, then condition on the two raw heading residues
+// N%22=7 and N%23=0 already selected by the earlier DH report. In an
+// independent random title ensemble, how often is the dot suffix 18 mod23?
+let state = 0x3301c1ca;
+const random29 = () => { state ^= state << 13; state ^= state >>> 17; state ^= state << 5; return (state >>> 0) % 29; };
+const trials = 5000000;
+let conditioned = 0, tailMatch18 = 0;
+for (let trial = 0; trial < trials; trial++) {
+  const title = Array.from({length:13}, random29);
+  title[0] = 15; title[1] = 8; title[8] = 15; title[12] = 5;
+  let m22 = 0, m23 = 0;
+  for (const symbol of title) { m22 = (m22 * 29 + symbol) % 22; m23 = (m23 * 29 + symbol) % 23; }
+  if (m22 !== 7 || m23 !== 0) continue;
+  conditioned++;
+  const o = title.slice(0,8), m=title.slice(8);
+  const routeNull = [];
+  for (let row=0;row<9;row++) {
+    if (row%2 === 0) routeNull.push(m[row/2]);
+    else routeNull.push(o[row-1],o[row]);
+  }
+  let residue = 0;
+  for (const symbol of routeNull.slice(3)) residue = (residue*29+symbol)%23;
+  if (residue === 18) tailMatch18++;
+}
+assert.equal(conditioned, 9969);
+assert.equal(tailMatch18, 435);
+
 console.log(JSON.stringify({
   source:'Original LP2 p0 red13, 13-dot and first seven black runes',
   DH23:{N:fullNumber.toString(),exponent:Number(a),clientShare:Number(B),
@@ -81,5 +110,6 @@ console.log(JSON.stringify({
   suffixMod23:Number(suffixInteger%23n),
   rawTailMod23:Number(b29(raw.slice(3))%23n),
   orientationCandidates:unique.map((x)=>({first3:x.first3,restModulo23:x.restModulo23})),
-  secretAgreement:'exact; no plaintext or source-command selection'
+  conditionalNull:{trialTitles:trials,matchedRawDHConstraints:conditioned,matchedTail18:tailMatch18,expected:conditioned/23},
+  secretAgreement:'exact; null-calibrated coincidence; no plaintext or source-command selection'
 },null,2));
