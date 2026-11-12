@@ -23,6 +23,19 @@ One immediate candidate readout **does fail** without any guesswork: the complet
 
 The paired `SCY/UDP` makes an unusually specific original-source hypothesis: a returning 2014 solver might apply the previously learned Atbash to exceptionally marked red triplets, recognize the earlier sky clue and consider a different packet transport. At the time of this report, neither fragment supplied a destination. A later p56 factorization yields a candidate IP/port and p55-length UDP packet shape (128.118.244.163:281/UDP; 76-byte page-local BASE29 body; 84-byte datagram), but this is an unverified structural hypothesis, not an authenticated endpoint, live service, packet trace, or GP29 inverse. See p56-factorization-udp-endpoint-hypothesis.md. No network traffic was sent. Direct repeating-key and eight-byte-row UDP-header tests below also fail. The 2013 participant-documented server address does not establish a 2014 live listener. Sending a UDP packet to an ordinary Tor onion is also not a supported direct transport, so a viable proposal must identify an actual period-available network endpoint instead of assuming the historical onion accepted UDP.
 
+## Two 119-rune prefixes as literal GP29-to-UDP datagrams (Agent11, 12 November 2026)
+
+The two red119 markers each select the **entire 119-rune prefix immediately before** the isolated SKY/UDP fragment. This differs from the pp49–51 numeric-table UDP-header tests above. A finite natural hypothesis treats GP29 ordinal indices as base29 digits in printed order, forms one big-endian integer per prefix and serializes each into the minimum-width 73-byte big-endian string. The authenticated 2013 BASE29 service establishes a radix operation, but **does not** establish that its ASCII numeric alphabet is interchangeable with GP29 rune indices or that either prefix carries network bytes.
+
+A literal IPv4 UDP datagram with 73 total bytes must declare **73** at header bytes 4–5. The original prefixes both produce 73 bytes, but the resulting header fields are:
+
+| Original prefix | First 16 bytes (hex) | Source port | Destination port | Declared UDP length | Result |
+| --- | --- | ---: | ---: | ---: | --- |
+| p3:0–118 | 0303a98d2c66cbccb9b60e3ccd98a316 | 771 | 43405 | **11366** | Invalid for 73 bytes |
+| p39:0–118 | 0240ce33c8df038466b845ff5da9e9ab | 576 | 52787 | **51423** | Invalid for 73 bytes |
+
+Thus neither **direct** base29-prefix readout is a complete literal standard UDP datagram. The [original-corpus SFT](../sims/lp2_red119_base29_direct_udp_sft.cjs) tests both exact inputs, integer-to-rune reversibility, the byte headers, a syntactically correct 119-digit / 73-byte planted packet and a corrupted-length control. This excludes only the frozen GP29-ordinal, forward, big-endian, minimum-width **direct UDP-header** interpretation, without proving that SKY/UDP specifies packets or ruling out an independently encoded payload. The p3 prefix itself includes a separate red heading and is not marked as an isolated binary field.
+
 ## Source-fixed consumers of the paired triads (Agent18, 12 November 2026)
 
 A separate, bounded original-cipher check treats the source-extracted Atbash readouts **SCY** and **UDP** as possible three-rune repeating Vigenère keys for the respective **black passage immediately after** each red triad and its closing red13 mark. All three positions, the phase-zero start at local offset122, and the historically demonstrated mod29 additive operation are fixed from sources. The historical literal-F pass-through / no-key-consumption variant is tested separately. A combined **SCYUDP** six-rune periodic key is also tested on all 12,956 unsolved LP2 runes in physical source order, with no phase, case, period, or skip-rule search. These are candidate consumers, since no original instruction explicitly says to use the two red words as cipher keys.
