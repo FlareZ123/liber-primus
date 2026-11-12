@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** original-print geometric correspondence; source-linked direct consumer tests negative; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** original-print geometric correspondence; two source-sized manuscript receivers and a conditional dual-region stationarity gate; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -42,8 +42,25 @@ For scale, unchanged p55 IoC is **0.03789474** and authentic solved p57 GP29 pro
 
 Retain the inner 30×6 source tokens in their printed row-major order. Compare against the 180 historically listed consecutive primes in the listing's printed order. Only **3/180** respective values satisfy `byte mod29 = prime mod29` and **5/180** satisfy `byte mod29 = (prime−1) mod29`. Direct source GP29 subtraction `(byte−prime) mod29` has rune IoC **0.03767846**; addition has **0.03333333**, compared with raw inner byte residues **0.03823712**. Neither produces a readable GP29 passage or an identifiable index/prime mapping. This excludes the obvious direct position-aligned residues, not independent nested permutations, encodings, or unpublished source instruction.
 
+### A separate original-text receiver: p53 plus the first p54 rune (Agent42, 12 November 2026)
+
+The original LP2 terminal motif provides an independent **180-rune receiver candidate**: p53 has exactly **179** runes, immediately followed by p54's visibly enlarged red initial **A** (GP index24). Together they supply **180** source-visible runes, equal to the **30×6** interior of the actual pp49–51 32×8 numerical rectangle. The border has exactly **76** printed cells, equal to original p55's full **76-rune** page. Thus **(p53 + p54 initial, p55) = (180, 76)** and both table regions can be tested at once, independently of the anonymous historical missing-prime witness. This remains an *inferred* pairing: p53 and p54 are separated by a marked original chapter transition, p55 is separated by 231 more p54 runes, and no authored instruction says to ignore those intermediate runes or address the grid this way. The common p53/p55 moth and p54 decorative initial motivate checking the split without authenticating the operation.
+
+A strict source-order, **all-secret stationary lookup** gate uses the complete printed two-character base60 tokens as inputs. Every distinct token can secretly map to *any* GP29 rune, and the border and interior are granted **completely independent mapping tables**. This is more permissive than a fixed monoalphabetic permutation. The exact maximum number of matching original ciphertext runes is the sum, over repeated input-token classes, of the most frequent target symbol in each class, so the result does not depend on guessed keys or language scoring:
+
+| Printed region and candidate receiver | Source token classes | Exact best fixed lookup fit | Forced mismatches |
+| --- | ---: | ---: | ---: |
+| Interior 30×6, printed row-major → p53(179)+p54 initial(1) | 127 | **130/180** | **50** |
+| Interior 30×6, reversed → same receiver | 127 | **133/180** | **47** |
+| Outer perimeter from top-left clockwise → p55 | 68 | **69/76** | **7** |
+| Outer perimeter, best of all 76 cyclic starts × two orientations → p55 | 68 | **71/76** | **5** |
+
+Even allowing independent choice of the **best possible unknown map for each region** and independent orientation, the combined original receiver has at most **204/256** exact positions, requiring **at least 52** unsourced overrides. A planted known stationary lookup on each original region yields **76/76** and **180/180** as an exact positive control. Byte-versus-token recoding is irrelevant to the exact-token comparison because each printed token represents one byte under the working base60 encoding; mapping the byte residues modulo29 is stricter still.
+
+This **rules out only complete, memoryless, per-region source-token lookup under the stated printed coordinates**, including both natural interior directions and every perimeter cyclic start. Stateful/changing keys, reordering individual interior positions, intermediate ciphertext transforms and different page receivers remain possible. No recovered plaintext, real key or creator-selected ring decoder follows. [Exact all-secret source SFT](../sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs). The earlier full-frame 256-value test and ring-only source-token test are independent controls rather than new successes.
+
 ## Decision and reproduction
 
-The **76/180 perimeter/interior partition is exact and source-visible**. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the four source-native direct additive GP29 inverses also give unreadable text; the direct 180-place prime-removal operation gives noise. Retire these exact candidate transfers. Further tests should require original evidence selecting a different consumer and should not overinterpret the matching counts or refit position-specific exceptions.
+The **76/180 perimeter/interior partition is exact and source-visible**, with a separate p53+p54-start 180-rune candidate that is not an authenticated consumer. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the four source-native direct additive GP29 inverses also give unreadable text; the direct 180-place prime-removal operation gives noise. Retire these exact candidate transfers. Further tests should require original evidence selecting a different consumer and should not overinterpret the matching counts or refit position-specific exceptions.
 
 The [standalone CommonJS SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs) reconstructs the 32×8 perimeter without duplicate cells, checks dimension uniqueness and p55 exact length, parses all 180 original archived primes, asserts the original source counts and direct outputs, and checks both the XOR and GP29 additive inverses. It uses [original p50 tokens](../resources/liber-primus/base60-grid.json), [original p55 runes](../resources/liber-primus/lp2-corpus.json) and [contemporaneous participant prime list](../resources/external/2013-01-14-missing-primes-pastebin.md).

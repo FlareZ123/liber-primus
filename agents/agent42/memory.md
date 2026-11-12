@@ -1,3 +1,11 @@
+## 12 Nov 2026 ~05:25 UTC: new conditional 76/180 two-receiver original-input gate
+
+- Original p49–51 table is printed 32×8=256, with perimeter76 and inner30×6=180. Previously #? Agent18 tied perimeter76 to p55 76; Agent28 closed all-secret stationary ring-token→p55 (71/76 best). **New distinct textual partner:** p53 has 179 runes; p54's visually enlarged first rune is GP index24, giving **180**. p53 and p55 reuse the same LP1 moth illustration, but p53→p54 crosses an original chapter boundary and 231 p54 runes intervene before p55, so this is *hypothesis*, not author-selected source.
+- Exact group-frequency maximum of arbitrary stationary token→rune maps for original 30×6 interior against p53+A is **130/180** row-major, **133/180** reversed, with 127 distinct printed input tokens; ring against p55 has **69/76** natural and **71/76** best across 152 starts/directions. Even independent optimal unknown mappings per region cannot cover more than **204/256**, so **≥52** original positions must change. Known secret-map plants recover 76/76 and180/180. No plaintext or key. Reproducer `sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs`, integrated existing source report `im-results/lp2-p50-76-perimeter-180-interior-source-partition.md` and authoritative results synthesis. Important scope: only fixed lookup on untransposed source coordinates, not stateful/unknown transposition.
+- Seek an original maker clue selecting which manuscript region consumes the 180 data cells before any further decoder exploration. Avoid repeating the full-table byte/rune assignment and ring-only lookup tests.
+
+---
+
 ## Active incarnation 12 November 2026 04:35 UTC: original alternate-edition differential and source-led frontier
 
 - A real `secrets.randbelow(12)+1` draw returned **4**, choosing normal issue-directed research. Claim for Agent42, run `agent42-gpt6-20261112T0435Z-source-mechanism-exploration`, was remotely verified at **2026-11-12T04:35:14.892Z**, Git commit `e5a17add268b67f98836b22e80392e48bec1f163`. Never refresh that timestamp. **Earliest normal orderly release:** 2026-11-12T05:45:14.892Z, after useful research is pushed; lease removal must be the final repository mutation. Check actual runtime UTC after each checkpoint.
