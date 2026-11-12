@@ -65,6 +65,15 @@ const cipherR = rightPlant.map((v, i) => mod(v + key[i]));
 const cipherRAlternating = rightPlant.map((v, i) => mod(v - key[i]));
 assert.deepEqual(pair(cipherL, cipherR, 'minus'), pair(leftPlant, rightPlant, 'minus'));
 assert.deepEqual(pair(cipherL, cipherRAlternating, 'plus'), pair(leftPlant, rightPlant, 'plus'));
+// A period-840 family of 840 arbitrary distinct per-position affine bijections
+// preserves every pairwise equality without knowledge of any secret alphabet.
+const slopes = Array.from({ length: 840 }, (_, i) => 1 + (i % 28));
+const alphabetLeft = leftPlant.map((v, i) => mod(slopes[i] * v + key[i]));
+const alphabetRight = rightPlant.map((v, i) => mod(slopes[i] * v + key[i]));
+const countEqual = (a, b) => a.reduce((s, v, i) => s + Number(v === b[i]), 0);
+assert.equal(countEqual(alphabetLeft, alphabetRight), countEqual(leftPlant, rightPlant));
+assert.equal(countEqual(first, second), 28);
+
 for (const [kind, op] of [['same-sign', 'minus'], ['opposite-sign', 'plus']]) {
   const nativeExp = expectedDistribution(freq(native), op);
   const observed = freq(pair(first, second, op));
