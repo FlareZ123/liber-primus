@@ -88,6 +88,19 @@ async function main(){
       source:url,rawBytes:spec.bytes,pinnedGitBlobSha1:spec.sha,
       sha256:crypto.createHash('sha256').update(bytes).digest('hex'),
       ...inspect(bytes.toString('utf8').split(/\r?\n/)),
+      // Frozen after first unbiased matching pass: inspect the complete
+      // surrounding participant conversation for each potentially relevant
+      // protocol/port claim. 1-based source file line positions.
+      sourceContext:(spec.name==='#cicadasolvers.freenode.log'
+        ? [[5529,5545],[8438,8475],[36712,36743],
+          [92412,92434],[94764,94781],[177391,177408]]
+        : spec.name==='#cicadasolvers.freenode.2.log'
+        ? [[164413,164457]]
+        : []).map(([lo,hi])=>({
+          sourceLines:[lo,hi],
+          conversation:bytes.toString('utf8').split(/\r?\n/)
+            .slice(lo-1,hi).map((line,i)=>({line:lo+i,text:line.slice(0,500)}))
+        })),
       packetsSent:0
     };
     console.log('ARCHIVED_LOG_RESULT '+JSON.stringify(result));
