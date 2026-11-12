@@ -140,8 +140,8 @@ const results = keyDefinitions.map(definition => {
 });
 
 console.log(JSON.stringify({
-  corpus_sha1: '054f2a0f780b7d46901acbe3d9bf4f0ac1801165',
-  control_sha1: '94c677ad9dd50771c6670e0c4e4dad9052b46d85',
+  corpus_git_blob_sha: '054f2a0f780b7d46901acbe3d9bf4f0ac1801165',
+  control_git_blob_sha: '94c677ad9dd50771c6670e0c4e4dad9052b46d85',
   unknown_runes: unknown.length,
   fibonacci_prime_values: fibonacciPrimeValues.map(String),
   fibonacci_prime_indices: fibonacciPrimeIndices,
