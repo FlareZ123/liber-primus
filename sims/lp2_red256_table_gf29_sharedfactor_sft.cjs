@@ -111,7 +111,7 @@ const sourceFactors = [
   [3, 26, 24],
   [27, 5, 15],
   [24, 16, 14, 1],
-  [11, 15, 9, 1, 5, 10, 20, 12, 1, 1],
+  [11, 15, 0, 9, 1, 5, 10, 20, 12, 1],
 ];
 for (const factor of sourceFactors)
   assert.deepEqual(remainder(sourcePolynomial, factor), []);
