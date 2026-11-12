@@ -63,6 +63,10 @@ The full-string and suffix searches all returned **zero complete matches**. Posi
 
 This rejects the simple default Perl drand48 models at the two supported start boundaries, not Perl generally. It does not test an unknown pre-loop burn-in, a different backend, explicit custom seeding, separate timing and byte generators, or a cryptographic random source. Do not broaden the seed sweep without evidence for one of those alternatives.
 
+## Source-ordered direct LP2 key decision
+
+The original 2014 onion-2 256-byte growing string and the later LP2 pp49–51 256-cell table share a visible length, although the source never says to pair them. A new exact source-ordered comparison rules out *any* stationary byte-bijection between the two tapes: 139 source-equal position pairs would need unequal table bytes, and 127 table-equal pairs have unequal source bytes. Even after choosing an arbitrary one-to-one 256-symbol alphabet, at least 119 aligned positions would have to change (exact bipartite matching). Direct bytewise XOR gives 97/256 printable ASCII characters and no plaintext; the independently authentic GP29 Vigenère consumer under either sign, book/page clock and historic F-advance convention leaves all 12,956 original runes nonlinguistic (no-skip IoCs 0.03446–0.03449). The positive-control passing [source-exact report](../im-results/lp2-2014-onion2-grid-direct-source-tape-gate.md), [SFT](../sims/lp2_onion2_2014_grid_direct_gate_sft.cjs), and [manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43261482430) preserve the limited result. Do not treat the matched size as an LP2 key instruction or repeat the direct comparison.
+
 ## What this does and does not establish
 
 **Established from archived sources:** the 2016 message is signed; the 2014 round's archived start date is 6 January; the second onion had the patience comment and timed 256-byte growth; the third onion initially showed a blank page; and the phrase's GP value is 761.
