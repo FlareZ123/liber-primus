@@ -2,12 +2,19 @@
   "schema": 1,
   "status": "unverified historical source-key candidates, not known LP2 keys",
   "source": "https://github.com/DyrneCipher/Obsidian-Vault/blob/main/_archive/liber-primus/byte-strings",
-  "description": "Three 256-byte hex strings attributed in source to historical Cicada hidden services. The source's fourth hex string equals the canonical LP2 base60 grid byte for byte and is therefore omitted from duplication.",
+  "description": "Three 256-byte extracts from historical Cicada onion response snapshots plus the separately printed original 256-byte LP2 table. Source length equality does not establish a shared format, key, or cipher; the Stage03 onion2 response was a changing, growing hex stream captured at 256 bytes.",
   "sourceServices": [
     {
       "id": "onion2",
       "url": "http://cu343l33nqaekrnw.onion/",
-      "hex": "634292ba49fe336edada779a34054a335c2ec12c8bbaed4b92dcc05efe98f76abffdc2389bdb9de2cf20c009acdc1945ab095a52609a5c219afd5f3b3edf10fcb25950666dfe8d8c433cd10c0b4c72efdfe12c6270d5cfde291f9cf0d73cb1211140136e4057380c963d70c76948d9cf6775960cf98fbafa435c44015c5959837a0f8d9f46e094f27c5797b7f8ab49bf28fa674d2ad2f726e197839956921dab29724cd48e1a81fc9bab3565f7513e3e368cd0327b47cf595afebb78d6b5bca92ba021cd6734f4362a0b341f359157173b53d49ea5dff5889d2c9de6b0d7e8c615286ce596bfa83f50b6eeabd153aaf50cd75f39929ba11fb0f8e8d611442846"
+      "hex": "634292ba49fe336edada779a34054a335c2ec12c8bbaed4b92dcc05efe98f76abffdc2389bdb9de2cf20c009acdc1945ab095a52609a5c219afd5f3b3edf10fcb25950666dfe8d8c433cd10c0b4c72efdfe12c6270d5cfde291f9cf0d73cb1211140136e4057380c963d70c76948d9cf6775960cf98fbafa435c44015c5959837a0f8d9f46e094f27c5797b7f8ab49bf28fa674d2ad2f726e197839956921dab29724cd48e1a81fc9bab3565f7513e3e368cd0327b47cf595afebb78d6b5bca92ba021cd6734f4362a0b341f359157173b53d49ea5dff5889d2c9de6b0d7e8c615286ce596bfa83f50b6eeabd153aaf50cd75f39929ba11fb0f8e8d611442846",
+      "source_boundary": {
+        "classification": "2014 participant-captured mutable Stage03 HTML; not a terminal 256-byte key or creator-authenticated object",
+        "archived_url": "https://github.com/micheloosterhof/cicada-2014/blob/master/stage03/cu343l33nqaekrnw.onion/index.html",
+        "archived_git_blob": "c979fa7e23de1b04b502467da75ff5b506b97ff8",
+        "literal_comment": "<!--Patience is a virtue-->",
+        "observation": "Exact HTML snapshot has 512 hexadecimal characters (256 bytes), but Stage03 repeatedly appended hex during the intended waiting/polling step, per contemporaneous solver Stage03 README; the byte count is capture-time contingent."
+      }
     },
     {
       "id": "onion3",
@@ -21,5 +28,5 @@
     }
   ],
   "fourthSource": "resources/liber-primus/base60-grid.json",
-  "representation": "256 consecutive bytes per source; no established relation to LP2 key material"
+  "representation": "256 bytes each as archived; Stage03 onion2 is a non-final snapshot of a growing hex stream. No original source selects 256-byte matching as a key relation to LP2."
 }
