@@ -238,8 +238,7 @@ function main() {
   ];
   const controls = paths.map(relative => {
     const words = latinWords(read(relative));
-    const near15 = relative.includes('2013-liber-al-bookcode') ?
-      nearCribs(unknown, words) : undefined;
+    const near15 = nearCribs(unknown, words);
     return {source: relative, sourceWords: words.length,
       ...search(unknown, words), near15};
   });
@@ -247,10 +246,10 @@ function main() {
   assert.deepEqual(controls.map(x => x.longest), [9, 9, 9, 7, 8, 8]);
   assert.deepEqual(controls.map(x => x.windows), [104, 277, 270, 9, 19, 12]);
   assert.equal(controls.reduce((s,x) => s + x.atLeast10, 0), 0);
-  assert.deepEqual(controls.slice(3).map(x => x.near15.candidatePairs),
-    [1683, 1453, 1470]);
-  assert.deepEqual(controls.slice(3).map(x => x.near15.matchesAtMost2),
-    [0, 0, 0]);
+  assert.deepEqual(controls.map(x => x.near15.candidatePairs),
+    [12074, 43818, 36747, 1683, 1453, 1470]);
+  assert.deepEqual(controls.map(x => x.near15.matchesAtMost2),
+    [0, 0, 0, 0, 0, 0]);
   console.log(JSON.stringify({
     claim: 'No exact ten-word source-native GP length crib in three literary texts or three authentic 2013 book-code chapters',
     scope: 'Only contiguous verbatim excerpts under exact original word boundaries and original GP spelling rule',
