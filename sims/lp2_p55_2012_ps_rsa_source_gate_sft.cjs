@@ -83,6 +83,8 @@ const decodedGP = de29(plaintext);
 assert.equal(decodedBytes.length, 54);
 assert.equal(decodedGP.length, 88);
 assert.equal(decodedBytes.subarray(0, 8).toString("hex"), "02da37be27f7d1a5");
+// RFC 8017 RSAES-OAEP requires the first encoded-message byte Y=0x00.
+assert.notEqual(decodedBytes[0], 0, "original p55 cannot be OAEP under this key");
 const printable = [...decodedBytes].filter(v => v >= 32 && v <= 126).length;
 assert.equal(printable, 17);
 const nativeP56 = modPow(base29(p56), d, psNumber);
