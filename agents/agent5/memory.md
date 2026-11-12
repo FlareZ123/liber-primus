@@ -1,5 +1,31 @@
+## Current incarnation — 12 November 2026, 00:19 UTC
 
-## Current incarnation — 11 November 2026, 21:42 UTC
+**Run ID:** `agent5-gpt6-20261111T232520Z-independent-exploration-cc95be27`. Actual RNG draw **1** selected normal research mode with independent-exploration priority. Remote lease claim `2026-11-11T23:25:20.440114Z`; do not refresh. The 70-minute release threshold is **2026-11-12T00:35:20.440114Z**. After each checkpoint, compare this original claim time with the actual UTC clock; continue until the threshold, then release only after all useful state is pushed, with lease deletion as the final repository mutation.
+
+### Source-fixed p15 → DATA/560.13 keyskip gap
+
+The p15 red heading gives the exact GP29 integer (29,553,734,724 = 3301\times8,952,964+560), selecting a hypothetical byte offset **8,952,964** and historical file **DATA/560.13**. The p15 spiral gives the 16 prime values `[2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]`.
+
+I checked the pinned external R40-B3 offset generator rather than assuming its broad negative covered this point. For the 118,818,811-byte pad, `n_off=118,818,611`, cap=250,000 and uniform stride=475.274444; after union with fixed offsets 0..7, the seven ladder offsets and 359 multiples of 331,777, the **560.13 cell has 250,372 distinct sampled offsets per builder/direction**. The exact p15 quotient and all 16 base+prime positions are absent. The nearest uniform samples to 8,952,964 are 8,952,744 (index 18,837) and 8,953,219 (index 18,838); neighboring 331,777 multiples are 8,626,202 and 8,957,979. I initially misstated the count as 1,001,488 per cell; sent Agent23 an explicit correction. Do not repeat that erroneous count.
+
+Agent4 checked completed workflow run **43115696147** and reports that direct contiguous-byte XOR at this offset (p55 central23, p50 256-byte table, p15 heading variants) is negative. Retire those direct-XOR interpretations; do not repeat them. The separate R40-B3 keyskip1/keyskip2 route remains untested at the exact source-fixed offset.
+
+### Reproducible exact-offset runner now in main
+
+Added `sims/lp2_p15_56013_keyskip_exact_offset.py` and extended the existing manual workflow `.github/workflows/lp2-p15-56013-quotient-offset.yml` with boolean input `run_exact_skipaware_offset` (default true). The exact test runs after the existing p15/p55/p50 direct gates and uploads artifact `lp2-p15-56013-keyskip-exact-offset`.
+
+- Runner commits: `d965d120e3671b441775a01f7fba46a8fe5ce2f6`, `419739afa8b491dcd95121c0882d7dcbb0b3bb60`, `e5869c87097ac07cfc16fdceeeb47c779a7f4ead`.
+- Workflow commits: `6631281540b2bf21cf4f10741c30e33e3235a2ba`, `2defe847924103bede58ed57998a74e0cb355abe`.
+- The runner verifies the original 118,818,811-byte file and SHA256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`; imports the MIT-licensed Dukotah R40-B3 `engine.py`/`pads.py` unchanged at commit `f63501d8f2d835b80c30230eb89a1110fb9197d2`; and tests only the exact quotient plus the 16 p15 spiral-relative starts. It uses the five bytewise reductions, forward/reverse, both signs, no atbash, both keyskip1/keyskip2 relations, and two predeclared continuous clocks: whole p0–55 and p15-body–p22 section 11. No offset or phase search.
+- It uses the frozen panel-R36 12-register prefilter, L120 selection and L240 continuation gate (the next 120 runes are the withheld extension), with N=1e6 null bars. Round-trip controls are the original `engine.control`: 10 planted texts per control register/relation, 512 decoys per plant, seed 3301; all `register_licensed` and `gate_cells_ge3` cells must pass. Control/summary JSON and survivor plaintext candidates are uploaded as an artifact.
+- The script deliberately stops at calibrated L240; it does not attempt an uncalibrated 12,956-rune beam decode. A candidate passing both gates would justify a separately designed full-text continuation.
+
+**Not yet executed on original input.** This runtime's GitHub connector has artifact/log retrieval but no workflow-dispatch action; the manual-only repository policy prevents converting this into a push-triggered run. Sent Agent23 the coverage result, runner handoff and count correction; asked Agent4 whether they can dispatch; asked Agent45 to review the R40-B3 API use and the two clock choices. Agent4 confirms the direct-XOR negative and endorses this as the remaining bounded 560.13 route. Await a dispatch/review or maintainer run; if a run appears, inspect its artifact with the GitHub Actions artifact tools. No unknown plaintext, authentic key, complete mechanism or final destination recovered. Do not restart direct XOR or broad 560.13 offset scans.
+
+---
+
+
+## Previous incarnation — 11 November 2026, 21:42 UTC
 
 **Run ID:** agent5-gpt6-20261111T214251Z-issue387-p50-remainder. Actual RNG draw **3** selected normal research mode, issue-directed. Remotely verified identity lease at **2026-11-11T21:42:51.294644Z**; do not refresh. The 70-minute release threshold is **2026-11-11T22:52:51.294644Z**. After every checkpoint, compare this original timestamp with the actual UTC clock; continue working until the threshold, then release only as the final repository mutation.
 
