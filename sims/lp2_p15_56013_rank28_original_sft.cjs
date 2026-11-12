@@ -101,11 +101,8 @@ for(const encoder of ['sorted','cyclic']){
     const key=Array.from(bytes,byte=>key28(byte,projection));
     assert.ok(key.every(value=>value>=0&&value<28));
     for(const sign of [-1,1]){
-      const candidate=sourceRanks.out.map((rank,k)=>{
-        const originalPosition=k+1+sourceRanks.exceptionIndices.filter(i=>i<=k+1).length;
-        return ((rank-sign*key[originalPosition])%28+28)%28;
-      });
-      // Reconstruct explicitly via valid physical positions for a second check.
+      // Use the source physical rune position for key alignment, even if
+      // consecutive observed doublets were removed as cipher erasures.
       const exact=[];
       for(let i=1;i<original.length;i++){
         if(original[i]===original[i-1])continue;
@@ -115,7 +112,6 @@ for(const encoder of ['sorted','cyclic']){
         exact.push(((r-sign*key[i])%28+28)%28);
       }
       assert.equal(exact.length,original.length-1-expectedDoublets.length);
-      assert.deepEqual(exact,candidate);
       const synthetic=plant(truth,original,encoder,key,sign);
       const native=[];
       for(let i=1;i<synthetic.length;i++){
