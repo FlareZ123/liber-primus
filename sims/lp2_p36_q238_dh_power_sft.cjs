@@ -104,6 +104,29 @@ function reduceField(source) {
   return Array.from({length:DEGREE},(_,j)=>mod(r[j]||0));
 }
 
+/**
+ * Invert the affine inclusion of 238 original rune slots and one known
+ * printed numeral 1 into the 238-dimensional quotient field.
+ * The heading at printed position99 occupies ascending power139. Since
+ * Q[139]=27 is invertible, the omitted degree238 coefficient is uniquely
+ * recovered: original[238]=(1 - field[139])/Q[139].
+ *
+ * @param {number[]} field reduced GF29^238 element
+ * @returns {number[]} exact 238 GP29 rune indices (high-to-low page order)
+ */
+function liftFixedNumeral(field) {
+  assert.equal(field.length,DEGREE);
+  assert.equal(Q[139],27);
+  // Inverse of 27 mod29 is 14.
+  const highest = mod((1-field[139])*14);
+  const full = field.map((x,j) => mod(x + highest*Q[j]));
+  full.push(highest);
+  assert.equal(full[139],1,"Known original numeral coefficient restored");
+  const printed = full.reverse();
+  assert.equal(printed[99],1);
+  return printed.filter((_,i) => i !== 99);
+}
+
 /** @param {number[]} element @param {bigint} exponent */
 function powerField(element,exponent){
   let output=Array(DEGREE).fill(0);
@@ -141,7 +164,16 @@ assert.equal(p36.length,238);
 // The physical page's Arabic heading 1 is immediately after 99 rune glyphs.
 const withNumeral = [...p36.slice(0,99),1,...p36.slice(99)];
 assert.equal(withNumeral.length,239);
+const polynomialAt24 = values => values.reduce((acc, coefficient) =>
+  mod(acc*24 + coefficient),0);
+const wrongNumeralOffsets=[98,100].map(offset =>
+  polynomialAt24([...p36.slice(0,offset),1,...p36.slice(offset)]));
+assert.equal(polynomialAt24(withNumeral),0);
+assert.deepEqual(wrongNumeralOffsets,[9,14]);
+
 const ciphertextField = reduceField(withNumeral.slice().reverse());
+assert.deepEqual(liftFixedNumeral(ciphertextField),p36,
+  "Exact original p36 238-rune plus fixed-numeral field recovery");
 const order = 29n**238n-1n;
 assert.equal(order%15n,0n);
 
@@ -159,23 +191,41 @@ for (const exponent of [23n,1661n,1067n]) {
   const p=powerField(ciphertextField,inverse);
   const reencoded=powerField(p,exponent);
   assert.deepEqual(reencoded,ciphertextField);
-  const gp = p.slice().reverse();
+  const basis = p.slice().reverse();
+  const gp = liftFixedNumeral(p);
   const record={
     exponent:exponent.toString(),
     inverseExponentBits:inverse.toString(2).length,
     decodedIoc:ioc(gp),
+    rawFieldBasisIoc:ioc(basis),
     gpPrefix:gp.slice(0,55).map(x=>corpus.translit[x]).join(""),
     first20Indices:gp.slice(0,20)
   };
   reversiblePowers.push(record);
 }
-assert(Math.abs(reversiblePowers[0].decodedIoc-0.03471261922490515)<1e-14);
-assert(Math.abs(reversiblePowers[1].decodedIoc-0.03524447753785059)<1e-14);
-assert(Math.abs(reversiblePowers[2].decodedIoc-0.03506719143353544)<1e-14);
+assert(Math.abs(reversiblePowers[0].rawFieldBasisIoc-0.03471261922490515)<1e-14);
+assert(Math.abs(reversiblePowers[1].rawFieldBasisIoc-0.03524447753785059)<1e-14);
+assert(Math.abs(reversiblePowers[2].rawFieldBasisIoc-0.03506719143353544)<1e-14);
+
+// Native-source regression: a complete p36-shaped 238-rune GP text with
+// the very same literal heading position must survive 23rd-power encryption
+// and full quotient-field inverse, including the formerly omitted coefficient.
+const p57 = corpus.pages.find(page=>page.page===57).indices;
+assert.equal(p57.length,95);
+const plantRunes=Array.from({length:238},(_,j)=>p57[j%95]);
+const plantedFull=[...plantRunes.slice(0,99),1,...plantRunes.slice(99)];
+const plantElement=reduceField(plantedFull.slice().reverse());
+const plantCipher=powerField(plantElement,23n);
+const plantRecovered=liftFixedNumeral(powerField(plantCipher,
+  inverseExponent(23n,order)));
+assert.deepEqual(plantRecovered,plantRunes);
+assert.equal(ioc(plantRecovered),ioc(plantRunes));
 
 console.log(JSON.stringify({
   source:{physicalPage:36,runicLength:238,numeralOffset:99,
-    printedNumeral:1,gridBytes:256,lowFactorDegree:16,
+    printedNumeral:1,wrongNumeralOffsetRoot24:wrongNumeralOffsets,
+    correctNumeralOffsetRoot24:0,fieldLiftCoefficientAt139:Q[139],
+    gridBytes:256,lowFactorDegree:16,
     irreducibleFieldFactorDegree:238,
     addedExponent:{value:1067,role:'DH3301 participant-transcript shared secret',
       authentication:'unsigned participant transcript; protocol only is signed'}},
@@ -183,6 +233,8 @@ console.log(JSON.stringify({
     cubeResidualNonzeroCoefficients:cubeResidue.filter(n=>n!==0).length,
     cubeResidualFirst24:cubeResidue.slice(0,24)},
   candidateReversibleInverses:reversiblePowers,
+  nativePlant:{source:'p57 repeated to 238 runes, heading 1 at99',
+    exact238RunesRecovered:true,ioc:ioc(plantRecovered)},
   p36OriginalIoc:ioc(p36),
   status:"No original plaintext/key. Literal field-power^15 impossible; inverses ^23, ^1661 and ^1067 ciphertext-like."
 },null,2));
