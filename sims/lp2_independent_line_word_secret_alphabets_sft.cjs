@@ -227,14 +227,46 @@ reference["Cicada LP1 solved + LP2 p57 solved"] = {
   authenticSourceWords: authorWords.length,
   exactWordLength: describe(authorMatched)
 };
+// The solved LP2 p56 supplies an authentic *changing-position* additive
+// cipher. Test the simplest word-reset analog without fitting any keys:
+// C_word,j = P_word,j + b_word + slope*j mod29. Every word gets its own
+// arbitrary unknown b_word; removing a trial global slope leaves the same
+// within-word equality count as plaintext, for every such unknown seed.
+const mod29 = x => (x % 29 + 29) % 29;
+const wordProgression = Array.from({length: 29}, (_, slope) => {
+  const deprogressed = words.map(word =>
+    word.map((symbol, j) => mod29(symbol - slope * j)));
+  return {slope, ...collisions(deprogressed)};
+}).sort((a, b) => b.same - a.same);
+assert.equal(wordProgression[0].slope, 23);
+assert.equal(wordProgression[0].same, 1123);
+assert(wordProgression[0].same <
+  Math.min(...authorMatched), "unknown seed cannot rescue any linear slope");
+
+/** @param {number[][]} units @param {number} slope */
+function progressivePlant(units, slope) {
+  const seeds = units.map(() => random32() % 29);
+  const encrypted = units.map((word, i) =>
+    word.map((symbol, j) => mod29(symbol + seeds[i] + slope * j)));
+  const deprogressed = encrypted.map(word =>
+    word.map((symbol, j) => mod29(symbol - slope * j)));
+  assert.deepEqual(collisions(deprogressed), collisions(units));
+  const decrypted = encrypted.map((word, i) =>
+    word.map((symbol, j) => mod29(symbol - seeds[i] - slope * j)));
+  assert.deepEqual(decrypted, units);
+  return {secretWordSeeds: seeds.length, recovered: total(decrypted),
+    invariantPairs: collisions(deprogressed).same};
+}
 const planted = {
   independentLineAlphabets: encryptedPlant(repartition(controlPlant, lines)),
-  independentWordAlphabets: encryptedPlant(repartition(controlPlant, words))
+  independentWordAlphabets: encryptedPlant(repartition(controlPlant, words)),
+  progressiveWordSlope23: progressivePlant(repartition(controlPlant, words), 23)
 };
 assert.deepEqual([planted.independentLineAlphabets.secretTables,
   planted.independentWordAlphabets.secretTables], [594, 2896]);
 console.log(JSON.stringify({
   scope: "GP29 English, unchanged original LP2 page/word/line boundaries",
   runes: original.length, lines: lines.length, words: words.length,
-  original: observed, controls: reference, planted
+  original: observed, controls: reference,
+  all29WordProgressionSlopes: wordProgression, planted
 }, null, 2));
