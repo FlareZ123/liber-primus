@@ -1,3 +1,47 @@
+# Agent17 current invocation — 2026-11-12 22:36Z
+
+Run ID: \`agent17-gpt6-20261112T223612Z-p10-35-columnar\`
+Lease claimed at: \`2026-11-12T22:36:12.104Z\`
+Mode: normal research mode (initial random draw = 3).
+
+## Issue queue check
+
+The open \`director-task\` queue had no executable unclaimed task when checked: #678 was actively claimed by Agent12, #676 by Agent9, #675 by Agent48, and #673 by Agent27; #41 was waiting for an owner handoff and #39 was owner-blocked. No issue claim was available, so independent exploration was the required fallback.
+
+## Research completed in this invocation
+
+### p10 7G / p50 table / p33–p39
+
+- A provisional second reading of p10 “7 G” as global row 7 / column G of the continuous p49–p51 table selects \`2a\` = 156; \(\varphi(156)=48\).
+- The existing \(7\times17=119\) path selects one-based cell 119, \`0Z\)=35. Together \(48\times35=1680\), exactly the p33–p39 chapter length.
+- The coordinate is ambiguous: the table has no printed A–H/global row labels; a p50-local row-7 interpretation yields \`1C\)=72 and totient 24. Treat 48×35 as a hypothesis, not an established clue.
+- Tested one global 48×35 transpose plus the p56 prime-minus-one schedule (8 fixed variants): best score −4.616359 vs raw −4.707453 and held-out native −2.656791; no plaintext.
+- Tested 48 blocks of 35, each 5×7, using historical 2014 column order 1736254 / inverse plus the p56 prime schedule (16 variants). Best −4.608520. Exhaustive 5,040-order familywise null over eight non-key variants: \(p=0.153\). No plaintext.
+- Exact planted inverses pass. The separate 5×7 magic-square tensor inverse was already negative. The p10-derived pointer starts enter the previously documented dominant 11-cycle (252/256 basin), so this is not a new key selector.
+- Updated \`im-results/p10-7g-p50-cell119-phase119-gate.md\` and \`workplace/p10-seven-g-red119-source-bridge.md\`; added \`sims/lp2_p10_7g_48x35_gate_sft.cjs\`.
+
+### Authenticated 2016 43-word message
+
+- Tested direct additive word-length keys (ASCII-letter counts and GP-rune counts; both signs) against the p55 43-rune stripped core and p27 215-rune black body with the 43-value key repeated five times.
+- p55 best: ASCII lengths, C−K, within-word bigram −4.557435 vs raw −5.293965; still below the worst matched native control (−3.50531), with no plaintext.
+- p27 raw −4.612176; all four variants score worse, best −5.006568.
+- Direct zero-based and one-based-with-F-skip p55-rune→signed-word index readings do not form a coherent phrase. Exact positive plants pass.
+- Updated \`im-results/lp2-signed2016-43word-primerank-p55-original-gate.md\` and the relevant synthesis paragraph in \`results/README.md\`; added \`sims/lp2_2016_wordlength_additive_p27_p55_sft.cjs\`.
+
+## Communications
+
+Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35 interpretation and to Agent27 on the direct 2016 43-word key/book-index tests.
+
+## Next actions
+
+- Do not extend the 48×35 branch with arbitrary row/column permutations or more key phases absent a new original clue.
+- Do not continue extracting arbitrary features from the 2016 message; prime sums, GP lengths, ASCII lengths, direct indices, and simple letter-boundary readings have not yielded plaintext.
+- Check replies from Agent36/Agent27 when useful. The issue queue was fully claimed or blocked; if still so, choose a genuinely independent original-artifact investigation rather than duplicating their active tasks.
+- No plaintext, key, or complete Liber Primus solution was recovered in this invocation.
+
+
+---
+
 # Agent17 current invocation — 12 November 2026, claimed 18:34:04 UTC
 
 - **Current remotely verified lease:** agent17-gpt6-20261112T183404Z-independent-p10-sevenG, immutable claimed_at=2026-11-12T18:34:04.212Z. Actual initial RNG draw **9** selected normal issue-directed research. No unclaimed executable director-task remained: #633/#635/#629/#608/#638 had active claims, #634 lacked the historically used GEB text, #39 was owner-blocked, #41 was waiting, and #631/#632 were closed. Per draw-9 fallback, this invocation is independent exploration. The normal-mode 70-minute release threshold is **19:44:04.212Z**; check actual UTC time after each checkpoint and do not refresh the lease.

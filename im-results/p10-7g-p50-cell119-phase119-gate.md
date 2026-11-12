@@ -35,7 +35,32 @@ Inputs were pinned by Git blob IDs in the reproducer: LP2 corpus 054f2a0f780b7d4
 
 The native-GP control contains 62,696 runes; the first 40,000 train the smoothed trigram model, and 22,441 held-out 256-rune windows calibrate native-language scores. Every one of the 50 full candidate windows under either sign scores below even the worst native window. Against 512 deterministic shuffled permutations of the same key multiset, the fixed phase scores are not exceptional: add-one upper-tail p=0.7797 for C−K and p=0.7836 for C+K. Exact inverse round trips and both planted native-GP sign controls pass; those validate implementation, not key identity.
 
-**Decision:** reject only the direct, continuous, period-256 B mod 29 additive/subtractive key beginning at cell119. Do not rescue it with arbitrary resets, offsets, reversals, or extra layers. The 7G→119→p50-cell119 alignment is a new candidate address/check relation, not plaintext or an authenticated key. The p3/p39 SKY/UDP interpretation still lacks a source-selected consumer; the signed 2013 “knock on the sky” route used ICMP echo, not a demonstrated UDP listener. Do not infer a port or send network traffic.
+## Additional global-coordinate reading: a 48×35 chapter shape
+
+A second, explicitly provisional reading treats the isolated p10 token pair “7 G” as a global table coordinate: row 7, column G (the seventh column, with A–H inferred rather than printed). In the continuous 32×8 p49–p51 table, global row 7 / column 7 is \`2a\`, base-60 value 156, and \(\varphi(156)=48\). The existing prime-product path \(7\times17=119\) selects the one-based 119th cell \`0Z\), base-60 value 35. These two readings therefore give
+
+\[
+48\times35=1680,
+\]
+
+exactly the p33–p39 rune count.
+
+This is a structural hypothesis, not a decipherment. The table has no printed A–H column labels or global row numbers. A p50-page-local row-7 / column-G reading instead selects \`1C\` (72), whose totient is 24; the 48 factor depends on treating the three printed pages as one continuous grid and using its global row origin.
+
+Two simple consumers of the 48×35 shape were tested against the original 1,680-rune chapter, transferring the authentic p56 prime-minus-one schedule as an explicit hypothesis:
+
+| Candidate | Fixed operation family | Best GP bigram log score | Raw chapter | Held-out native GP |
+|---|---|---:|---:|---:|
+| One 48×35 rectangle | Row-major/column-major transpose, both layer orders, both signs, literal-F skip on/off | −4.616359 | −4.707453 | −2.656791 |
+| 48 consecutive 35-rune blocks | Each block is 5×7; historical 2014 column order 1736254 or its inverse, both layer orders, both signs, literal-F skip on/off | −4.608520 | −4.707453 | −2.656791 |
+
+Neither output contains recoverable language; both remain near the ciphertext baseline and far from native English. Exact planted round trips pass for both layer orders, so the negative result is not explained by a broken inverse.
+
+For the blockwise candidate, all 5,040 possible seven-column orders were exhaustively enumerated. For each order, the maximum score over the eight non-key choices (two layer orders × two signs × two F rules) was retained. The observed maximum for the two historical key conventions has familywise add-one upper-tail \(p=0.153\). The historical order is therefore not exceptional under this test; the modest score improvement does not identify it as the intended key.
+
+The independent 5×7 magic-square tensor inverse is already negative in [the p33–p39 tensor report](lp2-p33-39-stage10-magic-tensor5x7.md). The p50 pointer-chase also does not provide a new selector: the two p10-derived starts enter the already documented dominant 11-cycle, whose basin contains 252 of 256 states ([pointer-cycle gate](lp2-terminal-ps-prime-mean-dual-pointer-gate.md)).
+
+**Decision:** retain the 48×35 factorization as a provisional structural hypothesis only. The direct phase-119 period-256 table key fails; the global 48×35 transpose plus p56 prime schedule and the blockwise historical 5×7/7-column consumer also fail to recover native language. The exhaustive permutation comparison gives no evidence that the historical column order is exceptional. Do not expand into arbitrary phases, row/column permutations, or additional cipher layers without a new source clue selecting them. The 7G coordinate reading remains unverified, and the p3/p39 SKY/UDP interpretation still has no source-selected consumer; do not infer a port or send network traffic.
 
 ## Reproduction
 
@@ -43,6 +68,7 @@ Run from the repository root with Node.js 22:
 
 ~~~sh
 node sims/lp2_p10_7g_p50_cell119_phase_sft.cjs
+node sims/lp2_p10_7g_48x35_gate_sft.cjs
 ~~~
 
 The script verifies source blob IDs, all six printed-number controls, the exact 119th table token and page-local coordinate match, both red-triad offsets, the full 12,956-rune ciphertext, native-GP control, fixed phase-119 inverses, planted positives, and the deterministic shuffled-key null.

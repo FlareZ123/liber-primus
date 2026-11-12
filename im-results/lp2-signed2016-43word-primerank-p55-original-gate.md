@@ -90,8 +90,23 @@ The historically established 29-element prime/rune field supports multiplication
 
 Both exact original-to-original inversions and solved-native 43/43 positive plants succeed. Independently, authentic signed GP-prime **word sums** have zero residues modulo29 at original signed-word indices **2 ('path')** and **20 ('meaning')**, where the actual aligned p55 interior ciphertext rune values are **12 and20**, both nonzero. Consequently, any literal multiplicative rule `C_i = K_i × P_i mod29` with `K_i = signed_GP_prime_sum(word_i)` is impossible at these original positions, and the inverse field rule requires dividing by zero. This excludes exact source-word prime sums as a *reversible* multiplicative field key without ad hoc exceptional handling. No unknown plaintext or historical key is recovered; source text does not expressly select multiplication. All controls and complete outputs are emitted by the same [read-only SFT](../sims/lp2_2016_signed_prime_rank_p55_sft.cjs).
 
+## Additional direct word-number and book-index readings
+
+The authenticated 2016 message contains 43 alphabetic words. Two source-visible target sizes make a direct mapping plausible: the p55 circumference-stripped core has 43 runes, and the p27 black body has 215 runes after its 19-rune red header, exactly \(5\times43\).
+
+A fixed additive key was formed from each signed-message word's length, using both ASCII-letter count and GP-rune count. Each key was applied once to p55 core 43 and repeated exactly five times over p27 body 215. Both signs were tested; there was no phase search, reversal, or fitted reset.
+
+| Target / key | Raw within-word bigram score | Best fixed additive result | Outcome |
+|---|---:|---:|---|
+| p55 core 43 | −5.293965 | −4.557435 (ASCII lengths, C−K) | Some score improvement, but still below the worst matched native control (−3.50531); output is not language |
+| p27 black body 215 | −4.612176 | −5.006568 (GP lengths, C+K) | All four key/ sign variants are worse than raw |
+
+The direct literal book-index reading was also tested: each p55 rune value selects a word from the 43-word signed message, either zero-based or one-based with the F interrupter skipped. Neither selected-word sequence forms a coherent phrase. Exact positive-plant round trips pass for the additive key on both target lengths.
+
+These tests extend, but do not replace, the existing prime-sum and multiplicative-length gates. They do not establish that the 2016 message has no semantic or navigational role; they show only that these natural direct numerical readings do not yield plaintext.
+
 ## Verdict and possible successor
 
-The frozen signed-word rank and its inverse fail under the task's original-language test, while the independent frequency-only invariant extends the rejection to the entire same-alphabet pure 43-interior transposition family under the stated native-English assumption. This is stronger than the narrow rank experiment in [Director #573](https://github.com/FlareZ123/liber-primus/issues/573) but still recovers no plaintext. A future hypothesis must independently supply another operation and explain why the source numbers select it; an unconstrained variation of rank scoring or tie breaking is not justified.
+The frozen signed-word rank and its inverse fail, as do the GP-rune-length multiplicative key, the new ASCII/GP word-length additive keys on p55 and p27, and the direct p55-rune-to-word book-index readings. The independent frequency-only invariant still rejects the entire same-alphabet pure 43-interior transposition family under the stated native-English assumption. This is stronger than the narrow rank experiment in [Director #573](https://github.com/FlareZ123/liber-primus/issues/573) but recovers no plaintext. The 2016 text remains a possible semantic/navigation clue, not a recovered key. A future hypothesis must independently supply an operation and explain why the source numbers select it; unconstrained word-feature or phase searches are not justified.
 
 **Single-file reproducer:** [`sims/lp2_2016_signed_prime_rank_p55_sft.cjs`](../sims/lp2_2016_signed_prime_rank_p55_sft.cjs) (Node.js 22, read-only). It reports the full word list, exact prime sums, permutation, original ciphertext, page offset alignment, both outputs, independent native-window comparisons, wrong-order control and exact original/native-plant inversions.
