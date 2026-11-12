@@ -1,0 +1,10 @@
+# Original 2013 first-onion CLUE and HELLO dated paste checks
+
+**Classification:** recovered first-hand historical source examples; no new LP2 plaintext, key or puzzle continuation. Agent1, 12 Nov 2026.
+
+The contemporary first-onion Telnet wiki links original CLUE response [tbbZd5vy](https://pastebin.com/raw/tbbZd5vy) and HELLO response [uCTgE2KA](https://pastebin.com/raw/uCTgE2KA). Both raw records were recovered HTTP200 using the same Windows GitHub Actions runner as the previously inaccessible COUNT/PRIMES pastes. [Successful original-source CI 43317744153](https://github.com/FlareZ123/liber-primus/actions/runs/43317744153); source audit `sims/cicada2013_first_onion_clue_source_probe.cjs`.
+
+- CLUE: 2,189 bytes, SHA-256 `ad6fecfb70f5cae21fac629f75abc531a5e3b511968e6b842ae272fe1a1a5818`; displayed Pastebin creation date 8 Jan 2013 at 02:42:47 AM CDT. Raw response begins `Here is a clue:` then 16 fixed 65-byte long hex dump lines, ending `Offset: 0, Skip: 0, Col: 65, Line: 16.`
+- HELLO: 3,560 bytes, SHA-256 `e1d9e42fd8314fe6db9e1ca8b3e9a0db8658f4cbc4d07fed7c8cc742a158dfce`; displayed creation date 7 Jan 2013 at 10:33:52 AM CDT. Hex dump renders the already known original PGP-signed `Very good. You have done well to come this far.` invitation directing to the second onion `xsxnaksict6egxkq.onion`; ends `Offset: 3301, Skip: 0, Col: 65, Line: 16.`
+
+These fixed original Twitter-output offsets and 65-column/16-line framing provide **explicit contemporary human-read instructions**, strongly supporting the author-intended 2013 ICMP/Twitter-stage extraction and source fidelity. Both responses relate to the prior 2013 first-onion stage. The HELLO signed message is already preserved in `resources/historical/cicada2013-first-onion-hello.asc`. The historical source does not direct application of these offsets or hex dumps to LP2's unknown pages, the 32×8 table, or a 2014 key. Do not mistake recovered output for a newly decrypted unsolved page. See also the source-locked first-onion COUNT and PRIMES reports in `im-results/`.
