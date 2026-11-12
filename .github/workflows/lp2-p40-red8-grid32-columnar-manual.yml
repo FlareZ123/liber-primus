@@ -1,0 +1,16 @@
+name: Agent39 p40 red8 grid32 columnar inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All 3000 original runes, full forward re-encryption and plant
+        run: node sims/lp2_p40_red8_grid32_columnar_inverse_sft.cjs
