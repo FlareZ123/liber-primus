@@ -42,6 +42,27 @@ The same unmodified finder locates a separately implanted **34-word KJV span exa
 
 [Single-file CommonJS reproducer](../sims/lp2_whole_kjv_wordlength_crib_sft.cjs) · [successful original-input workflow run 43156175967](https://github.com/FlareZ123/liber-primus/actions/runs/43156175967). The existing pinned KJV workflow now runs both its previously published quote-only regression and this full-unknown-corpus test. This is an intermediate source exclusion; the authoritative decipherment status is unchanged.
 
+## Complete Latin Vulgate source crib (Agent29, 12 November 2026)
+
+**Result: no long verbatim historical-Latin passage under the original ciphertext's preserved word boundaries.** Earlier exact-reference work compared only **39,835** Latin Vulgate words converted into the GP register. A new SFT now screens every one of the original **2,896 LP2 word-length positions** against all **66 available books** in each of two independently pinned historical Latin Bible datasets. This is a direct potential-plaintext search motivated by the Latin manuscript title *Liber Primus*, although the original artifact gives no Latin-text crib directive. The datasets cover a 66-book canon, so unrepresented deuterocanonical books are outside this exact gate.
+
+The two source editions are the Clementine Vulgate (1592), **541,811** word positions including 66 artificial book-boundary sentinels, and the Latin Vulgate edition labelled 405 CE, **534,367** analogous word positions. Source files are frozen at [`midvash/bible-data` commit `9586bd8228a747962df1ee8692730422fb7eb2ec`](https://github.com/midvash/bible-data/tree/9586bd8228a747962df1ee8692730422fb7eb2ec/versions/la), with exact Git blob SHA-1 `b99bc8cded07adaa368ea0c05baf772ea774d52f` and `749a180a91e1d9f526f96a02aacba6999747c255`. The Latin Vulgate dataset's modern textual edition is not established by its metadata; this is a finite *specific-transcription* test. The historical 405/1592 dates refer to the underlying texts, not a verified date of the digital transcriptions.
+
+Accented Latin source text is converted to uppercase A–Z by treating Æ/Œ as AE/OE and stripping accents. Test both Latin-letter lengths and the authentic GP `ING|TH|NG|EO|OE|AE|IA|EA` multigraph lengths. Each original eight-consecutive-word-length seed is extended exactly in both directions. A sentinel of impossible word length (999) prevents false book-to-book matches. No rune identity, candidate plaintext sentence or language-model ranking enters the selection.
+
+| Edition | Tested Latin register | Highest exact contiguous match | Matches ≥12 words |
+| --- | --- | ---: | ---: |
+| Clementine Vulgate | Raw letters | **10** | 0 |
+| Clementine Vulgate | GP-contracted letters | **10** | 0 |
+| Latin Vulgate | Raw letters | **9** | 0 |
+| Latin Vulgate | GP-contracted letters | **9** | 0 |
+
+The Clementine raw-letter maximum begins at original LP2 physical **p35** word position 1,955 and the source's book Jonah: “UNA NOCTE NATA EST ET SUB UNA NOCTE PERIIT ET”; the same ten words also match the GP-contracted register. No complete passage long enough to nominate an independently reproducible plaintext/key is found. Each source/register detector exactly recovers a separately implanted **34-word Latin source passage** within the original word-length array.
+
+[Successful original-input workflow run **43157959184**](https://github.com/FlareZ123/liber-primus/actions/runs/43157959184) · [Complete CJS source and four positive controls](../sims/lp2_complete_latin_vulgate_crib_sft.cjs) · [Manual workflow](../.github/workflows/lp2-complete-vulgate-wordlength-crib-manual.yml).
+
+**Decision:** The two complete 66-book editions provide no exact unknown-LP2 Latin Bible crib under the fixed word-preserving assumptions. This does not address Latin originally authored prose, paraphrases, retokenization, apocryphal books or other editions. Do not extend source scans without a newly author-selected candidate text or independent ciphertext-key prediction. No authentic unknown-page plaintext or key has been recovered.
+
 ## Prior-author-selected historical-book gate (Agent 6, 11 November 2026)
 
 This is a more causally motivated crib family than generic literary search. The [original 2013 signed book-code riddle and 2013 contemporary solve archive](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/001-232.jpg) identify Aleister Crowley's *Liber AL vel Legis* by its injunction to destroy the copy after reading. The **creator-selected** source is an external text used directly to solve an earlier Cicada book code, not a conjectured LP2 quotation. The separately signed 2012 second-chance image [selected a printed William Blake clipping](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/008-second-chance), specifically the "Voice of the Devil" passage, for another original historical book code. If LP2 reused one of these exact passages as unsolved plaintext, native word separators might preserve an identifiable 20-word or longer length signature independent of the encryption key.
