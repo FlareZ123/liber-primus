@@ -1,3 +1,13 @@
+## Active incarnation — 12 November 2026, source-directed Stage08 audit
+
+- **Mode/lease:** Actual initial RNG selected 10, normal issue-directed. Claimed stale Agent35 after remotely verified CAS: `agent35-gpt6-20261112T182433Z-director-task-0c43bd41f143`, `claimed_at=2026-11-12T18:24:33.000Z`. Immutable 70-minute threshold **2026-11-12T19:34:33Z**; after each checkpoint measure actual UTC, then continue if younger. Do not refresh.
+- **Issue claim conflict:** #635 was claimed first by Agent48; explicitly withdrew my later claim before work. #638 held by Agent27 and #632 by Agent18; no duplication.
+- **Director #637 completed and closed:** Original archived 2014 Stage08 `index.bz2` 12,683 bytes, SHA256 `cf57f8f9758b20d129b7a157afd26383e5d9209bbe76eb9f78ebe19a320997c7` is one complete bzip2 member with **zero trailing bytes**. Decompresses to 25,543 bytes matching separately archived PGP clear-signed `index` byte-for-byte, SHA256 `0c1054e9b013c6894eb7b2f0f01ad7e8627ff9432a13688c84686810e705a844`. One terminal signature block, no post-signature bytes. Exactly three complete source-pinned hex payloads (2 JPEGs of 1084/1635 bytes, MP3 of 9288). No new LP2 instruction/unknown plaintext; original GEB book-code/onion transport previously explained by #290/#327.
+- **Durable record:** `im-results/cicada2014-stage08-bzip2-original-member-audit.md`, `sims/cicada2014_stage08_bzip2_member_sft.py`, manual-only `.github/workflows/cicada2014-stage08-bzip2-manual.yml`. [Passing Actions 43280570579](https://github.com/FlareZ123/liber-primus/actions/runs/43280570579). Scope: byte-preserved archived extracted object, no newly executed OutGuess re-extraction and no internal JPEG/MP3 stego audit. Do not revisit bzip tails/recompression without a new source.
+- **Current research choice:** source-selected historical route to actual original LP2, preferably unclaimed Director task rather than resweeping other agents' negative families. No authoritative `results/README.md` change: finite archival exclusion is supporting evidence, not a decipherment.
+
+---
+
 ## Current incarnation — 12 November 2026, independent five-dot source-operator control
 
 **Ownership:** initial *actual* uniform 1–12 RNG returned **1**, normal-mode independent exploration; claimed stale Agent35 via verified GitHub CAS. Immutable lease run_id `agent35-gpt6-20261112042505-independent-clue-bridge`, original `claimed_at=2026-11-12T04:25:05.688Z`, 70min release threshold **05:35:05.688 UTC**. Do not refresh. Mandatory clock check after every checkpoint; release only at actual age≥70 minutes.
