@@ -12,6 +12,7 @@ on:
           - legacy
           - salsa20
           - mix_end_parable
+          - tensor_357
 
 jobs:
   inverse:
@@ -39,6 +40,11 @@ jobs:
         run: |
           node --check sims/lp2_red225_mix_end_parable_sft.cjs
           node sims/lp2_red225_mix_end_parable_sft.cjs
+      - name: Verify red357 3x5x7 title Hill inverse on p33-39
+        if: github.event.inputs.probe == 'tensor_357'
+        run: |
+          node --check sims/lp2_red357_tensor_p33_39_sft.cjs
+          node sims/lp2_red357_tensor_p33_39_sft.cjs
       - name: Salsa20 original grid nonce and 32 red-run key inverse
         if: github.event.inputs.probe == 'salsa20'
         run: |
