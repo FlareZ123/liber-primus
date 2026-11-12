@@ -43,12 +43,33 @@ L_{\min}(m)=12,956+\sum_{j=m+1}^{28} c_{(j)},
 
 where \`c_(j)\` are those sorted class counts. This is an exact lower bound on output length without key enumeration, dictionary tuning, or unknown-plaintext scoring. The published CJS reproducer enumerates all 29 empirical counts and checks the ordering.
 
+### Source-visible nine-chapter reset sensitivity
+
+The original red-heading chapter cuts are independently visible at global GP rune offsets **0, 729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956** ([original-image chapter map](lp2-global-original-visual-section-map.md)). All eight internal cuts fall exactly between complete printed words.
+
+Granting a separately injective, entirely unknown static English codebook in each of those nine chapters weakens the length bound sharply:
+
+| Original chapter | Pages | Rune positions | Printed words | Standalone rune types | Minimum alphabetic letters |
+|---|---|---:|---:|---:|---:|
+| 1 | 0–2 | 729 | 158 | 5 | 801 |
+| 2 | 3–7 | 1,145 | 255 | 7 | 1,328 |
+| 3 | 8–14 | 1,729 | 383 | 9 | 2,127 |
+| 4 | 15–22 | 1,903 | 437 | 12 | 2,530 |
+| 5 | 23–26 | 1,021 | 224 | 5 | 1,120 |
+| 6 | 27–32 | 1,433 | 326 | 8 | 1,726 |
+| 7 | 33–39 | 1,680 | 378 | 9 | 2,060 |
+| 8 | 40–53 | 3,008 | 669 | 11 | 3,915 |
+| 9 | 54–55 | 308 | 66 | 2 | 308 |
+| **Total** | **0–55** | **12,956** | **2,896** | **chapter-specific** | **15,915** |
+
+Thus independently rekeying at those nine *visually attested* cuts reduces the best-case necessary mean to **5.495511 letters/printed word**. This does not exclude ordinary-English-like length output by itself. The cuts are genuine reading boundaries, **not authenticated cryptographic codebook resets**. This sensitivity is a counterexample to transferring the global 24,495-letter lower bound to arbitrary chapter-local mappings.
+
 ## Correctness control and reproduction
 
-- [CommonJS original-input SFT](../sims/lp2_static_codeword_wordlength_bound.cjs) parses the canonical source's actual word boundaries; asserts **12,956**, **2,896**, **83**, **28**, and the absent lone C/K; derives both language-register sensitivities and the six-letter collision threshold; and compares every source glyph with the independent canonical page-index arrays.
+- [CommonJS original-input SFT](../sims/lp2_static_codeword_wordlength_bound.cjs) parses the canonical source's actual word boundaries; asserts **12,956**, **2,896**, **83**, **28**, and the absent lone C/K; derives both language-register sensitivities, the nine original-chapter conditional bound, and the six-letter collision threshold; and compares every source glyph with the independent canonical page-index arrays.
 - As a constructive *mathematical* positive control, it chooses \`A\` and \`I\` for the two most frequent standalone types, \`Z\` for the nonstandalone type, and 26 distinct \`BA\`–\`BZ\` strings for the remaining standalone types. These strings form a prefix-free, bijective synthetic codebook, exactly attain the **24,495** lower bound, and reconstruct **all 2,896 source words**. This does **not** claim they form English plaintext or authentic Cicada key material.
 - All counts are calculated from [the canonical corpus](../resources/liber-primus/lp2-corpus.json) and [page/line/word transcription](../resources/liber-primus/lp2-transcription.txt). Existing separate fixed *one-letter* information bounds are in [homophonic information](homophonic-information-bound.md) and [surjection entropy](homophonic-downward-surjection-ioc-bound.md); this test concerns nonempty variable-length output strings and so does not duplicate those theorems.
 
 ## Decision for Director #525
 
-The original 2013 source selects rune names, letters/digraphs and prime weights; solved p57 supports orthographic use. **No original source inspected here selects a new fixed GP29→English-word codebook or a unique inverse for unknown LP2.** The simplest word-preserving injective variable-length alternative has a 24,495-letter output floor; the short-output noninjective rescue loses many original rune distinctions. This sharply demotes that static architecture, while leaving explicitly source-selected stateful codebooks, different plaintext languages, altered word boundaries, or an independently recoverable restoration channel open. There is **no new unknown-page plaintext, key or destination**.
+The original 2013 source selects rune names, letters/digraphs and prime weights; solved p57 supports orthographic use. **No original source inspected here selects a new fixed GP29→English-word codebook or a unique inverse for unknown LP2.** The simplest word-preserving injective variable-length alternative has a 24,495-letter output floor; the short-output noninjective rescue loses many original rune distinctions. This sharply demotes the **globally constant** static architecture. A codebook that resets by original-image chapter is not length-excluded, though the source does not prescribe such resets. Explicitly source-selected stateful codebooks, different plaintext languages, altered word boundaries, or an independently recoverable restoration channel remain open. There is **no new unknown-page plaintext, key or destination**.
