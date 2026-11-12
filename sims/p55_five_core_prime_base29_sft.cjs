@@ -20,6 +20,10 @@ function base29(n) {
   do { out.unshift(n % 29); n = Math.floor(n / 29); } while (n > 0);
   return out;
 }
+const signedProtocolAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+function signedProtocolBase29(n) {
+  return base29(n).map((digit) => signedProtocolAlphabet[digit]).join("");
+}
 function primeOrdinal(n) {
   let count = 0;
   for (let x = 2; x <= n; x++) {
@@ -57,7 +61,8 @@ const core = centerFive(p55);
 const weights = core.values.map((i) => corpus.prime[i]);
 const sum = weights.reduce((a,b) => a+b, 0);
 const digits = base29(sum);
-const text = digits.map((i) => corpus.translit[i]).join("");
+const gpText = digits.map((i) => corpus.translit[i]).join("");
+const protocolText = signedProtocolBase29(sum);
 assert.equal(p55Words.length, 16);
 assert.equal(p55Words.reduce((a,w) => a+w.length, 0), 75);
 assert.equal(pages.get(55).runic_count, 76);
@@ -66,7 +71,10 @@ assert.deepEqual(core.values, [21,20,15,23,27]);
 assert.deepEqual(weights, [79,73,53,89,107]);
 assert.equal(sum, 401);
 assert.deepEqual(digits, [13,24]);
-assert.equal(text, "PA");
+assert.equal(gpText, "PA");
+assert.equal(protocolText, "DO");
+assert.equal(signedProtocolBase29(1033), "16I");
+assert.equal(signedProtocolBase29(3301), "3QO");
 assert.deepEqual(pages.get(57).indices.slice(0,2), [13,24]);
 assert.equal(runeIndex.get(marks.get(54).red_spans[0].runes[0]), 24);
 assert.equal(markCount(55,76), 13);
@@ -76,12 +84,12 @@ assert.equal(p56.length, 36);
 assert.equal(p57.length, 55);
 assert.equal(primeOrdinal(401), 79);
 assert.equal(p55.length + p56.length, 79);
-const p56Text = base29(centerFive(p56).values.reduce((a,i)=>a+corpus.prime[i],0))
+const p56GPText = base29(centerFive(p56).values.reduce((a,i)=>a+corpus.prime[i],0))
   .map((i)=>corpus.translit[i]).join("");
-const p57Text = base29(centerFive(p57).values.reduce((a,i)=>a+corpus.prime[i],0))
+const p57GPText = base29(centerFive(p57).values.reduce((a,i)=>a+corpus.prime[i],0))
   .map((i)=>corpus.translit[i]).join("");
-assert.equal(p56Text, "HI");
-assert.equal(p57Text, "THM");
+assert.equal(p56GPText, "HI");
+assert.equal(p57GPText, "THM");
 const nulls = [];
 for (let pageIndex=0; pageIndex<55; pageIndex++) {
   const vals = interior(pageIndex).map((i)=>corpus.prime[i]);
@@ -127,12 +135,13 @@ assert.equal(words[23].toLowerCase(),"road");
  assert.equal(direct19.find((x)=>x.physicalPage===55).word,"THE");
 console.log(JSON.stringify({
   p55:{completeWords:p55Words.length,interiorCount:p55.length,centerOffset:core.start,
-    centralIndices:core.values,primeWeights:weights,sum,base29:digits,output:text},
+    centralIndices:core.values,primeWeights:weights,sum,base29Digits:digits,
+    signedProtocolOutput:protocolText,gpRuneRendering:gpText},
   crossChecks:{p54FirstRedRune:24,p55Dots:markCount(55,76),
     p57TitlePrefix:pages.get(57).indices.slice(0,2),p57TitleDots:markCount(57,7),
     p57TerminalDots:markCount(57,95),primeOrdinal:79,p55PlusP56Interiors:79,
     signed2016Words13and24:[words[12],words[23]]},
-  controls:{p56:p56Text,p57:p57Text,p55SubsetNull:p55Null.p,
+  controls:{p56GPText,p57GPText,p55SubsetNull:p55Null.p,
     p55SubsetCount:p55Null.count,p55SubsetTotal:p55Null.total,
     familywiseAnyPageCenterSum401:familywise},
   directP57WordAddress:{
