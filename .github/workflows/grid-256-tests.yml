@@ -221,6 +221,9 @@ jobs:
       - name: Cross-artifact p55/p57 shed-circumferences 43-rune source gate
         if: ${{ inputs.probe == 'terminal-shed-43' }}
         run: node sims/lp2_p55_shed_circumference_43_source_gate.cjs
+      - name: Test p55 centered PH bracket and GP prime401 exact multinomial null
+        if: ${{ inputs.probe == 'terminal-shed-43' }}
+        run: node sims/lp2_p55_centered_mirror_prime_joint_sft.cjs
 
       - name: All-secret stationary byte/rune mapping on independently solved terminal pages
         if: ${{ inputs.probe == 'terminal-known-tail' }}
