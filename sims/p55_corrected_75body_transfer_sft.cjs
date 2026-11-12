@@ -148,22 +148,34 @@ function run() {
   ).replace(/^#.*$/gm, '');
   const native = plaintextWords(nativeText).flat();
   const nativeScores = [];
-  const nativeIoCs = [];
-  const overlappingIoCs = [];
-  for (let start = 0; start + 75 <= native.length; start += 23) {
-    const window = native.slice(start, start + 75);
-    nativeScores.push(languageScore(window, model));
-    nativeIoCs.push(indexOfCoincidence(window));
+  const nativeIoCs75 = [];
+  const nativeIoCs76 = [];
+  const overlappingIoCs75 = [];
+  const overlappingIoCs76 = [];
+  for (let start = 0; start + 76 <= native.length; start += 23) {
+    const window75 = native.slice(start, start + 75);
+    const window76 = native.slice(start, start + 76);
+    nativeScores.push(languageScore(window75, model));
+    nativeIoCs75.push(indexOfCoincidence(window75));
+    nativeIoCs76.push(indexOfCoincidence(window76));
   }
   for (let start = 0; start + 75 <= native.length; start++) {
-    overlappingIoCs.push(indexOfCoincidence(native.slice(start, start + 75)));
+    overlappingIoCs75.push(indexOfCoincidence(native.slice(start, start + 75)));
+  }
+  for (let start = 0; start + 76 <= native.length; start++) {
+    overlappingIoCs76.push(indexOfCoincidence(native.slice(start, start + 76)));
   }
   const nativeSorted = [...nativeScores].sort((a, b) => a - b);
-  const nativeIoCSorted = [...nativeIoCs].sort((a, b) => a - b);
-  const overlappingIoCSorted = [...overlappingIoCs].sort((a, b) => a - b);
+  const nativeIoC75Sorted = [...nativeIoCs75].sort((a, b) => a - b);
+  const nativeIoC76Sorted = [...nativeIoCs76].sort((a, b) => a - b);
+  const overlappingIoC75Sorted = [...overlappingIoCs75].sort((a, b) => a - b);
+  const overlappingIoC76Sorted = [...overlappingIoCs76].sort((a, b) => a - b);
   const bodyIoC = indexOfCoincidence(body);
-  assert.ok(Math.min(...nativeIoCs) > bodyIoC);
-  assert.ok(Math.min(...overlappingIoCs) > bodyIoC);
+  const pageLocalIoC = indexOfCoincidence(p55PageLocal);
+  assert.ok(Math.min(...nativeIoCs75) > bodyIoC);
+  assert.ok(Math.min(...overlappingIoCs75) > bodyIoC);
+  assert.ok(Math.min(...nativeIoCs76) > pageLocalIoC);
+  assert.ok(Math.min(...overlappingIoCs76) > pageLocalIoC);
   const nativeMinimum = Math.min(...nativeScores);
   const nativeMedian = nativeSorted[Math.floor(nativeSorted.length / 2)];
   const nativeMaximum = Math.max(...nativeScores);
@@ -205,22 +217,40 @@ function run() {
       median: nativeMedian,
       maximum: nativeMaximum
     },
-    pureTranspositionInvariant: {
-      bodyIoC,
-      stride23Windows: nativeIoCs.length,
-      stride23Minimum: nativeIoCSorted[0],
-      stride23Median: nativeIoCSorted[Math.floor(nativeIoCSorted.length / 2)],
-      stride23Maximum: nativeIoCSorted[nativeIoCSorted.length - 1],
-      stride23AtOrBelowBody: nativeIoCs.filter(value => value <= bodyIoC).length,
-      overlappingWindows: overlappingIoCs.length,
-      overlappingMinimum: overlappingIoCSorted[0],
-      overlappingP01: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length * 0.01)],
-      overlappingP05: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length * 0.05)],
-      overlappingMedian: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length / 2)],
-      overlappingMaximum: overlappingIoCSorted[overlappingIoCSorted.length - 1],
-      overlappingAtOrBelowBody: overlappingIoCs.filter(value => value <= bodyIoC).length,
-      conclusion: 'No pure permutation of the complete 75-rune body matches the native GP29 IoC controls.'
+    frequencyPreservingFamilyInvariant: {
+      pageLocal76: {
+        ioC: pageLocalIoC,
+        stride23Windows: nativeIoCs76.length,
+        stride23Minimum: nativeIoC76Sorted[0],
+        stride23Median: nativeIoC76Sorted[Math.floor(nativeIoC76Sorted.length / 2)],
+        stride23Maximum: nativeIoC76Sorted[nativeIoC76Sorted.length - 1],
+        overlappingWindows: overlappingIoCs76.length,
+        overlappingMinimum: overlappingIoC76Sorted[0],
+        overlappingP01: overlappingIoC76Sorted[Math.floor(overlappingIoC76Sorted.length * 0.01)],
+        overlappingP05: overlappingIoC76Sorted[Math.floor(overlappingIoC76Sorted.length * 0.05)],
+        overlappingMedian: overlappingIoC76Sorted[Math.floor(overlappingIoC76Sorted.length / 2)],
+        overlappingMaximum: overlappingIoC76Sorted[overlappingIoC76Sorted.length - 1],
+        atOrBelowStride23: nativeIoCs76.filter(value => value <= pageLocalIoC).length,
+        atOrBelowOverlapping: overlappingIoCs76.filter(value => value <= pageLocalIoC).length
+      },
+      body75: {
+        ioC: bodyIoC,
+        stride23Windows: nativeIoCs75.length,
+        stride23Minimum: nativeIoC75Sorted[0],
+        stride23Median: nativeIoC75Sorted[Math.floor(nativeIoC75Sorted.length / 2)],
+        stride23Maximum: nativeIoC75Sorted[nativeIoC75Sorted.length - 1],
+        overlappingWindows: overlappingIoCs75.length,
+        overlappingMinimum: overlappingIoC75Sorted[0],
+        overlappingP01: overlappingIoC75Sorted[Math.floor(overlappingIoCs75.length * 0.01)],
+        overlappingP05: overlappingIoC75Sorted[Math.floor(overlappingIoCs75.length * 0.05)],
+        overlappingMedian: overlappingIoC75Sorted[Math.floor(overlappingIoCs75.length / 2)],
+        overlappingMaximum: overlappingIoC75Sorted[overlappingIoCs75.length - 1],
+        atOrBelowStride23: nativeIoCs75.filter(value => value <= bodyIoC).length,
+        atOrBelowOverlapping: overlappingIoCs75.filter(value => value <= bodyIoC).length
+      },
+      conclusion: 'Neither complete input can yield native-GP English through a fixed bijective monoalphabetic substitution, pure transposition, or their composition.'
     },
+
     wisdomSquarePhiCell: {
       key: cellKey,
       period: 25,

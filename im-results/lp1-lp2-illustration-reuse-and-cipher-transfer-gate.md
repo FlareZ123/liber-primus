@@ -50,26 +50,29 @@ Apply `P_i=(C_i-key[i mod25]) mod29` to all **75 actual p55 body runes**, with n
 
 `PRFOEIPMFOGIFBTHRNGEOIAIYTHMWPBTHANTFNPTHHGDNGNRBDCEBUWREOIADEAAEUPJBEOMEOMHHJORWSMMGTWOIA`.
 
-Its native-GP IoC is **0.03423423** (raw body **0.03855856**). The Gibran-trained GP29 trigram score is **−6.02356095**, against raw **−6.17872422** and 151 solved-native 75-symbol windows with minimum **−3.81150721**. The wrong 3301 square gives **−6.51068478**. This source-derived 25-period candidate is a reproducible negative, not plaintext.
+Its decoded GP29 IoC is **0.03423423** (raw body **0.03855856**). The Gibran-trained GP29 trigram score is **−6.02356095**, against raw **−6.17872422** and 151 solved-native 75-symbol windows with minimum **−3.81150721**. The wrong 3301 square gives **−6.51068478**. This source-derived 25-period candidate is a reproducible negative, not plaintext.
 
 ### LP1 p5 5×5 Hill inverse on the correct 75-body input
 
 The same correct body was tested as 15 blocks of five under the original LP1 p5 5×5 matrix over GF(29). The matrix is invertible (determinant **3 mod29**); exact forward reconstruction and a solved-native positive plant pass, but the decoded output is nonlinguistic, with Gibran GP29 trigram score **−5.773447** versus the same native minimum **−3.811507**. See the complete [correct 75-rune Hill gate](../im-results/p55-wisdom-5x5-original-75-gate.md) and [reproducer](../sims/p55_wisdom5_hill75_sft.cjs).
 
-### Full-body pure-transposition invariant
+### Full-page and body frequency-preserving invariant
 
-The corrected 75-rune p55 body has GP29 IoC **0.03855856**. Every fixed permutation of these 75 symbols preserves the global rune histogram and therefore preserves this IoC. This gives a family-wide test of the tempting 5×5 rank-order/route hypothesis without choosing a tie-break or route.
+The physical p55 page-local sequence has **76** rune segments (including the inherited p54 `NG`); the actual p55 body has **75**. Their GP29 IoCs are **0.03789474** and **0.03855856**, respectively. A fixed bijective monoalphabetic substitution preserves the symbol histogram; a pure transposition preserves it as well; their composition therefore preserves IoC on either fixed input.
 
-Using 75-symbol windows from the native LP1 plaintext reference:
-
-| Native control set | Windows | Minimum IoC | Median IoC | Maximum IoC | At or below p55 |
+| Input scope | Native stride-23 windows | Minimum IoC | Median IoC | Maximum IoC | At/below p55 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Stride 23 (the 151-window language-score control) | 151 | **0.04612613** | 0.06090090 | 0.08540541 | **0** |
-| Every overlapping 75-symbol window | 3,462 | **0.04540541** | 0.06054054 | 0.09837838 | **0** |
+| 76 page-local runes | 151 | **0.04631579** | 0.06035088 | 0.08526316 | **0** |
+| 75 actual body runes | 151 | **0.04612613** | 0.06090090 | 0.08540541 | **0** |
 
-Even the lowest overlapping native window is above the p55 body. Therefore **no pure transposition of the entire 75-rune body**—including a stable rank-order permutation of the LP1 p5 5×5 square repeated over three 25-rune blocks—can yield ordinary GP29 English consistent with these native controls. This does not exclude symbol substitutions, symbol-dependent transforms, combined ciphers, a transposition of only a subset, or deliberately non-English plaintext. It does remove standalone whole-body route/columnar permutations from the useful next-step queue.
+| Input scope | All overlapping windows | Minimum IoC | 1st percentile | 5th percentile | Median IoC | At/below p55 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 76 page-local runes | 3,461 | **0.04561404** | 0.04771930 | 0.05228070 | 0.06070175 | **0** |
+| 75 actual body runes | 3,462 | **0.04540541** | 0.04756757 | 0.05189189 | 0.06054054 | **0** |
 
-The exact counts and controls are emitted by [the corrected 75-body SFT](../sims/p55_corrected_75body_transfer_sft.cjs).
+Thus neither a fixed monoalphabetic substitution nor a pure transposition of the complete 76-glyph page or 75-rune body can yield ordinary GP29 English consistent with the native LP1 controls. This also excludes any composition of those two operations, including a whole-body 5×5 rank-order/route permutation. It does **not** exclude polyalphabetic, homophonic, position/context-dependent or non-bijective substitutions, mixed transforms, subset transposition, or deliberately non-English plaintext.
+
+The counts are reproduced by [the corrected 75-body transfer SFT](../sims/p55_corrected_75body_transfer_sft.cjs).
 
 ### Conditional solved-p56 φ(prime) transfer on the correct body
 
