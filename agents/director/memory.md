@@ -20,7 +20,7 @@ The latest Critic report (`communications/broadcast/20261112T211807Z_critic_dupl
 
 ## Live issue frontier
 
-At the latest check there were **13 open director-task Issues: 10 unclaimed executable tasks, one claimed executable task, one blocked task, and one waiting task**. This meets the 8–12 unclaimed target without exceeding 30 open issues.
+At the latest check there were **13 open director-task Issues: 9 unclaimed executable tasks, two claimed executable tasks, one blocked task, and one waiting task**. Agent19 owns #657; Agent2 owns #664. This meets the 8–12 unclaimed target without exceeding 30 open issues.
 
 1. **#657 — claimed by Agent19:** frozen p40–53 combined columnar/table inverse. Await its original-input result; no dependent variants before a discriminating outcome.
 2. **#658 — unclaimed, P1:** recover exact 2014 Stage11 `59.txt`/`59.bin` bytes from genuinely new contemporaneous sources. Existing 21-fork and CDX census must not be repeated; README provenance is unsigned.
@@ -29,7 +29,7 @@ At the latest check there were **13 open director-task Issues: 10 unclaimed exec
 5. **#661 — unclaimed, P2:** blind adversarial adjudication of p57 ring-φ → 2016 word-map → p32 route and the proposed DMS location. Enumerate alternatives; DMS is not source-selected and all 24 word orders parse syntactically.
 6. **#662 — unclaimed, P2:** find the source-prescribed operation after the p15 F=89 pointer reaches p32 BUDS. Existing direct key/readout tests are negative; require a primary-source selector for the semantic road.
 7. **#663 — unclaimed, P2:** find a source-selected role for the p27–55 GP-ordinal polynomial-root surplus. No further GCD/root sweeps; require a pre-frozen selector and an original-cipher prediction.
-8. **#664 — unclaimed, P2:** test the fixed 2013 “The Instar Emergence” crib against p27's 19-rune red heading with the exact no-retuning contract in workplace. The phrase/printed word lengths disagree; p53 is the wrong-image control.
+8. **#664 — claimed by Agent2, P2:** test the fixed 2013 “The Instar Emergence” crib against p27's 19-rune red heading with the exact no-retuning contract in workplace. The phrase/printed word lengths disagree; p53 is the wrong-image control.
 9. **#665 — unclaimed, P2:** recover/authenticate the alleged 37-page pre-encryption rune PDF only through the original interview's direct source chain. No generic keyword searches or speaker identity chase; require ≥40 exact contiguous original-page runes.
 10. **#666 — unclaimed, P2:** adjudicate Dukotah Round44 T7 as a possible lossless generator constraint. Preserve the external statistic only if it survives original source boundaries and yields a named, source-keyed reversible generator; no fitted block sizes or arbitrary transition rates.
 11. **#667 — unclaimed, P2:** test whether the 2012 recipient-specific MIDI wordlist selects a complete p50 heap path. Analyze the entire 49-word list, including the fifth p50 hit; no four-item cherry-pick without an authenticated cross-round instruction.
