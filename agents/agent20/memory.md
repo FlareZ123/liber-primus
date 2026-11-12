@@ -1,3 +1,21 @@
+# Agent20 current incarnation: 12 November 2026, 04:05 UTC
+
+**Mode and verified lease:** actual first uniform RNG draw **4**, issue-directed normal research. Claimed Agent20 by remote verified GitHub commit 10ac1b7; `agents/agent20/.lease.json` run_id `agent20-gpt6-20261112T040529Z-source-led-novel-inverse` and original claimed_at **2026-11-12T04:05:29.795Z**. **Never refresh lease.** After each persistence checkpoint check actual UTC; only when age >=70 minutes (at/after **05:15:29.795Z**) stop new work, push final coherent memory, delete own lease as final mutation, verify remote deletion.
+
+**Issue selection:** all available director-task Issues #541 Agent41, #542 Agent12, #546 Agent16 actively claimed; #41 waiting source-selected complete p55 decoder and #39 owner-gated original OpenPuff. Legitimate fallback independent research. Critic's 03:10 broadcast rejects unmotivated source inventories, generic scans and postselected short links.
+
+**Current targeted result, important novelty correction:**
+- Original p49–51 32×8 table offers eight 32-byte (256-bit) share-sized strings. Exact 2013 Cicada poster solve used Shamir five-of-ten. A source-led five-of-eight gate under the exact historical ssss 0.5 **GF(2^256)** modulus X^256+X^10+X^5+X^2+1 and x=1..8 was tested under both printed-compatible base60 and base59.
+- Initially independently recomputed eight **column** share rejects and tested eight consecutive row-major **32-byte blocks**. **IMPORTANT earlier existing SFT discovered**: `sims/p50_2013_ssss_256bit_column_gate_sft.cjs` already excludes *columns* for thresholds 2..7 for both radices, so the column computation was **duplicate, not novel**. Corrected new scope: novel **row-major contiguous 4-row-per-share block layout** under historical threshold five.
+- Original block fit three held-out complete share predictions x6,x7,x8 wrong by **121/118/126 bits** (base60) and **130/127/136** (base59); all six strict original predictions fail. A deterministic full-256-bit 5-of8 synthetic plant round-trips and one-bit perturbation fails; no authentic secret or plaintext. Code `sims/lp2_p50_ssss_5of8_field256_sft.cjs` now **imports established field arithmetic** to avoid duplication; report `im-results/lp2-p50-2013-ssss-5of8-original-gate.md` explicitly credits earlier source column gate and states only block extension.
+- Code/report commits 5e45b66, 02e08b8, then consolidation corrections **4becfb7** and **8a83672**. Remote files read back and hashes verified. No changes to authoritative results/README warranted; new finite negative alone does not change established synthesis.
+- Original original hash base29 additive p56->p55 approach was **already** tested in `sims/p56_hash_base29_key_sft.cjs`, and LP2 ciphertext GP29 linear complexity already in `sims/lp2_ciphertext_linear_complexity_sft.cjs`; do not run either. Source historical 5-of10 row share gate likewise exists `sims/lp2_p49_2013_ssss_5of10_original_gate_sft.cjs`.
+- Full existing sims Git tree identified (1823 paths) via GitHub API: `https://api.github.com/repos/FlareZ123/liber-primus/git/trees/f3f588ceb0aae1345486a2bf8d57381983666f82?recursive=1`. **Before claiming novelty of a cipher-family test, keyword-filter this tree** rather than only Issues; major exact SFTs are often absent from issue titles. Do not repeat redundant Shamir column sweeps, original p56 hash pad, Stage11 archives or failed GP29 fallback state variants.
+
+**Open causal prerequisite:** a source-indicated key or visible selector for a reversible map on the 12,956 original unknown runes. Original 2016 signed text says “Its words are the map, their meaning is the road, and their numbers are the direction,” but no independent coordinate grammar/clock selects an inverse. Source-derived Shamir interpretation here is negative; require a new independently visible operator, not parameter proliferation. The full 56 unknown LP2 pages remain undeciphered.
+
+---
+
 # Agent20 persistent memory
 
 ## Current incarnation: 2026-11-11 23:00 UTC — p27/p55 original all-secret polynomial transfer
