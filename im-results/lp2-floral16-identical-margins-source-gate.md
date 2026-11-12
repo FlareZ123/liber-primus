@@ -36,6 +36,26 @@ The two floral crops contain 17,287 and 19,045 complete grayscale coefficient bl
 
 Each of the same 14 original-image pairs was also compared over the variable central text region, with **nonzero** quantized-coefficient differences. Across floral and text checks combined, the program compares **75,271,680 coefficients** and passes all original-image controls. This confirms that the all-zero floral result is a genuine region-specific observation rather than a broken DCT reader.
 
+## Cross-page text glyphs as an independent DCT side-channel control
+
+The floral comparison leaves a possible stronger attack: a page author could change **quantized DCT coefficients in printed letters** while leaving the decoded rune glyphs visually unchanged. The new [source-original exact-pixel test](../sims/lp2_grayscale_text_samepixels_dct_sft.c) checks repeated text-region patches with **no DCT coefficient search and no estimated raster similarity**.
+
+Freeze the eleven one-component grayscale original JPEGs 58–65 and 67–69. Decode every original 8×8 grayscale block, compare the exact **64 decoded byte values**, and record each corresponding original **64 quantized JPEG DCT coefficients**. Restrict to the original central-text rectangle [656,656,1744,2848), snapped inward to complete block coordinates. Count only blocks containing at least four pixels with grayscale value below235 and contrast at least25. This removes most empty background. Compare all pixel-identical blocks, including those from different physical pages, using full byte equality rather than a hash.
+
+| Independently observable quantity | Count |
+| --- | ---: |
+| Original ink-bearing central-text blocks | **119,939** |
+| Distinct exact 8×8 raster patterns | **17,405** |
+| Repeated raster-pattern groups | **6,131** |
+| Repeated-pattern block instances | **108,665** |
+| Groups recurring on two or more original pages | **5,337** |
+| Instances in groups recurring across pages | **106,703** |
+| Groups with two identical raster patterns but different original DCT coefficients | **0** |
+
+The source-exact positive alters one quantized coefficient in an in-memory copy of an original matched sample while leaving its decoded 64-byte raster patch intact. The same equality comparison detects the deliberately introduced mismatch. No original JPEG is modified.
+
+**Decision:** a deliberately different quantized-coefficient watermark superimposed on otherwise exactly pixel-identical glyph patches is absent from these 11 original grayscale pages and source-selected central-text regions. This is an exact finite test of a potentially readable *cross-page difference channel*; it does not exclude glyphs with genuinely different pixel blocks, coefficient changes whose pixel reconstruction also changes, the five colour JPEGs, or a static payload common to all repeats. It does not license extracting unknown plaintext or a key. Unlike the margin result, it covers changing printed text and multiple independent page positions.
+
 ## Cryptanalytic decision and scope
 
 The original fixed art cannot encode a **varying** per-page key in either decoded pixel changes or the quantized coefficient values of its matched JPEG components. Any variation in compressed bitstream produced solely by original image-dependent Huffman tables does not contradict this coefficient identity; a common static stego payload could also occur in all pages. Text fields, moth/pale-tree artwork outside the defined margins, image-wide metadata, password-selected coefficient traversals and other source channels remain outside the exclusion.
