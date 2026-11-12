@@ -39,6 +39,10 @@ The original **32×8** pp49–51 numerical table supplies a second strictly sour
 
 All original-input assertions, complete-segment IoCs, direct header lengths, and first-three-rune result are in the [one-file CommonJS reproducer](../sims/lp2_red119_skyudp_source_consumers_sft.cjs). These negatives constrain the direct consumers of an unusually source-specified red pair; they do not diminish the exact source placement or prove whether the SKY/UDP clue was intended.
 
+## Shared-pad interpretation of the two 119-rune prefixes
+
+The two source-selected red triads each follow a complete 119-rune printed-word passage. An independent [exact dictionary-product inverse](lp2-p3-p39-red119-sharedpad-wordgrammar.md) now tests whether those two passages reused any common additive GP29 pad, granting its entire 119-symbol key to remain unknown. Using **32,081** GP-normalized English lexical forms from Shakespeare, Gibran, Emerson, and the TextBlob spelling lexicon, the complete word-preserving common-pad pair becomes algebraically incompatible with the source by original rune **11** (both forward) or **6** (second passage mirrored). Entire 119-rune native positive plants succeed in each reading. This is an all-pad *dictionary-and-original-boundary* exclusion, not a general rejection of layered encryption or of the red triads as clues; the operation and English plaintext assumption were never authenticated by the author.
+
 ## Held-out red-ink control: Atbash does not decode arbitrary red spans
 
 Applying the same frozen GP29 Atbash to other source-visible red fragments does **not** recover ordinary headings. For example, the original p0 red13 heading becomes `PLIAEOENUEAPTHIWD`, the p3 initial red16 becomes `HBTLWDYEOOBEOXLEOIAG`, and p33 red10 becomes `CTXDEAERNGLOE`. Most decisively, the **genuinely solved p57 red heading** spells `PARABLE` directly; applying Atbash would corrupt it to `SRARJHI`. The SFT asserts this solved-page negative control.
