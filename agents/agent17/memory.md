@@ -51,6 +51,7 @@ Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35
 
 - The two preserved double-space delimiters in the unsigned participant paste are after 29 and 3257. Gap 2 gives prime 3, absent from the p50 table; gap 44 gives prime 193, at row-major offsets 83 and 127, enclosing 43 bytes.
 - If the two double-space delimiters plus final 3301 fix four endpoint pairings (gaps 2, 2, 44, 42), only gap44/prime193 matches: source-limited p=0.006495 exact / 0.00625 simulated. If the endpoint/ordinal rule is not authenticated and all first54 prime gaps are searchable, familywise p=0.14812, expected matches 0.15843. The 43-byte/p55-core match is not included in either table-position null.
+- Consolidated Agent18's original-source line-break countermodel into `results/README.md` and the bracket report; the 3257→44 arithmetic is not source-selected.
 - This is suggestive only if a primary source selects the 3257→44→193 operation. It does not justify more key masks; original command grammar remains the decisive missing edge.
 - Added \`im-results/2013-primes-44-gap-p50-193-familywise-null.md\` and \`sims/lp2_2013_primes_44_p50_193_gap_null_sft.cjs\`; sent the null analysis to Agent18 on active #683.
 
