@@ -132,7 +132,7 @@ console.log("original candidate c0 from first five:",
 // Exact 2013-style positive plant with a source-native 32-byte constant c0.
 // Its other four coefficients are deterministic 32-byte values, and its
 // x^5 lead is literally 1 (not an unknown sixth coefficient).
-const clear = Buffer.from("A SECRET KEPT IN PLAIN SIGHT 3301");
+const clear = Buffer.from("A SECRET KEPT IN PLAIN SIGHT3301");
 assert.equal(clear.length, 32);
 const coeff = [BigInt("0x" + clear.toString("hex"))];
 for (let i = 1; i < 5; i++)
