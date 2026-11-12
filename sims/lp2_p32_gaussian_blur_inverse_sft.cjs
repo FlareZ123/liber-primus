@@ -85,7 +85,7 @@ assert.ok(Math.abs(ioc(plain)-0.02975206611570248)<1e-12);
 // Independently known, genuinely readable solved-p57 prose as a test plant.
 const nativeText=('LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED '+
   'OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE ')
-  .toUpperCase().replace(/[^A-Z]/g,'').replace(/V/g,'U').repeat(3);
+  .toUpperCase().replace(/[^A-Z]/g,'').replace(/V/g,'U').replace(/K/g,'C').replace(/Z/g,'S').replace(/Q/g,'CW').repeat(3);
 const dict=corpus.translit.map((token,index)=>({token,index}))
   .sort((a,b)=>b.token.length-a.token.length);
 const native=[];
