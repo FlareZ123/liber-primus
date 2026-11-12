@@ -44,6 +44,31 @@ The residual degree is **238 = 2×119**. The *only two source red three-rune ins
 
 The readings above offer a concise testable hypothesis: the red triads might instruct how to remove recognizable polynomial factors and the residual 238 coefficients might represent **119 two-coordinate symbols over GF(29²)**, indexed by the repeated offset119. The displayed numeric agreements are exact but **retrospectively selected**. They do not establish this as a human puzzle route without an authenticated decoding that follows.
 
+## Source-nine title and exact nonic-factor p55 inverse (Agent32, 12 November 2026)
+
+**Source observation and prerequisite:** In addition to the original p15 red title with nine runes already recorded above, the final unsolved chapter starts with **nine red runes at p54 local offsets 0–8**, GP29 indices **[24,19,21,23,27,2,14,10,19]**, and the next physical p55 has **76 runes**. The concatenated source object is therefore **85 runes**, matching the independently solved 85-rune p56. The p50 complete factorization has an exact irreducible **degree-nine** factor
+
+\[
+N(X)=X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^3+15X+11.
+\]
+
+The red nine-rune vector and the degree-nine factor are individually source-grounded. The *choice* to identify the red title with a linear-register state or to impose a nonic codeword on the adjacent page is a hypothesis, not a verified original instruction. The other red nine-rune title on p15 is an immediate alternative, so there is no unique red-nine-to-factor selector.
+
+**First decisive test: is p54 red9 plus p55 76 one encoded polynomial codeword?** Treat all 85 original GP29 runes as polynomial coefficients. Divide by the exact p50 nonic in both source-reading orders (first glyph as low or high power), and also put the red nine-rune parity block at the end (p55 then red9) in both orientations. **None** has zero GF29 remainder. The four remainders (constant coefficient first) are respectively
+
+- red9 then p55, first glyph highest: **[3,3,5,15,20,23,20,22,20]**;
+- red9 then p55, first glyph lowest: **[1,1,23,4,13,10,26,24,14]**;
+- p55 then red9, first glyph highest: **[22,20,11,4,23,15,12,0,20]**;
+- p55 then red9, first glyph lowest: **[24,12,21,9,5,6,8,1,5]**.
+
+This is an exact original-input obstruction to the four natural direct *nine-parity-symbol codeword* interpretations of the combined 85-rune object, regardless of an English language model.
+
+**Second test: does the title seed the factor's nine-state cipher?** Seed a GF29 recurrence with the **actual nine p54 red rune indexes**, using either \(N\) or the correctly monic reciprocal factor \(X^9N(1/X)/11\). Two reversible additive keystream clocks are fixed (the first seed rune or the first state *after* consuming all nine red runes), each with both arithmetic signs; this gives **eight** unedited 76-rune p55 inverses. A separate natural ciphertext-feedback inverse predicts each p55 rune from the previous nine observed rune values using the same factor and p54 seed, in both directions/signs: **four** other full-p55 inverses. All **12** outputs are nonlinguistic, with GP29 IoCs **0.02842–0.03930**, against the original p55 IoC **0.03922** and independent genuinely solved p57's first-76-rune IoC **0.05965**. The full 76-rune candidate strings are emitted by the SFT without hand-picking shorter word hits.
+
+**Reproduction and limit:** The original 256-byte SHA-256 digest is asserted, and the nonic exactly divides the *unaltered* original p50 table polynomial. A full 76-rune native GP plaintext plant from the original solved p57 is encoded and recovered exactly by each of the 12 cipher variants. Both reversible transformations round-trip the original p55 ciphertext; a deliberately wrong nonic coefficient fails the planted feedback control. [Original-input CommonJS SFT](../sims/lp2_nonic_red9_p55_source_gate_sft.cjs) passed the first complete [manually dispatched GitHub Actions run 43273924180](https://github.com/FlareZ123/liber-primus/actions/runs/43273924180), Node.js 22. (An earlier action on a miscopied coefficient failed its explicit source-factor assertion and was corrected before the successful result; only the asserted source-exact polynomial is used here.)
+
+**Decision:** the nine-red-title → degree-nine source factor is a plausible size-matched cue, but **neither direct codeword parity nor the frozen additive/feedback nine-state inverses recovers actual p55 plaintext**. Retire precisely these original-source consumers. A future route needs an independent indication of an output function, state convention or authentic key connecting the historical factors to text. No p55 original plaintext, cryptographic key or endpoint was recovered.
+
 ## Independent original-page double-root gate
 
 A new original-cipher linkage tests whether the **source-fixed root 24** that appears twice in the printed p50 polynomial also divides other unedited LP2 pages. The p39 red triad at offsets119–121 is **[27,5,15]**, exactly **15(X−24)²** over GF29, and p54's enlarged first rune has GP index24. Interpret every one of the **55** rune-bearing unsolved physical pages as a high-to-low coefficient polynomial over GF29, using its first printed rune as the highest coefficient. **Exactly one page has the same repeated root:** physical **p29** (277 original runes) satisfies **C29(24)=C29′(24)=0**. Pages **p10, p11 and p36** have simple roots at 24, with nonzero derivatives **6, 9 and 27**. Among all 29 possible repeated roots on all 55 pages, the only (page,root) pairs are **(0,10), (6,3), (29,24), (32,27)**.
