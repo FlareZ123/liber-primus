@@ -152,6 +152,41 @@ ringCandidates.sort((a,b)=>b.score-a.score);
 assert.equal(ringCandidates.length,24);
 assert(ringCandidates[0].score < -5.2);
 
+/**
+ * Binary-format branch: original table remains 8-bit bytes. The selected
+ * 256-rune ring supplies either GP indices, GP primes, or translit initials.
+ * Check literal XOR and +/- arithmetic for ASCII plaintext without fitting.
+ */
+const binary=[];
+for(const runeEncoding of ["index","prime","ascii"])
+ for(const op of ["xor","plus","minus"])
+  for(const reverseRing of [false,true])
+   for(const reverseTable of [false,true])
+    for(const tableOrder of ["row","column"]){
+     const rr=reverseRing?[...ring].reverse():ring;
+     const bb=tableOrder==="row"?[...bytes]:
+       Array.from({length:256},(_,i)=>bytes[(i%32)*8+Math.floor(i/32)]);
+     if(reverseTable)bb.reverse();
+     const payload=rr.map((x,i)=>{
+       const y=runeEncoding==="index"?x:
+         runeEncoding==="prime"?gp.prime[x]:gp.translit[x].charCodeAt(0);
+       return op==="xor"?(bb[i]^y):
+         op==="plus"?(bb[i]+y)%256:(bb[i]-y+256)%256;
+     });
+     const printable=payload.filter(x=>x>=32&&x<=126).length/256;
+     binary.push({runeEncoding,op,reverseRing,reverseTable,
+       tableOrder,printable});
+    }
+binary.sort((a,b)=>b.printable-a.printable);
+assert.equal(binary.length,72);
+assert(binary[0].printable < .45);
+const asciiPlant=Array.from(shakespeare.slice(200000).replace(/\\s/g," ")
+  .slice(0,256),char=>char.charCodeAt(0));
+assert.equal(asciiPlant.length,256);
+assert(asciiPlant.every(x=>x>=32&&x<=126));
+const xorPlant=asciiPlant.map((x,i)=>x^gp.prime[ring[i]]);
+assert.deepEqual(xorPlant.map((x,i)=>x^gp.prime[ring[i]]),asciiPlant);
+
 console.log(JSON.stringify({
   source:"Original LP2 pp8-14 13x133, 2014 title133, solved p57 circumference, p32 tree, p49-51 grid",
   partition:{outerToInner:shells.map(x=>x.length),center:centerIndices.length,
@@ -161,5 +196,6 @@ console.log(JSON.stringify({
     p32KeyPlantRecovered:true,printedGridPlantRecovered:true},
   coreComparison:{tests:coreCandidates.length,best:coreCandidates[0]},
   ringComparison:{tests:ringCandidates.length,best:ringCandidates[0]},
+  binaryASCIIComparison:{tests:binary.length,best:binary[0],xorPlantExact:true},
   conclusion:"Exact structural correspondence but no original ciphertext plaintext/key recovery under direct source-additive consumers."
 },null,2));
