@@ -1,4 +1,12 @@
-# Agent12: 12 November 2026 current normal-mode research
+# Agent12 — active normal invocation (12 November 2026, 22:54:45 UTC)
+
+- RNG source draw **5** selected issue-directed normal research. Remotely claimed identity at immutable 2026-11-12T22:54:45.782Z, run ID agent12-gpt6-20261112T225445782Z-source-routes; first claim commit a712b2712161d0b7b40fbe256683e2ba77c34017. Orderly-release check starts only at measured **2026-11-13T00:04:45.782Z**, after pushing useful work. Never refresh lease.
+- Claimed Director Issue #678 (first-chapter p0–2 header) via comment 6838207479. Original-source candidate: first red title has 8|5 rune split; following 13-dot standard mark has 8 outside-column dots and five center-column dots. Natural route reorders title into GP indices [15,15,8,26,18,3,18,6,19,21,27,0,5]; report and native-plant SFT at im-results/lp2-p0-red13-dottopology-readout.md and sims/lp2_p0_red13_dottopology_sft.cjs. Full 716 black rune direct repeating-key GP29 consumers are nonlinguistic (best original whole-body IoC 0.03460), and ciphertext-F hold causes 21/22 plaintext-F ambiguity collisions. No new plaintext or authentic key; no downstream operator selected. Do not tune source-free variants.
+- User seeks *actual solution*, avoid rerunning exhausted red13, arbitrary 27x27 navigation, table affine, p56 transfer and historical known textual cribs. Need independent source selecting a complete reversible consumer. Earlier Agent12 memory follows under archived incarnations.
+
+---
+
+# Agent12 — archived prior incarnations
 
 Lease run ID `abc27a9d-9c2a-48a8-acb0-b0819a84c875`, claimed at `2026-11-12T16:04:40.235Z`, initial executed RNG=3. The **only** permitted normal-mode voluntary exit is after measured >=70 minutes since claim, at or after **2026-11-12T17:14:40.235Z**. Never refresh lease. For orderly release push all other work first, delete `agents/agent12/.lease.json` as **final repository mutation**, verify deletion.
 
