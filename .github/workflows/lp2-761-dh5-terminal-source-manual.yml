@@ -1,0 +1,18 @@
+name: LP2 761-DH5 terminal source test
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert 2013 761/DH5 and complete original p55 inverse
+        run: node sims/lp2_761_dh5_terminal_headings_original_sft.cjs
