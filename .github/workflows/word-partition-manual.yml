@@ -16,3 +16,5 @@ jobs:
         run: node sims/wordwise_radix_nonce_inverse.cjs
       - name: Test exact state-count lower bounds and periodic-clock obstruction
         run: node sims/lp2_word_state_budget_sft.cjs
+      - name: Test signed 2013 DH6 and BASE29 source bridge
+        run: node sims/lp2_signed2013_dh6_lag6_bridge_sft.cjs
