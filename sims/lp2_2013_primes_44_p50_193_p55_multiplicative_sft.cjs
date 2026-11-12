@@ -110,6 +110,43 @@ function ioc(runes) {
   return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
     (runes.length * (runes.length - 1));
 }
+// A distinct full-page source-sized experiment: left 193 marker plus the
+// 43 bracket values forms one 44-position fixed additive key. The original
+// p55 contains 76 runes; continue the 44-element key once, without fitting.
+const fullCipher = corpus.pages.find(page => page.page === 55).indices;
+assert.equal(fullCipher.length, 76);
+assert.deepEqual(words.flatMap(w => [...w].map(ch => corpus.runes.indexOf(ch))), fullCipher);
+const fullKey44 = bytes.slice(83, 127).map(value => value % 29);
+assert.equal(fullKey44.length, 44);
+assert.equal(fullKey44[0], 193 % 29);
+const fullNative76 = corpus.pages.find(page => page.page === 57).indices.slice(0, 76);
+assert.equal(fullNative76.length, 76);
+/** @param {number[]} runes @param {number} sign @returns {number[]} */
+function full44(runes, sign) {
+  assert.equal(runes.length, 76);
+  return runes.map((v, i) => mod(v + sign * fullKey44[i % 44]));
+}
+/** @param {number[]} runes @returns {string} */
+function fullWordTokens(runes) {
+  let offset = 0;
+  return lengths.map(length => {
+    const out = runes.slice(offset, offset + length);
+    offset += length;
+    return out.map(i => corpus.translit[i]).join("");
+  }).join(" ");
+}
+for (const sign of [-1, 1]) {
+  const plain = full44(fullCipher, sign);
+  assert.deepEqual(full44(plain, -sign), fullCipher);
+  const plantedCipher = full44(fullNative76, -sign);
+  assert.deepEqual(full44(plantedCipher, sign), fullNative76);
+  console.log(JSON.stringify({
+    model:"p55-complete76-period44",
+    sign, originalReencrypted:76, plantedKnownRecovered:76,
+    sourceKey44:fullKey44, originalIoC:ioc(fullCipher),
+    decodedIoC:ioc(plain), decodedPrintedWordTokens:fullWordTokens(plain)
+  }));
+}
 const native = corpus.pages.find(page => page.page === 57).indices.slice(0, 43);
 assert.equal(native.length, 43);
 console.log("Original witness: 2013 PRIMES 3257[double-space]3259 ... 3301");
