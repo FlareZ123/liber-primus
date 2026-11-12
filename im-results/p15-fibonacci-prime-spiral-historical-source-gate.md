@@ -2,7 +2,7 @@
 
 ## Decision
 
-**No exact pre-2014 external source or published puzzle matching the complete p15 construction was located.** A partial cross-round antecedent is now identified: a public extraction of the 2013 CicadaOS prime_echo script prints primes through 3301, with pauses at 1033 and 3301. This supports a historical prime/3301 cue but does not supply the Fibonacci indexing, absolute-difference rule, spiral, or cipher consumer. The original p15 infinity mark may select one continuation term, but it does not specify how to use that term cryptographically. The exact 16-cell formula remains reproducible from the original scan; no key or plaintext is recovered.
+**No exact pre-2014 external source or published puzzle matching the complete p15 construction was located.** A partial cross-round antecedent is now identified: a public extraction of the 2013 CicadaOS prime_echo script prints primes through 3301, with pauses at 1033 and 3301. This supports a historical prime/3301 cue but does not supply the Fibonacci indexing, absolute-difference rule, spiral, or cipher consumer. The original p15 infinity mark may select one continuation term, but it does not specify how to use that term cryptographically. A separate bounded test of the signed-BASE29-derived repeating-key interpretation below is also negative. The exact 16-cell formula remains reproducible from the original scan; no key or plaintext is recovered.
 
 ## Exact target
 
@@ -31,9 +31,20 @@ The original p15 image places an infinity symbol beneath the 4×4 grid. If this 
 
 The possible relative byte offset base+13477 is 8,966,441. It was not part of the completed 17-offset DATA/560.13 R40-B3 test (680 frozen L24 candidates, zero survivors; run 43130781364). The infinity mark can motivate considering one continuation term, but it does not select a byte consumer. Do not add this offset to the failed pad family without a separate Director-approved, source-selected hypothesis.
 
+## Bounded BASE29-derived repeating-key test (exploratory negative)
+
+A plausible human attempt is to treat the 16 recovered primes around 3301 as the key: preserve their p15 spiral order, encode each prime using the signed 2013 TCP BASE29 operation, concatenate the numeric digits, and use those values as a repeating GP29 additive key. This is a *new* consumer test, distinct from reducing the prime values or grid offsets modulo 29. The signed BASE29 output alphabet is printable alphanumeric `0–9,A–S`, not Gematria Primus; interpreting its numeric digits as GP29 shift values is an additional mapping assumption. Repetition, additive Vigenere, and the initial phase at the first LP2 rune are also hypotheses, not instructions supplied by the source.
+
+- The 16 prime values in p15 spiral order are `[2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]`.
+- Their signed-BASE29 concatenation is the 30-digit string **`2357DN1E2L5492FSH1M23CM5AK98G`**. The authenticated vectors `1033 → 16I` and `3301 → 3QO` are asserted by the reproducer.
+- The resulting 30 numeric digits were repeated continuously across all **12,956** unknown runes on pp0–55. Both signs were tested, with and without the solved-p56 literal-`F` non-consuming convention. No page/chapter reset, phase sweep, or alternate key encoding was searched.
+- Raw ciphertext has IoC **0.0344784** and current Emerson-GP score **−6.51838**. The four outputs score **−6.54651**, **−6.54219**, **−6.54084**, and **−6.54167**, respectively; none is language-like, and all score below raw. The authentic solved-p56 control is **−4.46165**. Synthetic encrypt/decrypt round-trips pass for both literal-`F` conventions.
+
+This rejects only the exact 30-digit repeating-key/additive consumer and its two signs/F-skip variants. It does not establish that the primes are an LP2 key, and it does not exclude another source-selected use of the p15 sequence. Reproducer: [`sims/p15_fibonacci_prime_base29_key_sft.cjs`](../sims/p15_fibonacci_prime_base29_key_sft.cjs).
+
 ## What follows
 
-- The original p15 grid itself remains the only verified source for the 16-term construction and its visible spiral order.
+- The original p15 grid itself remains the only verified source for the 16-term construction and its visible spiral order. The one bounded signed-BASE29-derived 30-digit repeating GP29-shift key test is negative; do not repeat that exact consumer.
 - The complete external-source avenue remains negative at this scope. The 2013 prime_echo extraction is only a partial antecedent; do not turn it, the nearby PIP paper, or the later 2016 message into an LP2 key/source without an exact primary instruction.
 - The original infinity mark is a source-visible cue for considering one continuation term; it does not authorize an open-ended continuation or use of the term as a key. The 17th distinct Fibonacci input gives p1598=13477 and the candidate relation above, but no cipher consumer or plaintext follows from it.
 - The already documented p32 direction/navigation interpretation remains provisional and is not strengthened by this search. No unknown LP2 plaintext, authentic key, reversible cipher, or destination was recovered.
