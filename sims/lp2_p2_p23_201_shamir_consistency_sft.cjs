@@ -68,13 +68,67 @@ function matches(rows, order, weights, compareSecret) {
   return count;
 }
 
+/**
+ * Test an arbitrary unknown *shared* GP29 alphabet relabeling f:[0..28]->GF29.
+ * Each source column supplies a homogeneous linear constraint on 29 unknown
+ * relabeled rune values. Constants always solve because coefficients sum zero;
+ * rank 28 means the constants are the ONLY solutions, excluding all bijections.
+ * Returns the first original-column count that establishes rank 28.
+ *
+ * @param {number[][]} rows Six original source streams, length201 each.
+ * @param {number[]} order Identifiers to source-stream indices.
+ * @param {number[]} weights Field coefficients of interpolation/difference.
+ * @param {boolean} secretMode Whether the first row is the target secret.
+ * @returns {{rank:number,rowsUsed:number}}
+ */
+function constraintRank(rows, order, weights, secretMode) {
+  const basis = Array(29).fill(null);
+  const inverse = Array(29).fill(0);
+  for (let a = 1; a < 29; a++) {
+    for (let b = 1; b < 29; b++) {
+      if (a*b % 29 === 1) inverse[a] = b;
+    }
+  }
+  let rank = 0;
+  for (let j = 0; j < 201; j++) {
+    const row = new Int32Array(29);
+    if (secretMode) row[rows[0][j]]--;
+    for (let k = 0; k < weights.length; k++) {
+      row[rows[secretMode ? order[k]+1 : order[k]][j]] += weights[k];
+    }
+    assert.equal(mod(row.reduce((sum, x) => sum + x, 0)), 0);
+    for (let pivot = 0; pivot < 29; pivot++) {
+      const factor = mod(row[pivot]);
+      if (factor === 0) continue;
+      const old = basis[pivot];
+      if (old) {
+        for (let t = pivot; t < 29; t++) {
+          row[t] = mod(row[t] - factor*old[t]);
+        }
+      } else {
+        const scale = inverse[factor];
+        for (let t = pivot; t < 29; t++) row[t] = mod(row[t]*scale);
+        basis[pivot] = row;
+        rank++;
+        break;
+      }
+    }
+    if (rank === 28) return { rank, rowsUsed: j+1 };
+  }
+  return { rank, rowsUsed: 201 };
+}
+
 /** @param {number[][]} rows @param {boolean} secretMode @returns {{matches:number,order:number[],permutations:number}} */
 function bestFit(rows, secretMode) {
-  let best = { matches: -1, order: [], permutations: 0 };
+  let best = { matches: -1, order: [], permutations: 0, minimumRank: 29, maximumRowsToRank28: 0 };
   const k = secretMode ? 5 : 6;
   permute([], Array.from({ length: k }, (_, i) => i), (order) => {
     best.permutations++;
-    const count = matches(rows, order, secretMode ? secretWeights : sixthWeights, secretMode);
+    const weights = secretMode ? secretWeights : sixthWeights;
+    const count = matches(rows, order, weights, secretMode);
+    const linear = constraintRank(rows, order, weights, secretMode);
+    best.minimumRank = Math.min(best.minimumRank, linear.rank);
+    best.maximumRowsToRank28 = Math.max(best.maximumRowsToRank28, linear.rowsUsed);
     if (count > best.matches) {
       best.matches = count;
       best.order = order.slice();
@@ -103,6 +157,10 @@ function positiveControl() {
   const secretRows = [secrets, ...shares.slice(0, 5)];
   assert.equal(matches(secretRows, [0, 1, 2, 3, 4], secretWeights, true), 201);
   assert.equal(matches(shares, [0, 1, 2, 3, 4, 5], sixthWeights, false), 201);
+  // In a real polynomial plant, both identity rune values and constants are
+  // independent valid alphabet solutions, so constraint rank is at most 27.
+  assert.ok(constraintRank(secretRows, [0,1,2,3,4], secretWeights, true).rank <= 27);
+  assert.ok(constraintRank(shares, [0,1,2,3,4,5], sixthWeights, false).rank <= 27);
   // Both source-motivated literal regressions reject deliberate wrong input.
   const corrupt = shares.map((s) => s.slice());
   corrupt[5][71] = mod(corrupt[5][71] + 1);
@@ -142,8 +200,13 @@ function main() {
         assert.equal(sixth.permutations, 720);
         assert.equal(secret.matches, expectedSecret[key], key + ' secret');
         assert.equal(sixth.matches, expectedSixth[key], key + ' sixth');
+        // All 120/720 permutations must force a constant-only relabeling.
+        assert.equal(secret.minimumRank, 28, key + ' secret relabeling rank');
+        assert.equal(sixth.minimumRank, 28, key + ' sixth relabeling rank');
+        assert.ok(secret.maximumRowsToRank28 <= 37);
+        assert.ok(sixth.maximumRowsToRank28 <= 37);
         console.log(key, 'p2=secret', secret.matches, '/201', secret.order,
-          'six-shares', sixth.matches, '/201', sixth.order);
+          'six-shares', sixth.matches, '/201', sixth.order, 'all-secret ranks',secret.minimumRank,sixth.minimumRank,'first rank28 rows',secret.maximumRowsToRank28,sixth.maximumRowsToRank28);
       }
     }
   }
