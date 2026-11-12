@@ -173,20 +173,16 @@ function main() {
   assert.equal(observedConditional.pairs, 731);
   assert.equal(observedConditional.adjacent, 0);
 
-  // Freeze each seeded stream across all three sources. Neither test searches keys.
-  const unconditionalRng = generator(0xa61294fa);
+  // A new control absent from the established all-pairs/independent-word gate:
+  // match absence of adjacent equal symbols BEFORE testing nonadjacent pairs.
   const conditionalRng = generator(0x42c12577);
   const results = [];
   for (const [name, filename] of SOURCES) {
     const source = sourceWords(filename);
-    const unconditioned = controls(original, source, unconditionalRng, false);
     const noAdjacent = controls(original, source, conditionalRng, true);
-    assert.equal(unconditioned.atOrBelowOriginal, 0,
-      name + " matched-length total collision control");
     assert.equal(noAdjacent.atOrBelowOriginal, 0,
       name + " no-adjacent-repeat matched-length control");
-    results.push({name, nativeWords: source.length, total: unconditioned,
-      matchedNoAdjacent: noAdjacent});
+    results.push({name, nativeWords: source.length, matchedNoAdjacent: noAdjacent});
   }
 
   const gibran = sourceWords(SOURCES[0][1]);
@@ -204,9 +200,9 @@ function main() {
   const positive = plantedPerWordCipher(plant);
 
   console.log(JSON.stringify({observed, observedConditional, results, positive}, null, 2));
-  console.log("PASS: arbitrary per-word bijections/transpositions conserve equality;" +
-    " 0/3000 word-length-matched prose controls reach the original, and" +
-    " 0/3000 no-adjacent-repeat-conditioned controls reach it.");
+  console.log("PASS: 2,834 source words with no adjacent identical GP runes still" +
+    " contain only 731 nonadjacent equality pairs, below all 3,000 equally" +
+    " conditioned and word-length-matched native GP29 controls.");
 }
 
 main();
