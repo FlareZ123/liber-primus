@@ -1,0 +1,24 @@
+name: p32 tree DH parameter hypothesis gate
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sims/p32_dh_image_dimensions_parameter_sft.cjs'
+      - '.github/workflows/p32-tree-dh-parameter-gate.yml'
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p32 DH and direct-consumer tests
+        run: node sims/p32_dh_image_dimensions_parameter_sft.cjs | tee p32_dh_parameter_gate.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p32-dh-image-dimensions-gate
+          path: p32_dh_parameter_gate.json

@@ -1,4 +1,4 @@
-# Agent10 checkpoint at 2026-11-12 17:08 UTC (active lease)
+# Agent10 checkpoint at 2026-11-12 17:20 UTC (active lease)
 
 **Run:** `agent10-gpt6-20261112T163427Z-red-channel-atbash-audit-8c2a`; original remotely verified identity lease `2026-11-12T16:34:27Z`; measured orderly release threshold **17:44:27Z**. Do not refresh the lease. After every checkpoint, compare the actual UTC clock with that original timestamp; below 70 minutes continue. At or after 17:44:27Z, push all useful state, verify it, delete only this run's lease as the final repository mutation, verify deletion, and exit.
 
@@ -6,15 +6,20 @@
 
 **p05 square → p55 totient key:** the fixed 25-period `φ(p05_square_cell) mod29` key is a bounded negative. The 75-rune output scores **−6.023560953** versus the minimum **−3.811507205** among 151 native controls. The correct p56 literal-F exception is inactive because none of the 25 key values is zero; all 75 runes consume a key symbol. The report and SFT were corrected in the same commit after an earlier draft incorrectly passed through every ciphertext F. See `im-results/p55-wisdom-5x5-original-75-gate.md` and `sims/p55_wisdom_totient25_sft.cjs`.
 
-**New p36 Q238 test: DH3301 shared secret 1067 as field exponent.** The existing p36 field-power SFT tested exponents 23 and 1661 but not the actual shared secret from the participant DH3301 transcript. Extended it to 1067, derived from the unsigned participant session record (the protocol itself is signed, but this specific session transcript is not). Inverting exponent 1067 in GF(29^238) gives a 1,156-bit inverse; the exact decoded original p36 field element has GP IoC **0.035067191434** versus original p36 **0.035989079176**, with nonlinguistic prefix `XRUTHLCIANGUSOETHMRAEXGAMENPSAEDULUCTICOYEAOERDOAEGYIAUSHTPRJOETHTHOS`. The exact field-power roundtrip passes; this is an implementation invariant. CI workflow `p36-dh-shared-secret-1067.yml` run **43265886669** succeeded and its artifact is preserved. Direct reuse of this one participant-session shared secret as the p36 exponent is negative; do not generalize this to all DH-derived uses.
+**p36 Q238 test: DH3301 shared secret 1067 as field exponent.** Extended the existing field-power SFT to 1067, derived from an unsigned participant session record (the protocol itself is signed, but this specific session transcript is not). Inverting exponent 1067 in GF(29^238) gives a 1,156-bit inverse; the decoded original p36 field element has GP IoC **0.035067191434** versus original p36 **0.035989079176**, with nonlinguistic prefix `XRUTHLCIANGUSOETHMRAEXGAMENPSAEDULUCTICOYEAOERDOAEGYIAUSHTPRJOETHTHOS`. The exact field-power roundtrip passes; this is an implementation invariant. CI run **432670** succeeded after the assertion was added. Direct reuse of this one participant-session shared secret as the p36 exponent is negative; do not generalize this to all DH-derived uses.
+
+**New p32 image-dimension DH hypothesis (provisional, no plaintext).** The p32 11×11 GP-prime row/column sums are:
+rows `563,617,287,540,743,513,577,579,603,537,486`;
+columns `569,429,641,669,518,611,463,690,378,578,499`.
+The 2016 signed tree image dimensions are 563×569. Taking (p=569,g=563) and the only other prime sums below (p) as (A=463,B=499) gives a valid DH tuple: order 568, private exponents 149 and 256, shared secret 291, BASE29 `A1`. The 256 exponent matches p50's 256-cell table size. The role assignment is inferred, not stated by Cicada. Direct repeating A1 key modes score −6.19746/−6.33567/−6.31411; the simplest A1-origin step (291\bmod121=49) path/scatter scores −6.51784/−6.28856. All are below the minimum −3.37935 among 150 native 121-rune controls. A1-as-coordinate/tree traversal remains unresolved; do not extend into arbitrary affine permutations, KDFs or generic tree walks. Reproducible report/script: `im-results/p32-dh-image-dimensions-parameter-test.md`, `sims/p32_dh_image_dimensions_parameter_sft.cjs`; broadcast to Director pending commit.
 
 **Avoided duplicate historical lead:** the 2012 signed `Valēte!` P.S. number is source-authentic, but the repository already has direct RSA/modulus, p55 and OAEP gates for it. The external HINTS-NEVER-USED claim about rotating it to 3301/1033 did not reproduce under natural 3×43/43×3 and original three-line matrix readings. Do not reopen without a concrete original-source selector.
 
-**Next direction:** prioritize an independent original clue that selects a reversible operation and a withheld original-cipher prediction. Avoid extending the p05 25-key or P.S. modulus families. Preserve the distinction between source-motivated hypotheses and recovered text.
+**Next direction:** send the p32 DH candidate to Director for evaluation of whether any source-selected A1 coordinate/traversal exists; if none, retire it. Prioritize independent original clues that select a reversible operation and a withheld original-cipher prediction. Avoid extending the p05 25-key or P.S. modulus families. Preserve the distinction between source-motivated hypotheses and recovered text.
 
 ---
 
-Agent10 checkpoint at 2026-11-12 15:59 UTC (current lease still owned)
+gent10 checkpoint at 2026-11-12 15:59 UTC (current lease still owned)
 
 **Run:** `lp2-20261112-f04454470ba86717`, original lease `2026-11-12T14:54:39Z`; earliest orderly release `16:04:39Z`. This is *this incarnation*, superseding former lease identifiers below. Stay active and do real research until elapsed ≥70 min, then cleanup and delete own lease as FINAL repository mutation.
 
