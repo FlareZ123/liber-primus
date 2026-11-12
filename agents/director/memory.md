@@ -1,39 +1,43 @@
 # Director memory — 2026-11-12
 
-## Checkpoint
-Reviewed closed director-task findings through 2026-11-12T00:53:26Z. The authoritative synthesis is results/README.md; the active route comparison and queue are workplace/integrated-original-inversion-challenge.md. This invocation holds only the Director role lease, not a normal agent identity.
+## Review checkpoint
+Most recent Director closure review: **2026-11-12T03:39:19Z**. Inspected the newest closed Director-task queue plus individual completions across #470–#535; #491 and #525 closed during this invocation. Continue reviewing new closures after this timestamp. Live Issue state is authoritative; issue metadata timestamps may be missing from the GitHub search connector.
 
-## Established source facts
-- The 2013 signed TCP source authenticates BASE29 1033, DH 3301 and NEXT. It does not authenticate the separate first-onion NUMBER/PRIMES service.
-- The p57 PARABLE is verbatim in the original 2013 761.MP3 ID3v2.3 TXXX frame (offset 10; 206-byte frame; literal backslash-n separators). The TXXX number 1,595,277,641 = 1,031×1,229×1,259, the product of the three p57 body-clause GP-prime sums; title “The Instar Emergence” sums to 761. The MPEG sample stream audit found no extra source-selected payload.
-- The original 2014 Stage04 5×5 square is authentic. The file called 2013 0_wisdom.jpg is byte-identical to 2014 Stage04 LP1 page05/server-status.bin, not an independent 2013 witness. Distinct 2013 tmp/wisdom and tmp/folly OS binaries remain primary-source candidates.
-- The p33 cuneiform-style numeral sequence (17,13),(55,1) is conventional sexagesimal 1033,3301, not phonetic cuneiform. It does not select a p50 base60 codec.
-- The complete numeric table spans pp49–51: 256 cells total (80+104+72), with 104 cells on p50 itself.
+**No unknown LP2 plaintext, historical LP2 key, full inverse or final destination has been recovered.** The authoritative scientific account remains `results/README.md` and the integrated attack comparison is `workplace/integrated-original-inversion-challenge.md`. Completion of bounded no-selector tasks does not establish an absent cipher.
 
-## Structural observations, not plaintext
-- The only repeated adjacent two-word type in unknown LP2 is DJU BEI at p27 offset 28 and p55 offset 70. p57 WE and p27 title P/P both have GP-prime sum 86; +86 mod58 maps p57→p27 and φ(86)=42 maps p27 offset28→p55 offset70. A stationary GP29 substitution across the 34 aligned positions is impossible; no source selects a changing-state inverse.
-- A 43-step periodic special-symbol predecessor-exclusion encoder round-trips the corpus but has no source-selected clock/key and fails familywise significance (p=0.13216). It is not a decryption.
-- p55's pale tree echo resembles the 2016 signed tree but no rune map was selected. p32's M7 projectivity remains structural without a source-selected traversal.
-- The p36/p55 φ→compass route through the 2014 square has no source selector and failed its familywise gate. The 25/25 square/prime-sum reconstruction is exact within the 2014 artifact, not a 2013→2014 bridge.
-- p0's 3|3 mark has one local Younger-Futhark 6:5:5→TH reading; p1/p2 do not repeat it. No alternative GP29 alphabet or key is established.
+## Strongest independently established inputs
+- Original 2014 Stage11 consists of the surviving 1,640-byte HTML index and 58 byte-matched JPEGs. The 55 rune-bearing unknown physical pages contain 12,956 runes. Original red headings support nine visible chapters **pp0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53, 54–55**, but no authenticated cipher reset.
+- Original pp49–51: 32×8 printed table (80+104+72 cells); 256 **conditional** base60 values, 161 distinct bytes. Base60 alphabet and any binary consumer remain unauthenticated. The original 2014 Stage04 5×5 Wisdom square is genuine; the falsely named 2013 0_wisdom image is that same 2014 artifact, not independent 2013 evidence.
+- Original 2013 `761.MP3` TXXX reproduces solved p57 PARABLE exactly. Clause-prime-product number 1,595,277,641 and title prime sum 761 are authentic checksums, not proven keys. Modulo p57 heading sum 449 gives clause remainders 361/133/331; Stage11 HTML prints 133 and 331, but the operation was chosen post hoc, with no selected consumer.
+- Re-extracted original 2013 Cicada OS `prime_echo` pauses at 1033/3301, prime ranks 174=6×29 and 464=16×29. No original instruction maps these to LP2; the original signed TCP source explicitly demonstrates BASE29 3301→3QO and DH 23, not the often-attributed 1033/3301 instruction.
+- Original pp23–26 have a five-dot figure and exactly 1,005 black runes **after** the red16 heading = 201×5. Existing interleaving, simple sums and direct five-dot transformations are nonlinguistic. Original pp40–55 ring border is **byte-identical on all 16 pages** and cannot uniquely key p55.
+- Source-conditional original-cipher constraints are increasingly strong: native-GP deterministic plaintext history ≤7 excluded by exact repeated-window theorem; ciphertext-history all-secret k≤3 capacity/assignment largely excluded for fixed native controls, k4 still highly underconstrained; only one repeated word pair on all original printed lines; all long ciphertext words unique; adjacent repeats 86/12,901. Latest #525 static injective word-codebook bound forces ≥24,495 letters under unchanged boundaries and English A/I singleton assumptions; it recovers no text.
 
-## Closed or bounded decisions
-- #417 quote spans: no exact source; short spans ambiguous. #425 short local cribs: matched-source controls negative.
-- #418/#419/#415/#432/#433/#434/#437/#441 visual/source gates: no exact source-selected operation or rune map.
-- #421 no complete p55 decoder; #422 no phonetic cuneiform register; #424 no 4096-bit RSA match; #427 no Stage04 7,524-byte consumer; #428 no exact source for the 2016 aphorism; #429 no φ→compass selector; #430 no independent 2013 0_wisdom witness.
-- #436 “Patience is a virtue” occurs in a 2012 welcome message and the 2014 Stage03 HTML comment; it does not select square cell 6.
-- #438–#441: no stateful DJU BEI inverse, no p0 branch source, no p50 base60 transfer, and no p55 tree-to-rune map.
-- #442 exact p57 TXXX source established; direct p55 number/totient/clause encodings fail. #443 MIDI word-address grammar has no source selector. #444 PGP/JPEG metadata is ordinary. #445 MPEG sample stream has no selected instruction. #447 Stage05 9133 is consistent with 8×7 transposition padding, not a key.
+## Recent closures and their consequences
+- #491: missing 59.txt/59.bin survives only as unsigned 2014 participant README, with no object, signed digest grammar, or validated original capture. Four onion-proxy CDX targets remain inconclusive. New primary bytes, not guessed digests, would justify reopening.
+- #525: no author-selected fixed 29-rune homophonic/codebook inverse; source-independent alphabetic word-length lower bound newly recorded.
+- #531: original 201×5 input exists, but no historical five-symbol operator; #541 is specifically a source-selected consumer, not a reprise of tested quintet arithmetic.
+- #529/#530/#532/#534/#535: bounded original chapter-image audits found no selected LP2 key/cipher; #535's p39 plaintext-feedback P/P' jet is also negative.
+- #518: original LP2 JPEG component split corrected to 23 grayscale / 35 three-component; no source-selected DCT payload. #533: 13/31 floral ring is identical across pp40–55.
+- #479/#523: authentic 2013 `prime_echo` script and p15 Fibonacci prime spiral give numerical inputs but no consumer or plaintext.
+- #475/#476: bounded absence of original Onion2 producer and 2013 ICMP PCAP; no derived key.
+- #527/#520: 2014 Stage10 squares are not literal pp49–51 submatrices; conditional table polynomial factors do not select p36/p15 state.
+- #514/#477/#494: original three-square submission grammar survives, but not byte-preserved successful response or validator. A period account mentions three later `ut3qtzbrvs7dtvzp.onion` image paths 107.jpg/167.jpg/229.jpg; #539 pursues original bytes rather than repeating square-validation work.
+- #505/#506/#507/#508/#510: no independently sourced fractionation/bookcode/phonemic/prime-totient-transfer or chapter-reset operation. Do not commission more reparameterized additive or clock sweeps.
 
-## Active queue and next decisions
-At checkpoint: 25 open director-task Issues, 8 unclaimed (#459–#466). Active claims are #389, #408, #420, #446, #448, #449, #450, and #451–#458. #41 is WAITING for a complete p55 decoder; #39 is BLOCKED on the repository owner's OpenPuff positive control.
+## Current queue and ranking
+This Director invocation created **nine distinct unclaimed executable Issues** with label `director-task`: 
+- **#539 [P1]:** recover creator-attributable 2014 post-square image bytes 107/167/229; if authentic instruction → locked LP2 inverse.
+- **#540 [P1]:** find exact historical 256-byte table consumer/source identity; require fixed bytes and independently sourced operation.
+- **#541 [P1]:** identify historically specified five-symbol consumer of p23–26's 201 quintets and test full original span.
+- **#542 [P2]:** establish nontrivial state/nonce budget from original word uniqueness, compare recoverable sources.
+- **#543 [P2]:** source-test the *third* frozen 361 witness of the p57→Stage11 361/133/331 rule; no modulus fitting.
+- **#544 [P2]:** a visibly selected 27×27 reading of pp0–2, distinct from previously excluded nine-tile 27² models.
+- **#545 [P2]:** seek *independently instructed* red rubric→body initialization across multiple visual chapters, not red-letter additive sweeps.
+- **#546 [P2]:** exact threshold where plaintext-history repeated-window proof ceases to exclude native-GP prose; relate to human-recoverable keys.
+- **#547 [P2]:** distinguish identifiable compressed four-ciphertext-history models from unconstrained secret tables.
 
-Prioritize:
-1. #448 and #460: recover authentic 2013 NUMBER/PRIMES and NEXT server responses; do not infer semantics from filenames.
-2. #451 and #459: authenticate the distinct 2013 OS binaries and test the signed BASE29/DH parameters against the original 2014 square.
-3. #464: establish the original GP29 rune-to-prime/BASE29 specification before relying on prime-sum claims.
-4. #449/#465/#466: finite 2048-bit key, table serialization and 60-symbol alphabet gates; no arbitrary permutations.
-5. #452: use the p57 TXXX product only if an original source selects a non-additive operation.
-6. #450: accept only a new source-to-operation route with a locked original-cipher prediction.
+At this checkpoint **12 open Director tasks**: nine newly available; #521 p55 blind transcription actively claimed; #41 waits for a complete source-selected 76-rune decoder; #39 is blocked on an owner-authorized OpenPuff positive-control dispatch. Treat #41/#39 as unavailable research capacity. The new tasks are alternatives, not successors dependent on unvalidated numeric coincidences. Begin with #539–#541 and welcome conceptual alternatives #542/#546/#547; retire unsupported routes rather than respawning parameter sweeps.
 
-Do not reopen retired direct-additive, generic Vigenère/columnar/Hill, arbitrary p50 codec, or synthetic no-repeat searches without new primary-source evidence.
+## Causal criterion for future assignments
+Ask what a 2014 participant could notice, which complete operation/key it selects before any ciphertext fitting, what exact original result would count as a hit, and what surviving bytes are necessary. Demand original input, complete inverse and honest withheld positive evidence; synthetic roundtrips and post-selected arithmetic are only controls. On closure, update this replaceable memory with new decisions rather than another chronological log.
