@@ -40,6 +40,13 @@ The code separately applies the **literal original row-major bytes modulo28** as
 
 The initial log-step / nine-chapter gate and the new sorted-rank / physical-page / erasure-aware gate are complementary tests of a stationary **period-256 28-way phase-bijective** family. Neither furnishes a historical instruction for using the numeric grid as a 256-key schedule. In particular, the equality invariant **does not** apply to a state-dependent phase map that changes on every cycle, an alphabet other than directly native GP English, or a transport that drops or inserts arbitrary non-marker letters.
 
+
+## Source-authentic nonperiodic phi(prime) consumer
+
+An independent nonperiodic test transfers the **authentic solved-p56 prime-totient keystream** to the conditional 28-symbol GP nonzero ciphertext-difference logarithms. Set P[i] = (E[i] ± (prime[k]−1)) mod28, with the 86 zero steps emitted as EA/28. The source-visible alternatives are book-continuous versus original nine-chapter key-clock reset, and whether zero steps spend or hold a prime index. Both signs make **eight** complete, frozen original-cipher hypotheses without any fitted phase or secret key.
+
+On all original 12,956 rune positions, the decoded GP29 IoCs span **0.0352698186–0.0353087116**. No output produces coherent plaintext; the raw log-step IoC is **0.0353247622**. The source-native GP English positive plant exactly decrypts **12,956/12,956** runes under chapter reset and zero-step hold; full re-encryption checks the cipher. This retires only these eight direct source-led prime-totient/chain-step compositions, leaving arbitrary evolving key states and other plaintext registers unresolved.
+
 ## Decision and limits
 
 **Reject direct native-GP English plaintext behind the 256-phase stationary bijective predecessor-rank families tested: the original log-step with book/nine-chapter reset and EA zero markers, plus cyclic/sorted ranks under book/page reset with held/advanced erasure clocks and F/EA marker reservations.** In every declared clock and rank convention, the original same-phase equality rates are far below the corresponding original-length native-GP controls, before any key selection. The original exact source grid modulo28 Vigenère consumer is a strict subfamily and need not be retried with different phase permutations.

@@ -197,6 +197,57 @@ for(const sign of [-1,1]){
       return counts.reduce((s,n)=>s+n*(n-1),0)/(N*(N-1));
     })()});
 }
+
+/** Independent solved-p56 phi(prime) transfer to conditional GP28 chain exponents. */
+function firstPrimes(n){
+  const out=[];
+  for(let x=2;out.length<n;x++){
+    let prime=true;
+    for(let d=2;d*d<=x;d++)if(x%d===0){prime=false;break;}
+    if(prime)out.push(x);
+  }
+  return out;
+}
+const primeSteps=firstPrimes(N);
+function decodePrimePhi(cipher,cuts,skipEA,sign){
+  let previous=0,clock=0,segment=1;
+  return cipher.map((c,i)=>{
+    if(i===cuts[segment]){clock=0;segment++;}
+    const delta=(c-previous+29)%29;
+    previous=c;
+    if(delta===0){if(!skipEA)clock++;return 28;}
+    return (log[delta]+sign*(primeSteps[clock++]-1)+28*100000)%28;
+  });
+}
+function encodePrimePhi(plain,cuts,skipEA,sign){
+  let previous=0,clock=0,segment=1;
+  return plain.map((p,i)=>{
+    if(i===cuts[segment]){clock=0;segment++;}
+    if(p===28){if(!skipEA)clock++;return previous;}
+    const e=(p-sign*(primeSteps[clock++]-1)+28*100000)%28;
+    previous=(previous+pow[e])%29;
+    return previous;
+  });
+}
+const primePhiOutputs=[];
+for(const [scope,cuts] of Object.entries(contracts))
+  for(const skipEA of [true,false])
+    for(const sign of [-1,1]){
+      const out=decodePrimePhi(C,cuts,skipEA,sign);
+      const counts=Array(29).fill(0);
+      out.forEach(x=>counts[x]++);
+      primePhiOutputs.push({scope,skipEA,sign,
+        IOC:counts.reduce((a,n)=>a+n*(n-1),0)/(N*(N-1)),
+        head:out.slice(0,32).map(x=>db.translit[x]).join("")});
+    }
+assert.equal(primePhiOutputs.length,8);
+assert(Math.abs(Math.min(...primePhiOutputs.map(x=>x.IOC))-
+  0.0352698186147718)<1e-10);
+assert(Math.abs(Math.max(...primePhiOutputs.map(x=>x.IOC))-
+  0.03530871164571023)<1e-10);
+const phiPlant=encodePrimePhi(windows[0].values,chapters,true,-1);
+assert.deepEqual(decodePrimePhi(phiPlant,chapters,true,-1),windows[0].values);
+
 console.log(JSON.stringify({
   hypothesis:"Fixed 256-phase secret GP28 bijections on nonzero chain differences",
   sourceGP29CiphertextRunes:N,
@@ -205,6 +256,8 @@ console.log(JSON.stringify({
   phaseClock:"Nonzero steps only, zero steps emitted as EA without key consumption",
   original:observed,controls,nativeWindows:windows.length,
   directBase60GridConsumer:direct,
+  authenticP56PrimePhiTransfer:primePhiOutputs,
+  phiPrimeSyntheticRecoveredRunes:N,
   positive,
   conclusion:"Both book and nine-original-chapter keyless invariants are below every one of the 104 native-GP English controls. No direct native-GP inverse or authentic key is identified; evolving state, other plaintext registers and alternative zero-symbol contracts remain open."
 },null,2));
