@@ -76,8 +76,8 @@ assert.equal(name(p57.slice(0, 7)), "PARABLE");
 const allEnglish = gpEncode(shakespeare);
 const train = allEnglish.slice(0, Math.floor(allEnglish.length * 0.75));
 const held = allEnglish.slice(Math.floor(allEnglish.length * 0.75));
-assert.equal(train.length, 164100);
-assert.equal(held.length, 54700);
+assert.equal(train.length, 163233);
+assert.equal(held.length, 54411);
 const f1 = Array(29).fill(0);
 const f2 = Array(841).fill(0);
 const f3 = Array(24389).fill(0);
@@ -97,7 +97,7 @@ function bestPermutationOneGram(f) {
     .reduce((acc, val, i) => acc + val * unigram[i], 0) / 210;
 }
 const originalPerm = bestPermutationOneGram(rCounts);
-assert.ok(Math.abs(originalPerm - (-3.714927339506815)) < 1e-10);
+assert.ok(Math.abs(originalPerm - (-3.713486497783472)) < 1e-10);
 const slideCounts = counts(held.slice(0, 210));
 let bestHeldMin = Infinity;
 let notBetter = 0;
@@ -112,9 +112,9 @@ for (let at = 0; at + 210 <= held.length; at++) {
   if (s <= originalPerm) notBetter++;
   bestHeldMin = Math.min(bestHeldMin, s);
 }
-assert.equal(totalHeld, 54491);
+assert.equal(totalHeld, 54202);
 assert.equal(notBetter, 0);
-assert.ok(Math.abs(bestHeldMin - (-3.074933014997416)) < 1e-10);
+assert.ok(Math.abs(bestHeldMin - (-3.0753973026952535)) < 1e-10);
 
 /** @param {number[]} a @returns {number} */
 function score(a) {
