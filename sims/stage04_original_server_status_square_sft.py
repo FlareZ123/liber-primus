@@ -25,6 +25,13 @@ def main() -> None:
     data = get(PATH)
     assert len(data) == SIZE, (len(data),SIZE)
     assert git_sha(data) == SHA, git_sha(data)
+    print("SOURCE_HEAD",repr(data[:500]))
+    print("SOURCE_TAIL",repr(data[-500:]))
+    for name, motif in [("ffd8ffe0",b"ffd8ffe0"), ("ffd8ffe1",b"ffd8ffe1"),("e0ffd8ff",b"e0ffd8ff"),("ffd9",b"ffd9"),("Apache",b"Apache"),("<pre>",b"<pre>")]:
+        print("MOTIF",name,data.lower().find(motif.lower()))
+    import re
+    runs = list(re.finditer(rb"[0-9a-fA-F]{60,}",data))
+    print("HEX_RUNS",len(runs),"FIRST",[(m.start(),len(m.group()),m.group()[:65]) for m in runs[:6]],"LAST",[(m.start(),len(m.group())) for m in runs[-4:]])
     frame = data[336353:336353 + 360]
     assert len(frame) == 360
     print("PINNED_ORIGINAL",len(data),git_sha(data))
