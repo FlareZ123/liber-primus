@@ -27,6 +27,36 @@ with first prime `2`, physical start phase zero, no key fitting and no F-specifi
 
 The outputs remain random-looking GP29 symbol sequences, with IoCs close to `1/29`; neither is coherent native-GP English. The arithmetic is fully reversible: reapplying the same prime-totient shifts reproduces all **252/252** original quotient positions for each direction. A separate 252-rune plant built from known clear solved p57 GP text encodes and decodes **252/252** under the same rule. These are correctness controls, rather than evidence of the unknown plaintext. The earlier source-derived 252-slot quotient itself still exists and may have a different role.
 
+## Signed BASE29 operation as a binary transport (new original-source check)
+
+The same authenticated 2013 example also selects a simpler and independently
+meaningful operation: treat the **252 significant-and-padding base-29
+digits as one integer**, then serialize it as unsigned big-endian bytes.
+This interpretation requires no GP-language model, stream-cipher key, prime
+clock or fitted offset. Retain the existing polynomial quotient and compare
+the only two fixed coefficient orders:
+
+| Digit order | Byte length | First 24 bytes (hex) | Byte entropy (bits/symbol) | Printable ASCII | Longest printable run | Recognized header |
+|---|---:|---|---:|---:|---:|---|
+| Printed descending | **153** | `0a212d90ff3f0e105fb818c17b99aad69e164ed48df665b5` | 6.68863 | 45/153 | 3 | none |
+| Ascending polynomial | **153** | `96127a261e676d369e7b69e6869ac90fb75b2bd21eedac4f` | 6.79321 | 52/153 | 9 | none |
+
+The exact source SFT checks all 153 positions for both orderings and
+recognizes a finite standard header set: gzip, ZIP, PNG, JPEG, PDF, bzip2,
+XZ, Zstandard, 7z, SQLite and common zlib signatures. Neither candidate is
+literal recognizable file content or extended ASCII prose. The observed
+entropy is consistent with a small random-looking binary blob; because there
+are only 153 bytes, the numerical entropy has no standalone encryption
+interpretation. A compressed payload without a standard header, key-protected
+binary ciphertext, or different source framing would remain open.
+
+This is a natural **literal BASE29-to-bytes route** to test because 2013
+explicitly demonstrated integer conversion, but **there is still no original
+instruction selecting quotient division, orientation, target or transport**.
+No unknown plaintext, valid key or destination emerges. Further decoding
+requires genuinely independent evidence and should not become blind
+compression/password/header scanning.
+
 ## Decision and reproduction
 
 **Retire this literal H/G-division-then-p56-totient decoder.** The strongest missing premise is an original direction to consume the GF29 polynomial quotient as text and carry the solved p56 cipher into this table. Repeating the operation at arbitrary phase offsets, switching signs or adding secret substitutions to rescue accidental English-looking substrings would lose the source-selected advantage.
