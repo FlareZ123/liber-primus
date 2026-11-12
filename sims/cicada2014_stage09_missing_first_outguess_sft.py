@@ -104,6 +104,15 @@ def main() -> None:
     for i, raw in recovered_by_index.items():
         border = re.findall(rb"(?m)^([0-9])\1{15}\s*$", signed_body(raw))
         assert border == [expected_digits[i], expected_digits[i]], (i, border)
+    recovered_raw = recovered_by_index[1]
+    assert len(recovered_raw) == 1234
+    assert hashlib.sha256(recovered_raw).hexdigest() == (
+        "56467e78411358a236479a867a073de1a6fe9be2572e19759be1128968b3feeb"
+    )
+    assert recovered_raw == Path(
+        "resources/historical/cicada2014-stage09-first-jpeg-recovered.asc"
+    ).read_bytes(), "Committed original signed first-message bytes do not match extraction"
+    print("REPOSITORY_SOURCE_IDENTITY: exact 1234-byte first signed message preserved")
     print("FOUR_SOURCE_DIGITS=3301; archived duplicate image4 for image1 gives 1301")
     with tempfile.TemporaryDirectory(prefix="cicada2014-stage09-gpg-") as home:
         os.chmod(home, 0o700)
