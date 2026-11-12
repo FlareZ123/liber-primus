@@ -83,6 +83,23 @@ function bestRun(target,candidate){
   }
   return {...best,atLeast8};
 }
+// Original solved LP1 pp14–15 copies the same reclining art as LP2 p22.
+// Its accepted Koan text is a clue-selected alternative plaintext source.
+// Quotes/apostrophes are normalized for the exact word-length match only.
+const lp1Koan=`A KOAN DURING A LESSON THE MASTER EXPLAINED THE I
+THE I IS THE VOICE OF THE CIRCUMFERENCE HE SAID WHEN ASKED BY A
+STUDENT TO EXPLAIN WHAT THAT MEANT THE MASTER SAID IT IS A VOICE
+INSIDE YOUR HEAD I DONT HAVE A VOICE IN MY HEAD THOUGHT THE STUDENT
+AND HE RAISED HIS HAND TO TELL THE MASTER THE MASTER STOPPED THE
+STUDENT AND SAID THE VOICE THAT JUST SAID YOU HAVE NO VOICE IN YOUR
+HEAD IS THE I AND THE STUDENTS WERE ENLIGHTENED`;
+const lp1KoanMatches={};
+for(const register of ["gp","latin"]){
+  const match=bestRun(lengths,parseText(lp1Koan,register));
+  assert.equal(match.length,6);
+  lp1KoanMatches[register]=match;
+}
+
 const sources=[
   {file:"resources/control/shakespeare_first300k.txt",nWords:55407,max:{gp:9,latin:9}},
   {file:"resources/control/gibran_prophet_58585.txt",nWords:15733,max:{gp:9,latin:9}},
@@ -112,6 +129,7 @@ assert.ok(recovery.sourceOffset<=1000&&recovery.sourceOffset+recovery.length>=10
 console.log(JSON.stringify({
   originalWordCount:original.length,originalRuneCount:12956,
   sourceFiles:results,
+  solvedLP1KoanArtworkSource:{sourceWords:87,registers:lp1KoanMatches},
   positivePlant:{insertOriginalWordAt:500,sourceWordAt:1000,
                  embeddedLength:32,recoveredLength:recovery.length},
   inference:"No exact >=11-word source-language length crib among these three finite public-domain texts. Other sources, page-boundary errors, variable-length ciphers and non-English input remain open."

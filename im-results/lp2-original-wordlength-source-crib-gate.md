@@ -19,6 +19,8 @@ No key, phase, cipher decoder or language model is fitted to the original cipher
 | `resources/control/gibran_prophet_58585.txt` | 15,733 | **9** | **9** |
 | `resources/control/emerson_essays_2944.txt` | 77,932 | **9** | **10** |
 
+**Clue-constrained original-LP1 control.** LP2 p22 repeats the reclining figure from solved LP1 pp14–15. That solved koan supplies a separate, image-selected **87-word candidate source passage** beginning `A KOAN DURING A LESSON` and containing the `VOICE OF THE CIRCUMFERENCE` instruction. Matching its complete canonical English word lengths against all original LP2 words yields only **six consecutive word-length matches** in either GP29 or ordinary Latin-length mode. The full koan is embedded as a frozen literal in the SFT; no unknown LP2 word sequence recovers the historically known koan. This is stronger in intended-human-path motivation than an unselected literary source, yet remains a finite negative for direct verbatim reuse only.
+
 The longest 10-word raw-Latin match is an Emerson passage (`THOUGHTS AND LAWS IN HIS OWN BREAST HE STUDIES THE`) aligned at original word index 910. It is length-only: the GP29 candidate under this exact source is shorter, and no independently recovered runic plaintext supports the supposed phrase. Many different, mutually inconsistent source passages match eight or nine word lengths, demonstrating that the short patterns are ambiguous. **Do not infer a plaintext quote or authenticate a book from a length coincidence.**
 
 ## Positive recovery control and decision
