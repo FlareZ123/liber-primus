@@ -1,0 +1,278 @@
+{
+  "classification": "Derived historical timing index; source-anchored, no server generator or LP2 plaintext",
+  "source_full_hex_file": "resources/cicada2014-onion2-timing.json",
+  "archive_http_witness": "https://github.com/Dukotah/cicada3301/blob/master/corpus/D-archives/manifest_normalised.jsonl",
+  "source_byte170_etag": "\"b46b-170-4ef6183538e40\"",
+  "source_byte170_last_modified_utc": "2014-01-07T13:40:01Z",
+  "assumption": "All observed interval values retain the historical five-minute calendar clock; only byte 170 has independently measured HTTP update second",
+  "source_bridge_190_191": "im-results/onion2-massobot-timing-bridge.md",
+  "independent_cdx_bytes_201_capture_utc": "2014-01-07T19:39:16Z",
+  "cdx_sha1_base32": "A2N6WJ6DSMG6NRTTJKN3YVVOIKT4RDLH",
+  "observed_span_minutes_170_to_201": 350,
+  "source_byte202_time_utc_minute": "2014-01-07T19:40Z",
+  "observed_release_states": [
+    {
+      "byte_position": 170,
+      "value_hex": "ab",
+      "publication_utc_minute": "2014-01-07T13:40Z",
+      "preceding_interval_5min_units": 2,
+      "clock_basis": "2014-archive Last-Modified + ETag; exact source second :01"
+    },
+    {
+      "byte_position": 171,
+      "value_hex": "35",
+      "publication_utc_minute": "2014-01-07T14:15Z",
+      "preceding_interval_5min_units": 7,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 172,
+      "value_hex": "65",
+      "publication_utc_minute": "2014-01-07T14:25Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 173,
+      "value_hex": "f7",
+      "publication_utc_minute": "2014-01-07T14:30Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 174,
+      "value_hex": "51",
+      "publication_utc_minute": "2014-01-07T14:40Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 175,
+      "value_hex": "3e",
+      "publication_utc_minute": "2014-01-07T14:55Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 176,
+      "value_hex": "3e",
+      "publication_utc_minute": "2014-01-07T15:00Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 177,
+      "value_hex": "36",
+      "publication_utc_minute": "2014-01-07T15:05Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 178,
+      "value_hex": "8c",
+      "publication_utc_minute": "2014-01-07T15:20Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 179,
+      "value_hex": "d0",
+      "publication_utc_minute": "2014-01-07T15:45Z",
+      "preceding_interval_5min_units": 5,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 180,
+      "value_hex": "32",
+      "publication_utc_minute": "2014-01-07T16:00Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 181,
+      "value_hex": "7b",
+      "publication_utc_minute": "2014-01-07T16:15Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 182,
+      "value_hex": "47",
+      "publication_utc_minute": "2014-01-07T16:25Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 183,
+      "value_hex": "cf",
+      "publication_utc_minute": "2014-01-07T16:40Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 184,
+      "value_hex": "59",
+      "publication_utc_minute": "2014-01-07T16:50Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 185,
+      "value_hex": "5a",
+      "publication_utc_minute": "2014-01-07T17:00Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 186,
+      "value_hex": "fe",
+      "publication_utc_minute": "2014-01-07T17:10Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 187,
+      "value_hex": "bb",
+      "publication_utc_minute": "2014-01-07T17:15Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 188,
+      "value_hex": "78",
+      "publication_utc_minute": "2014-01-07T17:20Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 189,
+      "value_hex": "d6",
+      "publication_utc_minute": "2014-01-07T17:30Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 190,
+      "value_hex": "b5",
+      "publication_utc_minute": "2014-01-07T17:40Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "independent contemporaneous two-bot cross-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 191,
+      "value_hex": "bc",
+      "publication_utc_minute": "2014-01-07T18:00Z",
+      "preceding_interval_5min_units": 4,
+      "witness_confidence": "independent contemporaneous two-bot cross-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 192,
+      "value_hex": "a9",
+      "publication_utc_minute": "2014-01-07T18:10Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 193,
+      "value_hex": "2b",
+      "publication_utc_minute": "2014-01-07T18:15Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 194,
+      "value_hex": "a0",
+      "publication_utc_minute": "2014-01-07T18:20Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 195,
+      "value_hex": "21",
+      "publication_utc_minute": "2014-01-07T18:35Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 196,
+      "value_hex": "cd",
+      "publication_utc_minute": "2014-01-07T18:50Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 197,
+      "value_hex": "67",
+      "publication_utc_minute": "2014-01-07T18:55Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 198,
+      "value_hex": "34",
+      "publication_utc_minute": "2014-01-07T19:00Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 199,
+      "value_hex": "f4",
+      "publication_utc_minute": "2014-01-07T19:15Z",
+      "preceding_interval_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 200,
+      "value_hex": "36",
+      "publication_utc_minute": "2014-01-07T19:25Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 201,
+      "value_hex": "2a",
+      "publication_utc_minute": "2014-01-07T19:30Z",
+      "preceding_interval_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    },
+    {
+      "byte_position": 202,
+      "value_hex": "0b",
+      "publication_utc_minute": "2014-01-07T19:40Z",
+      "preceding_interval_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "clock_basis": "derived, minute-level from archived p170 file mtime and independently observed five-minute intervals"
+    }
+  ]
+}
