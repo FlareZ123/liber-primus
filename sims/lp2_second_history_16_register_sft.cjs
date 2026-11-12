@@ -232,6 +232,14 @@ for (const [state, outputs] of page) {
   possibleKeys += allowed.length;
 }
 assert.equal(affineKey.size, 5699);
+// At every state with only one observed successor, any of sixteen distinct
+// source labels can encode it using a=1 and b=(C-P) mod 29, independently
+// of every other observed state. This gives a rigorous LOWER bound on
+// distinct full 12,956-symbol source decodings for the SAME ciphertext.
+const singletonStates = [...page.values()].filter(s => s.size === 1).length;
+assert.equal(singletonStates, 2193);
+const singletonStateLowerBoundBits = singletonStates * 4;
+assert.equal(singletonStateLowerBoundBits, 8772);
 assert.ok(Math.abs(possibleKeys / affineKey.size - 271.01982804000704) < 1e-9);
 const modularInverse = Array(29).fill(0);
 for (let a = 1; a < 29; a++) {
@@ -277,6 +285,8 @@ console.log(JSON.stringify({
     stateCount: affineKey.size,
     originalPositions: affinePositions,
     averageAllowedAffineKeysPerState: possibleKeys / affineKey.size,
+    singletonStates,
+    distinctSource16DecodingsLowerBoundLog2: singletonStateLowerBoundBits,
     ciphertextFittedNotPlaintext: true,
   },
   impossibleShiftedShared16CodebookWitness: {
