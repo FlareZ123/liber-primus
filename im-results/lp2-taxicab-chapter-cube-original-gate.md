@@ -1,42 +1,56 @@
-# Source-visible 729 / 1729 chapter lengths and bounded cubic readout
+# Original chapter 729 / 1729, Onion7 133 / 331 and bounded reversible readouts
 
-**Evidence class:** exact original-manuscript chapter arithmetic, followed by a source-limited, reversible original-cipher experiment. **No unknown LP2 plaintext, key, or decoding operation recovered.**
+**Classification:** exact cross-artifact arithmetic, motivated but unselected cipher hypotheses, and original-cipher negative tests with a reproducible plaintext-positive control. **No unknown LP2 plaintext, authentic key or author-selected inverse has been recovered.**
 
-## Candidate human solve path
+## Source relationship and intended-path question
 
-The original Stage11 image order, red page-start headings and preceding-page red 13-dot stops select the first three substantive chapters at physical pages **0–2, 3–7 and 8–14**. The first contains **729** GP29 runes; the third contains **1,729**. These counts were established independently in the [source-visible chapter atlas](lp2-global-original-visual-section-map.md). Their combination has a potentially useful, previously untested mathematical reading:
+The [original-image chapter atlas](lp2-global-original-visual-section-map.md) selects source-visible LP2 chapters pp0–2, pp3–7 and pp8–14, with respectively **729**, **1,145** and **1,729** Gematria Primus runes. The first and third exhibit the exact arithmetic:
 
-- **729 = 9³ = 27²**, already the source basis for the provisional first-chapter 27×27 square.
-- **1,729 = 9³ + 10³ = 1³ + 12³**, the Hardy–Ramanujan taxicab number, which has two representations as sums of two positive integer cubes.
-- **1,729 = 7 × 13 × 19**. Seven is the number of physical pp8–14 scans, 13 is the separately visible large-dot count and 19 is the solved p57 PARABLE body word count. The factors were identified after observing the total; there is no original instruction combining these three clues.
+- **729 = 9³ = 27²**, the basis for the separate provisional pp0–2 27×27 interpretation.
+- **1,729 = 9³ + 10³ = 1³ + 12³** (the Hardy–Ramanujan taxicab number).
+- **1,729 = 13 × 133 = 7 × 13 × 19**.
 
-The overlap between **729** and the first summand **9³** makes the cube hypothesis somewhat more constrained than an arbitrary factorization of a single observed number. However, it is still a candidate numerical reading. The pp8–14 source-page rune counts are **[255,268,263,273,261,272,137]**, so they do **not** provide seven physical layers of equal length 247. Neither original art nor a signed instruction specifies cube orientation or an even-layer reconstruction. No inference of intentional taxicab encoding follows from these exact equalities.
+The preserved original May-2014 LP2 Onion7 delivery HTML, [`resources/cicada2014-onion7-index.html`](../resources/cicada2014-onion7-index.html), contains **`<title>133</title>`** and **`<div id="331">`**. These source numbers now have two separate conditional links to original book material: **13 × 133 = 1,729** uses the p8–14 chapter's entire rune length; the p0 red 13-rune heading's GP-prime sum, already independently established as **662**, is **2 × 331**.
 
-A cheap, decisive first check is whether the proposed cube or cuboid shapes alone describe an authentic **permutation cipher**. If so, a fixed geometric readout could expose coherent original plaintext and give a usable reversible operation without hunting an unconstrained key.
+This is a potentially useful cross-chapter address/key-source hypothesis: an original solver could inspect the browser title and page source, observe the repeated 13-dot punctuation, and try a 13×133 reading of a 1,729-rune unit. The 2014 HTML archive is **unsigned** and its numerical elements do **not** explicitly tell the solver which unit to choose, whether to transpose it, how to use 331, or how to decrypt it. The relations were connected after observing both source artifacts; their numerical exactness alone does not establish Cicada intent.
 
-## Frozen source-original cubic inverse
+The separate factorization 7×13×19 also recalls the seven physical chapter scans, the 13-dot form and the independently known 19-word p57 PARABLE body, but there is no source instruction selecting that combined interpretation. Actual pp8–14 per-image rune counts are **[255, 268, 263, 273, 261, 272, 137]**. In particular, these do **not** provide seven physical 247-rune layers. A cube or cuboid packing crosses printed page boundaries.
 
-[The runnable CommonJS SFT](../sims/lp2_taxicab_chapter_cube_sft.cjs) reads the canonical page rune indices and the checked-in, independently sourced first 300,000 Shakespeare characters. It trains a smoothed GP29 **conditional trigram language model on the first 75%** of that literary source and reserves the final quarter for independent native-language windows. The score is the average natural log conditional probability per rune, so higher scores are more language-like.
+## Original ciphertext and finite inverse tests
 
-For each of eight source-count interpretations, the SFT exhausts the exact **48 reversible ordinary three-dimensional reads**: six axis orders and eight independent axis-direction reversals. It does not fit a rune substitution, key, cipher state, word spelling or segmentation to any original result.
+The [CommonJS one-file reproducer](../sims/lp2_taxicab_chapter_cube_sft.cjs) reads the **original 29-symbol page corpus**, constructs source-fixed candidate layouts, and learns a conditional GP29 trigram language model solely from the first **75%** of the checked-in Shakespeare reference. All scores below are mean natural-log conditional probabilities per GP rune (higher is more language-like). The final 25% supplies **45 untouched native-English windows** of 1,729 runes, scoring from **−2.572122 to −2.222880**. A native 729-rune positive plant is transposed under a nontrivial 3D key and recovered **exactly** by the inverse.
 
-| Original-input interpretation | GP runes | Raw trigram score | Best of 48 | Best axis order / reverse mask |
-|---|---:|---:|---:|---|
-| pp0–2, full 9×9×9 | 729 | −5.912137 | **−5.873146** | 012 / 4 |
-| pp8–14, first 729 as 9×9×9 | 729 | −5.918111 | **−5.693697** | 210 / 0 |
-| pp8–14, last 1,000 as 10×10×10 | 1,000 | −5.939389 | **−5.793325** | 120 / 7 |
-| pp8–14, first 1,000 as 10×10×10 | 1,000 | −5.929605 | **−5.814128** | 102 / 2 |
-| pp8–14, last 729 as 9×9×9 | 729 | −5.935464 | **−5.749902** | 120 / 0 |
-| pp8–14, drop first, 12×12×12 | 1,728 | −5.931061 | **−5.804418** | 201 / 6 |
-| pp8–14, drop last, 12×12×12 | 1,728 | −5.929227 | **−5.800895** | 201 / 6 |
-| pp8–14, 7×13×19 cuboid | 1,729 | −5.931833 | **−5.786757** | 210 / 5 |
+### Eight cube/cuboid framings
 
-The 45 held-out, untouched **1,729-rune native-GP English windows** score between **−2.572122 and −2.222880**, far above the best original readout **−5.693697**. A source-native 729-rune English plant is placed under a nontrivial three-dimensional orientation, exactly restored by the positional inverse and language-like after decoding. The source-original readings remain ciphertext-like.
+For each framing, exhaust **48 exact reversible 3D axis reads**, comprising the six axis orders and eight independent axis reversals.
 
-These results reject the **direct, unkeyed axis-permutation-only** interpretation for this fixed 48-symmetry family and English GP29 plaintext. They do not exclude more complex 3D traversals, independently sourced keys, reversible nonlinear mappings, altered word-boundaries, binary intermediates or genuinely non-English plaintext. A higher score among 48 ciphertext-like candidates does not support plaintext recovery.
+| Source-fixed input and geometry | Rune count | Raw GP score | Best of 48 GP scores |
+|---|---:|---:|---:|
+| Entire pp0–2 as 9×9×9 | 729 | −5.912137 | −5.873146 |
+| First 729 pp8–14 as 9×9×9 | 729 | −5.918111 | **−5.693697** |
+| Last 1,000 pp8–14 as 10×10×10 | 1,000 | −5.939389 | −5.793325 |
+| First 1,000 pp8–14 as 10×10×10 | 1,000 | −5.929605 | −5.814128 |
+| Last 729 pp8–14 as 9×9×9 | 729 | −5.935464 | −5.749902 |
+| Drop first pp8–14 rune, then 12×12×12 | 1,728 | −5.931061 | −5.804418 |
+| Drop last pp8–14 rune, then 12×12×12 | 1,728 | −5.929227 | −5.800895 |
+| Entire pp8–14 as 7×13×19 | 1,729 | −5.931833 | −5.786757 |
+
+### The original HTML 133 / 331 consumer
+
+With **1,729 = 13×133** fixed, a second finite test evaluates the most literal historical-number readings:
+
+| Source-nominated operation | Exhausted finite family | Best original GP trigram score |
+|---|---|---:|
+| 13×133 / 133×13 row-column reading | 32 axis, direction and alternating-row orientations | **−5.721056** |
+| 331-step circular walk modulo 1,729 | Both step signs, starts 0 / 13 / 133 / 331; all steps are reversible | **−5.819662** |
+| Vigenère using **p0's 13 red GP rune indices** | 192 arrangements: row / column / repeated 13-position key, key reversed or forward, both arithmetic signs, both rectangular packings and axis reversals | **−5.682384** |
+
+All original outputs remain far below the independently measured GP-native English register. The visibly available 13-rune p0 key and literal HTML addresses do not produce usable plaintext under these direct operations. The exact positive inverse controls mean this is a negative result on **these original-source consumers**, not a broken implementation.
+
+The frozen experiments are sufficiently narrow to prevent regenerating the same dozens of direct geometry and red-key choices. They do **not** exclude cipher-dependent position walks, authenticated source instructions that select a different mapping, a genuinely independent secret, multi-layer transformations, different languages or binary intermediates.
 
 ## Research decision
 
-Keep the exact 729 / 1729 equalities as a conditional **mathematical clue candidate**, with their severe orientation and physical-page objections. Do not promote the taxi-number coincidence to a selected cipher architecture. Further cube-dependent key searches would be valuable only if an **independent source clue** specifies the cube packing, a changing-state operation, or a source-recoverable key. The simple geometrical route has been tested once and can be retired.
+Retain the exact source links **(729, 1729, 133, 331, 662)** as a **conditional address/key-source lead**, with its limitations explicit. **Do not promote them to an established cipher architecture or plaintext**. The specific 616 direct invertible candidates above are original-negative. The missing ingredient is a **source-selected operation**: an original instruction fixing both a traverse/order and the treatment of rune values, preferably one that predicts plaintext outside the opening numerical coincidences. Until such evidence appears, expanding arbitrary 13×133 keys and walks will probably repeat the same post-selection failure.
 
-**Reproduction:** `node sims/lp2_taxicab_chapter_cube_sft.cjs` from the repository root, Node.js 22. The program reads only existing stable resources and writes no files.
+**Reproduction:** `node sims/lp2_taxicab_chapter_cube_sft.cjs`, Node.js 22 from the repository root, with no external packages or file writes.
