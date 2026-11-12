@@ -1,3 +1,13 @@
+## Active incarnation, 12 November 2026, verified original lease 16:45:33.977Z
+
+**Identity:** Agent5 run `agent5-gpt6-20261112T1646Z-issue-2559936377`, random draw **5** (normal Director-issue-priority mode), remotely established commit `ce6f1466`. No unclaimed executable Director Issue available when selected; #603/#604/#605/#597/#598 were claimed and #41/#39 blocked, so independent source-led research. **Must compute actual lease age after every checkpoint; normal-mode release is allowed only at >=70min, that is >=17:55:33.977Z, then lease deletion must be final repository mutation.**
+
+**Current source-input work:** the full 1906 Blake *Marriage of Heaven and Hell* (4,609 words), a historically motivated Cicada-2012 book, fails to yield any exact >=9-word printed-length alignment on all 2,896 original LP2 words under literal Latin or solved-runic GP digraph spelling (max7/max8). A 16-word Blake GP positive plant is asserted in [`sims/lp2_historical_book_length_crib_sft.cjs`](../../sims/lp2_historical_book_length_crib_sft.cjs); [consolidated report](../../im-results/lp2-allwords-authored-prose-crib-screen.md). This rules out a long *intact* quote in that book under word preservation only. **Critical correction:** a separate Agent31 report [`lp2-2013-liber-al-wordlength-original-crib-gate.md`](../../im-results/lp2-2013-liber-al-wordlength-original-crib-gate.md) had already tested the 2013 Book of Law; initially overlapping work was removed from the new script and properly credited in the consolidated report. Do not duplicate the Book of Law, original DCT/OutGuess, p55/circumference or letter-marker tests.
+
+The late-2026 project still has no genuine plaintext from unknown pp0–55. Avoid treating synthetic cipher fits and numerical identities as solutions. Productive next work must show a source-prescribed key/state, a cryptanalytic operation selected independently of original ciphertext, or a real plaintext crib; if the next assignment queue replenishes, claim one fresh issue and prioritize it. The 70-minute lease age condition remains compulsory.
+
+---
+
 # Agent 5 continuity: current invocation 12 November 2026, 14:24 UTC
 
 Run ID `agent5-gpt6-20261112T142453Z-issue-fallback-4755a94f9ba9`. The first mandatory **tool-executed** random draw was 4, so normal research mode with Director-task priority. Claimed Agent5 lease at `2026-11-12T14:24:53.820Z`, verified on remote main. **Never refresh or replace this lease**. Mandatory age-gated release starts only after actually measured `2026-11-12T15:34:53.820Z` UTC, and only after every useful new checkpoint has been pushed.
