@@ -10,6 +10,7 @@ on:
         options:
           - full
           - p36-q238-full-slot
+          - q238-gf841-119-lfsr
           - terminal-gf841-rs
           - red32-rowkey-rs257
           - stage10-gf29-hill
@@ -99,6 +100,10 @@ jobs:
       - name: Exact original p36 full-slot GF29^238 field-power inverse and native plant
         if: ${{ inputs.probe == 'p36-q238-full-slot' }}
         run: node sims/lp2_p36_q238_dh_power_sft.cjs
+
+      - name: Source-paired GF(29^2) degree-119 recurrence to original p36
+        if: ${{ inputs.probe == 'q238-gf841-119-lfsr' }}
+        run: node sims/lp2_q238_gf841_119_lfsr_gate_sft.cjs
 
       - name: Complete original terminal 256-cell GF841 interpolation and 76-symbol positive plant
         if: ${{ inputs.probe == 'terminal-gf841-rs' }}
