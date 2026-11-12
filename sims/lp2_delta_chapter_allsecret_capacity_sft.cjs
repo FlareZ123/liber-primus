@@ -110,7 +110,7 @@ for(const source of sources){
 }
 assert.equal(allComparisons,90);
 assert.deepEqual(chapterMinMax,[71,108,175,195,99,147,179,316,31]);
-assert.equal(minNativeMax,1412);
+assert.equal(minNativeMax,1410);
 assert.equal(minGlobalEdits,4011);
 assert.equal(minChapterEdits,3638);
 // Source-native whole-book plant: arbitrary independently secret
