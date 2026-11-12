@@ -57,6 +57,61 @@ assert.deepEqual(roots(p9.indices), []);
 const naive = pages.map(page => roots(page.indices).length);
 assert.equal(naive.reduce((sum, count) => sum + count, 0), 74);
 
+/**
+ * A maximally literal inverse candidate for a page with factor (X-r):
+ * divide out every actual GF29 linear root in ascending root order,
+ * including the four repeated roots. No unknown key, source phrase or
+ * fitted root is permitted. This is deliberately tested once, then retired
+ * if the result is not GP-native language.
+ */
+function divideByRoot(coefficients, root) {
+  assert(coefficients.length > 1);
+  const quotient = Array(coefficients.length - 1);
+  quotient[0] = coefficients[0];
+  for (let i = 1; i < quotient.length; i++) {
+    quotient[i] = (coefficients[i] + root * quotient[i - 1]) % alphabet;
+  }
+  assert.equal((coefficients.at(-1) +
+    root * quotient.at(-1)) % alphabet, 0);
+  return quotient;
+}
+
+/** @param {number[]} indices */
+function ioc(indices) {
+  const frequencies = Array(alphabet).fill(0);
+  for (const value of indices) frequencies[value]++;
+  return frequencies.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (indices.length * (indices.length - 1));
+}
+
+const stripped = [];
+const removedByPage = [];
+for (const page of pages) {
+  let current = page.indices.slice();
+  const removed = [];
+  for (let root = 0; root < alphabet; root++) {
+    while (current.length > 1 && roots(current).includes(root)) {
+      removed.push(root);
+      current = divideByRoot(current, root);
+    }
+  }
+  stripped.push({page: page.page, indices: current});
+  removedByPage.push({page: page.page, roots: removed});
+}
+const strippedText = stripped.flatMap(page => page.indices);
+const originalIoC = ioc([...book]);
+const strippedIoC = ioc(strippedText);
+const post27Original = pages.filter(page => page.page >= 27)
+  .flatMap(page => page.indices);
+const post27Stripped = stripped.filter(page => page.page >= 27)
+  .flatMap(page => page.indices);
+assert.equal(removedByPage.reduce((sum, page) => sum +
+  page.roots.length, 0), 78);
+assert.equal(strippedText.length, N - 78);
+assert(Math.abs(originalIoC - 0.03447839786450569) < 1e-12);
+assert(Math.abs(strippedIoC - 0.03447605254262609) < 1e-12);
+assert(Math.abs(ioc(post27Stripped) - 0.03455396880752661) < 1e-12);
+
 const chapterStarts = [3, 8, 15, 23, 27, 33, 40, 54];
 const chapterIndexes = chapterStarts.map(physical => {
   const i = pages.findIndex(page => page.page === physical);
@@ -150,6 +205,16 @@ console.log(JSON.stringify({
   pageCount: K,
   ciphertextRunes: N,
   plantedPageRootAt1: "PASS",
+  directAllLinearFactorQuotient: {
+    factorsRemoved: 78,
+    quotientRunes: strippedText.length,
+    originalIoC,
+    quotientIoC: strippedIoC,
+    post27OriginalIoC: ioc(post27Original),
+    post27QuotientIoC: ioc(post27Stripped),
+    first120GP: strippedText.slice(0, 120).map(index =>
+      corpus.translit[index]).join("")
+  },
   exactPageRoots: naive,
   totalOriginalRootIncidences: 74,
   sourceChapterBreaksTested: chapterStarts,
