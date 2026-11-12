@@ -21,8 +21,23 @@ The original `resources/lp2-transcription.txt` is truncated after exactly 12,956
 | Sorted | transparent seed | **62** | 9,733 | **0.034726351** | 699 | **1** |
 | Cyclic | transparent seed | **62** | 9,738 | **0.034711326** | 696 | **1** |
 
+## Fixed-secret-alphabet exclusion without key search
+
+The direct GP dictionary check alone leaves the possibility that the reconstructed base29 digits encode a *secretly permuted* 29-letter GP alphabet. Complete-word identity is invariant under **every fixed 29! permutation** of these symbols. Count only reconstructed words of **four or more** actual GP runes, ignoring the 62/85 undecodable input words:
+
+| Model | Reconstructed long-word tokens | Distinct long-word types | Repeated long-word occurrences | Native same-length Shakespeare duplicates (20 fixed offsets) |
+| --- | ---: | ---: | ---: | ---: |
+| Sorted, all positions | **1,560** | **1,560** | **0** | **694–765** |
+| Cyclic, all positions | **1,558** | **1,558** | **0** | **692–762** |
+| Sorted, first is seed | **1,070** | **1,070** | **0** | **423–492** |
+| Cyclic, first is seed | **1,083** | **1,083** | **0** | **435–502** |
+
+The independent native control uses authentic GP-normalized words from the fixed 300k Shakespeare source. At each reconstructed long-word slot it chooses the next actual Shakespeare word of **exactly that slot's GP rune length**, from per-length source pools, with deterministic starting offsets `0,131,...,2489`. It therefore compares repeated-type behavior under exactly the inferred long-word length distribution. All **20/20** reference replicas have hundreds of repeated long words; the original inverses have **zero**. This is a source-dependent control, not a corpus-universal p-value.
+
+**Stronger decision:** fixed alphabet relabelling cannot make the recovered words ordinary English prose because it cannot create a repeated long-word type. This argument is *key-independent* for this transport, even with an unknown 29-symbol substitution key. It does not constrain a position-dependent pad, a per-word or per-page changing secret alphabet, a hidden escaping channel, or a further nonletter codec.
+
 The seed cases have many extra one/two-symbol reconstructed words, which produce incidental dictionary matches. Almost **no** reconstructed word of at least four GP tokens is in the fixed dictionary. All outputs have essentially uniform 29-way collisions (random reference 1/29≈0.03448). No literal natural-language plaintext emerges, even after discarding 62–85 incompatible original words.
 
 The [single-file CommonJS native-GP decoder/encoder control](../sims/lp2_wordframed_radix28_to29_sft.cjs) uses source-exact word segmentation and four full original inverses, with GP-encoded Shakespeare input planted through matching inverse codes. Each planted original word round-trips exactly under its corresponding inverse. It asserts source counts, results and dictionary identity.
 
-**Decision:** retire the four specific direct, source-motivated word-number transport models; do not rescue them with arbitrary alphabet permutations or guessed escapes. Other source-selected variable-state/non-GP layers remain open. This supporting negative does not change `results/README.md`.
+**Decision:** retire the four literal word-number transport models, including all their globally fixed 29-symbol alphabet relabellings, before considering any guessed escapes or further secret states. Other source-selected variable-state/non-GP layers remain open. This supporting negative does not change `results/README.md`.
