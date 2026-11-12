@@ -14,3 +14,15 @@ jobs:
         run: |
           node --check sims/lp2_quote_original_source_attribution_sft.cjs
           node sims/lp2_quote_original_source_attribution_sft.cjs
+  original-geb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run full English GEB original LP2 quotation gate
+        run: |
+          node --check sims/lp2_geb_original_quote_gate_sft.cjs
+          node sims/lp2_geb_original_quote_gate_sft.cjs
