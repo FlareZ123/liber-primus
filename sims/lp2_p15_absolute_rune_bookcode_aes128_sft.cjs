@@ -108,6 +108,39 @@ const witness=corpus.pages[57].indices;
 const mask=decrypt(Buffer.alloc(witness.length),phases[0].key,"ctr");
 const ciphertext=witness.map((x,i)=>(x+mask[i]%29)%29);
 assert.deepEqual(ciphertext.map((c,i)=>(c+29-mask[i]%29)%29),witness);
+// Additional low-step, source-count-motivated 16-byte book-code consumers:
+// 256 grid cells = 16 × 16 and square supplies exactly sixteen indexed runes.
+// No AES or external IV is needed to try repeating the indexed 16-byte key.
+const direct=[];
+for(const state of phases)for(const [tableOrder,bytes] of presentations)
+  for(const operation of ["xor","subtract","add"]){
+    const plain=bytes.map((v,i)=>{
+      const k=state.key[i%16];
+      return operation==="xor"?(v^k):
+        operation==="subtract"?(v-k+256)%256:(v+k)%256;
+    });
+    direct.push({order:state.order,origin:state.origin,
+      representation:state.representation,tableOrder,operation,
+      printable:printable(plain),gpbyte:gpbyte(plain),
+      longestPrintable:longestPrintable(plain)});
+  }
+assert.equal(direct.length,8*4*3);
+// Direct additive GP29 inverse also consumes just the 16 rune identities,
+// without the unsupported additional stream-cipher assumption.
+const simpleRuna=[];
+for(const state of phases)for(const sign of [-1,1]){
+  const key=state.indices;
+  const decoded=all.map((v,i)=>(v+29+sign*key[i%16])%29);
+  const regionStart=corpus.pages.slice(0,16).reduce((n,p)=>n+p.indices.length,0);
+  const afterSquare=region.map((v,i)=>
+    (v+29+sign*key[(i+regionStart)%16])%29);
+  const encryptCheck=decoded.map((p,i)=>(p+29-sign*key[i%16])%29);
+  assert.deepEqual(encryptCheck,all);
+  simpleRuna.push({order:state.order,origin:state.origin,
+    representation:state.representation,sign,
+    allIoC:ioc(decoded),pages16to22IoC:ioc(afterSquare)});
+}
+assert.equal(simpleRuna.length,16);
 console.log(JSON.stringify({
   original:"p15 center-highlighted 4x4 printed square absolute manuscript rune positions",
   gridBytes:row.length,wholeRunes:all.length,p15Numbers:printed,
@@ -122,6 +155,6 @@ console.log(JSON.stringify({
   runicCTRAlternatives:streams.length,
   strongestGP29IoC:[...streams].sort((a,b)=>b.allIoC-a.allIoC)[0],
   strongestSectionIoC:[...streams].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],
-  bytePositiveRecovered:true,runePositiveRecovered:true,
+  directRepeatVariants:direct.length,completeRepeatPrintable:direct.filter(x=>x.printable===256).length,\n  completeRepeatGPBytes:direct.filter(x=>x.gpbyte===256).length,\n  bestRepeatPrintable:[...direct].sort((a,b)=>b.printable-a.printable)[0],\n  bestRepeatGPBytes:[...direct].sort((a,b)=>b.gpbyte-a.gpbyte)[0],\n  repeatGP29Alternatives:simpleRuna.length,\n  bestRepeatGP29IoC:[...simpleRuna].sort((a,b)=>b.allIoC-a.allIoC)[0],\n  bestRepeatSectionIoC:[...simpleRuna].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],\n  bytePositiveRecovered:true,runePositiveRecovered:true,
   authenticatedOriginalPlaintext:false
 },null,2));
