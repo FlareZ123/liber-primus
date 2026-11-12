@@ -15,6 +15,7 @@ on:
           - rsa-4096-terminal
           - p57-lsb-claim
           - afnd-paste-source
+          - xgy-primes-source
 permissions:
   contents: read
 jobs:
@@ -56,3 +57,6 @@ jobs:
       - name: One-shot first-onion AfndPJa0 archive-source acquisition
         if: ${{ inputs.experiment == 'afnd-paste-source' }}
         run: node sims/afnd_paste_archive_gate.cjs
+      - name: One-ID original 2013 first-onion PRIMES recovery
+        if: ${{ inputs.experiment == 'xgy-primes-source' }}
+        run: node sims/cicada2013_xgy_paste_source_sft.cjs
