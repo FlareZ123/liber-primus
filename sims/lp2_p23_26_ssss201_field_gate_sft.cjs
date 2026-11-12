@@ -112,8 +112,10 @@ function gf(degree, taps) {
   /** @param {bigint[]} coeff @param {bigint} x @returns {bigint} */
   function split(coeff, x) {
     let y = x;
-    for (let i = 4; i >= 0; i--) y = mul(y, x) ^ coeff[i];
-    return y;
+    // ssss.c horner(n): x starts the monic term; multiply after c4..c1,
+    // then XOR c0 without another multiplication (true degree five).
+    for (let i = 4; i >= 1; i--) y = mul(y ^ coeff[i], x);
+    return y ^ coeff[0];
   }
   return { mul, inv, restore, split };
 }
