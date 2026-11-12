@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_p55_2014_three_inner_squares_hill_sft.cjs
       - name: Seventeen original square rows on every p55 rune with native positive controls
         run: node sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs
+      - name: Source-prime holes in original 2014 squares against complete p55 76-rune input
+        run: node sims/lp2_2014_primeholes_p55_99cell_sft.cjs
