@@ -1,6 +1,6 @@
 # Red225 terminal row and literal solved-page mixing: original-input decision
 
-**Status (12 November 2026):** Source-visible count and candidate instruction, followed by two completed, bounded negative tests. No unknown LP2 plaintext, historical cipher inverse, authentic key, or destination is recovered. Reproducer: [source-native standalone CJS SFT](../sims/lp2_red225_mix_end_parable_sft.cjs). [Successful manual-only Actions run 43242739105](https://github.com/FlareZ123/liber-primus/actions/runs/43242739105) ran the exact committed script against the GitHub source corpus and printed all eight original-input candidates.
+**Status (12 November 2026):** Source-visible 225-rune count and tentative instruction with four bounded original-input negative gates: global transposition, solved-page additive mixing, paired 105-rune arithmetic, and full 1,680-rune p33–39 title-key tensor inverse. No unknown LP2 plaintext, historical cipher inverse, authentic key, or destination is recovered. Reproducers: [red-channel SFT](../sims/lp2_red225_mix_end_parable_sft.cjs) and [complete p33–39 title-key tensor SFT](../sims/lp2_red357_tensor_p33_39_sft.cjs); both passed original-source manual CI ([red-channel run 43248483709](https://github.com/FlareZ123/liber-primus/actions/runs/43248483709), [p33–39 run 43250279752](https://github.com/FlareZ123/liber-primus/actions/runs/43250279752)).
 
 ## Source premise and risk
 
