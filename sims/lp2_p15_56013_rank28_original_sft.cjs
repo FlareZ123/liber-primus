@@ -35,6 +35,11 @@ const raw=fs.readFileSync(file);
 assert.equal(raw.length,118818811);
 const sha256=crypto.createHash('sha256').update(raw).digest('hex');
 assert.equal(sha256,'db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f');
+// Validate the actual historical 2013 DATA XOR operation at the 12,821-byte
+// original phone-stage offset before transferring the source to 2014 runes.
+const oldStageCipher=Buffer.from('28c07e1b102d4d5c4c1a376e064477e1416fcc94928765','hex');
+const originalOnion=Buffer.from(oldStageCipher.map((byte,i)=>byte^raw[12821+i]));
+assert.equal(originalOnion.toString('ascii'),'gbyh7znm6c7ezsmr.onion\n');
 const bytes=raw.subarray(offset,offset+original.length);
 assert.equal(bytes.length,original.length);
 
