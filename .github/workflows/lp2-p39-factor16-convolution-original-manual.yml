@@ -1,0 +1,23 @@
+name: LP2 p39 factor-16 240-slot original polynomial gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-convolution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out fixed original corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original p39 240-slot all-secret convolution gate
+        run: |
+          node --check sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
+          node sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
