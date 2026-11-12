@@ -154,7 +154,7 @@ assert.deepEqual(cubeResidue.slice(0,24),
   [10,26,11,26,0,7,11,10,7,6,15,20,27,4,9,26,16,12,16,10,20,26,2,23]);
 
 const reversiblePowers=[];
-for (const exponent of [23n,1661n]) {
+for (const exponent of [23n,1661n,1067n]) {
   const inverse = inverseExponent(exponent,order);
   const p=powerField(ciphertextField,inverse);
   const reencoded=powerField(p,exponent);
@@ -175,7 +175,9 @@ assert(Math.abs(reversiblePowers[1].decodedIoc-0.03524447753785059)<1e-14);
 console.log(JSON.stringify({
   source:{physicalPage:36,runicLength:238,numeralOffset:99,
     printedNumeral:1,gridBytes:256,lowFactorDegree:16,
-    irreducibleFieldFactorDegree:238},
+    irreducibleFieldFactorDegree:238,
+    addedExponent:{value:1067,role:'DH3301 participant-transcript shared secret',
+      authentication:'unsigned participant transcript; protocol only is signed'}},
   exactPower15:{originalIsCube:isCube,thereforePossibleAs15thPower:false,
     cubeResidualNonzeroCoefficients:cubeResidue.filter(n=>n!==0).length,
     cubeResidualFirst24:cubeResidue.slice(0,24)},
