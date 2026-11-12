@@ -138,8 +138,8 @@ def main():
           "prime numbers and the totient function, with no source-selected page-55 clock"},
         "solved_LP2_p57_plaintext_ioc_reference":round(ioc(p57),8),
       },
-      "interpretation":("Three independent exact-form artwork reuses; no LP2 "
-                        "plaintext is produced by the two uniquely selected "
+      "interpretation":("Multiple exact-form artwork reuses, including multiple LP1 source pages for the p2 insect; no LP2 "
+                        "plaintext is produced by the two literal candidate "
                         "direct LP1 inverse transfers.")
     }
     print(json.dumps(output,indent=2,ensure_ascii=False))
