@@ -3,7 +3,7 @@
 
 /**
  * Original LP2 1,000-rune doublet dispersion and source-conditioned site null.
- * Source: original GP29 transcription and canonical 58-page corpus.
+ * Source: canonical 2,896-word master and original 58-page corpus.
  * Fixed partitions, statistics, seeds, and one independent smooth-rate plant.
  * A site null is a distribution of event indicators, not a ciphertext decoder.
  */
@@ -13,50 +13,55 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(
   path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"));
-const text = fs.readFileSync(
-  path.join(root, "resources/liber-primus/lp2-transcription.txt"), "utf8");
+const master = fs.readFileSync(
+  path.join(root, "resources/transcriptions/liber_primus_master.txt"), "utf8");
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
-const parts = text.split("%");
+const sections = master.slice(master.indexOf("\n\n") + 2).split("$");
+const words = sections.slice(7, 16).flatMap(section =>
+  section.split(/[-.&§]/u).map(part => part.match(/[\u16A0-\u16FF]/gu))
+    .filter(Boolean));
 const pages = corpus.pages.filter(p => p.page <= 55);
+const book = words.flatMap(word => word.map(glyph => runeIndex.get(glyph)));
+assert.deepEqual(book, pages.flatMap(page => page.indices));
+assert.equal(book.length, 12956);
+assert.equal(words.length, 2896);
+const pageAt = new Int16Array(book.length);
+const pageStartAt = new Int32Array(book.length);
+let physicalOffset = 0;
+for (const page of pages) {
+  for (let j = 0; j < page.indices.length; j++) {
+    pageAt[physicalOffset + j] = page.page;
+    pageStartAt[physicalOffset + j] = physicalOffset;
+  }
+  physicalOffset += page.indices.length;
+}
 const groups = new Map();
-const observedSites = [], book = [], eligibleSites = [];
+const observedSites = [], eligibleSites = [];
 const groupFor = (name) => {
   if (!groups.has(name)) groups.set(name, { sites: [], count: 0 });
   return groups.get(name);
 };
-
-for (const page of pages) {
-  // The rune-free physical p50 numerical grid has no transcript page segment.
-  const fragment = page.page < 50 ? parts[page.page] :
-    page.page === 50 ? "" : parts[page.page - 1];
-  const words = (fragment.replace(/\/\s*/g, "").match(/[\u16A0-\u16FF]+/gu) || [])
-    .map(w => [...w].map(r => runeIndex.get(r)));
-  const pageStart = book.length;
-  for (const word of words) {
-    for (let j = 0; j < word.length; j++) {
-      const position = book.length;
-      const current = word[j];
-      if (position > pageStart) {
-        const role = j === 0 ? "initial" :
-          j === word.length - 1 ? "final" : "interior";
-        const key = `${page.page}:${word.length}:${role}`;
-        const g = groupFor(key);
-        const repeat = current === book[position - 1];
-        g.sites.push(position);
-        g.count += Number(repeat);
-        eligibleSites.push(position);
-        if (repeat) observedSites.push(position);
-      }
-      book.push(current);
-    }
+let position = 0;
+for (const word of words) {
+  for (let j = 0; j < word.length; j++, position++) {
+    // The printed word can span a physical line or page boundary; only
+    // the physical page resets the adjacent-repeat eligibility gate.
+    if (position === pageStartAt[position]) continue;
+    const role = j === 0 ? "initial" :
+      j === word.length - 1 ? "final" : "interior";
+    const key = [pageAt[position], word.length, role].join(":");
+    const g = groupFor(key);
+    const repeat = book[position] === book[position - 1];
+    g.sites.push(position);
+    g.count += Number(repeat);
+    eligibleSites.push(position);
+    if (repeat) observedSites.push(position);
   }
-  assert.deepEqual(book.slice(pageStart), page.indices,
-    "canonical original rune identities, page " + page.page);
 }
-assert.equal(book.length, 12956);
+assert.equal(position, 12956);
 assert.equal(eligibleSites.length, 12901);
 assert.equal(observedSites.length, 86);
-assert.equal(groups.size, 1433);
+assert.equal(groups.size, 1438);
 const slots = Array(13).fill(1000);
 slots[12] = 956;
 const eligiblePerBlock = slots.map((_, i) =>
@@ -112,7 +117,7 @@ assert(Math.abs(observed.gapRho - 0.38001968924100954) < 1e-12);
 assert(Math.abs(observed.chiRuneSlots - 15.712227109078524) < 1e-12);
 
 const eligibleGroups = [...groups.values()].filter(g => g.count);
-assert.equal(eligibleGroups.length, 82);
+assert.equal(eligibleGroups.length, 81);
 const randomSource = random32(0x33016666);
 const sourceTrials = 20000;
 let exceedRho = 0, exceedChi = 0, totalRho = 0, totalChi = 0;
@@ -126,8 +131,8 @@ for (let t = 0; t < sourceTrials; t++) {
   totalRho += current.gapRho;
   totalChi += current.chiRuneSlots;
 }
-assert.equal(exceedRho, 213);
-assert.equal(exceedChi, 8059);
+assert.equal(exceedRho, 244);
+assert.equal(exceedChi, 10079);
 const sourceNull = {
   strata: groups.size, occupied: eligibleGroups.length,
   seed: "0x33016666", trials: sourceTrials,
