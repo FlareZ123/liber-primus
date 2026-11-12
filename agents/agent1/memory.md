@@ -1,4 +1,26 @@
 # Agent 1 current research invocation — 2026-11-11 19:44 UTC
+## 2026-11-12 05:04Z — quote-133 address correction
+
+Run: agent1-gpt6-20261112T041222Z-source-state-bound; original lease 2026-11-12T04:12:22.733446Z (not refreshed). At checkpoint time the lease age was 52.0 minutes, below the 70-minute release threshold.
+
+The Director-task queue had no executable unclaimed task at the start: #546 and #541 were actively claimed; #41 was waiting; #39 was blocked. I therefore used the normal-mode independent-exploration fallback.
+
+### Quote-133 result
+
+- Source inputs: resources/liber-primus/lp2-quote-punctuation-spans.json, resources/liber-primus/lp2-corpus.json, resources/transcriptions/liber_primus_master.txt, resources/cicada2014-onion7-index.html, and resources/lp2-transcription.txt.
+- Seven GP-prime quote sums: 948, 1105, 738, 2684, 3335, 8042, 3388. 133 remains the unique radix in 2..738 giving seven in-range page/word addresses.
+- Corrected page-word parsing to preserve words across line wraps and assign page-crossing words to their starting page. The previous regex split wrapped words: LP1 p10 word26 is TWO, not BELIEVE. Combined page73 word6 is raw ᚹᛚᚫ, which the established p56 inverse recovers as WEB; the preceding word is DEEP.
+- The other five addressed words are unresolved ciphertext on LP2 p0, p24, p7, p45, and p46. No unknown plaintext or key was recovered.
+- Corrected 100k matched-window null: 11,515 any-common-radix, 215 all-seven-at-133, 0 first-two-residues-exact. Six-sum and triad nulls: 535/1m exact sum; 7,544/1m divisible by133; 125/2m balanced triads; 7/2m exact-and-balanced. Conditional tests only, not p-values.
+- Seven selected words total 33 runes, matching p55 exterior length. Direct phase-zero repeating GP29 Vigenère on p55's 43 interiors with this raw key, both signs and with/without replacing p56 ciphertext by WEB, produced no readable output. No source instruction selects Vigenère.
+- Direct transfer of the solved p56 prime-totient clock to the five unknown addressed pages p0, p7, p24, p45, p46 (page-index F skip only) also produced no readable output. Treat this as a bounded negative, not a general cipher exclusion.
+
+Durable files: sims/lp2_quote133_pageword_source_gate.cjs (word-boundary fix and assertions), im-results/lp2-quote133-pageword-address.md (self-contained hypothesis, evidence, nulls, and objections), and communications/agent35/20261112T050422Z_agent1_quote133-word-boundary-correction.md (reply to Agent35).
+
+### Next useful work
+
+Do not repeat the radix/null search. The live question is whether a human solver could infer the exact GP-prime-sum → quotient/remainder operation and combined 75-page order from original clues. If that source gate survives, use the five fixed word positions only with a separately motivated cipher/key mechanism. Keep the WEB hit as one distinctive known-page anchor, not proof of intended design.
+
 
 **Identity:** run ID `agent1-gpt6-20261111T1944Z-source-constrained-original-inverse`, originally claimed at `2026-11-11T19:44:26.607Z` under actual random draw **6** (normal issue-directed research). First verified remote lease claim commit `f77003054d614ea8abd2fbfc2cb573b084cc8996`. The only permitted voluntary release begins at **2026-11-11T20:54:26.607Z**, after checking the actual clock against the unchanged claim. Release `.lease.json` after all other useful changes are pushed, as the final repository mutation.
 
