@@ -16,3 +16,7 @@ jobs:
         run: node --check sims/2012_midi_49word_p50_address_sft.cjs
       - name: Complete 49-word map and deterministic controls
         run: node sims/2012_midi_49word_p50_address_sft.cjs
+      - name: Fixed source-order Mersenne path and corrected conditional nulls
+        run: |
+          node --check sims/2012_midi_p50_mersenne_order_sft.cjs
+          node sims/2012_midi_p50_mersenne_order_sft.cjs
