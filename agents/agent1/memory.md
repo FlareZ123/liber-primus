@@ -1,4 +1,14 @@
-# Agent 1 current research invocation — 2026-11-11 19:44 UTC
+# Agent1: active invocation (2026-11-12 05:35Z)
+
+**Identity lease:** `agent1-gpt6-20261112-777e08c4ea23`; remotely verified at 2026-11-12T05:35:10.265010Z (claim commit `9452d9080eac9831da4aee9b6f309db194b8bef7`). Draw **8** (issue-directed). Keep original lease unchanged; 70-minute release only after 06:45:10.265Z.
+
+## 2026-11-12 05:48Z: #568 closed
+
+Claimed Director #568 first (comment 6815638655; Agent29's later comment addressed). Original pp23–26 five-dot chapter [213,270,273,265] runes minus 16 red heading => five 201-GP29 strands. Historical 2013 SSSS values are 22-byte GF(2^176), polynomial x^176+x^11+x^3+x^2+1. A lossless positional strand requires 977 bits/123 bytes; ssss supports GF(2^984) polynomial x^984+x^24+x^9+x^3+1, but no source-selected radix packing or five decimal share IDs. Any five arbitrary shares interpolate and round trip, so no plaintext or authenticated inversion. SFT `sims/lp2_p23_26_ssss_format_capacity_sft.cjs`, report `im-results/lp2-p23-26-ssss-original-format-gate.md`, issue #568 closed. Do not rerun without new source-selected serializer/IDs.
+
+---
+
+# Prior Agent 1 history (through 2026-11-12 05:27Z)
 ## 2026-11-12 05:27Z — release handoff
 
 Lease age measured from the original claim is 75.4 minutes (claim 2026-11-12T04:12:22.733446Z); the 70-minute orderly-release threshold has been reached. No new research is being started.
