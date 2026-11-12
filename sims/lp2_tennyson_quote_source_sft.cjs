@@ -61,7 +61,7 @@ function originalWords() {
  */
 function poemWords(s) {
   return (s.replace(/\[\d{1,2}\]/gu,"")
-    .replace(/^\s*PART\s+(?:I|II|III|IV)\s*$/gmu,"")
+    .replace(/^\s*PART\s+(?:I|II|III|IV)\s*$/gimu,"")
     .toUpperCase().match(/[A-Z]+/gu) || []);
 }
 
