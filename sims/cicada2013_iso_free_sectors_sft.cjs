@@ -143,7 +143,7 @@ for(let i=0;i<16;i++){
   const signatures=[];
   for(const [kind,magic] of MAGIC)if(b.indexOf(magic)>=0)signatures.push(kind);
   systemArea.push({lba:i,nonzeroBytes:n,signatures,
-    asciiSpans:(b.toString("latin1").match(/[\\x20-\\x7e]{24,}/g)||[])
+    asciiSpans:(b.toString("latin1").match(/[ -~]{24,}/g)||[])
       .slice(0,5).map(x=>x.slice(0,170))});
 }
 const slack=[];
