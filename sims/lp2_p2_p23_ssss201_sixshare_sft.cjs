@@ -69,7 +69,7 @@ for(const ids of choices5)for(const [direction,ys] of Object.entries(lanes)){
 }
 assert.equal(fiveCount,504);
 assert.equal(known.forward,"839dc666c476dd982cb521b25fe3c944");
-assert.equal(known.reverse,"f34c85f94532b8b77de2ccbbd37d920");
+assert.equal(known.reverse,"f34c85f94532b8b77de2ccbbd37d920f");
 assert.equal(maxPrintable,63);
 assert.equal(maxLongest,11);
 assert.deepEqual(highest.ids,[3,4,5,6,7]);
