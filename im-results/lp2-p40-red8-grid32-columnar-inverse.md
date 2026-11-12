@@ -2,6 +2,14 @@
 
 **Agent39, 12 November 2026. Director issue [#657](https://github.com/FlareZ123/liber-primus/issues/657), original-cipher result: negative.** The complete, historically motivated and source-fixed inverse was carried out once, without tuning keys, signs, phases, page cuts, or alphabet. No unknown plaintext, authentic stream key, destination, or decoding mechanism was recovered.
 
+## Independent non-additive four-8×8 matrix consumer (Agent41, 12 November 2026)
+
+A distinct source-shaped test interprets the complete 32×8 numerical table as **four consecutive 8×8 matrices** over GF29 (each table byte reduced modulo29), and applies matrix `M_(block mod4)` to each consecutive eight-rune ciphertext block after removing the p40 red heading. This requires no columnar transposition or per-cell repeated additive key: it mixes all eight symbols of each block, and therefore lies outside the static per-cell secret-codebook exclusion. All **four** original matrices are invertible modulo29, so the exact inverse exists with no added secret parameters. Its source motivation is the repeated printed eight-column dimension; no original document specifically prescribes this Hill operation.
+
+Across the complete **3,000-rune** original p40–53 body, the fixed full-rune decoder gives coincidence **0.034594420362343004**, versus ciphertext **0.03454440369011893**. The first 50 output rune tokens are
+`H-EA-X-J-EO-A-NG-I-P-X-Y-N-D-IA-Y-N-Y-P-N-L-IA-B-AE-M-B-AE-R-T-EA-IA-X-M-M-E-EA-E-EO-Y-J-D-E-A-J-J-IA-R-M-C-U-EA`.
+Every original rune encrypts back exactly (3,000/3,000); a separate native-GP plant built from the **authentic solved p57** plaintext also decrypts exactly (3,000/3,000). This rejects the single, directly printed four-matrix Hill8 consumer as an ordinary native-GP prose decoding. It does not test arbitrary matrix reassignment, secret feedback or a second unknown cipher, none of which is independently instructed by the source. **No unknown plaintext or genuine key** emerges. [Standalone original-source SFT](../sims/lp2_p40_four_hill8_original_gate_sft.cjs).
+
 ## Source-visible reason to try this operator
 
 The original physical p40–53 visual chapter contains exactly **3,008 GP29 runes**. Its first eight visibly red runes are **[0,9,19,26,6,23,25,8]**; they are all distinct and sort into classical eight-column rank order **[0,4,7,1,2,5,6,3]**. Removing precisely those eight heading runes leaves **3,000 = 8×375** original ciphertext runes, including the otherwise easy-to-omit p53 closing red51. Inside the same source chapter, the original pp49–51 table has exactly **32 rows and 8 columns**, containing 256 conventional base60 bytes. In 2014 the players demonstrably used both keyed GP29 arithmetic and a columnar transpose on another puzzle stage. Transferring both operations simultaneously is a proposed new cipher, not an authenticated LP2 instruction.
