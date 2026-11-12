@@ -35,6 +35,26 @@ The [runnable standalone source-locked SFT](../sims/lp2_tennyson_quote_source_sf
 
 No candidate even approaches the prospectively specified **twelve consecutive words and 40 true original GP runes**. Consequently no original punctuation-profile test, substitution-key fit, re-encipherment or adjacent-page prediction is authorized. This is an exact-source decision and is **not** a general exclusion of Tennyson themes, all textual editions, paraphrases, hidden-word boundaries or other ciphers.
 
+## A stronger original-cipher invariant on the two-word p40 quotation
+
+The original p40 **quotation 2** is exactly 12 runes in two source-printed words of lengths **3 and 9** (canonical rune offsets 9,715–9,727). Its ciphertext GP indexes, without any edits, are:
+
+`[28,13,20,23,3,20,10,14,28,21,18,4]`
+
+Two repeated positions provide an exact original-cipher **plaintext-invariant** under **any one-to-one, stationary 29-rune substitution**, even if every substitution mapping were secret. Cipher index 28 repeats at positions 0 and 8, while index 20 repeats at positions 2 and 5 (zero-based). Therefore an intact proposed plaintext quotation must use the **same GP-native token at both 0/8 and 2/5**. This test avoids selecting any Caesar shift or substitution key by scoring.
+
+The two original Tennyson editions and the complete already-pinned **77,932-word Emerson Essays First Series #2944** were scanned only for **source-contiguous 3/9-word pairs**, under each of the same two GP transliteration conventions. Outcomes:
+
+| Historical witness | Native 3/9-word pairs (ING / no ING) | Pairs with required equality 0=8 | Pairs with required equality 2=5 | Pairs satisfying both |
+| --- | ---: | ---: | ---: | ---: |
+| Tennyson 1832 | 5 / 5 | 0 / 0 | 0 / 0 | **0 / 0** |
+| Tennyson 1842 | 3 / 3 | 0 / 0 | 0 / 0 | **0 / 0** |
+| Emerson Essays #2944 | 570 / 578 | 21 / 21 | 21 / 22 | **0 / 0** |
+
+Full **secret bijective alphabet-map survivors are zero** in all six cases, even before imposing the other ten letter-identity/distinctness constraints. The same [SFT](../sims/lp2_tennyson_quote_source_sft.cjs) derives the target from original ciphertext, checks those equalities, runs a positive plant with a wholly unknown bijection and rejects a planted equality violation. This also covers the 2-word quotation for which exact word-length scans had several short full matches. Thus **none of those printed Tennyson or Emerson passages is that exact p40 quotation under any fixed monoalphabetic GP29 substitution**, regardless of which secret alphabet permutation a solver supplies.
+
+The invariant is narrowly scoped. Position-dependent polyalphabetic, letter-transposing, stream-encoding, altered-word-boundary or paraphrase routes can violate these equalities; those remain undecided. No new plaintext or key follows. Since each source's long quotations already failed the frozen wordlength gate, the complete source-selected **verbatim word-preserving monoalphabetic branch** is closed without adding fitted layers.
+
 ## Reproduction and research consequence
 
 Run `node sims/lp2_tennyson_quote_source_sft.cjs` in the repository root. The source files, original LP2 inputs, hashes, matched positions, wrong-order control and source-native planted-positive test are included. The existing Emerson [whole-book SFT](../sims/lp2_wordlength_literary_crib_sft.cjs) independently explains and reproduces its nine-word maximum.
