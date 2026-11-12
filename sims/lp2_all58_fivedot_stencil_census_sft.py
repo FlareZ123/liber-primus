@@ -1,4 +1,4 @@
-"""Search all 58 original LP2 JPEGs for the exact five-dot geometry on p7.
+"""Search all 75 original Liber Primus JPEGs for the exact five-dot geometry on LP2 p7.
 
 The search fixes pixel size and source dot separations. Only translation and
 four axial reflection signs are allowed; no rotation fitting, scale or shear.
@@ -64,27 +64,27 @@ def match(centers: np.ndarray) -> tuple[int, float, tuple[int, int]]:
 def run() -> None:
     hits = {}
     census = Counter()
-    for physical_page in range(58):
-        file = ROOT / f"{physical_page + 17:02d}.jpg"
+    for archive_image in range(75):
+        file = ROOT / f"{archive_image:02d}.jpg"
         image = cv2.imread(str(file), cv2.IMREAD_GRAYSCALE)
         assert image is not None and image.shape == (3600, 2400), file
         centers = candidate_centers(image)
         score = match(centers)
         census[score[0]] += 1
         if score[0] >= 2:
-            hits[physical_page] = (len(centers), score)
+            hits[archive_image] = (len(centers), score)
             print(
-                f"p{physical_page} candidates={len(centers)} "
+                f"{archive_image:02d}.jpg candidates={len(centers)} "
                 f"matches={score[0]}/5 rms={score[1]:.4f} sign={score[2]}"
             )
     print("Match-count histogram:", dict(sorted(census.items())))
-    assert sorted(hits) == [7, 23, 56], hits
-    assert [hits[p][1][0] for p in (7, 23, 56)] == [5, 5, 5]
-    assert [hits[p][1][2] for p in (7, 23, 56)] == [
+    assert sorted(hits) == [24, 40, 73], hits
+    assert [hits[p][1][0] for p in (24, 40, 73)] == [5, 5, 5]
+    assert [hits[p][1][2] for p in (24, 40, 73)] == [
         (1, 1), (1, -1), (-1, 1),
     ]
-    assert sum(census.values()) == 58
-    print("PASS: the exact five-dot motif occurs only on p7,p23,p56 among all 58 source pages.")
+    assert dict(census) == {0: 56, 1: 16, 5: 3}, census\n    assert sum(census.values()) == 75
+    print("PASS: exact five-dot stencil occurs only on LP2 p7,p23,p56 across all 75 original scans.")
 
 
 if __name__ == "__main__":
