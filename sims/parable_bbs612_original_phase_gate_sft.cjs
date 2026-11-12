@@ -7,7 +7,7 @@
  *
  * For period612 additive GP29, or EA-transparent predecessor-exclusion rank28,
  * equality of observations with the same key phase cannot be changed by
- * ANY secret additive key at that phase. Test all 12956 real LP2 runes,
+ * ANY independent hidden per-phase permutation at that phase. Test all 12956 real LP2 runes,
  * with 45 matched-length English controls and genuine encrypted plants.
  *
  * Run: node sims/parable_bbs612_original_phase_gate_sft.cjs
@@ -58,6 +58,36 @@ assert.equal(pages.length, 55);
 assert.equal(ciphertext.length, 12956);
 const PERIOD = states.length;
 const mod = (x, n) => ((x % n) + n) % n;
+let randomState = (N ^ seed ^ 0x3301) >>> 0;
+function nextRandom() {
+  randomState ^= randomState << 13;
+  randomState ^= randomState >>> 17;
+  randomState ^= randomState << 5;
+  return randomState >>> 0;
+}
+/** @param {number} n */
+function permutation(n) {
+  const a = Array.from({length:n}, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    const j = nextRandom() % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+/** @param {number[][]} rows */
+function inverses(rows) {
+  return rows.map((row) => {
+    const inv = new Array(row.length);
+    row.forEach((value, i) => {inv[value] = i;});
+    assert.deepEqual(inv.slice().sort((a, b) => a - b),
+      Array.from({length:row.length}, (_, i) => i));
+    return inv;
+  });
+}
+const table29 = Array.from({length:PERIOD}, () => permutation(29));
+const table28 = Array.from({length:PERIOD}, () => permutation(28));
+const inverse29 = inverses(table29);
+const inverse28 = inverses(table28);
 
 /**
  * @param {number[]} values Each entry is 0..28, or -1 for excluded positions.
@@ -123,11 +153,11 @@ function plant28(plain, clock) {
         recovered.push(28);
       } else {
         const phase = (clock === "global" ? pos : eligible) % PERIOD;
-        const key = states[phase] % 28;
-        const glyph = mod(previous + 1 + mod(value + key, 28), 29);
-        const rank = mod(glyph - previous - 1, 29);
+        const rank = table28[phase][value];
+        const glyph = mod(previous + 1 + rank, 29);
+        const readRank = mod(glyph - previous - 1, 29);
         cipher.push(glyph);
-        recovered.push(mod(rank - key, 28));
+        recovered.push(inverse28[phase][readRank]);
         previous = glyph;
         eligible++;
       }
@@ -140,9 +170,9 @@ function plant28(plain, clock) {
 
 /** @param {number[]} plain */
 function plant29(plain) {
-  const encrypted = plain.map((v, i) => mod(v + states[i % PERIOD] % 29, 29));
+  const encrypted = plain.map((v, i) => table29[i % PERIOD][v]);
   const decrypted = encrypted.map((v, i) =>
-    mod(v - states[i % PERIOD] % 29, 29));
+    inverse29[i % PERIOD][v]);
   assert.deepEqual(decrypted, plain);
   return encrypted;
 }
@@ -220,6 +250,6 @@ console.log(JSON.stringify({
     direct29:{min:minimum("direct29"),max:maximum("direct29")},
     rank28Global:{min:minimum("rank28Global"),max:maximum("rank28Global")},
     rank28Skip:{min:minimum("rank28Skip"),max:maximum("rank28Skip")}},
-  finding:"Neither 612-phase GP29 additive nor zero-transparent 28-rank additive stream can hide native-like GP language under tested book-continuous clocks.",
+  finding:"Neither 612-phase GP29 nor EA-transparent 28-rank arbitrary secret-phase permutations can hide native-like GP language under tested book-continuous clocks.",
   recoveredUnknownPlaintext:false
 },null,2));
