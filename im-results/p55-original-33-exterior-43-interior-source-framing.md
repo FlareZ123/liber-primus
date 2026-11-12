@@ -39,21 +39,22 @@ An additional direct *source selected by the shared tree illustrations* is p32's
 
 ## Finite, explicitly conditional SHA-1 framing diagnostic
 
-One source-near but **unspecified** mechanism is to read the 33 exteriors as a base29 integer representing a 160-bit SHA-1 digest. Its length matches the minimum 33 radix-29 symbols needed to cover all possible 20-byte digests. Under the corpus's original 0–28 GP order, the actual 33-rune integer is within 160 bits and encodes the exact 20 bytes:
+One source-near but **unspecified** mechanism is to read the 33 exteriors as a base29 integer representing a 160-bit SHA-1 digest. Its length matches the minimum 33 radix-29 symbols needed to cover all possible 20-byte digests. The 43 interior rune values also encode a unique 27-byte unsigned BASE29 integer under the signed 2013 numeral convention; this is the most literal short-byte serialization and is tested explicitly alongside other formats. Under the corpus's original 0–28 GP order, the actual 33-rune integer is within 160 bits and encodes the exact 20 bytes:
 
 `efe89bff1c7eff588ec80605c99a364067960320`.
 
-It is **not** the SHA-1 of the 43 original interior symbols serialized as any of five explicit source-adjacent representations:
+It is **not** the SHA-1 of the 43 original interior symbols serialized as any of six explicit source-adjacent representations:
 
 | Frozen interior representation | Bytes | SHA-1 digest |
 |---|---:|---|
+| 2013 BASE29 interior as minimal big-endian integer | 27 | `eddad4828e992391bb68e4e22a7673071f033420` |
 | Original GP index sequence, one byte per rune | 43 | `07808332628d43a2c92a6344342cbcf770604202` |
 | Original Unicode rune sequence encoded as UTF-8 | 129 | `8a1d9d9d47dfa8f3efea11a234fbb7133c1edd2f` |
 | Source-primary GP transliteration encoded as ASCII | 54 | `49ed8139dd1304260c95338b619ee48e7f027796` |
 | 2013-authenticated GP first-29-prime values, one byte per rune | 43 | `b00ef822ee6d2441323e32c7e97ec850df4a615d` |
 | 2014 LP1 Wisdom totient of each GP prime, one byte per rune | 43 | `29da8c88569d8f5a99ca05aba46529d5cc848208` |
 
-The [source-bound deterministic CommonJS test](../sims/p55_exterior33_framing_sft.cjs) asserts all 76 original rune indices, the partition and these complete digest comparisons. **These five failures exclude only five exact proposed SHA-1 serializations**; they do not prove that every hash construction or all 33-rune metadata schemes are impossible. There is no original instruction selecting SHA-1 or any of these five mappings for p55. This additional negative supplies no reason to try salted hashes, altered endianness, random pivots, neighboring frames or arbitrary PRNGs.
+The [source-bound deterministic CommonJS test](../sims/p55_exterior33_framing_sft.cjs) asserts all 76 original rune indices, the partition and these complete digest comparisons. **These six failures exclude only six exact proposed SHA-1 serializations**; they do not prove that every hash construction or all 33-rune metadata schemes are impossible. There is no original instruction selecting SHA-1 or any of these six mappings for p55. This additional negative supplies no reason to try salted hashes, altered endianness, random pivots, neighboring frames or arbitrary PRNGs.
 
 ## Closure and next decryption decision
 

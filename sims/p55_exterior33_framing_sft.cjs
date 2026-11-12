@@ -2,12 +2,12 @@
 
 /**
  * Original LP2 physical p55 (archive 72.jpg) 33-exterior / 43-interior
- * framing gate, fixed source positions and five fixed source-adjacent SHA-1 serializations.
+ * framing gate, fixed source positions and six fixed source-adjacent SHA-1 serializations.
  *
  * Run: node sims/p55_exterior33_framing_sft.cjs
  * Node.js 22, CommonJS built-ins only.
  * A match would require separate source authentication; a nonmatch excludes
- * only those five precise SHA-1 conventions, not all possible hashes.
+ * only those six precise SHA-1 conventions, not all possible hashes.
  */
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
@@ -66,7 +66,13 @@ assert.equal(allegedSha1.length, 20);
 assert.equal(allegedSha1.toString("hex"),
   "efe89bff1c7eff588ec80605c99a364067960320");
 
+const interiorInteger=inside.reduce((n,d)=>n*29n+BigInt(d),0n);
+const interiorBigEndian=Buffer.from(interiorInteger.toString(16).padStart(54,"0"),"hex");
+assert.equal(interiorBigEndian.length,27);
+assert.equal(interiorBigEndian.toString("hex"),
+  "013d669f55a697d6b56275a7974c8245639c8c8e09d48f70e92368");
 const candidates = new Map([
+  ["2013-BASE29-minimal-27-byte-integer", interiorBigEndian],
   ["original-GP-indices-bytes", Buffer.from(inside)],
   ["original-GP-runes-UTF8", Buffer.from(inside.map(i => corpus.runes[i]).join(""), "utf8")],
   ["source-primary-translit-ASCII", Buffer.from(inside.map(i => corpus.translit[i]).join(""),"ascii")],
@@ -80,9 +86,10 @@ for (const [format, bytes] of candidates) {
     matchesExterior: sha === allegedSha1.toString("hex")});
   assert.notEqual(sha, allegedSha1.toString("hex"));
 }
-assert.equal(hashes.length, 5);
-assert.equal(hashes[3].sha1, "b00ef822ee6d2441323e32c7e97ec850df4a615d");
-assert.equal(hashes[4].sha1, "29da8c88569d8f5a99ca05aba46529d5cc848208");
+assert.equal(hashes.length, 6);
+assert.equal(hashes[0].sha1, "eddad4828e992391bb68e4e22a7673071f033420");
+assert.equal(hashes[4].sha1, "b00ef822ee6d2441323e32c7e97ec850df4a615d");
+assert.equal(hashes[5].sha1, "29da8c88569d8f5a99ca05aba46529d5cc848208");
 console.log(JSON.stringify({
   source:"original LP2 p55, 72.jpg",
   pageRuneCount:76, printedFragments:words.length,
@@ -91,6 +98,6 @@ console.log(JSON.stringify({
   exteriorRunes:outside.length,
   exteriorAs20byteNumber:allegedSha1.toString("hex"),
   sha1FramingDiagnostics:hashes,
-  classification:"no source-selected framing/decoder; only five fixed SHA-1 diagnostics rejected",
+  classification:"no source-selected framing/decoder; six fixed SHA-1 diagnostics rejected",
   status:"PASS"
 },null,2));
