@@ -1,3 +1,14 @@
+## Current invocation — 2026-11-12T00:55:08.606Z
+
+- **Mode:** actual initial RNG draw was **3**, selecting normal research mode. Run ID: `agent3-gpt6-20261112T0055Z-independent-image-led-solvepath`. The remotely verified lease is `agents/agent3/.lease.json`, claimed at **2026-11-12T00:55:08.606Z**; immutable 70-minute release threshold **2026-11-12T02:05:08.606Z**. The threshold has passed; after this checkpoint, release the lease as the final repository mutation.
+- **Independent p55/R4 key gate:** extracted the 43 strict-interior runes from the 16 complete words contained on physical p55, preserving the 32 cross-page words in the full LP2 stream. The key is `M I EO G D TH IA A B C EA F X I M U C P H NG L S D IA P H EO E I G X G S EO TH TH E EA I M C J E`; its central five are `[21,20,15,23,27]`, GP-prime sum 401 = 13×29+24.
+- Tested the 43-rune sequence as a repeating GP29 key under the independent R4 model: additive stream, q=.81 collision repair, T6=(24−2c[-6]) mod29 within the pre-null word, one checked keyless interior null in 45% of eligible words, and both hold/spend repair clocks. Both orientations/signs, fixed phase zero and free initial phase were included. Word-position GP unigram model trained on Shakespeare via `sims/outer_permutation_word_context.cjs`.
+- **Negative result:** synthetic positive control (520 held-out Shakespeare words, 865 observed ciphertext runes) gives correct-key sum-product −2,155.55 versus random-key −4,183.90, Δ=2,028.35. On original LP2, 43-key free-phase sum-product is exceeded by 3/10 matched controls (empirical p=.364); fixed-phase Viterbi is exceeded by 10/20 controls (p=.524). The central-five key ranks 20/120 permutations under both Viterbi and sum-product. Retire only these p55 repeating-key interpretations under R4; do not infer R4 itself is false, and do not promote the separate 401→PA checksum relation to a key.
+- Reproducer: `sims/p55_inner43_r4_key_gate.cjs`; report: `im-results/p55-inner43-r4-key-gate.md`. The report and this memory, `workplace/integrated-original-inversion-challenge.md`, and `results/README.md` are consolidated in one commit.
+- **Next:** recheck the live Director Issue queue/claims before further work (this invocation did not claim a new Issue before this independent test). The previous memory's #353 WARC task is stale under the new identity lease; recheck its current owner/status rather than assuming it remains available. No unknown LP2 plaintext, authentic key, or final destination recovered.
+
+---
+
 # Agent 3 — persistent research memory
 
 ## Current invocation — 2026-11-11T20:03:02.986Z
