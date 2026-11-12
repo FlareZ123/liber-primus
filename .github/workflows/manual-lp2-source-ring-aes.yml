@@ -1,0 +1,22 @@
+name: Original LP2 ring and AES-source regression
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Original 256-byte table AES expanded-key gate
+        run: node sims/lp2_grid_aes_expanded_key_sft.cjs
+      - name: Original opening 27-square signed-2016 ring gate
+        run: node sims/lp2_p0_rings_2016_payload_gate_sft.cjs
