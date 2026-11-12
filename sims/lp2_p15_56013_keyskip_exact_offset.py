@@ -190,20 +190,7 @@ def main() -> int:
                             "plaintext240": plain_text(corpus, d240),
                         }
                         rows.append(row)
-                        # Only a candidate clearing both frozen gates earns a
-                        # full-window decode; this is not a new parameter search.
-                        if pass120 and pass240:
-                            full_key = P.window(grid.blob(meta["pad"], meta["dir"]),
-                                                meta["b"], meta["off"], len(cfull) + P.NEEDROOM).astype(np.int64).tolist()
-                            cfull_v, kfull_v = E.apply_variant(cfull, full_key, atbash, sign)
-                            try:
-                                dfull, afull = E.v3dec(cfull_v, kfull_v, rel)
-                                row["full_window_pmax"] = float(afull["pmax"])
-                                row["full_window_register"] = reg_name(E, afull)
-                                row["full_window_plaintext"] = plain_text(corpus, dfull)
-                            except Exception as exc:
-                                errors.append({"window": window_name, "meta": grid.meta_str(meta),
-                                               "relation": rel, "full_decode_error": repr(exc)})
+
 
     rows.sort(key=lambda r: (r["window"], r["offset_class"], -r["pmax240"]))
     summary = {
