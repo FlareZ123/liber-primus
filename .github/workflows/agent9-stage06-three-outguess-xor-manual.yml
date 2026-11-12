@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Inspect source-exact three blobs and independent XOR combinations
         run: node sims/lp2_stage06_three_outguess_xor_sft.cjs
+      - name: Decode original LP2 book with source-fixed historical Stage06 pads
+        run: node sims/lp2_stage06_original_outguess_fullbook_pad_sft.cjs
