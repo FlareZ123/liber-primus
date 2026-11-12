@@ -1,0 +1,22 @@
+name: 2012 MIDI original-container meta-event gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  midi-source-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch pinned 2012 participant-preserved original MIDI
+        run: |
+          curl -fsSL --retry 3 "https://raw.githubusercontent.com/neuroretransmit/cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/song.mid" -o original-song.mid
+      - name: Parse exact source meta-events with full raw bytes
+        run: node sims/cicada2012_midi_metadata_sft.cjs original-song.mid
