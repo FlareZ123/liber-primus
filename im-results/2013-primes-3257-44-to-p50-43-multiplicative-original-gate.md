@@ -32,8 +32,8 @@ Both have exact bijective forward encoders. These operations are motivated by fi
 | Frozen consumer | GP29 IoC of 43 output runes | Full output as GP rune tokens |
 |---|---:|---|
 | Original p55 43 interior ciphertext | 0.0343300111 | Unchanged source |
-| Field division `C_i/K_i` | 0.0376522702 | I M S C NG A EO W Y H S F T TH L G G S OE W P O Y AE O A R J L Y B EO E AE I G B D M B T TH U |
-| Field multiplication `K_i C_i` | 0.0398671096 | I M IA P I C I T I X TH F C NG C C N M A C R B B EA H OE W J C B O O IA OE EO L TH A M J W B C |
+| Field division `C_i/K_i` | 0.0243632337 | I M S C NG A EO W Y H S F T TH L G G S OE W P O Y AE O A R J L Y B EO E AE I G B D M B T TH U |
+| Field multiplication `K_i C_i` | 0.0476190476 | I M IA P I C I T I X TH F C NG C C N M A C R B B EA H OE W J C B O O IA OE EO L TH A M J W B C |
 
 The outputs are complete, preserved in source order; neither is coherent GP-native English across the printed word-interior fragments. On each orientation, the direct encoder re-encrypts **43/43 original runes exactly**, and a separate **43-rune genuine solved p57 plaintext plant** round-trips **43/43**. That validates arithmetic correctness only. The short original IoCs should not be treated as statistically significant improvements, nor should one mistake the letters adjacent to GP digraphs for independently recovered English words.
 
