@@ -1,6 +1,6 @@
 # Cicada non-literary message corpus: LP2 quote-span crib gate
 
-**Status:** bounded negative; no source-qualified plaintext crib, key, or decoder recovered.  
+**Status:** bounded negative; no new LP2 source-qualified plaintext crib, key, or decoder recovered.  
 **Date:** 2026-11-12  
 **Issue:** #645
 
@@ -71,13 +71,15 @@ No complete 13-, 14-, or 34-word quotation template matched. No partial alignmen
 ## Finite exclusions and relationship to earlier work
 
 - The earlier 2012–2013 prose census and frozen historical word-length gate already covered the countdown/MIDI sources, forest clue, short onion/protocol replies, welcome/NEXT messages, and the 2014 Stage11 enlightenment reply. They were not rerun. See [the 2012–2013 prose gate](cicada2012-2013-prose-original-unknown-crib-gate.md) and [the frozen historical crib gate](lp2-frozen-historical-exact-wordlength-crib.md).
-- The 2014 welcome artifact has one readable word followed by an RSA payload; idgtk-umloo is encoded grouped text rather than a plaintext crib; let-the-text-guide-you and very-good-you-have-done-well carry only short readable phrases alongside binary/image data; the Stage10 response page is a short submission acknowledgement. These do not supply a 12-word plaintext source.
-- The 2013 coordinate replies and SSSS share artifacts are numeric or structured secret-sharing data, not natural-language plaintext. The 2014 private-man poem's authorship is unresolved, so its signed presence is not treated as proof that Cicada authored the stanza.
+- The 2014 welcome artifact has one readable word followed by an RSA payload; let-the-text-guide-you and very-good-you-have-done-well carry only short readable phrases alongside binary/image data; the Stage10 response page is a short submission acknowledgement. These do not supply a 12-word plaintext source.
+- The 2014 private-man message is a known book-code waypoint: its stanza quotes Emerson's *Self-Reliance*, and its 16 numeric tuples use paragraph:sentence:word:letter coordinates to recover the first 2014 onion address, **auqgnxjtvdbll3pv.onion**. The stanza is not Cicada-authored plaintext. The complete Emerson Essays #2944 source was already screened against all 2,896 LP2 words in [#635](https://github.com/FlareZ123/liber-primus/issues/635) (maximum nine words under both GP/ING conventions); [#506](https://github.com/FlareZ123/liber-primus/issues/506) separately tested the coordinate grammar. The stanza-only check here is not a new Emerson-corpus result.
+- The 2014 idgtk-umloo ciphertext is a solved 14-column / five-row transposition. Its output includes **ULTIMATE TRUTH IS THE ULTIMATE ILLUSION** and the second 2014 onion address, **fv7lyucmeozzd5j4.onion**; the exact column order is recorded in the [creator-era cipher frontier](lp2_creator_era_cipher_design_frontier.md). [#284](https://github.com/FlareZ123/liber-primus/issues/284) tested the phrase against the p53 stencil-complement hypothesis and [#327](https://github.com/FlareZ123/liber-primus/issues/327) checked the full signed message for an LP2 selector; both were negative. It is not a plaintext crib.
+- The 2013 coordinate replies and SSSS share artifacts are numeric or structured secret-sharing data, not natural-language plaintext.
 - The TCP document's embedded koan is an externally sourced example, not Cicada-authored prose; both inclusion and exclusion produce the same negative result.
 - This is a finite test of the newly selected sources, not a claim that every historical message or recipient-specific document survives in an archive.
 
 ## Conclusion
 
-Close #645 under its finite-source / long-crib completion criteria. No source-selected LP2 operation, key, destination, page selector, or original plaintext is supplied by these messages. Do not rescue short partial matches, fit a keystream to a word-length coincidence, or infer a key schedule from the source texts. Further work should wait for a genuinely new authenticated message, an independently supported quotation boundary, or a source-selected reversible operation.
+Close #645 under its finite-source / long-crib completion criteria. No new LP2 source-selected operation, key, page selector, or original plaintext is supplied by this finite corpus. The private-man book code and idgtk-umloo transposition do lead to already-known 2014 onion waypoints, but the existing LP2 cross-stage tests (#284, #327, #506, #635) provide no independent LP2 selector. The TCP protocol's BASE29 example (3301→3QO), DH exchange and NEXT storage rule are genuine historical commands, not a GP29 rune key or LP2 target; the NEXT invitation payload is already in the earlier 11-source prose census. Do not rescue short partial matches, fit a keystream to a word-length coincidence, or infer a key schedule from these source texts. Further work should wait for a genuinely new authenticated message, an independently supported quotation boundary, or a source-selected reversible operation.
 
 **Reproducer:** [lp2_cicada_nonliterary_message_crib_sft.cjs](../sims/lp2_cicada_nonliterary_message_crib_sft.cjs). Requires Node 18+ network fetch; downloads source bytes in memory, verifies pinned hashes and signature metadata, and writes no external source content to disk.
