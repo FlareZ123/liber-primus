@@ -16,6 +16,7 @@ on:
           - p57-lsb-claim
           - afnd-paste-source
           - xgy-primes-source
+          - 2013-onion-clue
 permissions:
   contents: read
 jobs:
@@ -60,3 +61,6 @@ jobs:
       - name: One-ID original 2013 first-onion PRIMES recovery
         if: ${{ inputs.experiment == 'xgy-primes-source' }}
         run: node sims/cicada2013_xgy_paste_source_sft.cjs
+      - name: Retrieve historical first-onion CLUE and HELLO outputs
+        if: ${{ inputs.experiment == '2013-onion-clue' }}
+        run: node sims/cicada2013_first_onion_clue_source_probe.cjs
