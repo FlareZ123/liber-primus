@@ -204,6 +204,6 @@ console.log(JSON.stringify({
   candidateKnownInteriorKeystream:{models:complexities.length,
     minComplexity:Math.min(...complexities.map(x=>x.linearComplexity)),
     maxComplexity:Math.max(...complexities.map(x=>x.linearComplexity))},
-  256tapGF29FullOriginalDecoder:inverseTests,
+  cyclic256TapGF29OriginalDecoder:inverseTests,
   decision:'Source-exact 76+180 perimeter/interior alignment. Original text does not match direct/natively bijective byte-mod29 map, a compact linear keystream, or either exact 256-tap cyclic convolution. Synthetic inverse recovers all 76 unknowns. No authentic p55 plaintext or key.'
 },null,2));
