@@ -92,6 +92,59 @@ const nativePlant = Array.from({length:252}, (_, i) => nativeP57[i % nativeP57.l
 const syntheticCipher = primeTotient(nativePlant, +1);
 assert.deepEqual(primeTotient(syntheticCipher, -1), nativePlant);
 
+/** @param {number[]} digits BASE29 significant digit first, one unsigned integer. @returns {number[]} */
+function base29IntegerBytes(digits) {
+  let integer = 0n;
+  for (const digit of digits) {
+    assert.ok(digit >= 0 && digit <= 28, "BASE29 digit in field");
+    integer = integer * 29n + BigInt(digit);
+  }
+  const out = [];
+  while (integer > 0n) {
+    out.push(Number(integer & 255n));
+    integer >>= 8n;
+  }
+  return out.reverse();
+}
+/** @param {number[]} payload @returns {string} */
+const hex = payload => payload.map(byte => byte.toString(16).padStart(2, "0")).join("");
+/** @param {number[]} input @returns {number} */
+function observedByteEntropy(input) {
+  const counts = Array(256).fill(0);
+  for (const byte of input) counts[byte]++;
+  return counts.reduce((entropy, count) => {
+    if (count === 0) return entropy;
+    const p = count / input.length;
+    return entropy - p * Math.log2(p);
+  }, 0);
+}
+/** @param {number[]} input @returns {number} */
+function printableLongestRun(input) {
+  let longest = 0, current = 0;
+  for (const byte of input) {
+    current = byte >= 32 && byte <= 126 ? current + 1 : 0;
+    longest = Math.max(longest, current);
+  }
+  return longest;
+}
+/**
+ * Recognized file headers only; absence is not an encrypted/compressed
+ * payload exclusion when a file may have altered framing or no magic.
+ * @param {number[]} input @returns {string[]}
+ */
+function knownMagicHeaders(input) {
+  const head = hex(input.slice(0, 16));
+  const magic = {
+    gzip: "1f8b", zip: "504b0304", png: "89504e470d0a1a0a",
+    jpg: "ffd8ff", pdf: "255044462d", bzip2: "425a68",
+    xz: "fd377a585a00", zstd: "28b52ffd",
+    sevenZip: "377abcaf271c", sqlite: "53514c69746520666f726d6174203300"
+  };
+  const hits = Object.entries(magic).filter(([, prefix]) => head.startsWith(prefix)).map(([name]) => name);
+  if (head.startsWith("789c") || head.startsWith("78da")) hits.push("zlib");
+  return hits;
+}
+
 const interpretations = [
   {name:"original printed left-to-right",cipher:quotient.slice().reverse()},
   {name:"ascending polynomial coefficient order",cipher:quotient.slice()},
@@ -104,8 +157,25 @@ const interpretations = [
     sourceIoc:ioc(cipher),
     decodedIoc:ioc(plain),
     decodedGPTransliteration:translit(plain),
+    sourceSignedBASE29Integer: (() => {
+      const decodedBytes = base29IntegerBytes(cipher);
+      return {
+        unsignedBigEndianBytes: decodedBytes.length,
+        first24Hex: hex(decodedBytes.slice(0, 24)),
+        last24Hex: hex(decodedBytes.slice(-24)),
+        observedByteEntropy: observedByteEntropy(decodedBytes),
+        printableByteCount: decodedBytes.filter(byte => byte >= 32 && byte <= 126).length,
+        longestPrintableRun: printableLongestRun(decodedBytes),
+        recognizedMagicHeaders: knownMagicHeaders(decodedBytes)
+      };
+    })(),
   };
 });
+assert.equal(interpretations[0].sourceSignedBASE29Integer.unsignedBigEndianBytes, 153);
+assert.equal(interpretations[1].sourceSignedBASE29Integer.unsignedBigEndianBytes, 153);
+assert.equal(interpretations[0].sourceSignedBASE29Integer.first24Hex, "0a212d90ff3f0e105fb818c17b99aad69e164ed48df665b5");
+assert.equal(interpretations[1].sourceSignedBASE29Integer.first24Hex, "96127a261e676d369e7b69e6869ac90fb75b2bd21eedac4f");
+assert.deepEqual(interpretations.map(x => x.sourceSignedBASE29Integer.recognizedMagicHeaders), [[], []]);
 assert.ok(Math.abs(interpretations[0].decodedIoc - 0.034655030670966924) < 1e-14);
 assert.ok(Math.abs(interpretations[1].decodedIoc - 0.03361158540441409) < 1e-14);
 console.log(JSON.stringify({
@@ -116,5 +186,5 @@ console.log(JSON.stringify({
   solvedP56TitleVerified:"ANEND",
   nativeP57PlantRecovered:nativePlant.length,
   interpretations,
-  decision:"Neither source-defined coefficient orientation yields readable GP-native English; quotient is not direct p56-ciphered plaintext under this rule."
+  decision:"Neither source-defined coefficient orientation yields readable GP-native English; each literal signed-BASE29 integer conversion yields 153 opaque bytes, neither a recognized file nor readable text. The specific direct plaintext routes fail."
 }, null, 2));
