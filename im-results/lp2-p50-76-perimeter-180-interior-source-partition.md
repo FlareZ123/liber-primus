@@ -8,7 +8,7 @@ The original LP2 p49–51 numerical table prints **32 rows × 8 columns = 256 to
 
 There are two independently known but **unproven** historical receivers of these lengths: the immediately later unknown LP2 p55 has exactly **76 GP29 runes** including the first-rune carry from p54; an anonymous 14-Jan-2013 Pastebin source separately lists **180 missing ordinary primes, 73..1223** (prime ordinals21..200) from the contemporary first-onion discussion. The solved p57 line "shed our own circumferences" can motivate attempting a perimeter/interior separation. Its wording does not identify p50, p55, the 2013 list, or a cipher. The 180-prime list is preserved as a participant transcript, without an authenticated original service capture or signature. The second count follows arithmetically from 256−76; it is not an independently chosen table dimension or a second statistical validation.
 
-This partition is a **new candidate source-sized route**, rather than a decryption, because a byte-to-rune consumer and any missing-prime mapping must still be selected by external instructions.
+This partition is a **candidate source-sized route**, rather than a decryption. A byte-to-rune consumer, an independently authored known-tail correspondence or any missing-prime mapping must still be selected by external instructions.
 
 ## Frozen finite direct consumers
 
@@ -58,6 +58,24 @@ A strict source-order, **all-secret stationary lookup** gate uses the complete p
 Even allowing independent choice of the **best possible unknown map for each region** and independent orientation, the combined original receiver has at most **204/256** exact positions, requiring **at least 52** unsourced overrides. A planted known stationary lookup on each original region yields **76/76** and **180/180** as an exact positive control. Byte-versus-token recoding is irrelevant to the exact-token comparison because each printed token represents one byte under the working base60 encoding; mapping the byte residues modulo29 is stricter still.
 
 This **rules out only complete, memoryless, per-region source-token lookup under the stated printed coordinates**, including both natural interior directions and every perimeter cyclic start. Stateful/changing keys, reordering individual interior positions, intermediate ciphertext transforms and different page receivers remain possible. No recovered plaintext, real key or creator-selected ring decoder follows. [Exact all-secret source SFT](../sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs). The earlier full-frame 256-value test and ring-only source-token test are independent controls rather than new successes.
+
+### A stronger original known-plaintext receiver: solved p56 plus clear p57
+
+The **85 GP runes of independently decrypted LP2 p56** and the **95 unencrypted GP runes of p57** occupy the two immediately following final pages. Concatenated in original page order they give exactly **180 genuinely known plaintext runes**, equal to the numerical table's full interior size, in addition to the 76 unknown p55 runes matching its perimeter. This supplies a possible *crib-driven decoder*, rather than the previously tested conjectural p53+p54 ciphertext receiver: learn a secret dictionary from known interior pairs, then apply that dictionary to p55's perimeter.
+
+Under the strict full-token lookup hypothesis, grant every distinct original interior table token a completely arbitrary secret GP29 output, unconstrained by alphabet order, prime indices or image arithmetic. If the same input token occurs at two known positions requiring different GP runes, no deterministic stationary dictionary can fit the known plaintext and hence **no such dictionary can be recovered for p55**. Optimize exactly by the per-token majority count over all **127 distinct original printed inner tokens**. The p56 known wording is taken from the [authentic 85/85 p56 φ-prime decryption regression](../sims/authentic_lp2_p56_totient_regression.cjs), with `K→C,V→U` as established Gematria spelling; p57's visible original rune indices are used unchanged.
+
+| Original inner 30×6 reading | Best secret dictionary → 180 solved plaintext runes | Best secret dictionary → 180 original printed ciphertext runes |
+| --- | ---: | ---: |
+| Printed row major | **133/180** | 130/180 |
+| Reverse row major | 131/180 | 131/180 |
+| Alternating row snake | 131/180 | 130/180 |
+| Printed column major | 132/180 | 131/180 |
+| Alternating column snake | **135/180** | 128/180 |
+
+**None** of the five natural source traversals can fit the complete independently known p56+p57 plaintext, even if the secret lookup is allowed to be trained after seeing all its output. At least **45 original rune positions** would need an otherwise-unspecified exception in the most favorable case. The simultaneously reported printed-ciphertext receiver confirms that the negative does not depend on choosing p56 plaintext rather than its actual encrypted image. A planted full 180-rune secret dictionary is recovered exactly for each of all five traversals by the same code. [Revised dual-source CommonJS SFT](../sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs).
+
+**Decision:** The attractive `p50 inner180 → known p56+p57 → learn secret lookup → decode p55 outer76` chain fails *before* touching the unknown p55 alphabet, so no fitted decoder or actual plaintext is obtained. The two sources' matching lengths are exact geometry, not an authenticated assignment. An independently authored stateful coder, per-position pad, nonnatural reordering, unknown transformation of the known runes or different cell mapping remains outside this stationary lookup exclusion. The next useful advancement is a creator-selected operation able to handle **repeated source tokens with different target runes** without arbitrary exceptions.
 
 ## Decision and reproduction
 
