@@ -65,35 +65,9 @@ SOURCE_WINDOWS = {
     ),
 }
 LINKS = (
-    "http://sprunge.us/PBPT",
-    "http://sprunge.us/DbXN",
-    "http://sprunge.us/BbUK",
-    "http://sprunge.us/LIWC",
-    "http://sprunge.us/EMXR",
-    "http://titanpad.com/vFCy7T5p0O",
-    "http://titanpad.com/hJ8pVQ5S43",
-    "https://web.archive.org/web/20160411191458id_/https://titanpad.com/vFCy7T5p0O",
-    "http://pastebin.com/R01rN7ZX",
     "https://pastebin.com/raw/R01rN7ZX",
-    "http://pastebin.com/vkshfVTu",
     "https://pastebin.com/raw/vkshfVTu",
-    "http://pastebin.com/kcLZvZAA",
     "https://pastebin.com/raw/kcLZvZAA",
-    "http://prntscr.com/3z2cyx",
-    "https://prnt.sc/3z2cyx",
-    "http://prntscr.com/4kacop",
-    "https://prnt.sc/4kacop",
-    "https://web.archive.org/cdx/search/cdx?url=titanpad.com%2FvFCy7T5p0O&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=pastebin.com%2FvkshfVTu&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=pastebin.com%2FR01rN7ZX&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=sprunge.us%2FDbXN&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=sprunge.us%2FBbUK&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=sprunge.us%2FPBPT&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=sprunge.us%2FLIWC&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=sprunge.us%2FEMXR&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=prntscr.com%2F3z2cyx&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=prntscr.com%2F4kacop&output=json&filter=statuscode%3A200&collapse=digest",
-    "https://web.archive.org/cdx/search/cdx?url=forums.unfiction.com%2Fforums%2Fviewtopic.php%3Fp%3D1028647&output=json&filter=statuscode%3A200&collapse=digest",
 )
 
 
@@ -277,6 +251,7 @@ def analyze_cluosh_mask(linked_materials):
     for block_no, block in enumerate(blocks, 1):
         tokens, errors = tokenize_block(block)
         best = None
+        best_output_match = None
         for block_offset in range(max(1, len(tokens) - len(mask) + 1)):
             segment = tokens[block_offset:block_offset + len(mask)]
             if len(segment) != len(mask):
@@ -309,9 +284,26 @@ def analyze_cluosh_mask(linked_materials):
                 }
                 if best is None or tuple(score) > tuple(best["score"]):
                     best = candidate
+                variants = {
+                    "vigenere_C_minus_K": [(c[i] - index[mask[i]]) % 29 if mask[i] != "-1" else c[i] for i in range(len(mask))],
+                    "beaufort_K_minus_C": [(index[mask[i]] - c[i]) % 29 if mask[i] != "-1" else c[i] for i in range(len(mask))],
+                    "additive_C_plus_K": [(c[i] + index[mask[i]]) % 29 if mask[i] != "-1" else c[i] for i in range(len(mask))],
+                }
+                for variant_name, output in variants.items():
+                    compared = [i for i in range(len(mask)) if segment[i] is not None and mask[i] != "-1"]
+                    matches = sum(segment[i] == output[i] for i in compared)
+                    candidate_match = {
+                        "variant": variant_name, "block_offset": block_offset,
+                        "page_offset": page_offset, "matches": matches,
+                        "compared": len(compared),
+                        "rate": round(matches / len(compared), 6) if compared else 0.0,
+                    }
+                    if best_output_match is None or (candidate_match["matches"], candidate_match["rate"]) > (best_output_match["matches"], best_output_match["rate"]):
+                        best_output_match = candidate_match
         block_data.append({
             "block": block_no, "tokens": len(tokens), "x_placeholders": sum(x is None for x in tokens),
             "parse_errors": errors[:10], "best_alignment": best,
+            "best_direct_key_decryption_match": best_output_match,
         })
 
     return {
