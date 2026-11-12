@@ -42,6 +42,19 @@ const markerPositions = bytes.flatMap((value, index) =>
 assert.deepEqual(markerPositions, [83, 127]);
 assert.equal(markerPositions[1] - markerPositions[0], 44);
 assert.equal(bytes.includes(neighboringValue), false);
+// Competitor: original numeral tokens interpreted in 59-symbol radix (skip f).
+const alphabet59 = grid.alphabet.replace("f", "");
+assert.equal(alphabet59.length, 59);
+const bytes59 = grid.pages.flatMap(page => page.tokens).map(token => {
+  assert.equal(token.length, 2);
+  const a = alphabet59.indexOf(token[0]);
+  const b = alphabet59.indexOf(token[1]);
+  assert.ok(a >= 0 && b >= 0);
+  return a * 59 + b;
+});
+assert.deepEqual(bytes59.flatMap((v, i) => v === 193 ? [i] : []), [61, 234]);
+assert.equal(bytes59[83], 190);
+assert.equal(bytes59[127], 190);
 const between = bytes.slice(markerPositions[0] + 1, markerPositions[1]);
 assert.equal(between.length, 43);
 const words = transcription.split("%")[54].replace(/\/\s*/g, "")
@@ -104,6 +117,7 @@ console.log(JSON.stringify({
   difference:44, prime44:selectedValue, tableMarkerPositions:markerPositions,
   alternativeDifference:42, alternativePrime42:neighboringValue,
   alternativeOccursInTable:bytes.includes(neighboringValue),
+  base59Value193Positions:[61,234], base59Value193Separation:173,
   selected43Bytes:between, keys,
   sourceCipherIoC:ioc(cipher), nativeControlIoC:ioc(native)
 }));
