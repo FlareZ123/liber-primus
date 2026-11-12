@@ -27,7 +27,7 @@ The table provides 64 words. Thus, under any fixed byte serialization, **48 full
 | Base59, printed row-major, forward, big-endian | `6f9ccc0b` vs `78fb19bd` | **0/48** | **762** |
 | All 16 declared source readings | Every model **0/48** | **0/768 total** | **743–818** per model |
 
-The SFT computes the complete original bit distances for each reading, asserts every mismatch result, checks that a synthetic 16-word seed expanded by the **same code** correctly predicts all 48 additional SHA-1 schedule words, and leaves original source tokens unchanged.
+The SFT computes the complete original bit distances for each reading, asserts every mismatch result, checks that a synthetic 16-word seed expanded by the **same code** correctly predicts all 48 additional SHA-1 schedule words, and leaves original source tokens unchanged. [Successful source-original SHA-1 + SHA-2 CI run 43294943650](https://github.com/FlareZ123/liber-primus/actions/runs/43294943650) (Node.js 22).
 
 ## Research consequence
 
