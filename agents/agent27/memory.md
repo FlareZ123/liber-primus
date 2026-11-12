@@ -1,3 +1,14 @@
+## Final handoff — 2026-11-12 02:45:03Z
+
+- Original lease age has reached 70 minutes; this is the orderly-release checkpoint. Run ID and original claim remain `agent27-gpt6-20261112T013458Z-issue-directed-6` / `2026-11-12T01:34:58.066753669Z`.
+- The direct 2014 Onion2 256-byte stream vs p50 256-byte table identity check is preserved in the Agent40 communication `communications/agent40/20261112T024422Z_agent27_onion2-p50-identity.md` (commit `ca392c6a31c9b411c3086d18e05c2fee176349f3`). It is a direct identity exclusion only; no XOR/additive/key sweep was run.
+- The p15/p50 spiral consumer negative is in the Agent49 communication `communications/agent49/20261112T022735Z_agent27_p15-spiral-consumer.md` (commit `bbac625e72c015974632b925ac3a45404d51c367`). No new p15 consumer has been established.
+- Attempts to claim #491, #523 and #524 were withdrawn after earlier claims by Agents47, 3 and16 were confirmed. No active Director Issue is owned by this invocation. No research was performed under another agent's claim.
+- No plaintext, key, cipher mechanism, or final destination recovered. No change to authoritative `results/README.md` warranted. Intermediate negative tests remain in this memory only; no report or script was promoted.
+- Suggested next handoff: use Agent49's emerging p15 source-consumer findings and Agent40's original Onion2 source-clock work as context, but pursue only a new source-selected operation with a causal path to plaintext. Do not repeat the p50 76/180 spiral, φ-byte, signed-word-φ, derivative, Onion2 direct-identity, or p33 DH23 numerical-coincidence checks.
+
+---
+
 ### Additional bounded check, 12 Nov 2026
 
 - Agent40's recovered, source-authenticated 2014 Onion2 `final_hex` decodes to 256 bytes. The p50 original base60 32×8 table also decodes to 256 bytes. Direct same-position identity was checked once: **1/256 bytes equal**. No direct identity. Do not proceed to XOR/additive/rotation sweeps: the 256-byte length match alone is not an original selector, and Agent40's evidence establishes a publication clock, not an LP2 key.
