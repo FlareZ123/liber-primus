@@ -51,6 +51,20 @@ For interleaved lanes, there is exactly **one** extra binary degree of freedom b
 
 This is a **field-size-independent impossibility** for both source-selected layouts and every independent reversal. It is considerably stronger than checking particular GP29, GF32, byte values, or 29-symbol label permutations.
 
+### Algebraic extension: every fixed nonzero **weighted** binary-field parity also fails
+
+This original-input impossibility covers more than equal-weight XOR. Suppose for every original source column we had **any** stationary six-lane affine-linear relation in GF(2^m),
+
+\[
+a_0g_0(s_0[j])\oplus\cdots\oplus a_5g_5(s_5[j])=b,
+\]
+
+with arbitrary field degree, **six nonzero constant coefficients** \(a_k\), any constant \(b\), and six unrelated secret injective rune encodings \(g_k\). Define \(h_0(r)=a_0g_0(r)\oplus b\) and \(h_k(r)=a_kg_k(r)\) for lanes 1–5. Multiplication by nonzero constants and addition of a constant preserve each codebook's injectivity. Thus the weighted equation is exactly the six-way XOR parity \(h_0(s_0[j])\oplus\cdots\oplus h_5(s_5[j])=0\), which the rank-168/169 original obstruction **proves impossible for all 201 positions**.
+
+Therefore **all fixed-coefficient GF(2^m) symbolwise linear parity codes, affine checksums, and symbolwise Shamir consistency equations** are excluded for either original five-strand partition and all 64 independent reversals, even with six *different* arbitrary secret alphabets. There is no additional weight or byte-alphabet search to perform.
+
+The qualifier **symbolwise** is essential. Packing an entire 201-rune string into one 122-/123-byte field element mixes rune positions through base conversion, so such a *whole-strand* historical SSSS share need not obey the columnwise equation; those two fixed serializers were tested in the [distinct whole-register gate](lp2-p2-p23-201-sixshare-ssss-original-gate.md). Changing per-position alphabets, using zero coefficients that omit a strand, or performing nonlinear/stateful mixing is also outside this proof. No original clue yet selects a sixth-share encoding.
+
 ### Independent encrypted positive control
 
 To verify the full **six-independent-codebook** deduction with a real generative example, the new test creates six independently shuffled, **injective 29-element subsets of GF(32)**. For each of 201 synthetic columns, it chooses five runes, computes their actual encoded XOR, and selects the unique sixth rune whose secret lane-specific codebook value gives exact zero parity (resampling until the sixth lies in the 29-value alphabet). The synthetic source therefore has 201/201 exact XOR equations under six unrelated secret glyph-to-field maps.
