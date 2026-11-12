@@ -57,7 +57,7 @@ Reading the 2014 square's perimeter clockwise from cell 6 (row 2, column 1) give
 
 There are 16 positions but only **eight distinct values**: each value repeats at the antipodal position, so the ring sequence has period 8. The 16-position geometry therefore does not provide 16 distinct numeric key symbols.
 
-As the cheapest source-motivated check, I froze one key construction: take the cell-6 clockwise ring values, apply the named 2013 totient operation, reduce modulo the 29-symbol GP alphabet, and use the solved p56 GP29 additive subtraction. The key is:
+As the cheapest source-motivated check, I froze one key construction: take the cell-6 clockwise ring values, apply the LP1 page-05-named totient operation, reduce modulo the 29-symbol GP alphabet, and use the solved p56 GP29 additive subtraction. The key is:
 
 **[4, 12, 15, 10, 14, 5, 6, 25]** repeated twice.
 
@@ -104,12 +104,12 @@ The historically documented transformation of the original 2014 LP1 p05 mixed ru
 
 **Original LP2 outputs, source printed word order preserved:**
 
-| physical LP2 page | zero-based local rune offsets | three consecutive GP-prime sums | middle totient→GP direction | historical original-square edge | original 2013 source word |
+| physical LP2 page | zero-based local rune offsets | three consecutive GP-prime sums | middle totient→GP direction | historical original-square edge | original LP1 source word |
 | --- | --- | --- | --- | --- | --- |
 | **p36** | 17–21 / 22–27 / 28–29 | **320, 386, 130** | φ(386)=192≡18 mod29 → **E** | (3,1) **320** → (3,2) **130** | **UOID** (“VOID”) |
 | **p55** | 42–45 / 46–47 / 48–54 | **138, 108, 341** | φ(108)=36≡7 mod29 → **W** | (4,3) **138** → (4,2) **341** | **CABAL** |
 
-The original 2013 cell at (3,1) is **ANALOG**, its eastern neighbor is **UOID**; the bottom source cell at (4,2) is **CABAL**. Values 320/130 and 138/341 also appear in upper reflected positions in the 5×5, where the *opposite* compass directions would apply. Thus each middle word resolves the original table's ambiguous duplicate numerical cell to a **specific historical rune word**. The second selected source cell is on the original outer perimeter and the first is on the adjacent inner perimeter. Both arrive in central column 2.
+The original LP1 cell at (3,1) is **ANALOG**, its eastern neighbor is **UOID**; the bottom source cell at (4,2) is **CABAL**. Values 320/130 and 138/341 also appear in upper reflected positions in the 5×5, where the *opposite* compass directions would apply. Thus each middle word resolves the original table's ambiguous duplicate numerical cell to a **specific historical rune word**. The second selected source cell is on the original outer perimeter and the first is on the adjacent inner perimeter. Both arrive in central column 2.
 
 The full original LP2 corpus was tested using the shared continuous-word parser: **12,956 original ciphertext runes, 2,896 canonical words**, with physical line/page wraps preserved and only printed punctuation terminating words. **Exactly two** consecutive three-word windows produce valid cardinal edges anywhere in the entire original book under this rule: zero-based global word **1962** on physical p36 and **2888** on physical p55, as above. On all 2,896 original words, the **other historically supplied 5×5** and **7×7** squares yield **zero** routes. The original p55 has 17 *page-local* visible segments, the first being the trailing rune of a word begun on p54. Within those segments its only route is index9.
 
@@ -124,11 +124,11 @@ Among all **2,896** canonical original LP2 words, precisely the originally repor
 
 **Decision:** retain the same-file 2014 cellwise prime-sum reconstruction as an exact source fact and the two original routes as a conditional structural observation. The original 2014 LP1 Wisdom prose authorizes prime sums and names totients; it does not say three consecutive encrypted words are [start, bearing, end], that modulo-29 totients represent compass directions, or where to stop. No independent original LP2 held-out plaintext prediction, key/state, or complete reversible operation exists. Do not advance the speculative CABAL/UOID/FORM/MIXING path without an independently surviving source selector.
 
-The complete historically printed **central column** of the mixed table is **SHADOWS / UOID / FORM / UOID / CABAL** from top to bottom, GP sums **341 / 130 / 91 / 130 / 341**. The two destination words occupy adjacent rows (3,2) and (4,2). If the 2013 p57 PARABLE command to “shed our own circumferences” authorizes moving from the outer ring through an inner ring to the center, the next *predictable source word* is **FORM** at (2,2). That proposed inward step is not present as a third three-word original-LP2 route and remains an interpretive navigation hypothesis. The inferred outer→inner→center words **CABAL UOID FORM** happen to total 13 GP runes, matching the printed 13-dot punctuation size; this count alone cannot establish a 13-rune key or a decoder.
+The complete historically printed **central column** of the mixed table is **SHADOWS / UOID / FORM / UOID / CABAL** from top to bottom, GP sums **341 / 130 / 91 / 130 / 341**. The two destination words occupy adjacent rows (3,2) and (4,2). If the LP2 p57 PARABLE passage to “shed our own circumferences” authorizes moving from the outer ring through an inner ring to the center, the next *predictable source word* is **FORM** at (2,2). That proposed inward step is not present as a third three-word original-LP2 route and remains an interpretive navigation hypothesis. The inferred outer→inner→center words **CABAL UOID FORM** happen to total 13 GP runes, matching the printed 13-dot punctuation size; this count alone cannot establish a 13-rune key or a decoder.
 
 ### Nested word-sum instruction candidate: MIX
 
-An additional *exact* source-derived relation appears after freezing the two original routes. Read their destination cells in ordinary physical page order, **p36 UOID=130**, then **p55 CABAL=341**, followed by the independently printed center **FORM=91** of the same 5×5. The original 2013 “totient sacred” operation, now applied once to each of these three source cells with GP-letter normalization, yields:
+An additional *exact* source-derived relation appears after freezing the two original routes. Read their destination cells in ordinary physical page order, **p36 UOID=130**, then **p55 CABAL=341**, followed by the independently printed center **FORM=91** of the same 5×5. The LP1 page-05 “totient sacred” instruction, now applied once to each of these three source cells with GP-letter normalization, yields:
 
 `φ(130)=48 ≡ 19 (M)`, `φ(341)=300 ≡ 10 (I)`, `φ(91)=72 ≡ 14 (X) (mod29)`.
 
@@ -207,7 +207,7 @@ The source-reconstructed 2014 square contains exactly **13 word cells**. Their G
 
 `[341, 366, 199, 130, 320, 245, 91, 226, 320, 130, 199, 366, 341]`.
 
-This gives a source-constrained 13-symbol candidate because the original unknown LP2 contains 27 red and one black 13-dot marks, defining 28 ordered fragments (including empty fragments 9 and 12). The two simplest numeric encodings were frozen: the word-cell sums modulo 29, and `φ(sum) mod 29` (the totient operation explicitly named in the 2013 source). The resulting keys are:
+This gives a source-constrained 13-symbol candidate because the original unknown LP2 contains 27 red and one black 13-dot marks, defining 28 ordered fragments (including empty fragments 9 and 12). The two simplest numeric encodings were frozen: the word-cell sums modulo 29, and `φ(sum) mod 29` (the totient operation explicitly named on LP1 page 05). The resulting keys are:
 
 - Raw residues: `[22, 18, 25, 14, 1, 13, 4, 23, 1, 14, 25, 18, 22]`.
 - Totient residues: `[10, 4, 24, 19, 12, 23, 14, 25, 12, 19, 24, 4, 10]`.
