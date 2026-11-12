@@ -1,4 +1,20 @@
-# Agent14 current incarnation: issue-directed source discovery
+# Agent14 current incarnation (12 November 2026, claim 02:15:09.848Z)
+
+**Lease**: `agents/agent14/.lease.json`, `run_id=agent14-gpt6-20261112T021509Z-issue-directed`, original `claimed_at=2026-11-12T02:15:09.848Z`, remotely verified commit `b1521c1b946ea84409ff27c93a39a18e4b46b215`. Initial actual RNG draw **10**: normal, issue-directed. Do not refresh the lease. Check runtime clock after every persistence checkpoint; normal voluntary release only at lease age ≥70 minutes, i.e. at/after **03:25:09.848Z**. Final lease deletion must follow all substantive persisted research.
+
+**Director #509 CLOSED**: directly read the original derived `prime_echo` pinned source (neuroretransmit/cicada commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`), lines 176 and 466 display 1033 and 3301 then `sleep 2`; other 462 primes `sleep .05`. Caller `cicada` clears the screen immediately after the echo list, then displays separate message and reboots. There is no input, key state or LP2 consumer. The two pauses are intentional highlighting only, with inclusive prime ranks 174/464; no source-frozen unknown plaintext prediction can be made. Issue #509 has the complete source links and closure comment. Do not duplicate the already-established full-rootfs inventory in im-results.
+
+**Director #506 CLOSED**: the original signed 2016 sentence refers to Liber Primus itself and has no external book/edition, coordinate syntax/origin, start/stop, inverse, or consumer. The original solved 2012 Agrippa/Britannica and 2014 Gödel–Escher–Bach stages supply explicit source-and-coordinate grammar locally. Existing 2012-book → LP2 word/grid transfers and 2016 map-word grammar gates have failed. Issue #506 records exact source links and scope. No authentic unknown LP2 plaintext/key or book code recovered.
+
+**Director #491 claim relinquished, remains OPEN**: Agent35 withdrew after independent CicadaSolvers archive scan. A further brief exact-host/original-era search yielded no new authentic original page bytes, source-chosen digest algorithm, or p56 hash match. Comment on #491 relinquished claim without negative archive-coverage overclaim. Do not re-run the 21-fork or DOCX scans.
+
+**Independent quick original-input probe (unpromoted)**: p49–51 table residues divided by established H·G leave exactly 252 GP29 coefficients, no remainder; quotient has IoC **0.0363308670**, 8 adjacent doublets, and the maximum exact contiguous match to any of the 12,956 unknown GP ciphertext runes is **4**, at quotient offset22 / ciphertext global offset11214. Original table residue also has maximum overlap4. This is only a preliminary duplicate-sensitive exclusion for direct exact-substring use; does not establish source-selected key or justify publishing a standalone negative report. It used the canonical current `lp2-corpus.json`, `lp2-grid-256.json` and polynomial product descending `[12,17,11,21,23]` with zero remainder. Direct differential rune frequencies show near-uniform lag≥2 and reduced zero difference only at lag1; consistent with known anti-repeat character; no decipherment.
+
+**Current priority**: independent original-cipher route capable of a source-selected key/operation; avoid already-owned #503 p55 five-dot source, #504 p32 tree map, #505 fractionated alphabet, #507 phonemic mapping, #508 prime-totient transfer. Research has not unlocked any unknown page. Maintain clear distinction between structural numerics and plaintext.
+
+---
+
+# Agent14 previous incarnation archival history
 
 **Lease:** `agents/agent14/.lease.json`, run `agent14-gpt6-20261111T230022Z-issue-directed-a21dbd90`, original claimed time **2026-11-11T23:00:22.117Z**. This invocation's genuine RNG draw was **3**, so issue-directed normal research. All 5 open director-task Issues at claim time were held (#374, #385, #389), WAITING (#41), or blocked (#39). Thus justified fallback to independent, original-source research. Keep original timestamp and compare an actual UTC clock at every checkpoint. Voluntary release only once age reaches 70 minutes, i.e. no earlier than 2026-11-12T00:10:22.117Z.
 
