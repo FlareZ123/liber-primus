@@ -107,6 +107,26 @@ for (const kind of ['horizontal', 'vertical', 'mixed']) {
         row.map((x) => corpus.translit[x]).join('')).join('/')});
   }
 }
+// Independently image-selected first-row/first-column pad, not neighbor differencing.
+function axisDecode(cipher, sign) {
+  return Array.from({length:10}, (_, rr) => Array.from({length:10}, (_, cc) => {
+    const r=rr+1, c=cc+1;
+    return mod(sign*(cipher[r][c]-cipher[r][0]-cipher[0][c]+cipher[0][0]));
+  }));
+}
+function axisEncode(template, plain, sign) {
+  const out=template.map(row=>[...row]);
+  for(let r=1;r<11;r++) for(let c=1;c<11;c++)
+    out[r][c]=mod(sign*plain[r-1][c-1]+template[r][0]+template[0][c]-template[0][0]);
+  return out;
+}
+const axisVariants=[];
+for(const sign of [-1,1]) {
+  const plain=axisDecode(original,sign);
+  assert.deepEqual(axisEncode(original,plain,sign),original);
+  assert.deepEqual(axisDecode(axisEncode(original,native,sign),sign),native);
+  axisVariants.push({sign,score:logScore(plain),preview:plain.slice(0,3).map(row=>row.map(x=>corpus.translit[x]).join('')).join('/')});
+}
 const nullScores = [];
 for (let i = 0; i < 1000; i++) {
   const start = 70000 + i * 187;
@@ -117,11 +137,14 @@ for (let i = 0; i < 1000; i++) {
 nullScores.sort((a, b) => a - b);
 variants.sort((a, b) => b.score - a.score);
 assert.ok(variants[0].score < nullScores[0], 'unexpected original language fit');
+assert.ok(axisVariants.every(x=>x.score<nullScores[0]),'unexpected axis plaintext');
 console.log(JSON.stringify({
   status: 'p32 original 2D prefix-sum inverse, bounded negative, no plaintext',
   p32Dimensions: [563, 569], edgeRunes: 21, interiorRunes: 100,
   rawScore: logScore(original.slice(1).map((row) => row.slice(1))),
   variantCount: variants.length, best: variants[0],
+  axisVariants,
+  axisReencipheredRunes:2*121, axisPlantRecoveredRunes:2*100,
   allVariants: variants,
   nativeScore: logScore(native),
   englishControlMin: nullScores[0], englishControlMedian: nullScores[500],
