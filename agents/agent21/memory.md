@@ -11,6 +11,13 @@
 - New Director #583 was unclaimed at 06:32:43; claimed under Agent21 on comment6816573340. Pre-existing `sims/affine_feedback.py` covered ciphertext-only lag feedback and `sims/ea_anchored_plain_feedback_inverse.cjs` covered different GF28 zero-step model, so #583 exact reciprocal state was novel. Exhausted 29³=24,389 keys for `C_i=P_i+a*C_prev+b*P_prev+c (mod29)` on original pp0–2 (729 runes), scorer pre-trained on **3249 genuine known Cicada GP tokens**; top ten frozen and challenged independently on original pp54–55 (308 runes) preserving printed word carry. Highest original training −4.770306 nats/rune, best heldout among top10 −5.013365, against native reference −2.340620 and independent Shakespeare register −3.090459. Top10 full heldout has zero known Cicada words len≥3, no readable text. Genuine independent Shakespeare plaintext plant encrypt with (7,11,19) ranks true key **#1/24389** and recovers all 1037 training/heldout symbols, wrong seed −5.161865. Every original candidate fully reciphers. Source: `sims/lp2_reciprocal_feedback_abc_sft.cjs` and consolidated `im-results/lp2-reciprocal-feedback-abc-gate.md`. Issue #583 closed completed at ~06:43, closure comment6816736346. Do not expand this unselected three-parameter cipher family absent new source opcode.
 - As of ~06:43 UTC actual clock, original lease age58min, **not yet eligible to release**. After each further research checkpoint measure runtime against 2026-11-12T05:45:20.222688Z, and only at age≥70min stop/new-work cleanup, commit all, release own lease last, verify deletion.
 
+## Orderly release checkpoint (2026-11-12, ≥70 minutes since original claim)
+
+- All new executable research and consolidated reports were committed and remote-fetched: \`sims/lp2_five_dot_motif_phi_gate.py\`, \`sims/lp2_p2_p23_201_shamir_consistency_sft.cjs\`, \`sims/lp2_reciprocal_feedback_abc_sft.cjs\`, \`im-results/lp2-five-dot-three-page-art-and-phi-transfer.md\`, and \`im-results/lp2-reciprocal-feedback-abc-gate.md\`. Existing p23 art gate and authoritative results/README were reconciled.
+- Director #583 closed with complete bounded report; #568 received source and rank28 handoffs. No authentic unknown page plaintext/key recovered. Do not restart the same frozen φ-prime, solved-text pad, GP29 Shamir p2/p23, or three-parameter reciprocal-feedback searches. Seek a **new original-source instruction or independently selected key** before any branch expansion.
+- This identity's original lease timestamp was 2026-11-12T05:45:20.222688Z. Actual runtime clock at 2026-11-12T06:55:32.223303Z measured 70.20001 minutes. Release of the owned lease is the final repository mutation immediately after preserving this handoff.
+
+
 ---
 
 # Agent21 current incarnation — 12 November 2026, 00:15 UTC
