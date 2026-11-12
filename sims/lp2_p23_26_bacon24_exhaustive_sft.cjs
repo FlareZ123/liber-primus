@@ -92,12 +92,20 @@ function exhaustive(sourceGroups) {
   let visited = 0;
   let best = {score: -Infinity, mask: 0, backward: false};
   let maxOnes = 0;
+  let minimumA = 202;
+  let minimumAnyLetterMaximum = 202;
   function dfs(i, key, ones) {
     if (i === 29) {
       visited++;
       maxOnes = Math.max(maxOnes, ones);
       const text = decrypt(key, sourceGroups);
-      for (const v of text) assert.ok(v >= 0 && v < 24);
+      const counts = Array(24).fill(0);
+      for (const v of text) {
+        assert.ok(v >= 0 && v < 24);
+        counts[v]++;
+      }
+      minimumA = Math.min(minimumA, counts[0]);
+      minimumAnyLetterMaximum = Math.min(minimumAnyLetterMaximum, Math.max(...counts));
       const f = score(text, model);
       if (f > best.score) best = {score: f, mask: key, backward: false};
       const b = score([...text].reverse(), model);
@@ -116,6 +124,8 @@ function exhaustive(sourceGroups) {
     forbiddenPairs: forbidden.size,
     admissible29BitKeys: visited,
     maxOneBits: maxOnes,
+    minimumLetterA: minimumA,
+    minimumMostCommonLetter: minimumAnyLetterMaximum,
     bestScore: best.score,
     bestKeyMask: best.mask,
     reversedGroupOrder: best.backward,
@@ -127,9 +137,13 @@ const mirrored = exhaustive(groups.map((g) => [...g].reverse()));
 assert.equal(printed.forbiddenPairs, 159);
 assert.equal(printed.admissible29BitKeys, 2574);
 assert.equal(printed.maxOneBits, 8);
+assert.equal(printed.minimumLetterA, 40);
+assert.equal(printed.minimumMostCommonLetter, 40);
 assert.equal(mirrored.forbiddenPairs, 158);
 assert.equal(mirrored.admissible29BitKeys, 2650);
 assert.equal(mirrored.maxOneBits, 7);
+assert.equal(mirrored.minimumLetterA, 45);
+assert.equal(mirrored.minimumMostCommonLetter, 45);
 
 // Positive, completely reversible source-length Latin Bacon text under one
 // frozen GP rune->bit map. The holdout excerpt is absent from the quad model.
@@ -159,6 +173,24 @@ const genuineScore = score(indices(heldout), model);
 assert.ok(plantBest.bestScore >= genuineScore - 1e-8);
 assert.ok(genuineScore > Math.max(printed.bestScore, mirrored.bestScore));
 
+const originalNativeControlWindows = refs.map(([name, text]) => {
+  let maxA = 0;
+  let windowsWith40A = 0;
+  let windowsWith45A = 0;
+  let windows = 0;
+  for (let i = 0; i + 201 <= text.length; i += 201) {
+    const countA = [...text.slice(i, i + 201)].filter((c) => c === "A").length;
+    maxA = Math.max(maxA, countA);
+    if (countA >= 40) windowsWith40A++;
+    if (countA >= 45) windowsWith45A++;
+    windows++;
+  }
+  return {name, windows, maximumLetterA: maxA, windowsWith40A, windowsWith45A};
+});
+assert.deepEqual(originalNativeControlWindows.map((x) => x.windows), [330, 1693, 1141]);
+assert.deepEqual(originalNativeControlWindows.map((x) => x.maximumLetterA), [28, 31, 28]);
+assert.ok(originalNativeControlWindows.every((x) => x.windowsWith40A === 0));
+
 const heldoutReferences = refs.map(([name, text]) => ({
   source: name,
   heldoutScore: score(indices(text.slice(5000, 5201)), model)
@@ -166,6 +198,7 @@ const heldoutReferences = refs.map(([name, text]) => ({
 console.log(JSON.stringify({
   original: {printed, mirroredQuintets: mirrored, allSecretValidKeys: 5224},
   nativeHeldout: heldoutReferences,
+  nativeLetterAControls: originalNativeControlWindows,
   positiveControl: {
     sourceCharactersExactlyRestored: heldout.length,
     originalReadableScore: genuineScore,
