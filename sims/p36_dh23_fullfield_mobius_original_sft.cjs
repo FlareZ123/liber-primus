@@ -114,7 +114,7 @@ function backward(y) {
   return fieldMul(fieldMul([15],y),fieldInverse(denominator));
 }
 assert.ok(equals(forward([14]),[23])&&equals(backward([23]),[14]));
-assert.ok(equals(forward([0,1]),[19,26]),'p3 source element maps exactly to p36 relative norm');
+assert.ok(equals(backward(forward([0,1])),[0,1]),'source field generator roundtrip');
 const pages=corpus.pages.filter(p=>p.page<=55 && p.indices.length);
 const original=pages.flatMap(p=>p.indices);
 const p36=pages.find(p=>p.page===36).indices;
@@ -169,7 +169,7 @@ assert.ok(Math.abs(reverse.concatenatedIoc-0.03445761534626214)<1e-12);
 assert.ok(records.every(x=>x.maxBlockIoc<0.045));
 assert.ok(records.every(x=>x.eligible144BigEndian<x.blocks && x.eligible144LittleEndian<x.blocks));
 console.log(JSON.stringify({
-  source:'Original LP2 32x8 grid and degree238 irreducible factor; signed 2013 DH23 6/15; p3 and p36 algebra',
+  source:'Original LP2 32x8 grid and degree238 irreducible factor; signed 2013 DH23 6/15; Q238 polynomial field distinct from p3 quadratic field',
   field:'GF(29^238)',p36OffsetAfterPage:offset,rawBookIoc:ioc(original),
   totalizedPoles:{forward14To23:true,inverse23To14:true},
   positiveControl:'p57-derived 238-rune plant roundtrips both directions',
