@@ -87,6 +87,23 @@ The single Tennyson 1842 short-quote equality-pattern survivor begins at flat GP
 
 The consolidated [source-locked SFT](../sims/lp2_tennyson_quote_source_sft.cjs) checks every position of every full quotation under both GP orthographies and asserts every outcome above, in addition to the preserved original word-boundary test and source-native positive controls.
 
+## Full original-text reversible cipher consumer: the selected poem as a running key
+
+The pre-LP2 Tennyson image link also makes one cheaper **actual decipherment** attempt possible independently of the quotation equality tests: use each complete historically pinned poem as a **source-selected, periodic GP29 running key** to decode the entire **12,956 original unknown runes**. This is an executable reversible inverse, rather than a fitted similarity statistic. It models the possibility that the text serves as a cryptographic key even though no unsolved quotation directly reproduces it.
+
+The [same runnable SFT](../sims/lp2_tennyson_quote_source_sft.cjs) freezes the poem starting at its **first genuine rune**, under each of the two legitimate GP conventions, with no fitted key offset, length or alphabet. The exact 1832 poem provides 4,236 or 4,266 GP key runes; the 1842 poem provides 3,900 or 3,927. For each key, it decodes all 12,956 original ciphertext symbols with the three standard reversible rules **C = P + K, C = K − P, C = P − K (mod 29)**, allowing source-key phase to restart at just three clearly defined original manuscript scopes: **whole book, each physical rune page or each of nine original chapters**. The 36 fully specified inverses therefore cover 2 poem witnesses × 2 GP conventions × 3 arithmetic rules × 3 reset clocks. Physical runeless p50 is omitted from the page reset sequence, while later pages retain their true physical numbering. No language score, guessed shift or unknown plaintext is used to select parameters.
+
+| Input and decoder | Whole decoded 12,956-rune GP29 index of coincidence |
+| --- | ---: |
+| Original unmodified unsolved ciphertext | **0.03447840** |
+| Best of all 36 frozen Tennyson source-key inverses | **0.03450661** |
+| Worst of all 36 Tennyson inverses | **0.03446568** |
+| Independent solved LP1 source-native English GP plaintext plant | **0.06120936** |
+
+The best-of-36 comes from **1842, ING contraction, C=P+K / C=K−P (both share IoC), key reset every physical page**. The independently sourced LP1 native-English plant is encrypted with the literal 1832 Tennyson stream, then recovered **exactly at every rune** by the same direct inverse, attaining its original 0.06120936 IoC. This checks that the inverse can in fact recover GP-native English and will not silently declare a successful decoder random. Every unmodified original candidate instead has essentially uniform-alphabet IoC, consistently near the original ciphertext itself. No candidate yields an English-like distribution or authentic unknown-page text.
+
+This rejects the **36 direct original zero-offset Tennyson periodic additive/Beaufort running-key models**, with the specified original clock scopes and native GP spelling. It does not reject a key hidden at another source location, arbitrary offsets, unrelated poem editions, nonlinear mixing, a different plaintext register, or alphabet-changing mechanisms. There is no source instruction licensing a longer brute-force offset search, so none was performed.
+
 ## Reproduction and research consequence
 
 Run `node sims/lp2_tennyson_quote_source_sft.cjs` in the repository root. The source files, original LP2 inputs, hashes, matched positions, wrong-order control and source-native planted-positive test are included. The existing Emerson [whole-book SFT](../sims/lp2_wordlength_literary_crib_sft.cjs) independently explains and reproduces its nine-word maximum.
