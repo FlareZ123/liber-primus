@@ -1,24 +1,49 @@
-# Original LP2 floral-border pages: fixed decorative pixel field
+# Original LP2 floral margins: exact source raster and quantized DCT identity
 
-**Evidence: exact decoded-image equality on source-original page artwork. Status: extension from the independently completed p40–53 grayscale template audit to p54–55 and full RGB; no key or unknown plaintext.**
+**Status (12 November 2026): source-original negative on a page-varying floral-art key channel.** The sixteen physical LP2 pages p40–55 (JPEGs 57–72) share the same ornate left and right border. Their decoded RGB pixels and, within each matched JPEG encoding profile, **every original quantized DCT coefficient in those art regions** are identical. Neither a page-dependent visible mark nor a page-dependent coefficient alteration in these fixed regions supplies a key. No unknown LP2 plaintext or authenticated key was recovered.
 
-Original physical LP2 pages **40–55** (archive JPEGs `57.jpg`–`72.jpg`) share the ornate left/right vine, spiral and root illustration. Their source images are uniformly **2400×3600** pixels. Agent14 had already established **grayscale equality on the first fourteen pages p40–53** with a broader crop in [the original eight-column pointer report](lp2-p40-red8-eight-column-prime-pointer-source-gate.md). The only new coverage here is **p54–55** plus the stricter three-channel RGB comparison across all sixteen. The matching artwork is an unusually strong naturally repeated cover for a proposed steganographic directional cue: an authored per-page change to a stroke, root, bud or dot in the pictured margins would be directly observable after placing all images in common coordinates.
+## Human-source premise and independent countercontrol
 
-## Original-page decision
+The decorative branches, buds and roots are conspicuous. A 2014 human solver might overlay successive printed pages to look for differences, and an embedded key could conceivably change compressed JPEG coefficients without changing the apparent page image. This is worth an original-byte test because Cicada demonstrably used JPEG steganography in earlier stages.
 
-Decode all sixteen original JPEGs to RGB without resizing, and compare p41–p55 with p40 at exact image coordinates, inclusive/exclusive Pillow crops. The fixed left-illustration rectangle is **(70,600)–(550,2950)** and the right rectangle **(1850,600)–(2380,2950)**. These contain the large illustrated flourishes and are deliberately outside the central variable rune text.
+Prior [original-image RGB comparison](../sims/lp2_floral16_template_pixel_gate.py) established the floral pixel identity and differentiated the changing central text. The new quantized-DCT test removes its explicit open caveat that these shared art pixels might conceal **page-specific different DCT coefficients**.
 
-| Original art region | Pixel dimensions | Source p40↔p41…55 exact pairwise tests | Nonidentical decoded RGB channels |
-| --- | ---: | ---: | ---: |
-| Left illustrated margin | 480×2350 | **15/15 exact** | **0** |
-| Right illustrated margin | 530×2350 | **15/15 exact** | **0** |
+## Pixel-level original observation
 
-The broad central-text control crop **(650,650)–(1750,2850)** differs from p40 on **15/15** other pages. A one-channel single-pixel mutation in the left artwork is detected by the same difference procedure. The margins are therefore genuinely page-invariant at **decoded RGB-pixel resolution** despite changing runic text. The old visual proposal that page-to-page changes in floral buds, roots, spirals or margin-dot positions provide a cipher clock has no such per-page signal in these regions.
+All sixteen original pages are 2400×3600 pixels, with no crop registration or resizing. Original p40 is the visual template. The cropped left border is [70,600,550,2950); the right border is [1850,600,2380,2950). Comparing decoded RGB values on all fifteen other pages yields:
 
-This test is intentionally narrower than a JPEG steganography negative. Identical decoded RGB can coexist with different compressed bitstreams, quantization coefficient details, or a common same-payload watermark; the cropped test also says nothing about steganography inside the varying rune text or the separate p53/p55 insect art. It does **not** establish that the border is mathematically devoid of a global single-image clue. The exact repeated 16-page artwork is a stable shared template, without a decipherment operation selected by itself.
+| Source crop | p40 versus p41–55 | Changed RGB values |
+| --- | ---: | ---: |
+| Left decorative border, 480×2350 pixels | 15/15 exactly equal | 0 |
+| Right decorative border, 530×2350 pixels | 15/15 exactly equal | 0 |
+| Central text, [650,650,1750,2850) | 15/15 different | multiple |
 
-[Reproducer on original repo JPEGs](../sims/lp2_floral16_template_pixel_gate.py) uses Pillow and an explicit mutated-image positive control. The same experiment was independently executed on the separately supplied `liber-primus-jpegs.zip` archive in this invocation, with the above exact results. Other previously reported floral-frame arithmetic and terminal 256-cell grid tests are separate; this finding does not retest their ciphers.
+This previously closed the simplest visible page-dependent branch/dot pattern. A planted single-pixel border mutation is detected by the pixel SFT.
 
-**Novelty limit:** The 14-page shared-frame result and its missing operation were already established by Agent14. The present extension should not motivate another floral-border reanalysis.
+## Newly checked original quantized JPEG coefficients
 
-**Next causal decision:** only pursue the margins as a *per-page* message if a source cue points to a meaningful difference beyond the tested decoded-pixel geometry, such as authenticated original DCT coefficient manipulation. For ordinary image-reading and fixed template comparisons, the absence of any changing marginal pixels is decisive.
+[Source-original DCT SFT](../sims/lp2_floral16_margin_quantized_dct_sft.c) uses libjpeg's \`jpeg_read_coefficients\` and \`access_virt_barray\`; **no re-encoding or pixel-domain forward DCT** occurs. It compares entire original coefficient blocks lying strictly within the same floral rectangles, using the source JPEG's component sampling factors. Every component is compared, not only luma. The central variable-text crop is a full positive test on each pair.
+
+The source images naturally divide into two profiles with internally identical original quantization tables and component counts. Cross-profile coefficient comparisons would conflate different JPEG encodings, so the following are the decisive like-for-like comparisons:
+
+| Exact encoding profile | Original JPEG files | Baseline | Distinct pairs | Original floral coefficient comparisons | Differences |
+| --- | --- | --- | ---: | ---: | ---: |
+| One-component grayscale | 58–65, 67–69 | 58.jpg | 10 | **23,252,480** | **0** |
+| Three-component colour | 57, 66, 70–72 | 57.jpg | 4 | **13,860,864** | **0** |
+| **Total** | **All sixteen p40–55 pages** | two profile baselines | **14** | **37,113,344** | **0** |
+
+The two floral crops contain 17,287 and 19,045 complete grayscale coefficient blocks per page pair, or 25,755 and 28,389 blocks across Y/Cb/Cr for a colour page pair. The source code asserts geometry, component counts, quantization equality and the exact 37,113,344 aggregate.
+
+Each of the same 14 original-image pairs was also compared over the variable central text region, with **nonzero** quantized-coefficient differences. Across floral and text checks combined, the program compares **75,271,680 coefficients** and passes all original-image controls. This confirms that the all-zero floral result is a genuine region-specific observation rather than a broken DCT reader.
+
+## Cryptanalytic decision and scope
+
+The original fixed art cannot encode a **varying** per-page key in either decoded pixel changes or the quantized coefficient values of its matched JPEG components. Any variation in compressed bitstream produced solely by original image-dependent Huffman tables does not contradict this coefficient identity; a common static stego payload could also occur in all pages. Text fields, moth/pale-tree artwork outside the defined margins, image-wide metadata, password-selected coefficient traversals and other source channels remain outside the exclusion.
+
+Therefore retire further searches for **different border DCT coefficients among these sixteen images**. A new image-source attack needs an independent clue that selects a different concrete carrier, a common payload, or a decoding mechanism. This narrow source result is more decisive than an unmotivated new cipher sweep, while supplying neither plaintext nor a key.
+
+## Reproduce
+
+The existing RGB SFT is \`sims/lp2_floral16_template_pixel_gate.py\`. The new single-file C reproducer is \`sims/lp2_floral16_margin_quantized_dct_sft.c\`, requiring libjpeg headers and library. It reads originals directly from \`resources/liber-primus\` and needs no extra downloaded data or test vectors. On a system with a C compiler and libjpeg, compile the C file linked against libjpeg, then run the program from the repository root. It prints every original pair's floral zero-difference and text-positive counts and asserts the exact totals.
+
+The SFT was first run on the separately supplied original 75-JPEG ZIP archive; the same file names correspond to the byte-pinned original repository resources. The existing [general JPEG carrier audit](lp2-jpeg-marker-dct-initial-audit.md) separately checks marker/DQT/DHT properties and the archived 2014 OutGuess-positive carriers.
