@@ -133,6 +133,19 @@ for(const orientation of ['rows','interleave'])for(const sign of [-1,1]) {
   return mod29(value-sign*(grid.byte_rows[row][col]%29));
  });
  assert.deepEqual(reciphered,full);
+ // Native GP29 plant taken only from independently solved plaintext p57.
+ const native=Array.from({length:full.length},(_,i)=>corpus.pages[57].indices[i%corpus.pages[57].indices.length]);
+ const enc=native.map((value,i)=>{
+  const row=orientation==='rows'?Math.floor(i/94):i%32;
+  const col=orientation==='rows'?(i%94)%8:Math.floor(i/32)%8;
+  return mod29(value-sign*(grid.byte_rows[row][col]%29));
+ });
+ const dec=enc.map((value,i)=>{
+  const row=orientation==='rows'?Math.floor(i/94):i%32;
+  const col=orientation==='rows'?(i%94)%8:Math.floor(i/32)%8;
+  return mod29(value+sign*(grid.byte_rows[row][col]%29));
+ });
+ assert.deepEqual(dec,native);
  readings.push({orientation,sign,ioc:ioc(transformed),
   prefix:transformed.slice(0,20).map(x=>corpus.translit[x]).join('')});
 }
