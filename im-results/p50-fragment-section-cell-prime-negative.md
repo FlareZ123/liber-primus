@@ -58,7 +58,7 @@ Reject these direct uses of the fragment×section cell:
 
 The **32-fragment / 8-section / 32×8-table alignment remains a real source-structured observation**, but it does not identify what the cell means. The tested operations do not recover plaintext. Do not continue arbitrary cell projections, row/column permutations, or prime offsets.
 
-The next useful source evidence would explicitly specify the role of a fragment/section cell—e.g. whether it is a prime ordinal, a cipher key, a codebook index, or a data byte—and the intended operation. The existing row-pad and column-key studies plus this intersection-cell test now cover the obvious direct uses of the matrix dimensions.
+The next useful source evidence would explicitly specify the role of a fragment/section cell—e.g. whether it is a prime ordinal, a cipher key, a codebook index, or a data byte—and the intended operation. The existing row-pad and column-key studies plus this intersection-cell test now cover the obvious direct uses of the matrix dimensions. A distinct 32-fragment × 8-compass pointer-state reading has also been tested against the signed 2016 16-word map and is negative: 0/16 fragment-row matches, 5/16 signed-word direction matches and 2/16 mapped-LP2-word direction matches. See [the pointer/fragment/direction alignment gate](lp2-grid-byte-pointer-11cycle.md#32-fragment--8-direction-state-graph-the-2016-word-alignment-fails). Do not conflate this graph test with the eight-section intersection-cell test.
 
 ## Reproduction
 

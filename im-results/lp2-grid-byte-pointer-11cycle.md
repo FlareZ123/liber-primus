@@ -1,6 +1,6 @@
 # The original 256-byte grid as a self-indexing 11-cycle
 
-**Classification:** original-source deterministic traversal, a new conditional two-clue concordance, and a multiset-preserving null. **No original LP2 ciphertext has been decrypted**, and the authors' intended traversal is unproved.
+**Classification:** original-source deterministic traversal plus a source-fixed negative for the proposed 32-fragment × 8-direction state interpretation. **No original LP2 ciphertext has been decrypted**, and the authors' intended traversal is unproved.
 
 ## A minimal human-executable interpretation
 
@@ -79,6 +79,28 @@ The first **10** positions form a transient prefix; the rest is a rotation of th
 Across all 256 starting cells only **five** visit their immediate left neighbor within six jumps: (start,step) = (53,4), (83,6), (116,6), (157,6), (190,3). The six-jump cutoff and neighbor property were selected after the observed path, so 5/256 is a **conditional graph census, not a puzzle-design p-value**. The attraction to the 11-cycle is weak evidence by itself because **252/256** starting cells reach it. The historical 2013 prime-gap ordinal 201 remains an unproved interpretation of byte201 at index82.
 
 This establishes a deterministic signed-word → numeric-cell → 11-cycle route using the original bytes, but no source-written stopping rule, transformation into p32's 11×11 coordinates, key or recovered plaintext. Do not extend this with arbitrary modulo reductions or a repeating pad. The [focused source reproducer](../sims/lp2_2016_lies_pointer_route_sft.cjs) asserts the complete path, source address, neighbor comparison and graph basin.
+
+## 32-fragment × 8-direction state graph: the 2016-word alignment fails
+
+A natural non-additive reading of the 32×8 grid is a state table: row = one of the **32 full-text intervals** cut by the 31 original 13-dot marks, column = one of **eight compass directions**, and each cell value = the next state index. A state index s is therefore (floor(s/8), s mod 8). This uses the table's native 256-state address space without inventing a cipher.
+
+The 2016 signed sentence “Its words are the map, their meaning is the road, and their numbers are the direction” supplies a concrete test. Its preceding word **“lies”** selects full-table cell **83** under the provisional GP-prime/base58 map. Follow the existing pointer function from 83; the **16 destination states** after that start are the natural candidates for the 16 words in the signed sentence. Independently map each signed word to its LP2 page/word position by the same base58 rule, locate that word in the original 13-dot interval partition, and compare its fragment row with the pointer state's row. For the direction coordinate, compare the pointer column against (a) the signed word's GP-prime sum mod 8 and (b) the mapped LP2 word's GP-prime sum mod 8. These are the two literal readings of “their numbers”; no rotation, phase, row reversal or fitted offset is allowed.
+
+**Result: no alignment.**
+
+- Pointer destination rows: `[24,19,14,9,9,10,25,9,25,9,14,24,14,30,24,0]`.
+- 2016-word mapped fragment rows: `[17,5,1,10,22,28,18,16,10,18,25,28,5,1,10,25]`.
+- Row matches: **0/16**.
+- Pointer destination direction indices: `[1,3,0,1,7,2,1,2,5,4,2,5,3,7,0,0]`.
+- Signed-word prime-sum mod-8 directions: `[7,3,7,0,3,2,7,4,0,4,7,2,7,7,0,1]` — **5/16** matches.
+- Mapped-LP2-word prime-sum mod-8 directions: `[6,5,0,3,2,3,5,0,3,4,0,3,6,5,3,1]` — **2/16** matches.
+- Exact row+direction state matches: **0/16**.
+
+The one-step alternative (label each word with the state *before* rather than *after* its transition) also gives **0/16** row matches, **2/16** signed-word direction matches and **0/16** mapped-word direction matches. The 11-cycle begins at route index **10**, not at the start of the sentence's 11-word suffix (word index 5); the cycle-to-suffix comparison gives 0/11 row matches, 0/11 signed-word direction matches and 2/11 mapped-word direction matches. Thus the 16-edge path to zero and 11-cycle lengths do not establish a word-aligned 16/11 route.
+
+This rejects the **direct fragment-row / compass-column pointer-state registration** against the signed 2016 word map. It does not disprove the deterministic 11-cycle as a property of the table, nor every possible navigation interpretation. The 2016 base58 word map and the pointer traversal remain provisional hypotheses; no plaintext or reversible cipher follows. Do not rescue this branch with arbitrary compass rotations, fragment offsets, or alternate modulo conventions. Reopen only if an original source fixes a different row/column selector and predicts a withheld fragment/direction pair.
+
+**Reproducer:** [source-fixed 2016 pointer / fragment / direction alignment SFT](../sims/lp2_2016_pointer_fragment_direction_alignment_sft.cjs). It reads the authenticated signed-message text, canonical LP2 transcription/corpus, original 13-dot annotations and full 32×8 base60 grid; it asserts the 16-word mapping, fragment IDs, pointer route and all reported match counts.
 
 ## Source-directed 43-word compass walk: HOME to X (provisional)
 
