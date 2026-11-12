@@ -1,5 +1,7 @@
 # Integrated original-cipher inversion challenge
 
+**Original chapter reset candidate (12 November 2026):** Source-image red page-start headings immediately following a previous-page red thirteen-dot terminal yield visually selected unknown chapter ends at global offsets **729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956**. This is distinct from the derivative nine-text-source cuts **729, 1874, 3603, 3612, 5506, 6527, 8051, 9640, 12956**. Both have nine units but different boundaries; original p53→p54 is a top-level red-heading break despite the same floral frame. Historical use as cipher key-reset points is unknown. [Original source atlas and exact SFT](../im-results/lp2-global-original-visual-section-map.md).
+
 **Source geometry correction:** The 256-cell 32×8 numerical grid is distributed across original LP2 physical pp49, 50 and 51 (80 + 104 + 72 cells; JPEGs `66.jpg`–`68.jpg`). References to the “p50 table” are shorthand for this full object. The lone p50 JPEG contains only 104 cells, so page-specific claims must use the correct physical interval.
 
 **Frontier synthesized through 11 November 2026; source/closure state and Director queue reconciled at 23:41 UTC.** This is a source-constrained route comparison; claims remain live and should be rechecked before reassignment.
