@@ -1,17 +1,18 @@
 "use strict";
 
 /**
- * Two independently historical 2014 Cicada operations, applied without
- * fitted keys or phases to two original seven-page LP2 candidate sections.
- * Node 18+, CommonJS. The original-source operations have independent
- * positive controls before the original-cipher inversions are scored.
+ * EXPLORATORY, NOT SOURCE-EXACT composite transfer.
  *
- * Historical source A: 2014 OutGuess period-7 key 1736254.
- * Historical source B: "Let the text guide you", solved LP1 plaintext
- * "WELCOME PILGRIM TO THE GREAT" as GP29 Vigenere key.
+ * The Stage05 period-7 row permutation below is source-exact. The Vigenere
+ * helper below is only a forward-index GP29 additive model; it does NOT
+ * reproduce Stage04's original reversed-rune lookup and corrected GP-token
+ * key conversion. The 2014 sources do not instruct a player to compose
+ * these separate stages on LP2.
  *
- * This is a conditional mechanism-transfer gate, not a claim that LP2
- * supplied the missing instruction to combine either historical operation.
+ * Treat the LP2 scores as exploratory only, not as a negative test of the
+ * historical Stage04/Stage05 sequence. For the exact Stage04 positive
+ * control use sims/stage04_small_image_vigenere_repro.cjs and the standalone
+ * source-exact transfer in sims/historical_text_guide_terminal_vigenere_sft.cjs.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -48,7 +49,7 @@ function encodeGP(text) {
 const key = encodeGP("WELCOME PILGRIM TO THE GREAT");
 assert.deepEqual(key, [7,18,20,5,3,19,18,13,10,20,6,4,10,19,16,3,2,18,6,4,28,16]);
 
-/** Cyclic source-native GP Vigenere inverse; no unmotivated F special cases.
+/** Exploratory forward-index GP29 additive shift; NOT Stage04 source semantics.
  * @param {number[]} source
  * @param {1|-1} direction -1 decrypt, +1 encrypt.
  * @returns {number[]}
@@ -85,12 +86,12 @@ assert.equal(permuteSeven([...historicalOutput], fwd).join(""),
 
 const onion = "ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3 ᛠᛗᛇᚠᛡ";
 let step = 0;
-const historicalOnionPlain = [...onion].map(character => {
+const forwardGpToyOutput = [...onion].map(character => {
   const idx = runeIndex.get(character);
   if (idx === undefined) return character;
   return gp[(idx - key[step++ % key.length] + 29) % 29];
 }).join("");
-assert.equal(historicalOnionPlain, "AUOWYFGL5LCSFJ3 NONIAN");
+assert.equal(forwardGpToyOutput, "AUOWYFGL5LCSFJ3 NONIAN");
 
 /** Fixed Laplace-smoothed native solved LP1 trigram reference.
  * @param {number[]} source
@@ -154,11 +155,11 @@ for (const [section, values] of Object.entries(expected)) {
 assert(score(encodeGP(reference.replace(/^#.*$/gm, ""))) > -2.3);
 
 console.log(JSON.stringify({
-  historicalPositiveControls: {
-    transposition: historicalOutput,
-    gpVigenere: historicalOnionPlain,
+  positiveControls: {
+    sourceExactPeriod7Transposition: historicalOutput,
+    exploratoryForwardGpToy: forwardGpToyOutput,
   },
   key: "WELCOME PILGRIM TO THE GREAT",
   sections: results,
-  conclusion: "Both frozen historical two-layer orders remain nonlinguistic on original LP2; no recovered plaintext or authentic LP2 key selection.",
+  conclusion: "The source-exact Stage05 permutation is separately verified; the combined LP2 experiment uses a non-source-exact forward-GP29 Vigenere toy and cannot reject the historical Stage04/Stage05 sequence. No LP2 selector is supplied.",
 }, null, 2));
