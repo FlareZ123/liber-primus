@@ -180,6 +180,12 @@ assert.equal(new Set(orbit).size, 38);
 const encodedOrbit = orbit.flatMap((n) => [Math.floor(n / 29), n % 29]);
 assert.equal(encodedOrbit.length, 76);
 assert.deepEqual(base29Pairs(encodedOrbit, digitTransforms.identity, false), orbit);
+const originalLiteralPairs = base29Pairs(c55, digitTransforms.identity, false);
+// Any stationary bijective encoding of all 38 distinct group states must
+// produce 38 distinct 2-rune ciphertext tokens, regardless of secret alphabet.
+assert.equal(new Set(originalLiteralPairs).size, 37);
+assert.equal(new Set(orbit).size, 38);
+
 assert.equal(orbit.filter((n) => n > 0 && n < 761 && powmod(n, 38, 761) === 1).length, 38);
 
 const pairReadings = [];
@@ -241,6 +247,7 @@ process.stdout.write(JSON.stringify({
   arithmetic: { headingPrimeSums: [311, 449], phi761: 760, orderOf5Modulo761: 38, originalPage55Runes: 76 },
   authenticP56RecoveredRunes: known56.length,
   originalP55LiteralBase29PairOrbitGate: pairReadings,
+  independentOfAnySecretPairBijection: { rawPairCount: 38, distinctOriginalPairs: 37, distinctOrbitStates: 38 },
   originalP55DirectDecoders: output,
   result: "No candidate authentic plaintext; exact arithmetic is a provisional cross-round hypothesis"
 }, null, 2) + "\n");
