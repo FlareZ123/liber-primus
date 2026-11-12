@@ -64,6 +64,19 @@ function encrypt(x, page) {
 function decrypt(x, page) {
   return x.map((v, i) => (v - (13*i*i+17*i+5)%29 - (page*13+3)%29 + 58)%29);
 }
+/** @param {number} a @returns {number} */
+function inverse29(a) {
+  for (let b = 1; b < 29; b++) if ((a*b)%29 === 1) return b;
+  throw new Error("Missing GF29 inverse");
+}
+/** @param {number[]} plain @returns {number[]} */
+function permuteByColumn(plain) {
+  return plain.map((x,i) => ((1+i%28)*x+(17*i+5)%29)%29);
+}
+/** @param {number[]} cipher @returns {number[]} */
+function unpermuteByColumn(cipher) {
+  return cipher.map((x,i) => inverse29(1+i%28)*(x-(17*i+5)%29+29)%29);
+}
 function main() {
   const original = agreement(pages.map(p => p.indices.slice(0, N)));
   assert.deepEqual([original.aligned,original.equal,original.max],[7560,303,453]);
@@ -104,11 +117,18 @@ function main() {
   encrypted.forEach((p,i)=>assert.deepEqual(decrypt(p,i),plants[i]));
   const oldScore = agreement(plants);
   const newScore = agreement(encrypted);
+  const permuted = plants.map(permuteByColumn);
+  permuted.forEach((c,i) => assert.deepEqual(unpermuteByColumn(c),plants[i]));
+  const permutedScore = agreement(permuted);
+  assert.equal(oldScore.equal,436);
+  assert.equal(permutedScore.equal,oldScore.equal);
   assert.equal(oldScore.max, newScore.max);
   assert.ok(oldScore.maxRate > original.maxRate);
   return {scope:"p41..p48 original phase-zero first 270 GP29 runes each",
     original,controls,plant:{recoveredRuneCount:8*N,invariantPreserved:true,
       plaintextMaxRate:oldScore.maxRate,ciphertextMaxRate:newScore.maxRate},
+    secretPositionwisePermutationPlant:{recoveredRuneCount:8*N,
+      rawEqualitiesBefore:oldScore.equal,rawEqualitiesAfter:permutedScore.equal},
     conclusion:"specific reused positional GF29 additive pad excluded for three finite native-English controls; no unknown plaintext/key"};
 }
 if (require.main === module) console.log(JSON.stringify(main(),null,2));
