@@ -63,6 +63,16 @@ There are exactly **133 × C(13,2) = 10,374** within-column position pairs. Orig
 
 All **582** source windows exceed the original 361 pairs. This is a necessary-invariant exclusion for these fixed native-GP English controls regardless of **all 133 secret alphabets**; unlike a key search, it cannot be rescued by choosing different alphabets at the same columns. A complete source-native 1,729-rune planted cipher, `C_i=(17P_i+(i mod133)) mod29`, recovers its plaintext exactly under the inverse of 17 and preserves all **644** planted column-pair equalities. The original-input SFT asserts the source geometry, all counts, and the positive plant.
 
+**Row-changing separable additive extension.** A less restrictive, still human-plausible keyed-grid architecture permits a secret additive offset for **each of the 13 rows** in addition to an arbitrary secret 133-position column pad: `C[r,c] = P[r,c] + K[c] + A[r] (mod29)`. The column pad cancels in every rowpair difference, and the unknown row offset only rotates that difference's 29-bin histogram. Thus the **sum of the 29-bin maxima across all 78 rowpairs** is exactly independent of all 146 secret additions. The unchanged source gives **748 / 10,374**; the same 582 original-length-matched native prose windows give:
+
+| Control | Minimum maximum-bin sum | Median | Maximum |
+| --- | ---: | ---: | ---: |
+| Shakespeare (210 windows) | **759** | 811 | 874 |
+| Gibran (60) | **780** | 821 | 869 |
+| Emerson (312) | **767** | 821 | 895 |
+
+The original falls below all three measured ranges, **even granting an independently optimal row-offset adjustment for every one of the 78 rowpairs** (more latitude than 13 mutually consistent shifts). A source-native 1,729-rune affine plant with all 133 column pads and all 13 row offsets separately varying recovers its exact plaintext; the invariant equals **821** before/after encryption. This is a conditional finite-English-register exclusion of the entire separable row-plus-column additive-pad family. It does not constrain general row-changing permutations, nonlinear state, word-dependent alphabets or binary intermediates. The same SFT runs and asserts the exact original/plant numbers. No key or unknown plaintext is recovered.
+
 **Decision:** do not continue searching direct 133-period GP29 replacement keys, arbitrary secret per-column alphabets, or column/within-column shuffles to obtain ordinary GP-native English on this section. This does **not** rule out the 13×133 visual extraction itself, a key that changes between the thirteen rows, a larger stateful/polygraphic cipher, an alternate plaintext register, or a binary key-material use of the extracted inner row and fifth ring. The 13×133 reading remains conditional because the original HTML does not explicitly prescribe that rectangle. [Single-file reproducible test](../sims/lp2_taxicab_chapter_cube_sft.cjs).
 
 ## More constrained source instruction: shedding circumferences

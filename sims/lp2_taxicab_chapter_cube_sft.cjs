@@ -335,6 +335,59 @@ assert.equal(count133ColumnPairs(affineCipher),
   count133ColumnPairs(affinePlain));
 assert.equal(count133ColumnPairs(affinePlain), 644);
 
+/**
+ * Stronger row-changing but separable additive-pad invariant:
+ * C[row,col] = P[row,col] + columnPad[col] + rowShift[row] (mod 29).
+ * For each pair of rows, the column pad cancels and the row shift only
+ * rotates the 29-way histogram of pairwise differences.
+ * @param {number[]} seq Exact row-major 13x133 rectangle
+ * @returns {number}
+ */
+function sumBestRowDifferenceBins(seq) {
+  assert.equal(seq.length, 13 * 133);
+  let total = 0;
+  for (let row = 0; row < 13; row++)
+    for (let other = row + 1; other < 13; other++) {
+      const histogram = new Uint16Array(N);
+      for (let col = 0; col < 133; col++) {
+        const a = seq[row * 133 + col];
+        const b = seq[other * 133 + col];
+        histogram[(a - b + N) % N]++;
+      }
+      total += Math.max(...histogram);
+    }
+  return total;
+}
+const observedBestRowDifferences = sumBestRowDifferenceBins(third);
+assert.equal(observedBestRowDifferences, 748);
+const rowDifferenceControls = [
+  ["Shakespeare", native],
+  ["Gibran", toGP(read("resources/control/gibran_prophet_58585.txt"))],
+  ["Emerson", toGP(read("resources/control/emerson_essays_2944.txt"))]
+].map(([sourceName, corpus]) => {
+  const values = [];
+  for (let start = 0; start + third.length <= corpus.length; start += 1037)
+    values.push(sumBestRowDifferenceBins(corpus.slice(start, start + third.length)));
+  values.sort((a, b) => a - b);
+  return {source:sourceName,windows:values.length,minimum:values[0],
+    median:values[Math.floor(values.length / 2)],
+    maximum:values[values.length - 1]};
+});
+assert.deepEqual(rowDifferenceControls.map(x => x.minimum),[759,780,767]);
+assert(rowDifferenceControls.every(x => x.minimum > observedBestRowDifferences));
+const sourceColumnPad = Array.from({length:133},
+  (_,i) => (19*i*i + 7*i + 11) % N);
+const sourceRowShift = Array.from({length:13},
+  (_,i) => (3*i*i + 11*i) % N);
+const rowShiftCipher = affinePlain.map((rune,i) =>
+  (rune + sourceColumnPad[i%133] + sourceRowShift[Math.floor(i/133)]) % N);
+const rowShiftDecoded = rowShiftCipher.map((rune,i) =>
+  (rune - sourceColumnPad[i%133] - sourceRowShift[Math.floor(i/133)]
+    + 2*N) % N);
+assert.deepEqual(rowShiftDecoded, affinePlain);
+assert.equal(sumBestRowDifferenceBins(affinePlain), 821);
+assert.equal(sumBestRowDifferenceBins(rowShiftCipher), 821);
+
 const report = cases.map(([name,input,dims]) => ({
   name,n:input.length,dims,...scan(input, /** @type {[number,number,number]} */ (dims),score)
 }));
@@ -357,6 +410,9 @@ console.log(JSON.stringify({
   source133AllSecretColumns: {originalEqualPairs:observedColumnPairs,
     eligiblePairs:133*78,sourceControls:alphabetControls,
     affinePlainPairs:644,affineCipherPairs:644,exactPlant:true,
+    rowChangingSeparableAdditive: {originalBestShiftPairs:observedBestRowDifferences,
+      eligiblePairs:133*78,sourceControls:rowDifferenceControls,
+      nativePlantPairs:821,encryptedPlantPairs:821,exactPlant:true},
     conclusion:"All 133 independent secret per-column GP29 bijections preserve the observed 361 collision pairs; every frozen native-English window has at least 552."},
   conclusion:"Eight cube/cuboid interpretations x48, 32 rectangle, eight 331-step walks, and 192 source-red Vigenere variants, all original-negative. No unknown LP2 plaintext or key recovered."
 },null,2));
