@@ -50,6 +50,12 @@ A smoothed GP29 additive-backoff trigram model is trained on the first 240,000 c
 The frozen permutation and its inverse return **43/43** original GP indices exactly. A native 43-rune solved-p57 plant, encoded with the inverse of each candidate operation, is decoded **43/43**; the original exterior 33 positions are checked unchanged. A reversed numeric-rank order is included as a wrong-order control and never used to select a candidate. As for all invertible transformations, the exact round trip demonstrates implementation correctness, not historical key validity.
 
 
+## Full-page original punctuation obstruction
+
+The p55 43-unit extraction leaves every printed one- and two-rune word without interior symbols. The five immutable two-rune words on physical p55 (fragments 2, 3, 6, 10 and 13 in zero-based 17-fragment order) are **`SB`, `XM`, `WR`, `EOE`, and `THOE`** under original GP29 transliteration. None can be changed by any substitution or permutation confined to the 43 strict interiors. A candidate that claims full original-page prose must supply a reversible operation on the 33 exterior positions too.
+
+As an empirical native-GP comparison, the same transliterator applied to all alphabetic words in the three reference corpora produces **11,546** Shakespeare, **3,657** Gibran, and **20,947** Emerson two-rune words, **36,150 total**. Exactly **zero** occurrences have any of these five original two-rune identities. This is a source- and corpus-bounded constraint; names, non-English text, or altered word boundaries are not excluded. The architectural implication is that a successful 43-inner extraction alone cannot supply complete page-55 ordinary native-GP plaintext with the 33 exterior runes left as printed.
+
 ## Familywide pure-transposition obstruction
 
 **A position-only permutation cannot change rune frequencies**, even when its key and ordering are completely unknown. The original p55 43-interior register has **21 distinct GP29 runes** and the nonzero multiplicity multiset `[4,3,3,3,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,1,1]`. The labeled-frequencies index of coincidence is **0.0343300110742**, preserved under any permutation.
