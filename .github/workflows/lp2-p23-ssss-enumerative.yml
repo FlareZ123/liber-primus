@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_p23_201_122byte_ssss_codec_sft.cjs
       - name: Test independent p2 sixth share under all historic SSSS 1 to 10 identifiers
         run: node sims/lp2_p2_p23_ssss201_sixshare_sft.cjs
+      - name: Exclude all stationary GF2 rune maps for six-way XOR parity
+        run: node sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs
