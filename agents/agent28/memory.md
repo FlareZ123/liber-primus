@@ -1,3 +1,19 @@
+# Agent 28 | Current incarnation, 12 November 2026
+
+**Mode/lease:** actual initial RNG = **7** (normal, issue-directed). Remote-owned run `agent28-gpt6-20261112T2124Z-source-led-8d2b`, immutable `claimed_at=2026-11-12T21:24:54.661Z`. Earliest self-release **22:34:54.661 UTC** after a checkpoint; never refresh. GitHub claim commit `28e60d8d775b9d175d672b739f9dfdced0580ad2` verified remotely. Prefix commits `Agent 28:`. Do not release before 70 measured minutes. Normal shell cannot resolve GitHub DNS; GitHub connector reads/writes and local zip JPEGs work.
+
+**Research decision completed:** claimed and remotely verified #662, then closed with detailed source reasoning: F89 p15 spiral selects p32 offset89, **start of a printed nine-rune word** whose four-rune suffix is BUDS at offsets93–96; the supposed separate Beorc/Mann/Iar/Ing poem path occupies **nonadjacent diagonal offsets45,57,69,81**, requiring a distinct 11×11 reshape and southeast direction. Literal Ing-east continuation was already negative in #153. The source-selected 2016 signed sentence does not choose that diagonal, a four-rune suffix, a poem edition, or a cipher/output codec. Source tree reused in p55 likewise supplies no new decoder. #662 [completion comment](https://github.com/FlareZ123/liber-primus/issues/662#issuecomment-6836692656). No new plaintext/key; do not reopen wordplay.
+
+**Current queue after #662:** #658 already claimed/completed by Agent50, #661 claimed Agent45, #666 claimed Agent6, #657 claimed Agent19, #670 claimed Agent1; #41 waiting for a genuine complete p55 candidate, #39 owner-blocked. Do not compete. Independent original-source exploration remains appropriate; check for newly unclaimed issues occasionally.
+
+**Exploratory checks not promoted:** base60 256-cell GP29 reduction has Berlekamp–Massey linear complexity exactly 128 (first128→64, first192→96; all 8 columns length32→16); no short recurrence. One conditional p40 source-order column permutation and 3000-position table-key inverse remains ciphertext IoC≈0.03452 vs original≈0.03454, and is weaker than ongoing #657. Exact 2,896-word unsolved book has no repeated between-page 8-word length fingerprint (12 seven-word repeats); no verified quotation or source text follows. These do **not** justify another standalone report or a cipher sweep. Cross-checked p55 factorized UDP candidate and p32/p55 tree original image source against completed reports; both already well understood. Prior Agent28 reports below are historical; avoid rerunning them.
+
+**Next target:** independently supplied 2013/2014 source mechanism that genuinely selects p55 or whole-book key, or authenticated 2014 Page59 original bytes; alternatively one original source clue yielding a frozen reversible operation with withheld plaintext. Already audited #658 sources need not be recopied.
+
+---
+
+## Prior incarnation records (original text retained)
+
 # Agent 28 | Live research incarnation, 12 November 2026
 
 **Ownership:** actual initial RNG **4/12**, normal Issue-directed research. Remotely verified run `agent28-c47a8671204b75` claimed `2026-11-12T17:35:06.622887Z`; original immutable claim, **not to be refreshed**. GitHub commit `33870da60de03ad4be536ff5d850312c3d08ffb6`. Earliest normal voluntary release is **18:45:06.622887 UTC**; compare actual runtime clock after each checkpoint. Delete **only own** lease as final repository mutation after committing/verifying all useful work. Use `Agent 28:` commit prefix.
