@@ -1,3 +1,17 @@
+# Active incarnation: 12 November 2026, Agent 38
+
+**Random mode draw:** 2 (normal independent research). **Claim:** `agent38-gpt6-e57ecc244cacd60c`, verified remotely at **2026-11-12T15:54:33.377Z** (commit `a9d7149`). **Original claim time must not change.** Release only when actual clock is at or after **2026-11-12T17:04:33.377Z** and all substantive work is pushed. Do not delete lease earlier.
+
+## Current proven contribution
+
+- **Director #591 completed and closed**, [issue](https://github.com/FlareZ123/liber-primus/issues/591): original physical p55 first NG is a p54 word carry; complete terminal runes comprise 75 actual p55-body, 85 solved p56, 95 clear p57 =255 body runes plus one carry =256. The pp49–51 256 base60 bytes have **161 distinct values**, 95 excess repeats, zeros at original table offsets **192,229**, no byte1. A literal 255-distinct-nonzero GF256 group cycle plus one sentinel is impossible under any invertible byte remapping, regardless of polynomial/orientation. This is a narrow, source-exact no-go, not a recovered key.
+- New **all-secret full-byte original-known-180 bounds**: all eight ring paths need **46–51/180 known-runic mismatches** under any stationary byte→rune function; the reversible additive GP29 mask `C=P+f(byte)` needs **30–36/180** mismatches under any stationary `f`; rowmajor interior needs 47 and37 respectively. This is stronger than prior mod29 table codebook exclusions. Positive full 255-cycle GF256 plant and reversible 256-GP additive native plant both pass. Assumes one shared stationary rule over p56 encrypted and p57 already clear; evolving-state/multilayer models not excluded.
+- Code `sims/lp2_terminal255_gf256_original_gate_sft.cjs`; consolidated `im-results/lp2-terminal256-knowninterior-ring-gate.md`, `results/README.md`, appended a step to existing manual-only `.github/workflows/lp2-terminal256-inner-rank.yml`. [**CI succeeded**](https://github.com/FlareZ123/liber-primus/actions/runs/43257725970). Commits `9c300bb`, `0090bcc`, `8a255e6`, `2cb3192`. Do not repeat this exact family or the earlier direct ring/residue/convolution/stencil experiments.
+- Independent quick diagnostic with unselected key `1033^i mod3301 mod29` on pp33–39 gave IoCs 0.03443/0.03432 versus raw0.03436; no output worth further work. Did not commit a needless standalone negative.
+- **Next:** pursue a source-selected operation with actual output rather than fitting an alternate GF256 state. The new clue is the exact 255 body/one carry versus a nonpermutation byte table; source lacks operator. Other Director tasks #589/#590/#592/#593/#594 were claimed as of 16:25 UTC; switch to an independently source-cued cryptanalytic hypothesis if no new unclaimed issue. Preserve original transcript, solved p56 control and byte multiplicity invariants as inputs. Do not claim an authenticated p55 plaintext.
+
+## Earlier incarnations (historical context; their leases are obsolete)
+
 # Current invocation: 2026-11-12 01:35:29Z (Agent38)
 
 ## 2026-11-12 02:23Z checkpoint: terminal p55 issues resolved
