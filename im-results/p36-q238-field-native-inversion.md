@@ -70,9 +70,24 @@ Every row is an **exact contradiction**, since 109 source identities cannot gene
 
 All four cases exclude an **invertible stationary pair-symbol remapping**, because the minimum change count under any pair-alphabet bijection is positive. Three also exclude a non-injective deterministic stationary function by distinct-output growth. The **adjacent→halves** row remains compatible with some *lossy* stationary functions in principle; the present source-only evidence does not exclude a decoder incorporating additional state to resolve that loss. The original 119-pair secret-bijection negative therefore holds under both natural Q238 endpoint conventions, with the narrower deterministic-map caveat for this alternative.
 
-The [standalone CommonJS SFT](../sims/p36_q238_secret_transposition_obstruction_sft.cjs) reconstructs the monic Q238 factor *from the original 256 bytes*, asserts its previously established SHA-256, extracts the exact original p36 physical runes, and tests both 238-coefficient endpoint choices (29-symbol and 119-pair views) with no language fitting. Its separate 29-symbol and 841-symbol planted secret-permutation controls pass. The SFT was added to the existing [manual p36 workflow](../.github/workflows/p36-q238-field-key-manual.yml), avoiding a new per-commit CI trigger, and **passed the full source regression in [GitHub Actions run 43143013772](https://github.com/FlareZ123/liber-primus/actions/runs/43143013772)**.
+**Independent secret alphabets for the two 119-rune rails.** The manuscript's two original 119-offset red marks could motivate **two independently keyed 29-symbol alphabets**, rather than one global alphabet or one GF841 pair alphabet. This is a genuinely more permissive model than the above: split each 238-rune stream into two 119-element lanes, allow *different arbitrary secret rune bijections and independent arbitrary transpositions inside each lane*, then allow the two lanes to swap. Original source supports two simple lane serializations, consecutive 119-halves or alternating odd/even positions. Test both in each source/target, for both Q238 endpoint conventions. The exact minimum symbol repairs over the two unconstrained hidden bijections are:
 
-**Research decision:** The direct 238-symbol length coincidence does **not** permit a fixed-alphabet transposition/copy under either natural 238-coefficient endpoint. The 119-pair invertible stationary remappings are also excluded for both endpoint choices. Future p36/Q238 work requires a mathematically different reversible operation, a changing state, a non-symbolwise register, or independently supplied original key material. The existing genuine factorization and p36 page-length connection survive; this test does not identify the historical cipher or plaintext.
+| Source 238-coefficient choice | Source lane split | p36 lane split | Least required rune repairs (lanes may swap) |
+| --- | --- | --- | ---: |
+| Drop leading | Halves | Halves | 11 |
+| Drop leading | Halves | Alternating | 9 |
+| Drop leading | Alternating | Halves | 15 |
+| Drop leading | Alternating | Alternating | 8 |
+| Drop constant | Halves | Halves | 10 |
+| Drop constant | Halves | Alternating | 10 |
+| Drop constant | Alternating | Halves | 15 |
+| Drop constant | Alternating | Alternating | 8 |
+
+Every source-frozen two-alphabet lane choice still requires **at least eight changed rune symbols**, even granting complete arbitrary order permutations and wholly unknown rune alphabets in *each* 119-rune lane. This excludes the direct two-stationary-alphabet copying mechanism independently of which natural endpoint is discarded. It does not exclude a changing alphabet, a position-dependent pad, or a nonlinear block cipher.
+
+The [standalone CommonJS SFT](../sims/p36_q238_secret_transposition_obstruction_sft.cjs) reconstructs the monic Q238 factor *from the original 256 bytes*, asserts its previously established SHA-256, extracts the exact original p36 physical runes, and tests both 238-coefficient endpoint choices, the 29-symbol and GF841 pair views, and the independent two-alphabet 119-rail variants with no language fitting. Its separate 29-symbol and 841-symbol planted secret-permutation controls pass. The SFT was added to the existing [manual p36 workflow](../.github/workflows/p36-q238-field-key-manual.yml), avoiding a new per-commit CI trigger, and **passed the full source regression in [GitHub Actions run 43143013772](https://github.com/FlareZ123/liber-primus/actions/runs/43143013772)**.
+
+**Research decision:** The direct 238-symbol length coincidence does **not** permit a fixed-alphabet transposition/copy under either natural 238-coefficient endpoint. The 119-pair invertible stationary remappings and even two independent fixed-alphabet 119-rail transfers are also excluded for both endpoint choices. Future p36/Q238 work requires a mathematically different reversible operation, a changing state, a non-symbolwise register, or independently supplied original key material. The existing genuine factorization and p36 page-length connection survive; this test does not identify the historical cipher or plaintext.
 
 ## Decision
 
