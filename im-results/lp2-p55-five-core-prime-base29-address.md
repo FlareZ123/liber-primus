@@ -51,6 +51,27 @@ Treat the newly observed repeated PH flanks as a literal two-rune GP29 Vigenère
 
 This rejects only the literal repeating PH-key transfer on these two source clocks. It does not reject every nonlinear or word-conditional interpretation of the PH frame, nor does it promote the postselected PH observation to an authenticated key.
 
+## Explicit 401-as-prime-start inverse under the solved p56 cipher (Agent44, 12 November)
+
+The centered-five self-index supplies an unusually specific, original-cipher candidate: the five prime weights sum to **401, the 79th prime**, and its first rune NG itself has GP prime weight **79**. For the first direct consumer, use the **authentic p56 prime-totient operation** `P_i = C_i - (prime_i - 1) mod 29` and begin at one-based ordinary prime ordinal **79**. This fixes initial key prime401 *before looking at any p55 plaintext*. As with the solved p56 page clock, the **first original page rune consumes prime401**; the p55→p54 incoming word carry is retained in the 76-rune ciphertext. The source does not itself prescribe that clock or the transfer of p56's rule to p55.
+
+The authentic p56 cipher has one literal-F exception, out of five original ciphertext F occurrences. On physical p55, F occurs at original rune offsets **15, 25 and 41**, so the source-constrained extension grants each of these three positions independently the same literal-F exception, exactly **eight** possible masks. The complete, unmodified original page is decrypted and re-encrypted for every mask without fitting a start, sign, shift, key mutation, or output language model.
+
+| Literal-F mask (positions in source order 15,25,41) | Decrypted IoC on 76 runes |
+| --- | ---: |
+| 000 | 0.03894737 |
+| 001 | 0.03894737 |
+| 010 | 0.03789474 |
+| 011 | 0.03789474 |
+| 100 | 0.03403509 |
+| 101 | 0.03719298 |
+| 110 | 0.03719298 |
+| 111 | 0.03684211 |
+
+Every inverse remains nonlinguistic. The most direct zero-skip reading begins `IA DWAEEO EX WG DTHNGBO OOESTHWU EN ...` after retaining the actual word delimiters and carry. No mask supplies readable text or an original instruction. A synthetic 76-rune plain/cipher positive under the same prime79 schedule recovers exactly, and the established solved-p56 regression independently pins the same cipher operation to its real 85-rune plaintext.
+
+**Decision:** this bounded original-input failure rejects the literal **prime79-start, forward page-clock, p56-style GP29 totient** transfer to p55 as a direct prose decoder, even with all literal-F masks. It does not reject a clue that uses 401 as a different state parameter, a source-selected noninitial phase, or a different alphabet. There is still **no author-authenticated consumer** for the postselected self-index coincidence. See the [complete CommonJS original-input SFT](../sims/p55_prime401_p56_totient_direct_sft.cjs) and [authentic solved-p56 positive](../sims/authentic_lp2_p56_totient_regression.cjs). Do not extend this into unconstrained prime-offset searches.
+
 ## Controls and limits
 
 The five-rune block crosses the boundary between p55 complete words 7 and 8. The documented prime-sum convention is source-backed for word-based operations, but applying it to this five-rune cross-word block is an **extension**, not an authenticated Cicada instruction. The signed 2013 TCP challenge authenticates BASE29 as a printable positional-numeral operation with digit24=O; it does not prescribe the distinct prime-sum → GP-index-text composition.
