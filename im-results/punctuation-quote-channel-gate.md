@@ -43,13 +43,23 @@ For each event and corresponding quoted word, select its rune by three fixed ori
 
 The authentic solved p57's first 86 runes have IoC **0.059644**. None of the three extraction strings is independently readable GP English, nor does any supply a sourced key. The planted 86-symbol solved-p57 control is recovered **86/86** by each exact index rule. This retires the three direct source-order local-coordinate interpretations while leaving a different, independently instructed word-code mapping open. [Complete reproducible original-input SFT](../sims/lp2_quote_doublet_word_boundary_sft.cjs).
 
+### Source-time constraint on the 86-to-86 escape hypothesis
+
+The matched count of 86 printed quotation words and 86 within-page adjacent-equal rune events was noticed after viewing the original data. A source-local or online escape emitter must make the relevant word available at the relevant event. In the source-ordered one-to-one pairing, **79 of 86 candidate key words appear after their assigned event**, and only **7** are already available. The first event is global rune offset **122** while the first quote begins at **1659**; the last event is offset **12939**, while quoted material ends at **12592**. The assigned word-start delay spans **−350 to +8124** runes.
+
+The nine physically printed chapter groups supply a second fixed boundary test. Their quotation-word counts are **[0,4,0,5,0,0,0,77,0]** and their within-page same-rune event counts are **[4,6,9,10,11,13,12,18,3]**. None matches, which excludes a one-to-one **same-chapter** escape allocation before any secret symbol map. Cross-chapter buffering and whole-book offline lookups remain mathematically possible. There is no original clue selecting the necessary long-range correspondence or lossless side channel.
+
+The independently sourced seven quotes contain **one actual adjacent-equal rune event across 398 real within-quote adjacencies** (global index 5476, physical p22). A second repeat in their concatenated 405-rune artificial stream is created by joining the nonadjacent original positions **1676 and 5459**, which both have rune IA. That seam is a transcription product and must not be mistaken for a second printed event.
+
+**Decision:** retire the natural-order online and chapter-local interpretations of the 86/86 coincidence. Do not optimize arbitrary word/event assignments until a separate source instruction fixes the mapping and an exact reversible inverse. [Original-source standalone test](../sims/lp2_quote_doublet_online_causality_sft.cjs).
+
 ## Standalone selected-stream test
 
 Concatenating all seven quoted spans gives 405 ciphertext runes.
 
 - quote IoC: **0.033797824227**
 - surrounding unsolved stream IoC: **0.034482625665**
-- quote doublets: **2 / 404 adjacencies**
+- joined-stream doublets: **2 / 404 adjacencies**, including one artificial join; the original has **1 / 398** within-quote adjacencies
 - repeated quote-stream 4-grams: **0**
 - repeated quote-stream 5-grams: **0**
 
@@ -87,6 +97,6 @@ The rich punctuation is real information that the canonical solver stream loses.
 1. punctuation as a standalone ternary message;
 2. quote-delimited runes as an independently readable ciphertext channel;
 3. visible punctuation/quote marks as reset points for the already solved Vigenere or prime-totient mechanisms.
-4. repeated-ciphertext rune values as direct indexes into the 86 source-visible quoted words.
+4. repeated-ciphertext rune values as direct indexes into the 86 source-visible quoted words; a source-local or online ordinal escape assignment also fails the exact source-time test.
 
 The quote marks most plausibly encode discourse structure such as direct speech or emphasis. Their word boundaries remain useful as future cribs if an independently motivated key family appears. Do not reopen a generic punctuation-reset sweep without a new cipher generator or a source-derived rule for how the mark changes state.
