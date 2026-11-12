@@ -65,14 +65,14 @@ function tokenize(text){
  * @param {number[]} stream
  * @param {number[]} cuts
  */
-function collisions(stream,cuts){
+function collisions(stream,cuts,spendEA=false){
   let match=0,pairs=0,ea=0;
   for(let s=0;s<cuts.length-1;s++){
     const bins=Array.from({length:256},()=>new Int32Array(28));
     let clock=0;
     for(let i=cuts[s];i<cuts[s+1];i++){
       const rune=stream[i];
-      if(rune===28){ea++;continue;}
+      if(rune===28){ea++;if(spendEA)clock++;continue;}
       assert(rune>=0&&rune<28);
       bins[clock%256][rune]++;
       clock++;
@@ -139,7 +139,7 @@ const inverses=permutation.map(row=>{
   return inv;
 });
 /** @param {number[]} plain @param {number[]} cuts */
-function encrypt(plain,cuts){
+function encrypt(plain,cuts,spendEA=false){
   const cipher=Array(plain.length);
   let prev=0,phase=0,segment=1;
   for(let i=0;i<plain.length;i++){
@@ -148,20 +148,20 @@ function encrypt(plain,cuts){
     if(p!==28){
       prev=(prev+pow[permutation[phase%256][p]])%29;
       phase++;
-    }
+    }else if(spendEA)phase++;
     cipher[i]=prev;
   }
   return cipher;
 }
 /** @param {number[]} cipher @param {number[]} cuts */
-function decrypt(cipher,cuts){
+function decrypt(cipher,cuts,spendEA=false){
   const plain=Array(cipher.length);
   let prev=0,phase=0,segment=1;
   for(let i=0;i<cipher.length;i++){
     if(i===cuts[segment]){phase=0;segment++;}
     const d=(cipher[i]-prev+29)%29;
     prev=cipher[i];
-    if(d===0){plain[i]=28;continue;}
+    if(d===0){plain[i]=28;if(spendEA)phase++;continue;}
     plain[i]=inverses[phase%256][log[d]];
     phase++;
   }
@@ -249,13 +249,40 @@ const phiPlant=encodePrimePhi(windows[0].values,chapters,true,-1);
 assert.deepEqual(decodePrimePhi(phiPlant,chapters,true,-1),windows[0].values);
 assert.deepEqual(encodePrimePhi(decodePrimePhi(phiPlant,chapters,true,-1),chapters,true,-1),phiPlant);
 
+
+/** Extend the keyless 256-phase exclusion to the other natural clock: EA spends one phase. */
+const spent={};
+const spentMinima={book:Infinity,visual_chapter:Infinity};
+for(const [scope,cuts] of Object.entries(contracts)){
+  spent[scope]=collisions(steps,cuts,true);
+  for(const w of windows){
+    const stat=collisions(w.values,cuts,true);
+    assert(stat.rate>spent[scope].rate,
+      "Native source-window beats original under EA-spend "+scope);
+    spentMinima[scope]=Math.min(spentMinima[scope],stat.rate);
+  }
+  const native=windows[0].values;
+  const cipher=encrypt(native,cuts,true);
+  const restored=decrypt(cipher,cuts,true);
+  assert.deepEqual(restored,native);
+  assert.deepEqual(encrypt(restored,cuts,true),cipher);
+  assert.deepEqual(collisions(chainSteps(cipher),cuts,true),
+    collisions(native,cuts,true));
+}
+assert.deepEqual({match:spent.book.match,pairs:spent.book.pairs}, {match:11432,pairs:317165});
+assert.deepEqual({match:spent.visual_chapter.match,pairs:spent.visual_chapter.pairs},
+  {match:1436,pairs:39163});
+assert(Math.abs(spentMinima.book-0.05887590498773353)<1e-12);
+assert(Math.abs(spentMinima.visual_chapter-0.05854158656926823)<1e-12);
+
 console.log(JSON.stringify({
   hypothesis:"Fixed 256-phase secret GP28 bijections on nonzero chain differences",
   sourceGP29CiphertextRunes:N,
   sourceEARepeatEvents:86,
   fixedPeriod:256,
   phaseClock:"Nonzero steps only, zero steps emitted as EA without key consumption",
-  original:observed,controls,nativeWindows:windows.length,
+  original:observed,EAspendsPhase:{original:spent,lowestNative:spentMinima},
+  controls,nativeWindows:windows.length,
   directBase60GridConsumer:direct,
   authenticP56PrimePhiTransfer:primePhiOutputs,
   phiPrimeSyntheticRecoveredRunes:N,

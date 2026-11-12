@@ -16,8 +16,10 @@ The source-native English controls are the same GP29 mapping used elsewhere in t
 | --- | ---: | ---: | ---: | ---: |
 | Whole book, no reset | 11,634/317,100 | 0.036688742 | 0.058890995 | 0/104 |
 | Nine original visual chapters, phase reset per chapter | 1,459/39,134 | 0.037282159 | 0.058104054 | 0/104 |
+| Whole book, EA spends one phase | 11,432/317,165 | 0.036044330 | 0.058875905 | 0/104 |
+| Nine original visual chapters, EA spends one phase | 1,436/39,163 | 0.036667262 | 0.058541587 | 0/104 |
 
-The nine-image chapter boundaries, in global rune offsets, are **0,729,1874,3603,5506,6527,7960,9640,12648,12956**. Native controls have their *own* EA counts (44–163), and the statistic recomputes the non-EA phase clock separately for each window. It does not impose original repeated-ciphertext positions on the controls. The original has 86 EA/zero markers.
+Both natural EA/zero-step clock contracts are now excluded under a fixed 256-phase secret permutation: EA either holds its key phase (first two rows), or advances it (last two rows). Each contract has an independent complete-length source-native secret-permutation positive control. No source instruction authenticates a fixed 256-phase cipher. The nine-image chapter boundaries, in global rune offsets, are **0,729,1874,3603,5506,6527,7960,9640,12648,12956**. Native controls have their *own* EA counts (44–163), and the statistic recomputes the non-EA phase clock separately for each window. It does not impose original repeated-ciphertext positions on the controls. The original has 86 EA/zero markers.
 
 A complete plant generates 256 secret random 28-symbol permutations, encodes a 12,956-rune source-native GP-English window by adding 15 raised to each phase-mapped GP symbol to the previous ciphertext rune, then decodes via the inverse permutations and checks exact forward re-encryption. **12,956/12,956 symbols recover** for each of the two clock contracts, and the keyless same-phase equal-pair counts remain exactly invariant.
 
