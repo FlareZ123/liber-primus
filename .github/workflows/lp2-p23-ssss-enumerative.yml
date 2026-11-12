@@ -1,0 +1,19 @@
+name: LP2 p23 lossless 122-byte SSSS source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute original p23 five-strand reversible codec and historical 2013 SSSS combination
+        run: node sims/lp2_p23_201_122byte_ssss_codec_sft.cjs
