@@ -1,6 +1,6 @@
 # Original 2014 LP1 page-05 Wisdom square and hypothetical direction map
 
-**Status:** the original 2014 LP1 page-05 printed Wisdom grid and same-file 1033 square match exactly by GP-prime sums (25/25 cells), and the p15 Fibonacci-prime spiral is independently established prior art. Issue #237's source-first p15→2014 perimeter gate found a plausible cell-6 start and clockwise orientation, but no historical source links the p15 numeric values to the ring or specifies a reversible operation. The only economical totient-ring GP29 Vigenère extension is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations. Earlier p55 FOLD/circumference transfer and direct table-to-LP2 routes remain unselected. No LP2 plaintext or authentic key has been recovered.
+**Status:** the original 2014 LP1 page-05 printed Wisdom grid and same-file 1033 square match exactly by GP-prime sums (25/25 cells), and the p15 Fibonacci-prime spiral is independently established prior art. Issue #237's source-first p15→2014 perimeter gate found a plausible cell-6 start and clockwise orientation, but no historical source links the p15 numeric values to the ring or specifies a reversible operation. The only economical totient-ring GP29 Vigenère extension is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations. Earlier p55 FOLD/circumference transfer and direct table-to-LP2 routes remain unselected. No LP2 plaintext or authentic key has been recovered. A separate p57-selected inner-3×3 Wisdom Hill consumer of Q252 was tested and rejected below every held-out native 252-rune window.
 
 **Original-byte source correction, 12 November 2026:** The supposed **2013** `0_wisdom.jpg` file is identical by Git blob SHA `2829e13812015601ff1014cb4427587b4a8aa3a6` to the **2014 original LP1 page-05 complete binary**, as separately preserved in the Stage04 server-status source. The numeric 1033 square is physically embedded after that same JPEG as 178 ASCII bytes recovered by reversed-hex decoding. The 13 printed rune-word prime sums exactly recover its 13 word-cell values, but this is one 2014 artifact containing two mutually agreeing encodings. No independently dated 2013 appearance has been established. This changes claims of a cross-round 2013→2014 bridge; it does **not** change the 25/25 identity, the observed LP2 p36/p55 word sums, or the absence of a source-selected compass/key operation. [Source note](../resources/external/2013-0-wisdom-source.md) · [passing original source CI](https://github.com/FlareZ123/liber-primus/actions/runs/43126749975).
 
@@ -125,6 +125,36 @@ Among all **2,896** canonical original LP2 words, precisely the originally repor
 **Decision:** retain the same-file 2014 cellwise prime-sum reconstruction as an exact source fact and the two original routes as a conditional structural observation. The original 2014 LP1 Wisdom prose authorizes prime sums and names totients; it does not say three consecutive encrypted words are [start, bearing, end], that modulo-29 totients represent compass directions, or where to stop. No independent original LP2 held-out plaintext prediction, key/state, or complete reversible operation exists. Do not advance the speculative CABAL/UOID/FORM/MIXING path without an independently surviving source selector.
 
 The complete historically printed **central column** of the mixed table is **SHADOWS / UOID / FORM / UOID / CABAL** from top to bottom, GP sums **341 / 130 / 91 / 130 / 341**. The two destination words occupy adjacent rows (3,2) and (4,2). If the LP2 p57 PARABLE passage to “shed our own circumferences” authorizes moving from the outer ring through an inner ring to the center, the next *predictable source word* is **FORM** at (2,2). That proposed inward step is not present as a third three-word original-LP2 route and remains an interpretive navigation hypothesis. The inferred outer→inner→center words **CABAL UOID FORM** happen to total 13 GP runes, matching the printed 13-dot punctuation size; this count alone cannot establish a 13-rune key or a decoder.
+
+### p57 circumference → inner-3×3 Wisdom Hill key on Q252 (bounded negative)
+
+The p57 parable's instruction to shed circumferences and find what is within motivates removing the outer ring of the original 2014 LP1 page-05 Wisdom 5×5 square. Its center is:
+
+```text
+199 130 320
+245  91 245
+320 130 199
+```
+
+LP1 page-05 explicitly names the totient function as sacred. Applying `φ(n) mod 29` to those nine cells gives the fixed Hill-3 key
+
+```text
+K = [24 19 12]       det(K) = 26 mod 29
+    [23 14 23]       K⁻¹ = [24 18  7]
+    [12 19 24]              [ 5  1  5]
+                             [ 7 18 24]
+```
+
+The independent 2013 BASE29 3301 factor `H` and p39 red-triad factor `G` produce the 252-slot p50 quotient `Q252`, including its source-inherited leading zero. That gives exactly **84 Hill-3 blocks**, with no padding. The test decrypts the quotient in the printed-table (descending coefficient) direction; ascending coefficient order is the sole orientation control. Both candidates are re-encrypted exactly, and a native 252-rune GP plant passes the same Hill round trip.
+
+| Q252 order | Raw trigram nats/rune | Decoded trigram nats/rune | Decoded IoC |
+|---|---:|---:|---:|
+| Printed / descending | −11.08311 | −11.05954 | 0.03316891 |
+| Ascending control | −11.00810 | −11.06489 | 0.03316891 |
+
+The 392 held-out native LP1-GP windows of length 252 range from **−8.59750 to −8.01918** (median **−8.41145**). Both outputs fall below every native window and their prefixes (`EEAYPGLEODXNXAEMDXDXDNGLIEAUNGFB...` and `UPMLITHEAGEOSIAXEHRGIAEOFTNGIAGI...`) are not plaintext.
+
+This is a **bounded negative** for the exact composition `strip the 2014 Wisdom 5×5 circumference → apply φ mod 29 to the inner 3×3 → Hill-3 decrypt Q252`. It does not disprove the p57 instruction or the 2014 square as clues, and it does not establish Q252 as the intended ciphertext. Do not expand this into raw-matrix, arbitrary orientation, or cipher-family sweeps without a new source selector. Reproduce with `node sims/p50_q252_wisdom_inner3_hill_gate.cjs`.
 
 ### Nested word-sum instruction candidate: MIX
 
