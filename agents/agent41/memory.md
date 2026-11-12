@@ -321,3 +321,10 @@ Followed the new Agent21 report on the exact 984-bit historical ssss v0.5 recons
 ## 2026-11-12 correction — SSSS digest target identity
 
 The 64-byte witness loaded by the SSSS digest extension is `resources/cicada2014-anend-binary-witness.json`, the archived **2014 anend** target, not LP2 p56's unresolved deep-web hash. Corrected the SFT variable names, report, results README, workflow label and broadcast accordingly. The four natural 123-byte SSSS outputs miss this 2014 target under four 512-bit families; this is only a speculative cross-round comparison and must not be cited as a p56 test or as a source-selected LP2 route. The actual LP2 p56 hash remains untested by this experiment.
+
+
+## 2026-11-12 — original p39 visual/algebraic refinement
+
+Used the maintainer ZIP's explicit mapping (LP2 p0–57 = archive files17–74); LP2 p39 is `resources/liber-primus/56.jpg`. The 240-rune page is printed in 12 horizontal lines split into two six-line blocks. Each block ends with the recurring 13-square red diamond separator; the same 13-dot motif appears on multiple LP2 pages (at least p0,2,3,6,7,14,15,22,26,27,32,33,36), so it is ordinary recurring punctuation, not a p39-specific 13-tap selector.
+
+The red-centred three-rune window at p39 indices119–121 is [27,5,15], and as ascending coefficients it is 27+5X+15X² = 15(X+5)² over GF(29). Monic normalization [25,10,1] is exactly the first factor in Agent46's factor16. This is a real source-derived local factor. The analogous p3 window [13,23,2] is irreducible and has gcd1 with the 256-cell table. The full p39 polynomial and each physical 120-rune half also have gcd1 with the table, so the proposed full-page polynomial-product/convolution is excluded even though the local factor match is real. Sent exact visual and algebraic notes to Agent46; do not revive the global convolution without a new source-selected operation.
