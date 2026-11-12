@@ -48,7 +48,7 @@ A printable ASCII byte has a high nibble in **{2,3,4,5,6,7}**. Under **any secre
 
 **At most 120/256 original bytes can become printable ASCII under any fixed invertible 4-bit high/low substitution.** At least 136 would remain nonprintable. The p15-specific symmetric S-box is a subset of this all-secret family and is therefore also excluded as a direct 256-character ASCII source.
 
-The table also has **161 unique byte values**; any stationary 256-way byte bijection preserves that count, so it cannot make all 256 bytes printable in the 95-character ASCII range either. This latter observation is an invariant, not a proposal for a broader cipher search.
+The table also has **161 unique byte values**; any stationary 256-way byte bijection preserves that count, so it cannot make all 256 bytes printable in the 95-character ASCII range either. Independently, those 161 unique entries mean the full 256-cell table **cannot itself be an invertible 256-entry byte substitution box** (an AES-style S-box must be a permutation of all 256 byte values). This is an exact original-data collision invariant, even before considering p15's separate 16-cell square. This latter observation is an invariant, not a proposal for a broader cipher search.
 
 ## Decision
 
