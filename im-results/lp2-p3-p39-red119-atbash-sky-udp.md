@@ -39,6 +39,19 @@ The original **32×8** pp49–51 numerical table supplies a second strictly sour
 
 All original-input assertions, complete-segment IoCs, direct header lengths, and first-three-rune result are in the [one-file CommonJS reproducer](../sims/lp2_red119_skyudp_source_consumers_sft.cjs). These negatives constrain the direct consumers of an unusually source-specified red pair; they do not diminish the exact source placement or prove whether the SKY/UDP clue was intended.
 
+## Original-punctuation completion gate: no longer local instruction (Agent12, 12 November 2026)
+
+**Director #588 decision.** The two original scans, `resources/liber-primus/20.jpg` and `56.jpg`, independently show a red 13-dot break immediately *before* the three-red-rune heading and a second red 13-dot break immediately *after* it. Freeze the complete bracket as page-local **[119,122)** on each physical page. The printed full-page word segmentation and independent canonical GP29 corpus agree at **all 217 p3 and 240 p39 rune positions**. The enclosed passage consists of exactly one three-rune word on both pages: no black word, extra rune or second red word lies between the two marks. There is therefore no additional complete instruction available by extending the existing **source-enclosed** Atbash readout.
+
+| Original page | Complete red13 enclosure | Immediate previous black word, **outside** enclosure, under Atbash | Immediate following black word, **outside** enclosure, under Atbash |
+| --- | --- | --- | --- |
+| p3 | `ᛈᛞᚦ` → **SCY** (SKY) | `ᛞᛠᛖᛡᚾᛏ` → `CFIUMEO` | `ᛇᛞᛇ` → `TCT` |
+| p39 | `ᛡᚳᛋ` → **UDP** | `ᛗᛋᚹᛟᚻ` → `NPNGGL` | `ᛈᛞᛋᛡ` → `SCPU` |
+
+These adjacent words are the **one** mechanically defined immediate-word extension on either side, reported as a diagnostic, not added to the red-marked ciphertext. Their fixed Atbash outputs give no full grammatical command or cryptographic operation, and the closest black words are independently separated by visible red13 marks. p3 also has its separate red16 heading at offset0 and its earlier red13 break at offset16; its enclosing prefix is structurally different from the all-black p39 prefix. Neither manuscript image selects an alternative pair of extended boundaries or licenses arbitrary flank sizes.
+
+The [single-file bracket-boundary reproducer](../sims/lp2_red119_bracket_boundary_sft.cjs) fixes both source intervals and immediate printed words; asserts corpus/transcription equality, source red13 markers, zero additional enclosed words, both unchanged GP29 Atbash fragments, and solved-p57 `PARABLE` as a counterexample to general red-ink Atbash. This **closes the strictly local instruction-extension route**. Recovering a host, port, packet payload or third-passage cipher from SKY/UDP now requires an independent original/author-authenticated selector; no free-radius or free-shift flanking search is justified. The 2013 ICMP historical comparison and other bounded consumers in this report remain unchanged.
+
 ## Shared-pad interpretation of the two 119-rune prefixes
 
 The two source-selected red triads each follow a complete 119-rune printed-word passage. An independent [exact dictionary-product inverse](lp2-p3-p39-red119-sharedpad-wordgrammar.md) now tests whether those two passages reused any common additive GP29 pad, granting its entire 119-symbol key to remain unknown. Using **32,081** GP-normalized English lexical forms from Shakespeare, Gibran, Emerson, and the TextBlob spelling lexicon, the complete word-preserving common-pad pair becomes algebraically incompatible with the source by original rune **11** (both forward) or **6** (second passage mirrored). Entire 119-rune native positive plants succeed in each reading. This is an all-pad *dictionary-and-original-boundary* exclusion, not a general rejection of layered encryption or of the red triads as clues; the operation and English plaintext assumption were never authenticated by the author.
