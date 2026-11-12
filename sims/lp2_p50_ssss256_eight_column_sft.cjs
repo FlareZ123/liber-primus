@@ -129,6 +129,80 @@ console.log("source original matching bits out of 256:", bitsMatched);
 console.log("original candidate c0 from first five:",
   hex(interpolate(adjusted, 0n)), "(UNAUTHENTICATED; withheld shares FAIL)");
 
+/**
+ * Exhaust exactly all original 2013 identifiers 01..10, without assuming
+ * any share-to-column mapping. Any eight genuine 2013 shares would require
+ * the first six printed columns to satisfy a single MONIC quintic under
+ * some injection of six IDs from 01..10. There are 10P6 = 151,200 such
+ * assignments. For each six-ID set S, the degree-five leading coefficient
+ * of its Lagrange interpolation is
+ *   XOR_i y_i / product_(j != i) (x_i XOR x_j).
+ * It MUST equal 1 (historical ssss monic leading coefficient).
+ * Check every assignment by precomputing only 36 multiplications for each
+ * six-ID subset, then XORing six coefficients per permutation.
+ *
+ * @param {bigint[]} input Six unedited 256-bit field elements
+ */
+function censusHistoricalShareIDs(input) {
+  assert.equal(input.length, 6);
+  let assignments = 0, subsets = 0, bestErrors = 257;
+  const hits = [];
+  const bitDiff = value => popcount(value ^ 1n);
+  for (let a = 1; a <= 5; a++)
+    for (let b = a + 1; b <= 6; b++)
+      for (let c = b + 1; c <= 7; c++)
+        for (let d = c + 1; d <= 8; d++)
+          for (let e = d + 1; e <= 9; e++)
+            for (let f = e + 1; f <= 10; f++) {
+              const ids = [a, b, c, d, e, f].map(BigInt);
+              const weights = ids.map(x => {
+                let denominator = 1n;
+                for (const z of ids) if (z !== x)
+                  denominator = multiply(denominator, x ^ z);
+                return inverse(denominator);
+              });
+              const products = input.map(v => weights.map(w => multiply(v, w)));
+              subsets++;
+              const permutation = [0, 1, 2, 3, 4, 5];
+              while (true) {
+                let leading = 0n;
+                for (let i = 0; i < 6; i++)
+                  leading ^= products[i][permutation[i]];
+                const errors = bitDiff(leading);
+                if (errors < bestErrors) bestErrors = errors;
+                if (errors === 0)
+                  hits.push(permutation.map(index => Number(ids[index])));
+                assignments++;
+
+                let k = 4;
+                while (k >= 0 && permutation[k] >= permutation[k + 1]) k--;
+                if (k < 0) break;
+                let j = 5;
+                while (permutation[j] <= permutation[k]) j--;
+                [permutation[k], permutation[j]] = [permutation[j], permutation[k]];
+                for (let left = k + 1, right = 5; left < right; left++, right--)
+                  [permutation[left], permutation[right]] =
+                    [permutation[right], permutation[left]];
+              }
+            }
+  assert.equal(subsets, 210);
+  assert.equal(assignments, 151200);
+  return {assignments, subsets, matches: hits, fewestWrongBits: bestErrors};
+}
+
+const exhaustedIDGate = censusHistoricalShareIDs(shares.slice(0, 6));
+assert.equal(exhaustedIDGate.matches.length, 0,
+  "No six original table columns can be 2013 share IDs 01..10");
+assert.equal(exhaustedIDGate.fewestWrongBits, 93);
+console.log("all 10P6 original first-six share ID assignments:",
+  exhaustedIDGate.assignments, "exact matches 0",
+  "smallest failed 256-bit relation:", exhaustedIDGate.fewestWrongBits,
+  "bits");
+
+// Any valid eight-column secret-sharing format under historical 01..10 IDs
+// would contain a valid first-six assignment, so this is a rigorous all-ID
+// exclusion of the entire natural 8-column format, independent of label order.
+
 // Exact 2013-style positive plant with a source-native 32-byte constant c0.
 // Its other four coefficients are deterministic 32-byte values, and its
 // x^5 lead is literally 1 (not an unknown sixth coefficient).
@@ -152,4 +226,12 @@ for (let i = 0; i < 8; i++) {
     plantedShares[i], "Planted original 5-of-8 share " + (i + 1));
 }
 assert.equal(interpolate(plantedAdjusted, 0n), coeff[0]);
+const plantedIds = [9, 3, 10, 1, 5, 7, 2, 6];
+const scrambledPlantedShares = plantedIds.map(x => evaluatePlanted(BigInt(x)));
+const plantedIDGate = censusHistoricalShareIDs(scrambledPlantedShares.slice(0, 6));
+assert(plantedIDGate.matches.some(ids =>
+  ids.every((id, i) => id === plantedIds[i])),
+  "Historically valid scrambled 2013 share IDs must survive exhaustive check");
+console.log("PASS: known original-style arbitrary share-ID plant recovered.",
+  "Candidate ID mappings:", plantedIDGate.matches.length);
 console.log("PASS 256-bit historical whole-field monic-degree5 planted sharing.");
