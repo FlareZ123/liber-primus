@@ -141,6 +141,43 @@ for(const state of phases)for(const sign of [-1,1]){
     allIoC:ioc(decoded),pages16to22IoC:ioc(afterSquare)});
 }
 assert.equal(simpleRuna.length,16);
+// The signed 2016 source says WORDS are the map. The p15 Fibonacci
+// prime ordinals, unlike its printed values, are all valid positions in the
+// manuscript's exact 2,896 preserved words. Test a minimal word-index key.
+const {parseSharedCorpus}=require("./lp2_word_pages.cjs");
+const originalWords=parseSharedCorpus().words;
+assert.equal(originalWords.length,2896);
+const ranks=[1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988];
+const rankedKeys=[],rankedDirect=[];
+for(const origin of [0,1])for(const edge of ["first","last","center"]){
+  const indices=ranks.map(rank=>{
+    const runes=[...originalWords[rank-origin].runes];
+    const at=edge==="first"?0:edge==="last"?runes.length-1:
+      Math.floor((runes.length-1)/2);
+    const rune=corpus.runes.indexOf(runes[at]);
+    assert.ok(rune>=0&&rune<29);
+    return rune;
+  });
+  for(const sign of [-1,1]){
+    const decoded=all.map((v,i)=>(v+29+sign*indices[i%16])%29);
+    rankedDirect.push({origin,edge,sign,ioc:ioc(decoded)});
+    assert.deepEqual(decoded.map((v,i)=>(v+29-sign*indices[i%16])%29),all);
+  }
+  for(const representation of ["index","prime"]){
+    const vals=representation==="index"?indices:indices.map(i=>corpus.prime[i]);
+    const key=Buffer.from(vals);
+    rankedKeys.push({origin,edge,representation,key});
+  }
+}
+assert.equal(rankedKeys.length,12);
+const rankedGrid=[];
+for(const item of rankedKeys)for(const [order,values] of presentations){
+  const plain=values.map((b,i)=>b^item.key[i%16]);
+  rankedGrid.push({origin:item.origin,edge:item.edge,
+    representation:item.representation,tableOrder:order,
+    printable:printable(plain),gpbyte:gpbyte(plain)});
+}
+assert.equal(rankedGrid.length,48);
 console.log(JSON.stringify({
   original:"p15 center-highlighted 4x4 printed square absolute manuscript rune positions",
   gridBytes:row.length,wholeRunes:all.length,p15Numbers:printed,
@@ -162,6 +199,13 @@ console.log(JSON.stringify({
   repeatGP29Alternatives:simpleRuna.length,
   bestRepeatGP29IoC:[...simpleRuna].sort((a,b)=>b.allIoC-a.allIoC)[0],
   bestRepeatSectionIoC:[...simpleRuna].sort((a,b)=>b.pages16to22IoC-a.pages16to22IoC)[0],
+  rankedWordCandidateKeys:rankedKeys.length,
+  rankedWordRepeatGP29Cases:rankedDirect.length,
+  rankedWordBestOriginalIoC:[...rankedDirect].sort((a,b)=>b.ioc-a.ioc)[0],
+  rankedWordGridXorCases:rankedGrid.length,
+  rankedWordAllPrintable:rankedGrid.filter(x=>x.printable===256).length,
+  rankedWordAllGP29Bytes:rankedGrid.filter(x=>x.gpbyte===256).length,
+  rankedWordBestPrintable:[...rankedGrid].sort((a,b)=>b.printable-a.printable)[0],
   bytePositiveRecovered:true,runePositiveRecovered:true,
   authenticatedOriginalPlaintext:false
 },null,2));
