@@ -93,6 +93,17 @@ def check_moth() -> dict:
     exact_corr = cv2.matchTemplate(duplicate, original,
                                    cv2.TM_CCOEFF_NORMED)[0, 0]
     assert exact_corr > 0.9998
+    # The complete matched source-art crop is identical to within tiny
+    # JPEG grayscale residuals. This bounds distinct visible/high-contrast
+    # markings hidden in the two repeated moth illustrations; it is not
+    # an LSB / DCT steganography exclusion.
+    full53 = image(70)[2663:3213, 564:1834]
+    full55 = image(72)[2730:3280, 630:1900]
+    residual = np.abs(full53.astype(np.int16) - full55.astype(np.int16))
+    assert full53.shape == full55.shape == (550, 1270)
+    assert int(residual.max()) == 10
+    assert int(np.count_nonzero(residual > 4)) == 3723
+    assert int(np.count_nonzero(residual == 0)) == 524971
     return {'source_lp1_archive': 5, 'lp2_archive': [70, 72],
             'lp2_physical_pages': [53, 55], 'orientation': 'upright scale',
             'sift_ratio_matches': len(good),
@@ -100,7 +111,12 @@ def check_moth() -> dict:
             'homography_scales': singular_values.tolist(),
             'thresholded_ink_iou': artwork_iou,
             'wrong_page_p54_iou': negative_iou,
-            'p53_to_p55_gray_correlation': float(exact_corr)}
+            'p53_to_p55_gray_correlation': float(exact_corr),
+            'moth_full_patch_size': [550, 1270],
+            'moth_exactly_equal_gray_pixels': 524971,
+            'moth_gray_abs_difference_max': int(residual.max()),
+            'moth_gray_abs_difference_mean': float(residual.mean()),
+            'moth_pixels_abs_difference_over_4': int(np.count_nonzero(residual > 4))}
 
 
 def check_insect_multisource() -> dict:
