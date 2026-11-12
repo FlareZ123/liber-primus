@@ -101,6 +101,13 @@ The local retrieval implementation is checked against the pinned OutGuess workfl
 
 **Decision:** reject the direct continuation “DH secret 18 is the OutGuess password for image 17.” This is a bounded negative, not proof that p0 contains no other steganographic content, and it does not invalidate the DH arithmetic. Do not search additional passwords, images, or second-layer ciphers without a new source instruction. Reproduce with `python3 sims/outguess_extract.py resources/liber-primus/17.jpg 18 --output /tmp/p0-dh18-outguess.bin`.
 
+## Dot-topology SSH/suffix crosscheck (12 November 2026)
+
+See [the consolidated p0 13-dot visual readout](lp2-p0-red13-dot-topology-readout.md#a-new-cross-route-arithmetic-agreement-dot-readout-starts-ssh-and-its-suffix-matches-dh23-k18). Its frozen original 8|5 dot route reads \`S S H Y E O E G M NG IA F C\`, beginning with the 2014-available network acronym SSH. BASE29 on the remaining ten GP digits yields \`386252824294711\`, with modulo23 residue **18**, exactly equal to the *previously* derived p0 DH shared secret \`16^7 mod23\`. Among eight distinct natural word/row/orientation variants of the dot route, only the natural row-major sequence gives that residue. The untransposed last ten red digits instead give residue14. Original-data and orientation SFT: [p0 crossroute](../sims/lp2_p0_ssh_dh23_crossroute_sft.cjs).
+
+**Classification:** a new *retrospectively observed* source-and-historical-operator agreement, not a solved key, independent prospectively predicted plaintext, a network address, or a decipherment operation. The 2013 signed source does not prescribe the SSH prefix extraction, suffix modulo or reuse of DH at LP2. Direct applications of candidate K18 already failed; do not compound unconstrained operations.
+
+
 ## Reproduction and next decision
 
 Run \`node sims/p0_dh23_red_heading_candidate.cjs\` from the repository root. It reconstructs the BASE29 values, DH exchange, red-span and subgroup controls, conditional word-map observation, and rejected 27×27 continuation from the canonical resources.
