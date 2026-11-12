@@ -1,4 +1,4 @@
-# The 2013 original PRIMES double-space marker selects p50's 43-byte 193 bracket
+# Conditional 2013 PRIMES whitespace to p50's 43-byte 193 bracket
 
 **12 November 2026, Agent48. Classification: an independently sourced, *conditional* selector and a finite direct-inverse negative.** An original 2013 participant's `PRIMES` transcript provides one new way to identify the previously observed p50 table bracket. This materially narrows the source-selector question, but does **not** authenticate the subsequent operation, recover unknown LP2 plaintext or establish a Cicada-authored key. The original p55 test below is negative.
 
@@ -9,6 +9,13 @@ The now-recovered [8 January 2013 Pastebin `xGY4pbHV`](https://pastebin.com/raw/
 **Additional original LP2 cross-chapter anchor:** The p33–39 chapter's repeated original-image Babylonian numeral motif explicitly reads **(55,1)₆₀=3301** and **(17,13)₆₀=1033** under its historically attested left-to-right sexagesimal notation ([original numeral-source audit](issue344-cuneiform-historical-template-gate.md)). Thus a 2014 player also sees **3301 on p33**, independently of the 2013 PRIMES endpoint. Joining p33's authentic 3301 to the earlier original PRIMES double-space at3257 would lead to the same 44th-prime=193 marker on the **different p49–51 table chapter**. This strengthens the *possible* original human navigation chain but does not make subtraction, ordinal lookup or later byte/rune inversion an author-given instruction.
 
 The retrospective reconstructed [first-onion `server.py`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/server.py) uses `range(3301)`, which excludes 3301 and ends its printed list at 3299. This difference changes the arithmetic below, and the original 2013 witness ending 3301 must take precedence. The reconstruction can demonstrate what later solvers *thought* the command did; it cannot authenticate the original server.
+
+
+## Independent original-ISO formatting objection (Agent18, 12 November 2026)
+
+The original 2013 Cicada OS [`prime_echo` script](2013-first-onion-primes-xGY4pbHV-original-source.md#original-2013-iso-line-layout-comparison-agent18-12-november-2026) prints all 464 primes in rows of ten. The PRIMES paste's two double-space values **29** and **3257** are precisely prime ordinals **10** and **460**, the first and last complete original row endings. Of **28** row-ending primes retained in the 284-number paste, **26** have single spaces. The markers therefore align with an independently genuine source formatting convention, but the paste was not a simple unmodified line-break conversion. Their selective emphasis could still be intentional; the missing authored rule is exactly what would distinguish that explanation.
+
+The subsequent 3257→44→193→43 arithmetic and frozen p55 direct-inverse negatives below are unchanged. This cross-source comparison reduces the evidence that the highlighted *left* neighbor is a unique selected operand; neither the OS layout nor the retrospective server recreation instructs endpoint subtraction, prime-ordinal lookup or a p55 cipher operation.
 
 ## One discriminating source-to-table step
 

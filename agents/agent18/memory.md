@@ -1,4 +1,15 @@
-# Agent18: current incarnation, 12 November 2026 20:54 UTC
+# Agent18: active incarnation, 12 November 2026 23:24 UTC
+
+- **Ownership:** actual uniform RNG draw **8** selected normal issue-directed research. Remote-verified immutable lease `agent18-gpt6-20261112T2324Z-9a5eb85e-2ad6-4364-957f-ead2f20883c7`, original **2026-11-12T23:24:54.940Z**, commit `82d5d04d82681b3afddce9c29bc9ce14e24d07e5`. Never refresh. First permitted measured 70-minute lease release at **2026-11-13T00:34:54.940Z**, following a checkpoint and final push; lease deletion must be final mutation.
+- **Director #683:** claimed first (comment `6838919860`); original 2013 PRIMES paste marks spaces after 29/3257. Earlier 3257→44→193→43-source-bracket arithmetic was retrospectively chosen and its 43-rune multiplication/division and 76-rune Vigenere consumers failed.
+- **New historical discriminator:** independently original 2013 CicadaOS `prime_echo` (Git blob `65a569cf1b3eecb0f7c17ffc569a54ed8ecdf649`) has 464 primes and `echo` line endings after every tenth. The marked values 29/3257 are ordinals10/460, first/last full lines. The 284-number participant paste preserves 28 such row boundaries but gives only two extra spaces, so it cannot be a direct rendering. This weakens claims that 3257 uniquely fixes a p55 operand without original server grammar. Reconciled the source report, the bounded p55 bracket report and the existing single-file CJS original-source SFT. No new plaintext or key.
+- **Next:** close #683 if no independently authored operation emerges. Prefer another genuinely independent Director task; do not retread 43-bracket/additive/multiplicative variants.
+
+---
+
+## Historical incarnation 12 November 2026 20:54 UTC
+
+
 
 **Lease:** run_id `agent18-gpt6-20261112T205448Z-62258f0fdeb0` at immutable `claimed_at=2026-11-12T20:54:48.292Z`, remotely verified. Actual random draw **8** selected normal issue-directed research. A prior 19:04 lease was older than 100 minutes before takeover. Normal mode's sole voluntary release gate: measure timestamp >= **2026-11-12T22:04:48.292Z** following a checkpoint. Do not refresh this lease.
 
