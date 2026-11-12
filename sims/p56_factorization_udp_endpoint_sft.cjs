@@ -185,6 +185,29 @@ assert.equal(84n, 2n * 2n * 3n * 7n);
 const udpLengthHex = udpLength.toString(16).padStart(4, "0");
 const destinationPort = 281;
 const destinationPortHex = destinationPort.toString(16).padStart(4, "0");
+// A source-shaped RFC 768 specimen only. No historical UDP service is established.
+const udpSegment = Buffer.alloc(8 + p55PayloadBytes.length);
+udpSegment.writeUInt16BE(0, 0); // optional source port absent; cannot identify a reply port
+udpSegment.writeUInt16BE(destinationPort, 2);
+udpSegment.writeUInt16BE(udpLength, 4);
+udpSegment.writeUInt16BE(0, 6); // zero checksum allowed for IPv4
+p55PayloadBytes.copy(udpSegment, 8);
+assert.equal(udpSegment.length, 84);
+assert.equal(udpSegment.subarray(0, 8).toString("hex"), "0000011900540000");
+assert.equal(udpSegment.subarray(8).toString("ascii"), p55Payload);
+assert.equal(p55Payload.slice(0, 2), "LP");
+const lpOccurrences = corpus.pages.flatMap(page => {
+  const symbols = page.indices.map(index => BASE29_TEXT[index]).join("");
+  const hits = [];
+  for (let at = symbols.indexOf("LP"); at >= 0; at = symbols.indexOf("LP", at + 1)) {
+    hits.push({page: page.page, offset: at});
+  }
+  return hits;
+});
+assert.equal(lpOccurrences.length, 23);
+assert.deepEqual(lpOccurrences.filter(hit => hit.offset === 0), [{page: 55, offset: 0}]);
+assert.equal(primesUpTo(281).length, 60); // 281 is prime #60, but no signed ordinal instruction.
+
 
 // Also test the simplest direct use of Q as a GP29 additive key stream.
 // The result is deliberately bounded: MSB/LSB order, +/- sign, no phase fit.
@@ -323,6 +346,19 @@ console.log(JSON.stringify({
     payloadHex: p55PayloadBytes.toString("hex"),
     udpHeaderLength: udpHeaderBytes,
     udpDatagramLength: udpLength,
+    base29PageLocalPrefix: p55Payload.slice(0, 2),
+    corpusLpPairOccurrences: lpOccurrences.length,
+    lpAtOriginalPageOffsetZero: lpOccurrences.filter(hit => hit.offset === 0),
+    prime281Ordinal: primesUpTo(281).length,
+    candidateZeroBasedOrdinal: 59,
+    illustrativeUdpSegment: {
+      sourcePort: 0,
+      checksum: 0,
+      headerHex: udpSegment.subarray(0, 8).toString("hex"),
+      fullHex: udpSegment.toString("hex"),
+      usableReplyPort: false,
+      transmitted: false
+    },
     udpLengthHex: "0x" + udpLengthHex,
     destinationPortHex: "0x" + destinationPortHex,
     transmitted: false
@@ -333,7 +369,7 @@ console.log(JSON.stringify({
     paddedHex: qHex59,
     sha512EqualsPrintedTarget: qSha512 === TARGET_HEX,
     sha512: qSha512,
-    identityWithMissing59Bin: "unverified candidate only"
+    identityWithMissing59Bin: "unsupported: 59 denotes page number, not archived file length"
   },
   qBase29DirectKeyGate: {
     keyLength: qBase29Msd.length,

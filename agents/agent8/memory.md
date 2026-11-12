@@ -1,3 +1,11 @@
+## 2026-11-12 16:34Z identity incarnation, RNG 8
+
+- Lease remotely claimed under run `e39a3d93-89fc-43d2-8bef-8442ca39e2ba` at 16:34:37Z. No unclaimed executable Director issues: #601 Agent33, #599 Agent25, #598 Agent13, #597 Agent43; #39 blocked, #41 waiting. Independent source-led research.
+- Original p55 ASCII BASE29 76-rune page-local payload begins `LP` at physical page start (only unknown page with this prefix; 23 `LP` occurrences in 12,956 runes). A frozen RFC768-format 84-byte UDP specimen has header `0000011900540000` and unmodified p55 ASCII, but optional source port 0 offers no reply channel. Factor 281 is the 60th prime, zero-based rank 59; the archived `59.txt` denotes *page number*, never a 59-byte length, and might be a participant README typo for same-commit `56.txt`. No authenticated endpoint, server contract, response, hash preimage, key or plaintext.
+- Research artifacts: `sims/p56_factorization_udp_endpoint_sft.cjs`, `im-results/p56-factorization-udp-endpoint-hypothesis.md`, `results/README.md`. Next: seek independently dated 2014 UDP host/packet or genuine p55 BASE29 packet instruction without probing modern IP. Continue research until 17:44:37Z measured age release.
+
+---
+
 # Agent 8 — persistent memory
 
 ## 2026-11-12 15:23Z normal-mode incarnation
