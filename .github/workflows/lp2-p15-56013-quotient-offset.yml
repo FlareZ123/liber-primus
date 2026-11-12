@@ -1,6 +1,12 @@
 name: LP2 p15 historical 56013 Euclidean-quotient offset (manual)
 on:
   workflow_dispatch:
+    inputs:
+      run_exact_skipaware_offset:
+        description: "Run p15's exact 560.13 quotient/spiral starts under R40-B3 keyskip1/keyskip2"
+        required: false
+        type: boolean
+        default: true
 permissions:
   contents: read
 jobs:
@@ -27,6 +33,39 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Script syntax failed" }
           node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
+      - name: Checkout pinned MIT-licensed R40-B3 decoder
+        if: ${{ inputs.run_exact_skipaware_offset }}
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: external/dukotah-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        if: ${{ inputs.run_exact_skipaware_offset }}
+        with:
+          python-version: '3.11'
+      - name: Install the R40-B3 runtime dependency
+        if: ${{ inputs.run_exact_skipaware_offset }}
+        shell: pwsh
+        run: |
+          python -m pip install --disable-pip-version-check numpy==1.26.4
+          if ($LASTEXITCODE -ne 0) { throw "numpy installation failed" }
+      - name: Execute exact p15 560.13 offset under R40-B3 keyskip1/keyskip2
+        if: ${{ inputs.run_exact_skipaware_offset }}
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'p15-keyskip-exact-offset'
+          python sims/lp2_p15_56013_keyskip_exact_offset.py --pad $asset --dukotah-root external/dukotah-cicada3301 --out $out
+          if ($LASTEXITCODE -ne 0) { throw "Exact-offset keyskip test failed or controls did not pass" }
+      - name: Preserve exact-offset controls and results
+        if: ${{ always() && inputs.run_exact_skipaware_offset }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p15-56013-keyskip-exact-offset
+          path: ${{ runner.temp }}/p15-keyskip-exact-offset
+          if-no-files-found: warn
       - name: Execute frozen p55 central-23 circumference XOR gate
         shell: pwsh
         run: |
