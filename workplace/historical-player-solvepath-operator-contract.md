@@ -27,6 +27,31 @@
 - **XOR** appears in the 2013 participant-built phone/ISO route and the 2014 three-share reconstruction; both have stage-specific source data. **Transposition** appears in two distinct 2014 stages with different widths/orders. These are family-level similarities, not a shared cross-round key schedule.
 - **One-off or stage-local mechanisms:** ROT−4 on the 2012 appended URL; MIDI note/timing substitution; 2013 BASE29/DH/NEXT protocol, Shamir threshold recovery and ICMP prime-ID hypothesis; 2014 Vigenère small-image key, 7-/14-column transpositions and OpenPuff v4.00. No evidence shows these parameters were intended to recur unchanged in LP2.
 
+## How successful Cicada stages signalled an operation
+
+The evidence does not prove a universal authorial grammar. It does show a recurring solve-path shape: a visible clue identifies an action/input; a source or solved page fixes parameters; the result has a recognizable output or next-stage check. Signature status below is relative to the preserved Cicada key, not real-world identity.
+
+| Clue | Human action / operation | Observable output | Evidence limit |
+|---|---|---|---|
+| 2012 image: “Tiberius Claudius Caesar” beside encoded text | Recognize Caesar; ROT−4 | Next image URL | Preserved original-image/participant archive; not signed. |
+| 2012 MIDI email: “Let the Chorus be your guide” | Inspect MIDI; note_off value + delta-time, sorted and mapped | GPG-key/wordlist instruction plus Blake chorus | Clear-signed email now verifies under key ID 181F01E57A35090F; decrypted MIDI is archive-derived and 49-word list is recipient-specific. |
+| 2013 TCP signed challenge explicitly names BASE29, DH, NEXT | Run BASE29 and Diffie–Hellman as specified | 3301→3QO and published DH example | Signature verified; does not authenticate undocumented first-onion commands. |
+| 2013 signed ICMP clue: “knock on the sky and listen” | Ping; inspect ICMP echo response | Signed continuation message | Signed clue/output preserved; only part of the proposed packet sequence is directly observed. |
+| 2014 Stage04 signed OutGuess payload: “Let the text guide you” plus runic image | Extract carrier; use solved LP1 phrase WELCOME PILGRIM TO THE as Vigenère key | avowyfgl5lkzfj3n.onion | Signature verified; clue, prior plaintext, key and output are identifiable. |
+| 2016 signed tree image: “words are the map … numbers are the direction” | Extract/verify message; match tree to p32, read 11×11 row-major | Selects p32 and orientation; sums 563×569 | Signature verified; no start cell, traversal, direction table or stopping rule is supplied. |
+
+The 2012 Britannica/Agrippa and 2014 GEB book-code reconstructions add a weaker but consistent pattern: the clue identifies a particular book and supplies a coordinate grammar before lookup. They are participant-preserved reconstructions, not additional signature-verified messages.
+
+**Non-selectors:** recurring 1033/3301 values without a consumer; OutGuess reuse without a page-specific cue; Möbius imagery without wheel/state parameters; the unsigned 59.txt README with no 59.txt/59.bin; conflicting OpenPuff password witnesses; and p2 literal glyph reflection, now rejected as noninjective/nonlinguistic. A plausible pattern is not an operation selector.
+
+### Three falsifiable LP2 predictions
+
+1. **p15:** p15 infinity + p33–p39 header + 2013 prime_echo motivate F17=1597→p1598=13477=29×464+21. Promotion requires an original source selecting a reversible consumer; #479 owns that gate.
+2. **p32:** the 2016 signed clue selects page and 11×11 row-major orientation. A path claim must predeclare an original-source start, movement/direction and stopping rule; these are still missing.
+3. **p55:** p56 asks for a separate deep-web page hashing to a 128-hex target; p57's instar parable supplies no address grammar. Decode all 76 p55 runes first; only explicit plaintext/source evidence may select URL, Tor address, page pointer or preimage format (#490 found no justified format).
+
+**Method:** require a visible cue, independently fixed parameters, a predeclared output contract and a held-out/original-cipher test. This is a ranking heuristic, not a claim that every LP2 page must follow earlier stages.
+
 ## LP2 transfer decision: one live structural candidate, no cipher consumer
 
 The historical evidence still supplies **no source-selected LP2 cipher/key consumer or inverse**. Earlier solve paths begin with a visible, discriminating instruction: Caesar wording, a named book plus coordinates, “follow the chorus,” a signed protocol command, an explicit steganographic carrier, or a signed tree-image mapping. No earlier source tells a player to apply the 2012 Caesar shift, MIDI substitution, 2013 DH/SSSS/prime counter, 2014 Vigenère/OpenPuff/transposition key, or a 49-word grid to the 56 unknown LP2 pages.
