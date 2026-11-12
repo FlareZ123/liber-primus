@@ -27,7 +27,7 @@ These match counts are chance-scale, with no plaintext evidence or identified re
 
 As a positive control, 180 frozen GF841 polynomial coefficients `(11j+7 mod29,17j+5 mod29)` were evaluated at all 256 `g^j` points. Interpolating only the final 180 planted evaluations recovers the withheld first 76 field symbols **76/76 exactly**.
 
-The complete self-contained CommonJS source-input reproducer is [sims/lp2_terminal256_gf841_rs180_parity_sft.cjs](../sims/lp2_terminal256_gf841_rs180_parity_sft.cjs). It reads the canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), checks printed geometry, performs exact field arithmetic and evaluates all four output projections. The original arithmetic was separately run before the reproducer was committed.
+The complete self-contained CommonJS source-input reproducer is [sims/lp2_terminal256_gf841_rs180_parity_sft.cjs](../sims/lp2_terminal256_gf841_rs180_parity_sft.cjs). It reads the canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), checks printed geometry, performs exact field arithmetic and evaluates all four output projections. The corrected complete source-input CJS also passed [manual Node.js 22 GitHub Actions regression 43270101674](https://github.com/FlareZ123/liber-primus/actions/runs/43270101674), including 180 original source interpolation constraints, 76/76 planted field-recovery controls and the original mismatch certificate. An initial invocation failed only on an unbound output-print variable; the source and final CI run have been corrected.
 
 ## Cryptanalytic consequence
 
