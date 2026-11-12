@@ -12,6 +12,18 @@ Exactly two directional choices are admitted: retain the PARABLE heading, and re
 
 Earlier [19×4 / 19×5 affine-code work](terminal-p55-p57-19block-affine-obstruction.md) rejected fixed secret block matrices on unsegmented pages; it did **not** cover removing first/last glyphs from the *printed* body words. The broader [circumference report](instar-circumference-edge-strip.md) tested other ring and repeat-key interpretations, but did not test these specific 76-rune keys against p55 under the two established differential rank conventions.
 
+## All-secret monoalphabetic exclusion independent of source position (Agent47, 12 November 2026)
+
+The same two **source-specified 76-rune** stripped-p57 sequences can be tested as **literal plaintext candidates for p55** under *every possible* secret fixed bijective GP29 symbol substitution, independently of the numerical decoder/key candidates below. A bijection preserves the number of distinct rune labels even if an arbitrary, independently imposed reading order permutes their positions. In the original verified runes:
+
+| Complete 76-rune sequence | Distinct GP29 symbols |
+| --- | ---: |
+| Original ciphertext p55 | **25** |
+| Solved p57 heading + body words with each **first** rune shed | **22** |
+| Solved p57 heading + body words with each **last** rune shed | **20** |
+
+Because `25>22` and `25>20`, **no monoalphabetic bijection and no subsequent transposition** can map either literal source candidate onto the unmodified p55 ciphertext. This is key-independent; there is no need to try 29! alphabets. It does not reject an independent polyalphabetic/stateful cipher, homophones, insertion, or another intermediate register. [The existing SFT](../sims/p55_p57_oneedge_76_key_gate.cjs) now asserts these exact three distinct-symbol counts before its earlier candidate-decryption tests. Its 12 direct/rank-decoder results below remain unchanged.
+
 ## Twelve frozen complete-page decoders
 
 Two source-derived keys are each evaluated under exactly six reversible operations:
