@@ -18,7 +18,7 @@ const matrices = fs.readFileSync(path.join(root,
 const digits = [1,0,3,3,3,3,0,1];
 assert.deepEqual(matrices.map(A => A.length), [5,7,5]);
 const p33 = book.pages[33].indices;
-assert.equal(p33.length, 261);
+assert.equal(p33.length, 214);
 const original = p33.slice(0,91).concat(digits);
 assert.equal(original.length, 99);
 const mod = n => ((n % 29) + 29) % 29;
