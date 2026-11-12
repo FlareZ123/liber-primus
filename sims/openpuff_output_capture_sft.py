@@ -70,6 +70,7 @@ def load_driver():
     keyboard = types.ModuleType("pywinauto.keyboard")
     keyboard.send_keys = lambda value: None
     root = types.ModuleType("pywinauto")
+    root.Desktop = object  # Stub the additional top-level symbol imported by the driver.
     root.application = app
     root.keyboard = keyboard
     sys.modules["pywinauto"] = root
