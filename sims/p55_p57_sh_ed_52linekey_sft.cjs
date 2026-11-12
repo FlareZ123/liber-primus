@@ -22,6 +22,18 @@ const c=page(55).slice(24),k=page(57).slice(43);
 assert.equal(c.length,52);
 assert.equal(k.length,52);
 const decoded=c.map((v,i)=>mod(v-k[i]));
+/** A secret position-shuffle plus 29! substitution preserves sorted counts. */
+function sortedCount(values){
+ const freq=new Uint16Array(29);
+ values.forEach(v=>freq[v]++);
+ return [...freq].sort((a,b)=>b-a);
+}
+const cipherHistogram=sortedCount(c),plainHistogram=sortedCount(k);
+const sortedDistance=cipherHistogram.reduce((sum,n,i)=>
+ sum+Math.abs(n-plainHistogram[i]),0)/2;
+assert.equal(new Set(c).size,21);
+assert.equal(new Set(k).size,18);
+assert.equal(sortedDistance,8);
 assert.deepEqual(decoded.map((v,i)=>mod(v+k[i])),c);
 const alphabet=Object.fromEntries(corpus.translit.map((s,i)=>[s,i]));
 /** @param {string} text @returns {number[]} */
@@ -73,5 +85,7 @@ console.log(JSON.stringify({
  decodedIoC:IoC,nativeControlCount:native.length,
  nativeMinimum:native[0],nativeMedian:native[2092],
  nativeAtOrBelowDecoded:0,
+  fixedBijectionPlusArbitraryShuffleImpossible:true,
+  minimalClassCountChanges:sortedDistance,
  decodedTranslit:decoded.map(x=>corpus.translit[x]).join("")
 },null,2));
