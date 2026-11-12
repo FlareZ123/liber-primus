@@ -14,7 +14,15 @@ const raw = fs.readFileSync(path.join(ROOT, "resources/liber-primus/lp2-transcri
   .replace(/\r/g, "").split("%").slice(0, 55).join("%");
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const sequence = [];
-for (const ch of raw) if (runeIndex.has(ch)) sequence.push(runeIndex.get(ch));
+const pageBreakOffsets = [];
+const lineBreakOffsets = [];
+const nonRuneSeparatorOffsets = [];
+for (const ch of raw) {
+  if (runeIndex.has(ch)) sequence.push(runeIndex.get(ch));
+  else if (ch === "%") pageBreakOffsets.push(sequence.length);
+  else if (ch === "/") lineBreakOffsets.push(sequence.length);
+  else if (/\\s/u.test(ch) || /[.,;:!?'"()\\-]/u.test(ch)) nonRuneSeparatorOffsets.push(sequence.length);
+}
 assert.equal(sequence.length, 12956, "canonical original LP2 rune count");
 
 const blocks = [];
@@ -63,6 +71,28 @@ const pearson = (xs, ys) => {
 const observed = blocks.map((b) => b.observedDoublets);
 const expected = blocks.map((b) => b.expectedFromMarginals);
 const ratio = blocks.map((b) => b.observedOverExpected);
+const doubletPositions = [];
+for (let i = 0; i < sequence.length - 1; i++) if (sequence[i] === sequence[i + 1]) doubletPositions.push(i);
+const asSet = (xs) => new Set(xs);
+const pageOffsets = asSet(pageBreakOffsets);
+const lineOffsets = asSet(lineBreakOffsets);
+const separatorOffsets = asSet(nonRuneSeparatorOffsets);
+const crossingCount = (offsets) => doubletPositions.filter((p) => offsets.has(p + 1)).length;
+const boundarySummary = {
+  pageBreakCount: pageOffsets.size,
+  lineBreakCount: lineOffsets.size,
+  nonRuneSeparatorCount: separatorOffsets.size,
+  doubletsCrossingPageBreak: crossingCount(pageOffsets),
+  doubletsCrossingLineBreak: crossingCount(lineOffsets),
+  doubletsCrossingNonRuneSeparator: crossingCount(separatorOffsets),
+  uniformPositionExpectation: {
+    page: Number((doubletPositions.length * pageOffsets.size / (sequence.length - 1)).toFixed(2)),
+    line: Number((doubletPositions.length * lineOffsets.size / (sequence.length - 1)).toFixed(2)),
+    nonRuneSeparator: Number((doubletPositions.length * separatorOffsets.size / (sequence.length - 1)).toFixed(2))
+  }
+};
+assert.deepEqual([boundarySummary.pageBreakCount,boundarySummary.lineBreakCount,boundarySummary.nonRuneSeparatorCount],[54,594,3316]);
+assert.deepEqual([boundarySummary.doubletsCrossingPageBreak,boundarySummary.doubletsCrossingLineBreak,boundarySummary.doubletsCrossingNonRuneSeparator],[0,4,26]);
 const summary = {
   runeCount: sequence.length,
   blockSize: 1000,
@@ -70,6 +100,7 @@ const summary = {
   expectedFromBlockMarginals: expected,
   marginalEqualProbability: blocks.map((b) => b.marginalEqualProbability),
   observedOverExpected: ratio,
+  boundarySummary,
   expectedRange: [Math.min(...expected), Math.max(...expected)],
   observedRange: [Math.min(...observed), Math.max(...observed)],
   ratioRange: [Math.min(...ratio), Math.max(...ratio)],

@@ -41,6 +41,12 @@ This is a local-composition control, not a model of the cipher or the generator'
 
 The expected counts from local marginals vary only **32.659–34.782** (about 6.5%); observed counts vary **2–11** (5.5×). The Pearson correlation between observed and marginal-expected counts is only **0.194**. The observed/expected suppression ratio varies **0.058–0.322**.
 
+## Physical-separator control
+
+The same canonical parse contains 54 page-break offsets, 594 line-wrap offsets, and 3,316 distinct non-rune separator offsets. Of the 86 adjacent-equal pairs, **0** cross a page break, **4** cross a line wrap, and **26** cross any non-rune separator. If the 86 events were uniformly positioned, the descriptive expectations would be **0.36**, **3.94**, and **22.01**, respectively. There is no conspicuous page/line/separator pile-up; the observed counts are close to those crude placement expectations.
+
+This is a descriptive boundary check, not a formal significance test. It rules out the obvious possibility that the T7 profile is mainly created by concatenating across page/line/word separators, but it does not distinguish a drifting filter from other within-page sequential structure.
+
 ## Decision
 
 Changing the local 29-symbol composition is **not sufficient** to explain the block-scale variation in observed doublet slips. The result is consistent with a sequential/state-dependent process (for example, a changing anti-repeat rejection/slip probability), but it does **not** establish that mechanism. It also does not rule out other sequential confounds, page/line boundary effects, transcription preprocessing, or a more complex source process.
