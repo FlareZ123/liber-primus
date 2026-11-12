@@ -3,7 +3,7 @@
  *
  * Uses libjpeg's exact quantized DCT blocks, with no image re-encoding,
  * to compare the source's invariant background outside the union of the
- * page-specific content bounding rectangle.
+ * fixed outer frame margins selected from the repeated page template.
  */
 #include <assert.h>
 #include <inttypes.h>
@@ -40,7 +40,7 @@ static void close_source(Source *source) {
 }
 
 static int outside(int x, int y) {
-    return x + 7 < 591 || x > 1831 || y + 7 < 624 || y > 3183;
+    return x < 512 || x >= 1888 || y < 512 || y >= 3200;
 }
 
 int main(int argc, char **argv) {
@@ -61,8 +61,8 @@ int main(int argc, char **argv) {
             for (int k=1; k<64; ++k) eligible += (rr[0][col][k] != 0);
         }
     }
-    assert(blocks == 85080);
-    assert(eligible == 276346);
+    assert(blocks == 77208);
+    assert(eligible == 270846);
     printf("reference invariant luma blocks=%" PRIu64
            " exact nonzero AC=%" PRIu64 "\n", blocks, eligible);
 
