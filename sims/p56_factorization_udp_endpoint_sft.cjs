@@ -207,6 +207,25 @@ const lpOccurrences = corpus.pages.flatMap(page => {
 assert.equal(lpOccurrences.length, 23);
 assert.deepEqual(lpOccurrences.filter(hit => hit.offset === 0), [{page: 55, offset: 0}]);
 assert.equal(primesUpTo(281).length, 60); // 281 is prime #60, but no signed ordinal instruction.
+// Look-elsewhere: the target factors support a 281-byte UDP shape
+// for six original 273-rune pages, as well as 84 bytes for p55.
+const compatibleUdpLengthPages = corpus.pages
+  .filter(page => page.page <= 55 && page.indices.length > 0
+    && N % BigInt(page.indices.length + udpHeaderBytes) === 0n)
+  .map(page => ({
+    page: page.page,
+    runes: page.indices.length,
+    datagramBytes: page.indices.length + udpHeaderBytes
+  }));
+assert.deepEqual(compatibleUdpLengthPages, [
+  {page: 11, runes: 273, datagramBytes: 281},
+  {page: 17, runes: 273, datagramBytes: 281},
+  {page: 21, runes: 273, datagramBytes: 281},
+  {page: 25, runes: 273, datagramBytes: 281},
+  {page: 41, runes: 273, datagramBytes: 281},
+  {page: 44, runes: 273, datagramBytes: 281},
+  {page: 55, runes: 76, datagramBytes: 84}
+]);
 
 
 // Also test the simplest direct use of Q as a GP29 additive key stream.
@@ -350,6 +369,7 @@ console.log(JSON.stringify({
     corpusLpPairOccurrences: lpOccurrences.length,
     lpAtOriginalPageOffsetZero: lpOccurrences.filter(hit => hit.offset === 0),
     prime281Ordinal: primesUpTo(281).length,
+    allOriginalUnknownPagesWhoseHeaderPlusRuneaCountDividesTarget: compatibleUdpLengthPages,
     candidateZeroBasedOrdinal: 59,
     illustrativeUdpSegment: {
       sourcePort: 0,
