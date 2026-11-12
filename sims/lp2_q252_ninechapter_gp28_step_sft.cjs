@@ -159,6 +159,92 @@ const observed = decoded.map((runes,s) => ({
   candidateFirst80GP:runes.slice(0,80)
     .map(x => source.translit[x]).join('')
 }));
+/**
+ * Key-independent collision invariant for the distinct NONZERO-step clock.
+ * Secret 28-symbol substitutions and phase-specific Q-derived changes cannot
+ * alter symbol equality within any of the nine by 28 phase bins. Use original
+ * C differences minus one, a bijective relabeling of log15 differences.
+ *
+ * @typedef {{bin:number,symbol:number}} RankSite
+ */
+/** @type {RankSite[]} */
+const rankSites = [];
+let markerCount = 0;
+for (let s = 0; s < chapters.length; s++) {
+  let phase = 0;
+  const original = chapters[s];
+  for (let i = 1; i < original.length; i++) {
+    const d = mod(original[i] - original[i-1]);
+    if (d === 0) { markerCount++; continue; }
+    rankSites.push({bin:28*s+(phase++%28),symbol:d-1});
+  }
+}
+assert.equal(markerCount, 86);
+assert.equal(rankSites.length,12861);
+/**
+ * Same-bin exact-equality invariant; independent of any secret bijection.
+ * @param {number[]} symbols One symbol per nonzero original difference.
+ * @returns {{hits:number,pairs:number,rate:number}}
+ */
+function equality(symbols) {
+  const bins = Array.from({length:252}, () => Array(28).fill(0));
+  const totals = Array(252).fill(0);
+  assert.equal(symbols.length,rankSites.length);
+  for (let i = 0; i < rankSites.length; i++) {
+    const bin=rankSites[i].bin;
+    bins[bin][symbols[i]]++;
+    totals[bin]++;
+  }
+  const choose2 = n => n*(n-1)/2;
+  const hits=bins.reduce((sum,row) => sum+
+    row.reduce((inner,n) => inner+choose2(n),0),0);
+  const pairs=totals.reduce((sum,n) => sum+choose2(n),0);
+  return {hits,pairs,rate:hits/pairs};
+}
+const originalEquality=equality(rankSites.map(x=>x.symbol));
+assert.equal(originalEquality.hits,14513);
+assert.equal(originalEquality.pairs,407716);
+// Independent held-out reference: 16 non-overlapping original-author
+// Shakespeare GP28 segments matched to the exact 12,861 symbol count.
+// No candidate decoded source letters are used in fitting or translation.
+const shakespeare=fs.readFileSync(path.join(root,
+  'resources/control/shakespeare_first300k.txt'),'utf8');
+const letters=new Map(source.translit.map((x,i)=>[x,i]));
+const englishGp28=[];
+for (const raw of shakespeare.toUpperCase().match(/[A-Z]+/g)||[]) {
+  const word=raw.replace(/QU/g,'CW').replace(/V/g,'U')
+    .replace(/K/g,'C').replace(/Z/g,'S');
+  for (let i=0;i<word.length;) {
+    const pair=letters.get(word.slice(i,i+2));
+    const val=pair===undefined?letters.get(word[i]):pair;
+    if(val!==undefined&&val!==28)englishGp28.push(val);
+    i+=pair===undefined?1:2;
+  }
+}
+assert.equal(englishGp28.length,217167);
+const windowCount=Math.floor(englishGp28.length/rankSites.length);
+assert.equal(windowCount,16);
+const nativeRates=[];
+for (let j=0;j<windowCount;j++) {
+  const native=englishGp28.slice(j*rankSites.length,(j+1)*rankSites.length);
+  nativeRates.push(equality(native).rate);
+}
+nativeRates.sort((a,b)=>a-b);
+assert.ok(nativeRates[0]>0.059);
+assert.ok(originalEquality.rate<0.04);
+const invariant={
+  original:originalEquality,
+  keyClass:'arbitrary secret GP28 bijection per chapter and nonzero-step phase',
+  controls:'16 disjoint source-native Shakespeare GP28 windows, each 12861 runes',
+  sourcePoolSymbols:englishGp28.length,
+  nativeMin:nativeRates[0],nativeMedian:nativeRates[8],
+  nativeMax:nativeRates[15],nativeAtOrBelowOriginal:nativeRates.filter(
+    r=>r<=originalEquality.rate).length,
+  limitation:'Necessary condition assumes native-GP English source under a '+
+    'stationary per-chapter period28 permutation; not a universal '+
+    'exclusion of stateful or non-English ciphers.'
+};
+
 const originalIoc = ioc(chapters.flat());
 const candidateIoc = ioc(decoded.flat());
 const nativeIoc = ioc(positive.flat());
@@ -169,7 +255,7 @@ console.log(JSON.stringify({
     factorRemainder:remainder},
   operator:'printed-order Q252 as nine 28-key blocks; root15 nonzero GP28 '+
     'predecessor log steps; nonzero clock; EA zero-step marker; subtract key',
-  originalIoc,candidateIoc,nativeIoc,
+  originalIoc,candidateIoc,nativeIoc,invariant,
   originalAndPositiveRoundtrip:'12956/12956 each',
   readouts:observed,
   conclusion:'Complete original decoder remains near random; no coherent '+
