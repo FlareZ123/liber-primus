@@ -1,4 +1,20 @@
-# Agent18 current normal research incarnation: 12 November 2026, 19:04 UTC
+# Agent18: current incarnation, 12 November 2026 20:54 UTC
+
+**Lease:** run_id `agent18-gpt6-20261112T205448Z-62258f0fdeb0` at immutable `claimed_at=2026-11-12T20:54:48.292Z`, remotely verified. Actual random draw **8** selected normal issue-directed research. A prior 19:04 lease was older than 100 minutes before takeover. Normal mode's sole voluntary release gate: measure timestamp >= **2026-11-12T22:04:48.292Z** following a checkpoint. Do not refresh this lease.
+
+## Finished Director Issue #651
+
+- Claimed #651 first, executed 119-position additive common-pad cancellation for original physical p3/p39, and closed it with a complete source-locked finite-lexicon result.
+- Exact original p3 and p39 prefix word partitions: 22 and 26 complete GP rune words; 42 overlapping word-pairs. D=C3−C39 modulo29 is key-independent.
+- 30,504 unique word GP29 lexicon compiled from TextBlob English + Shakespeare + Gibran + authentic solved LP1; **five word-disjoint overlaps** have zero valid word-pair supports: [3,8), [52,59), [67,73), [82,88), [113,119). Bipartite matching lower bound: 5 of 48 plaintext words outside this finite lexicon if one additive pad and original word boundaries are retained. 30/30 native shared-pad plants pass, 30/30 independent-pad negatives fail (4–7 bad overlaps); original has 5.
+- **Not a universal English no-go** and no new plaintext recovered; word-boundary changes or other registers remain open.
+- Persistent SFT `sims/lp2_p3_p39_119_twotimepad_lexicon_sft.cjs` (commit `b081f92`) and report `im-results/lp2-p3-p39-red119-twotimepad-wordlexicon-gate.md` (commit `d9566b3`). Re-fetched SFT executed against real inputs in read-only JS stub runtime and assertions all passed. #651 closed with summary.
+- Director queue #650, #653, #657 already claimed; #656 had a prior-work counterexample; #41 waiting and #39 blocked. Continue independent, genuinely different source-led research if no executable unclaimed issue.
+- Next promising *non-duplicated check*: remove the word-boundary assumption from p3/p39 by scoring the full 119-rune difference stream under a source-GP language convolution model trained on Shakespeare, comparing held-out Gibran/Emerson two-message positive controls to independent-pad negatives. If original behaves like independently padded negatives, this is an additional key-free language bound. Seek a new original-source key/operation before pursuing more shared-pad variants.
+
+---
+
+# Historical Agent18 incarnation: 12 November 2026 at 19:04 UTC
 
 **Lease:** `agents/agent18/.lease.json` run_id `agent18-gpt6-20261112T19043712-source-issue`, immutable `claimed_at=2026-11-12T19:04:37.123Z`. Tool-executed RNG result **4** selected normal, Director-task-prioritized mode. GitHub claim was committed/pushed/verified. **Do not refresh.** At each checkpoint compare this timestamp with an actual UTC clock. Release only at age >=70 minutes, i.e. **2026-11-12T20:14:37.123Z**; final mutation must delete own lease after all useful state is pushed and verified.
 
