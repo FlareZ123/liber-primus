@@ -1,6 +1,6 @@
 # LP2 p15 red-heading BASE29 coincidence and CicadaOS 560.13 transfer gate
 
-**Classification: original-input arithmetic, source-frozen 118 MB historic-file negative and bounded earlier-prefix tests. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026.**
+**Classification: original-input arithmetic; completed fixed original-file XOR/additive/five-bit and R40-B3 key-skip source-transfer negatives. No recovered unknown LP2 plaintext, authenticated key or intended continuation. Agent 5, 11 November 2026; original R40-B3 run completed by Agent11, 12 November 2026.**
 
 ## Why this route is attractive
 
@@ -90,6 +90,22 @@ The unchanged original 139-rune body has IoC **0.03492858**. The GP29 results sh
 
 The original **560** remainder identifies the historical numeric dataset family. The grid-prime suffix intersection conditionally selects **560.13**, while the *historical* offset12821 supplies one independent byte position. The proposed rules connecting LP2 red headings, suffixes and 2013 pads are still unauthenticated. Direct contiguous-byte XOR, ordinary GP29 addition, five-bit packing, the repeated 16-byte prime-selected key, and the speculative lower-heading offset 2293 have all failed on their exact original inputs; do not repeat them or broaden the pad scan.
 
-One distinct stateful consumer remains as a bounded, source-fixed test rather than an open-ended pad search. The pinned R40-B3 COSPAD offset generator uses 250,372 distinct positions per 560.13 builder/direction cell and omits the exact p15 quotient offset **8,952,964** and all 16 positions **8,952,964 + p15 spiral prime**. The new [R40-B3 keyskip1/keyskip2 runner](../sims/lp2_p15_56013_keyskip_exact_offset.py), wired into the [manual-only workflow](../.github/workflows/lp2-p15-56013-quotient-offset.yml), tests only those 17 starts under the five existing bytewise builders, forward/reverse directions, both signs, both skip relations, and two predeclared continuous clocks (whole p0–55 and p15-body–p22). It uses the frozen panel-R36 12-register screen, L120 selection/L240 continuation gate, planted round-trip/decoy controls, and the authentic DATA/560.13 offset-12821 known-plaintext XOR/re-encryption control. **This stateful test has not yet run on the original file**; it is not evidence of a key or plaintext. The repository README forbids per-commit triggers, so the workflow must be dispatched manually. The original red headings have printed word breaks; neither concatenation nor direct modulo-29 conversion is a confirmed cipher. No unknown LP2 plaintext or cryptographic mechanism is established.
+## Completed original-data R40-B3 key-skip transfer (12 November 2026)
+
+**Decision: zero original-key prefilter survivors under the entire frozen source-selected offset family.** The source arithmetic and source-selection limits above remain unchanged. The pinned R40-B3 COSPAD generator's old 250,372-offset lists per builder/direction omitted the exact p15 red-heading quotient **8,952,964** and the sixteen **quotient plus printed p15 spiral-prime offsets**, so this was a genuinely new original-input test rather than a repeat of its broader screens.
+
+[Manual-only workflow](../.github/workflows/lp2-p15-56013-quotient-offset.yml) actually ran on the complete original DATA/560.13 in [successful Windows Actions run **43130781364**](https://github.com/FlareZ123/liber-primus/actions/runs/43130781364), preserving [control/summary/survivor JSON artifact **13905324773**](https://github.com/FlareZ123/liber-primus/actions/runs/43130781364/artifacts/13905324773). The standalone [source-frozen original-input runner](../sims/lp2_p15_56013_keyskip_exact_offset.py) asserts **118,818,811** bytes and SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`, the original p15 heading numeral, all 17 offsets and the actual full 12,956-rune ciphertext. Its authentic 2013 DATA/560.13 XOR control at offset **12,821** re-encrypts the recovered onion string exactly.
+
+| Frozen original-input mode | Candidates at L24 screen | Screen survivors | L120/L240 beam decodes |
+| --- | ---: | ---: | ---: |
+| Whole-book continuous clock, starting p0 first rune | **340** | **0** | **0** |
+| Local p15 body–p22 clock, starting after nine red heading runes | **340** | **0** | **0** |
+| **Combined** | **680** | **0** | **0** |
+
+Each clock included **17 byte offsets × five fixed bytewise builders** (`mod29`, `hi_nibble`, `lo_nibble`, `byte_scaled`, `prime_to_idx`) **× forward/reverse byte direction × both GP29 signs**. A predeclared panel-R36 12-register screen applied to the first 24 original runes of each clock. Because **no source candidate passed that initial screen**, neither `keyskip1` nor `keyskip2` reached the downstream original-cipher L120/L240 decoder. This is a **bounded prefilter exclusion** under the externally frozen R40-B3 model, not proof that all possible hidden-skip schedules are incompatible with the source file.
+
+Control quality was verified in the same run: all **three** language-register licenses and all **six** relation-specific planted gates passed; the 61,440 source-independent decoy controls had **47** screen survivors (rate **0.000764974**), and the historical XOR positive control passed. The runner status was `COMPLETE`, error list empty, **0** decoded original rows, with 840.01 seconds measured runtime. The absence of survivors is a real result, although the experiment has no new plaintext or source-authenticated inverse.
+
+**Next decision:** retire this exact quotient/spiral-relative `DATA/560.13` R40-B3 source transfer alongside the already negative direct-XOR, five-bit, GP29 additive and prime-offset variants above. Do not launch more file offsets, KDFs or clocks based on this coincidence without an independent original clue. The arithmetic identity is retained as a conditional cross-round association, not a proven pad selector.
 
 **Reproducer:** [`sims/lp2_p15_base29_56013_bridge_sft.cjs`](../sims/lp2_p15_base29_56013_bridge_sft.cjs) asserts all source digits, arithmetic, red-span uniqueness, reconstructed-pad positive control, original runic body, and exact negative readouts. Run locally with Node.js using the existing repository files. The candidate is not promoted to `results/`.
