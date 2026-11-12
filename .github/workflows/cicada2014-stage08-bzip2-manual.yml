@@ -1,0 +1,15 @@
+name: Original 2014 Stage08 bzip2 member audit
+on:
+  workflow_dispatch:
+
+jobs:
+  verify-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit archived bzip2 members and original signed output
+        run: python sims/cicada2014_stage08_bzip2_member_sft.py
