@@ -25,6 +25,7 @@ on:
           - fragment-pair
           - nine-section
           - byte-packet
+          - red119-udp-payload
           - redspan-zero
           - tree-tiling
           - tree-p32-image-direct-key
@@ -339,6 +340,10 @@ jobs:
       - name: All-secret five base28 ranks to three bytes input obstruction
         if: ${{ inputs.probe == 'byte-packet' }}
         run: node sims/lp2_base28_five_to_three_allsecret_sft.cjs
+      - name: Original SKY-UDP base60 table as offline 256-byte payload
+        if: ${{ inputs.probe == 'red119-udp-payload' }}
+        run: node sims/lp2_red119_udp_payload_candidate_sft.cjs
+
       - name: Source-locked state/class capacity and Base32 padding audit
         if: ${{ inputs.probe == 'state-class' }}
         run: node sims/state_class_nongp_register_audit.cjs
