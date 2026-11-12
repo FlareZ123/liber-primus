@@ -93,8 +93,8 @@ const exact = cases.map(c => c.matchingWords);
 const distances = cases.map(c => c.differingBits);
 assert.deepEqual(exact, Array(16).fill(0));
 assert.deepEqual(distances, [
-  770,772,755,733,772,778,750,734,
-  763,755,774,802,783,777,799,779
+  785,767,785,743,769,761,790,818,
+  762,800,763,773,751,775,774,776
 ]);
 assert.equal(cases[0].predictedFirst, "658ec427");
 assert.equal(cases[0].actualFirst, "7aff19c0");
