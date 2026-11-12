@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Original-image check of five-bit terminal ornaments on LP2 physical p55.
+"""Original-image check of shared floral-border five-bit ornaments on LP2 pp40–55.
 
 Run from repository root:
     python sims/p55_binary_ornaments.py
@@ -39,6 +39,19 @@ def main() -> None:
     assert hashlib.sha256(IMAGE.read_bytes()).hexdigest() == SHA256
     rgb = Image.open(IMAGE).convert("RGB")
     assert rgb.size == (2400, 3600)
+    # The 13/31 ornaments are copied border art across all sixteen floral pages.
+    margin_boxes = {
+        "left": ((0, 0, 500, 3600), "52fe77caca9d6a8841acec9bb2dfa7a19fdfe2df727386fcfff3c81b365aa490"),
+        "right": ((1900, 0, 2400, 3600), "090a4a52e3188abc694b7a619c372eb14acca5c16df077153f6741ea9b599728"),
+    }
+    for page in range(40, 56):
+        image_path = IMAGE.parent / f"{page + 17:02}.jpg"
+        with Image.open(image_path) as original:
+            artwork = original.convert("RGB")
+        assert artwork.size == (2400, 3600)
+        for side, (bounds, expected) in margin_boxes.items():
+            actual = hashlib.sha256(artwork.crop(bounds).tobytes()).hexdigest()
+            assert actual == expected, (page, side, actual)
     gray = np.array(rgb.convert("L"), dtype=np.uint8)
     sampled: dict[str, dict] = {}
     for side, centers in CENTERS.items():
@@ -231,6 +244,8 @@ def main() -> None:
     print(json.dumps({
         "source": str(IMAGE.relative_to(ROOT)),
         "sha256": SHA256,
+        "ornaments_shared_physical_pages": list(range(40, 56)),
+        "p55_exclusive_ornament": False,
         "reading_order": "top, middle-left, middle-right, bottom-left, bottom-right",
         "ornaments": sampled,
         "thirteen_dot_stencil_count": stencil_count,

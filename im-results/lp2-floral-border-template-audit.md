@@ -14,6 +14,10 @@ LP2 physical pp40–55 are archive images **57.jpg–72.jpg**. All 16 source JPE
 
 Both complete side margins, including the five-dot ink groups, are exactly reused from page to page. In particular, different leaf tips, stem orientations, page-specific dot masks and hidden per-page states do not occur in these coordinates.
 
+### The p55 13/31 circle motif is shared by all sixteen borders
+
+The five-ring clusters described on physical p55 are at original coordinates left **x367–424/y1477–1540** and right **x1975–2032/y1477–1541**. Both lie entirely inside the byte-identical side strips above and therefore **occur unchanged on all p40–55**, including rune-free p50. Independent exact original-RGB crop hashes for the left `(355,1460,440,1560)` and right `(1950,1460,2050,1560)` each have **one distinct value across all sixteen** source JPEGs. Reading their shared hollow/filled centers in ordinary row order yields the candidate `01101₂=13` and `11111₂=31` on every page. The two pale rings are real image features, but **cannot independently point to p55, set a page-specific key, or favor the final tree page**. The distinct central p55 artwork and any separately argued p55 address remain potentially relevant. [Ten-center SFT](../sims/p55_binary_ornaments.py) checks all sixteen source margins; [interpretation and limits](red-microdot-motif-inventory.md).
+
 ## A new, independent geometric property: the right is a mirror of the left
 
 The left and right decoded RGB bytes are different, but this does not mean that their underlying artwork differs. Read the original archive **59.jpg** (physical p42) without cropping beyond the fixed 500-pixel side strips. Convert each to grayscale and make an ink mask using a predetermined threshold **pixel intensity less than 180**. Compare the left mask to the right under only the source-visible bilateral reflection and three exact geometric controls, with no rotation/scaling/registration/threshold fitting.
