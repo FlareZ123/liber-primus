@@ -68,3 +68,8 @@ The signed challenge removes the former uncertainty about whether the BASE29/DH/
 The later 2014 Wisdom page does explicitly foreground primes and the totient function, and the source-only arithmetic pointer 1661 → cell 21:151 → cell 5:151 remains an interesting clue-constrained hypothesis. But the NUMBER service remains secondary/retrospective, the composition is inferred, and the direct 151 → Q238 p36 phase/key tests are negative. **No LP2 plaintext, encryption key, or p36 decipherment follows from this historical authentication.**
 
 The original source bytes are not copied into this repository because the archive's license notice says it cannot license third-party material. The pinned source URL, exact hash, key fingerprint, and verification procedure are retained here instead.
+
+
+## LP2 quotation-span screen
+
+The TCP-server text has now been tested as part of the bounded 2013–2014 non-literary source corpus. The reproducer fetches the pinned original PGP artifact and its upstream plaintext transcription in memory, checks the raw artifact hash and signature-inventory record, and compares the transcription against the seven original LP2 quote spans. The archive's license notice remains controlling: original third-party source bytes are not mirrored here. See [the reproducible crib gate](../../im-results/lp2-cicada-nonliterary-message-crib-gate.md); no qualifying long crib or LP2 operation was found.
