@@ -22,3 +22,5 @@ jobs:
         run: node sims/lp2_grid_p53_p55_four_ring_source_sft.cjs
       - name: Original physical-chapter all-secret substitution reuse gate
         run: node sims/lp2_layout_secret_codebook_gate_sft.cjs
+      - name: Exact original p27-to-p56 seven-rune cross-page echo
+        run: node sims/lp2_bookend7_p56_source_sft.cjs
