@@ -1,6 +1,8 @@
-# 2013 `0_wisdom` page: source and transcription
+# Original 2014 LP1 page 05 (archived as `0_wisdom`): source and transcription
 
 **Evidence class:** third-party transcription of an original puzzle-page image; the image is primary. The copied text below is a reference input, not an independent OCR or a claim that the external transcription is error-free.
+
+**Dated provenance correction (12 November 2026):** The image named `0_wisdom.jpg` (Git blob `2829e13812015601ff1014cb4427587b4a8aa3a6`) is byte-identical to the complete **2014 Stage04 original LP1 page-05 binary**, separately archived as `server-status.bin` (673,066 bytes, same Git blob). Original first-page JPEG is 336,353 bytes, followed by an encoded 178-byte numeric 1033-magic-square trailer. Both are contained in the *same original 2014 source artifact*. Its earlier appearance in 2013 has not been established by any timestamped independent source. The old “2013→2014 cross-round relation” was unsupported chronology; the exact 25/25 prime-sum equivalence remains established. [Exact original-byte SFT](../../sims/stage04_original_server_status_square_sft.py) · [Successful CI](https://github.com/FlareZ123/liber-primus/actions/runs/43126749975).
 
 ## Pinned source
 
@@ -32,4 +34,4 @@ Copied verbatim from the pinned external `0_wisdom.txt` transcription:
 
 ## Use and limits
 
-The raw table contains 12 numeric cells and 13 GP-rune word cells. Replacing each word cell with the sum of its constituent GP prime weights reproduces the archived 2014 stage04 5×5 magic square cell-for-cell. This is a derived cross-round relationship; it does not decrypt any unsolved LP2 page. The 2013 image and transcription remain distinguishable from the derived numeric expansion.
+The raw table contains 12 numeric cells and 13 GP-rune word cells. Replacing each word cell with the sum of its constituent GP prime weights reproduces the archived 2014 stage04 5×5 magic square cell-for-cell. This is a within-artifact numerical expansion of the printed rune table in the same original 2014 LP1 page05 binary. No earlier 2013 image witness is established. It does not decrypt unknown LP2 ciphertext.
