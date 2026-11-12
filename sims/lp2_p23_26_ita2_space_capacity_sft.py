@@ -39,7 +39,7 @@ def matrix_from_original():
     return np.asarray(body[16:], dtype=np.int8).reshape(201, 5)
 
 
-def legal_ita2_space_max(group):
+def legal_ita2_space_max(group, invalid_codes=INVALID_CODES):
     """Exact MILP: maximize code4 count over all 2^29 constant rune-bit maps."""
     assert group.shape == (201, 5)
     assert np.min(group) >= 0 and np.max(group) < 29
@@ -61,7 +61,7 @@ def legal_ita2_space_max(group):
 
         # Forbid nonletters-mode NULL, FIGS and LTRS codes using exact
         # disjunctive inequalities, including repeated rune identities.
-        for code in INVALID_CODES:
+        for code in invalid_codes:
             required = {}
             impossible = False
             for bit_index, rune in enumerate(group_row):
@@ -100,7 +100,7 @@ def legal_ita2_space_max(group):
     for col in range(5):
         codes = 2 * codes + bits[group[:, col]]
     spaces = int(np.sum(codes == 4))
-    assert not any(np.any(codes == v) for v in INVALID_CODES)
+    assert not any(np.any(codes == v) for v in invalid_codes)
     assert spaces == round(-opt.fun) == round(-opt.mip_dual_bound)
     return spaces, "".join(map(str, bits)), codes
 
@@ -136,6 +136,10 @@ def main():
         print(f"  one witness bit-key: {bit_key}")
         print(f"  distinct output codes: {len(set(map(int, codes)))}")
         assert spaces == 12
+        unrestricted, broad_key, broad_codes = legal_ita2_space_max(group, invalid_codes=())
+        print(f"  with NULL/FIGS/LTRS allowed, exact maximum is {unrestricted}/201 spaces")
+        print(f"  broad witness controls: NULL={sum(broad_codes == 0)}, FIGS={sum(broad_codes == 27)}, LTRS={sum(broad_codes == 31)}")
+        assert unrestricted == 36
 
     positive, encoded = native_positive_control()
     print(f"native solved-LP1 prose positive: {len(positive)} symbols, {positive.count(' ')} spaces")
