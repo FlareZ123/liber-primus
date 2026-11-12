@@ -7,7 +7,7 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const get = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8'));
 const mod = (n) => (n % 29 + 29) % 29;
-const poly = [11, 15, 9, 0, 1, 5, 10, 20, 12, 1];
+const poly = [11, 15, 0, 9, 1, 5, 10, 20, 12, 1];
 const reciprocal = poly.slice().reverse().map((x) => mod(8 * x));
 assert.equal(reciprocal[9], 1);
 
