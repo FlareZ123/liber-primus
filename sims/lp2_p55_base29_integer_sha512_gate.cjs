@@ -103,10 +103,23 @@ assert.notDeepEqual(digestOfInterior, exteriorBytes);
 const plantedChecksumOuter = toDigits(
   BigInt(`0x${digestOfInterior.toString("hex")}`), 33);
 assert.deepEqual(toMinimalBytes(toInteger(plantedChecksumOuter)), digestOfInterior);
+const asciiInterior = variants.interior43.map(i => alphabet[i]).join("");
+assert.equal(asciiInterior,
+  "JAC6N2ROH5S0EAJ15D8LKFNRD8CIA6E6FC22ISAJ5BI");
+// The 2013 signed BASE29 example uses a literal ASCII representation.
+// Test that original-format byte serialization as a separately motivated
+// source-facing SHA-1 integrity consumer, without a key/phase search.
+const asciiInteriorSha1 = crypto.createHash("sha1")
+  .update(asciiInterior, "ascii").digest("hex");
+assert.equal(asciiInteriorSha1, "a333f0368e3b15ad2465804f503b83c83e583ef0");
+assert.notEqual(asciiInteriorSha1, exteriorBytes.toString("hex"));
 const circumferenceChecksum = {
   innerDigits: 43, innerBytes: 27, outerDigits: 33, outerBytes: 20,
   actualOuterHex: exteriorBytes.toString("hex"),
   computedInnerSha1Hex: digestOfInterior.toString("hex"),
+  literal43DigitAscii: asciiInterior,
+  literal43DigitAsciiSha1: asciiInteriorSha1,
+  literalAsciiSha1Matches: asciiInteriorSha1 === exteriorBytes.toString("hex"),
   directSha1Matches: digestOfInterior.equals(exteriorBytes),
   syntheticOriginalSizedCarrierRoundTrips: true
 };

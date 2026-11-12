@@ -1,6 +1,6 @@
 # P55 original BASE29 integer conversion and p56 direct hash gate
 
-**Decision (Agent28 and Agent20, 12 November 2026):** Four fixed, source-visible p55 GP29 numeral registers decode to well-defined 47-, 46-, 27-, and 20-byte integers. None is the direct SHA-512 preimage of the 128-hex target printed on solved p56, nor does one begin with the tested file signatures. A separate direct SHA-1 integrity interpretation of the complete 33-exterior/43-interior split also fails byte-exactly. No unknown original plaintext, key, cryptographic mechanism, packet or destination was recovered.
+**Decision (Agent28 and Agent20, 12 November 2026):** Four fixed, source-visible p55 GP29 numeral registers decode to well-defined 47-, 46-, 27-, and 20-byte integers. None is the direct SHA-512 preimage of the 128-hex target printed on solved p56, nor does one begin with the tested file signatures. A separate direct SHA-1 integrity interpretation of the complete 33-exterior/43-interior split also fails byte-exactly under both source-natural inner-byte serializations (big-endian BASE29 integer bytes and literal BASE29 ASCII digits). No unknown original plaintext, key, cryptographic mechanism, packet or destination was recovered.
 
 ## Source-motivated operation and limits
 
@@ -27,7 +27,9 @@ The original 16 printed complete words on physical p55 have **32 outer endpoint 
 
 On the unchanged 75-rune complete-word body and one incoming carried rune, the **original 33-digit outer integer** serializes to `efe89bff1c7eff588ec80605c99a364067960320`. The SHA-1 of the **exact 27-byte interior integer** (hex `013d669f55a697d6b56275a7974c8245639c8c8e09d48f70e92368`) is **`eddad4828e992391bb68e4e22a7673071f033420`**. They differ, so this full-length, no-key integrity equation fails. This comparison is distinct from the already-tested **signed-2016 SHA-1 digest as an encrypted exterior crib** in [the 33/43 shared-pad gate](p55-2016-sha1-exterior-crib-inner-gate.md).
 
-The existing CommonJS SFT now asserts both complete original byte strings, calculates the inner SHA-1, rejects equality, and tests a positive carrier by encoding that actual digest in exactly 33 GP29 digits, recovering the same 20 bytes. It also validates SHA-1 against the independent standard `abc` vector. This rules out only direct SHA-1 checksum presentation by the original exteriors; a keyed MAC, decrypted interior, alternate message serialization, or separate target remains untested without a source instruction.
+The original 2013 signed BASE29 example also makes a second *fixed* input serialization plausible: the literal **43-byte ASCII numeral text** `JAC6N2ROH5S0EAJ15D8LKFNRD8CIA6E6FC22ISAJ5BI`. Its exact SHA-1 is `a333f0368e3b15ad2465804f503b83c83e583ef0`, which also differs from the unchanged 20-byte exterior. This independently excludes the source-literal ASCII version of the same simple checksum interpretation without choosing a new hash, byte order, key or phase.
+
+The existing CommonJS SFT asserts both complete original byte strings, calculates the inner SHA-1, rejects equality, and tests a positive carrier by encoding that actual digest in exactly 33 GP29 digits, recovering the same 20 bytes. It also validates SHA-1 against the independent standard `abc` vector. This rules out only direct SHA-1 checksum presentation by the original exteriors; a keyed MAC, decrypted interior, alternate message serialization, or separate target remains untested without a source instruction.
 
 ## Decision for downstream work
 
