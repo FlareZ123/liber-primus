@@ -58,6 +58,18 @@ The observation 76 = 3×25 + 1 is an intermediate **locked structural coincidenc
 
 **Decisive missing link:** Recognition of a reused source illustration plausibly brings a player back to pp14–16, but does not fix book/edition, page or chapter origin, line/word/letter addressing, coordinate extraction, glyph direction, or a reversible 131-position consumer. The original p22 page supplies no explicit numerical coordinate list or equivalent plaintext instruction. Importing GEB's dialogue-exchange grammar unchanged is undefined for these three LP1 pages; inventing offsets, a square traversal, a cyclic key, or selective source phrases would select parameters *after* examining ciphertext. Thus no unique, source-defined complete p22 book-code inverse is available, and there is no basis for a held-out plaintext test. This is a **bounded no-selector** result for the specific LP1 pp14–16→p22 coordinate hypothesis, not a claim that the p22 artwork or any future source-selected operation is meaningless. Existing direct second-koan Vigenère tests remain the only frozen transfer tested here; they are not repeated.
 
+## Separate solved-p56 φ(prime) transfer to the p55 25-cell seam: negative
+
+The 2013 original GP image authenticates the 29 prime weights, and the 2014 solved physical p56 supplies an exact cipher operation: subtract `φ(prime_j) mod29`, consuming primes starting from 2 while one author-selected literal `F` is unchanged. On p56, the sole known exceptional position is 56. On p55, the independent original LP1 p5 winged-insect/5×5 Wisdom-square reuse plus unique `F` at p55 zero-based offset25 provides a **distinct, but conditional** target/skip hypothesis. Keep **all 76 source runes**, use exactly that one non-consuming `F`, take the prime clock from prime2 at page local0, and subtract prime_j−1 without any phase fitting. This tests the solved cipher's precise operation under one original-image motivated F seam, instead of retrying an unkeyed additive search.
+
+The entire output is:
+
+`LDSRYOUAEYTJEAEOEHGIAOENOETTNTMFUAFNNODUIANXRGGSAEJNGDEOBJNAXGHIAYDXCOETEADFGXGPHBTDWLEADN`.
+
+Its GP29 IoC is **0.03859649**, compared with ciphertext **0.03789474** and known solved p57 **0.06270997**. A source-defined wrong-function control (ordinary prime_j rather than φ(prime_j)) produces IoC **0.03894737** with no plaintext. Exact solved p56 control reconstructs all **85** genuine runes and the known solved text `ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE`; the original p55 output also round-trips exactly through the forward encoder. A 75-rune solved-p57 plant across an explicit position25 `F` round-trips under the same frozen clock.
+
+Reproduce with [`sims/lp2_p55_p56_totient_25_seam_sft.cjs`](../sims/lp2_p55_p56_totient_25_seam_sft.cjs). The complete frozen test excludes the precise p55 p56-method carryover with **single F25 skip**. It cannot establish that the artist meant p55 to use p56's cipher, or justify inventing further literal-F exceptions, keys, prime phases or clock resets. The recovered moth link remains an original illustration-source connection, not an unrecognized decoder.
+
 ## Reproducer and scope
 
 Run `python sims/lp1_lp2_illustration_source_transfer_sft.py` with OpenCV/SIFT, NumPy and Pillow in the repository checkout. It consumes only `resources/liber-primus/{05,14,15,39,72}.jpg`, the canonical `lp2-corpus.json`, and the two externally established solved LP1 decipherment equations. An optional `--archive /path/to/liber-primus-jpegs.zip` supplies the same original JPEGs. Both good and wrong orientation, source image crop extents, 0.72 feature ratio threshold, RANSAC reprojection threshold 5, and direct-key clocks are frozen in code.
