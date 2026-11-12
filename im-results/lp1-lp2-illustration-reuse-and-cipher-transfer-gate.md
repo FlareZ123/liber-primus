@@ -26,6 +26,24 @@ The known second-koan inverse is `P = C − repeating FIRFUMFERENFE` with the 13
 
 These two tests reject the *literal original solved-section cipher transfer selected solely by artwork identity*. They do not exclude a different source-defined stateful inverse or a later external dependency.
 
+## Source-selected p55 Wisdom-square 25-step inverse: completed negative
+
+The moth is drawn **above LP1 p5's 5×5 number square**, furnishing a sharper original-source candidate than the general word “totient.” The literal LP2 p55 page has **76 runes**, of which the original GP29 `F` at zero-based **position 25** falls exactly after a first 25-rune pass. A **single non-consuming F** at that predetermined position leaves precisely **75 processed runes = three full 25-cell square cycles**. The location is a defensible frozen hypothesis because the original solved LP2 p56 cipher has a one-F non-consuming exception; whether the authors intended the same rule here remains unknown.
+
+Read the original LP1 p5 5×5 square row-major starting at **272**, repeat it three times, and let each modular key element be **Euler's φ(square cell) modulo 29**, based on the original printed “TOTIENT FUNCTION IS SACRED.” Use the documented solved-p56 subtraction sign, `P_i = C_i − φ(square[i mod 25]) mod29`, with the one fixed literal-F skip at p55 position25. No offset, reverse orientation, extra F, page/word resets or arbitrary codebook is fitted.
+
+The 25-element key is:
+
+`[12,15,10,14,5,4,24,19,12,6,25,23,14,23,25,6,12,19,24,4,5,14,10,15,12]`.
+
+The complete 76-rune LP2 p55 result, rendered in GP29 Latin transliteration with original punctuation omitted, is:
+
+`NINAETHJOEAWNTEONHFDSCOEUAEOEDTHTFTHANTFNPTHHGDNGNRBDCEBUWREOIADEAAEUPJBEOMEOMHHJORWSMMGTWOIA`.
+
+Its native-GP symbol IoC **0.03333333** is worse than the original ciphertext's **0.03789474**, and far below solved p57's **0.06270997**. This exact source-selected 3×25 totient inverse produces no meaningful plaintext. A positive control using 75 actual solved-p57 runes plus one explicit F in the same position round-trips under the identical cipher schedule. Reproduce with [`sims/lp2_p55_wisdom_moth_square_sft.cjs`](../sims/lp2_p55_wisdom_moth_square_sft.cjs) (`node sims/lp2_p55_wisdom_moth_square_sft.cjs`).
+
+The observation 76 = 3×25 + 1 is an intermediate **locked structural coincidence**, not a proof of intended key length. This negative test does not justify changing the square traversal, trying every F, or importing an unspecified extra prime-index transform.
+
 ## Reproducer and scope
 
 Run `python sims/lp1_lp2_illustration_source_transfer_sft.py` with OpenCV/SIFT, NumPy and Pillow in the repository checkout. It consumes only `resources/liber-primus/{05,14,15,39,72}.jpg`, the canonical `lp2-corpus.json`, and the two externally established solved LP1 decipherment equations. An optional `--archive /path/to/liber-primus-jpegs.zip` supplies the same original JPEGs. Both good and wrong orientation, source image crop extents, 0.72 feature ratio threshold, RANSAC reprojection threshold 5, and direct-key clocks are frozen in code.
