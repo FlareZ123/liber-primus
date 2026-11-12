@@ -170,10 +170,9 @@ int main(int argc, char **argv) {
 
         const size_t n = pad.size() - source.size() + 1;
         const auto original = scan(source, pad, data.model, n);
-        std::cout << "Original p54-p55 direct byte-mod29 pad: exhaustive 64-rune-prefix screening of "
-                  << "additive two-sign sweep of " << n
-                  << " offsets; " << (2ULL * n)
-                  << " prefix-scored candidate alignments. Only the top "
+        std::cout << "Original p54-p55 direct byte-mod29 pad: exhaustively scored "
+                  << (2ULL * n) << " additive candidate alignments ("
+                  << n << " offsets, both signs) on the 64-rune prefix. Only the top "
                   << BEST << " receive the full 308-rune score. The plant tests "
                   << PLANT_CONTROL_WINDOW << " offsets, not the entire file.\n";
         report(original, source, pad, data.model, "Original complete 560.13");
