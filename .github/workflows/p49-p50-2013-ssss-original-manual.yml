@@ -21,3 +21,5 @@ jobs:
         run: python sims/lp2_p50_2013_ssss_gf176_sharepack_sft.py
       - name: Run p49 row-packed GF64 monic-degree-five 5-of-10 gate
         run: node sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs
+      - name: Run original p23 five-dot whole-field SSSS capacity gate
+        run: node sims/lp2_p23_26_ssss201_field_gate_sft.cjs
