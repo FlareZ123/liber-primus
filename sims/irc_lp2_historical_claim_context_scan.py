@@ -28,7 +28,7 @@ NICK_RE = re.compile(rb"<([^>]+)>")
 UNKNOWN_PAGE = re.compile(
     rb"\b(?:LP2|liber[\s_-]*primus|"
     rb"pp?\s*0\s*(?:-|\xe2\x80\x93)\s*55|"
-    rb"(?:pages?|pg|p\.?)\s*[#:]?\s*(?:0\s*[-\u2013]\s*55|[0-4]?\d|5[0-5]))\b",
+    rb"(?:pages?|pg|p\.?)\s*[#:]?\s*(?:0\s*[-\xe2\x80\x93]\s*55|[0-4]?\d|5[0-5]))\b",
     re.IGNORECASE,
 )
 OPERATION = re.compile(
