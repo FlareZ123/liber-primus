@@ -10,12 +10,20 @@
  * No plaintext or share ID is inferred from the ciphertext.
  */
 const assert = require("node:assert/strict");
+const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
 const corpus = JSON.parse(fs.readFileSync(path.join(
   __dirname, "..", "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
 const pages = corpus.pages;
 const p2 = pages.find(p => p.page === 2).indices;
+const targetWitness = JSON.parse(fs.readFileSync(path.join(
+  __dirname, "..", "resources", "cicada2014-anend-binary-witness.json"), "utf8"));
+const p56TargetHex = targetWitness.target_hex;
+const p56TargetBytes = Buffer.from(p56TargetHex, "hex");
+assert.equal(p56TargetBytes.length, 64);
+assert.equal(crypto.createHash("sha256").update(p56TargetBytes).digest("hex"),
+  targetWitness.source_sha256);
 const fivePages = pages.filter(p => p.page >= 23 && p.page <= 26);
 assert.deepEqual(fivePages.map(p => p.indices.length), [213,270,273,265]);
 const all = fivePages.flatMap(p => p.indices);
@@ -178,7 +186,7 @@ for(let i=1;i<16;i++) {
 }
 const stats=views.map(v=>({
   layout:v.label,trials:0,legal201:0,maxAgreement:0,exactTargetMatches:0,
-  naturalReadableBytes:null,naturalDecodedPrefix:null
+  naturalReadableBytes:null,naturalDecodedPrefix:null,naturalSecretHex:null,naturalByteEntropy:null,naturalSecretHashes:null,p56HashMatches:null
 }));
 for(const ids of sets) {
   const weights=ids.map((xi,i)=>ids.reduce((q,xj,j)=>
@@ -219,6 +227,19 @@ for(const ids of sets) {
           .filter(n=>n>=32 && n<127).length;
         stat.naturalDecodedPrefix=bytes.toString("latin1")
           .replace(/[^ -~]/g,".").slice(0,35);
+        stat.naturalSecretHex=bytes.toString("hex");
+        const counts=Array(256).fill(0);
+        for(const byte of bytes)counts[byte]++;
+        stat.naturalByteEntropy=-counts.reduce((sum,count)=>count
+          ?sum+(count/bytes.length)*Math.log2(count/bytes.length):sum,0);
+        stat.naturalSecretHashes={
+          "SHA-512":crypto.createHash("sha512").update(bytes).digest("hex"),
+          "SHA3-512":crypto.createHash("sha3-512").update(bytes).digest("hex"),
+          "BLAKE2b-512":crypto.createHash("blake2b512").update(bytes).digest("hex"),
+          "SHAKE256-64":crypto.createHash("shake256",{outputLength:64}).update(bytes).digest("hex")
+        };
+        stat.p56HashMatches=Object.entries(stat.naturalSecretHashes)
+          .filter(([,digest])=>digest===p56TargetHex).map(([name])=>name);
       }
     }
   }
@@ -228,6 +249,8 @@ assert.deepEqual(stats.map(s=>s.legal201),[489,726,274,689]);
 assert.deepEqual(stats.map(s=>s.maxAgreement),[14,17,14,17]);
 assert.deepEqual(stats.map(s=>s.naturalReadableBytes),[44,54,48,47]);
 assert.ok(stats.every(s=>s.exactTargetMatches===0));
+assert.ok(stats.every(s=>s.naturalSecretHex.length===246));
+assert.ok(stats.every(s=>s.p56HashMatches.length===0));
 console.log(JSON.stringify({
   status:"PASS",date:"2026-11-12",unknownPage2Runes:201,
   unknownFiveDotChapterRunes:1005,degreeBits:984,
@@ -238,5 +261,6 @@ console.log(JSON.stringify({
   totalOriginalReconstructionTests:120960,
   targetReadings:["page2-original","page2-reversed",
     "XTEA(page2-original)","XTEA(page2-reversed)"],
-  stats,decision:"No direct page2-as-SSSS-secret match. Other share outputs unclassified."
+  p56Target:{bytes:64,hex:p56TargetHex,digestFamilies:["SHA-512","SHA3-512","BLAKE2b-512","SHAKE256-64"]},
+  stats,decision:"No direct page2-as-SSSS-secret match. The natural IDs01..05 123-byte outputs also miss the p56 target under four common 512-bit digest families (0/16); their possible key/consumer role remains untyped and source-unselected."
 },null,2));
