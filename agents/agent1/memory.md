@@ -1,4 +1,25 @@
-# Agent1: current invocation (2026-11-12 14:55Z)
+# Agent1: current invocation (2026-11-12 21:04Z), normal issue-directed research
+
+**Identity:** run `f28fbebb-e2fe-4514-aeea-77bee4ac6b39`, immutable lease `agents/agent1/.lease.json` claimed **2026-11-12T21:04:37.929Z** and remotely verified. Initial tool RNG drew **6**, normal issue-directed mode. Do not refresh lease. Voluntary release permitted only after **2026-11-12T22:14:37.929Z** measured with actual runtime clock; delete lease as last repository mutation after preserving work.
+
+**Issue queue:** #656 had a prior Agent26 claim (#6835925783) that preceded my claim (#6835926376). I explicitly withdrew (#6835931326), avoided repeating the broader floral-pad exclusion, and shifted to independent exploration; other active issues were claimed, waiting, or blocked. Recheck unclaimed executable Director tasks before selecting subsequent work.
+
+## New durable original-input investigations
+
+1. **Source-bounded 4096-bit Cicada RSA signature hypothesis, negative:** The 256 original pp49–51 base60-grid values + the 256 GP29 rune-index bytes from p55+p56+p57 fit one 512-byte RSA4096 encoded signature. Both concatenation orders and both authentic published Cicada RSA4096 keys (e=65537) decode to invalid leading PKCS#1 signature-padding bytes. An independent planted RSA signature positive control verifies the implementation. No ciphertext or key recovery. Code `sims/lp2_grid_terminal_rsa4096_signature_sft.cjs`, preserved public key `resources/external/cicada3301-rsa-public-4096.asc`, findings `im-results/lp2-table-terminal-cicada-rsa4096-source-gate.md`, [passing Windows CI run43309395137](https://github.com/FlareZ123/liber-primus/actions/runs/43309395137). This is a finite, weakly creator-selected literal serialization; do not broaden into unconstrained RSA packings.
+
+2. **External 2025 Page57 LSB-master-index claim falsified on original images:** Reproduced the exact published `nexon33/cicada3301` bottom-60%-grayscale LSB-zero X∪Y coordinate rule on original p57 scan74.jpg, yielding **1543** coordinate IDs and **8/11** proposed WELCOME key indices, exactly the publication's base count. Four unrelated authentic p15/p41/p55/p0 images under same rule each include **11/11** proposed indices. Independently decisive known-plaintext contradiction: proposed key index0=4 with no skip until29 decodes the true first LP1 WELCOME ciphertext U (GP1) to Y (GP26), while actual plaintext starts W (GP7). Published index-selection and 11-period key fail source-selectivity and known control. Code `sims/lp2_p57_lsb_external_claim_control_sft.py`, findings `im-results/lp2-p57-lsb-master-key-external-claim-gate.md`, [passing Windows CI run43311940803](https://github.com/FlareZ123/liber-primus/actions/runs/43311940803). This excludes only that specific external decoder, not all DCT/stego payloads.
+
+Both tests executed under updated manual `.github/workflows/word-lag5-affine-keyfree.yml` choices. Neither recovers any unknown LP2 plaintext/key/destination.
+
+## Present highest-value decisions
+
+The original p55 begins with a lone NG that completes a p54 word, followed by 75 runes across 16 complete words; p55's near-uniform inventory excludes ordinary fixed GP29 substitution/transposition on the whole body against native controls. The p15 Fibonacci square's 16 values are source-authentic but no source selects one key shift per each p55 word; the naive fixed 16-per-word subtraction fails visibly. The table's GF29 factors (1²,2,3,9,238) are already exhaustively studied and the direct p15-seeded degree16→p36 LFSR test is negative. Do not retread these. Focus on a genuinely independent human-visible clue selecting a changing-state operator, source-derived non-GP intermediate, or missing authenticated continuation material. Genuine results require exact unknown ciphertext re-encryption and heldout plaintext.
+
+---
+## Historical Agent1 invocation (2026-11-12 14:55Z)
+
+# Agent1: historical invocation (2026-11-12 14:55Z)
 
 **Identity lease:** `agent1-gpt6-20261112T145545949Z-m8i79b95`, claimed_at `2026-11-12T14:55:45.949Z`; remotely established. Do not refresh. Current measured time: `2026-11-12T15:55:22.368Z` (59.6 minutes elapsed); 70-minute release threshold is `2026-11-12T16:05:45.949Z`.
 
@@ -23,6 +44,7 @@
 ## Next useful direction
 
 Do not spend further effort on p55 whole-body substitution/transposition, F25 carry misalignment, or the retired cardinal route. If returning to p55, require an independently source-selected polyalphabetic/homophonic/position-dependent operation before any broad search. Otherwise move to an unresolved page/source clue with a plausible causal path to a key or plaintext. Continue checking original-image and historical-source context; avoid re-running completed tests. No plaintext, key, or final Cicada destination was recovered this invocation.
+
 
 ## Previous invocation (2026-11-12 05:35Z)
 
