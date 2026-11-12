@@ -206,6 +206,63 @@ for (const entry of payloads) {
   }
 }
 
+
+const embeddedIVExpected = {
+  "unselected-row-major": [
+    "c0a83080dd808e9e26d77eddeeb02ba4c062b084f266226079dc394ace71e0b8",
+    "32444b8f60027838cbac5992191323ce2d0db33cae638bd78acd80bb3e6f30b8"
+  ],
+  "unselected-column-major": [
+    "6bad8a62474d97564085d06962115a4226fe663abae220acec4af4e3d0df02a7",
+    "6342080ec14dfbea4c465a2721640f7a082f837b321742eaf8a0fd55007a630c"
+  ]
+};
+
+// The conventional self-contained AES-CBC framing is a source byte IV
+// followed by encrypted blocks, with an optional IV-at-tail contrast.
+for (const entry of payloads.slice(0, 2)) {
+  for (const [index, side] of ["prefix", "suffix"].entries()) {
+    const iv = side === "prefix"
+      ? entry.bytes.subarray(0, 16)
+      : entry.bytes.subarray(entry.bytes.length - 16);
+    const ciphertext = side === "prefix"
+      ? entry.bytes.subarray(16)
+      : entry.bytes.subarray(0, entry.bytes.length - 16);
+    assert.equal(ciphertext.length, 208);
+    const decipher = createDecipheriv("aes-256-cbc", key, iv);
+    decipher.setAutoPadding(false);
+    const decoded = Buffer.concat([decipher.update(ciphertext), decipher.final()]);
+    assert.equal(sha256(decoded), embeddedIVExpected[entry.name][index]);
+
+    // End-to-end control: arbitrary original-looking IV plus 208 source-shape
+    // ASCII plaintext bytes, encrypted under the same key and recovered.
+    const plant = Buffer.alloc(208, 65);
+    Buffer.from("LIBER PRIMUS EMBEDDED IV CONTROL.").copy(plant);
+    const encrypter = createCipheriv("aes-256-cbc", key, iv);
+    encrypter.setAutoPadding(false);
+    const encryptedPlant = Buffer.concat([encrypter.update(plant), encrypter.final()]);
+    const plantDecipher = createDecipheriv("aes-256-cbc", key, iv);
+    plantDecipher.setAutoPadding(false);
+    assert.deepEqual(Buffer.concat([
+      plantDecipher.update(encryptedPlant), plantDecipher.final()
+    ]), plant);
+
+    const pad = decoded[decoded.length - 1];
+    const validPKCS7 = pad > 0 && pad <= 16 &&
+      decoded.subarray(decoded.length - pad).every(b => b === pad);
+    assert.equal(validPKCS7, false);
+    results.push({
+      source: entry.name,
+      mode: "aes-256-cbc-embedded-iv-" + side,
+      sourceBytes: ciphertext.length,
+      ivHex: iv.toString("hex"),
+      sha256: sha256(decoded),
+      ...inspect(decoded),
+      validPKCS7, plantRecovered: plant.length
+    });
+  }
+}
+
 console.log(JSON.stringify({
   source: "Original 55 unknown physical pages; 32 cross-page words; pp49-51 printed 32x8 table",
   runes: parsed.runes, words: parsed.words, carries: parsed.carries.length,
