@@ -109,6 +109,10 @@ const keyDefinitions = [
     key: fibonacciPrimeValues.map(value => Number(value % 29n))
   },
   {
+    label: 'tweeted Fibonacci-prime values mod 9901, then mod 29',
+    key: fibonacciPrimeValues.map(value => Number((value % 9901n) % 29n))
+  },
+  {
     label: 'Fibonacci indices mod 29',
     key: fibonacciPrimeIndices.map(value => value % 29)
   },
