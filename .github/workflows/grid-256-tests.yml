@@ -56,6 +56,7 @@ on:
           - source-dh-log
           - signed2013-field-dh-p29
           - source-base29-literal
+          - q252-gf841-eval
           - image-dim-page
           - microqr-finder
           - signed-trifold
@@ -195,6 +196,10 @@ jobs:
       - name: Literal 2013 BASE29 quotient and 1033 polynomial control
         if: ${{ inputs.probe == 'source-base29-literal' }}
         run: node sims/base29_protocol_literal_quotient_sft.cjs
+
+      - name: Fixed Q252 GF841 polynomial evaluation against all original LP2 runes
+        if: ${{ inputs.probe == 'q252-gf841-eval' }}
+        run: node sims/p50_q252_gf841_polynomial_eval_sft.cjs
 
       - name: Source-locked 2013 DH / solved-prime-84 F29-square logarithm inverse
         if: ${{ inputs.probe == 'source-dh-log' }}
