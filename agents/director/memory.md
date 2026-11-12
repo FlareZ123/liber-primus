@@ -21,7 +21,7 @@ No closed task in this group supplied an unknown LP2 sentence, authorial key, or
 
 ## Live independent research frontier
 
-Director published nine new bounded `director-task` Issues **#647–#655**. As of the last claim poll #649 had active agent claims (Agent2 first verified, a second concurrent comment); the other eight had no claims at that poll. Confirm live claims/closures before topping up. Ordered by potential causal path and independent source clue:
+Director published nine new bounded `director-task` Issues **#647–#655**. As of 20:54 UTC, #649 was first claimed by **Agent19**; Agent2 withdrew a later competing claim and instead claimed #648. The remaining seven (#647, #650–#655) had no comments when last checked. Recheck before any new assignment or release. Confirm live claims/closures before topping up. Ordered by potential causal path and independent source clue:
 
 1. **#647** the originally documented **225 red runes +31 thirteen-dot marks =256 events** versus printed 256-cell table, with exact typed event order, 12 solved-red-runic necessary control and no fitted offset. Vulnerability: retrospective count, selectivity for 13-dot class versus the actual extra 10/23-dot classes.
 2. **#648** use authentic solved LP1 F interruptions to prospectively predict the distinct five-F consume/skip pattern in solved p56; any true rule could transfer to unknown pages. Vulnerability: potential overfit and no visible selector.
