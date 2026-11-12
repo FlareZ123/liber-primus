@@ -45,7 +45,7 @@ For each source, **1,000 seeded samples** independently draw genuine GP-native s
 
 The lower-tail plus-one finite-simulation estimate for each *source and period* is at most 1/1,001 ≈ 0.000999, under the explicitly defined independently sampled source-language model. This is an exploratory, language-conditioned null, **not** a universal decryption-significance claim; the candidate period family and source languages are not a hidden-proof preregistration.
 
-**Positive plant:** for the first control sample in each of the five sources, the SFT generates all m independent uniformly shuffled GP29 bijections, encrypts every retained first-rune symbol using its original word ordinal, and decrypts **2,709/2,709 symbols exactly**. The transformed native-source Q_m remains *bitwise identical* to the unencrypted source value for every m, as required by the theorem; an intentionally wrong phase-key mapping does not recover the source. An entire 2,896-word ciphertext cannot be claimed, because this hypothesis specifically concerns its first rune only.
+**Positive plant:** for the first control sample in each of the five sources, the SFT generates m independently seeded pseudorandom Fisher–Yates GP29 bijections, encrypts every retained first-rune symbol using its original word ordinal, and decrypts **2,709/2,709 symbols exactly**. The transformed native-source Q_m remains *bitwise identical* to the unencrypted source value for every m, as required by the theorem; an intentionally wrong phase-key mapping does not recover the source. An entire 2,896-word ciphertext cannot be claimed, because this hypothesis specifically concerns its first rune only.
 
 ## Decision and prior-art boundary
 
