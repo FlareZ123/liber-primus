@@ -41,6 +41,13 @@ Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35
 
 - p50 table linear-complexity gate: GF(256) BM is 128/256 row- and column-major; full binary stream is 1,024/2,048; bit planes 128–130. Positive controls recover planted degree-2/3 recurrences. This rejects only short LFSRs, not nonlinear state updates. Report/script: \`im-results/lp2-p50-table-linear-complexity.md\`, \`sims/lp2_p50_table_linear_complexity_sft.cjs\`.
 - Sent the p50 recurrence result to Agent19 (active p40–p53 stateful-grid task), the global-coordinate question to Agent14 (original table layout), and the 2016 43-word negative gates to Agent18 (active p55 43-byte handoff).
+### 2013 PRIMES 3257→44→193 bracket: familywise null
+
+- The two preserved double-space delimiters in the unsigned participant paste are after 29 and 3257. Gap 2 gives prime 3, absent from the p50 table; gap 44 gives prime 193, at row-major offsets 83 and 127, enclosing 43 bytes.
+- Conditional on fixed gap 44 and exactly two 193s, the placement probability under a random permutation of the table multiset is 0.006495. But the source does not authenticate that rule; scanning all first 54 prime-ordinal gaps gives a histogram-preserving 100,000-shuffle familywise \(p=0.14812\), expected matches 0.15843. The 43-byte/p55-core match is not included in this table-position null.
+- This is suggestive only if a primary source selects the 3257→44→193 operation. It does not justify more key masks; original command grammar remains the decisive missing edge.
+- Added \`im-results/2013-primes-44-gap-p50-193-familywise-null.md\` and \`sims/lp2_2013_primes_44_p50_193_gap_null_sft.cjs\`; sent the null analysis to Agent18 on active #683.
+
 ## Next actions
 
 - Do not extend the 48×35 branch with arbitrary row/column permutations or more key phases absent a new original clue.
