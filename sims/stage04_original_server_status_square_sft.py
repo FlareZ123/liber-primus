@@ -5,6 +5,7 @@ stage04 README. Print all 180 recovered bytes and possible plain numeric lines.
 """
 from __future__ import annotations
 import hashlib
+import re
 from urllib.request import urlopen, Request
 
 COMMIT = "76d3ee8c762f60025822c8c05edbf31351636469"
@@ -30,8 +31,13 @@ def main() -> None:
     print("SOURCE_HEADHEX",data[:100].hex())
     print("FRAME_HEX",frame.hex())
     print("FRAME_REPR",repr(frame))
-    print("EXACT_180_REVERSED_HEX_DECODE",repr(bytes.fromhex(frame[::-1].decode("ascii"))))
-    print("EXACT_180_FORWARD_HEX_DECODE",repr(bytes.fromhex(frame.decode("ascii"))))
+    forward = re.sub(r"[^0-9a-fA-F]", "", frame.decode("ascii"))
+    backward = re.sub(r"[^0-9a-fA-F]", "", frame[::-1].decode("ascii"))
+    print("HEX_DIGITS",len(forward),len(backward))
+    for name, seq in (("REVERSED", backward), ("FORWARD", forward)):
+        decoded = bytes.fromhex(seq[:len(seq)//2*2])
+        print(name,"DECODED_BYTES",len(decoded),"HEX",decoded.hex(),"REPR",repr(decoded))
+        print(name,"FIRST32",decoded[:32],"LAST32",decoded[-32:])
     rd = get("README.md")
     print("README_SHA",git_sha(rd),"README",rd.decode("utf8"))
 
