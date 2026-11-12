@@ -1,6 +1,6 @@
 # Seven original LP2 quotation spans: a finite, source-motivated attribution gate
 
-**Agent 16, 12 November 2026. Director Issue [#417](https://github.com/FlareZ123/liber-primus/issues/417). Result: no independently attributable long quotation, unknown plaintext, key, or cipher-state equation.** This is an original-ciphertext negative for three historically available **specific source editions**, not a claim that LP2 contains no external quotations. Other manuscripts, translations and altered word breaks remain viable.
+**Original-quotation source gate, 12 November 2026. Director Issues [#417](https://github.com/FlareZ123/liber-primus/issues/417) and [#628](https://github.com/FlareZ123/liber-primus/issues/628). Result: no independently attributable long quotation, unknown plaintext, authentic key, or cipher-state equation.** The scope is exact, uninterrupted original printed word lengths in the seven marked runic quotations against three preselected literary editions, eight original signed-message witnesses and three additional historically Cicada-used literary families. Each finite source test preserves independent selection and positive controls; these results cannot exclude a differently worded, edited or unpreserved original source. Other manuscripts, translations and altered word breaks remain viable.
 
 ## Why these sources, before trying a key
 
@@ -43,6 +43,24 @@ Before scoring, translate each potential source word into its **GP-rune length**
 For all **four long quotations (13,14,34,14 words)**, **all 3 × 2 source/orthographic settings** have zero complete uninterrupted matches. The strongest partial consecutive GP matches for these four quotes are respectively **[6,6,6,6]** source words in Giles, **[6,6,7,6]** in Carroll, and **[8,5,7,5]** in Bunyan. Even the no-contraction alternative provides no complete long attribution. A search of dozens of thousands of windows makes five-to-eight adjacent length equalities weak evidence without accompanying actual ciphertext decoding.
 
 For the three **short** quotations, a complete 2-, 4- or 5-word shape matches repeatedly, sometimes in unrelated passages. Giles has one exact 5-word length-window, but its mere numerical shape does not identify the printed runes as that phrase; competing books and editions supply further alternatives. Do not promote a length-only short match to plaintext or derive a candidate key from its letters.
+
+## Additional source-authentic 2012 book-code texts: p42–43 originals (Director #628)
+
+The 2012 Cicada puzzle itself directed solvers to texts of **Lady Charlotte Guest's *Mabinogion*, specifically “The Lady of the Fountain”**, **William Blake's *The Marriage of Heaven and Hell*** and **William Gibson's *Agrippa (A Book of the Dead)***. These are genuinely independent, author-associated candidate books, beyond the three literature choices above and the pretested KJV/Emerson/Shakespeare/Gibran/Crowley families. This historical choice supports inspecting them before any LP2 language scoring, although it does **not** assert that Cicada selected them as p42 plaintext or keys. The exact early-puzzle book-code connection is preserved in the 2012 participant archives and [the pinned research-source registry](https://github.com/pnotisdev/cicada3301/blob/main/docs/SOURCES.md).
+
+The original printed p42 quotations are held fixed: quote 4 is rune-global **[10211,10279)**, **13 words / 68 runes**, and the adjacent quote 5 continues across physical p42→43 at **[10279,10439)**, **34 words / 160 runes**. Their original exact rune hashes and word-length arrays are above. The experiment scans every source-word position, with no key or phrase-location fitting, in both longest-match GP29 normalization and raw Latin-letter length. Both orthographies preserve the original word count. Five distinct source witnesses were frozen by Git blob SHA: a surviving 2,425-word 2012 Mabinogion participant excerpt, a 10,400-word full English version of the same translated narrative, a 7,738-word Gutenberg Blake text, a 1,671-word Cicada-2012 *Agrippa* transcript and a separate 1,746-word archival *Agrippa* variant. The particular source paths and exact byte-identifying Git blob SHAs are stored alongside their **length-only** tapes in [the offline witness fingerprints](quote2012-source-length-fingerprints.json). The copyrighted Gibson poem itself is not committed.
+
+| Frozen historical source / witness | 13-word p42 maximum, GP / Latin | 34-word pp42–43 maximum, GP / Latin |
+| --- | ---: | ---: |
+| *Mabinogion*, archived 2012 participant excerpt, 2,425 words | **7 / 4** | **6 / 6** |
+| *Mabinogion*, complete Lady of the Fountain, 10,400 words | **7 / 4** | **7 / 7** |
+| Blake, *The Marriage of Heaven and Hell*, 7,738 words | **4 / 5** | **6 / 6** |
+| Gibson, *Agrippa*, 2012 puzzle-participant text, 1,671 words | **5 / 4** | **5 / 5** |
+| Gibson, *Agrippa*, independent MITH text, 1,746 words | **5 / 4** | **5 / 5** |
+
+The strongest consecutive partial match in any of the **20 locked source/orthography/original-quotation comparisons** is just **seven** words, below the predeclared **12-word** credible-crib threshold. All ten whole-span matches are exactly **zero** in both conventions, and no candidate reaches a 40-rune exact source passage. Every witness and normalization has a successful self-identified 34-word native-source positive plant; five fixed-seed shuffled-source negatives per convention also fail the 12-word criterion. These results reject only **direct, verbatim source-word-preserving quotation** in those five exact witness texts. Textual transformation, punctuation edits, alternative translations or a cryptographic code key derived from these books remain untested without a source-selected instruction.
+
+The full read-only [offline original-input CommonJS SFT](../sims/lp2_quote_2012_sources_original_crib_sft.cjs) joins original runes across real printed line/page continuations and verifies the *entire* 13/34 word tapes against canonical GP indices and exact rune SHA-256. This source-selected attempt does **not** recover unknown LP2 plaintext or license a dictionary-fit key. With the 2012 named books now screened, future source crib searches should require a new independently authored text hint and a source-specific word-boundary hypothesis.
 
 ## Preserved 2012–May-2014 Cicada signed-message crib control (12 November 2026)
 
