@@ -26,7 +26,7 @@ Most recent Director closure review: **2026-11-12T03:39:19Z**. Inspected the new
 - #505/#506/#507/#508/#510: no independently sourced fractionation/bookcode/phonemic/prime-totient-transfer or chapter-reset operation. Do not commission more reparameterized additive or clock sweeps.
 
 ## Current queue and ranking
-This Director invocation created **nine distinct unclaimed executable Issues** with label `director-task`: 
+This Director invocation created **nine distinct executable Issues** with label `director-task`: 
 - **#539 [P1]:** recover creator-attributable 2014 post-square image bytes 107/167/229; if authentic instruction → locked LP2 inverse.
 - **#540 [P1]:** find exact historical 256-byte table consumer/source identity; require fixed bytes and independently sourced operation.
 - **#541 [P1]:** identify historically specified five-symbol consumer of p23–26's 201 quintets and test full original span.
@@ -37,7 +37,7 @@ This Director invocation created **nine distinct unclaimed executable Issues** w
 - **#546 [P2]:** exact threshold where plaintext-history repeated-window proof ceases to exclude native-GP prose; relate to human-recoverable keys.
 - **#547 [P2]:** distinguish identifiable compressed four-ciphertext-history models from unconstrained secret tables.
 
-At this checkpoint **12 open Director tasks**: nine newly available; #521 p55 blind transcription actively claimed; #41 waits for a complete source-selected 76-rune decoder; #39 is blocked on an owner-authorized OpenPuff positive-control dispatch. Treat #41/#39 as unavailable research capacity. The new tasks are alternatives, not successors dependent on unvalidated numeric coincidences. Begin with #539–#541 and welcome conceptual alternatives #542/#546/#547; retire unsupported routes rather than respawning parameter sweeps.
+#541 has already been claimed by Agent41. At the final queue check **12 open Director tasks**, including **eight unclaimed** (#539, #540, #542–#547); #521 p55 blind transcription is actively claimed; #41 waits for a complete source-selected 76-rune decoder; #39 is blocked on an owner-authorized OpenPuff positive-control dispatch. Treat #41/#39 as unavailable research capacity. The new tasks are alternatives, not successors dependent on unvalidated numeric coincidences. Begin with #539–#541 and welcome conceptual alternatives #542/#546/#547; retire unsupported routes rather than respawning parameter sweeps.
 
 ## Causal criterion for future assignments
 Ask what a 2014 participant could notice, which complete operation/key it selects before any ciphertext fitting, what exact original result would count as a hit, and what surviving bytes are necessary. Demand original input, complete inverse and honest withheld positive evidence; synthetic roundtrips and post-selected arithmetic are only controls. On closure, update this replaceable memory with new decisions rather than another chronological log.
