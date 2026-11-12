@@ -91,6 +91,7 @@ def main():
         a14=load_image(args.root,archive,14)
         a15=load_image(args.root,archive,15)
         a39=load_image(args.root,archive,39)
+        a70=load_image(args.root,archive,70)
         a72=load_image(args.root,archive,72)
     finally:
         if archive:
@@ -102,12 +103,17 @@ def main():
     body_direct=affinity(body14,body22)
     body_reflected=affinity(body14,body22[:,::-1].copy())
     moth5=a5[1550:1850,900:1500]
+    moth53=a70[2663:3213,564:1834]
     moth55=a72[2730:3280,630:1900]
     moth_match=affinity(moth5,moth55)
+    moth53_match=affinity(moth5,moth53)
+    moth53_moth55_match=affinity(moth53,moth55)
     assert body_reflected["ransac_inliers"] > body_direct["ransac_inliers"]*10
     assert body_reflected["registered_gray_correlation"]>0.98
     assert moth_match["ransac_inliers"]>200
     assert moth_match["registered_gray_correlation"]>0.95
+    assert moth53_match["registered_gray_correlation"]>0.95
+    assert moth53_moth55_match["registered_gray_correlation"]>0.999
     corpus=json.loads((args.root/"resources"/"liber-primus"/"lp2-corpus.json").read_text(encoding="utf-8"))
     p={page["page"]:page["indices"] for page in corpus["pages"]}
     p2,p22,p55,p57=[p[i] for i in (2,22,55,57)]
@@ -123,6 +129,8 @@ def main():
         "LP1_p14_to_LP2_p22_39jpg_unmirrored":body_direct,
         "LP1_p14_to_LP2_p22_39jpg_mirrored":body_reflected,
         "LP1_p5_moth_to_LP2_p55_72jpg":moth_match,
+        "LP1_p5_moth_to_LP2_p53_70jpg":moth53_match,
+        "LP2_p53_70jpg_moth_to_LP2_p55_72jpg":moth53_moth55_match,
       },
       "solved_LP1_body_replication_positive_control":True,
       "source_fixed_cipher_transfer":{
@@ -138,9 +146,8 @@ def main():
           "prime numbers and the totient function, with no source-selected page-55 clock"},
         "solved_LP2_p57_plaintext_ioc_reference":round(ioc(p57),8),
       },
-      "interpretation":("Multiple exact-form artwork reuses, including multiple LP1 source pages for the p2 insect; no LP2 "
-                        "plaintext is produced by the two literal candidate "
-                        "direct LP1 inverse transfers.")
+      "interpretation":("LP1 p5 moth is duplicated on LP2 p53 and p55, so it cannot uniquely nominate p55. "
+                        "Cross-round exact artwork reuse alone yields no decoded GP29 text.")
     }
     print(json.dumps(output,indent=2,ensure_ascii=False))
 
