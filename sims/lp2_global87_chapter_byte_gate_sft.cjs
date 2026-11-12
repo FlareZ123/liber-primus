@@ -262,7 +262,132 @@ assert(asciiReverse.contradictions.some(c => c.chapter === 7 &&
   c.events.some(e => e.packetId === 77 &&
     e.offset === 11343 && e.successor === 18)));
 
+
+/**
+ * Construct an explicit original-cipher compatibility witness under the
+ * much larger unconstrained-binary, per-predecessor, per-chapter key family.
+ * This proves feasibility of one raw-binary interpretation and explains
+ * why the natural-English first-byte condition is decisive. It is NOT a
+ * source-derived key, an original LP2 plaintext, or a historical mechanism.
+ */
+function constructRawBinaryCompatibility() {
+  const constraints = new Map();
+  /** @param {number} packetId @param {number} digitIndex @param {number} bound */
+  function addBound(packetId, digitIndex, bound) {
+    assert(bound >= 0 && bound < 28);
+    const p = packets[packetId];
+    const offset = p.end - 1 - digitIndex;
+    const prior = ciphertext[offset-1], out = ciphertext[offset];
+    const key = chapterAt(offset) + ":" + prior;
+    const row = constraints.get(key) || new Map();
+    row.set(out, Math.min(row.get(out) ?? 27, bound));
+    constraints.set(key, row);
+  }
+
+  for (const [packetId,p] of packets.entries()) {
+    const len = p.end-p.start;
+    let upperValue = 256n ** BigInt(p.bytes) - 1n;
+    const bounds = new Array(len);
+    for (let k=len-1; k>=0; k--) {
+      bounds[k] = Number(upperValue % 28n);
+      upperValue /= 28n;
+    }
+    assert.equal(upperValue, 0n);
+    if (bounds[0] === 0) {
+      assert(bounds[1] > 0);
+      addBound(packetId,0,0);
+      addBound(packetId,1,bounds[1]-1);
+    } else if (packetId === 77) {
+      // The sole strict-prefix conflict can use digit 1 here. The second
+      // digit then stays strictly below the byte-capacity threshold 10.
+      assert.equal(bounds[0], 1);
+      assert.equal(bounds[1], 10);
+      addBound(packetId,0,1);
+      addBound(packetId,1,9);
+    } else {
+      addBound(packetId,0,bounds[0]-1);
+    }
+  }
+
+  const code = Array.from({length:9},(_,chapter) =>
+    Array.from({length:29},(_,prior)=>{
+      const key=chapter+":"+prior;
+      const fixed=constraints.get(key) || new Map();
+      const ranked=[...fixed].sort((a,b)=>a[1]-b[1] || a[0]-b[0]);
+      const outToRank=new Map(),rankToOut=[];
+      for(const [out,bound] of ranked) {
+        assert(rankToOut.length <= bound);
+        outToRank.set(out,rankToOut.length);
+        rankToOut.push(out);
+      }
+      for(let out=0;out<29;out++) {
+        if(out!==prior && !outToRank.has(out)) {
+          outToRank.set(out,rankToOut.length);
+          rankToOut.push(out);
+        }
+      }
+      assert.equal(rankToOut.length,28);
+      return {outToRank,rankToOut};
+    })
+  );
+  const reconstructed=[ciphertext[0]];
+  let byteCount=0,printable=0,constrainedPackets=0;
+  for (const [packetId,p] of packets.entries()) {
+    if(packetId>0) reconstructed.push(reconstructed[reconstructed.length-1]);
+    assert.equal(reconstructed.length,p.start);
+    const digits=[];
+    let value=0n;
+    for(let i=p.end-1; i>=p.start; i--) {
+      const row=code[chapterAt(i)][ciphertext[i-1]];
+      const digit=row.outToRank.get(ciphertext[i]);
+      assert(Number.isInteger(digit));
+      digits.push(digit);
+      value=value*28n+BigInt(digit);
+    }
+    assert(value < 256n**BigInt(p.bytes));
+    const bytes=Buffer.alloc(p.bytes);
+    let copy=value;
+    for(let j=bytes.length-1;j>=0;j--) {
+      bytes[j]=Number(copy%256n);
+      copy/=256n;
+    }
+    assert.equal(copy,0n);
+    byteCount+=bytes.length;
+    for(const b of bytes)if(b>=32&&b<=126)printable++;
+    // Inverse base28 encoding is bit-for-bit unique for this admissible
+    // byte integer under a fixed packet digit length.
+    let reproduce=0n;
+    for(const b of bytes) reproduce=reproduce*256n+BigInt(b);
+    const reversed=new Array(digits.length);
+    for(let j=digits.length-1;j>=0;j--) {
+      reversed[j]=Number(reproduce%28n);
+      reproduce/=28n;
+    }
+    assert.equal(reproduce,0n);
+    assert.deepEqual(reversed,digits);
+    for(let k=p.start;k<p.end;k++){
+      const digit=digits[p.end-1-k];
+      const out=code[chapterAt(k)][reconstructed[reconstructed.length-1]]
+        .rankToOut[digit];
+      reconstructed.push(out);
+    }
+    assert.equal(reconstructed.length,p.end);
+    constrainedPackets++;
+  }
+  assert.deepEqual(reconstructed,ciphertext);
+  assert.equal(byteCount,7694);
+  assert.equal(constrainedPackets,87);
+  assert.equal(printable,2785);
+  return {originalPacketsDecoded:constrainedPackets,
+    originalRunesReencrypted:reconstructed.length,
+    candidateOpaqueBinaryBytes:byteCount,printableByteCount:printable,
+    independentSecretChapterPredecessorRows:9*29,
+    directlyConstrainedRows:constraints.size,
+    classification:"feasibility witness only; key fitted to original source"};
+}
+
 const plant = plantedInverse();
+const binaryCompatibility = constructRawBinaryCompatibility();
 const heading = [13,24,4,24,17,20,18].reduce(
   (sum, idx) => sum + source.prime[idx], 0);
 assert.equal(heading, 449);
@@ -299,5 +424,6 @@ console.log(JSON.stringify({
     }
   },
   positiveControl:plant,
-  conclusion:"No unknown plaintext. The 449→87 relation is speculative. A chapter-wide single secret order is impossible for all-byte payloads; even independently secret predecessor-specific chapter rows are impossible if every packet begins with a printable ASCII byte. More flexible state, raw binary and noncanonical packetization remain open."
+  originalRawBinaryCompatibility:binaryCompatibility,
+  conclusion:"No unknown plaintext. The 449→87 relation is speculative. A chapter-wide single secret order is impossible for canonical all-byte payloads; independently secret predecessor-specific chapter rows fail under printable ASCII first bytes. An arbitrary opaque-binary inverse with 261 independent secret rows can be fitted exactly to original ciphertext, proving compatibility but recovering no authentic source key or plaintext."
 },null,2));
