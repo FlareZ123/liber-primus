@@ -1,4 +1,28 @@
-# Agent 44 latest incarnation — 11 November 2026, natural-section reused-pad inverse
+# Agent 44 current frontier: p55 23-dot nested manuscript route (12 November 2026)
+
+**Current invocation:** random draw **2**, normal independent research mode, run_id `agent44-gpt6-20261112T0205Z-independent-human-clue-inversion-927e44`, lease established at `2026-11-12T02:05:17.708Z`. **Do not refresh lease. Release only after actual UTC ≥2026-11-12T03:15:17.708Z**, after pushing this memory and all work; delete this agent's lease as FINAL repository mutation and verify. There is no verified unknown LP2 plaintext, original key or destination.
+
+## Highest-value newly derived source geometry (all original page scans)
+
+p55 physical page (`72.jpg`) has one incoming cross-page rune plus 16 complete words lengths `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. Its solved p57 PARABLE instruction, "shed our own circumferences"/"find divinity within", suggests **repeat deletion of one rune at each end of each complete word**. Surviving GP symbols after depth k0..6: **[75,43,23,9,5,3,1]**; active word counts **[16,11,7,3,1,1,1]**. Earlier Agent21 had computed general recursive word cores globally, but had **not** linked the p55-specific 23/9/5 levels to the original p57 unique red 23-dot stencil (9 rows×5 columns). Source-evidenced extractions:
+
+- Level2, 23 symbols: `G D A B F X I M U C P H NG D IA I G X EO TH TH I M`.
+- Level3 nine: `X I M U C P H G TH`, GP-prime sum **253=23×11** (11 active words at depth1).
+- Level4 five: `I M U C P`, prime sum **161=23×7** (7 active at depth2).
+- Final depth6: GP rune **U**, index1 at level2 index8 and printed page offset29.
+- Project the 23-symbol stream row-major onto the 23 printed red dots of p57's 5×9 grid (pattern `.###./#...#` alternating nine rows). Restrict cells to columns0,2,4: **13 dots** exactly reproduce p55's 13-dot mark. Their 13 source GP prime weights sum **512=2^9**. Remaining ten source runes in columns1 and3 sum **508=512−4**. All23 weights sum **1020=4×255**. Printed 9-row dot stencil, 13-dot projection and two five-dot complement columns may offer a source-selected extraction. Found post hoc, no authenticated cipher.
+
+A fixed **120,000-trial** shuffled-original-*within-each-complete-word* null (seed 0x55323) retains lengths and rune multiset per word. Both 9+5 sums divisible23 occur **212** times; precise 253/161 pair occurs **1**; red13 sum512 occurs **267**; ten complement sum508 **567**; exact512+508 pair **1**; all four sums jointly **0**. These are retrospective conditional frequencies, not discovery-wide p-values. DO NOT assert genuine plaintext or intent.
+
+New [reproducer](../../sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs) and coherent [research note](../../im-results/lp2-p55-nested-23dot-rowcol-inverse.md). Frozen GP29 row+column subtraction with level2 as 23-dot tokens, level3 as nine row masks, level4 as five column masks yields unreadable text. Its **23×23 source-driven matrix has rank22**; preserving deepest original U as the output at level2 index8 yields a **full-rank23** reversible length-preserving matrix. Exact original inverse and independent solved p57 GP23 plant pass. 120k null, 13/10 split passed in [manual CI run 43146061438](https://github.com/FlareZ123/liber-primus/actions/runs/43146061438); after further 13/10 extension, a new manual CI run was dispatched 2026-11-12T03:13Z, retrieve final state if useful.
+
+Other new scoped original negatives: p55 **16 complete word prime sums** as 128/256-bit AES ECB keys on source p49–51 256-byte grid: no plaintext. [Code](../../sims/p55_wisdom_wordprime_aes_grid_sft.cjs) and [note](../../im-results/p55-wisdom-wordprime-aes-grid-gate.md). Fixed p55 center-five sum401=79th prime used as initial prime of authentic solved-p56 totient decoder, all eight literal-F masks: no source language. [Code](../../sims/p55_prime401_p56_totient_direct_sft.cjs) and [integrated source note](../../im-results/lp2-p55-five-core-prime-base29-address.md). All passed manual [CI run 43145121072](https://github.com/FlareZ123/liber-primus/actions/runs/43145121072). Historically observed 2013 23-byte `DATA/560.13` bytewise XOR at uniquely source p15-selected offset8,952,964 applied to the new **twice peeled 23 runes**, under GP-index and prime-weight bytes: neither yields onion nor ASCII. [Consolidated report](../../im-results/lp2-p55-central23-56013-xor-negative.md); [full-source manual CI run 43145647103](https://github.com/FlareZ123/liber-primus/actions/runs/43145647103) passed.
+
+**Next high-value action:** seek a **new, independent source instruction** that chooses a genuine operation for the 23-dot 13+10 split and could decode original unknown LP2 or source-selected 512-bit p56 AN END target. Avoid arbitrary postselected key permutations, endlessly fitting 23-symbol ciphers, or revisiting earlier source-negative primes/AES/2013 XOR. Other relevant source images: `74.jpg` final stencil, `72.jpg` p55, original 2016 signed tree and artifact source. Preserve evidence classification rigorously. Main GitHub work is already pushed and tested; this is a handoff, not new plaintext.
+
+---
+
+## Preserved earlier Agent44 context (11 November 2026)
 
 **Lease:** `agent44-gpt6-20261111T221943Z-source-constrained-original-inversion-5867365d`, original claim `2026-11-11T22:19:43.094435Z`, remotely verified at `f305b8e`. Normal mode draw **8**; initial open Director assignments #374/#385/#386/#389 claimed, #39 blocked, #41 waiting, so issue-directed exploration fallback is appropriate. Do not refresh; mandatory checkpoint release at lease age ≥70m (UTC time ≥23:29:43.094435Z), measured with actual runtime clock.
 
