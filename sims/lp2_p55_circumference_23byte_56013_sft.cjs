@@ -79,6 +79,20 @@ const ciphertext = interior.slice(10, 33);
 assert.equal(ciphertext.length, 23);
 const central23 = ciphertext.map((rune) => corpus.runes.indexOf(rune));
 assert.ok(central23.every((x) => Number.isInteger(x) && x >= 0 && x < 29));
+// A second, *distinct* source-selected 23-rune reading uses the parable's
+// repeated circumference removal twice on every one of p55's 16 complete
+// words, rather than fitting a centered 23-character slice of first interiors.
+const twicePeeled = completeP55Words.flatMap((word) =>
+  [...word.runes].slice(2, -2));
+assert.equal(twicePeeled.length, 23);
+const nested23 = twicePeeled.map(rune => corpus.runes.indexOf(rune));
+assert.deepEqual(nested23, [
+  6, 23, 24, 17, 0, 14, 10, 19, 1, 5, 13, 8,
+  21, 23, 27, 10, 6, 14, 12, 2, 2, 10, 19
+]);
+const nestedIndexBytes = Buffer.from(nested23);
+const nestedPrimeBytes = Buffer.from(nested23.map(i => corpus.prime[i]));
+
 const primeBytes = Buffer.from(central23.map((i) => corpus.prime[i]));
 const indexBytes = Buffer.from(central23);
 
@@ -130,12 +144,16 @@ console.log(JSON.stringify({
   p55InteriorCount: interior.length,
   central23Indices: central23,
   central23GP: central23.map((i) => GP[i]).join(" "),
+  twicePeeled23Indices: nested23,
+  twicePeeled23GP: nested23.map((i) => GP[i]).join(" "),
   padLength: pad.length,
   padSha256: sha256,
   historicalPositiveControl: phonePlain.toString("ascii"),
   padSliceHex: padSlice.toString("hex"),
   outputs: [
-    xorReport("GP rune indices", [...indexBytes]),
-    xorReport("GP prime weights", [...primeBytes])
+    xorReport("GP rune indices; first-peel central23", [...indexBytes]),
+    xorReport("GP prime weights; first-peel central23", [...primeBytes]),
+    xorReport("GP rune indices; two literal peels", [...nestedIndexBytes]),
+    xorReport("GP prime weights; two literal peels", [...nestedPrimeBytes])
   ]
 }, null, 2));
