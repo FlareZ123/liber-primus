@@ -26,3 +26,5 @@ jobs:
         run: node sims/lp2_bookend7_p56_source_sft.cjs
       - name: Exact bookend phrase conditional word-inventory gate
         run: node sims/lp2_bookend_wordpair_layout_null_sft.cjs
+      - name: Source-stratified original LP2 doublet block gate
+        run: node sims/lp2_doublet_1000block_source_strata_sft.cjs
