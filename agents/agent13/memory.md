@@ -239,3 +239,13 @@ Use [`results/README.md`](../../results/README.md) for continuously reconciled e
 - Direct configurations (offset 0/10, continuous/reset at p51, no/global-fourth-F null): best trigram score −6.135/rune; raw ciphertext −6.652/rune; 100 byte-permutation nulls give p=0.238. Collision-aware extension adds the p51-fourth-F null; best LLR −104.096; matching planted control +60.628 vs reversed key −102.226. No plaintext.
 - Report/script: `im-results/p49-p51-table-prime-index-key-gate.md`, `sims/p49_p51_table_prime_index_key_gate.cjs`. Reject this transfer; retain p56 as an independently verified cipher, not proof of a global key schedule.
 - Additional source-fixed 79-packet reset (the unique 2×79 flank) was also negative: direct best −6.504/rune; collision-aware best −121.961. Report/script include it. Next: seek a genuinely source-selected injective operation for the 158-rune p49/p51 flank and 256-byte table; do not repeat direct byte pads, quote-source scans, or arbitrary prime-index offsets.
+
+
+## 2026-11-12 checkpoint — p15/p36 composite p50 LFSR gate
+
+- Revisited the exact p50 degree-254 GF(29) polynomial and the source-visible 16-value p15 spiral / 238-rune p36 dimensions. The separate p15→F16 and p36→R238 direct additive LFSR tests already existed; this run tested the previously uncombined source inputs.
+- Built F16 as the product of the established small p50 factors and R238=P/F16 by exact division. Tested (a) K=K16+K238, where p15 seeds F16 and p36 seeds R238, and (b) a full-P recurrence seeded by p15||p36 in physical page order. Both are continuous from p0, with no fitted state/phase/offset. Both additive signs were tested.
+- All four full-stream IoCs remain at the uniform GP29 baseline: 0.03445231–0.03448532, versus raw 0.03447840 and solved p57 0.06270997. No language; p57 95/95 planted controls recover exactly. This is a bounded negative, not a new plaintext or key.
+- Reproducer/report: sims/lp2_p15_p36_composite_lfsr_sft.cjs, im-results/p50-degree254-composite-lfsr-p15-p36-gate.md. The combined model is new relative to the earlier separate p15 and p36 tests; do not reopen it with free phase/seed searches absent a new selector.
+- Next: leave this factor-LFSR branch retired. Pursue a genuinely different source-selected reversible state or independently recoverable historical input; use results/README.md as the current authoritative synthesis. No need to modify that synthesis for this intermediate negative.
+
