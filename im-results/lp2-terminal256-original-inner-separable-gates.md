@@ -10,9 +10,9 @@ The strongest objection is that no original instruction actually places pp55–5
 
 ## Frozen inputs and original-known-plaintext register
 
-- Original table: [canonical 256-byte grid](../resources/liber-primus/lp2-grid-256.json), byte SHA-256 \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`. Use the conventional conditional base60 byte interpretation; the 2013 BASE29/p39 quadratic factor relation is an existing *conditional* clue in support of this parse. Every byte is reduced modulo 29.
+- Original table: [canonical 256-byte grid](../resources/liber-primus/lp2-grid-256.json), byte SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Use the conventional conditional base60 byte interpretation; the 2013 BASE29/p39 quadratic factor relation is an existing *conditional* clue in support of this parse. Every byte is reduced modulo 29.
 - GP29: [canonical original LP2 corpus](../resources/liber-primus/lp2-corpus.json), in canonical rune-index order.
-- Accepted p56 plaintext: subtract \`prime[clock]-1\` modulo29 with the documented **only literal F at local rune index 56** not advancing its prime clock; this produces the exact established GP text "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE".
+- Accepted p56 plaintext: subtract `prime[clock]-1` modulo29 with the documented **only literal F at local rune index 56** not advancing its prime clock; this produces the exact established GP text "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE".
 - p57 plaintext: original clear rune indices, unchanged.
 - Geometry: after the 76-cell outer ring is removed, assign 180 p56+p57 plaintext indices consecutively to rings 68, 60, 52. Each ring may **independently** start at any of the four geometric corners and wind in either direction. Thus there are 8³ = **512** complete known-interior assignments, encompassing the earlier eight uniform corner/winding choices. No page- or word-dependent skipping is inserted.
 
@@ -20,18 +20,18 @@ The original 76 unknown p55 runes are deliberately **withheld** from every fit. 
 
 ## Gate A: full GF(29) rank of row/column masking
 
-Let \`B[r,c]\` be the grid byte reduced modulo29 at original row \`r\`, column \`c\`, and let \`P[r,c]\` be the known GP29 plaintext assigned to the 30×6 interior. Test the complete family
+Let `B[r,c]` be the grid byte reduced modulo29 at original row `r`, column `c`, and let `P[r,c]` be the known GP29 plaintext assigned to the 30×6 interior. Test the complete family
 
 \[
 P_{r,c}=aB_{r,c}+\sum_{t=1}^d u^{(t)}_r v^{(t)}_c\pmod{29},
 \qquad a\in\mathbb F_{29},\quad d\leq5 .
 \]
 
-The unrestricted secret row and column factors make the residual matrix \`D(a)=P-aB\` have rank no greater than \`d\`. This includes multiplicative row×column masking and permits arbitrary sums of up to five such masks. The familiar additive row-plus-column mask is a special rank-at-most-two case and additionally requires **every** 2×2 alternating minor to vanish.
+The unrestricted secret row and column factors make the residual matrix `D(a)=P-aB` have rank no greater than `d`. This includes multiplicative row×column masking and permits arbitrary sums of up to five such masks. The familiar additive row-plus-column mask is a special rank-at-most-two case and additionally requires **every** 2×2 alternating minor to vanish.
 
-For all **512×29 = 14,848** combinations of known-ring order and freely selected global multiplier, the actual original **30×6 residual has rank exactly 6**. Hence no \`d≤5\` solution exists anywhere in this broad family. The best row-plus-column additive trial satisfies only **282/6,525** distinct 2×2 alternating-minor checks, versus **6,525/6,525** required by *every* valid additive row+column mask. Its order is inner-ring choices \`[5,0,2]\` (per-ring enumeration: corner0 anticlockwise, corner0 clockwise, corner1 anticlockwise, corner1 clockwise, ...) with multiplier \`7\`. The maximum 282 is an exhaustive result for the tested orientation/scalar family; it is a diagnostic, not a p-value.
+For all **512×29 = 14,848** combinations of known-ring order and freely selected global multiplier, the actual original **30×6 residual has rank exactly 6**. Hence no `d≤5` solution exists anywhere in this broad family. The best row-plus-column additive trial satisfies only **282/6,525** distinct 2×2 alternating-minor checks, versus **6,525/6,525** required by *every* valid additive row+column mask. Its order is inner-ring choices `[5,0,2]` (per-ring enumeration: corner0 anticlockwise, corner0 clockwise, corner1 anticlockwise, corner1 clockwise, ...) with multiplier `7`. The maximum 282 is an exhaustive result for the tested orientation/scalar family; it is a diagnostic, not a p-value.
 
-Positive controls: a planted secret row+column additive mask satisfies all 6,525 minors and rank2; planted multiplicative and two-product masks have exact rank1 and rank2 respectively. Replacing original p56/57 with synthetic outputs \`aB+r+c\` recovers the identical residual.
+Positive controls: a planted secret row+column additive mask satisfies all 6,525 minors and rank2; planted multiplicative and two-product masks have exact rank1 and rank2 respectively. Replacing original p56/57 with synthetic outputs `aB+r+c` recovers the identical residual.
 
 [Source-exact CJS SFT](../sims/lp2_terminal256_inner_rowcol_rank_sft.cjs).
 
@@ -61,7 +61,7 @@ Positive controls: arbitrary GF29 3×3 and 5×5 coefficients planted into origin
 
 ## Gate C: all-secret additive GF(29) recurrence-order obstruction
 
-A third model uses the independently fixed source quadratic factors: the PGP-verified 2013 \`BASE29 3301 → 3QO\` example supplies \(H=3+26X+24X^2\); original p39 prints \(G=27+5X+15X^2\). Their monic product is \(F(X)=14+9X+13X^2+28X^3+X^4\). Its exact divisibility into the table is an existing conditional algebraic observation. The candidate consumer adds a shared GF29 linear-recursive mask \(K\) to the source-grid byte residues: \(P_i=B_{\mathrm{ring}(i)}+K_i\pmod{29}\). Thus the solved p56–57 interior supplies an **exact** 180-symbol candidate mask under each original ring readout.
+A third model uses the independently fixed source quadratic factors: the PGP-verified 2013 `BASE29 3301 → 3QO` example supplies \(H=3+26X+24X^2\); original p39 prints \(G=27+5X+15X^2\). Their monic product is \(F(X)=14+9X+13X^2+28X^3+X^4\). Its exact divisibility into the table is an existing conditional algebraic observation. The candidate consumer adds a shared GF29 linear-recursive mask \(K\) to the source-grid byte residues: \(P_i=B_{\mathrm{ring}(i)}+K_i\pmod{29}\). Thus the solved p56–57 interior supplies an **exact** 180-symbol candidate mask under each original ring readout.
 
 [The complete original-input Berlekamp–Massey SFT](../sims/lp2_terminal256_inner_lfsr_sft.cjs) computes the **minimum order of any GF29 linear recurrence**, eliminating all secret feedback coefficients and initial states for every 512 inner-ring routes. The order histogram is **one route of order 89, 497 of order 90, and 14 of order 91**. Thus no recurrence of order 88 or lower can generate the known source-derived mask, regardless of seed or polynomial. For the *specific* source factor \(F\), at least **160/176** recurrence windows fail; reversing polynomial-coefficient orientation fails at least **164/176**. A planted original-grid-derived 180-symbol mask using the source \(F\) has Berlekamp–Massey order exactly **4**, zero violated source-factor equations and exact round-trip reconstruction.
 
@@ -69,7 +69,7 @@ This excludes the historically motivated degree-four factor recurrence, and inde
 
 ## Reproduction and decision
 
-Both standalone CJS scripts consume original repository source JSON and use only Node 22 built-ins. They are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing original-source run 43256330152](https://github.com/FlareZ123/liber-primus/actions/runs/43256330152). There are no automatic push or PR triggers.
+All three standalone CJS scripts consume original repository source JSON and use only Node 22 built-ins. They are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing all-three-tests original-source run 43260125837](https://github.com/FlareZ123/liber-primus/actions/runs/43260125837). There are no automatic push or PR triggers.
 
 The tests eliminate a meaningful, source-visible path that would have promoted **180 independently known plaintext symbols** into a full original p55 decoder under a source-plausible 2D tabular transform. They leave open all unselected layout correspondences, different alphabets/byte serializations, hidden nonlinear maps, stateful transforms, source-independent keys, and other forms of intermediate text. In particular, they do **not** show that the table is unrelated to the final pages.
 
