@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Exact original finite-field test
         run: node sims/p36_q238_field_key_original_sft.cjs
+      - name: Q238 versus p36 all-secret transposition obstruction
+        run: node sims/p36_q238_secret_transposition_obstruction_sft.cjs
