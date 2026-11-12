@@ -127,5 +127,16 @@ const a=audit(source,"2013 original 761.MP3");
 const b=audit(control,"synthetic FFmpeg/LAME 192k 44.1k stereo control");
 assert.equal(b.headerFieldCounts.bitrateKbps["192"],b.frameCount);
 assert.equal(b.headerFieldCounts.sampleRate["44100"],b.frameCount);
-console.log(JSON.stringify({source:a,control:b,scope:
+assert.equal(a.trailing.bytes,0,"Original compressed audio must have no appended bytes");
+assert.equal(b.trailing.bytes,0,"Matched control must have no appended bytes");
+for(const p of [a,b]){
+  assert.equal(p.firstFrameMetadata.xingOrInfo?.declaredFrames,p.frameCount-1,
+    "LAME Info frame count excludes its own metadata frame");
+  assert.equal(p.firstFrameMetadata.xingOrInfo?.declaredBytes,p.compressedFrameBytes);
+}
+const marker=Buffer.from("FROZEN_APPEND_TEST","ascii");
+const plantedTail=audit(Buffer.concat([source,marker]),"synthetic appended payload control");
+assert.equal(plantedTail.trailing.bytes,marker.length);
+assert.equal(plantedTail.trailing.first32Hex,marker.toString("hex"));
+console.log(JSON.stringify({source:a,control:b,syntheticTailDetectionBytes:plantedTail.trailing.bytes,scope:
   "MPEG1 Layer3 frame structure, wrapper fields, append bytes; no spectral-stego claim"},null,2));
