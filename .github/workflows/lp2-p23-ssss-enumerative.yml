@@ -17,3 +17,5 @@ jobs:
           node-version: 22
       - name: Execute original p23 five-strand reversible codec and historical 2013 SSSS combination
         run: node sims/lp2_p23_201_122byte_ssss_codec_sft.cjs
+      - name: Test independent p2 sixth share under all historic SSSS 1 to 10 identifiers
+        run: node sims/lp2_p2_p23_ssss201_sixshare_sft.cjs
