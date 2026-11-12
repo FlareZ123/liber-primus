@@ -1,0 +1,16 @@
+name: Original LP2 p40 red8 five-of-eight GF29 invariant (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original ciphertext, withheld shares, native GP positive plant
+        run: node sims/lp2_p40_red8_shamir5_sft.cjs
