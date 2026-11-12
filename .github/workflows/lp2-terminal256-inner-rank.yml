@@ -1,0 +1,16 @@
+name: Terminal 256 original inner-ring separability gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inner-ring-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 512 inner-ring orders and all GF29 scalars
+        run: node sims/lp2_terminal256_inner_rowcol_rank_sft.cjs
