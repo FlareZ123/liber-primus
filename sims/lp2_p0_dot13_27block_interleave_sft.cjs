@@ -129,10 +129,19 @@ for (const shift of [13, 14]) {
   assert.deepEqual(recoverDotDifferences(stream, shift), seq);
   const planted = dotDifferences(plant, shift);
   assert.deepEqual(recoverDotDifferences(planted, shift), plant);
+  const nativeMessage = Array.from({ length: 351 }, (_, i) => native[i % native.length]);
+  const nativeMask = Array.from({ length: 378 }, (_, i) => seq[(i * 17) % seq.length]);
+  const nativeCipher = recoverDotDifferences(
+    { differences: nativeMessage, mask: nativeMask }, shift
+  );
+  assert.deepEqual(dotDifferences(nativeCipher, shift).differences, nativeMessage);
+  assert.equal(nativeCipher.length, 729);
   differenceResults.push({
     sourceNeighbors: shift === 13 ? 'left blank' : 'right blank',
     firstTwenty: stream.differences.slice(0, 20).map((i) => corpus.translit[i]).join(' '),
     ioc: ioc(stream.differences),
+    plantedNativeMessageIoc: ioc(nativeMessage),
+    plantedNativeMessageRecoveredRunes: nativeMessage.length,
     all729RecoveredFrom351DifferencesAnd378MaskRunes: true
   });
 }
