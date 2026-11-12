@@ -74,6 +74,12 @@ const DEGREE = 238;
 assert.equal(Q[238],1);
 assert.deepEqual(Q.slice(0,10), [5,9,18,5,15,8,11,3,19,21]);
 assert.deepEqual(Q.slice(-5), [27,26,15,11,1]);
+// A known numeral can be lifted at 231/239 fixed source positions; the
+// printed offset99 is distinguished by root24, not generic field invertibility.
+const fieldZeroPositions=Q.slice(0,238).map((v,j)=>v===0?238-j:-1)
+  .filter(offset=>offset>=0).sort((a,b)=>a-b);
+assert.deepEqual(fieldZeroPositions,[16,24,66,69,154,162,164,172]);
+assert.equal(239-fieldZeroPositions.length,231);
 
 /** @param {number[]} left GF29^238 element, ascending coefficients
  *  @param {number[]} right GF29^238 element, ascending coefficients */
@@ -235,6 +241,8 @@ console.log(JSON.stringify({
   source:{physicalPage:36,runicLength:238,numeralOffset:99,
     printedNumeral:1,wrongNumeralOffsetRoot24:wrongNumeralOffsets,
     correctNumeralOffsetRoot24:0,fieldLiftCoefficientAt139:Q[139],
+    fieldLiftNoninvertibleOffsets:fieldZeroPositions,
+    invertibleFixedNumeralPlacements:231,
     gridBytes:256,lowFactorDegree:16,
     irreducibleFieldFactorDegree:238,
     addedExponent:{value:1067,role:'DH3301 participant-transcript shared secret',
