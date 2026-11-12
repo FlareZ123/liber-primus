@@ -132,7 +132,8 @@ function main() {
   assert.equal(small.length, 17);
   const highToLow = bytes.map(value => value % MOD);
   assert.equal(highToLow[0], 0);
-  const { quotient, remainder } = divide(highToLow.reverse(), small);
+  // Remove the leading zero coefficient of the printed 256-slot polynomial.
+  const { quotient, remainder } = divide(highToLow.reverse().slice(0, -1), small);
   assert(remainder.every(n => n === 0));
   const qHigh = quotient.map(n => (MOD - n) % MOD).reverse();
   assert.equal(qHigh.length, 239);
