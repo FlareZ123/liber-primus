@@ -2,9 +2,19 @@ name: Original LP2 full-book source-prose word-length crib
 
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Original source test to run'
+        required: true
+        type: choice
+        options:
+          - length-crib
+          - repeat-state
+        default: length-crib
 
 jobs:
   search:
+    if: inputs.suite == 'length-crib'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -16,3 +26,16 @@ jobs:
         run: |
           node --check sims/lp2_allwords_reference_length_crib_sft.cjs
           node sims/lp2_allwords_reference_length_crib_sft.cjs
+  repeat-state:
+    if: inputs.suite == 'repeat-state'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute source-locked two-time-pad and solved-page state-crib gates
+        run: |
+          node --check sims/p27_p55_collision_state_crib_sft.cjs
+          node sims/p27_p55_collision_state_crib_sft.cjs
