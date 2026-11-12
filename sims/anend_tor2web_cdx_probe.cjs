@@ -35,9 +35,9 @@ const HOSTS = [
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-async function queryHost(item) {
+async function queryHost(item, sourcePath = '/*') {
   const url = new URL(ENDPOINT);
-  url.searchParams.set('url', item.host + '/*');
+  url.searchParams.set('url', item.host + sourcePath);
   url.searchParams.set('output', 'json');
   url.searchParams.set('fl', 'timestamp,original,statuscode,mimetype,digest,length');
   url.searchParams.set('limit', '2000');
@@ -89,6 +89,20 @@ async function main() {
     if (i + 3 < HOSTS.length) await sleep(500);
   }
 
+  // The 11 May 2014 original participant README explicitly mentions
+  // "59.txt" and "59.bin", but those bytes were never committed. A full-host
+  // CDX prefix can time out even when an exact URL query is cheap. Limit the
+  // fresh check to the two currently inconclusive historical Tor2web hosts
+  // and four literal filenames; do not invent hashes or URL slug guesses.
+  const unresolvedHosts = [
+    'ky2khlqdf7qdznac.tor2web.fi',
+    'ky2khlqdf7qdznac.onion.direct',
+  ];
+  const exact59SourcePaths = ['/59.txt', '/59.bin', '/59.jpg', '/59'];
+  const missing59Exact = await Promise.all(unresolvedHosts.flatMap(host =>
+    exact59SourcePaths.map(sourcePath =>
+      queryHost({host, role: 'exact-59-source', sourcePath}, sourcePath))));
+
   const control = results.find(r => r.role === 'positive-control');
   const controlPassed = !!control && control.http_status === 200 && control.record_count > 0;
   const failedQueries = results.filter(r => r.error || (r.http_status && r.http_status !== 200));
@@ -106,6 +120,9 @@ async function main() {
     control_record_count: control?.record_count ?? 0,
     documented_proxy_host_count: HOSTS.filter(h => h.role === 'documented-proxy').length,
     documented_proxy_record_count: proxyRecords,
+    missing59_exact_records: missing59Exact.reduce((n, q) => n + (q.record_count || 0), 0),
+    missing59_exact_failed: missing59Exact.filter(q => q.error || q.http_status !== 200).length,
+    missing59_exact_results: missing59Exact,
     failed_query_count: failedQueries.length,
     results,
     interpretation: controlPassed
@@ -113,7 +130,7 @@ async function main() {
       : 'Inconclusive: the known onion.to control was not returned, so empty proxy results cannot be treated as a negative.',
   };
   process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
-  if (!controlPassed || failedQueries.length) process.exitCode = 1;
+  if (!controlPassed || failedQueries.length || summary.missing59_exact_failed) process.exitCode = 1;
 }
 
 main().catch(error => {
