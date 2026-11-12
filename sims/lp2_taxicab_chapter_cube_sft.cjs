@@ -241,6 +241,53 @@ assert.equal(modular.length,8);
 assert(rectangle[0].score < -5.6);
 assert(modular[0].score < -5.6);
 
+/**
+ * Frozen opening-red-key hypothesis: the p0 red 13-rune heading keys the
+ * source-selected 13x133 rectangular chapter. Test three direct placements of
+ * those 13 GP indices and both historically motivated Vigenere signs.
+ * @param {number[]} seq
+ * @param {number[]} key
+ * @param {[number,number]} dims
+ * @param {boolean} transpose
+ * @param {boolean} reverseRows
+ * @param {boolean} reverseCols
+ * @param {"row"|"column"|"period"} mode
+ * @param {boolean} reverseKey
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function redKeyRead(seq,key,dims,transpose,reverseRows,reverseCols,
+  mode,reverseKey,sign) {
+  const [H,W] = dims, R=transpose?W:H, C=transpose?H:W;
+  const out=[];
+  for(let r=0;r<R;r++)for(let c=0;c<C;c++) {
+    const rr=reverseRows?R-1-r:r,cc=reverseCols?C-1-c:c;
+    const flat=transpose?cc*W+rr:rr*W+cc;
+    const kval=mode==="row"?(r%13):mode==="column"?(c%13):out.length%13;
+    const k=key[reverseKey?12-kval:kval];
+    out.push(((seq[flat]+sign*k)%N+N)%N);
+  }
+  return out;
+}
+const redKey=pages[0].indices.slice(0,13);
+assert.equal(redKey.length,13);
+const keyedReads=[];
+for(const mode of ["row","column","period"])
+  for(const reverseKey of [false,true])
+    for(const sign of [-1,1])
+      for(const dims of [[13,133],[133,13]])
+        for(const transpose of [false,true])
+          for(const reverseRows of [false,true])
+            for(const reverseCols of [false,true])
+              keyedReads.push({mode,reverseKey,sign,
+                dimensions:dims.join("x"),transpose,reverseRows,reverseCols,
+                score:score(redKeyRead(third,redKey,
+                  /** @type {[number,number]} */ (dims),
+                  transpose,reverseRows,reverseCols,mode,reverseKey,sign))});
+keyedReads.sort((a,b)=>b.score-a.score);
+assert.equal(keyedReads.length,192);
+assert(keyedReads[0].score < -5.6);
+
 const report = cases.map(([name,input,dims]) => ({
   name,n:input.length,dims,...scan(input, /** @type {[number,number,number]} */ (dims),score)
 }));
@@ -259,5 +306,6 @@ console.log(JSON.stringify({
   onion7Title133: {title:133,divId:331,chapterLength:1729,
     rectangularBest:rectangle[0],modularBest:modular[0],
     candidateCounts:[rectangle.length,modular.length]},
-  conclusion:"Eight cube/cuboid interpretations x48, 32 rectangle and eight 331-step walks, all original-negative. No unknown LP2 plaintext or key recovered."
+  sourceP0Red13Vigenere: {tested:keyedReads.length,best:keyedReads[0]},
+  conclusion:"Eight cube/cuboid interpretations x48, 32 rectangle, eight 331-step walks, and 192 source-red Vigenere variants, all original-negative. No unknown LP2 plaintext or key recovered."
 },null,2));
