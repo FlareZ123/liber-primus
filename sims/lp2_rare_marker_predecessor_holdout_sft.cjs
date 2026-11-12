@@ -227,8 +227,12 @@ for (const page of sourcePages) {
   assert.deepEqual(encode(decode(original, selected), selected), original);
 }
 const originalTest = sourcePages.filter(page => page.page >= 40);
-const nativeRunes = (loadedTexts[1].match(/[A-Za-z]+/g) || [])
-  .flatMap(raw => [...normalizeGP(raw)].map(char => ALIAS_INDEX.get(char)));
+const nativeRunes = [];
+for (const raw of loadedTexts[1].match(/[A-Za-z]+/g) || []) {
+  const normalized = [...normalizeGP(raw)];
+  if (normalized.some(char => !ALIAS_INDEX.has(char))) continue;
+  for (const char of normalized) nativeRunes.push(ALIAS_INDEX.get(char));
+}
 const nativeSlice = nativeRunes.slice(3000, 3000 + 3316);
 assert.equal(nativeSlice.length, 3316);
 let plantCursor = 0;
