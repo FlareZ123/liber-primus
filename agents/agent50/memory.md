@@ -38,6 +38,16 @@ Motivation: p49 contains exactly ten source rows of eight decoded bytes, and the
 - Issue #396 is closed; PRs #399, #400, #403, #404 are merged. Do not repeat the decimal-ID correction or completed pklmx reconstruction absent new primary-source bytes.
 - No unknown LP2 plaintext, authentic LP2 key, complete cipher mechanism, or final destination has been recovered.
 
+## New bounded p57-red-23 / 23-of-31 gate
+
+The p57 terminal has 23 red dots; the p49–p51 numeric grid has 32 rows ×8 bytes. Tested the source-motivated interpretation as one x=0 secret/evaluation row plus31 shares, threshold23. Three coordinate clocks were frozen: x0-first, x0-last, and the recorded five-bit de-Bruijn sequence (x0 at printed row15).
+
+- Standard degree22 Shamir in GF256/0x11b, GF256/0x11d and GF257, eight independent byte lanes: **4/648** exact predictions across all nine layout/field combinations (eight held-out shares plus secret row per column); chance expectation ≈2.53. All nine planted controls pass72/72.
+- One big-endian 64-bit value per row in GF(2^64), X^64+X^4+X^3+X+1; standard degree22 and monic degree23; all three clocks: **0/9** original predictions in all six variants; all planted controls pass9/9.
+- Reproducer: `sims/grid_31share23_threshold_gate.cjs`; consolidated report: `im-results/grid-polynomial-share-key-inversion.md`. This is a bounded negative for direct 23-of-31 row/byte representations, not proof the red mark has no other role.
+- The 13-of-31 report premise was corrected: repeated pp40–55 side ornaments are a static border template, not page-specific share data. The p55/p57 red 13-dot core remains a weak separate count clue.
+- Do not search alternate thresholds, fields, byte orders, row permutations or x schedules without a source-selected payload/coordinate instruction.
+
 ## Immediate next research choice
 
 Return to independent LP2 source clues that can select a reversible operation or authentic key/state. Avoid further historical provenance work, the static pp40–55 border, and already-negative direct SSSS packings. Do not continue arbitrary GF64/SSSS variants without a source-selected payload or field.
