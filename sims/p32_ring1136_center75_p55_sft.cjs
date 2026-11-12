@@ -83,9 +83,46 @@ for (const convention of [0, 1]) {
   }
 }
 assert.ok(outputs.every((x) => x.ioc < 0.04 && !x.gpText.includes('DIVINITY')));
+
+/**
+ * Direct source-word book code: each p32 ring prime supplies a zero- or
+ * one-based cyclic character position in the corresponding original p55
+ * complete word, without any fitted offset or alphabet substitution.
+ * @param {'forward'|'reverse'} order Clockwise ring or its inverse.
+ * @param {0|1} base Original character-index convention.
+ * @returns {string} The exact sixteen selected GP-native rune labels.
+ */
+function wordIndexReadout(order, base) {
+  const weights = order === 'forward' ? ring : [...ring].reverse();
+  let cursor = 0;
+  const chosen = [];
+  for (let i = 0; i < lengths.length; i += 1) {
+    const width = lengths[i];
+    const pos = (weights[i] - base) % width;
+    chosen.push(original[cursor + pos]);
+    cursor += width;
+  }
+  assert.equal(cursor, original.length);
+  return chosen.map((x) => corpus.translit[x]).join('');
+}
+
+const wordIndexOutputs = [];
+for (const order of ['forward', 'reverse']) {
+  for (const base of [0, 1]) {
+    wordIndexOutputs.push({order, base, gpText: wordIndexReadout(order, base)});
+  }
+}
+assert.deepEqual(wordIndexOutputs.map((x) => x.gpText), [
+  'WBMAEURXSHEIEOOEXUI',
+  'ISXTHCWFMBEOESTHCJE',
+  'WBMAEIARMSHEGTHOEEAUE',
+  'ISXTHFWIMBEOXTHTHCJB',
+]);
+
 console.log(JSON.stringify({
   test: 'p32-ring1136-signed2016-wordcenter75-p55',
   originalGpIoc: ioc(original),
   outputs,
+  wordIndexOutputs,
   conclusion: 'None of the four fixed original-cipher inverses yields identifiable plaintext.',
 }, null, 2));
