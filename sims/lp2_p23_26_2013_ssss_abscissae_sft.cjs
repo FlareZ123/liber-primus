@@ -131,6 +131,84 @@ for (const [name, result] of original) {
   console.log("  original decoded prefix=" + asGP(result.output).slice(0, 120));
 }
 
+/**
+ * Exhaust all stationary five-input GF29 affine decoders without any
+ * assumption about share identifiers. For any nonzero coefficient sum t,
+ * dividing all coefficients by t gives a sum-one vector; field rescaling
+ * preserves the output histogram and IoC. For sum zero, nonzero vectors
+ * are equivalent up to any nonzero field multiplier; test one representative
+ * per class by requiring its first nonzero coefficient to equal one.
+ *
+ * Any additive output constant and any subsequent global rune permutation
+ * preserve IoC too. The all-zero vector always yields a constant, so it is
+ * excluded as a non-decoder.
+ *
+ * @param {number[][]} groups
+ */
+function entireAffineFiveFold(groups) {
+  const maxBySum = [
+    {numerator: -1, weights: [], count: 0},
+    {numerator: -1, weights: [], count: 0}
+  ];
+  const freq = new Uint16Array(29);
+  for (let a = 0; a < 29; a++) {
+    for (let b = 0; b < 29; b++) {
+      for (let c = 0; c < 29; c++) {
+        for (let d = 0; d < 29; d++) {
+          const sum = ((a + b + c + d) % 29);
+          for (let which = 0; which < 2; which++) {
+            const e = mod(which - sum);
+            const weights = [a, b, c, d, e];
+            if (which === 0) {
+              const first = weights.find((n) => n !== 0);
+              if (first !== 1) continue;
+            }
+            const result = maxBySum[which];
+            result.count++;
+            freq.fill(0);
+            for (const group of groups) {
+              freq[(
+                a * group[0] + b * group[1] + c * group[2] +
+                d * group[3] + e * group[4]
+              ) % 29]++;
+            }
+            let numerator = 0;
+            for (const n of freq) numerator += n * (n - 1);
+            if (numerator > result.numerator) {
+              result.numerator = numerator;
+              result.weights = weights;
+            }
+          }
+        }
+      }
+    }
+  }
+  assert.equal(maxBySum[0].count, 25260);
+  assert.equal(maxBySum[1].count, 707281);
+  return maxBySum;
+}
+
+const affine = [
+  ["printed quintets", entireAffineFiveFold(printed)],
+  ["five contiguous blocks", entireAffineFiveFold(fiveBlocks)]
+];
+assert.deepEqual(affine.map((x) => x[1].map((y) => y.numerator)),
+  [[1696, 1788], [1688, 1770]]);
+for (const [name, results] of affine) {
+  console.log(name + ": all nonconstant affine GF29 folds, " +
+    "maximum 201-rune IoC=" +
+    (Math.max(...results.map((x) => x.numerator)) / 40200).toFixed(9));
+  console.log("  zero-sum (25260 scale classes): " + JSON.stringify(results[0]));
+  console.log("  nonzero-sum (707281 normalized keys): " +
+    JSON.stringify(results[1]));
+}
+const allAffineOriginalMax = 1788;
+
+// This covers every nonconstant original 5-rune affine fold mod29: nonzero
+// coefficient sum scales to one, while zero-sum vectors are classified
+// separately by nonzero scalar equivalence. Reading order, an arbitrary
+// constant, and a fixed secret GP29 relabeling do not change IoC.
+
 // The GP29 letter mapping includes the common Futhorc digraphs. Exotic
 // English letters K,Q,V,Z use conventional approximate C,C,U,S aliases.
 // Controls are an explicit orthographic calibration, not exact 2014 plaintext.
@@ -174,7 +252,7 @@ function sliding201Control(text) {
       freq[added]++;
     }
     if (numerator < min) min = numerator;
-    if (numerator <= 1664) below++;
+    if (numerator <= allAffineOriginalMax) below++;
     windows++;
   }
   return {min, windows, below};
@@ -188,7 +266,7 @@ const controls = [
 for (const [name, file] of controls) {
   const values = approximateEnglishGP(read(file));
   const s = sliding201Control(values);
-  assert.ok(s.min > 1664, "control is not separated: " + name);
+  assert.ok(s.min > allAffineOriginalMax, "control is not separated: " + name);
   assert.equal(s.below, 0);
   console.log(name + ": GP runes=" + values.length +
     ", 201-rune sliding windows=" + s.windows +
@@ -219,8 +297,10 @@ const plant = known.map((secret) => {
 assert.deepEqual(decode(plant, weights(xs)), known);
 const bestPlant = strongest(plant, keys);
 assert.ok(bestPlant.numerator >= collisionNumerator(known));
+assert.ok(collisionNumerator(known) > allAffineOriginalMax);
 console.log("positive GP29 five-share plant: exact 201/201 recovery, all-key IoC scan successful");
 console.log("source-keyspace: 10P5 = 30,240 ordered inputs, " + keys.length +
   " distinct at-zero GF29 coefficient vectors, both original layouts tested");
 console.log("Decision: this finite historical 2013 five-of-ten direct GP29 " +
-  "transfer cannot produce ordinary native-English output on original pp23-26.");
+  "transfer and its entire stationary affine GF29 five-input superset " +
+  "cannot produce ordinary native-English output on original pp23-26.");
