@@ -13,6 +13,7 @@ URL = "https://raw.githubusercontent.com/neuroretransmit/cicada/main/irc-logs/%2
 SIZE = 18_487_233
 SHA1 = "bdd277c14f94c34b5ae714cd00c238065beeed4e"
 CENTER = 188_780
+PRIMARY = 186_782
 
 def main() -> None:
     with urlopen(Request(URL, headers={"User-Agent": "LP2-2014-original-crib-context"}), timeout=120) as resp:
@@ -22,10 +23,11 @@ def main() -> None:
     assert hashlib.sha1(git_blob).hexdigest() == SHA1
     lines = raw.splitlines()
     print("PINNED_SOURCE", NAME, len(raw), len(lines), SHA1)
-    print("EXACT_CONTEXT_START")
-    for index in range(CENTER - 32, CENTER + 32):
-        print(f"{index + 1:07d} {lines[index].decode('utf-8', errors='replace')[:500]}")
-    print("EXACT_CONTEXT_END")
+    for anchor in (PRIMARY, CENTER):
+        print("EXACT_CONTEXT_START", anchor)
+        for index in range(anchor - 45, anchor + 40):
+            print(f"{index + 1:07d} {lines[index].decode('utf-8', errors='replace')[:500]}")
+        print("EXACT_CONTEXT_END", anchor)
     print("LOCAL_SAME_DAY_REFERENCE_START")
     targets = (b" less ", b" it's ", b" its ", b" 27 28", b"26 27", b"page 34", b"page 35")
     a, b = max(0, CENTER - 2_000), min(len(lines), CENTER + 2_000)
