@@ -165,6 +165,57 @@ assert.equal(conflictingByteGroups, 66);
 assert.equal(maximumFixedCodebookMatches, 166);
 assert.equal(minimumCodebookErrors, 90);
 
+
+
+// Source-shape alternative: 16x16 table = 31 top/left border + 225
+// interior cells. Independently partition all red rune events into a 15x15
+// matrix in reading order. An arbitrary *secret* row/column additive key
+// requires D[r,c] = rowKey[r] + colKey[c] (mod 29), where
+// D[r,c] = printedRed[r,c] - gridInterior[r,c] (mod29).
+// Exact necessary and sufficient condition: all anchored 2x2 minors vanish.
+const red225 = events.filter((event) => event.kind === 'rune');
+assert.equal(red225.length, 225);
+assert.ok(red225.slice(0, 210).every((event) => event.page < 56));
+const innerByte29 = Array.from({length: 15}, (_, r) =>
+  Array.from({length: 15}, (_, c) => grid.bytes[(r + 1) * 16 + c + 1] % 29));
+const sourceRed15 = Array.from({length: 15}, (_, r) =>
+  red225.slice(r * 15, (r + 1) * 15).map((event) => event.value));
+/**
+ * Count anchored GF29 2x2 failures for the entire 15x15 and the first 14
+ * rows containing 210 original unsolved-page red runes exclusively.
+ * @param {number[][]} printed Original or synthetic source-red matrix
+ * @returns {{all:number,unsolvedOnly:number,firstFail:{row:number,column:number,residue:number}|null}}
+ */
+function rowColumnFailures(printed) {
+  const D = printed.map((row, r) =>
+    row.map((value, c) => (value - innerByte29[r][c] + 29) % 29));
+  let all = 0;
+  let unsolvedOnly = 0;
+  let firstFail = null;
+  for (let r = 1; r < 15; r++) {
+    for (let c = 1; c < 15; c++) {
+      const residue = (D[r][c] - D[r][0] - D[0][c] + 58) % 29;
+      if (residue === 0) continue;
+      all++;
+      if (r < 14) unsolvedOnly++;
+      if (!firstFail) firstFail = {row: r, column: c, residue};
+    }
+  }
+  return {all, unsolvedOnly, firstFail};
+}
+const rankOneOriginal = rowColumnFailures(sourceRed15);
+assert.equal(rankOneOriginal.all, 183);
+assert.equal(rankOneOriginal.unsolvedOnly, 171);
+assert.deepEqual(rankOneOriginal.firstFail, {row: 1, column: 1, residue: 23});
+// Plant using *original* published border bytes as arbitrary secret keys.
+// Every planted cell uses a native GP29 symbol and a source grid interior.
+const plantRow = Array.from({length: 15}, (_, r) => grid.bytes[16 * (r + 1)] % 29);
+const plantColumn = Array.from({length: 15}, (_, c) => grid.bytes[c + 1] % 29);
+const rankOnePlant = innerByte29.map((row, r) =>
+  row.map((value, c) => (value + plantRow[r] + plantColumn[c]) % 29));
+assert.deepEqual(rowColumnFailures(rankOnePlant),
+  {all: 0, unsolvedOnly: 0, firstFail: null});
+
 console.log('EVENT_TAPE_BEGIN: 256 physical-order cells, 1-based grid rows/columns');
 for (const e of events) {
   console.log(JSON.stringify({
@@ -185,6 +236,7 @@ console.log(JSON.stringify({
   tableMod29OriginalMatches: known.filter((x) => x.matches).length,
   tableMod29PlantedMatches: planted.length,
   direct30CodeMatchesAll256: literal30,
+  rankOne15x15: {allOriginalAnchoredMinors: 196, unsolvedOriginalAnchoredMinors: 182, observedFailAll: rankOneOriginal.all, observedFailUnknown: rankOneOriginal.unsolvedOnly, firstCounterexample: rankOneOriginal.firstFail, plantedFail: rowColumnFailures(rankOnePlant).all},
   fixedByteCodebook: {distinctBytes: byByte.size, inconsistentByteGroups: conflictingByteGroups, maximalExactMatches: maximumFixedCodebookMatches, minimumMismatches: minimumCodebookErrors, examples: contradictoryExamples},
   direct30CodeDotMatches: dotLiteral30,
   decision: 'The source-count alignment is real; the single historically motivated GP29 modular-key transfer fails all 12 known original red controls. No source selects any alternative byte/event operator.'
