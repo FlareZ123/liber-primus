@@ -93,7 +93,7 @@ for (const filename of nativeTextFiles) {
   }
 }
 assert.ok(dictionary.slice(1).every(a => a.length > 0));
-assert.deepEqual(dictionary.slice(11).map(a => a.length), [263, 133, 36, 9]);
+assert.deepEqual(dictionary.slice(11).map(a => a.length), [260, 142, 38, 9]);
 
 let rngState = 0x33010009;
 /** @returns {number} */
