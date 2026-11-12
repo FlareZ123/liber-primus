@@ -8,7 +8,7 @@ The archived 2012 MIDI stage says, “Let the Chorus be your guide to the depths
 
 The archived MIDI contains 714 Track-2 note-off events: one 238-event decoded chorus repeated three times. The source decoder sorts the distinct note-plus-note-off-delta sums and maps them to the 23-character key alphabet abcdefghijklmnoprstuvwy. Reproducing that exact rank mapping recovers the 238-letter stanza in the pinned chorus transcription.
 
-This is a real, inexpensive cross-round alignment. It does **not** prove that p36 is selected by the 2012 instruction: the archive is secondary, the PGP signature was not independently verified in this run, and no source explicitly says to apply the chorus to LP2 page 36.
+This is a real, inexpensive cross-round alignment. The outer 2012 email's cleartext signature now verifies against the preserved Cicada public key (ID `181F01E57A35090F`; successful [workflow run 43136926655](https://github.com/FlareZ123/liber-primus/actions/runs/43136926655)). GnuPG trust is unknown, so this authenticates the signed instruction and embedded encrypted-message block relative to the archived key, not the real-world identity of its controller. The decrypted `song.mid` and its note-event reconstruction remain participant-archive artifacts, not a separately signed MIDI binary. This stronger source authentication still does **not** select p36: no source explicitly says to apply the chorus to LP2 page 36.
 
 ## Frozen source inputs
 

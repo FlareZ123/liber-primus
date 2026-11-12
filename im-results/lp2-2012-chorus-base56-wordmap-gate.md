@@ -4,7 +4,7 @@
 
 ## Why test it
 
-The archived 2012 MIDI puzzle gives the instruction “Let the Chorus be your guide to the depths.” Its decoded chorus has 56 words, matching the 56 unsolved LP2 pages (0–55). The 2013 server's COUNT operation supplies Gematria Primus prime-weight word sums; the authenticated 2016 message says “Its words are the map, their meaning is the road, and their numbers are the direction”; and solved LP2 page 57 says to shed circumferences and find what is within.
+The signature-verified outer 2012 Cicada email gives the instruction “Let the Chorus be your guide to the depths” (preserved key ID `181F01E57A35090F`; GnuPG trust unknown; [workflow run 43136926655](https://github.com/FlareZ123/liber-primus/actions/runs/43136926655)). The 56-word Blake chorus appears in that signed text; the matching note-off decode comes from the participant-archive `song.mid`, not a separately signed MIDI binary. The chorus has 56 words, matching the 56 unsolved LP2 pages (0–55). A participant reconstruction of the 2013 first-onion COUNT command supplies Gematria Primus prime-weight word sums; the signed 2013 TCP challenge does not authenticate that separate command grammar. The authenticated 2016 message says “Its words are the map, their meaning is the road, and their numbers are the direction”; and solved LP2 page 57 says to shed circumferences and find what is within.
 
 A plausible, fixed human-solver hypothesis is therefore:
 
