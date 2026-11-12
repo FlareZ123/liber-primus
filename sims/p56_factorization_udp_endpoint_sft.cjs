@@ -1,7 +1,8 @@
 "use strict";
 /**
- * Reconstruct the p56 factorization and a source-motivated p55 UDP packet
- * candidate. This script NEVER opens a socket or sends network traffic.
+ * Reconstruct the p56 factorization, a source-motivated p55 UDP packet
+ * candidate, and a bounded direct hash-preimage gate. This script NEVER
+ * opens a socket or sends network traffic.
  *
  * Inputs:
  *   resources/liber-primus/lp2-corpus.json
@@ -323,6 +324,78 @@ for (const [targetName, ciphertext] of Object.entries(targets)) {
 }
 assert.equal(qKeyTests.length, 12);
 
+// Direct preimage gate: distinguish a page body from a request/retrieval hypothesis.
+function base29IntegerBytes(symbols) {
+  let value = 0n;
+  for (const symbol of symbols) value = value * 29n + BigInt(symbol);
+  let hex = value.toString(16);
+  if (hex.length % 2) hex = "0" + hex;
+  return Buffer.from(hex, "hex");
+}
+const p55BodySymbols = p55.slice(1);
+const p55BodyAscii = Buffer.from(
+  p55BodySymbols.map(symbol => BASE29_TEXT[symbol]).join(""), "ascii"
+);
+assert.equal(p55BodyAscii.length, 75);
+const directHashInputs = {
+  base29AsciiFull76: p55PayloadBytes,
+  base29AsciiBody75: p55BodyAscii,
+  base29IntegerFull76MinimalBE: base29IntegerBytes(p55),
+  base29IntegerBody75MinimalBE: base29IntegerBytes(p55BodySymbols),
+  illustrativeUdpSegment84: udpSegment
+};
+assert.deepEqual(
+  Object.fromEntries(Object.entries(directHashInputs).map(([name, bytes]) => [name, bytes.length])),
+  {
+    base29AsciiFull76: 76,
+    base29AsciiBody75: 75,
+    base29IntegerFull76MinimalBE: 47,
+    base29IntegerBody75MinimalBE: 46,
+    illustrativeUdpSegment84: 84
+  }
+);
+const directHashAlgorithms = {
+  sha512: bytes => crypto.createHash("sha512").update(bytes).digest("hex"),
+  sha3_512: bytes => crypto.createHash("sha3-512").update(bytes).digest("hex"),
+  blake2b_512: bytes => crypto.createHash("blake2b512").update(bytes).digest("hex"),
+  shake256_512: bytes => crypto.createHash("shake256", {outputLength: 64}).update(bytes).digest("hex")
+};
+function optionalWhirlpool(bytes) {
+  try {
+    const {spawnSync} = require("node:child_process");
+    const result = spawnSync(
+      "openssl", ["dgst", "-provider", "legacy", "-whirlpool"],
+      {input: bytes, encoding: "utf8"}
+    );
+    if (result.error || result.status !== 0) return null;
+    const match = (result.stdout || "").match(/([0-9a-f]{128})\s*$/i);
+    return match ? match[1].toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+const p55DirectHashPreimageGate = {};
+for (const [name, bytes] of Object.entries(directHashInputs)) {
+  const hashes = {};
+  for (const [algorithm, digest] of Object.entries(directHashAlgorithms)) {
+    const value = digest(bytes);
+    assert.notEqual(value, TARGET_HEX, name + " unexpectedly matches " + algorithm);
+    hashes[algorithm] = {digest: value, matchesTarget: value === TARGET_HEX};
+  }
+  const whirlpool = optionalWhirlpool(bytes);
+  if (whirlpool !== null) {
+    assert.notEqual(whirlpool, TARGET_HEX, name + " unexpectedly matches Whirlpool");
+    hashes.whirlpool = {digest: whirlpool, matchesTarget: false};
+  } else {
+    hashes.whirlpool = {available: false, matchesTarget: null};
+  }
+  p55DirectHashPreimageGate[name] = {
+    bytes: bytes.length,
+    hex: bytes.toString("hex"),
+    hashes
+  };
+}
+
 console.log(JSON.stringify({
   target: {
     hex: TARGET_HEX,
@@ -383,6 +456,7 @@ console.log(JSON.stringify({
     destinationPortHex: "0x" + destinationPortHex,
     transmitted: false
   },
+  p55DirectHashPreimageGate,
   possiblePage59Binary: {
     bytes: qBytes.length,
     hexCharacters: qHex59.length,

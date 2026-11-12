@@ -1,6 +1,6 @@
 # p56 factorization / p55 UDP retrieval candidate
 
-**Status:** coherent cross-page hypothesis; no endpoint, service, page-59 payload, or hash preimage authenticated.
+**Status:** coherent cross-page retrieval hypothesis, but direct p55-body/packet preimage candidates are negative; no endpoint, service, page-59 payload, or hash preimage authenticated.
 
 ## p56 instruction
 
@@ -26,6 +26,23 @@ The signed 2013 BASE29 example (3301 decimal → 3QO) selects the positional dig
 
 **Boundary caveat:** p55's first NG completes a word carried from p54; the semantic body has 75 runes. The 84-byte match therefore requires the full 76-symbol page-local sequence or a one-byte framing interpretation. Body-only plus UDP header would be 83 bytes.
 
+## Direct p55 hash-preimage gate (negative)
+
+The p56 instruction asks for a page that hashes to the printed target. Before treating p55 as that page, test the obvious source-motivated encodings without tuning padding, separators, or offsets:
+
+| Candidate input | Bytes | SHA-512 | SHA3-512 | BLAKE2b-512 | SHAKE256-512 | Whirlpool |
+|---|---:|---|---|---|---|---|
+| Full p55 BASE29 ASCII sequence (76 digits) | 76 | no match | no match | no match | no match | no match |
+| Semantic body only (drop inherited first NG; 75 digits) | 75 | no match | no match | no match | no match | no match |
+| Full 76 digits as one base-29 integer, minimal big-endian bytes | 47 | no match | no match | no match | no match | no match |
+| 75-digit body as one base-29 integer, minimal big-endian bytes | 46 | no match | no match | no match | no match | no match |
+| Illustrative UDP segment (header 0000011900540000 + full 76-byte ASCII body) | 84 | no match | no match | no match | no match | no match |
+
+The BASE29 ASCII encoding is selected by the signed 2013 example; treating the entire digit sequence as one integer is a natural but not explicitly prescribed alternative. The UDP segment is only the frozen source-port-zero specimen above, not a complete IP packet. Whirlpool was checked with OpenSSL's legacy provider; the reproducer computes the other four 512-bit families with Node crypto and attempts Whirlpool when that provider is available.
+
+**Decision:** p55 is not the direct hash preimage under these five obvious encodings. This does **not** disprove a request/retrieval interpretation in which p55 supplies a request and a different server response is the page hashed by p56. That response, a historical server contract, and a usable return port remain missing. No traffic was sent and no host was probed.
+
+Reproduce with node sims/p56_factorization_udp_endpoint_sft.cjs; it now emits the candidate digests and asserts that none equals the printed target.
 ## 59-byte cofactor
 
 Q has a 59-byte big-endian representation when padded to 118 hex digits. The unsigned 2014 Stage11 participant README mentions `59.txt` as **page number 59**, followed by `xxd -r -p 59.txt > 59.bin`; it never gives a 59-byte file length. Thus the apparent Q-size ↔ “59” match is numerology, **not a file-length match**. The same 2014 commit actually added `56.txt` and its xxd-derived `56.bin`, so a README filename mistake remains possible. Q is not the direct preimage of N under SHA-512, SHA3-512, BLAKE2b-512, SHAKE256-512, or Whirlpool. No source selects Q as XOR, OTP, HMAC or another key. Separately, 281 is the **60th prime**, whose zero-based rank is 59; this is a post hoc possible index into the missing-name reference, with neither a creator-selected prime-rank opcode nor an authenticated 59th page.

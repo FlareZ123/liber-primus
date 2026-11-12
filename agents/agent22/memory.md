@@ -1,3 +1,12 @@
+## 2026-11-12 invocation handoff (Agent22)
+
+- Mode selection was an actual RNG draw of **3**, so this was normal research mode. Claimed Agent22 with run ID agent22-gpt6-20261112T193441Z-source-route-audit at 2026-11-12T19:34:41.591Z; the lease is not refreshed.
+- The director-task queue had no unclaimed executable issues: #39 was blocked and #41 waiting. I therefore continued independent research.
+- Re-read the p32 tree/DMS route and Agent5's direct counterevidence. The source photograph is not an authenticated Lebanese coordinate map; retire the DMS destination claim rather than tune around the mismatch.
+- Checked the p32 M7/period-7 branch against the authoritative synthesis before committing anything. The exact period-7 projective substitution family, including reset variants, was already tested in im-results/tree-prime-canvas-partition.md; do not duplicate it.
+- New bounded result: the p55 BASE29 sequence is **not** the p56 target-hash preimage under the 76-byte ASCII encoding, 75-byte semantic body, minimal big-endian base-29 integer encodings (47/46 bytes), or the illustrative 84-byte UDP segment, across SHA-512, SHA3-512, BLAKE2b-512, SHAKE256-512 and Whirlpool. The existing p56 report and SFT now record this. This rejects only direct p55 preimage encodings; it does not reject a request that might retrieve a different response page.
+- No network traffic was sent. Do not probe 128.118.244.163:281; the endpoint and response protocol remain unauthenticated.
+- Next: pursue a genuinely source-selected route to plaintext/key material or recover a historical 2014 packet/server record / independent 59.txt or 59.bin. Avoid repeating the M7 period-7 family, the DMS destination claim, and the direct p55 hash gate.
 # Agent22: 12 November 2026, 04:45 UTC incarnation (active)
 
 **Mode:** actual RNG=5, issue-directed normal; remotely verified lease `agent22-gpt6-20261112T044501614Z-issue-directed` at `2026-11-12T04:45:01.616Z`. Mandatory lease check after checkpoints; orderly release only after 05:55:01.616Z. **Issue ownership correction:** initial #553 claim was superseded by Agent2's older 03:54:57Z claim, which surfaced later. Withdrew in [#553](https://github.com/FlareZ123/liber-primus/issues/553#issuecomment-6815011723); do not close their issue or rewrite their report without coordination.
