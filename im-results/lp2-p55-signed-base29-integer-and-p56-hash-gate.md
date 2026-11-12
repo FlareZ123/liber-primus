@@ -1,6 +1,6 @@
 # P55 original BASE29 integer conversion and p56 direct hash gate
 
-**Decision (Agent28, 12 November 2026):** Four fixed, source-visible p55 GP29 numeral registers decode to well-defined 47-, 46-, 27-, and 20-byte integers. None is the direct SHA-512 preimage of the 128-hex target printed on solved p56, nor does one begin with the tested file signatures. No unknown original plaintext, key, cryptographic mechanism, packet or destination was recovered.
+**Decision (Agent28 and Agent20, 12 November 2026):** Four fixed, source-visible p55 GP29 numeral registers decode to well-defined 47-, 46-, 27-, and 20-byte integers. None is the direct SHA-512 preimage of the 128-hex target printed on solved p56, nor does one begin with the tested file signatures. A separate direct SHA-1 integrity interpretation of the complete 33-exterior/43-interior split also fails byte-exactly. No unknown original plaintext, key, cryptographic mechanism, packet or destination was recovered.
 
 ## Source-motivated operation and limits
 
@@ -20,6 +20,14 @@ Freeze four registers before digest testing: (1) all 76 p55 page-local digits, (
 Each exact integer re-encodes every original digit, including zero-value runes. Each complete SHA-512 digest is independently different from the source p56 printed target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. All four byte strings have zero prefix matches among gzip, ZIP, PNG, PDF, bzip2, XZ, 7z, JPEG and ASCII-armored PGP signatures. Absence of these headers does not prove the bytes are unstructured or unencrypted. The source is not explicit about SHA-512; a 128-hex digest merely makes it a natural predeclared choice.
 
 The exact reproducer confirms the signed 2013 `3QO` example; it round-trips each entire original digit stream; and it plants an independently valid gzip byte stream encoded in exactly 43 base29 digits, recovering the original gzip and its plaintext with the identical integer-to-byte inverse. Original nonmatches are therefore distinguishable from a broken encoding implementation. The planted gzip is a synthetic test, not an LP2 file.
+
+## Independent 33-exterior / 43-interior SHA-1 integrity check (Agent20)
+
+The original 16 printed complete words on physical p55 have **32 outer endpoint runes**, plus one incoming p54 carry, versus **43 strict interior runes**. In the signed 2013 BASE29 digit alphabet, the 33 outer digits represent exactly **20 bytes** (160 bits), and the 43 inner digits represent **27 bytes**. In-period Cicada material uses SHA-1 for signed-message digests. Taken literally, this suggests a keyless and source-geometry-selected integrity rule: **outer integer = SHA-1(inner integer's minimal big-endian bytes)**. No manuscript instruction actually selects SHA-1, and the digest might instead cover an unknown plaintext; the finite test is restricted to this unkeyed original-ciphertext reading.
+
+On the unchanged 75-rune complete-word body and one incoming carried rune, the **original 33-digit outer integer** serializes to `efe89bff1c7eff588ec80605c99a364067960320`. The SHA-1 of the **exact 27-byte interior integer** (hex `013d669f55a697d6b56275a7974c8245639c8c8e09d48f70e92368`) is **`eddad4828e992391bb68e4e22a7673071f033420`**. They differ, so this full-length, no-key integrity equation fails. This comparison is distinct from the already-tested **signed-2016 SHA-1 digest as an encrypted exterior crib** in [the 33/43 shared-pad gate](p55-2016-sha1-exterior-crib-inner-gate.md).
+
+The existing CommonJS SFT now asserts both complete original byte strings, calculates the inner SHA-1, rejects equality, and tests a positive carrier by encoding that actual digest in exactly 33 GP29 digits, recovering the same 20 bytes. It also validates SHA-1 against the independent standard `abc` vector. This rules out only direct SHA-1 checksum presentation by the original exteriors; a keyed MAC, decrypted interior, alternate message serialization, or separate target remains untested without a source instruction.
 
 ## Decision for downstream work
 

@@ -85,5 +85,30 @@ assert.equal(rows[0].first16, "01bddc70abe922301b15ddc26fe5f0d5");
 assert.equal(rows[1].first16, "1208186d45908c0295580334de97f691");
 assert.equal(rows[2].first16, "013d669f55a697d6b56275a7974c8245");
 assert.equal(rows[3].first16, "efe89bff1c7eff588ec80605c99a3640");
-console.log(JSON.stringify({historicalBase29Test: "3301 -> 3QO", plantedGzipRecovered: true, variants: rows,
-  conclusion: "No fixed original p55 BASE29 integer register is a direct SHA-512 preimage of the printed p56 target or begins with the tested common file magics; no decryption claimed."}, null, 2));
+// Exact word-circumference integrity model: 33 exterior BASE29 digits
+// naturally hold a 160-bit SHA-1 of the 43 interior digits' 27-byte number.
+// The source supplies the 33/43 split and the BASE29 radix; there is no
+// independent manuscript command asserting SHA-1 or a checksum.
+const interiorBytes = Buffer.from(rows[2].fullHex, "hex");
+const exteriorBytes = Buffer.from(rows[3].fullHex, "hex");
+assert.equal(interiorBytes.length, 27);
+assert.equal(exteriorBytes.length, 20);
+assert.equal(crypto.createHash("sha1").update("abc").digest("hex"),
+  "a9993e364706816aba3e25717850c26c9cd0d89d");
+const digestOfInterior = crypto.createHash("sha1").update(interiorBytes).digest();
+assert.equal(digestOfInterior.toString("hex"),
+  "eddad4828e992391bb68e4e22a7673071f033420");
+assert.notDeepEqual(digestOfInterior, exteriorBytes);
+// A positive 33-GP-digit outer carrier exactly stores the derived 160-bit digest.
+const plantedChecksumOuter = toDigits(
+  BigInt(`0x${digestOfInterior.toString("hex")}`), 33);
+assert.deepEqual(toMinimalBytes(toInteger(plantedChecksumOuter)), digestOfInterior);
+const circumferenceChecksum = {
+  innerDigits: 43, innerBytes: 27, outerDigits: 33, outerBytes: 20,
+  actualOuterHex: exteriorBytes.toString("hex"),
+  computedInnerSha1Hex: digestOfInterior.toString("hex"),
+  directSha1Matches: digestOfInterior.equals(exteriorBytes),
+  syntheticOriginalSizedCarrierRoundTrips: true
+};
+console.log(JSON.stringify({historicalBase29Test: "3301 -> 3QO", plantedGzipRecovered: true, variants: rows, circumferenceChecksum,
+  conclusion: "No direct p55 BASE29 integer is the p56 SHA-512 preimage or a magic-prefixed file, and the 33 exterior digits do not directly encode SHA-1 of the 43 interior digits; no plaintext claimed."}, null, 2));
