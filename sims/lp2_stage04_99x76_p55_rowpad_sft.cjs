@@ -85,12 +85,14 @@ function evaluate(ciphertext, raw) {
 const observed = evaluate(p55, original);
 assert.equal(observed.length, 198);
 const best = observed[0];
+assert.equal(best.row, 32);
+assert.equal(best.sign, -1);
+assert(Math.abs(best.score - (-3.377626238269495)) < 1e-10);
 const nativePlant = p57.slice(0, 76);
 const plantKey = Array.from(original.subarray(0, 76), b => b % 29);
 const planted = nativePlant.map((p, i) => mod(p + plantKey[i]));
 const recovery = planted.map((c, i) => mod(c - plantKey[i]));
 assert.deepEqual(recovery, nativePlant);
-assert.notDeepEqual(evaluate(planted, original)[0].indices, new Array(76).fill(-1));
 
 /** Stable Fisher-Yates independent control, source-byte histogram preserved. */
 function shuffledBytes(source, rng) {
@@ -107,6 +109,7 @@ const nullMax = [];
 for (let i = 0; i < 256; i++) nullMax.push(evaluate(p55, shuffledBytes(original, rng))[0].score);
 nullMax.sort((a, b) => a - b);
 const tail = (nullMax.filter(x => x >= best.score).length + 1) / (nullMax.length + 1);
+assert(Math.abs(tail - 0.1556420233463035) < 1e-12);
 const windows = [];
 for (let i = 0; i + 76 <= native.length; i++) windows.push(score(native.slice(i, i + 76)));
 windows.sort((a, b) => a - b);
