@@ -2,13 +2,33 @@ name: F5 FGH-2002 detector calibration
 
 on:
   workflow_dispatch:
+    inputs:
+      test:
+        description: 'Original F5 calibration or exact shared-frame gate'
+        required: true
+        type: choice
+        options: [fgh, border]
+        default: fgh
 
 concurrency:
-  group: f5-fgh2002-calibration
+  group: f5-fgh2002-${{ inputs.test }}
   cancel-in-progress: false
 
 jobs:
+  border:
+    if: ${{ inputs.test == 'border' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify identical original JPEG quantized-AC frames
+        run: |
+          gcc -O2 -Wall -Wextra -o /tmp/lp2-border-gate sims/lp2_f5_identical_jpeg_dct_gate.c -ljpeg
+          /tmp/lp2-border-gate resources/liber-primus
   calibrate:
+    if: ${{ inputs.test == 'fgh' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     permissions:
