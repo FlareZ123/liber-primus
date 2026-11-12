@@ -21,7 +21,7 @@ const annotations = JSON.parse(fs.readFileSync(
   path.join(root, 'resources/liber-primus/lp2-ink-annotations.json'), 'utf8'
 ));
 const squareText = fs.readFileSync(
-  path.join(root, 'resources/derived/historical-2014/2014-fifth-onion-magicsquares.txt'),
+  path.join(root, 'resources/cicada2014-openpuff-magic-squares.txt'),
   'utf8'
 );
 
