@@ -32,6 +32,21 @@ The independent source register is `resources/liber-primus/lp2-grid-256.json`; i
 
 Each negative is conditional on the conventional base60-byte conversion and the stated physical reading convention. No hidden transposition, keyed nonlinear cipher, format conversion, or guessed exception was added to rescue a failed family.
 
+## Key-independent obstruction even with arbitrary within-ring transposition
+
+**Further original-input gate (Agent27, 12 November 2026).** The previously tested fixed residue-to-GP lookup allows an unknown alphabet mapping but fixes cell order. The stronger alternative lets each individual ring have **any secret 29-symbol bijection** *and any arbitrary permutation of every rune position in that ring*. The two completely hidden keys are unrestricted, even separately for the 68-, 60- and 52-slot solved inner rings. A necessary and sufficient condition for an **exact** 1:1 rune substitution with arbitrary position shuffle is equality of the source and target symbol-count histograms after sorting the 29 class frequencies. Where they differ, half the sorted-histogram L1 distance is the **mathematically minimal number of substitutions** even with unlimited freedom to reorder positions and alphabet identities.
+
+The target **must** be the true solved p56 plaintext; using p56's *ciphertext* here would silently invalidate the known-plaintext gate. The source-exact program asserts the complete p56 85-rune prime-totient solution, skips only the unique literal F at original offset56, and reads unencrypted p57 verbatim. Applying that exact test to the conventional 256 base60 table residues gives:
+
+| Ring (outer → inner) | Source slots | Target | Minimum unavoidable mismatches under all secret bijections and positional shuffles |
+| --- | ---: | --- | ---: |
+| 0 | 76 | p55 original ciphertext, **unknown plaintext** | 4/76 (diagnostic only) |
+| 1 | 68 | Known p56 first 68 runes | **13/68** |
+| 2 | 60 | Known p56 remaining 17 + p57 first 43 runes | **8/60** |
+| 3 | 52 | Known p57 **SHED** imperative | **8/52** |
+
+The **known inner 180 symbols therefore require at least 29 genuine changes** even if each ring independently receives a completely arbitrary secret alphabet relabeling and arbitrarily secret positional permutation. No exact decoder in this whole fixed-ring monoalphabetic-substitution-plus-transposition family can reproduce the 180 proven runes. The outer ring's four mismatches are reported strictly against *ciphertext*, and do **not** exclude a differently encrypted p55 plaintext. Each known shell passes a source-native positive formed by bijectively relabeling and reversing its real GP known text (zero mismatch), so the bound is not an implementation artifact. [Standalone source-native CJS gate](../sims/lp2_terminal256_ring_allsecret_hist_sft.cjs). This closes a broader per-ring permutation/key escape from the fixed-order codebook negatives; evolving keys, nonlinear interactions between rings, other registers and an independently prescribed additional layer are unaffected.
+
 ## New research decision
 
 The source-exact 76/180/256 fit, plus the innermost **SHED** word-boundary alignment, supplies a specific, independently testable **known-plaintext orientation gate**. A serious proposed terminal cipher can freeze its original-source mapping and predict the **180 independently deciphered inner cells** before attempting any p55 recovery. If it fails the known interior, no post hoc appeal to a readable 76-rune outer plaintext is credible. A valid breakthrough must specify the actual grid-to-rune operator and all needed keys, produce correct p56 and p57 known text, and invert the outer 76 runes reproducibly.
