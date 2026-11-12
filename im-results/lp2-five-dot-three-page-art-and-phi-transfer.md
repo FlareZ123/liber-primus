@@ -65,7 +65,18 @@ The [independent read-only CJS SFT](../sims/lp2_p2_p23_201_shamir_consistency_sf
 | Interleaved consecutive quintets; either orientation | **14/201** | **21/201** |
 | Five contiguous 201-rune blocks; either orientation | **15/201** | **17/201** |
 
-The exact best from all eight combinations is **15/201 secret** and **21/201 sixth share**. No combination remotely satisfies **all 201 required equations**. The 21-match best is a max over tested permutations, not a candidate decrypted phrase; no unknown text is recovered. This rejects only an **unaltered-symbol GP29 degree-four interpolation** with equal-spaced identifiers and the stated fixed stream layouts. Original 2013 byte-level SSSS, external packing, unknown per-strand nonlinear encodings, and other p2 source roles are **outside scope**. This result is independent of the separate five-dot visual-clone test.
+The exact best from all eight combinations is **15/201 secret** and **21/201 sixth share**.
+
+**Stronger all-secret GP29 alphabet exclusion.** The same SFT permits a wholly unknown global permutation of the 29 rune-to-field labels. Write its 29 unknown field values as f(0),...,f(28). Each original source column induces a homogeneous equation
+
+\[
+-f(p2_j)+5f(s1_j)-10f(s2_j)+10f(s3_j)-5f(s4_j)+f(s5_j)=0
+\]
+
+for secret mode, or the corresponding six-share fifth finite difference. For **all 960 secret assignments and 5,760 six-share assignments**, Gaussian elimination over GF29 gives **rank 28** in the 29 unknown rune values, using only the first **29–37 original columns** (at most 30 for quintets). Every valid assignment therefore forces all 29 rune identities to map to **the same field value**: constant assignments are the entire one-dimensional nullspace because the coefficients sum to zero. A one-to-one alphabet permutation is mathematically impossible. An authentic planted degree-four polynomial gives rank **at most 27** and exact 201/201 interpolation, as expected, because its true symbol labeling and the constant labeling are independent solutions.
+
+This **key-independent linear-algebra obstruction** excludes every stationary **shared, arbitrary GP29 rune relabeling** before five-/six-share interpolation for the tested layout, reading and x=1..6 identifier rules. It does not assume ordinary GP numerical labels or GP-English plaintext; source-dependent per-strand maps and byte-oriented SSSS remain outside scope.
+ No combination remotely satisfies **all 201 required equations**. The 21-match best is a max over tested permutations, not a candidate decrypted phrase; no unknown text is recovered. This rejects only an **unaltered-symbol GP29 degree-four interpolation** with equal-spaced identifiers and the stated fixed stream layouts. Original 2013 byte-level SSSS, external packing, unknown per-strand nonlinear encodings, and other p2 source roles are **outside scope**. This result is independent of the separate five-dot visual-clone test.
 
 ## Decision
 
