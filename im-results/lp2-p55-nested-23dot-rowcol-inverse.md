@@ -45,6 +45,17 @@ Precisely:
 
 This specific **23/9/5 alignment** and its possible mathematical use were absent from the older book-wide recursive direct-reading test. Physical p51 also has local 23/9 after the second/third peel, but its subsequent fourth peel has **zero** survivors, so it is not the same four-level arrangement; it is not an independent significance calibration. The 23/9/5 match was found exploratorily after knowing the source counts; no probability of deliberate construction is inferred.
 
+## Exact nested GP-prime checksum relationships
+
+The **nine** and **five** independently determined inner symbols contain a second exact source relation. Canonical GP-prime weights sum to:
+
+- **Nine-rune level 3:** `X I M U C P H G TH`, sum **253 = 23×11**.
+- **Five-rune level 4:** `I M U C P`, sum **161 = 23×7**.
+
+The common factor **23** is the number of occupied cells of p57's printed red stencil. The quotients **11** and **7** equal, in the correct order, the counts of **active p55 words after one and two peels**, respectively. These are fixed arithmetical facts from the original input; the arithmetic connection was noticed *after* the peel counts were found. It is a plausible structural checksum, **not proven Cicada intent** and not by itself an invertible encryption instruction.
+
+A seeded **120,000-trial** conditional null independently permutes the rune values inside *each original complete p55 word*, retaining all word lengths, full word symbol multisets, and the exact `75→43→23→9→5→3→1` size profile. Only **212/120,000 (0.1767%)** word-preserving controls have **both** inner sums divisible by 23; **1/120,000 (0.000833%)** has the precise paired values **253 and 161**. Seed `0x55323`, Xorshift32; the full executable asserts both counts. The experiment says the observed alignment is sensitive to original rune positions, yet the targets 23, 11 and 7 and their way of association were discovered post hoc. Therefore these are **conditional descriptive frequencies**, not a fair discovery-wide p-value or proof of encryption. The arithmetic deserves future independently selected tests rather than a broad key hunt.
+
 ## A fully specified GP29 row-column inverse
 
 A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
@@ -83,6 +94,8 @@ The reversible correction is a *new hypothesis*: the p57 instruction does not ex
 
 ## Reproduction and decision
 
-[The stand-alone CommonJS source test](../sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs) reads the original 29-symbol corpus and the original ink-annotation counts, reconstructs all 7 nested peel levels, fixes the 23 occupied dot coordinates, records the 23/9/5 source index mapping, proves both exact matrix ranks by F29 Gauss–Jordan elimination, decrypts and inverts the actual source symbols, and encrypts/decrypts an independently selected solved-p57 GP23 positive. The manual-only [source-word circumference CI run 43145121072](https://github.com/FlareZ123/liber-primus/actions/runs/43145121072) passed every new source-derived AES, prime401 and nested-matrix regression, including the native positive.
+[The stand-alone CommonJS source test](../sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs) reads the original 29-symbol corpus and the original ink-annotation counts, reconstructs all 7 nested peel levels, fixes the 23 occupied dot coordinates, records the 23/9/5 source index mapping, proves both exact matrix ranks by F29 Gauss–Jordan elimination, decrypts and inverts the actual source symbols, and encrypts/decrypts an independently selected solved-p57 GP23 positive. The manual-only [source-word circumference CI run 43146061438](https://github.com/FlareZ123/liber-primus/actions/runs/43146061438) passed every new source-derived AES, prime401 and nested-matrix regression, including the native positive.
+
+A separate direct attempt to use the original 2013 `DATA/560.13` XOR operation at the p15 source-fixed byte offset on the **same twice-peeled 23 runes**, under GP-index and GP-prime byte encodings, also yields no onion address or recognizable plaintext. It was executed on the full verified original historical file in [CI run 43145647103](https://github.com/FlareZ123/liber-primus/actions/runs/43145647103) and consolidated with the earlier, different first-peel central23 XOR [in the existing report](lp2-p55-central23-56013-xor-negative.md). This bounds a natural historically observed bytewise decoder without altering the new source geometry.
 
 **Research decision:** preserve this as the smallest complete source-to-source, **mathematically reversible** terminal 23-dot GP29 model so far. The explicit original prediction is negative for clear GP English. The next meaningful advancement would be a *new primary-artifact clue* that fixes the 23-cell traversal and row/column operation or independently authenticates a 23-rune target, allowing a genuinely discriminating holdout. Avoid broad permutation/shift/key scans on this postselected structure.
