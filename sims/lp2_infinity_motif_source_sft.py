@@ -87,7 +87,7 @@ def match_scaled(reference, giant, orientation):
 
 def main():
     archive = zipfile.ZipFile(sys.argv[1]) if len(sys.argv) > 1 else None
-    originals = {n: read_image(n, archive) for n in range(17, 75)}
+    originals = {n: read_image(n, archive) for n in (17, 18, 19, 32)}
     small_boxes = {
         17: [(1132, 620, 114, 38), (1132, 2943, 115, 41)],
         18: [(1132, 618, 115, 41), (1132, 2943, 115, 41)],
@@ -99,8 +99,9 @@ def main():
     assert np.array_equal(small[17][1], small[18][1])
     assert np.array_equal(small[18][1], small[19][1])
     reference = small[18][0] < 110
-    found = {str(n - 17): find_small_symbols(originals[n], reference)
-             for n in range(17, 75)}
+    found = {str(n - 17): find_small_symbols(
+        originals[n] if n in originals else read_image(n, archive), reference)
+        for n in range(17, 75)}
     found = {k: v for k, v in found.items() if v}
     assert {k: len(v) for k, v in found.items()} == {
         "0": 2, "1": 2, "2": 2}
