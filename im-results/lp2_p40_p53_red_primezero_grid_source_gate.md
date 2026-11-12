@@ -39,6 +39,20 @@ The **same p40–53 visual chapter** includes original pp49–51 **32×8** numer
 
 An independently source-visible eight-rune red heading at p33 local91 gives `F0CA48C1616BA7CE` by the first rule. None of these literal, unmodified short outputs is a recognizable ordinary file header or intelligible instruction. That is a narrow negative for this one eight-column lookup, and no substitute index mapping is justified by the source.
 
+## Exact 32×94 chapter/grid additive inverse
+
+The nine originally visible chapters include p40–53 of length **3,008 = 32×94** GP29 runes, and *within that same chapter* the printed numeric table has exactly **32 rows of eight cells**. This is a source-visible dimensional compatibility, but does not specify an encryption method. A finite additional human-motivated interpretation is to divide the complete chapter, including its red opening and closing, into 32 consecutive rows of 94 runes, assign each the corresponding source-order grid row, and repeatedly apply its eight conventional radix60 byte values reduced modulo29 as an additive key.
+
+To distinguish source-order reading from its transposed read, the one independently fixed companion convention interprets rune i's row as i mod32 and key-column as floor(i/32) mod8. No row permutations, phases, resets, fitted byte maps or secret keys are admitted. The complete original 3008-rune GP29 IoCs are:
+
+| Frozen mapping | C−K IoC | C+K IoC |
+| --- | ---: | ---: |
+| Printed-order 32 consecutive ×94 rune rows | **0.034416370667** | 0.034543954178 |
+| Source-order 32-column interleave | **0.034536657374** | 0.034434944350 |
+| Original, unchanged | **0.034542627486** | same |
+
+The 29-way uniform benchmark is 1/29≈0.03448276; full candidate prefixes remain nonlinguistic. This explicitly excludes a *direct ordinary-English GP29* reading under these four finite grid-byte pad clocks. The 3,008=32×94 divisibility by itself gives no reason to explore other table functions or row maps. The attached SFT includes exact full re-encryption, source-documented alignment, complete-output IoC, and positive native-GP plants.
+
 ## Research decision
 
 The paired red prime-zero boundaries are a new original-source structural observation with a plausible human route to modulo29 arithmetic. **No actual source inscription prescribes the checksum or table addressing**, so refrain from promoting it to verified authorial intent, a key, or plaintext. Any follow-up should independently select a reversible consumer and predict untouched original ciphertext before fitting phases or permutations.
