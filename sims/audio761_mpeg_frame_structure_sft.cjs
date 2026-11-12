@@ -73,6 +73,8 @@ function ancillaryCensus(data,main) {
   const rawBits=[];
   let gapCount=0,zeroGapCount=0,overlaps=0,overlapMax=0,maxGap=0;
   let firstInfoGapBits=0,negativeStartCount=0;
+  let fillMismatches=0,perfectFillGaps=0,nonstandardFillGaps=0;
+  const nonstandardFillSamples=[];
   for(let i=0;i<data.length;i++) {
     const entry=data[i];
     if(entry.startBit<0){negativeStartCount++;continue;}
@@ -83,7 +85,24 @@ function ancillaryCensus(data,main) {
     if(i===0){firstInfoGapBits=n;continue;}
     if(n===0){zeroGapCount++;continue;}
     gapCount++;maxGap=Math.max(maxGap,n);
-    for(let bit=finish;bit<next;bit++)rawBits.push(bitsAt(main,bit,1));
+    let localMismatches=0;
+    for(let bit=finish;bit<next;bit++){
+      const actual=bitsAt(main,bit,1);
+      rawBits.push(actual);
+      if(actual!==(bit&1))localMismatches++;
+    }
+    fillMismatches+=localMismatches;
+    if(localMismatches===0)perfectFillGaps++;
+    else {
+      nonstandardFillGaps++;
+      if(nonstandardFillSamples.length<24) {
+        const preview=main.subarray(finish>>>3,Math.min(main.length,(next+7)>>>3,finish>>>3+32));
+        nonstandardFillSamples.push({
+          frame:i,gapBits:n,globalBitStart:finish,fillMismatches:localMismatches,
+          firstBytesHex:preview.toString("hex")
+        });
+      }
+    }
   }
   const packed=Buffer.alloc(Math.ceil(rawBits.length/8));
   let ones=0;
@@ -97,6 +116,9 @@ function ancillaryCensus(data,main) {
     overlappingDataUnits:overlaps,maxOverlapBits:overlapMax,
     negativeStartCount,maxGapBits:maxGap,
     candidateAncillaryBits:rawBits.length,candidateOneBits:ones,
+    standard55FillMismatchedBits:fillMismatches,
+    perfect55FillGaps:perfectFillGaps,nonstandardFillGaps,
+    nonstandardFillSamples,
     candidateZeroBits:rawBits.length-ones,
     candidatePackedSha256:digest(packed),
     candidatePackedFirst64Hex:packed.subarray(0,64).toString("hex")
