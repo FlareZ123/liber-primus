@@ -75,7 +75,13 @@ const tests = [
   { label: 'full-page local-start 0/0', a: p53.slice(0, 75), b: p55.slice(0, 75) },
   { label: 'page53-start / page55-post-carry', a: p53.slice(0, 75), b: p55.slice(1, 76) }
 ];
-const originals = tests.map(t => ({ label: t.label, score: score(t.a, t.b) }));
+const originals = tests.map(t => ({
+  label: t.label,
+  score: score(t.a, t.b),
+  equalPositionCount: t.a.reduce((count, value, i) =>
+    count + Number(value === t.b[i]), 0)
+}));
+assert.deepEqual(originals.map(x => x.equalPositionCount), [1, 5]);
 assert(Math.abs(originals[0].score + 3.85288467054467) < 1e-9);
 assert(Math.abs(originals[1].score + 1.2559169047347514) < 1e-9);
 
