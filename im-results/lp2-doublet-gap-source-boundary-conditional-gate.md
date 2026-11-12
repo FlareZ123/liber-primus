@@ -60,6 +60,17 @@ Each source event classification was established prior to simulation, and the sa
 
 **New decision:** Source-visible word starts, line wraps, per-page event totals and 13-dot marks together do **not** account for the observed event-gap order under the declared within-class uniform-placement model. Candidate mechanisms must explain a further dependence in the **ordering** of the observed rare repeats. This strengthens the finite constraint on an independent-and-uniform “rare slip” generator. An evolving cipher state is one plausible alternative; a nonuniform word-length-conditioned generator, different source language, or per-word nonrandom event schedule remains possible and untested. No specific original LP2 key or plaintext is recovered.
 
+### Word-length confounding and stronger original-input conditioning
+
+A genuine word-position effect may depend on the **exact printed word length**, which was not fixed by the preceding four separator classes. The same full source transcript identifies every rune's containing word, retaining words that wrap lines or physical pages. A further original-source null preserves the exact 86 event counts in every intersection of **physical page × 13-dot fragment × word/line separator class × source word length**. This is considerably stricter conditioning, with 1,508 eligible groups, and fewer alternative positions for any given event. It also tests an a priori coarse four-bin length split (2–3, 4–6, 7–9, 10+ rune words).
+
+| Stronger source-conditioned null | Strata | Original lag-one correlation | Null mean / SD | ≥ observed / 20,000 | Upper-tail |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Page × 13-dot × delimiter × length four-bin | 762 | +0.3800 | +0.2327 / 0.0592 | 95 | **0.00480** |
+| Page × 13-dot × delimiter × exact word length | 1,508 | +0.3800 | +0.2489 / 0.0561 | 153 | **0.00770** |
+
+The exact length-conditioned null *reduces* the residual statistical signal compared with the simpler page+delimiter controls. It leaves an unexpectedly positive original correlation at the exploratory 1% one-sided threshold; its strict conditioning is a sensitive source-visible check, with a correspondingly smaller set of allowed event relocations. This result **does not prove** that the generator has a memory state or that gap positions encode a hidden message. Independent tests of a fully specified historical emitter and direct ciphertext inversion remain necessary. Fixed seeds `0x3301c7a3` and `0x3301c7a4` with 20,000 uniform-within-stratum samples are asserted in the consolidated SFT.
+
 ## Reproduction and implication
 
 [Self-contained CommonJS original-source SFT](../sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs) reads the canonical `resources/liber-primus/lp2-corpus.json` and `lp2-ink-annotations.json`, asserts the 12,956/86 census, observed correlation, chapter counts and 13-dot boundary inventory, and runs the three exact count-conditioned surrogates. Seeds: chapter `0x48b3c201`, page `0x48b3c202`, page-fragment `0x3301c1b2`. A planted smoothly changing gap series gives autocorrelation above 0.9 with the same routine. All three source-conditioned numerical findings were independently executed against those two live repository resources. The SFT prints the complete reproducible null summaries.
