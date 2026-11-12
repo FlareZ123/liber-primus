@@ -49,11 +49,17 @@ Across both authentic known-red controls, **0/12** original runes match the prop
 
 A different unkeyed interpretation, assigning GP29 rune indices 0–28 and 13-dot index29 directly as `B mod30`, matches only **11/256** event codes, including **1/31** 13-dot positions. This is merely a source-constant literal-serialization check, not an authenticated 30-symbol cipher or a statistical exclusion of sophisticated models.
 
+## An all-secret static byte→event codebook is impossible
+
+A stronger exact exclusion needs **no invented modulus, alphabet substitution or secret mapping**. Suppose any fixed decoder `F(byte)` maps each original 0–255 table byte to one of the **30 observed printed-event types** (29 GP runes plus 13-dot) at the source-aligned tape position. Equal bytes must have the same output. The actual 256 cells contain **161 distinct byte values**. For **66** of those values, their repeated appearances require **different** printed event symbols; e.g. byte `231` appears at events 1 and 152, demanding GP indices 8 and 6 respectively. The maximum-likelihood unconstrained 256-entry direct codebook can match **166/256** observed printed events, requiring at least **90 contradictory assignments**. This is the exact sum, over equal-byte groups, of each group size minus its most frequent printed-event symbol. The reproducer asserts the counts and prints counterexamples.
+
+Therefore even a completely free, secret, non-arithmetic **memoryless literal byte→printed-event substitution** cannot be an exact encoding of this tape. This theorem does not constrain a *keyed or position-dependent* mapping, a cipher operating on **unknown decrypted plaintext** rather than printed red symbols, or a model that takes both source channels as independent inputs. Those require independent original instructions before another search.
+
 ## Interpretive boundary and next decision
 
 The original 256-event length is real. Its central weak link is that **nothing in authenticated 2013/2014 Cicada sources specifies selecting exactly the 13-dot class, converting the pp49–51 values to event symbols, or choosing a reversible cross-channel operator**. The 10-dot and final23-dot exclusions are further falsification checks a genuine explanation must explain. Historical Stage04 authenticates GP Vigenère arithmetic on another challenge; it does not declare that this LP2 number table encrypts red text. Replacing the failed mask with an estimated alphabet permutation, a tailored row-function or an arbitrary shifted alignment would fit known controls after the fact and cannot establish a cipher.
 
-**Issue #647 outcome:** source-perfect ordered tape delivered with a single executable gate; direct historical GP29 byte-mask transfer contradicted by all twelve solved red runes; currently no source-selected alternative, so stop this count-driven route pending a new independent instruction. Maintain the unresolved terminal p55 source-selected decoder gate (#41) separately. No update to `results/README.md` is warranted because this is intermediate negative evidence rather than recovered unknown plaintext.
+**Issue #647 outcome:** source-perfect ordered tape delivered with a single executable gate; direct historical GP29 byte-mask transfer contradicted by all twelve solved red runes; every unrestricted fixed byte-to-printed-event codebook also has at least 90 contradictions; currently no source-selected alternative, so stop this count-driven route pending a new independent instruction. Maintain the unresolved terminal p55 source-selected decoder gate (#41) separately. No update to `results/README.md` is warranted because this is intermediate negative evidence rather than recovered unknown plaintext.
 
 ### Reproduction
 

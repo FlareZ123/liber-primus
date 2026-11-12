@@ -136,6 +136,35 @@ const dotLiteral30 = dotEvents.filter((event) => event.byte % 30 === 29).length;
 assert.equal(literal30, 11);
 assert.equal(dotLiteral30, 1);
 
+
+// Exact feasibility of *any* memoryless direct byte -> 30-way printed event
+// codebook. Same source byte must represent the same event, regardless of
+// secret alphabet labels. Count unavoidable mismatches by majority vote.
+const byByte = new Map();
+for (const event of events) {
+  const group = byByte.get(event.byte) || [];
+  group.push({at: event.at, page: event.page, value: event.value});
+  byByte.set(event.byte, group);
+}
+let conflictingByteGroups = 0;
+let maximumFixedCodebookMatches = 0;
+const contradictoryExamples = [];
+for (const [byte, group] of byByte) {
+  const counts = new Map();
+  for (const event of group) counts.set(event.value, (counts.get(event.value) || 0) + 1);
+  const majority = Math.max(...counts.values());
+  maximumFixedCodebookMatches += majority;
+  if (counts.size > 1) {
+    conflictingByteGroups++;
+    if (contradictoryExamples.length < 8) contradictoryExamples.push({byte, events: group});
+  }
+}
+const minimumCodebookErrors = events.length - maximumFixedCodebookMatches;
+assert.equal(byByte.size, 161);
+assert.equal(conflictingByteGroups, 66);
+assert.equal(maximumFixedCodebookMatches, 166);
+assert.equal(minimumCodebookErrors, 90);
+
 console.log('EVENT_TAPE_BEGIN: 256 physical-order cells, 1-based grid rows/columns');
 for (const e of events) {
   console.log(JSON.stringify({
@@ -156,6 +185,7 @@ console.log(JSON.stringify({
   tableMod29OriginalMatches: known.filter((x) => x.matches).length,
   tableMod29PlantedMatches: planted.length,
   direct30CodeMatchesAll256: literal30,
+  fixedByteCodebook: {distinctBytes: byByte.size, inconsistentByteGroups: conflictingByteGroups, maximalExactMatches: maximumFixedCodebookMatches, minimumMismatches: minimumCodebookErrors, examples: contradictoryExamples},
   direct30CodeDotMatches: dotLiteral30,
   decision: 'The source-count alignment is real; the single historically motivated GP29 modular-key transfer fails all 12 known original red controls. No source selects any alternative byte/event operator.'
 }, null, 2));
