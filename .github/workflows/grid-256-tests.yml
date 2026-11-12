@@ -379,4 +379,5 @@ jobs:
         if: ${{ inputs.probe == 'red32-rowkey-rs257' }}
         run: |
           node sims/lp2_red32_gridrow_aes256_selfkey_sft.cjs
+          node sims/lp2_red32_rowselector_fullcipher_aes_stream_sft.cjs
           node sims/lp2_terminal_76border_rs256_180interior_sft.cjs
