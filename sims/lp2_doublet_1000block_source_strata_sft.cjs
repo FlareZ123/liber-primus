@@ -62,7 +62,7 @@ slots[12] = 956;
 const eligiblePerBlock = slots.map((_, i) =>
   eligibleSites.filter(p => Math.floor(p / 1000) === i).length);
 assert.deepEqual(eligiblePerBlock,
-  [995, 996, 996, 996, 996, 995, 997, 995, 996, 996, 997, 950]);
+  [995, 996, 996, 996, 996, 995, 997, 995, 996, 996, 996, 997, 950]);
 
 /** @param {number[]} sites Sorted absolute rune sites. */
 function statistic(sites) {
