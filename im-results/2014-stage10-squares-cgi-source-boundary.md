@@ -31,14 +31,16 @@ Thus the client submits the four values as ordinary URL-encoded form fields, in 
 
 The exact byte string of a particular historical POST is **not** preserved: no request body, participant onion value, or exact textarea paste/whitespace is present in the archive. The schema and encoding are recoverable, but inventing the missing value bytes would not be a historical reproduction.
 
-## Static confirmation page is not the handler
+## Static successful response body is preserved; transaction/handler are not
 
-The 2014 `stage10/squares` file is only:
+The 2014 `stage10/squares` file is the participant archive's saved successful-response body:
 
 - “Thank you for you submission.”
 - links to `/107.jpg`, `/167.jpg`, and `/229.jpg`.
 
-It is a static response body, not executable CGI code. The same blob later appears as iBotPeaches' `post2/index.html` and in the 2026 krisyotam mirror. Those later copies are not the first surviving witness: the 2014 participant commit already contains it.
+The exact body is **152 bytes**, with Git blob SHA-1 `d71303af76016c8e88ed5dcc8a18b08e6276a437` and SHA-256 `94e705cd5ab79e1c6b6dcfb98cf0b00aaebb48fc0dfecf2c3f93b31f9bf615aa`. It is a preserved response body, not a complete HTTP transaction. It contains no timestamp, echoed form values, generated per-submission data, square-use instruction, hidden fields, script, or handler. It therefore supplies no LP2 key, selector, or reversible operation.
+
+The same exact Git blob later appears as iBotPeaches' `post2/index.html` and in the 2026 krisyotam mirror. Those later copies are derivative; the 2014 participant commit is the earliest surviving byte-preserving witness.
 
 The iBotPeaches repository's form page is also a later copy. Its [PR #80](https://github.com/iBotPeaches/cicada_3301/pull/80), merged 2024-09-23, says it moves the four-image page to `pre` and uses `post` for the three images and square submission boxes. The 2014 participant archive is therefore the earlier source for the form, not the 2024 reconstruction.
 
@@ -66,9 +68,17 @@ The Stage10 instruction says "Please paste the magic squares", following distrib
 
 Reproducer: [`lp1_wisdom_stage10_1033_square_sft.cjs`](../sims/lp1_wisdom_stage10_1033_square_sft.cjs). Same-image original reconstruction: [`2014-magic-square-direction-map.md`](2014-magic-square-direction-map.md); byte-level original source: [`cicada2014-stage04-256-p50-direct-identity-gate.md`](cicada2014-stage04-256-p50-direct-identity-gate.md).
 
+## Independent participant corroboration and event-time bound
+
+The [Uncovering Cicada Wiki's 2014 Onion6 record](https://uncovering-cicada.fandom.com/wiki/CICADA_3301_2014_PUZZLE_FACTS_PART_8) transcribes the same signed form, identifies Onion6 as back online at **2014-02-06 08:55 GMT**, labels the page as the redirect after submission, and reproduces the same three-image response body. It also records a different empty-form response, “Please complete the form before submitting.” The wiki says the success page was generated on submission and refers to a creation timestamp, but does **not** preserve the timestamp value, response headers, or the request body. This is participant documentation, not a creator-side capture.
+
+Connor Tumbleson's [2024 first-person reconstruction](https://connortumbleson.com/2024/12/23/the-cicada-3301-mystery-puzzle-3-solve-part-4/) explicitly says he pasted the squares and his onion address, received the same 152-byte response, and identifies the linked images as LP1 pages 14–16. It is useful corroboration of a successful submission, but is retrospective rather than a 2014 HTTP capture. The exact image identities are independently established by [the byte-comparison report](2014-stage10-three-images-lp1-source-handoff.md).
+
+The response was already in the participant archive by commit **2014-02-13 18:23:37 UTC**; the participant wiki reports the site reactivated on 6 February. This bounds the surviving archive chronology but does not establish the exact submission time. The original request body, participant onion value, HTTP status/headers, and server-side acceptance predicate remain unavailable.
+
 ## What remains unknown
 
-No original Cicada-side `/cgi-bin/squares` implementation, deployment bundle, byte-preserving POST/HTTP exchange, response headers, or operator record has been recovered. The form and static response do not establish whether the handler checked row/column/diagonal sums, uniqueness, orientation, formatting, or any other predicate; nor do they establish whether the three image links were conditional on the submitted values. Do not infer a square-to-image mapping from the returned filenames.
+No original Cicada-side `/cgi-bin/squares` implementation, deployment bundle, byte-preserving POST/HTTP transaction (request body, status/headers and response together), or operator record has been recovered. The successful response body itself is preserved as the 152-byte `stage10/squares` file described above. The form and static response do not establish whether the handler checked row/column/diagonal sums, uniqueness, orientation, formatting, or any other predicate; nor do they establish whether the three image links were conditional on the submitted values. The response body itself contains no timestamp or square-use instruction. Do not infer a square-to-image mapping from the returned filenames.
 
 **Completion boundary:** the client page is recovered and shown to be a plain form, so the client-transformation branch is closed. Reopen the server-side question only if a dated handler/deployment bundle, a byte-preserving request/response capture, or an operator record appears. This result supplies no LP2 key, cipher, or plaintext.
 
