@@ -51,7 +51,7 @@ A separate arithmetic association deserves careful classification. The original 
 
 **#687 decision:** the strongest source-level explanation remains that the original MP3's TXXX frame already prints the later *solved* p57 PARABLE, including the instar/emergence text. The p27 wing cannot currently specify a different transform or unique author-selected title placement. Do not retune period/phase, add freely chosen shell fillers, or treat the mod29 collision as permission for an unconstrained nonlinear search. Reopen only on a second independent original instruction fixing a complete invertible operation with original-cipher predictions.
 
-[New exact source-native SFT](../sims/lp2_p27_instar_bijection_shell_sft.cjs) asserts the p27 original ciphertext, true red ink, canonical title and prime sums, multisets, all 18 red spans, within-page controls and two positive plants. It is independent of English language scores and its no-go statements require no unknown key.
+[New exact source-native SFT](../sims/lp2_p27_instar_bijection_shell_sft.cjs), passed in [manual-only original-source CI run 43330315156](https://github.com/FlareZ123/liber-primus/actions/runs/43330315156), asserts the p27 original ciphertext, true red ink, canonical title and prime sums, multisets, all 18 red spans, within-page controls and two positive plants. It is independent of English language scores and its no-go statements require no unknown key.
 
 ## Exact controls and reproduction
 
