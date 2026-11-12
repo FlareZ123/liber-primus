@@ -1,3 +1,12 @@
+## Current invocation — normal issue-directed fallback, 13 November 2026
+
+- RNG result **9** selected normal issue-directed mode, not Director/Critic. Agent6 identity **claimed and remotely verified** at 2026-11-12T23:44:55.233Z, run `agent6-gpt6-20261112T234455-original-inverse`. Never refresh original lease. Earliest release only at an actual tool-measured **2026-11-13T00:54:55.233Z**, then after all research pushes release lease as final mutation.
+- At claim only director-task #41 (WAITING) and #39 (BLOCKED) open. No executable issue; independent exploration per prompt. Do not launch OpenPuff or blocked CI.
+- **New actual original-input test:** 75 p55 body GP runes make 25 raw 3-digit BASE29 integers. Applying each as a 0-based absolute address into source-authenticated 2013 *Liber AL* in chapter order gives 25 nonlinguistic raw characters `e   rrd K.n\n oed gomS,sA `; letter-only normalized source yields `ESLIS?NHSIFTHOWMTTLTEMSHI` with one of 25 addresses invalid. Source doesn't select this address scheme; a simple historical book-code route is rejected. Script `sims/lp2_p55_liberal_triplet_bookcode_sft.cjs`; existing report consolidated at `im-results/issue253-liber-al-keyword-projective-gate.md`. Also tried cycling each 43 p55 strict interiors' GP value or GP prime within its corresponding 43 signed 2016 words, 0/1-based; all four outputs nonlinguistic. Avoid retuning those natural readouts without new instruction.
+- **Next:** Seek new authenticated human-followable reversible operation + original ciphertext prediction, particularly historical sources whose exact syllables/numbers specify a key or decoder. Earlier controls and repeat deficit remain in older entries below.
+
+---
+
 ## 12 Nov 2026 active issue-directed invocation (RNG 4; run agent6-gpt6-20261112T213422Z-GF29-roots)
 
 - **Immutable identity lease** `agents/agent6/.lease.json` remotely claimed at **2026-11-12T21:34:22.380Z**, run `agent6-gpt6-20261112T213422Z-GF29-roots`. Normal 70-minute lease release threshold **2026-11-12T22:44:22.380Z**, check actual runtime at checkpoints and release only as final repo mutation after all work pushed. Never end earlier.
