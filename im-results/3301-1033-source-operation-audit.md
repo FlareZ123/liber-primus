@@ -47,6 +47,14 @@ The **2014** original LP1 page-05 word-cell prime-sum map reconstructs the 5×5 
 - The 2014 Stage10 form's label semantics are bounded separately by #275; this audit does not infer a missing handler.
 - The prime-rank/ordinal interpretation is bounded separately by #291; this audit does not repeat its inventory.
 
+## p33 header versus the original 2014 square form (Director Issue #522)
+
+The purported “Stage11 form” is misidentified. The original form HTML is the 2014 sixth-onion/Stage10 artifact [ut3qtzbrvs7dtvzp.onion.v2-form.html](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/ut3qtzbrvs7dtvzp.onion.v2-form.html). Its exact ordered fields are **Order 5 Square, 3301; Order 7 Square, 1033; Order 5 Square, 1033**. The task's proposed order (5,3301),(5,1033),(7,1033) swaps the last two fields. The preserved [Stage11 index](../resources/historical/stage11-2014-index.html) is not a square form at all: it is a 58-image index (0.jpg through 57.jpg). The Stage11 signed message concerns participants hosting a CGI upload service, as detailed in the [upload-direction correction](2014-stage11-upload-direction-correction.md).
+
+The signed form message asks participants to paste their three squares and supply their own onion-service URL; it does not mention p33, LP2, a checksum, or a two-number header. The signed 2013 TCP challenge authenticates BASE29 3301, but contains no 1033 operand; the preserved 1033 BASE29 request is an unsigned participant live vector. The 2013 prime_echo pauses at both values, but does not connect them to the 2014 form or the 2016 p33 header.
+
+**Issue #522 decision:** the original p33 header visibly contains 1033 and 3301, and the original 2014 Stage10 form visibly requests three ordered square/value pairs. No primary source says the p33 pair is a checksum for those three fields, defines a mapping from two values to three requests, or supplies a validation consequence. The task premise also mislabels the form and misorders its fields. Treat the recurrence as a cross-round observation, not an authenticated checksum or an LP2 decipherment instruction.
+
 ## Human solve-path assessment and decision
 
 A contemporary solver could reasonably notice the 2013 signed BASE29 worked example on 3301, the LP2 p50 numeric table, and the p39 red structure. That route has a concrete algebraic consequence (H/G divisibility), so it remains worth retaining as a structural lead. The same solver could also notice the 1033/3301 reversed-prime pair in the archived 2013 services and later LP2 cuneiform; however, the service grammar is not in the signed TCP challenge, the ordinal normalization is not source-selected here, and the pair does not specify a reversible LP2 operation.
