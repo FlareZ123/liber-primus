@@ -7,6 +7,8 @@ Node-independent Python 3 test: python sims/cicada2012_missingcoordinate_poster_
 from __future__ import annotations
 
 from hashlib import sha1, sha256
+from base64 import b64encode
+import os
 from io import BytesIO
 import json
 from urllib.parse import quote
@@ -71,6 +73,8 @@ def main() -> None:
             raw = response.read(size + 1)
         assert len(raw) == size, (path, len(raw), size)
         assert gitblob(raw) == blob, path
+        if idx in (0, 1) and os.environ.get("SHOW_SEOUL_ORIGINAL") == "1":
+            print(f"PINNED_SEOUL_JPEG_BASE64_{len(records)} " + b64encode(raw).decode("ascii"))
         img = Image.open(BytesIO(raw))
         img.load()
         readings = read_qr(img)
