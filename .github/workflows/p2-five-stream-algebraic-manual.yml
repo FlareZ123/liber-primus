@@ -22,6 +22,10 @@ jobs:
         run: node sims/lp2_p2_p23_polynomial_degree_gate_sft.cjs
       - name: Check historical 984-bit SSSS against original p2 with XTEA
         run: node sims/lp2_p23_26_ssss984_p2_original_gate_sft.cjs
+      - name: Install Boost multiprecision headers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libboost-dev
       - name: Build complete historical 984-bit SSSS XTEA plaintext gate
         run: g++ -std=c++20 -O3 sims/lp2_p23_26_ssss984_full_xtea_ascii_sft.cpp -o ssss-984-check
       - name: Decode all 120960 original SSSS share assignments
