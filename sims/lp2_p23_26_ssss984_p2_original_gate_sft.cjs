@@ -184,6 +184,14 @@ const cachedInverses=Array.from({length:16},(_,i)=>i?inverse(BigInt(i)):0n);
 for(let i=1;i<16;i++) {
   assert.equal(multiply(BigInt(i),cachedInverses[i]),1n);
 }
+const runFullP56Search=process.env.P56_ALL_IDS==="1";
+const p56Search={enabled:runFullP56Search,candidateCount:0,hashComparisons:0,matchCount:0,matches:[]};
+const p56Digests=bytes=>({
+  "SHA-512":crypto.createHash("sha512").update(bytes).digest("hex"),
+  "SHA3-512":crypto.createHash("sha3-512").update(bytes).digest("hex"),
+  "BLAKE2b-512":crypto.createHash("blake2b512").update(bytes).digest("hex"),
+  "SHAKE256-64":crypto.createHash("shake256",{outputLength:64}).update(bytes).digest("hex")
+});
 const stats=views.map(v=>({
   layout:v.label,trials:0,legal201:0,maxAgreement:0,exactTargetMatches:0,
   naturalReadableBytes:null,naturalDecodedPrefix:null,naturalSecretHex:null,naturalByteEntropy:null,naturalSecretHashes:null,p56HashMatches:null
@@ -212,6 +220,25 @@ for(const ids of sets) {
       const recovered=monicCorrection^assignment.reduce(
         (v,which,i)=>v^pre[i][which],0n);
       stat.trials++;
+      if(runFullP56Search) {
+        const raw=diffuse(recovered,984,true);
+        const bytes=Buffer.from(raw.toString(16).padStart(246,"0"),"hex");
+        const digests=p56Digests(bytes);
+        p56Search.candidateCount++;
+        p56Search.hashComparisons+=4;
+        for(const [family,digest] of Object.entries(digests)) {
+          if(digest===p56TargetHex) {
+            p56Search.matchCount++;
+            if(p56Search.matches.length<20) {
+              p56Search.matches.push({
+                layout:view.label,shareIds:ids.map(String),
+                strandToIdPermutation:assignment.slice(),family,
+                secretHex:bytes.toString("hex")
+              });
+            }
+          }
+        }
+      }
       if(encodedTargets.includes(recovered))stat.exactTargetMatches++;
       if(recovered<limit201) {
         stat.legal201++;
@@ -251,6 +278,10 @@ assert.deepEqual(stats.map(s=>s.naturalReadableBytes),[44,54,48,47]);
 assert.ok(stats.every(s=>s.exactTargetMatches===0));
 assert.ok(stats.every(s=>s.naturalSecretHex.length===246));
 assert.ok(stats.every(s=>s.p56HashMatches.length===0));
+if(runFullP56Search) {
+  assert.equal(p56Search.candidateCount,120960);
+  assert.equal(p56Search.hashComparisons,483840);
+}
 console.log(JSON.stringify({
   status:"PASS",date:"2026-11-12",unknownPage2Runes:201,
   unknownFiveDotChapterRunes:1005,degreeBits:984,
@@ -262,5 +293,7 @@ console.log(JSON.stringify({
   targetReadings:["page2-original","page2-reversed",
     "XTEA(page2-original)","XTEA(page2-reversed)"],
   p56Target:{bytes:64,hex:p56TargetHex,digestFamilies:["SHA-512","SHA3-512","BLAKE2b-512","SHAKE256-64"]},
-  stats,decision:"No direct page2-as-SSSS-secret match. The natural IDs01..05 123-byte outputs miss LP2 p56's printed 64-byte target (also preserved in the 2014 anend 56.bin witness) under four common 512-bit digest families (0/16); the digest algorithm is unspecified and possible key/consumer role remains untyped."
+  stats,p56Search,decision:runFullP56Search
+    ? `Exhaustive source-valid 5-of-10 SSSS p56 direct-preimage search: ${p56Search.matchCount} matches among ${p56Search.candidateCount} exact 123-byte outputs / ${p56Search.hashComparisons} fixed-family digests.`
+    : "Natural IDs01..05 123-byte outputs miss LP2 p56's printed 64-byte target under four common 512-bit digest families (0/16); use P56_ALL_IDS=1 for the bounded full 5-of-10 assignment search."
 },null,2));
