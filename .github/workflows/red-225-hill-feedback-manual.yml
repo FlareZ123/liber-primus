@@ -11,6 +11,7 @@ on:
         options:
           - legacy
           - salsa20
+          - mix_end_parable
 
 jobs:
   inverse:
@@ -22,17 +23,22 @@ jobs:
         with:
           node-version: '22'
       - name: Run source-constrained original and exact planted inverse
-        if: github.event.inputs.probe != 'salsa20'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/red_225_hill_feedback_inverse.cjs
       - name: Red 225-core and 31-stencil rim 16x16 original-source inverse
-        if: github.event.inputs.probe != 'salsa20'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/red_256_rim_hill_inverse.cjs
       - name: Exact solved-page literal-F gate of red256 event pad keys
-        if: github.event.inputs.probe != 'salsa20'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/red256_literal_f_source_gate.cjs
       - name: Image-shifted terminal-moth arbitrary-rune-bijection necessary condition
-        if: github.event.inputs.probe != 'salsa20'
+        if: github.event.inputs.probe == 'legacy'
         run: node sims/moth_shifted_bijection_gate.cjs
+      - name: Verify red225 MIX AN END PARABLE source gate
+        if: github.event.inputs.probe == 'mix_end_parable'
+        run: |
+          node --check sims/lp2_red225_mix_end_parable_sft.cjs
+          node sims/lp2_red225_mix_end_parable_sft.cjs
       - name: Salsa20 original grid nonce and 32 red-run key inverse
         if: github.event.inputs.probe == 'salsa20'
         run: |
