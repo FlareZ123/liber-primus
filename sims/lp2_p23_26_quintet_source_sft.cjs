@@ -52,17 +52,34 @@ const consumers = {
 };
 const strides = Array.from({ length: 5 }, (_, k) => body.filter((_, j) => j % 5 === k));
 const blocks = Array.from({ length: 5 }, (_, k) => body.slice(201 * k, 201 * (k + 1)));
+// Historical 2013 five-share Shamir clue: interpolate f(0) over GF(29) at
+// fixed share abscissae 1,2,3,4,5. The source supplies no actual x labels,
+// so these are only the natural zero-parameter literal reading.
+const shamir = [5, -10, 10, -5, 1];
+const blockQuints = Array.from({ length: 201 }, (_, i) =>
+  Array.from({ length: 5 }, (_, j) => blocks[j][i])
+);
+const extraConsumers = {
+  quintetShamir: quints.map(q => mod29(sum(q.map((v, j) => v * shamir[j])))),
+  blockFiveIndexSum: blockQuints.map(q => mod29(sum(q))),
+  blockFivePrimeSum: blockQuints.map(q => mod29(sum(q.map(v => corpus.prime[v])))),
+  blockFiveShamir: blockQuints.map(q => mod29(sum(q.map((v, j) => v * shamir[j])))),
+};
 const results = {
   source: {
     pages: [23, 24, 25, 26], redRunes: 16, totalRunes: source.length,
     bodyRunes: body.length, exactQuintets: quints.length,
   },
-  folds: Object.fromEntries(Object.entries(consumers).map(([key, v]) => [key, summary(v)])),
+  folds: Object.fromEntries(Object.entries({ ...consumers, ...extraConsumers }).map(([key, v]) => [key, summary(v)])),
   strideFive: strides.map(summary),
   consecutive201: blocks.map(summary),
 };
 assert.ok(Math.abs(results.folds.indexSum.ioc - 0.033084577) < 1e-6);
 assert.ok(Math.abs(results.folds.gpPrimeSum.ioc - 0.035671642) < 1e-6);
+assert.ok(Math.abs(results.folds.quintetShamir.ioc - 0.0344278607) < 1e-6);
+assert.ok(Math.abs(results.folds.blockFiveIndexSum.ioc - 0.0358706468) < 1e-6);
+assert.ok(Math.abs(results.folds.blockFivePrimeSum.ioc - 0.0320398010) < 1e-6);
+assert.ok(Math.abs(results.folds.blockFiveShamir.ioc - 0.0341293532) < 1e-6);
 assert.ok(Math.max(...results.strideFive.map(x => x.ioc)) < 0.035);
 assert.ok(Math.max(...results.consecutive201.map(x => x.ioc)) < 0.035);
 console.log(JSON.stringify(results, null, 2));
