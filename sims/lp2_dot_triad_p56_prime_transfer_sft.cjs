@@ -81,6 +81,37 @@ const reencryption = solvedPlain.map((rune, offset) =>
 assert.deepEqual(reencryption, solvedCipher);
 const exactP56Pad = solvedCipher.map((r, i) => (r - solvedPlain[i] + 29) % 29);
 
+// Dot-adjacent *red* rune spans offer an independent source-visible reset
+// candidate. Their positions come from the pinned ink annotation, not a guess.
+const ink = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-ink-annotations.json'), 'utf8'
+));
+const expectedRed = new Map([
+  [7, 'EYTHOEREALTOOSSNGI'],
+  [23, 'AEHPITHIAUNGPAPEAIDWW'],
+  [56, 'ANEND'],
+]);
+const redTests = [];
+for (const page of [7, 23, 56]) {
+  const pageInk = ink.pages.find((p) => p.page === page);
+  const span = pageInk.red_spans[0];
+  const pageRunes = corpus.pages.find((p) => p.page === page).indices;
+  const sourceRed = pageRunes.slice(span.start, span.start + span.length);
+  const orientedRed = page === 56 ? sourceRed : sourceRed.slice().reverse();
+  const candidate = orientedRed.map((rune, i) =>
+    (rune - exactP56Pad[i] + 29) % 29
+  );
+  assert.equal(latin(candidate), expectedRed.get(page));
+  assert.deepEqual(
+    candidate.map((rune, i) => (rune + exactP56Pad[i]) % 29),
+    orientedRed
+  );
+  redTests.push({
+    page, originalOffset: span.start, sourceRunes: span.length,
+    sourceCiphertext: latin(orientedRed), sourcePadOutput: latin(candidate),
+  });
+}
+
 const outputs = [];
 for (const page of [7, 23]) {
   const lines = printedLines(page);
@@ -119,5 +150,6 @@ for (const page of [7, 23]) {
 console.log(JSON.stringify({
   control: {page: 56, knownPlaintextRecovered: true, runes: 85, ioc: ioc(solvedPlain)},
   outputs,
+  redTests,
   decision: 'Both source-oriented direct transfers remain nonlinguistic; no new LP2 plaintext.',
 }, null, 2));
