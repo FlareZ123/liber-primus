@@ -12,6 +12,7 @@ physical pages and both solved source controls are measured.
 from __future__ import annotations
 
 import json
+import statistics
 from collections import Counter
 from pathlib import Path
 
@@ -36,7 +37,7 @@ def analyze_page(page: int) -> tuple[dict, list[dict], list[dict]]:
             continue
         all_glyphs.extend(glyphs)
         if marks:
-            anchor_rows.append((line_index, sorted(m["cy"] for m in marks)[len(marks) // 2]))
+            anchor_rows.append((line_index, float(statistics.median(m["cy"] for m in marks))))
         for left, right in zip(glyphs, glyphs[1:]):
             gap = right["x0"] - left["x1"]
             marks_inside = [mark for mark in marks if
