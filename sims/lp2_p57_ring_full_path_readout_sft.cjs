@@ -149,6 +149,31 @@ assert.deepEqual(baselineRoute.missing,
   [9, 78, 89, 90, 100, 101, 108, 118]);
 
 
+
+// Cross-artifact checksum candidate: the four selected word-prime sums are
+// compared with the 729-rune opening section. This is a diagnostic, not a
+// prescribed book-cipher operation.
+const openingPages = [0, 1, 2].map(page =>
+  corpus.pages.find(item => item.page === page).indices);
+const openingChapter = openingPages.flat();
+assert.deepEqual(openingPages.map(x => x.length), [262, 266, 201]);
+assert.equal(openingChapter.length, 729);
+const selectedAddressSum = addresses.reduce((a, b) => a + b, 0);
+assert.equal(selectedAddressSum, 728);
+const openingReadoutZeroBased = addresses.map(index =>
+  corpus.translit[openingChapter[index]]);
+const openingReadoutOneBased = addresses.map(position =>
+  corpus.translit[openingChapter[position - 1]]);
+const openingLastRune = corpus.translit[openingChapter[728]];
+let fourSubsetCount728 = 0;
+for (let a = 0; a < wordData.length; a++)
+  for (let b = a + 1; b < wordData.length; b++)
+    for (let c = b + 1; c < wordData.length; c++)
+      for (let d = c + 1; d < wordData.length; d++)
+        if (wordData[a].primeSum + wordData[b].primeSum +
+            wordData[c].primeSum + wordData[d].primeSum === 728)
+          fourSubsetCount728++;
+
 // Counterexamples to the two most consequential selector conventions.
 const oneBasedBytes = addresses.map(address => grid.bytes[address - 1]);
 assert.deepEqual(oneBasedBytes, [68, 166, 251, 179]);
@@ -292,6 +317,18 @@ const output = {
     firstFiveRunes: ringRoute.fullTokens.slice(0, 5).join(""),
     fullPathRunes: ringRoute.fullTokens.join(""),
     uniqueFirstVisitRunes: ringRoute.uniqueTokens.join("")
+  },
+  openingChapterCrossCheck: {
+    pageRuneCounts: openingPages.map(x => x.length),
+    totalRunes: openingChapter.length,
+    selectedWordPrimeSum: selectedAddressSum,
+    zeroBasedPositions: addresses,
+    zeroBasedRunes: openingReadoutZeroBased,
+    oneBasedRunes: openingReadoutOneBased,
+    finalZeroBasedRune: openingLastRune,
+    fourSubsetsAmong43WordsSumming728: fourSubsetCount728,
+    totalFourSubsets: 123410,
+    interpretation: "The selected sums total 729-1 and address the final opening-chapter rune W; however 243 of 123410 four-word subsets share this sum, and neither direct readout is plaintext."
   },
   addressConventionAlternative: {
     oneBasedBytes,
