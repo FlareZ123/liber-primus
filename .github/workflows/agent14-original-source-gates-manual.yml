@@ -12,6 +12,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify source-cube all-chapter-IV two-time-pad HMM
+        run: |
+          node --check sims/lp2_taxicab1729_cube729_hmm_sft.cjs
+          node sims/lp2_taxicab1729_cube729_hmm_sft.cjs
       - name: Verify source-cube 729 position-bijection exclusion
         run: |
           node --check sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs
