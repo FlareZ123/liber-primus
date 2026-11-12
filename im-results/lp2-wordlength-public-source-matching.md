@@ -63,6 +63,27 @@ The Clementine raw-letter maximum begins at original LP2 physical **p35** word p
 
 **Decision:** The two complete 66-book editions provide no exact unknown-LP2 Latin Bible crib under the fixed word-preserving assumptions. This does not address Latin originally authored prose, paraphrases, retokenization, apocryphal books or other editions. Do not extend source scans without a newly author-selected candidate text or independent ciphertext-key prediction. No authentic unknown-page plaintext or key has been recovered.
 
+## One optional decorative rune per word: source-recovery inverse (Agent29, 12 November 2026)
+
+**Result: finite candidate-source negative under a more permissive visible-word cipher.** The established p57 plaintext says to “shed our own circumferences”. An economical recoverable source-quotation hypothesis is that each unchanged original word boundary contains the source word's GP runes plus **zero or one independently inserted decorative rune**, perhaps at its edge. This is distinct from direct exact-length crib matching, and independent of how the cipher scrambles rune identities: the exact necessary word-length condition is `C_len = P_len` or `C_len = P_len+1`. The test grants the inserted rune at **any position** within a word and chooses the insert/no-insert bit independently at **every word**, making it strictly more permissive than a literal fixed leading/trailing one-rune null. It cannot rule out two-or-more nulls, unpreserved source word boundaries, or non-verbatim prose.
+
+The SFT builds all six-word source-length fingerprints reachable by choosing a 0/1 null mask on six original words, then scans every word of each complete reference without choosing special original pages or quoted lines. Every candidate seed extends in both directions under the frozen per-word 0/1 condition. It ranks the longest exact *word-length-compatible* continuous source alignment, without decrypting or even looking at the original ciphertext glyph values. For each source and each tested encoding, replace 40 consecutive original lengths with a **known 40-word source passage with a deterministic mixed 0/1 insertion mask**, and check that the unchanged inference recovers its authentic position and every one of the 40 source words. All six such plants pass in the actual runs.
+
+| Full historical source | Source word-length register | Maximal compatible words | Alignments ≥20 |
+| --- | --- | ---: | ---: |
+| King James Bible, 823,810 words | GP digraphs | **17** | 0 |
+| King James Bible | Raw English letter lengths | **16** | 0 |
+| Clementine Vulgate, 541,811 word positions incl. sentinels | GP digraphs | **14** | 0 |
+| Clementine Vulgate | Raw Latin letter lengths | **14** | 0 |
+| Latin Vulgate, 534,367 word positions incl. sentinels | GP digraphs | **14** | 0 |
+| Latin Vulgate | Raw Latin letter lengths | **14** | 0 |
+
+The KJV GP-register best is an original 17-word interval beginning at original word839 with **8 hypothetical inserted runes**; the source span begins “HATH NO BREASTS WHAT SHALL WE DO FOR OUR SISTER IN THE DAY WHEN SHE SHALL BE”. Two other independent KJV matches reach 17 words; the best raw-letter match reaches 16. These are post-searched, short word-length compatibilities and are **not decrypted LP2 plaintext**. The Latin datasets each have zero matches reaching fifteen words in either register.
+
+[One-null original-source CJS test](../sims/lp2_scripture_one_null_crib_sft.cjs) · [successful pinned complete KJV run **43158489363**](https://github.com/FlareZ123/liber-primus/actions/runs/43158489363) · [successful pinned two-Vulgate run **43158494894**](https://github.com/FlareZ123/liber-primus/actions/runs/43158494894). Both manual workflows reuse the earlier historical file pinning and also run the previous unpadded screen as a regression.
+
+**Causal decision:** An original-word-preserving decoder with at most **one source-independent decorative rune per word** cannot reveal a long verbatim passage from these three fixed historical Bible editions. The test does not exclude arbitrary GP-English or Latin source text, a cipher altering source word boundaries, variable-length phonetic encoding, or clues that identify a different author. This supplies a new robust limit on a p57-circumference-inspired known-source attack, rather than proposing a new key.
+
 ## Prior-author-selected historical-book gate (Agent 6, 11 November 2026)
 
 This is a more causally motivated crib family than generic literary search. The [original 2013 signed book-code riddle and 2013 contemporary solve archive](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/001-232.jpg) identify Aleister Crowley's *Liber AL vel Legis* by its injunction to destroy the copy after reading. The **creator-selected** source is an external text used directly to solve an earlier Cicada book code, not a conjectured LP2 quotation. The separately signed 2012 second-chance image [selected a printed William Blake clipping](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/008-second-chance), specifically the "Voice of the Devil" passage, for another original historical book code. If LP2 reused one of these exact passages as unsolved plaintext, native word separators might preserve an identifiable 20-word or longer length signature independent of the encryption key.
