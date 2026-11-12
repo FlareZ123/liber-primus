@@ -4,6 +4,8 @@
 
 The original p33 opening draws two numerical values, **1033** and **3301**, also displayed as magic sums in authenticated 2014 Stage10. The source-preserved three literal magic squares are in `resources/cicada2014-openpuff-magic-squares.txt`, with rows as originally printed. They furnish three entirely specified integer matrices, of shapes 5×5 (line sums 3301), 7×7 (1033), and 5×5 (1033). A 2014 solver might try these as **Hill-cipher block matrices modulo29**, in the original 29-GP rune register. This application is a hypothesis: the historical square stage supplied navigation/magic arithmetic, not an explicit LP2 Hill instruction.
 
+The distinct literal [two-matrix 5×7 tensor follow-up](lp2-p33-39-stage10-magic-tensor5x7.md) now applies the exact original 5×5 row square and 7×7 column square across 48 full source-aligned 35-rune blocks. Both 5×5 choices re-encrypt the complete chapter but produce ciphertext-like IoC 0.03449/0.03434, with passing solved-p57 plants and an [independent CI result](https://github.com/FlareZ123/liber-primus/actions/runs/43166845267). Neither recovers original plaintext or a key; the source-selected operation remains unknown.
+
 ## Key-independent viability
 
 Exact modular Gauss–Jordan elimination on the three literal source matrices gives:
