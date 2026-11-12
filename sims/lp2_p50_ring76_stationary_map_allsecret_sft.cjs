@@ -110,6 +110,9 @@ const tokens = coords.map(([i, j]) => grid.rows[i][j]);
 const cases = {
   "full-byte": bytes,
   "printed-base60-token": tokens,
+  // Original pp49/50/51 contain 80/104/72 cells, or 10/13/9 complete rows.
+  "original-physical-page-local-token": coords.map(([i, j]) =>
+    `${i < 10 ? 49 : i < 23 ? 50 : 51}:${grid.rows[i][j]}`),
   "byte-mod29": bytes.map(n => n % 29),
   "byte-low5": bytes.map(n => n & 31),
   "base60-first-digit": bytes.map(n => Math.floor(n / 60)),
@@ -119,6 +122,7 @@ const cases = {
 const expected = {
   "full-byte": [68, 69, 71],
   "printed-base60-token": [68, 69, 71],
+  "original-physical-page-local-token": [74, 74, 75],
   "byte-mod29": [24, 26, 34],
   "byte-low5": [27, 28, 35],
   "base60-first-digit": [5, 15, 15],
