@@ -1,0 +1,16 @@
+name: LP2 original word-length source match and solved p57 positive (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  word-length-crib-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Seven historical corpora, original word clock, solved p57 plant
+        run: node sims/lp2_wordlength_source_match_sft.cjs
