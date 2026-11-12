@@ -39,7 +39,7 @@ jobs:
           if [ "$SCOPE" = "smoke" ]; then last=$FIRST; fi
           ./scanner "$FIRST" "$last" > "result-${FIRST}.txt" 2>&1
           cat "result-${FIRST}.txt"
-          grep -q "^DONE a=${FIRST}..\${last} candidates=" "result-${FIRST}.txt"
+          grep -q "^DONE a=${FIRST}..${last} candidates=" "result-${FIRST}.txt"
       - name: Preserve exact scan interval and digest decision
         uses: actions/upload-artifact@v4
         with:
