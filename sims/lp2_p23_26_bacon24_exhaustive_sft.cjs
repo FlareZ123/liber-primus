@@ -212,7 +212,7 @@ function decodeGpToLetters(GP29Digits, alphabet) {
   return normalize(s);
 }
 const latinDigits = read("resources/control/latin-vulgate-gp-wholewords.txt")
-  .split(/\\r?\\n/).map((line) => line.trim())
+  .split(/\r?\n/).map((line) => line.trim())
   .filter((line) => line !== "" && !line.startsWith("#")).join("");
 const latinText = decodeGpToLetters(latinDigits, "0123456789ABCDEFGHIJKLMNOPQRS");
 const oldEnglish = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
