@@ -178,6 +178,25 @@ This is an actionable candidate for the signed 2016 clue's instruction that word
 
 **Exact source SFT:** [tree121_sentence_home_source_gate.cjs](../sims/tree121_sentence_home_source_gate.cjs), whose strengthened HOME/BUDS/+60 source and shuffle gate passed [manual CI run 42943770796](https://github.com/FlareZ123/liber-primus/actions/runs/42943770796). Do not promote HOME to established plaintext or a historical destination before a mechanism independently predicts an unknown interval.
 
+## HOME→BUDS as an explicit four-rune delta key: independent original-p55 inverse gate (12 November 2026)
+
+The original p32 row-major 11×11 grid has the two already-recorded literal source fragments **HOME** at local offsets 33–36 (grid row3,col0) and **BUDS** at offsets 93–96 (row8,col5). Their starts are exactly +60 source runes, moving five down and five right. The signed 2016 instruction makes a numeric *direction between words* a human-plausible candidate. Treating their four GP29 symbolwise differences as one frozen four-rune additive key is an explicitly reversible operation, rather than simply looking for further approximate English cribs:
+
+```text
+source HOME: H O M E = [8,3,19,18]
+source BUDS: B U D S = [17,1,23,15]
+BUDS−HOME modulo29 = [9,27,4,26] = N-IA-R-Y
+```
+
+Test both additive signs at two source-fixed starts: (a) the 84 untouched source runes **immediately after HOME** at p32 offset37; (b) original complete terminal **p55 76 runes** starting at its first printed glyph, an independently tree-illustrated page not used to fit the four-rune key. Both have exact reversible original-cipher roundtrips and the decoded rune streams are completely preserved by the [SFT](../sims/lp2_p32_home_buds_delta_key_sft.cjs). No exceptions, phase hunts, substitutions or plaintext words were fitted.
+
+| Original test interval | Raw IoC | C+key IoC | C−key IoC |
+| --- | ---: | ---: | ---: |
+| p32 after HOME, 84 runes | 0.032702 | **0.042742** | 0.038153 |
+| p55 full, 76 runes | 0.037895 | 0.033684 | 0.033684 |
+
+The exact unencrypted GP29 source p57 has **IoC 0.062710** at 95 runes for an authentic register control. Neither p32 output yields a readable complete sentence and neither independently held-out p55 output resembles native GP prose. Important falsifiability caveat: decoding BUDS back into HOME at the matching four-position phase is a **tautology**, because the key was obtained from those same eight original cipher runes. Only other-runic readouts carry evidence; the p55 holdout provides no support. Neither source authenticates four-rune periodic reuse as the intended operation, so do not widen key variants without a new authored selector.
+
 ## Cross-round prime-area bridge to the independent 256-cell numerical table (Agent 33, 11 November 2026)
 
 **Provenance and interpretation:** The **2012 solved telephone stage** instructed taking its 509×503-pixel picture's two prime dimensions, multiplying them together and multiplying by **3301**, then appending `.com`. This exactly yields the historically documented `845145127.com`. The later, signed 2016 tree JPEG has authenticated dimensions **563×569**. As sets, the two image dimension-prime pairs differ by exactly **60**: `503+60=563` and `509+60=569`, with the image orientation reversed. The manuscript separately contains a 32×8 numerical table often interpreted through **base 60**, though a radix-59 reading is still a live transcription/semantic alternative. The +60 relation is an unverified candidate cue to that radix.
