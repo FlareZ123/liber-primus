@@ -19,7 +19,7 @@ The historical 2014 solved stage demonstrates a column permutation on *character
 
 ## Original-cipher result and native positive controls
 
-Only word lengths are scored, using the repository's existing **seven-category GP word-length-bigram log-odds** detector: lengths 1, 2, 3, 4, 5–6, 7–8, 9+. The independent model texts are solved LP1 (904 GP words), Gibran (15,733), and Emerson (77,932). For each model, **2,000 fixed-seed whole-multiset shuffles of the original 667 length values** define a null distribution. A positive z would indicate restored adjacent word-length syntax. The reported upper tail is the empirical proportion scoring at least as well as the original transformed candidate, with plus-one correction.
+Only word lengths are scored, using the repository's existing **seven-category GP word-length-bigram log-odds** detector: lengths 1, 2, 3, 4, 5–6, 7–8, 9+. The independent model texts are solved LP1 (942 GP words), Gibran (15,733), and Emerson (77,932). For each model, **2,000 fixed-seed whole-multiset shuffles of the original 667 length values** define a null distribution. A positive z would indicate restored adjacent word-length syntax. The reported upper tail is the empirical proportion scoring at least as well as the original transformed candidate, with plus-one correction.
 
 | Fixed independently trained model | Original bits/pair | Word-columnar inverse bits/pair | z relative to original-word multiset shuffles | Upper tail |
 | --- | ---: | ---: | ---: | ---: |
