@@ -133,3 +133,44 @@ console.log(JSON.stringify({
   originalUnmodifiedIoc: ioc(C), positiveControls: "12 × 6561 exact",
   originalForwardReencryptions: "12 × 6561 exact", variants: rows
 }, null, 2));
+
+
+/**
+ * Frozen direct historical BASE29-style second register: treat the decoded
+ * GP digits as one big-endian integer, then serialize its minimal byte array.
+ * This rules out only recognizable native payload headers at offset zero.
+ * @param {number[]} symbols
+ */
+function packedBytes(symbols) {
+  let v = 0n;
+  for (const symbol of symbols) v = 29n * v + BigInt(symbol);
+  let hex = v.toString(16);
+  if (hex.length % 2) hex = "0" + hex;
+  return Array.from({ length: hex.length / 2 }, (_, i) => parseInt(hex.slice(i * 2, i * 2 + 2), 16));
+}
+
+/** @param {number[]} bytes */
+function byteView(bytes) {
+  const head = bytes.slice(0, 16).map(v => v.toString(16).padStart(2, "0")).join("");
+  const fileHeader = head.startsWith("1f8b") || head.startsWith("504b0304") ||
+    head.startsWith("89504e470d0a1a0a") || head.startsWith("425a68") ||
+    head.startsWith("fd377a585a00") || (bytes[0] === 0x78 && ((bytes[0] * 256 + bytes[1]) % 31 === 0));
+  return { length: bytes.length, head, fileHeader,
+    printable: bytes.filter(x => x >= 32 && x <= 126).length / bytes.length };
+}
+const packed = [{ name: "original", ...byteView(packedBytes(C)) }];
+for (const representation of ["index", "prime"]) {
+  const M = Array.from({ length: 9 }, (_, row) =>
+    printed[row + 1].slice(1, 10).map(x => representation === "index" ? x : book.prime[x] % 29));
+  const V = invert(M).inverse;
+  for (const [name, L, R] of [
+    ["left inverse", V, I], ["right inverse", I, transpose(V)],
+    ["both inverse", V, transpose(V)], ["left forward", M, I],
+    ["right forward", I, transpose(M)], ["both forward", M, transpose(M)]
+  ]) {
+    packed.push({ name: representation + " " + name, ...byteView(packedBytes(transform(C, L, R))) });
+  }
+}
+assert.equal(packed.length, 13);
+assert.ok(packed.every(x => !x.fileHeader));
+console.log(JSON.stringify({ directBase29ByteHeaders: packed }, null, 2));
