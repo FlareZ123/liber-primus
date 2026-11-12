@@ -26,6 +26,18 @@
 
 **Neither branch recovers unknown plaintext, a real key or endpoint.** They remove two finite, motivated direct-inverse possibilities without extending unbounded parameter scans.
 
+### C. Outer p50 numeric circumference -> original 76-rune p55 via Euler totient
+
+- New original-input SFT [`sims/p50_outer76_totient_p55_sft.cjs`](../../sims/p50_outer76_totient_p55_sft.cjs) committed `db65a20`; [decision report](../../im-results/p50_outer76_totient_p55.md) committed `98c10d9`. The table circumference has **76 printed numeric cells**, matching **p55 76 runes**; solved p57 says *shed circumferences* and p56 authentic cipher uses Euler totients of primes.
+- A **literal Euler-totient key is obstructed by original byte 0** at grid row-major position192, 76-ring clockwise position52, which aligns with original p55 source rune **X**. φ(0) is undefined. This is a source-input flaw, so cannot authenticate full direct inverse absent original instruction assigning zero behavior.
+- Explicit nonstandard φ(0)=0 passthrough gives complete decoded p55 `IA NGIAHIA RI ITH BLTHTEAOE OETCOEMF GS AEXHIGPCXAEAEYSH NGNLGUI TJNGN OEA AEGOAXFC EOSHEIATHO BL LNGIAYOR GHF AEAA`, IoC **0.0333333**, versus original **0.0378947**; no plaintext. Original and native-p57 plant both roundtrip76/76. All code assertions passed running exact GitHub code/source under V8 with Node builtin emulation. Four p55 ciphertext glyphs are X, so this X alignment is an exploratory ~4/76=5.26% conditional coincidence; do not promote as proof.
+- Existing raw-byte and differential ring consumers are distinct and already retired. Do not widen the totient zero-exception/phase/direction menu absent a new creator-side instruction.
+
+### D. H/G quotient interpreted as signed-2013 BASE29 integer transport
+
+- Extended [`sims/p50_hg_quotient_p56_totient_sft.cjs`](../../sims/p50_hg_quotient_p56_totient_sft.cjs) commit `9b3727a`, rewrote [decision report](../../im-results/p50_hg_quotient_p56_totient.md) commit `beec43b` to include 252-slot GP29 quotient reinterpreted as one unsigned BASE29 integer, serialized to big-endian bytes.
+- Both authentic printed/polynomial coefficient orders give **153 bytes** each, direct first24 hex `0a212d90ff3f0e105fb818c17b99aad69e164ed48df665b5` / `96127a261e676d369e7b69e6869ac90fb75b2bd21eedac4f`, no recognized gzip/ZIP/PNG/JPEG/PDF/bzip2/XZ/Zstd/7z/SQLite/zlib header, printable45/153 and52/153; no authenticated binary payload or key. A compressed/headerless/encrypted payload remains open in principle. Exact source program assertions passed against source original table/corpus.
+
 ## Prior Agent49 work to retain
 
 - [Exact all-secret previous-cipher GP29 context bounds](../../im-results/lp2-highorder-cipher-context-entropy-gate.md): k=2,3,4 per-context secret rows fail every one of 89 native English windows, exact assignment costs minimum **4,738 / 278 / 8** respectively. Repro: `sims/lp2_highorder_cipher_context_entropy_sft.cjs`. This is conditional on native-GP text.
