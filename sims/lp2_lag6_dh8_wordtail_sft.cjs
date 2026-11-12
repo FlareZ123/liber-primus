@@ -149,10 +149,55 @@ function execute(words) {
   const score = counts => counts.reduce((a,x,k) => a + ((x-m1Mean[k])**2)/m1Mean[k],0);
   const scoreReal = score([8,52,20]);
   const m1JointExceed = m1Sample.filter(x=>score(x)>=scoreReal).length;
+  // Exactly word-length-matched independent native-GP English controls.
+  const {encode} = require("./affine_echo_literary_control.cjs");
+  const literaryPaths = [
+    "shakespeare_first300k.txt",
+    "gibran_prophet_58585.txt",
+    "emerson_essays_2944.txt",
+  ];
+  const referenceLengths = words.filter(w => w.length >= 7).map(w => w.length);
+  const literaryControls = literaryPaths.map((file, sourceIndex) => {
+    const sourceText = fs.readFileSync(path.join(__dirname, "..",
+      "resources", "control", file), "utf8");
+    const referenceWords = (sourceText.match(/[A-Za-z]+/g) || []).map(encode);
+    const byLength = new Map();
+    for (const word of referenceWords) {
+      if (!byLength.has(word.length)) byLength.set(word.length, []);
+      byLength.get(word.length).push(countWords([word]));
+    }
+    const next = generator(0x19895511 + sourceIndex + 2);
+    const repetitions = 2000;
+    const sums = [0,0,0], sumSquares = [0,0,0], atLeast = [0,0,0];
+    for (let rep = 0; rep < repetitions; rep++) {
+      const hits = [0,0,0];
+      for (const length of referenceLengths) {
+        const pool = byLength.get(length);
+        assert.ok(pool && pool.length, "No reference word for length " + length);
+        const row = pool[next() % pool.length];
+        for (let k = 0; k < 3; k++) hits[k] += row[keys[k]][0];
+      }
+      for (let k = 0; k < 3; k++) {
+        sums[k] += hits[k];
+        sumSquares[k] += hits[k] * hits[k];
+        if (hits[k] >= observed[keys[k]][0]) atLeast[k]++;
+      }
+    }
+    return {
+      file,wordsInReference:referenceWords.length,repetitions,
+      groups:Object.fromEntries(keys.map((key,k) => {
+        const mean=sums[k]/repetitions;
+        return [key,{mean,sd:Math.sqrt(sumSquares[k]/repetitions-mean*mean),
+          exceeds:atLeast[k],upperTail:(atLeast[k]+1)/(repetitions+1)}];
+      })),
+    };
+  });
+
   console.log(JSON.stringify({
     input:{words:words.length,runes:12956,lag6Matches:80},
     observed,halves:split,
     conditionalNull:{seed:"0x02013301",replications:iterations,stats:conditionalNull},
+    literaryControls,
     preexistingM1:{seed:"0x01a85c6d",replications:m1Iterations,collisionRepairProbability:p,
       expectedMeans:Object.fromEntries(keys.map((x,i)=>[x,m1Mean[i]])),
       end2FractionExceed:m1EndFractionExceed,
