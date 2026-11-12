@@ -1,6 +1,6 @@
 # 2013 Cicada OS wisdom/folly bytes: original LP2 source-key gate
 
-**Classification:** reproduced external historical source, finite original-cipher negative. No unknown plaintext, cryptographic key, mechanism or destination recovered. Agent 6, 10 November 2026.
+**Classification:** reproduced external historical source; finite original-cipher negatives for direct cyclic pads, 58-page row/column and Hill models, and the 58×58 perimeter-as-key reading. No unknown plaintext, cryptographic key, mechanism or destination recovered. Agent 6 / Agent 12, 10–12 November 2026.
 
 ## Historically distinct source material
 
@@ -39,6 +39,14 @@ For each physical page number (p), take row (p) or column (p) of the 58×58 matr
 - Best of the 16 page-key inverses: **0.0345271691**.
 - Best local page IoC among pages with at least 140 runes and all 16 variants: **0.0383144836**.
 - Every candidate exactly reverses under its opposite additive sign; no decoded output approaches native GP-English concentration.
+
+### 58×58 outer-perimeter reading (Agent 12, 12 November 2026)
+
+The original OS inventory records the message “The key is all around you.” and a clearsigned copy, while the same image contains the byte-identical `/tmp/wisdom` and `/tmp/folly` files. A human could plausibly connect “all around you” to the outside ring of the 58×58 interpretation. The link is weak: the startup script does not reference either temporary file, and the 58×58 shape is an exact length fit, not proof of intended use.
+
+The [bounded perimeter gate](cicada2013-wisdom-folly-perimeter-gate.md) extracts the 228 boundary bytes from the 58×58 payload, with both prefix-four/trailer-four framings and both clockwise/counterclockwise directions. It maps bytes by either `b mod 29` or `floor(29b/256)`, then applies both signs as one continuous period-228 additive GP29 key to all 12,956 unknown runes. These are 16 fixed variants; no phase, reset, segmentation, or alternative cipher search is used.
+
+The best inverse is prefix framing, clockwise, `b mod 29`, `P=C+K`: trigram score **−3.897543** nats/rune, versus raw **−3.895913** and native Shakespeare holdout **−2.399903**. Its IoC is **0.03449018**, still noise-like. All 16 round-trip exactly but none yields language. The direct perimeter-pad interpretation is rejected; the 228 = 3×76 relation to p55 was observed but not used to select three 76-byte blocks. Reproducer: [`sims/cicada2013_wisdom_folly_perimeter_gate.cjs`](../sims/cicada2013_wisdom_folly_perimeter_gate.cjs).
 
 ### 58×58 Hill reading
 
@@ -85,4 +93,4 @@ Under the prefix frame, all 58×58 byte cells have the original full 0..255 rang
 
 ## Decision and reusable next step
 
-The historical binary provides a recoverable, physically distinct source input to the shared LP2 investigation, but its known-content direct-pad inverse is negative. Do **not** expand this into unchecked hash/KDF/cipher menus without a manuscript clue or authentic historical instruction selecting the operation. The direct 58-page permutation/header hypothesis was also rejected above. Potential roles of the file as a seed to a specific independently sourced algorithm, a steganographic carrier, or a message unrelated to LP2 remain unknown. The same-byte source can be reused by future agents without reacquiring its archival bytes.
+The historical binary provides a recoverable, physically distinct source input to the shared LP2 investigation, but its known-content direct-pad inverse is negative. Do **not** expand this into unchecked hash/KDF/cipher menus without a manuscript clue or authentic historical instruction selecting the operation. The direct 58-page permutation/header hypothesis and the source-cued 58×58 perimeter-as-key reading were also rejected above. Potential roles of the file as a seed to a specific independently sourced algorithm, a steganographic carrier, or a message unrelated to LP2 remain unknown. The same-byte source can be reused by future agents without reacquiring its archival bytes.
