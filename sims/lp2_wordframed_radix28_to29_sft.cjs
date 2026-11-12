@@ -46,6 +46,34 @@ for (const w of original.split(separator)) {
 }
 assert.equal(words.length, 2896);
 assert.equal(words.reduce((sum, w) => sum + w.length, 0), 12956);
+// Associate every complete word with its original physical page of onset.
+// A word can span an original page boundary, so do not segment it there.
+const wordPage = [];
+const physicalLengths = db.pages.slice(0, 56).map(p => p.indices.length);
+let consumed = 0, page = 0, pageEnd = physicalLengths[0];
+for (const word of words) {
+  while (consumed >= pageEnd) {
+    page++;
+    pageEnd += physicalLengths[page];
+  }
+  wordPage.push(page);
+  consumed += word.length;
+}
+assert.equal(consumed, 12956);
+assert.equal(wordPage.length, 2896);
+/** @param {(number[] | null)[]} w */
+function pageLongWordDuplicates(w) {
+  const codebooks = Array.from({ length: 56 }, () => new Set());
+  let repeats = 0;
+  for (let i = 0; i < w.length; i++) {
+    const word = w[i];
+    if (!word || word.length < 4) continue;
+    const signature = word.join(','), known = codebooks[wordPage[i]];
+    if (known.has(signature)) repeats++;
+    known.add(signature);
+  }
+  return repeats;
+}
 const lexicon = new Set();
 for (const line of spellings.split(/\r?\n/)) {
   if (!/^[a-z]+\s+\d+\s*$/i.test(line)) continue;
@@ -164,7 +192,7 @@ for (const mode of ['sorted', 'cyclic']) {
       const gp = gpEncode(native);
       if (gp && gp.length < 20) sourceByLength[gp.length].push(gp.join(','));
     }
-    const referenceDuplicates = [];
+    const referenceDuplicates = [], pageReferenceDuplicates = [];
     for (let offset = 0; offset < 20; offset++) {
       const counters = Array(20).fill(0), seenWords = new Set();
       let duplicates = 0;
@@ -176,12 +204,27 @@ for (const mode of ['sorted', 'cyclic']) {
         seenWords.add(signature);
       }
       referenceDuplicates.push(duplicates);
+      const countersAll = Array(20).fill(0), nativePageWords = [];
+      for (const slot of original.decodedWords) {
+        if (slot === null) { nativePageWords.push(null); continue; }
+        const pool = sourceByLength[slot.length];
+        const signature = pool[(offset * 131 + countersAll[slot.length]++) % pool.length];
+        nativePageWords.push(signature.split(',').map(Number));
+      }
+      pageReferenceDuplicates.push(pageLongWordDuplicates(nativePageWords));
     }
     const nativeLongDuplicatesRange = [
       Math.min(...referenceDuplicates), Math.max(...referenceDuplicates),
     ];
+    const pageDuplicates = pageLongWordDuplicates(original.decodedWords);
+    assert.equal(pageDuplicates, 0);
+    const pageNativeRange = [
+      Math.min(...pageReferenceDuplicates), Math.max(...pageReferenceDuplicates),
+    ];
     const observation = {
       mode, firstIsSeed, recoveredPlantWords: plant.decodedWords.length,
+      originalWithinPageLongWordDuplicates: pageDuplicates,
+      matchedShakespeareWithinPageDuplicatesRange: pageNativeRange,
       longWordTokens: longWords.length,
       longWordDuplicates: repeatedLongOccurrences,
       matchedShakespeareDuplicateRange: nativeLongDuplicatesRange,
@@ -202,13 +245,17 @@ for (const mode of ['sorted', 'cyclic']) {
       ? (mode === 'sorted' ? [423, 492] : [435, 502])
       : (mode === 'sorted' ? [694, 765] : [692, 762]);
     assert.deepEqual(nativeLongDuplicatesRange, expectedRepeats);
+    const expectedPageRepeats = firstIsSeed
+      ? (mode === 'sorted' ? [45, 85] : [43, 83])
+      : (mode === 'sorted' ? [93, 156] : [100, 161]);
+    assert.deepEqual(pageNativeRange, expectedPageRepeats);
     findings.push(observation);
   }
 }
 console.log(JSON.stringify({
   question: 'Can one original LP2 word carry a direct no-repeat radix28 representation of one native-GP29 plaintext word?',
   source: 'All 2,896 original ciphertext words, 12,956 unknown runes, 29,059 exact GP-encoded lexicon entries',
-  negative: 'All four inverse outputs are cipher-like; no decoded GP word of >=4 symbols repeats, while same-length native controls repeat hundreds of such words. This key-independent collision invariant excludes every fixed later permutation of the 29 output symbols under the stated transport.',
+  negative: 'All four inverse outputs are cipher-like; no decoded GP word of >=4 symbols repeats, while same-length native controls repeat hundreds of such words. The zero within-physical-page repeats versus dozens of native repeats also permits 55 unrelated secret alphabets (one per physical page) without rescuing direct English GP.',
   plantedWordsPerModel: 300,
   findings,
 }, null, 2));
