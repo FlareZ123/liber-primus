@@ -16,7 +16,7 @@ The statistic is the fixed-total Pearson dispersion `Σ (O_b−E_b)²/E_b`, with
 
 | Comparison | Source-preserved structure and fixed controls | Original test | Null result |
 | --- | --- | ---: | --- |
-| Flat event sites | 86 distinct events among 12,901 eligible original page-local sites; no changes to block lengths | χ² 15.7073 | 50,000 fixed-seed Monte Carlo draws; empirical upper tail near **0.20** |
+| Flat event sites | 86 distinct events among 12,901 eligible original page-local sites; no changes to block lengths | χ² 15.7073 | 50,000 fixed-seed Monte Carlo draws; empirical upper tail **0.197516** |
 | Physical page × exact printed word length × role | Fix the exact original event count in each of **1,433** eligible page/word-length/initial-final-interior strata, of which 82 have events. Shuffle event sites only inside their own strata. | χ² 15.7122 | 20,000 xorshift32 draws, mean χ² **15.26431**, **8,059** at least original, add-one tail **0.402980** |
 | Same source-conditioned site null, event gap order | Use the same 20,000 site realizations and original 86 events | Lag-one gap ρ **+0.38002** | Mean ρ **+0.25086**, **213** at least original, add-one upper tail **0.010699** |
 
@@ -28,7 +28,7 @@ The same SFT generates 1,000 fixed-total, **86-site** planted event tapes drawn 
 
 `w(t)=1+0.95 sin(2πt/2600)`,
 
-with phase zero at the first original rune, independent of the original event locations. The flat event-site test's empirical 95th percentile is used as the cutoff. **More than 80%** of these deterministic smooth-intensity plants exceed it (the SFT emits the exact calibrated fraction). This shows the 13-bin statistic can detect strong *global* smooth rate changes. A page-conditioned null necessarily discards some page-rate information by fixing page counts; no unsupported cross-page causal claim is extracted from its p-value. The synthetic plant specifies an event generator only, not a lossless original-cipher transformation or source-authenticated historical seed.
+with phase zero at the first original rune, independent of the original event locations. The flat event-site test's empirical 95th percentile is used as the cutoff. **947/1,000 (94.7%)** of these deterministic smooth-intensity plants exceed it, with planted mean chi² **34.74464**. This shows the 13-bin statistic can detect strong *global* smooth rate changes. A page-conditioned null necessarily discards some page-rate information by fixing page counts; no unsupported cross-page causal claim is extracted from its p-value. The synthetic plant specifies an event generator only, not a lossless original-cipher transformation or source-authenticated historical seed.
 
 ## What the external +0.380 correlation now means
 
@@ -38,7 +38,7 @@ Source events occupy 85 printed words, 84 with one event and one with two. Their
 
 ## Reproduction and sources
 
-- [Original-input single-file Node.js 22 test](../sims/lp2_doublet_1000block_source_strata_sft.cjs), deterministic seeds `0x33016666` (source strata), `0x33016665` (flat fixed-total site null), and `0x33016667` (smooth positive plant).
+- [Original-input single-file Node.js 22 test](../sims/lp2_doublet_1000block_source_strata_sft.cjs), deterministic seeds `0x33016666` (source strata), `0x33016665` (flat fixed-total site null), and `0x33016667` (smooth positive plant); all checks passed in [manual Node 22 CI run 43313704119](https://github.com/FlareZ123/liber-primus/actions/runs/43313704119).
 - [Independent earlier local-marginal census and exact counts](../sims/lp2_doublet_marginal_expectation_sft.cjs).
 - [Existing source word-identity conditional gate](lp2-doublet-gap-source-boundary-conditional-gate.md).
 - [Pinned external Round44 source](https://github.com/Dukotah/cicada3301/blob/df1865a8e6f8326067584bb1e3b63da920cf6f2c/liber-primus/PICKUP-HERE.md) and [Round44 doublet-sites result](https://github.com/Dukotah/cicada3301/blob/e928e51f5bc4069502e1f17210f31dbbcd792037/liber-primus/analysis/round44/W2-B3-doublet-sites/results.json).
