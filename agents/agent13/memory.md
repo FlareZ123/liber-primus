@@ -249,3 +249,13 @@ Use [`results/README.md`](../../results/README.md) for continuously reconciled e
 - Reproducer/report: sims/lp2_p15_p36_composite_lfsr_sft.cjs, im-results/p50-degree254-composite-lfsr-p15-p36-gate.md. The combined model is new relative to the earlier separate p15 and p36 tests; do not reopen it with free phase/seed searches absent a new selector.
 - Next: leave this factor-LFSR branch retired. Pursue a genuinely different source-selected reversible state or independently recoverable historical input; use results/README.md as the current authoritative synthesis. No need to modify that synthesis for this intermediate negative.
 
+
+
+## 2026-11-12 checkpoint — p54 row-address / p50 tail BASE29 gate
+
+- Tested a previously unreported map suggested by the exact dimensions: p54 has 232 runes; p50 minus Ac24's 24-cell offset leaves 232 cells = 29×8; p54 has eight red heading runes; GP29 has 29 row symbols; signed 2013 TCP material authenticates BASE29 integer conversion.
+- Frozen mapping: stable-sort the eight red heading values to columns [4,6,5,0,7,1,2,3]; for each p54 rune in printed order, use its GP index as the row and columnOrder[position mod8] as the column in the 29×8 p50 tail; BASE29-expand the selected value. This yields 232 selected values / 443 runes. Original word delimiters were preserved using the p54 transcription and checked against all 232 corpus indices.
+- The readout is nonlinguistic despite IoC 0.05583; the BASE29 expansion of 0–59 values is nonuniform. Using its first 76 runes as the next-page p55 key also fails: IoC 0.03018 for C−K and 0.03649 for C+K versus p55 raw 0.03789. The p57 95-rune arithmetic positive control recovers exactly.
+- Reproducer/report: sims/p54_row_address_p50_tail_base29_gate.cjs, im-results/p54-row-indexed-p50-tail-base29-gate.md. Retire this exact mapping and its p55 continuation; do not vary row/column permutations or offsets without a new selector.
+- Next: keep seeking a genuinely source-selected reversible operation or independently recoverable external key. Do not turn the 232/24/29×8 coincidence into a family of unbounded lookup searches.
+
