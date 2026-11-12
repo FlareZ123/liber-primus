@@ -24,7 +24,7 @@ Feed the **complete, unchanged 256-byte stream**, at byte position zero, to the 
 | raw RFC1951 DEFLATE | `zlib.error: invalid distance too far back` |
 | XZ / legacy LZMA container auto-detection | `LZMAError: Input format not supported by decoder` |
 
-Each decoder first successfully recovers **every byte of the same independent 688-byte positive text** after compression by its matching standard encoder. The original 256-byte stream is source-locked and never edited, shifted, padded, salted, rekeyed or score-selected. A single-format negative does not prove the source is random; the positive controls only validate these five literal transports.
+Each decoder first successfully recovers **every byte of the same independent 672-byte positive text** after compression by its matching standard encoder. The original 256-byte stream is source-locked and never edited, shifted, padded, salted, rekeyed or score-selected. A single-format negative does not prove the source is random; the positive controls only validate these five literal transports.
 
 **Reproduction:** [single-file Python 3 standard-library SFT](../sims/p50_historical_compression_source_gate_sft.py). It reads the original table JSON on every run, reconstructs the bytes, checks the exact hash, verifies all codec positive round trips and asserts all five source decoders fail. It needs no extra package or network. The computations were also reproduced directly from the independently hash-checked 256 source bytes in a local Python 3 interpreter.
 
