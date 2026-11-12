@@ -19,3 +19,7 @@ jobs:
         run: |
           node --check sims/lp2_p50_original_historical_byte_anchor_sft.cjs
           node sims/lp2_p50_original_historical_byte_anchor_sft.cjs
+      - name: All-secret 256-byte permutation gate
+        run: |
+          node --check sims/lp2_p50_256_sbox_permutation_gate_sft.cjs
+          node sims/lp2_p50_256_sbox_permutation_gate_sft.cjs
