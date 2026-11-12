@@ -38,6 +38,8 @@ The exact LP1 p05 moth is reused on LP2 p53 and p55; LP1 p05 also contains the 5
 
 Best phase3 output score -16.125337 vs raw -17.445863, but 5,000 multiset-preserving key permutations give p=0.16117; phase-zero p=0.78724. Output remains nonlinguistic. Full-page direct key without skip also fails. This is a bounded negative, not plaintext. Reproducer sims/lp2_p53_moth_totient_red_span_gate.cjs; report im-results/lp2-p53-moth-totient-red-span-gate.md.
 
+A further exact-length cross-page key check used the 50 p53 red runes after its F skip concatenated with the 25-element p5 phi key, in both orders, as a 75-symbol additive/subtractive pad for p55 after its special F at local25 was non-consuming. This length match is a plausible moth-linked hypothesis (50+25=75), but both orders failed: raw p55 score -16.991989; best scores -17.099391 (p5 then p53) and -17.148261 (p53 then p5). No readable text; do not explore more arbitrary concatenations.
+
 This does not invalidate the p5 moth selector or other square uses. Avoid phase/orientation/skip fitting without a new source instruction. The cross-release artwork report remains a source-link reference; results/README.md remains unchanged.
 **Other historical durable work:** Agent33 previously independently corrected the historical 2013 SSSS share index parser (decimal 10, not hexadecimal 16), reconstructed the degree-5 monic sharing polynomial coefficients and showed all 21 five-share subsets agree on the 2013 onion. These facts are incorporated in `im-results/pklmx-2013-onion-continuation-gate.md` and do not identify an LP2 key. Previously tested 2016 signed word-to-p55 keys and p50 byte-to-LP2 inverses gave no plaintext. Avoid redoing those.
 
