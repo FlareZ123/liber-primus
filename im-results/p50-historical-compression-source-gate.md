@@ -1,35 +1,43 @@
-# Original pp49–51 numeric table as a directly compressed source-byte payload
+# Historical compression gate on two original LP2 numeric-table transports
 
-**Decision, Agent 41, 12 November 2026:** the canonical 256-byte interpretation of the printed 32×8 original table is **not a complete, directly decodable bzip2, gzip, zlib, raw DEFLATE or XZ/legacy LZMA stream** under the stated unmodified source order. All five corresponding codec positives pass. No unknown LP2 plaintext, file, key, inverse or destination is recovered. This closes one finite, human-plausible transport operation, not any encrypted or layered compressed payload.
+**Decision, Agent 41, 12 November 2026:** the 256 source bytes printed on LP2 pp49–51, and the independently established 153-byte source-factor/BASE29 quotient transport, **both fail** as complete, directly decodable bzip2, gzip, zlib, raw DEFLATE or XZ/legacy LZMA streams. Five independently planted codec positives pass. No unknown LP2 plaintext, authentic key or destination is recovered. This is a finite direct-file exclusion, not evidence against a still-encrypted intermediate, missing source key or different transport.
 
-## Why this test is historically motivated
+## Human-visible operations, fixed before decoding
 
-Cicada's 2014 puzzle used **bzip2 decompression** on an earlier route (2014 Stage08), independently of LP2. LP2 physical pp49–51 visibly contain a **32-row by 8-column table of 256 two-character tokens**, naturally expressible as bytes using the conventional sexagesimal digit alphabet. A returning solver could reasonably ask whether this numeric block is another directly readable compressed file, rather than a cipher keystream or a table of independent symbols.
+Cicada's 2014 puzzle used **bzip2 decompression** at Stage08. The original physical LP2 pp49–51 present 256 two-character numerical cells in a 32×8 layout. A returning solver might try decompressing the resulting binary data, or consuming the later authenticated **2013 BASE29** arithmetic and marked **p39 polynomial** before decompressing. Both versions supply concrete, source-defined byte strings without key fitting.
 
-The original shared `resources/liber-primus/base60-grid.json` records the exact 32×8 table in printed row-major order and the conventional 60-character alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`. Decode each token `ab` as `60·index(a)+index(b)`; all 256 values are in 0…255. The reconstructed byte stream has SHA-256
+**Transport A, direct original table:** use the exact canonical cells in [source grid JSON](../resources/liber-primus/base60-grid.json), in printed row-major order, with its conventional 60-digit alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`. Encode each two-character token `ab` as `60·index(a)+index(b)`; all 256 values are bytes. The SHA-256 is
 
-`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`
+`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 
-and starts with the hex bytes `cb e7 a7 ba 61 ed 7e b7 5c f9 9c de f7 04 b7 d4`.
+The first 16 bytes are `cb e7 a7 ba 61 ed 7e b7 5c f9 9c de f7 04 b7 d4`.
 
-## Source-frozen decoding experiment
+**Transport B, source-factor BASE29 quotient:** over GF(29), take the same printed bytes modulo29 as descending coefficients of `P(X)`, retaining the leading formal zero coefficient. Divide exactly by the already established monic product of the signed-2013 example's H factor and original p39 red-triad G factor,
 
-Feed the **complete, unchanged 256-byte stream**, at byte position zero, to the standard Python library's five complete-message decoders. They reject it:
+`F(X)=X⁴+28X³+13X²+9X+14`.
 
-| Standard stream format | Exact readout of original bytes |
-| --- | --- |
-| bzip2 (historically most motivated) | `OSError: Invalid data stream` |
-| gzip | `BadGzipFile: Not a gzipped file (b'\\xcb\\xe7')` |
-| zlib envelope | `zlib.error: incorrect header check` |
-| raw RFC1951 DEFLATE | `zlib.error: invalid distance too far back` |
-| XZ / legacy LZMA container auto-detection | `LZMAError: Input format not supported by decoder` |
+Its remainder is **zero in all four coefficients**. The quotient consists of **252 GF29 digits including the leading zero**. Serialize those in printed order as one big-endian positional base-29 integer under the **signed 2013 BASE29 numeral operation**, then as the shortest big-endian byte string. This deterministically produces **153 bytes**, beginning `0a 21 2d 90 ff 3f 0e 10 5f b8 18 c1 7b 99 aa d6`. SHA-256:
 
-Each decoder first successfully recovers **every byte of the same independent 672-byte positive text** after compression by its matching standard encoder. The original 256-byte stream is source-locked and never edited, shifted, padded, salted, rekeyed or score-selected. A single-format negative does not prove the source is random; the positive controls only validate these five literal transports.
+`2a9f63b2e880a23f5e717f106b1829970ee26712fccf7a0e0d9a1c62bf919819`.
 
-**Reproduction:** [single-file Python 3 standard-library SFT](../sims/p50_historical_compression_source_gate_sft.py). It reads the original table JSON on every run, reconstructs the bytes, checks the exact hash, verifies all codec positive round trips and asserts all five source decoders fail. It needs no extra package or network. The computations were also reproduced directly from the independently hash-checked 256 source bytes in a local Python 3 interpreter.
+The exact quotient and serialized bytes were previously established in [the source-factor/field report](p50-p39-p3-field-remainder.md); the newly tested operation is **historically attested decompression of those fully fixed bytes**. Treating the signed BASE29 numeral as polynomial coefficients is itself a conditional manuscript interpretation, already caveated in [the historical factor study](2013-base29-gf29-grid-factor.md).
 
-## Consequence for actual decryption
+## Ten complete-message original decoders
 
-This eliminates an affordable direct-file hypothesis suggested by **real 2014 bzip2 precedent** and the source table's exact octet capacity. It does **not** eliminate compression *after an authentic cipher inverse*, a nonstandard packed stream, an author-selected different traversal, or a transformed table; no original clue presently selects any such extra step. There is no reason to perform offset/header/codec brute force merely to rescue this literal negative.
+Feed **each complete, unchanged byte string**, starting at byte offset zero, through the five standard Python-library decoders below, without adding headers, changing byte order, scanning offsets or fitting a language score.
 
-The higher-value unresolved table relationship remains its exact GF(29) factors connected to the signed 2013 BASE29 example and the marked p39 red triad. Those algebraic facts and their qualified limitations are recorded in [the full factorization](lp2-grid-complete-gf29-factorization.md) and [the source-quadratic tests](p50-p39-p3-field-remainder.md). This compression gate supplies no evidence for replacing that work.
+| Decoder | 256 source bytes | 153 source-factor/BASE29 bytes |
+| --- | --- | --- |
+| bzip2 | invalid stream | invalid stream |
+| gzip | no gzip signature (starts `cb e7`) | no gzip signature (starts `0a 21`) |
+| zlib envelope | header-check failure | header-check failure |
+| raw RFC1951 DEFLATE | invalid backwards distance | invalid backwards distance |
+| XZ / legacy LZMA auto-detect | unsupported input format | unsupported input format |
+
+All **10** attempted direct decodings fail. To validate every codec implementation, the SFT first compresses the same **672-byte independent GP-English control** using each corresponding standard encoder, and recovers all **672 bytes** through the decoder. These five round trips are exhaustive positive controls for the specified formats, not evidence that any of those formats was intended for LP2.
+
+**Reproduction:** [source-locked Python 3 standard-library SFT](../sims/p50_historical_compression_source_gate_sft.py). It reloads the canonical source JSON, asserts the 256-byte SHA-256, recomputes the complete H·G GF29 division with exact zero remainder, asserts the independent 153-byte quotient SHA-256, verifies five codec plants and requires all ten original decoders to fail. The same two original streams were independently reconstructed and tested in a local Python 3 interpreter on 12 November 2026.
+
+## Effect on the route to plaintext
+
+Neither direct byte transport supplies a hidden document, decompressed phrase or cipher key. The two inputs and all ten decodings are **finite source-derived tests**: no arbitrary password, transport shift or codec search is needed to conclude that these literal readings fail. Their negative result does not rule out a source-selected *decrypt-then-decompress* operation, and does not diminish the exact finite-field relations of the table. No independent original clue currently selects the missing cipher transformation. These two direct-compression readings can therefore be retired, allowing work to concentrate on recovering a real source-selected key or operation.
