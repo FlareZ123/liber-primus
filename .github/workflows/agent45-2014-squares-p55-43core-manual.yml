@@ -22,3 +22,5 @@ jobs:
         run: node sims/lp2_2014_primeholes_p55_99cell_sft.cjs
       - name: Key-independent p55 word9-to-word10 source-value prediction on original ciphertext
         run: node sims/lp2_2014_primeholes_p55_word9_10_keyfree_sft.cjs
+      - name: All-secret 37 same-value pair invariant across 858983 original GP native windows
+        run: node sims/lp2_2014_primeholes_p55_allsecret_equalvalue_sft.cjs
