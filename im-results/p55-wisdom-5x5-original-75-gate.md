@@ -109,14 +109,20 @@ E_{\mathrm{whole}}=\tfrac12\sum_{i=1}^{29}|c_{(i)}-t_{(i)}|
 
 where counts in parentheses are separately sorted. To preserve the physical p55 word partition, define \(c_{wi}\) and \(t_{wj}\) as GP29 symbol counts in source/target word segment \(w\), then build \(M_{ij}=\sum_w\min(c_{wi},t_{wj})\). The **exact** bound is \(E_{\mathrm{word}}=N-\max_{\pi\in S_{29}}\sum_i M_{i,\pi(i)}\), solved as a 29×29 maximum-weight assignment. Unlike fitting a cipher key, this exhaustive calculation allows every possible fixed output-alphabet relabeling. Row/column maximum bounds prune a candidate only when they mathematically cannot improve the current optimum; every surviving window gets an exact Hungarian solution.
 
-| Frozen GP-native control | Original targets examined, 75 / 76 | Minimum changes with any position permutation, 75 / 76 | Minimum with 16 printed body-word boundaries preserved, 75 / 76 |
-| --- | ---: | ---: | ---: |
-| LP1 editor-normalized solved reference | 3,462 / 3,461 | **4 / 5** | **27 / 28** |
-| Shakespeare first 300k | 217,570 / 217,569 | **1 / 2** | **25 / 26** |
-| Gibran *The Prophet* | 62,622 / 62,621 | **3 / 3** | **25 / 26** |
-| Emerson essays | 323,009 / 323,008 | **3 / 3** | **23 / 23** |
+| Frozen GP-native control | Original targets examined, 75 / 76 | Minimum changes with any position permutation, 75 / 76 | Minimum with 16 printed body-word boundaries preserved, 75 / 76 | **Minimum changed strict interior identities** (43 on 75) |
+| --- | ---: | ---: | ---: | ---: |
+| LP1 editor-normalized solved reference | 3,462 / 3,461 | **4 / 5** | **27 / 28** | **11** |
+| Shakespeare first 300k | 217,570 / 217,569 | **1 / 2** | **25 / 26** | **8** |
+| Gibran *The Prophet* | 62,622 / 62,621 | **3 / 3** | **25 / 26** | **9** |
+| Emerson essays | 323,009 / 323,008 | **3 / 3** | **23 / 23** | **8** |
 
 For the 76-rune case, a separate one-rune p54 **NG** carry is preserved as its own segment before the 16 complete p55 body words. Target windows are optimistically cut into segments with **the same GP-rune lengths as the original print**, even when those positions are *not real English word breaks*. This relaxation makes the figures necessary edit budgets only for the specified controls; enforcing authentic target-language word boundaries could tighten them. No universal English claim is justified, and no supplied corpus contains a verified unknown p55 plaintext.
+
+### Source-visible circumference-only changes are insufficient
+
+The solved p57 **PARABLE** mentions shedding one's circumferences. The corrected p55 body contains 16 complete printed words, **43 strict interior runes**, and 32 first/last exterior runes. A deliberately generous all-secret test grants arbitrary replacement of **every exterior**, arbitrary rearrangement of interiors inside each printed word, and **every possible global bijective GP29 alphabet relabeling**. Even then, reproducing any of the same 606,663 pinned GP-native English control windows must change **at least 8 of the 43 interior identities** (11 LP1, 8 Shakespeare, 9 Gibran, 8 Emerson). The wordwise 29×29 maximum-weight assignment is performed on strict interior histograms only. The 13-rune source word at body offset22 has **11 distinct interior symbols**, contributing to this bound.
+
+The source-visible *circumference-only* transformation family is therefore excluded against these frozen English controls even if all 32 word edges are completely free to change. This is a new localization absent from #598's general 23/75 body minimum, which by itself allowed all edits to occur at exteriors. The result neither authenticates an LP2 plaintext nor excludes every possible target language, word-order change, or interior-changing cipher. The [exact assignment SFT](../sims/p55_fullbody_min_symbol_changes_sft.cjs) asserts all four corpus minima, a nontrivial zero-edit native-English positive plant under global alphabet permutation and wordwise reversal, and the original input's exact 75/76-runic body/carry contract.
 
 The reproducer [full-body exact assignment SFT](../sims/p55_fullbody_min_symbol_changes_sft.cjs) checks all **606,663** available 75-rune windows and **606,659** 76-rune windows, proves a nontrivial global-substitution-plus-wordwise-transposition planted GP-native passage is exactly invertible with **zero** required identity changes, and uses an adversarial all-one-symbol target that correctly requires **69/75** changes. The unrestricted whole-body low minima show why frequency/IoC alone is a weak estimate of the *amount* of change, even though its pure-permutation exclusion still holds. The wordwise minimum is new but remains a quantified strengthening of the same finite-language premise: without a source-selected changing-state, additive, or other non-permutation operation capable of affecting a substantial fraction of p55 runes, further rearrangement/key hunts cannot recover its printed words. The already tested LP1 25-cell Wisdom transfer and solved-p56 prime-totient direct transfer remain negative; this bound supplies no replacement key.
 

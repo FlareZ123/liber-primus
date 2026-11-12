@@ -51,6 +51,35 @@ function wordHistograms(input, offset, lengths) {
  * alphabet bijection; sorted matching minimizes L1 on histograms.
  * @param {number[]} source @param {number[]} target @returns {number}
  */
+/**
+ * The physical p55 strict word interiors exclude first/last glyphs of each
+ * printed word. For length 1–2, there are no interior runes. Endpoints are
+ * granted arbitrary replacement, so only strict interior counts constrain
+ * this optimistic all-secret family.
+ * @param {number[]} input @param {number} offset @param {number[]} lengths
+ * @returns {number[][]}
+ */
+function interiorHistograms(input, offset, lengths) {
+  const result = [];
+  let at = offset;
+  for (const size of lengths) {
+    result.push(size <= 2 ? Array(GP).fill(0) :
+      histogram(input, at + 1, size - 2));
+    at += size;
+  }
+  return result;
+}
+/**
+ * @param {number[]} source @param {number[]} target
+ * @param {number[]} lengths @returns {number}
+ */
+function interiorChanges(source, target, lengths) {
+  const count = lengths.reduce((sum, n) => sum + Math.max(n - 2, 0), 0);
+  const sourceWords = interiorHistograms(source, 0, lengths);
+  const targetWords = interiorHistograms(target, 0, lengths);
+  return count - maximumAssignment(matchingWeights(sourceWords, targetWords));
+}
+/** @param {number[]} source @param {number[]} target @returns {number} */
 function wholeChanges(source, target) {
   const a = [...source].sort((x, y) => x - y);
   const b = [...target].sort((x, y) => x - y);
@@ -193,19 +222,41 @@ function run() {
     "Gibran/body75": [3, 25], "Gibran/pageLocal76": [3, 26],
     "Emerson/body75": [3, 23], "Emerson/pageLocal76": [3, 23]
   };
+  const expectedInterior = { LP1: 11, Shakespeare: 8, Gibran: 9, Emerson: 8 };
   const outcomes = [];
   for (const input of cases) {
     const n = input.runes.length;
     const sourceTotals = histogram(input.runes, 0, n);
     const sourceByWord = wordHistograms(input.runes, 0, input.words);
+    const sourceInteriors = input.name === "body75" ?
+      interiorHistograms(input.runes, 0, input.words) : null;
+    const interiorCount = sourceInteriors ?
+      input.words.reduce((sum, n) => sum + Math.max(n - 2, 0), 0) : null;
+    if (sourceInteriors) assert.equal(interiorCount, 43);
     for (const control of sources) {
       let minWhole = n, minWordwise = n;
       let wholeAt = null, wordwiseAt = null;
       let exactAssigns = 0, pruned = 0;
+      let minInterior = interiorCount, interiorAt = null;
+      let exactInterior = 0, prunedInterior = 0;
       const seq = control.indices;
       for (let at = 0; at + n <= seq.length; at++) {
         const total = wholeChanges(sourceTotals, histogram(seq, at, n));
         if (total < minWhole) { minWhole = total; wholeAt = at; }
+        if (sourceInteriors) {
+          const innerWeights = matchingWeights(sourceInteriors,
+            interiorHistograms(seq, at, input.words));
+          if (interiorCount - relaxedUpperBound(innerWeights) > minInterior) {
+            prunedInterior++;
+          } else {
+            exactInterior++;
+            const changed = interiorCount - maximumAssignment(innerWeights);
+            if (changed < minInterior) {
+              minInterior = changed;
+              interiorAt = at;
+            }
+          }
+        }
         const weights = matchingWeights(
           sourceByWord, wordHistograms(seq, at, input.words));
         if (n - relaxedUpperBound(weights) > minWordwise) { pruned++; continue; }
@@ -216,11 +267,19 @@ function run() {
       assert.deepEqual([minWhole, minWordwise], expected[control.name + "/" + input.name]);
       assert.ok(minWordwise >= minWhole);
       assert.equal(exactAssigns + pruned, seq.length - n + 1);
+      if (sourceInteriors) {
+        assert.equal(minInterior, expectedInterior[control.name]);
+        assert.equal(exactInterior + prunedInterior, seq.length - n + 1);
+      }
       outcomes.push({
         input: input.name, corpus: control.name, windows: seq.length - n + 1,
         minimumChangesAnyPermutation: minWhole, witnessOffsetAny: wholeAt,
         minimumChangesWordwise: minWordwise, witnessOffsetWordwise: wordwiseAt,
-        exactAssignments: exactAssigns, safelyPruned: pruned
+        minimumChangesStrictInteriors: minInterior,
+        witnessOffsetStrictInteriors: interiorAt,
+        exactAssignments: exactAssigns, safelyPruned: pruned,
+        exactInteriorAssignments: exactInterior,
+        safelyPrunedInteriorAssignments: prunedInterior
       });
     }
   }
@@ -235,6 +294,8 @@ function run() {
     const reconstructed = reverseInsideWords(encoded, test.words).map(v => alphabet[v]);
     assert.deepEqual(reconstructed, plaintext);
     assert.equal(wordwiseChanges(encoded, plaintext, test.words), 0);
+    if (test.name === "body75")
+      assert.equal(interiorChanges(encoded, plaintext, test.words), 0);
     assert.equal(wholeChanges(
       histogram(encoded, 0, n), histogram(plaintext, 0, n)), 0);
     return { input: test.name, sourceNativePlant: true,
@@ -253,10 +314,11 @@ function run() {
   return {
     classification: "Finite-control exact minimum change budgets; no LP2 plaintext recovered",
     original: { body75: 75, pageLocal76: 76, inheritedP54NG: true,
-      printedBodyWordLengths: BODY_WORD_LENGTHS },
+      printedBodyWordLengths: BODY_WORD_LENGTHS, strictBodyInteriors: 43 },
     outcomes, positivePlants, adversarial,
     interpretation: "Window positions are optimistic surrogate GP word partitions; matching actual English printed-word grammar can only tighten the bound. An arbitrary source-native GP phrase outside these corpora is not excluded."
   };
 }
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
-module.exports = { run, wholeChanges, wordwiseChanges, maximumAssignment };
+module.exports = { run, wholeChanges, wordwiseChanges, interiorChanges,
+  maximumAssignment };
