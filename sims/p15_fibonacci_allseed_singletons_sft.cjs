@@ -7,7 +7,7 @@ const corpus = require("../resources/liber-primus/lp2-corpus.json");
 /**
  * Exclude the direct GP29 word-preserving Fibonacci recurrence pad at original
  * source-visible p15–p22, allowing every unknown two-state seed and both signs.
- * The six-runic p15 grid explains Fibonacci as a source hypothesis but does
+ * The 16-cell p15 grid explains Fibonacci as a source hypothesis but does
  * not assert that the author used this particular decipherment operation.
  */
 
@@ -113,7 +113,7 @@ function main() {
   assert.equal(wholeBook.maximumAI, 15);
   assert.equal(wholeBook.exactKeys, 0);
 
-  // Source-native synthetic control: a true Fibonacci-keyed GP29 chapter,
+  // Synthetic positive control: an actual Fibonacci-keyed GP29 chapter,
   // with the original singleton positions fixed to plaintext A and I,
   // must recover all those singleton tokens under its known inverse.
   const plantPlain = ciphertext.slice(CHAPTER_START, CHAPTER_END);
@@ -128,6 +128,16 @@ function main() {
   assert.deepEqual(recovered, plantPlain);
   assert.equal(relevant.filter(({position}) =>
     [GP_A, GP_I].includes(recovered[position - CHAPTER_START])).length, 18);
+  const plantedFull = ciphertext.slice();
+  plantedFull.splice(CHAPTER_START, plantCipher.length, ...plantCipher);
+  const plantedSingletons = relevant.map(({position}) => ({
+    position, value: plantedFull[position]
+  }));
+  const plantSearch = singletonTest(
+    plantedFull, plantedSingletons, CHAPTER_START, CHAPTER_END);
+  assert.equal(plantSearch.maximumAI, 18);
+  assert.equal(plantSearch.exactKeys, 2,
+    "The same key has an equivalent opposite-sign seed pair");
 
   console.log(JSON.stringify({
     hypothesis: "Direct symbolwise GP29 +/- Fibonacci recurrence pad, " +
@@ -136,7 +146,8 @@ function main() {
     chapter: selected,
     whole_book_control: wholeBook,
     positive_plant: {recoveredRunes: recovered.length,
-      recoveredSyntheticSingletons: relevant.length},
+      recoveredSyntheticSingletons: relevant.length,
+      allKeySingletonControl: plantSearch},
     decision: "0 exact keys; direct Fibonacci recurrence fails the A/I singleton " +
       "necessary condition. No original plaintext or key recovered."
   }, null, 2));
