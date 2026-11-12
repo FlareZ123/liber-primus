@@ -1,0 +1,13 @@
+name: LP2 original wordlength grammar manual
+on:
+  workflow_dispatch:
+jobs:
+  grammar:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_wordlength_grammar_original_sft.cjs
