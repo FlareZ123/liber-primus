@@ -36,7 +36,7 @@ jobs:
           gzip -dc "$BOOT_IMAGE" > original-root.cpio
           file original-root.cpio
           bsdtar -tf original-root.cpio | head -35 || true
-          bsdtar -xf original-root.cpio -C extracted-rootfs
+          bsdtar -xf original-root.cpio -C extracted-rootfs --exclude 'dev/*' --exclude './dev/*' --exclude 'proc/*' --exclude './proc/*'
           ls -l extracted-rootfs/tmp/wisdom extracted-rootfs/tmp/folly
       - name: Compare original bytes and enumerate executable consumer references
         run: python sims/cicada2013_os_rootfs_consumer_sft.py extracted-rootfs
