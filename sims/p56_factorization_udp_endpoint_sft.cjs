@@ -337,21 +337,30 @@ const p55BodyAscii = Buffer.from(
   p55BodySymbols.map(symbol => BASE29_TEXT[symbol]).join(""), "ascii"
 );
 assert.equal(p55BodyAscii.length, 75);
+const p55RawIndices = Buffer.from(p55);
+const p55BodyRawIndices = Buffer.from(p55BodySymbols);
+const udpHeaderBytes = Buffer.from("0000011900540000", "hex");
 const directHashInputs = {
   base29AsciiFull76: p55PayloadBytes,
   base29AsciiBody75: p55BodyAscii,
+  rawRuneIndicesFull76: p55RawIndices,
+  rawRuneIndicesBody75: p55BodyRawIndices,
   base29IntegerFull76MinimalBE: base29IntegerBytes(p55),
   base29IntegerBody75MinimalBE: base29IntegerBytes(p55BodySymbols),
-  illustrativeUdpSegment84: udpSegment
+  illustrativeUdpSegmentAscii84: udpSegment,
+  illustrativeUdpSegmentRawIndices84: Buffer.concat([udpHeaderBytes, p55RawIndices])
 };
 assert.deepEqual(
   Object.fromEntries(Object.entries(directHashInputs).map(([name, bytes]) => [name, bytes.length])),
   {
     base29AsciiFull76: 76,
     base29AsciiBody75: 75,
+    rawRuneIndicesFull76: 76,
+    rawRuneIndicesBody75: 75,
     base29IntegerFull76MinimalBE: 47,
     base29IntegerBody75MinimalBE: 46,
-    illustrativeUdpSegment84: 84
+    illustrativeUdpSegmentAscii84: 84,
+    illustrativeUdpSegmentRawIndices84: 84
   }
 );
 const directHashAlgorithms = {

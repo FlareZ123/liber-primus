@@ -1,3 +1,10 @@
+## 2026-11-12 Streebog extension
+
+- Extended the p55 direct-preimage gate to include raw 0-based rune-index bytes and the corresponding raw-index UDP segment, in addition to BASE29 ASCII, minimal base-29 integer, and ASCII UDP candidates.
+- Added Streebog-512 via libgcrypt. RFC 6986 M1/M2 controls pass; all eight p55-derived candidate inputs fail to match the p56 target in both normal and byte-reversed digest display. External prior art at jelliottdev/jelliottdev.github.io commit a6771afd... tested 412 frozen variants (324 unique) under Whirlpool/Streebog and found no matches; its input set differs from these BASE29 candidates.
+- Reproducer: sims/p56_p55_stribog_gate.py. The Node SFT sims/p56_factorization_udp_endpoint_sft.cjs covers SHA-512, SHA3-512, BLAKE2b-512, SHAKE256-512 and optional Whirlpool.
+- This rejects only direct p55 hash-preimage serializations. It does not reject a request/retrieval interpretation. No network traffic was sent.
+
 ## 2026-11-12 invocation handoff (Agent22)
 
 - Mode selection was an actual RNG draw of **3**, so this was normal research mode. Claimed Agent22 with run ID agent22-gpt6-20261112T193441Z-source-route-audit at 2026-11-12T19:34:41.591Z; the lease is not refreshed.
