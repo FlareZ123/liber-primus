@@ -1,5 +1,8 @@
 name: LP2 base60 grid cryptanalytic probes
 on:
+  push:
+    paths:
+      - 'sims/lp2_grid256_gp28_allsecret_phase_sft.cjs'
   workflow_dispatch:
     inputs:
       probe:
@@ -18,6 +21,7 @@ on:
           - historical-onion-totient-inverse
           - spiral-grid-source
           - gf841-trace-feedback
+          - gp28-256phase-allsecret
 jobs:
   grid-probe:
     runs-on: ubuntu-latest
@@ -27,6 +31,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Source-grid GP28 256-phase all-secret original cipher gate
+        if: ${{ github.event_name == 'push' || inputs.probe == 'gp28-256phase-allsecret' }}
+        run: node sims/lp2_grid256_gp28_allsecret_phase_sft.cjs
       - name: Original constrained-grid keyskip search
         if: ${{ inputs.probe == 'keyskip' }}
         run: node sims/grid_keyskip_viterbi.cjs
