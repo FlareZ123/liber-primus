@@ -36,6 +36,23 @@ An explicit positive plant selects `e(q)=q`, `φq(p)=p` for `p≠q`, and `h(q)=q
 
 The two independent necessary constraints both fail massively on the original. The most compact one-special-symbol boundary-escape architecture cannot fit the original on either split, **even with 29 arbitrarily secret per-q bijections and arbitrary reserved plaintext symbols**. This is a mathematical impossibility for this narrow but complete code, not a language-likelihood objection.
 
+## Stronger exact joint-output capacity theorem
+
+The preceding special-symbol code is one complete local architecture. A still broader source-only pigeonhole statement applies to **every deterministic map** whose sole variable input at step i is one GP29 plaintext symbol `pᵢ`, whose finite state is limited to preceding ciphertext `q=cᵢ₋₁`, and whose outputs together are the next GP29 ciphertext rune `cᵢ` **and the printed boundary-before-rune bit `bᵢ`**. For fixed q there are 29 possible p inputs, so any key/family of maps `Fq:p→(b,c)` has at most **29 distinct output pairs**. No injectivity assumption is needed for this upper bound.
+
+On the unchanged original printed word gaps, all 29 q states exceed that bound in each independent half:
+
+| Source split | Maximum different (boundary bit, next rune) pairs after one q | Predecessor states exceeding 29 |
+| --- | ---: | ---: |
+| Initial physical pp0–39 | **58** (the complete 2×29 output inventory) | **29/29** |
+| Heldout pp40–55 | **48** | **29/29** |
+| Full unknown source | **58** | **29/29** |
+| Largest contiguous visual chapter pp40–53 alone | **47** | **29/29** |
+
+Thus a *deterministic one-GP-symbol-in/one-(separator-bit,rune)-pair-out* cipher keyed only by previous ciphertext cannot reproduce the actual manuscript, even with any secret per-q function, any choice of repeated-output exceptions, and no English/language assumptions. The observed global max58 requires at least 58 distinct source input states or a further unrecorded input/state bit. The within-chapter maximum47 independently exceeds29.
+
+**Scope matters:** ordinary visible word boundaries might simply be punctuation copied from an independently segmented *plaintext input*, in which case the input is `(p,b)` and the 29-input bound does not apply. A clock with physical page, position, or hidden state likewise evades this result. The theorem specifically rejects an encoder **generating all original word boundaries from the current plaintext rune and previous ciphertext alone**; it is not a proof that printed gaps cannot contain additional information.
+
 ## Research decision
 
 Word-boundary positions still have sufficient *information-theoretic capacity* to carry the 325–649 lost bits documented in [the upstream source-capacity audit](lp2-no-repeat-source-visible-channel-capacity.md). The present result eliminates the most literal **one-special-input / one-extra-boundary-bit per step** implementation. An escape system using a different subset of original punctuation locations, multirune variable-length coding, a changing secret h(q,i), a second previous rune, ciphertext doublet exception channel, or external state may escape this result. Each requires a separate selector not supplied by the 2016 phrase or p57 Parable.
