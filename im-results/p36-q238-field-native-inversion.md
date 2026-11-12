@@ -1,6 +1,6 @@
 # P36 and the original degree-238 table factor: exact field inverse
 
-**Status (11 November 2026): tested, bounded negative. No original unknown Liber Primus plaintext, key, cipher or destination recovered.** This test asks whether two unusually specific original-source sizes actually select a *reversible whole-book* cipher, rather than only a numerical resemblance.
+**Status (12 November 2026): tested, bounded negatives, including a new key-independent exact obstruction to every fixed symbol-relabeling/transposition transfer between the 238 residual coefficients and p36. No original unknown Liber Primus plaintext, key, cipher or destination recovered.** This test asks whether two unusually specific original-source sizes actually select a *reversible whole-book* cipher, rather than only a numerical resemblance.
 
 ## Original source and proposed human operation
 
@@ -34,6 +34,35 @@ The 2013 example used modular Diffie–Hellman; **3301** and **1033** were expli
 
 All four candidates re-exponentiate to the exact authentic p36 element, and independent source-native 238-rune plants are recovered exactly. **No resulting sequence resembles readable p36 prose.** The exponents have clear prior appearances in Cicada artifacts, but no source instructs interpreting p36 ciphertext as an exponentiated extension-field message.
 
+## Arbitrary-secret symbol transfer and pair permutation: exact source-only obstruction
+
+The residual factor has **238 nonleading GF29 coefficients**, exactly the **238 runes of original physical p36**. This length match could suggest an ordinary transposition under an unknown Gematria Primus alphabet; it is distinct from the finite-field multiplication and exponent inverses tested above. A direct correspondence would give a simple human-readable rule if it actually worked. To test it without guessing the order, allow the *most generous possible* global fixed bijection of the 29 rune labels **and an entirely arbitrary permutation of all 238 positions**. The frequency multiplicities of the original 238 coefficients and original p36 must then match identically.
+
+They do **not**. The coefficient frequency spectrum (29 counts, sorted) is
+
+`[1,4,4,4,5,6,6,6,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,11,11,11,12,15]`.
+
+The original p36 spectrum is
+
+`[3,4,4,4,5,5,6,6,6,6,6,7,7,7,7,8,8,8,9,9,11,11,12,12,12,13,14,14,14]`.
+
+Both streams actually use **all 29 distinct rune values**, so even an arbitrary *non-injective* stationary symbol map must be a bijection to cover all 29 observed output symbols. The sorted-frequency maximum-overlap argument proves that **at least 16 of 238 GP symbols would have to be changed**, even after choosing the most favorable unknown symbol bijection and arbitrary position permutation. With the original GP labels fixed, the same bound is **55 required changes**. Neither is a direct cipher inverse; the bound rules out exactly a relabeling/transposition copy.
+
+The original red marks at positions 119 on p3 and p39, and the independently source-defined GF841 presentation, give a second simple representation to exclude: group p36 and the 238 residual coefficients as **119 ordered pairs**. Either use adjacent pairs or split each 238-vector into two 119-element halves. For each of the four source/target packings, grant a wholly unknown stationary 841-symbol pair map and **arbitrarily permute the 119 pair positions**. Every deterministic fixed map can only preserve or reduce the number of distinct pair values:
+
+| Residual coefficient packing | p36 packing | Unique source pairs | Unique target pairs | Min. pair alterations even with an arbitrary bijection |
+| --- | --- | ---: | ---: | ---: |
+| Adjacent | Adjacent | 109 | 114 | 5 |
+| Adjacent | Halves | 109 | 111 | 3 |
+| Halves | Adjacent | 109 | 114 | 5 |
+| Halves | Halves | 109 | 111 | 2 |
+
+Every row is an **exact contradiction**, since 109 source identities cannot generate 111 or 114 different identities by one stationary function. A global pair-coordinate swap, reversal, a hidden GF841 symbol bijection, or an arbitrary read-order permutation cannot repair this invariant. The pair-change counts are optimistic minimum repairs under *both* an arbitrary alphabet bijection and arbitrary position permutation, not an error-correcting decode.
+
+The [standalone CommonJS SFT](../sims/p36_q238_secret_transposition_obstruction_sft.cjs) reconstructs the monic Q238 factor *from the original 256 bytes*, asserts its previously established SHA-256, extracts the exact original p36 physical runes, and computes all five exclusions with no language fitting. Its separate 29-symbol and 841-symbol planted secret-permutation controls pass. The SFT was added to the existing [manual p36 workflow](../.github/workflows/p36-q238-field-key-manual.yml), avoiding a new per-commit CI trigger.
+
+**Research decision:** The direct 238-symbol length coincidence does **not** permit the simplest fixed-alphabet transposition/copy or either natural 119-pair stationary remapping. Future p36/Q238 work requires a mathematically different reversible operation, a changing state, a non-symbolwise register, or independently supplied original key material. The existing genuine factorization and p36 page-length connection survive; this test does not identify the historical cipher or plaintext.
+
 ## Decision
 
-The natural one-key **Hill238-style field multiplication** across all original non-key LP2 runes, under the two physically grounded coefficient orders and book/section clocks, does not recover language. Direct original p36 field-root inversions at the two historically named exponents are similarly negative. This experiment rejects those *specific* simple reversible operations on the exact source symbols. It does not rule out nonlinear keyed uses of Q238, field protocols with missing public inputs, alternate plaintext registers, or the possibility that the degree/page-size agreement is accidental. A successor would require an independently indicated field operation or a newly supplied public component that makes a concrete original-cipher prediction; extending exponent and basis searches without such a clue would be unproductive.
+The natural one-key **Hill238-style field multiplication** across all original non-key LP2 runes, under the two physically grounded coefficient orders and book/section clocks, does not recover language. Direct original p36 field-root inversions at the two historically named exponents are similarly negative. A direct secret-alphabet-and-transposition copy of the 238 residual symbols into p36, including both natural 119×2 pair packings, is also mathematically excluded independent of the secret permutation. This experiment rejects those *specific* simple reversible operations on the exact source symbols. It does not rule out nonlinear keyed uses of Q238, field protocols with missing public inputs, alternate plaintext registers, or the possibility that the degree/page-size agreement is accidental. A successor would require an independently indicated field operation or a newly supplied public component that makes a concrete original-cipher prediction; extending exponent and basis searches without such a clue would be unproductive.
