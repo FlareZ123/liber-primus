@@ -1,0 +1,15 @@
+name: LP2 2012 Blake chorus 56-page GP28 original gate
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 56 signed chorus word keys on original LP2
+        run: node sims/lp2_2012_chorus_56page_gp28_rank_sft.cjs
