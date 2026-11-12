@@ -1,6 +1,6 @@
-# Exact original 2013 761.MP3 ID3v2.3 frame inventory
+# Original 2013 761.MP3: complete ID3 and MPEG envelope inventory
 
-**Classification:** original-binary source recovery and bounded metadata gate, completing Director Issue #139. **No new 2013 instruction, LP2 unknown plaintext or cipher key recovered.** This resolves earlier direct-binary-access limitations using an existing manual GitHub Actions runner with exact source hash verification.
+**Classification:** original-binary source recovery with finite ID3, MPEG frame-boundary and end-of-file audits. The ID3 inventory completed Director Issue #139; the MPEG container gate completes #445. **No new 2013 instruction, LP2 unknown plaintext or cipher key was recovered.** Both tests use a pinned immutable original with SHA-256 checks and separately declared controls.
 
 ## Pinned original and native parser
 
@@ -47,6 +47,32 @@ Likewise, treating each original complete GP ciphertext word as one base29 RSA c
 
 [Executable source-and-solved-plaintext original gate](../sims/parable_three_prime_rsa_original_format_gate.cjs) preserves these necessary format checks. This rejects the direct, uncompressed RSA block readings of LP2 runes and p50 byte cells under the candidate N. It leaves byte packing across nonstandard boundaries, other modular constructions, keys derived from N and an unrelated purpose for the embedded Parable product open. **No unknown plaintext, original RSA key instruction or continuation is recovered.**
 
+## Exact MPEG audio frame and file-end audit (Director #445)
+
+The [source-locked MPEG frame SFT](../sims/audio761_mpeg_frame_structure_sft.cjs) parses all frames at their *next expected byte boundary* instead of scanning for arbitrary sync markers. It operates on the same SHA-256-checked **4,010,732-byte** original used for the preceding ID3 audit. [Successful manual-only CI with matched encoder and planted trailer controls](https://github.com/FlareZ123/liber-primus/actions/runs/43128163885) also runs FFprobe and the FFmpeg decoder. It adds the opt-in \`mpeg-audit\` selection to the existing manual \`.github/workflows/audio-761-pad-scan.yml\` workflow, with no push-triggered CI.
+
+| Property | Original 2013 761.MP3 |
+| --- | --- |
+| ID3v2.3 envelope | offsets **0–205**, exactly **206 bytes** |
+| Compressed audio | offsets **206–4,010,731**, exactly **4,010,526 bytes** |
+| Sequential MPEG-1 Layer III frames | **6,397**; first offset206, 626 bytes; last offset **4,010,105**, 627 bytes |
+| Sample rate, bitrate | **44,100 Hz**, **192 kbps CBR** on every frame |
+| Channel/flags | all 6,397 headers are joint stereo, original=1, copyright=0, private=0, no CRC, emphasis=0 |
+| Frame padding | **393** unpadded and **6,004** padded frames |
+| Side-info reservoir back-pointer | 6,395 nonzero, maximum **447** (9-bit field) |
+| First-frame marker | ordinary **Info** encoder header, \`LAME3.98r\` |
+| Info declared audio frames | **6,396**, excluding the Info frame itself (6,397 parsed in total) |
+| Info declared compressed bytes | **4,010,526**, matching the complete audio region |
+| Independent FFprobe | \`mp3\`, 44,100 Hz, 2 channels, 192,000 bits/s, reported duration **167.021134 s** |
+| MPEG frame-clock duration | **167.1053061224 s**, including encoder/info framing |
+| Unparsed trailing bytes after last frame | **0** |
+
+The original plays through FFmpeg without a reported decoder warning or error. The pre-existing ID3 audit already established that the only three tag frames are TXXX, TIT2 and TPE1, and that there is no ID3v1 footer. The new audit shows the file has no extra trailer after the last intact MPEG frame, including no trailing APEv2 block, secondary ID3 tag, or appended instruction file. This is an **out-of-band container exclusion**, not a statement about hidden data in valid compressed MP3 bits.
+
+**Controls and falsifiability.** A separately encoded ordinary FFmpeg/LAME 192-kbps 44.1-kHz stereo control has **117** sequential valid frames and no tail, and its Info frame declares **116** frames, exhibiting the same standard one-frame offset. A synthetic marker \`FROZEN_APPEND_TEST\` appended to the authentic source is detected in full by the same parser, confirming that a non-frame trailer would have been visible. The parser additionally asserts the Info frame count and byte-count relationships for both original and control. All evidence is in the successful run above; no symbol key, audio frequency, frame subset, or ciphertext phase is fitted.
+
+**Scope and solve-path decision.** The historically documented, actionable 2013 use of this asset is the bytewise XOR of the MP3 against a Twitter stream, with the Parable text and its source-number checksum conveyed explicitly in ID3. The audio signal itself supplies no independently attested *second* listening, spectral, timing, or MIDI-to-GP29 rule. The compressed frames are ordinary legal MPEG packets as far as this boundary/metadata parser can establish. A watermark within MP3 scale factors, quantized samples, bit reservoir, or perceptual audio could still exist; no original clue currently selects how to extract one. Do not rerun unmotivated FFT peaks, offsets, direct MP3-byte pads, or PCM keyskip searches already reported in [the consolidated audio study](audio-761-pad-scan.md).
+
 ## Cryptanalytic decision
 
-**Close the hypothesis that the untouched 2013 ID3 metadata contains an additional buried instruction or missing key field beyond the known Parable, title and artist.** The exact TXXX description number `1,595,277,641` and two literal `\n` separators can be reused directly if a future source-selected key derivation demands byte-exact metadata. They do not themselves select a GP29 operator, page index, or original LP2 decryption. Do not repeat the broad compressed-audio pad, keyskip or spectrogram sweeps under this metadata issue.
+**Close the tested 2013 wrapper channels: neither the complete ID3 frame set nor the MPEG frame/container boundaries contain an additional source-attested instruction or missing key field beyond the known Parable, title and artist.** The exact TXXX description number `1,595,277,641` and two literal `\n` separators can be reused directly if a future source-selected key derivation demands byte-exact metadata. They do not themselves select a GP29 operator, page index, or original LP2 decryption. The independently observed 6,397-frame standard MPEG envelope has no appended payload; no source-selected second waveform or spectral decoder has emerged. Preserve the earlier signal and pad studies as bounded negatives; require an actual original clue before testing further extractions.
