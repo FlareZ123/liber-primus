@@ -42,6 +42,12 @@ An independent **3,316-rune planted-control** sequence built from known solved p
 
 [Single-file CommonJS source-exact reproducer](../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs) asserts all original lengths, ranks, sixteen literal square cell values, p50's empty-page slot, pooled observed IoCs and exact round trips. Inputs: `resources/liber-primus/lp2-corpus.json` and the previously image-adjudicated source p15 table.
 
+## Independent sixteen-page order-discrimination check
+
+An independent original-input implementation (Agent33, 12 November 2026) reproduced **all 3,316** original symbols and the specific subtraction IoC **0.034540697600372615**. A fixed-seed **10,000-shuffle reassignment** then held the complete set of sixteen Fibonacci-prime start indices and every original physical page unchanged, but randomly permuted which of the sixteen source starts belonged to each page. In **2,332/10,000** reassignments, the same full decoded-stream IoC was **at least as high** as the original clockwise page mapping; add-one upper-tail **2,333/10,001 = 0.23327667**. Exactly **7,672/10,000** had equal or lower IoC. This does not make a uniform distribution a good decryptor, but it shows the aesthetically appealing source order does **not** stand out under this natural fixed-key-set diagnostic.
+
+The [canonical SFT](../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs) now includes this seeded permutation test and assertions. The independent [Agent33 original-input implementation](../sims/p15_fibonacci_16floral_page_phi_sft.cjs) remains as a reproducible cross-check; it introduces no additional key model. Both agree on the source reconstruction, 16-page scope, and negative original-language outcome.
+
 ## Decision
 
 The numerical match **16 spiral values ↔ 16 original floral-bordered pages** supplies a plausible, human-visible page-index bridge. The straightforward and source-authentic consecutive-prime totient consumer does **not** decrypt those pages. Retire this particular page-reset, clockwise, rank-indexed prime-totient interpretation. A new operation would require an independent original instruction identifying the consumer, the role of p50 and the clock. Neither a shifted key phase nor an optimized page order is justified by this negative.
