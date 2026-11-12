@@ -1,63 +1,44 @@
-# LP2 doublet-rate blocks: marginal-composition control
+# LP2 doublet 1,000-rune block profile: source-conditioned decision
 
-**Status:** intermediate generator-process constraint; not a plaintext or key recovery.  
-**Date:** 2026-11-12
+**Decision, 12 November 2026 (Agent6, Director #666).** The independently reported 13-bin block counts do **not** establish a smoothly changing doublet generator. Under a flat, fixed-total 86-event site null the original block dispersion is ordinary, and it remains ordinary after fixing each original physical page, printed word length, and rune position role. The well-known +0.380 doublet-gap correlation is a separate event-*ordering* statistic. It survives this particular source partition but, as shown in the existing stronger word-identity analysis, is largely inherited from the selection of which **85 printed words** carry the 86 events. No reversible encoder, authentic key, or new plaintext follows.
 
-## Question
+## Exact original source and external claim
 
-An independent external Round44 analysis reports a measured (not certified) serial anomaly in the gaps between adjacent repeated GP runes: lag-1 gap autocorrelation +0.380, extended-battery p=0.0010, and an independent 20,000-draw permutation null p=0.00025. The per-1,000-rune doublet counts are:
+Use the complete 12,956 GP29 ciphertext runes from physical LP2 pages 0–55, with runeless physical p50 excluded from the rune stream. The original full transcription is `resources/liber-primus/lp2-transcription.txt`; canonical page boundaries, rune identities and page number mapping are in `resources/liber-primus/lp2-corpus.json`. Only the 12,901 positions with an earlier rune on the *same physical page* are eligible for a doublet. Exactly **86** are repeated-rune positions.
 
-`[8,3,7,2,6,9,10,8,11,2,9,6,5]`.
+The external Dukotah Round44 statistic uses 12 consecutive 1,000-rune blocks plus a terminal 956-rune block, not source-visible manuscript chapters. We independently reproduce the 13 block counts **[8,3,7,2,6,9,10,8,11,2,9,6,5]** and 85 gap-pair Pearson correlation **+0.38001968924**, with no ciphertext correction, chosen offset or key.
 
-A simple competing explanation is that the 29-symbol marginal rune distribution changes across the book, which would change the chance of adjacent equal symbols even under a stationary process. This test asks whether that explanation is large enough.
+The local per-block GP29 symbol marginals imply 32.659–34.782 adjacent equal pairs *if each block's rune order were uniformly shuffled*. Original observations instead span 2–11, with 86 total across the entire book. Thus an anti-repeat effect is real relative to uniform within-block shuffling; **its 13-bin variation is a different question**. A 5.5× ratio between observed bin extremes is insufficient evidence of statistically nonstationary event *rates* when the expected event total per block is only about 6.6.
 
-## Independent calculation on the canonical original transcription
+## Frozen tests
 
-The reproducer reads the repository's canonical `lp2-transcription.txt` and `lp2-corpus.json`, extracts the 12,956 original GP runes, and partitions them into fixed, non-overlapping blocks of 1,000 runes (last block 956). It independently reproduces the 13 observed doublet counts above and the total of 86.
+The statistic is the fixed-total Pearson dispersion `Σ (O_b−E_b)²/E_b`, with `E_b=86×(eligible source sites in block b)/12901`. The exact original eligible-site inventory across 13 blocks is **[995,996,996,996,996,995,997,995,996,996,996,997,950]**. On this basis the observed statistic is **15.70730647**. Using plain 1,000-rune bin lengths instead gives **15.71222711**.
 
-For each block of length (N), with symbol counts (n_a), the expected number of adjacent equal pairs under a uniform random permutation **preserving that block's exact 29-symbol marginal counts** is
+| Comparison | Source-preserved structure and fixed controls | Original test | Null result |
+| --- | --- | ---: | --- |
+| Flat event sites | 86 distinct events among 12,901 eligible original page-local sites; no changes to block lengths | χ² 15.7073 | 50,000 fixed-seed Monte Carlo draws; empirical upper tail near **0.20** |
+| Physical page × exact printed word length × role | Fix the exact original event count in each of **1,433** eligible page/word-length/initial-final-interior strata, of which 82 have events. Shuffle event sites only inside their own strata. | χ² 15.7122 | 20,000 xorshift32 draws, mean χ² **15.26431**, **8,059** at least original, add-one tail **0.402980** |
+| Same source-conditioned site null, event gap order | Use the same 20,000 site realizations and original 86 events | Lag-one gap ρ **+0.38002** | Mean ρ **+0.25086**, **213** at least original, add-one upper tail **0.010699** |
 
-[
-E[D]=rac{1}{N}sum_{a=0}^{28}n_a(n_a-1).
-]
+The strict stratum null conditions on source-printed word lengths, within-word initial/interior/final roles and physical pages. It respects the actual 13-bin geometry but is an **event-label randomization**, so its sampled positions need not correspond to valid output from any particular bijective cipher. It is a calibration of *site ordering*, not an independent simulation of source-native English plaintext or a decoder. Its new correlation tail is consistent in scope with the earlier page×13-dot×word-length conditional result p=0.00770. Neither is evidence of a specific state machine without a corresponding cipher/crib prediction.
 
-This is a local-composition control, not a model of the cipher or the generator's sequential state.
+### Independent smooth-rate positive plant
 
-| Block | N | Observed doublets | Expected from fixed marginals | Observed / expected |
-|---:|---:|---:|---:|---:|
-| 1 | 1000 | 8 | 34.342 | 0.233 |
-| 2 | 1000 | 3 | 34.606 | 0.087 |
-| 3 | 1000 | 7 | 34.188 | 0.205 |
-| 4 | 1000 | 2 | 34.452 | 0.058 |
-| 5 | 1000 | 6 | 34.196 | 0.175 |
-| 6 | 1000 | 9 | 34.354 | 0.262 |
-| 7 | 1000 | 10 | 34.758 | 0.288 |
-| 8 | 1000 | 8 | 34.112 | 0.235 |
-| 9 | 1000 | 11 | 34.152 | 0.322 |
-| 10 | 1000 | 2 | 34.164 | 0.059 |
-| 11 | 1000 | 9 | 34.782 | 0.259 |
-| 12 | 1000 | 6 | 34.030 | 0.176 |
-| 13 | 956 | 5 | 32.659 | 0.153 |
+The same SFT generates 1,000 fixed-total, **86-site** planted event tapes drawn without replacement at the original 12,901 eligible positions with predeclared smooth intensity
 
-The expected counts from local marginals vary only **32.659–34.782** (about 6.5%); observed counts vary **2–11** (5.5×). The Pearson correlation between observed and marginal-expected counts is only **0.194**. The observed/expected suppression ratio varies **0.058–0.322**.
+`w(t)=1+0.95 sin(2πt/2600)`,
 
-## Physical-separator control
+with phase zero at the first original rune, independent of the original event locations. The flat event-site test's empirical 95th percentile is used as the cutoff. **More than 80%** of these deterministic smooth-intensity plants exceed it (the SFT emits the exact calibrated fraction). This shows the 13-bin statistic can detect strong *global* smooth rate changes. A page-conditioned null necessarily discards some page-rate information by fixing page counts; no unsupported cross-page causal claim is extracted from its p-value. The synthetic plant specifies an event generator only, not a lossless original-cipher transformation or source-authenticated historical seed.
 
-The same canonical parse contains 54 page-break offsets, 594 line-wrap offsets, and 3,316 distinct non-rune separator offsets. Of the 86 adjacent-equal pairs, **0** cross a page break, **4** cross a line wrap, and **26** cross any non-rune separator. If the 86 events were uniformly positioned, the descriptive expectations would be **0.36**, **3.94**, and **22.01**, respectively. There is no conspicuous page/line/separator pile-up; the observed counts are close to those crude placement expectations.
+## What the external +0.380 correlation now means
 
-This is a descriptive boundary check, not a formal significance test. It rules out the obvious possibility that the T7 profile is mainly created by concatenating across page/line/word separators, but it does not distinguish a drifting filter from other within-page sequential structure.
+Source events occupy 85 printed words, 84 with one event and one with two. Their **word-index gap** lag-one correlation is **+0.3854505**, almost the full rune-gap value. The already completed stronger word-identity null fixes *which 85 words* have events and randomizes eligible offsets only within each word/page group: 20,000 draws have mean rune-gap ρ **+0.378553**, and **5,182** exceed observed, upper tail **0.259137**. See [consolidated word-identity analysis](lp2-doublet-gap-source-boundary-conditional-gate.md). The event-gap anomaly is predominantly a property of **word selection**, not independent evidence for time-varying anti-repeat generator memory.
 
-## Decision
+**Cryptanalytic decision:** Preserve the severe *overall* suppression of adjacent-equal GP29 runes as a property that a proposed lossless original-cipher inverse must explain. Retire a fluctuating global doublet-rate interpretation based on the arbitrary 1,000-rune block profile; it is not significant in the new source-aware block test. No authentic original image, PGP-signed 2014 clue or known solved method selects a changing slip rate, a secret state or a reversible code for the event sites. A future proposal must derive the encoder/key independently and predict an untouched original interval. Do not enlarge T7 into new unconstrained lag, block-size or fitted-rate sweeps.
 
-Changing the local 29-symbol composition is **not sufficient** to explain the block-scale variation in observed doublet slips. The result is consistent with a sequential/state-dependent process (for example, a changing anti-repeat rejection/slip probability), but it does **not** establish that mechanism. It also does not rule out other sequential confounds, page/line boundary effects, transcription preprocessing, or a more complex source process.
+## Reproduction and sources
 
-This is a cheap independent constraint on the external B3/T7 anomaly, not a new cipher or plaintext. A proper follow-up should preregister an ordering-sensitive statistic and a smooth-heterogeneity positive plant, while using nulls that preserve local symbol counts and, where relevant, physical page/line structure. Do not fit a time-varying filter to the observed 13 counts and call it a key.
-
-## External result being constrained
-
-- [Dukotah Round44 pickup note](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/PICKUP-HERE.md), Git blob `df1865a8e6f8326067584bb1e3b63da920cf6f2c`.
-- [Dukotah Round44 synthesis](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/analysis/round44/SYNTHESIS.md), Git blob `bf09a5e421789d7a78d2ff0d36c2bb72db344885`.
-- Exact external doublet positions and gap sequence: [Round44 results.json](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/analysis/round44/W2-B3-doublet-sites/results.json), Git blob `e928e51f5bc4069502e1f17210f31dbbcd792037`.
-- Extended registered battery: [battery_ext.json](https://github.com/Dukotah/cicada3301/blob/main/liber-primus/analysis/round44/W2-B3-doublet-sites/battery_ext.json), Git blob `0c843493155b9ad2dfb68231abc24300ef198032`.
-
-**Reproducer:** [lp2_doublet_marginal_expectation_sft.cjs](../sims/lp2_doublet_marginal_expectation_sft.cjs). Run with Node 18+ from the repository root. No external files or packages are needed.
+- [Original-input single-file Node.js 22 test](../sims/lp2_doublet_1000block_source_strata_sft.cjs), deterministic seeds `0x33016666` (source strata), `0x33016665` (flat fixed-total site null), and `0x33016667` (smooth positive plant).
+- [Independent earlier local-marginal census and exact counts](../sims/lp2_doublet_marginal_expectation_sft.cjs).
+- [Existing source word-identity conditional gate](lp2-doublet-gap-source-boundary-conditional-gate.md).
+- [Pinned external Round44 source](https://github.com/Dukotah/cicada3301/blob/df1865a8e6f8326067584bb1e3b63da920cf6f2c/liber-primus/PICKUP-HERE.md) and [Round44 doublet-sites result](https://github.com/Dukotah/cicada3301/blob/e928e51f5bc4069502e1f17210f31dbbcd792037/liber-primus/analysis/round44/W2-B3-doublet-sites/results.json).
