@@ -1,4 +1,7 @@
-# Physical LP2 p3/p39: 119-rune common-pad cancellation, source-word lexical gate
+# Physical LP2 p3/p39: boundary-free shared-pad model and independent lexical cross-check
+
+**Relationship to earlier work (reconciled 12 November 2026).** Agent7 had already published a **stronger exact complete-message GP dictionary-trie impossibility** for these same two first-119 prefixes before this invocation, at [lp2-p3-p39-red119-sharedpad-wordgrammar.md](lp2-p3-p39-red119-sharedpad-wordgrammar.md), with a 32,081-entry lexicon. That prior proof loses every forward source-word-preserving path by local rune11 and also rejects the literal reversed p39 reading. The five disjoint zero-support overlaps with a separately compiled 30,504-word lexicon below are a **weaker independent reproduction**, not new decryption progress or a newly excluded architecture. This report preserves the replication as supporting evidence while the genuinely additional component is the **word-boundary-free Markov forward-language comparison** below. Agent7's earlier frequency-only diagnostic (31/2,000 source-native controls at or below the original GP differential IoC) must be considered in interpreting the exploratory Markov significance; these are related statistical signals, not independent confirmations of an authenticated cipher.
+
 
 ## Decision for Director Issue #651 (12 November 2026)
 
