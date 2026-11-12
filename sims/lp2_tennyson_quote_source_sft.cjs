@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Agent48: source-locked 1842 Lady of Shalott quotation crib test (#635).
+ * Agent48: source-locked 1832 and 1842 Lady of Shalott quotation test (#635).
  * Run from repository root: node sims/lp2_tennyson_quote_source_sft.cjs
  * Node.js 22 CommonJS; no external modules, network, or broad book search.
  *
@@ -8,7 +8,9 @@
  *   https://github.com/GITenberg/The-Early-Poems-of-Alfred-Lord-Tennyson_8601/blob/master/8601.txt
  *   SHA-1 Git blob f8b91a01e538f0d5c6400a4da728a27a46b4aff7
  *   poem substring UTF-16 indices [135593,141652), including footnote tags.
- * Source edition 1842 (Collins's early-poems notes preserve 1833 variants).
+ * 1832 full source:
+ *   https://github.com/kjhealy/mptc/blob/6e784a2f90d22b0735a63417bda513349d5be416/files/examples/shalott_1832.txt
+ *   Git blob 2856e7777a09d306a7bbd53051a41579fe6aed82
  * Compare the original seven runic quote windows without fitting a key.
  */
 const assert = require("node:assert/strict");
@@ -141,37 +143,50 @@ const tape=quotes.map((q,i)=>{
 });
 assert.equal(tape.reduce((s,a)=>s+a.reduce((n,x)=>n+x,0),0),405);
 
-const raw=read("resources/external/tennyson-lady-of-shalott-1842-gutenberg8601.txt");
-assert(raw.startsWith("PART I\r\n"));
-assert(raw.includes("The Lady of Shalott"));
-const sourceWords=poemWords(raw);
-assert.equal(sourceWords.length,1003);
-const rows=[];
-for(const foldIng of [true,false]) {
-  const lengths=sourceWords.map(word=>gpLength(word,foldIng));
-  // Planted 34-word exact source witness. This is algorithm validation only.
-  const seed=lengths.slice(200,234);
-  const control=match(lengths,seed);
-  assert.equal(control.n,34);
-  assert(control.complete>=1);
-  for(let quote=0;quote<7;quote++) {
-    const observed=match(lengths,tape[quote]);
-    const nullMatch=match(shuffle(lengths,0x33012012),tape[quote]);
-    assert.equal(observed.complete,quote===2?3:0);
-    assert.equal(observed.n,[3,3,2,4,4,5,4][quote]);
-    rows.push({
-      source:"Tennyson 1842",
-      foldIng,quote,sourceWords:sourceWords.length,
-      quoteWords:tape[quote].length,quoteRunes:tape[quote].reduce((a,b)=>a+b,0),
-      ...observed,wrongOrderLongest:nullMatch.n,
-      sourceExcerpt:sourceWords.slice(observed.s,observed.s+observed.n).join(" ")
-    });
+const sources=[
+  {
+    id:"1832",file:"resources/external/tennyson-lady-of-shalott-1832-mptc.txt",
+    expectedWords:1052,expectedFull:5,
+    expectedLongest:[[3,3,2,5,4,5,5],[3,3,2,5,3,5,5]]
+  },
+  {
+    id:"1842",file:"resources/external/tennyson-lady-of-shalott-1842-gutenberg8601.txt",
+    expectedWords:1003,expectedFull:3,
+    expectedLongest:[[3,3,2,4,4,5,4],[3,3,2,4,4,5,4]]
+  }
+];
+const rows=[],sourcesAudited=[];
+for (const source of sources) {
+  const raw=read(source.file);
+  assert(raw.startsWith(source.id==="1832" ? "Part I\n" : "PART I\r\n"));
+  assert(raw.includes("Lady of Shalott"));
+  const sourceWords=poemWords(raw);
+  assert.equal(sourceWords.length,source.expectedWords);
+  sourcesAudited.push({edition:source.id,sha256:sha256(raw),sourceWords:sourceWords.length});
+  for(const [orthography,foldIng] of [true,false].entries()) {
+    const lengths=sourceWords.map(word=>gpLength(word,foldIng));
+    // Planted 34-word source-native positive control.
+    const seed=lengths.slice(200,234);
+    const control=match(lengths,seed);
+    assert.equal(control.n,34);
+    assert(control.complete>=1);
+    for(let quote=0;quote<7;quote++) {
+      const observed=match(lengths,tape[quote]);
+      const nullMatch=match(shuffle(lengths,0x33012012),tape[quote]);
+      assert.equal(observed.complete,quote===2?source.expectedFull:0);
+      assert.equal(observed.n,source.expectedLongest[orthography][quote]);
+      rows.push({
+        source:source.id,foldIng,quote,
+        quoteWords:tape[quote].length,quoteRunes:tape[quote].reduce((a,b)=>a+b,0),
+        ...observed,wrongOrderLongest:nullMatch.n,
+        sourceExcerpt:sourceWords.slice(observed.s,observed.s+observed.n).join(" ")
+      });
+    }
   }
 }
 console.log(JSON.stringify({
-  sourceEdition:"1842 (GITenberg 8601 poem body)",sourceSha256:sha256(raw),
-  sourceWords:sourceWords.length,originalWords:original.length,
+  editions:sourcesAudited,originalWords:original.length,
   originalRuneCount:12956,positivePlant:"source-native 34-word recovered",
   matches:rows,
-  conclusion:"No 12-word, 40-rune exact source quotation match. Only this source edition is tested."
+  conclusion:"Neither 1832 nor 1842 poem supplies a 12-word / 40-rune exact quotation crib; historical Emerson whole-book maximum was already nine."
 },null,2));
