@@ -60,18 +60,17 @@ function measure(k, output, context = output) {
 }
 
 /**
- * Exact Hamming distance of a fixed candidate GP plaintext to the closest
- * original-cipher-consistent plaintext under arbitrary secret per-state
- * bijections (evaluated on within-page destination positions only).
+ * Exact histogram-relaxation lower bound on Hamming edits needed to match
+ * a fixed candidate plaintext under secret per-context symbol bijections.
  *
- * Each state's allowed target histogram is an arbitrary permutation of its
- * original ciphertext histogram. Maximizing retained positions is the
- * assignment of candidate symbol-frequency buckets to ciphertext frequency
- * buckets in descending order, yielding n - sum_j min(a_j,b_j).
+ * Sorted frequency vectors minimize edits to statewise histograms, while
+ * ignoring the original within-state positional co-occurrences. The true
+ * positional Hamming minimum can be strictly larger and requires a separate
+ * maximum-weight 29x29 assignment per context.
  * @param {number} k
  * @param {number[]} candidate
  */
-function minimalCandidateEdits(k, candidate) {
+function histogramEditLowerBound(k, candidate) {
   const originalRows = new Map();
   const candidateRows = new Map();
   for (const [start, len] of pageStarts) {
@@ -97,6 +96,17 @@ function minimalCandidateEdits(k, candidate) {
   }
   assert.equal(edits % 2, 0);
   return edits / 2;
+}
+
+// Positional relabeling can require edits despite identical state histograms.
+{
+  const toyCipher = [0, 1, 0, 1];
+  const toyTarget = [0, 0, 1, 1];
+  assert.equal(toyCipher.filter((x) => x === 0).length,
+    toyTarget.filter((x) => x === 0).length); // histogram bound: zero
+  const posEdits = [[0, 1], [1, 0]].map((key) =>
+    toyCipher.reduce((n, x, i) => n + (key[x] !== toyTarget[i] ? 1 : 0), 0));
+  assert.deepEqual(posEdits, [2, 2]);
 }
 
 const tokens = corpus.translit.map((s, i) => ({ s, i }))
@@ -139,17 +149,17 @@ for (const k of [2, 3, 4]) {
   controls[k] = {};
   for (const item of native) {
     const samples = item.blocks.map((b) => measure(k, b, ciphertext));
-    const distances = item.blocks.map((b) => minimalCandidateEdits(k, b));
-    distances.sort((a, b) => a - b);
+    const bounds = item.blocks.map((b) => histogramEditLowerBound(k, b));
+    bounds.sort((a, b) => a - b);
     controls[k][item.name] = {
       windows: samples.length,
       entropyMin: Math.min(...samples.map((s) => s.entropy)),
       entropyMax: Math.max(...samples.map((s) => s.entropy)),
       collisionMin: Math.min(...samples.map((s) => s.collisions)),
       collisionMax: Math.max(...samples.map((s) => s.collisions)),
-      minimumCandidateEdits: distances[0],
-      medianCandidateEdits: distances[Math.floor(distances.length / 2)],
-      maximumCandidateEdits: distances.at(-1)
+      minimumHistogramEditLowerBound: bounds[0],
+      medianHistogramEditLowerBound: bounds[Math.floor(bounds.length / 2)],
+      maximumHistogramEditLowerBound: bounds.at(-1)
     };
     if (k <= 3) {
       assert(controls[k][item.name].entropyMax < original[k].entropy);
@@ -240,7 +250,7 @@ for (const k of [2, 3]) {
   const decoded = measure(k, arbitraryDecoded, ciphertext);
   assert(Math.abs(decoded.entropy - original[k].entropy) < 1e-10);
   assert.equal(decoded.collisions, original[k].collisions);
-  assert.equal(minimalCandidateEdits(k, arbitraryDecoded), 0);
+  assert.equal(histogramEditLowerBound(k, arbitraryDecoded), 0);
   plants[k] = {
     recoveredRunes: plantPlain.length, plantedCipher: hC,
     arbitraryOriginalRoundtrip: true, originalDecodedEntropy: decoded.entropy
