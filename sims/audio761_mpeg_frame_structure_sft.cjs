@@ -75,6 +75,8 @@ function ancillaryCensus(data,main) {
   let firstInfoGapBits=0,negativeStartCount=0;
   let fillMismatches=0,perfectFillGaps=0,nonstandardFillGaps=0;
   const nonstandardFillSamples=[];
+  const completeAncillaryByteCounts=new Map(),nonFillBytePositions=[];
+  let completeAncillaryBytes=0,nonFillerCompleteBytes=0;
   for(let i=0;i<data.length;i++) {
     const entry=data[i];
     if(entry.startBit<0){negativeStartCount++;continue;}
@@ -85,6 +87,20 @@ function ancillaryCensus(data,main) {
     if(i===0){firstInfoGapBits=n;continue;}
     if(n===0){zeroGapCount++;continue;}
     gapCount++;maxGap=Math.max(maxGap,n);
+    for(let p=Math.ceil(finish/8);p<Math.floor(next/8);p++) {
+      const value=main[p];
+      tally(completeAncillaryByteCounts,value);
+      completeAncillaryBytes++;
+      if(value!==0x55&&value!==0xaa){
+        nonFillerCompleteBytes++;
+        if(nonFillBytePositions.length<24) {
+          nonFillBytePositions.push({
+            frame:i,globalMainDataOffset:p,valueHex:value.toString(16).padStart(2,"0"),
+            contextHex:main.subarray(Math.max(0,p-8),Math.min(main.length,p+9)).toString("hex")
+          });
+        }
+      }
+    }
     let localMismatches=0;
     for(let bit=finish;bit<next;bit++){
       const actual=bitsAt(main,bit,1);
@@ -116,6 +132,10 @@ function ancillaryCensus(data,main) {
     overlappingDataUnits:overlaps,maxOverlapBits:overlapMax,
     negativeStartCount,maxGapBits:maxGap,
     candidateAncillaryBits:rawBits.length,candidateOneBits:ones,
+    completeAncillaryBytes,nonFillerCompleteBytes,
+    completeAncillaryByteTop:Object.entries(obj(completeAncillaryByteCounts))
+      .sort((a,b)=>b[1]-a[1]).slice(0,12),
+    nonFillBytePositions,
     standard55FillMismatchedBits:fillMismatches,
     perfect55FillGaps:perfectFillGaps,nonstandardFillGaps,
     nonstandardFillSamples,
