@@ -23,6 +23,24 @@ The two LP2 quantization-table profiles partition precisely by one-component ver
 
 Quantized DCT arrays were read directly through libjpeg `jpeg_read_coefficients`, without a pixel-domain re-DCT. In the Y component, the proportion of odd coefficients conditional on absolute AC magnitude at least 2 is **0.416711** for genuine carrier 03 and **0.407371** for genuine carrier 08. LP1 pages 10/11/12 yield **0.4105/0.4097/0.4074**, respectively, even though their source material does not supply the independently recovered OutGuess payloads for pages 03/08. Hence this tempting odd/even carrier signature fails specificity on the period control corpus. LP2 grayscale images have corresponding Y ratios **0.438848–0.478023**, and LP2 color images **0.444155–0.480036**. These broad visual-content/encoder-dependent differences cannot select a hidden LP2 message. No unconstrained coefficient-phase, bit-order or key extraction was run.
 
+## Full-resolution RGB residual control: why some monochrome pages are stored as color
+
+A further original-pixel check of all 58 LP2 scans found **25** three-component pages containing strongly red pixels and **10** three-component pages with **zero strongly red pixels**, alongside the 23 genuinely single-component grayscale pages. Source RGB encoding is therefore not simply the visible presence of red type.
+
+Nine of the 10 visually monochrome RGB pages carry *tiny, spatially identical residual chromatic patterns* across independently numbered originals:
+
+| LP2 physical pages (archive JPEGs) | Full-resolution chromatic pixels per page | Maximum RGB-channel delta | Distinct copied residual pattern |
+| --- | ---: | ---: | --- |
+| p4, p5 (`21.jpg`, `22.jpg`) | **43** | **2** | Exactly identical 43-pixel mask and signed channel differences, confined to original x352–367, y2448–2463 |
+| p9, p11, p13 (`26.jpg`, `28.jpg`, `30.jpg`) | **1,277** | **5** | Exactly identical same-side artwork residual, x2036–2235, y800–1359 |
+| p10, p12 (`27.jpg`, `29.jpg`) | **1,462** | **5** | Exactly identical opposite-side artwork residual, x250–453, y810–1359 |
+| p34, p35 (`51.jpg`, `52.jpg`) | **759** | **5** | Exactly identical upper illustration residual, x1142–1385, y175–431 |
+| p1 (`18.jpg`) | **0** | **0** | RGB-encoded original is perfectly achromatic at every decoded pixel |
+
+In each multiple-page group, **the complete original-resolution signed B−G and R−G residual arrays are pixel-identical**, even as the rune text differs. Thus the unusual color encoding on these pages is connected to **reused page/template artwork or image-production inheritance**, a source-native mundane mechanism explaining most exceptions to a red-content color rule. The color/grayscale page sequence cannot be regarded as an independently authenticated authored binary message merely because some RGB pages lack red. An intentional metadata-level code remains possible in principle, but no original visual clue chooses this channel, polarity or encoding. **No LP2 hidden message or decryption key was recovered.**
+
+[Full-resolution source-color SFT](../sims/lp2_jpeg_chroma_template_sft.py) SHA-pins all 11 focal original JPEGs, asserts exact residue pixel counts, identical inter-page difference arrays and the p0 true-red positive control (60,278 original red pixels). It uses the decoded original JPEG RGB values without altering/recompressing the files. This is a source-rendering follow-up to the initial marker/DCT comparison, not a blind steganographic extraction.
+
 ## Reproduction and decision
 
 - [Existing original-marker reader](../sims/lp2_jpeg_marker_audit.py) and [quantized-coefficient reader](../sims/lp2_jpeg_coeff_audit.c) establish the source framing and original coefficient access.
