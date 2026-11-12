@@ -77,6 +77,38 @@ assert.deepEqual(interiorOffsets, [
   56,57,58,59,60,65,66,67,68,71,74
 ]);
 const original = interiorOffsets.map(k => page[k]);
+// The five printed two-rune words contain no interior glyphs. Any transform
+// that touches only the 43 interiors leaves all five printed words unchanged.
+// This is an exact original-input impossibility for a full 76-rune ordinary
+// native-GP-English page with the source's printed word boundaries preserved.
+const fixedTwoRuneWords = physicalWords.flatMap((word,index) => {
+  if ([...word].length!==2) return [];
+  return [{printedWordIndex:index,
+    latin:[...word].map(glyph => corpus.translit[
+      corpus.runes.indexOf(glyph)]).join("")}];
+});
+assert.deepEqual(fixedTwoRuneWords.map(x=>x.latin),
+  ["SB","XM","WR","EOE","THOE"]);
+const fixedShortSet = new Set(fixedTwoRuneWords.map(x=>x.latin));
+const nativeTwoRuneWordControls = [
+  {name:"Shakespeare",raw:read("resources/control/shakespeare_first300k.txt")},
+  {name:"Gibran",raw:read("resources/control/gibran_prophet_58585.txt")},
+  {name:"Emerson",raw:read("resources/control/emerson_essays_2944.txt")}
+].map(({name,raw})=>{
+  let totalTwoRune=0,observedFixed=0;
+  for(const word of raw.match(/[A-Za-z]+/g)||[]) {
+    const encoded = gpEncode(word);
+    if(encoded.length!==2)continue;
+    totalTwoRune++;
+    if(fixedShortSet.has(encoded.map(i=>corpus.translit[i]).join("")))
+      observedFixed++;
+  }
+  return {name,totalTwoRune,observedFixed};
+});
+assert.deepEqual(nativeTwoRuneWordControls.map(x=>[
+  x.totalTwoRune,x.observedFixed
+]),[[11546,0],[3657,0],[20947,0]]);
+
 /**
  * @param {number[]} a
  * @param {"rank"|"unrank"} mode
@@ -230,6 +262,7 @@ console.log(JSON.stringify({
   source:"Signed Cicada 2016 43 source words and 2014 LP2 physical p55",
   sourceWords,primeSums:sums,rankOrderZeroBased:ranks,
   interiorOffsets,originalCipher:original,exteriorOffsets,
+  fixedTwoRuneWords,nativeTwoRuneWordControls,
   nativePlantScore:score(plantPlain),nativeControlMedian:control[509],
   outcomes,
   pureTranspositionNecessaryInvariant:{originalCounts,originalOnegram,
