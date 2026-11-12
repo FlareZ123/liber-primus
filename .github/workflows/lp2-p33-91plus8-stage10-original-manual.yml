@@ -1,0 +1,18 @@
+name: LP2 p33 91+8 source-square inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert original 91-rune plus 8-digit source under three 2014 squares
+        run: node sims/lp2_p33_91plus8_stage10_three_square_sft.cjs
