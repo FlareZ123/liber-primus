@@ -271,6 +271,51 @@ assert.equal(affinePositions, 12956);
 // Every full round trip above is ciphertext-fitted and underdetermined.
 // Neither the fixed codebook nor the affine state-key table has a source selector.
 
+
+// Independent fixed-codebook source selector from the original p0 3|3
+// Younger Futhark twig mark: dominant 6:5:5 convention spells
+// FU-TH-O-R-K / H-N-I-A-S / T-B-M-L-Y. GP has no K: use written GP C
+// as the ordinary orthographic representation of K. This is conditional
+// on an explicit GP-equivalence convention; p0 alone selects only TH.
+const historicallyMotivatedYFCodebook = [
+  'F', 'U', 'TH', 'O', 'R', 'C', 'H', 'N',
+  'I', 'A', 'S', 'T', 'B', 'M', 'L', 'Y',
+].map(label => {
+  const index = corpus.translit.indexOf(label);
+  assert.ok(index >= 0);
+  return index;
+});
+assert.deepEqual(historicallyMotivatedYFCodebook, [
+  0, 1, 2, 3, 4, 5, 8, 9, 10, 24, 15, 16, 17, 19, 20, 26,
+]);
+const yfCandidateMasks = [];
+for (let a = 1; a < 29; a++) {
+  for (let b = 0; b < 29; b++) {
+    const mapped = historicallyMotivatedYFCodebook.map(
+      value => (a * value + b) % 29);
+    yfCandidateMasks.push({ a, b, mask: bitmask(new Set(mapped)) });
+  }
+}
+assert.equal(yfCandidateMasks.length, 812);
+const yfFailedStates = [];
+for (const [key, outputs] of page) {
+  const observed = bitmask(outputs);
+  const fitting = yfCandidateMasks.some(c =>
+    (observed & c.mask) === observed);
+  if (!fitting) yfFailedStates.push(key);
+}
+assert.deepEqual(yfFailedStates.slice().sort(), [
+  '3:22,24', '7:0,11', '7:0,14',
+  '7:0,24', '7:17,19', '7:18,16',
+]);
+const yfSingleState = page.get('7:0,24');
+assert.deepEqual([...yfSingleState].sort((a, b) => a - b), [
+  0, 1, 9, 10, 13, 15, 18, 20, 21, 25, 27,
+]);
+const yfBestOverlap = Math.max(...yfCandidateMasks.map(c =>
+  [...yfSingleState].filter(output => c.mask & (1 << output)).length));
+assert.equal(yfBestOverlap, 10); // Strictly below the observed support 11.
+
 console.log(JSON.stringify({
   originalRuneCount: 12956,
   visibleChapterStarts: starts,
@@ -280,7 +325,16 @@ console.log(JSON.stringify({
   wordSegments: wordSegments.length,
   arbitrary16SourceRankConstructionReencryptsAllOriginalRunes: true,
   fixed16SourceShiftedCipherSyntheticPositiveRoundTrip: true,
-  fixedCodebookAffine16OriginalFit: {
+  originalP0YoungerFutharkRegisterAffineGate: {
+    GP16Indices: historicallyMotivatedYFCodebook,
+    admissibleNonzeroSlopeAndOffsetPairsPerState: yfCandidateMasks.length,
+    impossibleObservedStates: yfFailedStates,
+    exampleOriginalState: '7:0,24',
+    originalSupport: yfSingleState.size,
+    maximalAffineCoverage: yfBestOverlap,
+    interpretation: 'The p0 3|3 Younger Futhark register under the conditional GP K-to-C representation fails as a literal shared-source codebook under any two-history page/chapter-dependent affine GP29 output; no other mapping is excluded.',
+  },
+    fixedCodebookAffine16OriginalFit: {
     codebook: codebook16,
     stateCount: affineKey.size,
     originalPositions: affinePositions,
