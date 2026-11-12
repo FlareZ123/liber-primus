@@ -250,12 +250,32 @@ function main() {
     [12074, 43818, 36747, 1683, 1453, 1470]);
   assert.deepEqual(controls.map(x => x.near15.matchesAtMost2),
     [0, 0, 0, 0, 0, 0]);
+  // Authentic solved LP1 prose offers a separate same-manuscript crib source.
+  // Keep source headings and repeated solved-page text: a permissive screen.
+  const lp1Text = read('resources/liber-primus/lp1-plaintext-reference.txt')
+    .split(/(?=^### [0-9]+$)/m)
+    .filter(part => /^### (?:[1-9]|1[0-6])\n/.test(part))
+    .map(part => part.replace(/^### \d+\n/, '')
+      .replace(/^#.*$/gm, '').replace(/^\[.*\]$/gm, ''))
+    .join('\n');
+  const lp1Words = latinWords(lp1Text);
+  const lp1Exact = search(unknown, lp1Words);
+  const lp1Near = nearCribs(unknown, lp1Words);
+  assert.equal(lp1Words.length, 744);
+  assert.equal(lp1Exact.windows, 3);
+  assert.equal(lp1Exact.longest, 7);
+  assert.equal(lp1Exact.atLeast10, 0);
+  assert.equal(lp1Near.candidatePairs, 582);
+  assert.equal(lp1Near.matchesAtMost2, 0);
+
   console.log(JSON.stringify({
     claim: 'No exact ten-word source-native GP length crib in three literary texts or three authentic 2013 book-code chapters',
     scope: 'Only contiguous verbatim excerpts under exact original word boundaries and original GP spelling rule',
     unknown: {pages: 55, runes: 12956, words: 2896},
     solvedP57Positive: {words: 20, runes: 95, longest: positive.longest},
-    seed: 7, controls
+    seed: 7, controls,
+    solvedLP1CandidateCrib: {sourceWords: lp1Words.length,
+      ...lp1Exact, near15: lp1Near}
   }, null, 2));
 }
 
