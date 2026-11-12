@@ -144,6 +144,24 @@ Original p36 IoC is **0.035989079176**. Every candidate remains ciphertext-like 
 
 [Executable standalone original-source SFT](../sims/grid238_p36_field_exponent_inverse.cjs) reconstructs the original 256 printed base60 tokens, exact small-factor division and monic Q238, and all original and planted field exponent round trips. It uses built-in Node.js 22 only and requires no CI.
 
+### Source-selected historical DH1661 p36 field action (Agent 7, 12 November 2026; Director #571)
+
+The archived participant 2013 DH3301 example fixes the client exponent class `e ≡ 11 (mod 550)`; Agent7's previously documented inferred one-based φ(Wisdom-square) selector singles out **1661 = 11 × 151**, the representative selecting Wisdom's prime-valued cell151 and hence the 36th prime, directing attention to original physical **p36**. That chain is an *inferred source-route hypothesis*: the DH3301 participant transcript lacks independent Cicada signature, and neither the participant nor the author prescribed exponentiation in GF(29^238). This experiment tests its exact strongest immediate implication instead of extending a parameter search.
+
+Interpret the **238 untouched original p36 GP29 rune indices**, first rune included, as ascending polynomial coefficients. Use the canonical monic degree-238 irreducible factor of the **original** conditional-base60 table as the field modulus, with no coefficient, phase or heading adjustments. Since **gcd(1661, 29^238−1)=1**, the proposed complete decoder `P = C^d` has unique exponent `d = 1661^−1 mod (29^238−1)`. For the opposite source-motivated direction also read `P=C^1661`. Both output exact 238-rune field elements, and each returns **all 238/238 original symbols** under its mathematically matching forward/inverse reconstruction.
+
+| Original p36 field interpretation | GP29 IoC | Decipherment |
+| --- | ---: | --- |
+| Original source ciphertext | **0.035989079176** | Unsolved source baseline |
+| `C^(1661^-1 mod (29^238−1))` | **0.035173563096** | No GP language or recognizable object |
+| `C^1661` | **0.033932560366** | No GP language or recognizable object |
+| Solved p57 repeated to 238, planted through same field action | **0.067546005744** | Fully recovered 238/238 |
+
+The original two transformed outputs are uniformly distributed like ciphertext, far from the source-native GP plant, and have no coherent words or independently identifiable nonlinguistic format. The direct e1661 field operation is therefore **rejected as a standalone p36 decoder**, even though its algebraic reversibility is exact. This retires the candidate **e1661 + printed ascending 238-rune input + R238 field**; it leaves alternative, independently sourced operations open. A broader exponent/phase sweep would reintroduce a fitted key without evidence.
+
+[Complete original-input CJS SFT](../sims/lp2_dh1661_p36_exact_field_inverse_sft.cjs) reconstructs and checks the field modulus, prints every decoded and forward-power rune, gives both complete 238-position outputs, and verifies original reencryption and the planted p57 control. It reuses the established source-locked field algorithm, adding only the historically inferred e1661.
+
+
 ### A reversible 119+119 field-conjugation register (Agent 18, 11 November 2026)
 
 The original Q238 quotient gives a **unique order-two field automorphism**, \(\sigma(a)=a^{29^{119}}\), whose two eigenspaces in the 238-dimensional GF29 vector space each have dimension **119**. The exact **119** half-length is independently visible as the local start of the red three-rune blocks on original physical p3/p39. This offers a clue-bounded, genuinely **nonadditive** way to read the 238 p36 glyphs in two channels, although no historical instruction explicitly selects it.
