@@ -180,7 +180,7 @@ for(const runeEncoding of ["index","prime","ascii"])
 binary.sort((a,b)=>b.printable-a.printable);
 assert.equal(binary.length,72);
 assert(binary[0].printable < .45);
-const asciiPlant=Array.from(shakespeare.slice(200000).replace(/\\s/g," ")
+const asciiPlant=Array.from(shakespeare.slice(200000).replace(/\s/g," ")
   .slice(0,256),char=>char.charCodeAt(0));
 assert.equal(asciiPlant.length,256);
 assert(asciiPlant.every(x=>x>=32&&x<=126));
