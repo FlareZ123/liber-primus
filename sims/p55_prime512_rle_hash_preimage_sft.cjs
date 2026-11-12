@@ -1,0 +1,79 @@
+"use strict";
+
+/**
+ * Exact source-motivated 512-bit preimage gate for the p55 13-dot stencil
+ * projection. The hash algorithm and input type are not authenticated.
+ * Run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const crypto = require("node:crypto");
+const fs = require("node:fs");
+const path = require("node:path");
+const { parseLP2Words } = require("./lp2_word_pages.cjs");
+const root = path.resolve(__dirname, "..");
+const read = rel => fs.readFileSync(path.join(root, rel), "utf8");
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const parsed = parseLP2Words(read("resources/liber-primus/lp2-transcription.txt"));
+assert.equal(parsed.runeCount, 12956);
+const words = parsed.words.filter(w => w.startPage === 54);
+assert.deepEqual(words.map(w => w.length),
+  [4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
+const symbols = new Map(corpus.runes.map((r, i) => [r, i]));
+const twicePeeled = words.flatMap(w => [...w.runes].slice(2, -2))
+  .map(g => {
+    const v = symbols.get(g);
+    assert.notEqual(v, undefined);
+    return v;
+  });
+assert.equal(twicePeeled.length, 23);
+const translit = seq => seq.map(x => corpus.translit[x]).join(" ");
+assert.equal(translit(twicePeeled),
+  "G D A B F X I M U C P H NG D IA I G X EO TH TH I M");
+// Three source-retained columns of the 23 occupied p57 red-dot stencil.
+const retainedDotSlots = [1, 3, 4, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21];
+const thirteen = retainedDotSlots.map(i => twicePeeled[i]);
+assert.equal(translit(thirteen), "D B F I U C H D IA G EO TH I");
+const lengths = thirteen.map(i => corpus.prime[i]);
+assert.deepEqual(lengths, [89,61,2,31,3,13,23,89,107,17,41,5,31]);
+assert.equal(lengths.reduce((a, b) => a + b), 512);
+// Original solved p56 printed 128-hex deep-web page hash. Hash *algorithm*
+// and hashed object have never been authenticated; this is a finite test.
+const target =
+  "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+assert.equal(target.length, 128);
+assert.equal(crypto.createHash("sha512").update("abc").digest("hex").slice(0, 16),
+  "ddaf35a193617aba");
+const outputs = [];
+for (const firstBit of [0, 1]) {
+  const bits = lengths.map((n, i) => String((firstBit + i) % 2)
+    .repeat(n)).join("");
+  assert.equal(bits.length, 512);
+  const bytes = Buffer.alloc(64);
+  for (let i = 0; i < bits.length; i++) {
+    if (bits[i] === "1") bytes[i >> 3] |= 1 << (7 - (i & 7));
+  }
+  const digests = {};
+  for (const [name, algorithm] of [
+    ["sha512", "sha512"], ["sha3_512", "sha3-512"],
+    ["blake2b", "blake2b512"]
+  ]) {
+    const digest = crypto.createHash(algorithm).update(bytes).digest("hex");
+    assert.equal(digest.length, 128);
+    assert.notEqual(digest, target);
+    digests[name] = digest;
+  }
+  outputs.push({ firstBit, bitLength: bits.length,
+    rawPrefix: bytes.toString("hex").slice(0, 48), digests });
+}
+assert.equal(outputs[0].digests.sha512.slice(0, 16),
+  "fc6531f1fcd1f715");
+assert.equal(outputs[1].digests.sha512.slice(0, 16),
+  "7b44f334250146ac");
+console.log(JSON.stringify({
+  source: "Original p55 two-peel 13-dot projection, original solved p56 hash",
+  primeRunLengths: lengths, totalBits: 512,
+  targetHash: target,
+  test: "Exactly two bit polarities, raw 64-byte RLE input, three standard 512-bit hash functions",
+  results: outputs,
+  decision: "No direct 13-prime-run-length 512-bit preimage of the published target under SHA-512, SHA3-512, BLAKE2b-512; no authentic hash algorithm or preimage established."
+}, null, 2));
