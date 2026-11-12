@@ -209,11 +209,11 @@ function interpolate(values, y) {
 function degreeFourPositivePlant(x) {
   const output = x.map(v =>
     (7 * ((v[0] * v[1] * v[2] * v[3] +
-      v[4] * v[4] + 7 * v[2] + 3) % 29) + 11) % 29);
+      2 * v[4] * v[4] + 7 * v[2] + 3) % 29) + 11) % 29);
   assert.equal(new Set(output).size, 29);
   const decode = output.map(z => (z - 11 + 29) * inv[7] % 29);
   const native = x.map(v =>
-    (v[0] * v[1] * v[2] * v[3] + v[4] * v[4] + 7 * v[2] + 3) % 29);
+    (v[0] * v[1] * v[2] * v[3] + 2 * v[4] * v[4] + 7 * v[2] + 3) % 29);
   assert.deepEqual(decode, native);
   return output;
 }
