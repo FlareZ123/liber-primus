@@ -1,0 +1,35 @@
+# Source-exact LP1→LP2 illustration copies: mirrored recumbent figure and enlarged moth
+
+**Evidence class:** established source-image correspondence with reproducible pixel tests. **No unknown LP2 plaintext, key, decipherment operation, or destination is recovered.** This reconciles the earlier LP1 p9/LP2 p2 mirrored-insect finding with two additional cross-release artwork correspondences, without interpreting repeated decoration as a cipher instruction.
+
+## Independent original-JPEG results
+
+The original archive numbering is 00–16 for LP1 and 17–74 for LP2. Physical LP2 page *p* is archive *p+17*. All focal image files are pinned by SHA-256 in [the standalone SFT](../sims/lp1_lp2_illustration_raster_reuse_sft.py), which reads original JPEG pixels rather than the transcription.
+
+| Original solved LP1 illustration | Original LP2 reuse | Source-exact transformation and independent control |
+| --- | --- | --- |
+| **LP1 pp14–16, archive 14.jpg–16.jpg:** identical reclining/supine figure across the bottom band | **LP2 p22, archive 39.jpg** | Same original composition horizontally reflected, no scale required. Across **all 17 LP1 × 58 LP2 × two orientations** of the original bottom-band illustrations, the unique three leading matches are (14,39), (15,39), (16,39), each **mirrored ink IoU 0.8890067912**; the next match is **0.1796434961** without reflection. |
+| **LP1 p05, archive 05.jpg:** moth in the solved Wisdom/prime-number page | **LP2 p53, archive 70.jpg**, then again **LP2 p55, 72.jpg** | One-scale geometric duplicate, **not reflected**. A fixed source-only SIFT/RANSAC registration gives **351/369** Lowe-selected inliers and horizontal/vertical scales **2.32944734/2.32604001**, with thresholded ink IoU **0.82272835**. The exact same fixed transform against p54's non-moth crop gives **0.06675287**. LP2 p53→p55 separately has original gray NCC **0.9998952150** under the known (+66,+67) translation. |
+| **LP1 p09, archive 09.jpg:** segmented insect | **LP2 p2, archive 19.jpg** | Previously established horizontally reflected copy at thresholded IoU **0.9999723909** in [Director Issue #450](https://github.com/FlareZ123/liber-primus/issues/450), with script [lp2_p2_lp1_p9_mirror_sft.py](../sims/lp2_p2_lp1_p9_mirror_sft.py). Listed for context, not claimed as a new observation here. |
+
+### How the tests avoid incidental visual resemblance
+
+For the reclining figure, the frozen crop is every page's original bottom band y=3150…3599, downsampled to 600×113 pixels with OpenCV INTER_AREA and thresholded at gray intensity below 160. Both unreflected and horizontally reflected matches are compared by ink intersection-over-union, across **1,972** original LP1-to-LP2 image/orientation combinations. The LP1 pp14–16 bottom bands are **exactly pixel-identical**, including JPEG-decoded gray values. A random or merely thematically similar drawing would not put the same transformed crop in the top three, with the best wrong-orientation/other match less than one-fifth overlap.
+
+For the moth, a fixed art-only LP1 crop (original pixels y=1450:1900, x=750:1650) and LP2 p53 crop (y=2500:3250, x=450:1950) exclude runic text. OpenCV SIFT features, a 0.75 nearest-neighbor ratio gate, and a 3-pixel RANSAC homography are computed without plaintext or a cipher score. Warping the binary source ink with the recovered homography and comparing to original p53 ink gives the correspondence above. The wrong-page p54 art region is the fixed negative control. The independent within-LP2 p53/p55 moth-copy test was already in [lp2_terminal_moth_reuse_sft.py](../sims/lp2_terminal_moth_reuse_sft.py).
+
+The source image relationships are stronger than visual similarity. They establish literal artwork reproduction in the authored book, with deliberately varied position, scale and horizontal reflection.
+
+## Human solve-path relevance and limitation
+
+The corresponding **solved LP1 pages** are conspicuous:
+
+- **LP1 p05** explicitly teaches that *the primes*, *the totient function* and encryption are sacred, beside the 2014 source magic-square material. The same moth appears on LP2 p53 and p55, which bracket a final chapter transition and lie after the pp49–51 numeric grid. That makes the art a source-visible cross-reference **candidate**, though it does not tell a human to use a particular square cell, prime, clock or cipher on these two unknown pages.
+- **LP1 pp14–16** discuss the **I as the voice of the circumference**, discovery inside oneself, and present the original square. The recumbent figure appears mirrored on **LP2 p22**, the terminal page of the visible **p15–22** chapter opened by the Fibonacci-prime spiral. A source-directed operation relating circumference and chapter text is conceivable, yet no inverse, start point or independent key is fixed by this artwork alone.
+- **LP1 p09** says **DO FOUR UNREASONABLE THINGS EACH DAY** and its segmented insect reappears mirrored on **LP2 p2**, now being investigated at the *glyph-pixel level* in [Issue #468](https://github.com/FlareZ123/liber-primus/issues/468). Its uniqueness as an instruction is weakened by independent mirrored reuse of the LP1 p14 figure. The test should remain source-frozen rather than generating a growing menu of reflections.
+
+**Decision:** cross-release art reuse is a **recurring and newly quantifiable original-source design feature**. Treat it as a structured pointer worth considering in a human solution model. Do not infer that reflection itself is a universal rune inverse, or that a solved LP1 cipher key must transfer, solely from decoration. A credible next step requires an additional player-visible cue selecting *which* cipher operation is carried across, then authentic plaintext under a frozen key with a withheld test. Existing failed direct GP29-addition, generic Vigenère, plain reversal and speculative square traversals should not be rerun on these pages absent such a cue.
+
+## Reproduction and provenance
+
+[SFT: lp1_lp2_illustration_raster_reuse_sft.py](../sims/lp1_lp2_illustration_raster_reuse_sft.py) uses Python 3, OpenCV and NumPy. The source inputs are the original 75 repository JPEGs under `resources/liber-primus/`; the eight focal image SHA-256 values are asserted. The full source-only test passed locally on the maintainer-provided ZIP on 12 November 2026. It prints image-pair identities, registration statistics and negative-control scores in structured JSON. The image content was not altered. Prior established p2 mirror observation: [Issue #450](https://github.com/FlareZ123/liber-primus/issues/450). Prior established p53→p55 intra-book moth identity: [source SFT](../sims/lp2_terminal_moth_reuse_sft.py).
