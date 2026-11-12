@@ -16,6 +16,9 @@ import numpy as np
 SOURCE = Path(__file__).resolve().parents[1] / 'resources' / 'liber-primus'
 PINNED = {
     5: '2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7',
+    9: '975cda73bbf829b2775f25beb609d34fa429728b2f2a4ce863c129b10b005089',
+    13: 'bef0fc4867c2363c835eb4f08029a1eba35c925e2f72659d7353cf8a91089e56',
+    19: '74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34',
     14: 'de2bebe1d06421d94f3dd2b2b5f838ee4cdb5f51b07b14e880e0108f7b79c14e',
     15: 'f163903bec1236f1c89c96343d0bd1dee610b697c3ba82514651f04c5fbee4b9',
     16: '984668c680c6089b91587ef6d9eb2a1df1d2b7ee8ab3837655d3933f2adcbfbe',
@@ -100,10 +103,43 @@ def check_moth() -> dict:
             'p53_to_p55_gray_correlation': float(exact_corr)}
 
 
+def check_insect_multisource() -> dict:
+    """Exact repeated insect provenance with deterministic fixed-source crops."""
+    reference = image(9)[1935:2120, 835:1525]
+    targets = [
+        (13, True, (851, 1079)),
+        (16, False, (859, 1455)),
+        (19, True, (876, 2642)),
+    ]
+    results = []
+    for archive, reflect, (x, y) in targets:
+        candidate = reference[:, ::-1] if reflect else reference
+        actual = image(archive)[y:y + 185, x:x + 690]
+        ink_overlap = iou(candidate < 100, actual < 100)
+        gray_mean_error = float(np.abs(candidate.astype(np.int16) -
+                                       actual.astype(np.int16)).mean())
+        assert ink_overlap > 0.99997
+        if archive == 16:
+            assert np.array_equal(candidate, actual)
+        results.append({'archive': archive, 'horizontal_reflection': reflect,
+                        'top_left': [x, y], 'threshold100_ink_iou': ink_overlap,
+                        'grayscale_mean_abs_error': gray_mean_error})
+    assert results[0]['threshold100_ink_iou'] == 1.0
+    assert results[1]['threshold100_ink_iou'] == 1.0
+    return {
+        'reference_lp1_archive': 9,
+        'other_solved_lp1_archive': [13, 16],
+        'encrypted_lp2_archive': 19,
+        'all_source_image_identities': results,
+        'inference': 'the LP2 p2 mirrored insect has multiple solved-LP1 source appearances; it does not uniquely select LP1 p9 instruction',
+    }
+
+
 def main() -> None:
     import json
     print(json.dumps({'reclining_figure': check_recliner(),
                       'moth': check_moth(),
+                      'insect_multisource': check_insect_multisource(),
                       'status': 'multiple authentic cross-release illustration copies; no decoded text'},
                      indent=2))
 
