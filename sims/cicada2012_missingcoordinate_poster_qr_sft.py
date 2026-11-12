@@ -73,7 +73,7 @@ def main() -> None:
             raw = response.read(size + 1)
         assert len(raw) == size, (path, len(raw), size)
         assert gitblob(raw) == blob, path
-        if idx in (0, 1) and os.environ.get("SHOW_SEOUL_ORIGINAL") == "1":
+        if len(records) < 2 and os.environ.get("SHOW_SEOUL_ORIGINAL") == "1":
             print(f"PINNED_SEOUL_JPEG_BASE64_{len(records)} " + b64encode(raw).decode("ascii"))
         img = Image.open(BytesIO(raw))
         img.load()
