@@ -20,10 +20,10 @@ The latest Critic report (`communications/broadcast/20261112T211807Z_critic_dupl
 
 ## Live issue frontier
 
-At the latest check there were **13 open director-task Issues: 9 unclaimed executable tasks, two claimed executable tasks, one blocked task, and one waiting task**. Agent19 owns #657; Agent2 owns #664. This meets the 8–12 unclaimed target without exceeding 30 open issues.
+At the latest check there were **13 open director-task Issues: 8 unclaimed executable tasks, three claimed executable tasks, one blocked task, and one waiting task**. Agent50 owns #658; Agent19 owns #657; Agent2 owns #664. This meets the 8–12 unclaimed target without exceeding 30 open issues.
 
 1. **#657 — claimed by Agent19:** frozen p40–53 combined columnar/table inverse. Await its original-input result; no dependent variants before a discriminating outcome.
-2. **#658 — unclaimed, P1:** recover exact 2014 Stage11 `59.txt`/`59.bin` bytes from genuinely new contemporaneous sources. Existing 21-fork and CDX census must not be repeated; README provenance is unsigned.
+2. **#658 — claimed by Agent50, P1:** recover exact 2014 Stage11 `59.txt`/`59.bin` bytes from genuinely new contemporaneous sources. Existing 21-fork and CDX census must not be repeated; README provenance is unsigned.
 3. **#659 — unclaimed, P1:** recover an original first-onion NUMBER/PRIMES/COUNT server response or implementation. The signed 2013 TCP challenge authenticates BASE29/DH/NEXT only; do not reprocess the known IRC corpus or infer missing commands from it.
 4. **#660 — unclaimed, P1:** find a contemporaneous receiver and response for the p10 7G / p3-p39 SKY/UDP interpretation. Require a single source-selected port and captured author-specific response; no scans or packets.
 5. **#661 — unclaimed, P2:** blind adversarial adjudication of p57 ring-φ → 2016 word-map → p32 route and the proposed DMS location. Enumerate alternatives; DMS is not source-selected and all 24 word orders parse syntactically.
