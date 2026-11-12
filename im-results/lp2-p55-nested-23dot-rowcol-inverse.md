@@ -114,30 +114,30 @@ A direct positive uses **the first 23 genuine known GP symbols from solved p57**
 
 The reversible correction is a *new hypothesis*: the p57 instruction does not explicitly say to use center rune U as a published clear-state symbol, or prescribe GP29 row/column sums, stencil-cell reading order, signs, or a 23-rune encryption block. Retrospectively finding that the matrix has rank22 and one inner rune resolves its kernel is an intriguing correspondence, not an independently authenticated source rule. The other 22 converted symbols still appear random. **Do not present the mathematical reversibility itself as cryptanalysis success.**
 
-## One fixed p56-layer continuation (negative)
+## Two fixed p56 prime-totient transfers (both negative)
 
-The independently solved p56 page supplies one authentic additive GP29 decoder:
-`P[i] = C[i] - (prime(F[i]+1)-1) mod 29`, with the Fibonacci numbers selecting one-based prime ordinals. The anchored p55 row/column inverse above yields a distinct 23-rune intermediate, so I tested this **one exact p56 schedule** on that intermediate, starting at `F[0]=0` and letting every p55 symbol consume one key position. The p56 page's single literal-`F` exception is tied to its own ciphertext offset 56; no source supports transferring that exception to p55.
-
-The first 23 key values are:
+The solved p56 page supplies one authentic additive GP29 decoder:
+`P[i] = C[i] - (prime(F[i]+1)-1) mod 29`, with Fibonacci numbers selecting one-based prime ordinals. Its first 23 key values are:
 
 ```text
 1,2,4,6,12,22,13,20,3,1,27,16,1,11,11,15,20,24,2,14,10,20,13
 ```
 
-Applying the p56 subtractive decoder to the anchored intermediate
+The p55 twice-peeled 23-rune core is itself selected by the p57 23-dot stencil. Applying this exact p56 subtractive schedule directly to that source-order stream, starting at `F[0]=0` and letting every p55 symbol consume one key position, gives:
 
 ```text
-TH H C Y G C M A U L E TH J F U EO Y U AE EO I W EO
+source:   G D A B F X I M U C P H NG D IA I G X EO TH TH I M
+decoded:  C NG L J B NG Y EA IA R S NG L EO T A S M I B NG M G
 ```
 
-produces
+A second, more assumption-heavy placement applies the same schedule after the anchored 23-dot row/column inverse:
 
 ```text
-U G U L D EO G R IA M L S I E M Y G G D IA F T EA
+intermediate: TH H C Y G C M A U L E TH J F U EO Y U AE EO I W EO
+decoded:      U G U L D EO G R IA M L S I E M Y G G D IA F T EA
 ```
 
-This is not recognizable GP prose. A composite synthetic positive also passed: the first 23 genuine p57 GP symbols were encrypted by adding the same fixed p56 key and applying the inverse anchored matrix, then recovered 23/23 by the matrix followed by the p56 subtraction. Thus the negative is not an implementation failure. It rejects this specific two-layer composition; it does not authenticate either the row/column matrix or reuse of the p56 key schedule. No phase, skip, sign, or key-sweep rescue was run.
+Neither output is recognizable GP plaintext. The p56 page's single literal-`F` exception is tied to its own ciphertext offset 56; no source supports transferring it to either p55 stream. The second, composite model also passes a synthetic positive: the first 23 genuine p57 GP symbols, encrypted by adding the fixed p56 key and applying the inverse anchored matrix, are recovered 23/23 by the matrix followed by p56 subtraction. Thus the negative is not an implementation failure. These two tests reject only the direct and post-matrix p56 key transfers; they do not authenticate the row/column matrix or reuse of the p56 key schedule. No phase, skip, sign, or key-sweep rescue was run.
 
 ## Reproduction and decision
 
@@ -145,4 +145,4 @@ This is not recognizable GP prose. A composite synthetic positive also passed: t
 
 A separate direct attempt to use the original 2013 `DATA/560.13` XOR operation at the p15 source-fixed byte offset on the **same twice-peeled 23 runes**, under GP-index and GP-prime byte encodings, also yields no onion address or recognizable plaintext. It was executed on the full verified original historical file in [CI run 43145647103](https://github.com/FlareZ123/liber-primus/actions/runs/43145647103) and consolidated with the earlier, different first-peel central23 XOR [in the existing report](lp2-p55-central23-56013-xor-negative.md). This bounds a natural historically observed bytewise decoder without altering the new source geometry.
 
-**Research decision:** preserve this as the smallest complete source-to-source, **mathematically reversible** terminal 23-dot GP29 model so far. The explicit original prediction and the one fixed p56 Fibonacci-prime-totient continuation are both negative for clear GP English. The row/column correction and cross-page key reuse remain unauthenticated hypotheses. The next meaningful advancement would be a *new primary-artifact clue* that fixes the 23-cell traversal and row/column operation or independently authenticates a 23-rune target, allowing a genuinely discriminating holdout. Avoid broad permutation/shift/key scans on this postselected structure.
+**Research decision:** preserve this as the smallest complete source-to-source, **mathematically reversible** terminal 23-dot GP29 model so far. The explicit original prediction and both fixed p56 Fibonacci-prime-totient transfers are negative for clear GP English. The row/column correction and cross-page key reuse remain unauthenticated hypotheses. The next meaningful advancement would be a *new primary-artifact clue* that fixes the 23-cell traversal and row/column operation or independently authenticates a 23-rune target, allowing a genuinely discriminating holdout. Avoid broad permutation/shift/key scans on this postselected structure.
