@@ -34,6 +34,21 @@ The three transformations compose consistently (p7→p23 followed by p23→p56 g
 
 One-file Python reproducer: [\`sims/lp2_p7_p23_p56_dot_triad_sft.py\`](../sims/lp2_p7_p23_p56_dot_triad_sft.py), requiring NumPy and OpenCV and the three immutable original scans. The script hashes and validates all images, extracts all fifteen centers and asserts the pairwise directions, low RMS, wrong-direction gaps and native-mask overlap; local execution passed.
 
+## Exhaustive original 58-page stencil census
+
+The exact five-dot geometry supplies a further source-level prediction: **if another complete same-size copy of this specific stencil exists elsewhere in the original 58 pages, it must be detectable under one of the four axial reflection signs and a single translation**. To resolve this without fitting ciphertext, [the all-58-page census SFT](../sims/lp2_all58_fivedot_stencil_census_sft.py) reads **all 58 original 2400×3600 JPEGs**, scans the same central image region `x=600..1899, y=200..3349`, and extracts candidate dot-like connected contours at grayscale threshold160 with width/height45–100 and contour area1,900–6,000px. The five p7 center positions are frozen from the independent triad SFT, and no candidate target shape, font class or cipher score is used to tune this template. Enumerate the four independent sign flips and translations anchoring one source point to one candidate contour center. Count template points within an exact **3.0-pixel centroid tolerance**, and accept a complete motif only if all five fit.
+
+**Executed original-image census, original 58 physical pages:**
+
+| Number of template points found on a page | Page count | Pages |
+|---:|---:|---|
+| **5/5** | **3** | **p7, p23, p56** |
+| 1/5 | 11 | incidental single contours |
+| 0/5 | 44 | remaining pages |
+| **2/5, 3/5 or 4/5** | **0** | none |
+
+The match signs relative to p7 are identity on p7, vertical mirror on p23, horizontal mirror on p56. All three matched pages have exactly five independent candidate contours in the scanned region, while some pages containing dense numerical typography contribute dozens of false dot-like components and still show at most a one-point match. The source full-release census **finds no fourth same-scale stencil**, strengthening the triad's completeness under the declared template model. It does not exclude a differently scaled, rotated, obscured or intentionally modified drawing. The locally executed census passes all assertions and is independent of LP2 rune/English scoring.
+
 ## Source-oriented solved-p56 cipher transfer: original negative
 
 A newly constrained operation can be attempted without free phase or fitting. p56 is a **genuine solved 85-rune cipher** using the prime-totient subtraction \`P_i=(C_i-(prime_i-1)) mod29\`, prime start2, with its one original literal \`F\` at offset56 not consuming a prime key. Decode the authentic p56 and assert its full recovered transliteration:
