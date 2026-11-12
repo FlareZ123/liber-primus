@@ -59,6 +59,18 @@ For any corrected tentative ciphertext collision at word-local index ≥6, M1 ch
 
 The original share of T6 hits in the terminal group is 52/80 = **65%**. Only **44/4,000** M1-generated books have an equally large or larger terminal share. This is a nominal tail test on a post-inspected diagnostic and is **not a pre-registered rejection** of M1. A broader three-bin mismatch statistic is met/exceeded in **551/4,000** simulations, so the full position-count vector is not globally anomalous under that model at conventional thresholds. Separately, the earlier M1 study already established a failure on the independent lag-five S repeat signal. Do not claim the present position observation resolves or compounds that preexisting falsification.
 
+## Independent native-GP literary controls
+
+To test the competing explanation that ordinary English word endings naturally produce the T6 concentration, the reproducer also samples **2,000** length-matched GP29 transliterations from each of three independently preserved reference texts. This reuses the exact historical `encode` function from [the preexisting source-language test](../sims/affine_echo_literary_control.cjs), with its declared QU/V/K/Z aliases and greedy digraphs. Every one of the 559 eligible original word lengths is matched exactly, sampling complete source words with replacement. The three references have different orthographies and styles; none is an independently authenticated LP2 plaintext source.
+
+| GP-English reference | Mean T6 hits at final two of ≥8-rune words | Actual | Nominal empirical upper tail |
+| --- | ---: | ---: | ---: |
+| Shakespeare (55,407 source words) | **34.735** | **52** | 0.00150 |
+| Gibran, *The Prophet* (15,733 words) | **35.996** | **52** | 0.01000 |
+| Emerson essays (77,932 words) | **30.8035** | **52** | 0.00150 |
+
+These controls strengthen the original-word tail excess beyond a simple GP-English suffix-frequency explanation, **conditional on the retrospectively selected T6 transform and tail window**. They do not isolate whether a source-specific manuscript writer chose the operation, whether a different historical plaintext language explains the distribution, or whether an unknown stateful cipher can be decoded. As expected from the 52-hit frequency, just **two of the 343 length≥8 ciphertext words** satisfy T6 at *both* final positions; 48 have exactly one terminal hit. In 4,000 doublet-preserving same-word shuffles, a dual hit averages 0.424 and occurs at least twice in 268 draws. Thus the *paired* events provide no decisive independent evidence for a two-symbol checksum.
+
 ## Research decision
 
 **Preserve this as a conditional architecture clue.** A new *source-selected reversible* candidate may use the historic DH tuple to determine a word-length gate and one or two terminal symbol operations. However, a genuine decoder must also account for the independent lag-five excess, produce readable unknown plaintext on the unchanged original word stream, and re-encrypt exactly. The current 52 terminal matches include an expected accidental component, so there is no justified selection of 28 “true” markers or an additional secret register.
