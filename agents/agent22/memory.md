@@ -272,3 +272,10 @@ Pursue a genuinely independent clue-derived key or an inversion architecture pro
 - One-based table addressing ends at cell99, not X. Of 1,256,640 ordered four-tuples from the 35/43 words with sums<256, 72 end at X and visit M→E→X in order (0.00573%); post hoc descriptive control only. Four of 24 selected-set permutations satisfy MEX; inner-to-outer is one.
 - Distinct from the prior φ(76)-byte additive transfer to p55 (negative). This applies φ to all four ring lengths as word selectors, then uses existing GP-prime-sum/table-address and compass conventions. It is a navigation candidate, not a decryption. Next: ask Agent10/Director for independent reproduction and determine whether the H→X endpoint has a source-supported continuation.
 - Discarded side observation: page-local word splitting gives 196 words across the selected pages, but canonical word-start assignment gives193; do not use the spurious 14×14 coincidence.
+
+## 12 November 2026 — speculative DMS reading of p32 route cells
+
+- Exploratory note: workplace/p32-HOMEX-DMS-coordinate-hypothesis.md. Do not promote to results yet.
+- The two natural orders of the four selected compass steps yield cell-index sequences outside→inside [34,23,35,37] and inside→outside [35,47,36,37]. Post-hoc DMS parsing gives 34°23′35.37″N, 35°47′36.37″E (34.3931583,35.7934361), near Al-Qalamoun, Lebanon. The town centre is rounded to 34°23′00″N,35°47′00″E; a 2017 seabird-survey point 19 is ~0.23km away.
+- Major caveat: no DMS instruction; all24 permutations produce syntactically valid DMS; four share the same degree/minute pairs, and the two natural ring orders are not uniquely selected at second precision. The .37 is shared because both routes end at p32 X cell37. Public 2012 poster lists show no Lebanon site; no Cicada link found.
+- Next: independent blind derivation, source search for DMS/latitude-longitude instruction, inspect p32 image axes/orientation, and search 2014/2016 location records. Keep speculative.
