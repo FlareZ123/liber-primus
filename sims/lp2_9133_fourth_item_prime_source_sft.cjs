@@ -83,9 +83,17 @@ for (const skipF of [false, true]) {
       })();
     assert.deepEqual(recovered, target);
     const planted = op(positivePlain, p, -sign, skipF);
-    const positiveRecovered = op(planted, p, sign, skipF);
+    // p56 demonstrates that an F skip mask is selective, not determined by
+    // every F-valued ciphertext symbol. Preserve the exact planted mask.
+    function decodePlant(primesToUse) {
+      let keyPos = 0;
+      return planted.map((c, i) =>
+        skipF && positivePlain[i] === 0 ? 0
+          : mod(c + sign * (primesToUse[keyPos++] - 1)));
+    }
+    const positiveRecovered = decodePlant(p);
     assert.deepEqual(positiveRecovered, positivePlain);
-    const wrong = op(planted, wrongPrimes, sign, skipF);
+    const wrong = decodePlant(wrongPrimes);
     assert(wrong.some((v, i) => v !== positivePlain[i]));
     results.push({
       sign, skipF, consumedPrimes: skipF ? 95 : 96,
