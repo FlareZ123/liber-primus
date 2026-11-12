@@ -6,15 +6,21 @@
 
 Independently, LP2 p22 (archive `39.jpg`) contains the **horizontal mirror of the complete reclining figure** decorating solved LP1 pp14–16 (archive `14.jpg`, `15.jpg`, `16.jpg`). This relationship was previously noticed in [`results/README.md`](../results/README.md) and the [p22 stave gate](../im-results/lp2-opening-stave-second-marker-gate.md); this test adds a reproducible original-pixel certificate: mirrored comparison has **443 inliers among 453 SIFT descriptor matches**, scale **1.005577×**, registered grayscale correlation **0.992524**, and black-ink IoU **0.906207**. In the wrong, nonmirrored orientation, just **4 of 24** accepted feature matches survive the affine RANSAC. LP1 pp14–16 share exactly the same bottom 400 source raster rows, a pixel-identical positive control.
 
-Together with the [already-established LP2 p2 ↔ LP1 p9 mirrored insect](../im-results/lp2-p2-literal-rune-reflection-gate.md), this makes **three illustrated LP1-to-LP2 reuse routes** grounded in original JPEGs:
+Together with the [already-established LP2 p2 ↔ LP1 p9 mirrored insect](../im-results/lp2-p2-literal-rune-reflection-gate.md), this makes **three artwork families** reused across releases. **The insect appears on LP1 pp9, 13 and 16**, which prevents unique attribution of LP2 p2 to the first-koan inverse:
 
 | Original solved LP1 source | LP2 unknown page | Transformation | Source-derived cipher candidate |
 | --- | --- | --- | --- |
-| LP1 p9, first koan: “DO FOUR UNREASONABLE THINGS EACH DAY” (LP1 pp6–9 solved by `P=2−C mod29`) | LP2 p2, 201 runes (`19.jpg`) | Known horizontal image mirror | **Exact koan reflection rule** tested below; no plaintext |
+| LP1 p9 **and p13/p16**, the identical insect across three different solved-page contexts (first koan, instructions, magic-square material) | LP2 p2, 201 runes (`19.jpg`) | Horizontally mirrored relative to p9 and p16; identical handedness to p13 | **First-koan reflection** is one tested literal rule; the art does not uniquely select it |
 | LP1 pp14–16, second koan: “THE I IS THE VOICE OF THE CIRCUMFERENCE” (LP1 pp14–15 solved with `FIRFUMFERENFE`) | LP2 p22, 131 runes (`39.jpg`) | **Horizontal mirror, ~1.0056×** | **Exact 13-rune Vigenère key** tested below; no plaintext |
 | LP1 p5, SOME WISDOM: prime numbers and Euler's totient are sacred, with accompanying moth | LP2 p55, 76 runes (`72.jpg`) | **Same-handed enlarged drawing, ~2.3309×** | LP1's source points to prime/totient operation family. Existing independent direct-p55 prime/totient decoder gates have failed; the image alone fixes no prime origin, clock, map, or whole-p55 exception handling |
 
-## Test of two source-fixed, literal operation transfers
+## Source-attribution disambiguation: repeated LP1 insect before LP2
+
+Original-JPEG registration of the LP1 p9 690×185 insect crop gives an **exact black-pixel match (IoU 1.000000)** at **LP1 p13 archive13.jpg (x851,y1079), reflected** and at **LP1 p16 archive16.jpg (x859,y1455), unreflected**. The p16 grayscale crop is byte-identical to p9 after translation; p13 has gray mean-absolute error 0.03086. LP2 p2 archive19.jpg (x876,y2642) is another reflected copy (ink IoU 0.999972391). All four original JPEGs are SHA-256 pinned in [the exact multisource insect test](../sims/lp1_lp2_illustration_raster_reuse_sft.py), with full original-image evidence in [the consolidated art census](lp1-lp2-crossrelease-artwork-raster-copies.md).
+
+This is a material limitation on the first line of the table: **LP2 p2 has at least three separately positioned solved-LP1 appearances of the same insect**, and none selects p9's first-koan cipher over p13's instructions or p16's square. Therefore direct P=2−C remains a historical operation worth one source-literal check, but its *selection* is not unique and neither a positive nor negative would establish what the maker intended without more evidence.
+
+## Test of two literal operation-transfer candidates
 
 The known LP1 first-koan original inverse is `P = (2 − C) mod 29`, *different from* the generic GP29 Atbash `P=28−C` already tested on p2. On the complete 201 original LP2 p2 rune indices, it leaves unigram index of coincidence **0.03562189** (exactly unchanged, as a bijection must), and the first 85 transliterated output letters are
 
@@ -48,4 +54,4 @@ The observation 76 = 3×25 + 1 is an intermediate **locked structural coincidenc
 
 Run `python sims/lp1_lp2_illustration_source_transfer_sft.py` with OpenCV/SIFT, NumPy and Pillow in the repository checkout. It consumes only `resources/liber-primus/{05,14,15,39,72}.jpg`, the canonical `lp2-corpus.json`, and the two externally established solved LP1 decipherment equations. An optional `--archive /path/to/liber-primus-jpegs.zip` supplies the same original JPEGs. Both good and wrong orientation, source image crop extents, 0.72 feature ratio threshold, RANSAC reprojection threshold 5, and direct-key clocks are frozen in code.
 
-**Decision:** retain the LP1 p5 moth ↔ LP2 p55 source link as a concrete new candidate selector and annotate p22 with its original-pixel certificate. The distinct same-handed enlargement and mirrored reuses show that *reuse alone* does not uniquely select a reversible operation: direct historically attested original-section operations fail on the two independently motivated targets. For p55, demand an independent, complete prime/totient indexing and F-exception rule before another inversion search. No unknown LP2 plaintext or genuine key has been recovered.
+**Decision:** retain the LP1 p5 moth ↔ LP2 p55 source link as a concrete new candidate selector and annotate p22 with its original-pixel certificate. The distinct same-handed enlargement and mirrored reuses show that *reuse alone* does not uniquely select a reversible operation: direct historically attested original-section operations fail on the two candidate-target pages. For p55, demand an independent, complete prime/totient indexing and F-exception rule before another inversion search. No unknown LP2 plaintext or genuine key has been recovered.
