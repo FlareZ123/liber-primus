@@ -83,7 +83,8 @@ def run() -> None:
     assert [hits[p][1][2] for p in (24, 40, 73)] == [
         (1, 1), (1, -1), (-1, 1),
     ]
-    assert dict(census) == {0: 56, 1: 16, 5: 3}, census\n    assert sum(census.values()) == 75
+    assert dict(census) == {0: 56, 1: 16, 5: 3}, census
+    assert sum(census.values()) == 75
     print("PASS: exact five-dot stencil occurs only on LP2 p7,p23,p56 across all 75 original scans.")
 
 
