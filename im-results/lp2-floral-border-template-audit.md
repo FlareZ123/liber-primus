@@ -27,7 +27,7 @@ The left and right decoded RGB bytes are different, but this does not mean that 
 
 There are 125,798 left and 126,591 right dark pixels in the two native 500×3600 strips. The horizontal pairing recovers **125,046 matching dark pixels**, over 99% of the smaller ink mask. Since these original strips remain byte-for-byte unchanged on all sixteen pages, the mirror property generalizes to every page in this block. The tiny difference is compatible with independently JPEG-compressed edge pixels and dots, without establishing the original drawing/vector pipeline. No spatial scaling, crop tweaking or selection over other pages was performed.
 
-**Reproducer:** [fixed original-JPEG 16-page plus exact four-control SFT](../sims/lp2_floral_border_mirror_source_sft.py). The measurement also ran on the original supplied JPEGs in the local runtime, with all intersection/union and F1 values above.
+**Reproducer:** [fixed original-JPEG 16-page plus exact four-control SFT](../sims/lp2_floral_border_mirror_source_sft.py). The measurement also ran on the original supplied JPEGs in the local runtime, and [the manual original-source CI regression passed](https://github.com/FlareZ123/liber-primus/actions/runs/43125999759) under Python 3.12 with Pillow.
 
 This is a human-visible **reflective** design choice, consistent with putting a flipped copy of one decorative stem on opposite sides of a text column. It does not uniquely specify Atbash, reversed page order, book-page folding, alternating sign, byte reflection or any particular hidden transform. No cipher or plaintext is inferred from this geometry alone.
 
