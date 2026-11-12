@@ -340,7 +340,63 @@ const plainPositive=poemWords(read(sources[0].file)).slice(200,214)
 const monoPositive=plainPositive.map(p=>(p*11+7)%29);
 assert(stationaryMono(monoPositive,plainPositive));
 
+/**
+ * Last direct-text rescue for the three *already chosen* editions: allow
+ * the ciphertext's original word boundaries to be completely unrelated to
+ * the historical source's spaces. Keep rune order, original GP glyphs and
+ * a single secret stationary monoalphabetic bijection on every exact
+ * quotation rune. This is stronger than the earlier whole-word gate and
+ * has no source-derived position/key selection.
+ */
+const withoutSpacesExpected = {
+  "Emerson Essays First Series #2944": [
+    [0,0,85,0,0,0,0], [0,0,84,0,0,0,0]
+  ],
+  "Tennyson 1832": [
+    [0,0,0,0,0,0,0], [0,0,0,0,0,0,0]
+  ],
+  "Tennyson 1842": [
+    [0,0,1,0,0,0,0], [0,0,1,0,0,0,0]
+  ]
+};
+const spacingIndependentMonoGate=[];
+for(const source of sourceFamily) {
+  const raw=read(source.file);
+  const words=source.id.startsWith("Tennyson")
+    ?poemWords(raw):(raw.toUpperCase().match(/[A-Z]+/gu)||[]);
+  for(const [mode,foldIng] of [true,false].entries()) {
+    const native=words.flatMap(w=>nativeWord(w,foldIng));
+    for(const [quoteIndex,q] of allQuoteTargets.entries()) {
+      let matches=0,firstIndex=-1;
+      for(let offset=0;offset+q.cipher.length<=native.length;offset++) {
+        let forward=new Int16Array(29).fill(-1);
+        let backward=new Int16Array(29).fill(-1);
+        let compatible=true;
+        for(let i=0;i<q.cipher.length;i++) {
+          const c=q.cipher[i],p=native[offset+i];
+          if((forward[c]>=0&&forward[c]!==p)
+            ||(backward[p]>=0&&backward[p]!==c)) {
+            compatible=false;break;
+          }
+          forward[c]=p;backward[p]=c;
+        }
+        if(compatible) {
+          matches++;
+          if(firstIndex===-1)firstIndex=offset;
+        }
+      }
+      assert.equal(matches,withoutSpacesExpected[source.id][mode][quoteIndex]);
+      spacingIndependentMonoGate.push({
+        source:source.id,foldIng,quoteIndex,
+        sourceRuneCount:native.length,
+        quoteRunes:q.cipher.length,matches,firstIndex
+      });
+    }
+  }
+}
+
 console.log(JSON.stringify({
+  spacingIndependentMonoGate,
   allQuoteMonoGate,
   quote2AllSecretGate,
   editions:sourcesAudited,originalWords:original.length,
