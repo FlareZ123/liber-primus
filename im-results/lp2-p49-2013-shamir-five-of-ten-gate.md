@@ -6,7 +6,7 @@
 
 The independently documented [2013 pklmx recruitment-stage reconstruction](pklmx-2013-onion-continuation-gate.md) confirms a **five-of-ten** SSSS secret-sharing step. **That historical implementation actually shares a 22-byte secret in GF(2^176), with a specified irreducible polynomial and a diffusion step; it is not an eight-column GF256 implementation.** The eight-column model tested below is deliberately a simplified structural analogue motivated by the visible p49 eight-byte width. It must not be called an exact replay of the original ssss 0.5 code. The author expected solvers to assemble at least five distinct numbered shares from posters and source-selected audio/ISO byte offsets. [Agent50's corrected 2013 report](../communications/broadcast/20261111T223400Z_agent50_ssss-decimal-correction.md) establishes that the seven surviving share IDs **02,03,05,07,08,09,10 are decimal**, with every five-share subset reconstructing the same 2013 onion address. The share number convention is therefore not invented for LP2.
 
-The first physical portion of the original 32×8 LP2 radix-60 numerical table is **exactly ten rows of eight cells**, printed on LP2 p49 / combined scan66.jpg. Later portions print 13 rows (p50) and nine rows (p51). The exact ten-row source boundary is visible without decrypting any unknown text. The final solved p57 *PARABLE* echoes 2013's *Instar Emergence* language, and source-visible terminal dots have prompted a separate tentative five-of-ten association; both are motivations, not independent proof of encoded shares.
+The final solved p57 *PARABLE* echoes 2013's *Instar Emergence* language. A second possible bridge is the archived 2013 fourth-onion TCP server's **KOAN** command: its Surangama quote contains four occurrences of “not seeing” ([pinned server source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/007-fourth-onion/server.py)). The p57 tree image has ten small circles in two five-circle clusters, two hollow; the p50 32×8 table has exactly two zero cells at (row25,column1) and (row29,column6). Their displacement is four rows and five columns. A monotone shortest path between them therefore has nine moves and ten cells, matching the ten visual nodes; the 4×5 displacement also matches the KOAN phrase count and five-circle cluster size. This is a **human-solve-path hypothesis**, not an established mapping: the dot ordering does not uniquely select a path or prove that its cell values are shares.
 
 A solver could therefore try interpreting the ten source rows as public decimal-numbered shares `x=1..10`, one per row, with each of the eight columns an independently shared byte. Five rows fix the degree-at-most-four polynomial in each column. The next five rows provide a stringent **40-byte check before interpreting or decrypting anything**. The choice of row order is the only natural orientation ambiguity.
 
@@ -63,6 +63,25 @@ Use the single fixed irreducible field polynomial (X^{64}+X^4+X^3+X+1) (reductio
 The first-five forward fit predicts row6 as `936309c1c3864508`, while the original is `50541c49e66bc74c`; all five forward holdouts and all five reverse holdouts fail. More strongly, **every** five-row subset has zero correct holdout predictions in both orientations. The independent planted controls pass every subset, so the implementation is capable of recovering the specified model.
 
 Reproducer: [`sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs`](../sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs). It checks the canonical 256-byte table SHA-256 before testing. The field polynomial is one fixed sparse candidate reused from the project's GF64 work; no search over alternative field polynomials, byte orders, row permutations or x-label assignments was performed. This rejects only this concrete row-packed GF64 representation. It does not establish that LP2 uses no secret sharing.
+
+
+## p57 KOAN / zero-cell 4×5 path gate
+
+The route above suggests one finite test before discarding the visual association: interpret the ten cells on a shortest monotone path between the two zero bytes as ten one-byte share values, with public coordinates \(x=1,\ldots,10\) and threshold5. This is only a **single-byte 5-of-10 Shamir analogue**; the historical 2013 implementation shares 22-byte values in \(GF(2^{176})\), so this does not claim to replay its exact wire format.
+
+There are exactly \(\binom{9}{4}=126\) monotone shortest paths from (25,1) to (29,6): four row steps, five column steps, ten vertices. For each path, use its first five values to interpolate a degree-at-most-four polynomial and predict the final five. Freeze the two standard byte fields \(GF(256)\) with polynomials 0x11b and 0x11d, plus the prime field \(GF(257)\). No arbitrary path, row permutation, field polynomial, or key is searched.
+
+| Field | Paths | Best original holdout score | Path histogram (0, 1, …, 5 matches) | Planted control |
+| --- | ---: | ---: | --- | ---: |
+| GF(256), 0x11b | 126 | **1 / 5** | 125 paths at 0; 1 at 1 | 5 / 5 |
+| GF(256), 0x11d | 126 | **0 / 5** | 126 paths at 0 | 5 / 5 |
+| GF(257) | 126 | **1 / 5** | 119 paths at 0; 7 at 1 | 5 / 5 |
+
+No path is a quartic 5-of-10 share set. The best AES-field path has values [0,155,159,89,68,194,76,150,52,0] and only one correct held-out prediction; the best GF257 path likewise has only one. The independent planted quartics recover all five held-out values in every field.
+
+Reproducer: [sims/p57_zero_endpoint_4x5_path_5of10_gate.cjs](../sims/p57_zero_endpoint_4x5_path_5of10_gate.cjs). It asserts the canonical table SHA-256, the two zero coordinates, all 126 paths, the three negative results, and the 5/5 positive controls.
+
+**Decision:** the direct “ten path cells are one-byte Shamir shares” model is rejected. The 4×5 / ten-node correspondence remains an interesting source-constrained structural clue, but it supplies no key or plaintext and does not identify a unique path. Do not extend this into arbitrary path ciphers or reinterpretations without a new source instruction. The exact historical GF(2^176) share format is not tested by these one-byte path values.
 
 ## Decision boundary
 
