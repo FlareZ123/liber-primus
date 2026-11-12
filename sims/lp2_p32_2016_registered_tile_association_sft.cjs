@@ -97,7 +97,7 @@ for(let t=0;t<trials;t++){
   mean+=m;maxNull=Math.max(maxNull,m);
 }
 const plant=targets[1].map(x=>x*7+13);
-assert.equal(corr(targets[1],plant),1);
+assert(Math.abs(corr(targets[1],plant)-1)<1e-12);
 const ranking=observed.slice().sort((a,b)=>Math.abs(b.r)-Math.abs(a.r));
 console.log(JSON.stringify({
   hypothesis:"Original p32 interior 100 GP values are encoded directly as brightness/ink density in 2016 dimension-registered tree tiles",
