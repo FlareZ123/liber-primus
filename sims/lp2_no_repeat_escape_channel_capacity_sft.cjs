@@ -135,6 +135,73 @@ assert.equal(redRuneCount, 213);
 assert.equal(redSpanCount, 16);
 assert.equal(largeMarkCount, 31);
 assert.equal(redSpecialBitsCeiling, 275);
+
+// Invertible mixed-radix positive control for 86 fixed exception positions.
+// Each ordinary transition has 28 choices; each exception transition has 29.
+// The quotient is the explicit side channel; the remainder is the ciphertext.
+const exceptionCount = 86;
+const inputCount = 29n ** BigInt(steps + 1);
+const transitionCapacity =
+  (29n ** BigInt(exceptionCount)) * (28n ** BigInt(steps - exceptionCount));
+const outputCount = 29n * transitionCapacity;
+const sideChannelCount = (inputCount + outputCount - 1n) / outputCount;
+const sideChannelBits = (sideChannelCount - 1n).toString(2).length;
+const fixedExceptionDeficitBits =
+  (steps - exceptionCount) * Math.log2(29 / 28);
+assert.equal(sideChannelBits, 649);
+const plantedPlaintext = Array.from({length: steps + 1},
+  (_, i) => (i * 17 + 7) % 29);
+let plantedRank = 0n;
+for (const symbol of plantedPlaintext) {
+  plantedRank = plantedRank * 29n + BigInt(symbol);
+}
+const plantedSideChannel = plantedRank / outputCount;
+let remainder = plantedRank % outputCount;
+const suffixCapacity = Array(steps + 1).fill(1n);
+for (let i = steps - 1; i >= 0; i--) {
+  suffixCapacity[i] = BigInt(i < exceptionCount ? 29 : 28) *
+    suffixCapacity[i + 1];
+}
+const plantedCiphertext = [Number(remainder / transitionCapacity)];
+remainder %= transitionCapacity;
+for (let i = 0; i < steps; i++) {
+  const radix = i < exceptionCount ? 29n : 28n;
+  const digit = Number(remainder / suffixCapacity[i + 1]);
+  remainder %= suffixCapacity[i + 1];
+  if (i < exceptionCount) {
+    plantedCiphertext.push(digit);
+  } else {
+    const previous = plantedCiphertext[plantedCiphertext.length - 1];
+    plantedCiphertext.push(digit >= previous ? digit + 1 : digit);
+  }
+}
+assert.equal(remainder, 0n);
+assert.equal(plantedCiphertext.length, steps + 1);
+assert(plantedCiphertext.slice(exceptionCount + 1).every((value, i) =>
+  value !== plantedCiphertext[exceptionCount + i]));
+let recoveredTail = 0n;
+for (let i = 0; i < steps; i++) {
+  const previous = plantedCiphertext[i];
+  const value = plantedCiphertext[i + 1];
+  const digit = i < exceptionCount ? value :
+    (value < previous ? value : value - 1);
+  const radix = i < exceptionCount ? 29n : 28n;
+  recoveredTail = recoveredTail * radix + BigInt(digit);
+}
+const recoveredRank =
+  BigInt(plantedCiphertext[0]) * transitionCapacity + recoveredTail;
+const recoveredPlaintextRank =
+  plantedSideChannel * outputCount + recoveredRank;
+assert.equal(recoveredPlaintextRank, plantedRank);
+assert.deepEqual(plantedPlaintext, Array.from({length: steps + 1}, (_, i) => {
+  let value = recoveredPlaintextRank;
+  const digits = Array(steps + 1);
+  for (let j = steps; j >= 0; j--) {
+    digits[j] = Number(value % 29n);
+    value /= 29n;
+  }
+  return digits[i];
+}));
 assert(wordBoundaryPositionBits > fixedMaskDeficit);
 assert(wordBoundaryPositionBits > perPageExactDeficit);
 assert(pages.every(page =>
@@ -165,6 +232,19 @@ console.log(JSON.stringify({
     perPageAtMostObservedCounts: perPageAtMostDeficit,
     perPageExactlyObservedCounts: perPageExactDeficit,
     fixedObservedRepeatMask: fixedMaskDeficit
+  },
+  plantedConstruction: {
+    model: "fixed 86 exception positions; all other transitions exclude the previous rune",
+    sourceLength: steps + 1,
+    exceptionPositions: exceptionCount,
+    ordinaryTransitionChoices: 28,
+    exceptionTransitionChoices: 29,
+    sideInformationLowerBoundBits: fixedExceptionDeficitBits,
+    sideInformationBitsUsed: sideChannelBits,
+    ciphertextLength: plantedCiphertext.length,
+    ordinaryTransitionsAllNoRepeat: plantedCiphertext.slice(exceptionCount + 1)
+      .every((value, i) => value !== plantedCiphertext[exceptionCount + i]),
+    exactRoundTrip: recoveredPlaintextRank === plantedRank
   },
   sourceVisibleChannelUpperBoundsBits: {
     wordBoundaryPositionsPerPageFixedCounts: wordBoundaryPositionBits,
