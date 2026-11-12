@@ -121,11 +121,24 @@ const sources = [
   {name:'Gibran The Prophet', source:'resources/control/gibran_prophet_58585.txt', expected:[15733, 19, 9], values:englishLengths(read('resources/control/gibran_prophet_58585.txt'))},
   {name:'Emerson Essays I', source:'resources/control/emerson_essays_2944.txt', expected:[77932, 25, 9], values:englishLengths(read('resources/control/emerson_essays_2944.txt'))},
   {name:'Blake Song of Liberty', source:'resources/control/blake_song_of_liberty_train.txt', expected:[479, 0, 0], values:englishLengths(read('resources/control/blake_song_of_liberty_train.txt'))},
-  {name:'Blake Marriage of Heaven and Hell, original 2012 source', source:'resources/external/cicada2012-blake-marriage-gutenberg45315.txt', expected:[7778, 3, 8], values:englishLengths(read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'))},
+  {name:'Blake Marriage of Heaven and Hell, literary context', source:'resources/external/cicada2012-blake-marriage-gutenberg45315.txt', expected:[7778, 3, 8], values:englishLengths(read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'))},
   {name:'Solved LP1/LP2 reference', source:'resources/liber-primus/lp1-plaintext-reference.txt', expected:[942, 0, 0], values:englishLengths(reference)},
   {name:'Latin Vulgate GP29 words', source:'resources/control/latin-vulgate-gp-wholewords.txt', expected:[39835, 7, 9], values:latinLines.map((s) => s.length)},
   {name:'Old English Beowulf GP29 words', source:'resources/control/beowulf_oe_gp_profile_corrected.json', expected:[10885, 4, 8], values:beowulf.allSourceGpWordLengths},
 ];
+
+
+// The actual 2013 Cicada book-code donor, profiled from the retained three
+// chapter texts independently of LP2. Source blob SHAs are pinned in JSON.
+const crowley = JSON.parse(read('resources/external/cicada2013-crowley-book-of-law-2013-gp-wordlengths.json'));
+assert.deepEqual(crowley.chapters.map((chapter) => chapter.word_lengths.length), [1897, 1968, 2002]);
+const crowleyExpected = [[1897, 0, 0], [1968, 4, 8], [2002, 1, 8]];
+for (let i = 0; i < crowley.chapters.length; i++) {
+  const chapter = crowley.chapters[i];
+  sources.push({name: `2013 Liber AL book-code donor, chapter ${i + 1}`,
+    source: chapter.source_url, expected: crowleyExpected[i],
+    values: chapter.word_lengths});
+}
 
 for (const item of sources) {
   const summary = matchLengths(lens, item.values);

@@ -1,34 +1,39 @@
-# Exact printed word-length crib-search across historical literary corpora
+# Original printed-word-length crib search against independent historical sources
 
-**Agent22, 12 November 2026. Source-identification reconnaissance, not plaintext recovery.** This experiment searches a possible route to genuine unknown plaintext without needing the encryption key. The source-visible word segmentation of the 55 rune-bearing unsolved physical LP2 pages (pp0–49 and 51–55) gives **2,896 complete printed words / 12,956 GP29 runes**. If any original chapter encrypts a verbatim passage from a historical source while preserving word boundaries, a sufficiently long sequence of identical rune word lengths identifies its probable source, where the original text can become a plaintext crib. This is plausible because Cicada previously used literary sources such as William Blake, but the unseen text may instead be wholly original or the word boundaries may be deliberately rearranged.
+**Agent22 / Agent11, 12 November 2026.** Source-fingerprint reconnaissance, not recovered plaintext. The complete unsolved original LP2 printed word clock has **2,896 words** and **12,956 GP29 runes** on physical pp0–49 and 51–55. A passage copied verbatim from another text with *preserved word boundaries* should share a long sequence of GP-normalized printed word lengths; a genuine long match could supply an independently selected plaintext crib for the original cipher.
 
-## Source-exact positive control
+## Source normalization and positive control
 
-The independent *solved* LP2 p57 PARABLE has 20 printed words in the original runic transcript. Translating the editor-normalized English reference using the repo GP29 greedy convention (TH/EO/NG/OE/AE/IA/EA count as one rune, ING contracts to NG, V=U K/Q=C Z=S) reproduces all **20/20** actual printed p57 word lengths, including the fourteen-rune long word CIRCUMFERENCES. The matcher independently detects the same 20-word run when implanted in a synthetic copy of the unknown word-length tape. Thus this lexical-fingerprint method would detect exact copied source prose of that form under the same boundary convention.
+The [reproducer](../sims/lp2_wordlength_source_match_sft.cjs) reads the canonical original LP2 runic transcription, treating printed line/page separators as transparent to continued words and punctuation as boundaries. Every extracted rune matches the canonical indices. English candidate words are split on ASCII letters; V→U, K/Q→C, Z→S, ING→NG, and the seven GP digraphs TH/EO/NG/OE/AE/IA/EA reduce their rune lengths. No guessed cipher transform participates in matching.
 
-The original parse follows the repo's [existing word-clock parser](../sims/lp2_word_pages.cjs): '/', line breaks and '%' page boundaries do not terminate words; punctuation, dots and hyphens do. All 12,956 parsed source runes reproduce the canonical GP corpus byte-for-byte. Source text remains word-separated, so cross-word digraph contraction cannot produce a false length match.
+The independently solved LP2 p57 PARABLE preserves **20 of 20** original word lengths under this convention, including 14-rune CIRCUMFERENCES. Planting its length sequence into an otherwise unknown-page word tape yields a detected 20-word match. The positive control establishes that exact source copying in this style is discoverable.
 
-## Eight actual source corpora, no ten-word verbatim runs
+## Original-input source tests
 
-The deterministic scanner indexes **all** source-independent eight-word profiles from the 2,896-word original. It seeks exactly matching 8-word windows, extending each hit to its maximal overlap.
+The deterministic scanner hashes each original eight-word window and extends every exact match. Longest runs below eight are reported as <8; no result below is a recovered crib.
 
-| External/literary source | GP-normalized source words | Exact 8-word window hits | Longest exact run detected |
+| Fixed candidate source | GP words | Matching eight-word windows | Longest exact run |
 | --- | ---: | ---: | ---: |
-| Shakespeare, first 300k characters | 55,407 | 35 | 9 words |
-| Gibran, *The Prophet* | 15,733 | 19 | 9 words |
-| Emerson, *Essays: First Series* | 77,932 | 25 | 9 words |
-| Blake, *A Song of Liberty* (pinned excerpt) | 479 | 0 | fewer than 8 words |
-| Blake, *The Marriage of Heaven and Hell* (full 2012 source) | 7,778 | 3 | 8 words |
-| Previously solved LP1/LP2 reference | 942 | 0 | fewer than 8 words |
-| Latin Vulgate NT, GP29 word-preserving text | 39,835 | 7 | 9 words |
-| Old English *Beowulf*, corrected GP29 word profile | 10,885 | 4 | 8 words |
+| Shakespeare, first 300k characters | 55,407 | 35 | 9 |
+| Gibran, *The Prophet* | 15,733 | 19 | 9 |
+| Emerson, *Essays: First Series* | 77,932 | 25 | 9 |
+| Blake, *A Song of Liberty* excerpt | 479 | 0 | <8 |
+| Blake, full *The Marriage of Heaven and Hell* | 7,778 | 3 | 8 |
+| Solved LP1/LP2 reference | 942 | 0 | <8 |
+| Latin Vulgate NT GP-normalized words | 39,835 | 7 | 9 |
+| Old English *Beowulf* GP-normalized words | 10,885 | 4 | 8 |
+| **Crowley, *Liber AL vel Legis*, 2013 book code chapter I** | **1,897** | **0** | **<8** |
+| **Crowley, chapter II** | **1,968** | **4** | **8** |
+| **Crowley, chapter III** | **2,002** | **1** | **8** |
 
-**No run of ten or more consecutive unknown-page printed word lengths matches any source in this exact collection.** The source list is bounded and strongly biased toward repository-available literature, and the results do not establish that the LP2 unknown plaintext differs from all works by these authors. The Shakespeare text is truncated; sources include some edition-specific editor metadata; transliteration decisions matter. Short eight-/nine-word coincidences are common enough here to be unconvincing. A verified 15–20-word match in a newly motivated source would warrant a stricter original-rune/source-text alignment followed by a complete reversible cipher check.
+The 2013 Crowley comparison uses independent archived [chapter I](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/book-of-the-law-I.txt), [II](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/book-of-the-law-II.txt), and [III](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/book-of-the-law-III.txt), whose original Git blob SHAs are pinned in the [derived full three-chapter GP word-length profiles](../resources/external/cicada2013-crowley-book-of-law-2013-gp-wordlengths.json). Verse numerals do not generate words. Exact GP-normalized source sequence is preserved separately for each chapter; the experiment deliberately makes no cross-chapter window.
 
-**Primary source added:** The original 2012 Cicada book-code text was Blake's *The Marriage of Heaven and Hell*. The archived [Gutenberg #45315](../resources/external/cicada2012-blake-marriage-gutenberg45315.txt) text is 46,722 characters (GITenberg upstream commit `0079d145c8b34de54358eb3bbd4ab3cf10790bcb`, original source blob `44149cc32fa8a46501a95059283526a8a3429705`). Full text including Gutenberg metadata has only three eight-word matches to LP2 and no nine-word match. These short hits include Gutenberg boilerplate and cannot authenticate ciphertext plaintext.
+For example, Crowley chapter II source words 181–188 (zero-based) read “pure joy that all the sorrows are but” and match unknown LP2 original words 314–321 in *length only*. The initial phrase is far shorter than the successful 20-word solved control and needs a full original-cipher inversion before it can serve as a real crib.
 
-## Reproduction and next use
+**Source attribution correction.** The initial 2012 Cicada book-code stage used the *Mabinogion* in the documented walkthrough. Blake’s *Marriage of Heaven and Hell* is a legitimate literary comparison, but it should not be presented as the authenticated 2012 book-code source. Crowley's *Book of the Law* was an actual 2013 source used to decode a book-code message. The retained Gutenberg Blake text is [#45315](../resources/external/cicada2012-blake-marriage-gutenberg45315.txt), 46,722 characters in this pinned edition; its filename reflects an earlier attribution and is retained to avoid unnecessary path breakage.
 
-The [single-file CommonJS matcher](../sims/lp2_wordlength_source_match_sft.cjs) uses the eight exact retained sources under \`resources/control/\` plus the original rune corpus and transcription. It asserts every original source length/count, all eight matcher outputs, positive p57 plaintext equivalence and planted known-plaintext detection. It is reusable for one new **independently plausible source text** by extending the source inputs; a source match is a *candidate plaintext crib* and never proves a page decryption without an original-cipher inverse.
+## Result and constraints
 
-**Decision:** Direct long verbatim copying from these specific eight source records is excluded for any ten-or-more-word segment under the explicit GP29 and word-boundary assumptions. The actual 56 LP2 encrypted pages still lack authenticated unknown plaintext.
+**None of these eleven pinned text records contains a ten-word exact GP-length profile matching the unknown LP2 tape.** For the historically authenticated Crowley source, the longest is eight words, indistinguishable at present from short accidental matches. This excludes only preserved-boundary, verbatim source spans of ten or more words under the exact normalization, editions and corpus windows tested. It does not rule out shorter quotations, different editions, reordered words, paraphrases, independently generated plaintext, other languages, or letter-changing algorithms that alter word lengths.
+
+The script asserts all input and result counts, the independent solved-page control, and planted matching. The useful next decision is a new source-grounded **long** exact crib or a reversible original-data cipher operator. Neither is supplied by this experiment. No unknown LP2 plaintext/key has been recovered.
