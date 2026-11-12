@@ -1,12 +1,12 @@
-# LP2 word-length/position and independently page-keyed alphabet: all-secret exclusion
+# LP2 static word-coordinate and all-secret per-word alphabet: exact collision exclusions
 
-**11 November 2026, Agent1. Status:** a bounded, key-independent original-cipher negative. No unknown LP2 plaintext, authentic key, complete cipher mechanism, or continuation was recovered.
+**11–12 November 2026, Agents1/30. Status:** bounded, key-independent original-cipher negatives. No unknown LP2 plaintext, authentic key, complete cipher mechanism, or continuation was recovered.
 
 ## Motivated reversible model
 
 The authenticated 2016 instruction names LP's words, their meaning and their numbers. The canonical unknown transcript preserves exactly **2,896** words and **12,956** runes, while LP2's numeric page and the p15 Fibonacci-prime square offer candidate length/position selectors. A simple human-constructible implementation might give each **(whole word's rune length, zero-based position within that word)** its own keyed 29-way substitution alphabet. A stronger model gives every physical rune-bearing page its **own independent alphabet at every such coordinate**, allowing page-specific secret keys. This includes a source-derived deterministic offset, table-driven S-box, or even an **arbitrary secret permutation at each such coordinate**, with unrestricted ciphertext word order among words of the same length. Such a system is exactly reversible and consumes no additional per-word state.
 
-**Weakest assumption:** the original plaintext remains in its GP29 spelling and the printed word lengths/positions survive encryption. Independent page keys are included; a key that changes *between words of the same length on the same page*, a cross-word transposition, or a different intermediate alphabet remains outside the family.
+**Weakest assumption:** the original plaintext remains in its GP29 spelling and the printed word lengths/positions survive encryption. Independent page keys are included. This first coordinate model does not cover a key that changes between complete words; the stronger all-secret **per-word** case is separately tested below. Different intermediate alphabets and changed word boundaries remain outside both tests.
 
 For any bucket `b=(length,position)`, let `n_b` be its rune count and `c_{b,r}` the count of original ciphertext rune `r`. A fixed secret bijection can relabel the 29 symbols but cannot change the number of equal pairs. Therefore every proposed plaintext must satisfy the **exact key-free invariant**
 
@@ -103,12 +103,40 @@ The independently seeded (`0x16f1b`) native-GP control draws retain **each origi
 
 The nearest of all **1,200** controls is still over twice the original's collision fraction. This is an exact **key-independent necessary condition**: no choice whatsoever among the 29! secret permutations in each observed stratum can change that fraction. A second source-native positive-control plant uses independent random 29-way secret permutations in *every phase16 stratum* and recovers all 12,956/12,956 control runes; the same 154/3866-style invariant holds for its own plaintext and ciphertext pair counts.
 
-**Consequence:** the natural p15 sixteen-state *stationary word clock* cannot explain native GP-English plaintext, **even if each physical page, word length, and within-word position independently has its own secret alphabet in each of sixteen clock phases**. This does not disprove other clock lengths, message-dependent phase evolution, a freshly varying key on every word, different alphabet registers or changed original word boundaries. The 16-phase result has relatively few comparable original pairs and, unlike the per-page-only theorem above, is **not certified against arbitrary changes to all 79 disputed glyph identities**. It is conditional on the maintained original transcript.
+**Consequence:** the natural p15 sixteen-state *stationary word clock* cannot explain native GP-English plaintext, **even if each physical page, word length, and within-word position independently has its own secret alphabet in each of sixteen clock phases**. This does not disprove other clock lengths, message-dependent phase evolution, a differently keyed alphabet at every **position within** each word, different alphabet registers or changed original word boundaries. A single fresh alphabet per word is tested and constrained separately below. The 16-phase result has relatively few comparable original pairs and, unlike the per-page-only theorem above, is **not certified against arbitrary changes to all 79 disputed glyph identities**. It is conditional on the maintained original transcript.
+
+## Stronger all-secret model: one fresh substitution alphabet per word, plus any within-word permutation
+
+**Original-input finding, 12 November 2026 (Agent30).** The page-, phase-, length- and position-specific models above still permit a new secret key for **every individual word**. Here each printed word may have its own completely arbitrary 29-symbol bijection, independent of every other word, and its runes may be rearranged in any order *inside the same word*. This class encompasses per-word Caesar, Vigenère with a single word-wide shift, arbitrary per-word codebook substitution, anagram/reversal, and word-wise substitution+transposition combinations. An in-word change of alphabet keyed by rune position is outside this model.
+
+Let `E(w)=Σ_r c(w,r)(c(w,r)-1)/2` count all pairs of equal GP rune identities in complete printed word `w`, independent of how far apart they are. The **full-book sum E is exactly invariant** under every word-specific secret bijection and every arbitrary within-word rune permutation. There is no need to know or guess any key, word order, page reset, or source-selected alphabet permutation.
+
+From the original **2,896 words / 12,956 runes**, the source has **30,281 eligible within-word pairs** and just **811 equal pairs**, including **63 adjacent equal pairs**. An independently chosen random key for each of all 2,896 words cannot change 811. For each of the same three GP-orthographic English controls, draw **1,000 seeded 2,896-word samples with the exact complete original word-length pattern**, giving 3,000 independent same-length controls:
+
+| Native source | Minimum all-pair equality count | Mean | Draws ≤ original 811 |
+| --- | ---: | ---: | ---: |
+| Gibran | **1,181** | 1,288.024 | **0/1,000** |
+| Emerson | **1,205** | 1,314.735 | **0/1,000** |
+| Shakespeare | **1,220** | 1,328.527 | **0/1,000** |
+
+**Independent from the already-known adjacent-doublet anomaly:** exclude every original word that has even one adjacent equal rune (62 original words removed), leaving **2,834 complete words** with **731 nonadjacent equal pairs** in 19,415 eligible nonadjacent positions. Independently restrict each source pool to **words without any adjacent GP-runic equality** and draw the exact filtered original word-length pattern, 1,000 times per author. This conditional check applies to the *word-wide bijection without within-word transposition* subclass; transposition does not preserve absence of adjacent equals.
+
+| Reference words with no adjacent repeat | Minimum nonadjacent-equal pairs | Mean | Draws ≤ original 731 |
+| --- | ---: | ---: | ---: |
+| Gibran | **873** | 962.864 | **0/1,000** |
+| Emerson | **918** | 1,003.374 | **0/1,000** |
+| Shakespeare | **906** | 989.522 | **0/1,000** |
+
+All three reference pools include every required printed GP-rune word length, including 13 and 14. These controls demonstrate that the finding does **not** depend merely on noticing the 63 adjacency doublets: the original has substantially too few **nonadjacent** repeated-rune pairs as well. A source-native **positive plant** gives each of 2,896 independently sampled GP-English words an entirely fresh secret 29-way permutation and an independent arbitrary in-word transposition. Inversion recovers **12,956/12,956 runes**, and the equality-pair count is exactly identical before and after encryption.
+
+**Scope:** This strongly rejects any preserved-word-length, one-bijection-per-word GP29 model for prose statistically similar to these three reference registers; the exact equality-pair invariance is a theorem, while the linguistic comparison is a finite, registered-source test. It does **not** rule out per-position changing maps within words, ciphertext-history feedback, plaintext-stateful enciphering, a non-GP intermediate register, or cipher-induced word boundary changes. It yields no original LP2 plaintext or key.
+
+**Reproduce:** [all-secret word-wise SFT](../sims/lp2_perword_bijection_collision_sft.cjs), with pinned seeds `0xa61294fa` (all-pair controls) and `0x42c12577` (no-adjacent-repeat controls), 1,000 replicates per control text. No additional files or network downloads are needed.
 
 ## Decision
 
-**Retire direct static substitution alphabets indexed only by printed word length and within-word position, even with independent page-specific secret permutations or a stationary sixteen-phase word clock**, including arbitrary per-page table entries, GP-prime offsets and any within-length permutation of the encrypted words, for plaintext statistically comparable to the three length-matched English registers. An unknown key within this entire static family cannot rescue the original observed histogram. Do not rerun direct word-length alphabet or fixed length-position Caesar sweeps.
+**Retire direct static substitution alphabets indexed only by printed word length and within-word position, even with independent page-specific secret permutations or a stationary sixteen-phase word clock; additionally retire every one-bijection-per-word family, including any within-word rune transposition**, including arbitrary per-page table entries, GP-prime offsets and any within-length permutation of the encrypted words, for plaintext statistically comparable to the three length-matched English registers. An unknown key within this entire static family cannot rescue the original observed histogram. Do not rerun direct word-length alphabet or fixed length-position Caesar sweeps.
 
-**Open route to actual plaintext:** a viable direct substitution decoder must change its key in a way **not fixed by the sixteen-phase word clock and page/length/position coordinates**, introduce a different intermediate register, alter the source word-boundary contract, or derive an independent key/codec selecting one of those alternatives. The original cannot fix any particular state from this invariant. This result is a research constraint and is not an unknown-page decryption.
+**Open route to actual plaintext:** a viable GP29 direct substitution decoder must vary its state **within an individual word**, use ciphertext/plaintext feedback, introduce a different intermediate register, alter the source word-boundary contract, or derive independent key material selecting one of those alternatives. Changing only the secret alphabet between complete words cannot repair the original collision deficit. The original cannot fix any particular state from this invariant. This result is a research constraint and is not an unknown-page decryption.
 
 **Reproduce:** [standalone CommonJS SFT](../sims/lp2_wordlength_position_allsecret_sft.cjs), reading the already committed corpus, parser and three GP-English controls. Invoke with `node sims/lp2_wordlength_position_allsecret_sft.cjs` under Node 22.
