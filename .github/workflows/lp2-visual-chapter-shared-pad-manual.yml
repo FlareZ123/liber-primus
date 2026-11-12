@@ -1,0 +1,14 @@
+name: LP2 original nine-visual-chapter shared-pad gate
+on:
+  workflow_dispatch:
+jobs:
+  shared-pad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original visual chapter pad cancellation with word-matched native English
+        run: node sims/lp2_visual_chapter_shared_pad_eq_sft.cjs
