@@ -28,4 +28,6 @@ A contemporary solver could follow the alternating margin positions, but the pag
 
 **Completion:** #622 is a missing-source-selector result on a previously unevaluated original-image geometry, with exact image-byte reproducibility. Retire the **tree-side direction cue** as a direct decipherment operator. Reopen only if an independent historical signed hint or source illustration fixes an additional branch-index / glyph transformation and predicts unobserved original-page text. Continue searching separately for executable operations rather than extrapolating a novel key from a seven-page decoration.
 
+**Original Windows CI passed:** [run 43270753309](https://github.com/FlareZ123/liber-primus/actions/runs/43270753309) using the exact committed seven original JPEGs; all source equality and registration assertions succeeded.
+
 **Reproduce:** `python sims/lp2_p8_14_tree_source_template_sft.py` with Pillow and NumPy on the original committed files, or the [manual original-JPEG CI workflow](../.github/workflows/lp2-p8-14-tree-stencil-manual.yml). No source files or images are changed.
