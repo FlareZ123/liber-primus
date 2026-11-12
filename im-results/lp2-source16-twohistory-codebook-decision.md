@@ -36,7 +36,7 @@ One state is a complete human-checkable witness. Under chapter 7, predecessor GP
 [0,1,9,10,13,15,18,20,21,25,27]
 ```
 
-Every one of the 812 affine images of the printed 16-element Younger Futhark/GP codebook contains **at most ten of these eleven** symbols. Only two affine transforms attain ten: `(a,b)=(5,5)` misses index 0, and `(11,27)` misses index25. A state-specific choice cannot cover the eleventh. Therefore this literal YF-to-GP codebook is excluded under the **complete stated model**, regardless of keys, English likelihood, word segmentation or what the plaintext symbols were.
+Every one of the 812 affine images of the printed 16-element Younger Futhark/GP codebook contains **at most ten of these eleven** symbols. Only two affine transforms attain ten: `(a,b)=(5,5)` misses index 0, and `(11,27)` misses index25. A state-specific choice cannot cover the eleventh. **The exclusion is robust to one arbitrary rune-correspondence change:** exhaustive original-input tests of all **16×13 = 208** one-glyph substitutions in the 16-point GP codebook find **zero** sets compatible with the six fixed original history states, even when each state can choose any of its 812 affine parameter pairs. In particular, allowing the Younger Futhark K glyph to map to **any** of the other thirteen GP glyph identities does not repair the obstruction. These are fixed-set feasibility conditions, with no language score or plaintext fitting. Therefore the literal YF-to-GP codebook, and any of those single-glyph alternatives, are excluded under the **complete stated model**, regardless of keys or what the plaintext symbols were.
 
 ## Independent general codebook obstruction and exact counterexample
 
