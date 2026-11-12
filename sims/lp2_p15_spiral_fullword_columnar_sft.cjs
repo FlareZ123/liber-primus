@@ -152,7 +152,6 @@ console.log(JSON.stringify({
   originalChiSquare: lengthChiSquare(source),
   originalDecodedColumnIntoRow: decodeA,
   originalDecodedRowIntoColumn: decodeB,
-  random1600: null,
   randomPermutationTests: 10000,
   randomKeysAtLeastAsHigh: { columnIntoRow: atLeastA, rowIntoColumn: atLeastB },
   nativeLatinPositive: {
