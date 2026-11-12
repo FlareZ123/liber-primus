@@ -35,6 +35,8 @@ ISO/IEC 18004's [finder specification](https://www.standards.iteh.ai/catalog/sta
 
 The original winner is row-major, byte-forward, bit-LSB-first, trim-last23, no color inversion, and one of the equivalent square symmetries. Reversed byte order/bit significance maps to an equivalent observed best. All 256 original variants fail the exact required corner markers. This is much closer to the approximately 73.5 random matches expected from 147 independent fair bits than to a literal QR symbol.
 
+**The five documented image-audited alternate byte readings cannot rescue this route.** At source cells 45, 50, 165, 172 and 246, the published alternative values are 81, 21, 47, 174 and 224 in place of the canonical 107, 47, 18, 148 and 198. Their individual binary Hamming distances are **4, 4, 5, 4 and 3**, totalling **20 changed bits**. Under every fixed QR orientation, end trim, polarity and traversal, replacing any subset of these bytes can improve its finder score by no more than 20; hence even the best among all **32** source alternatives and **256** readouts scores at most **86+20=106**, strictly below the necessary **147**. The reproducer checks this source-variant-independent bound.
+
 The positive plant generates a full 45×45 bitmap with the required corner patterns, serializes it into 256 source-shaped bytes by appending 23 bits, and rediscovers all 147 fixed finder modules via the very same orientation and trimming search. It validates the binary serialization and search logic; it is not evidence that Cicada used QR.
 
 ## Cryptanalytic decision
