@@ -231,9 +231,105 @@ def fetch_link(url: str):
         return {"url": url, "error": f"{type(exc).__name__}: {exc}"}
 
 
+
+def analyze_cluosh_mask(linked_materials):
+    """Test the May-2014 pages-8..14 Vigenere mask against the pinned rune corpus."""
+    by_url = {x.get("url"): x.get("body", "") for x in linked_materials}
+    mask_raw = by_url.get("https://pastebin.com/raw/vkshfVTu", "")
+    brute_raw = by_url.get("https://pastebin.com/raw/R01rN7ZX", "")
+    if not mask_raw or not brute_raw:
+        return {"status": "source paste unavailable",
+                "mask_bytes": len(mask_raw), "brute_bytes": len(brute_raw)}
+
+    with open("resources/liber-primus/lp2-corpus.json", encoding="utf-8") as fh:
+        corpus = json.load(fh)
+    alphabet = corpus["translit"]
+    index = {symbol: i for i, symbol in enumerate(alphabet)}
+    page_cipher = [v for page in corpus["pages"][8:15] for v in page["indices"]]
+
+    mask = [re.sub(r"\s+", "", token) for token in mask_raw.split(",")]
+    mask = [token for token in mask if token]
+    known = [i for i, token in enumerate(mask) if token != "-1"]
+    if any(token not in index for token in mask if token != "-1"):
+        bad = sorted(set(token for token in mask if token != "-1" and token not in index))
+        return {"status": "unparsed keymask tokens", "mask_length": len(mask), "bad_tokens": bad[:30]}
+
+    symbols = sorted(alphabet, key=len, reverse=True)
+    def tokenize_block(block):
+        compact = re.sub(r"\s+", "", block)
+        out, i, errors = [], 0, []
+        while i < len(compact):
+            if compact[i] == "x":
+                out.append(None)
+                i += 1
+                continue
+            found = next((s for s in symbols if compact.startswith(s, i)), None)
+            if found is None:
+                errors.append({"offset": i, "text": compact[i:i+20]})
+                i += 1
+            else:
+                out.append(index[found])
+                i += len(found)
+        return out, errors
+
+    blocks = re.split(r"\r?\n\s*\r?\n", brute_raw.strip())
+    block_data = []
+    for block_no, block in enumerate(blocks, 1):
+        tokens, errors = tokenize_block(block)
+        best = None
+        for block_offset in range(max(1, len(tokens) - len(mask) + 1)):
+            segment = tokens[block_offset:block_offset + len(mask)]
+            if len(segment) != len(mask):
+                continue
+            xmask_matches = sum((segment[i] is None) == (mask[i] == "-1")
+                                for i in range(len(mask)))
+            xmask_exact = xmask_matches == len(mask)
+            for page_offset in (0, 1):
+                if page_offset + len(mask) > len(page_cipher):
+                    continue
+                c = page_cipher[page_offset:page_offset + len(mask)]
+                k1 = [(c[i] - index[mask[i]] + 29) % 29 if mask[i] != "-1" else None
+                      for i in range(len(mask))]
+                k2 = [(index[mask[i]] - c[i] + 29) % 29 if mask[i] != "-1" else None
+                      for i in range(len(mask))]
+                key1_matches = sum(segment[i] == k1[i] for i in known if segment[i] is not None)
+                key2_matches = sum(segment[i] == k2[i] for i in known if segment[i] is not None)
+                mask_matches = sum(segment[i] == index[mask[i]] for i in known if segment[i] is not None)
+                cipher_matches = sum(segment[i] == c[i] for i in range(len(mask)) if segment[i] is not None)
+                score = (xmask_matches, max(key1_matches, key2_matches, mask_matches, cipher_matches))
+                candidate = {
+                    "block_offset": block_offset, "page_offset": page_offset,
+                    "xmask_matches": xmask_matches, "xmask_exact": xmask_exact,
+                    "known_positions": len(known),
+                    "key_C_minus_P_matches": key1_matches,
+                    "key_P_minus_C_matches": key2_matches,
+                    "mask_direct_matches": mask_matches,
+                    "cipher_direct_matches": cipher_matches,
+                    "score": list(score),
+                }
+                if best is None or tuple(score) > tuple(best["score"]):
+                    best = candidate
+        block_data.append({
+            "block": block_no, "tokens": len(tokens), "x_placeholders": sum(x is None for x in tokens),
+            "parse_errors": errors[:10], "best_alignment": best,
+        })
+
+    return {
+        "status": "tested",
+        "source": "2014-05-07 Pastebin Vigenere-Brute + Keymask",
+        "pages": [8, 9, 10, 11, 12, 13, 14],
+        "page_runes": len(page_cipher),
+        "mask_length": len(mask),
+        "mask_minus1": mask.count("-1"),
+        "mask_known_positions": len(known),
+        "mask_F_tokens": mask.count("F"),
+        "blocks": block_data,
+    }
+
 def main():
     results = [scan_file(*item) for item in FILES]
     linked_materials = [fetch_link(url) for url in LINKS]
+    cluosh_mask_analysis = analyze_cluosh_mask(linked_materials)
     report = {
         "scope": "2014-05-02 onward in three pinned IRC Git blobs",
         "method": (
@@ -243,6 +339,7 @@ def main():
         ),
         "archives": results,
         "linked_materials": linked_materials,
+        "cluosh_mask_analysis": cluosh_mask_analysis,
         "total_candidate_pairs": sum(x["candidate_pairs"] for x in results),
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
