@@ -44,6 +44,47 @@ The same four natural traversals were also tested as candidate private exponent 
 
 This excludes the direct grid-as-d interpretation under the four natural traversals. It does not test CRT exponents, another recipient key, or a transformed table.
 
+
+## Issue #449: authenticated 2048-bit Cicada RSA key inventory
+
+**Decision (12 November 2026): bounded no-match.** The reviewed 2012–2016 Cicada source corpus contains **no authenticated or independently byte-preserved 2048-bit Cicada RSA public modulus**. The only preserved Cicada OpenPGP public key has a 4,096-bit RSA primary key and 4,096-bit RSA encryption subkey; the other preserved/factored Cicada challenge moduli relevant to this check are 432 bits. Consequently, there is no source-authenticated 2048-bit modulus against which the 256-byte pp49–51 candidate can be matched. No factorization, private-key recovery, or general RSA search was attempted, as required by the issue's gate.
+
+### Finite key and signed-artifact inventory
+
+- The only distinct Cicada public-key armor in the repository is the 2012 key copied byte-for-byte to both `resources/historical/cicada-3301-2012-public-key.asc` and `resources/control/cicada-3301-public-key.asc` (same Git blob SHA-1 `d44aec389e2f346c6b9d149d4c61e890f62979c9`). Its OpenPGP v4 fingerprint is **`6D854CD7933322A601C3286D181F01E57A35090F`**, short ID **`7A35090F`**, 64-bit issuer ID **`181F01E57A35090F`**, and creation time **2012-01-05T03:39:43Z**. Both its primary key and encryption subkey are RSA, **4096 bits**, exponent **65537**.
+- The runner parses 14 preserved 2012–2016 standalone signed-message/signature files. This set includes derived OutGuess recoveries and a forum-preserved 2016 copy, so the count is not 14 independent messages. Every signature packet uses RSA public-key algorithm 1 and issuer ID `181F01E57A35090F`; this is one signer key, not 14 independent keys. Packet metadata is not itself signature verification; source-specific GPG verification is documented in the historical-source reports. The 2016 signed text explicitly instructs solvers to “Verify OpenPGP 7A35090F.” The 2014 Stage10 form asks participants to generate and upload **their own** GnuPG public key; that is not another Cicada organizer key.
+- The 2012 Valete postscript modulus and the 2014 Cicada RSA challenge modulus are each **432 bits / 54 bytes**, not 2048 bits. The 2012 postscript does not itself specify the exponent used in later direct-reuse tests; 65537 is an explicit test assumption there. The 2014 challenge's existing source-fixed reproduction uses exponent 65537.
+- The archived 2012 participant-specific email contains a **112-decimal-digit** modulus (under 373 bits), but its mirrored `unknown.asc` copy has an unverified PGP signature and the modulus is a participant's one-time key, not Cicada's signing key. It is excluded from the authenticated organizer-key inventory.
+
+The reviewed source corpus therefore supplies **zero 2048-bit Cicada RSA public keys**.
+
+### Frozen byte-stream and wrong-reading controls
+
+The physical table is 32×8 tokens. Row-major is the only source-visible reading order; reverse-byte and column-major readings below are controls, not additional source-selected encodings. The conventional base60 conversion is conditional: the separate source audit found no Cicada-authenticated BASE60 alphabet, digit order, zero convention, or consuming operation.
+
+For a bounded base59 control, remove the only character absent from the 256-token transcription (lowercase `f`) from the conventional base60 alphabet, preserving the order of the remaining 59 symbols. This is a control definition, not evidence that Cicada intended base59.
+
+| Conditional codec | Byte traversal | Bits | Parity | SHA-256 |
+|---|---|---:|---|---|
+| base60 | row-major | 2048 | even | `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290` |
+| base60 | reversed row-major | 2047 | odd | `07737f83138161ecf63fe20bcf073fce621d6769963b0b84daabb70cf180ff34` |
+| base60 | column-major control | 2048 | even | `84aea2c680cc2d1de945c1e41c431cfc598f81621968ee5be96ebb92a5bd9578` |
+| base60 | reversed column-major control | 2047 | odd | `1d0f31943a48991abb55d048525d8b594b76803ca2252729746d05b37c3812ee` |
+| drop-f base59 control | row-major | 2048 | odd | `511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79` |
+| drop-f base59 control | reversed row-major | 2047 | even | `69167e45429213fca5c4cb966a0801f11d8a1239354134cfb0d19b1cfd2b57fa` |
+| drop-f base59 control | column-major control | 2048 | odd | `9fcdc682240dd83c380c96786ec1bfc9b32343b70309f47cbe9fc6a0636e1ada` |
+| drop-f base59 control | reversed column-major control | 2047 | even | `fe168cf7aef227dbb16f06151b44b743dac1e434cf97ce41415bc05da74cd5be` |
+
+All eight candidate integers have GCD **1** with both authenticated 4096-bit PGP moduli and both known 432-bit challenge moduli. The canonical base60 row-major stream is 256 bytes / 2048 bits but even, so it cannot itself be an RSA modulus; the base59 row-major control is odd and 2048 bits but has no corresponding Cicada key. No candidate is an exact match for any preserved modulus.
+
+The 2012/2014 432-bit moduli are wrong-size controls, not substitute 2048-bit keys. Their direct RSA-block interpretations have already been tested separately in [the historical grid RSA study](grid-rsa-factor-test.md) and [the 2012 OAEP transfer gate](crossround-2012-ps-rsa-lp2-oaep-gate.md); those experiments are not repeated here. The 4096-bit signature, factor, and private-exponent readings are already bounded in the preceding sections of this report.
+
+### Decision and reproduction
+
+**Close Issue #449 as a bounded no-match.** No authenticated 2048-bit Cicada key exists in the reviewed corpus, so the requested exact modulus comparison cannot produce a match. The base59 and wrong-order controls do not reveal a replacement key. Do not factor the table, recover a private exponent, search arbitrary permutations, or reopen generic p50 consumer sweeps. Reopen only if a new primary or independently byte-preserved 2012–2016 source supplies a 2048-bit Cicada key and an instruction selecting the pp49–51 serialization.
+
+Run `node sims/pp49_51_rsa_key_inventory.cjs` (Node.js 22, no third-party packages). It checks the duplicate key armor, key fingerprint and modulus sizes, 14 signature-packet issuer IDs, the 2012/2014 RSA-432 controls, exact base60/base59 candidate hashes, bit lengths, parity, and GCDs. The runner is also included in the existing manual-only `grid-rsa-pgp.yml` workflow. The packet inventory records issuer metadata; it does not replace the GPG verification documented by the source audits.
+
 ## Scope and reproducibility
 
 - Signature-style test: node sims/grid_rsa_pgp_signature.cjs.

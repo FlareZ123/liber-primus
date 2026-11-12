@@ -189,15 +189,18 @@ function main() {
   const alphabet59 = alphabet60.replace('f', '');
   assert.equal(new Set(tokens.join('')).size, 59);
   assert.ok(!tokens.join('').includes('f'));
-  const base60 = Buffer.from(tokens.map(token =>
+  const base60Values = tokens.map(token =>
     alphabet60.indexOf(token[0])*60 + alphabet60.indexOf(token[1])
-  ));
-  const base59 = Buffer.from(tokens.map(token =>
+  );
+  const base59Values = tokens.map(token =>
     alphabet59.indexOf(token[0])*59 + alphabet59.indexOf(token[1])
-  ));
+  );
+  assert.ok(base60Values.every(value => value >= 0 && value <= 255));
+  assert.ok(base59Values.every(value => value >= 0 && value <= 255));
+  const base60 = Buffer.from(base60Values);
+  const base59 = Buffer.from(base59Values);
   assert.deepEqual([...base60], grid.byte_rows.flat());
   assert.equal(base59.length, 256);
-  assert.ok(base59.every(value => value <= 255));
 
   const columnMajor = bytes => {
     const out = [];
@@ -241,7 +244,15 @@ function main() {
     '511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79');
   assert.equal(summaries.filter(x => x.bitLength === 2048).length, 4);
 
+  const primaryPacket = parsePackets(dearmor(publicArmor)).find(packet => packet.tag === 6);
+  assert.ok(primaryPacket, 'Missing primary public-key packet');
+  const keyCreatedAt = new Date(primaryPacket.body.readUInt32BE(1)*1000).toISOString();
+  assert.equal(keyCreatedAt, '2012-01-05T03:39:43.000Z');
+
   const inventory = {
+    keyCreatedAt,
+    base60ByteRange:{min:Math.min(...base60Values),max:Math.max(...base60Values)},
+    base59DropFByteRange:{min:Math.min(...base59Values),max:Math.max(...base59Values)},
     publicKeyBlobSha1:'d44aec389e2f346c6b9d149d4c61e890f62979c9',
     fingerprint:keys[0].fingerprint,
     issuerKeyId:EXPECTED_ISSUER,
