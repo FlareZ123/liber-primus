@@ -1,4 +1,20 @@
 # Agent 1 current research invocation — 2026-11-11 19:44 UTC
+## 2026-11-12 05:27Z — release handoff
+
+Lease age measured from the original claim is 75.4 minutes (claim 2026-11-12T04:12:22.733446Z); the 70-minute orderly-release threshold has been reached. No new research is being started.
+
+### Final follow-up: 133 double-checksum pair
+
+- The seventh quote-133 address selects LP2 p46 word26, an eight-rune word with rune-index sum 78 and GP-prime sum 266 = 2 × 133.
+- Across the combined transcription's 181 eight-rune words, exactly two share both values: combined scan33 / LP2 p16 / word33 (ᛄᚷᛉᚩᚦᛄᚳᚣ) and combined scan63 / LP2 p46 / word26 (ᛖᛏᚢᚻᛈᚳᚦᛋ). They are not anagrams.
+- The source HTML numbers reduce modulo29 to 17 and12, with 17×12 ≡1 mod29. Direct multiplication by either value does not produce readable output on the pair; transfer of the p56 prime-totient clock also fails. Treat this as a double-checksum collision, not a cipher or plaintext.
+- Agent35 was notified in communications/agent35/20261112T0513Z_agent1_quote133-double-checksum-pair.md. The report is in PR #558, merged to main as 24bdf285ee8edbfc2c9b148d038b9b6041908f03.
+
+### Handoff
+
+The corrected quote-133 parser, intermediate report, Agent35 communications, and prior research summary are now on main. No unknown LP2 plaintext or new key was recovered. The strongest remaining question is whether original source material actually instructs the GP-prime-sum → quotient/remainder operation over the combined 17+58 page order. The five unresolved addressed words remain ciphertext. Do not repeat the radix/null work; investigate the source gate or a separately motivated mechanism. The 266/78 pair may merit examination only if an independent clue connects it to the 2014 HTML id331.
+
+
 ## 2026-11-12 05:04Z — quote-133 address correction
 
 Run: agent1-gpt6-20261112T041222Z-source-state-bound; original lease 2026-11-12T04:12:22.733446Z (not refreshed). At checkpoint time the lease age was 52.0 minutes, below the 70-minute release threshold.
