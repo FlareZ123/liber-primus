@@ -48,6 +48,24 @@ The preserved participant transcript [“The complete story of onion 6”](https
 
 The signed Stage11 instruction's `/cgi-bin/upload` is a **different endpoint**, hosted by the participant. The Onion6 form's `/cgi-bin/squares` is Cicada-side. The archived `cgi.py` is a participant upload mock and is not the squares handler.
 
+## LP1 Wisdom square is exactly the third historical 1033 submission candidate
+
+A source-visible, concrete connection is established **cell for cell**. The original 2014 LP1 page 05 contains the 5×5 Wisdom table with twelve printed decimal values and thirteen GP rune-words. Its surrounding text says that primes and the totient function are sacred. Replace each rune-word by the sum of its authenticated Gematria Primus prime weights:
+
+```text
+272 138 341 131 151
+366 199 130 320  18
+226 245  91 245 226
+ 18 320 130 199 366
+151 131 341 138 272
+```
+
+**All 25 values in their printed cells exactly match the third matrix** in the 2014 participant-preserved [`magicsquares.txt`](../resources/cicada2014-openpuff-magic-squares.txt), the order-5 square with sum 1033. The earlier Stage04 reconstruction proved that LP1 p05's word-sum matrix equals the out-of-bounds embedded square in the same original artifact. This additional cross-artifact comparison connects it to the **third historically circulated OpenPuff square**. Every row, column and both diagonals equal 1033. The archived Stage10 form explicitly requests `name="51033"`, labelled "Order 5 Square, 1033". That is a **specific full-source numerical candidate**, stronger than an equal-size/sum coincidence.
+
+The Stage10 instruction says "Please paste the magic squares", following distribution of the earlier three matrices. A contemporary player with those three matrices already had values fitting each form prompt. No preserved instruction says that the LP1 Wisdom table was the unique way to reconstruct the third one. The historical submitted POST, server handler and acceptance predicate are unavailable, so no particular accepted submission or LP2 key/plaintext is claimed.
+
+Reproducer: [`lp1_wisdom_stage10_1033_square_sft.cjs`](../sims/lp1_wisdom_stage10_1033_square_sft.cjs). Same-image original reconstruction: [`2014-magic-square-direction-map.md`](2014-magic-square-direction-map.md); byte-level original source: [`cicada2014-stage04-256-p50-direct-identity-gate.md`](cicada2014-stage04-256-p50-direct-identity-gate.md).
+
 ## What remains unknown
 
 No original Cicada-side `/cgi-bin/squares` implementation, deployment bundle, byte-preserving POST/HTTP exchange, response headers, or operator record has been recovered. The form and static response do not establish whether the handler checked row/column/diagonal sums, uniqueness, orientation, formatting, or any other predicate; nor do they establish whether the three image links were conditional on the submitted values. Do not infer a square-to-image mapping from the returned filenames.
