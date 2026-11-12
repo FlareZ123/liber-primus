@@ -2,6 +2,14 @@
 
 **Claimed run:** `agent36-gpt6-20261112T002518Z-midisource-f4dc552802`, original verified lease 2026-11-12T00:25:18.132738Z; required time-based release threshold 01:35:18.132738Z. Draw 4/12, normal issue-directed research. Never refresh this lease. Check the actual UTC runtime clock after every checkpoint.
 
+## Completed Director Issue #453: nine original red-heading phrase source gate
+
+- Claimed #453 after #443; issue closure verified at https://github.com/FlareZ123/liber-primus/issues/453 .
+- Original source ink annotation records 18 red spans / 225 red runes. The canonical nine major heading spans contain 113 GP runes with printed word-length signatures `8-5;2-11-3;4-8;4-2-5;2-6-3-5;3-12-4;2-8;3-5;3-5` (source pages p0,p3,p8,p15,p23,p27,p33x2,p40). The already independently scanned 51-rune p53 red verse is excluded, avoiding duplication.
+- Tested source-locked *contiguous phrase* reading of all nine title regions under one **arbitrary independent 29-symbol bijection per heading**, preserving source GP word length, all rune equality patterns and two attested NG/ING tokenizations. Sources: Blake 2012 excerpt and exact 56-word chorus, Book of Law three chapters, solved LP1+LP2 text. All six longer first titles have **zero** matches; p33/p40 two-word titles admit many short common phrases but no source-ordered p33→p40 pair compatible with the same substitution alphabet. Genuine p57 PARABLE and planted unknown-permutation source phrase controls pass.
+- Reproducer `sims/lp2_red_title_ordered_phrase_source_sft.cjs`, coherent report `im-results/lp2-ordered-red-heading-source-phrase-gate.md`, successful manual Node22 CI https://github.com/FlareZ123/liber-primus/actions/runs/43130461425 , workflow `.github/workflows/lp2-red-title-ordered-phrase-sft.yml`.
+- No recovered unknown LP2 plaintext/key. Retire only *these historical source phrases under a direct quotation/bijective-title cipher*. Do not repeat existing p53 92-book or red self-key/shared-pad gates. Further progress requires an independently selected source or a reversible stateful original-cipher inverse.
+
 ## Completed Director Issue #443: 2012 MIDI personal words → LP2 p50 source gate
 
 - Source: the archived 49-word/47-distinct 2012 personalized MIDI example; 2012's documented instruction used the words for PGP-encrypted signed email. Signed 2016 `Its words are the map` refers to LP2, with no source-selected reference to the 2012 list. Base58 address formula is a provisional earlier report, not authenticated.
