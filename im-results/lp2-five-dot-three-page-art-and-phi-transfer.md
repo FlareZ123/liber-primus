@@ -28,6 +28,19 @@ As a finite test of whether the mirrored five-dot design selects the same *direc
 
 All 12 fully specified original-cipher inversions return near-uniform GP29 marginals and nonlinguistic beginnings. Every forward recipher succeeds, a correctness invariant that does not identify historical keys. The only family rejected here is **unmodified p56 φ(prime) decoding, with original or reversed reading, either arithmetic sign, and no unselected F bypasses**. A different authentic operation, alternate plaintext register, or source-given F/clock rule remains open.
 
+
+## Source-authenticated solved-p56 plaintext as a frozen GP29 key
+
+A second direct, falsifiable interpretation of the repeated five-dot image is that the human who solves p56 might reuse its **known 85-rune decoded text** as the running GP29 additive key for the earlier marked sections. This has stronger key provenance than guessing a numerical seed, although **no original instruction states that the solved text is a pad**. Freeze the complete, exactly recovered 85-rune p56 GP text as the repeating key. The five-dot location supports either a start-aligned clock or an end-aligned clock; test both arithmetic signs without tuning a phase or guessing bypass glyphs.
+
+| Original interval | Start-aligned − / + IoC | End-aligned − / + IoC |
+| --- | --- | --- |
+| pp3–7 | 0.034730 / 0.034370 | 0.034225 / 0.034496 |
+| pp8–22 | 0.034413 / 0.034422 | 0.034517 / 0.034441 |
+| pp23–26 | 0.034743 / 0.034691 | 0.034198 / 0.034376 |
+
+All 12 fixed original-input inverses produce nonlinguistic GP29 and near-random index of coincidence. They exactly re-encipher under the frozen 85-rune key. A positive control is the independently recovered **actual p56 known plaintext** used to construct the pad; the test does not establish that earlier unknown pages were generated with a repeated pad. This rejects these specific no-skip, unmodified 85-rune-key hypotheses. A word-indexed book cipher, a non-additive key consumer, a genuinely new source-selected role, and a secondary encrypted register are not tested.
+
 ## Decision
 
 The original five-dot stamp appears in three distinct textual roles and orientations. Its mere presence should no longer be treated as a unique p23 quintet/byte/SSSS key selector. It remains possible that an independent clue selects an operation involving those five positions. Avoid new direct p56 φ(prime) sign/direction scans without such evidence. In particular, [Director task #568](https://github.com/FlareZ123/liber-primus/issues/568) needs independently justified 2013 share bytes/packing, not only this reusable printed ornament.
