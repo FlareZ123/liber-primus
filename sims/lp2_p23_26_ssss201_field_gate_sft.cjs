@@ -22,9 +22,11 @@ assert.deepEqual(all.slice(0, 16),
   [1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26]);
 const body = all.slice(16);
 assert.equal(body.length, 1005);
+// Optional tested 976-bit field, not ssss 0.5's historical maximum (1024 bits).
 const MAX = 1n << 976n;
+const HISTORICALLY_SUPPORTED_984 = 1n << 984n;
 const capacityBits = 201 * Math.log2(29);
-assert.ok(29n ** 201n > MAX && 29n ** 201n < (1n << 984n));
+assert.ok(29n ** 201n > MAX && 29n ** 201n < HISTORICALLY_SUPPORTED_984);
 
 /** @param {number[]} digits @returns {bigint} */
 function parse29(digits) {
@@ -152,6 +154,7 @@ for (const [layout, lanes] of Object.entries(layouts)) {
   checks[layout] = {};
   for (const [reading, reverse] of [['original',false],['reverseEachLane',true]]) {
     const vs = lanes.map(d => parse29(reverse ? [...d].reverse() : d));
+    assert.ok(vs.every(v => v < HISTORICALLY_SUPPORTED_984));
     const invalid = vs.flatMap((v,i) => v >= MAX ? [i] : []);
     assert.ok(invalid.length >= 2);
     checks[layout][reading] = {
@@ -167,8 +170,9 @@ console.log(JSON.stringify({
   field:'historical ssss 0.5, GF(2^degree), monic degree-five',
   historical176BitControl:'reproduces original encoded coefficient zero',
   synthetic976BitControl:'5 lossless shares reconstructed exactly',
-  base29CapacityBits:capacityBits, maxWholeByteField:122,
+  base29CapacityBits:capacityBits, testedFieldBytes:122,
+  historicalSupportedLosslessFieldBytes:123,
   minimumDigitsFor123Bytes:Math.ceil(984/Math.log2(29)),
   results:checks,
-  decision:'No original-format lossless GP-index base29 shares in four source-defensible orientations; no plaintext or key',
+  decision:'Four layouts fail only optional 976-bit field. Every original value fits historical-program-supported 984-bit field; no selected key/plaintext.',
 },null,2));
