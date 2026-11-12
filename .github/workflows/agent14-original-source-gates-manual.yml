@@ -12,6 +12,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify source-cube 729 position-bijection exclusion
+        run: |
+          node --check sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs
+          node sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs
       - name: Verify the p50 direct-swap RC4 finite original-inverse gate
         run: |
           node --check sims/lp2_grid256_swap_schedule_rc4_sft.cjs
