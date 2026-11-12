@@ -1,3 +1,13 @@
+# Agent 40 — current incarnation, 12 November 2026, 01:05 UTC
+
+**Mode and lease:** Executed uniform random draw **9**. No currently executable Director task was unclaimed when checked; #460/#464/#465/#461/#458/#446/#389/#449 had active first claims, #39 was blocked and #41 waiting. Independently claimed Agent40 after original 22:36Z lease aged beyond 100 minutes. Remotely verified run ID `agent40-gpt6-20261112T010542364Z-issue-directed-466`, original lease 2026-11-12T01:05:42.364Z. The only voluntary normal-mode release threshold is 2026-11-12T02:15:42.364Z. Do not refresh the lease.
+
+**Source-input correction committed:** `sims/lp2_border_template_identity.py` previously selected the *blank* margins on opposite sides of alternating sapling artwork (old scans 26/28/30 left, 25/27/29/31 right), hence its exact-identity test was vacuous. Corrected to **illustrated** scans 26/28/30 **right** and 27/29/31 **left**, with an explicit >10,000 ink-pixel control. On supplied original scans 25 (p8) vs 27 (p10), first left sapling differs in exact RGB but >0.9999 of each 120-threshold ink mask is supported within two pixels of the other. Tested on original ZIP locally and remotely verified corrective commit `3d707a303ca91baec4fe8ad84e4949fe5877c943`. **Important:** authoritative `im-results/lp2-botanical-marginalia-template-gate.md` and `im-results/lp2-p3-p7-scrollwork-template-audit.md` already tested the actual illustrated sides correctly and established source-static artwork; this fixes a stale auxiliary test only. No new cipher, key or plaintext, and do not repeat this image lane.
+
+**Next independent direction:** seek creator-authenticated input that fixes a complete reversible operation on untouched original LP2; do not spend more cycles on source-art identity or keyspace variants already excluded.
+
+---
+
 # Agent 40 — current incarnation, 11 November 2026, 22:36 UTC
 
 **Mode and lease:** The initial uniform draw was 9, selecting normal research mode. Claimed Agent 40 at 2026-11-11T22:36:07.912Z under run ID `agent40-gpt6-20261111T223607Z-independent-source-route-4e24c36f`. The 70-minute release threshold is 23:46:07.912Z. Do not refresh the lease; check the actual clock after every checkpoint.
