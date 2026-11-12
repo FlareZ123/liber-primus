@@ -240,6 +240,23 @@ function main() {
   const originalRank = rankPath(original);
   assert.equal(originalRank.repeats, 86);
   assert.deepEqual(unrankPath(originalRank.rank), original);
+  const zeroPositions = [];
+  let event = 0;
+  for (const page of original) {
+    for (let i = 1; i < page.length; i++, event++) {
+      if (page[i] === page[i - 1]) zeroPositions.push(event);
+    }
+  }
+  let zeroMaskRank = 0n;
+  for (let i = 0; i < zeroPositions.length; i++) {
+    zeroMaskRank += choose(zeroPositions[i], i + 1);
+  }
+  const zeroMaskCombinations = choose(N, K);
+  const originalLiftRank = rankMixed(bytes.map(x => Math.floor(x / 29)), radices);
+  const maskFromLowerLifts = originalLiftRank % zeroMaskCombinations;
+  const maskFromScaledLifts = originalLiftRank * zeroMaskCombinations / LIFT_BASE;
+  assert.notEqual(maskFromLowerLifts, zeroMaskRank);
+  assert.notEqual(maskFromScaledLifts, zeroMaskRank);
   const inverse = decode(original, bytes);
   const reproduced = encode(inverse.plain, inverse.salt);
   assert.deepEqual(reproduced.cipher, original);
@@ -267,6 +284,9 @@ function main() {
     enumerativeModel: {cap: K, requiredBitsApprox: log2BigInt(FULL) - log2BigInt(CODE_BASE),
       codebookBitLength: CODE_BASE.toString(2).length,
       messageSideBitLength: ((FULL - 1n - originalRank.rank) / CODE_BASE + 1n).toString(2).length},
+    originalMaskGate: {positions: zeroPositions.length, maskBitLength: zeroMaskCombinations.toString(2).length,
+      originalMaskFromGridLow: maskFromLowerLifts === zeroMaskRank,
+      originalMaskFromGridScaled: maskFromScaledLifts === zeroMaskRank},
     original: {decodedIoC: ioc(inverse.plain), first120Transliterated: candidates,
       exactCipherAndTableReencryption: true},
     control: {length: english.length, plaintextIoC: ioc(english),
