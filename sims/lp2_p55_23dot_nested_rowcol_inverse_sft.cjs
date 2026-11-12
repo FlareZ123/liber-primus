@@ -69,7 +69,11 @@ function main() {
     return (seed>>>0)/4294967296;
   }
   const trials=120000;
+  const red13Positions = [1,3,4,6,8,9,11,13,14,16,18,19,21];
+  const red13Set = new Set(red13Positions);
   let bothMod23=0, bothExactSourceQuotients=0;
+  let red13Sum512=0, tenSum508=0, joint512And508=0,
+    joint512508AndRowCol=0;
   for(let t=0;t<trials;t++) {
     const shuffle=words.map(word => {
       const result=word.map(item => item.value);
@@ -85,9 +89,22 @@ function main() {
     const a=totalAt(3), b=totalAt(4);
     if(a%23===0 && b%23===0) bothMod23++;
     if(a===253 && b===161) bothExactSourceQuotients++;
+    const twentyThree=shuffle.flatMap(word=>word.slice(2,word.length-2));
+    const red13=twentyThree.reduce((s,v,i)=>
+      s+(red13Set.has(i)?corpus.prime[v]:0),0);
+    const complement10=twentyThree.reduce((s,v,i)=>
+      s+(!red13Set.has(i)?corpus.prime[v]:0),0);
+    if(red13===512) red13Sum512++;
+    if(complement10===508) tenSum508++;
+    if(red13===512 && complement10===508) {
+      joint512And508++;
+      if(a===253 && b===161) joint512508AndRowCol++;
+    }
   }
   assert.equal(bothMod23,212);
   assert.equal(bothExactSourceQuotients,1);
+  assert.deepEqual([red13Sum512,tenSum508,joint512And508,
+    joint512508AndRowCol],[267,567,1,0]);
 
   const core23 = layers[2];
   const at23 = new Map(core23.map((item,i) => [item.pagePosition,i]));
@@ -111,6 +128,17 @@ function main() {
     for(let col=0;col<5;col++)
       if(originalStencil[row][col] === "#") cells.push([row,col]);
   assert.equal(cells.length,23);
+  const derivedRed13 = cells.flatMap(([row,col],i) =>
+    col===0 || col===2 || col===4 ? [i] : []);
+  assert.deepEqual(derivedRed13,red13Positions);
+  const complementPositions=cells.flatMap(([row,col],i) =>
+    col===1 || col===3 ? [i] : []);
+  assert.equal(complementPositions.length,10);
+  const original13PrimeSum=red13Positions.reduce((s,i) =>
+    s+corpus.prime[core23[i].value],0);
+  const original10PrimeSum=complementPositions.reduce((s,i) =>
+    s+corpus.prime[core23[i].value],0);
+  assert.deepEqual([original13PrimeSum,original10PrimeSum],[512,508]);
   const mod = x => (x%29+29)%29;
 
   // Decode y_i = x_i - x_(rowKey[row]) - x_(colKey[col]) mod29.
@@ -199,9 +227,16 @@ function main() {
       nineRunesGpPrimeSum:sourceNineSum,
       fiveRunesGpPrimeSum:sourceFiveSum,
       checksumIdentities:["253=23*11","161=23*7"],
+      red13DotPositions:red13Positions,
+      complementaryTenDotPositions:complementPositions,
+      red13DotPrimeSum:original13PrimeSum,
+      complementTenDotPrimeSum:original10PrimeSum,
+      total23PrimeSum:original13PrimeSum+original10PrimeSum,
+      red13SplitIdentity:"512=2^9, 508=2^9-4; 1020=4*(2^8-1)",
       wordPreservingNull:{trials,seed:"0x55323",bothMod23,
         bothExactSourceQuotients,moduloRate:bothMod23/trials,
         exactRate:bothExactSourceQuotients/trials,
+        red13Sum512,tenSum508,joint512And508,joint512508AndRowCol,
         warning:"Postselected arithmetic equalities; conditional controls, not discovery probability"},
       p57UniqueRed23:{rows:9,columns:5,pattern:originalStencil},
       layer23:gp(source),
