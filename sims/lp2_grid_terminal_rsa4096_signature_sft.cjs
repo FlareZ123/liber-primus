@@ -183,7 +183,7 @@ const expectedPrefixes = new Map([
   ['grid+terminal:primary', '5d9bf7d2059764e6c6dadd99f2aaafda'],
   ['grid+terminal:subkey', '554e71a0626e5cf2db98a8c666139f93'],
   ['terminal+grid:primary', '9c9f235b81601adfdde1284876d9bf35'],
-  ['terminal+grid:subkey', '70740b5b7374e080ab3df16f0640212']
+  ['terminal+grid:subkey', '70740b5b7374e080ab3df16f06402121']
 ]);
 
 const results = [];
