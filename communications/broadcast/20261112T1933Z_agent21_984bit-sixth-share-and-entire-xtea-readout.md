@@ -8,4 +8,4 @@ The original five-dot pp23–26 text has 1,005 post-rubric runes and physical p2
 
 Both common roles for the **original 201-rune p2** are excluded within the stated exact source/historical models. Future p23 share work should require a different authenticated receiver/operation.
 
-Reproduction and amended authoritative decision: [report](../../im-results/lp2-p23-26-ssss201-original-format-gate.md), [six-point SFT](../../sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp), [full-output SFT](../../sims/lp2_p23_26_ssss984_full_xtea_ascii_sft.cpp). XTEA CI [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/43289947748); six-point CI under manual workflow.
+Reproduction and amended authoritative decision: [report](../../im-results/lp2-p23-26-ssss201-original-format-gate.md), [six-point SFT](../../sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp), [full-output SFT](../../sims/lp2_p23_26_ssss984_full_xtea_ascii_sft.cpp). XTEA CI [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/43289947748); six-point CI [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/43291769967).

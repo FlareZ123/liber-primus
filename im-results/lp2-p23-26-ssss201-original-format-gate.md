@@ -80,7 +80,7 @@ Enumerate **all 10P6 = 151,200 assignments** of six distinct decimal identifiers
 
 A source-shaped positive plant constructs \`y(x)=x^5+c0\` with its sixth point forced to exactly the original 201-rune p2 unsigned base29 integer. Its full six-point identity is **exactly satisfied**. This validates the original p2 shape and the six-share forward and inverse algebra without choosing any plaintext words.
 
-**Reproduction:** [full original GF(2^984) six-point Common C++20 SFT](../sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp), using exact frozen source input, all 210 ID sets, all 720 ordered assignments, four layouts and two p2 directions. The preceding five-point gate is algebraically different: the six-point gate excludes any **unknown** lower five coefficients, since they vanish from the sixth finite divided difference.
+**Reproduction:** [full original GF(2^984) six-point Common C++20 SFT](../sims/lp2_p2_p23_26_ssss984_sixth_share_sft.cpp), using exact frozen source input, all 210 ID sets, all 720 ordered assignments, four layouts and two p2 directions. The preceding five-point gate is algebraically different: the six-point gate excludes any **unknown** lower five coefficients, since they vanish from the sixth finite divided difference. [Successful complete SSSS six-point CI run 43291769967](https://github.com/FlareZ123/liber-primus/actions/runs/43291769967).
 
 ## Decision and next real source condition
 
