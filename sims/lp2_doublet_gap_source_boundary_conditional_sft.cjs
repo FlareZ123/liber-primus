@@ -152,10 +152,55 @@ function conditionalNull(groups, seed, trials) {
   };
 }
 
+
+/**
+ * Original rune-word and printed-line roles for every eligible event site.
+ * The canonical corpus alone loses separators. Independent transcription
+ * segments omit the runeless numerical page p50, as the original parser does.
+ * The literal delimiter classes are source-defined, prior to this test.
+ */
+const transcript = fs.readFileSync(
+  path.join(root, '..', 'lp2-transcription.txt'), 'utf8');
+const segments = transcript.split('%').slice(0, 55);
+const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const roleByPosition = new Map();
+assert.equal(segments.length, 55);
+for (let segment = 0; segment < segments.length; segment++) {
+  const page = segment < 50 ? segment : segment + 1;
+  const original = corpus.pages.find(p => p.page === page);
+  const base = pageOffset.get(page);
+  const observed = [];
+  let local = 0;
+  let separator = '';
+  for (const glyph of segments[segment]) {
+    if (runeIndex.has(glyph)) {
+      observed.push(runeIndex.get(glyph));
+      if (local > 0) {
+        const word = Number(/[-.&$§]/u.test(separator));
+        const line = Number(/[\/\r\n]/u.test(separator));
+        roleByPosition.set(base + local, word + 2 * line);
+      }
+      local++;
+      separator = '';
+    } else if (local > 0) separator += glyph;
+  }
+  assert.deepEqual(observed, original.indices,
+    'original physical LP2 page transcription ' + page);
+}
+assert.equal(roleByPosition.size, eligible.length);
+const originalRoleCounts = Array.from({length: 4}, (_, cls) =>
+  eligible.filter(x => siteSet.has(x.position) &&
+    roleByPosition.get(x.position) === cls).length);
+assert.deepEqual(originalRoleCounts, [60, 22, 3, 1]);
+
 const chapters = makeGroups(x => String(chapter(x.page)));
 assert.deepEqual(chapters.map(x => x.count), [4,6,9,10,11,13,12,18,3]);
 const physicalPages = makeGroups(x => String(x.page));
 const fragmentPage = makeGroups(x => `${fragmentIndex(x.position)}:${x.page}`);
+const roleGroups = makeGroups(x => String(roleByPosition.get(x.position)));
+const pageRoleGroups = makeGroups(x => `${x.page}:${roleByPosition.get(x.position)}`);
+const fragmentPageRoleGroups = makeGroups(x =>
+  `${fragmentIndex(x.position)}:${x.page}:${roleByPosition.get(x.position)}`);
 assert.equal(physicalPages.length, 55);
 assert.equal(fragmentPage.length, 72);
 
@@ -172,14 +217,23 @@ const results = {
     'Dukotah/cicada3301 Round44 W2-B3 T7, flat Bernoulli p=0.0010; independent 20000-draw gap-permutation p=0.00025',
   chapterCounts: chapters.map(x => x.count),
   source13DotBoundaries: boundaries,
+  sourceWordLineDoubletCounts: originalRoleCounts,
+  sourceWordLineRoleEligibleCounts: roleGroups.map(x => x.positions.length),
   nulls: {
     chapterCountFixed: conditionalNull(chapters, 0x48b3c201, 20000),
     physicalPageCountFixed: conditionalNull(physicalPages, 0x48b3c202, 20000),
-    pageAnd13DotFragmentCountFixed: conditionalNull(fragmentPage, 0x3301c1b2, 20000)
+    pageAnd13DotFragmentCountFixed: conditionalNull(fragmentPage, 0x3301c1b2, 20000),
+    wordAndLineRoleCountFixed: conditionalNull(roleGroups, 0x3301b003, 20000),
+    pageAndWordLineRoleCountFixed: conditionalNull(pageRoleGroups, 0x3301b001, 20000),
+    pageAndFragmentAndWordLineRoleCountFixed: conditionalNull(
+      fragmentPageRoleGroups, 0x3301b002, 20000)
   },
   plantedLag1: lag1GapPearson(planted)
 };
 assert.ok(results.nulls.chapterCountFixed.upperTailP < 0.001);
 assert.ok(results.nulls.physicalPageCountFixed.upperTailP < 0.02);
 assert.ok(results.nulls.pageAnd13DotFragmentCountFixed.upperTailP < 0.02);
+assert.equal(results.nulls.wordAndLineRoleCountFixed.upperTailCount, 7);
+assert.equal(results.nulls.pageAndWordLineRoleCountFixed.upperTailCount, 115);
+assert.equal(results.nulls.pageAndFragmentAndWordLineRoleCountFixed.upperTailCount, 58);
 console.log(JSON.stringify(results, null, 2));
