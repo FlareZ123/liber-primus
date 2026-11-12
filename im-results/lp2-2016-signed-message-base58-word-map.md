@@ -1,6 +1,6 @@
 # 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
 
-**Status: the base-58 map remains provisional. A source-attested ING reading of MEANING now points to independently decrypted DEEP at p56 word 4, adding a second distinct solved-word anchor alongside END; no unknown LP2 text is decrypted. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The selected p32 13-rune window is negative as a direct period-13 additive key. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions.**
+**Status: the base-58 map remains provisional. A source-attested ING reading of MEANING now points to independently decrypted DEEP at p56 word 4, adding a second distinct solved-word anchor alongside END; no unknown LP2 text is decrypted. Its full 43-word output, after p57 circumference stripping, yields a 91-symbol 7×13 stream; simple uses against the 273-symbol p29 residual are negative. The selected p32 13-rune window is negative as a direct period-13 additive key. The p32 M7 route and separate base-29 line:character PRNG reading remain provisional, not decryptions. The 43 compass landing-cell readout is nonlinguistic, and direct word-length, initial-rune and table-byte subtraction controls are negative.**
 
 ## Hypothesis
 
@@ -172,6 +172,24 @@ Under base60, `3D` is **193**. The existing [p50/p55 source-selector gate](lp2-2
 
 The `lies`→p50 address and FOLD/END correspondences are exact conditional outcomes of the proposed map, but their selection and interpretation do not establish that a contemporary solver was meant to use this map. The 42/43 in-bounds result is not discriminating under the documented phase-shift null. The special treatment of `lies` as a table-cell pointer was adopted after the absent rune word was observed. The signed message's grammatical subject is the book, and no historical clue has been found prescribing a 43-way correspondence. The new p32 13-rune W/infinity route is a candidate navigation constraint, but the next meaningful advance still requires an independently fixed reversible operation or key/state that makes a held-out original-ciphertext prediction. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
 
+
+### 43 compass landing cells: direct readout (negative)
+
+The fixed 43-byte route above has a natural second readout: after each direction/distance step, read the GP rune in the p32 cell just reached. The origin `(3,0)` is a start anchor, not one of the 43 word-aligned landings. In signed-message order, the 43 landing cells yield:
+
+```text
+H Y D B O NG AE N TH L M IA M I S H TH M L B A B X T B X NG M T J M W NG D EO IA H H B F D X X
+```
+
+This is a 43-rune intermediate, not recognizable plaintext (21 distinct symbols; IoC 0.04651). Three fixed source-derived additive checks also fail: subtracting the 43 signed-word lengths, subtracting the first GP rune of each signed word, or subtracting the corresponding p50 table byte modulo 29 gives, respectively:
+
+```text
+word lengths: O D M P IA P L G A S P AE T W EO O EA T B EO B S J EO X N X T P TH S R E M I OE R R J A E H W
+word initials: F A I Y X O I W H F G B B O C U W B U S C W EO EO OE EO EO A X B R EO A T A IA TH B F F I P J
+table bytes:  N IA EA I A R U E IA D NG NG F C U O G OE B X E EO EO U O R E L U P AE NG AE Y G B A O E R I D AE
+```
+
+The exact landing sequence and these three one-step subtraction controls are asserted by the [standalone compass SFT](../sims/lp2_2016_43word_compass_sft.cjs). This closes the most literal map-cell readout; it does not rule out a further source-specified operation, but no plaintext or key follows from the direct read or these controls.
 
 ## The p32 13-rune window as a period-13 additive key: negative
 
@@ -417,6 +435,6 @@ This stream is not readable plaintext; its 4×29 length is only a structural obs
 
 ## Current decision and reopening gate (11 November 2026)
 
-The base-58 word addresses and p32 M7 W/infinity route remain provisional. The full-map PARABLE-stripped 91-symbol plane is a new structural consequence, but its direct 3×91 key/field uses against the p29 residual are negative; 3×7×13 is not a decoder. FOLD/p50 3D and two solved p56 targets END/DEEP are conditional map coincidences: the source-matched ING-inclusive null yields 6/58 exact page origins and 5,050/50,000 shuffled prime assignments with two distinct solved targets, so the #304 no-selector conclusion remains. No source-fixed tensor orientation/state exists; do not repeat arbitrary fold, orientation, or axis sweeps.
+The base-58 word addresses and p32 M7 W/infinity route remain provisional. The 43 compass landing-cell readout is a nonlinguistic intermediate; the direct word-length, initial-rune and table-byte subtraction controls are negative. The full-map PARABLE-stripped 91-symbol plane is a new structural consequence, but its direct 3×91 key/field uses against the p29 residual are negative; 3×7×13 is not a decoder. FOLD/p50 3D and two solved p56 targets END/DEEP are conditional map coincidences: the source-matched ING-inclusive null yields 6/58 exact page origins and 5,050/50,000 shuffled prime assignments with two distinct solved targets, so the #304 no-selector conclusion remains. No source-fixed tensor orientation/state exists; do not repeat arbitrary fold, orientation, or axis sweeps.
 
 A separate exploratory base-29 line:character mapping yields an apparent PRNG marker and a 13-token remainder. The subsequent source-selector audit in [2016-linechar-13token-prng-seed64-gate](2016-linechar-13token-prng-seed64-gate.md) found that the apparent marker depends on an unsupplied quotient/remainder orientation, punctuation counting, Latin-to-GP tokenization, and selecting signed-message words rather than LP words. Therefore neither PRNG nor its 64-bit remainder is authenticated as a source instruction or seed; reproducing the same output in two transcriptions does not resolve those choices. The PRNG seed is not a basis for further generic generator/seed searches. The 2012 P.S. RSA modulus/exponent remains a candidate, not a fact; simple RSA/RC4/MT stream-XOR and additive-key interpretations have failed. Do not broaden generic seed sweeps or continue unmotivated base-58 codecs.
