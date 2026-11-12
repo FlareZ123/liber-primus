@@ -21,3 +21,5 @@ jobs:
         run: node sims/lp2_quote405_kjv_source_crib_sft.cjs KJV.txt
       - name: Recover any complete-KJV crib across all 2,896 unknown LP2 words
         run: node sims/lp2_whole_kjv_wordlength_crib_sft.cjs KJV.txt
+      - name: Full-KJV recovery allowing one decorative rune per source word
+        run: node sims/lp2_scripture_one_null_crib_sft.cjs kjv KJV.txt
