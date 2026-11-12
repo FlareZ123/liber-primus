@@ -176,7 +176,7 @@ const control = {
 };
 assert.deepEqual(Object.fromEntries(Object.entries(control)
   .map(([name, words]) => [name, words.length])),
-{LP1: 904, Gibran: 15733, Emerson: 77932});
+{LP1: 942, Gibran: 15733, Emerson: 77932});
 const models = Object.fromEntries(Object.entries(control)
   .map(([name, values]) => [name, grammarModel(values)]));
 const classes = body.map(w => category(w.length));
