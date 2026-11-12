@@ -1,4 +1,4 @@
-name: LP2 761-DH5 terminal source test
+name: LP2 terminal source gates 761-DH5 and prime-echo
 on:
   workflow_dispatch:
 
@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Assert 2013 761/DH5 and complete original p55 inverse
         run: node sims/lp2_761_dh5_terminal_headings_original_sft.cjs
+      - name: Assert 2013 prime-echo tail as p55 predecessor to p56 reset
+        run: node sims/lp2_p55_prime_echo_endpoint_source_sft.cjs
