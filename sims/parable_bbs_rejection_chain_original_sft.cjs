@@ -202,6 +202,10 @@ for (const [name, key] of Object.entries(keyStreams)) {
         eaConsumes, ivConsumes, "all", maxSkip);
       assert(found.firstFailure);
       assert(found.firstFailure.physicalPage <= 2);
+      const phaseZeroPageResets = original.filter((p) =>
+        reach([p.indices], key, eaConsumes, ivConsumes,
+          "zero", maxSkip).firstFailure === null).length;
+      assert(phaseZeroPageResets <= 3);
       const positive = plant(native, key, eaConsumes, ivConsumes);
       const recovered = reach(positive.result, key,
         eaConsumes, ivConsumes, "zero", maxSkip);
@@ -210,6 +214,7 @@ for (const [name, key] of Object.entries(keyStreams)) {
       findings.push({name, keyPeriod:key.length,
         longestCyclicEqualKeyRun:maxSkip, eaConsumes, ivConsumes,
         original:found,
+        phaseZeroPageResets:{survivingOriginalPages:phaseZeroPageResets,total:55},
         planted:{allNativePagesRecognized:true,
           originalShapeNativeRunes:12956, eaMarkers:positive.eaMarkers,
           rejectedKeyDraws:positive.discarded}});
