@@ -270,7 +270,78 @@ for(const source of sourceFamily) {
   }
 }
 
+/**
+ * Complete, all-secret monoalphabetic source-family gate over every one of
+ * the seven original quotation windows; quotes shorter than the prior
+ * 12-word gate now get the full equality constraint as well.
+ */
+function stationaryMono(candidateCipher,candidatePlain) {
+  if(candidateCipher.length!==candidatePlain.length)return false;
+  const forward=new Map(),backward=new Map();
+  for(let i=0;i<candidateCipher.length;i++) {
+    const c=candidateCipher[i],p=candidatePlain[i];
+    if((forward.has(c)&&forward.get(c)!==p)
+      ||(backward.has(p)&&backward.get(p)!==c))return false;
+    forward.set(c,p);backward.set(p,c);
+  }
+  return true;
+}
+const allQuoteTargets=quotes.map(q=>{
+  const selected=original.filter(w=>w.start>=q.start&&w.end<=q.end);
+  return {
+    lengths:selected.map(w=>w.length),
+    cipher:selected.flatMap(w=>[...w.glyphs].map(g=>corpus.runes.indexOf(g)))
+  };
+});
+const expectedWholeQuotePairs={
+  "Emerson Essays First Series #2944":[
+    [22,5,570,0,0,0,0],
+    [22,6,578,0,0,0,0]
+  ],
+  "Tennyson 1832":[
+    [0,0,5,0,0,0,0],
+    [0,0,5,0,0,0,0]
+  ],
+  "Tennyson 1842":[
+    [0,0,3,0,0,0,0],
+    [0,0,3,0,0,0,0]
+  ]
+};
+const allQuoteMonoGate=[];
+for(const source of sourceFamily) {
+  const raw=read(source.file);
+  const words=source.id.startsWith("Tennyson")
+    ?poemWords(raw):(raw.toUpperCase().match(/[A-Z]+/gu)||[]);
+  for(const [mode,foldIng] of [true,false].entries()) {
+    const native=words.map(w=>nativeWord(w,foldIng));
+    for(const [quoteIndex,q] of allQuoteTargets.entries()) {
+      let exactLengthCount=0,secretMonoCount=0;
+      for(let i=0;i+q.lengths.length<=native.length;i++) {
+        if(!q.lengths.every((n,j)=>native[i+j].length===n))continue;
+        exactLengthCount++;
+        const plain=native.slice(i,i+q.lengths.length).flat();
+        if(stationaryMono(q.cipher,plain))secretMonoCount++;
+      }
+      assert.equal(exactLengthCount,
+        expectedWholeQuotePairs[source.id][mode][quoteIndex]);
+      assert.equal(secretMonoCount,0);
+      allQuoteMonoGate.push({
+        source:source.id,foldIng,quoteIndex,
+        sourceWords:words.length,quoteWords:q.lengths.length,
+        originalRunes:q.cipher.length,exactLengthCount,secretMonoCount
+      });
+    }
+  }
+}
+// Source-native all-secret positive: a 14-word Tennyson passage permuted
+// through any nonzero GP29 affine alphabet relabeling remains feasible.
+const plainPositive=poemWords(read(sources[0].file)).slice(200,214)
+  .flatMap(w=>nativeWord(w,true));
+const monoPositive=plainPositive.map(p=>(p*11+7)%29);
+assert(stationaryMono(monoPositive,plainPositive));
+
 console.log(JSON.stringify({
+  allQuoteMonoGate,
   quote2AllSecretGate,
   editions:sourcesAudited,originalWords:original.length,
   originalRuneCount:12956,positivePlant:"source-native 34-word recovered",
