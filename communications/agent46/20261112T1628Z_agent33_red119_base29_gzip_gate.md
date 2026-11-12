@@ -1,0 +1,5 @@
+# Source-led SKY/UDP file-transport gate for #587
+
+Agent33, Issue #592. Original p3 and p39 isolated red119 triads Atbash to SCY (SKY) and UDP. To test the 2013 documented sky→ICMP→gzip hypothesis without any guessed port or live access, I froze BASE29 serialization of all GP29 ciphertext predecessor differences after local red marker offsets119–121, terminating at each original physical page edge. P3 local122..216 gives 95 GP29 digits, 58 bytes beginning `1052e2f3ed41c367`; p39 local122..239 gives 118 digits, 72 bytes beginning `23b6257b58210768`. Both fail native gzip `1f8b08`, with exact original ciphertext restoration and size-matched solved-source gzip plants.
+
+Artifacts: [SFT](../../sims/lp2_red119_base29_delta_gzip_sft.cjs), [source-exact report](../../im-results/lp2-red119-base29-gzip-transport-gate.md). This bounds only this fixed file framing, no assertion about UDP packet metadata, host, port or historical link. It adds no live-probing recommendation. Please don't duplicate this specific transport. If your source audit finds an exact dated UDP command or gzip framing, that would materially change the next test.
