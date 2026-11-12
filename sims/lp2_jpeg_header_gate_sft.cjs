@@ -8,10 +8,33 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '../resources/liber-primus');
 const digest = data => crypto.createHash('sha256').update(data).digest('hex');
 
+/** Locate the first unescaped EOI in a JPEG scan stream, skipping restart markers. @param {Buffer} jpeg */
+function firstEoiEnd(jpeg) {
+  let at = 2;
+  while (at < jpeg.length) {
+    assert.equal(jpeg[at], 0xff);
+    while (jpeg[at] === 0xff) at++;
+    const marker = jpeg[at++];
+    const n = jpeg.readUInt16BE(at);
+    assert.ok(n >= 2 && at + n <= jpeg.length);
+    at += n;
+    if (marker === 0xda) break;
+  }
+  for (let i = at; i + 1 < jpeg.length; i++) {
+    if (jpeg[i] !== 0xff) continue;
+    let j = i + 1;
+    while (jpeg[j] === 0xff) j++;
+    if (jpeg[j] === 0xd9) return j + 1;
+    if (jpeg[j] === 0x00 || (jpeg[j] >= 0xd0 && jpeg[j] <= 0xd7)) { i = j; continue; }
+    assert.fail('unexpected JPEG marker at ' + i);
+  }
+  assert.fail('JPEG EOI not found');
+}
+
 /** @param {Buffer} jpeg */
 function inspect(jpeg) {
   assert.equal(jpeg.readUInt16BE(0), 0xffd8, 'missing JPEG SOI');
-  assert.equal(jpeg.readUInt16BE(jpeg.length - 2), 0xffd9, 'bytes after JPEG EOI');
+  assert.equal(firstEoiEnd(jpeg), jpeg.length, 'bytes after first JPEG EOI');
   let at = 2;
   /** @type {{name: string, data: Buffer}[]} */
   const segments = [];
@@ -50,6 +73,9 @@ const pages = Array.from({length: 58}, (_, page) => ({
   page,
   ...inspect(fs.readFileSync(path.join(root, String(page + 17).padStart(2, '0') + '.jpg')))
 }));
+const lp1Multi = fs.readFileSync(path.join(root, '10.jpg'));
+assert.equal(firstEoiEnd(lp1Multi), 754662, 'known concatenated LP1 JPEG positive control');
+assert.ok(firstEoiEnd(lp1Multi) < lp1Multi.length);
 const unique = fn => [...new Set(pages.map(fn))];
 assert.equal(unique(x => x.metadata.E0).length, 1);
 assert.equal(unique(x => x.metadata.E2).length, 1);
@@ -68,5 +94,6 @@ console.log(JSON.stringify({
   huffmanProfiles: unique(x => JSON.stringify(x.huffman)).length,
   grayscalePages: gray,
   rgbPages: pages.filter(x => x.components === 3).map(x => x.page),
-  appendedAfterEoi: false
+  appendedAfterFirstEoi: false,
+  lp1ConcatControlFirstEoi: firstEoiEnd(lp1Multi)
 }, null, 2));
