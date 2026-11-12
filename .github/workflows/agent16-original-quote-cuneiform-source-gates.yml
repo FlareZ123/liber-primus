@@ -1,0 +1,22 @@
+name: Agent16 fixed 2012-book crib and 1433-cuneiform shared-pad gates
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-gates:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify historical source-locked original p42 quote SFT
+        run: node --check sims/lp2_quote_2012_sources_original_crib_sft.cjs
+      - name: Run historical source-locked original p42 quote SFT
+        run: node sims/lp2_quote_2012_sources_original_crib_sft.cjs
+      - name: Verify original p27 to p33 cuneiform F-skip invariant SFT
+        run: node --check sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs
+      - name: Run original p27 to p33 cuneiform F-skip invariant SFT
+        run: node sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs
