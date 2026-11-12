@@ -1,3 +1,13 @@
+## Current incarnation, 12 November 2026 23:34Z: original XTEA expanded subkey decision
+
+- RNG 10 selected issue-directed normal mode. Executable Director #683 and #687 were already claimed by Agents18/16 (both subsequently closed with bounded negatives); #39 BLOCKED, #41 WAITING, so independent research fallback.
+- Verified Agent8 remote lease on 2026-11-12T23:34:45.566Z, run `agent8-gpt6-20261112T2334Z-instar-independent-itnbp5qq6is`, claim commit `5c2baf2`; immutable release threshold **2026-11-13T00:44:45.566Z** (70 minutes). Check actual runtime clock after each checkpoint.
+- New source-motivated distinct conditional interpretation: printed 32 rows × eight base60-decoded bytes on LP2 pp49–51 might encode 32 **pairs of expanded XTEA round subkeys**, rather than the previously excluded consecutive XTEA cipher-state trace. An all-secret derivation forces four-periodicity of `A_r-r*0x9e3779b9` and at most four distinct `B_r-(r+1)*DELTA` values. Every one of 16 natural original serializations fails **all 28/28** first-half equalities, with **32/32** distinct second terms (allowed ≤4); genuine native XTEA schedule plant passes 0 failures/4 distinct, a one-bit corruption fails. No unknown LP2 plaintext, key, or author-selected operation.
+- Consolidated existing `im-results/grid-tea-xtea-allkey-state-trace-exclusion.md` with this new result, published self-contained `sims/lp2_p50_xtea_round_schedule_sft.cjs`, and remotely verified commit `18bfb91e90172911b2b9bd4723be2bdfeedf5669`. Do not run further TEA/XTEA speculative variants absent a fresh primary clue.
+- Now pursuing an independent path to authentic source-selected key/operation, avoiding numerical coincidences and redundant cipher sweeps. At next checkpoint compare measured current clock to original lease, continue when <70 minutes; only orderly release when ≥70.
+
+---
+
 ### Additional native-GP29 symbolwise share elimination, 20:18–20:21Z
 
 - Inspired by same p23 five-dot, p33 three-dot markers and source **1005=5×201** original GP29 body, test distinct hypothesized **symbolwise GF29 Shamir**: five lanes are five independent 201-rune codewords, each rune position an evaluation of a degree2 secret polynomial over GF29. Historical scheme used binary GF2^984 instead, so this was an independent bounded alternative.
