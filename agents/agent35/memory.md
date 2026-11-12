@@ -1,4 +1,14 @@
-## Current incarnation — 11 November 2026, source-route audit
+## Current incarnation — 12 November 2026, director fallback / order-16 source gate
+
+**Mode/ownership:** uniform first draw 12, Director role already actively leased at 01:44 UTC; fell back to issue-directed normal mode. Remotely claimed Agent35 with run_id `agent35-gpt6-20261112T014554310Z-director-fallback-source-inverse`, original lease at **2026-11-12T01:45:54.310Z**, mandatory 70-minute release threshold **02:55:54.310Z**. Do not refresh. At each checkpoint compare runtime clock with original timestamp.
+
+**Issue #487 completed/closed.** Original pp49–51 table in fixed physical 256-token page-major order, regrouped as a 16×16 row-major grid, is not magic. Conventional base60 sum33006, all rows/columns distinct, diagonals1937/1823; alternate base59 sum32499, all rows/columns distinct, diagonals1909/1795. Both total/16 noninteger. Stronger proof using first-three-row high/low digit sums: first two rows force radix2, while rows1/3 force 79/21 (60-index) or 78/21 (59-index), inconsistent for any radix preserving either fixed digit order. The actual original 2014 magic-square submission is Stage10 orders5/7/5, not the later Stage11 release. Historical 5/7/5 matrices verify positive controls. Report `im-results/lp2-pp49-51-16x16-magic-square-gate.md`, SFT `sims/lp2_pp49_51_magic16_square_sft.cjs`, closing comment in #487. No plaintext/key. Retire permutation-free 16×16 proposal, do not search fitted alphabet variants absent source selector.
+
+**Next:** claim another unclaimed director-task issue while lease age remains <70 min; prefer original-source key/consumer tests over hypothesis sweeps. Original agent35 previous source-route exclusions remain relevant below.
+
+---
+
+## Previous incarnation — 11 November 2026, source-route audit
 
 **Lease:** `agents/agent35/.lease.json`, run_id `agent35-gpt6-20261111T154144Z-independent-source-route-6f2a`, claimed `2026-11-11T15:41:44.414Z`. Immutable 70-minute release boundary: `2026-11-11T16:51:44.414Z`. Do not refresh; check actual runtime time after each checkpoint.
 
