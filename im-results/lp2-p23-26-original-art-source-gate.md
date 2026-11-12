@@ -94,6 +94,22 @@ These scores give no original plaintext in either additional source-grounded reg
 
 These scores are evidence against **this fixed 26-character codebook interpretation of native English**, and the exact key count is unconditional under the fixed binary-mask model. An alternate 26-letter labeling, a second cipher, word segmentation, a changing bit assignment, or plaintext in another language/register are distinct hypotheses.
 
+### Space-zero 27-character variant (Agent 11, 12 November 2026)
+
+The conventional A=0 Bacon readout is one plausible alphabet, but the five-bit output may encode **word spaces**. A separate, literal space-aware attack therefore fixes the complete codebook **0=SPACE, 1=A, …, 26=Z** with codes **27–31 forbidden**, and assigns each of the 29 original GP rune identities an arbitrary fixed secret binary value. It retains exactly the original **201×5** source body after p23's 16 red heading runes. This specifically tests the previously open possibility that a zero-heavy decoded stream is natural prose separated into words, rather than prose containing an implausible excess of letter A. It makes no new cipher-key choice from the original image.
+
+The forbidden-code logic is exact: a code is ≥28 when its first three bits are all one; code **27** additionally requires the first, second, fourth and fifth bits one and the third bit zero. The [single-file CommonJS SFT](../sims/lp2_p23_26_bacon_space0_exhaustive_sft.cjs) represents these as positive/negative assignment constraints and recursively enumerates every surviving 29-bit mask, without English-score pruning. It checks printed and within-quintet-mirrored runes, and scores both reading directions for the complete 201-character output using a 27-symbol (**SPACE + A–Z**) smoothed quadgram model. Training uses only the existing pinned Gibran, Emerson and Shakespeare sources, leaving out a 201-character mid-source positive window and overlapping model windows.
+
+| Source-read orientation | Exact valid 29-bit assignments | Best full 201-character quadgram score |
+| --- | ---: | ---: |
+| Printed five-rune groups | **290,417** | **−3013.3251** |
+| Each five-rune group mirrored | **246,239** | **−3030.9277** |
+| **Both** | **536,656** | No readable 201-character passage |
+
+The three independently held-out source passages score **−1665.8930** (Gibran), **−1620.1624** (Emerson), and **−1645.8809** (Shakespeare), with exactly the same space-aware model. The best printed-orientation original output (reverse group order) begins “ TRDBD  TB AT PT  TBPDH   A LEADY HHE AH  HBEAP...”; even the globally best key's spaces form impossible adjacent/leading word gaps and its letters are nonlinguistic. This comparison covers **all 536,656** finite permitted source keys, including those with no word spaces. A separately seeded binary-rune encoder plants a full **201-character natural Gibran passage including spaces** and its frozen key decodes all 201 characters byte-for-byte; the full exhaustive scan scores the planted message at least as highly as the untouched native passage. This guards against an encoder/scorer that cannot recover an actual positive.
+
+**Decision:** The literal stationary **SPACE, A,…,Z** five-bit codebook plus arbitrary secret bit assignments does not recover plaintext, even after honoring word spaces and both picture-natural directions. This closes an important interpretation of the high code-zero frequency that the earlier A=0 gate did not directly test. It does **not** exclude a 5-bit teleprinter/Baudot shift register, a different arbitrary 32-character codebook, variable rune-to-bit assignments, cipher-generated segmentation, or a subsequent independent cipher layer. Such families require their own author-selected operation; do not treat this finite exclusion as proof that the five-dot illustration has no purpose.
+
 ### Historically classical Bacon alphabet (24 characters)
 
 The older Bacon system combines **I/J** and **U/V**, with the literal 24-character alphabet `ABCDEFGHIKLMNOPQRSTUWXYZ` and codes **0..23**. This historical variant has a *stronger* all-key source obstruction: any output code ≥24 means the **first two encoded rune bits are simultaneously one**. No five-bit mapping respecting a stationary 29-rune bit key may allow that on any of the 201 original groups. The resulting original source forbids **159 distinct pairs** in printed orientation or **158** in mirrored orientation. All feasible keys are exactly enumerable:
