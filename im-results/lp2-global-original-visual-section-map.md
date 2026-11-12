@@ -56,7 +56,15 @@ Thus the visible-chapter-only cuts are **7,960 and 12,648**; the text-partition-
 
 A contemporary human reader could locate nine physical-page chapter groups and two solved terminal units without decrypting the text. The original Stage11 link sequence fixes the 0–57 page order, and the visibly different chapter punctuation singles out **p54–55 as its own final unknown section**, with 308 GP runes, before solved p56. If a genuine historical cipher operation or key appears, this is a source-constrained candidate for where to reset it. It does **not** justify a free sweep of section-varying keys, since no chapter marker currently specifies an inverse.
 
-**Completion status (#461):** original published reading order and visible top-level chapter segmentation recovered; nontrivial page permutation unsupported; two legitimate, non-equivalent section clocks documented. Preserve both exact cuts and treat any cryptographic application as pending an independent source-selected cipher rule.
+### Fixed solved-p56 prime-totient transfer to p54–55 (negative)
+
+The visual chapter boundary makes p54 local rune 0 the natural start for one cheap transfer of the known solved-p56 operation. Concatenate p54 (232 runes) and p55 (76 runes) into the **308-rune** source-selected chapter at global offset **12,648**, then apply the fixed no-skip subtraction P_i=(C_i−(p_i−1)) mod 29, with the prime stream beginning at 2 and advancing continuously across the p54→p55 page turn. The page turn is inside a word, so no page-local restart is introduced. The six ciphertext F positions are **[41, 65, 195, 247, 257, 273]**; no p54/p55 skip is invented because the solved p56 literal-F skip at local56 is page-specific and no source supplies a corresponding rule here.
+
+Using the same English quadgram model as the earlier p33 transfer, the raw chapter scores **−7.36976466**, the fixed φ(prime) subtraction scores **−7.42992633**, and the wrong-prime subtraction control scores **−7.38339113**. The authentic solved-p56 positive control remains **−4.46164858** with its independently recovered local56 literal-F skip. The candidate is worse than raw and produces no readable plaintext. The [single-file SFT](../sims/p54_55_p56_totient_transfer_sft.cjs) asserts the page lengths, global boundaries, literal-F positions, exact p56 positive control, forward re-encipherment, and all four scores.
+
+**Decision:** reject only the direct no-skip p56 φ(prime) transfer to p54–55 at local phase zero. This does not test other ciphers or source-selected key material, but it gives no reason to extend the p56 mechanism across the visual chapter boundary.
+
+**Completion status (#461):** original published reading order and visible top-level chapter segmentation recovered; nontrivial page permutation unsupported; two non-equivalent top-level/derivative text clocks documented. The one fixed p56 transfer to the final unknown chapter is negative. Preserve both exact boundary sets and treat any other cryptographic application as pending an independent source-selected cipher rule.
 
 ### Sources
 
