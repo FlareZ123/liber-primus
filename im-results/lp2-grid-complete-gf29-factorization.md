@@ -109,6 +109,23 @@ A full-rank secret affine plant \\(x,y)\\mapsto(2x+3y+5,7x+11y+13)\\pmod{29}\\) 
 
 **Decision:** the direct p3/p39 dual-prefix ↔ Q238 **stationary lookup** hypothesis is excluded for these natural source-fixed orderings, regardless of the hidden lookup alphabet. This result does not exclude position-dependent state, nonlocal transformations, other encodings or Q238 as a separately used key. It recovers no plaintext or historical cipher; do not add arbitrary exceptions to rescue the direct model.
 
+## The p3 primitive-u 119-byte discrete-log codec: all-source-pairings excluded (Agent44, 12 November 2026)
+
+**Source-selected mathematical hypothesis.** The red three-rune inscription on original p3 defines GF(29²) via `u²=3u+8`; the generator `u` has exact multiplicative order **840**. The printed pp49–51 256-cell table's established GF29 factorization gives monic **Q238** with 238 nonleading rune-valued coefficients, exactly **119 pairs**. Independently, p3 and p39 both place isolated red triads after exactly **119** preceding runes, and the original 2013 challenge used finite-field / BASE29 mathematics. A direct, human-computable and **invertible ASCII-byte encoding** would map each byte `b∈{0,…,255}` to the field element `u^b = a+bu` (two GP29 coefficients). Because `ord(u)=840>256`, this map is injective, requiring **no key or fitted phase**. A true source-borne 119-byte message would demand that **every** pair have a unique discrete logarithm in `0..255`.
+
+**One exhaustive finite original-input gate.** Divide the literal original 256 byte-cell polynomial by the exact verified degree16 small-factor product; all 16 remainder coefficients are zero, and Q238's 239 high-to-low coefficient bytes match SHA-256 `9cb443bed228623bbd522efcd73888d3a4870c3db0ddcc147011765f3c8a9eb3`. Freeze both source-justified pairings of the other 238 coefficients, adjacent pairs and two 119-coefficient halves, with the two coordinate orientations (no arbitrary offsets or modulus). Build the full 840-element discrete-log table from **the unmodified original p3 generator** and inspect the 119 exponents in each case:
+
+| Q238 coefficient pairing | Field coordinate order | Valid logs | Logs in byte range 0–255 | Printable ASCII logs 32–126 |
+| --- | --- | ---: | ---: | ---: |
+| Adjacent | `a,b` | 119/119 | **30/119** | 8 |
+| Adjacent | `b,a` | 119/119 | **30/119** | 12 |
+| Two 119-coefficient halves | `a,b` | 119/119 | **37/119** | 12 |
+| Two 119-coefficient halves | `b,a` | 119/119 | **33/119** | 7 |
+
+All four original registers have **82–89** exponents greater than255, so they **cannot** be ordinary byte strings under this exact generator without introducing a further arbitrary reduction/escape code. Their printable-ASCII counts are also far from a literal message. Every possible 8-bit value `0..255` was independently planted as `u^byte` and decoded back exactly; the original table, GF29 quotient and all source pairings are checked by [the reproducible SFT](../sims/lp2_q238_gf841_byte_discrete_log_sft.cjs). No fitted language model or external key is involved.
+
+**Decision:** retire the **direct** primitive-`u` 119-byte discrete-log serialization of Q238 under the two natural printed pairings and their coordinate reversals. This does **not** rule out a deliberately signaled non-ASCII exponent alphabet, a separately keyed affine exponent transform, a 840-ary intermediate or a different use of the quotient. Such additions need an independently sourced instruction before another computation. No previously unknown rune plaintext, key or original destination was recovered.
+
 ## Cross-artifact 119×2 affine register inverse
 
 The 238 nonleading coefficients of \(Q_{238}\) form 119 pairs. Two independent printed source dimensions offer a specific geometrical test: p53's **128 black** runes become **119** after dropping the p15 red title's **9** runes at either edge; the terminal **127** (51 p53-red + 76 p55) become **119** after dropping the grid's **8** columns at either edge. Test both edge choices, adjacent/half-block source pairing, source reversal/swap, and target reversal/swap: **128 exact original geometric alignments**.
