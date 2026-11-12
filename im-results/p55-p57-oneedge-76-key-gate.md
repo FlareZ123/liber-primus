@@ -1,6 +1,23 @@
-# P57 word-circumference stripping as an exact 76-rune p55 key
+# P57 word-circumference stripping: corrected 75-body and earlier 76-page hypotheses
 
-**Classification:** original-input negative for 12 source-sized, reversible finite decoders, now complemented by an exact three-artifact p50-ring/p55-cipher/p57-shaved-text key exclusion. No recovered p55 plaintext. This is a direct word-boundary key construction distinct from the earlier stationary 19-block affine code exclusion.
+**Classification:** two distinct source-sized, reversible word-edge keys tested on the **actual 75-rune p55 body**, and the earlier twelve 76-page decoders plus the printed numerical perimeter test. All original-input decodes fail to recover native-GP plaintext. These are finite operations suggested by the solved p57 command, not authenticated Cicada key instructions.
+
+## Corrected source-first 75-rune key: shave all twenty printed p57 words (12 November 2026)
+
+**Source boundary:** p55 starts with an `NG` rune completing p54's last word. Therefore its own **16 complete printed words contain 75 runes**. In independently solved p57, the seven-rune **PARABLE** heading and the 19 separately printed body words form **20 actual words totaling 95 runes**. One literal reading of “SHED OUR OWN CIRCUMFERENCES” removes exactly one first (or last) rune from **every one of the 20 complete p57 words**, including the heading. This produces two different **95−20=75** GP29 keys for the complete p55 body, without padding, guessing the carried rune, or truncating a key. The existence of an exact length fit does not independently select an additive cipher or prove intended key reuse.
+
+Hold fixed the printed p57 word order and GP29 indices, apply exactly `P[i]=(C55body[i]±K[i]) mod29` with phase zero, and retain the 16 original p55 word boundaries for output. No secret offset, wordwise restart, reverse read, F skip, or fitted parameter is permitted. The GP29 addition/subtraction choice comes from previously solved genuine LP1 Vigenère. All four original outputs fully re-encrypt the original 75 symbols and recover the same 75-runic solved-p57 control under a planted source key.
+
+| p57 word-edge removed (20 words) | Original-input decoding | Decoded p55-body IoC | Distinct key rune labels | Native readable plaintext? |
+| --- | --- | ---: | ---: | --- |
+| First rune | `C−K` | 0.03963964 | 21 | No |
+| First rune | `C+K` | 0.03423423 | 21 | No |
+| Last rune | `C−K` | 0.03351351 | 20 | No |
+| Last rune | `C+K` | 0.03819820 | 20 | No |
+
+Untouched original p55-body IoC is **0.03855856**, lower than the minimum **0.04540541** across all **3,462** independently solved LP1 75-rune overlapping native-GP controls. Every decoded candidate remains below the same native-language comparison floor and none forms coherent GP text. As a distinct necessary-condition check, treating either shaved 75-rune source as *literal* p55 plaintext under any monoalphabetic bijection plus transposition is impossible: the actual p55 body has **25** distinct GP labels while the candidate source has **21** or **20**. This label-count obstruction does **not** apply to the separate polyalphabetic additive key hypothesis.
+
+This **corrected 75-body test is distinct** from the previously archived 76-rune page-local read below, which keeps the seven-rune heading and shaves only the 19 body words. Both exact mappings are now tested, rather than interpreting either numerical coincidence as a decoder. The [standalone CJS original SFT](../sims/p55_p57_title20_shed75_source_sft.cjs) passed [manual GitHub Actions step 4](https://github.com/FlareZ123/liber-primus/actions/runs/43261681429). That whole workflow concludes failure at a **later, unrelated legacy `p55_2016_sha1_exterior_crib_inner_sft.cjs` score assertion**; its first four research steps, including this new test, all passed. The source-led 75-body edge key is therefore retired as a *direct* GP29 additive plaintext route, while other independently specified operations remain open.
 
 ## Fixed source-selected framing
 
