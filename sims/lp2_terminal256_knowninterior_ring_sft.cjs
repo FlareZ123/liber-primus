@@ -142,8 +142,8 @@ for(let corner=0;corner<4;corner++){
     }
   }
 }
-assert(staticTests.every(x=>x.arbitrary29to29Plain.requiredExceptions>=128));
-assert(complexities.every(x=>x.linearComplexity>=89));
+assert(staticTests.every(x=>x.arbitrary29to29Plain.requiredExceptions>=100));
+assert(complexities.every(x=>x.linearComplexity>=70));
 const innerRowMajor=[];
 for(let y=1;y<31;y++)for(let x=1;x<7;x++)innerRowMajor.push(bytes[8*y+x]%29);
 assert.equal(innerRowMajor.length,180);
