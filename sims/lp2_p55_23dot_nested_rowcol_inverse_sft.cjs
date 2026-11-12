@@ -45,6 +45,50 @@ function main() {
   const layers = Array.from({length:7}, (_, i) => peel(i));
   assert.deepEqual(layers.map((layer) => layer.length), [75,43,23,9,5,3,1]);
 
+  const activeWordsByPeel = Array.from({length:7},(_,depth) =>
+    words.filter(word => word.length > 2*depth).length);
+  assert.deepEqual(activeWordsByPeel,[16,11,7,3,1,1,1]);
+  const primeSum = (items) => items.reduce((sum,item) =>
+    sum + corpus.prime[item.value],0);
+  const sourceNineSum = primeSum(layers[3]);
+  const sourceFiveSum = primeSum(layers[4]);
+  assert.equal(sourceNineSum,253);
+  assert.equal(sourceFiveSum,161);
+  assert.equal(sourceNineSum,23*activeWordsByPeel[1]);
+  assert.equal(sourceFiveSum,23*activeWordsByPeel[2]);
+
+  // Source-word-position permutation control: only shuffle the rune values
+  // independently inside each complete original word, retaining every word's
+  // original rune multiset, position span and all seven layer lengths.
+  let seed=0x55323>>>0;
+  /** @returns {number} */
+  function random() {
+    seed^=seed<<13;
+    seed^=seed>>>17;
+    seed^=seed<<5;
+    return (seed>>>0)/4294967296;
+  }
+  const trials=120000;
+  let bothMod23=0, bothExactSourceQuotients=0;
+  for(let t=0;t<trials;t++) {
+    const shuffle=words.map(word => {
+      const result=word.map(item => item.value);
+      for(let i=result.length-1;i>0;i--) {
+        const j=Math.floor(random()*(i+1));
+        [result[i],result[j]]=[result[j],result[i]];
+      }
+      return result;
+    });
+    const totalAt=depth => shuffle.reduce((sum,word) =>
+      sum+word.slice(depth,word.length-depth).reduce((s,v)=>
+        s+corpus.prime[v],0),0);
+    const a=totalAt(3), b=totalAt(4);
+    if(a%23===0 && b%23===0) bothMod23++;
+    if(a===253 && b===161) bothExactSourceQuotients++;
+  }
+  assert.equal(bothMod23,212);
+  assert.equal(bothExactSourceQuotients,1);
+
   const core23 = layers[2];
   const at23 = new Map(core23.map((item,i) => [item.pagePosition,i]));
   const row9 = layers[3].map((item) => at23.get(item.pagePosition));
@@ -151,6 +195,14 @@ function main() {
     inputs:{
       page:55,completeWords:16,
       nestedSurvivorCounts:layers.map(layer=>layer.length),
+      activeWordsByPeel,
+      nineRunesGpPrimeSum:sourceNineSum,
+      fiveRunesGpPrimeSum:sourceFiveSum,
+      checksumIdentities:["253=23*11","161=23*7"],
+      wordPreservingNull:{trials,seed:"0x55323",bothMod23,
+        bothExactSourceQuotients,moduloRate:bothMod23/trials,
+        exactRate:bothExactSourceQuotients/trials,
+        warning:"Postselected arithmetic equalities; conditional controls, not discovery probability"},
       p57UniqueRed23:{rows:9,columns:5,pattern:originalStencil},
       layer23:gp(source),
       rowKey9:gp(row9.map(i=>source[i])),
