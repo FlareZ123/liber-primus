@@ -46,6 +46,23 @@ Apply each **fixed order** to (a) the five actual printed rune lines, (b) the 17
 
 The original visual placement also supports a simpler **section-boundary decoration** interpretation: p7's figure follows a red closing sentence and red thirteen-dot terminal mark; p23's figure precedes a red opening heading after p22's terminal mark; solved p56's figure follows its closing passage and red terminal mark. The repeated image can bookend separate passages without participating in their encryption. This is a plausible design reading, not authenticated author intent. The current source supplies no nontrivial operator that survives the solved p56 gate.
 
+## Key-free same-pad cancellation across stencil-linked chapters
+
+A separate full-ciphertext necessary-condition attack asks whether the two five-dot-linked sections reuse an unknown **1005-position GP29 additive pad**. This variant needs no guess at the pad or p56's solved key: if both original ciphertext sections are made by `C_i=(P_i+K_i+a) mod29`, where the per-section unknown `a` is an optional constant Caesar offset, the aligned difference `C^A_i−C^B_i` is the difference between the two plaintexts plus a constant. Its rune-histogram index of coincidence remains **exactly invariant under every such unknown pad and section-wide offset**. This is a stricter test of pure shared addition than searching particular seed bytes.
+
+The original p3–7 section has 1145 GP runes, of which the first 1005 are aligned with p23–26's post-red16 1005-rune chapter body. A human could choose the two source-visible forward/reversed chapter orientations, yielding **four fully fixed** differences without phase search or truncation other than the shorter chapter boundary. The observed difference IoCs are:
+
+| Original chapter directions | Difference IoC | Exactly matching rune pairs of 1005 |
+| --- | ---: | ---: |
+| p3–7 forward, p23–26 forward | 0.03432638 | 36 |
+| p3–7 forward, p23–26 reversed | 0.03404095 | 46 |
+| p3–7 reversed, p23–26 forward | **0.03456423** | 29 |
+| Both reversed | 0.03435611 | 33 |
+
+A deterministic, source-disjoint native-GP language control compares **200** independent length-1005 windows, each taking Shakespeare for one plaintext and Gibran's *The Prophet* for the other, using the repository's GP29 longest-match encoding. For each native pair, an independently generated 1005-symbol secret pad is added to both, and exact key cancellation recovers the genuine plaintext-difference string. The native difference IoC has **minimum 0.03487542** and **mean 0.03622118**, so **0/200** genuine native controls fall at or below even the strongest of the four original differences. Every one of 200 pads roundtrips exactly. This comparison is conditional on the two tested authors, 200 finite windows, the specified source boundaries and pure shared-pad architecture. It is not a discovery-wide false-positive probability.
+
+**Decision:** These complete section-pair results supply no evidence for a reused **pure GP29 additive pad**, including arbitrary distinct **fixed Caesar offsets per section**, under the sampled GP-English source register. A page-local varying offset, independent pad clocks, arbitrary substitutions after encryption, variable-rate encoding, ciphertext-dependent key skips, a different source register or an independently selected overlap could evade the invariant. Neither the dots nor the ciphertext actually establishes shared-pad reuse, so a larger unconstrained alignment hunt would be unjustified. The original-input SFT emits all four original differences, the 200 native controls and exact cancellation plants.
+
 ## Outcome and decision
 
 The original source streams and *best* possible symbol coincidence indices among the eight configurations for each fixed span/key choice are:
