@@ -120,6 +120,36 @@ assert.equal(matchOffsets.length, 51);
 assert.equal(matchOffsets[0], 0);
 assert.equal(matchOffsets[1], 178);
 
+// Complete period-13 plaintext/ciphertext autokey continuations. The
+// proposed red title provides all first 13 plaintext symbols by hypothesis,
+// so either traditional 2014-plausible autokey type specifies every
+// subsequent original rune without an additional search variable.
+const p0p2 = corpus.pages.slice(0, 3).flatMap((p) => p.indices);
+const autokey = [];
+for (const atbash of [false, true]) {
+  for (const feedback of ["ciphertext", "plaintext"]) {
+    const decoded = plaintext.slice();
+    for (let i = 13; i < p0p2.length; i++) {
+      const previous = feedback === "ciphertext"
+        ? p0p2[i - 13] : decoded[i - 13];
+      decoded.push(mod((atbash ? 28 - p0p2[i] : p0p2[i]) - previous));
+    }
+    assert.equal(decoded.length, 729);
+    assert.deepEqual(decoded.slice(0, 13), plaintext);
+    const segments = [
+      decoded.slice(13, 262),
+      decoded.slice(262, 528),
+      decoded.slice(528)
+    ];
+    const pageIoC = segments.map(ioc);
+    assert.ok(pageIoC.every((v) => v < 0.04));
+    autokey.push({
+      atbash, feedback, pageIoC,
+      starts: segments.map((x) => latin(x.slice(0, 60)))
+    });
+  }
+}
+
 // Second independent source comparison: three distinct red-title word-shapes
 // are each found exactly once as a contiguous phrase in the signed 2016 note.
 // This is an exploratory POST-selection pattern, so compare with pinned
@@ -283,6 +313,7 @@ console.log(JSON.stringify({
   originalWindowsWithSameKeyPrimeSum: matchOffsets.length,
   originalWindowsScanned: book.length - 12,
   originalBodyTests: results,
+  originalAutokeyTests: autokey,
   conclusion: "Bounded source-phrase candidate. Repeating either inferred 13-rune " +
     "additive or Atbash key does not recover native GP29 prose on p0-p2; " +
     "729 is a non-unique source-number coincidence, not an authenticated key."
