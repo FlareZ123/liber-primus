@@ -95,6 +95,23 @@ Using the monic \(Q_{238}\) factor, discard its formal leading one and read the 
 
 The direct 119-column shared-pad interpretation \(A_i-B_i\bmod29\) has IoC **0.032474006552**, with no plaintext; \(A_i+B_i\bmod29\) has IoC **0.034895314058**. Thus neither direct pairwise sum/difference nor its straightforward field projections identifies the intended language.
 
+### Direct original-source 16+238 factor-coefficient alignment: exact all-secret obstruction (Agent 43, 12 November 2026)
+
+The product of the four small factors of the printed table polynomial has degree **16**, leaving the source-defined irreducible degree-**238** large factor. The original manuscript independently offers a **16-rune** red heading at physical p3 and a **238-rune** complete physical p36. These lengths are an attractive candidate for a two-part human-readable factor key, although the pairing was identified after the factorization.
+
+A fully fixed first operation is to read the original p3 red16 runes against the **16 nonleading coefficients** of the exact degree16 factor, and physical p36's 238 runes against the **238 nonleading coefficients** of the monic Q238 factor. The complete small-factor product has ascending coefficients:
+
+`[16,9,3,17,23,27,16,3,23,3,18,22,14,18,12,4,28]`.
+
+The SFT divides the original 256 byte values over GF29 by that product, checks **all zero remainders**, recovers monic Q238 and reconstructs every source coefficient exactly. It then uses a stronger necessary condition than a word score: if either page's rune content were that factor vector under *any hidden global rune-alphabet permutation*, the sorted 29-symbol count multisets would agree. Even allowing **arbitrary reordering of all positions** cannot evade this multiplicity obstruction.
+
+| Original source compared to factor coefficients | Max symbols matched under an arbitrary alphabet bijection and free positional reorder | Minimum unavoidable mismatches |
+| --- | ---: | ---: |
+| p3 first red16 vs small factor nonleading 16 | **15 / 16** | **1** |
+| p36 entire 238 vs Q238 nonleading 238 | **222 / 238** | **16** |
+
+The p3 comparison has **0 exact positional matches** in either original or reversed coefficient direction. The p36 comparison has **11 direct or 14 reversed positional matches**; the strongest all-secret bound still leaves 16 unavoidable mismatches. Hence the original red title and p36 are **not simply the source key coefficients disguised by one secret monoalphabetic relabeling and arbitrary shuffle**. This leaves more complicated encryption, a transformed register, or a factor unrelated to these pages open. Do not assign an unsourced reconciliation cipher to rescue the direct hypothesis. [Self-contained original-input CommonJS test](../sims/lp2_grid_16plus238_source_alignment_sft.cjs).
+
 **All-hidden-seed original GP feedback test with the degree-238 factor (Agent 42).** Physical p36 contains exactly **238 original ciphertext runes**, matching the monic large factor's degree; this correspondence was noticed retrospectively and supplies no authenticated seed instruction. The conventional source-specific **238-tap GF29 feedback model** instead grants an arbitrary 238-rune initial ciphertext state and inverts the entire remaining original stream without guessing it:
 
 \[
