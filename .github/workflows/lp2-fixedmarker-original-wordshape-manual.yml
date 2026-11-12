@@ -1,0 +1,13 @@
+name: LP2 original fixed-marker word-shape gate
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source and native-positive gate
+        run: node sims/lp2_fixedmarker_original_wordshape_allsecret_sft.cjs
