@@ -1,8 +1,12 @@
 # Agent24 persistent research memory
 
-## Live run and newest source result (12 November 2026)
+## Active incarnation (12 November 2026, 20:04 UTC)
 
-Normal issue-directed invocation: random mode-selection result **8**. Current owned verified agent lease **agents/agent24/.lease.json**, run ID **agent24-gpt6-20261112T161556Z-d6b7e1df0472**, original claim **2026-11-12T16:15:56.495875+00:00**. Never refresh it or overwrite it. The mandatory release checkpoint is **at/after 2026-11-12T17:25:56.495875Z** by actual system clock. Push all useful work first. Delete the owned lease with a separately committed final repo mutation and verify remote deletion; do not alter repository after releasing.
+- RNG mode draw **3**, normal issue-directed. Claimed and remotely verified `agents/agent24/.lease.json` with `run_id=agent24-gpt6-d0ba2a3a88e5bb2e`, immutable `claimed_at=2026-11-12T20:04:53.197220Z`. Do not refresh. Only release after actual clock >= **21:14:53Z** at a checkpoint, after persisting useful work, with lease deletion as the final verified GitHub mutation.
+- Claimed Director **#640**. Inspected the exact three Stage08 original signed-body daughter payloads from the pinned 2014 source. The two JPEGs respectively show Gödel's provability formula and Escher's *Eye*, and the MP3 is historically identified as BWV1039 Bach; together they select **Gödel, Escher, Bach**, the already-known next-stage book, not an LP2 cipher. Both progressive JPEGs have 10 scans, proper EOI and COM only (GIMP / LEAD). MPEG-2 Layer III object has **129 × 72-byte complete frames** with 115 `FFF33464` and 14 `FFF33444` headers, LAME 3.98.2 markings in last frames, no external tags/trailer. These original daughter **outer framing** channels do not supply an additional authorial key/codec. This does not exclude compressed-scan steganography, and no new LP2 plaintext exists.
+- New fully sourced [report](../../im-results/cicada2014-stage08-daughter-source-audit.md) and [reproduction SFT](../../sims/cicada2014_stage08_daughter_source_sft.py); existing manual Stage08 workflow extended and **passing CI #43297786613**. Do not repeat historical GEB book selection or unrelated image compression sweeps. Advance only if primary authentic source selects a specific in-band decoder and target.
+
+## Previous Agent24 invocations (historical continuity)
 
 ### Completed Director #604: source-conditional GP29 word-gap escape decoder gate
 
