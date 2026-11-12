@@ -107,6 +107,12 @@ function main() {
         });
       }
     }
+    const wrongFactor = factor.slice();
+    wrongFactor[0] = mod(wrongFactor[0] + 1);
+    assert.notDeepEqual(
+      feedbackDecrypt(seed, feedbackEncrypt(seed, planted, factor, 1), wrongFactor, 1),
+      planted,
+    );
     for (const sign of [-1, 1]) {
       const readout = feedbackDecrypt(seed, body, factor, sign);
       const ciphertextPlant = feedbackEncrypt(seed, planted, factor, sign);
