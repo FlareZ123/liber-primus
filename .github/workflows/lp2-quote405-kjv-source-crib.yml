@@ -23,3 +23,5 @@ jobs:
         run: node sims/lp2_whole_kjv_wordlength_crib_sft.cjs KJV.txt
       - name: Full-KJV recovery allowing one decorative rune per source word
         run: node sims/lp2_scripture_one_null_crib_sft.cjs kjv KJV.txt
+      - name: Check actual solved LP1 and LP2 author source against every unknown word with 0-or-1 inserted rune
+        run: node sims/lp2_scripture_one_null_crib_sft.cjs author
