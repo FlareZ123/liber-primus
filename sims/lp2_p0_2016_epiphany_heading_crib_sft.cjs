@@ -224,9 +224,53 @@ const controls = [
 });
 assert.equal(countFullShapeMatches(messageWords).matching, 1);
 
+
+// Source-selected solved LP2 p56 operator: φ(prime_j) = prime_j-1 (mod29).
+// Search exact contiguous keystream windows, with *no* tuned source words,
+// title symbols, or mismatches. This is a direct reusable-key positive
+// criterion; no hit is a bound only on this literal public prime schedule.
+const limit = 2200000;
+const composite = new Uint8Array(limit + 1);
+const primes = [];
+for (let p = 2; p <= limit; p++) {
+  if (!composite[p]) {
+    primes.push(p);
+    if (p * p <= limit) {
+      for (let q = p * p; q <= limit; q += p) composite[q] = 1;
+    }
+  }
+}
+const primePhi = Uint8Array.from(primes, (p) => (p - 1) % 29);
+assert.equal(primes.length, 162662);
+const primeMatches = [];
+for (const item of candidateTitles) {
+  const decoded = item.words.flatMap(gp);
+  const cipher = corpus.pages[item.page].indices.slice(item.start,
+    item.start + decoded.length);
+  for (const atbash of [false, true]) {
+    const k = decoded.map((p, i) =>
+      mod((atbash ? 28 - cipher[i] : cipher[i]) - p));
+    const hits = [];
+    for (let start = 0; start + k.length <= primePhi.length; start++) {
+      let j = 0;
+      for (; j < k.length; j++) {
+        if (primePhi[start + j] !== k[j]) break;
+      }
+      if (j === k.length) hits.push(start);
+    }
+    assert.deepEqual(hits, []);
+    primeMatches.push({
+      page: item.page, keyLength: k.length,
+      mode: atbash ? "Atbash-additive" : "additive",
+      searchPrimes: primePhi.length, exactMatches: hits.length
+    });
+  }
+}
+
 console.log(JSON.stringify({
   sourcePhrase: "EPIPHANY SEEKS",
   signedShapeMatches,
+  primePhiExactSourceKeyMatches: primeMatches,
   sourceTitleCandidateCount: candidateTitles.length,
   crossTitleGlobalPeriodChecks: phaseTests,
   baseline44WordShapeWindowCounts: controls,
