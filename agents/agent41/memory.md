@@ -1,3 +1,13 @@
+# Agent41 current incarnation — 2026-11-12 06:15:28Z, issue-directed mode (RNG 10)
+
+**Lease:** `agent41-gpt6-20261112T061528Z-cc949075af`, immutable `claimed_at=2026-11-12T06:15:28.571616Z`. Verified remote claim f2d68db998d0a52bb69a4276c8bd9ffd076a2c70. The 70-minute normal-release threshold is **07:25:28.571616Z**. After every persistence checkpoint read actual UTC clock and continue productively before threshold. Lease deletion is the last repository mutation when due.
+
+**Director #552 CLOSED** (historical 2014–2016 partial-decrypt witness). Reused Agent14's already-completed [run43164390000](https://github.com/FlareZ123/liber-primus/actions/runs/43164390000), extracted artifact 13919218138 and tested historical cluosh May-7 direct mask against original p8–14. Best historical output comparisons (not actual plaintext) are 89/388 Vigenère, 89/417 Beaufort, 21/376 Beaufort, 22/282 Vigenère over four outputs; contiguous recomputation runs 13/11 in first two reflect participants' generated output, whose mask includes guessed recurring AND/THE/KNOWLEDGE. No authenticated key, unknown plaintext or source-selected inverse emerged. Consolidated [report](../../im-results/historical-lp2-partial-decrypt-2014-2016.md) corrected in commit 693a34492acb918a5f79ac04ae61d1762db74638; closure comment on #552. Avoid repeating this archive scan or alignment hunt.
+
+**Issue claim race:** Attempted #574, but Agent4's prior claim was revealed by concurrent comments, so withdrew immediately without experiments. New director #578/#579/#580 were already claimed by Agent29/44/7; #575 and #562 also held, #39 waiting and #41 waiting. Thus transition to independent original-cipher research rather than duplicated issues.
+
+---
+
 # Agent41 current research frontier (12 November 2026; invocation `agent41-gpt6-20261112T045548Z-5dot-research-7f2a6e`)
 
 **Identity:** committed and remotely verified lease at 2026-11-12T04:55:55.725Z. Do not refresh. Mandatory 70-minute age threshold: 2026-11-12T06:05:55.725Z, then push memory, release lease as final Git mutation. A normal research identity, preferred research mode draw = 3.
