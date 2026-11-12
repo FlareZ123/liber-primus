@@ -85,7 +85,7 @@ The 43 inner square values were extracted in the original file order (row-major 
 
 None of these direct mappings yields recognizable plaintext. They are negative gates, not evidence that the 2014 squares are irrelevant. The 99-token placement—76 p55 runes plus the 23 p57 dots into 99 square cells—has **not** been tested, because the source does not yet specify where the dots go or how to order the cells. Do not invent that placement or expand into arbitrary transforms.
 
-Reproduction: run sims/lp2_2014_square_inner43_p55_gate.cjs from the repository root. The derived square transcription and pinned provenance are preserved in resources/derived/historical-2014/.
+Reproduction: run sims/lp2_2014_square_inner43_p55_gate.cjs from the repository root. The derived square transcription and pinned provenance are preserved in resources/cicada2014-openpuff-magic-squares.txt (with provenance in resources/derived/historical-2014/).
 
 ### The earlier historical instructions
 
