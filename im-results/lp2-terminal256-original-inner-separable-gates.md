@@ -59,6 +59,14 @@ Positive controls: arbitrary GF29 3×3 and 5×5 coefficients planted into origin
 
 [Source-exact CJS SFT](../sims/lp2_terminal256_local_stencil_sft.cjs).
 
+## Gate C: all-secret additive GF(29) recurrence-order obstruction
+
+A third model uses the independently fixed source quadratic factors: the PGP-verified 2013 \`BASE29 3301 → 3QO\` example supplies \(H=3+26X+24X^2\); original p39 prints \(G=27+5X+15X^2\). Their monic product is \(F(X)=14+9X+13X^2+28X^3+X^4\). Its exact divisibility into the table is an existing conditional algebraic observation. The candidate consumer adds a shared GF29 linear-recursive mask \(K\) to the source-grid byte residues: \(P_i=B_{\mathrm{ring}(i)}+K_i\pmod{29}\). Thus the solved p56–57 interior supplies an **exact** 180-symbol candidate mask under each original ring readout.
+
+[The complete original-input Berlekamp–Massey SFT](../sims/lp2_terminal256_inner_lfsr_sft.cjs) computes the **minimum order of any GF29 linear recurrence**, eliminating all secret feedback coefficients and initial states for every 512 inner-ring routes. The order histogram is **one route of order 89, 497 of order 90, and 14 of order 91**. Thus no recurrence of order 88 or lower can generate the known source-derived mask, regardless of seed or polynomial. For the *specific* source factor \(F\), at least **160/176** recurrence windows fail; reversing polynomial-coefficient orientation fails at least **164/176**. A planted original-grid-derived 180-symbol mask using the source \(F\) has Berlekamp–Massey order exactly **4**, zero violated source-factor equations and exact round-trip reconstruction.
+
+This excludes the historically motivated degree-four factor recurrence, and indeed any lower-than-89-state linear additive GP29 pad on this frozen 180-symbol ring register. It does not constrain nonlinear generators, different table serializations, nonadditive or time-varying decoding, or the unconfirmed original terminal-ring alignment. No authentic key or unknown p55 plaintext results.
+
 ## Reproduction and decision
 
 Both standalone CJS scripts consume original repository source JSON and use only Node 22 built-ins. They are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing original-source run 43256330152](https://github.com/FlareZ123/liber-primus/actions/runs/43256330152). There are no automatic push or PR triggers.
