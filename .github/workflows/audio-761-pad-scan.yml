@@ -15,6 +15,7 @@ on:
           - prime-start
           - decoded-pcm
           - xor-2016-image
+          - grid-xor
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -38,6 +39,9 @@ jobs:
           path: /tmp/cicada761-xor/*.bin
           if-no-files-found: error
           retention-days: 90
+      - name: Original binary-grid XOR with historically used 2013 MP3 bytes
+        if: inputs.probe == 'grid-xor'
+        run: node sims/audio761_original_grid_xor_sft.cjs /tmp/761.MP3
       - name: Audit source-exact 2013 ID3 frames and planted controls
         if: inputs.probe == 'id3-audit'
         run: node sims/audio761_id3_frame_audit.cjs /tmp/761.MP3
