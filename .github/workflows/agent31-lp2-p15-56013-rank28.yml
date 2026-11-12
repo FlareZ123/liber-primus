@@ -39,6 +39,16 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Binary envelope syntax check failed' }
           node sims/lp2_p15_56013_rank28_binary_envelope_sft.cjs $asset | Tee-Object -FilePath $out
           if ($LASTEXITCODE -ne 0) { throw 'Original binary envelope gate failed' }
+      - name: Test original p15 square indexed historical source bytes as AES key for original 256 grid
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'lp2_p15_56013_squareindexed_aes128_grid_results.json'
+          node --check sims/lp2_p15_56013_squareindexed_aes128_grid_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source-indexed AES syntax check failed' }
+          node sims/lp2_p15_56013_squareindexed_aes128_grid_sft.cjs $asset | Tee-Object -FilePath $out
+          if ($LASTEXITCODE -ne 0) { throw 'Source-indexed AES source control or inverse failed' }
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -46,4 +56,5 @@ jobs:
           path: |
             ${{ runner.temp }}/lp2_p15_56013_rank28_results.json
             ${{ runner.temp }}/lp2_p15_56013_rank28_binary_results.json
+            ${{ runner.temp }}/lp2_p15_56013_squareindexed_aes128_grid_results.json
           if-no-files-found: warn
