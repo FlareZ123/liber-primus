@@ -104,10 +104,34 @@ for (const skipF of [false, true]) {
   }
 }
 assert(results.every(result => result.ioc < 0.04));
+
+// The Stage06 fourth JPEG was byte-reversed in the historical carrier.
+// Test a single exact analogue on the fourth LP2 numbered rune item:
+// full-item reversal before the same fixed prime transform. This is a
+// separate reversible control, not a source-authenticated manuscript cipher.
+const reversedTarget = target.slice().reverse();
+const reversedVariants = [];
+for (const skipF of [false, true]) {
+  for (const sign of [-1, 1]) {
+    const decoded = op(reversedTarget, p, sign, skipF);
+    let counter = 0;
+    const restored = decoded.map((v, i) =>
+      skipF && reversedTarget[i] === 0 ? 0
+        : mod(v - sign * (p[counter++] - 1)));
+    assert.deepEqual(restored, reversedTarget);
+    assert.deepEqual(restored.slice().reverse(), target);
+    reversedVariants.push({sign, skipF,
+      ioc: Number(ioc(decoded).toFixed(9)),
+      translit: translit(decoded), exactRoundTrip: true});
+  }
+}
+assert(reversedVariants.every(result => result.ioc < 0.04));
+
 console.log(JSON.stringify({
   decision: "9133 is an unsupported cross-stage pointer hypothesis; direct solved-p56 phi(prime) transfer to original item4 gives no GP prose",
   source: "stage06 9133 tail, original 4th red item begins global zero-based GP rune 9133",
   originalTargetRunes: 96, globalZeroBasedStart: 9133,
-  sourceSolvedP56Positive: translit(solved).slice(0, 21), results,
+  sourceSolvedP56Positive: translit(solved).slice(0, 21),
+  results, reversedVariants,
   unknownPlaintextRecovered: false
 }, null, 2));
