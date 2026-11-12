@@ -91,10 +91,49 @@ for (let j = 0; j < 16; j++) {
   pos += word.length;
 }
 assert.equal(pos, original.length);
+// Independent order-discrimination control (Agent33). Keep all sixteen
+// source prime starts and all sixteen original pages, shuffling only the
+// assignment of spiral positions to physical pages. No key or phase is fit.
+/** @param {number[]} assignment */
+function assignmentIoC(assignment) {
+  return ioc(pages.flatMap((page, i) =>
+    transform(page.indices, distinctFibonacci[assignment[i]], -1, primes)));
+}
+let shuffleSeed = 0x3311;
+function nextShuffleUint32() {
+  shuffleSeed ^= shuffleSeed << 13;
+  shuffleSeed ^= shuffleSeed >>> 17;
+  shuffleSeed ^= shuffleSeed << 5;
+  return shuffleSeed >>> 0;
+}
+const originalAssignment = Array.from({length: 16}, (_,i) => i);
+const sourceAssignmentIoc = assignmentIoC(originalAssignment);
+let shuffledHigherOrEqual = 0;
+let shuffledLowerOrEqual = 0;
+const shuffledTrials = 10000;
+for (let trial = 0; trial < shuffledTrials; trial++) {
+  const shuffled = originalAssignment.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = nextShuffleUint32() % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const nullIoc = assignmentIoC(shuffled);
+  if (nullIoc >= sourceAssignmentIoc) shuffledHigherOrEqual++;
+  if (nullIoc <= sourceAssignmentIoc) shuffledLowerOrEqual++;
+}
+assert.equal(shuffledHigherOrEqual, 2332);
+assert.equal(shuffledLowerOrEqual, 7672);
+const assignmentControl = {
+  trials: shuffledTrials, seed: "0x3311",
+  sourceIoc: sourceAssignmentIoc,
+  nullHigherOrEqual: shuffledHigherOrEqual,
+  nullLowerOrEqual: shuffledLowerOrEqual,
+  upperTailP: (shuffledHigherOrEqual + 1) / (shuffledTrials + 1)
+};
 const raw = ioc(original);
 assert.ok(Math.abs(raw - 0.03446282660786315) < 1e-12);
 assert.ok(Math.abs(outcomes["-1"].pooledIoC - 0.034540697600372615) < 1e-12);
 assert.ok(Math.abs(outcomes["1"].pooledIoC - 0.034543972548655724) < 1e-12);
 console.log(JSON.stringify({length: original.length, rawIoC: raw,
   sourceIndices: distinctFibonacci.map((n) => n + 1),
-  printed, outcomes}, null, 2));
+  printed, outcomes, assignmentControl}, null, 2));
