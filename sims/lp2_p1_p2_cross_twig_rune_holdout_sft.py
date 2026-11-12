@@ -124,7 +124,7 @@ def main() -> None:
                 "p0_special_post_red_span_target": {"offset": p0_target_offset, "translit": p0_target},
                 "p1_first_rune": first[1],
                 "p2_first_rune": first[2],
-                "page_local_first_rune_prediction_passes": False,
+                "page_local_first_rune_prediction_passes": all(value == "TH" for value in first.values()),
             },
             "decision": (
                 "The p1/p2 repeated cross art is a fixed frame, not a reusable page-local TH selector. "
