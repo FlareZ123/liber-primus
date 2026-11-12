@@ -85,8 +85,10 @@ function sourceGPWords(source) {
       assert.equal(token.length, length);
       offset += length;
       return [...token].map(c => {
-        const value = gpDigits.indexOf(c);
-        assert.ok(value >= 0);
+        // Beowulf encodes GP indexes with ABC...XYZabc.
+        // The separate Vulgate file uses 0..9,A..S.
+        const value = model.positiveControlAlphabet.indexOf(c);
+        assert.ok(value >= 0, "Unknown source GP index glyph " + c);
         return value;
       });
     });
