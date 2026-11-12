@@ -54,6 +54,40 @@ function countWord(w, bins) {
   }
 }
 
+/**
+ * Search all invertible GP29 affine maps at the single historically selected
+ * lag six on only the last two original long-word positions.
+ * @param {number[][]} words Whole source word sequences.
+ * @returns {{max:number,runner:number,a:number,b:number,t6:number}}
+ */
+function affineTailMaximum(words) {
+  const counts = new Uint16Array(29 * 29);
+  for (const w of words) {
+    if (w.length < 8) continue;
+    for (let j = w.length - 2; j < w.length; j++) {
+      const x = w[j - 6], y = w[j];
+      for (let a = 1; a < 29; a++) {
+        let b = (y - a * x) % 29;
+        if (b < 0) b += 29;
+        counts[a * 29 + b]++;
+      }
+    }
+  }
+  let max = 0, runner = 0, a = -1, b = -1;
+  for (let offset = 29; offset < counts.length; offset++) {
+    const value = counts[offset];
+    if (value > max) {
+      runner = max;
+      max = value;
+      a = Math.floor(offset / 29);
+      b = offset % 29;
+    } else if (value > runner) {
+      runner = value;
+    }
+  }
+  return {max, runner, a, b, t6: counts[27 * 29 + 24]};
+}
+
 /** @param {number[][]} words @returns {Bins} */
 function countWords(words) {
   const bins = blank();
@@ -109,6 +143,30 @@ function execute(words) {
     return x;
   });
   assert.equal(countWords(positive).end2[0], 686);
+
+  const longWords = words.filter(w => w.length >= 8);
+  const actualAffine = affineTailMaximum(longWords);
+  assert.deepEqual(actualAffine, {max:52,runner:39,a:27,b:24,t6:52});
+  const affineRng = generator(0x20261112);
+  const affineTrials = 3000, maxDistribution = [];
+  let affineFamilyExceed = 0, affineFixedExceed = 0;
+  for (let rep = 0; rep < affineTrials; rep++) {
+    const shuffled = longWords.map(w => shuffledConditionalWord(w, affineRng));
+    const value = affineTailMaximum(shuffled);
+    maxDistribution.push(value.max);
+    if (value.max >= actualAffine.max) affineFamilyExceed++;
+    if (value.t6 >= actualAffine.t6) affineFixedExceed++;
+  }
+  maxDistribution.sort((a,b)=>a-b);
+  assert.equal(affineFamilyExceed, 0);
+  const affineFamily = {
+    testedBijections: 28 * 29, lag: 6, sourceTailPositions: 686,
+    actual: actualAffine, seed:"0x20261112", trials:affineTrials,
+    familywiseExceed:affineFamilyExceed, fixedT6Exceed:affineFixedExceed,
+    medianMaximum:maxDistribution[1499], p95Maximum:maxDistribution[2849],
+    p99Maximum:maxDistribution[2969],
+    largestNullMaximum:maxDistribution[affineTrials - 1],
+  };
 
   const keys = ["len7", "end2", "body"];
   const rng = generator(0x02013301);
@@ -196,6 +254,7 @@ function execute(words) {
   console.log(JSON.stringify({
     input:{words:words.length,runes:12956,lag6Matches:80},
     observed,halves:split,
+    affineFamily,
     conditionalNull:{seed:"0x02013301",replications:iterations,stats:conditionalNull},
     literaryControls,
     preexistingM1:{seed:"0x01a85c6d",replications:m1Iterations,collisionRepairProbability:p,
