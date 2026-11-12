@@ -1,19 +1,7 @@
-# Original LP2 JPEG container as a possible key carrier
+# Independent reproduction of the existing LP2 JPEG metadata result
 
-**Decision (12 November 2026):** The complete original LP2 JPEG *container metadata* does not carry a page-varying key or clear standalone payload. All 58 physical pages (archive `17.jpg`–`74.jpg`) end at their first valid JPEG EOI; there are zero appended bytes. Each contains one JFIF APP0 and one ICC APP2 marker and no other APPn or COM marker. All 58 ICC APP2 payloads are byte-identical (SHA-256 `62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f`). Their metadata therefore supplies no page-specific secret, command, password, or endpoint.
+**Scope correction (12 November 2026):** This check independently reproduces an already completed finding; it is **not a new cryptanalytic result**. The authoritative supporting documentation is [the preexisting complete original JPEG container audit](lp2-jpeg-container-metadata-audit.md) and [the independent header gate](lp2-original-jpeg-header-source-gate.md). The latter identifies every page class, the exact same APP2 digest, the same lack of trailers, and an LP1 appended-JPEG positive control. The preexisting [JPEG entropy reconstruction](lp2-jpeg-entropy-reconstruction.md) also checks that ordinary optimized entropy coding reconstructs the original scan bytes.
 
-The source JPEG frames have exactly two encoding profiles, aligned with **three-component colour** and **one-component grayscale** image formats. The 23 grayscale physical LP2 pages are **16–21, 24–25, 28–31, 41–48, 50–52**. The other 35 pages use colour. Two DQT profiles partition the same 23/35 groups, while optimized Huffman DHT payloads vary with image content. Every grayscale page also lacks source-annotated red rune spans and red punctuation; 11 colour pages likewise have no red marks, consistent with colour artwork/layout. No novel binary code or selector is warranted by this colour split.
+The separate [CommonJS SFT](../sims/lp2_jpeg_envelope_sft.cjs) was run against all 58 original LP2 JPEG files on 12 November 2026. It confirms identical ICC SHA256 `62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f`, exactly 35 RGB and 23 grayscale files with the original component-class page partition, two DQT profile groups, zero APP/COM additions, and zero post-EOI bytes. No unknown plaintext or LP2 key is recovered.
 
-## What the result excludes
-
-- Raw payloads placed *after* JPEG EOI, including a second concatenated JPEG or appended ZIP/text, in original LP2 pages.
-- Standalone instructions, keys, hashes, or addresses carried in ordinary JPEG APP/COM metadata of these originals.
-- Using page-varying ICC bytes as a 58-page secret-key stream.
-
-**What it does not exclude:** Changes within compressed JPEG image coefficients, high-entropy payloads embedded by OutGuess/OpenPuff, visual glyph markings, a key in rendered artwork, or source-historical data external to these 58 files. Existing earlier-LP1 `05.jpg`/`10.jpg` suffix anomalies are outside this LP2 conclusion. This is a targeted original-artifact exclusion, **not a decryption**, and supplies no unknown plaintext.
-
-## Exact reproduction
-
-Run `node sims/lp2_jpeg_envelope_sft.cjs` from the repository with its pinned `resources/liber-primus/17.jpg`–`74.jpg` files. This SFT parses every JPEG marker, skips entropy-coded scans with byte-stuffing/restarter handling, rejects truncated or trailing bytes, checks expected APP/COM marker sets, verifies profile hashes and source-pixel geometry, and prints one line for every page plus the complete grayscale and colour partitions. Tested locally under Node.js 22.16.0 on the provided 75-JPEG archive; all 58 LP2 inputs passed. The image archive's mapping and original-byte hashes are documented in [the resource README](../resources/liber-primus/README.md), while the source-scoped red-ink comparisons use [ink annotations](../resources/liber-primus/lp2-ink-annotations.json).
-
-**Research consequence:** Do not spend further work looking for a plaintext key in LP2 JPEG trailer bytes, APPn comments, or page-specific ICC profiles. A future image-steganography hypothesis requires a new visual/source-selected extraction rule operating on actual compressed data or an independently verifiable positive control; do not infer no steganography from the absence of metadata.
+**Decision:** Retain the independent test implementation as reproducible confirmation only. Follow the established reports above for the source-level result; avoid further duplicated JPEG container investigations. An actual new image-channel result would require different evidence in coefficients, imagery, or a source-selected steganographic operation.
