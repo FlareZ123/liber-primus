@@ -79,6 +79,53 @@ assert.deepEqual(
     pageScopedIndependent.maximum,pageScopedIndependent.observedEdges],
   [12846,11117,4,12791]
 );
+
+const runeIndex=new Map(gp.runes.map((r,i)=>[r,i]));
+const originalTranscription=read("resources/liber-primus/lp2-transcription.txt");
+const words=[];
+let wordPage=0,letters=[];
+const flushWord=()=>{if(letters.length){words.push({page:wordPage,indices:letters});letters=[];}};
+for(const c of originalTranscription){
+  if(runeIndex.has(c))letters.push(runeIndex.get(c));
+  else if(c==="%"){flushWord();wordPage++;}
+  else if(/[-.&$§]/u.test(c))flushWord();
+}
+flushWord();
+const originalWords=words.filter(w=>w.page<55);
+assert.equal(originalWords.length,2928);
+for(let p=0;p<55;p++)
+  assert.deepEqual(originalWords.filter(w=>w.page===p).flatMap(w=>w.indices),
+    physical[p].indices);
+/**
+ * Word-reset decoder, including start sentinel states. All source words and
+ * punctuation are frozen independently of the canonical ciphertext array.
+ * @param {(p:number)=>number} sourceScope
+ */
+function wordResetCapacity(sourceScope) {
+  const support=new Map();
+  for(const word of originalWords){
+    let a=-1,b=-1;
+    for(const rune of word.indices){
+      const key=sourceScope(word.page)+":"+a+":"+b;
+      if(!support.has(key))support.set(key,new Set());
+      support.get(key).add(rune);
+      a=b;b=rune;
+    }
+  }
+  const counts=Array.from(support.values(),s=>s.size);
+  return {states:support.size,maximum:Math.max(...counts),
+    above16:counts.filter(x=>x>16).length,
+    wordStartSupports:Array.from({length:9},(_,i)=>
+      support.get(i+":-1:-1")?.size||0)};
+}
+const wordGlobal=wordResetCapacity(()=>0);
+const wordChapter=wordResetCapacity(p=>chapterNumber(physical[p].page));
+const wordPhysical=wordResetCapacity(p=>p);
+assert.deepEqual([wordGlobal.states,wordGlobal.maximum,wordGlobal.above16],[867,29,30]);
+assert.deepEqual([wordChapter.states,wordChapter.maximum,wordChapter.above16],[4570,29,22]);
+assert.deepEqual([wordPhysical.states,wordPhysical.maximum,wordPhysical.above16],[7973,28,51]);
+assert.deepEqual(wordChapter.wordStartSupports,[29,29,29,29,29,29,29,29,26]);
+
 // FULL EXISTENCE WITNESS. The following tables deliberately FIT observed
 // ciphertext support. They are NOT an authentic 3301 key or plaintext.
 const seen = new Map();
@@ -183,6 +230,7 @@ console.log(JSON.stringify({
   fullBook:book,sourceChapter:chapter,
   physicalPageWithChapterKey:pageScopedChapter,
   physicalPageWithOwnKey:pageScopedIndependent,
+  printedWordResets:{book:wordGlobal,chapters:wordChapter,physicalPages:wordPhysical},
   necessaryAndSufficient:"16-symbol injective map exists per state exactly iff every state has <=16 distinct outputs",
   fittedOriginalExistence:{states:seen.size,edges:12482,
     positions:fittedPositions,maximumSourceIndex:fittedMaxSourceSymbol,
