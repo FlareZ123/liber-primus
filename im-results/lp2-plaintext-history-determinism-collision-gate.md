@@ -43,11 +43,33 @@ The standalone SFT converts three already-pinned independent English corpora to 
 
 The use of GP-native English is a stated model assumption. Source-text paraphrase, alternate language/register, inserted nulls, transposition before this map, word-dependent extra state, freely varying within-page secret keys, hidden nonce evolution or changing original word boundaries would be distinct models outside this theorem.
 
+## Eight-column period with independent page-and-phase keys
+
+The original numerical table is printed in **eight columns**, a source-visible but *unproven* candidate for an eight-rune positional clock. Give an adversarial cipher a completely independent secret table for **each (physical page, position mod8)**, plus the current plaintext and up to **three preceding plaintext runes**:
+
+```text
+C[p,i] = F_(p,i mod8)(P[p,i-q],...,P[p,i]),   1 <= q <= 3.
+```
+
+An identical plaintext **seven-rune** window in the same physical page and at the same starting position modulo8 must generate an identical cipher four-rune window, since each of the four successive output positions sees the same 8-phase and the same last at most three plaintext symbols. Again the table can be any unknown nonlinear function or any secret bijection for each plaintext history. The exact same-phase collision-count inequality is `E_7(P,phase8)<=E_4(C,phase8)`, with one-rune startup cipher windows counted generously.
+
+The original p7 four-rune repeat at offsets91 and170 has different phase residues (3 versus 2 mod8). Accordingly the actual original GP29 manuscript has **zero** repeated four-rune windows with equal page-local mod8 phase. On the **same 89 independent native GP English windows** and the identical 55 physical page layout:
+
+| Native-GP author | Matching source windows | Minimum page-and-phase8 identical seven-rune window pairs | Original same-phase ciphertext four-rune pairs |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 32 | **6** | 0 |
+| Gibran | 8 | **12** | 0 |
+| Emerson | 49 | **2** | 0 |
+
+Every one of **89/89** original-length controls contradicts this equality implication, even when up to **440 independently secret phase tables**, each with arbitrary history-conditioned mapping, are granted. A separate source-native positive with 55 independent page ciphers, each phase using a secret permutation conditioned on three previous plaintext runes, constructs **12,532 different secret rows**, encrypts and recovers exactly **12,956/12,956** GP symbols, and has **39 plaintext seven-rune same-phase collision pairs** forcing **41 ciphertext four-rune same-phase pairs**. This demonstrates the inequality survives a full reversible page/phase nonlinear cipher.
+
+At plaintext-history depth four, four of the 49 Emerson control windows have no same-phase repeated eight-rune source window, so the full-family exclusion stops at **q=3** for this source-proposed period8 clock. The eight-column count does *not* authenticate a phase8 cipher or key schedule; this is a bounded conditional obstruction to that specific source-compatible alternative.
+
 ## Reversible source-native positive and implementation validation
 
 To demonstrate that the inequality applies to a genuinely reversible, highly flexible cipher, the SFT encrypts the first Shakespeare control window using independently generated secret GP29 permutations for each encountered **(physical page, previous seven plaintext runes)** row. Each row maps the current plaintext GP rune bijectively to a ciphertext GP rune. The first seven source runes on each page are transparent initialization symbols. No source passage or cipher row is fitted to LP2.
 
-The plant creates **12,381 separate secret row permutations** and recovers **all 12,956/12,956 authentic source runes** from the encrypted stream with the inverse rows. The planted native source has **42** within-page repeated 11-rune pairs; its corresponding encoded stream has **47** repeated four-rune pairs when granting the first-runeposition comparison. The required `42<=47` inequality holds, and the full original-length source recovers exactly. No arbitrary invertible nonlinear row-key can evade the stated implication.
+The plant creates **12,381 separate secret row permutations** and recovers **all 12,956/12,956 authentic source runes** from the encrypted stream with the inverse rows. The planted native source has **42** within-page repeated 11-rune pairs; its corresponding encoded stream has **47** repeated four-rune pairs when granting the first rune-position comparison. The required `42<=47` inequality holds, and the full original-length source recovers exactly. No arbitrary invertible nonlinear row-key can evade the stated implication.
 
 ## Decision and reproducibility
 
@@ -55,4 +77,4 @@ This rejects **direct, one-GP-to-one-GP, native-English ciphertext** generated b
 
 A useful future decoder needs author-selected **changing state inside each page**, a genuinely nonlocal mapping, a separate transport/register, or a historically supplied key/operation with an independently held-out original-cipher prediction. Do not repeat generic per-page stationary symbol-table sweeps that cannot escape this all-secret theorem.
 
-[Single runnable CommonJS SFT](../sims/lp2_plain_history_transducer_collision_sft.cjs) reads the unmodified canonical original LP2 corpus and all three fixed source controls, asserts the exact 55-page layout, original four-gram location and all finite-control minima, and tests a full seven-history arbitrary-secret reversible plant.
+[Single runnable CommonJS SFT](../sims/lp2_plain_history_transducer_collision_sft.cjs) reads the unmodified canonical original LP2 corpus and all three fixed source controls, asserts the exact 55-page layout, original four-gram location and all finite-control minima, and tests full seven-history and independent eight-phase, three-history arbitrary-secret reversible plants.
