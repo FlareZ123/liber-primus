@@ -1,0 +1,16 @@
+name: LP2 p32 signed 2016 registered tile association
+
+on:
+  workflow_dispatch:
+
+jobs:
+  image-rune-association:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Analyze 100 held-out tree tile positions
+        run: node sims/lp2_p32_2016_registered_tile_association_sft.cjs
