@@ -1,0 +1,37 @@
+name: Agent31 source-authentic 2014 Stage07 audio metadata (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-stage07-id3:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover archived original 2014 Stage07 onion MP3 from pinned source
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'stage07_original_index.mp3'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://raw.githubusercontent.com/krisyotam/cicada3301/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage07/index.mp3' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Original 2014 stage07 source download failed' }
+      - name: Probe all original Stage07 authored ID3 text fields and candidate word lengths
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'stage07_original_index.mp3'
+          $output = Join-Path $env:RUNNER_TEMP 'stage07_source_id3_crib_result.json'
+          node --check sims/lp2_stage07_2014_original_mp3_id3_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Node script syntax check failed' }
+          node sims/lp2_stage07_2014_original_mp3_id3_crib_sft.cjs $asset | Tee-Object -FilePath $output
+          if ($LASTEXITCODE -ne 0) { throw 'Stage07 authenticated ID3/crib extraction failed' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage07-original-id3-source-crib
+          path: ${{ runner.temp }}/stage07_source_id3_crib_result.json
+          if-no-files-found: warn
