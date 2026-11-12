@@ -98,7 +98,7 @@ assert(lp1p5.includes("THE TOTIENT FUNCTION IS SACRED"));
 assert(lp1p5.includes("ALL THINGS SHOULD BE ENCRYPTED"));
 const key = gpEncode(lp1p5);
 assert.equal(key.length, 82);
-assert.equal(latin(key).slice(0, 18), "SOMEWISDOMTHEPRIMES");
+assert.ok(latin(key).startsWith("SOMEWISDOMTHEPRIMES"));
 const positive = page(57);
 assert.equal(positive.length, 95);
 const solvedPlant = positive.concat(positive.slice(0, 84));
