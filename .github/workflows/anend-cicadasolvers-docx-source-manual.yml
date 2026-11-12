@@ -1,0 +1,31 @@
+name: AN END independent 2014 DOCX source recovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  read-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research code
+        uses: actions/checkout@v4
+        with:
+          path: research
+      - name: Checkout independent CicadaSolvers archive at pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: cicada-solvers/The-Complete-Cicada3301-Archive
+          ref: c3127e0e9eb5afbb582d37988d6369fe38429238
+          path: source
+      - name: Inspect 2014 source documents without mutation
+        run: |
+          python3 research/sims/anend_original_archive_docx_scan.py source > original-docx-scan.json
+          python3 -c "import json; x=json.load(open('original-docx-scan.json',encoding='utf-8')); print(json.dumps({'source':x['upstream_commit'],'files':x['totals']['files'],'bytes':x['totals']['bytes'],'hit_counts':x['totals']['hit_counts'],'per_document':[{'path':d['source_path'],'hits':d['hit_counts']} for d in x['documents']]},indent=2))"
+      - name: Preserve exact source-docx hit windows
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: anend-cicadasolvers-docx-search
+          path: original-docx-scan.json
+          if-no-files-found: error
