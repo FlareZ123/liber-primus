@@ -20,3 +20,7 @@ jobs:
         run: |
           node --check sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
           node sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
+      - name: Verify p40-53 native eight-column prime-pointer feedback
+        run: |
+          node --check sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
+          node sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
