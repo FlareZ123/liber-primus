@@ -112,6 +112,15 @@ const keyCandidates = {
   'remove-last': originalWords[0].concat(...originalWords.slice(1).map((w) => w.slice(0, -1))),
 };
 assert(Object.values(keyCandidates).every((k) => k.length === 76));
+// Key-independent impossibility for p55 being a monoalphabetic cipher of
+// either source phrase, even allowing arbitrary permutation of positions:
+// a 29-label bijection cannot change the number of distinct symbols.
+const p55Distinct = new Set(page55.indices).size;
+const sourceDistinct = Object.fromEntries(Object.entries(keyCandidates)
+  .map(([name, key]) => [name, new Set(key).size]));
+assert.equal(p55Distinct, 25);
+assert.deepEqual(sourceDistinct, {'remove-first':22,'remove-last':20});
+assert(Object.values(sourceDistinct).every(n => n < p55Distinct));
 
 const native = tokenize(lp1);
 assert.equal(native.length, 3504);
@@ -148,6 +157,9 @@ console.log(JSON.stringify({
   p57BodyRunes: 88,
   derivedKeyRunes: 76,
   p55Runes: 76,
+  p55Distinct,
+  p57StrippedSourceDistinct:sourceDistinct,
+  anyFixedBijectionAfterOneEdgeStripPossible:false,
   p55RawIoC: ioc(page55.indices),
   p55AdjacentRepeatCount: page55.indices.filter((x, i, a) => i && x === a[i - 1]).length,
   nativeReferenceRunes: native.length,
