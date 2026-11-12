@@ -1,4 +1,4 @@
-# Static homophonic 29-to-k upper bound
+# Static homophonic 29-to-k exact IoC and entropy bounds
 
 **Classification: key-independent family constraint; no plaintext or key recovered.**
 
@@ -6,7 +6,7 @@
 
 The 29-symbol Gematria Primus ciphertext alphabet is larger than the ordinary 26-letter English alphabet. A simple non-GP hypothesis is therefore a fixed many-to-one substitution: each of the 29 ciphertext runes maps to one of k plaintext letters, with every output letter used. This is a homophonic-downward or surjective 29-to-k map.
 
-The external [Dukotah measured-ceiling inventory](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/MEASURED-CEILING.md) lists this family as not yet searched. The present experiment does **not** attempt a key search. It gives an exact upper bound on the plaintext index of coincidence for every fixed surjection, then tests the k=26 and k=25 cases.
+The external [Dukotah measured-ceiling inventory](https://github.com/Dukotah/cicada3301/blob/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/MEASURED-CEILING.md) lists this family as not yet searched. The present experiment does **not** attempt a key search. It gives exact key-independent extrema for **decoded IoC and decoded Shannon entropy**. The entropy minimum also excludes the formerly open k=24 case under the independent native English controls.
 
 **Control correction:** a k-letter plaintext must be compared with a k-letter plaintext control, not a GP29 transliteration. The decisive controls below are therefore raw alphabetic A-Z streams. Earlier GP29-encoded Latin/Old-English frequency values are not used as direct k=26/k=25 controls.
 
@@ -56,6 +56,27 @@ The natural three-pair homophone arrangement for k=26 has maximum IoC **0.042463
 | One triple plus two pairs | 0.047857148 |
 | Four pairs | 0.044962810 |
 
+## Exact minimum Shannon entropy strengthens the bound to k=24
+
+The original 12,956-symbol ciphertext has empirical Shannon entropy **4.856503614 bits/rune**. For every fixed surjection from 29 original GP glyphs to k single-letter symbols, the partition that groups the **30−k largest** source-count classes together, leaving the other k−1 classes singleton, simultaneously maximizes IoC and **minimizes output entropy**. This partition majorizes every other k-group frequency vector; empirical Shannon entropy is Schur-concave. The bound is exact for every secret mapping and is attained by an explicit group assignment.
+
+| Output alphabet size k | Exact minimum decoded entropy, bits/rune |
+|---:|---:|
+| 29 | 4.856503614 |
+| 28 | 4.781331806 |
+| 27 | 4.679756145 |
+| **26** | **4.560925122** |
+| **25** | **4.430935257** |
+| **24** | **4.290961410** |
+| 23 | 4.143078369 |
+| 22 | 3.988079071 |
+| 21 | 3.826837083 |
+| 20 | 3.660811046 |
+
+The first **12,956 raw Shakespeare letters** include all 26 Latin letters and have entropy **4.172864607**. The independently solved **3,229-letter LP1** control includes **24 distinct Latin letters** and has entropy **4.138589607**. Both are below the rigorous minimum **4.290961410** for every static 29→24 grouping. The solved LP1 comparison directly matches the proposed 24-letter output register. This closes the **k=24 gap** left by the earlier IoC-only test, which excluded k≥25 but could not decide k=24. For k=23 the minimum 4.143078369 is slightly below the Shakespeare reference; the evidence does not justify excluding k≤23 or evolving/recurrent codebooks.
+
+The updated existing [all-secret reproducer](../sims/homophonic_downward_surjection_ioc_bound.cjs) computes exact minimum entropy alongside maximum IoC for k=20–29, asserts the k24 English-control gap, and checks explicit extremal maps. The exclusion assumes each ciphertext rune deterministically produces **one** plaintext letter, preserving all 12,956 positions. Multiple-letter outputs, deletion/insertion, variable-length units, nonstationary key states and plaintext outside the measured English registers remain open.
+
 ## Independent per-body sensitivity
 
 The source-defined nine-body partition from [the current section synthesis](../workplace/lp2-section-clock-ambiguity.md) was also tested, allowing each body its **own** arbitrary 29-to-26 map. The maximum IoC is below the length-matched raw Shakespeare control in each of the eight bodies of at least 700 runes. The 91-rune p33 interlude is too short for this per-body bound to decide.
@@ -76,8 +97,8 @@ This does not prove that the cipher resets at these titles. It shows that even g
 
 ## Decision and remaining space
 
-- **Rejected for native English:** fixed global 29-to-26 and 29-to-25 surjections, including their most favourable possible alias groupings.
-- **Not resolved:** k=24 or smaller; per-body k=25 maps; evolving or position-dependent mappings; variable-length outputs; multi-character digraph mappings; non-GP registers; and non-English plaintext outside the tested controls.
+- **Rejected under the measured native English registers:** all fixed global 29-to-k surjections with **k≥24**, including every arbitrary secret merge. The IoC argument excludes k≥25 and the entropy minimum independently excludes k=24.
+- **Not resolved:** k≤23, per-body k≤25 maps, evolving or position-dependent mappings, variable-length outputs, digraph/codeword output, non-GP registers, and other language distributions.
 
 The result is an exact frequency bound, not a decryption. It does not justify a brute-force alias search without a source-selected k, class structure, or output register.
 
@@ -89,4 +110,4 @@ Run:
 node sims/homophonic_downward_surjection_ioc_bound.cjs
 ```
 
-The script reads the canonical original rune indices and two raw alphabetic English controls, computes the exact maximum over all surjections for k=29 through 20, checks fixed alias-class shapes, verifies maximizing maps that attain the bound, and runs the per-body 29-to-26 sensitivity.
+The script reads canonical original rune indices and two raw-English controls, computes the exact maximum IoC and minimum decoded entropy for all k=20–29, checks fixed alias-class shapes, verifies explicit extremal maps, and runs the per-body 29-to-26 sensitivity.
