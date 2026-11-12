@@ -185,6 +185,85 @@ for (const [keyName, key] of keys) {
   const recovered = encrypted.map((c, i) => (c - key[i % 180] + 29) % 29);
   assert.deepEqual(recovered, nativePlant, keyName + " native plant");
 }
+
+/** Tensor-style two-block mix implied by hypothetical footer:
+ * 225 = (3+5+7) + 2*(3*5*7).
+ * First 210 red symbols are two aligned 3x5x7 arrays, with 8 source
+ * axis-reflection variants of the second array and four frozen GF29
+ * pairwise operations; no fitted secret key or chosen offset.
+ */
+const redA = red.slice(0, 105);
+const redB = red.slice(105, 210);
+assert.deepEqual([redA.length, redB.length, red.length - 210], [105, 105, 15]);
+assert.equal(2 * 3 * 5 * 7 + (3 + 5 + 7), red.length);
+/** @param {number[]} xs @returns {number} */
+function optimalOneGram105(xs) {
+  const freq = counts(xs).sort((a, b) => b - a);
+  return freq.reduce((sum, n, i) => sum + n * unigram[i], 0) / xs.length;
+}
+/** @param {number} mask @returns {number[]} */
+function flipTensor(mask) {
+  const res = [];
+  for (let i = 0; i < 105; i++) {
+    const p = Math.floor(i / 35);
+    const q = Math.floor((i % 35) / 7);
+    const r = i % 7;
+    const p1 = (mask & 4) ? 2 - p : p;
+    const q1 = (mask & 2) ? 4 - q : q;
+    const r1 = (mask & 1) ? 6 - r : r;
+    res.push(redB[35 * p1 + 7 * q1 + r1]);
+  }
+  return res;
+}
+/** @param {number[]} left @param {number[]} right
+ * @param {string} op @returns {number[]}
+ */
+function mix105(left, right, op) {
+  return left.map((v, i) => {
+    const b = right[i];
+    const x = op === 'A-B' ? v - b
+      : op === 'B-A' ? b - v
+        : op === 'A+B' ? v + b : -v - b;
+    return (x % 29 + 29) % 29;
+  });
+}
+const ops = ['A-B', 'B-A', 'A+B', '-A-B'];
+const matrixResults = [];
+let bestMatrixTri = -Infinity;
+let bestMatrixOne = -Infinity;
+for (let mask = 0; mask < 8; mask++) {
+  const b = flipTensor(mask);
+  for (const op of ops) {
+    const decode = mix105(redA, b, op);
+    const triScore = score(decode);
+    const oneUpper = optimalOneGram105(decode);
+    matrixResults.push({ mask, op, triScore, oneUpper });
+    bestMatrixTri = Math.max(bestMatrixTri, triScore);
+    bestMatrixOne = Math.max(bestMatrixOne, oneUpper);
+    // Source-native positive control for every frozen exact inverse.
+    const known = held.slice(2000, 2105);
+    const cA = known.map((v, i) => op === 'A-B' ? (v + b[i]) % 29
+      : op === 'B-A' ? (b[i] - v + 29) % 29
+        : op === 'A+B' ? (v - b[i] + 29) % 29
+          : (29 - v - b[i] % 29 + 29) % 29);
+    assert.deepEqual(mix105(cA, b, op), known);
+  }
+}
+assert.equal(matrixResults.length, 32);
+assert.ok(Math.abs(bestMatrixTri - (-5.705695742171942)) < 1e-10);
+assert.ok(Math.abs(bestMatrixOne - (-3.2836892228210224)) < 1e-10);
+let native105TriMin = Infinity;
+let native105OneMin = Infinity;
+for (let at = 0; at + 105 <= held.length; at++) {
+  const sample = held.slice(at, at + 105);
+  native105TriMin = Math.min(native105TriMin, score(sample));
+  native105OneMin = Math.min(native105OneMin, optimalOneGram105(sample));
+}
+assert.ok(Math.abs(native105TriMin - (-2.949299113091671)) < 1e-10);
+assert.ok(Math.abs(native105OneMin - (-3.118569236146767)) < 1e-10);
+assert.ok(bestMatrixTri < native105TriMin);
+assert.ok(bestMatrixOne < native105OneMin);
+
 console.log(JSON.stringify({
   red_runes: 225, red_suffix: name(red.slice(-15)),
   red210_best_secret_unigram: originalPerm,
@@ -194,5 +273,11 @@ console.log(JSON.stringify({
   p54_p55_runes: target.length,
   p54_p55_raw_trigram: score(target),
   heldout_308_min_trigram: minNative,
+  tensor_3x5x7: { variants: matrixResults.length,
+    best_original_trigram: bestMatrixTri,
+    worst_native_105_trigram: native105TriMin,
+    best_original_any_secret_29alphabet_unigram: bestMatrixOne,
+    worst_native_105_same_optimization: native105OneMin,
+    positive_controls: matrixResults.length },
   candidate_scores: candidates
 }, null, 2));
