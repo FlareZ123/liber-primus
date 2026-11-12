@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_grid_aes_expanded_key_sft.cjs
       - name: Original opening 27-square signed-2016 ring gate
         run: node sims/lp2_p0_rings_2016_payload_gate_sft.cjs
+      - name: Signed-2012 RSA modulus direct original page55 test
+        run: node sims/lp2_p55_2012_ps_rsa_source_gate_sft.cjs
