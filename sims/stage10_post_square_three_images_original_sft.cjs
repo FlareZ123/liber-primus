@@ -3,8 +3,10 @@
  * Original 2014 Stage10 response-to-LP1 image identity.
  *
  * Source filenames and Git blob objects:
- * krisyotam/cicada3301/puzzles/2014/assets/stage10/{107,167,229}.jpg
- * mirrored at archives/{cijhho,scream314}/assets/2014/stage10.
+ * Earliest participant snapshot: micheloosterhof/cicada-2014
+ * commit 3b15257c5a9efada85b8ccfdb876e2ec934d5b90
+ * stage10/{107,167,229}.jpg and stage10/squares.
+ * Identical copies exist in krisyotam/cicada3301.
  * Their original Git blob IDs are compared against unmodified LP1 source JPEGs.
  *
  * SFT: node sims/stage10_post_square_three_images_original_sft.cjs
@@ -50,4 +52,4 @@ const recovered=three.map(({urlFile,archiveFile,bytes,sourceBlob,sha256:expected
   assert.equal(data.subarray(-2).toString("hex"),"ffd9");
   return {historicalResponse:urlFile,liberPrimusArchive:archiveFile,bytes,gitBlobSha1:sha,sha256:expected256};
 });
-console.log(JSON.stringify({result:"3/3 byte-identical archived Stage10 response images recovered in LP1",responseGitBlobSha1:gitBlobSha1(response),sourceArchive:"krisyotam/cicada3301 @ 76d3ee8c762f60025822c8c05edbf31351636469",objects:recovered,limitation:"Participant-preserved copy; original HTTP server response headers and POST acceptance remain absent; no new LP2 plaintext or key."},null,2));
+console.log(JSON.stringify({result:"3/3 byte-identical archived Stage10 response images recovered in LP1",responseGitBlobSha1:gitBlobSha1(response),sourceArchive:"micheloosterhof/cicada-2014 @ 3b15257c5a9efada85b8ccfdb876e2ec934d5b90",objects:recovered,limitation:"Participant-preserved copy; original HTTP server response headers and POST acceptance remain absent; no new LP2 plaintext or key."},null,2));
