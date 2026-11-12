@@ -263,9 +263,48 @@ for (const entry of payloads.slice(0, 2)) {
   }
 }
 
+
+// Conventional authenticated AES256-GCM envelope: 12-byte nonce,
+// 196-byte ciphertext, and 16-byte authentication tag, packed into 224
+// source cells. A failed tag is a cryptographic exclusion independent of
+// the plaintext language or binary representation.
+const authenticatedContainers = [];
+for (const entry of payloads.slice(0, 2)) {
+  const nonce = entry.bytes.subarray(0, 12);
+  const ciphertext = entry.bytes.subarray(12, entry.bytes.length - 16);
+  const tag = entry.bytes.subarray(entry.bytes.length - 16);
+  assert.equal(ciphertext.length, 196);
+
+  const genuine = Buffer.from("LIBER PRIMUS AUTHENTICATED POSITIVE CONTROL.");
+  const e = createCipheriv("aes-256-gcm", key, nonce);
+  const encrypted = Buffer.concat([e.update(genuine), e.final()]);
+  const realTag = e.getAuthTag();
+  const p = createDecipheriv("aes-256-gcm", key, nonce);
+  p.setAuthTag(realTag);
+  assert.deepEqual(Buffer.concat([p.update(encrypted), p.final()]), genuine);
+
+  const d = createDecipheriv("aes-256-gcm", key, nonce);
+  d.setAuthTag(tag);
+  d.update(ciphertext);
+  let tagAccepted = false;
+  try {
+    d.final();
+    tagAccepted = true;
+  } catch (_authFailure) {
+    // The authenticated ciphertext is rejected by Node's AES-GCM final().
+  }
+  assert.equal(tagAccepted, false);
+  authenticatedContainers.push({
+    source: entry.name, nonce: nonce.toString("hex"),
+    tag: tag.toString("hex"), ciphertextBytes: ciphertext.length,
+    mode: "aes-256-gcm-nonce-first-tag-last",
+    tagAccepted, controlRecovered: genuine.length
+  });
+}
+
 console.log(JSON.stringify({
   source: "Original 55 unknown physical pages; 32 cross-page words; pp49-51 printed 32x8 table",
   runes: parsed.runes, words: parsed.words, carries: parsed.carries.length,
   carryColumns: selectedColumns.join(""), keyHex: key.toString("hex"),
-  results, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
+  results, authenticatedContainers, conclusion: "No ASCII text or recognizable opening signature among the tested exact AES256 key/payload formats; no unknown LP2 plaintext recovered."
 }, null, 2));
