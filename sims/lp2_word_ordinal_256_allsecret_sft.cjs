@@ -64,8 +64,43 @@ const TRIALS = 1000;
 const sources = [
   "resources/control/gibran_prophet_58585.txt",
   "resources/control/shakespeare_first300k.txt",
-  "resources/control/emerson_essays_2944.txt"
+  "resources/control/emerson_essays_2944.txt",
+  "resources/control/beowulf_oe_gp_profile_corrected.json",
+  "resources/control/latin-vulgate-gp-wholewords.txt"
 ];
+const gpDigits = "0123456789ABCDEFGHIJKLMNOPQRS";
+
+/**
+ * Return already-normalized source-native GP words when author-preserved
+ * Latin/Old-English resources are available, or normalize English words.
+ * @param {string} source
+ * @returns {number[][]}
+ */
+function sourceGPWords(source) {
+  if (source.endsWith("beowulf_oe_gp_profile_corrected.json")) {
+    const model = JSON.parse(read(source));
+    let offset = 0;
+    const words = model.allSourceGpWordLengths.map(length => {
+      const token = model.sourceGpBase29.slice(offset, offset + length);
+      assert.equal(token.length, length);
+      offset += length;
+      return [...token].map(c => {
+        const value = gpDigits.indexOf(c);
+        assert.ok(value >= 0);
+        return value;
+      });
+    });
+    assert.equal(offset, model.sourceGpBase29.length);
+    assert.equal(words.length, model.acceptedSourceWords);
+    return words;
+  }
+  if (source.endsWith("latin-vulgate-gp-wholewords.txt")) {
+    return read(source).split(/\r?\n/u)
+      .filter(token => /^[0-9A-S]+$/u.test(token))
+      .map(token => [...token].map(c => gpDigits.indexOf(c)));
+  }
+  return (read(source).toUpperCase().match(/[A-Z]+/g) || []).map(gpWord);
+}
 const original = parseSharedCorpus();
 assert.equal(original.words.length, 2896);
 assert.equal(original.runeCount, 12956);
@@ -156,10 +191,9 @@ for (let i = 0; i < PERIODS.length; i++) {
 
 const calibrated = [];
 for (let sourceIndex = 0; sourceIndex < sources.length; sourceIndex++) {
-  const words = read(sources[sourceIndex]).toUpperCase().match(/[A-Z]+/g) || [];
+  const words = sourceGPWords(sources[sourceIndex]);
   const pools = Array.from({ length: 9 }, () => []);
-  for (const word of words) {
-    const gp = gpWord(word);
+  for (const gp of words) {
     if (gp.length >= 1 && gp.length <= 8) pools[gp.length].push(gp[0]);
   }
   assert.ok(pools.slice(1).every(a => a.length > 0));
