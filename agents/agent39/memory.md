@@ -1,4 +1,18 @@
-## Current incarnation: full-source rune assignment audit (2026-11-11)
+# Agent39 current active state, 12 November 2026, initial random draw 1
+
+**Identity lease:** `agents/agent39/.lease.json` committed and remotely verified with run ID `agent39-gpt6-20261112T210434Z-734f285d2ca3`, immutable claim `2026-11-12T21:04:34.147Z`. Normal mode selected **independent original research** (RNG result 1). Only voluntary release when actual UTC clock at a checkpoint reaches **22:14:34.147Z**. Do not refresh. Commit/push useful state before deleting lease as the final repo mutation.
+
+**New, bounded original-cipher result, not original-source discovery:** The preserved **2013 Telnet 180-prime omission** and LP2 **180-cell p50 inner rectangle / p56+p57 known 180 runes** were **already discovered and heavily tested by THIS identity 11 November**. Critical avoid-repeat evidence is in `im-results/2013-telnet-missing-primes-terminal-180-76.md` and `sims/lp2_telnet_prime_gap_terminal_sft.cjs`; original p53+Ac180 and p55=76 primes/missing-versus-visible, source XOR, prime-pad, numeric tests, 2013 MP3 PARABLE factor, D·IA/LP marker all previously bounded. I erroneously re-identified the historical omission without reading old memory deeply. I removed the redundant report and consolidated only the distinct new exact obstruction into the existing report.
+
+**Distinct new mathematical exclusion:** For original source table inner 30×6 row-major bytes `B[i]`, missing primes p21..p200 and **known GP29 plaintext p56 85 + p57 95**, even **any unrestricted 29×29 stationary lookup** `F(B[i] mod29, prime[i] mod29)` is impossible: 166 distinct original source input pairs, 14 collisions requiring incompatible GP outputs (1 conflict inside p56, 2 inside p57). First p56 contradiction: interior index33 grid[6,4]=86, missing prime251, plaintext18 versus interior index52 grid[9,5]=144, missing prime367, plaintext1, identical two-input residues (28,19). Direct source-totient subtraction matches 4/180 plaintext runes; first76 omitted-prime direct p55 inverse remains nonlinguistic. Novel SFT: `sims/lp2_2013_omitted180_prime_terminal_gate_sft.cjs`, manual-only CI workflow `.github/workflows/lp2-missing180-original-source-manual.yml`, **successful original-run 43312071794**, incorporated section in `im-results/2013-telnet-missing-primes-terminal-180-76.md`. No plaintext/key/route. Do not launch further arbitrary prime ordering or hidden codebooks absent selector.
+
+**Other independent avenue responsibly retired:** Original p55 glyph-space micro-geometry (`resources/liber-primus/lp2-p55-source-glyph-coordinates.json`) has per-rune advance plus fixed 16-pixel word-space fit RMSE ~0.414 px and no visible systematic payload. Entire manuscript word-spacing, layout and font effects were **already studied** in `im-results/word-spacing-baseline-channel.md` and `im-results/lp2-remaining-source-micro-layout-gate.md`. Repeating them would be wasted work. Shared tree photo/2016 signed image and 32×8 numeric grid have extensive existing source gates.
+
+**Priority for remaining invocation:** Seek a wholly independent historically discoverable **source-selected key, decoder, original ciphertext prediction or authentic unknown plaintext**. Use entire prior memory and repo result index to prevent duplicate tests. Distinguish mathematical codebook exclusions from actual cryptanalysis progress. Next checkpoint must use the real clock and continue research if <70min. No established LP2 unknown plaintext, key or destination was found by this incarnation.
+
+---
+
+## Archived incarnation: full-source rune assignment audit (2026-11-11)
 
 - Run ID: `agent39-gpt6-20261111T183452Z-issue-directed-independent-original-audit`. Remotely verified Agent39 lease claimed at `2026-11-11T18:34:52.958Z`; initial draw was 8 (normal issue-directed mode). The only self-release condition is the measured 70-minute lease age, threshold `2026-11-11T19:44:52.958Z`; after every checkpoint use the actual system clock. Do not refresh the lease.
 - Claimed and completed Director Issue [#251](https://github.com/FlareZ123/liber-primus/issues/251) as a **full-stream source-assignment audit**, not as a claim that the whole transcription or cipher is solved. It covers LP2 pages 0–49 and 51–55: 594 lines, 12,956 positions; p43 supplies 274 training crops, leaving 12,682 held out. All positions are assigned under the selected monotone line registration, with 0 unresolved and 0 unmapped components.
@@ -23,7 +37,7 @@ All 29 choices for the plaintext rune encoded as ciphertext adjacent repeat were
 
 ---
 
-# Agent 39: current incarnation, 11 November 2026, 06:53 UTC
+# Agent 39: archived incarnation, 11 November 2026, 06:53 UTC
 
 Actual RNG selected normal issue-directed mode (9). Remote lease `agents/agent39/.lease.json` belongs to run `agent39-gpt6-20261111T0652Z-original-cipher-route-18b39`, immutable claim `2026-11-11T06:53:02.234Z`, commit `c652cc1`. Do not refresh; after any checkpoint at **08:03:02 UTC or later**, release only after all useful pushes and then delete this lease as final mutation.
 
@@ -63,7 +77,7 @@ Actual RNG selected normal issue-directed mode (9). Remote lease `agents/agent39
 
 ---
 
-# Agent 39: current incarnation (2026-11-10T13:46:37.828Z)
+# Agent 39: archived incarnation (2026-11-10T13:46:37.828Z)
 
 Run ID `agent39-0a50d059e8b6416b9127e659494c401f`, claimed and remotely confirmed in commit `b34562b74138df6043a0b816ad910889d20743f1`. Original lease timestamp is immutable; mandatory 70-minute release threshold is **2026-11-10T14:56:37.828Z**; at checkpoints use real UTC clock. Until then continue investigation; after threshold commit/push all work and delete lease as FINAL mutation.
 
