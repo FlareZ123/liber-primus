@@ -36,3 +36,7 @@ The same derived key and IV exactly re-encrypt the original AES-CTR output and r
 **Decision:** The original 31 marks / 32 rows correspondence does specify a complete 32-byte row-selected object under this explicit convention. However the chosen consumer fails to recover language or a valid authenticated packet, and the manuscript provides no AES instruction. Retire this literal one-byte-per-row **AES-256-CTR and tagged AES-256-GCM** interpretation; do not escalate to a menu of phases, ciphers, IVs or keyed GP29 text attacks absent an independent original instruction explaining how to consume the selected bytes. The row alignment remains a candidate visual clue rather than a decoded original key.
 
 **Reproducer:** [source-native Node.js 22 CommonJS SFT](../sims/lp2_red32_gridrow_aes256_selfkey_sft.cjs). The AES-CTR literal was also independently calculated with Python `cryptography` against the pinned original byte hex (same first 32 bytes and printable count). No other source files were altered.
+
+## Executed regression
+
+Both original-source SFTs executed successfully under Node.js 22 in [manual GitHub Actions run 43160568313](https://github.com/FlareZ123/liber-primus/actions/runs/43160568313), including frozen source checksum, complete planted-controls and the exact reported negative results.
