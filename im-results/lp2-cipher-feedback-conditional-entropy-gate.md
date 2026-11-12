@@ -47,6 +47,19 @@ To calibrate the register of ordinary GP29-encoded prose, the SFT uses the repos
 
 All **89** measured windows fall below even the nine-section source lower bound. The narrowest gap is \(4.42957231-4.28909395=0.14047836\) bits/rune. Any stationary predecessor-feedback permutation with these resets would necessarily decode the original into a GP29 sequence whose empirical marginal entropy is higher than every sampled native-English control. Merely choosing a cleverer secret 29×29 table, nonlinear row entries, or nine unrelated secret tables cannot repair this invariant.
 
+## Nine source-visible page-chapter reset gates (12 November 2026)
+
+The restored [original-image visual chapter map](lp2-global-original-visual-section-map.md) selects nine top-level unknown GP29 chapters, each starting with a red heading after a prior-page red13 terminator: lengths **729, 1,145, 1,729, 1,903, 1,021, 1,433, 1,680, 3,008, 308**. Unlike the derivative nine-source-text segmentation above, **all of these cuts fall between physical pages**, including the independently visible p53→p54 boundary. The resulting original **previous-ciphertext + authentic chapter** secret-permutation feedback model assigns a completely arbitrary hidden 29-symbol permutation to each of up to **261** states. On **all 12,901 within-page original transitions**:
+
+\[
+H_{\rm emp}(C_i\mid\operatorname{visible\ chapter},C_{i-1})
+=\mathbf{4.39142914138}\text{ bits/rune}.
+\]
+
+Every putative plaintext under *any* selection of those 261 hidden permutations must have an empirical marginal GP29 entropy of at least this value. Because the visible boundaries are all page breaks, the destination positions match the **same** 12,901 GP rune slots as in the original global previous-ciphertext control test; its highest matched native-English marginal control is **4.28909395**. The family remains **at least 0.10233519 bits/rune above that English register**, so simply replacing the derivative text-partition cuts with the now-source-selected page-chapter cuts cannot repair this particular stationary ciphertext-feedback architecture.
+
+The [updated visual chapter SFT](../sims/lp2_visual_chapter_boundary_sft.cjs) asserts the exact nine original cuts and independently reproduces 4.39142914138 from the 12,956 original runes. The original [family-wide inverse/English controls](../sims/lp2_cipher_feedback_entropy_sft.cjs) remain applicable because the key-independent inequality and exact scored destination positions are unchanged. This is a **new finite architectural exclusion enabled by a real source boundary**, not recovered plaintext, and it says nothing about a model with hidden evolving states, different input register or chapter-specific changing phase.
+
 ## Minimum additional changing-state information
 
 There is also a quantitative implication for any more powerful deterministic rune converter \(C_i=f(P_i,S_i,T_i)\), where \(T_i\) is the tested *public* predecessor/clock state and \(S_i\) is additional unseen or changing cipher state. The chain-rule bound on the empirical joint sequence is
