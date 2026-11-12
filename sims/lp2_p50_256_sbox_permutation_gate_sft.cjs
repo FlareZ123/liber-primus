@@ -14,6 +14,19 @@ const tokens = source.rows.flat();
 assert.equal(tokens.length, 256);
 assert.ok(source.rows.every(row => row.length === 8));
 
+// This test precedes all disputed numeric codecs: repeat printed tokens
+// cannot become distinct outputs under any deterministic token decoder.
+const tokenFrequencies = new Map();
+for (const token of tokens) {
+  tokenFrequencies.set(token, (tokenFrequencies.get(token) || 0) + 1);
+}
+const originalTokenDistinct = tokenFrequencies.size;
+const originalTokenRepeatPairs = [...tokenFrequencies.values()]
+  .reduce((total, n) => total + n * (n - 1) / 2, 0);
+assert.equal(originalTokenDistinct, 161);
+assert.equal(originalTokenRepeatPairs, 127);
+
+
 /** @param {string[]} seq @param {string} alphabet */
 function decode(seq, alphabet) {
   return seq.map(token => {
@@ -68,7 +81,8 @@ assert.equal(characterize(valuePermutation).distinct, original60.distinct);
 console.log(JSON.stringify({
   sourceRows: source.rows.length,
   sourceColumns: 8,
-  conclusion: 'Neither source-compatible reading is a 256-value permutation.',
+  exactOriginalPrintedTokens: {distinct: originalTokenDistinct, repeatPairs: originalTokenRepeatPairs},
+  conclusion: 'The printed tokens themselves have 95 exact repeats; any deterministic cell-wise byte decoding is non-bijective.',
   base60: original60,
   base59: original59,
   positivePermutation: true,
