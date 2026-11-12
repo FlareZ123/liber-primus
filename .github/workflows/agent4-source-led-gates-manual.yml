@@ -1,0 +1,23 @@
+name: Agent4 p15 and p55 source-selected decryptions
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout canonical LP2 source
+        uses: actions/checkout@v4
+      - name: Install Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run frozen p15 1903-rune Josephus gate
+        run: node sims/p15_spiral_josephus_sft.cjs
+      - name: Run frozen p55 75-rune Wisdom matrix gate
+        run: node sims/p55_wisdom5_hill75_sft.cjs
