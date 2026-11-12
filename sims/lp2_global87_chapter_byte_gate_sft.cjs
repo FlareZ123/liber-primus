@@ -213,6 +213,55 @@ function plantedInverse() {
   return {encodedRunes:encoded.length, repeatedRunePositions:repeats.length,
     decodedBytes:reconstructedBytes, byteValue:0x41};
 }
+
+/**
+ * Stronger original-input gate for direct printable-ASCII first bytes.
+ * Each visual chapter may have 29 independent secret 28-way successor
+ * alphabets, one for every preceding rune. If the most-significant digit
+ * is forced to zero for distinct outputs from the same predecessor,
+ * no secret alphabet can satisfy both packets.
+ * @param {"forward"|"reverse"} direction
+ */
+function asciiFirstByteGate(direction) {
+  const rows = Array.from({length: 9}, () => new Map());
+  for (const [packetId, packet] of packets.entries()) {
+    const length = packet.end - packet.start;
+    const asciiMax = (127n * 256n ** BigInt(packet.bytes - 1) - 1n)
+      / (28n ** BigInt(length - 1));
+    if (asciiMax !== 0n) continue;
+    const offset = direction === "forward" ?
+      packet.start : packet.end - 1;
+    const chapter = chapterAt(offset);
+    const predecessor = ciphertext[offset - 1];
+    const successor = ciphertext[offset];
+    const row = rows[chapter].get(predecessor) || [];
+    row.push({packetId, packetDigits:length, offset, chapter,
+      predecessor, successor,
+      pair:source.translit[predecessor] + "→" + source.translit[successor]});
+    rows[chapter].set(predecessor, row);
+  }
+  const contradictions = [];
+  let forcedZeroPackets = 0;
+  for (const [chapter, group] of rows.entries()) {
+    for (const [predecessor, events] of group) {
+      forcedZeroPackets += events.length;
+      if (new Set(events.map(item => item.successor)).size >= 2)
+        contradictions.push({chapter, predecessor, events});
+    }
+  }
+  return {direction, contradictions, forcedZeroPackets};
+}
+const asciiForward = asciiFirstByteGate("forward");
+const asciiReverse = asciiFirstByteGate("reverse");
+assert(asciiForward.contradictions.length > 0);
+assert(asciiReverse.contradictions.length > 0);
+assert(asciiReverse.contradictions.some(c => c.chapter === 7 &&
+  c.predecessor === 4 &&
+  c.events.some(e => e.packetId === 68 &&
+    e.offset === 10507 && e.successor === 28) &&
+  c.events.some(e => e.packetId === 77 &&
+    e.offset === 11343 && e.successor === 18)));
+
 const plant = plantedInverse();
 const heading = [13,24,4,24,17,20,18].reduce(
   (sum, idx) => sum + source.prime[idx], 0);
@@ -241,8 +290,14 @@ console.log(JSON.stringify({
     fixedSecretChapterOrderExcludedBothDirections:true,
     chapterPredecessorIndependentRowsForward:forward.chapterPredecessorConflicts,
     chapterPredecessorIndependentRowsReverse:reverse.chapterPredecessorConflicts,
-    originalNaturalOrderOverflow:census
+    originalNaturalOrderOverflow:census,
+    sourceNativePrintableFirstByte:{
+      forwardZeroPacketCount:asciiForward.forcedZeroPackets,
+      reverseZeroPacketCount:asciiReverse.forcedZeroPackets,
+      reverseAllSecretRowContradiction:asciiReverse.contradictions.find(c =>
+        c.chapter === 7 && c.predecessor === 4)
+    }
   },
   positiveControl:plant,
-  conclusion:"No unknown plaintext. Post-selected ordinal match is a candidate clue, not an instruction. Global 87-packet maximal-byte transport under one hidden GP29 order per original chapter is mathematically impossible; more flexible changing-state and nonmaximal frame encodings remain open."
+  conclusion:"No unknown plaintext. The 449→87 relation is speculative. A chapter-wide single secret order is impossible for all-byte payloads; even independently secret predecessor-specific chapter rows are impossible if every packet begins with a printable ASCII byte. More flexible state, raw binary and noncanonical packetization remain open."
 },null,2));
