@@ -1,0 +1,15 @@
+name: Original LP2 chapter BASE29 compressed-file source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original GP29 chapter and page bytes
+        run: node sims/lp2_original_chapter_base29_file_sft.cjs
