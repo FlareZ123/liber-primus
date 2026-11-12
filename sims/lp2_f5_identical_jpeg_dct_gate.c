@@ -49,6 +49,7 @@ int main(int argc, char **argv) {
     Source reference;
     snprintf(path, sizeof(path), "%s/57.jpg", argv[1]);
     load(&reference, path);
+    uint64_t total = 0;
     uint64_t eligible = 0;
     uint64_t blocks = 0;
     for (JDIMENSION row = 0; row < 450; ++row) {
@@ -56,13 +57,16 @@ int main(int argc, char **argv) {
             (j_common_ptr)&reference.decoder, reference.coefficients[0],
             row, 1, FALSE);
         for (JDIMENSION col = 0; col < 300; ++col) {
+            for (int k=1; k<64; ++k) total += (rr[0][col][k] != 0);
             if (!outside((int)col*8, (int)row*8)) continue;
             ++blocks;
             for (int k=1; k<64; ++k) eligible += (rr[0][col][k] != 0);
         }
     }
+    assert(total == 697223);
     assert(blocks == 77208);
     assert(eligible == 270846);
+    printf("reference full-image nonzero luma AC=%" PRIu64 "\n", total);
     printf("reference invariant luma blocks=%" PRIu64
            " exact nonzero AC=%" PRIu64 "\n", blocks, eligible);
 
