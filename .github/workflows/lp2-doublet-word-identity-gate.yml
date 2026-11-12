@@ -1,0 +1,34 @@
+name: LP2 doublet word-identity and p56 alignment gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/lp2-doublet-word-identity-gate.yml'
+      - 'sims/lp2_doublet_gap_word_identity_conditional_sft.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  word-identity-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-aligned word-identity and p56 channel tests
+        run: |
+          node --check sims/lp2_doublet_gap_word_identity_conditional_sft.cjs
+          node sims/lp2_doublet_gap_word_identity_conditional_sft.cjs > "$RUNNER_TEMP/word-identity-results.json"
+          cat "$RUNNER_TEMP/word-identity-results.json"
+      - name: Preserve exact output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-doublet-word-identity-results
+          path: ${{ runner.temp }}/word-identity-results.json
+          if-no-files-found: warn

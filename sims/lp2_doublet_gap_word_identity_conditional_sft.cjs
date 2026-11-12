@@ -125,7 +125,7 @@ function main() {
     .sort((a, b) => b.token.length - a.token.length);
   function toGpRunes(text) {
     const out = [];
-    for (const word of text.split(/\\s+/)) {
+    for (const word of text.split(/\s+/)) {
       for (let i = 0; i < word.length;) {
         const token = alphabet.find(item => word.startsWith(item.token, i));
         assert.ok(token, "unmapped p56 plaintext token at " + word.slice(i));
