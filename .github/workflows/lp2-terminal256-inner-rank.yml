@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_terminal255_gf256_original_gate_sft.cjs
       - name: Bound every source-ordered terminal inner GF29 linear recurrence
         run: node sims/lp2_terminal256_inner_lfsr_sft.cjs
+      - name: Predict withheld 76-rune p55 from solved180 and perimeter monic GF29 cyclic code
+        run: node sims/lp2_terminal256_outer76_cyclic_completion_sft.cjs
