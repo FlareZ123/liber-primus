@@ -1,6 +1,6 @@
 # Signed 2016 GP-prime-rank permutation of the original p55 interiors
 
-**Decision (12 November 2026): negative for the single source-fixed stable numeric-rank permutation and its exact inverse.** Neither produces legible original text. No unknown LP2 plaintext, key, or new cipher mechanism is recovered. This bounds a rank-transposition hypothesis; it does not reject unrelated uses of the authenticated 2016 message.
+**Decision (12 November 2026): negative for the source-fixed signed-word rank and a stronger all-rank necessary frequency obstruction for direct GP29 English.** Neither frozen rank orientation produces legible original text. Any 43-position pure permutation retains the 43 original labeled GP symbol counts, which are far outside tested ordinary native-GP English windows. No authentic LP2 plaintext, key or mechanism is recovered.
 
 ## Original-source motivation and independent inputs
 
@@ -49,8 +49,30 @@ A smoothed GP29 additive-backoff trigram model is trained on the first 240,000 c
 
 The frozen permutation and its inverse return **43/43** original GP indices exactly. A native 43-rune solved-p57 plant, encoded with the inverse of each candidate operation, is decoded **43/43**; the original exterior 33 positions are checked unchanged. A reversed numeric-rank order is included as a wrong-order control and never used to select a candidate. As for all invertible transformations, the exact round trip demonstrates implementation correctness, not historical key validity.
 
+
+## Familywide pure-transposition obstruction
+
+**A position-only permutation cannot change rune frequencies**, even when its key and ordering are completely unknown. The original p55 43-interior register has **21 distinct GP29 runes** and the nonzero multiplicity multiset `[4,3,3,3,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,1,1]`. The labeled-frequencies index of coincidence is **0.0343300110742**, preserved under any permutation.
+
+Using exactly the preceding script's established GP-normalization, fit a one-gram native-English GP29 probability distribution with Laplace +1 smoothing to the first 240,000 characters of Shakespeare (174,998 GP tokens). Evaluate the *original* 43 rune symbols via the frequency-only average log score, `sum(count_i * log(prob_i))/43`. Its **−4.1325152735** score is invariant for **every possible permutation** of the 43 glyph positions.
+
+The held-out native-English comparisons enumerate all **overlapping** windows of length 43, without re-fitting a model on those windows:
+
+| Independent source | GP29 windows | Score ≤ original −4.132515 |
+| --- | ---: | ---: |
+| Shakespeare, held-out text | 43,760 | **0** |
+| Gibran, *The Prophet* | 63,072 | **0** |
+| Emerson, essays | 324,588 | **0** |
+| **Total** | **431,420** | **0** |
+
+The worst (minimum) comparison score by source is respectively **−3.53304465**, **−3.40748597** and **−3.47273623**, each much higher than the original. The comparisons deliberately reuse many overlapping controls, hence the zero count is empirical evidence across three source registers, **not a p-value from 431,420 independent draws**.
+
+An allowance for **any unknown global one-to-one relabeling of the 29 GP symbols** changes the bound. By the rearrangement inequality, the exact best possible one-gram score after relabeling is found by sorting the original 29 occurrence counts and the 29 model log probabilities in the same descending order. That maximum is **−2.9871536165**. When *every held-out window is itself permitted its own optimal global relabeling*, **100/43,760** Shakespeare windows, **46/63,072** Gibran windows and **214/324,588** Emerson windows are at or below this optimum (**360/431,420** combined). Thus a secret alphabet substitution + positional permutation is constrained but **not excluded** by this statistic.
+
+The familywide obstruction applies to a **direct, unchanged-alphabet, pure transposition of the 43 original interior rune identities into ordinary English in native GP29 spelling**. It does not exclude substitution or any other symbol-changing layer, another language, hidden extra symbols, or a larger ciphertext register that includes the exteriors. A human-directed puzzle may conceivably provide another source-selected operation. Simply trying more position permutations or optimizing rank ties cannot fix the observed alphabet-frequency mismatch.
+
 ## Verdict and possible successor
 
-This test closes the single explicit ascending GP-prime rank mapping proposed in [Director #573](https://github.com/FlareZ123/liber-primus/issues/573). A literal rank produces no plaintext. A future hypothesis must independently supply another operation and explain why the source numbers select it; an unconstrained variation of rank scoring or tie breaking is not justified.
+The frozen signed-word rank and its inverse fail under the task's original-language test, while the independent frequency-only invariant extends the rejection to the entire same-alphabet pure 43-interior transposition family under the stated native-English assumption. This is stronger than the narrow rank experiment in [Director #573](https://github.com/FlareZ123/liber-primus/issues/573) but still recovers no plaintext. A future hypothesis must independently supply another operation and explain why the source numbers select it; an unconstrained variation of rank scoring or tie breaking is not justified.
 
 **Single-file reproducer:** [`sims/lp2_2016_signed_prime_rank_p55_sft.cjs`](../sims/lp2_2016_signed_prime_rank_p55_sft.cjs) (Node.js 22, read-only). It reports the full word list, exact prime sums, permutation, original ciphertext, page offset alignment, both outputs, independent native-window comparisons, wrong-order control and exact original/native-plant inversions.
