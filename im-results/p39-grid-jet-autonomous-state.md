@@ -51,8 +51,35 @@ All 12,956 original unsolved runes were decoded with the exact 256 original tabl
 
 Each decoded prefix remains nonlinguistic. All eight full original candidates encode back to exactly **12,956/12,956** original runes, as any invertible feed-forward transform should. The reproducer asserts the exact original table checksum, `[P(15),P'(15)]=[27,5]`, original ciphertext count and all frozen IoCs. It also encrypts and recovers an independent 18-GP-symbol planted sequence under every trial transform. Original results are near the uniform **1/29** baseline and far below the source-native English comparison of **0.05884076** documented in the autonomous-clock section. This rejects the *specific one-step source-value/derivative feed-forward* route for direct native-GP29 prose, without excluding a source-selected different feedback rule or non-GP intermediate.
 
+## Source-jet plaintext-feedback on the following original chapter (Agent3, 12 November 2026)
+
+One distinct causal reading of the same p39 red triple uses the **previous recovered plaintext rune** as the input to the polynomial's value or derivative, rather than the previous ciphertext rune. The image places the enlarged p39 [27,5,15] triplet before the red13 ending of p39 and the following p40 red-start chapter. It fixes the polynomial sample point 15 and selects the exact original **3,008-rune pp40–53 visual chapter** as the target. It does **not** explicitly say to encrypt by plaintext feedback, so this is a narrowly motivated speculative inverse.
+
+For `J=P` or `J=P'` and sign `±1`, freeze the initial previous plaintext symbol to 15 and apply sequentially, with no page, word, red-marker or mid-chapter resets:
+
+```text
+plain[i]  = (cipher[i] + sign*J(plain[i-1])) mod29
+cipher[i] = (plain[i]  - sign*J(plain[i-1])) mod29
+plain[-1] = 15
+```
+
+The source's 256 original table bytes, reduced mod29, give `P(15)=27`, `P'(15)=5`. The **four frozen original results** are:
+
+| Feedback function | Sign | Original decoded GP29 IoC |
+| --- | ---: | ---: |
+| P | −1 | 0.034473197291 |
+| P | +1 | 0.034503047853 |
+| P' | −1 | 0.034392269103 |
+| P' | +1 | 0.034431185390 |
+
+The untouched p40–53 IoC is **0.034542627486**; the authentic solved p57 prose has **0.062709966405**. The first 80 symbol outputs remain high-entropy rather than recognizable GP29 text. All four inverse outputs re-encrypt the entire **3,008/3,008** original rune interval exactly. A separate source-native positive control repeats the authentic solved p57 95-rune passage to length 3,008, enciphers under each frozen recurrence, and recovers **3,008/3,008** runes; the positive plaintext IoC exceeds 0.05. Round trips validate software, not the original author's key.
+
+**Decision:** The four directly specified p39-source-jet plaintext-feedback inverses fail to recover native-GP prose on the adjacent original pp40–53 chapter. Unlike the earlier previous-ciphertext feed-forward gate, these recurrences require sequentially recovered plaintext, making this a distinct bounded negative. It remains conditional on source-visible red13→p40 chapter start, the selected GP29 prose register, and the unsourced feedback hypothesis; no broader plaintext-feedback family is excluded. Do not expand to arbitrary phases, evaluation points or clocks absent an original instruction.
+
+Reproduction: [single-file CJS original-cipher and planted-source SFT](../sims/p39_grid_plaintext_feedback_sft.cjs). The test asserts original printed byte SHA-256, the p39 jet, precise p40–53 rune count and four original IoCs.
+
 ## Decision and scope
 
-The visible p39 jet suggests finite operations, but the tested **autonomous derivative-state / value-pad** and **one-step ciphertext-dependent value/derivative feed-forward** direct-GP29 architectures are negative under book-continuous and page-reset clocks. The actual historical meaning of the marked triplet remains unresolved; a different ciphertext-dependent register, field representation or non-GP intermediate would require an independent source instruction. Further arbitrary five-period pad fitting would repeat discarded search families.
+The visible p39 jet suggests finite operations, but the tested **autonomous derivative-state / value-pad**, **one-step ciphertext-dependent value/derivative feed-forward**, and **source-seeded plaintext-dependent feedback on the adjacent p40–53 chapter** direct-GP29 architectures are all negative under their respective fixed clocks. The actual historical meaning of the marked triplet remains unresolved; a different ciphertext-dependent register, field representation or non-GP intermediate would require an independent source instruction. Further arbitrary five-period pad fitting would repeat discarded search families.
 
 Related: [original marked-triad source-root evidence](../sims/lp2_red_triad_extension_root_sft.cjs), [complete grid factorization](lp2-grid-complete-gf29-factorization.md), and [integrated original-input challenge](../workplace/integrated-original-inversion-challenge.md). The p39 jet equality itself was previously noted in the Issue #3 discussion; the new contribution is the explicit autonomous dynamical interpretation, exact collapse theorem and all-state original-input negative.
