@@ -30,6 +30,35 @@ The cuneiform cue therefore selects a numeric interpretation of its own signs, n
 
 The local p0 agreement is a plausible selector annotation. It is not a whole-text register selector. See [the original-image historical literature audit](lp2-opening-3x3-yf-cipher-rune-literature-audit.md).
 
+## 12 November 2026: source-visible-chapter alphabet-capacity test (#480)
+
+**New exact, language-independent obstruction.** The [source-visible chapter atlas](lp2-global-original-visual-section-map.md) identifies nine unknown-text chapters from an original page-start red heading paired with a red thirteen-dot terminal marker on the preceding page. The eighth chapter, physical **pp40–53**, is a single **3,008-rune** originally continuous visible unit. Consider any *one-rune in, one-rune out* deterministic encoder where the only history/state used at position i is (visible chapter, immediately preceding ciphertext rune):
+
+\[
+C_i=f_{\operatorname{chapter}(i),C_{i-1}}(P_i).
+\]
+
+Each secret map may be chosen completely freely, differently for each of 9×29 = 261 states; it need not be additive or even injective. Let the actual plaintext have **m** possible source symbols. For any fixed observed state s, **at most m distinct next ciphertext runes** can be generated because f_s is a function of one of m plaintext symbols. This pigeonhole invariant does not assume English or any plaintext probability distribution.
+
+The original pp0–55 have **217/261** observed (chapter, previous-C) states with **more than 16** distinct next runes. Most decisively, the original p40–53 chapter has **six distinct previous-rune states each followed by all 29 GP ciphertext symbols**:
+
+| Previous-C GP index | Original occurrences of the state | Distinct next GP runes |
+| ---: | ---: | ---: |
+| 26 | 111 | **29** |
+| 25 | 111 | **29** |
+| 18 | 111 | **29** |
+| 10 | 110 | **29** |
+| 22 | 121 | **29** |
+| 7 | 85 | **29** |
+
+Thus **m≥29** is necessary under this *complete* specified state family, even with all 261 mappings secret. This strictly excludes directly decoding the original one-for-one ciphertext into a **16-symbol Younger Futhark**, a **16-symbol hexadecimal/nybble alphabet**, a **20-symbol restricted register**, or any other alphabet smaller than 29 through a fixed chapter + previous-ciphertext mapping. The source-visible p0 3|3 Younger Futhark mark still locally selects þ/TH, but cannot provide a whole-book original decoder of that precise first-order kind. This is an architectural exclusion, not a conclusion that the underlying message has to be written in 29 GP letters.
+
+The [original-corpus standalone CommonJS reproducer](../sims/lp2_visible_chapter_register_capacity_sft.cjs) counts every one of the **12,901 within-page transitions**, asserts all six six-state full-alphabet witnesses and the 217 states exceeding 16. Its **positive plant** maps a complete length-matched deterministic **16-letter** source stream through a reversible GP29 previous-ciphertext/chapter-feedback encoder and recovers the exact source after inversion; as the theorem predicts, its observed next-symbol support never exceeds 16 at any state. No unconstrained key or plaintext-score search is involved.
+
+A new source-state convention *could* change this constraint. With the same page-local transition exclusions, source-visible chapter + preceding **two** ciphertext runes (rather than one) produces **5,642** distinct observed states, maximum next-rune support **11**; the preceding-three model has 12,331 states with maximum support three. Those lower maxima arise partly from sparse sampling and **do not** authenticate any two-rune decoder. Per-page arbitrary maps, evolving hidden state, block coding, variable length or codepoint decompositions also escape the first-order conclusion. They require their own human-visible selector, original-cipher inverse, and held-out prediction.
+
+**Decision for #480:** the only period-source-supported non-GP language clue in this finite original-visible inventory remains the *local* p0 Younger Futhark þ; it supplies neither a whole-register map nor a decoder. The cuneiform 1033/3301 signs remain numbers. We now know specifically that any faithful hypothetical **16-symbol** direct alternative cannot use a stationary single-previous-ciphertext map keyed only at the original visibly selected chapter boundaries. A usable alternative-register hypothesis must supply **additional key/state or a source-selected change in message length/segmentation**, with an independently fixed operation and original plaintext prediction. No non-English original LP2 plaintext is recovered.
+
 ## What would reopen this branch
 
 A useful new source must provide at least one of:
