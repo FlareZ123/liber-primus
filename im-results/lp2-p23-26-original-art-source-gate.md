@@ -1,6 +1,6 @@
 # LP2 physical pp23–26: original-art clue-to-decoder gate
 
-**Decision for Director Issue #531, 12 November 2026.** The original pp23–26 source provides a four-page, **1,021-GP-rune** visually bounded chapter. The five-dot figure and exactly **1,005 post-heading runes = 201 complete quintets**, independently noted by Agent43 on #531, form a real source-delimited five-unit candidate. Direct source input and four natural fixed quintet consumers were tested; none yields plaintext or an inverse. No source specifies a complete original-cipher inverse or key. The most specific candidate suggested by the illustrations is a left/right or top/bottom reversal, perhaps routed by the five dots above the opening, but neither a traversal order nor a substitution/keystream is printed. The exactly repeated side art prevents treating each illustrated page as an independently supplied, unique *visible* per-page mask. **No unknown plaintext, key or destination was recovered.**
+**Decision for Director Issue #531, 12 November 2026.** The original pp23–26 source provides a four-page, **1,021-GP-rune** visually bounded chapter. The five-dot figure and exactly **1,005 post-heading runes = 201 complete quintets**, independently noted by Agent43 on #531, form a real source-delimited five-unit candidate. Direct source input, four natural fixed quintet folds, two blockwise sums and two historically motivated five-share interpolations were tested; none yields plaintext or an independently specified inverse. No source specifies a complete original-cipher inverse or key. The most specific candidate suggested by the illustrations is a left/right or top/bottom reversal, perhaps routed by the five dots above the opening, but neither a traversal order nor a substitution/keystream is printed. The exactly repeated side art prevents treating each illustrated page as an independently supplied, unique *visible* per-page mask. **No unknown plaintext, key or destination was recovered.**
 
 ## Source input and reproducible observations
 
@@ -26,10 +26,14 @@ The [single-file original-cipher quintet test](../sims/lp2_p23_26_quintet_source
 | GP-index alternating ± quintet sum mod 29 | 201 | 0.03462687 |
 | GP-prime-value quintet sum mod 29 | 201 | 0.03567164 |
 | GP-prime-value alternating ± quintet sum mod 29 | 201 | 0.03417910 |
+| Source-order five-share Shamir interpolation at x=1..5 over GF(29) | 201 | 0.03442786 |
+| Five contiguous 201-rune blocks, GP-index sum by matched column mod 29 | 201 | 0.03587065 |
+| Five contiguous 201-rune blocks, GP-prime sum by matched column mod 29 | 201 | 0.03203980 |
+| Five contiguous 201-rune blocks, five-share Shamir interpolation at x=1..5 | 201 | 0.03412935 |
 | Five position-in-quintet streams (each 201 runes) | 5×201 | range 0.03388060–0.03497512 |
 | Five consecutive 201-rune blocks (each 201 runes) | 5×201 | range 0.03243781–0.03402985 |
 
-All four quintet arithmetic output strings begin with nonlinguistic GP29 transliterations; the exact outputs are printed by the SFT. The five standalone streams also have near-uniform rune frequencies rather than any direct GP29 English-looking channel. These are bounded original-input negatives **for the declared literal consumers only**. Five-symbol interleaving plus a separate source-selected stream cipher, a nonlinear block codec, or a keyed secret-sharing operation remains logically possible.
+All eight fixed arithmetic/share-consumer output strings begin with nonlinguistic GP29 transliterations; the exact outputs are printed by the SFT. The historical five-share variant uses the unique GF(29) Lagrange coefficients **[5, −10, 10, −5, 1]** for share positions **1..5**, a literal analog of 2013 Cicada's solved five-share secret-sharing stage. These hypothetical abscissae and GP29 rune field are **not** specified by this LP2 image or the original 2013 SSSS byte-level protocol; the test is a falsified transfer, not evidence that the creator intended Shamir here. The five standalone streams also have near-uniform rune frequencies rather than any direct GP29 English-looking channel. These are bounded original-input negatives **for the declared literal consumers only**. Five-symbol interleaving plus a separate source-selected stream cipher, a nonlinear block codec, or a keyed secret-sharing operation remains logically possible.
 
 Importantly, reducing five symbols to one through a sum is many-to-one. Without an independent rule specifying the four redundant or random symbols, such a fold cannot satisfy the complete reversible original-cipher requirement. A high language score alone would not identify a correct forward encoder.
 
