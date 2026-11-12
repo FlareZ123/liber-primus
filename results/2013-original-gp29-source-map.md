@@ -1,0 +1,37 @@
+# Primary 2013 Gematria Primus source versus signed BASE29
+
+**Established scope:** The canonical 29-rune GP order and first-29-prime values are independently anchored in a reconstructable **2013 puzzle-image artifact**, rather than merely inferred from modern community transcriptions. The separately signed 2013 `BASE29` protocol is ordinary positional integer notation. Neither source fixes an unknown-LP2 decipherment key, page clock, word boundary rule, or punctuation serialization.
+
+## The source that fixes the rune table
+
+The 2013 Twitter stage combines the account's offset-addressed hexadecimal tweets with the original Cicada OS `761.mp3` audio bytes using XOR. The original 2013 participant archive [documents the steps and intermediate files](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/README.md), including a directly inspectable [recovered `gematria.jpg`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/gematria.jpg). The recovered JPEG is **598×842**, **64,167 bytes**, Git blob SHA-1 `65ded13617196f0fd5d210855a75452ff2e7a340`. The [later comprehensive archive's 2013 reference image](https://github.com/krisyotam/cicada3301/blob/main/puzzles/2013/images/gematria-primus.jpg) has the **same exact Git blob SHA-1 and byte length**, independently confirmed from repository file metadata. These mirrors establish identical preserved bytes; their independent custody or derivation from separate original downloads is not established. The original JPEG also carries a preserved [1,443-byte default OutGuess extracted clear-signed whitespace message](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/gematria.jpg.asc). That message belongs to the historical stage and supplies no GP rune-table digit mapping or LP2 inverse.
+
+The image visibly specifies **29** vertically ordered rows, each with a rune glyph, letter/digraph alias, and one consecutive prime from **2** through **109**. The read order is **left column top-to-bottom, then right column top-to-bottom**. The 2013 image is an original stage artifact reconstructed from puzzle data, rather than an OpenPGP-signed copy of the alphabet table itself. This is a much stronger source anchor than simply copying a later font's glyph order.
+
+| Indices | Source transliterations in printed order | Source prime values |
+|---|---|---|
+| 0–9 | F, U, TH, O, R, C/K, G, W, H, N | 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 |
+| 10–19 | I, J, EO, P, X, S/Z, T, B, E, M | 31, 37, 41, 43, 47, 53, 59, 61, 67, 71 |
+| 20–28 | L, NG/ING, OE, D, A, AE, Y, IA/IO, EA | 73, 79, 83, 89, 97, 101, 103, 107, 109 |
+
+The full **29 Unicode rune glyphs**, source names, and prime weights are frozen independently of the working corpus in [the CommonJS source regression](../sims/2013_primary_gp29_source_sft.cjs). Comparing every row to `resources/liber-primus/lp2-corpus.json` yields an exact match after selecting the corpus's primary aliases C, S, NG and IA. **C/K, S/Z, NG/ING and IA/IO** are genuine source aliases. The common extended transcription U/V is a working orthographic convenience; the cited image itself labels that row **U**. The image does not specify how to handle spaces, punctuation, alternate Roman spelling, GP29 word boundaries, page metadata, or a binary/radix serialization.
+
+### Independent original-source checks
+
+The historical **`761.mp3`** filename and title **“The Instar Emergence”** give a source-native checksum entirely outside LP2: in the printed table `THE = 5+67 = 72`, `INSTAR = 31+29+53+59+97+11 = 280`, `EMERGENCE = 67+71+67+11+17+67+29+13+67 = 409`. Thus **72+280+409 = 761** without a tuned offset or unknown ciphertext.
+
+For an untouched LP2 control, physical **p57 / archive `74.jpg`** begins with the seven-rune red title `PARABLE`, GP indices **[13,24,4,24,17,20,18]** and prime sum **449**. Its next unencrypted text begins `LICETHEINSTARTUNNEL` in the primary GP aliases (C is the source's C/K rune). The independent pre-existing [authentic p56 prime-totient regression](../sims/authentic_lp2_p56_totient_regression.cjs) asserts all **85 original p56 ciphertext runes**, matches the established `AN END...` plaintext under φ(prime) subtraction with the specified literal-F treatment, and checks a **25-rune holdout**. The new SFT reuses that exact regression rather than rewriting it. These controls establish that the source table is compatible with solved pages, not that it decrypts unknown pages.
+
+## The different 2013 BASE29 specification
+
+The authentic [26 January 2013 TCP challenge](../resources/external/2013-tcp-server-signed-source.md) is a separately signature-verified protocol source. Its command `BASE29 [n]` converts a decimal integer to a **textual radix-29 representation** and provides the explicit worked example **`BASE29 3301` → `3QO`**. Ordinary positional reading gives `3×29² + 26×29 + 24 = 3301` under the conventional digit set `0123456789ABCDEFGHIJKLMNOPQRS`. The example checks the 3/Q/O digit meanings, but does not independently enumerate all 29 printable digits. In particular, the source gives no rune-to-digit bijection and no instruction to feed GP29 words to this command. The unsigned 1033 transcript example, where present, is distinct from the signed `3301` command; 1033 is not a signed TCP modulus, radix switch or length.
+
+The original 2013 OS `prime_echo` binary/script is also separate: it displays ordinary primes and pauses at 1033 and 3301, but has **no GP rune-order, punctuation or text-serialization table** ([Issue #464, source cross-check](https://github.com/FlareZ123/liber-primus/issues/464)). Neither the signed BASE29 command nor the 2013 OS can replace the original GP image as the source for glyph-to-prime weights.
+
+## Research decision
+
+**Fixed:** GP's 29 visible rune classes, ordered indices **0–28**, first-29-prime values and source-labelled ambiguities. The working corpus's prime sums use an original-stage source map with independently reproducible `761` and LP2 p57 checks. Researchers need not treat the 29 prime assignments as a wholly unsourced community convenience.
+
+**Unfixed:** Literal symbols for spaces and punctuation in an encoded stream, the semantics of optional aliases as plaintext, a GP29-to-binary codec, original-LP2 unknown-page segmentation/key/clock, and any transfer of the 2013 `BASE29` protocol to LP2. Arbitrary BASE29/GP29 conflations are not source-selected, and the verified `761` relationship does not supply a keystream.
+
+**Disposition of Director #464:** The positive source-mapping boundary is established. The next causal research decision is to seek a genuinely source-selected reversible operation using this authenticated rune alphabet; no more generic GP prime-sum reinterpretation follows solely from mapping provenance.
