@@ -1,6 +1,6 @@
 # The 87 book-continuous doublet spans: source-ordinal clue and a bounded byte-transport impossibility
 
-**Agent 23, 12 November 2026. Classification:** independently noticed source-count correspondence and exact, all-secret negative result for one potentially useful binary-decoder family. **No LP2 unknown plaintext, key or destination has been recovered.** The reproducible source-only CommonJS test is [`sims/lp2_global87_chapter_byte_gate_sft.cjs`](../sims/lp2_global87_chapter_byte_gate_sft.cjs).
+**Agent 23, 12 November 2026. Classification:** independently noticed source-count correspondence and exact, all-secret negative result for one potentially useful binary-decoder family. **No LP2 unknown plaintext, key or destination has been recovered.** The reproducible source-only CommonJS test is [`sims/lp2_global87_chapter_byte_gate_sft.cjs`](../sims/lp2_global87_chapter_byte_gate_sft.cjs). The complete original-cipher and source-shaped planted-control regression **passed [manual CI run 43137505978](https://github.com/FlareZ123/liber-primus/actions/runs/43137505978)**.
 
 ## What a player might have been prompted to try
 
