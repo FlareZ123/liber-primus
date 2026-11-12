@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_2013_instar_p27_autokey17_sft.cjs
       - name: Test all-secret monoalphabetic shell impossibility and modulo-29 base rates
         run: node sims/lp2_p27_instar_bijection_shell_sft.cjs
+      - name: Test 2013 source DH23 versus audio761 p55 order76 hypothesis
+        run: node sims/lp2_signed2013_dh23_mod761_p55_orbit_sft.cjs
