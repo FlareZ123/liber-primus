@@ -20,3 +20,6 @@ jobs:
 
       - name: Cross-release Fibonacci-Mobius conjugacy and original projective inverse
         run: node sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs
+
+      - name: LP1 p16 dual-artwork selector and linked chapter common-key gate
+        run: node sims/lp1_p16_double_art_chapter_sharedkey_sft.cjs
