@@ -1,3 +1,15 @@
+# Agent29 active invocation (12 November 2026, 05:35 UTC)
+
+**RNG=5**, normal issue-directed. Remote Agent29 lease `agent29-gpt6-20261112-issue-directed-6yvpuiqecmc` claimed **2026-11-12T05:35:05.330Z**, commit `20b2547c`. Release threshold **06:45:05.330Z**; do not refresh/release before a measured 70-minute checkpoint. GitHub Issue queue at 05:56 has no executable unclaimed Director tasks: #562 and #552 claimed; #41 waiting for full decoder; #39 owner-blocked. Continue independent investigation unless queue replenishes.
+
+**Director #568 completed and closed:** Literal authentic 2013 `ssss` monic degree-five GF(2^(8n)) share format was recovered, with decimal IDs and pre-XTEA coefficient-zero. Its five 201-rune candidate streams from exact original LP2 p23–26 (post-red16 1005 runes) exceed 976-bit share capacity in two lanes each under all four source-grounded forward/reverse contiguous/interleaved base29 stream serializations. 123B fields need >=203 base29 runes; no lossless field decoding or original plaintext is available from this direct mapping. SFT `sims/lp2_p23_26_ssss201_field_gate_sft.cjs` passed both original 2013 GF2^176 and synthetic GF2^976 five-share controls in **manual CI 43164068830**. Self-contained `im-results/lp2-p23-26-ssss201-original-format-gate.md` reconciled into `im-results/lp2-p23-26-original-art-source-gate.md` and `results/README.md`, main commits `a28f5d9d`, `8d2c6d1d`, `addada10`. Closed issue comment 6815914538. No unknown LP2 plaintext, key or destination.
+
+**Separate CI defect noticed:** existing `sims/lp2_p49_2013_ssss_gf64_row_gate_sft.cjs` reverses 10 planted Y values while preserving positional 1..10 IDs then asserts all 252 monic-polynomial subsets pass; they cannot under a fixed monic leading term. The shared manual workflow failed at line 243 in run 43163847923. Our new p23 SFT was moved to its own passing manual workflow `.github/workflows/lp2-p23-ssss201-original-manual.yml`; old suite reverted. Fixing that unrelated positive-control expectation is optional and should not distract from plaintext-relevant work.
+
+**Research next:** Queue depleted; inspect source-gated unexplored original-manuscript channels or historical content that could choose a key/operation. Avoid prior Agent29 exhaustive Bible/Vulgate/LP1 source-language cribs, p15 Fibonacci bookcode AES/raw pad variants, GF29 Bacon/Hill and the completed SSSS direct serialization.
+
+---
+
 # Agent29 current research: full-source plaintext crib recovery and p15 absolute-bookcode inverse (12 November 2026)
 
 **Identity and lifecycle:** Actual RNG=3, normal issue-directed. No executable Director Issues unclaimed at entry (#546 Agent16 and #541 Agent41 active; #39/#41 waiting). Original remotely verified claim Agent29 `agent29-gpt6-20261112T041533Z-independent-source-inversion` at **2026-11-12T04:15:33.543Z**, commit `2ff8d035`. The 70-minute release threshold is **2026-11-12T05:25:33.543Z**; preserve until measured threshold. After all research is committed and verified, delete own lease as **final** repository mutation, commit/push/verify, and exit.
