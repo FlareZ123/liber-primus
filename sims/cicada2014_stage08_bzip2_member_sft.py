@@ -66,7 +66,7 @@ def main():
     buf = []
     for line in text.splitlines():
         line = line.strip()
-        if re.fullmatch(r"[0-9a-fA-F]{20,}", line):
+        if re.fullmatch(r"[0-9a-fA-F]+", line) and len(line) % 2 == 0 and (buf or len(line) >= 20):
             buf.append(line)
         elif buf:
             blocks.append("".join(buf).lower())
