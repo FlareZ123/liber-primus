@@ -67,6 +67,10 @@ function inverse(matrix) {
   return { determinant, result };
 }
 
+function transpose(matrix) {
+  return matrix[0].map((_, j) => matrix.map(row => row[j]));
+}
+
 function blocks(source, matrix) {
   const dest = [];
   for (let off = 0; off + N <= source.length; off += N) {
@@ -106,6 +110,10 @@ assert.equal(p55Body75.length, 75);
 assert.equal(terminal255.length, 255);
 assert.equal(p53PlusP54.length, 180);
 const solvedPlant = solved.slice(0, 90);
+const transposed = transpose(key);
+const inverseTransposed = transpose(keyInverse);
+assert.deepEqual(blocks(blocks(solvedPlant, transposed), inverseTransposed),
+  solvedPlant, 'transposed authentic positive control');
 assert.deepEqual(blocks(blocks(solvedPlant, key), keyInverse), solvedPlant,
   'authentic GP-native p57 positive control');
 
@@ -125,6 +133,8 @@ console.log(JSON.stringify({
   ].map(({ name, input }) => {
     const decoded = blocks(input, keyInverse);
     const reversed = blocks(input, key);
+    const transposedInverse = blocks(input, inverseTransposed);
+    const transposedForward = blocks(input, transposed);
     assert.deepEqual(blocks(decoded, key), input.slice(0, decoded.length),
       'complete original ciphertext reencryption');
     return {
@@ -133,6 +143,8 @@ console.log(JSON.stringify({
       decodedSymbols: decoded.length,
       inverseIoC: coincidence(decoded),
       forwardIoC: coincidence(reversed),
+      inverseTransposeIoC: coincidence(transposedInverse),
+      forwardTransposeIoC: coincidence(transposedForward),
       plaintextPrefix: decoded.slice(0, 80).map(i => corpus.translit[i]).join('')
     };
   })
