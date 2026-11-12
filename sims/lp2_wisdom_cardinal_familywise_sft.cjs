@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Director #429: source-family correction for the 2013 Wisdom / original LP2
+ * Director #429: source-family correction for the 2014 LP1 Wisdom / original LP2
  * three-word cardinal-route hypothesis.
  *
  * Run: node sims/lp2_wisdom_cardinal_familywise_sft.cjs
