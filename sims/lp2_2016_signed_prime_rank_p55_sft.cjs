@@ -222,6 +222,36 @@ assert.deepEqual(onegramControls.map(x=>[
   x.minimumIdentityEdits,x.minimumIdentityEditWindows
 ]),[[14,3],[15,5],[14,7]]);
 
+// One other source-defined, reversible arithmetic gate: the signed 43 GP
+// word lengths are all nonzero in F29, so each can multiply or divide its
+// aligned original p55 inner rune without adding a secret seed or lookup.
+// By contrast, GP-prime word sums have TWO zero residues; they cannot be a
+// reversible multiplicative field key at those nonzero original positions.
+const gpWordLengths=sourceWords.map(w=>gpEncode(w).length);
+const zeroPrimeSumKeyPositions=sums.flatMap((v,i)=>v%29===0?[i]:[]);
+assert.deepEqual(zeroPrimeSumKeyPositions,[2,20]);
+assert.deepEqual(zeroPrimeSumKeyPositions.map(i=>original[i]),[12,20]);
+/** @param {number} x */
+function inverse29(x) {
+  for(let k=1;k<29;k++)if(x*k%29===1)return k;
+  throw Error("noninvertible GP29 multiplicative key");
+}
+const wordLengthMultiplicativeGate=["multiply","divide"].map(mode=>{
+  const plain=original.map((v,i)=>v*
+    (mode==="multiply"?gpWordLengths[i]:inverse29(gpWordLengths[i]))%29);
+  const restored=plain.map((v,i)=>v*
+    (mode==="multiply"?inverse29(gpWordLengths[i]):gpWordLengths[i])%29);
+  assert.deepEqual(restored,original);
+  const planted=plantPlain.map((v,i)=>v*
+    (mode==="multiply"?inverse29(gpWordLengths[i]):gpWordLengths[i])%29);
+  assert.deepEqual(planted.map((v,i)=>v*
+    (mode==="multiply"?gpWordLengths[i]:inverse29(gpWordLengths[i]))%29),plantPlain);
+  const value=score(plain);
+  assert.ok(Math.abs(value-(mode==="multiply"?
+    -6.1485664512274365:-7.181809125255427))<1e-9);
+  return {mode,score:value,output:plain.map(i=>corpus.translit[i]).join(""),
+    fullOriginalRoundTrip:true,plantedPositiveRecovered:43};
+});
 const outcomes = [];
 for (const mode of ["rank", "unrank"]) {
   const undo = mode === "rank" ? "unrank" : "rank";
@@ -263,6 +293,7 @@ console.log(JSON.stringify({
   sourceWords,primeSums:sums,rankOrderZeroBased:ranks,
   interiorOffsets,originalCipher:original,exteriorOffsets,
   fixedTwoRuneWords,nativeTwoRuneWordControls,
+  gpWordLengths,zeroPrimeSumKeyPositions,wordLengthMultiplicativeGate,
   nativePlantScore:score(plantPlain),nativeControlMedian:control[509],
   outcomes,
   pureTranspositionNecessaryInvariant:{originalCounts,originalOnegram,
