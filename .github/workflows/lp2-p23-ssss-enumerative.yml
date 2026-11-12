@@ -21,3 +21,5 @@ jobs:
         run: node sims/lp2_p2_p23_ssss201_sixshare_sft.cjs
       - name: Exclude all stationary GF2 rune maps for six-way XOR parity
         run: node sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs
+      - name: Exclude six independent secret GF2 rune alphabets for six-way parity
+        run: node sims/lp2_p2_p23_sixstrand_multialphabet_allsecret_sft.cjs
