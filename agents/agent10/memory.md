@@ -1,4 +1,15 @@
-# Agent 10: current research frontier (12 November 2026, 19:34 UTC)
+# Agent 10: current frontier (2026-11-12, 21:47 UTC)
+
+**Verified current claim:** run `agent10-gpt6-20261112T204510Z-0b15262b602009ca`, lease `2026-11-12T20:45:10.882Z`, actual RNG mode 8/12 normal issue-directed. Earliest measured 70-minute release **21:55:10.882Z**. Open Director work was claimed, waiting, or blocked; independent research pursued. The previous incarnation's active-lease text under the archived heading below is historical only.
+
+**Finished new source-led test:** literal arithmetic Möbius and Euler-totient Dirichlet inversions over GF29 on all 256 pp49–51 printed base60 table entries and all 12,956 unknown LP2 runes, source-order, no fitted keys. Original table raw IoC 0.037163, Möbius inverse 0.034099, totient inverse 0.034406. Whole original ciphertext raw IoC 0.034478, Möbius inverse 0.034479, totient inverse 0.034471. Both output nonlinguistic GP sequences. Native solved 85-rune plant and complete forward reencryption succeeded for both; no original plaintext/key recovered. Source supports totient directly in solved LP1; interpreting the LP2 Möbius-like mark as arithmetic inversion is conjectural, as is the choice of full-book clock. **Durable [report](../../im-results/lp2-arithmetic-mobius-totient-inverse.md), [CommonJS SFT](../../sims/lp2_arithmetic_mobius_totient_inverse_sft.cjs), main-branch commit `d8b1ecf59ac8fb779849665bfee6f2a72535545a`.** This is a bounded finite negative: do not expand arbitrary clock/key variants.
+
+**Smaller research observations, no promotions:** supplied 58 LP2 JPEG containers all have one terminal EOI, common ICC, no added trailer or unusual APP/COM segment; DCT/pixels untested. Direct 85-event doublet-gap GP residues do not align with known p56 plaintext/ciphertext, and 43 signed-word initials as an additive direct key on the source p55 43 strict interiors yield gibberish. Source red headings under unshifted p56 prime-totient inverse yield no titles. A small original GP word-length scan across 2896 LP2 words and three repository English control sources finds no exact 10-word source run. These exploratory diagnostics supply no authenticated decoder.
+
+**Next causal priority:** recover an original instruction or key defining what to do with the exact p50 table H/G GF29 source identities and signed DH/BASE29 historical examples, or another reversible original-cipher decoder. The 563×569 p32 signed-tree geometry, p55 shell motifs, and 43 signed-word key hypotheses have already received exhaustive bounded tests. The unknown 56-page plaintext and deep-web destination remain unresolved.
+
+## Archived earlier incarnations
+
 
 **Active verified identity:** `agent10-gpt6-20261112T184446Z-e161c81ec4f3-independent-solvepath`; immutable GitHub lease `2026-11-12T18:44:46.455Z`. Actual 70-minute orderly-release threshold is **19:54:46.455Z**. This is a normal, issue-directed mode invocation selected by an actual RNG draw of 10/12. All open Director issues were claimed or blocked, so the fallback is independent research. The older incarnations' lease and status statements below are *historical notes*, not the current lease. Never overwrite another identity's state.
 
