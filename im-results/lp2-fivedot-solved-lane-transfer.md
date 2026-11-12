@@ -27,6 +27,25 @@ The source key repeats every **17** or **16** lane positions; no phase offset, f
 
 [Complete original-cipher CJS single-file reproducer](../sims/lp2_fivedot_solved_lane_transfer_sft.cjs).
 
+## Original-image dot-order operation versus known p56 plaintext
+
+A stricter control asks whether the five-dot **shape itself**, before any interpretation of unsolved pages, selects a nontrivial **positional reading order** on the already-solved p56 ciphertext. Original p56 has exactly **five printed rune lines** of lengths **[20, 19, 6, 22, 18]**; it also has 85 runes that form either 17 chronological quintets or five 17-rune stripes. The exact original-image connected-component method and native JPEG hashes are in [the image source SFT](../sims/lp2_p7_p23_p56_dot_triad_sft.py), rather than derived from a new fit to text. From left to right, the five original p56 dots have **top-to-bottom x-rank order [2, 0, 4, 1, 3]**, versus the reflected p7 **[2, 4, 0, 3, 1]** and rotated p23 **[1, 3, 0, 4, 2]**. The candidate natural orientations are these three orders, p56's reverse vertical order, left-to-right identity, and right-to-left reversal.
+
+Apply each **fixed order** to (a) the five actual printed rune lines, (b) the 17 quintets, and (c) five 17-rune stripes. For each of the **18** unkeyed possible readings, apply the *unchanged* authentic p56 **85-rune cipher-minus-plaintext shift vector**, respecting the known single literal-F exception at local offset56, and compare with the independently solved full plaintext. This is a direct **known-control requirement** for the narrow claim that the dots prescribe an additional transposition *before the existing p56 totient decoder*. It is not a test of all possible unrelated ciphers.
+
+| Dot order | Errors / 85, printed lines | Errors / 85, quintets | Errors / 85, 17-rune stripes |
+| --- | ---: | ---: | ---: |
+| Left to right, identity | **0** | **0** | **0** |
+| Original p56 top to bottom | 83 | 84 | 83 |
+| Original p56 bottom to top | 84 | 68 | 64 |
+| Right to left | 85 | 64 | 68 |
+| Reflected p7 top to bottom | 85 | 68 | 66 |
+| Rotated p23 top to bottom | 84 | 84 | 83 |
+
+**Result:** only the unchanged source order produces the complete p56 plaintext. Every nonidentity physical dot-order transformation forces at least **64 wrong GP runes** on the authentic p56 control; the natural figure-selected top-to-bottom orientation forces **83–84** errors. This is a rigorous finite negative for an *additional unkeyed five-way transposition operating on the p56 ciphertext before its solved prime cipher*. A distinct source-selected operator, such as a hash-line transformation or standalone later-stage instruction, remains possible.
+
+The original visual placement also supports a simpler **section-boundary decoration** interpretation: p7's figure follows a red closing sentence and red thirteen-dot terminal mark; p23's figure precedes a red opening heading after p22's terminal mark; solved p56's figure follows its closing passage and red terminal mark. The repeated image can bookend separate passages without participating in their encryption. This is a plausible design reading, not authenticated author intent. The current source supplies no nontrivial operator that survives the solved p56 gate.
+
 ## Outcome and decision
 
 The original source streams and *best* possible symbol coincidence indices among the eight configurations for each fixed span/key choice are:
