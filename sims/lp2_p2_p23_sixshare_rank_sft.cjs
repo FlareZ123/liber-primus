@@ -108,6 +108,10 @@ function run() {
     fiveStrands: [sixth, ...Array.from({ length: 5 }, (_, i) => body.slice(201 * i, 201 * (i + 1)))],
     fiveQuintets: [sixth, ...Array.from({ length: 5 }, (_, i) => Array.from({ length: 201 }, (_, j) => body[5 * j + i]))],
   };
+  const FIELD_POLYS = [0x11b,0x11d,0x12b,0x12d,0x139,0x13f,0x14d,0x15f,0x163,0x165,
+    0x169,0x171,0x177,0x17b,0x187,0x18b,0x18d,0x19f,0x1a3,0x1a9,
+    0x1b1,0x1bd,0x1c3,0x1cf,0x1d7,0x1dd,0x1e7,0x1f3,0x1f5,0x1f9];
+  // The complete set of 30 monic degree-eight irreducible F2 polynomials.
   const expected = { fiveStrands: { gp29: 25, f11b: 49, f11d: 68 },
     fiveQuintets: { gp29: 20, f11b: 183, f11d: 79 } };
   const results = [];
@@ -119,13 +123,18 @@ function run() {
     const f11d = det6(head6(bytes), F256(0x11d));
     assert.deepEqual({ gp29, f11b, f11d }, expected[name]);
     assert(gp29 !== 0 && f11b !== 0 && f11d !== 0);
+    const allFieldDeterminants = FIELD_POLYS.map(poly => det6(head6(bytes), F256(poly)));
+    assert.equal(allFieldDeterminants.length, 30);
+    assert(allFieldDeterminants.every(d => d !== 0), 'six-share obstruction holds for every degree-eight polynomial byte field');
     results.push({ layout: name, p2PlusFiveRows: 6, runeColumns: 201,
       binaryColumns: 123, originalDeterminants: { gp29, gf256Poly11b: f11b, gf256Poly11d: f11d },
+      all30GF256PolynomialBasesFullRank: true,
+      minimumGF256DeterminantValue: Math.min(...allFieldDeterminants),
       rankOverEachDeclaredField: 6 });
   }
   // Positive control: six genuine five-of-ten shares are degree-four evaluations
   // at distinct identifiers, so every 6x6 minor vanishes over the same field.
-  for (const poly of [0x11b, 0x11d]) {
+  for (const poly of FIELD_POLYS) {
     const plant = plantedShamir(poly, 123);
     assert.equal(det6(head6(plant), F256(poly)), 0);
   }
