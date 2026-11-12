@@ -8,6 +8,7 @@ asks precisely what image 1 emits under that same original zero-key command.
 from __future__ import annotations
 
 import hashlib
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -68,10 +69,12 @@ def main() -> None:
     assert archived[1] != archived[2] != archived[3]
     print("ARCHIVE_INVARIANT first extracted file is byte-identical to fourth, "
           "as the archived README's duplicate index.4.jpg command predicts")
+    recovered_by_index = {}
     for index in (4, 2, 3, 1):
         in_file = folder / f"index.{index}.jpg"
         out_file = folder / f"actual-index.{index}.outguess"
         code, recovered = extract(in_file, out_file)
+        recovered_by_index[index] = recovered
         if index != 1:
             assert code == 0 and recovered == archived[index], (
                 index, "archived original positive control failed"
@@ -89,8 +92,42 @@ def main() -> None:
             else:
                 print("FIRST_IMAGE_NO_SIGNED_OUTPUT: explicit original result, "
                       "no unsigned text promoted")
-    print("PASS: source-hashed 2014 Stage09 actual-image extraction, "
-          "three independently exact OutGuess positive controls")
+    assert all(x.startswith(b"-----BEGIN PGP SIGNED MESSAGE-----")
+               for x in recovered_by_index.values())
+    def signed_body(raw: bytes) -> bytes:
+        return raw.split(b"-----BEGIN PGP SIGNATURE-----", 1)[0]
+    assert signed_body(recovered_by_index[1]) == signed_body(recovered_by_index[2])
+    assert recovered_by_index[1] != recovered_by_index[2], (
+        "The first image must retain its distinct 2014 signed packet"
+    )
+    expected_digits = {1: b"3", 2: b"3", 3: b"0", 4: b"1"}
+    for i, raw in recovered_by_index.items():
+        border = re.findall(rb"(?m)^([0-9])\\1{15}\\s*$", signed_body(raw))
+        assert border == [expected_digits[i], expected_digits[i]], (i, border)
+    print("FOUR_SOURCE_DIGITS=3301; archived duplicate image4 for image1 gives 1301")
+    with tempfile.TemporaryDirectory(prefix="cicada2014-stage09-gpg-") as home:
+        os.chmod(home, 0o700)
+        key_path = Path("resources/control/cicada-3301-public-key.asc")
+        importer = subprocess.run(
+            ["gpg", "--homedir", home, "--batch", "--import", str(key_path)],
+            capture_output=True, text=True, check=False,
+        )
+        assert importer.returncode == 0, importer.stderr
+        for i in range(1, 5):
+            fp = folder / f"actual-index.{i}.outguess"
+            verify = subprocess.run(
+                ["gpg", "--homedir", home, "--batch", "--status-fd", "1",
+                 "--verify", str(fp)],
+                capture_output=True, text=True, check=False,
+            )
+            assert verify.returncode == 0, (i, verify.stderr)
+            assert ("[GNUPG:] VALIDSIG "
+                    "6D854CD7933322A601C3286D181F01E57A35090F") in verify.stdout, (
+                i, verify.stdout
+            )
+            print(f"PGP_VALID {i}: original Cicada key 6D854CD7933322A601C3286D181F01E57A35090F")
+    print("PASS: independently restored original 2014 Stage09 source-order 3301 "
+          "and four authentic verified PGP signatures")
 
 
 if __name__ == "__main__":
