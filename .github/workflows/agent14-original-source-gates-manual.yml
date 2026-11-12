@@ -1,0 +1,22 @@
+name: Agent14 original LP2 source-fixed binary and PRGA gates
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-input-controls:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify the p50 direct-swap RC4 finite original-inverse gate
+        run: |
+          node --check sims/lp2_grid256_swap_schedule_rc4_sft.cjs
+          node sims/lp2_grid256_swap_schedule_rc4_sft.cjs
+      - name: Verify original p23-26 binary channel and native PNG plant
+        run: |
+          node --check sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
+          node sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
