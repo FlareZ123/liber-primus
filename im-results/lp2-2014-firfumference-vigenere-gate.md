@@ -1,247 +1,119 @@
-#!/usr/bin/env node
-'use strict';
+# Cross-round 2014 `FIRFUMFERENCE` key on LP2
 
-// Direct cross-round test of the 2014 LP1 prime-page Vigenere key on LP2.
-// Source key schedule: key_to_shifts() returns the 1-based reverse-GP
-// position; adding that shift is equivalent to P = C - GP_INDEX(key) mod 29.
-const fs = require('node:fs');
-const path = require('node:path');
-const assert = require('node:assert/strict');
-const crypto = require('node:crypto');
-const { parseWords, splitWord } = require('./lp2_p57_literal_word_circumference_sft.cjs');
-const { encode } = require('./grid_keyskip_viterbi.cjs');
+**Decision: reject the direct continuous-key transfer and the p57-selected word-interior composition.** The 2014 key is a real, source-documented GP29 Vigenere key for LP1 prime pages 107 and 167. LP2 p57's “circumferences” is a plausible human-facing callback. Applying the exact 2014 key schedule continuously to the 12,956 unknown LP2 runes does not produce plaintext or a meaningful language-score improvement.
 
-const ROOT = path.resolve(__dirname, '..');
-const read = p => fs.readFileSync(path.join(ROOT, p), 'utf8');
-const mod = x => ((x % 29) + 29) % 29;
+## Why this was a motivated test
 
-function trainSymbols(xs) {
-  const u = new Uint32Array(29);
-  const b = new Uint32Array(29 * 29);
-  const t = new Uint32Array(29 * 29 * 29);
-  for (let i = 0; i < xs.length; i++) {
-    u[xs[i]]++;
-    if (i > 0) b[xs[i - 1] * 29 + xs[i]]++;
-    if (i > 1) t[(xs[i - 2] * 29 + xs[i - 1]) * 29 + xs[i]]++;
-  }
-  const U = new Float64Array(29);
-  const B = new Float64Array(29 * 29);
-  const T = new Float64Array(29 * 29 * 29);
-  for (let c = 0; c < 29; c++) U[c] = Math.log((u[c] + 1) / (xs.length + 29));
-  for (let a = 0; a < 29; a++) {
-    for (let c = 0; c < 29; c++) {
-      B[a * 29 + c] = Math.log((b[a * 29 + c] + 12 * Math.exp(U[c])) / (u[a] + 12));
-    }
-  }
-  for (let a = 0; a < 29; a++) {
-    for (let v = 0; v < 29; v++) {
-      for (let c = 0; c < 29; c++) {
-        const i = (a * 29 + v) * 29 + c;
-        T[i] = Math.log((t[i] + 9 * Math.exp(B[v * 29 + c])) / (b[a * 29 + v] + 9));
-      }
-    }
-  }
-  return { U, B, T };
-}
+The 2014 sixth-onion archive states that LP1 pages 107 and 167 are encrypted with Vigenere key `FIRFUMFERENCE`, and that the key continues across the page boundary. Its original `gematriaprimus.py` implements the key as a 1-based position in the reverse GP alphabet and adds that shift to each ciphertext rune. In GP indices this is exactly:
 
-function score(xs, model) {
-  if (xs.length < 3) return NaN;
-  let total = model.U[xs[0]] + model.B[xs[0] * 29 + xs[1]];
-  for (let i = 2; i < xs.length; i++) {
-    total += model.T[(xs[i - 2] * 29 + xs[i - 1]) * 29 + xs[i]];
-  }
-  return total / xs.length;
-}
+```
+P[i] = (C[i] + 29 - GP_INDEX(key[i mod 13])) mod 29
+```
 
-function split80(text) {
-  const words = text.match(/[A-Za-z]+/g) || [];
-  return words.slice(0, Math.floor(words.length * 0.8)).join(' ');
-}
+LP2 p57 says “WE MUST SHED OUR OWN CIRCUMFERENCES.” That is a plausible cue to revisit the earlier Cicada circumference key and its known operation. The hypothesis is a direct cross-round transfer, not a claim that p57 proves the key.
 
-function pageSection(text, page) {
-  const match = new RegExp('^### ' + page + '\\s*$', 'm').exec(text);
-  assert(match, 'missing LP1 plaintext page ' + page);
-  const rest = text.slice(match.index + match[0].length);
-  const next = rest.search(/^### \d+/m);
-  return (next < 0 ? rest : rest.slice(0, next))
-    .replace(/\[[^\]]*(?:Continuation|Conclusion)[^\]]*\]/gi, ' ')
-    .replace(/\(continued from[^)]*\)/gi, ' ')
-    .trim();
-}
+Sources:
+- [2014 sixth-onion README: key and page relationship](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/README.md)
+- [Original 2014 GP/Vigenere implementation](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/gematriaprimus.py)
+- [2014 page 107 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes-possibilities.txt)
+- [2014 page 167 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes-possibilities.txt)
+- The 2014/009 README contains the spelling `FIRFUMFERENFE`; the actual 2014/008 README and executable source use `FIRFUMFERENCE`. Only the code-backed spelling was tested.
 
-function weightedScores(pages, field, models) {
-  const total = pages.reduce((sum, p) => sum + p[field].length, 0);
-  return Object.fromEntries(Object.entries(models).map(([name, model]) => [
-    name,
-    pages.reduce((sum, p) => sum + score(p[field], model) * p[field].length, 0) / total
-  ]));
-}
+## Positive control
 
-function ioc(xs) {
-  const counts = new Uint32Array(29);
-  for (const x of xs) counts[x]++;
-  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (xs.length * (xs.length - 1));
-}
+The key schedule was replayed on the archived 2014 page-107 and page-167 rune sources, starting at key offset 0 and carrying the pointer across the page boundary. It reproduces the archived output apart from three known `IO/IA` transliteration choices. The pointer consumes 224 runes on page 107 and 93 on page 167 (317 total), confirming the source's continuous schedule and the GP-index sign used below.
 
-const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const lp1 = read('resources/liber-primus/lp1-plaintext-reference.txt');
-const transcription = read('resources/liber-primus/lp2-transcription.txt');
-const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length >= 3);
-const key = 'FIRFUMFERENCE';
-const keyIndices = [...key].map(ch => corpus.translit.indexOf(ch));
-assert(keyIndices.every(i => i >= 0), 'key letter missing from GP alphabet');
-const keyShifts = keyIndices.map(i => 29 - i);
-assert.deepEqual(keyIndices, [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 5, 18]);
-assert.deepEqual(keyShifts, [29, 19, 25, 29, 28, 10, 29, 11, 25, 11, 20, 24, 11]);
+## Frozen LP2 test
 
-let keyPosition = 0;
-const decodedPages = pages.map(page => ({
-  page: page.page,
-  indices: page.indices,
-  plain: page.indices.map(cipher => {
-    const plain = mod(cipher + keyShifts[keyPosition % keyShifts.length]);
-    keyPosition++;
-    return plain;
-  })
-}));
-const raw = pages.flatMap(p => p.indices);
-const decoded = decodedPages.flatMap(p => p.plain);
-assert.equal(pages.length, 55);
-assert.equal(raw.length, 12956);
-assert.equal(keyPosition, 12956);
-assert.equal(keyPosition % key.length, 8);
-assert.equal(corpus.pages.find(p => p.page === 50).indices.length, 0);
-const colonCount = (transcription.match(/:/g) || []).length;
-assert.equal(colonCount, 0, 'LP2 transcription unexpectedly contains 2014 colon skip markers');
+- Input: `resources/liber-primus/lp2-corpus.json`, pages 0–55, 55 rune-bearing pages, 12,956 runes.
+- p50 contributes zero runes and therefore consumes no key.
+- Key: `FIRFUMFERENCE`; GP indices `[0,10,4,0,1,19,0,18,4,18,9,5,18]`; source shifts `[29,19,25,29,28,10,29,11,25,11,20,24,11]`.
+- Schedule: start at offset 0 on p0; carry continuously across every rune-bearing page; punctuation does not consume key; no page resets or searched offsets.
+- The 2014 implementation has colon-triggered skip behavior for marked runes. The LP2 transcription contains **zero colon markers**, so no unsourced skip rule was introduced.
+- Language scores use the same 700-rune matched-control protocol as `sims/source_register_benchmark.cjs`, with Emerson, Gibran and Shakespeare models. p56/p57 are retained as readable positive controls.
 
-const controls = {
-  emerson: 'resources/control/emerson_essays_2944.txt',
-  gibran: 'resources/control/gibran_prophet_58585.txt',
-  shakespeare: 'resources/control/shakespeare_first300k.txt'
-};
-const models = Object.fromEntries(Object.entries(controls).map(([name, file]) => {
-  const xs = encode(split80(read(file))).slice(0, 700);
-  assert.equal(xs.length, 700, name + ' matched training size');
-  return [name, trainSymbols(xs)];
-}));
-const p56 = encode(pageSection(lp1, 56).replace(/[0-9a-f]{32,}/gi, ' '));
-const p57 = encode(pageSection(lp1, 57));
-const controlScores = {
-  p56: Object.fromEntries(Object.entries(models).map(([n, m]) => [n, score(p56, m)])),
-  p57: Object.fromEntries(Object.entries(models).map(([n, m]) => [n, score(p57, m)]))
-};
-const rawScores = weightedScores(pages.map(p => ({ ...p, plain: p.indices })), 'plain', models);
-const decodedScores = weightedScores(decodedPages, 'plain', models);
-const deltas = Object.fromEntries(Object.keys(models).map(n => [n, decodedScores[n] - rawScores[n]]));
+| Matched 700-rune model | Raw LP2 | After key | Change |
+|---|---:|---:|---:|
+| Emerson | -4.361516 | -4.364094 | -0.002578 |
+| Gibran | -4.437846 | -4.426299 | +0.011547 |
+| Shakespeare | -4.435810 | -4.424500 | +0.011310 |
 
+The known plaintext controls score substantially better: p56 is `-2.961452 / -2.878342 / -2.885286` and p57 is `-2.820506 / -2.871894 / -2.625673` under the same three models. The key changes the global IoC only from `0.0344784` to `0.0344762`. The decoded prefix is `SIAXOCFIAJJHNTTTHUTHAEEANGOEXCPFPEBXJOEJLNGEOCWYCPHWCIAEOIANDWPSTHXWMPBHFAETHJGHIAFOYNGAETHXNOEMHAEBOOBAEULAEMIPRUHFJUJUCMNGBNGENGMEOGRAEYAYFYOAEALEONGW`, not readable text.
 
-function gitBlobSha1(text) {
-  const bytes = Buffer.from(text, 'utf8');
-  return crypto.createHash('sha1').update('blob ' + bytes.length + '\0')
-    .update(bytes).digest('hex');
-}
+The tiny Gibran/Shakespeare score increases are not a coherent recovery: Emerson worsens, all scores remain about 1.5 nats/rune below the solved-page controls, IoC is unchanged, and no page yields an English passage. This is a negative result for the **direct continuous Vigenere transfer**, not proof that p57's wording has no historical significance.
 
-const parsedWords = parseWords(transcription);
-const unknownWords = parsedWords.words.filter(word => word.start < 12956);
-assert.equal(unknownWords.length, 2896);
-const interiorParts = unknownWords.map(splitWord);
-const interiorText = interiorParts.map(part => part.inside).join('');
-const exteriorText = interiorParts.map(part => part.outside).join('');
-assert.equal(interiorText.length, 7247);
-assert.equal(exteriorText.length, 5709);
-assert.equal(gitBlobSha1(transcription), '43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7');
-assert.equal(gitBlobSha1(interiorText), 'ddef28abf08ce0651084864ad0fa858b6d104d48');
-assert.equal(gitBlobSha1(exteriorText), '8c710f10558d58e6bdd99aeb678a2d6198f2770f');
+## Source-selected word-interior composition with the 2014 key (12 November 2026)
 
-const runeToIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
-const interiorCipher = [...interiorText].map(rune => {
-  const index = runeToIndex.get(rune);
-  assert.notEqual(index, undefined, 'unknown rune in word-interior stream');
-  return index;
-});
-let interiorKeyPosition = 0;
-const interiorDecoded = interiorCipher.map(cipher => {
-  const plain = mod(cipher + keyShifts[interiorKeyPosition % keyShifts.length]);
-  interiorKeyPosition++;
-  return plain;
-});
-assert.equal(interiorKeyPosition, 7247);
-assert.equal(interiorKeyPosition % key.length, 6);
+The earlier test applied the historical 2014 `FIRFUMFERENCE` key to all 12,956 unknown runes and rejected that direct transfer. A distinct human solve-path hypothesis is selected by two independent source clues: p57 says to shed word circumferences, and the documented 2014 key itself is named `FIRFUMFERENCE`. This test strips each unknown word's first and last rune, then applies the same historical GP29 Vigenère operation to the resulting interior stream.
 
-const interiorRawScores = Object.fromEntries(Object.entries(models).map(([name, model]) => [
-  name, score(interiorCipher, model)
-]));
-const interiorDecodedScores = Object.fromEntries(Object.entries(models).map(([name, model]) => [
-  name, score(interiorDecoded, model)
-]));
-const interiorScoreDeltas = Object.fromEntries(Object.keys(models).map(name => [
-  name, interiorDecodedScores[name] - interiorRawScores[name]
-]));
-for (const name of Object.keys(models)) {
-  assert.ok(interiorScoreDeltas[name] < 0, name + ' score unexpectedly improved');
-}
+**Frozen operation.** The canonical parser preserves cross-page word carries and treats `-`, `.`, `&`, `# Cross-round 2014 `FIRFUMFERENCE` key on LP2
 
-const pageSegments = transcription.split('%');
-assert(pageSegments.length >= 57, 'missing solved p56/p57 page segments');
-const p56InteriorText = parseWords(pageSegments[55]).words
-  .map(splitWord).map(part => part.inside).join('');
-const p57InteriorText = parseWords(pageSegments[56]).words
-  .map(splitWord).map(part => part.inside).join('');
-const p56Interior = [...p56InteriorText].map(rune => runeToIndex.get(rune));
-const p57Interior = [...p57InteriorText].map(rune => runeToIndex.get(rune));
-assert.equal(p56Interior.length, 36);
-assert.equal(p57Interior.length, 55);
+**Decision: reject the direct continuous-key transfer.** The 2014 key is a real, source-documented GP29 Vigenere key for LP1 prime pages 107 and 167. LP2 p57's “circumferences” is a plausible human-facing callback. Applying the exact 2014 key schedule continuously to the 12,956 unknown LP2 runes does not produce plaintext or a meaningful language-score improvement.
 
-const plant = encode(split80(read(controls.shakespeare))).slice(0, 700);
-const plantCipher = plant.map((plain, i) => mod(plain - keyShifts[i % keyShifts.length]));
-const plantRecovered = plantCipher.map((cipher, i) => mod(cipher + keyShifts[i % keyShifts.length]));
-assert.deepEqual(plantRecovered, plant, '2014 key operation failed positive round-trip');
+## Why this was a motivated test
 
-const wordInteriorComposition = {
-  sourceSelection: 'p57 word-circumference instruction; remove first and last rune of each unknown word before applying the source-authentic 2014 key',
-  unknownWords: unknownWords.length,
-  unknownRunes: 12956,
-  interiorRunes: interiorCipher.length,
-  exteriorRunes: exteriorText.length,
-  interiorGitBlobSha1: gitBlobSha1(interiorText),
-  exteriorGitBlobSha1: gitBlobSha1(exteriorText),
-  key,
-  keyIndices,
-  keyShifts,
-  schedule: 'continuous from the first interior rune; removed endpoints do not consume key; no page resets',
-  finalKeyOffset: interiorKeyPosition % key.length,
-  rawIoC: ioc(interiorCipher),
-  decodedIoC: ioc(interiorDecoded),
-  rawTrigramScores: interiorRawScores,
-  decodedTrigramScores: interiorDecodedScores,
-  decodedMinusRaw: interiorScoreDeltas,
-  p56Interior: { runes: p56Interior.length, ioc: ioc(p56Interior),
-    scores: Object.fromEntries(Object.entries(models).map(([name, model]) => [name, score(p56Interior, model)])) },
-  p57Interior: { runes: p57Interior.length, ioc: ioc(p57Interior),
-    scores: Object.fromEntries(Object.entries(models).map(([name, model]) => [name, score(p57Interior, model)])) },
-  positivePlantRoundTrip: plantRecovered.length,
-  decodedPrefix: interiorDecoded.slice(0, 120).map(index => corpus.translit[index]).join('')
-};
-assert.ok(wordInteriorComposition.p57Interior.ioc > 0.07);
-assert.ok(wordInteriorComposition.decodedIoC < wordInteriorComposition.rawIoC);
+The 2014 sixth-onion archive states that LP1 pages 107 and 167 are encrypted with Vigenere key `FIRFUMFERENCE`, and that the key continues across the page boundary. Its original `gematriaprimus.py` implements the key as a 1-based position in the reverse GP alphabet and adds that shift to each ciphertext rune. In GP indices this is exactly:
 
-console.log(JSON.stringify({
-  hypothesis: 'LP2 p57 “circumferences” points to the 2014 FIRFUMFERENCE Vigenere key',
-  operation: 'P = C + (29 - GP_INDEX(key_letter)) mod 29',
-  key,
-  keyIndices,
-  keyShifts,
-  keySchedule: 'continuous across all rune-bearing pages; no page resets; punctuation consumes no key; p50 has zero runes',
-  pages: pages.length,
-  runes: raw.length,
-  finalKeyOffset: keyPosition % key.length,
-  lp2ColonSkipMarkers: colonCount,
-  rawIoC: ioc(raw),
-  decodedIoC: ioc(decoded),
-  matched700RuneControlScores: controlScores,
-  rawWeightedScores: rawScores,
-  decodedWeightedScores: decodedScores,
-  decodedMinusRaw: deltas,
-  decodedPrefix: decoded.slice(0, 120).map(i => corpus.translit[i]).join(''),
-  wordInteriorComposition
-}, null, 2));
+```
+P[i] = (C[i] + 29 - GP_INDEX(key[i mod 13])) mod 29
+```
+
+LP2 p57 says “WE MUST SHED OUR OWN CIRCUMFERENCES.” That is a plausible cue to revisit the earlier Cicada circumference key and its known operation. The hypothesis is a direct cross-round transfer, not a claim that p57 proves the key.
+
+Sources:
+- [2014 sixth-onion README: key and page relationship](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/README.md)
+- [Original 2014 GP/Vigenere implementation](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/gematriaprimus.py)
+- [2014 page 107 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes-possibilities.txt)
+- [2014 page 167 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes-possibilities.txt)
+- The 2014/009 README contains the spelling `FIRFUMFERENFE`; the actual 2014/008 README and executable source use `FIRFUMFERENCE`. Only the code-backed spelling was tested.
+
+## Positive control
+
+The key schedule was replayed on the archived 2014 page-107 and page-167 rune sources, starting at key offset 0 and carrying the pointer across the page boundary. It reproduces the archived output apart from three known `IO/IA` transliteration choices. The pointer consumes 224 runes on page 107 and 93 on page 167 (317 total), confirming the source's continuous schedule and the GP-index sign used below.
+
+## Frozen LP2 test
+
+- Input: `resources/liber-primus/lp2-corpus.json`, pages 0–55, 55 rune-bearing pages, 12,956 runes.
+- p50 contributes zero runes and therefore consumes no key.
+- Key: `FIRFUMFERENCE`; GP indices `[0,10,4,0,1,19,0,18,4,18,9,5,18]`; source shifts `[29,19,25,29,28,10,29,11,25,11,20,24,11]`.
+- Schedule: start at offset 0 on p0; carry continuously across every rune-bearing page; punctuation does not consume key; no page resets or searched offsets.
+- The 2014 implementation has colon-triggered skip behavior for marked runes. The LP2 transcription contains **zero colon markers**, so no unsourced skip rule was introduced.
+- Language scores use the same 700-rune matched-control protocol as `sims/source_register_benchmark.cjs`, with Emerson, Gibran and Shakespeare models. p56/p57 are retained as readable positive controls.
+
+| Matched 700-rune model | Raw LP2 | After key | Change |
+|---|---:|---:|---:|
+| Emerson | -4.361516 | -4.364094 | -0.002578 |
+| Gibran | -4.437846 | -4.426299 | +0.011547 |
+| Shakespeare | -4.435810 | -4.424500 | +0.011310 |
+
+The known plaintext controls score substantially better: p56 is `-2.961452 / -2.878342 / -2.885286` and p57 is `-2.820506 / -2.871894 / -2.625673` under the same three models. The key changes the global IoC only from `0.0344784` to `0.0344762`. The decoded prefix is `SIAXOCFIAJJHNTTTHUTHAEEANGOEXCPFPEBXJOEJLNGEOCWYCPHWCIAEOIANDWPSTHXWMPBHFAETHJGHIAFOYNGAETHXNOEMHAEBOOBAEULAEMIPRUHFJUJUCMNGBNGENGMEOGRAEYAYFYOAEALEONGW`, not readable text.
+
+The tiny Gibran/Shakespeare score increases are not a coherent recovery: Emerson worsens, all scores remain about 1.5 nats/rune below the solved-page controls, IoC is unchanged, and no page yields an English passage. This is a negative result for the **direct continuous Vigenere transfer**, not proof that p57's wording has no historical significance.
+
+, and `§` as word separators; `/` and `%` do not terminate a word. The 2,896 unknown words contain 12,956 runes, yielding 7,247 interior runes and 5,709 endpoint runes. The interior stream is concatenated in original order. The source-authentic key indices are `[0,10,4,0,1,19,0,18,4,18,9,5,18]`, with shifts `[29,19,25,29,28,10,29,11,25,11,20,24,11]`; decode is `P[i] = C[i] + shift[i mod 13] (mod 29)`. The key starts at the first interior rune and continues across the full stream; removed endpoints do not consume key and there are no page resets or searched offsets.
+
+**Result: negative.** The raw interior IoC is `0.0344734576`; after decryption it is `0.0344646215`. All three independently trained 700-rune GP29 trigram models worsen:
+
+| Model | Raw interior | After 2014 key | Change | Solved p57 interior control |
+|---|---:|---:|---:|---:|
+| Emerson | −4.357298 | −4.378387 | −0.021089 | −3.073710 |
+| Gibran | −4.429005 | −4.442801 | −0.013796 | −2.921147 |
+| Shakespeare | −4.424953 | −4.453081 | −0.028129 | −2.875867 |
+
+The solved p57 word-interior control has IoC `0.0713805` (55 runes), while the unknown interior stream remains near the random GP29 baseline. The decoded prefix is `HHEAGEHYFBOEYGLEYPAXOEONGBWYCEANWWNGAERIAJIBRJJPLBYLAOWNGMCYAFJUAELNGNGDMTAEJTHUGNGHEAXOUAEXEOIANUCLCTICTHUTHEAXLGNIURHAENGAYSEEOGTHEOMFFSSOCNDDPSEOLTHLEOFLGNGEOHDETNGTHUXXEMBTHFDLMDLMYESNGTHYLXNGNGXRPSIAEADEPXFTONGFHUTHAEARXHCUBMUJIIARLFAE`, not plaintext.
+
+The existing historical 2014 source positive control remains intact; the updated reproducer also checks a 700-symbol synthetic encrypt/decrypt round-trip. This rejects only the exact composition `strip word endpoints → continuous FIRFUMFERENCE Vigenère`; it does not invalidate either source clue. Do not rescue it with key trimming, phase sweeps, or page resets without a new source selector.
+
+Reproduce with `node sims/lp2_2014_firfumference_vigenere_gate.cjs`.
+
+## Reproduction and decision
+
+Run:
+
+```sh
+node sims/lp2_2014_firfumference_vigenere_gate.cjs
+```
+
+The script reads only repository inputs, asserts the 55-page/12,956-rune corpus and key-shift vector, and prints the control, raw, decoded and IoC statistics.
+
+Do not retune key offsets, reset the key at page boundaries, test the README typo, or invent skip positions to rescue either tested route. The p57-selected word-interior composition is also negative; reopen only if a new independent LP2 source clue selects a different use of the 2014 key or supplies the missing skip/reset rule. No LP2 plaintext, authentic key, complete cipher mechanism or destination is recovered.
