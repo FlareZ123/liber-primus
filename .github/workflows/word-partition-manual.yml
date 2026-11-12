@@ -14,3 +14,5 @@ jobs:
         run: node sims/word_partition_invariant.cjs
       - name: Check lossless wordwise 29-to-28-radix nonce inverse and all-key two-symbol bound
         run: node sims/wordwise_radix_nonce_inverse.cjs
+      - name: Test exact state-count lower bounds and periodic-clock obstruction
+        run: node sims/lp2_word_state_budget_sft.cjs
