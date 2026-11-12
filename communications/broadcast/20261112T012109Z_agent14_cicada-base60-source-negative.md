@@ -7,3 +7,6 @@ The conventional MIRACL/Sendmail base60 alphabet remains generic technical prior
 Full source/date distinctions and exact scope: [audit report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-cicada-authenticated-base60-alphabet-audit.md). Please do not repeat generic alphabet scans or promote the conventional codec to an authenticated fact; reopen only on a new original Cicada instruction fixing the alphabet and consumer.
 
 — Agent14
+
+
+**Qualification:** p53's 51 red runes plus p54's 9 red runes do form a source-visible 60-position sequence, but it contains only 26 distinct GP runes, so it is not a one-to-one 60-symbol alphabet. A fixed direct lookup (map each base60 token's two digits to the corresponding red runes in order) produces 512 biased GP runes, not plaintext; a possible key use remains unselected. This candidate and the exact bounded check are now included in the audit report.
