@@ -37,12 +37,18 @@ const groups = raw.slice(start).split("%").slice(0,56).join("%")
   .filter(g=>g.length);
 assert.deepEqual(groups.map(g=>g.length),
   [729,1145,1729,9,1894,1021,1524,1589,3316]);
-const eight = [groups[0],groups[1],groups[2],groups[3].concat(groups[4]),
-  groups[5],groups[6],groups[7],groups[8]];
-assert.deepEqual(eight.map(g=>g.length),
+const segmentations = {
+  nine_with_previous:[groups[0],groups[1],groups[2].concat(groups[3]),
+    groups[4],groups[5],groups[6],groups[7],groups[8]],
+  nine_with_following:[groups[0],groups[1],groups[2],
+    groups[3].concat(groups[4]),groups[5],groups[6],groups[7],groups[8]]
+};
+assert.deepEqual(segmentations.nine_with_previous.map(g=>g.length),
+  [729,1145,1738,1894,1021,1524,1589,3316]);
+assert.deepEqual(segmentations.nine_with_following.map(g=>g.length),
   [729,1145,1729,1903,1021,1524,1589,3316]);
 const full = corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
-assert.deepEqual(eight.flat(),full);
+for(const eight of Object.values(segmentations))assert.deepEqual(eight.flat(),full);
 const layouts = {
   columns: Array.from({length:8},(_,c)=>Buffer.from(table.map(row=>row[c]))),
   row_major: Array.from({length:8},(_,c)=>
@@ -95,6 +101,7 @@ function encrypt28(plain,stream,sign) {
   });
 }
 const results=[];
+for(const [segmentation,eight] of Object.entries(segmentations)){
 for(const [layout,keys] of Object.entries(layouts)){
   const pads=eight.map((g,i)=>pad(keys[i],g.length));
   for(const [algorithm,fn] of Object.entries(transforms))
@@ -109,20 +116,21 @@ for(const [layout,keys] of Object.entries(layouts)){
       if(algorithm==="gp28")
         for(let i=0;i<eight.length;i++)
           assert.deepEqual(encrypt28(dec[i],pads[i],sign),eight[i]);
-      const item={layout,algorithm,sign,ioc:ioc(original),score:score(original),
+      const item={segmentation,layout,algorithm,sign,ioc:ioc(original),score:score(original),
         excerpt:dec[0].slice(0,52).map(x=>corpus.translit[x]).join("")};
       results.push(item);
     }
 }
+}
 results.sort((a,b)=>b.score-a.score);
 console.log(JSON.stringify({
-  source:"Original p49-51 eight-column 32x8 base60 byte table and eight printed LP2 sections",
+  source:"Original p49-51 32x8 base60 byte table and both p15 title-attachment conventions",
   hypothesis:"Direct unmodified 32-byte AES-256-CTR key per section, all-zero IV, zero phase",
   originalCipherLength:full.length,keys:8,
-  scope:"2 natural table layouts x 2 reversible GP encodings x 2 signs = 8",
+  scope:"2 p15 title attachments x 2 table layouts x 2 reversible GP encodings x 2 signs = 16",
   native:{ioc:ioc(native.slice(0,full.length)),score:score(native.slice(0,full.length))},
   raw:{ioc:ioc(full),score:score(full)},
   original:results,
-  plant:"8/8 AES256 plant checks and every GP28 forward reencryption passed",
+  plant:"16/16 AES256 plant checks and every GP28 forward reencryption passed",
   conclusion:"No original-cipher plaintext claim without a source-native full-book language score"
 },null,2));
