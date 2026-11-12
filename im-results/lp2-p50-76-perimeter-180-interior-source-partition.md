@@ -27,7 +27,7 @@ The most promising of these four still emits the invalid values [29,31,29,30] in
 
 ### Outer 76 cells → p55, direct GP29 addition/subtraction
 
-A second source-native operation uses the solved p56's additive **GP29** arithmetic rather than historical XOR. Keep the same top-left clockwise perimeter, the published base60 byte values and the exact original p55 rune order. Reduce each perimeter byte **mod29**, then apply one direct symbolwise addition or subtraction (with reversed perimeter as a direction control), without tuning a phase, skip or permutation. Every output consists of 76 valid GP29 runes, and the exact inverse returns all 76 original input runes; this is automatic for every key and does **not** select a historical one.
+The clockwise source-native GP29 additive perimeter key was **already tested more thoroughly** using both the 2014 and original LP2 table values, two byte-to-rune maps and 22,621 held-out native-English windows, in the earlier [perimeter key report](terminal-grid-xor-anend-digest.md#direct-table-circumference-as-a-76-rune-p55-key) and [reproducer](../sims/p55_table_perimeter_key_sft.cjs). The older test rejects all eight of its source-locked candidates. This narrower calculation independently reproduces only the two canonical clockwise signs and adds the **reversed-direction** control; the clockwise arithmetic must not be counted as a new finding. The tested additive **GP29** arithmetic is also used on solved p56. Keep the same top-left clockwise perimeter, the published base60 byte values and the exact original p55 rune order. Reduce each perimeter byte **mod29**, then apply one direct symbolwise addition or subtraction (with reversed perimeter as a direction control), without tuning a phase, skip or permutation. Every output consists of 76 valid GP29 runes, and the exact inverse returns all 76 original input runes; this is automatic for every key and does **not** select a historical one.
 
 | Perimeter reading | Operation on p55 index | Decoded IoC | First twelve GP29 symbols |
 | --- | --- | ---: | --- |
@@ -36,7 +36,7 @@ A second source-native operation uses the solved p56's additive **GP29** arithme
 | Reversed | subtract key | 0.03719298 | T L Y J X D A H F E R T |
 | Reversed | add key | 0.03649123 | Y U EO N F W I L N EO L AE |
 
-For scale, unchanged p55 IoC is **0.03789474** and authentic solved p57 GP29 prose is **0.06270997**. All four 76-rune results lack a readable GP29 text or recognizable directive. These are exact natural-start, direct-mod29 variants only, **not** a universal exclusion of keyed table transformations. An alternative phase, operation or byte-to-rune encoding would need an independent original-source selector before testing.
+For scale, unchanged p55 IoC is **0.03789474** and authentic solved p57 GP29 prose is **0.06270997**. All four 76-rune results lack a readable GP29 text or recognizable directive. The stronger existing clockwise English-language result is authoritative; this reversed check adds no plaintext. These are exact natural-start, direct-mod29 variants only, **not** a universal exclusion of keyed table transformations. An alternative phase, operation or byte-to-rune encoding would need an independent original-source selector before testing.
 
 ### Inner 180 cells → 2013 missing-prime sequence
 
