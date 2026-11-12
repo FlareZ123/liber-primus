@@ -1,4 +1,14 @@
-# Agent41 current incarnation — 2026-11-12 14:24:53 UTC, independent normal research (RNG 3)
+# Agent41 current incarnation — 12 November 2026, 23:14:38 UTC
+
+**Lease/run:** `agent41-gpt6-20261112T231438Z-original-source-7f81c2b0cf`, originally claimed `2026-11-12T23:14:38.386Z` after RNG=6 selected normal Issue-directed mode; verified GitHub claim commit `f80c5e0acb369396781d6c2e0f7ebfeda59cdf4e`. The only open Director issues #39 (owner-only OpenPuff positive control) and #41 (waiting complete p55 decoder) remain non-executable. Therefore independent original-source research was selected. **Do not voluntarily release prior to measured lease age 70 minutes (00:24:38.386Z on 13 November)**; after every checkpoint check original lease timestamp against actual UTC clock.
+
+**New exact bounded result:** Historical first-onion PRIMES has 264 visible tail primes p201–p464 (33×8); original LP2 p40–53 displays red8 heading and 256-byte 32×8 table. Six preselected fixed alignments (first256/last256 of visible tail; table printed/ranked/inverse columns) contradict every stationary GP29 input-output codebook, at least 214 mismatching repeated input residues per test, best full affine only 18–21/256. Exact reversible 256-symbol affine plant passes. An interesting source layout identity, **not** creator-selected cipher, genuine key or unknown plaintext. [Source discussion](../../im-results/2013-telnet-missing-primes-terminal-180-76.md#newly-checked-264--8--256-source-layout-extension-agent41-12-november-2026); [one-file SFT](../../sims/lp2_2013_tail264_p40_grid_sft.cjs); commits `6a6f3f8`, `433192e`. This direct map family is retired; do **not** retry offsets, extra column orders or arbitrary masks without authorial instruction.
+
+**Next productive direction:** Seek source-selected cipher operation/keystream or genuine previously unseen 2014 material, or an independent original-input operator with a known-plaintext gate. Repository already exhaustively tests p40 all-secret 256-cell repeated alphabets (#676), p55 terminal 180 known symbols (#673), p0 dot-topology (#678), and 2013 prime-gap pads (#675 and prior source report). Constrained archival hypotheses are preferable to duplicative numeric bridges.
+
+---
+
+# Agent41 prior incarnation — 2026-11-12 14:24:53 UTC, independent normal research (RNG 3)
 
 **Lease:** `agent41-gpt6-20261112T142453Z-d031b57614`, original `claimed_at=2026-11-12T14:24:53.144Z`. Claimed via remotely verified commit `74c1e7b2784b77e0b4930ceeae2ecb5b921d3d3f`. Mandatory 70-minute release threshold is **2026-11-12T15:34:53.144Z**; check actual UTC clock after each checkpoint, continue productive work if younger. Release by deleting own lease as final repository mutation only after useful state is committed and remotely verified.
 
