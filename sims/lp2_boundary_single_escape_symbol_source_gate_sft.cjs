@@ -59,6 +59,31 @@ const summary=(scope)=>{
   }
  };
 };
+// Stronger model-independent finite-state pigeonhole check:
+// If the encoder receives exactly one GP29 plaintext symbol and only the
+// previous ciphertext rune as state, it can output at most 29 different
+// (printed word-start flag, ciphertext rune) pairs per state.
+function pairCapacity(filter) {
+ const map=new Map();
+ for(const o of records.filter(filter)){
+  if(!map.has(o.prior))map.set(o.prior,new Set());
+  map.get(o.prior).add(Number(o.boundary)+':'+o.output);
+ }
+ const counts=[...map.values()].map(s=>s.size);
+ return {states:counts.length,max:Math.max(...counts),
+  above29:counts.filter(n=>n>29).length,
+  min:Math.min(...counts)};
+}
+const inputPairTrain=pairCapacity(o=>o.page<=39);
+const inputPairHeldout=pairCapacity(o=>o.page>=40);
+const inputPairWhole=pairCapacity(()=>true);
+const inputPairP40=pairCapacity(o=>o.page>=40&&o.page<=53);
+assert.deepEqual(inputPairTrain,{states:29,max:58,above29:29,min:53});
+assert.deepEqual(inputPairHeldout,{states:29,max:48,above29:29,min:38});
+assert.deepEqual(inputPairWhole,{states:29,max:58,above29:29,min:54});
+assert.equal(inputPairP40.max,47);
+assert.equal(inputPairP40.above29,29);
+
 const train=summary(o=>o.page<=39);
 const heldout=summary(o=>o.page>=40&&o.page<=55);
 const whole=summary(()=>true);
@@ -118,6 +143,6 @@ for(let page=0;page<sizes.length;page++){
 }
 assert.equal(at,12956);
 console.log('PASS: source rune identity, exact 12,901 original gap flags, native GP29 12,956-symbol invertible planted code, and blind heldout obstruction');
-console.log(JSON.stringify({train,heldout,whole,positivePlant:{plainSymbols:plain.length,carrierOnes,
+console.log(JSON.stringify({train,heldout,whole,inputPairTrain,inputPairHeldout,inputPairWhole,inputPairP40,positivePlant:{plainSymbols:plain.length,carrierOnes,
   outputAlwaysExcludesPrior:true,completeRoundtrip:true},decision:
  'Minimal one-special-symbol per known preceding cipher state boundary-escape code is incompatible with original input on both splits; additional unselected escape vocabulary or state would be required.'},null,2));
