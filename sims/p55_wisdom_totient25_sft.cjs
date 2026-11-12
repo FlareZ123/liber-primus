@@ -7,9 +7,10 @@
  *   repeat the 25-key over p55's 75 complete-word runes;
  *   decrypt by subtraction mod29.
  *
- * Both ordinary key consumption and the solved-p56 literal-F
- * pass-through/no-consumption clock are tested. No phase, offset,
- * square rotation, key permutation or score-tuned parameter is used.
+ * The solved-p56 literal-F exception is implemented correctly: it
+ * triggers only when both the ciphertext and current key symbol are F/0.
+ * No phase, offset, square rotation, key permutation or score-tuned
+ * parameter is used.
  *
  * Run: node sims/p55_wisdom_totient25_sft.cjs
  */
@@ -34,15 +35,10 @@ const EXPECTED_KEY = [
   12, 15, 10, 14, 5, 4, 24, 19, 12, 6, 25, 23, 14,
   23, 25, 6, 12, 19, 24, 4, 5, 14, 10, 15, 12
 ];
-const EXPECTED_WORDS_NO_SKIP = [
+const EXPECTED_WORDS = [
   'PRFOE', 'IP', 'MF', 'OGIFBTH', 'RNGEOIAIY', 'THM',
   'WPBTHANTFNPTHHG', 'DNGNRBD', 'CEBU', 'WR', 'EOIADEAAEU',
   'PJBEOMEOM', 'HH', 'JORWSM', 'MGT', 'WOIA'
-];
-const EXPECTED_WORDS_F_SKIP = [
-  'PRFOE', 'IP', 'MF', 'OGIFBTH', 'FTHECSG', 'OEA',
-  'OEFEAIAWSAEAOBAEOE', 'WNIAREAF', 'DEOGOE', 'OED',
-  'APAEAEEADO', 'OCIAYIADAE', 'MT', 'NCAEAENH', 'JNGG', 'PPAE'
 ];
 
 function mod29(value) { return (value % P + P) % P; }
@@ -61,24 +57,26 @@ function phi(value) {
   return result;
 }
 
-/** @param {number[]} values @param {number[]} key @param {boolean} literalF */
-function decode(values, key, literalF) {
+/** @param {number[]} values @param {number[]} key */
+function decode(values, key) {
   let consumed = 0;
   const plaintext = values.map(cipher => {
-    if (literalF && cipher === 0) return 0;
-    const result = mod29(cipher - key[consumed % key.length]);
+    const currentKey = key[consumed % key.length];
+    if (cipher === 0 && currentKey === 0) return 0;
+    const result = mod29(cipher - currentKey);
     consumed++;
     return result;
   });
   return { plaintext, consumed };
 }
 
-/** @param {number[]} values @param {number[]} key @param {boolean} literalF */
-function encode(values, key, literalF) {
+/** @param {number[]} values @param {number[]} key */
+function encode(values, key) {
   let consumed = 0;
   return values.map(plain => {
-    if (literalF && plain === 0) return 0;
-    const result = mod29(plain + key[consumed % key.length]);
+    const currentKey = key[consumed % key.length];
+    if (plain === 0 && currentKey === 0) return 0;
+    const result = mod29(plain + currentKey);
     consumed++;
     return result;
   });
@@ -117,21 +115,19 @@ function run() {
   const phiValues = cells.map(phi);
   const key = phiValues.map(mod29);
   assert.deepEqual(key, EXPECTED_KEY);
+  assert.ok(key.every(value => value !== 0),
+    'the fixed p05-cell totient key contains no F/0 symbol');
+  const transparentFPositions = original75.flatMap((cipher, i) =>
+    cipher === 0 && key[i % key.length] === 0 ? [i] : []);
+  assert.deepEqual(transparentFPositions, []);
   const rawWords = wordDisplay(original75, corpus.translit);
 
-  const noSkip = decode(original75, key, false);
-  const fSkip = decode(original75, key, true);
-  assert.equal(noSkip.consumed, 75);
-  assert.equal(fSkip.consumed, 72);
-  assert.deepEqual(encode(noSkip.plaintext, key, false), original75);
-  assert.deepEqual(encode(fSkip.plaintext, key, true), original75);
-  assert.deepEqual([original76[0], ...encode(noSkip.plaintext, key, false)], original76);
-  assert.deepEqual([original76[0], ...encode(fSkip.plaintext, key, true)], original76);
-
-  const noSkipWords = wordDisplay(noSkip.plaintext, corpus.translit);
-  const fSkipWords = wordDisplay(fSkip.plaintext, corpus.translit);
-  assert.deepEqual(noSkipWords, EXPECTED_WORDS_NO_SKIP);
-  assert.deepEqual(fSkipWords, EXPECTED_WORDS_F_SKIP);
+  const decoded = decode(original75, key);
+  assert.equal(decoded.consumed, 75);
+  assert.deepEqual(encode(decoded.plaintext, key), original75);
+  assert.deepEqual([original76[0], ...encode(decoded.plaintext, key)], original76);
+  const decodedWords = wordDisplay(decoded.plaintext, corpus.translit);
+  assert.deepEqual(decodedWords, EXPECTED_WORDS);
 
   const nativeText = fs.readFileSync(
     path.join(ROOT, 'resources/liber-primus/lp1-plaintext-reference.txt'), 'utf8')
@@ -148,17 +144,13 @@ function run() {
   const nativeMedian = [...nativeScores].sort((a, b) => a - b)[75];
   const nativeMaximum = Math.max(...nativeScores);
   const rawScore = languageScore(original75, model);
-  const noSkipScore = languageScore(noSkip.plaintext, model);
-  const fSkipScore = languageScore(fSkip.plaintext, model);
-  assert.ok(noSkipScore < nativeMinimum);
-  assert.ok(fSkipScore < nativeMinimum);
+  const decodedScore = languageScore(decoded.plaintext, model);
+  assert.ok(decodedScore < nativeMinimum);
 
   const plant = native.slice(400, 475);
   assert.equal(plant.length, 75);
-  for (const literalF of [false, true]) {
-    const plantedCipher = encode(plant, key, literalF);
-    assert.deepEqual(decode(plantedCipher, key, literalF).plaintext, plant);
-  }
+  const plantedCipher = encode(plant, key);
+  assert.deepEqual(decode(plantedCipher, key).plaintext, plant);
 
   return {
     classification: 'Bounded negative: direct p05-cell totient key on original p55 body',
@@ -182,28 +174,23 @@ function run() {
       median: nativeMedian,
       maximum: nativeMaximum
     },
-    noSkip: {
-      keySymbolsConsumed: noSkip.consumed,
-      decodedIndexSHA256: digest(noSkip.plaintext),
-      score: noSkipScore,
-      decodedWords: noSkipWords,
-      exactForwardReencoding: true,
-      belowEveryNativeControl: true
+    correctLiteralFRule: {
+      keyHasZero: key.includes(0),
+      transparentFPositions,
+      keySymbolsConsumed: decoded.consumed
     },
-    literalFPassThrough: {
-      originalFPositions: original75.flatMap((value, i) => value === 0 ? [i] : []),
-      keySymbolsConsumed: fSkip.consumed,
-      decodedIndexSHA256: digest(fSkip.plaintext),
-      score: fSkipScore,
-      decodedWords: fSkipWords,
+    decoded: {
+      decodedIndexSHA256: digest(decoded.plaintext),
+      score: decodedScore,
+      decodedWords,
       exactForwardReencoding: true,
       belowEveryNativeControl: true
     },
     positivePlant: {
       source: '75-rune LP1 native plaintext window at offset 400',
-      exactRecoveryUnderBothClocks: true
+      exactRecoveryUnderCorrectLiteralFRule: true
     },
-    limitation: 'A bijective additive key roundtrip is only an implementation invariant. The p55 moth also occurs on p53; no source explicitly says to apply phi to each p05 square cell or repeat the key. No unknown plaintext or authentic key is recovered.'
+    limitation: 'A bijective additive key roundtrip is only an implementation invariant. The correct p56 literal-F exception is inactive because every p05-cell totient key symbol is nonzero. The p55 moth also occurs on p53; no source explicitly says to apply phi to each p05 square cell or repeat the key. No unknown plaintext or authentic key is recovered.'
   };
 }
 

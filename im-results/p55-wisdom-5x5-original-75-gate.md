@@ -64,20 +64,19 @@ Freeze the p05 square in printed row-major order:
 
 `[272,138,341,131,151, 366,199,130,320,18, 226,245,91,245,226, 18,320,130,199,366, 151,131,341,138,272]`.
 
-For each cell (s_i), calculate Euler's `φ(s_i)`, reduce modulo 29, and repeat the resulting 25-symbol key three times over p55's 75-rune body. Use the subtractive direction from solved p56's totient inverse. Two clocks are source-motivated and frozen: (a) every ciphertext rune consumes a key symbol; (b) the solved p56 literal-F interrupter is preserved, so an original F passes through and does not consume a key symbol. No rotation, phase, offset, alternate modulus, key permutation or word-boundary tuning is used.
+For each cell (s_i), calculate Euler's `φ(s_i)`, reduce modulo 29, and repeat the resulting 25-symbol key three times over p55's 75-rune body. Use the subtractive direction from solved p56's totient inverse. The source-authenticated literal-F exception is not a pass-through for every ciphertext F: it applies only when the current key symbol is also F/0, in which case the F is transparent and the key counter does not advance. None of the 25 `φ(s_i) mod 29` key values is zero, so that exception cannot trigger here; every one of the 75 body runes consumes a key symbol. No rotation, phase, offset, alternate modulus, key permutation or word-boundary tuning is used.
 
 The exact key is:
 
 `[12,15,10,14,5,4,24,19,12,6,25,23,14,23,25,6,12,19,24,4,5,14,10,15,12]`.
 
-| Clock | Key symbols consumed | Decoded complete words (original boundaries) | Gibran trigram score |
-|---|---:|---|---:|
-| Every rune consumes | 75 | `PRFOE / IP / MF / OGIFBTH / RNGEOIAIY / THM / WPBTHANTFNPTHHG / DNGNRBD / CEBU / WR / EOIADEAAEU / PJBEOMEOM / HH / JORWSM / MGT / WOIA` | **−6.023560953** |
-| Literal F passes without consuming | 72 | `PRFOE / IP / MF / OGIFBTH / FTHECSG / OEA / OEFEAIAWSAEAOBAEOE / WNIAREAF / DEOGOE / OED / APAEAEEADO / OCIAYIADAE / MT / NCAEAENH / JNGG / PPAE` | **−6.420552877** |
+The decoded complete words (original boundaries) are:
 
-The raw 75-rune ciphertext scores **−6.178724220**. Both candidate outputs score below the minimum **−3.811507205** among 151 frozen, source-native 75-rune control windows (median **−2.406472148**). Both inverses forward-encode all 75 original runes exactly, and both recover an independently selected 75-rune native-GP positive plant exactly; these are implementation checks, not evidence for the historical cipher. The reproducer is [`p55_wisdom_totient25_sft.cjs`](../sims/p55_wisdom_totient25_sft.cjs).
+`PRFOE / IP / MF / OGIFBTH / RNGEOIAIY / THM / WPBTHANTFNPTHHG / DNGNRBD / CEBU / WR / EOIADEAAEU / PJBEOMEOM / HH / JORWSM / MGT / WOIA`.
 
-**Decision:** retire this exact p05-cell-`φ` / 25-period p55 transfer under both source-motivated F clocks. The p55/p05 image reuse and 75=3×25 alignment remain observations, but neither selects another key schedule. The moth also occurs on p53, and no source says to apply `φ` to each square cell or repeat the key. Do not expand this family without a new independent selector or a withheld original-cipher prediction.
+The raw 75-rune ciphertext scores **−6.178724220**; the fixed totient-key output scores **−6.023560953** under the existing Gibran-trained GP trigram model. That is still below the minimum **−3.811507205** among 151 frozen, source-native 75-rune control windows (median **−2.406472148**). The inverse forward-encodes all 75 original runes exactly and recovers an independently selected 75-rune native-GP positive plant exactly; these are implementation checks, not evidence for the historical cipher. The reproducer is [`p55_wisdom_totient25_sft.cjs`](../sims/p55_wisdom_totient25_sft.cjs).
+
+**Decision:** retire this exact p05-cell-`φ` / 25-period p55 transfer. The p55/p05 image reuse and 75=3×25 alignment remain observations, but neither selects another key schedule. The moth also occurs on p53, and no source says to apply `φ` to each square cell or repeat the key. Do not expand this family without a new independent selector or a withheld original-cipher prediction.
 
 ### Full-page and body frequency-preserving invariant
 
