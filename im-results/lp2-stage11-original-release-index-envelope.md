@@ -1,6 +1,6 @@
 # Original May 2014 Stage11 HTML distribution envelope and 58-byte-identical members
 
-**11 November 2026, Agent27; Director task #409. Positive historical source recovery and complete byte-identity check, with a bounded no-new-instruction result. No unknown LP2 plaintext, key or final URL.**
+**11–12 November 2026, Agents27/10; Director tasks #409/#502. Positive historical source recovery and complete byte-identity check, plus a bounded no-editable-authoring-source result. No unknown LP2 plaintext, key or final URL.**
 
 ## Recovered real 2014 participant-visible wrapper
 
@@ -15,6 +15,14 @@ The anchored 2014 commit's Stage11 service directory contains **exactly 59 blobs
 We also examined the checked-in file-path inventories in five historical/archival Git source trees: \`micheloosterhof/cicada-2014\` (190 paths), \`iBotPeaches/cicada_3301\` (414), \`krisyotam/cicada3301\` (4,507), \`scream314/cicada3301\` (445), and \`rtkd/iddqd\` (331). Their preserved Stage11/LP2 paths expose the separate image members and this HTML page; **no source-attributable May-2014 LP2 \`.zip\`, \`.tar\`, \`.tgz\`, \`.gz\`, \`.7z\` or \`.rar\` release container was found**. The modern ZIP/bulk image packages are later community assemblies. The \`krisyotam\` tree does have a \`cijhho\` archive labelled *2014 onion 5 6*.7z (other stages) and a ZIP explicitly dated 2021. Neither is a 2014 LP2 distribution envelope and neither was promoted as such.
 
 The HTML mirror is **unsigned** and the Git commit timestamp is archived metadata, not an externally notarized HTTP Last-Modified header. A separately served 2014 archive download or additional HTTP header could have existed without surviving in these five collections; a negative file inventory cannot prove otherwise. No signed May-2014 LP2 ZIP or fresh decoding instruction was recovered.
+
+## Bounded editable-authoring-source audit (12 November 2026; #502)
+
+The pinned 11-May-2014 participant commit [`6c3421a4d245596e403c88e037509d162a2afd17`](https://github.com/micheloosterhof/cicada-2014/commit/6c3421a4d245596e403c88e037509d162a2afd17), timestamped 2014-05-11 18:33:43 UTC, has 156 blobs overall; its `stage11/ky2khlqdf7qdznac.onion/` subtree has exactly **59**: 58 `.jpg` files and the 1,640-byte `index.html`. The complete pinned tree contains no PDF, PostScript, SVG, AI, PSD, XCF, InDesign/IDML, DOCX/ODT, or other editable page-layout/source project. The index itself contains only 58 bare image links; no authoring file, PDF, source project, or download reference. The archived corpus does not preserve the original HTTP response headers, so this rules out only files absent from the surviving bundle and HTML, not an unarchived server object or private creator files.
+
+A targeted cross-check of the [`neuroretransmit/cicada` 2024 mirror](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3) found no editable LP2/Stage11 file; its unrelated PSD/RTF assets are outside that path. The 2026 [`Dukotah/cicada3301` community corpus](https://github.com/Dukotah/cicada3301) likewise has no LP2 authoring file. The 2021 [`cicada-solvers/The-Complete-Cicada3301-Archive`](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive) contains later transcripts and reports; `2014 - What Happened Part 2; Liber Primus (POST 2014).docx` was added 2021-05-08 and its PDF 2021-05-22. The `LP Sacred Book Edition` is a 2021 remake. These are secondary reports, transcriptions, and re-creations, not creator-side source. No independently dated 2014–2016 LP2 InDesign, AI, PSD, SVG, editable PDF, or page-layout project was found in the examined source repositories or bounded archive search.
+
+**Decision:** no original LP2 authoring document or editable page source with text/vector layers was recovered. The missing artifact is a creator-side layout/vector/source project or a contemporaneous export preserving editable text/vector layers and independent 2014–2016 provenance. This is a bounded no-source result, not proof that private authoring files never existed.
 
 ## Reproduction and next research decision
 
