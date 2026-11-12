@@ -1,0 +1,16 @@
+name: LP2 p2-p23 sixth-share rank certificate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sixshare-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p2-p23 GF29 and GF256 rank SFT
+        run: node sims/lp2_p2_p23_sixshare_rank_sft.cjs
