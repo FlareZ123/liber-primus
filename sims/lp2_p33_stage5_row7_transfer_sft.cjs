@@ -85,3 +85,30 @@ console.log(JSON.stringify({
   authenticSolvedP57Score: solvedP57Score,
   interpretation: 'single exact 2014 rowwise seven-column transfer, original p33 remains ciphertext-like; no key/plaintext'
 }, null, 2));
+
+
+// Distinct source-visible terminal chapter (p54–55), length 308=44×7.
+// Same original Stage05 operator, one rowwise application beginning at the
+// physically marked chapter start p54:0 and carrying across p54→p55.
+const terminal = [54, 55].flatMap(page => corpus.pages.find(p => p.page === page).indices);
+assert.equal(terminal.length, 308);
+const terminalRaw = terminal.map(i => chars[i]).join('');
+const terminalDecoded = decode(terminalRaw, key);
+assert.equal(terminalDecoded.length, 308);
+assert.equal(encode(terminalDecoded, key), terminalRaw);
+const terminalOutput = toRuneIndices(terminalDecoded);
+assert.ok(Math.abs(score(terminal) - (-7.369764664465699)) < 1e-10);
+assert.ok(Math.abs(score(terminalOutput) - (-7.5363475473392185)) < 1e-10);
+assert.ok(Math.abs(solvedP57Score - (-4.420633417052125)) < 1e-10);
+console.log(JSON.stringify({
+  independentSourceVisibleChapter: 'original p54–55, 308=44×7 runes',
+  firstNineDecodedRunes: tokenSequence(terminalOutput.slice(0, 9)),
+  firstFiftyJoinedGP: spell(terminalOutput.slice(0, 50)),
+  lastSeventySixJoinedGP: spell(terminalOutput.slice(-76)),
+  exactForwardReplay: encode(terminalDecoded, key) === terminalRaw,
+  originalMeanQuadgramScore: score(terminal),
+  stage5DecodedMeanQuadgramScore: score(terminalOutput),
+  authenticSolvedP57MeanQuadgramScore: solvedP57Score,
+  fullDecodedRrunicSequence: tokenSequence(terminalOutput),
+  decision: 'second independent original chapter multiple-of-seven negative; no new plaintext'
+}, null, 2));
