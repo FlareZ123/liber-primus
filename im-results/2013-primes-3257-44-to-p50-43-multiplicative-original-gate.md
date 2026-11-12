@@ -39,6 +39,20 @@ Both have exact bijective forward encoders. These operations are motivated by fi
 
 The outputs are complete, preserved in source order; neither is coherent GP-native English across the printed word-interior fragments. On each orientation, the direct encoder re-encrypts **43/43 original runes exactly**, and a separate **43-rune genuine solved p57 plaintext plant** round-trips **43/43**. That validates arithmetic correctness only. The short original IoCs should not be treated as statistically significant improvements, nor should one mistake the letters adjacent to GP digraphs for independently recovered English words.
 
+## Full original 76-rune p55 transfer from the source-marked 44-cell span
+
+A distinct, complete-page interpretation avoids presuming that the 33 p55 exterior runes are already plaintext. The two 193 markers lie exactly 44 cells apart. Reading **the left 193 marker plus the 43 enclosed bytes**, row-major offsets **83–126**, yields a 44-byte key. Reduce each byte mod29 and repeat that key from physical p55 local rune0 over all **76** original source symbols, with **32** key positions consumed after the first cycle. This uses the 2013 marker-derived 44 as a possible key *period* and the historically demonstrated direct GP29 Vigenère direction, but no original author instruction tells the solver to repeat the span or target p55.
+
+Without phase, key rotation, reversal, resynchronization, or a fitted word split, two natural fixed directions give:
+
+| Original-input model | Complete 76-rune IoC | Full original-word-preserving GP output |
+|---|---:|---|
+| Unchanged p55 original | **0.0378947368** | Encrypted source |
+| `P_i=C_i−K_(i mod44)` | **0.0414035088** | TH YLSF WF MEA JSHBEOL SOEEALTHIA UEA SPSRWLSWMOEAEDG NTHEEABT YMOEG PD NGIOEJDTHE LNOEYBPM CM THOECBMF PHTH THLT |
+| `P_i=C_i+K_(i mod44)` | **0.0305263158** | J AECX DC NI MNRFNGU XOLXHR PN MXXAPETOWDBBE FEAEAYNP HYTHR JP GYIAUCIEO TNGTHWTDJ EAAE HCSNGLEA RXF OTR |
+
+Neither complete output is coherent GP-native English. Both operations re-encrypt **76/76** original p55 source runes and recover an independently encrypted, genuine **76-rune p57 plaintext plant** exactly. Thus this specific period44 direct key transfer, which would have supplied a reversible rule for *every* p55 symbol including exteriors, is rejected. A different historically attested consumer is required before treating the 44 marker as a full decoder. The SFT covers both this 76-rune gate and the separate 43-interior field-inverse gate above.
+
 **Decision for Director #675:** The formerly missing 2013 PRIMES bytes now supply a *potential* source-specific 44→193 bracket selector, changing the candidate input provenance. **They still do not supply the creator-selected cipher operation, byte addressing convention or p55 insertion rule.** Do not continue with arbitrary multipliers, phases, word rotations or nested encodings. One authentic signed instruction prescribing the 3257→44 action and a reversible use of the 43-byte bracket would justify further work. The separate COUNT responses likewise provide numerical classifications without an authored LP2 decoder.
 
 Reproduction: [passing final original-input and base59-countermodel CI run 43326890896](https://github.com/FlareZ123/liber-primus/actions/runs/43326890896) and [Node.js 22 CommonJS original-input SFT](../sims/lp2_2013_primes_44_p50_193_p55_multiplicative_sft.cjs), frozen original literal checks, alternative marker control, exact source-cipher round-trips and p57 source-native plant.
