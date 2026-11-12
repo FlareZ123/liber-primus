@@ -2,12 +2,12 @@
 
 /**
  * Original LP2 physical p55 (archive 72.jpg) 33-exterior / 43-interior
- * framing gate, fixed source positions and three obvious SHA-1 serializations.
+ * framing gate, fixed source positions and five fixed source-adjacent SHA-1 serializations.
  *
  * Run: node sims/p55_exterior33_framing_sft.cjs
  * Node.js 22, CommonJS built-ins only.
  * A match would require separate source authentication; a nonmatch excludes
- * only those three precise SHA-1 conventions, not all possible hashes.
+ * only those five precise SHA-1 conventions, not all possible hashes.
  */
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
@@ -69,7 +69,9 @@ assert.equal(allegedSha1.toString("hex"),
 const candidates = new Map([
   ["original-GP-indices-bytes", Buffer.from(inside)],
   ["original-GP-runes-UTF8", Buffer.from(inside.map(i => corpus.runes[i]).join(""), "utf8")],
-  ["source-primary-translit-ASCII", Buffer.from(inside.map(i => corpus.translit[i]).join(""),"ascii")]
+  ["source-primary-translit-ASCII", Buffer.from(inside.map(i => corpus.translit[i]).join(""),"ascii")],
+  ["2013-GP-prime-weight-bytes", Buffer.from(inside.map(i => corpus.prime[i]))],
+  ["LP1-Wisdom-totient-of-prime-bytes", Buffer.from(inside.map(i => corpus.prime[i]-1))]
 ]);
 const hashes = [];
 for (const [format, bytes] of candidates) {
@@ -78,7 +80,9 @@ for (const [format, bytes] of candidates) {
     matchesExterior: sha === allegedSha1.toString("hex")});
   assert.notEqual(sha, allegedSha1.toString("hex"));
 }
-assert.equal(hashes.length, 3);
+assert.equal(hashes.length, 5);
+assert.equal(hashes[3].sha1, "b00ef822ee6d2441323e32c7e97ec850df4a615d");
+assert.equal(hashes[4].sha1, "29da8c88569d8f5a99ca05aba46529d5cc848208");
 console.log(JSON.stringify({
   source:"original LP2 p55, 72.jpg",
   pageRuneCount:76, printedFragments:words.length,
@@ -87,6 +91,6 @@ console.log(JSON.stringify({
   exteriorRunes:outside.length,
   exteriorAs20byteNumber:allegedSha1.toString("hex"),
   sha1FramingDiagnostics:hashes,
-  classification:"no source-selected framing/decoder; only three fixed SHA-1 diagnostics rejected",
+  classification:"no source-selected framing/decoder; only five fixed SHA-1 diagnostics rejected",
   status:"PASS"
 },null,2));
