@@ -1,0 +1,32 @@
+# 2014 Stage08 original bzip2 member boundary: no extra payload
+
+**Decision for Director #637 (12 November 2026).** The archived Stage08 `index.bz2` has **one complete bzip2 member, no concatenated members and no trailing bytes**. Its entire 25,543-byte output is byte-identical to the separately preserved Stage08 `index` clear-signed message. Within that message the three original hexadecimal objects match their separately archived `index.1`, `index.2`, and `index.3` files exactly. Nothing additional is hidden in the compressed-stream framing; this source does not provide an LP2 key, operation or decrypted unknown page. This is a finite original-stage carrier decision, not a statement about potential steganography *inside* the two JPEGs or audio, and not a general claim that all historical materials survive.
+
+## Original artifact and source boundary
+
+- Historical mirror: `krisyotam/cicada3301@76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage08/`. Source files: [index.bz2](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage08/index.bz2), [index](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage08/index), [archived stage README](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage08/README.md).
+- The archive explicitly records `outguess -r index.jpg index.bz2` and `bzip2 -d index.bz2`, followed by decoding three signed-message hex objects into two JPEGs and an MP3. The mirror is an archived copy, **not independently demonstrated to reproduce the original HTTP capture byte-for-byte**. This test uses the archived extracted bzip2 object unchanged; it does not claim to have rerun OutGuess on the original `index.jpg`.
+- Compressed bytes: **12,683**, SHA-256 `cf57f8f9758b20d129b7a157afd26383e5d9209bbe76eb9f78ebe19a320997c7`, Git blob `c568e481008fba993741acb77a7f12492b19afa6`.
+- Original signed `index` bytes: **25,543**, SHA-256 `0c1054e9b013c6894eb7b2f0f01ad7e8627ff9432a13688c84686810e705a844`, Git blob `57478039d8dbb4b20d16aff7f9c3af0f2f13da8d`.
+
+## Exact decode and payload exhaustion
+
+The standard-library `bz2.BZ2Decompressor` reports `eof=True` after consuming **all 12,683 compressed bytes**, with zero `unused_data`. The full uncompressed bytes equal the preserved signed `index` file. The original text begins with a single PGP clear-signed header and ends with a single terminal `-----END PGP SIGNATURE-----` block; no subsequent bytes are present. Signature **syntax and archive identity** are established here; cryptographic signature validity is not newly evaluated by this audit.
+
+Its signed body contains the introductory sentence `Very good.  You have done well to come this far.`, exactly **three** hex objects and the book-code block with `3PI`, `LML`, `ETOATS`, `C[1]`, `C[2]`, `ONION`, followed by `Good luck.` and `3301`. The book code was already known as the historical GEB-to-next-onion route, rather than a source-selected LP2 decryption operator (see closed [#290](https://github.com/FlareZ123/liber-primus/issues/290) and [#327](https://github.com/FlareZ123/liber-primus/issues/327)).
+
+| Original payload | Archived hex split | Decoded size | SHA-256 of decoded binary |
+| --- | --- | ---: | --- |
+| JPEG #1 | `index.1` | 1,084 | `4d66a03af8c3d7880297bce4056d3275f3b02ec00bc7051e36e80509f1d0ea9b` |
+| JPEG #2 | `index.2` | 1,635 | `6bd3d8011bad9a2593aa64e4b885ac8470e54a6a246b447a3995c2229cd98b79` |
+| MPEG audio #3 | `index.3` | 9,288 | `f5719fec286ab0fcc88b36d1fcdd24f23c928b3cce75d437e8aa4f195069e03d` |
+
+All three exact hex strings match the separate archived `index.1/2/3` text files, with no missing or extra hex object in the preserved signed message. JPEG SOI/EOI and MP3 frame-header controls pass. This checks compressed member boundaries and exhaustively accounts for signed-body *serialized objects*. It does not claim a full steganographic or MPEG bitstream audit.
+
+## Reproduction and research choice
+
+- SFT: [`sims/cicada2014_stage08_bzip2_member_sft.py`](../sims/cicada2014_stage08_bzip2_member_sft.py). Downloads five paths at a frozen Git commit, verifies their Git blob hashes, parses every bzip2 member and leftover byte, compares the exact decompressed source, splits the three real signed-body hex blocks, decodes and compares each binary object.
+- Manual-only workflow: [`.github/workflows/cicada2014-stage08-bzip2-manual.yml`](../.github/workflows/cicada2014-stage08-bzip2-manual.yml); [successful run **43280570579**](https://github.com/FlareZ123/liber-primus/actions/runs/43280570579), Python 3.12, 12 November 2026. A first run failed on the SFT's too-strict hex-line parser, which omitted a short terminal JPEG hex line; the parser was corrected, and the complete original test passed.
+- The next actor should **not** search arbitrary compressed trailers or recompressions of this exact blob. A new LP2 route would require an independently author-selected key/consumer in one of the existing JPEG/audio objects or a different original source. Pre-existing work already covers the historical GEB/onion continuation; do not infer LP2 from Stage08 adjacency alone.
+
+**Result classification:** authentic *archived-object* boundary and exact object inventory, strong negative for additional bzip2 members/trailers in this particular file; **no unknown LP2 plaintext, authentic LP2 key, or complete inverse**.
