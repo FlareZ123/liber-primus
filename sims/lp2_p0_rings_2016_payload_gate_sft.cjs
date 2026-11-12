@@ -18,7 +18,17 @@ function read(relative) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json").toString("utf8"));
 const source = corpus.pages.filter(p => p.page <= 2).flatMap(p => p.indices);
 const p32 = corpus.pages.find(p => p.page === 32).indices;
-const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+// Windows Git checkout may expand the original 38 LF bytes to CRLF.
+// Restore the canonical archived ASCII payload before measuring or hashing it.
+const signed2016 = Buffer.from(
+  read("resources/historical/cicada2016-4gq25-outguess.asc")
+    .toString("utf8").replace(/\r\n/g, "\n"),
+  "utf8"
+);
+const payloadHash = require("node:crypto").createHash("sha256")
+  .update(signed2016).digest("hex");
+assert.equal(payloadHash,
+  "fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010");
 assert.equal(source.length, 729);
 assert.equal(p32.length, 121);
 assert.equal(signed2016.length, 1136);
