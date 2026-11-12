@@ -136,6 +136,33 @@ assert.deepEqual(eight.decode(finalColumnar), sourceAvoided);
 assert.equal(equalPairs(finalColumnar, 1), 160);
 assert.equal(equalPairs(finalColumnar, 8), 157);
 
+// Model 1b: first split into eight *independently* predecessor-constrained
+// columns, with the source red key symbols as each column's fixed IV.
+// Reading whole columns afterward does retain lag-1 suppression. This
+// counterexample prevents the observed statistics from determining whether
+// predecessor exclusion was before or after columnar transposition.
+const columnDigits = Array.from({length: eight.width}, () => []);
+native.forEach((digit, i) => columnDigits[i % eight.width].push(digit));
+const localConstrainedColumns = columnDigits.map((digits, i) =>
+  avoidPredecessor(digits, heading[i]));
+const locallyConstrainedThenColumnar =
+  eight.order.flatMap(c => localConstrainedColumns[c]);
+assert.equal(locallyConstrainedThenColumnar.length, native.length);
+const originalColumnBoundaries = Array.from({length: 7}, (_, i) => (i + 1) * 375);
+assert.equal(originalColumnBoundaries.filter(
+  i => body[i] === body[i - 1]).length, 0);
+assert.equal(equalPairs(locallyConstrainedThenColumnar, 1), 0);
+const recoveredColumns = eight.decode(locallyConstrainedThenColumnar);
+const recoveredNative = recoveredColumns.map((rune, i) => rune);
+const recoveredColumnDigits = Array.from({length: eight.width}, () => []);
+recoveredNative.forEach((rune, i) =>
+  recoveredColumnDigits[i % eight.width].push(rune));
+const decodedDigits = recoveredColumnDigits.map((runes, i) =>
+  invertAvoidance(runes, heading[i]));
+const rejoinedDigits = Array.from({length: native.length}, (_, i) =>
+  decodedDigits[i % eight.width][Math.floor(i / eight.width)]);
+assert.deepEqual(rejoinedDigits, native);
+
 // Model 2: final anti-repeat layer after columnar. The observed original
 // low-lag1 / near-random decoded-lag1 profile has the direction of Model 2.
 const finalAvoidance = avoidPredecessor(eight.encode(native), 0);
@@ -149,8 +176,13 @@ console.log(JSON.stringify({
   sevenColumnInverse: {order: seven.order, lag1: 109, lag7: 18},
   nativeGP28Positive: {
     beforeFinalColumnar: {lag1: equalPairs(finalColumnar, 1), lag8: equalPairs(finalColumnar, 8)},
+    perColumnPreConstraint: {
+      lag1: equalPairs(locallyConstrainedThenColumnar, 1),
+      originalColumnBoundaries: originalColumnBoundaries.length,
+      recovered: rejoinedDigits.length
+    },
     afterFinalAntiRepeat: {lag1: equalPairs(finalAvoidance, 1), lag8: equalPairs(finalAvoidance, 8)},
     sourceDigitsRecovered: native.length
   },
-  decision: "anti-repeat last is structurally consistent; last-columnar does not preserve original suppression"
+  decision: "layer order remains ambiguous: either final anti-repeat or source-column-local anti-repeat before final columnar is consistent"
 }, null, 2));
