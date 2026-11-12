@@ -191,6 +191,19 @@ assert.equal(isCube,false);
 assert.deepEqual(cubeResidue.slice(0,24),
   [10,26,11,26,0,7,11,10,7,6,15,20,27,4,9,26,16,12,16,10,20,26,2,23]);
 
+// Source-fixed DH23 shared result 2, interpreted only hypothetically as
+// a square-power cipher operand, requires an exact field-square receiver.
+const squareResidue=powerField(ciphertextField,order/2n);
+assert.deepEqual(squareResidue,[28,...Array(DEGREE-1).fill(0)],
+  "Original p36 is a quadratic nonresidue in the Q238 field");
+const squarePlantSeed=Array(DEGREE).fill(0);
+squarePlantSeed[0]=1;
+squarePlantSeed[1]=1;
+const squarePlantCipher=multiplyField(squarePlantSeed,squarePlantSeed);
+assert.deepEqual(powerField(squarePlantCipher,order/2n),
+  [1,...Array(DEGREE-1).fill(0)],
+  "Genuine field-square positive control must pass Euler's criterion");
+
 const reversiblePowers=[];
 for (const exponent of [23n,1661n,1067n]) {
   const inverse = inverseExponent(exponent,order);
@@ -247,6 +260,9 @@ console.log(JSON.stringify({
     irreducibleFieldFactorDegree:238,
     addedExponent:{value:1067,role:'DH3301 participant-transcript shared secret',
       authentication:'unsigned participant transcript; protocol only is signed'}},
+  exactPower2:{source:'signed 2013 DH23 shared value 2 (hypothetical power operand)',
+    eulerResidue:squareResidue.slice(0,24),quadraticNonResidue:true,
+    thereforePossibleAsSquare:false,squaredSourceControlPass:true},
   exactPower15:{originalIsCube:isCube,thereforePossibleAs15thPower:false,
     cubeResidualNonzeroCoefficients:cubeResidue.filter(n=>n!==0).length,
     cubeResidualFirst24:cubeResidue.slice(0,24)},
@@ -254,5 +270,5 @@ console.log(JSON.stringify({
   nativePlant:{source:'p57 repeated to 238 runes, heading 1 at99',
     exact238RunesRecovered:true,ioc:ioc(plantRecovered)},
   p36OriginalIoc:ioc(p36),
-  status:"No original plaintext/key. Literal field-power^15 impossible; inverses ^23, ^1661 and ^1067 ciphertext-like."
+  status:"No original plaintext/key. Literal field-power^2 and ^15 impossible; inverses ^23, ^1661 and ^1067 ciphertext-like."
 },null,2));

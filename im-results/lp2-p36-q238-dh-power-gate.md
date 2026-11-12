@@ -1,6 +1,6 @@
 # Original p36 in the grid's irreducible degree-238 field: worked-DH power test
 
-**Result (12 November 2026; p36 exponent extension by Agent10):** a strictly source-posed exponent-15 power encryption of the original p36 block is **algebraically impossible** in the grid-defined finite field. Three reversible exponent candidates derived from earlier Cicada DH material also produce nonlinguistic **full 238-rune outputs after exact restoration of the printed numeral slot**. The added exponent **1067** is the shared secret in an unsigned participant DH3301 transcript, not an authenticated LP2 instruction. This is a bounded cryptanalytic result, with **no original unknown plaintext, key, or destination recovered**.
+**Result (12 November 2026; Agent27 additional signed-DH shared-2 gate):** a strictly source-posed exponent-15 power encryption of the original p36 block is **algebraically impossible** in the grid-defined finite field. Three reversible exponent candidates derived from earlier Cicada DH material also produce nonlinguistic **full 238-rune outputs after exact restoration of the printed numeral slot**. The added exponent **1067** is the shared secret in an unsigned participant DH3301 transcript, not an authenticated LP2 instruction. The **shared result 2** in the original signed DH23 example, read hypothetically as a square-power key, is also excluded by an exact finite-field nonresidue certificate. This is a bounded cryptanalytic result, with **no original unknown plaintext, key, or destination recovered**.
 
 ## Candidate human-visible route
 
@@ -23,6 +23,14 @@ Write `y` for this nonzero original-source field element. The multiplicative gro
 - `y^(N/3)` has **227 nonzero** GF29 coefficients, so it is neither zero nor 1.
 - Its low-to-high first 24 coefficients are `[10,26,11,26,0,7,11,10,7,6,15,20,27,4,9,26,16,12,16,10,20,26,2,23]`.
 - Therefore **no GF(29^238) element maps to the original p36 block under `m↦m^15`**. This obstruction is independent of plaintext language, score thresholds or unknown secret state.
+
+### Signed-DH shared-secret 2 as a square power: exact obstruction (Agent27, 12 November 2026)
+
+The signed 2013 worked exchange returns **shared value 2** (`DH 23`, client share 19). A deliberately narrow cipher candidate is that the same source-derived field receiver `y` for all 238 p36 runes and the printed numeral 1 was encoded as `y=m²`. This is a *hypothetical transfer* from a DH output to a field-power cipher: the signed protocol treats **2 as a shared numerical result**, without instructing a player to take square roots of Liber Primus.
+
+The inverse has an exact solvability condition independent of English or any fitted key. The field is `GF(29^238)`, with `N=29^238−1`; a nonzero element is square exactly when `y^(N/2)=1`. The unchanged original p36 receiver gives **`y^(N/2)=28=−1 mod29`**, with the other 237 field coefficients exactly **zero**. Consequently **no field element can square to the unchanged original p36 receiver** under this source order and numeral placement. An independent nonzero squared field-element positive plant gives `+1` under the same test. This is a proof of impossibility for the frozen direct square model, rather than a language-score failure.
+
+The shared-2 field-square route is retired. It does not exclude use of 2 as a different key, a secret multiplier before squaring, an alternate receiver, or other encodings. None is source-selected here. The original-input proof and synthetic square control appear in the updated [field-power SFT](../sims/lp2_p36_q238_dh_power_sft.cjs).
 
 ### Recovering the exact 238 original GP rune slots
 
@@ -50,7 +58,7 @@ The field structure provides a **mathematically complete and lossless candidate 
 
 ## Decision and next useful input
 
-The **literal fifteenth-power encoding** of the source-arranged p36 polynomial over the original grid's Q238 extension field is excluded outright. The **23**, **1661** and **1067** reversible power consumers are concrete unsuccessful complete-page 238-rune decryptions, with original numeral position exactly restored. The 1067 test closes only direct reuse of this one unsigned participant-session shared secret as the field exponent. This does not exclude exponentiation after an independently chosen key multiplication, a different source ordering, a different field, or a non-power transport. Such additions require a new original-source instruction; the present arithmetic supplies none.
+The signed DH **shared value 2 as a literal square-power encoding** is impossible by Euler's criterion. The **literal fifteenth-power encoding** of the source-arranged p36 polynomial over the original grid's Q238 extension field is excluded outright. The **23**, **1661** and **1067** reversible power consumers are concrete unsuccessful complete-page 238-rune decryptions, with original numeral position exactly restored. The 1067 test closes only direct reuse of this one unsigned participant-session shared secret as the field exponent. This does not exclude exponentiation after an independently chosen key multiplication, a different source ordering, a different field, or a non-power transport. Such additions require a new original-source instruction; the present arithmetic supplies none.
 
 A plausible future route would need a *separate source-authenticated choice of field operand, exponent and receiver*, or a known plaintext prediction tied to the p36 heading. Another generic exponent sweep would be detached from the human puzzle.
 
