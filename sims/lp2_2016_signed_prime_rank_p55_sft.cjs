@@ -123,6 +123,55 @@ control.sort((a,b) => a-b);
 assert.equal(control.length, 1018);
 const plantPlain = corpus.pages[57].indices.slice(7,50);
 assert.equal(plantPlain.length,43);
+// Every pure position permutation preserves the 43 original symbol frequencies.
+// Under an additional secret global alphabet relabeling, the rearrangement
+// inequality supplies the exact best possible one-gram English score.
+const onegram = Array(29).fill(1);
+for (const symbol of train) onegram[symbol]++;
+const logs = onegram.map(c=>Math.log(c/(train.length+29)));
+const sortedLogs = logs.slice().sort((a,b)=>b-a);
+/** @param {number[]} symbols @returns {number[]} */
+function histogram(symbols) {
+  const f = Array(29).fill(0);
+  for (const v of symbols) f[v]++;
+  return f;
+}
+/** @param {number[]} f @param {number[]} model @returns {number} */
+function sumScore(f,model) {
+  return f.reduce((acc,c,i)=>acc+c*model[i],0)/43;
+}
+const originalCounts=histogram(original);
+const originalOnegram=sumScore(originalCounts,logs);
+const optimalUnknownRelabel=sumScore(
+  originalCounts.slice().sort((a,b)=>b-a),sortedLogs);
+assert.ok(Math.abs(originalOnegram+4.132515273465467)<1e-9);
+assert.ok(Math.abs(optimalUnknownRelabel+2.9871536164795995)<1e-9);
+const references=[
+  {name:"Shakespeare withheld",symbols:hold},
+  {name:"Gibran The Prophet",symbols:gpEncode(read("resources/control/gibran_prophet_58585.txt"))},
+  {name:"Emerson Essays",symbols:gpEncode(read("resources/control/emerson_essays_2944.txt"))}
+];
+const onegramControls=[];
+for (const {name,symbols} of references) {
+  const f=histogram(symbols.slice(0,43));
+  let windows=0,underNative=0,underSecretRelabel=0,minNative=Infinity;
+  for(let end=43;end<=symbols.length;end++) {
+    const native=sumScore(f,logs);
+    const relabeled=sumScore(f.slice().sort((a,b)=>b-a),sortedLogs);
+    if(native<=originalOnegram+1e-12) underNative++;
+    if(relabeled<=optimalUnknownRelabel+1e-12) underSecretRelabel++;
+    minNative=Math.min(minNative,native);
+    windows++;
+    if(end===symbols.length) break;
+    f[symbols[end-43]]--;
+    f[symbols[end]]++;
+  }
+  onegramControls.push({name,windows,underNative,underSecretRelabel,minNative});
+}
+assert.deepEqual(onegramControls.map(x=>[
+  x.windows,x.underNative,x.underSecretRelabel
+]),[[43760,0,100],[63072,0,46],[324588,0,214]]);
+
 const outcomes = [];
 for (const mode of ["rank", "unrank"]) {
   const undo = mode === "rank" ? "unrank" : "rank";
@@ -165,5 +214,7 @@ console.log(JSON.stringify({
   interiorOffsets,originalCipher:original,exteriorOffsets,
   nativePlantScore:score(plantPlain),nativeControlMedian:control[509],
   outcomes,
+  pureTranspositionNecessaryInvariant:{originalCounts,originalOnegram,
+    optimalUnknownRelabel,onegramControls},
   decision:"Neither source-fixed rank orientation yields readable GP29; no original unknown plaintext or key identified"
 },null,2));
