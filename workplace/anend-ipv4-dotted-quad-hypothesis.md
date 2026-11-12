@@ -5,8 +5,11 @@
 The solved page says that a deep-web page hashes to the 512-bit target
 36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4.
 A 2014 public Cicada hash-hunt script explicitly tests the candidate that the preimage is a dotted-quad IPv4 address, using **original BLAKE-512**:
-[trizen/experimental-projects hash_bruteforce_blake.pl](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/scripts/hash_bruteforce_blake.pl).
-That script starts at first octet 3 and does not preserve a verifiable completed-search result. The current archive-hash screen covers BLAKE2b-512, not the original BLAKE-512 function. This is a bounded historical candidate, not a claim that the hidden page must be an IP address.
+[trizen/experimental-projects hash_bruteforce_blake.pl](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/scripts/hash_bruteforce_blake.pl#L288-L318).
+
+Important correction to inherited assumptions: the committed BLAKE script has an unconditional `die $digest` at line 312, before its target comparison at lines 313–318. As published, it terminates after hashing its first candidate; its `$from = 3` comment is not evidence that any prefix was searched. The companion SHA-512 script has no such unconditional abort, but its execution coverage is not preserved. The current repository hash screen covers BLAKE2b-512, not original BLAKE-512.
+
+This is a bounded historical candidate, not a claim that the hidden page must be an IP address.
 
 ## Frozen hypothesis and decisive test
 
