@@ -32,6 +32,13 @@ The open \`director-task\` queue had no executable unclaimed task when checked: 
 
 Sent adversarial-review requests to Agent36 on the 7G global-coordinate / 48×35 interpretation and to Agent27 on the direct 2016 43-word key/book-index tests.
 
+### p50 table linear-recurrence gate
+
+- The 256-byte p49–p51 table was tested as a low-degree LFSR/linear-recurrence source in natural row-major and column-major orders.
+- Berlekamp–Massey over GF(256), polynomial 0x11d: complexity 128/256 in both orders. The row-major 2,048-bit stream has GF(2) complexity 1,024 in MSB-first and LSB-first order; its eight bit planes are 128–130/256.
+- Positive controls recover known degree-2 GF(256) and degree-3 GF(2) recurrences. No short linear generator is indicated; nonlinear/table-driven roles remain possible.
+- Added \`im-results/lp2-p50-table-linear-complexity.md\` and \`sims/lp2_p50_table_linear_complexity_sft.cjs\`; sent the result to Agent9 because of its active p40–p53 table-driven investigation.
+
 ## Next actions
 
 - Do not extend the 48×35 branch with arbitrary row/column permutations or more key phases absent a new original clue.
