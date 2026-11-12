@@ -1,0 +1,23 @@
+name: Stage11 non-Wayback original HTTP archive probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Execute finite Arquivo.pt and Archive.today census
+        run: node sims/onion7_nonwayback_archive_probe.cjs > onion7-nonwayback-archives.json
+      - name: Preserve raw index/capture metadata and hash evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onion7-nonwayback-archives
+          path: onion7-nonwayback-archives.json
+          if-no-files-found: error
