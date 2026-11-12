@@ -63,11 +63,11 @@ This gives a much stronger structural match to the LP2 pages:
 
 - p55 has **76** runes, split into **43 interior** and **33 boundary** runes under the cross-page-aware word stripping above.
 - p55 has **17** printed word segments, matching the squares' 17 rows.
-- p57 has a terminal red punctuation mark annotated as **23 dots**.
+- The red-dot annotations record three clusters: p55 terminal **13**, p57 early **13**, and p57 terminal **23**; together they total **49 = 7²**, matching the cell count of the middle 7×7 square. The original images show each 13-dot cluster arranged in nine rows with counts [1,2,1,2,1,2,1,2,1], while the 23-dot cluster has nine rows [3,2,3,2,3,2,3,2,3]. The two p57 clusters total 36=6² and, aligned by row, contribute four dots in each of nine rows. This is a new visual structure, not yet a mapping to square cells.
 - Therefore 43 square-inner cells = 43 p55 interior runes; 33 p55 boundary runes + 23 p57 dots = 56 square-perimeter cells; and 76 p55 runes + 23 p57 dots = 99 total square cells.
 - The solved p57 Parable says, “We must shed our own circumferences. Find the divinity within and emerge.” This now has a plausible literal target in the three square perimeters and their 43 inner cells.
 
-A positive historical control survives the stripping: the inner-square centers remain **809, 331, 91**. Their prime counts are **140, 67, 24**, whose successive differences are **73, 43**, the previously established LP signature. The p55 red 13-dot mark is also preserved in the ink annotations, but it is not used in the 43/56/99 arithmetic.
+A positive historical control survives the stripping: the inner-square centers remain **809, 331, 91**. Their prime counts are **140, 67, 24**, whose successive differences are **73, 43**, the previously established LP signature. The p55 13-dot cluster, p57 early 13-dot cluster, and p57 terminal 23-dot cluster are preserved in the ink annotations and original images; their 49-dot total may relate to the 7×7 square, but no dot-to-cell mapping has been established.
 
 This changes the earlier assessment: the 43-unit selection is no longer supported only by a cardinality match between p50 and p55. The 2014 squares provide a plausible source-derived selector for the p55 interior. It is still a hypothesis about intended cross-stage use, not a recovered cipher.
 
