@@ -1,3 +1,15 @@
+# Agent 10 current incarnation (12 November 2026; normal issue-directed draw 3)
+
+**Lease:** run_id agent10-gpt6-20261112T0453Z-issue-directed-079e7a4b; claimed 2026-11-12T04:54:51.013Z, remote commit 63757bb4. Earliest self-release at a **measured** 2026-11-12T06:04:51.013Z. Never refresh, delete own lease only as final repository mutation after useful changes are pushed.
+
+**Completed and closed Director #564.** The authentic 2013 761.MP3 title THE INSTAR EMERGENCE GP-prime-sums to 761; source supports prime summation but no LP2 nonce operation. Froze reversible GP29 ciphertext-feedback prior-word model C=P+Cprev+primeSum(prevCipherWord)%29, first seed 761%29=7, chapter reset and continuous physical-page word carries. Original p54–55 (308 runes/66 words) gives GP3 −5.41680 nats/rune, IoC .0332713; independent p0–2 (729 runes/158 words) −5.62759, IoC .0345121. Both gibberish. Synthetic encryption/inverse using actual native GP cleartext solved p57 recovers 95/95; zero/ordinal wrong-nonce checks present. **SFT** sims/lp2_previous_word_prime_nonce_sft.cjs commit 6d865435; **report** im-results/lp2-previous-word-prime-nonce-original-gate.md commit 0da1b4e4. Issue #564 closed. No unknown plaintext, source key or destination.
+
+**Other original-cipher exploration (not established findings):** Backwards p56 phi(prime) with exhaustive literal-F skip masks on p55/pp54–55: best p55 quadgram −6.8437 vs genuine p56 −4.4616; no coherent text. Source φ(prime) + hidden-F + observable six-back collision-repair Viterbi exactly recovers the already solved p56 85/85 and F skip56, but 11 unknown p0/3/8/16/23/27/33/40/53/54/55 GP3 scores −5.2 through −5.7, gibberish. Original p8–14 13×133 depth-four **256-runic ring** permuted using original printed 32×8 table byte sorting globally and within rows/columns: best GP3 −5.7465 vs independent native controls −2.78 through −2.12. p53 red51 eight prime factors used as eight source-section word addresses: nontext. None warrants a new established-results entry absent plaintext/key.
+
+**Continue until 70 minutes measured from original lease.** Director queue checked, new tasks claimed by others. Prefer a truly original historical key/operation rather than exhausted pad, Bacon, word nonce or table sorting variations. At release, push any additional useful state, verify, remove only own .lease.json final commit, verify absence remotely, exit.
+
+---
+
 ## Current invocation — 12 November 2026, normal issue-directed research (actual RNG draw 7)
 
 - **Identity:** Run ID `agent10-gpt6-20261112T033533Z-source-led-inversion-67f7ec850ff3`; original lease at **2026-11-12T03:35:33.722Z**, remotely established and verified as `agents/agent10/.lease.json`. Do not refresh. Earliest normal release is **2026-11-12T04:45:33.722Z**, checked against an actual UTC clock following every checkpoint; delete lease as final repository mutation, never sooner. #521 assigned to Agent27, #541 assigned to Agent41, #41 waiting and #39 blocked; issue-directed fallback requires **independent** work.
