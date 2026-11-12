@@ -62,10 +62,17 @@ function sourceWords(raw) {
 function match(tape, target, alphabet) {
   const pattern = target.map(n => alphabet[n]).join("");
   const dp = Array(target.length).fill(0);
+  const prefix=[0];
+  for (const value of target) prefix.push(prefix.at(-1)+value);
+  let maxOriginalRunes=0;
   let best = {length:0,sourceOffset:-1,quoteOffset:-1};
   for (let i=0;i<tape.length;i++) {
     for (let j=target.length-1;j>=0;j--) {
       dp[j] = tape[i] === pattern[j] ? (j ? dp[j-1]+1 : 1) : 0;
+      if (dp[j]) {
+        maxOriginalRunes=Math.max(maxOriginalRunes,
+          prefix[j+1]-prefix[j+1-dp[j]]);
+      }
       if (dp[j] > best.length) {
         const length = dp[j];
         best = {length,sourceOffset:i-length+1,quoteOffset:j-length+1};
@@ -77,7 +84,7 @@ function match(tape, target, alphabet) {
     full++;
     cursor++;
   }
-  return {...best,completeMatches:full};
+  return {...best,maxOriginalRunes,completeMatches:full};
 }
 
 /**
@@ -139,6 +146,8 @@ for (const source of library.sources) {
       const originalMatch=match(tape,quote.lengths,library.alphabet);
       const shuffledMatch=match(shuffle(tape,0x33012012),quote.lengths,library.alphabet);
       assert.equal(originalMatch.completeMatches,0);
+      assert.ok(originalMatch.maxOriginalRunes <= 32,
+        "A 40-rune plaintext crib must be detected if present");
       assert.ok(shuffledMatch.length < 12);
       globalMax=Math.max(globalMax,originalMatch.length);
       fullTotal+=originalMatch.completeMatches;
