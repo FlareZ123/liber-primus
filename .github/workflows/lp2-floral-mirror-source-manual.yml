@@ -1,4 +1,4 @@
-name: LP2 floral source mirror regression (Agent 16)
+name: LP2 floral original-image and common-pad gates
 on:
   workflow_dispatch:
 jobs:
@@ -14,3 +14,13 @@ jobs:
         run: python -m pip install Pillow
       - name: Original 16-image template and four mirror controls
         run: python sims/lp2_floral_border_mirror_source_sft.py
+  original-floral-keyreuse-invariant:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fifteen source-framed pages and all-secret common pad test
+        run: node sims/lp2_floral_sharedpad_invariant_sft.cjs

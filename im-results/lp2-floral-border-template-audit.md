@@ -47,6 +47,10 @@ Original left-side motif traits: broad **open spiral near its upper tip**, thin 
 
 **Negative scope:** this is finite *visual source screening*, based on historical source reproductions rather than original-sized downloaded/computationally registered plates. These comparators are visibly different at the defining stem-and-root junctions; there is **no identified near-exact transferred period engraving** and no exact associated text/page caption to use as a crib. It would overstate the evidence to exclude all Victorian, Art Nouveau, medieval or online clip-art sources. Modern generic stock/vector previews are not independent historical sources, so they do not count as matches.
 
+## Conditional key-reuse test on the entire framed section
+
+The same source-original copied border motivated one complete **all-secret shared additive-pad** test across the fifteen rune-bearing p40–55 pages, excluding runeless p50. A shared page-local GP29 pad plus any page-specific Caesar offsets must preserve each page pair's optimal aligned difference histogram. Original best-offset equality is **1,232/19,079 = 0.06457361**, lower than all **6,000** matched GP-English source controls (minimum **0.06834740**). Thus this complete shared-frame key-reuse reading lacks the necessary native-GP plaintext fingerprint. This does not test independently changing keys, hidden position changes, feedback or different plaintext alphabets. [Evidence, positive plant and independently reproducible invariant](lp2-floral-section-sharedpad-invariant.md) · [Node SFT](../sims/lp2_floral_sharedpad_invariant_sft.cjs).
+
 ## Decision and next action
 
 The exact template reuse, complete bilateral mirror and the mismatch to these three historical examples support the economical interpretation of a **single reusable mirrored decorative frame**. The established positive property is its horizontal reflection; the hypothesis that an external source once supplied a reading instruction remains unproved.
