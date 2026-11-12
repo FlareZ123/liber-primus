@@ -57,4 +57,6 @@ Only **1/15,000** native controls has as few as 51 zero-offset equalities (a Gib
 
 The *source-created 1,433-position pairing* may guide a later explicit key/transport search. The direct chapter-as-key Vigenère inverse is negative in both directions, and the stronger reused-hidden-additive-pad interpretation is disfavoured even with unrestricted per-position secret pads and an unknown interchapter Caesar offset. The count coincidence alone cannot select encryption, bit packing, byte register, or shared-pad reuse. A successor needs an independent period-available instruction about whether all cuneiform Fs are transparent and what reversible operator combines the previous chapter with the following body. No moving cut, phase search or letter-score optimization was attempted.
 
+**Runtime verification:** [Windows 11 / Node.js 22 manual-only GitHub Actions run 43278788293](https://github.com/FlareZ123/liber-primus/actions/runs/43278788293) completed **successfully** on 12 November 2026, executing the unchanged source-input SFT and its 15,000 native control pairs. This run passed every exact length, histogram, plant and no-success assertion.
+
 **Status:** source-exact structural hypothesis; bounded failed direct inverses and an independently source-controlled all-hidden-common-additive-pad negative; no recovered unknown plaintext or authenticated cipher.
