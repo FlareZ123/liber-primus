@@ -13,3 +13,5 @@ jobs:
           python-version: '3.12'
       - name: Audit archived bzip2 members and original signed output
         run: python sims/cicada2014_stage08_bzip2_member_sft.py
+      - name: Audit source-authentic JPEG and MP3 daughter files
+        run: python sims/cicada2014_stage08_daughter_source_sft.py
