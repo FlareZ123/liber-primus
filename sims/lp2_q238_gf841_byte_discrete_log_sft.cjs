@@ -109,6 +109,42 @@ function encodeBytes(values, order, swap) {
   return p;
 }
 
+/**
+ * @param {number} a
+ * @param {number} b
+ * @returns {number}
+ */
+function gcd(a, b) {
+  while (b !== 0) [a, b] = [b, a % b];
+  return a;
+}
+
+/** @param {number} value Invertible residue modulo 840. @returns {number} */
+function inverse840(value) {
+  for (let i = 1; i < 840; i++) if ((i * value) % 840 === 1) return i;
+  throw Error('Exponent must be coprime to 840');
+}
+
+/** @param {number[]} values @returns {number} */
+function minimumCircularSpan(values) {
+  const unique = [...new Set(values)].sort((a, b) => a - b);
+  let maxGap = 0;
+  for (let i = 0; i < unique.length; i++) {
+    const next = i === unique.length - 1 ? unique[0] + 840 : unique[i + 1];
+    maxGap = Math.max(maxGap, next - unique[i]);
+  }
+  return 841 - maxGap;
+}
+
+// Exactly 192 primitive generators u^a have gcd(a,840)=1.
+// Others that remain byte-injective have gcd(a,840)=2 or 3 and force
+// uniform parity or mod-3 exponent congruence, respectively.
+const primitiveExponents = [];
+for (let a = 1; a < 840; a++) if (gcd(a, 840) === 1) {
+  primitiveExponents.push({ a, inverse: inverse840(a) });
+}
+assert.equal(primitiveExponents.length, 192);
+
 const results = [];
 for (const order of ['adjacent', 'split']) {
   for (const swap of [false, true]) {
@@ -131,6 +167,22 @@ for (const order of ['adjacent', 'split']) {
     const maximumCircularGap = Math.max(...gaps);
     const minimumCircularInclusiveSpan = 841 - maximumCircularGap;
     assert.ok(minimumCircularInclusiveSpan > 256);
+    assert.equal(new Set(exponents.map((v) => v % 2)).size, 2);
+    assert.equal(new Set(exponents.map((v) => v % 3)).size, 3);
+
+    // All primitive bases u^a and all 840 common scalar masks:
+    // log_(u^a)(Y_i)=inv(a)*log_u(Y_i) (mod 840).
+    let bestGenerator = -1;
+    let bestSpan = Infinity;
+    for (const { a, inverse } of primitiveExponents) {
+      const changed = exponents.map((v) => (v * inverse) % 840);
+      const span = minimumCircularSpan(changed);
+      if (span < bestSpan) {
+        bestSpan = span;
+        bestGenerator = a;
+      }
+    }
+    assert.ok(bestSpan > 256);
     assert.deepEqual(
       encodeBytes(Array.from({ length: 119 }, (_, i) => i), order, swap)
         .map((pair) => logarithms.get((swap ?
@@ -140,17 +192,24 @@ for (const order of ['adjacent', 'split']) {
     results.push({ order, swap, validLogs, inByteRange, inAsciiRange,
       min: Math.min(...exponents), max: Math.max(...exponents),
       uniqueExponentCount: unique.length, maximumCircularGap,
-      minimumCircularInclusiveSpan, first24: exponents.slice(0, 24) });
+      minimumCircularInclusiveSpan, bestPrimitiveGenerator: bestGenerator,
+      minimumSpanAcrossAll192PrimitiveBases: bestSpan,
+      allOrder280And420BasesExcludedByMixedResidues: true,
+      first24: exponents.slice(0, 24) });
   }
 }
 assert.deepEqual(results.map((item) => item.inByteRange), [30, 30, 37, 33]);
 assert.deepEqual(results.map((item) => item.minimumCircularInclusiveSpan),
   [785, 807, 808, 801]);
+assert.deepEqual(results.map((item) => item.minimumSpanAcrossAll192PrimitiveBases),
+  [777, 780, 784, 775]);
+assert.deepEqual(results.map((item) => item.bestPrimitiveGenerator),
+  [319, 389, 187, 19]);
 console.log(JSON.stringify({
   originalGridBytes: bytes.length, originalQDegree: 238,
   originalNonleadingSlots: payload.length, fieldGroupOrder: powers.length,
   byteCodec: 'u^byte, exactly 0..255, injective and reversible',
   sourcePairings: results,
-  outcome: 'No 119-byte exponent codec under ANY common GF841 multiplicative key: every source pairing needs a circular exponent span at least 785, but one 8-bit byte range allows only 256'
+  outcome: 'No 119-byte exponent codec under ANY shared GF841 multiplier and ANY byte-capable u^a generator: 192 primitive bases need cyclic spans >=775; the remaining order280/420 bases fail residue congruence, while bytes allow only 256'
 }, null, 2));
 console.log('PASS: exact original polynomial division, GF841 primitive generator, all 256 byte positives and bounded original exclusions.');
