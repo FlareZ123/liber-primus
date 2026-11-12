@@ -21,9 +21,9 @@ Pair successive original GP29 runes in reading order, starting from index zero o
 
 | Target and source matrix | Original prefix IoC | P=M^-1*C IoC | P=M*C IoC |
 | --- | ---: | ---: | ---: |
-| LP2 p2, M16, 200 original runes | 0.035622 approximate whole-page | **0.03557789** | **0.03442211** |
-| LP2 p22, M16, 130 runes | 0.035819 approximate whole-page | **0.03553965** | **0.03136553** |
-| LP2 p53, M05, 178 runes | 0.033520 approximate whole-page | **0.03815146** | **0.03466006** |
+| LP2 p2, M16, 200 original runes | 0.03562814 | **0.03557789** | **0.03442211** |
+| LP2 p22, M16, 130 runes | 0.03613596 | **0.03553965** | **0.03136553** |
+| LP2 p53, M05, 178 runes | 0.03351743 | **0.03815146** | **0.03466006** |
 | LP2 p55, M05, all 76 runes | **0.03789474** | **0.02947368** | **0.03333333** |
 
 None produces sustained GP29 words. On p55, the two complete inverses start `OIAIATHNGJNGOPEIOIFOEBAEWDNUHFLLY...` and `RAHNGOERIANEDOERSXCGLXEOAAEUHEDJL...`, without credible readable text. For comparison, solved LP2 p57's first 76 native-GP runes are visibly nonuniform, whereas these candidates remain near a random 29-symbol distribution. The original p55 complete-word boundary information is retained in the input but is not made into an extra fitted key schedule.
@@ -32,4 +32,4 @@ None produces sustained GP29 words. On p55, the two complete inverses start `OIA
 
 ## Decision
 
-Reject these particular **direct pair-block HilI GP29 key transfers** as whole-p55 (and even-prefix p2/p22/p53) decryptions. The artwork links identify a plausible **source square**, but do not select a different matrix readout, skip clock, two-rune alignment or nonstandard language. Other 5×5 Hill and additive square mechanisms had already been examined independently. This negative should not trigger further key/phase grids without an original image or text instruction that distinguishes a new operation.
+Reject these particular **direct pair-block Hill GP29 key transfers** as whole-p55 (and even-prefix p2/p22/p53) decryptions. The artwork links identify a plausible **source square**, but do not select a different matrix readout, skip clock, two-rune alignment or nonstandard language. Other 5×5 Hill and additive square mechanisms had already been examined independently. This negative should not trigger further key/phase grids without an original image or text instruction that distinguishes a new operation.
