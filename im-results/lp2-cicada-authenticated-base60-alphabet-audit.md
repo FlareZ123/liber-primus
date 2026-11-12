@@ -43,6 +43,12 @@ The repository has already recorded this generic prior art and its precise limit
 
 The original pp49–51 token transcription contains 59 distinct characters from the candidate base60 set, with lowercase `f` absent. That absence alone selects neither a 59-symbol alphabet nor the conventional 60-symbol alphabet. The manuscript supplies no example mapping a printed token to a known decimal value. The exact p50 base59/base60 byte fingerprints already exist in `sims/p50_miracl_base60_alphabet_match_sft.cjs`; they are data fingerprints, not authentication.
 
+### The exact 60-red-rune span is a candidate codebook, not a 60-symbol alphabet
+
+The original ink annotations show **51 red runes on p53 and 9 on p54**, giving a source-visible 60-position sequence. It is not a permutation of 60 distinct symbols: the sequence contains only **26 of the 29 GP symbols** (missing `E`, `OE`, and `Y`), with repeated entries (for example EO=5, P=3, T=2, W=2, and IA=4). It could be hypothesized as a 60-entry homophonic codebook, but the manuscript does not say that its first entry is digit 0, that its positions correspond to the table's 0–59 digits, or that the two printed token characters should be looked up separately.
+
+I froze the most literal lookup without fitting: let `D[0..59]` be the 60 red GP runes in physical order; for each original row-major table token `xy`, emit `D[index(x)] D[index(y)]`. The 256 cells produce 512 GP runes, with IoC **0.08889585** and a strongly skewed output (P=73, EO=77, W=71, T=67); it is not recovered plaintext. This tests only direct two-digit lookup as a plaintext reading, not a possible key use. The separate source-motivated red60/perimeter proposal already tests six fixed low-digit, digit-sum, and positional-value key constructions against p55; all six fail to yield coherent plaintext ([report](terminal-red60-base60-perimeter.md)). Thus the 60-red-rune span is worth preserving as a candidate codebook, but it does not authenticate the 60-symbol digit alphabet or a p50 consumer.
+
 ## Decision and next action
 
 **Close the Cicada-authenticated alphabet branch under its stated scope.** No reviewed 2012–2016 Cicada-authenticated source specifies a 60-symbol alphabet/order/zero convention for pp49–51. The signed 2013 `BASE29` instruction must not be silently generalized to a different token alphabet; p33 cuneiform sexagesimal notation must not be transferred to the alphanumeric table without an independent selector; and the participant-generated `sexagesimal.bin` must not be described as creator-issued.
