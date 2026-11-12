@@ -23,6 +23,7 @@ on:
           - stage04-square-original
           - stage04-99x76-p55
           - red119-twotime
+          - signed2016-wordmap
 permissions:
   contents: read
 jobs:
@@ -78,6 +79,9 @@ jobs:
       - name: Original p3-p39 red119 shared-pad all-secret word grammar
         if: ${{ inputs.scan_mode == 'red119-twotime' }}
         run: node sims/lp2_p3_p39_119_shared_pad_wordgrammar_sft.cjs
+      - name: Original p55 word-map keyed by 2016 signed sixteen-word instruction
+        if: ${{ inputs.scan_mode == 'signed2016-wordmap' }}
+        run: node sims/signed2016_p55_words59_key_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
