@@ -9,6 +9,7 @@ Requires scipy >= 1.11 and numpy. The solver runs without writing files.
 
 from pathlib import Path
 import json
+import re
 import numpy as np
 from scipy.optimize import Bounds, LinearConstraint, milp
 from scipy.sparse import lil_matrix
@@ -106,12 +107,11 @@ def legal_ita2_space_max(group):
 
 def native_positive_control():
     """Construct a complete 201-character source-English ITA2 carrier."""
-    text = (
-        "WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THINGS "
-        "IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE "
-        "IT IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO "
-        "ALL STRUGGLE AND SUFFERING YOUR INNOCENCE YOUR ILLUSIONS AND YOUR REALITY"
-    )[:201]
+    source = (ROOT / "resources" / "liber-primus" / "lp1-plaintext-reference.txt").read_text(encoding="utf-8")
+    normalized = " ".join(re.findall(r"[A-Z]+", source.upper()))
+    index = normalized.index("WELCOME PILGRIM TO THE GREAT JOURNEY")
+    text = normalized[index:index + 201]
+    assert len(text) == 201 and text.count(" ") == 42
     assert set(text).issubset(ITA2), sorted(set(text) - set(ITA2))
     bit_classes = [list(range(15)), list(range(15, 29))]
     plant = np.zeros((201, 5), dtype=np.int8)
