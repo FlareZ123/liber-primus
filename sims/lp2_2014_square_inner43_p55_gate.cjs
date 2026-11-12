@@ -52,9 +52,13 @@ assert.equal(innerWordLengths.reduce((a, b) => a + b, 0), 43);
 const p55Annotation = annotations.pages.find((page) => page.page === 55);
 const p57Annotation = annotations.pages.find((page) => page.page === 57);
 const p55DotCount = p55Annotation.large_punctuation.find((entry) => entry[1] === 13)?.[1];
+const p57InitialDotCount = p57Annotation.large_punctuation.find((entry) => entry[1] === 13)?.[1];
 const p57DotCount = p57Annotation.large_punctuation.find((entry) => entry[1] === 23)?.[1];
+const allRedDotCount = p55DotCount + p57InitialDotCount + p57DotCount;
 assert.equal(p55DotCount, 13);
+assert.equal(p57InitialDotCount, 13);
 assert.equal(p57DotCount, 23);
+assert.equal(allRedDotCount, 49);
 
 const totalCells = squares.reduce((sum, square) => sum + square.length ** 2, 0);
 const totalRows = squares.reduce((sum, square) => sum + square.length, 0);
@@ -312,9 +316,12 @@ console.log(JSON.stringify({
     p55Runes: p55Runes.length,
     p55InnerRunes: p55InnerRunes.length,
     p55BoundaryRunes: p55Boundary,
-    p55RedDots: p55DotCount,
-    p57RedDots: p57DotCount,
-    p55RunesPlusP57Dots: p55Runes.length + p57DotCount,
+    p55TerminalRedDots: p55DotCount,
+    p57InitialRedDots: p57InitialDotCount,
+    p57TerminalRedDots: p57DotCount,
+    allThreeRedDotClusters: allRedDotCount,
+    allThreeRedDotClustersEqual7Squared: allRedDotCount === 7 ** 2,
+    p55RunesPlusP57TerminalDots: p55Runes.length + p57DotCount,
     p55BoundaryPlusP57Dots: p55Boundary + p57DotCount,
     squareCenters: centers,
     centerPrimeCounts,
