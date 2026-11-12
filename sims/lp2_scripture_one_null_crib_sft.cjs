@@ -12,7 +12,7 @@ const crypto=require("node:crypto");
 const {parseSharedCorpus,physicalLP2Page}=require("./lp2_word_pages.cjs");
 
 const mode=process.argv[2];
-assert.ok(["kjv","latin"].includes(mode),"Use kjv/latin mode");
+assert.ok(["kjv","latin","author"].includes(mode),"Use kjv/latin/author mode");
 const original=parseSharedCorpus();
 assert.equal(original.words.length,2896);
 assert.equal(original.runeCount,12956);
@@ -81,7 +81,16 @@ function scan(originalLengths,sourceLengths,sourceWords){
     countAtLeast25:matches.filter(x=>x.length>=25).length};
 }
 const sources=[];
-if(mode==="kjv"){
+if(mode==="author"){
+  const raw=fs.readFileSync(require("node:path").resolve(__dirname,"..",
+    "resources/liber-primus/lp1-plaintext-reference.txt"),"utf8");
+  const selected=raw.split(/\r?\n/).filter(line=>!line.trim().startsWith("#")&&
+    !line.trim().startsWith("[")&&!/^\s*\d/.test(line)).join(" ");
+  const words=selected.toUpperCase().match(/[A-Z]+/g)||[];
+  assert.equal(words.length,761);
+  sources.push({edition:"Same-author solved LP1 and LP2 reference",words,
+    fingerprint:crypto.createHash("sha256").update(raw).digest("hex")});
+}else if(mode==="kjv"){
   const file=process.argv[3],bytes=fs.readFileSync(file);
   const sha=crypto.createHash("sha256").update(bytes).digest("hex");
   assert.equal(sha,
@@ -117,7 +126,7 @@ for(const source of sources)for(const [register,lengthOf] of [
   const lengths=source.words.map(w=>w==="BOOKBREAKSENTINEL"?
     999:lengthOf(w));
   const result=scan(target,lengths,source.words);
-  const start=25001,planted=target.slice();
+  const start=source.words.length>25041?25001:201,planted=target.slice();
   for(let i=0;i<40;i++)planted[1200+i]=lengths[start+i]+
     (i%5===0||i%5===3?1:0);
   const pos=scan(planted,lengths,source.words);
