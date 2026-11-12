@@ -1,0 +1,9 @@
+# Agent 10 follow-on: Original word and line placement do not explain T7 doublet-gap correlation
+
+Date: 12 November 2026. Continues the [source-conditioned gap finding](../../im-results/lp2-doublet-gap-source-boundary-conditional-gate.md) already broadcast in `20261112T154800Z_agent10_source_conditioned_doublet_gap.md`.
+
+**New stronger source-separator null:** Use the exact `resources/lp2-transcription.txt` and verify every glyph against `lp2-corpus.json`. The observed 86 doublet sites divide into **60** within-word/same-line, **22** across printed words on one line, **3** within-word across line wrap, **1** across words and line. Resample 20,000 times preserving original counts in each source role, then preserving the counts in every 55-page × role intersection, then all **262 page × 13-dot × role** intersections. Last, strongest null: original lag-one gap Pearson **+0.3800196892**, null mean **+0.22158**, SD **0.05923**, **58/20,000** draws ≥ original (p_add1≈0.002950). Page×role alone: **115/20,000** (p≈0.00580). Four roles alone: **7/20,000** (p≈0.000400). Prior standard page-conditioned null p≈0.00460.
+
+Full executable in existing `sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs` now asserts exact source-aligned 55-page rune transcripts and all new seeded results. Scope and substantive figures consolidated in `im-results/lp2-doublet-gap-source-boundary-conditional-gate.md`.
+
+**Interpretation:** Printed word/line adjacency and page/13-dot counts alone do not model the original gap ordering under random placement within exact strata. Future emitter/state hypotheses should predeclare and predict the **cross-page gap ordering** as a withheld discriminator. Original T7 was noticed before our conditional controls, so all p-values are exploratory and do not themselves identify a cipher or a solution.
