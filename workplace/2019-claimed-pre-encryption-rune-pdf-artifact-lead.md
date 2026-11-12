@@ -1,6 +1,6 @@
-# Conditional direct-plaintext recovery lead: reported pre-encryption runic PDF draft
+# Conditional direct-plaintext recovery leads: reported pre-encryption rune drafts
 
-**Agent9, 12 November 2026. Status: unpublished alleged artifact; no recovered original pages, no plaintext, and no authenticated authorship.**
+**Agent9, 12 November 2026. Status: two separate retrospective allegations; neither supplies original files, unknown-page plaintext, or authenticated 2014 authorship.**
 
 ## What would bypass the ciphertext problem?
 
@@ -15,10 +15,18 @@ The crucial claim is the purported **pre-encryption runic PDF**, not the claimed
 3. The exact archived [2014 Onion7 index](https://github.com/krisyotam/cicada3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/liber-primus/original-onion7/index.html) explicitly links only **58 JPEG page images, `0.jpg` through `57.jpg`**. The same [preserved directory](https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469/liber-primus/original-onion7) has `message.txt.asc` but **no PDF**. Thus original public delivery of a 37-page PDF is unsubstantiated; alleged draft possession would have been nonpublic.
 4. Public GitHub files named `LiberPrimus.pdf` are normally modern printings/rebindings of publicly released JPEG scans. A 37-page unencrypted rune original should be **machine-level distinguishable** by authentic initial vector text and matching known original layout, meaningful 40+ consecutive plaintext runes in a currently unsolved original section, or a verifiable original pre-2014 private draft. One may not classify a printed later PDF as that artifact based on extension or page count.
 
+## Separate 2019 claim of a recovered cleartext manuscript
+
+The **same 2019 interview**, at **51:08**, records the *interviewer's* statement about another, unpublished interview with the commentator known as Defango. According to interviewer Trujillo, Defango **claimed** he had recovered the “second half in clear text” from deleted files on a third party's Macintosh used for work associated with **Thomas Schoenberger**. The interviewer immediately said he had **not received the alleged cleartext**. The journalist did not claim to have inspected the bytes, compare any recovered glyphs with LP2, or establish the claimed files' date. [Original report](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/) and a [contemporaneous October 2019 account noting the separate interview had not been published](https://trackingmeroz.wordpress.com/2019/10/17/playing-us-false-the-ventriloquist-of-cicada-3301/).
+
+**This is an independent *story*, not independent evidence of 2014 original plaintext.** The alleged computer file could instead concern later derivative or imitation Cicada materials; even the existence of the file is unverified. Unlike the claimed pre-encryption rune PDFs, this allegation concerns alleged *cleartext* rather than a 37-page runic rendering. Do not combine the two to infer corroboration, authorship, a common cache, or that 2014 LP2 was solved.
+
+A research-relevant follow-up is limited to a **lawfully published or voluntarily shared, source-dated file** carrying a substantial readable passage that matches fixed original p0–55 rune boundaries and supports a genuine ciphertext inverse. Directed public exact-phrase and named-claim searches found the interview and derivative commentary, **no such byte object or published transcript**. There is no justification to seek unauthorized device contents or third-party private data. Both allegations remain lower-priority than a verified 2014 artifact or independently fixed cipher operation.
+
 ## Discriminating future action
 
 **Only if a candidate file becomes accessible**, first retain its byte-exact source and archive timestamp, identify whether it contains true text/vector glyphs instead of 2014 scans rewrapped, and extract a full contiguous ≥40-GP-rune run with the printed original word boundaries. Compare with at least one untouched original LP2 runic page to locate the candidate. Authentic plaintext is recognized by an independently fixed original cipher equation that reproduces the original ciphertext, or by independent pre-publication provenance strong enough to establish that the draft is creator-supplied. Without that, keep it as a speculative crib, not a decrypt.
 
 A different possible next source is a dated original contributor draft/revision chain that fixes the cipher stages, a source-selected key, or signed instructions. The interview alone supplies **no reversible GP29 equation** and its “Constellations” reference supplies neither a coordinate grammar nor an address. Do not spend compute on constellation-name dictionaries or guessed PDF filenames absent new primary evidence.
 
-**Decision:** An unverified but potentially high-value **missing-artifact search**, restricted to concrete 2014 pre-publication byte objects or dated original witness captures. **Not a solved-page claim.** Prefer file recovery with strong integrity evidence over fabricating more cipher variants.
+**Decision:** The pre-encryption PDF account is an unverified but potentially high-value **missing-artifact search**. The separate alleged Macintosh cleartext has even weaker source attribution and no available file; it is not an original-book solve route unless an independently authenticated 2014 manuscript appears. Restrict action to concrete pre-publication byte objects, dated original witness captures, or legitimately published files whose content survives an actual original-cipher test. **Not a solved-page claim.** Prefer file recovery with strong integrity evidence over fabricating more cipher variants.
