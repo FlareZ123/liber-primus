@@ -165,16 +165,26 @@ const chapterResults = chapters.map(([start, end]) => {
   const input = corpus.pages.filter(x => x.page >= start && x.page <= end)
     .flatMap(x => x.indices);
   const deciphered = phiDecode(input, 7);
-  assert.deepEqual(phiEncode(deciphered, 7), input);
+  // A candidate W plaintext can also be produced by an encrypted non-W
+  // ciphertext at the right prime phase. Thus the rule selected solely
+  // by observed ciphertext-W sites has no stand-alone lossless inverse.
+  const ambiguities = input.filter((cipher, i) =>
+    cipher !== 7 && deciphered[i] === 7).length;
+  const naiveReencrypt = phiEncode(deciphered, 7);
+  const replayMismatches = input.filter((cipher, i) =>
+    cipher !== naiveReencrypt[i]).length;
   return {
     sourcePages: start + '-' + end,
     runes: input.length,
     WOccurrences: input.filter(x => x === 7).length,
+    nonWSourceSitesDecodingToW: ambiguities,
+    naiveReencryptionMismatches: replayMismatches,
     originalScore: score(input),
     literalWPrimeTotientScore: score(deciphered),
   };
 });
 assert.equal(chapterResults.reduce((s, v) => s + v.runes, 0), 12956);
+assert.ok(chapterResults.reduce((n, row) => n + row.nonWSourceSitesDecodingToW, 0) > 0);
 const p56AllW = phiDecode(p56, 7);
 assert.ok(score(p56AllW) < -7);
 
@@ -196,6 +206,7 @@ console.log(JSON.stringify({
     missingRune: 'W',
     chapterResults,
     authenticP56PositiveScore: score(p56Plain),
+    directWSkipRequiresUnprintedSkipPositionSideInformation: true,
     falseP56AllWScore: score(p56AllW),
   },
   conclusion: 'Neither historical omission selects a working original-LP2 inverse under the fixed direct prime/totient readings. The exact count-180 alignment remains a conditional clue, not plaintext or an authenticated key.',
