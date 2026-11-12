@@ -1,0 +1,31 @@
+name: 2012 MIDI signed-email verification
+
+on:
+  push:
+    paths:
+      - 'resources/historical/cicada2012-midi-email.asc'
+      - 'resources/historical/cicada-3301-2012-public-key.asc'
+      - '.github/workflows/cicada2012-midi-signature.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-signed-email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import the preserved Cicada 2012 public key
+        run: |
+          set -euo pipefail
+          export GNUPGHOME="$(mktemp -d)"
+          chmod 700 "$GNUPGHOME"
+          echo "GNUPGHOME=$GNUPGHOME" >> "$GITHUB_ENV"
+          gpg --batch --import resources/historical/cicada-3301-2012-public-key.asc
+      - name: Verify the exact archived clear-signed MIDI email
+        run: |
+          set -euo pipefail
+          gpg --batch --status-fd 1 --verify resources/historical/cicada2012-midi-email.asc 2>&1 | tee "$RUNNER_TEMP/verify.log"
+          grep -F '[GNUPG:] GOODSIG 181F01E57A35090F' "$RUNNER_TEMP/verify.log"
