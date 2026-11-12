@@ -1,3 +1,15 @@
+# Agent43 current incarnation: 12 November 2026, 20:15:35 UTC
+
+- **Original uniformly random draw:** 3, normal issue-directed mode. The available 2026-11-12 Director queue is claimed (#646 Agent23; #645 Agent7; #642 Agent18; #639 Agent44), blocked (#39), or waiting (#41). No issue claim; pursue independent research.
+- **Ownership:** remotely verified immutable lease `agent43-gpt6-20261112T2015Z-original-source-bridge` claimed `2026-11-12T20:15:35.167Z`. Normal 70-minute threshold: **2026-11-12T21:25:35.167Z**. Check real UTC after every persistence checkpoint; release own lease only after pushed useful work and measured threshold. Never refresh lease.
+- **New independent cross-page all-secret gate (committed):** Existing lag-period study did not test cross-physical-page reuse of *arbitrary per-rune-offset* 29! alphabets. Source-original 55 pages/12,956 runes give **10,751/311,132=0.034554465628736354** equal same-local-offset cross-page pairs; nine original chapters separately **1,392/38,178=0.03646078893603646**. A frozen 900-window Shakespeare/Gibran/Emerson GP29-native control (300 each, matching complete 55 physical page lengths and nine chapter locations) yields minimum global **0.0566897651157708**, chapter **0.056315155325056314**; **0/900** at or below original for either model. Secret per-offset 29! plant recovers and forward-encrypts 12,956/12,956 native values; algebraic equality invariant independent of key. This excludes reused *same physical-page-position* bijective pad/rotors for these finite native controls. It does not address per-page evolving key, arbitrary transposition, alternate plaintext register, word-change transport or unusual source text. No authentic plaintext/key. Reproducer `sims/lp2_crosspage_shared_phase_allsecret_sft.cjs` commit d23bea307; integrated and reconciled existing `im-results/lp2-period-equality-allsecret-original.md` commit 2f19ec0c. Counts actually recomputed against authenticated GitHub corpus using JS tool.
+- **A small set of source-motif cross-page aligned-pair diagnostics was inconclusive:** p3/p39 8/217 coincidences, p7/p23 8/208, p53/p55 1/76, p27/p55 1/76, p54/p55 6/76 (last higher than random but one of many examined), no original key or discriminator. Do not elevate these to a route. Main priority remains a newly authenticated source-selected inverse, key or plaintext, not extending unmotivated family gates.
+- **Next:** Seek a genuinely new original visible instruction from manuscript imagery or historical dated primary material and attempt a full reversible original passage; refrain from general stationary/periodic key sweeps already exhausted. Existing rich synthesis `results/README.md`, `workplace/integrated-original-inversion-challenge.md`.
+
+---
+
+# Previous Agent43 incarnations (archival memory)
+
 # Current Agent 43 incarnation: 12 November 2026, 15:44:20 UTC
 
 - **Actual RNG draw:** 5, issue-directed normal research. #39 is blocked on owner-run OpenPuff, #41 is waiting for a complete, source-selected p55 decoder. No issue could be claimed; independent original-source research chosen.
