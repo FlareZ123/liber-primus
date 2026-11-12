@@ -1,0 +1,33 @@
+# Red225 terminal row and literal solved-page mixing: original-input decision
+
+**Status (12 November 2026):** Source-visible count and candidate instruction, followed by two completed, bounded negative tests. No unknown LP2 plaintext, historical cipher inverse, authentic key, or destination is recovered. Reproducer: [source-native standalone CJS SFT](../sims/lp2_red225_mix_end_parable_sft.cjs). [Successful manual-only Actions run 43242739105](https://github.com/FlareZ123/liber-primus/actions/runs/43242739105) ran the exact committed script against the GitHub source corpus and printed all eight original-input candidates.
+
+## Source premise and risk
+
+The canonical original-image ink transcription contains **225 red GP runes** across physical pp0–57. A possible 15×15 row-major view places 210 red runes above a terminal row `XIMAEJOESRPARABLE`. Its pieces are original p54's **last three** red runes `XIM`, p56's complete **five** red title runes `AEJOESR`, and p57's complete **seven** clear red title runes `PARABLE`.
+
+The authenticated solved p56 Euler-totient/prime inverse maps its red `AEJOESR` to `ANEND`. Reversing just the p54 three-rune tail gives a readable **MIX AN END PARABLE**. This is an intelligible candidate operation selector. Its weakest premise is the choice to reverse exactly those three letters: the original p54 title has **nine continuous red runes**, not a separately marked three-rune word. Nor is a 15-column square printed. The 15×15 shape is one factorization of the red count; it is a reconstruction, not a source-visible cipher layout. Nothing selects a mixing algebra, target, direction, or starting offset. Treat the proposed instruction as **hypothetical**, not plaintext recovery.
+
+The calculation uses source `resources/liber-primus/lp2-ink-annotations.json`, the original page indices in `lp2-corpus.json`, and the exactly solved p56/p57 prose in `lp1-plaintext-reference.txt`. The p57 encoder is checked against all 95 original GP symbols and handles printed ING as one NG symbol.
+
+## A necessary all-key bound on red210 transposition
+
+The original first 210 red-rune counts in GP index order are:
+
+```text
+[7,7,9,6,3,11,9,5,9,5,8,6,12,7,10,7,9,7,3,11,8,8,4,9,9,5,5,7,4]
+```
+
+Any **pure transposition** preserves this vector. Even if the author used **one arbitrary secret permutation of all 29 output rune identities**, the best possible Shakespeare-trained unigram log-likelihood is exactly obtained by matching the sorted count vector to the sorted reference probabilities. The optimal original score is **−3.7134864978 per rune**. All **54,202** contiguous 210-rune GP-native holdout Shakespeare windows score higher under that **same full 29! optimization**; their minimum is **−3.0753973027**. No sequence of positional rearrangements, including unknown keyed or 7/15-column transpositions, can overcome the original score when judged against that fixed native-GP one-gram model. This is a finite English-reference condition, not an impossibility for other languages, independently encrypted readouts, or changing-symbol transformations.
+
+## Literal MIX of the two solved passages
+
+The known p56 plaintext has 85 GP runes. The directly printed p57 plaintext has 95 GP runes. Concatenating them in both orders, or interleaving by successive rune with either page first and appending p57's ten unpaired tail runes, gives **four source-frozen 180-rune GP29 keys**. On the complete original p54–55 chapter (232+76=308 runes), apply each as a repeating direct additive key from **p54 local position zero**, continuous across the page transition, with each sign: **eight candidates total**. No fitted offsets, skipped symbols, page resets, or arbitrary alphabets.
+
+The original GP trigram score is **−6.4428454**. The best of eight is **−6.1359962** (`zip57then56`, decode `C+K`), opening `HXTOTHLNMWNGXLIJIAYFYFUIRFAERTHLDCTH`; the others score **−6.2680 to −6.7415**. All are below the **worst −2.7348194** among **54,104** matched-length Shakespeare holdout GP windows. Exact original-cipher re-encoding succeeds for each candidate as an implementation invariant; exact native plaintext plants also recover for all four keys.
+
+This **rejects only the literal frozen-key additive mix** as normal GP29 prose on complete p54–55. Another operation on AN END and PARABLE, or another target, remains open if separately selected by an original clue.
+
+## Research decision
+
+The symbol inventory is the decisive obstruction to reading the 210 red-rune payload as transposed ordinary GP-native text, regardless of how rows or columns are mixed. If this row is intentionally instructive, a successful decoder must change rune identities, use a different plaintext register, or read the red material as key/cipher metadata rather than direct English. Avoid more keyless transposition sweeps. The p54 `XIM` reversal and 15×15 view need an independent page-level reading instruction before a broader search is justified.
