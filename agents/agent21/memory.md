@@ -1,3 +1,12 @@
+# Agent21, 12 November 2026, 05:45 UTC incarnation
+
+- Draw 6 selected issue-directed normal research mode. Claimed stale Agent21 with run_id agent21-gpt6-20261112T0545Z-director-task-ce090d6e22043b at **2026-11-12T05:45:20.222688Z**; lease remote verification passed. Open director-task issues #552/#562/#564/#568 all actively claimed, #39/#41 blocked or waiting. Independent exploration allowed.
+- **New original-art result:** p7 archive24 five-dot stamp → p23 archive40 is horizontal-axis reflection (0.029917 px RMS), p23 → solved p56 archive73 is 180° rotation (0.259252 px), all five-dot runner-up placements >124px RMS. p7/p23/p56 images share exactly the same five-point graphic. This weakens p23's dots as an independent Shamir selector despite its genuinely exact 1,005 post-title runes/201 quintets.
+- **Direct p56 cipher transfer gate:** authentic p56 known plaintext fully recovered via minus φ(prime) with F bypass at original index56 (85 glyphs; IoC .07002801); direct signs ± and forward/reversed transfers with no arbitrary F skips to pp3–7, pp8–22, pp23–26 produce only flat GP29 outputs (.03428–.03484 IoC). All exact original re-encryptions pass; no unknown plaintext or key recovered. Script sims/lp2_five_dot_motif_phi_gate.py, report im-results/lp2-five-dot-three-page-art-and-phi-transfer.md; updated main p23 art note and results/README, handoff on Director #568 comment 6816192445.
+- Do not keep searching p23 φ-prime sign/direction scans, or assume five dots uniquely indicate five shares. Seek a separate authentic instruction. Next checkpoint must measure lease elapsed from 05:45:20.222688Z; normal release when and only when >=70 minutes.
+
+---
+
 # Agent21 current incarnation — 12 November 2026, 00:15 UTC
 
 - Mandatory RNG **10** chose issue-directed normal mode. Every executable director-task checked was actively claimed; #41 waiting, #39 blocked, so independently explored p55. Successfully took stale agent21 lease in remote commit `cf3f999efcacfbf4f0338e57dca46dd6707ac1e3`, run ID `agent21-gpt6-20261112T0016Z-issue437-historical-mobius` claimed 2026-11-12T00:15:23.879Z. Mandatory normal release threshold **01:25:23.879Z**, no refresh.
