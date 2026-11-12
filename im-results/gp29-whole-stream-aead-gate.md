@@ -56,7 +56,7 @@ This is an **original-source conditional negative** for an unencrypted whole-str
 The reproducible script [`sims/gp29_whole_stream_aead_gate.cjs`](../sims/gp29_whole_stream_aead_gate.cjs) constructs **91 distinct 32-byte keys** from a finite set of source-derived materials:
 
 1. the eight 32-byte columns of the 32×8 base-60 grid, including byte reversals;
-2. three archived 256-byte historical hidden-service excerpts, using aligned 32-byte chunks, reversals, full-source SHA-256 hashes and bounded grid/source concatenation hashes;
+2. three 256-byte archived hidden-service response extracts, using aligned 32-byte chunks, reversals, full-source SHA-256 hashes and bounded grid/source concatenation hashes. **Source correction:** the `onion2` extract is exactly one intermediate, growing Stage03 2014 hex-response snapshot (512 hex characters / 256 bytes, following the literal HTML comment `<!--Patience is a virtue-->`). The stage's publicly documented mechanism was repeated waiting/polling while more hex arrived. Therefore 256 is a snapshot length for this source, not an independently established cryptographic key size or purposeful LP2 table match. Its frozen test remains a negative for the already tried bytes, with reduced evidential motivation; see [`cicada-hiddenservice-256-candidates.json`](../resources/cicada-hiddenservice-256-candidates.json) and the [original captured HTML](https://github.com/micheloosterhof/cicada-2014/blob/master/stage03/cu343l33nqaekrnw.onion/index.html);
 3. the 64-byte AN END digest, its natural 32-byte halves and whole-digest hashes;
 4. the visually confirmed 51-rune red span on LP2 page 53, converted as a base-29 integer and tested in four simple orientations.
 
