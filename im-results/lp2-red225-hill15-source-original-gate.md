@@ -6,7 +6,7 @@
 
 The original LP2 ink inventory contains **225 visibly red runes across physical pages p0–p57**, counting the independently solved p56 and p57 red spans. There are **213 red runes in the unsolved pages** and **12 in the solved pages**. A solver with the whole released book could lay all red symbols into a **15×15 GP29 matrix** in reading order. A 15-symbol Hill block is a reversible, recognizable classical operation over the source's prime-sized alphabet, whereas red ink is indeed author-visible. The missing and crucial step is an original instruction prescribing a matrix, the 15×15 grouping, the input location and the cipher clock. These are **researcher-chosen** hypotheses, not authenticated instructions.
 
-The two predeclared original-input clocks are (1) all **12,956** unknown-page runes in physical order and (2) the **12,743 non-red** unknown-page runes after stripping the 213 colored key positions. No output-driven phase, unknown matrix entry, added plaintext letter, alphabet relabeling, column order or keyword optimization is allowed.
+The primary whole-book tests use two predeclared original-input clocks: (1) all **12,956** unknown-page runes in physical order and (2) the **12,743 non-red** unknown-page runes after stripping the 213 colored key positions. Three independent visually marked, exact-15-divisible terminal clocks are additionally examined without positional tuning. No output-driven phase, unknown matrix entry, added plaintext letter, alphabet relabeling, column order or keyword optimization is allowed.
 
 ## Exact original-input result
 
@@ -16,6 +16,11 @@ Map each of the 225 source red runes to canonical GP29 indices 0..28. Partition 
 | --- | ---: | ---: | ---: | ---: |
 | All unknown pp0–55 | 12,956 | 12,945 | **0.0345061664** | 0.0344649991 |
 | Only black/non-red unknown | 12,743 | 12,735 | **0.0344896255** | 0.0344835454 |
+| Complete p55 body after 1-rune carry | 75 | 75 | **0.0389189189** | 0.0345945946 |
+| p55 body + p56 + p57 terminal frame | 255 | 255 | **0.0363439864** | 0.0339354639 |
+| Entire p53 + p54 opening rune | 180 | 180 | **0.0325884544** | 0.0350713842 |
+
+The 75-rune p55-body test is particularly source-motivated: p55's first NG rune completes a p54 word, leaving **exactly five 15-symbol blocks** with no discarded tail. The book's final p55/p56/p57 body total is **255 = 17×15**; separately, p53's 179 runes plus p54's first rune make **180 = 12×15**. All three extra source-shaped clocks fail to reveal plaintext. The p55 inverse begins `FEPBUYTHEOEOCTHFOEIATHUIPIAEDHTHNDFAEEAGFPEALAPEOELJTHRJEAEAEEAIAAENG...`, while the terminal-frame inverse shares that same nonlinguistic prefix. All of these 15-symbol transformations replay the authentic original input exactly.
 
 The original all-rune IoC is **0.0344783979** and original black-only is **0.0344829277**. The independently solved p57 native-GP text has IoC **0.0627099664**. Both original inverses remain very close to the uniform GP29 baseline (1/29 = 0.0344827586). The 80-rune output prefix for the full-original inverse starts `LFAEENOEEAIMEALMEAIEALFFBRLSJMYTHTHIANRJNGAEYNTAEDIDFAETHTETACMGSNBUFNNGTHYIAAREADB`; the black-only inverse begins `YAEEOASGNTHWYIACJOAJBOAPMENGPUWERCTHPGOEWAEAEYYOEEWDMCSYEANGXOABXATHPMTHRHDL`. Neither yields a readable continuation or discriminating native-GP linguistic distribution.
 
