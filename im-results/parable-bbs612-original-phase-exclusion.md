@@ -75,8 +75,31 @@ All **135** positive control encryptions recover their entire source input; for 
 
 This is a reference-conditioned exclusion of direct GP-native prose. A compressed/binary register, evolving output permutations, extra historical key material, page-specific BBS reinitialization, or a BBS consumer other than additive/rank transport remains possible.
 
+## Exact inverse of a collision-rejection transport: language-free exclusion
+
+The LP2 unknown ciphertext contains only **86** identical adjacent rune pairs within physical pages, compared with several hundred in ordinary GP-English. This independently motivates a stronger *variable-rate* proposed consumer of the 2013 Parable-derived stream. A solver might encode any non-EA plaintext symbol `P ∈ 0…27` by proposing `C=(P+K[j]) mod29`. If it would repeat the immediately preceding ciphertext glyph, discard `K[j]` and try the next draw, repeating until the output differs. Represent special plaintext GP-EA (index28) by a repeated ciphertext rune. The 55 first runes of physical pages are independently printed initial vectors, either advancing or skipping the key. The 86 repeated output glyphs may independently consume or skip one key draw.
+
+This model reproduces the **observed no-repeat architecture by construction**; its key consumption becomes data-dependent and the preceding stationary-period collision invariants no longer apply. It therefore warrants a separate exact original-cipher inverse.
+
+Four original-number-based keystream projections are tested, without any fitted secret key values: BBS state `mod29` (period612), BBS state scaled from [0,M) to [0,29) (period612), 5-bit packed output `mod29` (period612), and 8-bit packed output `mod29` (period153). For all four, the **longest cyclic run of identical adjacent key values is only two or three**. Since a proposed plaintext rune must be unchanged during any sequence of rejected key draws, all rejected key values must be identical. This makes the inverse search *complete*: enumerate candidate draw positions within the maximum identical-key run; require each rejected value to have produced the preceding ciphertext glyph, and require the final draw to produce the printed glyph with a plaintext index below 28. There is no arbitrary skip cutoff.
+
+For each source key, test whether the **entire 55-page manuscript** has *any* legal key-consumption path, allowing **every possible cyclic initial phase** (612 or 153) even though the conjectured source seed fixes one in principle. Keep the key stream continuous across physical pages, with independently specified first-rune IV consumption. The two marker-consumption choices, two IV choices and four streams yield **16** exact original-book models.
+
+| Parable-derived stream | EA/IV skip or consume variants | Latest possible first failure in all-phase original-book inverse |
+|---|---:|---|
+| BBS state mod29 | 4 | p1 rune54 to p2 rune83 |
+| BBS state scaled29 | 4 | p1 rune235 to p2 rune127 |
+| Five-bit BBS words mod29 | 4 | p1 rune93–133 |
+| Eight-bit BBS words mod29 | 4 | p1 rune12–141 |
+
+**Every one of the 16 source-fixed full-book models becomes impossible by physical p2.** There is no possible complete plaintext even if it is non-English or nonlinguistic, provided the encryption obeys the specified rejection transport and marker semantics. This is an exact impossibility under the model, distinct from the earlier reference-conditioned phase-collision negatives.
+
+Each model also encrypted a fresh full **12,956-rune GP-native Shakespeare** source across the same **55 physical-page lengths**, including true EA repeats, real collision-driven discarded pad draws and both IV/marker conventions. Its encrypted 55-page source passed the **same inverse automaton** from the true initial phase in all 16/16 cases. These positives demonstrate that the inverse permits authentic ciphertext produced by the proposed mechanism.
+
+This does **not** exclude a fresh arbitrary hidden key phase at every page, a different EA encoding, an alternative rejection rule, arbitrary secret cipher alphabets or nonprinted source keys. Such alternatives need their own source selector. [Complete exact-source forward-and-reverse automaton SFT](../sims/parable_bbs_rejection_chain_original_sft.cjs).
+
 ## Research decision
 
-The ordered source factorization suggests the standard BBS parameter roles by the first two clauses' Blum-prime status, but those roles are speculative. This candidate **does not directly decrypt the book** under any direct repeating GP29 or predecessor-rank GP28 bijective phase table. Avoid additional phase search or secret-alphabet fitting for these same 612-period families. New work should seek an original instruction tying the p57 numbers to a distinct reversible operation, or an independently testable nonperiodic language representation.
+The ordered source factorization suggests the standard BBS parameter roles by the first two clauses' Blum-prime status, but those roles are speculative. This candidate **does not directly decrypt the book** under any direct repeating GP29 or predecessor-rank GP28 bijective phase table. Avoid additional phase search or secret-alphabet fitting for these same 612-period families. Even a key-skipping rejection transport using the four literal BBS stream projections is structurally impossible for a full continuous LP2 book under the stated transparent-EA model; this stronger result is language-independent. New work should seek an original instruction tying the p57 numbers to a distinct reversible operation, or an independently testable nonperiodic language representation.
 
 **Standalone CommonJS SFT:** [original 612-phase all-secret and source-native controls](../sims/parable_bbs612_original_phase_gate_sft.cjs). Related, distinct prior work: [source-number and historical audio ID3](audio761-original-id3-frame-inventory.md), [BBS squaring as a proposed *grid-byte generator*](parable-grid-fullstate-squaring-exclusion.md), and [Parable F79/F3301 field cycles](parable-primitive-multiplicative-pad.md).
