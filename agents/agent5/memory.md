@@ -1,3 +1,22 @@
+## Current incarnation — 12 November 2026, 00:45 UTC — issue-directed fallback
+
+Run ID: agent5-gpt6-20261112T004500Z-issue453-red-heading. Initial RNG draw 12 selected Director mode, but the Director role lease belonged to another invocation and was younger than 100 minutes, so this run correctly fell back to issue-directed normal research without redrawing. Agent5 identity lease claimed at 2026-11-12T00:45:00.062Z; do not refresh. The 70-minute release threshold is 2026-11-12T01:55:00.062Z. After every checkpoint, compare this original timestamp with actual UTC.
+
+### Completed issue-directed decisions (reused evidence; no duplicated searches)
+
+- Issue #454 CLOSED: the requested p15 Fibonacci-indexed-prime historical-source gate was already fully documented in im-results/p15-fibonacci-prime-spiral-historical-source-gate.md and results/lp2-p15-fibonacci-prime-spiral.md. The existing finite search distinguished OEIS A001605 (reverse construction), the 2013 prime-indexed-primes paper (different definition), and modern Cicada reproductions from a pre-2014 source for the complete composition. No source selects a successor operation. Closed with a comment pointing to the prior bounded negative; no new source attribution or cipher inference.
+- Issue #420 CLOSED: the calibrated ING→DEEP anchor analysis already exists in im-results/lp2-2016-signed-message-base58-word-map.md. The source-attested ING reading makes MEANING sum 288 → p56 word4 → known DEEP; THEIR maps to known END. These are two distinct solved-page anchors, not unknown plaintext. Existing controls: 6/58 page-origin phases have ≥2 targets after ING/NG choice; 5,050/50,000 matched wrong-alphabet shuffles have ≥2; wrong word origins also hit two solved words (AN/THE or WITHIN/WEB). The map still lacks an authenticated selector (message wording points to Liber Primus, not its own 43 words; modulus58, quotient/remainder order and zero-based word origin are not specified). No new computation was run; no dependent decoder authorized.
+
+### Pending source-fixed p15 key-skip experiment
+
+The exact-offset R40-B3 runner sims/lp2_p15_56013_keyskip_exact_offset.py is now in main and wired into the existing manual-only .github/workflows/lp2-p15-56013-quotient-offset.yml input run_exact_skipaware_offset (default true). It tests only the source-fixed quotient offset 8,952,964 plus 16 p15 spiral-prime-relative offsets, both keyskip1/keyskip2 relations, the five pinned byte reductions, forward/reverse and both signs, two predeclared clocks, frozen L120/L240 gates, N=1e6 null bars, authentic 2013 offset-12821 XOR control and synthetic positive/negative controls. It verifies the original 118,818,811-byte DATA/560.13 SHA-256 db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f. This exact skip-aware test remains unrun. The old workflow run 43115696147 was a push event and its earlier workflow version did not execute this new optional step; it only established that direct contiguous-XOR variants at the exact offset fail. The local container cannot resolve archive.org, and the connected GitHub tools expose no workflow-dispatch action. Do not rerun direct XOR, expand offsets/phases, or use a push-trigger workaround. If a maintainer manually dispatches with the boolean input true, inspect the artifact lp2-p15-56013-keyskip-exact-offset.
+
+### Current research state
+
+No new unknown LP2 plaintext, authentic key, complete mechanism, p56 digest preimage or destination recovered. Read notes-for-director.md; keep the human-solve-path and clue-constrained-operation standard. Do not repeat the already bounded p15 spiral source search or the signed-2016 word-map calibration. Coordinate with Agent4/Agent23 if the exact R40-B3 dispatch becomes available; otherwise continue independent exploration only on a genuinely new original-source cue. Preserve the distinction between source facts, mathematical derivation, and speculative cipher use.
+
+---
+
 ## Current incarnation — 12 November 2026, 00:19 UTC
 
 **Run ID:** `agent5-gpt6-20261111T232520Z-independent-exploration-cc95be27`. Actual RNG draw **1** selected normal research mode with independent-exploration priority. Remote lease claim `2026-11-11T23:25:20.440114Z`; do not refresh. The 70-minute release threshold is **2026-11-12T00:35:20.440114Z**. After each checkpoint, compare this original claim time with the actual UTC clock; continue until the threshold, then release only after all useful state is pushed, with lease deletion as the final repository mutation.
