@@ -20,7 +20,8 @@ const read = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length);
 const glyphIndex = new Map(corpus.runes.map((glyph, i) => [glyph, i]));
-const text = read("resources/lp2-transcription.txt").split("%").slice(0, 55).join("%");
+const transcriptSegments = read("resources/lp2-transcription.txt").split("%");
+const text = transcriptSegments.slice(0, 55).join("%");
 const words = text.split(/[-.&$§]/u)
   .map(chunk => [...chunk].filter(char => glyphIndex.has(char))
     .map(char => glyphIndex.get(char)))
@@ -32,6 +33,46 @@ assert.equal(symbols.length, 12956);
 assert.equal(words.length, 2896);
 assert.deepEqual(symbols, pages.flatMap(p => p.indices));
 assert.equal(corpus.prime.length, 29);
+
+// Independent solved, source-original p57 PARABLE check of this exact
+// navigation rule. If a human-clear passage is fed into the same map,
+// the selected words should reveal whether the rule intrinsically outputs
+// coherent prose. The original p57 title is a distinct source rubric.
+const parableWords = transcriptSegments[56].split(/[-.&$§]/u)
+  .map(chunk => [...chunk].filter(char => glyphIndex.has(char))
+    .map(char => glyphIndex.get(char)))
+  .filter(word => word.length);
+assert.equal(parableWords.length, 20);
+assert.deepEqual(parableWords.flat(),
+  corpus.pages.find(page => page.page === 57).indices);
+
+/**
+ * Apply the same forward word-sum navigation to a known solved GP passage.
+ * @param {number[][]} inputWords
+ */
+function navigateSolved(inputWords) {
+  const size = inputWords.length;
+  const weights = inputWords.map(word =>
+    word.reduce((sum, rune) => sum + corpus.prime[rune], 0));
+  const visited = new Map();
+  const steps = [];
+  let position = 0;
+  while (!visited.has(position)) {
+    visited.set(position, steps.length);
+    steps.push(position);
+    position = (position + weights[position]) % size;
+  }
+  return {
+    path: steps,
+    cycle: steps.slice(visited.get(position)),
+    gpWords: steps.map(i => inputWords[i]
+      .map(rune => corpus.translit[rune]).join("")).join(" ")
+  };
+}
+const parableFromTitle = navigateSolved(parableWords);
+const parableFromBody = navigateSolved(parableWords.slice(1));
+assert.deepEqual(parableFromTitle.path, [0, 9, 15, 7, 13, 4, 3]);
+assert.deepEqual(parableFromBody.path, [0, 13, 12, 7, 17, 4]);
 
 const N = words.length;
 const primeSums = words.map(word => word.reduce(
@@ -230,6 +271,11 @@ console.log(JSON.stringify({
     atLeast90AndExactlyOnePlusOneP:
       (oneCycleAtLeast90 + 1) / (trials + 1),
     caution:"Exploratory selected model/length: conditional null is not a discovery-level p-value"
+  },
+  solvedP57OriginalControls: {
+    withRedTitle:parableFromTitle,
+    startingAfterRedTitle:parableFromBody,
+    readoutAssessment:"Neither produces a coherent literal English phrase despite known plaintext input"
   },
   plantedSmallCycle:planted,
   conclusion:"The simple self-route is mathematically defined but its source readouts remain ciphertext-like. This is no decipherment."
