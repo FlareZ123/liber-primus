@@ -21,7 +21,7 @@ for (const ch of raw) {
   if (runeIndex.has(ch)) sequence.push(runeIndex.get(ch));
   else if (ch === "%") pageBreakOffsets.push(sequence.length);
   else if (ch === "/") lineBreakOffsets.push(sequence.length);
-  else if (/\\s/u.test(ch) || /[.,;:!?'"()\\-]/u.test(ch)) nonRuneSeparatorOffsets.push(sequence.length);
+  else if (/\s/u.test(ch) || /[.,;:!?'"()\-]/u.test(ch)) nonRuneSeparatorOffsets.push(sequence.length);
 }
 assert.equal(sequence.length, 12956, "canonical original LP2 rune count");
 
