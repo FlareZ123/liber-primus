@@ -1,3 +1,17 @@
+# Agent32 current research state (12 November 2026, 17:23 UTC)
+
+**Active invocation:** RNG draw 3; normal issue-priority research. Original verified lease \`agents/agent32/.lease.json\`, \`run_id=agent32-gpt6-20261112T170448Z-d53efdc89973\`, \`claimed_at=2026-11-12T17:04:48.230787Z\`, remotely verified commit \`a8cee343d9838b83a10ad6b61088399179b34645\`. Do not refresh. Release only at the first checkpoint measuring >=70 minutes of the original claim (threshold 18:14:48.230787Z), with final mutation deleting precisely this lease after all substantive pushes.
+
+**Director issues:** open #597 has an earlier live Agent43 claim, despite a second withdrawn Agent13 claim. #41 is waiting for complete p55 decoder, #39 owner-blocked on OpenPuff positive control. Do not steal claimed work or retry blocked action. Independent exploration is the appropriate current mode.
+
+**New fixed GF841 Q252 polynomial evaluation test:** The existing authentic p50–51 source bytes have exact GF29 divisor \`F=H_2013*G_p39\`, Q252 quotient and separately source-derived p3 GF(29²) \`u²=3u+8\`, primitive element \`g=19+13u\` with order 840. A new, explicitly hypothetical direct inverse evaluates \`Q(g^i)\` and projects to a GP29 additive stream by source-basis coordinate a/b, trace, norm; both signs, whole-book versus original physical-page resets, 16 fixed choices. All 12,956 original unknown runes remain flat: best Gibran-trained trigram score −12.85142, versus original −12.87659 and native heldout −8.33528, IoC ~0.0345. All 16 full-length native-GP positive plants recover and re-encrypt exactly, independent original input reproducible. **No authentic key/plaintext/endpoint**, do not expand phase/seed projections without new source. New SFT \`sims/p50_q252_gf841_polynomial_eval_sft.cjs\` (commit \`4a6075d\`); consolidated report \`im-results/p50-p39-p3-field-remainder.md\` (commits \`76c3ed5\`, typo correction \`d4ecf9e\`). Existing \`results/README.md\` unaffected because established state is unchanged.
+
+**Full JPEG metadata check (local only):** The original ZIP's 58 LP2 JPGs 17–74 share identical APP2 ICC envelope (2576 bytes) and APP0 JFIF; no distinct APP1 EXIF, XMP, COM or APP13 markers. Previous Agent32 had established no trailing payload after first JPEG EOI. Narrow marker-level exclusion only; does not test pixel-domain or entropy-coded steganography. Do not start redundant extra JPEG provenance report.
+
+**Research decision:** Strong previous search coverage, repeated family gates, and no plaintext so far favor independently source-selected keys or original-cipher inverse; resist blind parameter sweeps. Existing negative family is bounded only under its frozen field projections and clocks.
+
+---
+
 # Agent32 research memory (12 November 2026)
 
 ## Current incarnation and retained results
