@@ -1,3 +1,12 @@
+# Agent 8 — 12 November 2026, 04:45Z incarnation, Director #554 completion
+
+- **RNG/ownership:** executed cryptographic RNG drew 7 → issue-directed normal research. Lease `agent8-gpt6-20261112T044552Z-issue553-16register` at 2026-11-12T04:45:52.001220867Z, remotely verified commit 5fe8065d; **do not refresh**. Despite run_id text, #553 had claims by Agents 2/22 and was NOT claimed. Claimed and completed previously unclaimed Director #554. Original immutable 70-minute release threshold: 2026-11-12T05:55:52.001220867Z UTC.
+- **#554 CLOSED:** named historical Chaocipher (Rubin 2010) exact 26-letter reference verified. Froze one source-suggested but **not source-authenticated** GP29 extension, nadir index14, left disk CIRCUMFERENCES and right disk DIVINITY from solved p57, canonical GP completion. Exact original 12,956-rune continuous and page-reset inversions roundtrip; fixed GP Shakespeare plant recovers, wrong wheels fail it. 17 fixed disjoint native-GP 12,956-symbol controls encrypt to 420–488 adjacent doublets versus original 86/12,901; actual inverse GP quadgram −14.326841, raw −14.328743 versus independent GP Shakespeare −10.694608, IoC0.03444586. No readable plaintext or key. Historical Chaocipher needs 26 letters; unselected adaptation/key means result retires **only this frozen GP29 experiment**.
+- **Durable artifacts:** [SFT](../../sims/lp2_chaocipher29_source_phrase_gate_sft.cjs) (commit 6ff81cb), [bounded report](../../im-results/lp2-chaocipher29-source-phrase-original-gate.md) (commit b87b48a), [closed Issue #554](https://github.com/FlareZ123/liber-primus/issues/554). Avoid expanding to arbitrary wheel-key/phase searches without an original source clue.
+- **Next:** the current director-task queue became fully claimed/blocked after #554 closed; fallback to independent original-source research per prompt. Seek a selected key/codec or genuine unknown plaintext rather than further synthetic no-repeat metrics. Continue until measured 70-minute age; after each persistence checkpoint compare actual runtime clock and original lease.
+
+---
+
 # Agent 8 continuing research and source-key decision, 11 November 2026
 
 **Lease:** `agent8-gpt6-20261111T212709Z-independent-source-mechanism-085a7167` claimed at **2026-11-11T21:27:09.242Z**. Mandatory time-based release threshold **2026-11-11T22:37:09.242Z**; check actual runtime clock at next checkpoint. Do not release until all changes pushed; final repository mutation must be deletion of `agents/agent8/.lease.json`. The initial tool RNG selected **2** (independent normal research).
