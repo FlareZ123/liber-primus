@@ -139,6 +139,51 @@ assert.equal(plainLatin.length, 11);
 assert.equal(plainLatin[0], "A");
 assert.equal(plainLatin[5], "E");
 assert.equal(p27[26], p27[31]); // Fixed monoalphabetic substitution impossible
+/** @param {number[]} cipher @param {string} plain @returns {number[]|null} */
+function affineWord(cipher, plain) {
+  const p = [...plain].map((letter) => corpus.translit.indexOf(letter));
+  if (p.length !== cipher.length || p.some((v) => v < 0)) return null;
+  for (let a = 1; a < 29; a += 1) {
+    for (let b = 0; b < 29; b += 1) {
+      if (cipher.every((x, i) => (a * x + b) % 29 === p[i])) return [a, b];
+    }
+  }
+  return null;
+}
+const cipherFirst = p27.slice(28, 31);
+const cipherSecond = p27.slice(31, 34);
+assert.equal(affineWord(cipherFirst, "THE"), null);
+assert.deepEqual(affineWord(cipherSecond, "END"), [20, 26]);
+const rawReferenceTokens = sources.map((src) =>
+  read(src.path).toUpperCase().match(/[A-Z]+/g) || []
+);
+const firstAdmissible = new Map();
+const secondAdmissible = new Map();
+const actualSourcePairs = new Map();
+for (const words of rawReferenceTokens) {
+  for (let i = 0; i < words.length; i += 1) {
+    const w = words[i];
+    if (w.length !== 3) continue;
+    const firstKey = affineWord(cipherFirst, w);
+    const secondKey = affineWord(cipherSecond, w);
+    if (firstKey) firstAdmissible.set(w, (firstAdmissible.get(w) || 0) + 1);
+    if (secondKey) secondAdmissible.set(w, (secondAdmissible.get(w) || 0) + 1);
+    if (firstKey && i + 1 < words.length && words[i + 1].length === 3 &&
+        affineWord(cipherSecond, words[i + 1])) {
+      const phrase = w + " " + words[i + 1];
+      actualSourcePairs.set(phrase, (actualSourcePairs.get(phrase) || 0) + 1);
+    }
+  }
+}
+const sortedCounts = (m) => [...m].sort((a, b) => b[1] - a[1]);
+assert.equal(firstAdmissible.size, 9);
+assert.equal(secondAdmissible.size, 14);
+assert.deepEqual(sortedCounts(firstAdmissible).slice(0, 3),
+  [["DEN", 6], ["MAR", 5], ["TOY", 3]]);
+assert.deepEqual(sortedCounts(secondAdmissible).slice(0, 2),
+  [["END", 72], ["WAR", 44]]);
+assert.equal(actualSourcePairs.size, 0);
+
 const report = {
   original: {words: originalLengths.length, runes: countedRunes,
     lengths1Through12And13Plus: original.slice(1)},
@@ -148,6 +193,13 @@ const report = {
     originalPrefersRawLatinUnderThisFiniteModel: r.delta > 0
   })),
   outOfAuthorControls: crossAuthor,
+  fullWordIndependentAffineGate: {
+    firstCipher: "DJU", secondCipher: "BEI",
+    firstTheKey: null, secondEndKey: [20, 26],
+    firstWordCandidates: sortedCounts(firstAdmissible),
+    secondWordCandidates: sortedCounts(secondAdmissible),
+    exactSourceAdjacentThreePlusThreePairs: actualSourcePairs.size
+  },
   proposedUnconfirmedCrib: {
     p27: "BF DJU BEI AEF P", candidateRawLatin26: "AT THE END OF A",
     p55Terminal: "DJU BEI", candidateRawLatin26: "THE END",
