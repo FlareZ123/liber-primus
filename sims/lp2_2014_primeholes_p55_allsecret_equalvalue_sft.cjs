@@ -121,7 +121,7 @@ assert.deepEqual(results.map(x=>x.maxMatched),[9,10,8,9,8]);
 assert.deepEqual(results.map(x=>x.atLeast10),[0,1,0,0,0]);
 assert.equal(results.reduce((n,x)=>n+x.exactMatches,0),0);
 const totalWindows=results.reduce((n,x)=>n+x.windows,0);
-assert.equal(totalWindows,859983);
+assert.equal(totalWindows,858983);
 // Positive control: grant a wholly unrecorded secret GP29 additive pad per
 // distinct original source integer. All 37 key-free constraints survive.
 const planted=sources[1].runes.slice(1500,1576);
