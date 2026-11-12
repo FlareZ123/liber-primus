@@ -33,6 +33,22 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Script syntax failed" }
           node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
+      - name: Execute frozen p55 central-23 circumference XOR gate
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p55_circumference_23byte_56013_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "p55 central-23 script syntax failed" }
+          node sims/lp2_p55_circumference_23byte_56013_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "p55 central-23 XOR gate failed" }
+      - name: Execute direct 2013 XOR on original 256 numerical-table bytes
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/p15_iso56013_grid256_historical_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR syntax failed" }
+          node sims/p15_iso56013_grid256_historical_xor_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR source gate failed" }
       - name: Checkout pinned MIT-licensed R40-B3 decoder
         if: ${{ inputs.run_exact_skipaware_offset }}
         uses: actions/checkout@v4
@@ -66,19 +82,3 @@ jobs:
           name: lp2-p15-56013-keyskip-exact-offset
           path: ${{ runner.temp }}/p15-keyskip-exact-offset
           if-no-files-found: warn
-      - name: Execute frozen p55 central-23 circumference XOR gate
-        shell: pwsh
-        run: |
-          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
-          node --check sims/lp2_p55_circumference_23byte_56013_sft.cjs
-          if ($LASTEXITCODE -ne 0) { throw "p55 central-23 script syntax failed" }
-          node sims/lp2_p55_circumference_23byte_56013_sft.cjs $asset
-          if ($LASTEXITCODE -ne 0) { throw "p55 central-23 XOR gate failed" }
-      - name: Execute direct 2013 XOR on original 256 numerical-table bytes
-        shell: pwsh
-        run: |
-          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
-          node --check sims/p15_iso56013_grid256_historical_xor_sft.cjs
-          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR syntax failed" }
-          node sims/p15_iso56013_grid256_historical_xor_sft.cjs $asset
-          if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR source gate failed" }
