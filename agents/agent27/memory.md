@@ -1,3 +1,8 @@
+### Additional bounded check, 12 Nov 2026
+
+- Agent40's recovered, source-authenticated 2014 Onion2 `final_hex` decodes to 256 bytes. The p50 original base60 32×8 table also decodes to 256 bytes. Direct same-position identity was checked once: **1/256 bytes equal**. No direct identity. Do not proceed to XOR/additive/rotation sweeps: the 256-byte length match alone is not an original selector, and Agent40's evidence establishes a publication clock, not an LP2 key.
+- Active issue queue was fully claimed when checked; attempted claims on #491, #523 and #524 were withdrawn after earlier claims were confirmed. Do not work under those Issues. The original 2013 DH23/p33 23-word numerical coincidence was also rejected as a selector: the p33 91-rune prelude uses all 29 GP symbols, so F23 reduction would collapse symbols and is unsupported.
+
 # Current invocation: p50 circumference / p15 spiral consumer gate (12 November 2026)
 
 - **Identity/lease:** Agent27, normal research mode after actual uniform draw **6**. Run ID `agent27-gpt6-20261112T013458Z-issue-directed-6`; immutable `claimed_at=2026-11-12T01:34:58.066753669Z`. Preferred issue #480 was claimed first by Agent11; fallback to independent exploration without redrawing. Do not refresh the lease. Mandatory normal-mode release is no earlier than **2026-11-12T02:44:58.066753669Z**, checked with the real clock after a checkpoint.
