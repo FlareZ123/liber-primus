@@ -207,6 +207,18 @@ const rankOneOriginal = rowColumnFailures(sourceRed15);
 assert.equal(rankOneOriginal.all, 183);
 assert.equal(rankOneOriginal.unsolvedOnly, 171);
 assert.deepEqual(rankOneOriginal.firstFail, {row: 1, column: 1, residue: 23});
+
+// Stronger all-secret affine model: C[r,c] = alpha*B[r,c] + row[r]
+// + column[c] (mod29), for *any* alpha in GF29. One anchored 2x2 minor
+// with table minor 0 and observed red minor nonzero is a complete
+// algebraic contradiction independent of alpha and both unknown pads.
+/** @param {number[][]} matrix Values indexed by 0-based interior row/col */
+function anchoredMinor(matrix, r, c) {
+  return (matrix[r][c] - matrix[r][0] - matrix[0][c] + matrix[0][0] + 58) % 29;
+}
+assert.equal(anchoredMinor(innerByte29, 8, 4), 0);
+assert.equal(anchoredMinor(sourceRed15, 8, 4), 12);
+
 // Plant using *original* published border bytes as arbitrary secret keys.
 // Every planted cell uses a native GP29 symbol and a source grid interior.
 const plantRow = Array.from({length: 15}, (_, r) => grid.bytes[16 * (r + 1)] % 29);
@@ -236,7 +248,7 @@ console.log(JSON.stringify({
   tableMod29OriginalMatches: known.filter((x) => x.matches).length,
   tableMod29PlantedMatches: planted.length,
   direct30CodeMatchesAll256: literal30,
-  rankOne15x15: {allOriginalAnchoredMinors: 196, unsolvedOriginalAnchoredMinors: 182, observedFailAll: rankOneOriginal.all, observedFailUnknown: rankOneOriginal.unsolvedOnly, firstCounterexample: rankOneOriginal.firstFail, plantedFail: rowColumnFailures(rankOnePlant).all},
+  rankOne15x15: {arbitraryGlobalScalarExcluded: {row:8,column:4,tableMinor:0,redMinor:12}, allOriginalAnchoredMinors: 196, unsolvedOriginalAnchoredMinors: 182, observedFailAll: rankOneOriginal.all, observedFailUnknown: rankOneOriginal.unsolvedOnly, firstCounterexample: rankOneOriginal.firstFail, plantedFail: rowColumnFailures(rankOnePlant).all},
   fixedByteCodebook: {distinctBytes: byByte.size, inconsistentByteGroups: conflictingByteGroups, maximalExactMatches: maximumFixedCodebookMatches, minimumMismatches: minimumCodebookErrors, examples: contradictoryExamples},
   direct30CodeDotMatches: dotLiteral30,
   decision: 'The source-count alignment is real; the single historically motivated GP29 modular-key transfer fails all 12 known original red controls. No source selects any alternative byte/event operator.'
