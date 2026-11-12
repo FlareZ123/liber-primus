@@ -219,6 +219,32 @@ function main() {
     [6,23,24,17,0,14,10,19,1,5,13,8,21,23,27,10,6,14,12,2,2,10,19]);
   assert.equal(ioc(decoded),0.03162055335968379);
   assert.equal(anchoredText[8],1);
+
+  // One fixed continuation with the source-solved p56 Fibonacci-indexed
+  // prime-totient decoder. The p56 literal-F exception belongs to p56's
+  // original ciphertext offset 56 and is not transferred to this p55 stream.
+  const fib=[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657];
+  const primeLimit=400000;
+  const composite=new Uint8Array(primeLimit+1);
+  for(let p=2;p*p<=primeLimit;p++)if(!composite[p])
+    for(let n=p*p;n<=primeLimit;n+=p)composite[n]=1;
+  const primes=[];
+  for(let p=2;p<=primeLimit;p++)if(!composite[p])primes.push(p);
+  assert.ok(primes.length>Math.max(...fib));
+  // p56's key is phi(prime(F_i+1)) = prime(F_i+1)-1; primes[] is zero-based.
+  const p56Key=fib.map(n=>mod(primes[n]-1));
+  assert.deepEqual(p56Key,
+    [1,2,4,6,12,22,13,20,3,1,27,16,1,11,11,15,20,24,2,14,10,20,13]);
+  const p56LayerPlain=anchoredText.map((value,i)=>mod(value-p56Key[i]));
+  assert.deepEqual(p56LayerPlain,
+    [1,6,1,20,23,12,6,4,27,19,20,15,10,18,19,26,6,6,23,27,0,16,28]);
+
+  // Composite positive: known p57 plaintext -> +p56 key -> inverse matrix;
+  // the same matrix and p56 decoder must recover all 23 native symbols.
+  const p56SyntheticCipher=rref(altered,native.map((value,i)=>mod(value+p56Key[i]))).solution;
+  const p56SyntheticRecovered=apply(altered,p56SyntheticCipher)
+    .map((value,i)=>mod(value-p56Key[i]));
+  assert.deepEqual(p56SyntheticRecovered,native);
   console.log(JSON.stringify({
     inputs:{
       page:55,completeWords:16,
@@ -243,7 +269,8 @@ function main() {
       rowKey9:gp(row9.map(i=>source[i])),
       colKey5:gp(col5.map(i=>source[i])),
       innermostAnchor:gp([center.value]),
-      sourceAnchorIndexIn23:anchorPosition
+      sourceAnchorIndexIn23:anchorPosition,
+      p56FibonacciPrimeTotientKey:p56Key
     },
     original:{
       unanchoredRank:unanchored.rank,
@@ -252,13 +279,16 @@ function main() {
       plain23Direct:gp(decoded),
       plain23DirectIoC:ioc(decoded),
       plain23WithCenterAnchor:gp(anchoredText),
+      p56TotientContinuationPlain23:gp(p56LayerPlain),
+      p56TotientContinuationPlainIndices:p56LayerPlain,
       nativeTextRecovered:false
     },
     controls:{
       originalCipherRecovered23Of23:true,
-      solvedP57NativePlantRecovered23Of23:true
+      solvedP57NativePlantRecovered23Of23:true,
+      p56TotientAfterAnchoredMatrixSyntheticRecovered23Of23:true
     },
-    decision:"Reversible source-led candidate with no recognizable original plaintext; Cicada cipher not authenticated"
+    decision:"Anchored row-column inverse is reversible but unauthenticated; fixed p56 Fibonacci-prime-totient continuation is also nonlinguistic"
   },null,2));
 }
 if(require.main===module)main();
