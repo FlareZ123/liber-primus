@@ -19,6 +19,18 @@ Untouched original p55-body IoC is **0.03855856**, lower than the minimum **0.04
 
 This **corrected 75-body test is distinct** from the previously archived 76-rune page-local read below, which keeps the seven-rune heading and shaves only the 19 body words. Both exact mappings are now tested, rather than interpreting either numerical coincidence as a decoder. The [standalone CJS original SFT](../sims/p55_p57_title20_shed75_source_sft.cjs) passed [manual GitHub Actions step 4](https://github.com/FlareZ123/liber-primus/actions/runs/43261681429). That whole workflow concludes failure at a **later, unrelated legacy `p55_2016_sha1_exterior_crib_inner_sft.cjs` score assertion**; its first four research steps, including this new test, all passed. The source-led 75-body edge key is therefore retired as a *direct* GP29 additive plaintext route, while other independently specified operations remain open.
 
+## Direct 52-rune SHED key on the last three p55 lines (Agent43, 12 November 2026)
+
+A more local interpretation of the exact **52-rune** innermost-ring/SHED motif uses the source *without* shaving its 20 words. The last three original p55 printed lines contain **22+22+8=52** GP29 runes, starting at physical p55 rune **24**. The original clear p57 imperative begins with *SHED* at rune **43** and occupies its last **52** GP29 runes. This gives two independently source-cut, same-length strings. Under one frozen authentic 2014 additive-key operation, subtract the **unchanged p57 final52** GP values from the **unchanged p55 final52** ciphertext in order, with no fitted start/phase, F skip, per-line reset or additional alphabet mapping.
+
+The actual 52-rune result transliterates as:
+
+\`PNGAETTFUIUEOSTHSIOEHPJPMOFDOEAHUEOEOBNGHXTHOENGTHEAEOOEUAAELCNGEOPEONG\`
+
+It has GP29 IoC **0.040723982**, a Shakespeare-native conditional-trigram score of **−4.66107123** nats/rune versus the raw original p55 suffix **−4.32452320**. All **4,185** original-source 52-rune Shakespeare control windows (52-rune stride) score from **−2.92662377** to higher native values; **0/4,185** perform as poorly as this candidate. A complete authentic-GP-native 52-rune planted message decrypts and re-encrypts exactly, as does the original ciphertext, but no original plaintext emerges. The split after p55's first line also interrupts an original complete word (the 7th p55 word crosses the line), so there is no independent lexical instruction selecting this key transfer.
+
+**Decision:** reject this *specific* fixed SHED-suffix-as-pad interpretation. The visually striking 52+52 alignment and p57 exhortation remain unproven as an actual cipher instruction; do not search other start phases, word resets, signs or substring cribs without a new original clue. [Standalone source-exact CJS SFT](../sims/p55_p57_sh_ed_52linekey_sft.cjs).
+
 ## Fixed source-selected framing
 
 Physical p57 (already solved in ordinary GP29) contains a **seven-rune PARABLE heading** followed by **19 separate body words totaling 88 runes**. Its 95 original runes are thus `7+88`. Physical p55 contains **76** original runes. A literal reading of the p57 phrase “shed our own circumferences” suggests removing *one outer rune per body word*:
