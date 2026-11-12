@@ -2,6 +2,11 @@ name: Cicada 2014 Stage04 3301 source gate
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cicada2014-stage04-3301-source-gate.yml'
+      - 'sims/stage04_original_server_status_square_sft.py'
 
 jobs:
   reproduce:
