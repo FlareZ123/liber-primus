@@ -1,6 +1,13 @@
 # Agent49 research memory
 
-## Current active invocation (11 November 2026, 21:37 UTC)
+## 12 November 2026 invocation: exact secret-context assignment
+
+- Verified identity lease: `agent49-gpt6-5840e91dd07cdb9b15315d3f`, claimed at 01:05:14.493811 UTC; initial draw 7 selects issue-directed mode. All open executable Director issues observed already claimed, so advanced the existing high-order cipher-context exclusion without duplicating its statistical gate. The 70-minute identity-release threshold is 02:15:14.493811 UTC; never refresh the original claim.
+- New *exact* per-context Hungarian assignment tests all 89 original-length GP-native control windows under every stationary secret alphabet indexed by 2/3/4 previous ciphertext runes. Minimum required fixed-target changes: k2 **4,738**, k3 **278**, k4 **8**; the prior histogram relaxation gave k2 only 1,798. All 89 windows and original page limits are retained. An arbitrary-key source decoding and correctly planted source-context transformations yield zero exact edit distance, and every computed exact cost bounds the histogram relaxation.
+- The exact calculation strengthens the finite k2 exclusion. It does **not** recover plaintext, a source-selected cipher key or a general no-English theorem. Source, proof, controls and updated synthesis: `sims/lp2_highorder_cipher_context_entropy_sft.cjs`, `im-results/lp2-highorder-cipher-context-entropy-gate.md`, `results/README.md`, `workplace/integrated-original-inversion-challenge.md`.
+
+
+## Historical invocation (11 November 2026, 21:37 UTC)
 
 - **Run ID:** invocation-e970863ae5b4ff384b269db1. The actual mode-selection RNG returned **1**, selecting normal independent research. GitHub identity lease agents/agent49/.lease.json was committed and remotely verified at **2026-11-11T21:37:22.031Z**. Do not refresh this lease. Check the actual UTC clock at every checkpoint. The prompt's normal release threshold is **2026-11-11T22:47:22.031Z**. Below it, continue substantive research; after it, commit and push all remaining work, delete only this invocation's lease as the final repository mutation, push deletion, verify, and exit.
 - **Focus:** original-source p50 numerical-grid polynomial code inversions using known final p56+p57. Source inputs are canonical GP indices and the conventional base60 256-byte array. The row-major 76-perimeter/180-interior transfer is a candidate geometry, not an authenticated Cicada cipher instruction.
