@@ -42,7 +42,7 @@ This is a discriminating language test for the stated direct additive-key hypoth
 
 ## Results
 
-<escape>|</escape> Source-derived key <escape>|</escape> `P=C-K` score <escape>|</escape> `P=C+K` score <escape>|</escape> `P=C-K` IoC <escape>|</escape> `P=C+K` IoC |
+| Source-derived key | `P=C-K` score | `P=C+K` score | `P=C-K` IoC | `P=C+K` IoC |
 |---|---:|---:|---:|---:|
 | Literal Fibonacci-prime values mod 29 | -3.908010 | -3.896892 | 0.03450872 | 0.03448549 |
 | Fibonacci indices mod 29 | -3.905335 | -3.909454 | 0.03450230 | 0.03450839 |
