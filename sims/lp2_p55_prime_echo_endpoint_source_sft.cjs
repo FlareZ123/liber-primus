@@ -142,13 +142,73 @@ assert.equal(sorted[0].equalOrderedPairCount, 218);
 assert.ok(results.every((r) => r.indexOfCoincidence < 0.04561403509));
 assert.equal(startIndex(0, "endConsumed"), 388);
 assert.equal(startIndex(7, "endConsumed"), 391);
+// An independent *book-continuous* inverse is fixed by anchoring the
+// original 2013 prime-echo cycle's next restart to known p56 prime2.
+// This selects phase 36 for every-GP-rune consumption or phase 30 for
+// literal treatment of all 458 source F symbols. No arbitrary phase scan.
+const sourceUnknown = corpus.pages.filter(({ page: p }) => p <= 55)
+  .sort((a, b) => a.page - b.page).flatMap(({ indices }) => indices);
+assert.equal(sourceUnknown.length, 12956);
+const unknownFCount = sourceUnknown.filter((r) => r === 0).length;
+assert.equal(unknownFCount, 458);
+/**
+ * @param {number[]} cipher
+ * @param {boolean} skipAllF
+ * @param {1|-1} sign
+ * @returns {number[]}
+ */
+function anchoredGlobalDecode(cipher, skipAllF, sign) {
+  const consumed = cipher.length - (skipAllF ? unknownFCount : 0);
+  let phase = ((464 - (consumed % 464)) + 464) % 464;
+  return cipher.map((r) => {
+    if (skipAllF && r === 0) return 0;
+    const key = (historicalPrimes[(phase++) % 464] - 1) % 29;
+    return (r + 29 + sign * key) % 29;
+  });
+}
+/**
+ * @param {number[]} plain
+ * @param {boolean} skipAllF
+ * @param {1|-1} sign
+ * @returns {number[]}
+ */
+function anchoredGlobalEncode(plain, skipAllF, sign) {
+  const consumed = plain.length - (skipAllF ? unknownFCount : 0);
+  let phase = ((464 - (consumed % 464)) + 464) % 464;
+  return plain.map((r) => {
+    if (skipAllF && r === 0) return 0;
+    const key = (historicalPrimes[(phase++) % 464] - 1) % 29;
+    return (r + 29 - sign * key) % 29;
+  });
+}
+const globalResults = [];
+for (const skipAllF of [false, true]) for (const sign of /** @type {Array<1|-1>} */ ([-1, 1])) {
+  const phase = (464 - (sourceUnknown.length - (skipAllF ? unknownFCount : 0)) % 464) % 464;
+  assert.equal(phase, skipAllF ? 30 : 36);
+  const decoded = anchoredGlobalDecode(sourceUnknown, skipAllF, sign);
+  assert.deepEqual(anchoredGlobalEncode(decoded, skipAllF, sign), sourceUnknown);
+  const solved = page(57);
+  const plant = Array.from({ length: sourceUnknown.length }, (_, i) => solved[i % solved.length]);
+  if (skipAllF) for (let i = 0; i < plant.length; i++) if (sourceUnknown[i] === 0) plant[i] = 0;
+  assert.deepEqual(anchoredGlobalDecode(anchoredGlobalEncode(plant, skipAllF, sign), skipAllF, sign), plant);
+  globalResults.push({
+    skipAllF, sign, phase, keyFirstPrime: historicalPrimes[phase],
+    outputEqualPairNumerator: pairCount(decoded),
+    indexOfCoincidence: pairCount(decoded) / (sourceUnknown.length * (sourceUnknown.length - 1)),
+    first50: render(decoded.slice(0, 50))
+  });
+}
+assert.deepEqual(globalResults.map((r) => r.outputEqualPairNumerator), [5788538, 5788786, 5992198, 5987832]);
+assert.ok(globalResults.every(({ indexOfCoincidence: ioc }) => ioc < 0.036));
+
 process.stdout.write(JSON.stringify({
   source: "Original 2013 prime_echo last464-prime list; solved LP2 p56 phi-prime clock starts at2",
   hypothesis: "Unknown p55 consumes source-prime tail before p56 resets to2",
   originalP55Runes: c55.length,
   originalFPositions: F,
   tested: results.length,
+  globallyAnchoredByP56Reset: globalResults,
   best: sorted.slice(0, 4),
   control: "All authentic p55 roundtrips, all 32 solved-p57 plaintext plants, authentic p56 85/85",
-  finding: "Every direct tail-of-source prime-totient candidate remains nonlinguistic"
+  finding: "Every direct p55 tail-of-source and original-book-continuous prime-totient variant remains nonlinguistic"
 }, null, 2) + "\n");
