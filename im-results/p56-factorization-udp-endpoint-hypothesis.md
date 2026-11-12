@@ -12,7 +12,7 @@ The 64-byte target factors exactly as:
 
 `N = 84 × 281 × 2,155,279,523 × Q`
 
-The first three factors are proven primes; Q is a 465-bit strong probable prime (109 strong Miller–Rabin bases; no formal certificate here).
+The integer **84 is composite** (`2²×3×7`); **281 and 2,155,279,523 are prime**. Q is a 465-bit strong probable prime (109 strong Miller–Rabin bases; no formal certificate here). The displayed identity is a partial factorization, with no claim that Q has a certified proof of primality.
 
 - 2,155,279,523 as a big-endian IPv4 integer is **128.118.244.163** (80 76 f4 a3), within the Penn State 128.118.0.0/16 allocation. This does not identify a historical host.
 - **281** is registered as **personal-link** for UDP/TCP; registration does not prove a listener.
