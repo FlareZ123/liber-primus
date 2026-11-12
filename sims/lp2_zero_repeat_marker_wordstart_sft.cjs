@@ -234,24 +234,50 @@ function beowulfPools(source) {
   return pools;
 }
 
+/**
+ * Pinned Latin Vulgate source contains complete independently normalized
+ * GP29 words in base29 glyph format 0123456789ABCDEFGHIJKLMNOPQRS.
+ * All original LP2 word lengths have genuine Latin word matches.
+ * @param {string} source @returns {Map<number,number[][]>}
+ */
+function latinPools(source) {
+  const abc = "0123456789ABCDEFGHIJKLMNOPQRS";
+  const pools = new Map();
+  for (const line of source.split("\n")) {
+    const word = line.trim();
+    if (!word || word.startsWith("#")) continue;
+    const indices = [...word].map(g => abc.indexOf(g));
+    assert(indices.every(x => x >= 0 && x < 29));
+    if (!pools.has(indices.length)) pools.set(indices.length, []);
+    pools.get(indices.length).push(indices);
+  }
+  assert.equal([...pools.values()].reduce((n, v) => n + v.length, 0),
+    39835);
+  assert(lengths.every(len => pools.has(len)));
+  return pools;
+}
+
 const references = [
   ["Shakespeare","shakespeare_first300k.txt",0x330121],
   ["Gibran","gibran_prophet_58585.txt",0x330122],
   ["Emerson","emerson_essays_2944.txt",0x330123],
-  ["Beowulf (Old English)","beowulf_oe_gp_profile_corrected.json",0x330124]
+  ["Beowulf (Old English)","beowulf_oe_gp_profile_corrected.json",0x330124],
+  ["Latin Vulgate","latin-vulgate-gp-wholewords.txt",0x330125]
 ];
 const REPLICATES = 1500;
 const sourceResults = [];
 for (const [name, filename, seed] of references) {
   const file = read("resources/control/" + filename);
   const pools = name === "Beowulf (Old English)" ?
-    beowulfPools(file) : poolsFrom(file);
+    beowulfPools(file) : name === "Latin Vulgate" ?
+    latinPools(file) : poolsFrom(file);
   const rng = seededRandom(seed);
   let eaTotalMin = Infinity, eaTotalMax = 0;
   let eaStartMin = Infinity, eaStartMax = 0;
   let eaStart2Min = Infinity, eaStart2Max = 0;
   let eaTotalSum = 0, eaStartSum = 0, eaStart2Sum = 0;
-  let anyMarkerJoint = 0, eaJoint = 0, eaStartAtLeast23 = 0;
+  let anyMarkerJoint = 0, anyMarkerTwoSided = 0;
+  let anyMarkerExact = 0, eaJoint = 0, eaStartAtLeast23 = 0;
   let first;
   for (let trial = 0; trial < REPLICATES; trial++) {
     const plain = sampleNative(pools, rng);
@@ -275,6 +301,13 @@ for (const [name, filename, seed] of references) {
     for (let symbol = 0; symbol < 29; symbol++) {
       if (Math.abs(loc.counts[symbol] - original.total) <= 10 &&
         loc.starts[symbol] >= original.start) anyMarkerJoint++;
+      if (Math.abs(loc.counts[symbol] - original.total) <= 10 &&
+        Math.abs(loc.starts[symbol] - original.start) <= 5) {
+        anyMarkerTwoSided++;
+      }
+      if (loc.counts[symbol] === original.total &&
+        loc.starts[symbol] === original.start &&
+        loc.starts2[symbol] === original.start2) anyMarkerExact++;
     }
   }
   // Positive plant: all original print and page positions preserved.
@@ -296,12 +329,15 @@ for (const [name, filename, seed] of references) {
       startAtLeast23:eaStartAtLeast23,
       near86AndStartAtLeast23:eaJoint
     },
-    anyOf29MarkersNear86AndStartAtLeast23:anyMarkerJoint
+    anyOf29MarkersNear86AndStartAtLeast23:anyMarkerJoint,
+    anyOf29MarkersWithin10And5:anyMarkerTwoSided,
+    anyOf29MarkersExactly86_23_3:anyMarkerExact
   });
 }
 const report = {original, solvedNative, markerCount:29,
   toleranceTotal:10, replicatesPerSource:REPLICATES, sources:sourceResults};
 assert(sourceResults.every(x =>
   x.EA.near86AndStartAtLeast23 === 0 &&
-  x.anyOf29MarkersNear86AndStartAtLeast23 === 0));
+  x.anyOf29MarkersWithin10And5 === 0 &&
+  x.anyOf29MarkersExactly86_23_3 === 0));
 console.log(JSON.stringify(report, null, 2));
