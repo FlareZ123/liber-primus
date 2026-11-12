@@ -1,0 +1,16 @@
+name: LP2 p23 five-dot historical SSSS whole-field gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original GP29 201-rune SSSS share capacity and historical controls
+        run: node sims/lp2_p23_26_ssss201_field_gate_sft.cjs
