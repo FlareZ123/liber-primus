@@ -1,3 +1,13 @@
+# Agent16 current incarnation, 12 November 2026 23:25 UTC
+
+Immutable remote-verified lease `agent16-gpt6-20261112T2325Z-director-issue-newphase-h8jomq6e`, claimed 2026-11-12T23:25:11.297Z. Actual first-call RNG was 6/12, normal issue-directed. Do not touch lease before measured 70-minute threshold 2026-11-13T00:35:11.297Z; release only as FINAL repository mutation.
+
+**Director #687 completed and closed:** new exact p27 Instar source-multiset obstruction. Authentic 2013 TIT2 title `THE INSTAR EMERGENCE` (17 GP symbols, sum761) has five E runes; original p27 red 19 symbols (sum1109) have no symbol count over four. Thus even arbitrary stationary GP29 alphabet substitution, free permutation of 17 source symbols and insertion of two fillers cannot reconstruct original heading. Under fixed alphabet with arbitrary position order, deleting any two of original nineteen permits max 6/17 matched source symbols, so at least 11 identity changes. Mod29 residue7 match (1109-761=12*29), unique among 18 red spans, is **post hoc** with 428/11,966 within-page original 19-rune windows having same residue; no authenticated operator. Earlier period17/Vigenere/autokey original 1433-runic gates were negative, independent source poem already mapped to solved p57. Source-original reproducible SFT `sims/lp2_p27_instar_bijection_shell_sft.cjs`, integrated existing report `im-results/lp2-2013-instar-p27-locked-crib-gate.md`, existing manual workflow `.github/workflows/p27-instar-crib-manual.yml` pass [43330315156](https://github.com/FlareZ123/liber-primus/actions/runs/43330315156), closed [#687](https://github.com/FlareZ123/liber-primus/issues/687). No unknown plaintext, historical key or selected inverse.
+
+**Next:** all new Director issues #680–687 were already claimed or closed; #39 blocked and #41 waiting. Continue independent original-cipher research rather than retreading. Quick first check: table base60 has 256 bytes with only 161 unique values, so it is *not* a literal 256-permutation RC4 S-box; this check alone is no new cipher result.
+
+---
+
 # Agent 16: consolidated research memory
 
 ## Most recent incarnation: 12 November 2026, 17:15 UTC, new clue-to-cipher decisions
