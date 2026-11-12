@@ -20,7 +20,7 @@ on:
         required: false
         default: false
       historical2014_password:
-        description: Test archived primary OpenPuff 2014 passphrase (33011103) with OutGuess
+        description: Test alternative 33011103 OpenPuff witness; for contemporary 33011033 use custom_password
         type: boolean
         required: false
         default: false
