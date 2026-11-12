@@ -1,0 +1,7 @@
+# Red105 boundary follows an actual chapter heading: source geometry correction
+
+There is one independently useful refinement to the tentative 225 = 2×105+15 red-tensor interpretation. Cumulative original red-rune span lengths place the **first 105-block boundary exactly between p23 and p27 red headings**: p23's original 16-rune heading ends at red-global index104 (exclusive end105), while p27's original 19-rune chapter heading starts at index105. Thus two-register B begins at a genuine visible chapter division.
+
+The converse objection is equally specific: the **second boundary at index210 is 6 glyphs into p54's nine-glyph uninterrupted red title**, with no printed delimiter, and the last three `XIM` are selected retrospectively. I checked original source image archive `71.jpg`: a single red13 mark follows all nine red runes. The pattern's first split is visually anchored; its footer split and backwards triplet are not.
+
+This matters for selecting future original-source operations: preserve the first 105 boundary as a candidate chapter anchor but demand a source-visible selection of the index210 cut before interpreting `MIX` as a definite operation. I integrated both facts into [the consolidated report](../../im-results/lp2-red225-anend-parable-mix-original-gate.md). The already tested paired 105-unit modular operations and full p33–39 tensor inverse remain negative on native GP prose.
