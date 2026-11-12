@@ -70,6 +70,26 @@ function continuousPeriodBound(cipher, period) {
   return majorization(hist);
 }
 
+/**
+ * Exact minimum, across all unaltered source windows, of the largest
+ * frequency of any one GP symbol. This is a one-pass sliding count.
+ * @param {number[]} text Native GP indices
+ * @param {number} length Rune window width
+ */
+function minimumDominantCount(text, length) {
+  const counts = new Uint32Array(FIELD);
+  for (let i = 0; i < length; i++) counts[text[i]]++;
+  let minimum = Number.POSITIVE_INFINITY;
+  for (let i = 0; i + length <= text.length; i++) {
+    minimum = Math.min(minimum, Math.max(...counts));
+    if (i + length < text.length) {
+      counts[text[i]]--;
+      counts[text[i + length]]++;
+    }
+  }
+  return minimum;
+}
+
 function syntheticPositive(native) {
   const plain = native.slice(110000, 110000 + FULL.length);
   assert.equal(plain.length, FULL.length);
@@ -167,14 +187,9 @@ function main() {
     const native = nativeGP(read(file));
     if (name === "Shakespeare") nativeShakespeare = native;
     const score = scanNativeWindows(native, FULL.length, originalBound);
-    assert.deepEqual(
-      [score.windows, score.minimumTop3 /* explanatory only */].slice(0, 1),
-      expected[name].slice(0, 1)
-    );
-    // The k=1 member of the unmodified source ranked inventory is the
-    // most frequent source symbol, with its identity allowed to vary.
-    // scanNativeWindows emits only top3/top12, so count the minimal k=1
-    // source occurrence across windows independently below.
+    const minimumMostFrequentRune = minimumDominantCount(native, FULL.length);
+    assert.equal(score.windows, expected[name][0]);
+    assert.equal(minimumMostFrequentRune, expected[name][1]);
     assert.equal(score.minimumTop12, expected[name][2]);
     assert.equal(score.nearestRequiredEdits, expected[name][3]);
     assert.equal(score.nearestOffset, expected[name][4]);
@@ -182,6 +197,7 @@ function main() {
     controls[name] = {
       gpRunes: score.gpRunes,
       windows: score.windows,
+      minTop1: minimumMostFrequentRune,
       minTop12: score.minimumTop12,
       nearestRequiredEdits: score.nearestRequiredEdits,
       nearestOffset: score.nearestOffset
