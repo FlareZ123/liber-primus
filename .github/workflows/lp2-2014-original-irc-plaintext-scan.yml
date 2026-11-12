@@ -1,0 +1,21 @@
+name: Pinned 2014 historical IRC plaintext locator
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  locate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax preflight
+        run: node --check sims/lp2_2014_irc_original_plaintext_locator_sft.cjs
+      - name: Scan original contemporaneous source logs for unknown LP2 keys and decryptions
+        run: node sims/lp2_2014_irc_original_plaintext_locator_sft.cjs
