@@ -164,12 +164,13 @@ assert.equal(naturalSix.low24Matches,0);
 assert.equal(naturalSix.maxLeadingZeroBits,17);
 console.log(JSON.stringify({
   source:"p2 and p23–26 original GP29, 6 x 201 runes",
-  packing:"lossless predecessor-difference enumerative rank; <=7 repeats per lane",
-  field:"GF(2^976), x^976+x^17+x^10+x^6+1, monic five-degree SSSS",
+  packing:{rank976:"reversible predecessor-difference enumerative rank, <=7 repeats",
+    natural984:"direct base29 201-digit positional integer in 123 big-endian bytes"},
+  field:"Historical SSSS monic degree-five, exact GF(2^976) and GF(2^984) polynomials",
   fiveShare:{tested:fiveCount,maxPrintable,maxLongest,highest,known},
   sixShareRank976:{idSets:choices6.length,assignmentsPerSet:720,
     directions:4,...rankSix},
   sixShareNatural984:{idSets:choices6.length,assignmentsPerSet:720,
     directions:4,...naturalSix},
-  verdict:"No exact original six-share match in the frozen source-native family"
+  verdict:"Zero exact original six-share matches in both original-format families"
 },null,2));
