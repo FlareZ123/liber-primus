@@ -31,6 +31,23 @@ The contemporary [micheloosterhof stage05/allstrings](https://github.com/michelo
 
 The historically motivated three-way XOR itself returns 256 nonlinguistic bytes, only 37.89% printable ASCII including standard whitespace, with no recognized plaintext or directly mapped B. For completeness the three pairwise XORs have 0, 1 and 1 exact byte matches to B (1033 XOR 761, 1033 XOR 3301, 761 XOR 3301). The apparent 256 match is compatible with fixed 2,048-bit binary outputs; the sources provide **no LP2 instruction** linking these records to the later 256-cell numeric table, a key phase, an alphabet or a source-derived inverse. Exact identity under the explicitly selected operations is rejected. More transformations require new independent evidence.
 
+## Original-era totient and XOR variant, source-constrained negative
+
+The 2014 community's [2014 Things That Had Been XORed](https://uncovering-cicada.fandom.com/wiki/2014_THINGS_THAT_HAD_BEEN_XORED) documents **per-byte Euler totients** and original-order XOR or byte-reversed XOR of the same 256-byte onion outputs (for example onion2 byte 0x63=99 becomes φ(99)=0x3c=60). This is historical *participant experimentation*, with no Cicada-authenticated instruction to use these arrays against LP2. To avoid retrospective tuning, the source's original 1033/761/3301 byte order and all 256 positions were held fixed. No offset, alternate radix, arbitrary key clock, or novel KDF was introduced.
+
+| Frozen 256-byte output | Exact match with printed LP2 B | GP29 remainder match | Quotient floor(byte/29) match |
+| --- | ---: | ---: | ---: |
+| φ(1033 bytes) | 2 | 10 | 29 |
+| φ(761 bytes) | 2 | 11 | 24 |
+| φ(3301 bytes) | 1 | 6 | 36 |
+| XOR all three φ streams | 1 | 9 | 29 |
+| XOR all three original and all three φ streams | 1 | 7 | 31 |
+| XOR reversed original streams and unreversed φ streams | 2 | 8 | 29 |
+| XOR three reversed original streams | 1 | 12 | 34 |
+| XOR reversed original streams and reversed φ streams | 2 | 11 | 34 |
+
+Each comparison has **256** source bytes and 256 original LP2 table cells. No listed original-era operation reproduces an entire byte/GP29 stream. The independently documented totient operations thus do not rescue a table-key claim or suggest any fixed LP2 cipher. The repeated 256 length alone is a weak selector.
+
 ## Director choice
 
 Do not import or republish the unlicensed 2014 source text. Preserve the pinned remote blob links, historical dates and complete matching rules above; avoid recreating already indexed duplicates. The no-selector conclusion is **finite**, confined to the enumerated repositories and frozen 3-stream mapping. A future task should be triggered by a genuinely unindexed primary artifact or a human-visible instruction selecting a non-additive operation with a held-out original LP2 prediction, rather than the number 256 or an archive's apparent independence. This audit supplies no candidate satisfying the complete p55 decoder Issue #41.
