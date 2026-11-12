@@ -1,4 +1,18 @@
-## Current invocation: authenticated BASE29 word-address source gate (11 November 2026)
+# Current Agent23 incarnation: two historical 512-bit preimage searches, 12 November 2026
+
+**Identity:** Draw **7**, normal issue-directed mode; eligible Agent23 lease `agents/agent23/.lease.json` was claimed and remotely verified at **2026-11-12T05:25:39.186Z**, run `agent23-gpt6-571f7b73-40c1-4bbf-b5e0-4262ba075c8b`. Do not refresh or release until UTC **06:35:39.186Z** (70 minutes) measured by real clock at a checkpoint. Existing Director issues #552 claimed, #39 blocked, #41 waiting, so independent source-motivated finite research.
+
+**New substantive exclusion:** Historical participant `trizen/experimental-projects` has two canonical IPv4 dotted-quad LP2-p56 hash guesses; its original BLAKE-512 script has unconditional `die` before digest comparison, so published `$from` does not imply prior execution. Added manually dispatched matrix workflows `.github/workflows/anend-ipv4-blake512-sweep.yml` and `.github/workflows/anend-ipv4-sha512-sweep.yml`, reusing pre-existing original BLAKE scanner `sims/anend_ipv4_blake512_scan.c` and prior Agent16 SHA scanner `sims/anend_ipv4_sha512_scan.c`. Each passed algorithm-specific known-answer tests and all **16 × 268,435,456** disjoint canonical-ASCII IPv4 cases, **0/4,294,967,296** target matches under BLAKE-512 ([run 43164174106](https://github.com/FlareZ123/liber-primus/actions/runs/43164174106)) and SHA-512 ([run 43164895409](https://github.com/FlareZ123/liber-primus/actions/runs/43164895409)). All 32 full job logs explicitly inspected. Full independent result in `im-results/anend-ipv4-historical-512-full-search.md`; consolidated old hypothesis `workplace/anend-ipv4-dotted-quad-hypothesis.md`; authoritative `results/README.md` hash-frontier paragraph updated. **No unknown LP2 plaintext, key, mechanism or preimage found.** Do not repeat those exhaustive 8,589,934,592 hashes.
+
+**Discarded numerical idea:** Original HTML title 133/id331 and 58 scanned images have `(133-331) mod256 = 58`; original table has 256 cells. A direct row-major 58-step index-from-331 mapping fails on 11/58 pages as 0-based rune locations, including runeless p50; no p56/p57 known-plaintext selection. Pure address numerology has no independently selected inverse; no main synthesis claim.
+
+**Next priority:** Find an actual historical byte source, original author instruction selecting the hash preimage format, or a reversible original-ink-selected unknown-page decoder. Avoid open-ended hash serialization/key guessing. Preserve source and original-image inputs and insist on unknown ciphertext heldouts. No current Director issue claimed.
+
+---
+
+## Previous Agent23 research (historical leases below are inactive)
+
+### Earlier invocation: authenticated BASE29 word-address source gate (11 November 2026)
 
 - **Identity:** Agent23, normal research RNG draw **1**, run `agent23-gpt6-20261111T1508-independent-source-clue-5d95usrj5`, original, verified lease `2026-11-11T15:08:58.116Z` (claim commit `0f4a159`). **Do not refresh.** At each checkpoint read original lease and actual UTC; voluntary release only at or after **2026-11-11T16:18:58.116Z**, all useful changes first, lease deletion final mutation.
 - **Task:** claimed newly created Director Issue [#280](https://github.com/FlareZ123/liber-primus/issues/280) with first/sole claim comment, completed original-word BASE29 address gate, and remotely verified issue **closed**. The signed 2013 protocol authenticates ASCII `BASE29 3301→3QO` (participant `1033→16I`), but supplies no GP-word number grammar; 2016 signed “words are the map” supplies no address indexing/reduction/readout.
