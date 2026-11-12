@@ -1,52 +1,67 @@
-"""Byte-pin Stage04 original captured server-status and recover the square without a guessed key.
+"""Exact original 2014 Stage04 5x5 magic square source chain, no LP2 key inference.
 
-Original participant archive exact Git blob, size, extraction position from contemporaneous
-stage04 README. Print all 180 recovered bytes and possible plain numeric lines.
+Reconstructs the 2014 originally published Stage04 server-status JPEG bytes and
+the 178-byte reversed-hex matrix; independently compares contemporaneous
+archives and establishes the original *within-2014* transformation.
 """
 from __future__ import annotations
+
 import hashlib
-import re
-from urllib.request import urlopen, Request
+import subprocess
+from urllib.request import Request, urlopen
 
-COMMIT = "76d3ee8c762f60025822c8c05edbf31351636469"
-ROOT = f"https://raw.githubusercontent.com/krisyotam/cicada3301/{COMMIT}/puzzles/2014/assets/stage04/"
-PATH = "fv7lyucmeozzd5j4.onion/server-status"
-SIZE = 1_370_852
-SHA = "071fb34c82ba56c5dfbba376200be43822e31ee0"
+K_COMMIT="76d3ee8c762f60025822c8c05edbf31351636469"
+N_COMMIT="ade9a02889ef8acbc8cde8edbfd0a785c369f4c3"
+K_ROOT=f"https://raw.githubusercontent.com/krisyotam/cicada3301/{K_COMMIT}/puzzles/2014/assets/stage04/"
+N_ROOT=f"https://raw.githubusercontent.com/neuroretransmit/cicada/{N_COMMIT}/2014/005-third-onion/"
 
-def get(relative: str) -> bytes:
-    with urlopen(Request(ROOT + relative, headers={"User-Agent":"LP2-2014-original-stage04-square"}), timeout=120) as response:
-        return response.read()
+def obtain(url: str) -> bytes:
+    with urlopen(Request(url,headers={"User-Agent":"2014-stage04-original-matrix-audit"}), timeout=120) as resp:
+        return resp.read()
 
-def git_sha(data: bytes) -> str:
-    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + b"\0" + data).hexdigest()
+def blob_sha(b: bytes) -> str:
+    return hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
+
+def verify(data: bytes, size: int, sha: str, label: str) -> None:
+    assert len(data)==size, (label,len(data),size)
+    assert blob_sha(data)==sha,(label,blob_sha(data),sha)
+    print("VERIFIED",label,size,sha)
+
+def run_xxd(data: bytes) -> bytes:
+    proc=subprocess.run(["xxd","-r","-p"],input=data,capture_output=True,check=True)
+    return proc.stdout
 
 def main() -> None:
-    data = get(PATH)
-    assert len(data) == SIZE, (len(data),SIZE)
-    assert git_sha(data) == SHA, git_sha(data)
-    print("SOURCE_HEAD",repr(data[:500]))
-    print("SOURCE_TAIL",repr(data[-500:]))
-    for name, motif in [("ffd8ffe0",b"ffd8ffe0"), ("ffd8ffe1",b"ffd8ffe1"),("e0ffd8ff",b"e0ffd8ff"),("ffd9",b"ffd9"),("Apache",b"Apache"),("<pre>",b"<pre>")]:
-        print("MOTIF",name,data.lower().find(motif.lower()))
-    import re
-    runs = list(re.finditer(rb"[0-9a-fA-F]{60,}",data))
-    print("HEX_RUNS",len(runs),"FIRST",[(m.start(),len(m.group()),m.group()[:65]) for m in runs[:6]],"LAST",[(m.start(),len(m.group())) for m in runs[-4:]])
-    frame = data[336353:336353 + 360]
-    assert len(frame) == 360
-    print("PINNED_ORIGINAL",len(data),git_sha(data))
-    print("SOURCE_HEADHEX",data[:100].hex())
-    print("FRAME_HEX",frame.hex())
-    print("FRAME_REPR",repr(frame))
-    forward = re.sub(r"[^0-9a-fA-F]", "", frame.decode("ascii"))
-    backward = re.sub(r"[^0-9a-fA-F]", "", frame[::-1].decode("ascii"))
-    print("HEX_DIGITS",len(forward),len(backward))
-    for name, seq in (("REVERSED", backward), ("FORWARD", forward)):
-        decoded = bytes.fromhex(seq[:len(seq)//2*2])
-        print(name,"DECODED_BYTES",len(decoded),"HEX",decoded.hex(),"REPR",repr(decoded))
-        print(name,"FIRST32",decoded[:32],"LAST32",decoded[-32:])
-    rd = get("README.md")
-    print("README_SHA",git_sha(rd),"README",rd.decode("utf8"))
+    original=obtain(K_ROOT+"fv7lyucmeozzd5j4.onion/server-status")
+    verify(original,1370852,"071fb34c82ba56c5dfbba376200be43822e31ee0","2014 original server-status response")
+    print("ORIGINAL_CONTENT_TYPE",original[:120].decode("ascii",errors="replace"))
+    # A separate contemporary participant archive preserved the JPEG's
+    # unchanged hex transcription and exact full binary image.
+    image_hex=obtain(N_ROOT+"server-status.hex")
+    verify(image_hex,1368567,"9d7fda55c29baec7abefa38e224784e015bd7837","2014 preserved status hex")
+    image=run_xxd(image_hex)
+    verify(image,673066,"2829e13812015601ff1014cb4427587b4a8aa3a6","2014 complete status image")
+    jpeg=image[:336353]
+    verify(jpeg,336353,"7369644b99426a57d1a41819306bfd7be8935f5f","original LP1 page05 JPEG prefix")
+    assert jpeg[:3]==bytes.fromhex("ffd8ff") and jpeg[-2:]==bytes.fromhex("ffd9")
+    frame=image[0x521e4:0x521e4+357]
+    matrix=run_xxd(frame[::-1])
+    verify(matrix,178,"f081bf3bd3cb45b55359fa0e8961b1f033aa10c7","original hidden 5x5 matrix")
+    expect=[[272,138,341,131,151],[366,199,130,320,18],[226,245,91,245,226],
+            [18,320,130,199,366],[151,131,341,138,272]]
+    lines=matrix.decode("ascii").strip().splitlines()
+    actual=[[int(n) for n in line.split()] for line in lines]
+    assert actual==expect,(actual,expect)
+    assert all(sum(row)==1033 for row in actual)
+    assert all(sum(actual[r][c] for r in range(5))==1033 for c in range(5))
+    assert sum(actual[i][i] for i in range(5))==1033
+    assert sum(actual[i][4-i] for i in range(5))==1033
+    print("EXACT_5X5_MATRIX",actual)
+    print("ORIGINAL_MATRIX_TEXT",repr(matrix))
+    print("IMAGE_TRAILER_BYTES",len(image)-len(jpeg),"START",image[336353:336367].hex())
+    # The standalone 2013-dated Wisdom source's original provenance is a
+    # separate question, not settled by 2014 image-identity evidence.
+    print("INSTRUCTION_BOUNDARY","byte reversal + GP prime-sum reconstruct the original 2014 square; no original response directly instructs LP2 page, cipher or cardinal state")
 
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
