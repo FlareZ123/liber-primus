@@ -41,6 +41,26 @@ def file_sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def historical_xor_control(path: Path) -> dict[str, Any]:
+    """Authentic 2013 DATA/560.13 known-plaintext and exact re-encryption control."""
+    ciphertext = bytes.fromhex("28c07e1b102d4d5c4c1a376e064477e1416fcc94928765")
+    expected = b"gbyh7znm6c7ezsmr.onion\\n"
+    with path.open("rb") as f:
+        f.seek(12_821)
+        pad = f.read(len(ciphertext))
+    assert len(pad) == len(ciphertext)
+    recovered = bytes(c ^ p for c, p in zip(ciphertext, pad))
+    assert recovered == expected, recovered
+    reencryption = bytes(p ^ c for p, c in zip(recovered, pad))
+    assert reencryption == ciphertext
+    return {
+        "offset": 12_821,
+        "ciphertext_hex": ciphertext.hex(),
+        "plaintext_ascii": recovered.decode("ascii"),
+        "exact_reencryption": reencryption == ciphertext,
+    }
+
+
 def corpus_inputs() -> tuple[dict[str, Any], list[int], list[int], int, int]:
     corpus = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
     pages = {int(p["page"]): [int(x) for x in p["indices"]] for p in corpus["pages"]}
@@ -120,6 +140,7 @@ def main() -> int:
     assert args.pad.stat().st_size == EXPECTED_BYTES, args.pad.stat().st_size
     pad_hash = file_sha256(args.pad)
     assert pad_hash == EXPECTED_SHA256, pad_hash
+    historical_control = historical_xor_control(args.pad)
 
     corpus, whole, section11, offset, remainder = corpus_inputs()
     offsets = [offset] + [offset + p for p in PRIMES]
@@ -217,6 +238,7 @@ def main() -> int:
             "offset_search": "none; exact p15 quotient plus 16 p15 spiral-prime relative starts only",
         },
         "positive_control_ok": control_ok,
+        "authentic_2013_xor_positive_control": historical_control,
         "control_register_licensed": control.get("register_licensed"),
         "control_gate_cells_ge3": control.get("gate_cells_ge3"),
         "control_decoy_fpr": control.get("decoy_fpr"),
