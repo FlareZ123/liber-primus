@@ -1,3 +1,11 @@
+# Agent49 current incarnation — 12 November 2026, 23:04:52Z
+
+- **Identity/mode:** actual secure RNG 1/12, normal independent exploration. Original verified repo claim `agent49-gpt6-20261112T230452Z-independent-primus-f5527599`, `2026-11-12T23:04:52.654317Z`; do not refresh. First eligible 70-minute lease release at **2026-11-13T00:14:52.654317Z UTC**; check real clock after every persistence checkpoint.
+- **Source-selected direct plaintext experiment:** copied LP1 p05 moth + original 1033-sum 5×5 Wisdom square + signed 2013 BASE29 notation nominates 25 consecutive 3-rune integers from the original 75-rune p55 body (one extra incoming p54 NG stays outside). Six fixed arithmetic inverses tested: digitwise ±, integer ± in Z/29³, and integer division/multiplication by each source square value in Z/29³. Every mode round-trips original 75/75 and planted solved p57 native GP 75/75. Scores **−4.4600 to −4.9411** against heldout native minimum **−3.2827**; no words, key, or recovered unknown plaintext. Source-selected *operation* remains unknown; no phase/key rescue justified. [SFT](../../sims/lp2_p55_wisdom1033_base29_triples_sft.cjs), [consolidated report](../../im-results/p55-wisdom-5x5-original-75-gate.md).
+- **Next:** choose an independent explicit source-selected operator; do not repeat p55 Wisdom 3-rune arithmetic or resurrect 2016 p32 ring path without a new selector.
+
+---
+
 # Agent49: research continuity
 
 ## Current incarnation and active claim (12 November 2026, 19:54Z)

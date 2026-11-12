@@ -1,6 +1,6 @@
 # Original p55's 75 complete-word runes under the LP1 Wisdom-square inverse
 
-**Decision:** Two fixed, source-led transfers from the LP1 p05 SOME WISDOM square to original LP2 p55 are now bounded negatives: the 5×5 Hill inverse and a 25-period Euler-totient additive key. Both are exactly reversible on all 75 complete-word runes, but neither yields native GP plaintext. The inherited p54 rune remains outside both models; no authentic unknown plaintext or historical key is recovered.
+**Decision:** The source-led Hill, totient, and six BASE29-triple inverses from the LP1 p05 SOME WISDOM square to original LP2 p55 are now bounded negatives: the 5×5 Hill inverse and a 25-period Euler-totient additive key. Both are exactly reversible on all 75 complete-word runes, but neither yields native GP plaintext. The inherited p54 rune remains outside both models; no authentic unknown plaintext or historical key is recovered.
 
 ## Human-visible premise and uncertainty
 
@@ -55,6 +55,25 @@ Gibran-trained GP29 trigram scores (mean log score per rune):
 | One real 75-rune solved-Cicada native positive plant | −2.327503356 |
 
 The proposed output is below **every** compared native solved passage; its 16 words lack coherent GP-language content. All 75 original ciphertext runes reconstruct exactly after forward multiplication by the frozen matrix, and the unchanged first rune reproduces all **76** source runes. A separate 75-rune positive plant from editor-normalized solved LP1 text survives encryption and the same inverse with **75/75 exact recovery**. This demonstrates algorithmic invertibility, not that the source p55 used this operation.
+
+## Signed BASE29 per-cell three-rune Wisdom-square inverse (Agent49, 12 November 2026)
+
+A distinct, original-source candidate uses the **75 exact p55 body runes as 25 consecutive BASE29 three-digit integers**, one per cell of the reused 5×5 LP1 p05 Wisdom square. The earlier Cicada-signed 2013 server challenge explicitly demonstrates BASE29 positional notation with `3301 → 3QO`. The image reuse fixes the relevant 1,033-sum square; printed row-major order fixes its 25 numbers `[272,138,341,131,151,366,199,130,320,18,226,245,91,245,226,18,320,130,199,366,151,131,341,138,272]`. The incoming p54 **NG** remains separate, and each three-rune body block is one number in `[0, 29³−1]`.
+
+The decoder must still be selected by the puzzle author. We therefore froze six elementary, directly reversible **candidate** uses of the same square, without phases, secret offsets, borrowed keys, or post-selected orientations: digitwise GP29 addition/subtraction using each cell's three BASE29 digits; whole-three-digit integer addition/subtraction modulo **24,389**; and multiplication/division modulo **24,389** by each cell. All 25 printed square entries are coprime to 29 and have exact inverses modulo 24,389. All six tests reproduce every original ciphertext symbol upon forward encipherment and recover a separately planted authentic 75-rune solved-p57 sample.
+
+| Direct inverse on the p55 75-rune body | GP29 IoC | Gibran-trained trigram score (nats/rune) |
+| --- | ---: | ---: |
+| Digitwise subtract cell BASE29 digits | 0.027027 | −4.817158 |
+| Digitwise add cell BASE29 digits | 0.033514 | −4.940903 |
+| Integer subtract cell modulo 29³ | 0.028468 | −4.941094 |
+| Integer add cell modulo 29³ | 0.032432 | −4.682699 |
+| Integer divide by cell modulo 29³ | 0.030270 | −4.786274 |
+| Integer multiply by cell modulo 29³ | 0.029910 | −4.460006 |
+
+Independent solved-native control windows of the same 75-rune length from Shakespeare and Emerson (302 evenly spaced windows, trained only on Gibran) score **−3.282680 through −1.822076**. Original p57's first 75 solved runes score **−2.551420**. Every original decoded candidate is weaker than the least native control; all 16 original p55 body word boundaries remain unreadable. The division candidate begins with the GP runes `TH E O`, a short coincidence that does not continue into coherent plaintext. This rejects these **six frozen arithmetic consumers**, not use of the Wisdom square through an otherwise specified algorithm. It yields **no recovered LP2 plaintext or historical key**.
+
+[Exact original-cipher source-read, six-mode positive-control SFT](../sims/lp2_p55_wisdom1033_base29_triples_sft.cjs).
 
 ## Source-named totient as a 25-cell repeating key: bounded negative
 
