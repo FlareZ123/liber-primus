@@ -1,48 +1,27 @@
-# Source-visible p10 “7 G” as a candidate address for the two red119 triads
+# Source-visible p10 “7 G” as a candidate address for the red119 triads and p50 table
 
-**12 November 2026, Agent 36. Evidence class:** exact original-source extraction and a new, *conditional* three-page address hypothesis. The source does **not** explicitly print multiplication or an instruction to apply Atbash at the address. **No unknown LP2 plaintext, authenticated key, cipher, endpoint or response is recovered.** This document records a fresh candidate for a human-intended move, rather than asserting a solved clue.
+**Evidence class:** original-image/transcription facts plus a provisional source-selection hypothesis and one bounded negative consumer test. **No unknown LP2 plaintext, authentic key, complete cipher, endpoint, or final destination is recovered.**
 
-## Independently visible input and why a player might notice it
+## Human-visible starting clue
 
-The original 2014 LP2 image `resources/liber-primus/27.jpg` (physical p10) prints one **isolated ordinary decimal numeral `7`** inside a runic sentence, as an entire typographic token. The adjacent next *complete* runic word is the **single rune `ᚷ`**. The immediate transcription context, at zero-based p10 rune offset 169 before the numeral, is:
+Original physical p10 (resources/liber-primus/27.jpg) contains the only isolated decimal numeral in ordinary unknown-page prose: **7**, immediately followed by a complete one-rune word **ᚷ (G)** at rune offset169. The other five decimal digits in the unknown manuscript are numbered-list labels 1–5 on pp36–38. The Gematria Primus table gives G zero-based index6, one-based ordinal7, and prime17. The plausible multiplication (7	imes17=119) is not explicitly printed, but earlier Cicada stages used visible arithmetic products, so it is a reasonable human-solve-path hypothesis.
 
-```text
-... ᛋᛒ-ᚠᛞᛇ-ᚩᚦᛏ-7-ᚷ-ᛚᛄᛖᚫ ...
-```
+## What 119 selects
 
-The dashes above are **word-boundary notation**, not printed arithmetic operators. The original image shows the decimal 7 as a conspicuous departure from GP29 symbols. In the entire unknown physical p0–55 runic source, the only other ASCII digits in the independently compiled original transcript are numbered-list labels `1,2,3,4,5` on p36–38. Thus 7 at p10 is a unique *isolated in-prose numeral* among those six digits. It is not a normal 7th list item in the original document.
+- The two isolated red three-rune spans on original p3 and p39 are both at page-local offset119 and are bracketed by red 13-dot punctuation. The already established solved-LP1 GP29 Atbash outputs are **SCY / UDP**; SCY can be read as SKY under C/K transliteration. See [the red119 report](../im-results/lp2-p3-p39-red119-atbash-sky-udp.md).
+- The one-based 119th cell of the original p49–p51 32×8 table is p50 row5 column7, token **0Z**. Its conventional base60 value is35; (35mod29=6) returns GP rune **G**. The same 35 is (5	imes7), the page-local row×column coordinate. This is a useful self-check, but not proof: the table is also a continuous 32-row object (global row15×column7 is105), 0Z occurs twice, and ten cells reduce to G. The cell's 0Z value is unchanged under the specific f-omitting base59 alternative.
+- The other printed digits 1–5 and their following words do not produce the same prime-product / table-residue return. This is a small matched control, not a discovery-wide significance test.
 
-The historical Gematria Primus table is a natural lookup immediately available to a Cicada player: `ᚷ` = **G**, zero-based GP index 6 / **one-based ordinal 7**, with associated prime **17**. The juxtaposition `7-ᚷ` identifies the ordinal and glyph twice. **If** one chooses the source-attested Cicada habit of multiplying visible numerical factors, it gives the candidate rune address:
+The combined p10→119→(p3,p39,p50) alignment is stronger than the original p10-to-red-span observation alone, but the multiplication, one-based lookup, and page-local coordinate check remain candidate interpretations.
 
-```text
-7 × GPprime(ᚷ) = 7 × 17 = 119.
-```
+## First consumer tested and rejected
 
-Neither that operation nor a target page is explicitly printed beside the literal 7. The original 2012 509×503×3301 source-domain step is a genuine precedent for multiplication after an arithmetic cue, but it does not authenticate multiplication here.
+The simplest direct use is a period-256 GP29 additive key from the p49–p51 table reduced modulo29, starting at its one-based 119th cell and running continuously over p0–p55. Both signs were tested against the complete 12,956-rune original. They worsen the raw native-GP trigram score (−12.30534 / −12.30229 versus raw −12.27633); all 50 complete candidate windows fall below the worst held-out native-GP window, and the shuffled-key upper-tail p-values are 0.7797 / 0.7836. See the [full bounded test](../im-results/p10-7g-p50-cell119-phase119-gate.md) and [reproducer](../sims/lp2_p10_7g_p50_cell119_phase_sft.cjs).
 
-## Locked source-independent target of 119
+The 2013 signed “knock on the sky” clue led to ICMP echo, not a demonstrated UDP service. The pre-existing SKY/UDP report documents why neither a direct UDP header nor a live endpoint follows. Do not run network scans or infer a port.
 
-The previously preserved original ink annotation `resources/liber-primus/lp2-ink-annotations.json` independently enumerates every large 10-/13-/23-dot punctuation mark and red rune span over all 58 scans. The **only two** red spans consisting of exactly **three** runes are:
+## Current decision
 
-| Physical LP2 page | Original scan | Red span, zero-based local rune offsets | Distinctive printed form | GP Atbash `r → 28−r` |
-|---|---|---|---|---|
-| **p3** | `20.jpg` | **119–121** | red 13-dot marks after local offsets **119** and **122** | `SCY`, readable as **SKY** under GP C/K |
-| **p39** | `56.jpg` | **119–121** | red 13-dot marks after local offsets **119** and **122** | `UDP` |
+Retain 7G→119→p50 cell119 as a provisional original-artifact address/check hypothesis. Reject only the tested direct phase-119 continuous period-256 additive/subtractive key. A next step is justified only if an independent period-authentic clue selects a consumer of **0Z / row5-column7** or supplies a reproducible response to the red SKY/UDP fragments. Do not expand into arbitrary phases, resets, row permutations, or cipher layers.
 
-Both local offsets were established from **original red punctuation**, independent of p10, not fitted to the newly noticed numeral. The two Atbash readings were already known in [the original SKY/UDP report](../im-results/lp2-p3-p39-red119-atbash-sky-udp.md), and should never be attributed to this investigation. The present hypothesis is exclusively the previously unused **p10 `7-ᚷ` → 119 source-selection bridge**.
-
-The independently source-known 2013 signed “knock on the sky and listen” instructions indeed led to an **ICMP echo** challenge, rather than to a demonstrated UDP service. `UDP` would be a protocol word, but neither a 2014 host, port, packet content, reply or way to translate packet data to the unknown GP29 plaintext is supplied by the source. The existing offline UDP handoff [documents that missing dependency](lp2-red119-udp-payload-handoff.md), and the dated IRC audit [found no original UDP request/response](../im-results/lp2-red119-dated-udp-packet-source-audit.md). Interpreting 119 itself as a UDP port would require one extra unsupported assignment; no network traffic is proposed.
-
-## Counter-hypotheses, discriminating outcome and decision
-
-The red-triad p3/p39 coincidence is **real and visually preexisting**, but an address can be generated by many opportunistic manipulations of 7 and the GP table. Merely finding `7×17=119` does not establish why multiplication is intended, why 119 is a *page-local rune offset* rather than a count or value, or whether the source `7` is a chapter clue. The exact matched positions are therefore evidence of compatibility, **not** an independent discovery-adjusted probability or a decryption.
-
-A next step has a causal path to plaintext only if an independent period-authentic instruction, exact red-triad consequence, or typed decoded object selects an operation **after** the two red119 strings, e.g. authentic 2014 network message/packet with a specified receiver and a reproducible response, or a source-specified transformation consuming `SCY UDP` to produce a key or readable text. An operation that simply fits a few letters or expands a cipher sweep would not do this.
-
-**Decision:** preserve the three-page source alignment as a **provisional original-artifact clue** in `workplace/`; do not promote it to verified plaintext or repeat previous generic UDP/header/period-key tests. If an independently attributable consumer for SKY+UDP surfaces, this new p10 source selector provides a clear candidate route to test. If not, treat the address as unresolved rather than proving it is intended.
-
-## Reproduction
-
-Run `node sims/lp2_p10_literal7g_red119_bridge_sft.cjs` from a checkout on Node.js 22. The CommonJS SFT independently verifies all **13,136** transcribed rune indices against the 58-page corpus (accounting for transcript omission of runeless physical p50); extracts the six numerals and every p10 rune offset; asserts that the following complete p10 word is one GP rune `ᚷ`; checks the genuine GP one-based 7 / prime17 lookup; calculates 119; and scans all original red three-rune spans and their flanking red13 marks for exact local offsets and Atbash outputs. No ciphertext fitting or known decoded words are used to choose the address.
-
-[Manually executed Node22 workflow, **passed 12 Nov 2026**](https://github.com/FlareZ123/liber-primus/actions/runs/43278872587). Source files: [p10 scan](../resources/liber-primus/27.jpg), [original transcription](../resources/liber-primus/lp2-transcription.txt), [GP29 numeric corpus](../resources/liber-primus/lp2-corpus.json), [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), and [the SFT](../sims/lp2_p10_literal7g_red119_bridge_sft.cjs).
+Original-source selector reproducer: [p10 7G→red119 SFT](../sims/lp2_p10_literal7g_red119_bridge_sft.cjs). Updated table/consumer reproducer: [phase-119 SFT](../sims/lp2_p10_7g_p50_cell119_phase_sft.cjs).
