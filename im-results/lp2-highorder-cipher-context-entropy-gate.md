@@ -1,6 +1,6 @@
 # Previous-2/3-ciphertext-rune secret alphabet gate
 
-**11 November 2026, Agent27. Exact key-invariant measurements on original LP2; finite-register obstruction, no recovered plaintext, key or final destination.**
+**Original key-invariant measurements (11 November 2026, Agent27), extended by exact co-occurrence assignment (12 November 2026, Agent49). Finite-register obstruction; no recovered plaintext, key or final destination.**
 
 ## The mechanism and why it matters
 
@@ -29,15 +29,27 @@ All **32 Shakespeare**, **8 Gibran** and **49 Emerson** windows fall on the same
 A deliberately planted native-GP plaintext encrypted by fixed, independent pseudorandom context permutations decrypts exactly at all 12,956 rune positions under both k=2 and k=3. The planted ciphertext and its true plaintext have identical measured context-conditioned entropy and collisions, including with the **ciphertext-generated** history. Independently, arbitrary secret keys decrypt and perfectly re-encrypt the original ciphertext, and the original-conditioned statistics remain unchanged. This also demonstrates why an original ciphertext roundtrip alone is not evidence of the historical cipher.
 
 
-### Exact statewise histogram lower bound, distinct from positional Hamming distance
+### Exact positional optimum under every stationary secret alphabet (12 November 2026)
 
-For each original-ciphertext context, sort the 29 source-ciphertext output counts and the 29 candidate-English output counts in descending order. This gives the exact number of edits required in a **histogram-only relaxation**, where the source positions and their ciphertext-history contexts are fixed but positions may be rearranged within each context. For a fixed candidate plaintext, it is a necessary lower bound on the changes required under arbitrary secret 29-alphabet bijections, given by
+A histogram relaxation previously provided necessary lower bounds of 1,798–2,022 edits (k=2), 271–337 (k=3) and 8–18 (k=4) for the 89 fixed native-GP English windows. Its sorted frequency lists discard the original pairing of symbol values at a shared ciphertext history, so they do **not** measure the minimum true positional differences. For example, with one state, ciphertext ABAB and target AABB have identical histograms but require two edits under either possible A/B bijection.
 
-`D_k = (1/2) sum_context sum_symbol |sort_desc(hist_original_context)[symbol] - sort_desc(hist_candidate_context)[symbol]|`.
+The exact question is now solved computationally. For each distinct original context s, construct the 29×29 co-occurrence matrix M_s[a,b] counting positions at which ciphertext symbol a and a candidate plaintext's symbol b coincide. Under any stationary GP29 alphabet permutation π_s, the number of positions that must change is
 
-The formula optimally pairs the frequency buckets and is **tight for the histogram relaxation only**. The original SFT incorrectly called this the exact minimum *positional* Hamming distance. Counterexample, with one history state and two used symbols: ciphertext `ABAB` and candidate `AABB` have the same histogram, hence a computed bound of zero, yet both possible A/B relabelings disagree at two positions. The true positional minimum for each context s is `n_s − max_π Σ_a M_s[a,π(a)]`, where `M_s[a,b]` counts positions whose ciphertext symbol is a and candidate symbol is b. Its maximum-weight 29×29 assignment is **not** computed by the published SFT; it can only increase the required edit count. The existing histogram results remain mathematically valid necessary bounds for each fixed native-GP target, not bounds for all possible English strings, not insert/delete distances, and not recovered plaintext. The first k symbols of each page are free.
+    D_s = n_s - max_{permutation π_s} sum_{a=0}^{28} M_s[a,π_s(a)].
 
-Across all 89 sampled native windows, the **exact histogram-relaxation lower bounds** are **1,798–2,022** for k=2 (median 1,920), **271–337** for k=3 (median 304), and **8–18** for k=4 (median 13). Thus every tested fixed target requires **at least 1,798 of 12,846** eligible source-symbol changes for k=2, or **at least 271 of 12,791** for k=3; the positionwise minimum may be larger. These bounded necessary conditions supplement the entropy and collision statistics without claiming an exact closest-string distance. A pseudorandom original ciphertext-context inverse has a histogram bound of **zero** by construction. Native controls remain finite.
+Optimize this **maximum-weight bipartite assignment** exactly using a rectangular Hungarian algorithm with observed output symbols on the left and all 29 possible input symbols on the right. The total over contexts is the true minimum Hamming distance for each **fixed candidate plaintext** within the model, allowing 29^k independently secret bijections, with all first-k physical-page glyphs free. Every possible key is covered without a cipher-key search.
+
+| Model | Shakespeare exact min/median/max | Gibran exact min/median/max | Emerson exact min/median/max | All-control minimum |
+| --- | ---: | ---: | ---: | ---: |
+| Previous 2 ciphertext runes, 12,846 eligible | 4,738 / 4,818 / 4,908 | 4,795 / 4,811 / 4,865 | 4,819 / 4,874 / 4,954 | **4,738 (36.8831% of eligible)** |
+| Previous 3, 12,791 eligible | 278 / 303 / 331 | 298 / 320 / 334 | 282 / 315 / 345 | **278 (2.1734%)** |
+| Previous 4, 12,736 eligible | 9 / 13 / 17 | 10 / 12 / 17 | 8 / 13 / 18 | **8 (0.0628%)** |
+
+The large k=2 strengthening is informative: even with **841 arbitrary secret GP29 permutation alphabets**, no key in the defined stationary model maps the original ciphertext within fewer than 4,738 substitutions of any one of these sampled full-length native-GP English targets. The sorted-histogram bound had established only 1,798. The k=3 optimum is close to its histogram bound, and k=4 remains too weak for an exclusion of noisy or slightly different prose.
+
+Toy ABAB/AABB and incompatible many-to-one assignments validate nonzero exact costs; same-symbol controls return zero. Planted native-GP ciphertext under independent secret context alphabets and arbitrary decoded authentic ciphertext both return **zero exact positional edits** under the planted/corresponding true bijections. The exact solver also checks that every output is at least its independently computed histogram lower bound. All 89 sampled English controls, original page boundaries, source-runic GP29 encoding, and k=2,3,4 contexts remain unchanged.
+
+These are exact optimizations **for fixed language-control strings**, not an unconditional minimum over every possible English sentence, a source-selected alphabet, an identified historical encryption mechanism, or any recovered unknown LP2 plaintext.
 
 ## Where the boundary falls
 
@@ -49,4 +61,4 @@ The collision/entropy equalities are exact for **every** key in the specified st
 
 ## Reproduction
 
-Run the standalone CommonJS test at [sims/lp2_highorder_cipher_context_entropy_sft.cjs](../sims/lp2_highorder_cipher_context_entropy_sft.cjs). It loads only checked-in ciphertext and native control texts, checks exact original statistics, recomputes 89 windows for k=2,3,4, tests arbitrary secret-key original roundtrips, and positively encrypts/decrypts native GP plants with k=2 and k=3. PRNG is a fixed 32-bit LCG seeded 0x3301d00d; no external packages or fitted cipher parameters.
+Run the consolidated standalone CommonJS test at [sims/lp2_highorder_cipher_context_entropy_sft.cjs](../sims/lp2_highorder_cipher_context_entropy_sft.cjs). It loads only checked-in ciphertext and native control texts, checks exact original statistics, recomputes 89 windows for k=2,3,4, tests arbitrary secret-key original roundtrips, and positively encrypts/decrypts native GP plants with k=2 and k=3. It additionally computes exact per-state Hungarian assignment distances for all 89 original-length native-GP control windows, asserts their relation to the histogram relaxation, and checks zero-distance planted original-context controls. PRNG is a fixed 32-bit LCG seeded 0x3301d00d; no external packages or fitted cipher parameters.
