@@ -177,15 +177,26 @@ const originalNativeControlWindows = refs.map(([name, text]) => {
   let maxA = 0;
   let windowsWith40A = 0;
   let windowsWith45A = 0;
+  let maximumMostCommon = 0;
+  let windowsWithAnyLetter40 = 0;
+  let windowsWithAnyLetter45 = 0;
   let windows = 0;
   for (let i = 0; i + 201 <= text.length; i += 201) {
-    const countA = [...text.slice(i, i + 201)].filter((c) => c === "A").length;
+    const freq = Array(24).fill(0);
+    for (const letter of text.slice(i, i + 201)) freq[ABC.indexOf(letter)]++;
+    const countA = freq[0];
+    const mostCommon = Math.max(...freq);
     maxA = Math.max(maxA, countA);
+    maximumMostCommon = Math.max(maximumMostCommon, mostCommon);
     if (countA >= 40) windowsWith40A++;
     if (countA >= 45) windowsWith45A++;
+    if (mostCommon >= 40) windowsWithAnyLetter40++;
+    if (mostCommon >= 45) windowsWithAnyLetter45++;
     windows++;
   }
-  return {name, windows, maximumLetterA: maxA, windowsWith40A, windowsWith45A};
+  return {name, windows, maximumLetterA: maxA, maximumMostCommon,
+    windowsWith40A, windowsWith45A, windowsWithAnyLetter40,
+    windowsWithAnyLetter45};
 });
 assert.deepEqual(originalNativeControlWindows.map((x) => x.windows), [330, 1693, 1141]);
 assert.deepEqual(originalNativeControlWindows.map((x) => x.maximumLetterA), [28, 31, 28]);
@@ -227,18 +238,27 @@ function aWindowProfile(text, sourceName) {
   let maximumLetterA = 0;
   let windowsWith40A = 0;
   let windowsWith45A = 0;
+  let maximumMostCommon = 0;
+  let windowsWithAnyLetter40 = 0;
+  let windowsWithAnyLetter45 = 0;
   let windows = 0;
   for (let i = 0; i + 201 <= text.length; i += 201) {
     const fragment = text.slice(i, i + 201);
-    let countA = 0;
-    for (const letter of fragment) if (letter === "A") countA++;
+    const freq = Array(24).fill(0);
+    for (const letter of fragment) freq[ABC.indexOf(letter)]++;
+    const countA = freq[0];
+    const mostCommon = Math.max(...freq);
     maximumLetterA = Math.max(maximumLetterA, countA);
+    maximumMostCommon = Math.max(maximumMostCommon, mostCommon);
     if (countA >= 40) windowsWith40A++;
     if (countA >= 45) windowsWith45A++;
+    if (mostCommon >= 40) windowsWithAnyLetter40++;
+    if (mostCommon >= 45) windowsWithAnyLetter45++;
     windows++;
   }
   return {source: sourceName, sourceLetters: text.length, windows,
-    maximumLetterA, windowsWith40A, windowsWith45A};
+    maximumLetterA, maximumMostCommon, windowsWith40A, windowsWith45A,
+    windowsWithAnyLetter40, windowsWithAnyLetter45};
 }
 const alternateLanguageControls = [
   aWindowProfile(latinText, "Latin Vulgate NT GP-rendered"),
@@ -247,6 +267,16 @@ const alternateLanguageControls = [
 assert.deepEqual(alternateLanguageControls.map((x) => x.windows), [1038, 262]);
 assert.deepEqual(alternateLanguageControls.map((x) => x.maximumLetterA), [29, 31]);
 assert.ok(alternateLanguageControls.every((x) => x.windowsWith40A === 0));
+assert.equal(originalNativeControlWindows.reduce(
+  (sum, x) => sum + x.windowsWithAnyLetter40, 0), 3);
+assert.equal(alternateLanguageControls.reduce(
+  (sum, x) => sum + x.windowsWithAnyLetter40, 0), 7);
+assert.ok([...originalNativeControlWindows, ...alternateLanguageControls]
+  .every((x) => x.windowsWithAnyLetter45 === 0));
+assert.deepEqual(originalNativeControlWindows.map((x) => x.maximumMostCommon),
+  [38, 42, 39]);
+assert.deepEqual(alternateLanguageControls.map((x) => x.maximumMostCommon),
+  [44, 40]);
 
 const heldoutReferences = refs.map(([name, text]) => ({
   source: name,
