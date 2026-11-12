@@ -191,6 +191,63 @@ assert.deepEqual(originalNativeControlWindows.map((x) => x.windows), [330, 1693,
 assert.deepEqual(originalNativeControlWindows.map((x) => x.maximumLetterA), [28, 31, 28]);
 assert.ok(originalNativeControlWindows.every((x) => x.windowsWith40A === 0));
 
+/**
+ * Independently pinned Latin Vulgate (New Testament) and corrected Old English
+ * Beowulf encoded as canonical GP29 rune indices in existing source datasets.
+ * The sources use different serialization alphabets, explicitly decoded here.
+ * Transliteration to A..Z is only for the letter-A-count control, not a new
+ * invented decryption of original LP2.
+ *
+ * @param {string} GP29Digits
+ * @param {string} alphabet
+ * @returns {string}
+ */
+function decodeGpToLetters(GP29Digits, alphabet) {
+  let s = "";
+  for (const digit of GP29Digits) {
+    const position = alphabet.indexOf(digit);
+    assert.ok(position >= 0 && position < 29);
+    s += corpus.translit[position];
+  }
+  return normalize(s);
+}
+const latinDigits = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\\r?\\n/).map((line) => line.trim())
+  .filter((line) => line !== "" && !line.startsWith("#")).join("");
+const latinText = decodeGpToLetters(latinDigits, "0123456789ABCDEFGHIJKLMNOPQRS");
+const oldEnglish = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const oldEnglishText = decodeGpToLetters(oldEnglish.sourceGpBase29,
+  oldEnglish.positiveControlAlphabet);
+
+/**
+ * @param {string} text
+ * @param {string} sourceName
+ */
+function aWindowProfile(text, sourceName) {
+  let maximumLetterA = 0;
+  let windowsWith40A = 0;
+  let windowsWith45A = 0;
+  let windows = 0;
+  for (let i = 0; i + 201 <= text.length; i += 201) {
+    const fragment = text.slice(i, i + 201);
+    let countA = 0;
+    for (const letter of fragment) if (letter === "A") countA++;
+    maximumLetterA = Math.max(maximumLetterA, countA);
+    if (countA >= 40) windowsWith40A++;
+    if (countA >= 45) windowsWith45A++;
+    windows++;
+  }
+  return {source: sourceName, sourceLetters: text.length, windows,
+    maximumLetterA, windowsWith40A, windowsWith45A};
+}
+const alternateLanguageControls = [
+  aWindowProfile(latinText, "Latin Vulgate NT GP-rendered"),
+  aWindowProfile(oldEnglishText, "Old English Beowulf corrected GP-rendered")
+];
+assert.deepEqual(alternateLanguageControls.map((x) => x.windows), [1038, 262]);
+assert.deepEqual(alternateLanguageControls.map((x) => x.maximumLetterA), [29, 31]);
+assert.ok(alternateLanguageControls.every((x) => x.windowsWith40A === 0));
+
 const heldoutReferences = refs.map(([name, text]) => ({
   source: name,
   heldoutScore: score(indices(text.slice(5000, 5201)), model)
@@ -199,6 +256,7 @@ console.log(JSON.stringify({
   original: {printed, mirroredQuintets: mirrored, allSecretValidKeys: 5224},
   nativeHeldout: heldoutReferences,
   nativeLetterAControls: originalNativeControlWindows,
+  alternativeLanguageLetterAControls: alternateLanguageControls,
   positiveControl: {
     sourceCharactersExactlyRestored: heldout.length,
     originalReadableScore: genuineScore,
