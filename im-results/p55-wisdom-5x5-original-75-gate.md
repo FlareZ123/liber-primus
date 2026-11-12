@@ -56,6 +56,21 @@ Gibran-trained GP29 trigram scores (mean log score per rune):
 
 The proposed output is below **every** compared native solved passage; its 16 words lack coherent GP-language content. All 75 original ciphertext runes reconstruct exactly after forward multiplication by the frozen matrix, and the unchanged first rune reproduces all **76** source runes. A separate 75-rune positive plant from editor-normalized solved LP1 text survives encryption and the same inverse with **75/75 exact recovery**. This demonstrates algorithmic invertibility, not that the source p55 used this operation.
 
+### Full-body pure-transposition invariant
+
+The corrected 75-rune p55 body has GP29 IoC **0.03855856**. Every fixed permutation of these 75 symbols preserves the global rune histogram and therefore preserves this IoC. This gives a family-wide test of the tempting 5×5 rank-order/route hypothesis without choosing a tie-break or route.
+
+Using 75-symbol windows from the native LP1 plaintext reference:
+
+| Native control set | Windows | Minimum IoC | Median IoC | Maximum IoC | At or below p55 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Stride 23 (the 151-window language-score control) | 151 | **0.04612613** | 0.06090090 | 0.08540541 | **0** |
+| Every overlapping 75-symbol window | 3,462 | **0.04540541** | 0.06054054 | 0.09837838 | **0** |
+
+Even the lowest overlapping native window is above the p55 body. Therefore **no pure transposition of the entire 75-rune body**—including a stable rank-order permutation of the LP1 p5 5×5 square repeated over three 25-rune blocks—can yield ordinary GP29 English consistent with these native controls. This does not exclude symbol substitutions, symbol-dependent transforms, combined ciphers, a transposition of only a subset, or deliberately non-English plaintext. It does remove standalone whole-body route/columnar permutations from the useful next-step queue.
+
+The exact counts and controls are emitted by [the corrected 75-body SFT](../sims/p55_corrected_75body_transfer_sft.cjs).
+
 ## Reproduction, scope and next decision
 
 [Self-contained CommonJS SFT](../sims/p55_wisdom5_hill75_sft.cjs) consumes the original `resources/liber-primus/lp2-corpus.json`, literal p05 square values from the authenticated 2014 magic-square source, and heldout GP control passages. The script constructs GF29 matrix inversion, exact forward reencryption, the other-square control, word-boundary display and complete solved-native positive plant.

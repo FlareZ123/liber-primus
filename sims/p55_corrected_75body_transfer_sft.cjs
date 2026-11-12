@@ -148,10 +148,22 @@ function run() {
   ).replace(/^#.*$/gm, '');
   const native = plaintextWords(nativeText).flat();
   const nativeScores = [];
+  const nativeIoCs = [];
+  const overlappingIoCs = [];
   for (let start = 0; start + 75 <= native.length; start += 23) {
-    nativeScores.push(languageScore(native.slice(start, start + 75), model));
+    const window = native.slice(start, start + 75);
+    nativeScores.push(languageScore(window, model));
+    nativeIoCs.push(indexOfCoincidence(window));
+  }
+  for (let start = 0; start + 75 <= native.length; start++) {
+    overlappingIoCs.push(indexOfCoincidence(native.slice(start, start + 75)));
   }
   const nativeSorted = [...nativeScores].sort((a, b) => a - b);
+  const nativeIoCSorted = [...nativeIoCs].sort((a, b) => a - b);
+  const overlappingIoCSorted = [...overlappingIoCs].sort((a, b) => a - b);
+  const bodyIoC = indexOfCoincidence(body);
+  assert.ok(Math.min(...nativeIoCs) > bodyIoC);
+  assert.ok(Math.min(...overlappingIoCs) > bodyIoC);
   const nativeMinimum = Math.min(...nativeScores);
   const nativeMedian = nativeSorted[Math.floor(nativeSorted.length / 2)];
   const nativeMaximum = Math.max(...nativeScores);
@@ -193,10 +205,26 @@ function run() {
       median: nativeMedian,
       maximum: nativeMaximum
     },
+    pureTranspositionInvariant: {
+      bodyIoC,
+      stride23Windows: nativeIoCs.length,
+      stride23Minimum: nativeIoCSorted[0],
+      stride23Median: nativeIoCSorted[Math.floor(nativeIoCSorted.length / 2)],
+      stride23Maximum: nativeIoCSorted[nativeIoCSorted.length - 1],
+      stride23AtOrBelowBody: nativeIoCs.filter(value => value <= bodyIoC).length,
+      overlappingWindows: overlappingIoCs.length,
+      overlappingMinimum: overlappingIoCSorted[0],
+      overlappingP01: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length * 0.01)],
+      overlappingP05: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length * 0.05)],
+      overlappingMedian: overlappingIoCSorted[Math.floor(overlappingIoCSorted.length / 2)],
+      overlappingMaximum: overlappingIoCSorted[overlappingIoCSorted.length - 1],
+      overlappingAtOrBelowBody: overlappingIoCs.filter(value => value <= bodyIoC).length,
+      conclusion: 'No pure permutation of the complete 75-rune body matches the native GP29 IoC controls.'
+    },
     wisdomSquarePhiCell: {
       key: cellKey,
       period: 25,
-      rawBodyIoC: indexOfCoincidence(body),
+      rawBodyIoC: bodyIoC,
       decodedIoC: indexOfCoincidence(cellDecoded),
       rawBodyScore: languageScore(body, model),
       decodedScore: cellScore,

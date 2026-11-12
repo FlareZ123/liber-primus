@@ -56,6 +56,21 @@ Its native-GP IoC is **0.03423423** (raw body **0.03855856**). The Gibran-traine
 
 The same correct body was tested as 15 blocks of five under the original LP1 p5 5×5 matrix over GF(29). The matrix is invertible (determinant **3 mod29**); exact forward reconstruction and a solved-native positive plant pass, but the decoded output is nonlinguistic, with Gibran GP29 trigram score **−5.773447** versus the same native minimum **−3.811507**. See the complete [correct 75-rune Hill gate](../im-results/p55-wisdom-5x5-original-75-gate.md) and [reproducer](../sims/p55_wisdom5_hill75_sft.cjs).
 
+### Full-body pure-transposition invariant
+
+The corrected 75-rune p55 body has GP29 IoC **0.03855856**. Every fixed permutation of these 75 symbols preserves the global rune histogram and therefore preserves this IoC. This gives a family-wide test of the tempting 5×5 rank-order/route hypothesis without choosing a tie-break or route.
+
+Using 75-symbol windows from the native LP1 plaintext reference:
+
+| Native control set | Windows | Minimum IoC | Median IoC | Maximum IoC | At or below p55 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Stride 23 (the 151-window language-score control) | 151 | **0.04612613** | 0.06090090 | 0.08540541 | **0** |
+| Every overlapping 75-symbol window | 3,462 | **0.04540541** | 0.06054054 | 0.09837838 | **0** |
+
+Even the lowest overlapping native window is above the p55 body. Therefore **no pure transposition of the entire 75-rune body**—including a stable rank-order permutation of the LP1 p5 5×5 square repeated over three 25-rune blocks—can yield ordinary GP29 English consistent with these native controls. This does not exclude symbol substitutions, symbol-dependent transforms, combined ciphers, a transposition of only a subset, or deliberately non-English plaintext. It does remove standalone whole-body route/columnar permutations from the useful next-step queue.
+
+The exact counts and controls are emitted by [the corrected 75-body SFT](../sims/p55_corrected_75body_transfer_sft.cjs).
+
 ### Conditional solved-p56 φ(prime) transfer on the correct body
 
 The solved p56 control authenticates `P_i=C_i−φ(p_j) mod29`, consuming consecutive primes from 2 while one special literal `F` at p56 index56 is unchanged. That exact 85-rune p56 control reconstructs the known text. A single-F transfer hypothesis on p55 must now start at the actual body: skip only body index **24** (page-local25), while processing the other body `F` runes at 14 and 40 normally. This consumes **74** prime values; no phase or other skip is fitted. The p55 forward reconstruction and a planted 75-rune positive control pass. The complete output is:
@@ -66,7 +81,7 @@ Its Gibran GP29 trigram score is **−6.55536380**, below the same native minimu
 
 ### Superseded historical 76-symbol/F25 experiments
 
-The earlier `lp2_p55_wisdom_moth_square_sft.cjs`, `lp2_p55_p56_totient_25_seam_sft.cjs`, and `lp1_wisdom5_hill_p55_sft.cjs` treated all 76 page-local segments as p55 body, retained the incoming p54 `NG`, and removed the actual p55 body `F` at index24 (page-local25). Their outputs are reproducible for that **misaligned synthetic sequence only**; they are not valid p55-body negative results. The earlier 3×25/F25 interpretation is withdrawn. The old Hill report is marked superseded; the correct 75-body Hill result is linked above. The former φ(cell) output on the misaligned sequence was `retained in sims/lp2_p55_wisdom_moth_square_sft.cjs`. Reproduce the corrected φ(cell) and p56-transfer tests with [`p55_corrected_75body_transfer_sft.cjs`](../sims/p55_corrected_75body_transfer_sft.cjs).
+The earlier `lp2_p55_wisdom_moth_square_sft.cjs`, `lp2_p55_p56_totient_25_seam_sft.cjs`, and `lp1_wisdom5_hill_p55_sft.cjs` treated all 76 page-local segments as p55 body, retained the incoming p54 `NG`, and removed the actual p55 body `F` at index24 (page-local25). Their outputs are reproducible for that **misaligned synthetic sequence only**; they are not valid p55-body negative results. The earlier 3×25/F25 interpretation is withdrawn. The old Hill report is marked superseded; the correct 75-body Hill result is linked above. The former φ(cell) output on the misaligned sequence remains reproducible with the retained historical [script](../sims/lp2_p55_wisdom_moth_square_sft.cjs), which is explicitly marked as a misaligned-input test. Reproduce the corrected φ(cell) and p56-transfer tests with [`p55_corrected_75body_transfer_sft.cjs`](../sims/p55_corrected_75body_transfer_sft.cjs).
 
 ## P22 cross-round book-code/coordinate transfer decision (Director #496)
 
