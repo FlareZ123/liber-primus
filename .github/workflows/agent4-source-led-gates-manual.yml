@@ -1,4 +1,4 @@
-name: Agent4 p15 and p55 source-selected decryptions
+name: Agent4 original-source cryptanalytic gates
 
 on:
   workflow_dispatch:
@@ -21,3 +21,5 @@ jobs:
         run: node sims/p15_spiral_josephus_sft.cjs
       - name: Run frozen p55 75-rune Wisdom matrix gate
         run: node sims/p55_wisdom5_hill75_sft.cjs
+      - name: Run exact original-page and chapter GF29 shared-factor exclusion
+        run: node sims/lp2_crosspage_gf29_gcd_sft.cjs
