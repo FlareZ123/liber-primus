@@ -36,6 +36,54 @@ function latinWords(source) {
   }));
 }
 
+
+const native = new Map(corpus.translit.map((spelling, i) => [spelling, i]));
+for (const [alias, primary] of [
+  ['ING', 'NG'], ['IO', 'IA'], ['K', 'C'], ['Z', 'S'], ['V', 'U']
+]) native.set(alias, native.get(primary));
+const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+
+/**
+ * Orthographic GP29 encoder for candidate crib words, with attested aliases.
+ * QU => KW is the attested solved-LP1 spelling in KWESTION; standalone Q
+ * remains unsupported rather than silently inventing its rune identity.
+ * @param {string} word @returns {number[]|null}
+ */
+function encodeGP(word) {
+  const letters = word.toUpperCase().replace(/[^A-Z]/g, '').replace(/QU/g, 'KW');
+  const out = [];
+  for (let i = 0; i < letters.length;) {
+    const part = grouped.find(g => letters.startsWith(g, i)) || letters[i];
+    const value = native.get(part);
+    if (value === undefined) return null;
+    out.push(value);
+    i += part.length;
+  }
+  return out;
+}
+
+/**
+ * Extract a directly testable additive GP29 keystream from a proposed
+ * exact-length plaintext crib. This is a *candidate* key, not an accepted
+ * original decryption until a reusable inverse predicts withheld ciphertext.
+ * @param {{runes:string}[]} original
+ * @param {{word:string}[]} source
+ * @param {number} originalIndex
+ * @param {number} sourceIndex
+ * @param {number} words
+ * @returns {number[]|null}
+ */
+function keyFromCrib(original, source, originalIndex, sourceIndex, words) {
+  const ciphertext = original.slice(originalIndex, originalIndex + words)
+    .flatMap(w => [...w.runes].map(rune => runeIndex.get(rune)));
+  const candidateWords = source.slice(sourceIndex, sourceIndex + words)
+    .map(w => encodeGP(w.word));
+  if (candidateWords.some(w => w === null)) return null;
+  const plaintext = candidateWords.flat();
+  if (plaintext.length !== ciphertext.length) return null;
+  return ciphertext.map((value, i) => (value - plaintext[i] + 29) % 29);
+}
+
 /**
  * Parse the original rune transcription. Preserve a word split between
  * original physical pages by tracking the start page through '%' joins.
@@ -175,6 +223,7 @@ function main() {
   assert.equal(solvedWords.length, 20);
   assert.deepEqual(solvedWords.map(w => w.n), known.map(w => w.n));
   assert.equal(solvedWords.reduce((s,w) => s + w.n, 0), 95);
+  assert.deepEqual(keyFromCrib(solvedWords, known, 0, 0, 20), Array(95).fill(0));
   const positive = search(solvedWords, known);
   assert.equal(positive.longest, 20);
   assert(nearCribs(solvedWords, known).matchesAtMost2 > 0);
@@ -212,4 +261,5 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {lengthGP, latinWords, originalWords, search, nearCribs};
+module.exports = {lengthGP, latinWords, originalWords, search, nearCribs,
+  encodeGP, keyFromCrib};
