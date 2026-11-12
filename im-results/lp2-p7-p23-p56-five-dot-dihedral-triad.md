@@ -75,6 +75,12 @@ An even narrower 85-rune transfer uses the **exact first-85 p56 additive shifts*
 
 CommonJS reproducer (with exact known p56 plaintext and forward controls): [\`sims/lp2_dot_triad_p56_prime_transfer_sft.cjs\`](../sims/lp2_dot_triad_p56_prime_transfer_sft.cjs). No unknown LP2 plaintext, source-selected key, cipher architecture or final destination results.
 
+### Conditional solved-p56 plaintext-key transfer (12 November 2026)
+
+One historically demonstrated *distinct* operation remained from the 2014 Stage04 source: a previous **solved GP29 plaintext** served as the repeating Vigenère key for a source-selected subsequent image. The exact p7/p23/p56 five-dot triad independently identifies p56 and each source page's orientation, supplying a narrow test without inventing a ciphertext-derived key. Derive the complete **85-rune solved p56 GP plaintext** by its independently authenticated prime-totient cipher (including the known literal-F exception), then use that GP-index string as an unchanged **period-85 additive key**, starting at zero on both physically oriented p7 and p23. The artwork fixes horizontal line reflection for p7 and 180-degree page rotation for p23. **The key itself contains normal F runes; no F-skip, fitted phase, excerpt or per-page reset is introduced.**
+
+Results on the entire original source-oriented p7 (208 runes) and p23 (213 runes) have IoC **0.035395763657** and **0.034148285942**, respectively, with no readable plaintext. The same key exactly round-trips an authentic p57 GP-text plant of length 213, and forward-masking both candidate outputs reproduces every original source-oriented rune. [One-file SFT](../sims/lp2_dot_triad_solved_p56_plaintext_key_sft.cjs). This excludes this single historically motivated solved-text-key interpretation, **not** other possible uses of the geometric motif. The 2014 solved-text-key precedent does not establish that the authors intended this motif to select that operation.
+
 ## Decision for the next solve path
 
 **Established:** these three five-dot source drawings are linked by precise, mutually consistent axial reflections. Earlier work recognized the first mirror; solved p56 supplies a genuinely new third anchor. A contemporary viewer could discover the complete motif by comparing original pages, and this is a reusable visual cross-reference.
