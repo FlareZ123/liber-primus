@@ -109,6 +109,53 @@ function search(unknown, source, seedSize = 7) {
   return {windows, longest, atLeast10, best: maximal.slice(0, 3)};
 }
 
+
+/**
+ * Exhaust every 15-word exact-order candidate with at most two changed
+ * word lengths. With two substitutions among three disjoint 5-word blocks,
+ * at least one whole 5-block is unchanged (pigeonhole principle).
+ * All possible starts of that unchanged source block are indexed.
+ * Insertions/deletions are outside this bounded search.
+ * @param {{n:number}[]} unknown
+ * @param {{n:number}[]} source
+ * @returns {{candidatePairs:number,matchesAtMost2:number,best:object[]}}
+ */
+function nearCribs(unknown, source) {
+  const width = 15;
+  const part = 5;
+  const key = (a, start) =>
+    a.slice(start, start + part).map(x => x.n).join(',');
+  const lookup = new Map();
+  for (let j = 0; j + part <= source.length; j++) {
+    const id = key(source, j);
+    if (!lookup.has(id)) lookup.set(id, []);
+    lookup.get(id).push(j);
+  }
+  const candidate = new Set();
+  const found = [];
+  for (let i = 0; i + width <= unknown.length; i++) {
+    for (const shift of [0, 5, 10]) {
+      for (const target of lookup.get(key(unknown, i + shift)) || []) {
+        const j = target - shift;
+        if (j < 0 || j + width > source.length) continue;
+        const id = i + ':' + j;
+        if (candidate.has(id)) continue;
+        candidate.add(id);
+        let different = 0;
+        for (let k = 0; k < width; k++) {
+          if (unknown[i + k].n !== source[j + k].n) different++;
+          if (different > 2) break;
+        }
+        if (different <= 2) {
+          found.push({originalIndex: i, sourceIndex: j, mismatches: different});
+        }
+      }
+    }
+  }
+  return {candidatePairs: candidate.size, matchesAtMost2: found.length,
+    best: found.slice(0, 5)};
+}
+
 function main() {
   assert.deepEqual(corpus.translit, [
     'F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B',
@@ -130,6 +177,7 @@ function main() {
   assert.equal(solvedWords.reduce((s,w) => s + w.n, 0), 95);
   const positive = search(solvedWords, known);
   assert.equal(positive.longest, 20);
+  assert(nearCribs(solvedWords, known).matchesAtMost2 > 0);
 
   const paths = [
     'resources/control/gibran_prophet_58585.txt',
@@ -141,12 +189,19 @@ function main() {
   ];
   const controls = paths.map(relative => {
     const words = latinWords(read(relative));
-    return {source: relative, sourceWords: words.length, ...search(unknown, words)};
+    const near15 = relative.includes('2013-liber-al-bookcode') ?
+      nearCribs(unknown, words) : undefined;
+    return {source: relative, sourceWords: words.length,
+      ...search(unknown, words), near15};
   });
   assert.deepEqual(controls.map(x => x.sourceWords), [15733, 77932, 55407, 1897, 1968, 2002]);
   assert.deepEqual(controls.map(x => x.longest), [9, 9, 9, 7, 8, 8]);
   assert.deepEqual(controls.map(x => x.windows), [104, 277, 270, 9, 19, 12]);
   assert.equal(controls.reduce((s,x) => s + x.atLeast10, 0), 0);
+  assert.deepEqual(controls.slice(3).map(x => x.near15.candidatePairs),
+    [1683, 1453, 1470]);
+  assert.deepEqual(controls.slice(3).map(x => x.near15.matchesAtMost2),
+    [0, 0, 0]);
   console.log(JSON.stringify({
     claim: 'No exact ten-word source-native GP length crib in three literary texts or three authentic 2013 book-code chapters',
     scope: 'Only contiguous verbatim excerpts under exact original word boundaries and original GP spelling rule',
@@ -157,4 +212,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {lengthGP, latinWords, originalWords, search};
+module.exports = {lengthGP, latinWords, originalWords, search, nearCribs};
