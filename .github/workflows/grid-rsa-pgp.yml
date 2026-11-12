@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/grid_rsa_pgp_signature.cjs
+      - run: node sims/pp49_51_rsa_key_inventory.cjs
       - run: node sims/grid_rsa_crt_factor.cjs
       - run: node sims/base60_aes_schedule_necessary.cjs
       - run: node sims/grid_red_factor_screen.cjs
