@@ -1,0 +1,18 @@
+name: LP2 source-locked p15 key and sixteen grid IVs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-fixed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact original p40-55 and native GP plant
+        run: node sims/lp2_p15_key_p40_55_grid16_iv_sft.cjs
