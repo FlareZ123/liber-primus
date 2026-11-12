@@ -70,6 +70,7 @@ on:
           - ssss256-column
           - ssss64-row
           - p50-q55
+          - p50-ring76-stationary
           - signed-wordends-p55
           - historical-rsa-4096
         default: full
@@ -84,6 +85,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original p50 original-page-local stationary-ring gate
+        if: ${{ inputs.probe == 'p50-ring76-stationary' }}
+        run: node sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs
+
       - name: Original p32 source-locked signed 2016 image tile-pixel key
         if: ${{ inputs.probe == 'tree-p32-image-direct-key' }}
         run: node sims/lp2_p32_2016_tilepixel_direct_key_sft.cjs
