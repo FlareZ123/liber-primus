@@ -21,6 +21,7 @@ on:
           - irc-shortcrib
           - shortcrib-null
           - stage04-square-original
+          - stage04-99x76-p55
 permissions:
   contents: read
 jobs:
@@ -70,6 +71,9 @@ jobs:
       - name: Recover exact original 2014 Stage04 server-status numeric matrix
         if: ${{ inputs.scan_mode == 'stage04-square-original' }}
         run: python3 sims/stage04_original_server_status_square_sft.py
+      - name: Frozen Stage04 99x76 p55 row pad original-cipher gate
+        if: ${{ inputs.scan_mode == 'stage04-99x76-p55' }}
+        run: node sims/lp2_stage04_99x76_p55_rowpad_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
