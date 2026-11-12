@@ -1,54 +1,70 @@
-# LP2 p2 vs pp23–26: any stationary binary rune map fails the six-way XOR parity rule
+# Original LP2 p2 and pp23–26: all-secret six-stream binary parity impossibility
 
-**Classification: original-cipher exact algebraic impossibility for a simple reversible parity architecture. Verified 12 November 2026.** Six original 201-rune strings cannot obey an equal-weight, positionwise six-way XOR equation under **any injective stationary encoding** of the 29 glyphs into a binary field, whatever its size. This is an original-source mechanism exclusion without guesswork about binary key bytes. **It does not recover unknown LP2 plaintext or authenticate any alternative cipher.**
+**Established original-input conditional exclusion, 12 November 2026.** The original six 201-rune streams cannot obey a six-way positionwise XOR parity law with a **stationary injective binary rune encoding**, even when each of the six strands has its **own entirely arbitrary secret alphabet**, the field GF(2^m) is unconstrained, and each strand can be independently reversed. The stronger lane-specific result subsumes the simpler common-alphabet result. Both have actual original-source and genuine encrypted synthetic controls. **Neither result authenticates a historical LP2 operation, recovers unknown plaintext or identifies a final destination.**
 
-## Visible source and human operation
+## Actual original visible source and proposed solve path
 
-The original p2 contains precisely **201 GP29 runes**, and the p23–26 visual chapter contains a 16-rune red rubric followed by **1,005 GP29 runes**. The latter can be divided into **five contiguous 201-rune streams**, or alternatively into five interleaved 201-rune streams. The matching length gives a source-observable possible use of the single p2 stream as a parity symbol for five message streams. Six streams could use elementary bytewise XOR parity rather than an unknown large-field Shamir secret-sharing polynomial.
+The physical original LP2 **p2** has exactly **201 Gematria Primus runes**. Physical **pp23–26** have a 16-rune red heading followed by exactly **1,005 GP runes**, divisible into five 201-rune streams. Two simple ways for a contemporary human to read the five strands are consecutive 201-rune blocks or interleaving every fifth rune. The matching p2 length gives an affordable, falsifiable hypothesis: p2 might be one parity strand that permits recovery/validation of the five streams in pp23–26, like a bytewise XOR parity or systematic redundancy code. No source actually says that, and identical five-dot ornament geometry on p7/p23/p56 is compatible with decorative reuse.
 
-This is a conditional human solve-path hypothesis: the 201 lengths are original observations, but p2 art and the p23 five-dot ornament do **not** instruct an XOR code or link the chapters. A six-way XOR can be tested exactly without presuming a rune alphabet order, a 976/984-bit serialization, a source-selected field degree, or a secret key.
+For each layout, test all **2^6 = 64 independent rune-direction choices**, including independent reversal of p2 and each one of the five body strands. These exhaustive geometric orientations are source-bound; there are no chosen glyph values, guessed keys, fitted plaintext or additional offsets.
 
-## Complete all-secret test
+## Model A: one unknown stationary codebook shared across all six strands
 
-Let the six original rune strands be s0,...,s5. Suppose there is a *single fixed* rune-to-binary-symbol code f mapping each of the 29 source glyphs into some vector space GF(2)^m, and suppose for every one of the **201 original columns**,
+Let \(g\) assign each of the 29 possible GP rune identities a distinct element of **any GF(2^m)**. At each of the 201 original columns \(j\), six-way parity demands
 
 \[
-f(s_0[j])\oplus f(s_1[j])\oplus\cdots\oplus f(s_5[j])=0.
+\bigoplus_{k=0}^5 g(s_k[j]) = 0.
 \]
 
-It is essential that f be **injective**: distinct original GP glyph identities cannot be merged or the proposed parity representation is not a complete rune-preserving decoder. The size m is unrestricted, so this includes byte encodings and all larger GF(2^m) values.
+Form a **201×29 binary incidence matrix** where the entry for rune \(t\) in row \(j\) is the parity of its occurrences among the six original symbols. For any output bit coordinate in \(g\), the 29-bit column of its assigned values must lie in the nullspace. The all-ones binary vector always belongs to that nullspace because every row contains six symbols.
 
-For each column j form a 29-column GF2 bitmask row, placing a 1 at glyph t if t occurs an **odd number** of times among the six original symbols. Every output bit of the unknown map f must be in the nullspace of the resulting **201×29 binary matrix**. Since there are six symbols per column, the vector of all 29 ones is always in the nullspace, corresponding to the uninteresting map assigning the same output value to every rune.
+Across **both** source strand layouts and **all 64** strand reversal masks per layout, the exact matrix rank is **28**. Thus the nullspace has dimension one, consisting only of the all-ones vector. Every output bit of \(g\) must be constant across the 29 rune identities. The only surviving maps send **all 29 symbols to the same value**, which is incompatible with the demanded injectivity for any choice of binary field degree. A genuine planted six-way parity encoded injectively into GF(32) passes and has rank at most 24. The 28-dimensional obstruction is established after only **28–41 source columns**, depending on reading order.
 
-The decisive question is whether the matrix nullspace contains any **nonconstant** vector. Compute its exact GF2 rank by deterministic bitwise Gaussian elimination, without choosing f or fitting ciphertext. If rank = 28 then the nullspace has dimension 1, consists only of the constant vector, and *every* possible binary output bit of f is constant. In that case no injective f into GF(2)^m exists **for any m**. Conversely, a planted injective five-bit parity code must have at least five independent nullspace vectors, giving rank at most 24.
+This reproduces the full prior [common-codebook original SFT](../sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs), with independent original data and plant.
 
-## Original-input experiment
+## Model B: six **independent** arbitrary secret binary rune codebooks
 
-- Exact source: original numeric [LP2 source corpus](../resources/liber-primus/lp2-corpus.json), physical p2, and five pp23–26 strands after the original red16 heading. Original sizes [213,270,273,265] with 1,005 post-heading body runes.
-- Both **contiguous** and **interleaved** five-strand partitions are tested independently.
-- For each partition, independently allow every one of the six strands, including p2, to run normally or reverse: **2^6=64** directions. The six XOR terms are unordered, so all 6! strand assignments and all locations of the "parity" strand are algebraically the same equation; they need no separate enumeration.
-- Every binary assignment of rune labels, every field degree, every candidate byte-to-rune permutation and every per-bit binary code are handled *simultaneously* by one 29-column linear system per original alignment. There is no cryptographic plaintext scoring and no floating-point threshold.
-- Plant control: generate 201 true six-strand XOR columns, using an explicitly **injective** code f(t)=t into GF(32), with the sixth symbol the XOR of the five source symbols. Reject only synthetic columns where the XOR lands on the three unused values 29–31. The planted field bit vectors are checked directly in the actual equation matrix. This validates that the procedure admits a genuine parity stream.
+The more permissive hypothesis assigns each strand its own injective but unknown function
 
-## Exact output
+\[
+g_k : \{\text{29 GP runes}\}\longrightarrow GF(2^m).
+\]
 
-| Original strand layout | Independent six-stream reading directions | Rank of every 201×29 GF2 matrix | Nullity of every matrix | Earliest original prefix establishing rank 28 |
+There is **no shared glyph order or byte mapping**: two identical printed glyphs appearing in different strands may represent completely different field elements. The same six-way parity equation now reads
+
+\[
+g_0(s_0[j])\oplus g_1(s_1[j])\oplus\cdots\oplus g_5(s_5[j])=0.
+\]
+
+For each bit coordinate of the six maps, construct a **201×174 binary matrix** with six independent 29-column blocks. Row \(j\) has precisely one set bit in each lane's block at the rune printed in that strand. For *every field size m*, all 201 equations must vanish on each bit coordinate of the 174 unknown field-label bits. This is exact linear algebra over GF(2), without ever enumerating the 29! possible rune orders or secret permutations.
+
+A fundamental five-dimensional space of **trivial constant-codebook solutions** always exists: put a constant \(a_k\) into all 29 glyphs of each lane, subject to \(a_0\oplus\cdots\oplus a_5=0\). Those five independent binary vectors are in the kernel of every original candidate matrix. So its rank can never exceed \(174-5=169\). The original rank is nearly this maximum:
+
+| Original five-strand arrangement | Independent six-strand reversals | Exact 201×174 rank for every reversal | Total nullspace dimension | Earliest original prefix reaching full observed rank |
 | --- | ---: | ---: | ---: | ---: |
-| Contiguous pp23–26, plus p2 | **64/64** | **28** | **1** | 28–41 columns across orientations |
-| Interleaved pp23–26, plus p2 | **64/64** | **28** | **1** | 28–40 columns across orientations |
+| **Contiguous**, plus p2 | 64/64 | **169** | **5** | 169–175 rune columns |
+| **Interleaved**, plus p2 | 64/64 | **168** | **6** | 168–176 rune columns |
 
-The full six-symbol matrix reaches its maximum possible rank **28** in every one of the 128 original-source orientations. The only binary mapping allowed by all 201 columns maps all 29 rune identities to the same value. Such a mapping destroys the rune information and cannot decode the original manuscript.
+For contiguous lanes, the five trivial constant dimensions **exhaust the entire nullspace**. Every possible bit coordinate of all six maps must be constant within its lane. Thus no codebook can encode the 29 distinct glyphs injectively.
 
-The synthetic GF32 planted control satisfies 201/201 real parity equations and has rank at most 24 (at least five independent nullspace bit vectors), demonstrating the discriminator can pass the proposed mechanism.
+For interleaved lanes, there is exactly **one** extra binary degree of freedom beyond the five constant-codebook directions. Consequently, for **each individual lane**, all possible bit-coordinate assignments can distinguish **at most two equivalence classes of rune symbols**, even if m is arbitrarily large and each coordinate uses a different solution vector. A mapping of 29 distinct runes into at most two field values cannot be injective. This excludes interleaved six-way parity even if each lane uses a fully unrelated secret alphabet.
 
-### Why this exclusion is stronger than a keyed sweep
+This is a **field-size-independent impossibility** for both source-selected layouts and every independent reversal. It is considerably stronger than checking particular GP29, GF32, byte values, or 29-symbol label permutations.
 
-Any finite search of 29! rune permutations cannot exhaust arbitrary binary field encodings or arbitrary large m. The linear-algebra kernel test does this in one shot. It says that this particular six-way XOR relation is impossible under **all stationary injective rune-to-binary maps** with either body partition and all independent reading reversals. It does not rely on "no readable plaintext" or a chosen dictionary.
+### Independent encrypted positive control
 
-The separate [six-point historical SSSS field test](lp2-p2-p23-201-sixshare-ssss-original-gate.md) rejects two different byte-wide weighted five-degree Shamir constructions under specified 1–10 IDs; those models need **not** obey equal-weight XOR and are not disproved by this matrix. The two exclusions address distinct original-cipher hypotheses.
+To verify the full **six-independent-codebook** deduction with a real generative example, the new test creates six independently shuffled, **injective 29-element subsets of GF(32)**. For each of 201 synthetic columns, it chooses five runes, computes their actual encoded XOR, and selects the unique sixth rune whose secret lane-specific codebook value gives exact zero parity (resampling until the sixth lies in the 29-value alphabet). The synthetic source therefore has 201/201 exact XOR equations under six unrelated secret glyph-to-field maps.
 
-## Reproduction and decision
+The true five GF32 output-bit coordinates supply at least five independent **nonconstant** nullspace directions, in addition to the five constant-codebook ones; the synthetic matrix consequently has rank **at most 164**, unlike the original ranks of 168/169. The test asserts both the exact encrypted parity and this detector capacity, without exposing the six shuffled labels to the rank computation. The original rune texts are unchanged.
 
-The [single-runnable Node.js 22 test](../sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs) reads only the canonical original rune corpus, asserts page lengths, computes the exact 128 matrices and ranks, proves the constant kernel relation and tests a genuine planted GF32 injective parity stream. It is attached to the existing [on-demand source-gated workflow](../.github/workflows/lp2-p23-ssss-enumerative.yml) along with the separate historical SSSS experiment.
+### Comparison with historical five-of-ten SSSS
 
-**Decision:** Retire the simple binary p2/parity-of-five p23 transport under a fixed character encoder, even if its 29 alphabet labels or field size are unknown. Continue only if an independently readable source indicates **position-dependent mappings, weighted binary-field coefficients, cipher-state clocks, altered strand registration**, or some other actual operation that does not imply the falsified stationary parity equation. The equal lengths alone do not supply these missing transformations.
+A genuine 2013 Cicada source used binary-field secret sharing, but a *monic degree-five Shamir polynomial* produces a **weighted six-point relation** involving each share's numeric identifier. Such shares do **not** have to obey equal-weight per-rune XOR, so the present theorem does not exclude them. Separately, [the historical SSSS six-point original-source experiment](lp2-p2-p23-201-sixshare-ssss-original-gate.md) checked both direct 123-byte positional base29 and reversible 122-byte enumerative-rank whole-strand serializers at all historical 1–10 labels, for **604,800 assignments each**, finding **zero exact complete six-share matches** with positive controls. Those are two different, bounded source interpretations, and neither is an authenticated mechanism.
+
+## Reproducibility and research consequence
+
+- [All-secret **six-independent-alphabet** Node.js 22 single-file SFT](../sims/lp2_p2_p23_sixstrand_multialphabet_allsecret_sft.cjs). Uses only the canonical [original GP29 corpus](../resources/liber-primus/lp2-corpus.json) and Node standard library; tests 128 original matrices, their five-dimensional constant kernels, exact rank/prefix, independent secret positive.
+- [Original **shared-alphabet** 29-variable GF2 SFT](../sims/lp2_p2_p23_sixstrand_xor_allsecret_sft.cjs), with 128 additional exact matrices and common-GF32 positive.
+- Both attached to [the existing on-demand SSSS original-data workflow](../.github/workflows/lp2-p23-ssss-enumerative.yml). No expensive automatic per-commit jobs.
+
+**Decision:** retire any attempt to interpret p2 as a simple positionwise binary XOR parity check for the five p23 body strands under a stationary rune alphabet, **even with completely different secret alphabets in every strand and arbitrary GF(2^m)**. Key searches over those alphabet permutations cannot rescue the architecture. A different source-authenticated clue would need to prescribe weighted shares, changing per-position alphabets, shifts other than source orientation, or nontrivial enciphering/state that invalidates the tested exact parity equation. The unsolved manuscript remains unsolved; the contribution is a rigorous, broad structural exclusion based on original glyphs.
