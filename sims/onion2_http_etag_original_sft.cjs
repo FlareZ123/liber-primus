@@ -55,6 +55,21 @@ assert.equal(mtime.toISOString(), '2014-01-07T13:40:01.000Z');
 assert.equal(new Date('Tue, 07 Jan 2014 13:40:01 GMT').getTime(), mtime.getTime());
 const irc14_40GMTplus1 = new Date('2014-01-07T14:40:00+01:00');
 assert.equal((mtime.getTime() - irc14_40GMTplus1.getTime()), 1000);
+const derived = JSON.parse(fs.readFileSync(path.join(root, 'im-results/onion2-archival-clock-170-to-202.json'), 'utf8'));
+assert.equal(derived.observed_release_states.length, 33);
+const interval170to201 = timing.interval_cells.filter(c => c.pos >= 171 && c.pos <= 201)
+  .reduce((sum, c) => sum + c.k_5min, 0)
+  + timing.bridge_resolution.five_minute_units.reduce((sum, k) => sum + k, 0);
+assert.equal(interval170to201, 70);
+const byte201 = derived.observed_release_states.find(c => c.byte_position === 201);
+const byte202 = derived.observed_release_states.find(c => c.byte_position === 202);
+assert.equal(byte201.publication_utc_minute, '2014-01-07T19:30Z');
+assert.equal(byte202.publication_utc_minute, '2014-01-07T19:40Z');
+assert.equal(byte201.value_hex, '2a');
+assert.equal(byte202.value_hex, '0b');
+const secondCapture = Date.parse('2014-01-07T19:39:16Z');
+assert.ok(Date.parse('2014-01-07T19:30:01Z') < secondCapture);
+assert.ok(secondCapture < Date.parse('2014-01-07T19:40:01Z'));
 const archiveDate = new Date('Tue, 07 Jan 2014 14:03:35 GMT');
 assert.ok(archiveDate.getTime() > mtime.getTime());
 const mutated = Buffer.from(reconstructed);
@@ -67,6 +82,9 @@ console.log(JSON.stringify({
   reconstructed_hex_bytes: [170, 201],
   second_html_bytes: 430,
   second_cdx_sha1: witnesses[1].cdx,
+  anchored_interval_minutes_byte170_to_201: interval170to201 * 5,
+  inferred_byte201_publication_utc_minute: byte201.publication_utc_minute,
+  inferred_byte202_publication_utc_minute: byte202.publication_utc_minute,
   byte170: full[169].toString(16),
   etag_inode: Number.parseInt(inodeHex, 16),
   etag_size: statSize,
