@@ -119,6 +119,18 @@ for (const order of ['adjacent', 'split']) {
     const validLogs = exponents.filter((n) => n >= 0).length;
     assert.equal(validLogs, 119);
     assert.equal(allBytes, false);
+
+    // Unknown common multiplicative field key u^k adds the SAME k to every
+    // field discrete logarithm. Any 119-byte message therefore requires all
+    // observed exponents to fit one circular arc of length at most 256 in Z840.
+    // The largest consecutive gap measures the smallest possible covering arc
+    // WITHOUT enumerating any secret k. This is an all-840-keys exact gate.
+    const unique = [...new Set(exponents)].sort((a, b) => a - b);
+    const gaps = unique.map((value, i) => (unique[(i + 1) % unique.length] -
+      value + 840) % 840);
+    const maximumCircularGap = Math.max(...gaps);
+    const minimumCircularInclusiveSpan = 841 - maximumCircularGap;
+    assert.ok(minimumCircularInclusiveSpan > 256);
     assert.deepEqual(
       encodeBytes(Array.from({ length: 119 }, (_, i) => i), order, swap)
         .map((pair) => logarithms.get((swap ?
@@ -127,15 +139,18 @@ for (const order of ['adjacent', 'split']) {
     );
     results.push({ order, swap, validLogs, inByteRange, inAsciiRange,
       min: Math.min(...exponents), max: Math.max(...exponents),
-      first24: exponents.slice(0, 24) });
+      uniqueExponentCount: unique.length, maximumCircularGap,
+      minimumCircularInclusiveSpan, first24: exponents.slice(0, 24) });
   }
 }
 assert.deepEqual(results.map((item) => item.inByteRange), [30, 30, 37, 33]);
+assert.deepEqual(results.map((item) => item.minimumCircularInclusiveSpan),
+  [785, 807, 808, 801]);
 console.log(JSON.stringify({
   originalGridBytes: bytes.length, originalQDegree: 238,
   originalNonleadingSlots: payload.length, fieldGroupOrder: powers.length,
   byteCodec: 'u^byte, exactly 0..255, injective and reversible',
   sourcePairings: results,
-  outcome: 'No 119-byte direct exponent-register: every source pairing has 82 or more exponents >255'
+  outcome: 'No 119-byte exponent codec under ANY common GF841 multiplicative key: every source pairing needs a circular exponent span at least 785, but one 8-bit byte range allows only 256'
 }, null, 2));
 console.log('PASS: exact original polynomial division, GF841 primitive generator, all 256 byte positives and bounded original exclusions.');
