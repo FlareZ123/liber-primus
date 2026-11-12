@@ -43,6 +43,17 @@ All original-input assertions, complete-segment IoCs, direct header lengths, and
 
 The two source-selected red triads each follow a complete 119-rune printed-word passage. An independent [exact dictionary-product inverse](lp2-p3-p39-red119-sharedpad-wordgrammar.md) now tests whether those two passages reused any common additive GP29 pad, granting its entire 119-symbol key to remain unknown. Using **32,081** GP-normalized English lexical forms from Shakespeare, Gibran, Emerson, and the TextBlob spelling lexicon, the complete word-preserving common-pad pair becomes algebraically incompatible with the source by original rune **11** (both forward) or **6** (second passage mirrored). Entire 119-rune native positive plants succeed in each reading. This is an all-pad *dictionary-and-original-boundary* exclusion, not a general rejection of layered encryption or of the red triads as clues; the operation and English plaintext assumption were never authenticated by the author.
 
+## Fixed red119 Vigenère autokey continuation (Agent 32, 12 November 2026)
+
+The uniquely bracketed three-rune red source spans on p3/p39 yield the existing Atbash clue candidates **SCY** and **UDP**. An additional historically recognizable, source-fixed operation is to seed a three-rune Vigenère autokey with each clue and read the black text immediately after its closing red13 bracket (local122). Both plaintext- and ciphertext-feedback autokey, with either modular addition or subtraction, are reversible candidates. These eight complete outputs use the unmodified 95 p3 and 118 p39 runes with no phase, skip or key search.
+
+| Original paragraph | Raw IoC | Plaintext autokey subtract / add | Ciphertext autokey subtract / add |
+| --- | ---: | ---: | ---: |
+| p3:122–216, 95 runes | 0.033595 | **0.031131 / 0.038522** | **0.034267 / 0.033371** |
+| p39:122–239, 118 runes | 0.036071 | **0.035202 / 0.035637** | **0.033029 / 0.040127** |
+
+The p3 first three decrypted runes spell **YES** under subtraction, confirming the earlier short fit, but plaintext autokey continues `YESEATHMEAINNYIBCLLJJPYI...` and ciphertext autokey continues `YESPYOETHNGDIALEAJJXUAE...`. The p39 subtractive versions begin `EOFTHSACUITHNGNCEH...` and `EOFTHXUNGEIFGXFB...`. The complete eight source-conditioned outputs remain nonlinguistic. As exact positive controls, eight ciphertext streams independently produced by autokey-enciphering the original solved-p57 passage all decode back to **95/95** authentic runes. The expanded [original-source SFT](../sims/lp2_red119_skyudp_source_consumers_sft.cjs) reproduces every variant. This retires this narrowly specified use of the two red triplets, without interpreting `YES` as recovered original plaintext.
+
 ## Held-out red-ink control: Atbash does not decode arbitrary red spans
 
 Applying the same frozen GP29 Atbash to other source-visible red fragments does **not** recover ordinary headings. For example, the original p0 red13 heading becomes `PLIAEOENUEAPTHIWD`, the p3 initial red16 becomes `HBTLWDYEOOBEOXLEOIAG`, and p33 red10 becomes `CTXDEAERNGLOE`. Most decisively, the **genuinely solved p57 red heading** spells `PARABLE` directly; applying Atbash would corrupt it to `SRARJHI`. The SFT asserts this solved-page negative control.

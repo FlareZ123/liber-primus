@@ -47,6 +47,31 @@ function additive(ciphertext, key, sign, transparentF) {
   });
 }
 
+/** @param {number[]} ciphertext @param {number[]} seed
+ * @param {'plaintext'|'ciphertext'} feedback @param {-1|1} sign
+ * @returns {number[]} */
+function autokeyDecode(ciphertext, seed, feedback, sign) {
+  const out = [];
+  for (let i = 0; i < ciphertext.length; i++) {
+    const key = i < seed.length ? seed[i] :
+      feedback === 'plaintext' ? out[i - seed.length] : ciphertext[i - seed.length];
+    out.push((ciphertext[i] + sign * key + 58) % 29);
+  }
+  return out;
+}
+/** @param {number[]} plaintext @param {number[]} seed
+ * @param {'plaintext'|'ciphertext'} feedback @param {-1|1} sign
+ * @returns {number[]} */
+function autokeyEncrypt(plaintext, seed, feedback, sign) {
+  const out = [];
+  for (let i = 0; i < plaintext.length; i++) {
+    const key = i < seed.length ? seed[i] :
+      feedback === 'plaintext' ? plaintext[i - seed.length] : out[i - seed.length];
+    out.push((plaintext[i] - sign * key + 58) % 29);
+  }
+  return out;
+}
+
 const redPages = [3, 39];
 const keys = redPages.map(page =>
   corpus.pages[page].indices.slice(119, 122).map(index => 28 - index));
@@ -73,6 +98,25 @@ assert.equal(tails[0].noSkipSubtractIoC.toFixed(9), '0.038745801');
 assert.equal(tails[0].fTransparentSubtractIoC.toFixed(9), '0.035162374');
 assert.equal(tails[1].noSkipSubtractIoC.toFixed(9), '0.038823700');
 assert.equal(tails[1].fTransparentSubtractIoC.toFixed(9), '0.034477763');
+
+// The red triplets are independent fixed three-rune autokey seeds.
+// No fitted shifts, phase, punctuation clocks or skipped runes.
+const autokeyResults = redPages.map((page, i) => ({
+  page, seed: gp(keys[i]),
+  variants: ['plaintext', 'ciphertext'].flatMap(feedback =>
+    /** @type {(-1|1)[]} */ ([-1, 1]).map(sign => {
+      const decoded = autokeyDecode(postRed[i], keys[i], feedback, sign);
+      const known = corpus.pages[57].indices;
+      const encrypted = autokeyEncrypt(known, keys[i], feedback, sign);
+      assert.deepEqual(autokeyDecode(encrypted, keys[i], feedback, sign), known);
+      return { feedback, sign, ioc: ioc(decoded),
+        first32: gp(decoded.slice(0, 32)), recoveredPlantRunes: known.length };
+    }))
+}));
+assert.ok(autokeyResults[0].variants[0].first32.startsWith('YESEATH'));
+assert.ok(autokeyResults[0].variants[2].first32.startsWith('YESPYO'));
+assert.ok(autokeyResults[1].variants[0].first32.startsWith('EOFTH'));
+assert.ok(autokeyResults.flatMap(x => x.variants).every(x => x.ioc < 0.041));
 
 const unsolved = corpus.pages.filter(page => page.page <= 55)
   .flatMap(page => page.indices);
@@ -133,6 +177,7 @@ console.log(JSON.stringify({
   key: gp(combinedKey),
   p3IsolatedThreeRuneCandidate: 'YES',
   tails,
+  autokeyResults,
   overall,
   udp: {
     rows: rows.length,
