@@ -110,6 +110,78 @@ function main() {
   const eventWordIds = [...new Set(events.map(e => e.wordId))].sort((a, b) => a - b);
   const wordACF = lagOneCorrelation(eventWordIds);
 
+  // Cross-page cardinality gate: 85 event-bearing words versus the 85-rune
+  // solved p56 plaintext. Extract the repeated rune at the first/last event
+  // in each event-bearing word and compare fixed GP29 affine readings.
+  const eventsByWord = new Map();
+  for (const event of events) {
+    if (!eventsByWord.has(event.wordId)) eventsByWord.set(event.wordId, []);
+    eventsByWord.get(event.wordId).push(event);
+  }
+  const firstEventSymbols = eventWordIds.map(id => flatIndices[eventsByWord.get(id)[0].pos]);
+  const lastEventSymbols = eventWordIds.map(id => flatIndices[eventsByWord.get(id).at(-1).pos]);
+  const expectedP56 = "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
+  const alphabet = corpus.translit.map((token, index) => ({ token, index }))
+    .sort((a, b) => b.token.length - a.token.length);
+  function toGpRunes(text) {
+    const out = [];
+    for (const word of text.split(/\\s+/)) {
+      for (let i = 0; i < word.length;) {
+        const token = alphabet.find(item => word.startsWith(item.token, i));
+        assert.ok(token, "unmapped p56 plaintext token at " + word.slice(i));
+        out.push(token.index); i += token.token.length;
+      }
+    }
+    return out;
+  }
+  function bestCaesar(sequence, target, atbash = false) {
+    let forward = { matches: -1 }, reverse = { matches: -1 };
+    for (let shift = 0; shift < 29; shift++) {
+      let f = 0, r = 0;
+      for (let i = 0; i < target.length; i++) {
+        const a = atbash ? 28 - sequence[i] : sequence[i];
+        const b = atbash ? 28 - sequence[sequence.length - 1 - i] : sequence[sequence.length - 1 - i];
+        if ((a + shift) % 29 === target[i]) f++;
+        if ((b + shift) % 29 === target[i]) r++;
+      }
+      if (f > forward.matches) forward = { matches: f, shift };
+      if (r > reverse.matches) reverse = { matches: r, shift };
+    }
+    return { forward, reverse };
+  }
+  const p56Plaintext = toGpRunes(expectedP56);
+  const p56Ciphertext = corpus.pages.find(page => page.page === 56).indices;
+  assert.equal(eventWordIds.length, 85);
+  assert.equal(firstEventSymbols.length, 85);
+  assert.equal(lastEventSymbols.length, 85);
+  assert.equal(p56Plaintext.length, 85);
+  assert.equal(p56Ciphertext.length, 85);
+  const doubleEventWord = eventWordIds.find(id => eventsByWord.get(id).length === 2);
+  const doubleEventSymbols = eventsByWord.get(doubleEventWord).map(e => flatIndices[e.pos]);
+  assert.equal(doubleEventWord, 1476);
+  assert.deepEqual(doubleEventSymbols, [3, 18]);
+  assert.equal(p56Plaintext[56], 0);
+  const p56AlignmentGate = {
+    motivation: "85 event-bearing words versus 85 runes on solved p56",
+    p56Plaintext: expectedP56,
+    eventWordCount: eventWordIds.length,
+    doubleEventWord: { id: doubleEventWord, symbols: doubleEventSymbols },
+    p56LiteralFIndex56: p56Plaintext[56],
+    firstEventSymbols,
+    lastEventSymbols,
+    firstToPlaintext: bestCaesar(firstEventSymbols, p56Plaintext),
+    lastToPlaintext: bestCaesar(lastEventSymbols, p56Plaintext),
+    firstAtbashToPlaintext: bestCaesar(firstEventSymbols, p56Plaintext, true),
+    lastAtbashToPlaintext: bestCaesar(lastEventSymbols, p56Plaintext, true),
+    firstToCiphertext: bestCaesar(firstEventSymbols, p56Ciphertext),
+    lastToCiphertext: bestCaesar(lastEventSymbols, p56Ciphertext),
+    firstAtbashToCiphertext: bestCaesar(firstEventSymbols, p56Ciphertext, true),
+    lastAtbashToCiphertext: bestCaesar(lastEventSymbols, p56Ciphertext, true),
+    exactDirectMatch: firstEventSymbols.every((v, i) => v === p56Plaintext[i]) ||
+      lastEventSymbols.every((v, i) => v === p56Plaintext[i])
+  };
+
+
   function category(pos) {
     const word = wordRanges[wordIdAt[pos]], offset = pos - word.start;
     return offset === 0 ? "initial" : offset === word.length - 1 ? "final" : "interior";
@@ -147,6 +219,7 @@ function main() {
     eventCountHistogramByWord: histogram,
     observedGapLagOneCorrelation: observedACF,
     eventBearingWordIndexGapLagOneCorrelation: wordACF,
+    p56AlignmentGate,
     observedWordPositionCategories: observedCategories,
     conditionalNull: {
       trials: TRIALS, xorshift32Seed: "0x" + SEED.toString(16),
