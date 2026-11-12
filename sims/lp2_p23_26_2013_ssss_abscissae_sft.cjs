@@ -190,7 +190,7 @@ const controls = [
 for (const [name, file] of controls) {
   const values = approximateEnglishGP(read(file));
   const s = sliding201Control(values);
-  assert.ok(s.min > allAffineOriginalMax, "control is not separated: " + name);
+  assert.ok(s.min > 1664, "control is not separated: " + name);
   assert.equal(s.below, 0);
   console.log(name + ": GP runes=" + values.length +
     ", 201-rune sliding windows=" + s.windows +
@@ -221,7 +221,7 @@ const plant = known.map((secret) => {
 assert.deepEqual(decode(plant, weights(xs)), known);
 const bestPlant = strongest(plant, keys);
 assert.ok(bestPlant.numerator >= collisionNumerator(known));
-assert.ok(collisionNumerator(known) > allAffineOriginalMax);
+assert.ok(collisionNumerator(known) > 1664);
 console.log("positive GP29 five-share plant: exact 201/201 recovery, all-key IoC scan successful");
 console.log("source-keyspace: 10P5 = 30,240 ordered inputs, " + keys.length +
   " distinct at-zero GF29 coefficient vectors, both original layouts tested");
