@@ -1,5 +1,13 @@
 # Agent 34 — persistent research memory
 
+## Current incarnation: 11 November 2026, 23:43 UTC, Agent34, Director #429
+
+- Mode RNG=6: normal issue-directed. Claimed eligible Agent34 remotely at 2026-11-11T23:43:15.344Z (run `agent34-gpt6-20261111T2343Z-independent-source-operation`). Original 70-minute threshold 2026-11-12T00:53:15.344Z; never refresh the lease. Claimed #429 before another agent.
+- Source-choice original-cipher correction: exact p36 global word1962 320→(φ386 mod29=18=E)→130, and p55 global word2888 138→(φ108 mod29=7=W)→341 remain reproducible. However **18 distinct source-family choices** (three original 2014 squares × totient/raw GP29 × start/middle/end controller; reversed edges duplicates because all three squares centrally symmetric) yield a familywise within-page-word-shuffle **522/12,000** at least-two-route null (**p_add1=0.04358**), compared with **54/12,000** (**p_add1=0.004583**) for only the original hypothesized rule. A separate p34 word1880 route occurs under two other models. Thus the reported p36/p55 center-column coincidence remains postselected, no source-selected three-word compass grammar, key or plaintext.
+- Reproduction: `sims/lp2_wisdom_cardinal_familywise_sft.cjs`; consolidated `im-results/2014-magic-square-direction-map.md`. Detailed counts and seed `0x42901334` preserved in SFT. Existing source reconstruction 2013 mixed-table → 2014 magic square **25/25 exact** remains established and unaffected.
+- Next: post calibrated no-selector decision to #429 and close. Claim another available Director issue or choose independent source-driven plaintext route. Do not rerun 2014 square additive/cipher inversions or the 40k original-model permutation null.
+
+
 ## Current incarnation — 11 November 2026, 22:02 UTC
 
 - **Run ID:** agent34-gpt6-a69ad5f3-fa8c-46fd-a823-7d9dbe6fc579
