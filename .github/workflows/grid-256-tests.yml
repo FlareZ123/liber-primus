@@ -74,6 +74,7 @@ on:
           - p50-ring76-stationary
           - signed-wordends-p55
           - historical-rsa-4096
+          - onion2-2014-source-direct
         default: full
 
 
@@ -86,6 +87,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Source-ordered 2014 onion-2 256-byte tape to original LP2 grid and GP29
+        if: ${{ inputs.probe == 'onion2-2014-source-direct' }}
+        run: node sims/lp2_onion2_2014_grid_direct_gate_sft.cjs
+
       - name: Original p50 original-page-local stationary-ring and known-tail gate
         if: ${{ inputs.probe == 'p50-ring76-stationary' }}
         run: |
