@@ -21,6 +21,17 @@ const layouts={
   contiguous:Array.from({length:5},(_,i)=>body.slice(201*i,201*(i+1))),
   interleaved:Array.from({length:5},(_,i)=>Array.from({length:201},(_,j)=>body[5*j+i]))
 };
+// The interleaved nullity-six case is explained exactly by one
+// UNOBSERVED source coordinate: rune index8 never appears in lane2.
+// Removing it leaves 173 observed coordinates and nullity only five,
+// identical to the constant-lane kernel. There is no hidden bit signal.
+const coverage={};
+for(const [name,parts] of Object.entries(layouts)){
+  coverage[name]=[p2,...parts].map(stream=>
+    Array.from({length:29},(_,r)=>r).filter(r=>!stream.includes(r)));
+}
+assert.deepEqual(coverage.contiguous,[[],[],[],[],[],[]]);
+assert.deepEqual(coverage.interleaved,[[],[],[8],[],[],[]]);
 const WIDTH=6*29;
 assert.equal(WIDTH,174);
 /** @param {number[][]} streams six original rune strands */
@@ -150,6 +161,8 @@ console.log(JSON.stringify({
   construction:"Six positionwise XOR shares, SIX independent stationary secret rune-to-GF2^m maps",
   algebra:"201x174 GF2 lane-by-rune incidence; at least five constant-lane kernel dimensions",
   original:results,
+  unusedGlyphColumns:coverage,
+  exactInterleavedKernelInterpretation:"only five constant lane codes plus one unobserved glyph (lane2 rune8)",
   positive:{
     all201ColumnXorEquationsHold:true,
     sixDistinctInjectiveLaneAlphabets:true,
