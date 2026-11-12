@@ -80,6 +80,23 @@ const p32Tail=all32.slice(33);
 const p57Body=p57.slice(7);
 assert.deepEqual([p32First.length,p32Tail.length,p57Body.length],[33,88,88]);
 assert.equal(p32First.filter((v,i)=>v===outside55[i]).length,1);
+
+// Every pure transposition from p55's 33 outside runes to p32's
+// tree-first-clause 33 runes must preserve rune multiplicities.
+// The exact nearest attainable histogram requires 15 changed identities.
+// This covers ALL 33! rearrangements, not only the native ordering.
+const freq29 = (a) => {
+  const count = Array(29).fill(0);
+  for (const x of a) count[x]++;
+  return count;
+};
+const outsideCounts=freq29(outside55),firstClauseCounts=freq29(p32First);
+const firstClauseMinimumIdentityChanges=outsideCounts.reduce(
+  (total,count,i)=>total+Math.abs(count-firstClauseCounts[i]),0)/2;
+assert.equal(firstClauseMinimumIdentityChanges,15);
+const naiveRestored=outside55.slice().reverse().reverse();
+assert.deepEqual(naiveRestored,outside55);
+
 assert.equal(p32Tail.filter((v,i)=>v===p57Body[i]).length,2);
 
 // A different, complete all-hidden-key inverse of the same 88-rune
@@ -249,7 +266,7 @@ console.log(JSON.stringify({
   source:"p57 PARABLE circumference instruction, printed p55, signed-2016 words, source 43-byte table bracket",
   p55:{words:p55Words.length,runes:p55.length,singletons:1,interior:inner55.length,interiorGpPrimeSum:2060},
   p57:{bodyWords:19,bodyInteriorRunes:50,runelessPage:50},
-  treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000,hill8Ranks:[hillPlainRank,hillCombinedRank],affineHill8Ranks:[affinePlainRank,affineCombinedRank]},
+  treeBridge:{p32Clauses:[33,88],p55Outside:33,p57Body:88,firstClauseLiteralMatches:1,firstClauseMinimumIdentityChanges,bodyLiteralMatches:2,allSecretMonoalphabeticChanges:known88Changes,shuffleAsGoodOrBetter:null88AsGood,shuffleDraws:2000,hill8Ranks:[hillPlainRank,hillCombinedRank],affineHill8Ranks:[affinePlainRank,affineCombinedRank]},
   signed2016Words:signedWords.length,
   tableWindow:[84,127],delimiters:[201,193,193,201],
   p32Compass:{visitedDistinct:new Set(visited).size,literalMatches:1,arbitraryStationaryLookupMinimumChanges:actual},
