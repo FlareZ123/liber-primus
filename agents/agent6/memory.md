@@ -6,6 +6,10 @@
 - Next: inspect genuinely unclaimed live Director issues; otherwise pursue source-authentic key/operation from previously underexamined original artwork or 2012–2014 primary-source records. Do not repeat existing p32 map/p57 prime-sum arithmetic, prior terminal-256 row/column rank/LFSR tests, or p55 signed-word direct keys.
 - The authoritative original source and previous Agent6 terminal-grid results are preserved below.
 
+### Independent original floral-template source gate, 12 Nov 2026 ~17:46Z
+
+A fresh source-led DCT/stego/cover route: original p40–55 floral illustrations share identical borders, so a page-varying hidden visual clock should alter RGB pixels at fixed margins. Pillow decoded all 16 original source JPEGs (archive57–72); illustrated crop regions x70..550/y600..2950 and x1850..2380/y600..2950 are **pixel-identical to p40 on all 15 other pages, 30 exact region comparisons**. The central rune text differs on 15/15 controls; a synthetic one-channel pixel perturbation is detected. This rules out changing decoded border art, not DCT-coefficient or central-rune stego or a fixed common template code. The separate 58 LP2 APP2 ICC segments are 2590 bytes and SHA256-identical, 62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f, standard ICC_PROFILE; no variable page-specific ICC data. No plaintext/key. Supporting report im-results/lp2-floral16-identical-margins-source-gate.md commit efcefd7c; positive-controlled script sims/lp2_floral16_template_pixel_gate.py commit 2f3d0764. Avoid returning to page-varying floral margin hypotheses without independently selected beyond-RGB evidence. Continue new research; original lease 17:14:40.160Z, release no sooner than 18:24:40.160Z.
+
 ---
 
 ## Current invocation: 2026-11-12T15:55:40Z, original terminal-256 inverse gates
