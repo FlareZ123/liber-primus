@@ -230,4 +230,58 @@ for (const candidateCount of [29, 110]) {
       p0FeasibleStarts:rows[0].workingStarts}));
 }
 
+
+const originalPrintedWords = [];
+let currentPrintedWord = [];
+for (const ch of rawText.split("%").slice(0, 55).join("%")) {
+  if (runeMap.has(ch)) currentPrintedWord.push(runeMap.get(ch));
+  else if (ch === "/" || ch === "%" || /\s/u.test(ch)) {
+    // Original line/page wraps do not split printed words.
+  } else if (currentPrintedWord.length) {
+    originalPrintedWords.push(currentPrintedWord);
+    currentPrintedWord = [];
+  }
+}
+if (currentPrintedWord.length) originalPrintedWords.push(currentPrintedWord);
+assert.equal(originalPrintedWords.length, 2896);
+assert.deepEqual(originalPrintedWords.flat(), originalPages.flatMap(p => p.indices));
+const wordsWithBodies = originalPrintedWords.filter(word => word.length > 2);
+assert.equal(wordsWithBodies.length, 2365);
+assert.equal(wordsWithBodies.reduce((n, word) => n + word.length - 2, 0), 7247);
+
+// Independent literal word-circumference interpretation: the original word's
+// own left or right edge rune is its initial p56 prime-totient cursor,
+// while both edge runes are shed from the candidate plaintext word.
+// Every legal interior F-skip placement is still admitted by the exact DP.
+const expectedEdgeFailures = {
+  "left:index": 225, "left:gp-prime-ordinal": 184,
+  "right:index": 203, "right:gp-prime-ordinal": 231
+};
+for (const edge of ["left", "right"]) {
+  for (const seedType of ["index", "gp-prime-ordinal"]) {
+    let impossible = 0;
+    const earliest = [];
+    for (let w = 0; w < originalPrintedWords.length; w++) {
+      const word = originalPrintedWords[w];
+      if (word.length <= 2) continue;
+      const rune = edge === "left" ? word[0] : word[word.length - 1];
+      const start = seedType === "index" ? rune : corpus.prime[rune] - 1;
+      const interior = word.slice(1, -1);
+      assert.equal(allLiteralFPaths(plantNative(interior.length, start), start)
+        .feasible, true, "word-local native GP plant at word " + w);
+      const result = allLiteralFPaths(interior, start);
+      if (!result.feasible) {
+        impossible++;
+        if (earliest.length < 5)
+          earliest.push({word:w, length:word.length,
+            firstImpossibleInteriorOffset:result.firstContradiction});
+      }
+    }
+    assert.equal(impossible, expectedEdgeFailures[edge + ":" + seedType]);
+    console.log("WORD-LOCAL SHED EDGE PRIME CURSOR",
+      JSON.stringify({edge, seedType, wordsTested:wordsWithBodies.length,
+        originalWordInteriors:7247, impossibleWords:impossible, earliest}));
+  }
+}
+
 console.log("PASS: all original-source invariants, authentic p56 and native plants.");
