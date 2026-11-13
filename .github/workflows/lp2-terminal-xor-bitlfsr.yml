@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Recover synthetic 76-rune ring and bound binary recurrence on authentic 180-runic interior
         run: node sims/lp2_terminal256_xor_bitlfsr_sft.cjs
+      - name: Exclude arbitrary linear states of at most 159 bits and invert synthetic 128-bit state
+        run: node sims/lp2_terminal256_linear_state_wordclock_sft.cjs
