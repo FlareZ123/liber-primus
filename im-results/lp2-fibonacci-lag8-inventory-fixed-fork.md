@@ -42,14 +42,37 @@ The **lag-eight-only repulsion** therefore survives conditioning on the actual s
 
 The unmodified source transcription preserves word breaks and slash-marked printed lines. Among the source Fibonacci pages, current **word starts** give **9/474 = 1.90%** lag-eight matches and word **interiors** **36/1752 = 2.05%**; source non-Fibonacci comparisons are respectively **92/2256 = 4.08%** and **280/7812 = 3.58%**. Likewise, within one printed line the Fibonacci result is **31/1450 = 2.14%**, and across a line break it is **14/776 = 1.80%**. This weakens an explanation driven solely by a particular typography/line-wrap boundary or a simple per-word reset, without excluding a hidden state clock.
 
-## A concrete reversible-family implication and the next decision
+## Decisive additional test: an arbitrary secret alphabet per Fibonacci page cannot recover ordinary GP-native English
 
-One possible *mathematically lossless* 29-value step alphabet at each sufficiently advanced position reserves the ciphertext difference **0** as one GP plaintext marker, reserves **the previous difference at lag eight** (or a specified distinct fallback when that previous difference is zero) as a second marker, and bijectively assigns the remaining **27 ciphertext differences** to the remaining **27 plaintext symbols**. This makes a fully invertible context-dependent 29-to-29 transducer possible in principle, rather than a lossy prohibition. In the ten original Fibonacci pages the first marker would be triggered **15 times** and the observed nonzero lag-eight repeat marker **45 times**. Their positions could eventually serve as *key-independent sparse plaintext evidence* if a source reveals which two GP plaintext runes occupy the reserved roles.
+The lag-eight suppression invites a mathematically complete decoder: at every original physical-page position **i ≥ 9**, form the printed difference **D(i) = (C(i) − C(i−1)) mod29**. Reserve difference **0** as label0, reserve difference **D(i−8)** (when nonzero) as label1, and assign the other **27** nonzero differences in ascending numeric order to labels2..28. If D(i−8)=0, use 1 as a frozen deterministic fallback, keeping the two reserved outputs different. This produces a **reversible 29-category contextual step alphabet** with the page's first nine ciphertext runes as an IV. Applying a secret bijection from these 29 labels to 29 GP plaintext letters would be an economical no-erasure cipher. The source does not authenticate the algorithm, the fallback or which plaintext letters would occupy the special labels.
 
-However, neither the choice of marked plaintext letters, the fallback, the other 27-symbol bijection, the eight-position clock, nor the Fibonacci page mask has been authenticated by a Cicada source instruction. Inferring a cipher solely because it can imitate two selected source statistics would be unjustified. There is currently **no recovered plaintext, source-derived key or selected original decoder**.
+Rather than guessing those keys, grant **a fully arbitrary, independently chosen 29-symbol bijection on every one of the ten Fibonacci pages**. Such a key can relabel a page's 29 ciphertext categories, but it **cannot increase the count of any single plaintext letter beyond that page's highest category count**. The same holds for any two plaintext letters, bounded by that page's two highest category counts. Summing the ten pagewise histograms gives mathematical, **all-secret** ceilings:
 
-**Practical fork:** Retire long-window eight-lane no-replacement-deck hypotheses in this original difference register. Prioritize, only if an independently visible opcode or key supports it, a **one-lag-eight stateful bijection with two separately decodable special outcomes**, and require a held-out complete original-cipher inverse. Absent that cue, retain this as conditional structural evidence rather than iterate arbitrary 27-rune substitutions.
+| Original source data | Absolute capacity under any independent pagewise alphabet |
+| --- | ---: |
+| Total positions with nine-rune page IV removed | **2,256** |
+| Count of category0 (zero-step marker) | **15** |
+| Count of category1 (lag-eight repeat or deterministic fallback) | **46** |
+| **Maximum possible occurrence count of any one GP plaintext rune** | **148 / 2,256 = 6.56%** |
+| **Maximum combined occurrences of any two GP plaintext runes** | **279 / 2,256 = 12.37%** |
+
+These maxima are keyless and exhaustive over *all possible* pagewise 29-symbol alphabet permutations, not a random sample of secret keys. To measure whether a proposed original solution could be ordinary GP-native English, use the independently corrected GP spelling from solved LP1 and LP2 p57: a single ING rune and single IO rune, with documented source C/K etc. For each of three independently pinned English sources, scan **every** complete contiguous 2,256-rune passage; divide it in order into the original ten page-associated lengths [253,257,192,208,254,246,263,264,252,67]. Even the loosest bound gives the following sharp contradictions:
+
+| GP-native original-language control | Complete 2,256-rune windows | Smallest maximum *one*-rune count | Smallest maximum *two*-rune count | Windows satisfying both original limits |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | **214,851** | **195** | **386** | **0** |
+| Gibran | **60,237** | **224** | **405** | **0** |
+| Emerson | **319,072** | **214** | **407** | **0** |
+| **Total** | **594,160** | | | **0** |
+
+The most favorable control still requires **195 copies of its most common rune**, where original source labels under *any page-specific bijection* can furnish at most **148**. The result is stronger than a guessed key or IoC failure and independent of how the 29 letters are secretly named.
+
+A **positive planted control** uses exactly the first source-native 2,256 Shakespeare symbols, split into the ten source original page lengths; it encrypts all symbols after the nine-rune page IV through the stated lag-eight 29-category forward transducer, leaving each page its own unmodified nine source ciphertext runes as initial state. The exact inverse recovers **2,256 / 2,256** source-native plaintext labels, with complete forward reconstruction. Its category maxima rise enough to admit the planted English. This validates the necessary-condition gate on a genuine member of the proposed cipher family.
+
+**Fork:** The original lag-eight effect survives the fixed-inventory shuffle control, yet **the most direct complete lag-eight 29-state alphabet cannot hide ordinary GP-native English under any static alphabet per physical page**. To obtain native prose, the mechanism must change symbol labels *inside* a page, rearrange positions, or operate on an independently authenticated non-GP plaintext representation. None of those alternatives follows solely from the statistical lag-eight anomaly. Retire pagewise arbitrary-key fitting for this conditional cipher family. A fully specified author-visible key-state rule, with held-out original plaintext and exact reencryption, remains the next indispensable input.
 
 ## Reproduction
 
 The [standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_inventory_fixed_sft.cjs) reads the unchanged source JSON and asserts exact original counts on both Fibonacci and non-Fibonacci pages, original lag-eight and lag-sixteen equalities, exact analytical expectations, 30,000 deterministic Fisher–Yates permutations with seed **0x4bad5eed** and both empirical tails. The prior **64-lag familywise chapter-label adjustment** is a separate decision and remains necessary for overall significance context: [earlier original-source report](lp2-fibonacci-page-delta-spectrum.md). This additional conditional null does **not** remove the selection-bias caveat about choosing the Fibonacci mask and lag after exploratory work.
+
+**All-secret source-language follow-up:** [reversible pagewise 29-category GP29 transducer and 594,160-window capacity SFT](../sims/lp2_fibonacci_lag8_allsecret_pagewise_capacity_sft.cjs) (Node.js 22). It asserts exact source page inventories, 15/46 marker outcomes, 148/279 all-secret bounds, three exhaustive reference-window minima, and full source-native English positive roundtrip.
