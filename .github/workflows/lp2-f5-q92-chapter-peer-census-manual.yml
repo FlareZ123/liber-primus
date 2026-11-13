@@ -1,0 +1,34 @@
+name: LP2 Q92 original chapter-peer source-coefficient census
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: lp2-q92-chapter-peer-census
+  cancel-in-progress: false
+
+jobs:
+  source-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read unchanged JPEG quantized luma DCT
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+          gcc -O2 -Wall -Wextra -o /tmp/lp2-chapter-peer sims/lp2_f5_q92_chapter_peers_sft.c -ljpeg
+          mkdir -p im-results/lp2-f5-q92-chapter-peer-census
+          echo "physical_page,source_chapter,reference_shared_blocks,reference_nonzero_ac,f5_decrements,other_increases,other_ac_changes,dc_changes" > im-results/lp2-f5-q92-chapter-peer-census/originals.csv
+          for i in $(seq 0 55); do
+            /tmp/lp2-chapter-peer resources/liber-primus "$i" | tee -a im-results/lp2-f5-q92-chapter-peer-census/originals.csv
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-q92-chapter-peer-census
+          path: im-results/lp2-f5-q92-chapter-peer-census/
+          if-no-files-found: error
+          retention-days: 30
