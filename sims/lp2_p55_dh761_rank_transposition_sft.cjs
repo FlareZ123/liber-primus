@@ -54,6 +54,25 @@ for(let i=0;i<N;i++)controlScatter[permutation[i]]=p57[i];
 const controlRecovered=permutation.map(i=>controlScatter[i]);
 assert.deepEqual(controlRecovered,p57,"Inverse-orientation p57 positive control failed");
 
+
+const p55Body=p55.slice(1); // omit the inherited first rune completing p54
+const bodyOrbit=orbit.slice(1); // start DH exponent at 1 after the page-turn carry
+assert.equal(p55Body.length,75);
+assert.equal(bodyOrbit.length,75);
+assert.equal(new Set(bodyOrbit).size,75);
+const bodySorted=bodyOrbit.slice().sort((a,b)=>a-b);
+const bodyRank=new Map(bodySorted.map((v,i)=>[v,i]));
+const bodyPermutation=bodyOrbit.map(v=>bodyRank.get(v));
+assert.equal(new Set(bodyPermutation).size,75);
+const bodyScatter=Array(75);
+for(let i=0;i<75;i++)bodyScatter[bodyPermutation[i]]=p55Body[i];
+const bodyGather=bodyPermutation.map(i=>p55Body[i]);
+const p57Body=p57.slice(0,75);
+const bodyControlScatter=Array(75);
+for(let i=0;i<75;i++)bodyControlScatter[bodyPermutation[i]]=p57Body[i];
+assert.deepEqual(bodyPermutation.map(i=>bodyControlScatter[i]),p57Body,
+  "75-rune p57 body positive control failed");
+
 const result={
   source:{p:P,g:G,orbitOrder:N,page:"LP2 p55",p55RuneCount:p55.length,
     orbit,rankPermutation:permutation,sortedOrbit:sorted,
@@ -61,6 +80,12 @@ const result={
   rawP55:{tokens:translit(p55),ioc:ioc(p55),emersonGpLanguageScore:languageScore(p55,model)},
   rankScatter:{tokens:translit(scatter),ioc:ioc(scatter),emersonGpLanguageScore:languageScore(scatter,model)},
   rankGather:{tokens:translit(gather),ioc:ioc(gather),emersonGpLanguageScore:languageScore(gather,model)},
+  body75:{sourceRule:"drop inherited leading NG carry; use DH orbit exponents 1..75",
+    orbitOrder:bodyOrbit.length,bodyRuneCount:p55Body.length,bodyPermutation,
+    raw:{tokens:translit(p55Body),ioc:ioc(p55Body),emersonGpLanguageScore:languageScore(p55Body,model)},
+    rankScatter:{tokens:translit(bodyScatter),ioc:ioc(bodyScatter),emersonGpLanguageScore:languageScore(bodyScatter,model)},
+    rankGather:{tokens:translit(bodyGather),ioc:ioc(bodyGather),emersonGpLanguageScore:languageScore(bodyGather,model)},
+    control:{p57BodyRoundTrip:true,runes:p57Body.length,p57LanguageScore:languageScore(p57Body,model)}},
   control:{p57SegmentRoundTrip:true,runes:p57.length,
     p57LanguageScore:languageScore(p57,model)}
 };
