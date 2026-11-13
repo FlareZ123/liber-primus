@@ -23,6 +23,14 @@ The exact coordinate-list identity establishes that **the proposed 1,543 index m
 
 Three advertised WELCOME-page indices **217, 218, 566** are *absent* from the original pixel-derived membership set. The external verification report explicitly obtains these three via post hoc sums/differences and Fibonacci additions to other indices; they are not image-extracted key material. The eight directly present indices are **62, 102, 115, 181, 333, 596, 625, 689**. No actual independent original-cipher plaintext follows from this partial membership test.
 
+## Direct known-plaintext failure of the advertised WELCOME key
+
+The external summary goes further and states that the eleven proposed indexes yield the WELCOME Vigenère key by applying `index mod29`, then conventional GP29 subtraction, apart from a few skip positions. The *first seven solved LP1 WELCOME glyphs* contain **no advertised skips**, so this furnishes a decisive original-input control before any unsolved cipher work.
+
+From the original LP1 rune transcript, these seven ciphertext GP29 indices are **[1,28,21,15,12,0,5]**. The independently accepted first seven plaintext rune indices spelling **WELCOME** are **[7,18,20,5,3,19,18]**. The actual historically established `DIVINITY` key's first seven GP29 shifts **[23,10,1,10,9,10,16]** reproduce WELCOME **7/7** under ordinary subtraction. The proposed image-derived first-seven key values **[62,102,115,181,217,218,333] mod29 = [4,15,28,7,14,15,14]**, using the same declared subtraction rule and no skip in those positions, produce instead **[26,13,22,8,27,14,20]**, transliterating **Y P OE H IA X L**. That is **0/7 correct letters**.
+
+This direct authentic known-cipher contradiction is stronger than the geometry objection: the **claimed selected index key does not even decrypt the known page it was purportedly constructed to explain**. No retuning to a different key offset, skip positions, or per-page equivalence is warranted by this failed source-frozen assertion. The same SFT includes the exact WELCOME source and key regression.
+
 ## Same-pipeline original artwork control
 
 Run the *unchanged* extractor on unrelated original **17.jpg / physical LP2 p0**, byte SHA-256 `197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e`. It yields **2,077** ordinary LSB-derived coordinate indices and contains **all 11/11** of the supposedly meaningful WELCOME key indices, without any source link between that page's illustration and the solved WELCOME key. A generic image-coordinate inventory passing the eleven-membership test is therefore insufficient to authenticate the proposed key selection.
@@ -31,6 +39,6 @@ This does **not** show that no separate bit-level payload exists in p57's JPEG, 
 
 ## Reproduction
 
-[Standalone Python SFT](../sims/lp2_p57_lsb1543_ink_equivalence_sft.py), using NumPy and Pillow, directly reads original scan bytes in `resources/liber-primus`; asserts both source SHA-256 values, the original p57 `np.save` MD5/SHA-256 fingerprints, the exact 1543/1543 threshold identity, the 45,578 changed pixel decisions, the 8/11 WELCOME comparison, and the unrelated p0 11/11 control. It was executed successfully against the original uploaded JPEGs. No passwords, scored English, source-selected shift clocks, synthetic ciphertext or large candidate key sweeps are involved.
+[Standalone Python SFT](../sims/lp2_p57_lsb1543_ink_equivalence_sft.py), using NumPy and Pillow, directly reads original scan bytes in `resources/liber-primus`; asserts both source SHA-256 values, the original p57 `np.save` MD5/SHA-256 fingerprints, the exact 1543/1543 threshold identity, the 45,578 changed pixel decisions, the 8/11 WELCOME comparison, the authentic first-seven WELCOME cipher/key/plaintext contradiction, and the unrelated p0 11/11 control. It was executed successfully against the original uploaded JPEGs. No passwords, scored English, source-selected shift clocks, synthetic ciphertext or large candidate key sweeps are involved.
 
 **Decision:** No newly authenticated LP2 key or plaintext. Retire the October 2025 published *coordinate-membership* key-source claim; keep any distinct, independently specified p57 steganography hypothesis separate.
