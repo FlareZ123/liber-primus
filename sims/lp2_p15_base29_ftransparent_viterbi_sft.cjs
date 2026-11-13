@@ -125,7 +125,7 @@ assert.equal(gate.ciphertextFsBeforeFailure, 2);
 
 /* Synthetic positive plant with the exact p15 word shape and three inner Fs. */
 const plantPlain = bodyWords.map((word, wi) =>
-  word.map((_, j) => mod29(wi * 11 + j * 7 + 5)));
+  word.map((_, j) => 1 + ((wi * 11 + j * 7 + 5) % 28)));
 plantPlain[0][1] = 0;
 plantPlain[5][3] = 0;
 plantPlain[12][1] = 0;
