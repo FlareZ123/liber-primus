@@ -321,6 +321,72 @@ assert.deepStrictEqual(totientSyntheticRecovered, p57Control);
 signedInitialTotientAdditiveKey.p57SyntheticRoundTripPassed = true;
 
 
+const initialOrderObserved = [
+  ...signedInitialAdditiveKey.variants.map(v => ({
+    keyTransform: "raw-GP-index", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
+  ...signedInitialTotientAdditiveKey.variants.map(v => ({
+    keyTransform: "phi-prime-mod29", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
+];
+const initialOrderBest = initialOrderObserved.reduce((a, b) => b.score > a.score ? b : a);
+const initialOrderShuffleCount = 10000;
+let initialOrderShuffleState = 0x330143;
+function nextInitialOrderShuffleU32() {
+  initialOrderShuffleState ^= initialOrderShuffleState << 13;
+  initialOrderShuffleState ^= initialOrderShuffleState >>> 17;
+  initialOrderShuffleState ^= initialOrderShuffleState << 5;
+  return initialOrderShuffleState >>> 0;
+}
+const initialOrderShuffleScores = [];
+for (let trial = 0; trial < initialOrderShuffleCount; trial++) {
+  const shuffledInitials = signedInitials.slice();
+  for (let i = shuffledInitials.length - 1; i > 0; i--) {
+    const j = nextInitialOrderShuffleU32() % (i + 1);
+    [shuffledInitials[i], shuffledInitials[j]] = [shuffledInitials[j], shuffledInitials[i]];
+  }
+  const shuffledTotients = shuffledInitials.map(i => mod(corpus.prime[i] - 1));
+  let best = -Infinity;
+  for (const key of [shuffledInitials, shuffledTotients]) {
+    for (const operation of [
+      (c, k) => mod(c - k),
+      (c, k) => mod(c + k),
+      (c, k) => mod(k - c),
+    ]) {
+      const score = trigramLogMean(inner55.map((c, i) => operation(c, key[i])));
+      if (score > best) best = score;
+    }
+  }
+  initialOrderShuffleScores.push(best);
+}
+initialOrderShuffleScores.sort((a, b) => a - b);
+const initialOrderGreaterEqual = initialOrderShuffleScores.filter(
+  score => score >= initialOrderBest.score
+).length;
+const initialOrderLess = initialOrderShuffleScores.filter(
+  score => score < initialOrderBest.score
+).length;
+const initialOrderEqual = initialOrderShuffleCount - initialOrderGreaterEqual - initialOrderLess;
+const initialOrderQuantile = q => initialOrderShuffleScores[
+  Math.floor(q * (initialOrderShuffleCount - 1))
+];
+const signedInitialOrderShuffleGate = {
+  seed: "0x330143",
+  trials: initialOrderShuffleCount,
+  family: "same multiset of 43 signed-message initials; max over raw/phi-prime keys and C-K/C+K/K-C",
+  observedBest: initialOrderBest,
+  greaterOrEqual: initialOrderGreaterEqual,
+  addOneUpperTail: (initialOrderGreaterEqual + 1) / (initialOrderShuffleCount + 1),
+  observedRankFraction: (initialOrderLess + 0.5 * initialOrderEqual) / initialOrderShuffleCount,
+  quantiles: {
+    q05: initialOrderQuantile(0.05),
+    median: initialOrderQuantile(0.5),
+    q95: initialOrderQuantile(0.95),
+    q99: initialOrderQuantile(0.99),
+  },
+};
+
+
 const outputs = [];
 for (const reverse of [false, true]) {
   const C = reverse ? inner55.slice().reverse() : inner55.slice();
@@ -377,6 +443,7 @@ const report = {
   signedWordInitialStationaryMapGate: signedWordInitialGate,
   signedWordInitialAdditiveKey: signedInitialAdditiveKey,
   signedWordInitialTotientAdditiveKey: signedInitialTotientAdditiveKey,
+  signedWordInitialOrderShuffleGate: signedInitialOrderShuffleGate,
   conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
