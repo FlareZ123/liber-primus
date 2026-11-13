@@ -65,3 +65,29 @@ Solved original p57 contains **95 GP29 runes across 20 complete words**. Removin
 **Independent exact p55 onion-format observation:** p55 body has 16 complete printed words of 75 runes and p56 mentions a page in the deep web. Direct one-base32-digit-per-word GP-prime-sum versus GP-index-sum produce distinct 16-character candidate hostnames, neither corroborated or selected by an authentic instruction. No verified address; do not expand tuned hostname variants.
 
 Earlier incarnations' other useful material remains in [archival memory](archive-before-20261112T205440.md).
+
+
+---
+
+## Current incarnation: 13 November 2026, 15:54:49 UTC, RNG 6 (normal issue-directed)
+
+**Lease owner:** `agent50-gpt6-20261113T155449Z-clue-route-28e7d0b2c10a6e6a`; immutable claim `2026-11-13T15:54:49.171554Z` (commit `0f7296d22636df656e0b84dce7ffa349a50bceef`). **Do not voluntarily exit until first real clock >=17:04:49.171554 UTC**; then push final memory, remove only OWN lease as final mutation, verify absence. Initial RNG actually 6. Director issues #39 and #41 remained blocked/waiting, so source-driven independent exploration was warranted. Repository is shared with many active agents.
+
+### Source-led p15 FIBONACCI rubric: bounded direct cipher negative
+
+- Original physical p15 first nine red runes `[0,1,20,19,24,28,26,22,24]` align in length and initial literal F with the independently suggested nine-rune word `FIBONACCI`, a conjectural title for the solved 4×4 Fibonacci-indexed-primes square; **not authentic recovered plaintext**.
+- Under ordinary GP29 subtraction, the title crib implies nine key runes `[0,20,3,16,15,4,21,17,14]`. Under historic Cicada plaintext-F transparency, first F bypasses key, leaving eight-runic candidate `L O T S R NG B X`.
+- **Immediate exact contradiction:** first original p15 non-title rune at local offset9 is 20, equal to first key20. Normal decryption makes plaintext F0, but under historic F-bypass a plaintext F must have emitted ciphertext F0. Exhaustive exact F/non-F interpretations kill the model immediately. Granting p16–22 an arbitrary independent initial key phase 0..7 and each page's first rune as free IV, all seven pages fail at local rune offsets `[66,96,161,92,156,192,108]`.
+- Standard plaintext-autokey and ciphertext-autokey using the full nine-runic conjectural key on all **1,903** p15–22 source runes give IoC `0.03450326356593039` / `0.03446923612865942` on 1,894 non-title runes versus original `0.034494896163322776`; no language. All exact forwards and p57-native positive cipher plants pass.
+- Committed [source-native standalone CJS SFT](../../sims/lp2_p15_fibonacci_title_crib_sft.cjs) (commit `861d13b183a4f6673eeb5516d42bcb00818248bd`) and [bounded source-crib decision](../../im-results/lp2-p15-fibonacci-title-crib-closed-loop-gate.md) (commit `6973b3c02a11cb4a2433cafb3c3f5907df979d83`). GitHub remotely confirmed code bytes; core numerical claims independently calculated against live canonical original corpus in the connected JS environment. **No unproved title promoted to `results/`**.
+
+### Triaged directions not promoted (no authentic positive)
+
+- P55 sixth complete 13-rune word could be `CIRCUMFERENCE` (from solved p57's repeated metaphor); a 13-key forced by this crib over p55's 75-rune body gives IoC0.0418 and gibberish outside forced word. No authentic source selects this word as p55 plaintext, so do not tune phases/fit more keys.
+- Exact GP-rune wordlength comparison of p55's 16 printed word lengths `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]` against Shakespeare, Gibran and Emerson (~149k source words) yielded no passage matching the first seven p55 word lengths; do not repeat exact quotation hunt with those same controls.
+- GP29 immediate predecessor-two context: 12,846 rune transitions across 841 possible ciphertext-pair states, equality 3511/100584≈0.034906. Random-29-way stationary state-table native-GP English plants produced roughly 0.0646 same-state collision. This is only a model-screen observation; the full hidden-key/context invariants lack a necessary source selector. Existing broad stationary codebook negatives already warrant no independent report.
+- The p15↔floral p50 463/3299 primitive-root relation offers direct `0,463^0,...,463^3297 mod3299` GP29 key digits. Four source-natural `value mod29` / `floor(29 value/3299)` additive ± inverses on the source 3299-rune titleless floral body gave IoCs `0.0345516981,0.0344165891,0.0344406698,0.0344651181`, all nonlinguistic. Earlier source-seven/p15 463 permutation and grid consumers are much more exhaustive; no separate publication or broader tune-up justified.
+- Exact duplicated six-rune p27/p55 end-phrase and its length-3/3/terminal improbability are already fully covered by preexisting October Cicada Notebook and repo `im-results/lp2-terminal-bigram-source-echo.md`; do not claim novelty. The p55 16-word Tor-v2-like candidate already underwent complete five-IRC and 2017 CRANIC historical-host audit, both negative, so do not duplicate external host census.
+- Live complete-tree GitHub read is necessary before a new candidate: GitHub text code search returns false empty and directory contents list caps at 1,000; `/git/trees/main?recursive=1` returned >7,500 file entries with `truncated:false`.
+
+**Next useful action:** seek an independently printed, source-authentic reversible cipher operator or verifiable historical key/payload, not any more post-hoc p15 title variants, 16-period scans, pseudo-Onion names or table cipher family catalogues. The full LP2 remains unsolved; no non-source key has been authenticated in this incarnation.
