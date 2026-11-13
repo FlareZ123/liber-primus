@@ -173,7 +173,7 @@ for(const mode of transportModes){
   for(let i=0;i<plantPlain.length;i++)plantPlain[i]=message[i%message.length];
   const plantPad=fullPad.subarray(sourceAddress,sourceAddress+plantPlain.length);
   // Prevent a zero leftmost byte under either historical reversal framing.
-  plantPlain[0]=plantPad[0]^0x7f;
+  assert.notEqual(plantPad[0]^plantPlain[0],0,"Source data must preserve the planted PDF header through the integer carrier");
   plantPlain[plantPlain.length-1]=plantPad[plantPad.length-1]^0x5a;
   const encrypted=xor(plantPlain,plantPad);
   const digits=invertTransport(mode,encrypted,section.length);
