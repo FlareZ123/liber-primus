@@ -59,7 +59,7 @@ assert.equal(plaintext.length, 30);
 // The original p55 has a single initial rune carried from p54.
 // Physical p50 is runeless and omitted by this derivative transcription.
 const printedP55 = read("resources/liber-primus/lp2-transcription.txt")
-  .split(/\n%\n/)[54].replace(/\/\n/g, "").replace(/\n/g, "");
+  .split(/\s*%\s*/)[54].replace(/\/\s*/g, "").replace(/\s/g, "");
 const printedWords = printedP55.match(/[\u16A0-\u16FF]+/gu) || [];
 assert.equal(printedWords.length, 17);
 assert.equal(printedWords[0], "ᛝ");
