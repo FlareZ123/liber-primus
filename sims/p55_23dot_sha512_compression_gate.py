@@ -64,6 +64,39 @@ assert weights == [
 ]
 assert sum(weights) == 1020
 
+# The p55 13-dot mark is the three-column projection of the p57 23-dot mask.
+# Its 13 prime weights sum to exactly 512. The ten-dot complement sums to 508;
+# complete it with the four empty stencil corners as zero bits to obtain a
+# second 512-bit half. Test both half orders and all independent run polarities.
+retained_positions = [1, 3, 4, 6, 8, 9, 11, 13, 14, 16, 18, 19, 21]
+complement_positions = [0, 2, 5, 7, 10, 12, 15, 17, 20, 22]
+retained_weights = [weights[i] for i in retained_positions]
+complement_weights = [weights[i] for i in complement_positions]
+assert retained_weights == [89, 61, 2, 31, 3, 13, 23, 89, 107, 17, 41, 5, 31]
+assert complement_weights == [17, 97, 47, 71, 43, 79, 31, 47, 5, 71]
+assert sum(retained_weights) == 512
+assert sum(complement_weights) == 508
+
+def split_block(first_retained: int, first_complement: int, order: str) -> bytes:
+    retained_runs = [
+        str((first_retained + i) % 2) * n
+        for i, n in enumerate(retained_weights)
+    ]
+    complement_runs = [
+        str((first_complement + i) % 2) * n
+        for i, n in enumerate(complement_weights)
+    ]
+    retained_bits = "".join(retained_runs)
+    complement_bits = (
+        "0" + "".join(complement_runs[:2]) + "0"
+        + "".join(complement_runs[2:8]) + "0"
+        + "".join(complement_runs[8:]) + "0"
+    )
+    assert len(retained_bits) == len(complement_bits) == 512
+    bits = retained_bits + complement_bits if order == "13_then_10" else complement_bits + retained_bits
+    assert len(bits) == 1024
+    return int(bits, 2).to_bytes(128, "big")
+
 # p57's original 9x5 stencil is:
 # .###.
 # #...#
@@ -156,6 +189,31 @@ for first_bit in (0, 1):
 
 assert results[0]["raw_sha512_compression"].startswith("c00730a1542ed248")
 assert results[1]["raw_sha512_compression"].startswith("178967665f4c7784")
+
+split_results = []
+expected_split_prefixes = [
+    "65d8605028c3c512", "4961ec4d985c85b4",
+    "263893279d86621e", "37c28eb0547645ab",
+    "5cc9f4ba21e485d2", "101d3d27ab4b734f",
+    "511f247fb99552c1", "09c5db99b566bdaf",
+]
+for first_retained in (0, 1):
+    for first_complement in (0, 1):
+        for order in ("13_then_10", "10_then_13"):
+            block = split_block(first_retained, first_complement, order)
+            digest = compress_one(block)
+            assert digest != target
+            split_results.append({
+                "first_retained_bit": first_retained,
+                "first_complement_bit": first_complement,
+                "order": order,
+                "bit_length": 1024,
+                "block_prefix": block[:16].hex(),
+                "raw_sha512_compression": digest,
+                "matches_target": digest == target,
+            })
+assert [x["raw_sha512_compression"][:16] for x in split_results] == expected_split_prefixes
+
 print(json.dumps({
     "source_runes": [corpus["translit"][i] for i in indices],
     "prime_weights": weights,
@@ -164,8 +222,10 @@ print(json.dumps({
     "target": target,
     "compression_validation": "OpenSSL SHA512_Transform matches hashlib SHA512('abc')",
     "results": results,
+    "split_13_10_1024": split_results,
     "decision": (
-        "Both source-fixed 1024-bit corner-completed blocks miss the published "
-        "target under one standard-IV SHA-512 compression. No plaintext or key."
+        "Both source-fixed 1024-bit full-stencil blocks and all eight source-derived "
+        "13/10 split blocks miss the published target under one standard-IV SHA-512 "
+        "compression. No plaintext or key."
     ),
 }, indent=2))

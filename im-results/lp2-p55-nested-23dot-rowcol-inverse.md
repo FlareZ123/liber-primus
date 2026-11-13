@@ -104,6 +104,10 @@ Neither starting polarity matches the published p56 target. The raw compression 
 
 This closes only the **standard-IV, one-block raw SHA-512 compression** of the exact 23-prime RLE plus four corner-zero bits. It does not test custom IVs, other orderings, salts, or later compression blocks; none is selected by the source. The target hash algorithm remains unauthenticated.
 
+### 13/10 split as two 512-bit halves of one SHA-512 block
+
+The p55 13-dot projection has 13 GP-prime run lengths summing to **512** exactly. The ten-dot complement has weights summing to **508**; adding the same four empty p57 stencil corners as zero bits completes a second **512-bit** stream. Concatenating these two source-derived halves produces a 1024-bit SHA-512 compression block. Both half orders and all four independent alternating-run starting-polarity pairs were tested (eight blocks total) with the standard SHA-512 IV. None of the eight raw compression outputs equals the published target; the output prefixes are `65d8605028c3c512`, `4961ec4d985c85b4`, `263893279d86621e`, `37c28eb0547645ab`, `5cc9f4ba21e485d2`, `101d3d27ab4b734f`, `511f247fb99552c1`, and `09c5db99b566bdaf`. The SFT records full digests. This tests the exact 13/10 split, not arbitrary permutations or other encodings.
+
 ## A fully specified GP29 row-column inverse
 
 A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
