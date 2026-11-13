@@ -100,6 +100,25 @@ assert.equal(sumGP(topRow), 563);
 assert.equal(sumGP(leftColumn), 569);
 assert.equal(sumGP(topRow) * sumGP(leftColumn) * 3301, candidate2016Host);
 
+/*
+ * Both 2014 edge sums can be returned to the earlier 2012 pixel dimensions
+ * by changing only their shared top-left symbol. The original p32 corner is
+ * L, prime73. The exactly inferred replacement is C, prime13 (73−60).
+ * This is an exact counterfactual source bridge, not recovered p32 plaintext.
+ */
+const printedCornerIndex = page32.indices[0];
+const printedCornerPrime = corpus.prime[printedCornerIndex];
+const earlierCornerPrime = printedCornerPrime - 60;
+const earlierCornerIndex = corpus.prime.indexOf(earlierCornerPrime);
+assert.equal(corpus.translit[printedCornerIndex], 'L');
+assert.equal(printedCornerPrime, 73);
+assert.equal(earlierCornerPrime, 13);
+assert.equal(earlierCornerIndex, 5);
+assert.equal(corpus.translit[earlierCornerIndex], 'C');
+assert.equal(sumGP(topRow) - printedCornerPrime + earlierCornerPrime, 503);
+assert.equal(sumGP(leftColumn) - printedCornerPrime + earlierCornerPrime, 509);
+
+
 
 
 const trailer = original2012.subarray(original2012.length - 61);
@@ -132,6 +151,7 @@ console.log(JSON.stringify({
   sortedDimensionDelta: [60, 60],
   original2012PhoneDomain: original2012Host + '.com',
   original2014LP2P32SourceDimensions: { firstRowGPPrimeSum: sumGP(topRow), firstColumnGPPrimeSum: sumGP(leftColumn) },
+  original2014P32CornerCounterfactual: { printed: 'L', printedPrime: printedCornerPrime, hypotheticalPrior: 'C', priorPrime: earlierCornerPrime, inferredShift: 60 },
   hypothetical2016AnalogDomain: candidate2016Host + '.com',
   analogDomainStatus: 'arithmetic candidate only: no historical host or archive verified',
   image2012Trailer: { fullBytes: trailer.length, printablePayloadBytes: key.length },
