@@ -31,6 +31,39 @@ function inventory(values) {
 function decode(cipher,key,sign) {
   return cipher.map((x,i)=>mod(x+sign*key[i%key.length]));
 }
+/**
+ * Source-clue-motivated no-repeat transport. Equal neighboring ciphertext
+ * characters encode GP index 28, otherwise the observed next symbol's
+ * successor-rank encodes a GP28 index, before source-byte pad removal.
+ * @param {number[]} cipher @param {number[]} key @param {number} sign
+ * @param {"cyclic"|"sorted"} mode
+ */
+function decodeRank28(cipher,key,sign,mode) {
+  const out=[cipher[0]];
+  for(let i=1;i<cipher.length;i++) {
+    const prev=cipher[i-1], next=cipher[i];
+    if(prev===next) {out.push(28);continue;}
+    const rank=mode==="cyclic" ? mod(next-prev-1) :
+      next-(next>prev ? 1:0);
+    out.push((rank+sign*(key[i%key.length]%28)+56)%28);
+  }
+  return out;
+}
+/**
+ * @param {number[]} plain @param {number[]} key
+ * @param {"cyclic"|"sorted"} mode
+ */
+function encodeRank28(plain,key,mode) {
+  const out=[plain[0]];
+  for(let i=1;i<plain.length;i++) {
+    const prev=out[i-1],p=plain[i];
+    if(p===28){out.push(prev);continue;}
+    const rank=(p+key[i%key.length])%28;
+    out.push(mode==="cyclic" ? mod(prev+rank+1) :
+      rank+(rank>=prev ? 1:0));
+  }
+  return out;
+}
 function run() {
   const grid=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
   const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
@@ -68,13 +101,29 @@ function run() {
   }
   const max= Math.max(...rows.map(x=>x.stats.ioc));
   assert.ok(max<0.035);
+  const rankRows=[];
+  for(const [name,key] of Object.entries(keys)) for(const mode of
+    ["cyclic","sorted"]) {
+    const rankKey=key.map(x=>x%28);
+    const recovered=decodeRank28(encodeRank28(solved,rankKey,mode),
+      rankKey,-1,mode);
+    assert.deepEqual(recovered,solved);
+    for(const sign of [-1,+1]) {
+      const v=decodeRank28(cipher,rankKey,sign,mode);
+      rankRows.push({key:name,mode,sign,stats:inventory(v),
+        originalPage0Ioc:inventory(v.slice(0,corpus.pages[0].indices.length)).ioc,
+        originalPage0First72:v.slice(0,72)
+          .map(x=>corpus.translit[x]).join("")});
+    }
+  }
+  assert.ok(Math.max(...rankRows.map(r=>r.stats.ioc))<0.036);
   return {
     originalRuneCount:cipher.length,
     originalCipher:inventory(cipher),
     solved95RuneParable:inventory(solved),
-    keys,rows,
+    keys,rows,rankRows,
     positiveControls:"Both candidate keys exactly recover the 95 authentic solved-p57 GP runes after encryption.",
-    conclusion:"Neither frozen direct-GP29 repeating-key interpretation gives native-like inventory, even allowing one arbitrary fixed secret outer alphabet. No original unknown plaintext."
+    conclusion:"All four direct-GP29 and eight no-repeat successor-rank GP28 consumers of both original-source keys remain random-like. No original unknown plaintext."
   };
 }
 if(require.main===module)console.log(JSON.stringify(run(),null,2));
