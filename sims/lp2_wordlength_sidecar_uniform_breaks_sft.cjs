@@ -332,6 +332,43 @@ assert.deepEqual(chapterLengthGrammar.map(x => x.shuffledAtLeastOriginal),
 assert(Math.abs(chapterLengthGrammar[5].observedMI -
   0.1409378869781421) < 1e-8);
 
+
+// GP-native English controls are rank-matched to each chapter's *exact*
+// observed length inventory before their adjacent-length MI is measured.
+const {nativeLengths} = require("./lp2_wordlength_order_grammar_sft.cjs");
+/** @param {number[]} input @param {number[]} source */
+function chapterRankMatch(input, source) {
+  const sorted = source.slice().sort((a, b) => a - b);
+  const rank = input.map((_, i) => i).sort((i, j) => input[i] - input[j] || i - j);
+  const out = Array(input.length);
+  for (let k = 0; k < input.length; k++) out[rank[k]] = sorted[k];
+  return out;
+}
+const proseControls = [
+  "shakespeare_first300k.txt", "gibran_prophet_58585.txt",
+  "emerson_essays_2944.txt"
+].map(file => nativeLengths(fs.readFileSync(
+  path.join(ROOT, "resources", "control", file), "utf8")));
+const exactChapterProse = chapterGroups.map(({lo, hi, wholeWordLengths}) => {
+  const sourceMI = lengthClassMutualInformation(wholeWordLengths);
+  let nativeWindows = 0, nativeAtMostOriginal = 0;
+  for (const input of proseControls) {
+    for (let i = 0; i + wholeWordLengths.length <= input.length;
+      i += wholeWordLengths.length) {
+      const control = chapterRankMatch(input.slice(i, i + wholeWordLengths.length),
+        wholeWordLengths);
+      nativeWindows++;
+      nativeAtMostOriginal += Number(lengthClassMutualInformation(control) <= sourceMI);
+    }
+  }
+  return {pages: [lo, hi], nativeWindows, nativeAtMostOriginal,
+    nativeLowerTail: (nativeAtMostOriginal + 1) / (nativeWindows + 1)};
+});
+assert.deepEqual(exactChapterProse.map(x => x.nativeWindows),
+  [942, 583, 388, 340, 664, 456, 393, 221, 2257]);
+assert.deepEqual(exactChapterProse.map(x => x.nativeAtMostOriginal),
+  [75, 174, 50, 82, 13, 243, 10, 3, 303]);
+
 console.log(JSON.stringify({
   source: "original rune-level LP2 physical pages 0..55; runeless p50 omitted",
   wordCount: M,
@@ -369,6 +406,7 @@ console.log(JSON.stringify({
       samplesExactly32: exactly32
     }
   },
+  chapterNativeExactInventoryProseControls: exactChapterProse,
   chapterLocalWordLengthOrder: {seed: miSeed, trialsPerChapter: miTrials,
     windows: chapterLengthGrammar},
   maximumBitsFromUnconstrainedPermutingThisLengthMultiset: multisetOrderBits,
