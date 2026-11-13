@@ -201,7 +201,7 @@ assert.equal(p39Tail.length, 118);
 function originalPrintedWords(pageNumber) {
   const nonempty = corpus.pages.filter((p) => p.indices.length > 0);
   const chunks = fs.readFileSync(path.join(base, 'lp2-transcription.txt'), 'utf8')
-    .trim().split(/\\n%\\n/);
+    .trim().split(/\n%\n/);
   assert.equal(chunks.length, nonempty.length);
   const p = nonempty.findIndex((item) => item.page === pageNumber);
   assert.ok(p >= 0);
