@@ -40,19 +40,19 @@ The first 80 decoded runes begin `ALEAJBYRUXIEODGYIASXBNBGIYWOEPJNLCFERNGTXOEI..
 
 ## Distinct word-exterior partition: 9 + 256 + 43, and a frozen p50 overlay (13 November 2026)
 
-A separately selected *original wordwise* partition of the **same 308-rune physical pp54–55 chapter** now gives a different exactly 256-unit register. Under the original source red annotation, p54 begins with **9 red header runes** and has **223 following black runes**. The preceding [source-adjudicated p55 word register](p55-original-33-exterior-43-interior-source-framing.md) has **33 exterior (first/last) runes**, including the single rune completing a p54-carried word, and **43 strict word-interior runes**. Consequently
+A separately selected *original wordwise* partition of the **same 308-rune physical pp54–55 chapter** now gives a different exactly 256-unit register. Under the original source red annotation, p54 begins with **9 red header runes** and has **223 following body runes (beginning with an enlarged red IA dropcap)**. The preceding [source-adjudicated p55 word register](p55-original-33-exterior-43-interior-source-framing.md) has **33 exterior (first/last) runes**, including the single rune completing a p54-carried word, and **43 strict word-interior runes**. Consequently
 
 ```text
 p54 opening red title                              9
-p54 remaining black body                          223
+p54 body after its heading                          223
 p55 complete-word first/last + carried exterior   33
 p55 complete-word strict interiors                43
                                                     ---
                                                    308
-p54 black + p55 exteriors = 223 + 33 = 256
+p54 post-title body + p55 exteriors = 223 + 33 = 256
 ```
 
-This is **9 + 256 + 43** with no missing or synthesized source runes. The independent **256** printed cells of the p50 numeric grid can now pair one-to-one with the *entire p54-black plus p55-word-exterior register*, and the independent **43** p55 interiors remain separate. The p57 solved reference says to shed circumferences, so a human could tentatively remove first/last runes of p55's complete words. The 2016 signed message contains 43 alphabetic words, and the historically required 2014 three magic squares contain 43 interior cells. These are plausible selector cues, none of which explicitly says to apply word-exterior deletion on p54 or combine its body with p55 boundary runes.
+This is **9 + 256 + 43** with no missing or synthesized source runes. The independent **256** printed cells of the p50 numeric grid can now pair one-to-one with the *entire p54 post-title body plus p55-word-exterior register*, and the independent **43** p55 interiors remain separate. The p57 solved reference says to shed circumferences, so a human could tentatively remove first/last runes of p55's complete words. The 2016 signed message contains 43 alphabetic words, and the historically required 2014 three magic squares contain 43 interior cells. These are plausible selector cues, none of which explicitly says to apply word-exterior deletion on p54 or combine its body with p55 boundary runes.
 
 This **competes with** the preceding 256+52 *linewise* cut. The linewise cut includes p54's red title and crosses a p55 word at position256, whereas this 9+256+43 read sets the title aside and deinterleaves 33 p55 word-exterior runes before pairing with the table. The two registers are different and should not be conflated as one confirmed key.
 
