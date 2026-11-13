@@ -1,0 +1,14 @@
+name: Original plaintext-F blind lexical Viterbi controls
+on:
+  workflow_dispatch:
+jobs:
+  native-gp-knowncipher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover solved LP1 and LP2 without giving F skip masks
+        run: node sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs
