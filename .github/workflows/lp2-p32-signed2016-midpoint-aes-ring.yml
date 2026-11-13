@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Source-selected AES-128/192/256 ring-key inverse
         run: node sims/p32_2016_midpoint_aes_ring_key_sft.cjs
+      - name: GP29 source-prime AES CTR inverse across original 55 rune pages
+        run: node sims/p32_2016_midpoint_aes_gp29_ctr_sft.cjs
