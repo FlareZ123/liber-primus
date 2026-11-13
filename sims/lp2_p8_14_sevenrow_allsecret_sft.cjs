@@ -19,11 +19,9 @@ const path = require('node:path');
 const read = (name) => fs.readFileSync(path.join(__dirname, '..', name), 'utf8');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const transcription = read('resources/liber-primus/lp2-transcription.txt');
-const chapters = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
-  [27, 32], [33, 39], [40, 53], [54, 55]];
-const pages = chapters[2].map(() => 0);
+const pages = Array.from({ length: 7 }, (_, index) => index + 8);
 const original = [];
-for (let p = 8; p <= 14; p++) original.push(...corpus.pages[p].indices);
+for (const page of pages) original.push(...corpus.pages[page].indices);
 assert.equal(pages.length, 7);
 assert.equal(original.length, 1729);
 const printedPages = transcription.split(/^%$/m);
