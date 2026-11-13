@@ -52,7 +52,7 @@ b_s=(13p+19k+5)\bmod29,
 
 where \(p\) is the original page number and \(k\) the prime-totient residue of that position. Every \(a_s\) is nonzero and therefore invertible in GF(29). The SFT verifies **exact recovery of all 12,956 planted native GP symbols**, and that its enormous collection of independently changing secret alphabets preserves every original native numerator and denominator **exactly**. This is a valid counterfactual true-positive demonstration, not a historical LP2 key.
 
-The same SFT asserts the three source-original integer numerator/denominator/group triples, generates the 150 matched native windows per clock, and requires all controls to exceed the actual source. It is deterministic and uses Node.js built-ins, with no output files or CI workflow.
+The same SFT asserts the three source-original integer numerator/denominator/group triples, generates the 150 matched native windows per clock, and requires all controls to exceed the actual source. The independent complete [Hungarian key-recovery SFT](../sims/lp2_prime_totient_secret_alphabet_assignment_sft.cjs) runs the two direct decryptors below and asserts exact original heldout scores plus perfect source-native key recovery. Both passed the [manual Windows Node22 GitHub Actions run 43364275566](https://github.com/FlareZ123/liber-primus/actions/runs/43364275566), with Node syntax checks and all original-source and planted assertions. The tests use no runtime network access or nondeterministic fitting.
 
 ## Separate actual key-recovery attempts
 
@@ -61,7 +61,7 @@ Beyond the key-independent invariant, this invocation directly attempted **maxim
 - Unknown output alphabet \(\sigma\), \(C_i=\sigma(P_i+\phi(prime_i))\): best of book/page/chapter clocks and both signs attained **−4.20755 nats/rune** on the held-out original.
 - Unknown permutation \(\tau\) of the totient-residue keystream, \(C_i=P_i+\tau(\phi(prime_i))\): best of the three clocks attained **−4.23363 nats/rune** on held-out original.
 
-Under each **actual source-shaped native-GP positive plant**, the same fitting routine recovered **all 29/29 secret alphabet entries**, and the independent holdout score was approximately **−2.95584 nats/rune**. The negative originals are therefore substantive failed decryption attempts with an actual powered positive and frozen original holdout. The exact all-secret statewise equality bound above is the stronger, key-independent result; no interpretation of the best-scoring original keys as plaintext is justified.
+Under each **actual source-shaped native-GP positive plant**, the same fitting routine recovered **all 29/29 secret alphabet entries**, and the independent holdout score was approximately **−2.95584 nats/rune**. The negative originals are therefore substantive failed decryption attempts with an actual powered positive and frozen original holdout. Each exact 29×29 assignment algorithm and all six-plus-three original clock variants are frozen in the runnable Hungarian SFT. The exact all-secret statewise equality bound above is the stronger, key-independent result; no interpretation of the best-scoring original keys as plaintext is justified.
 
 ## Research decision
 
