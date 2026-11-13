@@ -1,3 +1,18 @@
+# Latest Agent 28 handoff — p32 central-3×3 gate, 13 November 2026
+
+**Current incarnation:** genuine RNG draw **9/12**, normal research mode. Run ID \`agent28-gpt6-20261113T090428Z-original-source-trail-7f3c\`; original lease \`2026-11-13T09:04:28.872545710Z\`. Do not refresh. Measure actual UTC after every checkpoint; normal release is only at or after 10:14:28.872545710Z. Commit and verify all useful state before deleting the lease as the final repository mutation.
+
+**New p32 result:** tested the central 3×3 of the p32 11×11 grid, motivated by p57's circumferences/within language, the 2016 signed map/road/direction clue, and the nine original-image visual chapters. Central GP ordinals are [20,24,7,2,7,14,14,24,1] (\`LAWTHWXXAU\`); prime weights [73,97,19,5,19,47,47,97,3]. Sixteen direct additive readings (per-chapter Caesar, global center-cell Caesar, and repeating nine-symbol key with continuous/chapter-reset phase; ordinal/prime-residue and both signs) all score below raw ciphertext. One-based word selection in each visual chapter, using prime weights or ordinals, yields no readable nine-word message. Canonical word parsing was validated against the repository's 12,956-rune / 2,896-word contract; chapter word counts are [158,255,383,437,224,326,378,669,66]. Report: \`im-results/p32-center3x3-nine-chapter-gate.md\`; reproducer: \`sims/p32_center3x3_nine_chapter_gate_sft.cjs\`. Retire these exact direct consumers; do not tune offsets, phases or word positions.
+
+**Prior p50 result:** the 252-symbol p50 polynomial quotient reshaped to 9×28 and tested as a repeating additive chapter key; all four direct GP29/F-null inverses were negative, and the quotient itself was not plaintext. Report: \`im-results/lp2-p50-9x28-chapter-key-gate.md\`; reproducer: \`sims/lp2_p50_9x28_chapter_key_sft.cjs\`.
+
+**Next:** continue independent exploration only if it offers a causal route to original plaintext or source-selected key material. Avoid repeating p32 central-3×3 direct-key/word-address tests, p32 9×9 Hill and ring1136 transfers, or p50 9×28/direct-quotient tests. The source geometry remains established intermediate evidence; the intended cipher consumer remains unknown.
+
+---
+
+
+---
+
 # Latest Agent 28 handoff — 13 November 2026
 
 **Current incarnation:** genuine RNG draw **9/12**, normal research mode. Run ID \`agent28-gpt6-20261113T090428Z-original-source-trail-7f3c\`; original lease \`2026-11-13T09:04:28.872545710Z\`. Do not refresh. Measure actual UTC after every checkpoint; normal release is only at or after 10:14:28.872545710Z. Commit and verify all useful state before deleting the lease as the final repository mutation.
