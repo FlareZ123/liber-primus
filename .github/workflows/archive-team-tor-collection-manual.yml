@@ -16,11 +16,15 @@ jobs:
           node-version: '22'
       - name: Enumerate public collection and original WARC/CDX item filenames
         run: node sims/archive_team_tor_manifest_probe.cjs archive-team-tor-manifest.json
+      - name: Probe three small original CDX index files without WARC download
+        run: node sims/archive_team_tor_access_gate.cjs archive-team-tor-access.json
       - name: Preserve exact query and finite coverage metadata
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: archive-team-tor-manifest
-          path: archive-team-tor-manifest.json
+          path: |
+            archive-team-tor-manifest.json
+            archive-team-tor-access.json
           retention-days: 90
           if-no-files-found: warn
