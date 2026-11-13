@@ -53,10 +53,18 @@ jobs:
           cd sims/f5_detector_calibration
           go mod download
           go run -mod=mod gray_roundtrip_sft.go ../../resources/liber-primus/62.jpg ../../resources/liber-primus/71.jpg "$(go env GOPATH)/bin/f5"
+      - name: Calibrate pilot historical blind 274-D F5 gate without original page access
+        run: |
+          set -eu
+          python3 -m pip install --quiet pillow numpy scipy scikit-learn filelock
+          (cd sims/f5_detector_calibration && go build -mod=mod -o /tmp/f5-q92-native-embed native_f5_embed.go)
+          python3 sims/f5_detector_calibration/blind274_gate.py             --jet /tmp/pev274/source/src/jet             --f5 "$(go env GOPATH)/bin/f5"             --embedder /tmp/f5-q92-native-embed             --workdir /tmp/f5-blind274-pilot             --train-families 8             --test-families 5             --report im-results/f5-blind274-pilot/summary.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: f5-blind274-bootstrap-info
-          path: /tmp/pev274/extract.tar.gz
+          path: |
+            /tmp/pev274/extract.tar.gz
+            im-results/f5-blind274-pilot/
           if-no-files-found: ignore
           retention-days: 7
