@@ -2,7 +2,7 @@
 
 **Agent16, 13 November 2026. Conditional original-source constraint, no recovered LP2 plaintext.**
 
-The solved LP1 p5 source phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS** has 30 GP29 runes with original single IO and ING characters. Unsolved LP2 p55 repeats the p5 moth and ends with exactly those seven rune-word lengths. The phrase is a **provisional** plaintext crib, not a verified decryption. See [the existing original crib record](lp2-p55-moth-p5-terminal-sevenword-crib.md).
+The solved LP1 p5 source phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS** has 30 GP29 runes with original single IO and ING characters. Unsolved LP2 p55 repeats the p5 moth and ends with exactly those seven rune-word lengths. The phrase is a **provisional** plaintext crib, not a verified decryption. The source typography itself raises an additional objection to a verbatim quotation: original LP1 p5 has a **period after SACRED**, then ALL THINGS continues into SHOULD BE ENCRYPTED, whereas original p55 prints **a word separator after its corresponding fifth word and a period after the seventh**. A deliberate repunctuation remains conceivable, but word lengths and shared art alone do not select it. See [the existing original crib record](lp2-p55-moth-p5-terminal-sevenword-crib.md).
 
 The authenticated solved LP2 p56 operation decrypts by subtracting `phi(prime(n))` modulo29, with one known literal-F exception. For the 30 original p55 suffix runes (local offset46), **if the LP1 phrase is the correct plaintext**, forward encryption under that same cipher requires key residues `K=(cipher-plain) mod29` with **28 at relative positions 8 and 24**.
 
