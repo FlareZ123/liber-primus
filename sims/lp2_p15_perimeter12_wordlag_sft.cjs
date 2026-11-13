@@ -117,8 +117,8 @@ for (const w of words) {
 }
 assert.equal(pages.length, 55);
 const nulls = {};
-for (const kind of ["page", "line"]) {
-  const random = generator(kind === "page" ? 0x3301c025 : 0x3301ca13);
+for (const kind of ["page", "line", "within-line"]) {
+  const random = generator(kind === "page" ? 0x3301c025 : kind === "line" ? 0x3301ca13 : 0x3301beef);
   let marginalExceed = 0, familyExceed = 0, sum = 0;
   for (let rep = 0; rep < 500; rep++) {
     const out = [];
@@ -126,9 +126,12 @@ for (const kind of ["page", "line"]) {
       if (kind === "page") {
         const z = shuffle(pages[p].slice(), random);
         out.push(...z);
-      } else {
+      } else if (kind === "line") {
         const blocks = shuffle(linesByPage[p].slice(), random);
         for (const block of blocks) out.push(...block.values);
+      } else {
+        // Preserve every original printed line and its multiset of lengths.
+        for (const block of linesByPage[p]) out.push(...shuffle(block.values.slice(), random));
       }
     }
     assert.equal(out.length, n);
