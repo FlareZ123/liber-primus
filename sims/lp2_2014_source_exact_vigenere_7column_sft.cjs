@@ -2,7 +2,7 @@
 "use strict";
 /**
  * Source-exact Stage04 reversed-rune lookup and historical Stage05 period-seven
- * columnar inverse, screened on two original LP2 seven-divisible regions,
+ * columnar inverse, screened on three original LP2 seven-divisible regions,
  * plus a Stage05-only transfer to the final p54-p55 308-rune visual chapter.
  *
  * The two historical operations occurred at distinct stages; their
@@ -160,7 +160,9 @@ const spans = [
     .flatMap(p => p.indices), expectedLength:1729 },
   { label:"p33-red8-to-p39", text:corpus.pages.find(p => p.page===33)
     .indices.slice(91).concat(corpus.pages.filter(p => p.page>=34&&p.page<=39)
-    .flatMap(p => p.indices)), expectedLength:1589 }
+    .flatMap(p => p.indices)), expectedLength:1589 },
+  { label:"p54-55", text:corpus.pages.filter(p => p.page>=54&&p.page<=55)
+    .flatMap(p => p.indices), expectedLength:308 }
 ];
 const output = [];
 for (const span of spans) {
@@ -194,9 +196,21 @@ for (const span of spans) {
     });
   }
 }
-assert.equal(output.length, 4);
+assert.equal(output.length, 6);
 assert.ok(output.every(row => row.transposeThenKeyScore < -3.35
   && row.keyThenTransposeScore < -3.35));
+const finalCompositeRows = output.filter(row => row.originalSpan === "p54-55");
+assert.equal(finalCompositeRows.length, 2);
+const expectedFinalComposite = {
+  "historical-bug19": [-3.421835892853488, -3.4316705014210656],
+  "corrected-GP18": [-3.4438875586518893, -3.4290444972684133]
+};
+for (const row of finalCompositeRows) {
+  const expected = expectedFinalComposite[row.historicalKey];
+  assert(expected);
+  assert(Math.abs(row.transposeThenKeyScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.keyThenTransposeScore - expected[1]) < 1e-10);
+}
 
 // Separate Stage05-only transfer to the final original-image visual chapter.
 // p54=232 and p55=76; together 308=44*7. The Stage11 HTML's 133/331
@@ -281,6 +295,6 @@ console.log(JSON.stringify({
   stage05PermutationControl:stage05Expected,
   historicalSourceBug:buggyKey.length,
   correctedGpKeySymbols:fixedKey.length,
-  testedOriginalSpanDecryptions:8,
+  testedOriginalSpanDecryptions:12,
   recoveredUnknownPlaintext:false, output, finalChapterGate
 },null,2));
