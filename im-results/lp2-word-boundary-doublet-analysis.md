@@ -6,7 +6,7 @@
 
 Inputs are the repository's `resources/liber-primus/lp2-transcription.txt` and `lp2-corpus.json`. The first 55 page blocks (LP2 pp0–54) contain **12,956 runes**. In the transcription, `-` and sentence/punctuation markers delimit words; `/` marks a line ending and `%` a page ending. A line wrap alone does not split a word. Adjacent pairs crossing a page boundary are excluded.
 
-The 86 doublet positions and 1,000-rune block counts reproduce the independent [Dukotah Round44 T7 report](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/W2-B3-doublet-sites/RESULTS.md): **[8, 3, 7, 2, 6, 9, 10, 8, 11, 2, 9, 6, 5]**.
+The 86 doublet positions and 1,000-rune block counts reproduce the independent [Dukotah Round44 T7 report](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/W2-B3-doublet-sites/RESULTS.md): **[8, 3, 7, 2, 6, 9, 10, 8, 11, 2, 9, 6, 5]**. The full 86-site gap AC1 is **+0.3795**; a 10,000-draw position-conditioned null gives **p=0.0006**, consistent with the external p≈0.001.
 
 | Pair class | Sites | Available adjacent pairs | Rate |
 |---|---:|---:|---:|
@@ -15,7 +15,7 @@ The 86 doublet positions and 1,000-rune block counts reproduce the independent [
 | Across a line boundary | 4 (3 within-word, 1 cross-word) | 539 | 0.742% |
 | Across a page boundary | 0 | 54 | 0% |
 
-The 23 cross-word pairs are real transcription adjacencies only after spaces are stripped; they are not within-word doubles. Importantly, the positive gap-clustering signal is **not solely caused by stripping spaces**: the 63 within-word sites alone have gap lag-1 autocorrelation **+0.1786**, with a 10,000-draw position-conditioned null of **p=0.0023**. The 23 cross-word sites have AC1 **−0.0857** and upper-tail **p=0.91** under the same null. Thus the T7 signal persists within words, while the cross-word subset itself does not show positive gap clustering.
+The 23 cross-word pairs are real transcription adjacencies only after spaces are stripped; they are not within-word doubles. Word-aware stratification changes the interpretation of T7: the 63 within-word sites have gap lag-1 autocorrelation **+0.1786**, but a 10,000-draw position-conditioned null gives **p=0.061**; the 23 cross-word sites have AC1 **−0.0857** and **p=0.558**. The full 86-site signal is significant, but neither stratum is independently significant at 0.05. Thus the T7 result is sensitive to mixing adjacency classes and is not, by itself, evidence of a within-word stateful filter.
 
 ## A source-visible span with no cross-word doubles
 
@@ -25,7 +25,7 @@ There is a longer, more specific boundary anomaly:
 - The longest contiguous zero-cross-word-doublet run in the 55-page stream is **pp11–23**: 13 pages, 3,059 runes and **0 in 686 word boundaries**. Outside that span there are 23 in 2,187 boundaries (1.05%).
 - A 100,000-draw max-run null assigns the 23 observed cross-word sites uniformly among all 2,873 boundary opportunities, preserving each page's number of opportunities. The probability of a zero run at least 13 pages long is **p=0.032**. This is a family-wise statistic over the full 55-page scan, not the unadjusted probability for a preselected window.
 
-The endpoint marginals do not make the zero diagonal automatic: all 29 GP symbols occur as both word-final and next-word-initial runes in pp11–23. Under random pairing with those fixed marginals, the expected number of equal boundary pairs is **23.6**, versus zero observed. A 10,000-draw fixed-marginal permutation produced no zero-diagonal sample. This is a conditional diagnostic after selecting the zero-run span, so it is **not** a second family-wise p-value.
+The endpoint marginals do not make the zero diagonal automatic: all 29 GP symbols occur as both word-final and next-word-initial runes in pp11–23. Under random pairing with those fixed marginals, the expected number of equal boundary pairs is **23.6**, versus zero observed. A 5,000-draw fixed-marginal permutation produced no zero-diagonal sample. This is a conditional diagnostic after selecting the zero-run span, so it is **not** a second family-wise p-value.
 
 A bounded check for a simple source-authentic boundary transform also fails: across the 686 pp11–23 boundary pairs, the best (y=ax+b\pmod{29}) map matches **40/686**; a 5,000-draw max-over-812-affine-maps permutation gives **p=0.59**. The no-repeat diagonal is not explained by one fixed Atbash/Vigenère-style affine relation.
 
