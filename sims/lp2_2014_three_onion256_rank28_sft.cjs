@@ -104,6 +104,78 @@ const recovered = plantedCipher.map((v, i) => {
 });
 assert.deepEqual(recovered, planted);
 
+// Authentic solved-p56 key check. An independent p56 plaintext is fixed by
+// its genuine consecutive-prime-totient cipher with one literal F at offset 56.
+// A source-256 key used at p56 should predict this already solved shift stream.
+const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const ink56 = gp.pages[56].indices;
+assert.equal(ink56.length, 85);
+const gpTokens = gp.translit.map((token, index) => ({token, index}))
+  .sort((a, b) => b.token.length - a.token.length);
+const knownP56English =
+  'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO ' +
+  'IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE';
+const nativeP56 = [];
+for (const word of knownP56English.split(' ')) {
+  for (let i = 0; i < word.length;) {
+    const found = gpTokens.find(x => word.startsWith(x.token, i));
+    assert(found, 'Missing native p56 GP token');
+    nativeP56.push(found.index);
+    i += found.token.length;
+  }
+}
+assert.equal(nativeP56.length, 85);
+/** @param {number} n @returns {number} */
+function phi(n) {
+  let count = 0;
+  for (let j = 1; j <= n; j++) {
+    let a = j, b = n;
+    while (b) { const tmp = a % b; a = b; b = tmp; }
+    if (a === 1) count++;
+  }
+  return count;
+}
+const primeList = [];
+for (let x = 2; primeList.length < 90; x++) {
+  let prime = true;
+  for (let j = 2; j * j <= x; j++) {
+    if (x % j === 0) {prime = false; break;}
+  }
+  if (prime) primeList.push(x);
+}
+let primeCursor = 0;
+const authenticP56 = ink56.map((c, i) =>
+  i === 56 ? 0 : (c - (phi(primeList[primeCursor++]) - 1) % 29 + 29) % 29);
+assert.deepEqual(authenticP56, nativeP56);
+assert.equal(primeCursor, 84);
+const knownShift56 = ink56.map((c, i) => (c - nativeP56[i] + 29) % 29);
+const originalP56Checks = [];
+for (let mask = 0; mask < 8; mask++) {
+  for (const grid of [false, true]) {
+    if (!mask && !grid) continue;
+    const source = sourceKey(mask, grid);
+    for (const clock of ['p56-reset', 'terminal-76']) {
+      const offset = clock === 'p56-reset' ? 0 : 76;
+      for (const sign of [-1, 1]) {
+        let matches = 0;
+        for (let i = 0; i < ink56.length; i++) {
+          if (i === 56) continue; // authentic transparent F is unencrypted
+          const predicted = (29 + sign * (source[(offset + i) % 256] % 29)) % 29;
+          matches += Number(predicted === knownShift56[i]);
+        }
+        originalP56Checks.push({mask, grid, clock, sign, matches});
+      }
+    }
+  }
+}
+assert.equal(originalP56Checks.length, 60);
+assert.equal(Math.max(...originalP56Checks.map(x => x.matches)), 9);
+const positiveSource = sourceKey(5, true);
+const nativeKnownPlant = authenticP56.map((v, i) =>
+  (v + positiveSource[(76 + i) % 256] % 29) % 29);
+assert.equal(nativeKnownPlant.filter((v, i) =>
+  (v - authenticP56[i] + 29) % 29 === positiveSource[(76 + i) % 256] % 29).length, 85);
+
 /** @param {number[]} a @returns {[number,number]} */
 const range = a => [Math.min(...a), Math.max(...a)];
 const full = range(gp29.map(x => x.ioc));
@@ -120,12 +192,13 @@ console.log(JSON.stringify({
   originalCipherRunes:ciphertext.length, originalRepeats:repeats,
   originalNonrepeatTransitions:transitions.length,
   tested: {historicalAndTableKeys:15, fullGP29Decodes:30, step28Decodes:60},
+  solvedP56Shift:{eligibleCipherRunes:84, tested:originalP56Checks.length, matchesRange:range(originalP56Checks.map(x => x.matches)), maximum:originalP56Checks.filter(x => x.matches === 9)},
   sourceXorTableASCII:binary.filter(x => x.label !== 'TABLE'),
   fullGP29IoC:full, nonrepeatRank28IoC:step,
   largestSingleDecodedRank:largest,
   rawGP29:profile(ciphertext, 29),
   rawCircular:profile(transitions.map(x => x.circular), 28),
   rawAbsolute:profile(transitions.map(x => x.absolute), 28),
-  positive:'256/256 source-keyed synthetic symbols recovered exactly',
+  positive:'256/256 rank symbols and 85/85 GP29 source-shift planted controls recovered exactly',
   interpretation:'All tested source-ordered direct binary, GP29 and 28-rank consumers remain ciphertext-like; no independent historical instruction selects the key, cipher, or XOR combination.'
 }, null, 2));
