@@ -125,6 +125,24 @@ An independent **identically page-restarted period47** alphabet has six complete
 
 The original-input CommonJS SFT reconstructs every global and native physical-page rune coordinate from all canonical source words, asserts each of the ten exact physical-page/output witnesses, and constructs a synthetically encrypted **83/83 GP-native A/I/O** word plant under arbitrary phase-specific GP29 bijections. The plant decrypts exactly and never exceeds three output symbols at the same phase. This precise all-secret failure strengthens the previously reported **7/83 literal A/I/O** result from one direct fixed base29 Caesar key, without searching for another key or claimed plaintext.
 
+## The authentic 2014 fourteen-column stage cannot be a stationary fourteen-alphabet singleton clock
+
+**Independent historical selector (13 November 2026, Agent33):** Cicada's *actual solved 2014 Stage05* transposition used **fourteen** columns in the explicitly documented manually recovered order **[2,8,9,1,12,13,11,4,5,7,3,0,6,10]**. That historical column count exactly meets the conditional A/I requirement **k ≥ 14** from the book's 28 distinct original singleton ciphertext glyphs. The coincidence offers a finite, independently source-motivated clock to challenge before searching its unknown key: one *arbitrary secret GP29 substitution alphabet per column*, repeated in row-major 14-position blocks. This is an intentionally generous family with 14 unrestricted secret maps, **not** an assertion that Stage05 used alphabet substitutions or that LP2 inherits its columns.
+
+With the original source's **2,896 printed words, 83 complete one-rune words, and 12,956 runes** retained, each stationary column can output at most **two different singleton glyphs** from English singleton plaintext A/I, regardless of the key's actual substitution. Three complete source clocks all violate the necessary condition:
+
+| Source-fixed fourteen-phase clock | Distinct original singleton glyphs per phase 0..13 | Phases requiring ≥3 outputs |
+| --- | --- | ---: |
+| Continuous global rune index modulo14 | **[5,4,4,7,11,4,9,2,7,3,1,4,7,6]** | **12/14** |
+| Physically page-restarted local rune index modulo14 | **[3,9,4,2,9,8,6,9,7,8,4,7,2,4]** | **12/14** |
+| Continuous printed word ordinal modulo14 (independent alternate state reading) | **[4,5,5,5,3,3,5,5,3,10,3,6,11,5]** | **14/14** |
+
+**Minimal book-global contradiction:** three *complete single-rune printed words* on physical p1 (absolute rune index **350**, GP ciphertext **9**), p2 (index **644**, glyph **0**) and p5 (index **1316**, glyph **26**) share phase **0 modulo14**. No single secret bijection at that phase can turn only A/I into all three outputs. **Minimal page-restarted contradiction:** p13 local index **28** produces glyph **1**, p18 local **56** produces glyph **16**, and p54 local **0** produces glyph **24**: all share page-local phase **0**. Each witness uses actual source positions and exact physical p50 rune-free page accounting. The historical 14-column order merely *relabels* those 14 phase states and cannot repair a collision.
+
+The [standalone source-exact CommonJS SFT](../sims/lp2_historical14_allsecret_singleton_clock_sft.cjs) reconstructs the complete 83 words, asserts all three full 14-phase profiles and minimal original witnesses, and reconstructs **three 12,956-rune native GP29 positive plants** with phase-distinct reversible Caesar alphabets and all 83 singleton plaintext symbols constrained to A/I. All three full cipher inverses succeed and each true plant obeys the ≤2 output support condition. The untouched original fails it.
+
+**Decision:** An original 2014 fourteen-column *position* schedule cannot alone furnish fourteen **stationary, globally reused or identically page-restarted** substitution alphabets for ordinary A/I singleton plaintext with preserved printed words. The Stage05 historical transposition itself, per-page independently keyed alphabet sets, red-heading resets, per-word mutable states and different plaintext word classes are outside this exclusion. It adds no unknown plaintext or authentic key. Treat the 14=28/2 coincidence as insufficient evidence to initiate another fourteen-column parameter search.
+
 ## Exact positive control and causal use
 
 The [standalone Node 22 CJS source test](../sims/lp2_singleton_word_state_lower_bound_sft.cjs) asserts source rune identity, one-word page handling, the original 83/28 whole-book tally, all nine chapter tallies and p17's 5/5. It then constructs **14 full GP29 bijective alphabets**, each mapping the A and I plaintext indices to two separate output glyphs. Every synthetic symbol recovers exactly, and all 28 outputs are distinct. This shows that 14 is a sharp minimum for m=2 and D=28, not that those maps were used historically.
