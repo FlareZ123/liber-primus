@@ -68,6 +68,23 @@ Freeze each of the 2,928 original page-local printed word segments as a big-endi
 
 Both direct conversions yield overwhelmingly mixed digits, upper- and lowercase letters rather than original-order uppercase GP-readable prose. This excludes a **literal one-stage per-word BASE29→base59/60 uppercase-message decoding**. Mixed-case or further enciphered material is outside this test, but no authenticated later operation was supplied. The incomplete NEWBAS appearance is a post-inspection lead, not a source-issued key or a reason for free-radix searches. Reproduction is integrated into the [existing source-words SFT](../sims/lp2_2016_dimensions_firstwords_sft.cjs).
 
+## Six-rune NEWBAS source-key continuation: original pages p0/p1 remain unreadable
+
+A separate original-text consumer uses **only one key selected by the visible source numbers**: the 2016 tree image's height minus width is \`569−563=6\`, and the width-selected p0 word6 begins with exactly six rune tokens \`NEWBAS\`. The historically demonstrated 2014 solved-text Vigenère step motivates asking whether these six literal symbols are a repeating GP29 key for the original black runes **immediately after** this complete printed word and for the **following physical page**. This fixes a 228-rune remaining p0 tail starting at exact local offset34 and the complete 266-rune p1, without adjusting a phase or scanning keys.
+
+Freeze GP-index key \`[N,E,W,B,A,S]=[9,18,7,17,24,15]\` and both elementary arithmetic directions \`P=C±K (mod29)\`. Use either unconditional six-period key advance, which is fully bijective and exactly reciphers arbitrary GP29 strings, or the one documented p56 *literal F* ciphertext-pass-through/clock-hold convention as a separate conditional readout. Decode p0 and p1 independently from key phase zero; also decode their concatenation as a continuous source-order clock. The latter is an additional diagnostic using the same key and p0-tail start, with no fitted offset.
+
+| GP29 inverse sign | Literal F holds key? | p0 228-rune IoC | p1 266-rune IoC | Continuous 494-rune IoC |
+| --- | --- | ---: | ---: | ---: |
+| C−K | No | 0.03408300 | 0.03438786 | 0.03380936 |
+| C−K | Yes | 0.03597651 | 0.03657256 | 0.03557497 |
+| C+K | No | 0.03238272 | 0.03294084 | 0.03352194 |
+| C+K | Yes | 0.03601515 | 0.03745212 | 0.03655222 |
+
+All eight page-local outputs and the four source-continuous outputs remain random-like/nonlinguistic by direct GP transliteration. The strongest original p1 IoC is only **0.03745**, while independently solved native GP p57 exceeds **0.055**. The ordinary Vigenère modes round-trip an independently known p57 GP-English plant exactly; the F-hold variant is explicitly conditional and is not claimed to be a plaintext-wide bijection. The source-selected key and key start are therefore insufficient to recover authentic unknown-page plaintext.
+
+**Decision:** the especially simple \`NEWBAS\` six-rune periodic Vigenère continuation is rejected. The original six-rune appearance remains an unexplained clue candidate. No independent source commands six-period Vigenère, an altered radix, or a subsequent more complex operation, so do not expand into phase, key-length or skip-rule sweeps. The [integrated original-input source SFT](../sims/lp2_2016_dimensions_firstwords_sft.cjs) asserts the exact key, starts, complete IoCs and positive encryption controls.
+
 ## Direct source-addressed 11+10-key inverse on p32: negative
 
 The **11** runes of p0 word6 and **10** runes of p1 word33 fit the natural p32 **11×11** matrix as one complete horizontal key (11 columns) and keys for its **ten remaining rows** (the first row gets vertical offset zero). This is a stronger potential *consumer* than a numerical collision: the two unique source-addressed words determine all key symbols, and a two-dimensional additive cipher can be executed reversibly on the 121 original p32 runes.
