@@ -31,6 +31,17 @@ If the author expected the exact same line-sum modulo 449 operation to iterate, 
 
 One might also take the new 23-rune source line as a literal repeated GP29 key on unknown prose. This is now a bounded original-cipher negative: apply `P[i]=(C[i] +/- K[i mod 23]) mod 29` with the original key `K` above, under book-continuous, physical-page and original nine-visual-chapter clocks. The six full **12,956-rune** source inverses have GP29 IoCs **0.03444710-0.03451945**, versus original **0.03447840** and the native solved-p57 **0.06270997**. For independent 76-rune p55 local-clock candidates the two signs give **0.03719298** and **0.02842105**, again nonlinguistic. Every original cipher candidate is an exact reversible additive mapping; a separate 95-rune solved-p57 GP-native plant recovers 95/95 for both signs. This excludes only the literal repeated-key consumer, not other properly selected uses of the line.
 
+## Distinct source-matched 23-to-23 interior consumer
+
+The [p55/p57 red-dot and word-interior study](lp2-p55-nested-23dot-rowcol-inverse.md) previously established, independently of the 2014 title, that the solved p57 has a unique red **23-dot** stencil and that exactly **23 original runes** survive two literal outer-rune peels of the sixteen complete words on p55. Both the newly selected p13 printed line3 and this previously selected p55 inner core therefore contain **23 GP runes**. The p55 core is, in its source order, `G D A B F X I M U C P H NG D IA I G X EO TH TH I M`.
+
+As a narrowly source-selected same-length direct-key consumer, pair the two **unaltered** 23-rune sequences positionwise without cyclic repetition. The two GP29 additive inverses are:
+
+- Core minus p13 line: `M L I L I X AE U IA N W J U L S I L E F EO R B EO`.
+- Core plus p13 line: `OE Y N X M X A H R U M C EO Y I I NG I A NG F O Y`.
+
+Neither decodes as ordinary GP-native text, and both exactly re-encode the original core. The original-input reproducer derives the core from the printed p55 words, asserts all sixteen word lengths and the exact 23 source glyphs, then tests these two fixed alignments. This test also fails to select a decipherment. The 23-to-23 fit and the p13 prime-sum link are both source facts, but connecting the former to the latter remains a research hypothesis.
+
 ## Decision for future original-input work
 
 The matched **133 -> 331** check is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
