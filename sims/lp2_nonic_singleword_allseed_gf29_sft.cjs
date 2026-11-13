@@ -194,6 +194,75 @@ assert.equal(control.bestMatch,83);
 assert.ok(control.fullMatches>=1);
 assert.deepEqual(control.winningSeed,trueSeed);
 const original=solve(source);
+
+/**
+ * A second independent original-source reset contract: source-visible red
+ * physical chapter pp15-22 (global rune offsets [3603,5506)). Its 18 native
+ * one-rune words overdetermine a *fresh* 9-state source nonic key.
+ */
+function visualChapter4(){
+  const start=3603,end=5506;
+  const positions=singles.filter(p=>p>=start&&p<end);
+  assert.equal(positions.length,18);
+  const selected=[];
+  for(const p of positions){
+    if(rank(selected.concat(p).map(z=>Array.from(basis[z-start])))>
+      selected.length)selected.push(p);
+    if(selected.length===9)break;
+  }
+  assert.equal(selected.length,9);
+  const inverseRows=invert9(selected.map(p=>Array.from(basis[p-start])));
+  const allowed=[24,10,3];
+  const trueSeed=[4,1,7,2,9,5,11,3,6];
+  const planted=Array.from({length:end-start},(_,i)=>
+    c.pages[57].indices[i%c.pages[57].indices.length]);
+  for(let i=0;i<positions.length;i++)
+    planted[positions[i]-start]=allowed[i%3];
+  const synthetic=planted.map((letter,i)=>mod(letter+pad(i,trueSeed)));
+  let originalBest=0,originalFull=0,controlBest=0,controlFull=0,
+    controlKey=null,bestOriginalSeed=null;
+  for(let integer=0;integer<19683;integer++){
+    let q=integer;
+    const originalRhs=[],plantRhs=[];
+    for(let i=0;i<9;i++){
+      const p=selected[i],letter=allowed[q%3];q=Math.floor(q/3);
+      originalRhs.push(mod(source[p]-letter));
+      plantRhs.push(mod(synthetic[p-start]-letter));
+    }
+    const seedFor=rhs=>inverseRows.map(row=>{
+      let sum=0;
+      for(let i=0;i<9;i++)sum+=row[i]*rhs[i];
+      return sum%29;
+    });
+    const seed=seedFor(originalRhs),plantedSeed=seedFor(plantRhs);
+    let originalHits=0,plantedHits=0;
+    for(const p of positions){
+      const off=p-start;
+      if(allowed.includes(mod(source[p]-pad(off,seed))))originalHits++;
+      if(allowed.includes(mod(synthetic[off]-pad(off,plantedSeed))))
+        plantedHits++;
+    }
+    if(originalHits>originalBest){
+      originalBest=originalHits;bestOriginalSeed=seed;
+    }
+    if(plantedHits>controlBest)controlBest=plantedHits;
+    if(originalHits===positions.length)originalFull++;
+    if(plantedHits===positions.length){
+      controlFull++;controlKey=plantedSeed;
+    }
+  }
+  assert.equal(controlBest,positions.length);
+  assert.equal(controlFull,1);
+  assert.deepEqual(controlKey,trueSeed);
+  return {sourceVisualChapter:"physical pp15-22",runeStart:start,
+    runeEnd:end,singletonCount:positions.length,anchorOffsets:selected,
+    possibleSecretStates:29**9,assignmentCount:19683,
+    originalMaximumMatches:originalBest,
+    originalMatchingStates:originalFull,bestOriginalSeed,
+    plantedMaximumMatches:controlBest,
+    plantedMatchingStates:controlFull,recoveredPlantedSeed:controlKey};
+}
+const originalChapter4=visualChapter4();
 assert.ok(original.bestMatch<83,
   "Unexpected all-83 fit: inspect original seed immediately");
 console.log(JSON.stringify({
@@ -209,6 +278,7 @@ console.log(JSON.stringify({
   original:{maxMatches:original.bestMatch,
     of:singles.length,matchingStates:original.fullMatches,
     bestSeed:original.bestSeed,bestSingleRuneReadout:original.bestPlain},
+  originalVisualChapter4:originalChapter4,
   decision:"No book-continuous additive GF29 nonic key, among all 29^9 " +
     "secret initial states, maps every original printed one-rune word to A/I/O."
 },null,2));
