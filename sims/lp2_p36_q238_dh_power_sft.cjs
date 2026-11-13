@@ -205,7 +205,7 @@ assert.deepEqual(powerField(squarePlantCipher,order/2n),
   "Genuine field-square positive control must pass Euler's criterion");
 
 const reversiblePowers=[];
-for (const exponent of [23n,1661n,1067n]) {
+for (const exponent of [23n,1661n,1067n,11n]) {
   const inverse = inverseExponent(exponent,order);
   const p=powerField(ciphertextField,inverse);
   const reencoded=powerField(p,exponent);
@@ -234,6 +234,10 @@ assert.deepEqual(reversiblePowers[1].first20Indices,
   [11,25,11,13,16,1,15,12,26,16,8,23,22,3,9,4,5,14,18,9]);
 assert.deepEqual(reversiblePowers[2].first20Indices,
   [28,3,18,4,4,5,26,5,19,24,17,25,4,15,1,20,14,22,7,14]);
+const canonicalParticipantExponent = reversiblePowers.find(x => x.exponent === "11");
+assert(Math.abs(canonicalParticipantExponent.decodedIoc - 0.03251427153139737) < 1e-14);
+assert.deepEqual(canonicalParticipantExponent.first20Indices,
+  [28,23,6,13,0,26,15,17,10,25,23,13,23,22,23,27,18,0,22,26]);
 
 
 // Native-source regression: a complete p36-shaped 238-rune GP text with
@@ -259,7 +263,9 @@ console.log(JSON.stringify({
     gridBytes:256,lowFactorDegree:16,
     irreducibleFieldFactorDegree:238,
     addedExponent:{value:1067,role:'DH3301 participant-transcript shared secret',
-      authentication:'unsigned participant transcript; protocol only is signed'}},
+      authentication:'unsigned participant transcript; protocol only is signed'},
+    participantExponentClass:{congruence:'e = 11 (mod 550)',leastPositiveRepresentative:11,
+      authentication:'unsigned participant transcript; no LP2 instruction'}},
   exactPower2:{source:'signed 2013 DH23 shared value 2 (hypothetical power operand)',
     eulerResidue:squareResidue.slice(0,24),quadraticNonResidue:true,
     thereforePossibleAsSquare:false,squaredSourceControlPass:true},
@@ -270,5 +276,5 @@ console.log(JSON.stringify({
   nativePlant:{source:'p57 repeated to 238 runes, heading 1 at99',
     exact238RunesRecovered:true,ioc:ioc(plantRecovered)},
   p36OriginalIoc:ioc(p36),
-  status:"No original plaintext/key. Literal field-power^2 and ^15 impossible; inverses ^23, ^1661 and ^1067 ciphertext-like."
+  status:"No original plaintext/key. Literal field-power^2 and ^15 impossible; inverses ^11, ^23, ^1661 and ^1067 ciphertext-like."
 },null,2));
