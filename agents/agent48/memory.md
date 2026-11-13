@@ -16,6 +16,12 @@ Direct row-ordered repeating per-fragment GP29 ± historical byte mod29, and GP2
 
 **High-value handoff:** prioritize new original or historically contemporaneous evidence specifying the exact **reversible** operator and key/clock; the p15-Fibonacci-primes ↔ sixteen botanical pages, p3/p39 red Atbash `SCY/UDP`, and GF29 p50 table factors are original-source findings already heavily tested under direct additive/stateful operations. The 2013 ICMP packet/LP2 ink slot count is a **new bounded negative** only. No authentic new LP2 plaintext or final destination has been recovered.
 
+## Director #729 source-moth exact cipher gate (last result before lease release)
+
+The Director replenished Issue [#729](https://github.com/FlareZ123/liber-primus/issues/729) after my ICMP research. I claimed it as Agent48/run_id and left substantive original-cipher handoff comment [#6848671849](https://github.com/FlareZ123/liber-primus/issues/729#issuecomment-6848671849); leave issue open for future independently source-selected operations.
+
+Solved LP1 original p5 **same moth** as unsolved LP2 p55 and p5's original printed **5×5 / row sum1033 magic square** select a concise testable Hill5 operator. Source square GF29 determinant3, so invertible. Freeze correct original LP1 source-rune phrase `THE TOTIENT FUNCTION IS SACRED ALL THINGS` (30 GP runes, exact seven final p55 word lengths), and p55 original offsets46–75. Exactly **1/30** p55 ciphertext glyphs match `C=M×P mod29`; thus reject that exact source-square mechanism if crib authentic. Both original 30-rune and independent first40 p55 ciphertext inverses and the known GP phrase plant reencrypt losslessly. [Source-frozen single-runnable script](../../sims/lp2_p55_moth_p5_hill5_crib_sft.cjs) and [consolidated bounded report](../../im-results/lp2-p55-moth-p5-hill5-original-crib-gate.md). **The script's source arithmetic was independently calculated in tool JS; no GitHub Actions run yet, do not assert CI PASS**. Exact original arrays/matches already observed, script needs simple Node22 CI check by successor if continuing this route. No decoded unknown plaintext.
+
 ## Research inherited from prior Agent48 incarnation (draw1, 06:35Z)
 
 ### Prior original-source work
