@@ -1,6 +1,6 @@
 # Seven-page LP2 p8–14: source-motivated seven-column cipher decisions
 
-**Agent17, 13 November 2026.** Two complementary, source-bound, **key-independent** original-cipher obstructions. Neither identifies the actual cipher or recovers an unknown plaintext, genuine key or destination. These results constrain two concrete ways a seven-column clue might be consumed, rather than ruling out all seven-column encoders.
+**Agent17, 13 November 2026.** Two source-bound **key-independent** original-cipher obstructions, with an additional source-fixed historical dense matrix test in Gate C. Neither identifies the actual cipher or recovers an unknown plaintext, genuine key or destination. These results constrain two concrete ways a seven-column clue might be consumed, rather than ruling out all seven-column encoders.
 
 ## Original evidence and weakest assumption
 
@@ -64,10 +64,32 @@ A nontrivial **positive Hill7 plant** starts from native GP29 Gibran runes, solv
 
 **Scope:** The exact family includes arbitrary unknown invertible 7×7 matrices with inverse-row support 1–4, not only a fixed historical Hill key. It does **not** exclude an inverse with **five to seven nonzero coefficients in any row**, moving rune positions *between* seven-symbol blocks, extra state-dependent cipher layers, or a plaintext unlike the three pinned native-English controls. A sparse *forward* matrix can have a dense inverse; this result concerns the **inverse** support only. The 7 × 247 clue itself remains provisional.
 
+## Gate C: historical 2014 Stage10 dense seven-square key
+
+**Agent15, 13 November 2026; original-source regression executed successfully.** The published 2014 Stage10 [magic-square text](../resources/cicada2014-openpuff-magic-squares.txt) contains a unique 7×7 integer square, with every row and column summing to **1033**. Gates A and B leave dense 7×7 Hill inverses open; this historical artifact is a concrete, complete matrix one could test without guessing its 49 entries. The seven source pages and p10's printed 7 supply an independent *reason to try*, although **no original instruction selects a transfer of Stage10's square to these LP2 runes**.
+
+The exact 7×7 matrix and, separately, its entrywise Euler totients are both invertible over GF(29). The raw source key is primary; entrywise totients are a labelled speculative control. For each matrix, test the matrix itself and its exact inverse, left and right multiplication, and seven sequential ciphertext runes per block or seven 247-rune strands. This is **16 fixed reversible configurations** acting on all **1,729 untouched GP29 runes** of pp8–14. No free phase, fitted parameter, salt, word edit or additional cipher layer enters. Each model also reverses a **1,729/1,729** synthetic native-GP plant using solved p57 runes.
+
+| Original-input measurement | Coincidence index |
+| --- | ---: |
+| Best of 16 direct source-key outputs | **0.035161** |
+| Worst of 16 direct source-key outputs | **0.034351** |
+| Genuine native-GP column controls from Gate B | **substantially higher** |
+
+The best original output uses the unchanged historical matrix, left multiplication and the seven-strand layout. Its first 90 GP rune transliterations are:
+
+    IAJEAYPWEAJYXAETFHYNGTHOEGTHGAEOCOFWEOIAEOGOMPPCPXYITUWIAYNGOMLWXAGGAEIAAETPWEAOTEGPIJOJEOEOEAYFDIATHGCAPNGDAERDAE
+
+All 16 outputs remain ciphertext-like (every whole-chapter IoC below 0.04). **No original plaintext, source-authenticated LP2 cipher operator or new key is recovered.** The key is authentic *for its earlier 2014 puzzle stage*, but its proposed LP2 use fails.
+
+[Standalone CommonJS reproducer](../sims/lp2_p8_14_stage10_sevensquare_hill_sft.cjs) was executed in [successful manually dispatched original-source CI run 43523235489](https://github.com/FlareZ123/liber-primus/actions/runs/43523235489), with the [manual-only workflow](../.github/workflows/lp2-p8-14-stage10-sevensquare-hill-manual.yml). The initial dispatch failed at JavaScript syntax parsing, corrected before the successful run. No cryptanalytic conclusion is based on the failed run.
+
+**Decision:** retire this **specific source-fixed 2014 dense Hill7 key transfer**. An arbitrary dense secret 7×7 matrix remains outside these results, but now requires a genuinely independent key/source selector or plaintext anchor before another search.
+
 ## Reproduction, sources and next decision
 
 - [Original exact source and independent 247-bijection positive test](../sims/lp2_p8_14_sevenrow_allsecret_sft.cjs); [passing Windows CI 43514671553](https://github.com/FlareZ123/liber-primus/actions/runs/43514671553).
 - [Exhaustive 1,592,710 projection attack, full 7,179-window reference envelope and positive Hill7 inverse](../sims/lp2_p8_14_hill7_sparse_inverse_sft.cjs); [passing Windows CI 43517943573](https://github.com/FlareZ123/liber-primus/actions/runs/43517943573). Both natural layouts are tested. The older taxicab branch was not rerun.
 - Original inputs: [LP2 numeric rune corpus](../resources/liber-primus/lp2-corpus.json), [printed rune/punctuation transcription](../resources/liber-primus/lp2-transcription.txt), and the three checked-in original-English control corpora under [resources/control](../resources/control/).
 
-**Next research choice:** The seven-column explanation now requires a genuinely different mechanism: **a dense inverse mixing at least five ciphertext symbols into one decoded position**, an additional source-specified layer or a nonstandard plaintext alphabet/genre. Do not launch an unbounded seven-column key search from the coincidence of chapter size and numeral 7 alone. Obtain an independent key, a row-mixing operation or credible plaintext crib before narrowing that surviving space. These experiments recovered **no unknown plaintext**.
+**Next research choice:** An untested **source-selected dense inverse** (the actual preserved Stage10 seven-square has now failed), an additional source-instructed layer, or nonstandard plaintext could still explain the chapter. Do not launch an arbitrary dense-key search from the coincidence of chapter size and numeral 7 alone. Obtain an independent key, a row-mixing operation or credible plaintext crib before narrowing that surviving space. These experiments recovered **no unknown plaintext**.
