@@ -1,15 +1,17 @@
 'use strict';
 
 /**
- * Original-source p0/p1 dimension-word BASE29 address test.
+ * Exact negative: source dimension-selected original words do not converge
+ * to a common BASE29 address on 121-runic physical p32.
+ *
+ * Uses source exact 0..28 GP indices, canonical page-crossing-aware words.
  * Run: node sims/lp2_dimword_base29_root121_source_gate_sft.cjs
- * Uses repository source files and no network or third-party packages.
- * The output is a candidate navigation clue, never a decryption claim.
  * @module lp2_dimword_base29_root121_source_gate_sft
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const {parseLP2Words} = require('./lp2_word_pages.cjs');
 
 const root = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(
@@ -22,144 +24,71 @@ const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 
 /** @param {string} source @returns {number[][]} */
 function words(source) {
-  const units = source.replaceAll('/', '').replace(/\s/gu, '')
+  const tokens = source.replaceAll('/', '').replace(/\s/gu, '')
     .match(/\p{Script=Runic}+/gu) || [];
-  return units.map(unit => [...unit].map(r => {
-    assert.ok(runeIndex.has(r), 'Unknown original-source rune');
+  return tokens.map(token => [...token].map(r => {
+    assert.ok(runeIndex.has(r), 'Unknown GP rune');
     return runeIndex.get(r);
   }));
 }
 /** @param {number[]} digits @returns {bigint} */
-function positionalBase29(digits) {
+function base29(digits) {
   return digits.reduce((n, d) => n * 29n + BigInt(d), 0n);
 }
 /** @param {number[]} digits @returns {number} */
-function residue121(digits) {
-  return Number(positionalBase29(digits) % 121n);
-}
-/** @param {number[]} digits @returns {number} */
-function primeSum(digits) {
-  return digits.reduce((s, d) => s + corpus.prime[d], 0);
+function sumPrimes(digits) {
+  return digits.reduce((s, v) => s + corpus.prime[v], 0);
 }
 /** @param {number[]} digits @returns {string} */
 function roman(digits) {
-  return digits.map(d => corpus.translit[d]).join('');
+  return digits.map(v => corpus.translit[v]).join('');
+}
+/** @param {number[]} digits @returns {number} */
+function address(digits) {
+  return Number(base29(digits) % 121n);
 }
 
-const widthWord = words(segments[0])[5];
-const heightWord = words(segments[1])[32];
-assert.deepEqual(widthWord, [9, 18, 7, 17, 24, 15, 22, 12, 10, 21, 1]);
-assert.deepEqual(heightWord, [11, 0, 10, 9, 28, 5, 26, 27, 10, 28]);
-assert.deepEqual([primeSum(widthWord), primeSum(heightWord)], [563, 569]);
-assert.deepEqual([roman(widthWord), roman(heightWord)],
-  ['NEWBASOEEOINGU', 'JFINIACYEAIIA']);
-const unknown = segments.slice(0, 55).flatMap(words);
-assert.deepEqual([563, 569].map(n =>
-  unknown.filter(w => primeSum(w) === n).length), [1, 1]);
+const first = words(segments[0])[5];
+const second = words(segments[1])[32];
+assert.deepEqual(first, [9, 18, 7, 17, 24, 15, 22, 12, 10, 21, 1]);
+assert.deepEqual(second, [11, 0, 10, 9, 27, 5, 26, 28, 10, 27]);
+assert.equal(roman(first), 'NEWBASOEEOINGU');
+assert.equal(roman(second), 'JFINIACYEAIIA');
+assert.deepEqual([sumPrimes(first), sumPrimes(second)], [563, 569]);
 
-assert.equal(positionalBase29(widthWord), 4051303299344240n);
-assert.equal(positionalBase29(heightWord), 159757036413254n);
-assert.deepEqual([residue121(widthWord), residue121(heightWord)],
-  [115, 115]);
-assert.deepEqual([
-  residue121([...widthWord].reverse()),
-  residue121([...heightWord].reverse())
-], [42, 23]);
-assert.deepEqual([
-  residue121(widthWord.map(x => x + 1)),
-  residue121(heightWord.map(x => x + 1))
-], [17, 49]);
+const nativeWords = parseLP2Words(transcription).words;
+assert.equal(nativeWords.length, 2896);
+const sourceSums = nativeWords.map(w => sumPrimes(
+  [...w.runes].map(r => runeIndex.get(r))));
+assert.deepEqual([563, 569].map(s =>
+  sourceSums.filter(x => x === s).length), [1, 1]);
 
-const grid = corpus.pages.find(p => p.page === 32).indices;
-assert.equal(grid.length, 121);
-assert.equal(grid[115], 11);
-assert.equal(corpus.translit[grid[115]], 'J');
-assert.equal(115 % 11, 5);
-assert.equal(Math.floor(115 / 11), 10);
-assert.equal(93 % 11, 5);
-assert.equal(Math.floor(93 / 11), 8);
-assert.equal(roman(grid.slice(93, 97)), 'BUDS');
+assert.equal(base29(first), 4051303299344240n);
+assert.equal(base29(second), 159757015902945n);
+assert.deepEqual([address(first), address(second)], [115, 32]);
+assert.deepEqual([address([...first].reverse()),
+  address([...second].reverse())], [42, 62]);
+assert.deepEqual([address(first.map(x => x + 1)),
+  address(second.map(x => x + 1))], [17, 87]);
 
-/**
- * Exhaustive position-permutation residual distribution.
- * Distinct input slots remain distinguishable; repeated values therefore
- * receive the correct multiplicity weighting for a uniform random shuffle.
- * The full 11! and 10! totals fit exactly within Number's 53-bit precision.
- * @param {number[]} digits @returns {Float64Array}
- */
-function residueDistribution(digits) {
-  const totalMasks = 1 << digits.length;
-  const dp = Array.from({length: totalMasks}, () => new Float64Array(121));
-  dp[0][0] = 1;
-  for (let mask = 0; mask < totalMasks; mask++) {
-    const src = dp[mask];
-    for (let k = 0; k < digits.length; k++) {
-      if (mask & (1 << k)) continue;
-      const dst = dp[mask | (1 << k)];
-      for (let r = 0; r < 121; r++) {
-        if (src[r]) dst[(29 * r + digits[k]) % 121] += src[r];
-      }
-    }
-  }
-  return dp[totalMasks - 1];
-}
-const distA = residueDistribution(widthWord);
-const distB = residueDistribution(heightWord);
-const totalA = distA.reduce((s, n) => s + n, 0);
-const totalB = distB.reduce((s, n) => s + n, 0);
-assert.deepEqual([totalA, totalB], [39916800, 3628800]);
-assert.deepEqual([distA[115], distB[115]], [329116, 29756]);
-const samePairs = distA.reduce((s, n, i) => s + n * distB[i], 0);
-
-/**
- * Rune-prime graph on the original 11x11 p32 reflow. Stops at first
- * repeated position; no language search or fitted parameters.
- * @param {number} start
- * @param {'absolute'|'forward'} mode
- */
-function walk(start, mode) {
-  const seen = new Map();
-  let i = start;
-  const out = [];
-  while (!seen.has(i)) {
-    seen.set(i, out.length);
-    const d = grid[i];
-    out.push({position: i, rune: corpus.translit[d]});
-    i = mode === 'absolute' ? corpus.prime[d] :
-      (i + corpus.prime[d]) % 121;
-  }
-  return {
-    path: out.map(x => x.position),
-    runes: out.map(x => x.rune).join(''),
-    preperiod: seen.get(i),
-    cycleLength: out.length - seen.get(i)
-  };
-}
-const direct = walk(115, 'absolute');
-const forward = walk(115, 'forward');
-assert.equal(direct.runes, 'JXIAUWIA');
-assert.equal(forward.runes, 'JOWMIAFTXOETHX');
+const p32 = corpus.pages[32].indices;
+assert.equal(p32.length, 121);
+assert.deepEqual([p32[115], p32[32]], [11, 2]);
+assert.deepEqual([roman([p32[115]]), roman([p32[32]])], ['J', 'TH']);
+assert.equal(roman(p32.slice(93, 97)), 'BUDS');
+assert.notEqual(address(first), address(second));
 
 console.log(JSON.stringify({
-  status: 'Provisional source-constrained address, no plaintext/key recovered',
-  dimensionPair: [563, 569],
-  selectedPhysicalWords: ['p0 word6', 'p1 word33'],
-  base29Integers: [
-    positionalBase29(widthWord).toString(),
-    positionalBase29(heightWord).toString()
+  verdict: 'REJECTED: two authentic dimension-word BASE29 residues disagree',
+  originalPrimeSums: [563, 569],
+  positionalBase29Integers: [base29(first).toString(), base29(second).toString()],
+  originalResiduesMod121: [115, 32],
+  11by11Destinations: [
+    {offset: 115, row: 10, col: 5, rune: 'J'},
+    {offset: 32, row: 2, col: 10, rune: 'TH'}
   ],
-  residue121: [115, 115],
-  p32Destination: {
-    index: 115, row: 10, column: 5, rune: 'J',
-    separateLiteralBUDS: {start: 93, row: 8, column: 5}
-  },
-  conditionalExactPermutationNull: {
-    independentWithinWordSlotShuffles: true,
-    probabilities: {
-      matchingAnyResidue: samePairs / (totalA * totalB),
-      bothResidue115: (distA[115] / totalA) * (distB[115] / totalB)
-    },
-    warning: 'Hypothesis developed after examining source coincidences; no discovery-wide p-value'
-  },
-  naturalSourcePrimeWalks: {direct, forward}
+  separateOriginalBUDS: {offset: 93, row: 8, col: 5},
+  oldIncorrectSecondWord: '11,0,10,9,28,5,26,27,10,28',
+  reason: 'An earlier hand-copied p1 digit sequence changed three actual runes and falsely created a shared residue 115; source exact reread invalidates it',
+  unknownPlaintextRecovered: 0
 }, null, 2));
