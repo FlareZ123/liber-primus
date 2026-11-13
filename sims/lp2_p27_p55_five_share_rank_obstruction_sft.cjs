@@ -173,6 +173,43 @@ function quadraticPositiveControl() {
   return {recovered: recovered.length, quadraticTerms: 15};
 }
 
+/** Total-degree <=3 polynomial basis on the five GP29 source inputs. */
+function cubicFeatures(row) {
+  const f = [1, ...quadraticFeatures(row)];
+  for (let i = 0; i < 5; i++) for (let j = i; j < 5; j++) {
+    for (let k = j; k < 5; k++) f.push(mod(row[i] * row[j] * row[k]));
+  }
+  assert.equal(f.length, 56);
+  return f;
+}
+
+/** Exact interpolation using the original first 43 cubic-monomial columns. */
+function cubicFit(body, target, layout, encoding, primes) {
+  const rows = Array.from({length: 43}, (_, i) => {
+    const x = sourceRow(body, i, layout);
+    return cubicFeatures(encoding === "prime" ? x.map(v => mod(primes[v])) : x);
+  });
+  const a = rows.map((r, i) => [...r.slice(0, 43), target[i]]);
+  const determinant = determinant29(a.map(r => r.slice(0, 43)));
+  assert.ok(determinant !== 0);
+  for (let col = 0; col < 43; col++) {
+    let pivot = col;
+    while (pivot < 43 && a[pivot][col] === 0) pivot++;
+    assert.ok(pivot < 43);
+    if (pivot !== col) [a[pivot], a[col]] = [a[col], a[pivot]];
+    const z = inv(a[col][col]);
+    for (let j = col; j <= 43; j++) a[col][j] = mod(a[col][j] * z);
+    for (let i = 0; i < 43; i++) {
+      if (i === col) continue;
+      const multiple = a[i][col];
+      for (let j = col; j <= 43; j++) a[i][j] = mod(a[i][j] - multiple * a[col][j]);
+    }
+  }
+  const w = a.map(row => row[43]);
+  assert.deepEqual(rows.map(row => mod(row.slice(0, 43).reduce((s, x, j) => s + x * w[j], 0))), target);
+  return {determinantMod29: determinant, recovered: target.length, freeCoefficientCount: 13};
+}
+
 /** Historical 2013 five-of-ten Shamir weights, adapted to GF29. */
 function lagrangeWeightsAtZero(ids) {
   assert.equal(ids.length, 5);
@@ -241,20 +278,31 @@ function main() {
     assert.equal(quadraticDet, layout === "strands" ? 8 : 11);
     assert.equal(primeDet, layout === "strands" ? 16 : 25);
     assert.ok(quadraticDet !== 0 && primeDet !== 0);
+    const cubic = ["ordinal", "prime"].map(encoding => {
+      const actual = cubicFit(body, interior, layout, encoding, gpPrimes);
+      const alternate = cubicFit(body, interior.map((_, i) => mod(5 + 7 * i + 13 * i * i)),
+        layout, encoding, gpPrimes);
+      assert.equal(actual.determinantMod29, alternate.determinantMod29);
+      assert.equal(actual.determinantMod29,
+        layout === "strands" ? (encoding === "ordinal" ? 18 : 24)
+          : (encoding === "ordinal" ? 12 : 20));
+      return {encoding, ...actual, arbitraryTargetRecovered: alternate.recovered};
+    });
     return {layout, determinantMod29: det, witnessPairs: WITNESS, witnessDifferences: matrix,
       canonicalShamirWeights: weights, canonicalLiteralMatches: literalMatches,
       quadratic: {nonconstantTerms: 20, witnessPairs: QUADRATIC_WITNESS,
         matrixDeterminantMod29: quadraticDet, primeResidueDeterminantMod29: primeDet,
         secretFixedBijectionPossible: false},
+      cubic: {sourceInterpolations: cubic, historicalKeyIdentified: false},
       directFixedAlphabetFiveShareTransferPossible: false};
   });
   const summary = {scope: "p27 black 215 = five times p55 strict interior 43, both natural layouts",
     source: {p27RedTitle: 19, p27Body: 215, p55Interior: 43, p55Distinct: 21},
     planted, quadraticPlant, evidence,
-    conclusion: "All stationary degree <=2 GF29 polynomial five-input consumers with arbitrary intercept and fixed bijective secret output alphabet are inconsistent with original target-equality classes; independent key use remains untested."};
+    conclusion: "All stationary degree <=2 direct polynomials with fixed output permutation fail; degree 3 exactly interpolates any 43 symbols with 29^13 parameter choices and therefore is non-identifying."};
   console.log(JSON.stringify(summary, null, 2));
   return summary;
 }
 
-module.exports = {loadOriginal, sourceRow, determinant29, forcedMatrix, quadraticFeatures, quadraticForcedMatrix, lagrangeWeightsAtZero, applyWeights, positiveControl, quadraticPositiveControl, main};
+module.exports = {loadOriginal, sourceRow, determinant29, forcedMatrix, quadraticFeatures, quadraticForcedMatrix, lagrangeWeightsAtZero, applyWeights, positiveControl, quadraticPositiveControl, cubicFeatures, cubicFit, main};
 if (require.main === module) main();

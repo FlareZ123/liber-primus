@@ -356,6 +356,19 @@ The full matrix is deterministically reconstructed from the original p27 five-ve
 
 **Strengthened decision:** every *direct, fixed-source-order, stationary GF29 polynomial five-input transfer of total degree ≤2* is mathematically incompatible with the specific original p55 43-rune interior, under either GP ordinal or GP-prime-residue input values, even after arbitrarily secret fixed symbol relabeling. A nonconstant stationary polynomial directly transferring that source must have **degree at least three** if it exists. This says nothing about nonlinear lookup tables, independently obtained key material, changing coefficients, non-bijective/variable-length output coders, GF256 secret sharing, or other source layouts selected by future clues. There is still no recovered unknown plaintext.
 
+### Degree-three saturation: an exact polynomial fit becomes uninformative
+
+The original p27 source supplies **43 five-symbol vectors**. A stationary GP29 polynomial of total degree at most three in those five inputs has **56 independent monomial coefficients**: constant, 5 linear, 15 quadratic, 35 cubic. The 43×56 original-input feature matrix has **full row rank 43** in both natural source packings and both GP source value conventions. Its *first 43 monomial columns* already form an invertible 43×43 minor:
+
+| Packing | GP ordinal determinant modulo29 | GP-prime-residue determinant modulo29 |
+| --- | ---: | ---: |
+| Five contiguous 43-rune strands | **18** | **24** |
+| Forty-three sequential quintets | **12** | **20** |
+
+The executable source test explicitly solves all four modular systems and exactly interpolates **43/43** unchanged original p55 ciphertext interior runes. It also separately interpolates **43/43** of a synthetically chosen, entirely different 43-symbol target on the **same** original inputs. Because the feature rank is 43 and there are 56 parameters, **every possible 43-rune output has 29^13 distinct polynomial coefficient solutions** under each of these four fixed models.
+
+**Decision:** A perfect cubic p27→p55 mapping is guaranteed for arbitrary outputs and cannot establish an original cipher, a meaningful key, or unknown plaintext. Do not launch free cubic-coefficient searches without source-derived selection or additional independent ciphertext positions. The earlier quadratic fixed-bijection exclusion is real, and this theorem explains why increasing degree to escape it is scientifically uninformative.
+
 The [single-file original-source SFT](../sims/lp2_p27_p55_five_share_rank_obstruction_sft.cjs) checks the p27 19-rune red span, complete p27/p55 canonical inputs, p55 source words including line-wrap handling, all five witness pairs, both five-dimensional determinant residues, the 20×20 quadratic certificate determinants, and direct canonical interpolation. A 43-column five-share synthetic positive control with authentic Lagrange weights and a secret affine GP29 output permutation recovers all **43/43** symbols and satisfies the equality equations. All source assertions and the positive plant executed successfully on the remote repository resources.
 
 **Decision:** retire direct **fixed-output-alphabet stationary GF29 linear five-share p27→p55 interior transfer** over either fixed original packing, rather than scanning more x-coordinates or arbitrary constant shifts. This does **not** exclude using the 215 p27 symbols as a changing key for an independent p55 cipher, a GF256 byte-level secret-sharing format, nonlinear encoders, varying per-output coefficients, a different source layout selected by an authentic clue, or unknown plaintext elsewhere. The source 5×43 coincidence remains real; no unknown text or key was recovered.
