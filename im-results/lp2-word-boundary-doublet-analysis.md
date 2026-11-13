@@ -35,6 +35,21 @@ The endpoint marginals do not make the zero diagonal automatic: all 29 GP symbol
 
 A bounded check for a simple source-authentic boundary transform also fails: across the 686 pp11–23 boundary pairs, the best (y=ax+b\pmod{29}) map matches **40/686**; a 5,000-draw max-over-812-affine-maps permutation gives **p=0.59**. The no-repeat diagonal is not explained by one fixed Atbash/Vigenère-style affine relation.
 
+## Transition differences: diagonal suppression, not a fixed shift
+
+Across the 12,901 within-page adjacent-rune opportunities, LP2 has **86** equal pairs. An iid-uniform 29-rune stream would produce **444.9**; a permutation null preserving each page's observed rune counts expects **439.2**. Thus LP2 has about **80.4% fewer** adjacent repeats than the page-marginal null. The first three LP1 blocks, by contrast, have repeat rates near 3%, close to the 1/29 iid expectation.
+
+For each adjacent pair define (d=(x_{i+1}-x_i)\bmod29). After excluding (d=0), the 28 nonzero difference counts are consistent with uniformity:
+
+| Scope | Nonzero-difference (chi^2) | df | p |
+|---|---:|---:|---:|
+| LP2 within-word | 34.30 | 27 | 0.157 |
+| LP2 cross-word | 33.00 | 27 | 0.197 |
+| LP2 pp11–23 cross-word | 33.02 | 27 | 0.196 |
+| LP2 pp11–23 within-word | 25.53 | 27 | 0.545 |
+
+This is the signature of **diagonal suppression without an obvious preferred nonzero offset**. The simplest statistical description is a one-step no-repeat / non-backtracking transition over the 29-symbol alphabet (choose among the 28 symbols other than the previous one), with rare repeat slips. It is not a recovered cipher: the transition statistics do not identify how plaintext or key material selects the next symbol. The p11–23 span appears to enforce the cross-word exclusion more strictly, but its source selector remains unknown.
+
 ## p15's 16-value spiral as a repeating word key (negative)
 
 The obvious source-derived consumer is a 16-step repeating word key: the p15 grid has exactly sixteen values, its red 3299 fixes the spiral start, and the infinity mark plausibly suggests repetition. Starting at the first word of p16 (the page after the key), I tested the five directly source-derived sequences modulo 29: printed grid values, underlying primes, prime totients, distinct Fibonacci inputs, and one-based prime ranks. For each, the four fixed additive/Atbash sign forms (P=aC+sK_{j\bmod16}\pmod{29}), (a\in\{1,-1\}), (s\in\{1,-1\}), give 20 fixed candidates without a fitted phase.
@@ -46,7 +61,7 @@ This rejects the most natural p15-grid repeating-key consumer of the boundary an
 
 ## Interpretation and limits
 
-The robust observations are (i) an LP2-wide adjacent-repeat deficit relative to the initial LP1 control and (ii) a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
+The robust observations are (i) an LP2-wide adjacent-repeat deficit relative to the initial LP1 control, (ii) near-uniform nonzero transition differences consistent with a diagonal-exclusion process, and (iii) a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
 
 The page art is context, not proof: p11 and p23 carry tree illustrations; p15 has the red 3299 Fibonacci/prime grid and infinity mark; p22 has the three-bar cross/shrouded-body engraving; p24 has mayfly imagery. p10 also has a tree, so these motifs do not uniquely delimit the zero-run span. Independent external work likewise cautions that figural-motif signals fire in 80–99% of section-structured control books; see the [Dukotah research handoff](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/PICKUP-HERE.md) and [art-attribution catalogue](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round30/C1-art-attribution/RESULTS.md). Do not promote a “tree cipher”, “cross cipher”, or a general motif theory from this alignment.
 
