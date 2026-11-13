@@ -130,6 +130,29 @@ const sourceTailMapped300 = Array.from({ length: 300 }, (_, j) => {
     order[Math.floor(sourceIndex / rows)]];
 });
 const p53ClosingRed51 = sourceTailMapped300.slice(-51);
+
+// Independent 3000-rune GP-native register from preserved Gibran source.
+// This is a linguistic reference, never a key or decoder parameter.
+const gibranSource = fs.readFileSync(
+  path.join(root, "resources/control/gibran_prophet_58585.txt"), "utf8").toUpperCase();
+const gpTokens = corpus.translit.map((text, i) => ({ text, i }))
+  .sort((a, b) => b.text.length - a.text.length);
+const gibranNative = [];
+for (const raw of gibranSource.match(/[A-Z]+/g) || []) {
+  const word = raw.replace(/QU/g, "CW").replace(/V/g, "U")
+    .replace(/[KQ]/g, "C").replace(/Z/g, "S").replace(/ING/g, "NG");
+  for (let i = 0; i < word.length;) {
+    const token = gpTokens.find(x => word.startsWith(x.text, i));
+    assert.ok(token, "Gibran GP token");
+    gibranNative.push(token.i);
+    i += token.text.length;
+  }
+  if (gibranNative.length >= 3000) break;
+}
+gibranNative.length = 3000;
+assert.equal(gibranNative.length, 3000);
+assert.ok(ioc(gibranNative) > 0.05);
+
 const report = {
   source: "LP2 physical p40-53 original 3000 body runes and 32x8 table",
   iv: heading[7], heading, order,
@@ -141,6 +164,7 @@ const report = {
   decodedRowMajorLast300IoC: ioc(plaintext.slice(-300)),
   decodedSourceOrderLast300IoC: ioc(sourceTailMapped300),
   solvedP57Native3000IoC: ioc(plant),
+  independentGibran3000IoC: ioc(gibranNative),
   wrongTableReorderIoC: ioc(wrongPlain),
   wrongKeyReplayedWithActualMismatches: wrongKeyMismatches,
   decodedFirst200: gp(plaintext.slice(0, 200)),
