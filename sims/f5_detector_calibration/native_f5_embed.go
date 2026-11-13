@@ -7,6 +7,7 @@ package main
 import (
   "bytes"
   "encoding/json"
+  "encoding/binary"
   "errors"
   "image/color"
   "image/jpeg"
@@ -26,6 +27,7 @@ func main() {
   out := flag.String("out", "", "stego JPEG output")
   k := flag.Int("k", 4, "F5 fixed matrix parameter in [1,8]")
   padTail := flag.Bool("pad-trailing-zeros", false, "restore JPEG terminal all-zero MCU blocks before embedding")
+  coeffOutput := flag.String("out-coefficients", "", "write F5 embedded little-endian int16 coefficients for libjpeg reserialization")
   flag.Parse()
   if *cover == "" || *payload == "" || *out == "" || *k < 1 || *k > 8 {
     panic("required -cover, -payload, -out and 1<=k<=8")
@@ -56,6 +58,20 @@ func main() {
   if err != nil { panic(err) }
   final := make([]int,len(result.Coefficients))
   for i,v := range result.Coefficients { final[i] = int(v) }
+  if *coeffOutput != "" {
+    if err:=os.MkdirAll(filepath.Dir(*coeffOutput),0755);err!=nil{panic(err)}
+    payload := make([]byte,len(final)*2)
+    for i,value:=range final {
+      binary.LittleEndian.PutUint16(payload[2*i:],uint16(int16(value)))
+    }
+    temp,err:=os.CreateTemp(filepath.Dir(*coeffOutput),".f5-exact-coeff-*");if err!=nil{panic(err)}
+    tempPath:=temp.Name()
+    if _,err:=temp.Write(payload);err!=nil{temp.Close();os.Remove(tempPath);panic(err)}
+    if err:=temp.Close();err!=nil{os.Remove(tempPath);panic(err)}
+    if err:=os.Rename(tempPath,*coeffOutput);err!=nil{os.Remove(tempPath);panic(err)}
+    fmt.Printf("SOURCE_F5_RAW_COEFFICIENTS count=%d bytes=%d\\n",len(final),len(payload))
+    return
+  }
   jpegData,err := decoder.EncodeCoefficients(final); if err != nil { panic(err) }
   reRead:=f5jpeg.NewStandardDecoder()
   roundtrip,err:=reRead.ExtractCoefficients(jpegData); if err != nil {panic(err)}
