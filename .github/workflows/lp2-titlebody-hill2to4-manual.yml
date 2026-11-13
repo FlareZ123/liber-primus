@@ -1,0 +1,17 @@
+name: LP2 source-bounded all-secret Hill and red-triplet checks
+on:
+  workflow_dispatch:
+
+jobs:
+  original-input:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: P53 red-triplet quadratic and positive control
+        run: node sims/lp2_p53_red51_p55_wordquadratic_sft.cjs
+      - name: All-secret affine Hill2-4 and native-GP controls
+        run: node sims/lp2_titlebody_allsecret_hill2to4_sft.cjs
