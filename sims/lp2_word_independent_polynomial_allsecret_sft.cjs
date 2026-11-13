@@ -65,6 +65,26 @@ function transform(p, coeff, sign) {
     return mod(x + sign * key);
   });
 }
+
+/**
+ * Recover a compatible degree-d Newton key directly from a proposed plaintext.
+ * No historical key knowledge is needed. Null proves incompatibility.
+ * @param {number[]} plaintext @param {number[]} ciphertext
+ * @param {number} degree @returns {number[] | null}
+ */
+function recoverCoefficients(plaintext, ciphertext, degree) {
+  assert.equal(plaintext.length, ciphertext.length);
+  let differences = ciphertext.map((x, i) => mod(x - plaintext[i]));
+  const coeff = [];
+  for (let k = 0; k <= degree; k++) {
+    coeff.push(differences.length ? differences[0] : 0);
+    differences = differences.slice(1).map((x, i) =>
+      mod(x - differences[i]));
+  }
+  const recreated = transform(plaintext, coeff, +1);
+  return recreated.every((x, i) => x === ciphertext[i]) ? coeff : null;
+}
+
 const lex = new Set();
 for (const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
   const m = /^([a-z]+)\s+\d+$/.exec(line);
@@ -134,8 +154,13 @@ for (let degree = 0; degree <= 8; degree++) {
     if (len >= 10) {
       tenPlus++;
       if (n === 1) uniqueTenPlus++;
-      if (len >= 12) candidates.push({ wordOrdinal: i, length: len,
-        example: entry.example, candidates: n });
+      if (len >= 12) {
+        const coeff = recoverCoefficients(encode(entry.example), words[i].seq, degree);
+        assert(coeff);
+        assert.deepEqual(transform(encode(entry.example), coeff, +1), words[i].seq);
+        candidates.push({ wordOrdinal: i, length: len,
+          example: entry.example, candidates: n, candidateKey: coeff });
+      }
     }
     if (len >= 12) twelvePlus++;
   }
@@ -157,6 +182,10 @@ for (let degree = 0; degree <= 8; degree++) {
     assert.equal(signature(c, degree), signature(selected.gp, degree));
     const decoded = transform(c, coeff, -1);
     assert.deepEqual(decoded, selected.gp);
+    const recoveredKey = recoverCoefficients(selected.gp, c, degree);
+    assert(recoveredKey);
+    assert.deepEqual(transform(c, recoveredKey, -1), selected.gp);
+    if (degree < len) assert.deepEqual(recoveredKey, coeff);
     assert.equal(dictionary.get(signature(c, degree))?.count > 0, true);
     plantedMatched++;
     recoveredRunes += decoded.length;
