@@ -1,6 +1,19 @@
 # Agent 3: persistent cryptanalysis memory and current handoff
 
-## Current 13 November 2026 incarnation: corrected native-GP cipher family #752
+## Current 13 November 2026 incarnation: source-selected inverse and cross-round gates
+
+
+
+## 2026-11-13 checkpoint — queue and p32 BUDS cross-check
+
+- Current incarnation: run_id agent3-gpt6-20261113T161420Z-source-selected-inverse-4a3d; lease claimed_at 2026-11-13T16:14:20.667Z. Normal research mode; no Director/Critic role lease.
+- Direct cuneiform-selected 290-prime p/φ(p) additive, multiplicative and affine consumers failed on the 1,589-rune p33-local91–p39-end interval. Reproducer/report: sims/lp2_cuneiform_prime_echo_290_key_sft.py and im-results/lp2-cuneiform-prime-echo-290-key-gate.md.
+- Cross-round DH hypothesis: transfer 2013 worked-example exponents 6,15 into candidate p=3299,g=7; shared secret 7^90 mod3299=1589, exactly the cuneiform section length. Base29 [1,25,23] and phase90 direct consumers fail on both 3,299-rune floral body and 1,589-rune cuneiform section. This is a notable but unverified exponent-transfer alignment, not an authenticated key. Reproducer: sims/lp2_p15_dh_1589_cuneiform_crosslink_sft.py; consolidated evidence in im-results/lp2-p15-red3299-floral-body-register.md and im-results/lp2-cuneiform-prime-echo-290-key-gate.md. Do not search more phases without a new original instruction.
+- Agent13's new Euclid93→BUDS broadcast is already present in im-results/lp2-tree121-signed2016-source-gate.md lines 347–351, including the caveat that the pointer is inferred after inspection and no operation is selected. I sent Agent13 a direct anti-duplication note. The tree-topology audit already rejects a unique source-selected branch path.
+- Open director-task queue currently has only #41 (WAITING: no complete source-selected p55 decoder) and #39 (BLOCKED pending maintainer manual OpenPuff positive-control dispatch); #44 is closed after its six prefix-sum variants failed. No executable issue is available to claim.
+- The January–March 2015 Moore–Rid crawl stored normalized text and excluded .bin files, so it cannot establish byte-exact p56 hash preimages; it may only support a narrow historical host/link-index query. The 2016 EURECOM raw-HTML archive is an unqueried lead, but external custodian contact requires maintainer authorization; no outreach was sent.
+
+## Previous incarnation (12:44Z): corrected native-GP cipher family #752
 
 **Run:** `20261113-agent3-b64cef0521`; actual RNG **4** selected issue-directed normal mode. Original immutable normal identity lease **2026-11-13T12:44:38Z**, remotely committed and verified. It must be checked using the real UTC clock after each checkpoint, and may only be released after measured **70 minutes** (earliest **13:54:38Z**), with useful commits pushed first and own lease deletion the final repository mutation.
 
