@@ -126,3 +126,80 @@ console.log(JSON.stringify({
   scoreTail: (nScoreGE + 1) / (trials + 1),
   originalSeed: '0x33012026'
 }, null, 2));
+
+/* Second, independent negative-control question: are complete four-rune
+ * source-printed words unusually English-like? Soft line wraps do not separate
+ * words, but '.'/'-' and visual chapter markers do. Physical p50 stays empty.
+ */
+const full4Pages = [];
+for (let page = 0; page < 56; page++) {
+  const source = page === 50 ? '' : sourceSections[page < 50 ? page : page - 1];
+  const indices = pages[page].indices;
+  const starts = [];
+  let position = 0, start = 0, size = 0;
+  for (const ch of source) {
+    if (runeId.has(ch)) {
+      if (size === 0) start = position;
+      position++;
+      size++;
+    } else if ('-.&$§'.includes(ch)) {
+      if (size === 4) starts.push(start);
+      size = 0;
+    }
+  }
+  if (size === 4) starts.push(start);
+  full4Pages.push({ page, indices, starts });
+}
+assert.equal(full4Pages.reduce((n, p) => n + p.starts.length, 0), 514);
+const full4Hits = [];
+let full4Score = 0;
+for (const p of full4Pages) {
+  for (const start of p.starts) {
+    const entry = matched(p.indices, start);
+    if (entry) {
+      full4Hits.push({ page: p.page, offset: start, ...entry });
+      full4Score += Math.log2(entry.frequency + 1);
+    }
+  }
+}
+assert.deepEqual(full4Hits, [
+  { page: 14, offset: 2, word: 'fold', frequency: 23 },
+  { page: 19, offset: 152, word: 'rift', frequency: 3 },
+  { page: 23, offset: 68, word: 'zest', frequency: 3 },
+  { page: 40, offset: 25, word: 'make', frequency: 504 },
+  { page: 54, offset: 56, word: 'roux', frequency: 1 }
+]);
+
+seed = 0x33012026;
+let full4CountGE = 0;
+let full4ScoreGE = 0;
+let full4NullTotal = 0;
+for (let t = 0; t < trials; t++) {
+  let count = 0;
+  let score = 0;
+  for (const p of full4Pages) {
+    if (p.starts.length === 0) continue;
+    const shift = rand32() % p.indices.length;
+    for (const start of p.starts) {
+      const entry = matched(p.indices, start, shift);
+      if (entry) {
+        count++;
+        score += Math.log2(entry.frequency + 1);
+      }
+    }
+  }
+  if (count >= full4Hits.length) full4CountGE++;
+  if (score >= full4Score) full4ScoreGE++;
+  full4NullTotal += count;
+}
+assert.equal(full4CountGE, 1426);
+assert.equal(full4ScoreGE, 2587);
+console.log(JSON.stringify({
+  fullFourRunePageLocalWords: 514,
+  fullFourRuneEnglishHits: full4Hits,
+  weightedScore: full4Score,
+  nullMean: full4NullTotal / trials,
+  countTail: (full4CountGE + 1) / (trials + 1),
+  scoreTail: (full4ScoreGE + 1) / (trials + 1),
+  conclusion: 'no authenticated plaintext or decoder'
+}, null, 2));
