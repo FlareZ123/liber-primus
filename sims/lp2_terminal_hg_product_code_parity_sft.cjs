@@ -191,6 +191,17 @@ const grid = Array.from({ length: 32 }, (_, row) =>
 const originalBorder = clockwiseBorder(grid);
 const H = [3, 26, 24]; // signed 2013 BASE29(3301) = 3QO
 const G = [27, 5, 15]; // original p39 marked red 3-rune inscription
+// The printed p50 table has a *global* H*G factor. That is distinct
+// from the much stronger row-by-row / column-by-column product code.
+const originalRowCodewords = grid.filter((row) =>
+  remainder(row, H).every((x) => x === 0)).length;
+const originalColumnCodewords = Array.from({ length: 8 }, (_, col) =>
+  remainder(grid.map((row) => row[col]), G).every((x) => x === 0))
+  .filter(Boolean).length;
+assert.equal(originalRowCodewords, 0);
+assert.equal(originalColumnCodewords, 0);
+assert.deepEqual(remainder(grid[0], H), [8, 19]);
+assert.deepEqual(remainder(grid.map((row) => row[0]), G), [9, 8]);
 
 const rows = [];
 for (const [name, horizontal0, vertical0] of [
@@ -215,7 +226,7 @@ for (const [name, horizontal0, vertical0] of [
           .map((x) => corpus.translit[x]).join(''),
       });
       // A genuine word created by this exact product code survives the
-      // same extension and all 40 independent row/column parity checks.
+      // same extension and all 32 row and 8 column parity checks.
       if (rows.length === 1) {
         const altered = reconstructed.map((row) => row.slice());
         altered[0][0] = mod(altered[0][0] + 1);
@@ -231,7 +242,8 @@ assert.ok(rows.every((row) => row.borderMatches <= 6 && row.subtractiveMatches <
   row.additiveMatches <= 5 && row.outputIoc < 0.04));
 console.log(JSON.stringify({
   source: { known180: known180.length, ciphertext55: original55.length,
-    tableCells: table.bytes.length, original55Ioc: ioc(original55) },
+    tableCells: table.bytes.length, original55Ioc: ioc(original55),
+    originalRowCodewords, originalColumnCodewords },
   models: rows,
   decision: 'No 76-rune p55 recovery or literal parity-to-ciphertext match.',
 }, null, 2));
