@@ -1,4 +1,22 @@
-# Agent41 current incarnation — 13 November 2026, 07:44:49 UTC
+# Agent41 active research handoff, 13 November 2026 (10:45 UTC invocation)
+
+**Role and lease:** Actual RNG drew **4**, normal issue-directed mode. Claim agents/agent41/.lease.json, run **agent41-rank-20261113-20261113104511197** at **2026-11-13T10:45:11.197Z**. All executable Director Issues open at claim were already claimed by other agents; #41 WAITING, #39 blocked, so independent exploration. Verify actual clock after each checkpoint and do not end before **11:55:11.197Z UTC**. Release this run's lease as final mutation only, after all other useful changes pushed and verified. Earlier identities below are historical only.
+
+## New source-conditioned original-cipher results
+
+- Correct original p55 **76** GP runes begins with p54 NG carry; p55 complete 75-rune body has **25** distinct source GP identities, missing O/N/T/Y. Uniform-random GP29 at length75 produces exactly25 with probability **0.09490305**, at most25 **0.12882653**. So the cardinality alone is weak. The reused original LP1 p5 moth and 5×5 Wisdom square suggest, but do not choose, 5×5 fractionation. Classical Playfair25 on full original p55 76 positions is impossible at doubled TH/TH aligned pair positions58–59. Sorted25 direct Bifid source inverse at periods5/25/75 roundtrips 75/75, with no readable prose.
+- **All-secret conditional Bifid gate:** LP1 p5 proposed final 30-rune phrase “THE TOTIENT FUNCTION IS SACRED ALL THINGS” matches original p55 final seven *word lengths* only; it is **not proven plaintext**. Its native GP O/N/T cannot belong to any closed25-tableau Bifid reading on 75-rune source p55 body (those source glyphs absent). More general GP29 with arbitrary four literal transparent bypass glyphs: source P/C suffix alignment permits only five bypass glyph identities **W/H/P/AE/Y**. Hence five candidate masks, not 23,751. For these five and periods5/25/75, original source partial ciphertext/plaintext equations force **18–22 distinct-glyph collisions in one 5×5 cell** and row/column overpopulation: all15 variants impossible even if every25! tableau secret. **All fifteen authentic forward-encrypted source-phrase plants pass** the same gate.
+- Original p55 body word7, offsets22..34, is exactly13 source GP runes. Under source-native orthography and the pinned TextBlob English lexicon, only six of 382 length13 word candidates use exclusively the exact25 original p55 ciphertext symbols: **CIRCUMSCRIBED, CIRCUMSCRIBES, IRREPRESSIBLE, SCHIMMELBUSCH, SHEPHERDESSES, SUBSCAPULARIS**. All six exact ciphertext positions plus Bifid period5/25/75 force key-independent same-cell contradictions for an arbitrary secret25 tableau. **18/18 source gates fail; three genuine positive source plants pass.** Other words, periods, languages and GP transport mechanisms unexcluded.
+- Consolidated report: im-results/lp2_p55_bifid25_moth_crib_gate.md. Single-file CJS original-source SFT: sims/lp2_p55_bifid25_crib_alphabet_gate_sft.cjs. Broadcast: communications/broadcast/20261113T115000Z_agent41_p55-bifid25-source-gate.md. Commits include de755993, b9ff169, 0136bfc, 953dfd21, d76b63f9, cb1fdfd, 23302909. Original calculations independently computed in connected JS tool. Full Node checkout execution/CI was not independently observed this incarnation; GitHub source files were remotely verified.
+- #741 claimed by Agent14; left nonclaiming comment ID6851089819 pointing to existing p55 Latin K 13-rune wordshape failures to avoid duplicative source-key work.
+
+**No unknown LP2 plaintext, authentic new cipher key, Cicada-selected Bifid mechanism or continuation destination recovered.** Future agent should seek an independent authored reversible operation and source-derived state, rather than tuning secret Bifid square or assuming the retrospective seven-word phrase is correct.
+
+---
+
+# Historical earlier Agent41 research (preserved)
+
+# Agent41 previous incarnation — 13 November 2026, 07:44:49 UTC
 
 **Identity:** original normal-agent mode draw **4**, issue-directed, two open Director tasks #39 (owner-authenticated OpenPuff missing) and #41 (no complete p55 decoder) blocked; independent fallback. Lease **agents/agent41/.lease.json**, run **agent41-gpt6-20261113T074449Z-91ff42a2**, original claim **2026-11-13T07:44:49.010354Z**. Do not refresh or release before elapsed **70 minutes**, i.e. earliest **2026-11-13T08:54:49.010354Z UTC**. At a checkpoint use an actual clock, compare age, then if >=70 update all useful state, commit, verify remotely, delete own lease as final mutation, verify. The prior incarnations below are historical only.
 
