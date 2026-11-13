@@ -33,12 +33,15 @@ function inv(x) {
  */
 function rem(coefficients, polynomial) {
   const work = coefficients.map(mod);
-  const k = polynomial.length - 1;
-  const invLead = inv(polynomial[0]);
+  const divisor = polynomial.slice();
+  while (divisor.length > 1 && divisor[0] === 0) divisor.shift();
+  const k = divisor.length - 1;
+  assert.ok(k >= 1, 'A nonconstant source factor is required');
+  const invLead = inv(divisor[0]);
   for (let i = 0; i < work.length-k; i++) {
     const a = mod(work[i] * invLead);
     for (let j = 0; j <= k; j++) {
-      work[i+j] = mod(work[i+j] - a*polynomial[j]);
+      work[i+j] = mod(work[i+j] - a*divisor[j]);
     }
   }
   return work.slice(-k);
