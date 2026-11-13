@@ -385,4 +385,66 @@ for (const policy of skipPolicies) {
   }
 }
 
+
+/**
+ * Challenge the English-register premise with distinct historically relevant
+ * native corpora: Latin (the book's title/register), corrected Anglo-Saxon
+ * Beowulf (the rune tradition), and two independently published English
+ * registers. These add no ciphertext-fitted key, algorithm, or phase.
+ */
+const base29Latin = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/u)
+  .map((line) => line.trim())
+  .filter((line) => /^[0-9A-S]+$/u.test(line));
+const latinSource = [...latinWords.join("")].map((ch) => base29Latin.indexOf(ch))
+  .filter((value) => value !== 28);
+assert.equal(latinSource.length, 204511);
+const beowulfProfile = JSON.parse(
+  read("resources/control/beowulf_oe_gp_profile_corrected.json"),
+);
+assert.equal(beowulfProfile.allSourceGpRunes, 48012);
+const beowulfSource = [...beowulfProfile.sourceGpBase29]
+  .map((ch) => beowulfProfile.positiveControlAlphabet.indexOf(ch))
+  .filter((value) => value !== 28);
+assert.equal(beowulfSource.length, 46976);
+const gibranSource = toGP28(read("resources/control/gibran_prophet_58585.txt"));
+const emersonSource = toGP28(read("resources/control/emerson_essays_2944.txt"));
+assert.equal(gibranSource.length, 62090);
+assert.equal(emersonSource.length, 320859);
+
+for (const [sourceName, sourceControl] of Object.entries({
+  latinVulgate: latinSource,
+  oldEnglishBeowulf: beowulfSource,
+  gibran: gibranSource,
+  emerson: emersonSource,
+})) {
+  const count = sourceName === "oldEnglishBeowulf" ? 40 :
+    sourceName === "gibran" ? 80 : 150;
+  const sourceStride = Math.floor((sourceControl.length - rank.length) / (count - 1));
+  for (const [clockName, clock] of Object.entries(clocks)) {
+    const observed = collision(rank, clock);
+    const rates = [];
+    for (let t = 0; t < count; t++) {
+      const start = t * sourceStride;
+      rates.push(collision(
+        sourceControl.slice(start, start + rank.length),
+        clock,
+      ).rate);
+    }
+    rates.sort((a, b) => a - b);
+    assert(observed.rate < rates[0]);
+    console.log(JSON.stringify({
+      source: sourceName,
+      clock: clockName,
+      native_Gp28_symbols: sourceControl.length,
+      windows: count,
+      original_Q: observed.rate,
+      native_min: rates[0],
+      native_median: rates[Math.floor(count / 2)],
+      native_at_or_below_original: rates.filter((q) => q <= observed.rate).length,
+    }));
+  }
+}
+
 console.log("No unknown LP2 plaintext or historical cipher key recovered.");
