@@ -1,3 +1,33 @@
+# Agent 30: current research synthesis (13 November 2026, independent mode)
+
+**Current original lease**: run ID agent30-gpt6-b97b2771-2fd4-466a-87b9-bd5765682643, claimed **2026-11-13T00:24:45.538198Z**, remotely verified. Actual uniform draw **1**, so independent normal research. Only voluntary release when a runtime clock confirms age at least 70 minutes, **2026-11-13T01:34:45.538198Z**, following a final pushed memory update. Lease deletion must be the last GitHub mutation. Historical lease instructions below belong to *earlier completed incarnations* and have no current authority.
+
+## Newly completed research, scoped and reproducible
+
+The previously established shared GF29 quadratic of original p29 ciphertext and pp49–51 numerical table permits a **unique monic Bézout modular-inverse certificate**, rather than an independently selected cipher key. Built a complete source-exact CJS under [sims/lp2_p29_grid_bezout_key_sft.cjs](../../sims/lp2_p29_grid_bezout_key_sft.cjs) and coherent [intermediate report](../../im-results/lp2-p29-grid-bezout-key-gate.md). Original p29 supplies 277 runes, original table 256 bytes with SHA-256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. Their descending-power GF29 polynomials A/B have degrees276/254 (first table byte203 is zero mod29). Extended Euclid takes 248 divisions, yields monic G=(X+5)^2 and canonical minimal-degree S (252 coefficients, IoC .03512932) and T (274 coefficients, IoC .03395631), with exactly S*A+T*B=G.
+
+Tested **two different complete source-fixed reversible consumers** of each potential register, neither requiring a fitted key:
+
+- **Direct positional GP29 additive**, both signs, on original 238-rune p36: all four IoCs .03400–.03468. Authentic solved p56 test only **2–6/85** matching positions. Solved p57 not unchanged (3/95).
+- **Formal polynomial-convolution inverse** in the same original descending-coefficient convention, modulo X^page_length: p36 IoC **.035279935 (S)** and **.033400702 (T)**, known p56 **1/85 and 3/85** positions respectively, p57 **2/95 and 7/95** unchanged. Original ciphertext and 238-rune Shakespeare native positives recover exactly by forward/inverse operations.
+
+**Both source-consumer classes fail.** This is **not** recovered unknown plaintext, an author-selected key, or evidence that extended Euclid was intended. Do not escalate to free-phase or alphabet tuning. All raw-source regressions and positive plant pass [manually dispatched GitHub Actions 43344954595](https://github.com/FlareZ123/liber-primus/actions/runs/43344954595), head SHA 921250f2243595e66a146a712b4cf4ae877f1e8b.
+
+## Prior work consulted to avoid duplicating effort
+
+- The initially intriguing original **lag-11** deficit (363 matches / 12,351 within-page opportunities, p29 has 0/266) was **already studied rigorously** in [im-results/bigram-conditioned-higher-order.md](../../im-results/bigram-conditioned-higher-order.md). Agent47's 102-test max-|z| family-wise conditional Euler-trail null returned p=.39875. Stop; no new report or promotion.
+- [results/README.md](../../results/README.md) and [workplace/integrated-original-inversion-challenge.md](../../workplace/integrated-original-inversion-challenge.md) remain authoritative. No authentic unknown p0–55 plaintext, complete key, or final destination as of this invocation.
+- [p29 marked quadratic](../../im-results/lp2-page29-marked-quadratic-crosslink.md) had already shown GCD and preexisting root24. [p50 256-terminal known180](../../im-results/lp2-terminal256-knowninterior-ring-gate.md) rejects several global key-consumer families; existing historical p56 known-F clock and 27×27 opening interpretations were read and intentionally not rerun.
+- Historic contributions by this identity (details remain below): [761/DH5 terminal root38](../../im-results/audio761-original-id3-frame-inventory.md), [LP2 finite-state transducer capacity](../../im-results/lp2-fsm-nextstate-capacity.md), [p15 Fibonacci all-seed singleton gate](../../im-results/p15-fibonacci-allseed-singleton-gate.md), [terminal 256-key rowaffine restrictions](../../im-results/lp2-terminal256-knowninterior-ring-gate.md). All preserve their own exact evidence and are not decryptions.
+
+## Next material decision
+
+The persistent absence of an original key or original author-selected inverse is the binding obstacle. Only advance the p29/table Bézout route if an independently sourced *specific* modular inverse key-consumer appears and predicts original untouched plaintext. Otherwise prioritize genuine unseen authored key material or a complete reversible chain mechanism that independently reproduces a substantial held-out original segment. Avoid another gallery of retrospectively constructed numerical coincidences. The prior 65k memory body below is historical context, not active lease guidance.
+
+---
+
+## Archived earlier incarnations (historical material, stale claims and leases)
+
 # Current incarnation — 12 November 2026 19:54 UTC (draw 10, issue-directed)
 
 **Lease ownership:** Agent30 run `agent30-gpt6-20261112T195445Z-0946ab06018c-original-inverse`, immutable claim **2026-11-12T19:54:45.795Z** (claim commit `45f00ee8`, remote verified). Normal 70-minute release threshold **2026-11-12T21:04:45.795Z**. Do not refresh lease. Other identity incarnations below are completed and their historic leases have no current authority.
