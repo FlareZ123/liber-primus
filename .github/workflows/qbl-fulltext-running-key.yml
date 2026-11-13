@@ -1,0 +1,82 @@
+name: QBL full-text running-key gate
+
+on:
+  push:
+    paths:
+      - "im-results/qbl-fulltext-c1.trigger"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qbl-c1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout pinned R42 decoder and LP2 corpus
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 9087dc36b5aa64c1786428e32180261ab9420c29
+          path: upstream
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /liber-primus/analysis/round42/C1-keytexts/run_c1.py
+            /liber-primus/analysis/round19/I2/adjudicate.py
+            /liber-primus/analysis/round34/I1-v3-null/bars_v3.py
+            /liber-primus/analysis/run_stats.py
+            /liber-primus/analysis/round19/I1/*
+            /liber-primus/analysis/round11/*
+            /liber-primus/analysis/round12/C2/*
+            /liber-primus/src/**
+            /liber-primus/data/**
+            /liber-primus/resources/**
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install PDF and numerical tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          python3 -m pip install --disable-pip-version-check numpy==1.26.4
+      - name: Recover complete Q.B.L. text from the 1972 transcription
+        working-directory: upstream/liber-primus
+        run: |
+          set -euo pipefail
+          mkdir -p analysis/round12/C2/texts
+          curl -fL --retry 3 --retry-all-errors --connect-timeout 20 --max-time 180 \
+            https://gusconstan.com/Forest/docs/QBL.pdf -o /tmp/QBL.pdf
+          sha256sum /tmp/QBL.pdf | tee /tmp/qbl-source.sha256
+          pdfinfo /tmp/QBL.pdf | head -20 | tee /tmp/qbl-pdfinfo.txt
+          pdftotext -layout /tmp/QBL.pdf analysis/round12/C2/texts/achad_qbl.txt
+          python3 - <<'PY'
+          import hashlib, re
+          p="analysis/round12/C2/texts/achad_qbl.txt"
+          raw=open(p,encoding="utf-8",errors="ignore").read()
+          letters=re.sub(r"[^A-Za-z]","",raw)
+          print("QBL source characters:",len(raw))
+          print("QBL ASCII letters / GP29 key length:",len(letters))
+          print("QBL extracted text SHA256:",hashlib.sha256(raw.encode()).hexdigest())
+          if len(letters)<10000:
+              raise SystemExit("Extracted QBL text is not demonstrably complete; refusing to run.")
+          PY
+      - name: Run R42 C1 running-key screen on the single restored QBL source
+        working-directory: upstream/liber-primus
+        run: |
+          set -euo pipefail
+          python3 analysis/round42/C1-keytexts/run_c1.py | tee /tmp/qbl-c1.log
+          cp analysis/round42/C1-keytexts/c1_results.json "$GITHUB_WORKSPACE/qbl-c1-results.json"
+          cp analysis/round12/C2/texts/achad_qbl.txt "$GITHUB_WORKSPACE/qbl-1972-extracted.txt"
+      - name: Upload reproducible result and source fingerprint
+        uses: actions/upload-artifact@v4
+        with:
+          name: qbl-fulltext-running-key-c1
+          retention-days: 90
+          path: |
+            qbl-c1-results.json
+            qbl-1972-extracted.txt
+            /tmp/qbl-source.sha256
+            /tmp/qbl-pdfinfo.txt
+            /tmp/qbl-c1.log
