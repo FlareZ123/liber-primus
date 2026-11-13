@@ -35,6 +35,21 @@ Fix the first **16** original p55 key residues as initial state. The full source
 
 The alternate additive sign simply negates the entire residual and keeps both prediction counts unchanged. Independently planted GP-native keys generated under each fixed recurrence recover **14/14** withheld values. A zero-output result or a fit over only the source crib would carry no new plaintext evidence; the actual original heldout contradictions exclude these **two precisely defined** recurrence transfers.
 
+## Entire secret-constant-affine extension: exact three-equation contradiction
+
+The exact table-factor hypothesis can allow a **completely unknown invertible GP29 affine output layer**: **C_i = a P_i + b + K_i mod29**, with arbitrary secret **a=1..28**, **b=0..28**, and an arbitrary initial **16-rune key state**. For each of the two frozen recurrence directions, this grants **812** secret affine alphabets.
+
+Apply the GF29 recurrence residual operator E over all thirty original positions. Since E(K)=0, the model requires **E(C)=a E(P)+b E(1)** at fourteen prospective holdout positions. The coefficient sum is **E(1)=5** for both source-polynomial orientations. The first two equations determine one possible secret pair (a,b), as the plaintext residuals differ by a nonzero field value. The third equation contradicts that unique pair:
+
+| Recurrence | (a,b) forced by first two heldout equations | Third predicted E(C) | Third actual E(C) |
+|---|---|---:|---:|
+| high-to-low F | (10,28) | **14** | **0** |
+| low-to-high F | (28,3) | **20** | **5** |
+
+Thus **zero of all 812 secret affine maps** can satisfy even these three necessary conditions, for either source recurrence. A separate all-pairs enumeration finds **0/812** full fourteen-equation solutions in each direction, and at most **4/14** coincidental equations satisfied by a best pair. Source-native GP29 planted sequences under the exact recurrence and nontrivial hidden affine output **(a,b)=(7,3)** satisfy **14/14** in both orientations. This is an exact conditional all-secret-parameter exclusion, not a key recovery.
+
+The contradiction depends on the **unverified LP1-sourced moth quotation** being exactly the original p55 plaintext. It does not independently validate the quotation or show that any recurrence operates in Liber Primus.
+
 ## Exact all-secret short-recurrence obstruction
 
 The 30 forced key residues also have a **15×15 Hankel determinant of 5 modulo29** (rows indexed i=0..14, columns j=0..14, entry at K[i+j]). Because this determinant is nonzero, the columns have rank15. Every homogeneous GF29 recurrence of order at most14, with **any** secret coefficients and initial state, would give a dependent set of columns. This is an exact algebraic exclusion conditional on the original hypothetical plaintext. Berlekamp–Massey independently returns linear complexity **15** for all 30 residuals. Fitting an order15 key to the same 30 values supplies no independent text prediction and should not be presented as a cipher recovery.
@@ -43,4 +58,4 @@ The 30 forced key residues also have a **15×15 Hankel determinant of 5 modulo29
 
 ## Decision
 
-The source-crib pair fails the two simplest source-degree-16 recurrence key-stream hypotheses and all homogeneous order-14-or-lower GF29 additive pads. The visible moth and exact word-length coincidence remain unresolved and could indicate an entirely different use of the source. **No authentic decryption has been recovered.** Extend this route only after an independent original instruction selects a concrete key/state operation and yields previously untouched unknown plaintext. Further arbitrary phase/recurrence fitting would not create a genuine solution.
+The source-crib pair fails both source-table degree-16 recurrence directions even with arbitrary secret invertible affine output maps and hidden sixteen-state seeds. All homogeneous order-14-or-lower GF29 additive pads likewise fail under the same proposed LP1 quotation. The visible moth and exact word-length coincidence remain unresolved and could indicate an entirely different use of the source. **No authentic decryption has been recovered.** Extend this route only after an independent original instruction selects a concrete key/state operation and yields previously untouched unknown plaintext. Further arbitrary phase/recurrence fitting would not create a genuine solution.
