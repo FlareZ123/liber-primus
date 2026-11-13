@@ -65,3 +65,5 @@ const result={
     p57LanguageScore:languageScore(p57,model)}
 };
 console.log(JSON.stringify(result,null,2));
+
+// Trigger the source-fixed DH 76-cycle transposition gate.
