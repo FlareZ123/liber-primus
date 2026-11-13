@@ -4,11 +4,11 @@
 
 ## Author-readable path and conditional hypothesis
 
-The visible LP2 red spans contain **225** original GP29 runes across the entire 58-page artifact (including solved p56/p57). Reflowing them in original source order produces a **15×15** square. Original solved p57 instructs readers to shed circumferences; peeling exactly two square borders discards **56+48** entries and leaves the **central 121 symbols in an 11×11 square**. Physical original p32 has exactly **121 GP29 runes**, printed as an 11×11 arrangement with a tree. This yields a motivated, parameter-free source matrix/target matching.
+The visible LP2 red spans contain **225** original GP29 runes across the entire 58-page artifact (including solved p56/p57). Reflowing them in original source order produces a **15×15** square. Original solved p57 instructs readers to shed circumferences; peeling exactly two square borders discards **56+48** entries and leaves the **central 121 symbols in an 11×11 square**. Physical original p32 has exactly **121 GP29 runes**, but the **original JPEG 49.jpg visibly sets them on six irregular horizontal lines above a blurred tree**, not an 11×11 square. Any p32 11×11 is therefore an **analyst-imposed reflow**. The 121-to-121 numerical coincidence motivates a cheap test while strongly weakening any claim of intended source geometry.
 
 The historical puzzle never commands reflowing the red spans, using a Hill cipher, or selecting p32 as target. This is therefore a *conditional test of a simple possible operation*, with no claim of intentional 15×15 red-square encoding.
 
-Take the GP-index central 11×11 matrix `M[r,c]=red[(r+2)×15+c+2]` for `r,c=0..10`; its first row is `[24,16,14,17,19,6,27,15,17,14,12]`. Test direct `C=M·P (mod29)` on each of p32's eleven consecutive 11-rune rows. The printed p32 page also permits eleven vertical columns; similarly, either `M` or `Mᵀ` might be a standard row-versus-column Hill convention. These are the **four** source-fixed geometrical combinations, with no fitted offset or key value.
+Take the GP-index central 11×11 matrix `M[r,c]=red[(r+2)×15+c+2]` for `r,c=0..10`; its first row is `[24,16,14,17,19,6,27,15,17,14,12]`. Test direct `C=M·P (mod29)` on eleven consecutive 11-rune blocks of p32 after explicitly reflowing its original six lines in manuscript rune order. Taking the **columns of that invented 11×11 array** rather than its rows, or using `Mᵀ`, adds three natural mathematical conventions. The four variants have no fitted offset or key value, but **the choice to reflow the page has no authentic printed-layout support**.
 
 ## Exact result on original runes
 
@@ -16,14 +16,14 @@ The matrix has **rank 10 over GF(29)**, with one-dimensional left nullspace gene
 
 | Red key orientation | p32 block read order | Original block syndromes modulo29 | Incompatible original blocks |
 | --- | --- | --- | ---: |
-| M | Printed horizontal rows | `[6,1,19,27,11,3,0,23,6,3,21]` | **10/11** |
-| M | Vertical columns | `[6,23,17,21,9,27,10,6,11,15,21]` | **11/11** |
-| Mᵀ | Printed horizontal rows | `[21,28,0,5,22,25,2,1,18,13,12]` | **10/11** |
-| Mᵀ | Vertical columns | `[0,11,23,16,20,14,28,2,3,28,14]` | **10/11** |
+| M | Reflowed 11-block rows | `[6,1,19,27,11,3,0,23,6,3,21]` | **10/11** |
+| M | Reflowed 11-array columns | `[6,23,17,21,9,27,10,6,11,15,21]` | **11/11** |
+| Mᵀ | Reflowed 11-block rows | `[21,28,0,5,22,25,2,1,18,13,12]` | **10/11** |
+| Mᵀ | Reflowed 11-array columns | `[0,11,23,16,20,14,28,2,3,28,14]` | **10/11** |
 
 A single nonzero syndrome is a mathematical impossibility for the stated full-block cipher, no matter what unknown plaintext is proposed. Here all four full-page models fail on at least ten independent source blocks. Because `M` is singular, this is also **not** a bijective conventional Hill cipher even if a single eligible ciphertext block happened to pass.
 
-The [standalone Node 22 CommonJS test](../sims/lp2_red225_inner11_p32_hill_sft.cjs) reconstructs the 225 original red runes from the canonical GP corpus and actual ink-span offsets, derives the GF29 row reductions and both exact one-dimensional kernels, asserts the 121-rune p32 geometry, and tests the four original full-page conditions. As a positive sensitivity check it encrypts **eleven independently chosen 11-GP-rune native blocks from authentic solved p57 under each exact singular forward matrix**: every one of the 44 resulting ciphertext blocks has zero corresponding syndrome. This calibrates the compatibility gate, without pretending a nonunique 11×11 inverse recovered plaintext.
+The [standalone Node 22 CommonJS test](../sims/lp2_red225_inner11_p32_hill_sft.cjs) reconstructs the 225 original red runes from the canonical GP corpus and actual ink-span offsets, derives the GF29 row reductions and both exact one-dimensional kernels, asserts the 121-rune p32 count and tests a declared 11×11 reflow, and tests the four original full-page conditions. As a positive sensitivity check it encrypts **eleven independently chosen 11-GP-rune native blocks from authentic solved p57 under each exact singular forward matrix**: every one of the 44 resulting ciphertext blocks has zero corresponding syndrome. This calibrates the compatibility gate, without pretending a nonunique 11×11 inverse recovered plaintext.
 
 All assertions passed under the actual committed original source in [manual GitHub Actions run 43423445544](https://github.com/FlareZ123/liber-primus/actions/runs/43423445544).
 
@@ -31,7 +31,7 @@ All assertions passed under the actual committed original source in [manual GitH
 
 The canonical 2013 Gematria Primus alphabet also assigns each rune a **prime weight**, giving a second natural, already historically used GP29 numeric interpretation. Replace each of the 121 central-red matrix entries with its published prime weight modulo29, keeping the **same source order, centre coordinates and original p32 target**. This produces a different **rank-11**, fully invertible 11×11 matrix, first row `[10,1,18,3,13,17,20,24,3,18,12]`. The ordinal-index matrix rank defect is therefore sensitive to the chosen original numeric representation and is not itself strong independent evidence of authorial intent.
 
-Test the source-prime matrix and its transpose under both printed p32 row and column block readings, and both standard forward/inverse linear directions: **eight fixed, lossless 121-rune transformations**. Each was exactly re-encrypted on original p32 and recovered all **121/121 GP runes** from a source-native p57 positive-control plant. [Original-source executable](../sims/lp2_red225_inner11_prime_hill_sft.cjs), passed in [manual CI run 43423889094](https://github.com/FlareZ123/liber-primus/actions/runs/43423889094).
+Test the source-prime matrix and its transpose under both analyst-reflowed p32 row and column block readings, and both standard forward/inverse linear directions: **eight fixed, lossless 121-rune transformations**. Each was exactly re-encrypted on original p32 and recovered all **121/121 GP runes** from a source-native p57 positive-control plant. [Original-source executable](../sims/lp2_red225_inner11_prime_hill_sft.cjs), passed in [manual CI run 43423889094](https://github.com/FlareZ123/liber-primus/actions/runs/43423889094).
 
 The transformed original p32 GP29 coincidence scores are, in this predefined order:
 
@@ -46,6 +46,6 @@ All eight original outputs remain at a ciphertext-like GP29 distribution, with n
 
 ## Research decision
 
-**Retire the direct red-core 11×11 Hill link to original p32 under the tested GP ordinals and prime-weight field readings.** The ordinal-key cipher is mathematically incompatible with original p32 in all four natural source orientations; the full-rank prime-key variant is invertible but all eight forward/inverse original readouts remain ciphertext-like, without recovered plaintext. The rank defect alone is a one-in-roughly-29 algebraic property under a naive random-matrix baseline, **not** independent authentication of a secret message after selecting the red-center geometry. Its kernel vectors carry no directly recognizable GP phrase. The original 15×15 full-red Hill and nine 5×5 chapter-Hill alternatives were already ruled out independently [here](lp2-red225-hill-square-source-gate.md). The source geometry remains a speculative human-clue route, but neither it nor the center matrix specifies a working inverse; do not broaden into arbitrary matrix pre/post transforms or fitted offsets without another original source clue.
+**Retire the direct red-core 11×11 Hill link to original p32 under the tested GP ordinals and prime-weight field readings.** The ordinal-key cipher is mathematically incompatible with original p32 in all four fixed mathematical orientations; the full-rank prime-key variant is invertible but all eight forward/inverse original readouts remain ciphertext-like, without recovered plaintext. The rank defect alone is a one-in-roughly-29 algebraic property under a naive random-matrix baseline, **not** independent authentication of a secret message after selecting the red-center geometry. Its kernel vectors carry no directly recognizable GP phrase. The original 15×15 full-red Hill and nine 5×5 chapter-Hill alternatives were already ruled out independently [here](lp2-red225-hill-square-source-gate.md). The red-core source geometry remains a speculative human-clue route; the p32 11×11 target reflow is not visible in the original image, but neither it nor the center matrix specifies a working inverse; do not broaden into arbitrary matrix pre/post transforms or fitted offsets without another original source clue.
 
 Related original-side geometry and null evidence: [the red225 concentric-ring p32 proposal](../workplace/lp2-red225-concentric-ring-p32-hypothesis.md).
