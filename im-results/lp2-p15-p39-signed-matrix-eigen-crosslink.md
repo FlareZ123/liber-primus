@@ -85,6 +85,34 @@ This yields a distinct, completely reversible **direct Hill candidate** whose ma
 
 All four inverses recover **no apparent plaintext**. Each original 4-rune block re-encrypts identically under the source-derived matrix, while an independent planted 92-rune native-GP p57 control decrypts exactly in each direction. These tests retire the simplest full-rank p3-polynomial direct consumer. Both original p3 and p39 polynomials can still contain useful information about the signed matrix without specifying such a direct Hill cipher.
 
+## A source-defined field-to-dual-number bridge via the p50 table
+
+A prior, independently reproduced calculation on the actual **256 printed base60 table bytes** takes the polynomial quotient by the p39 red quadratic and reduces it modulo the p3 irreducible quadratic. It recovers the exact **primitive GF(29²) element `g=19+13u` of order840**, as documented in [the existing original-source p50/p39/p3 remainder](p50-p39-p3-field-remainder.md).
+
+The new p15 matrix factor connects that field to a different ring. The p3 quadratic is **irreducible**, defining the 841-element field with **840 nonzero units**. The p39 quadratic `15(x−24)²` instead defines the 841-element **dual-number ring** `GF29[ε]/(ε²)`, with `ε=x−24` and **812 units**. Its unit group has exponent **812**, and `19+13ε` has **exact order812** because 19 has order28 modulo29 and the nonzero nilpotent coefficient introduces factor29. This is the same exact order as the independently reconstructed signed p15 matrix.
+
+The two-element coefficient vector `[19,13]` is obtained from the already pinned p50/p39/p3 source chain. Interpreting it on p39's nilpotent coordinate gives the **explicit four-dimensional source polynomial**
+
+```text
+H(M) = 19I + 13(M−24I) = 13M+26I (mod29)
+
+     = [11 10 28 25]
+       [13 22 12  6]
+       [27 18 12  4]
+       [17 11 11 22]
+```
+
+The full `H(M)` is invertible, has order **812**, and can act as a reversible four-rune Hill operator. The exact signed p15 original layout is retained, the coefficients originate from the independently existing p50 quotient, and the shift24 comes from p39's printed double root. **The choice to identify field coordinate u with nilpotent coordinate ε is an additional, unprinted inference.** A reader must not mistake identical coefficient vectors for an authenticated historical instruction.
+
+Apply `H(M)` and `H(M)⁻¹` directly, with the complete unchanged 4-rune boundaries, to both candidate sections and exactly reverse on solved p57 native-GP plants:
+
+| Original input | `H(M)` output IoC | `H(M)⁻¹` output IoC |
+| --- | ---: | ---: |
+| pp16–22, 1,744 runes | **0.034226025991** | **0.034340507508** |
+| pp40–53 black, 3,000 runes | **0.034434367011** | **0.034527509170** |
+
+Neither operation recovers GP-native prose. The bridge provides a concrete source-only **candidate algebra and full-order operator**, while the direct stationary Hill consumer is rejected on original ciphertext. Further attempts require an independent cipher-state/seed or information-extraction instruction. In particular, do not search arbitrary powers of `H` or pick an output coordinate using language.
+
 ## Key-independent all-secret two-dimensional kernel-pad gate
 
 The common factor supplies a sharper test than adding one favored eigenvector as a key. Let `B=Q(M_signed)` with source-known rank2. If any proposed four-GP-rune cipher has `C=P+K mod29` with **an arbitrarily complex, arbitrarily changing secret four-vector `K` in the entire two-dimensional kernel of `B`**, then necessarily `BC=BP` on *every* source block, for every such key. No key search, alphabet permutation or assumed period can evade this invariant. The first two independent rows of `B` give a complete 29²-state quotient:
@@ -115,6 +143,6 @@ The source-native control mapping retains multi-letter GP digraphs, its special 
 
 ## Research decision
 
-The exact crosspage polynomial factor, including its **unique match to the source-authentic two-negative sign pair**, is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. The direct eigenstate pad, the **p3-polynomial direct Hill decoder** and **all additive keys confined to the quadratic kernel** fail original native-GP language tests, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**. A stronger independent source instruction would be needed before investigating a different, genuinely nonlinear consumer.
+The exact crosspage polynomial factor, including its **unique match to the source-authentic two-negative sign pair**, is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. The direct eigenstate pad, **p3 polynomial and p50-to-dual primitive direct Hill decoders**, and **all additive keys confined to the quadratic kernel** fail original native-GP language tests, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**. A stronger independent source instruction would be needed before investigating a different, genuinely nonlinear consumer.
 
 [Original-input CommonJS SFT](../sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs) · [Successful complete Windows CI 43515910519](https://github.com/FlareZ123/liber-primus/actions/runs/43515910519) · [Prior literal-matrix OFB/CFB gate](lp2-p15-fourstate-ofb-cfb-source-gate.md) · [Independent p3/p39 quadratic field investigation](lp2-red-triad-frobenius56-source-state.md) · [Established p15 prime spiral](../results/lp2-p15-fibonacci-prime-spiral.md).
