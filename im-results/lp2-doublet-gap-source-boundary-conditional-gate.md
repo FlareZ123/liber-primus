@@ -112,6 +112,21 @@ The observed within-word position categories are 23 word-initial, 19 word-final,
 Reproduction: [`sims/lp2_doublet_gap_word_identity_conditional_sft.cjs`](../sims/lp2_doublet_gap_word_identity_conditional_sft.cjs).
 
 
+## Whole-word event-profile relocation gate against Round44 T7 (Agent 3, 13 November 2026)
+
+The independent [Round44 B3 report](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/analysis/round44/W2-B3-doublet-sites/RESULTS.md) called the original +0.3800 adjacent-gap autocorrelation a loud rejection of its **flat-site** null (10,000 draws, p=0.0010). Its separate 20,000-gap permutation comparator gave p≈0.00025. Both nulls omit source word identities, and neither directly predicts a plaintext mapping.
+
+A new *whole-word-profile* permutation null tests the independent intermediate question: **does the spatial arrangement of event-bearing words remain unusual when their exact printed lengths and physical pages are preserved?** Start from all original 2,896 complete printed words and 86 same-page repeat events. Give each word/page segment its complete list of eligible local rune sites and original repeat-site offset pattern; the one doubly event-bearing word keeps both original offsets together. Shuffle *entire observed event patterns* among word/page segments that have the same physical page, **exact complete word length**, and **same number of eligible predecessor sites**. A second test also matches the original 13-dot source fragment. All 86 events remain present, every event offset is valid, source word lengths and pages remain fixed, and the original 2014 runes and punctuation are never edited. These are conditional positional nulls; they deliberately do not try to synthesize legitimate ciphertext satisfying a full cipher.
+
+| Source-locked word-pattern exchangeability | Strata | Movable / pinned events | Null mean ± SD | Draws ≥ observed | One-sided add-one p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Page × exact word length × eligible sites | 598 | 82 / 4 | +0.268519 ± 0.055121 | 428 / 20,000 | **0.021449** |
+| Page × 13-dot fragment × exact word length × eligible sites | 647 | 79 / 7 | +0.255734 ± 0.053154 | 163 / 20,000 | **0.008200** |
+
+The original statistic is +0.380019689. Both deterministic source-only samples use xorshift32 seeds `0x33a3f201` / `0x33a3f202`. The [single-file CommonJS SFT](../sims/lp2_round44_t7_word_profile_shuffle_sft.cjs) asserts the exact original corpus/word alignment, 86-event geometry, shuffle accounting, null sample counts and tail counts.
+
+**Interpretation and causal boundary.** The dramatic flat-site p≈0.001 becomes p≈0.021 after locking entire event patterns to page/word-length-compatible source positions; additional large-mark conditioning yields p≈0.008. These materially different tails demonstrate that the precise null matters and there is **no uniquely identified process drift or ciphertext state machine**. The fragment-stratified tail remains modest evidence of patterned *event-bearing word selection* under this exchangeability model; the existing fully fixed-word-ID conditional p=0.259 demonstrates that within those selected words the exact offsets contribute essentially no extra lag-one signal. Neither model reveals *why* the event-bearing words were selected, predicts their identities, licenses an anti-repeat mechanism, or recovers plaintext. A next attack must begin with an independently selected emitter/word-selection rule rather than more fitted gap correlations.
+
 ## Cross-page 85-word / p56 alignment gate (Agent31, 12 November 2026)
 
 The 85 event-bearing words have the same count as the **85-rune plaintext of solved page 56**. This is a plausible, finite human-solver hypothesis: take the repeated ciphertext rune from each event-bearing word, in manuscript order, and ask whether the resulting 85-rune stream is p56 plaintext (or its ciphertext) under a simple GP29 alphabet operation. The one word with two events (word ID 1476, length 12) supplies the natural first-event or last-event choice.
