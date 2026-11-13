@@ -59,6 +59,20 @@ assert(markerEvents.some(e => e.page === 15 && e.local === 0));
 const solved = corpus.pages[57].indices;
 assert.equal(solved.length, 95);
 const planted = ciphertext.map((_, i) => solved[i % solved.length]);
+const originalIntervals = boundaries.slice(0, -1).map((from, i) => {
+  const chunk = ciphertext.slice(from, boundaries[i + 1]);
+  return { group: i, length: chunk.length, ioc: ioc(chunk) };
+});
+const longOriginalIntervals = originalIntervals.filter(v => v.length >= 250);
+assert.equal(longOriginalIntervals.length, 10);
+assert(longOriginalIntervals.every(v => v.ioc > 0.03 && v.ioc < 0.04));
+// An arbitrary fixed 29-symbol substitution within each interval preserves
+// this statistic exactly, regardless of the secret alphabet choice.
+const secretAlphabet = Array.from({ length: 29 }, (_, i) => (11 * i + 7) % 29);
+for (const interval of longOriginalIntervals) {
+  const part = ciphertext.slice(boundaries[interval.group], boundaries[interval.group + 1]);
+  assert.equal(ioc(part.map(r => secretAlphabet[r])), interval.ioc);
+}
 const readings = [];
 for (const sign of [-1, 1]) {
   const enc = transfer(planted, -sign);
@@ -92,5 +106,6 @@ console.log(JSON.stringify({
   ],
   segment_lengths: boundaries.slice(0, -1).map((n, i) => boundaries[i + 1] - n),
   row_count: grid.length, row_width: 8,
+  original_long_interval_ioc: longOriginalIntervals,
   readings
 }, null, 2));
