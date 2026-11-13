@@ -248,6 +248,53 @@ function countRSAOverflow(indices, phase) {
 const originalUnknown = corpus.pages.filter((p) => p.page <= 55)
   .flatMap((p) => p.indices);
 assert.equal(originalUnknown.length, 12956);
+
+/**
+ * Fixed original red-factor 2x2 GF(29) Hill inverse, with exact
+ * source-native positive. No key or phase fitted to ciphertext.
+ * @param {number[]} input length-even GP29 indices
+ * @param {number[][]} M full-rank 2x2 matrix
+ * @returns {number[]}
+ */
+function transformHill2(input, M) {
+  assert.equal(input.length % 2, 0);
+  const out = [];
+  for (let i = 0; i < input.length; i += 2) {
+    const x = input[i], y = input[i + 1];
+    out.push((M[0][0] * x + M[0][1] * y) % 29);
+    out.push((M[1][0] * x + M[1][1] * y) % 29);
+  }
+  return out;
+}
+/** @param {number[]} input */
+function gpIoc(input) {
+  const counts = Array(29).fill(0);
+  for (const x of input) counts[x]++;
+  return counts.reduce((s, n) => s + n * (n - 1), 0) /
+    (input.length * (input.length - 1));
+}
+const hillFactorKey = factored.map((row) => row.slice());
+assert.deepEqual(hillFactorKey, [[17, 43], [7, 53]]);
+assert.equal((17 * 53 - 43 * 7) % 29, 20);
+const hillFactorInverse = [[7, 8], [4, 11]];
+assert.deepEqual(transformHill2(originalUnknown, hillFactorInverse).length,
+  originalUnknown.length);
+assert.deepEqual(transformHill2(
+  transformHill2(originalUnknown, hillFactorInverse), hillFactorKey),
+originalUnknown);
+const hillOriginalIoC = gpIoc(originalUnknown);
+const hillInverseIoC = gpIoc(transformHill2(originalUnknown,
+  hillFactorInverse));
+assert.ok(Math.abs(hillOriginalIoC - 0.03447839786450569) < 1e-15);
+assert.ok(Math.abs(hillInverseIoC - 0.034476789237306946) < 1e-15);
+const solvedP57First94 = pages.get(57).slice(0, 94);
+assert.equal(solvedP57First94.length, 94);
+assert.deepEqual(transformHill2(
+  transformHill2(solvedP57First94, hillFactorKey), hillFactorInverse),
+solvedP57First94);
+assert.ok(Math.abs(gpIoc(solvedP57First94) -
+  0.060855639441775335) < 1e-15);
+
 const rsaInvalidByPhase = [0, 1, 2].map((phase) =>
   countRSAOverflow(originalUnknown, phase));
 const rsaInvalidP3 = [0, 1, 2].map((phase) =>
