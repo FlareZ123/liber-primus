@@ -80,9 +80,6 @@ const orientations = [['M', M], ['MT', mt], ['M_INV', inv], ['MT_INV', invt]];
 assert.deepEqual(M.map((r) => r.reduce((s, x) => s + x, 0)),
   Array(5).fill(mod(3301)));
 for (let i = 0; i < 5; i++) {
-  assert.deepEqual(apply(inv, M[i].map((_, j) => Number(i === j))), inv[i] instanceof Array ? apply(inv, M[i].map((_, j) => Number(i === j))) : []);
-}
-for (let i = 0; i < 5; i++) {
   const unit = Array.from({ length: 5 }, (_, j) => Number(j === i));
   assert.deepEqual(apply(inv, apply(M, unit)), unit);
 }
