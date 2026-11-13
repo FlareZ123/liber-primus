@@ -13,14 +13,25 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const load = relative => fs.readFileSync(path.join(root, relative), "utf8");
 const gp = JSON.parse(load("resources/liber-primus/lp2-corpus.json"));
-const table = JSON.parse(load("resources/liber-primus/base60-grid.json")).byte_rows;
+const sourceTable = JSON.parse(load("resources/liber-primus/base60-grid.json"));
+const base59 = sourceTable.alphabet.replace("f", "");
+assert.equal(base59.length, 59);
+assert(sourceTable.rows.flat().every(token => !token.includes("f")));
+const readings = {
+  base60: sourceTable.byte_rows,
+  base59: sourceTable.rows.map(row => row.map(token =>
+    59 * base59.indexOf(token[0]) + base59.indexOf(token[1])))
+};
 const lengths = [4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3];
 const page55 = gp.pages.find(p => p.page === 55).indices;
 const page57 = gp.pages.find(p => p.page === 57).indices;
 assert.equal(page55.length, 76);
 assert.equal(page57.length, 95);
-assert.equal(table.length, 32);
-assert(table.every(row => row.length === 8 && row.every(x => Number.isInteger(x) && x >= 0 && x <= 255)));
+for (const [radix, table] of Object.entries(readings)) {
+  assert.equal(table.length, 32, radix);
+  assert(table.every(row => row.length === 8 &&
+    row.every(x => Number.isInteger(x) && x >= 0 && x <= 255)), radix);
+}
 
 let cursor = 1; // p55 index 0 is a continuation of a p54 word, not a complete p55 word.
 const words = lengths.map(len => {
@@ -72,19 +83,22 @@ const models = [{ name: "raw", mode: "identity", key: directKey }];
 for (const mode of ["minus", "plus", "reflect"]) {
   models.push({ name: mode + "_direct_shell", mode, key: directKey });
 }
-for (const selector of ["ordinal", "prime"]) {
-  const columns = shell.map(index =>
-    (selector === "ordinal" ? index : gp.prime[index]) % 8);
-  const bytes = table.map((row, i) => row[columns[i]]);
-  for (const projection of ["mod29", "scaled29"]) {
-    const key = bytes.map(value => projection === "mod29"
-      ? value % 29 : Math.floor(29 * value / 256));
-    for (const mode of ["minus", "plus"]) {
-      models.push({ name: selector + "_" + projection + "_" + mode, mode, key });
+for (const [radix, table] of Object.entries(readings)) {
+  for (const selector of ["ordinal", "prime"]) {
+    const columns = shell.map(index =>
+      (selector === "ordinal" ? index : gp.prime[index]) % 8);
+    const bytes = table.map((row, i) => row[columns[i]]);
+    for (const projection of ["mod29", "scaled29"]) {
+      const key = bytes.map(value => projection === "mod29"
+        ? value % 29 : Math.floor(29 * value / 256));
+      for (const mode of ["minus", "plus"]) {
+        models.push({ name: radix + "_" + selector + "_" + projection
+          + "_" + mode, mode, key });
+      }
     }
   }
 }
-assert.equal(models.length, 12);
+assert.equal(models.length, 20);
 
 /** @param {number[]} input @param {{mode:string,key:number[]}} model @returns {number[]} */
 function decode(input, model) {
@@ -159,12 +173,14 @@ for (const { relative, expectedWindows, expectedMin } of [
   assert(Math.abs(minimum - expectedMin) < 1e-9, relative + " native minimum");
   assert(Object.values(tailCounts).every(n => n === 0), relative + " controls");
   console.log("Held-out", relative, "windows", expectedWindows,
-    "worst-native-score", minimum.toFixed(9), "more-cipherlike: 0 for all 12");
+    "worst-native-score", minimum.toFixed(9), "more-cipherlike: 0 for all 20");
 }
 for (const result of scored) {
   console.log(result.name, result.score.toFixed(9), result.readout);
 }
-assert(Math.abs(scored.find(r => r.name === "prime_mod29_plus").score
+assert(Math.abs(scored.find(r => r.name === "base60_prime_mod29_plus").score
   - (-4.387464903390191)) < 1e-9);
-console.log("PASS: 12/12 exact original roundtrips, 12/12 p57 plants,"
+assert(Math.abs(scored.find(r => r.name === "base59_prime_scaled29_plus").score
+  - (-4.445923585073992)) < 1e-9);
+console.log("PASS: 20/20 exact original roundtrips, 20/20 p57 plants,"
   + " no coherent 43-rune interior; no key or plaintext recovered.");
