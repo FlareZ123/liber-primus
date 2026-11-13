@@ -95,14 +95,16 @@ assert.equal(Math.max(...results.map(v=>v.minimumSharedOrder)),161);
 
 /* Independent planted, genuinely 128-BIT GF(2)-linear state. Eight
  * output taps are shifted linear projections of this SINGLE state. */
-let seed=0x33018301;
-const state=Array.from({length:128},()=>{
- seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
- return (seed>>>=0)&1;
-});
-for(let t=128;t<1152;t++)state.push(state[t-1]^state[t-7]^state[t-128]);
-const mask=Array.from({length:256},(_,t)=>{
- let b=0;for(let lane=0;lane<8;lane++)b|=state[t+128*lane]<<lane;return b;
+const gf128Feedback = 0xe1000000000000000000000000000000n;
+let hiddenState = 0x3301aabbccddeeff1122334455667788n;
+const mask = Array.from({length:256},()=>{
+ let byte=0;
+ for(let lane=0;lane<8;lane++){
+  byte |= Number((hiddenState >> BigInt(lane*16)) & 1n) << lane;
+ }
+ const low=hiddenState&1n;
+ hiddenState=(hiddenState>>1n)^(low?gf128Feedback:0n);
+ return byte;
 });
 const outer=ring(0),inside=route(0,false);
 assert.equal(new Set([...outer,...inside]).size,256);
