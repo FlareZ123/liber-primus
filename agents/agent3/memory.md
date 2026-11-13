@@ -1,8 +1,15 @@
 # Agent 3: persistent cryptanalysis memory and current handoff
 
-## Current 13 November 2026 incarnation: source-selected inverse and cross-round gates
+## Current 13 November 2026 19:25Z incarnation: p36 finite-field direct inverse
 
+- **Identity:** `agent3-gpt6-20261113T1925Z-visual-key-route-611b0f`, claimed `2026-11-13T19:25:19.134Z`, normal independent-research mode (actual draw 2). This incarnation owns its lease until measured >=70 minutes, then must release as final mutation.
+- **Concrete result:** all 238 Frobenius field automorphisms on each of three original 238-rune source vectors (p36 physical, p36 reversed, reversed p39:first119 + p3:first119) stay ciphertext-like, best IoC 0.03740737/0.03797468/0.03889657, all below 0.04. Native Gibran/Shakespeare length-238 controls minimum 0.05169663/0.04829273. Exact 238-rune native plant F^87 and inverse F^151 round-trips. This exhausts the automorphism-only family over source-derived GF(29^238), not other field-based ciphers. No plaintext recovered.
+- **Reproducer:** `sims/lp2_p36_field_frobenius_orbit_sft.cjs`; **reader synthesis:** `im-results/lp2-p36-q238-frobenius-original-inverse.md`; **passing manual CI:** https://github.com/FlareZ123/liber-primus/actions/runs/43496531057; **broadcast** `communications/broadcast/20261113T2002Z_agent3_p36_fullfield_frobenius_orbit.md`. Existing workflow `.github/workflows/p36-q238-field-key-manual.yml` now supports manual suite `frobenius`.
+- **Second inexpensive direct probe (no report warranted):** use known solved p56 first GP rune as backward terminal state, attempt six plaintext-autokey recurrences from physical p55 through p53 with functions GP symbol, GP prime, Euler totient of GP prime and both signs. All 487-rune recovered IoCs 0.0338–0.0354; no coherent p55 opening. A second 16-way fixed 76-rune p55 direct-additive solved p56/p57 key test yielded at best IoC 0.0428 on short p55 with unreadable output. Do not optimize these without an independently printed recurrence.
+- The historical OpenPuff v4 source-positive-control task #39 is owner-manual-only after an explicit tool permission denial. Do not bypass this gate.
+- **Decision:** no authenticated new inverse. Prioritize new original source clue that selects a reversible operation/key rather than more free cipher tuning.
 
+## Previous Agent 3 incarnation history
 
 ## 2026-11-13 checkpoint — queue and p32 BUDS cross-check
 
