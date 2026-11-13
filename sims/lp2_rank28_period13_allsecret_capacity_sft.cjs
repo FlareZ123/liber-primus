@@ -3,7 +3,7 @@
  * Original LP2 GP29 predecessor-excluding GP28 stream, with an arbitrary
  * 29-rune secret order and independent source-length phase-13 rank shifts.
  *
- * Exact all-key one-letter capacity with six fixed consumption/reset clocks.
+ * Exact all-key one-letter capacity with eight fixed consumption/reset clocks.
  * Self-contained SFT: node sims/lp2_rank28_period13_allsecret_capacity_sft.cjs
  * CommonJS, Node.js 20+, native libraries only, no writes or network.
  *
@@ -26,6 +26,27 @@ const LENGTH = pages.reduce((s, p) => s + p.indices.length, 0);
 assert.equal(corpus.runes.length, Q);
 assert.equal(pages.length, 55);
 assert.equal(LENGTH, 12956);
+// Recover the source word clock, preserving word carry over line/page edges.
+const manuscript = read('resources/liber-primus/lp2-transcription.txt').split('%').slice(0,55).join('%');
+const runic = /[\u16A0-\u16FF]/u;
+const words = [];
+let token = '';
+for (const ch of manuscript) {
+  if (runic.test(ch)) token += ch;
+  else if (ch === '/' || ch === '%' || /\s/u.test(ch)) continue;
+  else if (token) { words.push(token); token = ''; }
+}
+if (token) words.push(token);
+assert.equal(words.length, 2896);
+const originalWords = [], wordClock = [];
+for (let w = 0; w < words.length; w++) for (const rune of words[w]) {
+  const ordinal = corpus.runes.indexOf(rune);
+  assert(ordinal >= 0);
+  originalWords.push(ordinal);
+  wordClock.push(w);
+}
+assert.deepEqual(originalWords, pages.flatMap(p => p.indices));
+
 for (const p of pages) assert.equal(p.indices.length, p.runic_count);
 
 /** @param {number} x @returns {number} */
@@ -116,7 +137,7 @@ for (const q of [4, 5, 6]) {
   }
 }
 /**
- * @param {'book'|'page'|'visual'} reset
+ * @param {'book'|'page'|'visual'|'word'} reset
  * @param {'all'|'nonrepeat'} consumption
  * @returns {{reset:string,consumption:string,eligible:number,free:number,perPhase:number[],capacity:number,phaseWitnesses:number[][]}}
  */
@@ -124,6 +145,7 @@ function originalCapacity(reset, consumption) {
   const T = Array.from({length:PERIOD},
     () => Array.from({length:Q}, () => new Int32Array(Q)));
   let phaseClock = 0, prevChapter = -1, eligible = 0, free = 0;
+  let globalOffset = 0, precedingWord = -1;
   for (const p of pages) {
     const chapter = STARTS.filter(x => x <= p.page).length - 1;
     if (reset === 'page' || (reset === 'visual' && chapter !== prevChapter)) {
@@ -131,6 +153,9 @@ function originalCapacity(reset, consumption) {
     }
     prevChapter = chapter;
     for (let i = 0; i < p.indices.length; i++) {
+      const wordId = wordClock[globalOffset + i];
+      if (reset === 'word' && wordId !== precedingWord) phaseClock = 0;
+      precedingWord = wordId;
       const isFree = i === 0 || p.indices[i] === p.indices[i - 1];
       if (isFree) free++;
       else {
@@ -140,7 +165,9 @@ function originalCapacity(reset, consumption) {
       }
       if (consumption === 'all' || !isFree) phaseClock++;
     }
+    globalOffset += p.indices.length;
   }
+  assert.equal(globalOffset, LENGTH);
   const witnesses = T.map(exactOneRank);
   const perPhase = witnesses.map(w => w.maximum);
   assert.equal(eligible, 12815);
@@ -159,10 +186,12 @@ const expected = {
   'page/all': 1035,
   'page/nonrepeat': 1019,
   'visual/all': 1016,
-  'visual/nonrepeat': 1011
+  'visual/nonrepeat': 1011,
+  'word/all': 926,
+  'word/nonrepeat': 923
 };
 const capacity = [];
-for (const reset of ['book', 'page', 'visual']) {
+for (const reset of ['book', 'page', 'visual', 'word']) {
   for (const consumption of ['all', 'nonrepeat']) {
     const r = originalCapacity(reset, consumption);
     assert.equal(r.capacity, expected[reset + '/' + consumption]);
@@ -258,7 +287,7 @@ console.log(JSON.stringify({
   evidence: 'finite original-cipher exclusion; no unknown plaintext recovered',
   model: 'predecessor-excluding GP28 rank, secret order per phase13, secret phase13 output relabeling',
   original: {runes: LENGTH, eligible: 12815, exceptionSites: 141},
-  assumptions: 'one repeated phase13 map across all pages; six source-visible clock choices',
+  assumptions: 'one repeated phase13 map across all pages; eight source-visible clock choices',
   capacity, mostGenerousSinglePlaintextRune: upper, controls,
   oracle: '8 exhaustive q4/q5/q6 weighted permutation tests each',
   plantedInverseRunes: plain.length

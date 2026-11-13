@@ -6,7 +6,7 @@
 
 Each within-page original ciphertext pair \(s,c\) with \(s\ne c\) is assigned its predecessor-exclusion rank \(r=\operatorname{pos}_\pi(c)-[\operatorname{pos}_\pi(s)<\operatorname{pos}_\pi(c)]\), where \(\pi\) is **any secret permutation of the 29 rune identities**. Each of the 13 clock phases may have its **own independent secret ordering and its own secret 28-way output-symbol permutation**, a stronger adversarial allowance than an ordinary 13-step additive Vigenère key. The same 13 keyed phase rules are reused over the book; a different unrelated key for every chapter/page is **outside this test**.
 
-Clock resets: book-continuous, physical-page, or visual-chapter (0,3,8,15,23,27,33,40,54). In each clock, either every actual ciphertext rune advances the clock or only valid nonrepeat successor events advance it. First runes on each of 55 rune-bearing physical pages, and 86 equal-successor pairs, are **completely unconstrained**, with no assumptions about their escape or side channel. All **141 exceptional positions** may be freely set to whichever plaintext rune most benefits the attacker.
+Clock resets: book-continuous, physical-page, visual-chapter (0,3,8,15,23,27,33,40,54), or **each of the 2,896 original printed words**. The source word stream carries intact through line and page boundaries; all 12,956 rune positions reconstruct the canonical original source. In each clock, either every actual ciphertext rune advances the clock or only valid nonrepeat successor events advance it. First runes on each of 55 rune-bearing physical pages, and 86 equal-successor pairs, are **completely unconstrained**, with no assumptions about their escape or side channel. All **141 exceptional positions** may be freely set to whichever plaintext rune most benefits the attacker.
 
 For an original weighted transition matrix \(T[s,c]\) restricted to one phase, the **attainable exact maximum** occurrences of any one decoded output rank under *all* secret GP29 orderings is
 
@@ -23,8 +23,9 @@ Each clock partitions the unchanged **12,815** nonrepeat transitions into 13 mat
 | Continuous original book | **1,021** | **1,010** |
 | Reset at each physical page | **1,035** | **1,019** |
 | Reset at each visually marked chapter | **1,016** | **1,011** |
+| Reset at each original printed word | **926** | **923** |
 
-Across all six, the absolute most favorable decoded single rune can appear at **at most 1,035/12,956** positions. The exact phase maxima and maximizing alphabet pairs are printed by the SFT.
+Across all eight, the absolute most favorable decoded single rune can appear at **at most 1,035/12,956** positions. The exact phase maxima and maximizing alphabet pairs are printed by the SFT.
 
 ## Source-calibrated English adversary
 
@@ -42,6 +43,6 @@ This is **not a universal exclusion of every natural language**, arbitrary plain
 
 ## Research decision
 
-Retire the direct historical-looking **13-phase predecessor-exclusion + rank-alphabet** model with one shared 13-stage key and any of the six frozen source clocks. Do **not** optimize arbitrary phase offsets or substitute unrelated 13-key families to rescue this failure. A distinct historical instruction that specifies a *new state transition* or key-reset rule is required before deeper testing. The exact source and verified finite negative are retained in [the standalone CJS reproducer](../sims/lp2_rank28_period13_allsecret_capacity_sft.cjs).
+Retire the direct historical-looking **13-phase predecessor-exclusion + rank-alphabet** model with one shared 13-stage key and any of the eight frozen source clocks. Do **not** optimize arbitrary phase offsets or substitute unrelated 13-key families to rescue this failure. A distinct historical instruction that specifies a *new state transition* or key-reset rule is required before deeper testing. The exact source and verified finite negative are retained in [the standalone CJS reproducer](../sims/lp2_rank28_period13_allsecret_capacity_sft.cjs).
 
 Original source: [canonical physical LP2 ciphertext](../resources/liber-primus/lp2-corpus.json), [source LP1 orthography controls](../results/lp1-source-orthography.md), [prior all-secret rank theorem](lp2-no-repeat-allorder-page-capacity.md).
