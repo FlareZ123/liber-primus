@@ -14,6 +14,7 @@ const ROOT = path.resolve(__dirname, '..');
 const original2012 = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2012-first-image.jpg'));
 const original2016 = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2016-4gq25.jpg'));
 const grid = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources/liber-primus/base60-grid.json'), 'utf8'));
+const corpus = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 
 /** @param {Buffer} bytes */
 function sha256(bytes) {
@@ -83,6 +84,23 @@ const candidate2016Host = later.width * later.height * 3301;
 assert.equal(original2012Host, 845145127);
 assert.equal(candidate2016Host, 1057465447);
 
+/*
+ * A third, pre-2016 original-source witness: p32 is an 11×11 rune matrix.
+ * Its first row and first column have GP-prime sums equal to both 2016 JPEG
+ * dimensions. This makes the hypothetical phone-product candidate
+ * reconstructible from an original LP2 page already public in 2014.
+ */
+const page32 = corpus.pages.find(page => page.page === 32);
+assert.equal(page32.indices.length, 121);
+assert.equal(corpus.prime.length, 29);
+const topRow = page32.indices.slice(0, 11);
+const leftColumn = Array.from({length: 11}, (_, i) => page32.indices[i * 11]);
+const sumGP = indices => indices.reduce((sum, index) => sum + corpus.prime[index], 0);
+assert.equal(sumGP(topRow), 563);
+assert.equal(sumGP(leftColumn), 569);
+assert.equal(sumGP(topRow) * sumGP(leftColumn) * 3301, candidate2016Host);
+
+
 
 const trailer = original2012.subarray(original2012.length - 61);
 assert.equal(trailer.toString('ascii'), 'TIBERIVS CLAVDIVS CAESAR says "lxxt>33m2mqkyv2gsq3q=w]O2ntk"\n');
@@ -113,6 +131,7 @@ console.log(JSON.stringify({
   source2016: later,
   sortedDimensionDelta: [60, 60],
   original2012PhoneDomain: original2012Host + '.com',
+  original2014LP2P32SourceDimensions: { firstRowGPPrimeSum: sumGP(topRow), firstColumnGPPrimeSum: sumGP(leftColumn) },
   hypothetical2016AnalogDomain: candidate2016Host + '.com',
   analogDomainStatus: 'arithmetic candidate only: no historical host or archive verified',
   image2012Trailer: { fullBytes: trailer.length, printablePayloadBytes: key.length },
