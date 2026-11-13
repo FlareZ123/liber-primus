@@ -39,6 +39,18 @@ The actual 2014 Cicada three-OutGuess-share XOR reconstruction yields a **991-by
 
 The [single-file CommonJS reproducer](../sims/lp2_wordlength_multiset_rank_binary_sft.cjs) asserts original 2,896/12,956 source identity, all nine chapter boundary inventories, 80 completed source readings with zero headers, the original full rank's first16 bytes, and the exact 991-byte reversible positive plant. It passed independently on the original GitHub checkout under Node 22 in [manual GitHub Actions run 43392640268](https://github.com/FlareZ123/liber-primus/actions/runs/43392640268), step “Exact LP2 original-word-length multiset-rank binary gate”.
 
+## Signed 2013 BASE29 command as a second direct consumer
+
+The independent 2013 Cicada signed TCP-server challenge explicitly teaches **BASE29** ([authenticated source](../resources/external/2013-tcp-server-signed-source.md)). This suggests testing whether the exact word-permutation rank integer is itself a **GP29-number encoding of plaintext**, instead of a binary file. The proposal still assumes the rank operation, which no original source explicitly commands.
+
+Read the ordinary source rank and its descending-length alphabet complement for each of the same ten original spans as unsigned base29 integers. Map digits 0–28 to the canonical GP29 alphabet, giving **20 complete, unkeyed GP29 readouts**. The whole-book natural rank produces **1,810 runes** with IoC **0.03425903**; the book complement has IoC **0.03474769**. Across the nine original chapter ranks, readout lengths range from **37 to 407 GP runes**, and IoCs remain **0.02852853–0.04052980**. The original source-solved p57 provides an independent native-language reference, IoC **0.06270997** over 95 runes. No whole rank or chapter reads as coherent GP English.
+
+An especially constrained adjacent-page crib tests the exact opening five GP symbols **A N E N D** of already-solved p56 against the base29-readout streams, including the final p54–55 chapter. **Zero occurrences in all 20 readouts.** This does not eliminate every possible partial message, but the source-selected complete p56 opening is absent under this direct signed-BASE29 consumer.
+
+The same SFT additionally encodes **30 untouched GP runes from authentic solved p57** as one base29 integer, un-ranks that value within the original 66-word final chapter's exact word-length multiset, and re-ranks it to recover **all 30/30 original plaintext runes**, without changing the multiset or using a fitted key. The word-rank decoder is therefore capable of actually carrying native GP text under the tested operation. The enhanced test passed [manual Node22 Actions run 43394080743](https://github.com/FlareZ123/liber-primus/actions/runs/43394080743); both 20 original readouts and the 30-rune GP-native planted positive are asserted automatically.
+
+**Decision:** neither the direct binary-file transport nor the independently authentic 2013 BASE29 numeric consumer yields original plaintext under the tested natural source readings. Future investigation requires an authored selector that makes a different ordering or consumer more probable *before* inspecting language output.
+
 ## Decision and next genuinely different route
 
 **Do not interpret word-order combinatorial entropy itself as proof of hidden data.** An arbitrary shuffle of language-like lengths already has a high-entropy lexicographic rank. This test rules out an uncomplicated fixed-prefix original file under the eight source-native readouts per original visual span. Neither the original 2016 signed message nor the original printed words specify a *combinatorial rank* or a subsequent decryption key, and no unknown ciphertext rune has been deciphered.
