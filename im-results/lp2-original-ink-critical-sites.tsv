@@ -1,0 +1,170 @@
+physical_page	archive_jpeg	kind	ordinal	gp_rune	transliteration	line0	index0	line0_2	index0_2	x1	y1	x2	y2	iou	placement
+0	17.jpg	D	1	ᚦ	TH	5	13	5	14	1315	1670	1369	1670	0.914	component-ink
+0	17.jpg	D	2	ᛉ	X	9	10	9	11	1196	2415	1264	2415	1.000	component-ink
+0	17.jpg	S	1	ᛠ	EA	8	3			796	2225				component-ink
+0	17.jpg	S	2	ᛋ	S	11	5			888	2794				component-ink
+1	18.jpg	D	1	ᛠ	EA	9	13	9	14	1321	2224	1409	2224	1.000	component-ink
+1	18.jpg	S	1	ᚾ	N	4	18			1627	1295				component-ink
+2	19.jpg	D	1	ᛄ	J	6	9	6	10	1098	1662	1164	1662	1.000	component-ink
+2	19.jpg	S	1	ᚢ	U	1	2			752	724				component-ink
+2	19.jpg	S	2	ᚠ	F	6	1			688	1662				component-ink
+3	20.jpg	D	1	ᛚ	L	3	12	3	13	1404	1097	1441	1097	0.966	component-ink
+3	20.jpg	D	2	ᚫ	AE	11	5	11	6	938	2712	977	2712	0.954	manual-ink
+3	20.jpg	D	3	ᛋ	S	12	8	12	9	1056	2902	1096	2902	0.937	component-ink
+3	20.jpg	S	1	ᛝ	NG	4	2			730	1285				component-ink
+4	21.jpg	D	1	ᛝ	NG	2	9	2	10	1188	907	1261	907	0.948	component-ink
+4	21.jpg	D	2	ᚷ	G	5	4	5	5	818	1472	883	1472	0.949	component-ink
+4	21.jpg	S	1	ᚻ	H	1	21			1674	720				component-ink
+4	21.jpg	S	2	ᚹ	W	4	15			1414	1296				component-ink
+4	21.jpg	S	3	ᚦ	TH	6	10			1251	1660				component-ink
+5	22.jpg	S	1	ᛡ	IA	2	20			1748	908				component-ink
+5	22.jpg	S	2	ᚣ	Y	5	20			1728	1473				component-ink
+6	23.jpg	D	1	ᚫ	AE	8	12	8	13	1411	2152	1451	2152	1.000	component-ink
+6	23.jpg	S	1	ᛗ	M	6	4			968	1771				component-ink
+7	24.jpg	S	1	ᚻ	H	7	19			1660	1895				component-ink
+8	25.jpg	D	1	ᚾ	N	6	12	6	13	1233	1670	1272	1670	0.913	component-ink
+8	25.jpg	D	2	ᛟ	OE	8	3	8	4	798	2040	848	2040	0.927	manual-ink
+8	25.jpg	D	3	ᛄ	J	8	13	8	14	1290	2040	1356	2040	0.998	manual-ink
+9	26.jpg	D	1	ᚠ	F	3	20	3	21	1642	1100	1680	1100	1.000	component-ink
+9	26.jpg	D	2	ᚣ	Y	6	3	6	4	780	1666	837	1666	0.916	component-ink
+9	26.jpg	D	3	ᚷ	G	10	18	10	19	1470	2419	1520	2419	0.924	component-ink
+9	26.jpg	S	1	ᛁ	I	1	19			1652	724				component-ink
+9	26.jpg	S	2	ᚩ	O	12	1			682	2794				component-ink
+10	27.jpg	D	1	ᛉ	X	9	8	9	9	1052	2262	1135	2262	0.926	component-ink
+10	27.jpg	S	1	ᛁ	I	2	11			1142	911				component-ink
+10	27.jpg	S	2	ᚾ	N	4	16			1468	1292				component-ink
+10	27.jpg	S	3	ᚷ	G	8	18			1570	2040				manual-ink
+10	27.jpg	S	4	ᛁ	I	12	23			1765	2829				component-ink
+11	28.jpg	D	1	ᚢ	U	4	10	4	11	1106	1286	1164	1286	0.928	component-ink
+12	29.jpg	D	1	ᚫ	AE	10	12	10	13	1257	2414	1296	2414	0.970	component-ink
+12	29.jpg	S	1	ᛉ	X	4	4			856	1286				component-ink
+12	29.jpg	S	2	ᚣ	Y	8	13			1297	2047				component-ink
+13	30.jpg	S	1	ᚢ	U	2	4			866	910				component-ink
+13	30.jpg	S	2	ᚹ	W	4	13			1280	1286				component-ink
+13	30.jpg	S	3	ᛄ	J	7	17			1574	1853				component-ink
+15	32.jpg	S	1	ᚣ	Y	9	20			1698	2726				component-ink
+16	33.jpg	D	1	ᚷ	G	4	21	4	22	1712	1290	1760	1290	0.897	component-ink
+16	33.jpg	S	1	ᛞ	D	2	1			702	918				manual-ink
+16	33.jpg	S	2	ᚾ	N	6	7			1060	1664				component-ink
+16	33.jpg	S	3	ᛁ	I	11	22			1750	2604				component-ink
+17	34.jpg	S	1	ᛒ	B	5	22			1714	1480				component-ink
+17	34.jpg	S	2	ᛠ	EA	6	5			916	1672				component-ink
+17	34.jpg	S	3	ᛁ	I	7	11			1169	1852				component-ink
+17	34.jpg	S	4	ᛏ	T	9	8			1030	2227				component-ink
+17	34.jpg	S	5	ᚱ	R	10	1			671	2420				component-ink
+18	35.jpg	D	1	ᛡ	IA	4	19	4	20	1704	1286	1761	1286	0.932	component-ink
+18	35.jpg	S	1	ᛏ	T	3	11			1125	1098				component-ink
+18	35.jpg	S	2	ᛈ	P	8	18			1598	2041				component-ink
+19	36.jpg	D	1	ᚩ	O	1	17	1	18	1421	725	1460	725	0.953	component-ink
+19	36.jpg	D	2	ᛗ	M	2	20	2	21	1614	918	1674	918	0.908	component-ink
+19	36.jpg	D	3	ᚻ	H	5	19	5	20	1662	1472	1712	1472	0.946	component-ink
+19	36.jpg	D	4	ᚹ	W	7	14	7	15	1348	1854	1386	1854	1.000	component-ink
+19	36.jpg	D	5	ᛞ	D	10	7	10	8	976	2422	1036	2422	0.939	component-ink
+19	36.jpg	S	1	ᚹ	W	4	4			848	1295				component-ink
+19	36.jpg	S	2	ᚱ	R	7	1			693	1854				component-ink
+19	36.jpg	S	3	ᚦ	TH	9	7			959	2236				component-ink
+19	36.jpg	S	4	ᛒ	B	11	6			903	2606				component-ink
+20	37.jpg	D	1	ᛉ	X	11	14	11	15	1389	2612	1457	2612	1.000	component-ink
+21	38.jpg	D	1	ᛄ	J	7	19	7	20	1650	1886	1700	1886	1.000	component-ink
+21	38.jpg	S	1	ᛠ	EA	7	12			1266	1886				component-ink
+21	38.jpg	S	2	ᚫ	AE	10	13			1348	2451				component-ink
+21	38.jpg	S	3	ᚾ	N	11	8			954	2641				component-ink
+22	39.jpg	D	1	ᛠ	EA	5	8	5	9	1072	1507	1160	1507	1.000	component-ink
+23	40.jpg	D	1	ᚫ	AE	7	4	7	5	796	2338	836	2338	0.922	component-ink
+23	40.jpg	S	1	ᚪ	A	7	6			892	2338				component-ink
+23	40.jpg	S	2	ᛞ	D	10	1			700	2904				component-ink
+24	41.jpg	D	1	ᚷ	G	3	5	3	6	950	1100	998	1100	0.920	component-ink
+24	41.jpg	D	2	ᛡ	IA	3	12	3	13	1274	1100	1332	1100	0.933	component-ink
+24	41.jpg	D	3	ᚩ	O	5	14	5	15	1388	1474	1426	1474	0.938	component-ink
+24	41.jpg	D	4	ᛋ	S	6	2	6	3	750	1670	804	1670	0.926	component-ink
+24	41.jpg	D	5	ᚾ	N	12	3	12	4	753	2793	792	2793	0.921	component-ink
+24	41.jpg	S	1	ᛏ	T	12	10			1121	2794				component-ink
+25	42.jpg	D	1	ᛉ	X	2	8	2	9	1064	908	1132	908	1.000	component-ink
+25	42.jpg	D	2	ᚢ	U	5	0	5	1	627	1476	700	1476	0.925	component-ink
+25	42.jpg	D	3	ᛚ	L	11	5	11	6	877	2604	915	2605	0.916	component-ink
+25	42.jpg	S	1	ᚷ	G	1	2			727	730				component-ink
+25	42.jpg	S	2	ᚣ	Y	12	15			1422	2793				component-ink
+26	43.jpg	D	1	ᛋ	S	3	18	3	19	1527	1106	1567	1106	1.000	component-ink
+26	43.jpg	D	2	ᛖ	E	5	15	5	16	1374	1476	1432	1476	0.886	component-ink
+27	44.jpg	D	1	ᛚ	L	1	14	1	15	1461	968	1515	968	0.922	component-ink
+27	44.jpg	D	2	ᚩ	O	5	6	5	7	893	1720	932	1720	0.917	component-ink
+27	44.jpg	D	3	ᛖ	E	5	12	5	13	1186	1720	1246	1720	0.931	component-ink
+27	44.jpg	D	4	ᚱ	R	7	2	7	3	688	2100	726	2100	0.939	component-ink
+27	44.jpg	D	5	ᚳ	C	11	16	11	17	1470	2849	1522	2849	0.977	component-ink
+27	44.jpg	S	1	ᛈ	P	2	16			1720	1158				manual-ink
+28	45.jpg	S	1	ᛝ	NG	2	9			1077	918				component-ink
+28	45.jpg	S	2	ᛋ	S	8	1			674	2040				component-ink
+28	45.jpg	S	3	ᛄ	J	11	0			624	2602				component-ink
+28	45.jpg	S	4	ᛗ	M	11	4			904	2602				component-ink
+29	46.jpg	D	1	ᚠ	F	4	17	4	18	1528	1286	1566	1286	1.000	component-ink
+29	46.jpg	D	2	ᛇ	EO	5	20	5	21	1673	1482	1718	1483	0.920	component-ink
+29	46.jpg	D	3	ᚫ	AE	7	0	7	1	618	1854	657	1853	0.954	component-ink
+29	46.jpg	D	4	ᛗ	M	9	16	9	17	1370	2230	1446	2230	0.939	component-ink
+29	46.jpg	S	1	ᚩ	O	5	9			1039	1484				component-ink
+29	46.jpg	S	2	ᛗ	M	7	16			1462	1854				component-ink
+30	47.jpg	D	1	ᚦ	TH	4	11	4	12	1201	1286	1254	1286	0.979	component-ink
+30	47.jpg	D	2	ᛇ	EO	12	22	12	23	1710	2796	1756	2796	0.977	component-ink
+30	47.jpg	S	1	ᛗ	M	1	4			854	720				component-ink
+30	47.jpg	S	2	ᛚ	L	8	21			1699	2040				component-ink
+30	47.jpg	S	3	ᚻ	H	10	18			1698	2414				component-ink
+31	48.jpg	S	1	ᛄ	J	5	20			1662	1474				component-ink
+31	48.jpg	S	2	ᛈ	P	10	10			1098	2418				component-ink
+32	49.jpg	D	1	ᚠ	F	2	4	2	5	821	912	875	912	1.000	component-ink
+32	49.jpg	D	2	ᚾ	N	5	11	5	12	1246	1482	1301	1482	0.905	component-ink
+33	50.jpg	D	1	ᛏ	T	10	5	10	6	887	2526	940	2526	0.935	component-ink
+33	50.jpg	D	2	ᛞ	D	11	13	11	14	1290	2718	1348	2718	0.906	component-ink
+33	50.jpg	S	1	ᛈ	P	9	10			1344	2340				manual-ink
+34	51.jpg	D	1	ᚻ	H	1	21	2	0	1762	724	638	910	0.958	component-ink
+34	51.jpg	D	2	ᚱ	R	6	24	7	0	1758	1672	618	1854	0.777	component-ink
+34	51.jpg	D	3	ᚪ	A	10	10	10	11	1152	2421	1238	2421	0.936	component-ink
+34	51.jpg	S	1	ᛞ	D	5	15			1426	1475				component-ink
+34	51.jpg	S	2	ᛟ	OE	7	18			1593	1853				component-ink
+35	52.jpg	D	1	ᚦ	TH	9	17	9	18	1523	2270	1560	2270	0.973	component-ink
+35	52.jpg	D	2	ᛄ	J	10	0	10	1	624	2449	674	2449	0.932	component-ink
+35	52.jpg	D	3	ᛏ	T	12	15	12	16	1373	2827	1443	2827	0.930	component-ink
+35	52.jpg	S	1	ᚱ	R	6	12			1337	1696				component-ink
+35	52.jpg	S	2	ᚹ	W	11	18			1508	2640				component-ink
+36	53.jpg	D	1	ᚫ	AE	1	19	1	20	1611	722	1650	722	0.955	component-ink
+36	53.jpg	D	2	ᚠ	F	4	0	4	1	618	1286	656	1286	1.000	component-ink
+36	53.jpg	D	3	ᛉ	X	11	10	11	11	1086	2704	1152	2704	0.927	component-ink
+37	54.jpg	S	1	ᛖ	E	6	15			1474	1790				component-ink
+38	55.jpg	S	1	ᛇ	EO	4	17			1584	1342				manual-ink
+39	56.jpg	D	1	ᚹ	W	11	21	11	22	1589	2474	1643	2474	1.000	component-ink
+39	56.jpg	S	1	ᚦ	TH	1	2			711	728				component-ink
+39	56.jpg	S	2	ᚻ	H	9	17			1704	2098				component-ink
+40	57.jpg	S	1	ᛚ	L	7	14			1332	1922				component-ink
+41	58.jpg	D	1	ᛁ	I	3	1	3	2	644	1102	660	1102	1.000	component-ink
+41	58.jpg	D	2	ᛟ	OE	12	19	12	20	1530	2828	1580	2828	0.927	component-ink
+41	58.jpg	S	1	ᛟ	OE	4	5			846	1288				component-ink
+42	59.jpg	D	1	ᚹ	W	1	21	1	22	1677	728	1715	728	1.000	component-ink
+43	60.jpg	D	1	ᛠ	EA	4	21	5	0	1747	1322	645	1513	0.884	component-ink
+43	60.jpg	D	2	ᚾ	N	7	13	7	14	1401	1890	1440	1890	0.983	component-ink
+43	60.jpg	D	3	ᛟ	OE	9	13	9	14	1292	2266	1358	2265	0.909	component-ink
+44	61.jpg	D	1	ᛁ	I	3	15	3	16	1365	1100	1380	1100	1.000	component-ink
+44	61.jpg	D	2	ᚫ	AE	4	1	4	2	677	1288	716	1288	0.955	component-ink
+44	61.jpg	D	3	ᛟ	OE	7	13	7	14	1224	1853	1289	1854	0.911	component-ink
+44	61.jpg	D	4	ᛉ	X	12	11	12	12	1274	2792	1341	2792	0.925	component-ink
+44	61.jpg	S	1	ᚣ	Y	7	23			1755	1854				component-ink
+45	62.jpg	D	1	ᛖ	E	7	3	7	4	784	1851	844	1852	0.935	manual-ink
+45	62.jpg	D	2	ᚩ	O	11	2	11	3	712	2614	767	2614	0.995	component-ink
+45	62.jpg	S	1	ᛏ	T	1	9			1114	730				component-ink
+45	62.jpg	S	2	ᚩ	O	2	10			1118	910				manual-ink
+45	62.jpg	S	3	ᛏ	T	6	10			1096	1662				component-ink
+46	63.jpg	D	1	ᛖ	E	5	24	6	0	1734	1476	627	1663	0.938	component-ink
+47	64.jpg	D	1	ᛈ	P	5	1	5	2	682	1476	737	1476	0.925	component-ink
+47	64.jpg	D	2	ᚹ	W	7	15	7	16	1394	1856	1448	1856	1.000	component-ink
+47	64.jpg	S	1	ᛈ	P	2	0			627	914				manual-ink
+47	64.jpg	S	2	ᛒ	B	7	4			852	1856				component-ink
+48	65.jpg	D	1	ᚹ	W	4	0	4	1	634	1294	672	1294	1.000	component-ink
+48	65.jpg	S	1	ᚷ	G	2	3			748	908				manual-ink
+48	65.jpg	S	2	ᚢ	U	8	15			1502	2048				component-ink
+51	68.jpg	D	1	ᚹ	W	1	0	1	1	618	2339	656	2339	1.000	component-ink
+51	68.jpg	S	1	ᛟ	OE	3	6			934	2718				component-ink
+52	69.jpg	D	1	ᚣ	Y	8	13	8	14	1330	2040	1386	2040	0.904	component-ink
+52	69.jpg	S	1	ᛠ	EA	2	4			856	908				manual-ink
+52	69.jpg	S	2	ᛗ	M	3	3			792	1105				component-ink
+54	71.jpg	D	1	ᛝ	NG	2	0	2	1	790	1158	861	1158	0.911	manual-ink
+54	71.jpg	D	2	ᚷ	G	8	10	8	11	1172	2282	1236	2282	0.920	component-ink
+54	71.jpg	S	1	ᚪ	A	1	0			645	964				manual-ink
+54	71.jpg	S	2	ᛝ	NG	6	20			1701	1908				component-ink
+55	72.jpg	D	1	ᚦ	TH	3	12	3	13	1267	1096	1304	1096	0.978	component-ink
