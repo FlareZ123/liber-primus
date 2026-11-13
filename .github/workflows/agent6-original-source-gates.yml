@@ -1,6 +1,15 @@
 name: Agent 6 original-source inverse gates
 on:
   workflow_dispatch:
+    inputs:
+      route:
+        description: 'Select all original gates or just the 2016 dimension orbit'
+        type: choice
+        required: true
+        default: 'all'
+        options:
+          - all
+          - orbit
 permissions:
   contents: read
 jobs:
@@ -13,18 +22,29 @@ jobs:
         with:
           node-version: "22"
       - name: Exact table-flank 79-rune geometry
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_tendot_79_flank_sft.cjs
       - name: Original quote shape source-corpus test
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_quote_fullshape_source_corpus_sft.cjs
       - name: Missing-f prime-square reversible grid inverse
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_prime_square_grid_clock_sft.cjs
       - name: Original four-concentric-ring source alignment and all-secret lookup gate
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_grid_p53_p55_four_ring_source_sft.cjs
       - name: Original physical-chapter all-secret substitution reuse gate
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_layout_secret_codebook_gate_sft.cjs
       - name: Exact original p27-to-p56 seven-rune cross-page echo
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_bookend7_p56_source_sft.cjs
       - name: Exact bookend phrase conditional word-inventory gate
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_bookend_wordpair_layout_null_sft.cjs
       - name: Source-stratified original LP2 doublet block gate
+        if: ${{ inputs.route != 'orbit' }}
         run: node sims/lp2_doublet_1000block_source_strata_sft.cjs
+      - name: 2016 image-dimension 33-cycle and p50 grid pointer
+        if: ${{ inputs.route == 'orbit' }}
+        run: node sims/lp2_2016_dimensions_base58_orbit_sft.cjs
