@@ -187,8 +187,9 @@ def main() -> None:
                         atlas, nearby, Path(temp)
                     )
                 except (subprocess.CalledProcessError, ValueError, AssertionError) as e:
-                    report["control_error"] = f"page {page}: {e}"
-                    print(f"CONTROL_FAILED p{page}: {e}", flush=True)
+                    diagnostics = e.stderr.decode(errors="replace")[-1500:] if isinstance(e, subprocess.CalledProcessError) and e.stderr else ""
+                    report["control_error"] = f"page {page}: {e}; stderr={diagnostics}"
+                    print(f"CONTROL_FAILED p{page}: {e}; stderr={diagnostics}", flush=True)
                     break
                 report["positive_controls"].append(result)
                 print(
