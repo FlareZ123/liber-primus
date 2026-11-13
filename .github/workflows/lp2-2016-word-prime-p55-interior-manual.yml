@@ -1,6 +1,9 @@
 name: Signed 2016 GP word numbers to p55 original interior
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sims/p32_p55_43symbol_additive_bridge.cjs'
 permissions:
   contents: read
 jobs:
@@ -16,3 +19,5 @@ jobs:
 
       - name: All-secret p55 interior permutation histogram gate
         run: node sims/lp2_p55_43_interior_any_transposition_ioc_sft.cjs
+      - name: Test signed 2016 word initials as a 43-symbol running key
+        run: node sims/p32_p55_43symbol_additive_bridge.cjs
