@@ -5,7 +5,7 @@
  * Hypothesis only: neither source prescribes Blum–Blum–Shub or a GP29 pad.
  * Run: node sims/lp2_p57_prime_triplet_bbs_gate_sft.cjs
  *
- * All 36 variants are source-fixed before looking at LP2 unknown ciphertext:
+ * All 48 variants are source-fixed before looking at LP2 unknown ciphertext:
  * 2 initial states x0, 3 natural output projections, 3 printed reset clocks,
  * and 2 additive signs. No language-guided choice or key fitting is used.
  */
