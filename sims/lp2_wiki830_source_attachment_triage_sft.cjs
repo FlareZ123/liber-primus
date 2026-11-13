@@ -142,6 +142,41 @@ async function main() {
     console.log("SELFTEST PASS");
     return;
   }
+  if(process.argv.includes("--inspect-timeline")) {
+    const images=await wikiList();
+    const timeline=images.filter(im=>im.timestamp>="2014-04-01" &&
+      im.timestamp<"2014-08-01" && !/^(?:0|[1-9]|[1-6][0-9])\\.jpg$/i.test(im.name));
+    const chosen=new Set(["1399181864285.png","1399181864285_large.png",
+      "Base60.jpg","Comp1ete1y.jpg","S1.jpg","Titanpad.png",
+      "Various.png","Weirdness.png","Xxiivv.png","CicadaEdit.png"]);
+    const root=path.resolve("im-results/wiki-may2014/originals");
+    fs.mkdirSync(root,{recursive:true});
+    const rows=[];
+    for(const im of timeline.filter(x=>chosen.has(x.name))) {
+      const direct=im.url.replace(/\\/revision\\/latest.*$/,"");
+      let found=false;
+      for(const candidate of [im.url,direct,direct+"/revision/latest?format=original"]) {
+        try {
+          const response=await load(candidate,{referer:"https://uncovering-cicada.fandom.com/"});
+          const data=Buffer.from(await response.arrayBuffer());
+          const sha1=crypto.createHash("sha1").update(data).digest("hex");
+          if(sha1!==im.sha1) continue;
+          const output=path.join(root,im.name.replace(/[^A-Za-z0-9._-]/g,"_"));
+          writeAtomic(output,data);
+          rows.push({name:im.name,verified:true,bytes:data.length,sha1,
+            file:output,timestamp:im.timestamp});
+          found=true;
+          break;
+        } catch(e) { console.log("TIMELINE_VARIANT_ERROR",im.name,String(e).slice(0,100)); }
+      }
+      if(!found) rows.push({name:im.name,verified:false,publishedSHA1:im.sha1,
+        timestamp:im.timestamp});
+    }
+    const output=path.resolve("im-results/wiki-may2014");
+    writeAtomic(path.join(output,"timeline-source-audit.json"),JSON.stringify(rows,null,2));
+    console.log("TIMELINE_IMAGE_AUDIT",JSON.stringify(rows));
+    return;
+  }
   if(process.argv.includes("--inspect-image")) {
     const images=await wikiList();
     const selected=["New_potential_clue_from_MIT_keyservers.png",
