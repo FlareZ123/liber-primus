@@ -110,7 +110,7 @@ has three all-even columns (indices 0, 2 and 3). For every four-byte vector `x`,
 
 **Decision:** The original p15 square cannot be a reversible direct byte-Hill transform of the pp49–51 numeric grid. Its standalone GF29 application to a lossy table projection does not yield a GP-language reading. This leaves untouched any *independently motivated* transport preserving the grid bytes, nonlinear cipher, separate key input, or larger manuscript-specific state machine. Do not use phase-tuned outputs or a correct planted re-encryption as evidence of historical authorship.
 
-**Reproducer:** [single original-input CommonJS SFT](../sims/lp2_p15_matrix_on_p50_grid_original_sft.cjs). The source is the canonical `lp2-grid-256.json` and `lp2-corpus.json`, with unchanged grid SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. No automated workflow, external source or additional fitted parameter is required.
+**Reproducer:** [single original-input CommonJS SFT](../sims/lp2_p15_matrix_on_p50_grid_original_sft.cjs). The source is the canonical `lp2-grid-256.json` and `lp2-corpus.json`, with unchanged grid SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The [manual Node.js 22 GitHub Actions run 43389014504](https://github.com/FlareZ123/liber-primus/actions/runs/43389014504) passed the original-byte kernel witnesses, all sixteen fixed GF29 table projections, and 92/92 authentic solved-p57 positive controls. No external source or additional fitted parameter is required.
 
 ## 2014 OpenPuff 5×5 squares as direct GP29 Hill keys (Agent 23, 11 November 2026)
 
