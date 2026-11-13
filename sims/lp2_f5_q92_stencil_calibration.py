@@ -123,21 +123,45 @@ def main() -> None:
             extracted = work / f"p{page}_payload{size}.out"
             if extracted.exists():
                 extracted.unlink()
-            embed = command([
-                a.f5, "embed", str(cover), "-p", PASSWORD,
-                "-in", str(payload_file), "-o", str(stego)
-            ])
-            if embed.returncode or not stego.exists():
-                raise RuntimeError(f"F5 embed failed p{page}/{size}: {embed.stderr[-1500:]}")
-            extr = command([
-                a.f5, "extract", str(stego), "-p", PASSWORD, "-o", str(extracted)
-            ])
-            if extr.returncode or not extracted.exists() or extracted.read_bytes() != payload:
-                raise RuntimeError(f"F5 extraction failed p{page}/{size}: {extr.stderr[-1500:]}")
+            # Go v1.0.0 can emit a JPEG that fails its own extraction on
+            # one-component grayscale sources. This observed, reachable failure
+            # is an encoder-control failure, not evidence that F5 is absent.
+            # Try the independently documented coefficient-preserving libjpeg
+            # profile, and record which producer actually extracts exactly.
+            producer = ""
+            failures = []
+            for label, operation in [
+                ("embed", "embed"),
+                ("embed-x-libjpeg", "embed-x"),
+            ]:
+                if stego.exists():
+                    stego.unlink()
+                if extracted.exists():
+                    extracted.unlink()
+                invocation = [a.f5, operation, str(cover), "-p", PASSWORD,
+                              "-in", str(payload_file), "-o", str(stego)]
+                if operation == "embed-x":
+                    invocation.extend(["-encoder", "libjpeg"])
+                embed = command(invocation)
+                if embed.returncode or not stego.exists():
+                    failures.append(f"{label}:embed:{embed.stderr[-250:]}")
+                    continue
+                extr = command([
+                    a.f5, "extract", str(stego), "-p", PASSWORD, "-o", str(extracted)
+                ])
+                if extr.returncode or not extracted.exists() or extracted.read_bytes() != payload:
+                    failures.append(f"{label}:extract:{extr.stderr[-250:]}")
+                    continue
+                producer = label
+                break
+            if not producer:
+                raise RuntimeError(
+                    f"no exact F5 extraction for p{page}/{size}: {'; '.join(failures)}"
+                )
             row = stencil(a.exe, a.sources, page, stego)
             row.update({
                 "payload_bytes": size, "sha256_stego": sha256(stego.read_bytes()),
-                "sha256_payload": sha256(payload), "extracted_exactly": True,
+                "sha256_payload": sha256(payload), "extracted_exactly": True, "producer": producer, "encoder_failures": failures,
             })
             result["positive_controls"].append(row)
             print("POS", page, size, "dec", row["f5_decrements"],
