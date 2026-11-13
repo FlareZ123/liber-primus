@@ -23,3 +23,5 @@ jobs:
           sha256sum /tmp/761.MP3
       - name: Run historical XOR positive control and frozen p50 test
         run: node sims/761_mp3_xor_p50_gate.cjs /tmp/761.MP3
+      - name: Test exact p56 SHA-512 preimage candidate
+        run: node sims/lp2_p56_761_mp3_sha512_gate.cjs /tmp/761.MP3
