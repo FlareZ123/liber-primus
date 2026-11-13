@@ -20,6 +20,10 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(os.environ.get('LP2_RESOURCE_DIR', ROOT / 'resources/liber-primus'))
 H, W = 274, 293
+# One exactly matching nearest-neighbor enlargement of the p57 cell mask.
+GRID_X0, GRID_Y0, GRID_SX, GRID_SY = (
+    658.68563726, 1979.37631256, 4.16364299, 4.16621713,
+)
 # Locked source registration/tonality from a seven-parameter 65%-tile fit.
 # Pixel coordinates refer to original physical p24 (41.jpg), NOT a model key.
 X0, Y0, SX, SY, SKEW, GAMMA, GAIN = (
@@ -104,6 +108,20 @@ def run() -> dict:
     field = historical_thresholds()
     dots = [(53, 250), (44, 256), (41, 265), (57, 269)]
     assert target.sum() == 2033
+    # Reproduce the full original physical pixel mask, not merely centers.
+    edges_x = np.rint(GRID_X0 + np.arange(W + 1) * GRID_SX).astype(int)
+    edges_y = np.rint(GRID_Y0 + np.arange(H + 1) * GRID_SY).astype(int)
+    decoded_native = np.zeros_like(p57, dtype=bool)
+    for ir in range(H):
+        for ic in np.flatnonzero(target[ir]):
+            decoded_native[edges_y[ir]:edges_y[ir + 1],
+                           edges_x[ic]:edges_x[ic + 1]] = True
+    roi = (slice(1900, 3200), slice(600, 1900))
+    native_errors = {}
+    for threshold in (64, 128, 192):
+        native_errors[str(threshold)] = int(np.count_nonzero(
+            decoded_native[roi] != (p57[roi] < threshold)))
+    assert native_errors == {'64': 0, '128': 0, '192': 0}
     assert all(target[r, c] and field[r, c] == 0 for c, r in dots)
     assert np.array_equal(p24[900:2500, :600], p26[900:2500, :600])
     a24 = alpha_from_plate(p24)
@@ -140,6 +158,12 @@ def run() -> dict:
     return {
         'source_sha256': {'41.jpg': h24, '42.jpg': h25, '43.jpg': h26, '74.jpg': h57},
         'p57_black_cells': int(target.sum()),
+        'native_pixel_reproduction': {
+            'original_black_pixels': int((p57[roi] < 128).sum()),
+            'renderer_edges': [int(edges_x[0]), int(edges_x[-1]),
+                               int(edges_y[0]), int(edges_y[-1])],
+            'fitted_source_grid': [GRID_X0, GRID_Y0, GRID_SX, GRID_SY],
+            'mismatch_by_grayscale_threshold': native_errors},
         'four_published_dots_threshold_zero': True,
         'p24_p26_plate_pixel_equal': True,
         'plate_model': {'fit_params': [X0, Y0, SX, SY, SKEW, GAMMA, GAIN],
