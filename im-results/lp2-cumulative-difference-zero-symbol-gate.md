@@ -50,6 +50,30 @@ The manuscript itself visibly delineates nine red-heading chapters with original
 
 Because independent words in different chapters are independent **within the same stipulated control model**, the product of these conservative per-chapter bounds is **4.7635848401690264 × 10⁻⁵**. This also disfavors one freely secret stationary cumulative alphabet *per original red chapter*, though less strongly than the single-global-alphabet gate. Each probability remains conditional on word-length-matched independent control sampling, constant alphabet within a chapter, and preserved printed boundaries. It is not an exact probability that the author used such a cipher and has no key/plaintext output.
 
+## Keyless rank-spectrum exclusion (stronger, simpler invariant)
+
+The same cumulative equation has a second necessary condition independent of the equal-rune event: **for every one of the 29! secret bijections \(h\), the unigram count histogram of plaintext \(P_i\) is a permutation of the adjacent ciphertext-difference histogram.** No secret index ordering can repair a mismatch in their *sorted* frequency spectra.
+
+Count all **12,955** adjacent original LP2 rune differences and compare their sorted 29-component frequency vector with the native-GP-English frequency vector from the same pinned 149,072 control words, weighted to match all original printed rune-word lengths. Sorting both vectors gives the **optimal bijection** for total-variation distance *and* multinomial KL divergence by the rearrangement inequality. The first difference bin (zero) has **86** observations, while the other 28 bins span **404–510**. In contrast, the length-matched native-English expected counts run from **approximately 1.16 (AE), 5.70 (EO), 6.01 (OE)** up to **1,556.77 (E)** across 12,956 runes.
+
+**Result:** even the best arbitrary hidden permutation has **minimum total-variation distance 0.3281140532**, and **minimum KL divergence 0.5971402079 nats per ciphertext-difference rune**. A positive plant using real GP-native words drawn with the original word lengths, transformed through an actual secret cumulative bijection, meets the native-spectrum check (deterministic seed and assertion in the SFT).
+
+Allowing the secret alphabet to change independently at **all nine visibly delineated chapter starts**, the individual chapter minimum total-variation distances are:
+
+| Chapter | Runes | Minimum possible TV after all secret bijections |
+|---|---:|---:|
+| 0 | 729 | 0.276785 |
+| 1 | 1,145 | 0.285211 |
+| 2 | 1,729 | 0.293876 |
+| 3 | 1,903 | 0.300254 |
+| 4 | 1,021 | 0.298109 |
+| 5 | 1,433 | 0.284513 |
+| 6 | 1,680 | 0.290466 |
+| 7 | 3,008 | 0.307310 |
+| 8 | 308 | 0.203764 |
+
+The table removes one cross-chapter difference at each new chapter and reweights the reference by that chapter's own printed word lengths. The magnitude of the whole-book and chapter-wise mismatch strongly disfavors any source-native-English stationary cumulative alphabet substitution, global or chapter-specific. **TV and KL are descriptive distances under this particular English control distribution**; they are not by themselves authorial probabilities. An alternate non-English/register distribution, variable secret alphabet within chapters, an evolving cipher state with non-bijective emission, or altered word boundaries could escape this constraint. The result does not identify an actual LP2 plaintext or key.
+
 ## Consequence and limits
 
 A simple **word-boundary-preserving, book-stationary, unkeyed cumulative alphabet permutation** fails a discriminating original-input test even when the secret alphabet is unrestricted. Uniform nonzero ciphertext differences alone do not establish a no-repeat cipher. A changing stream key, a reset at each printed word, a different alphabet or spelling register, non-English plaintext, and any operation that breaks the zero-event equality are outside this result. In particular, the 22 ordinary-boundary events cannot test an encoder that resets state at every word.

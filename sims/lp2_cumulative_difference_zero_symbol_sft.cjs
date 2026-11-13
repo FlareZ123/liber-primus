@@ -108,10 +108,12 @@ const bins = new Map();
 for (const w of control) {
   let bin = bins.get(w.length);
   if (!bin) {
-    bin = {n: 0, start: Array(29).fill(0), end: Array(29).fill(0)};
+    bin = {n: 0, start: Array(29).fill(0), end: Array(29).fill(0),
+      unigram: Array(29).fill(0)};
     bins.set(w.length, bin);
   }
   bin.n++;
+  for (const rune of w) bin.unigram[rune]++;
   bin.start[w[0]]++;
   if (w.length > 1) bin.end[w.at(-1)]++;
 }
@@ -240,6 +242,100 @@ const chapterResetUpper = chapterComparisons.reduce((p, ch) =>
   p * ch.unionUpper, 1);
 assert(Math.abs(chapterResetUpper - 0.000047635848401690264) < 1e-9);
 
+
+/**
+ * Rank-spectrum invariant: for any hidden stationary bijection h, the
+ * multiset of adjacent ciphertext differences is the multiset of GP
+ * plaintext rune counts, with symbol labels permuted. The best possible
+ * 29! relabelling is obtained by sorting both spectra (rearrangement).
+ *
+ * This is a more direct keyless test than the zero-event location test.
+ * The observed original source is compared to the pinned, length-matched
+ * GP-native English word unigram spectrum. It remains English-conditional.
+ *
+ * @param {number[]} nativeCounts
+ * @param {number[]} differenceCounts
+ * @param {number} nativeTotal
+ * @returns {{totalVariation:number,kl:number}}
+ */
+function bestRelabel(nativeCounts, differenceCounts, nativeTotal) {
+  const p = nativeCounts.slice().sort((a, b) => b - a)
+    .map(n => n / nativeTotal);
+  const nDelta = differenceCounts.reduce((s, x) => s + x, 0);
+  const q = differenceCounts.slice().sort((a, b) => b - a)
+    .map(n => n / nDelta);
+  const totalVariation = q.reduce((s, x, i) => s + Math.abs(x - p[i]), 0) / 2;
+  const kl = q.reduce((s, x, i) => s + (x > 0 ? x * Math.log(x / p[i]) : 0), 0);
+  return {totalVariation, kl};
+}
+
+/** @param {Map<number,number>} lengthCount */
+function expectedNative(lengthCount) {
+  const counts = Array(29).fill(0);
+  for (const [length, n] of lengthCount) {
+    const bin = bins.get(length);
+    assert(bin);
+    for (let i = 0; i < 29; i++)
+      counts[i] += n * bin.unigram[i] / bin.n;
+  }
+  return counts;
+}
+const fullStream = words.flat();
+const allDifference = Array(29).fill(0);
+for (let i = 1; i < fullStream.length; i++)
+  allDifference[(fullStream[i] - fullStream[i - 1] + 29) % 29]++;
+const wholeRank = bestRelabel(expectedNative(groupLengths(words.map(w =>
+  w.length))), allDifference, fullStream.length);
+assert(Math.abs(wholeRank.totalVariation - 0.32811405321425435) < 1e-10);
+
+const chapterRank = [];
+for (let ch = 0; ch < visualEnds.length; ch++) {
+  const start = ch ? visualEnds[ch - 1] : 0, end = visualEnds[ch];
+  const deltas = Array(29).fill(0);
+  for (let i = start + 1; i < end; i++)
+    deltas[(fullStream[i] - fullStream[i - 1] + 29) % 29]++;
+  const lengthCount = new Map();
+  for (let w = 0; w < words.length; w++) {
+    if (chapterAt(beginnings[w]) !== ch) continue;
+    const length = words[w].length;
+    lengthCount.set(length, (lengthCount.get(length) || 0) + 1);
+  }
+  const native = expectedNative(lengthCount);
+  const rank = bestRelabel(native, deltas, end - start);
+  chapterRank.push({chapter: ch, runes: end - start,
+    totalVariation: rank.totalVariation, kl: rank.kl});
+}
+assert.equal(chapterRank.length, 9);
+assert(Math.abs(chapterRank[8].totalVariation - 0.20376379029707836) < 1e-10);
+assert(chapterRank.slice(0, 8).every(x => x.totalVariation > 0.27));
+
+// Source-native positive plant with a secret fixed permutation and no
+// dependence on the observed LP2 ciphertext. A seeded deterministic sample
+// from each length bin must have the expected native-GP unigram shape.
+const controlBins = new Map();
+for (const w of control) {
+  let row = controlBins.get(w.length);
+  if (!row) {row = []; controlBins.set(w.length, row);}
+  row.push(w);
+}
+let rng = 0x90331;
+function nextInt() {
+  rng ^= rng << 13;
+  rng ^= rng >>> 17;
+  rng ^= rng << 5;
+  return rng >>> 0;
+}
+const plantCounts = Array(29).fill(0);
+for (const originalWord of words) {
+  const b = controlBins.get(originalWord.length);
+  const modelWord = b[nextInt() % b.length];
+  // Cipher integrate using h(p)=(p+7) mod29; sorted differences are the
+  // GP-native plaintext frequencies regardless of unknown h.
+  for (const p of modelWord) plantCounts[(p + 7) % 29]++;
+}
+const plantRank = bestRelabel(expectedNative(groupLengths(words.map(w =>
+  w.length))), plantCounts, fullStream.length);
+assert(plantRank.totalVariation < 0.06);
 const comparisons = gp.translit.map((name, rune) => {
   const start = chernoff(rune, 'start', observedStart, startGroups);
   const final = chernoff(rune, 'end', observedFinal, finalGroups);
@@ -278,6 +374,7 @@ console.log(JSON.stringify({
     lastRuneOpportunities: finalLengths.length},
   controlWords: control.length, candidates: comparisons,
   unionUpper, chapterResetUpper, chapterComparisons,
-  nativePlantDoublets: observedNativeZero,
+  rankSpectrum: {whole: wholeRank, chapter: chapterRank,
+    positivePlant: plantRank}, nativePlantDoublets: observedNativeZero,
   interpretation: 'Conditional English model; no unknown plaintext or key'
 }, null, 2));
