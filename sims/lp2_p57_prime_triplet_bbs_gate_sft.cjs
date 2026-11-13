@@ -131,6 +131,83 @@ for (const [clock, parts] of Object.entries(units)) {
 }
 assert.equal(plantedCases, 48);
 const byScore = measurements.slice().sort((a, b) => b.ioc - a.ioc);
+/**
+ * Convert author-published GP29 digits as a minimal big-endian BASE29 integer,
+ * following the authenticated 2013 BASE29 number convention.
+ * @param {number[]} digits
+ * @returns {number[]}
+ */
+function base29Bytes(digits) {
+  let value = 0n;
+  for (const digit of digits) value = value * 29n + BigInt(digit);
+  let hex = value.toString(16);
+  if (hex.length % 2) hex = '0' + hex;
+  return Array.from({ length: hex.length / 2 },
+    (_, i) => Number.parseInt(hex.slice(2 * i, 2 * i + 2), 16));
+}
+
+/**
+ * Literal BBS parity-bit XOR consumer on serialized original bytes.
+ * @param {number[]} bytes
+ * @param {'seed'|'square'} initial
+ * @param {'msb'|'lsb'} bitOrder
+ * @returns {number[]}
+ */
+function bbsByteXor(bytes, initial, bitOrder) {
+  let x = initial === 'square' ? SEED * SEED % N : SEED;
+  return bytes.map(byte => {
+    let key = 0;
+    for (let i = 0; i < 8; i++) {
+      x = x * x % N;
+      const bit = x % 2;
+      if (bitOrder === 'msb') key = key * 2 + bit;
+      else key += bit * (2 ** i);
+    }
+    return byte ^ key;
+  });
+}
+
+const fileMagic = {
+  BZIP2: '425a68',
+  GZIP: '1f8b',
+  XZ: 'fd377a585a00',
+  ZIP: '504b0304',
+  PNG: '89504e470d0a1a0a',
+  PDF: '25504446',
+  PGP: '2d2d2d2d2d424547494e20504750',
+};
+const asciiFraction = bytes => bytes.reduce((sum, byte) =>
+  sum + Number((byte >= 32 && byte <= 126) || byte === 10 || byte === 13), 0) /
+  bytes.length;
+const binaryResults = [];
+for (const [clock, parts] of Object.entries({
+  book: units.book,
+  chapter: units.chapter,
+})) {
+  for (const [region, originalGP] of parts.entries()) {
+    const originalBytes = base29Bytes(originalGP);
+    for (const initial of ['seed', 'square']) {
+      for (const bitOrder of ['msb', 'lsb']) {
+        const decoded = bbsByteXor(originalBytes, initial, bitOrder);
+        assert.deepEqual(bbsByteXor(decoded, initial, bitOrder), originalBytes);
+        const hex = decoded.slice(0, 20).map(x =>
+          x.toString(16).padStart(2, '0')).join('');
+        binaryResults.push({
+          clock, region, initial, bitOrder,
+          length: decoded.length,
+          prefix: hex,
+          printable: asciiFraction(decoded),
+          fileSignatures: Object.entries(fileMagic)
+            .filter(([, magic]) => hex.startsWith(magic)).map(([name]) => name),
+        });
+      }
+    }
+  }
+}
+assert.equal(binaryResults.length, 40);
+assert.equal(base29Bytes(book).length, 7868);
+assert.ok(binaryResults.every(r => r.fileSignatures.length === 0));
+
 const report = {
   candidate: 'p57/761.mp3 BBS, conditional direct GP29 additive consumer',
   modulus: N,
@@ -145,5 +222,11 @@ const report = {
   maxDecodedIoC: byScore[0].ioc,
   strongestVariant: byScore[0],
   allVariants: measurements,
+  binarySourceGate: {
+    variantCount: binaryResults.length,
+    maxPrintableFraction: Math.max(...binaryResults.map(r => r.printable)),
+    minPrintableFraction: Math.min(...binaryResults.map(r => r.printable)),
+    allVariants: binaryResults,
+  },
 };
 process.stdout.write(JSON.stringify(report, null, 2) + '\n');
