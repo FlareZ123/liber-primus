@@ -23,7 +23,7 @@ const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const html = read("resources/external/cicada2014-stage11-onion7-original-index.html");
 assert.match(html, /<title>133<\/title>/);
 const reference = 133;
-assert.equal(ink.pages.length, 58);
+assert.equal(ink.pages.length, 24); // Only pages with annotated ink events
 assert.equal(book.pages.length, 58);
 assert.deepEqual(book.prime.slice(0, 3), [2, 3, 5]);
 const weights = new Map(book.runes.map((r, i) => [r, book.prime[i]]));
