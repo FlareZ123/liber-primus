@@ -44,6 +44,25 @@ sigma[chapter, previous](plain) =
 
 The first original ciphertext rune of each word acts as a freely supplied seed, as it does for the candidate. All **10,060/10,060** native GP plaintext interior symbols decode exactly through the inverse tables. The positive plant has **1,499 actual E** and **2,388 actual E+O**, both below its generated ciphertext's independent capacities **1,742 E** and **3,032 E+O**. This ensures the test can accept genuine native-English signal under a real secret state-dependent encoder instead of merely rejecting uniform-looking sequences.
 
+## Boundary-aware source resets: a sharper decision
+
+The runeless original p50 is a plausible additional source-visible register reset. If the cipher is granted an **independent set of 29 secret alphabet rows after p50** while preserving the nine visual-chapter resets, the original occupancy allowances become **1,109 E / 2,015 E+O**. No fixed state in this *ten-segment* model then emits all 29 output runes, so the **Latin26 alphabet-size obstruction is conditional on persisting the same codebooks across p50**. This extra p50 reset still cannot supply the source-native reference's 1,487.44 E or 2,289.23 E+O expectations.
+
+To learn what added source-visible complexity could rescue the English register, the expanded exact SFT partitions **all 55 rune-bearing original pages** into consecutive segments, preserving all nine original visual-chapter reset boundaries, and permits an arbitrary new set of 29 secret predecessor-state codebooks at **any additional physical-page start**. A dynamic program enumerates *all contiguous within-chapter page partitions* and maximizes the theoretical E and E+O capacities separately for each number of extra resets. This grants the model every favorable page boundary and all 29! possible glyph permutations at each row.
+
+| Extra page-start resets beyond the nine visual chapters | Maximum possible E | Maximum possible E+O |
+| ---: | ---: | ---: |
+| 0 | 1,068 | 1,938 |
+| 4 | 1,259 | 2,254 |
+| 5 | 1,300 | 2,319 |
+| 9 | 1,450 | 2,568 |
+| **10** | **1,485** | 2,628 |
+| **11** | **1,519** | 2,687 |
+
+Consequently, the *reference-expected* E occupancy of **1,487.4447** requires at least **11 additional page-boundary rekeys** after the nine visual chapters, even under the most advantageous hidden alphabet choices. The E+O expectation **2,289.2256** separately requires at least **5** extra rekeys. The exact E-maximizing 11-reset example starts new codebooks at physical page numbers **[1,11,18,20,25,29,35,42,44,46,51]**; this set is an *algorithmic upper-bound witness*, not a source-instructed key schedule or proposed solve route. The corresponding ten-reset optimum is **1,485**, two or three E runes short of the rounded reference expectation. These statements concern the specified native-English statistical benchmark. An atypically E-sparse authentic text could demand fewer resets, and a richer hidden-state/transport model lies outside the theorem.
+
+The broader interpretation is causally useful: adding the obvious p50 interruption, or a few chapter-local resets, is insufficient for source-native ordinary English. A first-order observable-state explanation would require frequent independent alphabet changes or a different underlying plaintext distribution, hence **independent source evidence for a substantially more complex schedule** before another original-cipher key search.
+
 ## Consequence for the solve path
 
 A **fixed first-order previous-visible-cipher-rune substitution**, even with 261 independent arbitrary secret alphabet mappings and independently restored word initials, cannot explain the original unknown corpus as ordinary source-native GP-English under this specified length/position model. It is *strictly* impossible as a 26-letter deterministic state-only encoder. This narrows the range of simple no-repeat-generating explanations without searching keys.
