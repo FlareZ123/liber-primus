@@ -226,10 +226,10 @@ for (const [name, starts] of models) {
   }
 }
 assert.equal(summary.length, 8);
-const spiral = summary.find(x => x.name === "spiral" && x.period === 0);
-assert(spiral);
-assert.deepEqual([spiral.source.total, spiral.source.fixed,
-  spiral.source.oracle, spiral.source.pairs], [7805, 274, 493, 36]);
+const spiralResult = summary.find(x => x.name === "spiral" && x.period === 0);
+assert(spiralResult);
+assert.deepEqual([spiralResult.source.total, spiralResult.source.fixed,
+  spiralResult.source.oracle, spiralResult.source.pairs], [7805, 274, 493, 36]);
 console.log("DECISION: eight fixed p15-cell clocks do not recover unknown LP2 " +
   "plaintext or an authentic key. Native-English pad-reuse controls are " +
   "substantially more collision-rich than the original source.");
