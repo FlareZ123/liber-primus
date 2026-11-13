@@ -7,6 +7,7 @@
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 
 /** @param {string} relative @returns {string} */
@@ -187,6 +188,37 @@ const core23Candidates = [-1, 1].map(sign => {
 assert.equal(core23Candidates[0].gp, 'M-L-I-L-I-X-AE-U-IA-N-W-J-U-L-S-I-L-E-F-EO-R-B-EO');
 assert.equal(core23Candidates[1].gp, 'OE-Y-N-X-M-X-A-H-R-U-M-C-EO-Y-I-I-NG-I-A-NG-F-O-Y');
 
+// Source-order 361,133,331 selects exactly 23+23+18=64 printed rune cells.
+// Treat this as one frozen GP-prime-byte candidate for the next p56 AN END
+// 512-bit digest, without fitting a byte alphabet or a position offset.
+const addressKey64 = [...p36Line1, ...key, ...lines(33)[0]];
+assert.deepEqual(
+  [p36Line1.length, key.length, lines(33)[0].length],
+  [23, 23, 18],
+);
+assert.equal(addressKey64.length, 64);
+const targetHex = JSON.parse(source('resources/cicada2014-archive-hash-manifest.json')).targetHex;
+assert.equal(targetHex.length, 128);
+const digestCandidates = [];
+for (const encoding of ['gpIndex', 'gpPrime']) {
+  const bytes = Buffer.from(encoding === 'gpIndex'
+    ? addressKey64
+    : addressKey64.map(i => corpus.prime[i]));
+  assert.equal(bytes.length, 64);
+  for (const algorithm of ['sha512', 'blake2b512']) {
+    const digest = crypto.createHash(algorithm).update(bytes).digest('hex');
+    assert.notEqual(digest, targetHex, 'source64 unexpectedly matched p56 target');
+    digestCandidates.push({ encoding, algorithm, prefix: digest.slice(0, 16), matchesTarget: digest === targetHex });
+  }
+}
+const p55Register64 = [-1, 1].map(sign => {
+  const plain = p55.map((c, i) => (c + 29 + sign * addressKey64[i % 64]) % 29);
+  assert.deepEqual(plain.map((p, i) => (p + 29 - sign * addressKey64[i % 64]) % 29), p55);
+  return { sign, ioc: ioc(plain), initialGP: plain.slice(0, 30).map(x => corpus.translit[x]).join('-') };
+});
+close(p55Register64[0].ioc, 0.037192982456140354);
+close(p55Register64[1].ioc, 0.032280701754385965);
+
 // Fully solved authentic GP-rune p57 is the independent positive control.
 const known = corpus.pages[57].indices;
 assert.equal(known.length, 95);
@@ -206,5 +238,7 @@ console.log(JSON.stringify({
   p55TwicePeeledCoreCandidates: core23Candidates,
   firstClauseAddress361: { page: 36, printedLine: 1, sum: primeSum(p36Line1), gpRunes: p36Line1.length },
   p55CorePrimeSum: primeSum(p55Core23), p55CoreSource361DirectCandidates: source361DirectCore,
+  sourceAddressKey64: { counts: [23,23,18], length: addressKey64.length },
+  p56DigestCandidates: digestCandidates, p55SourceRegister64Candidates: p55Register64,
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
