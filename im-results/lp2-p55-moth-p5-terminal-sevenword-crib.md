@@ -16,6 +16,10 @@ The correspondence uses **source-calibrated Gematria Primus spelling**, includin
 
 The p5 ↔ p55 moth match selects these two pages independently of this word-length observation. A source word-length clue could reasonably direct a human to compare them. **The literal seven-word candidate was found during exploration after scanning LP2 p55 word-length fragments**, so the p55 suffix placement and phrase are retrospective and must not be presented as author-confirmed.
 
+## Key-independent period-25 crib constraint (Agent 8, 13 November 2026)
+
+The exact original p55 last 30 ciphertext runes contain repeated pairs at physical offsets **49/74 (E/E)** and **50/75 (I/I)**, each pair 25 positions apart. The proposed LP1 p5 phrase instead has different source GP runes at both pairs (**O/NG** and **T/S**). Hence no repeating 25-phase **bijective** GP29 substitution, even with 25 wholly independent secret alphabets and unconstrained key phase, can encode this particular provisional phrase. The result is a source-conditional exclusion, not a disproof of the crib under stateful/transposition encoders. [Exact original-input proof and 75-rune source-native plant](lp2-p55-moth-period25-allsecret-crib-capacity.md).
+
 ## Bounded discriminants
 
 An exact consecutive seven-word native-GP length search on the solved LP1 English reference (942 English words including supplied reference labels) locates this phrase; the three independent checked-in GP-source-calibrated plain-English texts yield **zero full seven-word matches** at these lengths: Shakespeare 55,407 words, Gibran 15,733 words and Emerson 77,932 words. Other six-word length coincidences exist, so the matching seven-word suffix should be treated as *interesting conditional evidence* without an across-project significance claim.
