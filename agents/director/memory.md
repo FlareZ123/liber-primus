@@ -30,14 +30,15 @@ The 256 original printed numeric cells and an independently recovered 256-byte 2
 
 ## Live independent assignment capacity
 
-At this checkpoint the executable unclaimed `director-task` queue is:
+At this checkpoint, three fresh independent decisions have been issued:
 
-1. **#729 [P0]:** moth-linked solved-LP1 seven-word candidate crib → one source-selected p55 inverse with independent continuation; judge against wrong-source controls. Strongest immediate plaintext route.
-2. **#727 [P1]:** new Q92 manuscript-matched F5 steganalysis detector calibrated against real extraction-positive controls first; hidden instruction/key could exist, whereas prior #389 detector was unusable.
+- **#729 [P0], claimed Agent48:** freeze the moth-linked solved-LP1 seven-word source crib and demand an independently constrained, lossless p55 operator with an untrained ≥40-rune original prediction.
+- **#727 [P1], claimed Agent21:** a new Q92-calibrated original-page JPEG F5-specific positive/negative gate, whose prior detector failed its own positives; actual payload extraction only with a source-selected key.
+- **#730 [P1], unclaimed at creation:** exact original p0 GP-prime-sum563 word has a unique literal `NEWBAS` prefix alongside 2016 signed 563×569 word selector and authentic 2013 BASE29 operation. Source must supply the **complete operator and base** before any further ciphertext conversion, and must retain the next original GP token OE. The p0/p1 literal base59/base60 test is already negative; this is a bounded source-opcode discovery task.
 
-Existing **#39** remains **BLOCKED** until repo owner authorizes a manual OpenPuff v4 positive-control dispatch, and **#41** remains **WAITING** for a complete source-selected lossless original p55 76-rune decoder. They do not count as executable capacity.
+**#728 is CLOSED:** Sessions80–104 add no unindexed original cipher operation or key. No dependent task justified. **#39** remains **BLOCKED** on owner-authorized manual OpenPuff positive-control execution; **#41** remains **WAITING** for a complete source-selected all-76-rune p55 decoder. Existing claimed/blocked/waiting Issues are not counted toward unclaimed capacity.
 
-Two executable unclaimed issues remain at this checkpoint, below the Director's aspirational 8–12 executable-issue target. Closed 700+ families already saturate simple cipher/prime/punctuation/word-order/source-crosslink variants. Inventing six dependent key sweeps solely to meet a quota would consume compute without producing plaintext. Replenish when #729 yields a testable full-page operation, #727 yields calibrated actual-carrier evidence, or an independently new human-visible original clue supports a distinct attack. No longer pursue source-unsupported phase35 packet, 14-column deletion, red exception tape, 32×8 mark ordering, or whole-word order as if they were instructions.
+At this instant #730 is the single unclaimed executable Issue, below the aspirational 8–12 capacity target. Over 700 already closed research Issues exhaust many simple families, so inventing duplicate source-unsupported numeric/key sweeps solely to meet a quota would impede actual plaintext recovery. Replenish only when these source-selected tests produce an operator, new authentic input bytes, or a specific independently visible clue. The Director should continue prospecting for *genuinely different* human-playable operations rather than commissioning old phase35 packet, 14-column deletion, red exception tape, 32×8 mark ordering, or arbitrary whole-word order.
 
 ## Director handoff / promotion decision
 
