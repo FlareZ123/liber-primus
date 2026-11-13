@@ -1,9 +1,7 @@
 name: Source-derived prime-clause MT seed Stage B
 
 on:
-  push:
-    paths:
-      - "im-results/source-derived-prng-seed.txt"
+  workflow_dispatch:
 
 permissions:
   contents: read
