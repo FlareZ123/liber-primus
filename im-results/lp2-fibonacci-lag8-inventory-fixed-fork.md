@@ -63,9 +63,10 @@ These maxima are keyless and exhaustive over *all possible* pagewise 29-symbol a
 | Shakespeare | **214,851** | **195** | **386** | **0** |
 | Gibran | **60,237** | **224** | **405** | **0** |
 | Emerson | **319,072** | **214** | **407** | **0** |
-| **Total** | **594,160** | | | **0** |
+| Separate heldout Latin Vulgate GP register | **145** | **293** | **517** | **0** |
+| **Total** | **594,305** | | | **0** |
 
-The most favorable control still requires **195 copies of its most common rune**, where original source labels under *any page-specific bijection* can furnish at most **148**. The result is stronger than a guessed key or IoC failure and independent of how the 29 letters are secretly named.
+The most favorable English control still requires **195 copies of its most common rune** (the independently GP-encoded Latin sample requires at least **293**), where original source labels under *any page-specific bijection* can furnish at most **148**. The result is stronger than a guessed key or IoC failure and independent of how the 29 letters are secretly named.
 
 A **positive planted control** uses exactly the first source-native 2,256 Shakespeare symbols, split into the ten source original page lengths; it encrypts all symbols after the nine-rune page IV through the stated lag-eight 29-category forward transducer, leaving each page its own unmodified nine source ciphertext runes as initial state. The exact inverse recovers **2,256 / 2,256** source-native plaintext labels, with complete forward reconstruction. Its category maxima rise enough to admit the planted English. This validates the necessary-condition gate on a genuine member of the proposed cipher family.
 
@@ -91,7 +92,7 @@ None approaches native GP prose or provides recognizable source English. All **t
 
 The [standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_inventory_fixed_sft.cjs) reads the unchanged source JSON and asserts exact original counts on both Fibonacci and non-Fibonacci pages, original lag-eight and lag-sixteen equalities, exact analytical expectations, 30,000 deterministic Fisher–Yates permutations with seed **0x4bad5eed** and both empirical tails. The prior **64-lag familywise chapter-label adjustment** is a separate decision and remains necessary for overall significance context: [earlier original-source report](lp2-fibonacci-page-delta-spectrum.md). This additional conditional null does **not** remove the selection-bias caveat about choosing the Fibonacci mask and lag after exploratory work.
 
-**All-secret source-language follow-up:** [reversible pagewise 29-category GP29 transducer and 594,160-window capacity SFT](../sims/lp2_fibonacci_lag8_allsecret_pagewise_capacity_sft.cjs) (Node.js 22). It asserts exact source page inventories, 15/46 marker outcomes, 148/279 all-secret bounds, three exhaustive reference-window minima, and full source-native English positive roundtrip.
+**All-secret source-language follow-up:** [reversible pagewise 29-category GP29 transducer and 594,305-window capacity SFT](../sims/lp2_fibonacci_lag8_allsecret_pagewise_capacity_sft.cjs) (Node.js 22). It asserts exact source page inventories, 15/46 marker outcomes, 148/279 all-secret bounds, three exhaustive English corpora and one independently prepared Latin heldout window scan, and full source-native English positive roundtrip.
 
 **Exact manual CI:** both new original-source experiments and their independent native-English positive controls passed Node.js 22 unchanged in [GitHub Actions run 43407948437](https://github.com/FlareZ123/liber-primus/actions/runs/43407948437), main commit 0f1af429e0f3deee9e4b1ce7afafa813fbf52448.
 
