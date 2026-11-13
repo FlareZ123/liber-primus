@@ -184,6 +184,39 @@ function trainTrigramFromCounts(data) {
   return { U, B, T };
 }
 const latinModel = trainTrigramFromCounts(latinCounts);
+
+function trainTrigramFromSequence(sequence) {
+  const uni = new Uint32Array(29);
+  const bi = new Uint32Array(29 * 29);
+  const tri = new Uint32Array(29 * 29 * 29);
+  for (let i = 0; i < sequence.length; i++) {
+    uni[sequence[i]]++;
+    if (i > 0) bi[sequence[i - 1] * 29 + sequence[i]]++;
+    if (i > 1) tri[(sequence[i - 2] * 29 + sequence[i - 1]) * 29 + sequence[i]]++;
+  }
+  const U = new Float64Array(29);
+  const B = new Float64Array(29 * 29);
+  const T = new Float64Array(29 * 29 * 29);
+  for (let x = 0; x < 29; x++) U[x] = Math.log((uni[x] + 1) / (sequence.length + 29));
+  for (let x = 0; x < 29; x++) for (let z = 0; z < 29; z++) {
+    B[x * 29 + z] = Math.log((bi[x * 29 + z] + 12 * Math.exp(U[z])) / (uni[x] + 12));
+  }
+  for (let x = 0; x < 29; x++) for (let y = 0; y < 29; y++) for (let z = 0; z < 29; z++) {
+    const index = (x * 29 + y) * 29 + z;
+    T[index] = Math.log((tri[index] + 9 * Math.exp(B[y * 29 + z])) / (bi[x * 29 + y] + 9));
+  }
+  return { U, B, T };
+}
+const beowulfProfile = JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
+const oldEnglishSequence = [...beowulfProfile.positiveControlGpBase29]
+  .map(symbol => beowulfProfile.positiveControlAlphabet.indexOf(symbol));
+assert.equal(oldEnglishSequence.length, 12956);
+const oldEnglishTrain = oldEnglishSequence.slice(0, 7960);
+const oldEnglishPlantPlain = oldEnglishSequence.slice(7960, 12956);
+assert.equal(oldEnglishPlantPlain.length, skipTarget.length);
+const oldEnglishModel = trainTrigramFromSequence(oldEnglishTrain);
+
+
 // First 75 GP runes from Luke 1:1 in NT_Vulgate/corpus/luc_1.txt.
 // Source blob: 6910bf1b9b97a72f570f91e705daf0a970291423.
 const latinPlantPlain = encodeEnglish(
@@ -431,6 +464,55 @@ for (const candidate of keyCandidates) {
   }
 }
 
+
+shuffleState = 0x20261113;
+const oldEnglishSkipAwareResults = [];
+for (const candidate of keyCandidates) {
+  for (const sign of [-1, 1]) {
+    const planted = plantFixedPlaintextKeyskip(oldEnglishPlantPlain, candidate.key, sign);
+    const positive = solveFixedPlaintextKeyskip(planted.cipher, candidate.key, sign, true, 0, oldEnglishModel);
+    const positiveRecovered = positive.plaintext.filter((value, i) => value === oldEnglishPlantPlain[i]).length;
+    const decoded = solveFixedPlaintextKeyskip(skipTarget, candidate.key, sign, true, 0, oldEnglishModel);
+    const nullScores = [];
+    for (let replicate = 0; replicate < 20; replicate++) {
+      const shuffled = shuffledKey(candidate.key);
+      nullScores.push(solveFixedPlaintextKeyskip(skipTarget, shuffled, sign, false, 0, oldEnglishModel).scorePerRune);
+    }
+    const sortedNulls = nullScores.slice().sort((a, b) => a - b);
+    const originalRank = [...nullScores, decoded.scorePerRune]
+      .sort((a, b) => b - a).indexOf(decoded.scorePerRune) + 1;
+    const p55BodyPlain = decoded.plaintext.slice(p55BodyStart, p55BodyStart + 75);
+    oldEnglishSkipAwareResults.push({
+      addressBase: candidate.addressBase,
+      operation: sign === -1 ? 'P = C - K with Old English key skips' : 'P = C + K with Old English key skips',
+      target: 'continuous pp33-55, 4,996 runes, key phase 0 at p33',
+      rejectionProbability: rejectionProbability,
+      maxRejectedKeysPerRune: maxAdvance - 1,
+      decodedIoC: ioc(decoded.plaintext),
+      decodedAdjacentRepeats: adjacentRepeats(decoded.plaintext),
+      selectedSkipCount: decoded.skippedCount,
+      oldEnglishTrigramScorePerRune: decoded.scorePerRune,
+      p55BodyPreview: transliterate(p55BodyPlain, 75),
+      p55BodyIoC: ioc(p55BodyPlain),
+      positiveControl: {
+        source: 'Beowulf Old English GP29 profile; train 7,960 runes, plant next 4,996',
+        plantedSkips: planted.skippedCount,
+        recoveredOf4996: positiveRecovered,
+        recoveryRate: positiveRecovered / oldEnglishPlantPlain.length
+      },
+      shuffledKeyNull: {
+        replicates: nullScores.length,
+        seed: '0x20261113',
+        min: sortedNulls[0],
+        median: sortedNulls[10],
+        max: sortedNulls[19],
+        rankAmongOriginalPlusNulls: originalRank,
+        nullsBeatenByOriginal: nullScores.filter(score => decoded.scorePerRune > score).length
+      }
+    });
+  }
+}
+
 const output = {
   evidenceClass: 'bounded source-motivated original-input negative',
   sourceInstruction: 'Authenticated 2016 text: words are the map; their numbers are the direction',
@@ -458,7 +540,9 @@ const output = {
   results,
   skipAware: skipAwareResults,
   latinSkipAware: latinSkipAwareResults,
+  oldEnglishSkipAware: oldEnglishSkipAwareResults,
+  oldEnglishModelSource: { file: 'resources/control/beowulf_oe_gp_profile_corrected.json', trainingRunes: oldEnglishTrain.length, heldoutRunes: oldEnglishPlantPlain.length },
   latinModelSource: { repo: 'computationalstylistics/NT_Vulgate', language: 'Latin', symbols: latinCounts.n, luc1Blob: '6910bf1b9b97a72f570f91e705daf0a970291423' },
-  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book, pp33-39, or the p55 body. The exact 13/16 fixed-plaintext keyskip decoder also fails on pp33-55 under English and Latin trigram models; the source-ordered keys are not exceptional against shuffled-key nulls. This rejects only this linear table-address key and the tested additive/keyskip consumers.'
+  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book, pp33-39, or the p55 body. The exact 13/16 fixed-plaintext keyskip decoder also fails on pp33-55 under English, Latin Vulgate and Old English trigram models; the source-ordered keys are not exceptional against shuffled-key nulls. This rejects only this linear table-address key and the tested additive/keyskip consumers.'
 };
 console.log(JSON.stringify(output, null, 2));
