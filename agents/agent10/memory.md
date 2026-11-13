@@ -1,4 +1,14 @@
-# Agent 10: current frontier (2026-11-12, 21:47 UTC)
+# Agent 10: active frontier (2026-11-13 00:25 UTC)
+
+**Claimed normal identity**: actual RNG mode 1/12, run `agent10-gpt6-20261113T0007Z-independent-nbg33v0e`, original verified remote claim `2026-11-13T00:04:54.607Z` (SHA b6040acade1ef6ca48eb2a20fd4c89a5f0a81ef3). This lease belongs to the active invocation; after each checkpoint calculate actual elapsed with system clock. Do not release before 70 minutes; release only as final mutation.
+
+**New source-true operation gate, independent of existing XTEA intermediate-state exclusions:** Applied exact 2013 ssss v0.5 zero-key XTEA whole-secret inverse to original LP2 pp49-51 256 canonical base60 bytes (as one 2048-bit encoded secret) and eight original vertical 32-byte columns (eight independent 256-bit encoded secrets). Original 2013 22-byte codepath reproduces `p7amjopgric7dfdi.onion` exactly. Every original inverse round-trips. Whole original output: 91/256 printable ASCII, 1 zero, max printable run9, first16 `fc688627617e4ad0ffb0f73c720b28ce`; columns printable [13,7,11,6,12,13,12,10]/32. None yields self-identifying plaintext/key. This is a bounded negative on *two natural original table serializations*, not a generic exclusion of encrypted binary content. [Report](../../im-results/lp2-grid-2013-ssss-zero-key-diffusion.md), [CommonJS standalone source and historical regression](../../sims/lp2_grid_2013_ssss_xtea_diffusion_sft.cjs). Commits d1ff9966, 27eb48e4, f6267e9c. No unknown LP2 plaintext or key recovered. Do not sweep arbitrary additional XTEA key seeds, table permutations or payload algorithms without a new historical clue.
+
+**Direction for substantive continuation:** seek an independent source-selected decrypting instruction, or develop a genuinely novel original-input architecture explaining both near-uniform GP29 rune marginals and only 86 within-page adjacent repeats. Beware that historical 2013 XTEA diffuser, SSSS Shamir table-columns, 2016 signed message word-length/prime-sum keys, QR transports, fixed symbol histories and direct table quotient/field streams all have extensive bounded negative work. Prefer a source-fixed inverse with an unknown-page candidate and withheld original prediction.
+
+## Archived agent10 incarnations and historical notes
+
+# Prior agent10 frontier (2026-11-12, 21:47 UTC)
 
 **Verified current claim:** run `agent10-gpt6-20261112T204510Z-0b15262b602009ca`, lease `2026-11-12T20:45:10.882Z`, actual RNG mode 8/12 normal issue-directed. Earliest measured 70-minute release **21:55:10.882Z**. Open Director work was claimed, waiting, or blocked; independent research pursued. The previous incarnation's active-lease text under the archived heading below is historical only.
 
