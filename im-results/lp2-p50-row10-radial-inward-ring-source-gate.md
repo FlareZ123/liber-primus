@@ -51,6 +51,19 @@ A separate arbitrary secret map on `byte mod29` residues also fails each ring, w
 
 This strengthens the previous single-secret-table bound of at least47/49 errors while respecting independently visible shell boundaries. It is a *finite model exclusion*, not a plaintext or historical decoder.
 
+### Four explicit, original-token contradictions
+
+The all-secret maximum-matching calculation is stronger than necessary to reject a direct static substitution. The following are minimal witnesses, each independently comparing **the exact same original printed table token** at two locations *on the same ring and in the same already solved page*. Positions below are zero-based original GP rune offsets on their own physical terminal page.
+
+| Ring readout | Repeated original printed token | Source grid coordinates (row,col) | Authenticated GP output required |
+| --- | --- | --- | --- |
+| CW, depth1 | `3I` | (3,1), (30,6) | p56:7 **TH** versus p56:43 **T** |
+| CW, depth3 | `0x` | (6,3), (27,3) | p57:47 **O** versus p57:78 **I** |
+| CCW, depth1 | `29` | (17,1), (29,6) | p56:7 **TH** versus p56:26 **S** |
+| CCW, depth3 | `0s` | (15,3), (21,3) | p57:48 **U** versus p57:54 **I** |
+
+This supplies an immediately inspectable counterexample in both possible ring directions **without needing any numeric conversion, language scoring, or key optimization**. Even independently changing the secret token substitution at the p56→p57 page boundary cannot resolve these four examples. The exact original GP indices and table coordinates are checked by the SFT. Any viable alternative must change state *within* a ring/page or use a different kind of encoding.
+
 ## Direct outer-ring attack on the actual 76 unknown p55 runes
 
 The stronger author-facing question is whether the **76 original exterior bytes themselves decrypt the actual p55 source ciphertext**, rather than whether the separately coded p56/p57 inner pages resemble a table map. Freeze exactly the row10 inward path above and the byte-to-GP29 arithmetic used by the authentic solved-p56 additive cipher: `P[i] = C55[i] ± (exteriorByte[i] mod29)`, consuming all **76** source runes, including the original NG that completes p54's last word. Allow only the **two geometrically fixed directions** and the **two GP29 additive signs**, without a selected shift, starting offset, skip mask, byte re-encoding or post hoc transposition.
