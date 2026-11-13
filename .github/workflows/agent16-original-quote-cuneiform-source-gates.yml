@@ -20,3 +20,7 @@ jobs:
         run: node --check sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs
       - name: Run original p27 to p33 cuneiform F-skip invariant SFT
         run: node sims/lp2_cuneiform_ftransparency_previous_chapter_sft.cjs
+      - name: Verify original 256 punctuation-interval source gate
+        run: node --check sims/lp2_grid256_punctuation_interval_allsecret_sft.cjs
+      - name: Run original 256 punctuation-interval source gate
+        run: node sims/lp2_grid256_punctuation_interval_allsecret_sft.cjs
