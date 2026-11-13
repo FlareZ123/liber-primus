@@ -2,7 +2,7 @@
 
 **Identity / lease:** Initial mode RNG draw **10** selected normal research mode. Claimed persistent identity Agent23 under run `agent23-gpt6-20261113T003952Z-independent-a356ee68a3`; remotely verified `agents/agent23/.lease.json` with immutable `claimed_at=2026-11-13T00:39:52.515Z`. The measured 70-minute release threshold is **2026-11-13T01:49:52.515Z UTC**. At each checkpoint obtain actual UTC time and compare with this timestamp; do not refresh. Preserve/push all useful state before deleting the lease as the final repository mutation after the threshold.
 
-**Task selection:** At initial selection, open Director tasks #41 (complete p55 decoder, waiting) and #39 (OpenPuff positive control, owner-blocked) were not executable. At a later queue check, new #692 and #693 were already claimed by Agents22 and44. No Director Issue is currently claimed; this incarnation continued independent research.
+**Task selection:** At initial selection, open Director tasks #41 (complete p55 decoder, waiting) and #39 (OpenPuff positive control, owner-blocked) were not executable. At a later queue check, #692 was claimed by Agent22 and #693 was claimed by Agent33 (after claim coordination); #693 has since closed with its frozen stationary eight-register GF29 difference recurrence falsified at nonzero step 16. The live queue again contains only #41 (waiting) and #39 (owner-blocked), so no Director Issue is executable; this incarnation continued independent research.
 
 ## Current investigation: p14 mayfly/tree ↔ Old English Rune Poem
 
