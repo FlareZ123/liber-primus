@@ -86,17 +86,23 @@ for (let t = 0; t < targets.length; t++)
       grayThreshold: cutoffs[k], exactMatches: matches(targets[t], readings[k])});
 const maxObserved = Math.max(...observed.map(item => item.exactMatches));
 
-/* Exact image-encoding plant: assign each interior original GP ordinal
- * dark pixels in an otherwise white in-memory 563x569 image. This is
- * deliberate encoding of all 100 source target symbols and tests every
- * tile boundary and pixel-count operation without touching the original. */
+/* Exact image-encoding plant: assign each tile a valid GP29 pixel-count
+ * residue, using its original GP ordinal when the rectangle is large
+ * enough and a reduced target in very small rectangles. This tests
+ * all 100 boundaries and the count operation on synthetic RGB
+ * without altering the original artifact or inferring plaintext. */
 const planted = new Uint8Array(original.data.length);
 planted.fill(255);
+const plantedTarget = [];
+let unchangedPlantedTargets = 0;
 for (const position of interior) {
   const row = Math.floor(position / 11);
   const col = position % 11;
-  let remaining = p32[position];
-  assert((xx[col + 1] - xx[col]) * (yy[row + 1] - yy[row]) > remaining);
+  const capacity = (xx[col + 1] - xx[col]) * (yy[row + 1] - yy[row]);
+  const target = p32[position] % (capacity + 1);
+  plantedTarget.push(target);
+  unchangedPlantedTargets += +(target === p32[position]);
+  let remaining = target;
   for (let y = yy[row]; y < yy[row + 1] && remaining; y++) {
     for (let x = xx[col]; x < xx[col + 1] && remaining; x++) {
       const k = (y * 563 + x) * 3;
@@ -107,7 +113,7 @@ for (const position of interior) {
   assert.equal(remaining, 0);
 }
 const plantedRead = tileResidues(planted, 128);
-assert.equal(matches(targets[0],
+assert.equal(matches(plantedTarget,
   interior.map(position => plantedRead[position])), 100);
 
 /* Compare the maximum of eight tests to 20,000 exact-original-marginal
@@ -154,5 +160,6 @@ console.log(JSON.stringify({
   nullMeanMax: meanMaximum / iterations,
   nullHighestMax: greatestNull,
   exactArtificialPixelCountPlantRecovered: 100,
+  plantedTargetsUnchangedFromOriginal: unchangedPlantedTargets,
   inference: "Exact GP29 ink-pixel residue test, not a fitted or authenticated cipher. Require a source-selected rule and separate plaintext to claim decryption."
 }, null, 2));
