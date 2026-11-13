@@ -49,7 +49,7 @@ function mine(name, data) {
     report.dateLines++;
     if (!spring.test(line)) continue;
     report.aprilPlusDateLines++;
-    if (networkEvidence.test(line)) report.networkHits.push({
+    if (/ <[^>]+> /.test(line) && networkEvidence.test(line)) report.networkHits.push({
       line:i+1, text:line.slice(0,1100),
       context:lines.slice(Math.max(0,i-2), Math.min(lines.length,i+3))
         .map((text,j)=>({line:Math.max(1,i-1)+j,text:text.slice(0,1100)})),
@@ -111,6 +111,7 @@ async function main() {
   assert.equal(planted.aprilPlusDateLines,2);
   assert(networkEvidence.test('2014 May 12 14:51 <a> UDP port 281 packet 106.187.103.122'));
   assert(!networkEvidence.test('2014 May 12 14:51 <a> ordinary cicada discussion'));
+  assert(!(/ <[^>]+> /.test('2014 May 12 14:51 * Quits: a (Ping timeout: 240)')));
   console.log('SFT date, keyword, original-order and frozen network-selector controls: PASS');
   if (process.argv.includes('--selftest')) return;
   const reports = [];
