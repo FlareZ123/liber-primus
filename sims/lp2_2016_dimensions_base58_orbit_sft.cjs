@@ -75,6 +75,39 @@ assert.deepEqual(width.path,[
   117,604,226,495,162,225,255,522,83,17,78,101,264,191,
   362,307,384,320,290]);
 assert.equal(width.terminal,563);
+// Independent exact 2016 signed-prose words as unfitted GP-prime seeds.
+// MAP is already on the width563 cycle; WORDS reaches it after one
+// book-word lookup; WAY (also the candidate p15 source readout) after three.
+// This is a conditional semantic navigation witness, not a decoding key.
+/** @param {string} token @returns {number} */
+function signedProseGPPrimeSum(token) {
+  return [...token].reduce((acc,ch) => {
+    const i=corpus.translit.indexOf(ch);
+    assert(i>=0,"unmapped signed-prose rune "+ch);
+    return acc+corpus.prime[i];
+  },0);
+}
+const signedProseGPPrimeSums={
+  WORDS:signedProseGPPrimeSum("WORDS"),
+  MAP:signedProseGPPrimeSum("MAP"),
+  WAY:signedProseGPPrimeSum("WAY")
+};
+assert.deepEqual(signedProseGPPrimeSums,{WORDS:179,MAP:211,WAY:219});
+const wordSourceWalk=walk(179,originalSums);
+const mapSourceWalk=walk(211,originalSums);
+const waySourceWalk=walk(219,originalSums);
+for(const result of [wordSourceWalk,mapSourceWalk,waySourceWalk]){
+  assert.equal(result.reason,"cycle");
+  assert.equal(result.period,33);
+}
+assert.equal(wordSourceWalk.enteredAt,1);
+assert.equal(mapSourceWalk.enteredAt,0);
+assert.equal(waySourceWalk.enteredAt,3);
+assert.deepEqual(wordSourceWalk.path.slice(0,2),[179,117]);
+assert.deepEqual(mapSourceWalk.path.slice(0,2),[211,258]);
+assert.deepEqual(waySourceWalk.path.slice(0,4),[219,30,296,180]);
+assert(width.path.includes(117)&&width.path.includes(211)&&width.path.includes(180));
+
 assert.equal(width.period,33);
 assert.equal(width.enteredAt,0);
 assert.deepEqual(height.path,[569,374]);
