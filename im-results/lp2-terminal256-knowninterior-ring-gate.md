@@ -165,6 +165,28 @@ A complete constructive **positive plant** fixes a reversible eight-tap circulan
 
 **Limit:** the manuscript never specifies that table rows should act as eight-symbol linear maps or that a p55/p56/p57 shell concatenation is intended. Nonlinear or nonstationary transforms, other numeric registers, and operations on the *printed ciphertext* rather than known plaintext are outside this result. [Passing original-source SFT and complete inverse plant](../sims/lp2_terminal256_rowaffine_source_gate_sft.cjs). No unknown LP2 plaintext or source-selected key was found.
 
+## Unrestricted secret row quadratics against the authentic 180-rune interior (Agent42, 13 November 2026)
+
+**Original-cipher decision: a bounded nonlinear decoder family fails every complete source-registered interior.** The historic 2013 signed BASE29 example and LP2 p39's red three-rune field expression are both degree-two polynomials, providing a limited reason to test a quadratic consumer. Neither original source instructs using a *secret per-row quadratic* on the 2014 numeric table. This experiment therefore challenges an explicit possible mechanism; it does not authenticate one.
+
+The source-visible geometry remains the printed **32×8** numeric grid and the **76-cell outer circumference plus 180-cell 30×6 interior**. The 180 independent native GP29 output runes are physical p56 (all **85/85** first re-derived under the genuine phi-of-primes/F-skip decryption) followed by all **95** plain p57 runes. The 76 unknown p55 runes are never fitted. For each interior physical row r, allow **all** secret coefficients a_r,b_r,c_r in GF(29), with independent coefficients for every row, in the nonlinear model:
+
+P[r,c] = a_r * x[r,c]^2 + b_r * x[r,c] + c_r (mod 29).
+
+The input x is separately taken as either the complete printed base60 byte modulo29, the low base60 digit modulo29, or the high digit. Gaussian elimination over GF(29) decides all **29³** possible polynomials per row simultaneously, including rank-deficient repeated inputs. There is no fitted common key, optimizer threshold, text score or unknown-page output. A row must match **all six** of its authentic known positions.
+
+| Source alignment / x register | Complete row fits among 30, printed inner 30×6 | Exact minimum native rune changes required, printed order | All 512 shell options with 30/30 fits | Maximum rows fitting in any shell option |
+| --- | ---: | ---: | ---: | ---: |
+| Original byte modulo29 | **0/30** | **77/180** | **0/512** | **0/30** |
+| Low digit modulo29 | **0/30** | **78/180** | **0/512** | **1/30** |
+| High digit | **0/30** | **78/180** | **0/512** | **1/30** |
+
+The **512 independent shell arrangements** grant each of the three nested source rings (lengths 68,60,52) its **four original geometric corners and two windings**, for 8³ possibilities. The row-fit histograms, with no omitted arrangements, are byte: **512 at zero**; low digit: **508 at zero, four at one**; high digit: **509 at zero, three at one**. The printed-order minimum-repair numbers are *exact* independent optimization of the secret 29³ coefficients for each of 30 rows, rather than estimates from a polynomial fit. Three complete 30-row native-GP positive plants, built from the original source numeric cells under independent quadratic secrets, each pass 30/30 exactly; the original solved-p56 control also passes 85/85.
+
+This is distinct from the prior full **stationary 8×8 affine row map**, source-factor LFSRs, and **per-row Möbius** (fractional-linear) secret-family rejection. Quadratics are generally nonbijective; the hypothesis here is specifically a **table-byte-to-GP29 readout**, with no claim that an arbitrary unknown ciphertext can be reversed through a quadratic. The existing terminal-code connection is itself unproven, and this failure does not exclude other nonlinear generators, external key material, alternate text targets or differently selected cell orders.
+
+**Consequence:** even with 90 freely secret quadratic coefficients across the 30 inner rows, the original known tail cannot be generated from the printed table under either natural registration. No p55 plaintext, author-selected operation or destination follows. [Single-file CommonJS original source test](../sims/lp2_terminal256_rowquadratic_allsecret_knownplain_sft.cjs) passed in [manual-only CI run 43365466566](https://github.com/FlareZ123/liber-primus/actions/runs/43365466566). Do not expand to higher polynomial degrees to rescue a failed family unless an independent Cicada clue specifies them.
+
 ## Full 76-rune p55 erasure-code prediction from the solved 180 and original perimeter (Agent16, 12 November 2026)
 
 A more aggressive attempt to **recover the entire unknown p55 plaintext without using any p55 ciphertext for fitting** is possible under a highly specific, unverified code hypothesis. The original table has **256 cells**, of which its physically defined outer circumference has **76 cells**. The original last three pages have **76+85+95=256 runes**, and the last **180** belong to the independently deciphered p56 and clear p57. Over GF(29), form a monic degree-76 **cyclic-code generator candidate** from the conventional base60 table bytes along the clockwise outer ring, starting at the printed top-left cell: use **1** as the leading coefficient, then the **76 printed perimeter byte residues modulo29**, in that one fixed order. The monic constant term is **5**.
