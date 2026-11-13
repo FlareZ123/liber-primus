@@ -28,7 +28,7 @@ The page lengths are **[267,273,260,271]**, so the test takes their first 260 st
 
 ## Direct result and language comparison
 
-A fixed source-native Shakespeare GP29 trigram model was trained on 217,106 runes using the independent solved-LP1-calibrated ING/IO spelling. The source model's in-sample score is **−2.2631 nats/rune**, while the original pp16–19 ciphertext lanes score approximately **−3.976, −3.884, −3.959, −3.876**. The complete candidate inverses remain near those ciphertext scores:
+A fixed source-native Shakespeare GP29 trigram model was trained on 217,106 runes using the independent solved-LP1-calibrated ING/IO spelling. The source model's in-sample score is **−2.2631 nats/rune**, while the original pp16–19 ciphertext lanes score approximately **−3.976, −3.884, −3.959, −3.876**. A separate, author-authentic held-out control uses only the six *actually printed GP plaintext* LP1 physical pages p3, p8–11 and p14, totaling 1,001 original runes. They score a length-weighted **−2.4757 nats/rune** under the independently trained Shakespeare model. This discriminates real author-era GP prose from these candidate inverses without relying on editorial reconstructed English. The complete candidate inverses remain near ciphertext scores:
 
 | Page-axis operator applied to original | Mean trigram log score, nats/rune | Finding |
 |---|---:|---|
