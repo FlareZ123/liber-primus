@@ -379,6 +379,57 @@ const redSumExploratory = {
   exactValueP: (exact3294Count + 1) / (redTrials + 1)
 };
 
+
+// The reverse all-red sum selects original p15 3294 = 3301 - prime4;
+// a contemporary solver knew the genuine 2014 seven-column row operation
+// [0,6,2,5,1,4,3]. Test it once on this title-stripped 3299-rune scope,
+// optionally combined in either layer order with genuine solved-p56
+// consecutive-prime-totient GP29 at the source-selected prime4=7.
+const historicalSeven = [0, 6, 2, 5, 1, 4, 3];
+function rowSeven(x, inverse) {
+  const y = x.slice();
+  for (let base = 0; base + 7 <= x.length; base += 7) {
+    for (let j = 0; j < 7; j += 1) {
+      if (inverse) y[base + historicalSeven[j]] = x[base + j];
+      else y[base + j] = x[base + historicalSeven[j]];
+    }
+  }
+  return y;
+}
+assert.equal(rowSeven([...('TLBEIEO')], false).join(''), 'TOBELIE');
+const primeSevenPad = primeWindow.slice(3, 3 + modulus)
+  .map((p) => (p - 1) % 29);
+assert.equal(primeWindow[3], 7);
+assert.equal(primeSevenPad.length, modulus);
+const padSeven = (x, sign) => x.map((value, i) =>
+  (value + sign * primeSevenPad[i] + 29) % 29);
+const sevenDirection = (x, dir) =>
+  dir === 0 ? x.slice() : rowSeven(x, dir === 2);
+const sevenInverse = (x, dir) =>
+  dir === 0 ? x.slice() : rowSeven(x, dir === 1);
+const sevenCompound = [];
+for (const dir of [0, 1, 2]) for (const layer of [0, 1]) {
+  for (const sign of [-1, 1]) {
+    const decode = (x) => layer === 0 ?
+      padSeven(sevenDirection(x, dir), sign) :
+      sevenDirection(padSeven(x, sign), dir);
+    const encode = (x) => layer === 0 ?
+      sevenInverse(padSeven(x, -sign), dir) :
+      padSeven(sevenInverse(x, dir), -sign);
+    const result = decode(body);
+    assert.deepEqual(encode(result), body);
+    const nativePlant = Array.from({ length: modulus }, (_, i) =>
+      corpus.pages[57].indices[i % corpus.pages[57].indices.length]);
+    assert.deepEqual(decode(encode(nativePlant)), nativePlant);
+    sevenCompound.push({ dir, layer, sign, ioc: indexCoincidence(result) });
+  }
+}
+assert.equal(sevenCompound.length, 12);
+assert.ok(Math.abs(Math.min(...sevenCompound.map((x) => x.ioc)) -
+  0.034347472110096026) < 1e-12);
+assert.ok(Math.abs(Math.max(...sevenCompound.map((x) => x.ioc)) -
+  0.034535521817718254) < 1e-12);
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -390,6 +441,7 @@ console.log(JSON.stringify({
   naturalFourBy829Readouts: fourBy829,
   floralRedHeadingPrimeSums: headingPrimeSums,
   floralAllRedPrimeSumAndP15CellNull: redSumExploratory,
+  selectedHistoricalSevenRowPrimeTotient: sevenCompound,
   historicalPrime1033Totient: 1032,
   p15P40P54HeadingIndexSums: indexHeadingSums,
   p15P40P54HeadingPrimeSums: primeHeadingSums,
