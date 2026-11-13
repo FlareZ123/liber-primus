@@ -161,7 +161,7 @@ function evaluateWord(word, source, reverse) {
  *  @param {Map<number,SourceWord[]>} source
  *  @param {boolean} reverse
  */
-function evaluate(original, source, reverse) {
+function evaluate(original, source, reverse, expectedMaskedWords = 85) {
   let expectedTotal = 0, varianceTotal = 0;
   let expectedStart = 0, varianceStart = 0;
   let maskedWords = 0, unattainableMasks = 0, missingLengthWords = 0;
@@ -195,7 +195,7 @@ function evaluate(original, source, reverse) {
       });
     }
   }
-  assert.equal(maskedWords, 85);
+  assert.equal(maskedWords, expectedMaskedWords);
   return {
     meanTotal:+expectedTotal.toFixed(3),
     sdTotal:+Math.sqrt(varianceTotal).toFixed(3),
@@ -300,6 +300,48 @@ function allMarkerRanks(original, source) {
   return rankings;
 }
 
+/**
+ * Evaluate the independently page-ink-selected nine ORIGINAL visual chapters.
+ * The chapter itself may use a distinct cipher, so the whole-book model's
+ * rejection must not silently be attributed to every section.
+ * @param {ReturnType<typeof originalWords>} original
+ * @param {Map<number,SourceWord[]>} english
+ */
+function visualChapters(original, english) {
+  const ranges = [[0,2],[3,7],[8,14],[15,22],[23,26],
+    [27,32],[33,39],[40,53],[54,55]];
+  const out = [];
+  for (const [lo, hi] of ranges) {
+    const local = original.filter(w => {
+      const p = w[0].page >= 50 ? w[0].page+1 : w[0].page;
+      return p >= lo && p <= hi;
+    });
+    const observedTotal = local.reduce((n,w) =>
+      n+w.filter(x=>x.mark===1).length, 0);
+    const observedInitial = local.filter(w=>w[0].mark===1).length;
+    const expectedMasked = local.filter(w=>
+      w.some(x=>x.mark===1)).length;
+    const sample = evaluate(local, english, false, expectedMasked);
+    out.push({physicalPages:lo+"-"+hi, printedWords:local.length,
+      observedTotal, observedInitial,
+      expectedTotal:sample.meanTotal, sdTotal:sample.sdTotal,
+      expectedInitial:sample.meanWordInitial,
+      sdInitial:sample.sdWordInitial,
+      unsupportedEnglishMasks:sample.unattainableMasks});
+  }
+  assert.equal(out.reduce((n,x)=>n+x.printedWords,0), 2896);
+  assert.equal(out.reduce((n,x)=>n+x.observedTotal,0), 86);
+  assert.equal(out.reduce((n,x)=>n+x.observedInitial,0), 23);
+  assert.deepEqual(out[3], {
+    physicalPages:"15-22",printedWords:437,
+    observedTotal:10,observedInitial:0,
+    expectedTotal:12.009,sdTotal:3.404,
+    expectedInitial:0.802,sdInitial:0.892,
+    unsupportedEnglishMasks:0
+  });
+  return out;
+}
+
 function run() {
   const original = originalWords();
   const sources = {
@@ -343,6 +385,7 @@ function run() {
     },
     positive:positive(),
     results,
+    visualChapterEnglishEA:visualChapters(original, sources.English),
     conclusion:"Neither direct nor word-reversed source-register model fits all "+
       "original repeat counts and locations. These are conditional finite "+
       "language controls, not proof against arbitrary key schedules, "+
