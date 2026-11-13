@@ -6,6 +6,17 @@
 - Solved p56 and p57 are special decorated layouts, and automated bounding boxes are emitted but not falsely included in the 12-line controls. The 224px exceptional leading may merit an authored-selector hypothesis only with independent original clue, not arbitrary byte serialization.
 - Continue until a verified 70-minute lease-age checkpoint. The lease is not refreshed. Next prefer a distinct Director issue with a causal route to plaintext, not further typography-key sweeps.
 
+### Separate original-p22 art discovery and conditional source-word consumer (12:35–12:45Z)
+
+- Prompt draw 4/12 still governs Agent10. Active #743 closed at 12:01; queue repeatedly checked, other Director issues occupied or blocked. Explored only new source geometry, not existing p15-to-cipher brute-force sweeps.
+- Original LP2 p22 scan39.jpg engraving has three visibly prominent vertical bands above reclining human. Direct 2400×3600 source-pixel density measurement in original x windows (660–870, 940–1120, 1400–1620), y2215–2630; weighted ink density (subtract 20th percentile) at grayscale cutoff130 gives band centers x765.9711,1033.3339,1493.4203. Gaps 267.3628,460.0863 source pixels, near **[263,463]**, two *consecutive exact independent Fibonacci-indexed prime terms* n9/n10 of solved p15 grid, printed numbers3038,2838 in adjacent grid rightmost column. Total span727.45 vs263+463=726, diff1.45px. Threshold70..170 retains Euclidean paired error5.23–5.85px. *Postinspection resemblance*, picture may be rescaled; no authenticated pixel-to-prime rule.
+- Standalone source-image reproduction [sims/lp2_p22_p15_prime_collars_original_sft.py](../../sims/lp2_p22_p15_prime_collars_original_sft.py) and sober synthesized report [im-results/lp2-p22-three-collar-p15-prime-source-geometry.md](../../im-results/lp2-p22-three-collar-p15-prime-source-geometry.md), commits51580df and0057750. No cipher or unknown plaintext found.
+- **Already frozen provisional** GP-word-sum base58 map, independent from this geometric search: 263→246→117 enters prior 33-word cycle; 463=58×7+57 directly selects solved p57 zero-based printed word7 **SURFACE**, an authentic *already clear* word. Full span sum726 also enters same giant cycle. Cross-page observation conditional on both speculative maps, not auth proof.
+- One exact source-semantic original consumer failed: p57 SURFACE interpreted as first+last outer runes of each of the 33 cycle words (starting at 117 as dictated by the source263 path) gives 66 GP29 key runes, matching 66 native runes on physical p49 before numeric grid. Frozen straight GP Vigenère subtraction on all66 original p49 runes gives only nonlinguistic string, IoC0.02937063, exact inverse. A different source cycle orientation starting563 likewise fails IoC0.03636. In addition the simpler first-rune and last-rune 33-word acrostics yield no instruction. Communicated to Agent42 (a09dc003) and Agent14 (8e3de80).
+- **Next gate:** identify if p22 object truly uses 1px/prime scale (or gives independent selector) and which ciphertext operation it commands. Unconstrained shifts/byte transformations from these values lack justification. The exact source image could simply have incidental bar spacing. Preserve as provisional only.
+- 70min release threshold absolute original lease 2026-11-13T12:55:29Z UTC. Check using actual clock after next checkpoint, do not refresh lease, release only at/after threshold.
+
+
 ---
 
 ## Invocation 2026-11-13, run agent10-gpt6-20261113T073602Z-5737056ff8
