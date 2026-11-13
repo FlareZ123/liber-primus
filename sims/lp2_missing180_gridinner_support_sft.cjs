@@ -28,6 +28,20 @@ function counts29(data) {
   return out;
 }
 
+/**
+ * Exact minimum symbol changes between equally long multisets after any
+ * stationary alphabet bijection AND any position permutation.
+ * @param {number[]} lhs
+ * @param {number[]} rhs
+ * @returns {number}
+ */
+function minEditsWithFreeAlphabetAndPositions(lhs, rhs) {
+  assert.equal(lhs.length, rhs.length);
+  const a = counts29(lhs).sort((x, y) => x - y);
+  const b = counts29(rhs).sort((x, y) => x - y);
+  return a.reduce((sum, n, i) => sum + Math.abs(n - b[i]), 0) / 2;
+}
+
 /** @param {number[]} data @returns {number} */
 function distinct(data) {
   return counts29(data).filter(n => n > 0).length;
@@ -91,6 +105,10 @@ assert.ok(distinct(innerResidues) > distinct(primeResidues));
 const ringPositive = outerResidues.map(v => (3 * v + 5) % 29).reverse();
 assert.equal(distinct(ringPositive), 24);
 assert.ok(distinct(p55) > distinct(outerResidues));
+assert.equal(minEditsWithFreeAlphabetAndPositions(primeResidues, innerResidues), 20);
+assert.equal(minEditsWithFreeAlphabetAndPositions(primeResidues, inner59), 17);
+assert.equal(minEditsWithFreeAlphabetAndPositions(outerResidues, p55), 4);
+assert.equal(minEditsWithFreeAlphabetAndPositions(outer59, p55), 6);
 console.log(JSON.stringify({
   source: "2013 prime_echo omission and LP2 pp49-51 original 32x8 base60 grid",
   candidate: "180 omitted prime residues mapped to 30x6 grid interior under one arbitrary stationary 29-symbol substitution",
@@ -100,6 +118,12 @@ console.log(JSON.stringify({
   tableInnerResidueDistinct: distinct(innerResidues),
   interiorZeroResidues: innerResidues.filter(v => v === 0).length,
   originalPrimeZeroResidues: primeResidues.filter(v => v === 0).length,
+  sourceConstrainedMinEditsWithAnyAlphabetAndOrder: {
+    interiorBase60: minEditsWithFreeAlphabetAndPositions(primeResidues, innerResidues),
+    interiorBase59: minEditsWithFreeAlphabetAndPositions(primeResidues, inner59),
+    perimeterBase60: minEditsWithFreeAlphabetAndPositions(outerResidues, p55),
+    perimeterBase59: minEditsWithFreeAlphabetAndPositions(outer59, p55)
+  },
   tableOuterResidueDistinct: distinct(outerResidues),
   p55CiphertextDistinct: distinct(p55),
   base59InteriorDistinct: distinct(inner59),
