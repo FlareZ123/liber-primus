@@ -31,6 +31,8 @@ assert.equal(interior.length, 180, '30 x 6 inner grid');
 assert.equal(terminal.length, 180, '85 solved p56 + 95 cleartext p57 original symbols');
 assert.equal(grid.byte_rows.length, 32);
 assert.equal(grid.byte_rows[0].length, 8);
+/** @param {number} x @returns {number} */
+const m29 = (x) => ((x % 29) + 29) % 29;
 const p56Cipher = corpus.pages.find((p) => p.page === 56).indices;
 const p57Clear = corpus.pages.find((p) => p.page === 57).indices;
 const firstPrimes = [];
@@ -46,8 +48,6 @@ assert.deepEqual(native56.slice(0, 5), [24, 9, 18, 9, 23], 'solved AN END prefix
 const nativeTarget = native56.concat(p57Clear);
 assert.equal(nativeTarget.length, 180);
 
-/** @param {number} x @returns {number} */
-const m29 = (x) => ((x % 29) + 29) % 29;
 
 /**
  * Unconstrained deterministic row-codebook upper bound, many-to-one allowed.
