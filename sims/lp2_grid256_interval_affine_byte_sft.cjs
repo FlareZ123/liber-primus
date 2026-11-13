@@ -12,7 +12,11 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 const gp=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
-const table=JSON.parse(read('resources/liber-primus/base60-grid.json')).byte_rows.flat();
+const grid=JSON.parse(read('resources/liber-primus/base60-grid.json'));
+const table=grid.byte_rows.flat();
+const visible=grid.rows.flat().map(cell=>[grid.alphabet.indexOf(cell[0]),grid.alphabet.indexOf(cell[1])]);
+assert.equal(visible.length,256);
+assert(visible.every(([a,b],i)=>a>=0&&b>=0&&60*a+b===table[i]));
 assert.equal(table.length,256);
 assert(table.every(b=>Number.isInteger(b)&&b>=0&&b<256));
 const raw=read('resources/liber-primus/lp2-transcription.txt');
@@ -67,8 +71,10 @@ const references=[
     originalSizedFirstWindowIoc:ioc(xs.slice(0,12956)),runes:xs};
 });
 /** @param {number} byte @param {number} j @param {boolean} swap */
-function phase(byte,j,swap){
-  const q=Math.floor(byte/29),r=byte%29;
+function phase(index,j,swap,reading){
+  const byte=table[index];
+  const [q,r]=reading==='byte-base29'
+    ? [Math.floor(byte/29),byte%29] : visible[index];
   return mod((swap?q:r)+(swap?r:q)*j,29);
 }
 /**
@@ -77,34 +83,35 @@ function phase(byte,j,swap){
  * @param {-1|1} sign
  * @returns {number[][]}
  */
-function decode(segments,swap,sign){
+function decode(segments,swap,sign,reading){
   return segments.map((seg,i)=>seg.map((x,j)=>
-    mod(x+sign*phase(table[i],j,swap),29)));
+    mod(x+sign*phase(i,j,swap,reading),29)));
 }
 /**
  * @param {number[]} data
  * @param {boolean} swap
  * @param {-1|1} sign
  */
-function plant(data,swap,sign){
+function plant(data,swap,sign,reading){
   assert.equal(data.length,original.length);
   let i=0;
   const encrypted=length.map((size,segment)=>{
     const xs=data.slice(i,i+size);
     i+=size;
-    return xs.map((x,j)=>mod(x-sign*phase(table[segment],j,swap),29));
+    return xs.map((x,j)=>mod(x-sign*phase(segment,j,swap,reading),29));
   });
-  assert.deepEqual(decode(encrypted,swap,sign).flat(),data);
+  assert.deepEqual(decode(encrypted,swap,sign,reading).flat(),data);
   return encrypted;
 }
 const native=references[0].runes.slice(0,12956);
 const variants=[];
-for(const swap of [false,true])for(const sign of [-1,1]){
-  const plain=decode(intervals,swap,sign).flat();
-  const recovered=plant(native,swap,sign);
-  assert.deepEqual(decode(recovered,swap,sign).flat(),native);
+for(const reading of ['byte-base29','visible-base60'])for(const swap of [false,true])for(const sign of [-1,1]){
+  const plain=decode(intervals,swap,sign,reading).flat();
+  const recovered=plant(native,swap,sign,reading);
+  assert.deepEqual(decode(recovered,swap,sign,reading).flat(),native);
   const nativeEncryptedIoc=ioc(recovered.flat());
   variants.push({
+    representation:reading,
     reading:swap?'quotient-as-intercept, remainder-as-slope':'remainder-as-intercept, quotient-as-slope',
     sign,plaintextIoc:ioc(plain),
     prefix:plain.slice(0,65).map(x=>gp.translit[x]).join(''),
@@ -122,5 +129,5 @@ console.log(JSON.stringify({
   rawIoc,maxOriginalIoc,minNativeIoc,
   controls:references.map(({runes,...fields})=>fields),
   variants,
-  decision:'The literal base29 byte quotient/remainder affine-progressive interval key does not recover native GP29 plaintext.'
+  decision:'The literal byte-base29 and visible-base60 digit-pair affine-progressive interval keys do not recover native GP29 plaintext.'
 },null,2));
