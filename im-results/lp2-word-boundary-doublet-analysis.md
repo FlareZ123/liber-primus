@@ -55,6 +55,7 @@ This is the signature of **diagonal suppression without an obvious preferred non
 The obvious source-derived consumer is a 16-step repeating word key: the p15 grid has exactly sixteen values, its red 3299 fixes the spiral start, and the infinity mark plausibly suggests repetition. Starting at the first word of p16 (the page after the key), I tested the five directly source-derived sequences modulo 29: printed grid values, underlying primes, prime totients, distinct Fibonacci inputs, and one-based prime ranks. For each, the four fixed additive/Atbash sign forms (P=aC+sK_{j\bmod16}\pmod{29}), (a\in\{1,-1\}), (s\in\{1,-1\}), give 20 fixed candidates without a fitted phase.
 
 - Applied as a constant shift to every rune in each of the **1,957 runes / 450 words on pp16–23**, the best IoC is **0.034823**, essentially the 29-symbol uniform baseline **0.034483**; the resulting word strings are not readable.
+- Applied as a continuous 16-rune Vigenère-style key over the same 1,957-rune stream (spaces ignored), the best IoC is **0.034722**, again essentially uniform; no readable output appears.
 - Applied to the **442 p16–23 word-boundary pairs** as (y=a x+sK_{j\bmod16}), the best candidate matches **23/442**. A 10,000-draw permutation of next-word initials, taking the maximum over all 20 fixed candidates each time, gives **p=0.513**.
 
 This rejects the most natural p15-grid repeating-key consumer of the boundary anomaly. Do not rescue it with free phase shifts, per-word fitted keys, or a broader family of transforms.
