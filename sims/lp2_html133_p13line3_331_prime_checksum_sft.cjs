@@ -153,6 +153,29 @@ assert.deepEqual(p55Core23.map(n => corpus.translit[n]), [
   'D', 'IA', 'I', 'G', 'X', 'EO', 'TH', 'TH', 'I', 'M',
 ]);
 assert.equal(p55Core23.length, key.length);
+
+// The parable's first source residue is 361, yielding physical page36 line1.
+// That independently addressed line has the same 23-rune GP-prime sum as the
+// independently documented p55 twice-peeled core.
+const p36Line1 = lines(36)[0];
+assert.deepEqual(p36Line1, [
+  26, 9, 1, 7, 21, 8, 6, 26, 4, 3, 10, 20, 9, 14, 9, 3,
+  13, 0, 28, 25, 25, 3, 14,
+]);
+assert.equal(p36Line1.length, 23);
+assert.equal(primeSum(p36Line1), 1020);
+assert.equal(primeSum(p55Core23), 1020);
+
+const source361DirectCore = [-1, 1].map(sign => {
+  const plain = p55Core23.map((c, i) => (c + 29 + sign * p36Line1[i]) % 29);
+  assert.deepEqual(
+    plain.map((p, i) => (p + 29 - sign * p36Line1[i]) % 29),
+    p55Core23,
+  );
+  return { sign, gp: plain.map(n => corpus.translit[n]).join('-') };
+});
+assert.equal(source361DirectCore[0].gp, 'N-X-D-I-H-G-R-OE-Y-TH-O-B-EO-N-E-W-OE-X-P-G-G-W-C');
+assert.equal(source361DirectCore[1].gp, 'O-O-AE-A-NG-OE-T-T-C-H-D-EA-U-H-W-P-M-X-J-IA-IA-P-R');
 const core23Candidates = [-1, 1].map(sign => {
   const plain = p55Core23.map((c, i) => (c + 29 + sign * key[i]) % 29);
   assert.deepEqual(
@@ -181,5 +204,7 @@ console.log(JSON.stringify({
   originalRunes: originalRunes.length, rawIoc: ioc(originalRunes),
   fullBookCandidates: outcomes, p55Candidates: p55Only,
   p55TwicePeeledCoreCandidates: core23Candidates,
+  firstClauseAddress361: { page: 36, printedLine: 1, sum: primeSum(p36Line1), gpRunes: p36Line1.length },
+  p55CorePrimeSum: primeSum(p55Core23), p55CoreSource361DirectCandidates: source361DirectCore,
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
