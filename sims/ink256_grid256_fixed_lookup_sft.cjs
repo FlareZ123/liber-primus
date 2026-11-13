@@ -99,6 +99,16 @@ const radix59Bytes = table.rows.flat().map(token =>
   radix59Alphabet.indexOf(token[0]) * 59 + radix59Alphabet.indexOf(token[1]));
 assert.equal(radix59Bytes.length, 256);
 assert.deepEqual(table.byte_rows.flat(), byteValues);
+/** @param {number[]} bytes @param {number} shift @param {number} count @returns {number} */
+function minimumMarkerCodes(bytes, shift, count) {
+  const occupancy = Array.from({length:32}, (_,code) =>
+    bytes.reduce((sum,b) => sum + (((b >> shift) & 31) === code ? 1 : 0), 0))
+    .sort((a,b) => b-a);
+  let claimed = 0, codes = 0;
+  while (claimed < count) claimed += occupancy[codes++];
+  return codes;
+}
+
 const directBitfieldMaxima = {
   base60High5: maximumFiveBitMultiplicity(byteValues, 3),
   base60Low5: maximumFiveBitMultiplicity(byteValues, 0),
@@ -110,6 +120,16 @@ assert.deepEqual(directBitfieldMaxima, {
   base59High5: 14, base59Low5: 14
 });
 assert(Object.values(directBitfieldMaxima).every(v => redMarkerCount > v));
+const requiredRedMarkerFiveBitClasses = {
+  base60High5: minimumMarkerCodes(byteValues, 3, redMarkerCount),
+  base60Low5: minimumMarkerCodes(byteValues, 0, redMarkerCount),
+  base59High5: minimumMarkerCodes(radix59Bytes, 3, redMarkerCount),
+  base59Low5: minimumMarkerCodes(radix59Bytes, 0, redMarkerCount)
+};
+assert.deepEqual(requiredRedMarkerFiveBitClasses, {
+  base60High5: 2, base60Low5: 3,
+  base59High5: 3, base59Low5: 3
+});
 // Positive control: when 30 identical red marker symbols are represented by
 // the same five-bit digit, both five-bit orientations retain multiplicity>=31.
 const planted = Array.from({length:256}, (_,i) =>
@@ -160,6 +180,6 @@ console.log(JSON.stringify({
     exactLowerTailRank:atMostOriginal/256
   },
   plantedStationaryMap:positiveResult,
-  impossibleDirectFivePlusThreePacking:{markerCount,redMarkerCount,directBitfieldMaxima},
+  impossibleDirectFivePlusThreePacking:{markerCount,redMarkerCount,directBitfieldMaxima,requiredRedMarkerFiveBitClasses},
   conclusion:"No stationary byte-to-ink lookup or direct 5+3-bit ink-to-grid packing; no original cipher plaintext or key."
 },null,2));
