@@ -29,6 +29,12 @@ The original clues select the three factors but **do not select BBS, the extract
 
 The largest IoC occurs in the chapter-reset, raw-seed, MSB-bit output, positive-sign variant. All decoded streams remain nearly uniform and indistinguishable in this diagnostic from the original cipher. The 95-rune p57 control is much shorter and must not be read as a universal hard cutoff, but the 48 candidate values give no sign of a normally letter-distributed GP plaintext. The independent byte-level proof of source identity and the other 2013 PRNG families have been covered elsewhere; this report records only the new BBS direct consumer.
 
+## Separate BASE29-byte BBS parity-XOR consumer
+
+The historically authentic 2013 BASE29 numeral conversion and 2014 compressed-file stages motivate an independent binary candidate: serialize the unknown GP29 book or nine visual chapters as minimal big-endian BASE29 integers, then XOR each byte with eight successive parity bits of the same source-prime BBS generator.
+
+The reproducible script evaluates **40** original byte streams (book and nine chapters × two initial states × two byte bit orders), each with an exact involution round trip. The 7,868-byte original whole-book stream begins `08 73 48 43 a5 51 93 dc`. Across all candidates there are **zero** starting signatures for BZIP2, GZIP, XZ, ZIP, PNG, PDF, or ASCII PGP; decoded printable-ASCII fractions span **0.31915 to 0.41613**. Whole-book MSB decoded headers are `5f83ca94e1182523` (raw seed) and `a7924ded2dc2fe22` (squared seed). All scripted assertions passed when executed against the exact original repository corpus. No binary payload or plaintext was recovered. A different framing/consumer would require its own original-source rationale.
+
 **Disposition:** Retire these 48 direct BBS additive constructions from the original-cipher route. Plaintext-F bypass, unknown position clocks, nonadditive source-selected consumers and any genuinely new BBS-specific clue are outside this gate. In particular, a synthetic round trip is a correctness assertion, never evidence for an unknown original plaintext. Do not promote the speculative BBS connection to `results/README.md` without an independently visible original operation or recovered text.
 
 ### Reproduce
