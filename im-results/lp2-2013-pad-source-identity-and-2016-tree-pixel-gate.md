@@ -1,0 +1,25 @@
+# Two original-artifact source-to-key gates: 2013 pad identity and 2016 tree pixel strips
+
+**13 November 2026, Agent 7. Classification: bounded original-input negatives.** The LP2 ciphertext remains unsolved. Neither test recovers a key, plaintext, historical endpoint or source-authenticated operation.
+
+## 2013 source data reused verbatim in the p49–51 numerical grid?
+
+The authentic 2013 CicadaOS file `DATA/560.13` is an attractive *source* of randomness because the 2013 round demonstrably used it as an XOR pad. The 2014 LP2 physical pp49–51 print exactly 32 rows of eight numeric tokens. Under the already established, **conditional** two-base60-digit parsing, they give 256 bytes (SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`).
+
+A direct literal reuse hypothesis is unusually cheap to test and needs no speculative cipher: search for the **entire** printed 256-byte grid in row-major and column-major order and complete reversals, plus each of the **32 printed eight-byte rows** and **eight original 32-byte vertical columns**, each forward and reversed, inside the complete historical data file. That is **84 fixed source-shaped candidates**. All source byte offsets are granted: if copied unchanged, one must match.
+
+The original file downloaded in CI has exactly **118,818,811 bytes** and SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. **Zero of 84** candidates occur in it. Synthetic eight- and 32-byte planted copies at known offsets both succeed, demonstrating the test's exact-match power. [Self-contained CommonJS reproducer](../sims/lp2_grid_2013_pad_literal_overlap_sft.cjs), [source-downloading Windows workflow](../.github/workflows/lp2-grid-2013-pad-literal-overlap.yml), [successful CI log/run 43370674533](https://github.com/FlareZ123/liber-primus/actions/runs/43370674533).
+
+**Decision:** the table cannot be an unchanged whole-block, physical row or physical column copied from this specific 2013 data source under the pinned base60 parse and source reading orders. This does **not** exclude table encryption, separated byte positions, a transformed copy, GP29 projection of the data file, other 2013 files, or the numeric table being a stand-alone cipher rather than a key.
+
+## A different direct source use for the 2016 signed tree image
+
+The independently authenticated 2016 `4gq25.jpg` has unusual **563×569** pixel dimensions. Original LP2 physical p32 has **121 runes**; an unprinted **11×11** row-major reshape gives first-row GP prime weights totaling **563**, first-column weights totaling **569**. This p32-to-image relationship was previously documented; the present experiment introduces a different, literal possible consumer. If each of those first-row/column prime weights specifies the width/height of one image strip, they partition the original 563×569 image into **11×11 variable-size tiles**, with **100 interior tiles** corresponding to the **100 non-axis p32 runes**.
+
+Freeze that geometry and read each interior tile's grayscale mean and fraction of pixels above 127. A direct brightness encoding would correlate original interior GP prime values with at least one image measurement. The two source-exact absolute Pearson correlations are only **0.0805545227** and **0.0846994068**, respectively. In **1,000 deterministic shuffled-rune controls**, **408** produce a maximum of these two abs correlations at least as large as the original, giving an adjusted add-one empirical **p=0.4085914086**. A synthetic 563×569 image whose tile intensities encode the original 100 GP primes recovers **r=1**, verifying the axis/measurement implementation.
+
+[Python/Pillow original-image reproducer](../sims/lp2_p32_2016_prime_strip_pixel_sft.py), [Windows source-download workflow](../.github/workflows/lp2-p32-2016-prime-pixel-grid.yml), [successful CI run 43371439712](https://github.com/FlareZ123/liber-primus/actions/runs/43371439712). The runner retrieves the original historical image from the archival repository and prints its SHA-256 and exact dimensions. Unlike the table copy experiment, the pixel experiment is an *analyst-proposed decoder*: there is no authenticated 2016 instruction explicitly prescribing prime-width tiling, threshold 127, or a brightness-to-rune mapping. The test only retires these two simple direct measurements and leaves other image-steganographic or tree-navigation operations unresolved.
+
+## Research decision
+
+Both branches were plausible bounded *source-as-key* consumers, and both failed their original tests. Their diagnostic value is the exclusion of a direct, executable mechanism. Do not continue them by freely searching every byte transform, phase, image threshold, crop or rectangle size absent a new historical clue. The priority remains independently selected key material or a reversible operation that recovers a complete original LP2 passage, especially an authenticated missing final-stage source or a clue constraining its selection.
