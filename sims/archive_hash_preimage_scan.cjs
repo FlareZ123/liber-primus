@@ -6,7 +6,7 @@ const algorithms=['sha512','sha3-512','blake2b512'];
 for(const a of algorithms)if(!crypto.getHashes().includes(a))throw Error('Unsupported digest '+a);
 if(!/^[0-9a-f]{128}$/.test(m.targetHex))throw Error('Bad 512-bit hash');
 if(crypto.createHash('sha512').update('abc').digest('hex')!=='ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f')throw Error('SHA-512 positive control failed');
-const report={targetHex:m.targetHex,sourceRepo:m.sourceRepo,sourceCommit:m.sourceCommit,digests:algorithms,sources:[],urlStrings:[],blobVariants:0,urlVariants:0,hashEvaluations:0,hits:[],coverage:'Original archived bytes, single trailing newline deletion and CRLF-to-LF for textual files; six literal forms per historical onion hostname.'};
+const report={targetHex:m.targetHex,sourceRepo:m.sourceRepo,sourceCommit:m.sourceCommit,digests:algorithms,sources:[],candidates:[],urlStrings:[],blobVariants:0,urlVariants:0,hashEvaluations:0,hits:[],coverage:'Original archived bytes, single trailing newline deletion and CRLF-to-LF for textual files; six literal forms per historical onion hostname.'};
 function check(source,variant,bytes,kind){
   const b=Buffer.isBuffer(bytes)?bytes:Buffer.from(bytes,'utf8');
   if(kind==='url')report.urlVariants++;else report.blobVariants++;
@@ -53,6 +53,19 @@ async function main(){
   for(const host of m.onionHosts){
     for(const fn of forms){const u=fn(host);check(host,u,u,'url');report.urlStrings.push(u);}
   }
+  // A source-native p56 preimage candidate: the complete January 2014 onion-2 stream.
+  // Test only its exact raw bytes, lowercase hex text, and preserved resource-file bytes.
+  const onionText=fs.readFileSync('resources/2014-onion2-final-256byte-hex.txt','utf8');
+  const onionHex=onionText.trim();
+  if(!/^[0-9a-f]{512}$/.test(onionHex))throw Error('Bad preserved onion-2 256-byte hex source');
+  const onionBytes=Buffer.from(onionHex,'hex');
+  if(onionBytes.length!==256)throw Error('Onion-2 candidate is not 256 bytes');
+  const hitsBefore=report.hits.length;
+  check('resources/2014-onion2-final-256byte-hex.txt','raw-256-byte-value',onionBytes,'blob');
+  check('resources/2014-onion2-final-256byte-hex.txt','lowercase-hex-ASCII',Buffer.from(onionHex,'utf8'),'blob');
+  check('resources/2014-onion2-final-256byte-hex.txt','exact-resource-file-bytes',Buffer.from(onionText,'utf8'),'blob');
+  report.candidates.push({source:'resources/2014-onion2-final-256byte-hex.txt',byteLength:256,representations:['raw-256-byte-value','lowercase-hex-ASCII','exact-resource-file-bytes'],algorithms,matchCount:report.hits.length-hitsBefore});
+  console.log('ONION2-P56-CANDIDATE',JSON.stringify(report.candidates[0]));
   console.log('SUMMARY',JSON.stringify({sources:report.sources.length,blobVariants:report.blobVariants,urlVariants:report.urlVariants,hashEvaluations:report.hashEvaluations,hits:report.hits.length}));
   saveAtomicLocked(path.resolve(process.argv[2]||'archive-hash-scan-output.json'),JSON.stringify(report,null,2)+'\n');
 }
