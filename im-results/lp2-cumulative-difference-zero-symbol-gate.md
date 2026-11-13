@@ -102,6 +102,25 @@ The result **disfavors a single unchanged within-word affine predecessor operati
 
 **Standalone exact original-source SFT:** [word-reset affine all-secret gate](../sims/lp2_wordlocal_affine_allsecret_sft.cjs). Its source data, complete alphabet, native orthography, shape invariant, nine chapter outcomes and secret nonlinear positive plant are all embedded as reproducible assertions.
 
+### All-secret quadratic/two-tap extension
+
+**Independent original-cipher extension (13 November 2026).** The original p3 and p39 red polynomials invite a possible quadratic feedback operation. To grant the hypothesis far more flexibility than either exact source polynomial, generalize the preceding word-reset family to
+
+\[
+C_{w,j}=aC_{w,j-1}+bC_{w,j-2}+h(P_{w,j})\pmod {29},
+\qquad j\ge2.
+\]
+
+The first **two ciphertext runes of every printed word** are free, independent secret initial states. We test **all 29² = 841** coefficient pairs \((a,b)\) against original ciphertext, granting an arbitrary stationary GP29 alphabet permutation \(h\) with no restricted key spelling. At each fixed \((a,b)\), the histogram of \(C_{w,j}-aC_{w,j-1}-bC_{w,j-2}\) must have the same sorted frequencies as the source-native plaintext, so rank-sorted TV minimizes *exactly over all 29! secret alphabets*.
+
+The original **12,956 runes and 2,896 printed words** yield **7,247** within-word positions \(j\ge2\), weighted against the same **149,072** source-native English control words conditional on **both exact word length and retained within-word position**. Of all **841×29!** global secret possibilities, the optimal is **\((a,b)=(1,0)\), TV 0.3845281425**; runner \((23,25)\) scores **0.3865979645**. The entire 841-member score spectrum remains far from the native-English model, including both original red-polynomial coefficient choices. This independent quadratic test subsumes the first-order family on the smaller j≥2 register and does not pretend that p3/p39 actually select a cipher.
+
+Grant **each of the nine original visual chapters** its own independently secret \((a,b)\) and \(h\). With chapter pairs **[418,643,974,1047,578,793,933,1683,178]**, the nine best possible rank-TV distances are respectively **[0.271590,0.301098,0.318133,0.328726,0.298293,0.314830,0.320052,0.341485,0.197279]**. Every pair is confined to one original printed word and visual chapter. These are descriptive native-English corpus comparisons, not universal likelihood bounds.
+
+A **source-native nonlinear-alphabet positive plant** with independently secret first two runes per word and \(h(p)=p^5+7\bmod29\), \((a,b)=(23,13)\), recovers **7,247/7,247** planted plaintext runes by exact inverse, gives **zero** TV versus its own plaintext and **0.020386** versus the weighted English prior. This verifies the decoder and the full matched-position signature.
+
+**Decision:** a stationary, word-reset, first- or second-order affine predecessor over GF29, even with any stationary secret output alphabet and wholly independent two-symbol word initials, is strongly disfavored as a direct source-native-English LP2 encoder. The result also disfavors its independently rekeyed-by-visual-chapter version. It leaves arbitrary per-word secret alphabets, within-word state changes, changing taps, unpreserved printed segmentation, other languages, multirune transport and non-English payloads open. **No authentic LP2 plaintext or key recovered.** [Standalone original-input quadratic SFT](../sims/lp2_wordlocal_twotap_allsecret_sft.cjs).
+
 ## Consequence and limits
 
 A simple **word-boundary-preserving, book-stationary, unkeyed cumulative alphabet permutation** fails a discriminating original-input test even when the secret alphabet is unrestricted. Uniform nonzero ciphertext differences alone do not establish a no-repeat cipher. The word-reset extension above also disfavors a stationary affine predecessor/secret-alphabet encoder with freely secret initials. A changing within-word stream key, a different alphabet or spelling register, non-English plaintext, and any operation that breaks the tested within-word differences are outside these results. In particular, the 22 ordinary-boundary events cannot test an encoder that resets state at every word.
