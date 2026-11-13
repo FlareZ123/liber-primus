@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Test 2013-derived prior-cipherword prime-sum inverse on two original LP2 chapters and p57 positive
         run: node sims/lp2_previous_word_prime_nonce_sft.cjs
+      - name: Recover secret wordprime phi offset on blind native-GP plants and reject original
+        run: node sims/lp2_wordprime_phi_smallstate_identifiability_sft.cjs
