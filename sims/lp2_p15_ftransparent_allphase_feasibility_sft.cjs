@@ -41,7 +41,7 @@ function base29(n) {
   return digits;
 }
 const fibonacci = [0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987];
-const primeTable = firstPrimes(988);
+const primeTable = firstPrimes(1300);
 const primes = fibonacci.map(n=>primeTable[n]);
 const printed = primes.map(p=>Math.abs(3301-p));
 assert.deepEqual(printed,
@@ -155,12 +155,68 @@ assert.deepEqual(results.map(r=>r.validIndependentPhasePerPage),[
 ]);
 assert.deepEqual(results.map(r=>r.maximumContinuousPrefixBeforeContradiction),
   [272,145,187,186,161,403,176,13]);
+/*
+ * Independent p15 -> sixteen floral-bordered pages (physical pp40-55).
+ * Source-authentic p56 prime-totient consumer, but the beginning prime
+ * rank of each page is one of the sixteen p15 distinct-Fibonacci ordinals.
+ * Every page is allowed all sixteen starts AND an independent sign; this
+ * dominates all sixteen! unknown source-start page assignments.
+ */
+const floral = corpus.pages.slice(40,56).map(p=>p.indices);
+assert.deepEqual(floral.map(p=>p.length),
+  [231,273,272,274,273,270,270,274,271,66,0,92,263,179,232,76]);
+assert.equal(floral.flat().length,3316);
+const floralNative=encodeSourceNativeGP(
+  read('resources/control/gibran_prophet_58585.txt')).slice(1744,5060);
+assert.equal(floralNative.length,3316);
+const starts=fibonacci.map(v=>v+1);
+assert.deepEqual(starts,[1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988]);
+const expectedFloralOptions=[0,1,0,5,0,0,1,0,0,4,32,6,2,2,0,6];
+const floralReport=[];
+let floraOffset=0,floraPositive=0,originalAssignmentPossible=0;
+for(let page=0;page<floral.length;page++) {
+  const original=floral[page];
+  const nativePage=floralNative.slice(floraOffset,floraOffset+original.length);
+  floraOffset+=original.length;
+  let viable=0,maxPrefix=0;
+  for(const sign of [-1,+1]) for(const start of starts) {
+    const shift=used=>mod29(sign*(primeTable[start-1+used]-1));
+    const test=feasible(original,shift);
+    viable+=Number(test.possible);
+    maxPrefix=Math.max(maxPrefix,test.possible?original.length:test.firstFailure);
+    const plantedPage=encrypt(nativePage,shift);
+    assert.ok(feasible(plantedPage,shift).possible,
+      'source-native F-transparent prime-totient stream must invert');
+    floraPositive++;
+  }
+  assert.equal(viable,expectedFloralOptions[page],
+    'original page must match frozen all-start feasibility count');
+  const selected = feasible(original,
+    used=>mod29(primeTable[starts[page]-1+used]-1));
+  originalAssignmentPossible+=Number(selected.possible);
+  floralReport.push({
+    physicalPage:40+page,runes:original.length,
+    possibleOf32IndependentStartsAndSigns:viable,
+    longestFeasiblePrefix:maxPrefix,
+    originalClockwiseStartPossible:selected.possible
+  });
+}
+assert.equal(floraOffset,3316);
+assert.equal(floraPositive,512);
+assert.equal(originalAssignmentPossible,3);
+const impossibleFloralPages=floralReport.filter(x=>
+  x.runes>0 && x.possibleOf32IndependentStartsAndSigns===0).map(x=>x.physicalPage);
+assert.deepEqual(impossibleFloralPages,[40,42,44,45,47,48,54]);
+
 console.log(JSON.stringify({
   method:'Exact all-F-mask GF29 feasibility, literal plaintext-F bypass',
   authenticSolvedP56:{runes:85,...known56},
   unknownOriginal:{physicalPages:'16-22',runes:1744,ciphertextF:65},
   eightSourceDerivedKeys:results,totalOriginalVariants:planted,
   positiveOriginalLengthFTransparentPlants:planted,
-  result:'All original cipher variants algebraically impossible, even with per-page arbitrary phase; no unknown plaintext recovered.',
+  floralPrimeTotient:{pages:'40-55',runes:3316,originalAssignmentPossible,
+    allStartAllSignOriginalPages:floralReport,impossibleFloralPages,
+    authenticFTransparentPositivePlants:floraPositive},
+  result:'All 320 repeated-key variants impossible, and seven floral pages impossible under every one of 32 Fibonacci-prime start/sign variants. No unknown plaintext recovered.',
   caveat:'Does not reject different keys, nonperiodic streams, other cipher operations, or loss of historical plaintext-F rule.'
 },null,2));
