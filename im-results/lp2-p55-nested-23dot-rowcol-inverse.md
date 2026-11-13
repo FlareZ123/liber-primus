@@ -78,6 +78,12 @@ The *same independently fixed thirteen retained rune positions* have GP prime we
 
 This retires only **alternating binary run-length coding of the exact 13 original GP-prime weights as raw 64-byte inputs to these three conventional hash functions**. The authentic page does not specify a hash algorithm or what representation of an onion page was hashed. There is no evidence selecting reversed runs, ASCII bit strings, other transformations, variable salt or a later cipher layer. The numerical 512-bit match remains an exploratory source observation, and this computation found no hash preimage or unknown manuscript plaintext.
 
+### Ten-dot complement: second 512-bit candidate
+
+The 23-dot mask also partitions into the original 13-dot projection and its ten-dot complement. The complement runes in row-major order are `G A X M P NG I X TH M`, with GP-prime weights `[17,97,47,71,43,79,31,47,5,71]` summing to **508**. One natural completion to a 512-bit stream inserts the four empty stencil corners as zero bits around the first and last two complement runs (before the first two, after them, before the last two, and after them). This is a second 64-byte candidate distinct from the 13-run stream.
+
+For both alternating-run starting polarities, the resulting bytes do not equal the published target and their SHA-512, SHA3-512, and BLAKE2b-512 digests all miss it. SHA-512 outputs begin `fa4128e813b7db71` (start 0) and `b24f6c1b8adba3d4` (start 1). The SFT records full digests. This tests one source-motivated corner completion, not every possible encoding of the ten-dot complement; the source does not specify run-length encoding or the padding operation.
+
 ### Full 23-dot stencil: four-corner-completed 1024-bit candidate
 
 A second, separately frozen construction uses **all 23** twice-peeled source runes rather than only the 13-dot projection. Their original GP-prime weights are:

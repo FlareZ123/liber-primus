@@ -70,6 +70,43 @@ assert.equal(outputs[0].digests.sha512.slice(0, 16),
 assert.equal(outputs[1].digests.sha512.slice(0, 16),
   "7b44f334250146ac");
 
+// The other two stencil columns contain ten runes with prime sum 508.
+// Insert the four empty corners of the 9x5 stencil around the first and last
+// two complement runs, yielding a second, independently selected 512-bit stream.
+const complementDotSlots = [0, 2, 5, 7, 10, 12, 15, 17, 20, 22];
+const ten = complementDotSlots.map(i => twicePeeled[i]);
+assert.equal(translit(ten), "G A X M P NG I X TH M");
+const tenLengths = ten.map(i => corpus.prime[i]);
+assert.deepEqual(tenLengths, [17,97,47,71,43,79,31,47,5,71]);
+assert.equal(tenLengths.reduce((a, b) => a + b), 508);
+const complementOutputs = [];
+for (const firstBit of [0, 1]) {
+  const runs = tenLengths.map((n, i) => String((firstBit + i) % 2).repeat(n));
+  const bits = "0" + runs.slice(0, 2).join("") + "0" +
+    runs.slice(2, 8).join("") + "0" + runs.slice(8).join("") + "0";
+  assert.equal(bits.length, 512);
+  const bytes = Buffer.alloc(64);
+  for (let i = 0; i < bits.length; i++) {
+    if (bits[i] === "1") bytes[i >> 3] |= 1 << (7 - (i & 7));
+  }
+  const rawHex = bytes.toString("hex");
+  assert.notEqual(rawHex, target);
+  const digests = {};
+  for (const [name, algorithm] of [
+    ["sha512", "sha512"], ["sha3_512", "sha3-512"],
+    ["blake2b", "blake2b512"]
+  ]) {
+    const digest = crypto.createHash(algorithm).update(bytes).digest("hex");
+    assert.equal(digest.length, 128);
+    assert.notEqual(digest, target);
+    digests[name] = digest;
+  }
+  complementOutputs.push({ firstBit, bitLength: bits.length,
+    rawPrefix: rawHex.slice(0, 48), rawEqualsTarget: rawHex === target, digests });
+}
+assert.equal(complementOutputs[0].digests.sha512.slice(0, 16), "fa4128e813b7db71");
+assert.equal(complementOutputs[1].digests.sha512.slice(0, 16), "b24f6c1b8adba3d4");
+
 // The complete 23-dot stencil is a 9x5 mask with four empty corner cells.
 // The 23 source runes occupy the remaining marked cells in row-major order.
 // Their GP-prime weights total 1020; insert one literal zero bit at each
@@ -107,6 +144,7 @@ console.log(JSON.stringify({
   targetHash: target,
   test: "Exactly two bit polarities, raw 64-byte RLE input, three standard 512-bit hash functions",
   results: outputs,
+  complement512: complementOutputs,
   fullStencil1024: fullStencilOutputs,
-  decision: "No direct 13-prime-run-length 512-bit or four-corner-completed 23-prime-run-length 1024-bit preimage of the published target under SHA-512, SHA3-512, BLAKE2b-512; no authentic hash algorithm or preimage established."
+  decision: "Neither the 13-run 512-bit stream, the 10-run plus four-corner 512-bit complement stream, nor the four-corner-completed 23-run 1024-bit stream matches the published target directly or under SHA-512, SHA3-512, or BLAKE2b-512; no authentic hash algorithm or preimage established."
 }, null, 2));
