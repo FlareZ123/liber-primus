@@ -35,3 +35,7 @@ jobs:
         run: |
           node --check sims/lp2_delta28_direct_compression_sft.cjs
           node sims/lp2_delta28_direct_compression_sft.cjs
+      - name: Solve exact all-secret Hill4 p55 source-crib equations
+        run: |
+          node --check sims/lp2_p55_moth_crib_allsecret_hill4_sft.cjs
+          node sims/lp2_p55_moth_crib_allsecret_hill4_sft.cjs
