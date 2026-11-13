@@ -116,7 +116,7 @@ def geometry(zip_path=None, trials=20000):
         ])
         null[trial] = count(shuffled, 0, 0)
     strict = count(observed, 0, 0)
-    near = count(observed, 8, 4)  # Descriptive ink-space and JPEG tolerance.
+    near = count(observed, 4, 4)  # Descriptive ink-space and JPEG tolerance.
     exceptions = [
         {'page': p, 'line': i, 'right': int(b[i, 0]),
          'next_first_ink_width': int(b[i, 1])}
@@ -139,7 +139,7 @@ def geometry(zip_path=None, trials=20000):
         'heldout_pages': [p for p, _ in blocks],
         'heldout_pairs': len(observed),
         'strict_fits': strict,
-        'within_8px_space_4px_tolerance': near,
+        'within_4px_ink_tolerance': near,
         'strict_page_preserving_null': {
             'trials': trials, 'seed': SEED, 'mean': float(null.mean()),
             'sd': float(null.std()), 'max': int(null.max()),
