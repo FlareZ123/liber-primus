@@ -11,6 +11,7 @@ on:
           - baseline
           - source27
           - peeled-79-78
+          - p15-ordinal-hill28
 
 jobs:
   matrix-state:
@@ -81,3 +82,15 @@ jobs:
         run: node sims/source27_cipher_direction_inverse.cjs
       - name: Test matching original source model with independently trained Latin Vulgate GP
         run: node sims/source27_cipher_direction_latin.cjs
+
+  p15-ordinal-hill28:
+    if: ${{ inputs.probe == 'p15-ordinal-hill28' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert original p16-22 rank28 GP transitions using p15 Fibonacci ordinal Hill4
+        run: node sims/lp2_p15_ordinal_hill28_rank_inverse_sft.cjs
