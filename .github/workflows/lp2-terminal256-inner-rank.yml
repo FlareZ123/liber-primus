@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Exclude unrestricted secret high/low base60 digit maps on authentic p56-p57
+        run: node sims/lp2_terminal256_base60_digit_lookup_sft.cjs
       - name: Test 512 inner-ring orders and all GF29 scalars
         run: node sims/lp2_terminal256_inner_rowcol_rank_sft.cjs
       - name: Test every 3x3 and 5x5 stencil against solved inner rings
