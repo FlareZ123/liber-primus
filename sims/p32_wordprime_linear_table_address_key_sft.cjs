@@ -372,6 +372,7 @@ const output = {
     unknownBookRunes: allUnknown.length,
     followingSectionRunes: p33to39.length,
     p55CompleteWordBodyRunes: p55Body.length,
+    postMapP33to55Runes: skipTarget.length,
     rawBookIoC: ioc(allUnknown),
     rawBookAdjacentRepeats: adjacentRepeats(allUnknown),
     rawP33to39IoC: ioc(p33to39),
@@ -380,6 +381,6 @@ const output = {
   },
   results,
   skipAware: skipAwareResults,
-  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book or the immediately following p33-39 section. This rejects only this linear table-address key and periodic additive consumer.'
+  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book, pp33-39, or the p55 body. The exact 13/16 fixed-plaintext keyskip decoder also fails on pp33-55; the source-ordered keys are not exceptional against shuffled-key nulls. This rejects only this linear table-address key and the tested additive/keyskip consumers.'
 };
 console.log(JSON.stringify(output, null, 2));
