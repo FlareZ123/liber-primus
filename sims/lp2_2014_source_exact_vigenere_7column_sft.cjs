@@ -2,7 +2,8 @@
 "use strict";
 /**
  * Source-exact Stage04 reversed-rune lookup and historical Stage05 period-seven
- * columnar inverse, screened on two original LP2 seven-divisible regions.
+ * columnar inverse, screened on two original LP2 seven-divisible regions,
+ * plus a Stage05-only transfer to the final p54-p55 308-rune visual chapter.
  *
  * The two historical operations occurred at distinct stages; their
  * combination on LP2 is an exploratory source-motivated hypothesis.
