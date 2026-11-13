@@ -50,8 +50,25 @@ The independent Shakespeare holdout IoC is approximately **0.05879**. Even the h
 
 **Decision:** the exact 79-to-79 count match is not a demonstrated collision selector or additive key. The direct alignment maximum is indistinguishable from shuffled controls, and the source-motivated periodic pads do not decrypt the text. This rejects the tested direct-symbol, phase-shifted, and periodic additive readings; it does not rule out every possible encoding of the red spans. Reproduction command: node sims/red79_lag6_contextual_screen.cjs.
 
+## Original-source key test: the printed p50 256-byte table
+
+The first direct application of the known-key contextual inverse to an obvious in-book key source is now tested. The key is the canonical 32×8 p50 table in printed row-major order, using the repository's byte rule (each token is the two-digit base-60 value), reduced modulo 29 and repeated globally from the first LP2 rune with period 256. There is no phase search, reversal, alternate radix, per-page reset or key permutation. The candidate forward model is the provisional C=P+K (mod 29) collision-repair generator with q=.81 and the signed-2013-derived T(x)=24-2x (mod 29) rule.
+
+Both additive signs were tested, with and without treating every literal F as transparent and non-consuming. On the original 12,956 runes / 2,896 words, all four outputs are nonlinguistic:
+
+| Additive sign | Literal F transparent? | Key draws | Contextual score (nats/rune) | Lexicon words |
+| ---: | :---: | ---: | ---: | ---: |
+| +1 | no | 12,956 | **−6.885299** | 183 |
+| −1 | no | 12,956 | −6.936168 | 156 |
+| +1 | yes | 11,999 | −6.987041 | 171 |
+| −1 | yes | 11,999 | −6.996008 | 183 |
+
+The same inverse was then tested on a source-disjoint Shakespeare positive plant with the **same p50-derived periodic key**, the same q=.81 collision-repair generator and the exact original 2,896 word lengths. It recovered **12,850 / 12,956 = 99.1818%** of the planted plaintext (2,528 lexicon-selected words; three rare-length fallback excerpts). This is a key-specific positive control: it shows that the periodic p50 key and decoder integration can recover a genuine plant, while the original p50 candidate does not.
+
+**Decision:** reject only the fixed printed-row-major byte-mod-29, global-period-256, phase-zero p50 key under this T6 repair architecture. The p50 table may still be a source for another operation, key derivation or state; the test does not establish that T6 is the actual LP2 cipher. Reproduction: node sims/lp2_p50_lag6_contextual_inverse_gate.cjs. The manual keyed-inverse workflow now includes this original-source gate and stores its JSON artifact.
+
 ## Consequence and unresolved dependency
 
-The best-tested candidate inversion has now recovered over **99% of a complete planted LP2-length English plaintext** in three source-disjoint/artificial controls, given its correct key. This makes the missing **actual LP2 keystream** the decisive obstacle. The original manuscript's unusual lag-five same-rune and S-specific repeats remain substantially unexplained by the lag-six-only generator. The same rewrite architecture is still speculative, and word-level language recovery on an artificial source does not validate it for original LP2.
+The best-tested candidate inversion has now recovered over **99% of complete planted LP2-length English plaintexts** in source-disjoint controls, given their correct keys. Its first obvious in-book key candidate—the printed p50 256-byte table reduced modulo 29 and repeated from rune zero—fails decisively under the same provisional T6 architecture, despite a same-key positive plant. The missing **actual LP2 keystream or a different source-selected state derivation** remains the decisive obstacle. The original manuscript's unusual lag-five same-rune and S-specific repeats remain substantially unexplained by the lag-six-only generator. The same rewrite architecture is still speculative, and word-level language recovery on an artificial source does not validate it for original LP2.
 
 A next genuine decryption should obtain a key independently from manuscript/archival material, screen it against untouched original ciphertext with rigorous multiple-candidate correction, recover coherent source text over independent positions, and re-encrypt with a fully specified mechanism. Avoid re-running the finite synthetic search as if it were an original decipherment.

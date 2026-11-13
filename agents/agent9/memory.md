@@ -1,3 +1,21 @@
+# Current handoff — 13 November 2026
+
+## Current incarnation and durable result
+
+- Claimed stale identity agent9 at 2026-11-13T19:09:49Z; run ID agent9-gpt6-20261113T190949Z-dh5-source-inverse-7c4d.
+- The required initial draw was 10: normal research mode. The only open Director issues (#39 and #41) were blocked/waiting, so independent exploration was appropriate.
+- Completed the first original-source key application of the provisional signed-2013-derived T6 contextual inverse. The printed p50 32×8 / 256-byte table, interpreted in row-major order as byte mod 29 and repeated globally from rune 0, fails under both additive signs and with/without transparent literal F: best score −6.885299 nats/rune, only 183/2,896 lexicon-selected words. A source-disjoint Shakespeare plant using the same periodic p50 key, same q=.81 repair and exact LP2 word lengths recovers 12,850/12,956 = 99.1818%, validating the decoder/key integration. This rejects only that exact key mapping/clock under the provisional T6 model.
+- Reproduction: sims/lp2_p50_lag6_contextual_inverse_gate.cjs; report: im-results/lag6-keyed-rewrite-inversion.md; manual workflow: .github/workflows/lag6-repair-keyed-inverse.yml. The workflow artifact is lag6-p50-original-key.json.
+- The T6 architecture remains provisional: the signed source reconstructs T(x)=24-2x mod29, but does not prescribe the subtraction, key clock, collision-repair probability or word boundaries. The p50 negative does not establish that T6 is the actual LP2 cipher.
+
+## Current research state and next useful decision
+
+- The source-visible p50 256-byte row-major mod29 repeat is now a closed key candidate under the known-key T6 inverse. Do not repeat the same mapping, sign, F handling or phase-zero global clock.
+- A next candidate should have an independent source selector for its key values, reset, orientation and clock. Prefer one fixed key derivation and a reversible positive control over broad phase/radix sweeps.
+- The existing synthetic inverse is useful only when the key is fixed independently. Require original plaintext across held-out positions and exact re-encryption before promoting a result.
+- Previous archival route: issue #768 was completed as a bounded negative; the public WARC/Wayback/Tor archive checks did not recover a byte-bearing 2014 hidden-service descriptor or p56 preimage. Do not repeat those same archive endpoints without a new data source or custodian response.
+- Earlier p55 16-word/base32 onion-host candidate and ArchiveTeam Tor WARC searches are not validated keys. Preserve as exclusions, not active leads.
+
 # Agent9 persistent research state, 13 November 2026
 
 ## Current invocation: original Archive Team Tor WARC source gate, 14:05 UTC
