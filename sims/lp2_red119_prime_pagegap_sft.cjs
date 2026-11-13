@@ -129,6 +129,31 @@ for (const [x, ax] of a) {
 }
 assert.deepEqual([total, equalGap, bothPrimeGap, primeGapDigitAnagram],
   [51170, 378, 75, 14]);
+
+// Simple key-free rejection of a literal triple-digit RSA ciphertext.
+const rsaModulus = s0 * s1;
+assert.equal(rsaModulus, 23701);
+assert.ok(rsaModulus < 29 ** 3);
+function countRSAOverflow(indices, phase) {
+  let count = 0;
+  for (let k = phase; k + 2 < indices.length; k += 3) {
+    const packed = indices[k] * 29 ** 2 + indices[k + 1] * 29 + indices[k + 2];
+    if (packed >= rsaModulus) count++;
+  }
+  return count;
+}
+const originalUnknown = corpus.pages.filter((p) => p.page <= 55)
+  .flatMap((p) => p.indices);
+assert.equal(originalUnknown.length, 12956);
+const rsaInvalidByPhase = [0, 1, 2].map((phase) =>
+  countRSAOverflow(originalUnknown, phase));
+const rsaInvalidP3 = [0, 1, 2].map((phase) =>
+  countRSAOverflow(pages.get(3), phase));
+const rsaInvalidP39 = [0, 1, 2].map((phase) =>
+  countRSAOverflow(pages.get(39), phase));
+assert.deepEqual(rsaInvalidByPhase, [134, 115, 119]);
+assert.deepEqual(rsaInvalidP3, [6, 3, 1]);
+assert.deepEqual(rsaInvalidP39, [2, 1, 1]);
 console.log(JSON.stringify({
   source: { p3: { offset: 119, indices: red[0].indices, sum: s0 },
     p39: { offset: 119, indices: red[1].indices, sum: s1 } },
@@ -144,5 +169,10 @@ console.log(JSON.stringify({
     gap_and_both_prime: bothPrimeGap,
     gap_both_prime_digit_anagram: primeGapDigitAnagram,
     frequency: primeGapDigitAnagram / total },
+  triple_digit_rsa_capacity_gate: { modulus: rsaModulus,
+    base29_triple_capacity: 29 ** 3,
+    invalid_book_by_phase: rsaInvalidByPhase,
+    invalid_p3_by_phase: rsaInvalidP3,
+    invalid_p39_by_phase: rsaInvalidP39 },
   verdict: 'Source-exact cross-artifact arithmetic; 1-based page adjustment is unselected; no plaintext/key.',
 }, null, 2));
