@@ -29,16 +29,19 @@ for (let p = 0; p < pages.length; p++) {
   for (const record of pageRecords) runeCounts[record.index]++;
   const expectedDoubletsUnderPageShuffle =
     runeCounts.reduce((sum, n) => sum + n * (n - 1), 0) / pageRecords.length;
-  let crossPairs = 0, crossDoublets = 0;
+  let withinPairs = 0, withinDoublets = 0, crossPairs = 0, crossDoublets = 0;
   for (let i = 1; i < pageRecords.length; i++) {
     const a = pageRecords[i - 1], b = pageRecords[i];
     if (a.word !== b.word) {
       crossPairs++;
       if (a.index === b.index) crossDoublets++;
+    } else {
+      withinPairs++;
+      if (a.index === b.index) withinDoublets++;
     }
   }
   pageStats.push({
-    page: p, runes: pageRecords.length, crossPairs, crossDoublets,
+    page: p, runes: pageRecords.length, withinPairs, withinDoublets, crossPairs, crossDoublets,
     expectedDoubletsUnderPageShuffle
   });
 }
@@ -358,8 +361,12 @@ const regionStats = (lo, hi) => {
   return {
     pages: [lo, hi],
     runes: selected.reduce((a, p) => a + p.runes, 0),
+    withinWordPairs: selected.reduce((a, p) => a + p.withinPairs, 0),
+    withinWordDoublets: selected.reduce((a, p) => a + p.withinDoublets, 0),
+    withinWordRate: selected.reduce((a, p) => a + p.withinDoublets, 0) / selected.reduce((a, p) => a + p.withinPairs, 0),
     wordBoundaries: selected.reduce((a, p) => a + p.crossPairs, 0),
-    crossWordDoublets: selected.reduce((a, p) => a + p.crossDoublets, 0)
+    crossWordDoublets: selected.reduce((a, p) => a + p.crossDoublets, 0),
+    crossWordRate: selected.reduce((a, p) => a + p.crossDoublets, 0) / selected.reduce((a, p) => a + p.crossPairs, 0)
   };
 };
 const selectedBoundaryPairs = boundaryPairs.filter(p => p.page >= 11 && p.page <= 23);
