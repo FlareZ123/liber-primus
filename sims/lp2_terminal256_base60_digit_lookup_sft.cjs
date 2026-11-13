@@ -150,6 +150,50 @@ function checkLookup(positions, target) {
   return { conflicts, firstConflict, independent, rank: independent };
 }
 
+/**
+ * A strictly larger model: arbitrary static mapping from every printed
+ * byte 0..255 to any GP29 symbol, with no digit separability requirement.
+ * This grants 256 secret entries, including keys for bytes not observed.
+ * A contradictory duplicate byte implies no such model can work.
+ * @param {number[]} positions
+ * @param {number[]} target
+ * @returns {{contradictions:number, firstConflict:number, usedEntries:number}}
+ */
+function checkByteLookup(positions, target) {
+  assert.equal(positions.length, target.length);
+  const table = Array(256).fill(-1);
+  let contradictions = 0;
+  let firstConflict = -1;
+  let usedEntries = 0;
+  for (let i = 0; i < positions.length; i++) {
+    const byte = grid[positions[i]];
+    const gp = target[i];
+    if (table[byte] === -1) {
+      table[byte] = gp;
+      usedEntries++;
+    } else if (table[byte] !== gp) {
+      contradictions++;
+      if (firstConflict < 0) firstConflict = i;
+    }
+  }
+  return { contradictions, firstConflict, usedEntries };
+}
+
+const byteHistogram = new Map();
+let bestByte = { contradictions: Infinity };
+for (let a = 0; a < 8; a++) for (let b = 0; b < 8; b++) for (let c = 0; c < 8; c++) {
+  const position = paths[0][a].concat(paths[1][b], paths[2][c]);
+  const result = checkByteLookup(position, known);
+  byteHistogram.set(result.contradictions,
+    (byteHistogram.get(result.contradictions) ?? 0) + 1);
+  if (result.contradictions < bestByte.contradictions)
+    bestByte = { ...result, orientation: [a, b, c] };
+}
+assert.equal([...byteHistogram.values()].reduce((a, b) => a + b, 0), 512);
+assert.equal(byteHistogram.get(0) ?? 0, 0);
+assert.deepEqual(bestByte,
+  { contradictions: 44, firstConflict: 24, usedEntries: 127, orientation: [7, 5, 4] });
+// Independent 256-entry secret codebook plant on genuine original grid values.
 const histogram = new Map();
 let best = { conflicts: Infinity, orientation: [] };
 for (let a = 0; a < 8; a++) for (let b = 0; b < 8; b++) for (let c = 0; c < 8; c++) {
@@ -166,6 +210,11 @@ assert.deepEqual(best, { conflicts: 106, firstConflict: 24, independent: 60, ran
 const secretHigh = [5, 13, 7, 1, 20];
 const secretLow = Array.from({ length: 60 }, (_, i) => mod(11 * i * i + 7 * i + 13));
 const plantedRoute = paths[0][4].concat(paths[1][1], paths[2][7]);
+const byteCodebook = Array.from({ length: 256 }, (_, x) => mod(17 * x + 12));
+const bytePlanted = plantedRoute.map(idx => byteCodebook[grid[idx]]);
+assert.deepEqual(checkByteLookup(plantedRoute, bytePlanted),
+  { contradictions: 0, firstConflict: -1, usedEntries:
+    new Set(plantedRoute.map(idx => grid[idx])).size });
 const planted = plantedRoute.map((idx) =>
   mod(secretHigh[Math.floor(grid[idx] / 60)] + secretLow[grid[idx] % 60]));
 assert.deepEqual(checkLookup(plantedRoute, planted),
@@ -182,5 +231,12 @@ console.log(JSON.stringify({
   best,
   histogram: Object.fromEntries([...histogram].sort((x, y) => x[0] - y[0])),
   positivePlant: 'PASS 180/180',
+  unrestrictedByteCodebook: {
+    secretEntries: 256,
+    testedOrientations: 512,
+    best: bestByte,
+    histogram: Object.fromEntries([...byteHistogram].sort((x, y) => x[0] - y[0])),
+    positivePlant: 'PASS 180/180'
+  },
   status: 'PASS: no original exact secret-digit-additive fit'
 }, null, 2));
