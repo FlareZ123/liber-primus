@@ -6,6 +6,8 @@
 
 Solved LP1 physical p5 prints **THE TOTIENT FUNCTION IS SACRED ALL THINGS** beside Cicada's moth. The moth repeats on original LP2 physical p55, whose final seven complete printed words have the exact original GP29 rune-length pattern **[2,7,7,2,6,3,3]**. This is an intriguing, previously documented **unconfirmed** 30-rune plaintext conjecture; see [source-moth study](lp2-p55-moth-p5-terminal-sevenword-crib.md). Independently, original LP2 physical pp49–51 have 256 printed numeral cells, whose GF29 polynomial contains an exact degree-16 product [derived from the source](lp2-grid-complete-gf29-factorization.md). A short reversible key stream from this factor is an affordable, specific hypothesis, although the book does not explicitly select the source phrase, polynomial recurrence or placement.
 
+**Prior work and scope:** The [original seven-word source-crib investigation](lp2-p55-moth-p5-terminal-sevenword-crib.md) already excluded historical plaintext-F transparency (the source phrase contains F but the 30-rune original suffix does not), all secret constant-coefficient **affine key recurrences of order ≤14**, and several original-source fixed-key/LCG families. This experiment's independently distinguishing decision is the **specific degree-16 polynomial factor of the original 256-cell table**, including every secret constant affine output layer. The order-15 Hankel certificate below is an alternative exact proof of a previously established narrower additive-key consequence, not a newly discovered exclusion.
+
 ## Original input and key residual
 
 The authentic LP1 spelling uses a single IA rune for IO in FUNCTION and a single NG rune for ING in THINGS. The exact proposed 30-rune GP plaintext, expressed in canonical GP29 index order, is:
@@ -50,9 +52,9 @@ Thus **zero of all 812 secret affine maps** can satisfy even these three necessa
 
 The contradiction depends on the **unverified LP1-sourced moth quotation** being exactly the original p55 plaintext. It does not independently validate the quotation or show that any recurrence operates in Liber Primus.
 
-## Exact all-secret short-recurrence obstruction
+## Compact determinant certificate for the already established short-recurrence bound
 
-The 30 forced key residues also have a **15×15 Hankel determinant of 5 modulo29** (rows indexed i=0..14, columns j=0..14, entry at K[i+j]). Because this determinant is nonzero, the columns have rank15. Every homogeneous GF29 recurrence of order at most14, with **any** secret coefficients and initial state, would give a dependent set of columns. This is an exact algebraic exclusion conditional on the original hypothetical plaintext. Berlekamp–Massey independently returns linear complexity **15** for all 30 residuals. Fitting an order15 key to the same 30 values supplies no independent text prediction and should not be presented as a cipher recovery.
+The 30 forced key residues have an independently calculated **15×15 Hankel determinant of 5 modulo29** (rows indexed i=0..14, columns j=0..14, entry at K[i+j]). Because this determinant is nonzero, the columns have rank15. Every homogeneous GF29 recurrence of order at most14, with **any** secret coefficients and initial state, would give a dependent set of columns. This is a concise exact algebraic certificate for the additive homogeneous restriction of Agent23's already published rank test, conditional on the original hypothetical plaintext. Berlekamp–Massey independently returns linear complexity **15** for all 30 residuals. Fitting an order15 key to the same 30 values supplies no independent text prediction and should not be presented as a cipher recovery.
 
 [Single-file CommonJS SFT](../sims/lp2_moth_grid16_crib_recurrence_sft.cjs) fixes the original source array, 256-cell SHA, p55 30-rune substring, GF29 polynomial, two direct original predictions, rank certificate, and positive native GP29 plants.
 
