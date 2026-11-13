@@ -171,7 +171,7 @@ for (const method of methods) {
         (c - d.rune(method) + 29) % 29);
       // A skipped F in plaintext must not advance a key; the safePlaintext
       // construction is a model diagnostic, not authentic input.
-      assert.equal(original.length, plaintext.length);
+      assert.deepEqual(original, safePlaintext);
     }
   }
 }
