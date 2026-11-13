@@ -62,6 +62,19 @@ assert.deepEqual(unpackFiveBits(bytes, spareBit), out);
 const printable = Array.from(bytes).filter((v) => v === 10 || v === 13 || (v >= 32 && v <= 126)).length;
 assert.equal(printable, 47);
 
+// Independently canonical numeric interpretation: authentic GP prime numbers
+// are native numbers (2..109), so their exact XOR can be read as 7-bit ASCII.
+// Freeze the same red/tail alignment; no bit packing or secret mapping is used.
+const primeXor = red.map((v, i) => corpus.prime[v] ^ corpus.prime[key[i]]);
+const primeXorBytes = Buffer.from(primeXor);
+const primeXorPrintable = primeXor.filter((v) => v >= 32 && v <= 126).length;
+const primeXorLetters = primeXor.filter((v) => (v >= 65 && v <= 90) || (v >= 97 && v <= 122)).length;
+assert.equal(primeXorBytes.length, 213);
+assert.equal(Math.max(...primeXor), 126);
+assert.equal(primeXorPrintable, 155);
+assert.equal(primeXorLetters, 87);
+assert.equal(primeXorBytes.subarray(0, 20).toString('hex'), '1c4e6a62584a002b587050086a4c263e2c4a06');
+
 // Positive source-shaped plant: all 213 synthetic carrier glyphs are valid GP29
 // values, while the same fixed original 213-rune key is retained unchanged.
 const plantedRed = key.map((_, i) => (7 * i + 3) % 29);
@@ -82,6 +95,10 @@ console.log(JSON.stringify({
   spareBit,
   packedSha256: createHash('sha256').update(bytes).digest('hex'),
   printableBytes: printable,
+  primeXorByteLength: primeXorBytes.length,
+  primeXorPrintable,
+  primeXorLetters,
+  primeXorFirstTwentyHex: primeXorBytes.subarray(0, 20).toString('hex'),
   firstTwentyHex: bytes.subarray(0, 20).toString('hex'),
   sourceShapedPlantReconstructed: plantedRed.length
 }, null, 2));
