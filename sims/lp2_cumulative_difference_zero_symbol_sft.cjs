@@ -288,6 +288,28 @@ const wholeRank = bestRelabel(expectedNative(groupLengths(words.map(w =>
   w.length))), allDifference, fullStream.length);
 assert(Math.abs(wholeRank.totalVariation - 0.32811405321425435) < 1e-10);
 
+
+// Stronger affine-feedback transport: any slope a in GF29, including a=0,
+// and a completely secret stationary GP29 permutation h.
+//
+//   C_i = a*C_(i-1) + h(P_i) (mod29)
+//
+// Subtracting a*C_(i-1) must leave h(P_i). As above, h can change LABELS
+// but cannot change the sorted plaintext symbol-count spectrum.
+const affineHistory = [];
+for (let slope = 0; slope < 29; slope++) {
+  const counts = Array(29).fill(0);
+  for (let i = 1; i < fullStream.length; i++)
+    counts[((fullStream[i] - slope * fullStream[i - 1]) % 29 + 29) % 29]++;
+  const score = bestRelabel(expectedNative(groupLengths(words.map(w =>
+    w.length))), counts, fullStream.length);
+  affineHistory.push({slope, minimumTV: score.totalVariation});
+}
+affineHistory.sort((x, y) => x.minimumTV - y.minimumTV);
+assert.equal(affineHistory[0].slope, 1);
+assert(Math.abs(affineHistory[0].minimumTV - 0.32811405321425435) < 1e-10);
+assert(affineHistory.slice(1).every(x => x.minimumTV > 0.339));
+
 const chapterRank = [];
 for (let ch = 0; ch < visualEnds.length; ch++) {
   const start = ch ? visualEnds[ch - 1] : 0, end = visualEnds[ch];
@@ -367,6 +389,29 @@ assert(expectedNativeZero > 0, 'positive control must contain NG/ING');
 assert.deepEqual(encodeSourceNativeGP('FOLLOWING'), [0, 3, 20, 20, 3, 7, 21]);
 assert.deepEqual(encodeSourceNativeGP('FUNCTION'), [0, 1, 9, 5, 16, 27, 9]);
 
+
+// Independent nonlinear-alphabet + nonunit-slope positive: h(p)=p^5+7
+// mod29, a=17. Exponent 5 permutes the nonzero GF29 group (gcd(5,28)=1).
+const modPow = (n, exponent) => {
+  let v = 1;
+  for (let i = 0; i < exponent; i++) v = v * n % 29;
+  return v;
+};
+let previousPlant = 13;
+const affinePlantDifferenceCounts = Array(29).fill(0);
+for (const originalWord of words) {
+  const pool = controlBins.get(originalWord.length);
+  const modelWord = pool[nextInt() % pool.length];
+  for (const plainRune of modelWord) {
+    const now = (17 * previousPlant + modPow(plainRune, 5) + 7) % 29;
+    affinePlantDifferenceCounts[(now - 17 * previousPlant + 29 * 17) % 29]++;
+    previousPlant = now;
+  }
+}
+const affinePlantScore = bestRelabel(expectedNative(groupLengths(words.map(w =>
+  w.length))), affinePlantDifferenceCounts, fullStream.length);
+assert(affinePlantScore.totalVariation < 0.06);
+
 console.log(JSON.stringify({
   original: {runes: 12956, words: 2896, withinWordDoublets: 63,
     ordinaryWordStartDoublets: observedStart, endOfWordDoublets: observedFinal,
@@ -375,6 +420,7 @@ console.log(JSON.stringify({
   controlWords: control.length, candidates: comparisons,
   unionUpper, chapterResetUpper, chapterComparisons,
   rankSpectrum: {whole: wholeRank, chapter: chapterRank,
-    positivePlant: plantRank}, nativePlantDoublets: observedNativeZero,
+    positivePlant: plantRank, affineHistory, affineNonlinearPlant: affinePlantScore},
+  nativePlantDoublets: observedNativeZero,
   interpretation: 'Conditional English model; no unknown plaintext or key'
 }, null, 2));
