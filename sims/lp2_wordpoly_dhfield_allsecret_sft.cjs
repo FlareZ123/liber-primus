@@ -150,8 +150,8 @@ function scanLog(pairs, log) {
     for (let phase = 0; phase < 840; phase++) {
       const histogram = new Int32Array(29);
       for (const n of exponents) {
-        const rank = n < 0 ? -1 : ((sign * n - phase + 1680) % 840);
-        const value = rank < 0 ? 28 : digit === "low" ? rank % 29 : Math.floor(rank / 29);
+        const rank = n < 0 ? 28 : ((sign * n - phase + 1680) % 840);
+        const value = digit === "low" ? rank % 29 : Math.floor(rank / 29);
         histogram[value]++;
       }
       let equal = 0;
