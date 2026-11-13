@@ -13,6 +13,7 @@ on:
           - salsa20
           - mix_end_parable
           - tensor_357
+          - red11_core
 
 jobs:
   inverse:
@@ -23,6 +24,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify peeled original red 11x11 Hill compatibility against p32
+        if: github.event.inputs.probe == 'red11_core'
+        run: |
+          node --check sims/lp2_red225_inner11_p32_hill_sft.cjs
+          node sims/lp2_red225_inner11_p32_hill_sft.cjs
       - name: Run source-constrained original and exact planted inverse
         if: github.event.inputs.probe == 'legacy'
         run: node sims/red_225_hill_feedback_inverse.cjs
