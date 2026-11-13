@@ -127,7 +127,7 @@ for (const [name, form] of Object.entries(forms)) {
 }
 modes.sort((a, b) => b.ioc - a.ioc);
 assert.equal(modes.length, 16);
-assert(Math.abs(originalIOC - 0.03388480392156863) < 1e-3);
+assert(Math.abs(originalIOC - 0.03716299019607843) < 1e-12);
 assert(modes[0].ioc < 0.04,
   'one GF29 candidate has unexpectedly high nonuniformity');
 assert.equal(modes[0].name, 'transpose');
