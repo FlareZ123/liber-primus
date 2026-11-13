@@ -1,0 +1,46 @@
+name: LP2 Q92 original-glyph F5 positive-controlled DCT atlas
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-f5-glyph-atlas
+  cancel-in-progress: false
+
+jobs:
+  original-glyph-source-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Build exact quantized DCT reader and genuine F5 source encoder
+        run: |
+          set -eu
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+          gcc -O2 -std=c99 -Wall -Wextra -o /tmp/lp2-f5-glyph-reader sims/lp2_f5_glyph_dct_reader.c -ljpeg
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          (cd sims/f5_detector_calibration && go build -mod=mod -o /tmp/lp2-f5-native-embed native_f5_embed.go)
+          python3 -m pip install --quiet numpy filelock
+      - name: Validate 26 genuine 256-byte F5 positive controls before original screening
+        run: |
+          python3 sims/lp2_f5_glyph_atlas_gate.py \
+            --sources resources/liber-primus \
+            --reader /tmp/lp2-f5-glyph-reader \
+            --embedder /tmp/lp2-f5-native-embed \
+            --f5 "$(go env GOPATH)/bin/f5" \
+            --report im-results/lp2-f5-glyph-atlas-ci/summary.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-f5-glyph-atlas-source-controls
+          path: im-results/lp2-f5-glyph-atlas-ci/
+          retention-days: 30
+          if-no-files-found: warn
