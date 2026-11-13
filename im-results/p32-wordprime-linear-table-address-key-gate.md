@@ -88,11 +88,27 @@ All four Latin positive plants were recovered **75/75**. Against 20 deterministi
 
 This is a useful alternate-register check, not proof that every possible Latin register or historical text is excluded. It does, however, remove the simplest Latin Vulgate explanation for this exact p32-derived key under the tested 13/16 keyskip architecture.
 
+
+## Old English register follow-through
+
+A third language check used the repository's corrected Beowulf Old English GP29 profile. The model is trained on the first **7,960** symbols of its 12,956-symbol held-out GP sequence; the next **4,996** symbols form a same-source, non-overlapping positive-control plant matching the pp33–55 target length. The same fixed-plaintext 13/16 keyskip model and four-rejection cap were used.
+
+| Address convention | Operation | Selected skips | Decoded IoC | English? | Old English trigram score/rune | Original-key rank among 21 |
+|---|---|---:|---:|---|---:|---:|
+| Zero-based | C−K, keyskip | 121 | 0.03495417 | No readable text | −4.97640782 | 21 |
+| Zero-based | C+K, keyskip | 98 | 0.03506637 | No readable text | −4.96883201 | 13 |
+| One-based | C−K, keyskip | 93 | 0.03519645 | No readable text | −4.95111129 | 7 |
+| One-based | C+K, keyskip | 122 | 0.03497565 | No readable text | −4.97043310 | 14 |
+
+The Old English positive control recovered **4,991–4,993 of 4,996** runes (99.90–99.94%) for the four key/sign combinations. Against 20 deterministic shuffles of the same 22-symbol multiset, none of the source-ordered keys ranked first; the best was 7/21. The best-scoring one-based C−K variant beat 14/20 shuffles but still ranked seventh. The source-ordered key therefore has no compelling advantage under this Old English model either.
+
+This test uses one Old English source profile and does not exclude every historical Germanic register. It does reduce the chance that the p32-derived key is rescued simply by replacing the English/Latin language model with this independent Old English corpus.
+
 ## Decision
 
 **Retire this exact linear-address key construction and the tested additive and 13/16 fixed-plaintext keyskip consumers.** It is distinct from the already rejected single-word self-indexed row/column lookup and previous-word compass traversal: here the 22 p32 word sums directly address 22 cells in the 256-entry table, yielding a 22-symbol key. The direct output fails on both the immediate p33–39 section and the full unknown book.
 
-The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key under direct addition, and the tested 13/16 fixed-plaintext keyskip consumers under English and Latin Vulgate trigram models. Both keyskip tests are capped at four rejected positions per output. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, larger skip bounds, or unrelated KDFs without a new independent source instruction.
+The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key under direct addition, and the tested 13/16 fixed-plaintext keyskip consumers under English, Latin Vulgate and Old English trigram models. All three keyskip tests are capped at four rejected positions per output. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, larger skip bounds, or unrelated KDFs without a new independent source instruction.
 
 ## Reproduction
 
@@ -102,7 +118,7 @@ Run from the repository root:
 node sims/p32_wordprime_linear_table_address_key_sft.cjs
 ~~~
 
-The standalone script reads the canonical corpus, transcription, numeric grid, Shakespeare control and Latin Vulgate trigram counts; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates the direct additive inverses; runs the 13/16 keyskip Viterbi on pp33–55 with 20 shuffled-key nulls per candidate under both English and Latin models; and checks solved-p57 and Latin-Vulgate positive plants. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
+The standalone script reads the canonical corpus, transcription, numeric grid, Shakespeare control, Latin Vulgate trigram counts and Beowulf Old English profile; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates the direct additive inverses; runs the 13/16 keyskip Viterbi on pp33–55 with 20 shuffled-key nulls per candidate under English, Latin and Old English models; and checks solved-p57, Latin-Vulgate and held-out Beowulf positive plants. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
 
 Related existing work:
 - [Authoritative research synthesis](../results/README.md)
@@ -111,6 +127,8 @@ Related existing work:
 - [p32 prime-pointer and compass graph](p32-prime-pointer-compass-original-gate.md)
 - [Original table interpretation](../resources/liber-primus/base60-grid.json)
 - [Latin Vulgate GP trigram model](../resources/control/latin-vulgate-gp-trigrams.json)
+- [Beowulf Old English GP profile and held-out plant](../resources/control/beowulf_oe_gp_profile_corrected.json)
+- [Beowulf periodic inverse study](beowulf_old_english_periodic_inverse.md)
 - [13/16 red-ink filter-parameter gate](lp2-red-ink-1316-filter-parameter-gate.md)
 - [Existing keyskip Viterbi implementation](../sims/grid_keyskip_viterbi.cjs)
 - [Existing keyskip Viterbi findings](grid-keyskip-viterbi-20261110.md)
