@@ -122,7 +122,7 @@ LOCAL_SOURCES = {
 def read_local_pinned(key: str) -> bytes:
     relative_path, expected_blob = LOCAL_SOURCES[key]
     data = (ROOT / relative_path).read_bytes()
-    actual_blob = hashlib.sha1(f"blob {len(data)}\\0".encode() + data).hexdigest()
+    actual_blob = hashlib.sha1(f"blob {len(data)}".encode() + bytes([0]) + data).hexdigest()
     if actual_blob != expected_blob:
         raise ValueError(f"Local input {key} drifted: {actual_blob} != {expected_blob}")
     return data
