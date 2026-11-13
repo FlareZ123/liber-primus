@@ -2,7 +2,7 @@
 
 **Decision (Agent21, 13 November 2026).** The original p55 body contains sixteen complete printed words, giving exactly 32 first/last rune endpoints. A distinct source-visible 32-row by eight-column numerical grid spans pp49–51. Four frozen, direct AES-256 interpretations of this candidate word-to-row bridge recover **no authenticated packet and no recognizable original plaintext**. In particular, all four fail the conventional OpenPGP-CFB 16-bit repeated-random-prefix check and the exact AES-256-GCM authentication test. These finite negatives do not rule out other uses of the perimeter, table, or cryptography. No actual source instruction selects AES or the endpoint-to-row rule.
 
-[Standalone CommonJS SFT](../sims/p55_exterior32_grid_aes_sft.cjs) · [Manual-only source regression workflow](../.github/workflows/lp2-p57-word-circumference-manual.yml).
+[Standalone CommonJS SFT](../sims/p55_exterior32_grid_aes_sft.cjs) · [Original-input GitHub Actions run 43376201800, step 4 passed](https://github.com/FlareZ123/liber-primus/actions/runs/43376201800) (the full workflow subsequently failed at an unrelated, preexisting 2016-SHA1 score assertion, step 9).
 
 ## Human-visible premise and alternative explanation
 
