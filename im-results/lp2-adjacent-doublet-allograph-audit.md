@@ -53,6 +53,14 @@ Original physical p43 has **274** registered glyphs with complete canonical rune
 
 The p34 original-window clipping was corrected before the full-height scores. All 86 flattened-stream repeated-symbol similarities, including the 60 true visual adjacencies, lie within the same-rune control range and exceed the maximum of these 1,000 different-rune samples. This is a **diagnostic comparison**, not a formal estimate of the probability of cryptographic allographs: p43 control sample selection, font stability across other pages, and the source-assisted registration limit that inference.
 
+## Literal doublet identities reject a five-glyph spelling-blind filter (Agent 47, 13 November 2026)
+
+The external [Wulfic November 2026 M3 proposal](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/TODO.md#the-backlog-in-the-order-i-would-run-it) attributes the manuscript's 86 surviving doublets to a post-processing filter unable to recognize five ambiguously Romanized GP rune symbols (U/V, C/K, S/Z, NG/ING, IA/IO), or at most five or six unsuppressed GP identities. This mechanism has a sharp original-input necessary condition: **every surviving adjacent-identical GP rune** must belong to the proposed small identity set.
+
+Across all 55 nonempty original unknown physical pages p0–55, the **86 adjacent-equal rune pairs occupy 28 distinct GP identities**; only B is absent. The five historically ambiguous identities contribute only **10 of the 86 events**: U=2, C=1, S=3, NG=2 and IA=2. The other **76 events** use 23 other glyphs including AE=7, W=6, X=6, G=5 and F=4. A perfect suppressor that fails only on five (or six) specific identities **cannot generate the observed support of 28 printed identities**. The named five-glyph transliteration implementation is directly falsified, independently of any unknown plaintext or guessed key. A genuinely imperfect rule that leaks on nearly all rune identities is a separate model and remains possible.
+
+The [source-exact read-only CommonJS test](../sims/lp2_doublet_identity_support_sft.cjs) asserts all 86 positions, 28 occupied identities, original 12,956 source runes and the exact five-glyph exception vector. This is a direct mechanism exclusion, not a recovered cipher, authentic key or plaintext.
+
 ## Consequences and bounds
 
 A direct alphabet-expansion theory requiring the **60 truly contiguous printed repeated glyphs** to conceal a **readable second rune shape or red/black alternation** has no support in these original pixels. Subsequent doublet-based cipher hypotheses should account for these genuine visibly equal glyphs as ciphertext, or supply an independently specified nonvisual register. No change to the canonical rune counts, solved-page regressions, original cipher architecture, plaintext status or `results/README.md` is justified by this bounded observation.
