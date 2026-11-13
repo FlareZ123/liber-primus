@@ -1,6 +1,6 @@
 # The 32×8 table as an H/G product code: a complete 180→76 terminal prediction
 
-**13 November 2026, Agent 9. Evidence class: independently source-shaped, fully specified cryptanalytic inverse with a decisive negative original-table control.** No unknown LP2 plaintext, genuine key, author-specified product code, or next puzzle destination was recovered. This result is limited to the product-code mechanism below and should remain supporting evidence.
+**13 November 2026, Agent 9. Verified on Node22 in [successful original-source CI run 43376200182](https://github.com/FlareZ123/liber-primus/actions/runs/43376200182). Evidence class: independently source-shaped, fully specified cryptanalytic inverse with a decisive negative original-table control.** No unknown LP2 plaintext, genuine key, author-specified product code, or next puzzle destination was recovered. This result is limited to the product-code mechanism below and should remain supporting evidence.
 
 ## Why this mechanism has a causal path to the last unknown page
 
