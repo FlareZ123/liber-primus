@@ -69,6 +69,19 @@ function powGF841(x, n) {
 
 const pairGF841 = x => [x % 29, Math.floor(x / 29)];
 const u = 29; // 0 + 1u in the [a,b] = a + bu representation
+// Source-visible transfer control: the p40 red-heading key order is
+// [0,4,7,1,2,5,6,3]. Reading the p50 32x8 table column-by-column in that
+// order is a standard columnar readout; it must preserve the p39 root if it
+// were the intended serialization of the existing polynomial bridge.
+const p40Red8Order = [0, 4, 7, 1, 2, 5, 6, 3];
+const red8Columnar = p40Red8Order.flatMap(col =>
+  grid.byte_rows.map(row => mod(row[col])));
+const red8FirstDivision = divideByRoot(red8Columnar, 24);
+if (red8FirstDivision.remainder !== 26) {
+  throw new Error('unexpected p40-red8 columnar p39-root remainder: ' +
+    red8FirstDivision.remainder);
+}
+
 const g127 = powGF841(g, 127);
 const g323 = powGF841(g, 323);
 const u83 = powGF841(u, 83);
@@ -98,6 +111,12 @@ const result = {
   remainder_mod_p3: [constant, uCoefficient],
   field_element: String(constant) + ' + ' + String(uCoefficient) + 'u',
   integer_encoding: g,
+  p40_red8_columnar_control: {
+    column_order: p40Red8Order,
+    coefficient_order: 'descending',
+    p39_first_root_division_remainder: red8FirstDivision.remainder,
+    physical_row_major_remainder: d1.remainder
+  },
   multiplicative_order: order,
   primitive: order === 840,
   p55_matrix_eigenvalue_crosslink: {

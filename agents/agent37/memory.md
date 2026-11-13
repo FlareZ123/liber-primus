@@ -383,3 +383,10 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - Built one distinct, low-complexity consumer of the existing 32 cross-page-word / 32-row table selector: prime-sum mod8 selects one byte per row, then that byte XORs the other seven cells in the same row. This is motivated by the exact 32×8 source layout and Cicada's earlier bytewise-XOR precedent, but no LP2 instruction authenticates it.
 - Exact selector 41733365273004427417340057065101; key 61f9571927499cc41952c1d3de0e3656abf5d2f85294eb807315393300ea909e. The 224-byte row-major output SHA-256 is 2e4b3b0379c0f5bba4cb6397000b3cd6ea455a4859ed1f1e8b5b41c23254f8cc; 85/224 printable, longest run4. byte%29 and floor(29*byte/256) IoCs are 0.0331518257527 and 0.0328715566944. No common PNG/ZIP/gzip/PDF/PGP/ELF header. A synthetic source-shaped plant recovers 224/224.
 - Bounded negative for this direct row-local XOR consumer. Do not chain arbitrary AES, stream ciphers or byte→GP maps. Updated the existing carry32 AES report and p50 table row in results/README.md; reproducer sims/lp2_carry32_rowlocal_xor_sft.cjs.
+
+
+## 2026-11-13 — p40 red8 order versus p50 polynomial serialization
+
+- Tested the one source-visible transfer of the p40 red-heading sorted column order [0,4,7,1,2,5,6,3] to the p50 32×8 table as a standard columnar readout, with the result interpreted as descending GF(29) polynomial coefficients.
+- It fails the p39 repeated-root factor immediately: first division by X−24 has remainder 26, versus remainder0 for the physical row-major sequence. This supports keeping the p50 finite-field bridge tied to physical row-major order; it does not authenticate any cipher consumer.
+- Integrated the negative into im-results/p50-p39-p3-field-remainder.md, its exact SFT sims/p50_p39_p3_field_remainder.cjs, and the p50 row of results/README.md. No permutation sweep or inverse-order search.
