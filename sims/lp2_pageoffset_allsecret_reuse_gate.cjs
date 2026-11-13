@@ -25,7 +25,7 @@ const root = path.join(__dirname, "..");
 
 /** @param {string} filename */
 function read(filename) {
-  return fs.readFileSync(path.join(root, filename), "utf8");
+  return fs.readFileSync(path.join(root, filename), "utf8").replace(/\r\n/g, "\n");
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
@@ -36,6 +36,7 @@ assert.equal(unknownPages.reduce((n, page) => n + page.indices.length, 0), 12956
 
 const solvedP57 = read("resources/liber-primus/lp1-plaintext-reference.txt")
   .split("### 57\n")[1];
+assert.equal(typeof solvedP57, "string", "source file contains p57 anchor");
 assert.deepEqual(encodeSourceNativeGP(solvedP57),
   corpus.pages.find(page => page.page === 57).indices,
   "source-native English encoder exactly matches independent solved p57");
