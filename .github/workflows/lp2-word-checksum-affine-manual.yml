@@ -12,5 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Word-first-rune all-secret 29×29! feedback-gate with native plant
+        run: node sims/lp2_wordseed_allsecret_affine_gate_sft.cjs
       - name: Run original checksum SFT and matched controls
         run: node sims/lp2_word_checksum_affine_sft.cjs
