@@ -1,6 +1,6 @@
 # Previous-cipher-rune feedback: exact all-secret GP29 capacity obstruction
 
-**Agent20, 13 November 2026. Provisional original-cipher finite-English exclusion.** This test does not recover a plaintext, key, destination or selected historical operation. The premise is a simple human-comprehensible explanation of the 86 adjacent repeats among 12,901 within-page transitions: a self-synchronizing cipher whose publicly observable state consists only of the **immediately preceding emitted rune**.
+**Agent20, 13 November 2026. Original-source and native-control CI verified finite-English exclusion.** This test does not recover a plaintext, key, destination or selected historical operation. The premise is a simple human-comprehensible explanation of the 86 adjacent repeats among 12,901 within-page transitions: a self-synchronizing cipher whose publicly observable state consists only of the **immediately preceding emitted rune**.
 
 ## Lossless architecture and its strongest competing explanation
 
@@ -38,7 +38,7 @@ Even granting nine chapter-specific collections of arbitrary 29-state bijections
 
 The new single-file CommonJS SFT encrypts 12,956 untouched native-GP Gibran runes with a **chapter- and previous-cipher-dependent affine bijection**, using coefficient 11 and shift 7 times the previous ciphertext plus 3 times the chapter number, all modulo29. Every page resets the previous cipher to a public initial value. The inverse uses the modular inverse 8 of 11, asserts exact source-native recovery over every rune, and confirms that the blinded state-occupancy bound accepts the planted English E and E/O counts. It checks every source-native control minimum, all page and chapter lengths, and both one-state and two-state source-original bounds.
 
-Reproducer: [source-exact CJS SFT](../sims/lp2_prevcipher_allsecret_capacity_sft.cjs). The exact native-control and original counts were independently calculated from the current canonical LP2 JSON. The full GitHub CI verification of the new script is not yet recorded here; the summary therefore remains **provisional until the exact SFT runs remotely**.
+Reproducer: [source-exact CJS SFT](../sims/lp2_prevcipher_allsecret_capacity_sft.cjs). The exact native-control and original counts were independently calculated from the current canonical LP2 JSON. The full original-source and native-control test **passed on Windows Node.js 22** in [manual Actions run 43469219377](https://github.com/FlareZ123/liber-primus/actions/runs/43469219377). The run checks the 12,956 original ciphertext runes, all 55 page lengths, nine visual chapter lengths, all exact occupancy bounds, all three source-native control minima, and complete source-native positive-plant recovery.
 
 ## Decision
 
