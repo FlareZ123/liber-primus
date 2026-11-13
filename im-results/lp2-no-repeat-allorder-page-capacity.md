@@ -64,46 +64,6 @@ The underlying low-doublet phenomenon remains unexplained. A clue-supplied evolv
 
 **Original-source manual CI:** [passing Node 22 full-control run 43384988103](https://github.com/FlareZ123/liber-primus/actions/runs/43384988103) executed the exact current standalone SFT on the remote checkout.
 
-## Two-symbol theorem: exact simultaneous letter capacity over every secret rune order
-
-The single-rank E test above does not exhaust E-poor native plaintext. A fixed secret ordered 29-glyph alphabet also limits the **combined occupancy of any two distinct decoded symbols**, even when independently reordered and relabeled for every printed page.
-
-A decoded rank is produced by one of two adjacent glyph identities. Two selected **adjacent output ranks** correspond to three consecutive underlying glyph identities a,b,c. Their exact maximum contribution, summed across all original transitions T, is:
-
-\[
-A(a,b,c)=T[a,b]+T[a,c]+T[b,a]+T[b,c]+T[c,a]+T[c,b]
-+\sum_{s\notin\{a,b,c\}}\big(T[s,b]+\max(T[s,a],T[s,c])\big).
-\]
-
-For **nonadjacent output ranks**, their two distinct neighboring source glyph pairs occur in order a,b and c,d, with at least one extra glyph between b and c. The four anchor predecessors contribute
-\[
-B_0=T[a,b]+T[a,d]+T[b,a]+T[b,d]+T[c,a]+T[c,d]+T[d,a]+T[d,c].
-\]
-Each other predecessor s can be placed in one of three ordered zones. Its contributions to the two ranks are, respectively,
-\[
-T[s,b]+T[s,d],\qquad T[s,a]+T[s,d],\qquad T[s,a]+T[s,c].
-\]
-Maximize these three scores independently for each s. If no maximizing choice places any glyph in the necessary middle zone, subtract the **smallest attainable single-glyph penalty** for moving one predecessor there. The resulting maximum is **exact**: each zone assignment defines a genuine full rune permutation. Maximize over all distinct ordered triples and quartets; reversal of the full alphabet preserves the two-rank occupancy. An independent exhaustive five-glyph permutation oracle verifies the theorem against all 5! toy alphabets.
-
-On the original LP2 unequal within-page ciphertext transitions, the exact maximum **combined occupancy of any two selected rank labels** is:
-
-| Independent secret rune ordering | Combined two-letter capacity among 12,815 constrained source positions |
-| --- | ---: |
-| One ordering for the whole unsolved corpus | **1,118** |
-| Independent secret ordering and distinct output-label bijection for **each of 55 rune-bearing pages** | **2,379** |
-
-The second number is the sum of 55 individually optimized, attainable pair bounds, counting the rune-free physical p50 as zero. It strictly strengthens the loose upper bound 2×1,292=2,584 obtained from the earlier one-symbol theorem.
-
-Keeping **precisely the same** source controls, every contiguous original-length 12,956-rune window, and the exact 141 free source positions, the smallest **E+O count on the remaining 12,815 constrained slots** is:
-
-| GP29 source | Exact minimum E+O | Window start GP index | Margin over source capacity 2,379 |
-| --- | ---: | ---: | ---: |
-| Gibran | **2,517** | 36,540 | +138 |
-| Shakespeare | **2,395** | 193,169 | +16 |
-| Emerson | **2,419** | 297,246 | +40 |
-
-**All 567,679 tested original-length English-GP windows fail the exact two-symbol capacity as well.** No secret choice of even 55 independent underlying rune orders and 55 independent output-letter substitutions can represent these full passages through the specified reversible predecessor-excluding rank code. The smallest gap is 16 symbols, so reproduce the exact window alignment and erasure mask. This remains a finite native-register exclusion: no LP2 plaintext, cipher key, historical author-selected order, or continuation is recovered. Changing the order within each page, introducing a nonnative intermediate or using a genuinely stateful encoder remains outside the theorem.
-
 ## Reproduce
 
 [Standalone CommonJS SFT](../sims/lp2_no_repeat_allorder_page_capacity_sft.cjs) uses Node.js 22 and built-in libraries only. It reads the unchanged [canonical original LP2 corpus](../resources/liber-primus/lp2-corpus.json) and three fixed [source controls](../resources/control/), checks the 12,956/12,815/86/141 original inventory, exhausts the **406 adjacent-pair capacities** for each chapter and physical page, constructs a real maximizing original-order decoder, performs an exhaustive 5-way permutation theorem oracle, scans every one of the 567,679 source-native windows at exactly the original 141 free positions, and verifies a complete original-shaped native-content rank encrypt/decrypt plant with all 86 doublet markers preserved.
