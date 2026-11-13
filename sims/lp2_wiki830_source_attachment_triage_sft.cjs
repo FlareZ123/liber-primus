@@ -208,7 +208,10 @@ async function main() {
       highestPriority:unknown.slice(0,150).map(im=>({
         name:im.name,size:im.size,sha1:im.sha1,timestamp:im.timestamp,
         priority:priority(im),url:im.url}))};
-    writeAtomic(path.join(OUTPUT,"source-index.json"),JSON.stringify(images,null,2));
+    writeAtomic(path.join(OUTPUT,"source-index.json"),JSON.stringify(images.map(im=>({
+      ...im,archiveExactSHA1Match:archiveBytes.has(im.sha1),
+      archiveRelativePath:archiveBytes.get(im.sha1)||null
+    })),null,2));
     writeAtomic(path.join(OUTPUT,"triage.json"),JSON.stringify(report,null,2));
     console.log("HASH_DIAGNOSTIC",JSON.stringify(downloads.filter(x=>x.status==="sha1-mismatch").slice(0,3)));
     console.log("FINAL_SUMMARY",JSON.stringify({images:images.length,
