@@ -196,6 +196,20 @@ function main() {
   assert.equal(full.gHits.length, 11);
   assert.deepEqual(full.both, []);
 
+  // The PGP-signed 2016 "their numbers" direction independently motivates
+  // using the published Gematria Primus prime-value register as a separate,
+  // source-native alternative. The historical H/G factors remain unchanged.
+  // A prime-value symbol can repeat residues modulo 29, so this test makes
+  // no claim of a bijective transport or fabricated prime-register plant.
+  const sourcePrimes = unknownPages.flatMap(
+    (page) => page.indices.map((index) => corpus.prime[index] % 29),
+  );
+  assert.equal(sourcePrimes.length, 12956);
+  const primeValue = scan(sourcePrimes, 256, h, g);
+  assert.equal(primeValue.hHits.length, 15);
+  assert.equal(primeValue.gHits.length, 15);
+  assert.deepEqual(primeValue.both, []);
+
   // Two independently visible, restricted framing conventions.
   const fixedBlocks = Array.from(
     { length: Math.floor(source.length / 256) },
@@ -225,6 +239,12 @@ function main() {
     gOnlyHits: full.gHits.length,
     gOffsets: full.gHits,
     jointHGHits: full.both,
+    gpPrimeValueAlternative: {
+      description: "Fixed published prime values reduced modulo 29",
+      hHits: primeValue.hHits.length,
+      gHits: primeValue.gHits.length,
+      both: primeValue.both,
+    },
     fullBookPhaseZeroBlocks: fixedBlocks.length,
     pageStartWindows: pageStarts.length,
     expectedJointHitsUniform: full.windows / (29 ** 4),
