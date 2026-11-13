@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Original p55 source-moth crib all-key affine recurrence
+        run: node sims/lp2_p55_moth_8register_crib_sft.cjs
       - name: Source-selected original moth-prose key
         run: node sims/lp2_lp1p5_moth_textguide_original_sft.cjs
       - name: Original prime-rubric RSA and source-derived quotient inverses
