@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_lp1p5_moth_source81_corrected_sft.cjs
       - name: Original prime-rubric RSA and source-derived quotient inverses
         run: node sims/lp2_p33_primepair_rsa_cyclewalk_p55_sft.cjs
+      - name: p32 prime intersection selector to p55 sixteen word direct key
+        run: node sims/lp2_p32_p55_prime16_wordkey_sft.cjs
