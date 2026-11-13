@@ -14,6 +14,8 @@ The authenticated January 2016 message ends with **“Beware false paths. Verify
 
 This strengthens the *human solve-path plausibility* of remembering the 2012 multiplication when looking at the new 2016 prime-dimension tree image. It is an actual **source-visible historical link**, stronger than an analyst merely noticing two prime dimension pairs. However, the PGP UID is a **persistent signer identifier** from 2012; every properly verified later message would display it. Its appearance therefore does **not** by itself select multiplication as the intended 2016 next step or provide a key. The old phone message still unambiguously names only the **original 2012 image**.
 
+**Important image-source alternative:** The historical 2016 community page also attributes the visible tree to a pre-existing **“dead oak tree clipart”** web illustration (its documented then-URL was `clipartbest.com/cliparts/abc/y97/abcy97qTL.jpeg`). The original stock JPEG is currently inaccessible from this execution environment, so neither its native dimensions nor any 2016 resampling/cropping are established. If its own canvas already had the same prime dimensions, the author may have inherited the 563×569 pair rather than designed a +60 cross-round signal. This is an independent competing explanation, not an authenticated alternative key. The exact source artwork metadata would be a discriminating prerequisite for taking the +60 mnemonic beyond an exploratory path.
+
 ## Fixed 2012 operator applied once to 2016 data
 
 Do **exactly** the original multiplication and append the original `.com`, changing only the 2016 image's two authentic prime dimensions:
