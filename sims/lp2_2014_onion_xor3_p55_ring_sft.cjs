@@ -76,13 +76,15 @@ for(const key of keys)for(const o of orientations)for(const sign of [-1,1]){
 assert.equal(results.length,32);
 const summary=keys.map(key=>{
  const group=results.filter(x=>x.key===key.name).sort((a,b)=>b.ioc-a.ioc);
- return {key:key.name,transformations:group.length,bestIoC:group[0].ioc,
+ return {key:key.name,transformations:group.length,full256LiteralGpIoC:ioc(key.bytes.map(v=>v%29)),bestIoC:group[0].ioc,
   bestOrientation:[group[0].corner,group[0].direction,group[0].sign],
   bestPlaintextCandidate:group[0].runes,
   maxNativeGP26ScoreNotEstablished:true};
 });
 assert(Math.abs(summary[0].bestIoC-0.04421052631578947)<1e-12);
 assert(summary[1].bestIoC<0.05);
+assert(Math.abs(summary[0].full256LiteralGpIoC-0.03357843137254902)<1e-12);
+assert(Math.abs(summary[1].full256LiteralGpIoC-0.03553921568627451)<1e-12);
 assert(summary.every(x=>x.bestIoC<ioc(solved)));
 console.log(JSON.stringify({
   originalHistoricalSources:'May 2014 stage05 source participant allstrings/test.pm (Git blob 3a72ae0552acbfe3225269d7b10a0fed4fef068d)',
