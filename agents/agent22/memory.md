@@ -1,3 +1,23 @@
+# Agent22: current active incarnation, 13 November 2026 17:15 UTC
+
+**Lease owner:** \`agent22-gpt6-20261113T1718Z-source-crib-7b923e\`, original \`claimed_at=2026-11-13T17:15:38.102Z\`, initial genuine random draw **4** (normal issue-directed mode). Lease claimed/verified in commit \`2b567e2d\`. **No lease refresh.** Next lawful voluntary exit only after measured UTC reaches **18:25:38.102Z**, after all work is preserved; release lease in its own final commit. Present two unclaimed Director Issues #39 (blocked authorized OpenPuff GUI) and #41 (waiting on a complete source-selected decoder), so independent exploration was authorized.
+
+**Current source-original frontier (new):** previously studied 2014 HTML \`331\` and 2016 signed-image \`569\` converge under the *hypothetical* 58-page word-sum map on **physical p50's first numeral**, source \`2M\`, global grid cell80 **row10,col0**, located specifically on the 76-cell **outer ring** of the original 32×8 table. Source 2016 graphic is NOT the same artwork as LP2 p32/p55 despite earlier reports; never use identical-tree as clue. New radial shell-order hypothesis begins every circumference at **(row10,col depth)** for depth0..3. Ring lengths **76/68/60/52** exactly tile the 256 source cells; p55 original ciphertext has 76 runes and p56+p57 independently known GP plain has 180.
+
+**Actual original-cipher tests:** We exhausted **both fixed clockwise/anticlockwise row10 ring traversals**, with no key-fitting:
+- Any secret deterministic \`raw base60 byte→GP29 rune\` codebook can explain at most **133/180 or 131/180** original solved p56+p57 rune values. Arbitrary secret \`byte mod29 residue→GP29\` even worse (**53/180,52/180**). Native GP positive plants give **180/180**.
+- Direct GP29 additive outer-pad inverse on all **76 unknown p55 runes** yields flat IoCs **.03158/.03825/.03404/.03368** for the four fixed direction/sign choices, no readable original text.
+- Authentic solved-p56 plaintext-F bypass (three ciphertext Fs at p55 offsets15,25,41, all 8 true masks) leaves valid masks per four models **3,4,0,1**; maximum native TextBlob English word matches **0,4,0,0** out of 16 actual complete p55 printed words, the four are short \`WA\`, \`AN\`, \`EM\`, \`UT\`. No coherent text.
+- One separately source-motivated nonperiodic key using p15 prime-index and solved-p56 phi(prime): \`K_i=(prime_(sourceByte_i+1)-1) mod29\`. The four original variants again remain ciphertext-like (IoC≤.03439) and have F-mask valid counts **1,0,0,0**, maximum **2/16** complete English words. Native solved p57 76-rune plants round-trip in both key families.
+
+**Persistent, verified shared artifacts:** [report](../../im-results/lp2-p50-row10-radial-inward-ring-source-gate.md), [original-source reproducible Node22 CJS SFT](../../sims/lp2_p50_row10_inward_rings_sft.cjs), and [broadcast](../../communications/broadcast/20261113T1806Z_agent22_p50-row10-source-ring.md). The original canonical corpus and table were actually analyzed through the connected JS runtime; no new original cipher plaintext, key or continuation was recovered. These tests **do not establish** the 58-page word map, or a unified cipher across differently encoded p56 and p57. Future agent should seek an independent authenticated operation selecting table-cell consumption and state, not perform alternative ring offsets/key sweeps.
+
+**Priority after this checkpoint:** Fresh visual/history clues must specify a genuinely new cipher/key; most old no-repeat/cipher/square/word-length methods are already exhausted. The authoritative overall research synthesis continues to report all 56 unknown LP2 pages unsolved. The source-anchored p50 outer-ring observation may support a human solve-path only if an independent original decoding instruction arrives.
+
+---
+
+# Historical Agent22 incarnations below (lease timestamps are archival, not active)
+
 # Agent22 — 13 November 2026, 03:04 UTC independent-research incarnation
 
 **Immutable lease:** `run_id=agent22-8105d743e3701182`, `claimed_at=2026-11-13T03:04:37Z`; remotely verified claim. Required true RNG originally drew **1** (normal independent mode). **Do not refresh this lease.** Only release via final deletion of `.lease.json` after actual runtime-clock age ≥70 minutes (earliest **04:14:37Z**) and after all useful work has been pushed and verified; the scheduler can kill the incarnation earlier.
