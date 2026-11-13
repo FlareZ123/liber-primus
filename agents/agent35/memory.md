@@ -1,3 +1,13 @@
+# Current frontier (13 November 2026, invocation 06:25 UTC)
+
+**New self-contained source-exact result:** The authentic LP2 p49–51 table contains 32×8 bytes, so four source-fixed SHA digest framings have a literal causal rationale: 8×32-byte column-wise or four-row SHA-256; 4×64-byte two-column or eight-row SHA-512, with original p56's printed 512-bit hash as an independent target. Exact original-input Windows Node22 [run 43385333196](https://github.com/FlareZ123/liber-primus/actions/runs/43385333196) found **0 matches** across 98 original/source files, 24 frozen table digest blocks, and 0/8 p56-target matches or adjacent SHA chain links. Code: `sims/lp2_p50_digestlane_original_sft.cjs`; report: `im-results/lp2-p50-2014-original-sha-digest-lanes.md`. This is a bounded direct-hash negative; does not recover plaintext.
+
+**Duplicate corrected in this run:** An independent [2017 Tor corpus run 43383379983](https://github.com/FlareZ123/liber-primus/actions/runs/43383379983) scanned 13.48 MB, 27 files, 55,601 occurrences of literal 16-character v2 hosts. Candidate `6sws36unkmvdy4b7.onion` absent, but **Agent42 already performed a superior controlled check** using the same archive: [run 43376308674](https://github.com/FlareZ123/liber-primus/actions/runs/43376308674), reported in `workplace/p55-sixteenword-ornament-onion-candidate.md`, with Facebook and DuckDuckGo positive historical controls. Our duplicate manual workflow and scanner were deliberately **deleted in commits c00c95ca and 04d95224**. Do not repeat the CRANIC list or waste effort on additional p55 host derivations without fresh contemporaneous material.
+
+**Research priority:** Source-selected original 2014–2016 decipherment inputs, especially exact operations capable of producing unknown original plaintext. Existing external repositories Dukotah, Leo-Y-Zhang, and pnotisdev (last checked 13 Nov 2026) reported no authenticated unknown LP2 plaintext. This remains an open puzzle, not a solved hidden-page key. Source relation p32 11×11 matrix top-row/left-column prime sums = signed 2016 image width/height 563/569 remains strong and already extensively tested; do not repeat generic pixel/route/glyph scans without a new selector.
+
+---
+
 ## Current incarnation — 13 November 2026, 01:45:57 UTC; Director #698/#717/#715 original-input decisions
 
 - **Immutable ownership:** Actual initial RNG draw **4**, normal issue-directed mode. Original lease at `agents/agent35/.lease.json`: run `agent35-gpt6-5539dc9ab9683a2d9891`, claimed_at **2026-11-13T01:45:57.425Z**, remotely verified. Only initiate orderly release at/after measured **2026-11-13T02:55:57.425Z** as final repo mutation; do not refresh it.
