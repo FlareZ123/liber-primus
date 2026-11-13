@@ -1,43 +1,46 @@
-# 2013 CicadaOS random tape does not directly contain the 2014 LP2 numerical grid
+# 2013 CicadaOS tape-to-2014 grid: complete contiguous and source-1033/3301-stride gates
 
-**Agent 4, 13 November 2026. Result:** exhaustive exact-window negative for five source-motivated constant-mask models over all 136,398,848 raw bytes of the 2013 CicadaOS ISO, except the two source-file boundary crossings, and **all eight unfitted rectangular orientations** of the original 256-cell LP2 numeric table. **No LP2 plaintext, recovered historic key, or new destination.** The definitive [passing third original-input GitHub Actions run 43341319497](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497) completes the two earlier four-orientation scans.
+**Original-source decision, 13 November 2026:** The complete **256-cell** LP2 numerical table is absent from all byte-aligned contiguous and exact **1033/3301-strided** samples of the preserved 2013 CicadaOS ISO under five tested source-reuse mask architectures and the eight geometrically original 32×8 table orientations. The direct and strided scans are distinct tests. **No new LP2 plaintext, authentic table key, source offset or destination was recovered.**
 
-## Why test an older Cicada key source?
+## Why a source-reuse hypothesis is meaningful
 
-The 2013 CicadaOS ISO supplied large machine-readable random-data files used in authentic earlier Cicada binary/XOR challenges. The 2014 LP2 release separately contains a visually structured 32×8 table of 256 printed radix-60 numbers. A deliberate reuse of a short contiguous fragment of the *old, published* random file, perhaps after a single affine byte mask, could provide a recognizable historical key and a definite offset. The crucial unproven assumption is that the 2014 table directly recycles bytes from 2013; neither puzzle's signed instructions state this.
+The original CicadaOS 2013 release contains public binary data later used for authentic XOR/binary challenges; LP2 2014 prints a visually separate 32×8 table of two-character numbers over pp49–51. A recognizable 2013 data fragment in that table could supply a historical key source and unambiguous source offset. In addition to contiguous copying, the manuscript's independently original-printed p33–39 cuneiform numeral pair spells **1033** and **3301** under conventional base60 notation. These two exact integers provide a finite, clue-constrained candidate for a strided extraction. **No original authorial instruction actually says to treat the cuneiform as sample strides in 2013 data**; this is a historically possible but conditional interpretation.
 
-Use the actual 2013 ISO at [preserved CicadaOS copy](https://connortumbleson.com/uploads/2024/01/3301.iso), MD5 `74062dee4093c6ca0340cda23f0e994b`. Parse its read-only ISO9660 directory records to extract the original file `DATA/560.13` (**118,818,811 bytes**). Use the manuscript's existing [printed-order 256-byte transcription](../resources/liber-primus/lp2-grid-256.json), source SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The radix-60 interpretation is conditional; the original JPEGs print two-character tokens rather than binary.
+Use the preserved original [2013 ISO](https://connortumbleson.com/uploads/2024/01/3301.iso), verified MD5 **74062dee4093c6ca0340cda23f0e994b**. The authentic ISO9660 file DATA/560.13 contributes **118,818,811 bytes**; the raw ISO regions before and after that extent contribute **4,087,808** and **13,492,229 bytes**, respectively. These disjoint regions cover **136,398,848 bytes** without crossing the two extent boundaries. The exact original [2014 printed-table byte transcription](../resources/liber-primus/lp2-grid-256.json) has SHA256 **3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290**. Its base60 numeral reading is a repository working hypothesis, with remaining image transcription uncertainty.
 
-## Frozen original-input inversions
+Both exhaustive searches permit precisely **eight** table readings: the actual 32×8 rectangle in row-major or column-major order, independently keeping or reflecting the printed 32 rows and eight columns. Five independently tested mask architectures are (1) one secret XOR byte, (2) one additive byte modulo256, (3) a secret period-eight XOR-byte tape, (4) a secret period-eight modulo256 additive tape, and (5) one constant GP29 additive residue shift applied after reducing each source byte modulo29. These masks are granted secret values rather than supplied any presumed Cicada key.
 
-Test each of **eight** source-geometry views: printed 32×8 row-major or transposed column-major, independently retaining or reflecting the physical **32 rows** and **eight columns**. This includes reverse row-major/column-major and the four single-axis reflections absent from the earlier tests. For every orientation, search the **entire** historical random tape for any 256-byte contiguous segment that could generate the printed table under:
+## Contiguous original-data source scan
 
-1. One unknown byte applied by XOR at every position.
-2. One unknown byte added modulo256 at every position.
-3. Eight unknown XOR mask bytes, repeated with period eight.
-4. Eight unknown additive-mask bytes modulo256, repeated with period eight.
-5. One unknown GP29 additive constant applied to **each byte modulo29**. This last test deliberately ignores the high radix-29 digit and asks only whether the lower residues could share a historical source.
+The prior direct scan tests every 256-byte start wholly inside each original ISO region. Key cancellation yields a six-difference byte or nine-difference GP29-residue signature, with no language scoring. Its indexed signatures and observed original-source matches were:
 
-Crucially, the unknown mask is **not** searched over 256 or 256^8 guesses. It cancels algebraically when comparing the source table to the candidate historical bytes at displacement one or eight. Model-specific exact lagged-difference signatures are indexed for all possible 256-byte table alignments; every tape position is inspected in one rolling-hash pass per model. A six-difference byte signature (or nine-difference residue signature) nominates a match, then the prospective source offset, mask, and longest exact byte agreement can be reconstructed. This is a falsifiable, original-key identification test without English-scored phase fitting.
-
-| Search family | Different indexed signatures, all orientations | Historical tape matches |
+| Unknown mask model | Indexed exact source-table signatures over eight orientations | Matching historical windows |
 | --- | ---: | ---: |
-| XOR, unknown constant byte | 1,456 | **0** |
-| Additive modulo256, unknown constant byte | 1,456 | **0** |
-| XOR, unknown repeating eight bytes | 1,454 | **0** |
-| Additive modulo256, unknown repeating eight bytes | 1,640 | **0** |
-| Modulo29, unknown GP29 shift | 1,606 | **0** |
+| Byte XOR constant | 1,456 | **0** |
+| Byte additive constant | 1,456 | **0** |
+| Byte XOR period-eight | 1,454 | **0** |
+| Byte additive period-eight | 1,640 | **0** |
+| GP29 additive residue constant | 1,606 | **0** |
 
-Every model first passed a 256-byte source-native positive with an unknown mask and nonzero synthetic offset (**5/5**), including reverse/column source-support through the shared layout selector. The original ISO checksum, extracted tape length, canonical grid checksum and exact result counts were asserted in the passing CI run. These five families tested every 256-byte start within each of the three ISO regions and had zero possible 6- or 9-difference prefixes, so they cannot contain a complete 256-symbol source match under those families.
+All **5/5** original-sized secret-key plants recover 256/256, and original ISO/table checksums and extents match. The authoritative [original complete scan run 43341319497](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497) and [original source test](../sims/lp2_2013_cicadaos_grid_tape_window_sft.cjs) give complete reproduction. A direct contiguous source offset is excluded for these five complete-table mask contracts.
 
-## Decision and explicit boundaries
+## Cuneiform-selected strided original-data source scan
 
-The printed 2014 grid is **not** a literal contiguous fragment of any tested within-extent region of the 2013 ISO under the specified byte or lower-residue constant/repeating-8 masks and eight exact geometry-derived table orientations. This directly blocks a historical-key reuse route that would otherwise produce an exact source offset. It does not reject more complicated KDFs, non-contiguous sampling, row-varying masks, alternative historical files, an encrypted table, different numeral radix, or reuse of a tape section as a GP29 keystream on an unrelated page. No new model is licensed solely by these zero hits.
+The distinct test samples exactly 256 bytes from each source region at positions **start + 1033·i** or **start + 3301·i** for source indices i=0 through255. All **eight original table orientations** and **five fully unknown mask families** above remain admitted, with no fitted extra phase, sample omission or changed byte. Three consecutive XOR/additive lag-one or lag-eight differences must agree before any 256-symbol match can occur, regardless of secret mask. Index the eight original-table three-difference signatures, scan **every valid source start** for both stated strides, and check every signature hit with the recovered one/eight mask against **all 256 original target values**.
 
-**Reproducer:** [single-file CommonJS scanner](../sims/lp2_2013_cicadaos_grid_tape_window_sft.cjs); [manually dispatched workflow](../.github/workflows/lp2-2013-cicadaos-grid-tape-manual.yml); [full eight-orientation original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497). The runner downloads the original ISO, checks its MD5, reads rather than executes the ISO, and reproduces all five whole-file scans.
+| Original 2013 ISO source extent | Sample stride | Three-difference candidate hits | Full 256-byte source matches |
+| --- | ---: | ---: | ---: |
+| DATA/560.13, 118,818,811 bytes | **1033** | 39,425 | **0** |
+| ISO before DATA/560.13 | **1033** | 1,251 | **0** |
+| ISO after DATA/560.13 | **1033** | 4,400 | **0** |
+| DATA/560.13, 118,818,811 bytes | **3301** | 38,855 | **0** |
+| ISO before DATA/560.13 | **3301** | 1,040 | **0** |
+| ISO after DATA/560.13 | **3301** | 4,222 | **0** |
 
-## Full raw ISO source coverage
+The weak three-difference modulo29 screen naturally admits many random prefix hits. **None survives the full-table inverse.** Ten separate native **nonzero-stride, original-layout 256-byte planted controls** pass **10/10** under the exact same five models and both original-sourced strides. In the successful [original ISO CI run 43366407709](https://github.com/FlareZ123/liber-primus/actions/runs/43366407709), all three original source regions, both strides, five models and eight original orientations are checked and logged. The [single-file Windows-compatible CJS reproducer](../sims/lp2_2013_cicadaos_cuneiform_stride_sft.cjs) and [existing manual workflow](../.github/workflows/lp2-2013-cicadaos-grid-tape-manual.yml) can reexecute the complete original-source test without rerunning the older contiguous workload.
 
-The same original ISO is larger than its DATA/560.13 member. An independently bounded extension examines **every ISO byte outside that file extent** using the same eight table orientations, five source-independent masks, and exact six- or nine-difference signatures. The two subranges preserve original ISO byte order and use no guessed carrier names, offsets or file decoding. This broadens the specific search from the old random tape to **all remaining raw original 2013 OS image bytes**, including the alternate DATA members, binaries, padding and filesystem structures, without repeating the already negative 118.8 MB scan. The same signed-checksum file remains the stronger plausible historical source; the unallocated/other-file scans are exploratory.
+## Decision and stopping point
 
-**Executed original-source result:** [passing third manual Actions run 43341319497](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497), same verified ISO and exact original table, now with all eight orientations. The extra original ISO ranges are **4,087,808 bytes before** and **13,492,229 bytes after** the DATA/560.13 extent. All **15** source × model runs (five mask families × three contiguous ISO source ranges, eight orientations per run) report **zero six-/nine-difference signature hits**, and all five 256-cell planted positives pass. Together these ranges account for **136,398,848 source bytes**. No fitted source offsets, changed grid cells or other file names were used. The 256-byte windows physically straddling the two ISO extent boundaries are intentionally outside the three within-range scans; a valid historical *file* would ordinarily reside entirely inside one extent. This broadened negative excludes the direct/masked **raw-ISO contiguous-file** interpretation, not compressed-file decompression, positional data-file extraction, boundary-crossing synthetic windows or derived 2013 keys.
+Neither the literal direct 2013 tape nor the two source-printed cuneiform **1033/3301 stride** transfers a complete table into the 2014 LP2 grid via an exact constant-byte or period-eight mask on the source rectangles. Therefore no historical byte tape offset or secret mask is recovered by these models. This does not exclude source-independent KDFs, a nonfixed sampling scheme, unpublished original assets, a different numeral radix, a cryptographic transform on the original data or a 2013 data key aimed at a different text receiver. The stride test is bounded by the only two independent manuscript numerals actually supplying these skip values. An alternative stride or decoder should first have independently attributable clue support rather than be tuned to this negative.
+
+The original 56 unresolved LP2 pages remain without authenticated plaintext under these tests.
