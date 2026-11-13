@@ -254,13 +254,13 @@ function main() {
     secondOrderPages.capacity[1],secondOrderPages.capacity[11]],[865,2041,3650,12044]);
   const blake=encodeNativeEnglish(read("resources/external/blake-marriage-1906-gutenberg45315.txt"),
     corpus.translit);
-  assert.equal(blake.length,18580);
-  assert.equal(blake.filter(i=>i===corpus.translit.indexOf("E")).length,2347);
+  assert.equal(blake.length,18578);
+  assert.equal(blake.filter(i=>i===corpus.translit.indexOf("E")).length,2346);
   const blakeTop=topCounts(blake);
-  assert.equal(blakeTop[11],14371);
+  assert.equal(blakeTop[11],14369);
   const blakeWindows=nativeWindowEnvelope(blake,all.length,corpus.translit.indexOf("E"));
-  assert.deepEqual(blakeWindows,{windows:5625,minE:1608,maxE:1666,
-    minTop12:9974,maxTop12:10062,passVisualChapterE:0,passVisualChapterTop12:0});
+  assert.deepEqual(blakeWindows,{windows:5623,minE:1607,maxE:1665,
+    minTop12:9974,maxTop12:10061,passVisualChapterE:0,passVisualChapterTop12:0});
   const nativeE=native.filter(i=>i===corpus.translit.indexOf("E")).length;
   assert.equal(nativeE,406);
   const nativeTop=topCounts(native);
@@ -294,8 +294,8 @@ function main() {
     exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent original visual-chapter or alternative red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
     independentBlakeControl:{source:"1906 Project Gutenberg The Marriage of Heaven and Hell, fixed repository edition",
-      runes:blake.length,e:2347,top12:14371,
-      eFraction:2347/blake.length,top12Fraction:14371/blake.length,
+      runes:blake.length,e:2346,top12:14369,
+      eFraction:2346/blake.length,top12Fraction:14369/blake.length,
       matchedFullOriginalWindows:blakeWindows},
     countermodelTwoPrevious:{shared:{states:secondOrder.states,
       top1:secondOrder.capacity[0],top12:secondOrder.capacity[11]},
