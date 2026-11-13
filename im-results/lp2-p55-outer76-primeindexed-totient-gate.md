@@ -33,6 +33,22 @@ Neither original candidate yields readable GP-native English or the clear-text f
 
 This is distinct from the earlier outer-ring **`K=1+(byte mod28)` ciphertext-feedback** screen and the direct **`byte mod29`** additive pads. Prime-of-byte followed by Euler totient is a separate source-motivated nonlinear byte-to-GP conversion.
 
+## Decisive gate against a unified terminal 256-cell decoder
+
+The same original geometric hypothesis supplies a **180-symbol independently solved control**: the three inner rings (68+60+52) correspond to printed p56 and clear p57, exactly matching the source-proposed 256-symbol terminal register. Use the **identical frozen clockwise upper-left traversal and identical prime-of-table-byte totient map**, without optimizing on these pages.
+
+Authentic p56 plaintext is first reconstructed by its **independently established** consecutive-prime-totient decoder. Only p56 source position56 is a literal plaintext-F bypass; the other four source Fs remain enciphered and consume the stream. The runic output is independently compared to the solved sentence beginning `AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE`; it matches **85/85**. The original printed p57 is already plain, giving a further **95/95** authenticated values. The innermost 52-cell shell aligns precisely with the explicit p57 suffix beginning `SHED OUR OWN CIRCUMFERENCES`.
+
+| Literal fixed table-to-known-text reading | Correct of 180 | Correct p56 of 85 | Correct p57 of 95 |
+| --- | ---: | ---: | ---: |
+| Inner ring prime-indexed totient residues read directly as plain GP29 | **7** | 1 | 6 |
+| Original terminal ciphertext minus the same 180 source key symbols | **5** | 2 | 3 |
+| Original terminal ciphertext plus the same 180 source key symbols | **6** | 3 | 3 |
+
+A fully matching direct decode requires **180/180**, so this proposed *unified 256-position ring/key decoder* is contradicted by **173–175** independently authentic solved-symbol positions. No source-selected adjustment to the 180 positions or key mapping is available to repair that mismatch. As p56 and p57 visibly have their own different original decipherment modes, failure of the hypothetical global decoder does **not** preclude an unrelated p55-only secret keyed by the outer ring. The latter remains unsupported by p55's nonlinguistic inverse outputs.
+
+The [same single-file reproducer](../sims/lp2_outer76_primeindexed_totient_sft.cjs) now asserts 85/85 p56 known plaintext, all four ring lengths, the innermost 52-rune `SHED` alignment, all 180 direct known-symbol comparisons, and exact p55 positive plants. No new unsolved plaintext or authentic key was recovered.
+
 ## Decision
 
 The most direct composed `phi(prime(byte+1))` perimeter key does **not** decrypt p55. The negative is specific to the original physical p55 ring order, one-based byte-to-prime map, unskipped 76-symbol direct GP29 arithmetic and the two signs. The independently solved p56 literal-F bypass is a distinct source rule; applying it to p55 would require a new source-selected emission clock and 76-position transport, so none is inferred here.
