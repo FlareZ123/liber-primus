@@ -4,7 +4,13 @@
 
 **Distinct bounded direct byte-level test:** the eight original 32-byte vertical columns of pp49–51 grid used in printed order as ChaCha20-256 keys, zero counter+nonce, against original 8 textual-source LP2 chapters first packed as fixed-width big-endian BASE29 integers. Unlike existing `sims/lp2_grid8_chacha20_column_inverse_sft.cjs`, this tests bytewise XOR before GP decode. All eight original outputs high entropy (30.0–40.1% printable), no ASCII plaintext or recognized first-byte file header; positive ChaCha20 known-vector, exact original-byte inverse and solved-p57 plant pass in source-tested implementation. Source-fixed SFT `sims/lp2_grid8_chacha20_base29_byte_sft.cjs` and report `im-results/lp2-grid8-chacha20-base29-byte-inverse.md` committed `3b35589`, `e68e942`, `805e672` and remotely verified. No key/plaintext/destination and no new source rule selecting ChaCha20, so do not fan out arbitrary columns/nonces.
 
-**Next research:** seek an authentic original key/operator or independent historical source with actual unknown plaintext, not duplicated cipher search. All others below are old incarnations.
+**Second direct original-cipher model (21:35Z):** tested primitive-root15 over GF29 (transparent EA=zero-delta), with per-rune GP28 log-step key bytes from each original printed 32-byte table column under zero-IV ChaCha20-256 across eight image macro-chapters. Original complete GP29 decoded IoC per visual chapter remains 0.03479–0.03581, no GP-language. Source inputs and independent JS outputs verified; all eight inverse reencryptions and solved-p57 native plants are defined in `sims/lp2_grid8_chacha20_gp28_ea_inverse_sft.cjs`; intermediate report `im-results/lp2-gp28-root15-grid8-chacha20-source-gate.md`, commits `c576d10` and `b79bd50`. This architecture is conditional; *neither* the root15 GP28 transform nor ChaCha20 was authentically selected as the creator's cipher.
+
+**Image-boundary correction:** first direct BASE29-byte ChaCha experiment now tests both historic eight text-source sections and eight genuine visual macro-chapters plus unkeyed p54–55 terminal unit. Both overt decodes remain negative, scripts and report consolidated via commits `15c91c9`, `15027bb`. Never imply the eight historical sections exactly coincide with the nine visual chapters.
+
+**Original GF841-pair observation:** the source 1,680-rune p33–39 chapter gives 840 two-rune pairs, but 518 distinct (at phase0), statistically ordinary against expected ~531; no complete nonzero-field traversal. This was intentionally not promoted to a report because it gives no new rule.
+
+**Next research:** identify authentic key bytes, historical original continuation material, or genuinely source-selected operator. Avoid duplicating past additive/p15/p32/2014 stage cipher sweeps. Old incarnations below.
 
 ---
 
