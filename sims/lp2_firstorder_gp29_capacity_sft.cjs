@@ -120,6 +120,34 @@ function twoPreviousCapacity(segments) {
   }
   return {states:rows.size,capacity:majorizationCapacity([...rows.values()])};
 }
+/**
+ * Exhaustive matched-length sliding native-GP controls. All substrings of
+ * the independent Blake sample are tested at exactly the original 12,956
+ * rune length, with no random sampling or fitted key tables.
+ * @param {number[]} tokens
+ * @param {number} width
+ * @param {number} eIndex
+ */
+function nativeWindowEnvelope(tokens,width,eIndex) {
+  const count=Array(29).fill(0);
+  for(let i=0;i<width;i++)count[tokens[i]]++;
+  let minE=Infinity,maxE=-Infinity,min12=Infinity,max12=-Infinity;
+  let passE=0,passTop12=0;
+  for(let start=0;start+width<=tokens.length;start++) {
+    const e=count[eIndex];
+    const t12=count.slice().sort((a,b)=>b-a).slice(0,12).reduce((a,b)=>a+b,0);
+    minE=Math.min(e,minE);maxE=Math.max(e,maxE);
+    min12=Math.min(t12,min12);max12=Math.max(t12,max12);
+    if(e<=1269)passE++;
+    if(t12<=9006)passTop12++;
+    if(start+width<tokens.length) {
+      count[tokens[start]]--;
+      count[tokens[start+width]]++;
+    }
+  }
+  return {windows:tokens.length-width+1,minE,maxE,minTop12:min12,maxTop12:max12,
+    passVisualChapterE:passE,passVisualChapterTop12:passTop12};
+}
 /** @param {number[][][]} chapterGroups */
 function independentChapterCapacity(chapterGroups) {
   const perChapter=chapterGroups.map(groups=>majorizationCapacity(transitions(groups)));
@@ -230,6 +258,9 @@ function main() {
   assert.equal(blake.filter(i=>i===corpus.translit.indexOf("E")).length,2347);
   const blakeTop=topCounts(blake);
   assert.equal(blakeTop[11],14371);
+  const blakeWindows=nativeWindowEnvelope(blake,all.length,corpus.translit.indexOf("E"));
+  assert.deepEqual(blakeWindows,{windows:5625,minE:1608,maxE:1666,
+    minTop12:9974,maxTop12:10062,passVisualChapterE:0,passVisualChapterTop12:0});
   const nativeE=native.filter(i=>i===corpus.translit.indexOf("E")).length;
   assert.equal(nativeE,406);
   const nativeTop=topCounts(native);
@@ -264,7 +295,8 @@ function main() {
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
     independentBlakeControl:{source:"1906 Project Gutenberg The Marriage of Heaven and Hell, fixed repository edition",
       runes:blake.length,e:2347,top12:14371,
-      eFraction:2347/blake.length,top12Fraction:14371/blake.length},
+      eFraction:2347/blake.length,top12Fraction:14371/blake.length,
+      matchedFullOriginalWindows:blakeWindows},
     countermodelTwoPrevious:{shared:{states:secondOrder.states,
       top1:secondOrder.capacity[0],top12:secondOrder.capacity[11]},
       pageReset:{states:secondOrderPages.states,top1:secondOrderPages.capacity[0],
