@@ -34,12 +34,29 @@ Table entries are original-p32 output GP29 indices of coincidence; the original 
 
 It contains no recognizable GP-native plaintext. The authentic p57 clear GP register, repeated only enough to fill a comparable 121-cell positive control, has IoC **0.06528926**.
 
-**Reconstruction controls:** The fixed input includes all **121** original p32 runes, not a fitted partial segment. Each of the twelve outputs **exactly re-enciphers 121/121** original input runes. Each of the twelve independent cipher implants of the corresponding 121 native p57 GP symbols **fully deciphers 121/121** of the original clear source. Every matrix's inverse is separately proven by exact GF29 identity multiplication. All of these assertions passed under Node22 in [manual CI run43475955114](https://github.com/FlareZ123/liber-primus/actions/runs/43475955114), including the separate p32/p33 regressions in the existing workflow. [Source-reading, matrix, twelve original tests and native control single-file reproducer](../sims/lp2_2016_dimension_wordpair_toeplitz11_sft.cjs).
+**Reconstruction controls:** The fixed input includes all **121** original p32 runes, not a fitted partial segment. Each of the twelve outputs **exactly re-enciphers 121/121** original input runes. Each of the twelve independent cipher implants of the corresponding 121 native p57 GP symbols **fully deciphers 121/121** of the original clear source. Every matrix's inverse is separately proven by exact GF29 identity multiplication. All of these assertions passed under Node22 in [manual CI run43476637133](https://github.com/FlareZ123/liber-primus/actions/runs/43476637133), including the separate p32/p33 regressions in the existing workflow. [Source-reading, matrix, twelve original tests and native control single-file reproducer](../sims/lp2_2016_dimension_wordpair_toeplitz11_sft.cjs).
+
+## Held-out whole-book 11-rune vector consumer
+
+A matrix suggested by the signed tree may be a key for **other** pages, with p32 serving as its visual selector. To test that genuine alternative, reuse exactly the same original-word Toeplitz key with **no change of entries** as a standard 11-rune Hill-block cipher. Read original unknown pages 0–55 in source order, retaining p50 as a rune-free page. Freeze only two manuscript-implied block clocks: global 11-rune blocks from the first physical p0 rune, or local 11-rune blocks restarted at each of the 55 rune-bearing pages. For the tail of each section, do **not** invent padding or reframe the source: decode only complete 11-rune blocks and count every untouched terminal rune.
+
+This is a second, bounded interpretation using the identical independently selected key. The source does not authenticate either block clock; the entire book is **not** divisible by11 without an extra framing rule.
+
+| Source key | Block sense | 12,947 global-block IoC | 12,606 page-reset-block IoC |
+| --- | --- | ---: | ---: |
+| GP ordinal | inverse | 0.03449275 | 0.03448547 |
+| GP ordinal | forward | 0.03448728 | 0.03446954 |
+| GP prime mod29 | inverse | 0.03448724 | 0.03449116 |
+| GP prime mod29 | forward | 0.03446421 | **0.03445889** |
+
+The entire original unknown ciphertext has GP29 IoC **0.03447840**. Across all eight unchanged-key whole-book vector readings, the full-output range **0.03445889–0.03449275** remains nearly identical to the original and far below native GP prose. Global alignment covers **12,947** source runes, leaving **nine** terminal runes unconsumed; page-local alignment covers **12,606**, leaving **350** untouched page-tail runes. Every decoded full 11-symbol block is exactly re-encrypted into the original source, and the separately verified source-native plant demonstrates that the 11-symbol matrix cipher can carry English GP when used deliberately. All complete-block assertions passed in the [updated original-input Actions run43476637133](https://github.com/FlareZ123/liber-primus/actions/runs/43476637133).
+
+**Decision:** the source-selected 21-value Toeplitz key fails both a direct tree 11×11 matrix inverse and the simplest transferable full-book Hill11 interpretation. Whole-book use now has a complete original-input negative under the two natural page/global block phases; no further block offset, fitted pad, chapter permutation or keyed nonlinear postprocessor is justified by these same source cues.
 
 ## Research consequence
 
-The 21-source-symbol / 11×11 matrix fit is exact and offers an economical human-testable bridge from the signed 2016 image through original pp0, p1 and p32. **Its direct complete GF29 Toeplitz-Hill interpretation fails to recover linguistic plaintext on the image-selected target.** Matrix inversion and roundtrips alone establish only that the hypothetical mechanism is mathematically well defined. The test does not rule out actual hidden instructions in those source words, encrypted intermediate registers, non-Toeplitz operations or other separately selected reading paths.
+The 21-source-symbol / 11×11 matrix fit is exact and offers an economical human-testable bridge from the signed 2016 image through original pp0, p1 and p32. **Its direct complete GF29 Toeplitz-Hill interpretation fails to recover linguistic plaintext on the image-selected target.** Matrix inversion and roundtrips alone establish only that the hypothetical mechanism is mathematically well defined. The tested whole-book key also fails under both natural 11-symbol block clocks. The test does not rule out actual hidden instructions in those source words, encrypted intermediate registers, non-Toeplitz operations or other separately selected reading paths.
 
 Further work on the same three artifacts requires a **new author-attributable rule for reading the two word shapes or traversing the p32 grid**, and a prediction that survives a previously untouched ciphertext segment. Do not optimize secret matrix entries, row/column permutations or GP alphabet labels after the negative original output.
 
-**Location and reproduction:** [SFT](../sims/lp2_2016_dimension_wordpair_toeplitz11_sft.cjs) · [existing reused manual test workflow](../.github/workflows/lp2-p32-p33-11square-hill-manual.yml) · [passing source-original run](https://github.com/FlareZ123/liber-primus/actions/runs/43475955114).
+**Location and reproduction:** [SFT](../sims/lp2_2016_dimension_wordpair_toeplitz11_sft.cjs) · [existing reused manual test workflow](../.github/workflows/lp2-p32-p33-11square-hill-manual.yml) · [passing source-original run](https://github.com/FlareZ123/liber-primus/actions/runs/43476637133).
