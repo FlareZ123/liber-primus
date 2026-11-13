@@ -122,6 +122,38 @@ const expected = [
 for (let i = 0; i < readings.length; i++) {
   assert.ok(Math.abs(readings[i].ioc - expected[i]) < 1e-12);
 }
+
+// Exact, fully secret per-original-page 29-symbol substitution bound.
+// For k designated plaintext symbols, a bijection can assign them to at most
+// the k most frequent decoded symbols on that page. Summing over pages is
+// tight for k separately and requires no enumeration of (29!)^55 keys.
+const pagePermutationBounds = [];
+for (const sign of [-1, 1]) {
+  let bookPosition = 0;
+  let maxOne = 0;
+  let maxTwo = 0;
+  let maxTwelve = 0;
+  const significantKey = significant.slice().reverse();
+  for (const page of corpus.pages.slice(0, 56)) {
+    const counts = Array(29).fill(0);
+    for (const cipherRune of page.indices) {
+      counts[mod(cipherRune + sign * significantKey[bookPosition % significantKey.length])]++;
+      bookPosition++;
+    }
+    if (page.indices.length === 0) continue; // Original p50 numeric-only.
+    counts.sort((a, b) => b - a);
+    maxOne += counts[0];
+    maxTwo += counts[0] + counts[1];
+    maxTwelve += counts.slice(0, 12).reduce((sum, n) => sum + n, 0);
+  }
+  assert.equal(bookPosition, raw.length);
+  pagePermutationBounds.push({ sign, maxOne, maxTwo, maxTwelve });
+}
+assert.deepEqual(pagePermutationBounds, [
+  { sign: -1, maxOne: 802, maxTwo: 1525, maxTwelve: 7151 },
+  { sign: 1, maxOne: 781, maxTwo: 1481, maxTwelve: 7043 }
+]);
+
 console.log(JSON.stringify({
   sourceCells: bytes.length,
   highestTwoMod29: polynomial.slice(-2),
@@ -130,5 +162,6 @@ console.log(JSON.stringify({
   significantQuotientCoefficients: significant.length,
   significantQuotientDegree: 250,
   originalIoC: ioc(raw),
-  readings
+  readings,
+  pagePermutationBounds
 }, null, 2));
