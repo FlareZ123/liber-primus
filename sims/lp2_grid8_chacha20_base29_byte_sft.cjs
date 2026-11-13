@@ -129,6 +129,29 @@ for (let section = 0; section < 8; ++section) {
 }
 assert.deepEqual(rows.map(x => x.byteLength), [443,696,1056,1151,620,871,1021,2014]);
 assert(rows.every(x => x.decodedPrintable < 0.42));
+
+// Independent original-image segmentation: eight macro-chapters through p53
+// and an unkeyed 308-rune pp54-55 terminal unit.
+const visualCuts = [0,729,1874,3603,5506,6527,7960,9640,12648,12956];
+const visualRows = [];
+for (let chapter = 0; chapter < 9; ++chapter) {
+  const segment = sourceRunes.slice(visualCuts[chapter], visualCuts[chapter + 1]);
+  const raw = encodeBase29Bytes(segment);
+  assert.deepEqual(decodeBase29Bytes(raw, segment.length), segment);
+  const keyed = chapter < 8;
+  const pad = keyed ? chachaPad(keys[chapter], raw.length) : Buffer.alloc(raw.length);
+  const decoded = xor(raw, pad);
+  assert.deepEqual(xor(decoded, pad), raw);
+  visualRows.push({
+    chapter, keyed, runeLength: segment.length, byteLength: raw.length,
+    decodedHeader12: decoded.subarray(0, 12).toString('hex'),
+    decodedPrintable: Number(printable(decoded).toFixed(6)),
+    decodedPreview: preview(decoded),
+  });
+}
+assert.deepEqual(visualRows.map(x => x.byteLength),
+  [443,696,1050,1156,620,871,1021,1827,188]);
+assert(visualRows.every(x => x.decodedPrintable < 0.42));
 const results = {
   status: 'PASS',
   classification: 'one original-input direct byte interpretation; no recognizable language or file prefix',
@@ -140,6 +163,7 @@ const results = {
   originalByteXorRoundTrips: 8,
   nativeSolvedP57Plant: true,
   rows,
+  visualRows,
   limits: 'No alternative mappings, permutations, random IVs or post-decryption compression were fit; no source-authenticated key/codec is identified',
 };
 if (require.main === module) console.log(JSON.stringify(results, null, 2));
