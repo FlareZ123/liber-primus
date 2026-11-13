@@ -21,8 +21,16 @@ The second test addresses the actual suppressed-adjacent-repeat feature, whereas
 
 The reproducer generates a **256/256 exact synthetic positive** for the specified 28-successor cipher with one historical source-key combination. That proves the particular implementation can invert its own registered transition rule. It does not validate that Cicada used that rule.
 
+## Held-out authentic solved-p56 test
+
+The 256-cell table and terminal three pages form an exact **256=76+85+95** correspondence, with the two final LP2 pages authentically solved. A much stronger control than total unknown-page IoC is therefore the original **85-rune ciphertext** of physical p56. Its **84 encrypted runes** have a unique, source-known shift sequence: consecutive prime totients minus one, with original p56 F at offset 56 as one literal and non-consuming rune. The SFT independently reconstructs the original 85-rune native-GP plaintext, then asserts agreement with that authentic solution before comparing keys.
+
+Each of the 15 source-ordered 256-byte XOR keys is treated as a GP29 additive pad under both signs and the two non-fitted natural clocks: p56-local index0, and 256-terminal-block index76. This gives **60 exact known-shift predictions** against original p56 with the one literal F excluded. The **best matches only 9 of 84 encrypted shifts** (1033⊕printed-table, negative sign, p56-local clock); the next-best matches 7. A source-shift planted p56 control recovers **85/85** exactly. **No key predicts the authentic known page-56 cipher shift.**
+
+This is a decisive falsification of each specified direct pad transfer under its exact two anchored placements; it is not an exclusion of a nonlinear key derivation, a different relation to p55, a stage-specific cipher, or source material not yet recovered. It also avoids guessing p55 plaintext to choose among these source keys.
+
 ## Decision
 
 This source-led 256-byte **direct XOR / GP29 additive / mod28 successor-rank consumer** is now tested in full and yields no recoverable original text. Do not expand the same branch through unfitted offsets, rotations, extra XOR products, hashes or key generators without an original instruction choosing them. Other historical sources, steganographic payloads, stateful inverses or lost keys remain open.
 
-**Reproducer:** [single runnable CJS test](../sims/lp2_2014_three_onion256_rank28_sft.cjs) (Node.js 22, read-only). Required source files: the archived three-string text, the printed base60-grid.json, and canonical lp2-corpus.json. The script asserts source labels and byte lengths, original rune/repeat counts, all 90 decodes, output bounds and the positive planted inverse before printing its decision data.
+**Reproducer:** [single runnable CJS test](../sims/lp2_2014_three_onion256_rank28_sft.cjs) (Node.js 22, read-only). Required source files: the archived three-string text, the printed base60-grid.json, and canonical lp2-corpus.json. The script asserts source labels and byte lengths, original rune/repeat counts, all 90 unknown-page decodes, 60 authentic solved-p56 predictions, output bounds and planted positive inverses before printing its decision data.
