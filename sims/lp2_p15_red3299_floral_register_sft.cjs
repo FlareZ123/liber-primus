@@ -53,6 +53,40 @@ assert.equal(corpus.pages.slice(40, 54).reduce((a, p) => a + p.runic_count, 0) -
 assert.equal(corpus.pages.slice(54, 56).reduce((a, p) => a + p.runic_count, 0) -
   redStart[54], 299);
 
+
+const indexHeadingSums = [15, 40, 54].map((page) =>
+  corpus.pages[page].indices.slice(0, redStart[page])
+    .reduce((sum, rune) => sum + rune, 0));
+const primeHeadingSums = [15, 40, 54].map((page) =>
+  corpus.pages[page].indices.slice(0, redStart[page])
+    .reduce((sum, rune) => sum + corpus.prime[rune], 0));
+assert.deepEqual(indexHeadingSums, [164, 116, 159]);
+assert.deepEqual(primeHeadingSums, [638, 435, 597]);
+assert.equal(indexHeadingSums[1] / 29, 4);
+assert.equal(primeHeadingSums[1] / 29, 15);
+assert.equal(primeHeadingSums[0] / 29, 22);
+assert.equal(3299 % 29, 22);
+
+// A transparent *single-heading* IID-GP baseline, not a look-elsewhere
+// significance claim: P(eight random runes have both GP index and
+// GP-prime sums 0 mod29). The source has multiple possible conventions.
+const m = 29;
+let residueProbabilities = new Float64Array(m * m);
+residueProbabilities[0] = 1;
+for (let t = 0; t < 8; t += 1) {
+  const next = new Float64Array(m * m);
+  for (let i = 0; i < m; i += 1) for (let j = 0; j < m; j += 1) {
+    if (!residueProbabilities[m * i + j]) continue;
+    for (let rune = 0; rune < m; rune += 1) {
+      const target = m * ((i + rune) % m) + (j + corpus.prime[rune]) % m;
+      next[target] += residueProbabilities[m * i + j] / m;
+    }
+  }
+  residueProbabilities = next;
+}
+const dualZeroIIDProbability = residueProbabilities[0];
+assert.ok(Math.abs(dualZeroIIDProbability - 0.0008913440105661737) < 1e-12);
+
 const fibonacciDistinct = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
 const printedSpiral = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516];
 function isPrime(n) {
@@ -253,6 +287,9 @@ console.log(JSON.stringify({
   naturalFourBy829Readouts: fourBy829,
   floralRedHeadingPrimeSums: headingPrimeSums,
   historicalPrime1033Totient: 1032,
+  p15P40P54HeadingIndexSums: indexHeadingSums,
+  p15P40P54HeadingPrimeSums: primeHeadingSums,
+  p40BothSumsZeroMod29IIDProbability: dualZeroIIDProbability,
   nativeFloralChapterBodyLengths: [3000, 299],
   p463PrimeTotientAndFourColumnInverses: compound,
   sourceP57SolvedIoC: indexCoincidence(corpus.pages[57].indices),
