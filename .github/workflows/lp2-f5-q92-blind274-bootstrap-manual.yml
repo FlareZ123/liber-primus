@@ -39,6 +39,7 @@ jobs:
           ln -s /usr/include/jpeglib.h /tmp/pev274/source/src/jpeglib.h
           sed -i '1i#include <boost/filesystem.hpp>' /tmp/pev274/source/src/cimage.cpp
           sed -i 's/full_path.leaf()/full_path.filename().string()/g' /tmp/pev274/source/src/cimage.cpp
+          sed -i 's/dir_itr->leaf()/dir_itr->path().filename().string()/g' /tmp/pev274/source/src/cimage.cpp
           make -C /tmp/pev274/source/src -j2
           /tmp/pev274/source/src/jet --help | sed -n '1,65p'
           /tmp/pev274/source/src/jet -s /tmp/pev274/source/test/img_1009.jpg -o /tmp/pev274/fixture.fea
