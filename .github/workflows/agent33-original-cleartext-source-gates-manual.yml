@@ -27,3 +27,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_fourpage_hill_direct_inverse_sft.cjs
           node sims/lp2_p15_fourpage_hill_direct_inverse_sft.cjs
+      - name: Test p15-to-floral displaced shared-pad source clock
+        run: |
+          node --check sims/lp2_p15_floral_displaced_sharedpad_sft.cjs
+          node sims/lp2_p15_floral_displaced_sharedpad_sft.cjs
