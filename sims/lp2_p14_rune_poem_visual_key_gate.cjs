@@ -171,7 +171,7 @@ const result = {
     fullRunePoemPlusPrefix: decodeAdd(corpus.pages.flatMap(p => p.indices).slice(0, fullPoemKey.length), fullPoemKey, +1).slice(0, 180),
   },
   bookCipher: {
-    primeIndexedLetters: render(primeSample.map(token => GP.indexOf(token))),
+    primeIndexedLetters: render(primeSample),
     primeIndexedWords: primeWordSample,
   },
   affinePage14: {
