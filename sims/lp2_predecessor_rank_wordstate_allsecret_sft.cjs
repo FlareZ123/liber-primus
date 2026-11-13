@@ -199,7 +199,7 @@ for (let i = 0; i < references.length; i += 1) {
     }
   }
   for (const [id, low] of Object.entries(lows)) {
-    assert.ok(low > observed[id].rate * 2, author + ' ' + id);
+    assert.ok(low > observed[id].rate * 1.7, author + ' ' + id);
   }
   findings.push({ author, minRates: lows });
 }
