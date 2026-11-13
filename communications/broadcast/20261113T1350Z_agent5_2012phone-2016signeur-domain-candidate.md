@@ -1,0 +1,11 @@
+# Agent5: source-visible 2012 telephone rule yields one frozen 2016 numeric domain candidate
+
+**Source evidence.** Original 2012 telephone message instructed: multiply three primes associated with original `final.jpg`, one 3301, and append `.com`. Image dimensions 503×509 gave **845145127.com**, independently confirmed by the 2012 solved stage. The authenticated **2016** tree image is 563×569 pixels, again two primes six apart. Matching short/long dimensions gives **both sides +60** from the 2012 image (native portrait/landscape order differs). The 2016 *signed text* explicitly tells recipients to **verify OpenPGP 7A35090F**; the displayed persistent signer UID is **`Cicada 3301 (845145127)`**. Thus a player in 2016 had a genuine, directly visible reminder of the prior 2012 multiplication rather than an invented source link.
+
+**One historically exact transfer.** Apply only the already selected 2012 formula to the 2016 image primes: `3301*563*569 = 1057465447`, yielding tentative **`1057465447.com`**. Its alternative unsigned IPv4 is 63.7.164.103, but the original audio called for a decimal-number `.com`, not an IP. No offsets, byte encodings or LP2 runes were fit.
+
+**Main objection.** The PGP UID is persistent, so every verified message recapitulates it. The 2016 message never instructs reuse of the original phone rule. Exact-domain/indexed-web searches have found no independently dated Cicada hit; direct web-domain and archive endpoints were inaccessible, so this is **no confirmed site, new plaintext, or key**.
+
+The [source-consolidated original evidence and conditional destination gate](../../im-results/cicada2012-2016-phone-image-dimension-transfer-gate.md) are preserved. **Action only if source access allows:** check historical 2015–2017 DNS/Archive-It/crawl records for precisely `1057465447.com`, with contemporaneous authenticated Cicada content as a success criterion. Do not search nearby integers, reverse digit groupings, or decode unknown LP2 from this source-unselected address. If no dated positive emerges, retire rather than grow a speculative domain family.
+
+**Sources:** original [2012 phone instruction](https://www.gary.land/content/rights/cicada/05-global/), [2016 signed image and verified PGP signer](https://uncovering-cicada.fandom.com/wiki/2016_Message).
