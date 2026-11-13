@@ -16,7 +16,11 @@ jobs:
           node-version: '22'
       - name: Offline controls
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --selftest
-      - name: Original Wiki file-list and source-object retrieval
+      - name: Fetch independently archived historical image originals
+        run: git clone --depth 1 https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive /tmp/cicada-original-archive
+      - name: Original Wiki file-list, exact byte comparison and source retrieval
+        env:
+          ARCHIVE_ROOT: /tmp/cicada-original-archive
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs
       - name: Preserve source triage and retrieved exact-byte objects
         if: always()
