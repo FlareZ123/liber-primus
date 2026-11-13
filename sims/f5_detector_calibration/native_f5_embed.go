@@ -59,7 +59,15 @@ func main() {
   jpegData,err := decoder.EncodeCoefficients(final); if err != nil { panic(err) }
   reRead:=f5jpeg.NewStandardDecoder()
   roundtrip,err:=reRead.ExtractCoefficients(jpegData); if err != nil {panic(err)}
-  if len(roundtrip)!=len(final) {panic(fmt.Sprintf("JPEG coeff count changed %d -> %d",len(final),len(roundtrip)))}
+  if *padTail && len(roundtrip) < len(final) {
+    missing := len(final)-len(roundtrip)
+    if missing % 64 != 0 || missing > 64 * 400 {
+      panic(fmt.Sprintf("unrepresentable JPEG terminal coefficient gap %d",missing))
+    }
+    roundtrip = append(roundtrip,make([]int,missing)...)
+    fmt.Fprintf(os.Stderr,"SERIALIZED_F5_TERMINAL_ZERO_PAD count=%d blocks=%d\n",missing,missing/64)
+  }
+  if len(roundtrip)!=len(final) {panic(fmt.Sprintf("JPEG coeff count changed %d -> %d",len(final),len(roundtrip))}
   for i:=range final {
     if roundtrip[i]!=final[i] {panic(fmt.Sprintf("JPEG coefficient modified at %d",i))}
   }
