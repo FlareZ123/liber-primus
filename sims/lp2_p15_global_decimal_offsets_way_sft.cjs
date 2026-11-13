@@ -40,8 +40,12 @@ assert.deepEqual(inputs, [
 
 const unknown = corpus.pages.filter(p => p.page >= 0 && p.page <= 55)
   .flatMap(p => p.indices);
+const completeLp2 = corpus.pages.filter(p => p.page >= 0 && p.page <= 57)
+  .flatMap(p => p.indices);
 assert.equal(unknown.length, 12956);
+assert.equal(completeLp2.length, 13136);
 assert.ok(inputs.every(index => index >= 0 && index < unknown.length));
+assert.ok(inputs.every(index => unknown[index] === completeLp2[index]));
 
 /**
  * @param {number[]} addresses
@@ -82,6 +86,7 @@ const firstThree = inputs.slice(1,4).map(offset =>
 
 console.log(JSON.stringify({
   originalUnknownRunes: unknown.length,
+  originalCompleteLp2Runes: completeLp2.length,
   startRed: inputs[0],
   postRed: firstThree,
   clockwiseZeroBased,
