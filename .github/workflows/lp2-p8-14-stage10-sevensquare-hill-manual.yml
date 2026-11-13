@@ -1,0 +1,18 @@
+name: LP2 original seven-page Stage10 dense Hill7 source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-fixed-seven-page-inverse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all 16 historical 7x7 dense Hill inverses and synthetic plants
+        run: node sims/lp2_p8_14_stage10_sevensquare_hill_sft.cjs
