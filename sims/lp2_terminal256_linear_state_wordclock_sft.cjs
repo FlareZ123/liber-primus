@@ -100,9 +100,9 @@ const state=Array.from({length:128},()=>{
  seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
  return (seed>>>=0)&1;
 });
-for(let t=128;t<305;t++)state.push(state[t-1]^state[t-7]^state[t-128]);
+for(let t=128;t<1152;t++)state.push(state[t-1]^state[t-7]^state[t-128]);
 const mask=Array.from({length:256},(_,t)=>{
- let b=0;for(let lane=0;lane<8;lane++)b|=state[t+7*lane]<<lane;return b;
+ let b=0;for(let lane=0;lane<8;lane++)b|=state[t+128*lane]<<lane;return b;
 });
 const outer=ring(0),inside=route(0,false);
 assert.equal(new Set([...outer,...inside]).size,256);
