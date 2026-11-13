@@ -181,6 +181,61 @@ for (const key of [S, T]) {
   assert.deepEqual(shift(synthetic, key, -1), native);
   assert.equal(shift(synthetic, key, -1).length, 238);
 }
+
+/**
+ * Canonical polynomial-convolution consumer. Printed page order is
+ * descending power, matching A/B; formal power-series inversion operates
+ * on the reversed (ascending-power) original coefficients.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ * @returns {number[]} Printed-order candidate plaintext.
+ */
+function deconvolve(ciphertext, key) {
+  const input = ciphertext.slice().reverse();
+  const recovered = [];
+  const inv0 = inverse(key[0]);
+  for (let i = 0; i < input.length; i++) {
+    let residue = input[i];
+    for (let j = 1; j <= Math.min(i, key.length - 1); j++)
+      residue -= key[j] * recovered[i - j];
+    recovered.push(mod(residue * inv0));
+  }
+  return recovered.reverse();
+}
+/** @param {number[]} plaintext @param {number[]} key */
+function convolve(plaintext, key) {
+  const source = plaintext.slice().reverse();
+  const output = [];
+  for (let i = 0; i < source.length; i++) {
+    let residue = 0;
+    for (let j = 0; j <= Math.min(i, key.length - 1); j++)
+      residue += key[j] * source[i - j];
+    output.push(mod(residue));
+  }
+  return output.reverse();
+}
+const convolution = [];
+for (const [name, key] of [['S', S], ['T', T]]) {
+  const decrypted36 = deconvolve(page36, key);
+  const decrypted56 = deconvolve(page56, key);
+  const decrypted57 = deconvolve(page57, key);
+  assert.deepEqual(convolve(decrypted36, key), page36);
+  assert.deepEqual(convolve(decrypted56, key), page56);
+  assert.deepEqual(convolve(decrypted57, key), page57);
+  assert.deepEqual(deconvolve(convolve(native, key), key), native);
+  convolution.push({
+    key: name,
+    p36Ioc: ioc(decrypted36),
+    p56KnownMatches: decrypted56.filter((x, i) => x === known56[i]).length,
+    p57UnchangedPositions: decrypted57.filter((x, i) => x === page57[i]).length
+  });
+}
+assert.deepEqual(convolution.map(x => x.p56KnownMatches), [1, 3]);
+assert.deepEqual(convolution.map(x => x.p57UnchangedPositions), [2, 7]);
+assert.deepEqual(convolution.map(x => Number(x.p36Ioc.toFixed(9))),
+  [0.035279935, 0.033400702]);
+assert(convolution.every(x => x.p36Ioc < 0.04));
+
 console.log(JSON.stringify({
   source: 'original p29 277 GP runes and original pp49-51 256 bytes',
   polynomial: 'descending printed coefficients over GF(29)',
@@ -188,7 +243,8 @@ console.log(JSON.stringify({
     sizes:{S:S.length,T:T.length}, ioc:{S:ioc(S),T:ioc(T)},
     SfirstGP:literal(S.slice(0, 48)), TfirstGP:literal(T.slice(0, 48))},
   originalTests: tests,
+  originalPolynomialConvolution: convolution,
   p36UnchangedIoc: ioc(page36),
   native238Plant: '238/238 recovered and re-enciphered with each fixed S and T',
-  decision: 'No direct native-GP plaintext from S or T on p36; neither reproduces known p56/p57 plaintext. The source does not specify this Euclidean operation or its consumer.'
+  decision: 'No native-GP plaintext from fixed S/T additive or polynomial-convolution consumers on p36; neither reproduces known p56/p57 plaintext. The source does not specify this Euclidean operation or its consumer.'
 }, null, 2));
