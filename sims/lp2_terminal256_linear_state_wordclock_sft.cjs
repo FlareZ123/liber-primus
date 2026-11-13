@@ -92,6 +92,24 @@ for(let corner=0;corner<4;corner++)for(let rev=0;rev<2;rev++){
 assert.equal(results.length,16);
 assert.equal(Math.min(...results.map(v=>v.minimumSharedOrder)),160);
 assert.equal(Math.max(...results.map(v=>v.minimumSharedOrder)),161);
+/* An independently historical second 8-bit register: authentic GP prime weights
+ * rather than GP ordinal indices. This tests every byte-XOR linear-state key,
+ * not a single chosen prime-pad. */
+const primeResults=[];
+for(let corner=0;corner<4;corner++)for(let rev=0;rev<2;rev++){
+ const positions=route(corner,!!rev);
+ for(const register of ['plaintext','printed-p56']){
+  const target=register==='plaintext'?known:cipher56.concat(p57);
+  const observed=target.map((v,i)=>grid[positions[i]]^c.prime[v]);
+  const L=order(observed);
+  assert.equal(common(observed,L-1),null);
+  assert(common(observed,L));
+  primeResults.push({corner,anticlockwise:!!rev,register,minimumSharedOrder:L});
+ }
+}
+assert.equal(primeResults.length,16);
+assert.equal(Math.min(...primeResults.map(v=>v.minimumSharedOrder)),160);
+assert.equal(Math.max(...primeResults.map(v=>v.minimumSharedOrder)),161);
 
 /* Independent planted, genuinely 128-BIT GF(2)-linear state. Eight
  * output taps are shifted linear projections of this SINGLE state. */
@@ -134,6 +152,7 @@ console.log(JSON.stringify({
  maxCommonOrder:Math.max(...results.map(v=>v.minimumSharedOrder)),
  allSecretStateDimensionsExcluded:'0 through 159, linear state and linear byte output',
  results,
+ primeByteControl:{models:primeResults.length,minSharedOrder:Math.min(...primeResults.map(v=>v.minimumSharedOrder)),maxSharedOrder:Math.max(...primeResults.map(v=>v.minimumSharedOrder)), results:primeResults},
  positivePlant:{
   actualStateBits:128, detectedCommonOrder:detected,
   solvedEquationRank:recoveredModel.rank,
