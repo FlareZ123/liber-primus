@@ -65,7 +65,39 @@ def inspect(page: int) -> dict:
     }
 
 
+def verify_authentic_welcome_key() -> None:
+    """Test the proposed key against seven authentic known plaintext runes.
+
+    The source author says WELCOME skip locations start at position29.
+    Thus positions0..6 have no mask ambiguity: GP29 ciphertext = P+K.
+    """
+    gp = "ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ"
+    transcription = (
+        Path(__file__).resolve().parents[1]
+        / "resources" / "transcriptions" / "lp1_wulfic_canonical.txt"
+    ).read_text(encoding="utf-8")
+    welcome_section = transcription.split("%")[1]
+    ciphertext = "".join(ch for ch in welcome_section if ch in gp)[:7]
+    assert ciphertext == "ᚢᛠᛝᛋᛇᚠᚳ"
+    c = [gp.index(ch) for ch in ciphertext]
+    p = [gp.index(ch) for ch in "ᚹᛖᛚᚳᚩᛗᛖ"]
+    authentic_key = [(c_i - p_i) % 29 for c_i, p_i in zip(c, p)]
+    assert authentic_key == [23, 10, 1, 10, 9, 10, 16]
+    proposed_indices = WELCOME[:7]
+    proposed_key = [i % 29 for i in proposed_indices]
+    assert proposed_key == [4, 15, 28, 7, 14, 15, 14]
+    proposed_plaintext = [(c_i - k_i) % 29 for c_i, k_i in zip(c, proposed_key)]
+    assert proposed_plaintext == [26, 13, 22, 8, 27, 14, 20]
+    assert all(a != b for a, b in zip(authentic_key, proposed_key))
+    print("Authentic solved LP1 WELCOME ciphertext: " + ciphertext)
+    print("Auth necessary key 7: " + str(authentic_key))
+    print("Claimed modulo29 key 7: " + str(proposed_key))
+    print("Claimed decoded GP indices: " + str(proposed_plaintext))
+    print("PASS: proposed key fails all 7 original known-plaintext positions.")
+
+
 def main() -> None:
+    verify_authentic_welcome_key()
     for page, expected in CASES.items():
         got = inspect(page)
         print(f"Original {page:02}.jpg / dimensions {got['size']} / SHA256 {got['sha']}")
