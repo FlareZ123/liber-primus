@@ -1,6 +1,6 @@
-# p55 circumference and historical DIVINITY key tests on unsolved LP2
+# Historical DIVINITY key and p55 circumference tests on unsolved LP2
 
-The full-book authentic LP1 key transfer, the p55 strict-word-interior DIVINITY test, and a source-motivated p55 own-circumference key test all fail to recover unknown GP29 plaintext. A separate later selective literal-F bigram Viterbi study of both authentic LP1 keys also finds no LP2 language; see [the skip-mask study](lp2-historical-vigenere-skip-viterbi.md).
+The full-book authentic LP1 key transfer, the p55 strict-word-interior DIVINITY test, the p55 own-circumference key test, and the all-word inner-DIVINITY edge-preserving test below all fail to recover unknown GP29 plaintext. A separate later selective literal-F bigram Viterbi study of both authentic LP1 keys also finds no LP2 language; see [the skip-mask study](lp2-historical-vigenere-skip-viterbi.md).
 
 **Classification: bounded negative for direct key reuse.** The authentic Vigenère key recovered from LP1 pages 03–04 does not produce English-like plaintext when transferred directly to LP2 pages 0–55.
 
@@ -88,9 +88,23 @@ The [own-circumference SFT](../sims/p55_own_circumference_vigenere_sft.cjs) asse
 
 **Decision:** reject this one physical-order, phase-zero, repeating-Vigenère use of p55's own 33 exterior runes as the key for its 43 interiors. It does not test other exterior operations, key schedules or ciphers, but no arbitrary edge permutation, key phase, word reset or F-mask should be added to rescue this model.
 
+## Literal inner-DIVINITY key with preserved word edges (bounded negative)
+
+A solver reading the solved p57 sentence could make a compact, historically grounded hypothesis: "shed our own circumferences" means leave the first and last rune of each printed word outside the cipher clock; "find the divinity within" means take the interior of the authentic LP1 Vigenère key DIVINITY. The recovered LP1 key is GP29 indices [23,10,1,10,9,10,16,26]; removing its first and last symbols gives Latin IVINIT, GP transliteration IUINIT, indices [10,1,10,9,10,16]. Apply the historical LP1 Vigenère subtraction to each word's interior, preserve the edges unchanged, and retain the authentic plaintext-F literal/non-consuming rule. This is a lossless, source-shaped alternative to discarding the 33 p55 exterior runes.
+
+The exact source parse is checked against the original corpus: 2,941 words / 13,136 runes across all pages, with 2,896 words / 12,956 runes in unsolved pp0–55. The proposed operation leaves 5,709 edge runes unchanged and transforms 7,247 interiors; 260 interior ciphertext runes are F. The original p55 carry and 17 page intersections reproduce the fixed word-length vector [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3].
+
+The historical LP1 key clock is continuous across pages, so phase zero at the first transformed interior is the primary reading. It has **no legal plaintext-F inverse at original global rune offset 31**: in word 6 (zero-based index 5), NEWBASOEEOINGU, interior offset 7, ciphertext I (10) minus key I (10) would yield plaintext F (0). Because the ciphertext is not F, the authentic forward rule could not have emitted it as a literal F; key-consuming plaintext F is forbidden. No interior ciphertext F occurs before this contradiction, so no earlier bypass choice can change the phase. Resetting phase zero at each printed word also fails, at original offset 37 in word 7 NAEGITH, interior offset 2, with the same I−I→F contradiction.
+
+As a direction/control only, ordinary all-consuming Vigenère (ignoring the authentic F bypass) produces no language gain. The raw source has 201/2,896 TextBlob dictionary matches and mean score −7.19893058; the continuous all-consuming output has 201 matches / −7.19714562, while word-reset has 200 / −7.20166401. These tiny differences are not evidence of plaintext; the decoded samples remain unreadable. A synthetic edge-preserving plant including an interior plaintext F round-trips exactly, so the gate is not an implementation failure.
+
+**Decision:** reject this exact inner-DIVINITY / literal-edge / historical plaintext-F Vigenère composition under the source-natural continuous clock and the word-reset control. Do not rescue it with a phase sweep, changed edge treatment, alternate sign, or new key variant. This does not reject other meanings of p57's circumference instruction, other roles for the p55 exterior runes, or a different independently sourced LP2 operation.
+
+**Reproduction:** node sims/lp2_inner_divinity_edge_key_sft.cjs
+
 ## Conclusion
 
-Direct reuse of the authentic LP1 DIVINITY Vigenère key and the p55 own-circumference repeating-key construction are both unsupported by plaintext evidence. These bounded negatives do not exclude a different source-dependent cipher layer or exterior operation; such a route requires an independently selected reversible mechanism.
+Direct reuse of the authentic LP1 DIVINITY Vigenère key, its inner six-symbol IVINIT derivative under the edge-preserving circumference reading, and the p55 own-circumference repeating-key construction are unsupported by original plaintext evidence. The inner-key route has a deterministic plaintext-F contradiction under both natural clocks, and its all-consuming control yields no language gain. These bounded negatives do not exclude a different source-dependent cipher layer or exterior operation; any such route requires an independently selected reversible mechanism.
 
 ## Reproduction
 
