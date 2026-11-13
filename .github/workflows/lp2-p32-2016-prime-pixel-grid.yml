@@ -1,0 +1,29 @@
+name: LP2 p32 2016 source-prime pixel-grid test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-image-grid:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow and retrieve signed-source image
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -m pip install --disable-pip-version-check pillow==11.3.0
+          if ($LASTEXITCODE -ne 0) { throw 'Pillow unavailable' }
+          $source = Join-Path $env:RUNNER_TEMP '4gq25.jpg'
+          curl.exe --fail --location --retry 3 --retry-all-errors 'https://raw.githubusercontent.com/scream314/cicada3301/master/assets/2016/4gq25.jpg' --output $source
+          if ($LASTEXITCODE -ne 0) { throw 'Original 2016 source image unavailable' }
+      - name: Source-pinned 121-rune prime-strip geometry and pixel correlation
+        shell: pwsh
+        run: |
+          $source = Join-Path $env:RUNNER_TEMP '4gq25.jpg'
+          python sims/lp2_p32_2016_prime_strip_pixel_sft.py $source
+          if ($LASTEXITCODE -ne 0) { throw 'Original image experiment failed' }
