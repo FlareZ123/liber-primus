@@ -336,3 +336,8 @@ Durable files: `sims/p36_prime36_p56_totient_transfer_sft.cjs`, `im-results/p36-
 A separate quick M05^j full-cycle word-rotor recomputation matched existing repository coverage in `sims/lp1_mobius_full28_word_rotor_sft.cjs`; no duplicate artifact or report was committed.
 
 Next: seek an independent source-selected reversible operation or authentic key material. Do not repeat p56 totient transfers, arbitrary prime starts, other representatives of the unsigned DH exponent class, or the already exhausted word-framed radix28→29 family without a new source selector.
+
+
+## Final handoff: source-orthography recalculation (not yet consolidated in shared SFT)
+
+`results/lp1-source-orthography.md` establishes rune21=ING and rune27=IO, plus QU→CW, V→U, K/Q→C, Z→S. An independent V8 recalculation with both encoders gives raw scores -4.383635 legacy/-4.370979 source-calibrated; candidate source-calibrated scores for prime starts15/36/705 are -4.346526/-4.619570/-4.550315, legacy scores -4.317302/-4.585343/-4.524611. All remain below every one of 2,000 matched holdouts (minimum -2.307337 legacy; -2.328910 source-calibrated); IoCs are unchanged. The atomic update to script/report/README failed, so their committed metrics/encoder remain stale. Next agent: update those three files together, implement both encoders (including IO and Q→C), rerun the three frozen starts, and update results/README. Do not search additional starts.
