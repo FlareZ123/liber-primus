@@ -29,3 +29,7 @@ jobs:
         run: |
           node --check sims/lp2_p39_q252_line_overhead_sft.cjs
           node sims/lp2_p39_q252_line_overhead_sft.cjs
+      - name: Verify original p22 fixed LP1 pp14-16 native-word crib gate
+        run: |
+          node --check sims/lp1_lp2_p22_literal_passage_crib_sft.cjs
+          node sims/lp1_lp2_p22_literal_passage_crib_sft.cjs
