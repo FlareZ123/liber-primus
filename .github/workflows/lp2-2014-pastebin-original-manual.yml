@@ -1,0 +1,24 @@
+name: LP2 original 2014 signed-message paste witness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/lp2_2014_pastebin_release_whitespace_probe.cjs
+      - run: node sims/lp2_2014_pastebin_release_whitespace_probe.cjs --selftest
+      - run: node sims/lp2_2014_pastebin_release_whitespace_probe.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LP2-May2-paste-witness
+          path: paste-2014-original-witness/
