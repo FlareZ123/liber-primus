@@ -13,6 +13,7 @@ on:
           - p36-q238-next-lfsr
           - q238-gf841-119-lfsr
           - terminal-gf841-rs
+          - terminal-rowquadratic
           - red32-rowkey-rs257
           - stage10-gf29-hill
           - state-class
@@ -115,6 +116,10 @@ jobs:
       - name: Complete original terminal 256-cell GF841 interpolation and 76-symbol positive plant
         if: ${{ inputs.probe == 'terminal-gf841-rs' }}
         run: node sims/lp2_terminal256_gf841_rs180_parity_sft.cjs
+
+      - name: All-secret 30-row quadratic terminal grid against all 180 known GP29 runes
+        if: ${{ inputs.probe == 'terminal-rowquadratic' }}
+        run: node sims/lp2_terminal256_rowquadratic_allsecret_knownplain_sft.cjs
 
       - name: Source-ordered 2014 onion-2 256-byte tape to original LP2 grid and GP29
         if: ${{ inputs.probe == 'onion2-2014-source-direct' }}
