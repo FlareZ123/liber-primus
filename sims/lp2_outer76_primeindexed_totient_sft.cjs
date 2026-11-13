@@ -74,6 +74,62 @@ assert(Math.abs(coincidence(decodedAdd) - 0.037192982456140354) < 1e-12);
 const plainControl = p57.slice(0, 76);
 assert.deepEqual(apply(apply(plainControl, key, +1), key, -1), plainControl);
 assert.deepEqual(apply(apply(plainControl, key, -1), key, +1), plainControl);
+// Independent *source-authenticated* known-plaintext test of any claimed
+// unified 256-position terminal-table transport, beyond p55's blind score.
+// Original solved p56: skip only the literal plaintext-F at local index56,
+// while ciphertext Fs at 35,47,51,74 consume a prime.
+const physical56 = db.pages.find((page) => page.page === 56).indices;
+const physical57 = db.pages.find((page) => page.page === 57).indices;
+assert.deepEqual([physical56.length, physical57.length], [85, 95]);
+let primeCursor = 0;
+const p56Known = physical56.map((c, i) => i === 56 ? 0 :
+  (c - (primes[primeCursor++] - 1) + 29 * 100) % 29);
+/** @param {string} english @returns {number[]} */
+function knownGp(english) {
+  const tokens = db.translit.map((token, index) => ({token, index}))
+    .sort((a,b) => b.token.length - a.token.length);
+  const out = [];
+  for (const word of english.split(' ')) {
+    for (let i = 0; i < word.length;) {
+      const hit = tokens.find(({token}) => word.startsWith(token,i));
+      assert(hit, 'Missing GP symbol in authenticated solved word: ' + word);
+      out.push(hit.index);
+      i += hit.token.length;
+    }
+  }
+  return out;
+}
+assert.deepEqual(p56Known, knownGp(
+  'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE'
+));
+const rings = [];
+for (let d = 0; d < 4; d++) {
+  const cells = [], top = d, bottom = 31 - d, left = d, right = 7 - d;
+  for (let x = left; x <= right; x++) cells.push(8 * top + x);
+  for (let y = top + 1; y <= bottom; y++) cells.push(8 * y + right);
+  for (let x = right - 1; x >= left; x--) cells.push(8 * bottom + x);
+  for (let y = bottom - 1; y > top; y--) cells.push(8 * y + left);
+  rings.push(cells);
+}
+assert.deepEqual(rings.map(x => x.length), [76,68,60,52]);
+assert.deepEqual(rings[0], ring);
+const innerCells = rings.slice(1).flat();
+const innerKey = innerCells.map(cell => (primes[flat[cell]] - 1) % 29);
+const innerCipher = physical56.concat(physical57);
+const innerPlain = p56Known.concat(physical57);
+assert.deepEqual([innerKey.length,innerCipher.length,innerPlain.length], [180,180,180]);
+assert.deepEqual(innerPlain.slice(128), physical57.slice(43));
+const knownInterior = [-1,0,+1].map(sign => {
+  const readout = sign === 0 ? innerKey :
+    innerCipher.map((cipher,i) => (cipher + sign*innerKey[i] + 29*29) % 29);
+  const matches = readout.map((v,i) => Number(v === innerPlain[i]));
+  return {sign, totalCorrect:matches.reduce((a,b)=>a+b,0),
+    p56Correct:matches.slice(0,85).reduce((a,b)=>a+b,0),
+    p57Correct:matches.slice(85).reduce((a,b)=>a+b,0)};
+});
+assert.deepEqual(knownInterior.map(x => [x.totalCorrect,x.p56Correct,x.p57Correct]),
+  [[5,2,3],[7,1,6],[6,3,3]]);
+
 const read = (a) => a.map((i) => db.translit[i]).join(' ');
 console.log(JSON.stringify({
   input: 'Original LP2 p55 76 runes and pp49-51 76-cell outer table ring',
@@ -87,5 +143,6 @@ console.log(JSON.stringify({
     {sign: 'add', IoC: coincidence(decodedAdd), GP: read(decodedAdd)}
   ],
   genuineSolvedPagePlant: '76/76 each arithmetic sign',
+  independentSolvedInterior180: knownInterior,
   conclusion: 'Original outputs remain nonlinguistic; no recovered p55 plaintext/key'
 }, null, 2));
