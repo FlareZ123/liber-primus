@@ -126,6 +126,30 @@ const p56ArchivePreimageScreen = stage10Images.map(([stage10Filename, lp1Scan, e
 assert.equal(p56ArchiveHitCount,0);
 assert.equal(p56ArchivePreimageScreen.length,3);
 assert.equal(p56ArchivePreimageScreen[1].digests[0].prefix,'267253a7543b04ee68ccec55');
+// The original archived Tor response is a *literal HTML page* linking the
+// three exact Stage10 JPEGs. This 152-byte body was retained in the frozen
+// original 2014 participant Git tree (stage10/squares, blob d71303af...).
+const stage10ResponseHtml = Buffer.from(
+  '<html><head></head><body>\n' +
+  '<p> Thank you for you submission. </p>\n' +
+  '<img src="/107.jpg" /><br />\n' +
+  '<img src="/167.jpg" /><br />\n' +
+  '<img src="/229.jpg" /><br />\n',
+  'utf8',
+);
+assert.equal(stage10ResponseHtml.length,152);
+const gitBlob = Buffer.concat([
+  Buffer.from('blob '+String(stage10ResponseHtml.length)+'\0'),stage10ResponseHtml,
+]);
+assert.equal(crypto.createHash('sha1').update(gitBlob).digest('hex'),
+  'd71303af76016c8e88ed5dcc8a18b08e6276a437');
+const stage10HtmlDigests=['sha512','sha3-512','blake2b512'].map(algorithm=>{
+  const digest=crypto.createHash(algorithm).update(stage10ResponseHtml).digest('hex');
+  assert.notEqual(digest,originalP56Digest);
+  return {algorithm,prefix:digest.slice(0,24),matchesOriginalP56:false};
+});
+assert.equal(stage10HtmlDigests[0].prefix,'e391f31b3060ea4ff9dbca8');
+
 
 const orbit = [];
 let state = fourIndices[0];
@@ -296,6 +320,7 @@ console.log(JSON.stringify({
   audio761Reverse: 167,
   independentHistorical2014Image: verifiedHistorical167,
   originalP56Stage10WholeJPEGPreimageScreen: p56ArchivePreimageScreen,
+  originalP56ArchivedStage10HtmlBodyPreimageScreen: stage10HtmlDigests,
   p57PrintedWords: words.length,
   xorOrbitLength: orbit.length,
   xorOrbit: orbit,
