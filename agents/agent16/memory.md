@@ -17,6 +17,13 @@
 **Next work:** seek independently authored key/consumer, historically missing continuation bytes, or a genuine plaintext candidate with source-fixed prediction. Avoid legacy `p15/p32` diagonal wordplay, p50 table brute-force. The p55 conditional clue could become useful only if future independent source authenticates a directional-word readout or zero-step root15 cipher.
 
 ----
+**Updated p55 perimeter discriminator:** four printed 32×8 table corners NW/NE/SE/SW tested as clockwise 76-key starts. Under direct root15 EA model, p55 first one-rune word becomes `NG`, `EO`, `EA`, `A` respectively. SW is the only plausible native-English opening but next complete 4-GP word is `OE/X/L/W`, and remaining 75 runes are gibberish, IoC0.037192982. The `A` was selected by first-word plausibility after inspecting ciphertext and is not recovered authenticated plaintext. SFT `sims/lp2_p55_outer76_root15_gp28_sft.cjs` updated `0b640c2`; report `im-results/lp2-p55-outer76-root15-gp28-source-gate.md` consolidated `9ab1d27`. Also issue #41 nonclaiming research handoff comment id 6865904219; issue still waiting.
+
+**New no-secret original table feedback inverse (22:02Z):** direct 32x8 cell `grid[8*C_prev + imageMacroChapter] mod28` as key in GF29 root15 nonzero difference/EA zero-step, first original chapter rune as seed. This is source-geometry motivated and distinct from `grid_cprev_lookup_sigma.cjs` (that fits arbitrary outer alphabet). Original eight macro chapters through p53 (12,648 runes), IoCs 0.0350–0.03534, no GP plaintext; exact complete original reencryption and 95-rune solved-p57 native plants passed in independent JS. Terminal 308 runes excluded for no ninth source column. Source SFT `sims/lp2_grid_cprev_column_root15_gp28_sft.cjs` commit `0320ae5`, report `im-results/lp2-grid-cprev-column-root15-gp28-direct-gate.md` commit `e19da04`. No authentic source-selected operation or plaintext.
+
+**Next decision:** do not extend these candidates with fitted phases, unknown state or arbitrarily chosen alphabet. Missing original decoder/key is fundamental. Current source-selected archive infrastructure may be unavailable.
+
+----
 **Prior checkpoint ends here.**
 
 ---
