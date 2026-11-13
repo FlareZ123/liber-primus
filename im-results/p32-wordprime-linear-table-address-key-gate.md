@@ -50,11 +50,31 @@ For comparison, the original unknown-book IoC is **0.03447840**, the raw pp33–
 
 The script also plants known solved-p57 GP plaintext under each fixed key and recovers every planted symbol exactly. This checks the additive implementation and key clock; it does not authenticate the key.
 
+
+## Skip-aware follow-through: fixed-plaintext rejection model
+
+A direct additive failure does not exclude a cipher in which a key position is rejected when it would reproduce the previous ciphertext symbol. The manuscript's strong adjacent-repeat suppression makes that a separate architectural question. The red-ink study records 13 dropcaps among 16 annotated red spans, so the exact ratio **13/16** is a source-derived candidate rejection probability. It is not an authenticated cipher instruction; this is a bounded hypothesis, not an established mechanism.
+
+The 22-symbol key was therefore tested under a fixed-plaintext keyskip model on **pp33–55 as one continuous 4,996-rune stream**, starting at key phase zero on p33. If a candidate key position would reproduce the preceding ciphertext, it is rejected with probability 13/16; the same plaintext symbol is tried against the next key position. The accepted output is allowed to repeat with probability 3/16. The decoder permits at most four rejected key positions per emitted rune. It uses an English trigram model trained on the repository's Shakespeare control text; therefore this is an English-register test, not a multilingual exclusion.
+
+| Address convention | Operation | Selected skips | Decoded IoC | Adjacent equal pairs | English trigram score/rune | Original-key rank among 21 |
+|---|---|---:|---:|---:|---:|---:|
+| Zero-based | C−K, keyskip | 99 | 0.03478947 | 140 | −5.81324762 | 19 |
+| Zero-based | C+K, keyskip | 92 | 0.03483355 | 126 | −5.79215067 | 8 |
+| One-based | C−K, keyskip | 119 | 0.03494936 | 156 | −5.80008278 | 14 |
+| One-based | C+K, keyskip | 101 | 0.03484173 | 124 | −5.79884868 | 10 |
+
+The rank compares each source-ordered key with 20 deterministic shuffles of the same 22-symbol multiset, using seed 0x20261113. None of the source-ordered keys ranks first. The best is rank 8/21; the other ranks are 10, 14 and 19. The original key order is therefore not distinguished from shuffled order by this English-trigram adjudicator. The p55 75-rune complete-word body extracted from the best path remains nonlinguistic (IoC 0.03813 for the best-scoring zero-based C+K path).
+
+**Positive control:** for each key/sign pair, the first 75 solved p57 runes were planted through the same 13/16 rejection process, with a deterministic xorshift seed and the same four-rejection cap. The decoder recovered **75/75** planted runes in all four cases (the plants used 1–6 rejected positions). This validates the implementation on a known plaintext under the tested model; it does not authenticate the source-derived key or model.
+
+The exact score, skip path, p33–39 preview, p55-body preview, positive-control result, and shuffled-key null summary are emitted by the reproducer. The skip-aware result does not rescue the p32→p50 key: the decoded text remains ciphertext-like, and the source-ordered key is not exceptional against its null.
+
 ## Decision
 
-**Retire this exact linear-address key construction and repeating GP29 additive consumer.** It is distinct from the already rejected single-word self-indexed row/column lookup and previous-word compass traversal: here the 22 p32 word sums directly address 22 cells in the 256-entry table, yielding a 22-symbol key. The direct output fails on both the immediate p33–39 section and the full unknown book.
+**Retire this exact linear-address key construction and the tested additive and 13/16 fixed-plaintext keyskip consumers.** It is distinct from the already rejected single-word self-indexed row/column lookup and previous-word compass traversal: here the 22 p32 word sums directly address 22 cells in the 256-entry table, yielding a 22-symbol key. The direct output fails on both the immediate p33–39 section and the full unknown book.
 
-The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key, and two additive signs. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, or unrelated KDFs without a new independent source instruction.
+The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key under direct addition, and the tested 13/16 fixed-plaintext keyskip consumer. The keyskip test is English-trigram-only and capped at four rejected positions per output. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, larger skip bounds, or unrelated KDFs without a new independent source instruction.
 
 ## Reproduction
 
@@ -64,7 +84,7 @@ Run from the repository root:
 node sims/p32_wordprime_linear_table_address_key_sft.cjs
 ~~~
 
-The standalone script reads the canonical corpus, transcription and numeric grid; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates all eight original inverses; and checks exact roundtrips on a solved-p57 positive plant. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
+The standalone script reads the canonical corpus, transcription, numeric grid and Shakespeare control; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates the direct additive inverses; runs the 13/16 keyskip Viterbi on pp33–55 with 20 shuffled-key nulls per candidate; and checks exact solved-p57 positive plants for both direct and skip-aware consumers. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
 
 Related existing work:
 - [Authoritative research synthesis](../results/README.md)
