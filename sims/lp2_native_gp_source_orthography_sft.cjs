@@ -109,6 +109,17 @@ const legacyExact = referenceWords.filter((word, i) =>
 assert.equal(legacyExact, 165, "naive NG/IA labels match 165 of 181 words");
 assert.deepEqual(referenceWords.map(word => toRunes(encodeNativeGP(word))),
   printedWords, "source-calibrated GP spelling reconstructs all 181");
+// Held-out cross-release source check: independently solved LP2 p57, a
+// different original printed page from the p10-13 LP1 calibration sample.
+// P56's 85 source runes are encrypted and must not be used as plaintext.
+const heldOutP57 = plainLP1.split("### 57\n")[1].trim();
+const p57Words = heldOutP57.match(/[A-Z]+/g) || [];
+const p57SourceRunes = corpus.pages[57].indices;
+assert.equal(p57Words.length, 20);
+assert.equal(p57SourceRunes.length, 95);
+assert.equal(encodeNativeGP(heldOutP57, false).length, 96);
+assert.deepEqual(encodeNativeGP(heldOutP57), p57SourceRunes,
+  "independently solved LP2 p57 exactly matches source-calibrated GP");
 assert.notEqual(toRunes(encodeNativeGP("FOLLOWING", false)),
   calibrations[0][1]);
 assert.notEqual(toRunes(encodeNativeGP("FUNCTION", false)),
@@ -277,6 +288,8 @@ if (require.main === module) {
     fullSolvedLP1WordPairs: referenceWords.length,
     legacyGPWordsExact: legacyExact,
     sourceGPWordsExact: printedWords.length,
+    independentSolvedLP2p57RuneExact: p57SourceRunes.length,
+    independentSolvedLP2p57WordsExact: p57Words.length,
     sourceCipherInvariant: source,
     originalFibonacciLag8: originalLag8,
     correctedControlWindows: total,
