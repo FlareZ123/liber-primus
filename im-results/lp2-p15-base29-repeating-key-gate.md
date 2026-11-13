@@ -1,6 +1,6 @@
 # p15 BASE29-expanded repeating-key gate
 
-**Decision:** reject the tested direct repeated-key Vigenère interpretation of the p15 Fibonacci-prime construction. It produces no coherent plaintext, and the source-ordered keys are not distinguishable from shuffled digit orders under the frozen English score. This is an intermediate exclusion, not a new established decryption.
+**Decision:** reject the tested direct repeated-key Vigenère interpretations of the p15 Fibonacci-prime construction. The source-ordered keys are not distinguishable from shuffled digit orders under the frozen English score, and the primary 47-digit printed-value key has no legal inverse under the authentic LP1 plaintext-F rule on the source-pointed p15 body. These are bounded exclusions, not a new established decryption.
 
 ## Why a human solver might try it
 
@@ -69,9 +69,23 @@ The phase-nine sensitivity is also unpromising: printed-values key −17.228059 
 
 The 2013 seed key 3QO is essentially at raw score (−17.148366 versus −17.159648) and has no readable output. The full-book printed-key outputs are both worse than raw, whether continuous or reset at the nine original visual chapters.
 
+## Authentic LP1 plaintext-F-transparent inverse on the source-pointed p15 body (bounded negative)
+
+The earlier sensitivity described as "literal-F" in this report treats a ciphertext F as literal. That is not the exact historical LP1 rule: the original encoder makes **plaintext F** literal and non-consuming, while a ciphertext F may also be the encryption of a non-F plaintext rune. Agent1's independently validated lexical Viterbi implements that plaintext-driven rule. The present test uses its exact inverse feasibility condition; because every possible bypass branch dies before the 150-rune body ends, no language-model choice or Viterbi ranking can rescue this key.
+
+The source-natural target is p15's 150-rune body, not the red heading: the original 4×4 spiral has 16 printed values, and the infinity/arrow ornament points toward the body. Convert each printed value to standard BASE29, concatenate the 47 digits in clockwise spiral order, and interpret those digit values as GP29 shifts. This digit-to-GP29 mapping is an assumption, but it is the same fixed key tested by the earlier all-consuming/ciphertext-F controls. Start the key at phase zero on the first body rune; do not fit a phase.
+
+Original p15 segmentation is exact: 159 runes / 37 words, with a 9-rune red heading in two words and a 150-rune body in 35 words. The authentic plaintext-F inverse enumerates both legal choices at every ciphertext F. The first two ciphertext-F events leave a unique consumed-key state of 33. At body offset 34 (physical p15 local rune 43; original corpus global rune 3646), word 8 (zero-based) OEXIATHHEA has ciphertext TH (2). Key digit 33 is also TH (2), so subtraction would produce plaintext F (0) from a non-F ciphertext. The authentic encoder cannot produce that output: plaintext F would have appeared as ciphertext F without consuming the key. No legal state survives.
+
+A synthetic plant with the exact original p15 word-length vector and three interior plaintext-F bypasses round-trips exactly under the same 47-digit key, so the feasibility check is exercising the intended rule. The earlier all-consuming and ciphertext-F-literal outputs remain nonlinguistic as reported above.
+
+**Decision:** retire the exact 47-digit printed-value BASE29 key on p15 body at source-natural phase zero under the authentic LP1 plaintext-F rule. This is a hard inverse-feasibility contradiction for that composition, not merely a low language score. It does not exclude other source-selected uses of p15, another target, or a different key derivation; no phase or key sweep is licensed by this result.
+
+**Reproduction:** node sims/lp2_p15_base29_ftransparent_viterbi_sft.cjs
+
 ## Conclusion and scope
 
-Reject only the tested **direct periodic additive/subtractive GP29** interpretations:
+Reject only the tested **direct periodic additive/subtractive GP29** interpretations and the exact authentic plaintext-F-transparent inverse of the primary 47-digit key on p15 body phase zero:
 
 1. BASE29 expansion of the 16 printed p15 values;
 2. BASE29 expansion of the 16 underlying primes;
@@ -84,6 +98,7 @@ The 47-digit printed key's small local score lift is ordinary under the shuffled
 Run with Node 22:
 
 node sims/lp2_p15_base29_repeating_key_gate.cjs
+node sims/lp2_p15_base29_ftransparent_viterbi_sft.cjs
 
 The script asserts the 12,956-rune unknown stream, p15's 3,603 global start, its nine-rune red heading and 150-rune body, the 1,903-rune p15–22 chapter, and the nine original visual cuts. It performs the exact inverse plant on solved p57 plaintext under each key (an arithmetic positive control, not evidence that the key is correct) and reproduces the quadgram scores and 5,000-permutation nulls.
 
