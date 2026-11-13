@@ -1,6 +1,6 @@
 # Ahmia's 2014 original-era Tor search index as a possible missing URL witness
 
-**Agent 3, 13 November 2026. Classification:** a new, specifically dated archival custody avenue with one original public index file inspected. **No Liber Primus plaintext, author key, unknown deep-web target, original 2014 response body, or matching hash was recovered.**
+**Agent 3, 13 November 2026. Classification:** a new, specifically dated archival custody avenue with one original public index and one bounded public web-archive query inspected. **No Liber Primus plaintext, author key, unknown deep-web target, original 2014 response body, or matching hash was recovered.**
 
 ## Why this differs from already reviewed crawls
 
@@ -16,10 +16,22 @@ The maintainer's original [`juhanurmi/ahmia` GitHub source tree](https://github.
 
 A literal case-insensitive host search of that complete source file found none of the seven historical Cicada chain hosts: `auqgnxjtvdbll3pv`, `cu343l33nqaekrnw`, `fv7lyucmeozzd5j4`, `avowyfgl5lkzfj3n`, `q4utgdi2n4m4uim5`, `ut3qtzbrvs7dtvzp`, `ky2khlqdf7qdznac`, nor the previously discussed `eq6emgv2ehsrix6t`. **This March import predates May 2014 Stage11 distribution, so its negative cannot test the relevant later period.** The project source also contains `ahmia/static/log/onion_site_history/.gitignore`, which ignores the per-site history JSON, and `onionbot/inject.py`, which writes extracted `text`, `title` and `url` fields to Solr. These source fields do not establish HTTP-byte retention.
 
+## Independent public 2014–2015 archive check
+
+To avoid relying on speculation about a missing snapshot, a small and frozen external original-era archive query was executed against the [documented Arquivo.pt CDX endpoint](https://github-wiki-see.page/m/arquivo/pwa-technologies/wiki/URL-search%3A-CDX-server-API) on [Windows-independent Node 22 CI run 43529866419](https://github.com/FlareZ123/liber-primus/actions/runs/43529866419). The exact queries requested `matchType=host`, `from=2014`, `to=2015`, `output=json`, `limit=5000` for both `ahmia.fi` and `www.ahmia.fi`. An independent same-dates `www.sapo.pt` positive control used `limit=3`. The complete response status, SHA-256, byte length and selected original 2014–2015 record metadata are preserved by [the executable probe](../sims/ahmia_2014_original_index_archive_probe.cjs) and the CI artifact.
+
+| Original-era public index query | HTTP status | Indexed responses | Response bytes |
+| --- | ---: | ---: | ---: |
+| `ahmia.fi` all URL paths, 2014–2015 | 200 | **0** | 0 |
+| `www.ahmia.fi` all URL paths, 2014–2015 | 200 | **0** | 0 |
+| Control `www.sapo.pt`, 2014–2015 | 200 | **3** (limit 3) | 1,082 |
+
+The two empty Ahmia index responses have SHA-256 `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`, while the positive index responded with three records. No Ahmia URL, original HTML replay, or known Cicada-host occurrence was retrieved. This is an **archive-specific coverage null**, not proof that Ahmia lacks backups elsewhere or that the 2014 site was never live.
+
 ## Discriminating next acquisition, subject to maintainer authorization
 
 The first useful object is a **May to autumn 2014** Ahmia URL/title/date backup, indexed document export, or historical directory snapshot, if any was lawfully and publicly preserved. Query by the exact seven known host strings to calibrate period coverage, especially the known distributor. Then search any historic link/URL records for contemporaneous references to the original LP2 title, p56 hash, and Cicada signed-source identifiers. The unknown p56 target may have used an unrelated host and is not excluded by a distributor miss.
 
 If a dated source manifest identifies candidate target URLs, recover **original HTTP response entity bytes** only from an authorized public archive; compare the exact original bytes to p56's 128-hex target under the separately stated candidate digest algorithms. Plain normalized Solr text cannot establish a 512-bit preimage, and URL-only evidence must remain an intermediate lead. Do not enumerate unsafe live services or contact the search operator without the repository maintainer's authorization.
 
-**Decision:** establish Ahmia as an *original-period historical URL-index custodian*, distinct from previously inventoried academic datasets. The publicly inspected March 2014 XML is insufficient by date and content for the p56 search. Public release of later snapshots or an authorized narrow custodian metadata query is the missing input. No generic repeat crawling, hash guessing or follow-on cipher search is warranted solely from this archival fact.
+**Decision:** establish Ahmia as an *original-period historical URL-index custodian*, distinct from previously inventoried academic datasets. The publicly inspected March 2014 XML is insufficient by date and content for the p56 search, and Arquivo.pt contains no indexed 2014–2015 Ahmia captures under the two canonical hostnames. Public release of later snapshots or an authorized narrow custodian metadata query is the missing input. No generic repeat crawling, hash guessing or follow-on cipher search is warranted solely from this archival fact.
