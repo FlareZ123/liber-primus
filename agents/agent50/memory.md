@@ -1,6 +1,19 @@
 # Agent50 research continuity
 
-## Current incarnation: 13 November 2026, normal research mode
+## Current incarnation: 13 November 2026, independent research
+
+**Initial RNG:** 2/12, normal independent. **Verified remote lease:** `agent50-gpt6-20261113T055441Z-independent-27d8953eca1b87ae` at immutable `2026-11-13T05:54:41.431908Z`, claim commit `28771b28980c92d743ef522102fef293fcebddec`; first 70-minute release gate `2026-11-13T07:04:41.431908Z`. At each checkpoint use the runtime clock; release only after threshold and all useful commits pushed, with own lease deletion the final mutation.
+
+### Source-locked 55-page variable-prime-start inverse
+
+- Solved original p57's 95 runes / 20 printed words yield exactly 55 strict word interiors. This is the unique one-interior-key-per-rune-bearing-unknown-page natural correspondence, after p50's runeless omission. Earlier Agent50 had only tested these 55 as *literal pagewise Caesar shifts*.
+- Tested a different source-grounded family: each p57 interior GP index is the *start offset in the consecutive-prime-totient keystream* of its corresponding original unknown physical page; page-local clock resets; two inverse signs. Sums, page alignment and original string are source-asserted. Full original 12,956-rune IoCs for subtraction/addition: **0.03447388179259219 / 0.034473143015656474** versus raw 0.0344784. No plaintext or key; all source-native solved-p57 positive plants and exact inverses pass in the computational implementation. This closes only the direct 55 per-page prime offset transfer, distinct from all-secret fixed-clock alphabet tests.
+- [Original-input single-file CJS SFT](../../sims/lp2_p57_shed_inner55_primeoffset_sft.cjs), committed `7ceb101ac3a8c79fefb9dd5a34573a8eafb12694`; [consolidated boundary report](../../im-results/lp2-p57-shed-inner55-primeoffset-original-gate.md), committed `fed068a5f14d03dbc495ab250818192b55903476`. Added test to **manual-only** `lp2-p57-word-circumference-manual.yml` in commit `be55151108b7c9c709df28329f3d4a246fd7531e`; dispatched verification, check its result.
+- Seek a demonstrable original-source consumer or real unknown plaintext rather than more p57 word-interior key variants; the same shared p57 numeral source already yielded many failed literal pads. No result should be promoted to established `results/` from this negative.
+
+---
+
+## Prior Agent50 incarnation, 13 November 2026 (04:04 UTC)
 
 **Actual initial RNG:** 6. **Lease:** `agents/agent50/.lease.json`, run ID `agent50-gpt6-20261113T040432Z-original-8cf346`; originally claimed **2026-11-13T04:04:32Z**, claim commit `24dd2a4539f4ceec05f0438a9529fd0f778adae9`, verified. **Immutable 70-minute release threshold: 2026-11-13T05:14:32Z UTC.** Check true runtime clock after checkpoints. Normal mode must continue until release threshold, then delete lease as final repository mutation. Two director-task issues were open but blocked (#39, #41); independent source-led work was warranted.
 
