@@ -27,11 +27,21 @@ This is a completely reversible transport given both \`K\` and the extra bit. Si
 - Entire 133-byte SHA-256: \`ecf68af45150482467e2f2942d924251e6972b78144f3253a292f264013a3b38\`.
 - Only **47/133** bytes are printable ASCII or CR/LF. The opening bytes do not match PNG, JPEG, GIF, ZIP, PDF, gzip, BZIP2, Zstd or OpenPGP armour or raw OpenPGP packet starts. The exact first bytes \`1f fd\` are not a gzip header \`1f 8b\`. There is no decoded English opening or source-selected file instruction.
 
+### Independent canonical prime-value XOR as direct ASCII
+
+The standard 29 Gematria Primus symbols also have individually fixed **prime weights 2–109**. The historical 2013 XOR operation worked on byte-valued data, so an independently defined no-packing decoder is `out[i]=GPprime(R[i]) XOR GPprime(K[i])`. It treats each source rune as its authentic prime **byte value**, rather than its 0–28 ordinal. With the **unchanged original 213+213 symbols and unchanged order**, this produces exactly **213 bytes**, all between 0 and 126. Of those **155/213** are printable ASCII and only **87/213** are Latin letters. The first twenty bytes are:
+
+```text
+1c 4e 6a 62 58 4a 00 2b 58 70 50 08 6a 4c 26 3e 2c 4a 06 12
+```
+
+This contains embedded NUL/control bytes from the start, no intelligible ASCII passage or conventional binary-file header at byte zero. It is a further fixed **literal direct-message negative** for the same historically motivated XOR family; it cannot reject purposeful encryption or a separate author-selected binary consumer. Its exact result and original-source checks are now in the same SFT, without testing arbitrary shifts, masks or alternative keys.
+
 The exact same packing algorithm has a source-shaped positive control: create 213 valid synthetic GP indices, XOR them with the actual original 213-symbol \`K\`, pack the result, unpack with the preserved spare bit and XOR back to recover **all 213/213** original synthetic glyphs. Both original and planted symbols round-trip without discarded invalid values. This validates the transport arithmetic, not an embedded historical message.
 
 ## Research decision
 
-The uniquely paired **red213 ← black-tail213** counts merit retention as a potential cross-artifact key relationship. The **literal GP-index XOR** interpretation is excluded as direct GP29 plaintext, and its one source-ordered 133-byte binary interpretation has no recognizable content at byte zero. This is *not* a rejection of unknown encrypted/compressed binary data, a different original-selected alphabet/packing, or a later nontrivial decoder. It is also not affirmative evidence that \`133\` was a byte-length hint; a 133-byte arbitrary binary blob is the mathematical consequence of packing 213 five-bit symbols.
+The uniquely paired **red213 ← black-tail213** counts merit retention as a potential cross-artifact key relationship. The **literal GP-index XOR** interpretation is excluded as direct GP29 plaintext, and its one source-ordered 133-byte binary interpretation has no recognizable content at byte zero. Literal GP-prime bytewise XOR likewise produces nonlinguistic 7-bit data with control bytes from the first position. This is *not* a rejection of unknown encrypted/compressed binary data, a different original-selected alphabet/packing, or a later nontrivial decoder. It is also not affirmative evidence that \`133\` was a byte-length hint; a 133-byte arbitrary binary blob is the mathematical consequence of packing 213 five-bit symbols.
 
 A new continuation should require an independent original source selecting a *specific consumer* for these exact 133 bytes or a decoding operation that predicts an authenticated header/plaintext from the unchanged red/black inputs. Avoid adding free bit rotations, arbitrary source orderings or secret KDFs merely to force a recognizable prefix.
 
