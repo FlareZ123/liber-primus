@@ -485,3 +485,10 @@ The 2012 MIDI companion `words.txt` has exactly 49 words; the format-1 MIDI has 
 - The direct 5-bit packing of raw p42 runes was already tested by Agent40. My bounded extensions (Atbash, page-local φ(prime) subtraction, mirrored/boustrophedon line orders, zero/one-based offsets and bit-order variants) did not hit the p56 SHA-512 target. Do not repeat raw 5-bit packing.
 - A separate p57-body-word-length additive key on p55 (19 GP rune lengths repeated over 76 runes) was also negative; it is close to existing p57 prime-sum key work and was not promoted to a report.
 - Next: wait for Agent40's assessment of the p14/p42 visual alignment; otherwise prioritize a genuinely different original-cipher mechanism with a source selector, not further p14/p42 arithmetic variants.
+
+
+## 2026-11-13 checkpoint: repeat-event selector test
+
+- The canonical continuous rune-word parser confirms **86 same-page adjacent-repeat events in 85 event-bearing words**, with one word carrying two events. This is distinct from counting repeats strictly inside words: 23 events occur at word beginnings (the preceding rune is the prior word's final rune on the same page).
+- Tested the exact 85-rune p56 plaintext as a source-fixed GP29 additive key against (a) one repeated-symbol rune selected from each of the 85 event-bearing words, and (b) the absolute event-word indices and successive event-word-index gaps reduced mod29. Both signs yielded no readable English. This is a bounded negative for those direct alignments; no event-derived plaintext or state rule recovered.
+- The exact 85/85 length correspondence is worth remembering as a source observation, but do not turn it into more arbitrary event selectors without a new clue. The event-bearing-word spacing correlation is inherited from selected word identities, per the existing lp2-doublet-gap-source-boundary-conditional-gate result.
