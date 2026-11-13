@@ -97,6 +97,50 @@ for (const reverseMissing of [false, true]) {
     }
   }
 }
+
+// p57's "SHED OUR OWN CIRCUMFERENCES": strict 30x6 inner source rings
+// have sizes 68+60+52. Try all four real corners and two directions, with
+// authenticated p56 prime-totient subtraction and no fitted keystream.
+const innerRows = grid.byte_rows.slice(1, -1).map((row) => row.slice(1, -1));
+/** @returns {number[]} */
+function ringPeel(corner, counterclockwise) {
+  const output = [];
+  for (let depth = 0; depth < 3; depth += 1) {
+    const top = depth, bottom = 29 - depth, left = depth, right = 5 - depth;
+    const cells = [];
+    for (let x = left; x <= right; x += 1) cells.push([top, x]);
+    for (let y = top + 1; y <= bottom; y += 1) cells.push([y, right]);
+    for (let x = right - 1; x >= left; x -= 1) cells.push([bottom, x]);
+    for (let y = bottom - 1; y > top; y -= 1) cells.push([y, left]);
+    const target = [[top, left], [top, right], [bottom, right], [bottom, left]][corner];
+    const start = cells.findIndex(([y, x]) => y === target[0] && x === target[1]);
+    assert.ok(start >= 0);
+    for (let k = 0; k < cells.length; k += 1) {
+      const ix = (start + (counterclockwise ? -k : k) + 2 * cells.length) % cells.length;
+      const [y, x] = cells[ix];
+      output.push(innerRows[y][x]);
+    }
+  }
+  assert.equal(output.length, 180);
+  return output;
+}
+out.circumference_totient_readings = [];
+for (let corner = 0; corner < 4; corner += 1) {
+  for (const counterclockwise of [false, true]) {
+    const tableBytes = ringPeel(corner, counterclockwise);
+    for (const reversePrimes of [false, true]) {
+      const primes = reversePrimes ? [...missing].reverse() : missing;
+      const predicted = tableBytes.map((byte, i) => m29(byte - (primes[i] - 1)));
+      out.circumference_totient_readings.push({
+        corner, counterclockwise, reversePrimes,
+        original_ink_matches: predicted.filter((v, i) => v === terminal[i]).length,
+        solved_native_matches: predicted.filter((v, i) => v === nativeTarget[i]).length,
+        best_secret_stationary_native_matches: maxRowMatches(predicted, nativeTarget),
+      });
+    }
+  }
+}
+
 out.byte_domain = {
   // Check historical XOR and modular-additive byte combinations against
   // literal GP prime weights of all 180 source-visible terminal symbols.
