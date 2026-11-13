@@ -157,7 +157,68 @@ for (let i = 0; i < outputs.length; i++) {
   assert.ok(Math.abs(outputs[i].ioc - expected[i]) < 1e-12);
 }
 assert.ok(Math.abs(ioc(body) - 0.034464934244182635) < 1e-12);
+
+// A different independently marked floral page links its original red-only
+// prime sum, the previously solved 2014 7x7 magic center and the p15 entry
+// at the SAME page-relative spiral index (j13 -> physical p53).
+const annotations = JSON.parse(fs.readFileSync(path.join(
+  root, "lp2-ink-annotations.json"), "utf8"));
+const red53 = annotations.pages.find((p) => p.page === 53).red_spans;
+assert.deepEqual(red53.map((x) => [x.start, x.length]), [[128, 51]]);
+const p53Original = group[13].indices;
+const red53Prime = p53Original.slice(128, 179).map((x) => corpus.prime[x]);
+const red53Sum = red53Prime.reduce((sum, x) => sum + x, 0);
+assert.equal(red53Sum, 2262);
+const sourceSquares = fs.readFileSync(path.join(
+  __dirname, "..", "resources", "cicada2014-openpuff-magic-squares.txt"), "utf8");
+const squares = sourceSquares.trim().split(/\r?\n\s*\r?\n/);
+const sevenSquare = squares[1].trim().split(/\r?\n/).map((line) =>
+  line.trim().split(/\s+/).map(Number));
+assert.equal(sevenSquare.length, 7);
+assert.ok(sevenSquare.every((line) => line.length === 7));
+const historicalCenter = sevenSquare[3][3];
+assert.equal(historicalCenter, 331);
+assert.equal(sevenSquare[0].reduce((sum, x) => sum + x, 0), 1033);
+assert.equal(40 + 13, 53);
+assert.equal(printedP15[13], 708);
+assert.equal(recovered[13], 2593);
+assert.equal(red53Sum + historicalCenter, recovered[13]);
+assert.equal(red53Sum + printedP15[13] + historicalCenter, 3301);
+
+// A fixed-margin, exact-page null: preserve all 179 original p53 prime
+// values and choose 51 without replacement, without optimizing another
+// target, page, count or phrase. Retrospective, not a discovery-wide p-value.
+let shuffleState = 0x33015313;
+function nextShuffle() {
+  shuffleState ^= shuffleState << 13;
+  shuffleState ^= shuffleState >>> 17;
+  shuffleState ^= shuffleState << 5;
+  return shuffleState >>> 0;
+}
+const pool = p53Original.map((x) => corpus.prime[x]);
+const shuffleTrials = 100000;
+let shuffleExact = 0;
+for (let trial = 0; trial < shuffleTrials; trial++) {
+  let sum = 0;
+  for (let i = 0; i < 51; i++) {
+    const j = i + nextShuffle() % (pool.length - i);
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+    sum += pool[i];
+  }
+  if (sum === red53Sum) shuffleExact++;
+}
+assert.equal(shuffleExact, 98);
+const page53Bridge = {
+  page: 53, spiralIndex: 13, printedCell: printedP15[13],
+  primeAtIndex: recovered[13], redLength: 51, redPrimeSum: red53Sum,
+  historicalMagicCenter: historicalCenter,
+  exactSourceCheck: red53Sum + printedP15[13] + historicalCenter,
+  fixedMarginShuffles: shuffleTrials, exactShuffleHits: shuffleExact,
+  conditionalExactTail: (shuffleExact + 1) / (shuffleTrials + 1)
+};
+
 console.log(JSON.stringify({
+  page53Bridge,
   p15Index: 10, correspondingFloralPage: 50, p15Cell: printedP15[10],
   selectedPrime: recovered[10], nthPrime463: primes[462],
   sourceBodyLength: body.length, generatorCycleLength: 3298,
