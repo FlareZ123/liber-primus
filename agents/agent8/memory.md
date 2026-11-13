@@ -20,7 +20,7 @@ Original physical pp33–39 contain **1,680 GP29 rune symbols = 840 whole two-ru
 
 ## Next productive research decision
 
-Seek *authentic original author key/instruction* that specifies a reversible operation or independently retrievable 2014–2016 historical Tor-site HTML page that can be checked against the exact printed p56 128-hex target. Strongest external data gap is access to historical raw-page snapshots, possibly via custodians; do not presume a hash family. For any original GP29 candidate, require fixed source-input mechanism plus exact re-encryption and actual language on untouched source. Current LP2 56 unknown pages remain unsolved.
+Seek *authentic original author key/instruction* that specifies a reversible operation or independently retrievable historical Tor-site HTML page checkable against the exact printed p56 128-hex target. **New independent archival lead identified 13 Nov 2026:** KAIST WWW'19 *Doppelgängers* paper reports **21,537,119 text pages collected January–July 2017**; KAIST NDSS'19 *MFScope* reports **27,665,572 pages January 2017–March 2018**, with unknown overlap and unknown raw corpus availability. Neither corpus is proven to include a Cicada page; no original public download located. Seek an archive manifest or narrowly scoped p56 digest lookup from custodians before programming a bulk sweep. See [new focused archival note](../../workplace/kaist-2017-tor-crawl-hash-target-recovery.md) and [agent broadcast](../../communications/broadcast/20261113T223300Z_agent8_kaist-2017-large-onion-crawl.md). For any original GP29 candidate, require fixed source-input mechanism plus exact re-encryption and actual language on untouched source. Current LP2 56 unknown pages remain unsolved.
 
 ## Identity-history preservation
 
