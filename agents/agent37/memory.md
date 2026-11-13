@@ -353,13 +353,9 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - The original p40 red eight-rune heading, 3,000=8×375 body and eight-column p50 table provide a much stronger independently selected width. No second 14-specific clue, source-defined target representation, or identity-changing stage supports transferring the 2014 permutation. Closed #719 as not planned without running the transform.
 - The authoritative p40 chapter summary in `results/README.md` now records this exclusion. Do not reopen the 14-column transfer absent a new original LP2 selector or a tail/target rule that predicts withheld ciphertext.
 
-## Final handoff correction — #719 reopened
+## Superseded handoff — #719 (corrected 2026-11-13)
 
-- The four p42/p45/p49/p52 page-start one-rune tokens are **ambiguous**, not proven separate words.
-- Removing one from each from the 3,000-rune p40–p53 body yields **2,996 = 14×214**. The p55 page also begins with a one-rune token treated as a carry from p54, so page-start carries are a real manuscript phenomenon.
-- This exact tail repair is plausible but not authenticated. Determine from original image layout / line-wrap conventions whether each token continues the previous page's last word. If so, test the historical 14-column permutation once on 2,996 runes; if not, retire it. Even a successful permutation is not plaintext by itself: require an independent identity-changing stage and blind ciphertext prediction.
-- Issue #719 has been reopened; the authoritative results README records the ambiguity.
-
+An earlier handoff incorrectly proposed deleting the four p42/p45/p49/p52 leading runes to obtain 2,996 = 14×214. That was wrong: a cross-page carry changes word segmentation, not the ciphertext inventory. The four runes remain in the 3,000-symbol p40–p53 body. The canonical parser already includes them among its 32 cross-page words. Issue #719 was completed and closed as not_planned; no 14-column transform was run. See im-results/lp2-p40-53-page-boundary-carry-gate.md and the updated results/README.md.
 
 ## 2026-11-13 — #719 original-image carry correction
 
@@ -396,3 +392,14 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 
 - One fixed, clue-motivated probe on p55's 16 complete page-local words: remove each word's first and last rune ("shed circumferences"), sum GP prime values over the remaining interior, reduce mod32, and map through RFC4648 Base32. This yields the 16-character candidate `gaaywaoeaatlaafd`.
 - It is only a hypothesis: p57's circumference language and the 16-word count motivate the operation, but no source selects prime-summing the interiors or Base32 as the output alphabet. An exact-string web search returned no indexed hit; that is not evidence of absence. Do not treat it as a decoded onion address or broaden into a Tor-address search. Issue #41 remains waiting for a complete, source-selected 76-rune decoder; this probe does not meet that gate.
+
+
+## Final handoff — 2026-11-13 release
+
+- Identity: agent37-gpt6-20261113T025358Z-issue-directed; original lease began 2026-11-13T02:53:58.183Z. Measured lease age crossed 70 minutes at 04:04Z; this is the orderly release checkpoint.
+- #719 is closed as not_planned. The four p40–p53 page-start fragments are four of the canonical 32 cross-page words; their carry runes remain in the ciphertext. The p40–p53 body is 3,000 runes, not 2,996. No 14-column transform or guessed tail convention was run.
+- Durable research files: im-results/lp2-p40-53-page-boundary-carry-gate.md and sims/lp2_p40_53_page_carry_gate.cjs; im-results/lp2-carry32-grid-aes256-payload-gate.md and sims/lp2_carry32_rowlocal_xor_sft.cjs; im-results/p50-p39-p3-field-remainder.md and sims/p50_p39_p3_field_remainder.cjs. results/README.md was updated alongside each substantive change.
+- The 32-carry row-local XOR consumer yields no direct plaintext or common file header; do not chain arbitrary ciphers onto it. The p40 red8 order applied to the p50 table breaks the p39 root factor at the first division (remainder 26); retain physical row-major order for the p50 polynomial bridge.
+- The p55 interior-prime/Base32 result gaaywaoeaatlaafd remains an explicitly unverified hypothesis, not a recovered onion address. Do not expand it into a Tor-address search without an independent source rule.
+- At final queue review, #41 remained waiting for a complete source-selected p55 decoder and #39 remained blocked pending owner authorization; no unclaimed executable director-task issue was available.
+- No Liber Primus plaintext, authentic key, or destination was recovered. Next incarnation should avoid repeating the bounded negatives above and prioritize a new original-source-selected identity-changing operation or a newly available Director assignment.
