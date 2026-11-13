@@ -100,6 +100,26 @@ function positivePlant(plaintextSegments) {
     upperTop1:capacity[0],plainTop1:plainTop[0],
     upperTop12:capacity[11],plainTop12:plainTop[11]};
 }
+/** @param {number[][][]} chapterGroups */
+function independentChapterCapacity(chapterGroups) {
+  const perChapter=chapterGroups.map(groups=>majorizationCapacity(transitions(groups)));
+  return Array.from({length:29},(_,k)=>perChapter.reduce((sum,cap)=>sum+cap[k],0));
+}
+/** @param {number[]} all @param {number} start @param {number} end @param {Set<number>} resetSites */
+function splitInterval(all,start,end,resetSites) {
+  const parts=[];
+  let part=[];
+  for (let i=start;i<end;i++) {
+    if (part.length && resetSites.has(i)) {
+      parts.push(part);
+      part=[];
+    }
+    part.push(all[i]);
+  }
+  if (part.length)parts.push(part);
+  return parts;
+}
+
 /** @param {number[]} all @param {number[]} lengths */
 function groupByLengths(all,lengths) {
   let pos=0;
@@ -119,10 +139,41 @@ function main() {
   const words=parsed.words.map(({runes})=>[...runes].map(r=>corpus.runes.indexOf(r)));
   assert.equal(words.length,2896);
   assert.deepEqual(words.flat(),all);
+  // Nine fixed physical red-heading / 13-dot sites: no inferred phase or
+  // adjustable boundaries. p15 and p33 each have an interior red heading.
+  const annotations=JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+  const headSites=[[0,0],[3,0],[8,0],[15,9],[23,0],[27,0],[33,0],[33,91],[40,0]];
+  const offsets=new Map();
+  let offset=0;
+  for (const p of pageObjects){offsets.set(p.page,offset);offset+=p.indices.length;}
+  assert.equal(offset,all.length);
+  const headingCuts=headSites.map(([page,local])=>{
+    const annotated=annotations.pages.find(p=>p.page===page);
+    assert.ok(annotated.red_spans.some(span=>span.start===local));
+    return offsets.get(page)+local;
+  });
+  headingCuts.push(all.length);
+  assert.deepEqual(headingCuts,[0,729,1874,3612,5506,6527,7960,8051,9640,12956]);
+  const wordStarts=new Set([0]);
+  const pageStarts=new Set([0]);
+  let running=0;
+  for (const w of words){wordStarts.add(running);running+=w.length;}
+  assert.equal(running,all.length);
+  running=0;
+  for (const p of pages){pageStarts.add(running);running+=p.length;}
+  assert.equal(running,all.length);
+  const chapters=headingCuts.slice(0,-1).map((start,i)=>[all.slice(start,headingCuts[i+1])]);
+  const chaptersWord=headingCuts.slice(0,-1).map((start,i)=>
+    splitInterval(all,start,headingCuts[i+1],wordStarts));
+  const chaptersPage=headingCuts.slice(0,-1).map((start,i)=>
+    splitInterval(all,start,headingCuts[i+1],pageStarts));
   const variants=[
     {name:"continuous",segments:[all],expected:[717,1365,6769]},
     {name:"page-reset",segments:pages,expected:[719,1368,6784]},
-    {name:"word-reset",segments:words,expected:[695,1318,6671]}
+    {name:"word-reset",segments:words,expected:[695,1318,6671]},
+    {name:"nine-red-head-specific",chapters,expected:[1253,2285,8886]},
+    {name:"nine-red-head+page-reset",chapters:chaptersPage,expected:[1256,2296,8911]},
+    {name:"nine-red-head+word-reset",chapters:chaptersWord,expected:[1226,2246,8767]}
   ];
 
   // A historically solved Cicada GP-English reference supplies a domain
@@ -138,12 +189,17 @@ function main() {
   const plainLikeLP1=Array.from({length:all.length},(_,i)=>native[i%native.length]);
   const results=[];
   for (const item of variants) {
-    const capacity=majorizationCapacity(transitions(item.segments));
+    const capacity=item.chapters ? independentChapterCapacity(item.chapters)
+      : majorizationCapacity(transitions(item.segments));
     assert.deepEqual([capacity[0],capacity[1],capacity[11]],item.expected);
     assert.equal(capacity[28],12956);
-    const sourceCounts = topCounts(plainLikeLP1);
-    const planted=positivePlant(groupByLengths(plainLikeLP1,item.segments.map(part=>part.length)));
-    results.push({reset:item.name,states:item.segments.length,top1Maximum:capacity[0],
+    const sourceCounts=topCounts(plainLikeLP1);
+    const lengths=(item.chapters ? item.chapters.flat() : item.segments).map(part=>part.length);
+    const planted=positivePlant(groupByLengths(plainLikeLP1,lengths));
+    results.push({reset:item.name,
+      states:item.chapters ? item.chapters.reduce((n,c)=>n+c.length,0) : item.segments.length,
+      sourceDependentTables:item.chapters ? item.chapters.length : 1,
+      top1Maximum:capacity[0],
       top2Maximum:capacity[1],top12Maximum:capacity[11],
       top1MaxPct:capacity[0]/12956,top12MaxPct:capacity[11]/12956,
       authenticLP1Top1Fraction:406/3287,authenticLP1Top12Fraction:2552/3287,
@@ -154,8 +210,8 @@ function main() {
   console.log(JSON.stringify({scope:"all 12,956 original unsolved GP29 runes, 55 rune-bearing physical pages, 2,896 original complete words",
     theorem:"for each state and any lossless bijection onto plaintext symbols, top-k plaintext total <= sum of k largest observed outgoing state-transition counts",
     source:"original LP2; authentic solved LP1 English GP tokens as comparison",
-    conditionalConclusion:"native-GP English requiring >5.55% of any rune (or >52.36% in its top 12) is impossible for these direct one-predecessor finite-state substitution models",
-    exclusions:"arbitrary per-predecessor GP29 permutations incl 29 secret mappings; direct single-rune output; continuous/page/word reset",
+    conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent red-heading state tables (9.69% and 68.78% are generous upper bounds)",
+    exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
     results},null,2));
 }
