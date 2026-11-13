@@ -224,6 +224,126 @@ for(const period of [5,25,75]){
   });
   assert.ok(gate.largestRow<=5&&gate.largestCol<=5);
 }
+// Stronger moth-crib conditional gate: allow ANY four of 29 glyphs
+// to remain literal transparent bypass symbols. Each bypass glyph
+// must occur at identical P/C positions in the fixed suffix. This
+// immediately reduces 23,751 arbitrary bypass choices to FIVE.
+// Apply the same key-free coordinate constraints to the 25 remaining
+// core symbols with transparent positions skipped from the core clock.
+const bypassEligible=gp.translit.map((_,i)=>i).filter(glyph=>
+  crib.every((plain,j)=>
+    (plain===glyph)===(suffix[j]===glyph)));
+assert.deepEqual(bypassEligible.map(i=>gp.translit[i]),
+  ["W","H","P","AE","Y"]);
+/**
+ * Test any secret ordered 5x5 core tableau, with literal skips.
+ * @param {number[]} originalCipher
+ * @param {(number|null)[]} partialPlain
+ * @param {number[]} bypass
+ * @param {number} period
+ */
+function bypassTableauGate(originalCipher,partialPlain,bypass,period){
+  assert.equal(originalCipher.length,75);
+  assert.equal(partialPlain.length,75);
+  assert.equal(bypass.length,4);
+  const bypassSet=new Set(bypass);
+  const coreAlphabet=gp.translit.map((_,i)=>i)
+    .filter(i=>!bypassSet.has(i));
+  const coreIndex=new Map(coreAlphabet.map((v,i)=>[v,i]));
+  const coreCipher=[],coreKnown=[];
+  for(let i=0;i<75;i++){
+    const c=originalCipher[i],p=partialPlain[i];
+    if(bypassSet.has(c)){
+      if(p!==null)assert.equal(p,c,"literal transparent symbol");
+    }else{
+      if(p!==null)assert.ok(!bypassSet.has(p));
+      coreCipher.push(c);
+      coreKnown.push(p);
+    }
+  }
+  const parent=Array.from({length:50},(_,i)=>i);
+  const root=i=>{
+    while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}
+    return i;
+  };
+  const union=(a,b)=>{
+    a=root(a);b=root(b);
+    if(a!==b)parent[a]=b;
+  };
+  const v=(glyph,axis)=>{
+    const index=coreIndex.get(glyph);
+    assert.notEqual(index,undefined);
+    return 2*index+axis;
+  };
+  for(let off=0;off<coreCipher.length;off+=period){
+    const count=Math.min(period,coreCipher.length-off);
+    for(let j=0;j<count;j++)for(let axis=0;axis<2;axis++){
+      const index=2*j+axis,k=off+(index%count);
+      if(coreKnown[k]===null)continue;
+      union(v(coreCipher[off+j],axis),
+        v(coreKnown[k],index<count?0:1));
+    }
+  }
+  const cells=new Set(),rows=new Map(),cols=new Map();
+  let duplicateCells=0;
+  for(let i=0;i<25;i++){
+    const row=root(2*i),col=root(2*i+1);
+    const cell=row+","+col;
+    if(cells.has(cell))duplicateCells++;
+    cells.add(cell);
+    rows.set(row,(rows.get(row)||0)+1);
+    cols.set(col,(cols.get(col)||0)+1);
+  }
+  const largestRow=Math.max(...rows.values()),
+    largestCol=Math.max(...cols.values());
+  return {period,coreRunes:coreCipher.length,
+    duplicateCells,largestRow,largestCol,
+    possible:duplicateCells===0&&largestRow<=5&&largestCol<=5};
+}
+/**
+ * Original alphabet 29, four transparent symbols, 25-symbol Bifid.
+ * @param {number[]} originalPlain
+ * @param {number[]} bypass
+ * @param {number} period
+ */
+function encryptBypassPlant(originalPlain,bypass,period){
+  const bypassSet=new Set(bypass);
+  const coreAlphabet=gp.translit.map((_,i)=>i)
+    .filter(i=>!bypassSet.has(i));
+  const key=new Map(coreAlphabet.map((v,i)=>[v,i]));
+  const out=Array(75).fill(-1),positions=[],core=[];
+  for(let i=0;i<75;i++){
+    if(bypassSet.has(originalPlain[i]))out[i]=originalPlain[i];
+    else{
+      positions.push(i);
+      core.push(key.get(originalPlain[i]));
+    }
+  }
+  const encrypted=bifid(core,period,false);
+  positions.forEach((pos,j)=>{out[pos]=coreAlphabet[encrypted[j]];});
+  assert.ok(out.every(v=>v>=0&&v<29));
+  return out;
+}
+const partialMothPlain=Array(75).fill(null);
+crib.forEach((v,j)=>{partialMothPlain[45+j]=v;});
+const bypassAllSecretResults=[];
+for(const omit of bypassEligible){
+  const bypass=bypassEligible.filter(v=>v!==omit);
+  const gates=[5,25,75].map(period=>
+    bypassTableauGate(body,partialMothPlain,bypass,period));
+  assert(gates.every(g=>g.duplicateCells>0&&!g.possible));
+  bypassAllSecretResults.push({
+    bypass:bypass.map(v=>gp.translit[v]),gates
+  });
+  const plant=Array(75).fill(0);
+  crib.forEach((v,j)=>{plant[45+j]=v;});
+  for(const period of [5,25,75]){
+    const positive=encryptBypassPlant(plant,bypass,period);
+    const gate=bypassTableauGate(positive,partialMothPlain,bypass,period);
+    assert.equal(gate.duplicateCells,0);
+    assert.equal(gate.possible,true);
+  }
+}
 console.log(JSON.stringify({
   status:"NO ORIGINAL LP2 PLAINTEXT RECOVERED",
   originalP55SourceRunes:p55.length, completeBodyRunes:body.length,
@@ -245,5 +365,7 @@ console.log(JSON.stringify({
   exactOriginalP55SeventhWordGP:sourceCipherWord13.map(i=>gp.translit[i]).join(""),
   allSecret5x5ThirteenWordGates:originalThirteenWordGates,
   allSecretBifidPositivePlants:[5,25,75],
+  mothCribTransparentBypassEligible:bypassEligible.map(v=>gp.translit[v]),
+  allSecretFourTransparentBypassGates:bypassAllSecretResults,
   exactInverseAndSourcePositivePlant:true
 },null,2));
