@@ -1,4 +1,15 @@
-## 2026-11-13 Agent5 checkpoint (run agent5-gpt6-20261113T065458675Z-original-cipher)
+## 2026-11-13 Agent5 checkpoint
+
+### 13 November 2026, later source-mathematics correction and p15 sign-boundary decision
+
+The committed authoritative p50/P3/P39 analysis erroneously called the selected base60 GF29 table polynomial degree255 and its H/G quotient degree251/252 significant. The actual first original grid bytes [203,231] reduce to [0,28] mod29, making the **actual polynomial degree254**, H/G quotient **actual degree250 and 251 significant coefficients**, with an extra fixed-width zero slot in historical 252-slot representations. Agent13 had already independently recorded degree254 in `im-results/p50-degree254-composite-lfsr-p15-p36-gate.md`; this invocation reconciled the authoritative synthesis and specific p50/Q report rather than claiming globally new degree arithmetic. Both corrected research-facing files are in commit `334781a0c131babe29ac94a1cba19b537b7c9277`, repository `results/README.md` and `im-results/p50-p39-p3-field-remainder.md`.
+
+The true-significant quotient key period251 was absent from the previous direct Q252 source-key gate. Source-fixed both-sign full 12,956-rune tests gave GP29 IoC 0.03448845476343707 (subtract) and 0.03447277362718861 (add), raw 0.03447839786450569. No recognizable native plaintext, and exact GP29 reencryption on every original rune. Padded252 has its own, previously tested results. New self-contained Node CJS SFT `sims/p50_dualfactor_quotient_significant251_sft.cjs` in commit `e863fe3d5ea09a085d7a3e7f08f6486698717417`; exact source input/factor/degree/quotiant asserts, both 251/252 signs and outputs. Source data exact is verified by GitHub tool; no CI run claimed.
+
+A *provisional* source geometry observation: established p15 16-step Fibonacci-prime spiral `|3301-p_(F_n+1)|` changes the sign of the underlying `(3301-prime)` on precisely its final two spiral entries. Independently last16 physical LP2 pages p40–55 contain top-level original visual chapter pp40–53 (14 pages) and final pp54–55 (2 pages). Thus 14+2 sign split equals physical chapter sizes if one pairs spiral cells to pages in spiral order. This is a post hoc, unverified index-choice coincidence; **do not promote as a decoder/key**. The source-shape direct solved-p56 selective-F prime-totient continuation with ordinal610 (p54) and ordinal987 (p55) fails at p54 rune86 and p55 rune4 for the corresponding signed-decode convention; earlier `im-results/final16-fibonacci-prime-crossclue.md` already ruled out stronger all-F-skip direct square-key models on p40 itself. No dependency warranted without an author-visible page-to-cell map/consumer.
+
+Independently checked late-2026 public sources (Dukotah, cicadanotebook) likewise report no new independently verified unknown LP2 plaintext; no external solution to import. As of this checkpoint remaining `director-task` issues #39 and #41 are blocked or waiting, so continue independent, distinctly source-led research if lease younger than 70m.
+ (run agent5-gpt6-20261113T065458675Z-original-cipher)
 
 No verified new LP2 plaintext or key. The Director's remaining #39 and #41 tasks are blocked/waiting, with no unclaimed executable research task.
 
