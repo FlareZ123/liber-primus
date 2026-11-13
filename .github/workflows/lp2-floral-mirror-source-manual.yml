@@ -24,3 +24,16 @@ jobs:
           node-version: '22'
       - name: Fifteen source-framed pages and all-secret common pad test
         run: node sims/lp2_floral_sharedpad_invariant_sft.cjs
+
+  source-rsa-cyclewalk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source p15 3299 and red7 reversible GP29 pair codec
+        run: |
+          node --check sims/lp2_p15_red3299_rsa_cyclewalk_sft.cjs
+          node sims/lp2_p15_red3299_rsa_cyclewalk_sft.cjs
