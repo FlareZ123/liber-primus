@@ -1,9 +1,6 @@
 name: QBL full-text running-key gate
 
 on:
-  push:
-    paths:
-      - "im-results/qbl-fulltext-c1.trigger"
   workflow_dispatch:
 
 permissions:
