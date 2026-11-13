@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'sims/p32_p55_43symbol_additive_bridge.cjs'
+      - 'sims/lp2_p55_dh761_rank_transposition_sft.cjs'
 permissions:
   contents: read
 jobs:
@@ -21,3 +22,5 @@ jobs:
         run: node sims/lp2_p55_43_interior_any_transposition_ioc_sft.cjs
       - name: Test signed 2016 word initials as a 43-symbol running key
         run: node sims/p32_p55_43symbol_additive_bridge.cjs
+      - name: Test rank-order transposition from 2013 DH 76-cycle
+        run: node sims/lp2_p55_dh761_rank_transposition_sft.cjs
