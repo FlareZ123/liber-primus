@@ -58,6 +58,21 @@ This is a useful locked falsification of the **cipher-plus-prospective-crib conj
 
 The SFT asserts all ten unequal key-pair witnesses directly on original GP indices, in addition to testing the table-derived key.
 
+## Stronger period25 theorem with completely unknown 29-symbol maps
+
+A direct 25-position key clock can select a **different arbitrary secret bijection of all 29 GP rune values at each of the 25 phases**. This is much more general than any fixed square, additive key, affine alphabet, or known 25-symbol stream. Key values and key material are entirely unconstrained.
+
+For any deterministic bijection F at one repeated phase, **equal ciphertext symbols imply equal plaintext symbols**. The provisional LP1 p5 seven-word GP-native crib supplies 30 source-aligned characters on original p55 positions46–75, so five phase pairs 25 apart can directly test this no-secret invariant. Two are decisive:
+
+| Original rune positions, same clock phase | Original ciphertext symbol, GP index | Required proposed plaintext pair, GP indices |
+|---|---:|---:|
+| **49 and74** | **18 and18** | **3 and21**, distinct |
+| **50 and75** | **10 and10** | **16 and15**, distinct |
+
+Both pairs are original ciphertext equalities in the **same period25 phase**, yet the proposed plaintext requires inequality. **This is impossible for any collection of 25 completely unknown invertible GP29 substitution maps**, irrespective of their values, initial phase, and whether a row/column traversal is used as a *source to choose keys* without changing which position carries which phase. The condition extends to any phase-dependent deterministic **injective** symbol mapping.
+
+This is a purely algebraic contradiction of **(stationary 25-clock source-body cipher plus exact proposed 30-rune phrase)**. It cannot independently certify that the proposed crib is correct, or exclude a running-state cipher, a different plaintext alphabet or a source-justified permutation of positions. Its exact two witnesses are asserted by the [source-body SFT](../sims/p55_moth_wisdom_25cell_phi_sft.cjs).
+
 ## Direct 5×5 Hill-matrix reading of the same source geometry
 
 A second natural role for the 2014 p5 **5×5 matrix** with exactly **75=15×5** p55 body runes is the historic Hill cipher, rather than a periodic additive pad. The source already calls for phi, and the 29-rune GP alphabet supplies the prime modulus. Apply Euler φ to each original matrix cell, reduce modulo29 and arrange the 25 values in their original 5×5 printed rows:
