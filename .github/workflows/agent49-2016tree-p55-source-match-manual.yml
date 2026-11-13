@@ -1,10 +1,20 @@
-name: Agent49 2016 tree and p55 source-image match
+name: Agent49 original-source art and GP29 word-shape gates
 on:
   workflow_dispatch:
+    inputs:
+      check:
+        description: Source gate to run
+        type: choice
+        required: true
+        default: art
+        options:
+          - art
+          - word-pattern
 permissions:
   contents: read
 jobs:
   compare-original-art:
+    if: ${{ inputs.check == 'art' }}
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
@@ -18,3 +28,16 @@ jobs:
       - name: Compare original source-image art with positive and negative controls
         shell: pwsh
         run: python sims/lp2_p55_2016_tree_crossimage_sft.py
+
+  original-word-pattern:
+    if: ${{ inputs.check == 'word-pattern' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Check arbitrary-secret per-word GP29 alphabet invariant and controls
+        shell: pwsh
+        run: node sims/lp2_perword_alphabet_pattern_sft.cjs
