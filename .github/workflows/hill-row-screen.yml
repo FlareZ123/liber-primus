@@ -17,6 +17,7 @@ on:
           - lag7triple
           - rankhill
           - source-grid-matrices
+          - p15-grid-source-consumer
           - terminal-circulant
 jobs:
   scan:
@@ -63,6 +64,9 @@ jobs:
         run: |
           node sims/grid16_hill_source_inverse.cjs
           node sims/grid_tiled_hill_inverse.cjs
+      - name: Test printed p15 Hill matrix directly on printed 256-byte grid
+        if: inputs.experiment == 'p15-grid-source-consumer'
+        run: node sims/lp2_p15_matrix_on_p50_grid_original_sft.cjs
       - name: Gate 8-column cyclic table map against authentic terminal plaintext
         if: inputs.experiment == 'terminal-circulant'
         run: node sims/terminal_grid8_circulant_knownplain_sft.cjs
