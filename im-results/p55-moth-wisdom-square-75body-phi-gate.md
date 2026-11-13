@@ -58,8 +58,47 @@ This is a useful locked falsification of the **cipher-plus-prospective-crib conj
 
 The SFT asserts all ten unequal key-pair witnesses directly on original GP indices, in addition to testing the table-derived key.
 
+## Direct 5×5 Hill-matrix reading of the same source geometry
+
+A second natural role for the 2014 p5 **5×5 matrix** with exactly **75=15×5** p55 body runes is the historic Hill cipher, rather than a periodic additive pad. The source already calls for phi, and the 29-rune GP alphabet supplies the prime modulus. Apply Euler φ to each original matrix cell, reduce modulo29 and arrange the 25 values in their original 5×5 printed rows:
+
+| | | | | |
+|---:|---:|---:|---:|---:|
+|12|15|10|14|5|
+|4|24|19|12|6|
+|25|23|14|23|25|
+|6|12|19|24|4|
+|5|14|10|15|12|
+
+**Mathematical input fact:** its exact determinant is **28 mod29 = −1**, so the matrix is invertible over GP29 with no secret coefficients. The exact modular inverse is:
+
+| | | | | |
+|---:|---:|---:|---:|---:|
+|12|13|17|12|24|
+|27|25|9|3|0|
+|26|15|3|15|26|
+|0|3|9|25|27|
+|24|12|17|13|12|
+
+The candidate is the standard column-vector Hill inversion of each of the 15 consecutive 5-rune blocks, with no carry, phase, F omission, or unknown alphabet. Test a row-vector transpose and the untransformed original number-square matrix in both vector conventions as **three wrong-source/orientation controls**. Both matrices are invertible: raw-cell determinant **3 mod29**.
+
+| Source / orientation | Original 75-rune GP trigram score |
+|---|---:|
+| **φ(square), column-vector** | **−12.666276** |
+| φ(square), row-vector | −12.368575 |
+| Raw numeric square, column-vector | −12.115441 |
+| Raw numeric square, row-vector | −12.348893 |
+
+All four outputs are unintelligible GP text and score below all **22,622** held-out native-English 75-rune windows (worst score −9.760735). The complete primary original-output transliteration is:
+
+> UXITHOEBIEAPLNEEOTAEDEAEFYWRBAEAEAMLPJXBTHOENFTDTHYEOJNWCCWWJFJTHRFPXRUIYWUPEOEAEOLCFAELWEOGL
+
+Every 75-rune decoded output re-encrypts the untouched original ciphertext under its exact inverse, and all four 75-rune solved-English plants decrypt exactly. The source-motivated **φ-square Hill transfer therefore fails to recover original plaintext**. Its determinant is a potentially useful property of a candidate matrix; its exact value does not authenticate any LP2 cipher.
+
+The [self-contained 5×5 source-matrix Hill SFT](../sims/p55_moth_wisdom_5x5_hill_sft.cjs) includes source image and matrix assertions, modular determinant/inverse proof, complete original readouts, 75/75 planted controls and 22,622 held-out windows. The wrong-source matrix is a control, not permission for broader Hill-key searches.
+
 ## Decision
 
-The 75=3×25 relation is a source-constrained potential way to interpret the reused moth's 5×5 matrix. **The cheapest historically precedented totient/Vigenère use does not decode p55.** Retire this exact transfer; the moth, 5×5 table and exact p55 body length remain source facts. Do not broaden into different key phases, square traversals, moduli or nonadditive ciphers without an original selector.
+The 75=3×25 relation is a source-constrained potential way to interpret the reused moth's 5×5 matrix. **The direct totient/Vigenère pad and the source-φ 5×5 Hill operation both fail to decode p55.** Retire this exact transfer; the moth, 5×5 table and exact p55 body length remain source facts. Do not broaden into different key phases, square traversals, moduli or nonadditive ciphers without an original selector.
 
 **Reproduction:** [complete self-contained Node.js CommonJS SFT](../sims/p55_moth_wisdom_25cell_phi_sft.cjs), using the canonical GP29 corpus, original p55 JPEG, the printed source-square constants and the pinned GP-normalized Gibran control.
