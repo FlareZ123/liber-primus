@@ -27,12 +27,12 @@ The heldout score is the mean log probability (natural logs) of the decoded nati
 | Original versus genuine two-step encrypted English | Original unsolved LP2 | 32 true-key-family plants |
 |---|---:|---:|
 | Source runes | 12,956 | 12,956 each |
-| Conditional collision proportion | **0.0349061** | **0.06199–0.06552** |
+| Conditional collision proportion | **0.0349061** | **0.06073–0.07106** |
 | Trained decoder heldout mean log GP probability | **−4.268512** | **−3.94884 to −3.83976** |
 | Heldout predicted rune E fraction | **0.0350** | **0.0630–0.0863** |
 | Exact forward/backward source-language plant check | Not known | 12,846/12,846, each |
 
-Every one of the **32** genuine encrypted-native-English controls scores better than the original under *both* the conditional-collision invariant and the heldout rank decoder. The strongest original ciphertext training fit (mean log probability **−2.559849**) collapses to **−4.268512** when frozen on independent pages. In contrast, planted controls preserve an independent English-like signal even though the rank decoder has no knowledge of their actual random secret tables.
+Every one of the **32** genuine encrypted-native-English controls score better than the original under *both* the conditional-collision invariant and the heldout rank decoder. The strongest original ciphertext training fit (mean log probability **−2.559849**) collapses to **−4.268512** when frozen on independent pages. In contrast, planted controls preserve an independent English-like signal even though the rank decoder has no knowledge of their actual random secret tables.
 
 **Important limit:** This experiment is not a key-independent logical impossibility for arbitrary coherent English text. The exact 7,022 equality count is the secret-map invariant; comparison to 32 random authentic-family controls is a **finite statistical model check** conditional on native-English register, the printed page splits and stationary two-step row-key assumption. A highly nonrandom specially designed secret table, a hidden state evolving in addition to the two previous ciphertext symbols, a distinct plaintext language, transposition, multiple-rune compression, or different page/word resets could alter these distributions. The author did not provide an identified pair-state S-box, so there is no warrant for adding its parameters to salvage a negative. This avenue does not decrypt any real unknown rune.
 
