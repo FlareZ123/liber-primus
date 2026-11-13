@@ -140,6 +140,14 @@ for (let i = 0; i < crowley.chapters.length; i++) {
     values: chapter.word_lengths});
 }
 
+// 2012 Gibson Agrippa poem, recovered from a 2013 book-code solver.
+// Only derived word lengths are retained, not the copyrighted source text.
+const agrippa = JSON.parse(read('resources/external/cicada2012-agrippa-gibson-archived-gp-wordlengths.json'));
+assert.equal(agrippa.word_lengths.length, 1682);
+sources.push({name: '2012 Gibson Agrippa book-code poem (archived)',
+  source: agrippa.source_url, expected: [1682, 1, 8],
+  values: agrippa.word_lengths});
+
 for (const item of sources) {
   const summary = matchLengths(lens, item.values);
   assert.deepEqual([summary.sourceWords, summary.matchedWindows,
