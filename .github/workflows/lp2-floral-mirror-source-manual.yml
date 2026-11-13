@@ -41,3 +41,5 @@ jobs:
           node sims/lp2_p15_twinprime_rsa4_cyclewalk_sft.cjs
           node --check sims/lp2_p15_red7_floral_gp28_feedback_sft.cjs
           node sims/lp2_p15_red7_floral_gp28_feedback_sft.cjs
+          node --check sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs
+          node sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs
