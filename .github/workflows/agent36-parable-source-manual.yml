@@ -1,0 +1,17 @@
+name: Agent 36 Parable Source Route
+on:
+  workflow_dispatch:
+jobs:
+  source-route:
+    runs-on: windows-latest
+    steps:
+      - name: Check out canonical source
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check script syntax
+        run: node --check sims/lp2_2013_parable_table_xor_word20_sft.cjs
+      - name: Run original-input test
+        run: node sims/lp2_2013_parable_table_xor_word20_sft.cjs
