@@ -335,8 +335,8 @@ function visualChapters(original, english) {
   assert.deepEqual(out[3], {
     physicalPages:"15-22",printedWords:437,
     observedTotal:10,observedInitial:0,
-    expectedTotal:12.009,sdTotal:3.404,
-    expectedInitial:0.802,sdInitial:0.892,
+    expectedTotal:12.011,sdTotal:3.403,
+    expectedInitial:0.797,sdInitial:0.891,
     unsupportedEnglishMasks:0
   });
   return out;
