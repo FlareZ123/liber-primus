@@ -45,3 +45,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
           node sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
+      - name: Exhaustive 3^17 secret affine Hill and causal filter inversion
+        run: |
+          node --check sims/lp2_p15_affine17_allsecret_original_word_gate_sft.cjs
+          node sims/lp2_p15_affine17_allsecret_original_word_gate_sft.cjs
