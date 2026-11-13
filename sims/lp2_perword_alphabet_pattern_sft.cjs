@@ -260,6 +260,38 @@ assert.deepEqual(Object.values(phaseMisses),
   [51, 11, 1, 1, 0, 0, 0, 0]);
 assert.equal(phaseMisses[1], 51);
 
+// A clue-adjacent transposition countercheck: allow arbitrary cyclic rune
+// shifts and/or reversal inside EACH printed word, followed by an entirely
+// independent unknown secret GP29 alphabet bijection per word. The exact
+// equality signature remains invariant up to the allowed dihedral orbit.
+const reverseShapes = new Set();
+const rotationShapes = new Set();
+const dihedralShapes = new Set();
+for (const {code:word} of dictionary) {
+  reverseShapes.add(patternKey(word.slice().reverse()));
+  for (let k = 0; k < word.length; k++) {
+    const rotated = [...word.slice(k), ...word.slice(0, k)];
+    const fwd = patternKey(rotated);
+    rotationShapes.add(fwd);
+    dihedralShapes.add(fwd);
+    dihedralShapes.add(patternKey(rotated.reverse()));
+  }
+}
+const orientations = {
+  eitherDirection: ciphertextWords.filter(w =>
+    !patterns.has(patternKey(w)) && !reverseShapes.has(patternKey(w))).length,
+  anyCircularStart: ciphertextWords.filter(w =>
+    !rotationShapes.has(patternKey(w))).length,
+  anyCircularStartAndDirection: ciphertextWords.filter(w =>
+    !dihedralShapes.has(patternKey(w))).length
+};
+assert.deepEqual(orientations,
+  {eitherDirection: 40, anyCircularStart: 26,
+    anyCircularStartAndDirection: 22});
+const longDihedralMiss = longWords.filter(w =>
+  !dihedralShapes.has(patternKey(w))).length;
+assert.equal(longDihedralMiss, 17);
+
 // Independent native-GP English comparison is length-stratified.
 const control = new Map();
 const controlFiles = [
@@ -306,6 +338,8 @@ if (require.main === module) {
     lowerBoundSymbolChanges: minChanged,
     afterArbitraryWithinWordTranspositionHistogramMisses: longHistogramMisses,
     afterIndependentPerWordPerPhaseSubstitutionAlphabetMisses: phaseMisses,
+    afterWordLocalOrientationsAndSecretBijectiveAlphabets: orientations,
+    longWordDihedralMisses: longDihedralMiss,
     editDistribution: {zero:edits[0],one:edits[1],two:edits[2],threeOrMore:edits[3]},
     solvedLP1SourceWordsMatched: lp1.length,
     independentControlSamples: individually,
