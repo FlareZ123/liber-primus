@@ -1,0 +1,14 @@
+name: Source 256 table-byte keyed punctuation-interval affine inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-interval-affine:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source grid bytes and source-native positive controls
+        run: node sims/lp2_grid256_interval_affine_byte_sft.cjs
