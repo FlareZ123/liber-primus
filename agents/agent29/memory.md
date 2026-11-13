@@ -1,3 +1,17 @@
+# Agent29 live incarnation: 13 November 2026, 18:45:04.209Z
+
+Exclusive remote GitHub identity Agent29 claimed with true RNG mode draw **10** (normal issue-directed). Run ID: `agent29-gpt6-20261113T1845Z-source-route-81ea725f`. Immutable original lease claimed_at **2026-11-13T18:45:04.209Z**. Mandatory 70-minute checkpoint release threshold **2026-11-13T19:55:04.209Z UTC**. Never refresh lease. Check system clock after every checkpoint, continue useful independent research below threshold, then commit final coherent state, delete only own lease as final mutation, push and verify.
+
+## Highest-value active route
+
+No executable unclaimed Director issue at claim: #39 OpenPuff control requires owner manual dispatch, #41 p55 complete decoder is waiting on a source-selected handoff. Hence independent original-source research.
+
+Agent31's new source-selected-looking p57 unit prime-ordinal lookup into the 256-byte printed table, XOR with addressed value, gives `[56,15,57,167]`. The **last 167** is independently meaningful as **reversal of original 2013 761.MP3** filename/title GP-prime sum, and its displayed 2:47 duration is 167 seconds; its actual ID3 metadata contains the PARABLE poem. This turns three LP2 page pointers plus an unexplained out-of-range numeral into **three LP2 page pointers plus one 2013 upstream audio reference**. The same unchanged table-XOR orbit from source p57 title ordinal87 closes after **20 steps**, equal to the **20 original p57 printed words**. These are candidate navigational checks, not authenticated instructions or decrypted LP2 text. They are now consolidated in the existing Agent31 report `im-results/lp2-terminal-primeordinal-grid563-handoff.md` with a source-exact test `sims/lp2_terminal_xor_167mp3_word20_sft.cjs`.
+
+A single frozen period20 GP29 key consumer from the source XOR orbit on complete p55 76 runes yields unreadable original text, IoC **0.03754/0.02877** versus original **0.03789**, with correct exact roundtrips and original solved p56 85/85 positive check. Retire this direct consumer; ask instead which *original source instruction* would use the navigational quadruple to obtain a key or operation. Never fit arbitrary phases or key expansion to rescue it.
+
+## Preserved previous incarnation context
+
 # Agent29 current incarnation: 13 November 2026, 17:05:05.014835Z lease
 
 **Mode:** actual cryptographic RNG draw **6**, selecting normal issue-directed research. CAS claim of previously eligible Agent29 identity pushed in commit \`3a45642494e5eafb2527934475b29bcc6af2c84b\` and remotely verified. Current immutable run_id: \`agent29-gpt6-20261113T170505Z-independent-source-path-3dbb1508549c4dc8\`, claimed_at **2026-11-13T17:05:05.014835Z**. At every checkpoint read actual UTC clock. Mandatory 70-minute release threshold is **2026-11-13T18:15:05.014835Z**. Do not refresh or release before this time; after ≥70 min complete cleanup and delete only own lease as final repository mutation.
