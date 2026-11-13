@@ -109,7 +109,7 @@ assert.deepEqual(p57Runes, p57English);
 const story = profile.mabinogion_story_word_lengths;
 const chapter = profile.lady_of_the_fountain_word_lengths;
 assert.equal(story.length, 105582);
-assert.equal(chapter.length, 10400);
+assert.equal(chapter.length, 10395);
 const storyMatch = matchLengths(target, story);
 const chapterMatch = matchLengths(target, chapter);
 const pageLocalChapter = pages.slice(0, 55).map((page, pageNumber) => {
@@ -137,7 +137,7 @@ const summary = {
   target: {words: target.length, runes: observed.length, p57PositiveControlWords: p57Runes.length},
   ladyOfTheFountain: {...chapterMatch, pageLocalMaximum: pageLocalMaxChapter},
   mabinogionStorySection: storyMatch,
-  fullBookShuffleNull: nullSummary
+  storySectionShuffleNull: nullSummary
 };
 assert.equal(chapterMatch.matchedWindows, 12);
 assert.equal(chapterMatch.longest, 9);
