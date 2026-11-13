@@ -1,10 +1,6 @@
 name: Signed 2016 GP word numbers to p55 original interior
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/p32_p55_43symbol_additive_bridge.cjs'
-      - 'sims/lp2_p55_dh761_rank_transposition_sft.cjs'
 permissions:
   contents: read
 jobs:
