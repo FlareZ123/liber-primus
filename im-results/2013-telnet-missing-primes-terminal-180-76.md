@@ -168,6 +168,24 @@ Two simple source-quotient refinements are also excluded without inventing a key
 
 This result is a bounded **source-paired necessary-condition exclusion**, not a new explanation of the prime gap. It leaves open full unmodded byte and prime registers, a varying-state mapping, other original source orders, and a possible unrelated role for the 2013 omission. It supplies no unknown plaintext. Reproducer: [standalone CJS SFT](../sims/lp2_2013_omitted180_prime_terminal_gate_sft.cjs), passed the original [manual source run 43312071794](https://github.com/FlareZ123/liber-primus/actions/runs/43312071794) and the strengthened [full-byte/quotient regression 43316107233](https://github.com/FlareZ123/liber-primus/actions/runs/43316107233), both with an exactly invertible planted 180/180 GP29 affine relation.
 
+## Registered E56w+n word-lattice test of the historical 180/76 prime split (Agent 50, 13 November 2026)
+
+The external [RiskAverseTech/cicada-ioc E56 lattice decoder](https://github.com/RiskAverseTech/cicada-ioc/blob/ff52f6dfa0f0a5b4576079aa9addc5b08283e640/src/e56_lattice.py) models word-lattice plaintext with a soft repeat-rejection key skip (q=0.81), a per-word lag-5/lag-6 echo gate (r=0.5), at most one unkeyed filler per word (p=0.40), an out-of-dictionary branch (p=0.04), and beam width 8. This is an empirically fitted structural model, **not an established LP2 cipher**.
+
+A source-constrained test applied that exact model to the already documented 2013 prime split, without changing its assignment:
+
+- The 180 omitted prime ordinals 21–200 (73–1,223) key p53 plus the first red Ac of p54 (180 runes).
+- The 76 visible primes from ordinals 1–20 and 201–256 key p55 (76 runes).
+- Forward order only; key transforms p mod 29 and φ(p)=p−1 mod 29; three signs (P=C−K, P=C+K, P=K−C); literal-F handling on/off. No offsets, reversals, fitted key, or alternative region assignment.
+
+The independent implementation uses NumPy 2.3.5 and TextBlob 0.19.0 spelling counts aggregated into 29,060 GP-rune word sequences. This is a broad approximation to the upstream 18,580-entry rune dictionary, **not a byte-identical reproduction**. Its synthetic E56w+n control recovered 100% of runes with F handling off and 97.23% with F handling on (including planted fillers), showing that the local decoder can recover planted text under the tested model.
+
+For each region/F setting, 500 random keys supplied the single-cell null. A 100-replicate max-statistic null covered all 24 region × transform × sign × F combinations. The best original candidate was p53+Ac, p mod29, additive sign, F-on: z=2.705, but it remained below the maximum of its 500-key null (−730.878 versus candidate score −736.780), decoded only 18/180 known letters with 158/180 out-of-dictionary runes, and produced no coherent text. The best p55 candidate reached z=1.266 and only 4/76 known letters (70/76 out-of-dictionary). No candidate path used a lag-5/lag-6 echo.
+
+The observed maximum z=2.705 is ordinary under the family-wise null: empirical p=0.248; null median 2.176, 90th percentile 3.564, 95th percentile 4.223, maximum 5.591. The uncorrected single-cell p≈0.008 for the top fragment is therefore a multiple-comparison false lead, not a plaintext recovery.
+
+**Decision:** this registered word-lattice/feedback model does not rescue the 2013 180/76 prime assignment. The 180/76 size correspondence remains a retrospective structural observation; neither it nor the fitted E56w+n model specifies an authenticated LP2 key. Do not extend this branch with offsets, reversed sequences, or extra key transforms. Reproducer: [`sims/lp2_e56_prime_gap_18076_sft.py`](../sims/lp2_e56_prime_gap_18076_sft.py), using the stated package versions.
+
 ## What would change the decision
 
 The 180-prime omission remains a plausible cross-round source observation, but it does not itself specify a decipherment. Direct prime/totient-prime pads, the isolated 179/180 adjacent-gap pads, the literal 180/76 gap-byte XOR, the cumulative gap walk, the direct p50 interior/perimeter mod-29 additive-key split, the fixed 180/76 spiral transposition, and the original 180-known-symbol **arbitrary stationary GF29 pair-codebook** all fail their frozen tests. The double-space D·IA/LP interpretation is selector-dependent; `NUMBER(31)` returns `+`, not `C`, and the archive's reconstructed server appends extra spaces after 29/3257.
