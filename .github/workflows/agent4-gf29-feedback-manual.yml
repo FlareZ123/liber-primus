@@ -14,3 +14,6 @@ jobs:
 
       - name: Run original-table AES256 feedback key consumer
         run: node sims/lp2_gf29_delta_table_aes256_direct_sft.cjs
+
+      - name: Run solved-p56 prime-totient source-key multiplicative feedback test
+        run: node sims/lp2_gf29_delta_p56_totient_group_source_sft.cjs
