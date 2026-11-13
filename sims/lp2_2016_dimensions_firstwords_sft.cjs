@@ -141,6 +141,11 @@ const p57Native = corpus.pages.find(page => page.page === 57).indices;
 const p57PlainIOC = indexOfCoincidence(p57Native);
 assert.ok(p57PlainIOC > 0.055);
 const twoDimensionalConsumers = [];
+const p33OriginalBody81 = corpus.pages.find(page => page.page === 33)
+  .indices.slice(10, 91);
+assert.equal(p33OriginalBody81.length, 81);
+const twoStageP33Consumers = [];
+
 
 function recordConsumer({ mode, kind, sx = 0, sy = 0, sign = 0,
   firstRow = 0, rowWeights, columnWeights }) {
@@ -160,6 +165,32 @@ function recordConsumer({ mode, kind, sx = 0, sy = 0, sign = 0,
     ioc: indexOfCoincidence(plain),
     prefix: plain.slice(0, 44).map(v => corpus.translit[v]).join('')
   });
+  // The p32 121-rune intermediate might be a *key* rather than English.
+  // The solved p57 instruction SHED OUR OWN CIRCUMFERENCES and the
+  // source-ink-delineated p33 81-rune body select a distinct 9x9 consumer.
+  // This reuses every previously frozen 11+10 source-key interpretation,
+  // without requiring that the whole p32 intermediate read as plaintext.
+  const key81 = Array.from({length: 81}, (_, position) => {
+    const row = Math.floor(position / 9) + 1;
+    const column = position % 9 + 1;
+    return plain[row * 11 + column];
+  });
+  const nativePlant = p57Native.slice(0, 81);
+  for (const downstreamSign of [-1, 1]) {
+    const restored = p33OriginalBody81.map((rune, i) =>
+      mod29(rune + downstreamSign * key81[i]));
+    const encodedPlant = nativePlant.map((rune, i) =>
+      mod29(rune - downstreamSign * key81[i]));
+    assert.deepEqual(encodedPlant.map((rune, i) =>
+      mod29(rune + downstreamSign * key81[i])), nativePlant);
+    twoStageP33Consumers.push({
+      mode, kind, sx, sy, sign, firstRow, downstreamSign,
+      ioc: indexOfCoincidence(restored),
+      prefix: restored.slice(0, 50)
+        .map(value => corpus.translit[value]).join('')
+    });
+  }
+
 }
 for (const mode of ['GP-index', 'GP-prime-mod29']) {
   const scalar = r => mode === 'GP-index' ? r : corpus.prime[r] % 29;
@@ -175,6 +206,12 @@ for (const mode of ['GP-index', 'GP-prime-mod29']) {
   }
 }
 assert.equal(twoDimensionalConsumers.length, 16);
+assert.equal(twoStageP33Consumers.length, 32);
+const bestTwoStageP33 = [...twoStageP33Consumers]
+  .sort((a, b) => b.ioc - a.ioc)[0];
+assert.ok(Math.abs(bestTwoStageP33.ioc - 0.04135802469135803) < 1e-12);
+assert.ok(bestTwoStageP33.ioc < indexOfCoincidence(p57Native.slice(0, 81)));
+
 const best2D = [...twoDimensionalConsumers].sort((a,b) => b.ioc - a.ioc)[0];
 assert.ok(best2D.ioc < 0.04,
   'original source-addressed 2D consumer surprisingly looks like English: inspect');
@@ -437,6 +474,11 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  newBASp32AsKeyP33Body81: {
+    originalP33BodyIOC: indexOfCoincidence(p33OriginalBody81),
+    solvedP57ControlIOC: indexOfCoincidence(p57Native.slice(0, 81)),
+    best: bestTwoStageP33, all: twoStageP33Consumers
+  },
   newBasSixRuneSourceKey: {source: 'p0 word6 prefix6, axis gap6',
     originalP0TailLength: originalP0AfterWord6.length,
     originalP1Length: originalP1.length, variants: keyConsumerResults},
