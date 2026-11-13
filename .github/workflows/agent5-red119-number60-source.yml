@@ -12,3 +12,7 @@ jobs:
           node-version: '22'
       - name: Original red119 table selector readout
         run: node sims/lp2_red119_number60_direct_table_lookup_sft.cjs
+      - name: Red119 triplet prime sums, chapter addresses and historical title 133
+        run: |
+          node --check sims/lp2_red119_gpprime_page133_bridge_sft.cjs
+          node sims/lp2_red119_gpprime_page133_bridge_sft.cjs
