@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Try signed-2016 dimension words as p32 Toeplitz11 key
+        run: node sims/lp2_2016_dimension_wordpair_toeplitz11_sft.cjs
       - name: Try original p32 full-square key on p33
         run: node sims/lp2_p32_p33_11square_hill_sft.cjs
       - name: Try tree-echo p54 to p55 source-linked terminal chapter
