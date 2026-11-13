@@ -24,3 +24,7 @@ jobs:
         run: node --check sims/lp2_grid256_punctuation_interval_allsecret_sft.cjs
       - name: Run original 256 punctuation-interval source gate
         run: node sims/lp2_grid256_punctuation_interval_allsecret_sft.cjs
+      - name: Check authentic 2014 onion-2 256-byte key consumer SFT
+        run: node --check sims/lp2_2014_onion2_grid256_historical_key_sft.cjs
+      - name: Run authentic 2014 onion-2 256-byte key consumer SFT
+        run: node sims/lp2_2014_onion2_grid256_historical_key_sft.cjs
