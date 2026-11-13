@@ -188,6 +188,18 @@ assert.equal(pageTranscriptions.length, 58);
 const original55Words = (pageTranscriptions[55].replace(/\/\s*/gu, '')
   .match(/[\u16A0-\u16FF]+/gu) || [])
   .map(word => [...word].map(rune => runeMap.get(rune)));
+// Original printed word boundaries on the two independently solved pages;
+// ciphertext spellings on p56 are retained, only word LENGTHS are needed.
+const originalKnownWords = [56, 57].flatMap(page =>
+  (pageTranscriptions[page].replace(/\/\s*/gu, '')
+    .match(/[\u16A0-\u16FF]+/gu) || [])
+    .map(word => [...word].map(rune => runeMap.get(rune))));
+assert.equal(originalKnownWords.length, 45);
+assert.deepEqual(
+  originalKnownWords.map(word => word.length).reduce((a, b) => a + b, 0),
+  180);
+assert.deepEqual(originalKnownWords.flat(),
+  corpus.pages[56].indices.concat(corpus.pages[57].indices));
 assert.deepEqual(original55Words.flat(), original55);
 assert.deepEqual(original55Words.map(word => word.length),
   [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
@@ -305,6 +317,21 @@ for (const reverse of [false, true]) {
   assert.equal(shellLocalSecretCodebooks.reduce(
     (sum, item) => sum + item.arbitrarySecretByteToGP.requiredChanges, 0),
     reverse ? 19 : 21);
+  // Give every printed word its OWN wholly unrelated 256-token codebook.
+  // Even resetting state on every natural word is insufficient: identical
+  // printed source token strings require different solved runes within words.
+  const originalInnerTokens = shells.slice(1).flat()
+    .map(([row, col]) => gridSource.rows[row][col]);
+  const perWordKeys = [];
+  let textOffset = 0;
+  for (const [wordIndex, word] of originalKnownWords.entries()) {
+    for (let i = 0; i < word.length; i++) {
+      perWordKeys.push(wordIndex + ':' + originalInnerTokens[textOffset++]);
+    }
+  }
+  assert.equal(textOffset, 180);
+  const fullySecretPerWord = mapCapacity(perWordKeys, known);
+  assert.equal(fullySecretPerWord.requiredChanges, reverse ? 1 : 2);
   const positive = mapCapacity(inside, residues);
   assert.equal(positive.maxMatches, 180);
   assert.equal(positive.requiredChanges, 0);
@@ -416,6 +443,7 @@ for (const reverse of [false, true]) {
     bestAnySecretRawByteToGP: raw,
     bestAnySecretResidue29ToGP: residue,
     independentSecretCodebookPerInteriorRing: shellLocalSecretCodebooks,
+    arbitrarySecretFreshCodebookEveryPrintedWord: fullySecretPerWord,
     directOriginalPrintedTokenContradictions: counterexamples,
     positiveSecretRawByteToGP: positive,
   });
