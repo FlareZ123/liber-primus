@@ -25,5 +25,8 @@ jobs:
       - name: Predict withheld 76-rune p55 from solved180 and perimeter monic GF29 cyclic code
         run: node sims/lp2_terminal256_outer76_cyclic_completion_sft.cjs
 
+      - name: Predict p57 and p56 from each other by GF256 low-degree key interpolation
+        run: node sims/lp2_terminal256_gf256_erasure_sft.cjs
+
       - name: Exclude all-secret full-width 8x8 affine filter on solved 180 terminal runes
         run: node sims/lp2_terminal256_8x8_allsecret_kernel_sft.cjs
