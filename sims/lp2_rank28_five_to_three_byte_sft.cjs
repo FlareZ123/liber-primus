@@ -140,6 +140,40 @@ function nativePlant(mode) {
   return recovered.length;
 }
 
+
+/**
+ * Verify exact reconstruction of the original GP ciphertext from rank
+ * digits plus the positions of its literal repeat markers.
+ * @param {number[][]} pages
+ * @param {"cyclic"|"sorted"} mode
+ * @param {boolean} pageReset
+ * @returns {number}
+ */
+function replay(pages, mode, pageReset) {
+  let prev = 0, checked = 0;
+  for (const page of pages) {
+    if (pageReset) prev = null;
+    for (const originalRune of page) {
+      if (prev === null) {
+        prev = originalRune;
+        checked++;
+        continue;
+      }
+      if (originalRune !== prev) {
+        const digit = rank(prev, originalRune, mode);
+        const ciphertext = mode === "cyclic"
+          ? (prev + digit + 1) % 29
+          : digit + Number(digit >= prev);
+        assert.equal(ciphertext, originalRune);
+      }
+      prev = originalRune;
+      checked++;
+    }
+  }
+  assert.equal(checked, 12956);
+  return checked;
+}
+
 function run() {
   const pages = original.map(p => p.indices);
   const sourceDoublets = pages.reduce((n, p) =>
@@ -150,6 +184,7 @@ function run() {
   for (const mode of ["cyclic", "sorted"]) {
     assert.equal(nativePlant(mode), 93);
     for (const pageReset of [false, true]) {
+      assert.equal(replay(pages, mode, pageReset), 12956);
       const stream = ranks(pages, mode, pageReset);
       assert.equal(stream.length, pageReset ? 12815 : 12870);
       for (let phase = 0; phase < 5; phase++) {
@@ -188,4 +223,4 @@ function run() {
   return summary;
 }
 if (require.main === module) run();
-module.exports = {rank,ranks,pack,fiveDigits,nativePlant,run};
+module.exports = {rank,ranks,pack,fiveDigits,nativePlant,replay,run};
