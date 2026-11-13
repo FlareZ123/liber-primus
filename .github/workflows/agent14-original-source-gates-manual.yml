@@ -40,3 +40,8 @@ jobs:
         run: |
           node --check sims/lp2_p15_circulant16_allsecret_singleword_recovery_sft.cjs
           node sims/lp2_p15_circulant16_allsecret_singleword_recovery_sft.cjs
+
+      - name: Exhaustively search every 16-tap causal FIR inverse on the original chapter
+        run: |
+          node --check sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
+          node sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
