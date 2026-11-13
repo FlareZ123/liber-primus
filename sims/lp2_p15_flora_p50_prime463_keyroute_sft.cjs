@@ -190,6 +190,37 @@ const historicalCenter = sevenSquare[3][3];
 assert.equal(historicalCenter, 331);
 assert.equal(sevenSquare[0].reduce((sum, x) => sum + x, 0), 1033);
 assert.equal(40 + 13, 53);
+// Source-visible tenth floral page (p49) ends its 66 GP runes in a
+// unique red TEN-DOT mark at the start of the 256-cell numeric table.
+// Tenth outward p15 prime=263. All-floral red prime-sum selects
+// the p15 cell3294 with associated prime7; 263-7=256 bytes.
+// Arithmetic is exact, but this pointer/consumer is retrospective.
+const p49Ink = annotations.pages.find((p) => p.page === 49);
+assert.equal(p49Ink.rune_count, 66);
+assert.deepEqual(p49Ink.large_punctuation, [[66, 10, "red"]]);
+const floralTenDots = annotations.pages
+  .filter((p) => p.page >= 40 && p.page <= 55)
+  .flatMap((p) => (p.large_punctuation || []).filter((d) => d[1] === 10));
+assert.equal(floralTenDots.length, 1);
+assert.equal(49 - 40 + 1, 10);
+assert.equal(printedP15[9], 3038);
+assert.equal(recovered[9], 263);
+const p40RedSum = group[0].indices.slice(0, 8)
+  .reduce((sum, x) => sum + corpus.prime[x], 0);
+const p54RedSum = group[14].indices.slice(0, 9)
+  .reduce((sum, x) => sum + corpus.prime[x], 0);
+const allFloralRedSum = p40RedSum + red53Sum + p54RedSum;
+assert.equal(allFloralRedSum, printedP15[3]);
+assert.equal(allFloralRedSum, 3294);
+assert.equal(recovered[3], 7);
+assert.equal(recovered[9] - recovered[3], bytes.length);
+assert.deepEqual(table.pages.map((p) => p.rows), [10, 13, 9]);
+const tablePointer = {
+  markedFloralPage: 49, pageOrdinal: 10, redDots: 10,
+  p15SpiralIndex: 9, sourcePrime: recovered[9],
+  allFloralRedPrimeSum: allFloralRedSum, selectedP15Prime: recovered[3],
+  difference: recovered[9] - recovered[3], printedTableCells: bytes.length
+};
 assert.equal(printedP15[13], 708);
 assert.equal(recovered[13], 2593);
 assert.equal(red53Sum + historicalCenter, recovered[13]);
@@ -230,7 +261,7 @@ const page53Bridge = {
 };
 
 console.log(JSON.stringify({
-  page53Bridge,
+  tablePointer, page53Bridge,
   p15Index: 10, correspondingFloralPage: 50, p15Cell: printedP15[10],
   selectedPrime: recovered[10], nthPrime463: primes[462],
   sourceBodyLength: body.length, generatorCycleLength: 3298,
