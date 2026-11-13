@@ -97,7 +97,8 @@ for (const source of ['raw', 'difference']) {
   }
 }
 assert.equal(n, 72);
-assert(bestPrintable.count < 150 && bestGp.count < 70);
+assert.equal(bestPrintable.count, 118);
+assert.equal(bestGp.count, 44);
 
 /* Planted English-byte positive, using a source-derived key. */
 const plantKey = serialize(square, 'BE');
