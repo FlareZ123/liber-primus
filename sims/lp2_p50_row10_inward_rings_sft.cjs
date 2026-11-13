@@ -234,6 +234,30 @@ for (const reverse of [false, true]) {
   const exact = residues.filter((value, i) => value === known[i]).length;
   const raw = mapCapacity(inside, known);
   const residue = mapCapacity(residues, known);
+  // Source-visible change-of-state allowance: independent arbitrary 256-byte
+  // secret codebook for EACH concentric ring, learned only by upper bound.
+  // Even this architecture cannot exactly reproduce the known 180 runes.
+  let knownOffset = 0;
+  const shellLocalSecretCodebooks = shells.slice(1).map((shell, index) => {
+    const innerBytes = shell.map(([row, col]) => grid[row][col]);
+    const target = known.slice(knownOffset, knownOffset + innerBytes.length);
+    knownOffset += innerBytes.length;
+    const bound = mapCapacity(innerBytes, target);
+    const mod29Bound = mapCapacity(innerBytes.map(b => b % 29), target);
+    const expectedErrors = reverse ? [8, 6, 5] : [7, 7, 7];
+    assert.equal(bound.requiredChanges, expectedErrors[index]);
+    assert.ok(bound.requiredChanges > 0);
+    return {
+      depth: index + 1,
+      knownNativeRunes: target.length,
+      arbitrarySecretByteToGP: bound,
+      arbitrarySecretResidueToGP: mod29Bound,
+    };
+  });
+  assert.equal(knownOffset, 180);
+  assert.equal(shellLocalSecretCodebooks.reduce(
+    (sum, item) => sum + item.arbitrarySecretByteToGP.requiredChanges, 0),
+    reverse ? 19 : 21);
   const positive = mapCapacity(inside, residues);
   assert.equal(positive.maxMatches, 180);
   assert.equal(positive.requiredChanges, 0);
@@ -344,6 +368,7 @@ for (const reverse of [false, true]) {
     directByteModulo29Matches: exact,
     bestAnySecretRawByteToGP: raw,
     bestAnySecretResidue29ToGP: residue,
+    independentSecretCodebookPerInteriorRing: shellLocalSecretCodebooks,
     positiveSecretRawByteToGP: positive,
   });
 }
