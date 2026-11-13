@@ -11,3 +11,6 @@ jobs:
           node-version: 22
       - name: Run source-fixed difference-domain inverse
         run: node sims/grid238_p36_chain_difference_inverse.cjs
+
+      - name: Original Q238 p3-p39 prefix seeded MI under every secret outer alphabet
+        run: node sims/lp2_q238_red119_outeralphabet_mutualinfo_sft.cjs
