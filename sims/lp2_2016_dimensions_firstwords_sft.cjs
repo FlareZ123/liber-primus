@@ -237,6 +237,53 @@ assert.equal(fixedWord1.numerator, '711438468463099');
 assert.equal(fixedWord1.denominator, '411805263302065633');
 const fixedTwoSlotJoint = fixedWord0.probability * fixedWord1.probability;
 
+
+const compass = ['N', 'E', 'S', 'W'].map(token =>
+  corpus.translit.indexOf(token));
+assert.ok(compass.every(i => i >= 0));
+const compassSet = new Set(compass);
+const compassPrefixWords = sourceWords.filter(word =>
+  word.runes.length >= 3 &&
+  word.runes.slice(0, 3).every(rune => compassSet.has(rune)));
+assert.deepEqual(compassPrefixWords.map(word => [word.page, word.word]),
+  [[0, 6], [18, 39], [23, 15], [37, 22], [45, 35]]);
+const actualPrefix = firstTwo[0].words[5].slice(0, 3);
+assert.deepEqual(actualPrefix,
+  ['N', 'E', 'W'].map(token => corpus.translit.indexOf(token)));
+assert.equal(sourceWords.filter(w =>
+  w.runes.length >= 3 && w.runes.slice(0, 3)
+    .every((rune, i) => rune === actualPrefix[i])).length, 1);
+
+/**
+ * Exact probability of a nominated ordered 3-rune prefix AND the sum
+ * target in a fixed original word slot under page-inventory shuffling.
+ * The prefix and the slot were noticed post hoc, so do not interpret
+ * this as a discovery-wide probability of an intentional cardinal clue.
+ */
+function fixedPrefixAndSumProbability(prefix) {
+  const originalPool = corpus.pages[0].indices;
+  const remainingPool = [...originalPool];
+  let prefixProbability = 1;
+  for (let j = 0; j < prefix.length; j++) {
+    const n = remainingPool.filter(rune => rune === prefix[j]).length;
+    prefixProbability *= n / remainingPool.length;
+    const position = remainingPool.indexOf(prefix[j]);
+    if (position < 0) return 0;
+    remainingPool.splice(position, 1);
+  }
+  const remainingSum = DIMENSIONS[0] -
+    prefix.reduce((s, rune) => s + corpus.prime[rune], 0);
+  return prefixProbability * exactFixedSlot(
+    remainingPool, rowKey.length - prefix.length, remainingSum).probability;
+}
+const exactNEWWordsumProbability =
+  fixedPrefixAndSumProbability(actualPrefix);
+let anyCompassTripleWith563 = 0;
+for (const a of compass) for (const b of compass) for (const c of compass)
+  anyCompassTripleWith563 += fixedPrefixAndSumProbability([a, b, c]);
+assert.ok(anyCompassTripleWith563 > 0);
+assert.ok(exactNEWWordsumProbability < anyCompassTripleWith563);
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -260,6 +307,11 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  compassSourcePrefix: {sourceWord: 'p0 word 6', originalPrefix: 'NEW',
+    allThreeCompassPrefixLocations: compassPrefixWords.map(w => [w.page,w.word]),
+    fixedWordExactNEWSum563Chance: exactNEWWordsumProbability,
+    fixedWordAnyThreeCompassSum563Chance: anyCompassTripleWith563,
+    anyCompassConditionalOnWordSum563: anyCompassTripleWith563 / fixedWord0.probability},
   fixedWordIndexHypothesis: {indexSelectors: indexedSelectors,
     p0: fixedWord0, p1: fixedWord1, jointProbability: fixedTwoSlotJoint},
   p32TwoDimensionalNaturalConsumers: {nativeP57IOC: p57PlainIOC,
