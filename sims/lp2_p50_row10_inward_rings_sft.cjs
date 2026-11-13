@@ -121,6 +121,16 @@ function mapCapacity(inputs, outputs) {
   };
 }
 
+/** @param {number[]} values @returns {number} */
+function ioc(values) {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
+
+const original55 = corpus.pages[55].indices;
+assert.equal(original55.length, 76);
 const outcomes = [];
 for (const reverse of [false, true]) {
   const shells = [0, 1, 2, 3].map(depth => ring(depth, reverse));
@@ -148,8 +158,32 @@ for (const reverse of [false, true]) {
   assert.equal(raw.conflictedClasses, target.rawConflicts);
   assert.equal(raw.distinctInputs, 127);
   assert.equal(residue.distinctInputs, 29);
+  // Source-pointed exterior as a direct 76-byte GP29 additive pad.
+  // p55 itself remains unknown and is not used to select any parameters.
+  const exteriorKey = bytes.slice(0, 76).map(byte => byte % 29);
+  const originalInverse = [];
+  for (const sign of [-1, 1]) {
+    const candidate = original55.map((r, i) =>
+      ((r + sign * exteriorKey[i]) % 29 + 29) % 29);
+    const sourceNativePlant = solved57.slice(0, 76);
+    const encryptedPlant = sourceNativePlant.map((p, i) =>
+      ((p - sign * exteriorKey[i]) % 29 + 29) % 29);
+    const recoveredPlant = encryptedPlant.map((r, i) =>
+      ((r + sign * exteriorKey[i]) % 29 + 29) % 29);
+    assert.deepEqual(recoveredPlant, sourceNativePlant);
+    const target = reverse
+      ? (sign === -1 ? 0.034035087719298245 : 0.03368421052631579)
+      : (sign === -1 ? 0.031578947368421054 : 0.03824561403508772);
+    assert.ok(Math.abs(ioc(candidate) - target) < 1e-12);
+    originalInverse.push({
+      sign, candidateIoC: ioc(candidate),
+      first40NativeRunes: candidate.slice(0, 40).map(n => corpus.translit[n]).join('-'),
+      nativeSolvedPlantReencryption: 76,
+    });
+  }
   outcomes.push({
     direction: reverse ? 'counterclockwise' : 'clockwise',
+    directOriginalP55Inverse: originalInverse,
     ringStarts: shells.map(s => s[0]),
     ringLengths: shells.map(s => s.length),
     knownNativeGP: known.length,
