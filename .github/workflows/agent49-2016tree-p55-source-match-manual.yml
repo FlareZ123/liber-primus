@@ -1,0 +1,20 @@
+name: Agent49 2016 tree and p55 source-image match
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare-original-art:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install image-registration dependencies
+        shell: pwsh
+        run: python -m pip install numpy opencv-python-headless
+      - name: Compare original source-image art with positive and negative controls
+        shell: pwsh
+        run: python sims/lp2_p55_2016_tree_crossimage_sft.py
