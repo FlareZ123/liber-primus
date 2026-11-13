@@ -1,6 +1,12 @@
 name: LP2 Wiki 830 source-attachment triage (manual)
 on:
   workflow_dispatch:
+    inputs:
+      inspect_images:
+        description: "Include three source-key attachment image bytes for one inspection"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -22,6 +28,9 @@ jobs:
         env:
           ARCHIVE_ROOT: /tmp/cicada-original-archive
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs
+      - name: Inspect source-key imagery
+        if: github.event.inputs.inspect_images == 'true'
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-image
       - name: Preserve source triage and retrieved exact-byte objects
         if: always()
         uses: actions/upload-artifact@v4
