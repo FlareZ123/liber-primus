@@ -307,7 +307,14 @@ const p3Quadratic = (y) => {
   const square = multiply(y, y);
   return square.map((v, i) => mod(v - 3 * y[i] - (i === 0 ? 8 : 0)));
 };
+assert.deepEqual(corpus.pages[3].indices.slice(119, 122), [13, 23, 2]);
 assert(eq(p3Quadratic(smallFieldElement), zeroVector));
+for (const factor of [2n, 3n, 5n, 7n])
+  assert(!eq(power(smallFieldElement, subfieldOrder / factor), ONE),
+    "p3 subfield element must have full multiplicative order 840");
+const p3Conjugate = power(smallFieldElement, 29n);
+assert(!eq(p3Conjugate, smallFieldElement));
+assert(eq(p3Quadratic(p3Conjugate), zeroVector));
 assert(eq(power(smallFieldElement, subfieldOrder), ONE));
 assert(!eq(power(smallFieldElement, subfieldOrder / 2n), ONE));
 const signedBase29Root = smallFieldElement.map((v, i) =>
