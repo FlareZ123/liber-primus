@@ -249,6 +249,43 @@ const signedPrimeSumKeyResult = {
   syntheticP57AdditiveRecoveryPassed: true,
 };
 
+
+assert.strictEqual(signedInitials.length, 43);
+const innerWordLengths = p55WordLengths.map(n => Math.max(0, n - 2));
+assert.strictEqual(innerWordLengths.reduce((a, b) => a + b, 0), 43);
+const signedInitialAdditiveKey = {
+  key: tokens(signedInitials),
+  alignment: "forward source order; 43 message-word initials paired with 43 p55 interiors",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedInitials[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    if (n) fragments.push(tokens(decoded.slice(cursor, cursor + n)).join(""));
+    cursor += n;
+  }
+  signedInitialAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const initialsSyntheticCipher = p57Control.map((p, i) => mod(p + signedInitials[i]));
+const initialsSyntheticRecovered = initialsSyntheticCipher.map((c, i) =>
+  mod(c - signedInitials[i]));
+assert.deepStrictEqual(initialsSyntheticRecovered, p57Control);
+signedInitialAdditiveKey.p57SyntheticRoundTripPassed = true;
+
+
 const outputs = [];
 for (const reverse of [false, true]) {
   const C = reverse ? inner55.slice().reverse() : inner55.slice();
@@ -303,6 +340,7 @@ const report = {
   outputs,
   signedMessagePrimeSumKey: signedPrimeSumKeyResult,
   signedWordInitialStationaryMapGate: signedWordInitialGate,
+  signedWordInitialAdditiveKey,
   conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
