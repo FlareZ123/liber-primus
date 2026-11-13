@@ -14,6 +14,11 @@ const corpus = JSON.parse(fs.readFileSync(
   path.join(root, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const quadgramText = fs.readFileSync(
   path.join(root, 'resources/control/duko_round27_english_quadgrams.txt'), 'utf8');
+const printedSource = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+assert.ok(printedSource.includes('ᛞᛄᚢ-ᛒᛖᛁ-ᚫᚠ'), 'p27 original DJU-BEI-AE-F');
+assert.ok(printedSource.includes('ᛞᛄᚢ-ᛒᛖᛁ./\\n&\\n$\\n%\\nᚫᛄ'.replaceAll('\\n', '\n')),
+  'p55 final period and page break precede red p56 AE');
 const alphabet = corpus.translit;
 const page = n => corpus.pages.find(item => item.page === n).indices;
 const p27 = page(27), p55 = page(55), p56 = page(56), p57 = page(57);
@@ -226,6 +231,7 @@ assert.deepEqual(backwardPhiCycle(p57PlantCipher, new Set(), -1), p57Plant);
 console.log(JSON.stringify({
   source: 'original LP2 corpus, p27 local28-34 and p55 local70 to p56 local0',
   seven_rune_pattern: translit(p27.slice(28, 35)),
+  punctuation_note: 'match only in the rune-only stream; original p55 ends in a period and page break',
   seven_rune_occurrences_global_zero_based: [...repeats7.values()][0],
   repeated_six_grams: repeats6.size,
   repeated_eight_grams: repeats8.size,
