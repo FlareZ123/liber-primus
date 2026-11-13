@@ -110,6 +110,52 @@ assert.deepEqual(artificiallyExtended.slice(-7), plant);
 const planted = artificiallyExtended.slice(-7).join(",");
 assert.equal(planted, moth.runeLengths.join(","));
 
+
+/**
+ * Secondary source-led calibration: hold fixed the exact source LP1 p5
+ * moth-linked 18-word inventory and original p55 16-word length multiset,
+ * then randomize only p55 complete-word order (uniform permutations).
+ * The exact p55 suffix event compares 12 p5 windows to one terminal window.
+ * Ten possible target windows yield a rigorous, conservative union bound.
+ */
+const p5Start = sourceRunesUnwrapped.indexOf("ᛋᚩᛗᛖ-ᚹᛁᛋᛞᚩᛗ");
+const p5Stop = sourceRunesUnwrapped.indexOf("272-",p5Start);
+assert(p5Start >= 0 && p5Stop > p5Start);
+const p5Words = sourceRunesUnwrapped.slice(p5Start,p5Stop)
+  .match(/[\u16a0-\u16ff]+/gu);
+assert.equal(p5Words.length,18);
+const p5Lengths = p5Words.map(w=>[...w].length);
+assert.deepEqual(p5Lengths,[4,6,2,6,3,6,2,7,7,2,6,3,3,6,2,9,4,3]);
+const p55Lengths = parsed.byStartPage[54].map(w=>w.length);
+assert.deepEqual(p55Lengths,[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+const sourceWindows = Array.from({length:p5Lengths.length-K+1},(_,i)=>
+  p5Lengths.slice(i,i+K));
+const occurrences=[];
+for (let i=0;i<=p55Lengths.length-K;i++)
+  for(let j=0;j<sourceWindows.length;j++)
+    if(p55Lengths.slice(i,i+K).join(",")===sourceWindows[j].join(","))
+      occurrences.push([i,j]);
+assert.deepEqual(occurrences,[[9,6]]);
+/** @param {number[]} window @returns {number} */
+function permutationProbability(window){
+  const counts=new Map();
+  for(const n of p55Lengths)counts.set(n,(counts.get(n)||0)+1);
+  let p=1;
+  for(let i=0;i<window.length;i++){
+    const count=counts.get(window[i])||0;
+    p*=count/(p55Lengths.length-i);
+    counts.set(window[i],count-1);
+  }
+  return p;
+}
+const terminalChance=sourceWindows.reduce((sum,w)=>
+  sum+permutationProbability(w),0);
+const exactFixedPhrase=permutationProbability(p55Lengths.slice(-7));
+const anyPagePositionUnionBound=(p55Lengths.length-K+1)*terminalChance;
+assert(Math.abs(terminalChance-0.00015956265956265956)<1e-16);
+assert(Math.abs(exactFixedPhrase-0.00000555000555000555)<1e-16);
+assert(anyPagePositionUnionBound<0.0016);
+
 if (require.main === module)
   console.log(JSON.stringify({
     input: "original printed LP2 p0-55, editor-separated solved LP1 coherent paragraphs",
@@ -119,6 +165,12 @@ if (require.main === module)
     coherentReferenceWords: usableWords,
     minimumMatchWords: K,
     exactMatches: results.length,
+    p5MothPermutationControl: {sourceP5Words:p5Words.length,
+      originalP55Words:p55Lengths.length, matchedWindowPairs:occurrences,
+      terminalSevenWindowEventProbability:terminalChance,
+      matchedPhraseFixedTerminalProbability:exactFixedPhrase,
+      anyOfTenP55WindowsUnionBound:anyPagePositionUnionBound,
+      caveat:"Conditional uniform word-order permutation; selected after original match, not an author-implied p-value"},
     maximumMatchedWords: 7,
     sourcePunctuationMatchesP55: false,
     caveat: "Source word lengths and artwork motivate a crib, but punctuation and exact cipher identification do not support literal quotation",
