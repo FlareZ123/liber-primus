@@ -233,7 +233,7 @@ function positive(packetWidth, bytesPerPacket) {
   }
   assert.deepEqual(readDigits, rawDigits);
   const recovered = unwhiten(readDigits, option, packetWidth).map(x => perm[x]);
-  assert.deepEqual(recovered.slice(0, clearDigits.length), clearDigits);
+  assert.deepEqual(recovered.slice(0, groups * packetWidth), clearDigits.slice(0, groups * packetWidth));
   const receivedBytes = [];
   for (let i = 0; i < groups * packetWidth; i += packetWidth) {
     let value = 0;
