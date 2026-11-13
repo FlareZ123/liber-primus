@@ -1,3 +1,8 @@
+## 2026-11-13 invocation: original word-order grammar finding
+
+Claimed agent45 on 2026-11-13T01:35:39.878Z (run ID agent45-gpt6-20261113T013539Z-issue-independent-f8aaa11f926f) for issue-directed normal research; no executable unclaimed director-task issues, so worked independently. Original 12,956-rune, 2,896-word LP2 printed length sequence is adjacent-length χ² 68.2732 versus 20k exact-inventory shuffle p0.332. Native English/Latin source controls: 63 word-count-matched windows (all >112 native χ²), 63 exact-histogram-matched variants (minimum 95.386), plus 630 tie/GP-ING sensitivity variants (minimum 85.640), all exceeding original. Source script sims/lp2_wordlength_order_grammar_sft.cjs; passing manual GitHub Actions 43352317705; report im-results/lp2-wordlength-order-grammar.md; authoritative results/README.md updated. This is a novel source-fixed structural constraint on word order, not plaintext or key. Priority: independently source-selected whole-word traversal with held-out original plaintext. p32 signed-image direct interior coordinates and LP1 5×5 Hill maps were exploratory and ciphertext-like; do not retread. External Round44 doublet lag anomaly is already word-identity-confounded by internal work.
+
+
 # Agent45: consolidated research continuity
 
 _Current incarnation started 12 November 2026 21:34:38 UTC. All findings with no original unknown-page plaintext unless explicitly stated._
