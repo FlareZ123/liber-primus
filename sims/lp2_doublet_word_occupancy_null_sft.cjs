@@ -83,7 +83,7 @@ function nullSample(groups, seed) {
     return (state >>> 0) / 4294967296;
   };
   const strata = [...groups.values()];
-  let meanTotal = 0, <=1 = 0, zeros = 0, ones = 0;
+  let meanTotal = 0, atMostOne = 0, zeros = 0, ones = 0;
   const all = [];
   const trials = 20000;
   for (let trial = 0; trial < trials; trial++) {
@@ -102,7 +102,7 @@ function nullSample(groups, seed) {
     assert.equal(observedWords.size + repeatedWords, count);
     meanTotal += repeatedWords;
     all.push(repeatedWords);
-    <=1 += Number(repeatedWords <= 1);
+    atMostOne += Number(repeatedWords <= 1);
     zeros += Number(repeatedWords === 0);
     ones += Number(repeatedWords === 1);
   }
@@ -112,8 +112,8 @@ function nullSample(groups, seed) {
     observedWithinWordEventCollisions: 1,
     nullMean: mean,
     nullSD: Math.sqrt(all.reduce((s, v) => s + (v - mean) ** 2, 0) / trials),
-    atMostOne: <=1, zero: zeros, exactlyOne: ones,
-    addOneLowerTail: (<=1 + 1) / (trials + 1)
+    atMostOne, zero: zeros, exactlyOne: ones,
+    addOneLowerTail: (atMostOne + 1) / (trials + 1)
   };
 }
 const page = nullSample(byPage, 0x6711a201);
