@@ -141,27 +141,35 @@ for (let k = 4; k <= 9; k++) {
   }
 }
 
-// Independent real-author GP-native control: original solved LP1 p5 and
-// p10..14 are printed in clear GP runes (unlike the early encrypted LP1).
+// Original LP1 source-corrected GP control: physical p3, pp8-11 and p14
+// contain printed cleartext; p5 and pp12-13 contain encrypted runes.
 // This check needs no modern-English encoder or hypothetical plaintext.
 const lp1Chunks = read("resources/transcriptions/lp1_wulfic_canonical.txt")
   .split("%");
 const gpIndex = new Map(gp.runes.map((r, i) => [r, i]));
-const selectedClearPages = [5, 10, 11, 12, 13, 14];
+const selectedClearPages = [3, 8, 9, 10, 11, 14];
 const sourceClear = selectedClearPages.map(page => {
   const symbols = [...lp1Chunks[page]].filter(r => gpIndex.has(r))
     .map(r => gpIndex.get(r));
   return {page, symbols};
 });
 assert.deepEqual(sourceClear.map(x => x.symbols.length),
-  [210, 192, 169, 226, 93, 89]);
-assert.equal(sourceClear.reduce((n, x) => n + x.symbols.length, 0), 979);
+  [157, 187, 207, 192, 169, 89]);
+assert.equal(sourceClear.reduce((n, x) => n + x.symbols.length, 0), 1001);
+const clearStarts = ["SOMEWISDOM", "THELOSSOF", "WEHAUEWHAT",
+  "MOSTTHINGS", "CETHATHAUE", "ANINSTRUCTION"];
+for (let j = 0; j < sourceClear.length; j++) {
+  const native = sourceClear[j].symbols.map(i =>
+    i === 21 ? "ING" : i === 27 ? "IO" : gp.translit[i]).join("");
+  assert(native.startsWith(clearStarts[j]),
+    "original cleartext GP witness p=" + selectedClearPages[j]);
+}
 const lp1ClearLengths = sourceClear.map(x => x.symbols.length);
 const lp1ClearRunes = sourceClear.flatMap(x => x.symbols);
-assert.equal(collisionPairs(lp1ClearRunes, lp1ClearLengths, 4), 8);
-assert.equal(collisionPairs(lp1ClearRunes, lp1ClearLengths, 5), 3);
-console.log("Six authentic solved LP1 clear-GP pages: 979 runes, " +
-  "8 page-aligned four-block pairs and 3 five-block pairs; " +
+assert.equal(collisionPairs(lp1ClearRunes, lp1ClearLengths, 4), 11);
+assert.equal(collisionPairs(lp1ClearRunes, lp1ClearLengths, 5), 4);
+console.log("Six verified source-clear GP pages: 1001 runes, " +
+  "11 page-aligned four-block pairs and 4 five-block pairs; " +
   "original unknown LP2 has zero of each.");
 
 // Page15's exact physical 4x4 printed numbers. Every map which treats
