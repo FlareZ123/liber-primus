@@ -236,6 +236,30 @@ assert.equal(longHistogramMisses, 0, 'all long words are compatible after per-wo
 const all9 = ciphertextWords.filter(w => w.length >= 6 && w.length <= 14);
 assert.equal(all9.filter(w => !loosePatterns.has(multiplicityKey(w))).length, 0);
 
+/**
+ * Stronger all-secret family: within each printed word, allow a different
+ * unrestricted GP29 substitution alphabet in each clock phase. Only
+ * equalities separated by a multiple of p positions are invariant.
+ * The alphabets may vary freely between words, so any missing pattern
+ * excludes all more restrictive fixed page/global phase codebooks too.
+ * @param {number[]} word @param {number} period @returns {string}
+ */
+function phaseKey(word, period) {
+  const buckets = Array.from(
+    {length: Math.min(period, word.length)}, () => []);
+  for (let i = 0; i < word.length; i++) buckets[i % period].push(word[i]);
+  return word.length + ':' + buckets.map(signature).join('|');
+}
+const phaseMisses = {};
+for (const period of [1,2,3,4,5,6,7,8]) {
+  const valid = new Set(dictionary.map(x => phaseKey(x.code, period)));
+  phaseMisses[period] = ciphertextWords.filter(w =>
+    !valid.has(phaseKey(w, period))).length;
+}
+assert.deepEqual(Object.values(phaseMisses),
+  [51, 11, 1, 1, 0, 0, 0, 0]);
+assert.equal(phaseMisses[1], 51);
+
 // Independent native-GP English comparison is length-stratified.
 const control = new Map();
 const controlFiles = [
@@ -281,6 +305,7 @@ if (require.main === module) {
     wordLengths10to12: registered.map(([length,n,misses]) => ({length,n,misses})),
     lowerBoundSymbolChanges: minChanged,
     afterArbitraryWithinWordTranspositionHistogramMisses: longHistogramMisses,
+    afterIndependentPerWordPerPhaseSubstitutionAlphabetMisses: phaseMisses,
     editDistribution: {zero:edits[0],one:edits[1],two:edits[2],threeOrMore:edits[3]},
     solvedLP1SourceWordsMatched: lp1.length,
     independentControlSamples: individually,
