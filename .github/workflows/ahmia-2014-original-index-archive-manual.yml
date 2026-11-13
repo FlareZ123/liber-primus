@@ -1,6 +1,15 @@
 name: Ahmia 2014 original-era archived index source probe
 on:
   workflow_dispatch:
+    inputs:
+      archive:
+        description: Public archive index to inspect
+        type: choice
+        required: true
+        options:
+          - arquivo
+          - wayback
+        default: arquivo
 permissions:
   contents: read
 jobs:
@@ -12,7 +21,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Search public Arquivo.pt CDX for 2014-2015 Ahmia original HTML
+      - name: Search selected 2014-2015 Ahmia archival index
+        env:
+          ARCHIVE_MODE: ${{ inputs.archive }}
         run: node sims/ahmia_2014_original_index_archive_probe.cjs > ahmia-2014-source-probe.json
       - name: Print bounded JSON source decision for remote inspection
         run: node -e "process.stdout.write(require('node:fs').readFileSync('ahmia-2014-source-probe.json', 'utf8'))"
