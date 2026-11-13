@@ -48,17 +48,20 @@ func checkCover(filename, f5 string) error {
             recoded, err := controlDecoder.ExtractCoefficients(encoded)
             if err != nil { return err }
             mismatch := 0
-            for i := range encodedCoefficients {
+            limit := len(recoded)
+            if len(encodedCoefficients) < limit { limit = len(encodedCoefficients) }
+            for i := 0; i < limit; i++ {
                 if recoded[i] != encodedCoefficients[i] { mismatch++ }
             }
+            missing := len(encodedCoefficients) - len(recoded)
             stego := filepath.Join(controlDir, fmt.Sprintf("%d-%d.jpg", size, k))
             recovered := filepath.Join(controlDir, fmt.Sprintf("%d-%d.out", size, k))
             if err := os.WriteFile(stego, encoded, 0600); err != nil { return err }
             diagnostic, extractErr := exec.Command(f5, "extract", stego, "-p", testPass, "-o", recovered).CombinedOutput()
             got, _ := os.ReadFile(recovered)
             match := extractErr == nil && bytes.Equal(got, payload)
-            fmt.Printf("CONTROL_RESULT cover=%s size=%d k=%d roundtrip=%t serialized_coeff_mismatch=%d jpeg_bytes=%d shrinkages=%d msg=%q\n",
-                filepath.Base(filename), size, k, match, mismatch, len(encoded), result.ShrinkageCount, bytes.TrimSpace(diagnostic))
+            fmt.Printf("CONTROL_RESULT cover=%s size=%d k=%d roundtrip=%t serialized_coeff_mismatch=%d coefficient_count_difference=%d jpeg_bytes=%d shrinkages=%d msg=%q\n",
+                filepath.Base(filename), size, k, match, mismatch, missing, len(encoded), result.ShrinkageCount, bytes.TrimSpace(diagnostic))
         }
     }
     return nil
