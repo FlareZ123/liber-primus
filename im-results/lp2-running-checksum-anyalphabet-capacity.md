@@ -85,6 +85,6 @@ It leaves open **page- or word-specific independent alphabets**, plaintext-depen
 
 **Decision:** do not invest in index/prime/totient public running-*ciphertext*-sum substitutions on any of these three frozen word/rune clocks with book- or visible-chapter-stationary alphabets. Source-selection of a genuinely different state or authenticated key remains the useful missing input. No original LP2 plaintext, decoder or final destination was recovered.
 
-**Reproduction status:** Both complete original-source Node.js22 SFTs pass [expanded manual GitHub Actions run 43468625753](https://github.com/FlareZ123/liber-primus/actions/runs/43467088870), including the 12,956-rune exact positive implants, all three native English corpora, the full 2,896-word source stream, and every published bound.
+**Reproduction status:** Both complete original-source Node.js22 SFTs pass [expanded manual GitHub Actions run 43468625753](https://github.com/FlareZ123/liber-primus/actions/runs/43468625753), including the 12,956-rune exact positive implants, all three native English corpora, the full 2,896-word source stream, and every published bound.
 
 **Reproducers:** [cumulative rune-clock CommonJS SFT](../sims/lp2_running_checksum_anyalphabet_sft.cjs) and [complete previous-word and cumulative-word all-secret SFT](../sims/lp2_running_wordprime_anyalphabet_sft.cjs) using [GP29 corpus](../resources/liber-primus/lp2-corpus.json), the [already calibrated GP spelling implementation](../sims/lp2_native_gp_source_orthography_sft.cjs), and the three checked-in control texts.
