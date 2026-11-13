@@ -145,6 +145,38 @@ for (const projection of ['residue', 'quotient'])
 assert.equal(rankInverses.length, 12);
 assert.ok(rankInverses.every(x => x.ioc < 0.05));
 
+// Mathematically native DH-group consumer: project each GP *prime value*
+// to the 75-element 5-subgroup with cofactor 3300/75 = 44, then take log_5.
+/** @param {number} baseValue @param {number} exp @returns {number} */
+function powerMod(baseValue, exp) {
+  let result = 1;
+  for (let x = baseValue % modulus, e = exp; e > 0;
+    x = x * x % modulus, e = Math.floor(e / 2)) {
+    if (e % 2) result = result * x % modulus;
+  }
+  return result;
+}
+const log5 = new Map(orbit.map((state, position) => [state, position]));
+const symbolLabels = corpus.prime.map(prime => {
+  const label = log5.get(powerMod(prime, 44));
+  assert.ok(Number.isInteger(label));
+  return label;
+});
+const labelSet = new Set(symbolLabels);
+assert.equal(labelSet.size, 25);
+const directGroupConsumers = [];
+for (const exponent of [0, 1, 1033])
+  for (const sign of [-1, 1]) {
+    const recoveredLabels = payload.map((rune, i) =>
+      (symbolLabels[rune] + sign * ((i + exponent) % 75) + 225) % 75);
+    const eligible = recoveredLabels.filter(label => labelSet.has(label)).length;
+    directGroupConsumers.push({ exponent, sign, eligible,
+      total: recoveredLabels.length });
+    assert.ok(eligible < recoveredLabels.length);
+  }
+assert.deepEqual(directGroupConsumers.map(x => x.eligible),
+  [22, 31, 24, 15, 25, 21]);
+
 const best = Math.max(...sourceInverses.map(x => x.ioc));
 assert.ok(best < 0.05);
 assert.ok(transpositions.every(x => x.differenceIoc < 0.05));
@@ -156,6 +188,6 @@ console.log(JSON.stringify({
   residueFirst16: orbit.slice(0, 16),
   originalBodyIoc: ioc(payload),
   solvedParablePlantIoc: ioc(clearPlant),
-  sourceInverses, rankInverses, transpositions
+  sourceInverses, rankInverses, directGroupConsumers, transpositions
 }, null, 2));
 console.log('PASS: source-numeric orbit75 reproducible gate; no recovered plaintext');
