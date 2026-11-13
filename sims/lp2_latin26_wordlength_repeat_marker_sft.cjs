@@ -27,6 +27,28 @@ for(const c of source){
 finish();
 assert.equal(total,12956);assert.equal(words.length,2896);
 assert.deepEqual(repeat,[86,21,23]);
+
+// A fixed Latin26 K-marker state has only 25 ordinary letters, so its
+// nonrepeat injection can emit at most 25 distinct rune values. Exclude
+// page-first headers and K-marker repeats, then count observed outputs.
+const pageAlphabets=new Map();
+for(const w of words)for(const r of w){
+ if(!r.eligible||r.event)continue;
+ if(!pageAlphabets.has(r.page))pageAlphabets.set(r.page,new Set());
+ pageAlphabets.get(r.page).add(r.value);
+}
+assert.equal(pageAlphabets.size,55);
+const pageDistinct=[...pageAlphabets.entries()].map(([p,set])=>[p,set.size]);
+assert.equal(pageDistinct.filter(([,n])=>n===29).length,53);
+assert.deepEqual(pageDistinct.filter(([,n])=>n!==29),[[49,28],[55,25]]);
+const chapterRanges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+const chapterDistinct=chapterRanges.map(([lo,hi])=>{
+ const set=new Set();
+ for(const [p,values] of pageAlphabets)if(p>=lo&&p<=hi)for(const v of values)set.add(v);
+ return set.size;
+});
+assert.deepEqual(chapterDistinct,[29,29,29,29,29,29,29,29,29]);
+
 const histogram=new Uint32Array(14);
 for(const w of words)histogram[w.length-1]++;
 assert.deepEqual([...histogram],[83,448,720,513,317,256,216,156,78,52,32,18,4,3]);
@@ -96,6 +118,8 @@ for(const file of refs){
   bestMarker:String.fromCharCode(65+rank[0].q),expectedK:expected[10],
   markerSecond:String.fromCharCode(65+rank[1].q)});
 }
-console.log(JSON.stringify({result:'PASS; preliminary Latin-register discriminator, no cipher/key or plaintext',
+console.log(JSON.stringify({result:'PASS; Latin-register discriminator and static-map bound, no cipher/key or plaintext',
  original:{runes:total,words:words.length,repeat,mean:total/words.length},
+ staticMapBound:{pages:pageDistinct,visualChapterDistinct:chapterDistinct,
+  interpretation:'a fixed 25-letter→nonrepeat-rune injection is impossible globally, per page on 54/55 pages, or per visual chapter'},
  references:records},null,2));
