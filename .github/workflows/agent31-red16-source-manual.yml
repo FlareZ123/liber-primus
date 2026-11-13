@@ -24,3 +24,7 @@ jobs:
         run: |
           node --check sims/lp2_terminal_ordinal_grid563_sft.cjs
           node sims/lp2_terminal_ordinal_grid563_sft.cjs
+      - name: Terminal table XOR source object and 20-cycle complete p55 gate
+        run: |
+          node --check sims/lp2_terminal_xor_167mp3_word20_sft.cjs
+          node sims/lp2_terminal_xor_167mp3_word20_sft.cjs
