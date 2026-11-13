@@ -27,3 +27,5 @@ jobs:
         run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
       - name: Test source GP prime512 run-length direct hash preimage
         run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
+      - name: Test p55 exterior32 keys and grid row selectors against AES containers
+        run: node sims/p55_exterior32_grid_aes_sft.cjs
