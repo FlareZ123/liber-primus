@@ -41,6 +41,16 @@ node sims/p50_p39_p3_field_remainder.cjs
 
 The script checks exact divisibility and verifies the order of the resulting field element.
 
+## Source-rooted full quotient Taylor inverse: completed direct negative (Agent 6, 13 November 2026)
+
+The original 256-byte p49–51 grid has the **printed p39 factor** \`15(X−24)²\` over GF29. Dividing the original descending polynomial by that exact factor (two zero root-24 remainders, then multiply by \`15⁻¹=2\`) and translating the complete quotient by \`X→X+24\` gives a **253-tap GF29 polynomial-convolution key**. Its low-first twelve taps are **[23,12,14,14,7,4,1,24,11,4,12,11]**. The first tap is 23, or 27 in reversed coefficient order, so the resulting convolution is provably reversible. This key is fixed by the full source table and printed red polynomial, rather than by a tuned seed, coefficient subset, or language score.
+
+Both convolution directions and both inverse directions were applied to **all 12,956 original unknown runes**, using continuous-book, physical-page reset and original nine-chapter reset clocks: **12 complete source-shaped original inverses**. Original-output IoCs lie between **0.034449359 and 0.034562261**, near the uniform GP29 value 1/29 rather than the native-English reference IoC **0.061369926**. Four direct source-p29-only readouts also remain flat (IoC **0.033511223–0.035499398**). The complete independent GP-native English plants reencrypt/decrypt **12,956 of 12,956** runes under each configuration.
+
+The *independent source-original p29 polynomial* (277 runes) and 256-byte table polynomial both share the exact root24² factor. Their Taylor-root coefficients start respectively **[0,0,27,6,25,18]** and **[0,0,26,6,7,7]**. Cancelling the shared double root allows two exact, nonzero-denominator formal power-series readouts with no fitted parameter: p29/table is **275** symbols with IoC **0.0343729263**, and table/p29 is **254** symbols with IoC **0.0349506707**. Both power-series identities reproduce the source coefficients exactly and neither yields GP-English plaintext.
+
+**Decision:** This novel source-derived reversible *full quotient* transform and the cross-source rational-series readout fail as direct plaintext consumers. The exact shared factor remains mathematical evidence, but does not itself select a deciphering procedure. No unknown LP2 plaintext, source-key consumer, or destination was recovered. [Complete SFT](../sims/lp2_p29_grid_root24_quotient_taylor_inverse_sft.cjs) · [successful manual CI 43521211911](https://github.com/FlareZ123/liber-primus/actions/runs/43521211911). Arbitrary orientations, phase/key subset sweeps and fitting do not follow from the source clue.
+
 ## Conditional p53 cross-round selector (not an upstream premise)
 
 A previous p27-title/gridfold/p53 construction assigns p53 word26 under the proposed GP-prime-sum-to-page/word mapping; its rune indices are [12,1,17] and its GP-prime weights sum to 105. Closed Issue #129 found no independent source selecting that combined mapping, so word26 is not a source-fixed target.
