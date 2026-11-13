@@ -78,7 +78,7 @@ function englishCorpus() {
     if (!v || v.length >= 40) continue;
     distinct.add(v.join(","));
     const arr = byLength.get(v.length) || [];
-    arr.push({v, w:Number(m[2])});
+    arr.push({v, w:Number(m[2]), label:m[1]});
     byLength.set(v.length, arr);
   }
   assert.equal(distinct.size, 29058);
@@ -126,8 +126,9 @@ function oldEnglishCorpus() {
  */
 function evaluateWord(word, source, reverse) {
   const options = source.get(word.length) || [];
-  let weight = 0, sum = 0, sumSq = 0, start = 0, compatible = false;
-  for (const {v, w} of options) {
+  let weight = 0, sum = 0, sumSq = 0, start = 0;
+  let compatible = false, compatibleWords = 0, soleCandidate = null;
+  for (const {v, w, label} of options) {
     weight += w;
     let count = 0, good = true;
     for (let i = 0; i < v.length; i++) {
@@ -141,14 +142,18 @@ function evaluateWord(word, source, reverse) {
     sumSq += w*count*count;
     start += w * Number(word[0].mark >= 0 &&
       v[reverse ? v.length-1 : 0] === 28);
-    compatible ||= good;
+    if (good) {
+      compatible = true;
+      compatibleWords++;
+      soleCandidate = label || null;
+    }
   }
   if (!weight) return null; // Source lacks words of this exact length.
   const mean = sum/weight, startProb = start/weight;
   return {
     mean, variance:sumSq/weight-mean*mean,
     startProb, startVariance:startProb*(1-startProb),
-    compatible
+    compatible, compatibleWords, soleCandidate
   };
 }
 
@@ -160,8 +165,9 @@ function evaluate(original, source, reverse) {
   let expectedTotal = 0, varianceTotal = 0;
   let expectedStart = 0, varianceStart = 0;
   let maskedWords = 0, unattainableMasks = 0, missingLengthWords = 0;
-  const firstExamples = [];
-  for (const word of original) {
+  const firstExamples = [], uniqueMaskWords = [];
+  for (let wordIndex = 0; wordIndex < original.length; wordIndex++) {
+    const word = original[wordIndex];
     const result = evaluateWord(word, source, reverse);
     if (!result) {
       // All three original length-14 words have no repeat events.
@@ -175,6 +181,12 @@ function evaluate(original, source, reverse) {
     varianceStart += result.startVariance;
     if (!word.some(x => x.mark === 1)) continue;
     maskedWords++;
+    if (result.compatibleWords === 1 && result.soleCandidate) {
+      uniqueMaskWords.push({wordIndex,
+        physicalPage:word[0].page >= 50 ? word[0].page + 1 : word[0].page,
+        length:word.length, mask:word.map(x => x.mark).join(""),
+        candidate:result.soleCandidate});
+    }
     if (!result.compatible) {
       unattainableMasks++;
       if (firstExamples.length < 8) firstExamples.push({
@@ -189,7 +201,8 @@ function evaluate(original, source, reverse) {
     sdTotal:+Math.sqrt(varianceTotal).toFixed(3),
     meanWordInitial:+expectedStart.toFixed(3),
     sdWordInitial:+Math.sqrt(varianceStart).toFixed(3),
-    unattainableMasks, missingLengthWords, firstExamples
+    unattainableMasks, missingLengthWords, firstExamples,
+    uniqueMaskWords
   };
 }
 
