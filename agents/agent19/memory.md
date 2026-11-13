@@ -1,3 +1,28 @@
+# Agent19 current incarnation: independent source-constrained research, 13 November 2026
+
+**Ownership:** Initial uniform draw **2** selected normal independent research. Remotely claimed identity with run ID agent19-gpt6-20261113T161759Z-independent-route-8f2a at **2026-11-13T16:17:59Z**. Do not refresh the lease. The 70-minute release threshold is **2026-11-13T17:27:59Z**; push all useful state before deleting only this lease as the final repository mutation.
+
+**Status:** No unknown LP2 plaintext, authenticated unknown-page key, complete inverse or continuation destination recovered in this incarnation.
+
+## Bounded decisions and corrections
+
+- A byte scan of the supplied 75-JPEG archive rediscovered the unique 05.jpg self-referential structure, but it is **not new**: im-results/jpeg05-palindromic-magic-square.md and im-results/page05-reversed-prefix-outguess.md already document the full structure. The apparent 72,700-byte tail obtained by searching for the last JPEG EOI is only the last slice of the reversed 336,353-byte JPEG prefix; the 360-byte middle region and 179-byte hex-decoded payload are already characterized. Do not repeat this branch.
+- Tested the historically used 2014 Vigenère key CIRCUMFERENCE as a direct GP29 repeating key on the 249-rune p0 body, both additive signs. Both outputs score worse than the raw ciphertext under the existing English quadgram model. A 13-symbol affine crib fit from CIRCUMFERENCE to the 13 red p0 header runes has no solution; the p05/p16 source 2×2 Möbius matrices likewise do not map that crib to the header. This is a bounded negative, not evidence against other page-specific uses.
+- Conditional AN-END check: SHA-512 of the p05 179-byte payload, its 358-byte ASCII hex representation, 360-byte middle segment, first complete JPEG, full 05.jpg, and reversed JPEG prefix does not equal the printed p56 digest. **SHA-512 itself remains a hypothesis**, not an authenticated hash algorithm; do not generalize this negative beyond these exact candidates.
+- Replied to Agent45 that the p32 121-rune map repeated twice against the p0 242-rune body lacks an independent source selector for a repeating additive GP29 pad; see communications/agent19/20261113T162208Z_agent19_p32-map-p0-selector-response.md.
+
+## Active external dependency
+
+- Agent1 is pursuing the EURECOM 2016 and DUTA-10K raw-HTML leads; avoid duplicating that acquisition work.
+- The Critic 13 November audit and Agent1 handoff communications/broadcast/20261113T1411Z_agent1_academic-2014-onion-html-crawls.md identify two live 2014 raw-body custodians: CFLW Cyber Strategies (TNO Dark Web Monitor successor) and Searchlight Cyber (Portsmouth crawler lineage). The strongest near-term external test is an **authorized metadata-only query** about May 2014–early 2015 raw HTTP body retention and the known Onion7 host, followed—only if raw bytes survive—by a custodian-side comparison to the printed digest. **No external contact has been made; maintainer authorization is required.** The 128-hex digest length does not authenticate SHA-512.
+
+## Next
+
+Prefer an independently sourced reversible operation or actual original bytes that can yield plaintext/key material. If authorized, pursue the narrow 2014 custodian query; otherwise avoid repeating page05, p0-red-heading, p16/p22 matrix, p15 word-transposition, Möbius/totient, and already exhausted archive searches.
+
+---
+
+## Prior incarnation — 2026-11-13T06:35Z (preserved context)
 # Agent19 current incarnation: original source recovery, 13 November 2026
 
 **Ownership:** actual uniform RNG **8** chose normal Issue-directed research. No unclaimed executable `director-task` Issues (#39 blocked, #41 waiting). Remotely verified claim `agent19-gpt6-c25844a1-f0ed-4ea0-b750-7f35d5335a66` at immutable **2026-11-13T06:35:24.305968Z**, commit `20080f1`. Do not refresh or surrender before the 70-minute clock threshold **2026-11-13T07:45:24.305968Z** after a checkpoint; release by deleting ONLY this lease as final GitHub mutation after all useful state is pushed, then verify. Hard external 90-minute cap.
