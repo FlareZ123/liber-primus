@@ -270,7 +270,8 @@ const latinVulgateWindows=[];
 for(let start=0;start+originalN<=latinVulgateRunes.length;
   start+=Math.floor(originalN/2)){
   const rank=controlSortedGroups(latinVulgateRunes.slice(start,start+originalN),29);
-  latinVulgateWindows.push({top1:rank[0],top5:rank[4]});
+  latinVulgateWindows.push({top1:rank[0],top5:rank[4],
+    effectiveAlphabet:rank.findIndex(count=>count===observedEligible)+1});
 }
 assert.equal(latinVulgateWindows.length,30);
 const latinVulgateMin={
@@ -284,6 +285,12 @@ const nativeLatinGPExclusions={
   eightPhase:latinVulgateMin.top1>sourceCapacity["eight-phase"].gp29.top1
 };
 assert(Object.values(nativeLatinGPExclusions).every(Boolean));
+const effectiveGPAlphabetCounts=Object.fromEntries([25,26,27].map(A=>
+  [A,latinVulgateWindows.filter(w=>w.effectiveAlphabet===A).length]));
+assert.deepEqual(effectiveGPAlphabetCounts,{25:1,26:5,27:24});
+const effectiveLatinGPBookViolations=latinVulgateWindows.filter(w=>
+  w.top5>maxGroupOccupancy(originalRows.book,w.effectiveAlphabet,5)).length;
+assert.equal(effectiveLatinGPBookViolations,30);
 
 
 /**
@@ -303,7 +310,8 @@ for(let start=0;start+originalN<=latin26VulgateRunes.length;
   start+=Math.floor(originalN/2)){
   const ranked=controlSortedGroups(
     latin26VulgateRunes.slice(start,start+originalN),26);
-  latin26VulgateWindows.push({top4:ranked[3],top5:ranked[4]});
+  latin26VulgateWindows.push({top4:ranked[3],top5:ranked[4],
+    effectiveAlphabet:ranked.findIndex(count=>count===observedEligible)+1});
 }
 assert.equal(latin26VulgateWindows.length,31);
 const latin26VulgateMin={
@@ -313,6 +321,12 @@ const latin26VulgateMin={
 assert.deepEqual(latin26VulgateMin,{top4:5258,top5:6250});
 assert(latin26VulgateMin.top4>sourceCapacity.book.latin26.top4);
 assert(latin26VulgateMin.top5>sourceCapacity.book.latin26.top5);
+const effectiveLatinAlphabetCounts=Object.fromEntries([22,23].map(A=>
+  [A,latin26VulgateWindows.filter(w=>w.effectiveAlphabet===A).length]));
+assert.deepEqual(effectiveLatinAlphabetCounts,{22:2,23:29});
+const effectiveLatin26BookViolations=latin26VulgateWindows.filter(w=>
+  w.top5>maxGroupOccupancy(originalRows.book,w.effectiveAlphabet,5)).length;
+assert.equal(effectiveLatin26BookViolations,29);
 
 /**
  * A public phase clock is the least additional state beyond C_(i-1).
@@ -365,10 +379,14 @@ console.log(JSON.stringify({
   originalControls:controlResults,
   latinVulgateOriginalControl:{runes:latinVulgateRunes.length,
     windows:latinVulgateWindows.length, min:latinVulgateMin,
-    nativeGP29AllSecretExclusions:nativeLatinGPExclusions},
+    nativeGP29AllSecretExclusions:nativeLatinGPExclusions,
+    reducedAlphabetCounts:effectiveGPAlphabetCounts,
+    bookWideTopFiveViolationsAtObservedAlphabetSize:effectiveLatinGPBookViolations},
   latinVulgateOriginalLatin26Control:{runes:latin26VulgateRunes.length,
     windows:latin26VulgateWindows.length,min:latin26VulgateMin,
-    bookWideAnySecretRowExcluded:true},
+    bookWideAnySecretRowExcluded:true,
+    reducedAlphabetCounts:effectiveLatinAlphabetCounts,
+    bookWideTopFiveViolationsAtObservedAlphabetSize:effectiveLatin26BookViolations},
   exactPhaseOccupancyEnvelope:phaseEnvelope,
   positivePlant:{gp29:gpPlant,latin26:latinPlant}
 },null,2));
