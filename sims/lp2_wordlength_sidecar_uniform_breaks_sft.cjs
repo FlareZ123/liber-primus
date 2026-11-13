@@ -171,6 +171,103 @@ for (const count of Object.values(histogram))
 const multisetOrderBits = logMultisetPermutations / Math.LN2;
 assert(Math.abs(multisetOrderBits - 8791.875904529452) < 1e-7);
 
+
+// An independent, source-motivated 32↔32 numerical coincidence gate:
+// exactly 32 words cross unknown physical page boundaries, matching the
+// number of numeric-grid rows. Randomize complete word order *within each
+// of the nine source-visible chapters*, keeping exact original word lengths,
+// page rune positions, and all eight mandatory chapter-end word breaks.
+// Does 32 carry words remain unusually specific after conditioning?
+const physicalPage = page => page >= 50 ? page + 1 : page;
+const visualChapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const chapterGroups = [];
+let wordPointer = 0;
+for (const [lo, hi] of visualChapters) {
+  const sourcePages = pageSpecs.filter(
+    spec => physicalPage(spec.page) >= lo && physicalPage(spec.page) <= hi);
+  const runeCount = sourcePages.reduce((sum, spec) => sum + spec.L, 0);
+  const wholeWordLengths = [];
+  let carried = 0;
+  while (carried < runeCount) {
+    const len = lengths[wordPointer++];
+    assert(Number.isInteger(len) && len > 0);
+    wholeWordLengths.push(len);
+    carried += len;
+  }
+  assert.equal(carried, runeCount, "visible chapter must end at a word break");
+  let inside = 0;
+  const pageCuts = [];
+  for (let j = 0; j < sourcePages.length - 1; j++) {
+    inside += sourcePages[j].L;
+    pageCuts.push(inside);
+  }
+  chapterGroups.push({lo, hi, runeCount, wholeWordLengths, pageCuts});
+}
+assert.equal(wordPointer, lengths.length);
+const mandatoryBreaks = visualChapters.length - 1;
+let sourceNonchapterBreaks = 0;
+for (const group of chapterGroups) {
+  const wordBoundaries = new Set();
+  let position = 0;
+  for (const len of group.wholeWordLengths.slice(0, -1)) {
+    position += len;
+    wordBoundaries.add(position);
+  }
+  for (const cut of group.pageCuts)
+    if (wordBoundaries.has(cut)) sourceNonchapterBreaks++;
+}
+assert.equal(sourceNonchapterBreaks, 14);
+assert.equal(pageSpecs.length - 1 - mandatoryBreaks -
+  sourceNonchapterBreaks, corpus.crossPageWords);
+
+const carryTrials = 30000;
+const carrySeed = 0x33013232;
+const carryRandom = makeXorshift32(carrySeed);
+let carrySum = 0;
+let carrySquares = 0;
+let carryMin = Infinity;
+let carryMax = -Infinity;
+let atMost32 = 0;
+let exactly32 = 0;
+for (let trial = 0; trial < carryTrials; trial++) {
+  let internalEnds = 0;
+  for (const group of chapterGroups) {
+    const a = group.wholeWordLengths.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(carryRandom() * (i + 1));
+      const previous = a[i];
+      a[i] = a[j];
+      a[j] = previous;
+    }
+    const wordBoundaries = new Set();
+    let position = 0;
+    for (let i = 0; i < a.length - 1; i++) {
+      position += a[i];
+      wordBoundaries.add(position);
+    }
+    for (const cut of group.pageCuts)
+      if (wordBoundaries.has(cut)) internalEnds++;
+  }
+  const count = pageSpecs.length - 1 - mandatoryBreaks - internalEnds;
+  carrySum += count;
+  carrySquares += count * count;
+  carryMin = Math.min(carryMin, count);
+  carryMax = Math.max(carryMax, count);
+  if (count <= corpus.crossPageWords) atMost32++;
+  if (count === corpus.crossPageWords) exactly32++;
+}
+const carryMean = carrySum / carryTrials;
+const carrySD = Math.sqrt(carrySquares / carryTrials - carryMean ** 2);
+assert.equal(atMost32, 3842);
+assert.equal(exactly32, 1666);
+assert.equal(carryMin, 22);
+assert.equal(carryMax, 45);
+assert(Math.abs(carryMean - 35.707033333333335) < 1e-9);
+assert(Math.abs(carrySD - 2.826765619140608) < 1e-8);
+
 console.log(JSON.stringify({
   source: "original rune-level LP2 physical pages 0..55; runeless p50 omitted",
   wordCount: M,
@@ -190,6 +287,23 @@ console.log(JSON.stringify({
     seed, trialCount, mean, sd, minimum, maximum,
     replicatesAtMostObserved: atMostOriginal,
     addOneUpperTail: (atMostOriginal + 1) / (trialCount + 1)
+  },
+  mandatoryChapterBreaksVsGridRowCount: {
+    originalCarriedWords: corpus.crossPageWords,
+    gridRows: 32,
+    mandatoryChapterBreaks,
+    originalNonchapterBreaks: sourceNonchapterBreaks,
+    seededChapterPreservingPermutation: {
+      seed: carrySeed,
+      trialCount: carryTrials,
+      mean: carryMean,
+      sd: carrySD,
+      min: carryMin,
+      max: carryMax,
+      samplesAtMost32: atMost32,
+      addOneLeftTail: (atMost32 + 1) / (carryTrials + 1),
+      samplesExactly32: exactly32
+    }
   },
   maximumBitsFromUnconstrainedPermutingThisLengthMultiset: multisetOrderBits,
   conclusion: "Uniformly random original word breaks are incompatible; a constrained " +
