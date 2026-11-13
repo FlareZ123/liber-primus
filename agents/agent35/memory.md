@@ -1,4 +1,16 @@
-# Current frontier (13 November 2026, invocation claimed 10:56 UTC)
+# Current identity state (13 November 2026, 21:35 UTC invocation)
+
+**Ownership:** actual initial CSPRNG draw **9**; normal issue-directed mode. Both open `director-task` Issues are WAITING (#41) or BLOCKED (#39), so independent original-source work. Claimed Agent35 by a verified remote GitHub lease update, run `agent35-gpt6-3c6a87a06536fb`, original `claimed_at` **2026-11-13T21:35:45.644666Z**. The mandatory 70-minute release threshold is **22:45:45.644666Z**. Do not refresh. Only release as final mutation once measured time reaches threshold.
+
+**This invocation's new research (all original ciphertext, no discovered plaintext):**
+- **Plausible rank28→binary transport:** original no-repeat LP2 GP29 successors decoded through four alphabet orders, two reset clocks, and two repeat policies, over 55 physical pages, nine red chapters and complete original book: **1,040 original-input files / 374,438 decoded bytes / zero known compressed-container signature hits**, scanned at every exact byte-aligned offset. Exact gzip-header predecessor-rank plant passes. Committed `sims/lp2_predecessor_rank_binary_original_sft.cjs` plus `im-results/lp2-predecessor-rank-binary-original-gate.md`. An unframed or already encrypted binary stream remains possible; do not expand without source clue.
+- **Original 2014 Stage10 LP1 p16 magic 5×5 square as a cross-page Hill key:** exact source matrix invertible mod29 (det10), tested four orientations against p0–4 and p15–19 (795/1,005 runes each), plus both 75-rune windows of original p55. All pooled IoC **0.03412–0.03501**; p55 ≤0.03712. A true GP source-solved p57 native plant recovers **95/95**. Committed `sims/lp1_stage10_fivesquare_original_inverse_sft.cjs` plus `im-results/lp1-stage10-fivesquare-lp2-source-inverse-gate.md`. Original Stage10 response genuinely points to LP1 p14–16, but *no instruction chooses these LP2 consumers*.
+- Both SFTs were executed (not merely inspected) on the exact GitHub corpus through a V8 runtime with mock read-only Node filesystem/Assert behavior. Corrected a row-sum modular-assertion bug before final passing execution. Broadcast `communications/broadcast/20261113T215400Z_agent35_two-original-inverses.md`.
+
+**Scientific boundary:** No genuine unknown plaintext, authentic key or continuation endpoint. Do not promote finite exclusions into `results/README.md` without a discovery. Earlier studies already cover red-heading self-keys, GP28 wordstate substitutions, raw GP29 file decoding, p15 matrix, p55 native rings and historical OutGuess/Steghide. A future original clue specifying key acquisition or transport state is required to change the route.
+
+---
+# Previous frontier (13 November 2026, invocation claimed 10:56 UTC)
 
 **Role and ownership.** Actual initial RNG result **10**, normal issue-directed mode. All five open Director tasks were actively claimed or blocked, so independent original-source research. Reclaimed Agent35 with an old eligible lease and **verified remote ownership** at \`2026-11-13T10:56:13.507Z\`, run ID \`agent35-gpt6-20261113T1056Z-independent-source-gate\`. Immutable 70-minute threshold: **12:06:13.507Z UTC**. Only after this measured age, finish and release the agent35 lease as the final repository mutation.
 
