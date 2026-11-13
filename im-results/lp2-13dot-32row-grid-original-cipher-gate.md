@@ -47,31 +47,44 @@ The interval-specific rune clock starts at zero after each 13-dot mark. The unus
 
 The source-original readouts have no sustained GP English. A separately generated 13,136-rune plant uses the actual solved p57 GP plaintext repeated in fixed printed order, encrypts it with each original table row using the opposite sign, and reverses the cipher. **Every 13,136 rune recovers exactly**, including both empty segments and the final solved-page positions. Every original result also reenciphers 13,136/13,136. Consequently the result is a genuine negative under the **literal fixed key-to-segment mapping**, not a failure to implement the proposed inverse.
 
-## Stronger key-independent obstruction for the marker-interval architecture
 
-A different question needs **no table key at all**: suppose each of the 32 punctuation-delimited intervals has an arbitrary secret, fixed permutation of all 29 rune labels. This contains every repeating Caesar/affine alphabet with a *constant* offset per interval, and permits an entirely different unknown 29-symbol alphabet in every interval. For each interval of length `n`, the ordered equal-rune count `E = sum_r count(r) × (count(r)−1)` and its IoC `E/[n(n−1)]` are **exactly invariant** under every such secret alphabet. Key search cannot change these values.
+## Source-selected per-interval 8-column transposition
 
-Ten untouched original intervals are at least 250 runes long. Their exact original IoCs are:
+### Plausible human solve path
 
-| Interval | Runes | Original, key-invariant IoC |
-| ---: | ---: | ---: |
-| 1 | 716 | 0.03410165 |
-| 5 | 690 | 0.03449233 |
-| 7 | 308 | 0.03435001 |
-| 10 | 1,729 | 0.03446048 |
-| 14 | 1,883 | 0.03450923 |
-| 16 | 1,005 | 0.03430457 |
-| 18 | 1,414 | 0.03420151 |
-| 22 | 1,460 | 0.03432920 |
-| 25 | 3,008 | 0.03454263 |
-| 27 | 299 | 0.03348971 |
+A solver who notices the original 31 thirteen-dot marks and the 32×8 base60 byte table could reasonably try a standard columnar transposition: the marks supply 32 consecutive intervals, each printed table row supplies eight byte values, and sorting those values gives an eight-column read order. Earlier Cicada stages used recognizable transpositions, so this is a simpler historical operation than inventing another stream cipher. The source does not explicitly say that rows are column keys or that their values should be ranked; that is the weakest assumption.
 
-All are near the exact uniform 29-way baseline `1/29 ≈ 0.03448276`. The already-independent authentic solved LP1/LP2 GP-English controls show much larger rune coincidence rates (roughly 0.06–0.07). Thus **one arbitrary stationary 29-way secret substitution per literal 13-dot interval cannot explain ordinary native GP-English directly**, regardless of the unknown key. This conditional obstruction is stronger than the two row-key signs tested above. It is not an exclusion of an interval-varying keystream, within-interval state changes, modified plaintext distribution, transpositions interleaved with a symbol-changing cipher, or a binary intermediate. The two zero-length intervals also mean this scheme never supplies 32 positive plaintext-bearing segments.
+### Frozen inverse family
 
-## Decision
+For each of the first 28 intervals (exactly the 12,956 unknown runes), rank the corresponding table row's eight distinct byte values. Test only:
 
-**Reject the direct mod-29 repeating-eight-byte-pad transfer with one table row per literal thirteen-dot interval**, for either additive sign, as an explanation of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals. The normal GP-English source distribution is absent after inversion. Neither the count nor this null result excludes a source-supplied alternative message serialization, table as a cryptographic key schedule, skipped key positions, per-section asymmetric algorithms, or an external text.
+1. fill plaintext row-wise and read columns in ascending rank order;
+2. the same with descending rank order;
+3. fill plaintext column-wise and read rows in ascending rank order;
+4. the same with descending rank order.
 
-A justified successor would have to identify an *independent original instruction* specifying a different row consumer or establish a plaintext or key on a previously unfitted interval. Fitting rotations, period offsets, marker deletion, or arbitrary byte relabelings to these same 32 intervals would lack that selector.
+The final four intervals belong to the already-solved p56/p57 material and are not transformed. Both zero-length intervals remain in place. No row rotation, arbitrary offset, key fitting, marker deletion, or alternate alphabet is used. The four implementations are exact inverse pairs; each is checked on an independently planted 12,956-rune p57 control and by forward re-encryption of every original interval.
 
-**Reproduction:** [single-file CommonJS SFT](../sims/lp2_13dot_32row_grid_segment_sft.cjs), manually invoked by [GitHub Actions run 43387480566](https://github.com/FlareZ123/liber-primus/actions/runs/43387480566), success on original source with Node.js 22. It reads the pinned original corpus, ink annotation and numerical table, asserts the 31 mark/32 section geometry, checks the two empty sections and runs the exact positive-control inverses. Source references: [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), [canonical corpus](../resources/liber-primus/lp2-corpus.json), [base60 table](../resources/liber-primus/base60-grid.json).
+### Original-cipher result
+
+A source-calibrated GP29 four-gram model uses the first 150,000 characters of the Shakespeare control for training and the final 150,000 for held-out scoring. It applies the authenticated source spellings ING and IO, and scores each interval without cross-boundary four-grams.
+
+| Reading | Held-out GP29 four-gram log probability per rune |
+|---|---:|
+| Original undecoded register | **−14.1912584** |
+| Row-fill / column-read, ascending | −14.1986442 |
+| Row-fill / column-read, descending | −14.2020494 |
+| Column-fill / row-read, ascending | −14.2050607 |
+| Column-fill / row-read, descending | −14.2034913 |
+
+Across 500 deterministic held-out native-text windows with the same 28 segment lengths, scores range from **−11.0766107** to **−10.6847566** (median **−10.7949813**). Every candidate is more than **3.12 nats per rune below even the worst sampled native window**, and every candidate is slightly worse than the raw ciphertext. The transposition does not restore English-like GP29 adjacency or produce plaintext.
+
+The synthetic p57 control recovers exactly under all four inverse pairs. Thus the negative result is not a transposition implementation failure. The test is distinct from the previously recorded whole-book eight-column word-order interleaver: this experiment is a rune-level, row-specific transposition independently applied to each original thirteen-dot interval.
+
+### Decision
+
+**Reject the direct mod-29 repeating-eight-byte-pad transfer and the four source-fixed row-ranked per-interval eight-column transpositions** as explanations of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals; neither its count nor the new row-rank experiment establishes that each row is a cipher key. The key-independent fixed-substitution obstruction remains conditional on direct native GP-English and does not exclude within-interval state changes, transposition interleaved with a symbol-changing cipher, or another original side channel.
+
+A justified successor must identify an independent original instruction specifying a different row consumer, or establish plaintext/key material on a previously unfitted interval. Fitting rotations, period offsets, marker deletion, arbitrary byte relabelings, or additional rank transforms to these same 32 intervals would lack that selector.
+
+**Reproduction:** [single-file CommonJS SFT](../sims/lp2_13dot_32row_grid_segment_sft.cjs) now includes the four row-ranked columnar inverses, source-calibrated GP29 four-gram scoring, exact original re-encryption, and planted p57 controls. Run with Node.js 22: `node sims/lp2_13dot_32row_grid_segment_sft.cjs`. The earlier additive-pad gate was also run successfully in [GitHub Actions run 43387480566](https://github.com/FlareZ123/liber-primus/actions/runs/43387480566). It reads the pinned original corpus, ink annotation and numerical table, asserts the 31 mark/32 section geometry, checks the two empty sections and runs the exact positive-control inverses. Source references: [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), [canonical corpus](../resources/liber-primus/lp2-corpus.json), [base60 table](../resources/liber-primus/base60-grid.json).
