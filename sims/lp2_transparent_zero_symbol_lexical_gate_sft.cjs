@@ -235,8 +235,36 @@ function plantPositive(pools) {
   assert.equal(cipher.length,12956);
   return {runes:text.length,exactRecovery:true,plantedEA:text.filter(x=>x===28).length};
 }
+/**
+ * Source-only comparator: select 86 eligible physical page successor positions
+ * uniformly without replacement. Under this non-cryptographic null,
+ * long-word position mass should predict the observed long-word event count.
+ */
+function homogeneousSiteNull() {
+  const eligible=originals.flat().filter(r=>r.eligible).length;
+  const longEligible=originals
+    .filter(w=>w.length>=8).flat().filter(r=>r.eligible).length;
+  const totalEvents=observed.total,actualLong=observed.long;
+  // Hypergeometric P(X=0), iterated recurrence for X=1..86.
+  let p=1;
+  for(let i=0;i<totalEvents;i++)
+    p*=(eligible-longEligible-i)/(eligible-i);
+  let upper=0;
+  for(let k=0;k<=totalEvents;k++) {
+    if(k>=actualLong)upper+=p;
+    if(k<totalEvents)p*=((longEligible-k)*(totalEvents-k))/
+      ((k+1)*(eligible-longEligible-totalEvents+k+1));
+  }
+  const mean=totalEvents*longEligible/eligible;
+  assert.equal(eligible,12901);
+  assert.equal(longEligible,3119);
+  assert(Math.abs(upper-0.5207793771587872)<1e-9);
+  return {eligible,longEligible,mean,observedLong:actualLong,
+    pAtLeastObserved:upper};
+}
 const out={observed,words:originals.length,sourceGroups:types.size,models:29,
-  references:{},positive:plantPositive(nativePools(refs.Shakespeare))};
+  references:{},sourceUniformSiteComparator:homogeneousSiteNull(),
+  positive:plantPositive(nativePools(refs.Shakespeare))};
 for (const [name,source] of Object.entries(refs)) {
   const pools=nativePools(source);
   const trials=Array.from({length:29},(_,q)=>candidate(pools,q))
