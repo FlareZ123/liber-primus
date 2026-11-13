@@ -1,0 +1,14 @@
+name: Authenticated p56 plaintext-F ambiguity original-input SFT
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p56 and independent LP1 literal-F inverse, all forward-valid masks
+        run: node sims/lp2_p56_plaintext_fehu_ambiguity_sft.cjs
