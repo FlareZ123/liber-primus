@@ -287,6 +287,39 @@ signedInitialAdditiveKey.p57SyntheticRoundTripPassed = true;
 
 
 
+const signedInitialPrimeKey = signedInitials.map(i => mod(corpus.prime[i]));
+const signedInitialPrimeAdditiveKey = {
+  keyPrimeWeightsMod29: signedInitialPrimeKey,
+  alignment: "forward source order; GP prime(initial) mod29",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedInitialPrimeKey[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
+    cursor += n;
+  }
+  signedInitialPrimeAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const primeSyntheticCipher = p57Control.map((p, i) => mod(p + signedInitialPrimeKey[i]));
+const primeSyntheticRecovered = primeSyntheticCipher.map((c, i) =>
+  mod(c - signedInitialPrimeKey[i]));
+assert.deepStrictEqual(primeSyntheticRecovered, p57Control);
+signedInitialPrimeAdditiveKey.p57SyntheticRoundTripPassed = true;
+
 const signedInitialTotientKey = signedInitials.map(i => mod(corpus.prime[i] - 1));
 const signedInitialTotientAdditiveKey = {
   keyPrimeTotients: signedInitialTotientKey,
@@ -325,6 +358,9 @@ const initialOrderObserved = [
   ...signedInitialAdditiveKey.variants.map(v => ({
     keyTransform: "raw-GP-index", operation: v.operation, score: v.gpShakespeareTrigramLogMean
   })),
+  ...signedInitialPrimeAdditiveKey.variants.map(v => ({
+    keyTransform: "prime-mod29", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
   ...signedInitialTotientAdditiveKey.variants.map(v => ({
     keyTransform: "phi-prime-mod29", operation: v.operation, score: v.gpShakespeareTrigramLogMean
   })),
@@ -345,9 +381,10 @@ for (let trial = 0; trial < initialOrderShuffleCount; trial++) {
     const j = nextInitialOrderShuffleU32() % (i + 1);
     [shuffledInitials[i], shuffledInitials[j]] = [shuffledInitials[j], shuffledInitials[i]];
   }
+  const shuffledPrimes = shuffledInitials.map(i => mod(corpus.prime[i]));
   const shuffledTotients = shuffledInitials.map(i => mod(corpus.prime[i] - 1));
   let best = -Infinity;
-  for (const key of [shuffledInitials, shuffledTotients]) {
+  for (const key of [shuffledInitials, shuffledPrimes, shuffledTotients]) {
     for (const operation of [
       (c, k) => mod(c - k),
       (c, k) => mod(c + k),
@@ -373,7 +410,7 @@ const initialOrderQuantile = q => initialOrderShuffleScores[
 const signedInitialOrderShuffleGate = {
   seed: "0x330143",
   trials: initialOrderShuffleCount,
-  family: "same multiset of 43 signed-message initials; max over raw/phi-prime keys and C-K/C+K/K-C",
+  family: "same multiset of 43 signed-message initials; max over raw/prime/phi-prime keys and C-K/C+K/K-C",
   observedBest: initialOrderBest,
   greaterOrEqual: initialOrderGreaterEqual,
   addOneUpperTail: (initialOrderGreaterEqual + 1) / (initialOrderShuffleCount + 1),
@@ -442,9 +479,10 @@ const report = {
   signedMessagePrimeSumKey: signedPrimeSumKeyResult,
   signedWordInitialStationaryMapGate: signedWordInitialGate,
   signedWordInitialAdditiveKey: signedInitialAdditiveKey,
+  signedWordInitialPrimeAdditiveKey: signedInitialPrimeAdditiveKey,
   signedWordInitialTotientAdditiveKey: signedInitialTotientAdditiveKey,
   signedWordInitialOrderShuffleGate: signedInitialOrderShuffleGate,
-  conclusion: 'The six fixed p32-compass additive/Beaufort alignments, the direct source-order 43-word GP-prime-sum key, and the direct 43 word-initial raw/phi-prime running keys do not recover p55 plaintext. The combined same-multiset order null for the initial-key family is p=0.625737. This rejects only these fixed additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
+  conclusion: 'The six fixed p32-compass additive/Beaufort alignments, the direct source-order 43-word GP-prime-sum key, and the direct 43 word-initial raw/prime/phi-prime running keys do not recover p55 plaintext. The combined same-multiset order null for the initial-key family tests all three key transforms and all three directions. This rejects only these fixed additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
 
