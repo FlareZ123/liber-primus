@@ -1,6 +1,6 @@
-# Original p55 versus the factored 2012 Cicada P.S. RSA modulus
+# Original p55 versus the factored 2012 and 2014 Cicada RSA moduli
 
-**Decision (13 November 2026, Agent21): negative under one source-fixed, direct GP29→RSA construction. No unknown LP2 plaintext or key.** This tests a distinct historical RSA modulus against the complete physical p55 rather than repeating the previous 2048-bit p50-table RSA comparison.
+**Decision (13 November 2026, Agent21): negative under four source-fixed, direct GP29→RSA constructions. No unknown LP2 plaintext or key.** This tests both previously factored **432-bit** historical Cicada RSA moduli against physical p55, distinct from the earlier 2048-bit p50-table RSA checks. Neither historical clue selects p55 as its ciphertext.
 
 ## Why this is a finite source-motivated test
 
@@ -25,8 +25,25 @@ For original rune indexes `c[0..L−1]` in canonical GP29 order, define `C = Σ 
 
 Neither message begins with the compulsory **0x00** byte for RSAES-OAEP (the 2014 operation) or for conventional PKCS#1 v1.5 type-1/type-2 encoded blocks. Neither is self-identifying raw plaintext. Exact forward exponentiation recovers each original `C`, as it must for a correctly implemented RSA inverse; it is no evidence of the historical key. An independently constructed valid 54-byte type-2 block also encrypts/decrypts exactly as a positive arithmetic control.
 
-**Reproduction:** [one-file Windows-compatible CommonJS SFT](../sims/lp2_2012_ps_rsa_p55_sft.cjs), using the repository's unchanged [physical LP2 corpus](../resources/liber-primus/lp2-corpus.json). The program asserts the published factors, exact original page length, complete decrypted hex outputs, failure of first-octet padding and positive RSA block recovery.
+**Reproduction:** [one-file Windows-compatible CommonJS SFT](../sims/lp2_2012_ps_rsa_p55_sft.cjs), using the repository's unchanged [physical LP2 corpus](../resources/liber-primus/lp2-corpus.json). The program asserts both historical factorizations, exact original page length, all four complete decrypted hex outputs, failure of first-octet padding and positive RSA block recovery.
+
+## Independent 2014 first-onion RSA-OAEP modulus: closer historical control
+
+The independent [2014 first-onion OutGuess message](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_%282014%29), decoded during the same 2014 round that later published LP2, actually specifies **RSAES-OAEP** with exponent **65,537** and a different 432-bit modulus, factored by the original solving community:
+
+- P2014 = `97513779050322159297664671238670850085661086043266591739338007321`
+- Q2014 = `77506098606928780021829964781695212837195959082370473820509360759`
+- N2014 = `7557912574608535164426718292058021255641310207187633095795069445700059210248050757270234679993673844203148013173091173786572116639`
+
+The published historical factorization and explicit exponent fix this extra RSA inverse independently of LP2. Running the **same previously frozen** 76/75-rune p55 GP29 serialization produces:
+
+| Original p55 input | 2014 RSA 54-byte decoded message prefix | Printable ASCII | 0x00 OAEP prefix |
+| --- | --- | ---: | --- |
+| All 76 | `941ae5138da36a3ecc6dcc6763c0eaaa` | 24/54 | **absent** |
+| Body 75 | `34db54889da71924b3f8cce02164690b` | 19/54 | **absent** |
+
+The complete 54-byte hex outputs are fixed as regression assertions in the existing source-native SFT. `P2014×Q2014=N2014` and exact modular re-encryption both pass, but neither decoded original begins with 0x00, so **neither is a complete 2014-style OAEP encoded message or a PKCS#1 v1.5 encoded block**. The negative is stronger historically than the 2012 postscript case because the 2014 source names the RSA encoding scheme and exponent. It still supplies no LP2-target selection; don't extrapolate to arbitrary blocks, key sources or message formats.
 
 ## Boundary and next decision
 
-This rejects **only** the two natural direct base29 p55 serializations under the **2012 P.S. modulus and 2014 e=65537** as RSAES-OAEP or PKCS#1 v1.5 ciphertext. A different encoding, RSA padding, historical key, or earlier/later page could behave differently; none has an independently supplied LP2 selector here. No broader RSA search is justified by this result. Do not infer intentional p55 linkage from the fact that the earlier number can be factored.
+This rejects **only** the two natural direct base29 p55 serializations under **each of the two authenticated-period 432-bit RSA moduli**, with 2014 exponent 65537, as complete RSAES-OAEP or PKCS#1 v1.5 ciphertext. A different encoding, RSA padding, historical key, or earlier/later page could behave differently; none has an independently supplied LP2 selector here. No broader RSA search is justified by this result. Do not infer intentional p55 linkage from the fact that the earlier number can be factored.
