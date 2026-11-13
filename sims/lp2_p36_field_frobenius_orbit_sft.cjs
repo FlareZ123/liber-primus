@@ -196,10 +196,98 @@ assert(Math.abs(original[2].top.ioc - 0.038896571286742544) < 1e-12);
 assert.equal(references[0].windows, 2147);
 assert.equal(references[1].windows, 7479);
 
+
+/**
+ * Independently source-motivated field-basis inversion: treat the printed p36
+ * coefficients as coordinates in the normal basis of beta, not the ordinary
+ * power basis. The generators are selected without seeing original scores:
+ * X and X+1 (p3 red quadratic's unique field projection), X^2, the simplest
+ * X^2+X+1 full-rank control, the signed 2013 BASE29 quadratic, and the p3
+ * image's actual red quadratic. No derived alphabet/key fitting is performed.
+ * @param {string} label
+ * @param {number[]} generator
+ * @param {number[][]} vectors
+ * @returns {{name:string,rank:number,decoded_ioc:number[],preview:string}}
+ */
+function normalBasisTest(label, generator, vectors) {
+  let beta = Array(DEG).fill(0);
+  for (let i = 0; i < generator.length; i++) beta[i] = mod(generator[i]);
+  const conjugates = [];
+  for (let j = 0; j < DEG; j++) {
+    conjugates.push(beta);
+    beta = frobenius(beta);
+  }
+  assert.deepEqual(beta, conjugates[0], 'Frobenius generator orbit closure');
+  const rows = Array.from({ length: DEG }, (_, i) =>
+    Array.from({ length: DEG + vectors.length }, (_, j) =>
+      j < DEG ? conjugates[j][i] : vectors[j - DEG][i]
+    )
+  );
+  const inverse = Array.from({ length: MOD }, (_, n) => {
+    if (n === 0) return 0;
+    for (let j = 1; j < MOD; j++) if ((n * j) % MOD === 1) return j;
+    throw Error('noninvertible residue');
+  });
+  let rank = 0;
+  for (let col = 0; col < DEG; col++) {
+    let pivot = rank;
+    while (pivot < DEG && rows[pivot][col] === 0) pivot++;
+    if (pivot === DEG) continue;
+    [rows[rank], rows[pivot]] = [rows[pivot], rows[rank]];
+    const row = rows[rank];
+    const factor = inverse[row[col]];
+    for (let j = col; j < row.length; j++) row[j] = mod(row[j] * factor);
+    for (let i = 0; i < DEG; i++) if (i !== rank) {
+      const value = rows[i][col];
+      if (value !== 0)
+        for (let j = col; j < row.length; j++)
+          rows[i][j] = mod(rows[i][j] - value * row[j]);
+    }
+    rank++;
+  }
+  const decoded = rank === DEG
+    ? vectors.map((_, k) => rows.map((row) => row[DEG + k]))
+    : [];
+  if (rank === DEG) {
+    const cols = conjugates;
+    for (let k = 0; k < vectors.length; k++) {
+      const recovered = Array(DEG).fill(0);
+      for (let j = 0; j < DEG; j++) {
+        const value = decoded[k][j];
+        if (value !== 0)
+          for (let i = 0; i < DEG; i++)
+            recovered[i] = mod(recovered[i] + value * cols[j][i]);
+      }
+      assert.deepEqual(recovered, vectors[k], 'normal-basis positive reconstruction');
+    }
+  }
+  return { name: label, rank,
+    decoded_ioc: decoded.map(ioc),
+    preview: decoded.length > 0
+      ? decoded[0].slice(0, 24).map((v) => gp.translit[v]).join('.')
+      : '(incomplete basis)',
+  };
+}
+const basisVectors = targets.map(([, source]) => source);
+const normalBasisResults = [
+  ['X', [0, 1]],
+  ['X + 1', [1, 1]],
+  ['X^2', [0, 0, 1]],
+  ['X^2 + X + 1', [1, 1, 1]],
+  ['signed 2013 BASE29 quadratic', [11, 18, 1]],
+  ['printed p3 red quadratic', [13, 23, 2]],
+].map(([label, coefficients]) => normalBasisTest(label, coefficients, basisVectors));
+assert.deepEqual(normalBasisResults.map((result) => result.rank),
+  [236, 236, 237, 238, 238, 238]);
+assert(Math.abs(normalBasisResults[3].decoded_ioc[0] - 0.03698188136013899) < 1e-12);
+assert(Math.abs(normalBasisResults[4].decoded_ioc[0] - 0.03634365138460448) < 1e-12);
+assert(Math.abs(normalBasisResults[5].decoded_ioc[0] - 0.035776335850796016) < 1e-12);
+assert(normalBasisResults.every((result) => result.decoded_ioc.every((x) => x < 0.038)));
+
 console.log(JSON.stringify({
   source: { field_characteristic: MOD, degree: DEG, page36_runes: DEG,
     original_table_bytes: bytes.length, original_byte_sha256: sha },
-  original, references,
+  original, references, normalBasisResults,
   control: { encrypted_exponent: 87, decoded_exponent: 151,
     recovered: DEG, ioc: ioc(plantedRunes) },
   conclusion: 'The entire source-fixed Frobenius family fails the native-English register screen; unknown plaintext is not recovered.',
