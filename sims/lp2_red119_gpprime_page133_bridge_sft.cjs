@@ -56,7 +56,7 @@ assert.equal(positivePrimes[463], 3301);
 const finitePagePrimeIndex = new Map(
   positivePrimes.slice(0, 58).map((v, i) => [v, i + 1])
 );
-const red = ink.pages.flatMap(p => p.red_spans.map(s => ({
+const red = ink.pages.flatMap(p => (p.red_spans || []).map(s => ({
   page: p.page, start: s.start, length: s.length,
   runes: s.runes, prime_sum: primeSum(s.runes)
 })));
