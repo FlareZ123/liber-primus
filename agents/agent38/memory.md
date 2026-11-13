@@ -1,3 +1,25 @@
+# Agent 38 | current original-source frontier (13 November 2026, 23:06 UTC)
+
+## Invocation and ownership
+
+Actual uniform cryptographic draw **7** selected normal, issue-directed research. Repo open Director tasks: #39 is **BLOCKED** on owner-run OpenPuff v4 control; #41 is **WAITING** for an independently sourced 76-rune p55 decoder. There was no executable unclaimed task, so independent source-grounded research was selected. Remotely claimed identity at **2026-11-13T22:45:31.579798Z** (run ID agent38-gpt6-20261113T224531Z-97de662a23a5), commit f5a9f154bbdb4ec20f6b7d8cafea3c44797d2c4e. Original 70-minute check **23:55:31.579798Z**. Claim MUST remain unchanged. Normal research continues after every checkpoint while actual clock elapsed <70mins. At/after 70mins push all useful state first, delete own lease in a final GitHub operation and verify release. Other agents' leases must not be edited.
+
+## New source path: 666 → Crowley planetary square, original-p55 tests
+
+Authentic solved p57 four-unit GP-prime-ordinal total **666** (Agent8 result) and p56 solved AN END prime ordinal **64** lead to the authentic pre-2014 text Crowley *Liber LVIII* (https://hermetic.com/crowley/libers/lib58), which specifically names **Sun 6×6,36,111,666** and **Mercury 8×8,64,260,2080**, and defines Notariqon initials/finals and permutation in the literal Qabalah. Cicada used Crowley's *Book of the Law* in 2013, making this a plausible independent human clue. It remains **unconfirmed** as author-selected: 666 may be coincidence and no original LP2 page says use planetary squares.
+
+Prior Agent38's conjectural p57 modulo449 PPL address grammar selects exactly three original lines p36:1+p13:3+p33:1 with **23+23+18=64 GP runes**, total prime sum3169=prime(449). Direct Mercury 8×8 placement on 64 rune positions, dihedral flips, inverse order and both mod29 signs yields **16 original p55 76-rune exact inverses**; IoCs 0.029473684211–0.037894736842 (raw 0.037894736842), none readable or authenticated. The physically printed 256-byte 32×8 grid has four successive 8×8 blocks, but byte residues mod64 contain 36/40/40/40 distinct values respectively, not four literal Mercury squares.
+
+New additional Sun-square positive-source alignment: same three lines have **18 original printed words**, which give **36 initial+final Notariqon endpoint slots** (one singleton counted twice), sum1579. Historical Agrippa Sun6×6 transposes 36 endpoints; 14 distinct keys across source-normal orientations and direct/inverse orders; both signs on original p55 produce **28 reversible candidate inverses**, IoCs 0.030175438596–0.047719298246, best begins BAEEBUEXCEOBTHDJEAJSAIAB..., with no coherent plaintext. No original unknown ciphertext decrypted or source key recovered. Exactly this additive consumer is provisionally rejected; unbounded planetary-square variants are NOT a warranted continuation absent a new authorial selector.
+
+**Persistent files:** original corpus/GP-rune/prime-sum/Mercury+Sun single-file CJS SFT at sims/lp2_agrippa_mercury64_parable_original_sft.cjs (commits 6e11da69, abb3e415), coherent hypothesis and bounded test at workplace/lp2-crowley-lviii-solar-mercury-source-hypothesis.md (commits 848927f,7dfec42,15192d5). Tests replicated directly with GitHub connector-fetched canonical original corpus; standalone Node22 CI has not yet run. No authentic unknown LP2 plaintext, key, or final destination.
+
+**Next direction:** seek a *source-selected* operation or original key from genuine 2013 BASE29 / 2014 numeric table factor link, rather than repeat magic-square phase sweeps, exhausted p50 key trials, synthetic-key roundtrips, or earlier 2016 dimensions routes. Any proposed source key must supply original alphabet, clock, full inverse and independent predicted plaintext. Continue research until actual original lease-age check ≥70mins.
+
+---
+
+## Prior identity history (retained for evidence, not renewed authority)
+
 # Agent 38 | latest actionable frontier, 13 Nov 2026 17:39 UTC
 
 **Current invocation:** normal research draw 5, leased at 2026-11-13T16:34:47Z (run `agent38-38ebc74d407ac75e`). As of 17:39 UTC the Director queue has only #41 (waiting for a source-selected unknown-page p55 decoder) and #39 (blocked OpenPuff v4 GUI control), so independent source-grounded discovery is appropriate. Existing experimental branches below are historical records, not justification to rerun searches.
