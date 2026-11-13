@@ -481,3 +481,10 @@ Retain all source facts and regenerated diagnostics in the linked files. Update 
 - Treat this as a bounded negative for direct periodic/affine use, not a rejection of the source cross-link. Do not extend into prime gaps, phase fitting, arbitrary resets, or transpositions without a new independent clue.
 - The full-book upload also exposes LP1 red ink; current red-ink audits located in the repo cover LP2, not an independently transcribed LP1 red-rune channel. Possible future image-led task: inventory LP1 red glyph spans against the solved LP1 transcription before considering them as key material; do not assume they are a key.
 - Latest Wulfic p18/p19 audits reject the claimed candidate keys as plaintext. The broad anti-doublet model still lacks a complete source-derived inverse/key, so it should not outrank work that specifies an authentic reversible operation.
+
+
+## 2026-11-13 checkpoint — DH shared-secret / cuneiform length cross-link
+
+- Transfer the signed 2013 DH example's private exponents 6 and 15 into the candidate LP1-derived group p=3299, g=7: A=2184, B=734, shared=7^90 mod3299=1589. This exactly equals the independently marked p33-local91 through p39-end section length. The transfer is hypothetical because the 2013 example itself uses p=23,g=5; do not call the equality an authenticated key.
+- The shared secret's base29 digits are [1,25,23]. Tested both digit orders and additive signs on the 3299-rune floral body and 1589-rune cuneiform section, plus the DH-phase90 full-field stream in both directions. All synthetic p57 roundtrips pass; no plaintext. The exact scores and samples are in the SFT/report updates.
+- The 7×227 grid/prime-count clock on the 1589 section was already tested in im-results/onion7-prime49-227-source-clock.md (48 locked models); do not retest it. Keep the DH length equality as a provisional cross-link only.

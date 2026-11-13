@@ -10,6 +10,9 @@ The repository's recovered 2013 CicadaOS source audit independently records that
 
 The primes after 1033 through 3301 inclusive are **1039…3301**, exactly **290 primes = 10 × 29**. This suggested a finite GP29 key stream. The solved manuscript's explicit prime/totient language motivates testing both p and Euler's φ(p)=p−1.
 
+
+A separate cross-round check gives an exact length match: transferring the private exponents 6 and 15 from the signed 2013 DH example into the LP1-derived candidate group p=3299, g=7 yields 7^90 mod3299=1589, exactly the length of this marked section. The exponent transfer is hypothetical. Its direct base-29 shared-secret key and phase-90 stream consumers fail on this section; see the expanded [p15/floral register report](lp2-p15-red3299-floral-body-register.md) and its reproducer.
+
 ## Locked target and key construction
 
 The target is the marked interval beginning at zero-based rune offset 91 of physical LP2 p33 and ending at the final rune of p39. The local corpus gives page lengths [214, 261, 271, 238, 228, 228, 240], hence the five motif-delimited block lengths [123, 261, 737, 228, 240], marker offsets [123, 384, 1121, 1349], and **1,589 runes** total. This is 5 complete 290-symbol key periods plus 139 runes.
