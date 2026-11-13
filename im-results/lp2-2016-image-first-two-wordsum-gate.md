@@ -31,6 +31,21 @@ Use the exact original p0/p1 262 and 266 rune histograms, their original word-sl
 
 The source-image dimensions and order fix the primary ordered-page event; the exact word-slot numbers were discovered after inspection and must not be assigned a fresh 0/30,000 claim of significance. This finite p≈0.0002 is conditional on the explicit narrow shuffle model; it does not estimate the full research-wide false-discovery rate, compensate for all historically possible image dimensions or show the authors intended this link.
 
+## Direct source-addressed 11+10-key inverse on p32: negative
+
+The **11** runes of p0 word6 and **10** runes of p1 word33 fit the natural p32 **11×11** matrix as one complete horizontal key (11 columns) and keys for its **ten remaining rows** (the first row gets vertical offset zero). This is a stronger potential *consumer* than a numerical collision: the two unique source-addressed words determine all key symbols, and a two-dimensional additive cipher can be executed reversibly on the 121 original p32 runes.
+
+Freeze all keys and p32's natural row-major order. For each original GP29 rune \`C[r,c]\`, compute either:
+
+- an additive separable candidate \`P[r,c] = C[r,c] ± horizontal[c] ± vertical[r]\` modulo29, with \`vertical[0]=0\`; or
+- a multiplicative outer-product candidate \`P[r,c] = C[r,c] ± horizontal[c]×vertical[r]\` modulo29, allowing vertical row0 factor 0 or 1.
+
+Read each key rune either as its GP index or its corresponding prime weight modulo29. These form **16** fixed reversible original-cipher candidates with no key search, offsets, word selections or language-fitted exceptions. Both plain↔cipher directions round-trip all original **121/121** runes exactly by construction.
+
+The original p32 output GP29 IoC ranges **0.032369–0.039394** over all 16. The best is GP-index additive \`(+horizontal,+vertical)\`, **IoC 0.039394**, starting **\`FLOALTGISEAOEEAWGENGMOERMAEMJYASEATHAEOIAOIATHWTMOYHJTHC...\`**. The actual untranslated original p57 *native GP English* source has IoC above 0.055 on its 95 runes (standalone reproducer prints its exact score). None of the 16 outputs yields recognizable native GP English. The source provides no further operation warranting rescue by rearranging key coordinates, selecting alternate word slots, or fitting cipher parameters.
+
+**Decision:** the concrete 11+10 two-dimensional additive/multiplicative consumer does **not** decrypt p32. The two uniquely addressed original words remain a provisional numerical link, with no independently fixed use.
+
 ## Causal relevance and stop rule
 
 This link supplies two *uniquely source-addressed printed ciphertext words*, and the signed 2016 guidance offers a plausible human reason to inspect word sums. It may be used to **propose a concrete next reversible operation or source-derived key/clock** if an independently readable clue supplies one. The 2016 dimensions already serve as p32 11×11 orientation markers, so there is a real competing explanation: their additional collision with opening-page word sums may be incidental.
