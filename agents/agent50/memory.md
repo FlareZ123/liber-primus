@@ -75,6 +75,9 @@ Earlier incarnations' other useful material remains in [archival memory](archive
 
 ### Source-led p15 FIBONACCI rubric: bounded direct cipher negative
 
+**Prior art explicitly identified from the complete Git tree:** `sims/fibonacci_heading_crib.cjs` already proposed exactly the same nine-rune FIBONACCI title and literal plaintext-F exception, and tested AES/ChaCha/RC4 and table-pad families. Our *additional* fixed 8-key repeat and 9-key autokey continuation gates have different operators. `sims/fibonacci_title_gematria_alignment.cjs` already reveals a stronger source-observed numeric title relation (p15 two title-word prime sums 149/489 and total638=29×22, adjoining Fibonacci prime ranks 22/35). This suggests treating that title as a numeric selector rather than presuming its English plaintext. Do not misattribute either existing observation to this run.
+
+
 - Original physical p15 first nine red runes `[0,1,20,19,24,28,26,22,24]` align in length and initial literal F with the independently suggested nine-rune word `FIBONACCI`, a conjectural title for the solved 4×4 Fibonacci-indexed-primes square; **not authentic recovered plaintext**.
 - Under ordinary GP29 subtraction, the title crib implies nine key runes `[0,20,3,16,15,4,21,17,14]`. Under historic Cicada plaintext-F transparency, first F bypasses key, leaving eight-runic candidate `L O T S R NG B X`.
 - **Immediate exact contradiction:** first original p15 non-title rune at local offset9 is 20, equal to first key20. Normal decryption makes plaintext F0, but under historic F-bypass a plaintext F must have emitted ciphertext F0. Exhaustive exact F/non-F interpretations kill the model immediately. Granting p16–22 an arbitrary independent initial key phase 0..7 and each page's first rune as free IV, all seven pages fail at local rune offsets `[66,96,161,92,156,192,108]`.
