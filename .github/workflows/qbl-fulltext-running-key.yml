@@ -47,16 +47,31 @@ jobs:
           set -euo pipefail
           mkdir -p analysis/round12/C2/texts
           curl -fL --retry 3 --retry-all-errors --connect-timeout 20 --max-time 180 \
-            https://gusconstan.com/Forest/docs/QBL.pdf -o /tmp/QBL.pdf
-          sha256sum /tmp/QBL.pdf | tee /tmp/qbl-source.sha256
-          pdfinfo /tmp/QBL.pdf | head -20 | tee /tmp/qbl-pdfinfo.txt
-          pdftotext -layout /tmp/QBL.pdf analysis/round12/C2/texts/achad_qbl.txt
+            --user-agent "Mozilla/5.0 (compatible; research/1.0)" \
+            https://www.tarrdaniel.com/documents/Thelemagick/essay/english/Achad_QBL_The_Brides_Reception.html -o /tmp/QBL.html
+          sha256sum /tmp/QBL.html | tee /tmp/qbl-source.sha256
           python3 - <<'PY'
+          from html.parser import HTMLParser
           import hashlib, re
-          p="analysis/round12/C2/texts/achad_qbl.txt"
-          raw=open(p,encoding="utf-8",errors="ignore").read()
+          class Extract(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True); self.parts=[]; self.skip=0
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() in ("script","style","noscript"): self.skip += 1
+              def handle_endtag(self, tag):
+                  if tag.lower() in ("script","style","noscript") and self.skip: self.skip -= 1
+              def handle_data(self, data):
+                  if not self.skip: self.parts.append(data)
+          raw_html=open("/tmp/QBL.html",encoding="utf-8",errors="ignore").read()
+          if "Bride" not in raw_html and "Q.B.L" not in raw_html and "Q. B. L." not in raw_html:
+              raise SystemExit("Downloaded HTML is not the Q.B.L. text page.")
+          p=Extract(); p.feed(raw_html)
+          raw="\n".join(p.parts)
+          out="analysis/round12/C2/texts/achad_qbl.txt"
+          open(out,"w",encoding="utf-8").write(raw)
           letters=re.sub(r"[^A-Za-z]","",raw)
-          print("QBL source characters:",len(raw))
+          print("QBL HTML bytes:",len(raw_html))
+          print("QBL extracted characters:",len(raw))
           print("QBL ASCII letters / GP29 key length:",len(letters))
           print("QBL extracted text SHA256:",hashlib.sha256(raw.encode()).hexdigest())
           if len(letters)<10000:
@@ -78,5 +93,4 @@ jobs:
             qbl-c1-results.json
             qbl-1972-extracted.txt
             /tmp/qbl-source.sha256
-            /tmp/qbl-pdfinfo.txt
             /tmp/qbl-c1.log

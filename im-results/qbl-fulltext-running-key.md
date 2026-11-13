@@ -1,12 +1,12 @@
 # Full-text Q.B.L. running-key test
 
-**Status:** source restoration and R42 C1 screen queued; not yet a result.
+**Status:** first source mirror failed TLS verification (self-signed certificate); no content was downloaded or used. Re-running against the independent TarrDaniel 1972 transcription over HTTPS with normal certificate verification. No cryptanalytic result yet.
 
 ## Why this source
 
 The R35/R42 public-text running-key family was motivated by the LP2 hints “the key is all around you” and “right in front of your eyes.” The 33-text R42/C1 screen found 23 intact sources and 10 missing/404 HTML captures. A later R26/B run included an `achad_qbl` file, but it had only 5,336 GP29 runes and was classified as one of four truncated texts; skip-aware coverage of long pages was therefore impossible. The 1922 Frater Achad work is directly relevant to the manuscript's Gematria/Kabbalah vocabulary: it discusses the 22 Hebrew letters, the 3 Mother / 7 Double / 12 Single division, Gematria, Notaricon, Temurah, and the 29th path of Qoph.
 
-The 1972 transcription at `https://gusconstan.com/Forest/docs/QBL.pdf` explicitly states that the work is not in copyright and that Hebrew characters are replaced by transliterations. It is a complete, recoverable text source, unlike the truncated 5,336-rune capture. It is not asserted to be the exact edition Cicada used.
+The 1972 transcription at `https://www.tarrdaniel.com/documents/Thelemagick/essay/english/Achad_QBL_The_Brides_Reception.html` is independently accessible as a full HTML text and identifies the edition as a transcription of the 1972 version, with Hebrew characters replaced by transliterations. The site states that the work is not in copyright. It is a complete, recoverable text source, unlike the truncated 5,336-rune capture. It is not asserted to be the exact edition Cicada used. The first attempted mirror (`gusconstan.com`) presented a self-signed TLS certificate; it was rejected rather than bypassed.
 
 ## Hypothesis and human solve path
 
