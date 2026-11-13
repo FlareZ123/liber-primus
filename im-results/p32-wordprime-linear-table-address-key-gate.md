@@ -70,11 +70,29 @@ The rank compares each source-ordered key with 20 deterministic shuffles of the 
 
 The exact score, skip path, p33–39 preview, p55-body preview, positive-control result, and shuffled-key null summary are emitted by the reproducer. The skip-aware result does not rescue the p32→p50 key: the decoded text remains ciphertext-like, and the source-ordered key is not exceptional against its null.
 
+
+## Latin-register follow-through
+
+The English-only limitation was addressed with the repository's existing GP-encoded Latin Vulgate trigram model: eight source files, 203,357 GP symbols, and the same documented GP orthography used by the keyskip decoder. The model is loaded from resources/control/latin-vulgate-gp-trigrams.json. A positive plant uses the first 75 GP runes from Luke 1:1 in the public-domain Vulgate source file [NT_Vulgate/corpus/luc_1.txt](https://github.com/computationalstylistics/NT_Vulgate/blob/master/corpus/luc_1.txt); its source blob SHA is 6910bf1b9b97a72f570f91e705daf0a970291423. The 75-rune plant is embedded in the reproducer, so no network fetch is required to rerun the test.
+
+The same continuous pp33–55 target, p33 key phase zero, 13/16 rejection probability, four-rejection cap, and 20 shuffled-key nulls were used. Only the language model changed.
+
+| Address convention | Operation | Selected skips | Decoded IoC | Adjacent equal pairs | Latin trigram score/rune | Original-key rank among 21 |
+|---|---|---:|---:|---:|---:|---:|
+| Zero-based | C−K, keyskip | 121 | 0.03485495 | 146 | −6.51853019 | 15 |
+| Zero-based | C+K, keyskip | 83 | 0.03483347 | 133 | −6.56627352 | 21 |
+| One-based | C−K, keyskip | 118 | 0.03511790 | 160 | −6.51988611 | 6 |
+| One-based | C+K, keyskip | 122 | 0.03491474 | 137 | −6.56009982 | 17 |
+
+All four Latin positive plants were recovered **75/75**. Against 20 deterministic shuffles of the same key multiset, none of the source-ordered keys ranked first; the best was 6/21. The one-based C−K variant beat 15/20 shuffles but still ranked only sixth, while the other three ranked 15th, 17th and 21st. The p55-body excerpts remain nonlinguistic; the best-ranked one-based C−K path has p55-body IoC 0.03820.
+
+This is a useful alternate-register check, not proof that every possible Latin register or historical text is excluded. It does, however, remove the simplest Latin Vulgate explanation for this exact p32-derived key under the tested 13/16 keyskip architecture.
+
 ## Decision
 
 **Retire this exact linear-address key construction and the tested additive and 13/16 fixed-plaintext keyskip consumers.** It is distinct from the already rejected single-word self-indexed row/column lookup and previous-word compass traversal: here the 22 p32 word sums directly address 22 cells in the 256-entry table, yielding a 22-symbol key. The direct output fails on both the immediate p33–39 section and the full unknown book.
 
-The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key under direct addition, and the tested 13/16 fixed-plaintext keyskip consumer. The keyskip test is English-trigram-only and capped at four rejected positions per output. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, larger skip bounds, or unrelated KDFs without a new independent source instruction.
+The result does not invalidate the signed 2016 navigation instruction, the p32 word-prime sums, or the 32×8 table. It only rejects the two fixed address conventions, row-major table order, byte-mod-29 symbol conversion, continuous 22-symbol key under direct addition, and the tested 13/16 fixed-plaintext keyskip consumers under English and Latin Vulgate trigram models. Both keyskip tests are capped at four rejected positions per output. Do not rescue this branch with fitted offsets, alternate cell orders, new key resets, larger skip bounds, or unrelated KDFs without a new independent source instruction.
 
 ## Reproduction
 
@@ -84,7 +102,7 @@ Run from the repository root:
 node sims/p32_wordprime_linear_table_address_key_sft.cjs
 ~~~
 
-The standalone script reads the canonical corpus, transcription, numeric grid and Shakespeare control; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates the direct additive inverses; runs the 13/16 keyskip Viterbi on pp33–55 with 20 shuffled-key nulls per candidate; and checks exact solved-p57 positive plants for both direct and skip-aware consumers. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
+The standalone script reads the canonical corpus, transcription, numeric grid, Shakespeare control and Latin Vulgate trigram counts; asserts all 22 visible p32 word sums and the 256 table cells; prints the exact extracted keys; evaluates the direct additive inverses; runs the 13/16 keyskip Viterbi on pp33–55 with 20 shuffled-key nulls per candidate under both English and Latin models; and checks solved-p57 and Latin-Vulgate positive plants. The base60-to-byte table interpretation remains conditional, as in the upstream table analyses.
 
 Related existing work:
 - [Authoritative research synthesis](../results/README.md)
