@@ -17,3 +17,6 @@ jobs:
 
       - name: Run solved-p56 prime-totient source-key multiplicative feedback test
         run: node sims/lp2_gf29_delta_p56_totient_group_source_sft.cjs
+
+      - name: Run exact 76-cell source outer ring against p55 feedback inverse
+        run: node sims/lp2_p55_outer76_gf29_feedback_sft.cjs
