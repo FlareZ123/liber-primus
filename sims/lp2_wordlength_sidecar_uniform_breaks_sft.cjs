@@ -291,7 +291,7 @@ console.log(JSON.stringify({
   mandatoryChapterBreaksVsGridRowCount: {
     originalCarriedWords: corpus.crossPageWords,
     gridRows: 32,
-    mandatoryChapterBreaks,
+    mandatoryChapterBreaks: mandatoryBreaks,
     originalNonchapterBreaks: sourceNonchapterBreaks,
     seededChapterPreservingPermutation: {
       seed: carrySeed,
