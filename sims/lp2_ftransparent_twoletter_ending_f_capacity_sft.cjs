@@ -141,7 +141,7 @@ assert.deepEqual(reencryption, p56);
 assert.equal(clock, 84);
 assert.equal(knownWords.filter(w => w.length === 2 && w[1] === 0).length, 1);
 const p56PrintedTwoEndingF = originalWords(
-  read("resources/lp2-transcription.txt").split("%")[56])
+  read("resources/lp2-transcription.txt").split("%")[55])
   .filter(w => w.length === 2 && w[1] === 0).length;
 assert.equal(p56PrintedTwoEndingF, 1);
 
