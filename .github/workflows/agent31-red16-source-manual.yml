@@ -20,3 +20,7 @@ jobs:
         run: |
           node --check sims/lp2_red16_gridfactor16_recurrence_sft.cjs
           node sims/lp2_red16_gridfactor16_recurrence_sft.cjs
+      - name: Terminal solved-title ordinal to grid563 original-source and p55 core gate
+        run: |
+          node --check sims/lp2_terminal_ordinal_grid563_sft.cjs
+          node sims/lp2_terminal_ordinal_grid563_sft.cjs
