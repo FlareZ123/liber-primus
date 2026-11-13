@@ -73,6 +73,12 @@ for(const w of textWords.slice(cut)){
   if(!bins.has(w.length))bins.set(w.length,[]);
   bins.get(w.length).push(w);
 }
+// Shakespeare's independent final 30% lacks some rare original word lengths.
+// For those lengths only, borrow source-native words from separate Gibran.
+for(const w of (read('resources/control/gibran_prophet_58585.txt')
+  .match(/[A-Za-z]+/g)||[]).map(native)){
+  if(!bins.get(w.length)?.length)bins.set(w.length,[w]);
+}
 const nativeWords=words.map((w,i)=>{
   const b=bins.get(w.length);
   assert(b?.length>0,'missing native word length '+w.length);
