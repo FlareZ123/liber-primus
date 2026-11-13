@@ -107,6 +107,254 @@ for (const candidate of keyCandidates) {
   }
 }
 
+
+const skipTarget = corpus.pages.filter(p => p.page >= 33 && p.page <= 55)
+  .flatMap(p => p.indices);
+const p33to39Skip = corpus.pages.filter(p => p.page >= 33 && p.page <= 39)
+  .flatMap(p => p.indices);
+const p55PrefixLength = corpus.pages.filter(p => p.page >= 33 && p.page < 55)
+  .reduce((sum, p) => sum + p.indices.length, 0);
+const p55BodyStart = p55PrefixLength + 1;
+const p57PlantPlain = corpus.pages.find(p => p.page === 57).indices.slice(0, 75);
+const rejectionProbability = 13 / 16;
+const maxAdvance = 5; // At most four rejected key positions per emitted rune.
+
+const digraphs = { TH: 2, NG: 21, EO: 12, OE: 22, AE: 25, IA: 27, EA: 28 };
+const englishLetters = {
+  A: 24, B: 17, C: 5, D: 23, E: 18, F: 0, G: 6, H: 8, I: 10,
+  J: 11, K: 5, L: 20, M: 19, N: 9, O: 3, P: 13, Q: 5, R: 4,
+  S: 15, T: 16, U: 1, V: 1, W: 7, X: 14, Y: 26, Z: 15
+};
+function encodeEnglish(source) {
+  const letters = source.toUpperCase().replace(/[^A-Z]/g, '');
+  const out = [];
+  for (let i = 0; i < letters.length; i++) {
+    const pair = digraphs[letters.slice(i, i + 2)];
+    if (pair !== undefined) {
+      out.push(pair);
+      i++;
+    } else {
+      out.push(englishLetters[letters[i]]);
+    }
+  }
+  return out;
+}
+function trainEnglishTrigram(source) {
+  const sequence = encodeEnglish(source);
+  const uni = new Uint32Array(29);
+  const bi = new Uint32Array(29 * 29);
+  const tri = new Uint32Array(29 * 29 * 29);
+  for (let i = 0; i < sequence.length; i++) {
+    uni[sequence[i]]++;
+    if (i > 0) bi[sequence[i - 1] * 29 + sequence[i]]++;
+    if (i > 1) tri[(sequence[i - 2] * 29 + sequence[i - 1]) * 29 + sequence[i]]++;
+  }
+  const U = new Float64Array(29);
+  const B = new Float64Array(29 * 29);
+  const T = new Float64Array(29 * 29 * 29);
+  for (let x = 0; x < 29; x++) U[x] = Math.log((uni[x] + 1) / (sequence.length + 29));
+  for (let x = 0; x < 29; x++) for (let z = 0; z < 29; z++) {
+    B[x * 29 + z] = Math.log((bi[x * 29 + z] + 12 * Math.exp(U[z])) / (uni[x] + 12));
+  }
+  for (let x = 0; x < 29; x++) for (let y = 0; y < 29; y++) for (let z = 0; z < 29; z++) {
+    const index = (x * 29 + y) * 29 + z;
+    T[index] = Math.log((tri[index] + 9 * Math.exp(B[y * 29 + z])) / (bi[x * 29 + y] + 9));
+  }
+  return { U, B, T };
+}
+const englishModel = trainEnglishTrigram(read('resources/control/shakespeare_first300k.txt'));
+
+function solveFixedPlaintextKeyskip(cipher, key, sign, trace = true, offset = 0) {
+  const width = key.length;
+  const length = cipher.length;
+  const stateCount = width * maxAdvance;
+  const negativeInfinity = -1e100;
+  const decode = (value, position) => mod(value + sign * key[mod(position, width)], 29);
+  const back = trace
+    ? Array.from({ length }, () => new Int32Array(stateCount).fill(-1))
+    : null;
+  let previous = new Float64Array(stateCount).fill(negativeInfinity);
+
+  const firstPlain = decode(cipher[0], offset);
+  for (let advance = 1; advance <= maxAdvance; advance++) {
+    const currentPosition = mod(offset + advance, width);
+    const currentPlain = decode(cipher[1], currentPosition);
+    let valid = true;
+    for (let skipped = 1; skipped < advance; skipped++) {
+      if (mod(currentPlain - sign * key[mod(offset + skipped, width)], 29) !== cipher[0]) {
+        valid = false;
+        break;
+      }
+    }
+    if (!valid) continue;
+    const logProbability = (advance - 1) * Math.log(rejectionProbability) +
+      (cipher[1] === cipher[0] ? Math.log(1 - rejectionProbability) : 0);
+    const state = currentPosition * maxAdvance + advance - 1;
+    previous[state] = englishModel.U[firstPlain] +
+      englishModel.B[firstPlain * 29 + currentPlain] + logProbability;
+  }
+
+  for (let i = 2; i < length; i++) {
+    const next = new Float64Array(stateCount).fill(negativeInfinity);
+    const currentCipher = cipher[i];
+    const previousCipher = cipher[i - 1];
+    for (let state = 0; state < stateCount; state++) {
+      const baseScore = previous[state];
+      if (baseScore <= negativeInfinity / 2) continue;
+      const oldPosition = Math.floor(state / maxAdvance);
+      const previousAdvance = state % maxAdvance + 1;
+      const twoBackPosition = mod(oldPosition - previousAdvance, width);
+      const plainTwoBack = decode(cipher[i - 2], twoBackPosition);
+      const plainPrevious = decode(previousCipher, oldPosition);
+
+      for (let advance = 1; advance <= maxAdvance; advance++) {
+        const currentPosition = mod(oldPosition + advance, width);
+        const currentPlain = decode(currentCipher, currentPosition);
+        let valid = true;
+        for (let skipped = 1; skipped < advance; skipped++) {
+          if (mod(currentPlain - sign * key[mod(oldPosition + skipped, width)], 29) !== previousCipher) {
+            valid = false;
+            break;
+          }
+        }
+        if (!valid) continue;
+
+        const logProbability = (advance - 1) * Math.log(rejectionProbability) +
+          (currentCipher === previousCipher ? Math.log(1 - rejectionProbability) : 0);
+        const nextState = currentPosition * maxAdvance + advance - 1;
+        const trigramIndex = (plainTwoBack * 29 + plainPrevious) * 29 + currentPlain;
+        const score = baseScore + englishModel.T[trigramIndex] + logProbability;
+        if (score > next[nextState]) {
+          next[nextState] = score;
+          if (trace) back[i][nextState] = state;
+        }
+      }
+    }
+    previous = next;
+  }
+
+  let bestScore = negativeInfinity;
+  let bestState = -1;
+  for (let state = 0; state < stateCount; state++) {
+    if (previous[state] > bestScore) {
+      bestScore = previous[state];
+      bestState = state;
+    }
+  }
+  if (bestState < 0) return { score: -Infinity, scorePerRune: -Infinity };
+
+  if (!trace) return { score: bestScore, scorePerRune: bestScore / length };
+
+  const plaintext = new Array(length);
+  let skippedCount = 0;
+  let state = bestState;
+  for (let i = length - 1; i >= 1; i--) {
+    const currentPosition = Math.floor(state / maxAdvance);
+    const advance = state % maxAdvance + 1;
+    plaintext[i] = decode(cipher[i], currentPosition);
+    skippedCount += advance - 1;
+    state = back[i][state];
+  }
+  plaintext[0] = decode(cipher[0], offset);
+  return {
+    score: bestScore,
+    scorePerRune: bestScore / length,
+    plaintext,
+    skippedCount
+  };
+}
+
+function plantFixedPlaintextKeyskip(plaintext, key, sign, seed = 0x3301ad42) {
+  let state = seed >>> 0;
+  const random = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 4294967296;
+  };
+  let position = 0;
+  let previousCipher = -1;
+  let skippedCount = 0;
+  const cipher = [];
+  for (const plain of plaintext) {
+    let skipped = 0;
+    let value = mod(plain - sign * key[mod(position, key.length)], 29);
+    while (previousCipher >= 0 && value === previousCipher && skipped < 4 &&
+      random() < rejectionProbability) {
+      position++;
+      skipped++;
+      skippedCount++;
+      value = mod(plain - sign * key[mod(position, key.length)], 29);
+    }
+    cipher.push(value);
+    previousCipher = value;
+    position++;
+  }
+  return { cipher, skippedCount };
+}
+
+let shuffleState = 0x20261113;
+function shuffleRandom() {
+  shuffleState ^= shuffleState << 13;
+  shuffleState ^= shuffleState >>> 17;
+  shuffleState ^= shuffleState << 5;
+  return (shuffleState >>> 0) / 4294967296;
+}
+function shuffledKey(key) {
+  const copy = key.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(shuffleRandom() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+const skipAwareResults = [];
+for (const candidate of keyCandidates) {
+  for (const sign of [-1, 1]) {
+    const planted = plantFixedPlaintextKeyskip(p57PlantPlain, candidate.key, sign);
+    const positive = solveFixedPlaintextKeyskip(planted.cipher, candidate.key, sign, true);
+    const positiveRecovered = positive.plaintext.filter((value, i) => value === p57PlantPlain[i]).length;
+    const decoded = solveFixedPlaintextKeyskip(skipTarget, candidate.key, sign, true);
+    const nullScores = [];
+    for (let replicate = 0; replicate < 20; replicate++) {
+      const shuffled = shuffledKey(candidate.key);
+      nullScores.push(solveFixedPlaintextKeyskip(skipTarget, shuffled, sign, false).scorePerRune);
+    }
+    const sortedNulls = nullScores.slice().sort((a, b) => a - b);
+    const originalRank = [...nullScores, decoded.scorePerRune]
+      .sort((a, b) => b - a).indexOf(decoded.scorePerRune) + 1;
+    const p55BodyPlain = decoded.plaintext.slice(p55BodyStart, p55BodyStart + 75);
+    skipAwareResults.push({
+      addressBase: candidate.addressBase,
+      operation: sign === -1 ? 'P = C - K with key skips' : 'P = C + K with key skips',
+      target: 'continuous pp33-55, 4,996 runes, key phase 0 at p33',
+      rejectionProbability: rejectionProbability,
+      maxRejectedKeysPerRune: maxAdvance - 1,
+      decodedIoC: ioc(decoded.plaintext),
+      decodedAdjacentRepeats: adjacentRepeats(decoded.plaintext),
+      selectedSkipCount: decoded.skippedCount,
+      englishTrigramScorePerRune: decoded.scorePerRune,
+      p33to39Preview: transliterate(decoded.plaintext.slice(0, 180)),
+      p55BodyPreview: transliterate(p55BodyPlain, 75),
+      p55BodyIoC: ioc(p55BodyPlain),
+      positiveControl: {
+        plantedSkips: planted.skippedCount,
+        recoveredOf75: positiveRecovered,
+        exactRecovery: positiveRecovered === p57PlantPlain.length
+      },
+      shuffledKeyNull: {
+        replicates: nullScores.length,
+        seed: '0x20261113',
+        min: sortedNulls[0],
+        median: sortedNulls[10],
+        max: sortedNulls[19],
+        rankAmongOriginalPlusNulls: originalRank,
+        nullsBeatenByOriginal: nullScores.filter(score => decoded.scorePerRune > score).length
+      }
+    });
+  }
+}
+
 const output = {
   evidenceClass: 'bounded source-motivated original-input negative',
   sourceInstruction: 'Authenticated 2016 text: words are the map; their numbers are the direction',
@@ -131,6 +379,7 @@ const output = {
     solvedP57ControlIoC: ioc(solved57)
   },
   results,
+  skipAware: skipAwareResults,
   conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book or the immediately following p33-39 section. This rejects only this linear table-address key and periodic additive consumer.'
 };
 console.log(JSON.stringify(output, null, 2));
