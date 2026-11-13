@@ -451,6 +451,63 @@ for (const sign of [-1, 1]) {
   assert.deepEqual(decodeNewBas(cipher, sign, false), p57KeyPlant);
 }
 
+// Source word-map alternative: the first two physical pages contain
+// 59+63 = 122 page-local words, one more than the 121 p32 tree runes.
+// The independently source-sum-selected p0#6 and p1#33 are the only
+// two declared one-word omissions. Keep all remaining 121 whole-word
+// GP-prime sums as a source-ordered GP29 additive key, with no fitted
+// positions or numeric transformations beyond modulo29. A second stage
+// reuses the fixed 9x9 p32 interior against p33's marked 81-rune body.
+const firstTwoWordsFlat = firstTwo.flatMap(page => page.words);
+assert.equal(firstTwoWordsFlat.length, 122);
+assert.equal(firstTwo[0].words.length, 59);
+const wordMap121Results = [];
+for (const droppedWord of [5, 59 + 32]) {
+  const wordPrimeKey121 = firstTwoWordsFlat
+    .filter((_, index) => index !== droppedWord)
+    .map(word => word.reduce((sum, rune) =>
+      sum + corpus.prime[rune], 0) % 29);
+  assert.equal(wordPrimeKey121.length, 121);
+  for (const sign of [-1, 1]) {
+    const stageOne = p32Cipher.map((value, i) =>
+      mod29(value + sign * wordPrimeKey121[i]));
+    const plantCipher = p57Native.map((value, i) =>
+      mod29(value - sign * wordPrimeKey121[i]));
+    assert.deepEqual(plantCipher.map((value, i) =>
+      mod29(value + sign * wordPrimeKey121[i])), p57Native);
+    const stageTwoKey81 = Array.from({length: 81}, (_, index) =>
+      stageOne[(Math.floor(index / 9) + 1) * 11 +
+        (index % 9 + 1)]);
+    const scoreOutput = (values, nextSign) => ({
+      removed: droppedWord === 5 ? 'p0word6' : 'p1word33',
+      sign, downstreamSign: nextSign,
+      ioc: indexOfCoincidence(values),
+      prefix: values.slice(0, 50)
+        .map(value => corpus.translit[value]).join('')
+    });
+    wordMap121Results.push(scoreOutput(stageOne, 0));
+    for (const nextSign of [-1, 1]) {
+      const second = p33OriginalBody81.map((value, i) =>
+        mod29(value + nextSign * stageTwoKey81[i]));
+      const knownPlant = p57Native.slice(0, 81);
+      assert.deepEqual(knownPlant.map((value, i) =>
+        mod29(value - nextSign * stageTwoKey81[i]))
+        .map((value, i) =>
+          mod29(value + nextSign * stageTwoKey81[i])),
+      knownPlant);
+      wordMap121Results.push(scoreOutput(second, nextSign));
+    }
+  }
+}
+assert.equal(wordMap121Results.length, 12);
+const bestWordMap121 = [...wordMap121Results].sort((a, b) =>
+  b.ioc - a.ioc)[0];
+assert.equal(bestWordMap121.removed, 'p1word33');
+assert.equal(bestWordMap121.sign, 1);
+assert.equal(bestWordMap121.downstreamSign, -1);
+assert.ok(Math.abs(bestWordMap121.ioc - 0.03950617283950617) < 1e-12);
+assert.ok(wordMap121Results.every(result => result.ioc < 0.04));
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -474,6 +531,8 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  opening122WordMapToP32: {totalWords: firstTwoWordsFlat.length,
+    p32KeySlots: 121, best: bestWordMap121, variants: wordMap121Results},
   newBASp32AsKeyP33Body81: {
     originalP33BodyIOC: indexOfCoincidence(p33OriginalBody81),
     solvedP57ControlIOC: indexOfCoincidence(p57Native.slice(0, 81)),
