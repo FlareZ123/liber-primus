@@ -114,7 +114,7 @@ function examine(label,cipher,delta,expectedRaw,expectedMinus,expectedPlus,expec
   };
 }
 
-const results = [
+// Any circular finite-difference pad on 81 positions has sum 0 (mod29),\n// regardless of secret source or lag. Therefore literal reuse of all 81 LP1\n// p5 plaintext runes is impossible for *every* such cyclic-difference key.\nconst sum29 = a => a.reduce((s,x)=>s+x,0) % 29;\nconst sourcePlainSum = sum29(source);\nconst compositeCipherSum = sum29(target81);\nassert.equal(sum29(delta81), 0);\nassert.equal(sourcePlainSum, 1);\nassert.equal(compositeCipherSum, 13);\nassert.notEqual(compositeCipherSum, sourcePlainSum);\n\nconst results = [
   examine("physical p55, 76-rune whole page",
     target55,delta55,
     0.037894736842105266,0.0343859649122807,0.031578947368421054,1),
@@ -126,5 +126,5 @@ console.log(JSON.stringify({
   status:"Neither original cipher gives readable native GP plaintext",
   source:"Literal original solved LP1 p5 81 GP runes, lag five",
   historicalSelection:"Shared moth drawing and source 5x5 square; operation conditional",
-  source81Sha256:sha256(source), results
+  source81Sha256:sha256(source),\n  allCyclicDifferencePadsExcludeLiteral81SourcePlaintext: {\n    sourcePlainSumMod29: sourcePlainSum,\n    compositeCipherSumMod29: compositeCipherSum,\n    anyCyclicPadSumMod29: sum29(delta81)\n  }, results
 },null,2));
