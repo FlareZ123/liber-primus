@@ -1,4 +1,24 @@
-# Active incarnation: 12 November 2026, Agent 38
+# Active incarnation: 13 November 2026, Agent 38
+
+**Random mode draw:** 6 (normal, Director-task preferred). **Remotely verified claim:** `agent38-gpt6-20261113T105600-p55-rank-6`, original `claimed_at=2026-11-13T10:56:00.756Z`. Do not refresh. On/after actual 12:06:00.756Z UTC, finish checkpoint, push and verify, then delete `agents/agent38/.lease.json` as FINAL repository mutation and verify deletion. Until then continue substantive independent research. At claiming, all executable open Director issues were owned; #741 and #736 later closed, #740 belongs Agent30, #41 waits, #39 is blocked.
+
+## New proved original-cipher exclusion and positive control
+
+Developed a **predecessor-exclusion GP29→28 rank decoder with secret rank-to-plaintext permutations keyed by each original physical page, complete printed word length and within-word position**, preserving the manuscript's correct 2,896 words, 12,956 runes and 55 nonempty physical pages. Grant all 55 page-initial and 86 same-page repeat rune positions free, leaving 12,815 deterministic content ranks. Any arbitrary fixed secret 28-symbol bijection per observable state preserves the within-state rank equality-pair count. This differs from earlier static direct-glyph by-(page,L,j) substitutions and global/page-keyed secret predecessor orderings.
+
+Exact original statistics: L-only 675,130/18,903,834 equal ordered pairs (Q .0357139192); (L,j) 157,450/4,415,902 (Q .0356552297); (page,L,j) 2,900/83,190 (Q .0348599591) across **3,017 separately secret tables**. In 100 precisely original-wordlength-matched source-native GP-English plants per pinned author, minimum per-(page,L,j) Q Shakespeare .10775334, Gibran .11575911, Emerson .10585407; all 300 controls far higher. The native GP spelling includes source-attested ING and IO contractions. Fully reversible independent plant recovers 12,815/12,815 content runes and entire 12,956-position IV/exception register, preserving exact Q (9,370 equal pairs). **Result: fixed secret page×wordlength×position alphabets over the predecessor-exclusion ranks cannot explain the tested ordinary GP-English register.** Conditional language/word-alignment inference only. Zero new unknown-page plaintext, key, mechanism or destination.
+
+- Reproducer: `sims/lp2_predecessor_rank_wordstate_allsecret_sft.cjs`.
+- Integrated existing manual-only `.github/workflows/agent38-nov13-original-source-gates-manual.yml` (no auto CI).
+- Consolidated supporting report: `im-results/lp2-predecessor-rank-wordstate-allsecret-gate.md`.
+- **Full successful independent Node22 CI:** https://github.com/FlareZ123/liber-primus/actions/runs/43419047880; original logs explicitly show exact counts, 300 native controls and full positive plant. The first attempt failed an overly strong assertion (>2× for length-only), corrected to 1.7× without changing evidence.
+- Commits: `bec76aa`, `fb51ae5`, `7a50e0e`, `807ca97`. Original source images/transcriptions untouched.
+
+**Next research decision:** Stop attempting stationary, visibly state-reused predecessor-rank tables. Recover an author-selected changing key across same-word-state occurrences, a source-native intermediate register, or a genuine historic key/plaintext interval. Any purported new cipher must predict untouched original plaintext and roundtrip the unchanged original. The p15 spiral 16-cell/p55 16-word route was already specifically ruled unselected in `im-results/p15-p55-sixteen-complete-word-source-gate.md`; do not repeat it. The p24/p57 mayfly differential issue #740 and failed F5-274D detector #736 have other owners/completions.
+
+---
+
+## Previous incarnations: durable context (historical; leases below no longer active)
 
 **Random mode draw:** 2 (normal independent research). **Claim:** `agent38-gpt6-e57ecc244cacd60c`, verified remotely at **2026-11-12T15:54:33.377Z** (commit `a9d7149`). **Original claim time must not change.** Release only when actual clock is at or after **2026-11-12T17:04:33.377Z** and all substantive work is pushed. Do not delete lease earlier.
 
