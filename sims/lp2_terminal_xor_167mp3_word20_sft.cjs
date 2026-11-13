@@ -164,6 +164,102 @@ assert.deepEqual(decodedP56, expectedP56);
 assert.equal(primeSum(decodedP56.slice(0, 5)), 311);
 assert.equal(primeOrdinal.get(311), 64);
 
+// Conditional adjacent-source length composition: the original LP2 p15 4x4
+// solved numerical spiral has 16 entries, and external 2014 "167.jpg" LP1 p15
+// used a historical 13-GP-rune second-koan key. Concatenation is NOT an
+// authenticated cipher instruction, but gives one finite 29-phase family.
+// The all-secret phase-collision statistic excludes arbitrary stationary
+// per-phase bijections within this fixed model, without fitting a key.
+/** @param {string} original @returns {number[]} */
+function encodeNativeGP(original) {
+  const clean = original.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/V/g, 'U').replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+  const result = [];
+  for (const word of clean.match(/[A-Z]+/g) || []) {
+    for (let i = 0; i < word.length;) {
+      if (word.startsWith('ING', i)) { result.push(21); i += 3; }
+      else if (word.startsWith('IO', i)) { result.push(27); i += 2; }
+      else {
+        const token = orderedTokens.find(({ token }) => word.startsWith(token, i));
+        assert.ok(token);
+        result.push(token.index);
+        i += token.token.length;
+      }
+    }
+  }
+  return result;
+}
+const nativeP57Words = read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .split('### 57\n')[1].trim();
+assert.deepEqual(encodeNativeGP(nativeP57Words), corpus.pages[57].indices);
+
+/** @param {number[]} stream @returns {{hits:number,pairs:number,rate:number}} */
+function phase29Collisions(stream) {
+  const histogram = Array.from({length:29}, () => new Uint32Array(29));
+  stream.forEach((symbol, index) => histogram[index % 29][symbol]++);
+  let hits = 0, pairs = 0;
+  for (const row of histogram) {
+    const population = row.reduce((a, b) => a + b, 0);
+    pairs += population * (population - 1) / 2;
+    for (const count of row) hits += count * (count - 1) / 2;
+  }
+  return {hits, pairs, rate: hits / pairs};
+}
+const fibonacciPrintedSpiral = [
+  3299,3298,3296,3294,3288,3278,3258,3222,
+  3152,3038,2838,2472,1820,708,1206,4516,
+];
+const authenticKoan13Key = [0,10,4,0,1,19,0,18,4,18,9,0,18];
+assert.equal(authenticKoan13Key.length, 13);
+const historical29Key = fibonacciPrintedSpiral.map(n => n % 29).concat(authenticKoan13Key);
+assert.equal(historical29Key.length, 29);
+const originalChapter = corpus.pages
+  .filter(page => page.page >= 16 && page.page <= 22)
+  .flatMap(page => page.indices);
+assert.equal(originalChapter.length, 1744);
+const origin29 = phase29Collisions(originalChapter);
+assert.deepEqual([origin29.hits,origin29.pairs],[1780,51570]);
+const composed29 = [-1,1].map(sign => {
+  const decoded = originalChapter.map((c,i) => mod29(c + sign * historical29Key[i%29]));
+  assert.deepEqual(
+    decoded.map((c,i) => mod29(c - sign * historical29Key[i%29])),
+    originalChapter,
+  );
+  assert.deepEqual(phase29Collisions(decoded), origin29);
+  return {sign,ioc:ioc(decoded)};
+});
+assert.ok(Math.abs(composed29[0].ioc - 0.03419115518430208) < 1e-12);
+assert.ok(Math.abs(composed29[1].ioc - 0.034526704458726125) < 1e-12);
+
+const threeNativeControls = [
+  ['Shakespeare','resources/control/shakespeare_first300k.txt'],
+  ['Gibran','resources/control/gibran_prophet_58585.txt'],
+  ['Emerson','resources/control/emerson_essays_2944.txt'],
+].map(([name,file]) => {
+  const source = encodeNativeGP(read(file));
+  let atOrBelow=0,windows=0,minimum=1,median=[];
+  for(let start=0;start + originalChapter.length<=source.length;start+=127){
+    const rate=phase29Collisions(source.slice(start,start+originalChapter.length)).rate;
+    if(rate<=origin29.rate) atOrBelow++;
+    minimum=Math.min(minimum,rate);
+    median.push(rate);
+    windows++;
+  }
+  median.sort((a,b)=>a-b);
+  return {name,windows,atOrBelow,minimum,median:median[Math.floor(windows/2)]};
+});
+assert.deepEqual(threeNativeControls.map(x=>x.windows),[1696,479,2517]);
+assert(threeNativeControls.every(x=>x.atOrBelow===0));
+const positiveNative = encodeNativeGP(read('resources/control/shakespeare_first300k.txt'))
+  .slice(0,originalChapter.length);
+const positiveCipher=positiveNative.map((x,i)=>
+  mod29((1+(i*7)%28)*x+(i*11+3)%29));
+assert.deepEqual(
+  phase29Collisions(positiveCipher),
+  phase29Collisions(positiveNative),
+  'all-secret phase-wise affine plant must preserve collision counts',
+);
+
 console.log(JSON.stringify({
   source: 'original p57, p56, pp49-51 table and 2013 761.MP3 label',
   fourIndices, selectedBytes, destinations,
@@ -174,6 +270,11 @@ console.log(JSON.stringify({
   xorOrbit: orbit,
   p55RawIoc: ioc(p55),
   p55DirectConsumers: direct,
+  sourceComposite29Period: {
+    originalChapterRunes: originalChapter.length, sourcePeriod: historical29Key.length,
+    originalCollisions:origin29, directInverseIocs:composed29,
+    independentNativeEnglishControls: threeNativeControls,
+  },
   solvedP56RunesRecovered: decodedP56.length,
   recoveredUnknownPlaintext: false,
 }, null, 2));
