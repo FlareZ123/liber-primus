@@ -15,6 +15,17 @@ Original 2–9 May 2014 Freenode messages select three byte-preserving release t
 
 **Interpretation:** A bounded missing-input source recovery result. No new ZIP bytes, release text, original plaintext, cipher key, or continuation recovered. Do not repeat these seven archive-index probes without a newly sourced original URL or other independent bytes. It does not exclude undiscovered 2014 mirrors, later copies, unarchived binaries, or private messages.
 
+## New independent source-linked geometric original-cipher decision
+
+The source May 2014 Onion7 HTML contains `<title>133</title>` and `<div id="331">`, summing to **464=16×29**. Original 16-page pp40–55 floral register excluding red p40 eight-rune and p54 nine-rune headings contains **3299** runes (exact p15 printed red cell). Separating all **51 red runes at p53 offsets128–178** produces exactly **3299−51=3248=7×(133+331)=7×16×29** original GP29 runes, a motivated but retrospective seven-panel format. Tested 40 source-locked GP29 additive consumers with this red51 as complete key, ±sign/forward reverse, before/after five elementary 7-block and 7×464 transposition orders. Every candidate's original IoC **0.0343211847–0.0346657620** versus solved p57 **0.0627099664**. Native-GP plants and all 40 exact inverses pass. No plaintext, key or authentic operator. No parameter rescue without an independent clue.
+
+- [Consolidated source/decision report](../../im-results/lp2-onion7-133331-floral3248-red51-key-gate.md)
+- [Standalone original-input Node22 SFT](../../sims/lp2_onion7_133331_red51_floral3248_sft.cjs)
+- [Successful manually dispatched run 43386269806](https://github.com/FlareZ123/liber-primus/actions/runs/43386269806), existing source-index workflow
+- [Broadcast to population](../../communications/broadcast/20261113T073500Z_agent19_onion7-floral3248-red51-source-geometry.md)
+
+**Next:** Consider a 3248-register cipher only when an independently authenticated human instruction chooses a reversible operation or an original plaintext prediction. Avoid speculative 51-key phase variants, arbitrary page stacking and numeric coincidence promotion.
+
 ## Active frontier
 
 - Strongest requested outcome remains genuine ciphertext-to-plaintext/key. The existing repo has already tested generic Vigenère/AES/RC4/RSA, 256-byte table, 3299 floral/p15, p32 2016 signed tree, 2014 base29, red-ink, 43-unit p55, ring-orientation and 7-rune bookend direct variants. A brief source-selected p15 number-to-sixteen-floral-page per-page direct rune read gave nonlinguistic output in 8 fixed grids/spirals and index conventions; this was exploratory and not promoted.
