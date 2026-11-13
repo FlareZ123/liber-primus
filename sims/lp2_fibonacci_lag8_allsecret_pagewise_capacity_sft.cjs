@@ -232,6 +232,18 @@ function run() {
         oneCapacity: plantedCapacity.one, twoCapacity: plantedCapacity.two};
     }
   }
+  // Independent 2,400-rune Latin Vulgate heldout GP register. Its original
+  // word boundaries and rune normalization differ from source-native English.
+  const latin = JSON.parse(read('resources/control/latin-vulgate-heldout-gp.json'));
+  const latinScore = scanEnglish(latin.runes, WINDOW);
+  assert.deepEqual(
+    [latinScore.sourceRunes, latinScore.windows,
+      latinScore.minLargestSymbol, latinScore.minTwoLargestSymbols],
+    [2400, 145, 293, 517]);
+  assert.equal(latinScore.windowsWithinOneBound, 0);
+  assert.equal(latinScore.windowsWithinTwoBound, 0);
+  references.push({name: 'Latin Vulgate independent GP heldout', ...latinScore});
+
   const response = {
     cipherFamily: 'lag8 GP29 differences: reserve D=0, reserve D=D(i-8) or fallback1, sort remaining 27; allow fully secret independent 29-symbol alphabet per page',
     originalFibonacciPages: FIB,
