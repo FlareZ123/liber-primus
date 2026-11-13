@@ -18,7 +18,9 @@ async function main() {
     scope:"File metadata only. Upload timestamps do not establish original puzzle authorship.",
     count:files.length,
     files:files.map(im=>({name:im.name,size:im.size,sha1:im.sha1,
-      uploaded:im.timestamp,url:im.url}))};
+      uploaded:im.timestamp,url:im.url,
+      exactArchiveSHA1Match:!!im.archiveExactSHA1Match,
+      archiveRelativePath:im.archiveRelativePath||null}))};
   const body=JSON.stringify(out,null,2)+"\n";
   const api="https://api.github.com/repos/FlareZ123/liber-primus/contents/resources/historical/uncovering-cicada-wiki-830-index-20261113.json";
   const headers={"authorization":"Bearer "+token,"accept":"application/vnd.github+json",
