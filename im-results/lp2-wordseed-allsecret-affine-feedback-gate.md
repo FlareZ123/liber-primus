@@ -34,3 +34,5 @@ The positive control uses the original 2,896 printed word lengths and *original 
 ## Cryptanalytic decision
 
 Retire the direct **first-cipher-rune → fixed per-word affine-feedback slope and alphabet** route. The actual unknown original does not conceal a conventional source-native GP29 English stream through that entire family, regardless of its twenty-nine unobserved key mappings. This restricts a motivated class of word-local nonrepeat encoders, complementing the earlier all-secret global word-reset result. A promising successor must introduce genuinely *changing* state inside a word, a different information register, source-selected key material, or an independently evidenced language. No amount of extra parameter fitting within these 29 stationary seed groups changes the sorted-spectrum obstruction.
+
+**Exact original-source reproduction:** all group/generator assertions and the 10,060-position independent plant passed in [manual GitHub Actions 43482515566](https://github.com/FlareZ123/liber-primus/actions/runs/43482515566).
