@@ -32,6 +32,21 @@ For each of the two fixed paths, first test direct \`plaintext = tableByte mod29
 
 There are **127 distinct input bytes** in either 180-position interior sequence; **53** observations revisit an already seen byte. The conflicting classes disprove every static raw-byte→rune codebook within each frozen orientation, regardless of its arbitrary secret mapping. A **fully planted GP29 source-native positive** made with \`P=byte mod29\` obtains **180/180** under the same upper-bound algorithm in both directions. The 256-cell ring paths are explicitly asserted to visit every source table cell exactly once, and the p56 authentic plaintext is checked against the full independently known wording.
 
+## A stronger test: arbitrary independent secret codebooks on each inner shell
+
+A genuine reading of **"shed circumferences"** might demand a changing cipher at every ring boundary, invalidating a *single* static 256-byte codebook. Give **each of the three known-text interior rings its own completely unrestricted secret deterministic map** \`byte (0..255) → native GP29 rune\`, so no constraint whatsoever is shared between different ring depths. This allows any independently chosen mapping for all 256 possible byte values on each ring, and requires only that repeated input bytes **within the same ring** produce the same known rune.
+
+The source-original intra-ring collisions still force the following minimum label mismatches independently of all hidden keys:
+
+| Source-pointed orientation | Ring1: 68 known runes | Ring2: 60 known runes | Ring3: 52 known runes | Unavoidable errors across solved 180 |
+| --- | ---: | ---: | ---: | ---: |
+| Clockwise from row10 | **7** | **7** | **7** | **21** |
+| Counterclockwise from row10 | **8** | **6** | **5** | **19** |
+
+A separate arbitrary secret map on \`byte mod29\` residues also fails each ring, with **36/34/28** necessary changes clockwise and **32/32/25** counterclockwise. The raw-byte model is more permissive because it distinguishes all printed byte values. These exact bounds allow the mapper to select its best label per byte *after seeing the entire solved passage*, so the impossibility is independent of any undiscovered secret static codebook. A genuine encryption requiring **additional changing position/history state, multiple-byte framing, or a separate terminal-page encoding** remains possible. The original artwork does not specify such a rule.
+
+This strengthens the previous single-secret-table bound of at least47/49 errors while respecting independently visible shell boundaries. It is a *finite model exclusion*, not a plaintext or historical decoder.
+
 ## Direct outer-ring attack on the actual 76 unknown p55 runes
 
 The stronger author-facing question is whether the **76 original exterior bytes themselves decrypt the actual p55 source ciphertext**, rather than whether the separately coded p56/p57 inner pages resemble a table map. Freeze exactly the row10 inward path above and the byte-to-GP29 arithmetic used by the authentic solved-p56 additive cipher: \`P[i] = C55[i] ± (exteriorByte[i] mod29)\`, consuming all **76** source runes, including the original NG that completes p54's last word. Allow only the **two geometrically fixed directions** and the **two GP29 additive signs**, without a selected shift, starting offset, skip mask, byte re-encoding or post hoc transposition.
