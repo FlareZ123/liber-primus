@@ -274,6 +274,90 @@ assert.deepEqual(shells, {
   high: [{fits: 0, count: 509}, {fits: 1, count: 3}]
 });
 
+/**
+ * A much stronger exact gate than any fixed polynomial degree: grant each
+ * physical row a completely arbitrary secret function from a source symbol
+ * to a GP29 output. Repeated source symbols in that row must have equal
+ * outputs under EVERY conceivable stationary row decoder.
+ *
+ * Group equal inputs per row and choose an arbitrary modal output for each
+ * group. The sum of other counts gives the exact minimum GP29 edits required
+ * under ANY row function, nonlinear, non-injective, or non-polynomial.
+ * @param {number[]} layout 256 cells, with 180 independently known outputs
+ * @param {(value:number)=>number} reduce original table byte to input symbol
+ * @returns {{failedRows:number, repairs:number}}
+ */
+function allSecretRowLookupRepair(layout, reduce) {
+  let failedRows = 0, repairs = 0;
+  for (let row = 1; row <= 30; row++) {
+    /** @type {Map<number,Map<number,number>>} */
+    const inputGroups = new Map();
+    for (let col = 1; col <= 6; col++) {
+      const pos = row * 8 + col, x = reduce(bytes[pos]), y = layout[pos];
+      let observed = inputGroups.get(x);
+      if (!observed) {
+        observed = new Map();
+        inputGroups.set(x, observed);
+      }
+      observed.set(y, (observed.get(y) || 0) + 1);
+    }
+    let changes = 0;
+    for (const group of inputGroups.values()) {
+      const counts = [...group.values()];
+      changes += counts.reduce((n,v)=>n+v,0) - Math.max(...counts);
+    }
+    repairs += changes;
+    failedRows += Number(changes > 0);
+  }
+  return {failedRows, repairs};
+}
+
+// Source-canonical byte, reduced byte, low-digit and high-digit interfaces.
+// A raw byte is an unrestricted 0..255 input: a per-row lookup cannot be
+// inferred from six all-distinct inner cells and gives no p55 prediction.
+const allSecretRegisters = {
+  rawByte: x => x,
+  byteMod29: x => x % 29,
+  lowBase60: x => x % 60,
+  lowBase60Mod29: x => (x % 60) % 29,
+  highBase60: x => Math.floor(x / 60)
+};
+const unrestrictedRowSecret = {};
+for (const [name, reduce] of Object.entries(allSecretRegisters)) {
+  const printedRow = allSecretRowLookupRepair(originalPrinted, reduce);
+  let shellFits = 0, minFailedRows = 30, minRepairs = 180, maxRepairs = 0;
+  for (let a = 0; a < 8; a++)
+    for (let b = 0; b < 8; b++)
+      for (let c = 0; c < 8; c++) {
+        const layout = layoutForRings(
+          [rings[0][a], rings[1][b], rings[2][c]], known);
+        const r = allSecretRowLookupRepair(layout, reduce);
+        shellFits += Number(r.repairs === 0);
+        minFailedRows = Math.min(minFailedRows, r.failedRows);
+        minRepairs = Math.min(minRepairs, r.repairs);
+        maxRepairs = Math.max(maxRepairs, r.repairs);
+      }
+  unrestrictedRowSecret[name] = {
+    printed: printedRow, shellFits,
+    minFailedRows, minRepairs, maxRepairs
+  };
+  const positive = Array(256).fill(-1);
+  for (let row = 1; row <= 30; row++)
+    for (let col = 1; col <= 6; col++) {
+      const pos = row * 8 + col;
+      positive[pos] = (3 * row + 7 * reduce(bytes[pos])) % 29;
+    }
+  assert.deepEqual(allSecretRowLookupRepair(positive, reduce),
+    {failedRows:0, repairs:0}, name + " secret-lookup native positive");
+}
+assert.deepEqual(unrestrictedRowSecret, {
+  rawByte: {printed:{failedRows:0,repairs:0},shellFits:512,minFailedRows:0,minRepairs:0,maxRepairs:0},
+  byteMod29: {printed:{failedRows:8,repairs:11},shellFits:0,minFailedRows:6,minRepairs:8,maxRepairs:12},
+  lowBase60: {printed:{failedRows:4,repairs:4},shellFits:0,minFailedRows:3,minRepairs:3,maxRepairs:4},
+  lowBase60Mod29: {printed:{failedRows:10,repairs:10},shellFits:0,minFailedRows:7,minRepairs:7,maxRepairs:11},
+  highBase60: {printed:{failedRows:30,repairs:62},shellFits:0,minFailedRows:27,minRepairs:58,maxRepairs:71}
+});
+
 // Positive original-grid control: row-varying secret quadratic maps are
 // allowed and a planted 180-rune known interior always passes all 30 rows.
 for (const [name, reducer] of Object.entries(reducers)) {
@@ -295,6 +379,7 @@ console.log(JSON.stringify({
   independentlySolved: {p56: 85, p57: 95},
   printed,
   shellOrientationCounts: shells,
+  unrestrictedPerRowSecret: unrestrictedRowSecret,
   positivePlants: "3/3 complete 30-row fits",
   classification: "bounded negative; no p55 plaintext or selected decoder"
 }, null, 2));
