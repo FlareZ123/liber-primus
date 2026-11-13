@@ -17,6 +17,19 @@ For each of four English references, compare the original 14-bin printed-word hi
 
 **The observed printed-word lengths remain closer to the Latin register than to either GP29 encoding in all four controls.** The source-calibrated GP spelling changes the margin substantially for solved Cicada (0.03580 versus 0.03762) and slightly for Emerson, but it does not reverse the ranking. This confirms that the Latin-register observation is not an artifact of omitting the newly authenticated ING/IO contractions. The comparison remains sensitive to prose style, editorial normalization, and the possibility that printed boundaries are cipher output rather than plaintext boundaries; it is an architectural discriminator, not evidence of Latin plaintext or a recovered cipher. Previous GP29-only necessary-condition screens therefore cannot automatically be extended to ordinary 26-letter input.
 
+## Exact output-cardinality bound on static marker alphabets
+
+The proposed mechanism reserves one of 26 Latin letters as the repeat marker, leaving **25 ordinary plaintext letters**. In any fixed state, an injective encoding of those 25 letters can emit at most **25 distinct nonrepeating GP runes**, even though 28 successors are available at each position.
+
+On the original corpus, excluding each page's first rune (the separately initialized header) and the 86 repeated outputs, the remaining **12,815** nonrepeat positions use **all 29 GP rune values**:
+- **53/55** rune-bearing physical pages use all 29 distinct nonrepeat outputs.
+- The only exceptions are p49 (28 distinct) and p55 (25 distinct).
+- All **nine** original visual chapters use all 29 distinct nonrepeat outputs.
+
+Therefore a single fixed 25-letter→rune injection is impossible globally, and a mapping held fixed for one physical page or one original visual chapter is also impossible. In fact, **54/55** pages individually exceed the 25-symbol capacity. A viable version of the Latin26 marker family must change its nonrepeat mapping **within pages and within every visual chapter**, or abandon the assumed injective 25-letter register. This is an exact cardinality obstruction from the original source, not a language-score result.
+
+It does not exclude a genuinely evolving state, per-position key, or word-/line-local changing map. None of those update rules or keys is currently selected by an original clue. The result makes the broad "per-position or changing-state" escape a real missing input rather than a free explanatory default.
+
 ## One explicit rare-marker mechanism worth discriminating
 
 A complete positionwise candidate can map ordinary Latin plaintext **K** to a repeated ciphertext rune, `C[i]=C[i-1]`, while mapping the other 25 letters through a per-position or changing-state injection into the 28 **nonrepeating** rune choices. This has enough raw alphabet capacity to be reversible if the decoder has the authentic state/key; three nonrepeating choices remain unused per state. A page-first rune is an ordinary separately initialized header. This specifies a possible *family* of complete 26-to-29 input/output mappings, **not** a source-selected key, and the K assignment was noticed after observing the ciphertext repeat geography.
