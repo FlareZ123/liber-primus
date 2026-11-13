@@ -124,6 +124,7 @@ function asciiSummary(b) {
  */
 function allFullCycleAffineTraversals(bytes) {
   const longRuns = [], repeatedSlash = [];
+  let b64EdgesAtLeast28=0,printableEdgesAtLeast50=0;
   for (let a=1; a<256; a+=4) {
     for (let c=1; c<256; c+=2) {
       const v = [];
@@ -133,6 +134,13 @@ function allFullCycleAffineTraversals(bytes) {
         x=(a*x+c)&255;
       }
       assert.equal(x,0);
+      let b64Edges=0,printableEdges=0;
+      for (let t=1;t<256;t++) {
+        if(inBase64(v[t-1])&&inBase64(v[t]))b64Edges++;
+        if(isPrintable(v[t-1])&&isPrintable(v[t]))printableEdges++;
+      }
+      if(b64Edges>=28)b64EdgesAtLeast28++;
+      if(printableEdges>=50)printableEdgesAtLeast50++;
       const run=bestRun(v,inBase64);
       if (run.length >= 11) longRuns.push({a,c,...run});
       for (let i=0;i+4<256;i++) {
@@ -147,7 +155,8 @@ function allFullCycleAffineTraversals(bytes) {
       }
     }
   }
-  return {traversals:8192,longRuns,repeatedSlash};
+  return {traversals:8192,longRuns,repeatedSlash,
+    b64EdgesAtLeast28,printableEdgesAtLeast50};
 }
 /**
  * Fixed-inventory expected AB/AB matches in 252 windows of a uniformly
@@ -203,6 +212,8 @@ function run() {
   const scan=allFullCycleAffineTraversals(bytes);
   assert.equal(scan.longRuns.length,2);
   assert.equal(scan.repeatedSlash.length,2);
+  assert.equal(scan.b64EdgesAtLeast28,214);
+  assert.equal(scan.printableEdgesAtLeast50,580);
   assert.deepEqual(scan.longRuns.map(r=>[r.a,r.c,r.length,r.start]),
     [[77,113,11,73],[133,75,11,173]]);
   assert.deepEqual(scan.repeatedSlash.map(r=>[r.a,r.c,r.start,r.text]),
