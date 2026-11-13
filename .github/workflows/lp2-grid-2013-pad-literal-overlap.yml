@@ -1,0 +1,30 @@
+name: LP2 pp49-51 grid literal reuse of 2013 source pad (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-original-pad:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve the exact historic DATA/560.13 bytes
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Original DATA/560.13 download failed' }
+      - name: Exact table / row / column substring test
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          node --check sims/lp2_grid_2013_pad_literal_overlap_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node sims/lp2_grid_2013_pad_literal_overlap_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Historical pad test failed' }
