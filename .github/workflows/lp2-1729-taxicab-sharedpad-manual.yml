@@ -11,6 +11,7 @@ on:
         options:
           - taxicab
           - sevenrow
+          - hillsparse
 
 jobs:
   original-aligned:
@@ -36,3 +37,15 @@ jobs:
           node-version: '22'
       - name: Source-fixed seven-row SFT and native controls
         run: node sims/lp2_p8_14_sevenrow_allsecret_sft.cjs
+
+  sevenrow-hillsparse:
+    if: inputs.variant == 'hillsparse'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaustive sparse Hill7 inverse with native-English positive plants
+        run: node sims/lp2_p8_14_hill7_sparse_inverse_sft.cjs
