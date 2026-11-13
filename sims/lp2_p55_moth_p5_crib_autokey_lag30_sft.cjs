@@ -133,12 +133,68 @@ for (const mode of modes) {
     wrongSuffixFails:true
   });
 }
+
+/*
+ * Stronger all-secret affine feedback gate on the same fixed suffix.
+ * Even if an unknown source-selected affine key (a,b,d) is granted for
+ * every lag, none of the 29^3 settings can satisfy all original equations
+ * when the suffix supplies >=4 independent ciphertext observations.
+ * The original LP1 p5 square suggests lag 25; we include all lags 1..26
+ * to remove parameter-choice objections rather than only three signs.
+ * No phase or word-specific exception is granted.
+ */
+const affineResults = [];
+for (let lag=1;lag<=26;lag++) {
+  let best=30-lag, models=0, bestKey=null;
+  for (let a=0;a<29;a++)for(let b=0;b<29;b++)for(let d=0;d<29;d++) {
+    let errors=0;
+    for(let i=lag;i<q;i++) {
+      const y=mod(a*plaintextSuffix[i]+b*plaintextSuffix[i-lag]+d);
+      if(y!==C[start+i])errors++;
+    }
+    if (errors<best) {
+      best=errors;
+      bestKey={a,b,d};
+    }
+    if (errors===0) models++;
+  }
+  assert.equal(models,0, 'full affine model should fail original at lag '+lag);
+  affineResults.push({lag,sourceObservations:30-lag,
+    minOriginalConflicts:best,closestAffineCoefficients:bestKey});
+}
+assert.equal(affineResults.length,26);
+assert.equal(affineResults[24].minOriginalConflicts,2);
+assert.equal(affineResults[25].minOriginalConflicts,1);
+
+// Independent exact source-native 76-rune affine plant at square lag25.
+const affineNative=encode('THE WISE SHALL SEE A NEW WAY THROUGH THE CIRCLE');
+const affinePlain=Array.from({length:76},(_,i)=>affineNative[i%affineNative.length]);
+const a=7,b=5,d=13,lag=25,inverse=25; // 7*25=175=1 (mod29)
+assert.equal(mod(a*inverse),1);
+const affineCipher=affinePlain.slice();
+for(let i=lag;i<76;i++)
+  affineCipher[i]=mod(a*affinePlain[i]+b*affinePlain[i-lag]+d);
+const recovered=affinePlain.slice(0,lag);
+for(let i=lag;i<76;i++)
+  recovered.push(mod(inverse*(affineCipher[i]-b*recovered[i-lag]-d)));
+assert.deepEqual(recovered,affinePlain);
+const wrong=affinePlain.slice(0,lag);
+for(let i=lag;i<76;i++)
+  wrong.push(mod(inverse*(affineCipher[i]-(b+1)*wrong[i-lag]-d)));
+assert(wrong.some((value,i)=>value!==affinePlain[i]));
+
 console.log(JSON.stringify({
   source: 'LP1 p5 source-native GP29 last-seven-word p55 suffix hypothesis',
   original: 'LP2 physical p55 full76, last30 at local46',
   hypothesisProven:false,
   shortLagCases:87,
   shortLagCasePasses:0,
+  unrestrictedAffineLagsWithAtLeastFourCribEquations:26,
+  affineKeysCheckedPerLag:24389,
+  affineZeroConflictCases:0,
+  sourceSquareLag25Affine:affineResults[24],
+  affineOriginal:affineResults,
+  fullLengthAffineNativePlant:76,
   exactPlant:true,
   results,
   conclusion: 'Under this unproven crib, all keyless stationary lag1..29 feedback pairs fail exact original ciphertext; lag30 gives only nonlinguistic original-prefix reconstructions. No unknown authentic text or key.'
