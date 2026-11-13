@@ -129,9 +129,31 @@ function main() {
     assert.deepEqual(gcmOpen(gcmSeal(planted,key),key),planted);
     assert.deepEqual(ecb(ecb(Buffer.alloc(payload.length,0x42),key,false),key,true),
       Buffer.alloc(payload.length,0x42));
+    let rowLocalXor = null;
+    if (name.endsWith("-row")) {
+      // Subtract no arbitrary state: the selected cell is each printed row's
+      // literal XOR byte; its seven neighbours are in original print order.
+      const columns = (name === "index-row" ? runeIds : primeIds).map((n) => n % 8);
+      const decodedXor = Buffer.from(rows.flatMap((r,i) =>
+        r.filter((_,col) => col !== columns[i]).map((byte) => byte ^ key[i])));
+      const originalSeven = Buffer.from(rows.flatMap((r,i) =>
+        r.filter((_,col) => col !== columns[i])));
+      const rebuilt = Buffer.from(Array.from(decodedXor, (byte,i) => byte ^ key[Math.floor(i / 7)]));
+      assert.deepEqual(rebuilt,originalSeven);
+      assert.deepEqual(originalSeven,payload);
+      const expectXor = name === "index-row"
+        ? {printable:86, first48:"2c405d860a9950882d480a23d0632e9d587631de6cab6bdf50844b43f6f740a2b3d580191d55af228e05ad407f6b06fb"}
+        : {printable:84, first48:"260a4a578c935a82274229da690af04386a8efb2de2f84ef5bd4cfc77677c0223355801c185005aa278b56bb8490fd37"};
+      const xorPrintable = [...decodedXor].filter((b) => b >= 32 && b <= 126).length;
+      assert.equal(xorPrintable,expectXor.printable);
+      assert.equal(decodedXor.subarray(0,48).toString("hex"),expectXor.first48);
+      rowLocalXor = {printable:xorPrintable, total:decodedXor.length,
+        first48Hex:expectXor.first48};
+    }
     results.push({name,keyHex:key.toString("hex"),payloadBytes:payload.length,
       payloadSHA256:sha,ecbFirst16Hex:first,ecbPrintable:printable,
-      openPgpCFBFirst18Hex:cfb,openPgpQuickCheck:false,gcmAuthenticated:false});
+      openPgpCFBFirst18Hex:cfb,openPgpQuickCheck:false,gcmAuthenticated:false,
+      rowLocalXor});
   }
   console.log(JSON.stringify({source:"physical p55 body 16 words / 32 exteriors; pp49-51 grid 32x8",
     sourcePageRunes:76,carriedRune:corpus.translit[21],
