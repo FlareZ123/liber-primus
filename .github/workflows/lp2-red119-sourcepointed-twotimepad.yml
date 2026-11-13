@@ -1,0 +1,13 @@
+name: Source-pointed red119 two-time GP29 pad check
+on:
+  workflow_dispatch:
+jobs:
+  source-pair-check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact GP-native source-pointed difference test
+        run: node sims/lp2_red119_pointed_pairs_twotimepad_sft.cjs
