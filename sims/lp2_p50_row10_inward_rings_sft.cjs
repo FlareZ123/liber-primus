@@ -131,6 +131,94 @@ function ioc(values) {
 
 const original55 = corpus.pages[55].indices;
 assert.equal(original55.length, 76);
+// Exact source-native English lexical prior from the existing TextBlob fixture.
+// Used only to diagnose the historically authenticated plaintext-F bypass.
+const spellingData = fs.readFileSync(
+  path.join(__dirname, '..', 'resources/control/english_wordfreq_textblob.txt'), 'utf8');
+const originalTranscription = fs.readFileSync(
+  path.join(__dirname, '..', 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const gpTokens = corpus.translit.map((token, index) => ({ token, index }))
+  .sort((a, b) => b.token.length - a.token.length);
+const runeMap = new Map(corpus.runes.map((symbol, index) => [symbol, index]));
+
+/** @param {string} word @returns {number[]|null} */
+function encodeNativeWord(word) {
+  const w = word.toUpperCase().replace(/QU/g, 'CW').replace(/V/g, 'U')
+    .replace(/K/g, 'C').replace(/Z/g, 'S').replace(/ING/g, 'NG')
+    .replace(/IO/g, 'IA');
+  /** @type {number[]} */
+  const out = [];
+  for (let at = 0; at < w.length;) {
+    const next = gpTokens.find(entry => w.startsWith(entry.token, at));
+    if (!next) return null;
+    out.push(next.index);
+    at += next.token.length;
+  }
+  return out;
+}
+const lexicon = new Map();
+for (const entry of spellingData.match(/^[a-z]+\s+\d+$/gm) || []) {
+  const [word, frequency] = entry.split(/\s+/u);
+  const native = encodeNativeWord(word);
+  if (!native) continue;
+  const key = native.join(',');
+  lexicon.set(key, (lexicon.get(key) || 0) + Number(frequency));
+}
+assert.equal(lexicon.size, 29058);
+
+const pageTranscriptions = originalTranscription.split('%');
+pageTranscriptions.splice(50, 0, '');
+assert.equal(pageTranscriptions.length, 58);
+const original55Words = (pageTranscriptions[55].replace(/\/\s*/gu, '')
+  .match(/[\u16A0-\u16FF]+/gu) || [])
+  .map(word => [...word].map(rune => runeMap.get(rune)));
+assert.deepEqual(original55Words.flat(), original55);
+assert.deepEqual(original55Words.map(word => word.length),
+  [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
+const fLocations = original55.flatMap((rune, index) => rune === 0 ? [index] : []);
+assert.deepEqual(fLocations, [15, 25, 41]);
+
+/**
+ * Exactly enumerate the two true possibilities at each of three ciphertext-F
+ * positions, while enforcing the original p56 rule that an enciphered rune
+ * must not be plaintext F. No arbitrary skip mask or key offset is fitted.
+ * @param {number[]} tableKey
+ * @param {-1|1} sign
+ */
+function sourceFVariants(tableKey, sign) {
+  const variants = [];
+  for (let mask = 0; mask < (1 << fLocations.length); mask++) {
+    /** @type {number[]} */
+    const candidate = [];
+    let consumed = 0, valid = true;
+    for (let at = 0; at < original55.length; at++) {
+      const f = fLocations.indexOf(at);
+      if (f !== -1 && (mask & (1 << f))) {
+        candidate.push(0);
+      } else {
+        const value = ((original55[at] + sign * tableKey[consumed++]) % 29 + 29) % 29;
+        if (value === 0) { valid = false; break; }
+        candidate.push(value);
+      }
+    }
+    if (!valid) continue;
+    let index = 0, recognized = 0, score = 0;
+    const words = original55Words.map(word => {
+      const slice = candidate.slice(index, index + word.length);
+      index += word.length;
+      return slice;
+    });
+    for (const word of words.slice(1)) {
+      const freq = lexicon.get(word.join(',')) || 0;
+      if (freq) { recognized++; score += Math.log1p(freq); } else score -= 8;
+    }
+    variants.push({ mask, consumed, recognized, score,
+      words: words.slice(1).map(word => word.map(n => corpus.translit[n]).join('')) });
+  }
+  variants.sort((a, b) => b.score - a.score);
+  return variants;
+}
+
 const outcomes = [];
 for (const reverse of [false, true]) {
   const shells = [0, 1, 2, 3].map(depth => ring(depth, reverse));
@@ -181,9 +269,35 @@ for (const reverse of [false, true]) {
       nativeSolvedPlantReencryption: 76,
     });
   }
+  const fTransparent = [];
+  for (const sign of [-1, 1]) {
+    const variants = sourceFVariants(exteriorKey, sign);
+    // The exact candidate count and maximum lexicon support are original-data
+    // constraints; lexical support here comes only from two/short-rune words.
+    const expected = reverse
+      ? (sign === -1 ? [0, 0] : [1, 0])
+      : (sign === -1 ? [3, 0] : [4, 4]);
+    assert.deepEqual([variants.length,
+      Math.max(0, ...variants.map(v => v.recognized))], expected);
+    const plant = solved57.slice(0, 76);
+    let k = 0;
+    const plantCipher = plant.map(p => p === 0 ? 0
+      : ((p - sign * exteriorKey[k++]) % 29 + 29) % 29);
+    let k2 = 0;
+    const plantRecovered = plantCipher.map((c, i) => plant[i] === 0
+      ? 0 : ((c + sign * exteriorKey[k2++]) % 29 + 29) % 29);
+    assert.deepEqual(plantRecovered, plant);
+    fTransparent.push({
+      sign, validMasks: variants.length, bestNativeLexiconWords:
+        Math.max(0, ...variants.map(v => v.recognized)),
+      strongestCandidate: variants[0] || null,
+      solvedNativePlantRecovery: 76,
+    });
+  }
   outcomes.push({
     direction: reverse ? 'counterclockwise' : 'clockwise',
     directOriginalP55Inverse: originalInverse,
+    originalFTransparentOriginalWordBoundaryTest: fTransparent,
     ringStarts: shells.map(s => s[0]),
     ringLengths: shells.map(s => s.length),
     knownNativeGP: known.length,
