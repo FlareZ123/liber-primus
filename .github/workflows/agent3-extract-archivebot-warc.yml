@@ -1,10 +1,6 @@
 name: Agent3 exact 2017 ArchiveBot WARC extraction
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/agent3-extract-archivebot-warc.yml"
   workflow_dispatch:
 
 permissions:
