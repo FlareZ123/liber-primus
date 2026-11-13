@@ -174,7 +174,23 @@ for (const [scope, ciphertext] of [['floral3316', full], ['body3299', body]]) {
       const index = Number(little);
       assert.ok(Math.abs(ioc(decoded.symbols) -
         expected[scope][reading][index]) < 1e-14);
+      let byteRangePairs = 0;
+      let printableAsciiPairs = 0;
+      for (let i = 0; i + 1 < decoded.symbols.length; i += 2) {
+        const pairValue = little
+          ? decoded.symbols[i + 1] * ALPHABET + decoded.symbols[i]
+          : decoded.symbols[i] * ALPHABET + decoded.symbols[i + 1];
+        if (pairValue < 256) byteRangePairs++;
+        if (pairValue >= 32 && pairValue <= 126) printableAsciiPairs++;
+      }
+      if (scope === 'floral3316') {
+        const expectedByteRange = {
+          decrypt: [490, 502], encrypt: [485, 510]
+        };
+        assert.equal(byteRangePairs, expectedByteRange[reading][index]);
+      }
       results.push({
+        byteRangePairs, printableAsciiPairs,
         scope, reading, digitOrder: little ? 'low-first' : 'high-first',
         runeCount: ciphertext.length,
         cipherIoC: ioc(ciphertext),
