@@ -193,6 +193,28 @@ Their GP29 IoCs are **0.03442116199**, **0.03461329229**, **0.03443189654**, **0
 
 **Decision:** the strongest obvious original clue-path `p15 printed 4×4 square → floral ciphertext 4×829 → direct Hill4` does not yield native GP plaintext. Its exact source alignment merits retention; the *linear Hill4 consumer* is rejected rather than expanded into fitted orientations or undocumented layers.
 
+
+## Alternative complete-register power map over the original 3301 prime
+
+A separate, source-numbered route uses **3301 as the field modulus** rather than the previously tested primitive-root read modulo 3299. The same original red checksum gives **7 = 3301−3294**. The nonzero field residues of GF(3301) except 1 are exactly **2..3300**, numbering **3299**, the original floral body length. Since gcd(7,3300)=1, the formula
+
+    pi(i) = ((i+2)^7 mod 3301) − 2, for 0 <= i < 3299,
+
+is a complete bijection without padding, skipped positions, a guessed start or a fitted secret key. Its first ten source positions are **126, 2185, 3178, 2200, 2650, 1592, 1015, 3119, 1269, 1366**. The group automorphism has order **20** because 7 has order20 modulo3300. Solved p57 has twenty printed words including its PARABLE heading; **no independent source says that word count selects modular exponentiation or twenty rounds**, so this equality is an unvalidated coincidence, not a third confirming clue.
+
+The exact titleless original **3299-runic** source, subjected to this single seventh-power positional read, retains GP IoC **0.034464934244** by permutation invariance and has adjacent-rune mutual information **0.134688069129 nats**. In **3,000** deterministic shuffles preserving all 29 original glyph counts, **384** have mutual information at least this large (empirical upper tail **0.128**). This direct order gives no readable original plaintext.
+
+A second bounded consumer adds the *independently authenticated p56* GP29 consecutive-prime-totient subtraction, with prime clock starting at2 and no phase, page reset or F skip; its transfer to floral ciphertext is hypothetical. Both power-map directions and both arithmetic signs were frozen. The respective complete **3299-rune original-input IoCs** are:
+
+| Position order | GP29 subtraction | GP29 addition |
+| --- | ---: | ---: |
+| pi | **0.034432030141** | **0.034472287116** |
+| inverse pi | **0.034397471641** | **0.034545632017** |
+
+None approaches solved p57's GP-native IoC **0.062709966405** or produces coherent plaintext. The reversible inverse reconstructs all **3299/3299** original rune indices for every model. Independent solved-p57-native 3299-symbol plants also decode **3299/3299** with exactly these keys, positions and signs. This is a *new, narrowly bounded negative on a complete original-source inverse*, distinct from the earlier mod3299 primitive-root stream and pairwise RSA cycle walk. It supplies no authentic source instruction, unknown plaintext or new destination.
+
+[Single-file CommonJS test](../sims/lp2_p15_floral_3301_power7_position_sft.cjs), executed against the unchanged canonical corpus and red-ink annotations. Avoid variants of this construction unless the creator's words or an original illustration independently select a different consumer.
+
 ## Decision
 
 Retain the **bidirectional original p15/floral relationships (red3299 ↔ titleless floral body3299; all floral red GP-prime sum3294 ↔ another unchanged p15 grid cell)**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient inverses, including the red3294-selected historical period-seven and power-seven modular compositions, are negative. The complete-cycle source-seven predecessor-rank GP28 decoder fails all four fixed models. The separately specified exponent-seven pairwise cycle walk modulo3299 also fails to recover GP29 prose, even though its entire 841-pair alphabet is exactly invertible. The source-numbered historical-prime 1033×3301 RSA four-rune cycle walk is additionally negative; the twin-prime 3299×3301 RSA four-rune cycle walk fails as well on the exact 4×829 floral register and on the full LP2 unsolved stream. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
