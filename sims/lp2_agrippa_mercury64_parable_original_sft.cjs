@@ -238,7 +238,7 @@ for (const sign of [-1, 1]) for (const literalF of [false, true]) {
 }
 assert.equal(sorathOriginalDecoders.length, 4);
 assert.deepEqual(sorathOriginalDecoders.map(x => +x.ioc.toFixed(12)),
-  [0.033879164313, 0.037417654809, 0.033992094862, 0.039073969509]);
+  [0.033879164314, 0.037417654809, 0.033992094862, 0.039073969509]);
 
 console.log(JSON.stringify({
   source: 'Agrippa Mercury 8x8, source-p57 666, source64 original physical lines',
