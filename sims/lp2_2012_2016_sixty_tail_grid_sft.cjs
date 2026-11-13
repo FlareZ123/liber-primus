@@ -1,0 +1,102 @@
+'use strict';
+
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+
+/**
+ * Tests a cross-round +60-size clue and the simplest direct use of the
+ * 2012 first-image 60-byte printed trailer on the 2014 LP2 256-byte grid.
+ * Inputs are source-native JPEGs, not reconstructed text files.
+ */
+const ROOT = path.resolve(__dirname, '..');
+const original2012 = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2012-first-image.jpg'));
+const original2016 = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2016-4gq25.jpg'));
+const grid = JSON.parse(fs.readFileSync(path.join(ROOT, 'resources/liber-primus/base60-grid.json'), 'utf8'));
+
+/** @param {Buffer} bytes */
+function sha256(bytes) {
+  return crypto.createHash('sha256').update(bytes).digest('hex');
+}
+
+/** @param {Buffer} jpeg */
+function dimensions(jpeg) {
+  assert.equal(jpeg.readUInt16BE(0), 0xffd8);
+  const sof = jpeg.indexOf(Buffer.from([0xff, 0xc0]));
+  assert.ok(sof > 0);
+  assert.equal(jpeg[sof + 4], 8);
+  return { width: jpeg.readUInt16BE(sof + 7), height: jpeg.readUInt16BE(sof + 5) };
+}
+
+/**
+ * @param {Buffer} input
+ * @param {Buffer} key
+ * @param {'xor'|'add'|'subtract'} op
+ */
+function transform(input, key, op) {
+  return Buffer.from(input.map((b, i) => {
+    const k = key[i % key.length];
+    if (op === 'xor') return b ^ k;
+    return op === 'add' ? (b + k) & 255 : (b - k + 256) & 255;
+  }));
+}
+
+/** @param {Buffer} bytes */
+function readability(bytes) {
+  let printable = 0;
+  let longestPrintRun = 0;
+  let run = 0;
+  for (const b of bytes) {
+    if (b >= 32 && b <= 126) {
+      printable++;
+      run++;
+      longestPrintRun = Math.max(longestPrintRun, run);
+    } else run = 0;
+  }
+  return { printable, longestPrintRun };
+}
+
+assert.equal(sha256(original2012), '870353b8fbe4d1dd83fdbfc61b07d80213bab035526d3e5fd6a43f7d77db1ead');
+assert.equal(sha256(original2016), 'a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe');
+const first = dimensions(original2012);
+const later = dimensions(original2016);
+assert.deepEqual(first, { width: 509, height: 503 });
+assert.deepEqual(later, { width: 563, height: 569 });
+const ascendingFirst = Object.values(first).sort((a, b) => a - b);
+const ascendingLater = Object.values(later).sort((a, b) => a - b);
+assert.deepEqual(ascendingLater.map((x, i) => x - ascendingFirst[i]), [60, 60]);
+
+const trailer = original2012.subarray(original2012.length - 61);
+assert.equal(trailer.toString('ascii'), 'TIBERIVS CLAVDIVS CAESAR says "lxxt>33m2mqkyv2gsq3q=w]O2ntk"\n');
+const key = trailer.subarray(0, 60);
+assert.equal(key.length, 60);
+
+assert.equal(grid.byte_rows.length, 32);
+assert.ok(grid.byte_rows.every(row => row.length === 8 && row.every(v => Number.isInteger(v) && v >= 0 && v < 256)));
+const sourceBytes = Buffer.from(grid.byte_rows.flat());
+assert.equal(sourceBytes.length, 256);
+assert.equal(sha256(sourceBytes), '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
+
+const results = {};
+for (const op of ['xor', 'add', 'subtract']) {
+  const decoded = transform(sourceBytes, key, op);
+  results[op] = { ...readability(decoded), first24Hex: decoded.subarray(0, 24).toString('hex') };
+  const plant = Buffer.from('THE INSTAR EMERGENCE. LIBER PRIMUS. 3301. '.repeat(7).slice(0, 256), 'ascii');
+  assert.equal(plant.length, 256);
+  const inverseOp = op === 'add' ? 'subtract' : op === 'subtract' ? 'add' : 'xor';
+  const codedPlant = transform(plant, key, inverseOp);
+  assert.deepEqual(transform(codedPlant, key, op), plant);
+}
+assert.equal(results.xor.printable, 93);
+assert.equal(results.add.printable, 84);
+assert.equal(results.subtract.printable, 95);
+console.log(JSON.stringify({
+  source2012: first,
+  source2016: later,
+  sortedDimensionDelta: [60, 60],
+  image2012Trailer: { fullBytes: trailer.length, printablePayloadBytes: key.length },
+  originalGridByteLength: sourceBytes.length,
+  directReversibleReadouts: results,
+  evidenceLevel: 'source-aligned clue and bounded negative: no original LP2 plaintext/key'
+}, null, 2));
