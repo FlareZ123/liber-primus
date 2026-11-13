@@ -79,14 +79,31 @@ async function fetchCandidates(images) {
       continue;
     }
     try {
-      const response=await load(url.toString(),
-        {referer:"https://uncovering-cicada.fandom.com/"});
-      const bytes=Buffer.from(await response.arrayBuffer());
-      const sha1=crypto.createHash("sha1").update(bytes).digest("hex");
-      const valid=sha1===im.sha1 || BigInt("0x"+sha1).toString(36).padStart(31,"0")===im.sha1;
-      if(valid) writeAtomic(path.join(OUTPUT,im.name.replace(/[^a-z0-9._-]/gi,"_").slice(0,120)),bytes);
-      outcomes.push({name:im.name,status:valid?"verified":"sha1-mismatch",
-        sha1,publishedSha1:im.sha1,base36:BigInt("0x"+sha1).toString(36).padStart(31,"0"),bytes:bytes.length});
+      const original = url.toString().replace(/\/revision\/latest.*$/,"");
+      const variants = [url.toString(), original,
+        original+"/revision/latest?format=original"];
+      let best=null;
+      for(const sourceURL of variants) {
+        try {
+          const response=await load(sourceURL,{referer:"https://uncovering-cicada.fandom.com/",
+            accept:"image/png,image/jpeg,image/gif,application/octet-stream,*/*;q=0.8"});
+          const bytes=Buffer.from(await response.arrayBuffer());
+          const sha1=crypto.createHash("sha1").update(bytes).digest("hex");
+          const valid=sha1===im.sha1 ||
+            BigInt("0x"+sha1).toString(36).padStart(31,"0")===im.sha1;
+          best={name:im.name,status:valid?"verified":"sha1-mismatch",
+            sha1,publishedSha1:im.sha1,bytes:bytes.length,expectedBytes:im.size,
+            mime:response.headers.get("content-type"),
+            headerHex:bytes.subarray(0,16).toString("hex"),variant:sourceURL===original?"direct":sourceURL===url.toString()?"latest":"original-query"};
+          if(valid) {
+            writeAtomic(path.join(OUTPUT,im.name.replace(/[^a-z0-9._-]/gi,"_").slice(0,120)),bytes);
+            break;
+          }
+        } catch(error) {
+          best={name:im.name,status:"unavailable",detail:String(error).slice(0,160)};
+        }
+      }
+      outcomes.push(best);
     } catch(error) {
       outcomes.push({name:im.name,status:"unavailable",detail:String(error).slice(0,160)});
     }
@@ -115,6 +132,10 @@ async function main() {
     const names=new Set(archive.map(e=>norm(e.path)));
     const unknown=images.filter(im=>!names.has(norm(im.name)))
       .sort((a,b)=>priority(b)-priority(a)||a.name.localeCompare(b.name));
+    console.log("TARGET_NAMES",JSON.stringify(images.filter(im =>
+      /(?:59(?:\\.|_)|58(?:\\.|_)|stage.?11|onion.?7|page.?5[6789]|continuation|missing|key|hash)/i.test(im.name))
+      .map(im=>({name:im.name,size:im.size,sha1:im.sha1,timestamp:im.timestamp}))
+      .slice(0,120)));
     const known=images.length-unknown.length;
     const downloads=await fetchCandidates(unknown);
     const byExt={},byYear={};
