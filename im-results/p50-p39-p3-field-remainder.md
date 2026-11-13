@@ -41,16 +41,6 @@ node sims/p50_p39_p3_field_remainder.cjs
 
 The script checks exact divisibility and verifies the order of the resulting field element.
 
-## A newly located, literal original-page consumer of G: physical p29
-
-The **same red p39 polynomial** (G(X)=27+5X+15X²=15(X−24)²) gives an independent, bounded original-rune operation. Read each unknown LP2 physical page's original GP29 rune indices in **printed order as descending GF(29) polynomial coefficients**, with no shifts, reversals, hidden key or extra source-selected start. Unlike the numeric p50 grid, p29 has only rune text and no claimed original instruction to use polynomial division.
-
-On the complete **277-rune physical p29**, both the polynomial value and formal derivative at (X=24) vanish in GF(29). Thus (G) exactly divides its ciphertext polynomial. Of all **55 original rune-bearing unknown pages**, the source-root (X=24) is a single root on exactly pp**10, 11, 29, 36** and a **double root only on p29**. This shares a literal factor with the p39 red triad and the original p50 table polynomial.
-
-The directly executable decryption candidate divides the original p29 polynomial by the **full source G including the leading scalar 15** and reads the **275 quotient GP29 symbols** back in printed, high-degree-first order. The remainder is exactly ([0,0]), and multiplying the quotient by G reconstructs **all 277/277 original page runes**. Yet the quotient's IoC is **0.0340544127405**, near the uniform GP29 value (1/29) rather than solved native-GP prose, and its beginning transliterates `R G Y IA J N S AE S NG W F E Y H EA W C D EO ...`. A separate solved-p57 native input encoded with G and decoded by the identical routine recovers all **275/275** planted symbols. **No unknown LP2 plaintext is recovered.**
-
-The p29 relation depends on GP **ordinal** indices: changing the same original page coefficients to their canonical GP **prime weights** gives ((P(24),P'(24))=(6,13)), not a second zero. This is an important competing representation control. The hypothesized role of this factor has no author-visible selector for p29; retrospectively searching 55 pages offers roughly (1-(1-1/841)^{55}\approx6.3\%) probability of at least one doubly vanishing page under the simplistic independent uniform-GP model. Source-directed targeting of physical p29 was **not** declared beforehand. The result is an exact but provisional algebraic cross-artifact relationship, **not** an independently established cipher mechanism, key, or plaintext. It does not justify a sweep over extra page orientations, division factors or nonlinear postprocessing. [Standalone original-input CommonJS positive-control SFT](../sims/lp2_p29_p39_doublefactor_sft.cjs).
-
 ## Conditional p53 cross-round selector (not an upstream premise)
 
 A previous p27-title/gridfold/p53 construction assigns p53 word26 under the proposed GP-prime-sum-to-page/word mapping; its rune indices are [12,1,17] and its GP-prime weights sum to 105. Closed Issue #129 found no independent source selecting that combined mapping, so word26 is not a source-fixed target.
