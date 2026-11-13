@@ -117,6 +117,19 @@ The **stronger causal alignment** uses the actual endpoint of *both* numeric sou
 
 None yields meaningful words or a recognizable file header; all 256 bytes and an independent ASCII positive plant round-trip under the inverse. Fixed AES-256-ECB is unchanged in substance by this start because a row10 rotation moves **80 bytes = five complete 16-byte ECB blocks**, simply permuting the previously failed block outputs. These tests retire the direct source-row10 alignment in these same elementary operation families. The interpretation of p50:w0 as an input address remains hypothetical, and neither pair of archival numerals identifies a nonlinear cipher or changes the still unresolved 59/60 alphabet fork.
 
+### Standalone p50 13×8 numeric page against authentic solved p56: direct GP pad excluded
+
+The independently indicated table endpoint **p50:w0** can be read more narrowly than a rotated 32-row grid: take **only the 13 complete printed numerical rows on physical p50**, exactly **104** base60-coded bytes, from token \`2M\` onward, and retain their source order. Unlike an ungrounded external ciphertext target, physical p56 has **85 independently decrypted GP29 runes**. Their authentic cipher-derived key is the first 84 consecutive prime totients modulo29 with precisely one literal unencrypted F at p56 rune offset56, which holds the key clock. A new original-only gate directly compares the 104 source-selected numeric bytes against the **84 genuinely known, untuned GP29 shifts** of p56, under the earlier 2014 signed-output Vigenère/additive precedent.
+
+| Original p50 bytes interpreted modulo29 | Matches against 84 genuine p56 key shifts |
+| --- | ---: |
+| Byte remainder, advance one cell per ciphertext rune | **2** |
+| Byte remainder, hold one cell at authentic p56 literal F | **4** |
+| Opposite additive sign, advance | **3** |
+| Opposite additive sign, hold | **2** |
+
+These counts are ordinary for a chance 29-way match. The alternative **quotient** \(\lfloor byte/29\rfloor\) occupies only 0–8, whereas **58 of 84** genuine p56 shifts lie outside that range, excluding it as an exact direct GP29 key without further transforms. The linked SFT independently recovers **85/85** known plaintext runes by the original prime-totient/F-hold cipher before testing the page50 pad. **Decision:** the physical p50-only first-85 byte remainder and simple authentic-F clocks are negative as direct p56 ciphertext keys. The page50 first-token convergence may designate a different *payload* or operation; no recovered unknown plaintext or new authenticated key follows.
+
 ### Direct historical Vigenère transfer on original rune pages
 
 A separate fully specified original-input consumer uses the **actual 147 GP rune tokens of all 33 visited ciphertext words**, concatenated in their unmodified orbit order starting with 563. This gives one fixed period-147 GP29 key rather than turning sum values into arbitrary bytes. The genuinely attested 2014 “let the text guide you” step motivates a literal repeating-GP-key **subtraction** from the first rune of physical p32 (tree picture), p53 (moth picture) and p55 (terminal moth picture), with no fitted phase or key fragment. It exactly re-encrypts all source runes by construction. In original-input tests, p32 (121 runes) decodes to IoC **0.03732782369146**, p53 (179) to **0.03621869311405**, and p55 (76) to **0.03333333333333**; each output remains nonlinguistic GP transliteration. The complete source-key inverse thus provides **no known plaintext**. Its choice of these three target pages is exploratory and the artwork does not command this key schedule. The linked SFT runs all three exact original-page tests and asserts the 147-rune key.
