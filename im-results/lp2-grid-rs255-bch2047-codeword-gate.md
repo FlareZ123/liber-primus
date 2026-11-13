@@ -1,0 +1,25 @@
+# Direct GF(256) Reed–Solomon and primitive binary BCH codeword gate on the p50 table
+
+**Decision (Agent 7, 13 November 2026):** No direct conventional one-block Reed–Solomon or length-2047 primitive binary BCH codeword is present in the original LP2 pp49–51 numeric table under the source-shaped arrangements below. Both algorithms pass nonzero synthetic positive controls. This is a **bounded code-architecture exclusion**, with **no recovered unknown plaintext, key, or destination**.
+
+## Source and motivated inverse
+
+The manuscript prints **256 two-character number tokens in 32 rows of eight** across physical pp49–51. The authenticated 2014 Cicada puzzle previously used QR images, where GF(256) Reed–Solomon parity is a familiar human-facing operation. A natural narrow question is whether the 256 table bytes are an actual RS codeword, or eight parallel shortened RS codewords. The **2048 printed bits** alternatively permit one out-of-band bit plus one full **2047-bit binary BCH codeword** (because 2047 = 2^11 − 1). These are **hypotheses**; the original pages do **not** instruct a reader to use either error-correcting code.
+
+Input is the unmodified **256 decoded base-60 byte values** from [the printed original-source table](../resources/liber-primus/base60-grid.json), not the conflicting 2014 historical transcription. The source-identical digit reading was separately established by the complete [original glyph adjudication](lp2-grid-11-original-glyph-adjudication.md). Standard GF(256) representations are tested using QR's irreducible polynomial **0x11d** and AES's **0x11b**, without silently tuning field arithmetic to get a hit.
+
+## Source-exact test
+
+1. **One 255-byte RS block:** remove either the first or final original byte. In each of the two byte-stream directions and both bit-endiannesses, test roots of consecutive powers of base 2 or 3 at exponent offsets 0, 1 or 2. These give **96 independently evaluated source-shaped configurations**, with four exact parity syndromes each. All **384 syndrome values are nonzero**. In particular **zero** candidate blocks have the two successive zero syndromes required by a two-check-symbol generator. The test is a necessary codeword condition, with no attempted error correction or unknown input substitutions.
+2. **RS across original rows/columns:** Interpret the 32×8 original table as either **eight 32-byte columns** or **thirty-two 8-byte rows**, in both traversal directions, under each conventional GF(256) polynomial. To grant an unknown primitive generator and generator offset, evaluate each line's polynomial at **every GF(256) element**, including zero. Under QR's 0x11d, **no root divides more than one source line** in either orientation/axis. Under 0x11b, the maximum root-sharing multiplicity is **one for columns, two for rows**. No choice of a common root can make all eight columns or all thirty-two rows shortened RS codewords with even **one** shared check root.
+3. **Binary length-2047 BCH:** Enumerate all **176 primitive monic binary polynomials of degree 11**. For the eight source bit layouts (byte direction, bit order and first/last omitted bit), compute the syndromes at field powers **α¹ and α³**, whose joint vanishing is necessary for a narrow-sense binary BCH code correcting at least two bit errors. Across **1,408 original-input configurations**, **neither syndrome vanishes even singly**. The full 2048-bit table also has **1,017 one-bits**, so it is not a conventional even-parity extension of such a codeword.
+
+The test includes two **independently constructed, nonzero positives**: a GF(256) polynomial divisible by `(x+1)(x+2)`, and a binary polynomial divisible by the exact degree-22 BCH generator built from minimal polynomials of α and α³. Both satisfy the same syndrome tests exactly; thus the negative source outcome is not caused by a detector incapable of accepting a genuine codeword.
+
+## Decision boundary
+
+These results rule out directly reading the canonical source bytes as **unmodified codewords** under the enumerated arrangements. They **do not** exclude a binary or nonbinary code with unknown interleaving, bit scrambling, salt, missing/altered symbols, different field representation, shortened QR-style internal interleaving, a different radix such as base59, or a code applied only after decrypting the table. None of those mechanisms has a source-selected selector or key here. In particular, their possibility is not a reason to perform a broad unmotivated code search.
+
+**Research decision:** do not invest in a plaintext-decoder branch premised solely on the printed table being an ordinary full-block RS/BCH payload. Continue seeking an original operation/key that actually consumes the table and predicts untouched GP runes.
+
+**Reproduction:** [source-exact Node22 SFT](../sims/lp2_grid_rs255_bch2047_sft.cjs) and [successful manual GitHub Actions run 43442087568](https://github.com/FlareZ123/liber-primus/actions/runs/43442087568). The SFT has no dependencies beyond Node's standard library and the checked-in original-derived byte table.
