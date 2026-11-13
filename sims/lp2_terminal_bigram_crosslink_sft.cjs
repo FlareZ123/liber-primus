@@ -159,6 +159,7 @@ for (let i = 0; i + 1 < words.length; i++) {
 let shuffledMeanAll = 0, shuffledMeanSixOrLonger = 0;
 let iidMeanAll = 0, iidMeanSixOrLonger = 0;
 let terminalUnconditionedBound = 0;
+let terminalGivenExactWordsBound = 0;
 let threeThree = null;
 for (const [shape, sites] of byShape) {
   const [a, b] = shape.split(",").map(Number);
@@ -184,6 +185,9 @@ for (const [shape, sites] of byShape) {
     threeThree = {sites: n, overlappingWindows: overlaps,
       pNonoverlapTwoWindowsSame: pNon, meanPairs: mean};
     terminalUnconditionedBound = (n - 1) * pNon;
+    const nThree = [...classes.get(3).values()].reduce((u, v) => u + v, 0);
+    terminalGivenExactWordsBound = (n - 1) /
+      ((nThree - 2) * (nThree - 3));
   }
 }
 assert.equal(threeThree.sites, 184);
@@ -234,7 +238,8 @@ console.log(JSON.stringify({
     expectedExactTwoWordCollisions: shuffledMeanAll,
     expectedAtLeastSixRunes: shuffledMeanSixOrLonger,
     upperBoundProbabilityAnyAtLeastSix: shuffledMeanSixOrLonger,
-    threeThree, terminalMatchUnionBound: terminalUnconditionedBound
+    threeThree, terminalUnconditionalUnionBound: terminalUnconditionedBound,
+    terminalGivenExactWordsUnionBound: terminalGivenExactWordsBound
   },
   reusedClockLag: {
     lag, matchedAll: matching, pairCount: original.length - lag,
