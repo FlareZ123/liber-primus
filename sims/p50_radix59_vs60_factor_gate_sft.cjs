@@ -15,6 +15,12 @@ const source = JSON.parse(readFileSync(
   path.join(__dirname, '..', 'resources', 'liber-primus', 'base60-grid.json'),
   'utf8',
 ));
+const ink = JSON.parse(readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-ink-annotations.json'), 'utf8',
+));
+const corpus = JSON.parse(readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8',
+));
 
 const alphabet60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 const alphabet59 = alphabet60.replace('f', '');
@@ -115,6 +121,36 @@ assert.deepEqual(source1033Control, { base60: [3, 24], base59: [8, 21] });
 const alteredCells = original60.filter((value, index) => value !== alternative59[index]).length;
 assert.equal(alteredCells, 220);
 
+// Exhaust the 18 source-image red inscriptions in both original orientations,
+// not just the discovered p39 red quadratic.
+const runeOrdinals = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const corpusPages = new Map(corpus.pages.map(page => [page.page, page]));
+const redFactorTests = [];
+for (const inkPage of ink.pages) {
+  const page = corpusPages.get(inkPage.page);
+  assert.ok(page);
+  for (const span of (inkPage.red_spans || [])) {
+    const inkIndices = Array.from(span.runes, rune => runeOrdinals.get(rune));
+    assert.deepEqual(page.indices.slice(span.start, span.start + span.length), inkIndices);
+    for (const direction of ['forward', 'reverse']) {
+      const polynomial = direction === 'forward' ? inkIndices.slice() : inkIndices.slice().reverse();
+      while (polynomial.length > 1 && polynomial.at(-1) === 0) polynomial.pop();
+      assert.ok(polynomial.length >= 2, 'Only nonconstant original source factors');
+      redFactorTests.push({
+        page: inkPage.page, start: span.start, length: span.length, direction,
+        base60: remainder(original60, polynomial).every(x => x === 0),
+        base59: remainder(alternative59, polynomial).every(x => x === 0),
+      });
+    }
+  }
+}
+assert.equal(redFactorTests.length, 36);
+assert.deepEqual(redFactorTests.filter(row => row.base59), []);
+assert.deepEqual(redFactorTests.filter(row => row.base60), [
+  { page:39, start:119, length:3, direction:'forward', base60:true, base59:false },
+]);
+
+
 console.log(JSON.stringify({
   interpretation: '256 printed pp49–51 cells as descending GF(29) polynomial coefficients',
   originalOrder: '32 x 8, row-major',
@@ -125,6 +161,10 @@ console.log(JSON.stringify({
   base60: { residues: r60, reversedProductResidue: reversed60 },
   base59_without_lowercase_f: { residues: r59, reversedProductResidue: reversed59 },
   numericallyChangedCells: alteredCells,
+  originalRedSpanCount: 18,
+  bidirectionalRedFactorTests: redFactorTests.length,
+  base60RedFactors: redFactorTests.filter(row => row.base60),
+  base59RedFactors: redFactorTests.filter(row => row.base59),
   conditionalExactFactorChanceForPrespecifiedFactors: 1 / (29 ** 4),
   status: 'Radix discriminator, not authenticated author intent or a decryption',
 }, null, 2));
