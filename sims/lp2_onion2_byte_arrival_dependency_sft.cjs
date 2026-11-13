@@ -124,6 +124,25 @@ for (let i = 0; i < iterations; i++) {
 assert.equal(lagNullGe, 16362);
 bestCounts.sort((a, b) => a - b);
 lagNullPeaks.sort((a, b) => a - b);
+const chainChecks = [];
+for (const [algorithm, width] of [
+  ['md5', 16], ['sha256', 32], ['sha512', 64],
+  ['sha3-256', 32], ['sha3-512', 64]
+]) {
+  let adjacentHashMatches = 0, reverseMatches = 0;
+  const pairs = 256 / width - 1;
+  for (let j = 0; j < pairs; j++) {
+    const left = tape.subarray(j * width, (j + 1) * width);
+    const right = tape.subarray((j + 1) * width, (j + 2) * width);
+    if (crypto.createHash(algorithm).update(left).digest().equals(right))
+      adjacentHashMatches++;
+    if (crypto.createHash(algorithm).update(right).digest().equals(left))
+      reverseMatches++;
+  }
+  assert.equal(adjacentHashMatches, 0);
+  assert.equal(reverseMatches, 0);
+  chainChecks.push({algorithm, width, pairs, adjacentHashMatches, reverseMatches});
+}
 const outcome = {
   input: { originalBytes: tape.length, sourceIntervals: elapsed.length,
     intervalUnitMinutes: 5, sumUnits: 240, firstBytePosition: 143, lastBytePosition: 256 },
@@ -135,6 +154,7 @@ const outcome = {
   maxNull95: bestCounts[47499], maxNull99: bestCounts[49499],
   familywiseBitRuleExceedances: matchNullGe,
   familywiseBitRuleP: (1 + matchNullGe) / (1 + iterations),
+  fullBlockHashChainChecks: chainChecks,
   lag1to10: sourceCorrelation, maximumAbsoluteLagCorrelation: peak,
   lagNull95: lagNullPeaks[47499], lagNull99: lagNullPeaks[49499],
   familywiseLagExceedances: lagNullGe,
