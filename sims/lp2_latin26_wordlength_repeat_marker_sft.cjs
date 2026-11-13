@@ -160,3 +160,169 @@ console.log(JSON.stringify({result:'PASS; Latin-register discriminator and prede
   visualChapterDistinct:chapterRankDistinct,
   interpretation:'a fixed map from 25 ordinary Latin letters to 28 predecessor-relative successor ranks cannot produce 28 distinct ranks; it is excluded globally, per chapter, and on 54/55 physical pages'},
  references:records},null,2));
+/**
+ * Source-native follow-up: full exact repeat mask on independently printed
+ * lexicon words, plus an authentic-original one-based GP29 accumulator.
+ *
+ * The count comparison is a fixed-corpus diagnostic, not a cipher solution.
+ * @param {number[]} sequence
+ * @param {number} marker
+ * @param {number[]} mask 1=observed repeat, 0=observed nonrepeat, 2=page-first unknown
+ * @returns {boolean}
+ */
+function maskMatches(sequence, marker, mask) {
+  return sequence.length === mask.length &&
+    sequence.every((symbol, index) =>
+      mask[index] === 2 || (symbol === marker) === (mask[index] === 1));
+}
+
+const gpCorpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const gpTokens = gpCorpus.translit.map((s, i) => ({s, i}))
+  .sort((a, b) => b.s.length - a.s.length);
+
+/**
+ * GP source-calibrated spelling: exactly the independent LP1/p57 conventions.
+ * @param {string} original
+ * @returns {number[]}
+ */
+function encodeNativeWord(original) {
+  const s=original.replace(/QU/g, 'CW').replace(/V/g,'U')
+    .replace(/[KQ]/g,'C').replace(/Z/g,'S');
+  const output=[];
+  for(let k=0;k<s.length;){
+    if(s.startsWith('ING',k)){output.push(21);k+=3;}
+    else if(s.startsWith('IO',k)){output.push(27);k+=2;}
+    else {
+      const token=gpTokens.find(t=>s.startsWith(t.s,k));
+      assert(token,'unmapped source GP token '+s.slice(k));
+      output.push(token.i);k+=token.s.length;
+    }
+  }
+  return output;
+}
+assert.equal(gpCorpus.runes[28], 'ᛠ');
+const lexicon=read('resources/control/english_wordfreq_textblob.txt')
+  .split(/\r?\n/u)
+  .map(line => /^([a-z]+)\s+(\d+)\s*$/u.exec(line))
+  .filter(Boolean)
+  .map(hit => ({word:hit[1].toUpperCase(), frequency:Number(hit[2])}))
+  .filter(x=>x.word.length<=16);
+assert.equal(lexicon.length, 29144);
+const lexData=lexicon.map(x=>({
+  ...x,
+  latin:[...x.word].map(s=>s.charCodeAt(0)-65),
+  gp:encodeNativeWord(x.word)
+}));
+const exactMasks=words.map(w=>w.map(x=>x.event?1:x.eligible?0:2));
+const eventMasks=exactMasks.filter(m=>m.includes(1));
+const twoMasks=exactMasks.filter(m=>m.length===2);
+const twoFirstEvents=twoMasks.filter(m=>m[0]===1).length;
+const twoSecondEvents=twoMasks.filter(m=>m[1]===1).length;
+assert.equal(eventMasks.length,85);
+assert.deepEqual([twoMasks.length,twoFirstEvents,twoSecondEvents],[448,3,1]);
+
+/**
+ * Compute stable small-p binomial upper tail for at least three occurrences.
+ * @param {number} n
+ * @param {number} p
+ * @returns {number}
+ */
+function binomialTailAtLeastThree(n,p) {
+  let term=n*(n-1)*(n-2)*p**3*Math.pow(1-p,n-3)/6;
+  let result=term;
+  for(let k=3;k<n;k++) {
+    term *= (n-k)*p/((k+1)*(1-p));
+    result += term;
+    if(term<result*1e-16)break;
+  }
+  return result;
+}
+
+/**
+ * @param {'latin'|'gp'} alphabet
+ * @param {number} marker
+ * @returns {object}
+ */
+function evaluateMarker(alphabet, marker) {
+  const byLength=Array.from({length:15},()=>[]);
+  for(const entry of lexData){
+    const sequence=entry[alphabet];
+    if(sequence.length<=14)byLength[sequence.length].push({...entry, sequence});
+  }
+  let supported=0;
+  const unsupported=[];
+  for(let i=0;i<exactMasks.length;i++) {
+    const mask=exactMasks[i];
+    if(!mask.includes(1))continue;
+    if(byLength[mask.length].some(x=>maskMatches(x.sequence,marker,mask))) {
+      supported++;
+    } else {
+      unsupported.push({word:i,length:mask.length,mask:mask.join('')});
+    }
+  }
+  const twoLetterEntries=byLength[2];
+  const denominator=twoLetterEntries.reduce((s,x)=>s+x.frequency,0);
+  const numerator=twoLetterEntries.reduce((s,x)=>s+(x.sequence[0]===marker?x.frequency:0),0);
+  const p=numerator/denominator;
+  return {alphabet,marker,eventWordsSupported:supported,eventWordsTotal:eventMasks.length,
+    unsupported,tworuneFirstObserved:twoFirstEvents,referenceFrequency:numerator,
+    referenceDenominator:denominator,referenceProbability:p,
+    expectedTworuneFirst:twoMasks.length*p,
+    binomialTailAtLeastThree:binomialTailAtLeastThree(twoMasks.length,p)};
+}
+const lexDecisions=[
+  evaluateMarker('latin',10),
+  evaluateMarker('gp',28),
+  evaluateMarker('gp',27)
+];
+assert.deepEqual(lexDecisions.map(x=>x.eventWordsSupported),[84,80,80]);
+assert.deepEqual(lexDecisions.map(x=>[x.referenceFrequency,x.referenceDenominator]),[
+  [11,190784],[103,271902],[1,271902]
+]);
+assert(lexDecisions[0].unsupported.some(x=>x.length===12&&x.mask==='000001000001'));
+
+/** Direct one-based GP accumulator: P[i] = C[i]-C[i-1]-1 (mod 29).
+ * Page-first symbols have no previous original ciphertext and are excluded.
+ */
+const unknownPages=gpCorpus.pages.filter(p=>p.page<56&&p.indices.length);
+const inferred=[];
+for(const p of unknownPages){
+  for(let i=1;i<p.indices.length;i++) {
+    inferred.push((p.indices[i]-p.indices[i-1]+57)%29);
+  }
+}
+assert.equal(inferred.length,12901);
+const count29=new Uint32Array(29);
+for(const index of inferred) count29[index]++;
+assert.equal(count29[28],86);
+const adjacentIoC=count29.reduce((s,n)=>s+n*(n-1),0)/
+  (inferred.length*(inferred.length-1));
+assert(Math.abs(adjacentIoC-0.035325030389447606)<1e-13);
+assert.equal(Math.min(...count29.slice(0,28)),401);
+assert.equal(Math.max(...count29.slice(0,28)),510);
+// Exact planted encoder/decoder at one-based GP values.
+const plant=[0,28,12,5,28,1,17,28,25];
+let prevCipher=7;
+const plantCipher=plant.map(v=>(prevCipher=(prevCipher+v+1)%29));
+prevCipher=7;
+const plantPlain=plantCipher.map(v=>{
+  const decoded=(v-prevCipher+57)%29;
+  prevCipher=v;
+  return decoded;
+});
+assert.deepEqual(plantPlain,plant);
+
+console.log(JSON.stringify({
+  markerLexiconStatus:'PASS: original word masks vs independent TextBlob lexicon',
+  lexiconEntries:lexicon.length,
+  observedTwoRuneWords:twoMasks.length,
+  originalTwoRuneStartRepeat:twoFirstEvents,
+  originalTwoRuneSecondRepeat:twoSecondEvents,
+  candidateMarkerMasks:lexDecisions,
+  sourceOneBasedAccumulator:{eligibleRunes:inferred.length,
+    zeroIncrementSites:count29[28],decodedIoC:adjacentIoC,
+    nonRareRuneCountRange:[Math.min(...count29.slice(0,28)),
+      Math.max(...count29.slice(0,28))],
+    plantRoundTripExact:true,
+    originalUnknownPlaintextRecovered:false}
+},null,2));

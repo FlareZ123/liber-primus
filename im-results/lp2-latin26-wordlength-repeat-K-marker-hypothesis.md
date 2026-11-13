@@ -1,54 +1,46 @@
-# A Latin-letter plaintext register is a concrete alternative to GP29 plaintext
+# Original LP2 word-length register and repeat-marker decision
 
-**Agent31, 13 November 2026. Status: new source-layout discriminator and a 26-letter marker candidate, not decipherment or an authenticated cipher.** The original 55 rune-bearing unknown pages contain **12,956 GP29 ciphertext runes, 2,896 printed words, 86 repeated within-page output pairs**. This source test asks whether the printed word lengths could correspond to ordinary **Latin spelling before runic contraction**, an architecture that previous GP29-specific zero-marker exclusions do not cover.
+**Agent31, 13 November 2026. Experimental status:** the original word lengths are closer to a Latin26 register than to the conventional contracted GP29 register in four tested control texts. The initial stationary **Latin K repeat-marker** candidate has now failed a targeted short-word predictive diagnostic, though the finite corpus and author-style assumptions prevent a universal exclusion. An independently motivated **one-based GP29 cumulative sum** gives a similarly rare repeat-marker candidate (EA) but its direct inverse does not recover English. No key, unknown plaintext, complete cipher or continuation is recovered.
 
-## Exact original measurements
+## Original-source constraints, unchanged
 
-Parsing the unchanged `resources/lp2-transcription.txt`, joining line wraps and page-continuation words but preserving hyphen/period punctuation, yields exactly 2,896 printed word lengths, 12,956 symbols, mean **4.473756906** symbols/word; **343 words of length eight or longer**. The full source word-length histogram for lengths 1 through 14 is **[83,448,720,513,317,256,216,156,78,52,32,18,4,3]**. Of the 86 literal within-page equal-successor positions, **21 occur inside words length≥8** and **23 at the first rune of a printed word**.
+The canonical `resources/lp2-transcription.txt` parser joins page-continuation words and excludes runeless p50: **12,956 original unknown runes**, **2,896 printed words**, **86 adjacent equal-rune events within physical pages**, affecting **85 words**. The word-length histogram for lengths 1–14 is `[83,448,720,513,317,256,216,156,78,52,32,18,4,3]`; mean 4.473756906. Of the 86 repeats, 21 are in words with at least eight runes and 23 begin a printed word. One original twelve-rune word on p27 contains two separate repeats at zero-based positions 5 and 11. Four of the 448 two-rune words have repeat events, **three at their first rune and one at their second**. Page-initial runes are explicitly censored as having no preceding original cipher rune.
 
-For each of four English references, compare the original 14-bin printed-word histogram with ordinary Latin-letter word lengths, legacy GP29 lengths (K/Q→C, V→U, Z→S, greedy TH/NG/EO/OE/AE/IA/EA), and a second GP29 encoding using the **source-calibrated spelling** established on solved LP1 p10–13 and independently checked on solved LP2 p57 (QU→CW, V→U, K/Q→C, Z→S, with ING and IO each emitted as one rune before the remaining GP tokens). This is a sensitivity check, not a claim that every unknown word follows one universal spelling convention. The reported divergence is the plain empirical `D_KL(original length distribution || reference length distribution)` in natural units. This is a **fixed-corpus comparison**, not a calibrated author-attribution probability.
+Under `D_KL(original printed word-length distribution || reference distribution)`, the independent corpus comparison gives:
 
-| Reference | Latin mean | Legacy GP29 mean | Source-calibrated GP29 mean | D_KL Latin | D_KL legacy GP29 | D_KL source-calibrated GP29 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Gibran, *The Prophet* (15,733 words) | 4.228119 | 4.011568 | 3.972033 | **0.0151343** | 0.0357228 | 0.0404515 |
-| Shakespeare (55,407 words) | 4.141137 | 3.948960 | 3.918386 | **0.0371898** | 0.0408087 | 0.0475132 |
-| Emerson, *Essays* (77,932 words) | 4.367577 | 4.165555 | 4.123171 | **0.0117786** | 0.0427927 | 0.0424581 |
-| Editor-normalized solved Cicada LP1/LP2 (875 words) | 4.276571 | 4.068571 | 4.011429 | **0.0358001** | 0.0473153 | 0.0376216 |
+| Reference | Latin mean | GP29 mean | KL Latin | KL contracted GP29 |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran, *The Prophet* | 4.228119 | 4.011568 | 0.0151343 | 0.0357228 |
+| Shakespeare | 4.141137 | 3.948960 | 0.0371898 | 0.0408087 |
+| Emerson, *Essays* | 4.367577 | 4.165555 | 0.0117786 | 0.0427927 |
+| Editor-normalized solved Cicada LP1/LP2 | 4.276571 | 4.068571 | 0.0358001 | 0.0473153 |
 
-**The observed printed-word lengths remain closer to the Latin register than to either GP29 encoding in all four controls.** The source-calibrated GP spelling changes the margin substantially for solved Cicada (0.03580 versus 0.03762) and slightly for Emerson, but it does not reverse the ranking. This confirms that the Latin-register observation is not an artifact of omitting the newly authenticated ING/IO contractions. The comparison remains sensitive to prose style, editorial normalization, and the possibility that printed boundaries are cipher output rather than plaintext boundaries; it is an architectural discriminator, not evidence of Latin plaintext or a recovered cipher. Previous GP29-only necessary-condition screens therefore cannot automatically be extended to ordinary 26-letter input.
+Here Latin length is the letter count before runic contraction. This empirical proximity is compatible with Latin-letter plaintext **only if** printed word boundaries and lengths survive encipherment. It is not a source clue selecting a 26-letter alphabet; control style and spelling can affect divergences.
 
-## Predecessor-relative successor-rank test: a fixed rank map is impossible
+## Exact original repeat-mask diagnostic: Latin K and native GP alternatives
 
-The 25 ordinary Latin letters could select one of the **28 runes other than the previous ciphertext rune**. To test a stationary rank substitution correctly, normalize each nonrepeat transition using the original GP rune order:
+A complete but hypothetical 26-to-29 changing-state injection can encode plaintext K as a repeated previous ciphertext rune, with the other 25 letters selecting 25 distinct outcomes among the 28 nonrepeating rune options. It is reversible given the authentic changing state/injection, which remains entirely unknown. K was selected retrospectively from 26 candidate Latin letters because its **expected** total/long-word/initial repeat counts were closest to observed in each of four references. Those expected triples were Gibran [102.109, 14.237, 15.428], Shakespeare [98.844, 14.584, 23.611], Emerson [77.832, 8.746, 12.910] and solved Cicada [74.077, 9.516, 31.199], versus observed [86, 21, 23]. This is exploratory model fitting.
 
-\[
-r_i=C_i-\mathbf{1}[C_i>C_{i-1}],
-\]
+The stronger test preserves **every original word's exact length, word boundary, repeat and nonrepeat positions**, with page-first inputs censored. An independent historical-English frequency lexicon (`resources/control/english_wordfreq_textblob.txt`; 29,144 alphabetic entries of length at most 16) was consulted without adapting the tested ciphertext. The exact candidate-word mask counts are:
 
-where rune indices are zero-based and the previous rune is omitted from the ordered 29-symbol alphabet. This maps each nonrepeat output to its rank in \(0,\ldots,27\), removing the predecessor-dependent absolute rune identity.
+| Marker interpretation | Original event-bearing words matched by at least one dictionary word | First-symbol marker frequency in reference two-symbol words | Observed first-symbol events across 448 source two-rune words | Binomial tail for at least three |
+| --- | ---: | ---: | ---: | ---: |
+| Latin K | **84/85** | **11/190,784** | 3 | **2.799×10⁻⁶** |
+| Source-calibrated GP29 EA (ᛠ, ordinal 28) | **80/85** | **103/271,902** | 3 | **7.134×10⁻⁴** |
+| Source-calibrated GP29 IO (ᛡ, ordinal 27) | **80/85** | **1/271,902** | 3 | **7.396×10⁻¹⁰** |
 
-Across the original 12,815 nonrepeat positions, **all 28 successor ranks occur**. Every one of the **nine** visual chapters uses all 28 ranks. **52/55** rune-bearing physical pages use all 28; p22 and p49 use 27 each, and p55 uses 24. Thus **54/55 pages** individually use more than 25 distinct ranks.
+The 29-rune encoding uses the **actual source-attested ING/IO spelling** from `results/lp1-source-orthography.md`, not the old inventory-only encoder. Candidate K's single still-unmatched **p27 twelve-rune** repeated mask is `000001000001`: any ordinary Latin word would need K at positions 5 and 11, no other Ks, with no such spelling in the pinned lexicon. The earlier 12,261-entry three-literary-corpus union failed K in 7/85 masks, so the expanded frequency lexicon materially weakens that broad incompatibility while **strengthening the rare two-letter-initial positional conflict**. TextBlob has rare K-initial two-letter spellings `KA`, `KE`, `KM`, `KU` with aggregate weight just 11 across 190,784 two-letter tokens. GP EA's eligible two-rune initials include `EAR`, `EAT`, `EAU` after contraction.
 
-If one reserved Latin letter is the repeat marker, only **25 ordinary plaintext letters** remain. A fixed mapping from those 25 letters to 28 successor ranks—whether injective or not—can emit at most 25 distinct ranks. The observed 28 therefore excludes a stationary rank substitution globally, per visual chapter, and on 54/55 pages. Unlike absolute-rune coverage, this is the correct predecessor-normalized invariant for the proposed 28-successor mechanism.
+**Inference and calibration limits:** These binomial tails assume 448 independent length-matched words with reference two-letter frequencies and preselected marker identity. Author-specific vocabulary, dependent words, a different input register, postselection across alphabets and state-dependent repeat behavior can alter them. They are strong reasons against a plain **stationary** Latin-K marker interpretation, not proof against all repeat-escape ciphers or unusual prose. Exact lexicon coverage is a **finite-dictionary diagnostic**; unknown source words may lie outside it.
 
-This does **not** exclude a mapping whose rank assignment changes within a page/word/line, a genuinely position-keyed encoder, or a different plaintext register. Such a dynamic map needs a source-selected update rule/key and an independently predictive inverse; none is currently established. The absolute-output coverage counts remain a descriptive diagnostic only and are not used for this conclusion.
+## Direct one-based GP29 running-sum route
 
-## One explicit rare-marker mechanism worth discriminating
+The original Gematria Primus has 29 symbols. The natural source-alphabet operation `C[i] = C[i-1] + (P[i]+1) mod 29` makes ciphertext equality correspond exactly to the last plaintext rune **EA (ordinal 28, one-based value 29)**. This is a concrete reversible, independently motivated *operation*, without an authenticated instruction to apply it. On the untouched 55 source rune-bearing pages, discarding each page's initial ciphertext rune, `P[i]=(C[i]-C[i-1]-1) mod29` yields **12,901 runes**, exactly **86 EA** instances and frequencies **401–510 for each of the other 28 runes**, with decoded coincidence index **0.035325030389447606**. Native calibrated English controls have strongly uneven rune frequencies (for example, the pooled three-literary-source IoC is ~0.06034). The original inverse output remains nearly uniform, without a coherent plaintext passage. A nine-rune positive plant re-encrypts and decrypts exactly; this establishes only arithmetic correctness.
 
-A complete positionwise candidate can map ordinary Latin plaintext **K** to a repeated ciphertext rune, `C[i]=C[i-1]`, while mapping the other 25 letters through a per-position or changing-state injection into the 28 **nonrepeating** rune choices. This has enough raw alphabet capacity to be reversible if the decoder has the authentic state/key; three nonrepeating choices remain unused per state. A page-first rune is an ordinary separately initialized header. This specifies a possible *family* of complete 26-to-29 input/output mappings, **not** a source-selected key, and the K assignment was noticed after observing the ciphertext repeat geography.
+Consequently, the straightforward one-based cumulative-sum model is **negative on original plaintext evidence**, and a generic changing secret mapping would require an independently supplied state/key. Its zero-step EA hypothesis predicts unusual two-letter starts and at least five event masks absent from the pinned lexicon; neither observation authorizes parameter searches.
 
-The zero-step positions predict that the unknown **Latin** plaintext contains 86 eligible Ks, with exactly 21 in long words and 23 at word initials. Holding each original word length and actual page-first eligibility mask fixed, draw independent reference words of *exactly the same Latin length*. The three expected K counts (all / long / word-initial) are:
+## Research decision and reproduction
 
-| Reference | Expected eligible K | Long-word K | Word-initial K |
-| --- | ---: | ---: | ---: |
-| Gibran | 102.109 | 14.237 | 15.428 |
-| Shakespeare | 98.844 | 14.584 | 23.611 |
-| Emerson | 77.832 | 8.746 | 12.910 |
-| Solved Cicada | 74.077 | 9.516 | 31.199 |
-| **Original repeat events** | **86** | **21** | **23** |
+**Retire unsourced stationary Latin-K marker key hunting and direct one-based GP29 summation** as immediate solution routes. The original word-length proximity remains a useful clue that a plaintext register may differ from the usual contracted GP29. An author-selected alphabet, repeat/exception rule and evolving key remain necessary before a keyed inverse has evidential force. Another design should yield unknown plaintext outside any interval used to select the model.
 
-Among all **26 ordinary Latin letters**, **K is the closest by the exploratory three-component Euclidean distance normalized by the square roots of the observed counts in each of the four sources**. This is a postselected descriptive ranking. Its long-word counts still show tension, especially in Emerson, and no exact word-level probability, matching dictionary, plaintext, key or output register has been established. All source reference totals are full-token source counts; the solved-Cicada reference excludes Markdown comment lines.
-
-**Next decisive test:** use complete printed-word repeat masks (including the absence of K at nonrepeat sites) as an *exact* pattern against independent English dictionaries at the preserved Latin word lengths. If no credible source words can occupy many of those 2,896 slots, retire stationary Latin-K. If feasible, a separate original clue must supply the changing per-position injection or key; simply matching observed K markers does not decrypt a single other letter. The algorithm itself cannot be chosen by this statistical comparison.
-
-**Reproduce:** `sims/lp2_latin26_wordlength_repeat_marker_sft.cjs`, using only the tracked original transcription and four local reference texts; no external downloads or guessed ciphertext keys.
+Full assertions, original-input parser, independent TextBlob frequency data, positive arithmetic plant and numerical counts: `sims/lp2_latin26_wordlength_repeat_marker_sft.cjs`. The original reference controls also remain pinned to Shakespeare, Gibran, Emerson and solved Cicada. This is a finite conditional exclusion, and no recovered LP2 plaintext is claimed.
