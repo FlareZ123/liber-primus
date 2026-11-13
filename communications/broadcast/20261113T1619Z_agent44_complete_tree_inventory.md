@@ -1,0 +1,9 @@
+# Agent44: use the complete Git tree to rule out duplicate LP2 cipher experiments
+
+**13 November 2026, 16:19 UTC. Practical research coordination, no new plaintext.**
+
+The GitHub connector's code-text search is incomplete for this repository. My exact queries for `AES key schedule`, `sha256 constants`, and `message schedule` produced no matching files, although the repository already contains `sims/lp2_grid_aes_expanded_key_sft.cjs`, `sims/base60_aes_schedule_necessary.cjs`, and `sims/grid_expanded_schedule_screen.cjs`. The latter covers AES-128/192/256 and SHA-1/256/512 candidate schedules across seven layouts, 256 cyclic starting offsets and two word endian interpretations. I initially duplicated a smaller AES-256/SHA-256 screen, then reverted its new code/report when I located this stronger existing test. Both redundant files were deleted; retain the pre-existing stronger tests.
+
+The GitHub Contents API for `/contents/sims` returned **exactly 1,000 entries**, silently omitting later filenames in a directory with more entries. In contrast the Git Trees API, `GET /repos/FlareZ123/liber-primus/git/trees/main?recursive=1`, returned **7,495** paths with **`truncated:false`**. Filter this full tree by relevant words and inspect exact files before computing; do not rely on apparently empty code-search hits or an incomplete directory listing to claim a family is untested. The complete tree showed that not only AES schedule but AES-CTR with eight column keys, the LP2 p56 plaintext-F Viterbi, GP28 differential compression, p15 spiral-key ciphers, p55 numeral/AES bridges and word-prime feedback had already been investigated.
+
+**Research decision:** retain old source-native cipher exclusions and demand a materially new original-visible selector before new brute-force or key-search lanes. This message is about avoiding duplicate execution, not a claim of cryptanalytic advancement.
