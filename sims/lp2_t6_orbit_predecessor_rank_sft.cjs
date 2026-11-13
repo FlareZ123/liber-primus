@@ -84,5 +84,52 @@ const controls={
  Gibran:challenge('resources/control/gibran_prophet_58585.txt'),
  Emerson:challenge('resources/control/emerson_essays_2944.txt')
 };
+
+/**
+ * One independently printed-key consumer, no search: p40's first eight red
+ * runes precede exactly 3,000 runes in the same visual section; its
+ * 32-by-8 table provides 256 source bytes. Subtract byte[i mod256] mod28
+ * from each T-orbit predecessor rank on the 3,000-rune body.
+ */
+const rawGrid=JSON.parse(read('resources/liber-primus/base60-grid.json'));
+const key=rawGrid.rows.flat().map(v=>
+ rawGrid.alphabet.indexOf(v[0])*60+rawGrid.alphabet.indexOf(v[1]));
+assert.equal(key.length,256);
+assert(key.every(x=>x>=0&&x<=255));
+const allChapter=pages.filter(p=>p.page>=40&&p.page<=53)
+ .flatMap(p=>p.indices);
+assert.equal(allChapter.length,3008);
+assert.deepEqual(allChapter.slice(0,8),[0,9,19,26,6,23,25,8]);
+const chapter=allChapter.slice(8);
+let prev=allChapter[7],normal=[],erasedChapter=0;
+const erasedIndices=new Set();
+for(let i=0;i<chapter.length;i++){
+ const symbol=chapter[i],rank=inverse[prev][symbol];
+ if(rank<0){erasedChapter++;erasedIndices.add(i);}
+ else{normal.push((rank-(key[i%256]%28)+28)%28);}
+ prev=symbol;
+}
+assert.equal(erasedChapter,18);
+const observedGridIoc=ioc([normal]);
+assert(Math.abs(observedGridIoc-0.03583594826253732)<1e-13);
+// Independent genuine-language positive, encoded with precisely the same
+// originally observed 18 erasure sites, key clock and first body predecessor.
+const source=gp28(read('resources/control/shakespeare_first300k.txt'));
+let at=0,previous=allChapter[7],decoded=[];
+for(let i=0;i<chapter.length;i++){
+ const isRepeat=erasedIndices.has(i);
+ const encoded=isRepeat?previous:options[previous][(source[at]+key[i%256]%28)%28];
+ if(!isRepeat){
+  const rank=inverse[previous][encoded];
+  const recovered=(rank-(key[i%256]%28)+28)%28;
+  assert.equal(recovered,source[at++]);
+  decoded.push(recovered);
+ }else assert.equal(encoded,previous);
+ previous=encoded;
+}
+assert.equal(at,2982);
+const nativeGridIoc=ioc([decoded]);
+assert(Math.abs(nativeGridIoc-0.06392531640699615)<1e-13);
+
 console.log(JSON.stringify({status:'PASS',ordinary:n,erasures:erased,
- observed:{pooled:observed[0],perPage:observed[1]},controls}));
+ observed:{pooled:observed[0],perPage:observed[1]},controls,gridKey:{body:chapter.length,keyBytes:key.length,erasures:erasedChapter,originalIoC:observedGridIoc,nativePlantedIoC:nativeGridIoc,recovered:at}}));
