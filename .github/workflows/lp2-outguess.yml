@@ -30,7 +30,7 @@ on:
         required: false
         default: ''
       custom_image:
-        description: Optional original LP2 JPEG index 17–74 for the custom passphrase (blank scans all 58)
+        description: Optional LP2 JPEG index 17–74 or 2016 signed image; blank scans all 58
         type: string
         required: false
         default: ''
