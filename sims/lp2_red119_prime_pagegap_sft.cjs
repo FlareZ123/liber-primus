@@ -126,6 +126,11 @@ const payload = base60.byte_rows.flat();
 assert.equal(payload.length, 256);
 const printCount = (values) => values.filter((x) => x >= 32 && x <= 126).length;
 assert.equal(printCount(payload), 103);
+assert.deepEqual([17,43,7,53].map((i) => payload[i]),
+  [202,73,183,171]);
+assert.deepEqual([17,43,7,53].map((i) => payload[i - 1]),
+  [121,28,126,86]);
+
 const asciiKey = factorGlyphs.flat().map((glyph) => glyph.charCodeAt(0));
 const primeKey = factored.flat();
 assert.equal(printCount(payload.map((x, i) => x ^ asciiKey[i % 4])), 92);
