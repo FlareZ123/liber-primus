@@ -71,14 +71,14 @@ for (const page of [14, 15, 16]) {
   const nativeProse = pageText.get(page)
     .replace(/^\[[^\n]*\]$/gm, "")
     .replace(/^\d+(?:\s+\d+)+$/gm, "");
-  const words = nativeProse.match(/[A-Z]+/g) || [];
+  const words = nativeProse.replace(/\x27/g, "").match(/[A-Z]+/g) || [];
   for (const word of words) {
     source.push({page, word, indices: encodeGP(word)});
   }
 }
 assert.deepEqual([14, 15, 16].map(n =>
-  source.filter(x => x.page === n).length), [88, 16, 2]);
-assert.equal(source.length, 106);
+  source.filter(x => x.page === n).length), [87, 16, 2]);
+assert.equal(source.length, 105);
 assert.equal(source.reduce((s, w) => s + w.indices.length, 0), 408);
 // Digit-only p16 5×5 numerical cells are not GP-native words; retain the
 // actual two rune words KNOW THIS. Editorial continuation notes omitted.
@@ -112,8 +112,8 @@ function longest(a, b) {
   return {words: best, sourceAt: startA, targetAt: startB, runes};
 }
 const actual = longest(native, target);
-assert.deepEqual(actual, {words: 5, sourceAt: 59, targetAt: 2, runes: 23});
-assert.equal(source.slice(59, 64).map(x => x.word).join(" "),
+assert.deepEqual(actual, {words: 5, sourceAt: 58, targetAt: 2, runes: 23});
+assert.equal(source.slice(58, 63).map(x => x.word).join(" "),
   "THE MASTER THE MASTER STOPPED");
 const legacyMatch = longest(legacy, target);
 assert.equal(legacyMatch.words, 5);
@@ -146,10 +146,10 @@ for (let trial = 0; trial < iterations; trial++) {
   histogram[matches]++;
 }
 assert.deepEqual(Array.from(histogram).slice(0, 9),
-  [0, 0, 5, 8945, 8835, 1970, 220, 21, 4]);
+  [0, 0, 5, 8716, 8979, 2034, 241, 20, 4]);
 const atLeastObserved = histogram.slice(actual.words)
   .reduce((sum, n) => sum + n, 0);
-assert.equal(atLeastObserved, 2215);
+assert.equal(atLeastObserved, 2300);
 
 // Exact-source positive plant: 17 *consecutive actual LP1 GP-native words*
 // consist of 12 discovery words and five wholly withheld following words.
@@ -188,9 +188,10 @@ assert.deepEqual(
   planted.slice(0, 17).map(x => x.indices),
   source.slice(plantStart, plantStart + 17).map(x => x.indices),
   "Exact source-rune identities and all five held-out words recovered");
-assert.deepEqual(encodeGP("TUNNELING"),
-  gp.pages[57].indices.slice(10, 18).length ? encodeGP("TUNNELING") : [],
-  "Source-calibrated ING form remains deterministic");
+const heldoutPage57 = pageText.get(57).match(/[A-Z]+/g).flatMap(w => encodeGP(w));
+assert.equal(heldoutPage57.length, 95);
+assert.deepEqual(heldoutPage57, gp.pages[57].indices,
+  "Native-GP encoder independently reproduces all solved p57 runes");
 
 if (require.main === module) {
   console.log(JSON.stringify({
