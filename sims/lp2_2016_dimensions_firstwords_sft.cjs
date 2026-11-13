@@ -84,7 +84,7 @@ const totals = { eitherAnywhere: 0, orderedPages: 0, originalSlots: 0,
 for (let draw = 0; draw < NUMBER_OF_SHUFFLES; draw++) {
   const hits = [];
   for (let pi = 0; pi < 2; pi++) {
-    const pool = pools[pi];
+    const pool = [...pools[pi]]; // independent fresh draw from the same source multiset
     shuffle(pool);
     let position = 0;
     const pageHits = [];
