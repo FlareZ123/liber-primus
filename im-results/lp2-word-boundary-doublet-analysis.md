@@ -60,6 +60,31 @@ The obvious source-derived consumer is a 16-step repeating word key: the p15 gri
 
 This rejects the most natural p15-grid repeating-key consumer of the boundary anomaly. Do not rescue it with free phase shifts, per-word fitted keys, or a broader family of transforms.
 
+## Word-initial GP28 no-repeat rank: an all-secret page-local permutation fails
+
+**13 November 2026, Agent36; Director #755. Original-input exclusion, no plaintext or key.** The pp11–23 run of 686 unequal cross-word rune transitions suggests a compact *reversible on a constrained alphabet* candidate. Let a word-initial source GP28 symbol be \(P\in\{0,\ldots,27\}\), let the previous ciphertext rune be \(C_{\rm prev}\), and let \(S_{\rm page}\) be **any secret permutation** of the 28 code symbols. Emit
+
+\[
+C_{\rm start}=(C_{\rm prev}+1+S_{\rm page}(P))\bmod29.
+\]
+
+The inverse recovers \(S_{\rm page}(P)=(C_{\rm start}-C_{\rm prev}-1)\bmod29\) followed by the inverse permutation. This is an exact and human-executable no-repeat boundary rule for the 28-symbol alphabet; an independent lossless GP29 operation could encode within-word letters. **The twenty-ninth GP rune has no initial-letter code without another source-specified escape or side channel.** A native-English source positive plant of 686 initial runes, secret permutation \(S(x)=5x+7\bmod28\), and arbitrary preceding word-final ciphertext runes recovers all **686/686** originals with this inverse, without a repeated boundary rune.
+
+There is a key-free necessary condition that avoids guessing the unknown permutation. A secret bijection, even independently selected for each page, preserves the number of equal word-initial source symbols *within that page*. The original 686 source-ordered nonzero **cyclic difference ranks** produce only **1,374 ordered equal-rank pairs in 37,818 within-page eligible initial pairs**, pooled IoC **0.0363319054**. Their global rank inventory has IoC **0.0360281756** and a maximum single-rank count **40/686**. No secret page-specific permutation can increase those collision counts.
+
+The [self-contained original-source and positive-control reproducer](../sims/lp2_wordboundary_rank28_original_sft.cjs) compares three retained pre-2014 English text controls. It renders TH as one GP rune when word-initial and follows the standard GP C/K, S/Z and U/V equivalences. Every control block preserves the original thirteen page-local word-start group lengths: 54, 64, 60, 30, 36, 59, 68, 60, 65, 64, 54, 27, 45 (sum 686).
+
+| Control text | All consecutive 686-word windows | Minimum most-frequent initial count | Page-stratified windows, every third start | Minimum page-stratified IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare, first 300k characters | 54,722 | **47** | 18,241 | **0.05161563** |
+| Emerson, 2,944-line essays | 77,247 | **65** | 25,749 | **0.05521180** |
+| Gibran, *The Prophet* | 15,048 | **64** | 5,016 | **0.06002433** |
+| **Original pp11–23 ciphertext ranks** | One fixed span | **40** | One fixed span | **0.03633191** |
+
+**Every** control window has a more concentrated initial-rune distribution than the actual original rank stream. The controls overlap and share source texts, so these are reproducible bounded corpus contrasts, not independent p-values or a universal impossibility theorem for all languages and intermediate codes. The positive plant verifies that this particular reversible mechanism preserves, and can expose, native-English initial-rune concentration.
+
+**Decision:** this GP28 word-initial no-repeat code is mathematically possible but fails the original English-register gate even with completely unconstrained secret per-page symbol permutations. It yields **no original plaintext**, authentic key or decoded source text. The printed p11 tree also appears before the zero-run interval on p10; p15's numeric square sits within the span rather than marking both boundaries. Neither independently selects the proposed cipher mode. The 23 repeated cross-word rune pairs outside pp11–23 require a separately motivated exception rule. Do not rescue the hypothesis by fitting position-dependent pads or escape clocks. Reconsider only if an original instruction selects the actual permutation, exceptional channel and a held-out plaintext inverse.
+
 ## Interpretation and limits
 
 The robust observations are (i) an LP2-wide adjacent-repeat deficit relative to the initial LP1 control, (ii) near-uniform nonzero transition differences consistent with a diagonal-exclusion process, and (iii) a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
@@ -68,7 +93,7 @@ The page art is context, not proof: p11 and p23 carry tree illustrations; p15 ha
 
 ## Next discriminating question
 
-Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The obvious p15 16-value repeating word-key consumer is now negative. Any further work must identify an original clue that explains the LP2-specific repeat suppression and selects a reversible operation or key schedule; do not search arbitrary per-word maps, add free phases, or repeat the generic figural-motif scan.
+Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The p15 sixteen-value repeating word-key and all-secret page-local GP28 word-initial permutation are now negative. Any further work must identify an original clue that explains the LP2-specific repeat suppression and selects a reversible operation or key schedule; do not search arbitrary per-word maps, add free phases, or repeat the generic figural-motif scan.
 
 ## Reproduction
 
