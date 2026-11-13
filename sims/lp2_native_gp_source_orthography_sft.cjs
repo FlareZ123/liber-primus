@@ -83,6 +83,32 @@ for (const [latin, original] of calibrations) {
   assert(original.split("").every(x => runeMap.has(x)));
   assert.equal(toRunes(encodeNativeGP(latin)), original, latin);
 }
+// Complete source witness: 181 consecutive plaintext words on original
+// solved LP1 physical pages 10-13. Original physical p12->p13 splits
+// ADHERENCE across a page boundary without inserting a word delimiter.
+const plainLP1 = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const startP10 = sourceLP1.indexOf("ᚦᛖ-ᛚᚩᛋᛋ");
+const afterP13 = sourceLP1.indexOf("\n$\n%\n", startP10);
+assert(startP10 >= 0 && afterP13 > startP10);
+const printedP10to13 = sourceLP1.slice(startP10, afterP13)
+  .replace(/\/\n%\n/g, "").replace(/\/\n/g, "").replace(/\n/g, "");
+const sourceWordPattern = new RegExp("[" + gp.runes.join("") + "]+", "gu");
+const printedWords = printedP10to13.match(sourceWordPattern) || [];
+const plainSections = plainLP1.split(/### (\d+)\n/);
+const referenceWords = [];
+for (let i = 1; i < plainSections.length; i += 2) {
+  const pageNumber = Number(plainSections[i]);
+  if (pageNumber < 10 || pageNumber > 13) continue;
+  const cleaned = plainSections[i + 1].replace(/^\[[^\n]*\]$/gm, "");
+  referenceWords.push(...(cleaned.match(/[A-Z]+/g) || []));
+}
+assert.equal(printedWords.length, 181);
+assert.equal(referenceWords.length, 181);
+const legacyExact = referenceWords.filter((word, i) =>
+  toRunes(encodeNativeGP(word, false)) === printedWords[i]).length;
+assert.equal(legacyExact, 165, "naive NG/IA labels match 165 of 181 words");
+assert.deepEqual(referenceWords.map(word => toRunes(encodeNativeGP(word))),
+  printedWords, "source-calibrated GP spelling reconstructs all 181");
 assert.notEqual(toRunes(encodeNativeGP("FOLLOWING", false)),
   calibrations[0][1]);
 assert.notEqual(toRunes(encodeNativeGP("FUNCTION", false)),
@@ -248,6 +274,9 @@ if (require.main === module) {
   console.log(JSON.stringify({
     status: "exact original-input controls, no recovered unknown plaintext",
     literalSourceLP1Examples: calibrations.length,
+    fullSolvedLP1WordPairs: referenceWords.length,
+    legacyGPWordsExact: legacyExact,
+    sourceGPWordsExact: printedWords.length,
     sourceCipherInvariant: source,
     originalFibonacciLag8: originalLag8,
     correctedControlWindows: total,
