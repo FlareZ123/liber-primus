@@ -44,4 +44,47 @@ console.log("p32 four-rune complete blocks:",blocks.length,"unframed suffix:",p3
 console.log("Blocks outside modulus:",failures.length,"of",blocks.length);
 console.log("First ciphertext block:",blocks[0],">",N);
 console.log("PASS: literal 4-GP-rune native RSA ciphertext packing impossible for p32.");
+// Test exactly one alternate native RSA framing, not a 4-rune-native cipher:
+// 3 GP ciphertext digits (always <n) -> 4 GP plaintext digits; source
+// 121 leaves one orphan rune, making this a partial diagnostic only.
+// This is a constrained historical BASE29 + RSA + 3301-index candidate,
+// NOT a whole-page decoder or source-selected pad rule.
+const exponent=3301n, totient=562n*568n, inverseExponent=250557n;
+assert.equal((exponent*inverseExponent)%totient,1n);
+/** @param {bigint} base @param {bigint} power @param {bigint} modulus @returns {bigint} */
+function modPow(base,power,modulus){
+  let value=1n;
+  while(power>0n){
+    if(power&1n)value=(value*base)%modulus;
+    base=(base*base)%modulus;
+    power>>=1n;
+  }
+  return value;
+}
+/** @param {bigint} value @returns {number[]} */
+function fourDigits(value){
+  const out=Array(4).fill(0);
+  for(let i=3;i>=0;i--){out[i]=Number(value%29n);value/=29n;}
+  return out;
+}
+/** @param {number[]} xs @returns {number} */
+function ioc(xs){
+ const ct=Array(29).fill(0);
+ for(const x of xs)ct[x]++;
+ return ct.reduce((sum,n)=>sum+n*(n-1),0)/(xs.length*(xs.length-1));
+}
+const decrypted=[];
+for(let offset=0;offset+3<=p32.length;offset+=3){
+  const original=BigInt(base29(p32.slice(offset,offset+3)));
+  const plaintext=modPow(original,inverseExponent,BigInt(N));
+  assert.equal(modPow(plaintext,exponent,BigInt(N)),original);
+  decrypted.push(...fourDigits(plaintext));
+}
+assert.equal(decrypted.length,160);
+assert.ok(Math.abs(ioc(decrypted)-0.03569182389937107)<1e-12);
+assert.equal(p32[120],12); // EO retained as an unframed symbol.
+console.log("3-to-4 digit RSA 40 blocks, one original orphan rune: IoC",ioc(decrypted));
+console.log("First 32 4-digit runes:",decrypted.slice(0,32).map(x=>data.translit[x]).join(" "));
+console.log("PASS: all 40 three-digit original RSA values re-encrypt exactly.");
+console.log("No source-selected handling for orphan rune or meaningful plaintext.");
 console.log("No statement about arbitrary framing, non-RSA mappings or other LP2 targets.");
