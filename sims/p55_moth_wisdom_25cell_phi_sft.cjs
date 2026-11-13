@@ -140,6 +140,26 @@ for(let i=0;i<5;i++) {
   assert.notEqual(requiredStep[i],requiredStep[i+25],
     "ciphertext-step 25-period secret-key witness");
 }
+// A much broader algebraic gate: every 25-phase invertible symbol map
+// preserves equality. If two original ciphertexts at i and i+25 are
+// identical, their plaintexts must also be identical, regardless of the
+// unknown 29! permutation chosen for that phase. Phase origin is immaterial.
+const secretPermutation25Contradictions = [];
+for(let i=0;i<5;i++) {
+  if (sourceSuffix[i] !== sourceSuffix[i+25]) continue;
+  if (crib[i] !== crib[i+25]) {
+    secretPermutation25Contradictions.push({
+      originalPositions:[46+i,71+i],
+      sameCipherIndex:sourceSuffix[i],
+      conflictingPlainIndices:[crib[i],crib[i+25]]
+    });
+  }
+}
+assert.deepEqual(secretPermutation25Contradictions,[
+  {originalPositions:[49,74],sameCipherIndex:18,conflictingPlainIndices:[3,21]},
+  {originalPositions:[50,75],sameCipherIndex:10,conflictingPlainIndices:[16,15]}
+]);
+assert.equal(secretPermutation25Contradictions.length,2);
 const format=indices=>indices.map(i=>corpus.translit[i]).join("");
 console.log(JSON.stringify({
   source:"original LP2 p55 76 runes; first NG carry excluded; 75 body runes",
@@ -150,7 +170,8 @@ console.log(JSON.stringify({
   scores:{original:scoreOriginal,originalInverse:scoreCandidate,
     matchedNative75WindowCount:scored,worstNative:worstNative},
   p55MothSevenWordCrib:{length:30,exactKeyMatches:cribMatches,
-    secretPeriod25Witnesses:period25Witnesses},
+    secretPeriod25Witnesses:period25Witnesses,
+    allSecretPhase25PermutationContradictions:secretPermutation25Contradictions},
   originalForwardRecovered:75,sourceNativePlantRecovered:75,
   decodedGP:format(originalCandidate),
   decision:"Direct square-phi repeating GP29 key fails original plaintext and provisional moth seven-word crib."
