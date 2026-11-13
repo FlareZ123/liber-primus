@@ -330,20 +330,20 @@ Wait for Agent32's assessment of the centre-out 7/10/6 perimeter alignment. If t
 
 ## 2026-11-13 invocation checkpoint (Agent 47; normal mode)
 
-Lease: `agent47-gpt6-20261113T004618Z-independent-human-route-9e31c6`, claimed `2026-11-13T00:46:18.550Z`. Initial mode draw was 2 (normal independent exploration). Read the current root README, integrated inversion challenge, and maintainer notes before choosing work. No LP2 plaintext or authentic key was recovered.
+Lease: `agent47-gpt6-20261113T004618Z-independent-human-route-9e31c6`, claimed `2026-11-13T00:46:18.550Z`. Initial mode draw was 2 (normal independent exploration). Read the current root README, integrated inversion challenge, and maintainer notes. No LP2 plaintext or authentic key was recovered.
 
-Bounded exploratory tests completed; all were negative and should not be promoted to `results/`:
+Bounded exploratory tests completed; none is an established result:
 
-- Applied the 2016 signed message's 43-word GP-prime-sum rank permutation as a standard 5×43 columnar transposition to the 215-rune p27 body. Both standard read/write orientations were nonlinguistic.
-- Noticed p28 has 67 runic words while p2 has 201 runes (=3×67). Tested p28 word-prime-sums mod29 and word lengths as period-67 additive keys on p2; also tested both on p39 and p50. Both signs were nonlinguistic. The numerical alignment alone does not select a cipher operation.
-- Tested the 2016 13-token seed (7144649572585460758) with the 2012 P.S. 432-bit modulus and RSA exponent 65537 to Fisher–Yates-permute the p50 256-byte table, then use table values mod29 as a repeating key. No readable output.
-- Compared the p50 table bytes against 256 low/high-byte outputs from the 2012 modular-squaring recurrence under both seed and seed-squared initializations. Exact matches were 1, 0, 0, and 2 of 256; correlations were near zero. This rejects those direct output views, not all possible PRNG constructions.
+- Applied the 2016 signed message's 43-word GP-prime-sum rank permutation as a standard 5×43 columnar transposition to the 215-rune p27 body. Both standard orientations were nonlinguistic.
+- The p50 256-byte table, permuted by the 2016 13-token seed through the 2012 P.S. RSA map (x\mapsto x^{65537}\bmod N), did not produce a readable period-256 mod29 additive key.
+- Compared p50 table bytes against 256 low/high-byte outputs of the 2012 modular-squaring recurrence under seed and seed-squared initializations. Exact matches were 1, 0, 0, and 2 of 256; correlations were near zero.
 - Exhaustively checked whether the p50 byte sequence is an affine LCG modulo 256; no (a,c) pair fits all 255 transitions.
+- Tested the p50 table as a T6 selector using the source-fixed threshold `byte < 16` on the canonical continuous rune stream. The correct parser yields 2,896 words, 12,956 runes, 1,290 word-local T6 opportunities and 80 T6 hits. The mask selects 62 opportunities and overlaps 4 hits versus 3.84 expected; no association.
 
-Low-confidence cross-round observation, communicated to Agent 42 in `communications/agent42/20261113T014842Z_agent47_prime-rank-crosslink.md`:
+Parser correction is important: an earlier ad hoc split incorrectly treated whitespace and `/` as word delimiters. The canonical parser in `sims/lp2_word_pages.cjs` preserves line wraps and cross-page words. Correct counts are p28=58 words, p39=55 words, p50 numerical-grid page=0 rune words, and physical p51=20 words. Therefore the apparent p28=67-word match to p2's 201=3×67 runes was an artifact; withdraw it. The p28 prime-sum/length key tests using the bad segmentation are invalid, not negative evidence.
 
-- The static 2014 Onion6 response links to `107.jpg`, `167.jpg`, `229.jpg`; these are prime values with prime ordinals 28, 39, 50. Reading those ordinals as LP2 page indices selects p28/p39/p50, spaced by 11. p28 has 67 words; p39 has 64; p50 has 23 plus the 256-cell table.
-- This is **not an established clue**. The Stage10 source-boundary report says the preserved response is static and warns that the returned filenames do not establish a square-to-image mapping or LP2 key. The 11-column layout is not source-authenticated. Do not pursue unless an independent source clue selects the mapping and a discriminating operation.
-- The p28 67-word count matches the factor 67 in p2's 201=3×67 rune count, but direct additive-key interpretations failed. Treat as coincidence until a rule is source-selected.
+Low-confidence cross-round observation, communicated to Agent 42 in `communications/agent42/20261113T015620_agent47_parser-correction.md` and earlier `communications/agent42/20261113T014842Z_agent47_prime-rank-crosslink.md`:
+
+- The static 2014 Onion6 response links to `107.jpg`, `167.jpg`, `229.jpg`; these are primes with prime ordinals 28, 39, 50. Reading those ordinals as LP2 page indices selects p28/p39/p50, spaced by 11. This is an additional inference, not source-authenticated. The Stage10 source-boundary report says the preserved response is static and warns that filenames do not establish an LP2 key. Do not pursue unless an independent source clue selects the mapping and a discriminating operation.
 
 Do not add another isolated numerical sweep. Prefer an independent original-source clue or a joint original-input inverse that constrains key provenance, state, word/page clocks, and exact forward re-encryption. Keep the authoritative synthesis unchanged absent a genuine change in understanding.
