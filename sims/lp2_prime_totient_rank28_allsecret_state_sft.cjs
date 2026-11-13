@@ -250,4 +250,139 @@ for (const [clockName, clock] of Object.entries(clocks)) {
     planted_statewise_28_alphabet_collision_invariant: true,
   }));
 }
+
+/**
+ * Solved p56 has a historically verified literal-F rune that does not consume
+ * its next prime key. For the proposed GP28 transport, explicitly grant
+ * the 86 original doublet sites the same nonconsuming-key semantics. Also
+ * allow the 55 page-initial cipher runes to be transmitted IVs rather than
+ * content and hence not consume prime keys. This is a different, source-
+ * motivated clock architecture from the initial all-runes-consuming case.
+ *
+ * All 28! independent per-page/per-prime state permutations remain free.
+ * @param {boolean} skipIV
+ * @param {boolean} skipMarker
+ * @returns {{book:number[],page:number[],chapter:number[]}}
+ */
+function skippedClocks(skipIV, skipMarker) {
+  const alternative = { book: [], page: [], chapter: [] };
+  let bookClock = 0;
+  let chapterClock = 0;
+  const recoveredSourceRanks = [];
+  for (let page = 0; page < 56; page++) {
+    if (chapterStarts.has(page)) chapterClock = 0;
+    const symbols = pages[page].indices;
+    let pageClock = 0;
+    for (let pos = 0; pos < symbols.length; pos++) {
+      if (pos === 0) {
+        if (!skipIV) { bookClock++; chapterClock++; pageClock++; }
+        continue;
+      }
+      const difference = (symbols[pos] - symbols[pos - 1] + 29) % 29;
+      if (difference === 0) {
+        if (!skipMarker) { bookClock++; chapterClock++; pageClock++; }
+        continue;
+      }
+      recoveredSourceRanks.push(difference - 1);
+      alternative.book.push(bookClock);
+      alternative.page.push(pageClock);
+      alternative.chapter.push(chapterClock);
+      bookClock++;
+      pageClock++;
+      chapterClock++;
+    }
+  }
+  assert.deepEqual(recoveredSourceRanks, rank);
+  return alternative;
+}
+
+const skipPolicies = [
+  { name: "literal-doublet-skips-prime", skipIV: false, skipMarker: true },
+  { name: "both-literal-doublet-and-IV-skip-prime", skipIV: true, skipMarker: true },
+  { name: "only-IV-skips-prime", skipIV: true, skipMarker: false },
+];
+const skipExpected = {
+  "literal-doublet-skips-prime": {
+    book: [8736, 253764],
+    page: [9098, 249144],
+    chapter: [9190, 251422],
+  },
+  "both-literal-doublet-and-IV-skip-prime": {
+    book: [9112, 253486],
+    page: [9010, 247000],
+    chapter: [9142, 251084],
+  },
+  "only-IV-skips-prime": {
+    book: [9028, 253344],
+    page: [8842, 247194],
+    chapter: [8950, 251088],
+  },
+};
+
+for (const policy of skipPolicies) {
+  const alternative = skippedClocks(policy.skipIV, policy.skipMarker);
+  for (const [clockName, clock] of Object.entries(alternative)) {
+    const source = collision(rank, clock);
+    assert.deepEqual(
+      [source.numerator, source.denominator],
+      skipExpected[policy.name][clockName],
+    );
+    const controls = [];
+    for (let t = 0; t < windows; t++) {
+      const start = t * stride;
+      controls.push(collision(native.slice(start, start + rank.length), clock).rate);
+    }
+    controls.sort((a, b) => a - b);
+    assert(controls[0] > 0.058);
+    assert(source.rate < controls[0]);
+
+    const plain = native.slice(0, rank.length);
+    const encodedRanks = [];
+    const recoveredPlain = [];
+    for (let i = 0; i < plain.length; i++) {
+      const page = pageForEvent[i];
+      const residue = primeKey[clock[i]];
+      const slope = units28[(7 * page + 11 * residue) % units28.length];
+      const offset = (13 * page + 5 * residue + 1) % 28;
+      const encrypted = (plain[i] * slope + offset) % 28;
+      encodedRanks.push(encrypted);
+      recoveredPlain.push(((encrypted - offset + 28) * invert28[slope]) % 28);
+    }
+    assert.deepEqual(recoveredPlain, plain);
+    assert.deepEqual(collision(encodedRanks, clock), collision(plain, clock));
+    let event = 0;
+    let literalMarkers = 0;
+    for (let page = 0; page < 56; page++) {
+      const old = pages[page].indices;
+      if (!old.length) continue;
+      let c = old[0]; // Source-shaped page IV, unchanged.
+      for (let pos = 1; pos < old.length; pos++) {
+        if (eventMask[page][pos]) {
+          const next = (c + encodedRanks[event] + 1) % 29;
+          assert.notEqual(next, c);
+          const recoveredRank = (next - c + 29) % 29 - 1;
+          assert.equal(recoveredRank, encodedRanks[event]);
+          c = next;
+          event++;
+        } else {
+          literalMarkers++; // Literal doublet, never a GP28 content symbol.
+        }
+      }
+    }
+    assert.equal(event, rank.length);
+    assert.equal(literalMarkers, 86);
+    console.log(JSON.stringify({
+      clock_policy: policy.name,
+      clock: clockName,
+      original: source,
+      native_windows: windows,
+      native_min: controls[0],
+      native_median: controls[Math.floor(windows / 2)],
+      native_at_or_below_original: 0,
+      planted_all_12815_content_ranks_recovered: true,
+      planted_86_literal_markers_preserved: true,
+    }));
+  }
+}
+
 console.log("No unknown LP2 plaintext or historical cipher key recovered.");
