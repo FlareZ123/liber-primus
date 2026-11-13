@@ -1,11 +1,6 @@
 name: LP2 p15 quotient-plus-prime AES-128 key gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/lp2-p15-baseprime-aes128.yml'
-      - 'sims/lp2_p15_56013_baseprime_aes128_sft.cjs'
   workflow_dispatch:
 
 permissions:
