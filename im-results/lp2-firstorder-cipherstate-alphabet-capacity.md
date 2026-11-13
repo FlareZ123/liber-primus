@@ -53,6 +53,26 @@ Independently heldout text from `resources/control/shakespeare_first300k.txt`, `
 
 Unlike a heuristic language score, no choice of the forbidden secret tables can reproduce these control distributions with the unmodified original ciphertext. The result does not exclude an unknown original plaintext whose statistics differ enough from these finite corpora. Repeated-key and step-zero marker tests in [the predecessor investigation](lp2-latin26-wordlength-repeat-K-marker-hypothesis.md) are strictly weaker than this all-secret bound for complete static first-order row codebooks.
 
+## Exact public-phase clock envelope
+
+The unmodified source admits a second, stricter question: what if the author intended a **short, page-local, public rune-index phase clock** with a separate arbitrary, complete secret row codebook for each phase? For each fixed period `T=1,…,20` the same exact row upper bound was applied to **all group sizes k from 1 through A**, independently for every one of the 88 GP29 and 94 Latin26 control windows. A control survives the *necessary frequency conditions* only if its highest-ranked k-letter total is within capacity for **every k**. Surviving the envelope does not construct a consistent table or prove an authentic plaintext.
+
+| Fixed page-local period | GP29 control windows satisfying every bound, out of 88 | Latin26 windows satisfying every bound, out of 94 |
+| --- | ---: | ---: |
+| 1–8 | **0** at every period | **0** at every period |
+| 9 | 0 | **14** |
+| 10 | 0 | **77** |
+| 11–12 | 0 at both periods | **94** at both periods |
+| 13 | **2** | 94 |
+| 14 | 14 | 94 |
+| 15 | 42 | 94 |
+| 16 | 50 | 94 |
+| 17 | 78 | 94 |
+| 18 | 86 | 94 |
+| 20 | 88 | 94 |
+
+This supplies an original-cipher-state **complexity lower bound** against the pinned English register: an unrestricted **GP29** previous-ciphertext row-codebook with a page-local period of **12 or less** cannot fit any of the 88 windows even by an optimistic letter-inventory allocation; for **Latin26**, every period of **eight or less** fails all 94 windows. First inventory survivors are **T=13 for GP29 (2/88)** and **T=9 for Latin26 (14/94)**. Period 13 is numerically near Cicada's frequent thirteen-mark imagery, but that **does not authenticate a 13-phase encryption**, and 86/88 native GP controls still fail the necessary test at T13. A secret page-specific key or additional, independently advancing state can evade these bounds.
+
 ## Independent correctness controls and continuation
 
 The SFT `sims/lp2_firstorder_row_capacity_sft.cjs` asserts the complete source matrix and capacities, the original-layout windows, and every reported inequality. It also constructs independent native-GP29 and Latin26 **positive plants** of 12,956 plaintext symbols each, using the fully reversible 29-state row injection `C_i=(11P_i+7C_(i−1)) mod29` with per-page starting state7, and exact inverse `P_i=8(C_i−7C_(i−1)) mod29`. Every symbol round-trips; both plants automatically satisfy the computed row-capacity theorem. A correct implementation therefore accepts genuine members of the family while rejecting the incompatible original distribution.
