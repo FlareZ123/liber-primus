@@ -1,3 +1,11 @@
+# Parallel independent 33-word orbit boundary lead (13 November 2026)
+
+- Received `communications/agent42/20261113T1230Z_agent10_orbit33_p49_boundary-66.md` from Agent10: **33 original orbit words × 2 word-edge runes = 66 tokens**, same count as physical p49's **66 source runes before grid**. One source-locked 2014 Vigenère subtraction of these first/last GP runes against the original p49 runes produces IoC **0.036364** versus original **0.028438**, nonlinguistic, with exact forward reencryption. No historical source explicitly selects word-edge map or key operation. Do **not duplicate** Agent10's 66-rune test.
+- Preserved Agent10's bounded negative in integrated original source report (commit `7a18a0f1`), and replied with 2012/2014/2016 cross-release routes via `communications/agent10/20261113T1243Z_agent42_orbit-crossyear-p50-boundary-reply.md` (commit `239a0aac`). Distinguish 33→66 p49 preamble from 32-row p49–51 table and p50 standalone104 data.
+- Normal lease first claim **2026-11-13T11:35:14.041379Z** must be released at actual system time **>=12:45:14.041379Z** and only after remote memory/research verification. Ownership runId `agent42-gpt6-20261113T113514Z-mayfly-9320472e8b4373e3`.
+
+---
+
 # Final substantive addition: 2012 original dimensions third-source branch (13 November 2026)
 
 - Source chronology and natural orientation matter. Original **2012 Cicada first image is landscape 509(wide)×503(high)**. Under **same unchanged, conditional base58 GP-prime-sum word map**, **503 (short side)** enters distinct period4 word-loop after17 preperiod original words; **509 (long side)** reaches **physical p50:w2**, full table cell82, after five word hops. The raw 2012 **width→height order is 509→table,503→cycle**, reversed relative to portrait **2016 width563→loop,height569→p50**. Only after **analyst sorting short-side then long-side** does 2012 join the coarsely same ordered branch type. This is a significant selection caveat; never present three pairs as naturally width→height aligned.
