@@ -1,6 +1,6 @@
 # Full-text Q.B.L. running-key test
 
-**Status:** full source recovered successfully from the independent TarrDaniel 1972 transcription over verified HTTPS. The first C1 execution failed before scoring because the sparse checkout omitted the R36 calibration file `analysis/round34/I1-v3-null/fit.json`; this is an execution/harness failure, not a cryptanalytic negative. The workflow now includes the calibration file and is being rerun.
+**Status:** completed negative for the complete 1972 Q.B.L. transcription as a direct cyclic running key under R42/C1. The source was recovered over verified HTTPS; the first C1 attempt failed before scoring due an omitted calibration file, which was corrected before the successful run.
 
 ## Why this source
 
@@ -28,3 +28,21 @@ A bar-crossing page is only a candidate and must be inspected for a coherent pla
 ## Source restoration result (2026-11-13)
 
 The verified HTTPS download succeeded. Source HTML SHA-256: `cdae6831e1cd6f266c5646ca932c6c0ffebb5560c869deb35af6f3c4a20a01ba`. Extracted text SHA-256: `f7fcb1fc58397dbc3141ea8b5eb566b2a21395f29abd4421fac567f5f8e9510f`. The extraction contained 212,810 characters and 128,751 ASCII letters after normalization, compared with the 5,336-rune truncated capture in R26/B. The first C1 run recognized one real text and zero corrupt files, then stopped because `fit.json` was absent from the sparse checkout. No page was scored in that run.
+
+
+## Full-text R42/C1 result (2026-11-13)
+
+[Successful workflow run 43458178495](https://github.com/FlareZ123/liber-primus/actions/runs/43458178495).
+
+- Source HTML SHA-256: `cdae6831e1cd6f266c5646ca932c6c0ffebb5560c869deb35af6f3c4a20a01ba`
+- Extracted text SHA-256: `f7fcb1fc58397dbc3141ea8b5eb566b2a21395f29abd4421fac567f5f8e9510f`
+- Extracted: 212,810 characters; 128,751 ASCII letters / GP29 key symbols.
+- Search: all 55 unsolved pages; 150 stride-sampled offsets; signs ±1; Atbash 0/1; one real text; 600-cell family-wise grid; panel-R36.
+- Best candidate: pmax `4.800150545`, page 54, start `116552`, sign −1, Atbash 1, page length 76; required bar `11.3518`; `clears=false`.
+- Crossers: 0. Verdict: **NEGATIVE**.
+
+This closes the complete-text source gap left by the 5,336-rune truncated R26/B capture. Reject Q.B.L. as a direct cyclic running key under the tested R42/C1 model. Do not spend more offsets or normalization variants on this model without a new source clue. The result does not reject Q.B.L. as a reference for Gematria/Temurah or a different, independently specified operation.
+
+## Separate structural observation (hypothesis only)
+
+The Q.B.L. discussion gives the Hebrew-letter division 3 Mothers, 7 Doubles, 12 Singles; the seven Doubles have two sounds. Expanding those sound variants yields `3 + 14 + 12 = 29` phonetic forms. The same text identifies the 29th path as Qoph. This is a potentially relevant count relationship to the 29-symbol Gematria Primus alphabet, but no source-selected rune-to-Hebrew mapping or reversible operation has been established. Treat it as a lead, not a result; do not launch an unconstrained 29-symbol permutation search. A useful follow-up must specify the mapping from the text itself and make a locked prediction on original ciphertext.

@@ -1,3 +1,13 @@
+# Agent 1 — Q.B.L. full-text running-key result (2026-11-13T16:05:06.872Z)
+
+- Restored the full 1972 Q.B.L. transcription from the independent TarrDaniel HTTPS page. Source HTML SHA256 `cdae6831e1cd6f266c5646ca932c6c0ffebb5560c869deb35af6f3c4a20a01ba`; extracted text SHA256 `f7fcb1fc58397dbc3141ea8b5eb566b2a21395f29abd4421fac567f5f8e9510f`; 128,751 ASCII letters. This replaces the truncated 5,336-rune capture used by the earlier R26/B run.
+- R42/C1 full-text test completed: 55 pages, 150 offsets, signs ±1, Atbash 0/1, R36 panel, 600-cell grid. Best pmax 4.800150545 on page54 at start116552, bar11.3518, zero crossers. Reject Q.B.L. as a direct cyclic running key under this model; no more offset/normalization variants without a new clue. Run 43458178495.
+- Separate untested structural lead: Q.B.L. describes 3 Mothers, 7 Doubles with two sounds, 12 Singles, yielding 29 phonetic forms; it also names the 29th path as Qoph. This count may relate to GP29 but is not a proven mapping. Do not start unconstrained permutation search; require a source-selected mapping and a locked original-cipher prediction.
+- Open director-task queue currently contains #39 (blocked pending repository-owner manual OpenPuff positive-control dispatch; do not retry) and #41 (waiting; no eligible frozen decoder handoff). No executable issue available.
+- No LP2 plaintext, authentic key, or p56 hash preimage recovered in this update.
+
+---
+
 # Agent 1 — current research update (2026-11-13T15:30:23.531Z)
 
 - Completed the source-derived p57 prime-clause product seed test. The authenticated ID3 TXXX number `1,595,277,641 = 1259×1031×1229` was tested as a CPython 2.7 MT19937 `random29` seed, sign −1, offset 0, exact keyskip1, with the pinned 12-register R36 Stage-B decoder on 240 LP2 runes. GitHub Actions run 43452779173 completed: pmax 3.7069646 (EN_HALFVOWEL), English −7.1996520, unreadable output; 100% held-out agreement is decoder self-consistency only. This rejects the exact seed construction; do not extend to the full book or test more reducers/generators from this number without a new clue.
