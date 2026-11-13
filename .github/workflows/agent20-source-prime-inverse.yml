@@ -15,7 +15,6 @@ on:
           - pgp4096
           - pgpSkip
           - pgpSkipSections
-          - prevCipher
 
 jobs:
   source-prime-inverse:
@@ -125,18 +124,3 @@ jobs:
         env:
           LP2_PGP_SECTION: '1'
         run: node sims/pgp_modulus_skip_hmm.cjs
-
-  previous-cipher-all-secret:
-    if: ${{ inputs.mode == 'prevCipher' }}
-    runs-on: windows-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Original GP29 preceding-cipher state all-secret bound and native controls
-        shell: pwsh
-        run: |
-          node --check sims/lp2_prevcipher_allsecret_capacity_sft.cjs
-          node sims/lp2_prevcipher_allsecret_capacity_sft.cjs
