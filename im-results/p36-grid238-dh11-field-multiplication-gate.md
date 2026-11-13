@@ -145,6 +145,14 @@ The p3 red field is \(u^2=3u+8\), with \(z=23-2u\) of order 840 and \(N_{E/GF(29
 
 The other conjugate embedding gives \(-v\). This explains the same \(X^2+2\) minimal polynomial: \(z^{15}\) has norm 18, and multiplication by 10 changes that norm to \(10^2\cdot18=2\pmod{29}\). The p39 red factor independently has constant \(27=-2\).
 
+A further exact group calculation uses the p3 red root itself as a discrete-log base. In the basis \\(1,u\\), the p3 root is \\(u=(0,1)\\) and the p36 relative norm is \\(v=(19,26)\\). Direct enumeration in \\(E^\\times\\) gives
+
+\\[
+u^{705}=v,\\quad u^{840}=1,\\quad u^{420}=-1,\\quad v^{56}=1,\\quad v^{28}=-1,
+\\]
+
+so \\(\\operatorname{ord}(u)=840\\), \\(\\operatorname{ord}(v)=56\\), and \\(\\log_u(v)=705\\). The post-discovery factorization \\(705=15\\times47\\) links the signed DH23 client exponent 15 and the 15th prime 47. This factorization is **not** an independent source instruction; no source says to use 705 or 47 as a key index. A single p56 \\(\\varphi(\\text{prime})\\)-clock transfer to p36 at prime ordinals 15, 36 and 705 was tested and failed ([bounded transfer gate](./p36-prime36-p56-totient-transfer-gate.md)).
+
 **Evidence classification and null:** the field norm and displayed identities are exact computational derivations from the original table factor and p36 rune vector. The 2013 DH23 value 2, p3 quadratic, exponent 15, p39 factor and 10-dot marks are source observations. The choice to combine them through this norm is still a hypothesis. For a uniform nonzero field element, the norm to \(E^\times\) is uniform; landing in the two roots of \(X^2+2\) has probability \(2/840=1/420\). This is an interesting cross-round correspondence, not proof of intended use or recovered key.
 
 ### Frozen uses of the correspondence
