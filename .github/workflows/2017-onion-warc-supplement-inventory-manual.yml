@@ -1,0 +1,19 @@
+name: 2017 Tor WARC public supplement metadata gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bounded primary-source HEAD and archive-member inventory
+        run: python sims/2017_onion_warc_supplement_probe.py
