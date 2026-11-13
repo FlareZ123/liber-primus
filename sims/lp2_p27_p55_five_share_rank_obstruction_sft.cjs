@@ -59,7 +59,8 @@ function loadOriginal() {
   const interior = words.slice(1).flatMap((w) => w.slice(1, -1));
   assert.equal(interior.length, 43);
   assert.equal(new Set(interior).size, 21);
-  return {body, interior, translit: corpus.translit};
+  assert.equal(corpus.prime.length, 29);
+  return {body, interior, translit: corpus.translit, gpPrimes: corpus.prime};
 }
 
 /**
@@ -141,11 +142,13 @@ const QUADRATIC_WITNESS = [
 ];
 
 /** Original target equality constraints on any stationary quadratic output. */
-function quadraticForcedMatrix(source, target, layout) {
+function quadraticForcedMatrix(source, target, layout, encoding = "ordinal", gpPrimes = null) {
+  assert.ok(encoding === "ordinal" || encoding === "prime");
+  const project = (row) => encoding === "prime" ? row.map((v) => mod(gpPrimes[v])) : row;
   return QUADRATIC_WITNESS.map(([i, j]) => {
     assert.equal(target[i], target[j], "quadratic witness target equality " + i + ":" + j);
-    const x = quadraticFeatures(sourceRow(source, i, layout));
-    const y = quadraticFeatures(sourceRow(source, j, layout));
+    const x = quadraticFeatures(project(sourceRow(source, i, layout)));
+    const y = quadraticFeatures(project(sourceRow(source, j, layout)));
     return x.map((v, k) => mod(v - y[k]));
   });
 }
@@ -207,7 +210,7 @@ function positiveControl() {
 }
 
 function main() {
-  const {body, interior, translit} = loadOriginal();
+  const {body, interior, translit, gpPrimes} = loadOriginal();
   const planted = positiveControl();
   const quadraticPlant = quadraticPositiveControl();
   const expectedMatrices = {
@@ -233,14 +236,16 @@ function main() {
     const canonical = applyWeights(rows, weights);
     const literalMatches = canonical.filter((v, i) => v === interior[i]).length;
     assert.equal(literalMatches, layout === "strands" ? 2 : 0);
-    const quadraticMatrix = quadraticForcedMatrix(body, interior, layout);
-    const quadraticDet = determinant29(quadraticMatrix);
+    const quadraticDet = determinant29(quadraticForcedMatrix(body, interior, layout));
+    const primeDet = determinant29(quadraticForcedMatrix(body, interior, layout, "prime", gpPrimes));
     assert.equal(quadraticDet, layout === "strands" ? 8 : 11);
-    assert.ok(quadraticDet !== 0);
+    assert.equal(primeDet, layout === "strands" ? 16 : 25);
+    assert.ok(quadraticDet !== 0 && primeDet !== 0);
     return {layout, determinantMod29: det, witnessPairs: WITNESS, witnessDifferences: matrix,
       canonicalShamirWeights: weights, canonicalLiteralMatches: literalMatches,
       quadratic: {nonconstantTerms: 20, witnessPairs: QUADRATIC_WITNESS,
-        matrixDeterminantMod29: quadraticDet, secretFixedBijectionPossible: false},
+        matrixDeterminantMod29: quadraticDet, primeResidueDeterminantMod29: primeDet,
+        secretFixedBijectionPossible: false},
       directFixedAlphabetFiveShareTransferPossible: false};
   });
   const summary = {scope: "p27 black 215 = five times p55 strict interior 43, both natural layouts",
