@@ -173,7 +173,7 @@ const byScore = results.sort((a, b) => b.decodedIoC - a.decodedIoC);
 console.log(JSON.stringify({
   originalPages: pages.map(p => p.page),
   originalRunes: original.length,
-  2014KeySquare: historicSquare(),
+  historic2014KeySquare: historicSquare(),
   sourceNote: "Untransformed historic 7×7 1033-sum source key; phi variant is an explicitly speculative control",
   variants: byScore,
   decision: "All 16 source-fixed dense Hill7 inverses remain ciphertext-like. No recovered plaintext or key selected by the manuscript."
