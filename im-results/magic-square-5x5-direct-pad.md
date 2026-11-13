@@ -86,6 +86,51 @@ The **global continuous-stream** interpretation also fails. The best of its 40 s
 
 **Decision:** the direct additive pad, page-local/global 5×5 Hill-matrix interpretations, and this five-dot-rank-seeded matrix-state stream are unsupported for p7/p23 or the global unknown stream. The determinant and visual five-based correspondence are real structural facts, not evidence that either proposed cipher was intended.
 
+## LP1 image-16 3301 square as a GP29 Hill-5 key: complete unknown-book gate
+
+The second LP1 square is a distinct source object from the 1033 square above. Its exact printed 5×5 rows are:
+
+```
+434  1311  312  278   966
+204   812  934  280  1071
+626   620  809  620   626
+1071  280  934  812   204
+966   278  312 1311   434
+```
+
+Every row, column and main diagonal sums to **3301**. Reducing the printed matrix modulo 29 gives
+
+```
+28  6 22 17  9
+ 1  0  6 19 27
+17 11 26 11 17
+27 19  6  0  1
+ 9 17 22  6 28
+```
+
+with determinant **10 mod 29**, so it is invertible and can serve as a conventional 5-symbol Hill key over the GP alphabet.
+
+**Human solve-path hypothesis.** A solver who has already encountered the GP29 alphabet and the explicitly prime/totient-marked LP1 3301 square could reasonably try the literal 5×5 matrix as a Hill key. This is a direct, standard use of a source-visible matrix; it requires no fitted key, alphabet permutation, or guessed numeric seed. The test is distinct from the earlier 1033-square Hill test, which used the other LP1 square.
+
+**Frozen original-input test.** Applied the 3301 matrix to all **12,956** original unknown LP2 runes (physical pages 0–55, retaining runeless p50). The four standard linear conventions are (M), (M^T), (M^{-1}), and ((M^{-1})^T), covering direct/inverse use and row-/column-vector convention. Each is tested with either (a) a page-local block clock restarting at the first rune of every physical page, or (b) one book-continuous clock. Blocks are fixed at five runes from phase zero. No padding, alternate phase, word reset, page permutation, or parameter fitting is introduced; any final incomplete block is left unchanged because no source supplies a padding rule.
+
+| Clock | Convention | Original IoC | Top-12 rune mass |
+|---|---|---:|---:|
+| page-reset | M | 0.03446919 | 0.429068 |
+| page-reset | M^T | 0.03446825 | 0.430688 |
+| page-reset | M^-1 | 0.03451294 | 0.435937 |
+| page-reset | (M^-1)^T | 0.03449230 | 0.433853 |
+| book-continuous | M | 0.03447442 | 0.430148 |
+| book-continuous | M^T | 0.03448310 | 0.432387 |
+| book-continuous | M^-1 | 0.03449625 | 0.434856 |
+| book-continuous | (M^-1)^T | 0.03446565 | 0.428836 |
+
+The untouched ciphertext has IoC **0.03447840** and top-12 mass **0.429762**. Across all eight source-fixed inverses the IoC is **0.03446565–0.03451294** and top-12 mass **0.428836–0.435937**: every output remains at the original random-like level, with no candidate plaintext. The independently solved p57 plaintext has IoC **0.06270997** and top-12 mass **0.810526**. A 95-rune p57 plant encrypted and inverted under each of the eight exact matrix/convention settings round-trips perfectly, confirming implementation capacity but not historical key authenticity.
+
+**Decision.** Retire the direct LP1 image-16 3301-square Hill-5 interpretation under the two natural clocks and four linear conventions tested. This does not exclude a different, independently instructed use of the square (for example, a nonlinear state generator or a composition); such a successor needs a source-visible operator/clock and a discriminating original-cipher prediction before further key fitting. Reproducer: [`sims/lp16_3301_hill5_original_gate.cjs`](../sims/lp16_3301_hill5_original_gate.cjs).
+
+---
+
 ## Five-dot rank-seeded matrix-state stream
 
 The measured five-dot reflection report supplies a second way to turn the stencil into a seed, rather than using it only to choose a matrix orientation. Sorting the five measured dot centers by x and ranking their y coordinates gives the one-based permutations p7 [3,5,1,4,2] and p23 [3,1,5,2,4]. Treating these as five-symbol initial states, iterate the source-oriented 5×5 square modulo 29 and concatenate its five-symbol states. The tested seed cycles contain 28 states, yielding a 140-symbol periodic additive stream. This is a source-derived state hypothesis; it is not an established instruction.
