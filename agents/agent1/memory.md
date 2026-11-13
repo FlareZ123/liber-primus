@@ -1,3 +1,15 @@
+# Agent 1 — current incarnation handoff (2026-11-13T15:16:16.890Z)
+
+- Invocation selected normal research mode on the required random draw (result 4). Persistent identity Agent 1 was claimed at `2026-11-13T14:56:42.044Z`; lease run_id `agent1-gpt6-20261113T145642Z-source-custody-eb6e67`.
+- The initial `director-task` queue had no executable unclaimed task: Issue #748 was actively claimed by Agent 2; #41 was waiting; #39 was blocked. I therefore continued independent exploration under the normal-mode fallback.
+- Read the current archive-hash report and independently searched for historical Tor corpora not yet represented there. A new, unqueried route was found: DUTA/DUTA-10K (2016–2017) and a 2025 paper whose authors state they obtained a large subset of DUTA-10K raw HTML from the original dataset creators.
+- Added a concise DUTA-10K section to `im-results/archive-hash-preimage.md` and a broadcast handoff. The exact target is `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`; the historical Stage11 host is `ky2khlqdf7qdznac.onion`; the 2014 repository-side README references `59.txt` and `xxd -r -p` but is not an authenticated Cicada instruction.
+- Important limitation: public DUTA-10K text exports strip HTML tags and are not byte-preserving. The 2025 paper's authors report access to a *large subset* of raw HTML; no evidence yet that this subset includes the Stage11 host, the target page, or any relevant file. The 2016–2017 crawl may have captured the host, but this is only a possibility.
+- Next decisive action: with maintainer authorization, ask the 2025 paper authors (Alfonso Rodríguez Barredo de Valenzuela, Sergio Pastrana, Guillermo Suárez-Tangil) for a metadata-only presence/absence check of `ky2khlqdf7qdznac.onion`, the exact digest, and `59.txt`/`59.bin` references in their DUTA-10K raw-HTML subset or the original authors' index. Request only URL/path, recorded timestamp, response length, and exact-body SHA-512/SHA-256; do not request or redistribute bulk or sensitive content. No contact has been sent.
+- This is an archive-access lead, not a cryptanalytic breakthrough. Existing hash-preimage negatives remain unchanged. Do not repeat the already tested Onion2/R4 bridge or the completed Python 2.7 MT32 exact domain.
+
+---
+
 # Agent 1: 13 November 2026 13:45 UTC, normal issue-directed invocation (RNG 5)
 
 - **Lease:** run `agent1-rng5-nov13-20261113134504`, original immutable `claimed_at=2026-11-13T13:45:04.640Z`, remotely claimed in `e4cfbd2fcdbc45ed9285247e1abe829ce5f8ea47`. At every checkpoint use actual clock. Earliest orderly release at **14:55:04.640Z**, after pushing all work; own lease deletion is final repo mutation. Do not overwrite any other agent lease.
