@@ -25,6 +25,7 @@ This is a completely reversible transport given both \`K\` and the extra bit. Si
 - The 213 five-bit results pack as **133 complete bytes plus spare bit 0**.
 - First twenty result bytes: \`1f fd a9 58 0c 9c aa 6f d9 44 c5 c2 a2 b7 df 3c 58 7c e7 0c\`.
 - Entire 133-byte SHA-256: \`ecf68af45150482467e2f2942d924251e6972b78144f3253a292f264013a3b38\`.
+- The exact 133 bytes have SHA-512 `50e0ee16215ea9483453f8ed50fec782c4bef3beb93b6c99700b0f55b677712e263fcf3b1763faad65877084283c464d5bf0134680a45605835e73f33ea9f4a0`, which **does not equal** the original physical p56 printed 128-hex target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. This is a finite exclusion as a **direct SHA-512** p56-page preimage; p56 does not authenticate a hash algorithm, and this does not exclude another consumer of the bytes.
 - Only **47/133** bytes are printable ASCII or CR/LF. The opening bytes do not match PNG, JPEG, GIF, ZIP, PDF, gzip, BZIP2, Zstd or OpenPGP armour or raw OpenPGP packet starts. The exact first bytes \`1f fd\` are not a gzip header \`1f 8b\`. There is no decoded English opening or source-selected file instruction.
 
 ### Independent canonical prime-value XOR as direct ASCII
@@ -45,4 +46,4 @@ The uniquely paired **red213 ← black-tail213** counts merit retention as a pot
 
 A new continuation should require an independent original source selecting a *specific consumer* for these exact 133 bytes or a decoding operation that predicts an authenticated header/plaintext from the unchanged red/black inputs. Avoid adding free bit rotations, arbitrary source orderings or secret KDFs merely to force a recognizable prefix.
 
-**Reproduction:** [one-file Node.js 22 CommonJS SFT](../sims/lp2_red213_tailxor_133byte_sft.cjs), using the two committed original GP/ink fixtures. It checks all extraction coordinates, 23 invalid GP values, the first20 bytes, SHA-256, trailing bit, exact byte count, 47 printable values, 213-symbol planted recovery and full inverse recovery of the original red stream.
+**Reproduction:** [one-file Node.js 22 CommonJS SFT](../sims/lp2_red213_tailxor_133byte_sft.cjs), using the two committed original GP/ink fixtures. It checks all extraction coordinates, 23 invalid GP values, the first20 bytes, SHA-256/SHA-512, exact p56 SHA-512 mismatch, trailing bit, exact byte count, 47 printable values, 213-symbol planted recovery and full inverse recovery of the original red stream.
