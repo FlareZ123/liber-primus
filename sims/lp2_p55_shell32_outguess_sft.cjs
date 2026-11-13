@@ -152,3 +152,5 @@ function main() {
 }
 if(require.main===module) main();
 module.exports={main};
+
+// Trigger the pinned p55 shell32 source gate through its path-filtered workflow.
