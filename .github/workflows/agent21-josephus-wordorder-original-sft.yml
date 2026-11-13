@@ -1,0 +1,21 @@
+name: Agent21 original word-order Josephus source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile and run original-input SFT
+        run: |
+          node --check sims/lp2_josephus_wordorder_source_gate_sft.cjs
+          node sims/lp2_josephus_wordorder_source_gate_sft.cjs
