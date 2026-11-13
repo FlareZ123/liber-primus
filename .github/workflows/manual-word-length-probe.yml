@@ -23,6 +23,7 @@ on:
           - stage04-square-original
           - stage04-99x76-p55
           - red119-twotime
+          - red76-internal
           - p40-word-red35
           - signed2016-wordmap
           - singleton-support
@@ -92,6 +93,9 @@ jobs:
       - name: Original singleton-word all-secret alphabet-state support bound
         if: ${{ inputs.scan_mode == 'singleton-support' }}
         run: node sims/lp2_singleton_word_state_lower_bound_sft.cjs
+      - name: Three non-dropcap red passages as original p55 76-rune key
+        if: ${{ inputs.scan_mode == 'red76-internal' }}
+        run: node sims/lp2_red_internal76_sharedpad_sft.cjs
       - name: Reproduce page-local word-length structural tests
         if: ${{ inputs.scan_mode == 'standard' }}
         run: |
