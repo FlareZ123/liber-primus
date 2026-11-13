@@ -73,10 +73,10 @@ function differenceBlocks(C, iv) {
   return result;
 }
 /** @param {number[]} values */
-function collisionPairs(values) {
+function collisionPairs(values, skipFirst = false) {
   let collisions = 0;
   const counts = new Map();
-  for (let i = 0; i < values.length; i += 4) {
+  for (let i = skipFirst ? 4 : 0; i < values.length; i += 4) {
     const block = values.slice(i, i + 4).join(",");
     const count = counts.get(block) || 0;
     collisions += count;
@@ -93,6 +93,8 @@ function ioc(values) {
 }
 assert.equal(collisionPairs(differenceBlocks(original, [0,0,0,0])), 0);
 assert.equal(collisionPairs(differenceBlocks(original, sourceIV)), 0);
+// With any hidden IV, the other 435 observable D-blocks are unchanged.
+assert.equal(collisionPairs(differenceBlocks(original, [0,0,0,0]), true), 0);
 
 // Independently pinned original-source-calibrated English corpora.
 const tokens = corpus.translit.map((s, i) => ({s, i}))
@@ -122,21 +124,27 @@ function encodeNative(text) {
 }
 assert.deepEqual(encodeNative("TUNNELING"), [16, 1, 9, 9, 18, 20, 21]);
 const controls = [
-  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 124, 10],
-  ["Gibran", "resources/control/gibran_prophet_58585.txt", 35, 26],
-  ["Emerson", "resources/control/emerson_essays_2944.txt", 184, 11]
-].map(([name, file, expectedWindows, expectedMin]) => {
+  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 124, 10, 10],
+  ["Gibran", "resources/control/gibran_prophet_58585.txt", 35, 26, 25],
+  ["Emerson", "resources/control/emerson_essays_2944.txt", 184, 11, 11]
+].map(([name, file, expectedWindows, expectedMin, expectedSuffixMin]) => {
   const symbols = encodeNative(read(file));
   let windows = 0;
   let minCollision = Infinity;
+  let minSuffixCollision = Infinity;
   for (let offset = 0; offset + N <= symbols.length; offset += N) {
-    const count = collisionPairs(symbols.slice(offset, offset + N));
+    const chunk = symbols.slice(offset, offset + N);
+    const count = collisionPairs(chunk);
     minCollision = Math.min(minCollision, count);
+    minSuffixCollision = Math.min(minSuffixCollision, collisionPairs(chunk, true));
     windows++;
   }
   assert.equal(windows, expectedWindows, name + " exact corpus windows");
   assert.equal(minCollision, expectedMin, name + " minimum collisions");
-  return {name, windows, minimum: minCollision, symbols};
+  assert.equal(minSuffixCollision, expectedSuffixMin,
+    name + " minimum after first block");
+  return {name, windows, minimum: minCollision,
+    suffixMinimum: minSuffixCollision, symbols};
 });
 const planted = controls[0].symbols.slice(0, N);
 assert(ioc(planted) > 0.06);
@@ -190,6 +198,10 @@ for (const transposed of [false, true])
         if (inverseEncoder) M = matrixInverse(M);
         const iv = useP15IV ? sourceIV : [0,0,0,0];
         const ciphertextPlant = encrypt(planted, M, mode, iv);
+        if (mode === "output") {
+          assert.equal(collisionPairs(differenceBlocks(ciphertextPlant, iv), true),
+            collisionPairs(planted, true), "CBC-output equality plant");
+        }
         assert.deepEqual(decrypt(ciphertextPlant, M, mode, iv), planted,
           "complete native-English plant recovery");
         const decoded = decrypt(original, M, mode, iv);
@@ -216,8 +228,10 @@ console.log(JSON.stringify({
     iv_zero: collisionPairs(differenceBlocks(original, [0,0,0,0])),
     iv_p15_tail: collisionPairs(differenceBlocks(original, sourceIV))
   },
-  corpus_disjoint_windows: controls.map(({name, windows, minimum}) =>
-    ({name, windows, min_plaintext_4block_collisions: minimum})),
+  corpus_disjoint_windows: controls.map(({name, windows, minimum,
+    suffixMinimum}) => ({name, windows,
+    min_plaintext_4block_collisions: minimum,
+    min_after_discarding_first_block: suffixMinimum})),
   direct_hill_cbc_tested: direct.length,
   direct_best: ranked[0], direct_worst: ranked[15],
   conclusion: "Source-fixed Hill4 CBC inverses fail. Any fixed secret " +
