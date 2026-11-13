@@ -109,3 +109,5 @@ jobs:
         run: node sims/lp2_p15_fourstate_ofb_cfb_source_sft.cjs
       - name: Test p15 signed eigenfactor and p39 source red polynomial
         run: node sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs
+      - name: Test arbitrary secret kernel pads against original native-GP language
+        run: node sims/lp2_p15_p39_projection_kernel_allsecret_sft.cjs
