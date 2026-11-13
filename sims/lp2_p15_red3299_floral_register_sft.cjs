@@ -455,6 +455,91 @@ assert.ok(Math.abs(Math.min(...sevenCompound.map((x) => x.ioc)) -
 assert.ok(Math.abs(Math.max(...sevenCompound.map((x) => x.ioc)) -
   0.034535521817718254) < 1e-12);
 
+
+// Source-locked candidate modular read: *two* independently printed
+// values determine g=3301-3294=7, modulus=3299, and 7 generates
+// every nonzero GP position modulo3299. This closes the key selection
+// weakness of the previous exploratory g=2 primitive-root read.
+let k7 = 1;
+const powerSevenIndices = [0];
+for (let i = 0; i < modulus - 1; i += 1) {
+  powerSevenIndices.push(k7);
+  k7 = (7 * k7) % modulus;
+}
+assert.equal(k7, 1);
+assert.equal(new Set(powerSevenIndices).size, modulus);
+const inversePowers = Array(modulus);
+for (let i = 0; i < modulus; i += 1) {
+  inversePowers[powerSevenIndices[i]] = i;
+}
+const movePower7 = (x, dir) => (dir === 1 ?
+  powerSevenIndices : inversePowers).map((i) => x[i]);
+const inversePower7 = (x, dir) => movePower7(x, dir === 1 ? 2 : 1);
+assert.deepEqual(inversePower7(movePower7(body, 1), 1), body);
+assert.deepEqual(inversePower7(movePower7(body, 2), 2), body);
+const directPower7 = adjacency(movePower7(body, 1));
+assert.equal(directPower7.doubles, 103);
+assert.equal(directPower7.uniquePairs, 825);
+assert.ok(Math.abs(directPower7.mutualInformation - 0.13068461544393015) < 1e-12);
+
+let power7State = 193345;
+function p7RandomInt(n) {
+  power7State ^= power7State << 13;
+  power7State ^= power7State >>> 17;
+  power7State ^= power7State << 5;
+  return Math.floor(((power7State >>> 0) / 4294967296) * n);
+}
+let power7NullAboveMI = 0;
+let power7NullAboveDoubles = 0;
+const perm7Null = body.slice();
+const null7Trials = 5000;
+for (let trial = 0; trial < null7Trials; trial += 1) {
+  for (let j = perm7Null.length - 1; j > 0; j -= 1) {
+    const k = p7RandomInt(j + 1);
+    [perm7Null[j], perm7Null[k]] = [perm7Null[k], perm7Null[j]];
+  }
+  const st = adjacency(perm7Null);
+  power7NullAboveMI += st.mutualInformation >= directPower7.mutualInformation;
+  power7NullAboveDoubles += st.doubles >= directPower7.doubles;
+}
+assert.ok(Math.abs((power7NullAboveMI + 1) / (null7Trials + 1) -
+  0.29094181163767247) < 1e-12);
+assert.ok(Math.abs((power7NullAboveDoubles + 1) / (null7Trials + 1) -
+  0.8612277544491101) < 1e-12);
+
+const power7Compounds = [];
+for (const startingPrimeRank of [4, 463]) {
+  const keyStream = primeWindow.slice(startingPrimeRank - 1,
+    startingPrimeRank - 1 + modulus).map((p) => (p - 1) % 29);
+  assert.equal(keyStream.length, modulus);
+  const addStream = (x, sign) => x.map((v, i) =>
+    (v + sign * keyStream[i] + 29) % 29);
+  for (const dir of [1, 2]) for (const layer of [0, 1]) {
+    for (const sign of [-1, 1]) {
+      const decode = (x) => layer === 0 ?
+        addStream(movePower7(x, dir), sign) :
+        movePower7(addStream(x, sign), dir);
+      const encode = (x) => layer === 0 ?
+        inversePower7(addStream(x, -sign), dir) :
+        addStream(inversePower7(x, dir), -sign);
+      const output = decode(body);
+      assert.deepEqual(encode(output), body);
+      const nativePlant = Array.from({ length: modulus }, (_, i) =>
+        corpus.pages[57].indices[i % corpus.pages[57].indices.length]);
+      assert.deepEqual(decode(encode(nativePlant)), nativePlant);
+      power7Compounds.push({
+        startingPrimeRank, direction: dir, layer, sign,
+        ioc: indexCoincidence(output)
+      });
+    }
+  }
+}
+assert.equal(power7Compounds.length, 16);
+assert.ok(Math.abs(Math.min(...power7Compounds.map((x) => x.ioc)) -
+  0.03444122123119801) < 1e-12);
+assert.ok(Math.abs(Math.max(...power7Compounds.map((x) => x.ioc)) -
+  0.03456493330669143) < 1e-12);
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -467,6 +552,12 @@ console.log(JSON.stringify({
   floralRedHeadingPrimeSums: headingPrimeSums,
   floralAllRedPrimeSumAndP15CellNull: redSumExploratory,
   selectedHistoricalSevenRowPrimeTotient: sevenCompound,
+  sourceSelectedPower7Mod3299: {
+    direct: directPower7,
+    miNullUpperTail: (power7NullAboveMI + 1) / (null7Trials + 1),
+    doubletNullUpperTail: (power7NullAboveDoubles + 1) / (null7Trials + 1),
+    compounds: power7Compounds
+  },
   historicalPrime1033Totient: 1032,
   p15P40P54HeadingIndexSums: indexHeadingSums,
   p15P40P54HeadingPrimeSums: primeHeadingSums,
