@@ -259,6 +259,24 @@ function phase29Collisions(stream) {
   }
   return {hits, pairs, rate: hits / pairs};
 }
+/** @param {number[]} stream @returns {{hits:number,pairs:number,rate:number}} */
+function reset29Collisions(stream) {
+  const lengths = corpus.pages.filter(page => page.page >= 16 && page.page <= 22)
+    .map(page => page.indices.length);
+  let hits = 0, pairs = 0, offset = 0;
+  for(const length of lengths) {
+    const byPhase = Array.from({length:29},()=>new Uint32Array(29));
+    for(let i=0;i<length;i++) byPhase[i%29][stream[offset+i]]++;
+    offset += length;
+    for(const count of byPhase) {
+      const n=count.reduce((a,b)=>a+b,0);
+      pairs += n*(n-1)/2;
+      for(const t of count) hits += t*(t-1)/2;
+    }
+  }
+  assert.equal(offset,stream.length);
+  return {hits,pairs,rate:hits/pairs};
+}
 const fibonacciPrintedSpiral = [
   3299,3298,3296,3294,3288,3278,3258,3222,
   3152,3038,2838,2472,1820,708,1206,4516,
@@ -273,6 +291,8 @@ const originalChapter = corpus.pages
 assert.equal(originalChapter.length, 1744);
 const origin29 = phase29Collisions(originalChapter);
 assert.deepEqual([origin29.hits,origin29.pairs],[1780,51570]);
+const resetOrigin29 = reset29Collisions(originalChapter);
+assert.deepEqual([resetOrigin29.hits,resetOrigin29.pairs],[219,6922]);
 const composed29 = [-1,1].map(sign => {
   const decoded = originalChapter.map((c,i) => mod29(c + sign * historical29Key[i%29]));
   assert.deepEqual(
@@ -292,18 +312,42 @@ const threeNativeControls = [
 ].map(([name,file]) => {
   const source = encodeNativeGP(read(file));
   let atOrBelow=0,windows=0,minimum=1,median=[];
+  let resetAtOrBelow=0,resetMinimum=1;
   for(let start=0;start + originalChapter.length<=source.length;start+=127){
-    const rate=phase29Collisions(source.slice(start,start+originalChapter.length)).rate;
+    const window=source.slice(start,start+originalChapter.length);
+    const rate=phase29Collisions(window).rate;
+    const rateReset=reset29Collisions(window).rate;
+    if(rateReset<=resetOrigin29.rate)resetAtOrBelow++;
+    resetMinimum=Math.min(resetMinimum,rateReset);
     if(rate<=origin29.rate) atOrBelow++;
     minimum=Math.min(minimum,rate);
     median.push(rate);
     windows++;
   }
   median.sort((a,b)=>a-b);
-  return {name,windows,atOrBelow,minimum,median:median[Math.floor(windows/2)]};
+  return {name,windows,atOrBelow,minimum,median:median[Math.floor(windows/2)],resetAtOrBelow,resetMinimum};
 });
 assert.deepEqual(threeNativeControls.map(x=>x.windows),[1696,479,2517]);
 assert(threeNativeControls.every(x=>x.atOrBelow===0));
+assert(threeNativeControls.every(x=>x.resetAtOrBelow===0));
+// Page-local distinct secret affine bijections: correct model for fixed period29
+// with resets at each *original* physical page and an unknown alphabet per page.
+const plantInput=encodeNativeGP(read('resources/control/shakespeare_first300k.txt'))
+  .slice(0, originalChapter.length);
+let plantOffset=0;
+const resetPlant=[];
+for(const [pageIndex,page] of corpus.pages
+  .filter(page=>page.page>=16&&page.page<=22).entries()){
+  for(let i=0;i<page.indices.length;i++){
+    const phase=i%29;
+    const multiplier=1+((phase*7+pageIndex*5)%28);
+    const translation=(phase*11+pageIndex*3)%29;
+    resetPlant.push(mod29(multiplier*plantInput[plantOffset+i]+translation));
+  }
+  plantOffset+=page.indices.length;
+}
+assert.equal(plantOffset, originalChapter.length);
+assert.deepEqual(reset29Collisions(resetPlant),reset29Collisions(plantInput));
 const positiveNative = encodeNativeGP(read('resources/control/shakespeare_first300k.txt'))
   .slice(0,originalChapter.length);
 const positiveCipher=positiveNative.map((x,i)=>
@@ -328,7 +372,8 @@ console.log(JSON.stringify({
   p55DirectConsumers: direct,
   sourceComposite29Period: {
     originalChapterRunes: originalChapter.length, sourcePeriod: historical29Key.length,
-    originalCollisions:origin29, directInverseIocs:composed29,
+    originalCollisions:origin29, pageResetOriginalCollisions:resetOrigin29,
+    directInverseIocs:composed29,
     independentNativeEnglishControls: threeNativeControls,
   },
   solvedP56RunesRecovered: decodedP56.length,
