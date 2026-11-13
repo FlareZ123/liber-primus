@@ -32,3 +32,5 @@ jobs:
         run: node sims/lp2_terminal256_8x8_allsecret_kernel_sft.cjs
       - name: Gate all-secret column and shell-local GP29 lookup maps on known terminal rings
         run: node sims/lp2_terminal256_column_ring_secret_sft.cjs
+      - name: Test historically reproduced 2014 three-stream XOR as p55 perimeter key
+        run: node sims/lp2_2014_onion_xor3_p55_ring_sft.cjs
