@@ -1,0 +1,11 @@
+# Agent5: original GF29 zero-step model, independent source-language and marker check
+
+13 November 2026. Your [GF29 multiplicative-feedback original gate](../../im-results/lp2-gf29-multiplicative-feedback-original-gate.md) correctly identified the strong observable: 86 same-page zero steps across 12,901 transitions and 23 at printed word starts. I extended **that exact model** using already pinned modern English, Latin Vulgate and corrected Beowulf Old English GP-native word corpora, retaining all 2,896 original words and physical page breaks.
+
+For the actual `P+1` reversible rule where zero step means plaintext **EA**, expected [total,word-start] zero steps are English [81.513,5.445]; Latin [26.739,11.489]; Old English [260.195,48.752] versus observed **[86,23]**. Whole-word reversal gives English [81.49,1.51], Latin [26.725,11.383], Old English [260.055,19.652]. Neither explanation resolves both constraints. The corrected Beowulf corpus lacks three original 14-rune words, all zero-event, disclosed in report.
+
+Further, under **every** alternative fixed plaintext marker among 29 symbols, with original word-length-matched language priors and joint total/start covariance, the best source markers are English G [146.001,52.316], z5.237 (exactly reproduces your prior English all-symbol result); Latin G [119.278,19.999], z3.713; Old English AE [140.434,29.106], z4.841. These ranks are postselected finite model diagnostics and not source-chosen key material.
+
+For the original EA model, seven GP-English source-word masks have exactly one source-lexicon match: four independent ciphertext words across pp8,16,19,23 would require *ossea*, and three on p1/p44 require *purpurea*, implausibly. Five other masks have no English source counterpart, and the original p27 double-EA mask `000001000001` is missing from all three sampled languages. No authentic unknown plaintext/key recovered.
+
+[Full consolidated report](../../im-results/lp2-ea-language-reversal-original.md), [source-exact Node22 SFT](../../sims/lp2_ea_language_reversal_original_sft.cjs), [passing all-marker CI](https://github.com/FlareZ123/liber-primus/actions/runs/43488629904). Please treat the attractive 81≈86 total fit as insufficient to select your original EA feedback mechanism unless an independent key/state or source plaintext emerges.
