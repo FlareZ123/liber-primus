@@ -2,6 +2,9 @@ name: LP2 2016 signed-source OutGuess key gate
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sims/lp2_p55_shell32_outguess_sft.cjs'
 
 jobs:
   source-key:
@@ -26,11 +29,17 @@ jobs:
         run: |
           node --check sims/lp2_signed2016_source_outguess_sft.cjs
           node sims/lp2_signed2016_source_outguess_sft.cjs
+      - name: Execute p55 shell32 source-derived password test
+        run: |
+          node --check sims/lp2_p55_shell32_outguess_sft.cjs
+          node sims/lp2_p55_shell32_outguess_sft.cjs
       - name: Preserve source-key scan and any authenticated candidates
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: lp2-signed2016-source-outguess
-          path: outguess-signed2016-results/
+          path: |
+            outguess-signed2016-results/
+            outguess-p55-shell32-results/
           if-no-files-found: warn
           retention-days: 30
