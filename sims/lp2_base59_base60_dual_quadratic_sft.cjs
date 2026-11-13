@@ -11,6 +11,7 @@ const crypto = require('node:crypto');
 const base = path.join(__dirname, '..', 'resources', 'liber-primus');
 const grid = JSON.parse(fs.readFileSync(path.join(base, 'base60-grid.json'), 'utf8'));
 const corpus = JSON.parse(fs.readFileSync(path.join(base, 'lp2-corpus.json'), 'utf8'));
+const ink = JSON.parse(fs.readFileSync(path.join(base, 'lp2-ink-annotations.json'), 'utf8'));
 const alpha60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 const alpha59 = alpha60.replace('f', '');
 const tokens = grid.rows.flat();
@@ -105,6 +106,35 @@ assert.deepEqual(rem(plant,HG),[0,0,0,0]);
 const broken = plant.slice();broken[255] = mod(broken[255]+1);
 assert.notDeepEqual(rem(broken,HG),[0,0,0,0]);
 
+// Every original 18 red passage spans, both printed-source orientations.
+const runeOrdinal = new Map(corpus.runes.map((r,i)=>[r,i]));
+const pageByN = new Map(corpus.pages.map(p=>[p.page,p]));
+/** @type {Array<{page:number,start:number,length:number,direction:string,base59:boolean,base60:boolean}>} */
+const checks = [];
+for (const page of ink.pages) {
+  const indexedPage=pageByN.get(page.page);
+  assert.ok(indexedPage);
+  for (const span of (page.red_spans||[])) {
+    const red = Array.from(span.runes,r=>runeOrdinal.get(r));
+    assert.equal(red.length,span.length);
+    assert.deepEqual(indexedPage.indices.slice(span.start,span.start+span.length),red);
+    for (const direction of ['forward','reverse']) {
+      const printed = direction==='forward'?red:red.slice().reverse();
+      const poly=printed.slice().reverse(); // descending form of printed ascending coefficients
+      checks.push({
+        page:page.page,start:span.start,length:span.length,direction,
+        base59:rem(b59,poly).every(x=>x===0),
+        base60:rem(b60,poly).every(x=>x===0)
+      });
+    }
+  }
+}
+assert.equal(checks.length,36);
+assert.deepEqual(checks.filter(x=>x.base59),[]);
+assert.deepEqual(checks.filter(x=>x.base60),[
+  {page:39,start:119,length:3,direction:'forward',base59:false,base60:true}
+]);
+
 const highTokens = tokens.map((token,i)=>({i,token,byte:b60[i]}))
   .filter(x=>x.byte>=252);
 assert.deepEqual(highTokens,[
@@ -117,6 +147,7 @@ console.log(JSON.stringify({
   originalTokens:256,alternativeAlphabets:[59,60],
   base59:{sha256:sha256(b59),firstByte:b59[0],max:251,high252:0,remainders:r59},
   base60:{sha256:sha256(b60),firstByte:b60[0],max:255,high252:4,remainders:r60},
-  differentBytes:220,highTokens,plant:'PASS',
+  differentBytes:220,highTokens,originalRedSpans:18,redReadings:checks.length,
+  redDivisors59:0,redDivisors60:checks.filter(x=>x.base60),plant:'PASS',
   conclusion:'Under original descending GF29 polynomialization, full base60 satisfies independent 2013 H and p39 G; missing-f base59 satisfies neither.'
 },null,2));
