@@ -1,6 +1,6 @@
 # The 256 ink events and 256 printed bytes do not share a stationary lookup
 
-**Original-source key-independent exclusions, 11–13 November 2026.** A direct stationary byte-to-ink lookup conflicts with the source-ordinal original symbols. Independently, the 31 identical ink markers exceed every possible five-bit field multiplicity of the 256 source table bytes under either documented numeral radix, even with arbitrary alignment and secret alphabet mapping. These exclude two simple source-shaped formats; no unknown LP2 plaintext, key, or message is recovered.
+**Original-source key-independent exclusions, 11–13 November 2026.** A direct stationary byte-to-ink lookup conflicts with the source-ordinal original symbols. Independently, the 30 red ink markers exceed every possible five-bit field multiplicity of the 256 source table bytes under either documented numeral radix, even with arbitrary alignment and secret alphabet mapping. These exclude two simple source-shaped formats; no unknown LP2 plaintext, key, or message is recovered.
 
 ## Proposed human route and exact source
 
@@ -20,19 +20,19 @@ For each byte `b`, group all event symbols attached to `b`. A fixed function `f(
 
 ## Alignment-free 5+3-bit ink packing obstruction (Agent20, 13 November 2026)
 
-The separate original-source counts provide a second, stronger constraint than same-ordinal lookup: **225 red GP runes plus 31 identically rendered thirteen-dot markers = 256 ink events**, while the original numeric grid is **32 rows × 8 columns = 256 bytes**. A natural bit-serialization hypothesis is that one ink-event class supplies a five-bit value (32 possibilities), with an independent three-bit column/position tag (eight possibilities), making one byte per event. This is a candidate interpretation motivated by the source shapes; no signed instruction identifies it.
+The separate original-source counts provide a second, stronger constraint than same-ordinal lookup: **225 red GP runes plus 30 red thirteen-dot markers and one black thirteen-dot marker = 256 ink events**, while the original numeric grid is **32 rows × 8 columns = 256 bytes**. A natural bit-serialization hypothesis is that one ink-event class supplies a five-bit value (32 possibilities), with an independent three-bit column/position tag (eight possibilities), making one byte per event. This is a candidate interpretation motivated by the source shapes; no signed instruction identifies it.
 
-Any **stationary deterministic** assignment of the 30 source ink-event classes (29 runes and one common dot-mark class) to five-bit values must give all **31 copies of the same thirteen-dot glyph** the identical field value. Consequently the 256 table bytes must have **some five-bit value appearing at least 31 times**. This requirement is independent of the order of the ink events, any arbitrary permutation of the table cells, any 29/30-way secret alphabet relabeling, and the choice of which event gets which table cell.
+Any **stationary deterministic** assignment of the 30 source ink-event classes (29 runes and one common dot-mark class) to five-bit values must give all **31 copies of the same thirteen-dot glyph** the identical field value. The black mark may be treated as a separate class. Consequently the 256 table bytes must have **some five-bit value appearing at least 30 times**. This requirement is independent of the order of the ink events, any arbitrary permutation of the table cells, any 29/30-way secret alphabet relabeling, and the choice of which event gets which table cell.
 
 | Complete original numeral interpretation | Max occupancy of high five bits (\`byte>>3\`) | Max occupancy of low five bits (\`byte&31\`) |
 | --- | ---: | ---: |
 | Printed radix60 | **16** | **14** |
 | Existing lowercase-f-omitting radix59 | **14** | **14** |
-| Source-mark requirement | **31** | **31** |
+| Source-mark requirement for 30 red marks | **30** | **30** |
 
-There is no place for the 31 same-class markers in any one of the four bitfield layouts, even if an omniscient solver chooses every event/table permutation and five-bit alphabet map. The base60 high-five-bit histogram is fully occupied and its two largest bins contain 16 entries each. Permitting noninjective class labels cannot decrease the required marker multiplicity. This is an **exact format impossibility**, independent of plaintext language and the historical p50 polynomial factors.
+There is no place for the 30 red same-class markers in any one of the four bitfield layouts, even if an omniscient solver chooses every event/table permutation and five-bit alphabet map. The base60 high-five-bit histogram is fully occupied and its two largest bins contain 16 entries each. Permitting noninjective class labels cannot decrease the required marker multiplicity. This is an **exact format impossibility**, independent of plaintext language and the historical p50 polynomial factors.
 
-A positional state, special punctuation semantics, variable-length representation, or table as a separate cryptographic seed would constitute a different mechanism. These counts do not supply a key or unknown plaintext. The [same original-data SFT](../sims/ink256_grid256_fixed_lookup_sft.cjs) pins both complete radix readings, asserts the 31 source marks and the four field-bin maxima, and supplies a synthetic 31-identical-marker positive carrier. This new alignment-free obstruction is separate from the earlier source-ordinal stationary byte-to-rune lookup exclusion.
+A positional state, special punctuation semantics, variable-length representation, or table as a separate cryptographic seed would constitute a different mechanism. These counts do not supply a key or unknown plaintext. The [same original-data SFT](../sims/ink256_grid256_fixed_lookup_sft.cjs) pins both complete radix readings, asserts the source's 30 red plus one black marks and the four field-bin maxima, and supplies a synthetic 30-identical-red-marker positive carrier. This new alignment-free obstruction is separate from the earlier source-ordinal stationary byte-to-rune lookup exclusion.
 
 ## Decision
 
