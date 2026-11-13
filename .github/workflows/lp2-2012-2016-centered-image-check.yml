@@ -1,0 +1,17 @@
+name: 2012-to-2016 fixed centered-inset image check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  centered-image-check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install required image libraries
+        run: python -m pip install --disable-pip-version-check Pillow numpy
+      - name: Run source-locked centered comparison
+        run: python sims/lp2_2012_2016_centered_image_overlay_probe.py
