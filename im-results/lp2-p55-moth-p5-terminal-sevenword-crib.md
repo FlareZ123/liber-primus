@@ -77,6 +77,26 @@ One frozen, historically attested consumer is direct GP29 Vigenere using the exa
 
 [Source-exact CJS reproducer](../sims/lp2_p53_p55_moth81_split_sft.cjs). **Decision:** preserve the composite 81 clue as a separate conditional source-key route. Direct p5 Vigenere and identity-preserving transpositions fail; no unknown plaintext, authentic key, or destination is recovered. A further operation must be independently specified rather than fitted to 81 ciphertext runes.
 
+## Source-linked 30-rune lag-autokey inverse, original ciphertext (Agent3, 13 November 2026)
+
+The **same provisional** LP1 p5 seven-word phrase `THE TOTIENT FUNCTION IS SACRED ALL THINGS` has exactly **30 authenticated GP29 runes** at the original p55 terminal word-length target, local offsets **46–75**. A distinct clue-level hypothesis is that the shared moth engraving and p5's 5×5 number square select a 25-rune plaintext-feedback distance; a 30-rune suffix is sufficient to provide **five overlapping original-cipher equations with no unknown key**. More broadly, the shortest native word/phrase lags 1–29 can be tested without fitting a key, and the exact 30-rune suffix can drive a full backwards recovery at lag30. No original Cicada instruction explicitly selects these feedback equations, and the seven-word source crib has not been independently authenticated as p55 plaintext.
+
+For each original position `i >= lag`, test **exactly three fixed arithmetic identities over GF29**: `C_i=P_i+P_(i-lag)`, `C_i=P_i-P_(i-lag)`, and `C_i=P_(i-lag)-P_i`. At each lag 1–29, the common suffix gives `30-lag` ciphertext comparisons between known candidate plaintext values. **Every one of the 87 sign/lag cases has at least one exact original-symbol contradiction**. The specifically source-shaped **lag25** produces **5/5, 4/5 and 4/5** original-symbol contradictions in those three equations, respectively. No secret seed, key table, or romanization adjustment can rescue these exact relations while preserving the proposed crib.
+
+At **lag30**, the 30 known candidate suffix symbols uniquely determine all **46** earlier unknown plaintext rune values: use the original `C_75,…,C_30` and the formula backwards to reconstruct `P_45,…,P_0`, without tuning a key or requiring the first 30 runes as IV. All three sign conventions reproduce the original ciphertext **46/46** positions by construction; **none** yields readable native-GP plaintext. The entire recovered 46-rune prefixes (canonical GP transliterations, without inferred word breaks) are:
+
+| Frozen 30-rune formula | Full reconstructed p55 unknown prefix, 46 GP runes | IoC on reconstructed 46 |
+| --- | --- | ---: |
+| `C=P_i+P_(i-30)` | `XWTXUHXFWWXNWOESIIFEOSDAEAEYEAEXOYSLGNGWMRCSTLEALISYA` | **0.041546** |
+| `C=P_i-P_(i-30)` | `RIFUMPCEAMJBNTHGLFMFBXGRROUJSYOXNDHOEIAEAXPNUNMXOC` | **0.034783** |
+| `C=P_(i-30)-P_i` | `NGHLFJGCNBGTHTHNIAOEUXWSNGYTOSTHETNGWETAEOHLDSDDHETHNGMIAE` | **0.029952** |
+
+For clarity, consecutive GP tokens such as `NG`, `TH`, `EO`, `IA`, and `EA` each encode one source rune, so the displayed ASCII strings contain more than 46 ordinary Latin characters. The first 46 source rune positions also include the carried final glyph from p54. Exact forward reproduction is an *identity of the forced inverse*, and does not demonstrate that any decoded prefix is authentic English.
+
+A separate **76-rune reversible source-native positive plant** succeeds for all three lag30 signs and fails the wrong suffix control, confirming that the model can recover a real plaintext when its assumed relation actually holds. The [source-original CommonJS SFT](../sims/lp2_p55_moth_p5_crib_autokey_lag30_sft.cjs) asserts the exact 17 printed p55 fragments, all original 76 rune indices and the calibrated 30-rune LP1 phrase. [Manual Node22 CI run 43436061409](https://github.com/FlareZ123/liber-primus/actions/runs/43436061409) passes.
+
+**Decision:** The provisional seven-word source crib is inconsistent with *every* plaintext-autokey lag up to29, including original p5's square dimension25, under three ordinary additive signs. At lag30, exact forced recovery exposes only ciphertext-like preceding text. This is a bounded cipher-family rejection **conditional on the seven-word crib**, not a refutation of the visible word-length match and not an alternative source-selected decipherment. Do not extend it by adding arbitrary per-position keys.
+
 ## Reproduction and next decision
 
 The standalone [source-exact CommonJS experiment](../sims/lp2_p55_moth_p5_sevenword_crib_sft.cjs) reconstructs the printed p55 full 76-rune page and its 16-body-word lengths; independently encodes the original p5 phrase under the solved-LP1-calibrated GP orthography; matches the 7-word lengths and 30-rune suffix; searches four separate text sources; tests all-secret monoalphabet consistency and fixed historical 81-key phase; verifies source indices and printed source p5 key. The [passing Node22 manual GitHub Actions run 43396522196](https://github.com/FlareZ123/liber-primus/actions/runs/43396522196) reproduces all gates.
