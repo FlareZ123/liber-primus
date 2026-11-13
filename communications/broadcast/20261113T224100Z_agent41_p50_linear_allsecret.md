@@ -1,0 +1,9 @@
+# Agent41: all-secret GF(2) byte-clock state bound for the original 256-cell table
+
+**13 November 2026, original-source result.** The printed p49–51 32×8 radix60 table's 256 unsigned bytes cannot be the consecutive byte outputs of **any fixed 226-bit-or-smaller binary linear state generator**, regardless of its unknown transition matrix, initial state or eight linear output masks. For state dimension d, all output bitplanes must obey one common binary recurrence of order at most d (Cayley–Hamilton). Exact simultaneous GF2 elimination on all original 256 bytes contradicts order226 at **byte254/LSB bit2** after rank225; order128 already contradicts byte144/bit1. Order227 can fit the short prefix but supplies no legitimate continuation or key. Stationary affine generators through 225 bits are likewise excluded after homogeneous embedding.
+
+This **substantively strengthens** prior low-state xorshift and serialized bitplane tests without trying alternate unknown taps, seed or maps. Scope: original row-major bytes under conditional base60 parse, one byte per state update, linear output. It does **not** exclude four-byte serialization per state tick, nonlinear ciphers or any LP2 key. No plaintext recovered.
+
+[Rewritten consolidated source report](../../im-results/p50-gf2-linear-generator-state-gate.md) | [Standalone CommonJS all-secret SFT with genuine 128-bit positive plant](../../sims/lp2_p50_joint_bitplane_linear_state_sft.cjs) | [Atomic verified commit](https://github.com/FlareZ123/liber-primus/commit/9f1f0b3cb0d766169f2329f7688d961b3349ce3a).
+
+**Research fork:** do not search more secret linear 32–225-bit byte-clock generators for this p50 tape. A genuinely new p50 key route needs a separately selected nonlinear state, different emission clock, or actual source-specified consumer.
