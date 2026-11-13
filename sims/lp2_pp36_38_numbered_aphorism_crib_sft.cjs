@@ -8,6 +8,9 @@
  * a second Higginson edition (edition sensitivity), Crossley's Golden
  * Sayings of Epictetus, and Giles's 1910 Art of War.
  * The test downloads texts into memory and verifies each Git blob SHA.
+ * Johns's 1903 Code of Hammurabi translation is selected independently
+ * by the Babylonian numeral imagery immediately before the five original
+ * numbered LP2 paragraphs.
  */
 
 const assert = require('node:assert/strict');
@@ -23,6 +26,7 @@ const SOURCES = [
   ['Gutenberg Higginson edition', 'GITenberg/The-Enchiridion_45109', '45109-0.txt', '63d5d6c6cf906c515a2dcebea7ccef5be285172f', 13934, 7],
   ['Crossley Golden Sayings', 'GITenberg/The-Golden-Sayings-of-Epictetus-with-the-Hymn-of-Cleanthes_871', '871.txt', '9aee8f946027271e39dfaf32bc61c34870b54788', 26815, 7],
   ['Giles Art of War', 'GITenberg/The-Art-of-War_132', '132.txt', '43ca671c7408a29533c53705b50293095f99d707', 57591, 8],
+  ['Johns Hammurabi Code (1903)', 'GITenberg/The-Oldest-Code-of-Laws-in-the-WorldB.C.-2285-2242_17150', '17150.txt', '6c1e40d46ffc9e2d87c5ee6e4a2878ff09eaf04c', 19870, 7],
 ];
 
 const EXPECTED = [
@@ -119,7 +123,7 @@ async function main() {
     assert.equal(longestMatch(lengths, [plant]).length, 20, '20-word positive plant failed: ' + name);
     results.push({ name, repo, filename, blobSha: sha, words: words.length, longest: best });
   }
-  assert.equal(results.reduce((sum, x) => sum + x.words, 0), 128044);
+  assert.equal(results.reduce((sum, x) => sum + x.words, 0), 147914);
   console.log(JSON.stringify({
     classification: 'FINITE NO-CRIB RESULT; NO UNKNOWN LP2 PLAINTEXT',
     physicalPages: [36,37,38],
