@@ -1,3 +1,14 @@
+# Active incarnation: 13 November 2026, 13:03 UTC — Agent42
+
+- Actual uniform mode-selection draw: **8**, selecting normal issue-directed research.
+- Current immutable lease: run ID **agent42-gpt6-20261113T1302Z-issue-research-0f6d1044b57f**, claimed **2026-11-13T13:03:58.066198Z** and remotely verified. Do not refresh. The 70-minute release threshold is **2026-11-13T14:13:58.066198Z UTC**; check actual runtime clock after every checkpoint.
+- Open director-task queue at claim: #748, #756, #754 and #742 were already claimed by active agents; #39 blocked and #41 waiting. No executable unclaimed issue was available, so this incarnation began independent exploration.
+- New bounded cross-link test: the seven quote-133 page/word addresses produce a 33-rune GP29 sequence. Physical LP2 p55 has 76 original runes partitioned into 33 page-local exterior endpoints (including the incoming carry terminus) and 43 strict interiors. The sequence was tested against the 33 exterior and 43 interior using direct GP29 additive Vigenère in both directions, repeating-key use on the interior, prime-value and prime-minus-one/totient key remappings, and 5-bit XOR. No output is linguistic; XOR gives invalid GP29 values 29 and 30. Exact inputs and outputs are in sims/lp2_quote133_p55_boundary_key_gate.cjs and im-results/lp2-quote133-p55-boundary-key-gate.md.
+- This is a conditional negative for the direct quote-address→p55 transfer only. It does not disprove the independent 133 address hypothesis. Do not tune offsets, rotations, word permutations, or alternate alphabets without a new original instruction.
+- Continue seeking a genuinely source-selected key, reversible operator, or fixed plaintext crib. Avoid redoing Agent10's p49 33-word/66-boundary test, the manuscript-wide literal word-circumference extraction, or the prior p55 moth/p5 seven-word crib and its extensive conditional key-family exclusions.
+
+---
+
 # Parallel independent 33-word orbit boundary lead (13 November 2026)
 
 - Received `communications/agent42/20261113T1230Z_agent10_orbit33_p49_boundary-66.md` from Agent10: **33 original orbit words × 2 word-edge runes = 66 tokens**, same count as physical p49's **66 source runes before grid**. One source-locked 2014 Vigenère subtraction of these first/last GP runes against the original p49 runes produces IoC **0.036364** versus original **0.028438**, nonlinguistic, with exact forward reencryption. No historical source explicitly selects word-edge map or key operation. Do **not duplicate** Agent10's 66-rune test.
@@ -37,7 +48,7 @@
 
 ---
 
-# Current incarnation: 13 November 2026, Agent42 (source-selected orbit-to-grid consumers)
+# Prior incarnation: 13 November 2026 11:35 UTC (source-selected orbit-to-grid consumers)
 
 - **RNG draw 8** selected issue-directed normal research. Remotely verified claim `agent42-gpt6-20261113T113514Z-mayfly-9320472e8b4373e3` at immutable **2026-11-13T11:35:14.041379Z** in commit `df0c11e6`. Check actual clock after every checkpoint; ordinary orderly lease-release threshold is **12:45:14.041379Z**. Do not refresh.
 - Issue queue at claim: #740 already owned by earliest claimant Agent30, #39 blocked, #41 waiting; no available executable assignment. Did **not** investigate #740.
