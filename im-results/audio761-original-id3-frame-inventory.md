@@ -106,6 +106,23 @@ The original plays through FFmpeg without a reported decoder warning or error. T
 
 **Scope and solve-path decision.** The historically documented, actionable 2013 use of this asset is the bytewise XOR of the MP3 against a Twitter stream, with the Parable text and its source-number checksum conveyed explicitly in ID3. The audio signal itself supplies no independently attested *second* listening, spectral, timing, or MIDI-to-GP29 rule. The compressed frames are ordinary legal MPEG packets as far as this boundary/metadata parser can establish. A watermark within MP3 scale factors, quantized samples, bit reservoir, or perceptual audio could still exist; no original clue currently selects how to extract one. Do not rerun unmotivated FFT peaks, offsets, direct MP3-byte pads, or PCM keyskip searches already reported in [the consolidated audio study](audio-761-pad-scan.md).
 
+
+## 2013 DH 76-cycle as a p55 rank-order transposition (13 November 2026)
+
+The signed 2013 server challenge authenticates `DH 23`; the source-derived pair is (p=761,g=23). Since (23) has exact order **76** modulo 761 and p55's page-local stream contains **76** runes (including the inherited one-rune page-turn carry), a natural non-additive, invertible consumer is to sort the 76 distinct orbit values and use their ranks as a 76-position transposition key. This is more constrained than reducing the orbit modulo 76: the latter has only **46 distinct residues** and is not a permutation.
+
+The rank permutation is unique. Both inverse orientations were applied to all 76 p55 runes, without phase, rotation, offset, or alternative modulus search:
+
+| Input / orientation | GP29 output | Emerson-GP score |
+|---|---|---:|
+| Raw p55 | baseline | −6.510805 |
+| Rank scatter | `NGTHFAEEASEOIBETHOELTHXEJBXGHBUTHPMIABMISFXRCHCISXDCECGBDISSEOMGMWSEPEONGAAEUUFWMEOEACEEOIAIEAD` | −6.448388 |
+| Rank gather | `NGIGBSEMHFSJCEOBSPXEIXTHEANGCECIAXMRLEOEOTHDTHIDIUEAMWUMHIDWSUXAEEOEFEABTHEOBCAEGMCEGFBPIAOEASS` | −6.397576 |
+
+The p57 76-rune round-trip positive control passes (p57 score −2.254053), but neither p55 orientation resembles plaintext. Reproducer: [`sims/lp2_p55_dh761_rank_transposition_sft.cjs`](../sims/lp2_p55_dh761_rank_transposition_sft.cjs), [CI run 43428160100](https://github.com/FlareZ123/liber-primus/actions/runs/43428160100).
+
+**Decision:** this closes the obvious rank-order transposition consumer of the source-authenticated DH 76-cycle. It does not establish that the 76-cycle was intended as a key, and does not justify arbitrary remappings of the orbit or offsets. The already-tested direct additive residue stream also remains negative.
+
 ## Cryptanalytic decision
 
-**Close the tested 2013 wrapper channels: neither the complete ID3 frame set nor the MPEG frame/container boundaries contain an additional source-attested instruction or missing key field beyond the known Parable, title and artist.** The exact TXXX description number `1,595,277,641` and two literal `\n` separators can be reused directly if a future source-selected key derivation demands byte-exact metadata. They do not themselves select a GP29 operator, page index, or original LP2 decryption. The independently observed 6,397-frame standard MPEG envelope has no appended payload; no source-selected second waveform or spectral decoder has emerged. Preserve the earlier signal and pad studies as bounded negatives; require an actual original clue before testing further extractions.
+**Close the tested 2013 wrapper channels: neither the complete ID3 frame set nor the MPEG frame/container boundaries contain an additional source-attested instruction or missing key field beyond the known Parable, title and artist.** The exact TXXX description number `1,595,277,641` and two literal `\n` separators can be reused directly if a future source-selected key derivation demands byte-exact metadata. They do not themselves select a GP29 operator, page index, or original LP2 decryption. The independently observed 6,397-frame standard MPEG envelope has no appended payload; no source-selected second waveform or spectral decoder has emerged. Preserve the earlier signal and pad studies as bounded negatives. The obvious 76-cycle rank transposition is now also negative; require an actual original clue before testing any different DH consumer.
