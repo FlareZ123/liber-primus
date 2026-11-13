@@ -89,6 +89,18 @@ function run() {
   const strippedFixed = inner.flatMap((sum, index) =>
     sum % 19 === 0 ? [index + 1] : []);
   assert.deepEqual(strippedFixed, [2,5,6,8,12,15]);
+  // A separately source-legible single-edge interpretation: shave only
+  // the final rune of each body word before calculating directions.
+  const lastEdge = body.map(word => word.slice(0, -1)
+    .reduce((sum, symbol) => sum + corpus.prime[symbol], 0));
+  assert.deepEqual(lastEdge, [
+    117,5,269,260,59,5,179,19,127,143,10,26,398,62,5,273,86,126,233
+  ]);
+  const lastMinus = cycles(nextNodes(lastEdge, -1));
+  assert(lastMinus.some(c => c.join(',') === '0,16,6,17,5'));
+  assert(lastMinus.some(c => c.join(',') === '8,14,9,18,13'));
+  assert(lastMinus.some(c => c.join(',') === '7'));
+  assert.equal(corpus.prime[body[7][0]], 19); // WE -> W
   const fullPositive = cycles(nextNodes(full, +1));
   const fullNegative = cycles(nextNodes(full, -1));
   const innerPositive = cycles(nextNodes(inner, +1));
@@ -141,6 +153,8 @@ function run() {
       sourceLargeRecords: marks.length, distinctLargeOffsets: new Set(marks).size,
       largestBetweenMarkSector: {runes: sector.length, ioc: sectorIoC}},
     sourceFullPrimeSums: full, strippedPrimeSums: inner,
+    oneEdgeLastPrimeSums: lastEdge,
+    oneEdgeLastMinusCycles: lastMinus.map(c => c.map(i => i+1)),
     strippedFixedWordPositions: strippedFixed,
     graphs: {
       fullPlus: fullPositive.map(c => c.map(i => i+1)),
