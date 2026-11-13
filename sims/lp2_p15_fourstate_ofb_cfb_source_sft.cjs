@@ -8,7 +8,9 @@
  * treats that array as a matrix stream generator or a feedback map.
  *
  * Both schemes are hypothetical, and neither is an authored LP2 cipher.
- * All seed variants use printed p15 red spans and are fixed before scoring.\n * Two further matrices restore the signed 3301-prime complements for\n * 4516/1206, a source-derived rather than literally printed rule.
+ * All seed variants use printed p15 red spans and are fixed before scoring.
+ * Two further matrices restore the signed 3301-prime complements for
+ * 4516/1206, a source-derived rather than literally printed rule.
  *
  * Single-file test (Node.js 22, Windows 11):
  *   node sims/lp2_p15_fourstate_ofb_cfb_source_sft.cjs
