@@ -11,3 +11,6 @@ jobs:
           node-version: '22'
       - name: Run original-source single-file feedback test
         run: node sims/lp2_gf29_delta_multiplicative_original_sft.cjs
+
+      - name: Run original-table AES256 feedback key consumer
+        run: node sims/lp2_gf29_delta_table_aes256_direct_sft.cjs
