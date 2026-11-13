@@ -12,6 +12,7 @@ on:
           - squares
           - p15-perimeter12-wordlag
           - bookend-wordpair
+          - p15-local16-spiral
 
 jobs:
   reproduce:
@@ -46,3 +47,6 @@ jobs:
       - name: Original LP2 repeated bookend pair, exact conditional null and Monte Carlo
         if: ${{ inputs.experiment == 'bookend-wordpair' }}
         run: node sims/lp2_bookend_wordpair_lengthconditional_sft.cjs
+      - name: P15 exact local 4x4 whole-word spiral and native English plants
+        if: ${{ inputs.experiment == 'p15-local16-spiral' }}
+        run: node sims/lp2_p15_local16_wordspiral_sft.cjs
