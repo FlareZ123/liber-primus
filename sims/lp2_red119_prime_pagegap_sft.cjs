@@ -191,6 +191,14 @@ assert.equal(Math.max(...tailAsKeyOutcomes.map((r) => r.count_e)), 13);
 // Independent same-sized original-native positive plant, truly encrypted
 // under the source-extracted 213-rune key, must decrypt losslessly.
 const parable = corpus.pages.find((p) => p.page === 57).indices;
+const p3TailF = p3Tail.flatMap((r, i) => r === 0 ? [i] : []);
+const parableF = parable.flatMap((r, i) => r === 0 ? [i] : []);
+assert.deepEqual(p3TailF, [40, 63, 70]);
+assert.deepEqual(parableF, [33, 59, 67]);
+assert.equal(p3TailF.filter((i) => parable[i] === 0).length, 0);
+// The GP solved-section transparent-F rule would preserve those positions
+// regardless of the Vigenere key. Hence same-length is not sufficient
+// evidence that p3's black tail repeats the known Parable plaintext.
 const plant = Array.from({length: 213}, (_, i) => parable[i % parable.length]);
 const plantCipher = plant.map((v, i) => (v + combinedBlackTail[i]) % 29);
 assert.deepEqual(plantCipher.map((v, i) =>
@@ -219,6 +227,9 @@ console.log(JSON.stringify({
     unsolved_red_runes: unsolvedRed.length, original_trial_results: tailAsKeyOutcomes,
     highest_trial_ioc: bestTailDirect / (213 * 212),
     parable_original_length: parable.length,
+    p3_black_tail_F_offsets: p3TailF,
+    solved_parable_F_offsets: parableF,
+    transparent_F_known_text_reencryption_possible: false,
     source_native_plant_recovers_exactly: true },
   verdict: 'Source-exact cross-artifact arithmetic; 1-based page adjustment is unselected; no plaintext/key.',
 }, null, 2));
