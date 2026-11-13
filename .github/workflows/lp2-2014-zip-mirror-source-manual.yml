@@ -2,12 +2,22 @@ name: LP2 original May 2014 ZIP mirror recovery
 
 on:
   workflow_dispatch:
+    inputs:
+      source:
+        description: Original archive source to check
+        type: choice
+        required: true
+        default: commoncrawl
+        options:
+          - commoncrawl
+          - wayback-arquivo
 
 permissions:
   contents: read
 
 jobs:
   exact-archive-mirror:
+    if: ${{ inputs.source == 'wayback-arquivo' }}
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -26,3 +36,26 @@ jobs:
         with:
           name: original-2014-named-zip-mirror
           path: mirror-2014-original-recovery/
+
+  source-commoncrawl:
+    if: ${{ inputs.source == 'commoncrawl' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original mirror probe syntax and parser plant
+        run: |
+          node --check sims/lp2_2014_commoncrawl_mirror_probe.cjs
+          node sims/lp2_2014_commoncrawl_mirror_probe.cjs --selftest
+      - name: Query the 2014–2015 source-named ZIP and directory indexes
+        run: node sims/lp2_2014_commoncrawl_mirror_probe.cjs
+      - name: Preserve original indexed archive records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-2014-commoncrawl-mirror
+          path: mirror-2014-original-recovery/commoncrawl-index.json
+          if-no-files-found: error
