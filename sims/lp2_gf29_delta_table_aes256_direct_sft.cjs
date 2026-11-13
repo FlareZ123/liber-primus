@@ -117,7 +117,7 @@ for (const [layout, keys] of [['vertical',vertical],['horizontal',horizontal]]) 
       return decodedPages.get(page)[o];
     }));
     for (const [page, source] of byPage)
-      if (page >= 3 && page <= 55) assert.equal(offsets.get(page),source.length);
+      if (page >= 3 && page <= 55) assert.equal(offsets.get(page) || 0, source.length);
     const flat = decodedWordStream.flat();
     let longEnglish = 0, allEnglish = 0, fullWords = 0;
     for (const w of decodedWordStream) {
