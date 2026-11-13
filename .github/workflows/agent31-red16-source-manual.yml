@@ -1,0 +1,22 @@
+name: Agent31 red16 source-selected onion and F16 recurrence (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original red16 BASE29 address reader and signed historical control
+        run: |
+          node --check sims/lp2_red16_base29_onion_v2_source_sft.cjs
+          node sims/lp2_red16_base29_onion_v2_source_sft.cjs
+      - name: Original red16 GF29 F16 source recurrence and native positive
+        run: |
+          node --check sims/lp2_red16_gridfactor16_recurrence_sft.cjs
+          node sims/lp2_red16_gridfactor16_recurrence_sft.cjs
