@@ -1,0 +1,14 @@
+name: LP2 GF841 Period840 Collision Keyskip
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native GF841 840-clock inverse
+        run: node sims/lp2_gf841_period840_collision_keyskip_sft.cjs
