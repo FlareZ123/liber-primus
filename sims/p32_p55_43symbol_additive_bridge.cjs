@@ -268,7 +268,7 @@ for (const [operation, fn] of [
   const fragments = [];
   let cursor = 0;
   for (const n of innerWordLengths) {
-    if (n) fragments.push(tokens(decoded.slice(cursor, cursor + n)).join(""));
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
     cursor += n;
   }
   signedInitialAdditiveKey.variants.push({
