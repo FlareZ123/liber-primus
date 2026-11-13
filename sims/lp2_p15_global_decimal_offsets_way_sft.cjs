@@ -344,6 +344,43 @@ assert.deepEqual(fullBookFibonacciWordPrimeSums, [
 ]);
 assert.equal(fullBookFibonacciWordPrimeSums.filter(value => externalTargetSet.has(value)).length, 0);
 
+
+const applyPeriodicKey = (cipher,key,sign,offset=0) =>
+  cipher.map((value,i) => ((value + sign*key[(offset+i)%key.length])%29+29)%29);
+const indexOfCoincidence = values => {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((total,count)=>total+count*(count-1),0)/(values.length*(values.length-1));
+};
+const lp2PrimeSumKey = fibonacciWordPrimeSums.map(value => value % 29);
+const fullBookPrimeSumKey = fullBookFibonacciWordPrimeSums.map(value => value % 29);
+const p55Cipher = corpus.pages.find(page => page.page === 55).indices;
+const p55GlobalOffset = unknown.length - p55Cipher.length;
+const lp2PrimeSumKeyFullIoCs = [-1,1].map(sign =>
+  indexOfCoincidence(applyPeriodicKey(unknown,lp2PrimeSumKey,sign))
+);
+const lp2PrimeSumKeyP55IoCs = [-1,1].map(sign =>
+  indexOfCoincidence(applyPeriodicKey(p55Cipher,lp2PrimeSumKey,sign,p55GlobalOffset))
+);
+const fullBookPrimeSumKeyFullIoCs = [-1,1].map(sign =>
+  indexOfCoincidence(applyPeriodicKey(unknown,fullBookPrimeSumKey,sign))
+);
+const fullBookPrimeSumKeyP55IoCs = [-1,1].map(sign =>
+  indexOfCoincidence(applyPeriodicKey(p55Cipher,fullBookPrimeSumKey,sign,p55GlobalOffset))
+);
+const rawFullStreamIoC = indexOfCoincidence(unknown);
+assert.deepEqual(lp2PrimeSumKey, [28,25,15,6,12,17,9,6,11,28,23,0,5,6,8,25]);
+assert.deepEqual(fullBookPrimeSumKey, [11,16,8,4,10,1,15,20,18,5,11,24,22,12,8,21]);
+assert.ok(Math.abs(rawFullStreamIoC - 0.03447839786450569) < 1e-12);
+assert.ok(Math.abs(lp2PrimeSumKeyFullIoCs[0] - 0.034469365720678685) < 1e-12);
+assert.ok(Math.abs(lp2PrimeSumKeyFullIoCs[1] - 0.03446129875317093) < 1e-12);
+assert.ok(Math.abs(lp2PrimeSumKeyP55IoCs[0] - 0.03263157894736842) < 1e-12);
+assert.ok(Math.abs(lp2PrimeSumKeyP55IoCs[1] - 0.03368421052631579) < 1e-12);
+assert.ok(Math.abs(fullBookPrimeSumKeyFullIoCs[0] - 0.03449643832064563) < 1e-12);
+assert.ok(Math.abs(fullBookPrimeSumKeyFullIoCs[1] - 0.0344904446948607) < 1e-12);
+assert.ok(Math.abs(fullBookPrimeSumKeyP55IoCs[0] - 0.03368421052631579) < 1e-12);
+assert.ok(Math.abs(fullBookPrimeSumKeyP55IoCs[1] - 0.034035087719298245) < 1e-12);
+
 const wordAddressing = {
   wordCount: words.length,
   runeCount: wordRuneOffset,
@@ -372,6 +409,18 @@ const wordAddressing = {
   fullBookWordCount: fullBookWords.length,
   fullBookFibonacciWords,
   fullBookFibonacciWordPrimeSums,
+  primeSumKeyChecks: {
+    lp2KeyIndices:lp2PrimeSumKey,
+    lp2KeyTranslit:lp2PrimeSumKey.map(index=>corpus.translit[index]),
+    lp2FullStreamIoCs:lp2PrimeSumKeyFullIoCs,
+    lp2P55IoCs:lp2PrimeSumKeyP55IoCs,
+    fullBookKeyIndices:fullBookPrimeSumKey,
+    fullBookKeyTranslit:fullBookPrimeSumKey.map(index=>corpus.translit[index]),
+    fullBookFullStreamIoCs:fullBookPrimeSumKeyFullIoCs,
+    fullBookP55IoCs:fullBookPrimeSumKeyP55IoCs,
+    rawFullStreamIoC,
+    p55GlobalOffset
+  },
   pageStratifiedControl: {
     strata: pageStrata,
     expectedHits: stratifiedExpectedHits,
