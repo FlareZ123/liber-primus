@@ -1,0 +1,13 @@
+name: LP2 source-framed GP28 raw-compression inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 GP28 raw-DEFLATE and zlib gate
+        run: node sims/lp2_rank28_raw_compressed_file_sft.cjs
