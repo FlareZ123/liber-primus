@@ -67,8 +67,20 @@ Across **12,227 untouched runes** in pp3–55 and **2,738 printed words**, all f
 
 The test does **not** exclude AES keyed by other source material, other nonce conventions, key derivation, actual table encryption, or different intermediate representations. There is no independent evidence for AES-CTR or the all-zero nonce, so do not create a broader parameter sweep without a source instruction.
 
+## Authentic solved-p56 prime-totient stream as a GF29 group key
+
+The known decipherment of original physical **p56** supplies a considerably stronger external input than guessed AES: the key stream uses **Euler's totients of successive primes**. In the proposed feedback group, the first GP prime **2** is a primitive root modulo29, of exact order28. Thus a determinate, always-nonzero dynamic candidate multiplier is
+
+```text
+K_n = (2^(prime_n - 1)) mod 29 .
+```
+
+This preserves the historically known totient sequence exactly as exponents, and imposes no arbitrary zero-repair rule. [The exact original-source SFT](../sims/lp2_gf29_delta_p56_totient_group_source_sft.cjs) uses 12,956 original runes under three natural clocks (reset each physical page; reset each of the nine original visual chapters; continue across the entire manuscript). Every resulting original inverse has GP29 IoC **0.035264–0.035282** (source original **0.034478**), **zero matched six-rune-or-longer English dictionary words** among all 2,896 source words, and only 199–203 matches of any length, chiefly chance-compatible short words. Every candidate exactly re-enciphers the unchanged original under its own key. A 98-rune historical p57+`EACH` source-native positive plant re-encrypts and inverts exactly.
+
+This narrows a **particularly source-motivated dynamic key** without disproving other feedback constructions. The primitive-root exponentiation itself is an investigator hypothesis: p56 authenticates the prime-totient sequence for its own Vigenère-like decipherment, not this new exponentiation or its transfer to pp0–55. No plaintext results.
+
 ## Decision
 
-The multiplicative feedback hypothesis gives a clean, human-executable 29-symbol *mechanism candidate*, but **neither original plaintext nor key is recovered**. Two stronger observations change the next decision: the 23 printed-boundary repeat events fail the fixed-EA native-English expectation, and all 791 words of length≥6 eliminate a secret *word-constant* affine delta decoder. The directly table-derived eight-key AES consumer is nonlinguistic. The remaining avenue demands an original clue that identifies a **rune-varying reversible key/state operation** or changes the representation of text before feedback. A claim from a few coincidental short words or an arbitrarily chosen key would not advance the solution.
+The multiplicative feedback hypothesis gives a clean, human-executable 29-symbol *mechanism candidate*, but **neither original plaintext nor key is recovered**. Two stronger observations change the next decision: the 23 printed-boundary repeat events fail the fixed-EA native-English expectation, and all 791 words of length≥6 eliminate a secret *word-constant* affine delta decoder. Direct original-cipher dynamic keys from the printed 32×8 table and the authentic solved-p56 prime-totient stream are both nonlinguistic. The remaining avenue demands an original clue that identifies a **rune-varying reversible key/state operation** or changes the representation of text before feedback. A claim from a few coincidental short words or an arbitrarily chosen key would not advance the solution.
 
-**Reproduce:** both CommonJS SFTs are Node.js 22 built-in only, and [original-source manual CI run 43472545910](https://github.com/FlareZ123/liber-primus/actions/runs/43472545910) passes the direct table test; the expanded 29-symbol comparison is included in the next full run of the same manual workflow. The reported original inputs and vocabulary are checked into `resources/`; printed physical p50 contributes no rune text.
+**Reproduce:** all three CommonJS SFTs use Node.js 22 built-in modules, and [manual original-source CI run 43473445547](https://github.com/FlareZ123/liber-primus/actions/runs/43473445547) passes all three, including the exact 29-symbol word-initial frequency comparison. Inputs and vocabulary are committed in `resources/`; physical p50 contributes no rune text.
