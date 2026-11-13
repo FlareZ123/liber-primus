@@ -1,0 +1,19 @@
+name: LP2 word-prime compass grid causal inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  word-prime-compass:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 input, native plant, and exact re-encryption
+        run: node sims/lp2_wordprime_compass_grid_causal_sft.cjs
