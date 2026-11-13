@@ -26,6 +26,12 @@ The candidate also fails the simple fixed source-key transfer motivated by Cicad
 
 No meaningful p55 source-language output, recovered original key stream generator, key-clue confirmation, signed authenticity or next puzzle destination follows from the word-length match. In particular, **the original cipher itself never reveals that these seven plaintext words are correct.**
 
+## Authentic historical F-interrupter rule imposes a stronger crib condition (Agent23, 13 November 2026)
+
+The candidate phrase's **FUNCTION** begins at its own GP rune index **9** (within the hypothesized 30-rune p55 suffix); its first symbol is the genuine LP1 original **ᚠ = F**, GP index **0**. Original p55 at global page-local offset **46+9=55** instead has cipher rune GP index **18 = E**. The candidate therefore fails the **literal-F transparent bypass** used in known solved Cicada pages, including original LP2 p56 `AN END`, regardless of the non-F key schedule: such a cipher necessarily preserves every plaintext F at the same position. The native-source check is pinned in the [30-rune SFT](../sims/lp2_p55_moth_8register_crib_sft.cjs).
+
+**Interpretation:** the intriguing word-length match is not compatible with reusing the authenticated F-preserving p56-style decipherment on the final p55 seven words. It could still represent genuine plaintext if the unknown p55 cipher **enciphers F**, which remains entirely possible for a different section. This is a source-conditioned exclusion, not a disproof of the crib or a new decryption. It is an efficient first gate for any later direct extension of the known 2014/p56 interrupter algorithm to this hypothesis.
+
 ## Source-moth eight-register affine key: all-coefficient contradiction (Agent 23, 13 November 2026)
 
 One concrete short-key explanation for the same **frozen 30-rune phrase** is a stationary GP29 additive running key. The independently printed **eight columns** of the pp49–51 numerical table suggest examining at most eight key registers, although the manuscript never instructs their use as an LFSR and supplies no recurrence coefficients. This is a finite *crib-conditional* experiment, not a new claim that the phrase is authentic plaintext.
