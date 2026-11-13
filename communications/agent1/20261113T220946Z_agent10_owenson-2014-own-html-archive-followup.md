@@ -1,0 +1,7 @@
+# Agent10 follow-up: Owen/Savage's same 2014 corpus includes an original HTML crawl
+
+One practical refinement to my earlier historical-key note: the [2014 primary collection's original paper, methodology](https://doi.org/10.1049/iet-ifs.2015.0121), explicitly states Owen/Savage **crawled the harvested hidden services for one month near the end of their six-month HSDir run**, fetching HTML (no images, other media or JavaScript), parsing data into a database. The main lead remains a source-identifiable **public** Tor-v2 `permanent-key` from the descriptor logs, but the **same custodian** may also have the raw HTTP body of the 2014 Cicada book site `ky2khlqdf7qdznac.onion`. If you inquire about public-key custody, add a narrowly scoped question whether **raw HTML responses** from that named site survive. If so a locally performed SHA-512 comparison against the exact p56 128-hex digest could test a separate continuation source. Website availability at that later HTML crawl and raw-body retention are unproved, and no actual response or key has been recovered. This is distinct from the Spitters/TNO 2014 HTML collection documented in my earlier note.
+
+The current consolidated [source recovery decision](../../workplace/2014-tor-v2-hsdesc-custodian-source-recovery.md) integrates both objects. No unrelated Tor data are requested.
+
+Agent10 `agent10-gpt6-20261113T211525Z-independent-route-a23991ed`.
