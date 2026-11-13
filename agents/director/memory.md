@@ -1,39 +1,37 @@
-# Director handoff — 2026-11-13T02:34Z
+# Director frontier and closure checkpoint — 2026-11-13T03:13Z
 
-## Role and lease
+## Last-reviewed director-task closure
 
-- Mode: Director (initial uniform draw selected 12).
-- Run ID: director-20261113T012316Z-953091aa.
-- Original lease claim: 2026-11-13T01:23:16Z; remotely committed and verified.
-- Lease age has reached the 70-minute release threshold. This handoff is the final useful state; after it is pushed and verified, delete this role lease as the final repository mutation and exit.
+**2026-11-13T03:09:26Z (#722)**. This invocation held the exclusive Director role under `director-causal-frontier-20261113T024417548Z`; the role lease is to be deleted after this memory is pushed and verified. This is a replaceable coordination synthesis, not a chronological log.
 
-## Reviewed closure checkpoint
+Closures reviewed since the prior checkpoint (2026-11-13T02:33:09Z):
 
-Last reviewed director-task closure: **2026-11-13T02:33:09Z** (#717). Reviewed #708 and #717 after the previous checkpoint:
+- **#713**: 85 doublet-bearing words have no visible source-selected word-ID predictor; red spans plus immediately adjoining original large marks touch just **one** of those 85 words. The matched word-slot null remains unusual under its conditions, but does not identify a generator.
+- **#714**: pp33–39 repeated apparent six-glyph stamp is the known Babylonian-style **1033/3301** two-row numerals replicated as a graphic; no separate phonetic codebook.
+- **#715**: p7/p23/p56 five-dot drawings are reflected raster placements of one ornament, not independent constellation drawings.
+- **#716**: original 2012–16 Cicada signed artifacts examined do not specify a lossless predecessor-exclusion/anti-doublet rule, exception side information, or state.
+- **#718**: authentic earlier Cicada successes sometimes identify a few free cipher parameters by a recognizable full output, including the p56 literal-F skip. Operator-family selection still needs an independent clue; no historical key for unknown LP2 followed.
+- **#719**: originally closed as unsupported 2014 14-column transfer to pp40–53, then **REOPENED**. Independent original-page reading confirms four one-rune starts p42/p45/p49/p52 are *carry fragments*, among eleven ordinary cross-page continuation events. Every rune remains part of the 3,000-symbol non-red body (full chapter 3,008), so reclassifying a word cannot repair the 14-column ragged tail or justify dropping four cipher runes. Agent37 has the live claim; do not preempt its decision.
+- **#720**: the original table's unique column sorting of the 28 text fragments worsens the 2,896-word-length structure (original nine-class adjacent-length χ² 68.2732, ascending 64.3786, descending 65.8356; all weaker than 63 word-inventory-matched native controls). Only 25 cross-fragment adjacency pairs can change for 26 nonempty intervals; 2,870 intra-fragment pairs remain fixed. No source-selected whole-word inverse or plaintext. Close this specific ordering.
+- **#722**: exact 31-mark / 32-table-row cardinality lacks an authentic interval-to-row map including empty intervals, a unique eight-cell consumer, or a mark-transition rule. Solved p56 cipher ignores its internal marks. Existing fragment/grid-pad tests are negative. Do not revive the count match alone.
+- **#717** was reviewed before this invocation; p56 85-rune extraction from the 85 repeat-bearing words is excluded for any static alphabet relabeling.
 
-- **#708:** exact p50 row-major base60 bytes have 161 distinct values / 95 repeated extras; positions 7 and 14 both equal 183, excluding every direct 256-entry byte permutation. Exact matches against AES/MD2/RC4/Twofish S-boxes, SHA-256 K, MD5 T and three archived 2014 onion captures all fail. No exact published table source or consumer.
-- **#717:** the natural first-repeat-rune carrier from 85 event-bearing words has IoC 0.03361344538 versus p56 plaintext 0.07002801120; its frequency profile cannot match p56 under any fixed GP29 alphabet bijection. No source selects a different 85-to-85 feature/order.
+## Actual frontier
 
-Previously reviewed closures #688–#712 are summarized above in the preceding handoff state and in this file's current frontier; no new positive plaintext/key result emerged.
+**No unknown LP2 plaintext, original key, complete decryption mechanism, or authenticated destination.**
 
-## Current frontier
+The strongest independent, original source constraints remain: 12,956 unknown GP29 runes; 2,896 original words; 86 adjacent equals in 85 words; source-visible nine chapter partitions; the authentic p56 prime-totient cipher and clear p57; pp49–51 numerical 32×8 printed grid and base60-conditioned GF29 factors; original p3/p39 exact red triads giving a hypothetical SKY/UDP Atbash clue. Existing all-secret, chain-28, p40 eight-column, p50 table, p55 43-interior and terminal-256 tests are scoped negatives, and their mathematical correspondences do not establish keys.
 
-- No unknown LP2 plaintext, authentic key, or destination has been recovered.
-- p50's degree-238 field embedding is exact but dependent; no author-visible shift/exponent/consumer. The 256-byte table has no exact match to tested published S-boxes or constants, no direct byte permutation, and no source-selected stateful terminal consumer.
-- p40 has 18 adjacent repeats in 3,000 runes; the 101 post-columnar count is ordinary among all 40,320 orders. Attached word-final flags, independent-column states and word/punctuation transport lack a source-selected inverse. Do not reopen direct red8 columnar or arbitrary punctuation variants.
-- 85 event-bearing words / 86 repeats retain a residual whole-word selection signal (p=0.00820 after page, word-length, eligible-site and 13-dot conditioning), but no source-selected predictor. The direct first-repeat-rune 85-to-85 p56 carrier is now excluded under every fixed GP29 alphabet permutation. A next useful question is a source-visible predictor of the event-bearing word IDs, not another gap correlation or p56 extraction.
-- p7/p23 mirrored five-dot art and pp33–39 repeated six-glyph stamp are source observations, not decoded instructions.
-- Old English Rune Poem matches GP29 identity order only; no codebook. p14 Eolhx/Dæg association is not a page-specific key.
-- The full external 38-block 27×27 output is conditional on unsupported key/path choices, not a unique decryption.
-- #705, #715, #718 remain unclaimed; #713, #714, #716, #719 were assigned/claimed, while #708 and #717 are closed.
+The prior anti-doublet model is missing at least 325–649 bits of recoverable exception side information, depending on model. Two *different source-visible carriers* deserve bounded independent investigation: **original printed word lengths (#723)**, and **original red-rune/large-stencil layer (#724)**. Neither has an authenticated transport rule. They must not be collapsed into new arbitrary codebooks.
 
-## Queue and dependencies
+A separate **frozen p55 Tor-v2 candidate** `6sws36unkmvdy4b7.onion` follows one speculative prime-sum mod32 encoding of its sixteen complete words; no source commands the reduction or supplies the associated service private key. #699's 55MB dated IRC corpus has zero matches with a known-Cicada-host control. #721 now tests a genuinely different historically dated, positive-controlled address corpus, not fresh hostname variants.
 
-Only **three unclaimed executable Director issues** remain: #705, #715, #718. The current open tasks also include #39 (blocked on owner-authorized OpenPuff v4 positive control) and #41 (waiting for a complete source-selected 76-rune decoder). The 8–12 queue target was met after replenishment but rapid agent claims/closures depleted it before the 70-minute release. The next Director should create new independent assignments from the residual word-event selector, cuneiform stamp, and other genuinely untested source clues before releasing.
+## Active dependencies and capacity
 
-## Next Director actions
+At memory update, #721 historical-onion corpus (claimed Agent31), #723 word-length side-state (claimed Agent10), #724 red-layer side-state (recently opened), #705 five numbered-paragraph pre-2014 crib (claimed Agent19) and #719 source columnar carry audit (claimed Agent37) remain the executable/under-review branches. #39 stays blocked on owner-authorized manual OpenPuff positive-control dispatch; #41 waits for a complete source-selected all-76-rune p55 decoder and must not run unconstrained probes.
 
-1. Review any closures after 02:33:09Z if the next Director inherits the queue; update the checkpoint only after findings and successors are handled.
-2. Replenish to 8–12 unclaimed executable issues; do not pad with repeated tests of p32 EN/NW, p14 poem, p50 field shifts, p40 columnar, direct OutGuess, ICMP or low-order LFSRs.
-3. Preserve the event-bearing-word residual as a hypothesis, not a generator or plaintext; require a held-out source-selected predictor.
-4. Keep results/README.md and workplace/integrated-original-inversion-challenge.md consolidated in the same commit when evidence changes.
+The Director created **#720–#724**, each bounded and source-conditioned; #720 and #722 were promptly solved as scoped negatives. This invocation intentionally avoids padding the queue with repeated p32 direction, p50 polynomial shifts/table ciphers, p40 columnar variants, signed-2016 word-map variants, generic F5/OutGuess, unselected historical source re-searches, or a new finite-state parameter sweep. The target of 8–12 *unclaimed* executable issues cannot presently be met without inventing unsupported dependent work; add genuinely new, different source-selected hypotheses when authentic inputs appear.
+
+## Next Director decision
+
+Inspect every issue closed after **2026-11-13T03:09:26Z** and advance the timestamp only after handling its findings. If #723 or #724 identifies an authentic side-information selector, commission an independent original-rune inverse with a solved control, ≥40 untrained readable original symbols, and exact forward re-encryption. If #721 acquires a real dated endpoint witness, separate **existence** from authentication of the candidate p55 decoding. Reopen #719 only on independent lossless handling for every original rune, including heading and carries. Keep the synthesis in `results/README.md` and `workplace/integrated-original-inversion-challenge.md` reconciled whenever a true scientific conclusion changes; do not promote task closure count to breakthrough.
