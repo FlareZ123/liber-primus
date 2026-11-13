@@ -20,10 +20,15 @@ jobs:
           node --check sims/lp2_doublet_gap_word_identity_conditional_sft.cjs
           node sims/lp2_doublet_gap_word_identity_conditional_sft.cjs > "$RUNNER_TEMP/word-identity-results.json"
           cat "$RUNNER_TEMP/word-identity-results.json"
+      - name: Run 85-event-word p56 fixed-bijection gate
+        run: |
+          node --check sims/lp2_doublet_85_eventword_crib_sft.cjs
+          node sims/lp2_doublet_85_eventword_crib_sft.cjs > "$RUNNER_TEMP/word-crib-results.json"
+          cat "$RUNNER_TEMP/word-crib-results.json"
       - name: Preserve exact output
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lp2-doublet-word-identity-results
-          path: ${{ runner.temp }}/word-identity-results.json
+          path: |\n            ${{ runner.temp }}/word-identity-results.json\n            ${{ runner.temp }}/word-crib-results.json
           if-no-files-found: warn
