@@ -206,6 +206,116 @@ assert.equal(primeWordsZeroBased.filter(Boolean).length, 14);
 assert.equal(primeWordsOneBased.filter(Boolean).length, 14);
 assert.equal(printedDecimalWords.filter(Boolean).length, 5);
 
+
+const allWordPrimeSums = words.map(word =>
+  Array.from(word.runes, rune =>
+    corpus.prime[corpus.runes.indexOf(rune)]
+  ).reduce((a,b) => a + b, 0)
+);
+const fibonacciWordPrimeSums = fibonacci.map(index => allWordPrimeSums[index]);
+assert.deepEqual(fibonacciWordPrimeSums, [
+  347,315,160,122,563,133,618,64,69,463,139,464,5,238,124,25
+]);
+assert.deepEqual(fibonacciWordPrimeSums.slice(0,2), [347,315]);
+
+const externalTargetValues = [133,331,563,569,464,121,32,3301];
+const externalTargetSet = new Set(externalTargetValues);
+const externalPrimeSumHits = fibonacci.map((f,i) =>
+  externalTargetSet.has(fibonacciWordPrimeSums[i])
+    ? {f,wordIndex:f,word:fibonacciWords[i].translit,sum:fibonacciWordPrimeSums[i]}
+    : null
+).filter(Boolean);
+assert.deepEqual(externalPrimeSumHits.map(hit => [hit.f,hit.sum]), [
+  [5,563],[8,133],[144,464]
+]);
+assert.equal(464 - 133, 331);
+
+const p15PrimeSumHits = fibonacci.map((f,i) => {
+  const targetIndex = primeValues.indexOf(fibonacciWordPrimeSums[i]);
+  return targetIndex < 0 ? null : {
+    f,
+    wordIndex:f,
+    word:fibonacciWords[i].translit,
+    sum:fibonacciWordPrimeSums[i],
+    targetF:fibonacci[targetIndex],
+    targetPrimeOrdinal:targetIndex + 1
+  };
+}).filter(Boolean);
+assert.deepEqual(p15PrimeSumHits.map(hit => [hit.f,hit.sum,hit.targetF]), [
+  [55,463,89],[233,5,2]
+]);
+
+const primeCounts = fibonacciWordPrimeSums.map(value =>
+  primes.filter(prime => prime <= value).length
+);
+assert.deepEqual(primeCounts, [
+  69,65,37,30,103,32,113,18,19,90,34,90,3,51,30,9
+]);
+const primeCountWordTargets = primeCounts.map(wordRecord);
+
+const spiralPath = [
+  [1,1],[1,2],[2,2],[2,1],[2,0],[1,0],[0,0],[0,1],
+  [0,2],[0,3],[1,3],[2,3],[3,3],[3,2],[3,1],[3,0]
+];
+const spiralSumMatrix = Array.from({length:4}, () => Array(4).fill(null));
+spiralPath.forEach(([r,c],i) => {
+  spiralSumMatrix[r][c] = fibonacciWordPrimeSums[i];
+});
+const spiralRowSums = spiralSumMatrix.map(row => row.reduce((a,b)=>a+b,0));
+const spiralColumnSums = spiralSumMatrix[0].map((_,c) =>
+  spiralSumMatrix.reduce((a,row)=>a+row[c],0)
+);
+assert.deepEqual(spiralRowSums, [1214,934,1309,392]);
+assert.deepEqual(spiralColumnSums, [1339,657,782,1071]);
+
+const externalTargetStats = new Map();
+for (let i=0;i<words.length;i++) {
+  const page = words[i].startPage >= 50 ? words[i].startPage + 1 : words[i].startPage;
+  if (!externalTargetStats.has(page)) externalTargetStats.set(page,{page,N:0,K:0});
+  const stat = externalTargetStats.get(page);
+  stat.N++;
+  if (externalTargetSet.has(allWordPrimeSums[i])) stat.K++;
+}
+const selectedCountsByPage = new Map();
+for (const f of fibonacci) {
+  const page = words[f].startPage >= 50 ? words[f].startPage + 1 : words[f].startPage;
+  selectedCountsByPage.set(page,(selectedCountsByPage.get(page)||0)+1);
+}
+function chooseNumber(n,k) {
+  if (k < 0 || k > n) return 0;
+  k = Math.min(k,n-k);
+  let value = 1;
+  for (let i=1;i<=k;i++) value = value * (n-k+i) / i;
+  return value;
+}
+function hypergeometricDistribution(N,K,n) {
+  const out = [];
+  const denominator = chooseNumber(N,n);
+  for (let k=0;k<=Math.min(K,n);k++) {
+    out[k] = chooseNumber(K,k) * chooseNumber(N-K,n-k) / denominator;
+  }
+  return out;
+}
+let stratifiedDistribution = [1];
+const pageStrata = [];
+for (const [page,n] of [...selectedCountsByPage.entries()].sort((a,b)=>a[0]-b[0])) {
+  const stat = externalTargetStats.get(page);
+  const d = hypergeometricDistribution(stat.N,stat.K,n);
+  const next = Array(stratifiedDistribution.length+d.length-1).fill(0);
+  for (let i=0;i<stratifiedDistribution.length;i++) {
+    for (let j=0;j<d.length;j++) next[i+j] += stratifiedDistribution[i]*d[j];
+  }
+  stratifiedDistribution = next;
+  pageStrata.push({
+    page,N:stat.N,K:stat.K,selected:n,
+    expected:n*stat.K/stat.N
+  });
+}
+const stratifiedExpectedHits = pageStrata.reduce((a,s)=>a+s.expected,0);
+const stratifiedTailAtLeast3 = stratifiedDistribution.slice(3).reduce((a,b)=>a+b,0);
+assert.ok(Math.abs(stratifiedExpectedHits - 0.4477216943031819) < 1e-12);
+assert.ok(Math.abs(stratifiedTailAtLeast3 - 0.0040013152397293215) < 1e-12);
+
 const wordAddressing = {
   wordCount: words.length,
   runeCount: wordRuneOffset,
@@ -221,7 +331,21 @@ const wordAddressing = {
   primeValues,
   primeWordAddressesZeroBased: primeWordsZeroBased,
   primeWordAddressesOneBased: primeWordsOneBased,
-  printedDecimalWordAddresses: printedDecimalWords
+  printedDecimalWordAddresses: printedDecimalWords,
+  fibonacciWordPrimeSums,
+  externalTargetValues,
+  externalPrimeSumHits,
+  p15PrimeSumHits,
+  primeCounts,
+  primeCountWordTargets,
+  spiralSumMatrix,
+  spiralRowSums,
+  spiralColumnSums,
+  pageStratifiedControl: {
+    strata: pageStrata,
+    expectedHits: stratifiedExpectedHits,
+    probabilityAtLeast3: stratifiedTailAtLeast3
+  }
 };
 
 console.log(JSON.stringify({
