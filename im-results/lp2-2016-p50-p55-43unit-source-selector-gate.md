@@ -1,6 +1,6 @@
 # The 2014 / 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, prime-count-difference, and the fixed φ(square-core) pad interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a complete 37-pair key-independent original-cipher constraint excludes **arbitrary value-stationary additive GP29 key tables** from decoding this placement into any of 858,983 pinned native-GP control windows; the ninth/tenth-word gate adds stricter printed-word evidence. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
+**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. A bounded rank-transposition gate now tests global and per-square numeric sorting, including source-row and spiral tie-breaks; all 16 fixed variants remain nonlinguistic. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, prime-count-difference, and the fixed φ(square-core) pad interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a complete 37-pair key-independent original-cipher constraint excludes **arbitrary value-stationary additive GP29 key tables** from decoding this placement into any of 858,983 pinned native-GP control windows; the ninth/tenth-word gate adds stricter printed-word evidence. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
 
 ## Fixed source observations
 
@@ -87,6 +87,23 @@ The 43 inner square values were extracted in the original file order (row-major 
 None of these direct 43-core mappings yields recognizable plaintext. They are negative gates, with no implications for other square uses. The additional fixed φ(n) core-key consumer is also negative: the original stream scores −6.34150 (IoC 0.034330); C−K scores −7.00335 (IoC 0.036545) and C+K scores −6.25242 (IoC 0.033223). All 60,000 exact-word-shape Shakespeare/Gibran/Emerson controls score above −3.58788; both outputs re-encrypt 43/43 and six source-native positive plants recover exactly. This retires only the direct row-major φ(square-core-value) pad; reproduce with [the original-input totient-core SFT](../sims/lp2_p55_2014_inner43_totient_sft.cjs). One finite **99-cell prime-hole** placement and two direct additive consumers have also been tested below. The source still supplies no unique dot-to-cell rule, so the candidate mapping is an unsupported cipher choice rather than an authenticated p55 decoder.
 
 Reproduction: run sims/lp2_2014_square_inner43_p55_gate.cjs from the repository root. The derived square transcription and pinned provenance are preserved in resources/cicada2014-openpuff-magic-squares.txt (with provenance in resources/derived/historical-2014/).
+
+
+### Rank-derived transposition gate (new bounded negative)
+
+A solver could take the 43 historical inner-square values as a numeric permutation key for the 43 p55 strict-word interiors: the authenticated 2016 message says the numbers are the direction, and p54/p57 provide a spiral/circumference context. The 5/7/5 inner blocks have sizes 9/25/9, matching the 43 p55 interior runes exactly.
+
+The 43 values contain only **23 distinct numbers** (20 repeated cells), so sorting does not define a unique permutation. I tested only source-order tie-breaks: global row-major, per-square row-major, and per-square clockwise/counterclockwise spiral order. Each was combined with ascending/descending value order and the two inverse readings (read in rank order or scatter by rank), for **16 fixed variants**. No arbitrary tie-break, offset, or fitted permutation was searched.
+
+| Scope and tie-break | Candidate GP29 4-gram log probability per rune |
+|---|---:|
+| Global 43-value rank, row-major ties | −13.39447 to −13.16571 |
+| Per-square 9/25/9 rank, row-major ties | −13.33871 to −13.28294 |
+| Per-square rank, clockwise/counterclockwise spiral ties | −13.39447 to −13.24310 |
+| 500 held-out native 43-rune windows | min **−11.52346**, median **−10.10686**, max **−8.61260** |
+
+The best candidate remains **1.64 nats per rune below the worst** sampled native window. None of the 16 outputs is coherent plaintext. The four-gram comparison is descriptive rather than decisive on a 43-rune sample, but it agrees with direct inspection. The repeated core values also mean that any further tie-breaking rule needs independent source support; it must not be tuned to the desired output.
+
 
 ### Source-frozen 3301/1033 square prime holes: one complete 99-cell candidate (12 November 2026)
 
@@ -349,18 +366,22 @@ This rejects the direct `raw_byte mod 29` additive/Beaufort pairing and the dire
 
 ## Exact missing selector
 
-The 2014 squares now provide a plausible source-grounded selector for the p55 43 interior units, but the complete reversible mapping remains unresolved:
+The 2014 5/7/5 squares provide a source-grounded structural selector for the p55 43 interior units, but not a cipher or unique reversible map.
 
-1. The 5/7/5 square source and p57 Parable plausibly select the 43 inner square cells and 43 p55 interior runes. They do not yet establish whether those sequences pair row-major, spiral, center-out, or by another traversal.
-2. The 99-unit relation (76 p55 runes + 23 p57 dots = 99 square cells) and the perimeter relation (33 p55 boundary runes + 23 dots = 56 square-perimeter cells) are count-level matches. No source instruction currently places the 23 dots into specific perimeter cells.
-3. The square values' role is unknown: raw shifts, prime-count values, differences, directions, transposition ranks, or a multi-stage operation. The direct mod-29, prime-count, and tested spiral/chain interpretations are negative.
-4. Which signed-message word corresponds to which p50 byte remains unknown. The fixed natural-order word-prime-sum shift to p55's 43 interiors is negative and does not establish a three-way p50/message/p55 mapping.
-5. Whether the p50, 2014-square, signed-message, and p55 43-element sequences are paired in natural order, reversed, permuted, or grouped another way remains unresolved.
-6. The reversible transform, key material, key/state initialization, and any skip or carry rule are not established.
-7. The 33 boundary p55 runes may be discarded, preserved as plaintex## Decision
+1. The three prior-puzzle squares were required before LP2 was returned. Their 43 inner cells, 56 perimeter cells, 17 rows, and 99 total cells align with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, 17=17.
+2. The direct row-major, prime-count, center-relative, spiral, chain, totient, and modulo-43 direction consumers remain negative. The new rank-transposition gate also rejects 16 fixed global/per-square variants, including source-row and spiral tie-breaks. The 43 core values contain 20 duplicate cells, so a unique rank order is not source-defined.
+3. The 99-cell prime-hole placement is a separate, competing layout. Its 23 holes include 11 square-interior cells, so it cannot simultaneously reserve all 23 dots and place all 43 p55 interiors into all 43 square-interior cells. Do not silently combine the 76/23 prime-hole layout with the 43/56 interior/perimeter layout.
+4. The original p57 23-dot stencil occupies five parallel vertical columns. The proposed 23 prime-valued holes in the 7×7 square require at least seven parallel lines in every direction; an affine overlay is therefore impossible for that proposed geometry. Non-affine or separately positioned mappings remain unsupported by a source instruction.
+5. The p50 interval selector is conditional on interpreting the archived 2013 NUMBER response as an addition instruction. It identifies a 43-byte interval but does not define how its bytes pair with the 43 p55 interiors.
+6. The signed 2016 message's 43 words and its “words/map, meaning/road, numbers/direction” language do not yet specify a unique word-to-page, word-to-byte, or numeric-to-rune mapping.
+7. The reversible transform, key material, state initialization, skip/carry rule, and treatment of the 33 p55 boundary runes remain unknown.
 
-The 2014 5/7/5 squares materially strengthen the 43-unit bridge: they were required prior-puzzle inputs before LP2 release, and their 43 inner cells / 56 perimeter cells / 17 rows align with p55's 43 interior / 33 boundary / 17 words plus p57's 23-dot mark. The p57 Parable supplies a plausible human instruction to remove the square circumferences. This supersedes the earlier claim that no source-grounded selector for p55's 43 interior units was known.
+The next valuable decision is not another arbitrary permutation or key search. It requires an independent first-party instruction that chooses between the competing 43/56 and 76/23 layouts, fixes a traversal/tie-break, or supplies a reversible cipher operation. Preserve the exact negative rank gate and avoid retuning its 16 variants.
 
-No decryption has resulted. Direct square-value mod-29 shifts, prime-count shifts, center-relative prime-count shifts, spiral additive pairings, prime-count-difference chain variants, and simple modulo-43 direction walks all fail. The p50 compass-byte interpretation on p32, signed 2016 word-prime-sum keying on p55, raw p50-byte-mod-29 and XOR pairings, continuous period-43 prime-sum key, and simple p0 period-7 keys remain negative. The exact 43×301 = 7×43² relation remains a count observation, not a decoder. The fold/END observation remains conditional and is not a decryption.
+### Decision
 
-The next valuable decision is a source-constrained test of the 99-cell structure or a traversal rule grounded in p54's spiral and p57's circumference instruction. In particular, determine whether the 76 p55 runes and 23 p57 dots have a historically plausible placement into the three 5/7/5 squares, and whether the 43 interior correspondence then specifies a reversible operation. Do not search arbitrary byte maps, shifts, phases, offsets, or permutations. The new square alignment justifies reopening this branch for a bounded investigation; it does not justify unconstrained key search.
+The 43-unit correspondence is a genuine, source-grounded selector candidate, not a solved cipher. The 2014 squares, p55 word interiors, p57 circumference instruction, and authenticated 2016 message explain why a human solver should examine this structure. The tested direct shifts, prime-count/totient streams, spiral/chain reads, stable rank transpositions, and 99-cell additive consumers do not recover plaintext. The affine 23-dot overlay is ruled out for the proposed prime-hole geometry.
+
+No unknown LP2 plaintext or key has been recovered by this branch. Continue only if a new original clue selects a specific mapping or operation; do not expand the tested families with fitted offsets, arbitrary tie-breaks, or unconstrained permutations.
+
+**Reproduction:** [the 2014 square-inner43 SFT](../sims/lp2_2014_square_inner43_p55_gate.cjs) now includes the 16 rank-transposition variants and held-out GP29 four-gram controls. Run with Node.js 22: node sims/lp2_2014_square_inner43_p55_gate.cjs.
