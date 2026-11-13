@@ -13,6 +13,7 @@ on:
           - bookword43
           - tree-diagonal
           - firstwords
+          - plainfeedback
         default: original
 jobs:
   source-gate:
@@ -111,3 +112,15 @@ jobs:
           node-version: '22'
       - name: Verify unique dimension-selected rune words and direct NEWBAS key gates
         run: node sims/lp2_2016_dimensions_firstwords_sft.cjs
+
+  wordprime-plainfeedback:
+    if: ${{ inputs.probe == 'plainfeedback' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode all original words under GP-prime previous-plaintext feedback
+        run: node sims/lp2_wordprime_plainfeedback_sft.cjs
