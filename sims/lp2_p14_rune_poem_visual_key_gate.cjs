@@ -141,6 +141,16 @@ const p15Words = pageWords(15);
 const p22Words = pageWords(22);
 const p14Lines = pages[14].split('\n').filter(line => [...line].some(ch => runeSet.has(ch))).length;
 
+const p14PrimePairTarget = p14.length - p14Lines;
+const p14PrimePairMatches = [];
+for (let i = 0; i < GP_PRIMES.length; i++) {
+  for (let j = i; j < GP_PRIMES.length; j++) {
+    if (GP_PRIMES[i] + GP_PRIMES[j] === p14PrimePairTarget) {
+      p14PrimePairMatches.push({ leftIndex: i, left: GP[i], leftPrime: GP_PRIMES[i], rightIndex: j, right: GP[j], rightPrime: GP_PRIMES[j] });
+    }
+  }
+}
+
 const primeSample = GP_PRIMES.map(prime => fullPoemKey[prime - 1]);
 const poemWords = poem.match(/[A-Za-zÆæÞþÐð]+/g).map(w => w.toLowerCase());
 const primeWordSample = GP_PRIMES.map(prime => poemWords[prime - 1]);
@@ -154,7 +164,7 @@ const result = {
     p14Runes: p14.length, p14PrintedLines: p14Lines, p14Words: p14Words.length,
     p15Runes: p15.length, p15Words: p15Words.length,
     p22Runes: p22.length, p22Words: p22Words.length,
-    gpPrimeSumEohDaegPlusP14Lines: GP_PRIMES[12] + GP_PRIMES[23] + p14Lines,
+    gpPrimeSumEohDaegPlusP14Lines: GP_PRIMES[12] + GP_PRIMES[23] + p14Lines,\n    p14PrimePairTargetAfterLineCount: p14PrimePairTarget, p14PrimePairMatches,
     gpPrimeSumEolhxDaegPlusOne: GP_PRIMES[14] + GP_PRIMES[23] + 1,
   },
   runningKeys: {
