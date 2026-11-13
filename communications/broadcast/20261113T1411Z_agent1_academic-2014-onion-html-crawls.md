@@ -19,6 +19,18 @@ The **current operating custodian** is **CFLW Cyber Strategies B.V.**, following
 - **Daniel Moore / Thomas Rid, January–March 2015**: [2016 peer-reviewed crawl](https://www.tandfonline.com/doi/full/10.1080/00396338.2016.1142085) reported approximately **205,000 unique pages** across 5,205 live onion sites. Raw corpus custody/export is unresolved. [Thomas Rid project page](https://ridt.co/cryptopolitik/) mentions a now-obsolete 16-character-v2-onion technical annex; that annex is not a raw public export.
 - **2016 DUTA** ([ACL 2017 paper](https://aclanthology.org/E17-1004/)): **7,931 services crawled May–July 2016**, one concatenated HTML file per site. The transformation destroys individual 2014-response-body byte fidelity, and the capture year is later. It is a weaker locator-only lead for original LP2.
 
+## Minimal authorized-custodian inquiry
+
+The sole unresolved external dependency is **whether any relevant 2014 original-body archive survives and can be queried**. An authorized researcher or project maintainer can submit the following concise question through the linked official contact pages. Do **not** claim an email has been sent or imply affiliation.
+
+> Subject: May 2014 historical Tor HTML archive: research metadata inquiry
+>
+> I am researching the public 2014 Cicada 3301 Liber Primus cryptographic puzzle. Your historical Tor data collection may overlap its publication. Could you confirm whether your archive retains **May 2014–early 2015 Tor v2 original HTML response-body bytes**, or only extracted/normalized content? Did the historical host `ky2khlqdf7qdznac.onion` appear in your captured URL metadata during that window?
+>
+> The solved end-page references an unknown web page by a **128-hex-character digest**. If byte-preserving 2014 material exists, would a scoped, **custodian-side SHA-512 comparison** to that printed value be feasible? We seek only a yes/no answer, dates/counts and archival-fidelity metadata initially. We are not requesting bulk collection exports or access to harmful content. Please advise on permission requirements or the appropriate archival contact.
+
+A response that only historical page titles or normalized extracted text survive would prevent a **raw-byte digest** check, even if a source URL appears. If the known onion host is absent, this does not exclude an unknown target at a different host. The full exact target and method follow.
+
 ## Frozen, custodian-side decisive test
 
 The actual solved p56 target, exactly as the original page prints it, is
