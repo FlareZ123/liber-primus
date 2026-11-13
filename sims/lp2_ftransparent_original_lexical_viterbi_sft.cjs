@@ -259,10 +259,14 @@ const independentlySolvedKoan = koanCipher.map((c, i) =>
 assert.deepEqual(encrypt(independentlySolvedKoan, koanShift), koanCipher);
 const koanSolve = decode(koanWords, koanShift);
 const koanBest = koanSolve.states[0];
+// Independently solved third-control plaintext and its two exact true bypasses
+// are now required assertions as well, never merely descriptive metrics.
+assert.deepEqual(koanBest.literals, knownKoanF);
+assert.deepEqual(koanBest.plain, independentlySolvedKoan);
+assert.deepEqual(encrypt(koanBest.plain, koanShift), koanCipher);
 
 /*
- * The first two trials must fully pass, irrespective of the third koan's
- * score, which is reported as an out-of-sample transfer test.
+ * All three real solved controls must pass exactly and reversibly.
  */
 const report = {
   method: 'Exact GP29 plaintext-F lexical Viterbi with source word boundaries and known fixed cipher key',
