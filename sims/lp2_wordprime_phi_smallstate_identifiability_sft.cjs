@@ -102,6 +102,20 @@ for (let n = 2; primes.length < 80; n++) {
 }
 const shifts = primes.map(p => (p - 1) % M);
 const mod = x => (x % M + M) % M;
+
+// Authentic solved-p56 source-positive control. The historical p56 rule
+// uses the same phi(prime) values but an absolute page clock and a literal
+// F at physical p56 local rune56 which does NOT consume a prime. This
+// historical exception is outside our proposed novel word-local architecture.
+const originalP56 = gp.pages.find(p => p.page === 56).indices;
+assert.equal(originalP56.length, 85);
+let authenticClock = 0;
+const authentic56 = originalP56.map((c, i) =>
+  i === 56 ? c : mod(c - shifts[authenticClock++]));
+assert.equal(authenticClock, 84);
+assert.equal(authentic56.map(i => gp.translit[i]).join(""),
+  "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTO" +
+  "ITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE");
 const primeSum = word => word.reduce((s, x) => s + gp.prime[x], 0) % M;
 
 /** @param {number[][]} native
@@ -286,7 +300,8 @@ const output = {
   status: "Finite source-motivated family rejected on original; no new plaintext",
   provenance: {
     originalRunes: 12956, words: 2896,
-    sourceGrammar: "GP prime sums, solved p56 phi(prime), signed 2016 word-number-direction clue",
+    sourceGrammar: "GP prime sums, authentic solved p56 phi(prime), signed 2016 word-number-direction clue",
+    authenticSolvedP56Positive: { runes: 85, consumedPrimeSteps: authenticClock, passed: true },
     sourceInputs: [
       "resources/lp2-transcription.txt",
       "resources/liber-primus/lp2-corpus.json",
