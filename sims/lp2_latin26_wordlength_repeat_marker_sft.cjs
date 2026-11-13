@@ -32,10 +32,12 @@ assert.deepEqual(repeat,[86,21,23]);
 // nonrepeat injection can emit at most 25 distinct rune values. Exclude
 // page-first headers and K-marker repeats, then count observed outputs.
 const pageAlphabets=new Map();
+const physicalPage=p=>p>=50?p+1:p; // physical p50 has no runic transcription segment.
 for(const w of words)for(const r of w){
  if(!r.eligible||r.event)continue;
- if(!pageAlphabets.has(r.page))pageAlphabets.set(r.page,new Set());
- pageAlphabets.get(r.page).add(r.value);
+ const p=physicalPage(r.page);
+ if(!pageAlphabets.has(p))pageAlphabets.set(p,new Set());
+ pageAlphabets.get(p).add(r.value);
 }
 assert.equal(pageAlphabets.size,55);
 const pageDistinct=[...pageAlphabets.entries()].map(([p,set])=>[p,set.size]);
