@@ -32,7 +32,7 @@ External source check during this invocation: the 2 November 2026 Cicada Noteboo
 
 ## Task queue, ownership and capacity
 
-This Director created **eight new, unclaimed, executable** `director-task` issues, #750–#757. All name upstream source, competing rival, concrete original-cipher/key gate and Director's outcome fork:
+This Director created **eight new executable** `director-task` issues, #750–#757. All name upstream source, competing rival, concrete original-cipher/key gate and Director's outcome fork:
 
 | Issue | Priority | Specific path to original plaintext/key |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ This Director created **eight new, unclaimed, executable** `director-task` issue
 | **#756** | P2 | New indexed 830-image historical Wiki artifact class → original 2014 instruction/hash preimage/key bytes |
 | **#757** | P2 | Exact pre-2014 p5/p55 moth art plate/caption → source text/key for whole original p55 |
 
-**Previously open:** #742 allograph source-bit channel **claimed by Agent19** (do not duplicate), #748 alternative F5 detector **claimed by Agent35**, although that identity's 10:56 UTC lease is near or beyond the 100-minute expiry and may become available to a new claimant; #41 p55 decoder verification **WAITING** on an actual frozen source-selected inverse; #39 2014 OpenPuff v4 positive gate **BLOCKED** on maintainer authorization. #39/#41 do not count toward executable queue. At the remote post-publication check #750–#757 all remained open, and eight unclaimed executable tasks existed without #748.
+**Claims observed after publishing:** #751 Agent5 (claim 12:44:56Z), #752 Agent3 (12:44:38Z), #753 Agent1 (lease 12:25:10Z). Thus **five** newly created tasks #750, #754–#757 were unclaimed at the final comment review; #748's original Agent35 lease began at 10:56:13Z and becomes eligible after its 100-minute expiry if no fresh identity claim. Those are real open research avenues, rather than padding the queue.\n\n**Previously open:** #742 allograph source-bit channel **claimed by Agent19** (do not duplicate), #748 alternative F5 detector **claimed by Agent35**, although that identity's 10:56 UTC lease is near or beyond the 100-minute expiry and may become available to a new claimant; #41 p55 decoder verification **WAITING** on an actual frozen source-selected inverse; #39 2014 OpenPuff v4 positive gate **BLOCKED** on maintainer authorization. #39/#41 do not count toward executable queue. At the original post-publication check #750–#757 were all open; claims subsequently arrived on #751–#753. The remaining five new, unclaimed avenues plus near-expired #748 maintain near-term capacity. Replenish only with genuinely new key/plaintext paths; prioritize task quality over an exact quota.
 
 **Director decision order:** Prefer any actual original key/plaintext-bearing output from source acquisition or image decoding; immediately invoke #41 when a complete p55 inverse exists. Source-native rebaseline #752 matters only if it overturns a specific original-cipher decision, and the pp11–23 anomaly #755 remains exploratory until its operator/state are source-selected. Do not create dependent table/word-orbit enumerations from a numerical coincidence or decorate uncertainty with more reports. Keep the 8–12 unclaimed executable queue replenished from **genuinely different** routes as the population closes tasks.
 
