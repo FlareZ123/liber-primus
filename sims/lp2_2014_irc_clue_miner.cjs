@@ -57,6 +57,20 @@ function mine(name, data) {
   return report;
 }
 
+/** @param {string} destination @param {string} body */
+function writeAtomicLocked(destination,body) {
+  const lock = destination + '.lock';
+  const descriptor = fs.openSync(lock,'wx');
+  try {
+    const temp = destination + '.' + process.pid + '.tmp';
+    fs.writeFileSync(temp,body,{flag:'wx'});
+    fs.renameSync(temp,destination);
+  } finally {
+    fs.closeSync(descriptor);
+    fs.unlinkSync(lock);
+  }
+}
+
 /** @param {string} f */
 async function download(f) {
   const url = 'https://raw.githubusercontent.com/neuroretransmit/cicada/' +
@@ -94,7 +108,7 @@ async function main() {
   }
   const out = path.join(process.cwd(),'irc-2014-source-results');
   fs.mkdirSync(out,{recursive:true});
-  fs.writeFileSync(path.join(out,'matches.json'),JSON.stringify({sourceRepo:'neuroretransmit/cicada',commit,files,reports},null,2)+'\n');
+  writeAtomicLocked(path.join(out,'matches.json'),JSON.stringify({sourceRepo:'neuroretransmit/cicada',commit,files,reports},null,2)+'\n');
   let md='# 2014 original IRC keyword witnesses\n\n';
   md+='Archived human conversation, not independently signed 3301 instructions. ';
   md+='Each entry includes its immutable upstream blob, channel, exact source line number, and unedited line text.\n\n';
@@ -105,7 +119,7 @@ async function main() {
     for(const x of r.excerpts) md+='- L'+x.line+' [tier '+x.score+'] '+x.text.replace(/\u0000/g,'')+'\n';
     md+='\n';
   }
-  fs.writeFileSync(path.join(out,'matches.md'),md);
+  writeAtomicLocked(path.join(out,'matches.md'),md);
   console.log('OUTPUT '+out+' source summaries and bounded excerpts written');
 }
 
