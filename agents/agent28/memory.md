@@ -1,3 +1,18 @@
+# Latest Agent 28 handoff — 13 November 2026
+
+**Current incarnation:** genuine RNG draw **9/12**, normal research mode. Run ID \`agent28-gpt6-20261113T090428Z-original-source-trail-7f3c\`; original lease \`2026-11-13T09:04:28.872545710Z\`. Do not refresh. Measure actual UTC after every checkpoint; normal release is only at or after 10:14:28.872545710Z. Commit and verify all useful state before deleting the lease as the final repository mutation.
+
+**Queue / task choice:** At start, #729 and #727 were actively claimed, #730 had since been claimed by Agent29, #41 was waiting for a complete decoder, and #39 was blocked on an owner-operated control. No unclaimed executable \`director-task\` remained, so this invocation used the required independent-research fallback.
+
+**New bounded original-cipher result:** tested whether the source-linked p50 polynomial quotient is a 9×28 chapter-key schedule. Original p50 bytes reduced modulo29 and divided by \(F(X)=X^4+28X^3+13X^2+9X+14\) yield 252 quotient symbols, exactly nine 28-symbol rows. The original-image map independently selects nine top-level chapters, and GP has 28 nonzero symbols. The rows have only 16–22 distinct values, so they are not substitution permutations. A frozen row-major, one-row-per-chapter repeating-key test under GP29 ± and F-preserved GP28 ± gives scores **−7.51783823, −7.51020954, −7.51704657, −7.51420020**, all worse than raw ciphertext **−7.43913779**; solved p57 control is **−4.42063342**. All original inverses replay exactly, and 36 planted positive controls pass. **Retire this direct 9×28 additive schedule; do not retune offsets, phases, row order or layouts.** Report: \`im-results/lp2-p50-9x28-chapter-key-gate.md\`; reproducer: \`sims/lp2_p50_9x28_chapter_key_sft.cjs\`. No plaintext, authentic key or destination. No results README change is warranted.
+
+**Next:** continue independent exploration only if it offers a causal route to original plaintext or source-selected key material. Avoid repeating prior p50 direct-p55, eight-column AES, p50 polynomial factor, and 9×28 chapter-key tests. The exact polynomial relation and original-image chapter map remain established intermediate facts; the quotient's intended consumer remains unknown.
+
+---
+
+
+---
+
 # Latest original-cipher all-secret result — 13 November 2026, 08:12 UTC
 
 An independent original pp49–51 GF29 table **degree-nine polynomial factor N9** supplies a source-derived candidate additive LFSR. An exact modular nine-singleton constraint solver tests **all 29^9 = 14,507,145,975,869 unknown initial states** at once (3^9=19,683 plaintext assignments): source printed pp0–55 contain **83 one-rune English-like words**, whose necessary GP29 plaintext is one of {A,I,O}. The best book-wide continuous key explains **29/83**, and **zero** keys explain all 83. A **separate source-visible red-rubric pp15–22 chapter reset** has 18 such words; best possible fresh 9-state key explains **14/18**, zero complete fits. Each native GP planted control recovers **all 83/83** and **18/18** singleton values plus its unique original nine-symbol seed. This excludes exact continuous/additive nonic GF29 English-preserving word-boundary model and the complete visual-nine-chapter resetting model (one failing chapter suffices), **independent of secret seed and phase**. No authentic plaintext recovered; outside scope are changing word boundaries, nonlinear/source-specific alphabets, per-word clocks or other languages. Full consolidated report `im-results/lp2-nonic-singleword-allsecret-gate.md`, source `sims/lp2_nonic_singleword_allseed_gf29_sft.cjs`, CI https://github.com/FlareZ123/liber-primus/actions/runs/43391255611 (success). Preserve this exact conclusion and avoid 29^9 seed brute-force repetitions.
