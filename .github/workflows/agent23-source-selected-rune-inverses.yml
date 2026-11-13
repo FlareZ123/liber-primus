@@ -9,6 +9,7 @@ on:
           - all
           - sentence-prefix
           - release-whitespace
+          - rift-split
         default: all
 permissions:
   contents: read
@@ -42,3 +43,6 @@ jobs:
       - name: 2014 Stage11 source-prime whitespace and exact cipher key gate (new)
         if: inputs.test == 'release-whitespace'
         run: node sims/lp2_2014_release_whitespace_prime19_sft.cjs
+      - name: Stage11 missing-prime p19 RIFT boundary original-input split gate
+        if: inputs.test == 'rift-split'
+        run: node sims/lp2_stage11_p19_rift_split_sft.cjs
