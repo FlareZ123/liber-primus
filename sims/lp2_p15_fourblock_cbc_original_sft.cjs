@@ -135,7 +135,7 @@ for (const [name,D,invD] of [
   assert.deepEqual(transform(plaintext,D,invD,mode,true),target);
   const value=ioc(plaintext);
   candidates.push({matrix:name,mode,decodedIoC:value,
-    first20Translit:plaintext.slice(0,20).map(x=>gp.translit[x]).join("")});
+    first20GpSymbols:plaintext.slice(0,20).map(x=>gp.translit[x]).join("-")});
 }
 assert.equal(candidates.length,8);
 const max = Math.max(...candidates.map(v=>v.decodedIoC));
