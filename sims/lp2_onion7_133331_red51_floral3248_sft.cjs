@@ -168,6 +168,46 @@ primeVariants.sort((a,b)=>b.ioc-a.ioc);
 assert.ok(primeVariants.every(x=>x.ioc<0.045),
   'Prime_echo direct GP text-like discriminator unexpectedly passed');
 assert.ok(variants.every(v=>v.ioc<0.045),'Source candidate exceeded conservative prose-IoC discriminator');
+// Key-independent invariant: any secret repeat-464 coordinate-wise bijection
+// (including an arbitrary independent 29-symbol permutation at each of 464
+// positions) preserves equality at each coordinate between seven panels.
+function samePanelPosition(a){
+  let equal=0;
+  for(let j=0;j<464;j++){
+    const freq=Array(29).fill(0);
+    for(let panel=0;panel<7;panel++)freq[a[panel*464+j]]++;
+    for(const n of freq)equal+=n*(n-1)/2;
+  }
+  return equal;
+}
+const cipherPanelEqual=samePanelPosition(retained);
+assert.equal(cipherPanelEqual,347);
+const letters={A:24,B:17,C:5,D:23,E:18,F:0,G:6,H:8,I:10,J:11,K:5,
+  L:20,M:19,N:9,O:3,P:13,Q:5,R:4,S:15,T:16,U:1,V:1,W:7,X:14,Y:26,Z:15};
+const digraphs={TH:2,NG:21,EO:12,OE:22,AE:25,IA:27,EA:28};
+const text=get('resources/control/shakespeare_first300k.txt')
+  .toUpperCase().replace(/[^A-Z]/g,'');
+const english=[];
+for(let i=0;i<text.length;i++){
+  const pair=digraphs[text.slice(i,i+2)];
+  if(pair!==undefined){english.push(pair);i++;}
+  else english.push(letters[text[i]]);
+}
+const sameEnglish=[];
+for(let i=0;i+N<=english.length;i+=N){
+  sameEnglish.push(samePanelPosition(english.slice(i,i+N)));
+}
+assert.equal(sameEnglish.length,66);
+assert.ok(sameEnglish.every(x=>x>cipherPanelEqual));
+const panelsSecretBijective={
+  source:'7 consecutive 464-rune panels of title-stripped and red51-excluded floral register',
+  keyIndependentInvariant:'Cross-panel equality at same coordinate cannot change under any shared position-specific 29-rune bijection',
+  comparedPairs:21*464,exactOriginalEqualPairs:cipherPanelEqual,
+  reference:'66 nonoverlapping original-length GP-encoded Shakespeare source-control windows',
+  matchedControlCount:sameEnglish.length,
+  controlMin:Math.min(...sameEnglish),controlMax:Math.max(...sameEnglish),
+  decision:'Reject a direct shared arbitrary 464-position secret bijective alphabet map to native-GP Shakespeare-like prose in printed seven-panel framing.'
+};
 const output={
   source:'original LP2 p40-p55, two red rubrics, p53 red51; historical onion7 HTML 133/331',
   firstPage:40,lastPage:55,sourceTitle:title,sourceDiv:id,
@@ -177,6 +217,7 @@ const output={
   retainedPerPage,originalIoC:ioc(retained),syntheticNativePlantIoC:ioc(plant),
   positiveControls:variants.length,negativeOriginalVariants:variants.filter(v=>v.ioc<0.045).length,
   maxOriginalIoC:variants[0].ioc,minOriginalIoC:variants.at(-1).ioc,
+  panelsSecretBijective,
   primeEcho:{source:'2013 live-ISO prime_echo original 464-announcement program',
     prime463:announcedPrimes[462],prime464:announcedPrimes[463],
     originalVariants:primeVariants.length,
