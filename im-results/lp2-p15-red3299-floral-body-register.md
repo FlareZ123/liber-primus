@@ -114,6 +114,28 @@ On original source ciphertext, the full floral register has IoC **0.034462826608
 
 This retires precisely this **source-parameterized GP29-pair RSA cycle-walk**, independently of the previously excluded scalar additive key, Hill4, periodic row transpositions and prime-totient streams. It supplies neither LP2 plaintext nor evidence of an intended historical RSA step. [Standalone CommonJS original-source SFT](../sims/lp2_p15_red3299_rsa_cyclewalk_sft.cjs).
 
+## Twin-prime RSA four-rune cycle walk
+
+A second exactly source-numbered RSA-style proposal uses the unusual adjacent primes **3299** (p15's red marked square) and **3301** (Cicada's original identifier and the center of the same p15 Fibonacci-prime formula). They are twin primes. Taking **7 = 3301−3294** from the independently summed floral red GP-prime weights gives the fully specified small RSA tuple:
+
+`p=3299, q=3301, n=pq=10889999, φ(n)=10883400, e=7, d=3109543`,
+
+with `e·d ≡ 1 (modφ(n))`. The complete original **3316-rune floral span is 4×829**, and **829** is the p15 square's Fibonacci-indexed prime at position12 of the reconstructed outward spiral. This connects a source-visible block size, factor pair and exponent without changing any ciphertext. The **proposed operation** remains conjectural: no original 2014 instruction selects RSA under the tiny twin-prime modulus, 4-rune base29 packing, or format-preserving cycle walking. Those are three inferential steps.
+
+For four consecutive GP29 rune indices, pack a base29 integer in **0..707280**. Apply `x↦x^d mod n` or the sign-check `x↦x^e mod n`, repeating until the output returns to the **29⁴=707281**-element register. This is a reversible permutation by the RSA/CRT inverse and the first-return cycle-walk rule, even for nonunit residues. Test high-first and low-first within-block order, each direction, against the **entire unaltered floral register (829 four-rune blocks)**. As independent scope diagnostics apply the same four settings to **3299 titleless runes** (last three runes passed through literally) and **all 12956 original unsolved runes** (3239 blocks). This is **12** original-cipher tests with fixed parameters and no plaintext fitting.
+
+Results are decisively ciphertext-like:
+
+| Original target | Raw GP29 IoC | All four RSA-cyclewalk decoded IoCs |
+| --- | ---: | --- |
+| Full floral 3316 | 0.034462826608 | 0.034425892469, 0.034636216925, 0.034470832037, 0.034366397575 |
+| Titleless floral 3299 | 0.034464934244 | 0.034439199191, 0.034595815370, 0.034432765428, 0.034353538230 |
+| All unsolved 12956 | 0.034478397865 | 0.034479696682, 0.034451241854, 0.034467363873, 0.034486107359 |
+
+The solved original p57 is **0.062709966405**, with actual GP prose. Every proposed inverse re-encrypts the original data exactly, and both four-rune orientations recover **3316/3316** runes of an independently generated clear-p57 native-GP plant after encoding. The reference implementation uses integer-exact modular multiplication and asserts all 12 original values. [Single-run Node.js SFT](../sims/lp2_p15_twinprime_rsa4_cyclewalk_sft.cjs), validated in the existing [floral manual GitHub Actions run 43375719679](https://github.com/FlareZ123/liber-primus/actions/runs/43375719679).
+
+This closes the direct **3299×3301 / exponent7 / four-GP-rune RSA cycle-walk** as a native-prose decoder, including the complete page-15-linked 4×829 target. The exact arithmetic connections survive as clues; the inference that the author used RSA for those runes is unsupported. A new decoder or key source would require its own original selection.
+
 ## Source-fixed prime-totient plus 4×829 compound gate
 
 The original p15 red3299 is the **463rd prime**, and the next prime is Cicada's 3301. The solved LP2 p56 provides a genuine identity-changing GP29 inverse, subtraction of consecutive prime totients. One compact candidate combines only these source objects: begin the p56 prime-totient clock at **p463=3299**, consume each of the **3316** floral ciphertext symbols with no F skips, and optionally invert one of the two natural 4×829 row/column reading orders. To avoid guessing the layer order after seeing the output, freeze **both** possible orders between transposition and the additive cipher, both signs, plus the no-transpose baseline: **10** original-input decodings total. Do not add phase/window/key searches.
@@ -132,7 +154,7 @@ Their GP29 IoCs are **0.03442116199**, **0.03461329229**, **0.03443189654**, **0
 
 ## Decision
 
-Retain the **bidirectional original p15/floral relationships (red3299 ↔ titleless floral body3299; all floral red GP-prime sum3294 ↔ another unchanged p15 grid cell)**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient inverses, including the red3294-selected historical period-seven and power-seven modular compositions, are negative. The separately specified exponent-seven pairwise cycle walk modulo3299 also fails to recover GP29 prose, even though its entire 841-pair alphabet is exactly invertible. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
+Retain the **bidirectional original p15/floral relationships (red3299 ↔ titleless floral body3299; all floral red GP-prime sum3294 ↔ another unchanged p15 grid cell)**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient inverses, including the red3294-selected historical period-seven and power-seven modular compositions, are negative. The separately specified exponent-seven pairwise cycle walk modulo3299 also fails to recover GP29 prose, even though its entire 841-pair alphabet is exactly invertible. The source-numbered twin-prime 3299×3301 RSA four-rune cycle walk fails as well on the exact 4×829 floral register and on the full LP2 unsolved stream. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
 
 **Exact single runnable test file:** [`sims/lp2_p15_red3299_floral_register_sft.cjs`](../sims/lp2_p15_red3299_floral_register_sft.cjs). It reads `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`, rederives 3299 uniqueness, checks the full p15 mathematical formula, proves exact permutation, reproduces direct readout and 3000 null draws.
 
