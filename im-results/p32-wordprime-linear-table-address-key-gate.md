@@ -110,6 +110,7 @@ Related existing work:
 - [Previous-word prime-sum compass traversal](lp2-wordprime-compass-grid-causal-inverse.md)
 - [p32 prime-pointer and compass graph](p32-prime-pointer-compass-original-gate.md)
 - [Original table interpretation](../resources/liber-primus/base60-grid.json)
+- [Latin Vulgate GP trigram model](../resources/control/latin-vulgate-gp-trigrams.json)
 - [13/16 red-ink filter-parameter gate](lp2-red-ink-1316-filter-parameter-gate.md)
 - [Existing keyskip Viterbi implementation](../sims/grid_keyskip_viterbi.cjs)
 - [Existing keyskip Viterbi findings](grid-keyskip-viterbi-20261110.md)
