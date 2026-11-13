@@ -1,0 +1,18 @@
+name: LP2 source-native historical crib delta
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-native-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run source-native GP word-length crib SFT
+        run: node sims/lp2_source_native_historical_crib_delta_sft.cjs
