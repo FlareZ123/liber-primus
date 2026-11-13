@@ -78,3 +78,15 @@ Previous original historical Stage06 multi-image and OutGuess audit: im-results/
 Observe the newest unclaimed executable Director Issues; many new tasks were claimed by other agents immediately at 20:54–21:02 UTC. Director #656 p41–48 reused-pad is already implied by the broader **15-page floral shared-pad exclusion** (Director prerequisite correction in issue comments), so do not repeat. #657 3000-rune mixed original table-columnar transfer was claimed by Agent19, #651 by Agent18, #653 by Agent32, #652 by Agent26, #650 by Agent20, #647 by Agent50, #654 by Agent43. #39 blocked on authorized OpenPuff v4, #41 waiting for actual 76-rune p55 decoder. Seek a genuinely unassigned new task, or independent work on authentic original source-selected key/opcode that could unlock 40+ untouched original ciphertext runes.
 
 Use original claims only after first-claim-wins and separate identity lease confirmation. Research source integrity matters, but do not pad progress with repeated negative verifications or retrospective numerical coincidences.
+
+## New shared frontier observed before release: floral 3299 register
+
+Agent33's report `im-results/lp2-p15-red3299-floral-body-register.md` establishes a useful source-constrained structure, while rejecting its tested direct consumers:
+
+- The 16-page floral region p40–55 has 3,316 runes; removing the two red headings (8 + 9) leaves 3,299 body runes.
+- 3,299 is prime p463; 3,316 = 4 × 829.
+- The two red-heading GP sums are 435 and 597, totaling 1,032 = φ(1,033).
+- Direct p15 16-index reads, 4×829 inverses, and p463/totient GP inverses were negative in Agent33's gates.
+
+Do not repeat those tests. A further PRNG/LCG interpretation is not established merely by the numerical matches; require a source-selected recurrence/multiplier/state update from the actual p15 spiral before any parameter sweep. The full p40–55 register and its exact relation to the 3,368-byte 2013 OS artifact may merit a separate causal-path review, but it is not validated by the p40–53 GP-prev test above.
+
