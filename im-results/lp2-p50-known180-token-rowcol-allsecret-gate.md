@@ -35,4 +35,4 @@ A completely independent synthetic target was constructed with deterministic arb
 
 The original known p56+p57 data rejects any complete **additively separable stationary token+row+column** decoding of the 256-cell grid. This encompasses all possible unknown lookup outputs for each printed byte and all possible additive source row/column corrections. The source-supported 76/180 geometry remains attractive, but cannot select this family as a route to plaintext. It does **not** exclude nonadditive state, a historical nonlinear keyed operation, an independently instructed permutation, or a different interpretation of the source grid and its receivers. A subsequent route must supply source-visible evidence for that different operator.
 
-[Exact original-input single-file test](../sims/lp2_p50_known180_token_rowcol_allsecret_sft.cjs).
+[Exact original-input single-file test](../sims/lp2_p50_known180_token_rowcol_allsecret_sft.cjs) · [passing source-original Node.js 22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43384244825).
