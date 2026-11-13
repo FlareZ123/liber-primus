@@ -31,6 +31,20 @@ assert.equal(interior.length, 180, '30 x 6 inner grid');
 assert.equal(terminal.length, 180, '85 solved p56 + 95 cleartext p57 original symbols');
 assert.equal(grid.byte_rows.length, 32);
 assert.equal(grid.byte_rows[0].length, 8);
+const p56Cipher = corpus.pages.find((p) => p.page === 56).indices;
+const p57Clear = corpus.pages.find((p) => p.page === 57).indices;
+const firstPrimes = [];
+for (let n = 2; firstPrimes.length < 84; n += 1) if (isPrime(n)) firstPrimes.push(n);
+const native56 = [];
+let phiClock = 0;
+for (let i = 0; i < p56Cipher.length; i += 1) {
+  // Authentic p56 AN END cipher: single unchanged literal-F interrupter at 56.
+  native56.push(i === 56 ? 0 : m29(p56Cipher[i] - (firstPrimes[phiClock++] - 1)));
+}
+assert.equal(phiClock, 84);
+assert.deepEqual(native56.slice(0, 5), [24, 9, 18, 9, 23], 'solved AN END prefix');
+const nativeTarget = native56.concat(p57Clear);
+assert.equal(nativeTarget.length, 180);
 
 /** @param {number} x @returns {number} */
 const m29 = (x) => ((x % 29) + 29) % 29;
@@ -53,7 +67,11 @@ function maxRowMatches(produced, wanted) {
 const out = {
   source: '2013 documented command primes jumps 71 -> 1229',
   gap: { first: missing[0], last: missing.at(-1), count: missing.length },
-  source_register: { original_grid_inner: interior.length, solved_terminal_runes: terminal.length },
+  source_register: {
+    original_grid_inner: interior.length, original_terminal_glyphs: terminal.length,
+    p56_authentic_plaintext_clock: phiClock,
+    p56_native_prefix: native56.slice(0, 5),
+  },
   readings: [],
 };
 for (const reverseMissing of [false, true]) {
@@ -73,6 +91,8 @@ for (const reverseMissing of [false, true]) {
         operation: name,
         fixed_matches: proposed.filter((v, i) => v === terminal[i]).length,
         best_arbitrary_stationary_row_decoder: maxRowMatches(proposed, terminal),
+        native_fixed_matches: proposed.filter((v, i) => v === nativeTarget[i]).length,
+        best_arbitrary_stationary_native_decoder: maxRowMatches(proposed, nativeTarget),
       });
     }
   }
