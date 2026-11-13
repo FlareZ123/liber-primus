@@ -26,6 +26,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq libjpeg-dev
           gcc -O2 -std=c99 -Wall -Wextra -o /tmp/lp2-f5-glyph-reader sims/lp2_f5_glyph_dct_reader.c -ljpeg
+          gcc -O2 -std=c99 -Wall -Wextra -o /tmp/lp2-f5-coeff-apply sims/lp2_f5_coeff_apply.c -ljpeg
           go install github.com/0verkilll/f5/cmd/f5@v1.0.0
           (cd sims/f5_detector_calibration && go build -mod=mod -o /tmp/lp2-f5-native-embed native_f5_embed.go)
           python3 -m pip install --quiet numpy filelock
@@ -35,6 +36,7 @@ jobs:
             --sources resources/liber-primus \
             --reader /tmp/lp2-f5-glyph-reader \
             --embedder /tmp/lp2-f5-native-embed \
+            --apply-grayscale /tmp/lp2-f5-coeff-apply \
             --f5 "$(go env GOPATH)/bin/f5" \
             --report im-results/lp2-f5-glyph-atlas-ci/summary.json
       - uses: actions/upload-artifact@v4
