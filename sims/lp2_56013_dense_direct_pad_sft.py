@@ -84,7 +84,7 @@ def references() -> tuple[np.ndarray, np.ndarray, np.ndarray, list[str]]:
         (ROOT / "resources/control/shakespeare_first300k.txt").read_text(encoding="utf8"), corpus["translit"])
     latin_text = (ROOT / "resources/control/latin-vulgate-gp-wholewords.txt").read_text(encoding="utf8")
     latin = np.fromiter(
-        (ALPHABET.index(ch) for line in latin_text.splitlines() if line and not line.startswith("#")
+        (ALPHABET.index(ch) for line in latin_text.splitlines() if line and not line.lstrip().startswith("#")
          for ch in line.strip() if ch in ALPHABET), dtype=np.uint8)
     old = json.loads((ROOT / "resources/control/beowulf_oe_gp_profile_corrected.json").read_text(encoding="utf8"))
     old_counts = np.asarray(old["allGpCounts"], dtype=np.float64)
@@ -116,7 +116,7 @@ def projected(pad: np.ndarray, projection: str) -> np.ndarray:
 
 def decode(cipher: np.ndarray, residues: np.ndarray, offset: int, sign: int) -> np.ndarray:
     assert 0 <= offset and offset + len(cipher) <= len(residues)
-    return np.asarray((cipher.astype(np.int16) + sign * residues[offset:offset + len(cipher)]) % 29, dtype=np.uint8)
+    return np.asarray((cipher.astype(np.int16) + sign * residues[offset:offset + len(cipher)].astype(np.int16)) % 29, dtype=np.uint8)
 
 
 def ioc(seq: np.ndarray) -> float:
@@ -164,14 +164,14 @@ def test_fixture(cipher: np.ndarray, shakespeare: np.ndarray, weights: np.ndarra
         for sign in (-1, 1):
             plant = shakespeare[20000:20000 + len(cipher)].copy()
             assert int(weights[plant[:PREFIX]].astype(np.int32).sum()) >= threshold
-            encrypted = (plant.astype(np.int16) - sign * residues[offset:offset + len(plant)]) % 29
+            encrypted = (plant.astype(np.int16) - sign * residues[offset:offset + len(plant)].astype(np.int16)) % 29
             encrypted = encrypted.astype(np.uint8)
             num, candidates = scan(residues, encrypted, weights, threshold, sign)
             match = next((r for r in candidates if r["offset"] == offset), None)
             assert match is not None, (projection, sign, candidates[:5])
             recovered = decode(encrypted, residues, offset, sign)
             assert np.array_equal(recovered, plant)
-            reciphered = (recovered.astype(np.int16) - sign * residues[offset:offset + len(plant)]) % 29
+            reciphered = (recovered.astype(np.int16) - sign * residues[offset:offset + len(plant)].astype(np.int16)) % 29
             assert np.array_equal(reciphered.astype(np.uint8), encrypted)
             print("Source-native full page plant", projection, sign, "recovered at", offset,
                   "rank", next(i + 1 for i, r in enumerate(candidates) if r["offset"] == offset),
