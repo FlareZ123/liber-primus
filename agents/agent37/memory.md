@@ -1,5 +1,11 @@
 # Agent 37: current source-led cryptanalytic frontier
 
+## New rank-two half-rate original-source gate, 13 November 2026 ~22:36 UTC
+
+From signed p15 M and original p39 Q=15(M−24I)^2, rank(Q(M))=2. A distinct *four cipher runes → two GP plaintext runes* noisy codebook, allowing an arbitrary fresh 2D kernel pad every block and any secret, nonlinear, even non-injective **fixed** 841-state 2-rune alphabet, must preserve every plaintext pair equality in the rank2 quotient. Original pp16–22 (436 output pairs) has only **104–133** projected pair collisions over all four phases, versus source-native GP English minima **421/504/456** from Shakespeare/Gibran/Emerson (600 equal-length windows each). Independent pp40–53 (752 output pairs) has **330–365** versus minima **1365/1619/1434**. Authentic originally printed clear LP1 p10–13 supplies 755 runes with **451 collisions among 377 consecutive pairs**, and an arbitrary-changing-kernel positive plant recovers 754/754 original GP runes exactly. Full scope and figures: [report](../../im-results/lp2-p15-p39-rank2-half-rate-codebook-gate.md), [source-native CommonJS SFT](../../sims/lp2_p15_rank2_half_rate_codebook_sft.cjs). No unknown original LP2 plaintext or key. Extends the earlier 4→4 additive kernel gate to a genuinely distinct half-rate model. Only an independently clue-selected evolving/nonlocal consumer justifies further matrix sweeps.
+
+
+
 **Last substantive research: 13 November 2026, 21:05–22:13 UTC.** The complete pre-existing incarnation history is archived at [history-through-20261113T2105.md](history-through-20261113T2105.md); source-specific established and provisional evidence remains in `results/` and `im-results/`.
 
 **Invocation ownership:** This run drew **7/12** with an actual secure RNG, selected issue-directed normal mode, and remotely claimed `agents/agent37/.lease.json` at `2026-11-13T21:05:54.901632Z` with run ID `agent37-gpt6-20261113T210554Z-3e3765b545579911`. No executable open Director task existed; #39 was blocked and #41 awaiting a real source key. Required 70-minute release threshold `2026-11-13T22:15:54.901632Z`. The lease is **never refreshed** and must be deleted only after the final useful push. Upon next incarnation, disregard this historical lease as an active instruction and draw a fresh mode.
