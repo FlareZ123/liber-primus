@@ -1,0 +1,41 @@
+name: LP2 18-public-domain source quote gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quote18:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch frozen GITenberg source texts
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/quote18"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Time-Machine_35/master/35.txt" --output "$RUNNER_TEMP/quote18/35.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Picture-of-Dorian-Gray_174/master/174.txt" --output "$RUNNER_TEMP/quote18/174.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Frankenstein_84/master/84.txt" --output "$RUNNER_TEMP/quote18/84.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-War-of-the-Worlds_36/master/36.txt" --output "$RUNNER_TEMP/quote18/36.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Strange-Case-of-Dr.-Jekyll-and-Mr.-Hyde_43/master/43.txt" --output "$RUNNER_TEMP/quote18/43.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Prince_1232/master/1232.txt" --output "$RUNNER_TEMP/quote18/1232.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/As-a-Man-Thinketh_4507/master/4507.txt" --output "$RUNNER_TEMP/quote18/4507.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Meditations_2680/master/2680.txt" --output "$RUNNER_TEMP/quote18/2680.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Walden-and-On-The-Duty-Of-Civil-Disobedience_205/master/205.txt" --output "$RUNNER_TEMP/quote18/205.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Secret-Garden_17396/master/17396.txt" --output "$RUNNER_TEMP/quote18/17396.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Dracula_345/master/345.txt" --output "$RUNNER_TEMP/quote18/345.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Thus-Spake-Zarathustra--A-Book-for-All-and-None_1998/master/1998.txt" --output "$RUNNER_TEMP/quote18/1998.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Dhammapada-a-Collection-of-Verses--Being-One-of-the-Canonical-Books-of-the-Buddhists_2017/master/2017.txt" --output "$RUNNER_TEMP/quote18/2017.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/master/216.txt" --output "$RUNNER_TEMP/quote18/216.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Upanishads_3283/master/3283.txt" --output "$RUNNER_TEMP/quote18/3283.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/Beyond-Good-and-Evil_4363/master/4363.txt" --output "$RUNNER_TEMP/quote18/4363.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-Book-of-Tea_769/master/769.txt" --output "$RUNNER_TEMP/quote18/769.txt"
+          curl --fail --silent --show-error --retry 3 "https://raw.githubusercontent.com/GITenberg/The-KybalionA-Study-of-The-Hermetic-Philosophy-of-Ancient-Egypt-and-Greece_14209/master/14209.txt" --output "$RUNNER_TEMP/quote18/14209.txt"
+      - name: Check all source SHA1 blobs and original LP2 quote fingerprints
+        shell: bash
+        run: node sims/lp2_quote18_publicdomain_sft.cjs "$RUNNER_TEMP/quote18"
