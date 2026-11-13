@@ -40,6 +40,19 @@ for (let first = 0; first + 16 <= 56; first += 1) {
 }
 assert.deepEqual(windows.filter((w) => w.body === 3299).map((w) => w.first), [40]);
 
+
+// Two author-visible red headings separate the floral pages into chapters.
+// Their GP-prime sums jointly equal the totient of historical magic prime 1033.
+const headingPrimeSums = [40, 54].map((page) =>
+  corpus.pages[page].indices.slice(0, redStart[page])
+    .reduce((sum, rune) => sum + corpus.prime[rune], 0));
+assert.deepEqual(headingPrimeSums, [435, 597]);
+assert.equal(headingPrimeSums[0] + headingPrimeSums[1], 1032);
+assert.equal(corpus.pages.slice(40, 54).reduce((a, p) => a + p.runic_count, 0) -
+  redStart[40], 3000);
+assert.equal(corpus.pages.slice(54, 56).reduce((a, p) => a + p.runic_count, 0) -
+  redStart[54], 299);
+
 const fibonacciDistinct = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
 const printedSpiral = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516];
 function isPrime(n) {
@@ -51,6 +64,8 @@ const primeList = Array.from({ length: 7817 }, (_, i) => i + 1).filter(isPrime);
 for (let i = 0; i < 16; i += 1) {
   assert.equal(printedSpiral[i], Math.abs(3301 - primeList[fibonacciDistinct[i]]));
 }
+assert.equal(primeList[173], 1033);
+assert.equal(primeList[173] - 1, 1032);
 const modulus = body.length;
 assert.equal(printedSpiral[0], modulus);
 assert.ok(isPrime(modulus));
@@ -236,6 +251,9 @@ console.log(JSON.stringify({
   prime463IsRed3299Rank: true,
   fourTimes829EqualsOriginalFloralLength: true,
   naturalFourBy829Readouts: fourBy829,
+  floralRedHeadingPrimeSums: headingPrimeSums,
+  historicalPrime1033Totient: 1032,
+  nativeFloralChapterBodyLengths: [3000, 299],
   p463PrimeTotientAndFourColumnInverses: compound,
   sourceP57SolvedIoC: indexCoincidence(corpus.pages[57].indices),
   primitiveRoot: 2,
