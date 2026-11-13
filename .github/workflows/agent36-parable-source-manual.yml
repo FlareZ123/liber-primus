@@ -19,3 +19,7 @@ jobs:
         run: node --check sims/lp2_p55_dh5_whole_base29_to761_sft.cjs
       - name: Test full original-p55 DH orbit serialization
         run: node sims/lp2_p55_dh5_whole_base29_to761_sft.cjs
+      - name: Check source-mapped 43-to-43 inverse syntax
+        run: node --check sims/lp2_p32_route43_p55_interior_peel_sft.cjs
+      - name: Test original p32 compass key on p55 inner runes
+        run: node sims/lp2_p32_route43_p55_interior_peel_sft.cjs
