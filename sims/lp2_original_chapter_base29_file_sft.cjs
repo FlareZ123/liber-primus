@@ -1,10 +1,12 @@
 'use strict';
 
 /**
- * Source-selected literal BASE29 -> compressed-file gate, original LP2.
+ * Direct GP29 -> byte-container gate on the complete unknown book,
+ * original image-selected visual chapters, and rune-bearing pages.
  *
- * Uses original physical pages and their visible red-heading chapter cuts.
- * This is a direct format test, not a guess of passwords, clocks or offsets.
+ * Tests only the canonical positional GP29 integer in most-significant-first
+ * order. Both the fixed mathematical width and minimal big-endian bytes are
+ * checked. No offsets, alternate alphabets, reversals, keys or transforms.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -12,37 +14,62 @@ const zlib = require('node:zlib');
 
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
 const chapters = [
-  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
-  [27, 32], [33, 39], [40, 53], [54, 55]
+  { pages: [0, 2], runes: 729, fixedBytes: 443, minimalBytes: 443,
+    fixedPrefix: '1759b774a590ef75', minimalPrefix: '1759b774a590ef75' },
+  { pages: [3, 7], runes: 1145, fixedBytes: 696, minimalBytes: 696,
+    fixedPrefix: '03ae7c53329e6a19', minimalPrefix: '03ae7c53329e6a19' },
+  { pages: [8, 14], runes: 1729, fixedBytes: 1050, minimalBytes: 1050,
+    fixedPrefix: '568b6382e9e32b9c', minimalPrefix: '568b6382e9e32b9c' },
+  { pages: [15, 22], runes: 1903, fixedBytes: 1156, minimalBytes: 1155,
+    fixedPrefix: '000dea61948244b3', minimalPrefix: '0dea61948244b36b' },
+  { pages: [23, 26], runes: 1021, fixedBytes: 620, minimalBytes: 620,
+    fixedPrefix: '1032d4e90101414a', minimalPrefix: '1032d4e90101414a' },
+  { pages: [27, 32], runes: 1433, fixedBytes: 871, minimalBytes: 871,
+    fixedPrefix: '01e1f098bfb6f84a', minimalPrefix: '01e1f098bfb6f84a' },
+  { pages: [33, 39], runes: 1680, fixedBytes: 1021, minimalBytes: 1021,
+    fixedPrefix: '0224e7f776075c83', minimalPrefix: '0224e7f776075c83' },
+  { pages: [40, 53], runes: 3008, fixedBytes: 1827, minimalBytes: 1826,
+    fixedPrefix: '0052876495b72a94', minimalPrefix: '52876495b72a948c' },
+  { pages: [54, 55], runes: 308, fixedBytes: 188, minimalBytes: 188,
+    fixedPrefix: '010490bde021d22c', minimalPrefix: '010490bde021d22c' }
 ];
-const chapterLengths = [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308];
 
-/**
- * Interpret GP29 digits as the historical source's conventional positional
- * integer and render the complete integer at the fixed mathematical width.
- *
- * @param {number[]} digits GP indices in [0,28].
- * @returns {Buffer}
- */
-function sourceBase29Bytes(digits) {
+function integerFromDigits(digits) {
   let integer = 0n;
   for (const digit of digits) {
     assert(Number.isInteger(digit) && digit >= 0 && digit < 29);
     integer = integer * 29n + BigInt(digit);
   }
+  return integer;
+}
+
+/** Fixed mathematical width: ceil(n*log2(29)/8), including leading zero bytes. */
+function sourceBase29Bytes(digits) {
+  const integer = integerFromDigits(digits);
   const width = Math.ceil(digits.length * Math.log2(29) / 8);
   const hex = integer.toString(16).padStart(width * 2, '0');
-  assert(hex.length === width * 2);
+  assert.equal(hex.length, width * 2);
   return Buffer.from(hex, 'hex');
 }
 
-/**
- * Encode a byte string into exactly runeCount GP29 digits or fail if the
- * integer exceeds the length-constrained radix-29 capacity.
- * @param {Buffer} bytes
- * @param {number} runeCount
- * @returns {number[]}
- */
+/** Canonical minimal big-endian byte representation of the same integer. */
+function minimalBase29Bytes(digits) {
+  let hex = integerFromDigits(digits).toString(16);
+  if (hex.length % 2) hex = '0' + hex;
+  return Buffer.from(hex, 'hex');
+}
+
+function bytesToMinimalBase29(bytes) {
+  let integer = BigInt('0x' + bytes.toString('hex'));
+  if (integer === 0n) return [0];
+  const digits = [];
+  while (integer > 0n) {
+    digits.push(Number(integer % 29n));
+    integer /= 29n;
+  }
+  return digits.reverse();
+}
+
 function bytesToSourceBase29(bytes, runeCount) {
   let integer = BigInt('0x' + bytes.toString('hex'));
   const digits = Array(runeCount).fill(0);
@@ -50,11 +77,10 @@ function bytesToSourceBase29(bytes, runeCount) {
     digits[index] = Number(integer % 29n);
     integer /= 29n;
   }
-  assert.equal(integer, 0n, 'Plant exceeds exactly length-limited GP29 transport');
+  assert.equal(integer, 0n, 'Plant exceeds exact length-limited GP29 transport');
   return digits;
 }
 
-/** @param {Buffer} bytes */
 function recognizedStream(bytes) {
   const hex = bytes.subarray(0, 8).toString('hex');
   if (/^425a683[1-9]/.test(hex)) return 'bzip2';
@@ -68,37 +94,80 @@ function recognizedStream(bytes) {
 
 const unsolved = corpus.pages.filter(p => p.page <= 55 && p.indices.length !== 0);
 assert.equal(unsolved.length, 55);
-assert.equal(unsolved.reduce((sum, p) => sum + p.indices.length, 0), 12956);
+const wholeDigits = unsolved.flatMap(p => p.indices);
+assert.equal(wholeDigits.length, 12956);
 
+// Confirm that the rune-index corpus and the canonical text transcription
+// carry the same 12,956-symbol source sequence.
+const runeToIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const transcription = fs.readFileSync('resources/lp2-transcription.txt', 'utf8');
+const transcriptDigits = [...transcription.split('%').slice(0, 55).join('%')]
+  .filter(rune => runeToIndex.has(rune))
+  .map(rune => runeToIndex.get(rune));
+assert.deepEqual(transcriptDigits, wholeDigits);
+
+// Positive control for fixed-width and minimal GP29 byte transports.
 const sample = Buffer.from('THIS IS A KNOWN ENGLISH TEXT FOR THE GZIP-POSITIVE SOURCE RADIX TWENTYNINE TEST.');
 const zipped = zlib.gzipSync(sample);
-const width = Math.ceil(chapterLengths[0] * Math.log2(29) / 8);
-const plantedBytes = Buffer.alloc(width);
-zipped.copy(plantedBytes);
-const plantedDigits = bytesToSourceBase29(plantedBytes, chapterLengths[0]);
-assert.equal(plantedDigits.length, chapterLengths[0]);
-assert.deepEqual(sourceBase29Bytes(plantedDigits), plantedBytes);
-assert.equal(recognizedStream(sourceBase29Bytes(plantedDigits)), 'gzip');
-assert.deepEqual(zlib.gunzipSync(sourceBase29Bytes(plantedDigits)), sample);
-console.log('POSITIVE CONTROL: exact 729-rune original-chapter-width BASE29 transport reproduces authentic complete gzip payload');
+const chapterWidth = Math.ceil(729 * Math.log2(29) / 8);
+const plantedBlock = Buffer.alloc(chapterWidth);
+zipped.copy(plantedBlock);
+const plantedFixedDigits = bytesToSourceBase29(plantedBlock, 729);
+assert.deepEqual(sourceBase29Bytes(plantedFixedDigits), plantedBlock);
+assert.equal(recognizedStream(sourceBase29Bytes(plantedFixedDigits)), 'gzip');
+assert.deepEqual(zlib.gunzipSync(sourceBase29Bytes(plantedFixedDigits)), sample);
 
+const plantedMinimalDigits = bytesToMinimalBase29(zipped);
+assert.deepEqual(minimalBase29Bytes(plantedMinimalDigits), zipped);
+assert.equal(recognizedStream(minimalBase29Bytes(plantedMinimalDigits)), 'gzip');
+assert.deepEqual(zlib.gunzipSync(minimalBase29Bytes(plantedMinimalDigits)), sample);
+console.log('POSITIVE CONTROLS: fixed-width and minimal GP29 transports both recover and decompress an authentic gzip member');
+
+// Whole book as one positional GP29 integer.
+const wholeFixed = sourceBase29Bytes(wholeDigits);
+const wholeMinimal = minimalBase29Bytes(wholeDigits);
+assert.deepEqual(wholeFixed, wholeMinimal);
+assert.equal(wholeFixed.length, 7868);
+assert.equal(wholeMinimal.subarray(0, 8).toString('hex'), '08734843a55193dc');
 const hits = [];
-for (let i = 0; i < chapters.length; i++) {
-  const [start, end] = chapters[i];
-  const digits = corpus.pages.slice(start, end + 1).flatMap(p => p.indices);
-  assert.equal(digits.length, chapterLengths[i]);
-  const bytes = sourceBase29Bytes(digits);
+for (const [width, bytes] of [['fixed', wholeFixed], ['minimal', wholeMinimal]]) {
   const type = recognizedStream(bytes);
-  if (type !== null) hits.push({ span: [start, end], type });
-  console.log('CHAPTER', start + '-' + end, 'runes', digits.length,
-    'bytes', bytes.length, 'prefix', bytes.subarray(0, 8).toString('hex'),
-    'format', type || 'none');
+  if (type !== null) hits.push({ object: 'whole-book', width, type });
+}
+console.log('WHOLE BOOK: runes', wholeDigits.length, 'bytes', wholeMinimal.length,
+  'prefix', wholeMinimal.subarray(0, 8).toString('hex'), 'format',
+  recognizedStream(wholeMinimal) || 'none');
+
+// Nine original image-selected visual chapters, in both byte-width conventions.
+for (const chapter of chapters) {
+  const digits = corpus.pages
+    .filter(p => p.page >= chapter.pages[0] && p.page <= chapter.pages[1] && p.indices.length !== 0)
+    .flatMap(p => p.indices);
+  assert.equal(digits.length, chapter.runes);
+  const fixed = sourceBase29Bytes(digits);
+  const minimal = minimalBase29Bytes(digits);
+  let leadingZeroBytes = 0;
+  while (leadingZeroBytes < fixed.length && fixed[leadingZeroBytes] === 0) leadingZeroBytes++;
+  assert.deepEqual(fixed.subarray(leadingZeroBytes), minimal);
+  assert.equal(fixed.length, chapter.fixedBytes);
+  assert.equal(minimal.length, chapter.minimalBytes);
+  assert.equal(fixed.subarray(0, 8).toString('hex'), chapter.fixedPrefix);
+  assert.equal(minimal.subarray(0, 8).toString('hex'), chapter.minimalPrefix);
+  for (const [width, bytes] of [['fixed', fixed], ['minimal', minimal]]) {
+    const type = recognizedStream(bytes);
+    if (type !== null) hits.push({ pages: chapter.pages, width, type });
+  }
+  console.log('CHAPTER', chapter.pages[0] + '-' + chapter.pages[1],
+    'runes', digits.length, 'fixed', fixed.length, fixed.subarray(0, 8).toString('hex'),
+    'minimal', minimal.length, minimal.subarray(0, 8).toString('hex'),
+    'formats', recognizedStream(fixed) || 'none', '/', recognizedStream(minimal) || 'none');
 }
 
+// Preserve the prior independent page-boundary gate.
 for (const page of unsolved) {
   const type = recognizedStream(sourceBase29Bytes(page.indices));
   if (type !== null) hits.push({ page: page.page, type });
 }
 assert.deepEqual(hits, []);
-console.log('PASS: 9 intact source-visible chapters and all 55 rune-bearing original unsolved pages: 0 direct compressed/file signatures');
-console.log('SCOPE: conventional most-significant-first complete radix-29 byte serialization only; no transformed or encrypted intermediates');
+console.log('PASS: whole book, 9 visual chapters in fixed/minimal forms, and all 55 rune-bearing pages: 0 direct file/container signatures');
+console.log('SCOPE: direct canonical GP29 positional integer transport only; no encrypted, transformed, reversed or offset-start payloads');
