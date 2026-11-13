@@ -9,6 +9,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Test p55 exterior32 keys and grid row selectors against AES containers
+        run: node sims/p55_exterior32_grid_aes_sft.cjs
       - name: Test original all-20-word shed75 key against corrected p55 body
         run: node sims/p55_p57_title20_shed75_source_sft.cjs
       - name: Test original p57 19-word shed76 key and table perimeter gate
@@ -27,5 +29,3 @@ jobs:
         run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
       - name: Test source GP prime512 run-length direct hash preimage
         run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
-      - name: Test p55 exterior32 keys and grid row selectors against AES containers
-        run: node sims/p55_exterior32_grid_aes_sft.cjs
