@@ -1,0 +1,21 @@
+name: Original LP2 word-circumference public-key inverse SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Source original and positive-control run
+        run: node sims/lp2_word_circumference_publickey_original_sft.cjs
