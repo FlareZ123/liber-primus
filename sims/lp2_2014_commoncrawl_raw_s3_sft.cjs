@@ -35,7 +35,12 @@ function row(s){
 /** @param {string} s */
 function cdx(s) {
   const pos=s.indexOf('{');
-  return pos>=0?JSON.parse(s.slice(pos)):null;
+  if(pos<0)return null;
+  const meta=s.slice(0,pos).trim().split(/\s+/);
+  const result=JSON.parse(s.slice(pos));
+  result.urlkey ||= meta[0];
+  result.timestamp ||= meta[1];
+  return result;
 }
 /** @param {string} file @param {string} contents */
 function atomic(file,contents){
@@ -51,6 +56,8 @@ function selftest(){
   assert.deepEqual(r,{key:'org,shadow-code)/onion7.zip',object:'cdx-00042.gz',offset:12345,length:30000});
   assert.equal(cdx('org,shadow-code)/onion7.zip 20140502123456 {"urlkey":"org,shadow-code)/onion7.zip","status":"200"}').status,'200');
   assert.equal(cdx('abc'),null);
+  assert.equal(cdx('org,shadow-code)/onion7.zip 20140502145300 {"url":"https://shadow-code.org/onion7.zip","status":"200"}').urlkey,
+    'org,shadow-code)/onion7.zip');
   const b=zlib.gzipSync(Buffer.from('hello'));
   assert.equal(zlib.gunzipSync(b).toString(),'hello');
   assert.equal(TARGETS.length,3);
