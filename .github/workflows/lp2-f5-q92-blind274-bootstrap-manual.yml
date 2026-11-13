@@ -44,44 +44,15 @@ jobs:
           /tmp/pev274/source/src/jet --help | sed -n '1,65p'
           /tmp/pev274/source/src/jet -s /tmp/pev274/source/test/img_1009.jpg -o /tmp/pev274/fixture.fea
           python3 -c "p='/tmp/pev274/fixture.fea'; a=open(p).read().split(); print('OFFICIAL_FIXTURE_DIMS',len(a),a[-3:]); assert len(a) >= 274"
-      - name: Genuine F5 grayscale and RGB roundtrip with three distinct encoders
+      - name: Install pinned F5 control executable
         run: |
-          set -eu
           go install github.com/0verkilll/f5/cmd/f5@v1.0.0
-          F5="$(go env GOPATH)/bin/f5"
-          "$F5" version
-          mkdir -p /tmp/f5bootstrap
-          for N in 256 1024 4096; do
-            python3 -c "import hashlib,sys; n=int(sys.argv[1]); q=b''.join(hashlib.sha256(b'LP2-BLIND274-Q92-F5'+i.to_bytes(4,'big')).digest() for i in range((n+31)//32)); open('/tmp/f5bootstrap/payload'+str(n)+'.bin','wb').write(q[:n])" "$N"
-          done
-          for P in 62 71; do
-            for N in 256 1024 4096; do
-              for MODE in embed embed-x embed-jar; do
-                OUT="/tmp/f5bootstrap/p${P}-n${N}-${MODE}.jpg"
-                EXT="/tmp/f5bootstrap/p${P}-n${N}-${MODE}.out"
-                if [ "$MODE" = "embed-jar" ]; then
-                  "$F5" "$MODE" "resources/liber-primus/${P}.jpg" -q 92 -p LP2BLIND274CONTROL -in "/tmp/f5bootstrap/payload${N}.bin" -o "$OUT" || true
-                else
-                  "$F5" "$MODE" "resources/liber-primus/${P}.jpg" -p LP2BLIND274CONTROL -in "/tmp/f5bootstrap/payload${N}.bin" -o "$OUT" || true
-                fi
-                if [ -f "$OUT" ]; then
-                  "$F5" extract "$OUT" -p LP2BLIND274CONTROL -o "$EXT" || true
-                fi
-                if [ -f "$EXT" ] && cmp -s "/tmp/f5bootstrap/payload${N}.bin" "$EXT"; then
-                  echo "CONTROL_PASS page=$P bytes=$N encoder=$MODE"
-                else
-                  echo "CONTROL_FAIL page=$P bytes=$N encoder=$MODE"
-                fi
-                if [ -f "$OUT" ]; then
-                  python3 -c "import sys; b=open(sys.argv[1],'rb').read(); q=next(((int.from_bytes(b[i+2:i+4],'big'),b[i+9]) for i in range(len(b)-10) if b[i:i+2] in [b'\\xff\\xc0',b'\\xff\\xc2']),'absent'); print('CARRIER_SOF',sys.argv[1],q)" "$OUT"
-                fi
-              done
-            done
-          done
+          "$(go env GOPATH)/bin/f5" version
       - name: Matrix-k controlled F5 real grayscale 256-4096B diagnostic
         run: |
           cd sims/f5_detector_calibration
-          go run gray_roundtrip_sft.go ../../resources/liber-primus/62.jpg ../../resources/liber-primus/71.jpg "$(go env GOPATH)/bin/f5"
+          go mod download
+          go run -mod=mod gray_roundtrip_sft.go ../../resources/liber-primus/62.jpg ../../resources/liber-primus/71.jpg "$(go env GOPATH)/bin/f5"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
