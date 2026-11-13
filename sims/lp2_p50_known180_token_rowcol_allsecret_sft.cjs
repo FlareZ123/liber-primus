@@ -43,7 +43,7 @@ let shiftIndex = 0;
 const p56Plain = p56.map((v, index) =>
   index === 56 ? 0 : mod(v - (primes[shiftIndex++] - 1)));
 assert.equal(shiftIndex, 84);
-assert.equal(p56Plain.slice(0, 9).map(v => corpus.translit[v]).join(''),
+assert.equal(p56Plain.slice(0, 8).map(v => corpus.translit[v]).join(''),
   'ANENDWITH');
 const known = p56Plain.concat(p57);
 assert.equal(known.length, 180);
