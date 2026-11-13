@@ -122,6 +122,42 @@ assert.deepEqual(c2,[1,14,27,10,7]);
 const factors=pmul(pmul(pmul([mod(-8),1],[mod(-17),1]),
   [mod(-24),1]),[mod(-24),1]);
 assert.deepEqual(c2,factors.slice().reverse());
+
+/**
+ * Independent p39 target root24 has multiplicity >=2 if a candidate
+ * p15 matrix characteristic polynomial f satisfies f(24)=f'(24)=0
+ * over GF29. Keep the 16 printed magnitudes fixed. Exhaust all 120
+ * choices of exactly two negative cells, without fitting plaintext.
+ * The Fibonacci-prime construction selects cells 12/13 in advance.
+ */
+/** @param {number[]} c Descending quartic coefficients */
+function hasCharpolyDouble24(c) {
+  assert.equal(c.length,5);
+  const f=c.reduce((sum,coef)=>mod(sum*24+coef),0);
+  let derivative=0;
+  for(let i=0;i<4;i++)derivative=mod(derivative*24+(4-i)*c[i]);
+  return f===0 && derivative===0;
+}
+const absoluteCells=literal.flat();
+const signPairWinners=[];
+for(let first=0;first<16;first++)
+  for(let second=first+1;second<16;second++){
+    const candidate=absoluteCells.map((value,i)=>
+      mod(i===first||i===second?-value:value));
+    const matrix=Array.from({length:4},(_,i)=>
+      candidate.slice(i*4,i*4+4));
+    if(hasCharpolyDouble24(charpoly(matrix)))
+      signPairWinners.push([first,second]);
+  }
+assert.deepEqual(signPairWinners,[[12,13]]);
+assert(!hasCharpolyDouble24(charpoly(originalM)));
+for(let position=0;position<16;position++){
+  const candidate=absoluteCells.map((value,i)=>
+    mod(position===i?-value:value));
+  assert(!hasCharpolyDouble24(charpoly(Array.from({length:4},(_,i)=>
+    candidate.slice(i*4,i*4+4)))));
+}
+
 const p39=[27,5,15];
 assert.deepEqual(p39, pmul([mod(-24),1],[mod(-24),1])
   .map(x=>mod(15*x)));
@@ -303,6 +339,7 @@ console.log(JSON.stringify({
   p15PrintedCharpoly:c1,
   p15SignedCharpoly:c2,
   signedFactorRoots:[8,17,24,24],
+  exactTwoNegativeSignAssignment:{possible:120,solutions:signPairWinners},
   p39Polynomial:p39,
   p39MatrixRank:rank(quadratic(p39)),
   p3MatrixRank:rank(quadratic([13,23,2])),
