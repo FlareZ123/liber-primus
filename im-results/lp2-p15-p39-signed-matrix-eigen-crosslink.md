@@ -121,7 +121,11 @@ For signed matrix `M` above, define `K_t=(M^t)[1,1] mod29` (zero-based coordinat
 
 `[1,22,13,5,19,11,4,2,27,2,7,28,22,12,11,5,26,3,28,15,11,10,0,8,1,19,4,3]`.
 
-Only **18 distinct** GP29 values occur in that orbit. The coordinate discards the period29 generalized-eigenstate contribution that distinguishes the full matrix's order812. This is a concrete constraint on any proposed use of the red cell as the sole stream output and explains why the printed repeated root does not directly supply a 29-state scalar register.
+Only **18 distinct** GP29 values occur in that orbit. More strongly, the entire sequence has an exact, closed field representation
+
+`K_t = 17·8^t + 7·17^t + 6·24^t (mod 29)`.
+
+The coefficient of the generalized Jordan term `t·24^t` is **exactly zero** in the highlighted coordinate, despite the full signed matrix having a nontrivial order29 factor. The formula is asserted at all 812 original matrix powers in the same standalone reproducer. All three surviving roots have periods dividing28 (the 24 root has period7), rigorously explaining the much shorter scalar period without a numerical coincidence argument. The source-selected scalar therefore cannot, on its own, carry the matrix's full812-step state. This is a concrete constraint on any proposed use of the red cell as the sole stream output and explains why the printed repeated root does not directly supply a 29-state scalar register.
 
 The unchanged **1,894 original rune** input has IoC **0.0344948961633**; the unique frozen subtraction yields **0.0344179160593**, and its first 24 decoded GP symbols are `M H H R S M P W E IA X J H IA M B EA H U I M AE X R`. There is no coherent native-GP plaintext. Exact forward reencryption reconstructs every original symbol; independently clear LP2 p57 (95 runes, IoC **0.0627099664**) is encrypted by this exact operation and recovered **95/95**. The positive control checks the arithmetic, without authenticating the cipher.
 
