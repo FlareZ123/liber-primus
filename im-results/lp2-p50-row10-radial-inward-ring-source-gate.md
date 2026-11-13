@@ -47,6 +47,21 @@ The original p55 ciphertext IoC is **0.03789474**. None of the four frozen outpu
 
 This exact **outer-ring additive pad** therefore yields no original plaintext evidence. The source-table ring start and its 2014/2016 navigation rationale remain a *conditional hypothesis*, and no additional table rotations or key families are warranted without an independently attributable cipher instruction.
 
+## Authentic plaintext-F bypass on the same exterior key
+
+The solved p56 prime-totient cipher has an important authentic exception: a **plaintext F** is emitted as literal ciphertext F **without advancing the key**, but a ciphertext F may also come from ordinary encryption of a different rune. Rather than silently forbid that exception, the source-pointed p55 exterior-key candidate was also tested against its *full, exact rule*. The unchanged original p55 has ciphertext Fs at physical offsets **15,25,41**, yielding exactly eight possible skip masks for each direction/sign. A non-skipped ciphertext rune must decode to a non-F plaintext rune. Test all **32** fixed possibilities with the key counter advancing only on encrypted runes.
+
+| Original exterior direction | Sign | Feasible literal-F masks / 8 | Most complete native-English lexicon words / 16 |
+| --- | --- | ---: | ---: |
+| Clockwise | subtract | **3** | **0** |
+| Clockwise | add | **4** | **4** |
+| Counterclockwise | subtract | **0** | **0** |
+| Counterclockwise | add | **1** | **0** |
+
+Use the independently pre-existing **29,058-word native GP29 TextBlob English lexicon** from \`resources/control/english_wordfreq_textblob.txt\`, plus **the 16 actual complete p55 printed word boundaries** after its one-rune page carry. The strongest seven-or-fewer feasible original variants in fact have **zero** complete lexicon words except the clockwise/additive candidate, whose four apparent matches are the short two-rune spellings **WA, AN, EM, UT**. Its remaining twelve words, including every longer one, are unrecognized, and its complete 75-rune body is nonlinguistic. No arbitrary candidate word segmentation was allowed, and no mask yields a coherent native prose passage. A separate 76-rune solved-p57 plant passes exact forward and reverse encryption under every source-directed sign with the genuine F bypass.
+
+This test is specific to the exact **p56-style plaintext-F transparent additive encoder, table-byte mod29 clock and row10 sourced ring order**. It does not establish whether p55 historically used the same cipher or a different one. In particular, four short lexicon hits from an 8-mask choice are not evidence of plaintext, and a raw ciphertext F should never be automatically declared literal.
+
 ## Scope and next decision
 
 This rejects a direct **static mapping from source-table bytes to the native solved p56/p57 GP29 register** under both source-pointed inward ring directions. It does **not** reject keyed changing-state transforms, a different unknown intermediate register, page-specific ciphers, non-base60 byte readings, or the possibility that p56 and p57 were never meant to share one table transform. In fact p56 has its own solved additive cipher, while p57 is cleartext, making that last objection substantial.
