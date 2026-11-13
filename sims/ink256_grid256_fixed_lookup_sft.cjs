@@ -130,6 +130,30 @@ assert.deepEqual(requiredRedMarkerFiveBitClasses, {
   base60High5: 2, base60Low5: 3,
   base59High5: 3, base59Low5: 3
 });
+const redRuneCounts = new Array(29).fill(0);
+for (const p of ink.pages) {
+  for (const span of p.red_spans || []) {
+    for (let off=span.start;off<span.start+span.length;off++)
+      redRuneCounts[corpus.pages[p.page].indices[off]]++;
+  }
+}
+assert.equal(redRuneCounts.reduce((a,b)=>a+b,0), 225);
+assert.equal(redRuneCounts.filter(n=>n===9).length,7);
+/** @param {number[]} bytes @param {number} shift @returns {number} */
+function nineValueBins(bytes,shift) {
+  return Array.from({length:32},(_,v)=>
+    bytes.filter(b=>((b>>shift)&31)===v).length).filter(n=>n===9).length;
+}
+const nineFrequencyBinCounts = {
+  base60High5: nineValueBins(byteValues,3),
+  base60Low5: nineValueBins(byteValues,0),
+  base59High5: nineValueBins(radix59Bytes,3),
+  base59Low5: nineValueBins(radix59Bytes,0)
+};
+assert.deepEqual(nineFrequencyBinCounts,{
+  base60High5:2, base60Low5:5, base59High5:4, base59Low5:6
+});
+assert(Object.values(nineFrequencyBinCounts).every(n=>n<7));
 // Positive control: when 30 identical red marker symbols are represented by
 // the same five-bit digit, both five-bit orientations retain multiplicity>=31.
 const planted = Array.from({length:256}, (_,i) =>
@@ -180,6 +204,6 @@ console.log(JSON.stringify({
     exactLowerTailRank:atMostOriginal/256
   },
   plantedStationaryMap:positiveResult,
-  impossibleDirectFivePlusThreePacking:{markerCount,redMarkerCount,directBitfieldMaxima,requiredRedMarkerFiveBitClasses},
+  impossibleDirectFivePlusThreePacking:{markerCount,redMarkerCount,directBitfieldMaxima,requiredRedMarkerFiveBitClasses,nineRuneClassesWithNineOccurrences:7,nineFrequencyBinCounts},
   conclusion:"No stationary byte-to-ink lookup or direct 5+3-bit ink-to-grid packing; no original cipher plaintext or key."
 },null,2));
