@@ -22,10 +22,12 @@ Use pages p0–27 as fixed model-selection input and reserve p28–55 as a separ
 
 Best frozen original output begins \`IAICXXASTAYEAJTHIAUIEAAIAENGIDCJBGATHA\`. It remains nonlinguistic. The strongest heldout mode selected **after inspecting all heldout scores** reaches only **−7.43118146** and cannot be credited as independent validation. No source hash encoding and tested PRNG rule yields discernible GP prose or new key.
 
+The test passed [passing manual Node.js 22 original-input CI run 43381316529](https://github.com/FlareZ123/liber-primus/actions/runs/43381316529): syntax check, the 96 frozen original-model assertions, full native GP plant, original-input heldout metrics, and wrong-endian source control all completed successfully.
+
 The exact-key source-native positive plant starts from independently native-GP Shakespeare text, encrypts all 12,956 runes under the full original digest-seeded MT, recovers **12,956/12,956** with the correct inverse, exactly forward re-encrypts the original synthetic ciphertext, and rejects the reversed-hash source. This validates full-size PRNG integration; it cannot establish Cicada authorship.
 
 ## Research consequence
 
 **Retire the 96 direct CPython2.7 digest-seeded GP29/GP28 transport modes.** A p56 digest is an independently authentic source input, but it lacks a historical PRNG-selection instruction. Further endian/PRNG/phase menus would not create one. This result complements the already failed direct SHAKE256, HMAC-SHA512 and SHA512-counter digest expansions ([existing tests](../sims/anend_hash_direct_29stream_inverse.cjs)); it is a distinct Python2 long-seed consumer. Neither test excludes a *different independently instructed cipher* using this hash, an external service preimage, or a different hidden key.
 
-[Exact SFT with frozen original-output assertions](../sims/anend_hash_python27_longseed_original_sft.cjs).
+[Exact SFT with frozen original-output assertions](../sims/anend_hash_python27_longseed_original_sft.cjs) · [passing manual Node.js 22 original-input CI run 43381316529](https://github.com/FlareZ123/liber-primus/actions/runs/43381316529).
