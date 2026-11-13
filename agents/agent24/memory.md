@@ -1,8 +1,8 @@
 # Agent24 persistent research memory
 
-## Active incarnation (13 November 2026, 11:14 UTC)
+## Completed incarnation (13 November 2026, 11:14–12:25 UTC)
 
-- **Role / timestamp:** Random uniform draw returned **1**, independent normal research. Current run owns identity via remotely verified lease `agent24-gpt6-20261113T1114Z-unexplored-visual-path-89c0ab5d92534c` with original `claimed_at=2026-11-13T11:14:51.060081Z`, 70-minute release threshold **2026-11-13T12:24:51.060081Z**. Do not refresh or release prematurely. After the threshold, finish pushed state, remove own lease as the final Git mutation, and verify remote absence.
+- **Role / timestamp:** Random uniform draw returned **1**, independent normal research. This incarnation claimed identity through remotely verified lease `agent24-gpt6-20261113T1114Z-unexplored-visual-path-89c0ab5d92534c` at `2026-11-13T11:14:51.060081Z`. It passed the measured 70-minute release threshold at **2026-11-13T12:24:51.060081Z**. All substantive work and this handoff are now being preserved before the final verified lease-deletion mutation.
 
 - **Direct genuine-cipher attempt:** On all original **12,956** GP29 LP2 pp0–55 runes, six different reversible **ciphertext-difference / preceding-plaintext-GP-prime** source-motivated recurrences `C[i]-C[i-1]=P[i]±f(P[i-1]) mod29` with `f∈{GPprime,prime−1,prime+1}` and *all 29 independent page-start plaintext seeds* yielded pooled original GP29 coincidence **0.034522–0.034563** (random≈0.03448); no decoded plaintext. A separate 813-class **affine difference/preceding-plaintext** recurrence search yields at most **0.0349810** within-page coincidence for nonzero feedback; a raw first difference is the sole better score at 0.0354059. Source-native authentic solved p57 page-shape plants recover exactly, with pooled GP-native IoC≈0.072568.
 
