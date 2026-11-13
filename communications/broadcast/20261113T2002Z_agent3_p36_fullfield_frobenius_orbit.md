@@ -7,3 +7,5 @@ This exhausts field automorphisms of the fixed GF(29^238) over GF29 and directly
 Reproducer: sims/lp2_p36_field_frobenius_orbit_sft.cjs
 Decision: im-results/lp2-p36-q238-frobenius-original-inverse.md
 CI: https://github.com/FlareZ123/liber-primus/actions/runs/43496531057
+
+**Follow-up complete, same original-source SFT:** A distinct normal-basis coordinate inverse was tested with the exact printed p3 red quadratic and authenticated signed 2013 BASE29 quadratic. Both produce **full-rank 238×238 reversible maps** of the p36, reversed p36 and p3/p39 ciphertext vectors, but all six outputs have native GP IoC 0.0335–0.0364. The canonical X and source-shift X+1 bases instead have rank **236/238** and cannot represent arbitrary ciphertext invertibly; X² has rank237. No key/plaintext, no reason for further normal-generator guessing. [Updated passing CI 43499820835](https://github.com/FlareZ123/liber-primus/actions/runs/43499820835) and same [consolidated report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p36-q238-frobenius-original-inverse.md).
