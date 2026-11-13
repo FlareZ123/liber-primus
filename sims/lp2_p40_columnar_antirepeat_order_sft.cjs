@@ -172,6 +172,157 @@ function columnOrderRepeatNull() {
 }
 const exhaustiveColumnOrderNull = columnOrderRepeatNull();
 
+
+// Independently observed printed word-final marks can be transported as bits
+// attached to their preceding runes. This is a specific reversible
+// punctuation-carrying columnar model, not an assumption about all ciphers.
+function boundaryTransportAllKeys() {
+  const raw = read("resources/lp2-transcription.txt")
+    .split("%").slice(40, 53).join("%");
+  // Source transcript omits the empty numeric-only physical p50.
+  const symbols = new Map(corpus.runes.map((r, i) => [r, i]));
+  const delim = new Set(["-", ".", "&", "$", "§"]);
+  const seen = [], end = [];
+  for (const ch of raw) {
+    if (symbols.has(ch)) {
+      seen.push(symbols.get(ch));
+      end.push(0);
+    } else if (delim.has(ch) && end.length) {
+      end[end.length - 1] = 1;
+    }
+  }
+  assert.deepEqual(seen, chapter);
+  assert.equal(end.length, 3008);
+  assert.equal(end.reduce((a, b) => a + b, 0), 669);
+  const bits = end.slice(8);
+  const recovered = eight.decode(bits);
+  assert.deepEqual(eight.encode(recovered), bits);
+  /** @param {number[]} sourceBits */
+  function lengths(sourceBits) {
+    const result = [];
+    let n = 0;
+    for (const mark of sourceBits) {
+      n++;
+      if (mark) {
+        result.push(n);
+        n = 0;
+      }
+    }
+    if (n) result.push(n);
+    return result;
+  }
+  /** @param {number[]} a */
+  function profile(a) {
+    const sizes = lengths(a);
+    return {
+      words: sizes.length,
+      single: sizes.filter(n => n === 1).length,
+      atLeastNine: sizes.filter(n => n >= 9).length,
+      longest: Math.max(...sizes)
+    };
+  }
+  const original = profile(bits);
+  const keyRestored = profile(recovered);
+  assert.deepEqual(original, {words: 667, single: 13, atLeastNine: 42, longest: 14});
+  assert.deepEqual(keyRestored, {words: 668, single: 153, atLeastNine: 121, longest: 23});
+
+  // Each pair of adjacent word endings makes one single-rune word.
+  // Exactly enumerate 8! column orders by two 8×8 source-bit matrices.
+  const col = Array(8);
+  for (let i = 0; i < 8; i++)
+    col[eight.order[i]] = bits.slice(i * 375, (i + 1) * 375);
+  const row = Array.from({length: 8}, (_, a) =>
+    Array.from({length: 8}, (_, b) =>
+      col[a].reduce((s, x, i) => s + Number(x && col[b][i]), 0)));
+  const join = Array.from({length: 8}, (_, a) =>
+    Array.from({length: 8}, (_, b) =>
+      col[a].slice(0, -1).reduce((s, x, i) =>
+        s + Number(x && col[b][i + 1]), 0)));
+  /** @param {number[]} p */
+  const singles = p => p.slice(0, 7).reduce(
+    (s, x, i) => s + row[x][p[i + 1]], 0)
+    + join[p[7]][p[0]] + col[p[0]][0];
+  assert.equal(singles([0, 1, 2, 3, 4, 5, 6, 7]), keyRestored.single);
+  const vals = [];
+  /** @param {number[]} p @param {number[]} remaining */
+  function enumerate(p, remaining) {
+    if (!remaining.length) {
+      vals.push(singles(p));
+      return;
+    }
+    for (let i = 0; i < remaining.length; i++)
+      enumerate([...p, remaining[i]], remaining.filter((_, j) => j !== i));
+  }
+  enumerate([], [0, 1, 2, 3, 4, 5, 6, 7]);
+  vals.sort((a, b) => a - b);
+  const lessOrEqual = vals.filter(n => n <= keyRestored.single).length;
+  assert.equal(vals.length, 40320);
+  assert.deepEqual(
+    [vals[0], vals[2016], vals[20160], vals[38304], vals[40319], lessOrEqual],
+    [122, 138, 153, 167, 180, 21799]);
+
+  // Pre-pinned independently sourced GP-English reference windows.
+  const sourceFiles = [
+    "resources/control/shakespeare_first300k.txt",
+    "resources/control/gibran_prophet_58585.txt",
+    "resources/control/emerson_essays_2944.txt"
+  ];
+  const pairs = new Set(["TH", "NG", "EO", "OE", "AE", "IA", "EA"]);
+  /** @param {string} word */
+  function gpLength(word) {
+    const w = word.toUpperCase().replace(/QU/g, "CW").replace(/V/g, "U")
+      .replace(/[KQ]/g, "C").replace(/Z/g, "S");
+    let count = 0;
+    for (let i = 0; i < w.length; count++)
+      i += pairs.has(w.slice(i, i + 2)) ? 2 : 1;
+    return count;
+  }
+  /** @param {number[]} wordLengths @param {number} width */
+  function windowCensus(wordLengths, width) {
+    let n = wordLengths.slice(0, width).filter(x => x === 1).length;
+    let min = n, max = n;
+    for (let i = width; i < wordLengths.length; i++) {
+      n += Number(wordLengths[i] === 1) - Number(wordLengths[i - width] === 1);
+      min = Math.min(min, n);
+      max = Math.max(max, n);
+    }
+    return {windows: wordLengths.length - width + 1, min, max};
+  }
+  const references = sourceFiles.map(file => {
+    const words = read(file).match(/[A-Za-z]+/g) || [];
+    const gpLengths = words.map(gpLength);
+    return {file, words: words.length,
+      windows667: windowCensus(gpLengths, 667),
+      windows668: windowCensus(gpLengths, 668)};
+  });
+  assert.deepEqual(references.map(x => x.windows668.max), [72, 43, 50]);
+  assert.equal(references.reduce((s, x) => s + x.windows668.windows, 0), 147071);
+
+  // A genuine English whole-word boundary stream is transported and restored
+  // exactly under the visible key as an independent positive control.
+  const planted = [];
+  for (const word of read(sourceFiles[1]).match(/[A-Za-z]+/g) || []) {
+    const k = gpLength(word);
+    for (let i = 0; i < k; i++) planted.push(Number(i === k - 1));
+    if (planted.length >= 3000) break;
+  }
+  planted.length = 3000;
+  assert.deepEqual(eight.decode(eight.encode(planted)), planted);
+
+  return {
+    assumption: "word-ending bit travels attached to its preceding rune",
+    source: original, redKeyRestored: keyRestored,
+    fullKeyCensus: {orders: vals.length, min: vals[0],
+      fifthPercentile: vals[2016], median: vals[20160],
+      ninetyFifthPercentile: vals[38304], max: vals.at(-1),
+      countAtMostRedKey: lessOrEqual},
+    finiteNativeControls: references,
+    nativeRoundTripBits: planted.length,
+    scope: "no claim against space-stripping or independently re-spaced transposition"
+  };
+}
+const boundaryTransport = boundaryTransportAllKeys();
+
 // Genuine Gibran source: original content, GP transliteration and a declared
 // reduction to the 28-way successor register, with no original-data fitting.
 const source = read("resources/control/gibran_prophet_58585.txt").toUpperCase();
@@ -241,6 +392,7 @@ console.log(JSON.stringify({
   original: {lag1: 18, lag7: 99, lag8: 88},
   eightColumnInverse: {order: eight.order, lag1: 101, lag8: 18},
   exhaustiveColumnOrderNull,
+  boundaryTransport,
   sevenColumnInverse: {order: seven.order, lag1: 109, lag7: 18},
   nativeGP28Positive: {
     beforeFinalColumnar: {lag1: equalPairs(finalColumnar, 1), lag8: equalPairs(finalColumnar, 8)},

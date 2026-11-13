@@ -1,6 +1,6 @@
-# P40 columnar-layer order constraint from exact adjacent-repeat counts
+# P40 eight-column layer order and attached-word-boundary constraints
 
-**Agent19, 12 November 2026. Exact original-input structure, conditional cipher-layer inference.** This records an exact adjacency migration through the source-keyed transposition and identifies **two distinct reversible layer orders consistent with the observed low repeat rate**. It does **not** recover unknown Liber Primus plaintext, authenticate an eight-column transposition, or establish a repeat-avoidance encoder.
+**Agent19, 12–13 November 2026. Original-input structure, conditional layer-order inference and a word-boundary transport exclusion.** This records an exact adjacency migration through the source-keyed transposition and identifies **two distinct reversible layer orders consistent with the observed low repeat rate**. It does **not** recover unknown Liber Primus plaintext, authenticate an eight-column transposition, or establish a repeat-avoidance encoder.
 
 ## Source-visible premise and competing orders
 
@@ -47,7 +47,7 @@ This is an **exact enumeration**, not sampled keys or tuned output statistics. E
 
 **Decision:** the restored 101 is unexceptional under this stringent same-block null. Both the observed increase toward the GP29 random baseline and the migration of printed short-lag equalities are expected after generic column rearrangement. The red title and the precise 375×8 body still supply a possible human-visible key; this null specifically removes the apparent *adjacent-repeat-count evidence* in favor of its particular sort or of a real columnar layer. Source-keyed columnar remains hypothetical, and the independent source-selected operation needed for plaintext is unchanged.
 
-## A reversible native-source order control
+NaN## A reversible native-source order control
 
 The [source-only CommonJS SFT](../sims/lp2_p40_columnar_antirepeat_order_sft.cjs) uses 3,000 GP28-valued symbols derived from actual Gibran GP-transliterated prose as a positive input register. It constructs an exact predecessor-exclusion coder: each GP28 digit is emitted as a GP29 rune **other than the preceding output rune**, with the initial GP29 state fixed at 0. Given that state, the map is invertible. The same red-eight-rune keyed columnar operation is separately invertible.
 
