@@ -41,7 +41,7 @@ The unique fold pivot gives
 365 = GP-prime sum(FIRFUMFERENFE)
 ```
 
-`FIRFUMFERENFE` is the historical Gematria spelling used as the known A-KOAN key for **CIRCUMFERENCE**. The numerical difference is exactly explained by the three C→F substitutions in that spelling: each substitution changes the prime value by `13-2=11`, so `398-3×11=365`.
+`FIRFUMFERENFE` is the code-backed 2014/009 squares-submission/A-KOAN key for **CIRCUMFERENCE**, not a typo or a normalization of the separate 2014/008 key `FIRFUMFERENCE`. The 2014/009 README and its own executable both use it; the archived combined 107/167 output recovers the A-KOAN text ([README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/README.md), [executable](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/gematriaprimus.py), [archived output](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/107,167.jpg.runes-possibilities.txt)). Its prime sum is 365. The numerical difference is exactly explained by the three C→F substitutions in that spelling: each substitution changes the prime value by `13-2=11`, so `398-3×11=365`.
 
 ## The p32 source counts recover DIVINITY and the same historical key total
 
