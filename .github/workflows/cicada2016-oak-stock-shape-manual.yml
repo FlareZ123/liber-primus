@@ -1,0 +1,21 @@
+name: 2016 oak original-silhouette registration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-registration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-registration dependencies
+        run: python -m pip install --disable-pip-version-check numpy==2.1.3 opencv-python-headless==4.10.0.84
+      - name: Test original JPEG stock-tree registration against signed source
+        run: python sims/cicada2016_oak_stock_shape_registration_sft.py
