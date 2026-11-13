@@ -10,6 +10,7 @@
  */
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
+const crypto=require("node:crypto");
 const path=require("node:path");
 const ROOT=path.resolve(__dirname,"..");
 const read=f=>fs.readFileSync(path.join(ROOT,f),"utf8");
@@ -118,6 +119,32 @@ for(const [label,cells] of [["64-86",previous],["65-87",following]]){
 assert.equal(binaryConsumers.length,12);
 assert.equal(Math.max(...binaryConsumers.map(c=>c.printableASCII)),10);
 
+// The immediately preceding p56 challenge prints a 512-bit page digest.
+// Test the two source-selected 23-byte spans and the four selected cells
+// as literal raw bytes or original base60 token text, under three
+// ordinary, historically plausible 512-bit digests. No salt or key search.
+const signedPlain=read("resources/liber-primus/lp1-plaintext-reference.txt");
+const digestBlock=signedPlain.split("### 56")[1].split("### 57")[0];
+const targetHash=digestBlock.match(/[0-9a-f]{32,}/gu).join("");
+assert.equal(targetHash.length,128);
+const hashPreimageCandidates=[
+  ["window64-86/bytes",Buffer.from(previous.map(c=>c.byte))],
+  ["window65-87/bytes",Buffer.from(following.map(c=>c.byte))],
+  ["p57-four/bytes",Buffer.from(selection.map(c=>c.byte))],
+  ["window64-86/tokens",Buffer.from(previous.map(c=>c.token).join(""),"ascii")],
+  ["window65-87/tokens",Buffer.from(following.map(c=>c.token).join(""),"ascii")],
+  ["p57-four/tokens",Buffer.from(selection.map(c=>c.token).join(""),"ascii")]
+];
+const hashTrials=[];
+for(const [name,payload] of hashPreimageCandidates)
+  for(const algorithm of ["sha512","sha3-512","blake2b512"]){
+    const digest=crypto.createHash(algorithm).update(payload).digest("hex");
+    hashTrials.push({name,algorithm,length:payload.length,
+      prefix:digest.slice(0,16),matchesOriginalP56:digest===targetHash});
+  }
+assert.equal(hashTrials.length,18);
+assert(hashTrials.every(x=>!x.matchesOriginalP56));
+
 // A single frozen, artificial table-location null. It is diagnostic,
 // because the 60/563 relationships were noticed after source exploration.
 // Sample five distinct locations without replacement from the exact
@@ -159,6 +186,7 @@ console.log(JSON.stringify({
   independentlyArchived2016Image:"563x569",
   originalP55Core:{length:core.length,GPPrimeSum:primeSum(core),
     original:translit(core),consumers,binaryConsumers},
+  originalP56DirectHashCandidates:hashTrials,
   diagnosticShuffledTable:{repetitions,seed:"0x5613666",
     pairDifference60:pair60,fourByteSum563:sum563,
     fourByteSum569:sum569,joint:joint,jointEither,
