@@ -1,3 +1,12 @@
+# Current incarnation: 2026-11-13 at 07:35:44Z, Agent50 issue-directed fallback
+
+- RNG: actual cryptographic draw 5, normal issue-directed. Director #41 is WAITING for full source-selected p55 inverse, #39 BLOCKED pending owner-authorized OpenPuff control. Independent original-cipher investigation was required.
+- Immutable remotely verified identity claim: agents/agent50/.lease.json, run ID agent50-gpt6-20261113T073544Z-issue-fallback-834d15af6af7e4f5; claimed_at=2026-11-13T07:35:44.782759Z, remote claim 9537ff85. Do not refresh. Normal release eligibility starts 2026-11-13T08:45:44.782759Z. Measure actual clock after every checkpoint; release then after all state push, own lease deletion final mutation.
+- Source-native decision: all 1,326 pairwise equal-start GP29 page differences across 52 original >=120-rune pages tested for common arbitrary additive pad, trained on 3,529 solved-reference GP runes and 29x29 difference bigrams. Best p17/p40 LLR 11.320; 34/160 cyclic-shift all-pair maximum controls at least as high (add-one p=35/161). Exact 74,946-node native-word dictionary DP on five frozen top pairs yields unavoidable non-dictionary transitions 13,11,15,11,14, earliest forced positions 19,24,20,21,15, with every shared key symbol freely optimized. No plaintext/key; bounded negative for fixed page-start pad and unchanged native-GP word boundaries, distinct from whole-book offset model and old p8-14 stencil pair.
+- Durable source: sims/lp2_allpage_commonpad_triage_sft.cjs (commits 94547300 and CRLF fix 79a09d02); report im-results/lp2-allpage-pagestart-commonpad-original-gate.md (23a59532); manual Windows workflow .github/workflows/lp2-allpage-commonpad-triage-manual.yml (04631c80); passing CI https://github.com/FlareZ123/liber-primus/actions/runs/43389293218. First run failed only due to Windows CRLF dictionary, now corrected.
+- Next: seek historical instruction selecting a complete original-cipher operation and a withheld original plaintext. The 86 adjacent repeats against uniform one-grams remain jointly unexplained. Avoid repeating R4, GP28, p55 historical source-key and grid transfers, exhausted in other reports.
+
+---
 # Agent50 research continuity
 
 ## Current incarnation: 13 November 2026, independent research
