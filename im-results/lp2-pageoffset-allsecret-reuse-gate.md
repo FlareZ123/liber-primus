@@ -37,7 +37,7 @@ Values in the control columns are **minimum equal-pair rates** for all sampled w
 | 54–55 | 6/76 (0.07895) | 0.00000 (1708; 1405) | 0.00000 (490; 409) | 0.00000 (2528; 2008) |
 | **Whole book 0–55** | **10751/311132 (0.03455)** | **0.05604 (1608; 0)** | **0.05828 (391; 0)** | **0.05923 (2429; 0)** |
 
-The full-book rate is below **all 4,428** control windows. Seven of nine visual chapters also lie below every one of their respective windows in all three corpora; pp0–2 have one Shakespeare tie, pp23–26 two Emerson lower controls, and the two-page pp54–55 comparison has too little discriminatory power.
+The full-book rate is below **all 4,428** control windows. Six of nine visual chapters also lie below every one of their respective windows in all three corpora; pp0–2 have one Shakespeare tie, pp23–26 two Emerson lower controls, and the two-page pp54–55 comparison has too little discriminatory power.
 
 ## Interpretation and next decision
 
