@@ -1,10 +1,12 @@
-# Page-offset repeated alphabet: all-secret equality gate
+# Page-offset shared alphabets: original-input gate strengthened with source-native English
 
-**Status (13 November 2026): key-independent finite source-native English exclusion; no unknown LP2 plaintext or key.**
+**Status (13 November 2026): source-orthography and chapterwise extension of the pre-existing exact all-secret gate; no unknown LP2 plaintext or key.**
+
+**Prior-art integration.** The original pair statistic **10,751/311,132** and the arbitrary position-specific secret-bijection invariant were *already established* by [`sims/lp2_crosspage_shared_phase_allsecret_sft.cjs`](../sims/lp2_crosspage_shared_phase_allsecret_sft.cjs), which sampled 300 windows from each corpus with its earlier native-like encoder. This extension **does not claim discovery of those original counts or the algebraic invariant**. Its contribution is the independently solved-p57-validated **ING/IO source-native spelling correction**, 4,428 fixed-step original-length windows, separately reported nine chapter decisions, and independent affine plants. Both reproducible scripts remain linked to avoid losing historical evidence.
 
 ## Why this operation could have been tried
 
-A page-turn is a source-visible reset point. A human solver could reasonably test whether different LP2 physical pages were independently encoded with one reused position-indexed key: a repeated additive pad, page-reset Vigenère/affine alphabet, page-offset pseudo-random alphabet, or a different arbitrary secret bijection for each page-local rune position. This is a general test of *key reuse*, not a proposed author-selected solution. No original instruction establishes the reset.
+The earlier exact page-offset gate established this mathematical premise. A page-turn is a source-visible reset point. A human solver could reasonably test whether different LP2 physical pages were independently encoded with one reused position-indexed key: a repeated additive pad, page-reset Vigenère/affine alphabet, page-offset pseudo-random alphabet, or a different arbitrary secret bijection for each page-local rune position. This is a general test of *key reuse*, not a proposed author-selected solution. No original instruction establishes the reset.
 
 Under the model `C[p,i] = π_i(P[p,i])`, every page has the **same** unknown permutation `π_i` at page-local position `i`; distinct positions may use completely unrelated secret permutations. For every two pages containing that position,
 
