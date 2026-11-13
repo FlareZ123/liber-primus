@@ -8,6 +8,12 @@ The authentic 2012 telephone stage explicitly instructed players: *three primes 
 
 The actual authenticated January 2016 Cicada tree image has **563×569** pixels (both prime), verified in the [2016 original image record](https://uncovering-cicada.fandom.com/wiki/2016_Message) and the signed carrier notes under `resources/historical/`. The two dimension pairs have the same within-image prime separation six; **as un-ordered sets**, the 2016 pair is the 2012 pair plus 60: `503→563`, `509→569`. The original 2012 image is landscape, while the 2016 image is portrait, so the +60 comparison requires ordering by shorter/longer side instead of native x/y axes. That distinction limits author-intent claims.
 
+## Source-visible cross-round hint in the verified 2016 signer
+
+The authenticated January 2016 message ends with **“Beware false paths. Verify OpenPGP 7A35090F.”** A solver following that contemporaneous instruction sees the published signature trust anchor as **`Cicada 3301 (845145127)`**, the same decimal domain obtained by the explicit original 2012 image-dimension product. The [2016 original signed-message and verification walkthrough](https://uncovering-cicada.fandom.com/wiki/2016_Message) independently displays both the signed instruction and signer UID; the repository preserves the original PGP public key at `resources/control/cicada-3301-public-key.asc`.
+
+This strengthens the *human solve-path plausibility* of remembering the 2012 multiplication when looking at the new 2016 prime-dimension tree image. It is an actual **source-visible historical link**, stronger than an analyst merely noticing two prime dimension pairs. However, the PGP UID is a **persistent signer identifier** from 2012; every properly verified later message would display it. Its appearance therefore does **not** by itself select multiplication as the intended 2016 next step or provide a key. The old phone message still unambiguously names only the **original 2012 image**.
+
 ## Fixed 2012 operator applied once to 2016 data
 
 Do **exactly** the original multiplication and append the original `.com`, changing only the 2016 image's two authentic prime dimensions:
@@ -23,6 +29,6 @@ I searched the exact decimal domain, exact decimal integer and dotted IPv4 for C
 
 ## Decisive missing premise and next action
 
-The 2012 phone audio explicitly selected multiplication for **the 2012 image it named**. No comparable January 2016 signed phone/domain instruction has been found selecting a repeat of that 2012 operation; the 2016 signed guidance concerns Liber Primus words, meanings and numbers. Independent cipher-source research in `im-results/lp2-2016-dimensions-base58-33cycle-table-entry.md` already explores a different **postselected** 2016 dimension interpretation without plaintext. Its numeric correspondence is neither proof of this proposed domain nor a reason to tune further operations.
+The 2012 phone audio explicitly selected multiplication for **the 2012 image it named**. The January 2016 signer itself exposes the old numeric domain through the verified PGP UID, providing a real cross-round mnemonic, but no signed 2016 phone/domain instruction explicitly selects reuse of the 2012 multiplication; the text directs solvers to Liber Primus words, meanings and numbers. Independent cipher-source research in `im-results/lp2-2016-dimensions-base58-33cycle-table-entry.md` already explores a different **postselected** 2016 dimension interpretation without plaintext. Its numeric correspondence is neither proof of this proposed domain nor a reason to tune further operations.
 
 **One actionable decision:** if a contemporaneous, independently dated 2016 artifact explicitly transfers the 2012 phone instruction, seek one 2016-era DNS/Wayback/Archive-It positive for the *exact* `1057465447.com` candidate and require a signed Cicada instruction/key there before applying it to unknown LP2 ciphertext. Until then, retire the multiplication as an authenticated 2016 solve route: correct arithmetic alone cannot make a new original message. The original 2012 multiplication remains confirmed.
