@@ -323,10 +323,109 @@ for (const file of controlFiles) {
         max: sourceSource.at(-1) } : null });
 }
 assert.deepEqual(phase16.map(x => x.windows), [159, 240, 39]);
+/**
+ * Competing historically plausible language registers: the manuscript has a
+ * Latin title, while its GP glyphs draw from an Anglo-Saxon runic tradition.
+ * These independent corpus resources already include native GP transliteration,
+ * so their original words must not be transliterated a second time.
+ */
+function decodeBase29(text, alphabet) {
+  const values = [...text].map(v => alphabet.indexOf(v));
+  assert.ok(values.every(v => v >= 0 && v < 29));
+  return values;
+}
+const latinText = fs.readFileSync(path.join(__dirname, '..',
+  'resources/control/latin-vulgate-gp-wholewords.txt'), 'utf8');
+const latinRunes = decodeBase29(latinText.split(/\r?\n/)
+  .filter(v => v && !v.trimStart().startsWith('#')).join(''),
+  '0123456789ABCDEFGHIJKLMNOPQRS');
+const oldEnglishProfile = JSON.parse(fs.readFileSync(path.join(__dirname, '..',
+  'resources/control/beowulf_oe_gp_profile_corrected.json'), 'utf8'));
+const oldEnglishRunes = decodeBase29(oldEnglishProfile.sourceGpBase29,
+  oldEnglishProfile.positiveControlAlphabet);
+assert.equal(latinRunes.length, 204802);
+assert.equal(oldEnglishRunes.length, 48012);
+
+/** Sorted fixed-source output bins with optional independent 16-phase keys. */
+function alternativeProfile(source, offset, sign, phaseMode) {
+  const phaseCount = phaseMode === 'single' ? 1 : PHASES;
+  const hist = Array.from({ length: phaseCount }, () => Array(29).fill(0));
+  let at = offset, global = 0;
+  for (const page of pages) {
+    for (let i = 1; i < page.indices.length; i++) {
+      const phase = phaseMode === 'single' ? 0 :
+        (phaseMode === 'page' ? i : global + i) % PHASES;
+      hist[phase][mod(source[at + i] +
+        sign * prime[source[at + i - 1]])]++;
+    }
+    at += page.indices.length;
+    global += page.indices.length;
+  }
+  return hist.map(h => h.sort((a, b) => a - b));
+}
+const languageRegisters = [];
+const alternatives = [
+  ['Latin Vulgate', latinRunes, 148, [
+    [0.11247190140299201, 0.11681265018215642],
+    [0.08301682040151927, 0.08782264940702271],
+    [0.08324936051468879, 0.08697000232540113]
+  ]],
+  ['Old English Beowulf', oldEnglishRunes, 27, [
+    [0.09061313076505698, 0.09634912022323851],
+    [0.0630958840399969, 0.06232075032943183],
+    [0.06611890551120068, 0.06425858460584451]
+  ]]
+];
+for (const [label, source, expectedWindows, expected] of alternatives) {
+  const modes = ['single', 'page', 'book'], minima = modes.map(() =>
+    [{ tv: Infinity }, { tv: Infinity }]);
+  const disjoint = modes.map(() => [[], []]);
+  const reference = modes.map(() => [null, null]);
+  let windows = 0;
+  for (let offset = 0; offset + 12956 <= source.length; offset += 1301) {
+    windows++;
+    for (let m = 0; m < modes.length; m++) {
+      for (let dir = 0; dir < 2; dir++) {
+        const sign = dir === 0 ? 1 : -1;
+        const ranked = alternativeProfile(source, offset, sign, modes[m]);
+        const observed = modes[m] === 'single' ? [observedSorted] :
+          originalRanked[m - 1];
+        const tv = ranked.reduce((sum, row, i) =>
+          sum + row.reduce((a, v, j) =>
+            a + Math.abs(v - observed[i][j]), 0), 0) / (2 * 12901);
+        if (tv < minima[m][dir].tv)
+          minima[m][dir] = { tv, offset };
+        if (offset === 0) reference[m][dir] = ranked;
+        if (offset >= 12956 && m > 0)
+          disjoint[m][dir].push(phaseDistance(ranked, reference[m][dir]));
+      }
+    }
+  }
+  assert.equal(windows, expectedWindows);
+  for (let m = 0; m < modes.length; m++) {
+    for (let dir = 0; dir < 2; dir++) {
+      assert.ok(Math.abs(minima[m][dir].tv - expected[m][dir]) < 1e-12);
+      if (m > 0) {
+        disjoint[m][dir].sort((a, b) => a - b);
+        const sourceCeiling = disjoint[m][dir].at(-1);
+        assert.ok(minima[m][dir].tv > sourceCeiling);
+      }
+    }
+  }
+  languageRegisters.push({ label, windows, singleAlphabet: minima[0],
+    sixteenPage: minima[1], sixteenGlobal: minima[2],
+    disjointPageBenchmark: disjoint[1].map(list => ({
+      n: list.length, min: list[0], max: list.at(-1)
+    })),
+    disjointGlobalBenchmark: disjoint[2].map(list => ({
+      n: list.length, min: list[0], max: list.at(-1)
+    })) });
+}
 console.log(JSON.stringify({ source: 'unchanged LP2 pp0-55', runes: 12956, pages: 55,
   nonlinearPrimeFeedback: results, affineDelta: affine,
   allSecretPermutationGate: { observedMin: 86, observedMax: 510,
     controlProfiles: allSecret },
-  phase16AllSecretGate: phase16 }, null, 2));
+  phase16AllSecretGate: phase16, otherPlaintextRegisters: languageRegisters }, null, 2));
+
 
 
