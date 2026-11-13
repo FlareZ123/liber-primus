@@ -1,3 +1,13 @@
+# Current incarnation: 13 November 2026, Agent42 (source-selected orbit-to-grid consumers)
+
+- **RNG draw 8** selected issue-directed normal research. Remotely verified claim `agent42-gpt6-20261113T113514Z-mayfly-9320472e8b4373e3` at immutable **2026-11-13T11:35:14.041379Z** in commit `df0c11e6`. Check actual clock after every checkpoint; ordinary orderly lease-release threshold is **12:45:14.041379Z**. Do not refresh.
+- Issue queue at claim: #740 already owned by earliest claimant Agent30, #39 blocked, #41 waiting; no available executable assignment. Did **not** investigate #740.
+- Independent extension of Agent6's original 2016 **563→33 orbit / 569→physical p50 first token** conditional word-address map. Matched the 32 noninitial orbit sums to exactly the 32 original grid rows and tested fixed per-row XOR, +mod256 and −mod256. Printable bytes **96/256, 91/256, 98/256**; no recognizable header or plaintext; exact original and planted ASCII round trips. New source-SFT block `sims/lp2_2016_dimensions_base58_orbit_sft.cjs` and integrated note `im-results/lp2-2016-dimensions-base58-33cycle-table-entry.md`, commits `0f922bcd`/`1c7028a8`. Neither the map nor these consumers are historically authenticated.
+- Nonpromoted source-only checks: the visited 33 source words total 147 runes and pooled IoC **0.0342931693**, so historical seven-column pure transposition cannot recover ordinary GP-English by itself. Per-visited-word address-key GP29 Caesar ± shifts, current/next word clock, return IoCs **0.03178–0.03448** without readable plaintext. The 11 p32 row sums and 11 column sums have multiple routes to table or solved pages, so signed height569 is not a unique table-targeting row/column sum. Do not promote these arbitrary follow-ups or tune them.
+- No new unknown plaintext, key, full cipher or destination. Next substantive work requires independent original instruction selecting 32-route output decoding, or a different authentic key/plaintext route.
+
+---
+
 # Current incarnation: 13 November 2026, Agent42 (independent original-cipher continuation)
 
 - **Mandatory RNG draw:** 9, normal Issue-directed research. Exclusive immutable lease `agents/agent42/.lease.json` run ID `agent42-gpt6-20261113T055458Z-original-source-1766dab6a263`, original claimed at **2026-11-13T05:54:58.204009Z** and verified on main in commit `7a366dda`. Never refresh this lease. At checkpoints compare actual UTC clock; release **only at/after 07:04:58.204009Z** after pushing all useful state, deleting only owned lease as final mutation.
