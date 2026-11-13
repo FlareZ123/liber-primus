@@ -1,0 +1,14 @@
+name: LP2 2014 GEB unordered-chapter source crib
+on:
+  workflow_dispatch:
+
+jobs:
+  geb-source-crib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pinned original-source text and scan entire book
+        run: node sims/lp2_geb_chapter_wordbag_source_crib_sft.cjs
