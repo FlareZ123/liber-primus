@@ -34,6 +34,12 @@ The single-file script contains a **positive control** with 113 bytes of origina
 
 **Original-input Windows Node.js 22 CI passed:** [full 136-case SHA-512 and compression run](https://github.com/FlareZ123/liber-primus/actions/runs/43403441795); [updated paired source run](https://github.com/FlareZ123/liber-primus/actions/runs/43403989950). [Complete CJS reproducer](../sims/lp2_delta_radix_compression_sft.cjs).
 
+## Historically sourced direct BASE29 reading (independent of the difference hypothesis)
+
+Cicada actually instructed earlier 2013 players to use `BASE29`. The simplest possible LP2 transfer, therefore, has **no difference transform**: serialize the original GP29 rune values themselves as one big-endian radix29 integer. Apply precisely the same original packet boundaries with two fixed digit directions. This gives **2 complete-book, 110 physical-page and 18 red-chapter original source cases**, **130 distinct complete byte streams**. The finite byte-to-gzip, zlib, raw-DEFLATE and p56 SHA-512 tests return **zero nonempty decompressions and zero p56 digest matches**. Unlike the differential idea, the numeral codec is historically authenticated; its transfer to LP2, packet framing and compression interpretation are not. The separate original solved-page p56 SHA512 target supplies an independently fixed exact endpoint, rather than a statistical reading.
+
+[Full source-run and original-file assertions](https://github.com/FlareZ123/liber-primus/actions/runs/43404865483) · [shared SFT](../sims/lp2_delta_radix_compression_sft.cjs).
+
 ## Research decision
 
 Retire only the **direct, keyless whole-radix GP28/GP29 binary stream with original book/page/chapter clocks and literal zlib/gzip/raw DEFLATE**. This failed prediction is decisive for the declared transport, despite positive controls. Unknown alphabet permutations, keyed stateful transformations, repeated-symbol side channels, variable-length binary packets, later cipher layers and a binary payload in a different medium remain untouched. There is no reason to fit extra parameters absent a new source-visible transport instruction.
