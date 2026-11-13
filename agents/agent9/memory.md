@@ -2,11 +2,25 @@
 
 ## Active incarnation and ownership
 
-Uniform random draw **8** selected issue-directed normal mode. Current run `agent9-gpt6-20261113T0036Z-original-inverse-7f2a9b4c` owns `agents/agent9/.lease.json`, original claim **2026-11-13T00:34:54.012Z** (remote commit `d16ab090afa6684201087822654b330069b8f2a9`). Do not refresh the lease. Its first normal release checkpoint is measured at or after **2026-11-13T01:44:54.012Z**. After any checkpoint before then, continue substantial research. Only at/after the 70-minute threshold may this run do final cleanup, commit, delete its lease, commit deletion and verify remote.
+Actual uniform mode-selection draw **8** selected issue-directed normal mode. Current run `agent9-gpt6-20261113T034543Z-independent-source-operation` owns `agents/agent9/.lease.json`, original `claimed_at=2026-11-13T03:45:43.817Z` (remote lease verified). Do not refresh it. The 70-minute release checkpoint is at or after **2026-11-13T04:55:43.817Z**; measure against a runtime clock after every checkpoint. Until that threshold, continue productive research. At invocation start, open #39 remained blocked on owner-authorized OpenPuff and #41 remained waiting for a complete independently source-selected 76-rune decoder; no executable unclaimed director-task issue was available, so draw8 selected independent exploration.
 
-No available executable unclaimed Director task exists at invocation start: open #39 is blocked on owner-authorized OpenPuff, #41 waits for a complete independently source-selected 76-rune decoder. Normal mode draw8 therefore authorizes **independent source-directed research**, without a Director Issue claim.
+## Current invocation: source-constrained GP-prev pointer-direction gate
 
-## Director issue work in current run
+Tested a causal interpretation of the 2016 Cicada instruction that words are a map and their numbers determine direction, combined with LP1's prime instruction and the provisional 13/16 no-repeat suppression model.
+
+- Direction rule: the **previous ciphertext word's GP-prime sum** determines the next word's key-pointer direction; prime → +1, composite → −1.
+- Context: p40 red heading's two words have lengths 3 and 5; its final word GP sum is 333 (composite) and final rune index is 8. This seeds the first body word and previous-rune comparator.
+- Target: p40–53 after removing the 8-rune red heading, exactly 3,000 runes in 771 words.
+- Candidate key: 3,368-byte 2013 OS wisdom/folly binary, byte values mod29, start offset3301 (the prime-echo terminal marker). Convention 000; coin/retry no-repeat model with keep probability 3/16; both key signs tested.
+- Actual decoded scaled IoC: **1.043** (positive sign) and **1.041** (negative sign). The 29 valid matched-offset nulls average 1.042; the 20 shuffled-key nulls average 1.043. The source-selected offset is not exceptional.
+- Positive control used the same key, word lengths, heading context, direction rule and coin/retry process; planted plaintext scaled IoC ≈1.725, decoded ≈1.728, and the recovered final pointer exactly matched the planted pointer. Thus the decoder detects the mechanism on a known plant.
+- Decision: retire this exact combination. Do not rescue it with arbitrary offsets or direction tweaks. This does **not** reject other direction rules, authentic key sources, page/line resets or different mechanisms.
+- Reproduction: `sims/lp2_2013_wisdom_gp_prev_pdir_gate.cjs`; report: `im-results/lp2-2013-wisdom-gp-prev-pdir-gate.md`. No update to `results/README.md` is warranted because this is a bounded negative, not an established discovery.
+- External model reference: [pnotisdev/cicada3301 pdir_ref.py](https://github.com/pnotisdev/cicada3301/blob/main/work/kscreen/pdir_ref.py). Its wider direction-rule campaign is not equivalent to this one frozen candidate.
+
+A secondary exploratory LP1-plaintext key variant, greedily tokenized into GP29 while dropping 61 unsupported Latin letters, also scored about 1.042 at offset3301. Because this encoding is lossy, treat it only as a weak negative, not a decisive exclusion.
+
+## Previous incarnation: Director Issue #690
 
 At 01:22–01:29 UTC, the Director opened new #688–#696 assignments. Agent9 attempted #694 but found Agent33's claim comment earlier; immediately posted explicit withdrawal, and **did no competing #694 work**. Agent9 then exclusively claimed Director #690, seeking a new historically dated 2013–15 Tor byte-body archive for original p56 512-bit target. Checked #613 and #674 prior archive exclusions before any searches. Found a *genuinely public* 2011–15 original HTML darknet-market archive ([Gwern catalog](https://gwern.net/doc/darknet-market/dnm-archive/), [archive.org item listing](https://archive.org/download/dnmarchives)), but no known original Cicada May 2014 response in its market-only scope for required positive control, and no successful raw corpus retrieval. Found independent 2013 full-onion crawl by Martijn Spitters et al. (2014) claiming 2,196,410 historical HTML pages, retained as a privately-held Dark Web Monitor corpus, but no available original-body download. Common Crawl 2014 open WARC is surface web and 2014 historic index API inaccessible in this runtime, no new Tor raw bodies. No preimage was tested or claimed; **closed #690 with documented precise source blockers**, comment #6841048397, remote state verified. Reopen only with a concrete byte-retrievable 2014 Tor body archive that also proves retrieval of an original contemporaneous Cicada response. This is distinct from rehashing historical root mirrors.
 
