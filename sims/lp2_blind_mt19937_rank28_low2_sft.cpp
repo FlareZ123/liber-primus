@@ -84,11 +84,15 @@ std::vector<int> readOriginal() {
   return stream;
 }
 
-std::vector<int> ranks(const std::vector<int>& glyph, bool cyclic) {
+std::vector<int> ranks(const std::vector<int>& glyph, bool cyclic,
+                       bool consumeRepeat = false) {
   std::vector<int> result;
   for (std::size_t i = 1; i < glyph.size(); ++i) {
     const int previous = glyph[i-1], current = glyph[i];
-    if (current == previous) continue; // complete unkeyed repeat mask
+    if (current == previous) {
+      if (consumeRepeat) result.push_back(-1); // opaque consumed draw
+      continue;
+    }
     const int digit = cyclic
       ? (current - previous + 29) % 29 - 1
       : current - (current > previous ? 1 : 0);
@@ -172,16 +176,19 @@ Result assess(const std::vector<int>& observed, const std::string& title) {
     for (int b = 0; b < 2; ++b)
       if ((out >> b) & 1u) masks[b].push_back(bit);
   }
+  int checked = 0;
   for (std::size_t t = 0; t < observed.size(); ++t) {
     if (t > 0 && t % N == 0) mt.twist();
+    if (observed[t] < 0) continue; // draw consumed but output not known
     const auto& current = mt.state[t % N];
     for (int b = 0; b < 2; ++b) {
+      ++checked;
       Vec equation{};
       for (const int bit : masks[b]) xori(equation, current[bit]);
       if (!elim.add(equation, (observed[t] >> b) & 1)) {
         std::cout << title << ": INCONSISTENT at draw " << t
                   << " output bit " << b << " (rank " << elim.rank
-                  << ", checked " << (2 * t + b + 1) << " equations)\n";
+                  << ", checked " << checked << " equations)\n";
         return {false, t + 1, elim.rank, elim.dependencies};
       }
     }
@@ -192,7 +199,8 @@ Result assess(const std::vector<int>& observed, const std::string& title) {
   }
   std::cout << title << ": CONSISTENT " << observed.size()
             << " ranks, GF2 rank=" << elim.rank
-            << ", dependencies=" << elim.dependencies << std::endl;
+            << ", dependencies=" << elim.dependencies
+            << ", checked=" << checked << std::endl;
   return {true, observed.size(), elim.rank, elim.dependencies};
 }
 
@@ -230,9 +238,39 @@ int main() {
 
   const auto a = assess(sorted, "Original ascending skip-order");
   const auto b = assess(cyclic, "Original cyclic skip-order");
-  std::cout << "DECISION: ascending="
+
+  // Each source-visible repeated glyph consumes exactly one MT output,
+  // without emitting an ordinary 28-way rank digit.
+  const auto sortedConsume = ranks(original, false, true);
+  const auto cyclicConsume = ranks(original, true, true);
+  assert(sortedConsume.size() == original.size() - 1);
+  assert(cyclicConsume.size() == sortedConsume.size());
+
+  std::mt19937 genConsume(3301);
+  std::vector<int> plantedConsume{original.front()};
+  int predecessor = plantedConsume.front();
+  for (std::size_t i = 1; i < original.size(); ++i) {
+    const int digit = static_cast<int>(genConsume() % 28);
+    if (original[i] == original[i - 1]) {
+      plantedConsume.push_back(predecessor);
+      continue;
+    }
+    const int current = digit + (digit >= predecessor ? 1 : 0);
+    assert(current >= 0 && current < 29 && current != predecessor);
+    plantedConsume.push_back(current);
+    predecessor = current;
+  }
+  const auto consumePlant = ranks(plantedConsume, false, true);
+  assert(consumePlant.size() == sortedConsume.size());
+  assert(assess(consumePlant, "Planted MT19937 one-draw repeat source").consistent);
+  const auto c = assess(sortedConsume, "Original ascending consumed-repeat");
+  const auto d = assess(cyclicConsume, "Original cyclic consumed-repeat");
+
+  std::cout << "DECISION: no-draw ascending="
             << (a.consistent ? "compatible" : "rejected")
-            << ", cyclic=" << (b.consistent ? "compatible" : "rejected")
+            << ", no-draw cyclic=" << (b.consistent ? "compatible" : "rejected")
+            << ", one-draw ascending=" << (c.consistent ? "compatible" : "rejected")
+            << ", one-draw cyclic=" << (d.consistent ? "compatible" : "rejected")
             << " in the complete seed-free MT32-mod28/rank28 model.\n";
   return 0;
 }
