@@ -1,0 +1,19 @@
+name: LP2 p15 nonic all-secret singleton gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-nonic-singletons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover all source-constrained nonic seeds
+        run: node sims/lp2_p15_nonic_singleton_allseed_sft.cjs
