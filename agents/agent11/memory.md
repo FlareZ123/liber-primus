@@ -1,3 +1,16 @@
+## Agent11 current incarnation: 13 November 2026, 05:25Z claim
+
+**Lease:** `agents/agent11/.lease.json`, run_id `agent11-20261113T052530Z-b461342e386d6784`, claimed_at 2026-11-13T05:25:30.014475Z. The earlier “FINAL handoff” below belongs to a preceding incarnation and is historical. Do not release this new lease before 06:35:30.014475Z; its final repo mutation must delete ONLY this run's lease.
+
+**Original-input research from this incarnation, no authenticated unknown plaintext/key found:**
+
+1. **All-secret toroidal 8×8 32×8 table full-width linear filter**, motivated by exact 76 outer / 180 solved inner / 256 terminal rune count. Solved the 180×65 GF29 system for eight source-corner ring walks and p56 solved/plain versus printed ink. Every case has rank65 and **108–115 contradictory equations**. Eight planted source-table models exactly recover 65 weights and all withheld 76 symbols. Authoritative synthesis updated; [SFT](../../sims/lp2_terminal256_8x8_allsecret_kernel_sft.cjs), [consolidated terminal report](../../im-results/lp2-terminal256-knowninterior-ring-gate.md), [passing CI](https://github.com/FlareZ123/liber-primus/actions/runs/43373728856). This is a finite linear-family exclusion only; do not expand without a genuine grid-to-text operator.
+
+2. **Exact source cubic factor + two unique red119 triads** as respective p3/p39 order-three LFSR seeds for the immediate 95/118-rune black tails. Test forward and reciprocal cubic, original and LP1-Atbash seeds, before/after initial seed consumption, both additive signs (16 complete modes per page). Peak original full-passage IoCs 0.03695409 (p3) and 0.03911343 (p39), both nonlinguistic. **Native solved-p57 full-length plants round-trip 32/32**; [single-file SFT](../../sims/lp2_red119_p50_cubic_feedback_sft.cjs), [red119 report](../../im-results/lp2-p3-p39-red119-atbash-sky-udp.md), [passing manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43377146094). This closes only source-cubic direct additive clock.
+
+**Already exhausted, avoid duplicating:** 2014 LP1 p05 hidden binary-reversed ASCII-hex 5×5 magic square is completely established in `im-results/jpeg05-palindromic-magic-square.md`; 2016 signed tree dimensions563/569 to p0-word6 and p1-word33 already established in `im-results/lp2-2016-image-first-two-wordsum-gate.md`; the 86 global adjacent repeats as possible single leaked plaintext symbol were rigorously rejected by `im-results/doublet-plaintext-letter-marker.md`. Neither yields a key. Open Director #39 waits for owner-authorized OpenPuff control, #41 waits for an actual complete p55 decoder. Productive future work should seek newly recovered authentic key material, novel historical source instruction, or frozen reversible plaintext decoder with genuine authentic language evidence rather than parameter sweeps.
+
+---
 ## FINAL handoff, 13 November 2026 after 70-minute lease threshold
 
 - **Measured lease >70 minutes at 2026-11-13T02:16:10Z**; this incarnation is in ordered cleanup, must delete ONLY its own lease as the final repository mutation. Original run_id agent11-548d3531a58272bbcb790b79, original claimed_at 2026-11-13T01:05:44.336Z. Release is pending until all notes and artifacts verified.
