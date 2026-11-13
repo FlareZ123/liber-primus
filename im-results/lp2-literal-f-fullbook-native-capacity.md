@@ -1,51 +1,51 @@
-# All-secret necessary-count barrier for literal F interrupters on unknown LP2
+# Corrected literal-F capacity: the original F-count exclusion is withdrawn
 
-**Agent 27, 13 November 2026. Evidence class: exact conditional original-input constraint.** No unknown page plaintext or authentic key was recovered. The test decisively rejects one historically plausible **F-preserving decryptor invariant** against every contiguous native-GP passage of three archived prose sources, regardless of how all other runes are encrypted.
+**Corrected 13 November 2026 (Agent1). Evidence class: exact original-source cipher-direction correction to a finite-corpus necessary-condition test.** The previous version of this report incorrectly inferred that **every ciphertext F is an unchanged plaintext F**, and used that premise to exclude 562,060 native-English windows as unknown LP2 plaintext. This was a substantive mistake about the historical cipher, directly refuted by already-solved Cicada ciphertext. **The count-based exclusion has been retracted.** No unknown LP2 plaintext, source-selected key or destination was recovered by this correction.
 
-## Why the model matters
+## Authentic direction: plaintext F forces ciphertext F
 
-In the solved Liber Primus examples, the GP rune `ᚠ` can function as an unchanged **interrupter** while other runes undergo a cipher-key operation. It is tempting to transfer this literal-F convention unchanged to the 56 unresolved LP2 physical pages. The simplest necessary property of any such decoder is
+The solved LP1 WELCOME/DIVINITY (515 native GP runes) and LP2 p56 AN END (85 runes) use a **plaintext-F bypass** in their known keyed ciphers:
 
-`C[i] = F  ⇒  P[i] = F`,
+- If the **plaintext** GP rune is **ᚠ = F = 0**, the encoder outputs ciphertext F **and consumes no key symbol**.
+- A non-F plaintext rune consumes a key symbol and is normally encrypted by addition modulo29. Depending on the key shift, an ordinary non-F plaintext rune can produce **ciphertext F**.
 
-even if an ordinary non-F ciphertext rune might sometimes decode to F. The original unknown book has **12,956 GP runes** and exactly **458 source-visible ciphertext F runes**, hence any proposed plaintext respecting that property must contain **at least 458 F runes** in the same 12,956 positions. This argument leaves the entire non-F cipher, key schedule, page/word clocks, alphabet permutations and other state completely unknown.
+Consequently the valid necessary implication is
 
-It does **not** assume every plaintext F maps to ciphertext F, or any particular shift, prime key, predecessor filter, byte order or page reset. It is conditional on the original glyph F actually being a preserved plaintext F at every source position.
+```text
+P[i] = F  =>  C[i] = F.
+```
 
-## Source-calibrated native language constraints
+The converse **C[i] = F ⇒ P[i] = F** is false on verified solved originals. For LP2 p56, the exact original ciphertext Fs at page-local positions **35, 47, 51, 56, 74** correspond to native-GP plaintext **A, I, D, F, C**. Thus only index56 is a bypass and **four of five original ciphertext Fs are ordinary encrypted non-F letters**. Independently, solved LP1 WELCOME has **25 ciphertext Fs** but only **11 plaintext-F bypasses**, with 14 ordinary encrypted non-Fs resulting in F. These are exact source evidence, not a guess about unsolved-page encryption.
 
-Use the previously source-validated [native GP English encoder](../results/lp1-source-orthography.md), whose ING→ᛝ and IO→ᛡ conventions exactly reconstruct 181 solved LP1 words and all 95 original p57 runes. Convert each independent, archived source prose file into a continuous GP rune stream and examine **every length-12,956 contiguous window**, with no fitted key or guessed cipher letter. The maximum number of F runes in any such plaintext window is a mathematical ceiling on how many ciphertext F sites a literal-F-preserving cipher can produce.
+The [authentic p56 32-mask certificate](../sims/lp2_p56_plaintext_fehu_ambiguity_sft.cjs) uses the actual known prime-totient stream to show that **22 different F-clock masks** can each encode strictly forward to exactly the same 85 genuine p56 ciphertext runes. The [independent known-key lexical decoder](lp2-ftransparent-word-lexical-viterbi.md) resolves all actual bypasses on **710/710** solved runes across three historical keys, without accepting ciphertext F as necessarily literal.
 
-| Independent literary control | GP runes | Contiguous full-length windows | Maximum native-GP F count | Deficit versus original required 458 |
+## What the original unknown-page F counts really imply
+
+Original LP2 unsolved physical pp0–55 contain **12,956** runes with **458 ciphertext Fs**. The original visual chapter **pp40–53** has **3,008** runes with **125 ciphertext Fs**. Under the **same plaintext-F transparent encoder**, the only full-book count condition is
+
+```text
+plaintext_F_count <= 458,
+and (for the independently keyed pp40–53 chapter)
+plaintext_F_count_in_pp40_to_53 <= 125.
+```
+
+Both inequalities follow by inclusion of plaintext-F positions among the ciphertext-F positions. A correct count-only exclusion would need an independently fixed plaintext containing **more** than 458 Fs (or more than 125 Fs in the chapter), not fewer.
+
+The repository's original source-calibrated 29-rune GP English encoder, with single-rune ING/IO, produces these unchanged **maximum** F counts over **every possible contiguous original-length window**:
+
+| Independently sourced native-GP prose | Whole-length 12,956-rune windows | Maximum native plaintext F count | Section-length 3,008-rune windows | Maximum native F count |
 | --- | ---: | ---: | ---: | ---: |
-| Shakespeare first 300k text characters | 217,106 | 204,151 | **321** | 137 |
-| Gibran, *The Prophet* | 62,492 | 49,537 | **390** | 68 |
-| Emerson essays | 321,327 | 308,372 | **432** | 26 |
-| **Total** | | **562,060** | | |
+| Shakespeare, first 300k characters | 204,151 | 321 | 214,099 | 96 |
+| Gibran, *The Prophet* | 49,537 | 390 | 59,485 | 109 |
+| Emerson, *Essays* | 308,372 | 432 | 318,320 | 119 |
+| **Total** | **562,060** | **all satisfy the actual ≤458 bound** | **591,904** | **all satisfy the actual ≤125 bound** |
 
-All **562,060** contiguous control windows fall below the original source's required 458 literal Fs.
+**Correct result:** every one of the 562,060 reference windows satisfies the *correct necessary whole-book F count* and every one of the 591,904 reference windows satisfies the *correct necessary section F count*. This means only that **counts do not exclude them**. Their actual positional F masks, word shapes or other encryption properties might still reject specific plaintext windows, and no source tells us that any source passage is an LP2 original plaintext.
 
-## Stronger local exclusion: original section p40–p53 alone
+The former interpretation took `max(reference plaintext F) < observed ciphertext F` as a contradiction. Under the original validated encoder it is perfectly possible, because ordinary encrypted non-F symbols can contribute the additional ciphertext F occurrences. Indeed, the previous synthetic F-positive generated a **stricter artificial F-exclusive output code** by forcing every non-F to encrypt to a non-F, thereby making `P_F = C_F`. That positive control validated the artificial stricter model only; it did not justify attributing the stricter invariant to Cicada's known cipher.
 
-The original manuscript has nine author-visible red-heading segments. Physical **p40–p53** (including the number-only p50) is one contiguous rune-bearing unit containing **3,008 original GP ciphertext runes and 125 F glyphs**. The same literal-F hypothesis requires at least 125 plaintext Fs **within this one section**. This local gate remains necessary if the other LP2 chapters use completely different ciphers or key schedules.
+## Reproducible correction and operational decision
 
-| Independent native-GP source | Contiguous 3,008-rune windows | Largest F count in any window | Deficit vs original p40–p53's 125 |
-| --- | ---: | ---: | ---: |
-| Shakespeare | 214,099 | 96 | 29 |
-| Gibran | 59,485 | 109 | 16 |
-| Emerson | 318,320 | 119 | 6 |
-| **Total** | **591,904** | | |
+The [corrected CommonJS source SFT](../sims/lp2_literal_f_fullbook_native_capacity_sft.cjs) reads the exact original 12,956 LP2 cipher indices and their 3,008-rune chapter, recomputes all three native prose F-count maxima, asserts **the corrected inequality direction** for every window, and includes both the exact p56 F-position witness and a native-GP positive plant in which plaintext F remains literal while some non-F letters also encrypt to F. This is a narrow **source-based correction**, not a new cipher-search sweep. The exact F counts and window maxima from the earlier report remain usable descriptive observations after the inference is corrected.
 
-All **591,904** candidate contiguous literary passages violate this source-section necessary condition; the strongest Emerson passage still lacks six Fs. This is stronger than merely accumulating a book-wide frequency deficit: even granting unrelated decryption methods in the preceding and following sections cannot make that one 3,008-rune source section equal a passage from these controls under a literal-preserving F rule.
-
-The original *individual physical pages* do not individually violate the F-count maxima of these same controls at their respective lengths; the obstruction emerges over the printed chapter-length aggregation. This distinction prevents overstating a single-page impossibility. The same SFT asserts the exact section count and all three source maxima.
-
- Therefore **no passage in this exact finite control set can be the plaintext of the entire original unknown LP2 corpus under a cipher that preserves all 458 ciphertext F symbols literally**, even if the non-F stream is subject to an arbitrarily powerful secret cipher. This is a deterministic, necessary-condition exclusion over the fixed text windows; it is neither a p-value nor a claim about all possible author-composed English.
-
-The checked-in [CommonJS SFT](../sims/lp2_literal_f_fullbook_native_capacity_sft.cjs) asserts all the original counts and every source maximum. As a synthetic positive, it takes the first 12,956 source-native Gibran runes (322 genuine F), encrypts every other rune under a changing non-F transform that never outputs F, and preserves the exact F mask. The unchanged detector recovers exactly all 322 F sites of the planted plaintext, demonstrating the invariant works on a source-shaped planted message. A separately computed native GP encoder had already validated the control conventions on solved LP1 and LP2; this experiment does not change those source definitions.
-
-## Limit and cryptanalytic decision
-
-The final solved LP2 p57 is very short and contains **3 F runes in 95 total runes**; its frequency alone cannot establish the F rate in an author-composed 12,956-rune text. English with unusually many F-bearing words, another language or a compressed/nonlinguistic plaintext might reach 458. Likewise a cipher whose F output is not always literal, or whose original word lengths are fake, is outside this gate. This does not contradict the documented F-interrupter behavior of *solved* pages, whose methods and key periods differ.
-
-**Decision:** a full-book LP2 attack which assumes a source-native plaintext window from these literary controls **and** copies the solved pages' ciphertext-F-as-literal-F convention cannot succeed, regardless of its hidden non-F key. Retire that combination. Any future use of an unchanged F interrupter must first identify a source passage with at least 458 GP Fs or independently establish that the unknown author used a different register. This provides a key-independent decision before costly new F-interrupter key searches.
+**Decision:** withdraw the blanket all-secret unknown-LP2 English exclusion that was based on ciphertext-F-as-literal-F. Reopen the broader **plaintext-F transparent** cipher possibility only when a separate original clue selects its key and stream clock; do not infer that LP2 actually uses it. For any future proposed true plaintext, use the correct **positional necessary condition** `{i : P[i] = F} ⊆ {i : C[i] = F}`, then the known-key lexical clock decoder and exact forward encoding. The restriction on plaintext F positions can be useful on an independently supplied real crib, while the F **count alone** gives no contradiction for the control corpora.
