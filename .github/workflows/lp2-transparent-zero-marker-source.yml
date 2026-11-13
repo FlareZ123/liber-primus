@@ -1,9 +1,5 @@
 name: LP2 transparent-zero lexical source gate
 on:
-  push:
-    paths:
-      - sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs
-      - .github/workflows/lp2-transparent-zero-marker-source.yml
   workflow_dispatch:
 jobs:
   exact-original-gate:
