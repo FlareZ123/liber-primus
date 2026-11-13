@@ -19,10 +19,15 @@ jobs:
         run: python -m pip install numpy opencv-python-headless filelock
       - name: Register dated 2014 logo against original LP2 p55
         run: python sims/lp2_moth_pre2014_logo_registration_sft.py
+      - name: Inspect source-registered extra dark ink and planted control
+        run: python sims/lp2_p55_logo_registered_residual_sft.py
       - name: Preserve source comparison
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: lp2-moth-jan2014-logo-registration
-          path: im-results/lp2-moth-jan2014-logo-registration.json
+          path: |
+            im-results/lp2-moth-jan2014-logo-registration.json
+            im-results/lp2-p55-logo-registered-residual.json
+            im-results/lp2-p55-logo-registered-residual.png
           retention-days: 90
