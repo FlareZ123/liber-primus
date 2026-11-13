@@ -90,7 +90,7 @@ function pageLocalSingletonWitness() {
   const raw=fs.readFileSync(path.join(__dirname,"..","resources","lp2-transcription.txt"),"utf8");
   const stream=raw.split("%").slice(0,55).join("%");
   const runeMap=new Map(corpus.runes.map((r,i)=>[r,i]));
-  let page=0,local=0,lineLocal=0,current=[],begin=null,nonemptyLines=0,inLine=false;
+  let page=0,local=0,lineLocal=0,global=0,current=[],begin=null,nonemptyLines=0,inLine=false;
   const one=[];
   function finish(){
     if(current.length===1)one.push({...begin,index:current[0]});
@@ -99,8 +99,9 @@ function pageLocalSingletonWitness() {
   for(const ch of stream){
     const index=runeMap.get(ch);
     if(index!==undefined){
-      if(current.length===0)begin={physicalPage:physicalLP2Page(page),localIndex:local,lineIndex:lineLocal};
+      if(current.length===0)begin={physicalPage:physicalLP2Page(page),localIndex:local,lineIndex:lineLocal,globalIndex:global};
       current.push(index);
+      global++;
       local++;
       lineLocal++;
       inLine=true;
@@ -112,6 +113,7 @@ function pageLocalSingletonWitness() {
   finish();
   if(inLine)nonemptyLines++;
   assert.equal(nonemptyLines,594);
+  assert.equal(global,12956);
   assert.equal(one.length,83);
   const witness=one.filter(w=>w.localIndex===2).map(
     w=>({physicalPage:w.physicalPage,index:w.index}));
@@ -136,8 +138,34 @@ function pageLocalSingletonWitness() {
     {physicalPage:35,index:7},
   ]);
   assert.equal(new Set(lineWitness.map(w=>w.index)).size,6);
+  const sourceIndices=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
+  const predecessorW = previous => one.filter(
+    w=>w.localIndex>0 && sourceIndices[w.globalIndex-1]===previous).map(
+      w=>({physicalPage:w.physicalPage,index:w.index}));
+  const prev17=predecessorW(17);
+  assert.deepEqual(prev17,[
+    {physicalPage:3,index:21},
+    {physicalPage:6,index:19},
+    {physicalPage:12,index:14},
+    {physicalPage:21,index:28},
+    {physicalPage:28,index:15},
+    {physicalPage:41,index:22},
+  ]);
+  const prev23=predecessorW(23);
+  assert.deepEqual(prev23,[
+    {physicalPage:10,index:10},
+    {physicalPage:13,index:11},
+    {physicalPage:18,index:16},
+    {physicalPage:19,index:4},
+    {physicalPage:29,index:19},
+    {physicalPage:48,index:1},
+  ]);
+  assert.equal(new Set(prev17.map(w=>w.index)).size,6);
+  assert.equal(new Set(prev23.map(w=>w.index)).size,6);
+  const predecessorFeedback={prev17,prev23,distinctAtEach:6,
+    minimumAdditionalMaps:{two:3,three:2,five:2}};
   return {localIndex:2,witness,candidateKeysAIO,sharedAdditiveKeys,
-    nonemptyLines,lineOffset18:{witness:lineWitness,distinct:6,
+    nonemptyLines,predecessorFeedback,lineOffset18:{witness:lineWitness,distinct:6,
       minimumStateMaps:{two:3,three:2}}};
 
 }
