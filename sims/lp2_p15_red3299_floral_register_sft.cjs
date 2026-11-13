@@ -347,25 +347,46 @@ function redRandomInt(n) {
   redShuffleState ^= redShuffleState << 5;
   return Math.floor(((redShuffleState >>> 0) / 4294967296) * n);
 }
-const redTrials = 30000;
+const redTrials = 200000;
 const p15Cells = new Set(printedSpiral);
 let anyCellCount = 0;
 let exact3294Count = 0;
+let dualZero40Count = 0;
+let exactTotient1033Count = 0;
+let jointAllCount = 0;
 for (let trial = 0; trial < redTrials; trial += 1) {
   let sum = 0;
+  let p40Prime = 0;
+  let p40Index = 0;
+  let p54Prime = 0;
   for (let part = 0; part < 3; part += 1) {
     const source = corpus.pages[floralRedPages[part]].indices.slice();
     for (let j = 0; j < floralRedParts[part].length; j += 1) {
       const k = j + redRandomInt(source.length - j);
       [source[j], source[k]] = [source[k], source[j]];
-      sum += corpus.prime[source[j]];
+      const v = corpus.prime[source[j]];
+      sum += v;
+      if (part === 0) {
+        p40Prime += v;
+        p40Index += source[j];
+      }
+      if (part === 2) p54Prime += v;
     }
   }
-  anyCellCount += p15Cells.has(sum);
+  const dualZero40 = (p40Prime % 29) === 0 && (p40Index % 29) === 0;
+  const exactTotient1033 = p40Prime + p54Prime === 1032;
+  const anyCell = p15Cells.has(sum);
+  dualZero40Count += dualZero40;
+  exactTotient1033Count += exactTotient1033;
+  anyCellCount += anyCell;
   exact3294Count += sum === 3294;
+  jointAllCount += dualZero40 && exactTotient1033 && anyCell;
 }
-assert.equal(anyCellCount, 398);
-assert.equal(exact3294Count, 39);
+assert.equal(anyCellCount, 2698);
+assert.equal(exact3294Count, 305);
+assert.equal(dualZero40Count, 212);
+assert.equal(exactTotient1033Count, 151);
+assert.equal(jointAllCount, 0);
 const redSumExploratory = {
   redRuns: [8, 51, 9],
   sumGpPrimes: floralRedPrimeSums,
@@ -376,7 +397,11 @@ const redSumExploratory = {
   anyP15CellCount: anyCellCount,
   anyP15CellP: (anyCellCount + 1) / (redTrials + 1),
   exactValueCount: exact3294Count,
-  exactValueP: (exact3294Count + 1) / (redTrials + 1)
+  exactValueP: (exact3294Count + 1) / (redTrials + 1),
+  p40BothResiduesZeroCount: dualZero40Count,
+  headingsExactPhi1033Count: exactTotient1033Count,
+  tripleIntersectionCount: jointAllCount,
+  tripleIntersectionAddOneExploratoryBound: (jointAllCount + 1) / (redTrials + 1)
 };
 
 
