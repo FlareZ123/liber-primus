@@ -36,6 +36,19 @@ In the same 41-window original-source scan, **only pp40–55** has full length e
 
 Two natural reversible readings of the **full 4×829** ciphertext matrix, row-major→column-major and its inverse, have ordinary digraph structure. Original full-runic source: **21** identical adjacent pairs, **815** distinct GP29 digraphs, empirical digraph MI **0.145038**. Column-first read: **121**, **822**, **0.126074**. Row-first inverse: **119**, **829**, **0.121956**. Both rearrangements reduce local dependence and cannot fix the original near-uniform one-symbol inventory. Their inverses reproduce every original rune. This retires just these direct positional reads as native-GP plaintext, leaving a source-selected *identity-changing* cipher as the missing piece.
 
+## Red-heading sum singles out the other historic Cicada prime, 1033
+
+The p40 eight-rune red opening has exact GP-prime-sum **435** (`2+29+71+103+17+89+101+23`). The p54 nine-rune red opening sums to **597** (`97+71+79+89+107+5+47+31+71`). Their combined **17 GP runes sum 1,032**, which is **φ(1033)** because **1033 is prime**. Both chapter openings are source-selected by the red rubric and original preceding red13 close; this is not an arbitrary subsequence fitted to 1033.
+
+The **two source-delimited floral chapter bodies** have separately fixed lengths **3000** and **299** after their own headings, respectively, whose sum is **3299=3301−2**, the red p15 cell. Consequently the original-source register exposes both historic Cicada magic-square constants through established operations:
+
+- `GP_prime_sum(red p40 opening + red p54 opening) = φ(1033) = 1032`;
+- `runes(pp40–53 after red8) + runes(pp54–55 after red9) = 3000 + 299 = 3299 = 3301 − 2`.
+
+A distinct associated relationship is `prime_90=463=π(3299)`, while `prime_145=829=3316/4`. Both primes 463 and 829 are in consecutive positions of the established p15 Fibonacci-indexed-prime spiral. Taken together these are a compact clue chain deserving examination for a **specified next decoding operation**.
+
+**Crucial limitation:** Cicada's 2013/2014 puzzles already foreground 1033, 3301, GP prime sums and totients, so these numbers were natural hypotheses after seeing the pages. The reported equalities establish a mathematical coincidence across independently identified artifacts. They do **not** prove authorial intent or make the p15 body-link a complete solver instruction. The simple p463-prime-totient/column inverses below fail; an independent cipher consumer must still be found.
+
 ## Source-fixed prime-totient plus 4×829 compound gate
 
 The original p15 red3299 is the **463rd prime**, and the next prime is Cicada's 3301. The solved LP2 p56 provides a genuine identity-changing GP29 inverse, subtraction of consecutive prime totients. One compact candidate combines only these source objects: begin the p56 prime-totient clock at **p463=3299**, consume each of the **3316** floral ciphertext symbols with no F skips, and optionally invert one of the two natural 4×829 row/column reading orders. To avoid guessing the layer order after seeing the output, freeze **both** possible orders between transposition and the additive cipher, both signs, plus the no-transpose baseline: **10** original-input decodings total. Do not add phase/window/key searches.
@@ -46,7 +59,7 @@ This retires this particular source-fixed p463 prime-totient transfer and the tw
 
 ## Decision
 
-Retain **red3299 ↔ floral body minus two independently visible headings**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, and two natural 4×829 columnar readings as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
+Retain **red3299 ↔ floral body minus two independently visible headings**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, and two natural 4×829 columnar readings as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
 
 **Exact single runnable test file:** [`sims/lp2_p15_red3299_floral_register_sft.cjs`](../sims/lp2_p15_red3299_floral_register_sft.cjs). It reads `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`, rederives 3299 uniqueness, checks the full p15 mathematical formula, proves exact permutation, reproduces direct readout and 3000 null draws.
 
