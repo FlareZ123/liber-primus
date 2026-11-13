@@ -17,6 +17,12 @@ The 86 doublet positions and 1,000-rune block counts reproduce the independent [
 
 The 23 cross-word pairs are real transcription adjacencies only after spaces are stripped; they are not within-word doubles. Word-aware stratification changes the interpretation of T7: the 63 within-word sites have gap lag-1 autocorrelation **+0.1786**, but a 10,000-draw position-conditioned null gives **p=0.061**; the 23 cross-word sites have AC1 **−0.0857** and **p=0.558**. The full 86-site signal is significant, but neither stratum is independently significant at 0.05. Thus the T7 result is sensitive to mixing adjacency classes and is not, by itself, evidence of a within-word stateful filter.
 
+## Cross-release control: initial LP1 transcription blocks
+
+The first three blocks of `resources/transcriptions/lp1_wulfic_canonical.txt` provide a useful same-alphabet / same-separator control: **699 runes**, **16/530 within-word** doubles (**3.02%**) and **5/166 cross-word** doubles (**3.01%**). By comparison, LP2 pp0–54 has **63/10,028 (0.628%)** within-word and **23/2,873 (0.800%)** cross-word doubles—about **4.8×** and **3.8×** lower, respectively.
+
+The later LP1 blocks include solved plaintext and are not pooled into this initial-block control. This comparison shows that the LP2 repeat deficit is not an inevitable property of the rune alphabet or the transcription's word-separator convention. It supports an LP2-specific output/cipher difference, but does not by itself prove a rejection filter: LP1 and LP2 may use different mechanisms and plaintext.
+
 ## A source-visible span with no cross-word doubles
 
 There is a longer, more specific boundary anomaly:
@@ -40,13 +46,13 @@ This rejects the most natural p15-grid repeating-key consumer of the boundary an
 
 ## Interpretation and limits
 
-The robust observation is a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
+The robust observations are (i) an LP2-wide adjacent-repeat deficit relative to the initial LP1 control and (ii) a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
 
 The page art is context, not proof: p11 and p23 carry tree illustrations; p15 has the red 3299 Fibonacci/prime grid and infinity mark; p22 has the three-bar cross/shrouded-body engraving; p24 has mayfly imagery. p10 also has a tree, so these motifs do not uniquely delimit the zero-run span. Independent external work likewise cautions that figural-motif signals fire in 80–99% of section-structured control books; see the [Dukotah research handoff](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/PICKUP-HERE.md) and [art-attribution catalogue](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round30/C1-art-attribution/RESULTS.md). Do not promote a “tree cipher”, “cross cipher”, or a general motif theory from this alignment.
 
 ## Next discriminating question
 
-Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The obvious p15 16-value repeating word-key consumer is now negative. Any further work on the pp11–23 boundary pattern must begin from a different original clue that selects a reversible operation or key schedule; do not search arbitrary per-word maps, add free phases, or repeat the generic figural-motif scan.
+Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The obvious p15 16-value repeating word-key consumer is now negative. Any further work must identify an original clue that explains the LP2-specific repeat suppression and selects a reversible operation or key schedule; do not search arbitrary per-word maps, add free phases, or repeat the generic figural-motif scan.
 
 ## Reproduction
 
