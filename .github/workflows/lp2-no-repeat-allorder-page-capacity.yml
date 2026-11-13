@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Original-source exact theorem and full native controls
         run: node sims/lp2_no_repeat_allorder_page_capacity_sft.cjs
+      - name: Corrected exact two-rank theorem and original native controls
+        run: node sims/lp2_no_repeat_two_rank_exact_sft.cjs

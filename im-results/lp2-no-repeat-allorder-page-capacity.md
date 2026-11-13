@@ -1,6 +1,6 @@
-# Every secret ordering of the 29 GP runes: exact no-repeat rank capacity
+# Every secret rune ordering: exact one- and two-rank predecessor-exclusion capacities
 
-**Agent 34, 13 November 2026. Evidence class:** all-secret exact combinatorial capacity theorem applied to the unchanged original LP2 ciphertext, with full original-shape native-English controls. It closes the unknown *underlying rune order* loophole left by the canonical-order predecessor-exclusion rank test, including **independent secret ordering and symbol relabeling for every physical page**. **No unknown LP2 plaintext, authentic cipher/key or destination has been recovered.** The conclusion applies to a precise reversible 28-way rank cipher and does not generalize to independent evolving rank tables at each word or symbol.
+**Agent 34, 13 November 2026. Evidence class:** all-secret exact combinatorial capacity theorem applied to the unchanged original LP2 ciphertext, with full original-shape native-English controls. It closes the unknown *underlying rune order* loophole left by the canonical-order predecessor-exclusion rank test, including **independent secret ordering and symbol relabeling for every physical page**. **No unknown LP2 plaintext, authentic cipher/key or destination has been recovered.** The exact single-rank and newly corrected joint-two-rank bounds both apply to this precise reversible 28-way rank cipher, and do not generalize to independently evolving rank tables at each word or symbol.
 
 ## Human candidate and decisive mathematical question
 
@@ -38,6 +38,45 @@ Every maximizing choice is realizable as an actual permutation by putting the \`
 
 The middle row is the sum of exact per-chapter maxima **[53,77,102,111,64,86,99,158,28]**, in physical chapter intervals \`0–2,3–7,8–14,15–22,23–26,27–32,33–39,40–53,54–55\`. The global 574 maximum is achieved by making original GP rune labels **OE** and **A** adjacent in an otherwise adversarially optimized secret order. The rank count is exactly 574 on the original input. The per-page bound **1,292** is a sum of 55 independently optimized upper capacities: no order or output label assignment is shared across pages. Thus it already grants the model an enormous amount of independent hidden key material.
 
+## Exact maximum of **two** decrypted letters, even under 55 secret page keys
+
+The previous experimental two-rank bound of 2,379 was **retracted** because its first combinatorial derivation omitted touching rank pairs: a five-rune test produced 58 instead of the actual 61. The corrected theorem below treats touching and disjoint pairs separately, proves realizability, and independently recomputes 2,379 from original ciphertext. The numerical agreement does **not** rehabilitate the retracted proof.
+
+For a secret ordered GP29 alphabet, choose any two distinct rank outputs \(r_1<r_2\) of the 28-way predecessor-exclusion decoder. The two source-alphabet adjacent pairs can be **touching** \((a,b,c)\) or **disjoint** \((a,b,c,d)\), listed in alphabet order. Let \(U_s(x,y)=T[s,x]+T[s,y]\), with \(T\) the exact original off-diagonal predecessor transition counts.
+
+For **touching** output ranks, the attainable total occupancy is
+
+\[
+J_3(a,b,c) =
+T[a,b]+T[a,c]+T[b,a]+T[b,c]+T[c,a]+T[c,b]
++\sum_{s\notin\{a,b,c\}}\max\{U_s(b,c),U_s(a,b)\}.
+\]
+
+For **disjoint** ranks the attainable occupancy is
+
+\[
+\begin{aligned}
+J_4(a,b,c,d)={}&T[a,b]+T[a,d]+T[b,a]+T[b,d]\\
+ &+T[c,a]+T[c,d]+T[d,a]+T[d,c]\\
+ &+\sum_{s\notin\{a,b,c,d\}}\max
+ \{U_s(b,d),U_s(a,d),U_s(a,c)\}.
+\end{aligned}
+\]
+
+In the touching case, each other predecessor may be placed before \(a\) or after \(c\); in the disjoint case it may be placed before \(a\), between \(b,c\), or after \(d\). Each predecessor's preferred region can be chosen independently, and the corresponding groups can be concatenated into an actual secret rune permutation. Thus \(\max(J_3,J_4)\) over ordered distinct endpoints is an **exact realizable maximum**, including all hidden orders and both output ranks, rather than an upper estimate or a language-optimized key. The reproducer reconstructs an attaining order and verifies both rank bins on the unchanged original input. The formerly failing five-rune oracle now produces the correct **61**, and 30 further seeded five- and six-rune exhaustive permutation comparisons agree.
+
+| Secret underlying alphabet | Two-rank capacity on 12,815 constrained positions |
+|---|---:|
+| Single ordering across all 55 rune-bearing unknown pages | **1,118** |
+| Nine independently keyed original visual chapters (0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53, 54–55) | **1,472** |
+| Fully independent hidden ordering **and** rank-to-plaintext bijection per rune-bearing page, 55 separate keys | **2,379** |
+
+The nine chapter exact maxima are [98, 146, 190, 210, 122, 161, 187, 307, 51]. The 55-page bound grants a different pair of winning plaintext ranks and optimal underlying ordering on *every page*. No decipherment assumes that the plaintext letters' rank positions remain consistent across pages.
+
+Using the same original 141 unconstrained page-initial/doublet positions, independently scan all **567,679** full-12,956-rune contiguous GP-native English windows in the three original fixed controls. At each window, find its two most frequent plaintext rune identities *after removing the 141 free positions*. Their minimum combined counts are **2,517** (Gibran; at rune window 36,540; E+O), **2,418** (Shakespeare; at 192,716; E+I), and **2,479** (Emerson; at 299,973; E+A). Each exceeds the 55-key capacity **2,379**, with the tightest deficit **39** runes. These are minima over every original-length window, not selected average frequencies.
+
+**Decision:** no constant-per-physical-page secret-ordered predecessor-exclusion GP28 rank decoder can produce *any of those specific native GP29 English passages*, even when the key and pair of plaintext rank labels vary independently for each page and all 141 exceptional positions are free. It does not exclude a different plaintext register, a changing-symbol state, or a code with genuinely supplied side information. No unknown LP2 plaintext, authentic key or final destination is obtained. [Corrected exact joint-rank SFT](../sims/lp2_no_repeat_two_rank_exact_sft.cjs).
+
 ## Full-original-length native English test, every possible window
 
 As an independent control, use the repository's historically established GP29 transcription procedure: uppercase; QU→CW, V→U, K/Q→C, Z→S; greedily recognize 29 standard rune transliterations. The chosen common letter E has canonical GP index **18**. No alphabet mapping is inferred from the LP2 ciphertext or tuned to make the native controls fail.
@@ -57,13 +96,13 @@ This is a **finite-language-register exclusion**, not an impossibility theorem f
 
 ## Why it advances the cryptanalytic decision
 
-This result removes a tempting missing-key rescue of a literal predecessor-exclusion decoder. A mystery 29-way rune ordering cannot turn the observed near-uniform no-repeat ranks into the native English frequency distribution, **even if completely reselected on every page**. The exact capacity has been derived with the secret alphabet unobserved, so the agent population need not launch factorial key searches or force English language scores on a cipher that algebraically cannot carry this specific plaintext register.
+This result removes a tempting missing-key rescue of a literal predecessor-exclusion decoder. A mystery 29-way rune ordering cannot turn the observed near-uniform no-repeat ranks into the native English frequency distribution, **even if completely reselected on every page**. The exact capacities of one decoded symbol and of two simultaneously decoded symbols are now derived with the secret alphabet unobserved. Neither a global order nor any of 55 independent hidden page orders can generate the checked GP-native English controls. This removes the previously unresolved two-rank extension without a factorial key search.
 
 The underlying low-doublet phenomenon remains unexplained. A clue-supplied evolving state, a different nonnative content register, a reversible variable-length code, or an external high-entropy key may be viable only with an executable independently sourced inverse. This report does not authenticate the predecessor-exclusion mechanism itself and produces **zero recovered original plaintext**.
 
 
-**Original-source manual CI:** [passing Node 22 full-control run 43384988103](https://github.com/FlareZ123/liber-primus/actions/runs/43384988103) executed the exact current standalone SFT on the remote checkout.
+**Original-source manual CI for the single-rank theorem:** [passing Node 22 full-control run 43384988103](https://github.com/FlareZ123/liber-primus/actions/runs/43384988103) executed the exact current standalone SFT on the remote checkout.
 
 ## Reproduce
 
-[Standalone CommonJS SFT](../sims/lp2_no_repeat_allorder_page_capacity_sft.cjs) uses Node.js 22 and built-in libraries only. It reads the unchanged [canonical original LP2 corpus](../resources/liber-primus/lp2-corpus.json) and three fixed [source controls](../resources/control/), checks the 12,956/12,815/86/141 original inventory, exhausts the **406 adjacent-pair capacities** for each chapter and physical page, constructs a real maximizing original-order decoder, performs an exhaustive 5-way permutation theorem oracle, scans every one of the 567,679 source-native windows at exactly the original 141 free positions, and verifies a complete original-shaped native-content rank encrypt/decrypt plant with all 86 doublet markers preserved.
+[Single-rank SFT](../sims/lp2_no_repeat_allorder_page_capacity_sft.cjs) and [corrected two-rank SFT](../sims/lp2_no_repeat_two_rank_exact_sft.cjs) use Node.js 22 and built-in libraries only. It reads the unchanged [canonical original LP2 corpus](../resources/liber-primus/lp2-corpus.json) and three fixed [source controls](../resources/control/), checks the 12,956/12,815/86/141 original inventory, exhausts the **406 adjacent-pair capacities** for each chapter and physical page, constructs a real maximizing original-order decoder, performs an exhaustive 5-way permutation theorem oracle, scans every one of the 567,679 source-native windows at exactly the original 141 free positions, and verifies a complete original-shaped native-content rank encrypt/decrypt plant with all 86 doublet markers preserved.
