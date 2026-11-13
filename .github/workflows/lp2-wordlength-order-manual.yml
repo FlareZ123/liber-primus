@@ -1,0 +1,18 @@
+name: LP2 original word-length order grammar
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-wordlength:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Source-exact word-length adjacency and original-language controls
+        run: node sims/lp2_wordlength_order_grammar_sft.cjs
