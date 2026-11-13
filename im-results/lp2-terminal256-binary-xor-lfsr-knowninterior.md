@@ -59,6 +59,19 @@ For any unknown N-bit GF(2)-linear state transition matrix, every bitplane of a 
 
 **Exact 16-model result: minimum common recurrence order 160; maximum 161.** Every **GF(2)-linear state of 159 bits or less**, with any hidden linear transition and any hidden GF(2)-linear byte output, fails the original known180 mask under these tested table/rune registers and physical ring orders. This excludes all fixed linear 32-, 64- and 128-bit state PRNGs, including conventional xorshift with linear byte extraction, within this source-conditioned architecture. The source makes no promise of constant stepping, a GF(2)-linear output, or any relationship between the table and p55. Nonlinear extraction, cryptographic generators, serialization changes, different positional registers and different ring routes remain open.
 
+### GP prime-weight byte register: an independent historical alternative
+
+Gematria Primus assigns each rune a **prime number** in addition to its ordinal index. Using the source-authentic GP prime weights as the one-byte 0–109 message register is therefore a second historically plausible and *different* XOR byte interpretation, rather than tuning a phase or hidden key. The same source-ordered 8 physical shell routes and two p56 statuses give **16 more** original known180 byte-XOR masks `K[i]=printedTableByte[i] XOR GP_prime(knownRune[i])`. A completely independent source-anchored GP prime register does **not** rescue a short linear state: all 16 masks have minimum shared eight-bitplane recurrence orders **160 or 161**. In row-major corner order TL, TR, BR, BL and clockwise/counterclockwise pairs, the order pairs (recovered p56 / original printed p56) are:
+
+| Corner | Clockwise | Counterclockwise |
+| --- | --- | --- |
+| Top left | 160 / 161 | 160 / 161 |
+| Top right | 161 / 161 | 160 / 161 |
+| Bottom right | 160 / 161 | 161 / 161 |
+| Bottom left | 160 / 161 | 161 / 160 |
+
+Together with the ordinary GP-index byte register, the original evidence therefore excludes **all GF(2)-linear state dimensions up to 159 under each of 32 precise native-rune-byte mappings**. The fixed geometry and one-byte-per-symbol, one-state-step-per-byte hypotheses are still unproven; this does not exclude arbitrary non-GP byte transports. The historical-prime extension is asserted in the same [all-secret exact SFT](../sims/lp2_terminal256_linear_state_wordclock_sft.cjs).
+
 ### Complete withheld synthetic recovery for an arbitrary 128-bit linear state
 
 A second positive-control plant uses a **true single 128-bit GF(2)-linear state**. Its reversible one-step state transition uses the standard irreducible GF(2^128) reduction constant \`0xe1…00\`, and it emits eight simultaneous, linearly distinct byte output taps from successive 16-bit-spaced internal-state positions. The inverse is **never given** that 128-bit initial state, transition polynomial, tap locations or the 76 exterior GP plaintext symbols. It sees only 180 known inner-rune bytes and the constructed 256-byte table on the original 32×8 geometry. It:
