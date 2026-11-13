@@ -50,8 +50,36 @@ A direct, inexpensive decipherment was frozen from only the source-selected eige
 
 Neither source-defined sign yields plaintext; both remain near-uniform. This rejects the **direct seven-block GP29 additive key** on the original p40–53 body. It does *not* refute the polynomial factor, a source-selected two-dimensional projector, a nonlinear key consumer, or the possibility of an accidental factor match.
 
+## Key-independent all-secret two-dimensional kernel-pad gate
+
+The common factor supplies a sharper test than adding one favored eigenvector as a key. Let `B=Q(M_signed)` with source-known rank2. If any proposed four-GP-rune cipher has `C=P+K mod29` with **an arbitrarily complex, arbitrarily changing secret four-vector `K` in the entire two-dimensional kernel of `B`**, then necessarily `BC=BP` on *every* source block, for every such key. No key search, alphabet permutation or assumed period can evade this invariant. The first two independent rows of `B` give a complete 29²-state quotient:
+
+```text
+B = [22 17 17  4]
+    [19 13 14 20]
+    [19 28 24 19]
+    [ 8  3 19 21]
+```
+
+This test uses **all 1,744 original pp16–22 runes**, and separately the **3,000 original pp40–53 body runes** after p40's eight-rune red heading, in four-rune blocks, with fixed physical source ordering. A smoothed 841-state projection-pair frequency model is trained on *two* independent, GP-native literary source corpora, withholding the third as the genuine-English test set. It then measures mean heldout log likelihood per four-rune projected pair. The Gibran, Shakespeare and Emerson heldout windows are source-order contiguous and use exactly the same original block lengths and every half-length stride. The `Q(M)` operator and original target boundaries were frozen before scoring.
+
+| Original target | Heldout native source | Original log score per pair | Minimum genuine native window | Genuine native windows no better than original |
+| --- | --- | ---: | ---: | ---: |
+| pp16–22 (1,744 runes) | Shakespeare | **−6.810718** | −6.765396 | **0 / 247** |
+| pp16–22 | Gibran | **−6.809072** | −6.723191 | **0 / 70** |
+| pp16–22 | Emerson | **−6.824462** | −6.762369 | **0 / 367** |
+| pp40–53 black body (3,000 runes) | Shakespeare | **−6.786917** | −6.748414 | **0 / 143** |
+| pp40–53 black body | Gibran | **−6.776668** | −6.709836 | **0 / 40** |
+| pp40–53 black body | Emerson | **−6.786404** | −6.747914 | **0 / 213** |
+
+The source-native control mapping retains multi-letter GP digraphs, its special ING/IO runes and period-authentic K/Q/V/Z spellings. A separate **3,000-rune genuine-English positive plant** adds a changing nonzero kernel key `K_block = (7·block+3)v mod29`, then verifies that all **750** projected pairs remain exactly unchanged and that the original 3,000 native GP symbols can be inverted precisely with the planted key. This is an all-secret key-independent obstruction of the declared mechanism rather than a failure to guess its state.
+
+**Decision:** both originals look like near-uniform projections rather than native GP English under any additive pad concealed entirely in `ker Q(M)`. The result is descriptively below every matched control window from three genres, with overlap and common training assumptions; do not interpret the six correlated comparisons as six independent statistical tests. It excludes ordinary native-GP-English **for this additive kernel-pad architecture**, without excluding compressed/intermediate plaintext, another alphabet, non-additive ciphertext feedback, block reordering or a genuine different cipher. The exact polynomial factor remains real, yet the straightforward way to use its nullspace for a hidden key now has an explicit adverse original-cipher test.
+
+[All-secret source-projection CommonJS SFT](../sims/lp2_p15_p39_projection_kernel_allsecret_sft.cjs).
+
 ## Research decision
 
-The exact crosspage polynomial factor is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. The first direct eigenstate use already fails, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**.
+The exact crosspage polynomial factor is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. Both the direct eigenstate key and **all additive keys confined to the quadratic kernel** fail original native-GP language tests, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**. A stronger independent source instruction would be needed before investigating a different, genuinely nonlinear consumer.
 
 [Original-input CommonJS SFT](../sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs) · [Prior literal-matrix OFB/CFB gate](lp2-p15-fourstate-ofb-cfb-source-gate.md) · [Independent p3/p39 quadratic field investigation](lp2-red-triad-frobenius56-source-state.md) · [Established p15 prime spiral](../results/lp2-p15-fibonacci-prime-spiral.md).
