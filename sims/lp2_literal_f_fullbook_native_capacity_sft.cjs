@@ -64,7 +64,7 @@ const encrypted=native.map((x,i)=>x===0?0:1+(x*13 + i*7)%28);
 assert.equal(encrypted.length,n);
 assert.equal(encrypted.filter(x=>x===0).length,native.filter(x=>x===0).length);
 assert.equal(extrema(encrypted,n).maxF,extrema(native,n).maxF);
-assert.equal(encrypted.filter(x=>x===0).length,330);
+assert.equal(encrypted.filter(x=>x===0).length,322);
 console.log(JSON.stringify({
   hypothesis:'every LP2 ciphertext F is an unchanged plaintext F',
   original:{runes:n,ciphertextLiteralFRequired:fOriginal},
