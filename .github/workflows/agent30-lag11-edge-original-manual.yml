@@ -1,0 +1,17 @@
+name: LP2 lag11 edge-preserving candidate gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-ciphertext lag11 SFT
+        run: node sims/lp2_lag11_edge_preserving_sft.cjs
+        shell: pwsh
