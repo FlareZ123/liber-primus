@@ -34,6 +34,10 @@ The same conclusions for k=4–5 survive the **44 disjoint windows**: minimum pa
 
 An original-length known-GP-language plant is encrypted using the **literal source p15 printed Hill4 matrix**, with each page independently aligned and incomplete trailing blocks carried unchanged. The inverse matrix restores **12,956/12,956** plant symbols; the pair statistic is unchanged. The unmodified original ciphertext likewise algebraically round-trips under the matrix, but its page-local block-collision count remains zero and is incompatible with all 88 English controls.
 
+## Author-native solved-LP1 positive reference
+
+The independent [source-original LP1 rune transcription](../resources/transcriptions/lp1_wulfic_canonical.txt) provides a stricter language control that needs **no modern English encoding**. Six known *cleartext* physical LP1 pages (p5 and pp10–14) contain **979 genuine printed GP runes** with page lengths **[210, 192, 169, 226, 93, 89]**. Under the same nonoverlapping page-local alignment they contain **eight repeated four-rune block pairs** and **three repeated five-rune pairs**. The full unknown LP2 source has **zero** four- and five-rune equal-block pairs across **12,956** runes and 55 physical pages. This is a direct original-author GP spelling and cadence comparison, though only a limited **979-rune** sample and therefore no universal law for what future Cicada prose must contain.
+
 ## Decision and scope
 
 **Retire direct page-stationary 4-rune and 5-rune bijective block ciphers as explanations of ordinary source-calibrated GP English across these three controls.** This includes every secret 4×4 GF29 Hill key, any key derivation from original p15's square, and even independent secret block permutations per physical page. Whole-book stationary block bijections of lengths 4–8 and chapter-stationary ones of lengths 4–7 also retain collision deficits in this finite control register. This extends the previous independently recorded 2- and 3-rune bijection gates to the source-visible 4×4 architecture.
