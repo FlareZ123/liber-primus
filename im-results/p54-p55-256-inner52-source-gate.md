@@ -58,6 +58,21 @@ This **competes with** the preceding 256+52 *linewise* cut. The linewise cut inc
 
 **Finite original-cipher overlay:** keep the 256 exterior GP29 rune identities, and pair positionwise in source order with all 256 original p50 table bytes in printed row-major order. With each byte reduced mod29, the directly identical GP index matches are **10/256**, and exact byte-to-GP-prime matches are **1/256**. An independent **2,000 fixed-inventory shuffle** of the 256 exterior runes yields 10 or more matches with add-one upper-tail **p=0.4242878561**; original row order is unexceptional. The authenticated p56 additive GP29 inverse, `P[i]=(C[i]−grid[i]%29) mod29`, gives **IoC=0.0336703431**, while its opposite sign gives **0.0343443627**, both nonlinguistic. Bytewise XOR of the grid with the rune-index byte values produces **103/256 printable ASCII** (coincidentally equal to the unmodified grid), and XOR with GP prime-byte values gives **88/256**; neither gives plaintext/file magic. Both sign models re-encrypt all 256 original rune values and recover source-native GP plants.
 
+### Finite three-register source-selected 43-symbol test
+
+The p50 byte table has **193** (base60 `3D`) at original indices **83** and **127**, leaving an independently bounded **43-cell interval**, byte indices **84–126**. Under the new p54–55 `9+256+43` word-exterior partition, exactly the *same 43 table positions* select 43 of the 256 exterior source runes. The p55 interior contains 43 additional runes. This creates a complete three-register alignment with no fitted addressing rule.
+
+Four fixed, simple candidate inverse keys were tested against the original p55 strict-interior runes, all with the original source order and the authentic p56 subtract-mod29 direction:
+
+1. `key[i]=(table[84+i]−exterior[84+i]) mod29`: decoded GP29 IoC **0.03322259**.
+2. `key[i]=(table[84+i]+exterior[84+i]) mod29`: IoC **0.02879291**.
+3. `key[i]=(table[84+i] XOR exteriorIndex[84+i]) mod29`: IoC **0.02990033**.
+4. `key[i]=(table[84+i] XOR GPprime(exteriorRune[84+i])) mod29`: IoC **0.02547065**.
+
+All four 43-rune outputs are nonlinguistic. Bytewise XOR is an actually documented historical Cicada operation, yet **the manuscript does not instruct combining these registers this way**. Each model round-trips the exact original 43-runic interior, and each recovers all 43 known native-GP plant runes with its fixed encoder. These source-fixed attempts do not identify an authentic p50 consumer. The primary negative remains the same: an unambiguous original instruction selecting a reversible operation is still missing.
+
+The [complete original-input 9+256+43 SFT](../sims/lp2_p54_p55_9_256_43_word_exterior_sft.cjs) reproduces the 256-index overlay, matched shuffle, all four three-register reads and planted inverses.
+
 **Decision:** the original 9+256+43 partition is a new possible geometry-driven bridge between the p50 table and p55 interiors, with a more natural word-boundary treatment than the 256+52 line cut. Its direct row-major identity, additive and XOR interpretations fail. A future original *source-selected* operation on the 256 paired symbols, and an explicit role for the 43 retained inner runes, remain missing. Neither numerical alignment may be promoted to an authenticated decoder.
 
 [Exact fully executed SFT](../sims/lp2_p54_p55_9_256_43_word_exterior_sft.cjs), preserving the original 43 interior positions and all physical page runes.
