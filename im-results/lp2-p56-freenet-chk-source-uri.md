@@ -1,4 +1,4 @@
-# Solved p56 512-bit value as historical Freenet CHK address: exact source-only construction
+# Solved p56 512-bit value as historical content address: Freenet and GNUnet format gates
 
 **Agent 6, 11 November 2026. Status: a reproducible, unverified continuation locator.** The 512-bit value is authentic to already-solved LP2 p56. Its binary decomposition yields syntactically valid candidate Freenet/Hyphanet 0.7 CHK routing and decryption fields, but **no p56 destination, unknown LP2 plaintext, fetched content, historical key, or cipher was recovered.**
 
@@ -55,6 +55,18 @@ The [source-exact converter](../sims/lp2_p56_freenet_chk_uri_sft.cjs) was execut
 The live probes therefore performed **zero validated Freenet CHK lookups**, against either control or manuscript candidates, and recovered **zero bytes of candidate content**. This is *not* a negative retrieval result for any address. Successful GitHub Actions job status only means the fail-closed script executed and uploaded an explicit inconclusive summary, not a solved destination. Captured run artifacts include [the third run's exact stdout/logs](https://github.com/FlareZ123/liber-primus/actions/runs/43054515961). Each original run's HTTP 301 body and SHA-256 is identical: `37931878675f7f3ff036d5f6a5c3ec5aaf1cacc48f51ba1d6b70467b470d721c`.
 
 **Research decision:** the currently unresolved historical CHK theory is weakly selected because *any random 64-byte sequence admits the same two-field decomposition*, and the actual p56 language specifies a *hash* instead of Freenet. With zero successful CHK lookups, no positive evidence was gained from three node runs. **Do not rerun this CI solely to troubleshoot setup or try arbitrary extras.** Reconsider only if an independent original source points to Freenet or supplies the third field, or if a functioning legacy node with a verified fetched public-control CHK already exists. On such a node, fetch exactly the same four frozen candidates; require a cryptographically verified content block and original-LP2 plaintext or a key before promoting the hypothesis.
+
+## Independent historical GNUnet CHK format gate (Agent31, 13 November 2026)
+
+A separate pre-2014 decentralized content-sharing system is **GNUnet**, which had a documented CHK file-sharing URI in 2012. The public [2012 GNUnet mailing-list discussion](https://lists.gnu.org/archive/html/help-gnunet/2012-10/msg00007.html) identifies the paired content/query hash fields and asks explicitly about base32hex SHA-512 representation. The detailed [GNUnet file-sharing protocol documentation](https://docs.gnunet.org/v0.25.x/users/fs.html#content-hash-key-chk) specifies:
+
+**gnunet://fs/chk/KEYHASH.QUERYHASH.SIZE**
+
+Here **KEYHASH** is the SHA-512-sized plaintext top-block hash / decryption key, **QUERYHASH** is the separately SHA-512-sized encrypted top-block hash / DHT lookup key, and **SIZE** is the original file size needed to determine its content tree. GNUnet encodes hashes as base32hex rather than p56's literal hexadecimal, which is mechanically convertible without revealing any other information.
+
+The original p56 inscription supplies **exactly one 64-byte (512-bit) value**, and no original file size. Even granting that its hash is an authentic GNUnet **KEYHASH** *or* **QUERYHASH**, it supplies only one of two independently required 64-byte values. With no second field and no SIZE, **the printed value cannot directly instantiate a valid, fetchable, decryptable historical GNUnet CHK URI**. This is a protocol-format exclusion of a *standalone GNUnet locator*, not an exclusion of using the digest to match data already collected elsewhere. One might conditionally query an implementation's raw DHT with a known QUERYHASH and obtain an encrypted block, but would still lack the distinct decryption hash and file size; p56 supplies no instruction for that network access, and no original block was obtained.
+
+**Decision:** The already-preserved p56 digest is a useful **exact equality target for recovered 2014 page bytes**, but no standalone Freenet or GNUnet address follows from its 128 hex characters. Future lookup needs an *independently sourced historical URL, filename, file body, other CHK fields or a publisher index*, rather than arbitrary split, size and metadata guesses. This does not establish that GNUnet was used by Cicada or eliminate all 2014 decentralized-network archives.
 
 ## Reproduction
 
