@@ -160,6 +160,17 @@ assert.deepStrictEqual(markerSeparatedRuneCounts, [
 const fixedRowSlots = markerSeparatedRuneCounts.map((n, j) => n + (j < 31 ? 1 : 0));
 assert.equal(fixedRowSlots.filter(n => n === 8).length, 1);
 
+
+const numericRows = Array.from({length: 32}, (_, i) => grid.bytes.slice(i * 8, i * 8 + 8));
+const emptyRedSectionIndexes = markerSeparatedRuneCounts
+  .map((n, i) => n === 0 ? i : -1).filter(i => i >= 0);
+const uniqueEmptySectionRows = new Set(
+  emptyRedSectionIndexes.map(i => numericRows[i].join(','))
+).size;
+assert.equal(emptyRedSectionIndexes.length, 15);
+assert.equal(uniqueEmptySectionRows, 15);
+assert.equal(new Set(numericRows.map(row => row.join(','))).size, 32);
+
 const redInk256 = colored.map(x => x.value);
 const dotCounts = colored.filter(x => x.kind === 'dot');
 assert.equal(redInk256.length, 256);
@@ -205,6 +216,8 @@ const result = {
     red13And23Dots: 31,
     markerSeparatedRuneCounts,
     matchedOriginalEightCellRows: fixedRowSlots.filter(n => n === 8).length,
+    emptyRedSectionIndexes,
+    uniqueTableRowsForEmptyRedSections: uniqueEmptySectionRows,
     originalIoC: ioc(redInk256),
     equalTableResidues: redInk256.filter((x, j) => x === key[j]).length,
     hRemainder: hRemainder(redInk256),
