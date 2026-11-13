@@ -185,14 +185,55 @@ const references = [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt'],
   ['Emerson', 'resources/control/emerson_essays_2944.txt'],
 ];
+/**
+ * All-secret necessary floor when at most K independent secret
+ * rank-to-GP permutations may be selected at each visible state:
+ * occurrences of one plaintext symbol can occupy at most K
+ * different ciphertext rank identities. Even optimally balancing
+ * that symbol among K bins leaves this many ordered equal pairs.
+ * Cross-symbol collisions are deliberately discarded, strengthening
+ * the adversary. The result is a lower bound, not sufficient for a key.
+ * @param {number[]} symbols
+ * @param {(site:Site)=>string} stateKey
+ * @param {number} modes
+ * @returns {number}
+ */
+function minEqualWithModes(symbols, stateKey, modes) {
+  /** @type {Map<string, Uint32Array>} */
+  const buckets = new Map();
+  for (let i = 0; i < sites.length; i += 1) {
+    if (sites[i].rank < 0) continue;
+    const key = stateKey(sites[i]);
+    let freq = buckets.get(key);
+    if (!freq) {
+      freq = new Uint32Array(29);
+      buckets.set(key, freq);
+    }
+    freq[symbols[i]] += 1;
+  }
+  let pairs = 0;
+  for (const freq of buckets.values()) {
+    for (const n of freq) {
+      const quotient = Math.floor(n / modes);
+      const remainder = n % modes;
+      pairs += modes * quotient * (quotient - 1) + 2 * quotient * remainder;
+    }
+  }
+  return pairs;
+}
 const findings = [];
 for (let i = 0; i < references.length; i += 1) {
   const [author, file] = references[i];
   const pools = controlWords(file);
   const random = randomizer(0x330100 + i);
   const lows = Object.fromEntries(Object.keys(keys).map((k) => [k, Infinity]));
+  const twoModeFloors = { lengthPosition: Infinity, pageLengthPosition: Infinity };
   for (let n = 0; n < 100; n += 1) {
     const sample = flattenPlant(plantWords(pools, random));
+    for (const key of Object.keys(twoModeFloors)) {
+      twoModeFloors[key] = Math.min(twoModeFloors[key],
+        minEqualWithModes(sample, keys[key], 2));
+    }
     for (const [id, key] of Object.entries(keys)) {
       const test = score(sample, key);
       lows[id] = Math.min(lows[id], test.rate);
@@ -201,7 +242,8 @@ for (let i = 0; i < references.length; i += 1) {
   for (const [id, low] of Object.entries(lows)) {
     assert.ok(low > observed[id].rate * 1.7, author + ' ' + id);
   }
-  findings.push({ author, minRates: lows });
+  assert.ok(twoModeFloors.lengthPosition > observed.lengthPosition.equal);
+  findings.push({ author, minRates: lows, minTwoModeEqualPairs: twoModeFloors });
 }
 
 // Fully reversible 28-rank plant: page first glyphs are public IVs,
