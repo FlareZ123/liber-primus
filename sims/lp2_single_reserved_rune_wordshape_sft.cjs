@@ -43,12 +43,12 @@ function plantRoundtrip() {
   const p = gpWord("ANENDINGTHEBEGINNINGPROCEEDINGWITHWISDOM");
   const reserved = lookup.get("NG");
   assert.notEqual(reserved, undefined);
-  const c = [0];
+  const c = [p[0]];
   for (let i = 1; i < p.length; i++) {
     const step = p[i] === reserved ? 0 : p[i] < reserved ? p[i]+1 : p[i];
     c.push((c[i-1]+step)%29);
   }
-  const q = [p[0]];
+  const q = [c[0]];
   for (let i = 1; i < c.length; i++) {
     const step = (c[i]-c[i-1]+29)%29;
     q.push(step === 0 ? reserved : step <= reserved ? step-1 : step);
