@@ -91,6 +91,21 @@ The 9×9 adjacency-length Pearson chi-square uses GP word-length bins 1–8 and 
 
 Exact ascending zero-based original-fragment order is `[6,19,10,13,25,9,5,4,7,17,22,14,12,24,23,26,16,3,2,18,20,27,11,21,0,15,1,8]`. The two empty fragments are retained as empty positions; their position does not affect word order. Only 26 nonempty fragment containers are moved, so any fragment-only permutation can modify at most 25 old plus 25 new inter-fragment adjacent-word pairs; 2,870 intra-fragment neighboring word pairs remain untouched. A phase or a new interleaving grammar is not licensed by the source rank and must not be fitted to rescue this failed consumer.
 
+**Exact all-secret 26-fragment permutation upper bound (extension to the above decision).** Every permutation of these 26 complete word-fragments leaves all **2,870 within-fragment adjacent word pairs** unchanged and introduces precisely **25 between-fragment pairs**. Fix any independently trained word-length transition log-odds matrix \(W_{ij}\), based on seven GP rune-word-length classes (1, 2, 3, 4, 5–6, 7–8, 9+). Let \(S_{\mathrm{internal}}\) be the sum of \(W\) over the 2,870 immutable within-fragment pairs, and \(M=\max_{i,j} W_{ij}\). Without making any assumptions about the unobserved permutation, its mean score is bounded above by
+
+\[
+ \frac{S_{\mathrm{internal}}+25M}{2895}.
+\]
+
+This *relaxed* bound even lets all 25 inter-fragment joins independently take the globally best transition (a freedom no real permutation possesses). Training the 7-class model on the **first 80%** of the repo-pinned Shakespeare or Gibran GP-native control, then scoring the unmodified original intervals gives:
+
+| Independent model | Untouched original score (bits/word pair) | All-secret upper bound, any 26-fragment order | Lowest 2,896-word contiguous window score in held-out last 20% |
+| --- | ---: | ---: | ---: |
+| Shakespeare, 55,407 source words | −0.02472425829 | **−0.02028746994** | **+0.01701856735** |
+| Gibran, 15,733 source words | −0.10146693101 | **−0.09175385343** | **−0.06713782573** |
+
+The no-key **upper bound is below every complete held-out native GP 2,896-word window** for *both* independently trained models. Thus even the best possible secret permutation of these 26 complete source-visible fragments cannot restore the corresponding native-like GP word-length adjacency score. This is an actual **all-permutation algebraic upper bound** for this one fragment architecture, stronger than the two rank-sort inversions. It says nothing about word-internal rune changes, changing word breaks, a more granular word permutation, another plaintext register, or artificially flat prose. Full control files are [Shakespeare](../resources/control/shakespeare_first300k.txt) and [Gibran](../resources/control/gibran_prophet_58585.txt); the original length parser and seven-class smoothed model are specified in [the existing independent native-control SFT](../sims/lp2_wordlength_order_native_control_sft.cjs). The bound follows by summing all immutable within-fragment edges and adding the maximum permitted edge weight 25 times; no combinatorial key search or speculative layout resets are involved.
+
 Source inputs: canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [rune transcript](../resources/lp2-transcription.txt), [ink annotations](../resources/liber-primus/lp2-ink-annotations.json) and [256 grid cells](../resources/liber-primus/lp2-grid-256.json). Original 28 fragment lengths/word counts and the source rank assignment are reproducible via the existing fragment-rank and word-length-order scripts. No unknown plaintext, word-order key, or source-authorized sort operation follows.
 
 ## Independent word-seeded totient sidecar inverse (Agent 10, 11 November 2026)
