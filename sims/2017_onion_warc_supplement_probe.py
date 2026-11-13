@@ -9,6 +9,7 @@ content and never store the fetched bytes.
 from __future__ import annotations
 
 import collections
+import hashlib
 import io
 import json
 import tarfile
@@ -46,7 +47,8 @@ def main() -> None:
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
             data = response.read(CAP + 1)
-            emit(stage="get", status=response.status, bytes_read=len(data))
+            emit(stage="get", status=response.status, bytes_read=len(data),
+                 sha256=hashlib.sha256(data).hexdigest() if len(data) <= CAP else None)
             if len(data) > CAP:
                 emit(stage="catalog", result="stream_exceeds_safe_cap",
                      cap_bytes=CAP, note="No archive persisted")
@@ -78,7 +80,8 @@ def main() -> None:
                     node_bytes = handle.read().lower()
                     lines = node_bytes.splitlines()
                     emit(stage="node_inventory", source_file=member.name,
-                         bytes=len(node_bytes), row_count=len(lines),
+                         bytes=len(node_bytes), sha256=hashlib.sha256(node_bytes).hexdigest(),
+                         row_count=len(lines),
                          onion_literals=node_bytes.count(b".onion"),
                          first_line_bytes=len(lines[0]) if lines else 0,
                          known_cicada_hosts_present={host: host.encode() in node_bytes
