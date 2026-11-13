@@ -1,0 +1,112 @@
+'use strict';
+
+/**
+ * Source-locked, read-only mining of preserved 2014 Cicada IRC logs.
+ *
+ * The input Git blob SHA-1 is verified over the original bytes before any
+ * decoding. Lines are treated as historical claims, not creator-authenticated
+ * messages or commands to execute.
+ *
+ * node sims/lp2_2014_irc_clue_miner.cjs --selftest
+ * node sims/lp2_2014_irc_clue_miner.cjs
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+
+const commit = 'ade9a02889ef8acbc8cde8edbfd0a785c369f4c3';
+const files = [
+  {name:'#33012014.freenode.log', sha:'a2880b1db31ce523599ef30ca2e55291bf295900', bytes:8629610},
+  {name:'#cicadasolvers.freenode.log', sha:'bdd277c14f94c34b5ae714cd00c238065beeed4e', bytes:18487233},
+  {name:'#cicadasolvers.freenode.2.log', sha:'72634a9d071d32af767edbffc0493d810e88cd0d', bytes:27234234},
+];
+const high = /\bliber[ _-]*primus\b|\blp2\b|\bonion[ -]?7\b|\bprimus\b|\bdecrypt(?:ed|ion|ing)?\b|\bplaintext\b|\bkey(?:phrase|word|stream)?\b|\b(?:runes|runic)\b/i;
+const medium = /\b(?:cipher|encrypted|encryption|message|book|puzzle|outguess|prime|hash|vigenere|atbash|breakthrough|riddle)\b/i;
+const dateRegex = /^(?:\d{4}[ -](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b|\[?\d{4}[-/](?:0[1-9]|1[0-2])[-/]\d{2})/i;
+const targetYear = /\b2014\b/;
+const spring = /\b(?:2014 (?:Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)|2014[-/](?:0[4-9]|1[0-2]))\b/i;
+
+/** @param {Buffer} data */
+function gitBlobSha(data) {
+  return crypto.createHash('sha1').update('blob ' + data.length + '\0').update(data).digest('hex');
+}
+
+/** @param {string} name @param {Buffer} data */
+function mine(name, data) {
+  const lines = data.toString('latin1').split(/\r?\n/);
+  const report = {file:name, lineCount:lines.length, dateLines:0, aprilPlusDateLines:0, strong:0, medium:0, excerpts:[]};
+  for (let i=0; i<lines.length; i++) {
+    const line = lines[i];
+    if (!dateRegex.test(line) || !targetYear.test(line)) continue;
+    report.dateLines++;
+    if (!spring.test(line)) continue;
+    report.aprilPlusDateLines++;
+    const score = high.test(line) ? 2 : medium.test(line) ? 1 : 0;
+    if (!score) continue;
+    if (score === 2) report.strong++;
+    else report.medium++;
+    // The original line number permits independent pinpointed recovery.
+    if (report.excerpts.length < 1400) {
+      report.excerpts.push({line:i+1,score,text:line.slice(0,700)});
+    }
+  }
+  // High-signal records take precedence; preserve chronology within score.
+  report.excerpts.sort((a,b)=>b.score-a.score||a.line-b.line);
+  report.excerpts = report.excerpts.slice(0,280);
+  return report;
+}
+
+/** @param {string} f */
+async function download(f) {
+  const url = 'https://raw.githubusercontent.com/neuroretransmit/cicada/' +
+    commit + '/irc-logs/' + encodeURIComponent(f);
+  const response = await fetch(url);
+  assert.equal(response.status,200,'source GET ' + f);
+  return Buffer.from(await response.arrayBuffer());
+}
+
+async function main() {
+  const plant = [
+    '2014 May 31 01:12 <a> Liber Primus key from runes',
+    '2014 Jan 05 01:12 <b> Key to old puzzle',
+    '2014 Jun 03 02:13 <c> interesting cipher hypothesis',
+    '2015 Mar 12 01:12 <d> libEr pRimUs',
+  ].join('\n');
+  const planted = mine('planted',Buffer.from(plant));
+  assert.equal(planted.strong,1);
+  assert.equal(planted.medium,1);
+  assert.equal(planted.aprilPlusDateLines,2);
+  console.log('SFT date, keyword and original-order controls: PASS');
+  if (process.argv.includes('--selftest')) return;
+  const reports = [];
+  for (const file of files) {
+    const b = await download(file.name);
+    assert.equal(b.length,file.bytes,file.name + ' byte count');
+    assert.equal(gitBlobSha(b),file.sha,file.name + ' immutable Git blob');
+    const r=mine(file.name,b);
+    reports.push(r);
+    console.log('FILE ' + file.name + ' bytes=' + b.length +
+      ' lines=' + r.lineCount + ' year2014=' + r.dateLines +
+      ' afterApril=' + r.aprilPlusDateLines +
+      ' strong=' + r.strong + ' medium=' + r.medium);
+    console.log('BEST ' + JSON.stringify(r.excerpts.slice(0,12)));
+  }
+  const out = path.join(process.cwd(),'irc-2014-source-results');
+  fs.mkdirSync(out,{recursive:true});
+  fs.writeFileSync(path.join(out,'matches.json'),JSON.stringify({sourceRepo:'neuroretransmit/cicada',commit,files,reports},null,2)+'\n');
+  let md='# 2014 original IRC keyword witnesses\n\n';
+  md+='Archived human conversation, not independently signed 3301 instructions. ';
+  md+='Each entry includes its immutable upstream blob, channel, exact source line number, and unedited line text.\n\n';
+  for(const r of reports) {
+    md+='## '+r.file+'\n\n';
+    md+='Original lines: '+r.lineCount+'; May–December 2014 source lines (Apr included): '+r.aprilPlusDateLines+
+      '; high-signal hits: '+r.strong+'; medium-signal hits: '+r.medium+'.\n\n';
+    for(const x of r.excerpts) md+='- L'+x.line+' [tier '+x.score+'] '+x.text.replace(/\u0000/g,'')+'\n';
+    md+='\n';
+  }
+  fs.writeFileSync(path.join(out,'matches.md'),md);
+  console.log('OUTPUT '+out+' source summaries and bounded excerpts written');
+}
+
+main().catch(error=>{console.error(error);process.exitCode=1;});
