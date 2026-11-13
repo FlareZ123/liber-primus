@@ -256,7 +256,12 @@ console.log(JSON.stringify({
   positive: {plaintextBytes: positivePlain.length,
     compressedBytes: positiveCompressed.length,
     exactRecoveries: 6, escapeRoundtrips: 6},
-  hits, conclusion: counts.readableInflated
+  apparentInflateHits: hits.filter(hit => hit.type !== 'header').length,
+  largestInflateHits: hits.filter(hit => hit.type !== 'header')
+    .sort((a, b) => b.inflatedBytes - a.inflatedBytes)
+    .slice(0, 8),
+  fileHeaderHits: hits.filter(hit => hit.type === 'header').slice(0, 8),
+  conclusion: counts.readableInflated
     ? 'Original candidate needs independent plaintext and integrity inspection.'
     : 'No readable direct raw-DEFLATE or zlib payload was recovered under this bounded source-native conversion.'
 }, null, 2));
