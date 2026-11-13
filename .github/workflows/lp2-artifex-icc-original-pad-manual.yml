@@ -1,0 +1,15 @@
+name: LP2 Artifex ICC five-cycle source key gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-icc-key:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test historical ICC key directly on original ciphertext
+        run: node sims/lp2_artifex_icc_5cycle_original_key_sft.cjs
