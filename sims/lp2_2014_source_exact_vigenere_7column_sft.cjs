@@ -196,11 +196,90 @@ for (const span of spans) {
 assert.equal(output.length, 4);
 assert.ok(output.every(row => row.transposeThenKeyScore < -3.35
   && row.keyThenTransposeScore < -3.35));
+
+// Separate Stage05-only transfer to the final original-image visual chapter.
+// p54=232 and p55=76; together 308=44*7. The Stage11 HTML's 133/331
+// values read as octal give 91=13*7 and 217=31*7, but no source-visible
+// boundary exists there and the split is transform-equivalent to whole.
+const p54 = corpus.pages.find(p => p.page === 54).indices;
+const p55 = corpus.pages.find(p => p.page === 55).indices;
+const finalChapter = p54.concat(p55);
+assert.equal(p54.length, 232);
+assert.equal(p55.length, 76);
+assert.equal(finalChapter.length, 308);
+assert.equal(finalChapter.length % 7, 0);
+const octal133 = parseInt("133", 8), octal331 = parseInt("331", 8);
+assert.deepEqual([octal133, octal331], [91, 217]);
+assert.equal(octal133 + octal331, finalChapter.length);
+assert.equal(octal133 % 7, 0);
+assert.equal(octal331 % 7, 0);
+const splitStage05 = permuteSeven(finalChapter.slice(0, octal133), permuteSource)
+  .concat(permuteSeven(finalChapter.slice(octal133), permuteSource));
+const finalSourceInverse = permuteSeven(finalChapter, permuteSource);
+const finalOpposite = permuteSeven(finalChapter, permuteInverse);
+assert.deepEqual(splitStage05, finalSourceInverse);
+assert.deepEqual(permuteSeven(finalSourceInverse, permuteInverse), finalChapter);
+assert.deepEqual(permuteSeven(finalOpposite, permuteSource), finalChapter);
+
+// Exact 7! null distribution: compare the externally fixed 2014 orders to
+// every possible single seven-position permutation, without selecting one.
+const permutationScores = [];
+function enumerateSeven(prefix, remaining) {
+  if (remaining.length === 0) {
+    permutationScores.push({ order: prefix.slice(), score: score(permuteSeven(finalChapter, prefix)) });
+    return;
+  }
+  for (let i = 0; i < remaining.length; i++) {
+    const next = remaining[i];
+    enumerateSeven(prefix.concat(next), remaining.slice(0, i).concat(remaining.slice(i + 1)));
+  }
+}
+enumerateSeven([], [0, 1, 2, 3, 4, 5, 6]);
+assert.equal(permutationScores.length, 5040);
+permutationScores.sort((a, b) => b.score - a.score);
+const permutationRank = order =>
+  permutationScores.findIndex(row => row.order.join(",") === order.join(",")) + 1;
+const sourceRank = permutationRank(permuteSource);
+const oppositeRank = permutationRank(permuteInverse);
+const identityRank = permutationRank([0, 1, 2, 3, 4, 5, 6]);
+assert.equal(sourceRank, 961);
+assert.equal(oppositeRank, 1175);
+assert.equal(identityRank, 2763);
+const finalChapterGate = {
+  pageLengths: [p54.length, p55.length],
+  totalRunes: finalChapter.length,
+  blocksOfSeven: finalChapter.length / 7,
+  base8Candidate: {
+    title133: octal133,
+    id331: octal331,
+    blockRows: [octal133 / 7, octal331 / 7],
+    splitIsTransformEquivalent: true
+  },
+  rawScore: score(finalChapter),
+  sourceInverseScore: score(finalSourceInverse),
+  oppositePermutationScore: score(finalOpposite),
+  sourceInversePreview: finalSourceInverse.slice(0, 120).map(i => corpus.translit[i]).join(""),
+  oppositePreview: finalOpposite.slice(0, 120).map(i => corpus.translit[i]).join(""),
+  permutationNull: {
+    total: permutationScores.length,
+    sourceRank,
+    sourcePercentile: (1 - sourceRank / permutationScores.length) * 100,
+    oppositeRank,
+    oppositePercentile: (1 - oppositeRank / permutationScores.length) * 100,
+    identityRank,
+    identityPercentile: (1 - identityRank / permutationScores.length) * 100,
+    bestScore: permutationScores[0].score,
+    topOnePercentCutoff: permutationScores[Math.floor(permutationScores.length * 0.01)].score
+  }
+};
+assert(Math.abs(finalChapterGate.rawScore - (-3.413674261058247)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceInverseScore - (-3.3995136385008187)) < 1e-10);
+assert(Math.abs(finalChapterGate.oppositePermutationScore - (-3.401735169183637)) < 1e-10);
 console.log(JSON.stringify({
   status:"PASS",originalRunglyphControl:originalOnion(fixedKey),
   stage05PermutationControl:stage05Expected,
   historicalSourceBug:buggyKey.length,
   correctedGpKeySymbols:fixedKey.length,
   testedOriginalSpanDecryptions:8,
-  recoveredUnknownPlaintext:false, output
+  recoveredUnknownPlaintext:false, output, finalChapterGate
 },null,2));
