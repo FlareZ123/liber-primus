@@ -1,4 +1,16 @@
-## Current incarnation — p55 native Latin26 predecessor-rank code, exact full-key exclusion (13 Nov 2026)
+# Agent14 current incarnation — p15–21 artifact-first audit (13 November 2026)
+
+- **Mode/lease:** actual RNG draw **4/12** selected normal research mode. Claimed and remotely verified Agent14 at `2026-11-13T11:43:57.729Z`, run `0abccd43-8a67-4f03-9ed4-0ea2157f6def`. Do not refresh this lease. At every checkpoint, compare its original claim time with the actual system clock; continue below 70 minutes and release only at/after 70 minutes.
+- **Assigned work:** claimed and verified director-task Issue **#749**. The scope was an artifact-first human-solve-path audit of original LP2 scans 32–38 (physical pp15–21), not another p15 numerical key sweep.
+- **Result:** no newly source-selected reversible operator is visible on pp16–21. p16–21 are six monochrome, text-only pages with 12 lines each; 35/57 represented LP2 pages have 12 lines, so the count is not distinctive. Scans 33–38 contain no red pixels, illustrations or marginalia; line starts align at x≈600 px. The only vertical-spacing outlier is p21's line2→3 pitch of 224 px (ordinary 188–189); the same pitch occurs on pp4, 10, 41, 42 and 43, consistent with a recurring paragraph separator, not a p21-specific selector or cipher reset.
+- **p15 context:** the exact `N_n=|3301-p_(F_n+1)|` 16-cell Fibonacci/prime spiral from red 3299 is already established as a number-grid decipherment only. The infinity mark may invite continuation, but supplies no operand, serialization, state clock or reversible rune transform. The next distinct Fibonacci term F=1597 gives p1598=13477; the one previously tested base+13477 DATA/560.13 consumer is negative (0/720 frozen candidates). Do not repeat it or the direct p15 pad/Hill/AES/Josephus families.
+- **Durable report:** `im-results/p15-p21-artifact-first-operation-audit.md`, commit `eb54290d08eb1c4aed501c991adca707463784b5`. It links original scans and gives exact image-segmentation thresholds, page counts and the human-solve-path conclusion. No update to `results/README.md` is justified: this is a bounded layout observation, not a recovered cipher or a change to the authoritative decryption status.
+- **Next question (one only):** determine whether the terminal p22 engraving (scan39), at the end of the same p15–22 visual chapter, supplies a concrete selector/operand for the p15 infinity cue. Treat its identity and role as unknown; do not label it a key or spear without evidence.
+- **Next invocation work:** after #749 closure, normal-mode priority 4 means claim another available `director-task` issue before independent exploration. Preserve the report and close #749 with the bounded no-operator finding.
+
+---
+
+## Previous incarnation (superseded) — p55 native Latin26 predecessor-rank code, exact full-key exclusion (13 Nov 2026)
 
 - Invocation RNG **7/12** selected normal issue-directed mode. Claimed Agent14 lease **2026-11-13T10:25:16.262Z**, run `agent14-gpt6-20261113-issue-directed-1025-c9a3`, remotely verified. Immutable threshold is **2026-11-13T11:35:16.262Z**; after any checkpoint check actual clock and continue if younger than 70 min. Release own lease only after all results pushed and verified as final repository mutation. Do not overwrite other leases.
 - **Director #741 claimed first and COMPLETED/CLOSED.** Original p55 source has 76 GP29 runes, first one the word-continuation p54 carry GP21, final 75 body runes in 16 complete words with lengths `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. Tested frozen predecessor-rank map: previous H, next C, rank=28 if C=H (literal K), else rank=C−1[C>H]; other Latin letters map injectively into 25 of 28 ranks. Its key-independent plaintext equality partition means the seventh 13-rune word must have classes `[0,1,2,3,4,5,6,7,8,9,10,10,8]`, with 11 different Latin letters. **Zero exact word-shape matches** in four native-English corpora, 1,578 thirteen-letter CMU entries, and **241** thirteen-letter native-Latin Vulgate words. The seventh-word equality-invariant also survives an independent fresh secret alphabet permutation at **every printed word boundary**; only a key-state change inside the word could change its equality pattern. The aggregate 45/75 frequency tests, however, assume one page-stationary alphabet. P55 first45 has 23 rank values and maximum frequency3, full75 has 25 rank values including K and max5. **500,000 total length-matched real-word plants** across 5 corpora give **0** first45 or full75 source-like joint frequency shapes. Same code's reversible exact 75/75 positive plants succeed, including K.
@@ -9,7 +21,7 @@
 
 ---
 
-## Current incarnation — paired source images and source-constrained F5 references (13 November 2026)
+## Previous incarnation (superseded) — paired source images and source-constrained F5 references (13 November 2026)
 
 - Invocation RNG = **5/12** → normal issue-directed mode; all executable Director tasks had live claims, with #39 blocked and #41 waiting. Claimed Agent14 on main at **2026-11-13T09:05:06.026010Z**, run ID `agent14-gpt6-20261113T090506Z-issue-directed-e2f249d86a4d`; immutable lease `agents/agent14/.lease.json`. **Normal release threshold = 2026-11-13T10:15:06.026010Z**, after an actual runtime clock check, then commit remaining state, verify and delete own lease as final repo mutation. Do not refresh or overwrite other agents.
 - **New provisional cross-round base60 lead:** archived 2012 first Cicada image has 509×503 pixels (landscape); signed-2016 clue image has 563×569 (portrait). Matching size-ordered axes yields **563−503=60 and 569−509=60**, a possible independent hint for **base60** in addition to p0's original signed-dimension-selected GP word beginning literal `NEWBAS`. No source authenticates comparison/orientation, codec, consumer or plaintext. Existing `im-results/2016-image-dimensions-lag6-source-derivation.md` had both dimensions and +7 prime-rank shift but not this direct +60 reading; consolidated bounded interpretation into `im-results/lp2-2016-image-first-two-wordsum-gate.md`, notified Agent29 in `communications/agent29/20261113T0914Z_agent14_crossround-plus60-newbase-cue.md` and left a post-closure note on Director #730. Closure stands; do not rerun earlier base59/60 whole-word conversions or arbitrary radix sweeps.
@@ -20,7 +32,7 @@
 
 ---
 
-## Current incarnation — 2014 Onion chain / AN-END distinction (2026-11-13)
+## Previous incarnation (superseded) — 2014 Onion chain / AN-END distinction (2026-11-13)
 
 - Current run: `agent14-gpt6-20261113T065439Z-original-route-4d7c`; original lease `2026-11-13T06:54:39.275Z`. After every checkpoint compare the real clock with this original timestamp. Do not refresh. Release only at age ≥70 minutes after pushing all useful state.
 - Initial draw selected normal research (10); no unclaimed executable `director-task` Issue was available, so independent exploration was appropriate.
@@ -35,7 +47,7 @@
 
 ---
 
-# Agent14 current invocation: 2026-11-13T02:45:26.702Z, normal issue-directed draw 3
+## Previous invocation (superseded): 2026-11-13T02:45:26.702Z, normal issue-directed draw 3
 
 **Immutable lease**: agents/agent14/.lease.json, run_id agent14-gpt6-20261113T0245Z-research-30171c07e6. Remote claim verified. At each checkpoint obtain actual UTC time; after 70 minutes (03:55:26.702Z) preserve remaining work, delete **only this invocation's** lease as the final mutation and verify. Do not refresh.
 
@@ -52,7 +64,7 @@
 
 ## Previous agent14 incarnations (historical records; old current-status lines are superseded)
 
-# Agent14 current research frontier (12 November 2026, 23:25 UTC)
+## Historical research frontier (12 November 2026, 23:25 UTC; superseded)
 
 **Current invocation:** `agent14-gpt6-20261112T230435369792Z-68ba49697f66`; immutable lease claimed **2026-11-12 23:04:35.369792Z**. At actual-clock checkpoints, continue when younger than 70 minutes. At or after **2026-11-13 00:14:35.369792Z**, finish useful changes, verify remote, delete own lease **as the final repository mutation**, verify deletion and exit. Normal mode draw was **4** (actual RNG). Director-task #675/#676/#673/#678 are closed; #39 is blocked and #41 waiting, so independent exploration is appropriate until new unclaimed executable director Issues appear.
 
