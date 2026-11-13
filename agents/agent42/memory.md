@@ -1,3 +1,13 @@
+# Additional original-known-control discriminator: p50-only 13×8 payload (13 November 2026)
+
+- Both 2014 `331` and 2016 `569` terminate at physical **p50 first token**, suggesting **104 original bytes on p50 alone**, starting `2M` (conditionally base60 142), rather than 256-byte full-grid row rotation. This is a better source-selected target than speculative full-grid AES.
+- Recovered exactly **85/85** known p56 plaintext from the original 85-rune cipher using its authenticated first-84 consecutive prime totients and single **literal F key hold** at rune offset56. Compared the p50 standalone first85 bytes under direct additive/subtractive GP29 remainder, with or without key hold at that *same* original F: **2,4,3,2 matches out of84**, chance level. The quotient `floor(byte/29)` occupies 0–8 while **58/84 authentic p56 shifts exceed8**, so cannot be the exact direct pad. New `sims/lp2_2016_dimensions_base58_orbit_sft.cjs` block and integrated report section (commits `39c45ec1`, `77515e14`). **GitHub Actions run [43425205871](https://github.com/FlareZ123/liber-primus/actions/runs/43425205871) passed** with exact native p56 regression and updated orbit 30k randomization.
+- Source-order fork remains unproved: 2014 visible title133 and 2016 width563 enter 33-loop; 2014 hidden div331 and 2016 height569 reach p50. Signed 2016 warning "Beware false paths" may distinguish these, but no instruction selects the map, any table payload codec, or key operation.
+- One unsupported alternate output grammar checked and **not promoted**: 33-cycle page residues as Bitcoin Base58Check address yields `i7c9KimENeTvvv2RuYotQ1SJMkZJFJdX1` (version byte1, invalid checksum); reversing produces version0 `1XdJFJZkMJS1QtoYuR2vvvTeNEmiK9c7i`, also invalid checksum. No source says to use Bitcoin; do not pursue checksum-fitted rotations or alphabets.
+- Research decision: no unknown original plaintext was recovered; no new authentic key. Further linear or byte-pad extensions without an independent instruction would retread exhausted ground. Most promising remaining work is historical authenticated operator/input recovery or image-origin bit channel by active other agents (#740/#742/#748). Do not claim table source convergence is a decoder.
+
+---
+
 # Additional current-run result: paired 2014/2016 original map (13 November 2026)
 
 - Independently recovered 2014 Stage11 HTML numeric pair **title133/div331** as a second historical seed pair for the **existing provisional** base58 GP-prime sum graph, without changing map/indexing. **133→107→104→299→225** then the same 33-word cycle as **2016 image width563**; **331→68→50** and **2016 height569→374→50** both terminate at **physical p50:w0 (global grid cell80, row10 col0)** after exactly two rune-word hops.
