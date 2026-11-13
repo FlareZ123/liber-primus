@@ -99,6 +99,7 @@ const digestMatches=Object.fromEntries(algorithms.map(h=>[h,crypto.createHash(h)
 const plantPlain=Buffer.alloc(1140);
 const english=Buffer.from("THE PATH LIES EMPTY; EPIPHANY SEEKS THE DEVOTED. ");
 for(let i=0;i<plantPlain.length;i++)plantPlain[i]=english[i%english.length];
+plantPlain[0]=key[0]===0x58?0x59:0x58;
 const plantCipherBytes=xor(plantPlain,key);
 assert.ok(plantCipherBytes[0]!==0,"Key-selected plant needs nonminimal leading byte");
 const plantCipher=toBase29(fromBytes(plantCipherBytes),section.length);
