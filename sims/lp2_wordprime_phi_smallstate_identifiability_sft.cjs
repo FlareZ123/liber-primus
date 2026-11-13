@@ -95,7 +95,7 @@ assert.equal(trainedCount, 167823);
 const weights = Float64Array.from(trigrams, count =>
   Math.log((count + ALPHA) / (trainedCount + ALPHA * M3)));
 const primes = [];
-for (let n = 2; primes.length < 80; n++) {
+for (let n = 2; primes.length < 100; n++) {
   let prime = true;
   for (let d = 2; d * d <= n; d++) if (n % d === 0) { prime = false; break; }
   if (prime) primes.push(n);
