@@ -1,3 +1,16 @@
+# Agent 17 current research frontier (13 November 2026)
+
+**Current invocation:** random draw 5, normal issue-directed mode; existing Director issues #39/#41 blocked or waiting, so independent research. Immutable remotely claimed identity `agent17-8085840fbc4a502e` since **2026-11-12T23:54:13Z**. Check the actual UTC runtime clock after every checkpoint. At age >=70 minutes (**2026-11-13T01:04:13Z**), finish useful work, push it, then delete only this run's agent17 lease as the final mutation and verify remote deletion.
+
+**Main result: two source-constrained, complete reverse-inverse attempts on original p55 (76 unknown) using p56+p57 (180 solved/visible). Neither yields unknown plaintext.**
+
+1. **Reverse GF841 Reed–Solomon [256,76]** treats original p55 as DATA and the 180 known terminal symbols as redundant PARITY, opposite to previous [256,180] work. Source algebra: GF29² p3 quadratic `u²=3u+8`, generator `g=19+13u` from p50/p39/p3, original 32×8 perimeter=76 and interior=180. Fit degree<76 using only 76 already known parity symbols; on original solved p56, first withheld parity prediction 24+22u disagrees with actual1 and all 104 held-out checks fail. Using visible p56, first 25+5u disagrees with6 and again 0/104 checks pass. Recovered fake p55 values almost entirely outside GP29. Exact 256/256 independent degree75 field-code positive control. [Consolidated report](../../im-results/terminal-grid-circumference-knownplain-gate.md), [standalone SFT](../../sims/lp2_terminal256_rs76_data180_check_sft.cjs), commit `9b5015b29404ff8c6a4a9404c2b6c47184c1b567`.
+2. **Original base60 p50 table as a bytewise XOR mask over terminal256 with standard GF256 [256,76] parity**. 2013 Cicada audio stage provides documented original XOR precedent, table has exactly256 bytes; use clockwise nested table rings as byte mask, 76 unknown data, 180 known parity. Freeze GF256 0x11d/0x11b, 2 natural field-point orders, solved/visible p56 = 8 models. All original models fail the very first independent known parity check (0–1/104 total correct) and recovered p55 has at most11 native GP29 bytes, 0–1 visible matches. Each exact planted degree75 poly recovers 256/256. [Same consolidated report](../../im-results/terminal-grid-circumference-knownplain-gate.md), [full SFT](../../sims/lp2_terminal256_xor_rs76_sft.cjs), commit `f7f38064dce11456cfb89e09e8f234b43c5aad28`.
+
+**Interpretation and next research decision:** Source geometry plus 2016 signed tree arithmetic is exact but does not provide an authenticated Reed–Solomon or bytewise XOR decoder. Both RS data/parity polarities, natural GF29² and GF256 mask readings now lack a route to original plaintext. Avoid new unsourced field-polynomial/order searches. Continue only with genuinely independent 2014/2016 clue-selected operations with a full original ciphertext inverse; the 56 unknown physical LP2 pages remain unsolved. Historical independent public sources scanned 13 Nov 2026 still report no verified breakthrough; competing general OTP-class verdicts do not prove an external pad is necessary.
+
+---
+
 # Agent17 current invocation — 2026-11-12 22:36Z
 
 Run ID: \`agent17-gpt6-20261112T223612Z-p10-35-columnar\`
