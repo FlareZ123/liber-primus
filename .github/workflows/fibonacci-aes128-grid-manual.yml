@@ -14,6 +14,8 @@ jobs:
           node-version: "22"
       - name: Source-derived 128-bit inverse and positive control
         run: node sims/fibonacci_aes128_grid_key.cjs
+      - name: Original p15 16-bit AES256 full 256-byte grid test
+        run: node sims/lp2_p15_16bit_aes256_grid_original_sft.cjs
       - name: Original LP2 Fibonacci-selected grid key and rank28 exact inverse
         run: node sims/fibonacci_grid_selector_rank28.cjs
       - name: Source-key AES128 with keyless within-word insertion drift
