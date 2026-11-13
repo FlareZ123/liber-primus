@@ -47,6 +47,27 @@ The interval-specific rune clock starts at zero after each 13-dot mark. The unus
 
 The source-original readouts have no sustained GP English. A separately generated 13,136-rune plant uses the actual solved p57 GP plaintext repeated in fixed printed order, encrypts it with each original table row using the opposite sign, and reverses the cipher. **Every 13,136 rune recovers exactly**, including both empty segments and the final solved-page positions. Every original result also reenciphers 13,136/13,136. Consequently the result is a genuine negative under the **literal fixed key-to-segment mapping**, not a failure to implement the proposed inverse.
 
+## Stronger key-independent obstruction for the marker-interval architecture
+
+A different question needs **no table key at all**: suppose each of the 32 punctuation-delimited intervals has an arbitrary secret, fixed permutation of all 29 rune labels. This contains every repeating Caesar/affine alphabet with a *constant* offset per interval, and permits an entirely different unknown 29-symbol alphabet in every interval. For each interval of length `n`, the ordered equal-rune count `E = sum_r count(r) × (count(r)−1)` and its IoC `E/[n(n−1)]` are **exactly invariant** under every such secret alphabet. Key search cannot change these values.
+
+Ten untouched original intervals are at least 250 runes long. Their exact original IoCs are:
+
+| Interval | Runes | Original, key-invariant IoC |
+| ---: | ---: | ---: |
+| 1 | 716 | 0.03410165 |
+| 5 | 690 | 0.03449233 |
+| 7 | 308 | 0.03435001 |
+| 10 | 1,729 | 0.03446048 |
+| 14 | 1,883 | 0.03450923 |
+| 16 | 1,005 | 0.03430457 |
+| 18 | 1,414 | 0.03420151 |
+| 22 | 1,460 | 0.03432920 |
+| 25 | 3,008 | 0.03454263 |
+| 27 | 299 | 0.03348971 |
+
+All are near the exact uniform 29-way baseline `1/29 ≈ 0.03448276`. The already-independent authentic solved LP1/LP2 GP-English controls show much larger rune coincidence rates (roughly 0.06–0.07). Thus **one arbitrary stationary 29-way secret substitution per literal 13-dot interval cannot explain ordinary native GP-English directly**, regardless of the unknown key. This conditional obstruction is stronger than the two row-key signs tested above. It is not an exclusion of an interval-varying keystream, within-interval state changes, modified plaintext distribution, transpositions interleaved with a symbol-changing cipher, or a binary intermediate. The two zero-length intervals also mean this scheme never supplies 32 positive plaintext-bearing segments.
+
 ## Decision
 
 **Reject the direct mod-29 repeating-eight-byte-pad transfer with one table row per literal thirteen-dot interval**, for either additive sign, as an explanation of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals. The normal GP-English source distribution is absent after inversion. Neither the count nor this null result excludes a source-supplied alternative message serialization, table as a cryptographic key schedule, skipped key positions, per-section asymmetric algorithms, or an external text.
