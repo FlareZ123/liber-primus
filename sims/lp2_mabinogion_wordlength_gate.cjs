@@ -11,7 +11,7 @@ const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const reference = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const profile = JSON.parse(read('resources/external/cicada2012-mabinogion-gutenberg5160-gp-wordlengths.json'));
 const ruby = new Map(corpus.runes.map((r, i) => [r, i]));
-const rune = /[\\u16A0-\\u16FF]/u;
+const rune = /[\u16A0-\u16FF]/u;
 const digraphs = new Set(['TH', 'EO', 'NG', 'OE', 'AE', 'IA', 'EA']);
 
 function runeWords(text) {
@@ -20,7 +20,7 @@ function runeWords(text) {
   const finish = () => { if (token) words.push(token); token = ''; };
   for (const ch of text) {
     if (rune.test(ch)) token += ch;
-    else if (ch === '/' || ch === '%' || /\\s/u.test(ch)) continue;
+    else if (ch === '/' || ch === '%' || /\s/u.test(ch)) continue;
     else finish();
   }
   finish();
