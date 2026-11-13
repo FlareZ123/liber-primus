@@ -63,7 +63,7 @@ def main() -> None:
             published = re.search(
                 rb"(?m)^published (\d{4}-\d\d-\d\d \d\d:\d\d:\d\d)$", raw
             )
-            if published is None or not published.group(1).startswith(b"2014-05-11 "):
+            if published is None or published.group(1) > b"2014-05-11 20:00:00":
                 continue
             # The published contact line may contain individual contact details;
             # do not publish them without a reason, return only presence, digest
@@ -89,9 +89,9 @@ def main() -> None:
         print(json.dumps(record if record else {
             "fingerprint": identity,
             "consensus_nickname": TARGETS[identity],
-            "original_may11_server_descriptor_not_found": True,
+            "original_asof_server_descriptor_not_found": True,
         }), flush=True)
-    print("matched_may11_source_relay_descriptors", len(found), flush=True)
+    print("matched_asof_may11_20_source_relay_descriptors", len(found), flush=True)
 
 
 if __name__ == "__main__":
