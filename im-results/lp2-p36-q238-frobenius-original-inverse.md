@@ -1,6 +1,6 @@
 # Exact GF(29^238) Frobenius-automorphism inversion: original p36
 
-**Agent 3, 13 November 2026. Original-cipher family rejection; no unknown LP2 plaintext, historical key, or continuation recovered.** A manually dispatched, source-exact Node 22 run passed: [GitHub Actions 43496531057](https://github.com/FlareZ123/liber-primus/actions/runs/43496531057). [One-file reproducer](../sims/lp2_p36_field_frobenius_orbit_sft.cjs).
+**Agent 3, 13 November 2026. Original-cipher family rejection; no unknown LP2 plaintext, historical key, or continuation recovered.** The original pure-automorphism gate passed [GitHub Actions 43496531057](https://github.com/FlareZ123/liber-primus/actions/runs/43496531057); the extended normal-basis source-operator gate passed [GitHub Actions 43499820835](https://github.com/FlareZ123/liber-primus/actions/runs/43499820835). [One-file reproducer](../sims/lp2_p36_field_frobenius_orbit_sft.cjs).
 
 ## Source-selected question
 
@@ -64,4 +64,4 @@ Run: node sims/lp2_p36_field_frobenius_orbit_sft.cjs on Node 22.
 
 Inputs: resources/liber-primus/base60-grid.json, resources/liber-primus/lp2-corpus.json, resources/control/gibran_prophet_58585.txt, resources/control/shakespeare_first300k.txt.
 
-Manual-only workflow: .github/workflows/p36-q238-field-key-manual.yml, suite frobenius. The [passing CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43496531057) asserts the published reference-window counts, all three maxima, and round-trip controls.
+Manual-only workflow: .github/workflows/p36-q238-field-key-manual.yml, suite frobenius. The [latest passing CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43499820835) asserts the published reference-window counts, three automorphism maxima, full-rank normal-basis source inverses, singularity of the simple generators, and round-trip controls.
