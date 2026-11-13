@@ -2,10 +2,6 @@ name: LP2 authentic Fehu two-rune capacity
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/lp2-ftransparent-two-rune-capacity.yml'
-      - 'sims/lp2_ftransparent_twoletter_ending_f_capacity_sft.cjs'
 
 permissions:
   contents: read
