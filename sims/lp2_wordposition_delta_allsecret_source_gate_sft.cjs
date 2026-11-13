@@ -274,7 +274,7 @@ for (let sourceId = 0; sourceId < controls.length; sourceId++) {
   });
   assert.equal(plantWords.length, 2896);
   const encrypted = plantCipher(plantWords);
-  const plantGroups = stratify(buildRecords(encrypted));
+  const plantGroups = {page: stratify(buildRecords(encrypted)).page};
   const plantScore = {};
   for (const [key, groups] of Object.entries(plantGroups)) {
     const originalPanel = panels[key];
