@@ -15,3 +15,5 @@ jobs:
           node-version: '22'
       - name: Screen original signed 2016 image against p32 rune residues
         run: node sims/lp2_p32_2016_tile_ink_mod29_sft.cjs
+      - name: Screen dimension-selected 11x10 first-two-word tile readout
+        run: node sims/lp2_2016_two_word_tile110_mod29_sft.cjs
