@@ -294,10 +294,50 @@ for (const reverse of [false, true]) {
       solvedNativePlantRecovery: 76,
     });
   }
+  // Distinct, nonperiodic source transfer: the authentic p15 index+1 prime
+  // convention plus solved p56 phi(prime). Every printed base60 byte B
+  // supplies key phi(prime_(B+1)) mod29 at the row10 sourced shell site.
+  const indexedPrimes = primes(256);
+  const primeTotientKey = bytes.slice(0, 76)
+    .map(byte => (indexedPrimes[byte] - 1) % 29);
+  const primeTotientDirect = [];
+  const primeTotientF = [];
+  for (const sign of [-1, 1]) {
+    const output = original55.map((rune, i) =>
+      ((rune + sign * primeTotientKey[i]) % 29 + 29) % 29);
+    const expectedIoC = reverse
+      ? (sign === -1 ? 0.027719298245614036 : 0.0343859649122807)
+      : (sign === -1 ? 0.03368421052631579 : 0.03298245614035088);
+    assert.ok(Math.abs(ioc(output) - expectedIoC) < 1e-12);
+    primeTotientDirect.push({ sign, ioc: ioc(output) });
+    const variants = sourceFVariants(primeTotientKey, sign);
+    const expected = reverse
+      ? [0, 0] : (sign === -1 ? [1, 2] : [0, 0]);
+    assert.deepEqual([variants.length,
+      Math.max(0, ...variants.map(v => v.recognized))], expected);
+    const plant = solved57.slice(0, 76);
+    let consumed = 0;
+    const encrypted = plant.map(p => p === 0 ? 0 :
+      ((p - sign * primeTotientKey[consumed++]) % 29 + 29) % 29);
+    let consumed2 = 0;
+    const recovered = encrypted.map((c, i) => plant[i] === 0 ? 0 :
+      ((c + sign * primeTotientKey[consumed2++]) % 29 + 29) % 29);
+    assert.deepEqual(recovered, plant);
+    primeTotientF.push({
+      sign, validMasks: variants.length,
+      bestNativeLexiconWords: Math.max(0, ...variants.map(v => v.recognized)),
+      strongestCandidate: variants[0] || null,
+      solvedNativePlantRecovery: 76,
+    });
+  }
+  assert.equal(primeTotientKey[0], 822 % 29);
   outcomes.push({
     direction: reverse ? 'counterclockwise' : 'clockwise',
     directOriginalP55Inverse: originalInverse,
     originalFTransparentOriginalWordBoundaryTest: fTransparent,
+    nonperiodicPrimeIndexedTotientOuterKey: {
+      direct: primeTotientDirect, fTransparent: primeTotientF,
+    },
     ringStarts: shells.map(s => s[0]),
     ringLengths: shells.map(s => s.length),
     knownNativeGP: known.length,
