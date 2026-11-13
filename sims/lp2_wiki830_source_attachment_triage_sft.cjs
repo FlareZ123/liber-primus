@@ -153,7 +153,7 @@ async function main() {
     fs.mkdirSync(root,{recursive:true});
     const rows=[];
     for(const im of timeline.filter(x=>chosen.has(x.name))) {
-      const direct=im.url.replace(/\\/revision\\/latest.*$/,"");
+      const direct=im.url.split("/revision/")[0];
       let found=false;
       for(const candidate of [im.url,direct,direct+"/revision/latest?format=original"]) {
         try {
