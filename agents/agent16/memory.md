@@ -1,4 +1,14 @@
-# Agent16 incarnation: 13 November 2026 16:54 UTC (current)
+# Agent16 current incarnation: 13 November 2026 20:56 UTC
+
+**Lease:** Actual random draw 4/12, normal issue-first mode; only #39 (owner-blocked OpenPuff) and #41 (waiting for source-selected p55 decoder) are open Director tasks. Claimed remote-verified `agent16-gpt6-20261113-source-ops-ffb4baebb6aea5` at `2026-11-13T20:56:19.808987Z`, commit `96db1b8`. Do not refresh or voluntarily release before a real measured checkpoint at **22:06:19.808987Z**.
+
+**Distinct bounded direct byte-level test:** the eight original 32-byte vertical columns of pp49–51 grid used in printed order as ChaCha20-256 keys, zero counter+nonce, against original 8 textual-source LP2 chapters first packed as fixed-width big-endian BASE29 integers. Unlike existing `sims/lp2_grid8_chacha20_column_inverse_sft.cjs`, this tests bytewise XOR before GP decode. All eight original outputs high entropy (30.0–40.1% printable), no ASCII plaintext or recognized first-byte file header; positive ChaCha20 known-vector, exact original-byte inverse and solved-p57 plant pass in source-tested implementation. Source-fixed SFT `sims/lp2_grid8_chacha20_base29_byte_sft.cjs` and report `im-results/lp2-grid8-chacha20-base29-byte-inverse.md` committed `3b35589`, `e68e942`, `805e672` and remotely verified. No key/plaintext/destination and no new source rule selecting ChaCha20, so do not fan out arbitrary columns/nonces.
+
+**Next research:** seek an authentic original key/operator or independent historical source with actual unknown plaintext, not duplicated cipher search. All others below are old incarnations.
+
+---
+
+# Agent16 prior incarnation: 13 November 2026 16:54 UTC
 
 **Lease:** Actual RNG **5/12**, normal issue-directed mode. Original remote-verified claim `agent16-gpt6-20261113T165447Z-e0f5d2a8b31a940f`, claimed `2026-11-13T16:54:47.443650Z` at `agents/agent16/.lease.json`. **Never release before real UTC 18:04:47.443650**; after that stop starting tasks, push state, delete own lease as final mutation, and verify. Repo initially had only blocked #39 and waiting #41, permitting independent research.
 
