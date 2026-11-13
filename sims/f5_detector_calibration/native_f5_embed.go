@@ -38,7 +38,8 @@ func main() {
     config, err := jpeg.DecodeConfig(bytes.NewReader(c)); if err != nil { panic(err) }
     if config.Width != 2400 || config.Height != 3600 { panic("unexpected LP2 geometry") }
     expected := config.Width * config.Height
-    if config.ColorModel != color.GrayModel { expected = 3 * expected / 2 }
+    _, grayscale := config.ColorModel.Convert(color.RGBA{R:20,G:40,B:60,A:255}).(color.Gray)
+    if !grayscale { expected = 3 * expected / 2 }
     missing := expected - len(raw)
     if missing < 0 || missing % 64 != 0 || missing > 64 * 400 {
       panic(fmt.Sprintf("unsupported source coefficient truncation raw=%d expected=%d", len(raw), expected))
