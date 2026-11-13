@@ -182,13 +182,16 @@ const render = (words) => words
 
 // Synthetic positive control: exact same word-length register, native GP words.
 const plantWords = wordLengths.map((n) => holdoutByLength.get(n)[0]);
-const plantCipher = plantWords.map((word, i) =>
-  word.map((p) => mod29(p + key[i]))
+let plantCursor = 0;
+const plantCipher = plantWords.map((word) =>
+  word.map((p) => mod29(p + key[plantCursor++]))
 );
-const plantDecoded = plantCipher.map((word, i) =>
-  word.map((c) => mod29(c - key[i]))
+plantCursor = 0;
+const plantDecoded = plantCipher.map((word) =>
+  word.map((c) => mod29(c - key[plantCursor++]))
 );
 assert.deepEqual(plantDecoded, plantWords);
+assert.equal(plantCursor, cipher.length);
 
 const result = {
   hypothesis: "p36 prime-ordinal 36 selects the 36th prime 151 as the p56 phi(prime) stream start",
