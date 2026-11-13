@@ -67,6 +67,26 @@ async function archiveList() {
   return result.tree.filter(e=>e.type==="blob");
 }
 
+/** SHA-1 on original archive *file content*, independently of filenames. */
+function archiveByteHashes(root) {
+  const matches = new Map();
+  if(!root || !fs.existsSync(root)) return matches;
+  function visit(directory) {
+    for(const d of fs.readdirSync(directory,{withFileTypes:true})) {
+      if(d.name===".git") continue;
+      const full=path.join(directory,d.name);
+      if(d.isDirectory()) { visit(full); continue; }
+      if(!d.isFile() || !/\.(jpg|jpeg|png|gif|bmp|webp|svg|pdf)$/i.test(d.name)) continue;
+      const size=fs.statSync(full).size;
+      if(size>30000000) continue;
+      const digest=crypto.createHash("sha1").update(fs.readFileSync(full)).digest("hex");
+      if(!matches.has(digest)) matches.set(digest,full.slice(root.length+1));
+    }
+  }
+  visit(root);
+  return matches;
+}
+
 /** @param {Array<any>} images */
 async function fetchCandidates(images) {
   const candidates=images.filter(im=>priority(im)>=15&&im.size>0&&im.size<=10000000)
@@ -129,6 +149,13 @@ async function main() {
     const images=await wikiList();
     console.log("WIKI_DIGEST_SAMPLE",JSON.stringify(images.slice(0,4).map(x=>({name:x.name,sha1:x.sha1,size:x.size,url:x.url?.slice(0,100)}))));
     const archive=await archiveList();
+    const archiveBytes=archiveByteHashes(process.env.ARCHIVE_ROOT || "");
+    const hashMatched=images.filter(im=>archiveBytes.has(im.sha1));
+    const distinct=images.filter(im=>!archiveBytes.has(im.sha1));
+    console.log("BYTE_DEDUP",JSON.stringify({indexed:images.length,
+      archiveUniqueContentHashes:archiveBytes.size,exactOriginalSHA1Matches:hashMatched.length,
+      wikiByteDistinctFromArchive:distinct.length,
+      matchedSample:hashMatched.slice(0,12).map(im=>({name:im.name,archive:archiveBytes.get(im.sha1)}))}));
     const names=new Set(archive.map(e=>norm(e.path)));
     const unknown=images.filter(im=>!names.has(norm(im.name)))
       .sort((a,b)=>priority(b)-priority(a)||a.name.localeCompare(b.name));
@@ -137,7 +164,7 @@ async function main() {
       .map(im=>({name:im.name,size:im.size,sha1:im.sha1,timestamp:im.timestamp}))
       .slice(0,120)));
     const known=images.length-unknown.length;
-    const downloads=await fetchCandidates(unknown);
+    const downloads=await fetchCandidates(unknown.filter(im=>!archiveBytes.has(im.sha1)));
     const byExt={},byYear={};
     for(const im of images){
       const ext=im.name.split(".").pop().toLowerCase();
@@ -145,7 +172,10 @@ async function main() {
       byExt[ext]=(byExt[ext]||0)+1;
       byYear[year]=(byYear[year]||0)+1;
     }
+    console.log("FILE_TYPES",JSON.stringify({byExt,byYear}));
     const report={source:API,images:images.length,archiveFiles:archive.length,
+      archiveUniqueSHA1:archiveBytes.size,byteExactArchiveDuplicates:hashMatched.length,
+      byteDistinct:distinct.length,
       wikiNameMatchesInArchive:known,wikiNamesAbsentFromArchive:unknown.length,
       fileTypes:byExt,uploadYears:byYear,downloads,
       highestPriority:unknown.slice(0,150).map(im=>({
@@ -155,6 +185,7 @@ async function main() {
     writeAtomic(path.join(OUTPUT,"triage.json"),JSON.stringify(report,null,2));
     console.log("HASH_DIAGNOSTIC",JSON.stringify(downloads.filter(x=>x.status==="sha1-mismatch").slice(0,3)));
     console.log("FINAL_SUMMARY",JSON.stringify({images:images.length,
+      exactArchiveDuplicates:hashMatched.length,distinctRawHashes:distinct.length,
       known,unmatched:unknown.length,downloads:downloads.length,
       verified:downloads.filter(x=>x.status==="verified").length,
       unavailability:downloads.filter(x=>x.status==="unavailable").length}));
