@@ -29,6 +29,24 @@ for(let i=2;i*i<=limit;i++) if(prime[i])
   for(let j=i*i;j<=limit;j+=i) prime[j]=0;
 const rank=new Uint32Array(limit+1);
 for(let i=1;i<=limit;i++) rank[i]=rank[i-1]+prime[i];
+// Independent solved-page control for the prime-ordinal interpretation:
+// original p56 red cipher heading decodes to AN END by its known phi(prime)
+// schedule. Its GP-prime sum is the 64th prime; the same page prints a
+// 128-hex-character (=64-byte) digest.
+const p56 = c.pages.find(p=>p.page===56).indices;
+const redCipher = p56.slice(0,5);
+assert.deepEqual(redCipher,[25,11,22,15,4]);
+const redPlain = redCipher.map((v,i)=>(v-([2,3,5,7,11][i]-1)+29)%29);
+assert.deepEqual(redPlain,[24,9,18,9,23]);
+const redPrimeSum = redPlain.reduce((s,n)=>s+c.prime[n],0);
+assert.equal(redPrimeSum,311);
+assert.equal(rank[redPrimeSum],64);
+const solvedReference=fs.readFileSync(
+  path.join(root,"resources/liber-primus/lp1-plaintext-reference.txt"),"utf8");
+const solved56=solvedReference.split("### 56")[1].split("### 57")[0];
+const p56Hex=solved56.match(/[0-9a-f]{32,}/gu).join("");
+assert.equal(p56Hex.length,128);
+assert.equal(Buffer.from(p56Hex,"hex").length,64);
 assert(sums.every(n=>prime[n]===1));
 assert.deepEqual(sums.map(n=>rank[n]),[87,205,173,201]);
 assert.equal(sums.reduce((s,n)=>s+n,0),3968);
@@ -95,7 +113,7 @@ console.log(JSON.stringify({
   original:"LP2 p57 original printed title and three full-stop-delimited sentences",
   runeCounts:indexed.map(g=>g.length),
   primeSums:sums,primeOrdinals:sums.map(n=>rank[n]),
-  ordinalTotal:666,sourceNativeRuneMatches:indexed.flat().length,
+  ordinalTotal:666,solvedP56:{title:"AN END",primeSum:redPrimeSum,primeOrdinal:rank[redPrimeSum],digestBytes:p56Hex.length/2},sourceNativeRuneMatches:indexed.flat().length,
   exploratoryInventoryShuffle:{trials:n,seed:"0x3301666",tallies},
   recoveredUnknownPlaintext:0
 },null,2));
