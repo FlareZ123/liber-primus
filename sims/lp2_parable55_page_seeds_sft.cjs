@@ -113,6 +113,35 @@ for (const [name, key] of Object.entries(p57BoundaryKeys)) {
       first60:translit(output).slice(0,60)});
   }
 }
+const directPageReadout = [];
+for (const symbolType of ["ordinal", "gp-prime"]) {
+  for (const oneBased of [false, true]) {
+    const invalid = [];
+    const positions = pages.map((page, i) => {
+      const ordinal = symbolType === "ordinal" ? interior[i] : corpus.prime[interior[i]];
+      const index = ordinal - (oneBased ? 1 : 0);
+      if (index < 0 || index >= page.indices.length) {
+        invalid.push({page: page.page, index});
+        return 0;
+      }
+      return page.indices[index];
+    });
+    directPageReadout.push({
+      symbolType, oneBased, invalid,
+      ioc:invalid.length ? null : ioc(positions),
+      text:invalid.length ? null : translit(positions)
+    });
+  }
+}
+for (const measurement of ["rune-count", "prime-sum"]) {
+  const values = pages.map(page => measurement === "rune-count"
+    ? page.indices.length % 29
+    : page.indices.reduce((sum, index) => sum + corpus.prime[index], 0) % 29);
+  for (const sign of [-1, 1]) {
+    const text = values.map((v, i) => mod(v + sign * interior[i]));
+    directPageReadout.push({measurement, sign, ioc:ioc(text), text:translit(text)});
+  }
+}
 console.log(JSON.stringify({
   source: "p57 cleartext words, word-by-word interior/rim",
   sourceWordCount: words.length,
@@ -128,6 +157,7 @@ console.log(JSON.stringify({
   syntheticP56Phase17PositiveControl:true,
   rawUnsolvedIoc:ioc(pages.flatMap(p=>p.indices)),
   acrostic,
+  directPageReadout,
   perPageTotientModels:models,
   p55TerminalBoundaryKeys:p55Candidates,
   decision:"No native plaintext under direct p57 55-symbol acrostic, per-page phi prime-clock seeds, or 75/76-symbol adjacent-p55 additive keys; count equality is an unselected structural observation",
