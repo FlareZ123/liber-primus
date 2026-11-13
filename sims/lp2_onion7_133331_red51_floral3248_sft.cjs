@@ -135,6 +135,38 @@ for(const [order,map] of Object.entries(permutationMaps)){
 }
 assert.equal(variants.length,40);
 variants.sort((a,b)=>b.ioc-a.ioc);
+
+// A third independently historical source supplies precisely 464 primes:
+// the original 2013 live-ISO prime_echo program, ending at 3301.
+// Its complete printed sequence is used without fitting a key or offset.
+// Compare both raw prime and prime-totient GP29 reductions, each source
+// layout, and the two obvious orders of the two reversible operations.
+const primeSource=get('resources/historical/cicada2013-os-original-prime-echo.sh');
+const announcedPrimes=[...primeSource.matchAll(/^\s*echo\s+(?:-n\s+)?["'](\d+)(?:\s|["'])/gm)].map(x=>Number(x[1]));
+assert.equal(announcedPrimes.length,464);
+assert.equal(announcedPrimes[0],2);
+assert.equal(announcedPrimes[462],3299);
+assert.equal(announcedPrimes[463],3301);
+const primeVariants=[];
+for(const [order,map] of Object.entries(permutationMaps)){
+  for(const keyKind of ['prime','prime-totient'])for(const sign of [-1,1]){
+    const key=announcedPrimes.map(p=>(p-(keyKind==='prime-totient'?1:0))%29);
+    for(const before of [true,false]){
+      const cfg={map,key,sign,before};
+      const plain=decode(retained,cfg);
+      assert.deepEqual(encode(plain,cfg),retained,'Prime-key original inverse mismatch');
+      assert.deepEqual(decode(encode(plant,cfg),cfg),plant,
+        'Prime-key source-native plant inverse mismatch');
+      primeVariants.push({permutation:order,keyKind,sign,
+        layer:before?'key_then_permutation':'permutation_then_key',
+        ioc:ioc(plain)});
+    }
+  }
+}
+assert.equal(primeVariants.length,40);
+primeVariants.sort((a,b)=>b.ioc-a.ioc);
+assert.ok(primeVariants.every(x=>x.ioc<0.045),
+  'Prime_echo direct GP text-like discriminator unexpectedly passed');
 assert.ok(variants.every(v=>v.ioc<0.045),'Source candidate exceeded conservative prose-IoC discriminator');
 const output={
   source:'original LP2 p40-p55, two red rubrics, p53 red51; historical onion7 HTML 133/331',
@@ -145,6 +177,14 @@ const output={
   retainedPerPage,originalIoC:ioc(retained),syntheticNativePlantIoC:ioc(plant),
   positiveControls:variants.length,negativeOriginalVariants:variants.filter(v=>v.ioc<0.045).length,
   maxOriginalIoC:variants[0].ioc,minOriginalIoC:variants.at(-1).ioc,
+  primeEcho:{source:'2013 live-ISO prime_echo original 464-announcement program',
+    prime463:announcedPrimes[462],prime464:announcedPrimes[463],
+    originalVariants:primeVariants.length,
+    minOriginalIoC:primeVariants.at(-1).ioc,
+    maxOriginalIoC:primeVariants[0].ioc,
+    bestOriginalVariant:primeVariants[0],
+    exactSyntheticAndOriginalRoundTrips:primeVariants.length,
+    decision:'All 40 direct 2013 source-prime and prime-totient operations remain ciphertext-like.'},
   bestOriginalVariant:variants[0],worstOriginalVariant:variants.at(-1),
   verdict:'Bounded original-negative: no native-GP plaintext or selected historical inverse; geometry remains retrospective and operator/key unprescribed.'
 };
