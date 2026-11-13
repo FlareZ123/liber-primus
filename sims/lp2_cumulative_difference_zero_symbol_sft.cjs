@@ -1,0 +1,218 @@
+'use strict';
+
+/**
+ * Original-LP2 cumulative-difference zero-symbol gate.
+ *
+ * A stationary 29-rune bijection h in C[i] = C[i-1] + h(P[i]) (mod 29)
+ * necessarily makes every adjacent ciphertext doublet a position of
+ * the SAME source GP29 plaintext rune h^-1(0). The unknown bijection
+ * cannot change those positions.
+ *
+ * Tests first-rune positions after literal '-' word separators and last-rune
+ * positions within words against source-native GP29 English controls matched
+ * to the original printed rune-word lengths.
+ *
+ * Run: node sims/lp2_cumulative_difference_zero_symbol_sft.cjs
+ * Node.js 20+, CommonJS, offline, read-only, deterministic.
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+
+/** @param {string} file @returns {string} */
+function read(file) {
+  return fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
+}
+
+const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const original = read('resources/liber-primus/lp2-transcription.txt')
+  .split('%').slice(0, 55).join('%')
+  .replace(/\/\r?\n/g, '').replace(/[\r\n%]/g, '');
+const runeMap = new Map(gp.runes.map((r, i) => [r, i]));
+const runeRx = new RegExp('[' + gp.runes.join('') + ']+', 'gu');
+const matches = [...original.matchAll(runeRx)];
+const words = matches.map(m => [...m[0]].map(r => runeMap.get(r)));
+assert.equal(words.length, 2896);
+assert.equal(words.reduce((s, w) => s + w.length, 0), 12956);
+
+const startLengths = [];
+const finalLengths = [];
+let observedStart = 0, observedFinal = 0, observedInternal = 0;
+for (let i = 0; i < words.length; i++) {
+  const w = words[i];
+  if (i > 0) {
+    const previous = matches[i - 1];
+    const between = original.slice(previous.index + previous[0].length,
+      matches[i].index);
+    // Punctuation could carry a different clock, so only keep a literal '-'.
+    if (between === '-') {
+      startLengths.push(w.length);
+      observedStart += Number(words[i - 1].at(-1) === w[0]);
+    }
+  }
+  if (w.length > 1) {
+    finalLengths.push(w.length);
+    observedFinal += Number(w.at(-1) === w.at(-2));
+    for (let j = 1; j < w.length; j++)
+      observedInternal += Number(w[j] === w[j - 1]);
+  }
+}
+assert.equal(startLengths.length, 2720);
+assert.equal(finalLengths.length, 2813);
+assert.equal(observedStart, 22);
+assert.equal(observedFinal, 19);
+assert.equal(observedInternal, 63);
+
+const tokens = gp.translit.map((s, i) => ({s, i}))
+  .sort((a, b) => b.s.length - a.s.length);
+
+/**
+ * Orthography calibrated from solved-LP1 rune words, including ING/IO.
+ * @param {string} value
+ * @returns {number[]}
+ */
+function encodeSourceNativeGP(value) {
+  const s = value.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/V/g, 'U').replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+  const out = [];
+  for (let k = 0; k < s.length;) {
+    if (s.startsWith('ING', k)) {
+      out.push(21);
+      k += 3;
+    } else if (s.startsWith('IO', k)) {
+      out.push(27);
+      k += 2;
+    } else {
+      const token = tokens.find(t => s.startsWith(t.s, k));
+      assert(token, 'unmapped control spelling: ' + s);
+      out.push(token.i);
+      k += token.s.length;
+    }
+  }
+  return out;
+}
+
+const controlFiles = [
+  'resources/control/gibran_prophet_58585.txt',
+  'resources/control/emerson_essays_2944.txt',
+  'resources/control/shakespeare_first300k.txt'
+];
+const control = controlFiles.flatMap(file =>
+  (read(file).match(/[a-zA-Z]+/g) || []).map(encodeSourceNativeGP));
+assert.equal(control.length, 149072);
+
+// Each control word is sampled with replacement within its GP-rune length.
+// This is a conditional finite-English model, not an LP2 authorship model.
+const bins = new Map();
+for (const w of control) {
+  let bin = bins.get(w.length);
+  if (!bin) {
+    bin = {n: 0, start: Array(29).fill(0), end: Array(29).fill(0)};
+    bins.set(w.length, bin);
+  }
+  bin.n++;
+  bin.start[w[0]]++;
+  if (w.length > 1) bin.end[w.at(-1)]++;
+}
+
+/** @param {number[]} lengths */
+function groupLengths(lengths) {
+  const counts = new Map();
+  for (const length of lengths)
+    counts.set(length, (counts.get(length) || 0) + 1);
+  return counts;
+}
+const startGroups = groupLengths(startLengths);
+const finalGroups = groupLengths(finalLengths);
+
+/**
+ * Conservative one-sided Chernoff bound for a length-stratified independent
+ * Poisson-binomial count of one GP symbol at the requested word position.
+ *
+ * Since the event of observing BOTH counts exactly is a subset of each
+ * one-sided marginal tail, min(startBound, finalBound) bounds a candidate.
+ * Summing all 29 bounds handles unknown h^-1(0) without fitting a key.
+ *
+ * @param {number} rune
+ * @param {'start'|'end'} position
+ * @param {number} observed
+ * @param {Map<number,number>} lengths
+ * @returns {{expected:number,bound:number}}
+ */
+function chernoff(rune, position, observed, lengths) {
+  const terms = [...lengths].map(([length, n]) => {
+    const bin = bins.get(length);
+    assert(bin);
+    return {n, p: bin[position][rune] / bin.n};
+  });
+  const expected = terms.reduce((s, x) => s + x.n * x.p, 0);
+  if (expected === observed) return {expected, bound: 1};
+  const upper = observed > expected;
+  if (upper && terms.reduce((n, x) => n + (x.p > 0 ? x.n : 0), 0) < observed)
+    return {expected, bound: 0};
+  if (!upper && terms.reduce((n, x) => n + (x.p === 1 ? x.n : 0), 0) > observed)
+    return {expected, bound: 0};
+
+  let lo = upper ? 0 : -100;
+  let hi = upper ? 100 : 0;
+  for (let i = 0; i < 100; i++) {
+    const t = (lo + hi) / 2;
+    const mean = terms.reduce((s, x) => {
+      const q = x.p === 0 ? 0 : x.p === 1 ? 1 :
+        1 / (1 + (1 - x.p) / x.p * Math.exp(-t));
+      return s + x.n * q;
+    }, 0);
+    if (mean < observed) lo = t;
+    else hi = t;
+  }
+  const t = (lo + hi) / 2;
+  const logBound = terms.reduce((s, x) => {
+    const logMGF = t > 0 ?
+      t + Math.log(x.p + (1 - x.p) * Math.exp(-t)) :
+      Math.log(1 - x.p + x.p * Math.exp(t));
+    return s + x.n * logMGF;
+  }, 0) - observed * t;
+  return {expected, bound: Math.min(1, Math.exp(logBound))};
+}
+
+const comparisons = gp.translit.map((name, rune) => {
+  const start = chernoff(rune, 'start', observedStart, startGroups);
+  const final = chernoff(rune, 'end', observedFinal, finalGroups);
+  return {rune, name, expectedStart: start.expected,
+    expectedFinal: final.expected,
+    jointUpper: Math.min(start.bound, final.bound)};
+});
+const unionUpper = comparisons.reduce((s, x) => s + x.jointUpper, 0);
+comparisons.sort((a, b) => b.jointUpper - a.jointUpper);
+assert.equal(comparisons[0].name, 'U');
+assert(Math.abs(unionUpper - 0.0000018276376395094553) < 1e-10);
+
+// A nontrivial native-GP positive plant proves the zero-event invariant:
+// choose a bijection h(p) = (p - 21) mod29, with h^-1(0) = NG.
+const plant = control.slice(0, 300);
+let prevCipher = 13, observedNativeZero = 0, expectedNativeZero = 0;
+for (const w of plant) {
+  for (const plain of w) {
+    const cipher = (prevCipher + (plain - 21 + 29) % 29) % 29;
+    observedNativeZero += Number(cipher === prevCipher);
+    expectedNativeZero += Number(plain === 21);
+    prevCipher = cipher;
+  }
+}
+assert.equal(observedNativeZero, expectedNativeZero);
+assert(expectedNativeZero > 0, 'positive control must contain NG/ING');
+
+// A second source-native control: the GP spelling must not split -ING/-IO.
+assert.deepEqual(encodeSourceNativeGP('FOLLOWING'), [0, 3, 20, 20, 3, 7, 21]);
+assert.deepEqual(encodeSourceNativeGP('FUNCTION'), [0, 1, 9, 5, 16, 27, 9]);
+
+console.log(JSON.stringify({
+  original: {runes: 12956, words: 2896, withinWordDoublets: 63,
+    ordinaryWordStartDoublets: observedStart, endOfWordDoublets: observedFinal,
+    ordinaryWordStartOpportunities: startLengths.length,
+    lastRuneOpportunities: finalLengths.length},
+  controlWords: control.length, candidates: comparisons,
+  unionUpper, nativePlantDoublets: observedNativeZero,
+  interpretation: 'Conditional English model; no unknown plaintext or key'
+}, null, 2));
