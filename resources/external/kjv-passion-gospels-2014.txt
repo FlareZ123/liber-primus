@@ -1,0 +1,623 @@
+# King James Version Passion/Resurrection extracts, original verse wording
+# Four Gospel chapters selected by LP2 physical page 22 reclining-body / triple-bar cross motif.
+# Source: https://github.com/midvash/bible-data/tree/9586bd8228a747962df1ee8692730422fb7eb2ec/versions/en/kjv/books
+# Original per-book Git blob IDs (in order Matt Mark Luke John): bdc59d34d53f7cf5b431c6dd5fd707aed6d89fc0 8697fff0b27eb2aa3949d158b25b2cc00330d8bc 944b940c6246aa0dc62d601a65630454f8ad175c ae4d4f13d6a020482a537c0620051a35c5d08994
+# Format: Book chapter:verse TAB exact verse text, no source verse numbering in text.
+Matthew 26:1	And it came to pass, when Jesus had finished all these sayings, he said unto his disciples,
+Matthew 26:2	Ye know that after two days is the feast of the passover, and the Son of man is betrayed to be crucified.
+Matthew 26:3	Then assembled together the chief priests, and the scribes, and the elders of the people, unto the palace of the high priest, who was called Caiaphas,
+Matthew 26:4	And consulted that they might take Jesus by subtilty, and kill him.
+Matthew 26:5	But they said, Not on the feast day, lest there be an uproar among the people.
+Matthew 26:6	Now when Jesus was in Bethany, in the house of Simon the leper,
+Matthew 26:7	There came unto him a woman having an alabaster box of very precious ointment, and poured it on his head, as he sat at meat.
+Matthew 26:8	But when his disciples saw it, they had indignation, saying, To what purpose is this waste?
+Matthew 26:9	For this ointment might have been sold for much, and given to the poor.
+Matthew 26:10	When Jesus understood it, he said unto them, Why trouble ye the woman? for she hath wrought a good work upon me.
+Matthew 26:11	For ye have the poor always with you; but me ye have not always.
+Matthew 26:12	For in that she hath poured this ointment on my body, she did it for my burial.
+Matthew 26:13	Verily I say unto you, Wheresoever this gospel shall be preached in the whole world, there shall also this, that this woman hath done, be told for a memorial of her.
+Matthew 26:14	Then one of the twelve, called Judas Iscariot, went unto the chief priests,
+Matthew 26:15	And said unto them, What will ye give me, and I will deliver him unto you? And they covenanted with him for thirty pieces of silver.
+Matthew 26:16	And from that time he sought opportunity to betray him.
+Matthew 26:17	Now the first day of the feast of unleavened bread the disciples came to Jesus, saying unto him, Where wilt thou that we prepare for thee to eat the passover?
+Matthew 26:18	And he said, Go into the city to such a man, and say unto him, The Master saith, My time is at hand; I will keep the passover at thy house with my disciples.
+Matthew 26:19	And the disciples did as Jesus had appointed them; and they made ready the passover.
+Matthew 26:20	Now when the even was come, he sat down with the twelve.
+Matthew 26:21	And as they did eat, he said, Verily I say unto you, that one of you shall betray me.
+Matthew 26:22	And they were exceeding sorrowful, and began every one of them to say unto him, Lord, is it I?
+Matthew 26:23	And he answered and said, He that dippeth his hand with me in the dish, the same shall betray me.
+Matthew 26:24	The Son of man goeth as it is written of him: but woe unto that man by whom the Son of man is betrayed! it had been good for that man if he had not been born.
+Matthew 26:25	Then Judas, which betrayed him, answered and said, Master, is it I? He said unto him, Thou hast said.
+Matthew 26:26	And as they were eating, Jesus took bread, and blessed it, and brake it, and gave it to the disciples, and said, Take, eat; this is my body.
+Matthew 26:27	And he took the cup, and gave thanks, and gave it to them, saying, Drink ye all of it;
+Matthew 26:28	For this is my blood of the new testament, which is shed for many for the remission of sins.
+Matthew 26:29	But I say unto you, I will not drink henceforth of this fruit of the vine, until that day when I drink it new with you in my Father's kingdom.
+Matthew 26:30	And when they had sung an hymn, they went out into the mount of Olives.
+Matthew 26:31	Then saith Jesus unto them, All ye shall be offended because of me this night: for it is written, I will smite the shepherd, and the sheep of the flock shall be scattered abroad.
+Matthew 26:32	But after I am risen again, I will go before you into Galilee.
+Matthew 26:33	Peter answered and said unto him, Though all men shall be offended because of thee, yet will I never be offended.
+Matthew 26:34	Jesus said unto him, Verily I say unto thee, That this night, before the cock crow, thou shalt deny me thrice.
+Matthew 26:35	Peter said unto him, Though I should die with thee, yet will I not deny thee. Likewise also said all the disciples.
+Matthew 26:36	Then cometh Jesus with them unto a place called Gethsemane, and saith unto the disciples, Sit ye here, while I go and pray yonder.
+Matthew 26:37	And he took with him Peter and the two sons of Zebedee, and began to be sorrowful and very heavy.
+Matthew 26:38	Then saith he unto them, My soul is exceeding sorrowful, even unto death: tarry ye here, and watch with me.
+Matthew 26:39	And he went a little farther, and fell on his face, and prayed, saying, O my Father, if it be possible, let this cup pass from me: nevertheless not as I will, but as thou wilt.
+Matthew 26:40	And he cometh unto the disciples, and findeth them asleep, and saith unto Peter, What, could ye not watch with me one hour?
+Matthew 26:41	Watch and pray, that ye enter not into temptation: the spirit indeed is willing, but the flesh is weak.
+Matthew 26:42	He went away again the second time, and prayed, saying, O my Father, if this cup may not pass away from me, except I drink it, thy will be done.
+Matthew 26:43	And he came and found them asleep again: for their eyes were heavy.
+Matthew 26:44	And he left them, and went away again, and prayed the third time, saying the same words.
+Matthew 26:45	Then cometh he to his disciples, and saith unto them, Sleep on now, and take your rest: behold, the hour is at hand, and the Son of man is betrayed into the hands of sinners.
+Matthew 26:46	Rise, let us be going: behold, he is at hand that doth betray me.
+Matthew 26:47	And while he yet spake, lo, Judas, one of the twelve, came, and with him a great multitude with swords and staves, from the chief priests and elders of the people.
+Matthew 26:48	Now he that betrayed him gave them a sign, saying, Whomsoever I shall kiss, that same is he: hold him fast.
+Matthew 26:49	And forthwith he came to Jesus, and said, Hail, master; and kissed him.
+Matthew 26:50	And Jesus said unto him, Friend, wherefore art thou come? Then came they, and laid hands on Jesus and took him.
+Matthew 26:51	And, behold, one of them which were with Jesus stretched out his hand, and drew his sword, and struck a servant of the high priest's, and smote off his ear.
+Matthew 26:52	Then said Jesus unto him, Put up again thy sword into his place: for all they that take the sword shall perish with the sword.
+Matthew 26:53	Thinkest thou that I cannot now pray to my Father, and he shall presently give me more than twelve legions of angels?
+Matthew 26:54	But how then shall the scriptures be fulfilled, that thus it must be?
+Matthew 26:55	In that same hour said Jesus to the multitudes, Are ye come out as against a thief with swords and staves for to take me? I sat daily with you teaching in the temple, and ye laid no hold on me.
+Matthew 26:56	But all this was done, that the scriptures of the prophets might be fulfilled. Then all the disciples forsook him, and fled.
+Matthew 26:57	And they that had laid hold on Jesus led him away to Caiaphas the high priest, where the scribes and the elders were assembled.
+Matthew 26:58	But Peter followed him afar off unto the high priest's palace, and went in, and sat with the servants, to see the end.
+Matthew 26:59	Now the chief priests, and elders, and all the council, sought false witness against Jesus, to put him to death;
+Matthew 26:60	But found none: yea, though many false witnesses came, yet found they none. At the last came two false witnesses,
+Matthew 26:61	And said, This fellow said, I am able to destroy the temple of God, and to build it in three days.
+Matthew 26:62	And the high priest arose, and said unto him, Answerest thou nothing? what is it which these witness against thee?
+Matthew 26:63	But Jesus held his peace, And the high priest answered and said unto him, I adjure thee by the living God, that thou tell us whether thou be the Christ, the Son of God.
+Matthew 26:64	Jesus saith unto him, Thou hast said: nevertheless I say unto you, Hereafter shall ye see the Son of man sitting on the right hand of power, and coming in the clouds of heaven.
+Matthew 26:65	Then the high priest rent his clothes, saying, He hath spoken blasphemy; what further need have we of witnesses? behold, now ye have heard his blasphemy.
+Matthew 26:66	What think ye? They answered and said, He is guilty of death.
+Matthew 26:67	Then did they spit in his face, and buffeted him; and others smote him with the palms of their hands,
+Matthew 26:68	Saying, Prophesy unto us, thou Christ, Who is he that smote thee?
+Matthew 26:69	Now Peter sat without in the palace: and a damsel came unto him, saying, Thou also wast with Jesus of Galilee.
+Matthew 26:70	But he denied before them all, saying, I know not what thou sayest.
+Matthew 26:71	And when he was gone out into the porch, another maid saw him, and said unto them that were there, This fellow was also with Jesus of Nazareth.
+Matthew 26:72	And again he denied with an oath, I do not know the man.
+Matthew 26:73	And after a while came unto him they that stood by, and said to Peter, Surely thou also art one of them; for thy speech bewrayeth thee.
+Matthew 26:74	Then began he to curse and to swear, saying, I know not the man. And immediately the cock crew.
+Matthew 26:75	And Peter remembered the word of Jesus, which said unto him, Before the cock crow, thou shalt deny me thrice. And he went out, and wept bitterly.
+Matthew 27:1	When the morning was come, all the chief priests and elders of the people took counsel against Jesus to put him to death:
+Matthew 27:2	And when they had bound him, they led him away, and delivered him to Pontius Pilate the governor.
+Matthew 27:3	Then Judas, which had betrayed him, when he saw that he was condemned, repented himself, and brought again the thirty pieces of silver to the chief priests and elders,
+Matthew 27:4	Saying, I have sinned in that I have betrayed the innocent blood. And they said, What is that to us? see thou to that.
+Matthew 27:5	And he cast down the pieces of silver in the temple, and departed, and went and hanged himself.
+Matthew 27:6	And the chief priests took the silver pieces, and said, It is not lawful for to put them into the treasury, because it is the price of blood.
+Matthew 27:7	And they took counsel, and bought with them the potter's field, to bury strangers in.
+Matthew 27:8	Wherefore that field was called, The field of blood, unto this day.
+Matthew 27:9	Then was fulfilled that which was spoken by Jeremy the prophet, saying, And they took the thirty pieces of silver, the price of him that was valued, whom they of the children of Israel did value;
+Matthew 27:10	And gave them for the potter's field, as the Lord appointed me.
+Matthew 27:11	And Jesus stood before the governor: and the governor asked him, saying, Art thou the King of the Jews? And Jesus said unto him, Thou sayest.
+Matthew 27:12	And when he was accused of the chief priests and elders, he answered nothing.
+Matthew 27:13	Then said Pilate unto him, Hearest thou not how many things they witness against thee?
+Matthew 27:14	And he answered him to never a word; insomuch that the governor marvelled greatly.
+Matthew 27:15	Now at that feast the governor was wont to release unto the people a prisoner, whom they would.
+Matthew 27:16	And they had then a notable prisoner, called Barabbas.
+Matthew 27:17	Therefore when they were gathered together, Pilate said unto them, Whom will ye that I release unto you? Barabbas, or Jesus which is called Christ?
+Matthew 27:18	For he knew that for envy they had delivered him.
+Matthew 27:19	When he was set down on the judgment seat, his wife sent unto him, saying, Have thou nothing to do with that just man: for I have suffered many things this day in a dream because of him.
+Matthew 27:20	But the chief priests and elders persuaded the multitude that they should ask Barabbas, and destroy Jesus.
+Matthew 27:21	The governor answered and said unto them, Whether of the twain will ye that I release unto you? They said, Barabbas.
+Matthew 27:22	Pilate saith unto them, What shall I do then with Jesus which is called Christ? They all say unto him, Let him be crucified.
+Matthew 27:23	And the governor said, Why, what evil hath he done? But they cried out the more, saying, Let him be crucified.
+Matthew 27:24	When Pilate saw that he could prevail nothing, but that rather a tumult was made, he took water, and washed his hands before the multitude, saying, I am innocent of the blood of this just person: see ye to it.
+Matthew 27:25	Then answered all the people, and said, His blood be on us, and on our children.
+Matthew 27:26	Then released he Barabbas unto them: and when he had scourged Jesus, he delivered him to be crucified.
+Matthew 27:27	Then the soldiers of the governor took Jesus into the common hall, and gathered unto him the whole band of soldiers.
+Matthew 27:28	And they stripped him, and put on him a scarlet robe.
+Matthew 27:29	And when they had platted a crown of thorns, they put it upon his head, and a reed in his right hand: and they bowed the knee before him, and mocked him, saying, Hail, King of the Jews!
+Matthew 27:30	And they spit upon him, and took the reed, and smote him on the head.
+Matthew 27:31	And after that they had mocked him, they took the robe off from him, and put his own raiment on him, and led him away to crucify him.
+Matthew 27:32	And as they came out, they found a man of Cyrene, Simon by name: him they compelled to bear his cross.
+Matthew 27:33	And when they were come unto a place called Golgotha, that is to say, a place of a skull,
+Matthew 27:34	They gave him vinegar to drink mingled with gall: and when he had tasted thereof, he would not drink.
+Matthew 27:35	And they crucified him, and parted his garments, casting lots: that it might be fulfilled which was spoken by the prophet, They parted my garments among them, and upon my vesture did they cast lots.
+Matthew 27:36	And sitting down they watched him there;
+Matthew 27:37	And set up over his head his accusation written, This Is Jesus The King Of The Jews.
+Matthew 27:38	Then were there two thieves crucified with him, one on the right hand, and another on the left.
+Matthew 27:39	And they that passed by reviled him, wagging their heads,
+Matthew 27:40	And saying, Thou that destroyest the temple, and buildest it in three days, save thyself. If thou be the Son of God, come down from the cross.
+Matthew 27:41	Likewise also the chief priests mocking him, with the scribes and elders, said,
+Matthew 27:42	He saved others; himself he cannot save. If he be the King of Israel, let him now come down from the cross, and we will believe him.
+Matthew 27:43	He trusted in God; let him deliver him now, if he will have him: for he said, I am the Son of God.
+Matthew 27:44	The thieves also, which were crucified with him, cast the same in his teeth.
+Matthew 27:45	Now from the sixth hour there was darkness over all the land unto the ninth hour.
+Matthew 27:46	And about the ninth hour Jesus cried with a loud voice, saying, Eli, Eli, lama sabachthani? that is to say, My God, my God, why hast thou forsaken me?
+Matthew 27:47	Some of them that stood there, when they heard that, said, This man calleth for Elias.
+Matthew 27:48	And straightway one of them ran, and took a spunge, and filled it with vinegar, and put it on a reed, and gave him to drink.
+Matthew 27:49	The rest said, Let be, let us see whether Elias will come to save him.
+Matthew 27:50	Jesus, when he had cried again with a loud voice, yielded up the ghost.
+Matthew 27:51	And, behold, the veil of the temple was rent in twain from the top to the bottom; and the earth did quake, and the rocks rent;
+Matthew 27:52	And the graves were opened; and many bodies of the saints which slept arose,
+Matthew 27:53	And came out of the graves after his resurrection, and went into the holy city, and appeared unto many.
+Matthew 27:54	Now when the centurion, and they that were with him, watching Jesus, saw the earthquake, and those things that were done, they feared greatly, saying, Truly this was the Son of God.
+Matthew 27:55	And many women were there beholding afar off, which followed Jesus from Galilee, ministering unto him:
+Matthew 27:56	Among which was Mary Magdalene, and Mary the mother of James and Joses, and the mother of Zebedees children.
+Matthew 27:57	When the even was come, there came a rich man of Arimathaea, named Joseph, who also himself was Jesus' disciple:
+Matthew 27:58	He went to Pilate, and begged the body of Jesus. Then Pilate commanded the body to be delivered.
+Matthew 27:59	And when Joseph had taken the body, he wrapped it in a clean linen cloth,
+Matthew 27:60	And laid it in his own new tomb, which he had hewn out in the rock: and he rolled a great stone to the door of the sepulchre, and departed.
+Matthew 27:61	And there was Mary Magdalene, and the other Mary, sitting over against the sepulchre.
+Matthew 27:62	Now the next day, that followed the day of the preparation, the chief priests and Pharisees came together unto Pilate,
+Matthew 27:63	Saying, Sir, we remember that that deceiver said, while he was yet alive, After three days I will rise again.
+Matthew 27:64	Command therefore that the sepulchre be made sure until the third day, lest his disciples come by night, and steal him away, and say unto the people, He is risen from the dead: so the last error shall be worse than the first.
+Matthew 27:65	Pilate said unto them, Ye have a watch: go your way, make it as sure as ye can.
+Matthew 27:66	So they went, and made the sepulchre sure, sealing the stone, and setting a watch.
+Matthew 28:1	In the end of the sabbath, as it began to dawn toward the first day of the week, came Mary Magdalene and the other Mary to see the sepulchre.
+Matthew 28:2	And, behold, there was a great earthquake: for the angel of the Lord descended from heaven, and came and rolled back the stone from the door, and sat upon it.
+Matthew 28:3	His countenance was like lightning, and his raiment white as snow:
+Matthew 28:4	And for fear of him the keepers did shake, and became as dead men.
+Matthew 28:5	And the angel answered and said unto the women, Fear not ye: for I know that ye seek Jesus, which was crucified.
+Matthew 28:6	He is not here: for he is risen, as he said. Come, see the place where the Lord lay.
+Matthew 28:7	And go quickly, and tell his disciples that he is risen from the dead; and, behold, he goeth before you into Galilee; there shall ye see him: lo, I have told you.
+Matthew 28:8	And they departed quickly from the sepulchre with fear and great joy; and did run to bring his disciples word.
+Matthew 28:9	And as they went to tell his disciples, behold, Jesus met them, saying, All hail. And they came and held him by the feet, and worshipped him.
+Matthew 28:10	Then said Jesus unto them, Be not afraid: go tell my brethren that they go into Galilee, and there shall they see me.
+Matthew 28:11	Now when they were going, behold, some of the watch came into the city, and shewed unto the chief priests all the things that were done.
+Matthew 28:12	And when they were assembled with the elders, and had taken counsel, they gave large money unto the soldiers,
+Matthew 28:13	Saying, Say ye, His disciples came by night, and stole him away while we slept.
+Matthew 28:14	And if this come to the governor's ears, we will persuade him, and secure you.
+Matthew 28:15	So they took the money, and did as they were taught: and this saying is commonly reported among the Jews until this day.
+Matthew 28:16	Then the eleven disciples went away into Galilee, into a mountain where Jesus had appointed them.
+Matthew 28:17	And when they saw him, they worshipped him: but some doubted.
+Matthew 28:18	And Jesus came and spake unto them, saying, All power is given unto me in heaven and in earth.
+Matthew 28:19	Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost:
+Matthew 28:20	Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you always, even unto the end of the world. Amen.
+Mark 14:1	After two days was the feast of the passover, and of unleavened bread: and the chief priests and the scribes sought how they might take him by craft, and put him to death.
+Mark 14:2	But they said, Not on the feast day, lest there be an uproar of the people.
+Mark 14:3	And being in Bethany in the house of Simon the leper, as he sat at meat, there came a woman having an alabaster box of ointment of spikenard very precious; and she brake the box, and poured it on his head.
+Mark 14:4	And there were some that had indignation within themselves, and said, Why was this waste of the ointment made?
+Mark 14:5	For it might have been sold for more than three hundred pence, and have been given to the poor. And they murmured against her.
+Mark 14:6	And Jesus said, Let her alone; why trouble ye her? she hath wrought a good work on me.
+Mark 14:7	For ye have the poor with you always, and whensoever ye will ye may do them good: but me ye have not always.
+Mark 14:8	She hath done what she could: she is come aforehand to anoint my body to the burying.
+Mark 14:9	Verily I say unto you, Wheresoever this gospel shall be preached throughout the whole world, this also that she hath done shall be spoken of for a memorial of her.
+Mark 14:10	And Judas Iscariot, one of the twelve, went unto the chief priests, to betray him unto them.
+Mark 14:11	And when they heard it, they were glad, and promised to give him money. And he sought how he might conveniently betray him.
+Mark 14:12	And the first day of unleavened bread, when they killed the passover, his disciples said unto him, Where wilt thou that we go and prepare that thou mayest eat the passover?
+Mark 14:13	And he sendeth forth two of his disciples, and saith unto them, Go ye into the city, and there shall meet you a man bearing a pitcher of water: follow him.
+Mark 14:14	And wheresoever he shall go in, say ye to the goodman of the house, The Master saith, Where is the guestchamber, where I shall eat the passover with my disciples?
+Mark 14:15	And he will shew you a large upper room furnished and prepared: there make ready for us.
+Mark 14:16	And his disciples went forth, and came into the city, and found as he had said unto them: and they made ready the passover.
+Mark 14:17	And in the evening he cometh with the twelve.
+Mark 14:18	And as they sat and did eat, Jesus said, Verily I say unto you, One of you which eateth with me shall betray me.
+Mark 14:19	And they began to be sorrowful, and to say unto him one by one, Is it I? and another said, Is it I?
+Mark 14:20	And he answered and said unto them, It is one of the twelve, that dippeth with me in the dish.
+Mark 14:21	The Son of man indeed goeth, as it is written of him: but woe to that man by whom the Son of man is betrayed! good were it for that man if he had never been born.
+Mark 14:22	And as they did eat, Jesus took bread, and blessed, and brake it, and gave to them, and said, Take, eat: this is my body.
+Mark 14:23	And he took the cup, and when he had given thanks, he gave it to them: and they all drank of it.
+Mark 14:24	And he said unto them, This is my blood of the new testament, which is shed for many.
+Mark 14:25	Verily I say unto you, I will drink no more of the fruit of the vine, until that day that I drink it new in the kingdom of God.
+Mark 14:26	And when they had sung an hymn, they went out into the mount of Olives.
+Mark 14:27	And Jesus saith unto them, All ye shall be offended because of me this night: for it is written, I will smite the shepherd, and the sheep shall be scattered.
+Mark 14:28	But after that I am risen, I will go before you into Galilee.
+Mark 14:29	But Peter said unto him, Although all shall be offended, yet will not I.
+Mark 14:30	And Jesus saith unto him, Verily I say unto thee, That this day, even in this night, before the cock crow twice, thou shalt deny me thrice.
+Mark 14:31	But he spake the more vehemently, If I should die with thee, I will not deny thee in any wise. Likewise also said they all.
+Mark 14:32	And they came to a place which was named Gethsemane: and he saith to his disciples, Sit ye here, while I shall pray.
+Mark 14:33	And he taketh with him Peter and James and John, and began to be sore amazed, and to be very heavy;
+Mark 14:34	And saith unto them, My soul is exceeding sorrowful unto death: tarry ye here, and watch.
+Mark 14:35	And he went forward a little, and fell on the ground, and prayed that, if it were possible, the hour might pass from him.
+Mark 14:36	And he said, Abba, Father, all things are possible unto thee; take away this cup from me: nevertheless not what I will, but what thou wilt.
+Mark 14:37	And he cometh, and findeth them sleeping, and saith unto Peter, Simon, sleepest thou? couldest not thou watch one hour?
+Mark 14:38	Watch ye and pray, lest ye enter into temptation. The spirit truly is ready, but the flesh is weak.
+Mark 14:39	And again he went away, and prayed, and spake the same words.
+Mark 14:40	And when he returned, he found them asleep again, (for their eyes were heavy,) neither wist they what to answer him.
+Mark 14:41	And he cometh the third time, and saith unto them, Sleep on now, and take your rest: it is enough, the hour is come; behold, the Son of man is betrayed into the hands of sinners.
+Mark 14:42	Rise up, let us go; lo, he that betrayeth me is at hand.
+Mark 14:43	And immediately, while he yet spake, cometh Judas, one of the twelve, and with him a great multitude with swords and staves, from the chief priests and the scribes and the elders.
+Mark 14:44	And he that betrayed him had given them a token, saying, Whomsoever I shall kiss, that same is he; take him, and lead him away safely.
+Mark 14:45	And as soon as he was come, he goeth straightway to him, and saith, Master, master; and kissed him.
+Mark 14:46	And they laid their hands on him, and took him.
+Mark 14:47	And one of them that stood by drew a sword, and smote a servant of the high priest, and cut off his ear.
+Mark 14:48	And Jesus answered and said unto them, Are ye come out, as against a thief, with swords and with staves to take me?
+Mark 14:49	I was daily with you in the temple teaching, and ye took me not: but the scriptures must be fulfilled.
+Mark 14:50	And they all forsook him, and fled.
+Mark 14:51	And there followed him a certain young man, having a linen cloth cast about his naked body; and the young men laid hold on him:
+Mark 14:52	And he left the linen cloth, and fled from them naked.
+Mark 14:53	And they led Jesus away to the high priest: and with him were assembled all the chief priests and the elders and the scribes.
+Mark 14:54	And Peter followed him afar off, even into the palace of the high priest: and he sat with the servants, and warmed himself at the fire.
+Mark 14:55	And the chief priests and all the council sought for witness against Jesus to put him to death; and found none.
+Mark 14:56	For many bare false witness against him, but their witness agreed not together.
+Mark 14:57	And there arose certain, and bare false witness against him, saying,
+Mark 14:58	We heard him say, I will destroy this temple that is made with hands, and within three days I will build another made without hands.
+Mark 14:59	But neither so did their witness agree together.
+Mark 14:60	And the high priest stood up in the midst, and asked Jesus, saying, Answerest thou nothing? what is it which these witness against thee?
+Mark 14:61	But he held his peace, and answered nothing. Again the high priest asked him, and said unto him, Art thou the Christ, the Son of the Blessed?
+Mark 14:62	And Jesus said, I am: and ye shall see the Son of man sitting on the right hand of power, and coming in the clouds of heaven.
+Mark 14:63	Then the high priest rent his clothes, and saith, What need we any further witnesses?
+Mark 14:64	Ye have heard the blasphemy: what think ye? And they all condemned him to be guilty of death.
+Mark 14:65	And some began to spit on him, and to cover his face, and to buffet him, and to say unto him, Prophesy: and the servants did strike him with the palms of their hands.
+Mark 14:66	And as Peter was beneath in the palace, there cometh one of the maids of the high priest:
+Mark 14:67	And when she saw Peter warming himself, she looked upon him, and said, And thou also wast with Jesus of Nazareth.
+Mark 14:68	But he denied, saying, I know not, neither understand I what thou sayest. And he went out into the porch; and the cock crew.
+Mark 14:69	And a maid saw him again, and began to say to them that stood by, This is one of them.
+Mark 14:70	And he denied it again. And a little after, they that stood by said again to Peter, Surely thou art one of them: for thou art a Galilaean, and thy speech agreeth thereto.
+Mark 14:71	But he began to curse and to swear, saying, I know not this man of whom ye speak.
+Mark 14:72	And the second time the cock crew. And Peter called to mind the word that Jesus said unto him, Before the cock crow twice, thou shalt deny me thrice. And when he thought thereon, he wept.
+Mark 15:1	And straightway in the morning the chief priests held a consultation with the elders and scribes and the whole council, and bound Jesus, and carried him away, and delivered him to Pilate.
+Mark 15:2	And Pilate asked him, Art thou the King of the Jews? And he answering said unto them, Thou sayest it.
+Mark 15:3	And the chief priests accused him of many things: but he answered nothing.
+Mark 15:4	And Pilate asked him again, saying, Answerest thou nothing? behold how many things they witness against thee.
+Mark 15:5	But Jesus yet answered nothing; so that Pilate marvelled.
+Mark 15:6	Now at that feast he released unto them one prisoner, whomsoever they desired.
+Mark 15:7	And there was one named Barabbas, which lay bound with them that had made insurrection with him, who had committed murder in the insurrection.
+Mark 15:8	And the multitude crying aloud began to desire him to do as he had ever done unto them.
+Mark 15:9	But Pilate answered them, saying, Will ye that I release unto you the King of the Jews?
+Mark 15:10	For he knew that the chief priests had delivered him for envy.
+Mark 15:11	But the chief priests moved the people, that he should rather release Barabbas unto them.
+Mark 15:12	And Pilate answered and said again unto them, What will ye then that I shall do unto him whom ye call the King of the Jews?
+Mark 15:13	And they cried out again, Crucify him.
+Mark 15:14	Then Pilate said unto them, Why, what evil hath he done? And they cried out the more exceedingly, Crucify him.
+Mark 15:15	And so Pilate, willing to content the people, released Barabbas unto them, and delivered Jesus, when he had scourged him, to be crucified.
+Mark 15:16	And the soldiers led him away into the hall, called Praetorium; and they call together the whole band.
+Mark 15:17	And they clothed him with purple, and platted a crown of thorns, and put it about his head,
+Mark 15:18	And began to salute him, Hail, King of the Jews!
+Mark 15:19	And they smote him on the head with a reed, and did spit upon him, and bowing their knees worshipped him.
+Mark 15:20	And when they had mocked him, they took off the purple from him, and put his own clothes on him, and led him out to crucify him.
+Mark 15:21	And they compel one Simon a Cyrenian, who passed by, coming out of the country, the father of Alexander and Rufus, to bear his cross.
+Mark 15:22	And they bring him unto the place Golgotha, which is, being interpreted, The place of a skull.
+Mark 15:23	And they gave him to drink wine mingled with myrrh: but he received it not.
+Mark 15:24	And when they had crucified him, they parted his garments, casting lots upon them, what every man should take.
+Mark 15:25	And it was the third hour, and they crucified him.
+Mark 15:26	And the superscription of his accusation was written over, The King Of The Jews.
+Mark 15:27	And with him they crucify two thieves; the one on his right hand, and the other on his left.
+Mark 15:28	And the scripture was fulfilled, which saith, And he was numbered with the transgressors.
+Mark 15:29	And they that passed by railed on him, wagging their heads, and saying, Ah, thou that destroyest the temple, and buildest it in three days,
+Mark 15:30	Save thyself, and come down from the cross.
+Mark 15:31	Likewise also the chief priests mocking said among themselves with the scribes, He saved others; himself he cannot save.
+Mark 15:32	Let Christ the King of Israel descend now from the cross, that we may see and believe. And they that were crucified with him reviled him.
+Mark 15:33	And when the sixth hour was come, there was darkness over the whole land until the ninth hour.
+Mark 15:34	And at the ninth hour Jesus cried with a loud voice, saying, Eloi, Eloi, lama sabachthani? which is, being interpreted, My God, my God, why hast thou forsaken me?
+Mark 15:35	And some of them that stood by, when they heard it, said, Behold, he calleth Elias.
+Mark 15:36	And one ran and filled a spunge full of vinegar, and put it on a reed, and gave him to drink, saying, Let alone; let us see whether Elias will come to take him down.
+Mark 15:37	And Jesus cried with a loud voice, and gave up the ghost.
+Mark 15:38	And the veil of the temple was rent in twain from the top to the bottom.
+Mark 15:39	And when the centurion, which stood over against him, saw that he so cried out, and gave up the ghost, he said, Truly this man was the Son of God.
+Mark 15:40	There were also women looking on afar off: among whom was Mary Magdalene, and Mary the mother of James the less and of Joses, and Salome;
+Mark 15:41	(Who also, when he was in Galilee, followed him, and ministered unto him;) and many other women which came up with him unto Jerusalem.
+Mark 15:42	And now when the even was come, because it was the preparation, that is, the day before the sabbath,
+Mark 15:43	Joseph of Arimathaea, an honourable counsellor, which also waited for the kingdom of God, came, and went in boldly unto Pilate, and craved the body of Jesus.
+Mark 15:44	And Pilate marvelled if he were already dead: and calling unto him the centurion, he asked him whether he had been any while dead.
+Mark 15:45	And when he knew it of the centurion, he gave the body to Joseph.
+Mark 15:46	And he bought fine linen, and took him down, and wrapped him in the linen, and laid him in a sepulchre which was hewn out of a rock, and rolled a stone unto the door of the sepulchre.
+Mark 15:47	And Mary Magdalene and Mary the mother of Joses beheld where he was laid.
+Mark 16:1	And when the sabbath was past, Mary Magdalene, and Mary the mother of James, and Salome, had bought sweet spices, that they might come and anoint him.
+Mark 16:2	And very early in the morning the first day of the week, they came unto the sepulchre at the rising of the sun.
+Mark 16:3	And they said among themselves, Who shall roll us away the stone from the door of the sepulchre?
+Mark 16:4	And when they looked, they saw that the stone was rolled away: for it was very great.
+Mark 16:5	And entering into the sepulchre, they saw a young man sitting on the right side, clothed in a long white garment; and they were affrighted.
+Mark 16:6	And he saith unto them, Be not affrighted: Ye seek Jesus of Nazareth, which was crucified: he is risen; he is not here: behold the place where they laid him.
+Mark 16:7	But go your way, tell his disciples and Peter that he goeth before you into Galilee: there shall ye see him, as he said unto you.
+Mark 16:8	And they went out quickly, and fled from the sepulchre; for they trembled and were amazed: neither said they any thing to any man; for they were afraid.
+Mark 16:9	Now when Jesus was risen early the first day of the week, he appeared first to Mary Magdalene, out of whom he had cast seven devils.
+Mark 16:10	And she went and told them that had been with him, as they mourned and wept.
+Mark 16:11	And they, when they had heard that he was alive, and had been seen of her, believed not.
+Mark 16:12	After that he appeared in another form unto two of them, as they walked, and went into the country.
+Mark 16:13	And they went and told it unto the residue: neither believed they them.
+Mark 16:14	Afterward he appeared unto the eleven as they sat at meat, and upbraided them with their unbelief and hardness of heart, because they believed not them which had seen him after he was risen.
+Mark 16:15	And he said unto them, Go ye into all the world, and preach the gospel to every creature.
+Mark 16:16	He that believeth and is baptized shall be saved; but he that believeth not shall be damned.
+Mark 16:17	And these signs shall follow them that believe; In my name shall they cast out devils; they shall speak with new tongues;
+Mark 16:18	They shall take up serpents; and if they drink any deadly thing, it shall not hurt them; they shall lay hands on the sick, and they shall recover.
+Mark 16:19	So then after the Lord had spoken unto them, he was received up into heaven, and sat on the right hand of God.
+Mark 16:20	And they went forth, and preached every where, the Lord working with them, and confirming the word with signs following. Amen.
+Luke 22:1	Now the feast of unleavened bread drew nigh, which is called the Passover.
+Luke 22:2	And the chief priests and scribes sought how they might kill him; for they feared the people.
+Luke 22:3	Then entered Satan into Judas surnamed Iscariot, being of the number of the twelve.
+Luke 22:4	And he went his way, and communed with the chief priests and captains, how he might betray him unto them.
+Luke 22:5	And they were glad, and covenanted to give him money.
+Luke 22:6	And he promised, and sought opportunity to betray him unto them in the absence of the multitude.
+Luke 22:7	Then came the day of unleavened bread, when the passover must be killed.
+Luke 22:8	And he sent Peter and John, saying, Go and prepare us the passover, that we may eat.
+Luke 22:9	And they said unto him, Where wilt thou that we prepare?
+Luke 22:10	And he said unto them, Behold, when ye are entered into the city, there shall a man meet you, bearing a pitcher of water; follow him into the house where he entereth in.
+Luke 22:11	And ye shall say unto the goodman of the house, The Master saith unto thee, Where is the guestchamber, where I shall eat the passover with my disciples?
+Luke 22:12	And he shall shew you a large upper room furnished: there make ready.
+Luke 22:13	And they went, and found as he had said unto them: and they made ready the passover.
+Luke 22:14	And when the hour was come, he sat down, and the twelve apostles with him.
+Luke 22:15	And he said unto them, With desire I have desired to eat this passover with you before I suffer:
+Luke 22:16	For I say unto you, I will not any more eat thereof, until it be fulfilled in the kingdom of God.
+Luke 22:17	And he took the cup, and gave thanks, and said, Take this, and divide it among yourselves:
+Luke 22:18	For I say unto you, I will not drink of the fruit of the vine, until the kingdom of God shall come.
+Luke 22:19	And he took bread, and gave thanks, and brake it, and gave unto them, saying, This is my body which is given for you: this do in remembrance of me.
+Luke 22:20	Likewise also the cup after supper, saying, This cup is the new testament in my blood, which is shed for you.
+Luke 22:21	But, behold, the hand of him that betrayeth me is with me on the table.
+Luke 22:22	And truly the Son of man goeth, as it was determined: but woe unto that man by whom he is betrayed!
+Luke 22:23	And they began to enquire among themselves, which of them it was that should do this thing.
+Luke 22:24	And there was also a strife among them, which of them should be accounted the greatest.
+Luke 22:25	And he said unto them, The kings of the Gentiles exercise lordship over them; and they that exercise authority upon them are called benefactors.
+Luke 22:26	But ye shall not be so: but he that is greatest among you, let him be as the younger; and he that is chief, as he that doth serve.
+Luke 22:27	For whether is greater, he that sitteth at meat, or he that serveth? is not he that sitteth at meat? but I am among you as he that serveth.
+Luke 22:28	Ye are they which have continued with me in my temptations.
+Luke 22:29	And I appoint unto you a kingdom, as my Father hath appointed unto me;
+Luke 22:30	That ye may eat and drink at my table in my kingdom, and sit on thrones judging the twelve tribes of Israel.
+Luke 22:31	And the Lord said, Simon, Simon, behold, Satan hath desired to have you, that he may sift you as wheat:
+Luke 22:32	But I have prayed for thee, that thy faith fail not: and when thou art converted, strengthen thy brethren.
+Luke 22:33	And he said unto him, Lord, I am ready to go with thee, both into prison, and to death.
+Luke 22:34	And he said, I tell thee, Peter, the cock shall not crow this day, before that thou shalt thrice deny that thou knowest me.
+Luke 22:35	And he said unto them, When I sent you without purse, and scrip, and shoes, lacked ye any thing? And they said, Nothing.
+Luke 22:36	Then said he unto them, But now, he that hath a purse, let him take it, and likewise his scrip: and he that hath no sword, let him sell his garment, and buy one.
+Luke 22:37	For I say unto you, that this that is written must yet be accomplished in me, And he was reckoned among the transgressors: for the things concerning me have an end.
+Luke 22:38	And they said, Lord, behold, here are two swords. And he said unto them, It is enough.
+Luke 22:39	And he came out, and went, as he was wont, to the mount of Olives; and his disciples also followed him.
+Luke 22:40	And when he was at the place, he said unto them, Pray that ye enter not into temptation.
+Luke 22:41	And he was withdrawn from them about a stone's cast, and kneeled down, and prayed,
+Luke 22:42	Saying, Father, if thou be willing, remove this cup from me: nevertheless not my will, but thine, be done.
+Luke 22:43	And there appeared an angel unto him from heaven, strengthening him.
+Luke 22:44	And being in an agony he prayed more earnestly: and his sweat was as it were great drops of blood falling down to the ground.
+Luke 22:45	And when he rose up from prayer, and was come to his disciples, he found them sleeping for sorrow,
+Luke 22:46	And said unto them, Why sleep ye? rise and pray, lest ye enter into temptation.
+Luke 22:47	And while he yet spake, behold a multitude, and he that was called Judas, one of the twelve, went before them, and drew near unto Jesus to kiss him.
+Luke 22:48	But Jesus said unto him, Judas, betrayest thou the Son of man with a kiss?
+Luke 22:49	When they which were about him saw what would follow, they said unto him, Lord, shall we smite with the sword?
+Luke 22:50	And one of them smote the servant of the high priest, and cut off his right ear.
+Luke 22:51	And Jesus answered and said, Suffer ye thus far. And he touched his ear, and healed him.
+Luke 22:52	Then Jesus said unto the chief priests, and captains of the temple, and the elders, which were come to him, Be ye come out, as against a thief, with swords and staves?
+Luke 22:53	When I was daily with you in the temple, ye stretched forth no hands against me: but this is your hour, and the power of darkness.
+Luke 22:54	Then took they him, and led him, and brought him into the high priest's house. And Peter followed afar off.
+Luke 22:55	And when they had kindled a fire in the midst of the hall, and were set down together, Peter sat down among them.
+Luke 22:56	But a certain maid beheld him as he sat by the fire, and earnestly looked upon him, and said, This man was also with him.
+Luke 22:57	And he denied him, saying, Woman, I know him not.
+Luke 22:58	And after a little while another saw him, and said, Thou art also of them. And Peter said, Man, I am not.
+Luke 22:59	And about the space of one hour after another confidently affirmed, saying, Of a truth this fellow also was with him: for he is a Galilaean.
+Luke 22:60	And Peter said, Man, I know not what thou sayest. And immediately, while he yet spake, the cock crew.
+Luke 22:61	And the Lord turned, and looked upon Peter. And Peter remembered the word of the Lord, how he had said unto him, Before the cock crow, thou shalt deny me thrice.
+Luke 22:62	And Peter went out, and wept bitterly.
+Luke 22:63	And the men that held Jesus mocked him, and smote him.
+Luke 22:64	And when they had blindfolded him, they struck him on the face, and asked him, saying, Prophesy, who is it that smote thee?
+Luke 22:65	And many other things blasphemously spake they against him.
+Luke 22:66	And as soon as it was day, the elders of the people and the chief priests and the scribes came together, and led him into their council, saying,
+Luke 22:67	Art thou the Christ? tell us. And he said unto them, If I tell you, ye will not believe:
+Luke 22:68	And if I also ask you, ye will not answer me, nor let me go.
+Luke 22:69	Hereafter shall the Son of man sit on the right hand of the power of God.
+Luke 22:70	Then said they all, Art thou then the Son of God? And he said unto them, Ye say that I am.
+Luke 22:71	And they said, What need we any further witness? for we ourselves have heard of his own mouth.
+Luke 23:1	And the whole multitude of them arose, and led him unto Pilate.
+Luke 23:2	And they began to accuse him, saying, We found this fellow perverting the nation, and forbidding to give tribute to Caesar, saying that he himself is Christ a King.
+Luke 23:3	And Pilate asked him, saying, Art thou the King of the Jews? And he answered him and said, Thou sayest it.
+Luke 23:4	Then said Pilate to the chief priests and to the people, I find no fault in this man.
+Luke 23:5	And they were the more fierce, saying, He stirreth up the people, teaching throughout all Jewry, beginning from Galilee to this place.
+Luke 23:6	When Pilate heard of Galilee, he asked whether the man were a Galilaean.
+Luke 23:7	And as soon as he knew that he belonged unto Herod's jurisdiction, he sent him to Herod, who himself also was at Jerusalem at that time.
+Luke 23:8	And when Herod saw Jesus, he was exceeding glad: for he was desirous to see him of a long season, because he had heard many things of him; and he hoped to have seen some miracle done by him.
+Luke 23:9	Then he questioned with him in many words; but he answered him nothing.
+Luke 23:10	And the chief priests and scribes stood and vehemently accused him.
+Luke 23:11	And Herod with his men of war set him at nought, and mocked him, and arrayed him in a gorgeous robe, and sent him again to Pilate.
+Luke 23:12	And the same day Pilate and Herod were made friends together: for before they were at enmity between themselves.
+Luke 23:13	And Pilate, when he had called together the chief priests and the rulers and the people,
+Luke 23:14	Said unto them, Ye have brought this man unto me, as one that perverteth the people: and, behold, I, having examined him before you, have found no fault in this man touching those things whereof ye accuse him:
+Luke 23:15	No, nor yet Herod: for I sent you to him; and, lo, nothing worthy of death is done unto him.
+Luke 23:16	I will therefore chastise him, and release him.
+Luke 23:17	(For of necessity he must release one unto them at the feast.)
+Luke 23:18	And they cried out all at once, saying, Away with this man, and release unto us Barabbas:
+Luke 23:19	(Who for a certain sedition made in the city, and for murder, was cast into prison.)
+Luke 23:20	Pilate therefore, willing to release Jesus, spake again to them.
+Luke 23:21	But they cried, saying, Crucify him, crucify him.
+Luke 23:22	And he said unto them the third time, Why, what evil hath he done? I have found no cause of death in him: I will therefore chastise him, and let him go.
+Luke 23:23	And they were instant with loud voices, requiring that he might be crucified. And the voices of them and of the chief priests prevailed.
+Luke 23:24	And Pilate gave sentence that it should be as they required.
+Luke 23:25	And he released unto them him that for sedition and murder was cast into prison, whom they had desired; but he delivered Jesus to their will.
+Luke 23:26	And as they led him away, they laid hold upon one Simon, a Cyrenian, coming out of the country, and on him they laid the cross, that he might bear it after Jesus.
+Luke 23:27	And there followed him a great company of people, and of women, which also bewailed and lamented him.
+Luke 23:28	But Jesus turning unto them said, Daughters of Jerusalem, weep not for me, but weep for yourselves, and for your children.
+Luke 23:29	For, behold, the days are coming, in the which they shall say, Blessed are the barren, and the wombs that never bare, and the paps which never gave suck.
+Luke 23:30	Then shall they begin to say to the mountains, Fall on us; and to the hills, Cover us.
+Luke 23:31	For if they do these things in a green tree, what shall be done in the dry?
+Luke 23:32	And there were also two other, malefactors, led with him to be put to death.
+Luke 23:33	And when they were come to the place, which is called Calvary, there they crucified him, and the malefactors, one on the right hand, and the other on the left.
+Luke 23:34	Then said Jesus, Father, forgive them; for they know not what they do. And they parted his raiment, and cast lots.
+Luke 23:35	And the people stood beholding. And the rulers also with them derided him, saying, He saved others; let him save himself, if he be Christ, the chosen of God.
+Luke 23:36	And the soldiers also mocked him, coming to him, and offering him vinegar,
+Luke 23:37	And saying, If thou be the king of the Jews, save thyself.
+Luke 23:38	And a superscription also was written over him in letters of Greek, and Latin, and Hebrew, This Is The King Of The Jews.
+Luke 23:39	And one of the malefactors which were hanged railed on him, saying, If thou be Christ, save thyself and us.
+Luke 23:40	But the other answering rebuked him, saying, Dost not thou fear God, seeing thou art in the same condemnation?
+Luke 23:41	And we indeed justly; for we receive the due reward of our deeds: but this man hath done nothing amiss.
+Luke 23:42	And he said unto Jesus, Lord, remember me when thou comest into thy kingdom.
+Luke 23:43	And Jesus said unto him, Verily I say unto thee, Today shalt thou be with me in paradise.
+Luke 23:44	And it was about the sixth hour, and there was a darkness over all the earth until the ninth hour.
+Luke 23:45	And the sun was darkened, and the veil of the temple was rent in the midst.
+Luke 23:46	And when Jesus had cried with a loud voice, he said, Father, into thy hands I commend my spirit: and having said thus, he gave up the ghost.
+Luke 23:47	Now when the centurion saw what was done, he glorified God, saying, Certainly this was a righteous man.
+Luke 23:48	And all the people that came together to that sight, beholding the things which were done, smote their breasts, and returned.
+Luke 23:49	And all his acquaintance, and the women that followed him from Galilee, stood afar off, beholding these things.
+Luke 23:50	And, behold, there was a man named Joseph, a counsellor; and he was a good man, and a just:
+Luke 23:51	(The same had not consented to the counsel and deed of them;) he was of Arimathaea, a city of the Jews: who also himself waited for the kingdom of God.
+Luke 23:52	This man went unto Pilate, and begged the body of Jesus.
+Luke 23:53	And he took it down, and wrapped it in linen, and laid it in a sepulchre that was hewn in stone, wherein never man before was laid.
+Luke 23:54	And that day was the preparation, and the sabbath drew on.
+Luke 23:55	And the women also, which came with him from Galilee, followed after, and beheld the sepulchre, and how his body was laid.
+Luke 23:56	And they returned, and prepared spices and ointments; and rested the sabbath day according to the commandment.
+Luke 24:1	Now upon the first day of the week, very early in the morning, they came unto the sepulchre, bringing the spices which they had prepared, and certain others with them.
+Luke 24:2	And they found the stone rolled away from the sepulchre.
+Luke 24:3	And they entered in, and found not the body of the Lord Jesus.
+Luke 24:4	And it came to pass, as they were much perplexed thereabout, behold, two men stood by them in shining garments:
+Luke 24:5	And as they were afraid, and bowed down their faces to the earth, they said unto them, Why seek ye the living among the dead?
+Luke 24:6	He is not here, but is risen: remember how he spake unto you when he was yet in Galilee,
+Luke 24:7	Saying, The Son of man must be delivered into the hands of sinful men, and be crucified, and the third day rise again.
+Luke 24:8	And they remembered his words,
+Luke 24:9	And returned from the sepulchre, and told all these things unto the eleven, and to all the rest.
+Luke 24:10	It was Mary Magdalene and Joanna, and Mary the mother of James, and other women that were with them, which told these things unto the apostles.
+Luke 24:11	And their words seemed to them as idle tales, and they believed them not.
+Luke 24:12	Then arose Peter, and ran unto the sepulchre; and stooping down, he beheld the linen clothes laid by themselves, and departed, wondering in himself at that which was come to pass.
+Luke 24:13	And, behold, two of them went that same day to a village called Emmaus, which was from Jerusalem about threescore furlongs.
+Luke 24:14	And they talked together of all these things which had happened.
+Luke 24:15	And it came to pass, that, while they communed together and reasoned, Jesus himself drew near, and went with them.
+Luke 24:16	But their eyes were holden that they should not know him.
+Luke 24:17	And he said unto them, What manner of communications are these that ye have one to another, as ye walk, and are sad?
+Luke 24:18	And the one of them, whose name was Cleopas, answering said unto him, Art thou only a stranger in Jerusalem, and hast not known the things which are come to pass there in these days?
+Luke 24:19	And he said unto them, What things? And they said unto him, Concerning Jesus of Nazareth, which was a prophet mighty in deed and word before God and all the people:
+Luke 24:20	And how the chief priests and our rulers delivered him to be condemned to death, and have crucified him.
+Luke 24:21	But we trusted that it had been he which should have redeemed Israel: and beside all this, to day is the third day since these things were done.
+Luke 24:22	Yea, and certain women also of our company made us astonished, which were early at the sepulchre;
+Luke 24:23	And when they found not his body, they came, saying, that they had also seen a vision of angels, which said that he was alive.
+Luke 24:24	And certain of them which were with us went to the sepulchre, and found it even so as the women had said: but him they saw not.
+Luke 24:25	Then he said unto them, O fools, and slow of heart to believe all that the prophets have spoken:
+Luke 24:26	Ought not Christ to have suffered these things, and to enter into his glory?
+Luke 24:27	And beginning at Moses and all the prophets, he expounded unto them in all the scriptures the things concerning himself.
+Luke 24:28	And they drew nigh unto the village, whither they went: and he made as though he would have gone further.
+Luke 24:29	But they constrained him, saying, Abide with us: for it is toward evening, and the day is far spent. And he went in to tarry with them.
+Luke 24:30	And it came to pass, as he sat at meat with them, he took bread, and blessed it, and brake, and gave to them.
+Luke 24:31	And their eyes were opened, and they knew him; and he vanished out of their sight.
+Luke 24:32	And they said one to another, Did not our heart burn within us, while he talked with us by the way, and while he opened to us the scriptures?
+Luke 24:33	And they rose up the same hour, and returned to Jerusalem, and found the eleven gathered together, and them that were with them,
+Luke 24:34	Saying, The Lord is risen indeed, and hath appeared to Simon.
+Luke 24:35	And they told what things were done in the way, and how he was known of them in breaking of bread.
+Luke 24:36	And as they thus spake, Jesus himself stood in the midst of them, and saith unto them, Peace be unto you.
+Luke 24:37	But they were terrified and affrighted, and supposed that they had seen a spirit.
+Luke 24:38	And he said unto them, Why are ye troubled? and why do thoughts arise in your hearts?
+Luke 24:39	Behold my hands and my feet, that it is I myself: handle me, and see; for a spirit hath not flesh and bones, as ye see me have.
+Luke 24:40	And when he had thus spoken, he shewed them his hands and his feet.
+Luke 24:41	And while they yet believed not for joy, and wondered, he said unto them, Have ye here any meat?
+Luke 24:42	And they gave him a piece of a broiled fish, and of an honeycomb.
+Luke 24:43	And he took it, and did eat before them.
+Luke 24:44	And he said unto them, These are the words which I spake unto you, while I was yet with you, that all things must be fulfilled, which were written in the law of Moses, and in the prophets, and in the psalms, concerning me.
+Luke 24:45	Then opened he their understanding, that they might understand the scriptures,
+Luke 24:46	And said unto them, Thus it is written, and thus it behooved Christ to suffer, and to rise from the dead the third day:
+Luke 24:47	And that repentance and remission of sins should be preached in his name among all nations, beginning at Jerusalem.
+Luke 24:48	And ye are witnesses of these things.
+Luke 24:49	And, behold, I send the promise of my Father upon you: but tarry ye in the city of Jerusalem, until ye be endued with power from on high.
+Luke 24:50	And he led them out as far as to Bethany, and he lifted up his hands, and blessed them.
+Luke 24:51	And it came to pass, while he blessed them, he was parted from them, and carried up into heaven.
+Luke 24:52	And they worshipped him, and returned to Jerusalem with great joy:
+Luke 24:53	And were continually in the temple, praising and blessing God. Amen.
+John 18:1	When Jesus had spoken these words, he went forth with his disciples over the brook Cedron, where was a garden, into the which he entered, and his disciples.
+John 18:2	And Judas also, which betrayed him, knew the place: for Jesus ofttimes resorted thither with his disciples.
+John 18:3	Judas then, having received a band of men and officers from the chief priests and Pharisees, cometh thither with lanterns and torches and weapons.
+John 18:4	Jesus therefore, knowing all things that should come upon him, went forth, and said unto them, Whom seek ye?
+John 18:5	They answered him, Jesus of Nazareth. Jesus saith unto them, I am he. And Judas also, which betrayed him, stood with them.
+John 18:6	As soon then as he had said unto them, I am he, they went backward, and fell to the ground.
+John 18:7	Then asked he them again, Whom seek ye? And they said, Jesus of Nazareth.
+John 18:8	Jesus answered, I have told you that I am he: if therefore ye seek me, let these go their way:
+John 18:9	That the saying might be fulfilled, which he spake, Of them which thou gavest me have I lost none.
+John 18:10	Then Simon Peter having a sword drew it, and smote the high priest's servant, and cut off his right ear. The servant's name was Malchus.
+John 18:11	Then said Jesus unto Peter, Put up thy sword into the sheath: the cup which my Father hath given me, shall I not drink it?
+John 18:12	Then the band and the captain and officers of the Jews took Jesus, and bound him,
+John 18:13	And led him away to Annas first; for he was father in law to Caiaphas, which was the high priest that same year.
+John 18:14	Now Caiaphas was he, which gave counsel to the Jews, that it was expedient that one man should die for the people.
+John 18:15	And Simon Peter followed Jesus, and so did another disciple: that disciple was known unto the high priest, and went in with Jesus into the palace of the high priest.
+John 18:16	But Peter stood at the door without. Then went out that other disciple, which was known unto the high priest, and spake unto her that kept the door, and brought in Peter.
+John 18:17	Then saith the damsel that kept the door unto Peter, Art not thou also one of this man's disciples? He saith, I am not.
+John 18:18	And the servants and officers stood there, who had made a fire of coals; for it was cold: and they warmed themselves: and Peter stood with them, and warmed himself.
+John 18:19	The high priest then asked Jesus of his disciples, and of his doctrine.
+John 18:20	Jesus answered him, I spake openly to the world; I ever taught in the synagogue, and in the temple, whither the Jews always resort; and in secret have I said nothing.
+John 18:21	Why askest thou me? ask them which heard me, what I have said unto them: behold, they know what I said.
+John 18:22	And when he had thus spoken, one of the officers which stood by struck Jesus with the palm of his hand, saying, Answerest thou the high priest so?
+John 18:23	Jesus answered him, If I have spoken evil, bear witness of the evil: but if well, why smitest thou me?
+John 18:24	Now Annas had sent him bound unto Caiaphas the high priest.
+John 18:25	And Simon Peter stood and warmed himself. They said therefore unto him, Art not thou also one of his disciples? He denied it, and said, I am not.
+John 18:26	One of the servants of the high priest, being his kinsman whose ear Peter cut off, saith, Did not I see thee in the garden with him?
+John 18:27	Peter then denied again: and immediately the cock crew.
+John 18:28	Then led they Jesus from Caiaphas unto the hall of judgment: and it was early; and they themselves went not into the judgment hall, lest they should be defiled; but that they might eat the passover.
+John 18:29	Pilate then went out unto them, and said, What accusation bring ye against this man?
+John 18:30	They answered and said unto him, If he were not a malefactor, we would not have delivered him up unto thee.
+John 18:31	Then said Pilate unto them, Take ye him, and judge him according to your law. The Jews therefore said unto him, It is not lawful for us to put any man to death:
+John 18:32	That the saying of Jesus might be fulfilled, which he spake, signifying what death he should die.
+John 18:33	Then Pilate entered into the judgment hall again, and called Jesus, and said unto him, Art thou the King of the Jews?
+John 18:34	Jesus answered him, Sayest thou this thing of thyself, or did others tell it thee of me?
+John 18:35	Pilate answered, Am I a Jew? Thine own nation and the chief priests have delivered thee unto me: what hast thou done?
+John 18:36	Jesus answered, My kingdom is not of this world: if my kingdom were of this world, then would my servants fight, that I should not be delivered to the Jews: but now is my kingdom not from hence.
+John 18:37	Pilate therefore said unto him, Art thou a king then? Jesus answered, Thou sayest that I am a king. To this end was I born, and for this cause came I into the world, that I should bear witness unto the truth. Every one that is of the truth heareth my voice.
+John 18:38	Pilate saith unto him, What is truth? And when he had said this, he went out again unto the Jews, and saith unto them, I find in him no fault at all.
+John 18:39	But ye have a custom, that I should release unto you one at the passover: will ye therefore that I release unto you the King of the Jews?
+John 18:40	Then cried they all again, saying, Not this man, but Barabbas. Now Barabbas was a robber.
+John 19:1	Then Pilate therefore took Jesus, and scourged him.
+John 19:2	And the soldiers platted a crown of thorns, and put it on his head, and they put on him a purple robe,
+John 19:3	And said, Hail, King of the Jews! and they smote him with their hands.
+John 19:4	Pilate therefore went forth again, and saith unto them, Behold, I bring him forth to you, that ye may know that I find no fault in him.
+John 19:5	Then came Jesus forth, wearing the crown of thorns, and the purple robe. And Pilate saith unto them, Behold the man!
+John 19:6	When the chief priests therefore and officers saw him, they cried out, saying, Crucify him, crucify him. Pilate saith unto them, Take ye him, and crucify him: for I find no fault in him.
+John 19:7	The Jews answered him, We have a law, and by our law he ought to die, because he made himself the Son of God.
+John 19:8	When Pilate therefore heard that saying, he was the more afraid;
+John 19:9	And went again into the judgment hall, and saith unto Jesus, Whence art thou? But Jesus gave him no answer.
+John 19:10	Then saith Pilate unto him, Speakest thou not unto me? knowest thou not that I have power to crucify thee, and have power to release thee?
+John 19:11	Jesus answered, Thou couldest have no power at all against me, except it were given thee from above: therefore he that delivered me unto thee hath the greater sin.
+John 19:12	And from thenceforth Pilate sought to release him: but the Jews cried out, saying, If thou let this man go, thou art not Caesar's friend: whosoever maketh himself a king speaketh against Caesar.
+John 19:13	When Pilate therefore heard that saying, he brought Jesus forth, and sat down in the judgment seat in a place that is called the Pavement, but in the Hebrew, Gabbatha.
+John 19:14	And it was the preparation of the passover, and about the sixth hour: and he saith unto the Jews, Behold your King!
+John 19:15	But they cried out, Away with him, away with him, crucify him. Pilate saith unto them, Shall I crucify your King? The chief priests answered, We have no king but Caesar.
+John 19:16	Then delivered he him therefore unto them to be crucified. And they took Jesus, and led him away.
+John 19:17	And he bearing his cross went forth into a place called the place of a skull, which is called in the Hebrew Golgotha:
+John 19:18	Where they crucified him, and two other with him, on either side one, and Jesus in the midst.
+John 19:19	And Pilate wrote a title, and put it on the cross. And the writing was Jesus Of Nazareth The King Of The Jews.
+John 19:20	This title then read many of the Jews: for the place where Jesus was crucified was nigh to the city: and it was written in Hebrew, and Greek, and Latin.
+John 19:21	Then said the chief priests of the Jews to Pilate, Write not, The King of the Jews; but that he said, I am King of the Jews.
+John 19:22	Pilate answered, What I have written I have written.
+John 19:23	Then the soldiers, when they had crucified Jesus, took his garments, and made four parts, to every soldier a part; and also his coat: now the coat was without seam, woven from the top throughout.
+John 19:24	They said therefore among themselves, Let us not rend it, but cast lots for it, whose it shall be: that the scripture might be fulfilled, which saith, They parted my raiment among them, and for my vesture they did cast lots. These things therefore the soldiers did.
+John 19:25	Now there stood by the cross of Jesus his mother, and his mother's sister, Mary the wife of Cleophas, and Mary Magdalene.
+John 19:26	When Jesus therefore saw his mother, and the disciple standing by, whom he loved, he saith unto his mother, Woman, behold thy son!
+John 19:27	Then saith he to the disciple, Behold thy mother! And from that hour that disciple took her unto his own home.
+John 19:28	After this, Jesus knowing that all things were now accomplished, that the scripture might be fulfilled, saith, I thirst.
+John 19:29	Now there was set a vessel full of vinegar: and they filled a spunge with vinegar, and put it upon hyssop, and put it to his mouth.
+John 19:30	When Jesus therefore had received the vinegar, he said, It is finished: and he bowed his head, and gave up the ghost.
+John 19:31	The Jews therefore, because it was the preparation, that the bodies should not remain upon the cross on the sabbath day, (for that sabbath day was an high day,) besought Pilate that their legs might be broken, and that they might be taken away.
+John 19:32	Then came the soldiers, and brake the legs of the first, and of the other which was crucified with him.
+John 19:33	But when they came to Jesus, and saw that he was dead already, they brake not his legs:
+John 19:34	But one of the soldiers with a spear pierced his side, and forthwith came there out blood and water.
+John 19:35	And he that saw it bare record, and his record is true: and he knoweth that he saith true, that ye might believe.
+John 19:36	For these things were done, that the scripture should be fulfilled, A bone of him shall not be broken.
+John 19:37	And again another scripture saith, They shall look on him whom they pierced.
+John 19:38	And after this Joseph of Arimathaea, being a disciple of Jesus, but secretly for fear of the Jews, besought Pilate that he might take away the body of Jesus: and Pilate gave him leave. He came therefore, and took the body of Jesus.
+John 19:39	And there came also Nicodemus, which at the first came to Jesus by night, and brought a mixture of myrrh and aloes, about an hundred pound weight.
+John 19:40	Then took they the body of Jesus, and wound it in linen clothes with the spices, as the manner of the Jews is to bury.
+John 19:41	Now in the place where he was crucified there was a garden; and in the garden a new sepulchre, wherein was never man yet laid.
+John 19:42	There laid they Jesus therefore because of the Jews' preparation day; for the sepulchre was nigh at hand.
+John 20:1	The first day of the week cometh Mary Magdalene early, when it was yet dark, unto the sepulchre, and seeth the stone taken away from the sepulchre.
+John 20:2	Then she runneth, and cometh to Simon Peter, and to the other disciple, whom Jesus loved, and saith unto them, They have taken away the Lord out of the sepulchre, and we know not where they have laid him.
+John 20:3	Peter therefore went forth, and that other disciple, and came to the sepulchre.
+John 20:4	So they ran both together: and the other disciple did outrun Peter, and came first to the sepulchre.
+John 20:5	And he stooping down, and looking in, saw the linen clothes lying; yet went he not in.
+John 20:6	Then cometh Simon Peter following him, and went into the sepulchre, and seeth the linen clothes lie,
+John 20:7	And the napkin, that was about his head, not lying with the linen clothes, but wrapped together in a place by itself.
+John 20:8	Then went in also that other disciple, which came first to the sepulchre, and he saw, and believed.
+John 20:9	For as yet they knew not the scripture, that he must rise again from the dead.
+John 20:10	Then the disciples went away again unto their own home.
+John 20:11	But Mary stood without at the sepulchre weeping: and as she wept, she stooped down, and looked into the sepulchre,
+John 20:12	And seeth two angels in white sitting, the one at the head, and the other at the feet, where the body of Jesus had lain.
+John 20:13	And they say unto her, Woman, why weepest thou? She saith unto them, Because they have taken away my Lord, and I know not where they have laid him.
+John 20:14	And when she had thus said, she turned herself back, and saw Jesus standing, and knew not that it was Jesus.
+John 20:15	Jesus saith unto her, Woman, why weepest thou? whom seekest thou? She, supposing him to be the gardener, saith unto him, Sir, if thou have borne him hence, tell me where thou hast laid him, and I will take him away.
+John 20:16	Jesus saith unto her, Mary. She turned herself, and saith unto him, Rabboni; which is to say, Master.
+John 20:17	Jesus saith unto her, Touch me not; for I am not yet ascended to my Father: but go to my brethren, and say unto them, I ascend unto my Father, and your Father; and to my God, and your God.
+John 20:18	Mary Magdalene came and told the disciples that she had seen the Lord, and that he had spoken these things unto her.
+John 20:19	Then the same day at evening, being the first day of the week, when the doors were shut where the disciples were assembled for fear of the Jews, came Jesus and stood in the midst, and saith unto them, Peace be unto you.
+John 20:20	And when he had so said, he shewed unto them his hands and his side. Then were the disciples glad, when they saw the Lord.
+John 20:21	Then said Jesus to them again, Peace be unto you: as my Father hath sent me, even so send I you.
+John 20:22	And when he had said this, he breathed on them, and saith unto them, Receive ye the Holy Ghost:
+John 20:23	Whose soever sins ye remit, they are remitted unto them; and whose soever sins ye retain, they are retained.
+John 20:24	But Thomas, one of the twelve, called Didymus, was not with them when Jesus came.
+John 20:25	The other disciples therefore said unto him, We have seen the Lord. But he said unto them, Except I shall see in his hands the print of the nails, and put my finger into the print of the nails, and thrust my hand into his side, I will not believe.
+John 20:26	And after eight days again his disciples were within, and Thomas with them: then came Jesus, the doors being shut, and stood in the midst, and said, Peace be unto you.
+John 20:27	Then saith he to Thomas, Reach hither thy finger, and behold my hands; and reach hither thy hand, and thrust it into my side: and be not faithless, but believing.
+John 20:28	And Thomas answered and said unto him, My Lord and my God.
+John 20:29	Jesus saith unto him, Thomas, because thou hast seen me, thou hast believed: blessed are they that have not seen, and yet have believed.
+John 20:30	And many other signs truly did Jesus in the presence of his disciples, which are not written in this book:
+John 20:31	But these are written, that ye might believe that Jesus is the Christ, the Son of God; and that believing ye might have life through his name.
+John 21:1	After these things Jesus shewed himself again to the disciples at the sea of Tiberias; and on this wise shewed he himself.
+John 21:2	There were together Simon Peter, and Thomas called Didymus, and Nathanael of Cana in Galilee, and the sons of Zebedee, and two other of his disciples.
+John 21:3	Simon Peter saith unto them, I go a fishing. They say unto him, We also go with thee. They went forth, and entered into a ship immediately; and that night they caught nothing.
+John 21:4	But when the morning was now come, Jesus stood on the shore: but the disciples knew not that it was Jesus.
+John 21:5	Then Jesus saith unto them, Children, have ye any meat? They answered him, No.
+John 21:6	And he said unto them, Cast the net on the right side of the ship, and ye shall find. They cast therefore, and now they were not able to draw it for the multitude of fishes.
+John 21:7	Therefore that disciple whom Jesus loved saith unto Peter, It is the Lord. Now when Simon Peter heard that it was the Lord, he girt his fisher's coat unto him, (for he was naked,) and did cast himself into the sea.
+John 21:8	And the other disciples came in a little ship; (for they were not far from land, but as it were two hundred cubits,) dragging the net with fishes.
+John 21:9	As soon then as they were come to land, they saw a fire of coals there, and fish laid thereon, and bread.
+John 21:10	Jesus saith unto them, Bring of the fish which ye have now caught.
+John 21:11	Simon Peter went up, and drew the net to land full of great fishes, an hundred and fifty and three: and for all there were so many, yet was not the net broken.
+John 21:12	Jesus saith unto them, Come and dine. And none of the disciples durst ask him, Who art thou? knowing that it was the Lord.
+John 21:13	Jesus then cometh, and taketh bread, and giveth them, and fish likewise.
+John 21:14	This is now the third time that Jesus shewed himself to his disciples, after that he was risen from the dead.
+John 21:15	So when they had dined, Jesus saith to Simon Peter, Simon, son of Jonas, lovest thou me more than these? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my lambs.
+John 21:16	He saith to him again the second time, Simon, son of Jonas, lovest thou me? He saith unto him, Yea, Lord; thou knowest that I love thee. He saith unto him, Feed my sheep.
+John 21:17	He saith unto him the third time, Simon, son of Jonas, lovest thou me? Peter was grieved because he said unto him the third time, Lovest thou me? And he said unto him, Lord, thou knowest all things; thou knowest that I love thee. Jesus saith unto him, Feed my sheep.
+John 21:18	Verily, verily, I say unto thee, When thou wast young, thou girdest thyself, and walkedst whither thou wouldest: but when thou shalt be old, thou shalt stretch forth thy hands, and another shall gird thee, and carry thee whither thou wouldest not.
+John 21:19	This spake he, signifying by what death he should glorify God. And when he had spoken this, he saith unto him, Follow me.
+John 21:20	Then Peter, turning about, seeth the disciple whom Jesus loved following; which also leaned on his breast at supper, and said, Lord, which is he that betrayeth thee?
+John 21:21	Peter seeing him saith to Jesus, Lord, and what shall this man do?
+John 21:22	Jesus saith unto him, If I will that he tarry till I come, what is that to thee? follow thou me.
+John 21:23	Then went this saying abroad among the brethren, that that disciple should not die: yet Jesus said not unto him, He shall not die; but, If I will that he tarry till I come, what is that to thee?
+John 21:24	This is the disciple which testifieth of these things, and wrote these things: and we know that his testimony is true.
+John 21:25	And there are also many other things which Jesus did, the which, if they should be written every one, I suppose that even the world itself could not contain the books that should be written. Amen.
