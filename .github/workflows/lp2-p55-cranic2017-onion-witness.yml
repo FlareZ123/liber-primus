@@ -1,0 +1,21 @@
+name: LP2 p55 CRANIC 2017 frozen onion witness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cranic-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify synthetic tar-gzip positive control
+        run: node sims/lp2_p55_cranic2017_onion_witness_sft.cjs --self-test
+      - name: Check archived 2017 Tor graph for exact frozen v2 hostname
+        run: node sims/lp2_p55_cranic2017_onion_witness_sft.cjs
