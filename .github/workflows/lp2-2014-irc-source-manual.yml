@@ -20,7 +20,7 @@ jobs:
       - name: Source miner planted control
         run: node sims/lp2_2014_irc_clue_miner.cjs --selftest
       - name: Mine immutable original 2014 IRC logs
-        run: node sims/lp2_2014_irc_clue_miner.cjs
+        run: node sims/lp2_2014_irc_clue_miner.cjs --network
       - name: Preserve finite source extracts
         uses: actions/upload-artifact@v4
         with:
