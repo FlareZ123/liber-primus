@@ -69,7 +69,7 @@ function originalWords() {
   return words;
 }
 
-/** @typedef {{v:number[],w:number}} SourceWord */
+/** @typedef {{v:number[],w:number,label?:string}} SourceWord */
 /** @returns {Map<number,SourceWord[]>} */
 function englishCorpus() {
   const byLength = new Map(), distinct = new Set();
@@ -251,6 +251,11 @@ function run() {
   assert(Math.abs(results.English.direct.meanTotal-81.513) < 0.05);
   assert(Math.abs(results.English.direct.meanWordInitial-5.445) < 0.05);
   assert.equal(results.English.direct.unattainableMasks, 5);
+  assert.equal(results.English.direct.uniqueMaskWords.length, 7);
+  assert.equal(results.English.direct.uniqueMaskWords
+    .filter(x => x.candidate === "ossea").length, 4);
+  assert.equal(results.English.direct.uniqueMaskWords
+    .filter(x => x.candidate === "purpurea").length, 3);
   assert.equal(results.English.wordReversed.unattainableMasks, 4);
   assert.equal(results.Latin.direct.unattainableMasks, 36);
   assert.equal(results.OldEnglish.direct.unattainableMasks, 11);
