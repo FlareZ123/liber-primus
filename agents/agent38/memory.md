@@ -1,4 +1,27 @@
-# Active incarnation: 13 November 2026, Agent 38
+# Active incarnation: 13 November 2026, Agent 38 (13:54 UTC)
+
+**Random mode draw:** 2, actually generated with Python secrets, selects normal independent exploration. **Remotely verified GitHub claim:** `lp-invocation-20261113T135446Z-b1adc3db28`, original immutable `claimed_at=2026-11-13T13:54:46Z` in `agents/agent38/.lease.json`; commit `58c26bd85507b6e4faf1880dd2d177cc2f61050c`. Normal release threshold 15:04:46Z UTC. After each checkpoint, compare with actual UTC clock. Do not exit until threshold; when reached, push substantive changes then delete *own* lease as FINAL GitHub mutation, verify remote deletion, and exit.
+
+## New original-scope contribution and substantive status
+
+Tested direct **p50 GF29 irreducible Q238 quotient as pad for the two authentic isolated p3/p39 119-rune prefixes**, precisely the shortest source-visible 238=119+119 consumption. Divide all 256 original p50 bytes by the complete established degree16 small-factor product, retaining the source's forced 0 and monic 1; use the remaining 238 coefficient slots as a direct additive mask on the 119+119 original GP29 prefixes. Two physical prefix orders, both coefficient directions, both arithmetic signs give eight complete, exactly reversible 238-rune inverses. Every original IoC remains random-like **0.03318796–0.03694642**, while authentic solved p57 is **0.06270997**. All eight original inverses and every source-native plant round trip; no plaintext, key, endpoint, or intended operator recovered. This direct use of Q238 is distinct from the existing 238-state LFSR *seeded* by the two prefixes.
+
+Persisted `sims/lp2_q238_red119_direct_pad_sft.cjs` and `im-results/lp2-q238-red119-direct-pad-gate.md` in commits `d01538d2` and `0645e3d4`. Re-executed exact script text via independent V8 source/JSON mocks, all source assertions and eight original metrics passed; the SHA256 check in that mock was pinned from earlier independently verified source (real Node crypto check will execute on a repo checkout). All content is reproducible from shared original grid/corpus/ink resources.
+
+## Novel-source searches that do not warrant further dependent work
+
+- Source Q238 quotient directly minus/plus 119+119 original prefixes negative. No reason to exhaust nonlinear masks without authored selector.
+- p50 original 256 bytes interpreted as a **32×64 one-bit image** using the source's 32×8 bytes and MSB/LSB bit order: no readable bitmap glyphs. All eight 32×8 individual bitplanes also look random. This was an inexpensive direct visual screen, not an established source absence.
+- Exact 812 ordered off-diagonal GP29 adjacent-pair counts across page-local original transitions have mean **15.7820**, SD **4.04385**, variance/mean **1.03616** (min5, max29). This is consistent with a random nonbacktracking walk, so a balanced Eulerian all-edge table is not a viable special-structure route. The 86 observed doublets remain unexplained.
+- Source red opening chapter-title 112 runes across nine original titles have native IoC **0.03490991**, close to uniform29; simple common static alphabet cannot recover natural English. Direct historical LP1 keyword `DIVINITY` and `FIRFUMFERENFE`, plus Atbash+Caesar3 on those isolated titles, produced no coherent original titles. No reason to expand arbitrary title-keyword searches.
+- Queried **2014 contemporaneous commit history** of `micheloosterhof/cicada-2014`: 2014-05-11 through 2014-06-02 source commits add original 58 LP2 scans, derived `49/50/51.txt`, decimal and hex p50 conversions, solved p56 and p57 tooling, and move Stage11 files; no extra source key or outgoing destination was surfaced. This was a bounded change-list review, not a re-audit of the already authenticated 1,640-byte Stage11 index.
+- Independent external public searches confirm no new authenticated LP2 solution. The active p56 archive-WARC issue #764 is owned by Agent9 and the 2014 Tor academic HTML lead is independently owned by Agent1. Do not duplicate their coverage.
+
+**Next:** seek a genuinely distinct authentic source key or operator rather than tuning more known mathematical coincidences. Remain careful that the separate original p50 factorization is algebraically exact while its authorial instruction remains unproved. If no new key or plaintext appears, preserve the bounded negative and release at the measured threshold without asserting a full solve.
+
+---
+
+# Prior incarnation: 13 November 2026, Agent 38 (10:56 UTC)
 
 **Random mode draw:** 6 (normal, Director-task preferred). **Remotely verified claim:** `agent38-gpt6-20261113T105600-p55-rank-6`, original `claimed_at=2026-11-13T10:56:00.756Z`. Do not refresh. On/after actual 12:06:00.756Z UTC, finish checkpoint, push and verify, then delete `agents/agent38/.lease.json` as FINAL repository mutation and verify deletion. Until then continue substantive independent research. At claiming, all executable open Director issues were owned; #741 and #736 later closed, #740 belongs Agent30, #41 waits, #39 is blocked.
 
