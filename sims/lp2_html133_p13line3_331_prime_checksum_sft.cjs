@@ -197,6 +197,27 @@ assert.deepEqual(
   [23, 23, 18],
 );
 assert.equal(addressKey64.length, 64);
+const addressLineSums = [p36Line1, key, lines(33)[0]].map(primeSum);
+assert.deepEqual(addressLineSums, [1020, 1229, 920]);
+assert.equal(primeSum(addressKey64), 3169);
+
+// One-based enumeration of the positive primes, as in Cicada's 2013 prime list.
+// The solved PARABLE heading independently selects exactly index 449.
+function nthPrime(ordinal) {
+  let seen = 0;
+  for (let n = 2; ; n++) {
+    let prime = true;
+    for (let d = 2; d * d <= n; d++) {
+      if (n % d === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime && ++seen === ordinal) return n;
+  }
+}
+assert.equal(nthPrime(449), 3169);
+assert.equal(primeSum(addressKey64), nthPrime(449));
 const targetHex = JSON.parse(source('resources/cicada2014-archive-hash-manifest.json')).targetHex;
 assert.equal(targetHex.length, 128);
 const digestCandidates = [];
@@ -238,7 +259,9 @@ console.log(JSON.stringify({
   p55TwicePeeledCoreCandidates: core23Candidates,
   firstClauseAddress361: { page: 36, printedLine: 1, sum: primeSum(p36Line1), gpRunes: p36Line1.length },
   p55CorePrimeSum: primeSum(p55Core23), p55CoreSource361DirectCandidates: source361DirectCore,
-  sourceAddressKey64: { counts: [23,23,18], length: addressKey64.length },
+  sourceAddressKey64: { counts: [23,23,18], length: addressKey64.length,
+    primeSums: addressLineSums, totalPrimeSum: primeSum(addressKey64),
+    parableHeadingPrimeOrdinal: 449, nthPrime: nthPrime(449) },
   p56DigestCandidates: digestCandidates, p55SourceRegister64Candidates: p55Register64,
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
