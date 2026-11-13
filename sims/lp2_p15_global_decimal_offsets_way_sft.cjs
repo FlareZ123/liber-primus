@@ -71,6 +71,17 @@ assert.deepEqual(rowMajorZeroBased, [
   "L","Y","A","G","M","U","B","AE"
 ]);
 
+// All other stride-2 WAY triples in the complete original LP2 source are controls.
+const way = ["W", "A", "Y"].map(letter => corpus.translit.indexOf(letter));
+const wayRoots = [];
+for (let i = 0; i < completeLp2.length; i++) {
+  if (completeLp2[i] === way[0] &&
+      completeLp2[(i - 2 + completeLp2.length) % completeLp2.length] === way[1] &&
+      completeLp2[(i - 4 + completeLp2.length) % completeLp2.length] === way[2]) {
+    wayRoots.push(i);
+  }
+}
+assert.deepEqual(wayRoots, [2959, 3298, 4126]);
 // The three original-rune addresses IMMEDIATELY AFTER the central red cell.
 assert.equal(clockwiseZeroBased.slice(1, 4).join(""), "WAY");
 // This is a coincidence candidate until a source-prescribed full readout exists.
@@ -87,6 +98,7 @@ const firstThree = inputs.slice(1,4).map(offset =>
 console.log(JSON.stringify({
   originalUnknownRunes: unknown.length,
   originalCompleteLp2Runes: completeLp2.length,
+  completeLp2Stride2WAYRoots: wayRoots,
   startRed: inputs[0],
   postRed: firstThree,
   clockwiseZeroBased,
