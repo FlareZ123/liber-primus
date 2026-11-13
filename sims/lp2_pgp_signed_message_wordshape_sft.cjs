@@ -93,7 +93,22 @@ function longestMatch(source, target) {
  * @returns {object} Exact source-native results.
  */
 function run(sourceFolder, transcriptionPath) {
-  const targets = originalLengths(fs.readFileSync(transcriptionPath, 'utf8'));
+  const transcription = fs.readFileSync(transcriptionPath, 'utf8');
+  const targets = originalLengths(transcription);
+  // A real, previously solved source is a better positive than an invented plant.
+  // The p57 PARABLE is word-for-word in Cicada's older 761.MP3 metadata.
+  const page57 = transcription.split(/(?:\\r?\\n)?%\\s*(?:\\r?\\n)?/)[56]
+    .replace(/\\/\\s*/g, '')
+    .split(/[-.&$§!?:() \\t\\n]+/u)
+    .map(word => (word.match(RUNE) || []).length).filter(Boolean);
+  const solved = fs.readFileSync(
+    path.join(path.dirname(transcriptionPath), 'lp1-plaintext-reference.txt'), 'utf8');
+  const solvedWords = (solved.split('### 57')[1].match(/[A-Z]+/g) || []);
+  const solvedLengths = solvedWords.map(gpLength);
+  assert.equal(page57.length, 20);
+  assert.equal(page57.reduce((a, b) => a + b, 0), 95);
+  assert.deepEqual(page57, solvedLengths, 'authentic solved p57 full-word control');
+  assert.equal(longestMatch(solvedLengths, page57).length, 20);
   const items = [];
   for (const [name, expectedGitSha, expectedWords, expectedLongest] of SOURCES) {
     const raw = fs.readFileSync(path.join(sourceFolder, name));
@@ -113,6 +128,7 @@ function run(sourceFolder, transcriptionPath) {
   }
   return { classification: 'NO SOURCE-LENGTH CRIB, NO LP2 PLAINTEXT',
     originalRunes: 12956, originalWords: 2896, archivedMessages: SOURCES.length,
+    authenticP57Control: { recoveredWords: 20, originalRunes: 95 },
     qualifyingMatchesAtLeast12Words: 0, items };
 }
 if (require.main === module) {
