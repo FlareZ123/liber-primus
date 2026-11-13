@@ -50,7 +50,7 @@ assert.equal(sha(plain),'48e533b1985a896842d3c70dc6b4a710a52ba24bafc9663fd5f37bd
 console.log(JSON.stringify({source:'p15 original JPEG, 16 zero-based printed spiral addresses',
   key:key.toString('hex'),zeroKeyBytes:[...key].filter(n=>n===0).length,
   consumer:'AES-128-ECB of original p49–51 byte table; no padding',
-  originalTableRecovered:256,outputSha256:sha(plain),
+  exactForwardReplayBytes:256,outputSha256:sha(plain),
   outputHead:plain.subarray(0,16).toString('hex'),
   printableAsciiBytes:printable,longestPrintableRun:longest,magic,
   control:'256/256 English plant recovered',
