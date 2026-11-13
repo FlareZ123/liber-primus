@@ -115,3 +115,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_signed_redcell_scalar_sft.cjs
           node sims/lp2_p15_signed_redcell_scalar_sft.cjs
+      - name: Prove all-secret 28-phase source histogram obstruction
+        run: |
+          node --check sims/lp2_p15_redcell_period28_allsecret_sft.cjs
+          node sims/lp2_p15_redcell_period28_allsecret_sft.cjs
