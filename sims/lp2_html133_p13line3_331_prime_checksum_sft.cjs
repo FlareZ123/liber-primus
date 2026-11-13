@@ -240,6 +240,35 @@ const p55Register64 = [-1, 1].map(sign => {
 close(p55Register64[0].ioc, 0.037192982456140354);
 close(p55Register64[1].ioc, 0.032280701754385965);
 
+// PARABLE explicitly asks to shed circumferences and find what is within.
+// One non-fitted reading is to peel one rune from each end of every printed
+// word in the three source-selected physical lines, retaining word order.
+const selectedWords = [[36, 1], [13, 3], [33, 1]].flatMap(([page, line]) =>
+  sourcePages[page].split('/').filter(part => runes(part).length)[line - 1]
+    .split(/[-.&$]/).map(runes).filter(word => word.length),
+);
+assert.deepEqual(selectedWords.map(word => word.length), [
+  2, 4, 3, 2, 3, 3, 5, 1,
+  3, 4, 6, 2, 5, 3,
+  2, 8, 2, 6,
+]);
+assert.equal(selectedWords.length, 18);
+assert.deepEqual(selectedWords.flat(), addressKey64);
+const sourceInner29 = selectedWords.flatMap(word => word.slice(1, word.length - 1));
+assert.equal(sourceInner29.length, 29);
+assert.equal(new Set(sourceInner29).size, 19); // therefore not a secret 29-rune permutation
+assert.equal(primeSum(sourceInner29), 1637);
+const sourceInner29Direct = [-1, 1].map(sign => {
+  const plain = p55.map((c, i) => (c + 29 + sign * sourceInner29[i % 29]) % 29);
+  assert.deepEqual(
+    plain.map((p, i) => (p + 29 - sign * sourceInner29[i % 29]) % 29),
+    p55,
+  );
+  return { sign, ioc: ioc(plain), initialGP: plain.slice(0, 40).map(n => corpus.translit[n]).join('-') };
+});
+close(sourceInner29Direct[0].ioc, 0.031578947368421054);
+close(sourceInner29Direct[1].ioc, 0.031578947368421054);
+
 // Fully solved authentic GP-rune p57 is the independent positive control.
 const known = corpus.pages[57].indices;
 assert.equal(known.length, 95);
@@ -263,5 +292,8 @@ console.log(JSON.stringify({
     primeSums: addressLineSums, totalPrimeSum: primeSum(addressKey64),
     parableHeadingPrimeOrdinal: 449, nthPrime: nthPrime(449) },
   p56DigestCandidates: digestCandidates, p55SourceRegister64Candidates: p55Register64,
+  sourceInner29: {gpRunes: sourceInner29.length, uniqueRunes: new Set(sourceInner29).size,
+    words: selectedWords.length, primeSum: primeSum(sourceInner29)},
+  p55Inner29DirectCandidates: sourceInner29Direct,
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
