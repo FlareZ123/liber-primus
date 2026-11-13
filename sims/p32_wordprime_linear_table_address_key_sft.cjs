@@ -163,8 +163,35 @@ function trainEnglishTrigram(source) {
   return { U, B, T };
 }
 const englishModel = trainEnglishTrigram(read('resources/control/shakespeare_first300k.txt'));
+const latinCounts = JSON.parse(read('resources/control/latin-vulgate-gp-trigrams.json'));
+function trainTrigramFromCounts(data) {
+  const uni = data.u;
+  const bi = new Uint32Array(29 * 29);
+  const tri = new Uint32Array(29 * 29 * 29);
+  for (const [index, count] of data.b) bi[index] = count;
+  for (const [index, count] of data.t) tri[index] = count;
+  const U = new Float64Array(29);
+  const B = new Float64Array(29 * 29);
+  const T = new Float64Array(29 * 29 * 29);
+  for (let x = 0; x < 29; x++) U[x] = Math.log((uni[x] + 1) / (data.n + 29));
+  for (let x = 0; x < 29; x++) for (let z = 0; z < 29; z++) {
+    B[x * 29 + z] = Math.log((bi[x * 29 + z] + 12 * Math.exp(U[z])) / (uni[x] + 12));
+  }
+  for (let x = 0; x < 29; x++) for (let y = 0; y < 29; y++) for (let z = 0; z < 29; z++) {
+    const index = (x * 29 + y) * 29 + z;
+    T[index] = Math.log((tri[index] + 9 * Math.exp(B[y * 29 + z])) / (bi[x * 29 + y] + 9));
+  }
+  return { U, B, T };
+}
+const latinModel = trainTrigramFromCounts(latinCounts);
+// First 75 GP runes from Luke 1:1 in NT_Vulgate/corpus/luc_1.txt.
+// Source blob: 6910bf1b9b97a72f570f91e705daf0a970291423.
+const latinPlantPlain = encodeEnglish(
+  'QUONIAMQUIDEMMULTICONATISUNTORDINARENARRATIONEMQUAEINNOBISCONPLETAESUNTRERUMSI'
+);
+assert.equal(latinPlantPlain.length, 75);
 
-function solveFixedPlaintextKeyskip(cipher, key, sign, trace = true, offset = 0) {
+function solveFixedPlaintextKeyskip(cipher, key, sign, trace = true, offset = 0, model = englishModel) {
   const width = key.length;
   const length = cipher.length;
   const stateCount = width * maxAdvance;
@@ -190,8 +217,8 @@ function solveFixedPlaintextKeyskip(cipher, key, sign, trace = true, offset = 0)
     const logProbability = (advance - 1) * Math.log(rejectionProbability) +
       (cipher[1] === cipher[0] ? Math.log(1 - rejectionProbability) : 0);
     const state = currentPosition * maxAdvance + advance - 1;
-    previous[state] = englishModel.U[firstPlain] +
-      englishModel.B[firstPlain * 29 + currentPlain] + logProbability;
+    previous[state] = model.U[firstPlain] +
+      model.B[firstPlain * 29 + currentPlain] + logProbability;
   }
 
   for (let i = 2; i < length; i++) {
@@ -223,7 +250,7 @@ function solveFixedPlaintextKeyskip(cipher, key, sign, trace = true, offset = 0)
           (currentCipher === previousCipher ? Math.log(1 - rejectionProbability) : 0);
         const nextState = currentPosition * maxAdvance + advance - 1;
         const trigramIndex = (plainTwoBack * 29 + plainPrevious) * 29 + currentPlain;
-        const score = baseScore + englishModel.T[trigramIndex] + logProbability;
+        const score = baseScore + model.T[trigramIndex] + logProbability;
         if (score > next[nextState]) {
           next[nextState] = score;
           if (trace) back[i][nextState] = state;
@@ -355,6 +382,55 @@ for (const candidate of keyCandidates) {
   }
 }
 
+
+shuffleState = 0x20261113;
+const latinSkipAwareResults = [];
+for (const candidate of keyCandidates) {
+  for (const sign of [-1, 1]) {
+    const planted = plantFixedPlaintextKeyskip(latinPlantPlain, candidate.key, sign);
+    const positive = solveFixedPlaintextKeyskip(planted.cipher, candidate.key, sign, true, 0, latinModel);
+    const positiveRecovered = positive.plaintext.filter((value, i) => value === latinPlantPlain[i]).length;
+    const decoded = solveFixedPlaintextKeyskip(skipTarget, candidate.key, sign, true, 0, latinModel);
+    const nullScores = [];
+    for (let replicate = 0; replicate < 20; replicate++) {
+      const shuffled = shuffledKey(candidate.key);
+      nullScores.push(solveFixedPlaintextKeyskip(skipTarget, shuffled, sign, false, 0, latinModel).scorePerRune);
+    }
+    const sortedNulls = nullScores.slice().sort((a, b) => a - b);
+    const originalRank = [...nullScores, decoded.scorePerRune]
+      .sort((a, b) => b - a).indexOf(decoded.scorePerRune) + 1;
+    const p55BodyPlain = decoded.plaintext.slice(p55BodyStart, p55BodyStart + 75);
+    latinSkipAwareResults.push({
+      addressBase: candidate.addressBase,
+      operation: sign === -1 ? 'P = C - K with Latin key skips' : 'P = C + K with Latin key skips',
+      target: 'continuous pp33-55, 4,996 runes, key phase 0 at p33',
+      rejectionProbability: rejectionProbability,
+      maxRejectedKeysPerRune: maxAdvance - 1,
+      decodedIoC: ioc(decoded.plaintext),
+      decodedAdjacentRepeats: adjacentRepeats(decoded.plaintext),
+      selectedSkipCount: decoded.skippedCount,
+      latinTrigramScorePerRune: decoded.scorePerRune,
+      p55BodyPreview: transliterate(p55BodyPlain, 75),
+      p55BodyIoC: ioc(p55BodyPlain),
+      positiveControl: {
+        source: 'NT_Vulgate corpus/luc_1.txt, first 75 GP runes',
+        plantedSkips: planted.skippedCount,
+        recoveredOf75: positiveRecovered,
+        exactRecovery: positiveRecovered === latinPlantPlain.length
+      },
+      shuffledKeyNull: {
+        replicates: nullScores.length,
+        seed: '0x20261113',
+        min: sortedNulls[0],
+        median: sortedNulls[10],
+        max: sortedNulls[19],
+        rankAmongOriginalPlusNulls: originalRank,
+        nullsBeatenByOriginal: nullScores.filter(score => decoded.scorePerRune > score).length
+      }
+    });
+  }
+}
+
 const output = {
   evidenceClass: 'bounded source-motivated original-input negative',
   sourceInstruction: 'Authenticated 2016 text: words are the map; their numbers are the direction',
@@ -381,6 +457,8 @@ const output = {
   },
   results,
   skipAware: skipAwareResults,
-  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book, pp33-39, or the p55 body. The exact 13/16 fixed-plaintext keyskip decoder also fails on pp33-55; the source-ordered keys are not exceptional against shuffled-key nulls. This rejects only this linear table-address key and the tested additive/keyskip consumers.'
+  latinSkipAware: latinSkipAwareResults,
+  latinModelSource: { repo: 'computationalstylistics/NT_Vulgate', language: 'Latin', symbols: latinCounts.n, luc1Blob: '6910bf1b9b97a72f570f91e705daf0a970291423' },
+  conclusion: 'Neither source-fixed address convention and neither additive sign produces language-like GP29 plaintext on the whole unknown book, pp33-39, or the p55 body. The exact 13/16 fixed-plaintext keyskip decoder also fails on pp33-55 under English and Latin trigram models; the source-ordered keys are not exceptional against shuffled-key nulls. This rejects only this linear table-address key and the tested additive/keyskip consumers.'
 };
 console.log(JSON.stringify(output, null, 2));
