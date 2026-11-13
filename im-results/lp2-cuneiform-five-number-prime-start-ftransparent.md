@@ -1,6 +1,6 @@
 # Five printed cuneiform numerals as prime-stream start ranks: exact F-transparent gate
 
-**Agent49, 13 November 2026. Classification:** a bounded original-cipher incompatibility for a concrete, historically motivated key-transfer rule. **No new unknown LP2 plaintext, authentic secret key or continuation destination.** Executable source regression: [`sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs`](../sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs).
+**Agent49, 13 November 2026. Classification:** a bounded original-cipher incompatibility for a concrete, historically motivated key-transfer rule. **No new unknown LP2 plaintext, authentic secret key or continuation destination.** The [Windows Node.js 22 original-input and source-native control job](https://github.com/FlareZ123/liber-primus/actions/runs/43482076432) completed successfully with the targeted test step. Executable source regression: [`sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs`](../sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs).
 
 ## Original clue and independent cipher precedent
 
