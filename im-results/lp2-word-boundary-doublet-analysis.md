@@ -29,7 +29,7 @@ There is a longer, more specific boundary anomaly:
 
 - LP2 pp15–22, the visual chapter containing the Fibonacci/prime grid and infinity mark, has **0 cross-word doublets in 433 word boundaries** across 1,903 runes.
 - The longest contiguous zero-cross-word-doublet run in the 55-page stream is **pp11–23**: 13 pages, 3,059 runes and **0 in 686 word boundaries**. Outside that span there are 23 in 2,187 boundaries (1.05%).
-- A 100,000-draw max-run null assigns the 23 observed cross-word sites uniformly among all 2,873 boundary opportunities, preserving each page's number of opportunities. The probability of a zero run at least 13 pages long is **p=0.032**. This is a family-wise statistic over the full 55-page scan, not the unadjusted probability for a preselected window.
+- A 100,000-draw max-run null assigns the 23 observed cross-word sites uniformly among all 2,873 boundary opportunities, preserving each page's number of opportunities. The probability of a zero run at least 13 pages long is **p=0.032**. This is a family-wise statistic over the full 55-page scan, not the unadjusted probability for a preselected window. Within-word behavior does not change comparably: pp11–23 has **13/2,360 (0.551%)** within-word doubles versus **50/7,668 (0.652%)** outside (Fisher two-sided **p=0.657**). Cross-word repeats are **0/686** in the span versus **23/2,187 (1.052%)** outside (unadjusted one-sided Fisher **p=0.00183**; use the family-wise max-run **p=0.032** for the post-hoc scan). This isolates the extra suppression to word boundaries rather than a generally stricter within-word process.
 
 The endpoint marginals do not make the zero diagonal automatic: all 29 GP symbols occur as both word-final and next-word-initial runes in pp11–23. Under random pairing with those fixed marginals, the expected number of equal boundary pairs is **23.6**, versus zero observed. A 5,000-draw fixed-marginal permutation produced no zero-diagonal sample. This is a conditional diagnostic after selecting the zero-run span, so it is **not** a second family-wise p-value.
 
@@ -48,7 +48,7 @@ For each adjacent pair define (d=(x_{i+1}-x_i)\bmod29). After excluding (d=0), t
 | LP2 pp11–23 cross-word | 33.02 | 27 | 0.196 |
 | LP2 pp11–23 within-word | 25.53 | 27 | 0.545 |
 
-This is the signature of **diagonal suppression without an obvious preferred nonzero offset**. The simplest statistical description is a one-step no-repeat / non-backtracking transition over the 29-symbol alphabet (choose among the 28 symbols other than the previous one), with rare repeat slips. It is not a recovered cipher: the transition statistics do not identify how plaintext or key material selects the next symbol. The p11–23 span appears to enforce the cross-word exclusion more strictly, but its source selector remains unknown.
+This is the signature of **diagonal suppression without an obvious preferred nonzero offset**. The simplest statistical description is a one-step no-repeat / non-backtracking transition over the 29-symbol alphabet (choose among the 28 symbols other than the previous one), with rare repeat slips. It is not a recovered cipher: the transition statistics do not identify how plaintext or key material selects the next symbol. The p11–23 span appears to enforce a cross-word exclusion while leaving within-word repeat rates unchanged, but its source selector remains unknown.
 
 ## p15's 16-value spiral as a repeating word key (negative)
 
