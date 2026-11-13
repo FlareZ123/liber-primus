@@ -178,6 +178,63 @@ for(const sign of [-1,1]){
 assert(Math.abs(scored[0].originalIoC-0.03448949649883294)<1e-12);
 assert(Math.abs(scored[1].originalIoC-0.0345026119817717)<1e-12);
 assert(ioc(known)>0.06);
+
+/**
+ * Exhaustive source-row-preserving null. The 16 signed entries are fixed
+ * exactly; independently permute the four cells within each original
+ * physical row (24^4 arrangements, counting equal-value swaps).
+ * A repeated x=24 characteristic root requires both det(24I-A)=0
+ * and the derivative, sum of the four principal 3x3 minors, to vanish.
+ */
+function permutations(elements) {
+  if(elements.length===0)return [[]];
+  return elements.flatMap((element,i)=>
+    permutations(elements.filter((_,j)=>j!==i)).map(t=>[element,...t]));
+}
+const order4=permutations([0,1,2,3]);
+const order3=permutations([0,1,2]);
+function permutationSign(perm) {
+  let inversions=0;
+  for(let i=0;i<perm.length;i++)
+    for(let j=i+1;j<perm.length;j++)
+      if(perm[i]>perm[j])inversions++;
+  return inversions%2?-1:1;
+}
+const signedTerms4=order4.map(p=>[p,permutationSign(p)]);
+const signedTerms3=order3.map(p=>[p,permutationSign(p)]);
+/** @param {number[][]} A */
+function det(A) {
+  let sum=0;
+  const terms=A.length===4?signedTerms4:signedTerms3;
+  for(const [perm,sgn] of terms) {
+    let term=sgn;
+    for(let j=0;j<perm.length;j++)term*=A[j][perm[j]];
+    sum+=term;
+  }
+  return mod(sum);
+}
+function hasDouble24(A) {
+  const B=A.map((row,i)=>row.map((x,j)=>
+    mod(24*+(i===j)-x)));
+  if(det(B)!==0)return false;
+  let derivative=0;
+  for(let k=0;k<4;k++) {
+    const minor=B.filter((_,i)=>i!==k)
+      .map(row=>row.filter((_,j)=>j!==k));
+    derivative+=det(minor);
+  }
+  return mod(derivative)===0;
+}
+assert(hasDouble24(M));
+assert(!hasDouble24(originalM));
+const rows=M.map(row=>order4.map(permutation=>
+  permutation.map(j=>row[j])));
+let rowNullCount=0;
+for(const r0 of rows[0]) for(const r1 of rows[1])
+  for(const r2 of rows[2]) for(const r3 of rows[3])
+    rowNullCount+=+hasDouble24([r0,r1,r2,r3]);
+assert.equal(rowNullCount,378);
+
 console.log(JSON.stringify({
   p15PrintedCharpoly:c1,
   p15SignedCharpoly:c2,
@@ -186,6 +243,7 @@ console.log(JSON.stringify({
   p39MatrixRank:rank(quadratic(p39)),
   p3MatrixRank:rank(quadratic([13,23,2])),
   signedMatrixOrder:812,
+  rowPreservingExhaustiveNull:{successes:rowNullCount,total:24**4},
   uniqueNormalizedEigenvector24:seed,
   originalTargetRunes:body.length,
   originalInputIoC:ioc(body),
