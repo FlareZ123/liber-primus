@@ -1,6 +1,6 @@
-# Seven-rune p27 ↔ p55/p56 seam: an exact source clue and a failed known-key transfer
+# Seven-rune p27 ↔ p55/p56 seam: an exact source clue and two failed known-key transfers
 
-**Agent29, 13 November 2026. Evidence class:** original-ciphertext structural extension and one source-anchored, 32-mask direct inverse. **No unknown LP2 plaintext, authentic unknown-page key, source-selected full decoder, or destination has been recovered.**
+**Agent29, 13 November 2026. Evidence class:** original-ciphertext structural extension and two source-anchored original inverses (32-mask p27 and 8-mask p55). **No unknown LP2 plaintext, authentic unknown-page key, source-selected full decoder, or destination has been recovered.**
 
 ## The original-source observation
 
@@ -25,7 +25,7 @@ The seven-rune extension was not captured by a census restricted to unsolved pp0
 
 A simple stationary 29-rune uniform-output model with observed same-symbol transition rate 86/12,901 gives an approximate birthday expectation of **0.00565** seven-gram collision pairs over 13,041 runes, or approximately **0.56%** chance of at least one. This is an *idealized model calculation*, not a discovery-wide p-value, not an English/text-structure null, and not independent of the already-noticed six-rune bookend. It indicates why a seam-specific operator test is worth doing without attributing it to the authors.
 
-## One fixed known-key test motivated by the seam
+## First fixed known-key test: p27 forward from the shared AE
 
 **Upstream premise:** the shared seventh rune may act as a mark pointing from p27 into p56's known decryption operation. **Countermodel:** an exact ciphertext duplicate at a physical seam can arise by chance or mark a different kind of instruction, and p56 may use a unique cipher absent on p27.
 
@@ -41,10 +41,24 @@ Freeze the only alignment selected by the observed seventh rune: **p27 local run
 
 The best p27 quadgram candidate begins `AIANMOMBUIAGTEASGJDAEWDWFPHITYEO...` and does not yield a coherent, original word-aligned sentence. The raw 85-rune original p27 segment has quadgram **−7.247339**, IoC **0.033613**. An 85-rune segment is short, and the finite quadgram scorer is an English diagnostic; these numerical contrasts reject only a literal direct transfer as a credible English plaintext candidate. They are no theorem against every alternative register or combination.
 
+## Second fixed known-key test: p55 backwards around the solved p56 prime clock
+
+The same seam directly touches the **last unknown p55 runes**. A separate simple hypothesis is to use the genuine **84 prime-totient key shifts consumed by solved p56** as a cyclic sequence, so the final p55 cipher rune uses the last shift (phase83) just before solved p56 begins at its authentic phase0. This makes the predicted operation deterministic from **the p55→p56 source boundary**, with no tunable starting phase, polarity or cipher. The textual image-associated phrase on solved p57, `SHED OUR OWN CIRCUMFERENCES`, offers a *possible* rationale for a circle, but the author **never explicitly instructs cycling p56's key backwards**. The direct hypothesis is therefore exploratory, not key authentication.
+
+Original target: **all 76 p55 runes**, processed from local rune75 back to0, subtracting `phi(prime)` in reverse phase order and wrapping modulo the genuine 84-step consumed solved-p56 key. p55 ciphertext has F at local positions **15,25,41**. Allow all **eight** literal-plaintext-F bypass selections; the reverse key phase advances only for nonbypassed runes. Every candidate exactly forward-reencrypts the authentic p55 ciphertext, and a **76/76 genuine solved-p57 GP plaintext plant** independently survives the same cyclic forward/inverse operation.
+
+| Whole-p55 diagnostic | Best of the eight frozen bypass variants | Solved GP p57 reference |
+| --- | ---: | ---: |
+| Quadgram mean log10 (higher is better) | **−7.278849**, mask6, skips [25,41] | **−4.420633** |
+| Highest GP29 IoC (different mask) | **0.036140**, mask4 | **0.062710** |
+| Last six recovered GP characters (all masks) | `FNEODP` | Not applicable |
+
+No original p55 sentence, cryptographic instruction or identifiable format appears. All eight variants are strongly ciphertext-like against this English diagnostic. This retires **the exact backwards cyclic p56-totient-key continuation to p55**, with its page-boundary clock frozen by the seven-rune seam; it does not rule out other external key material, nonperiodic state or unselected rotations.
+
 ## Current interpretation and next decision
 
-The **seam is exact** and strengthens the previously published, highly unusual p27/p55 paired-word bookend. The seventh matching rune lies across the boundary into the solved prime-totient ciphertext. Under the simplest follow-the-known-key reading, the seam should unlock at least a substantial phrase on p27; that explicit original test instead fails. The first `A` is forced by the shared ciphertext and shift1, so a single apparent plaintext `A` is not independent evidence.
+The **seam is exact** and strengthens the previously published, highly unusual p27/p55 paired-word bookend. The seventh matching rune lies across the boundary into the solved prime-totient ciphertext. Two source-anchored uses of p56's authentic key, one forward from the matching p27 AE and one cyclically backward through p55, fail on original language diagnostics. The first `A` is forced by the shared ciphertext and shift1, so a single apparent plaintext `A` is not independent evidence.
 
-Retire **p27 local34 → p56 phase-zero prime-totient key** as an 85-rune direct English inverse. Do **not** search p27 phase offsets, alternate F patches, hidden multipliers, or new clocks from this match alone. A meaningful successor would require an original visible/historical instruction that maps the seven-rune seam to a different *reversible* operation or an independently given key. Preserve the seam for such a route rather than treating a unique repeat as a decryption.
+Retire **p27 local34 → p56 phase-zero prime-totient key** as an 85-rune direct English inverse, and **p55 reverse 84-step p56-key circumference** as a complete 76-rune inverse. Do **not** search p27 phase offsets, alternate F patches, hidden multipliers, or new clocks from this match alone. A meaningful successor would require an original visible/historical instruction that maps the seven-rune seam to a different *reversible* operation or an independently given key. Preserve the seam for such a route rather than treating a unique repeat as a decryption.
 
-**Exact reproduction:** [`sims/lp2_p27_p55_p56_seam_phi_sft.cjs`](../sims/lp2_p27_p55_p56_seam_phi_sft.cjs) is a standalone Node.js22 CommonJS test. It requires only the canonical original corpus and the already-pinned quadgram control, enumerates all six/seven/eight-gram duplicates, validates the authentic p56 positive control, enumerates the 32 p27 F masks, asserts the original-cipher forward checks and reports the exact observed diagnostics.
+**Exact reproduction:** [`sims/lp2_p27_p55_p56_seam_phi_sft.cjs`](../sims/lp2_p27_p55_p56_seam_phi_sft.cjs) is a standalone Node.js22 CommonJS test. It requires only the canonical original corpus and the already-pinned quadgram control, enumerates all six/seven/eight-gram duplicates, validates the authentic p56 positive control, enumerates the 32 p27 F masks and eight p55 cyclic F masks, asserts the original-cipher forward checks and reports the exact observed diagnostics.

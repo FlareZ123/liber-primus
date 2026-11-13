@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 /**
- * SFT: original LP2 p27 / p55→p56 seven-rune seam and one frozen p56-key transfer.
+ * SFT: original LP2 p27 / p55→p56 seven-rune seam and two frozen p56-key transfers.
  * All inputs come from the canonical source corpus and existing quadgram control.
  * Node.js 22 CommonJS. No network, no randomness, no phase/key search.
  */
@@ -164,6 +164,65 @@ assert.ok(Math.abs(bestIoc.ioc - 0.0453781512605042) < 1e-11);
 assert.ok(bestLanguage.quadgram < -6.9);
 assert.ok(bestIoc.ioc < 0.046);
 
+
+// Second, freeze a backwards *cyclic* use of the exact 84 prime-totient
+// steps consumed by authentic p56 (85 ciphertext runes, one literal F bypass).
+// The seven-rune seam selects the p55 ending; key phase83 must meet the final
+// p55 nonbypassed rune immediately before solved p56 begins at phase0.
+// The circular-wrap premise is speculative, motivated by solved p57's
+// "circumferences" language; no original instruction authenticates key wrap.
+const phiCycle = primes.slice(0, 84).map(value => value - 1);
+assert.equal(phiCycle.length, 84);
+
+/**
+ * Source-anchored backward p55 circular-prime clock.
+ * @param {number[]} input @param {Set<number>} skips @param {-1|1} direction
+ * @returns {number[]}
+ */
+function backwardPhiCycle(input, skips, direction) {
+  const output = Array(input.length);
+  let phase = phiCycle.length - 1;
+  for (let i = input.length - 1; i >= 0; i--) {
+    if (skips.has(i)) {
+      assert.equal(input[i], 0);
+      output[i] = 0;
+      continue;
+    }
+    output[i] = (input[i] + direction * phiCycle[phase] + 2900) % 29;
+    phase = (phase - 1 + phiCycle.length) % phiCycle.length;
+  }
+  return output;
+}
+const p55Fsites = p55.flatMap((rune, i) => rune === 0 ? [i] : []);
+assert.deepEqual(p55Fsites, [15, 25, 41]);
+const backwardVariants = [];
+for (let mask = 0; mask < 2 ** p55Fsites.length; mask++) {
+  const skips = new Set(p55Fsites.filter((_, i) => mask & (1 << i)));
+  const candidate = backwardPhiCycle(p55, skips, -1);
+  assert.deepEqual(backwardPhiCycle(candidate, skips, 1), p55);
+  backwardVariants.push({
+    mask,
+    skipped: [...skips],
+    ioc: ioc(candidate),
+    quadgram: quadgramScore(candidate),
+    ending: translit(candidate.slice(-6))
+  });
+}
+const cyclicBestLanguage = backwardVariants.reduce(
+  (a, b) => a.quadgram >= b.quadgram ? a : b);
+const cyclicBestIoc = backwardVariants.reduce(
+  (a, b) => a.ioc >= b.ioc ? a : b);
+assert.equal(cyclicBestLanguage.mask, 6);
+assert.ok(Math.abs(cyclicBestLanguage.quadgram - (-7.278849467029805)) < 1e-10);
+assert.equal(cyclicBestIoc.mask, 4);
+assert.ok(Math.abs(cyclicBestIoc.ioc - 0.03614035087719298) < 1e-11);
+assert.ok(backwardVariants.every(x => x.ending === 'FNEODP'));
+// Independently plant genuine solved p57 source plaintext under this exact
+// backward cyclic transform and recover every original-formatted rune.
+const p57Plant = p57.slice(0, p55.length);
+const p57PlantCipher = backwardPhiCycle(p57Plant, new Set(), 1);
+assert.deepEqual(backwardPhiCycle(p57PlantCipher, new Set(), -1), p57Plant);
+
 console.log(JSON.stringify({
   source: 'original LP2 corpus, p27 local28-34 and p55 local70 to p56 local0',
   seven_rune_pattern: translit(p27.slice(28, 35)),
@@ -180,5 +239,11 @@ console.log(JSON.stringify({
   p27_raw: { ioc: ioc(original), quadgram: quadgramScore(original) },
   p27_best_quadgram: bestLanguage,
   p27_best_ioc: { mask: bestIoc.mask, skipped: bestIoc.skipped, ioc: bestIoc.ioc },
-  interpretation: 'Unique 7-gram extends known six-rune bookend; direct anchor-aligned p56 phi transfer fails to recover language. No new plaintext/key.'
+  p55_backward_cyclic_phi: {
+    source_key: 'genuine 84 p56 consumed phi(prime) values, cyclic phase83 at p55 local75',
+    literal_f_sites: p55Fsites, masks_tested: backwardVariants.length,
+    best_quadgram: cyclicBestLanguage, best_ioc: cyclicBestIoc,
+    synthetic_p57_plant_recovered: p57Plant.length
+  },
+  interpretation: 'Unique 7-gram extends known six-rune bookend; both fixed original p56-phi transfers fail to recover language. No new plaintext/key.'
 }, null, 2));
