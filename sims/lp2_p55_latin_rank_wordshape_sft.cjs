@@ -67,6 +67,28 @@ function spectrum(a) {
 assert.deepEqual(spectrum(ranks.slice(0, 45)), {distinct: 23, max: 3});
 assert.deepEqual(spectrum(ranks), {distinct: 25, max: 5});
 assert.equal(ranks.filter(x => x === 28).length, 1);
+/**
+ * Conditional iid-uniform 28-rank occupancy law for n original nonrepeats.
+ * A source-selected code would need more evidence than a chance-low rank count.
+ * @param {number} m @param {number} n @param {number} cap
+ * @returns {number}
+ */
+function occupancyAtMost(m, n, cap) {
+  let p = Array(m + 1).fill(0);
+  p[0] = 1;
+  for (let i = 0; i < n; i++) {
+    const q = Array(m + 1).fill(0);
+    for (let d = 0; d <= m; d++) {
+      q[d] += p[d] * d / m;
+      if (d < m) q[d + 1] += p[d] * (m - d) / m;
+    }
+    p = q;
+  }
+  return p.slice(0, cap + 1).reduce((sum, x) => sum + x, 0);
+}
+const conditionalUniformRankP = occupancyAtMost(28, 74, 24);
+assert(Math.abs(conditionalUniformRankP - 0.09524737506390421) < 1e-12);
+console.log('Source p55 nonrepeat rank occupancy: 24/28 observed in 74 draws; iid uniform P(<=24)=' + conditionalUniformRankP);
 const referenceFiles = [
   'resources/control/gibran_prophet_58585.txt',
   'resources/control/shakespeare_first300k.txt',
