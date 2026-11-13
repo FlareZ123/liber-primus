@@ -1,0 +1,46 @@
+# Source-moth p55 crib and table degree-16 recurrence: original-cipher decision
+
+**Agent35, 13 November 2026. Conditional result. No unknown plaintext, verified key, endpoint, or validated crib.**
+
+## Source-linked hypothesis
+
+Solved LP1 physical p5 prints **THE TOTIENT FUNCTION IS SACRED ALL THINGS** beside Cicada's moth. The moth repeats on original LP2 physical p55, whose final seven complete printed words have the exact original GP29 rune-length pattern **[2,7,7,2,6,3,3]**. This is an intriguing, previously documented **unconfirmed** 30-rune plaintext conjecture; see [source-moth study](lp2-p55-moth-p5-terminal-sevenword-crib.md). Independently, original LP2 physical pp49–51 have 256 printed numeral cells, whose GF29 polynomial contains an exact degree-16 product [derived from the source](lp2-grid-complete-gf29-factorization.md). A short reversible key stream from this factor is an affordable, specific hypothesis, although the book does not explicitly select the source phrase, polynomial recurrence or placement.
+
+## Original input and key residual
+
+The authentic LP1 spelling uses a single IA rune for IO in FUNCTION and a single NG rune for ING in THINGS. The exact proposed 30-rune GP plaintext, expressed in canonical GP29 index order, is:
+
+    [2,18,16,3,16,10,18,9,16,0,1,9,5,16,27,9,10,15,15,24,5,4,18,23,24,20,20,2,21,15]
+
+Unmodified physical p55 ciphertext at page-local rune positions46–75 is:
+
+    [12,18,28,18,10,6,14,6,15,18,15,12,2,2,18,15,2,22,5,28,10,19,5,14,23,11,1,17,18,10]
+
+The additive cipher hypothesis **C=P+K mod29** forces the exact 30-rune key residual:
+
+    [10,0,12,15,23,25,25,26,28,18,14,3,26,15,20,6,21,7,19,4,5,15,16,20,28,20,10,15,26,24]
+
+The 256 original table bytes have SHA-256 **3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290**. The **degree-16 source factor F**, with ascending-power GF29 coefficients, is:
+
+    [13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]
+
+It is the exact product of the four printed-table polynomial factors **(X+5)^2**, **(X²+18X+11)**, **(X³+14X²+16X+24)** and **(X⁹+12X⁸+20X⁷+10X⁶+5X⁵+X⁴+9X³+15X+11)**. Original source-table polynomial division by this factor gives sixteen zero remainder coefficients.
+
+Fix the first **16** original p55 key residues as initial state. The full source factor F and its reciprocal then give two prospective **14-rune heldout** key predictions without adjusting the original data:
+
+| Fixed recurrence | Correct among 14 original holdout residues | Local p55 key-relative match index |
+|---|---:|---:|
+| F, low-to-high orientation | **1/14** | 28 |
+| reciprocal F, high-to-low orientation | **1/14** | 24 |
+
+The alternate additive sign simply negates the entire residual and keeps both prediction counts unchanged. Independently planted GP-native keys generated under each fixed recurrence recover **14/14** withheld values. A zero-output result or a fit over only the source crib would carry no new plaintext evidence; the actual original heldout contradictions exclude these **two precisely defined** recurrence transfers.
+
+## Exact all-secret short-recurrence obstruction
+
+The 30 forced key residues also have a **15×15 Hankel determinant of 5 modulo29** (rows indexed i=0..14, columns j=0..14, entry at K[i+j]). Because this determinant is nonzero, the columns have rank15. Every homogeneous GF29 recurrence of order at most14, with **any** secret coefficients and initial state, would give a dependent set of columns. This is an exact algebraic exclusion conditional on the original hypothetical plaintext. Berlekamp–Massey independently returns linear complexity **15** for all 30 residuals. Fitting an order15 key to the same 30 values supplies no independent text prediction and should not be presented as a cipher recovery.
+
+[Single-file CommonJS SFT](../sims/lp2_moth_grid16_crib_recurrence_sft.cjs) fixes the original source array, 256-cell SHA, p55 30-rune substring, GF29 polynomial, two direct original predictions, rank certificate, and positive native GP29 plants.
+
+## Decision
+
+The source-crib pair fails the two simplest source-degree-16 recurrence key-stream hypotheses and all homogeneous order-14-or-lower GF29 additive pads. The visible moth and exact word-length coincidence remain unresolved and could indicate an entirely different use of the source. **No authentic decryption has been recovered.** Extend this route only after an independent original instruction selects a concrete key/state operation and yields previously untouched unknown plaintext. Further arbitrary phase/recurrence fitting would not create a genuine solution.
