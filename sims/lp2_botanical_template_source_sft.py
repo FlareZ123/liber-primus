@@ -95,6 +95,26 @@ def main(images: Path) -> None:
             f"p25 vs p24 shift={shift} IoU={iou:.7f} disagreement={misses}"
         )
 
+    # Paired mayfly vertical self-mirror. Freeze original source boxes and source
+    # mirror plane; never optimize against ciphertext or a linguistic score.
+    # The natural no-flip and 180-degree-rotation variants are controls.
+    gray = cv2.cvtColor(scan(images, 24), cv2.COLOR_BGR2GRAY)
+    center_y = 1788
+    upper = (255 - gray[center_y - 620:center_y - 100, :600]).astype(np.float64)
+    lower = (255 - gray[center_y + 100:center_y + 620, :600]).astype(np.float64)
+    def mirror_corr(candidate: np.ndarray) -> float:
+        return float(np.corrcoef(upper[:, :598].ravel(), candidate[:, 2:].ravel())[0, 1])
+    vertical = mirror_corr(lower[::-1, :])
+    no_flip = mirror_corr(lower)
+    horizontal = mirror_corr(lower[:, ::-1])
+    rotation = mirror_corr(lower[::-1, ::-1])
+    print(
+        "Paired mayfly vertical self-mirror, p24 original: "
+        f"r={vertical:.9f}, plain={no_flip:.9f}, "
+        f"horizontal={horizontal:.9f}, rotation180={rotation:.9f}"
+    )
+    assert vertical > 0.925 and horizontal < 0.10 and rotation < 0.17
+
     print("PASS: original page-family template controls (no key or plaintext recovered)")
 
 
