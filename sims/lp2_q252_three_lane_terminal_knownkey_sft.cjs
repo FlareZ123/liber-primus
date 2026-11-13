@@ -100,6 +100,33 @@ assert.deepEqual(corpus.pages.find(p=>p.page===39).indices.slice(119,122),triple
 const c55=corpus.pages.find(p=>p.page===55).indices;
 const p57=corpus.pages.find(p=>p.page===57).indices.slice(0,76);
 assert.equal(c55.length,76);assert.equal(p57.length,76);
+/**
+ * Every deterministic secret mapping from a selected set of quotient lanes:
+ * identical input tuple must imply identical output rune. This test is
+ * stronger than the affine-rank exclusion when a conflicting tuple repeats.
+ * @param {number[][]} sourceLanes
+ * @param {number[]} knownKey
+ * @param {number[]} selected
+ * @returns {{uniqueInputs:number,conflictingWitnesses:Array<{first:number,second:number,input:number[],wanted:number[]}>}}
+ */
+function lookupObstruction(sourceLanes,knownKey,selected) {
+  const seen = new Map();
+  const conflictingWitnesses = [];
+  for(let i=0;i<knownKey.length;i++){
+    const input=selected.map(k=>sourceLanes[k][i]);
+    const label=input.join(',');
+    if(seen.has(label)){
+      const j=seen.get(label);
+      if(knownKey[i]!==knownKey[j]) {
+        conflictingWitnesses.push({
+          first:j,second:i,input,wanted:[knownKey[j],knownKey[i]]
+        });
+      }
+    }else seen.set(label,i);
+  }
+  return {uniqueInputs:seen.size,conflictingWitnesses};
+}
+
 const results=[], p55Tests=[];
 for(const reversed of [false,true])for(const shape of ['contiguous','interleaved']){
   const l=lanes(reversed?q.slice().reverse():q,shape);
@@ -108,6 +135,28 @@ for(const reversed of [false,true])for(const shape of ['contiguous','interleaved
   assert.equal(bRank,4);assert.equal(kRank,5);
   const plant=basis.map(r=>m(13*r[0]+23*r[1]+2*r[2]+7));
   assert.equal(rank(basis.map((r,i)=>[...r,plant[i]])),4);
+  const observed={
+    pair01:lookupObstruction(l,key,[0,1]),
+    pair02:lookupObstruction(l,key,[0,2]),
+    pair12:lookupObstruction(l,key,[1,2]),
+    allThree:lookupObstruction(l,key,[0,1,2])
+  };
+  for(const k of ['pair01','pair02','pair12'])
+    assert.ok(observed[k].conflictingWitnesses.length>=1,'No two-lane keyed lookup can reproduce p56');
+  if(shape==='contiguous') {
+    assert.equal(observed.allThree.conflictingWitnesses.length,1);
+    assert.equal(observed.allThree.uniqueInputs,83);
+  }else {
+    assert.equal(observed.allThree.conflictingWitnesses.length,0);
+    assert.equal(observed.allThree.uniqueInputs,84);
+  }
+  const sourceNativeLookupPlant=Array.from({length:84},(_,i)=>
+    m(5*l[0][i]+7*l[1][i]+3*l[2][i]+13)
+  );
+  for(const selected of [[0,1,2]]) {
+    assert.equal(lookupObstruction(l,sourceNativeLookupPlant,selected).conflictingWitnesses.length,0);
+  }
+
   const matches=triples.map(({name,v})=>{
     const vals=key.map((_,i)=>m(v[0]*l[0][i]+v[1]*l[1][i]+v[2]*l[2][i]));
     const hist=Array(29).fill(0);
@@ -124,7 +173,7 @@ for(const reversed of [false,true])for(const shape of ['contiguous','interleaved
     }
     return{name,literal:hist[0],bestConstantOffset:Math.max(...hist)};
   });
-  results.push({reversed,shape,bRank,kRank,matches});
+  results.push({reversed,shape,bRank,kRank,observed,matches});
 }
 assert.equal(results.length,4);assert.equal(p55Tests.length,24);
 assert.ok(p55Tests.every(x=>x.ioc<0.05));
@@ -137,5 +186,5 @@ console.log(JSON.stringify({
   literalFSkip:56,rankTests:results,
   p55OriginalIoc:ioc(c55),p57First76Ioc:ioc(p57),
   sourceSelectedP55Models:p55Tests.length,bestP55:best,
-  verdict:'No fixed affine 3-lane key reproduces p56; no direct source-triple p55 plaintext.'
+  verdict:'All two-lane secret lookups fail p56; all contiguous three-lane secret lookups fail; interleaved three-lane affine functions fail; no direct source-triple p55 plaintext.'
 },null,2));
