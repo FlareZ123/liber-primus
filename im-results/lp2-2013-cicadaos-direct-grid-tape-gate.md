@@ -1,6 +1,6 @@
 # 2013 CicadaOS random tape does not directly contain the 2014 LP2 numerical grid
 
-**Agent 4, 13 November 2026. Result:** exhaustive exact-window negative for five source-motivated constant-mask models across the complete 118,818,811-byte 2013 file `DATA/560.13` and four unfitted print geometries of the original 256-cell LP2 table. **No LP2 plaintext, recovered historic key, or new destination.** Independently executed [passing GitHub Actions run 43337623517](https://github.com/FlareZ123/liber-primus/actions/runs/43337623517).
+**Agent 4, 13 November 2026. Result:** exhaustive exact-window negative for five source-motivated constant-mask models over all 136,398,848 raw bytes of the 2013 CicadaOS ISO, except the two source-file boundary crossings, and **all eight unfitted rectangular orientations** of the original 256-cell LP2 numeric table. **No LP2 plaintext, recovered historic key, or new destination.** The definitive [passing third original-input GitHub Actions run 43341319497](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497) completes the two earlier four-orientation scans.
 
 ## Why test an older Cicada key source?
 
@@ -10,7 +10,7 @@ Use the actual 2013 ISO at [preserved CicadaOS copy](https://connortumbleson.com
 
 ## Frozen original-input inversions
 
-Test each of four literal table views: printed 32×8 row-major, reverse row-major, 32×8 column-major, reverse column-major. For every orientation, search the **entire** historical random tape for any 256-byte contiguous segment that could generate the printed table under:
+Test each of **eight** source-geometry views: printed 32×8 row-major or transposed column-major, independently retaining or reflecting the physical **32 rows** and **eight columns**. This includes reverse row-major/column-major and the four single-axis reflections absent from the earlier tests. For every orientation, search the **entire** historical random tape for any 256-byte contiguous segment that could generate the printed table under:
 
 1. One unknown byte applied by XOR at every position.
 2. One unknown byte added modulo256 at every position.
@@ -22,22 +22,22 @@ Crucially, the unknown mask is **not** searched over 256 or 256^8 guesses. It ca
 
 | Search family | Different indexed signatures, all orientations | Historical tape matches |
 | --- | ---: | ---: |
-| XOR, unknown constant byte | 1,000 | **0** |
-| Additive modulo256, unknown constant byte | 1,000 | **0** |
-| XOR, unknown repeating eight bytes | 972 | **0** |
-| Additive modulo256, unknown repeating eight bytes | 972 | **0** |
-| Modulo29, unknown GP29 shift | 988 | **0** |
+| XOR, unknown constant byte | 1,456 | **0** |
+| Additive modulo256, unknown constant byte | 1,456 | **0** |
+| XOR, unknown repeating eight bytes | 1,454 | **0** |
+| Additive modulo256, unknown repeating eight bytes | 1,640 | **0** |
+| Modulo29, unknown GP29 shift | 1,606 | **0** |
 
-Every model first passed a 256-byte source-native positive with an unknown mask and nonzero synthetic offset (**5/5**), including reverse/column source-support through the shared layout selector. The original ISO checksum, extracted tape length, canonical grid checksum and exact result counts were asserted in the passing CI run. These five families tested *all* possible offsets within the retained 118.8MB file and had zero possible 6- or 9-difference prefixes, so they cannot contain a complete 256-symbol source match under those families.
+Every model first passed a 256-byte source-native positive with an unknown mask and nonzero synthetic offset (**5/5**), including reverse/column source-support through the shared layout selector. The original ISO checksum, extracted tape length, canonical grid checksum and exact result counts were asserted in the passing CI run. These five families tested every 256-byte start within each of the three ISO regions and had zero possible 6- or 9-difference prefixes, so they cannot contain a complete 256-symbol source match under those families.
 
 ## Decision and explicit boundaries
 
-The printed 2014 grid is **not** a literal contiguous fragment of the earlier archived random tape under the specified byte or lower-residue constant/repeating-8 masks and four source-natural whole-table orientations. This directly blocks a historical-key reuse route that would otherwise produce an exact source offset. It does not reject more complicated KDFs, non-contiguous sampling, row-varying masks, alternative historical files, an encrypted table, different numeral radix, or reuse of a tape section as a GP29 keystream on an unrelated page. No new model is licensed solely by these zero hits.
+The printed 2014 grid is **not** a literal contiguous fragment of any tested within-extent region of the 2013 ISO under the specified byte or lower-residue constant/repeating-8 masks and eight exact geometry-derived table orientations. This directly blocks a historical-key reuse route that would otherwise produce an exact source offset. It does not reject more complicated KDFs, non-contiguous sampling, row-varying masks, alternative historical files, an encrypted table, different numeral radix, or reuse of a tape section as a GP29 keystream on an unrelated page. No new model is licensed solely by these zero hits.
 
-**Reproducer:** [single-file CommonJS scanner](../sims/lp2_2013_cicadaos_grid_tape_window_sft.cjs); [manually dispatched workflow](../.github/workflows/lp2-2013-cicadaos-grid-tape-manual.yml); [full successful original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/43337623517). The runner downloads the original ISO, checks its MD5, reads rather than executes the ISO, and reproduces all five whole-file scans.
+**Reproducer:** [single-file CommonJS scanner](../sims/lp2_2013_cicadaos_grid_tape_window_sft.cjs); [manually dispatched workflow](../.github/workflows/lp2-2013-cicadaos-grid-tape-manual.yml); [full eight-orientation original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497). The runner downloads the original ISO, checks its MD5, reads rather than executes the ISO, and reproduces all five whole-file scans.
 
-## Entire ISO cross-file coverage (additional original source, 13 November 2026)
+## Full raw ISO source coverage
 
-The same original ISO is slightly larger than its DATA/560.13 member. A separately frozen companion pass examines **every ISO byte outside that file extent** using the same four table orientations, five source-independent masks, and exact six- or nine-difference signatures. The two subranges preserve original ISO byte order and use no guessed carrier names, offsets or file decoding. This broadens the specific search from the old random tape to **all remaining raw original 2013 OS image bytes**, including the alternate DATA members, binaries, padding and filesystem structures, without repeating the already negative 118.8 MB scan. The same signed-checksum file remains the stronger plausible historical source; the unallocated/other-file scans are exploratory.
+The same original ISO is larger than its DATA/560.13 member. An independently bounded extension examines **every ISO byte outside that file extent** using the same eight table orientations, five source-independent masks, and exact six- or nine-difference signatures. The two subranges preserve original ISO byte order and use no guessed carrier names, offsets or file decoding. This broadens the specific search from the old random tape to **all remaining raw original 2013 OS image bytes**, including the alternate DATA members, binaries, padding and filesystem structures, without repeating the already negative 118.8 MB scan. The same signed-checksum file remains the stronger plausible historical source; the unallocated/other-file scans are exploratory.
 
-**Executed original-source result:** [passing second manual Actions run 43340143764](https://github.com/FlareZ123/liber-primus/actions/runs/43340143764), same verified ISO and exact original table. The extra original ISO ranges are **4,087,808 bytes before** and **13,492,229 bytes after** the DATA/560.13 extent. All **15** source × model runs (five mask families × three contiguous ISO source ranges) report **zero six-/nine-difference signature hits**, and all five 256-cell planted positives pass. Together these ranges account for **136,398,848 source bytes**. No fitted source offsets, changed grid cells or other file names were used. The 256-byte windows physically straddling the two ISO extent boundaries are intentionally outside the three within-range scans; a valid historical *file* would ordinarily reside entirely inside one extent. This broadened negative excludes the direct/masked **raw-ISO contiguous-file** interpretation, not compressed-file decompression, positional data-file extraction, boundary-crossing synthetic windows or derived 2013 keys.
+**Executed original-source result:** [passing third manual Actions run 43341319497](https://github.com/FlareZ123/liber-primus/actions/runs/43341319497), same verified ISO and exact original table, now with all eight orientations. The extra original ISO ranges are **4,087,808 bytes before** and **13,492,229 bytes after** the DATA/560.13 extent. All **15** source × model runs (five mask families × three contiguous ISO source ranges, eight orientations per run) report **zero six-/nine-difference signature hits**, and all five 256-cell planted positives pass. Together these ranges account for **136,398,848 source bytes**. No fitted source offsets, changed grid cells or other file names were used. The 256-byte windows physically straddling the two ISO extent boundaries are intentionally outside the three within-range scans; a valid historical *file* would ordinarily reside entirely inside one extent. This broadened negative excludes the direct/masked **raw-ISO contiguous-file** interpretation, not compressed-file decompression, positional data-file extraction, boundary-crossing synthetic windows or derived 2013 keys.
