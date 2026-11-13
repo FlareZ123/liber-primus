@@ -16,6 +16,8 @@ A distinctive arithmetic property emerges **without choosing a secret exponent**
 
 Since the only prime factors of 75 are 3 and 5, these inequalities prove **ord_3301(5)=75**. The complete orbit `1,5,25,125,625,3125,2421,2202,...` consists of precisely 75 distinct states and therefore indexes every one of the 75 self-contained p55 body positions exactly once.
 
+**Independent arithmetic discriminator within the actual clue set:** the companion cuneiform number **1033** is also prime, but `ord_1033(5)=1032`; it does not generate a 75-position cycle. Of the ordinary prime bases `2,3,5,7,11,13,17,19,23,29` tested under modulus3301, **only base5 has order75**. This uniquely distinguishes the historically attested generator among those small prime alternatives and one of the two authentic cuneiform moduli. It remains retrospective numerical evidence and cannot establish an intended cross-round transfer.
+
 This is a potentially human-playable *candidate key schedule*: a previously demonstrated Cicada operation (modular exponentiation with base5), an actual runic-book numeral (3301) and an independent physical word-boundary length (75) select one finite full cycle. The strongest objection is serious: the signed example never tells solvers to move base5 to modulus3301, and p55 appears in a separate visual chapter from the cuneiform ornament. The alignment was recognized retrospectively. **Neither the arithmetic nor the length match authenticates the transfer as the intended operation.**
 
 ## Original ciphertext inverse, with a genuine planted plaintext control
