@@ -65,6 +65,28 @@ assert.equal(solvedP57.length,76);
 assert.deepEqual(decrypt(encrypt(solvedP57)),solvedP57);
 assert.equal(plain.filter(x=>x===28).length,1);
 assert(Math.abs(ioc(plain)-0.03543859649122807)<1e-12);
+
+// The original page begins with a printed one-rune word. Four visible
+// rectangle corners are separately frozen source starts, not all 76 phases.
+const namedCorners=[['NW',0],['NE',7],['SE',38],['SW',45]];
+const cornerChecks=namedCorners.map(([corner,offset])=>{
+  const rotated=ring.slice(offset).concat(ring.slice(0,offset));
+  const output=[mod(cipher[0]-rotated[0]%29,29)];
+  for(let i=1;i<76;i++){
+    const step=mod(cipher[i]-cipher[i-1],29);
+    output.push(step===0?28:mod(logs[step]-rotated[i]%28,28));
+  }
+  const replay=[mod(output[0]+rotated[0]%29,29)];
+  for(let i=1;i<76;i++)replay.push(output[i]===28?replay[i-1]:
+    mod(replay[i-1]+powers[mod(output[i]+rotated[i]%28,28)],29));
+  assert.deepEqual(replay,cipher);
+  return {corner,firstByte:rotated[0],firstGP:db.translit[output[0]],
+    decodedIoC:ioc(output),secondWholeWordGp:output.slice(1,5)
+      .map(x=>db.translit[x]).join('')};
+});
+assert.deepEqual(cornerChecks.map(x=>x.firstGP),['NG','EO','EA','A']);
+assert(Math.abs(cornerChecks[3].decodedIoC-0.037192982456140354)<1e-12);
+assert.equal(cornerChecks[3].secondWholeWordGp,'OEXLW');
 const result={
   status:'PASS',scope:'one original 76-symbol printed clockwise-outer-ring GP28 inverse',
   manuscript:'original p55 76 runes',
@@ -73,6 +95,7 @@ const result={
   knownAuthenticCryptoOperation:false,
   decodedGP:plain.map(v=>db.translit[v]).join(''),
   decodedIoC:ioc(plain),
+  cornerChecks,
   originalReencryptExactly:true,
   solvedNativePlant76Exactly:true,
   result:'No intelligible GP29 source plaintext; direct outer ring under this model unsupported'
