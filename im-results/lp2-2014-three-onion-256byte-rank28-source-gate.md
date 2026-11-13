@@ -29,8 +29,14 @@ Each of the 15 source-ordered 256-byte XOR keys is treated as a GP29 additive pa
 
 This is a decisive falsification of each specified direct pad transfer under its exact two anchored placements; it is not an exclusion of a nonlinear key derivation, a different relation to p55, a stage-specific cipher, or source material not yet recovered. It also avoids guessing p55 plaintext to choose among these source keys.
 
+## Independent moth-linked p55 candidate crib
+
+The original p55's **last seven complete printed words**, at full-page rune offsets 46–75, have exact source-native GP lengths **[2,7,7,2,6,3,3]**. An illustration shared with solved LP1 p5 independently motivates the already documented speculative crib **“THE TOTIENT FUNCTION IS SACRED ALL THINGS”**; its corrected source-native GP representation has exactly **30 runes**, including single-rune IO and ING. This is a candidate crib, **not confirmed p55 plaintext**, and previously tested fixed p5 Vigenère and Hill transfers failed.
+
+With the entire seven-word crib frozen, the 15 original byte-register XOR source keys at **the exact p55 terminal-block positions 46–75** predict at most **3 of its 30 required direct GP29 cipher shifts** under either additive sign (30 keys/sign checks total). Printed table alone with the negative sign has the best 3/30. Thus none of these historically exposed direct pads can substantiate the moth-linked phrase, even if that phrase eventually proves to be genuine. This is a conditional joint failure, not a disproof of the crib or the existence of another p55 key.
+
 ## Decision
 
 This source-led 256-byte **direct XOR / GP29 additive / mod28 successor-rank consumer** is now tested in full and yields no recoverable original text. Do not expand the same branch through unfitted offsets, rotations, extra XOR products, hashes or key generators without an original instruction choosing them. Other historical sources, steganographic payloads, stateful inverses or lost keys remain open.
 
-**Reproducer:** [single runnable CJS test](../sims/lp2_2014_three_onion256_rank28_sft.cjs) (Node.js 22, read-only). Required source files: the archived three-string text, the printed base60-grid.json, and canonical lp2-corpus.json. The script asserts source labels and byte lengths, original rune/repeat counts, all 90 unknown-page decodes, 60 authentic solved-p56 predictions, output bounds and planted positive inverses before printing its decision data.
+**Reproducer:** [single runnable CJS test](../sims/lp2_2014_three_onion256_rank28_sft.cjs) (Node.js 22, read-only). Required source files: the archived three-string text, the printed base60-grid.json, and canonical lp2-corpus.json. The script asserts source labels and byte lengths, original rune/repeat counts, all 90 unknown-page decodes, 60 authentic solved-p56 predictions, 30 provisional p55-crib checks, output bounds and planted positive inverses before printing its decision data.
