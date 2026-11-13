@@ -177,9 +177,22 @@ function run() {
   assert.equal(tape.length, DATA_BYTES);
   console.log('ISO MD5 validated:', ISO_MD5, '2013 tape bytes:', tape.length);
   console.log('2014 table SHA256:', GRID_SHA256);
+  // The source file is one extent of the original ISO. Test every other original
+  // ISO byte too, without needlessly rescanning this proven-negative 118 MB extent.
+  const tapeStart = tape.byteOffset - image.byteOffset;
+  assert.ok(tapeStart > 0 && tapeStart + tape.length < image.length);
+  const isoExtras = [
+    {name: 'ISO before DATA/560.13', bytes: image.subarray(0, tapeStart)},
+    {name: 'ISO after DATA/560.13', bytes: image.subarray(tapeStart + tape.length)},
+  ];
+  console.log('Extra ISO bytes outside DATA/560.13:', isoExtras.map(z => z.bytes.length).join(','));
   for (const m of models) {
     const outcome = scan(tape, candidates, m);
-    console.log(JSON.stringify(outcome));
+    console.log(JSON.stringify({source:'DATA/560.13', ...outcome}));
+    for (const extra of isoExtras) {
+      const other = scan(extra.bytes, candidates, m);
+      console.log(JSON.stringify({source:extra.name, ...other}));
+    }
   }
 }
 
