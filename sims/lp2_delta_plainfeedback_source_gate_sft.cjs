@@ -145,5 +145,84 @@ assert.deepEqual([affine.best[0].b, affine.best[0].k], [0, 0]);
 assert.ok(Math.abs(affine.best[0].withinPageIoc - 0.035405878181388385) < 1e-12);
 assert.ok(affine.best[1].withinPageIoc < 0.035);
 
+/** A fixed secret permutation cannot change the sorted output symbol histogram. */
+function nativeGP(text) {
+  const tokens = corpus.translit.map((s, i) => ({ s, i }))
+    .sort((a, b) => b.s.length - a.s.length);
+  const runes = [];
+  for (const raw of text.toUpperCase().match(/[A-Z]+/g) || []) {
+    const word = raw.replace(/QU/g, 'CW').replace(/V/g, 'U')
+      .replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+    for (let i = 0; i < word.length;) {
+      const token = tokens.find(v => word.startsWith(v.s, i));
+      assert.ok(token);
+      runes.push(token.i);
+      i += token.s.length;
+    }
+  }
+  return runes;
+}
+function sortedCounts(values) {
+  return counts(values).sort((a, b) => a - b);
+}
+const delta = pages.flatMap(page => page.indices.slice(1)
+  .map((v, i) => mod(v - page.indices[i])));
+assert.equal(delta.length, 12901);
+const observedSorted = sortedCounts(delta);
+assert.equal(observedSorted[0], 86);
+assert.equal(observedSorted[28], 510);
+
+// A prime+constant state law only translates every output bin, leaving the
+// ordered counts identical for prime, prime-1 and prime+1, for either sign.
+const allSecret = [];
+const controlFiles = [
+  'resources/control/shakespeare_first300k.txt',
+  'resources/control/emerson_essays_2944.txt',
+  'resources/control/gibran_prophet_58585.txt'
+];
+for (const file of controlFiles) {
+  const native = nativeGP(fs.readFileSync(path.join(__dirname, '..', file), 'utf8'));
+  const minima = [{ tv: Infinity }, { tv: Infinity }];
+  let windows = 0, lowestSourceMaximum = Infinity;
+  for (let offset = 0; offset + 12956 <= native.length; offset += 1301) {
+    windows++;
+    for (let j = 0; j < 2; j++) {
+      const sign = j === 0 ? 1 : -1;
+      const transformed = [];
+      let start = offset;
+      for (const page of pages) {
+        for (let i = 1; i < page.indices.length; i++) {
+          transformed.push(mod(native[start + i] +
+            sign * prime[native[start + i - 1]]));
+        }
+        start += page.indices.length;
+      }
+      const ranked = sortedCounts(transformed);
+      const totalVariation = ranked.reduce(
+        (sum, v, i) => sum + Math.abs(v - observedSorted[i]), 0
+      ) / (2 * transformed.length);
+      if (totalVariation < minima[j].tv) {
+        minima[j] = { tv: totalVariation, offset, sourceMaximum: ranked[28] };
+      }
+      lowestSourceMaximum = Math.min(lowestSourceMaximum, ranked[28]);
+
+      // A planted, completely secret 29-symbol alphabet permutation must
+      // preserve the sorted count profile precisely, with no key knowledge.
+      if (windows === 1 && j === 0) {
+        const permuted = transformed.map(x => (7 * x + 3) % 29);
+        assert.deepEqual(sortedCounts(permuted), ranked);
+      }
+    }
+  }
+  assert.ok(windows > 0);
+  assert.ok(minima.every(x => x.tv > 0.09));
+  assert.ok(lowestSourceMaximum >= 700);
+  allSecret.push({ control: file, windows, bestPlus: minima[0],
+    bestMinus: minima[1], lowestSourceMaximum });
+}
+assert.deepEqual(allSecret.map(x => x.windows), [159, 240, 39]);
 console.log(JSON.stringify({ source: 'unchanged LP2 pp0-55', runes: 12956, pages: 55,
-  nonlinearPrimeFeedback: results, affineDelta: affine }, null, 2));
+  nonlinearPrimeFeedback: results, affineDelta: affine,
+  allSecretPermutationGate: { observedMin: 86, observedMax: 510,
+    controlProfiles: allSecret } }, null, 2));
+
