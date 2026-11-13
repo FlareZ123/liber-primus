@@ -4,7 +4,7 @@
 
 ## Human route and source-independent constraint
 
-The black body of the manuscript's red-numbered 1–5 passage contains exactly five distinct paragraphs across physical pages 36, 37, and 38. Independently verified by original line/page segmentation, their GP-rune lengths are **139, 91, 98, 96, 129** (total **553**), and their printed word counts **30, 20, 25, 19, 28** (total **122**). Each paragraph has its own printed starting numeral, and p4 runs across the p37→38 page boundary.
+The black body of the manuscript's red-numbered 1–5 passage contains exactly five distinct paragraphs across physical pages 36, 37, and 38. Independently verified by original line/page segmentation, their GP-rune lengths are **139, 91, 98, 96, 129** (total **553**), and their printed word counts **30, 20, 25, 19, 28** (total **122**). Each paragraph has its own printed starting numeral, and p4 runs across the p37→38 page boundary. Their within-paragraph full-stop counts are **[1, 1, 1, 2, 2]**; the length-only matcher deliberately ignores these restrictive punctuation constraints.
 
 The [original transcript](../resources/liber-primus/lp2-transcription.txt) fixes the five exact ordered word-length fingerprints before any plaintext source is compared:
 
@@ -18,7 +18,7 @@ A plausible *but unproven* historical-literature hypothesis is that the unusual 
 
 ## Exact original test
 
-Read words as maximal ASCII A–Z spans and count GP symbols using greedy \`ING|TH|NG|EO|OE|AE|IA|EA|[A-Z]\`, matching the established corpus-wide crib convention. Form all six-word fingerprints for each of the five original paragraphs, search all source text positions, and extend every hit maximally in both directions. This generous **length-only** test ignores punctuation restrictions, so any literal source preserving both word lengths and punctuation would also have to pass the length test.
+Read words as maximal ASCII A–Z spans and count GP symbols using greedy `ING|TH|NG|EO|OE|AE|IA|EA|[A-Z]`, matching the established corpus-wide crib convention. Form all six-word fingerprints for each of the five original paragraphs, search all source text positions, and extend every hit maximally in both directions. This generous **length-only** test ignores punctuation restrictions, so any literal source preserving both word lengths and punctuation would also have to pass the length test.
 
 | Source edition / translator | Source words | Longest local match |
 | --- | ---: | ---: |
