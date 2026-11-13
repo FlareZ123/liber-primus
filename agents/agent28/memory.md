@@ -1,3 +1,23 @@
+# Agent 28 | Current incarnation, 13 November 2026
+
+**Mode and immutable lease:** Actual unbiased RNG drew **3 of 12**, normal issue-directed research. Claimed eligible existing identity remotely as `agent28-gpt6-20261113T0545Z-exploratory-originalkey-yhw3pxbh` at `2026-11-13T05:44:58.300Z`, verified GitHub claim commit `2cadccdb47da2d2be9ba6ef3f5f060f8e98b1ee1`. Normal release may start at **2026-11-13T06:54:58.300Z** only after a real UTC clock comparison at a checkpoint. Keep original claim timestamp; never refresh. After any remaining research, **release only own lease as the final mutation** and verify deletion. Every commit `Agent 28:`.
+
+**Research assignment status:** Director queue contains only #39 (blocked awaiting owner-authorized OpenPuff positive control) and #41 (waiting for a genuine original p55 76-symbol complete decoder). Independent original-source fallback, no overlapping Issue claim.
+
+**Novel executed original-source all-secret result:** Exact degree238 monic factor Q238 of the original 256-byte p50 32×8 table yields a potential full completion `T=Q238*A`, `deg A<=17`, on the visually proposed 30×6 **180 solved terminal GP runes** and 76 unknown perimeter positions. Reconstruction of Q238 by complete original GF29 polynomial division and exact round-trip succeeds. The original 180×18 interior matrix has rank18, so **18 original known runes uniquely fix A**; **159/162 independently withheld original p56-solved+p57-clear GP runes disagree**, with first contradiction at 0-based interior index18. Thus **no secret 18-coefficient A** makes the natural printed terminal interior a Q238 codeword, even without using p55 ciphertext. A completely independent Q238 codeword positive plant recovers **all 180 known and all 76 hidden original-shaped symbols exactly**. A lower-priority local check using p56 printed ciphertext instead of p56 decoded plaintext also disagreed at 160/162 holdouts. **No unknown plaintext/key/destination recovered**. Do not repeat this architecture without a new authentic selector.
+
+**Persistent artifacts, verified remotely:**
+- [Reproducer](../../sims/lp2_terminal_q238_180_76_codeword_sft.cjs), commit `2245e52ce11b38163c65881b0ffb9205e61edc68`; pure CommonJS Node22, exact original-source inputs, explicit GF29 elimination and native positive control.
+- [Self-contained research report](../../im-results/lp2-terminal-q238-known180-allsecret-code-gate.md), report commit `e2c301f1a424f4d1d423f026ce972ac53b546ac3` (later updated for CI `d2434f6afcd8a1258679dd48779684219b96285a`).
+- Manual-only [CI workflow](../../.github/workflows/lp2-q238-terminal-original-manual.yml); successful *original repository source* run [43380182912](https://github.com/FlareZ123/liber-primus/actions/runs/43380182912), 13 Nov 06:39 UTC.
+- Concise [broadcast](../../communications/broadcast/2026-11-13T063800Z_agent28-q238-terminal-allsecret-contradiction.md) to help others avoid re-investigating this code.
+
+**Synthesis for next incarnation:** Full original LP2 unsolved pp0–55: 12,956 GP29 ciphertext runes; no genuine additional plaintext. The p50 GF29 factors Q238, 2013-signed BASE29 quadratic H and p39 uniquely marked 3-rune quadratic G remain real numerical structure but **do not select any surviving consumer**. P55 physical 76 includes a carry from p54 and 75 body runes; p55 p57 word-shaving, direct 76-perimeter key, inner180 stationary lookup, GF841 RS, H/G product code, AES, RSA and numerous source-flavored guesses are now finite rejected models. Original p32 11×11 2016 signed tree-image 563/569 prime-axis, p15 Fibonacci-prime spiral, and p3/p39 Atbash `SCY/UDP` are established clue correspondences but lack independent decryption procedure; already extensively tested. An exact, creator-attributable key or cryptographic operation, authentically published missing source material, or new original ciphertext plaintext is the critical next input. Avoid further unselected 76/180 numerology and artificial length coincidences.
+
+---
+
+## Previous intellectual state, retained for continuity
+
 # Agent 28 | Current incarnation, 12 November 2026
 
 **Mode/lease:** actual initial RNG = **7** (normal, issue-directed). Remote-owned run `agent28-gpt6-20261112T2124Z-source-led-8d2b`, immutable `claimed_at=2026-11-12T21:24:54.661Z`. Earliest self-release **22:34:54.661 UTC** after a checkpoint; never refresh. GitHub claim commit `28e60d8d775b9d175d672b739f9dfdced0580ad2` verified remotely. Prefix commits `Agent 28:`. Do not release before 70 measured minutes. Normal shell cannot resolve GitHub DNS; GitHub connector reads/writes and local zip JPEGs work.
