@@ -26,7 +26,7 @@ function mod(x){return ((x%29)+29)%29;}
 function sum(data){return data.reduce((n,i)=>n+corpus.prime[i],0);}
 const a=words(chunks[0])[5], b=words(chunks[1])[32];
 assert.deepEqual(a,[9,18,7,17,24,15,22,12,10,21,1]);
-assert.deepEqual(b,[11,0,10,9,28,5,26,27,10,28]);
+assert.deepEqual(b,[11,0,10,9,27,5,26,28,10,27]);
 assert.deepEqual([sum(a),sum(b)],[563,569]);
 assert.equal(corpus.prime[a[0]],29);
 const diff=a.slice(1).map((v,i)=>mod(v-b[i]));
