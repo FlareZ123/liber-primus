@@ -4,7 +4,7 @@
 
 ## Decision and original input
 
-The 56 unsolved physical pages contain **83 complete one-rune words using 28 distinct GP29 ciphertext glyphs**, all GP indices except 5 (C). A cipher that preserves these words and maps the ordinary standalone English plaintext words **A** and **I** through k effective deterministic alphabet maps must have **k >= 14** over the entire manuscript. If one also allows the historical one-letter interjection **O**, k >= 10. Two effective maps per physical page are insufficient even for **p17 alone** under A/I, because that page has five one-rune words with five distinct ciphertext symbols.
+The 56 unsolved physical pages contain **83 complete one-rune words using 28 distinct GP29 ciphertext glyphs**, all GP indices except 5 (C). A cipher that preserves these words and maps the ordinary standalone English plaintext words **A** and **I** through k effective deterministic alphabet maps must have **k >= 14** over the entire manuscript. If one also allows the historical one-letter interjection **O**, k >= 10. Two effective maps per physical page are insufficient even for **p17 alone** under A/I, because that page has five one-rune words with five distinct ciphertext symbols. An independent, stronger **same-page-local-offset witness** rules out *every* page-reset identical deterministic rune-alphabet schedule for A/I: local rune offset 2 is a complete one-rune word on three distinct physical pages (p2, p25, p39), yet their ciphertext glyphs are three different GP symbols. This holds with unlimited different alphabets at different offsets as long as the same alphabet is reused across pages at the same local offset. A GP29 **additive** page-reset keystream fails even if A/I/O are allowed.
 
 The source is the existing canonical transcription at resources/lp2-transcription.txt parsed by sims/lp2_word_pages.cjs; all 2,896 canonical words reproduce the 12,956 unsolved original GP rune indices of resources/liber-primus/lp2-corpus.json. Its 32 cross-page words remain joined. The exact singleton GP-index histogram is:
 
@@ -35,6 +35,29 @@ A map changing for each word is allowed, but then its effective k could be as la
 | **Single page p17** | 5 | 5 | **3** | 2 | 2 |
 
 The nine chapter scopes follow independently established red-heading/previous-page-red-dot visual cuts; their clock-reset behavior remains unknown. The singleton bound applies to every scope independently, including p17's source-visible page boundary.
+
+## Cross-page fixed-offset contradiction: no identical page-reset alphabet schedule
+
+The source-verified complete singleton words at **zero-based local rune offset 2** are:
+
+| Original physical page | One-rune word | Cipher GP index |
+| --- | --- | ---: |
+| p2 | U | **1** |
+| p25 | G | **6** |
+| p39 | TH | **2** |
+
+The three words are each fully within their printed page, at the same **glyph clock** position. If all pages restart the **same deterministic symbol map** at each local position, the map used at offset 2 receives plaintext A or I on all three pages. Even a completely unknown and arbitrarily non-linear page-local map can output at most two different symbols from those two possible inputs, contradicting three source-observed outputs. This rules out a common reused page-start alphabet schedule with **any number of different positionwise maps** across the rest of the page, under the A/I and preserved-word hypotheses. Page-dependent IVs, different independently chosen page keys or arbitrary mutable hidden state escape the necessary assumption of a shared offset-2 mapping.
+
+A stronger bound applies if the same page-restarted *additive* GP29 keystream is proposed and historical vocative **O** is also allowed as plaintext. At offset 2, for any observed cipher symbol c, the unknown GP29 additive key K must belong to the set {c-24, c-10, c-3} modulo 29, corresponding to GP indices A=24, I=10, O=3. For original outputs 1, 6 and 2, the exact possible sets are:
+
+    p2:  [6,20,27]
+    p25: [11,25,3]
+    p39: [7,21,28]
+    intersection: EMPTY
+
+Thus **no single page-reset GP29 additive key at the offset 2** explains even these three one-rune words as A, I or O. This is a contradiction against *every possible page-reset keystream length, secret key value or within-page recurrence*, since all page clocks return to the same offset. It neither excludes independent page salts nor says anything about true plaintext of these unknown pages.
+
+The companion SFT validates the original page-local offsets from the transcript, then asserts both the three-distinct-output and empty-additive-key-set witnesses with no fitted parameters.
 
 ## Exact positive control and causal use
 

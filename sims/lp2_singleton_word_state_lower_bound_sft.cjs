@@ -75,6 +75,54 @@ function runPlant() {
   return {states:14,symbolsRecovered:decoded.length,distinctOutputs:new Set(observed).size};
 }
 
+/**
+ * Page-clock exact witness. At the same native page-local rune offset 2,
+ * printed complete singleton words appear on p2, p25, p39 with outputs
+ * U=1, G=6, TH=2. A reused deterministic page-local alphabet with only A/I
+ * inputs could have produced at most two different outputs here.
+ * A page-reset additive GP29 pad also cannot fit these three outputs
+ * when plaintext may be A/I/O (checked by exact intersection).
+ * @returns {{localIndex:number,witness:Array<{physicalPage:number,index:number}>,candidateKeysAIO:number[][],sharedAdditiveKeys:number[]}}
+ */
+function pageLocalSingletonWitness() {
+  const fs=require("node:fs");
+  const path=require("node:path");
+  const raw=fs.readFileSync(path.join(__dirname,"..","resources","lp2-transcription.txt"),"utf8");
+  const stream=raw.split("%").slice(0,55).join("%");
+  const runeMap=new Map(corpus.runes.map((r,i)=>[r,i]));
+  let page=0,local=0,current=[],begin=null;
+  const one=[];
+  function finish(){
+    if(current.length===1)one.push({...begin,index:current[0]});
+    current=[];
+  }
+  for(const ch of stream){
+    const index=runeMap.get(ch);
+    if(index!==undefined){
+      if(current.length===0)begin={physicalPage:physicalLP2Page(page),localIndex:local};
+      current.push(index);
+      local++;
+    }else if(ch==="%"){page++;local=0}
+    else if(ch==="/"||/\s/u.test(ch)){}
+    else finish();
+  }
+  finish();
+  assert.equal(one.length,83);
+  const witness=one.filter(w=>w.localIndex===2).map(
+    w=>({physicalPage:w.physicalPage,index:w.index}));
+  assert.deepEqual(witness,[
+    {physicalPage:2,index:1},
+    {physicalPage:25,index:6},
+    {physicalPage:39,index:2},
+  ]);
+  assert.equal(new Set(witness.map(w=>w.index)).size,3);
+  const candidateKeysAIO=witness.map(w=>[24,10,3].map(p=>(w.index-p+29)%29));
+  const sharedAdditiveKeys=candidateKeysAIO[0].filter(key=>
+    candidateKeysAIO.every(keys=>keys.includes(key)));
+  assert.deepEqual(sharedAdditiveKeys,[]);
+  return {localIndex:2,witness,candidateKeysAIO,sharedAdditiveKeys};
+}
+
 function main() {
   const {words,runeCount,crossPageWords}=parseSharedCorpus();
   assert.equal(words.length,2896);
@@ -96,7 +144,7 @@ function main() {
   assert.deepEqual(physical17.glyphs,[4,10,16,17,28]);
   assert.equal(physical17.minimumStates.two,3);
   console.log(JSON.stringify({source:{runes:runeCount,words:words.length,crossPageWords},
-    whole,chapters,physical17,positivePlant:runPlant(),
+    whole,chapters,physical17,pageLocal:pageLocalSingletonWitness(),positivePlant:runPlant(),
     scope:"Word boundaries preserved; at most m plaintext singleton types. No historical key."},null,2));
 }
 main();
