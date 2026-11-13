@@ -15,7 +15,7 @@ This *hypothesis* would recover one authentic plaintext symbol at each of the 86
 
 ## Fixed original-cipher test
 
-Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It passed [original GitHub Actions CI run 43486521807](https://github.com/FlareZ123/liber-primus/actions/runs/43486521807) and the expanded [all-29-marker CI run 43488629904](https://github.com/FlareZ123/liber-primus/actions/runs/43488629904), with unchanged source files and all locked original-corpus assertions. It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
+Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It passed [original GitHub Actions CI run 43486521807](https://github.com/FlareZ123/liber-primus/actions/runs/43486521807) and the expanded [all-29-marker CI run 43488629904](https://github.com/FlareZ123/liber-primus/actions/runs/43488629904). The nine-source-visual-chapter extension passes [CI run 43491025145](https://github.com/FlareZ123/liber-primus/actions/runs/43491025145) on unchanged original input and pinned controls. It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
 
 Before examining the original masks, it fixes three separate native-GP source references already held in `resources/control/`:
 
@@ -52,6 +52,24 @@ An independent objection to the distinguished GP index28/EA marker is that a dif
 | Corrected Beowulf | AE | 140.434 | 29.106 | 4.841 |
 
 This new result shows why treating rare original zero steps as *plaintext EA* is especially restrictive. A hypothetical Latin **G** exception is the nearest of these 87 finite source comparisons, yet still misses the original total count by **33.278 symbols** and is not selected by any historical author instruction. The English G control reproduces Agent4's previously reported 146/52.32 and joint z≈5.24 exactly. Rankings are conditional descriptive fits on an externally chosen set of source languages; they are not p-values for cipher identification. Even a better count fit would need an explicit source key/clock and predicted plaintext, so do not promote the winner into a decryption key.
+
+## What changes when the creator used a different cipher in each visual chapter?
+
+The global native-English EA-feedback discrepancy is **not** an all-chapters-at-once exclusion if separate visual chapters use distinct ciphers. The exact nine chapter divisions visible in original manuscript images (see the [original image atlas](../im-results/lp2-global-original-visual-section-map.md)) permit a stronger focused decision using the same locked source-language reference. Each printed word is assigned to its beginning physical page; same-page repeat events are counted without inventing ciphertext or missing key material.
+
+| Original visual chapter | Original equal steps: total/start | Expected source-English EA: total/start | Exact original EA masks absent from native-English word reference |
+| --- | ---: | ---: | ---: |
+| pp0–2 | 4 / 2 | 4.26 / 0.27 | 0 |
+| pp3–7 | 6 / 2 | 7.48 / 0.51 | 1 |
+| pp8–14 | 9 / 2 | 10.87 / 0.73 | 1 |
+| **pp15–22** | **10 / 0** | **12.011 / 0.797** | **0** |
+| pp23–26 | 11 / 2 | 6.51 / 0.42 | 1 |
+| pp27–32 | 13 / 5 | 8.97 / 0.61 | 2 |
+| pp33–39 | 12 / 4 | 10.46 / 0.71 | 0 |
+| pp40–53 | 20 / 6 | 20.53 / 1.38 | 0 |
+| pp54–55 | 1 / 0 | 0.42 / 0.02 | 0 |
+
+The **pp15–22 Fibonacci-square chapter** has 437 original printed words and 10 genuine equal-pair events; **no** marker occurs at a word start, while the reference predicts ~0.8. All ten repeated-rune sites admit a compatible EA location in the fixed English corpus. Thus this **specific chapter remains conditionally compatible** with the simple EA-encoded-exception model, unlike the strongest full-book word-start disagreement. The source-visible p15 Fibonacci/prime square offers an independently identifiable number generator in that same chapter. This narrows a possible intended human route to a *chapter-specific source-derived GF29 multiplier and feedback-state rule*. It does not provide the actual multiplier clock, initial state, or word rotation. The p54–55 comparison is far too small to select a mechanism. Do not infer decrypted EA letters from chapter-level compatibility alone.
 
 ## Research decision
 
