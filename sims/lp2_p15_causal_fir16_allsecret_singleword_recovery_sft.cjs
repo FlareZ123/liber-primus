@@ -233,9 +233,9 @@ function validatePlant(observed, knownPlain) {
     (_, index) => dot(observation(observed, index + WIDTH - 1), kernel));
   assert.deepEqual(output, knownPlain.slice(WIDTH - 1),
     'Recovered all 1729 non-IV native-GP planted symbols');
-  assert(oneRunes.includes(output[singles.at(-1)]));
+  assert(oneRunes.includes(output[singles.at(-1) - (WIDTH - 1)]));
   for (const site of doubles)
-    assert(allowedGP2[output[site] * Q + output[site + 1]],
+    assert(allowedGP2[output[site - (WIDTH - 1)] * Q + output[site + 1 - (WIDTH - 1)]],
       'Plant two-rune word should be in native-GP dictionary');
   return {kernel, singletonRank:rank};
 }
