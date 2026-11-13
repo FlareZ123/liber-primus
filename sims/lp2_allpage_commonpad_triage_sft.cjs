@@ -350,7 +350,79 @@ const screen={trainingRunes:trained.length,pairs:ranked.length,
   shiftedNullP95:+nullMax[151].toFixed(5),
   nullGreater,replicates:nullMax.length};
 
+
+/* The solved p57 "SHED OUR OWN CIRCUMFERENCES" words give exactly 55
+ * interior runes after shedding each word's two edge glyphs.
+ * Test those original-ordered 55 glyphs as page-specific additive offsets,
+ * while granting every page an arbitrary unknown shared position-stream K[t].
+ * This source-selected allocation must outperform equal-multiset shuffles.
+ */
+const finalPage = read("resources/liber-primus/lp2-transcription.txt").split("%").at(-1);
+const p57Words = finalPage.match(new RegExp("[" + gp.runes.join("") + "]+","gu"));
+assert.equal(p57Words.length,20);
+const sourcePageKeys = p57Words.flatMap(word => [...word].slice(1,-1))
+  .map(rune => gp.runes.indexOf(rune));
+assert.equal(sourcePageKeys.length,55);
+assert.equal(new Set(sourcePageKeys).size,17);
+assert.equal(sourcePageKeys.reduce((s,v)=>s+v,0),573);
+const allUnsolved = gp.pages.filter(p => p.status==="unsolved");
+assert.equal(allUnsolved.length,55);
+const pairRotations=[];
+for(let i=0;i<55;i++) for(let j=i+1;j<55;j++) {
+  const A=allUnsolved[i].indices,B=allUnsolved[j].indices;
+  const n=Math.min(A.length,B.length),rotated=new Float64Array(29);
+  for(let offset=0;offset<29;offset++) {
+    let old=(A[0]-B[0]-offset+58)%29,sum=0;
+    for(let k=1;k<n;k++) {
+      const next=(A[k]-B[k]-offset+58)%29;
+      sum+=weights[old*29+next];
+      old=next;
+    }
+    rotated[offset]=sum;
+  }
+  pairRotations.push({i,j,rotated});
+}
+assert.equal(pairRotations.length,1485);
+/** @param {number[]} k @param {number} sign */
+function pageKeyScore(k,sign) {
+  let sum=0;
+  for(const p of pairRotations) {
+    const offset=(sign*(k[p.i]-k[p.j])+58)%29;
+    sum+=p.rotated[offset];
+  }
+  return sum;
+}
+const keyScores=[pageKeyScore(sourcePageKeys,1),pageKeyScore(sourcePageKeys,-1)];
+let keySeed=0x5557f57;
+/** @returns {number} */
+function keyRandom() {
+  keySeed^=keySeed<<13;keySeed^=keySeed>>>17;keySeed^=keySeed<<5;
+  return keySeed>>>0;
+}
+const keyNull=[];
+for(let replicate=0;replicate<1500;replicate++) {
+  const perm=sourcePageKeys.slice();
+  for(let i=54;i>0;i--) {
+    const j=keyRandom()%(i+1);
+    [perm[i],perm[j]]=[perm[j],perm[i]];
+  }
+  keyNull.push(Math.max(pageKeyScore(perm,1),pageKeyScore(perm,-1)));
+}
+keyNull.sort((a,b)=>a-b);
+const sourceGreater=keyNull.filter(x=>x>=Math.max(...keyScores)).length;
+assert.equal(sourceGreater,1151);
+const p57PageKey={
+  originalSigns:keyScores.map(x=>+x.toFixed(5)),
+  keyLength:sourcePageKeys.length,
+  pairCount:pairRotations.length,
+  nullMedian:+keyNull[749].toFixed(5),
+  nullP95:+keyNull[1424].toFixed(5),
+  sourceGreater,replicates:keyNull.length,
+  conclusion:"55 original-order p57 interior page keys worse than most same-multiset shuffle controls; no common-pad decoder"
+};
+
 console.log(JSON.stringify({
+  p57PageKey,
   screen,
   source: "LP2 52 original unsolved rune-bearing pages with >=120 runes; page-local start 0",
   dictionary:{inputRows, gpDistinct:dictionary.size, trieNodes:trie.length},
