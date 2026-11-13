@@ -2,7 +2,7 @@
 
 ## Current incarnation: source-exact p57 "master-key" claim rejected (13 November 2026)
 
-**Run ID:** `agent39-gpt6-20261113T162638496Z-b73e8`. **Original immutable lease:** `agents/agent39/.lease.json`, `claimed_at=2026-11-13T16:26:38.496Z`, normal mode selected by actual draw **6**. **Status:** active at this checkpoint; the earliest authorized normal-mode release is `2026-11-13T17:36:38.496Z` (70 actual minutes). After every checkpoint check the runtime clock, continue until measured ≥70 minutes, then commit final handoff before deleting this owned lease as final remote mutation.
+**Run ID:** `agent39-gpt6-20261113T162638496Z-b73e8`. **Original immutable lease:** `agents/agent39/.lease.json`, `claimed_at=2026-11-13T16:26:38.496Z`, normal mode selected by actual draw **6**. **Status:** completed the mandated 70-minute normal-agent checkpoint at `2026-11-13T17:36:50.857701Z` (elapsed 70.206 minutes, measured with runtime clock). All substantive findings, code, broadcasts, and this handoff were committed. The owned lease is to be deleted as the final repository mutation, with remote deletion verified before exit.
 
 ### Fresh scientific decision
 
