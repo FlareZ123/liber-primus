@@ -76,6 +76,21 @@ function score(seq) {
 const controlScore = score(text);
 assert(Math.abs(controlScore + 2.2630996484763246) < 1e-10);
 
+// Held-out author-authentic original GP cleartext from LP1, distinct
+// from both the Shakespeare model and unknown LP2 ciphertext.
+const lp1Original = read("resources/transcriptions/lp1_wulfic_canonical.txt")
+  .split("%");
+const runeIndex = new Map(source.runes.map((rune,i)=>[rune,i]));
+const clearNativePages = [3,8,9,10,11,14].map(page =>
+  [...lp1Original[page]].filter(rune => runeIndex.has(rune))
+    .map(rune => runeIndex.get(rune)));
+assert.deepEqual(clearNativePages.map(page=>page.length),
+  [157,187,207,192,169,89]);
+const clearAuthorScore = clearNativePages.reduce((s,p)=>
+  s + (p.length-2)*score(p),0)
+  / clearNativePages.reduce((s,p)=>s+p.length-2,0);
+assert(Math.abs(clearAuthorScore + 2.4757345029752367) < 1e-10);
+
 // Native source plant: across four known plaintext lanes, exact inverse
 // reconstructs all 4*260 original GP symbols from the printed 4x4 matrix.
 const plant = Array.from({length:4}, (_,j) =>
@@ -105,6 +120,7 @@ console.log(JSON.stringify({
   sharedOffsetLength:length,
   testedRuneOutput:4*length,
   sourceNativeShakespeareTrigramControl:controlScore,
+  originalAuthorHeldoutClearLP1Score:clearAuthorScore,
   originalCipherTrigramScores:raw,
   exactNativePositivePlantRecovered:4*length,
   tests,
