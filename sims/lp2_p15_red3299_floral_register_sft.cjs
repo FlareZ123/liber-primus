@@ -540,6 +540,34 @@ assert.ok(Math.abs(Math.min(...power7Compounds.map((x) => x.ioc)) -
 assert.ok(Math.abs(Math.max(...power7Compounds.map((x) => x.ioc)) -
   0.03456493330669143) < 1e-12);
 
+
+// Distinct use of the same fully source-selected modular generator as an
+// additive stream: K[i] = (7^i mod3299) mod29, starting exponent0.
+// The genuine solved p56 provides the modulo29 additive operator; no
+// extra key, reset, skipped symbol, page phase or postselection is fitted.
+let gen7State = 1;
+const power7AddKey = [];
+for (let i = 0; i < modulus; i += 1) {
+  power7AddKey.push(gen7State % 29);
+  gen7State = (7 * gen7State) % modulus;
+}
+assert.deepEqual(power7AddKey.slice(0, 10),
+  [1, 7, 20, 24, 23, 22, 9, 4, 27, 7]);
+const power7PadOutput = [-1, 1].map((sign) => {
+  const decode = (x) => x.map((v, i) =>
+    (v + sign * power7AddKey[i] + 29) % 29);
+  const encode = (x) => x.map((v, i) =>
+    (v - sign * power7AddKey[i] + 29) % 29);
+  const decoded = decode(body);
+  assert.deepEqual(encode(decoded), body);
+  const sourceNative = Array.from({ length: modulus }, (_, i) =>
+    corpus.pages[57].indices[i % corpus.pages[57].indices.length]);
+  assert.deepEqual(decode(encode(sourceNative)), sourceNative);
+  return { sign, ioc: indexCoincidence(decoded) };
+});
+assert.ok(Math.abs(power7PadOutput[0].ioc - 0.03458386695271791) < 1e-12);
+assert.ok(Math.abs(power7PadOutput[1].ioc - 0.03457908758575977) < 1e-12);
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -552,6 +580,7 @@ console.log(JSON.stringify({
   floralRedHeadingPrimeSums: headingPrimeSums,
   floralAllRedPrimeSumAndP15CellNull: redSumExploratory,
   selectedHistoricalSevenRowPrimeTotient: sevenCompound,
+  power7AdditiveStream: power7PadOutput,
   sourceSelectedPower7Mod3299: {
     direct: directPower7,
     miNullUpperTail: (power7NullAboveMI + 1) / (null7Trials + 1),
