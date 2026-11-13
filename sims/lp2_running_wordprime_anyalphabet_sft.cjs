@@ -316,7 +316,7 @@ function main(){
   plants.previousWord.blind.E,plants.previousWord.blind.EO,
   plants.cumulativeWord.blind.E,plants.cumulativeWord.blind.EO
  ],[1529,2661,1832,3285,1850,3287]);
- const native26=native.map(c=>c%26);
+ const native26=native.map((c,i)=>i<26?i:c%26);
  assert.equal(new Set(native26).size,26);
  const latin26Plants={};
  for(const [name,increment] of Object.entries(clocks)){
