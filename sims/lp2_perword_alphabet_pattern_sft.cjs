@@ -177,6 +177,21 @@ const dictionary = read('resources/control/english_wordfreq_textblob.txt')
     code: encodeSourceNativeGP(line.split(' ')[0])}));
 assert.equal(dictionary.length, 29157);
 const patterns = new Set(dictionary.map(w => patternKey(w.code)));
+// The % page-break sensitivity: 32 adjacent rune fragments join when
+// physical page breaks are ignored. Alternatively break at EVERY page end,
+// retaining all original runes and the printed line-continuation convention.
+const pageLocalWords = read('resources/liber-primus/lp2-transcription.txt')
+  .split('%').slice(0, 55).flatMap(page =>
+    (page.replace(/\/\r?\n/g, '').match(runeRx) || []).map(w =>
+      [...w].map(glyph => glyphMap.get(glyph))));
+assert.equal(pageLocalWords.length, 2928);
+assert.equal(pageLocalWords.flat().length, 12956);
+const pageLocalLong = pageLocalWords.filter(w => w.length >= 10 && w.length <= 12);
+assert.equal(pageLocalLong.length, 97);
+const pageLocalLongMisses = pageLocalLong.filter(w =>
+  !patterns.has(patternKey(w))).length;
+assert.equal(pageLocalLongMisses, 37);
+
 const original = lengthTable(ciphertextWords, patterns);
 const registered = [[10,52,13],[11,32,10],[12,18,16]];
 for (const [length, n, misses] of registered)
@@ -334,6 +349,10 @@ if (require.main === module) {
     unknownRunes: 12956,
     unknownWords: ciphertextWords.length,
     dictionaryWords: dictionary.length,
+    pageBoundarySensitivity: {joinedWords: ciphertextWords.length,
+      independentPageWords: pageLocalWords.length,
+      independentPageWordsLength10to12: pageLocalLong.length,
+      independentPageLongMisses: pageLocalLongMisses},
     wordLengths10to12: registered.map(([length,n,misses]) => ({length,n,misses})),
     lowerBoundSymbolChanges: minChanged,
     afterArbitraryWithinWordTranspositionHistogramMisses: longHistogramMisses,
