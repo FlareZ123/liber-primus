@@ -108,6 +108,96 @@ const word13 = longWords.filter(s => encodeSourceNativeGP(s).length === 13);
 const possible13 = word13.filter(s =>
   encodeSourceNativeGP(s).every(i => symbolSet.has(i)));
 assert(word13.length > 100 && possible13.length < word13.length);
+assert.deepEqual(possible13, [
+  "circumscribed","circumscribes","irrepressible",
+  "schimmelbusch","shepherdesses","subscapularis"
+]);
+/**
+ * Necessary secret-tableau conditions for a period-N Bifid crib.
+ * Every cipher symbol has one fixed row and one fixed column. Bifid
+ * imposes coordinate equalities across the complete 75-rune body.
+ * A 5x5 tableau fails if any distinct original glyphs are forced
+ * into the same (row,column) cell or >5 glyphs share one axis.
+ * No cell coordinates or secret key are guessed.
+ *
+ * @param {(number|null)[]} partialPlain
+ * @param {number[]} sourceCipher
+ * @param {number} period
+ */
+function cribTableauGate(partialPlain, sourceCipher, period) {
+  assert.equal(partialPlain.length,75);
+  assert.equal(sourceCipher.length,75);
+  const parent=Array.from({length:50},(_,i)=>i);
+  const root=i=>{
+    while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}
+    return i;
+  };
+  const union=(a,b)=>{
+    a=root(a);b=root(b);
+    if(a!==b) parent[b]=a;
+  };
+  const variable=(symbol,axis)=>{
+    const slot=toSlot.get(symbol);
+    assert.notEqual(slot,undefined,"crib uses a glyph outside the fixed 25");
+    return 2*slot+axis;
+  };
+  for(let off=0;off<75;off+=period){
+    const count=Math.min(period,75-off);
+    for(let j=0;j<count;j++) for(let axis=0;axis<2;axis++){
+      const index=2*j+axis;
+      const p=off+(index%count);
+      if(partialPlain[p]===null)continue;
+      union(variable(sourceCipher[off+j],axis),
+        variable(partialPlain[p],index<count?0:1));
+    }
+  }
+  const cells=new Set(),rowSizes=new Map(),colSizes=new Map();
+  let duplicateCells=0;
+  for(let i=0;i<25;i++){
+    const row=root(2*i),col=root(2*i+1);
+    const key=row+","+col;
+    if(cells.has(key))duplicateCells++;
+    cells.add(key);
+    rowSizes.set(row,(rowSizes.get(row)||0)+1);
+    colSizes.set(col,(colSizes.get(col)||0)+1);
+  }
+  const largestRow=Math.max(...rowSizes.values());
+  const largestCol=Math.max(...colSizes.values());
+  return {
+    period,duplicateCells,largestRow,largestCol,
+    possible:duplicateCells===0&&largestRow<=5&&largestCol<=5
+  };
+}
+const sourceCipherWord13=body.slice(22,35);
+assert.equal(sourceCipherWord13.length,13);
+const originalThirteenWordGates=possible13.map(word=>{
+  const plain=Array(75).fill(null);
+  encodeSourceNativeGP(word).forEach((v,j)=>{plain[22+j]=v;});
+  const gates=[5,25,75].map(period=>
+    cribTableauGate(plain,body,period));
+  assert(gates.every(g=>!g.possible && g.duplicateCells>0));
+  return {word,gates};
+});
+// A real Bifid25 forward encryption MUST pass precisely the same
+// key-independent original-word graph gate, for all three periods.
+const plantPlain=sourceSlots.slice();
+const plantWord=encodeSourceNativeGP(possible13[0]);
+plantWord.forEach((v,j)=>{
+  const slot=toSlot.get(v);
+  assert.notEqual(slot,undefined);
+  plantPlain[22+j]=slot;
+});
+const positivePlain=Array(75).fill(null);
+plantWord.forEach((v,j)=>{positivePlain[22+j]=v;});
+for(const period of [5,25,75]){
+  const plantCipher=bifid(plantPlain,period,false).map(x=>symbols[x]);
+  const gate=cribTableauGate(positivePlain,plantCipher,period);
+  assert.deepEqual(gate,{
+    period,duplicateCells:0,largestRow:gate.largestRow,
+    largestCol:gate.largestCol,possible:true
+  });
+  assert.ok(gate.largestRow<=5&&gate.largestCol<=5);
+}
 console.log(JSON.stringify({
   status:"NO ORIGINAL LP2 PLAINTEXT RECOVERED",
   originalP55SourceRunes:p55.length, completeBodyRunes:body.length,
@@ -123,5 +213,8 @@ console.log(JSON.stringify({
   pinnedLexiconGP13Count:word13.length,
   lexicalGP13AllowedByOriginal25Set:possible13.length,
   allowedLexicalGP13Samples:possible13.slice(0,25),
+  exactOriginalP55SeventhWordGP:sourceCipherWord13.map(i=>gp.translit[i]).join(""),
+  allSecret5x5ThirteenWordGates:originalThirteenWordGates,
+  allSecretBifidPositivePlants:[5,25,75],
   exactInverseAndSourcePositivePlant:true
 },null,2));
