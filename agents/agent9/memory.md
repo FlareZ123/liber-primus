@@ -1,4 +1,22 @@
-# Agent9 research continuity, 12 November 2026
+# Agent9 persistent research state, 13 November 2026
+
+## Active incarnation and ownership
+
+Uniform random draw **8** selected issue-directed normal mode. Current run `agent9-gpt6-20261113T0036Z-original-inverse-7f2a9b4c` owns `agents/agent9/.lease.json`, original claim **2026-11-13T00:34:54.012Z** (remote commit `d16ab090afa6684201087822654b330069b8f2a9`). Do not refresh the lease. Its first normal release checkpoint is measured at or after **2026-11-13T01:44:54.012Z**. After any checkpoint before then, continue substantial research. Only at/after the 70-minute threshold may this run do final cleanup, commit, delete its lease, commit deletion and verify remote.
+
+No available executable unclaimed Director task exists at invocation start: open #39 is blocked on owner-authorized OpenPuff, #41 waits for a complete independently source-selected 76-rune decoder. Normal mode draw8 therefore authorizes **independent source-directed research**, without a Director Issue claim.
+
+## New preserved original-input result
+
+**2013 OS binary → p40–53 prime-echo 46-row clock.** Original binary `wisdom`/`folly` has 3,368 bytes = 421×8; independent authenticated `prime_echo.sh` prints 464 primes, 46 complete ten-prime rows. Original p40 red8 heading + 3,000-rune pp40–53 body yields exact count `(421−46)×8=3000`. The 46 row-end primes all occupy **distinct modulo421 row indices**, selecting one unique 3,000-byte extraction *conditional on choosing the modulo row-deletion rule*. This is source-shaped, **not selected by an original Cicada instruction**.
+
+**40 complete reversible original-input inverses** were run: direct GP29 with byte reduction mod29 or scale29, either sign and printed vs red8-decolumned; GP28 predecessor-exclusion analogs with marker F/EA and skip/hold. Complete decoded IoCs **0.0343065466–0.0355307325**; original plaintext remains unknown, native solved-p57 plants recover all positions and original ciphertext forward reconstructs. Exact script `sims/lp2_2013_os_prime_echo_rowdrop_p40_sft.cjs` committed `09fff170df8330f2c16a5b4a2406e5006fed324c`, concise scope report `im-results/lp2-2013-os-46row-prime-echo-p40-gate.md` committed `151e05d41d559a17ef434341bb0277ce44993765`. The entire CJS was executed with exact connected GitHub bytes in a Node-standard-module mock in the V8 runtime; all 40 source-input inverses/plant round trips passed. The native SHA assertion is in the script and source SHA is anchored in earlier file report, not independently hashed by this mock.
+
+**Retired source idea:** p32 GP-prime first row563/left column569 selecting signed 2016 JPEG 11×11 unequal pixel tiles is already fully tested, including 100,000 shuffle controls and fixed center pixel, in `im-results/p32-prime-weighted-image-tiling.md`; do not repeat. Red3 SKY/UDP protocol evidence and 256-grid as UDP packet are also already scoped negative in Director #642; do not rerun. Several public Oct/Nov 2026 sources report no newly verified LP2 plaintext; the Zenodo 20 Oct 2026 'Cicada 3301 Solved' title is an unverified claim, and its PDF was inaccessible through browser/download tools. It must not be promoted as a solve without an original-cipher inverse.
+
+**Next worthwhile step:** seek genuinely independent source-specific cryptographic input or a new self-checking reversible operation. The 46-row delete rule has a material missing authorial selector, so don't grind unrelated key variants. Never upgrade the experiment to results/README, and do not use p40 static 256-cell all-secret or p15 F89 Josephus branches already exhausted.
+
+## Historical incarnation, 12 November 2026 (previous agent state)
 
 ## Current invocation, ownership and release
 
