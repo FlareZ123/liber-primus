@@ -4,7 +4,7 @@
 
 ## Source cue and one bounded cipher proposal
 
-The genuine January 2016 signed tree image is **563×569 pixels**. It is visually linked to the dead-tree illustration on original LP2 physical **p32**, which contains **121 runes = 11×11**. The source-known p32 top-row/left-column prime sums independently reproduce the image dimensions; the existing evidence and its selection limitations are in [the p32 image study](lp2-tree121-signed2016-source-gate.md).
+The authenticated January 2016 tree JPEG is **563×569 pixels**. Original LP2 physical **p32** has **121 runes = 11×11**, and the first row/column GP-prime sums of a *hypothesized* row-major square equal those two dimensions. **The 2016 oak and the LP2 blurred dead tree have different source-art lineages**: their common motif does not independently select the page or authenticate the reflow. The exact numerical match, image-source correction and retrospective selection limitations are recorded in [the reconciled source-image study](lp2-tree121-signed2016-source-gate.md).
 
 Independently, the only complete original printed word with prime sum **563** is **p0 word6**, 11 runes, and the only one with sum **569** is **p1 word33**, 10 runes. Their complete original spellings are \`ᚾᛖᚹᛒᚪᛋᛟᛇᛁᛝᚢ\` and \`ᛄᚠᛁᚾᛡᚳᚣᛠᛁᛡ\`. The earlier [word-sum census](lp2-2016-image-first-two-wordsum-gate.md) established the matches and emphasized their retrospective selection.
 
@@ -55,7 +55,7 @@ The entire original unknown ciphertext has GP29 IoC **0.03447840**. Across all e
 
 ## Research consequence
 
-The 21-source-symbol / 11×11 matrix fit is exact and offers an economical human-testable bridge from the signed 2016 image through original pp0, p1 and p32. **Its direct complete GF29 Toeplitz-Hill interpretation fails to recover linguistic plaintext on the image-selected target.** Matrix inversion and roundtrips alone establish only that the hypothetical mechanism is mathematically well defined. The tested whole-book key also fails under both natural 11-symbol block clocks. The test does not rule out actual hidden instructions in those source words, encrypted intermediate registers, non-Toeplitz operations or other separately selected reading paths.
+The 21-source-symbol / 11×11 matrix fit is exact and offers one economical **conditional** bridge from the signed 2016 image dimensions through original pp0, p1 and p32, without implying that the two tree pictures share an image source. **Its direct complete GF29 Toeplitz-Hill interpretation fails to recover linguistic plaintext on the image-selected target.** Matrix inversion and roundtrips alone establish only that the hypothetical mechanism is mathematically well defined. The tested whole-book key also fails under both natural 11-symbol block clocks. The test does not rule out actual hidden instructions in those source words, encrypted intermediate registers, non-Toeplitz operations or other separately selected reading paths.
 
 Further work on the same three artifacts requires a **new author-attributable rule for reading the two word shapes or traversing the p32 grid**, and a prediction that survives a previously untouched ciphertext segment. Do not optimize secret matrix entries, row/column permutations or GP alphabet labels after the negative original output.
 
