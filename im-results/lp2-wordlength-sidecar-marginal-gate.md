@@ -55,6 +55,16 @@ For a page with \(L\) runes and \(k\) interior breaks, an interior rune is singl
 
 **Reproducer:** [original-input single-file CommonJS SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs), run with Node 22 and the committed canonical transcription; the SFT asserts the exact source counts and both nulls. Reuse the existing manual-only [word-length grammar workflow](../.github/workflows/lp2-wordlength-grammar-original-manual.yml).
 
+## Does the 32 cross-page carry count index the 32 table rows?
+
+An independent source-count coincidence is that **exactly 32 complete words cross original physical LP2 rune-page boundaries**, and the pp49–51 numerical table has **32 rows** of eight tokens. The count could tempt a one-row-per-carried-word decoder, but its evidential specificity must first be assessed against the manuscript's actual page layout.
+
+The nine original visual chapters have eight guaranteed word-ending chapter boundaries, and there are **46** other page turns. Of those 46, **14** already end at complete words; therefore **32** carry a word across the next rune-bearing page. Preserving the original lengths of **all 2,896 individual words**, nine chapter groupings, every physical page's rune count and the eight mandatory chapter word-breaks, independently shuffle complete words **within their own chapter**. Count page turns that land inside a word under each shuffled layout. Across **30,000** deterministic Fisher–Yates controls (seed \`0x33013232\`), the count of carried words has mean **35.7070**, SD **2.8268**, range **22–45**; **3,842/30,000** controls have **32 or fewer** carries (one-sided empirical tail **0.12810**), and **1,666** have exactly 32. The count match to 32 table rows is therefore **ordinary** under this source-chapter-conditioned model.
+
+This does not exclude a specifically selected *content* correspondence between 32 carried words and table rows. It withdraws the **shared cardinality alone** as evidence for a row assignment or byte-decoding operation. In particular, a putative direct mapping of "number of runes before the page turn = one of eight table columns" needs its own overflow rule: three source-original carried words have **9 or 10** pre-turn runes, outside eight columns. A source-fixed mapping, byte/rune consumer, and independent plaintext prediction remain missing.
+
+The same [CommonJS SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs) now reproduces this chapter-local count gate, alongside the uniform-spacing theorem. This is a decision on a count coincidence, not a universal exclusion of every carry-based cipher.
+
 ## Decision for Director #723
 
 The 2016 signed clue says, with authenticated wording, that Liber Primus's words are the map, their meaning the road, and their numbers the direction ([historical source](../resources/cicada2016-4gq25.md)). It does **not** identify printed *rune lengths* as those numbers, specify parity/digits/ranks, give a decoding clock, select a stopping rule, or say how ordinary plaintext word boundaries are recovered. Without one such rule, **there is no source-selected reversible word-length exception decoder** or original ciphertext prediction. No 40-rune plaintext, recovered key, or forward-encrypted LP2 inverse is claimed.
