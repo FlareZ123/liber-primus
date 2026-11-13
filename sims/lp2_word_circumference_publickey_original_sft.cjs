@@ -239,4 +239,104 @@ console.log('TOTIENT extension: 12 source-seeded prime clocks, max 3/815 diction
 console.log('TOTIENT length>=8: all 0/343, positive native plants 9780/9780');
 console.log('TOTIENT details: ' + JSON.stringify(totientOutcome));
 
+
+/*
+ * Exact native plaintext-F skip sensitivity. In the historically
+ * authenticated p56/LP1 rule, a plaintext F (=GP ordinal 0) passes as
+ * ciphertext F and consumes no key. A ciphertext F can also be a
+ * normally encrypted non-F letter. Exhaust BOTH branches at each F,
+ * rejecting any key-consuming branch that would output plaintext F.
+ * The first and last ciphertext runes still supply the public word seed.
+ */
+
+/**
+ * @param {number[]} ciphertext
+ * @param {(w:number[])=>number} start
+ * @param {number} sign
+ * @param {number[]|null} expected
+ * @returns {boolean}
+ */
+function hasNativeFTransparentInverse(ciphertext, start, sign, expected = null) {
+  const body = ciphertext.slice(1, -1);
+  const seed = start(ciphertext);
+  /** @type {number[]} */
+  const plain = [];
+  /** @param {number} position @param {number} consumed @returns {boolean} */
+  function visit(position, consumed) {
+    if (position === body.length) {
+      return expected
+        ? plain.length === expected.length && plain.every((v, i) => v === expected[i])
+        : dictionary.has(plain.join(','));
+    }
+    const c = body[position];
+    if (c === 0) {
+      plain.push(0);
+      if (visit(position + 1, consumed)) return true;
+      plain.pop();
+    }
+    const p = mod29(c + sign * (first150Primes[seed + consumed] - 1));
+    if (p === 0) return false; // Historical non-F branch is not legal.
+    plain.push(p);
+    if (visit(position + 1, consumed + 1)) return true;
+    plain.pop();
+    return false;
+  }
+  return visit(0, 0);
+}
+
+/**
+ * @param {number[]} original
+ * @param {number[]} plaintextInterior
+ * @param {(w:number[])=>number} start
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function encryptNativeFTransparentInterior(original, plaintextInterior, start, sign) {
+  const seed = start(original);
+  let consumed = 0;
+  const encryptedInterior = plaintextInterior.map((p) => {
+    if (p === 0) return 0;
+    return mod29(p - sign * (first150Primes[seed + consumed++] - 1));
+  });
+  return [original[0], ...encryptedInterior, original[original.length - 1]];
+}
+
+let fPlants = 0;
+const fOutcomes = [];
+const nativeFWord = encodeEnglish('SURFACE');
+assert.deepEqual(nativeFWord.length, 7);
+assert.ok(nativeFWord.slice(1, -1).includes(0));
+const originalSeven = eligible6.find((w) => w.length === nativeFWord.length);
+assert.ok(originalSeven);
+for (const [name, start] of Object.entries(starts)) {
+  for (const sign of [-1, 1]) {
+    let hits6 = 0;
+    let hits8 = 0;
+    for (const original of eligible6) {
+      const match = hasNativeFTransparentInverse(original, start, sign);
+      if (match) {
+        hits6++;
+        if (original.length >= 8) hits8++;
+      }
+      const native = sampleByLength.get(original.length).slice(1, -1);
+      const planted = encryptNativeFTransparentInterior(original, native, start, sign);
+      assert.ok(hasNativeFTransparentInverse(planted, start, sign, native));
+      fPlants++;
+    }
+    const plantedF = encryptNativeFTransparentInterior(
+      originalSeven, nativeFWord.slice(1, -1), start, sign);
+    assert.ok(hasNativeFTransparentInverse(
+      plantedF, start, sign, nativeFWord.slice(1, -1)));
+    fPlants++;
+    fOutcomes.push({name, sign, hits6, hits8});
+  }
+}
+assert.equal(fPlants, 9792);
+assert.equal(fOutcomes.length, 12);
+assert.equal(Math.max(...fOutcomes.map((x) => x.hits6)), 4);
+assert.ok(fOutcomes.every((x) => x.hits8 === 0));
+console.log('NATIVE-F bypass: 12 complete ambiguous-clock variants, max 4/815; all 0/343 >=8');
+console.log('NATIVE-F positive plants: 9792/9792 including literal plaintext F at SURFACE interior');
+console.log('NATIVE-F details: ' + JSON.stringify(fOutcomes));
+
 console.log('VERDICT: no unknown plaintext/key under this declared model.');
