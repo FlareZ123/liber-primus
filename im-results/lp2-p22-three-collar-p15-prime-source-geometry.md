@@ -19,6 +19,8 @@ The [standalone reproducer](../sims/lp2_p22_p15_prime_collars_original_sft.py) r
 | **130** | **765.97, 1033.33, 1493.42** | **267.36, 460.09** |
 | 170 | 766.30, 1034.11, 1494.19 | 267.81, 460.08 |
 
+**Conditional third-collar prediction using only the first measured gap:** Given source x1=765.97 and x2=1033.33, the first gap is 267.36 px. Select the nearest established p15 Fibonacci-indexed prime **263** (spiral step n9), without looking at the third collar. The very next p15 spiral step is prime **463**, predicting third x=1033.33+463=**1496.33**. The original third source collar is at **1493.42**, residual **−2.91 px**. Across all six threshold cutoffs the predicted third-collar error remains between −3.70 and −2.81 px. This is a concrete source-shaped **conditional physical prediction** but it was devised *after* the complete illustration had already been viewed; it is not a blind holdout or a calibrated p-value.
+
 At threshold 130, the differences from p15's established adjacent pair **[263,463]** are **+4.36 px, −2.91 px**. The total first-to-third center distance 727.45 px differs from 263+463=726 by only 1.45 px. The independent cutoff family 70–170 gives Euclidean paired errors 5.23–5.85 px. The closest *other* adjacent pair in the original p15 series is about 230 px away under the same unscaled comparison. **No independent third prime distance is claimed**: the ink object begins ambiguously relative to the first wide collar, and the right-edge dots obscure the terminal point.
 
 ## A concrete conditional word-map readout, including a solved-page landing
