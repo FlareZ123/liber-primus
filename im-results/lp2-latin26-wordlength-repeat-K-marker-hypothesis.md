@@ -6,16 +6,16 @@
 
 Parsing the unchanged `resources/lp2-transcription.txt`, joining line wraps and page-continuation words but preserving hyphen/period punctuation, yields exactly 2,896 printed word lengths, 12,956 symbols, mean **4.473756906** symbols/word; **343 words of length eight or longer**. The full source word-length histogram for lengths 1 through 14 is **[83,448,720,513,317,256,216,156,78,52,32,18,4,3]**. Of the 86 literal within-page equal-successor positions, **21 occur inside words length≥8** and **23 at the first rune of a printed word**.
 
-For each of four independent English references, compare the full 14-bin original printed-word histogram with that reference's ordinary Latin-letter word lengths and with its GP29 lengths after K/Q→C, V→U, Z→S, and greedy TH/NG/EO/OE/AE/IA/EA contraction. The reported divergence is the plain empirical `D_KL(original length distribution || reference length distribution)` in natural units. This is a **fixed-corpus comparison**, not a calibrated author-attribution probability.
+For each of four English references, compare the original 14-bin printed-word histogram with ordinary Latin-letter word lengths, legacy GP29 lengths (K/Q→C, V→U, Z→S, greedy TH/NG/EO/OE/AE/IA/EA), and a second GP29 encoding using the **source-calibrated spelling** established on solved LP1 p10–13 and independently checked on solved LP2 p57 (QU→CW, V→U, K/Q→C, Z→S, with ING and IO each emitted as one rune before the remaining GP tokens). This is a sensitivity check, not a claim that every unknown word follows one universal spelling convention. The reported divergence is the plain empirical `D_KL(original length distribution || reference length distribution)` in natural units. This is a **fixed-corpus comparison**, not a calibrated author-attribution probability.
 
-| Reference | Latin mean | GP29 mean | D_KL Latin | D_KL GP29 |
-| --- | ---: | ---: | ---: | ---: |
-| Gibran, *The Prophet* (15,733 words) | 4.228119 | 4.011568 | **0.0151343** | 0.0357228 |
-| Shakespeare (55,407 words) | 4.141137 | 3.948960 | **0.0371898** | 0.0408087 |
-| Emerson, *Essays* (77,932 words) | 4.367577 | 4.165555 | **0.0117786** | 0.0427927 |
-| Editor-normalized solved Cicada LP1/LP2 (875 words) | 4.276571 | 4.068571 | **0.0358001** | 0.0473153 |
+| Reference | Latin mean | Legacy GP29 mean | Source-calibrated GP29 mean | D_KL Latin | D_KL legacy GP29 | D_KL source-calibrated GP29 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Gibran, *The Prophet* (15,733 words) | 4.228119 | 4.011568 | 3.972033 | **0.0151343** | 0.0357228 | 0.0404515 |
+| Shakespeare (55,407 words) | 4.141137 | 3.948960 | 3.918386 | **0.0371898** | 0.0408087 | 0.0475132 |
+| Emerson, *Essays* (77,932 words) | 4.367577 | 4.165555 | 4.123171 | **0.0117786** | 0.0427927 | 0.0424581 |
+| Editor-normalized solved Cicada LP1/LP2 (875 words) | 4.276571 | 4.068571 | 4.011429 | **0.0358001** | 0.0473153 | 0.0376216 |
 
-**In all four controls, the observed unknown printed-word lengths are closer to the Latin register than to the contracted GP29 register.** The comparison is sensitive to prose style, editorial normalization, and the possibility that the printed boundaries are cipher output rather than plaintext boundaries. Its value is architectural: previous necessary-condition screens treated the printed words as GP29-encoded plaintext words, so their negative results cannot automatically be extended to ordinary 26-letter input.
+**The observed printed-word lengths remain closer to the Latin register than to either GP29 encoding in all four controls.** The source-calibrated GP spelling changes the margin substantially for solved Cicada (0.03580 versus 0.03762) and slightly for Emerson, but it does not reverse the ranking. This confirms that the Latin-register observation is not an artifact of omitting the newly authenticated ING/IO contractions. The comparison remains sensitive to prose style, editorial normalization, and the possibility that printed boundaries are cipher output rather than plaintext boundaries; it is an architectural discriminator, not evidence of Latin plaintext or a recovered cipher. Previous GP29-only necessary-condition screens therefore cannot automatically be extended to ordinary 26-letter input.
 
 ## One explicit rare-marker mechanism worth discriminating
 
