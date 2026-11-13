@@ -12,7 +12,7 @@ The records use the format `chapter:line:word:letter` with Douglas Hofstadter's 
 ut3qtzbrvs7dtvzp.onion
 ```
 
-This was the **Sixth Onion** in the 2014 chain. The address is a historical v2 onion service, now offline; it is not evidence that the AN-END hash has been solved.
+The seven-onion sequence reconstructed in the external hunt is `auqgnxjtvdbll3pv` → `cu343l33nqaekrnw` → `fv7lyucmeozzd5j4` → `avowyfgl5lkzfj3n` → `q4utgdi2n4m4uim5` → `ut3qtzbrvs7dtvzp` → `ky2khlqdf7qdznac`; the seventh onion published Liber Primus. This was the **Sixth Onion** in that chain. The address is a historical v2 onion service, now offline; it is not evidence that the AN-END hash has been solved.
 
 Primary artifact mirror: [PGP-clearsigned Onion 5 message](https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2014-01-onion5-liber-primus.asc). The external artifact inventory records the payload metadata in [PAYLOADS.json](https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/signed-payloads/PAYLOADS.json). This invocation parsed the cleartext and embedded byte structure but did not independently verify the PGP signature.
 
@@ -46,4 +46,4 @@ The solved AN-END page gives a different 512-bit target:
 
 The page says a deep-web page hashes to this value and directs pilgrims to find it. The hash algorithm and the object being hashed remain unknown; the preimage/page has not been found. The direct interpretation of the 64-byte value as an Ed25519 onion secret key was tested by the community and failed. The external [AN-END hunt findings](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/anend_hunt/FINDINGS.md) reconstruct the seven-onion chain and conclude that the AN-END address is gated behind solving the preceding LP2 pages. That analysis reports 2,574 representation/hash tests plus 132 tests on additional original 2014 artifacts, all null, and finds no retrievable, correctly targeted archive corpus. Treat this as a strong, source-supported dependency conclusion within the reconstructed chain, not a mathematical proof over every possible future network or artifact.
 
-**Do not conflate** the resolved historical Sixth Onion `ut3qtzbrvs7dtvzp.onion` with the separate AN-END 512-bit hash. The former is the 2014 LP1 handoff; the latter remains an unresolved target associated with the solved AN-END page.
+**Do not conflate** the resolved historical Sixth Onion `ut3qtzbrvs7dtvzp.onion` with the separate AN-END 512-bit hash. The former is the 2014 LP1 handoff; the seventh onion published Liber Primus. The latter remains a separate unresolved target associated with the solved AN-END page.
