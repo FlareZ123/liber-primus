@@ -1,6 +1,6 @@
 # Original printed-word-length crib search against independent historical sources
 
-**Agent22 / Agent11, 12–13 November 2026.** Source-fingerprint reconnaissance, not recovered plaintext. The complete unsolved original LP2 printed word clock has **2,896 words** and **12,956 GP29 runes** on physical pp0–49 and 51–55. A passage copied verbatim from another text with *preserved word boundaries* should share a long sequence of GP-normalized printed word lengths; a genuine long match could supply an independently selected plaintext crib for the original cipher.
+**Agent22 / Agent11 / Agent13, 12–13 November 2026.** Source-fingerprint reconnaissance, not recovered plaintext. The complete unsolved original LP2 printed word clock has **2,896 words** and **12,956 GP29 runes** on physical pp0–49 and 51–55. A passage copied verbatim from another text with *preserved word boundaries* should share a long sequence of GP-normalized printed word lengths; a genuine long match could supply an independently selected plaintext crib for the original cipher.
 
 ## Source normalization and positive control
 
@@ -19,6 +19,8 @@ The deterministic scanner hashes each original eight-word window and extends eve
 | Emerson, *Essays: First Series* | 77,932 | 25 | 9 |
 | Blake, *A Song of Liberty* excerpt | 479 | 0 | <8 |
 | Blake, full *The Marriage of Heaven and Hell* | 7,778 | 3 | 8 |
+| **Mabinogion, *The Lady of the Fountain* (authenticated 2012 book-code chapter, PG5160)** | **10,400** | **12** | **9** |
+| **Mabinogion, full PG5160 text** | **111,275** | **124** | **11*** |
 | Solved LP1/LP2 reference | 942 | 0 | <8 |
 | Latin Vulgate NT GP-normalized words | 39,835 | 7 | 9 |
 | Old English *Beowulf* GP-normalized words | 10,885 | 4 | 8 |
@@ -35,8 +37,10 @@ For example, Crowley chapter II source words 181–188 (zero-based) read “pure
 
 **Historical source distinction.** The first 2012 book-code stage used *The Mabinogion*; the **2012 second-chance stage** used a Cicada-provided *Marriage of Heaven and Hell* image as the book-code text ([archived explanation](https://uncovering-cicada.fandom.com/wiki/The_second_chance_%282012%29)). The full [Gutenberg Blake #45315](../resources/external/cicada2012-blake-marriage-gutenberg45315.txt) contains that work but is **not the original cropped, line-numbered image** for reproducing its historical book code; it is a candidate full-book crib donor. Crowley's *Book of the Law* was the independently documented 2013 book-code source. The scan does not imply any of these book codes specifies an LP2 cipher.
 
+The historically selected 2012 source has now been screened directly. The word-length profile is derived from [Project Gutenberg eBook #5160](https://www.gutenberg.org/ebooks/5160), Lady Charlotte Guest's *The Mabinogion*, using the version-pinned [GITenberg text](https://github.com/GITenberg/The-Mabinogion_5160/blob/86b1521ce54ddae3caaa235a6fb04a9ae67f2370/5160-0.txt) (commit `86b1521ce54ddae3caaa235a6fb04a9ae67f2370`, blob `fd9db1c7bc90e11d41433b7cc2ec3b7e1ccb0cd7`). The chapter span is the first `THE LADY OF THE FOUNTAIN` heading (character 16,923) through, but excluding, the next `PEREDUR THE SON OF EVRAWC` heading (character 72,445). The derived GP29 profiles and exact null reproducer are retained at [profile](../resources/external/cicada2012-mabinogion-gutenberg5160-gp-wordlengths.json) and [SFT](../sims/lp2_mabinogion_wordlength_gate.cjs).
+
 ## Result and constraints
 
-**None of these twelve pinned text records contains a ten-word exact GP-length profile matching the unknown LP2 tape.** For the historically authenticated Crowley source, the longest is eight words, indistinguishable at present from short accidental matches. This excludes only preserved-boundary, verbatim source spans of ten or more words under the exact normalization, editions and corpus windows tested. It does not rule out shorter quotations, different editions, reordered words, paraphrases, independently generated plaintext, other languages, or letter-changing algorithms that alter word lengths.
+**No source-specific ten-word crib is supported by the 14 pinned profiles.** The authenticated 2012 *Mabinogion* chapter *The Lady of the Fountain* has 12 matching eight-word windows and a longest run of nine; the page-local maximum is also nine. The full PG5160 book has an 11-word run, but it is not discriminating: 250 Fisher–Yates shuffles of its word-length sequence (xorshift32 seed `0x3301`) have median longest run 10, 95th percentile 11, maximum 12, and 78/250 at least 11. Thus the full-book 11-word coincidence is ordinary under a source-multiset-preserving null, while the specific historical chapter yields no ten-word match. The authenticated 2013 Crowley chapters still max at eight. This excludes only preserved-boundary, verbatim source spans under the exact normalization, editions and corpus windows tested. It does not rule out shorter quotations, different editions, reordered words, paraphrases, independently generated plaintext, other languages, or letter-changing algorithms that alter word lengths.
 
 The script asserts all input and result counts, the independent solved-page control, and planted matching. The useful next decision is a new source-grounded **long** exact crib or a reversible original-data cipher operator. Neither is supplied by this experiment. No unknown LP2 plaintext/key has been recovered.
