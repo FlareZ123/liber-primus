@@ -238,6 +238,7 @@ const output = {
     withinWord: ac1OfGaps(withinSites),
     acrossWord: ac1OfGaps(crossSites)
   },
+  allSitesConditionalNull: conditionalGapTest(allSlots, allSites, 10000, 0x7a71c0de),
   withinWordConditionalNull: conditionalGapTest(withinSlots, withinSites, 10000, 0x7a71c0de),
   acrossWordConditionalNull: conditionalGapTest(crossSlots, crossSites, 10000, 0x7a71c0de),
   chapterWindows: {
