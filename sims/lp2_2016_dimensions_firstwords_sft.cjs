@@ -284,6 +284,68 @@ for (const a of compass) for (const b of compass) for (const c of compass)
 assert.ok(anyCompassTripleWith563 > 0);
 assert.ok(exactNEWWordsumProbability < anyCompassTripleWith563);
 
+// A different, literal possible consumer of the source-selected opening
+// word is a change of numerical radix. BASE29 is a historically attested
+// Cicada command, whereas a 59/60-letter digit alphabet for the LP2 table
+// is only a conventional hypothesis. The source DOES NOT spell NEW BASE:
+// after NEWBAS the next rune is OE, not E.
+const newBasPrefix = ['N', 'E', 'W', 'B', 'A', 'S']
+  .map(token => corpus.translit.indexOf(token));
+assert.deepEqual(rowKey.slice(0, 6), newBasPrefix);
+assert.equal(sourceWords.filter(word =>
+  word.runes.length >= 6 &&
+  word.runes.slice(0, 6).every((value, i) =>
+    value === newBasPrefix[i])).length, 1);
+assert.notEqual(rowKey[6], corpus.translit.indexOf('E'));
+
+const p50Numeral = JSON.parse(fs.readFileSync(
+  path.join(ROOT, 'resources/liber-primus/base60-grid.json'), 'utf8'));
+assert.equal(p50Numeral.alphabet.length, 60);
+
+/** Positional base29 original word to its ordinary unpadded radix-N digits. */
+function rebaseWord(sourceIndices, targetRadix, digitAlphabet) {
+  let value = sourceIndices.reduce((sum, rune) =>
+    sum * 29n + BigInt(rune), 0n);
+  let result = '';
+  do {
+    result = digitAlphabet[Number(value % BigInt(targetRadix))] + result;
+    value /= BigInt(targetRadix);
+  } while (value > 0n);
+  return result;
+}
+
+/** Exact positive-control inverse on an externally chosen uppercase word. */
+function base29NumeralOf(word, radix, alphabet) {
+  let value = [...word].reduce((sum, letter) =>
+    sum * BigInt(radix) + BigInt(alphabet.indexOf(letter)), 0n);
+  const runes = [];
+  do {
+    runes.unshift(Number(value % 29n));
+    value /= 29n;
+  } while (value > 0n);
+  return runes;
+}
+const sourceWordRadixGates = [59, 60].map(radix => {
+  const alphabet = p50Numeral.alphabet.slice(0, radix);
+  const allOutputs = sourceWords.map(word =>
+    rebaseWord(word.runes, radix, alphabet));
+  const firstTwoOutputs = firstTwo.flatMap(page =>
+    page.words.map(word => rebaseWord(word, radix, alphabet)));
+  assert.equal(rebaseWord(base29NumeralOf('HELLO', radix, alphabet),
+    radix, alphabet), 'HELLO');
+  const originalUppercase = allOutputs.filter(w => /^[A-Z]+$/.test(w)).length;
+  const firstTwoUppercase = firstTwoOutputs.filter(w => /^[A-Z]+$/.test(w)).length;
+  const widthWord = rebaseWord(rowKey, radix, alphabet);
+  const heightWord = rebaseWord(columnKey, radix, alphabet);
+  return {radix, originalUppercase, firstTwoUppercase, widthWord, heightWord};
+});
+assert.deepEqual(sourceWordRadixGates, [
+  {radix: 59, originalUppercase: 189, firstTwoUppercase: 6,
+    widthWord: 'RYriPRWG4', heightWord: '15BR2c2dI'},
+  {radix: 60, originalUppercase: 188, firstTwoUppercase: 6,
+    widthWord: 'O7DTNDFbK', heightWord: 'v48oELtj'}
+]);
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -307,6 +369,8 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  possibleNewBasePrefixAndLiteralRadix: {originalPrefix: 'NEWBAS',
+    followingRune: 'OE', gates: sourceWordRadixGates},
   compassSourcePrefix: {sourceWord: 'p0 word 6', originalPrefix: 'NEW',
     allThreeCompassPrefixLocations: compassPrefixWords.map(w => [w.page,w.word]),
     fixedWordExactNEWSum563Chance: exactNEWWordsumProbability,
