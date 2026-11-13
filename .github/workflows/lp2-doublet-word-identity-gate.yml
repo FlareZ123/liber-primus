@@ -30,5 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lp2-doublet-word-identity-results
-          path: |\n            ${{ runner.temp }}/word-identity-results.json\n            ${{ runner.temp }}/word-crib-results.json
+          path: |
+            ${{ runner.temp }}/word-identity-results.json
+            ${{ runner.temp }}/word-crib-results.json
           if-no-files-found: warn
