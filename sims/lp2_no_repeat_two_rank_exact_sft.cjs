@@ -196,21 +196,24 @@ assert.equal(individual.reduce((n,p)=>n+p.maximum,0),2379);
 const tokens=corpus.translit.map((token,index)=>({token,index}))
   .sort((a,b)=>b.token.length-a.token.length);
 /** @param {string} source @returns {Uint8Array} */
-function gp(source, sourceCalibration=false) {
+function gp(source, sourceCalibration=false, consonantsOnly=false) {
   const words=source.toUpperCase().replace(/QU/g,'CW').replace(/V/g,'U')
     .replace(/[KQ]/g,'C').replace(/Z/g,'S').match(/[A-Z]+/g)||[];
   const out=[];
-  for (const word of words) for(let i=0;i<word.length;) {
-    if (sourceCalibration && word.startsWith('ING',i)) {
+  for (const originalWord of words) {
+    const word=consonantsOnly ? originalWord.replace(/[AEIOU]/g,'') : originalWord;
+    for(let i=0;i<word.length;) {
+    if (sourceCalibration && !consonantsOnly && word.startsWith('ING',i)) {
       out.push(21);i+=3;continue;
     }
-    if (sourceCalibration && word.startsWith('IO',i)) {
+    if (sourceCalibration && !consonantsOnly && word.startsWith('IO',i)) {
       out.push(27);i+=2;continue;
     }
     const x=tokens.find(t=>word.startsWith(t.token,i));
     assert(x, 'Invalid GP token');
     out.push(x.index);
     i+=x.token.length;
+    }
   }
   return Uint8Array.from(out);
 }
@@ -244,15 +247,23 @@ function minTopTwo(data) {
   return {minimum,at,topTwo};
 }
 const controls=[
-  ['resources/control/gibran_prophet_58585.txt',63114,2517,36540,62492,2510,36202],
-  ['resources/control/shakespeare_first300k.txt',218800,2418,192716,217106,2408,191622],
-  ['resources/control/emerson_essays_2944.txt',324630,2479,299973,321327,2477,195195]
+  ['resources/control/gibran_prophet_58585.txt',63114,2517,36540,62492,2510,36202,37646,2843,21331],
+  ['resources/control/shakespeare_first300k.txt',218800,2418,192716,217106,2408,191622,131385,2636,108781],
+  ['resources/control/emerson_essays_2944.txt',324630,2479,299973,321327,2477,195195,193703,2967,100812]
 ];
 const correctedScores=[];
+const consonantScores=[];
 const controlScores=controls.map(([file,expectedLength,expectedMin,expectedAt,
-    correctedLength,correctedMin,correctedAt])=>{
+    correctedLength,correctedMin,correctedAt,
+    consonantLength,consonantMin,consonantAt])=>{
   const source=read(file),native=gp(source),score=minTopTwo(native);
   const corrected=gp(source,true),spellingScore=minTopTwo(corrected);
+  const consonants=gp(source,false,true),consonantScore=minTopTwo(consonants);
+  assert.equal(consonants.length,consonantLength);
+  assert.equal(consonantScore.minimum,consonantMin);
+  assert.equal(consonantScore.at,consonantAt);
+  assert(consonantScore.minimum>2379);
+  consonantScores.push({file,windows:consonants.length-count+1,...consonantScore});
   assert.equal(corrected.length,correctedLength);
   assert.equal(spellingScore.minimum,correctedMin);
   assert.equal(spellingScore.at,correctedAt);
@@ -266,11 +277,33 @@ const controlScores=controls.map(([file,expectedLength,expectedMin,expectedAt,
 });
 assert.equal(controlScores.reduce((a,b)=>a+b.windows,0),567679);
 assert.equal(correctedScores.reduce((a,b)=>a+b.windows,0),562060);
+assert.equal(consonantScores.reduce((a,b)=>a+b.windows,0),323869);
+// The pinned Latin file is already exact GP29 indices as 0..9,A..S. Keep
+// its original per-word segmentation; exclude only explicit comment lines.
+const latinSource=read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).filter(line=>line && !line.trimStart().startsWith('#'))
+  .join('');
+const digits='0123456789ABCDEFGHIJKLMNOPQRS';
+const latinGP=Uint8Array.from([...latinSource].map(glyph=>{
+  const index=digits.indexOf(glyph);
+  assert(index>=0 && index<Q);
+  return index;
+}));
+assert.equal(latinGP.length,204802);
+const latinScore=minTopTwo(latinGP);
+assert.equal(latinScore.minimum,2793);
+assert.equal(latinScore.at,153211);
+assert(latinScore.minimum>2379);
+const latinResult={file:'resources/control/latin-vulgate-gp-wholewords.txt',
+  windows:latinGP.length-count+1,...latinScore};
+assert.equal(latinResult.windows,191847);
+assert.equal(567679+562060+323869+latinResult.windows,1645455);
 console.log(JSON.stringify({
   input:{pages:56,runebearing:55,runes:count,eligible,free:skips.length},
   globalMaximum:global.maximum,
   globalAttainingPair:global.symbols.map(x=>corpus.translit[x]),
   chapterMaxima:chapters,chapterwiseMaximum:1472,
   pagewiseMaximum:2379,individual,controlScores,correctedScores,
+  consonantScores,latinResult,
   exhaustiveOracle:{toy:61,seed:'0x33011337',q5:24,q6:6}
 },null,2));
