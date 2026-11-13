@@ -55,8 +55,16 @@ for(const file of refs){
   const x=w.replace(/[KQ]/g,'C').replace(/V/g,'U').replace(/Z/g,'S');
   return (x.match(/TH|NG|EO|OE|AE|IA|EA|./g)||[]).length;
  });
+ // Also test the source-calibrated LP1/p57 English spelling: QU→CW,
+ // V→U, K/Q→C, Z→S, with ING and IO each emitted as one rune.
+ const sourceGp=entries.map(w=>{
+  const x=w.replace(/QU/g,'CW').replace(/V/g,'U').replace(/[KQ]/g,'C').replace(/Z/g,'S');
+  return (x.match(/ING|IO|TH|NG|EO|OE|AE|IA|EA|./g)||[]).length;
+ });
  const latinKL=kl(original,probs(latin)),gpKL=kl(original,probs(gp));
- assert(latinKL<gpKL,file+' native Latin shape should fit better');
+ const sourceGpKL=kl(original,probs(sourceGp));
+ assert(latinKL<gpKL,file+' native Latin shape should fit better than legacy GP29');
+ assert(latinKL<sourceGpKL,file+' native Latin shape should fit better than source-calibrated GP29');
  const occ=Array.from({length:15},(_,n)=>Array.from({length:n+1},()=>new Uint32Array(26)));
  const pop=new Uint32Array(15);
  for(const w of entries){
@@ -82,7 +90,9 @@ for(const file of refs){
  const rank=expected.map((v,q)=>({q,score:score(v)})).sort((a,b)=>a.score-b.score);
  assert.equal(rank[0].q,10,'Latin K expected to be nearest of 26 in '+file);
  records.push({file,referenceWords:entries.length,latinMean:latin.reduce((s,n)=>s+n,0)/entries.length,
-  gpMean:gp.reduce((s,n)=>s+n,0)/entries.length,KLlatin:latinKL,KLgp:gpKL,
+  gpMean:gp.reduce((s,n)=>s+n,0)/entries.length,
+  sourceCalibratedGpMean:sourceGp.reduce((s,n)=>s+n,0)/entries.length,
+  KLlatin:latinKL,KLgp:gpKL,KLsourceCalibratedGP:sourceGpKL,
   bestMarker:String.fromCharCode(65+rank[0].q),expectedK:expected[10],
   markerSecond:String.fromCharCode(65+rank[1].q)});
 }
