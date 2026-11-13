@@ -565,6 +565,54 @@ assert.deepEqual(wordMapWalkResults, [
     maxVisits:4, end:47}
 ]);
 
+// An alternative to using numeric letters as additive shifts is a
+// key-ordered grid transposition. The unique 11-rune width word supplies
+// a complete sort key for all 11 columns, and the 10-rune height word
+// supplies a stable sort key for the 10 remaining rows. Keep the
+// image-selected first row fixed, then read the 9x9 interior as a p33
+// one-shot key. This is a source-sized but hypothesized cipher operator.
+const keySortedP32ToP33 = [];
+function stableRuneRank(key, direction) {
+  return Array.from({length: key.length}, (_, index) => index)
+    .sort((i, j) => direction * (key[i] - key[j]) || i - j);
+}
+for (const columnDirection of [-1, 1])
+  for (const rowDirection of [-1, 1]) {
+    const cols = stableRuneRank(rowKey, columnDirection);
+    const rows = [0, ...stableRuneRank(columnKey, rowDirection)
+      .map(i => i + 1)];
+    const sortedP32 = rows.flatMap(row => cols.map(col =>
+      p32Cipher[row * 11 + col]));
+    assert.deepEqual(
+      [...sortedP32].sort((a, b) => a - b),
+      [...p32Cipher].sort((a, b) => a - b));
+    const sortedInner = Array.from({length: 81}, (_, index) =>
+      sortedP32[(Math.floor(index / 9) + 1) * 11 +
+        (index % 9 + 1)]);
+    for (const sign of [-1, 1]) {
+      const decoded = p33OriginalBody81.map((v, i) =>
+        mod29(v + sign * sortedInner[i]));
+      const control = p57Native.slice(0, 81);
+      const enc = control.map((v, i) =>
+        mod29(v - sign * sortedInner[i]));
+      assert.deepEqual(enc.map((v, i) =>
+        mod29(v + sign * sortedInner[i])), control);
+      keySortedP32ToP33.push({
+        columnDirection, rowDirection, sign,
+        ioc: indexOfCoincidence(decoded),
+        prefix: decoded.slice(0, 50)
+          .map(v => corpus.translit[v]).join('')
+      });
+    }
+  }
+assert.equal(keySortedP32ToP33.length, 8);
+const bestKeySort = [...keySortedP32ToP33]
+  .sort((a, b) => b.ioc - a.ioc)[0];
+assert.deepEqual(
+  [bestKeySort.columnDirection, bestKeySort.rowDirection,
+    bestKeySort.sign], [1, 1, -1]);
+assert.ok(Math.abs(bestKeySort.ioc - 0.0404320987654321) < 1e-12);
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -588,6 +636,8 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  dimensionWordSortedP32P33: {best: bestKeySort,
+    variants: keySortedP32ToP33},
   opening121WordDirectionalWalks: wordMapWalkResults,
   opening122WordMapToP32: {totalWords: firstTwoWordsFlat.length,
     p32KeySlots: 121, best: bestWordMap121, variants: wordMap121Results},
