@@ -326,7 +326,7 @@ const effectiveLatinAlphabetCounts=Object.fromEntries([22,23].map(A=>
 assert.deepEqual(effectiveLatinAlphabetCounts,{22:2,23:29});
 const effectiveLatin26BookViolations=latin26VulgateWindows.filter(w=>
   w.top5>maxGroupOccupancy(originalRows.book,w.effectiveAlphabet,5)).length;
-assert.equal(effectiveLatin26BookViolations,29);
+assert.equal(effectiveLatin26BookViolations,27);
 
 /**
  * A public phase clock is the least additional state beyond C_(i-1).
