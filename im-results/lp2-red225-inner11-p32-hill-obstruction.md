@@ -27,8 +27,25 @@ The [standalone Node 22 CommonJS test](../sims/lp2_red225_inner11_p32_hill_sft.c
 
 All assertions passed under the actual committed original source in [manual GitHub Actions run 43423445544](https://github.com/FlareZ123/liber-primus/actions/runs/43423445544).
 
+## GP-prime-weight field alternative: full-rank original inverse
+
+The canonical 2013 Gematria Primus alphabet also assigns each rune a **prime weight**, giving a second natural, already historically used GP29 numeric interpretation. Replace each of the 121 central-red matrix entries with its published prime weight modulo29, keeping the **same source order, centre coordinates and original p32 target**. This produces a different **rank-11**, fully invertible 11×11 matrix, first row `[10,1,18,3,13,17,20,24,3,18,12]`. The ordinal-index matrix rank defect is therefore sensitive to the chosen original numeric representation and is not itself strong independent evidence of authorial intent.
+
+Test the source-prime matrix and its transpose under both printed p32 row and column block readings, and both standard forward/inverse linear directions: **eight fixed, lossless 121-rune transformations**. Each was exactly re-encrypted on original p32 and recovered all **121/121 GP runes** from a source-native p57 positive-control plant. [Original-source executable](../sims/lp2_red225_inner11_prime_hill_sft.cjs), passed in [manual CI run 43423889094](https://github.com/FlareZ123/liber-primus/actions/runs/43423889094).
+
+The transformed original p32 GP29 coincidence scores are, in this predefined order:
+
+| Matrix | p32 read | Inverse IoC | Forward IoC |
+| --- | --- | ---: | ---: |
+| Prime-M | Rows | 0.03512397 | 0.03374656 |
+| Prime-M | Columns | 0.03471074 | 0.03884298 |
+| Prime-Mᵀ | Rows | 0.03347107 | 0.03168044 |
+| Prime-Mᵀ | Columns | 0.03471074 | 0.03622590 |
+
+All eight original outputs remain at a ciphertext-like GP29 distribution, with no contiguous legible GP-native phrase in the preserved first-forty-rune previews. The independently known solved p57 plaintext IoC is **0.06270997** as a short-control comparison; p32 original IoC is **0.03415978**. These small-page IoC scores are descriptive and cannot universally exclude every plausible plaintext language. They reject only these eight direct prime-weight matrix interpretations as an evident plaintext decoder. Neither GP representation produces authenticated new original plaintext.
+
 ## Research decision
 
-**Retire direct red-core 11×11 Hill encryption of original p32**, for both natural source matrix orientations and both native 11×11 page reading directions, without making a language-scoring or cipher-key assumption. The rank defect alone is a one-in-roughly-29 algebraic property under a naive random-matrix baseline, **not** independent authentication of a secret message after selecting the red-center geometry. Its kernel vectors carry no directly recognizable GP phrase. The original 15×15 full-red Hill and nine 5×5 chapter-Hill alternatives were already ruled out independently [here](lp2-red225-hill-square-source-gate.md). The source geometry remains a speculative human-clue route, but neither it nor the center matrix specifies a working inverse; do not broaden into arbitrary matrix pre/post transforms or fitted offsets without another original source clue.
+**Retire the direct red-core 11×11 Hill link to original p32 under the tested GP ordinals and prime-weight field readings.** The ordinal-key cipher is mathematically incompatible with original p32 in all four natural source orientations; the full-rank prime-key variant is invertible but all eight forward/inverse original readouts remain ciphertext-like, without recovered plaintext. The rank defect alone is a one-in-roughly-29 algebraic property under a naive random-matrix baseline, **not** independent authentication of a secret message after selecting the red-center geometry. Its kernel vectors carry no directly recognizable GP phrase. The original 15×15 full-red Hill and nine 5×5 chapter-Hill alternatives were already ruled out independently [here](lp2-red225-hill-square-source-gate.md). The source geometry remains a speculative human-clue route, but neither it nor the center matrix specifies a working inverse; do not broaden into arbitrary matrix pre/post transforms or fitted offsets without another original source clue.
 
 Related original-side geometry and null evidence: [the red225 concentric-ring p32 proposal](../workplace/lp2-red225-concentric-ring-p32-hypothesis.md).
