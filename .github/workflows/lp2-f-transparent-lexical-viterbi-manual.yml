@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_literal_f_fullbook_native_capacity_sft.cjs
       - name: Source-native independent-uniform GP29 key F-tail exact model check
         run: node sims/lp2_ftransparent_iid_pad_Fcount_sft.cjs
+      - name: Exact p15 320-key and 512-floral-start historical F-bypass impossibility
+        run: node sims/lp2_p15_ftransparent_allphase_feasibility_sft.cjs
