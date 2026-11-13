@@ -1,10 +1,10 @@
-# Seven-rune p27 ↔ p55/p56 seam: an exact source clue and two failed known-key transfers
+# Punctuation-stripped seven-rune p27 ↔ p55/p56 match: two failed known-key transfers
 
-**Agent29, 13 November 2026. Evidence class:** original-ciphertext structural extension and two source-anchored original inverses (32-mask p27 and 8-mask p55). **No unknown LP2 plaintext, authentic unknown-page key, source-selected full decoder, or destination has been recovered.**
+**Agent29, 13 November 2026. Evidence class:** punctuation-stripped ciphertext structural extension and two source-anchored original inverses (32-mask p27 and 8-mask p55). **No unknown LP2 plaintext, authentic unknown-page key, source-selected full decoder, or destination has been recovered.**
 
 ## The original-source observation
 
-The known repeated two-word ciphertext formula `DJU BEI` appears once in physical LP2 p27 and once as the last six runes of p55, the last unsolved page. [The prior half-book study](2016-28page-bookend-ratio-inverse.md) already establishes the exact six-rune repetition, page locations, two 28-page halves, and a source-word-shuffle rarity certificate. This study changes that observation in one precise way: **include the immediately following rune on the original next physical page, p56.**
+The known repeated two-word ciphertext formula `DJU BEI` appears once in physical LP2 p27 and once as the last six runes of p55, the last unsolved page. [The prior half-book study](2016-28page-bookend-ratio-inverse.md) already establishes the exact six-rune repetition, page locations, two 28-page halves, and a source-word-shuffle rarity certificate. This study changes that observation in one precise way: **append the first rune of p56 after removing p55's terminal period and original physical page break.**
 
 Original data and source images: `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/44.jpg` (p27), `72.jpg` (p55), and `73.jpg` (p56). The normalized GP29 indices, using the original 29-rune alphabet in the canonical corpus, are:
 
@@ -13,17 +13,17 @@ Original data and source images: `resources/liber-primus/lp2-corpus.json`, `reso
 | p27 local rune 28, entirely on p27 | global 6,555 | `[23,11,1,17,18,10,25]` | `DJU BEI AE` |
 | p55 local rune 70, crossing to p56 local rune 0 | global 12,950 | `[23,11,1,17,18,10,25]` | `DJU BEI | AE` |
 
-The final `AE` at p56 local0 belongs to the **authentically solved prime-totient-cipher page**; p55 and p27 remain unknown. Thus this is a *ciphertext* match across different physical and cryptanalytic regions, not a demonstrated repeated plaintext phrase.
+The final `AE` at p56 local0 belongs to the **authentically solved prime-totient-cipher page**; p55 and p27 remain unknown. **Source-layout limitation:** p27 actually prints `ᛞᛄᚢ-ᛒᛖᛁ-ᚫᚠ` (`DJU-BEI-AE-F`) on one line, while p55 ends in `ᛞᛄᚢ-ᛒᛖᛁ.` (`DJU-BEI.`) followed by a page break. P56 begins a red heading whose first **ciphertext** rune is `AE`. The seven-rune match therefore exists only after **removing the period and page boundary** from the original print. The six-rune bookend remains authentic contiguous ciphertext across two words; the seventh rune is a cross-page numerical observation and no authored source instructs this concatenation. It is no demonstrated repeated plaintext.
 
-An exhaustive contiguous GP29 n-gram census on the 12,956 unsolved runes **plus the 85 original p56 ciphertext runes**, preserving the authentic p55→p56 adjacency, yields:
+An exhaustive contiguous GP29 n-gram census on the 12,956 unsolved runes **plus the 85 original p56 ciphertext runes**, **discarding p55's terminal period and the p55→p56 physical page break**, yields:
 
 - Six-symbol repeated windows: exactly **two**, the overlapping `DJUBEI` and `JUBEIAE` windows, both with starts p27/p55 or one position later.
 - Seven-symbol repeated windows: exactly **one**, `DJUBEIAE`, at original global offsets **6,555** and **12,950**.
 - Eight-symbol repeated windows: **zero**. The next p27 symbol is F while the next p56 symbol is J.
 
-The seven-rune extension was not captured by a census restricted to unsolved pp0–55, since its second copy crosses the solved-page boundary. The original images also distinguish this from a false claim that the 85 p56 runes are previously decrypted plaintext: the first p56 `AE` is **ciphertext**, decrypting to `A` under its independently known source key.
+The seven-rune extension was not captured by a census restricted to unsolved pp0–55, since its second copy crosses the solved-page boundary **after discarding punctuation and section markers**. The original images also distinguish this from a false claim that the 85 p56 runes are previously decrypted plaintext: the first p56 `AE` is **ciphertext**, decrypting to `A` under its independently known source key.
 
-A simple stationary 29-rune uniform-output model with observed same-symbol transition rate 86/12,901 gives an approximate birthday expectation of **0.00565** seven-gram collision pairs over 13,041 runes, or approximately **0.56%** chance of at least one. This is an *idealized model calculation*, not a discovery-wide p-value, not an English/text-structure null, and not independent of the already-noticed six-rune bookend. It indicates why a seam-specific operator test is worth doing without attributing it to the authors.
+**Conditional evaluation:** Once the six-rune repeated formula has been selected, the seventh-symbol match has probability **1/29 (3.45%)** under the simple independent-uniform 29-rune continuation model. The prior manuscript-wide seven-gram birthday calculation addresses a different postselection and is withdrawn. This conditional number is not a calibrated source-prose null, and a punctuation-stripped cross-page continuation is no separately authenticated clue.
 
 ## First fixed known-key test: p27 forward from the shared AE
 
@@ -57,7 +57,7 @@ No original p55 sentence, cryptographic instruction or identifiable format appea
 
 ## Current interpretation and next decision
 
-The **seam is exact** and strengthens the previously published, highly unusual p27/p55 paired-word bookend. The seventh matching rune lies across the boundary into the solved prime-totient ciphertext. Two source-anchored uses of p56's authentic key, one forward from the matching p27 AE and one cyclically backward through p55, fail on original language diagnostics. The first `A` is forced by the shared ciphertext and shift1, so a single apparent plaintext `A` is not independent evidence.
+The **stripped-rune extension is exact**, but its full stop, page break and red heading make it weak as an original author-facing instruction. The seventh matching rune lies across this editorial boundary into solved prime-totient ciphertext. Two source-anchored uses of p56's authentic key, one forward from the matching p27 AE and one cyclically backward through p55, fail on original language diagnostics. The first `A` is forced by the shared ciphertext and shift1, so a single apparent plaintext `A` is not independent evidence.
 
 Retire **p27 local34 → p56 phase-zero prime-totient key** as an 85-rune direct English inverse, and **p55 reverse 84-step p56-key circumference** as a complete 76-rune inverse. Do **not** search p27 phase offsets, alternate F patches, hidden multipliers, or new clocks from this match alone. A meaningful successor would require an original visible/historical instruction that maps the seven-rune seam to a different *reversible* operation or an independently given key. Preserve the seam for such a route rather than treating a unique repeat as a decryption.
 
