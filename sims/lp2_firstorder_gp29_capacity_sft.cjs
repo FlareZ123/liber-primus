@@ -148,6 +148,37 @@ function nativeWindowEnvelope(tokens,width,eIndex) {
   return {windows:tokens.length-width+1,minE,maxE,minTop12:min12,maxTop12:max12,
     passVisualChapterE:passE,passVisualChapterTop12:passTop12};
 }
+/**
+ * More permissive source model from the earlier predecessor-capacity gate:
+ * every one of the 55 original page-opening symbols can be arbitrary,
+ * independent of any previous-rune map or reset sentinel.
+ * All remaining within-page transitions reuse one secret map per
+ * visual chapter and previous ciphertext rune.
+ * @param {Array<{page:number,indices:number[]}>} pageObjects
+ */
+function freePageHeadsCapacity(pageObjects) {
+  const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],
+    [33,39],[40,53],[54,55]];
+  const rows=new Map();
+  let headCount=0;
+  for(const page of pageObjects) {
+    if(!page.indices.length)continue;
+    const chapter=ranges.findIndex(([lo,hi])=>page.page>=lo&&page.page<=hi);
+    assert.ok(chapter>=0);
+    headCount++;
+    let prior=page.indices[0];
+    for(const symbol of page.indices.slice(1)) {
+      const state=chapter*29+prior;
+      let row=rows.get(state);
+      if(!row){row=Array(29).fill(0);rows.set(state,row);}
+      row[symbol]++;
+      prior=symbol;
+    }
+  }
+  assert.equal(headCount,55);
+  const capacity=majorizationCapacity([...rows.values()]).map(v=>v+headCount);
+  return {unconstrainedPageHeads:headCount,observedStates:rows.size,capacity};
+}
 /** @param {number[][][]} chapterGroups */
 function independentChapterCapacity(chapterGroups) {
   const perChapter=chapterGroups.map(groups=>majorizationCapacity(transitions(groups)));
@@ -246,6 +277,9 @@ function main() {
   const native=encodeNativeEnglish(read("resources/liber-primus/lp1-plaintext-reference.txt"),
     corpus.translit);
   assert.equal(native.length,3287);
+  const fullyFreeHeads=freePageHeadsCapacity(pageObjects);
+  assert.deepEqual([fullyFreeHeads.observedStates,fullyFreeHeads.capacity[0],
+    fullyFreeHeads.capacity[1],fullyFreeHeads.capacity[11]],[261,1310,2344,9006]);
   const secondOrder=twoPreviousCapacity([all]);
   const secondOrderPages=twoPreviousCapacity(pages);
   assert.deepEqual([secondOrder.states,secondOrder.capacity[0],secondOrder.capacity[1],
@@ -290,9 +324,14 @@ function main() {
   console.log(JSON.stringify({scope:"all 12,956 original unsolved GP29 runes, 55 rune-bearing physical pages, 2,896 original complete words",
     theorem:"for each state and any lossless bijection onto plaintext symbols, top-k plaintext total <= sum of k largest observed outgoing state-transition counts",
     source:"original LP2; authentic solved LP1 English GP tokens as comparison",
-    conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent top-level visual-chapter state tables (9.80% and 69.51% are generous upper bounds)",
+    conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even when all 55 page openings are unconstrained (10.11% and 69.51% are generous bounds)",
     exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent original visual-chapter or alternative red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
+    fullyFreeOriginalPageHeads:{states:fullyFreeHeads.observedStates,
+      arbitraryHeadCount:fullyFreeHeads.unconstrainedPageHeads,
+      top1:fullyFreeHeads.capacity[0],top2:fullyFreeHeads.capacity[1],
+      top12:fullyFreeHeads.capacity[11],
+      note:"strictly more generous per-page opening model; B12 still exactly 9006"},
     independentBlakeControl:{source:"1906 Project Gutenberg The Marriage of Heaven and Hell, fixed repository edition",
       runes:blake.length,e:2346,top12:14369,
       eFraction:2346/blake.length,top12Fraction:14369/blake.length,
