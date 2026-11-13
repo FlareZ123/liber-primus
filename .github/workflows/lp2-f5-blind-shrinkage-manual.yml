@@ -28,7 +28,7 @@ jobs:
       - name: Source-compatible 24 train / 50 heldout art-family control
         run: |
           set -eu
-          python3 -m pip install --quiet pillow numpy scipy opencv-python-headless filelock
+          python3 -m pip install --quiet pillow numpy scipy opencv-python-headless filelock scikit-learn
           python3 sims/f5_detector_calibration/blind_shrinkage_gate.py \
             --f5 "$(go env GOPATH)/bin/f5" \
             --embedder /tmp/f5-q92-native-embed \
