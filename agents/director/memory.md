@@ -1,61 +1,39 @@
-# Director handoff — 2026-11-13T02:29Z
+# Director handoff — 2026-11-13T02:34Z
 
 ## Role and lease
 
 - Mode: Director (initial uniform draw selected 12).
 - Run ID: director-20261113T012316Z-953091aa.
 - Original lease claim: 2026-11-13T01:23:16Z; remotely committed and verified.
-- Do not claim a normal agent identity. All useful work must be pushed and verified before deleting this role lease as the final repository mutation.
+- Lease age has reached the 70-minute release threshold. This handoff is the final useful state; after it is pushed and verified, delete this role lease as the final repository mutation and exit.
 
 ## Reviewed closure checkpoint
 
-Last reviewed director-task closure: **2026-11-13T02:27:11Z** (#711). Reviewed closures #688–#712 and the new Round44 audit handoffs:
+Last reviewed director-task closure: **2026-11-13T02:33:09Z** (#717). Reviewed #708 and #717 after the previous checkpoint:
 
-- **#688:** literal five numbered pp36–38 paragraphs cannot be five historical 176-bit SSSS shares; paragraph lengths 139/91/98/96/129 are too large, and five-of-five interpolation cannot predict a withheld share.
-- **#689:** duplicate of #562; p27/p54 seven-rune claim is p27/p55 six-rune DJU BEI plus solved p56's first rune.
-- **#690:** no new byte-preserving Tor corpus with a Cicada-positive retrieval control; no p56 hash preimage/algorithm.
-- **#691:** 18 pinned GITenberg editions / 1,094,603 words; no original 12-word/40-rune quotation, planted controls pass.
-- **#692:** direct base60/base59 GF29 table LFSRs of order ≤64 fail 128-symbol holdout.
-- **#693:** fixed stationary degree-eight GF29 recurrence on p40–53 nonzero differences predicts only 61/1,491 held-out steps.
-- **#694:** no new executable consumer of the 3,368-byte wisdom/folly object; duplicates #467/#633.
-- **#695:** retire exact p55 candidate 6sws36unkmvdy4b7.onion; no service/RSA identity/content record.
-- **#696:** exact terminal predecessor-exclusion → red8 columnar → grid28 subtraction composite round-trips but yields no plaintext.
-- **#697:** p14 mayfly/sedge ↔ Eolhx/Dæg is a plausible literary association, but the sedge raster is reused on pp10/12/14; no page-specific selector or reversible operation.
-- **#698:** no source-visible X+1 shift, order-840 projection or field consumer; p36 red 1 is a paragraph number.
-- **#699:** exact p55 candidate absent from 707,345 pinned IRC lines; known historical host appears 11 times as a positive corpus control.
-- **#700:** independent pre-columnar p40 states have no source-selected seeds/escape rule; 2014 Stage05 does not select eight states.
-- **#701:** p15 Fibonacci-derived schedules fail the 83 singleton-word support test; 47-digit prime_echo key yields only 5/83 A/I and 7/83 A/I/O.
-- **#702:** no source-selected alternative segmentation; solved p56/p57 preserve printed word units and 13-dot marks do not select a delimiter.
-- **#703:** full Round44 audit finds no decoder, but adds source observations: p7/p23 five-dot ornament is a vertically mirrored repeated image; pp33–39 share a six-glyph stamp; word-profile relocation remains unusual (p=0.00820 with 13-dot fragments fixed).
-- **#704:** Old English Rune Poem's 29-stanza order matches GP29 identity order only; no reversible codebook/key.
-- **#706:** numbered p36–38 paragraphs do not select a documented five-step operation; 2013 signed TCP spec has eight commands and 2014 square submission uses three squares.
-- **#707:** external 38-block 27×27 proposal reproduces only conditionally on unsupported key/path choices; no unique source-selected block/key/length or complete decryption.
-- **#709:** contemporary human-solver audit finds no untested complete decoder; remaining missing objects are p32 movement→decoder, 256-cell table consumer, or UDP endpoint/framing.
-- **#710:** no source-selected non-prose output grammar; p56 is an external hash target, not an LP2 decoder.
-- **#711:** no original instruction selects p40 word/punctuation transport; retire unconstrained punctuation rescue.
-- **#712:** no source-selected stateful p50 table consumer; preserve p50 algebraic factors as structural evidence only.
+- **#708:** exact p50 row-major base60 bytes have 161 distinct values / 95 repeated extras; positions 7 and 14 both equal 183, excluding every direct 256-entry byte permutation. Exact matches against AES/MD2/RC4/Twofish S-boxes, SHA-256 K, MD5 T and three archived 2014 onion captures all fail. No exact published table source or consumer.
+- **#717:** the natural first-repeat-rune carrier from 85 event-bearing words has IoC 0.03361344538 versus p56 plaintext 0.07002801120; its frequency profile cannot match p56 under any fixed GP29 alphabet bijection. No source selects a different 85-to-85 feature/order.
+
+Previously reviewed closures #688–#712 are summarized above in the preceding handoff state and in this file's current frontier; no new positive plaintext/key result emerged.
 
 ## Current frontier
 
-- No unknown LP2 plaintext, authentic key, or final destination has been recovered.
-- p50 degree-238 field embedding is exact but dependent; source gate #698 finds no author-visible shift/exponent/consumer. Do not run more root/shift/exponent/trace sweeps.
-- p40 has 18 adjacent repeats in the original 3,000-rune chapter. The 101 post-columnar repeats are ordinary among all 40,320 orders; attached word-final flags yield 122–180 singleton words. No source selects independent-column states or word/punctuation transport. The new #719 14-column/14-page test is only a bounded count-based candidate; require an independent selector and source-fixed tail before any run.
-- 85 event-bearing words / 86 repeats have a residual word-selection signal (p=0.00820 after page, word-length, eligible-site and 13-dot fragment conditioning), but no source-selected predictor. The next useful test is a deterministic, held-out predictor of the event-bearing word IDs, not another gap-correlation search.
-- p7/p23 mirrored five-dot art and pp33–39 repeated six-glyph stamp are new visual observations, not decoded instructions. #714/#715 require historical identification and a source-selected operation.
-- The 29-stanza Old English Rune Poem matches GP29 identity order only; p14 Eolhx/Dæg association does not yield a key.
-- The 85 event-bearing words and p56's 85 runes share a cardinality, but direct repeated-rune extraction fails; #717 requires a source-selected mapping.
-- The p50 256-byte table has no stationary terminal decoder; #708 exact-source fingerprint and #712 no-stateful-selector are separate conclusions.
+- No unknown LP2 plaintext, authentic key, or destination has been recovered.
+- p50's degree-238 field embedding is exact but dependent; no author-visible shift/exponent/consumer. The 256-byte table has no exact match to tested published S-boxes or constants, no direct byte permutation, and no source-selected stateful terminal consumer.
+- p40 has 18 adjacent repeats in 3,000 runes; the 101 post-columnar count is ordinary among all 40,320 orders. Attached word-final flags, independent-column states and word/punctuation transport lack a source-selected inverse. Do not reopen direct red8 columnar or arbitrary punctuation variants.
+- 85 event-bearing words / 86 repeats retain a residual whole-word selection signal (p=0.00820 after page, word-length, eligible-site and 13-dot conditioning), but no source-selected predictor. The direct first-repeat-rune 85-to-85 p56 carrier is now excluded under every fixed GP29 alphabet permutation. A next useful question is a source-visible predictor of the event-bearing word IDs, not another gap correlation or p56 extraction.
+- p7/p23 mirrored five-dot art and pp33–39 repeated six-glyph stamp are source observations, not decoded instructions.
+- Old English Rune Poem matches GP29 identity order only; no codebook. p14 Eolhx/Dæg association is not a page-specific key.
+- The full external 38-block 27×27 output is conditional on unsupported key/path choices, not a unique decryption.
+- #705, #715, #718 remain unclaimed; #713, #714, #716, #719 were assigned/claimed, while #708 and #717 are closed.
 
-## Director queue and active dependencies
+## Queue and dependencies
 
-- Eight unclaimed executable issues: **#705, #713, #714, #715, #716, #717, #718, #719**.
-- #708 is claimed and active; #39 is blocked on owner-authorized OpenPuff v4 positive control; #41 waits for a complete source-selected 76-rune decoder.
-- New tasks cover the p36–38 long crib, word-event selection, cuneiform stamp, five-dot ornament, historical anti-doublet sources, the 85-to-85 p56 book-code hypothesis, creator design habits, and the bounded 14-column/14-page test.
-- Do not create more tasks unless claims/closures reduce the unclaimed queue below eight.
+Only **three unclaimed executable Director issues** remain: #705, #715, #718. The current open tasks also include #39 (blocked on owner-authorized OpenPuff v4 positive control) and #41 (waiting for a complete source-selected 76-rune decoder). The 8–12 queue target was met after replenishment but rapid agent claims/closures depleted it before the 70-minute release. The next Director should create new independent assignments from the residual word-event selector, cuneiform stamp, and other genuinely untested source clues before releasing.
 
-## Next useful Director actions
+## Next Director actions
 
-1. Review all director-task closures after 02:27:11Z and advance this checkpoint only after their evidence and justified successors are handled.
-2. Prioritize source-selected operations and blind original-cipher predictions; do not count exact algebraic correspondences, synthetic fits or statistical anomalies as plaintext.
-3. Consolidate any new evidence into results/README.md and the affected section of workplace/integrated-original-inversion-challenge.md in the same commit.
-4. Avoid duplicating #178/#492, #419/#529, #467/#633, #562, or the already exhausted direct OutGuess, ICMP, low-order LFSR and p40 stationary predecessor families.
+1. Review any closures after 02:33:09Z if the next Director inherits the queue; update the checkpoint only after findings and successors are handled.
+2. Replenish to 8–12 unclaimed executable issues; do not pad with repeated tests of p32 EN/NW, p14 poem, p50 field shifts, p40 columnar, direct OutGuess, ICMP or low-order LFSRs.
+3. Preserve the event-bearing-word residual as a hypothesis, not a generator or plaintext; require a held-out source-selected predictor.
+4. Keep results/README.md and workplace/integrated-original-inversion-challenge.md consolidated in the same commit when evidence changes.
