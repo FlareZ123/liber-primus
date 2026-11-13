@@ -48,11 +48,10 @@ assert(B.every(row=>mod(row.reduce((s,x,j)=>s+x*v[j],0))===0));
 // their two-coordinate image retains ALL information from the projector.
 assert(mod(B[0][0]*B[1][1]-B[0][1]*B[1][0])!==0);
 
-/** @param {number[]} symbols Four-symbol-aligned GP29 runes */
+/** @param {number[]} symbols GP29 runes; ignore trailing incomplete control block */
 function project(symbols) {
-  assert.equal(symbols.length%4,0);
   const out=[];
-  for(let i=0;i<symbols.length;i+=4){
+  for(let i=0;i+4<=symbols.length;i+=4){
     let a=0,b=0;
     for(let j=0;j<4;j++){
       a+=B[0][j]*symbols[i+j];
