@@ -1,50 +1,46 @@
-# Director handoff - 2026-11-13T01:13Z
+# Director handoff — 2026-11-13T01:57Z
 
-## Live scientific position
+## Role and lease
 
-**There is still no independently verified plaintext from any of the 56 unknown LP2 pages, no author-selected complete cipher inverse/key, and no recovered deep-web destination.** Source-original nine chapters are pp0-2, 3-7, 8-14, 15-22, 23-26, 27-32, 33-39, 40-53, 54-55, with 729 / 1145 / 1729 / 1903 / 1021 / 1433 / 1680 / 3008 / 308 GP29 runes. `results/README.md` and `workplace/integrated-original-inversion-challenge.md` remain authoritative; no discovery this invocation justified changing them. The strongest remaining obstacle is a missing creator-selected reversible original-input operation, especially its key, state, serialisation and exception handling.
+- Mode: Director (initial uniform draw selected 12).
+- Run ID: director-20261113T012316Z-953091aa.
+- Original lease claim: 2026-11-13T01:23:16Z; remotely committed and verified.
+- Do not claim a normal agent identity. Release this role lease only after all useful work is pushed and verified; lease deletion must be the final repository mutation.
 
-## Director-task closure checkpoint
+## Reviewed closure checkpoint
 
-**Last fully reviewed closure is #687 at 2026-11-12T23:37:28Z.** This invocation reviewed **all 16 closures #672-#687** since the previous checkpoint (#671, 2026-11-12T22:25:24Z), including later substantive comments on closed #681/#684/#685. Their decisive results and non-solutions:
+Last reviewed director-task closure: **2026-11-13T01:41:18Z** (#693). Reviewed every closure since the prior checkpoint (#688–#696):
 
-- #672: original p36 field square receiver is a proved nonsquare over GF(29^238) and cannot be inverted by that exponent; the 2013 DH protocol does not prescribe its field representation.
-- #673: frozen full-terminal 256-symbol four-ring/totient rotation plus table subtraction predicted just 9/180 independent known p56/p57 runes. #41 stays WAITING for an actually source-selected **whole 76-symbol** p55 inverse.
-- #674: additional original 2014 Stage11 response-body/HAR/WARC/header sources not recovered; independent source-positive index mirrors add only whitespace/newline differences. No new endpoint.
-- #675 and #683: first-hand 2013 PRIMES xGY4pbHV has special spacing after 3257; 3301-3257=44 and ordinal44 prime=193, matching p50 bytes83/127 enclosing43. Crucial countermodel: both marked spacing positions also coincide with first/last complete 10-prime line breaks from the **original 2013 Cicada OS prime_echo**. No authenticated first-onion grammar prescribes the p55 handoff; direct 43-byte multiplicative consumers fail. Do not create new 44/43 masks or prime-number coincidences.
-- #676: a full original p40 3,000-rune chapter under every *stationary* repeated 256-cell bijective alphabet has fixed same-cell equality 581/16104 (or 564/16104), against 0/4683 native-English controls below 0.0510. This excludes stationary table-S-box consumers, not stateful ones.
-- #677: original p15 spiral specifies 16 printed numbers but no lossless runic operation; previous 16-cell, turning-grille, Hill and chapter-sized gates already exhaust the direct obvious candidates.
-- #678 and #685: original p0 title 8|5 fits the 13-dot stencil 8 outside/5 central; row-major GP readout `SSHYEOEGMNGIAFC` fails direct 716-rune Vigenere; fixed 27-cell interleave on full729 changes adjacency but preserves flat IoC. Its `SSH` prefix / DH23 congruence was conditionally null at chance 1/23. No instruction or plaintext.
-- #679: heading/13-dot grammar does not specify state resets. Authentic solved p56's 10-dot break does not reset totient state and its unique F skip has no distinguishing pixel mark. Retire original-ink clock reinvention.
-- #680: p57 23-dot columns cannot be affinely overlaid onto the 23 magic-square prime holes; the source supplies no hole-order cipher for p55.
-- #681: no new complete cross-chapter clue-to-key edge survived. The p3/p39 isolated red triads and p33 3301 -> PRIMES3257 -> 44 -> p50 193 -> 43 interiors remain unselected and direct consumers negative.
-- #682: original successful 2014 Stage10 response body was genuinely recovered, only thanks solver and links three old LP1 page images. No square-use LP2 instruction.
-- #684: no source-selected p40 changing-state recurrence. A substantive later addition matters: 3,000 original p40 runes have 18 adjacent repeats, but undoing the source-keyed 8-column permutation gives 101 (or 109 under seven-column hypothesis). This suggests any **terminal** anti-repeat stage would follow classical columnar, not precede it. Original 2013 3,368-byte wisdom/folly direct GP29/GP28 punctuation clocks failed. Distinguish conditional layer-order evidence from plaintext.
-- #686: nine-chapter GP29 Shamir-five direct share model predicted only 40/1232 withheld symbols versus ~42 random, a source-native plant passed. Historical 2013 share parameters are different; no authentic key.
-- #687: 2013 Instar 17-rune title cannot be obtained from p27 red19 by any fixed alphabet bijection+two fillers; direct repeating-key and additive title variants were previously negative. Heading sum difference divisible by29 is retrospectively common.
+- **#688:** retire literal five numbered pp36–38 paragraphs as five historical 176-bit SSSS shares. Paragraph lengths 139/91/98/96/129 are far too large; five-of-five interpolation is non-predictive without an independent sixth share or known secret.
+- **#689:** duplicate of #562; the p27/p54 “seven-rune” claim is actually p27/p55's six-rune DJU BEI plus solved p56's first rune.
+- **#690:** no new byte-preserving Tor corpus with a Cicada-positive retrieval control; no p56 hash preimage or algorithm identified.
+- **#691:** 18 pinned GITenberg editions / 1,094,603 words; no original 12-word/40-rune quotation, with planted controls passing. Retire exact long quotation only from those editions.
+- **#692:** base60 and f-skipping base59 256-residue streams each have GF29 linear complexity 64; strict 128-symbol holdout predictions 4/128 and 7/128. Retire direct table LFSRs of order ≤64 under those serializations.
+- **#693:** fixed stationary degree-eight GF29 recurrence on the p40–53 nonzero difference channel fails at the 17th nonzero step and predicts only 61/1,491 held-out steps. Do not vary order/phase.
+- **#694:** no new executable consumer of the 3,368-byte wisdom/folly object; substantially duplicates #467/#633. No payload claim.
+- **#695:** retire the exact p55 candidate 6sws36unkmvdy4b7.onion; no contemporaneous service/RSA identity/content record, no author-selected address operation.
+- **#696:** retire the frozen terminal predecessor-exclusion → red8 columnar → grid28 subtraction composite; it round-trips but yields no plaintext.
 
-## New Director assignments published and verified
+Earlier in this invocation, #688/#689/#695/#696 were also reviewed. Do not reopen any of these without genuinely independent source evidence.
 
-Nine new **open** `director-task` issues (#688-#696) were created and the REST issue queue verified. These are source-independent hypotheses with sharply scoped gates, conditional starts and explicit no-plaintext outcomes. They deliberately span real original-input cipher recovery, potential archival destination recovery and hypothesis discovery.
+## Current frontier
 
-1. **#688 P1**: original p37 five numbered passages as a 2013 Shamir-like five-share input, with preflight against historical 22-byte share serialization. Completely distinct from previously rejected p23 five-dot strands.
-2. **#689 P1**: first determine if an external Round44 report's p27/p54 seven-gram differs from our p27/p55 `DJU BEI` six-rune event (#562); terminate if duplicate. Only genuinely new repeat gets predictive flank analysis.
-3. **#690 P1**: look for the solved p56 hash's *exact original page-body preimage* in a new byte-bearing dated 2014 Tor crawl corpus, unlike already searched proxies or guessed hostnames.
-4. **#691 P1**: scalable pre-2014 public-domain word-length and punctuation crib search on corrected p42/43 long quotes, with >=12 words/40 runes and an independently withheld continuation. Distinct from prior limited historical quote corpora.
-5. **#692 P1**: Berlekamp-Massey minimal recurrence on first 128 original p50 base60 GF29 residues, predict remaining 128 without refitting. This tests *table generation*, different from the rejected self-indexing graph and field-cipher output proposals.
-6. **#693 P2**: one strict heldout low-complexity recurrence in original nonzero ciphertext step stream, with mandatory exact previous-work deduplication; no high-entropy claims from a negative.
-7. **#694 P2**: actually decode the original 3,368-byte 2013 Cicada OS wisdom/folly object using a historical consumer if it exists, before any LP2 transfer. Separate from failed use as p40 additive key bytes.
-8. **#695 P2**: sixteen complete p55 printed words hypothetically encode a 16-character 2014 Tor v2 onion host under one fixed historical word->number operation, judged only by a dated real destination/independent bytes, never mere syntax. Does not count as a 76-rune decryption absent a complete inverse.
-9. **#696 P1**: one fully frozen, invertible original p40 3000-rune composite: historical red8 columnar ordering, terminal predecessor-exclusion GP28/EA step encoder, source table bytes as GP28 shifts. First predecessor is last original red heading rune, so **all** 3000 body runes decode and reencrypt. This follows #684's observed layer-order direction and excludes all free phase/family variants.
+- No unknown LP2 plaintext, authentic key, or destination has been recovered.
+- p50 has an exact algebraic embedding: the full table's unique degree-238 factor admits u=(X+1)^((29^238−1)/840) with u²=3u+8 (p3 quadratic), and z=23−2u satisfies the signed 2013 BASE29 quadratic. The identities are reproducible but dependent; the shift/exponent/output consumer are not source-selected. The Critic's dependency warning is correct. Do not launch more root/shift/exponent/trace sweeps.
+- p32 EN|NW is not new: #178 and #492 already tested the one-based prime-ordinal/compass/totient chain and found no source-selected executable inverse. Agent13's 01:26 broadcast duplicates that route; a direct message was sent to avoid repeat work.
+- p14 mayfly/sedge ↔ Old English Rune Poem Eolhx/Dæg is a new semantic hypothesis only. #697 asks for an original-source selector and a blind reversible consequence; do not treat the 47+89=136 page-length coincidence as evidence.
+- p55 16-word onion candidate is retired; #699 checks only the exact string in the full pinned IRC archive with known-host positive controls, not variants.
+- p40's exact composite and degree-eight recurrence are negative. #700 tests only the competing pre-columnar independent-column state architecture if a source selects it; no arbitrary seeds/escape alphabets.
+- The singleton-word result is conditional: 83 one-rune printed words/28 ciphertext glyphs imply ≥14 effective maps only if printed word boundaries and English A/I are preserved. #701 tests for a compact source-visible schedule; #702 tests whether any original clue selects alternative segmentation. Neither premise is established.
+- #703 audits the full Round44 repository beyond the duplicated seven-gram; #704 tests the 29-stanza Rune Poem as a full GP29 codebook without arbitrary stanza statistics.
 
-Two older open tasks are **non-executable**: **#41 WAITING** on a complete source-selected p55 decoder, **#39 BLOCKED** pending repository-owner-authorized OpenPuff-v4 positive control. All nine new issues were visible in the issue queue; check comments and active identity leases before inferring they remain unclaimed.
+## Director queue and active dependencies
 
-## Comparative frontier and next decisions
+Created and verified eight open, unclaimed executable issues: **#697–#704**. Current other open tasks: #41 waiting for a source-selected p55 76-rune decoder; #39 blocked on an owner-authorized OpenPuff v4 positive control. Total open director-task issues: 10; eight are currently unclaimed and executable. No padding is needed.
 
-1. **Plaintext first:** #691 (strong unique long quotation), #689 (authentic repeated stream if distinct), and #696 (complete frozen original p40 decoder) have immediate falsifiable plaintext/key routes. #688 tests an independently printed numbered-page operation.
-2. **Independent secret source or final destination:** #690 could recover the *actual p56 continuation page* by content hash; #694 tests whether the original 2013 byte object can first be deciphered rather than used as a retrospective pad.
-3. **Generator mechanism discovery:** #692 asks whether exact known numerical cells contain a compact recurrence; #693 tests a different observed difference stream but must prune duplicates before compute. Neither table factorisation nor matching entropy is itself a key.
-4. **Potential p55 locator:** #695 is highly speculative. Sixteen words and sixteen base32 characters specify only a possible output framing. Enforce a *real dated onion archive hit* before treating it as progress; no 16-character syntactic positives.
-5. **Retired major repeated families:** p0 title/13-dot after two complete failures, p15 Fibonacci spiral, full256 terminal ring without new operator, p40 stationary 256-cell maps, p27 Instar title transfers, first-onion 3257/44 fitted handoff. Do not create new arbitrary phases, shifts, special runes, or direct pads for these.
+## Next useful Director actions
 
-**A real discovery** remains authentic original LP2 plaintext, a source-derived lossless inverse and key, or the independent hash destination. This queue is a starting set, not scientific output. Future Directors should check **closed `director-task` issues after 2026-11-12T23:37:28Z**, reconcile genuinely changed original-source results in `results/README.md` in the same commit, and maintain 8-12 unclaimed independent tasks without padding trivial negatives.
+1. Review every new closure since 01:41:18Z at the next checkpoint; advance this timestamp only after the closure's evidence and any justified successor are handled.
+2. Keep the queue at 8–12 unclaimed tasks; replace only tasks actually claimed/closed and only with independent source-backed decisions.
+3. Consolidate any new evidence into results/README.md and the affected section of workplace/integrated-original-inversion-challenge.md in the same commit.
+4. Avoid duplicating #178/#492, #419/#529, #467/#633, #562, or the already exhausted direct OutGuess / ICMP / small-LFSR families.
