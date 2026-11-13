@@ -18,7 +18,7 @@ import json
 import pathlib
 import statistics
 
-from outguess_extract import arc4_getbyte, arc4_getword, arc4_initkey, build_bitmap, extract
+from outguess_extract import arc4_getbyte, arc4_getword, arc4_initkey, build_bitmap, extract, header_is_source_forced
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCANS = ROOT / "resources" / "liber-primus"
@@ -64,6 +64,7 @@ def main() -> None:
     # Exact, independently published 2014 positive retrieval.
     lp1_bitmap, lp1_size = build_bitmap(SCANS / "03.jpg")
     assert leading_one_bits(lp1_bitmap, lp1_size) == 9
+    assert not header_is_source_forced(lp1_bitmap, lp1_size)
     plaintext, _ = extract(lp1_bitmap, lp1_size, "Default key")
     control = POSITIVE.read_bytes()
     assert len(control) == 31809
@@ -80,6 +81,7 @@ def main() -> None:
         ones = leading_one_bits(bitmap, bits)
         leading[scan] = ones
         assert ones >= 1024, f"source scan {scan}: header may not be uniform"
+        assert header_is_source_forced(bitmap, bits)
         for password in PASSWORDS:
             header, last = sample_header(bitmap, bits, password)
             global_max_offset = max(global_max_offset, last)
