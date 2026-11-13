@@ -13,3 +13,6 @@ jobs:
           node-version: '22'
       - name: Test historical ICC key directly on original ciphertext
         run: node sims/lp2_artifex_icc_5cycle_original_key_sft.cjs
+
+      - name: Test arbitrary secret 2576-phase permutations by equality
+        run: node sims/lp2_artifex_icc_2576period_allkey_equality_sft.cjs
