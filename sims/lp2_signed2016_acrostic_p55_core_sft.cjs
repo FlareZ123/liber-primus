@@ -102,6 +102,33 @@ for (const [name, key] of keys) {
     assert.deepEqual(decrypt(plantCipher, key, sign), plantPlain);
   }
 }
+// The independently marked p27 black body is exactly 215=5*43 runes.
+// Reuse the SAME signed 43-word key five times; no fitted offset or reset.
+const body27 = corpus.pages[27].indices.slice(19);
+assert.deepEqual([corpus.pages[27].indices.length, body27.length], [234, 215]);
+let minGibran215 = Infinity;
+for (let i = 0; i + 215 <= heldout.length; i++)
+  minGibran215 = Math.min(minGibran215,
+    score(heldout.slice(i, i + 215)));
+assert.equal(heldout.length - 215 + 1, 62900);
+const trials27 = [];
+for (const [name, key] of keys) {
+  for (const sign of [-1, 1]) {
+    const p = body27.map((v, i) => (v + sign * key[i % 43] + 29) % 29);
+    trials27.push({key: name, sign, score: score(p),
+      first80: p.slice(0, 80).map(i => corpus.translit[i]).join("")});
+    // Positive plant under the exact fivefold source-key register.
+    const source = heldout.slice(4000, 4215);
+    const cipher = source.map((v, i) =>
+      (v - sign * key[i % 43] + 29) % 29);
+    const decoded = cipher.map((v, i) =>
+      (v + sign * key[i % 43] + 29) % 29);
+    assert.deepEqual(decoded, source);
+  }
+}
+trials27.sort((a, b) => b.score - a.score);
+assert.ok(trials27.every(t => t.score < minGibran215));
+assert.ok(Math.abs(trials27[0].score + 11.411810628340199) < 1e-10);
 trials.sort((a, b) => b.score - a.score);
 assert.ok(trials.every(x => x.score < minGibran));
 assert.ok(Math.abs(trials[0].score + 11.144918487610301) < 1e-10);
@@ -112,7 +139,9 @@ function returnReport() {
     heldoutGibranWindows: 63072,
     rawTrigram: score(original), heldoutMinimum: minGibran,
     best: trials[0], eightOriginalTrials: trials,
-    decision: "Eight direct initial/final-letter keys recover no native-GP prose; source semantics remain open"
+    p27Body: 215, p27Raw: score(body27), p27GibranMinimum: minGibran215,
+    p27Best: trials27[0], p27EightTrials: trials27,
+    decision: "Eight direct initial/final-letter keys recover no native-GP prose on p55/43 or p27/215; source semantics remain open"
   };
   if (require.main === module) console.log(JSON.stringify(result, null, 2));
   module.exports = {run: () => result};
