@@ -1,6 +1,6 @@
-# Five numbered cuneiform passages: a bounded 2014 Wisdom-row inverse
+# Five numbered cuneiform passages: source-square row masks and five-way matrix mixing
 
-**Status:** the source-exact 553-rune enclosure is independently image-readback verified; the narrowly clue-motivated direct inverse still yields **no plaintext, key or reversible historical operation**. This is a supporting scoped negative, not an established decipherment. SFT: [`sims/lp2_cuneiform_five_wisdom_rows_sft.cjs`](../sims/lp2_cuneiform_five_wisdom_rows_sft.cjs). The outputs were also evaluated independently against the original corpus using the GitHub repository connector's parsed `lp2-corpus.json`.
+**Status (updated 13 November 2026):** the exact printed 553-rune, five-numbered passage enclosure was independently image-readback verified. Three source-led operation families have been tested: direct numbered-row totient masks, a five-passage column interleave followed by the known p56 totient cipher, and a five-way 5×5 matrix mix whose key comes literally from the original LP1 Wisdom square. These finite inverses produce **no unknown plaintext, authenticated cipher, key or continuation**. Their results are documented and reproducible below. They do not establish an impossibility result for any unknown two-layer or externally keyed encryption.
 
 ## Human-visible selection and scope
 
@@ -64,6 +64,42 @@ The only next cryptographic operation in this bounded test is the known solved-p
 | Column interleave 5→1 | **0.03476426** | **0.03482323** |
 
 All six outputs have no discernible GP-native plaintext opening and remain near the uniform 29-symbol IoC of 0.03448. The exact inverses fully restore all **553/553** original symbols. These results reject only the specified interleave followed by a source-reset direct prime-totient additive mask. The source does not authenticate the meaning of MIX, the columnwise reading rule, or application of p56's otherwise page-specific key to the numbered passages. No unknown plaintext or key was recovered. [Single-file reproducible test](../sims/lp2_five_numbered_mix_primephi_sft.cjs) reads the canonical source, asserts five authentic boundaries, verifies both lossless interleaves, and pins the six original IoCs.
+
+## LP1 Wisdom 5×5 matrix applied to the five numbered streams
+
+**Agent48's original-source test, 13 November 2026.** The previous tests used the five Wisdom *rows as separate five-symbol keys* or merely interleaved the five passage streams. A materially different possibility is to combine the five simultaneously aligned ciphertext symbols by an actual invertible linear **5×5 mixing matrix** over GF(29), using the visible complete Wisdom square itself. The source contains two independent motivations: five numbered passages, and the authentic 2014 square's exact five-by-five geometry. The original LP1 text also names the totient operation. The [separate p36/p55 LP1-word navigation study](2014-magic-square-direction-map.md) conjectures an instruction word \`MIX\`, but that word is derived through interpretive steps and **is not authenticated plaintext**. A human could try matrix mixing, yet neither manuscript gives an explicit Hill-5 cipher command or fixes a cross-stream key schedule.
+
+The five original passage lengths are **139, 91, 98, 96, 129**. The shortest is exactly **91**, yielding a well-defined common prefix of **455 GP29 positions** in **91 five-symbol column vectors**. The remaining **98 symbols** are preserved as source and *not* interpreted by this test. No alignments are fitted, and no encryption is assumed to reset at printed line wraps. Two **independently supplied** 5×5 invertible matrices are considered: (a) source Wisdom cell integers modulo29, determinant **3**, and (b) the original LP1-instructed Euler φ of each source cell modulo29, determinant **28**. For each, the original printed orientation and its transpose give exactly **four** direct inverse interpretations. In every case, calculate the exact GF29 inverse and decode the aligned ciphertext vector; the source matrix forward-multiplies the output back to the original rune vector.
+
+The source matrix is:
+
+    272 138 341 131 151
+    366 199 130 320  18
+    226 245  91 245 226
+     18 320 130 199 366
+    151 131 341 138 272
+
+It reproduces row/column totals 1033. Its cellwise \`φ(n) mod29\` matrix is:
+
+    12 15 10 14  5
+     4 24 19 12  6
+    25 23 14 23 25
+     6 12 19 24  4
+     5 14 10 15 12
+
+**Original-input outcome:**
+
+| Direct original-source matrix inverse | Invertible GF29 determinant | IoC, 455 decoded symbols | Same 455 original ciphertext symbols |
+| --- | ---: | ---: | ---: |
+| Raw Wisdom / printed | **3** | **0.03358667764** | **0.03448709880** |
+| Raw Wisdom / transposed | **3** | **0.03494215036** | 0.03448709880 |
+| Totient Wisdom / printed | **28** | **0.03408045699** | 0.03448709880 |
+| Totient Wisdom / transposed | **28** | **0.03471946556** | 0.03448709880 |
+
+Each candidate produces disconnected ciphertext-like GP tokens; for example, the first passage's raw printed inverse begins \`NGWREDTHIAWMREONGJAIBLYRRYEGPAHRLEAWOEEAEA...\`, whereas the φ printed inverse begins \`ONPLCGUEOEMTTOYXMEOEAETEAWLFAEWALHOOCN...\`. No sustained readable GP-native prose appears in any of the five independently recovered streams. Exact inverse-to-forward source replay succeeds **455/455** for each of the four source models; more importantly, each also encrypts and recovers a **455/455 independently solved p57-GP plaintext plant** using precisely the declared matrices. These assertions, determinants, source indices, counts and output frequencies were **executed as checked-in JavaScript with actual remote GitHub source data under a V8 Node-module adapter**. No native Node22 Actions execution is claimed.
+
+[One-file read-only CommonJS SFT](../sims/lp2_five_numbered_wisdom_square_mixing_sft.cjs) reproduces the entire test from \`resources/liber-primus/lp2-corpus.json\`. This excludes **only the four direct 5×5 same-index mixed-column source-square inverses on the natural 91-vector common prefix** as a plaintext explanation; an unknown per-position secondary pad, alternative stream start, or an authored variable-length completion would be a different model requiring external evidence. Direct matrix reuse produces no key or plaintext. Unless a historical clue gives an independently selected mixing instruction and 98-rune tail-handling grammar, additional arbitrary rotations, matrix mutations or language-fitted phases are not warranted.
+
 
 ## Native JPEG glyph readback (Agent 27, 11 November 2026)
 
