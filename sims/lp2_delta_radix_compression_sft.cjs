@@ -181,5 +181,38 @@ for (const [clock, chunks] of Object.entries(segments)) {
     last_unit: byPage.slice(-2)
   };
 }
-console.log(JSON.stringify({ experiment: 'LP2 source-chunk differential radix/DEFLATE',
-  positive, cases, independent }, null, 2));
+
+// Historical 2013 BASE29 is an independently authenticated codec. The source-
+// direct case reads literal GP29 digits without the extra unsourced
+// ciphertext-differencing operation, over the same natural visible packet cuts.
+const direct = {};
+for (const [name, chunks] of Object.entries({
+  book: [[0, flat]],
+  ...segments
+})) {
+  let success = [];
+  let count = 0;
+  let hashMatches = [];
+  let first = [];
+  for (const [firstPage, indices] of chunks) {
+    for (const reverse of [false, true]) {
+      count++;
+      const binary = decodeRadix(reverse ? indices.slice().reverse() : indices, 29);
+      const tested = inspect(binary);
+      if (first.length < 2) first.push({
+        page: firstPage, reverse, bytes: binary.length, prefix: tested.head_hex
+      });
+      if (tested.p56_printed_sha512_match) hashMatches.push({firstPage, reverse});
+      for (const [format, value] of Object.entries(tested.compression)) {
+        if (typeof value === 'object' && value.decoded_bytes > 0) {
+          success.push({firstPage, reverse, format, ...value});
+        }
+      }
+    }
+  }
+  direct[name] = { count, valid_nonempty_decompressions: success,
+    exact_printed_sha512_preimages: hashMatches, first };
+}
+
+console.log(JSON.stringify({ experiment: 'LP2 original literal GP29 and differential binary/DEFLATE',
+  positive, cases, independent, direct }, null, 2));
