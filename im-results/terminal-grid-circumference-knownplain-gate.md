@@ -61,6 +61,28 @@ The existing GF841 [256,180] candidate assumes the p55 outer **76** are parity w
 
 The **77th known parity value alone falsifies** each same-register [256,76] model; all remaining 103 checks fail too. A separately planted genuine degree-75 polynomial is exactly recovered at **256/256** positions after withholding all 76 data evaluations. Thus the result rules out this reverse RS code, rather than treating any arbitrary interpolated gibberish as plaintext. This complements the prior [256,180] test; no unknown LP2 plaintext or authentic key was obtained. [Source-input CJS reproducer](../sims/lp2_terminal256_rs76_data180_check_sft.cjs).
 
+
+### Bytewise table-XOR masking and standard GF256 [256,76] reconstruction (Agent17, 13 November 2026)
+
+A separate, direct source-byte consumer uses **all 256 distinct cell locations of the original 32×8 table** rather than identifying its numbers with runic GP residues. The original 2013 Cicada audio stage demonstrated **bytewise XOR** of two published byte streams; a plausible but unprescribed analogy is to XOR each terminal rune's GP index (0–28 as a byte) with the corresponding **printed table byte**, then treat the 256 resulting masked bytes as a standard GF256 **[256,76] extended Reed–Solomon** codeword. The outer 76 p55 runes are unknown message data; the inner 180 pp56–57 runes are known parity. Source-ring traversal supplies a complete 256-position bijection. The decoder fits a degree-less-than-76 polynomial to the first76 known parity bytes and predicts the remaining104 independently known positions, then unmasks the withheld p55 bytes.
+
+To keep historical implementation variants limited, the test fixes XOR and two standard field polynomials (**0x11d**, common RS, and **0x11b**, AES); two source-native field-point orders (clockwise **ring index** 0–255 versus **original table-cell index** 0–255); and the two p56 registers (independently solved plaintext versus original printed ciphertext). That is **eight** declared complete inversions. No grid key, offset, IV, language score or hidden symbol permutation is fitted.
+
+| Field / point order | p56 register | Independent parity matches (of 104) | Recovered p55 byte values below 29 | Exact recovered byte matches with original p55 |
+| --- | --- | ---: | ---: | ---: |
+| 0x11d / ring | solved | 0 | 7/76 | 0 |
+| 0x11d / ring | visible | 0 | 6/76 | 0 |
+| 0x11d / cell | solved | 1 | 7/76 | 0 |
+| 0x11d / cell | visible | 1 | 5/76 | 1 |
+| 0x11b / ring | solved | 1 | 10/76 | 0 |
+| 0x11b / ring | visible | 0 | 11/76 | 0 |
+| 0x11b / cell | solved | 0 | 9/76 | 0 |
+| 0x11b / cell | visible | 0 | 9/76 | 0 |
+
+All eight variants fail the **first held-out known parity position**, and at most one of 104 independent parity checks matches. No recovered candidate is natively GP29 plaintext; the stronger source-correct byte-XOR operation remains hypothetical. A real degree-75 polynomial planted using each tested GF256 field and each point order is recovered **256/256** from only the 76 parity inputs under the same code. This establishes that the decoder is executable, while the original cryptographic hypothesis fails sharply.
+
+[Standalone original-input and planted CJS SFT](../sims/lp2_terminal256_xor_rs76_sft.cjs) reuses the existing checked-in GF256/RS library and source byte SHA256 assertion. It tests an independent *byte-mask* inverse rather than another literal GP29 representation of the grid. No genuine p55 plaintext, key or destination is recovered.
+
 ## Source-red quartic LFSR: exact elimination of every additive seed
 
 The two original red triads already determine the monic GF(29) factor
