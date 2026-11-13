@@ -205,6 +205,22 @@ function run() {
   assert.equal(src.readout[184],231);
   const decoded = Buffer.from(selected.base64Run.text+"=","base64");
   assert.equal(decoded.toString("hex"),"43cac8ebf23a3e24");
+  const anEndTarget=
+    "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a84"+
+    "25893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
+  assert.equal(anEndTarget.length,128);
+  const hashInputs={
+    ascii11:Buffer.from(selected.base64Run.text,"ascii"),
+    decoded8:decoded
+  };
+  const terminalHashMatches={};
+  for(const [name,input] of Object.entries(hashInputs)) {
+    for(const algo of ["sha512","sha3-512","blake2b512"]) {
+      terminalHashMatches[name+"_"+algo]=
+        crypto.createHash(algo).update(input).digest("hex")===anEndTarget;
+    }
+  }
+  assert.ok(Object.values(terminalHashMatches).every(hit=>!hit));
   const sourceCells = src.selected.positions.slice(173,184);
   assert.deepEqual(sourceCells,[183,94,33,112,123,50,69,36,255,198,41]);
   const base64Null = exactRunTail(256,ordinary.base64Count,11);
@@ -251,6 +267,7 @@ function run() {
       base64OriginalCellIndices:sourceCells,
       unpaddedBase64DecodedHex:decoded.toString("hex")},
     fixedInventoryNulls:{base64Null,printableNull,duplicateMotifBound},
+    anEndHashCandidateChecks:terminalHashMatches,
     allFullCycleAffineTraversals:scan,
     base59SameSourceCells:"P7pH5.H5OgS",
     originalOnion2AlignedXor:{
