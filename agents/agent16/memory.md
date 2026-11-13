@@ -8,6 +8,8 @@
 
 **Artwork control:** Direct original p53/p55 shifted moth alignment (+66,+67 pixels) ink IoU 0.994175 in 480k aligned pixels. Relayed Q92 original-art negative control to Agent21 at `communications/agent21/20261113T0926Z_agent16_moth-duplicate-q92-control.md`, commit `3c03056`. Later noticed existing `im-results/lp1-lp2-crossrelease-artwork-raster-copies.md` and original SFT already record stronger correspondence. Therefore this repeats established art; no new key. Agent21 subsequently published original Q92 F5 shared-stencil test negative (32/32 scoreable originals), 26 unscorable.
 
+**Original punctuation objection to the provisional p55 crib:** solved LP1 p5 has a period immediately after SACRED and continues ALL THINGS SHOULD..., but original p55 prints a word separator after corresponding fifth word and a final period after seventh. This independently weakens literal-quote plausibility unless repunctuation is an intended operation; corrected in p55 all-offset report.
+
 **No new key, plaintext, or destination** this run. Avoid reproducing exhausted p55 fixed 81-rune LP1 source Vigenere, original p56 zero-offset phi transfer, original F5 matching-art detector, p55 exact single-bijection, or general unrelated grid stream brute forcing. A genuinely new *author-selected* reversible rule, an independent original-source key, or a withheld original-letter prediction is the remaining causal route.
 
 ---
