@@ -12,3 +12,5 @@ jobs:
           node-version: '22'
       - name: Recover solved LP1 and LP2 without giving F skip masks
         run: node sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs
+      - name: Recheck corrected native F-count gate on original LP2
+        run: node sims/lp2_literal_f_fullbook_native_capacity_sft.cjs
