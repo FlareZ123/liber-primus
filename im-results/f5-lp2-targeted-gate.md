@@ -1,8 +1,8 @@
-# F5 JPEG DCT gate: seven password representations, no extraction
+# F5 JPEG DCT gate: seven password representations and calibrated original Q92 stencil
 
 ## Decision
 
-No LP2 plaintext or key was recovered. The five earlier source-derived candidates and two representations of one source-derived M7 pole-cycle candidate were tested against all 58 original LP2 JPEGs: **0/406 nonempty payloads**. This rejects those seven exact password strings. Two detector routes have also failed to establish a usable LP2 sensitivity bound: the f5.jar/PixelKnot structural detector misclassified its extraction positive control as CLEAN, and the pinned FGH-2002 statistical detector was inconclusive on all LP2 pages and all matched positive controls while clean cover controls also saturated. **F5 is not disproved; no practical, calibrated F5 extraction route or source-selected key/permutation is presently available.**
+No LP2 plaintext or key was recovered. The five earlier source-derived candidates and two representations of one source-derived M7 pole-cycle candidate were tested against all 58 original LP2 JPEGs: **0/406 nonempty payloads**, rejecting those exact seven password strings. The previously attempted f5.jar/PixelKnot structural fingerprint and FGH-2002 histogram estimator did not pass sensitivity controls at original Q92. A **new, separately calibrated original-format, leave-one-out shared-stencil detector** now detects **15/15 true F5 256–4096-byte embedded/extracted positives** and observes **zero F5-like coefficient changes across 32/58 original LP2 pages with reusable background artwork**. The other **26 pages are unscorable** by that stencil test. This is a source-bounded negative for independent whole-image F5 embedding in the repeated-template regions, not a general exclusion of F5 or recovery of a source-selected key. See [complete new Q92 original-input gate](lp2-f5-q92-shared-stencil-original-gate.md).
 
 ## Hypothesis and bounded inputs
 
@@ -95,13 +95,9 @@ An earlier harness run (42995341645) failed before the corpus scan because image
 
 ## Interpretation and next action
 
-This work establishes **no LP2 plaintext, key, or F5-specific signal**. The 0/406 extraction result excludes only the seven exact password strings. The two detector routes are not a calibrated absence test: the structural detector misses its known positive control, while FGH-2002 fails to separate matched F5-positive controls from clean LP2 covers and marks every original LP2 page inconclusive. The FGH paper itself documents crop-estimation failure on regular structures; no source clue currently selects a different detector mode, key, or permutation.
+This F5 source-route now has **two distinct controls with different limits**. The seven clue-motivated passphrases have no original extractable bytes; FGH-2002 and the f5.jar structural signature did not calibrate on matching source imagery. The independent Q92 repeated-background stencil investigation does calibrate: **15/15 exact positive controls across five source page groups** were detected, with **0/32 source-original stencil mutation flags**. Its source references cover p4–7, 9–14, 34–39 and 40–55; 26 other pages cannot be scored by this method. The genuine grayscale F5 v1.0.0 positive-control encoder failed self-extraction and is a coverage caveat. The original image border may also contain common content predating page-specific artwork; payloads restricted to the rune body and smaller than the 256-byte tested minimum remain open. [Full condition, source atlas, code and passing CI](lp2-f5-q92-shared-stencil-original-gate.md).
 
-Accordingly:
-- Do not run additional password, seed, permutation, or generic keyed searches.
-- Retire the tested FGH implementation as a practical LP2 route; **do not claim that F5 as a family has been excluded**.
-- Reopen F5 only if an independent original-source clue selects a detector/feature, or a new historically grounded detector first passes both matched clean and positive controls on manuscript-like JPEGs.
-- Return research effort to a route that selects a reversible operation and key/state on the original ciphertext.
+The collective decision is to **stop speculative password sweeps and the uncalibrated FGH route**. No historical instruction selects an F5 password, independent payload, reset or permutation. Revisit F5 only for a source-selected, genuinely new decoder or a separately calibrated blind detector covering the unscorable pages, while directing current research toward an authentic plaintext inverse.
 
 ## Reproduction
 
