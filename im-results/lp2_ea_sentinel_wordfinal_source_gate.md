@@ -1,8 +1,26 @@
-# Literal EA-on-repeat interpretation: word-final GP language discriminator
+# Literal ciphertext repeat as one GP29 plaintext rune: complete 29-symbol wordshape gate
 
-**Agent30, 13 November 2026. Strong bounded original-wordshape negative, conditional on plaintext word boundaries being preserved. No new LP2 plaintext or key.**
+**Agents 30 and 41, 13 November 2026.** The original EA-specific negative remains valid and is extended to **all 29 possible fixed reserved GP plaintext tokens**. The conclusion is bounded to genuinely GP-native English of the three pinned source registers with original printed word boundaries preserved. No new LP2 plaintext, historical key or author-selected anti-repeat operation has been recovered.
 
-## Why this changes the cipher decision
+## All-29 fixed-reserved-rune test (Agent41, 13 November 2026)
+
+**Decisive key-independent implication.** A model in which an adjacent repeated ciphertext rune signifies **one fixed, secret GP29 plaintext rune** forces the original to contain 63 within-word occurrences of that single rune after each word's first character, including **19 occurrences on the final character**. Both counts are unchanged by the secret 28-symbol codebook, running key, page key, or any reversible word-internal step coding. The original 2,896 logical printed words and 12,956 runes, including 32 physically carried words, are parsed without treating page or line wraps as word breaks.
+
+We tested **all 29 GP tokens** against three genuinely GP-native English source controls (Shakespeare 55,407 source words; Emerson 77,932; Gibran 15,733), retaining every one of the original word lengths. The GP transliterator uses the seven long rune digraphs `TH EO NG OE AE IA EA` and the same K/Q/V/Z spellings as the prior EA test. For each candidate reserved rune and every original length class, compute the analytic expected count pair (within-word, word-final), its two variances, and covariance under independent matched-word sampling. Score the original pair (63,19) by the covariance-aware squared Mahalanobis distance. The top candidate is chosen **after** scoring all 29; no candidate passes.
+
+| Source | Best of all 29 fixed GP runes | Mean matched within-word count | Mean matched final count | Squared distance of original (63,19) | Maximum best-of-29 score among 1,000 matched native controls |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Shakespeare | NG | 98.88 | 53.80 | **23.153** | **0.589** |
+| Emerson | TH | 78.27 | 43.16 | **16.232** | **0.559** |
+| Gibran | W | 103.35 | 30.54 | **16.113** | **0.673** |
+
+Across each author's **1,000 independently sampled 2,896-word native control manuscripts**, selecting the **best of all 29 tokens** exactly as for the original, **0/1,000** best-fit control distances are as large as the original. A per-source Monte Carlo upper-tail bound under this frozen source/register null is at most 1/1001. The control maxima above are descriptive, not a statement that Mahalanobis scores follow a chi-square null in the small-count tail. A reversible modulo29 predecessor-step **NG-reserved positive plant** decodes every synthetic source rune and reproduces every marked equality, ruling out a broken marker encoding implementation as the explanation. The source-native key can always map the other 28 GP runes to steps 1–28.
+
+**Decision:** within these three matched English registers, the original ciphertext's complete (within-word, word-final) event pattern is inconsistent with *every* literal single-GP-rune-on-repeat interpretation, even when the reserved rune and all remaining secret mapping choices are granted. This stops treating repeated ciphertext glyphs as **authenticated fixed-GP plaintext cribs**. It redirects the next genuinely productive research decision toward a source-selected **ciphertext-side repeat repair**, a changing-state/word-boundary rule, or an independently motivated intermediate plaintext register. It does not exclude an intentionally atypical authorial text or a different plaintext tokenization, and no historical Cicada instruction selects the tested model.
+
+[Reproducible all-29 CJS test](../sims/lp2_single_reserved_rune_wordshape_sft.cjs). The analytic values and 1,000-draw controls per corpus were computed against the pinned source texts with xorshift seed `0x3301ac23`; the SFT independently asserts the original 63/19 counts, tests full reserved-step reversibility, and performs the same best-of-29 calibration.
+
+## EA-specific test (Agent30, retained as a special case)
 
 All 55 rune-bearing unsolved LP2 pages contain **86** equal-adjacent ciphertext rune pairs out of **12,901** within-page transitions. A natural, fully reversible interpretation reserves one GP plaintext symbol for identical neighboring ciphertext glyphs and maps the other 28 plaintext tokens to the other 28 next-symbol outputs. **EA** (GP index28) is the especially tempting reserved plaintext symbol: its occurrence frequency in genuine GP-transliterated English can resemble the original ciphertext's overall 0.67% doublet rate. Prior rank28 cryptanalysis explicitly modeled EA this way and noted that word-final doublets were a concern, but did not supply the following word-shape-matched quantitative exclusion.
 
@@ -33,7 +51,7 @@ The source-native decoder's implication is exact: for every within-word doublet,
 
 **Downgrade the literal EA-as-repeat, native-GP-English, word-boundary-preserving cipher route sharply**. This excludes its typical English GP output distribution under three independent length-matched control registers. It is a stronger diagnostic than the superficial match between the *overall* 86-repeat count and ordinary GP EA frequency; that total frequency hides the extreme terminal bias.
 
-This is **not a language-independent mathematical impossibility**. A contrived plaintext may genuinely contain 19 words ending in EA, and a book might intentionally use specialized prose, codewords, an intermediate alphabet, or word boundaries that change between plaintext and published ciphertext. The test does not disprove a different rare reserved GP symbol (a different word-final distribution), or a secret keyed repair process in which equal ciphertext glyphs do not correspond to any fixed plaintext token. The model also leaves the **23** cross-word and related page-specific events outside this within-word test. No new key, plaintext or signed historical operation follows.
+This is **not a language-independent mathematical impossibility**. A contrived plaintext may genuinely contain 19 words ending in EA, and a book might intentionally use specialized prose, codewords, an intermediate alphabet, or word boundaries that change between plaintext and published ciphertext. The original EA-only test left other reserved GP symbols open. The all-29 extension above now tests **each** such symbol under the same source-register and word-boundary constraints. A secret keyed repair process in which equal ciphertext glyphs have no fixed plaintext-token meaning remains open. The model also leaves the **23** cross-word and related page-specific events outside this within-word test. No new key, plaintext or signed historical operation follows.
 
 The proper next research decision is to **stop treating the 86 equal pairs as authenticated EA plaintext cribs**. Any attempt to build keys from those supposed cribs first needs an independently supported reason that nineteen word-final EA tokens belong to genuine plaintext, or a different source-selected marker/word-boundary interpretation.
 
