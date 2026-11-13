@@ -40,7 +40,7 @@ const C = source.pages.filter(p => p.page <= 55).flatMap(p => p.indices);
 assert.equal(C.length, 12956);
 assert.equal(parsed.runeCount, 12956);
 assert.equal(parsed.words.length, 2896);
-assert.equal(source.pages.find(p => p.page === 15).indices.length, 239);
+assert.equal(source.pages.find(p => p.page === 15).indices.length, 159);
 assert.equal(grid.bytes.length, 256);
 assert.equal(crypto.createHash('sha256').update(Buffer.from(grid.bytes)).digest('hex'),
   '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
