@@ -16,3 +16,6 @@ jobs:
         run: node sims/lp2_terminal_hg_product_code_parity_sft.cjs
       - name: H-G five-doublet key-state prediction and positive plant
         run: node sims/lp2_hg_doublet_fmarker_state_recovery_sft.cjs
+
+      - name: Exact LP2 original-word-length multiset-rank binary gate
+        run: node sims/lp2_wordlength_multiset_rank_binary_sft.cjs
