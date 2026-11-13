@@ -30,7 +30,7 @@ Each control set consists of **600 deterministic, evenly distributed native-GP s
 
 **Exact changing-kernel positive plant:** A fixed-seed source-native construction embeds 377 of those original clear GP pairs into 1,508 synthetic four-rune ciphertext symbols while selecting the other two coordinates afresh per block. The source Q(M) operation recovers **754/754 plaintext runes exactly**, reproducing all 451 authentic GP pair collisions. This checks that completely arbitrary changing secret kernel values alone cannot hide an ordinary half-rate GP-English message from the proposed original-source test.
 
-Reproduce all calculations on Windows 11 with Node.js 22 using [the standalone SFT](../sims/lp2_p15_rank2_half_rate_codebook_sft.cjs). Existing upstream source matrix and red-triad evidence is in [the signed-matrix report](lp2-p15-p39-signed-matrix-eigen-crosslink.md). The previous additive full-rate exclusion in that report tested 4 plain runes per 4 cipher runes, a distinct premise.
+Reproduce all calculations on Windows 11 with Node.js 22 using [the standalone SFT](../sims/lp2_p15_rank2_half_rate_codebook_sft.cjs). [The manual Windows CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43522141178) completed successfully for the complete p15 signed-eigenspace probe, including this new half-rate source gate. Existing upstream source matrix and red-triad evidence is in [the signed-matrix report](lp2-p15-p39-signed-matrix-eigen-crosslink.md). The previous additive full-rate exclusion in that report tested 4 plain runes per 4 cipher runes, a distinct premise.
 
 ## Research decision
 
