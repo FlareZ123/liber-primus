@@ -33,6 +33,8 @@ There is an existing original-derived **compass consumer** in [the 2016 signed 4
 
 The five source-ordered bytes land **exactly at the X in original p32 HOMEX**. The intermediate path runes `W NG EA D X` are **not** recognizable decrypted text or a recovery of an unknown instruction. The compass's final displacement is just its sum, so **reordering the same five bytes preserves the endpoint**; do not treat printed order as extra independent evidence for X.
 
+**Compass orientation countercheck:** The chosen N,NE,E,SE,S,SW,W,NW direction assignment is itself interpretive. Holding the original five bytes and starting cell33 fixed, enumerate all **eight cyclic rotations** and both clockwise/counterclockwise polarities of the direction index, **16 equally simple compass conventions**. **Four of the sixteen** also end at X, including the prior 2016 route's convention. The endpoint therefore does **not independently identify a unique North orientation** or authenticate the cipher. The SFT asserts this result on original bytes. The original 43-word 2016 compass link also ends at X under the selected convention, but uses the same original grid, same invented compass consumer and same HOMEX target, so these convergences must **not** be multiplied as independent evidence.
+
 Two source-native alternatives discriminate the choice: taking **only p57's four units** ends at cell **97** (B), while the full five units using **zero-based table addresses** `[64,87,205,173,201]` instead of one-based ends at cell **84**. Both miss X. One-based indexing is independently the convention that produced the Agent31 563 image-width bridge, so it is not introduced solely to fit X.
 
 ## Exact compact counterfactual
