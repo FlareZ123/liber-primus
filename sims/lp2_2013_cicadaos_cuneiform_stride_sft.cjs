@@ -150,14 +150,13 @@ function signatureIndices(table) {
  * @param {Buffer} tape
  * @param {{name:string,values:Buffer}[]} options
  * @param {number} stride
- * @param {Model[]} models
  * @returns {{sourceBytes:number,stride:number,candidateSignatures:number,fullMatches:Array<object>,modelCandidates:Record<string,number>}}
  */
-function scan(tape, options, stride, models = MODELS) {
+function scan(tape, options, stride) {
   const indexes = signatureIndices(options);
   /** @type {Array<object>} */
   const matches = [];
-  const candidates = Object.fromEntries(models.map(m => [m.name, 0]));
+  const candidates = Object.fromEntries(MODELS.map(m => [m.name, 0]));
   const end = tape.length - 255 * stride;
   for (let start = 0; start < end; start++) {
     const t0 = tape[start], t1 = tape[start + stride],
@@ -216,7 +215,7 @@ function positiveControls(grid) {
           : ((target % 29) - key + 29) % 29;
         source[start + i*stride] = sample;
       }
-      const result = scan(source,[original],stride,[model]);
+      const result = scan(source,[original],stride);
       assert.ok(result.fullMatches.some(m=>m.model===model.name &&
         m.layout===original.name && m.sourceStart===start),
         model.name + " missing planted original-geometry 256-cell source");
