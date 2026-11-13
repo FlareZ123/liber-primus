@@ -36,9 +36,11 @@ const allUnknown = corpus.pages.filter(p => p.page >= 0 && p.page <= 55)
   .flatMap(p => p.indices);
 const p33to39 = corpus.pages.filter(p => p.page >= 33 && p.page <= 39)
   .flatMap(p => p.indices);
+const p55Body = corpus.pages.find(p => p.page === 55).indices.slice(1);
 const solved57 = corpus.pages.find(p => p.page === 57).indices;
 assert.equal(allUnknown.length, 12956);
 assert.equal(p33to39.length, 1680);
+assert.equal(p55Body.length, 75, 'p55 complete-word body after the incoming p54 carry');
 
 const mod = (n, m) => ((n % m) + m) % m;
 function ioc(sequence) {
@@ -83,7 +85,8 @@ for (const candidate of keyCandidates) {
   for (const sign of [-1, 1]) {
     for (const [targetName, target] of [
       ['all unknown LP2 pp0-55', allUnknown],
-      ['immediate following section pp33-39', p33to39]
+      ['immediate following section pp33-39', p33to39],
+      ['p55 complete-word body after incoming carry', p55Body]
     ]) {
       const plain = decrypt(target, candidate.key, sign);
       const plant = Array.from({ length: target.length },
@@ -120,6 +123,7 @@ const output = {
   targets: {
     unknownBookRunes: allUnknown.length,
     followingSectionRunes: p33to39.length,
+    p55CompleteWordBodyRunes: p55Body.length,
     rawBookIoC: ioc(allUnknown),
     rawBookAdjacentRepeats: adjacentRepeats(allUnknown),
     rawP33to39IoC: ioc(p33to39),
