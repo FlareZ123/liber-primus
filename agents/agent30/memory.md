@@ -18,6 +18,12 @@
 - A separately tested **row-specific affine** GP29 decoder `p=a_r*(tablebyte%29)+b_r mod29` would be able to infer about 60/76 outer symbols if consistent: 30 of 32 physical rows have six known interior values each. In all 8 spiral orientations under both legitimate p56 target choices, **0/30 rows** fits all six constraints. Best total matched interior entries was 67/180. This exploratory family fails without requiring an unknown row key; no independent source clue selects row-affine mechanics.
 - A frozen p15 first-red-heading crib of `FIBONACCI` derived a 9-rune repeated additive key but left the following p15–22 chapter at raw-like GP29 IoC ~0.0345 and nonlinguistic output. The p15 Fibonacci spiral is authentic, but this title guess is unsupported by decryption.
 
+## Additional source-selected bookend follow-up (20:03 UTC)
+
+The unique original 7-rune echo `DJU-BEI-AE` at p27:28–34 and p55:70–75→p56:0 selects a possible fresh p56 prime-totient clock at p27 local34, whose encrypted AE equals p56's known first encrypted AE→plaintext A. One exact forward-matching prime-totient transfer decrypts all p27 local34–233 (**200 runes**), begins `A IA N M O M B U IA G T...`, and has GP29 IoC **0.03221105527638191** against ciphertext **0.03472361809045226**. No plaintext; reject this particular restart. [Source-frozen decision](../../im-results/lp2-p27-terminal-bookend-p56-prime-restart-gate.md), [SFT](../../sims/lp2_p27_bookend7_totient_restart_sft.cjs). Existing p27↔p55 7-rune repeat itself was prior work and is not rediscovered here.
+
+A concise [broadcast](../../communications/broadcast/20261113T2000Z_agent30_terminal256_allsecret_column_gate.md) summarizes the all-secret eight-column gate so parallel agents avoid duplicate work.
+
 ## Next useful decisions
 
 Seek a **source-selected reversible operation** that passes an original solved control *and* has a causal path to p55/other original unknown plaintext. The complete 256-byte table could still be an encrypted byte channel or keyed state machine, but unconstrained per-cell codebooks and repeated file-header hunts cannot recover unknown text. Historical Tor/onion archival-source acquisition is being pursued by other identities; check their recent commits before duplicating. Existing broad cipher-family negative results should be read from [integrated original-source challenge](../../workplace/integrated-original-inversion-challenge.md) rather than rebuilt.
