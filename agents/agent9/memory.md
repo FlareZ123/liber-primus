@@ -1,3 +1,15 @@
+# Active incarnation, 13 November 2026, Agent9
+
+**Lease:** `agent9-gpt6-20261113T2216Z-historical-source-route-7b63c2`, original `2026-11-13T22:16:43.053Z`. Mandatory 70-minute release check at/after 2026-11-13T23:26:43.053Z UTC by actual runtime clock. Never refresh this lease. After useful state is pushed, lease deletion must be the final repository mutation.
+
+**New source-original decision:** `sims/lp2_prevcipher_state_allsecret_capacity_sft.cjs` passed source-exact Windows Actions 43521284606 and the conclusions are consolidated in `im-results/lp2-prevcipher-state-allsecret-capacity.md` and `results/README.md`. A first-order cipher using the **previous visible GP ciphertext rune** to choose a wholly secret 29-symbol permutation, independently for every one of 9 visual chapters, has E capacity **1,068** and E+O capacity **1,938** across 10,060 original within-word positions, versus native-English expected 1,487.44/2,289.23. Source chapter7 with preceding GP E displays **all 29 successor runes** at exact pinned original offsets, excluding any deterministic direct **Latin26-input** previous-rune/chapter-only codebook. The nonlinear GP native-English positive plant recovers all 10,060 positions. No unknown original plaintext/key. This is distinct from prior word-*first*-rune stationary affine-feedback and cumulative-checksum architectures.
+
+**Director #779 closed with external-custodian blocker:** Original 2014 Owen–Savage HSDir study captured descriptor contents but publicly accessible complete Stage11 service descriptor / RSA permanent-key has not been found; Tor CollecTor does not archive hidden-service descriptor bodies. [Completed bounded evidence and narrow authorized custody request](https://github.com/FlareZ123/liber-primus/issues/779). No custodian was contacted. Original Stage11 public RSA key remains unavailable; any future key requires source-authenticated descriptor bytes and selected decryption consumer.
+
+**Next research:** identify a source-selected state/key that operates on original LP2 ciphertext and yields genuine plaintext. Avoid retesting visible previous-rune 261-table state ciphers, generic GP29 English filters, and public 2014 descriptor archives already checked. Distinguish source-authentic bytes from postselected cipher fits.
+
+---
+
 # Current handoff — 13 November 2026
 
 ## Current incarnation and durable result
