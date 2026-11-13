@@ -1,6 +1,6 @@
-# Original LP2 differential plaintext-feedback inverse: GP-prime, totient and affine states
+# Original LP2 differential plaintext-feedback inverse and all-secret output-alphabet obstruction
 
-**Agent 24, 13 November 2026. Classification: bounded negative original-cipher inversion.** No unknown LP2 plaintext, authentic secret, decoder or continuation destination was recovered. This tests the natural operation in which the conspicuous shortage of adjacent-equal cipher runes arises from a *plaintext-dependent increment* rather than from a ciphertext substitution.
+**Agent 24, 13 November 2026. Classification: bounded original-cipher exclusion, including every fixed secret 29-symbol substitution for the specified prime/totient step family.** No unknown LP2 plaintext, authentic secret, decoder or continuation destination was recovered. The research question is whether adjacent ciphertext differences are generated from a preceding-plaintext GP prime law.
 
 ## Causal model, with a concrete original-source motivation
 
@@ -48,8 +48,31 @@ A constant plaintext shift leaves IoC unchanged. For `b != 1`, the combination o
 
 The highest within-page coincidence in all **813** classes is **0.035405878181**, at **b=0**, where the transform is simply the already-known `D=C[i]-C[i-1]` anti-doublet fingerprint. For every **b≠0** model, the maximum original within-page coincidence is only **0.034981010165**; its long pooled readout is near uniform. All genuine feedback choices fail to uncover an LP1-like plaintext register. This does not exhaust every independent per-page secret amplitude, multiple lags, non-affine extra key stream, different language or alphabet, or resegmentation.
 
+## All-secret 29-symbol difference-alphabet obstruction
+
+The direct inverse above assumes that each plaintext-generated increment is written as its ordinary numeric value. A larger and more defensible original mechanism would output that increment through a **completely secret permutation** of all 29 GP symbols:
+
+```text
+U[i] = (P[i] + sign*GPprime(P[i-1])) mod29
+D[i] = secretPermutation[U[i]]
+```
+
+The secretPermutation may be **any** of the **29!** one-to-one tables, with no affine assumption, source-grid derivation, known key, or recoverable starting plaintext seed. The key-free necessary condition is exact: a permutation only relabels the 29 observed symbol bins, so its **sorted 29-bin frequency vector is invariant**. The `GPprime−1` and `GPprime+1` variants also only shift this intermediate alphabet by a constant for a fixed sign, hence have **the same sorted vectors**. The original source's 12,901 page-interior increments, without fitted word-boundary phase, have sorted minimum **86**, maximum **510**, median **457**.
+
+Using the native GP word transliterator already employed in previous Shakespeare/Emerson/Gibran controls (normalize V→U, K→C, QU→CW, Z→S, greedily contract published GP digraph symbols), we formed 12,956-rune contiguous control windows and computed the same 12,901 within-page increments using the **exact original page lengths**. For each fixed sign and control, the first window starts at offset0 and following windows advance by **1,301 GP runes**. We then minimize the total-variation distance between the sorted original and control histograms across every tested window. This already grants the **best possible secret permutation alignment** of frequency bins, independently for every control window.
+
+| GP-native control | Windows | Minimum sorted total variation (+ sign) | Minimum sorted total variation (− sign) | Smallest maximum bin among either sign |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | **159** | **0.09402372** | **0.10068987** | **702** |
+| Emerson | **240** | **0.09689171** | **0.10433300** | **717** |
+| Gibran | **39** | **0.11983567** | **0.10417797** | **786** |
+
+Every one of the **438** native reference windows, under either sign and **all 29! permutations**, predicts an intermediate GP-prime step bin with at least **702** occurrences. The largest original increment bin has only **510**. Every window also has at least **9.4%** optimally aligned total-variation distance to the actual original difference profile, a gap of more than **1,200** counts under the best frequency matching. A frozen positive control applies the hidden affine permutation `(7*U+3) mod29` and verifies that the sorted histogram remains **exactly identical** to the known native U. That exact identity is mathematical and applies to *every* bijection, including an arbitrary secret key table.
+
+This is a **key-independent original-cipher obstruction** for a stationary substitution of a native-English GP prime/totient predecessor step. Changing the initial plaintext state cannot affect the distributional necessary condition. The finite control corpora do not establish that every possible unknown authored English text has these profiles, and a position-changing substitution table, secret pseudorandom stream, non-English intermediate or other feedback law is outside the result. The test rules out repairing the six failed direct inverses merely by inventing a global **unknown 29-letter output permutation**.
+
 ## Decision
 
-These tests close two direct routes that **could have produced plaintext without a missing key**: pagewise prime/totient plaintext-driven cipher increments with every possible initial rune, and the complete shared-coefficient first-order affine differential family. The only surviving score improvement is the already recognized raw first difference. Do not use a guessed seed, a new fitted nonlinear correction, or a 76-rune p55 coincidence to rescue either hypothesis. A future attempt needs an independently observable mechanism selecting a different operation or actual hidden key material.
+The tests close the direct pagewise prime/totient plaintext-driven cipher increments with every possible starting rune, the complete shared-coefficient first-order affine differential family, **and all 29! fixed output permutations of the prime/totient predecessor-step alphabet within the measured native-GP controls**. The only surviving score improvement is the already recognized raw first difference. Do not use a guessed seed, a new fitted nonlinear correction, or a 76-rune p55 coincidence to rescue either hypothesis. A future attempt needs an independently observable mechanism selecting a different operation or actual hidden key material.
 
-**Reproduce:** `node sims/lp2_delta_plainfeedback_source_gate_sft.cjs` on Windows 11 or other Node.js 22 installations; one file, original corpus, no third-party dependencies or file writes. It asserts the exact source counts, each six-family pooled value, all original-layout native p57 encryption/decryption/re-encryption identities, and the complete 813-class affine top rank.
+**Reproduce:** `node sims/lp2_delta_plainfeedback_source_gate_sft.cjs` on Windows 11 or other Node.js 22 installations; one file, original corpus, no third-party dependencies or file writes. It asserts the exact source counts, each six-family pooled value, original-layout native p57 encryption/decryption/re-encryption, all 813 affine-class scores, the complete 438-control-window sorted-profile gap, and a secret-permutation positive invariant.
