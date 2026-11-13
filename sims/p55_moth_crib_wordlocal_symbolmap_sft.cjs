@@ -49,6 +49,18 @@ function internalSteps(cipher) {
   return cipher.slice(1).map((value,i) => (value-cipher[i]+29)%29);
 }
 
+/**
+ * Sorted multiplicities are invariant under any symbol bijection and
+ * arbitrary permutation of positions.
+ * @param {number[]} a
+ * @returns {number[]}
+ */
+function spectrum(a) {
+  const counts = new Map();
+  for (const rune of a) counts.set(rune,(counts.get(rune)||0)+1);
+  return [...counts.values()].sort((x,y)=>y-x);
+}
+
 let offset=0;
 const rows=[];
 for (let w=0;w<lengths.length;w++) {
@@ -60,9 +72,10 @@ for (let w=0;w<lengths.length;w++) {
   const rawInverse=isFunction(C,P);
   const deltaInverse=isFunction(D,P.slice(1));
   const deltaForward=isFunction(P.slice(1),D);
+  const multiplicitiesAgree=JSON.stringify(spectrum(P)) === JSON.stringify(spectrum(C));
   rows.push({
     word:w+1, sourceP55Offset:46+offset, runes:n,
-    rawForward,rawInverse,deltaInverse,deltaForward,
+    rawForward,rawInverse,deltaInverse,deltaForward,multiplicitiesAgree,
     rawClashes:!rawForward||!rawInverse,
     deltaClash:!deltaInverse||!deltaForward
   });
@@ -77,7 +90,10 @@ assert.deepEqual(rows.map(r=>r.deltaInverse),
   [true,false,false,true,false,true,true]);
 assert.deepEqual(rows.map(r=>r.deltaForward),
   [true,false,true,true,true,false,true]);
+assert.deepEqual(rows.map(r=>r.multiplicitiesAgree),
+  [true,false,false,true,false,false,true]);
 assert.equal(rows.filter(x=>x.rawClashes).length,4);
+assert.notDeepEqual(spectrum(p),spectrum(c30));
 assert.equal(rows.filter(x=>x.deltaClash).length,4);
 
 // Plant seven independent per-word arbitrary bijections and a
@@ -97,6 +113,8 @@ console.log(JSON.stringify({
   status:'CONDITIONAL on unverified LP1 p5 seven-word plaintext',
   originalP55Suffix:[46,75],
   rawWordMapFailureCount:4,
+  evenWithWithinWordTranspositionFailureCount:4,
+  global30TranspositionAlphabetPreservingImpossible:true,
   withinWordStepMapFailureCount:4,
   words:rows,
   plaintextRecovered:false
