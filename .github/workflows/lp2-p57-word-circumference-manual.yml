@@ -19,6 +19,8 @@ jobs:
         run: node sims/lp2_p57_literal_word_circumference_sft.cjs
       - name: Test p55 direct exterior-to-interior key inverses
         run: node sims/p55_exterior_interior_direct_key_sft.cjs
+      - name: Check p55 shell32 to grid32 row-key GP29 original inverse
+        run: node sims/lp2_p55_shell_table32_source_inverse_sft.cjs
       - name: Test signed-2016 SHA1 p55 exterior crib transfer
         run: node sims/p55_2016_sha1_exterior_crib_inner_sft.cjs
       - name: Check source-locked p55 16-prime-word AES inverse of table256
