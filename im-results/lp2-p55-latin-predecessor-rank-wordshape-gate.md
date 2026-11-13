@@ -1,6 +1,6 @@
 # Physical p55 stationary Latin26 predecessor-rank code: source word-shape gate
 
-**Agent14, 13 November 2026. Director #741 decision:** The proposed stationary 25→28 predecessor-relative rank substitution is incompatible with native Latin26 English drawn from the four independently checked reference texts. The exact reversible hypothesis and 75-rune source segmentation are preserved. **No unknown LP2 plaintext, authentic key, or decoded instruction was recovered.** This excludes only the specified stationary cipher on the checked language controls, not changing-state keys, homophonic transformations, or invented words.
+**Agent14, 13 November 2026. Director #741 decision:** The proposed stationary 25→28 predecessor-relative rank substitution is incompatible with native Latin26 English in four independent reference corpora and the unchanged Latin Vulgate word register from eight source-pinned books. The exact reversible hypothesis and 75-rune source segmentation are preserved. **No unknown LP2 plaintext, authentic key, or decoded instruction was recovered.** This excludes only the specified stationary cipher on the checked language controls, not changing-state keys, homophonic transformations, modernized Latin orthography, or invented words.
 
 ## Original source and key-independent invariant
 
@@ -22,14 +22,17 @@ That demands **11 distinct plaintext letters**, with positions 10=11 and 8=12 an
 | Shakespeare control | 55,407 | 29 | 0 |
 | Emerson, Essays | 77,932 | 241 | 0 |
 | Solved Cicada LP1 reference | 875 | 3 | 0 |
+| Native Latin Vulgate (Luke, John, Acts, Romans) | 39,835 | 241 | 0 |
+
+The [uncontracted, source-preserving Latin Vulgate word corpus](../resources/control/latin-vulgate-latin26-wholewords.txt) was derived from eight original SHA-pinned book files, retaining all Latin word boundaries without GP29 digraph contraction. Its 39,835 tokens include **241 thirteen-letter words** and **zero exact matches** to the required p55 seventh-word pattern. More strongly, its entire original Latin alphabet consists of **only 23 distinct letters** (`ABCDEFGHILMNOPQRSTUVXYZ`), with **J, K and W completely absent**. P55's rank partition would demand 25 distinct plaintext letters and one designated literal **K** repeat marker. Thus **no Latin text assembled from this unchanged eight-book Vulgate register could produce p55 in the proposed stationary cipher**, independently of every secret alphabet permutation. Different original Latin corpora, spelling choices or changing-state ciphers remain outside this exact-source exclusion.
 
 An independent pronunciation-dictionary screen of **1,578 distinct 13-letter CMU words** also found **zero exact shape matches**. The only word meeting the two specific repeat equalities without satisfying the other necessary inequalities is *MASSACHUSETTS*. This supplementary dictionary census is illustrative, not a proof that a suitable obscure or invented English word does not exist.
 
 ## Planted positives and selection-matched controls
 
-[Exact original-input CommonJS SFT](../sims/lp2_p55_latin_rank_wordshape_sft.cjs) implements both predecessor-rank directions with the unchanged incoming p54 carry and an arbitrary nontrivial 25-to-28 injective key. It reconstructs **75/75 source-length-matched native Latin plant symbols** from each of the four control corpora; a forced-K plant separately exercises the repeat event. It asserts every original p55 rune, rank, word length, and the 13-letter pattern above.
+[Exact original-input CommonJS SFT](../sims/lp2_p55_latin_rank_wordshape_sft.cjs) implements both predecessor-rank directions with the unchanged incoming p54 carry and an arbitrary nontrivial 25-to-28 injective key. It reconstructs **75/75 source-length-matched native Latin plant symbols** from each of the five checked native-language corpora; a forced-K plant separately exercises the repeat event. It asserts every original p55 rune, rank, word length, and the 13-letter pattern above.
 
-Independently sample **100,000 sixteen-word planted plaintexts per reference**, with replacement from its authentic words, preserving the original 16 word lengths. The SFT freezes a reproducible 32-bit LCG seed of 0x741a14 plus the corpus index times 0x10101. Compare the key-invariant number of distinct letter classes and the maximum symbol frequency. Original source p55 has **23 distinct ranks, max frequency3** in the first45 and **25 distinct ranks including K, max frequency5** over all75. All 400,000 genuine-prose plants fit the original segmentation and could be losslessly encrypted by a stationary map.
+Independently sample **100,000 sixteen-word planted plaintexts per reference**, with replacement from its authentic words, preserving the original 16 word lengths. The SFT freezes a reproducible 32-bit LCG seed of 0x741a14 plus the corpus index times 0x10101. Compare the key-invariant number of distinct letter classes and the maximum symbol frequency. Original source p55 has **23 distinct ranks, max frequency3** in the first45 and **25 distinct ranks including K, max frequency5** over all75. All 500,000 genuine-prose plants fit the original segmentation and could be losslessly encrypted by a stationary map.
 
 | Corpus / 100,000 plants | First45 distinct≥23 | First45 max≤3 | Both first45 conditions | Both full75 conditions |
 | --- | ---: | ---: | ---: | ---: |
@@ -37,8 +40,11 @@ Independently sample **100,000 sixteen-word planted plaintexts per reference**, 
 | Shakespeare | 3 | 1 | **0** | **0** |
 | Emerson | 5 | 0 | **0** | **0** |
 | Solved LP1 reference | 0 | 0 | **0** | **0** |
+| Latin Vulgate, eight original books | 0 | 0 | **0** | **0** |
 
 This conditional control is deliberately generous in allowing independently sampled words without requiring coherent sentence transitions. It is not a language-independent impossibility proof or a manuscript-wide chance measure. The literal p55 original 13-word constraint offers a more specific failure than the aggregate histogram alone.
+
+The Vulgate positive plant likewise round-trips **75/75 Latin letters** under the unchanged p54 incoming state, confirming that its original-message incompatibility is a rank-invariant source property and not an inability to encode Latin letters.
 
 The source p55 having only **24 occupied nonrepeat ranks** is in itself ordinary for a short ciphertext. Conditional on 74 nonrepeat steps being iid uniform on 28 ranks, an exact finite occupancy recurrence gives probability **0.09524737506390421** for at most 24 occupied ranks. This rejects inferring a special 25-letter code merely from its combinatorial *capacity* on p55.
 
@@ -46,4 +52,4 @@ The source p55 having only **24 occupied nonrepeat ranks** is in itself ordinary
 
 Do **not** run a huge unconstrained secret-permutation search or change the predeclared seventh-word spelling to rescue this model. In the stated stationary family, every original rank equality is a plaintext equality and cannot be adjusted by key search. An actual solution would need an independently sourced changing codebook, a distinct reversible operation, or an authenticated plaintext containing the unusual seventh word. Neither source-selected mechanism nor original unknown plaintext has emerged.
 
-**Reproduction:** [Source SFT](../sims/lp2_p55_latin_rank_wordshape_sft.cjs); [manual Windows workflow](../.github/workflows/lp2-p55-latin-rank-source-gate.yml); [passing original-source Windows run 43412641162](https://github.com/FlareZ123/liber-primus/actions/runs/43412641162). The complete source-rank, plant, word-shape and occupancy assertions also passed the later [Windows run 43413206644](https://github.com/FlareZ123/liber-primus/actions/runs/43413206644).
+**Reproduction:** [Source SFT](../sims/lp2_p55_latin_rank_wordshape_sft.cjs); [manual Windows workflow](../.github/workflows/lp2-p55-latin-rank-source-gate.yml); [passing five-register Windows run 43416607733](https://github.com/FlareZ123/liber-primus/actions/runs/43416607733). The original source-rank, planted-message, Latin word-shape and occupancy assertions all pass in the same five-register CI run.
