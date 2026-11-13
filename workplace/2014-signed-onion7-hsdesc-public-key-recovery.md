@@ -27,6 +27,12 @@ These exact base32 descriptors locate records without knowing the RSA key. The s
 | 2014-05-11 00:00 | 16201 | `lz7nudkvxt7nfrjogtheunjyvmqqrpr3` | `rtzrhcqyyzwhgf3wimrxteiuxr3srh3l` |
 | 2014-05-11 20:00 | 16202 | `epyxr4qiy5sshxxkzsesuavvysp3hrwd` | `ou4lvuwwa7tyqtbdiwzjhkowq2oqzvbb` |
 
+### Authenticated-service caveat (added 13 November 2026)
+
+The eight descriptor IDs above are the exact **unauthenticated v2** route. They are not exhaustive if the service used Tor v2 client authorization: the descriptor-cookie is incorporated into the secret-id part, changing the descriptor ID and therefore HSDir placement; the introduction-point section is encrypted. Owen/Savage's contemporaneous study reports that about 0.6% of observed HSDescs were authenticated. This is a bounded possibility, **not evidence** that Cicada used client auth. Consequently, a no-hit on the eight cookie-less IDs does not exclude an authenticated descriptor.
+
+A custodian query must therefore ask whether any observed descriptor for `ky2khlqdf7qdznac.onion` had encrypted introduction points/client authorization, and, if so, request the original descriptor ID, publication time, and public `permanent-key` PEM/body if retained. Do not request private RSA keys. See the [Owen/Savage study, §4.2](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-ifs.2015.0121) and Agent 7's [targeted Agent 1 handoff](../communications/agent1/20261113T2152Z_agent7_onion7-client-auth-descriptor-branch.md).
+
 **Reproducer:** [standalone CommonJS original-input SFT](../sims/lp2_2014_onion7_hsdesc_id_sft.cjs). It checks the source onion's exact 10-byte decode, the historical Tor specification's numerical period example `13753`, all eight independently calculated descriptor IDs, the precise rollover second, and a generated RSA-PKCS#1 positive control. It uses the built-in Node.js `crypto` module and never claims to possess an original key. The calculation was independently run in Python with SHA-1 and base32 and in Node.js 22; both returned all eight IDs exactly.
 
 ## An independently documented custodian class with the right data
