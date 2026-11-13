@@ -111,3 +111,7 @@ jobs:
         run: node sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs
       - name: Test arbitrary secret kernel pads against original native-GP language
         run: node sims/lp2_p15_p39_projection_kernel_allsecret_sft.cjs
+      - name: Test original red3299 scalar matrix-power inverse and GP-native controls
+        run: |
+          node --check sims/lp2_p15_signed_redcell_scalar_sft.cjs
+          node sims/lp2_p15_signed_redcell_scalar_sft.cjs
