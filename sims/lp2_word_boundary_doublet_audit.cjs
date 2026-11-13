@@ -31,6 +31,9 @@ for (let p = 0; p < pages.length; p++) {
   wordId++; // Do not join words across page boundaries.
   let crossPairs = 0;
   let crossDoublets = 0;
+  const pageRuneCounts = new Int32Array(29);
+  for (const record of pageRecords) pageRuneCounts[record.index]++;
+  const expectedDoubletsUnderPageShuffle = pageRuneCounts.reduce((sum, n) => sum + n * (n - 1), 0) / pageRecords.length;
   for (let i = 1; i < pageRecords.length; i++) {
     const a = pageRecords[i - 1], b = pageRecords[i];
     if (a.word !== b.word) {
@@ -38,12 +41,16 @@ for (let p = 0; p < pages.length; p++) {
       if (a.index === b.index) crossDoublets++;
     }
   }
-  pageStats.push({ page: p, runes: pageRecords.length, crossPairs, crossDoublets });
+  pageStats.push({ page: p, runes: pageRecords.length, crossPairs, crossDoublets, expectedDoubletsUnderPageShuffle });
 }
 
 const allSlots = [], withinSlots = [], crossSlots = [];
 const allSites = [], withinSites = [], crossSites = [];
 const boundaryPairs = [];
+const transitionDifferences = {
+  all: new Int32Array(29), withinWord: new Int32Array(29), crossWord: new Int32Array(29),
+  p11_23WithinWord: new Int32Array(29), p11_23CrossWord: new Int32Array(29)
+};
 let lineDoublets = 0, withinWordLineDoublets = 0, crossWordLineDoublets = 0;
 let crossPageDoublets = 0;
 for (let i = 1; i < records.length; i++) {
@@ -53,6 +60,10 @@ for (let i = 1; i < records.length; i++) {
     continue;
   }
   const within = a.word === b.word;
+  const difference = (b.index - a.index + 29) % 29;
+  transitionDifferences.all[difference]++;
+  transitionDifferences[within ? 'withinWord' : 'crossWord'][difference]++;
+  if (a.page >= 11 && a.page <= 23) transitionDifferences[within ? 'p11_23WithinWord' : 'p11_23CrossWord'][difference]++;
   const slots = within ? withinSlots : crossSlots;
   const sites = within ? withinSites : crossSites;
   slots.push(a.pos);
@@ -293,6 +304,7 @@ function lp1FirstThreeBlockControl() {
   const lp1 = fs.readFileSync('resources/transcriptions/lp1_wulfic_canonical.txt', 'utf8').trim();
   const blocks = lp1.split(/\n%\n/).slice(0, 3);
   let runes = 0, withinPairs = 0, withinDoublets = 0, crossPairs = 0, crossDoublets = 0;
+  const withinDifferences = new Int32Array(29), crossDifferences = new Int32Array(29);
   for (const block of blocks) {
     const page = [];
     let word = 0;
@@ -322,6 +334,11 @@ const output = {
   source: 'resources/liber-primus/lp2-transcription.txt + lp2-corpus.json; LP2 pages 0–54',
   lp1FirstThreeBlockControl: lp1FirstThreeBlockControl(),
   runes: records.length,
+  adjacentPairs: allSlots.length,
+  expectedDoubletsUnderUniform: allSlots.length / 29,
+  expectedDoubletsUnderPageMarginalShuffle: pageStats.reduce((sum, p) => sum + p.expectedDoubletsUnderPageShuffle, 0),
+  repeatSuppressionVsPageMarginalShuffle: 1 - allSites.length / pageStats.reduce((sum, p) => sum + p.expectedDoubletsUnderPageShuffle, 0),
+  transitionDifferenceCounts: Object.fromEntries(Object.entries(transitionDifferences).map(([k, v]) => [k, Array.from(v)])),
   doublets: {
     total: totalDoublets,
     withinWord: withinDoublets,
@@ -355,10 +372,13 @@ console.log(JSON.stringify(output, null, 2));
     runes += page.length;
     for (let i = 1; i < page.length; i++) {
       const a = page[i - 1], b = page[i];
+      const difference = (b.index - a.index + 29) % 29;
       if (a.word === b.word) {
+        withinDifferences[difference]++;
         withinPairs++;
         if (a.index === b.index) withinDoublets++;
       } else {
+        crossDifferences[difference]++;
         crossPairs++;
         if (a.index === b.index) crossDoublets++;
       }
@@ -372,7 +392,9 @@ console.log(JSON.stringify(output, null, 2));
     withinRate: withinDoublets / withinPairs,
     crossPairs,
     crossDoublets,
-    crossRate: crossDoublets / crossPairs
+    crossRate: crossDoublets / crossPairs,
+    withinDifferenceCounts: Array.from(withinDifferences),
+    crossDifferenceCounts: Array.from(crossDifferences)
   };
 }
 
