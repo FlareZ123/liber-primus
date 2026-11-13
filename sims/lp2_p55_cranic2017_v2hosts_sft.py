@@ -12,6 +12,7 @@ literal .onion hostnames and the two known historical controls are detected.
 from __future__ import annotations
 import io
 import json
+import re
 import sys
 import tarfile
 from pathlib import Path
@@ -19,11 +20,16 @@ from pathlib import Path
 CANDIDATE = b"6sws36unkmvdy4b7.onion"
 CONTROLS = (b"ky2khlqdf7qdznac.onion", b"avowyfgl5lkzfj3n.onion")
 NEEDLES = (CANDIDATE, *CONTROLS)
+RAW_HOSTS = tuple(x.split(b'.')[0] for x in NEEDLES)
+V2_PATTERN = re.compile(rb'(?<![a-z2-7])([a-z2-7]{16})\.onion(?![a-z2-7])')
 CHUNK = 1 << 20
 MAX_MEMBER = 1 << 30
 
 def scan(archive: str | Path | io.BytesIO) -> dict:
-    hits = {needle.decode("ascii"): [] for needle in NEEDLES}
+    hits = {needle.decode('ascii'): [] for needle in (*NEEDLES, *RAW_HOSTS)}
+    v2_count = 0
+    v2_examples = []
+    member_index = []
     files = 0
     total_bytes = 0
     skipped = 0
@@ -43,12 +49,18 @@ def scan(archive: str | Path | io.BytesIO) -> dict:
                 skipped += 1
                 continue
             files += 1
+            member_index.append({'name': member.name, 'size': member.size})
             previous = b""
             offset = 0
             while block := stream.read(CHUNK):
                 data = previous + block.lower()
                 base = offset - len(previous)
-                for needle in NEEDLES:
+                for match in V2_PATTERN.finditer(data):
+                    if base + match.end() > offset:
+                        v2_count += 1
+                        if len(v2_examples) < 8:
+                            v2_examples.append(match.group().decode('ascii'))
+                for needle in (*NEEDLES, *RAW_HOSTS):
                     start = 0
                     while (start := data.find(needle, start)) >= 0:
                         hits[needle.decode("ascii")].append({
@@ -60,7 +72,9 @@ def scan(archive: str | Path | io.BytesIO) -> dict:
                 previous = data[-(max(map(len, NEEDLES)) - 1):]
     return {"files_scanned": files, "bytes_scanned": total_bytes,
             "skipped_large_or_unreadable": skipped,
-            "candidate": CANDIDATE.decode("ascii"), "hits": hits}
+            "candidate": CANDIDATE.decode("ascii"), "hits": hits,
+            "v2_literal_onion_mentions": v2_count, "v2_examples": v2_examples,
+            "members": member_index}
 
 def selftest() -> None:
     fixture = io.BytesIO()
@@ -76,7 +90,8 @@ def selftest() -> None:
     fixture.seek(0)
     result = scan(fixture)
     assert result["files_scanned"] == 3, result
-    assert all(len(result["hits"][h.decode()]) == 1 for h in NEEDLES), result
+    assert all(len(result['hits'][h.decode()]) == 1 for h in (*NEEDLES, *RAW_HOSTS)), result
+    assert result['v2_literal_onion_mentions'] == 3
     assert result["hits"][CANDIDATE.decode()][0]["byte_offset"] == CHUNK - 14
     print("SELFTEST_PASS: streaming tar, cross-chunk match, three frozen hosts")
 
