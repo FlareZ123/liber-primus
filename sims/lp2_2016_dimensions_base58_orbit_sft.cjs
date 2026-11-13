@@ -167,6 +167,60 @@ assert.deepEqual([anyCycle,exact33,heightFirst,heightAny,joint],
   [3167,0,24,169,0]);
 console.log("Within-page shuffled rune null B=10000, xorshift seed 0x33015635");
 console.log({anyCycle,exact33,heightFirst,heightAny,joint});
+
+/**
+ * Independent null conditioning more tightly on the original word register:
+ * shuffle complete source rune words ONLY among same-length word slots
+ * within each physical page. This preserves every page's entire word-sum
+ * inventory, source GP-rune spelling and printed slot lengths.
+ * All event selectors are still retrospectively recognized.
+ */
+const equalLengthSlots = sourcePages.map((page,p) => {
+  if (p===50 || p>=56) return [];
+  const groups = new Map();
+  for (let i=0;i<page.lengths.length;i++) {
+    const size=page.lengths[i];
+    if (!groups.has(size)) groups.set(size,[]);
+    groups.get(size).push(i);
+  }
+  return [...groups.values()].filter(group=>group.length>1);
+});
+let wordState=0x33a0d01e;
+/** @returns {number} */
+function wordRandom() {
+  wordState^=wordState<<13;wordState^=wordState>>>17;
+  wordState^=wordState<<5;
+  return wordState>>>0;
+}
+const W=20000;
+let wordCycle=0,wordHeight=0,wordJoint=0,wordAnyCycle=0;
+for(let k=0;k<W;k++) {
+  const sums=originalSums.map(row=>row.slice());
+  for(let p=0;p<56;p++) {
+    if(p===50) continue;
+    for(const group of equalLengthSlots[p]) {
+      const values=group.map(j=>sums[p][j]);
+      for(let j=values.length-1;j>0;j--) {
+        const at=wordRandom()%(j+1);
+        [values[j],values[at]]=[values[at],values[j]];
+      }
+      for(let j=0;j<group.length;j++) sums[p][group[j]]=values[j];
+    }
+  }
+  const a=walk(563,sums),b=walk(569,sums);
+  const ac=a.reason==="cycle" && a.terminal===563 &&
+    a.period===33 && a.enteredAt===0;
+  const bc=b.reason==="table" && b.path.length===2 && b.terminal===50;
+  if(a.reason==="cycle")wordAnyCycle++;
+  if(ac)wordCycle++;
+  if(bc)wordHeight++;
+  if(ac&&bc)wordJoint++;
+}
+assert.deepEqual([wordCycle,wordHeight,wordJoint,wordAnyCycle],
+  [1,577,0,8485]);
+console.log("20,000 page-and-word-length-preserving whole-word shuffles",
+  {wordCycle,wordHeight,wordJoint,wordAnyCycle});
+
 console.log("Caveat: cycle length, two-hop landing and AES consumer were",
   "recognized after source inspection. No calibrated discovery p-value,",
   "authenticated key, unknown plaintext or onion destination.");
