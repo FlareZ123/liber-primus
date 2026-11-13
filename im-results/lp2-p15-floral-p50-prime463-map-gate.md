@@ -12,6 +12,8 @@ The original p15 image (32.jpg) has one red numeral 3299 and a conspicuous 4×4 
 | 9 | 3038 | 263 | p49 (first numeric-table section) |
 | **10** | **2838** | **463** | **p50 (unique rune-free page)** |
 | 11 | 2472 | 829 | p51 (last numeric-table section) |
+| **13** | **708** | **2593** | **p53 (51-rune red stanza)** |
+| 14 | 1206 | 4507 | p54 (nine-rune red opening) |
 | 15 | 4516 | 7817 | p55 |
 
 Physical pp40–55 carry **sixteen identical printed floral borders**, including **p50**, which consists entirely of the middle portion of the original 256-cell numeral table and has **zero GP runes**. Aligning the p15 spiral's sixteen **source-ordered** numbers to these sixteen pages therefore places **its eleventh recovered prime, 463, on the unique runeless page p50**. The following arithmetic equalities then close onto the already independent red p15 number:
@@ -21,6 +23,22 @@ Physical pp40–55 carry **sixteen identical printed floral borders**, including
 - **463 has multiplicative order 3298 modulo prime3299**. Its powers therefore index every nonzero one of those 3299 body positions exactly once, with zero handled separately.
 
 The *incremental* observation is the **alignment of adjacent p15 prime values 463 and 829 with p50–51**, the middle/end of the only original numeral table and a naturally source-selected empty page. At j=10, **463** is the prime rank of the red **3299** and a primitive root of the 3299-position floral body. At j=11, **829** specifies the original **entire** floral register length by **4×829=3316**, using the p15 square's four columns. The rank, register-length and primitive-root equalities themselves were established separately; the possible *ordered index-to-page placement* is the new connecting observation. This index placement has not been independently verified as an instruction from Cicada. Specifically, pairing p15 index0 with floral page p40 is a plausible alignment between two sixteen-element objects, **not an author's specified book code**. The older 829=3316/4 coincidence is another manifestation of the same p15 array, not an independent validation.
+
+## A second same-index source checksum on p53
+
+The same *spiral-order to floral-page* alignment makes a specific prediction at index **j=13 → physical p53**, one of the three florally framed pages with red runes. The original p53 has a source-delineated **51-rune terminal red stanza** (original page-local offsets128–178), whose standard Gematria-prime weights total **2262**. The independently archived **2014 seven-by-seven magic square** has the literal center **331**, and the p15 spiral's fourteenth displayed value (zero-based index13) is **708**. Without changing any original glyph, numeral, word boundary or index, their source values satisfy
+
+    p53 red stanza prime sum + p15 spiral cell j13 + 2014 7x7 center
+             2262           +          708          +       331
+           = 3301.
+
+Equivalently, the p15 Fibonacci-derived prime at j13 is **2593**, exactly **2262+331**. This supplies a second original-page-indexed coincidence *at the actual red-stanza page*, distinct in presentation from p50's runeless/463 pointer and p51's full-length/829 factor. It does **not** tell a solver whether the p53 red stanza is ciphertext, a key, or instructions, and supplies no operation for decoding adjacent black text.
+
+The **mathematical dependence is material:** the previously recorded *total* floral red-prime sum is3294, while the two opening red titles on p40 and p54 sum1032, giving the p53 red sum **3294−1032=2262**. Since the same p15 numbers satisfy **708+331=1039** and **3294−1032=2262**, the newly written 3301 equality does not count as an independent replicate of those two established global red sums. What it adds is the **source-aligned page j13** and its authentic prior-stage **331** center, which deserve one discriminating original check, not a new round of tuned arithmetic searches.
+
+In an exact-page conditional control, retain all 179 authentic p53 GP-prime rune values but randomly choose **51 distinct positions** as a hypothetical red span, using xorshift32 seed\`0x33015313\` for **100,000** fixed-inventory samplings. The target exact sum2262 occurs **98/100,000** times, giving a plus-one **99/100001≈0.000990** *for that single retrospectively selected value*. This is **not** a global probability of deliberate design: previous work already examined the p15 spiral, 3301, 331, many red-span subsets, multiple key families and other possible correspondences. Report the result as a bounded source alignment, without assigning an authenticated cipher or an effective discovery-wide p-value.
+
+[Updated source-exact SFT](../sims/lp2_p15_flora_p50_prime463_keyroute_sft.cjs) reads original annotations, original p53 indices, the authentic 2014 magic-square text, and checks both equalities, the selected index, 51-rune count and fixed-marginal sample before the eight full-length key inverses.
 
 ## One fully executable original inverse
 
@@ -66,4 +84,4 @@ The complete original-source run passed on Node 22 under the manual-only [GitHub
 
 ## Research decision
 
-The **p50 eleven-of-sixteen placement** is worth keeping as a specific observation when a new original instruction addresses a prime rank, position walk or the rune-free table. The **463-power permutation + unaltered printed table periodic additive mask** does not recover plaintext. Independently, direct four-rune RSA under **463×829** fails a necessary modulus-domain rule before exponentiation. The established 3299 and 3294 cross-artifact equalities remain provisional as cipher clues. Do not tune other generators, phases, table reduction functions, RSA block corrections, or transcript exceptions around these negatives; an original instruction selecting a different reversible representation, independently sourced key or successful held-out plaintext prediction would be required to reopen the branch.
+The **p50/463, p51/829 and p53/2593/331 page-index alignments** should be retained as provisional source constraints only when a new original instruction addresses prime ranks, a position walk, the rune-free table or red text. Their shared dependence on the same fitted spiral-to-page mapping prevents promoting them as separate authenticating proofs. The **463-power permutation + unaltered printed table periodic additive mask** does not recover plaintext. Independently, direct four-rune RSA under **463×829** fails a necessary modulus-domain rule before exponentiation. The established 3299 and 3294 cross-artifact equalities remain provisional as cipher clues. Do not tune other generators, phases, table reduction functions, RSA block corrections, or transcript exceptions around these negatives; an original instruction selecting a different reversible representation, independently sourced key or successful held-out plaintext prediction would be required to reopen the branch.
