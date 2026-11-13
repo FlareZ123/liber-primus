@@ -7,6 +7,11 @@ on:
         required: false
         default: false
         type: boolean
+      inspect_timeline:
+        description: "Verify and preview original May 2014 wiki attachments"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -35,11 +40,19 @@ jobs:
       - name: Inspect source-key imagery
         if: github.event.inputs.inspect_images == 'true'
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-image
+      - name: Inspect April–July 2014 original Wiki attachments
+        if: github.event.inputs.inspect_timeline == 'true'
+        run: |
+          node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-timeline
+          python -m pip install --quiet Pillow==11.3.0
+          python sims/lp2_wiki_may2014_source_preview.py
       - name: Preserve source triage and retrieved exact-byte objects
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lp2-wiki830-source-triage
-          path: im-results/wiki-source-triage/
+          path: |
+            im-results/wiki-source-triage/
+            im-results/wiki-may2014/
           retention-days: 15
           if-no-files-found: warn
