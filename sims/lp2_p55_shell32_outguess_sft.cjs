@@ -24,6 +24,7 @@ const root = path.resolve(__dirname, "..");
 const transcription = fs.readFileSync(path.join(root, "resources/lp2-transcription.txt"), "utf8");
 const corpus = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"));
 const carrier = path.join(root, "resources/liber-primus/72.jpg"); // LP2 p55
+const controlCarrier = path.join(root, "resources/liber-primus/31.jpg"); // known illustrated LP2 p14
 const output = path.join(root, "outguess-p55-shell32-results");
 const mod = (n, m) => ((n % m) + m) % m;
 
@@ -107,7 +108,7 @@ function main() {
     const planted=path.join(output,"control.incomplete.jpg");
     const recovered=path.join(output,"control.recovered.incomplete");
     fs.writeFileSync(plain,controlMessage,{flag:"wx"});
-    const embed=run(["-k",literalPassword,"-d",plain,carrier,planted],120000);
+    const embed=run(["-k",literalPassword,"-d",plain,controlCarrier,planted],120000);
     assert.equal(embed.status,0,"Derived-key OutGuess positive-control embed failed");
     const extract=run(["-k",literalPassword,"-r",planted,recovered],120000);
     assert.equal(extract.status,0,"Derived-key OutGuess positive-control extraction failed");
