@@ -55,6 +55,24 @@ For a page with \(L\) runes and \(k\) interior breaks, an interior rune is singl
 
 **Reproducer:** [original-input single-file CommonJS SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs), run with Node 22 and the committed canonical transcription; the SFT asserts the exact source counts and both nulls. Reuse the existing manual-only [word-length grammar workflow](../.github/workflows/lp2-wordlength-grammar-original-manual.yml).
 
+## The ordering anomaly survives original chapter partitioning
+
+A whole-book permutation of nine otherwise natural source chapters would erase some *between-chapter* order while preserving word-length grammar inside each chapter. To test that specific alternative, use the **nine original visual chapter intervals**, preserving each chapter's exact multiset of printed word lengths. For each, compare adjacent nine-class length mutual information with 5,000 fixed-seed complete-word shuffles (seed 0x3301434). No candidate key or plaintext is fitted.
+
+| Original chapter pp | Words | Observed adjacent-length MI (nats) | Shuffle mean MI | Upper-tail fraction (null MI ≥ original) |
+|---|---:|---:|---:|---:|
+| 0–2 | 158 | 0.22073 | 0.23178 | 0.6121 |
+| 3–7 | 255 | 0.15436 | 0.14086 | 0.2571 |
+| 8–14 | 383 | 0.09752 | 0.09210 | 0.3471 |
+| 15–22 | 437 | 0.09389 | 0.08058 | 0.1626 |
+| 23–26 | 224 | 0.13331 | 0.15918 | 0.8534 |
+| 27–32 | 326 | 0.14094 | 0.10969 | 0.0422 |
+| 33–39 | 378 | 0.08609 | 0.09294 | 0.6621 |
+| 40–53 | 669 | 0.04667 | 0.05121 | 0.6747 |
+| 54–55 | 66 | 0.47252 | 0.51685 | 0.7502 |
+
+Eight of nine source chapters have unremarkable adjacency MI under an exact-inventory shuffled control. The p27–32 interval has nominal one-sided 0.0422, which is **not compelling across nine inspected chapters** (conservative Bonferroni bound 0.3797); it cannot select a special local decoding clock. Hence merely rearranging intact *chapters* of naturally ordered prose does **not** explain the unusually weak word-length grammar. A within-chapter word-order transformation, deliberately shaped spacing, or an unusual nonprose source remain alternatives. This source-chapter test adds no free key, plaintext, or unique inverse. The same [source-input SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs) asserts the nine counts and all nine seeded calibration tails.
+
 ## Does the 32 cross-page carry count index the 32 table rows?
 
 An independent source-count coincidence is that **exactly 32 complete words cross original physical LP2 rune-page boundaries**, and the pp49–51 numerical table has **32 rows** of eight tokens. The count could tempt a one-row-per-carried-word decoder, but its evidential specificity must first be assessed against the manuscript's actual page layout.
