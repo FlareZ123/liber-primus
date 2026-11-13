@@ -59,6 +59,22 @@ Every row below still freezes **all 12,815 untouched original nonrepeating ciphe
 
 All **12** tested clock/reset/skip combinations remain conditional cipher architectures. The known p56 F interruption confirms only *that a nonconsuming prime-clock exception exists in the solved page*, not that LP2 unknown-page doublets are F/EA or that they use these identical clocks. An arbitrary hidden skip mask, a prime index depending on plaintext, an additional changing state, or different source-wide interleaving remains outside the explicit models.
 
+## Independent native-register challenge: Old English, Latin and two additional English sources
+
+The underlying 28! equality theorem is unconditional, but comparing its low value with ordinary GP language is a register-specific inference. The original book's Latin title and Anglo-Saxon runes make **Latin Vulgate and Old English Beowulf** important independent controls, rather than assuming Shakespeare's Elizabethan English register represents every plausible LP2 plaintext. The same all-secret statewise-Q test has therefore been frozen for the **three ordinary all-runes-consuming prime clocks** on four additional text corpora already pinned in the repository:
+
+| Independently sourced native GP28 register | Native GP28 symbols | Deterministic 12,815-symbol windows per clock | Least native Q across all three clocks | Clock at minimum |
+| --- | ---: | ---: | ---: | --- |
+| Shakespeare English (original control) | 216,011 | 150 | 0.05838549 | Page |
+| Latin Vulgate New Testament | **204,511** | **150** | **0.07220100** | Book |
+| Corrected Old English *Beowulf* | **46,976** | **40** | **0.05673247** | Page |
+| Gibran, *The Prophet* | **62,090** | **80** | **0.06055352** | Chapter |
+| Emerson, *Essays* | **320,859** | **150** | **0.06179749** | Book |
+
+The original Q remains **0.03648004–0.03669555**. For **every one of the 12 additional source×clock comparisons**, zero of the native windows has Q at or below the original. The tested Old English corpus is the **corrected** source GP token stream with its explicit 29-character index alphabet, rather than the archival legacy fixture. The Latin reference is the already prepared GP whole-word encoding; both foreign-language controls omit the hypothetical rank28 EA marker solely for comparability with the GP28 content register. Gibran and Emerson use the same GP transliteration as the Shakespeare control.
+
+This new comparison extends the exclusion to the actual finite controls in several independently plausible registers. It does not exclude artificially flattened language, invented authorial grammar, encoded binary, an unknown language, or a stronger cipher with a changing hidden state. All overlapping windows are descriptive finite reference checks. The separate literal-skip policies above are all source-exact against the Shakespeare control; this cross-register extension holds for the three main clocks.
+
 ## Independent full-transport positive construction
 
 The [self-contained source-exact CommonJS SFT](../sims/lp2_prime_totient_rank28_allsecret_state_sft.cjs) uses a native Shakespeare GP28 segment at all 12,815 content positions. For each original state \(s=(p,k)\), independently generate an invertible affine alphabet \(r=a_s P+b_s\bmod28\), choosing \(a_s\) from the 12 units of \(\mathbb Z/28\mathbb Z\). This supplies one valid member of the otherwise completely arbitrary secret 28!-way family for every active state. It then:
@@ -74,6 +90,6 @@ The successful plant proves that the source-shaped anti-repeat transport **can**
 
 **Retire source-solved prime totients applied to a stationary GP28 predecessor-exclusion alphabet, even with 28! secret alphabets changed at every page×prime residue state**, for direct native-GP English and the three source-shaped clock conventions. This closes a distinct loophole in the parity-only prime-totient rank attack. The result covers every possible fixed per-state output labeling; it needs no brute-force letter ordering and no fitted residual phase.
 
-It cannot rule out unknown per-rune state, secret clock jumps or marker nonconsumption, a different native language, independent word-boundary steganography, a compressed intermediate, or unknown historical key material. Those mechanisms must be selected from independent clues before another expensive key search. No original plaintext has been decoded.
+It cannot rule out unknown per-rune state, secret clock jumps, other marker schedules, an untested plaintext language/register, independent word-boundary steganography, a compressed intermediate, or unknown historical key material. Those mechanisms must be selected from independent clues before another expensive key search. No original plaintext has been decoded.
 
 **Reproduction:** one-file Windows-compatible Node.js CommonJS [original-input all-secret test](../sims/lp2_prime_totient_rank28_allsecret_state_sft.cjs) and the [manual Node22 Windows workflow](../.github/workflows/agent13-prime-totient-allsecret-manual.yml). The SFT requires only the source-corpus JSON and the pinned Shakespeare control; it asserts every original integer count, full encrypted native roundtrip, all nine additional skip-policy integer pair counts and the statewise all-secret invariant. **Windows Node.js 22 CI run [43365703261](https://github.com/FlareZ123/liber-primus/actions/runs/43365703261) passed** all three original-prime-totient attack programs, including all **12** GP28 clock/marker policies and their planted positive inverses, plus the GP29 all-secret and exact-key inversion tests.
