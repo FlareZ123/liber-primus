@@ -15,7 +15,7 @@ This *hypothesis* would recover one authentic plaintext symbol at each of the 86
 
 ## Fixed original-cipher test
 
-Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It passed [manual GitHub Actions CI run 43486521807](https://github.com/FlareZ123/liber-primus/actions/runs/43486521807) with the original source files and all locked assertions. It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
+Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It passed [original GitHub Actions CI run 43486521807](https://github.com/FlareZ123/liber-primus/actions/runs/43486521807) and the expanded [all-29-marker CI run 43488629904](https://github.com/FlareZ123/liber-primus/actions/runs/43488629904), with unchanged source files and all locked original-corpus assertions. It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
 
 Before examining the original masks, it fixes three separate native-GP source references already held in `resources/control/`:
 
@@ -40,6 +40,18 @@ The corrected Beowulf reference has no word of GP length 14, so **three original
 **A stronger word-level consequence:** in the modern-English *forward* model, seven exact observed repeat masks admit **one** source-dictionary GP wordform each. Four independent printed original words (on physical pp8, 16, 19, 23) would all have to be the rare word **OSSEA** (GP pattern length 4, final EA), and three (p1 and two on p44) would all have to be **PURPUREA** (length 7, final EA). These seven are conditional **forced-source-lexicon candidates**, not recovered plaintext; an unlisted compound or a different input representation could avoid them. They illustrate why fitting the aggregate total of 86 repeats does not establish an English-plaintext decipherment. The SFT asserts the exact four/three singleton counts and prints all seven source-word positions.
 
 An exact synthetic positive control enciphers GP-native `EACH` (index sequence `[28,5,8]`) using nonzero multipliers `[2,3,5]` and initial feedback 17; the first ciphertext output repeats 17, and the strict GF29 inverse recovers **3/3 original plaintext symbols**. This validates the hypothesized equality identity, rather than the existence of the model in LP2.
+
+## Alternative source symbol for the zero-step event
+
+An independent objection to the distinguished GP index28/EA marker is that a different 29-letter source symbol might generate the exceptional zero step. The extended **same original-CI SFT** therefore grants all 29 possible fixed plaintext symbols as the zero-step marker *for each of the three native-GP source corpora*, with no fitted key, word, or phase. Within each exact original word-length/eligible-position class, it computes frequency-weighted expected total and word-start events, their joint covariance, and a two-dimensional Mahalanobis deviation from original **[86,23]**. All 29 candidates per language are included; the reported winner is selected *after* comparing the original counts.
+
+| Source register | Best zero-step plaintext symbol of 29 | Expected repeat total | Expected word-start repeats | Joint standardized distance |
+| --- | --- | ---: | ---: | ---: |
+| English | G | 146.001 | 52.316 | 5.237 |
+| Latin | G | 119.278 | 19.999 | 3.713 |
+| Corrected Beowulf | AE | 140.434 | 29.106 | 4.841 |
+
+This new result shows why treating rare original zero steps as *plaintext EA* is especially restrictive. A hypothetical Latin **G** exception is the nearest of these 87 finite source comparisons, yet still misses the original total count by **33.278 symbols** and is not selected by any historical author instruction. The English G control reproduces Agent4's previously reported 146/52.32 and joint z≈5.24 exactly. Rankings are conditional descriptive fits on an externally chosen set of source languages; they are not p-values for cipher identification. Even a better count fit would need an explicit source key/clock and predicted plaintext, so do not promote the winner into a decryption key.
 
 ## Research decision
 
