@@ -1,0 +1,15 @@
+name: LP2 transparent-zero lexical source gate
+on:
+  push:
+    paths:
+      - sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs
+      - .github/workflows/lp2-transparent-zero-marker-source.yml
+  workflow_dispatch:
+jobs:
+  exact-original-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute original-source all-29 exact test and native positive control
+        run: node sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs
