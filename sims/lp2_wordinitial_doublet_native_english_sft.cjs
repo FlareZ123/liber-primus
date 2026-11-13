@@ -165,7 +165,7 @@ for (let textPage = 0; textPage < 55; textPage++) {
   const text = blocks[textPage];
   predecessor = null; // No known within-page predecessor at first glyph.
   for (const glyph of text) {
-    if (/^[\\u16a0-\\u16ff]$/u.test(glyph)) {
+    if (/^[\u16a0-\u16ff]$/u.test(glyph)) {
       wholeWord.push({ eligible: predecessor !== null, equal: predecessor === glyph });
       predecessor = glyph;
     } else if (glyph === '-' || glyph === '.') {
