@@ -1,0 +1,23 @@
+name: LP2 authentic Fehu two-rune capacity
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/lp2-ftransparent-two-rune-capacity.yml'
+      - 'sims/lp2_ftransparent_twoletter_ending_f_capacity_sft.cjs'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce original Fehu word capacity and authentic solved-page positive
+        run: node sims/lp2_ftransparent_twoletter_ending_f_capacity_sft.cjs
