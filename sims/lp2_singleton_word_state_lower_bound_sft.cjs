@@ -1,0 +1,102 @@
+"use strict";
+
+/**
+ * Original-input source support gate for LP2 one-rune printed words.
+ * Run: node sims/lp2_singleton_word_state_lower_bound_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const corpus = require("../resources/liber-primus/lp2-corpus.json");
+const {parseSharedCorpus, physicalLP2Page} = require("./lp2_word_pages.cjs");
+
+const CHAPTERS = [[0,3],[3,8],[8,15],[15,23],[23,27],[27,33],[33,40],[40,54],[54,56]];
+const EXPECTED = [[5,5],[8,7],[11,9],[18,12],[5,5],[12,8],[9,9],[13,11],[2,2]];
+
+/**
+ * @param {number} distinct Number of different observed ciphertext runes.
+ * @param {number} plaintextTypes Maximum count of allowed one-rune plaintext words.
+ * @returns {number} Required independent deterministic maps.
+ */
+function minimumStates(distinct, plaintextTypes) {
+  assert(Number.isInteger(distinct) && distinct >= 0);
+  assert(Number.isInteger(plaintextTypes) && plaintextTypes > 0);
+  return Math.ceil(distinct / plaintextTypes);
+}
+
+/**
+ * @param {Array<{runes:string,startPage:number,length:number}>} words
+ * @param {number} firstPage Inclusive original physical page.
+ * @param {number} endPage Exclusive original physical page.
+ * @returns {{wordCount:number,distinct:number,glyphs:number[],minimumStates:{two:number,three:number,four:number}}}
+ */
+function measure(words, firstPage, endPage) {
+  const singleton = words.filter(w => w.length === 1 &&
+    physicalLP2Page(w.startPage) >= firstPage &&
+    physicalLP2Page(w.startPage) < endPage);
+  const glyphs = [...new Set(singleton.map(w => corpus.runes.indexOf(w.runes)))].sort((a,b)=>a-b);
+  assert(glyphs.every(x => x>=0 && x<29));
+  return {wordCount:singleton.length,distinct:glyphs.length,glyphs,
+    minimumStates:{two:minimumStates(glyphs.length,2),
+      three:minimumStates(glyphs.length,3),four:minimumStates(glyphs.length,4)}};
+}
+
+/**
+ * @param {number} state State index in [0,13].
+ * @returns {number[]} Complete bijective GP29 alphabet substitution.
+ */
+function plantPermutation(state) {
+  assert(Number.isInteger(state) && state>=0 && state<14);
+  const m = Array(29).fill(-1);
+  m[24]=2*state;
+  m[10]=2*state+1;
+  const remain = Array.from({length:29},(_,i)=>i).filter(x=>x!==m[24]&&x!==m[10]);
+  let index=0;
+  for(let i=0;i<29;i++) if(m[i]<0) m[i]=remain[index++];
+  assert.equal(new Set(m).size,29);
+  return m;
+}
+
+/** @returns {{states:number,symbolsRecovered:number,distinctOutputs:number}} */
+function runPlant() {
+  const maps=Array.from({length:14},(_,s)=>plantPermutation(s));
+  const expected=[],observed=[],decoded=[];
+  for(let state=0;state<14;state++){
+    const inverse=Array(29);
+    maps[state].forEach((output,input)=>{inverse[output]=input});
+    for(const input of [24,10]){
+      const output=maps[state][input];
+      expected.push(input);
+      observed.push(output);
+      decoded.push(inverse[output]);
+    }
+  }
+  assert.deepEqual(decoded,expected);
+  assert.equal(new Set(observed).size,28);
+  assert(2*13<28);
+  return {states:14,symbolsRecovered:decoded.length,distinctOutputs:new Set(observed).size};
+}
+
+function main() {
+  const {words,runeCount,crossPageWords}=parseSharedCorpus();
+  assert.equal(words.length,2896);
+  assert.equal(runeCount,12956);
+  assert.equal(crossPageWords,32);
+  const fromWords=words.flatMap(w=>[...w.runes].map(ch=>corpus.runes.indexOf(ch)));
+  const source=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
+  assert.deepEqual(fromWords,source);
+  const whole=measure(words,0,56);
+  assert.equal(whole.wordCount,83);
+  assert.equal(whole.distinct,28);
+  assert.deepEqual(whole.glyphs,Array.from({length:29},(_,i)=>i).filter(i=>i!==5));
+  const chapters=CHAPTERS.map(([first,end])=>({
+    physicalPages:[first,end-1],...measure(words,first,end)}));
+  assert.deepEqual(chapters.map(c=>[c.wordCount,c.distinct]),EXPECTED);
+  const physical17=measure(words,17,18);
+  assert.equal(physical17.wordCount,5);
+  assert.equal(physical17.distinct,5);
+  assert.deepEqual(physical17.glyphs,[4,10,16,17,28]);
+  assert.equal(physical17.minimumStates.two,3);
+  console.log(JSON.stringify({source:{runes:runeCount,words:words.length,crossPageWords},
+    whole,chapters,physical17,positivePlant:runPlant(),
+    scope:"Word boundaries preserved; at most m plaintext singleton types. No historical key."},null,2));
+}
+main();
