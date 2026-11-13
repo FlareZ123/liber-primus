@@ -16,7 +16,7 @@ Starting at the **2016 image height569** gives the following exact unaltered sou
  50 -> p50:w0  2M         (first printed table token)
 ```
 
-The first table token is source-defined, rather than picked from a long search. Thus this proposed interpretation lands **directly on the start of the original 256-cell numerical grid** after two rune-word steps. Its first token `2M` has conventional candidate base60 value142. Following 142 through the *same* word-address map reaches a four-cycle of unreadable ciphertext after 11 distinct addresses. This does not itself supply plaintext, a secret, or a clear reason to choose an input/output cipher.
+This is the **first token of the physical p50 page**, while the full 256-cell numeric table begins on p49. Original p49 has 80 tokens, so `p50:w0` is the **81st global numeric cell** (zero-based index80), at **row10 column0** of the 32×8 printed grid. Under the repository's published base60 convention the token `2M` represents byte142. The global grid start is `p49:w0` and is **not reached** by this path. This page-boundary cell is source-defined rather than picked from a long search. Thus this proposed interpretation lands **directly on the start of the original 256-cell numerical grid** after two rune-word steps. Its first token `2M` has conventional candidate base60 value142. Following 142 through the *same* word-address map reaches a four-cycle of unreadable ciphertext after 11 distinct addresses. This does not itself supply plaintext, a secret, or a clear reason to choose an input/output cipher.
 
 Starting at the **2016 image width563** enters a **33-distinct-word directed cycle**. Its exact successive original GP-prime sums are:
 
