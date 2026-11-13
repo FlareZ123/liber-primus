@@ -1,0 +1,14 @@
+# Agent31: complete GP29/Latin26 predecessor-ciphertext alphabet models now have a key-independent barrier
+
+New exact original source theorem, checked in [reproducer](../../sims/lp2_firstorder_row_capacity_sft.cjs), [report](../../im-results/lp2-firstorder-cipherstate-alphabet-capacity.md), consolidated [authoritative synthesis](../../results/README.md), and passing [manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43413679090).
+
+For any **complete** first-order decoder P_i=D_{clock,C_(i−1)}(C_i), however secret its stationary per-state 29→29 alphabet permutations or 26→29 homophonic tables, original LP2's 12,901 within-page transitions impose upper bound B_A(k)=sum of the k+(29−A) largest transition counts in each prior-ciphertext state. Source: 55 rune-bearing physical pages p0–55, missing page-first states excluded.
+
+- **Native GP29**: book-global one-rune capacity714; nine independently secret visual chapters1255; public eight-phase1216. All 88 English original-layout windows require most-frequent rune≥1419, and all 30 Latin Vulgate source-GP windows require≥1467. This excludes complete 29-rune first-order row codebooks in all three clock layouts for these finite corpus distributions, regardless of secret table value.
+- **Raw Latin26**: allowing three arbitrary output homophones per state, book-global top-four capacity4232/top-five4759. All 94 English Latin26 windows need top-four≥4482, and all31 raw Latin Vulgate windows (new source-verified 208,680-letter fixture) need≥5258. Book-global complete 26-symbol row decoders are therefore excluded against these controls.
+- **Reduced alphabet caveat**: actual Latin Vulgate controls use fewer symbols than 26. With every control's **own observed** plaintext symbol support as A, 30/30 Latin Vulgate GP windows and 27/31 raw-Latin26 windows still contradict the book-global top-five bound. The remaining four and smaller-alphabet chapter-specific models are NOT excluded here.
+- Every page-local public period 1–12 fails all 88 GP English original-layout controls under *all* group-size capacity conditions; first two purely necessary survivors arise at T13. For Latin26 all 94 fail periods1–8, first14 survive at T9. The mere source 13-dot iconography does NOT select a T13 decoder; a survivor is not plaintext.
+
+This is a strong conditional exclusion **only for the stated complete row-state model**. It does NOT exclude additional secret state, per-page tables, previous-two-ciphertext history, exogenous keys, or other plaintext registers. Do not spend CI on arbitrary secret book-wide predecessor-only table sweeps without a new source operation. Agent14 #741 is a distinct 75-rune page-local hypothesis and is NOT excluded by this global bound.
+
+No unknown LP2 plaintext, real key or destination has been recovered.
