@@ -28,6 +28,23 @@ An independently motivated *complete* permutation uses two facts: **3299 is prim
 
 Original source-order 3299-runic body has **21 adjacent equal-rune pairs, 814 distinct digraphs, mutual information 0.146249 nats**. The fixed primitive-root permutation has **124 equal pairs, 824 distinct digraphs, MI 0.129298 nats**. Against 3000 deterministic exact-inventory reshuffles, the transformed sequence has **MI upper-tail p=0.368877**, and equal-pair upper-tail **p=0.164945**. This full positional read is ordinary against the matched null and preserves the original near-uniform rune inventory. No native-GP plaintext was recovered.
 
+## Reverse link: *all* floral red runes sum to a second original p15 spiral cell, 3294
+
+The **complete red-ink material within the sixteen flora-framed pp40–55**, as identified independently in the original ink/source images, comprises exactly three and only three contiguous red spans:
+
+| Source span | Red rune count | GP-prime sum |
+| --- | ---: | ---: |
+| p40 opening rubric (including oversized red F) | **8** | **435** |
+| p53 final red stanza | **51** | **2262** |
+| p54 opening rubric (including oversized red A) | **9** | **597** |
+| **Entire flora register** | **68** | **3294** |
+
+The grand total **3294** is *itself exactly a printed cell* of p15's Fibonacci-indexed-prime square. In the fixed central clockwise spiral, it is the fifth cell (index4, `F=3`), whose established construction is **3294 = 3301 − prime(4) = 3301 − 7**. No glyphs were selected individually after evaluating their prime weights: this sums **every source-red glyph** across the original group of sixteen identically framed pages. The p40 and p54 red headings alone additionally sum 1032=φ(1033), with the intervening p53 red stanza contributing2262.
+
+This makes the p15/floral correspondence **bidirectional using two different independently observable features**: p15's *highlighted red numeral*3299 equals the floral body length after excluding both source-red opening headings; the *complete source-red floral glyph population* has GP-prime sum3294, selecting another unchanged p15 printed numeral. The operator of summing GP rune-prime weights is documented for Cicada's earlier solved magic squares. It provides a candidate **seven** as a next source-derived parameter, but no manuscript instruction specifies what to decrypt with it.
+
+The alignment receives a transparent post-selection control. In **30,000** deterministic source-preserving trials, draw **8** rune positions without replacement from original p40, **51** from original p53, and **9** from original p54, holding each page's original rune inventory fixed, then compute GP-prime sums. In only **398** trials does the total equal **any of the sixteen already printed p15 cells** (add-one **p=399/30001=0.0132996**). The specific 3294 total appears in **39** trials (add-one **p=40/30001=0.0013333**); because the matching cell was identified *after observing the original result*, the **any-of-sixteen** benchmark is the appropriate exploratory diagnostic. Many other arithmetic and segment relationships have been inspected in this repository, so these are **conditional controls, not familywise probabilities of intention**. The equality supports a worthwhile original clue-path, while still falling short of an authenticated cipher instruction.
+
 ## Second p15-specified number: 829 and a 4×829 full-register shape
 
 The source-derived p15 primes associated with consecutive spiral cells **2838** and **2472** are **463** and **829** (these are the 90th and 145th primes; the selected Fibonacci inputs are 89 and 144). The red square cell **3299 is itself the 463rd prime**, and the complete 3316-rune floral register satisfies **3316=4×829**. Thus **two consecutive later p15 primes** can describe distinct aspects of the same register: 463 is the prime rank of the title-stripped length, and 829 is one quarter of the full length. A four-column matrix shape also matches the four columns printed on p15.
@@ -75,7 +92,7 @@ Their GP29 IoCs are **0.03442116199**, **0.03461329229**, **0.03443189654**, **0
 
 ## Decision
 
-Retain **red3299 ↔ floral body minus two independently visible headings**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
+Retain the **bidirectional original p15/floral relationships (red3299 ↔ titleless floral body3299; all floral red GP-prime sum3294 ↔ another unchanged p15 grid cell)**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
 
 **Exact single runnable test file:** [`sims/lp2_p15_red3299_floral_register_sft.cjs`](../sims/lp2_p15_red3299_floral_register_sft.cjs). It reads `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`, rederives 3299 uniqueness, checks the full p15 mathematical formula, proves exact permutation, reproduces direct readout and 3000 null draws.
 
