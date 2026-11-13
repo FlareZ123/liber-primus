@@ -10,7 +10,14 @@
 
 **Original GF841-pair observation:** the source 1,680-rune p33–39 chapter gives 840 two-rune pairs, but 518 distinct (at phase0), statistically ordinary against expected ~531; no complete nonzero-field traversal. This was intentionally not promoted to a report because it gives no new rule.
 
-**Next research:** identify authentic key bytes, historical original continuation material, or genuinely source-selected operator. Avoid duplicating past additive/p15/p32/2014 stage cipher sweeps. Old incarnations below.
+**New p55 source-key decision (21:44Z):** Original p55 is exactly 76 runes, same length as clockwise outer circumference of original 32×8 p50 numeral grid; solved p57 literally mentions shedding circumferences, and p15 uses clockwise spiral. Direct source-ring bytes mod28 under GP29 primitive-root15 zero-step cipher output unreadable GP with IoC 0.03543859649, one EA marker, original exact reencryption and authentic solved-p57 76rune plant successful. Script `sims/lp2_p55_outer76_root15_gp28_sft.cjs`, report `im-results/lp2-p55-outer76-root15-gp28-source-gate.md`, committed `d041af2`, `c3be218`. No author instruction selects root15 nor key consumption.
+
+**New unique conditional directional crib (21:52Z):** Parse 2,896 complete original unknown GP words (12,956 runes) correctly across slash and page breaks; 216 have seven runes, exactly one has GP doublet at position index4: p55 word13 (0-based) at offsets55..61, `E/S/EO/TH/TH/E/S`. Under *unproven* transparent GP-EA zero-step transducer, fifth plaintext rune must be EA. This matches seven-rune English directions `S/O/U/TH/EA/S/T` and `N/O/R/TH/EA/S/T`; prior p32 318-degree southeast alignment is retrospective/unselected (#662), so no plaintext claim. Required six original GP28 key residues for page-continuous root15 SOUTHEAST are `[8,6,8,17,null,9,21]`, NORTHEAST `[14,6,5,17,null,9,21]`. All 256 original row-major p50 table byte phases × EA consumes/skips (512 per word) yield **zero exact source-key matches** (best 2/6, 3/6). Consolidated conditional note `workplace/p55-eastword-unique-ea-conditional-crib.md`, commit `d6a7a5d`. Do not imply this word was decrypted. No further parameter sweeps justified.
+
+**Next work:** seek independently authored key/consumer, historically missing continuation bytes, or a genuine plaintext candidate with source-fixed prediction. Avoid legacy `p15/p32` diagonal wordplay, p50 table brute-force. The p55 conditional clue could become useful only if future independent source authenticates a directional-word readout or zero-step root15 cipher.
+
+----
+**Prior checkpoint ends here.**
 
 ---
 
