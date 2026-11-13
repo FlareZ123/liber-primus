@@ -25,13 +25,13 @@ Both bounds are exact for these isolated occupancy statistics; they give the cip
 
 | GP state increment | Public checksum clock | One global set of secret alphabets: max E / E+O | Nine chapter-independent sets: max E / E+O |
 |---|---|---:|---:|
-| Rune index | Previous **complete word** | 687 / 1,318 | **1,193 / 2,202** |
+| Rune index | Previous **complete word** | 685 / 1,313 | **1,193 / 2,202** |
 | Rune index | Cumulative **word sums** | 695 / 1,339 | **1,187 / 2,194** |
 | Rune index | Cumulative **rune sums** | 692 / 1,328 | **1,245 / 2,265** |
-| GP prime | Previous **complete word** | 688 / 1,319 | **1,207 / 2,206** |
+| GP prime | Previous **complete word** | 688 / 1,321 | **1,207 / 2,206** |
 | GP prime | Cumulative **word sums** | 671 / 1,292 | **1,202 / 2,210** |
 | GP prime | Cumulative **rune sums** | 708 / 1,339 | **1,226 / 2,259** |
-| GP totient | Previous **complete word** | 696 / 1,330 | **1,188 / 2,189** |
+| GP totient | Previous **complete word** | 698 / 1,331 | **1,188 / 2,189** |
 | GP totient | Cumulative **word sums** | 676 / 1,313 | **1,209 / 2,208** |
 | GP totient | Cumulative **rune sums** | 705 / 1,360 | **1,236 / 2,266** |
 

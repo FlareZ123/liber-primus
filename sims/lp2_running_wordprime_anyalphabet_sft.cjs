@@ -149,11 +149,11 @@ function main(){
   gpTotient:c=>gp.prime[c]-1
  };
  const expected={
-  gpIndex:{previousWord:[[687,1318],[1193,2202]],
+  gpIndex:{previousWord:[[685,1313],[1193,2202]],
     cumulativeWord:[[695,1339],[1187,2194]]},
-  gpPrime:{previousWord:[[688,1319],[1207,2206]],
+  gpPrime:{previousWord:[[688,1321],[1207,2206]],
     cumulativeWord:[[671,1292],[1202,2210]]},
-  gpTotient:{previousWord:[[696,1330],[1188,2189]],
+  gpTotient:{previousWord:[[698,1331],[1188,2189]],
     cumulativeWord:[[676,1313],[1209,2208]]}
  };
  for(const [name,inc] of Object.entries(clocks)){
