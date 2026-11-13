@@ -61,9 +61,12 @@ async function http(u,start=null,end=null){
   const headers={ 'user-agent':'LP2-original-2014-raw-index-source/1.0'};
   if(start!==null && end!==null)headers.Range='bytes='+start+'-'+end;
   let latest;
-  for(let trial=0;trial<2;trial++){
+  for(let trial=0;trial<4;trial++){
     try{
       const r=await fetch(u,{headers,redirect:'follow',signal:AbortSignal.timeout(26000)});
+      if([429,502,503,504].includes(r.status) && trial<3){
+        await new Promise(resolve=>setTimeout(resolve,300*(trial+1)));continue;
+      }
       if(start!==null && r.status!==206)
         return {status:r.status,error:'Range requested but response is not partial: '+r.status,
           length:r.headers.get('content-length')};
@@ -73,7 +76,7 @@ async function http(u,start=null,end=null){
       const data=Buffer.from(await r.arrayBuffer());
       if(data.length>400000)return {status:r.status,error:'Range payload too large'};
       return {status:r.status,data};
-    }catch(e){latest=String(e);}
+    }catch(e){latest=String(e);if(trial<3)await new Promise(resolve=>setTimeout(resolve,300*(trial+1)));}
   }
   return {error:latest};
 }
@@ -120,7 +123,9 @@ async function locate(obj,size,target){
   }
   const eligible=candidates.filter(x=>x.key<=target);
   const floor=eligible.length?eligible.at(-1):null;
-  return {floor,rounds,checks:checks.slice(-4),sample_keys:[
+  const next=candidates.find(x=>x.key>target);
+  return {floor,next_key:next?.key,certified:!!floor&&!!next,
+    rounds,checks:checks.slice(-4),sample_keys:[
     candidates[0]?.key,candidates.at(-1)?.key],sample_size:candidates.length,
     searched_bytes:[begin,end]};
 }
@@ -146,7 +151,11 @@ async function main(){
     docs:'https://commoncrawl.org/cdxj-index',started,collections,targets:TARGETS,findings:[]};
   for(const collection of collections){
     const root=BASE+collection+'/indexes/';
-    const info=await head(root+'cluster.idx');
+    let info=await head(root+'cluster.idx');
+    if((info.status!==200||!info.bytes) && !info.error){
+      await new Promise(resolve=>setTimeout(resolve,700));
+      info=await head(root+'cluster.idx');
+    }
     const record={collection,cluster:info,searches:[]};
     output.findings.push(record);
     console.log(collection+' index status='+info.status+' bytes='+info.bytes+' error='+(info.error||''));
@@ -155,13 +164,17 @@ async function main(){
       const located=await locate(root+'cluster.idx',info.bytes,t.key);
       const finding={target:t.key,locate:located};
       record.searches.push(finding);
-      if(!located.floor){console.log(collection+' '+t.key+' no floor '+(located.error||''));continue;}
+      if(!located.floor||!located.certified){
+        console.log(collection+' '+t.key+' index lookup unavailable '+(located.error||''));continue;
+      }
       const x=located.floor;
       const b=await block(root+x.object,x);
       finding.block={object:x.object,offset:x.offset,length:x.length,...b};
       finding.matches=(b.records||[]).filter(r=>r.urlkey===t.key);
       finding.block={object:x.object,offset:x.offset,length:x.length,total:b.total,error:b.error,
-        first_key:b.records?.[0]?.urlkey,last_key:b.records?.at(-1)?.urlkey};
+        first_key:b.records?.[0]?.urlkey,last_key:b.records?.at(-1)?.urlkey,
+        valid_key_range: b.records?.[0]?.urlkey<=t.key &&
+          b.records?.at(-1)?.urlkey>=t.key};
       console.log(collection+' '+t.key+' block='+b.total+' matches='+finding.matches.length+
         ' error='+(b.error||''));
     }
