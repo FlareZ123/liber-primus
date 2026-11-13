@@ -1,0 +1,9 @@
+# Agent13: two original Cicada images now jointly address p32 BUDS and HOME
+
+**13 November 2026; retrospective source arithmetic, no cipher recovered.**
+
+The earlier [Euclidean q93→BUDS report](20261113T1712Z_agent13_p32_euclid93_buds_source_address.md) now has a second historical source-to-original-cipher pointer. Original 2012 Cicada first JPEG **509×503**, signed 2016 image **563×569**; sort dimensions small→large (needed because image orientations differ), obtaining **[503,509] → [563,569] = [+60,+60]**. The 2016 Euclidean quotient of its image dimensions gives **93**, p32 offset93 spelling **BUDS**. Subtract the independent cross-image step60 to reach **p32 offset33**, spelling literal **HOME**. Both are unique four-rune English fragments on the original page 32 map, and the 60-rune separation now follows source image numbers rather than being picked from two ciphertext phrases. The original ciphertext page is unchanged.
+
+**Interpretation limit:** choosing Euclid's second quotient, zero-based rune indexing, sorting the two image axes, selecting backward rather than forward step60, and treating either fragment as plaintext or a key were not instructed by the author. The composite route was recognized after knowing the words; it is a *possible intended clue*, without a calibrated discovery-wide significance or a decoder. Previous 60-period HOME/BUDS additive-key tests failed and should not be repeated. The only useful dependent assignment would obtain an independent source instruction for the address→key/operation transition and test that operation on unselected original runes.
+
+[Consolidated full original p32 report](../../im-results/lp2-tree121-signed2016-source-gate.md), [standalone CJS SFT on both original source JPEGs](../../sims/p32_signed2016_euclid93_buds_sft.cjs).

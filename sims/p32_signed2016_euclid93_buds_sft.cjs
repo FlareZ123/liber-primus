@@ -24,6 +24,24 @@ assert.ok(sof > 0 && sof < 500);
 const width = image.readUInt16BE(sof + 7);
 const height = image.readUInt16BE(sof + 5);
 assert.deepEqual([width, height], [563, 569]);
+
+// Earlier original 2012 image: actual orientation is 509 x 503.
+// Source dimensions are sorted short-to-long only for cross-era comparison;
+// no historical Cicada instruction prescribes the sorting or Euclid.
+const firstImage = fs.readFileSync(path.join(
+  root, 'resources/historical/cicada2012-first-image.jpg'));
+assert.equal(firstImage.length, 29279);
+assert.equal(crypto.createHash('sha256').update(firstImage).digest('hex'),
+  '870353b8fbe4d1dd83fdbfc61b07d80213bab035526d3e5fd6a43f7d77db1ead');
+const firstSof = firstImage.indexOf(Buffer.from([0xff, 0xc0]));
+assert.ok(firstSof > 0 && firstSof < 500);
+const firstWidth = firstImage.readUInt16BE(firstSof + 7);
+const firstHeight = firstImage.readUInt16BE(firstSof + 5);
+assert.deepEqual([firstWidth, firstHeight], [509, 503]);
+const earlierSizes = [firstWidth, firstHeight].sort((x, y) => x - y);
+const laterSizes = [width, height].sort((x, y) => x - y);
+const dimensionSteps = laterSizes.map((value, i) => value - earlierSizes[i]);
+assert.deepEqual(dimensionSteps, [60, 60]);
 const p32 = corpus.pages.find(p => p.page === 32);
 assert.equal(p32.status, 'unsolved');
 assert.equal(p32.indices.length, 121);
@@ -50,7 +68,11 @@ assert.equal(address, 93);
 assert.deepEqual([Math.floor(address / 11), address % 11], [8, 5]);
 assert.equal(steps[1].remainder, address % 11);
 const translit = xs => xs.map(i => corpus.translit[i]).join('');
-assert.equal(translit(runes.slice(33, 37)), 'HOME');
+const historicalStep = dimensionSteps[0];
+const historicalAddress = address - historicalStep;
+assert.equal(historicalAddress, 33);
+const home = runes.slice(historicalAddress, historicalAddress + 4);
+assert.equal(translit(home), 'HOME');
 const hit = runes.slice(address, address + 4);
 assert.equal(translit(hit), 'BUDS');
 assert.deepEqual(hit.map(i => corpus.prime[i]), [61, 3, 89, 53]);
@@ -97,11 +119,17 @@ assert.equal(onlyOffset, 7932);
 const phi206 = 102; // 206 = 2 * 103, so phi(206) = 102.
 console.log(JSON.stringify({
   original2016Jpeg: {width, height, gitBlobSha: sha},
+  original2012Jpeg: {width: firstWidth, height: firstHeight},
+  sourceVisibleSortedDimensions: {earlierSizes, laterSizes, dimensionSteps},
   p32AxisPrimeSums: [width, height],
   euclideanSteps: steps,
   pointer: {page: 32, localRuneOffset: address, row: 8, column: 5,
     transliteration: translit(hit), wordContext: carrier,
     fullBookRuneOffset: onlyOffset, totalOriginalOccurrences: count},
+  dimensionDisplacementPrediction: {historicalStep,
+    localRuneOffset: historicalAddress, row: 3, column: 0,
+    transliteration: translit(home),
+    resultingSourceDelta: address - historicalAddress},
   conditionalNumericalContinuation: {
     budsPrimeSum: primeSum(hit), phi206, textAtOffset102: translit(runes.slice(102, 104))
   },
