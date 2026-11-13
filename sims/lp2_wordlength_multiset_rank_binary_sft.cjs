@@ -128,14 +128,16 @@ function scan(xs,name){
   ]){
    const big=fixedBytes(value,width);
    for(const [endian,bytes] of [['big',big],['little',Buffer.from(big).reverse()]]){
-    trials.push({orientation,labels,endian,format:signature(bytes),
+    const first=bytes.findIndex(v=>v!==0); const last=bytes.findLastIndex(v=>v!==0);
+    const minimal=endian==='big'?bytes.subarray(Math.max(first,0)):bytes.subarray(0,last+1);
+    trials.push({orientation,labels,endian,format:signature(bytes),minimalFormat:signature(minimal),
      prefix:bytes.subarray(0,16).toString('hex'),
      printableFraction:Number((bytes.filter(v=>v===10||v===13||(v>=32&&v<=126)).length/bytes.length).toFixed(5))});
    }
   }
  }
  return {name,words:xs.length,bits,bytes:width,candidates:trials.length,
-  exactHeaderHits:trials.filter(t=>t.format),natural:trials[0],
+  exactHeaderHits:trials.filter(t=>t.format||t.minimalFormat),natural:trials[0],
   bestPrintableFraction:Math.max(...trials.map(x=>x.printableFraction))};
 }
 /** @param {bigint} n @returns {number[]} Native GP29 digits of rank integer. */
@@ -178,7 +180,10 @@ function main(){
  const restored=rank(encoded);
  assert.equal(restored.index,number);
  assert.deepEqual(fixedBytes(restored.index,991),planted);
- assert.equal(signature(planted),'PGP');
+ const padded=fixedBytes(restored.index,Math.ceil((arrangements(countsOf(all))-1n).toString(2).length/8));
+ const trimmed=padded.subarray(padded.findIndex(v=>v!==0));
+ assert.deepEqual(trimmed,planted);
+ assert.equal(signature(trimmed),'PGP');
  // The signed 2013 Cicada server provided BASE29. This tests the rank
  // integer as a native GP29 plaintext transport, with no invented key.
  const p56Opening=['A','N','E','N','D'].map(token=>gp.translit.indexOf(token));
