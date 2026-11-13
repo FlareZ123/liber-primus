@@ -40,6 +40,24 @@ Another original-artifact observation, recorded independently by Agent41 in [the
 
 The same unmodified 25-cell source-square pad predicts **only 1 of the 30** ciphertext-minus-proposed-plaintext key symbols. If the seven-word interpretation ever becomes an authenticated crib, this direct Wisdom-square pad is algebraically incompatible with it. This result is an additional check of the *same frozen inverse*, not proof that the crib is true.
 
+## All-secret period-25 obstruction, conditional on the 30-rune crib
+
+The proposed 30-rune p5 phrase spans original p55 local offsets46–75, a length exceeding the source-selected 25-cell key clock by five positions. Therefore the hypothesis can be tested **independently of the actual 25 table values**, granting an adversary a completely secret additive GP29 key of period25 and a free unknown phase. If the crib is genuine and P[i]=C[i]−K[i mod25] is the cipher, the *required* key values must agree in all five positions separated by25. The authentic ciphertext demands instead:
+
+| Original local positions | Required K at first | Required K after 25 |
+|---|---:|---:|
+|46 and71|10|20|
+|47 and72|0|10|
+|48 and73|12|15|
+|49 and74|15|26|
+|50 and75|23|24|
+
+**All five pairs contradict** an arbitrary secret period25 key. A separate predecessor-step model P[i]=(C[i]−C[i−1])−K[i mod25] mod29, motivated by the observed LP2 adjacent-repeat deficit, demands step-key pairs **[5,26], [17,28], [23,14], [16,9], [5,6]** at those same five source-fixed positions. **All five also differ**. These witnesses exclude every secret value assignment and every phase for the two exact period25 additive models, *provided the seven-word phrase is true plaintext*. They are independent of choosing φ(cell), the specific 1033 square, or language scoring.
+
+This is a useful locked falsification of the **cipher-plus-prospective-crib conjunction**. It cannot by itself falsify the seven-word crib: a genuine LP2 encryption could use an aperiodic stream, a nonadditive state, a different plaintext representation, or a transform that changes word boundaries. Nor does it establish any plaintext for the remaining original page.
+
+The SFT asserts all ten unequal key-pair witnesses directly on original GP indices, in addition to testing the table-derived key.
+
 ## Decision
 
 The 75=3×25 relation is a source-constrained potential way to interpret the reused moth's 5×5 matrix. **The cheapest historically precedented totient/Vigenère use does not decode p55.** Retire this exact transfer; the moth, 5×5 table and exact p55 body length remain source facts. Do not broaden into different key phases, square traversals, moduli or nonadditive ciphers without an original selector.
