@@ -14,6 +14,8 @@ jobs:
           node-version: '22'
       - name: Search public Arquivo.pt CDX for 2014-2015 Ahmia original HTML
         run: node sims/ahmia_2014_original_index_archive_probe.cjs > ahmia-2014-source-probe.json
+      - name: Print bounded JSON source decision for remote inspection
+        run: node -e "process.stdout.write(require('node:fs').readFileSync('ahmia-2014-source-probe.json', 'utf8'))"
       - name: Preserve URL metadata and source hashes
         if: always()
         uses: actions/upload-artifact@v4
