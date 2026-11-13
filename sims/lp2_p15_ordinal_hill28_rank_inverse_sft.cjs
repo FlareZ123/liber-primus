@@ -43,22 +43,37 @@ function primes(count) {
   return found;
 }
 
+/** Exact determinant modulo28, avoiding any large-integer roundoff. */
+function determinant28(matrix) {
+  if (matrix.length === 1) return ((matrix[0][0] % MOD) + MOD) % MOD;
+  const value = matrix[0].reduce((sum, entry, column) => {
+    const minor = matrix.slice(1).map((row) => row.filter((_, j) => j !== column));
+    return sum + (column % 2 ? -1 : 1) * (entry % MOD) * determinant28(minor);
+  }, 0);
+  return ((value % MOD) + MOD) % MOD;
+}
+
 function buildMatrix() {
   const originalPrimes = primes(FIBONACCI.at(-1) + 1);
-  const matrix = Array.from({ length: 4 }, () => Array(4).fill(0));
-  const alternative = { printed: [], prime: [] };
+  const matrices = Object.fromEntries(['ordinal', 'fibonacci', 'prime', 'printed'].map((key) =>
+    [key, Array.from({ length: 4 }, () => Array(4).fill(0))]));
   for (let i = 0; i < 16; i += 1) {
     const [r, c] = SPIRAL[i];
     const ordinal = FIBONACCI[i] + 1;
     const prime = originalPrimes[ordinal - 1];
     assert.equal(PRINTED[r][c], Math.abs(3301 - prime));
-    matrix[r][c] = ordinal % MOD;
-    alternative.printed.push(PRINTED[r][c] % MOD);
-    alternative.prime.push(prime % MOD);
+    matrices.ordinal[r][c] = ordinal;
+    matrices.fibonacci[r][c] = FIBONACCI[i];
+    matrices.prime[r][c] = prime;
+    matrices.printed[r][c] = PRINTED[r][c];
   }
-  assert.deepEqual(matrix, [[14, 22, 7, 0], [9, 1, 2, 6], [6, 4, 3, 5], [8, 23, 14, 10]]);
+  const determinants = Object.fromEntries(Object.entries(matrices).map(([name, matrix]) =>
+    [name, determinant28(matrix)]));
+  assert.deepEqual(determinants, { ordinal: 19, fibonacci: 21, prime: 24, printed: 24 });
+  assert.deepEqual(matrices.ordinal.map((row) => row.map(mod28)),
+    [[14, 22, 7, 0], [9, 1, 2, 6], [6, 4, 3, 5], [8, 23, 14, 10]]);
   assert.equal(originalPrimes[987], 7817);
-  return matrix;
+  return matrices.ordinal.map((row) => row.map(mod28));
 }
 
 function transpose(matrix) {
