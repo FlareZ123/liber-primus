@@ -168,4 +168,75 @@ console.log('METHOD: 3 original GP registers x 6 fixed shell-key laws x 2 signs'
 console.log('EXACT ENGLISH INTERIOR SUPPORT: max 5/815; all 36 give 0/343 at length>=8');
 console.log('POSITIVE PLANTS: 29340/29340 source-native interiors recovered');
 console.log('TOP 6: ' + JSON.stringify(outcomes.slice(0, 6)));
+
+/*
+ * Historical p56 extension: p56 really uses Euler's totient of successive
+ * primes as a consumed-key stream. Let each word's published exterior
+ * choose the prime ordinal at which that authentic clock begins.
+ * Six frozen selectors and both cipher signs are tested on unchanged
+ * original interiors; no unknown phase, F mask, or key is inferred.
+ */
+const first150Primes = [];
+for (let candidate = 2; first150Primes.length < 150; candidate++) {
+  let prime = true;
+  for (let divisor = 2; divisor * divisor <= candidate; divisor++) {
+    if (candidate % divisor === 0) { prime = false; break; }
+  }
+  if (prime) first150Primes.push(candidate);
+}
+const starts = {
+  firstIndex: (w) => w[0],
+  lastIndex: (w) => w[w.length - 1],
+  firstPlusLastMod29: (w) => mod29(w[0] + w[w.length - 1]),
+  firstPrime: (w) => corpus.prime[w[0]],
+  lastPrime: (w) => corpus.prime[w[w.length - 1]],
+  firstTotient: (w) => corpus.prime[w[0]] - 1,
+};
+/**
+ * @param {number[]} cipher
+ * @param {(word:number[])=>number} start
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function decodeTotientInterior(cipher, start, sign) {
+  const seed = start(cipher);
+  return cipher.slice(1, -1).map((c, j) =>
+    mod29(c + sign * (first150Primes[seed + j] - 1)));
+}
+let totientPlants = 0;
+const totientOutcome = [];
+for (const [startName, start] of Object.entries(starts)) {
+  for (const sign of [-1, 1]) {
+    let supported6 = 0;
+    let supported8 = 0;
+    for (const w of eligible6) {
+      if (supported(decodeTotientInterior(w, start, sign))) {
+        supported6++;
+        if (w.length >= 8) supported8++;
+      }
+      const native = sampleByLength.get(w.length);
+      const seed = start(w);
+      const planted = [
+        w[0],
+        ...native.slice(1, -1).map((p, j) =>
+          mod29(p - sign * (first150Primes[seed + j] - 1))),
+        w[w.length - 1],
+      ];
+      assert.deepEqual(
+        decodeTotientInterior(planted, start, sign),
+        native.slice(1, -1)
+      );
+      totientPlants++;
+    }
+    totientOutcome.push({startName, sign, supported6, supported8});
+  }
+}
+assert.equal(totientOutcome.length, 12);
+assert.equal(totientPlants, 9780);
+assert.equal(Math.max(...totientOutcome.map((x) => x.supported6)), 3);
+assert.ok(totientOutcome.every((x) => x.supported8 === 0));
+console.log('TOTIENT extension: 12 source-seeded prime clocks, max 3/815 dictionary interiors');
+console.log('TOTIENT length>=8: all 0/343, positive native plants 9780/9780');
+console.log('TOTIENT details: ' + JSON.stringify(totientOutcome));
+
 console.log('VERDICT: no unknown plaintext/key under this declared model.');
