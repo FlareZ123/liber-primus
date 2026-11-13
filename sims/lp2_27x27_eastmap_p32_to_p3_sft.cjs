@@ -52,6 +52,15 @@ assert.deepEqual(ownMapEast,
   [17,17,21,25,7,11,25,28,1,4,16,6,9,24,28,5,1,8,6,19,8,16,18,20,7,21,7]);
 const selfMapOut=transform(cipher,ownMapEast,-1);
 const selfMapWrong=transform(cipher,ownMapWest,-1);
+// A distinct historically demonstrated selector: solved LP2 p56 uses
+// Euler-totient-of-GP-prime shifts. Every GP prime >1, so phi(p)=p-1.
+// Apply that EXACT arithmetic to the proposed "east" GP rune key, once.
+const ownMapTotient=ownMapEast.map((index)=>(d.prime[index]-1)%29);
+assert.deepEqual(ownMapTotient,
+  [2,2,20,13,18,7,13,21,2,10,0,16,28,9,21,12,2,22,16,12,22,0,8,14,18,20,18]);
+const selfMapTotientOut=transform(cipher,ownMapTotient,-1);
+assert.deepEqual(transform(selfMapTotientOut,ownMapTotient,1),cipher);
+assert.ok(Math.abs(ioc(selfMapTotientOut)-0.03422085680150196)<1e-12);
 assert.deepEqual(transform(selfMapOut,ownMapEast,1),cipher);
 assert.ok(Math.abs(ioc(selfMapOut)-0.03332479945383171)<1e-12);
 assert.ok(Math.abs(ioc(selfMapWrong)-0.035970302099334356)<1e-12);
@@ -76,10 +85,12 @@ const solved=get(57);
 const plant=Array.from({length:217},(_,i)=>solved[i%solved.length]);
 assert.deepEqual(transform(transform(plant,east,1),east,-1),plant);
 assert.deepEqual(transform(transform(plant,ownMapEast,1),ownMapEast,-1),plant);
+assert.deepEqual(transform(transform(plant,ownMapTotient,1),ownMapTotient,-1),plant);
 assert.notDeepEqual(transform(transform(plant,ownMapEast,1),ownMapWest,-1),plant);
 assert.notDeepEqual(transform(transform(plant,east,1),west,-1),plant);
 console.log("p0-p2 own-map eastern-edge GP key:",ownMapEast.map(k=>d.translit[k]).join(" "));
 console.log("p0-p2 own-map eastern output IoC:",ioc(selfMapOut));
+console.log("p0-p2 same east edge under p56 totient-of-prime key IoC:",ioc(selfMapTotientOut));
 console.log("p0-p2 wrong-west output IoC:",ioc(selfMapWrong));
 console.log("p32 independent-map eastern-edge key:",east.map(k=>d.translit[k]).join(" "));
 console.log("p3 native rune count:",cipher.length);
@@ -88,5 +99,5 @@ console.log("IoC p3 decoded east:",ioc(result));
 console.log("IoC p3 wrong west edge:",ioc(control));
 console.log("Decoded first 40:",
   result.slice(0,40).map(x=>d.translit[x]).join(" "));
-console.log("PASS: both direct maps re-encrypt 217 original runes, both plants recover 217/217.");
+console.log("PASS: both source maps and one p56-source operator re-encrypt all 217 runes; plants pass.");
 console.log("No authentic p3 plaintext recovered under this frozen operation.");
