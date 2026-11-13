@@ -90,7 +90,7 @@ function pageLocalSingletonWitness() {
   const raw=fs.readFileSync(path.join(__dirname,"..","resources","lp2-transcription.txt"),"utf8");
   const stream=raw.split("%").slice(0,55).join("%");
   const runeMap=new Map(corpus.runes.map((r,i)=>[r,i]));
-  let page=0,local=0,current=[],begin=null;
+  let page=0,local=0,lineLocal=0,current=[],begin=null,nonemptyLines=0,inLine=false;
   const one=[];
   function finish(){
     if(current.length===1)one.push({...begin,index:current[0]});
@@ -99,14 +99,19 @@ function pageLocalSingletonWitness() {
   for(const ch of stream){
     const index=runeMap.get(ch);
     if(index!==undefined){
-      if(current.length===0)begin={physicalPage:physicalLP2Page(page),localIndex:local};
+      if(current.length===0)begin={physicalPage:physicalLP2Page(page),localIndex:local,lineIndex:lineLocal};
       current.push(index);
       local++;
-    }else if(ch==="%"){page++;local=0}
-    else if(ch==="/"||/\s/u.test(ch)){}
+      lineLocal++;
+      inLine=true;
+    }else if(ch==="%"){if(inLine)nonemptyLines++;inLine=false;page++;local=0;lineLocal=0}
+    else if(ch==="/"||ch==="\n"){if(inLine)nonemptyLines++;inLine=false;lineLocal=0}
+    else if(/\s/u.test(ch)){}
     else finish();
   }
   finish();
+  if(inLine)nonemptyLines++;
+  assert.equal(nonemptyLines,594);
   assert.equal(one.length,83);
   const witness=one.filter(w=>w.localIndex===2).map(
     w=>({physicalPage:w.physicalPage,index:w.index}));
@@ -120,7 +125,21 @@ function pageLocalSingletonWitness() {
   const sharedAdditiveKeys=candidateKeysAIO[0].filter(key=>
     candidateKeysAIO.every(keys=>keys.includes(key)));
   assert.deepEqual(sharedAdditiveKeys,[]);
-  return {localIndex:2,witness,candidateKeysAIO,sharedAdditiveKeys};
+  const lineWitness=one.filter(w=>w.lineIndex===18).map(w=>({
+    physicalPage:w.physicalPage,index:w.index}));
+  assert.deepEqual(lineWitness,[
+    {physicalPage:1,index:9},
+    {physicalPage:10,index:6},
+    {physicalPage:18,index:13},
+    {physicalPage:30,index:8},
+    {physicalPage:34,index:22},
+    {physicalPage:35,index:7},
+  ]);
+  assert.equal(new Set(lineWitness.map(w=>w.index)).size,6);
+  return {localIndex:2,witness,candidateKeysAIO,sharedAdditiveKeys,
+    nonemptyLines,lineOffset18:{witness:lineWitness,distinct:6,
+      minimumStateMaps:{two:3,three:2}}};
+
 }
 
 function main() {

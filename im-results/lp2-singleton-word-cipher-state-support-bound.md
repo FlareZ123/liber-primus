@@ -4,7 +4,7 @@
 
 ## Decision and original input
 
-The 56 unsolved physical pages contain **83 complete one-rune words using 28 distinct GP29 ciphertext glyphs**, all GP indices except 5 (C). A cipher that preserves these words and maps the ordinary standalone English plaintext words **A** and **I** through k effective deterministic alphabet maps must have **k >= 14** over the entire manuscript. If one also allows the historical one-letter interjection **O**, k >= 10. Two effective maps per physical page are insufficient even for **p17 alone** under A/I, because that page has five one-rune words with five distinct ciphertext symbols. An independent, stronger **same-page-local-offset witness** rules out *every* page-reset identical deterministic rune-alphabet schedule for A/I: local rune offset 2 is a complete one-rune word on three distinct physical pages (p2, p25, p39), yet their ciphertext glyphs are three different GP symbols. This holds with unlimited different alphabets at different offsets as long as the same alphabet is reused across pages at the same local offset. A GP29 **additive** page-reset keystream fails even if A/I/O are allowed.
+The 56 unsolved physical pages contain **83 complete one-rune words using 28 distinct GP29 ciphertext glyphs**, all GP indices except 5 (C). A cipher that preserves these words and maps the ordinary standalone English plaintext words **A** and **I** through k effective deterministic alphabet maps must have **k >= 14** over the entire manuscript. If one also allows the historical one-letter interjection **O**, k >= 10. Two effective maps per physical page are insufficient even for **p17 alone** under A/I, because that page has five one-rune words with five distinct ciphertext symbols. An independent, stronger **same-page-local-offset witness** rules out *every* page-reset identical deterministic rune-alphabet schedule for A/I: local rune offset 2 is a complete one-rune word on three distinct physical pages (p2, p25, p39), yet their ciphertext glyphs are three different GP symbols. This holds with unlimited different alphabets at different offsets as long as the same alphabet is reused across pages at the same local offset. A GP29 **additive** page-reset keystream fails even if A/I/O are allowed. An independent **identical line-reset** alphabet schedule is also incompatible with native A/I/O singleton words: six original printed lines each have a distinct singleton glyph at line-local offset18.
 
 The source is the existing canonical transcription at resources/lp2-transcription.txt parsed by sims/lp2_word_pages.cjs; all 2,896 canonical words reproduce the 12,956 unsolved original GP rune indices of resources/liber-primus/lp2-corpus.json. Its 32 cross-page words remain joined. The exact singleton GP-index histogram is:
 
@@ -58,6 +58,23 @@ A stronger bound applies if the same page-restarted *additive* GP29 keystream is
 Thus **no single page-reset GP29 additive key at the offset 2** explains even these three one-rune words as A, I or O. This is a contradiction against *every possible page-reset keystream length, secret key value or within-page recurrence*, since all page clocks return to the same offset. It neither excludes independent page salts nor says anything about true plaintext of these unknown pages.
 
 The companion SFT validates the original page-local offsets from the transcript, then asserts both the three-distinct-output and empty-additive-key-set witnesses with no fitted parameters.
+
+## Shared line-reset cipher clock: six distinct outputs at one offset
+
+Physical line breaks are another human-visible candidate clock. Parse the slash/newline breaks in the source transcription and count **594 nonempty printed rune lines**, matching the independent source line inventory. At **zero-based position 18 within a printed line**, a complete one-rune word appears on six original physical pages:
+
+| Original physical page | GP ciphertext index |
+| --- | ---: |
+| p1 | 9 |
+| p10 | 6 |
+| p18 | 13 |
+| p30 | 8 |
+| p34 | 22 |
+| p35 | 7 |
+
+All **six output glyphs are distinct**. Even granting the standalone words A/I/O (three GP29 source types), one deterministic alphabet map restarted with *identical state* at each printed line's local offset18 could emit at most three distinct outputs. The six original observations contradict this shared line-reset mapping for **every possible secret alphabet permutation**, including nonlinear secret bijections. In order to fit six outputs at the same offset with A/I/O, at least **two effective line-specific maps** are needed; with A/I only, at least **three** are needed. Any line-unique IV or moving hidden state is outside the shared-reset scope.
+
+The SFT asserts every original line boundary, all 594 nonempty rune lines and the six page/index pairs independently of guessed keys or decoded messages. This bounded contradiction leaves any fully independent line-key scheme untested by this theorem. The earlier [line-specific alphabet equality bound](lp2-line-word-local-allsecret-bijection-gate.md) constrains such schemes through a different finite native-English language comparison, rather than this exact English-singleton alphabet-support witness.
 
 ## Exact positive control and causal use
 
