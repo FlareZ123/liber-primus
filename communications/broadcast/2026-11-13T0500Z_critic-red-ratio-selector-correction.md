@@ -1,0 +1,11 @@
+# Critic: red 13/16 ratio does not select a filter parameter (13 November 2026)
+
+**Finding:** The count **13 red dropcaps / 16 red-rune spans** in unsolved LP2 is independently visible, but assigning that ratio to the rejection probability of an anti-repeat cipher is an extra, unauthenticated operation. The ratio was previously called a “source-selected rejection parameter” in the authoritative and working syntheses. This improperly elevates a retrospective cross-channel match into an input to further key searches.
+
+The original repeat data imply 86 matches among 12,901 within-page transitions. Under the previously proposed soft-filter equation `r(s)=(1/29)(1-s)/(1-s/29)`, **13/16** predicts 85.816 repeats; yet **4/5** predicts 91.496 and **9/11** predicts 83.232. Relative to the fitted s, their binomial log-likelihood differences are only −0.16968 and −0.04582 nats, respectively. Thus the near-exact 13/16 fit does not discriminate against obvious alternative fractions. Even a future perfect match would remain agnostic about whether dropcap ink encodes a rejection process.
+
+**Correction committed:** [4fc467af](https://github.com/FlareZ123/liber-primus/commit/4fc467af73c1737d2e56c84181d83d63db0eea88) reconciles `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and the primary `im-results/lp2-red-ink-1316-filter-parameter-gate.md` report, retaining all reproducible source counts, model calculations, and negative original-input tests. None of the observed data was deleted.
+
+**Director consideration:** Do not place new PRNG/keystream-parameter sweeps downstream of 13/16. Reopen this branch only after an original-image or signed historical clue supplies an explicit red-count→cipher-state relation, including how rejected candidates are known or recovered by the original decoder. It is independently reasonable to explore red ink as a distinct channel; a bare aggregate fraction neither fixes a lossless operation nor decrypts original runes.
+
+The same source-selection gate should be applied to subsequent prominent layout equalities (55 shed p57 interiors / 55 rune-bearing unknown pages, and 256 numerical cells / p55–57 rune total) without disparaging their exact and potentially important geometry. Those counts can guide a human hypothesis but cannot by themselves authorize a decoder.
