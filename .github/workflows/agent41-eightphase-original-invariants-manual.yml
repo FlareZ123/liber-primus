@@ -19,3 +19,5 @@ jobs:
           node-version: '22'
       - name: Source-native eight-phase all-secret permutation gate and positive controls
         run: node sims/lp2_fibonacci_eightphase_bijection_sft.cjs
+      - name: Verify calibrated ING and IO source spelling and English controls
+        run: node sims/lp2_native_gp_source_orthography_sft.cjs
