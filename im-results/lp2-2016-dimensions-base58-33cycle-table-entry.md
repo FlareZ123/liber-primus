@@ -103,6 +103,18 @@ For table byte \(B_{r,c}\) and original-orbit key \(K_r = N_{r+1} \bmod 256\), t
 
 The full outputs contain no recognizable native English or file signature. The expanded [original-input SFT](../sims/lp2_2016_dimensions_base58_orbit_sft.cjs) asserts all three byte-exact prefixes, counts, full 256-byte inverse checks and an independent full-length planted ASCII control. **Result:** these three stationary row-key consumers are negative; invertibility alone is not historical cipher evidence. The original 33-cycle and short route to the physical p50 page remain conditional navigational observations. No unknown LP2 plaintext, authentic key or complete decipherment rule follows.
 
+### The independently selected p50 row10 start does not rescue the fixed 32-row byte keys
+
+The **stronger causal alignment** uses the actual endpoint of *both* numeric source paths: 2014 div331 and signed-2016 image height569 address **p50:w0**, the first numeral on physical p50 but **global 32×8 table cell80 = row10 column0**. A previously tested row-zero origin was merely the table's physical beginning. For one source-defined alternative, rotate the original table by ten **complete eight-byte rows** (rows10–31 then0–9) and attach the already frozen 32 **nonstarting** cycle sums modulo256, in original traversal order, one key per now-aligned row. This tests a published original page boundary with no fitted row permutation.
+
+| Fixed per-row operation, source row10 origin | ASCII printable / 256 | First 32 decoded bytes (hex) |
+| --- | ---: | --- |
+| XOR | **93** | \`3a8e7d7519a8dbf5d8d7cd3ae75f33289cd40a6011a7628c80c5e520f442da89\` |
+| Subtract modulo256 | **84** | \`da86150df968bb8dc8d1bb26e1492d189c5406e011a3de8c804525e014be2679\` |
+| Add modulo256 | **95** | \`42ee7d7561d023f5dee7d13cf75f432e20d88a6495276210743919d408b21a6d\` |
+
+None yields meaningful words or a recognizable file header; all 256 bytes and an independent ASCII positive plant round-trip under the inverse. Fixed AES-256-ECB is unchanged in substance by this start because a row10 rotation moves **80 bytes = five complete 16-byte ECB blocks**, simply permuting the previously failed block outputs. These tests retire the direct source-row10 alignment in these same elementary operation families. The interpretation of p50:w0 as an input address remains hypothetical, and neither pair of archival numerals identifies a nonlinear cipher or changes the still unresolved 59/60 alphabet fork.
+
 ### Direct historical Vigenère transfer on original rune pages
 
 A separate fully specified original-input consumer uses the **actual 147 GP rune tokens of all 33 visited ciphertext words**, concatenated in their unmodified orbit order starting with 563. This gives one fixed period-147 GP29 key rather than turning sum values into arbitrary bytes. The genuinely attested 2014 “let the text guide you” step motivates a literal repeating-GP-key **subtraction** from the first rune of physical p32 (tree picture), p53 (moth picture) and p55 (terminal moth picture), with no fitted phase or key fragment. It exactly re-encrypts all source runes by construction. In original-input tests, p32 (121 runes) decodes to IoC **0.03732782369146**, p53 (179) to **0.03621869311405**, and p55 (76) to **0.03333333333333**; each output remains nonlinguistic GP transliteration. The complete source-key inverse thus provides **no known plaintext**. Its choice of these three target pages is exploratory and the artwork does not command this key schedule. The linked SFT runs all three exact original-page tests and asserts the 147-rune key.
