@@ -1,0 +1,14 @@
+name: LP2 differential radix compression original input
+on:
+  workflow_dispatch:
+jobs:
+  finite-source-decode:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run full-stream inverse and positive control
+        run: node sims/lp2_delta_radix_compression_sft.cjs
