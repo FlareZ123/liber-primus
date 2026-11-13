@@ -148,7 +148,7 @@ const stage10HtmlDigests=['sha512','sha3-512','blake2b512'].map(algorithm=>{
   assert.notEqual(digest,originalP56Digest);
   return {algorithm,prefix:digest.slice(0,24),matchesOriginalP56:false};
 });
-assert.equal(stage10HtmlDigests[0].prefix,'e391f31b3060ea4ff9dbca8');
+assert.equal(stage10HtmlDigests[0].prefix,'e391f31b3060ea4ff9dbca84');
 
 
 const orbit = [];
