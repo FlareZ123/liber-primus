@@ -219,6 +219,60 @@ for (let mask = 0; mask < 8; mask++) {
 assert.equal(provisionalP55Matches.length, 30);
 assert.equal(Math.max(...provisionalP55Matches.map(x => x.matches)), 3);
 
+// Reused-byte-tape falsifier: the fully reassembled, historic 2013 Twitter
+// 988×65-byte original puzzle string is independently source-captured.
+const twitterRows = read('resources/cicada2013-twitter-hex-stream.txt')
+  .trim().split(/\r?\n/);
+assert.equal(twitterRows.length, 988);
+const twitterTape = Array(64167).fill(-1);
+for (const row of twitterRows) {
+  const [address, hex] = row.split(/:\s*/);
+  assert.match(address, /^[0-9a-f]{7}$/i);
+  assert.match(hex, /^(?:[0-9a-f]{2})+$/i);
+  const offset = Number.parseInt(address, 16);
+  const bytes = [...Buffer.from(hex, 'hex')];
+  for (let i = 0; i < bytes.length; i++) {
+    assert.equal(twitterTape[offset + i], -1,
+      '2013 tape must have no overlap or duplicate assignments');
+    twitterTape[offset + i] = bytes[i];
+  }
+}
+assert(twitterTape.every(v => v >= 0 && v <= 255));
+/** @param {number[]} tape @param {number[]} needle
+ * @returns {{length:number,tapeOffset:number,keyOffset:number}} */
+function longestExactWindow(tape, needle) {
+  const triplets = new Map();
+  for (let j = 0; j < needle.length - 2; j++) {
+    const h = (needle[j] << 16) | (needle[j + 1] << 8) | needle[j + 2];
+    if (!triplets.has(h)) triplets.set(h, []);
+    triplets.get(h).push(j);
+  }
+  let best = {length:0,tapeOffset:-1,keyOffset:-1};
+  for (let i = 0; i < tape.length - 2; i++) {
+    const h = (tape[i] << 16) | (tape[i + 1] << 8) | tape[i + 2];
+    for (const j of triplets.get(h) || []) {
+      let length = 3;
+      while (i + length < tape.length && j + length < needle.length &&
+        tape[i + length] === needle[j + length]) length++;
+      if (length > best.length) {
+        best = {length, tapeOffset:i, keyOffset:j};
+      }
+    }
+  }
+  return best;
+}
+const crossRoundExactTapeWindows = labels.map((label, i) =>
+  ({label, ...longestExactWindow(twitterTape, onions[i])}));
+crossRoundExactTapeWindows.push({
+  label:'LP2 printed 256-byte table',
+  ...longestExactWindow(twitterTape, table)
+});
+assert.deepEqual(crossRoundExactTapeWindows.map(x => x.length), [3,3,3,3]);
+const tapeWithPlant = twitterTape.slice();
+tapeWithPlant.splice(1000, 256, ...onions[0]);
+const plantedReuse = longestExactWindow(tapeWithPlant, onions[0]);
+assert.deepEqual(plantedReuse, {length:256, tapeOffset:1000, keyOffset:0});
+
 /** @param {number[]} a @returns {[number,number]} */
 const range = a => [Math.min(...a), Math.max(...a)];
 const full = range(gp29.map(x => x.ioc));
@@ -237,6 +291,7 @@ console.log(JSON.stringify({
   tested: {historicalAndTableKeys:15, fullGP29Decodes:30, step28Decodes:60},
   solvedP56Shift:{eligibleCipherRunes:84, tested:originalP56Checks.length, matchesRange:range(originalP56Checks.map(x => x.matches)), maximum:originalP56Checks.filter(x => x.matches === 9)},
   mothLinkedP55Crib:{status:'UNAUTHENTICATED hypothesis, not solved plaintext',candidateRunes:30,tests:provisionalP55Matches.length,matchesRange:range(provisionalP55Matches.map(x => x.matches)),best:provisionalP55Matches.filter(x => x.matches === 3)},
+  original2013TwitterTape:{bytes:twitterTape.length,combinations:crossRoundExactTapeWindows,positive:plantedReuse},
   sourceXorTableASCII:binary.filter(x => x.label !== 'TABLE'),
   fullGP29IoC:full, nonrepeatRank28IoC:step,
   largestSingleDecodedRank:largest,
