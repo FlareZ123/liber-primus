@@ -19,6 +19,9 @@ const prime = new Map(corpus.runes.map((ch,i) => [ch,corpus.prime[i]]));
 assert.equal(chunks.length,57);
 const gridTokens = table.pages.find(p => p.page===50).tokens;
 assert.equal(gridTokens.length,104);
+assert.deepEqual(table.pages.filter(p => [49,50,51].includes(p.page))
+  .map(p => p.tokens.length),[80,104,72]);
+assert.equal(grid.byte_rows[10][0],142);
 
 /** @param {string} source @returns {string[]} */
 function printedWords(source) {
@@ -85,7 +88,8 @@ assert.equal(short2012.period,4);
 assert.equal(long2012.reason,"table");
 assert.equal(long2012.terminal,166);
 console.log("2016 width563: 33-word original cycle through p0:w5.");
-console.log("2016 height569: 569 -> 374 -> p50:w0, token 2M.");
+console.log("2016 height569: 569 -> 374 -> p50:w0, token 2M;",
+  "global grid cell80 (zero-based), row10 column0, byte142.");
 console.log("2012 controls: 503 enters 4-cycle; 509 reaches p50:w2 in 5 hops.");
 console.log("Full 563 cycle GP prime sums:",width.path.join(","));
 
