@@ -84,6 +84,42 @@ for (const [name, runes, expected] of cases) {
   }));
 }
 
+
+/*
+ * The independent 2014 first-onion RSA-OAEP original challenge is in the
+ * same 2014 puzzle round that subsequently delivered Liber Primus.
+ * Its e=65537, 432-bit modulus and factors were printed in contemporary
+ * solver documentation. This is an additional direct original-p55 gate.
+ */
+const P2014 = 97513779050322159297664671238670850085661086043266591739338007321n;
+const Q2014 = 77506098606928780021829964781695212837195959082370473820509360759n;
+const N2014 = 7557912574608535164426718292058021255641310207187633095795069445700059210248050757270234679993673844203148013173091173786572116639n;
+assert.equal(P2014 * Q2014, N2014);
+assert.equal(N2014.toString(2).length, 432);
+const D2014 = modInverse(E, (P2014 - 1n) * (Q2014 - 1n));
+const direct2014 = [
+  ['full_76', page.indices, '941ae5138da36a3ecc6dcc6763c0eaaa420dc07531598795f925381cecff28695822489df23d499ad53a132f3fb9f22ac9f44403fc73'],
+  ['body_75', page.indices.slice(1), '34db54889da71924b3f8cce02164690bdf4d1fbb355fb7347a43669af84890c867aa78c2ccca2baada008189cea6f6ad2410becce440']
+];
+for (const [name, runes, expected] of direct2014) {
+  const ciphertext = base29(runes);
+  assert.ok(ciphertext < N2014);
+  const message = modPow(ciphertext, D2014, N2014);
+  assert.equal(modPow(message, E, N2014), ciphertext);
+  const decoded = Buffer.from(message.toString(16).padStart(108, '0'), 'hex');
+  assert.equal(decoded.length, 54);
+  assert.equal(decoded.toString('hex'), expected);
+  assert.notEqual(decoded[0], 0, '2014 RSA OAEP leading 0x00 unavailable');
+  const printable = [...decoded].filter((v) => v >= 32 && v <= 126).length;
+  console.log('2014_' + name, JSON.stringify({
+    ciphertext_bits: ciphertext.toString(2).length,
+    modulus_bits: 432,
+    decrypted_hex: decoded.toString('hex'),
+    printable_ascii: printable,
+    oaep_or_pkcs1v15_possible: false
+  }));
+}
+
 // A source-size, 54-byte PKCS#1 v1.5 formatting plant tests RSA itself.
 // This is an implementation control, never evidence of historical use.
 const encodedPlant = Buffer.concat([
@@ -93,4 +129,4 @@ assert.equal(encodedPlant.length, 54);
 const plant = BigInt('0x' + encodedPlant.toString('hex'));
 assert.ok(plant < N);
 assert.equal(modPow(modPow(plant, E, N), D, N), plant);
-console.log('PASS: RSA plant and both source-fixed original p55 candidates; no decoded LP2 plaintext.');
+console.log('PASS: RSA plant and four source-fixed original p55 candidates; no decoded LP2 plaintext.');
