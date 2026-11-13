@@ -357,7 +357,8 @@ const screen={trainingRunes:trained.length,pairs:ranked.length,
  * while granting every page an arbitrary unknown shared position-stream K[t].
  * This source-selected allocation must outperform equal-multiset shuffles.
  */
-const finalPage = read("resources/liber-primus/lp2-transcription.txt").split("%").at(-1);
+const finalPage = read("resources/liber-primus/lp2-transcription.txt")
+  .split("%").at(-1).replace(/\/\s*/g,"");
 const p57Words = finalPage.match(new RegExp("[" + gp.runes.join("") + "]+","gu"));
 assert.equal(p57Words.length,20);
 const sourcePageKeys = p57Words.flatMap(word => [...word].slice(1,-1))
