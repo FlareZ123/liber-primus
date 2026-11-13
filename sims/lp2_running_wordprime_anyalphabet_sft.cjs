@@ -141,6 +141,102 @@ function positivePlant(plain,structure,mode){
  return {decodedRunes:decoded.length,exact:true,plaintextE:originalE,
    plaintextEO:originalEO,blind};
 }
+
+/**
+ * An even stronger, language-independent gate. At a fixed public state and
+ * chapter, any deterministic one-input-symbol/one-cipher-symbol encoder
+ * can emit at most as many distinct c symbols as it has plaintext labels,
+ * even if the secret mapping is noninjective. Count distinct observed original
+ * GP29 ciphertexts in every public state and preserve 29 explicit source
+ * offsets witnessing the earliest full-alphabet state.
+ * @param {number[][][]} groups
+ * @param {(c:number)=>number} increment
+ * @param {"cumulativeRune"|"previousWord"|"cumulativeWord"} mode
+ */
+function stateAlphabetSupport(groups,increment,mode){
+ let max=0,fullStates=0,occupiedStates=0,firstWitness=null,base=0;
+ for(let chapter=0;chapter<groups.length;chapter++){
+  let state=0,previous=0,local=0;
+  const hits=Array.from({length:MOD},()=>new Int32Array(MOD).fill(-1));
+  for(const word of groups[chapter]){
+   if(mode==="previousWord")state=previous;
+   let wordSum=0;
+   for(const c of word){
+    if(hits[state][c]<0)hits[state][c]=base+local;
+    local++;
+    wordSum=mod(wordSum+increment(c));
+    if(mode==="cumulativeRune")state=mod(state+increment(c));
+   }
+   previous=wordSum;
+   if(mode==="cumulativeWord")state=mod(state+wordSum);
+  }
+  for(let s=0;s<MOD;s++){
+   const positions=Array.from(hits[s]);
+   const distinct=positions.filter(p=>p>=0).length;
+   if(distinct)occupiedStates++;
+   max=Math.max(max,distinct);
+   if(distinct===MOD){
+    fullStates++;
+    if(!firstWitness)
+     firstWitness={chapter,state:s,firstOffsetsByCipherSymbol:positions};
+   }
+  }
+  base+=local;
+ }
+ assert.equal(base,N);
+ return {max,fullStates,occupiedStates,firstWitness};
+}
+/**
+ * A matched original-shape 26-label positive control. Fold source-native
+ * GP29 samples into 26 plaintext labels, encode via a secret invertible affine
+ * per-public-state map, then reconstruct all planted labels without access to
+ * prior plaintext. Distinct outputs per state MUST remain <=26.
+ * @param {number[]} native26
+ * @param {number[][][]} structure
+ * @param {(c:number)=>number} increment
+ * @param {"cumulativeRune"|"previousWord"|"cumulativeWord"} mode
+ */
+function positiveLatin26Plant(native26,structure,increment,mode){
+ const allGroups=[],recovered=[];
+ let pos=0;
+ for(let chapter=0;chapter<structure.length;chapter++){
+  let state=0,previous=0;
+  const encodedWords=[];
+  for(const shape of structure[chapter]){
+   if(mode==="previousWord")state=previous;
+   let wordSum=0;
+   const cipherWord=[];
+   for(let i=0;i<shape.length;i++){
+    const source=native26[pos++];
+    assert.ok(source>=0&&source<26);
+    const c=mod(11*source+7*state+3*chapter);
+    cipherWord.push(c);
+    const decoded=mod(8*(c-7*state-3*chapter));
+    assert.equal(decoded,source);
+    recovered.push(decoded);
+    wordSum=mod(wordSum+increment(c));
+    if(mode==="cumulativeRune")state=mod(state+increment(c));
+   }
+   encodedWords.push(cipherWord);
+   previous=wordSum;
+   if(mode==="cumulativeWord")state=mod(state+wordSum);
+  }
+  allGroups.push(encodedWords);
+ }
+ assert.equal(pos,N);
+ assert.deepEqual(recovered,native26);
+ const support=stateAlphabetSupport(allGroups,increment,mode);
+ assert.ok(support.max<=26);
+ return {runes:recovered.length,exact:true,maximumCipherSymbolsPerState:support.max};
+}
+
+/** @param {number} globalOffset @returns {number} */
+function originalGlyphAt(globalOffset){
+ const original=gp.pages.filter(p=>p.page<56&&p.indices.length)
+   .flatMap(p=>p.indices);
+ assert.ok(globalOffset>=0&&globalOffset<original.length);
+ return original[globalOffset];
+}
 function main(){
  const all=originalWords(),nine=nineChapters(all),result={};
  const clocks={
@@ -164,6 +260,32 @@ function main(){
    assert.deepEqual([[single.E,single.EO],[chapters.E,chapters.EO]],
      expected[name][mode]);
    result[name][mode]={wholeBook:single,nineVisualChapters:chapters};
+  }
+ }
+ const expectedAlphabetSupport={
+  gpIndex:{cumulativeRune:[29,12,261],previousWord:[29,22,261],
+    cumulativeWord:[29,22,254]},
+  gpPrime:{cumulativeRune:[29,15,261],previousWord:[29,20,258],
+    cumulativeWord:[29,19,258]},
+  gpTotient:{cumulativeRune:[29,18,261],previousWord:[29,13,259],
+    cumulativeWord:[29,26,258]}
+ };
+ const allStateSupport={};
+ for(const [name,increment] of Object.entries(clocks)){
+  allStateSupport[name]={};
+  for(const mode of ["cumulativeRune","previousWord","cumulativeWord"]){
+   const found=stateAlphabetSupport(nine,increment,mode);
+   assert.deepEqual([found.max,found.fullStates,found.occupiedStates],
+     expectedAlphabetSupport[name][mode]);
+   assert.equal(found.firstWitness.firstOffsetsByCipherSymbol.length,MOD);
+   for(let c=0;c<MOD;c++)
+    assert.equal(originalGlyphAt(found.firstWitness.firstOffsetsByCipherSymbol[c]),c);
+   allStateSupport[name][mode]={
+    minimumSourceAlphabet:found.max,
+    fullAlphabetStates:found.fullStates,
+    occupiedStates:found.occupiedStates,
+    firstWitness:found.firstWitness
+   };
   }
  }
  const controls=[
@@ -194,14 +316,23 @@ function main(){
   plants.previousWord.blind.E,plants.previousWord.blind.EO,
   plants.cumulativeWord.blind.E,plants.cumulativeWord.blind.EO
  ],[1529,2661,1832,3285,1850,3287]);
+ const native26=native.map(c=>c%26);
+ assert.equal(new Set(native26).size,26);
+ const latin26Plants={};
+ for(const [name,increment] of Object.entries(clocks)){
+  latin26Plants[name]={};
+  for(const mode of ["cumulativeRune","previousWord","cumulativeWord"])
+   latin26Plants[name][mode]=positiveLatin26Plant(native26,nine,increment,mode);
+ }
  const output={
   original:{runes:N,printedWords:all.length,chapterWordCounts:nine.map(g=>g.length)},
   mechanism:"C=sigma_(visibleChapter,publicPreviousWordOrCumulativeWordChecksum)(P)",
-  originalAllSecretBounds:result,sourceNativeControls:controls,
+  originalAllSecretBounds:result,allNineStateAlphabetSupport:allStateSupport,
+  positiveLatin26Plants:latin26Plants,sourceNativeControls:controls,
   positivePlants:plants,
-  conclusion:"No recovered original plaintext. All independently secret GP29 alphabet tables under the six frozen public word-sum state rules cannot directly produce the three tested English registers."};
+  conclusion:"No recovered original plaintext. Every frozen public clock contains a source-observed state emitting all 29 cipher symbols, exactly excluding all fixed-state deterministic 26-label direct encoders. Any arbitrary-secret GP29 alphabets under the nine clocks also fail native English controls."};
  console.log(JSON.stringify(output,null,2));
  return output;
 }
 if(require.main===module)main();
-module.exports={main,originalWords,nineChapters,capacity,positivePlant};
+module.exports={main,originalWords,nineChapters,capacity,positivePlant,stateAlphabetSupport,positiveLatin26Plant};
