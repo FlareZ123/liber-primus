@@ -41,8 +41,12 @@ Both key candidates were applied continuously from the beginning of each target,
 | pp33–39, 1,680 runes | Zero-based | C+K | 0.03458691 | 63 |
 | pp33–39, 1,680 runes | One-based | C−K | 0.03445858 | 47 |
 | pp33–39, 1,680 runes | One-based | C+K | 0.03445503 | 50 |
+| p55 complete-word body, 75 runes | Zero-based | C−K | 0.03459459 | 3 |
+| p55 complete-word body, 75 runes | Zero-based | C+K | 0.03747748 | 5 |
+| p55 complete-word body, 75 runes | One-based | C−K | 0.03459459 | 3 |
+| p55 complete-word body, 75 runes | One-based | C+K | 0.02954955 | 3 |
 
-For comparison, the original unknown-book IoC is **0.03447840**, the raw pp33–39 IoC is **0.03436002**, and the solved p57 control IoC is approximately **0.06271**. The decoded previews are nonlinguistic. None of the eight original-input outputs shows the symbol concentration expected from the solved GP plaintext control. The changed adjacent-repeat counts are a side effect of a periodic key, not evidence of recovered text.
+For comparison, the original unknown-book IoC is **0.03447840**, the raw pp33–39 IoC is **0.03436002**, the raw p55 75-rune body IoC is **0.03855856** (one adjacent equal pair), and the solved p57 control IoC is approximately **0.06271**. The p55 test starts the 22-symbol key at the first new rune after its incoming p54 carry; this local reset is a diagnostic convention, not a source-authenticated clock. The decoded previews are nonlinguistic. None of the twelve original-input outputs shows the symbol concentration expected from the solved GP plaintext control. The changed adjacent-repeat counts are a side effect of a periodic key, not evidence of recovered text.
 
 The script also plants known solved-p57 GP plaintext under each fixed key and recovers every planted symbol exactly. This checks the additive implementation and key clock; it does not authenticate the key.
 
