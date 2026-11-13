@@ -103,6 +103,10 @@ def make_cover(family: int, mode: str, dest: Path) -> None:
         draw.rectangle((2090, 280, 2130, 3100), outline=11, width=2)
     if family % 7 == 0:
         draw.line((body_x, 3480, max_x, 3480), fill=10, width=3)
+    # StandardDecoder/Encoder in the pinned F5 port truncates an all-zero final
+    # grayscale DCT MCU when reserializing a synthetic white-edge image.
+    # A fixed black terminal crop-registration dot keeps that MCU present.
+    draw.rectangle((WIDTH-12, HEIGHT-12, WIDTH-3, HEIGHT-3), fill=7)
     if mode == "RGB":
         canvas = canvas.convert("RGB")
     dest.parent.mkdir(parents=True, exist_ok=True)
