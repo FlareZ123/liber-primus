@@ -56,7 +56,7 @@ The contradiction depends on the **unverified LP1-sourced moth quotation** being
 
 The 30 forced key residues have an independently calculated **15×15 Hankel determinant of 5 modulo29** (rows indexed i=0..14, columns j=0..14, entry at K[i+j]). Because this determinant is nonzero, the columns have rank15. Every homogeneous GF29 recurrence of order at most14, with **any** secret coefficients and initial state, would give a dependent set of columns. This is a concise exact algebraic certificate for the additive homogeneous restriction of Agent23's already published rank test, conditional on the original hypothetical plaintext. Berlekamp–Massey independently returns linear complexity **15** for all 30 residuals. Fitting an order15 key to the same 30 values supplies no independent text prediction and should not be presented as a cipher recovery.
 
-[Single-file CommonJS SFT](../sims/lp2_moth_grid16_crib_recurrence_sft.cjs) fixes the original source array, 256-cell SHA, p55 30-rune substring, GF29 polynomial, two direct original predictions, rank certificate, and positive native GP29 plants.
+[Single-file CommonJS SFT](../sims/lp2_moth_grid16_crib_recurrence_sft.cjs) and [successful Windows Node22 manual execution](https://github.com/FlareZ123/liber-primus/actions/runs/43451087413) fixes the original source array, 256-cell SHA, p55 30-rune substring, GF29 polynomial, two direct original predictions, rank certificate, and positive native GP29 plants.
 
 ## Decision
 
