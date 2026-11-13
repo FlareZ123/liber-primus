@@ -1,6 +1,6 @@
 # p15 sixteen-value spiral as a page-specific prime-totient key for the sixteen floral pages
 
-**Original-input finite negative.** The one-to-one page assignment below does not produce LP2 plaintext. This exact test is distinct from earlier p15 key-repetition tests on p16–22 and from attempts to convert the printed sixteen numbers into a 32-byte AES key.
+**Original-input exact negative, strengthened by the correct historical plaintext-F bypass.** The original clockwise page-to-prime-start assignment did not produce plaintext under the earlier every-rune-consumes-key model. A newer [exact all-F-mask test](lp2-p15-ftransparent-allphase-feasibility.md) shows that the stronger authentic rule cannot reproduce seven original floral pages **under any of all 16 p15 start ranks and either encryption sign**, even after independently rephasing/reassigning the starts on each page. This source-key interpretation is algebraically excluded; no key, plaintext or intended continuation is recovered.
 
 ## Independent visual alignment and its uncertainty
 
@@ -42,6 +42,18 @@ An independent **3,316-rune planted-control** sequence built from known solved p
 
 [Single-file CommonJS source-exact reproducer](../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs) asserts all original lengths, ranks, sixteen literal square cell values, p50's empty-page slot, pooled observed IoCs and exact round trips. Inputs: `resources/liber-primus/lp2-corpus.json` and the previously image-adjudicated source p15 table.
 
+## Subsequent authentic plaintext-F exact source-key gate
+
+The original solved LP1 WELCOME and solved LP2 p56 encryption algorithms include a historical rule missing from the initial fixed-position experiment: **literal plaintext F emits ciphertext F while consuming no key**; a ciphertext F may also encode an ordinary non-F through the current key. Therefore simply subtracting phi(prime) at every printed ciphertext position cannot be regarded as the most generous test of the actual Cicada primitive.
+
+The later [complete-state inverse SFT](../sims/lp2_p15_ftransparent_allphase_feasibility_sft.cjs) treats every ciphertext F as both possible branches and propagates **all** consumed-key counts, merging only identical states. It tests all **16 source-derived starting prime ordinals [1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988]** and both cipher directions on **each of the sixteen original floral pages independently**, 512 page/start/sign original-input checks. This grants any spiral permutation, changed page order or independent sign and clock reset without changing the candidate prime-totient operation. No original English plaintext hypothesis is used to reject impossible keys.
+
+**Seven originally printed floral pages p40, p42, p44, p45, p47, p48 and p54 admit zero legal F-mask paths under every one of the 32 page-specific start/sign combinations.** No perfect assignment or reordering of 16 starts can repair a page with no legal edge. The exact clockwise plus-sign mapping in this report passes only p43, p49 and runeless p50; thirteen others are impossible. The zero-rune p50 is preserved as always compatible, with 32/32 choices, rather than removed to make the alignment look stronger.
+
+A genuine **85-rune original p56 cipher** passes this very same inverse with its actual totient key. All **512** source-native GP-English positive plants (one per original page/start/sign combination with original page lengths and true plaintext-F bypass) also pass. The [single completed manual Actions test](https://github.com/FlareZ123/liber-primus/actions/runs/43440839029) validates the exact script and historical solved-cipher controls on Node.js 22.
+
+This settles the most natural historical correction to the original 16-floral-source-key route. It does not constrain an independent hidden key, a different transform of the p15 numbers or a cipher not using source p56's recurrence and plaintext-F convention.
+
 ## Independent sixteen-page order-discrimination check
 
 An independent original-input implementation (Agent33, 12 November 2026) reproduced **all 3,316** original symbols and the specific subtraction IoC **0.034540697600372615**. A fixed-seed **10,000-shuffle reassignment** then held the complete set of sixteen Fibonacci-prime start indices and every original physical page unchanged, but randomly permuted which of the sixteen source starts belonged to each page. In **2,332/10,000** reassignments, the same full decoded-stream IoC was **at least as high** as the original clockwise page mapping; add-one upper-tail **2,333/10,001 = 0.23327667**. Exactly **7,672/10,000** had equal or lower IoC. This does not make a uniform distribution a good decryptor, but it shows the aesthetically appealing source order does **not** stand out under this natural fixed-key-set diagnostic.
@@ -50,6 +62,6 @@ The [canonical SFT](../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs) now inclu
 
 ## Decision
 
-The numerical match **16 spiral values ↔ 16 original floral-bordered pages** supplies a plausible, human-visible page-index bridge. The straightforward and source-authentic consecutive-prime totient consumer does **not** decrypt those pages. Retire this particular page-reset, clockwise, rank-indexed prime-totient interpretation. A new operation would require an independent original instruction identifying the consumer, the role of p50 and the clock. Neither a shifted key phase nor an optimized page order is justified by this negative.
+The numerical match **16 spiral values ↔ 16 original floral-bordered pages** supplies a plausible, human-visible page-index bridge. The straightforward and source-authentic consecutive-prime totient consumer does **not** decrypt those pages. Retire this page-reset, p15-rank-indexed prime-totient interpretation under both the original naive clock and the complete, historically authenticated plaintext-F bypass. The exact all-mask obstruction already excludes every assignment of the printed sixteen starts and either sign to the seven fully incompatible pages. A new operation requires an independent original instruction identifying a different consumer, page key source or state rule; adjusting the number-to-page order or F-mask cannot help. Neither a shifted key phase nor an optimized page order is justified by this negative.
 
 References: [p15 solved spiral](../results/lp2-p15-fibonacci-prime-spiral.md), [original visual chapter layout](lp2-global-original-visual-section-map.md), [original image archive](../resources/liber-primus/README.md), [full SFT](../sims/lp2_p15_spiral_to_16_floral_pages_sft.cjs).
