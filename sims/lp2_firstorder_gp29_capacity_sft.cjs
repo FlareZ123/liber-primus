@@ -224,6 +224,12 @@ function main() {
     secondOrder.capacity[11]],[842,2021,3618,12034]);
   assert.deepEqual([secondOrderPages.states,secondOrderPages.capacity[0],
     secondOrderPages.capacity[1],secondOrderPages.capacity[11]],[865,2041,3650,12044]);
+  const blake=encodeNativeEnglish(read("resources/external/blake-marriage-1906-gutenberg45315.txt"),
+    corpus.translit);
+  assert.equal(blake.length,18580);
+  assert.equal(blake.filter(i=>i===corpus.translit.indexOf("E")).length,2347);
+  const blakeTop=topCounts(blake);
+  assert.equal(blakeTop[11],14371);
   const nativeE=native.filter(i=>i===corpus.translit.indexOf("E")).length;
   assert.equal(nativeE,406);
   const nativeTop=topCounts(native);
@@ -256,6 +262,9 @@ function main() {
     conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent top-level visual-chapter state tables (9.80% and 69.51% are generous upper bounds)",
     exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent original visual-chapter or alternative red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
+    independentBlakeControl:{source:"1906 Project Gutenberg The Marriage of Heaven and Hell, fixed repository edition",
+      runes:blake.length,e:2347,top12:14371,
+      eFraction:2347/blake.length,top12Fraction:14371/blake.length},
     countermodelTwoPrevious:{shared:{states:secondOrder.states,
       top1:secondOrder.capacity[0],top12:secondOrder.capacity[11]},
       pageReset:{states:secondOrderPages.states,top1:secondOrderPages.capacity[0],
