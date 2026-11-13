@@ -355,6 +355,7 @@ for (const direction of ["ascending", "descending"]) {
       direction,
       mode,
       transliteration: transliterate(output),
+      indices: output,
       gp4_log_probability_per_rune: null,
     });
   }
@@ -380,6 +381,7 @@ for (const tieBreak of ["row-major", "clockwise-spiral", "counterclockwise-spira
         direction,
         mode,
         transliteration: transliterate(output),
+      indices: output,
         gp4_log_probability_per_rune: null,
       });
     }
@@ -432,10 +434,8 @@ function scoreRankGP4(sequence) {
   return score / sequence.length;
 }
 for (const variant of rankVariants) {
-  const glyphs = [...variant.transliteration];
-  const indices = glyphs.map((glyph) => corpus.translit.indexOf(glyph));
-  assert(indices.every((index) => index >= 0));
-  variant.gp4_log_probability_per_rune = scoreRankGP4(indices);
+  variant.gp4_log_probability_per_rune = scoreRankGP4(variant.indices);
+  delete variant.indices;
 }
 const rankControlScores = [];
 const rankControlStep = Math.floor((rankHeld.length - 43) / 499);
