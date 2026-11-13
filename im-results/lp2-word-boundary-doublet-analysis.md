@@ -29,6 +29,15 @@ The endpoint marginals do not make the zero diagonal automatic: all 29 GP symbol
 
 A bounded check for a simple source-authentic boundary transform also fails: across the 686 pp11–23 boundary pairs, the best (y=ax+b\pmod{29}) map matches **40/686**; a 5,000-draw max-over-812-affine-maps permutation gives **p=0.59**. The no-repeat diagonal is not explained by one fixed Atbash/Vigenère-style affine relation.
 
+## p15's 16-value spiral as a repeating word key (negative)
+
+The obvious source-derived consumer is a 16-step repeating word key: the p15 grid has exactly sixteen values, its red 3299 fixes the spiral start, and the infinity mark plausibly suggests repetition. Starting at the first word of p16 (the page after the key), I tested the five directly source-derived sequences modulo 29: printed grid values, underlying primes, prime totients, distinct Fibonacci inputs, and one-based prime ranks. For each, the four fixed additive/Atbash sign forms (P=aC+sK_{j\bmod16}\pmod{29}), (a\in\{1,-1\}), (s\in\{1,-1\}), give 20 fixed candidates without a fitted phase.
+
+- Applied as a constant shift to every rune in each of the **1,957 runes / 450 words on pp16–23**, the best IoC is **0.034823**, essentially the 29-symbol uniform baseline **0.034483**; the resulting word strings are not readable.
+- Applied to the **442 p16–23 word-boundary pairs** as (y=a x+sK_{j\bmod16}), the best candidate matches **23/442**. A 10,000-draw permutation of next-word initials, taking the maximum over all 20 fixed candidates each time, gives **p=0.513**.
+
+This rejects the most natural p15-grid repeating-key consumer of the boundary anomaly. Do not rescue it with free phase shifts, per-word fitted keys, or a broader family of transforms.
+
 ## Interpretation and limits
 
 The robust observation is a **region-specific word-boundary derangement**: no word's final rune equals the next word's initial rune across pp11–23, despite 686 opportunities and full endpoint-symbol coverage. The data do not establish whether this is a rejection/filter rule in the encoder, a different word-boundary mode, or an unusual property of the unknown underlying text. It does not reveal a key or a reversible operation.
@@ -37,7 +46,7 @@ The page art is context, not proof: p11 and p23 carry tree illustrations; p15 ha
 
 ## Next discriminating question
 
-Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The next useful work must identify an original clue that selects a reversible operation or key schedule for this span. Do not search arbitrary per-word maps or repeat the generic figural-motif scan.
+Does the pp11–23 zero-boundary run reflect a source-selected word-boundary encoding mode, or only the plaintext/word segmentation? The obvious p15 16-value repeating word-key consumer is now negative. Any further work on the pp11–23 boundary pattern must begin from a different original clue that selects a reversible operation or key schedule; do not search arbitrary per-word maps, add free phases, or repeat the generic figural-motif scan.
 
 ## Reproduction
 
