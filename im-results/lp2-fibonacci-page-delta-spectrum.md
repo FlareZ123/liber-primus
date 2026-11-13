@@ -62,6 +62,30 @@ This result is **distinct from and related to** the broader nonzero-step spectru
 
 The exact independently reproducible output, 64-lag familywise enumeration, 55 original page lengths, counts and per-page data are preserved in [`sims/lp2_fibonacci_page_step_lag8_sft.cjs`](../sims/lp2_fibonacci_page_step_lag8_sft.cjs). This test arose after surveying a small number of lag candidates and does **not** correct across the project's wider library of hypotheses, page masks and cipher architectures.
 
+## All-secret eight-phase cipher-family decision (Agent 41, 13 November 2026)
+
+A direct cryptanalytic consequence of the eight-column table deserves a stronger test than trying individual row-byte keys. Suppose the source first difference \`D_i=(C_i−C_(i−1)) mod29\`, for every within-page position \`i≥1\`, encrypts the current GP29 plaintext rune \`P_i\` through an **arbitrary secret 29-symbol bijection** \`π_(i−1 mod8)\`. We grant independent, unconstrained substitution tables for all eight phases, and separately grant a *different set of eight tables for every physical page*. The first rune per page is free startup state. Any such alphabet can rename values, but **cannot change the number of equal-value pairs in one phase**: \`D_i=D_j ⇔ P_i=P_j\` whenever their phase (and, in the page-specific variant, their page) agrees. These are exact, key-independent invariants of the whole enormous secret-key family.
+
+The original untouched 12,956 GP29 unknown LP2 runes have 12,901 eligible within-page steps. Their exact same-phase pair inventories, against 89 matched-length native-GP English windows, are:
+
+| Cipher-state sharing | Original equal pairs / eligible pairs | Original collision rate | Lowest of 89 native-English control rates | Controls at or below original |
+| --- | ---: | ---: | ---: | ---: |
+| Eight phase alphabets across all pages | 366,695 / 10,396,697 | 0.03527034 | 0.05849473 | 0 / 89 |
+| Eight phase alphabets, Fibonacci-indexed pages only | 12,128 / 339,910 | 0.03568003 | 0.05663852 | 0 / 89 |
+| Independent eight alphabets per original physical page | 6,859 / 192,687 | 0.03559659 | 0.05842117 | 0 / 89 |
+| Independent page-local alphabets, Fibonacci-indexed pages only | 1,237 / 35,013 | 0.03532973 | measured by linked SFT, greater than original | 0 / 89 |
+
+The native controls are 32 Shakespeare, eight Gibran and 49 Emerson overlapping 12,956-rune windows. GP-normalized text is placed over the **same original 55 page lengths and page/phase slots**, including the ten observed Fibonacci page labels. Every permitted unknown phase permutation leaves the source collisions unchanged. A native-English positive plant encrypted with random bijections is restored exactly, and the CI passing test asserts the corresponding cipher/plain collision invariants. This rejects exact recovery of each tested native-English control under these entire direct eight-phase bijective-difference families, including independent page-local keys. It **does not** prove all possible English prose incompatible or exclude stateful, many-to-one, non-GP, multi-step or boundary-changing operations.
+
+One more flexible cipher uses eight-phase permutations of the **plaintext lag-eight difference** rather than the plaintext rune:
+\`D_i=π_(i−1 mod8)((P_i−P_(i−8)) mod29)\`, for \`i≥8\`. This family can match the source's **marginal phase histograms**, so a unilateral IoC objection would be insufficient. However, the same phase at positions \`i\` and \`i−8\` gives a second **exact key-independent equality** for every \`i≥16\`:
+
+\`D_i=D_(i−8) ⇔ P_i−P_(i−8) ≡ P_(i−8)−P_(i−16) (mod29)\`.
+
+For the original ten Fibonacci-indexed pages, **43 of 2,186** source sites satisfy this full-symbol equality (fraction **0.01967063**). Across the 89 original-page-length-matched native-GP controls, **none** has as few, even when all eight permutations are secret and page-local: the lowest F-page control fractions are Shakespeare **0.02287283**, Gibran **0.02973468**, Emerson **0.02653248**. This uses **all** difference values and sites \`i≥16\`, so its sample differs from the earlier **nonzero-only 45/2226** lag-eight source anomaly; the latter must not be silently substituted into this model test. On all 55 pages together, the source has 407/12076 equalities and the native range *overlaps*, so this objection is specifically conditional on the separately motivated Fibonacci page selection.
+
+The source's p15 spiral and eight-column grid motivate studying these families, but **neither original image selects the necessary cipher operation**, and Fibonacci-page selection itself remains an inference. The comparison is against a finite native-English control panel, without familywise correction for the project's many preceding exploratory models. The full inverse and positive-control evidence is in the [source-only CommonJS SFT](../sims/lp2_fibonacci_eightphase_bijection_sft.cjs) and [passing manual GitHub Actions run 43389708741](https://github.com/FlareZ123/liber-primus/actions/runs/43389708741). The actionable decision is to retire direct eight-phase bijective \`P_i→D_i\` and stationary eight-phase lag-eight plaintext-difference maps as candidate **native-GP English** decryptors absent independent authorial evidence; a credible successor needs the missing lossless state/update rule and an original-source key. There is no recovered unknown-page plaintext.
+
 ## Two bounded, source-shaped reversible inverses attempted
 
 The original 256-cell numerical table spans physical pp49–51 in **32 rows and eight columns**, with a conventional conditional base60 interpretation yielding 256 bytes. The **eight Fibonacci pages ≥2** are exactly p2,p3,p5,p8,p13,p21,p34,p55, in natural page order, suggesting one table column per selected page. The manuscript's independent red-number/field material yields **15**, a multiplicative generator of order **28** in GF29, supplying a canonical inverse for nonzero GP29 ciphertext differences.
