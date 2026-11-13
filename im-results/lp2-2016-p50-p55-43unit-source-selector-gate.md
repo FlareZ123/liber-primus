@@ -214,17 +214,17 @@ The appended exact test in [the existing p32/p55 43-symbol SFT](../sims/p32_p55_
 **Decision:** retire only the one-initial-to-one-interior *stationary GP29 substitution* reading. The signed message does not prescribe those initials as p55 plaintext; it could be a navigation instruction or a key for a separate stateful method. This counterexample supplies no general exclusion of nonstationary, polyalphabetic, or multi-symbol ciphers.
 
 
-## Signed 2016 word initials as a source-order running key
+## Signed 2016 word edges as source-order running keys
 
-The preceding keyless test rules out a stationary substitution from p55 interiors to signed-word initials, but not a polyalphabetic use of those same 43 initials as a one-time running key. This is a distinct, source-constrained hypothesis: the 43 signed words and 43 p55 interiors align one-to-one in source order. No phase, reversal, or key permutation is used.
+The preceding keyless test rules out a stationary substitution from p55 interiors to signed-word initials, but not a polyalphabetic use of the 43 word edges as a one-time running key. This is a distinct, source-constrained hypothesis: the signature-verified 2016 message has 43 alphabetic words, matching p55's 43 interiors. Both first and last letters therefore give exact 43-symbol source-order streams. No phase, reversal, or key permutation is used.
 
-Three standard modulo-29 directions were tested: `C-K`, `C+K`, and `K-C`. Three key-value readings were tested: the initials' GP indices directly, their GP prime weights modulo29, and the p56-motivated prime-totient transform `phi(prime(initial)) = prime(initial)-1 mod29`. The p57 43-rune known-plaintext round-trip passes for both key constructions.
+Three key-value readings were tested for each edge stream: the GP index directly, its GP prime weight modulo29, and the p56-motivated prime-totient transform `phi(prime(letter)) = prime(letter)-1 mod29`. Each was tested under the three standard modulo-29 directions `C-K`, `C+K`, and `K-C`. Synthetic 43-rune p57 round-trip controls pass for all six key constructions.
 
-None of the nine fixed variants yields plausible plaintext. The best score is still **−5.752192** (totient key, `C+K`), versus raw p55 interior score **−6.351839** and solved p57 control score **−2.571630**. The apparent improvement is not evidence of source-order information: a 10,000-trial same-multiset permutation null, taking the maximum over all three key transforms and all three directions for every shuffle, gives **p = 0.795320**; the source order ranks at only the **20.47th percentile**, below the null median (**−5.530857**). The best output's word fragments are not English.
+Neither edge stream yields plausible plaintext. The best initial-letter result is **−5.752192** (totient key, `C+K`); the best final-letter result is **−5.523024** (prime-weight key, `C-K`). Both are below the solved p57 control score **−2.571630**. The final-letter score is also below the raw p55 interior score's language baseline only modestly; the decisive control is a 10,000-trial same-multiset *word-order* permutation null that shuffles whole signed-message words (preserving each initial/final pair) and takes the maximum over all 18 fixed edge/key/direction variants. It gives **p = 0.783222**; the source order ranks at only the **21.68th percentile**, below the null median (**−5.335217**). The source order is not special under this language statistic.
 
-**Decision:** reject the direct 43-word-initial running-key interpretation under raw GP-index, prime-weight, and prime-totient key values. The exact source order is worse than the median random ordering of the same initial multiset under this language statistic. This does not exclude a different stateful operation or a separate navigational use of the 2016 message.
+**Decision:** reject direct first- or last-letter running-key interpretations under raw GP-index, prime-weight, and prime-totient values with additive/Beaufort operations. This does not exclude a different semantic or navigational use of the signed message, nor nonlinear/stateful mechanisms.
 
-Reproducer: [`sims/p32_p55_43symbol_additive_bridge.cjs`](../sims/p32_p55_43symbol_additive_bridge.cjs), [CI run 43426906281](https://github.com/FlareZ123/liber-primus/actions/runs/43426906281).
+Reproducer: [`sims/p32_p55_43symbol_additive_bridge.cjs`](../sims/p32_p55_43symbol_additive_bridge.cjs), [CI run 43427367469](https://github.com/FlareZ123/liber-primus/actions/runs/43427367469).
 
 ## Direct signed-2016 word-prime-sum key → p55 interior (bounded negative)
 
