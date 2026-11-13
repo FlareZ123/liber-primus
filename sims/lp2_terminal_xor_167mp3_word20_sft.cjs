@@ -97,6 +97,36 @@ const verifiedHistorical167 = {
 // The original 2013 recording is AUDIO/761.MP3 and has displayed runtime 2:47.
 // The displayed 167 seconds is approximate, so no exact frame-duration claim.
 
+
+// Exact p56 full 512-bit destination preimage check for the *historically
+// selected* Stage10 image: four pointers include both p56 (hash instruction)
+// and 167.jpg (actual old Tor-served JPEG file). The two same-stage JPEGs
+// are fixed comparators; all are byte-identical to local LP1 scans 14–16.
+// This is a finite unmodified-whole-file negative, not arbitrary hash mining.
+const originalP56Digest =
+  '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+const stage10Images = [
+  ['107.jpg','14.jpg','de2bebe1d06421d94f3dd2b2b5f838ee4cdb5f51b07b14e880e0108f7b79c14e'],
+  ['167.jpg','15.jpg','f163903bec1236f1c89c96343d0bd1dee610b697c3ba82514651f04c5fbee4b9'],
+  ['229.jpg','16.jpg','984668c680c6089b91587ef6d9eb2a1df1d2b7ee8ab3837655d3933f2adcbfbe'],
+];
+let p56ArchiveHitCount = 0;
+const p56ArchivePreimageScreen = stage10Images.map(([stage10Filename, lp1Scan, expectedSha256]) => {
+  const nativeFile = fs.readFileSync(path.join(root, 'resources/liber-primus', lp1Scan));
+  const sha256 = crypto.createHash('sha256').update(nativeFile).digest('hex');
+  assert.equal(sha256, expectedSha256);
+  const algorithms = ['sha512','sha3-512','blake2b512'];
+  const digests = algorithms.map(algorithm => {
+    const digest = crypto.createHash(algorithm).update(nativeFile).digest('hex');
+    if (digest === originalP56Digest) p56ArchiveHitCount++;
+    return {algorithm, prefix: digest.slice(0,24), matchesOriginalP56: digest===originalP56Digest};
+  });
+  return {stage10Filename, lp1Scan, sourceBytes:nativeFile.length, digests};
+});
+assert.equal(p56ArchiveHitCount,0);
+assert.equal(p56ArchivePreimageScreen.length,3);
+assert.equal(p56ArchivePreimageScreen[1].digests[0].prefix,'267253a7543b04ee68ccec55');
+
 const orbit = [];
 let state = fourIndices[0];
 do {
@@ -265,6 +295,7 @@ console.log(JSON.stringify({
   fourIndices, selectedBytes, destinations,
   audio761Reverse: 167,
   independentHistorical2014Image: verifiedHistorical167,
+  originalP56Stage10WholeJPEGPreimageScreen: p56ArchivePreimageScreen,
   p57PrintedWords: words.length,
   xorOrbitLength: orbit.length,
   xorOrbit: orbit,
