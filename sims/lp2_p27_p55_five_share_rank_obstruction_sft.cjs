@@ -8,10 +8,11 @@
  *  - physical p55 has 43 strict word-interior runes after shedding word edges;
  *  - historical Cicada 2013 used five-of-ten Shamir secret sharing.
  *
- * Test all stationary GF29 linear readings of five p27 source symbols per
- * output rune, under both source-order layouts, arbitrary offset, and an
- * entirely secret fixed GP29 alphabet bijection, by a five-pair determinant
- * certificate. No key or candidate plaintext is fitted. Node 22 CJS SFT:
+ * Test all stationary GF29 degree<=2 polynomial readings of five p27
+ * source symbols per output, under two original-order layouts, arbitrary
+ * intercept, and an entirely secret fixed GP29 alphabet bijection. Exact
+ * 5x5 and 20x20 determinant certificates exhaust all such coefficients.
+ * No key or candidate plaintext is fitted. Node 22 CJS SFT:
  *   node sims/lp2_p27_p55_five_share_rank_obstruction_sft.cjs
  */
 
@@ -113,6 +114,62 @@ function forcedMatrix(source, target, layout) {
   });
 }
 
+/**
+ * Full GP29 polynomial feature basis in five inputs of total degree <=2,
+ * except its constant monomial. Order is x[0..4], then x_i*x_j for i<=j.
+ * The constant cancels in all target-equality difference equations.
+ */
+function quadraticFeatures(row) {
+  assert.equal(row.length, 5);
+  const features = row.slice();
+  for (let i = 0; i < 5; i += 1) {
+    for (let j = i; j < 5; j += 1) features.push(mod(row[i] * row[j]));
+  }
+  assert.equal(features.length, 20);
+  return features;
+}
+
+/**
+ * Twenty repeated-runic p55 interior pairs form a square original-source
+ * difference matrix for all 20 nonconstant degree <=2 monomials.
+ */
+const QUADRATIC_WITNESS = [
+  [0, 14], [0, 39], [1, 13], [1, 28], [1, 38],
+  [2, 26], [2, 33], [3, 29], [3, 31], [4, 22],
+  [5, 34], [5, 35], [6, 23], [9, 16], [9, 40],
+  [10, 37], [12, 30], [17, 24], [18, 25], [21, 32]
+];
+
+/** Original target equality constraints on any stationary quadratic output. */
+function quadraticForcedMatrix(source, target, layout) {
+  return QUADRATIC_WITNESS.map(([i, j]) => {
+    assert.equal(target[i], target[j], "quadratic witness target equality " + i + ":" + j);
+    const x = quadraticFeatures(sourceRow(source, i, layout));
+    const y = quadraticFeatures(sourceRow(source, j, layout));
+    return x.map((v, k) => mod(v - y[k]));
+  });
+}
+
+/** An independent degree-two GP29 plant with true nonlinear recovery. */
+function quadraticPositiveControl() {
+  const rows = Array.from({length: 43}, (_, i) =>
+    Array.from({length: 5}, (_, k) => mod(i * (k + 3) + i * i * (k + 7) + 5 * k + 11)));
+  const weights = [7, 0, 9, 2, 13, ...Array.from({length: 15}, (_, k) => mod(3 * k + 1))];
+  assert.equal(weights.length, 20);
+  const latent = rows.map((row) =>
+    mod(4 + quadraticFeatures(row).reduce((a, v, k) => a + weights[k] * v, 0)));
+  const encoded = latent.map((v) => mod(11 * v + 3));
+  const recovered = encoded.map((v) => mod((v - 3) * inv(11)));
+  assert.deepEqual(recovered, latent);
+  for (let i = 0; i < 43; i += 1) for (let j = i + 1; j < 43; j += 1) {
+    if (encoded[i] !== encoded[j]) continue;
+    const x = quadraticFeatures(rows[i]);
+    const y = quadraticFeatures(rows[j]);
+    assert.equal(mod(x.reduce((a, v, k) => a + weights[k] * mod(v - y[k]), 0)), 0);
+  }
+  return {recovered: recovered.length, quadraticTerms: 15};
+}
+
 /** Historical 2013 five-of-ten Shamir weights, adapted to GF29. */
 function lagrangeWeightsAtZero(ids) {
   assert.equal(ids.length, 5);
@@ -152,6 +209,7 @@ function positiveControl() {
 function main() {
   const {body, interior, translit} = loadOriginal();
   const planted = positiveControl();
+  const quadraticPlant = quadraticPositiveControl();
   const expectedMatrices = {
     strands: [
       [28, 12, 8, 16, 21], [21, 21, 2, 3, 27], [19, 12, 6, 14, 23],
@@ -175,17 +233,23 @@ function main() {
     const canonical = applyWeights(rows, weights);
     const literalMatches = canonical.filter((v, i) => v === interior[i]).length;
     assert.equal(literalMatches, layout === "strands" ? 2 : 0);
+    const quadraticMatrix = quadraticForcedMatrix(body, interior, layout);
+    const quadraticDet = determinant29(quadraticMatrix);
+    assert.equal(quadraticDet, layout === "strands" ? 8 : 11);
+    assert.ok(quadraticDet !== 0);
     return {layout, determinantMod29: det, witnessPairs: WITNESS, witnessDifferences: matrix,
       canonicalShamirWeights: weights, canonicalLiteralMatches: literalMatches,
+      quadratic: {nonconstantTerms: 20, witnessPairs: QUADRATIC_WITNESS,
+        matrixDeterminantMod29: quadraticDet, secretFixedBijectionPossible: false},
       directFixedAlphabetFiveShareTransferPossible: false};
   });
   const summary = {scope: "p27 black 215 = five times p55 strict interior 43, both natural layouts",
     source: {p27RedTitle: 19, p27Body: 215, p55Interior: 43, p55Distinct: 21},
-    planted, evidence,
-    conclusion: "All stationary affine GF29 five-input consumers with arbitrary offsets and a fixed secret output alphabet are inconsistent with source-target equality classes; this says nothing about independent key use."};
+    planted, quadraticPlant, evidence,
+    conclusion: "All stationary degree <=2 GF29 polynomial five-input consumers with arbitrary intercept and fixed bijective secret output alphabet are inconsistent with original target-equality classes; independent key use remains untested."};
   console.log(JSON.stringify(summary, null, 2));
   return summary;
 }
 
-module.exports = {loadOriginal, sourceRow, determinant29, forcedMatrix, lagrangeWeightsAtZero, applyWeights, positiveControl, main};
+module.exports = {loadOriginal, sourceRow, determinant29, forcedMatrix, quadraticFeatures, quadraticForcedMatrix, lagrangeWeightsAtZero, applyWeights, positiveControl, quadraticPositiveControl, main};
 if (require.main === module) main();

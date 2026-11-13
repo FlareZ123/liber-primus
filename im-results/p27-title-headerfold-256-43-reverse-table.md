@@ -333,7 +333,28 @@ D_{\rm quintets}=\begin{pmatrix}
 
 **Both determinants are nonzero.** Each homogeneous system therefore has only \(w=(0,0,0,0,0)\), which makes every output the same fixed \(\pi(b)\). The actual p55 core has 21 different symbols. This is a complete exact contradiction for **every** member of the defined original-order stationary GF29 five-tap family, including any original-secret Shamir share IDs, arbitrary affine offsets, and all 29! fixed alphabet permutations. It does not depend on scoring English or testing candidate keys. The canonical x1..5 interpolation directly agrees with just **2/43** p55 runes under strands and **0/43** under quintets.
 
-The [single-file original-source SFT](../sims/lp2_p27_p55_five_share_rank_obstruction_sft.cjs) checks the p27 19-rune red span, complete p27/p55 canonical inputs, p55 source words including line-wrap handling, all five witness pairs, both exact determinant residues, and direct canonical interpolation. A 43-column five-share synthetic positive control with authentic Lagrange weights and a secret affine GP29 output permutation recovers all **43/43** symbols and satisfies the equality equations. All source assertions and the positive plant executed successfully on the remote repository resources.
+### Quadratic extension: every stationary GF29 polynomial of degree at most two
+
+The same equality-class method extends **without a key search** to every stationary *nonlinear polynomial* direct-output consumer with five inputs and total degree **at most two**. For each original five-rune source vector \(X_i=(x_1,\dots,x_5)\), define the 20-feature basis \(F(X_i)\) from its **5 linear terms** \(x_k\) and **15 quadratic terms** \(x_jx_k\) with \(j\leq k\). Allow an arbitrary intercept and **all** \(29^{20}\) possible coefficient vectors \(\theta\), plus an arbitrary secret fixed GP29 output bijection:
+
+\[
+Y_i=\pi\!\left(b+\theta\cdot F(X_i)\pmod {29}\right).
+\]
+
+Equality at the original p55 rune positions still forces \((F(X_i)-F(X_j))\cdot\theta=0\) for every target-equal pair. Exactly **20** target-equal original pairs already form a **20×20** matrix of full rank **20** in each of the two natural source packings:
+
+| Layout | Nonconstant monomials | Witness equations | Exact determinant mod 29 |
+| --- | ---: | ---: | ---: |
+| Five contiguous 43-rune strands | 20 | 20 | **8** |
+| Forty-three sequential five-rune packets | 20 | 20 | **11** |
+
+The fixed certificate uses zero-based interior pairs
+\((0,14),(0,39),(1,13),(1,28),(1,38),(2,26),(2,33),(3,29),(3,31),(4,22),(5,34),(5,35),(6,23),(9,16),(9,40),(10,37),(12,30),(17,24),(18,25),(21,32)\).
+The full matrix is deterministically reconstructed from the original p27 five-vectors in the updated SFT. Since **8 and 11 are nonzero in GF29**, every one of the 20 nonconstant coefficients must be zero. Any remaining constant gives only one output rune after applying any fixed bijection, contradicting **21** distinct original p55 interior runes. A separate synthetic nonlinear quadratic 43-rune plant recovers all 43 outputs and obeys its exact equality equations.
+
+**Strengthened decision:** every *direct, fixed-source-order, stationary GF29 polynomial five-input transfer of total degree ≤2* is mathematically incompatible with the specific original p55 43-rune interior, even after arbitrarily secret fixed symbol relabeling. A nonconstant stationary polynomial directly transferring that source must have **degree at least three** if it exists. This says nothing about nonlinear lookup tables, independently obtained key material, changing coefficients, non-bijective/variable-length output coders, GF256 secret sharing, or other source layouts selected by future clues. There is still no recovered unknown plaintext.
+
+The [single-file original-source SFT](../sims/lp2_p27_p55_five_share_rank_obstruction_sft.cjs) checks the p27 19-rune red span, complete p27/p55 canonical inputs, p55 source words including line-wrap handling, all five witness pairs, both five-dimensional determinant residues, the 20×20 quadratic certificate determinants, and direct canonical interpolation. A 43-column five-share synthetic positive control with authentic Lagrange weights and a secret affine GP29 output permutation recovers all **43/43** symbols and satisfies the equality equations. All source assertions and the positive plant executed successfully on the remote repository resources.
 
 **Decision:** retire direct **fixed-output-alphabet stationary GF29 linear five-share p27→p55 interior transfer** over either fixed original packing, rather than scanning more x-coordinates or arbitrary constant shifts. This does **not** exclude using the 215 p27 symbols as a changing key for an independent p55 cipher, a GF256 byte-level secret-sharing format, nonlinear encoders, varying per-output coefficients, a different source layout selected by an authentic clue, or unknown plaintext elsewhere. The source 5×43 coincidence remains real; no unknown text or key was recovered.
 
