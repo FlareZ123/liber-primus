@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Original LP2 p15 4x4-number-square, sixteen-column whole-word gate.
+ * Original LP2 p15 4x4 Fibonacci-prime spiral, sixteen-column word gate.
  * Run with Node 22: node sims/lp2_p15_16column_wholeword_sft.cjs
  * Source: all 2,896 complete unsolved printed words, including page carries.
  * Original/source-rank arrangements are fixed before any language scoring.
@@ -23,6 +23,9 @@ const SQUARE = [3258,3222,3152,3038,3278,3299,3298,2838,
 const ORDER = Array.from({length:C}, (_,i)=>i);
 const RANK = ORDER.slice().sort((a,b)=>SQUARE[a]-SQUARE[b]);
 const COLMAJOR = ORDER.map(i=>(i%4)*4+Math.floor(i/4));
+// Authenticated numerical relation: |3301 - prime[Fibonacci-index]| laid
+// clockwise into the printed 4x4 spiral, beginning at red center 3299.
+const SPIRAL = [5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
 const CHI_SEED = 0x33011681;
 const SECRET_SEED = 0x33011681;
 
@@ -152,7 +155,9 @@ function main() {
     printed:stats(Array.from(decode(original,ORDER),v=>v+1)).chi,
     rankAscending:stats(Array.from(rank,v=>v+1)).chi,
     rankDescending:stats(Array.from(decode(original,RANK.slice().reverse()),v=>v+1)).chi,
-    columnMajor:stats(Array.from(decode(original,COLMAJOR),v=>v+1)).chi
+    columnMajor:stats(Array.from(decode(original,COLMAJOR),v=>v+1)).chi,
+    spiralFibonacciPrime:stats(Array.from(decode(original,SPIRAL),v=>v+1)).chi,
+    spiralReversed:stats(Array.from(decode(original,SPIRAL.slice().reverse()),v=>v+1)).chi
   };
   // Null-shuffle all 2,896 complete word lengths, with the same source-fixed
   // arrangements and the same learned grammar path search.
@@ -166,7 +171,9 @@ function main() {
       printed:ORDER,
       rankAscending:RANK,
       rankDescending:RANK.slice().reverse(),
-      columnMajor:COLMAJOR
+      columnMajor:COLMAJOR,
+      spiralFibonacciPrime:SPIRAL,
+      spiralReversed:SPIRAL.slice().reverse()
     };
     for(const [label,key] of Object.entries(candidates)) {
       const score=stats(Array.from(decode(input,key),v=>v+1)).chi;
@@ -177,6 +184,10 @@ function main() {
   assert(Math.abs(fixed.rankAscending-74.44538996031895)<1e-8);
   assert.equal(nulls.printed,1045);
   assert.equal(nulls.rankAscending,186);
+  assert(Math.abs(fixed.spiralFibonacciPrime-61.03379101585962)<1e-8);
+  assert(Math.abs(fixed.spiralReversed-63.2860539552214)<1e-8);
+  assert.equal(nulls.spiralFibonacciPrime,690);
+  assert.equal(nulls.spiralReversed,599);
   const free=bestPath(original,weights);
   const next=random(SECRET_SEED);
   let exceeds=0;
@@ -202,7 +213,8 @@ function main() {
   assert(plantChi>fixed.rankAscending);
   const plantBest=bestPath(plant,weights);
   console.log(JSON.stringify({source:{runes:corpus.runeCount,words:N,
-    columns:C,rows:H,p15Square:SQUARE,p15AscendingColumnKey:RANK},
+    columns:C,rows:H,p15Square:SQUARE,p15AscendingColumnKey:RANK,
+      p15FibonacciPrimeSpiralKey:SPIRAL},
     fixedOriginalChi:fixed,fixedNull:{draws:trials,
       seed:"0x33011681",plusOneUpperTails:Object.fromEntries(
         Object.entries(nulls).map(([k,v])=>[k,(v+1)/(trials+1)]))},
