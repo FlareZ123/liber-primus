@@ -346,6 +346,74 @@ assert.deepEqual(sourceWordRadixGates, [
     widthWord: 'O7DTNDFbK', heightWord: 'v48oELtj'}
 ]);
 
+// Distinct source-motivated *key* consumer: the signed image axis
+// difference 569-563=6 fixes six initial GP29 symbols of p0#6, NEWBAS.
+// The independently demonstrated 2014 solved-text Vigenere step motivates
+// a fixed six-period key only as a hypothesis. Start immediately after
+// p0#6 and reset the key once at the first rune of the following p1.
+// No fitted phase, key truncation, offset selection or language search.
+const word6End = firstTwo[0].words.slice(0, 6)
+  .reduce((sum, word) => sum + word.length, 0);
+assert.equal(word6End, 34);
+const fixedNewBasKey = rowKey.slice(0, DIMENSIONS[1] - DIMENSIONS[0]);
+assert.equal(fixedNewBasKey.length, 6);
+assert.deepEqual(fixedNewBasKey, newBasPrefix);
+const originalP0AfterWord6 = corpus.pages[0].indices.slice(word6End);
+const originalP1 = corpus.pages[1].indices;
+assert.deepEqual([originalP0AfterWord6.length, originalP1.length], [228, 266]);
+
+/**
+ * Six-symbol source-word additive key inverse; optional literal F passes
+ * through without consuming the key, as the historical p56 cipher does.
+ * This F-variant is a conditional ciphertext-driven readout, not a
+ * guaranteed bijection on every unrestricted GP29 plaintext.
+ * @param {number[]} cipher
+ * @param {number} sign
+ * @param {boolean} skipF
+ * @returns {number[]}
+ */
+function decodeNewBas(cipher, sign, skipF) {
+  let keyOffset = 0;
+  return cipher.map(value => {
+    if (skipF && value === 0) return value;
+    const output = mod29(value + sign *
+      fixedNewBasKey[keyOffset % fixedNewBasKey.length]);
+    keyOffset++;
+    return output;
+  });
+}
+const keyConsumerResults = [];
+for (const sign of [-1, 1]) for (const skipF of [false, true]) {
+  const p0Original = decodeNewBas(originalP0AfterWord6, sign, skipF);
+  const p1Original = decodeNewBas(originalP1, sign, skipF);
+  const bookRun = decodeNewBas(originalP0AfterWord6.concat(originalP1),
+    sign, skipF);
+  keyConsumerResults.push({sign, skipF,
+    p0IoC: indexOfCoincidence(p0Original),
+    p1IoC: indexOfCoincidence(p1Original),
+    continuousIoC: indexOfCoincidence(bookRun),
+    p0Prefix: p0Original.slice(0, 60)
+      .map(value => corpus.translit[value]).join(''),
+    p1Prefix: p1Original.slice(0, 60)
+      .map(value => corpus.translit[value]).join('')});
+}
+assert.deepEqual(keyConsumerResults.map(row =>
+  [row.sign, row.skipF, Number(row.p0IoC.toFixed(9)),
+    Number(row.p1IoC.toFixed(9)),
+    Number(row.continuousIoC.toFixed(9))]),
+  [
+    [-1, false, 0.034083005, 0.034387856, 0.033809363],
+    [-1, true, 0.035976505, 0.036572563, 0.035574973],
+    [1, false, 0.032382719, 0.032940843, 0.033521939],
+    [1, true, 0.036015148, 0.037452121, 0.036552217]
+  ]);
+const p57KeyPlant = corpus.pages[57].indices;
+for (const sign of [-1, 1]) {
+  const cipher = p57KeyPlant.map((value, i) =>
+    mod29(value - sign * fixedNewBasKey[i % 6]));
+  assert.deepEqual(decodeNewBas(cipher, sign, false), p57KeyPlant);
+}
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -369,6 +437,9 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  newBasSixRuneSourceKey: {source: 'p0 word6 prefix6, axis gap6',
+    originalP0TailLength: originalP0AfterWord6.length,
+    originalP1Length: originalP1.length, variants: keyConsumerResults},
   possibleNewBasePrefixAndLiteralRadix: {originalPrefix: 'NEWBAS',
     followingRune: 'OE', gates: sourceWordRadixGates},
   compassSourcePrefix: {sourceWord: 'p0 word 6', originalPrefix: 'NEW',
