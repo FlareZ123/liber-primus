@@ -32,6 +32,24 @@ For each of the **29** unknown special runes, the probability of getting *both* 
 
 An independent, nontrivial cumulative-cipher positive plant uses \(h(p)=(p-21)\bmod29\) on genuine native-GP words; the doublet positions equal the plaintext NG positions exactly. The test also checks original word/rune counts, both observed position counts, and source-native ING/IO encodings.
 
+## Independent visual-chapter reset sensitivity
+
+The manuscript itself visibly delineates nine red-heading chapters with original GP-rune end offsets **729, 1,874, 3,603, 5,506, 6,527, 7,960, 9,640, 12,648 and 12,956**. Allow the completely unknown special zero-rune \(h_j^{-1}(0)\) to be independently chosen in each chapter, retaining each original word and the same GP-native English model. Omit any ordinary word-boundary event whose predecessor crosses a chapter boundary. This distributes the **22 ordinary boundary** and **19 word-terminal** observed doublets across the chapters without adding or deleting runes.
+
+| Visual chapter | Original printed words | Ordinary-boundary doublets | Word-final doublets | Conservative all-29-rune union bound |
+|---|---:|---:|---:|---:|
+| pp0–2 | 158 | 2 | 1 | 1 (uninformative) |
+| pp3–7 | 255 | 2 | 0 | 1 (uninformative) |
+| pp8–14 | 383 | 2 | 2 | 0.121516 |
+| pp15–22 | 437 | 0 | 3 | 0.145524 |
+| pp23–26 | 224 | 2 | 4 | 0.560080 |
+| pp27–32 | 326 | 5 | 2 | 0.825667 |
+| pp33–39 | 378 | 3 | 3 | 0.281445 |
+| pp40–53 | 669 | 4 | 4 | 0.0206975 |
+| pp54–55 | 66 | 2 | 0 | 1 (uninformative) |
+
+Because independent words in different chapters are independent **within the same stipulated control model**, the product of these conservative per-chapter bounds is **4.7635848401690264 × 10⁻⁵**. This also disfavors one freely secret stationary cumulative alphabet *per original red chapter*, though less strongly than the single-global-alphabet gate. Each probability remains conditional on word-length-matched independent control sampling, constant alphabet within a chapter, and preserved printed boundaries. It is not an exact probability that the author used such a cipher and has no key/plaintext output.
+
 ## Consequence and limits
 
 A simple **word-boundary-preserving, book-stationary, unkeyed cumulative alphabet permutation** fails a discriminating original-input test even when the secret alphabet is unrestricted. Uniform nonzero ciphertext differences alone do not establish a no-repeat cipher. A changing stream key, a reset at each printed word, a different alphabet or spelling register, non-English plaintext, and any operation that breaks the zero-event equality are outside this result. In particular, the 22 ordinary-boundary events cannot test an encoder that resets state at every word.

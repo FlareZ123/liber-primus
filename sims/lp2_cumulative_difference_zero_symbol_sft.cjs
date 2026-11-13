@@ -176,6 +176,70 @@ function chernoff(rune, position, observed, lengths) {
   return {expected, bound: Math.min(1, Math.exp(logBound))};
 }
 
+
+/**
+ * The nine red-heading visual chapters are independently observable clocks.
+ * Permit the zero-rune h_chapter^-1(0) to vary freely across all nine.
+ * The start event is charged to its current word/chapter; exclude any
+ * predecessor crossing a chapter boundary, as a reset would interrupt it.
+ * Word-final event is charged to its actual final-rune chapter.
+ */
+const visualEnds = [729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956];
+/** @param {number} offset */
+const chapterAt = offset => visualEnds.findIndex(end => offset < end);
+const beginnings = [];
+const finalOffsets = [];
+let runeOffset = 0;
+for (const w of words) {
+  beginnings.push(runeOffset);
+  runeOffset += w.length;
+  finalOffsets.push(runeOffset - 1);
+}
+assert.equal(runeOffset, 12956);
+const chapterData = Array.from({length: 9}, () =>
+  ({startLengths: [], finalLengths: [], startCount: 0,
+    finalCount: 0, wordCount: 0}));
+for (let i = 0; i < words.length; i++) {
+  const w = words[i], current = chapterAt(beginnings[i]);
+  chapterData[current].wordCount++;
+  if (i > 0) {
+    const previous = matches[i - 1];
+    const separator = original.slice(previous.index + previous[0].length,
+      matches[i].index);
+    if (separator === '-' && chapterAt(finalOffsets[i - 1]) === current) {
+      chapterData[current].startLengths.push(w.length);
+      chapterData[current].startCount +=
+        Number(words[i - 1].at(-1) === w[0]);
+    }
+  }
+  if (w.length > 1) {
+    const ending = chapterAt(finalOffsets[i]);
+    chapterData[ending].finalLengths.push(w.length);
+    chapterData[ending].finalCount += Number(w.at(-1) === w.at(-2));
+  }
+}
+assert.equal(chapterData.reduce((n, ch) => n + ch.wordCount, 0), 2896);
+assert.equal(chapterData.reduce((n, ch) => n + ch.startCount, 0), 22);
+assert.equal(chapterData.reduce((n, ch) => n + ch.finalCount, 0), 19);
+const chapterComparisons = chapterData.map((ch, chapter) => {
+  const firstLengths = groupLengths(ch.startLengths);
+  const lastLengths = groupLengths(ch.finalLengths);
+  const bounds = gp.translit.map((name, rune) => {
+    const s = chernoff(rune, 'start', ch.startCount, firstLengths);
+    const e = chernoff(rune, 'end', ch.finalCount, lastLengths);
+    return {name, upper: Math.min(s.bound, e.bound)};
+  }).sort((a, b) => b.upper - a.upper);
+  return {chapter, words: ch.wordCount,
+    startOpportunities: ch.startLengths.length,
+    finalOpportunities: ch.finalLengths.length,
+    startDoublets: ch.startCount, finalDoublets: ch.finalCount,
+    unionUpper: Math.min(1, bounds.reduce((n, x) => n + x.upper, 0)),
+    bestSymbol: bounds[0].name};
+});
+const chapterResetUpper = chapterComparisons.reduce((p, ch) =>
+  p * ch.unionUpper, 1);
+assert(Math.abs(chapterResetUpper - 0.000047635848401690264) < 1e-9);
+
 const comparisons = gp.translit.map((name, rune) => {
   const start = chernoff(rune, 'start', observedStart, startGroups);
   const final = chernoff(rune, 'end', observedFinal, finalGroups);
@@ -213,6 +277,7 @@ console.log(JSON.stringify({
     ordinaryWordStartOpportunities: startLengths.length,
     lastRuneOpportunities: finalLengths.length},
   controlWords: control.length, candidates: comparisons,
-  unionUpper, nativePlantDoublets: observedNativeZero,
+  unionUpper, chapterResetUpper, chapterComparisons,
+  nativePlantDoublets: observedNativeZero,
   interpretation: 'Conditional English model; no unknown plaintext or key'
 }, null, 2));
