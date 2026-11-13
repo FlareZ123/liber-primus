@@ -133,12 +133,51 @@ for (let t = 0; t < trials; t += 1) {
   if (result.mutualInformation >= doubled.mutualInformation) nullMiAtLeast += 1;
   if (result.doubles >= doubled.doubles) nullDoublesAtLeast += 1;
 }
+
+// Second independent cardinality: all 3316 floral runes = 4 * 829.
+// The 145th prime, 829, is independently selected by p15's Fibonacci144+1.
+// The 90th prime, 463, is independently the prime rank of red 3299.
+const floral = corpus.pages.slice(40, 56).flatMap((p) => p.indices);
+assert.equal(floral.length, 3316);
+assert.equal(primeList[fibonacciDistinct[11]], 829);
+assert.equal(primeList[fibonacciDistinct[10]], 463);
+assert.equal(primeList.filter((p) => p <= 3299).length, 463);
+assert.equal(floral.length, 4 * 829);
+const fourPrimeWindows = windows.filter((w) => w.full === 4 * 829);
+assert.deepEqual(fourPrimeWindows.map((w) => w.first), [40]);
+
+const rows = 829;
+const cols = 4;
+const colFirst = Array.from({ length: floral.length }, (_, i) =>
+  floral[(i % rows) * cols + Math.floor(i / rows)]);
+const rowFirst = Array.from({ length: floral.length }, (_, i) =>
+  floral[(i % cols) * rows + Math.floor(i / cols)]);
+const restoredColumns = Array(floral.length);
+const restoredRows = Array(floral.length);
+for (let i = 0; i < floral.length; i += 1) {
+  restoredColumns[(i % rows) * cols + Math.floor(i / rows)] = colFirst[i];
+  restoredRows[(i % cols) * rows + Math.floor(i / cols)] = rowFirst[i];
+}
+assert.deepEqual(restoredColumns, floral);
+assert.deepEqual(restoredRows, floral);
+const fourBy829 = {
+  raw: adjacency(floral),
+  colFirst: adjacency(colFirst),
+  rowFirst: adjacency(rowFirst)
+};
+assert.equal(fourBy829.raw.doubles, 21);
+assert.equal(fourBy829.colFirst.doubles, 121);
+assert.equal(fourBy829.rowFirst.doubles, 119);
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
   uniqueMatchingSixteenPageWindow: [40, 55],
   p15SpiralIndexedOffsets: printedSpiral.map((x) => x % modulus),
   indexedSixteenRunes: preview,
+  prime463IsRed3299Rank: true,
+  fourTimes829EqualsOriginalFloralLength: true,
+  naturalFourBy829Readouts: fourBy829,
   primitiveRoot: 2,
   sourceOrder: raw,
   doubledOrder: doubled,
