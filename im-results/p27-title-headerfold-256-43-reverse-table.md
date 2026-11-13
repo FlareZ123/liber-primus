@@ -1,6 +1,6 @@
 # P27 title header-fold: 256 / prime-43 table-interval bridge
 
-**Status (11 November 2026): source-rare navigation structure selecting physical p50, the 256-cell table, P=43, and the left side of a 43-cell interval; the reversible decoder remains unresolved. Direct p27 five-row selectors using both signed GP-prime word sums and GP-rune word lengths do not yield authentic p55 plaintext. No unknown LP2 plaintext or authentic cipher key recovered.**
+**Status (13 November 2026): source-rare p27→p50/p55 navigation structure with several bounded decoder exclusions, now including a complete all-secret stationary five-bit/codebook gate under both natural 5×43 packings. There is still no reversible original-cipher decipherment, unknown LP2 plaintext or source-authenticated key.**
 
 ## Upstream source route
 
@@ -12,6 +12,9 @@ This result continues the independently reproduced signed-2016 / p55 navigation 
 4. the 31 printed 13-dot marks delimit **32** physical fragments when coincident marks are retained, and one-based fragment **18** is exactly the red p27 title.
 
 The duplicated p27/p55 DJU-BEI pair also has an exact numerical coincidence: its canonical word starts are 1,432 words apart, while the selected p27 section has 1,433 runes. These quantities use different units. The equality 1432 = 1433−1 is retained as an observation and **does not supply a direction, clock or state transition** without a source rule connecting word offsets to section-rune steps.
+
+
+**Independent all-secret five-bit codebook gate (13 November 2026).** On the same 215 black p27 runes and 43 original p55 word interiors, an exact union-find proof excludes *every* stationary binary labeling of original rune identities plus *every* injective static five-bit-to-GP29 codebook, under both source-natural 5×43 packings. Only two observed equal-output pairs in each packing force unequal p55 outputs to have the same code; all 22 repetitions collapse all 29 original source-rune binary variables. The original-input proof recovers both planted GP29 codebook channels ([minimal witnesses, exact model and SFT](lp2_p27_p55_five_bit_allsecret_codebook_gate.md)). This rejects a direct Baconian source→ciphertext reading, while leaving keys and variable/lossy bit encodings untested.
 
 ## P27 black-body 5×43 link to p55, and a finite-field recovery gate
 

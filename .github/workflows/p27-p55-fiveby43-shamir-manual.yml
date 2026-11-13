@@ -19,3 +19,7 @@ jobs:
         run: |
           node --check sims/p27_p55_five_by_43_shamir_source_sft.cjs
           node sims/p27_p55_five_by_43_shamir_source_sft.cjs
+      - name: Test all-secret stationary five-bit source and injected codebook plants
+        run: |
+          node --check sims/lp2_p27_p55_five_bit_allsecret_codebook_sft.cjs
+          node sims/lp2_p27_p55_five_bit_allsecret_codebook_sft.cjs
