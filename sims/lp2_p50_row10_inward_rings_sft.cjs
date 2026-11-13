@@ -271,6 +271,37 @@ for (const reverse of [false, true]) {
     };
   });
   assert.equal(knownOffset, 180);
+  // Minimal exact original-token contradictions on the SAME original solved
+  // terminal page, so independent per-ring and per-page substitutions fail.
+  const counterexamples = reverse
+    ? [
+      { depth: 1, a: [17, 1], b: [29, 6],
+        knownA: 7, knownB: 26, plainA: 'TH', plainB: 'S' },
+      { depth: 3, a: [15, 3], b: [21, 3],
+        knownA: 133, knownB: 139, plainA: 'U', plainB: 'I' },
+    ] : [
+      { depth: 1, a: [3, 1], b: [30, 6],
+        knownA: 7, knownB: 43, plainA: 'TH', plainB: 'T' },
+      { depth: 3, a: [6, 3], b: [27, 3],
+        knownA: 132, knownB: 163, plainA: 'O', plainB: 'I' },
+    ];
+  for (const witness of counterexamples) {
+    const tokenA = gridSource.rows[witness.a[0]][witness.a[1]];
+    const tokenB = gridSource.rows[witness.b[0]][witness.b[1]];
+    assert.equal(tokenA, tokenB, 'same source printed token');
+    const innerStart = [0, 0, 68, 128][witness.depth];
+    for (const [coords, knownIndex, plain] of [
+      [witness.a, witness.knownA, witness.plainA],
+      [witness.b, witness.knownB, witness.plainB],
+    ]) {
+      const cellIndex = shells[witness.depth].findIndex(
+        ([row, col]) => row === coords[0] && col === coords[1]);
+      assert.ok(cellIndex >= 0);
+      assert.equal(innerStart + cellIndex, knownIndex);
+      assert.equal(corpus.translit[known[knownIndex]], plain);
+    }
+    assert.notEqual(witness.plainA, witness.plainB);
+  }
   assert.equal(shellLocalSecretCodebooks.reduce(
     (sum, item) => sum + item.arbitrarySecretByteToGP.requiredChanges, 0),
     reverse ? 19 : 21);
@@ -385,6 +416,7 @@ for (const reverse of [false, true]) {
     bestAnySecretRawByteToGP: raw,
     bestAnySecretResidue29ToGP: residue,
     independentSecretCodebookPerInteriorRing: shellLocalSecretCodebooks,
+    directOriginalPrintedTokenContradictions: counterexamples,
     positiveSecretRawByteToGP: positive,
   });
 }
