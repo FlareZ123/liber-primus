@@ -29,7 +29,7 @@ P55 begins with a **one-rune printed word**. Under a native-English GP plaintext
 | First table corner | Original first byte | Decoded first GP word | Full-page decoded IoC |
 | --- | ---: | --- | ---: |
 | NW (printed top-left) | 203 | NG | 0.035438596 |
-| NE (printed top-right) | 183 | EO | (nonlinguistic) |
+| NE (printed top-right) | 183 | EO | 0.042456140 |
 | SE (printed bottom-right) | 80 | EA | 0.033684211 |
 | SW (printed bottom-left) | 113 | **A** | **0.037192982** |
 
