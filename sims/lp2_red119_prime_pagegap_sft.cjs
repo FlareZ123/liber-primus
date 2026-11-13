@@ -58,6 +58,79 @@ assert.equal(s0, 137);
 assert.equal(s1, 173);
 assert.ok(isPrime(s0) && isPrime(s1));
 assert.equal(s1 - s0, red[1].page - red[0].page);
+
+/**
+ * Reported historical 2013 NUMBER operation: reverse decimal digits,
+ * then factor. Its exact implementation is a later reconstruction,
+ * and its proposed reuse here is not authenticated.
+ * @param {number} n
+ * @returns {number}
+ */
+function reverseDigits(n) {
+  return Number(String(n).split('').reverse().join(''));
+}
+/** @param {number} n @returns {number[]} */
+function factor(n) {
+  const out = [];
+  for (let p = 2; p * p <= n; p++) {
+    while (n % p === 0) {
+      out.push(p);
+      n /= p;
+    }
+  }
+  if (n > 1) out.push(n);
+  return out;
+}
+const reversed = [reverseDigits(s0), reverseDigits(s1)];
+assert.deepEqual(reversed, [731, 371]);
+const factored = reversed.map(factor);
+assert.deepEqual(factored, [[17, 43], [7, 53]]);
+assert.ok(factored.every((a) => a.length === 2 && a[0] + a[1] === 60));
+assert.equal(factored[0][1], value(red[0].indices[0]));
+assert.equal(factored[1][1], value(red[1].indices[2]));
+const factorGlyphs = factored.map((a) => a.map((prime) =>
+  corpus.translit[corpus.prime.indexOf(prime)]));
+assert.deepEqual(factorGlyphs, [['G', 'P'], ['O', 'S']]);
+const goldbach60 = [];
+for (let p = 2; p < 30; p++) {
+  const q = 60 - p;
+  if (p < q && isPrime(p) && isPrime(q)) goldbach60.push([p, q]);
+}
+assert.deepEqual(goldbach60, [[7,53], [13,47], [17,43],
+  [19,41], [23,37], [29,31]]);
+const reachable3 = goldbach60.map(([p, q]) => reverseDigits(p * q))
+  .filter((v) => v >= 6 && v <= 3 * Math.max(...corpus.prime))
+  .sort((a, b) => a - b);
+assert.deepEqual(reachable3, [116,137,158,173]);
+const sourceThreeSums = new Map(reachable3.map((x) => [x, 0]));
+let originalTripleCount = 0;
+for (const page of corpus.pages.filter((p) => p.page <= 55)) {
+  for (let i = 0; i + 2 < page.indices.length; i++) {
+    originalTripleCount++;
+    const s = sum(page.indices.slice(i, i + 3));
+    if (sourceThreeSums.has(s)) sourceThreeSums.set(s,
+      sourceThreeSums.get(s) + 1);
+  }
+}
+assert.equal(originalTripleCount, 12846);
+assert.deepEqual([...sourceThreeSums.entries()],
+  [[116,36],[137,172],[158,25],[173,186]]);
+const matching60Red = ink.pages.flatMap((p) => (p.red_spans || []).filter((s) => {
+  const f = factor(reverseDigits(sum(indexed(s.runes))));
+  return f.length === 2 && f[0] + f[1] === 60;
+}).map((s) => [p.page, s.start, s.length]));
+assert.deepEqual(matching60Red, [[3,119,3], [39,119,3]]);
+const base60 = JSON.parse(fs.readFileSync(path.join(base, 'base60-grid.json'), 'utf8'));
+assert.equal(base60.alphabet.length, 60);
+const payload = base60.byte_rows.flat();
+assert.equal(payload.length, 256);
+const printCount = (values) => values.filter((x) => x >= 32 && x <= 126).length;
+assert.equal(printCount(payload), 103);
+const asciiKey = factorGlyphs.flat().map((glyph) => glyph.charCodeAt(0));
+const primeKey = factored.flat();
+assert.equal(printCount(payload.map((x, i) => x ^ asciiKey[i % 4])), 92);
+assert.equal(printCount(payload.map((x, i) => x ^ primeKey[i % 4])), 89);
+
 assert.deepEqual([primeOrdinal(s0), primeOrdinal(s1)], [33, 40]);
 assert.ok(visualChapterStarts.includes(primeOrdinal(s0)));
 assert.ok(visualChapterStarts.includes(primeOrdinal(s1)));
