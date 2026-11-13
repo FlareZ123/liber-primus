@@ -138,6 +138,29 @@ function scan(xs,name){
   exactHeaderHits:trials.filter(t=>t.format),natural:trials[0],
   bestPrintableFraction:Math.max(...trials.map(x=>x.printableFraction))};
 }
+/** @param {bigint} n @returns {number[]} Native GP29 digits of rank integer. */
+function gpDigits(n){
+ const out=[];
+ do{out.push(Number(n%29n));n/=29n}while(n>0n);
+ return out.reverse();
+}
+/** @param {number[]} a @returns {number} */
+function coincidence(a){
+ const cs=Array(29).fill(0);for(const v of a)cs[v]++;
+ return cs.reduce((s,v)=>s+v*(v-1),0)/(a.length*(a.length-1));
+}
+/** @param {number[]} a @param {number[]} needle @returns {number} */
+function exactOccurrences(a,needle){
+ let n=0;
+ for(let i=0;i+needle.length<=a.length;i++)
+  if(needle.every((v,k)=>a[i+k]===v))n++;
+ return n;
+}
+/** @param {number[]} a @returns {bigint} */
+function parseGpNumber(a){
+ let n=0n;for(const digit of a)n=29n*n+BigInt(digit);
+ return n;
+}
 function main(){
  const chapters=originalChapters(),all=chapters.flat();
  const results=[scan(all,'book'),...chapters.map((c,i)=>scan(c,'chapter'+(i+1)))];
@@ -156,9 +179,32 @@ function main(){
  assert.equal(restored.index,number);
  assert.deepEqual(fixedBytes(restored.index,991),planted);
  assert.equal(signature(planted),'PGP');
+ // The signed 2013 Cicada server provided BASE29. This tests the rank
+ // integer as a native GP29 plaintext transport, with no invented key.
+ const p56Opening=['A','N','E','N','D'].map(token=>gp.translit.indexOf(token));
+ assert.ok(p56Opening.every(index=>index>=0));
+ const gpReadouts=[all,...chapters].flatMap((words,i)=>{
+  const {index,ways}=rank(words);
+  return [['normal',index],['complement',ways-1n-index]].map(([type,n])=>{
+   const a=gpDigits(n);
+   return {span:i===0?'book':'chapter'+i,type,GP29Runes:a.length,
+    IoC:Number(coincidence(a).toFixed(8)),
+    p56ANENDMatches:exactOccurrences(a,p56Opening),
+    firstTokens:a.slice(0,32).map(v=>gp.translit[v]).join(' ')};
+  });
+ });
+ assert.equal(gpReadouts.length,20);
+ assert.ok(gpReadouts.every(record=>record.p56ANENDMatches===0));
+ const p57=gp.pages.find(page=>page.page===57).indices;
+ const sourceSolved=p57.slice(0,30);
+ const gpPlantIndex=parseGpNumber(sourceSolved);
+ assert.ok(gpPlantIndex<arrangements(countsOf(chapters[8])));
+ const plantedChapter=unrank(gpPlantIndex,countsOf(chapters[8]));
+ assert.deepEqual(gpDigits(rank(plantedChapter).index),sourceSolved);
+ assert.ok(coincidence(p57)>0.055);
  console.log(JSON.stringify({source:'unchanged original 2896 words, 12956 runes, nine visual chapters',
   hypothesis:'entire order of original word-length multiset encodes binary via exact lexicographic ranking',
-  results,positive:{knownPayloadBytes:991,recovered:991,header:'PGP',exactRoundTrip:true},
+  results,gp29Readouts:gpReadouts,solvedGP29Control:{source:'p57',sourceRunes:p57.length,sourceIoC:Number(coincidence(p57).toFixed(8)),plantRunes:sourceSolved.length,exactRoundTrip:true},positive:{knownPayloadBytes:991,recovered:991,header:'PGP',exactRoundTrip:true},
   inference:'No direct fixed-prefix PGP or recognized file format in 80 source-native rank readings; no unknown LP2 plaintext or key identified.'},null,2));
 }
 if(require.main===module)main();
