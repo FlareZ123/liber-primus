@@ -1,0 +1,42 @@
+# Executed original-input source gate, 13 November 2026
+# Standalone source: sims/lp2_newbase_nonzero28_radix60_sft.cjs
+# Runtime: V8 JS isolate; Node builtins (fs/path/assert) supplied with exact canonical corpus and assertion-compatible adapters
+# This is an execution artifact, not evidence of recovered unknown plaintext.
+
+PASS planted native uppercase base=60 cipher-runes=68
+PASS planted native uppercase base=59 cipher-runes=67
+DIRECT base=60 p0 runes=262 digits=216 uppercase=85 preview=3fr52i3lBFN4g9gIlDUNdbFQHooAwAmIThJom2sVUA2PF8mlOjNdf1J2HtLjXmBNvd5vgZJG7108Mnbkj147Bkd7U2
+DIRECT base=60 p1 runes=266 digits=219 uppercase=101 preview=JHLdh95TTtGR5PjZsL3dwApEaGmG0ipg5hvPF2qTsReb0RrcuOU1VQ0SMtK3BRX2I0TXOxhLlQ6WJKtuI2UFlmlXd4
+DIRECT base=60 p0+p1 runes=528 digits=435 uppercase=186 preview=1OrYC8axTGGrwRHwfdj3DmtnVpZEGHEKVq97EZoMm6nv6IPej3rrFeGvHbJiR37XwSab4pBNLo8hB656EEbXDlsg9a
+DIRECT base=59 p0 runes=262 digits=217 uppercase=101 preview=2JB1QKJE0XEVZYKbceWJRRYKVVwOYEJUEapi0eiEc5nrAqmpuV2xuqSgCRNm2kJK5T2DFe3RVlbItGUTFxihFakKKK
+DIRECT base=59 p1 runes=266 digits=220 uppercase=101 preview=CjY6nKuBRc2ONrgacpp22RqCtBZYkCphdoVih5jNATjeKwPxZqV9HWSnX4Y7nicoGooSPrKYchKXUuPqmDSo0N2VNl
+DIRECT base=59 p0+p1 runes=528 digits=436 uppercase=208 preview=ZHUigGbsM7CdANuGRF6xUWTJrV656F5I1YmXrDdJp7urkq1MqTC5FqdLGZUFuLJOHlaku1TIQmMva2j2Vbt3xN8i2P
+DELTA28 base=60 p5 runes=263 digits=214 uppercase=85 preview=1rQmTAad9eVVrh5Kfuc3p93BEgoKtoTa5o51RSLxBT9hDMICApUMqCagoV23cPiwH09q3h
+DELTA28 base=60 p7 runes=208 digits=169 uppercase=83 preview=390oagKftnnliVX6b02JlwTVcRh4WQXfZ7VPAGnRGOQnnBB6mlj99N6R6usFWsFKIXDM1q
+DELTA28 base=60 p13 runes=272 digits=221 uppercase=95 preview=8cAwvEAi0fAgPo8VZNm5D07TRP0aR4w8kn5njv3BOYdeZIdgiQ5eJLN3Ol2Imu8K1s3AfA
+DELTA28 base=60 p14 runes=137 digits=111 uppercase=50 preview=DrZJ2PU75PXYETiwCq3YnoJRFT65Q4LHMrBloP8m3Aa3hA53aEV37b3C3M3QTmJOiQQgS3
+DELTA28 base=60 p15 runes=159 digits=128 uppercase=60 preview=GBwBN9e9otRl6LrE5Sbqf0Zb1RTulBSkQh8JOF6jO1WLmSt0G8N63Nmt32hWGHhm1IprVt
+DELTA28 base=60 p17 runes=273 digits=222 uppercase=94 preview=1eVeINYoGn7Zqf1albuYEXr1N50cUSGlVdLsvuqSl2P099o5AZ8eKJdTZM9ODo0Eh1nUan
+DELTA28 base=60 p28 runes=269 digits=219 uppercase=99 preview=18o0DrQYAMOi2v7eqgELe0V8p1RpC9ukeGApuROAbI0WIieZaHSYt7MvYVKS19ckMjuiDk
+DELTA28 base=60 p31 runes=269 digits=218 uppercase=102 preview=8A9EdmEFLcx6kOQgChf5vLeBaIfWjXkJ28gjENusgYGpWDEOHLh8TjpATIWtRh2dTUpJjC
+DELTA28 base=60 p37 runes=228 digits=185 uppercase=79 preview=CcT4lkT4PZXwFwREETevBipg7vIqImP3r8vWvjIUlHTXMNm7cn9RPwXVG29j65Ge07driL
+DELTA28 base=60 p38 runes=228 digits=185 uppercase=75 preview=HZ51t9V0CGCWR32wbEdwG8v4YJamLtNjMgXbslPTqrM9rkk4Zu3SAkL7NQE8637OVePHTk
+DELTA28 base=60 p40 runes=231 digits=187 uppercase=67 preview=cKUx7fUGrAOMfEBElweHro6WAYvnkm9w7FHFfnxCWKuLtlmwpMGflhXPn6m6JhDNxnEEn0
+DELTA28 base=60 p49 runes=66 digits=53 uppercase=23 preview=SCEc3JPIQLadjBV9o6iN1dRcL9qIG97Yb5rDknqZc7VTRrsElcr3H
+DELTA28 base=60 p53 runes=179 digits=145 uppercase=67 preview=F00a1kh7elY03lg2fKIQX7ZbAskAVqWwVh9MxMpP8TGYeHxRAAOqUxHbqRG6nR5YwIdVJA
+TOTAL base=60 pages=13 uppercase=979 digits=2257 uppercase-fraction=0.433762
+DELTA28 base=59 p5 runes=263 digits=215 uppercase=96 preview=18nXqceGJHUGn6BrhQBexiXsCauNW1WlIHXWO7tE839coAt6LI4cAXjxsr4NuXrONSLTlr
+DELTA28 base=59 p7 runes=208 digits=169 uppercase=77 preview=s2Q6MbbWNWCL0PUa5VQQ7EqUbsqbIqdDdSo4BdqvrSvP710lEVJSgDNIi14qZesxNexMLo
+DELTA28 base=59 p13 runes=272 digits=222 uppercase=99 preview=5sReSXeNi0kC03pPM6T00OEWkUcJ54gP8nkOT4CnkYc3ee8BOCxS0lQKGHV7Cq06Wob4Rp
+DELTA28 base=59 p14 runes=137 digits=112 uppercase=55 preview=1TEkhLWiVjZ8x0GZCOv8nDUNFulmLJw6FJ4sGuFm5NK3eClX3PcPYkX6UuVksJ1pc40PmA
+DELTA28 base=59 p15 runes=159 digits=129 uppercase=57 preview=2ItxAtoRQQLBINMNNRRTVWvmgDGM0HiZSgH1gUJNMCmcXSciLdohwErZuMxt439VOrZx76
+DELTA28 base=59 p17 runes=273 digits=223 uppercase=93 preview=19jBYZjP77mlC7oGH46HXUal0x81bbb07QL2FbMcdqsbjj5WnXpwRpSBRSDIlxZU6sVjBW
+DELTA28 base=59 p28 runes=269 digits=219 uppercase=88 preview=jjld6BMMRJPAN2CNkX9BZOie5o8G3ulITGYuua3B4ZLE2oJQahkdWkmU5468MT7roorBUP
+DELTA28 base=59 p31 runes=269 digits=219 uppercase=99 preview=5IOJWsi0pWVaZn7Ag3aWGh61KG5XXJ7KchgkSYiU1oxwPHF9kkL02VWNcJEoYIZKlK7K80
+DELTA28 base=59 p37 runes=228 digits=186 uppercase=83 preview=4hUc659vMTOjdXFs5PBRuokrZ9ORbuJY0DwNCeAFquJ91EDY33uuwpHl1wHBoXEQluWBSN
+DELTA28 base=59 p38 runes=228 digits=186 uppercase=84 preview=6XPTJBhuTSpwGn66wbnYuEKJGiLP621TpblTm59FvjthGir98pceU0waUxGVn1WGnp1hSC
+DELTA28 base=59 p40 runes=231 digits=188 uppercase=83 preview=EmbjhlIZaAspLKSODPJtWHdYKii3e3l2g51p87bGuQHDLtvgMes8TO0DE6h46u5OxoKvlu
+DELTA28 base=59 p49 runes=66 digits=54 uppercase=23 preview=18YhBav7vsPcD1iSSmTeT6FNUbUTS3js49e0CYZ0wIwAP4c3pLCUut
+DELTA28 base=59 p53 runes=179 digits=146 uppercase=62 preview=2phuDipaJhnkFZmOcgh6koeQ5KGWwb1FAkwH4wHgZHh6ghJosFTFIPUmML8X1ae8Drxmmb
+TOTAL base=59 pages=13 uppercase=999 digits=2268 uppercase-fraction=0.440476
+PASS original complete-page round trips and positive controls
