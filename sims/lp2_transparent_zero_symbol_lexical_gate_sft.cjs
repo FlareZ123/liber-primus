@@ -140,6 +140,53 @@ function exactTail(groups,threshold,side) {
   return p;
 }
 /**
+ * Exact probability of the observed long-word EA count, conditional on the
+ * observed total count 86. This removes global lexical-frequency variation
+ * as a possible explanation of the long-word anomaly.
+ * Short and long words are disjoint independent strata in the declared null.
+ * @param {Map<number,number[][]>} pools
+ */
+function conditionedEA(pools) {
+  const bins=[[],[]];
+  for (const group of types.values()) {
+    const pool=pools.get(group.L);
+    bins[group.L>=8?1:0].push({
+      n:group.n,
+      h:histogram(pool,group,28,'total')
+    });
+  }
+  /** @param {Array<{n:number,h:Array<[number,number]>}>} groups */
+  function pdf(groups) {
+    const limit=observed.total;
+    let states=new Float64Array(limit+1);
+    states[0]=1;
+    for (const {n,h} of groups) {
+      if(h.length===1&&h[0][0]===0)continue;
+      for(let i=0;i<n;i++) {
+        const next=new Float64Array(limit+1);
+        for(let j=0;j<=limit;j++)if(states[j]!==0)
+          for(const [k,p] of h)if(j+k<=limit)next[j+k]+=states[j]*p;
+        states=next;
+      }
+    }
+    return states;
+  }
+  const short=pdf(bins[0]),long=pdf(bins[1]);
+  let denominator=0,numerator=0,expectedNumerator=0;
+  for(let count=0;count<=observed.total;count++) {
+    const mass=long[count]*short[observed.total-count];
+    denominator+=mass;
+    expectedNumerator+=count*mass;
+    if(count>=observed.long)numerator+=mass;
+  }
+  assert(denominator>0,'nonempty conditional event');
+  return {
+    probabilityTotal86:denominator,
+    meanLongConditionalOn86:expectedNumerator/denominator,
+    probabilityLongAtLeast21Given86:numerator/denominator
+  };
+}
+/**
  * @param {Map<number,number[][]>} pools
  * @param {number} q
  * @returns {{q:number,p:number,gate:string,tests:object}}
@@ -200,7 +247,8 @@ for (const [name,source] of Object.entries(refs)) {
   out.references[name]={
     familywiseCompositeP:trials[0].p,
     strongestSurvivor:trials[0],
-    runnerUp:{q:trials[1].q,p:trials[1].p}
+    runnerUp:{q:trials[1].q,p:trials[1].p},
+    conditionalEA:conditionedEA(pools)
   };
 }
 console.log(JSON.stringify(out,null,2));
