@@ -113,6 +113,26 @@ assert.equal(route.visited.at(-1), 37);
 // sum commutatively. Avoid claiming the printed order itself fixes endpoint.
 assert.equal(walk(sourceBytes.slice().reverse()).visited.at(-1), 37);
 
+// Compass orientation remains an independent interpretive choice. The
+// original eight-direction orientation was already used by Agent22; rotating
+// or reversing its direction indices gives sixteen equally simple readings.
+// Four of the sixteen orientations also land on the same X, weakening any
+// argument that this specific original endpoint independently selects North.
+let alternateOrientationX = 0;
+for (const reverse of [false, true]) {
+  for (let rotation = 0; rotation < 8; rotation++) {
+    let row = 3, col = 0;
+    for (const byte of sourceBytes) {
+      const index = (rotation + (reverse ? 8 - (byte & 7) : byte & 7)) % 8;
+      const [dy, dx] = dirs[index];
+      row = mod(row + dy * (byte >> 3), 11);
+      col = mod(col + dx * (byte >> 3), 11);
+    }
+    alternateOrientationX += Number(row === 3 && col === 4);
+  }
+}
+assert.equal(alternateOrientationX, 4);
+
 // Conditioned 256-member *cyclic shift* diagnostic, not an authorial p-value.
 // Preserve all actual table bytes, topology, relative five address positions
 // and named original targets, change only the common table address origin.
@@ -143,5 +163,6 @@ console.log(JSON.stringify({
   sourceFourP57OnlyEnd: fourOnly.visited.at(-1),
   zeroBasedTableEndpoint: walk(zeroBasedBytes).visited.at(-1),
   cyclicShiftNull: rotation,
+  orientationsEndingAtX: alternateOrientationX,
   note: 'navigation coincidence/hypothesis; not unknown plaintext or key'
 }, null, 2));
