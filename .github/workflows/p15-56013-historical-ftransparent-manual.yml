@@ -1,0 +1,29 @@
+name: LP2 p15 2013 DATA exact historical F-transparency (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pad-f:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Obtain original historical CicadaOS DATA/560.13 member
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw "Historical member download failed" }
+      - name: Exact all-F-mask original p15-p22 source attack and planted positive
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p15_56013_ftransparent_direct_pad_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Script syntax failure" }
+          node sims/lp2_p15_56013_ftransparent_direct_pad_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "Source attack failure" }
