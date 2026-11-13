@@ -1,18 +1,19 @@
 "use strict";
 
 /**
- * One frozen transfer of the solved p56 phi(prime) clock to physical p36.
+ * Frozen transfers of the solved p56 phi(prime) clock to physical p36.
  *
- * Hypothesis: p36 is selected by the 36th prime, 151. The historical
- * participant DH transcript has a private-exponent class e = 11 (mod 550);
- * one representative is 1661 = 11 * 151. This is a weak, retrospective
- * selector, not a signed LP2 instruction.
+ * Only three source-derived starts are admitted: prime ordinals 15, 36, 705.
+ * The 36/151 candidate comes from p36's page number and 1661 = 11*151;
+ * 15/47 comes from the signed DH23 client exponent and the 15th prime; 705
+ * is log_u(v), where u is the p3 red-field root and v the p36 relative norm.
+ * These cross-links are hypotheses, not authenticated LP2 key instructions.
  *
- * Candidate: P[i] = C[i] - (prime[35+i] - 1) (mod 29), continuously across
- * all 238 original GP runes. Non-rune punctuation and the printed Arabic 1
- * do not consume a GP key. No F skip, reset, phase, sign, or start sweep.
+ * Candidate: P[i] = C[i] - (prime[ordinal-1+i] - 1) (mod 29), continuously
+ * across all 238 original GP runes. Non-rune punctuation and the printed
+ * Arabic 1 do not consume a GP key. No F skip, reset, phase, or sign sweep.
  *
- * Run: node sims/p36_prime36_p56_totient_transfer_sft.cjs
+ * Run: node sims/p36_prime36_p56_totient_transfer_sft.cjs [15|36|705]
  */
 
 const assert = require("node:assert/strict");
@@ -59,11 +60,12 @@ function firstPrimes(count) {
   }
   return out;
 }
-const primeOrdinal = 36;
+const primeOrdinal = Number(process.argv[2] || "36");
+const expectedPrime = new Map([[15, 47], [36, 151], [705, 5323]]);
+assert(expectedPrime.has(primeOrdinal), "Only frozen source-derived starts 15, 36, and 705 are allowed");
 const primeIndex = primeOrdinal - 1;
 const primes = firstPrimes(primeIndex + cipher.length);
-assert.equal(primes[primeIndex], 151);
-assert.equal((primes[primeIndex] - 1) % 29, 5);
+assert.equal(primes[primeIndex], expectedPrime.get(primeOrdinal));
 
 const mod29 = (n) => ((n % 29) + 29) % 29;
 const key = cipher.map((_, i) => mod29(primes[primeIndex + i] - 1));
@@ -194,8 +196,13 @@ assert.deepEqual(plantDecoded, plantWords);
 assert.equal(plantCursor, cipher.length);
 
 const result = {
-  hypothesis: "p36 prime-ordinal 36 selects the 36th prime 151 as the p56 phi(prime) stream start",
-  sourceCaution: "the e=11 (mod 550) participant transcript is not a signed LP2 instruction",
+  hypothesis: `p36 p56 phi(prime) transfer starting at prime ordinal ${primeOrdinal}`,
+  sourceCaution: "all selectors are retrospective; the e=11 (mod 550) participant transcript is unsigned, and no source authorizes transferring the p56 cipher to p36",
+  selectorEvidence: primeOrdinal === 15
+    ? "signed DH23 client exponent 15; 15th prime is 47; 705 = 15*47"
+    : primeOrdinal === 36
+      ? "physical page number 36; 36th prime is 151; unsigned transcript representative 1661 = 11*151"
+      : "GF(29^2) discrete log log_u(v) = 705 from p3 red root u to p36 relative norm v",
   original: {
     page: 36,
     scan: "50.jpg",
@@ -205,7 +212,7 @@ const result = {
     zeroBasedPrimeIndex: primeIndex,
     firstPrime: primes[primeIndex],
     firstShift: key[0],
-    keyRule: "phi(prime[36+i]) mod 29",
+    keyRule: `phi(prime[${primeOrdinal}+i]) mod 29 (1-based ordinal)`,
     skipPolicy: "none; no p36 F exception is source-selected",
     rawIoC: indexOfCoincidence(cipher),
     decodedIoC: indexOfCoincidence(decoded),
