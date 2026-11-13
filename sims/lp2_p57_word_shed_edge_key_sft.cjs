@@ -108,6 +108,36 @@ for (const [name, cipher, key] of [
   }
 }
 
+// Key-independent necessary condition for any fixed symbol substitution:
+// every pair of equal ciphertext symbols must have equal paired plaintext symbols.
+// A secret bijection must preserve both equality directions.
+const equalityConflictCounts = (cipher, candidatePlaintext) => {
+  assert.equal(cipher.length, candidatePlaintext.length);
+  let repeatedCipherDifferentPlaintext = 0;
+  let differentCipherRepeatedPlaintext = 0;
+  for (let i = 0; i < cipher.length; i++) {
+    for (let j = i + 1; j < cipher.length; j++) {
+      if (cipher[i] === cipher[j] && candidatePlaintext[i] !== candidatePlaintext[j]) {
+        repeatedCipherDifferentPlaintext++;
+      }
+      if (cipher[i] !== cipher[j] && candidatePlaintext[i] === candidatePlaintext[j]) {
+        differentCipherRepeatedPlaintext++;
+      }
+    }
+  }
+  return { repeatedCipherDifferentPlaintext, differentCipherRepeatedPlaintext };
+};
+const substitutionCribGate = {
+  last16WordsToFullP55: equalityConflictCounts(p55, tail76),
+  lastFourLinesToP55Body: equalityConflictCounts(p55Body, tail75)
+};
+assert.deepEqual(substitutionCribGate.last16WordsToFullP55, {
+  repeatedCipherDifferentPlaintext: 99, differentCipherRepeatedPlaintext: 171
+});
+assert.deepEqual(substitutionCribGate.lastFourLinesToP55Body, {
+  repeatedCipherDifferentPlaintext: 98, differentCipherRepeatedPlaintext: 168
+});
+
 const probe55 = [];
 for (const sign of [-1, 1]) {
   const outputPages = eligiblePages.map((p, i) => p.indices.map((v) => mod(v + sign * withoutBoth[i])));
@@ -147,6 +177,7 @@ console.log(JSON.stringify({
   sourceSolvedP57Ioc: coincidence(knownP57),
   p55BodyAdditiveGate: probe75,
   p57LineWordTailPadGate: p57TailPadGate,
+  equalityInvariantCribGate: substitutionCribGate,
   allPagesDirectPageShiftGate: probe55,
   verdict: 'All original decodes remain nonlinguistic; the fixed p57 word-edge, physical-line, word-tail pad and page-shift consumers are negative. Exact round trips are implementation checks.'
 }, null, 2));

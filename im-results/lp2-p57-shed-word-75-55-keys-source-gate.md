@@ -39,6 +39,12 @@ For each fixed sign and key, every source-p55 candidate is re-encrypted to its e
 
 The only assumptions needed for the reported finite negatives are the specified shedding operation, GP-index register, printed order, direct additive consumer and page/position correspondence. Results do not exclude alternate source-selected consumers, partial word-specific keys, stateful operations, or genuine instructions encoded outside the text. The cardinality matches themselves require independent source support before stronger significance is assigned.
 
+## An all-secret plaintext-crib constraint on the 76/75 tail alignment
+
+The source p57 tail may alternatively be hypothesized as p55's *plaintext* rather than as the pad. Under the exact same source-derived alignment, **no fixed GP29 monoalphabetic substitution can map the original p55 ciphertext to that intact p57 tail**, regardless of the secret alphabet. On the full 76-rune alignment, there are **99 unordered position-pairs** with the same p55 rune but different proposed p57 plaintext runes, which violates even a non-injective substitution. There are also **171 unordered position-pairs** with different p55 runes but equal proposed p57 runes, which violates injectivity of a reversible substitution. A concrete contradiction occurs at p55 page-local offsets **0 and 33**: both ciphertext runes are GP index21, while the proposed p57 tail plaintext runes are indices16 and9. On the 75-rune body/last-four-lines alignment, the two mismatch counts are **98** and **168**, respectively.
+
+These counts exclude only an *unaltered stationary monoalphabetic substitution of p55 into that fixed p57 passage*; Vigenère/autokey, source-specific state, transposition, or different target prose are outside the claim. Unlike a tuned readability score, the first same-cipher contradiction is decisive and independent of language scoring or a secret 29-rune bijection. The SFT asserts all four exact counts.
+
 ## Exact reproduction
 
 - Input: [canonical original-image-linked LP2 corpus](../resources/liber-primus/lp2-corpus.json), [original printed transcription](../resources/liber-primus/lp2-transcription.txt), physical p55 and solved p57.
