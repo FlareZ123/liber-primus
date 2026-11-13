@@ -1,3 +1,24 @@
+# Agent4 independent invocation, 13 November 2026, 16:44 UTC
+
+**Mode:** RNG 2, independent exploration; run ID `agent4-gpt6-20261113T164453Z-independent-path-5957a26a9c`. Original claim 2026-11-13T16:44:53.719138Z. This file retains the previous incarnations' context below.
+
+**New original-cipher decision:** The multiplicative group GF29 gives an elegant reversible feedback hypothesis, `C_i=C_(i-1)+K_i(P_i+1) mod29`, `K_i∈1..28`. Equal ciphertext neighbours necessarily reveal hypothetical plaintext GP index28 (`EA`). The original 86/12,901 equality sites, with 23 word starts, have similar *total* incidence to length-weighted native English EA (expected81.513) but 23 word-start occurrences contrast with only 5.445 expected, 7.53 source-model SD higher. In a comprehensive 29-symbol singleton model G is closest with joint model-normalized distance5.24; EA is second at7.68. This points away from a simple fixed-language-symbol repeat leak and toward stateful or other representation changes. No actual plaintext recovered.
+
+**Key-free obstruction:** Taking original page-local adjacent differences `D_i=(C_i-C_(i-1)) mod29`, *every* one of 791 complete printed words of length≥6 fails a length-matched native-English affine-normalized word shape, even granting a different arbitrary per-word multiplier **and intercept**. The one-multiplier word cipher also fails. A variable per-rune key remains possible, but without source-selected update it has no predictive power. Original corpus alignment, lexical encoding, and real known-source p57 + appended native GP `EACH` positive controls are all asserted in the script.
+
+**Two source-fed original-cipher decisions:** The 32×8 p49–51 table as eight 32-byte AES256-CTR vertical keys (one per eight visual chapters after pp0–2) with zero nonce and `K=1+byte%28` is ciphertext-like on 12,227 original runes under both chapter/page clocks; eight contiguous 32-byte bands are matched negative. Original IoC0.034480; inverses 0.035230–0.035261; 0 original dictionary words of length≥6. More motivated still, exact solved-p56 prime-totient stream `K_n=2^(prime_n−1) mod29` (since2 is a primitive root) on all12,956 original runes under page/chapter/book resets yields IoC0.035264–0.035282 and 0 six-plus native-English words. All source inverses strictly re-encrypt, and all known-source synthetic plants pass. These are bounded negatives, not evidence that AES or group exponentiation was intended.
+
+**Persisted artifacts:**
+- `im-results/lp2-gf29-multiplicative-feedback-original-gate.md` (consolidated decision, source caveats).
+- `sims/lp2_gf29_delta_multiplicative_original_sft.cjs` (29 singleton masks, 791 affine obstruction, 98/98 positive).
+- `sims/lp2_gf29_delta_table_aes256_direct_sft.cjs` (eight table keys, 4 original variants, 98/98 positive).
+- `sims/lp2_gf29_delta_p56_totient_group_source_sft.cjs` (solved-p56 exact source stream, 3 clocks, 98/98 positive).
+- Manual-only `.github/workflows/agent4-gf29-feedback-manual.yml`, all three passing in [run43473445547](https://github.com/FlareZ123/liber-primus/actions/runs/43473445547).
+
+**Next productive direction:** Require an original source selector for a specific dynamic reversible state update, or an independently motivated non-English/pretransposed intermediate alphabet. The fixed escape-EA model is poor at word starts despite perfect total repeat rate; additional generic constant-key brute force cannot produce original English by the key-free fingerprint. Do not pursue p50 AES IV sweeps or invented modulo group offsets. Beware `lp2-transcription.txt` omits runeless physical p50, so increment printed page indices≥50 by one.
+
+---
+
 # Agent4: active Liber Primus cryptanalytic research memory
 
 ## Current incarnation and lease
