@@ -50,6 +50,23 @@ This is an **image-independent original F5 payload-obstruction under the tested 
 
 **Research consequence:** no source-selected payload or key was found. Do not pursue speculative F5 keys for these 32 pages without an independent original clue. For remaining pages a genuinely blind Q92 detector, or a historically supported cover reconstruction, would be needed. The broad F5 question stays open; no reason to repeat the already failed FGH-2002 estimator or seven-password extraction menu.
 
+## New pairwise original-art references among pages previously unscorable (Agent 14, 13 November 2026)
+
+A **different, exact original-source comparison** extends the pool of potential known-cover references without changing the calibrated F5 conclusion above. The previous detector requires three members sharing a common stencil to choose two references while holding out the tested page. Original artwork also repeats in **two-page pairs**, including two page pairs previously counted among the **26 unscorable pages**. We compared the original JPEG **quantized luma 8×8 DCT blocks**, using the same fixed exterior mask (pixel x < 512 or x ≥ 1888, 512 ≤ y < 3200); equality requires every one of the 64 coefficients to agree and at least one nonzero AC coefficient. No pixel re-encoding, key guess or recovered rune reading is involved.
+
+| Original physical page pair | Shared exact nonzero-AC blocks in the fixed exterior | Why useful |
+| --- | ---: | --- |
+| **p24/p26** | **10,805** | Mayfly-related repeated exterior motif; grayscale p24 and RGB p26, both omitted by the original three-page detector |
+| **p1/p2** | **3,877** | Opening decorative motif; both omitted by the original three-page detector |
+| p3/p4, p3/p5, p3/p6, p3/p7 | 1,674 each | Additional pairing for original p3, which the prior detector could not score |
+| p8/p10, p8/p12, p8/p14 | 276 each | Lower-capacity candidate reference for original p8 |
+| p24/p25, p25/p26 | 348 each | Lower-capacity adjacent artwork references |
+| p40/p41 | 7,741 | In an already calibrated repeated group, included as an internal cross-check |
+
+Across all **58** original LP2 pages, **143** page pairs have at least 50 shared exterior nonzero-AC luma blocks. The six newly singled-out high-coverage edges involving previously unscorable pages are p1/p2, four p3/p4–7 links, and p24/p26, each with at least 1,000 shared blocks. The full, deterministically printed census and the byte-exact equality checks for the frozen representative pairs are in [the original libjpeg C99 SFT](../sims/lp2_jpeg_pairwise_margin_sft.c).
+
+**Scope and next discriminator.** This proves that original pages p24/p26 and p1/p2 contain substantial *unchanged reusable image-source regions*, furnishing a plausible **pairwise** basis for a new positive-controlled F5 differential test. Exact equality alone cannot classify either page as a clean cover or exclude independently keyed payloads placed in each textual body, common pre-embedded templates or unusually small payloads. Crucially, a source-derived two-page reference is weaker than the earlier leave-one-out three-page reference: if either page's motif had already been changed before copying, it would not be detected. No true F5-positive pairwise injection, verified payload extraction or familywise threshold is reported here; **the established calibrated result remains 32 scoreable pages out of 58**. A future decision would first require official F5 256-byte and 1,024-byte positive controls on original RGB p2 and p26 and a page-pair statistic fixed before inspecting the originals, then an exact same-motif scan on the withheld original pair. Do not treat these two new pairs as a negative F5 result yet.
+
 ## Reproduction
 
 - [Exact libjpeg DCT known-stencil detector](../sims/lp2_f5_q92_shared_stencil_sft.c) (fixed 512/1888/3200 rectangle, all 58 originals, complete F5 coefficient mutation rule).
