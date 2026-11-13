@@ -1,0 +1,23 @@
+name: AN END exact 512-bit Python27 long-seed original GP inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-cipher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout original GP29 source and reproducible SFT
+        uses: actions/checkout@v4
+      - name: Install Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-check hash-seeded original inverse
+        run: node --check sims/anend_hash_python27_longseed_original_sft.cjs
+      - name: Exact original ciphertext, heldout evidence, native GP plant
+        run: node sims/anend_hash_python27_longseed_original_sft.cjs
