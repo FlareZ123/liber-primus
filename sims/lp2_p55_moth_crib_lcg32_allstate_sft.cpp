@@ -100,6 +100,12 @@ int main(){
     uint32_t s=planted_state;
     for(auto& x:planted){x=output(s);s=step(s,l);}
     assert(prefix(planted_state,l,planted)==30);
+    if(l.a==214013U){
+      const ScanResult planted_result=exhaustive(l,planted);
+      assert(planted_result.exact_matches>=1);
+      assert(planted_result.max_prefix==30);
+      std::printf("Positive plant: exhaustive MSVC-state recovery >=1, full length 30\n");
+    }
     // Only the same method, same output mapping, and full 30-rune equality
     // are valid success predicates. This positive control is not a real key.
   }
