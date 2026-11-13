@@ -58,6 +58,10 @@ assert.equal(spareBit, 0);
 assert.equal(bytes.length, 133);
 assert.equal(bytes.subarray(0, 20).toString('hex'), '1ffda9580c9caa6fd944c5c2a2b7df3c587ce70c');
 assert.equal(createHash('sha256').update(bytes).digest('hex'), 'ecf68af45150482467e2f2942d924251e6972b78144f3253a292f264013a3b38');
+const candidateSha512 = createHash('sha512').update(bytes).digest('hex');
+const printedP56Digest = '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4';
+assert.equal(candidateSha512, '50e0ee16215ea9483453f8ed50fec782c4bef3beb93b6c99700b0f55b677712e263fcf3b1763faad65877084283c464d5bf0134680a45605835e73f33ea9f4a0');
+assert.notEqual(candidateSha512, printedP56Digest);
 assert.deepEqual(unpackFiveBits(bytes, spareBit), out);
 const printable = Array.from(bytes).filter((v) => v === 10 || v === 13 || (v >= 32 && v <= 126)).length;
 assert.equal(printable, 47);
@@ -94,6 +98,8 @@ console.log(JSON.stringify({
   packedBytes: bytes.length,
   spareBit,
   packedSha256: createHash('sha256').update(bytes).digest('hex'),
+  packedSha512: candidateSha512,
+  sha512EqualsP56PrintedDigest: candidateSha512 === printedP56Digest,
   printableBytes: printable,
   primeXorByteLength: primeXorBytes.length,
   primeXorPrintable,
