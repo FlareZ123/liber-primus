@@ -1,0 +1,18 @@
+name: Agent9 original GP29 geometry and doublet-key source tests
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: P50 to final 76 GP29 product-code inverse
+        run: node sims/lp2_terminal_hg_product_code_parity_sft.cjs
+      - name: H-G five-doublet key-state prediction and positive plant
+        run: node sims/lp2_hg_doublet_fmarker_state_recovery_sft.cjs
