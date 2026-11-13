@@ -113,7 +113,12 @@ for (const [startPage, endPage] of chapters) {
   const original = equality(originals);
   assert.deepEqual(
     equality(reencryptUnderSharedPageOffsetKey(originals)), original,
-    "all-secret position-wise positive plant must preserve original collisions"
+    "all-secret position-wise secret alphabets preserve original collisions"
+  );
+  const nativePlant = overlay(sources[0].indices, lengths, 0);
+  assert.deepEqual(
+    equality(reencryptUnderSharedPageOffsetKey(nativePlant)), equality(nativePlant),
+    "independently controlled source-native English plant preserves collisions"
   );
 
   const controls = sources.map(source => {
