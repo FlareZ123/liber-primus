@@ -217,6 +217,25 @@ for (let i = 0; i < longWords.length; i++) {
   assert(patterns.has(patternKey(encrypted)));
 }
 
+/**
+ * An independent countercheck: allowing a second completely arbitrary
+ * within-word permutation removes positional equality constraints.
+ * Only the multiplicity partition (sorted symbol frequency histogram)
+ * survives secret substitution plus transposition.
+ * @param {number[]} word @returns {string}
+ */
+function multiplicityKey(word) {
+  const counts = new Map();
+  for (const rune of word) counts.set(rune, (counts.get(rune) || 0) + 1);
+  return word.length + ':' + [...counts.values()].sort((a,b) => b - a).join(',');
+}
+const loosePatterns = new Set(dictionary.map(w => multiplicityKey(w.code)));
+const longHistogramMisses = longWords.filter(w =>
+  !loosePatterns.has(multiplicityKey(w))).length;
+assert.equal(longHistogramMisses, 0, 'all long words are compatible after per-word transposition');
+const all9 = ciphertextWords.filter(w => w.length >= 6 && w.length <= 14);
+assert.equal(all9.filter(w => !loosePatterns.has(multiplicityKey(w))).length, 0);
+
 // Independent native-GP English comparison is length-stratified.
 const control = new Map();
 const controlFiles = [
@@ -261,6 +280,7 @@ if (require.main === module) {
     dictionaryWords: dictionary.length,
     wordLengths10to12: registered.map(([length,n,misses]) => ({length,n,misses})),
     lowerBoundSymbolChanges: minChanged,
+    afterArbitraryWithinWordTranspositionHistogramMisses: longHistogramMisses,
     editDistribution: {zero:edits[0],one:edits[1],two:edits[2],threeOrMore:edits[3]},
     solvedLP1SourceWordsMatched: lp1.length,
     independentControlSamples: individually,
