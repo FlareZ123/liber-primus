@@ -62,16 +62,20 @@ const passwords = [
   "epiphany",
   "THE PRIMES ARE SACRED",
   "THE TOTIENT FUNCTION IS SACRED",
-  "Liber Primus is the way"
+  "Liber Primus is the way",
+  "LET THE TEXT GUIDE YOU",
+  "SOME WISDOM"
 ];
 
-// P2 insect, p14 fold/tree, p15 mathematical spiral, p22 mirror,
-// p32 2016-tree alignment, p53/p55 identical LP1 moth, p54 between moths.
-// P0/P1 source dimension clue and p56/p57 solved controls are also included.
-const pages = [0,1,2,14,15,22,32,53,54,55,56,57];
+// Source archive holds original LP1 scans 00–16 and LP2 scans 17–74.
+// All archived JPEGs are frozen before testing any output. A runeless page
+// and noncolour carriers remain in the census; the upstream decoder safely
+// rejects incompatible JPEG coefficient structures.
+const archiveIndexes = Array.from({length:75},(_,i)=>i);
 const findings = [];
-for (const page of pages) {
-  const archive = String(page + 17).padStart(2,"0") + ".jpg";
+for (const archiveIndex of archiveIndexes) {
+  const page = archiveIndex >= 17 ? archiveIndex - 17 : null;
+  const archive = String(archiveIndex).padStart(2,"0") + ".jpg";
   const file = path.join(root,"resources","liber-primus",archive);
   const bytes = new Uint8Array(fs.readFileSync(file));
   const decoded = api.decodeJpegCoefficients(bytes);
@@ -90,7 +94,7 @@ for (const page of pages) {
       console.log("VERIFIED_JPHIDE_HEADER",JSON.stringify(hit));
     }
   }
-  console.log("LP2 JPHide v0.5 page",page,"archive",archive,
+  console.log("LP1/LP2 JPHide v0.5 page",page,"archive",archive,
     "bytes",bytes.byteLength,"passwords",tried,"verified",
     findings.filter(x=>x.page===page).length);
   if (global.gc) global.gc();
@@ -98,6 +102,6 @@ for (const page of pages) {
 console.log(JSON.stringify({
   status:"frozen original-JPEG JPHide-v0.5 header gate",
   fixture:"authentic v0.5 mode0 11067-byte GIF recovered byte-exact",
-  pages, passwordCount:passwords.length,
+  archiveIndexes, passwordCount:passwords.length,
   verifiedHeaders:findings.length, findings
 },null,2));
