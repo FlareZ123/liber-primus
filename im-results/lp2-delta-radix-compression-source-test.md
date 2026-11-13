@@ -40,6 +40,22 @@ Cicada actually instructed earlier 2013 players to use `BASE29`. The simplest po
 
 [Full source-run and original-file assertions](https://github.com/FlareZ123/liber-primus/actions/runs/43404865483) · [shared SFT](../sims/lp2_delta_radix_compression_sft.cjs).
 
+## Source-authentic 2,896-word numeric packets
+
+The signed 2016 instruction says *“Its words are the map, their meaning is the road, and their numbers are the direction.”* Both GP29 numeral values and GP-prime-weight sums have independently established earlier Cicada uses. The original complete LP2 manuscript has **2,896 typographically delimited words** after preserving line and page wraps: this word inventory is reconstructed by the shared `sims/lp2_word_pages.cjs` parser and its flattened **12,956 GP29 rune positions match the canonical corpus exactly**. A bounded further route treats each entire source word as a separate source number and concatenates ordinary bytes. It avoids a speculative character-by-character key schedule.
+
+Three direct numeric-to-byte rules were checked in both printed and word-reversed physical order, producing **six** complete original binary streams:
+
+| Frozen rule | Output bytes | Original gzip/zlib/raw-DEFLATE nonempty successes | Printed p56 SHA-512 matches |
+| --- | ---: | ---: | ---: |
+| Word as entire BASE29 integer → minimally encoded unsigned big-endian bytes | 8,814 | 0/2 | 0/2 |
+| Word as BASE29 integer → least-significant eight bits | 2,896 | 0/2 | 0/2 |
+| Sum original 29 GP prime weights within each word → one byte mod256 | 2,896 | 0/2 | 0/2 |
+
+The last row uses the historically demonstrated *prime sum* mapping rather than a second guessed digit alphabet; its later reduction to a byte is only a conditional hypothesis. No direct unknown plaintext or compressed 2014-style packet appears. A **66-byte genuine gzip** of 57 bytes of original plain text was independently converted into separate BASE29-number words and recovered **exactly 66/66 source bytes** and **57/57 plain bytes**, providing a relevant positive control for word-wise framing.
+
+These are strict whole-file direct consumers, with no KDF, trailing side channel, padding search, variable word-to-byte alignment or downstream cipher. [Passing Windows original run](https://github.com/FlareZ123/liber-primus/actions/runs/43405343066) · [CJS source, original round-trip and plant](../sims/lp2_word_base29_binary_sft.cjs).
+
 ## Research decision
 
 Retire only the **direct, keyless whole-radix GP28/GP29 binary stream with original book/page/chapter clocks and literal zlib/gzip/raw DEFLATE**. This failed prediction is decisive for the declared transport, despite positive controls. Unknown alphabet permutations, keyed stateful transformations, repeated-symbol side channels, variable-length binary packets, later cipher layers and a binary payload in a different medium remain untouched. There is no reason to fit extra parameters absent a new source-visible transport instruction.
