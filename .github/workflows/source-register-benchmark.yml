@@ -18,3 +18,5 @@ jobs:
         run: node sims/source_register_benchmark.cjs
       - name: Re-evaluate exact plaintext-history cipher gates with authenticated ING/IO spellings
         run: node sims/lp2_plain_history_native_orthography_sft.cjs
+      - name: Test LP1-p5 moth-linked 30-rune crib with keyless plaintext feedback
+        run: node sims/lp2_p55_moth_p5_crib_autokey_lag30_sft.cjs
