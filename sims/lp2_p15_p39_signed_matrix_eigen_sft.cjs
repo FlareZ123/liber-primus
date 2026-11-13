@@ -335,6 +335,47 @@ assert.deepEqual(p3Direct.map(x=>x.originalIoC),[
   0.03434655996443259
 ]);
 
+
+// Independent prior source quotient p50 / p39 / p3 recovers g=19+13u,
+// a primitive element of the 841-element field GF29[u]. Reinterpret the
+// SAME coefficient vector on p39's dual-number coordinate epsilon=x-24.
+// The 29x29 coefficient algebra is a mathematical bridge only: no
+// manuscript instruction authenticates substitution u -> epsilon.
+const fieldQuotientCoefficients=[19,13];
+const dualM=I.map((row,i)=>row.map((one,j)=>
+  mod(fieldQuotientCoefficients[0]*one+
+      fieldQuotientCoefficients[1]*(M[i][j]-24*one))));
+assert.deepEqual(dualM,[
+  [11,10,28,25],
+  [13,22,12,6],
+  [27,18,12,4],
+  [17,11,11,22]
+]);
+assert.deepEqual(powMatrix(dualM,812),I);
+for(const q of [2,7,29])assert.notDeepEqual(powMatrix(dualM,812/q),I);
+const dualInverse=invert4(dualM);
+assert.deepEqual(mmul(dualM,dualInverse.matrix),I);
+assert.deepEqual(mmul(dualInverse.matrix,dualM),I);
+const dualDirect=[];
+for(const [targetName,input] of [
+  ["p16-22",gp.pages.slice(16,23).flatMap(p=>p.indices)],
+  ["p40-53-black",body]
+])for(const [mode,operation,reverse] of [
+  ["dual-primitive-forward",dualM,dualInverse.matrix],
+  ["dual-primitive-inverse",dualInverse.matrix,dualM]
+]){
+  const decoded=hill4(input,operation);
+  assert.deepEqual(hill4(decoded,reverse),input);
+  assert.deepEqual(hill4(hill4(known,reverse),operation),known);
+  dualDirect.push({targetName,mode,originalIoC:ioc(decoded)});
+}
+assert.deepEqual(dualDirect.map(x=>x.originalIoC),[
+  0.03422602599125203,
+  0.03434050750840847,
+  0.034434367011225965,
+  0.03452750916972324
+]);
+
 console.log(JSON.stringify({
   p15PrintedCharpoly:c1,
   p15SignedCharpoly:c2,
@@ -345,6 +386,9 @@ console.log(JSON.stringify({
   p3MatrixRank:rank(quadratic([13,23,2])),
   signedMatrixOrder:812,
   sourceP3InvertibleMatrixDet:p3Inv.determinant,
+  sourceP50QuotientAsDualMatrix:dualM,
+  dualMatrixOrder:812,
+  dualMatrixOriginalDirectHill:dualDirect,
   sourceP3PolynomialDirectHill:p3Direct,
   rowPreservingExhaustiveNull:{successes:rowNullCount,total:24**4},
   uniqueNormalizedEigenvector24:seed,
