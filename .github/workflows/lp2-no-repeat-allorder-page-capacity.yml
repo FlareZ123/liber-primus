@@ -1,0 +1,19 @@
+name: LP2 all secret no-repeat glyph-order capacity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-all-order-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-source exact theorem and full native controls
+        run: node sims/lp2_no_repeat_allorder_page_capacity_sft.cjs
