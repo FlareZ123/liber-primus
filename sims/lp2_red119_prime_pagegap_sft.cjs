@@ -27,6 +27,19 @@ function isPrime(n) {
   for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
   return true;
 }
+/** @param {number} n */
+function primeOrdinal(n) {
+  if (!isPrime(n)) return null;
+  let rank = 0;
+  for (let v = 2; v <= n; v++) if (isPrime(v)) rank++;
+  return rank;
+}
+const visualChapterStarts = [0, 3, 8, 15, 23, 27, 33, 40, 54];
+for (const pg of visualChapterStarts) assert.ok(
+  ink.pages.some((page) => page.page === pg &&
+    (page.red_spans || []).some((span) => span.start === 0)),
+  'Visual chapter boundary must carry a source-red heading'
+);
 
 const red = ink.pages.flatMap((page) => (page.red_spans || [])
   .filter((span) => span.length === 3)
@@ -45,6 +58,9 @@ assert.equal(s0, 137);
 assert.equal(s1, 173);
 assert.ok(isPrime(s0) && isPrime(s1));
 assert.equal(s1 - s0, red[1].page - red[0].page);
+assert.deepEqual([primeOrdinal(s0), primeOrdinal(s1)], [33, 40]);
+assert.ok(visualChapterStarts.includes(primeOrdinal(s0)));
+assert.ok(visualChapterStarts.includes(primeOrdinal(s1)));
 assert.equal(s0 - (red[0].page + 1), sourceTitle);
 assert.equal(s1 - (red[1].page + 1), sourceTitle);
 const sourceTitleSpans = ink.pages.flatMap((page) => (page.red_spans || [])
@@ -64,6 +80,33 @@ function triples(indices) {
   }
   return out;
 }
+const chapterSumTargets = new Map(visualChapterStarts.filter((p) => p > 0)
+  .map((p) => {
+    let n = 1;
+    let rank = 0;
+    while (rank < p) {
+      n++;
+      if (isPrime(n)) rank++;
+    }
+    return [n, p];
+  }));
+/** @param {number[]} indices */
+function matchingTripleAddresses(indices) {
+  const values = indices.map(value);
+  const out = [];
+  for (let i = 0; i < values.length - 2; i++) {
+    const s = values[i] + values[i + 1] + values[i + 2];
+    if (chapterSumTargets.has(s)) out.push({offset: i, target: chapterSumTargets.get(s)});
+  }
+  return out;
+}
+const addressed3 = matchingTripleAddresses(pages.get(3));
+const addressed39 = matchingTripleAddresses(pages.get(39));
+assert.equal(addressed3.length, 6);
+assert.equal(addressed39.length, 18);
+const consecutiveChapterPairs = addressed3.reduce((n, x) => n + addressed39
+  .filter((y) => visualChapterStarts.indexOf(y.target) === visualChapterStarts.indexOf(x.target) + 1).length, 0);
+assert.equal(consecutiveChapterPairs, 18);
 const a = triples(pages.get(3));
 const b = triples(pages.get(39));
 let total = 0;
@@ -91,6 +134,11 @@ console.log(JSON.stringify({
     p39: { offset: 119, indices: red[1].indices, sum: s1 } },
   page_gap: red[1].page - red[0].page,
   original_onion7_html_title: sourceTitle,
+  original_prime_ordinal_targets: [primeOrdinal(s0), primeOrdinal(s1)],
+  source_red_heading_chapter_starts: visualChapterStarts,
+  source_triple_chapter_reference: { on_p3: addressed3.length, on_p39: addressed39.length,
+    both_address_chapters: addressed3.length * addressed39.length,
+    consecutive_chapter_pairs: consecutiveChapterPairs },
   subtract_1_based_page_ordinal_matches_title: true,
   controls: { all_contiguous_pairs: total, gap_equal: equalGap,
     gap_and_both_prime: bothPrimeGap,
