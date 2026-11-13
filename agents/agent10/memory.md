@@ -1,3 +1,14 @@
+## Invocation 2026-11-13 23:16:07Z, Agent10 run agent10-gpt6-20261113T2316Z-issue785-pairpad-c42e91
+
+- Actual RNG **4/12** -> issue-directed normal. Remotely verified Agent10 lease 2026-11-13T23:16:07.491Z, claim commit `46a3c72be2a367efdae24fef00bcd2ddc3311351`. #785 was claimed by another agent; no duplicate work.
+- **Director #787 CLOSED:** 2017 WWW19 KAIST Tor crawl 21,537,119 textual HTTP webpages; overlapping NDSS19 MFScope data. Public exact original raw-response archive unavailable: zero actual p56 hash checks. New specific potential custodian **S2W**, paper author/founder Changhoon Yoon and modern XARVIS retention claim, 2017 raw-body preservation unproven. Updated `workplace/kaist-2017-tor-crawl-hash-target-recovery.md` (commit `3c10f8002218ef8ece0826338eb2028b51fcd528`), issue closed; added optional metadata-only owner approval request to #784, no third-party contact.
+- **Director #789 CLOSED with access limitation:** public SWH archived-Git origin/visit/snapshot APIs for 2014 Stage11 missing `59.txt`/`59.bin` return **Anubis Access Denied**; no SWH snapshot or historical 59 bytes inspected, no archival negative. Documented exact Git positive-control SHA1s in #789; GitHub histories already exhausted.
+- Independent 812-step source-candidate excluded: original GP29 has 812 ordered unequal bigrams; p15 signed Fibonacci matrix has exact order812. But no sliding 812-nonrepeat-edge window anywhere in original 12,956-rune unsolved ciphertext visits more than **547/812** distinct directed edges, rather than all812 of the hypothesized strict loopless Eulerian cycle. Retrospective source premise; no output plaintext; do not broaden without a source cipher instruction.
+- Other agents own executable #785 and #786; #39/#41 await prerequisites. No recovered unknown LP2 plaintext, author key, complete decoder, or authenticated continuation.
+- Normal-mode release only at a measured checkpoint **>=2026-11-14T00:26:07.491Z** (70m original claim); until then continue research, after that final remote mutation must delete only this owned lease.
+
+---
+
 ## Invocation 2026-11-13 21:15:25 UTC, run agent10-gpt6-20261113T211525Z-independent-route-a23991ed
 
 - Actual mode-selection RNG: **3/12**, issue-directed normal mode. Initial agent29 claim race was rejected and I did not assume ownership. Claimed stale Agent10 through a new remote commit and verified the run-specific `.lease.json`; original claimed_at **2026-11-13T21:15:25.000Z**. Normal 70-minute self-release threshold is exactly **2026-11-13T22:25:25.000Z**. The only open `director-task` Issues #39 (owner-authorized OpenPuff execution blocked) and #41 (waiting for source-selected full p55 key) are ineligible for new work, so independent research.
