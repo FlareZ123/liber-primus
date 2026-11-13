@@ -131,5 +131,111 @@ assert.equal(at,2982);
 const nativeGridIoc=ioc([decoded]);
 assert(Math.abs(nativeGridIoc-0.06392531640699615)<1e-13);
 
+
+/**
+ * A strictly stronger all-secret source-language test: each complete printed
+ * rune word may have its own unrelated 28-symbol secret permutation. Only
+ * within-word rank equality pairs survive that freedom. Original word/page
+ * wraps are respected; exact within-word doublet erasures are retained.
+ */
+const {parseLP2Words}=require('./lp2_word_pages.cjs');
+const wordTape=parseLP2Words(read('resources/liber-primus/lp2-transcription.txt'));
+assert.equal(wordTape.words.length,2896);
+assert.equal(wordTape.runeCount,12956);
+assert.equal(wordTape.crossPageWords,32);
+const runeIndex=new Map(data.runes.map((glyph,i)=>[glyph,i]));
+const wordInputs=wordTape.words.map(w=>Array.from(w.runes,ch=>runeIndex.get(ch)));
+let recoveredOriginal=0,wordErased=0;
+const wordMasks=[],originalWordRanks=[];
+for(const w of wordInputs){
+ const r=[],mask=[];
+ for(let i=1;i<w.length;i++){
+  const value=inverse[w[i-1]][w[i]];
+  if(value<0){mask.push(true);wordErased++;}
+  else{r.push(value);mask.push(false);recoveredOriginal++;}
+ }
+ originalWordRanks.push(r);wordMasks.push(mask);
+}
+assert.equal(recoveredOriginal,9997);
+assert.equal(wordErased,63);
+/** @param {number[][]} records */
+function wordPairCollision(records){
+ let numerator=0,denominator=0;
+ for(const w of records){
+  const c=new Uint16Array(28);
+  for(const v of w)c[v]++;
+  for(const n of c)numerator+=n*(n-1);
+  denominator+=w.length*(w.length-1);
+ }
+ return {numerator,denominator,rate:numerator/denominator};
+}
+const observedWord=wordPairCollision(originalWordRanks);
+assert.equal(observedWord.numerator,1400);
+assert.equal(observedWord.denominator,39930);
+assert(Math.abs(observedWord.rate-0.035061357375406964)<1e-14);
+/** @param {string} raw */
+function gp28OneWord(raw){
+ const s=raw.toUpperCase().replace(/V/g,'U').replace(/[KQ]/g,'C').replace(/Z/g,'S');
+ const out=[];
+ for(let i=0;i<s.length;){
+  let t;
+  if(s.slice(i,i+3)==='ING'){t='NG';i+=3;}
+  else{t=pairs.has(s.slice(i,i+2))?s.slice(i,i+2):s[i];i+=t.length;}
+  const v=alphabet.get(t);assert(v!==undefined);
+  out.push(v===28?27:v);
+ }
+ return out;
+}
+let wordRandomState=0x11a11301;
+/** @returns {number} */
+function wordRandom(){
+ wordRandomState^=wordRandomState<<13;
+ wordRandomState^=wordRandomState>>>17;
+ wordRandomState^=wordRandomState<<5;
+ return (wordRandomState>>>0)/4294967296;
+}
+/** @param {string} sourceFile @param {number} sourceWords */
+function nativeWordChallenges(sourceFile,sourceWords){
+ const tokens=read(sourceFile).match(/[A-Za-z]+/g)??[];
+ assert.equal(tokens.length,sourceWords);
+ const byLength=new Map();
+ for(const token of tokens){
+  const word=gp28OneWord(token),choices=byLength.get(word.length)??[];
+  choices.push(word);byLength.set(word.length,choices);
+ }
+ for(const target of wordInputs)assert(byLength.has(target.length));
+ const rates=[];
+ for(let trial=0;trial<400;trial++){
+  let numerator=0,denominator=0;
+  for(let wi=0;wi<wordInputs.length;wi++){
+   const ciphertext=wordInputs[wi],mask=wordMasks[wi];
+   const dictionary=byLength.get(ciphertext.length);
+   const source=dictionary[Math.floor(wordRandom()*dictionary.length)];
+   const cnt=new Uint16Array(28);
+   let prev=ciphertext[0],length=0;
+   for(let j=1;j<ciphertext.length;j++){
+    if(mask[j-1])continue; // Repeat erasure is preserved exactly.
+    const coded=options[prev][source[j]];
+    const decoded=inverse[prev][coded];
+    assert.equal(decoded,source[j]);
+    cnt[decoded]++;length++;prev=coded;
+   }
+   for(const v of cnt)numerator+=v*(v-1);
+   denominator+=length*(length-1);
+  }
+  assert.equal(denominator,39930);
+  rates.push(numerator/denominator);
+ }
+ const mean=rates.reduce((s,v)=>s+v,0)/rates.length;
+ const count=rates.filter(v=>v<=observedWord.rate).length;
+ assert.equal(count,0);
+ return {sourceWords,draws:rates.length,mean,min:Math.min(...rates),max:Math.max(...rates),atOrBelowOriginal:count};
+}
+const wordControls={
+ Shakespeare:nativeWordChallenges('resources/control/shakespeare_first300k.txt',55407),
+ Gibran:nativeWordChallenges('resources/control/gibran_prophet_58585.txt',15733),
+ Emerson:nativeWordChallenges('resources/control/emerson_essays_2944.txt',77932)
+};
+
 console.log(JSON.stringify({status:'PASS',ordinary:n,erasures:erased,
- observed:{pooled:observed[0],perPage:observed[1]},controls,gridKey:{body:chapter.length,keyBytes:key.length,erasures:erasedChapter,originalIoC:observedGridIoc,nativePlantedIoC:nativeGridIoc,recovered:at}}));
+ observed:{pooled:observed[0],perPage:observed[1]},controls,gridKey:{body:chapter.length,keyBytes:key.length,erasures:erasedChapter,originalIoC:observedGridIoc,nativePlantedIoC:nativeGridIoc,recovered:at},wordAllSecret:{original:observedWord,ordinary:recoveredOriginal,erasures:wordErased,controls:wordControls}}));
