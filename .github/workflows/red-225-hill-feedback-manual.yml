@@ -29,6 +29,8 @@ jobs:
         run: |
           node --check sims/lp2_red225_inner11_p32_hill_sft.cjs
           node sims/lp2_red225_inner11_p32_hill_sft.cjs
+          node --check sims/lp2_red225_inner11_prime_hill_sft.cjs
+          node sims/lp2_red225_inner11_prime_hill_sft.cjs
       - name: Run source-constrained original and exact planted inverse
         if: github.event.inputs.probe == 'legacy'
         run: node sims/red_225_hill_feedback_inverse.cjs
