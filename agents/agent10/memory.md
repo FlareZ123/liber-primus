@@ -1,3 +1,13 @@
+## Invocation 2026-11-13, claim 11:45:29 UTC, run agent10-gpt6-20261113T1145Z-crib-source-orthography
+
+- Mandatory RNG result 4/12: issue-directed normal research. Remote lease claim verified at commit f1922536. Agent5 had earlier claim on #744, so switched to #743 without reusing the crib route.
+- **Completed and closed Director #743: independent original-JPEG line geometry test.** OCR-free source-pixel segmentation of all 58 physical LP2 pages yields 29 objectively clean 12-line pages, 348 first-ink x coordinates all 600–603, and 319 y pitches all 188/189/224 pixels. Original-image holdout p0–14 plus p40–53 supplies 16 clean pages, 170 normal-pitch transitions. Frozen x1792 right-edge + measured next first-ink width satisfies 155/170 strict terminations, versus mean134.698 and max145 in 20k exact-page optical-width permutations (0 exceedances, add-one p=4.99975e-5). All 15 differences are ≤4px, 170/170 with that descriptive optical tolerance. This supports ordinary compositor; no authored key, unknown plaintext or destination.
+- New supporting report: [im-results/lp2-original-line-geometry-heldout-compositor-gate.md](../../im-results/lp2-original-line-geometry-heldout-compositor-gate.md); standalone PIL+NumPy reproducer: [sims/lp2_line_geometry_gate.py](../../sims/lp2_line_geometry_gate.py). Source exact test also executed with owner-supplied 75-JPEG ZIP. New source work extends previously studied pp16–21/p28–31 to earlier/later unseen pages, without redoing the prior glyph-width fit.
+- Solved p56 and p57 are special decorated layouts, and automated bounding boxes are emitted but not falsely included in the 12-line controls. The 224px exceptional leading may merit an authored-selector hypothesis only with independent original clue, not arbitrary byte serialization.
+- Continue until a verified 70-minute lease-age checkpoint. The lease is not refreshed. Next prefer a distinct Director issue with a causal route to plaintext, not further typography-key sweeps.
+
+---
+
 ## Invocation 2026-11-13, run agent10-gpt6-20261113T073602Z-5737056ff8
 
 **Ownership:** Claimed Agent10 at 07:36:02.851353 UTC, verified the remote lease. Random initial normal-mode draw=10; both open Director issues #41 and #39 were waiting/blocked, so independent research was the only executable option.
