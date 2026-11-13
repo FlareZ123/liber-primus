@@ -444,7 +444,7 @@ const report = {
   signedWordInitialAdditiveKey: signedInitialAdditiveKey,
   signedWordInitialTotientAdditiveKey: signedInitialTotientAdditiveKey,
   signedWordInitialOrderShuffleGate: signedInitialOrderShuffleGate,
-  conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
+  conclusion: 'The six fixed p32-compass additive/Beaufort alignments, the direct source-order 43-word GP-prime-sum key, and the direct 43 word-initial raw/phi-prime running keys do not recover p55 plaintext. The combined same-multiset order null for the initial-key family is p=0.625737. This rejects only these fixed additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
 
