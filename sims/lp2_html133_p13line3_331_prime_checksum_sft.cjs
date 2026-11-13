@@ -269,6 +269,24 @@ const sourceInner29Direct = [-1, 1].map(sign => {
 close(sourceInner29Direct[0].ioc, 0.031578947368421054);
 close(sourceInner29Direct[1].ioc, 0.031578947368421054);
 
+// A second literal circumference peel leaves 10 runes. The independently
+// source-selected p57 23-dot mask has a 10-dot complement on the p55 core.
+const sourceInner10 = selectedWords.flatMap(word => word.slice(2, word.length - 2));
+assert.equal(sourceInner10.length, 10);
+assert.equal(primeSum(sourceInner10), 619);
+const p55Complement10 = [0, 2, 5, 7, 10, 12, 15, 17, 20, 22].map(i => p55Core23[i]);
+assert.equal(primeSum(p55Complement10), 508);
+const complement10Direct = [-1, 1].map(sign => {
+  const decoded = p55Complement10.map((c, i) => (c + 29 + sign * sourceInner10[i]) % 29);
+  assert.deepEqual(
+    decoded.map((p, i) => (p + 29 - sign * sourceInner10[i]) % 29),
+    p55Complement10,
+  );
+  return { sign, gp: decoded.map(i => corpus.translit[i]).join('-') };
+});
+assert.equal(complement10Direct[0].gp, 'I-EA-H-D-P-J-S-W-P-Y');
+assert.equal(complement10Direct[1].gp, 'TH-L-L-S-P-TH-C-NG-L-EO');
+
 // Fully solved authentic GP-rune p57 is the independent positive control.
 const known = corpus.pages[57].indices;
 assert.equal(known.length, 95);
@@ -295,5 +313,7 @@ console.log(JSON.stringify({
   sourceInner29: {gpRunes: sourceInner29.length, uniqueRunes: new Set(sourceInner29).size,
     words: selectedWords.length, primeSum: primeSum(sourceInner29)},
   p55Inner29DirectCandidates: sourceInner29Direct,
+  sourceInner10: {gpRunes: sourceInner10.length, primeSum: primeSum(sourceInner10)},
+  p55StencilComplement10: {primeSum: primeSum(p55Complement10), decoded: complement10Direct},
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
