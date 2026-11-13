@@ -214,6 +214,8 @@ function main() {
       if (item.source.every((value, k) => item.page.indices[i + k] === value)) wordOffsets.push(i);
     }
     assert.equal(wordOffsets.length, 1);
+    const actualPrimeSum = item.source.reduce((sum, digit) => sum + corpus.prime[digit], 0);
+    assert.equal(actualPrimeSum, item.name === 'p0#w6' ? 563 : 569);
     const deltas = differenceDigits(item.source);
     assert(deltas !== null);
     assert.deepEqual(accumulate(item.source[0], deltas), item.source);
