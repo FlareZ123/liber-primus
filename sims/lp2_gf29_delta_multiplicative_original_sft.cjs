@@ -98,6 +98,8 @@ assert.equal(original.reduce((a, p) => a + p.indices.length, 0), 12956);
 let previous = null, repeats = 0, eligible = 0, sourceTotal = 0;
 let expectedEa = 0, expectedEaInitial = 0, observedBoundaryRepeats = 0;
 const eaUnattainable = [];
+const rotatedWordMaskMissing = [];
+let rotatedExpectedAll = 0, rotatedExpectedBoundary = 0, rotatedBoundaryVariance = 0;
 const eligibleGroups = new Map();
 const byLength = new Map();
 const repeatMasks = [];
@@ -125,8 +127,20 @@ for (const wordItems of unknown) {
   if (mask[0] === 1) observedBoundaryRepeats++;
   const options = weightedByLen[mask.length] || [];
   let totalWeight = 0, eaWeight = 0, eaStartWeight = 0, compatible = false;
+  let rotatedEaWeight = 0, rotatedWordCompatible = false;
   for (const item of options) {
     totalWeight += item.weight;
+    const totalWordEa = item.values.filter(v => v === 28).length;
+    rotatedEaWeight += item.weight * totalWordEa;
+    if (mask.includes(1)) {
+      for (let shift = 0; shift < mask.length; shift++) {
+        if (mask.every((z, i) => z < 0 ||
+          z === +(item.values[(i+shift) % mask.length] === 28))) {
+          rotatedWordCompatible = true;
+          break;
+        }
+      }
+    }
     let count = 0, allowed = true;
     for (let j = 0; j < item.values.length; j++) {
       if (mask[j] < 0) continue;
@@ -141,7 +155,18 @@ for (const wordItems of unknown) {
   if (totalWeight) {
     expectedEa += eaWeight / totalWeight;
     expectedEaInitial += eaStartWeight / totalWeight;
+    const knownPositions = mask.filter(v => v >= 0).length;
+    rotatedExpectedAll += rotatedEaWeight / totalWeight *
+      knownPositions / mask.length;
+    if (mask[0] >= 0) {
+      const probability = rotatedEaWeight / totalWeight / mask.length;
+      rotatedExpectedBoundary += probability;
+      rotatedBoundaryVariance += probability * (1-probability);
+    }
   }
+  if (mask.includes(1) && !rotatedWordCompatible)
+    rotatedWordMaskMissing.push({page:wordItems[0].page,
+      len:mask.length, mask:mask.join('')});
   if (mask.includes(1) && !compatible) {
     eaUnattainable.push({page:wordItems[0].page, len:mask.length, mask:mask.join('')});
   }
@@ -166,6 +191,9 @@ assert.equal(eligible, 2841);
 assert.equal(repeatMasks.length, 85);
 assert.equal(observedBoundaryRepeats, 23);
 assert.equal(eaUnattainable.length, 5);
+assert.equal(rotatedWordMaskMissing.length, 1);
+assert.deepEqual(rotatedWordMaskMissing[0],
+  {page:27,len:12,mask:'000001000001'});
 const allLong = [...byLength.entries()].filter(([len]) => len >= 6);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.words, 0), 791);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.affine, 0), 0);
@@ -254,6 +282,15 @@ const report = {
     expectedEaWordInitial:+expectedEaInitial.toFixed(3),
     eaWordMaskMissing:eaUnattainable,
     all29SingletonNativeEnglishBest:singletonStats.slice(0,8),
+    sourceNativeUniformWordRotation: {
+      model:'each native-English GP word cyclically rotates by an unknown offset before feedback',
+      expectedTotal:+rotatedExpectedAll.toFixed(3),
+      expectedBoundary:+rotatedExpectedBoundary.toFixed(3),
+      sdBoundary:+Math.sqrt(rotatedBoundaryVariance).toFixed(3),
+      boundaryModelZ:+((observedBoundaryRepeats-rotatedExpectedBoundary)/
+        Math.sqrt(rotatedBoundaryVariance)).toFixed(3),
+      impossibleZeroWordMasks:rotatedWordMaskMissing
+    },
     nonzeroDifferenceChiSquare27df:chi, differenceFrequencies:nonzero},
   hypothesis: 'C_i=C_(i-1)+K_i*(P_i+1) mod29, K_i in 1..28',
   keyIndependent: {eligibleWords:eligible, eligibleDeltaRunes:sourceTotal,
