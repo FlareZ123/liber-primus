@@ -1,0 +1,21 @@
+name: LP2 June 2014 dual crib original inverse gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-claim-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate exact original claim SFT
+        run: node --check sims/lp2_2014_irc_claim_original_crib_gate.cjs
+      - name: Reproduce two source-era word cribs and test original pages
+        run: node sims/lp2_2014_irc_claim_original_crib_gate.cjs
