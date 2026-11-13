@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * SFT: p54 red9 + (p54 black223 + p55 word exterior33) + p55 word interior43
+ * SFT: p54 red9 + (p54 post-title body223 + p55 word exterior33) + p55 word interior43
  * = 9+256+43, and fixed original p50 256-byte table overlay.
  * Input is original-source corpus, ink and numeric-grid JSON. CJS Node22.
  */
@@ -32,10 +32,10 @@ const insidePositions = [
 const inside = new Set(insidePositions);
 const outerPositions = Array.from({ length: 76 }, (_, i) => i)
   .filter((i) => !inside.has(i));
-const p54Black = p54.slice(head.length);
-const exterior = p54Black.concat(outerPositions.map((i) => p55[i]));
+const p54Body = p54.slice(head.length);
+const exterior = p54Body.concat(outerPositions.map((i) => p55[i]));
 const interior = insidePositions.map((i) => p55[i]);
-assert.equal(p54Black.length, 223);
+assert.equal(p54Body.length, 223);
 assert.equal(outerPositions.length, 33);
 assert.equal(interior.length, 43);
 assert.equal(exterior.length, 256);
@@ -151,7 +151,7 @@ const triple = keys.map(({ name, values }, model) => {
 });
 
 console.log(JSON.stringify({
-  sourcePartition: 'p54 heading 9 / p54 black223 + p55 word exterior33 / p55 word interior43',
+  sourcePartition: 'p54 heading 9 / p54 post-title body223 + p55 word exterior33 / p55 word interior43',
   lengths: [9, 256, 43],
   grid: 'p50 canonical 32x8 base60 original numeric tokens',
   literalGPIndexMatches: matchIndex,
