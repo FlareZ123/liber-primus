@@ -1,0 +1,13 @@
+name: Agent4 GF29 multiplicative feedback original-source gate
+on:
+  workflow_dispatch:
+jobs:
+  sft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-source single-file feedback test
+        run: node sims/lp2_gf29_delta_multiplicative_original_sft.cjs
