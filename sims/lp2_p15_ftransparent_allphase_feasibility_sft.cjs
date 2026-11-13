@@ -208,11 +208,73 @@ const impossibleFloralPages=floralReport.filter(x=>
   x.runes>0 && x.possibleOf32IndependentStartsAndSigns===0).map(x=>x.physicalPage);
 assert.deepEqual(impossibleFloralPages,[40,42,44,45,47,48,54]);
 
+/*
+ * All affine distortions of the five independent 16-value p15 source lists:
+ * K[j]=(a*S[j]+b) mod29. By exhaustive enumeration this includes
+ * EVERY Caesar addition, reflection, sign and nonzero multiplicative
+ * rescaling of the original source-value key, for every cyclic phase.
+ * A zero-slope zero-offset key is the vacuous identity C=P; it survives
+ * but cannot be a plaintext decryption of the source ciphertext.
+ * Exhaustive DP still accounts for every genuine historical F skip mask.
+ */
+const affineSources=[
+  ['printed16',printed],
+  ['prime16',primes],
+  ['totient16',primes.map(p=>p-1)],
+  ['fibonacci16',fibonacci],
+  ['ordinal16',fibonacci.map(p=>p+1)]
+];
+const affinePrefixExpected=[634,617,617,617,617];
+const affineReport=[];
+let affineConfigurations=0,affineSurvivors=0,affinePlantCount=0;
+for(let si=0;si<affineSources.length;si++) {
+  const [name,sourceValues]=affineSources[si];
+  let survivors=0,longestImpossiblePrefix=-1;
+  for(let a=0;a<29;a++) for(let b=0;b<29;b++) {
+    const key=sourceValues.map(x=>mod29(a*x+b));
+    for(let phase=0;phase<16;phase++) {
+      const shift=used=>key[(used+phase)%16];
+      const result=feasible(ciphertext,shift);
+      affineConfigurations++;
+      if(result.possible) {
+        survivors++;
+        assert.equal(a,0,'any surviving nontrivial source scaling is a new cipher lead');
+        assert.equal(b,0,'any surviving nonzero affine offset is a new cipher lead');
+      } else {
+        longestImpossiblePrefix=Math.max(longestImpossiblePrefix,result.firstFailure);
+      }
+    }
+    // Independent positive planted source-native recovery for a real
+    // nontrivial member from each 16-value family.
+    if(a===7 && b===11) {
+      const shift=used=>key[(used+3)%16];
+      const encoded=encrypt(native,shift);
+      assert.ok(feasible(encoded,shift).possible);
+      affinePlantCount++;
+    }
+  }
+  assert.equal(survivors,16);
+  assert.equal(longestImpossiblePrefix,affinePrefixExpected[si]);
+  affineSurvivors+=survivors;
+  affineReport.push({
+    sourceKey:name,affineScales:29,affineOffsets:29,phases:16,
+    tested:13456,surviving:survivors,
+    survivingKeys:'only a=0,b=0 with any of 16 redundant phases',
+    maximumNontrivialFeasiblePrefix:longestImpossiblePrefix
+  });
+}
+assert.equal(affineConfigurations,67280);
+assert.equal(affineSurvivors,80);
+assert.equal(affinePlantCount,5);
+
 console.log(JSON.stringify({
   method:'Exact all-F-mask GF29 feasibility, literal plaintext-F bypass',
   authenticSolvedP56:{runes:85,...known56},
   unknownOriginal:{physicalPages:'16-22',runes:1744,ciphertextF:65},
   eightSourceDerivedKeys:results,totalOriginalVariants:planted,
+  affineAllSecret:{tested:affineConfigurations,survivingDegenerateZeroKeys:affineSurvivors,
+    excludedNontrivialConfigurations:affineConfigurations-affineSurvivors,
+    families:affineReport,positiveNativeSourcePlants:affinePlantCount},
   positiveOriginalLengthFTransparentPlants:planted,
   floralPrimeTotient:{pages:'40-55',runes:3316,originalAssignmentPossible,
     allStartAllSignOriginalPages:floralReport,impossibleFloralPages,
