@@ -169,6 +169,64 @@ assert.equal(fourBy829.raw.doubles, 21);
 assert.equal(fourBy829.colFirst.doubles, 121);
 assert.equal(fourBy829.rowFirst.doubles, 119);
 
+
+// One source-motivated identity-changing stage: the verified p56 decoder
+// subtracts prime totients. The highlighted red3299 is the 463rd prime.
+// Freeze the clock at that prime, with all 3316 floral symbols consumed.
+// Both natural four-column inversions and two cipher-layer orders are checked.
+const primeWindow = [];
+for (let n = 2; primeWindow.length < 462 + floral.length; n += 1) {
+  if (isPrime(n)) primeWindow.push(n);
+}
+assert.equal(primeWindow[462], 3299);
+assert.equal(primeWindow[463], 3301);
+const totients = primeWindow.slice(462, 462 + floral.length)
+  .map((p) => (p - 1) % 29);
+function transposeFour(x, dir) {
+  if (dir === 0) return x.slice();
+  return Array.from({ length: x.length }, (_, i) =>
+    dir === 1 ? x[(i % rows) * cols + Math.floor(i / rows)] :
+      x[(i % cols) * rows + Math.floor(i / cols)]);
+}
+function reverseTranspose(x, dir) {
+  return transposeFour(x, dir === 1 ? 2 : dir === 2 ? 1 : 0);
+}
+function addPad(x, sign) {
+  return x.map((v, i) => (v + sign * totients[i] + 29) % 29);
+}
+function decodeOriginal(x, sign, dir, layer) {
+  return layer === 0 ? addPad(transposeFour(x, dir), sign) :
+    transposeFour(addPad(x, sign), dir);
+}
+function encodePlant(x, sign, dir, layer) {
+  return layer === 0 ? reverseTranspose(addPad(x, -sign), dir) :
+    addPad(reverseTranspose(x, dir), -sign);
+}
+function indexCoincidence(x) {
+  const bins = new Int32Array(29);
+  for (const v of x) bins[v] += 1;
+  return bins.reduce((sum, n) => sum + n * (n - 1), 0) / (x.length * (x.length - 1));
+}
+const native = Array.from({ length: floral.length }, (_, i) =>
+  corpus.pages[57].indices[i % corpus.pages[57].indices.length]);
+const compound = [];
+for (const dir of [0, 1, 2]) {
+  for (const layer of dir === 0 ? [0] : [0, 1]) {
+    for (const sign of [-1, 1]) {
+      const plaintext = decodeOriginal(floral, sign, dir, layer);
+      assert.deepEqual(encodePlant(plaintext, sign, dir, layer), floral);
+      assert.deepEqual(decodeOriginal(encodePlant(native, sign, dir, layer),
+        sign, dir, layer), native);
+      compound.push({ dir, layer, sign, ioc: indexCoincidence(plaintext) });
+    }
+  }
+}
+assert.equal(compound.length, 10);
+const low = Math.min(...compound.map((r) => r.ioc));
+const high = Math.max(...compound.map((r) => r.ioc));
+assert.ok(Math.abs(low - 0.03436039350323037) < 1e-12);
+assert.ok(Math.abs(high - 0.03459309677290235) < 1e-12);
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -178,6 +236,8 @@ console.log(JSON.stringify({
   prime463IsRed3299Rank: true,
   fourTimes829EqualsOriginalFloralLength: true,
   naturalFourBy829Readouts: fourBy829,
+  p463PrimeTotientAndFourColumnInverses: compound,
+  sourceP57SolvedIoC: indexCoincidence(corpus.pages[57].indices),
   primitiveRoot: 2,
   sourceOrder: raw,
   doubledOrder: doubled,
