@@ -1,41 +1,33 @@
-# LP1 physical p05: exact reverse-copy trailer in an original JPEG
+# LP1 physical p05: 360-byte OOB header plus reversed JPEG copy
 
-**Source-byte discovery, 11 November 2026.** This is a genuine, deterministic byte-level relationship in the supplied original archive, but **not recovered unknown LP2 plaintext, an LP2 key, or an authenticated instruction to reverse any specific LP2 stream**. Its purpose is unresolved.
+**Status: established byte structure; the OOB content is known 2014 Onion 3 prior art, not a new key or LP2 decryption.**
 
-## Original-source observation
+## Correct JPEG boundary
 
-The archived `resources/liber-primus/05.jpg` (LP1, preceding the 58-page second release) has SHA-256 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7`. Its final JPEG EOI marker starts at original byte offset **600,364** (zero-based). There are exactly **72,700 bytes following that marker**. If `B` denotes the entire file and `T=B[600366:]`, an exact byte-for-byte identity holds:
+The archived `resources/liber-primus/05.jpg` has SHA-256 `2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7`. A marker-aware JPEG parser finds the first valid JPEG EOI end at offset **336,353**. The actual post-EOI trailer is **336,713 bytes**:
 
-```
-len(T) = 72700
-T == reverse(B[:72700])
-```
+- 360-byte header: two LF bytes followed by 358 ASCII hex characters;
+- 179 decoded OOB bytes;
+- 336,353-byte exact reversal of the complete first JPEG.
 
-Thus the appended bytes are an exact reversal of the file's *own initial 72,700 bytes*. Reversing them exposes an incomplete JPEG beginning with the same JFIF header and initial text/image content as the original; it contains **no independent file bytes or unknown secret material**. The prefix bytes have been duplicated by the appendix.
+Thus `raw[336713:]` is not the right slicing expression; the precise identity is `raw[336353+360:] == reverse(raw[:336353])`.
 
-An identical EOI/trailer census of all **75** supplied original JPEGs (`00.jpg` through `74.jpg`) finds **74 with zero bytes after the final EOI marker**. Only LP1 `05.jpg` has an appended payload. This distinguishes the observation from an ordinary characteristic shared by the archive's JPEG encoder. None of the **58** LP2 JPEGs has appended data after the final EOI.
+## Important correction to the earlier rfind-based account
 
-## Fixed original-LP2 byte-key screen
+The raw byte pair `FF D9` at offset 600,364 is **not** the first JPEG's EOI. It occurs inside the appended reversed copy. The 72,700 bytes after that later marker-like pair do equal the reversal of the first 72,700 source bytes, but this is only a substructure of the full reverse copy. The old rfind-based report treated that internal byte pair as the JPEG boundary and consequently described an incomplete trailer.
 
-To test the cheapest possible causal route from this literal source-byte stream to unknown LP2 ciphertext, consume the **actual post-EOI bytes in printed file order**, starting at its first byte, with one continuous book-global GP clock over all **12,956 unknown runes**. Map each source byte to a 29-way residue and invert GP29 addition/subtraction. Neither choice produces source-language-looking text:
+A separate marker-aware inspection also found that `resources/liber-primus/10.jpg` contains four concatenated valid JPEGs; see [`lp1-10-multi-jpeg-container.md`](lp1-10-multi-jpeg-container.md). Whole-corpus inventories must parse JPEG marker streams rather than use `rfind(FF D9)`.
 
-| Fixed original inversion | Original decoded IoC | Observable result |
-| --- | ---: | --- |
-| Raw unknown LP2, before inverse | 0.0344783978645 | Near-uniform native GP |
-| `P_i = (C_i − trailer[i] mod 29) mod 29` | **0.0344812933935** | Unreadable |
-| `P_i = (C_i + trailer[i] mod 29) mod 29` | **0.0344950203456** | Unreadable |
-| `trailer[i] mod 28` after excluding prior GP ciphertext symbol | **0.0357254560223** on 12,870 eligible positions | **86 original adjacent repeats are undefined** by this 28-choice rule |
+## Prior-art correction
 
-The last rule cannot invert all original positions without an extra independently identified escape mechanism. Under the two direct additive rules, the IoCs remain at the cipher baseline; they do not recover GP-English plaintext or identify the historical cipher. No extra byte offsets, rotations, file variants, salts or tunable mappings were introduced. All mappings are conjectural because the source itself does not prescribe a byte→GP29 conversion.
+The 179-byte header is the already documented Onion 3 out-of-bounds payload in the 2014 OpenPuff walkthrough. That source prints the same hex sequence, reverses it to recover the 5×5 magic square of sum 1033, and confirms the image's lower half encodes the same matrix. The word `MOBIUS` is one cell of that square; the 18-cell triplet rotation and short `0x02` separator do not establish a new Möbius cipher or p55 key.
 
-Reproduce directly against source bytes and the pinned complete original rune corpus using the [full original-inversion SFT](../sims/lp1_p05_jpeg_trailer_original_inverse_sft.cjs), alongside the [JPEG-only source gate](../sims/lp1_05_reversed_jpeg_trailer_sft.py).
+Source: [OpenPuff for experts — Cicada 3301 recruitment puzzle 2014](https://embeddedsw.net/doc/Openpuff_for_experts_Cicada_3301_recruitment_puzzle_2014.pdf).
 
-## Interpretation and cryptanalytic status
+## Cryptanalytic status
 
-The construction is a literally reversible byte operation visible to a byte-level human inspection of a historical Cicada page. Whether it is a deliberately planted reversal hint, a downstream artifact-repacking effect, or some other production anomaly is **undetermined**. The doubled fragment is a prefix of the same JPEG, so it cannot itself serve as a previously unknown independent high-entropy keystream. The source does not say which later page, text region, bit order or ciphertext register should be reversed, nor which key follows. Whole-stream reversal is only a positional transposition and cannot by itself explain the book's near-uniform ciphertext marginals.
-
-The meaningful next gate is an **independent contemporaneous instruction or source-level pattern that gives a unique target and role for this particular byte-reversal idiom**, plus one original LP2 plaintext prediction. Avoid a broad family of arbitrary reversal/phase sweeps or treating the 72,700-byte duplication as new key entropy.
+The earlier 72,700-byte direct additive screen tested only the suffix after the internal raw `FF D9` pair. Its negative result does not test the complete 336,713-byte trailer and must not be presented as such. More importantly, the 179-byte OOB payload is already explained by the historical magic-square stage, while the reversed JPEG is duplicated source material, not independent high-entropy key material. No LP2 plaintext or key was recovered here.
 
 ## Reproduction
 
-Run [`sims/lp1_05_reversed_jpeg_trailer_sft.py`](../sims/lp1_05_reversed_jpeg_trailer_sft.py), a small source-only Python program (stdlib, no network), against the original `resources/liber-primus/*.jpg` archive. It verifies the exact 05.jpg SHA-256, trailer length, reversal identity and uniqueness across all 75 original JPEGs.
+Run `python sims/lp1_05_reversed_jpeg_trailer_sft.py`. The marker-aware script verifies the first EOI, exact 360-byte header, 179-byte OOB payload, full reversed-copy identity, and the later internal marker-like pair.
