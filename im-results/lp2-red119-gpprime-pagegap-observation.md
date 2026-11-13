@@ -15,6 +15,20 @@ Both triad sums are prime, and their difference **173−137=36** equals the sour
 
 Separately, an earlier report established a different, later-text route to **133** and **331**: solved p57 *Parable* has heading GP-prime sum449, and two body clauses have sums1031 and1229, yielding **1031 mod449=133** and **1229 mod449=331** ([independent historical arithmetic](audio-761-pad-scan.md#parable-s-heading-is-the-modulus-of-the-seventh-onion-title-and-id)). Neither that modulus selection nor the triad page-subtraction rule is independently instructed by Cicada. Together they nominate historical page navigation or checksumming as a testable possibility, rather than certifying it.
 
+## Alternative consistent 75-image archive-ordinal reading
+
+The original 2014 image archive holds **75 JPEGs numbered 00.jpg–74.jpg**, the first 17 comprising LP1 and the last 58 comprising LP2. If GP-prime ranks are **one-based ordinal positions in this complete original archive**, a *single convention* converts the red triads as follows:
+
+| Source-red selector | Prime sum | Prime ordinal (one-based) | JPEG selected | Physical LP2 page |
+| --- | ---: | ---: | --- | ---: |
+| p3 red119 three runes | 137 | **33** | **32.jpg** | **p15**, first page of the Fibonacci/prime chapter |
+| p39 red119 three runes | 173 | **40** | **39.jpg** | **p22**, last page of the Fibonacci/prime chapter |
+| p33 red heading (10 runes) | 379 | **75** | **74.jpg** | **p57 PARABLE**, solved terminal page |
+
+This alternative is striking because the first two otherwise isolated red triads identify the **two exact ends of the source-visible p15–22 chapter**, while the p33 red heading's separately source-selected prime-weight sum **379** (the **75th prime**) identifies the final image containing the *Parable*. All three use the same rule `source GP-prime sum → prime ordinal → (ordinal−1).jpg` without an additional cipher key or per-target index adjustment. This is a stronger *coherent source-address hypothesis* than a claim requiring a different page-number convention for each leg.
+
+The independent physical-page convention above also sends the original triads to major chapter starts **p33/p40**, with a p33/p39 cuneiform-artwork bridge. **Both interpretations fit some recognizable original features**, so the source currently does not uniquely choose an index convention. The 75-image total itself, and the actual 379-weight heading, are source-factual, but noticing 379 after inspecting the earlier ordinal pair is **exploratory selection**. The source does not state a prime-rank image-lookup rule, and no decoded unknown-page message yet follows from the p15/p22/p57 destination pages. This should motivate a limited attempt to identify a real original instruction directing the page order, rather than searching arbitrary additional prime-address combinations.
+
 ## Exact all-source census and a concrete rejected consumer
 
 Among **all 18 original standalone red spans**, exactly the two red119 triples have `sum(GP primes) − (physical page+1) = 133`. They are also the only spans whose sums are indexed prime values that point to a physical p0–57 page. Specifically, the nine ink-defined principal unknown-chapter starts are **[0,3,8,15,23,27,33,40,54]**. The two source triple sums index the **successive** p33 and p40 starts of this list.
