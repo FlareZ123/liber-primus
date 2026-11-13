@@ -13,6 +13,8 @@ Interpreting every **complete, unedited, printed-order** physical page as a poly
 | 2 | **1** |
 | 3 or greater | **0** |
 
+**Reverse-coefficient control:** Interpreting each original page's *first* rune as the constant coefficient, and keeping the same page order, yields **1,403 coprime pairs**, **82 degree-one pairs** and **zero pairs of degree two or above**. This second literal orientation therefore also has **no common degree≥3 generator on any page pair**. It is a separate original-input orientation, not a fitted transform, and is tested in the same standalone SFT.
+
 The **only quadratic overlap** is physical pp27 and 48: **gcd = X²+6X = X(X+6)**, ascending coefficients `[0,6,1]`. Both original pages **end in rune F/GP0**, directly explaining the factor `X`. The other shared root is `X=23` (since 23+6 ≡ 0 mod 29), with no source instruction selecting it. Replacing only p48's terminal F/GP0 by GP1 makes the pair coprime; this is a deliberately wrong-source control and **not** a correction to the manuscript.
 
 There is thus **no shared degree≥3 polynomial generator between any pair of complete original pages** in this fixed, source-natural GP29 coefficient convention, and no nonconstant factor divides *every* page. The observation strongly constrains a literal common-generator cyclic-code construction on full physical pages. It does **not** address chapter-wise reblocking, per-page unknown masks, symbol transformations, generator factors applied before encryption, or non-GP registers.
