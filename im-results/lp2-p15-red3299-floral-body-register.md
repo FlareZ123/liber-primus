@@ -65,9 +65,17 @@ The original floral source IoC is **0.034462826608**. All ten decoded candidates
 
 This retires this particular source-fixed p463 prime-totient transfer and the two natural 4×829 column reads as a direct original GP29-English decoder. It cannot exclude a different, independently instructed consumer for the 3299/463/829 relations.
 
+## Direct p15 4×4 Hill key on the independently fitted 4×829 register
+
+The preceding full-register divisibility makes the **literal printed p15 4×4 numerical square** a particularly direct Hill key candidate for exactly **829 consecutive 4-rune blocks** across the full pp40–55 floral register, including the two red titles. This is a different target from the already documented [whole-LP2 Hill4 negative](fibonacci-square-hill4-gate.md). Reduce the original printed square modulo29, and test exactly the matrix and its inverse under row-vector and column-vector conventions: **four** original-cipher decodings, no page-specific fitting, number reordering or arbitrary key.
+
+Their GP29 IoCs are **0.03442116199**, **0.03461329229**, **0.03443189654**, **0.03445609477**. None approaches the independently solved p57 source reference **0.06270996641**, and the GP transliterations are nonlinguistic. Each candidate round-trips all **3316 original runes**, with an independent source-native planted inverse passing at full length.
+
+**Decision:** the strongest obvious original clue-path `p15 printed 4×4 square → floral ciphertext 4×829 → direct Hill4` does not yield native GP plaintext. Its exact source alignment merits retention; the *linear Hill4 consumer* is rejected rather than expanded into fitted orientations or undocumented layers.
+
 ## Decision
 
-Retain **red3299 ↔ floral body minus two independently visible headings**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, and two natural 4×829 columnar readings as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
+Retain **red3299 ↔ floral body minus two independently visible headings**, the two red heading sums **435+597=φ(1033)**, and the adjacent p15 prime relations **463=π(3299)** and **4×829=3316**, as potential original scope/matrix selectors. Reject only the tested direct 16-address read, source-motivated primitive-root transposition, two natural 4×829 columnar readings, and the source-pinned 4×4 Hill inverse as plaintext-producing operations. The tested source-fixed prime-totient identity-changing inverse is also negative. Further work requires an *independently source-selected* alternative operation or a genuine original plaintext prediction. Avoid unsourced modulus-multiplier, phase, or stream-key shopping.
 
 **Exact single runnable test file:** [`sims/lp2_p15_red3299_floral_register_sft.cjs`](../sims/lp2_p15_red3299_floral_register_sft.cjs). It reads `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-ink-annotations.json`, rederives 3299 uniqueness, checks the full p15 mathematical formula, proves exact permutation, reproduces direct readout and 3000 null draws.
 
