@@ -49,6 +49,32 @@ assert.equal(suffix.length, crib.length);
 
 const toSlot = new Map(symbols.map((s, i) => [s, i]));
 const sourceSlots = body.map(s => toSlot.get(s));
+// A closed-25 Playfair on all 76 page-local glyphs is key-independent
+// impossible: classic Playfair never emits a doubled digraph pair,
+// whereas the literal original p55 [58,59] is doubled TH|TH.
+const doubledPlayfairPairs=[];
+for(let i=0;i+1<p55.length;i+=2){
+  if(p55[i]===p55[i+1])doubledPlayfairPairs.push(i);
+}
+assert.deepEqual(doubledPlayfairPairs,[58]);
+
+// Quantify the risk of retrospectively selecting exactly 25 symbols:
+// iid-uniform GP29 with 75 draws gives ~9.49% exactly 25 distinct
+// and ~12.88% at most 25. This is a source-shape calibration only.
+let occupancy=Array(30).fill(0);
+occupancy[0]=1;
+for(let n=0;n<75;n++){
+  const next=Array(30).fill(0);
+  for(let k=0;k<=29;k++){
+    next[k]+=occupancy[k]*k/29;
+    if(k<29)next[k+1]+=occupancy[k]*(29-k)/29;
+  }
+  occupancy=next;
+}
+const iidExactly25=occupancy[25];
+const iidAtMost25=occupancy.slice(0,26).reduce((a,b)=>a+b,0);
+assert.ok(Math.abs(iidExactly25-0.09490305349532854)<1e-13);
+assert.ok(Math.abs(iidAtMost25-0.12882653184111686)<1e-13);
 /**
  * Textbook Bifid fractionation. Inverse works for every 5x5 tableau,
  * because a secret tableau simply permutes the 25 slot labels.
@@ -201,6 +227,9 @@ for(const period of [5,25,75]){
 console.log(JSON.stringify({
   status:"NO ORIGINAL LP2 PLAINTEXT RECOVERED",
   originalP55SourceRunes:p55.length, completeBodyRunes:body.length,
+  uniformIidExactly25DistinctIn75:iidExactly25,
+  uniformIidAtMost25DistinctIn75:iidAtMost25,
+  pageLocalPlayfair25DoubledPairs:doubledPlayfairPairs,
   completeBodyWords:wordLengths.length, bodySymbols:symbols.length,
   missingOriginalBodySymbols:missing,
   sourceLinkedCrib:phrase, sourceLinkedCribLength:crib.length,
