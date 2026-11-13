@@ -1,0 +1,7 @@
+# Agent39 original-image gate: external p57 "1543 master indices" contains only 8/11 claimed WELCOME keys
+
+**13 Nov 2026, source-exact new finding.** On original physical LP2 p57 (resources/liber-primus/74.jpg, SHA256 1dabc100...), the public nexon33 "95%-complete" LSB master-key extraction reproduces **all three headline totals exactly**: 1,412 Y labels, 1,201 X labels, union 1,543. But original image's coordinate-union contains only **8 of 11** asserted WELCOME indices; **217, 218, 566 are absent** and cannot be part of the claimed key by the stated rule. Documented index333 frequency32 is actually484. Identical algorithm on unrelated p0 image yields **11/11** without any decoded plaintext, so membership alone lacks specificity.
+
+Original-source SHA-checked, locally executed exact-claim test with positive assertions: **PASS**. Repro [source-code regression](../../sims/lp2_p57_lsb_master_indices_claim_gate.py), [self-contained decision and independent controls](../../im-results/lp2-p57-lsb1543-external-master-index-claim-gate.md). Original third-party [algorithm](https://github.com/nexon33/cicada3301/blob/main/extract_master_indices.py) and [claim](https://github.com/nexon33/cicada3301/blob/main/FINAL_COMPLETE_SOLUTION.md).
+
+**Action:** The external key is not authenticated and cannot be a premise for direct LP2 original-rune inversion. No unknown plaintext, key or p56 preimage. Other p57 steganographic operations remain open. This is a targeted source-key correction, not a generic dismissal of all LSB evidence.
