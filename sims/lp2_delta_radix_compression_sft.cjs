@@ -17,6 +17,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const zlib = require('node:zlib');
+const crypto = require('node:crypto');
+const target = JSON.parse(fs.readFileSync(path.join(__dirname, '..',
+  'resources', 'cicada2014-archive-hash-manifest.json'), 'utf8')).targetHex;
+assert.match(target, /^[0-9a-f]{128}$/i);
+assert.ok(crypto.createHash('sha512').update('abc').digest('hex')
+  .startsWith('ddaf35a193617aba'));
 
 const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'resources',
   'liber-primus', 'lp2-corpus.json'), 'utf8'));
@@ -63,6 +69,8 @@ function encodeRadix(bytes, radix) {
 function inspect(binary) {
   const result = {
     byte_count: binary.length,
+    p56_printed_sha512_match: crypto.createHash('sha512').update(binary)
+      .digest('hex').toLowerCase() === target.toLowerCase(),
     head_hex: binary.subarray(0, 12).toString('hex'),
     printable_fraction: Number((Array.from(binary)
       .filter((b) => b >= 32 && b <= 126).length / binary.length).toFixed(5)),
@@ -157,6 +165,7 @@ for (const [clock, chunks] of Object.entries(segments)) {
       byPage.push({
         first_page: firstPage, reverse, digits: digits.length,
         byte_count: binary.length, first_hex: evidence.head_hex,
+        p56_printed_sha512_match: evidence.p56_printed_sha512_match,
         decompress_hits: hits
       });
     }
@@ -164,6 +173,8 @@ for (const [clock, chunks] of Object.entries(segments)) {
   independent[clock] = {
     candidate_units: chunks.length,
     variants: byPage.length,
+    p56_printed_sha512_hits: byPage.filter((item) =>
+      item.p56_printed_sha512_match).map((item) => item.first_page),
     valid_decompressions: byPage.flatMap((item) =>
       item.decompress_hits.map((hit) => ({...item,...hit}))),
     first_unit: byPage.slice(0, 2),
