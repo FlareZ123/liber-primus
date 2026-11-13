@@ -13,7 +13,7 @@ Both recorded values are exactly **32 bytes** of hex (256 bits). Their names are
 
 ## Status and limitations
 
-**Source evidence:** This is a preserved community transcription of HTTP `Set-Cookie` values, **not an independently preserved signed original response**. It does not establish whether values were fixed across users, were per-session tokens, or were intentionally reusable cryptographic keys. Their syntax alone does not identify a cipher, IV/nonce, clock or downstream input. The original 2013 service is no longer available as a source of missing response bytes.
+**Source evidence:** This is a preserved community transcription of HTTP `Set-Cookie` values, **not an independently preserved signed original response**. It does not establish whether values were fixed across users, were per-session tokens, or were intentionally reusable cryptographic keys. Their syntax alone does not identify a cipher, IV/nonce, clock or downstream input. The original 2013 service is no longer available as a source of missing response bytes. The [contemporaneous 2013 puzzle walkthrough](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_2_%282013%29) identifies these cookies as set by the **timed final recruitment questionnaire**. They might be session/application-state tokens, so even their 256-bit format is weak evidence for a reusable puzzle decryption key.
 
 **Cryptanalytic use:** These are two exact, historically attested *candidate* 256-bit inputs that can be tested only when a source-selected consumer is established. The numeral pair's earlier appearance offers human-solve-path relevance, but is no proof of reuse in 2014 LP2. Avoid treating a raw AES or XOR trial failure as evidence that all key derivations are impossible.
 
