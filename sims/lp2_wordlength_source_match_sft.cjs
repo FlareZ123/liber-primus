@@ -121,7 +121,7 @@ const sources = [
   {name:'Gibran The Prophet', source:'resources/control/gibran_prophet_58585.txt', expected:[15733, 19, 9], values:englishLengths(read('resources/control/gibran_prophet_58585.txt'))},
   {name:'Emerson Essays I', source:'resources/control/emerson_essays_2944.txt', expected:[77932, 25, 9], values:englishLengths(read('resources/control/emerson_essays_2944.txt'))},
   {name:'Blake Song of Liberty', source:'resources/control/blake_song_of_liberty_train.txt', expected:[479, 0, 0], values:englishLengths(read('resources/control/blake_song_of_liberty_train.txt'))},
-  {name:'Blake Marriage of Heaven and Hell, literary context', source:'resources/external/cicada2012-blake-marriage-gutenberg45315.txt', expected:[7778, 3, 8], values:englishLengths(read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'))},
+  {name:'Blake Marriage of Heaven and Hell, 2012 second chance', source:'resources/external/cicada2012-blake-marriage-gutenberg45315.txt', expected:[7778, 3, 8], values:englishLengths(read('resources/external/cicada2012-blake-marriage-gutenberg45315.txt'))},
   {name:'Solved LP1/LP2 reference', source:'resources/liber-primus/lp1-plaintext-reference.txt', expected:[942, 0, 0], values:englishLengths(reference)},
   {name:'Latin Vulgate GP29 words', source:'resources/control/latin-vulgate-gp-wholewords.txt', expected:[39835, 7, 9], values:latinLines.map((s) => s.length)},
   {name:'Old English Beowulf GP29 words', source:'resources/control/beowulf_oe_gp_profile_corrected.json', expected:[10885, 4, 8], values:beowulf.allSourceGpWordLengths},
