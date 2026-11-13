@@ -62,7 +62,7 @@ This result is **distinct from and related to** the broader nonzero-step spectru
 
 The exact independently reproducible output, 64-lag familywise enumeration, 55 original page lengths, counts and per-page data are preserved in [`sims/lp2_fibonacci_page_step_lag8_sft.cjs`](../sims/lp2_fibonacci_page_step_lag8_sft.cjs). This test arose after surveying a small number of lag candidates and does **not** correct across the project's wider library of hypotheses, page masks and cipher architectures.
 
-## One reversible, source-shaped inverse was attempted
+## Two bounded, source-shaped reversible inverses attempted
 
 The original 256-cell numerical table spans physical pp49–51 in **32 rows and eight columns**, with a conventional conditional base60 interpretation yielding 256 bytes. The **eight Fibonacci pages ≥2** are exactly p2,p3,p5,p8,p13,p21,p34,p55, in natural page order, suggesting one table column per selected page. The manuscript's independent red-number/field material yields **15**, a multiplicative generator of order **28** in GF29, supplying a canonical inverse for nonzero GP29 ciphertext differences.
 
@@ -80,6 +80,14 @@ One fixed consumer was tested, without fitting a column order, key phase, page o
 | p55 → column 7 | 0.038559 | 0.033874 |
 
 None yields a sustained readable GP-native sentence; decoded symbol distributions remain near uniform. Reapplying the specified forward transform reconstructs **every original first difference on all eight pages** exactly. The identical encoder/decoder restores an entire authentic **95-rune solved p57** planted control. These checks prove implementation reversibility and ability to recover readable GP text when genuine plaintext is encoded with the *hypothesized* rule; they do not validate the rule as Cicada's. The global source-language marker model `D_i=0 ⇔ P_i=EA` independently conflicts with the original word-position split under native English/Latin comparisons ([prior marker gate](field-unit-zero-marker-positions.md)). This is a further objection to the candidate, rather than a reason to tune its key.
+
+### Alternative: full printed eight-column row-major tape
+
+Lag eight is naturally the stride of **successive rows** of the printed 32×8 numeral grid. This suggests a distinct fixed key clock, consuming its **entire row-major 256-byte sequence** rather than just one column per selected page. For each of all ten Fibonacci-indexed original pages, reset at the page's first successor rune and set `K_i=table[i mod256] mod28`; decode `D_i=0` as EA and `D_i≠0` as `(log_15(D_i)−K_i) mod28`. This consumer has **one source-fixed layout and phase, no fitted key**.
+
+It does **whiten the lag-eight collision deficit**: across the ten pages the original **45** lag-eight equal nonzero steps become **83**, using the exact same **2,226 eligible pairs**. The ordinary 28-way i.i.d. coincidence benchmark for those pairs would be about 79.5. It also lowers raw nonzero-step symbol IoC on the three most anomalous pages: p8 **0.0382497 → 0.0346706**, p13 **0.0384584 → 0.0367364**, and p21 **0.0380128 → 0.0347840**. The recovered GP rune strings **do not form readable prose**; the new decoded registers remain near uniform. The restored generic collision rate cannot validate the key because an independent, arbitrary position-dependent additive pad can similarly disperse repeating symbols. This is a **specific failed original-inversion model**, not evidence that table bytes were historically used.
+
+For each original page, exact reapplication of the declared forward step transform recovers the unaltered ciphertext predecessor differences. An authentic solved p57 95-rune source-native planted control also roundtrips exactly. Both checks and the **45→83** counts are asserted in [the full original-source Fibonacci inverse SFT](../sims/lp2_fibonacci_page_delta_spectrum_sft.cjs). The source base60 table interpretation remains conditional.
 
 ## Next source-specific decision
 
