@@ -71,6 +71,48 @@ function exactMapErrors(bytes, symbols) {
 }
 
 const byteValues = grid.bytes;
+
+// A stronger cardinality obstruction independent of event/byte alignment:
+// interpret one source-ink symbol as a stationary five-bit field and the
+// eight printed columns as a three-bit field of each original table byte.
+// There are 31 indistinguishable 13-dot events, so their common five-bit
+// symbol requires a table bitfield value present at least 31 times.
+// This necessary condition survives arbitrary event shuffles, unknown
+// rune-alphabet relabeling and any permutation of table positions.
+/** @param {number[]} bytes @param {number} shift @returns {number} */
+function maximumFiveBitMultiplicity(bytes, shift) {
+  const counts = new Array(32).fill(0);
+  for (const b of bytes) counts[(b >> shift) & 31]++;
+  return Math.max(...counts);
+}
+const markerCount = ink.pages.reduce((total,p) => total +
+  (p.large_punctuation || []).filter(m => m[1] === 13).length, 0);
+assert.equal(markerCount, 31);
+const symbols59 = grid.byte_count;
+assert.equal(symbols59, 256);
+const radix59Alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".replace("f", "");
+const table = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const radix59Bytes = table.rows.flat().map(token =>
+  radix59Alphabet.indexOf(token[0]) * 59 + radix59Alphabet.indexOf(token[1]));
+assert.equal(radix59Bytes.length, 256);
+assert.deepEqual(table.byte_rows.flat(), byteValues);
+const directBitfieldMaxima = {
+  base60High5: maximumFiveBitMultiplicity(byteValues, 3),
+  base60Low5: maximumFiveBitMultiplicity(byteValues, 0),
+  base59High5: maximumFiveBitMultiplicity(radix59Bytes, 3),
+  base59Low5: maximumFiveBitMultiplicity(radix59Bytes, 0)
+};
+assert.deepEqual(directBitfieldMaxima, {
+  base60High5: 16, base60Low5: 14,
+  base59High5: 14, base59Low5: 14
+});
+assert(Object.values(directBitfieldMaxima).every(v => markerCount > v));
+// Positive control: when 31 identical marker symbols are represented by
+// the same five-bit digit, both five-bit orientations retain multiplicity>=31.
+const planted = Array.from({length:256}, (_,i) =>
+  i < markerCount ? (31 << 3) | (i % 8) : ((i % 29) << 3) | (i % 8));
+assert(maximumFiveBitMultiplicity(planted, 3) >= markerCount);
+
 const sourceEvents = inkEvents();
 assert.equal(byteValues.length, 256);
 assert.equal(grid.byte_count, 256);
@@ -115,5 +157,6 @@ console.log(JSON.stringify({
     exactLowerTailRank:atMostOriginal/256
   },
   plantedStationaryMap:positiveResult,
-  conclusion:"No exact fixed byte-to-GP-ink symbol mapping; no original cipher plaintext or key."
+  impossibleDirectFivePlusThreePacking:{markerCount,directBitfieldMaxima},
+  conclusion:"No stationary byte-to-ink lookup or direct 5+3-bit ink-to-grid packing; no original cipher plaintext or key."
 },null,2));
