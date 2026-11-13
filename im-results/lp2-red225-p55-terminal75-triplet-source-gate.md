@@ -8,10 +8,10 @@ Original ink annotation identifies exactly **225 highlighted GP runes** across t
 
 The literal direct-key derivations are:
 
-- GP-ordinal triple key: \`K_j=(r_{3j}+r_{3j+1}+r_{3j+2}) mod 29\`.
-- GP-prime triple key: \`K_j=(prime[r_{3j}]+prime[r_{3j+1}]+prime[r_{3j+2}]) mod 29\`.
+- GP-ordinal triple key: `K_j=(r_{3j}+r_{3j+1}+r_{3j+2}) mod 29`.
+- GP-prime triple key: `K_j=(prime[r_{3j}]+prime[r_{3j+1}]+prime[r_{3j+2}]) mod 29`.
 
-For each, decode the 75 original p55 suffix ciphertext ordinals as \`P_j=(C_j-K_j) mod29\` and \`P_j=(C_j+K_j) mod29\`. The script checks that every source red-span symbol matches the original corpus before deriving keys, exactly re-encrypts each candidate and recovers a 75-rune native-GP planted control from p57 for every key/sign.
+For each, decode the 75 original p55 suffix ciphertext ordinals as `P_j=(C_j-K_j) mod29` and `P_j=(C_j+K_j) mod29`. The script checks that every source red-span symbol matches the original corpus before deriving keys, exactly re-encrypts each candidate and recovers a 75-rune native-GP planted control from p57 for every key/sign.
 
 ## Original-cipher result
 
@@ -24,7 +24,7 @@ For each, decode the 75 original p55 suffix ciphertext ordinals as \`P_j=(C_j-K_
 | Unmodified p55 75-rune suffix | — | **0.03855856** |
 | Full solved p57 GP plaintext (95 runes), comparison | — | **0.06270997** |
 
-All four exact original outputs remain nonlinguistic under full Gematria Primus transliteration. For example, the prime-sum C−K output opens \`IAJOEMHMAAETHEAEUINHAEWIAJNGTHTHOEHPNGFOYHNGFE...\`; the prime-sum C+K output opens \`DIAIAAOESRPEAAEDTDEONGFEOWEAIEOGEOMTWLGCTH...\`. These are full reversible transformations of original ciphertext, but they supply no readable unknown text.
+All four exact original outputs remain nonlinguistic under full Gematria Primus transliteration. For example, the prime-sum C−K output opens `IAJOEMHMAAETHEAEUINHAEWIAJNGTHTHOEHPNGFOYHNGFE...`; the prime-sum C+K output opens `DIAIAAOESRPEAAEDTDEONGFEOWEAIEOGEOMTWLGCTH...`. These are full reversible transformations of original ciphertext, but they supply no readable unknown text.
 
 A second, historically plausible reading takes each triple as a **(page, printed line, rune)** book-code address, consistent in *form* with earlier Cicada book codes but lacking a source-selected coordinate grammar. Parse the original LP2 manuscript's actual physical lines and test GP ordinals or GP prime weights as coordinates, with either zero-based or one-based indexing. The number of **valid** triplets out of 75 is:
 
@@ -39,4 +39,4 @@ The script records exact page, line and rune rejection counts and the readout fr
 
 Reject the **four fixed triple-sum Vigenère keys** for the final 75-rune p55 suffix, and the **four fixed literal (page,line,rune) book-code conventions** as complete key extractors. The 225=3×75 and 76−1=75 equalities provide an investigable alignment but do not themselves justify a cipher operation. Do not optimize arbitrary triple permutations, offsets, modular reductions or additional layers to rescue them. A new independently attributable clue specifying the triplet code, source book, address grammar or key consumer would be needed to reopen this branch.
 
-The canonical red inventory is \`resources/liber-primus/lp2-ink-annotations.json\`; exact p55 ciphertext and GP weights are in \`resources/liber-primus/lp2-corpus.json\`, with physical-line source \`resources/liber-primus/lp2-transcription.txt\`. The temporary one-use workflow can be removed after this successful execution to avoid adding permanent CI clutter.
+The canonical red inventory is `resources/liber-primus/lp2-ink-annotations.json`; exact p55 ciphertext and GP weights are in `resources/liber-primus/lp2-corpus.json`, with physical-line source `resources/liber-primus/lp2-transcription.txt`. The temporary one-use workflow can be removed after this successful execution to avoid adding permanent CI clutter.
