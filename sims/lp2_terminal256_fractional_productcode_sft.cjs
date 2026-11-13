@@ -231,7 +231,59 @@ assert(product.every(x=>x.literal<=7));
 assert(product.every(x=>Object.values(x.outputs).every(y=>y.ciphertextMatches<=6)));
 const bestProduct=product.flatMap(x=>Object.entries(x.outputs).map(([projection,v])=>({target:x.target,corner:x.corner,direction:x.direction,projection,...v}))).sort((a,b)=>b.ioc-a.ioc)[0];
 assert.equal(bestProduct.ioc,0.04421052631578947);
+// Alternative one-dimensional systematic Reed-Solomon erasure completion:
+// 180 inner evaluations determine all 76 border symbols for a degree <180
+// polynomial over GF(29^2), at the 256 distinct points g^(cell index).
+const rsPoints=Array.from({length:256},(_,i)=>pow(g,i));
+/** @param {number[]} route @param {number[]} inside @returns {number[]} */
+function completeOuterRS(route,inside) {
+  const xs=route.slice(76).map(cell=>rsPoints[cell]);
+  const weights=xs.map((x,i)=>{
+    let product=1;
+    for(let j=0;j<xs.length;j++) if(i!==j) product=mul(product,sub(x,xs[j]));
+    return pow(product,839);
+  });
+  return route.slice(0,76).map(cell=>{
+    const z=rsPoints[cell];
+    let numerator=0,denominator=0;
+    for(let j=0;j<xs.length;j++) {
+      const factor=div(weights[j],sub(z,xs[j]));
+      numerator=add(numerator,mul(factor,inside[j]));
+      denominator=add(denominator,factor);
+    }
+    return div(numerator,denominator);
+  });
+}
+// Planted GF841 polynomial of degree 2 recovers every 76-slot border exactly.
+const rsPlant=x=>add(7,add(mul(14,x),mul(19,mul(x,x))));
+const rsRoute=ringPath(2,-1);
+const rsInterior=rsRoute.slice(76).map(cell=>rsPlant(rsPoints[cell]));
+const rsExterior=rsRoute.slice(0,76).map(cell=>rsPlant(rsPoints[cell]));
+assert.deepEqual(completeOuterRS(rsRoute,rsInterior),rsExterior);
+const reedSolomon=[];
+for(const [target,inside] of [['solved',known180],['printed',cipher56.concat(clear57)]]) {
+  for(let corner=0;corner<4;corner++)for(const direction of [-1,1]) {
+    const ring=ringPath(corner,direction);
+    const outer=completeOuterRS(ring,inside);
+    const subfield=outer.filter(x=>x<29).length;
+    const projectionsRunes=Object.entries(projections).map(([name,project])=>{
+      const symbols=outer.map(project);
+      const hist=Array(29).fill(0); for(const x of symbols) hist[x]++;
+      return {name,ioc:hist.reduce((v,n)=>v+n*(n-1),0)/(76*75),
+        ciphertextMatches:symbols.filter((v,i)=>v===p55[i]).length};
+    });
+    reedSolomon.push({target,corner,direction,subfield,projectionsRunes});
+  }
+}
+assert(reedSolomon.every(x=>x.subfield<=8));
+assert(reedSolomon.every(x=>x.projectionsRunes.every(y=>y.ciphertextMatches<=8)));
+const bestRS=reedSolomon.flatMap(x=>x.projectionsRunes.map(y=>({
+  target:x.target,corner:x.corner,direction:x.direction,...y
+}))).sort((a,b)=>b.ioc-a.ioc)[0];
+assert.equal(bestRS.ioc,0.049473684210526316);
+
 console.log(JSON.stringify({classification:'bounded original source negative; zero unknown plaintext',
   p55:76,solved180:known180.length,fieldGenerator:g,mobius,mobiusPlant:'30/30 rows exact',
   productCode:{testedOriginalLayouts:product.length,subfieldMaximum:Math.max(...product.map(x=>x.literal)),
-    positivePlant:'76/76',bestOutput:bestProduct,layouts:product}},null,2));
+    positivePlant:'76/76',bestOutput:bestProduct,layouts:product},
+  reedSolomon:{originalLayouts:reedSolomon.length,subfieldMaximum:Math.max(...reedSolomon.map(x=>x.subfield)),positivePlant:'76/76',bestOutput:bestRS}},null,2));
