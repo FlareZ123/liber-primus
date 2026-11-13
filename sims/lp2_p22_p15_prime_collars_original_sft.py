@@ -62,13 +62,22 @@ def evaluate(arr):
                       [P15_PRIMES[i], P15_PRIMES[i+1]])))
                  for i in range(len(P15_PRIMES)-1)]
         best = min(pairs, key=lambda pair: pair[3])
+        # Source-shaped conditional prediction: choose a Fibonacci-prime
+        # step using gap one alone, then predict the unseen third collar.
+        chosen = min(range(len(P15_PRIMES)-1),
+                     key=lambda i: abs(measured[0]-P15_PRIMES[i]))
+        predicted_third_x = x[1] + P15_PRIMES[chosen+1]
         results.append(dict(threshold=threshold,
+                            first_gap_nearest_prime_step=chosen,
+                            predicted_third_collar_x=predicted_third_x,
                             band_centers_x=x,
                             measured_gaps_px=measured.tolist(),
+                            withheld_third_x_error_px=x[2]-predicted_third_x,
                             closest_fibonacci_prime_pair=list(best),
                             p9_p10_error_px=(measured -
                                 np.array((263, 463))).tolist()))
     assert all(r["closest_fibonacci_prime_pair"][0] == 9 for r in results)
+    assert all(r["first_gap_nearest_prime_step"] == 9 for r in results)
     # This is an observational regression guard, not a discovery threshold.
     assert all(r["closest_fibonacci_prime_pair"][3] < 6 for r in results)
     return {"source_scan": "original Stage11 scan39.jpg, LP2 physical p22",
