@@ -36,6 +36,7 @@ function unpackFiveBits(bytes, spareBit) {
 
 const corpus = fixture('lp2-corpus.json');
 const ink = fixture('lp2-ink-annotations.json');
+const grid = fixture('lp2-grid-256.json');
 const pages = new Map(corpus.pages.map((p) => [p.page, p.indices]));
 assert.equal(corpus.pages.length, 58);
 const marked = ink.pages.filter((p) => p.page < 56);
@@ -79,6 +80,21 @@ assert.equal(primeXorPrintable, 155);
 assert.equal(primeXorLetters, 87);
 assert.equal(primeXorBytes.subarray(0, 20).toString('hex'), '1c4e6a62584a002b587050086a4c263e2c4a06');
 
+// The original p49–51 printed 32x8 numeric grid is the only unmodified
+// manuscript table with a full 256-address byte lookup. This one extra,
+// source-sized operation treats each five-bit XOR byte as a table address.
+const table = grid.pages.flatMap((p) => p.tokens.map((t) => (
+  60 * grid.alphabet.indexOf(t[0]) + grid.alphabet.indexOf(t[1])
+)));
+assert.equal(table.length, 256);
+assert.equal(table[0], 203);
+assert.equal(new Set(table).size, 161);
+const tableBytes = Buffer.from(Array.from(bytes, (b) => table[b]));
+const tablePrintable = Array.from(tableBytes).filter((v) => v === 10 || v === 13 || (v >= 32 && v <= 126)).length;
+assert.equal(tableBytes.length, 133);
+assert.equal(tablePrintable, 57);
+assert.equal(tableBytes.subarray(0, 32).toString('hex'), '8524e4d3f734fe73dbc7739fc051976ad30daff7330fde3a57e9206b0dcbe68e');
+
 // Positive source-shaped plant: all 213 synthetic carrier glyphs are valid GP29
 // values, while the same fixed original 213-rune key is retained unchanged.
 const plantedRed = key.map((_, i) => (7 * i + 3) % 29);
@@ -100,6 +116,9 @@ console.log(JSON.stringify({
   packedSha256: createHash('sha256').update(bytes).digest('hex'),
   packedSha512: candidateSha512,
   sha512EqualsP56PrintedDigest: candidateSha512 === printedP56Digest,
+  gridLookupUniqueOutputs: new Set(table).size,
+  gridLookupPrintableBytes: tablePrintable,
+  gridLookupFirstThirtyTwoHex: tableBytes.subarray(0, 32).toString('hex'),
   printableBytes: printable,
   primeXorByteLength: primeXorBytes.length,
   primeXorPrintable,
