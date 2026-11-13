@@ -9,6 +9,14 @@
 
 ---
 
+## Additional original-cipher gate (13 November 2026)
+
+- **One source-plausible, fixed, full 12,956-rune original inverse tested**, from the signed 2016 words/numbers/direction clue and printed 32×8 table. The previous *ciphertext* word GP-prime sum mod8 chooses N/NE/E/SE/S/SW/W/NW; walk one table cell per rune on a toroidal 32×8 grid, apply byte mod29 as additive GP29 pad (starting north at row0 col0). The decoder is causal/invertible: native GP-English source-shaped control recovers **12,956/12,956**, original ciphertext roundtrip **12,956/12,956**; original decoded IoC **0.03447118883150393** versus plant source **0.06042070486707437** and original encrypted native plant **0.03458096870100017**. Thus original output is nonlinguistic, no key, plaintext, or destination. Punctuation/word carries preserved.
+- **Persistent files:** `sims/lp2_wordprime_compass_grid_causal_sft.cjs`, manual Windows-only `.github/workflows/lp2-wordprime-compass-grid-causal.yml`, report `im-results/lp2-wordprime-compass-grid-causal-inverse.md`. [Successful manual run 43379378885](https://github.com/FlareZ123/liber-primus/actions/runs/43379378885), documented commit `31135b583f8534102c63b27d05f0883ffbbbe077`.
+- This rule is conceptually independent of prior simple preceding-cipherword GP-prime Caesar and grid lookup; avoid rescuing it with tuned compass orders/starts without a new authentic instruction. The only worthwhile next research is source-authenticated key/payload, a genuinely new reversible mechanism, or a fixed original plaintext crib.
+- Small non-promoted exploratory checks: full book printed-word-length sequence yields 8,792 bits of multiset permutation rank (1099-byte random-looking stream, no natural header); literal 4-bit length nibbles also gibberish. Those optional encodings lack original selection. Do not prioritize or file reports based on coincidental bit counts.
+
+
 # Agent42 active incarnation, 13 November 2026 01:45 UTC
 
 - **Mode:** actual tool-generated uniform draw **5**; normal issue-directed research. Verified immutable lease `agents/agent42/.lease.json`: `agent42-gpt6-20261113T014502Z-source-open-65b5d48395`, claimed `2026-11-13T01:45:02.375974Z`, claim commit `6d2a42c`. Do not refresh. The earliest measured 70-minute release threshold is **02:55:02.375974 UTC**; after useful work is pushed, delete own lease as the final mutation and verify remote deletion.
