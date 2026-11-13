@@ -1,6 +1,6 @@
 # Frozen historical GP-word-length crib gate on all nine LP2 bodies
 
-**Status: bounded negative for exact contiguous quoted plaintext with preserved printed word boundaries. No unknown LP2 plaintext or cipher key recovered.** Agent4, 11 November 2026; Director Issue [#333](https://github.com/FlareZ123/liber-primus/issues/333).
+**Status: bounded negatives for exact source-quoted plaintext with preserved printed word boundaries. No unknown LP2 plaintext or cipher key recovered.** Agent4, 11 November 2026; Director [#333](https://github.com/FlareZ123/liber-primus/issues/333). Agent29 added a separately selected p22 illustrated Passion-Gospel corpus on 13 November 2026.
 
 ## Decision
 
@@ -9,6 +9,23 @@ The original unsolved book contains 12,956 GP runes and 2,896 complete rune word
 Against a predeclared, finite group of **13 Cicada-related textual sources** totaling **6,991 words**, the longest *unmodified* contiguous GP-word-length match is **eight words**. It has no withheld extension and no deciphered rune support. Among **2,000 whole-corpus word-length-shuffled controls**, **1,995** reproduce a maximum at least eight, with plus-one upper-tail **1,996/2,001 = 0.99750125**. An unrelated Gibran control independently produces a **nine-word** match against the same original bodies. Therefore the examined sources provide **no credible plaintext crib under this exact-length rule**.
 
 The strong lower-tail placement of the observed *maximum* is consistent with the independently documented weak adjacent-length dependence of the printed ciphertext; it is **not** evidence of deliberate hiding or of an alternative cipher.
+
+## Source-illustration extension: KJV Passion/Resurrection against physical p15–22 (13 November 2026)
+
+The original physical **p22** (archive `39.jpg`) has a prominent reclining/dead human figure and a **horizontal three-bar cross-like ornament**. A Christian death/burial reading of that motif is possible, although the historical source does **not** independently identify the figure as Christ, nor cite the King James Version. It nevertheless selects a finite, pre-2014 candidate plaintext family independently of the encrypted word shapes: Gospel Passion and Resurrection narratives. Testing this particular source is more motivated than guessing an arbitrary new literary key.
+
+Hold the original **p15:9 through p22:end** body exactly as printed: **1,894 runes, 435 complete rune words** after its visible red heading and numeric spiral. Do not move punctuation or combine it with the separate nine-rune p15 top heading. For the candidate source, take KJV **Matthew 26–28 (3,411 source words), Mark 14–16 (2,957), Luke 22–24 (3,570), and John 18–21 (3,405)**. These give **13,343** consecutively rendered English words. Encode every source word with the *same frozen* GP29 rune-length convention defined below and seek exact contiguous matching six-word seeds, extended in both directions across original verse divisions. No gaps, substitutions in word lengths, edited scripture, or cipher fitting are permitted.
+
+| Fixed KJV passage | Best exact runic word-length alignment | Representative best fragment |
+| --- | ---: | --- |
+| Matthew 26–28 | **8 words** | 27:3, “which had betrayed him when he saw that” (p15–22 word110), or 26:8, “is this waste For this ointment might have” (word335) |
+| Mark 14–16 | **7 words** | No eight-word contiguous candidate |
+| Luke 22–24 | **8 words** | 24:30, “gave to them And their eyes were opened” (word307) |
+| John 18–21 | **8 words** | 18:15, “unto the high priest and went in with” (word160) |
+
+This test checks the entire **435-word** body and reaches at most eight aligned word lengths in any of the four Gospels. Such matches are too short and numerous to establish a source plaintext; every one fails immediate extension, and **zero 9+ word passages** match. The direct, intact 20-word source plant is found **20/20** by the identical matcher. This excludes a **literal** Gospel excerpt with unchanged word breaks and canonical rune spelling as the p15–22 chapter plaintext. It leaves differently worded Christian material, alternative editions, nonliteral retellings, unknown enciphered word boundaries, and any keyed cipher open.
+
+**Preserved exact inputs:** [verse-exact four-Gospel source fixture](../resources/external/kjv-passion-gospels-2014.txt), drawn from public-domain KJV at [pinned Midvash source commit `9586bd8`](https://github.com/midvash/bible-data/tree/9586bd8228a747962df1ee8692730422fb7eb2ec/versions/en/kjv/books), preserving four original Git book blobs listed in the fixture; [original master rune punctuation](../resources/transcriptions/liber_primus_master.txt); [self-contained CommonJS SFT](../sims/lp2_p15_p22_passion_gospels_crib_sft.cjs). The SFT asserts the 435/1,894 runic body, all four fixed source lengths and their exact per-book maxima. The source was selected by the *illustrated* p22 physical page, independent of a plaintext hit. **No new LP2 plaintext or key was recovered.**
 
 ## What was frozen
 
