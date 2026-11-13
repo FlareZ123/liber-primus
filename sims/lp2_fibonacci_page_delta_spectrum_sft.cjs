@@ -243,6 +243,49 @@ assert.equal(sourcePlain.length, 95);
 const cipherPlant = encryptSteps(sourcePlain, sourceKey);
 assert.deepEqual(decryptSteps(cipherPlant, sourceKey), sourcePlain);
 
+// Second uniquely printed layout: the eight columns interleaved row-major.
+// This one unaltered 256-byte, page-reset source key is a deliberately bounded
+// direct rival to the eight independent 32-byte column keys above.
+function decodeRowMajor(d) {
+  return d.map((x, i) => x === 0 ? 28 :
+    mod(logs[x] - table[i % 256] % 28, 28));
+}
+function encodeRowMajor(plain) {
+  return plain.map((x, i) => x === 28 ? 0 :
+    rootPowers[mod(x + table[i % 256] % 28, 28)]);
+}
+function collisionAtEight(d) {
+  let hits = 0, eligible = 0;
+  for (let i = 8; i < d.length; i++) {
+    if (d[i] === -1 || d[i - 8] === -1) continue;
+    eligible++;
+    hits += Number(d[i] === d[i - 8]);
+  }
+  return {hits, eligible};
+}
+const rowMajorResults = [];
+let originalLag8Hits = 0, whitenedLag8Hits = 0, totalEligibleLag8 = 0;
+for (const page of PAGE_SET) {
+  const d = deltas(pages.find(p => p.page === page).indices);
+  const recovered = decodeRowMajor(d);
+  assert.deepEqual(encodeRowMajor(recovered), d);
+  const original = collisionAtEight(d.map(x => x === 0 ? -1 : x));
+  const whitened = collisionAtEight(recovered.map(x => x === 28 ? -1 : x));
+  assert.equal(original.eligible, whitened.eligible);
+  originalLag8Hits += original.hits;
+  whitenedLag8Hits += whitened.hits;
+  totalEligibleLag8 += original.eligible;
+  rowMajorResults.push({
+    page, originalDeltaIoc: ioc(d), decodedGp29Ioc: ioc(recovered),
+    originalLagEight: original.hits, decodedLagEight: whitened.hits,
+    decodedPrefix: recovered.slice(0, 50).map(x => gp.translit[x]).join("")
+  });
+}
+assert.deepEqual({
+  originalLag8Hits, whitenedLag8Hits, totalEligibleLag8
+}, {originalLag8Hits: 45, whitenedLag8Hits: 83, totalEligibleLag8: 2226});
+assert.deepEqual(decodeRowMajor(encodeRowMajor(sourcePlain)), sourcePlain);
+
 const report = {
   classification: "original-ciphertext Fibonacci-indexed step-spectrum association; exploratory",
   source: "2014 0.jpg..57.jpg page order, original GP29 runes, p15 Fibonacci spiral",
@@ -274,6 +317,14 @@ const report = {
     nativeSolvedGp29PlantRecovered: sourcePlain.length,
     exactOriginalDeltaReencryption: true,
     interpretation: "No recovered unknown-page plaintext or key under this direct inverse."
+  },
+  directRowMajor256Pad: {
+    source: "original table's complete printed 32x8 row-major byte order, page-reset, log15 nonzero-step subtraction",
+    originalLag8Hits, whitenedLag8Hits, totalEligibleLag8,
+    originalCipherReencryption: true,
+    solvedP57PlantedRoundtrip: sourcePlain.length,
+    decoded: rowMajorResults,
+    interpretation: "Removing source table pad whitens the eight-lag deficit but leaves near-random text. A generic pad can also whiten it, so this alone does not validate the historical cipher."
   },
   caveat: "Page-number/metric pairing investigated after spectrum exploration; exact tails condition on this hypothesis, not global project look-elsewhere. No Cicada-authenticated source selects this operation."
 };
