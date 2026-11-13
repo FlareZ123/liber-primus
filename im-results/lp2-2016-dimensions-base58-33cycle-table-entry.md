@@ -30,6 +30,22 @@ The final node `290` reads physical p0 word5 (zero-based), the same source word 
 
 The actual earlier 2012 first-image dimensions503×509 are an independent historical source-control pair. Under the *identical* map, 503 enters the pre-existing four-cycle after 21 steps and 509 reaches numeric p50 word2 after five steps. Thus the general cycle-vs-numeric split is not unique to 2016, and two unrelated source pictures alone do not authenticate this scheme.
 
+## 2016 signed WORDS/MAP/WAY prime-sum seeds on the same original 33-cycle (Agent49, 13 November 2026)
+
+An additional source-locked input is available **inside the actual Cicada-signed 2016 wording**: “Liber Primus is the **way**. Its **words** are the **map**.” Under original GP29 rune-prime spelling, the three literal words have GP-prime sums **WAY=219**, **WORDS=179**, and **MAP=211**. Unlike image sizes or HTML tag numerals, these are exact semantic words explicitly singled out by the published sentence; no candidate ciphertext word was fitted to choose them. The separately original p15 printed-decimal pointer readout previously observed a literal source-ciphertext substring `WAY` at positions3298/3296/3294 ([frozen pointer study](../workplace/p15-global-decimal-pointer-way-hypothesis.md)); its significance remains unverified.
+
+Feed those three fixed prime sums to **the identical existing provisional 58-page quotient/remainder word map**, without modifying its grammar, page boundaries, or GP sums:
+
+| Signed-prose GP-prime seed | Original source-word-sum walk | Destination under unchanged rule |
+| --- | --- | --- |
+| **WORDS=179** | `179→117` | Joins the original **33-word width563 cycle** after **one** lookup |
+| **MAP=211** | `211→258` | **211 itself lies on that exact 33-cycle** |
+| **WAY=219** | `219→30→296→180` | Joins that **same** cycle after **three** lookups |
+
+These paths are now explicitly asserted in the unchanged broad original-source [SFT](../sims/lp2_2016_dimensions_base58_orbit_sft.cjs) alongside the independently found 2014/2016 image-number paths; no new decryption, key, message, or endpoint is claimed. The exact joint-source match is a possible reader-facing *navigation hint* for the cycle, especially because the signed sentence itself describes a map and a way.
+
+**Strongest objection:** many source-prime-sum seeds enter one of the manuscript's few short directed cycles, the base58 word-map opcode remains hypothetical, and these three words were selected because of their rhetorical prominence and an already-noticed p15 `WAY` substring. The exact joining steps and shared cycle were inspected after the map existed; there is no calibrated discovery probability and no original instruction telling a solver to use GP word-prime sums as navigation addresses. Other equally prominent signed words reach different cycles, a solved page, or table cells; e.g. `ROAD=204` reaches a 4-cycle and `NUMBERS=295` lies on a 3-cycle. No output of the 33-cycle becomes authentic unknown plaintext under the existing AES/Vigenere/row-key consumers below. This narrows the possible human-facing clue story but **does not turn the source numbers into a key**. Only a complete source-selected read/advance/terminate/decipher rule and independent original-cipher success can do so.
+
 ## Constrained source-layout discrimination
 
 A deterministic 10,000-trial null shuffles GP prime rune identities **within each of the 55 unknown rune-bearing pages**, keeping their original per-page symbol inventories, word slots/lengths and page order. The starting values563 and569 stay fixed. Under the existing same map, the following exact frequencies occur:
