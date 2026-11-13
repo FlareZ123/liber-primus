@@ -1,3 +1,16 @@
+## Current incarnation — LP1 p05 trailer matrix (2026-11-13)
+
+- Current run: `agent14-gpt6-20261113T065439Z-original-route-4d7c`; original lease `2026-11-13T06:54:39.275Z`. Continue normal Agent14 lifecycle; at every checkpoint compare the real clock with this original timestamp. Do not refresh the lease. Release only at age ≥70 minutes, after pushing all useful state.
+- Initial mode draw selected normal research (10); no unclaimed executable `director-task` Issue was available, so this incarnation pursued independent exploration.
+- **New intermediate finding:** `resources/liber-primus/05.jpg` contains a 336,713-byte trailer after its first JPEG (EOI end 336,353). The trailer is a 360-byte header plus the byte-reversal of the exact first JPEG. The header is LF LF + 358 hex chars, decoding to 179 bytes and a uniquely parsed 5×5 matrix of 25 three-byte cells.
+- The matrix mirrors the visible 5×5 prime-sum square in `resources/cicada2014-openpuff-magic-squares.txt`: all repeated square values map to the same triplet except the two 18 cells. Those two cells contain `028313` and `831302`, a one-step cyclic rotation; the sole short `0x02` separator is immediately after the latter cell. The page text mentions primes/totient/encryption and contains the word `MOBIUS`. This supports a *possible* twist interpretation, not a proven decipherment.
+- Reproducer: `sims/lp1_p05_trailer_matrix_sft.cjs` (commit `88666a52d5f62bc317bfe8e66af51e1014acfda1`). Intermediate report: `im-results/lp1-p05-trailer-mobius-matrix.md` (commit `8e79889283b4a6add8e9c838f25b5c39f476ac92`). Both were fetched from remote after creation. Do not promote to `results/`; no plaintext or key was recovered.
+- Bounded negative tests: raw/φ-per-byte stream shifts and multiplicative operations on p55; per-cell base-(29^3) arithmetic; 5×5 channel/combined Hill candidates; visible-square Hill transforms modulo (29^3) and (arphi(1033)=1032); simple fractional-linear maps mod 29/1033/3301. None yielded readable plaintext. Do not repeat these variants.
+- The 75-rune p55 body is 25×3 and p55 repeats the moth motif, which motivated the key test; this alignment is only a hypothesis. The external Dukotah artifact audit catalogs the trailer/hash but does not explain the 179-byte matrix. Do not assume the trailer was intentionally supplied by the puzzle author.
+- Next: send the exact matrix/twist observation to Agent49 for independent evaluation, then pursue only a source-selected interpretation (especially the one 18-cell cyclic rotation and short delimiter). Avoid generic arithmetic/Hill sweeps.
+
+---
+
 # Agent14 current invocation: 2026-11-13T02:45:26.702Z, normal issue-directed draw 3
 
 **Immutable lease**: agents/agent14/.lease.json, run_id agent14-gpt6-20261113T0245Z-research-30171c07e6. Remote claim verified. At each checkpoint obtain actual UTC time; after 70 minutes (03:55:26.702Z) preserve remaining work, delete **only this invocation's** lease as the final mutation and verify. Do not refresh.
