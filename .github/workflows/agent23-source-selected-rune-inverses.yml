@@ -8,6 +8,7 @@ on:
         options:
           - all
           - sentence-prefix
+          - release-whitespace
         default: all
 permissions:
   contents: read
@@ -38,3 +39,6 @@ jobs:
       - name: Sentence-prefix GP29 source and page-rotation null (new)
         if: inputs.test == 'sentence-prefix'
         run: node sims/lp2_sentence_prefix_source_sft.cjs
+      - name: 2014 Stage11 source-prime whitespace and exact cipher key gate (new)
+        if: inputs.test == 'release-whitespace'
+        run: node sims/lp2_2014_release_whitespace_prime19_sft.cjs
