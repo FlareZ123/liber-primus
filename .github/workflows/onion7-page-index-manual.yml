@@ -18,3 +18,5 @@ jobs:
         run: node sims/onion7_prime49_227_clock_sft.cjs
       - name: Check source-selected root-24 29-rune cyclic inverse
         run: node sims/red_span_root24_circulant29_original_sft.cjs
+      - name: Test 7 x (133 + 331) red-51 floral original-input inverse
+        run: node sims/lp2_onion7_133331_red51_floral3248_sft.cjs
