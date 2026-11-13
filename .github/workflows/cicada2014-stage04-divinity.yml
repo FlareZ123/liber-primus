@@ -1,10 +1,6 @@
 name: CICADA 2014 Stage04 divinity OutGuess test
 
 on:
-  push:
-    paths:
-      - "sims/cicada2014_stage04_divinity_outguess_sft.cjs"
-      - ".github/workflows/cicada2014-stage04-divinity.yml"
   workflow_dispatch:
 
 permissions:
