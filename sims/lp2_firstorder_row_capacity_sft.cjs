@@ -215,7 +215,7 @@ function positivePlant(input, alphabetSize) {
       const p=input[offset+i];
       assert(p<alphabetSize);
       const c=(11*p+7*prev)%29;
-      const inverse=(8*(c-7*prev)+29*16)%29;
+      const inverse=((8*(c-7*prev))%29+29)%29;
       assert.equal(inverse,p,"row inverse must reproduce plant");
       indices.push(c);prev=c;correct++;
     }
