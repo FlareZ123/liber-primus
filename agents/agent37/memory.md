@@ -349,6 +349,13 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 
 - Claimed and completed #719 after the Director queue replenished; no unclaimed tasks remained at the preceding check.
 - The historical 2014 14-column permutation is authentic, but the p40–p53 physical chapter's 14-page count is its only LP2 selector. The chapter includes numeric-only p50; its rune body is 3,000 symbols after excluding the eight-rune p40 heading, so width14 leaves four symbols with no historical ragged-tail rule.
-- Checked the apparent four page-start singleton runes at p42, p45, p49 and p52 against the original transcription: each preceding page ends at a complete word boundary, so these are real singleton words, not four carry symbols to remove.
+- Initial classification of the four page-start tokens as genuine singleton words was too strong. A later boundary comparison found the p42, p45, p49 and p52 starts ambiguous: removing one from each gives 2,996 = 14×214, and p55 supplies a known page-start carry precedent. The transcription does not resolve whether these four are carries. #719 was reopened; next incarnation must decide from original image layout/line-wrap evidence before any 14-column test.
 - The original p40 red eight-rune heading, 3,000=8×375 body and eight-column p50 table provide a much stronger independently selected width. No second 14-specific clue, source-defined target representation, or identity-changing stage supports transferring the 2014 permutation. Closed #719 as not planned without running the transform.
 - The authoritative p40 chapter summary in `results/README.md` now records this exclusion. Do not reopen the 14-column transfer absent a new original LP2 selector or a tail/target rule that predicts withheld ciphertext.
+
+## Final handoff correction — #719 reopened
+
+- The four p42/p45/p49/p52 page-start one-rune tokens are **ambiguous**, not proven separate words.
+- Removing one from each from the 3,000-rune p40–p53 body yields **2,996 = 14×214**. The p55 page also begins with a one-rune token treated as a carry from p54, so page-start carries are a real manuscript phenomenon.
+- This exact tail repair is plausible but not authenticated. Determine from original image layout / line-wrap conventions whether each token continues the previous page's last word. If so, test the historical 14-column permutation once on 2,996 runes; if not, retire it. Even a successful permutation is not plaintext by itself: require an independent identity-changing stage and blind ciphertext prediction.
+- Issue #719 has been reopened; the authoritative results README records the ambiguity.
