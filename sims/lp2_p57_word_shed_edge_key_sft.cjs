@@ -77,6 +77,37 @@ for (const [name, key] of [['remove-first', withoutFirst], ['remove-last', witho
   }
 }
 
+// Original printed p57 line 1 has 20 runes; the other four lines have 75.
+// The first four printed words have 19 runes; the last 16 words have 76.
+const printedLines = lastPage.split('/').slice(0, 5).map((line) =>
+  [...line].filter((rune) => corpus.runes.includes(rune)).map(indexOf)
+);
+assert.deepEqual(printedLines.map((line) => line.length), [20, 17, 17, 18, 23]);
+assert.deepEqual(printedLines.flat(), knownP57);
+assert.equal(indexed(words.slice(0, 4).join('')).length, 19);
+const tail75 = printedLines.slice(1).flat();
+const tail76 = indexed(words.slice(4).join(''));
+assert.deepEqual(tail75, knownP57.slice(20));
+assert.deepEqual(tail76, knownP57.slice(19));
+assert.equal(tail75.length, 75);
+assert.equal(tail76.length, 76);
+const p57TailPadGate = [];
+for (const [name, cipher, key] of [
+  ['after-first-line-75-to-p55-body-75', p55Body, tail75],
+  ['after-first-four-words-76-to-full-p55-76', p55, tail76]
+]) {
+  for (const sign of [-1, 1]) {
+    const plaintext = transform(cipher, key, sign);
+    assert.deepEqual(transform(plaintext, key, -sign), cipher);
+    const native = knownP57.slice(0, cipher.length);
+    assert.deepEqual(transform(transform(native, key, -sign), key, sign), native);
+    p57TailPadGate.push({
+      sourceAlignment: name, decryptSign: sign,
+      ioc: coincidence(plaintext), romanization: asGp(plaintext)
+    });
+  }
+}
+
 const probe55 = [];
 for (const sign of [-1, 1]) {
   const outputPages = eligiblePages.map((p, i) => p.indices.map((v) => mod(v + sign * withoutBoth[i])));
@@ -115,6 +146,7 @@ console.log(JSON.stringify({
   sourceAllUnsolvedIoc: coincidence(eligiblePages.flatMap((p) => p.indices)),
   sourceSolvedP57Ioc: coincidence(knownP57),
   p55BodyAdditiveGate: probe75,
+  p57LineWordTailPadGate: p57TailPadGate,
   allPagesDirectPageShiftGate: probe55,
-  verdict: 'All original decodes remain nonlinguistic; the explicit pad and page-shift consumers are negative. Exact round trips are implementation checks.'
+  verdict: 'All original decodes remain nonlinguistic; the fixed p57 word-edge, physical-line, word-tail pad and page-shift consumers are negative. Exact round trips are implementation checks.'
 }, null, 2));
