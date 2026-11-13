@@ -202,7 +202,7 @@ for (const [label, permutation] of [["spiral",order],["inverse",inverseOrder]]) 
       .replace(/QU/g, "CW")
       .replace(/[VKZQ]/g, ch => ({V:"U",K:"C",Z:"S",Q:"C"})[ch]);
     const planted = (english.match(/[A-Z]+/g) || []).slice(0, 2896)
-      .map(word => (word.match(/TH|EO|NG|OE|AE|IA|EA|./g) || []).length);
+      .map(word => (word.match(/ING|TH|EO|NG|OE|AE|IA|EA|IO|./g) || []).length);
     assert.equal(planted.length, 2896);
     assert.deepEqual(decode(encode(planted, permutation, tail), permutation, tail),
       planted);
