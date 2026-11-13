@@ -2,6 +2,9 @@ name: 761 MP3 XOR p50 source gate
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sims/lp2_p56_761_mp3_sha512_gate.cjs'
 
 permissions:
   contents: read
