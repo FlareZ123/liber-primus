@@ -149,6 +149,59 @@ for (const filename of controls) {
 assert.deepEqual(results.map(x => x.controlWords), [55407, 15733, 77932]);
 assert.ok(results.every(x => x.conditionalBinomialUpperTail < 0.00001));
 
+// Distinguish natural plaintext-doublet thinning from a genuinely different
+// competing mechanism: zero ciphertext transitions generated without reference
+// to plaintext letter doubling. Keep true printed whole words across pages.
+const wholeWords = [];
+let wholeWord = [];
+let predecessor = null;
+const finishWord = () => {
+  if (wholeWord.length) {
+    wholeWords.push(wholeWord);
+    wholeWord = [];
+  }
+};
+for (let textPage = 0; textPage < 55; textPage++) {
+  const text = blocks[textPage];
+  predecessor = null; // No known within-page predecessor at first glyph.
+  for (const glyph of text) {
+    if (/^[\\u16a0-\\u16ff]$/u.test(glyph)) {
+      wholeWord.push({ eligible: predecessor !== null, equal: predecessor === glyph });
+      predecessor = glyph;
+    } else if (glyph === '-' || glyph === '.') {
+      finishWord();
+    }
+  }
+}
+finishWord();
+assert.equal(wholeWords.length, 2896);
+const opportunities = [0, 0, 0, 0];
+const zeroEvents = [0, 0, 0, 0];
+for (const word of wholeWords) {
+  word.forEach((site, position) => {
+    if (!site.eligible) return;
+    const bin = Math.min(position, 3);
+    opportunities[bin]++;
+    if (site.equal) zeroEvents[bin]++;
+  });
+}
+assert.deepEqual(opportunities, [2873, 2806, 2360, 4862]);
+assert.deepEqual(zeroEvents, [23, 12, 21, 30]);
+const allOpportunities = opportunities.reduce((a, b) => a + b, 0);
+const allZeroEvents = zeroEvents.reduce((a, b) => a + b, 0);
+assert.equal(allOpportunities, 12901);
+assert.equal(allZeroEvents, 86);
+const zeroExpected = opportunities.map(n => n * allZeroEvents / allOpportunities);
+const zeroChiSquared = zeroExpected.reduce(
+  (sum, expected, i) => sum + (zeroEvents[i] - expected) ** 2 / expected, 0
+);
+assert.ok(Math.abs(zeroChiSquared - 5.120079152075703) < 1e-10);
+const naiveRandomZeroPositions = {
+  allOpportunityCount: allOpportunities, allZeroCount: allZeroEvents,
+  opportunities, observations: zeroEvents, expected: zeroExpected,
+  pearsonChiSquared: zeroChiSquared, degreesOfFreedom: 3
+};
+
 console.log(JSON.stringify({
   originalRunes: textRuneCount,
   pageLocalFragments: fragments.length,
@@ -159,5 +212,6 @@ console.log(JSON.stringify({
   exploratoryFloralFisherUpperTail: fisherUpper,
   sourceSolvedLP1: { words: lp1Plain.length, equalPairs: lp1Doublets.length, firstPairs: 0 },
   sourceSolvedP57: { exactRunes: parable.length },
-  controls: results
+  controls: results,
+  naiveRandomZeroPositions
 }, null, 2));
