@@ -23,6 +23,17 @@ Every omitted prime exceeds 29, so none is divisible by 29. In this complete 180
 
 A nontrivial source-native positive plant applies `f(x)=(7x+3) mod29` to all 180 missing-prime residues and reverses their order. It correctly retains 28 distinct symbols. The actual 2014 table has 29. A separate planted affine map \`(3x+5) mod29\` of the perimeter, in reversed order, likewise preserves its 24-symbol support rather than producing the 25 classes seen on p55. Both obstructions depend on untouched sources rather than a chosen hidden permutation or a language score. The conditional F-skip radix59 parse does not rescue a **fixed bijective alphabet** on either branch: the interior again has all 29 residues while the omitted primes have 28, and its perimeter has 27 residues while p55 has 25. The 180-prime → interior obstruction remains valid for **any** stationary deterministic map in both radices. Under radix59, a noninjective function from 27 perimeter classes to 25 p55 classes is not excluded by support alone.
 
+### Free-alphabet and free-order edit lower bounds
+
+The mismatch survives much stronger concessions. Give a proposed *bijective* codebook **every one of 29! alphabet mappings** and allow **any ordering of all 180 or 76 positions**. For two symbol multisets of equal length, the exact smallest number of symbol edits still required is half the L1 distance between their sorted 29-entry frequency-count vectors. Sorting and matching counts minimizes absolute mismatch, and the remaining unmatched occurrences must be edited. The complete original data give:
+
+| Proposed source transfer | Base60 minimum edits | Conditional F-skip base59 minimum edits |
+| --- | ---: | ---: |
+| 180 omitted-prime residues → 180 table interior cells | **20 / 180** | **17 / 180** |
+| 76 table perimeter residues → 76 p55 rune indices | **4 / 76** | **6 / 76** |
+
+This is an exact lower bound for **arbitrary secret reversible alphabets and arbitrary position permutations**, stronger than merely finding a support mismatch. It does not bound position-dependent substitution states or transforms combining multiple source symbols. The SFT independently asserts all four original-input bounds.
+
 ## Decision and boundary
 
 **Retire the fixed bijective-symbol version of both transfers under either base60 or F-skip base59**: the 2013 omitted-prime residues → inner-180-cell grid, and the 76 grid perimeter residues → p55's 76 ciphertext runes, regardless of position order. The stronger arbitrary-stationary-function exclusion also applies to the **180-prime → interior** direction under both radices, and to the **base60 perimeter → p55** direction. Separate unknown fixed maps for each branch cannot rescue either necessary-condition failure. The 180/180 and 76/76 source-size relationships remain exact but do not select an encryption operation. This test does not exclude indexing into the full primes, position-varying keying, arithmetic combinations of multiple primes, binary serialization, or other independent sources and operations. The opposite noninvertible directions (interior→prime residues and p55→perimeter), and **base59 noninjective perimeter→p55**, remain outside the exact source-direction obstructions. Any reversible one-to-one map fails in both directions for either radix because the distinct-class counts differ. No unknown LP2 rune plaintext has been recovered.
