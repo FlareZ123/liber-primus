@@ -21,7 +21,7 @@ const files = [
   {name:'#cicadasolvers.freenode.log', sha:'bdd277c14f94c34b5ae714cd00c238065beeed4e', bytes:18487233},
   {name:'#cicadasolvers.freenode.2.log', sha:'72634a9d071d32af767edbffc0493d810e88cd0d', bytes:27234234},
 ];
-const high = /\bliber[ _-]*primus\b|\blp2\b|\bonion[ -]?7\b|\bprimus\b|\bdecrypt(?:ed|ion|ing)?\b|\bplaintext\b|\bkey(?:phrase|word|stream)?\b|\b(?:runes|runic)\b/i;
+const high = /\bliber[ _-]*primus\b|\blp2\b|\bonion[ -]?7\b|\bprimus\b|\bdecrypt(?:ed|ion|ing)?\b|\bplaintext\b|\bkey(?:phrase|word|stream)?\b|\b(?:runes|runic)\b|\b(?:58|59)\.(?:txt|jpg|html)\b/i;
 const medium = /\b(?:cipher|encrypted|encryption|message|book|puzzle|outguess|prime|hash|vigenere|atbash|breakthrough|riddle)\b/i;
 const dateRegex = /^(?:\d{4}[ -](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b|\[?\d{4}[-/](?:0[1-9]|1[0-2])[-/]\d{2})/i;
 const targetYear = /\b2014\b/;
