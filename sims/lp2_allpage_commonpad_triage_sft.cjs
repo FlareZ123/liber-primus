@@ -29,7 +29,8 @@ const alphabet = gp.translit.map((s, i) => ({s, i}))
 
 /** @param {string} text @returns {number[]} */
 function toRunes(text) {
-  const normalized = text.toUpperCase().replace(/[KVZQ]/g, ch =>
+  const normalized = text.toUpperCase().replace(/QU/g, "CW")
+    .replace(/[KVZQ]/g, ch =>
     ({K:"C", V:"U", Z:"S", Q:"C"})[ch]);
   const out = [];
   for (let i = 0; i < normalized.length;) {
@@ -41,6 +42,9 @@ function toRunes(text) {
   }
   return out;
 }
+
+assert.deepEqual(toRunes("queen").map(i => gp.translit[i]),
+  ["C", "W", "E", "E", "N"], "canonical QU to CW regression");
 
 /* Printed '-' and '.' delimiters; '/' and page marks do not end a word. */
 const symbols = [], classes = [];
@@ -104,8 +108,8 @@ for (const line of read("resources/control/english_wordfreq_textblob.txt")
   trie[node].terminal = true;
 }
 assert.equal(inputRows, 29157);
-assert.equal(dictionary.size, 29061);
-assert.equal(trie.length, 74946);
+assert.equal(dictionary.size, 29062);
+assert.equal(trie.length, 74970);
 
 /**
  * Exactly minimize total non-dictionary COMPLETE words over all pairs of GP29
