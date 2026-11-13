@@ -28,3 +28,5 @@ jobs:
         env:
           NODE_OPTIONS: --openssl-legacy-provider
         run: node sims/lp2_onion7_133331_des8_table_sft.cjs
+      - name: Original p13 line3 prime checksum 133-to-331 and direct key gate
+        run: node sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs
