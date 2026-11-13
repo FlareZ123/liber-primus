@@ -171,10 +171,68 @@ assert.equal(ioc(corpus.pages[32].indices), 0.03415977961432507);
 assert(all.every((entry) => entry.ioc < 0.04));
 assert.equal(Math.max(...all.map((entry) => entry.ioc)),
   0.03732782369146005);
+
+/**
+ * Full-book extension of the same SOURCE-FIXED vector Hill operation.
+ * The two natural boundaries are book-global 11-rune blocks, or complete
+ * 11-rune blocks restarted at every physical manuscript page.
+ * Incomplete terminal blocks remain unmodified original ciphertext and
+ * are excluded from language scores, never padded by a fitted value.
+ *
+ * @param {number[][]} key
+ * @param {number[]} symbols
+ */
+function blockProduct(key, symbols) {
+  assert.equal(symbols.length, 11);
+  return key.map((row) => mod(row.reduce(
+    (s, value, i) => s + value * symbols[i], 0)));
+}
+
+const originalPages = corpus.pages.slice(0, 56)
+  .filter((page) => page.indices.length > 0)
+  .map((page) => page.indices);
+assert.equal(originalPages.length, 55);
+assert.equal(originalPages.flat().length, 12956);
+const fullBook = [];
+for (const valueSystem of ['ordinal', 'prime']) {
+  const key = toeplitz(valueSystem);
+  const keyInverse = inverse(key).matrix;
+  for (const sense of ['inverse', 'forward']) {
+    const decoder = sense === 'inverse' ? keyInverse : key;
+    const encoder = sense === 'inverse' ? key : keyInverse;
+    for (const alignment of ['global', 'page']) {
+      const inputSections = alignment === 'global'
+        ? [originalPages.flat()] : originalPages;
+      const output = [];
+      for (const section of inputSections) {
+        for (let i = 0; i + 11 <= section.length; i += 11) {
+          const originalBlock = section.slice(i, i + 11);
+          const plaintextBlock = blockProduct(decoder, originalBlock);
+          assert.deepEqual(blockProduct(encoder, plaintextBlock),
+            originalBlock, 'Whole-book source block failed re-encryption');
+          output.push(...plaintextBlock);
+        }
+      }
+      assert.equal(output.length,
+        alignment === 'global' ? 12947 : 12606);
+      fullBook.push({
+        valueSystem, sense, alignment, runes: output.length,
+        skippedSourceTerminalRunes: 12956 - output.length,
+        ioc: ioc(output),
+        prefix: output.slice(0, 30)
+          .map((n) => corpus.runes[n]).join(''),
+      });
+    }
+  }
+}
+assert.equal(fullBook.length, 8);
+assert(fullBook.every((x) => x.ioc > 0.034 && x.ioc < 0.035));
+
 console.log(JSON.stringify({
   source: 'p0 word6 (563) + p1 word33 (569) -> Toeplitz11 -> p32',
   originalCipherIoC: ioc(corpus.pages[32].indices),
   p57NativeControlIoC: ioc(knownText.flat()),
   allSourceOriginalInverseAndNativePlantChecksPassed: true,
   readings: all,
+  fullBook11BlockReadings: fullBook,
 }, null, 2));
