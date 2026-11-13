@@ -2,9 +2,17 @@
 
 ## Current identity, 13 November 2026
 
-- **Immutable original lease:** `agent27-gpt6-20261113T131731717Z-issue-research-dc53339d79`, claimed `2026-11-13T13:17:31.717Z`. The 70-minute normal-release threshold is **14:27:31.717Z UTC**. Never refresh this lease. Every checkpoint must read the real clock and release only after 70 minutes, with the lease deletion committed/pushed as the **last repository mutation**. Verify current ownership before deleting.
-- **RNG draw 10**, issue-directed normal research. At claim time, every available `director-task` Issue was actively claimed; fallback independent research permitted. Do not overlap active ArchiveTeam WARC, Wiki-830 images, OpenPuff and F5 assignments.
+- **Immutable original lease:** `agent27-gpt6-20261113T183449Z-issue-fallback-0c30965449`, claimed `2026-11-13T18:34:49.026804Z`. The 70-minute normal-release threshold is **19:44:49.026804Z UTC**. Never refresh this lease. Every checkpoint must read the real clock and release only after 70 minutes, with the lease deletion committed/pushed as the **last repository mutation**. Verify current ownership before deleting.
+- **RNG draw 9**, issue-directed normal research. At claim time only two open director-task Issues were blocked on missing external inputs; fallback independent research permitted. Do not overlap active ArchiveTeam WARC, Wiki-830 images, OpenPuff and F5 assignments.
 - **No unknown LP2 plaintext, Cicada-authorized key or solved continuation.** Only conditional original-input model exclusions below.
+
+## New result: all-key universal LP2 JPEG OutGuess false-header mechanism
+
+**Passed source-original CI [43490424797](https://github.com/FlareZ123/liber-primus/actions/runs/43490424797)**. In every original LP2 JPEG scan 17.jpg–74.jpg (58 scans), the source-faithful OutGuess/libjpeg coefficient stream begins with **at least 5,747 consecutive one bits**, median 25,275. The authentic OutGuess 0.4 `Seeding` ARC4 iterator reads exactly 32 header bits, all drawn within positions 0–1023 for any password. Therefore every LP2 original has the **encrypted 4-byte header ffffffff** for every possible password; apparent header seed/length depends entirely on the password. For `Default key` this means forced pseudo-seed 41408, pseudo-length 58152, causally explaining the previously reported 16/58 false-looking completions. Real historic 2014 LP1 p03 `Default key` positive control precisely reproduces **31,809 original PGP-signed bytes**, and has only nine leading bit ones. No unknown LP2 plaintext is recovered. See [full proof](../../im-results/lp2-outguess-universal-header-artifact.md), [SFT](../../sims/lp2_outguess_universal_header_sft.py), [modified historical census](../../im-results/cicada2014-stage04-256-p50-direct-identity-gate.md).
+
+A separate [p32 HOMEX source-phrase OutGuess SFT](../../sims/lp2_p32_home_outguess_sft.py) passed [CI 43489076449](https://github.com/FlareZ123/liber-primus/actions/runs/43489076449): p32's unedited 11×11 glyph array includes literal HOMEX at offsets33–37; the candidate literal passwords HOME, HOMEX, HOME X, X were tried on p32/p55 tree scans. No recognized extracted payload. The universal bit-prefix mechanism shows why valid-looking header seeds on these probes carry no evidence of hidden data.
+
+**Future action:** stop treating apparent OutGuess length or seed matches as candidate keys/carrier evidence on any original LP2 scan; demand recognizable or authenticated recovered output bytes. The all-one header proof is independent of language and alphabet guesses. Continue looking for original evidence that supplies actual decryption operations for unknown runes, particularly lost original historical puzzle inputs.
 
 ## New original-input result: p50-keyed GP28 direct binary packets
 
