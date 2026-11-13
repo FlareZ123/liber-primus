@@ -1,0 +1,15 @@
+name: P15 P39 dynamic 4x4 matrix-power original inverse
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dynamic-matrix-power:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-native original ciphertext and cleartext plant
+        run: node sims/lp2_p15_p39_dynamic_matrix_power_sft.cjs
