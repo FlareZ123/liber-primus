@@ -245,6 +245,46 @@ function positivePlant(input, alphabetSize) {
 const gpPlant=positivePlant(encodeGP(read(sources[1][1])).slice(0,originalN),29);
 const latinPlant=positivePlant(encodeLatin(read(sources[0][1])).slice(0,originalN),26);
 
+
+/**
+ * Independent Latin-register positive text, written in original already-GP
+ * rune indices 0..28. This local Vulgate fixture uses longest GP tokens
+ * per complete Latin word, without the English-only ING/IO refinements.
+ * The source's 39,000+ lines contain the original word boundaries;
+ * the row theorem is independent of those boundaries.
+ */
+const latinVulgateAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+assert.equal(latinVulgateAlphabet.length,29);
+const latinVulgateSource=read("resources/control/latin-vulgate-gp-wholewords.txt");
+const latinVulgateWords=latinVulgateSource.split(/\r?\n/u)
+  .map(line=>line.trim())
+  .filter(line=>line.length && !line.startsWith("#"));
+const latinVulgateRunes=latinVulgateWords.flatMap(word =>
+  [...word].map(c=>{
+    const index=latinVulgateAlphabet.indexOf(c);
+    assert(index>=0,"invalid independently sourced Latin GP rune");
+    return index;
+  }));
+assert.equal(latinVulgateRunes.length,204802);
+const latinVulgateWindows=[];
+for(let start=0;start+originalN<=latinVulgateRunes.length;
+  start+=Math.floor(originalN/2)){
+  const rank=controlSortedGroups(latinVulgateRunes.slice(start,start+originalN),29);
+  latinVulgateWindows.push({top1:rank[0],top5:rank[4]});
+}
+assert.equal(latinVulgateWindows.length,30);
+const latinVulgateMin={
+  top1:Math.min(...latinVulgateWindows.map(x=>x.top1)),
+  top5:Math.min(...latinVulgateWindows.map(x=>x.top5))
+};
+assert.deepEqual(latinVulgateMin,{top1:1467,top5:6318});
+const nativeLatinGPExclusions={
+  book:latinVulgateMin.top1>sourceCapacity.book.gp29.top1,
+  chapter:latinVulgateMin.top1>sourceCapacity.chapter.gp29.top1,
+  eightPhase:latinVulgateMin.top1>sourceCapacity["eight-phase"].gp29.top1
+};
+assert(Object.values(nativeLatinGPExclusions).every(Boolean));
+
 /**
  * A public phase clock is the least additional state beyond C_(i-1).
  * Exhaust only the bounded 1..20 page-local rune phase values, keeping
@@ -294,6 +334,9 @@ console.log(JSON.stringify({
     eligibleWithinPage:observedEligible},
   sourceCapacity,
   originalControls:controlResults,
+  latinVulgateOriginalControl:{runes:latinVulgateRunes.length,
+    windows:latinVulgateWindows.length, min:latinVulgateMin,
+    nativeGP29AllSecretExclusions:nativeLatinGPExclusions},
   exactPhaseOccupancyEnvelope:phaseEnvelope,
   positivePlant:{gp29:gpPlant,latin26:latinPlant}
 },null,2));
