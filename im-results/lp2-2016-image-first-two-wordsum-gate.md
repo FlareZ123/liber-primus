@@ -125,6 +125,21 @@ The original p32 output GP29 IoC ranges **0.032369–0.039394** over all 16. The
 
 **Decision:** the concrete 11+10 two-dimensional additive/multiplicative consumer does **not** decrypt p32. The two uniquely addressed original words remain a provisional numerical link, with no independently fixed use.
 
+## The dimension-matched p32 axes as keys on the two opening pages
+
+The original signed 2016 image fixes the numerical pair **563×569**. The 11×11 reading of p32 has top-row prime sum **563** and left-column prime sum **569**; the same values uniquely select original printed p0 word6 (11 runes) and p1 word33 (10 runes). Earlier tests applied those two *words as keys to p32*. The independently testable reverse direction is equally natural under the historically demonstrated 2014 GP29 text-guided Vigenère: use the entire p32 top row (11 runes) as a cyclic key on **all 262 original p0 runes**, and the entire p32 left column (11 runes) on **all 266 original p1 runes**, resetting once at each page start. The source-visible axis order fixes the pairings; there are exactly two signed GP29 arithmetic directions and no adjusted starting phase, arbitrary key length, word omission or fitted ciphertext symbols.
+
+The original top-row key is `L TH AE W AE U P IA C W NG` and the left-column key is `L H TH H NG T S NG T EA O`. Exact original-source readouts:
+
+| Whole original page | Ciphertext IoC | GP29 C−key IoC | GP29 C+key IoC |
+| --- | ---: | ---: | ---: |
+| p0, p32 top row | **0.03430727** | **0.03381007** | **0.03383931** |
+| p1, p32 left column | **0.03455809** | **0.03518230** | **0.03535253** |
+
+Both p0 original outputs remain near random GP29 coincidence and contain no sustained readable source-native GP prose; the subtractive p0 stream begins `AGOEA EIEXTHIMY...` (token-concatenated `AGOEAEIEXTHIM...`), and p1 begins `RTHBWBEAWEOX...`. Swapping the two axis keys gives comparably nonlinguistic wrong-source controls. Every variant exactly restores **528/528** untouched original runes when its GP29 inverse is reapplied. Independent native-GP plaintext planted from solved p57, repeated to each page's exact rune count, is recovered **528/528** with its correct selected key and inverse direction. The source does **not** direct a p32-to-p0/p1 transfer; this is a bounded test of that explicit historical cipher interpretation, which does **not** recover plaintext. [Complete original-input CommonJS SFT](../sims/lp2_dim563_569_p32_rowcol_p0p1_inverse_sft.cjs).
+
+A related *single shared-cell* observation sharpens the cross-round +60 pixel arithmetic without creating a key: p32's **top-left rune is L**, GP prime value **73**, and it participates in both dimension-summing axes. Replacing only this cell by **C**, GP prime **13**, reduces the row/column sums together from **563/569 to 503/509**, matching the sorted dimensions of the archived first 2012 Cicada image (**509×503**). The two changed sums are algebraically linked by that same corner cell. Its GP index change is 20→5, or 15, which is a retrospective arithmetic equality. Neither the book nor signed messages selects replacing L with C or applying that edit to ciphertext; it yields no recovered rune plaintext, and further phase/field searches are unwarranted.
+
 ## P32 as an 81-rune key for p33: test the genuine two-stage alternative
 
 The failed 11+10 source-key inference above only evaluated whether its 121-rune p32 *intermediate* was native GP English. A meaningful distinct possibility is that the tree page holds a **key**. Physical p32's 11×11 square has an independently source-selected **9×9 inner 81 runes** after removing its circumference, matching solved p57's instruction to shed our own circumferences. The following physical p33 begins with a 10-rune red heading and a 13-dot divider at local index10; its next black-body section contains **exactly 81 runes** before the next 13-dot marker at local index91. Prior work tested the **untransformed** p32 inner 81 as a Vigenère key for that exact p33 81-body segment, obtaining C−K IoC 0.04197531, but did not combine it with the newly source-dimensioned **p0/p1 11+10** key data.
