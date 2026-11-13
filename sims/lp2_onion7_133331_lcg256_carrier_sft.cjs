@@ -117,6 +117,55 @@ function asciiSummary(b) {
   const base64Run = bestRun(b,inBase64);
   return {printable,base64Count,printableRun,base64Run};
 }
+/**
+ * Exhaust the 8192 full-period affine traversals modulo 256,
+ * a = 1 mod 4 and odd increment c.
+ * @param {number[]} bytes
+ */
+function allFullCycleAffineTraversals(bytes) {
+  const longRuns = [], repeatedSlash = [];
+  for (let a=1; a<256; a+=4) {
+    for (let c=1; c<256; c+=2) {
+      const v = [];
+      let x=0;
+      for (let t=0; t<256; t++) {
+        v.push(bytes[x]);
+        x=(a*x+c)&255;
+      }
+      assert.equal(x,0);
+      const run=bestRun(v,inBase64);
+      if (run.length >= 11) longRuns.push({a,c,...run});
+      for (let i=0;i+4<256;i++) {
+        if (v[i+2] === 47 &&
+            v[i] === v[i+3] && v[i+1] === v[i+4] &&
+            inBase64(v[i]) && inBase64(v[i+1])) {
+          repeatedSlash.push({
+            a,c,start:i,
+            text:Buffer.from(v.slice(i,i+5)).toString("latin1")
+          });
+        }
+      }
+    }
+  }
+  return {traversals:8192,longRuns,repeatedSlash};
+}
+/**
+ * Fixed-inventory expected AB/AB matches in 252 windows of a uniformly
+ * shuffled original table; this is an upper bound for >=1 match.
+ * This event was recognized after viewing the output.
+ * @param {number[]} bytes
+ */
+function duplicateSlashNullBound(bytes) {
+  const freq=Array(256).fill(0);
+  for (const x of bytes) freq[x]++;
+  const a2=freq.map((n,i)=>inBase64(i)&&i!==47 ? n*(n-1) : 0);
+  let ordered=0;
+  for (let a=0;a<256;a++) for (let b=0;b<256;b++) {
+    if (a!==b) ordered+=a2[a]*a2[b];
+  }
+  const p=252*freq[47]*ordered/(256*255*254*253*252);
+  return {slashCount:freq[47],expectedMotifs:p,probabilityUpperBound:p};
+}
 /** @param {number[]} values */
 function printableHeader(values) {
   return Buffer.from(values.slice(0,32))
@@ -151,6 +200,28 @@ function run() {
   assert.deepEqual(sourceCells,[183,94,33,112,123,50,69,36,255,198,41]);
   const base64Null = exactRunTail(256,ordinary.base64Count,11);
   const printableNull = exactRunTail(256,ordinary.printable,12);
+  const scan=allFullCycleAffineTraversals(bytes);
+  assert.equal(scan.longRuns.length,2);
+  assert.equal(scan.repeatedSlash.length,2);
+  assert.deepEqual(scan.longRuns.map(r=>[r.a,r.c,r.length,r.start]),
+    [[77,113,11,73],[133,75,11,173]]);
+  assert.deepEqual(scan.repeatedSlash.map(r=>[r.a,r.c,r.start,r.text]),
+    [[77,113,76,"6I/6I"],[133,75,176,"I6/I6"]]);
+  assert.equal((77*133)%256,1);
+  assert.equal((77*331+113)%256,0);
+  const duplicateMotifBound=duplicateSlashNullBound(bytes);
+
+  // The alternative plausible 59-symbol codec has no original lower-case
+  // 'f' in the printed tokens. The source-token repeated pattern survives.
+  const tokens=data.pages.flatMap(p=>p.tokens);
+  const base59alphabet=data.alphabet.replace("f","");
+  assert.equal(base59alphabet.length,59);
+  assert.equal(tokens.length,256);
+  const radix59=tokens.map(token=>
+    59*base59alphabet.indexOf(token[0])+base59alphabet.indexOf(token[1]));
+  assert.equal(Buffer.from(src.selected.positions
+    .slice(173,184).map(i=>radix59[i])).toString("latin1"),
+    "P7pH5.H5OgS");
 
   // A contemporary independently archived 2014 onion-2 256-byte value is
   // a genuine alternative source-side key. This tests only direct aligned
@@ -168,7 +239,9 @@ function run() {
     table:{raw:ordinary,lcgWalk:selected,inversePlacement:inverseStats,
       base64OriginalCellIndices:sourceCells,
       unpaddedBase64DecodedHex:decoded.toString("hex")},
-    fixedInventoryNulls:{base64Null,printableNull},
+    fixedInventoryNulls:{base64Null,printableNull,duplicateMotifBound},
+    allFullCycleAffineTraversals:scan,
+    base59SameSourceCells:"P7pH5.H5OgS",
     originalOnion2AlignedXor:{
       printable:xorStats.printable,
       longestPrintable:xorStats.printableRun.length,
