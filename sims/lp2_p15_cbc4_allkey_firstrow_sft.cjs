@@ -135,6 +135,41 @@ const controls = [
     minIoC: minimum / (admitted * (admitted - 1)), symbols};
 });
 
+// Additional source-native registers: corrected original Old English Beowulf GP,
+// and a separately source-pinned heldout Latin Vulgate GP slice. No remapping.
+const oldEnglish = JSON.parse(read(
+  "resources/control/beowulf_oe_gp_profile_corrected.json"));
+const oldEnglishSymbols = [...oldEnglish.sourceGpBase29]
+  .map(ch => oldEnglish.positiveControlAlphabet.indexOf(ch));
+assert.equal(oldEnglishSymbols.length, 48012);
+assert(oldEnglishSymbols.every(x => x >= 0 && x < 29));
+const heldoutLatin = JSON.parse(read(
+  "resources/control/latin-vulgate-heldout-gp.json")).runes;
+assert.equal(heldoutLatin.length, 2400);
+assert(heldoutLatin.every(x => Number.isInteger(x) && x >= 0 && x < 29));
+const expandedSources = [
+  {name: "Beowulf corrected original-source GP",
+    symbols: oldEnglishSymbols, expectedWindows: 27, expectedMin: 9822},
+  {name: "Latin Vulgate heldout original-source GP",
+    symbols: heldoutLatin, expectedWindows: 1, expectedMin: 12978}
+].map(({name, symbols, expectedWindows, expectedMin}) => {
+  let minimum = Infinity;
+  let windows = 0;
+  for (let start = 0; start + original.length <= symbols.length;
+    start += original.length) {
+    const firstRow = [];
+    for (let pos = start + 4; pos < start + original.length; pos += 4)
+      firstRow.push(symbols[pos]);
+    minimum = Math.min(minimum, orderedCollisionPairs(firstRow));
+    windows++;
+  }
+  assert.equal(windows, expectedWindows, name + " exact windows");
+  assert.equal(minimum, expectedMin, name + " first-row floor");
+  assert(minimum > observed.score);
+  return {name, windows, minimum,
+    minIoC: minimum / (admitted * (admitted - 1))};
+});
+
 // Known planted 4x4 INPUT-CBC with the actual printed p15 matrix.
 // Recovers the unique *correct secret first inverse row* without knowing
 // that inverse row during exhaustive search.
@@ -167,8 +202,11 @@ console.log(JSON.stringify({
   source: "LP2 p15 printed 4x4 grid and immediately following pp16-22",
   original: {runes: 1744, blocks: 436,
     discarded_iv_affected_blocks: 1, ...observed},
-  corpus_disjoint_windows: controls.map(({name, windows, minimum, minIoC}) =>
-    ({name, windows, minimum, minIoC})),
+  corpus_disjoint_windows: [
+    ...controls.map(({name, windows, minimum, minIoC}) =>
+      ({name, windows, minimum, minIoC})),
+    ...expandedSources
+  ],
   planted_true_key_recovery: recovered,
   conclusion: "Every fixed GF29 Hill4 CBC-input inverse first row has " +
     "lower native-GP first-column repeat concentration than any of the " +
