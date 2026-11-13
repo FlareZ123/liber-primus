@@ -1,6 +1,6 @@
 # The 256 ink events and 256 printed bytes do not share a stationary lookup
 
-**Original-source key-independent obstruction, 11 November 2026.** The two independently printed 256-element source sequences do not support an exact fixed mapping from byte value to GP29 event symbol. This is a finite exclusion of a simple, potentially useful alphabet/key relationship, with no recovered unknown LP2 plaintext, key, or message.
+**Original-source key-independent exclusions, 11–13 November 2026.** A direct stationary byte-to-ink lookup conflicts with the source-ordinal original symbols. Independently, the 31 identical ink markers exceed every possible five-bit field multiplicity of the 256 source table bytes under either documented numeral radix, even with arbitrary alignment and secret alphabet mapping. These exclude two simple source-shaped formats; no unknown LP2 plaintext, key, or message is recovered.
 
 ## Proposed human route and exact source
 
@@ -18,8 +18,24 @@ For each byte `b`, group all event symbols attached to `b`. A fixed function `f(
 - To check whether the source's zero alignment is exceptional, shift the ink-event sequence by every cyclic phase while keeping the printed byte order fixed. Across **256** complete source-order rotations, minimum changes range **84–94**; the original score **87** ranks at **58 / 256 = 0.22656** on the lower-is-more-consistent side. The rotations are diagnostic controls, not alternative decryption keys.
 - A planted secret arbitrary lookup `f(b)=(7b+11) mod 29` attached to the *actual duplicate-containing 256-byte table* yields **zero errors** and full **127/127** agreement of same-byte pairs.
 
+## Alignment-free 5+3-bit ink packing obstruction (Agent20, 13 November 2026)
+
+The separate original-source counts provide a second, stronger constraint than same-ordinal lookup: **225 red GP runes plus 31 identically rendered thirteen-dot markers = 256 ink events**, while the original numeric grid is **32 rows × 8 columns = 256 bytes**. A natural bit-serialization hypothesis is that one ink-event class supplies a five-bit value (32 possibilities), with an independent three-bit column/position tag (eight possibilities), making one byte per event. This is a candidate interpretation motivated by the source shapes; no signed instruction identifies it.
+
+Any **stationary deterministic** assignment of the 30 source ink-event classes (29 runes and one common dot-mark class) to five-bit values must give all **31 copies of the same thirteen-dot glyph** the identical field value. Consequently the 256 table bytes must have **some five-bit value appearing at least 31 times**. This requirement is independent of the order of the ink events, any arbitrary permutation of the table cells, any 29/30-way secret alphabet relabeling, and the choice of which event gets which table cell.
+
+| Complete original numeral interpretation | Max occupancy of high five bits (\`byte>>3\`) | Max occupancy of low five bits (\`byte&31\`) |
+| --- | ---: | ---: |
+| Printed radix60 | **16** | **14** |
+| Existing lowercase-f-omitting radix59 | **14** | **14** |
+| Source-mark requirement | **31** | **31** |
+
+There is no place for the 31 same-class markers in any one of the four bitfield layouts, even if an omniscient solver chooses every event/table permutation and five-bit alphabet map. The base60 high-five-bit histogram is fully occupied and its two largest bins contain 16 entries each. Permitting noninjective class labels cannot decrease the required marker multiplicity. This is an **exact format impossibility**, independent of plaintext language and the historical p50 polynomial factors.
+
+A positional state, special punctuation semantics, variable-length representation, or table as a separate cryptographic seed would constitute a different mechanism. These counts do not supply a key or unknown plaintext. The [same original-data SFT](../sims/ink256_grid256_fixed_lookup_sft.cjs) pins both complete radix readings, asserts the 31 source marks and the four field-bin maxima, and supplies a synthetic 31-identical-marker positive carrier. This new alignment-free obstruction is separate from the earlier source-ordinal stationary byte-to-rune lookup exclusion.
+
 ## Decision
 
-**Retire only the direct stationary byte-to-ink-event lookup under the literal chronological, equal-ordinal alignment.** The source equality 256=256 remains interesting, and the two streams may participate in a positional permutation, secret state generator, field operation, encryption, or different serialization. Neither a fixed offset scan nor a new arbitrary alphabet can repair this specific mapping without supplying a separate original clue. Since the two streams include events from solved pp56–57, the test by itself does not imply that their joint 256-event length encodes the 12,956 unresolved runes.
+**Retire both the direct stationary byte-to-ink-event lookup under the literal source-ordinal alignment and the stationary 5+3-bit ink/event grid-byte packing under all alignments.** The source equality 256=256 remains interesting, and the two streams may participate in a positional permutation, secret state generator, field operation, encryption, or different serialization. Neither a fixed offset scan nor a new arbitrary alphabet can repair this specific mapping without supplying a separate original clue. Since the two streams include events from solved pp56–57, the test by itself does not imply that their joint 256-event length encodes the 12,956 unresolved runes.
 
 Reproduce directly with [`sims/ink256_grid256_fixed_lookup_sft.cjs`](../sims/ink256_grid256_fixed_lookup_sft.cjs), Node.js CommonJS. It reads the original source-indexed ink data, the 256 printed bytes and canonical GP indices, asserts exact source counts, evaluates the full stationary lookup family, all 256 shift controls, and a planted positive function. The earlier [linear-recurrence test](ink256-grid256-lfsr-original.md) and [Cicada RSA4096 signature test](lp2_ink_grid_4096_signature_gate.md) assess materially different operations and remain separate.
