@@ -11,6 +11,7 @@
  */
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
+const {spawnSync} = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname,"..");
@@ -64,7 +65,9 @@ function rebuild(f){
 }
 const hashes=["sha512","sha3-512","blake2b512","whirlpool"];
 const supported=new Set(crypto.getHashes());
-const used=hashes.filter(x=>supported.has(x));
+const whirlpoolProbe=spawnSync("openssl",["dgst","-whirlpool","-provider","legacy","-binary"],{input:Buffer.from("test")});
+const hasWhirlpool=whirlpoolProbe.status===0&&whirlpoolProbe.stdout.length===64;
+const used=hashes.filter(x=>supported.has(x)||(x==="whirlpool"&&hasWhirlpool));
 assert.ok(used.includes("sha512")&&used.includes("sha3-512")&&used.includes("blake2b512"));
 const sources=ranges.map(([a,b])=>corpus.pages
   .filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices));
@@ -74,7 +77,13 @@ for(let k=0;k<sources.length;k++){
   const f=frame(sources[k]),bytes=toBytes(f.rank);
   assert.deepEqual(fromBytes(bytes,f.rank.length),f.rank);
   assert.deepEqual(rebuild(f),sources[k]);
-  const actual=Object.fromEntries(used.map(h=>[h,crypto.createHash(h).update(bytes).digest("hex")]));
+  const actual=Object.fromEntries(used.map(h=>{
+    if(h!=="whirlpool")return [h,crypto.createHash(h).update(bytes).digest("hex")];
+    const r=spawnSync("openssl",["dgst","-whirlpool","-provider","legacy","-binary"],{input:bytes});
+    assert.equal(r.status,0);
+    assert.equal(r.stdout.length,64);
+    return [h,r.stdout.toString("hex")];
+  }));
   records.push({
     chapter:k+1,pages:ranges[k],runes:sources[k].length,
     equalSteps:f.flags.filter(Boolean).length,
@@ -103,7 +112,7 @@ const matches=records.flatMap(r=>r.match.map(h=>[r.chapter,h]));
 console.log(JSON.stringify({
   status:"PASS",result:matches.length?"EXACT ORIGINAL P56 HASH MATCH":"NO P56 HASH MATCH",
   method:"Original nine chapter GP29 differences, omit zero steps, successor 1..28 as base28 digits, one minimal bigendian integer per chapter",
-  p56Hash:target, hashAlgorithms:used, unsupported:hashes.filter(x=>!supported.has(x)),
+  p56Hash:target, hashAlgorithms:used, unsupported:hashes.filter(x=>!used.includes(x)),
   thirdChapter:{pages:ranges[2],runes:records[2].runes,bytes:records[2].bytes,
     coincidence:"1033 also equals 2014 seven-by-seven magic sum; independently selected transport unproven"},
   originalExactRoundtrip:true,native1031BytePlantRecovered:true,
