@@ -47,13 +47,13 @@ function mine(name, data) {
     if (score === 2) report.strong++;
     else report.medium++;
     // The original line number permits independent pinpointed recovery.
-    if (report.excerpts.length < 1400) {
+    if (report.excerpts.length < 20000) {
       report.excerpts.push({line:i+1,score,text:line.slice(0,700)});
     }
   }
   // High-signal records take precedence; preserve chronology within score.
   report.excerpts.sort((a,b)=>b.score-a.score||a.line-b.line);
-  report.excerpts = report.excerpts.slice(0,280);
+  // Keep all finite 2014 query hits so later semantic review is not first-day biased.
   return report;
 }
 
