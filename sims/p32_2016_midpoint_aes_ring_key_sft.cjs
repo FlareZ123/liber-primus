@@ -114,6 +114,56 @@ for (const ringData of rings) {
 }
 assert.equal(out.length, 36);
 out.sort((a,b) => b.printable - a.printable);
+
+// The visible centre intersection is X; XTS is a specific AES mode with a
+// 32-byte AES-128-XTS key and 16-byte data-unit tweak. The 32-cell and
+// 16-cell square perimeters are natural exact-length candidates.
+function xtsRoundTrip(buffer,key,tweak,kind) {
+  const x=crypto[kind]('aes-128-xts', key, tweak);
+  x.setAutoPadding(false);
+  return Buffer.concat([x.update(buffer),x.final()]);
+}
+const xts = [];
+const parent = rings[0], inner = rings[2];
+for (const outerOrder of ['clockwise','counterclockwise','rowMajor']) {
+  for (const innerOrder of ['clockwise','counterclockwise','rowMajor']) {
+    for (const outerEncoding of ['prime','ordinal']) {
+      for (const innerEncoding of ['prime','ordinal']) {
+        const key=Buffer.from(parent[outerOrder].map(i =>
+          outerEncoding==='prime'?c.prime[i]:i));
+        const tweak=Buffer.from(inner[innerOrder].map(i =>
+          innerEncoding==='prime'?c.prime[i]:i));
+        const data=xtsRoundTrip(source,key,tweak,'createDecipheriv');
+        const label={outerOrder,innerOrder,outerEncoding,innerEncoding};
+        xts.push({...label,printable:printable(data),
+          firstBlockHex:data.subarray(0,16).toString('hex'),
+          asciiPreview:preview(data)});
+        const made=xtsRoundTrip(plant,key,tweak,'createCipheriv');
+        assert.deepEqual(xtsRoundTrip(made,key,tweak,'createDecipheriv'),plant);
+      }
+    }
+  }
+}
+assert.equal(xts.length,36);
+xts.sort((a,b)=>b.printable-a.printable);
+
+const realIv = [];
+for (const keyRing of rings.slice(0,2)) {
+  for(const orientation of ['clockwise','counterclockwise','rowMajor']){
+    for(const encoding of ['prime','ordinal']){
+      const key=Buffer.from(keyRing[orientation].map(i=>encoding==='prime'?c.prime[i]:i));
+      const iv=Buffer.from(inner.clockwise.map(i=>c.prime[i]));
+      const algo='aes-'+(key.length*8)+'-cbc';
+      const dec=crypto.createDecipheriv(algo,key,iv);
+      dec.setAutoPadding(false);
+      const data=Buffer.concat([dec.update(source),dec.final()]);
+      realIv.push({keyRing:keyRing.r,orientation,encoding,printable:printable(data),
+        firstBlockHex:data.subarray(0,16).toString('hex'),asciiPreview:preview(data)});
+    }
+  }
+}
+realIv.sort((a,b)=>b.printable-a.printable);
+
 console.log(JSON.stringify({
   model:'2016 563x569 prime-axis midpoint AE/S/X -> AES; p32 rings 16/24/32 byte keys -> p50 256 raw ciphertext bytes',
   source:{
@@ -135,6 +185,13 @@ console.log(JSON.stringify({
     maximumPrintable:out[0].printable,
     topEight:out.slice(0,8),
     plaintextFound:out.some(x => x.printable >= 220),
+  },
+  extended:{
+    model:'p32 inner 16-rune ring as XTS tweak or AES-CBC IV with 32/24-rune source rings as AES keys',
+    xtsTotal:xts.length,xtsMaximumPrintable:xts[0].printable,xtsTopSix:xts.slice(0,6),
+    sourceIvTotal:realIv.length,sourceIvMaximumPrintable:realIv[0].printable,
+    sourceIvTopSix:realIv.slice(0,6),
+    plaintextFound:xts.some(x=>x.printable>=220)||realIv.some(x=>x.printable>=220),
   },
   status:'An exact source-defined candidate gate; successful AES roundtrips alone do not authenticate original plaintext',
 },null,2));
