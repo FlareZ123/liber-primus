@@ -32,6 +32,21 @@ For each of the two fixed paths, first test direct \`plaintext = tableByte mod29
 
 There are **127 distinct input bytes** in either 180-position interior sequence; **53** observations revisit an already seen byte. The conflicting classes disprove every static raw-byte→rune codebook within each frozen orientation, regardless of its arbitrary secret mapping. A **fully planted GP29 source-native positive** made with \`P=byte mod29\` obtains **180/180** under the same upper-bound algorithm in both directions. The 256-cell ring paths are explicitly asserted to visit every source table cell exactly once, and the p56 authentic plaintext is checked against the full independently known wording.
 
+## Direct outer-ring attack on the actual 76 unknown p55 runes
+
+The stronger author-facing question is whether the **76 original exterior bytes themselves decrypt the actual p55 source ciphertext**, rather than whether the separately coded p56/p57 inner pages resemble a table map. Freeze exactly the row10 inward path above and the byte-to-GP29 arithmetic used by the authentic solved-p56 additive cipher: \`P[i] = C55[i] ± (exteriorByte[i] mod29)\`, consuming all **76** source runes, including the original NG that completes p54's last word. Allow only the **two geometrically fixed directions** and the **two GP29 additive signs**, without a selected shift, starting offset, skip mask, byte re-encoding or post hoc transposition.
+
+| Exterior path | GP29 inverse sign | IoC of all76 original output runes |
+| --- | --- | ---: |
+| Clockwise from (10,0) | subtract | **0.03157895** |
+| Clockwise from (10,0) | add | **0.03824561** |
+| Counterclockwise from (10,0) | subtract | **0.03403509** |
+| Counterclockwise from (10,0) | add | **0.03368421** |
+
+The original p55 ciphertext IoC is **0.03789474**. None of the four frozen outputs is a coherent GP-native instruction or prose; the best index by the weak short-sample IoC criterion remains near the source ciphertext. The most favorable four-case IoC is still **0.03824561**. The first 40 symbols of every output are printed by the SFT for transparent inspection. The counterclockwise/subtract output contains the incidental trigram \`W-A-Y\` **inside** the thirteen-rune source word, rather than at original printed word boundaries. It is not a source-authenticated plaintext claim. An independent source-native plant of the first **76** solved p57 GP runes, encrypted and decrypted under each frozen exterior key, recovers **76/76**; this establishes reversible implementation.
+
+This exact **outer-ring additive pad** therefore yields no original plaintext evidence. The source-table ring start and its 2014/2016 navigation rationale remain a *conditional hypothesis*, and no additional table rotations or key families are warranted without an independently attributable cipher instruction.
+
 ## Scope and next decision
 
 This rejects a direct **static mapping from source-table bytes to the native solved p56/p57 GP29 register** under both source-pointed inward ring directions. It does **not** reject keyed changing-state transforms, a different unknown intermediate register, page-specific ciphers, non-base60 byte readings, or the possibility that p56 and p57 were never meant to share one table transform. In fact p56 has its own solved additive cipher, while p57 is cleartext, making that last objection substantial.
