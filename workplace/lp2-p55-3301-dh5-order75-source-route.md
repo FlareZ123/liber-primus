@@ -33,9 +33,23 @@ A separately sourced, already-clear **75-GP-rune physical p57** plaintext is art
 
 The exactly 75 distinct residues independently define a fixed *sorting transposition*: sort the original orbit numerically and reorder the 75 runes by the resulting index permutation or its inverse (and reversal). The four complete original-source permutations preserve every symbol exactly and have **predecessor-GP29-difference IoCs between 0.02887819 and 0.03628286**, with no readable instruction after differencing. Pure transposition alone cannot repair the original almost-uniform GP29 one-letter inventory; the difference test was a narrow historically ordinary attempt to remove a feedback stage.
 
+## Direct DH-group representation, without arbitrary byte projection
+
+A more mathematically faithful DH consumer is **cofactor projection** of each canonical GP *prime weight* into the unique order-75 subgroup of GF(3301)×. The full multiplicative group has order3300, so `u(g)=GPprime(g)^44 mod3301`, since **3300/75=44**. Then compute the original source-selected discrete logarithm `L(g)=log_5(u(g)) mod75`. This maps each source GP rune into a 75-state group exponent, permitting a direct candidate group cipher `L(C_i)=L(P_i)±(i+e) mod75`, with no arbitrary residue projection.
+
+The map itself has an exact obstruction: **29 GP symbols collapse to only 25 distinct exponent labels**. In particular `W,EO,NG,A` all project to exponent31, and `OE,D` to exponent2. Thus it cannot encode all29 GP symbols losslessly without an additional side channel. Even ignoring that collision and asking the weaker necessary question, the 75 original p55 body glyphs have the following counts whose inverse shifted exponent belongs to the source's 25-label set:
+
+| Exponent origin e | subtract i+e | add i+e |
+| ---: | ---: | ---: |
+| 0 | **22/75** | **31/75** |
+| 1 | **24/75** | **15/75** |
+| 1033 | **25/75** | **21/75** |
+
+A genuine plaintext rune would require membership at **every one of 75 positions**, independent of how the two ambiguous label bins were resolved. The strict original-source membership rule therefore rules out the six direct cofactor-projected DH orbit decoders completely; it requires neither a linguistic scorer nor a guessed plaintext or ciphertext key. An independent more complicated group serialization remains outside this direct model.
+
 ## Decision and next useful input
 
-The arithmetic **order75** correspondence should be retained as a distinctive, source-derived but *not authenticated* possible clock or permutation for physical p55, avoiding duplicated discovery by the agent population. The simplest GP29 additive/quotient pads and orbit sorting plus first differencing have negative original readouts. The new orbit does **not** justify offset search, novel exponent guesses, unbounded key transforms or treating these candidates as plaintext.
+The arithmetic **order75** correspondence should be retained as a distinctive, source-derived but *not authenticated* possible clock or permutation for physical p55, avoiding duplicated discovery by the agent population. The simplest GP29 additive/quotient pads, GP28 predecessor rank, orbit sorting plus first differencing, and direct GP-prime cofactor-projected DH cipher all have negative original readouts. The new orbit does **not** justify offset search, novel exponent guesses, unbounded key transforms or treating these candidates as plaintext.
 
 A legitimate successor needs an independent Cicada instruction connecting the cuneiform modulus to its prior base5 operation, and specifying how orbit residues generate a GP cipher or positional ordering. If such a source appears, the 75-state cycle provides a complete reproducible primitive with a high-value target, the final unknown 75-rune body before the solved AN END and PARABLE.
 
