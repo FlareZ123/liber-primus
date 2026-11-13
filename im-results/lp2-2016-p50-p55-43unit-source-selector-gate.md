@@ -213,6 +213,19 @@ The appended exact test in [the existing p32/p55 43-symbol SFT](../sims/p32_p55_
 
 **Decision:** retire only the one-initial-to-one-interior *stationary GP29 substitution* reading. The signed message does not prescribe those initials as p55 plaintext; it could be a navigation instruction or a key for a separate stateful method. This counterexample supplies no general exclusion of nonstationary, polyalphabetic, or multi-symbol ciphers.
 
+
+## Signed 2016 word initials as a source-order running key
+
+The preceding keyless test rules out a stationary substitution from p55 interiors to signed-word initials, but not a polyalphabetic use of those same 43 initials as a one-time running key. This is a distinct, source-constrained hypothesis: the 43 signed words and 43 p55 interiors align one-to-one in source order. No phase, reversal, or key permutation is used.
+
+Three standard modulo-29 directions were tested: `C-K`, `C+K`, and `K-C`. Two key-value readings were tested: the initials' GP indices directly, and the p56-motivated prime-totient transform `phi(prime(initial)) = prime(initial)-1 mod29`. The p57 43-rune known-plaintext round-trip passes for both key constructions.
+
+Neither construction yields plausible plaintext. The best score across all six fixed variants is **−5.752192** (totient key, `C+K`), versus raw p55 interior score **−6.351839** and solved p57 control score **−2.571630**. The apparent improvement is not evidence of source-order information: a 10,000-trial same-multiset permutation null, taking the maximum over both key transforms and all three directions for every shuffle, gives **p = 0.625737**; the source order ranks at only the **37.43rd percentile**, below the null median (**−5.654901**). The best output's word fragments are not English.
+
+**Decision:** reject the direct 43-word-initial running-key interpretation, both raw and prime-totient transformed. The exact source order is no better than a random ordering of the same initial multiset under this language statistic. This does not exclude a different stateful operation or a separate navigational use of the 2016 message.
+
+Reproducer: [`sims/p32_p55_43symbol_additive_bridge.cjs`](../sims/p32_p55_43symbol_additive_bridge.cjs), [CI run 43426906281](https://github.com/FlareZ123/liber-primus/actions/runs/43426906281).
+
 ## Direct signed-2016 word-prime-sum key → p55 interior (bounded negative)
 
 The signature-verified 2016 clear-signed message contains **43 alphabetic words**, matching the 43 p55 interior runes. A simple reading of “their numbers are the direction” is to encode each word in GP, sum its rune prime weights, reduce modulo29, and use that 43-value sequence as a one-symbol-per-rune shift key in source order. This is a motivated test, not an authenticated cipher instruction: the message does not explicitly prescribe prime sums, modulo29 reduction, or Vigenère.
@@ -409,7 +422,7 @@ Reproducer: [`sims/lp2_p55_shell32_outguess_sft.cjs`](../sims/lp2_p55_shell32_ou
 
 ### Decision
 
-The 43-unit correspondence is a genuine, source-grounded selector candidate, not a solved cipher. The 2014 squares, p55 word interiors, p57 circumference instruction, and authenticated 2016 message explain why a human solver should examine this structure. The tested direct shifts, prime-count/totient streams, spiral/chain reads, stable rank transpositions, 99-cell additive consumers, and the fixed p55-shell OutGuess/ARC4 key interpretation do not recover plaintext. The affine 23-dot overlay is ruled out for the proposed prime-hole geometry.
+The 43-unit correspondence is a genuine, source-grounded selector candidate, not a solved cipher. The 2014 squares, p55 word interiors, p57 circumference instruction, and authenticated 2016 message explain why a human solver should examine this structure. The tested direct shifts, prime-count/totient streams, spiral/chain reads, stable rank transpositions, 99-cell additive consumers, direct 43-word-initial and prime-totient running keys, and the fixed p55-shell OutGuess/ARC4 key interpretation do not recover plaintext. The affine 23-dot overlay is ruled out for the proposed prime-hole geometry.
 
 No unknown LP2 plaintext or key has been recovered by this branch. The p55 shell32 test specifically rejects only its two canonical password encodings and fixed OutGuess/ARC4 consumers; it does not decide the remaining word-to-page, 43/56-layout, or stateful-cipher questions. Continue only if a new original clue selects a specific mapping or operation; do not expand the tested families with fitted offsets, arbitrary tie-breaks, or unconstrained permutations.
 
