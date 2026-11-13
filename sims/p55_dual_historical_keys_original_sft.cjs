@@ -65,9 +65,9 @@ assert.equal(
 
 /** @typedef {"channel"|"word"|"page"} Clock */
 /**
- * A printed literal F can be taken as an unencrypted, non-consuming interrupter,
- * matching the known solved-page convention. This is a full-string invertible
- * operation because its raw GP value 0 is preserved as 0.
+ * A source-visible ciphertext F can be an unencrypted non-consuming interrupter.
+ * Source-fixed F positions are retained in both encoder and decoder. This
+ * operation is reversible given the authentic 76-position source F mask.
  *
  * @param {number[]} source
  * @param {Clock} clock
@@ -92,7 +92,7 @@ function transform(source, clock, interruptF, swapped, encrypt) {
       ? (place.edge ? outer : inner)
       : clock === "word" ? wordCount : page;
     const current = source[i];
-    const skip = interruptF && current === 0;
+    const skip = interruptF && original[i] === 0;
     result.push(skip ? 0 : mod29(current + (encrypt ? 1 : -1) * key[phase % key.length]));
     if (!skip) {
       if (place.edge) outer++;
@@ -105,10 +105,9 @@ function transform(source, clock, interruptF, swapped, encrypt) {
 }
 
 /**
- * For an F-interrupter interpretation, a decoded non-F symbol cannot become
- * the value F through the keyed transformation if that would make encryption
- * ambiguous. Reject such plants; all unchanged original-cipher re-encodings
- * are only invariant checks, not evidence that this is the historical cipher.
+ * Chance F outputs at other sites remain ordinary keyed outputs because only
+ * the frozen source ciphertext F positions are defined as interruptions.
+ * Original forward round trips check arithmetic, not historical validity.
  *
  * @param {number[]} sequence
  * @returns {number}
@@ -161,12 +160,13 @@ for (const clock of ["channel", "word", "page"]) {
       rows.push({clock, interruptF, swapped, score, ioc: ioc(decoded),
         heldBelow, output: render(decoded)});
       assert.equal(decoded.length, 76);
-      if (!interruptF) {
-        assert.deepEqual(transform(decoded, clock, false, swapped, true), original);
-        const plant = reference.slice(1000, 1076);
-        const encrypted = transform(plant, clock, false, swapped, true);
-        assert.deepEqual(transform(encrypted, clock, false, swapped, false), plant);
+      assert.deepEqual(transform(decoded, clock, interruptF, swapped, true), original);
+      const plant = reference.slice(1000, 1076);
+      if (interruptF) {
+        for (let i = 0; i < plant.length; i++) if (original[i] === 0) plant[i] = 0;
       }
+      const encrypted = transform(plant, clock, interruptF, swapped, true);
+      assert.deepEqual(transform(encrypted, clock, interruptF, swapped, false), plant);
     }
   }
 }
