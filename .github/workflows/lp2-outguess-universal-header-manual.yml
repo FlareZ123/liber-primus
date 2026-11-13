@@ -1,0 +1,18 @@
+name: LP2 universal all-one OutGuess header source SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  all-original-lp2-scans:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original JPEG coefficient reader dependencies
+        run: sudo apt-get install -y libjpeg-dev
+      - name: Test all 58 LP2 sources and authentic 2014 positive control
+        run: python sims/lp2_outguess_universal_header_sft.py
