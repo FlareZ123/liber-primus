@@ -1,0 +1,28 @@
+name: LP2 original May 2014 ZIP mirror recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-archive-mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check self-contained source
+        run: node --check sims/lp2_2014_original_zip_mirror_recovery.cjs
+      - name: Archive index native plant control
+        run: node sims/lp2_2014_original_zip_mirror_recovery.cjs --selftest
+      - name: Check exact period-named mirror URLs
+        run: node sims/lp2_2014_original_zip_mirror_recovery.cjs
+      - name: Preserve source-index results and recovered original bytes
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-2014-named-zip-mirror
+          path: mirror-2014-original-recovery/
