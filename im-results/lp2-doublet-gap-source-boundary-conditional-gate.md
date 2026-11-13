@@ -150,6 +150,25 @@ The double-event word contributes repeated symbols **3 (D)** and **18 (S)**; the
 
 Reproducer: [`sims/lp2_doublet_gap_word_identity_conditional_sft.cjs`](../sims/lp2_doublet_gap_word_identity_conditional_sft.cjs), which now emits the complete p56 alignment gate alongside the existing word-identity conditional null.
 
+### Additional physical half-page, quarter-page and printed-line occupancy nulls (Agent46, 13 November 2026)
+
+The prior page × source-delimiter/exact-word-length experiment left a one-sided positive site-gap correlation. A distinct follow-up asks which *finer fixed visual location groups* account for this without supplying the identity of an event-bearing printed word. Physical page starts and printed line breaks are observed before cryptanalysis; the page half/quarter partitions are researcher-defined diagnostics, not original instructions. The independent SFT [`lp2_doublet_gap_conditional_null_sft.cjs`](../sims/lp2_doublet_gap_conditional_null_sft.cjs) matches every original physical page rune against the source transcription, asserts **12,956 runes, 12,901 eligible within-page pairs, 86 repeat sites**, and uses 100,000 or 50,000 uniform-without-replacement conditional simulations with fixed per-model xorshift32 seeds. The unchanged target is **r = +0.380019689241**.
+
+| Exact event counts preserved inside each | Strata | Draws | Null mean/SD of r | Draws ≥ observed | One-sided add-one p |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Whole book | 1 | 100,000 | −0.01235 / 0.10532 | 37 | 0.00038 |
+| Within- vs across-word-boundary | 2 | 100,000 | −0.01267 / 0.10517 | 32 | 0.00033 |
+| Nine visual chapters × word boundary | 18 | 100,000 | −0.02949 / 0.09626 | 3 | 0.000040 |
+| Each physical page | 55 | 100,000 | +0.23006 / 0.06043 | 509 | 0.00510 |
+| Physical page × word boundary | 110 | 100,000 | +0.22984 / 0.06022 | 502 | 0.00503 |
+| Physical page × half-page rune-position bin | 110 | 50,000 | +0.30865 / 0.03814 | 1,593 | 0.03188 |
+| Physical page × quarter-page rune-position bin | 220 | 50,000 | +0.33918 / 0.02542 | 2,713 | 0.05428 |
+| Exact physical page × printed line | 594 | 50,000 | +0.36734 / 0.00953 | 4,649 | 0.09300 |
+
+The global, page and boundary rows independently reproduce the prior source-boundary test at increased Monte Carlo resolution; **only the page-half, quarter and exact printed-line location controls extend its scope**. By fixing event occupancy on the actual printed lines, the target lag-one r ceases to be especially extreme within this conditioned family. This is an accounting identity about **where the 85 event-bearing words fall in the layout**, and agrees with the *stronger and already published* word-identity conditional null above: keeping exactly the event-bearing word identities yields a null r mean **+0.37855**, upper-tail **p=0.25914**. The line-conditioned result is a weaker spatial explanation, useful mainly if a future key hypothesis specifies a source-visible printed-line clock rather than word identities.
+
+These nulls **cannot determine why particular lines or words contain repeat sites**, do not imply a line-reset cipher, and do not revise the prior word-identity model failure. Increased conditioning on observed outcomes predictably erases statistical discrepancy; no source-selected inverse, plaintext, key or hidden route emerged. The external T7 discovery was exploratory and these new strata were selected with knowledge of its value, so conditional tails are diagnostics rather than standalone discovery p-values.
+
 ## Reproduction and implication
 
 [Self-contained CommonJS original-source SFT](../sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs) reads the canonical `resources/liber-primus/lp2-corpus.json` and `lp2-ink-annotations.json`, asserts the 12,956/86 census, observed correlation, chapter counts and 13-dot boundary inventory, and runs the three exact count-conditioned surrogates. Seeds: chapter `0x48b3c201`, page `0x48b3c202`, page-fragment `0x3301c1b2`. A planted smoothly changing gap series gives autocorrelation above 0.9 with the same routine. All three source-conditioned numerical findings were independently executed against those two live repository resources. The SFT prints the complete reproducible null summaries.
