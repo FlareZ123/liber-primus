@@ -143,13 +143,13 @@ This entry point separates source facts, measured ciphertext properties, conditi
 
 ### Historical 2014 handoff and the separate AN-END target
 
-The 2014 recruitment chain's Sixth Onion was `ut3qtzbrvs7dtvzp.onion`, recovered by a `chapter:line:word:letter` book code using *Gödel, Escher, Bach* from the signed Onion 5 message. It served four initial Liber Primus pages, then requested three magic squares (orders/sums 5/3301, 5/1033, 7/1033) and a Tor hidden-service URL. The final returned rune image was decoded with Vigenère key `CIRCUMFERENCE`. This is solved historical context, not a key for LP2 0–55 and not the AN-END target. See [`results/2014-onion-chain.md`](2014-onion-chain.md).
+The 2014 recruitment chain comprised seven onions: `auqgnxjtvdbll3pv` → `cu343l33nqaekrnw` → `fv7lyucmeozzd5j4` → `avowyfgl5lkzfj3n` → `q4utgdi2n4m4uim5` → `ut3qtzbrvs7dtvzp` → `ky2khlqdf7qdznac`. The Onion 5 GEB book code yielded the Sixth Onion, `ut3qtzbrvs7dtvzp.onion`; it served four initial Liber Primus pages and later requested three magic squares (orders/sums 5/3301, 5/1033, 7/1033) plus a Tor hidden-service URL. The seventh onion, `ky2khlqdf7qdznac.onion`, published Liber Primus. The final returned rune image was decoded with Vigenère key `CIRCUMFERENCE`. This is solved historical context, not a key for LP2 0–55 and not the AN-END target. See [`results/2014-onion-chain.md`](2014-onion-chain.md).
 
 The 05.jpg trailer's 179-byte OOB data is the already documented Onion 3 payload that reverses to the 5×5 magic square of sum 1033; it is not a new p55 key. See [`im-results/lp1-p05-trailer-mobius-matrix.md`](../im-results/lp1-p05-trailer-mobius-matrix.md) for the corrected reproduction.
 
 Keep that historical onion distinct from the solved AN-END page's separate 512-bit target:
 `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
-The AN-END hash algorithm and preimage remain unknown; the direct Ed25519 onion-key interpretation failed, and the local `analysis/anend_hunt/FINDINGS.md` records the current downstream-of-LP2 working model. Do not label the Sixth Onion as the AN-END page.
+The AN-END hash algorithm and preimage remain unknown; the direct Ed25519 onion-key interpretation failed, and the external [AN-END hunt findings](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/anend_hunt/FINDINGS.md) reconstruct the seven-onion chain and report that the AN-END address is gated behind solving the preceding LP2 pages. Do not label the Sixth Onion as the AN-END page.
 
 
 ### Language and register scope
