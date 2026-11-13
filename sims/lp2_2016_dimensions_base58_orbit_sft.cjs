@@ -303,6 +303,36 @@ assert.equal(div331.terminal,50);
 assert.equal(height.terminal,div331.terminal);
 assert.equal(div331.path.length,height.path.length);
 assert(width.path.includes(title133.terminal));
+
+// A stronger source-aligned test than a generic grid origin: 2014 id331 and
+// signed-image height569 BOTH point to global grid index80, the start of
+// physical p50, namely row10 column0. Rotate complete eight-cell rows to
+// this explicit original terminal while preserving the source cycle key order.
+const tableStartRow=80/8;
+assert.equal(tableStartRow,10);
+const sourceRotatedTable=Buffer.from(grid.byte_rows.slice(tableStartRow)
+  .concat(grid.byte_rows.slice(0,tableStartRow)).flat());
+assert.equal(sourceRotatedTable[0],142);
+const rotatedResults=[
+  ["xor",(v,k)=>(v^k)&255,(v,k)=>(v^k)&255,93,
+    "3a8e7d7519a8dbf5d8d7cd3ae75f33289cd40a6011a7628c80c5e520f442da89"],
+  ["minus",(v,k)=>(v-k+256)&255,(v,k)=>(v+k)&255,84,
+    "da86150df968bb8dc8d1bb26e1492d189c5406e011a3de8c804525e014be2679"],
+  ["plus",(v,k)=>(v+k)&255,(v,k)=>(v-k+256)&255,95,
+    "42ee7d7561d023f5dee7d13cf75f432e20d88a6495276210743919d408b21a6d"]
+];
+for(const [label,forward,inverse,nPrintable,hex32] of rotatedResults) {
+ const apply=data=>Buffer.from(data.map((v,i)=>forward(v,orbitRowKeys[i>>3])));
+ const undo=data=>Buffer.from(data.map((v,i)=>inverse(v,orbitRowKeys[i>>3])));
+ const encoded=apply(sourceRotatedTable);
+ assert.equal(encoded.subarray(0,32).toString("hex"),hex32);
+ assert.equal(encoded.reduce((n,v)=>n+(v>=32&&v<=126),0),nPrintable);
+ assert(undo(encoded).equals(sourceRotatedTable));
+ assert(undo(apply(orbitAsciiPlant)).equals(orbitAsciiPlant));
+ console.log("Original p50 row10 source-start",label,nPrintable,
+   "/256 printable; all bytes and planted control round-trip");
+}
+
 console.log("Cross-release fixed map: 2014 title133 joins 2016 width563",
   "33-cycle; 2014 div331 and 2016 height569 both reach p50:w0 after two words.");
 
