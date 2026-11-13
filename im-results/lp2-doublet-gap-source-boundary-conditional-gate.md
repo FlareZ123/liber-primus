@@ -127,6 +127,19 @@ The original statistic is +0.380019689. Both deterministic source-only samples u
 
 **Interpretation and causal boundary.** The dramatic flat-site p≈0.001 becomes p≈0.021 after locking entire event patterns to page/word-length-compatible source positions; additional large-mark conditioning yields p≈0.008. These materially different tails demonstrate that the precise null matters and there is **no uniquely identified process drift or ciphertext state machine**. The fragment-stratified tail remains modest evidence of patterned *event-bearing word selection* under this exchangeability model; the existing fully fixed-word-ID conditional p=0.259 demonstrates that within those selected words the exact offsets contribute essentially no extra lag-one signal. Neither model reveals *why* the event-bearing words were selected, predicts their identities, licenses an anti-repeat mechanism, or recovers plaintext. A next attack must begin with an independently selected emitter/word-selection rule rather than more fitted gap correlations.
 
+## Source-preserving per-word event-occupancy null (Agent 3, 13 November 2026)
+
+The original unsolved corpus's 86 same-page adjacent-repeat events occur in **85 complete printed words**, with 84 words containing one event and one word containing two. This nearly one-to-one relation could tempt a word-reset or one-repeat-per-word escape model, but a discrete occupancy null is needed before inventing that encoder.
+
+A distinct [original-input 20,000-draw CommonJS SFT](../sims/lp2_doublet_word_occupancy_null_sft.cjs) holds all 2,896 printed-word lengths/IDs and exactly all 12,956 printed rune positions fixed. It reassigns the original 86 repeat-event *sites* uniformly without replacement within either (a) each of the 55 original rune-bearing physical pages with its exact observed repeat count, or (b) each of the 72 source page × original 13-dot sections with its exact observed count. For each trial it counts collisions, i.e. selected repeat-event sites beyond the first in any original word. The observed collision count is **one**.
+
+| Null (fixed original event counts per stratum) | Draws | Expected within-word event collisions ± SD | Draws with ≤1 | Add-one lower tail |
+| --- | ---: | ---: | ---: | ---: |
+| Physical page (55 strata) | 20,000 | **1.40620 ± 1.14167** | **11,738** | **0.58692** |
+| Physical page × 13-dot section (72 strata) | 20,000 | **1.32425 ± 1.12286** | **12,299** | **0.61497** |
+
+Deterministic xorshift32 seeds `0x6711a201` / `0x6711a202`; the runnable SFT asserts source transcription/corpus equality, all 86 original sites, eligible-site count 12,901, the exact selected-word count, and Monte Carlo tail counts. This is a **positional occupancy null**, not a legitimate ciphertext synthesizer, and it does not independently select a cipher. Under both source-preserving nulls the observed single doubly occupied word is entirely ordinary. Hence the 85-of-86 occupancy relation provides no evidence of a one-repeat-per-word emitter or a meaningful 85-symbol secret register. The more specific **which 85 words are selected** question remains unexplained by this collision statistic.
+
 ## Cross-page 85-word / p56 alignment gate (Agent31, 12 November 2026)
 
 The 85 event-bearing words have the same count as the **85-rune plaintext of solved page 56**. This is a plausible, finite human-solver hypothesis: take the repeated ciphertext rune from each event-bearing word, in manuscript order, and ask whether the resulting 85-rune stream is p56 plaintext (or its ciphertext) under a simple GP29 alphabet operation. The one word with two events (word ID 1476, length 12) supplies the natural first-event or last-event choice.
