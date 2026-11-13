@@ -83,10 +83,10 @@ async function fetchCandidates(images) {
         {referer:"https://uncovering-cicada.fandom.com/"});
       const bytes=Buffer.from(await response.arrayBuffer());
       const sha1=crypto.createHash("sha1").update(bytes).digest("hex");
-      const valid=sha1===im.sha1;
+      const valid=sha1===im.sha1 || BigInt("0x"+sha1).toString(36).padStart(31,"0")===im.sha1;
       if(valid) writeAtomic(path.join(OUTPUT,im.name.replace(/[^a-z0-9._-]/gi,"_").slice(0,120)),bytes);
       outcomes.push({name:im.name,status:valid?"verified":"sha1-mismatch",
-        sha1,publishedSha1:im.sha1,bytes:bytes.length});
+        sha1,publishedSha1:im.sha1,base36:BigInt("0x"+sha1).toString(36).padStart(31,"0"),bytes:bytes.length});
     } catch(error) {
       outcomes.push({name:im.name,status:"unavailable",detail:String(error).slice(0,160)});
     }
@@ -110,6 +110,7 @@ async function main() {
   const fd=fs.openSync(lock,"wx");
   try {
     const images=await wikiList();
+    console.log("WIKI_DIGEST_SAMPLE",JSON.stringify(images.slice(0,4).map(x=>({name:x.name,sha1:x.sha1,size:x.size,url:x.url?.slice(0,100)}))));
     const archive=await archiveList();
     const names=new Set(archive.map(e=>norm(e.path)));
     const unknown=images.filter(im=>!names.has(norm(im.name)))
@@ -131,6 +132,7 @@ async function main() {
         priority:priority(im),url:im.url}))};
     writeAtomic(path.join(OUTPUT,"source-index.json"),JSON.stringify(images,null,2));
     writeAtomic(path.join(OUTPUT,"triage.json"),JSON.stringify(report,null,2));
+    console.log("HASH_DIAGNOSTIC",JSON.stringify(downloads.filter(x=>x.status==="sha1-mismatch").slice(0,3)));
     console.log("FINAL_SUMMARY",JSON.stringify({images:images.length,
       known,unmatched:unknown.length,downloads:downloads.length,
       verified:downloads.filter(x=>x.status==="verified").length,
