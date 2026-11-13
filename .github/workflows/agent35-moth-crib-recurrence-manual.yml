@@ -1,0 +1,16 @@
+name: LP2 source-moth p55 GF29 recurrence (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-crib-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact p55 source-crib recurrence and affine certificate
+        run: node sims/lp2_moth_grid16_crib_recurrence_sft.cjs
