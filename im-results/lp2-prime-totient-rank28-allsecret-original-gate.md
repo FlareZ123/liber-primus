@@ -37,6 +37,28 @@ Native-GP Shakespeare was tokenized to the public rune alphabet, with historical
 
 All three original values are near the uniform 28-rank baseline \(1/28\). Under each clock, **none of the 150 native windows has Q at or below the original**. The windows overlap, so 0/150 reports control coverage rather than an independent 150-trial significance level. No map of the 28 secret labels can lift the original Q to the native control range. This is stronger than the earlier parity-only result because **even a fully secret per-page and per-prime-residue permutation is allowed**.
 
+## Solved-p56 literal-F skip semantics: the state-independent gap remains
+
+The independently decrypted solved p56 page contains a literal-F interruption that **does not advance its consecutive-prime clock**. Thus a distinct, historically motivated hypothesis is that original unknown-page repeated-cipher runes are corresponding nonconsuming markers. If each page's first rune is a transmitted IV, it might likewise consume no key. Rather than dismiss these possibilities from the consuming-clock result, the same exact 28! all-secret conditional equality invariant has now been executed for **every one of the three remaining binary marker/IV consumption policies**, under each of the same book/page/chapter source-shaped resets.
+
+Every row below still freezes **all 12,815 untouched original nonrepeating ciphertext transitions**, all **86 original marker sites**, 55 physical-page IVs, and the actual same 150 native-GP windows per clock. Each pair of a policy and a clock may choose arbitrary unrelated secret GP28 permutations at all of its active page×prime-residue states. The only variable is which source-visible events advance the public prime clock. The previous table's policy was **both IV and doublet consume**.
+
+| Clock advance policy | Clock reset | Original equal pairs / eligible pairs | Original Q | Native minimum Q |
+| --- | --- | ---: | ---: | ---: |
+| IV consumes, doublet does not | Book | **8,736 / 253,764** | **0.03442569** | **0.05877902** |
+| IV consumes, doublet does not | Page | **9,098 / 249,144** | **0.03651703** | **0.05860065** |
+| IV consumes, doublet does not | Chapter | **9,190 / 251,422** | **0.03655209** | **0.05857880** |
+| Neither IV nor doublet consumes | Book | **9,112 / 253,486** | **0.03594676** | **0.05925377** |
+| Neither IV nor doublet consumes | Page | **9,010 / 247,000** | **0.03647773** | **0.05851822** |
+| Neither IV nor doublet consumes | Chapter | **9,142 / 251,084** | **0.03641013** | **0.05923117** |
+| IV does not consume, doublet consumes | Book | **9,028 / 253,344** | **0.03563534** | **0.05905015** |
+| IV does not consume, doublet consumes | Page | **8,842 / 247,194** | **0.03576948** | **0.05877165** |
+| IV does not consume, doublet consumes | Chapter | **8,950 / 251,088** | **0.03564487** | **0.05946919** |
+
+**Every one of these nine independently evaluated source-clock/skip combinations also falls below every native-GP control window.** This is an additional all-secret necessary-condition result, closing the specific literal-F clock-interruption loophole left by the consuming-clock test. The extra policies have separately asserted native-positive full-source-layout forward and inverse constructions, all 12,815 true content ranks and exactly 86 preserved literal markers, with the identical statewise equality invariant.
+
+All **12** tested clock/reset/skip combinations remain conditional cipher architectures. The known p56 F interruption confirms only *that a nonconsuming prime-clock exception exists in the solved page*, not that LP2 unknown-page doublets are F/EA or that they use these identical clocks. An arbitrary hidden skip mask, a prime index depending on plaintext, an additional changing state, or different source-wide interleaving remains outside the explicit models.
+
 ## Independent full-transport positive construction
 
 The [self-contained source-exact CommonJS SFT](../sims/lp2_prime_totient_rank28_allsecret_state_sft.cjs) uses a native Shakespeare GP28 segment at all 12,815 content positions. For each original state \(s=(p,k)\), independently generate an invertible affine alphabet \(r=a_s P+b_s\bmod28\), choosing \(a_s\) from the 12 units of \(\mathbb Z/28\mathbb Z\). This supplies one valid member of the otherwise completely arbitrary secret 28!-way family for every active state. It then:
@@ -54,4 +76,4 @@ The successful plant proves that the source-shaped anti-repeat transport **can**
 
 It cannot rule out unknown per-rune state, secret clock jumps or marker nonconsumption, a different native language, independent word-boundary steganography, a compressed intermediate, or unknown historical key material. Those mechanisms must be selected from independent clues before another expensive key search. No original plaintext has been decoded.
 
-**Reproduction:** one-file Windows-compatible Node.js CommonJS [original-input all-secret test](../sims/lp2_prime_totient_rank28_allsecret_state_sft.cjs) and the [manual Node22 Windows workflow](../.github/workflows/agent13-prime-totient-allsecret-manual.yml). The SFT requires only the source-corpus JSON and the pinned Shakespeare control; it asserts every original integer count, full encrypted native roundtrip and statewise all-secret invariant. **Windows Node.js 22 CI run [43365281845](https://github.com/FlareZ123/liber-primus/actions/runs/43365281845) passed** all three original-prime-totient attack programs, including this GP28 positive and the earlier GP29 all-secret and exact-key inversion tests.
+**Reproduction:** one-file Windows-compatible Node.js CommonJS [original-input all-secret test](../sims/lp2_prime_totient_rank28_allsecret_state_sft.cjs) and the [manual Node22 Windows workflow](../.github/workflows/agent13-prime-totient-allsecret-manual.yml). The SFT requires only the source-corpus JSON and the pinned Shakespeare control; it asserts every original integer count, full encrypted native roundtrip, all nine additional skip-policy integer pair counts and the statewise all-secret invariant. **Windows Node.js 22 CI run [43365281845](https://github.com/FlareZ123/liber-primus/actions/runs/43365281845) passed** all three original-prime-totient attack programs, including this GP28 positive and the earlier GP29 all-secret and exact-key inversion tests.
