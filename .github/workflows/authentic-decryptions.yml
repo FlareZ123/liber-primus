@@ -39,3 +39,5 @@ jobs:
         run: node sims/historical_solve_path_transfer.cjs
       - name: Exhaust all original physical-page literal-F prime-totient clock masks
         run: node sims/historical_solve_path_transfer.cjs --all-pages
+      - name: Check solved p57 word-interior starts against all authentic literal-F prime masks
+        run: node sims/lp2_p57_shed_primecursor_fskip_sft.cjs
