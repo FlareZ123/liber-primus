@@ -292,8 +292,135 @@ for (const p of PAGES) {
 assert.equal(contentCursor,12815);
 assert.equal(matrix(planted.map((indices,page)=>({page,indices}))).equal,86);
 
+
+/**
+ * Exact maximum occupancy of ANY TWO decoded predecessor-exclusion ranks,
+ * over every ordering of the 29 underlying ciphertext glyph identities.
+ * Adjacent output ranks share three consecutive glyphs; nonadjacent ranks
+ * use two disjoint adjacent glyph pairs. All other predecessor glyphs may
+ * be placed on either side (3-glyph case) or in one of three zones (4-glyph).
+ * In the 4-glyph case, at least one middle-zone glyph is compulsory.
+ * Reversal of an entire alphabet preserves pair occupancy, so enumerate
+ * each 4-glyph orientation only once (a<d).
+ *
+ * @param {number[][]} T
+ * @returns {number}
+ */
+function twoRankCapacity(T) {
+  const q=T.length;
+  let adjacent=0, distant=0;
+  for (let a=0;a<q;a++) for (let b=0;b<q;b++) {
+    if(a===b) continue;
+    for (let c=0;c<q;c++) {
+      if(c===a||c===b) continue;
+      if(a<c) {
+        let value=T[a][b]+T[a][c]+T[b][a]+T[b][c]+
+          T[c][a]+T[c][b];
+        for(let s=0;s<q;s++) if(s!==a&&s!==b&&s!==c)
+          value+=T[s][b]+Math.max(T[s][a],T[s][c]);
+        adjacent=Math.max(adjacent,value);
+      }
+      for(let d=a+1;d<q;d++) {
+        if(d===b||d===c) continue;
+        let value=T[a][b]+T[a][d]+T[b][a]+T[b][d]+
+          T[c][a]+T[c][d]+T[d][a]+T[d][c];
+        let middle=false,minimumPenalty=Infinity;
+        for(let s=0;s<q;s++) if(s!==a&&s!==b&&s!==c&&s!==d) {
+          const before=T[s][b]+T[s][d];
+          const middleValue=T[s][a]+T[s][d];
+          const after=T[s][a]+T[s][c];
+          const choice=Math.max(before,middleValue,after);
+          value+=choice;
+          if(middleValue===choice) middle=true;
+          else minimumPenalty=Math.min(minimumPenalty,choice-middleValue);
+        }
+        if(!middle) value-=minimumPenalty;
+        distant=Math.max(distant,value);
+      }
+    }
+  }
+  return Math.max(adjacent,distant);
+}
+
+// Exhaustive q=5 oracle, checking both rank selection and all 5! orders.
+const toy2=[
+  [0,3,5,2,8],
+  [4,0,1,7,2],
+  [9,6,0,3,4],
+  [2,8,5,0,7],
+  [1,4,9,6,0]
+];
+let brute2=0;
+function enumerateToy2(prefix,remaining) {
+  if(remaining.length===0) {
+    const p=positions(prefix);
+    const frequencies=Array(4).fill(0);
+    for(let s=0;s<5;s++) for(let c=0;c<5;c++)
+      if(c!==s) frequencies[digit(s,c,p)]+=toy2[s][c];
+    frequencies.sort((x,y)=>y-x);
+    brute2=Math.max(brute2,frequencies[0]+frequencies[1]);
+    return;
+  }
+  for(let i=0;i<remaining.length;i++)
+    enumerateToy2([...prefix,remaining[i]],
+      [...remaining.slice(0,i),...remaining.slice(i+1)]);
+}
+enumerateToy2([],[0,1,2,3,4]);
+assert.equal(twoRankCapacity(toy2),brute2);
+
+const globalPairMaximum=twoRankCapacity(whole.matrix);
+assert.equal(globalPairMaximum,1118);
+const perPagePair=PAGES.filter(p=>p.indices.length>0)
+  .map(p=>({page:p.page,max:twoRankCapacity(matrix([p]).matrix)}));
+assert.deepEqual(perPagePair.map(x=>x.max),[
+  49,48,41,41,48,49,34,44,47,47,49,48,46,46,31,35,
+  45,47,48,50,46,52,30,37,42,47,46,42,49,50,47,
+  45,30,41,42,50,48,42,47,46,42,45,47,53,48,46,
+  48,48,46,17,22,45,37,42,21
+]);
+const perPagePairMaximum=perPagePair.reduce((s,x)=>s+x.max,0);
+assert.equal(perPagePairMaximum,2379);
+
+/**
+ * @param {number[]} data
+ * @param {number[]} letters
+ * @returns {{min:number,at:number}}
+ */
+function nativePairMinimum(data,letters) {
+  const bit=Uint8Array.from(data,x=>Number(letters.includes(x)));
+  let all=0,min=Infinity,at=-1;
+  for(let i=0;i<totalRunes;i++) all+=bit[i];
+  for(let k=0;k<=bit.length-totalRunes;k++) {
+    if(k) all+=bit[k+totalRunes-1]-bit[k-1];
+    let free=0;
+    for(let j=0;j<excluded.length;j++) free+=bit[k+excluded[j]];
+    const value=all-free;
+    if(value<min){min=value;at=k;}
+  }
+  return {min,at};
+}
+const O=corpus.translit.indexOf('O');
+assert.equal(O,3);
+const pairedControls=[
+  ['resources/control/gibran_prophet_58585.txt',2517,36540],
+  ['resources/control/shakespeare_first300k.txt',2395,193169],
+  ['resources/control/emerson_essays_2944.txt',2419,297246]
+];
+const paired=[];
+for(const [file,min,at] of pairedControls) {
+  const values=gp(read(file));
+  const result=nativePairMinimum(values,[E,O]);
+  assert.deepEqual(result,{min,at});
+  assert(result.min>perPagePairMaximum);
+  paired.push({file,...result});
+}
+
 console.log(JSON.stringify({
   originalRunes:totalRunes, eligible:whole.transitions,
+  globalTwoSymbolMaximum:globalPairMaximum,
+  independentPageTwoSymbolMaximum:perPagePairMaximum,
+  nativeTwoSymbolControls:paired,
+  toyTwoSymbolExhaustive:brute2,
   doublets:whole.equal, seedAndErasurePositions:excluded.length,
   globalMaximum:global.max,
   globalAttainingRunePair:[corpus.translit[global.a],corpus.translit[global.b]],
