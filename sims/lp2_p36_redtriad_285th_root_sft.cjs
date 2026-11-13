@@ -38,7 +38,8 @@ const N = 29n ** BigInt(D) - 1n;
 const P840 = N / 840n;
 const M15 = N / 15n;
 assert.equal(N % 840n, 0n);
-assert.equal(N % 285n, 0n === N % 285n ? 0n : N % 285n); // 285th map has kernel15, not 285
+assert.equal(N % 15n, 0n);
+assert.notEqual(N % 285n, 0n, "285th-power map should have kernel size 15");
 /** @param {number[]} a @param {number[]} b */
 function polynomialProduct(a, b) {
   const out = Array(a.length + b.length - 1).fill(0);
