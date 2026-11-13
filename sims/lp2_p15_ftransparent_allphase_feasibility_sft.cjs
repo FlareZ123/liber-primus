@@ -41,7 +41,7 @@ function base29(n) {
   return digits;
 }
 const fibonacci = [0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987];
-const primeTable = firstPrimes(1300);
+const primeTable = firstPrimes(2800);
 const primes = fibonacci.map(n=>primeTable[n]);
 const printed = primes.map(p=>Math.abs(3301-p));
 assert.deepEqual(printed,
@@ -267,6 +267,44 @@ assert.equal(affineConfigurations,67280);
 assert.equal(affineSurvivors,80);
 assert.equal(affinePlantCount,5);
 
+/*
+ * The same source-selected p15 prime ordinals can initialize the genuine
+ * solved-p56 unbounded prime-totient stream on the immediately following
+ * pp16-22 chapter. This is independent of repeating the sixteen numeric
+ * key values. It exhausts every source start and both signs with genuine
+ * plaintext-F handling and no English/plaintext oracle.
+ */
+const followingChapterStarts=[];
+const followingPageOptions=pages.map(()=>0);
+const followingPageBestPrefix=pages.map(()=>0);
+let maxContinuousPrefix=0,followingValidWhole=0,followingValidFixedResets=0;
+let followingPlants=0;
+for(const start of starts) for(const sign of [-1,+1]) {
+  const shift=used=>mod29(sign*(primeTable[start-1+used]-1));
+  const whole=feasible(ciphertext,shift);
+  const perPage=pages.map(page=>feasible(page,shift));
+  followingValidWhole+=Number(whole.possible);
+  followingValidFixedResets+=Number(perPage.every(z=>z.possible));
+  maxContinuousPrefix=Math.max(maxContinuousPrefix,
+    whole.possible?ciphertext.length:whole.firstFailure);
+  perPage.forEach((z,i)=>{
+    followingPageOptions[i]+=Number(z.possible);
+    followingPageBestPrefix[i]=Math.max(followingPageBestPrefix[i],
+      z.possible?pages[i].length:z.firstFailure);
+  });
+  const planted=encrypt(native,shift);
+  assert.ok(feasible(planted,shift).possible,
+    'true historical F bypass must always accept the source-native nonperiodic plant');
+  followingPlants++;
+  followingChapterStarts.push({start,sign,whole:whole.possible});
+}
+assert.equal(followingPlants,32);
+assert.equal(followingValidWhole,0);
+assert.equal(followingValidFixedResets,0);
+assert.equal(maxContinuousPrefix,90);
+assert.deepEqual(followingPageOptions,[0,0,0,0,0,0,1]);
+assert.deepEqual(followingPageBestPrefix,[90,146,218,145,202,172,131]);
+
 console.log(JSON.stringify({
   method:'Exact all-F-mask GF29 feasibility, literal plaintext-F bypass',
   authenticSolvedP56:{runes:85,...known56},
@@ -275,6 +313,12 @@ console.log(JSON.stringify({
   affineAllSecret:{tested:affineConfigurations,survivingDegenerateZeroKeys:affineSurvivors,
     excludedNontrivialConfigurations:affineConfigurations-affineSurvivors,
     families:affineReport,positiveNativeSourcePlants:affinePlantCount},
+  immediatelyFollowingChapterPrimeTotient:{pages:'16-22',runes:ciphertext.length,
+    originalContinuousOptions:followingValidWhole,
+    originalFixedResetOptions:followingValidFixedResets,
+    maxContinuousPrefix,allStartSignIndependentPageOptions:followingPageOptions,
+    bestIndividualPagePrefixes:followingPageBestPrefix,
+    positiveSourceNativePlants:followingPlants},
   positiveOriginalLengthFTransparentPlants:planted,
   floralPrimeTotient:{pages:'40-55',runes:3316,originalAssignmentPossible,
     allStartAllSignOriginalPages:floralReport,impossibleFloralPages,
