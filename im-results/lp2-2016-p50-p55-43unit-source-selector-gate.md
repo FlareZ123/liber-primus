@@ -378,10 +378,39 @@ The 2014 5/7/5 squares provide a source-grounded structural selector for the p55
 
 The next valuable decision is not another arbitrary permutation or key search. It requires an independent first-party instruction that chooses between the competing 43/56 and 76/23 layouts, fixes a traversal/tie-break, or supplies a reversible cipher operation. Preserve the exact negative rank gate and avoid retuning its 16 variants.
 
+
+### p55 circumference as an OutGuess/ARC4 key: bounded negative
+
+The solved p57 parable's instruction to "shed our own circumferences" gives a human-solver reason to separate p55's 32 first/last word runes from its 43 interior runes. The 2016 signed image independently authenticates OutGuess/ARC4 as a tool used by Cicada. This test therefore used the 32 p55 boundary runes as the key/password and the 43 interior runes as the target; it did not sweep arbitrary phrases.
+
+The 16 complete p55 words were transcribed against the canonical corpus, including the single-rune incoming page carry. Their lengths are `[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`; the 32 endpoints and 43 interiors reproduce exactly. Only two standard key encodings were tried: literal GP-Latin and the base-29 integer.
+
+**OutGuess image extraction.** Both encodings returned internally consistent headers from original p55 carrier `72.jpg`, but neither output had a recognizable file signature or readable text:
+
+| p55-shell password | Seed / bytes | Entropy | Printable fraction | SHA-256 |
+|---|---:|---:|---:|---|
+| Literal GP-Latin | 5746 / 17,042 | 7.989355 | 0.376775 | `aa2ea2e711c097e3d5106197b0b5becff310d0412fc0590b0ea691761efa2a63` |
+| Base-29 integer | 50163 / 51,071 | 7.996568 | 0.383153 | `8aa9b5275ba90d05818bc3093bf84b88065c1244a837994296a04e7b0d601dee` |
+
+Crucially, the exact same passwords also produced internally consistent OutGuess headers on a deterministic **payload-free** 2,400×3,600 JPEG (SHA-256 `4b98fdb604ce7017680c7094a6fc646562987f575241bfdbf94052ee7f88d871`):
+
+| p55-shell password | Clean-image seed / bytes | Entropy | Printable fraction | SHA-256 |
+|---|---:|---:|---:|---|
+| Literal GP-Latin | 22032 / 32,880 | 7.993760 | 0.384246 | `b50c9af3e77da66643a00801cc4b9cf762e917a9d5e6995769d8f2d4cbba485a` |
+| Base-29 integer | 63021 / 45,754 | 7.996009 | 0.381103 | `e58324cf534a519be4f8d047b20f761ffd5a888ee2934c104d2480b6740a3017` |
+
+The clean-image results establish that header-consistent, high-entropy output is a false-positive mode for these exact keys. The p55 blobs are not authenticated hidden messages.
+
+**OutGuess ARC4 as a GP29 keystream.** The same two passwords were also passed through the historical OutGuess 0.4 KDF/ARC4 implementation (`MD5(type || password)`, with both `Encryption` and wrong-role `Seeding` types); both additive signs were applied modulo 29 to the 43 p55 interiors. All eight variants are nonlinguistic. The best Emerson-GP language score is **−5.924762**; direct bytewise XOR yields only **2–8 of 43** valid GP29 symbols. A known 43-rune p57 round-trip positive control passes, confirming the arithmetic implementation.
+
+**Decision:** reject the fixed p55-shell OutGuess-password/ARC4-key interpretation under these two canonical encodings, two OutGuess roles and two additive signs. Do not promote either extracted binary or expand this into unconstrained KDF/password searches. This does not exclude a different, independently selected use of p55's boundary symbols.
+
+Reproducer: [`sims/lp2_p55_shell32_outguess_sft.cjs`](../sims/lp2_p55_shell32_outguess_sft.cjs). [Successful CI run 43425488066](https://github.com/FlareZ123/liber-primus/actions/runs/43425488066) · [artifact 14038050101](https://github.com/FlareZ123/liber-primus/actions/runs/43425488066/artifacts/14038050101).
+
 ### Decision
 
-The 43-unit correspondence is a genuine, source-grounded selector candidate, not a solved cipher. The 2014 squares, p55 word interiors, p57 circumference instruction, and authenticated 2016 message explain why a human solver should examine this structure. The tested direct shifts, prime-count/totient streams, spiral/chain reads, stable rank transpositions, and 99-cell additive consumers do not recover plaintext. The affine 23-dot overlay is ruled out for the proposed prime-hole geometry.
+The 43-unit correspondence is a genuine, source-grounded selector candidate, not a solved cipher. The 2014 squares, p55 word interiors, p57 circumference instruction, and authenticated 2016 message explain why a human solver should examine this structure. The tested direct shifts, prime-count/totient streams, spiral/chain reads, stable rank transpositions, 99-cell additive consumers, and the fixed p55-shell OutGuess/ARC4 key interpretation do not recover plaintext. The affine 23-dot overlay is ruled out for the proposed prime-hole geometry.
 
-No unknown LP2 plaintext or key has been recovered by this branch. Continue only if a new original clue selects a specific mapping or operation; do not expand the tested families with fitted offsets, arbitrary tie-breaks, or unconstrained permutations.
+No unknown LP2 plaintext or key has been recovered by this branch. The p55 shell32 test specifically rejects only its two canonical password encodings and fixed OutGuess/ARC4 consumers; it does not decide the remaining word-to-page, 43/56-layout, or stateful-cipher questions. Continue only if a new original clue selects a specific mapping or operation; do not expand the tested families with fitted offsets, arbitrary tie-breaks, or unconstrained permutations.
 
 **Reproduction:** [the 2014 square-inner43 SFT](../sims/lp2_2014_square_inner43_p55_gate.cjs) now includes the 16 rank-transposition variants and held-out GP29 four-gram controls. Run with Node.js 22: node sims/lp2_2014_square_inner43_p55_gate.cjs.
