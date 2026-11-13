@@ -105,6 +105,73 @@ assert.equal(equalPairs(invert8, 8), 18);
 assert.equal(equalPairs(invert7, 1), 109);
 assert.equal(equalPairs(invert7, 7), 18);
 
+
+// Exhaustive null for the claimed red8-restored equality count. The
+// visible key fixes column identities; these 8! hypothetical readout orders
+// compare the same original 375-symbol column blocks without changing bytes.
+function columnOrderRepeatNull() {
+  const width = 8, rows = 375;
+  /** @type {number[][]} */
+  const columns = Array.from({length: width}, (_, c) =>
+    Array.from({length: rows}, (_, r) => invert8[width * r + c]));
+  /** @type {number[][]} */
+  const within = Array.from({length: width}, (_, a) =>
+    Array.from({length: width}, (_, b) => {
+      let matches = 0;
+      for (let r = 0; r < rows; r++)
+        matches += Number(columns[a][r] === columns[b][r]);
+      return matches;
+    }));
+  /** @type {number[][]} */
+  const across = Array.from({length: width}, (_, a) =>
+    Array.from({length: width}, (_, b) => {
+      let matches = 0;
+      for (let r = 0; r + 1 < rows; r++)
+        matches += Number(columns[a][r] === columns[b][r + 1]);
+      return matches;
+    }));
+  /** @param {number[]} p */
+  const count = p => p.slice(0, -1)
+    .reduce((s, col, i) => s + within[col][p[i + 1]], 0)
+    + across[p[width - 1]][p[0]];
+  const observed = count([0, 1, 2, 3, 4, 5, 6, 7]);
+  assert.equal(observed, equalPairs(invert8, 1));
+  /** @type {number[]} */
+  const all = [];
+  /** @param {number[]} partial @param {number[]} remaining */
+  function enumerate(partial, remaining) {
+    if (!remaining.length) {
+      all.push(count(partial));
+      return;
+    }
+    for (let k = 0; k < remaining.length; k++)
+      enumerate([...partial, remaining[k]],
+        remaining.filter((_, j) => j !== k));
+  }
+  enumerate([], [0, 1, 2, 3, 4, 5, 6, 7]);
+  all.sort((a, b) => a - b);
+  const mean = all.reduce((a, b) => a + b, 0) / all.length;
+  const variance = all.reduce((a, b) => a + (b - mean) ** 2, 0) / all.length;
+  const result = {
+    columnOrders: all.length, sourceRed8Restored: observed,
+    minimum: all[0], median: all[Math.floor(all.length / 2)],
+    fifthPercentile: all[Math.floor(all.length * 0.05)],
+    ninetyFifthPercentile: all[Math.floor(all.length * 0.95)],
+    maximum: all[all.length - 1],
+    mean, standardDeviation: Math.sqrt(variance),
+    numberAtMostObserved: all.filter(n => n <= observed).length,
+    numberAtLeastObserved: all.filter(n => n >= observed).length,
+    exactTies: all.filter(n => n === observed).length
+  };
+  assert.equal(result.columnOrders, 40320);
+  assert.equal(result.numberAtMostObserved, 11424);
+  assert.equal(result.numberAtLeastObserved, 30194);
+  assert.equal(result.minimum, 71);
+  assert.equal(result.maximum, 145);
+  return result;
+}
+const exhaustiveColumnOrderNull = columnOrderRepeatNull();
+
 // Genuine Gibran source: original content, GP transliteration and a declared
 // reduction to the 28-way successor register, with no original-data fitting.
 const source = read("resources/control/gibran_prophet_58585.txt").toUpperCase();
@@ -173,6 +240,7 @@ console.log(JSON.stringify({
   source: "original 3000 runes, physical LP2 pp40–53 after red heading",
   original: {lag1: 18, lag7: 99, lag8: 88},
   eightColumnInverse: {order: eight.order, lag1: 101, lag8: 18},
+  exhaustiveColumnOrderNull,
   sevenColumnInverse: {order: seven.order, lag1: 109, lag7: 18},
   nativeGP28Positive: {
     beforeFinalColumnar: {lag1: equalPairs(finalColumnar, 1), lag8: equalPairs(finalColumnar, 8)},

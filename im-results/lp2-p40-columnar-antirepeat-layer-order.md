@@ -30,6 +30,23 @@ Under the matched approximately uniform GP29 symbol assumption, ordinary lag-one
 
 The movement of the **18** from printed lag one to recovered lag eight or lag seven is a combinatorial *identity of the columnar permutation*, not independent evidence of a cipher layer. In the eight-column case, adjacent values within one ciphertext column become eight positions apart in the row-major intermediate. For the original **3,000=8×375** layout, **all 18** printed equal adjacencies occur inside these original column blocks; their equality is exactly retained at lag eight after inversion. Under the alternative seven-column partition, all 18 likewise remain inside the seven column blocks and appear at lag seven. None of the original 18 matches crosses a source-sized column-block boundary; given only seven such boundaries, this is an expected rather than discriminatory observation.
 
+## Exhaustive red8 column-order equality null (13 November 2026)
+
+The visible red8 heading can select the classical eight-column sort, but the recovered **101** adjacent matches do **not** distinguish that order from other permutations of the exact same original column blocks. Holding the eight 375-rune source blocks fixed, and comparing every permutation of the restored eight column identities with the same row-major reading rule, the complete original-input **8! = 40,320** order census gives:
+
+| Adjacent-equality statistic on reconstructed 3,000 runes | Count |
+| --- | ---: |
+| Visible-heading order [0,1,2,3,4,5,6,7] after restoration | **101** |
+| All-permutation minimum / 5th percentile / median / 95th percentile / maximum | 71 / 91 / 107 / 125 / 145 |
+| All-permutation arithmetic mean / population SD | 107.678571 / 10.243652 |
+| Permutations with count ≤101 | **11,424 / 40,320 = 28.33%** |
+| Permutations with count ≥101 | **30,194 / 40,320 = 74.89%** |
+| Permutations tied at 101 | 1,298 |
+
+This is an **exact enumeration**, not sampled keys or tuned output statistics. Each candidate order merely changes which complete column follows which; it retains the same 3,000 original values. The seven within-row column transitions use the exact 8×8 equality matrix for corresponding row entries; the last-to-first transition uses the exact 8×8 matrix comparing successive rows. That yields 40,320 complete equality counts and requires no language model. The SFT asserts the source-red8 case, range and full count.
+
+**Decision:** the restored 101 is unexceptional under this stringent same-block null. Both the observed increase toward the GP29 random baseline and the migration of printed short-lag equalities are expected after generic column rearrangement. The red title and the precise 375×8 body still supply a possible human-visible key; this null specifically removes the apparent *adjacent-repeat-count evidence* in favor of its particular sort or of a real columnar layer. Source-keyed columnar remains hypothetical, and the independent source-selected operation needed for plaintext is unchanged.
+
 ## A reversible native-source order control
 
 The [source-only CommonJS SFT](../sims/lp2_p40_columnar_antirepeat_order_sft.cjs) uses 3,000 GP28-valued symbols derived from actual Gibran GP-transliterated prose as a positive input register. It constructs an exact predecessor-exclusion coder: each GP28 digit is emitted as a GP29 rune **other than the preceding output rune**, with the initial GP29 state fixed at 0. Given that state, the map is invertible. The same red-eight-rune keyed columnar operation is separately invertible.
