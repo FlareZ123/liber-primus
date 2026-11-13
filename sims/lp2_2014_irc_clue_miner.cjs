@@ -22,6 +22,7 @@ const files = [
   {name:'#cicadasolvers.freenode.2.log', sha:'72634a9d071d32af767edbffc0493d810e88cd0d', bytes:27234234},
 ];
 const high = /\bliber[ _-]*primus\b|\blp2\b|\bonion[ -]?7\b|\bprimus\b|\bdecrypt(?:ed|ion|ing)?\b|\bplaintext\b|\bkey(?:phrase|word|stream)?\b|\b(?:runes|runic)\b|\b(?:58|59)\.(?:txt|jpg|html)\b/i;
+const networkEvidence = /\b(?:UDP|ICMP|TCP|PCAP|NETCAT|SOCKS|WIRESHARK|TCPDUMP|PACKET|PING|SKY|PORT[ :=#]*[0-9]{2,5}|106[.]187[.]103[.]122|128[.]118[.]244[.]163|59[.](?:txt|bin|jpg)|PKLMX|SERVER RESPONSE)\b/i;
 const medium = /\b(?:cipher|encrypted|encryption|message|book|puzzle|outguess|prime|hash|vigenere|atbash|breakthrough|riddle)\b/i;
 const dateRegex = /^(?:\d{4}[ -](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b|\[?\d{4}[-/](?:0[1-9]|1[0-2])[-/]\d{2})/i;
 const targetYear = /\b2014\b/;
@@ -41,13 +42,18 @@ function gitBlobSha(data) {
 /** @param {string} name @param {Buffer} data */
 function mine(name, data) {
   const lines = data.toString('latin1').split(/\r?\n/);
-  const report = {file:name, lineCount:lines.length, dateLines:0, aprilPlusDateLines:0, strong:0, medium:0, excerpts:[]};
+  const report = {file:name, lineCount:lines.length, dateLines:0, aprilPlusDateLines:0, strong:0, medium:0, excerpts:[], networkHits:[]};
   for (let i=0; i<lines.length; i++) {
     const line = lines[i];
     if (!dateRegex.test(line) || !targetYear.test(line)) continue;
     report.dateLines++;
     if (!spring.test(line)) continue;
     report.aprilPlusDateLines++;
+    if (networkEvidence.test(line)) report.networkHits.push({
+      line:i+1, text:line.slice(0,1100),
+      context:lines.slice(Math.max(0,i-2), Math.min(lines.length,i+3))
+        .map((text,j)=>({line:Math.max(1,i-1)+j,text:text.slice(0,1100)})),
+    });
     const score = high.test(line) ? 2 : medium.test(line) ? 1 : 0;
     if (!score) continue;
     if (score === 2) report.strong++;
@@ -103,7 +109,9 @@ async function main() {
   assert.equal(planted.strong,1);
   assert.equal(planted.medium,1);
   assert.equal(planted.aprilPlusDateLines,2);
-  console.log('SFT date, keyword and original-order controls: PASS');
+  assert(networkEvidence.test('2014 May 12 14:51 <a> UDP port 281 packet 106.187.103.122'));
+  assert(!networkEvidence.test('2014 May 12 14:51 <a> ordinary cicada discussion'));
+  console.log('SFT date, keyword, original-order and frozen network-selector controls: PASS');
   if (process.argv.includes('--selftest')) return;
   const reports = [];
   for (const file of files) {
@@ -117,6 +125,11 @@ async function main() {
       ' afterApril=' + r.aprilPlusDateLines +
       ' strong=' + r.strong + ' medium=' + r.medium);
     console.log('BEST ' + JSON.stringify(r.excerpts.slice(0,12)));
+    if (process.argv.includes('--network')) {
+      console.log('NETWORK-MATCHES ' + file.name + ' total=' + r.networkHits.length);
+      for (const x of r.networkHits.slice(0,130))
+        console.log('NETWORK ' + file.name + ':L' + x.line + ' ' + x.text);
+    }
   }
   const out = path.join(process.cwd(),'irc-2014-source-results');
   fs.mkdirSync(out,{recursive:true});
@@ -137,6 +150,20 @@ async function main() {
     md+='\n';
   }
   writeAtomicLocked(path.join(out,'matches.md'),md);
+  let networkMd='# 2014 source IRC network and packet leads\n\n';
+  networkMd+='These are archived participant statements, not authenticated Cicada instructions. '
+    +'The finite filter includes UDP, ICMP, TCP, packet, port, sky, and exact host/file names. '
+    +'It is an exploratory historical lead finder, never a decoder.\n\n';
+  for(const r of reports) {
+    networkMd+='## '+r.file.name+'\n\nMatches: '+r.networkHits.length+'\n\n';
+    for(const x of r.networkHits) {
+      networkMd+='### Original L'+x.line+'\n\n';
+      for(const q of x.context)
+        networkMd+='- L'+q.line+' '+q.text.replace(/\\u0000/g,'')+'\n';
+      networkMd+='\n';
+    }
+  }
+  writeAtomicLocked(path.join(out,'network.md'),networkMd);
   console.log('OUTPUT '+out+' source summaries and bounded excerpts written');
 }
 
