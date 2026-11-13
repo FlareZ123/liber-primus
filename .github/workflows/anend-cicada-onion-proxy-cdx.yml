@@ -1,9 +1,6 @@
 name: AN-END known Cicada onion proxy CDX inventory
 
 on:
-  push:
-    paths:
-      - 'sims/anend_cicada_onion_proxy_cdx.cjs'
   workflow_dispatch:
 
 permissions:
