@@ -10,6 +10,8 @@ The unchanged canonical p15 heading is `[0,1,20,19,24,28,26,22,24]`. The hypothe
 
 These keys are *algebraically derived from the conjectured crib*. They are **not** recovered or authenticated author-provided key material. The next operation is the decisive question: does the inferred eight-rune key actually decrypt the rest of the original source chapter p15–22?
 
+**Prior-art boundary.** The conjecture that the nine-rune title might read `FIBONACCI`, its exact original cipher sequence, and the special initial F treatment were **already tested** in [`sims/fibonacci_heading_crib.cjs`](../sims/fibonacci_heading_crib.cjs) against source-derived AES-256/ChaCha20/RC4 and 256-cell grid pads. This report claims no novelty for that crib or its first-letter rule. Its incremental decisions are the **crib-inferred exact repeating eight-symbol Vigenère/F-bypass continuation with arbitrary page phases** and **two full nine-letter autokey continuations**, which are different from those earlier pad searches.
+
 ## Exact original-input gate for the historical F rule
 
 Freeze the 8-rune key `K=[20,3,16,15,4,21,17,14]` at p15 title entry, with one transparent initial F. In the standard solved-page convention, a plaintext F emits ciphertext F and does **not** advance the additive key; ciphertext F may also result from ordinary encryption of a different rune. An exact eight-state dynamic program retains both interpretations of every ciphertext F, rejects an ordinary non-F ciphertext that equals its active key digit, and never chooses a plaintext/skip pattern by language score.
