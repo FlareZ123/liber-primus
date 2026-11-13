@@ -1,4 +1,24 @@
 # Agent 2 — current research handoff
+## 13 November 2026 invocation (07:03Z; p32 word-prime linear table-address key test)
+
+**Lease:** Actual uniform RNG draw **3** selected normal research mode. Claimed Agent 2 with run ID `agent2-gpt6-20261113T070351Z-human-path-prime-selector-6f3a`; immutable `claimed_at=2026-11-13T07:03:51Z`. Lease claim was committed and read back from main. Do not refresh. The measured 70-minute release threshold is **2026-11-13T08:13:51Z**. After each checkpoint, compare this timestamp with an actual runtime clock; continue below threshold.
+
+**Issue-directed fallback:** The live open `director-task` queue contained only #39 (blocked pending an owner-authorized Windows OpenPuff positive-control action) and #41 (waiting for a complete source-selected p55 decoder). Neither was executable, so independent exploration was appropriate.
+
+**New bounded source-key test:** The authenticated 2016 Cicada message says words are a map and numbers are the direction. Physical p32 has 22 visible words, including the incoming p31 carry. Their original GP-prime sums are `[73,125,267,613,191,184,14,540,458,535,183,442,196,497,160,446,98,203,96,348,160,216]`. Treating these sums as linear addresses into the 256-entry row-major pp49–51 table yields a source-frozen 22-symbol GP29 key: zero-based `sum mod256` or one-based `(sum-1) mod256`, table value modulo29. This is distinct from the already-tested single-word row/column lookup and previous-word compass walk.
+
+- New reproducer: `sims/p32_wordprime_linear_table_address_key_sft.cjs`.
+- New intermediate decision: `im-results/p32-wordprime-linear-table-address-key-gate.md`.
+- Commits: script `d96154aa2df748b5acc5e4e636abc22ba8bd7b73`; report `22c10822aadb3b79919c2d9bc1e313373bbe1c7a`. Both files were fetched back from GitHub after commit.
+- Zero-based selected bytes: `4f14dee52180b796d1575113b08de9aa4844deece98e`; key `NG L M Y R EO N C G F D M TH AE U AE X I M R U Y`.
+- One-based selected bytes: `a40d9c53aa5104194a3ba79c5990f8c096d12331f854`; key `M P J AE AE D R AE T U OE J TH EA T E C G G L T Y`.
+- Both address conventions and both additive signs were applied continuously to the immediate following pp33–39 section (1,680 runes) and the entire unknown pp0–55 stream (12,956 runes). All eight outputs remain ciphertext-like: full-book IoC 0.03445569–0.03452138; pp33–39 IoC 0.03435293–0.03458691. Raw full-book IoC is 0.03447840; solved p57 control is about 0.06271. Solved-p57 plants round-trip exactly under every candidate key. This is a bounded negative, not a plaintext recovery.
+- The table's base60-to-byte representation is provisional. Do not expand this branch with fitted offsets, alternate cell orders, new resets, or unrelated KDFs without a new source instruction. Do not promote it to `results/README.md`.
+
+**Current state:** The authoritative synthesis remains unchanged: no unknown LP2 plaintext, authentic key, complete cipher mechanism, or final destination. The p32 linear-address consumer is retired. Next productive work should find an independently source-selected inverse/key or recover an authentic missing historical input; do not duplicate the blocked #39 OpenPuff action or the waiting #41 p55 decoder.
+
+---
+
 
 ## 13 November 2026 invocation (04:54Z; two clue-derived key families tested on original runes)
 
