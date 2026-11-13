@@ -56,16 +56,25 @@ function isoFile(iso, segments) {
 
 /** @param {Buffer} grid @returns {{name:string, bytes:Buffer}[]} */
 function layouts(grid) {
-  const column = Buffer.alloc(256);
-  for (let j = 0; j < 256; j++) {
-    column[j] = grid[(j % 32) * 8 + Math.floor(j / 32)];
+  const out = [];
+  for (const major of ['row-major', 'column-major']) {
+    for (const reverseRows of [false, true]) {
+      for (const reverseColumns of [false, true]) {
+        const bytes = Buffer.alloc(256);
+        for (let j = 0; j < 256; j++) {
+          const row = major === 'row-major' ? Math.floor(j / 8) : j % 32;
+          const col = major === 'row-major' ? j % 8 : Math.floor(j / 32);
+          bytes[j] = grid[(reverseRows ? 31 - row : row) * 8 + (reverseColumns ? 7 - col : col)];
+        }
+        const label = (reverseRows ? ' rows-reflected' : '') +
+          (reverseColumns ? ' columns-reflected' : '');
+        out.push({name: major + label, bytes});
+      }
+    }
   }
-  return [
-    {name: 'row-major', bytes: grid},
-    {name: 'row-major reversed', bytes: Buffer.from(grid).reverse()},
-    {name: 'column-major', bytes: column},
-    {name: 'column-major reversed', bytes: Buffer.from(column).reverse()},
-  ];
+  assert.equal(new Set(out.map(z => z.bytes.toString('hex'))).size, 8,
+    'All eight rectangular orientations must be distinct');
+  return out;
 }
 
 /** @typedef {{name:string, radix:number, lag:number, width:number, op:'xor'|'add'|'r29'}} Model */
@@ -99,7 +108,7 @@ function applyKey(src, key, m) {
 }
 
 /**
- * Index every source-observed model signature in each of four grid orientations.
+ * Index every source-observed model signature in each of eight grid orientations.
  * Then scan the tape in a *single* rolling-radix pass per model.
  * Exact 6-byte differences use integers <2^48 and residue differences <29^9,
  * so JavaScript number arithmetic remains integer-exact.
