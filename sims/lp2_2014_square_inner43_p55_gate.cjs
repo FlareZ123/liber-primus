@@ -4,7 +4,8 @@
 // structure. This is a bounded gate, not a claim that the squares are an
 // authenticated LP2 key. The script preserves the source order and tests
 // only direct, motivated interpretations; it does not search phases or
-// arbitrary permutations.
+// arbitrary permutations. A separate bounded rank-transposition gate tests
+// the 43-core / 43-interior correspondence with source-order and spiral ties.
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -295,6 +296,179 @@ for (const [order, values] of [
   }
 }
 
+
+function spiralIndexOrder(size, clockwise) {
+  const out = [];
+  let top = 0, bottom = size - 1, left = 0, right = size - 1;
+  while (top <= bottom && left <= right) {
+    if (clockwise) {
+      for (let x = left; x <= right; x++) out.push(top * size + x);
+      top++;
+      for (let y = top; y <= bottom; y++) out.push(y * size + right);
+      right--;
+      if (top <= bottom) {
+        for (let x = right; x >= left; x--) out.push(bottom * size + x);
+        bottom--;
+      }
+      if (left <= right) {
+        for (let y = bottom; y >= top; y--) out.push(y * size + left);
+        left++;
+      }
+    } else {
+      for (let y = top; y <= bottom; y++) out.push(y * size + left);
+      left++;
+      for (let x = left; x <= right; x++) out.push(bottom * size + x);
+      bottom--;
+      if (left <= right) {
+        for (let y = bottom; y >= top; y--) out.push(y * size + right);
+        right--;
+      }
+      if (top <= bottom) {
+        for (let x = right; x >= left; x--) out.push(top * size + x);
+        top++;
+      }
+    }
+  }
+  return out;
+}
+function rankOrder(values, direction, tieOrder) {
+  const tieRank = new Map(tieOrder.map((index, rank) => [index, rank]));
+  return Array.from({ length: values.length }, (_, i) => i).sort((a, b) => {
+    const primary = direction === "ascending" ? values[a] - values[b] : values[b] - values[a];
+    return primary || tieRank.get(a) - tieRank.get(b);
+  });
+}
+function applyRankPermutation(sequence, order, mode) {
+  if (mode === "read-in-rank-order") return order.map((index) => sequence[index]);
+  const out = Array(sequence.length);
+  for (let i = 0; i < sequence.length; i++) out[order[i]] = sequence[i];
+  return out;
+}
+const rankVariants = [];
+for (const direction of ["ascending", "descending"]) {
+  const order = rankOrder(innerValues, direction, Array.from({ length: 43 }, (_, i) => i));
+  for (const mode of ["read-in-rank-order", "scatter-by-rank"]) {
+    const output = applyRankPermutation(cipher, order, mode);
+    rankVariants.push({
+      scope: "global 43-value core",
+      tie_break: "source row-major",
+      direction,
+      mode,
+      transliteration: transliterate(output),
+      gp4_log_probability_per_rune: null,
+    });
+  }
+}
+const blockOffsets = [0, 9, 34, 43];
+for (const tieBreak of ["row-major", "clockwise-spiral", "counterclockwise-spiral"]) {
+  for (const direction of ["ascending", "descending"]) {
+    for (const mode of ["read-in-rank-order", "scatter-by-rank"]) {
+      const output = [];
+      for (let block = 0; block < 3; block++) {
+        const matrix = innerMatrices[block];
+        const values = matrix.flat();
+        const part = cipher.slice(blockOffsets[block], blockOffsets[block + 1]);
+        const tieOrder = tieBreak === "row-major"
+          ? Array.from({ length: values.length }, (_, i) => i)
+          : spiralIndexOrder(matrix.length, tieBreak === "clockwise-spiral");
+        const order = rankOrder(values, direction, tieOrder);
+        output.push(...applyRankPermutation(part, order, mode));
+      }
+      rankVariants.push({
+        scope: "per-square 9/25/9 blocks",
+        tie_break: tieBreak,
+        direction,
+        mode,
+        transliteration: transliterate(output),
+        gp4_log_probability_per_rune: null,
+      });
+    }
+  }
+}
+const rankControlText = fs.readFileSync(
+  path.join(root, "resources/control/shakespeare_first300k.txt"), "utf8"
+);
+assert.equal(rankControlText.length, 300000);
+const rankTokens = corpus.translit.map((s, i) => ({ s, i }))
+  .sort((a, b) => b.s.length - a.s.length);
+function encodeRankNativeGP(original) {
+  const clean = original.toUpperCase().replace(/QU/g, "CW")
+    .replace(/V/g, "U").replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const out = [];
+  for (const word of clean.match(/[A-Z]+/g) || []) {
+    for (let i = 0; i < word.length;) {
+      if (word.startsWith("ING", i)) { out.push(21); i += 3; }
+      else if (word.startsWith("IO", i)) { out.push(27); i += 2; }
+      else {
+        const token = rankTokens.find((candidate) => word.startsWith(candidate.s, i));
+        assert(token, "unmapped native GP token " + word.slice(i));
+        out.push(token.i);
+        i += token.s.length;
+      }
+    }
+  }
+  return out;
+}
+const rankTrain = encodeRankNativeGP(rankControlText.slice(0, 150000));
+const rankHeld = encodeRankNativeGP(rankControlText.slice(150000));
+const rankGramCounts = new Map();
+let rankGramTotal = 0;
+for (let i = 0; i + 4 <= rankTrain.length; i++) {
+  const key = (((rankTrain[i] * 29 + rankTrain[i + 1]) * 29 + rankTrain[i + 2]) * 29 + rankTrain[i + 3]);
+  rankGramCounts.set(key, (rankGramCounts.get(key) || 0) + 1);
+  rankGramTotal++;
+}
+const rankDenominator = rankGramTotal + 0.1 * Math.pow(29, 4);
+const rankUnseenLogProbability = Math.log(0.1 / rankDenominator);
+const rankLogProbability = new Map(
+  [...rankGramCounts].map(([key, count]) => [key, Math.log((count + 0.1) / rankDenominator)])
+);
+function scoreRankGP4(sequence) {
+  let score = 0;
+  for (let i = 0; i + 4 <= sequence.length; i++) {
+    const key = (((sequence[i] * 29 + sequence[i + 1]) * 29 + sequence[i + 2]) * 29 + sequence[i + 3]);
+    score += rankLogProbability.get(key) ?? rankUnseenLogProbability;
+  }
+  return score / sequence.length;
+}
+for (const variant of rankVariants) {
+  const glyphs = [...variant.transliteration];
+  const indices = glyphs.map((glyph) => corpus.translit.indexOf(glyph));
+  assert(indices.every((index) => index >= 0));
+  variant.gp4_log_probability_per_rune = scoreRankGP4(indices);
+}
+const rankControlScores = [];
+const rankControlStep = Math.floor((rankHeld.length - 43) / 499);
+for (let j = 0; j < 500; j++) {
+  rankControlScores.push(scoreRankGP4(rankHeld.slice(j * rankControlStep, j * rankControlStep + 43)));
+}
+rankControlScores.sort((a, b) => a - b);
+const rankControlSummary = {
+  windows: rankControlScores.length,
+  min: rankControlScores[0],
+  p01: rankControlScores[4],
+  median: rankControlScores[249],
+  p99: rankControlScores[494],
+  max: rankControlScores[499]
+};
+const bestRankScore = Math.max(...rankVariants.map((variant) => variant.gp4_log_probability_per_rune));
+assert.equal(new Set(innerValues).size, 23);
+assert.equal(innerValues.length - new Set(innerValues).size, 20);
+assert(rankControlSummary.min > bestRankScore + 1.5,
+  "all fixed stable-rank variants should remain below held-out native controls");
+const rankTranspositionTests = {
+  selector: "43 p55 strict-word interiors ↔ 9+25+9 inner cells of the historical 5/7/5 squares; signed 2016 message says numbers are direction",
+  core_value_count: innerValues.length,
+  unique_core_values: new Set(innerValues).size,
+  duplicate_core_cells: innerValues.length - new Set(innerValues).size,
+  tested_variants: rankVariants.length,
+  variants: rankVariants,
+  control_model: "source-calibrated GP29 4-gram; first 150,000 Shakespeare characters train; last 150,000 held out",
+  heldout_native_43_windows: rankControlSummary,
+  best_candidate_margin_below_worst_native_window: rankControlSummary.min - bestRankScore,
+  decision: "global/per-square stable numeric ranks and source-motivated spiral tie-breaks produce no plaintext; duplicate values leave other tie-breaks unselected"
+};
+
 console.log(JSON.stringify({
   classification: 'source-grounded structural selector candidate; no reversible square-to-p55 operation recovered',
   historicalSource: {
@@ -335,4 +509,5 @@ console.log(JSON.stringify({
   chainTestCount: chainTests.length,
   chainTests,
   directionTests,
+  rankTranspositionTests,
 }, null, 2));
