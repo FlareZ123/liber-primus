@@ -39,6 +39,20 @@ For **1,000 exact-original-inventory shuffles**, evaluate the best of the **same
 
 The null test allows no secret column optimization, fitted page key, modified word boundaries or symbol substitutions. It excludes only the four defined original-position transport readings. The independent observation r(12) may reflect unusual editorial organization, language, within-page structure, or an entirely different operation. It cannot be promoted to a source-selected decipherment from this result.
 
+## Separate original p15–22 visual-chapter reset: negative
+
+Because the **p15 numerical square opens the actual physical pp15–22 chapter**, a more source-local reset is an independent and more plausible use of its twelve perimeter cells than a whole-book 241×12 arrangement. This original chapter has **1,903 unchanged runes in 437 complete words owned by starting page**. Its entire-word readout is tested with **36 rows × 12 perimeter columns**, plus **five** complete prefix/suffix remainder words. Keep the p15 source-visible perimeter order and its inverse, the same two remainder placements, and the same nine-class word-length scoring as above.
+
+| Original pp15–22 layout | Adjacent-length χ² |
+| --- | ---: |
+| Untouched chapter word order | **76.6777642** |
+| P15 perimeter spiral / five-word prefix | **71.2761978** |
+| P15 perimeter spiral / five-word suffix | 70.4303743 |
+| Inverse perimeter / five-word prefix | 70.5447095 |
+| Inverse perimeter / five-word suffix | 68.88553896 |
+
+All four original-layout inverses **decrease** the observed word-length dependence. Under **3,000 chapter-inventory-preserving randomized word orders**, each scored by its best of the same four source-frozen candidates, the chapter's best χ² has a selection-adjusted upper-tail p **0.3292235921**. The source-native round-trip plant, the exact chapter 437-word/1,903-rune assertions and the matched null pass in [manual CI 43412502232](https://github.com/FlareZ123/liber-primus/actions/runs/43412502232). This excludes the elementary same-chapter perimeter transpose; it does not infer any revised text, edited word boundaries or hidden position map.
+
 ## Reproduce and next decision
 
 [Standalone Node.js 22 CommonJS original-input SFT](../sims/lp2_p15_perimeter12_wordlag_sft.cjs) validates the canonical word/rune totals against the existing shared parser, source p15 numeric values, ring traversal, all four lossless inverse/forward pairs, planted Shakespeare word stream, both 181-lag null controls, and the four-variant matched-shuffle test. The script passed [manual GitHub Actions run 43410445779](https://github.com/FlareZ123/liber-primus/actions/runs/43410445779), on `main` commit `3d539777262a9c5be4cc8796639916283f74d095`. The existing manual workflow was extended with a selectable experiment and still has no automatic commit triggers.
