@@ -8,6 +8,8 @@ import (
   "bytes"
   "encoding/json"
   "errors"
+  "image/color"
+  "image/jpeg"
   "flag"
   "fmt"
   "os"
@@ -23,6 +25,7 @@ func main() {
   password := flag.String("password", "BLIND-F5-Q92-20261113-CONTROL", "synthetic-only password")
   out := flag.String("out", "", "stego JPEG output")
   k := flag.Int("k", 4, "F5 fixed matrix parameter in [1,8]")
+  padTail := flag.Bool("pad-trailing-zeros", false, "restore JPEG terminal all-zero MCU blocks before embedding")
   flag.Parse()
   if *cover == "" || *payload == "" || *out == "" || *k < 1 || *k > 8 {
     panic("required -cover, -payload, -out and 1<=k<=8")
@@ -31,6 +34,18 @@ func main() {
   p, err := os.ReadFile(*payload); if err != nil { panic(err) }
   decoder := f5jpeg.NewStandardDecoder()
   raw, err := decoder.ExtractCoefficients(c); if err != nil { panic(err) }
+  if *padTail {
+    config, err := jpeg.DecodeConfig(bytes.NewReader(c)); if err != nil { panic(err) }
+    if config.Width != 2400 || config.Height != 3600 { panic("unexpected LP2 geometry") }
+    expected := config.Width * config.Height
+    if config.ColorModel != color.GrayModel { expected = 3 * expected / 2 }
+    missing := expected - len(raw)
+    if missing < 0 || missing % 64 != 0 || missing > 64 * 400 {
+      panic(fmt.Sprintf("unsupported source coefficient truncation raw=%d expected=%d", len(raw), expected))
+    }
+    raw = append(raw, make([]int, missing)...)
+    fmt.Fprintf(os.Stderr, "SOURCE_F5_TERMINAL_ZERO_PAD count=%d blocks=%d\n", missing, missing/64)
+  }
   coeffs := make([]int16,len(raw))
   for i,v := range raw {
     if v < -32768 || v > 32767 { panic(fmt.Sprintf("coefficient %d out of range",i)) }
