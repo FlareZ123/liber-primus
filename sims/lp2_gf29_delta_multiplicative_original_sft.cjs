@@ -68,6 +68,13 @@ for (const match of textblob.matchAll(/^([a-z]+) (\d+)$/gm)) {
 assert.equal(lexExact.size, 29058, 'source-native lexicon drift');
 const affineSets = lexByLen.map(words => new Set(words.map(affineShape)));
 const patternSets = lexByLen.map(words => new Set(words.map(shape)));
+const rotatedAffineSets = lexByLen.map(words => {
+  const set = new Set();
+  for (const w of words)
+    for (let k = 0; k < w.length; k++)
+      set.add(affineShape(w.slice(k).concat(w.slice(0, k))));
+  return set;
+});
 const words = [];
 const runes = [];
 let word = [], page = 0;
@@ -175,10 +182,11 @@ for (const wordItems of unknown) {
   eligible++;
   sourceTotal += values.length;
   const L = values.length;
-  const rec = byLength.get(L) || {words: 0, affine: 0, arbitrary: 0, fixedMult: 0};
+  const rec = byLength.get(L) || {words: 0, affine: 0, arbitrary: 0, fixedMult: 0, rotatedAffine: 0};
   rec.words++;
   if (affineSets[L]?.has(affineShape(values))) rec.affine++;
   if (patternSets[L]?.has(shape(values))) rec.arbitrary++;
+  if (rotatedAffineSets[L]?.has(affineShape(values))) rec.rotatedAffine++;
   // P_i = D_i / K - 1, any one 1..28 key shared by this printed word.
   if (Array.from({length:28}, (_, i) => i+1).some(k => {
     const inv = inverse(k);
@@ -198,6 +206,9 @@ const allLong = [...byLength.entries()].filter(([len]) => len >= 6);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.words, 0), 791);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.affine, 0), 0);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.fixedMult, 0), 0);
+assert.equal(allLong.reduce((a,[len,rec])=>a+rec.rotatedAffine,0),5);
+assert.equal(allLong.filter(([len])=>len>=7)
+  .reduce((a,[len,rec])=>a+rec.rotatedAffine,0),0);
 // Fully specified wordlength-matched native-English sentinel distribution.
 const singletonStats = [];
 for (let sentinel = 0; sentinel < 29; sentinel++) {
