@@ -1,0 +1,28 @@
+name: LP2 moth source pre-2014 logo registration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-registration:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image analysis libraries
+        run: python -m pip install numpy opencv-python-headless filelock
+      - name: Register dated 2014 logo against original LP2 p55
+        run: python sims/lp2_moth_pre2014_logo_registration_sft.py
+      - name: Preserve source comparison
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-moth-jan2014-logo-registration
+          path: im-results/lp2-moth-jan2014-logo-registration.json
+          retention-days: 90
