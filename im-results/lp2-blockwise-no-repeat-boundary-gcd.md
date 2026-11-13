@@ -47,9 +47,20 @@ For each page and candidate phase, count observed repeats at that phase. This is
 
 Thus the direct source-motivated length-five architecture demands at least **34 within-block exceptions**, even granting every page an optimally and independently chosen start phase. With one shared phase relative to each page start it demands **64**. These are exact minimum values, not a probability model. They refute a *small exceptional repair budget* under fixed five-symbol blocks, without fitting plaintext or assuming any key.
 
+## Original printed-word and line boundaries cannot explain the collisions
+
+To test whether a *variable-length, human-visible* block reset could rescue the same no-repeat idea, the SFT aligns **every original rune** against the full 2014 master transcription `resources/transcriptions/liber_primus_master.txt`, retaining hyphen and full-stop word/clause separators and slash-coded physical line breaks. The 55 original pages verify **12,956/12,956** rune identities against the separate canonical numeric corpus, giving the following exact partition of all 86 adjacent-equality events:
+
+| Physical reset candidate | Repeats at these visible breaks | Repeats strictly inside its blocks |
+| --- | ---: | ---: |
+| Printed word/clause separator | 23 | **63** |
+| Printed line wrap | 4 | **82** |
+
+On original **p3**, all three equality events at 53, 180 and 203 occur **inside printed words and lines**; none is rescued by punctuation. Both displayed columns are direct counts of the unchanged manuscript, independent of any secret key or decoder. Thus models enforcing duplicate-free output *within each printed word*, or *within each printed line*, also fail without substantial internal exception rules. The blocks are variable-length and source-visible here, so this is logically distinct from the fixed-size gcd theorem above. The broader architectural inference is that the original collision suppression appears inside the runic text stream itself and cannot be assigned solely to joins between the principal visible formatting units. This remains an inference about cipher design, with no plaintext recovered.
+
 ## Reproduction and constructive control
 
-[Single runnable CommonJS test](../sims/lp2_block_boundary_repeat_gcd_sft.cjs) reads the original numeric GP29 corpus, asserts 55 pages / 12,956 runes / 86 page-local adjacent repeats, fixes both page3 and page9 repeat positions, enumerates periods 2–1,024 under every unknown phase, and checks ten independent gcd-one witnesses. It also asserts the exact minimum internal-repeat exceptions under periods 2, 5, 8, 16 and 32, granting independently optimized page phases. The general integer-gcd theorem extends the exclusion beyond that numerical range.
+[Single runnable CommonJS test](../sims/lp2_block_boundary_repeat_gcd_sft.cjs) reads the original numeric GP29 corpus, asserts 55 pages / 12,956 runes / 86 page-local adjacent repeats, fixes both page3 and page9 repeat positions, enumerates periods 2–1,024 under every unknown phase, and checks ten independent gcd-one witnesses. It also asserts the exact minimum internal-repeat exceptions under periods 2, 5, 8, 16 and 32, granting independently optimized page phases. A separately aligned original-transcription pass checks 12,956 rune identities and the exact 63/23 word and 82/4 line split. The general integer-gcd theorem extends the exclusion beyond that numerical range.
 
 As a source-shaped positive plant, the test constructs a 217-symbol 29-alphabet sequence with a five-rune block phase at 2 and 43 repeated adjacent pairs **only** at the eligible block boundaries. The same detector accepts the planted length-five phase and rejects length four. The actual committed SFT source was independently executed using the exact current GitHub corpus with ordinary assertions and logged **PASS** on 13 November 2026; no CI was needed.
 
