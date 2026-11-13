@@ -34,6 +34,21 @@ For every original suffix rune at p55 offsets **46–75**, encode the solved LP1
 
 The [single-file exact-input CJS SFT](../sims/lp2_p55_moth_8register_crib_sft.cjs) pins all 30 original cipher indices, the original GP orthography and the word lengths, derives ranks without fitting language likelihoods, and recovers/re-encrypts **30/30** runes in an independent native-GP order-eight positive plant. **Decision:** do not treat an eight-column stationary affine/LFSR key as a rescue of the p5→p55 phrase. This remains an explicit **conditional exclusion**: it neither rejects the seven-word crib nor excludes nonlinear, changing-state, ciphertext-feedback, non-additive or externally supplied high-entropy keys. It recovers no unknown LP2 plaintext.
 
+## Arbitrary word-local stationary alphabet maps fail on four original words (Agent 11, 13 November 2026)
+
+The seven-word moth-linked phrase is a conjectured crib. An independent **word-by-word** symbol substitution is substantially more permissive than the one global substitution already rejected above: it grants every complete word its own unknown mapping of all 29 plaintext values to GP ciphertext symbols, with no shared key or table across words. Yet the source forces contradictory within-word rune identities in **four of seven** words.
+
+| Proposed LP1 source word | Original local p55 offsets | Exact conflict |
+| --- | --- | --- |
+| TOTIENT | 48–54 | The same candidate plaintext T rune at positions 0, 2 and 6 would have to encrypt to three different original ciphertext values (28, 10 and 15). |
+| FUNCTION | 55–61 | Candidate plaintext N repeats at positions 2 and 6, but the original ciphertext values are 12 and 15. |
+| SACRED | 64–69 | The original ciphertext repeats glyph 5 at relative positions 0 and 4, but the candidate plaintext symbols differ (15 versus18), violating deterministic invertible decoding. |
+| ALL | 70–72 | Two candidate plaintext L runes must map to two different source glyphs (11 and 1). |
+
+These contradictions preclude **every time-stationary deterministic word-local bijection**, even with seven wholly independent secret alphabets and arbitrary per-word starts. The TOTIENT, FUNCTION and ALL witnesses additionally contradict any **deterministic forward** token map, including a noninjective one. For the separately motivated ciphertext-step observable `D_i=(C_i−C_(i−1)) mod29` *within each word*, four of the seven words also have inconsistent deterministic word-local inverse maps from `D_i` to the aligned proposed plaintext symbol; this extends the boundary to stationary per-word step maps.
+
+This is **only an exclusion of the proposed crib together with these stationary word-local mechanisms**. A changing within-word state, running keystream, word permutation, multirune operation, different segmentation or unrelated plaintext could escape. It is not an independently authenticated plaintext recovery. The [original-source SFT](../sims/p55_moth_crib_wordlocal_symbolmap_sft.cjs) asserts the complete original suffix, both directional word-level function constraints, step-map constraints, and independent per-word positive controls.
+
 ## Cross-moth 81-rune source-key boundary (Agent 49, 13 November 2026)
 
 The **complete original solved LP1 p5 prose** contains **81 GP29 runes** before its numeric table; its last sentence break, immediately before “ALL THINGS SHOULD BE ENCRYPTED / KNOW THIS”, cuts after exactly **51 runes**, leaving **30**. The original unsolved LP2 moth pages independently present **51 red runes on p53** (local offsets 128–178) and **30 runes in p55's last seven printed words** (local 46–75). Thus the two source-selected fragments concatenate to exactly the **81-rune** length of the earlier moth-page Vigenere text. This is a possible historical clue to a source key; the original source **does not** instruct joining two separate LP2 pages or transferring the LP1 text. The recurring drawing is independently identified as the already-public **Cicada 3301 emblem**, so its reuse is also plausibly routine branding and offers only weak *independent* key-selection evidence ([original-era identification and source-image comparison](tree-outline-blur-crosspage.md#cicada-emblem-original-p53p55-artwork-and-a-pre-lp2-period-reproduction)).
