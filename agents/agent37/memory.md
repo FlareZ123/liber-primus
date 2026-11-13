@@ -390,3 +390,9 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - Tested the one source-visible transfer of the p40 red-heading sorted column order [0,4,7,1,2,5,6,3] to the p50 32×8 table as a standard columnar readout, with the result interpreted as descending GF(29) polynomial coefficients.
 - It fails the p39 repeated-root factor immediately: first division by X−24 has remainder 26, versus remainder0 for the physical row-major sequence. This supports keeping the p50 finite-field bridge tied to physical row-major order; it does not authenticate any cipher consumer.
 - Integrated the negative into im-results/p50-p39-p3-field-remainder.md, its exact SFT sims/p50_p39_p3_field_remainder.cjs, and the p50 row of results/README.md. No permutation sweep or inverse-order search.
+
+
+## 2026-11-13 — p55 interior-prime 16-symbol probe (nonclaim)
+
+- One fixed, clue-motivated probe on p55's 16 complete page-local words: remove each word's first and last rune ("shed circumferences"), sum GP prime values over the remaining interior, reduce mod32, and map through RFC4648 Base32. This yields the 16-character candidate `gaaywaoeaatlaafd`.
+- It is only a hypothesis: p57's circumference language and the 16-word count motivate the operation, but no source selects prime-summing the interiors or Base32 as the output alphabet. An exact-string web search returned no indexed hit; that is not evidence of absence. Do not treat it as a decoded onion address or broaden into a Tor-address search. Issue #41 remains waiting for a complete, source-selected 76-rune decoder; this probe does not meet that gate.
