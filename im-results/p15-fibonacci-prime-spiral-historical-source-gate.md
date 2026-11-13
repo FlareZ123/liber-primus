@@ -29,7 +29,7 @@ A public extraction of the 2013 CicadaOS root filesystem preserves the prime_ech
 
 The original p15 image places an infinity symbol beneath the 4×4 grid. If this is read as a one-step continuation cue, the next distinct Fibonacci value after 987 is 1597, so p1598=13477. The exact relation is 13477=29×464+21, where 464=π(3301) and 21=F8. Ordinary BASE29 renders 13477 as G0L. This is a candidate cross-round arithmetic closure, not a plaintext, key, or authenticated cipher instruction.
 
-The possible relative byte offset base+13477 is 8,966,441. It was not part of the completed 17-offset DATA/560.13 R40-B3 test (680 frozen L24 candidates, zero survivors; run 43130781364). The infinity mark can motivate considering one continuation term, but it does not select a byte consumer. Do not add this offset to the failed pad family without a separate Director-approved, source-selected hypothesis.
+The possible relative byte offset base+13477 is 8,966,441. It has now been tested as the single infinity-mark continuation in an 18-offset DATA/560.13 R40-B3 run: 360 frozen L24 candidates per clock, 720 total, zero survivors (run 43333075277, artifact 13997535717). The authentic 2013 XOR positive control and all planted-language/decoy controls passed. This rejects the exact continuation as a pad consumer under the frozen R40-B3 family; it does not establish that the arithmetic association is a cipher instruction.
 
 ## Bounded BASE29-derived repeating-key test (exploratory negative)
 
@@ -46,7 +46,7 @@ This rejects only the exact 30-digit repeating-key/additive consumer and its two
 
 - The original p15 grid itself remains the only verified source for the 16-term construction and its visible spiral order. The one bounded signed-BASE29-derived 30-digit repeating GP29-shift key test is negative; do not repeat that exact consumer.
 - The complete external-source avenue remains negative at this scope. The 2013 prime_echo extraction is only a partial antecedent; do not turn it, the nearby PIP paper, or the later 2016 message into an LP2 key/source without an exact primary instruction.
-- The original infinity mark is a source-visible cue for considering one continuation term; it does not authorize an open-ended continuation or use of the term as a key. The 17th distinct Fibonacci input gives p1598=13477 and the candidate relation above, but no cipher consumer or plaintext follows from it.
+- The original infinity mark is a source-visible cue for considering one continuation term, not an open-ended search. The one-term p1598=13477 candidate was tested once at base+13477 and produced zero R40-B3 prefilter survivors in both predeclared clocks. Retire that exact DATA/560.13 consumer; retain the arithmetic association only as an unverified cross-round relation.
 - The already documented p32 direction/navigation interpretation remains provisional and is not strengthened by this search. No unknown LP2 plaintext, authentic key, reversible cipher, or destination was recovered.
 
 ## Reopening criterion
