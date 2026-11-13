@@ -129,5 +129,46 @@ for (const [clock, deltas] of Object.entries(groups)) {
   }
 }
 assert.equal(cases.length, 8);
-console.log(JSON.stringify({ experiment: 'LP2 full-stream differential radix/DEFLATE',
-  positive, cases }, null, 2));
+
+// Independently source-visible complete decoding units: physical page and the
+// nine red-heading visual chapters. A whole-file encoding may reset at either
+// boundary; concatenating radix digits across resets would not detect that.
+/** @type {Array<[number,number]>} */
+const chapters = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const segments = {
+  physical_page: pages.map((p) => [p.page, p.indices]),
+  original_red_chapter: chapters.map(([first,last]) =>
+    [first, pages.filter((p) => p.page >= first && p.page <= last)
+      .flatMap((p) => p.indices)])
+};
+const independent = {};
+for (const [clock, chunks] of Object.entries(segments)) {
+  const byPage = [];
+  for (const [firstPage, indices] of chunks) {
+    const ds = steps(indices);
+    for (const reverse of [false, true]) {
+      const digits = ds.filter((d) => d > 0).map((d) => d - 1);
+      const binary = decodeRadix(reverse ? digits.reverse() : digits, 28);
+      const evidence = inspect(binary);
+      const hits = Object.entries(evidence.compression)
+        .filter(([,status]) => typeof status === 'object')
+        .map(([format,value]) => ({ format, ...value }));
+      byPage.push({
+        first_page: firstPage, reverse, digits: digits.length,
+        byte_count: binary.length, first_hex: evidence.head_hex,
+        decompress_hits: hits
+      });
+    }
+  }
+  independent[clock] = {
+    candidate_units: chunks.length,
+    variants: byPage.length,
+    valid_decompressions: byPage.flatMap((item) =>
+      item.decompress_hits.map((hit) => ({...item,...hit}))),
+    first_unit: byPage.slice(0, 2),
+    last_unit: byPage.slice(-2)
+  };
+}
+console.log(JSON.stringify({ experiment: 'LP2 source-chunk differential radix/DEFLATE',
+  positive, cases, independent }, null, 2));
