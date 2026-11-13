@@ -12,7 +12,7 @@ The original corpus gives p14 **137 runes in 7 printed lines**. GP prime weights
 - Eoh + Dæg + p14 line count = 41 + 89 + 7 = **137**.
 - Eolhx + Dæg + 1 = 47 + 89 + 1 = **137**.
 
-This is not independent confirmation: the plant identification is ambiguous, more than one rune-pair construction fits 137, and other LP2 page lengths also admit GP-prime pair sums. Do not promote the arithmetic to a key or infer an operation from it.
+This is not independent confirmation: after subtracting the 7 printed lines, the target is 130 and **five** unordered GP-prime pairs fit it: (23,107), (29,101), (41,89), (47,83), and (59,71). Other LP2 page lengths also admit multiple GP-prime pair sums. The image may favor one semantic reading, but the arithmetic is not a unique selector. Do not promote it to a key or infer an operation from it.
 
 ## Frozen tests
 
