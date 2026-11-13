@@ -41,7 +41,7 @@ The evidence does not prove a universal authorial grammar. It does show a recurr
 | 2013 TCP signed challenge explicitly names BASE29, DH, NEXT | Run BASE29 and Diffie–Hellman as specified | 3301→3QO and published DH example | Signature verified; does not authenticate undocumented first-onion commands. |
 | 2013 signed ICMP clue: “knock on the sky and listen” | Ping; inspect ICMP echo response | Signed continuation message | Signed clue/output preserved; only part of the proposed packet sequence is directly observed. |
 | 2014 Stage04 signed OutGuess payload: “Let the text guide you” plus runic image | Extract carrier; use solved LP1 phrase WELCOME PILGRIM TO THE as Vigenère key | avowyfgl5lkzfj3n.onion | Signature verified; clue, prior plaintext, key and output are identifiable. |
-| 2016 signed tree image: “words are the map … numbers are the direction” | Extract/verify message; match tree to p32, read 11×11 row-major | Selects p32 and orientation; sums 563×569 | Signature verified; no start cell, traversal, direction table or stopping rule is supplied. |
+| 2016 signed tree image: “words are the map … numbers are the direction” | Extract/verify source-signed message; interpret it as an LP2-wide conceptual clue only | Authentic words/map/road/numbers instruction; image measures 563×569, while a *separately analyst-reflowed* p32 11×11 grid has corresponding prime sums | The 2016 and p32 trees are demonstrably different stock illustrations. Neither p32, its 11×11 reflow, nor a traversal/key is author-selected; the numerical match is retrospective. |
 
 The 2012 Britannica/Agrippa and 2014 GEB book-code reconstructions add a weaker but consistent pattern: the clue identifies a particular book and supplies a coordinate grammar before lookup. They are participant-preserved reconstructions, not additional signature-verified messages.
 
@@ -50,7 +50,7 @@ The 2012 Britannica/Agrippa and 2014 GEB book-code reconstructions add a weaker 
 ### Three falsifiable LP2 predictions
 
 1. **p15:** p15 infinity + p33–p39 header + 2013 prime_echo motivate F17=1597→p1598=13477=29×464+21. Promotion requires an original source selecting a reversible consumer; #479 owns that gate.
-2. **p32:** the 2016 signed clue selects page and 11×11 row-major orientation. A path claim must predeclare an original-source start, movement/direction and stopping rule; these are still missing.
+2. **p32:** the 2016 signed clue does **not** select p32 or its analyst-made 11×11 grid. A future p32 route must first supply a new original-source page/grid selector, then independently fix start, movement, stopping rule and a recoverable key/plaintext readout. The image dimensions and reflowed row/column prime sums alone cannot do that.
 3. **p55:** p56 asks for a separate deep-web page hashing to a 128-hex target; p57's instar parable supplies no address grammar. Decode all 76 p55 runes first; only explicit plaintext/source evidence may select URL, Tor address, page pointer or preimage format (#490 found no justified format).
 
 **Method:** require a visible cue, independently fixed parameters, a predeclared output contract and a held-out/original-cipher test. This is a ranking heuristic, not a claim that every LP2 page must follow earlier stages.
