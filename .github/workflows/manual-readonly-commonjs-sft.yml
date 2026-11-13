@@ -1,0 +1,37 @@
+name: Run one read-only CommonJS research SFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'Committed sims/*.cjs script to execute without editing workflow files'
+        required: true
+        default: sims/lp2_p15_no_repeat_16phase_allsecret_sft.cjs
+
+permissions:
+  contents: read
+
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out original project
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate script and run
+        shell: pwsh
+        env:
+          TEST_SCRIPT: ${{ inputs.script }}
+        run: |
+          if ($env:TEST_SCRIPT -notmatch '^sims/[A-Za-z0-9_.-]+[.]cjs$') {
+            throw 'Script must be a direct .cjs file in sims/'
+          }
+          if (-not (Test-Path -LiteralPath $env:TEST_SCRIPT -PathType Leaf)) {
+            throw 'Requested committed SFT file does not exist'
+          }
+          & node -- $env:TEST_SCRIPT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
