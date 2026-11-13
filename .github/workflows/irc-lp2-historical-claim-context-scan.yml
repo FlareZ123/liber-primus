@@ -1,11 +1,6 @@
 name: LP2 historical IRC claim-context scan
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "sims/irc_lp2_historical_claim_context_scan.py"
-      - ".github/workflows/irc-lp2-historical-claim-context-scan.yml"
   workflow_dispatch:
 
 permissions:
