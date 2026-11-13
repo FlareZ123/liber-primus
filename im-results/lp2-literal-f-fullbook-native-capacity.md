@@ -23,7 +23,24 @@ Use the previously source-validated [native GP English encoder](../results/lp1-s
 | Emerson essays | 321,327 | 308,372 | **432** | 26 |
 | **Total** | | **562,060** | | |
 
-All **562,060** contiguous control windows fall below the original source's required 458 literal Fs. Therefore **no passage in this exact finite control set can be the plaintext of the entire original unknown LP2 corpus under a cipher that preserves all 458 ciphertext F symbols literally**, even if the non-F stream is subject to an arbitrarily powerful secret cipher. This is a deterministic, necessary-condition exclusion over the fixed text windows; it is neither a p-value nor a claim about all possible author-composed English.
+All **562,060** contiguous control windows fall below the original source's required 458 literal Fs.
+
+## Stronger local exclusion: original section p40–p53 alone
+
+The original manuscript has nine author-visible red-heading segments. Physical **p40–p53** (including the number-only p50) is one contiguous rune-bearing unit containing **3,008 original GP ciphertext runes and 125 F glyphs**. The same literal-F hypothesis requires at least 125 plaintext Fs **within this one section**. This local gate remains necessary if the other LP2 chapters use completely different ciphers or key schedules.
+
+| Independent native-GP source | Contiguous 3,008-rune windows | Largest F count in any window | Deficit vs original p40–p53's 125 |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 214,099 | 96 | 29 |
+| Gibran | 59,485 | 109 | 16 |
+| Emerson | 318,320 | 119 | 6 |
+| **Total** | **591,904** | | |
+
+All **591,904** candidate contiguous literary passages violate this source-section necessary condition; the strongest Emerson passage still lacks six Fs. This is stronger than merely accumulating a book-wide frequency deficit: even granting unrelated decryption methods in the preceding and following sections cannot make that one 3,008-rune source section equal a passage from these controls under a literal-preserving F rule.
+
+The original *individual physical pages* do not individually violate the F-count maxima of these same controls at their respective lengths; the obstruction emerges over the printed chapter-length aggregation. This distinction prevents overstating a single-page impossibility. The same SFT asserts the exact section count and all three source maxima.
+
+ Therefore **no passage in this exact finite control set can be the plaintext of the entire original unknown LP2 corpus under a cipher that preserves all 458 ciphertext F symbols literally**, even if the non-F stream is subject to an arbitrarily powerful secret cipher. This is a deterministic, necessary-condition exclusion over the fixed text windows; it is neither a p-value nor a claim about all possible author-composed English.
 
 The checked-in [CommonJS SFT](../sims/lp2_literal_f_fullbook_native_capacity_sft.cjs) asserts all the original counts and every source maximum. As a synthetic positive, it takes the first 12,956 source-native Gibran runes (322 genuine F), encrypts every other rune under a changing non-F transform that never outputs F, and preserves the exact F mask. The unchanged detector recovers exactly all 322 F sites of the planted plaintext, demonstrating the invariant works on a source-shaped planted message. A separately computed native GP encoder had already validated the control conventions on solved LP1 and LP2; this experiment does not change those source definitions.
 
