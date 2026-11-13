@@ -1,11 +1,6 @@
 name: AN-END surface proxy Common Crawl delta
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/anend-surface-proxy-commoncrawl.yml'
-      - 'sims/anend_surface_proxy_commoncrawl.cjs'
   workflow_dispatch:
 
 permissions:
