@@ -77,6 +77,22 @@ def main() -> None:
     assert claimed["npy_md5"] == REPORTED_NPY_MD5
     assert claimed["welcome_indices_direct"] == [62, 102, 115, 181, 333, 596, 625, 689]
     assert claimed["ink128_indices"] == 1491
+    # A hard independent known-plaintext test of the claimed shift key:
+    # actual solved LP1 Welcome first seven runes = WELCOME.
+    lp1 = (ROOT / "resources" / "transcriptions" / "lp1_wulfic_canonical.txt").read_text(encoding="utf8")
+    gp = json.loads((ROOT / "resources" / "liber-primus" / "lp2-corpus.json").read_text(encoding="utf8"))
+    lookup = {rune: i for i, rune in enumerate(gp["runes"])}
+    welcome_cipher = [lookup[ch] for ch in lp1.split("%")[1] if ch in lookup][:7]
+    assert welcome_cipher == [1, 28, 21, 15, 12, 0, 5]
+    welcome_known_plain = [7, 18, 20, 5, 3, 19, 18]
+    actual_historical_divinity_key = [23, 10, 1, 10, 9, 10, 16]
+    recovered = [(c - k) % 29 for c, k in zip(welcome_cipher, actual_historical_divinity_key)]
+    assert recovered == welcome_known_plain
+    external_index_key = [62, 102, 115, 181, 217, 218, 333]
+    external_recovered = [(c - (k % 29)) % 29 for c, k in zip(welcome_cipher, external_index_key)]
+    assert external_recovered == [26, 13, 22, 8, 27, 14, 20]
+    assert external_recovered != welcome_known_plain
+
     control = output("17.jpg", SOURCE_17_SHA256)
     assert control["raw_indices"] == 2077
     assert control["welcome_indices_direct"] == WELCOME.tolist()
@@ -84,6 +100,9 @@ def main() -> None:
         "external_claim": "exact 1543 LSB indices and .npy checksum reproduced",
         "original_p57": claimed,
         "unrelated_p0": control,
+        "lp1_welcome_known_first7_GP": welcome_known_plain,
+        "lp1_welcome_authentic_divinity_decrypted_first7": recovered,
+        "lp1_welcome_published_indexkey_decrypted_first7": external_recovered,
         "decision": "all 1543 index memberships follow from binary ink geometry; no demonstrated LSB payload or selected GP29 key",
     }, indent=2))
 
