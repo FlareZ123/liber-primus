@@ -106,7 +106,7 @@ def header_is_source_forced(bitmap: bytes, bit_count: int) -> bool:
     header to ffffffff under *any* password. This is a warning against
     treating a decoded seed or length as proof of embedded data.
     """
-    return bit_count >= 1024 and bitmap[:128] == b"\\xff" * 128
+    return bit_count >= 1024 and bitmap[:128] == bytes([255]) * 128
 
 
 def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
