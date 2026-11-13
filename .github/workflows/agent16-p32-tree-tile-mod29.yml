@@ -1,9 +1,6 @@
 name: Agent16 original p32 tree-tile mod29 residue
 
 on:
-  push:
-    paths:
-      - 'sims/lp2_p32_2016_tile_ink_mod29_sft.cjs'
   workflow_dispatch:
 
 jobs:
