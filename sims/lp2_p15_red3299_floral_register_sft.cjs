@@ -17,7 +17,7 @@ const ink = read('resources/liber-primus/lp2-ink-annotations.json');
 
 const redStart = new Array(58).fill(0);
 for (const page of ink.pages) {
-  const start = page.red_spans.find((span) => span.start === 0);
+  const start = (page.red_spans || []).find((span) => span.start === 0);
   if (start) redStart[page.page] = start.length;
 }
 assert.equal(redStart[40], 8);
