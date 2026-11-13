@@ -1,3 +1,22 @@
+# Agent13 current research frontier (13 November 2026, 08:19 UTC)
+
+## Lease and role
+Actual secure initial draw: **9**, normal issue-directed research. Current **run ID** `agent13-gpt6-20261113T074456Z-independent-key-d9bd355d6d`; exclusive remote lease `agents/agent13/.lease.json`, original `claimed_at=2026-11-13T07:44:56.330Z`. **No voluntary exit before the real-clock 70-minute checkpoint threshold, 2026-11-13T08:54:56.330Z**. This run selected independent exploration because the remaining two director-task Issues #39 and #41 were waiting/owner-blocked. Do not refresh the claim. When release-eligible, push remaining changes, delete only this invocation's lease as final mutation, push and verify, then exit.
+
+## New source-linked word observation and bounded original-input result
+- Existing archived January 2016 signed tree JPEG, `563×569`, identifies original physical p32 by tree drawing and the GP-prime sum of top row563 and left column569 of its 121-rune, 11×11 square. The same pair uniquely selects p0 word6 `NEWBASOEEOINGU` (GP prime sum563, 11 runes) and p1 word33 `JFINIACYEAIIA` (sum569, 10 runes) among all 2928 unknown original page-local segments. Prior original parser and exact original layout control are at [SFT](../../sims/lp2_2016_dimensions_firstwords_sft.cjs) and [report](../../im-results/lp2-2016-image-first-two-wordsum-gate.md).
+- This invocation noticed **p0#6 uniquely contains literal six-rune prefix `NEWBAS`**, across all 2928 words; its seventh rune is `OE`, **not** `E`, so `NEWBASE` is absent from the source and authorial instruction is unproven. The earlier three-rune `NEW` / N-E-W compass hint is separately documented. The selected p1#33 contains `FINIA` but no source-selected use.
+- Given the authentic signed 2013 `BASE29` numeral example and the **conditional** 59/60-symbol interpretation of the printed pp49–51 grid, froze a direct source-word big-endian GP29 integer to ordinary unpadded radix59/radix60 output, without adjustment or scoring searches. In first two LP2 physical pages **only 6 of 122** candidate outputs consist exclusively of uppercase characters in either radix. Full unsolved pages give **189/2928** uppercase-only radix59 and **188/2928** radix60. The source-selected words yield radix59 `RYriPRWG4` / `15BR2c2dI` and radix60 `O7DTNDFbK` / `v48oELtj`. No native-uppercase plaintext. Native `HELLO` numeric roundtrip positive control and exact assertions added to the [SFT](../../sims/lp2_2016_dimensions_firstwords_sft.cjs). Consolidated supporting report in place.
+- Current commits: `c7be81dd6c136a3bae7fee8154f37e7619a25e7c` (SFT), `a67b80408340200b5f454c53dfd905956f4e2169` (source report), `d2883503a294c0e237874f9fdabe10ce96950724` ([agent broadcast](../../communications/broadcast/20261113T0814Z_agent13_NEWBAS_sourceword.md)). All were read back and verified on remote. A candidate *change of base* still lacks an independent historical digit alphabet, target, or original reversible operation. Do **not** vary more radices or claim NEWBAS recovered plaintext.
+- Prior 11+10 p0/p1 two-dimensional separable additive/multiplicative key consumer on p32 was entirely negative across 16 reversible original models (IoC max0.039394). Do not re-run direct 2D keying, pixel tile pads, signed-image checksum controls, or generic Vigenère. Strongest next result requires an independently selected key/operator or original unknown-page plaintext.
+
+## Existing cumulative caveats
+The repository's large archived research corpus has many coincidental numerical and visual relations. Existing reports thoroughly cover the p50 GF29 factorization / p39 and p3 quadratic, 256-byte source pads, LP2 wordlength cribs, historical 2012-2016 sources, p55 and p56 transfer attempts and GP28 doublet gates; do not launch free-parameter repetitions. `results/README.md` is the authoritative established synthesis. No 56 unknown-page plaintext, complete key, or destination was recovered by this invocation.
+
+---
+
+## Prior incarnation memory (historical, not current lease)
+
 # Agent13 persistent current frontier (13 November 2026, 05:35 UTC)
 
 ## Identity, authority, and lifecycle
