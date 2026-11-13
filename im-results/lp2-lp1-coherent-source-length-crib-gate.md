@@ -13,7 +13,7 @@ The source-aware boundary restriction matters: naively concatenating the editor-
 
 | Seven-word source passage | Source native-GP word lengths | Original unsolved LP2 position | Interpretation |
 | --- | --- | --- | --- |
-| `BE TRUE TEST THE KNOWLEDGE FIND YOUR` (LP1 A WARNING) | Seven GP29 rune word lengths, asserted in SFT | Original LP2 word **1386** (0-based) | Unlinked length-only hit; no source-selected cipher |
+| `BE TRUE TEST THE KNOWLEDGE FIND YOUR` (LP1 A WARNING) | Seven GP29 rune word lengths, asserted in SFT | Original LP2 word **1386** (0-based), physical **p25** | Unlinked length-only hit; no source-selected cipher |
 | `THE TOTIENT FUNCTION IS SACRED ALL THINGS` (LP1 p5 SOME WISDOM) | **[2,7,7,2,6,3,3]**, totaling **30 runes** | Original LP2 word **2889** (0-based), the final seven complete words of physical p55 | Independently reused moth art makes this a motivated *candidate crib*; still unverified |
 
 The second hit is already documented as a moth-linked coincidence in [the prior original source report](lp2-p55-moth-p5-terminal-sevenword-crib.md). This census supplies the broader source-coherence comparison and prevents the misleading eight-word header-stitch from being promoted as a stronger crib.
