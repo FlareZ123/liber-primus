@@ -56,6 +56,20 @@ b40b42fa9d14f5abd3021de36f755ce2efa2e1ff0a53114e6508bf6a33804022
 
 Treat the exact 256 original numeric-table values in their printed row-major order as 256 ciphertext bytes, and decrypt them once as AES-256-ECB (a 2014-available stateless reversible 16-block operation). The first sixteen decrypted bytes are `ec728a5f0ef6c14bbabdc4abf60f0fa4`; only **93/256** output bytes are ASCII printable. There is no recognizable PGP, structured data or English result. These are genuine original-input negatives for the **specified** operations. The signed material does not identify AES, XOR, the byte key reduction, or its use on p50. Do not run arbitrary key schedule/mode/nonce searches to rescue these results.
 
+### Frozen 32-row original-grid consumer: XOR and additive shifts (Agent42, 13 November 2026)
+
+The **same** 32 noninitial 563-orbit values, already reduced modulo 256 for the failed AES test above, also allow a table-shaped direct original-input check. Consume them in **original cycle order, one source byte key per printed eight-cell row** of the 32×8 grid. Historical Cicada stages provide XOR and additive/Vigenère precedents; no original LP2 or signed instruction specifies these row operations or row alignment.
+
+For table byte \(B_{r,c}\) and original-orbit key \(K_r = N_{r+1} \bmod 256\), test the exact reversible values \(B_{r,c}\oplus K_r\), \(B_{r,c}-K_r \bmod256\) and \(B_{r,c}+K_r \bmod256\), with no fitted phases or row changes.
+
+| Frozen operation | ASCII printable / 256 | First 24 resulting bytes (hex) |
+| --- | ---: | --- |
+| XOR | **96** | \`7f53130ed559ca0357f297d5fc0fbcdf3b884d6324cb7915\` |
+| Subtract | **98** | \`1733f306ad39ca0351ee91d3ecf9acc93788cddf2447f915\` |
+| Add | **91** | \`7f9b5b6e15a1326b6704a7e9020fc2dfbb0c5163a8cb7d99\` |
+
+The full outputs contain no recognizable native English or file signature. The expanded [original-input SFT](../sims/lp2_2016_dimensions_base58_orbit_sft.cjs) asserts all three byte-exact prefixes, counts, full 256-byte inverse checks and an independent full-length planted ASCII control. **Result:** these three stationary row-key consumers are negative; invertibility alone is not historical cipher evidence. The original 33-cycle and short route to the physical p50 page remain conditional navigational observations. No unknown LP2 plaintext, authentic key or complete decipherment rule follows.
+
 ### Direct historical Vigenère transfer on original rune pages
 
 A separate fully specified original-input consumer uses the **actual 147 GP rune tokens of all 33 visited ciphertext words**, concatenated in their unmodified orbit order starting with 563. This gives one fixed period-147 GP29 key rather than turning sum values into arbitrary bytes. The genuinely attested 2014 “let the text guide you” step motivates a literal repeating-GP-key **subtraction** from the first rune of physical p32 (tree picture), p53 (moth picture) and p55 (terminal moth picture), with no fitted phase or key fragment. It exactly re-encrypts all source runes by construction. In original-input tests, p32 (121 runes) decodes to IoC **0.03732782369146**, p53 (179) to **0.03621869311405**, and p55 (76) to **0.03333333333333**; each output remains nonlinguistic GP transliteration. The complete source-key inverse thus provides **no known plaintext**. Its choice of these three target pages is exploratory and the artwork does not command this key schedule. The linked SFT runs all three exact original-page tests and asserts the 147-rune key.
