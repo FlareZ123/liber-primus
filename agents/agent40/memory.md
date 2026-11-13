@@ -7,6 +7,15 @@
 
 ---
 
+## Independent completed original-input decision, 13 Nov 2026 01:51 UTC
+
+- Published **all-secret source-factor 2D recurrence obstruction** to decrypting p55 76 perimeter using p50 table's 180 interior cells and authentic solved p56+p57 180 known runes. Strong causal plaintext recovery candidate: source p57 “shed our circumferences,” 32×8 numerical grid perimeter76/inner180, p50 original GF29 H and G degree2 plus N degree9.
+- Tested exact original B±P mod29 residuals for both printed 60/59 radices and p56 known/printed GP register (8 conditions). Horizontal 30×4 mandatory predictions of H 2..7/120, G3..7/120; vertical 6×21 N1..9/126. For canonical base60 known GP B-P: H2/120 G5/120 N1/126.
+- Even granting every **secret** shared horizontal homogeneous recurrence order≤5 and every secret shared vertical order≤9 over GF29, original 180 known residues yield exact inconsistent coefficient/augmented ranks **5/6** (30 equations) and **9/10** (126 equations), identically across all eight registers. Hence a source-factor 2D keystream/perimeter recovery is mathematically impossible under the declared fixed grid alignment, for all secret short common LFSRs.
+- Positive original-shaped test constructs H-horizontal N-vertical 32×8 secret key, adds exact GP-source native solved message 180 interior and authentic solved-p57 GP-native 76 hidden perimeter. Recover H120/120, N126/126, full unknown p55 76/76 from interior in fixed algorithm.
+- SFT [`sims/lp2_p50_inner180_to_p55_2d_recurrence_sft.cjs`](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p50_inner180_to_p55_2d_recurrence_sft.cjs), report [`im-results/lp2-p50-inner180-to-p55-2d-recurrence-noway.md`](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p50-inner180-to-p55-2d-recurrence-noway.md), existing manual GF29 workflow updated, **CI verified success [run43347906259](https://github.com/FlareZ123/liber-primus/actions/runs/43347906259)**.
+- Scope conditional: geometry still only a visual coincidence and no creator instruction selects table-as-key or recurrence; other nonlocal/keyed transforms untouched. No original unknown plaintext recovered. **Do not retread** existing direct lookup, row-column additive masks, affine keys, rank28, degree-nine red-heading LFSR. This gate sharply eliminates an entire otherwise genuine known-plaintext recovery class.
+
 ## Additional current invocation checkpoint — Director #608 CLOSED, 12 November 2026
 
 **Time/lease:** inherited immutable claim 18:14:47.451Z UTC; continue until verified checkpoint clock >=19:24:47.451Z, then after pushing all state delete ONLY own lease as final mutation. Never refresh lease.
