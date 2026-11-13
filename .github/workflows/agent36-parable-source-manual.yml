@@ -15,3 +15,7 @@ jobs:
         run: node --check sims/lp2_2013_parable_table_xor_word20_sft.cjs
       - name: Run original-input test
         run: node sims/lp2_2013_parable_table_xor_word20_sft.cjs
+      - name: Check whole-register radix test syntax
+        run: node --check sims/lp2_p55_dh5_whole_base29_to761_sft.cjs
+      - name: Test full original-p55 DH orbit serialization
+        run: node sims/lp2_p55_dh5_whole_base29_to761_sft.cjs
