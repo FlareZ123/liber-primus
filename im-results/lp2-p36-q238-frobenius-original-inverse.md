@@ -33,9 +33,28 @@ For a source-native English scale, the SFT uses the same GP29 transliteration co
 
 **Positive control:** A 238-rune Gibran GP29 passage (IoC **0.0585753289**) is encrypted under F_87 and decoded under F_151; all **238/238** original runes are recovered exactly. The comparison is finite-source/native-English conditional; source reference windows overlap. It does not exclude all possible languages, compression or a separately masked field output.
 
+## Separate canonical normal-basis coordinate inverses
+
+A distinct finite-field reading treats a 238-symbol printed ciphertext vector as the **coordinates of an element in a Frobenius normal basis**, rather than as ordinary power-basis coefficients transformed by an automorphism. This global invertible linear map mixes every source rune with the rest of its page, so the earlier automorphism-only rejection does not cover it. We froze six natural basis generators before choosing any plaintext score, including the exact 2013 signed BASE29 quadratic and LP2 p3 source-red quadratic as independent cross-round selectors.
+
+A generator β supplies columns β, β^29, …, β^(29^237). Gaussian elimination over GF29 determines whether those columns form a complete normal basis. For a full-rank case the code computes the exact inverse and asserts that the recovered 238 coordinates reconstruct **every original ciphertext coefficient exactly**.
+
+| Generator β (source-visible or simplest comparison) | Basis rank / 238 | Original p36 decoded IoC | Reversed p36 decoded IoC | Reversed p39 + p3 decoded IoC |
+| --- | ---: | ---: | ---: | ---: |
+| X | **236** | undefined | undefined | undefined |
+| X+1 (source p3 subfield shift) | **236** | undefined | undefined | undefined |
+| X² | **237** | undefined | undefined | undefined |
+| X²+X+1 (simple full-rank comparator) | **238** | 0.0369818814 | 0.0343225898 | 0.0341098465 |
+| Signed 2013 BASE29 quadratic X²+18X+11 | **238** | 0.0363436514 | 0.0351735631 | 0.0351026487 |
+| Printed p3 red quadratic 2X²+23X+13 | **238** | 0.0357763359 | 0.0357054214 | 0.0334716165 |
+
+The canonical shift X+1 is **not a normal element** of this field, even though it produces the independent quadratic projection described in prior source algebra. Its 238 conjugates span only 236 dimensions, so direct conversion of arbitrary 238-symbol ciphertext through that “basis” is intrinsically nonunique. The two source-linked quadratic generators do give full rank and reversible coordinate inverses, but their recovered outputs remain near uniform and far below both independent native-GP text-control ranges.
+
+These are finite, source-motivated canonical readings of fixed generators. The original does not give an instruction to employ a normal basis. The test does not reject a secret normal generator, a noncanonical or unknown basis, nonlinear field encryption, missing plaintext representation, or non-English register. It closes the exact author-linked two-quadratic generators as **direct plaintext-coordinate decoders** without fitting more free parameters.
+
 ## Research consequence
 
-The complete set of field automorphisms does not directly map any of the three tested original 238-symbol vectors into native-GP English comparable to the two independent reference corpora. This is stronger than testing a handful of arbitrary field exponents because **every** possible automorphism of the fixed field over GF29 is covered. It retires this source-derived automorphism-only decoder and prevents further arbitrary Frobenius-phase fitting.
+The complete set of field automorphisms, and the direct inverses under the two complete source-linked quadratic normal-basis generators, do not map any of the three tested original 238-symbol vectors into native-GP English comparable to the two independent reference corpora. This is stronger than testing a handful of arbitrary field exponents because **every** possible automorphism of the fixed field over GF29 is covered. It retires this source-derived automorphism-only decoder and prevents further arbitrary Frobenius-phase fitting.
 
 It does not exclude field-based key scheduling, unrelated basis transforms, a missing plaintext representation, or field elements used in an independently selected operation. These would require new source evidence selecting an inverse or original plaintext crib. The overall status remains **56 unsolved LP2 pages**.
 
