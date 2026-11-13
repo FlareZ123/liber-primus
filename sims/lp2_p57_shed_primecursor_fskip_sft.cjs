@@ -210,4 +210,24 @@ for (const seedType of ["index", "gp-prime-ordinal"]) {
       largestReachableSet:Math.max(...rows.map((row) => row.maxStates))}));
 }
 
+
+for (const candidateCount of [29, 110]) {
+  const rows = originalPages.map((page) => {
+    const workingStarts = [];
+    for (let start = 0; start < candidateCount; start++) {
+      if (allLiteralFPaths(page.indices, start).feasible) workingStarts.push(start);
+    }
+    return {page:page.page, workingStarts};
+  });
+  const impossible = rows.filter((row) => row.workingStarts.length === 0)
+    .map((row) => row.page);
+  assert.equal(impossible.length, candidateCount === 29 ? 34 : 20);
+  if (candidateCount === 29) assert.ok(impossible.includes(0));
+  else assert.deepEqual(rows[0].workingStarts, [107, 109]);
+  console.log("ALL-SECRET CURSOR SUPSET", candidateCount,
+    JSON.stringify({impossiblePageCount:impossible.length,
+      impossiblePages:impossible,
+      p0FeasibleStarts:rows[0].workingStarts}));
+}
+
 console.log("PASS: all original-source invariants, authentic p56 and native plants.");
