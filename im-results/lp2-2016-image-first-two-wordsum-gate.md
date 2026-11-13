@@ -128,6 +128,16 @@ Freeze the original first-two-page source-order printed words, remove only p0#6 
 
 The **best of all twelve readouts**, under p1#33 omission, first-stage plus and second-stage minus, has p33 IoC **0.039506172840** and opens \`AAEFATOEEOAOTHXPNGOEAPTHBPEAUIWIEONGYJAEAEMYEAC...\`, with no recognizable GP-English. The best single-stage p32 IoC is **0.039118457300**, also nonlinguistic. Every candidate has IoC **below 0.040**, against solved p57 native GP above0.055. This source-locked word-map literal does **not** supply a p32 key or decipher its immediate continuation. The full original output and planted controls are retained in the [same SFT](../sims/lp2_2016_dimensions_firstwords_sft.cjs).
 
+
+**Simple directional-walk alternative, fixed from the signed wording.** The same 121 complete source-ordered word totals could be movement steps on the 11×11 tree cells, rather than Vigenère values. Use either \`cursor=(cursor+wordSum) mod121\` on a linear 121-cell ring or \`(row,col)+=(⌊wordSum/11⌋,wordSum mod11) mod11\` on the toroidal 11×11. Start at upper-left cell0, with neither a tuned start nor a word reordering. Exact source visits:
+
+| Removed source word | Linear walk: distinct of 121 cells | 11×11 coordinate walk: distinct of 121 |
+| --- | ---: | ---: |
+| p0#6 | **79** | **78** |
+| p1#33 | **75** | **74** |
+
+The other 42–47 visits necessarily reuse cells; both modes are therefore **not** a one-word-per-cell 121-permutation under their exact definitions. Synthetic complete 121-cell walks pass the test. The original signed text does not demand Hamiltonian coverage, so repeated addresses cannot exclude a message encoded by some separately instructed non-injective path. The four direct conventional walks simply do not supply a complete ordering or recover plaintext; do not change starts and step transformations until a source command chooses them. Their full exact outputs and positive controls are in the same SFT.
+
 **Decision:** the exactly 122→121 opening-word map is a useful source-selected finite hypothesis, now rejected in its direct GP-prime-sum modulo29 arithmetic interpretation. Do not rescue it by searching a new word omission, arbitrary reorderings or a new numeric map without independent original instruction.
 
 ## Causal relevance and stop rule
