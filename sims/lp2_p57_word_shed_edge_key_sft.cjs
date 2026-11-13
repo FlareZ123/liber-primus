@@ -65,7 +65,7 @@ for (const [name, key] of [['remove-first', withoutFirst], ['remove-last', witho
   for (const sign of [-1, 1]) {
     const output = transform(p55Body, key, sign);
     // A real reversible pad must recover a planted known passage under the same fixed key.
-    const native = corpus.pages.find((p) => p.page === 56).indices.slice(0, 75);
+    const native = corpus.pages.find((p) => p.page === 57).indices.slice(0, 75);
     const ciphertextPlant = transform(native, key, -sign);
     assert.deepEqual(transform(ciphertextPlant, key, sign), native);
     // Candidate exact re-encryption is an implementation check, never a proof of success.
@@ -81,7 +81,7 @@ const probe55 = [];
 for (const sign of [-1, 1]) {
   const outputPages = eligiblePages.map((p, i) => p.indices.map((v) => mod(v + sign * withoutBoth[i])));
   const output = outputPages.flat();
-  const native = corpus.pages.find((p) => p.page === 56).indices;
+  const native = corpus.pages.find((p) => p.page === 57).indices;
   const syntheticPlainPages = eligiblePages.map((p, i) => Array.from(
     { length: p.indices.length },
     (_, j) => native[(i + j) % native.length]
