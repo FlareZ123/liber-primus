@@ -60,6 +60,7 @@ for(const [label,values] of [["SCY / ICMP",c3],["UDP",c39]]) {
   for(const [direction,digits] of [["forward",values],
     ["reversed",values.slice().reverse()]]) {
     const bytes=fromBase29(digits);
+    assert.deepEqual(toBase29(bytes),digits,"Source BASE29 serialisation must round-trip");
     const standard=label==="UDP"
       ?{sourcePort:bytes.readUInt16BE(0),
         destPort:bytes.readUInt16BE(2),
