@@ -253,7 +253,7 @@ assert(threeNativeControls.every(x=>x.atOrBelow===0));
 const positiveNative = encodeNativeGP(read('resources/control/shakespeare_first300k.txt'))
   .slice(0,originalChapter.length);
 const positiveCipher=positiveNative.map((x,i)=>
-  mod29((1+(i*7)%28)*x+(i*11+3)%29));
+  mod29((1+((i%29)*7)%28)*x+((i%29)*11+3)%29));
 assert.deepEqual(
   phase29Collisions(positiveCipher),
   phase29Collisions(positiveNative),
