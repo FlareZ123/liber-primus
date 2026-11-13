@@ -8,7 +8,7 @@
  * treats that array as a matrix stream generator or a feedback map.
  *
  * Both schemes are hypothetical, and neither is an authored LP2 cipher.
- * All seed variants use printed p15 red spans and are fixed before scoring.
+ * All seed variants use printed p15 red spans and are fixed before scoring.\n * Two further matrices restore the signed 3301-prime complements for\n * 4516/1206, a source-derived rather than literally printed rule.
  *
  * Single-file test (Node.js 22, Windows 11):
  *   node sims/lp2_p15_fourstate_ofb_cfb_source_sft.cjs
@@ -56,11 +56,22 @@ const seeds = [
   ["second-red-last4", red20.slice(16, 20)],
   ["zero-control", [0, 0, 0, 0]]
 ];
+const signedM = M.map(row => row.slice());
+// Mathematical 3301-prime complements make the two largest p15 source
+// differences negative: 3301-7817=-4516 and 3301-4507=-1206.
+// The physical table prints their unsigned magnitudes: these alternate
+// signed entries are an inferred source-rule reading, not literal ink.
+signedM[3][0] = mod(-4516);
+signedM[3][1] = mod(-1206);
 const matrices = [
   ["printed-M", M],
   ["inverse-M", Minv],
   ["transpose-M", transpose(M)],
   ["inverse-transpose-M", transpose(Minv)]
+];
+const signedMatrices = [
+  ["signed-prime-complements", signedM],
+  ["signed-prime-complements-transpose", transpose(signedM)]
 ];
 const ciphertext = gp.pages.slice(16, 23).flatMap(page => page.indices);
 const control = gp.pages[57].indices.slice(0, 92);
@@ -109,7 +120,10 @@ function transform(values, matrix, initial, mode, sign, encrypt) {
 const output = [];
 for (const mode of ["ofb", "cfb"]) {
   for (const [seedName, seed] of seeds) {
-    for (const [matrixName, matrix] of matrices) {
+    for (const [matrixName, matrix] of [
+      ...matrices,
+      ...(seedName === "zero-control" ? [] : signedMatrices)
+    ]) {
       for (const sign of [-1, 1]) {
         const original = transform(ciphertext, matrix, seed, mode, sign, false);
         assert.deepEqual(transform(original, matrix, seed, mode, sign, true),
@@ -129,9 +143,9 @@ const maxima = Object.fromEntries(["ofb", "cfb"].map(mode =>
   [mode, Math.max(...output.filter(candidate =>
     candidate.mode === mode).map(candidate => candidate.originalIoC))]
 ));
-assert.equal(output.length, 80);
-assert(Math.abs(maxima.ofb - 0.034735271360672046) < 1e-12);
-assert(Math.abs(maxima.cfb - 0.03475435161353145) < 1e-12);
+assert.equal(output.length, 112);
+assert(Math.abs(maxima.ofb - 0.03476751040860691) < 1e-12);
+assert(Math.abs(maxima.cfb - 0.03492278419049724) < 1e-12);
 assert(ioc(control) > 0.06);
 assert(maxima.ofb < 0.04 && maxima.cfb < 0.04);
 
@@ -143,6 +157,6 @@ console.log(JSON.stringify({
   originalIoC: ioc(ciphertext),
   solvedP57PlantIoC: ioc(control),
   maxOriginalIoC: maxima,
-  originalExactForward: "80/80",
-  authenticSolvedGpPlants: "80/80 92-rune exact"
+  originalExactForward: "112/112",
+  authenticSolvedGpPlants: "112/112 92-rune exact"
 }, null, 2));
