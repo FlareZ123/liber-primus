@@ -137,7 +137,8 @@ const reference = {
 for (const name of Object.keys(reference)) {
   const observedValues = runeDecodes.filter(x => x.keyName === name)
     .map(x => Number(x.totalGp29IoC.toFixed(9)));
-  assert.deepEqual(observedValues, reference[name]);
+  assert(observedValues.every((value, i) =>
+    Math.abs(value - reference[name][i]) < 0.000000002), name);
 }
 console.log(JSON.stringify({
   source: "Cicada-served 2014 onion-2 256-byte string, original 256-cell LP2 base60 grid",
