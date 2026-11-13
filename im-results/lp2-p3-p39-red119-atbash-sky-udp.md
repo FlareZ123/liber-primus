@@ -15,6 +15,32 @@ The single operation is the **GP29 Atbash** `Pᵢ = 28 − Cᵢ` used in Cicada'
 
 The two fragments were selected **only** by their already-defined original red-ink and punctuation boundaries. The repeated offset119 was not searched or aligned after seeing output. The source-exact test asserts the two spans, offsets, red13 brackets, GP indexes and exact reversible Atbash: [CommonJS SFT](../sims/lp2_p3_p39_red119_atbash_sft.cjs).
 
+## Independently indexed red119 page addresses and the historical title 133 (Agent37, 13 November 2026)
+
+**Classification: exact arithmetic on source-selected runes, exploratory page-index interpretation; no unknown-page decryption.** The *same two source-enclosed complete red three-rune spans*, which were originally selected by ink/mark geometry for the Atbash `SCY/UDP` reading, admit a second simple operation used in earlier solved Cicada material: sum the first-29-prime Gematria weights of their three runes. This operation was previously used for word-number arithmetic; **the original red inscriptions do not explicitly instruct the solver to take their prime sums as destinations**.
+
+| Physical source | Printed GP index and prime weight | Sum | Ordinary prime ordinal | Candidate destination |
+| --- | --- | ---: | ---: | --- |
+| p3 at offset119, `ᛈᛞᚦ` | `[13,23,2] → [43,89,5]` | **137** | **33rd prime** | **physical p33**, distinct chapter red title |
+| p39 at offset119, `ᛡᚳᛋ` | `[27,5,15] → [107,13,53]` | **173** | **40th prime** | **physical p40**, distinct chapter red title |
+
+These are exact equalities, `prime(33)=137` and `prime(40)=173`, and the two destination pages are existing, visibly red-headed chapter openings among the original LP2 58 physical positions. In the existing independent source annotation inventory, **these are also the only two complete red spans whose total GP prime weight equals one of the first 58 ordinary primes**. The source inventory has 18 complete red spans and only two of length three; larger spans usually have greater total sums, so that apparent exclusivity is length-confounded and should not be promoted as statistical validation.
+
+A further unforced cross-round numerical alignment is exact:
+
+```text
+p3 : 137 − (3+1)  = 133
+p39: 173 − (39+1) = 133
+```
+
+The literal **133** is independently preserved as the original 2014 Stage11 Onion7 index HTML `<title>133</title>`, in [the byte-preserving original index](../resources/external/cicada2014-stage11-onion7-original-index.html), the page that enumerated all 58 Liber Primus JPEG images. One-based source-page ordinals therefore give the same historical constant for both source-enclosed red triads. This also yields `137 = 133+4`, `173=133+40`; that re-expression does not establish that the authors intended one-based subtraction, much less identify a key. The Stage11 HTML separately prints `<div id="331">`, and there is no instruction there authorizing prime-sum subtraction.
+
+**Original-cipher decision rather than further coincidence expansion:** a concrete, independently established numerical consumer exists on authentically solved LP2 p56: the prime-totient clock with the literal plaintext-F skip. If the red prime ordinals directly instructed that same decoder on their purported destination pages, start p33's clock at the **33rd prime** and p40's at the **40th prime**, resetting each page and retaining **all possible F-interruption histories**. Exhausting both cipher signs, the original p33 214-rune ciphertext becomes algebraically impossible at zero-based offsets **3** (positive) and **74** (negative); the original p40 231-rune ciphertext becomes impossible at offsets **106** and **35**, respectively. This is an exact obstruction with no language scoring. The genuine 85-rune solved p56 under the historical first-prime start succeeds, and a separate native-GP planted plaintext source test passes at both hypothesized starting ordinals.
+
+The complete original-source assertions, all-red-span comparator, html-title check, exact prime clock and positive controls are in [the Node.js original SFT](../sims/lp2_red119_gpprime_page133_bridge_sft.cjs) and [successful manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43524439120).
+
+**Decision:** the two physically unique red119 triplets now carry an additional **exact index-to-red-chapter arithmetic correspondence**, with an independently source-printed 133 cross-check. It is a bounded possible human page-navigation cue. The direct transferable solved prime-totient cipher fails on *both* selected destination pages; no plaintext, legitimate external endpoint, source-selected cipher clock or successor instruction follows. New work must identify an independent original instruction that selects this prime-index page traversal and its operation, rather than fitting additional numerical transforms to the same two sums.
+
 ## Human-solve-path hypothesis and independent historical anchor
 
 The [original reconstructed signed 2013 second-onion clue](2013-icmp-echo-packet-reconstruction.md) says that sometimes one must **knock on the sky and listen to the sound**. It is signed at 2013-01-14 05:31:07 UTC, prior to Liber Primus's 2014 release. This supplies genuinely independent earlier creator-side **SKY** wording; it does not authenticate the proposed **Atbash** red readout. In that historical 2013 chain, the successful player operation was **ICMP echo**, which recovered a signed message naming another onion; **UDP did not implement the documented solve**. Cicada also used a separate authenticated **TCP** server challenge in 2013, showing protocol vocabulary was in-period.
