@@ -1,11 +1,6 @@
 name: LP2 doublet word-identity and p56 alignment gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/lp2-doublet-word-identity-gate.yml'
-      - 'sims/lp2_doublet_gap_word_identity_conditional_sft.cjs'
   workflow_dispatch:
 
 permissions:
