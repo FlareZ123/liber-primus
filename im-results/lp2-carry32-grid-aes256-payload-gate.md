@@ -66,8 +66,27 @@ The two source payloads **fail the 16-bit key check**, and their decoded SEIPD-v
 
 This is an exact rejection of the *proposed carry32 key and both chosen payload orders as direct OpenPGP CFB ciphertext*, without an English-frequency or header heuristic. The printed table does **not** visibly contain a complete OpenPGP session-key wrapper, so historical CFB here is an explicitly conditional consumer. Failure cannot exclude a separately encrypted packet, a hidden KDF, or a different source instruction. The [original-source SFT](../sims/lp2_carry32_grid_aes256_payload_sft.cjs) and [passing CI run 43302411345](https://github.com/FlareZ123/liber-primus/actions/runs/43302411345) contain these exact full-message checks.
 
+## Additional source-motivated row-local XOR consumer (Agent37, 13 November 2026)
+
+A technically literate solver could notice the **32 cross-page words / 32 table rows / eight cells per row** and use the same candidate selector as the AES experiment: the sum of each carried word's GP primes modulo eight selects one byte in its corresponding row. Cicada's earlier bytewise-XOR use makes one simple additional consumer worth a single test: use that selected byte as the row key and XOR it with each of the other seven bytes in the same row, preserving their printed left-to-right order and the 32 rows' top-to-bottom order.
+
+The operation is **not authenticated by LP2**. Neither prime-sum-mod-eight nor row-local XOR is explicitly instructed; the historical XOR precedent only motivates this one low-complexity hypothesis. No row-order, key, or offset search was performed.
+
+Exact candidate input and output:
+
+- Selector columns: 41733365273004427417340057065101.
+- Selected 32-byte key: 61f9571927499cc41952c1d3de0e3656abf5d2f85294eb807315393300ea909e (same candidate key as the AES test).
+- Remove the selected key cell from each row and XOR it with the other seven cells: exactly 224 output bytes.
+- Output SHA-256: 2e4b3b0379c0f5bba4cb6397000b3cd6ea455a4859ed1f1e8b5b41c23254f8cc.
+- Only **85/224** output bytes are printable ASCII; the longest contiguous printable run is **four**. The output begins aa86c6db8c1fd6a565270efd4e2d2e9d and has no tested PNG, ZIP, gzip, PDF, PGP-armour or ELF signature.
+- The two simple byte→GP29 reductions already used in the repository give IoC **0.0331518257527** for byte modulo 29 and **0.0328715566944** for floor(29·byte/256). Neither produces a language-like signal.
+
+The synthetic source-shaped positive control encrypts and recovers all 224 planted bytes exactly. The original output does not resemble direct plaintext or a recognizable common file header. This retires only this **direct row-local XOR consumer**. It does not exclude a separately source-selected binary second layer, but no such next stage is presently selected; do not chain an arbitrary AES/stream cipher or byte-to-rune mapping onto this output.
+
+**Reproducer:** [standalone original-input Node 22 SFT](../sims/lp2_carry32_rowlocal_xor_sft.cjs). It imports the canonical 32-carry parser, asserts the exact selector/key/output digest and metrics, and includes the positive round-trip plant.
+
 ## Research decision
 
-The source-constrained **32 carry words → one byte per row → 32-byte AES key → remaining 224-byte table plaintext** route is directly tested and fails to yield a usable payload in its natural row/column, zero-IV, embedded-IV AES formats, two conventional authenticated-GCM envelopes, and either historical OpenPGP-CFB payload framing. It does not refute the exact count of cross-page words, Agent30's key construction, other supported consumers, different byte packing, or the possibility of an independently specified binary format. No new LP2 plaintext, secret, or destination follows.
+The source-motivated **32 cross-page words → one selected cell per row** selector has now been tested under two distinct direct-consumer hypotheses. The selected 32 bytes as an AES-256 key against the remaining 224 table bytes fail the natural row/column, zero-IV, embedded-IV AES modes, two conventional authenticated-GCM envelopes, and historical OpenPGP-CFB framing. The separate row-local XOR consumer also fails to yield direct plaintext or a recognizable common file header. These results do not refute the exact count of cross-page words, Agent30's key construction, other source-supported consumers, different byte packing, or a separately specified binary format. No new LP2 plaintext, secret, or destination follows.
 
-Preserve the cross-page selector only as a *conditional input*. Resume this branch only if a genuinely independent source specifies AES mode/IV or a distinct authenticated use for those 32 values. Another non-source-selected IV search or arbitrary word-direction tweak would add fit freedom without recovering a clue.
+Preserve the cross-page selector only as a *conditional input*. Resume this branch only if a genuinely independent source specifies a distinct authenticated use or later stage for those 32 values. Another non-source-selected mode, offset, byte-order or word-direction search would add fit freedom without recovering a clue.

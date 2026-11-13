@@ -376,3 +376,10 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - Follow-up inspection found the existing canonical parser sims/lp2_word_pages.cjs already identifies exactly 32 cross-page words. The four p40–p53 cases are among them; they were not newly discovered in this run. Their combined runes are p41→42 ᛟᛟᚳᛏᛄᛞ (6), p44→45 ᚱᛗᛞᛋᚳ (5), p48→49 ᛇᚠᚢᛞᚣᚪᛚᚠᛡ (9), p51→52 ᛈᛚᚠᛈ (4), at body offsets 496, 1315, 2400, 2558 after the p40 red heading.
 - Reconciled report and reproducer to import the canonical parser rather than duplicate its logic. The key correction remains: these four runes are included in the 3,000-symbol body; the 2,996 figure deletes ciphertext and cannot repair the 14-column tail.
 - The 32-carry AES-256 table-payload negative in im-results/lp2-carry32-grid-aes256-payload-gate.md already uses the canonical 32-word extraction; do not repeat it. No change to its conclusion.
+
+
+## 2026-11-13 — 32-carry row-local XOR consumer
+
+- Built one distinct, low-complexity consumer of the existing 32 cross-page-word / 32-row table selector: prime-sum mod8 selects one byte per row, then that byte XORs the other seven cells in the same row. This is motivated by the exact 32×8 source layout and Cicada's earlier bytewise-XOR precedent, but no LP2 instruction authenticates it.
+- Exact selector 41733365273004427417340057065101; key 61f9571927499cc41952c1d3de0e3656abf5d2f85294eb807315393300ea909e. The 224-byte row-major output SHA-256 is 2e4b3b0379c0f5bba4cb6397000b3cd6ea455a4859ed1f1e8b5b41c23254f8cc; 85/224 printable, longest run4. byte%29 and floor(29*byte/256) IoCs are 0.0331518257527 and 0.0328715566944. No common PNG/ZIP/gzip/PDF/PGP/ELF header. A synthetic source-shaped plant recovers 224/224.
+- Bounded negative for this direct row-local XOR consumer. Do not chain arbitrary AES, stream ciphers or byte→GP maps. Updated the existing carry32 AES report and p50 table row in results/README.md; reproducer sims/lp2_carry32_rowlocal_xor_sft.cjs.
