@@ -196,11 +196,17 @@ assert.equal(individual.reduce((n,p)=>n+p.maximum,0),2379);
 const tokens=corpus.translit.map((token,index)=>({token,index}))
   .sort((a,b)=>b.token.length-a.token.length);
 /** @param {string} source @returns {Uint8Array} */
-function gp(source) {
+function gp(source, sourceCalibration=false) {
   const words=source.toUpperCase().replace(/QU/g,'CW').replace(/V/g,'U')
     .replace(/[KQ]/g,'C').replace(/Z/g,'S').match(/[A-Z]+/g)||[];
   const out=[];
   for (const word of words) for(let i=0;i<word.length;) {
+    if (sourceCalibration && word.startsWith('ING',i)) {
+      out.push(21);i+=3;continue;
+    }
+    if (sourceCalibration && word.startsWith('IO',i)) {
+      out.push(27);i+=2;continue;
+    }
     const x=tokens.find(t=>word.startsWith(t.token,i));
     assert(x, 'Invalid GP token');
     out.push(x.index);
@@ -238,12 +244,20 @@ function minTopTwo(data) {
   return {minimum,at,topTwo};
 }
 const controls=[
-  ['resources/control/gibran_prophet_58585.txt',63114,2517,36540],
-  ['resources/control/shakespeare_first300k.txt',218800,2418,192716],
-  ['resources/control/emerson_essays_2944.txt',324630,2479,299973]
+  ['resources/control/gibran_prophet_58585.txt',63114,2517,36540,62492,2510,36202],
+  ['resources/control/shakespeare_first300k.txt',218800,2418,192716,217106,2408,191622],
+  ['resources/control/emerson_essays_2944.txt',324630,2479,299973,321327,2477,195195]
 ];
-const controlScores=controls.map(([file,expectedLength,expectedMin,expectedAt])=>{
-  const native=gp(read(file)),score=minTopTwo(native);
+const correctedScores=[];
+const controlScores=controls.map(([file,expectedLength,expectedMin,expectedAt,
+    correctedLength,correctedMin,correctedAt])=>{
+  const source=read(file),native=gp(source),score=minTopTwo(native);
+  const corrected=gp(source,true),spellingScore=minTopTwo(corrected);
+  assert.equal(corrected.length,correctedLength);
+  assert.equal(spellingScore.minimum,correctedMin);
+  assert.equal(spellingScore.at,correctedAt);
+  assert(spellingScore.minimum>2379);
+  correctedScores.push({file,windows:corrected.length-count+1,...spellingScore});
   assert.equal(native.length,expectedLength);
   assert.equal(score.minimum,expectedMin);
   assert.equal(score.at,expectedAt);
@@ -251,11 +265,12 @@ const controlScores=controls.map(([file,expectedLength,expectedMin,expectedAt])=
   return {file,windows:native.length-count+1,...score};
 });
 assert.equal(controlScores.reduce((a,b)=>a+b.windows,0),567679);
+assert.equal(correctedScores.reduce((a,b)=>a+b.windows,0),562060);
 console.log(JSON.stringify({
   input:{pages:56,runebearing:55,runes:count,eligible,free:skips.length},
   globalMaximum:global.maximum,
   globalAttainingPair:global.symbols.map(x=>corpus.translit[x]),
   chapterMaxima:chapters,chapterwiseMaximum:1472,
-  pagewiseMaximum:2379,individual,controlScores,
+  pagewiseMaximum:2379,individual,controlScores,correctedScores,
   exhaustiveOracle:{toy:61,seed:'0x33011337',q5:24,q6:6}
 },null,2));
