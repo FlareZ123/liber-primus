@@ -1,8 +1,9 @@
 'use strict';
 
 /**
- * Original-source 213 red GP runes plus 43 strictly interior p55 GP runes
- * versus the 256 printed numeral cells. Reproduction: node
+ * Two source-visible 256-slot candidate objects for the printed numeral grid:
+ * 213 unknown red runes + 43 p55 word interiors, and all 225 red runes
+ * plus 31 red 13-/23-dot punctuation symbols. Reproduction: node
  * sims/lp2_red213_p55inner43_grid256_sft.cjs
  */
 const assert = require('node:assert/strict');
@@ -113,6 +114,58 @@ for (const [sign, name] of [[-1, 'subtract'], [1, 'add']]) {
     redFirst60: render(out.slice(0, 60))
   };
 }
+
+/**
+ * All-page red-ink candidate: each actual red rune is one GP index;
+ * each red 13-/23-dot punctuation has a separate single-token candidate
+ * value: the GP index whose prime weight equals its literal dot count.
+ * Both the selection and numeric interpretation are experimental.
+ */
+const colored = [];
+for (const page of ink.pages) {
+  const original = corpus.pages.find(p => p.page === page.page).indices;
+  for (const span of page.red_spans || []) {
+    const values = Array.from(span.runes).map(index);
+    assert.deepStrictEqual(values, original.slice(span.start, span.start + span.length));
+    for (let j = 0; j < values.length; j++) {
+      colored.push({page: page.page, at: span.start + j, kind: 'rune', value: values[j]});
+    }
+  }
+  for (const [at, dots, inkColor] of page.large_punctuation || []) {
+    if (inkColor !== 'red' || (dots !== 13 && dots !== 23)) continue;
+    const value = corpus.prime.indexOf(dots);
+    assert.ok(value >= 0);
+    colored.push({page: page.page, at, kind: 'dot', dots, value});
+  }
+}
+// A printed punctuation mark at a rune offset precedes the rune at that offset.
+colored.sort((a, b) => a.page - b.page || a.at - b.at ||
+  (a.kind === 'dot' ? -1 : 1));
+const redInk256 = colored.map(x => x.value);
+const dotCounts = colored.filter(x => x.kind === 'dot');
+assert.equal(redInk256.length, 256);
+assert.equal(colored.filter(x => x.kind === 'rune').length, 225);
+assert.equal(dotCounts.length, 31);
+assert.equal(dotCounts.filter(x => x.dots === 13).length, 30);
+assert.equal(dotCounts.filter(x => x.dots === 23).length, 1);
+assert.deepStrictEqual(hRemainder(redInk256), [5, 3]);
+assert.deepStrictEqual(doubleRoot(redInk256), [15, 16]);
+assert.deepStrictEqual(hRemainder([...redInk256].reverse()), [23, 0]);
+assert.deepStrictEqual(doubleRoot([...redInk256].reverse()), [13, 19]);
+const redInkOutputs = {};
+for (const [sign, name] of [[-1, 'subtract'], [1, 'add']]) {
+  const out = redInk256.map((x, j) => mod29(x + sign * key[j]));
+  redInkOutputs[name] = {
+    fullIoC: ioc(out),
+    first50: render(out.slice(0, 50)),
+    last50: render(out.slice(-50)),
+    knownSolvedP57RedRunesKept: colored.reduce(
+      (n, e, j) => n + (e.kind === 'rune' && e.page === 57 && out[j] === e.value), 0)
+  };
+}
+assert.ok(Math.abs(redInkOutputs.subtract.fullIoC - 0.03373161764705882) < 1e-12);
+assert.ok(Math.abs(redInkOutputs.add.fullIoC - 0.035386029411764705) < 1e-12);
+
 const result = {
   redUnsolved: red.length,
   redSolved: ink.pages.filter(p => p.page >= 56).reduce(
@@ -127,6 +180,18 @@ const result = {
   reversedH: hRemainder([...selected].reverse()),
   reversedG: doubleRoot([...selected].reverse()),
   outputs,
+  allPageRedInkCandidate: {
+    total: redInk256.length,
+    allRedRunes: 225,
+    red13And23Dots: 31,
+    originalIoC: ioc(redInk256),
+    equalTableResidues: redInk256.filter((x, j) => x === key[j]).length,
+    hRemainder: hRemainder(redInk256),
+    gRootAndDerivative: doubleRoot(redInk256),
+    reversedH: hRemainder([...redInk256].reverse()),
+    reversedG: doubleRoot([...redInk256].reverse()),
+    redInkOutputs
+  },
   positiveControl: '43/43 exact'
 };
 assert.equal(result.redSolved, 12);
