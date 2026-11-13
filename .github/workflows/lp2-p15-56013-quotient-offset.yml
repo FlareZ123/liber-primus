@@ -33,6 +33,14 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Script syntax failed" }
           node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
+      - name: Test direct BASE29-integer-to-byte conversion plus historical XOR at selected full-file offset
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p15_56013_base29_integer_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "BASE29 integer XOR source syntax failed" }
+          node sims/lp2_p15_56013_base29_integer_xor_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "BASE29 integer XOR original test failed" }
       - name: Execute frozen p55 central-23 circumference XOR gate
         shell: pwsh
         run: |
