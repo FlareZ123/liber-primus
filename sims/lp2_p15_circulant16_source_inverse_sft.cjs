@@ -36,12 +36,12 @@ const sequences = {
   fibonacci: distinctFibonacci
 };
 const expectedIoC = {
-  'printed/forward': 0.03427602941253875,
-  'printed/reverse': 0.034529336217741215,
-  'spiral/forward': 0.03483527820324549,
-  'spiral/reverse': 0.03426879207524725,
-  'prime/forward': 0.03432011137604152,
-  'prime/reverse': 0.03454841647060062
+  'printed/forward': 0.03441946027886118,
+  'printed/reverse': 0.03445959460384131,
+  'spiral/forward': 0.03447801691694695,
+  'spiral/reverse': 0.034366167158805604,
+  'fibonacci/forward': 0.03473198166190318,
+  'fibonacci/reverse': 0.03472869196313432
 };
 
 /** @param {number} n @returns {number} */
@@ -66,7 +66,7 @@ function circulant(kernel, reversed) {
   assert.equal(kernel.length, BLOCK);
   return Array.from({ length: BLOCK }, (_, i) =>
     Array.from({ length: BLOCK }, (_, j) =>
-      mod(kernel[mod(reversed ? i - j : j - i) % BLOCK])
+      mod(kernel[((reversed ? i - j : j - i) % BLOCK + BLOCK) % BLOCK])
     )
   );
 }
@@ -168,7 +168,7 @@ for (const [name, kernel] of Object.entries(sequences)) {
     const { rank, inverse } = invert(matrix);
     if (inverse === null) {
       singular++;
-      assert.equal(name, 'fibonacci');
+      assert.equal(name, 'prime');
       assert.equal(rank, 15);
       console.log(label, '| singular rank:', rank);
       continue;
