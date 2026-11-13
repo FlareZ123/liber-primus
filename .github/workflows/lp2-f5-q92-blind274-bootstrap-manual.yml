@@ -29,6 +29,15 @@ jobs:
           tar -xzf /tmp/pev274/extract.tar.gz -C /tmp/pev274/source
           find /tmp/pev274/source -maxdepth 4 -type f | sort | sed -n '1,100p'
           find /tmp/pev274/source -maxdepth 4 -type f \( -iname 'readme*' -o -iname 'makefile*' \) -print -exec sed -n '1,130p' {} \;
+      - name: Compile original JET 2007 274-feature extractor and check historical fixture
+        run: |
+          set -eu
+          sudo apt-get install -y -qq libboost-filesystem-dev libboost-system-dev
+          sed -i 's/-DBOOST_FILESYSTEM_VERSION=2//g' /tmp/pev274/source/src/Makefile
+          make -C /tmp/pev274/source/src -j2
+          /tmp/pev274/source/src/jet --help | sed -n '1,65p'
+          /tmp/pev274/source/src/jet -s /tmp/pev274/source/test/img_1009.jpg -o /tmp/pev274/fixture.fea
+          python3 -c "p='/tmp/pev274/fixture.fea'; a=open(p).read().split(); print('OFFICIAL_FIXTURE_DIMS',len(a),a[-3:]); assert len(a) >= 274"
       - name: Genuine F5 grayscale and RGB roundtrip with three distinct encoders
         run: |
           set -eu
@@ -63,6 +72,10 @@ jobs:
               done
             done
           done
+      - name: Matrix-k controlled F5 real grayscale 256-4096B diagnostic
+        run: |
+          cd sims/f5_detector_calibration
+          go run gray_roundtrip_sft.go ../../resources/liber-primus/62.jpg ../../resources/liber-primus/71.jpg "$(go env GOPATH)/bin/f5"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
