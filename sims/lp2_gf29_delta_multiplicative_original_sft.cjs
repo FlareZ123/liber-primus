@@ -98,6 +98,7 @@ assert.equal(original.reduce((a, p) => a + p.indices.length, 0), 12956);
 let previous = null, repeats = 0, eligible = 0, sourceTotal = 0;
 let expectedEa = 0, expectedEaInitial = 0, observedBoundaryRepeats = 0;
 const eaUnattainable = [];
+const eligibleGroups = new Map();
 const byLength = new Map();
 const repeatMasks = [];
 let missingLong = 0;
@@ -118,6 +119,9 @@ for (const wordItems of unknown) {
     previous = item;
   }
   if (mask.includes(1)) repeatMasks.push({page: wordItems[0].page, len: mask.length, mask});
+  const eligibleMask = mask.map(x => +(x >= 0)).join('');
+  const groupKey = mask.length + ':' + eligibleMask;
+  eligibleGroups.set(groupKey, (eligibleGroups.get(groupKey) || 0) + 1);
   if (mask[0] === 1) observedBoundaryRepeats++;
   const options = weightedByLen[mask.length] || [];
   let totalWeight = 0, eaWeight = 0, eaStartWeight = 0, compatible = false;
@@ -166,6 +170,52 @@ const allLong = [...byLength.entries()].filter(([len]) => len >= 6);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.words, 0), 791);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.affine, 0), 0);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.fixedMult, 0), 0);
+// Fully specified wordlength-matched native-English sentinel distribution.
+const singletonStats = [];
+for (let sentinel = 0; sentinel < 29; sentinel++) {
+  let expectedAll = 0, expectedInitial = 0;
+  let varAll = 0, varInitial = 0, cov = 0;
+  for (const [key, multiplicity] of eligibleGroups) {
+    const [lenText, maskText] = key.split(':');
+    const options = weightedByLen[Number(lenText)] || [];
+    const eligible = [...maskText].map(x => x === '1');
+    let n = 0, mx = 0, my = 0, xx = 0, yy = 0, xy = 0;
+    for (const option of options) {
+      const x = option.values.reduce((a, c, i) =>
+        a + +(eligible[i] && c === sentinel), 0);
+      const y = +(eligible[0] && option.values[0] === sentinel);
+      const w = option.weight;
+      n += w;
+      mx += w*x;
+      my += w*y;
+      xx += w*x*x;
+      yy += w*y*y;
+      xy += w*x*y;
+    }
+    if (!n) continue;
+    const u = mx/n, v = my/n;
+    expectedAll += multiplicity*u;
+    expectedInitial += multiplicity*v;
+    varAll += multiplicity*(xx/n-u*u);
+    varInitial += multiplicity*(yy/n-v*v);
+    cov += multiplicity*(xy/n-u*v);
+  }
+  const diffAll = repeats-expectedAll;
+  const diffInitial = observedBoundaryRepeats-expectedInitial;
+  const determinant = varAll*varInitial-cov*cov;
+  const squaredDistance = (varInitial*diffAll**2 -
+    2*cov*diffAll*diffInitial + varAll*diffInitial**2)/determinant;
+  assert(determinant > 0);
+  singletonStats.push({rune:db.translit[sentinel],
+    expectedAll:+expectedAll.toFixed(3),
+    expectedInitial:+expectedInitial.toFixed(3),
+    sdAll:+Math.sqrt(varAll).toFixed(3),
+    sdInitial:+Math.sqrt(varInitial).toFixed(3),
+    jointDistance:+Math.sqrt(squaredDistance).toFixed(3)});
+}
+singletonStats.sort((a, b) => a.jointDistance-b.jointDistance);
+assert.equal(singletonStats[0].rune, 'G');
+assert.equal(singletonStats[1].rune, 'EA');
 const originalDelta = original.flatMap(p => p.indices.slice(1)
   .map((c, i) => mod(c - p.indices[i])));
 const nonzero = Array.from({length:29}, (_, i) =>
@@ -203,6 +253,7 @@ const report = {
     expectedEaFromLengthAndWordFrequency:+expectedEa.toFixed(3),
     expectedEaWordInitial:+expectedEaInitial.toFixed(3),
     eaWordMaskMissing:eaUnattainable,
+    all29SingletonNativeEnglishBest:singletonStats.slice(0,8),
     nonzeroDifferenceChiSquare27df:chi, differenceFrequencies:nonzero},
   hypothesis: 'C_i=C_(i-1)+K_i*(P_i+1) mod29, K_i in 1..28',
   keyIndependent: {eligibleWords:eligible, eligibleDeltaRunes:sourceTotal,
