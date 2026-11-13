@@ -78,6 +78,19 @@ assert.deepEqual([primeOrdinal(s0), primeOrdinal(s1), primeOrdinal(sum33)],
 assert.deepEqual([s0, s1, sum33]
   .map((n) => ordinalToLP2(primeOrdinal(n))), [15, 22, 57]);
 assert.equal(corpus.pages.find((p) => p.page === 57).indices.length, 95);
+const allRedSpans = ink.pages.flatMap((page) => (page.red_spans || [])
+  .map((span) => ({
+    page: page.page,
+    start: span.start,
+    length: span.length,
+    ordinal: primeOrdinal(sum(indexed(span.runes))),
+  })));
+assert.equal(allRedSpans.length, 18, 'all source-red spans, including solved pages');
+const inArchive = allRedSpans.filter((x) => x.ordinal !== null &&
+  x.ordinal >= 1 && x.ordinal <= 75);
+assert.deepEqual(inArchive.map((x) => [x.page, x.start, x.length, x.ordinal]),
+  [[3, 119, 3, 33], [33, 0, 10, 75], [39, 119, 3, 40]]);
+
 assert.equal(s0 - (red[0].page + 1), sourceTitle);
 assert.equal(s1 - (red[1].page + 1), sourceTitle);
 const sourceTitleSpans = ink.pages.flatMap((page) => (page.red_spans || [])
