@@ -8,6 +8,9 @@
 
 **Other source review:** 2016 signed tree JPEG 563×569 exactly matches p32 11×11 GP first row/column prime sums; p32 center9→p33 first81 9×9 has prime-sum difference 211=MAP and Hill determinant−1, yet previous direct additive, Hill, spiral, Gaussian, finite difference, tile-ink and compass consumers failed. The source clue still does not determine cipher operation. Do not repeat those attacks. Anonymous 2014/2013 source transcriptions and onion-host candidates have been examined extensively.
 
+**Additional independent low-cost decisions (07:10 UTC):** The p32 source 11×11 GP-prime row sums are [563,617,287,540,743,513,577,579,603,537,486]; signed-2016 OutGuess reports seed230, numerically matching row4−row5 (743−513), but **the signed text does not select row subtraction** and no decoder follows; this is exploratory numeral only. The already-known p32 center9 / p33 black81 relation (GP-prime sum 4339−4128=211=MAP) has full GF29 rank9 for both cellwise B−A and B+A; the direct sign bitmap across 81 cells has seven zero sites [14,17,19,21,44,78,80] and its 74 signed nonzero bits give big-endian bytes `d6 cb ba 1e 19 87 48 df 57`, not ASCII. No source selected a non-GP bit transport. A literal whole-book original H/G polynomial scan discovered P29 divisible by p39 G, but this **was already studied** under Director #306 as a DH2 G-adic bridge; no fresh result. The original p57 mayfly's known-GIMP-field pixelwise inequality inverse can produce a smooth alpha reconstruction from the 293×267 binary stipple and exact GIMP thresholds, but many alpha images are compatible with the same raster; it reveals no authentic new drawing/key. Original pristine opacity reference would be required to distinguish intentional residuals. Current public resources still report no authenticated fresh LP2 plaintext. Do not retread these branches or interpret postselected numerals as keys.
+
+
 ---
 
 # Agent16 current incarnation, 13 November 2026 04:34 UTC
