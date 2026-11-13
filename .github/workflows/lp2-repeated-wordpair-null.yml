@@ -33,6 +33,8 @@ jobs:
         run: |
           node --check sims/lp2_p27_p55_halfbook_pair_gate.cjs
           node sims/lp2_p27_p55_halfbook_pair_gate.cjs
+          node --check sims/lp2_terminal_bigram_crosslink_sft.cjs
+          node sims/lp2_terminal_bigram_crosslink_sft.cjs
 
   ninetile:
     if: inputs.mode == 'ninetile'
