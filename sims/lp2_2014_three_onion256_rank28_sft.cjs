@@ -176,6 +176,49 @@ const nativeKnownPlant = authenticP56.map((v, i) =>
 assert.equal(nativeKnownPlant.filter((v, i) =>
   (v - authenticP56[i] + 29) % 29 === positiveSource[(76 + i) % 256] % 29).length, 85);
 
+// Independently source-motivated but NOT authenticated p55 plaintext crib:
+// solved LP1 p5's moth-linked terminal seven-word phrase has exactly the
+// same seven source-native GP word lengths as p55's final seven body words.
+/** @param {string} english @returns {number[]} */
+function sourceNativeGP(english) {
+  const s = english.replace(/QU/g, 'CW').replace(/V/g, 'U')
+    .replace(/[KQ]/g, 'C').replace(/Z/g, 'S');
+  const arr = [];
+  for (let i = 0; i < s.length;) {
+    if (s.startsWith('ING', i)) {arr.push(21); i += 3;}
+    else if (s.startsWith('IO', i)) {arr.push(27); i += 2;}
+    else {
+      const token = gpTokens.find(x => s.startsWith(x.token, i));
+      assert(token, 'Missing source-native token');
+      arr.push(token.index);
+      i += token.token.length;
+    }
+  }
+  return arr;
+}
+const cribWords = 'THE TOTIENT FUNCTION IS SACRED ALL THINGS'
+  .split(' ').map(sourceNativeGP);
+assert.deepEqual(cribWords.map(w => w.length), [2, 7, 7, 2, 6, 3, 3]);
+const candidateCrib = cribWords.flat();
+assert.equal(candidateCrib.length, 30);
+const last55 = gp.pages[55].indices.slice(-30);
+assert.equal(gp.pages[55].indices.length - last55.length, 46);
+const provisionalP55Matches = [];
+for (let mask = 0; mask < 8; mask++) {
+  for (const grid of [false, true]) {
+    if (!mask && !grid) continue;
+    const key = sourceKey(mask, grid);
+    for (const sign of [-1, 1]) {
+      const matches = candidateCrib.reduce((n, v, i) =>
+        n + Number((last55[i] - v + 29) % 29 ===
+          (sign * (key[46 + i] % 29) + 29) % 29), 0);
+      provisionalP55Matches.push({mask, grid, sign, matches});
+    }
+  }
+}
+assert.equal(provisionalP55Matches.length, 30);
+assert.equal(Math.max(...provisionalP55Matches.map(x => x.matches)), 3);
+
 /** @param {number[]} a @returns {[number,number]} */
 const range = a => [Math.min(...a), Math.max(...a)];
 const full = range(gp29.map(x => x.ioc));
@@ -193,6 +236,7 @@ console.log(JSON.stringify({
   originalNonrepeatTransitions:transitions.length,
   tested: {historicalAndTableKeys:15, fullGP29Decodes:30, step28Decodes:60},
   solvedP56Shift:{eligibleCipherRunes:84, tested:originalP56Checks.length, matchesRange:range(originalP56Checks.map(x => x.matches)), maximum:originalP56Checks.filter(x => x.matches === 9)},
+  mothLinkedP55Crib:{status:'UNAUTHENTICATED hypothesis, not solved plaintext',candidateRunes:30,tests:provisionalP55Matches.length,matchesRange:range(provisionalP55Matches.map(x => x.matches)),best:provisionalP55Matches.filter(x => x.matches === 3)},
   sourceXorTableASCII:binary.filter(x => x.label !== 'TABLE'),
   fullGP29IoC:full, nonrepeatRank28IoC:step,
   largestSingleDecodedRank:largest,
