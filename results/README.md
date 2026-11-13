@@ -141,6 +141,17 @@ This entry point separates source facts, measured ciphertext properties, conditi
 
 ## 1. Reproducible source facts
 
+### Historical 2014 handoff and the separate AN-END target
+
+The 2014 recruitment chain's Sixth Onion was `ut3qtzbrvs7dtvzp.onion`, recovered by a `chapter:line:word:letter` book code using *Gödel, Escher, Bach* from the signed Onion 5 message. It served four initial Liber Primus pages, then requested three magic squares (orders/sums 5/3301, 5/1033, 7/1033) and a Tor hidden-service URL. The final returned rune image was decoded with Vigenère key `CIRCUMFERENCE`. This is solved historical context, not a key for LP2 0–55 and not the AN-END target. See [`results/2014-onion-chain.md`](2014-onion-chain.md).
+
+The 05.jpg trailer's 179-byte OOB data is the already documented Onion 3 payload that reverses to the 5×5 magic square of sum 1033; it is not a new p55 key. See [`im-results/lp1-p05-trailer-mobius-matrix.md`](../im-results/lp1-p05-trailer-mobius-matrix.md) for the corrected reproduction.
+
+Keep that historical onion distinct from the solved AN-END page's separate 512-bit target:
+`36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
+The AN-END hash algorithm and preimage remain unknown; the direct Ed25519 onion-key interpretation failed, and the local `analysis/anend_hunt/FINDINGS.md` records the current downstream-of-LP2 working model. Do not label the Sixth Onion as the AN-END page.
+
+
 ### Language and register scope
 
 A source-register correction changes an earlier Old English control: the 10 November `beowulf_oe_gp_profile.json` representation silently dropped most lowercase thorn/eth/ash characters, yielding an artificially tiny TH register (**94** out of 45,299); full Unicode-aware normalization gives **2,078 TH and 560 AE in 48,012** GP runes. The corrected 20-period Old English GP29 inversion stays negative on independent LP2 pages (best held-out **−0.80053 nats/rune**), with source-native plants recovered. The legacy fixture is retained solely for historical reproduction, while [the corrected source and experiment](../im-results/beowulf_old_english_periodic_inverse.md) is authoritative for this finite model. Separate Old English-dependent summary statistics require checking which source version they used before comparing their numerical thresholds.
