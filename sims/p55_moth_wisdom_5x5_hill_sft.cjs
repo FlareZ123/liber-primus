@@ -140,6 +140,55 @@ const hypotheses=[
   {name:"wrong source raw numeric square, column-vector",dec:rawInverse,enc:raw},
   {name:"wrong source raw numeric square, row-vector",dec:transpose(rawInverse),enc:transpose(raw)}
 ];
+// Stronger prospective-crib gate: source-linked seven LP1 moth words occupy
+// exactly six complete Hill blocks at the end of p55's 75-rune body.
+// Reconstruct the sole possible unknown secret 5x5 row-Hill key from the
+// first five plaintext/ciphertext blocks; freeze the sixth as a blind test.
+// GP IO in FUNCTION and ING in THINGS are source-calibrated runes.
+const sourceNativeCrib=[
+  2,18,16,3,16,10,18,9,16,0,1,9,5,16,27,9,
+  10,15,15,24,5,4,18,23,24,20,20,2,21,15
+];
+assert.equal(sourceNativeCrib.length,30);
+const cribCipher=p55.slice(46);
+const plainBlocks=Array.from({length:6},(_,i)=>
+  sourceNativeCrib.slice(5*i,5*i+5));
+const cipherBlocks=Array.from({length:6},(_,i)=>
+  cribCipher.slice(5*i,5*i+5));
+const P5=plainBlocks.slice(0,5),C5=cipherBlocks.slice(0,5);
+const {inverse:pinv,det:plainBasisDet}=inverseMod29(P5);
+assert.equal(plainBasisDet,2,"first five source-native crib blocks form a basis");
+const multiply=(A,B)=>A.map(row=>B[0].map((_,j)=>
+  mod(row.reduce((sum,v,k)=>sum+v*B[k][j],0))));
+const recoveredSecretRowKey=multiply(pinv,C5);
+assert.deepEqual(recoveredSecretRowKey,[
+  [3,27,3,24,15],
+  [23,4,1,4,20],
+  [28,4,24,18,19],
+  [4,28,2,13,22],
+  [11,13,23,4,22]
+]);
+const keyDet=inverseMod29(recoveredSecretRowKey).det;
+assert.equal(keyDet,26,"the inferred five-block secret key is invertible");
+for(let i=0;i<5;i++)assert.deepEqual(
+  vec(transpose(recoveredSecretRowKey),plainBlocks[i]),cipherBlocks[i],
+  "exactly fit first five original 5-rune blocks");
+const withheldPredicted=vec(transpose(recoveredSecretRowKey),plainBlocks[5]);
+assert.deepEqual(withheldPredicted,[13,19,22,1,22]);
+assert.deepEqual(cipherBlocks[5],[11,1,17,18,10]);
+const withheldMatches=withheldPredicted.filter((x,i)=>x===cipherBlocks[5][i]).length;
+assert.equal(withheldMatches,0);
+const allSecretCribGate={
+  status:"conditional on unproven 30-rune LP1 p5 seven-word crib",
+  originalP55SuffixStart:46,sourceBodyBlockIndex:9,
+  exactPlainBlocksUsed:5,withheldBlockIndex:5,
+  sourceCribGP:sourceNativeCrib,cipherSourceGP:cribCipher,
+  sourcePlainFiveBlockDet:plainBasisDet,
+  uniquelyRecoveredSecretInvertibleKey:recoveredSecretRowKey,
+  secretKeyDet:keyDet,withheldPredicted,
+  withheldOriginal:cipherBlocks[5],withheldExactMatches:withheldMatches,
+  decision:"No single stationary secret invertible 5x5 GP29 Hill cipher can match all six original suffix blocks if this candidate plaintext is genuine."
+};
 const rows=[];
 for(const h of hypotheses) {
   const plaintext=blocks(h.dec,cipher);
@@ -158,6 +207,6 @@ console.log(JSON.stringify({
   sourcePhiMatrix:M,determinantMod29:det,sourceInverse:inverse,
   wrongRawMatrixDeterminantMod29:rawDet,
   matchedNative75Windows:windows,worstNativeScore:worstNative,
-  originalCipherScore:score(cipher),rows,
+  originalCipherScore:score(cipher),rows,allSecretCribGate,
   conclusion:"No original plaintext; exact 5x5 GP29 Hill source transfer negative"
 },null,2));
