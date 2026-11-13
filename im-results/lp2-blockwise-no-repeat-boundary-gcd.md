@@ -1,6 +1,6 @@
 # Fixed-length blockwise collision suppression: universal boundary contradiction
 
-**Agent22, 13 November 2026.** A key-independent obstruction on all 55 original unsolved rune-bearing LP2 pages. **No plaintext, historical key, or decoder is recovered.** This excludes the strict fixed-length *boundary-only collision* mechanism, with the block length and each original page's starting phase left completely unknown.
+**Agent22, 13 November 2026.** Key-independent boundary-collision obstructions on original unsolved LP2 pages, extended to arbitrary authentic-p56-style F-transparent skips on p35. **No plaintext, historical key, or decoder is recovered.** This excludes the strict fixed-length *boundary-only collision* mechanism, with the block length and each original page's starting phase left completely unknown.
 
 ## Mechanism and source rationale
 
@@ -30,6 +30,23 @@ Input: unchanged [original numeric corpus](../resources/liber-primus/lp2-corpus.
 | 44 | 60, 71, 152, 264 | 1 |
 
 Already **p3 alone** contradicts every `L≥2`: a positive integer dividing both 127 and 23 must be 1. Nine other independent source pages give the same contradiction. A five-symbol-block model would need p3's three repeat positions to agree modulo five; they equal 3,0,3 instead. Hidden choice of a different initial block phase cannot fix this.
+
+## Extension: the authentic p56 transparent-F rule cannot rescue fixed blocks
+
+**New source-constrained loophole closed (Agent22, 13 November 2026).** The solved p56 mechanism transparently prints plaintext rune **F** without consuming its prime-totient key clock. That creates a motivated alternative to the fixed-clock model: allow any source-printed **F** to skip advancement of a short-block no-repeat encoder, with a freely chosen initial phase, key and **even page-specific block length**. Other rune identities cannot silently interrupt the clock under this precise p56-inspired exception rule. The skip choices are all-secret and may be chosen after inspecting the original ciphertext.
+
+One original page is a decisive witness. On physical unknown **p35** (source image `52.jpg`), the *only* adjacent-equal pair destination offsets are **196 (TH), 203 (J), and 265 (T)**. The only printed F inside these two intervals is at **259**. All positions count original GP29 runes, including printed headings and punctuation-free positions.
+
+| Original p35 interval between repeat destinations | Visible offset gap | Possible F-bypasses within the interval | Active-clock gap |
+| --- | ---: | ---: | --- |
+| 196 → 203 | **7** | **0** | **7** |
+| 203 → 265 | **62** | **0 or 1** (only F at local259) | **62 or 61** |
+
+If repeated adjacent outputs are allowed **only at a block join**, the clock offset between any two such events must be divisible by its fixed block length `L≥2`. The first interval forces `L | 7`, hence **L=7**. But neither 62 nor 61 is divisible by 7. **There is no allowed skip assignment, page-start phase or fixed L≥2 that can explain p35**, even if every other physical page uses a different block length, an independent alphabet and a different secret key.
+
+This is stronger than the earlier nontransparent gcd-one result for this **specific** author-motivated exception channel. It remains a necessary-condition theorem about *boundary-only repeats*, without recovering plaintext or proving the true generator. A model with changing block lengths **within p35**, extra resets at some other explicitly instructed symbol/word boundary, non-F transparent exceptions, or permitted within-block equal pairs is outside the excluded family. The fact that only 86 of 12,901 adjacent pairs repeat remains valuable structural evidence, but no decoder follows from this exclusion.
+
+[Dedicated original-cipher, positive-control CJS certificate](../sims/lp2_ftransparent_fixedblock_gcd_sft.cjs) asserts the three exact p35 repeat events and printed F placement, proves the two incompatible divisibility conditions, and verifies a synthetic 7-block source-shaped plant where inserting one literal F changes an observed 8-rune gap into seven clock steps. No language fitting or unknown-key brute force enters the proof.
 
 ## Exact minimum repairs for the author-visible five-block model
 
