@@ -14,6 +14,7 @@ on:
           - bookend-wordpair
           - p15-local16-spiral
           - p57-bbs-period612
+          - p57-bbs-hidden-keyskip
 
 jobs:
   reproduce:
@@ -56,3 +57,6 @@ jobs:
         run: |
           node sims/lp2_p57_prime_triplet_bbs_gate_sft.cjs
           node sims/lp2_p57_prime_triplet_bbs_period612_allsecret_sft.cjs
+      - name: Original LP2 p0/p1/p5 BBS collision-triggered secret-pad skips and independent native plant
+        if: ${{ inputs.experiment == 'p57-bbs-hidden-keyskip' }}
+        run: node sims/lp2_p57_bbs_collision_keyskip_original_sft.cjs
