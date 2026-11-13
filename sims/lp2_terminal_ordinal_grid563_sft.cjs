@@ -59,6 +59,39 @@ const selection=ranks.map(atOneBased);
 assert.deepEqual(selection.map(x=>x.byte),[111,194,148,110]);
 const quadSum=selection.reduce((sum,x)=>sum+x.byte,0);
 assert.equal(quadSum,563);
+// The actual four selected table bytes also satisfy a source-specific
+// XOR checksum, providing a historically plausible candidate operator.
+// This relationship was noticed retrospectively, so it is not an
+// authenticated 2014 author instruction.
+const selectedXorOutputs=selection.map((entry,i)=>ranks[i]^entry.byte);
+assert.deepEqual(selectedXorOutputs,[56,15,57,167]);
+const prefixXors=[];
+let runningXor=0;
+for(const entry of selection){
+  runningXor^=entry.byte;
+  prefixXors.push(runningXor);
+}
+assert.deepEqual(prefixXors,[111,173,57,87]);
+assert.equal(prefixXors[1],ranks[2]); // two cell bytes -> third unit ordinal
+assert.equal(prefixXors[2],57);       // final physical LP2 page number
+assert.equal(prefixXors[3],ranks[0]); // closes on original title ordinal
+const ordinalXorMap=index=>index^table.bytes[index-1];
+// The title ordinal starts a closed original-table XOR orbit.
+const xorOrbit=[];
+let cursor=ranks[0];
+do {
+  assert(cursor>=1&&cursor<=256);
+  assert(!xorOrbit.includes(cursor),"Unexpected shorter XOR loop");
+  xorOrbit.push(cursor);
+  cursor=ordinalXorMap(cursor);
+} while(cursor!==ranks[0]&&xorOrbit.length<256);
+assert.equal(cursor,ranks[0]);
+assert.equal(xorOrbit.length,20);
+assert.deepEqual(xorOrbit.slice(0,3),[87,56,104]);
+assert.equal(ordinal(569),104); // signed 2016 image height
+assert(xorOrbit.includes(138));  // already noticed LP1 square value
+assert.equal(ordinalXorMap(64),115);
+
 const previous=Array.from({length:23},(_,i)=>atOneBased(64+i));
 const following=Array.from({length:23},(_,i)=>atOneBased(65+i));
 assert.equal(previous.reduce((sum,x)=>sum+x.byte,0),3000);
@@ -182,6 +215,11 @@ console.log(JSON.stringify({
   solvedP57:{printedClauseSums:sums,primeOrdinals:ranks,
     tableSelection:selection,tableByteSum:quadSum},
   tablePair:{ordinalGap:23,base60ByteDifference:60},
+  fourSourceUnitXor:{perUnitOutputs:selectedXorOutputs,
+    selectedBytePrefixXors:prefixXors,titleXorOrbit:xorOrbit,
+    titleOrbitLength:xorOrbit.length,
+    returnToTitle:cursor,
+    warning:"XOR operator inferred after observing source byte coincidences; no plaintext."},
   consecutive23TableCells:{slots64to86Sum:3000,slots65to87Sum:3060},
   independentlyArchived2016Image:"563x569",
   originalP55Core:{length:core.length,GPPrimeSum:primeSum(core),
