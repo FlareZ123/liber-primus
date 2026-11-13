@@ -79,6 +79,8 @@ const outer59 = rows59.flatMap((r,i) => r.filter((_,j) => i===0 || i===31 || j==
 assert.equal(inner59.length, 180);
 assert.equal(outer59.length, 76);
 const p55 = corpus.pages.find(p => p.page === 55).indices;
+const terminal180 = corpus.pages.find(p=>p.page===56).indices.concat(corpus.pages.find(p=>p.page===57).indices);
+assert.equal(terminal180.length, 180);
 assert.equal(p55.length, 76);
 const historicalPrimeOrdinalRange = firstPrimes(200).slice(20, 200);
 assert.equal(historicalPrimeOrdinalRange.length, 180);
@@ -92,6 +94,7 @@ assert.equal(distinct(innerResidues), 29);
 assert.equal(primeResidues.filter(v => v === 0).length, 0);
 assert.equal(innerResidues.filter(v => v === 0).length, 4);
 assert.equal(distinct(outerResidues), 24);
+assert.equal(distinct(terminal180), 29);
 assert.equal(distinct(inner59), 29);
 assert.equal(distinct(outer59), 27);
 assert.equal(distinct(p55), 25);
@@ -106,6 +109,7 @@ const ringPositive = outerResidues.map(v => (3 * v + 5) % 29).reverse();
 assert.equal(distinct(ringPositive), 24);
 assert.ok(distinct(p55) > distinct(outerResidues));
 assert.equal(minEditsWithFreeAlphabetAndPositions(primeResidues, innerResidues), 20);
+assert.equal(minEditsWithFreeAlphabetAndPositions(primeResidues, terminal180), 29);
 assert.equal(minEditsWithFreeAlphabetAndPositions(primeResidues, inner59), 17);
 assert.equal(minEditsWithFreeAlphabetAndPositions(outerResidues, p55), 4);
 assert.equal(minEditsWithFreeAlphabetAndPositions(outer59, p55), 6);
@@ -125,6 +129,8 @@ console.log(JSON.stringify({
     perimeterBase59: minEditsWithFreeAlphabetAndPositions(outer59, p55)
   },
   tableOuterResidueDistinct: distinct(outerResidues),
+  terminalPrintedP56P57Distinct: distinct(terminal180),
+  primeToTerminal180AllAlphabetMinEdits: minEditsWithFreeAlphabetAndPositions(primeResidues,terminal180),
   p55CiphertextDistinct: distinct(p55),
   base59InteriorDistinct: distinct(inner59),
   base59PerimeterDistinct: distinct(outer59),
