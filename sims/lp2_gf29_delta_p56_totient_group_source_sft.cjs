@@ -44,7 +44,6 @@ for (const m of vocab.matchAll(/^([a-z]+) (\d+)$/gm)) {
   const v=gp(m[1]);if(v)lex.add(v.join(','));
 }
 assert.equal(lex.size,29058);
-const roots=new Set(Array.from({length:28},(_,k)=>2**0));
 const powers=Array.from({length:28},(_,k)=>Number((BigInt(2)**BigInt(k))%BigInt(29)));
 assert.equal(new Set(powers).size,28,'2 must generate GF29 units');
 const maxCount=12956;
@@ -55,7 +54,7 @@ for(let p=2;primes.length<maxCount;p++) {
 }
 assert.deepEqual(primes.slice(0,5),[2,3,5,7,11]);
 const keys=primes.map(p=>powers[(p-1)%28]);
-assert.deepEqual(keys.slice(0,5),[2,4,16,6,5]);
+assert.deepEqual(keys.slice(0,5),[2,4,16,6,9]);
 let p=0,words=[],word=[];
 /** Flush at genuine printed word boundary. */
 function end(){if(word.length){words.push(word);word=[];}}
