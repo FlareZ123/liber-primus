@@ -156,7 +156,7 @@ async function main() {
     +'The finite filter includes UDP, ICMP, TCP, packet, port, sky, and exact host/file names. '
     +'It is an exploratory historical lead finder, never a decoder.\n\n';
   for(const r of reports) {
-    networkMd+='## '+r.file.name+'\n\nMatches: '+r.networkHits.length+'\n\n';
+    networkMd+='## '+r.file+'\n\nMatches: '+r.networkHits.length+'\n\n';
     for(const x of r.networkHits) {
       networkMd+='### Original L'+x.line+'\n\n';
       for(const q of x.context)
