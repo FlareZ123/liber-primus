@@ -40,7 +40,7 @@ The independently preserved [LP1 original rune transcription](../resources/trans
 
 The corrected six *truly source-cleartext* physical LP1 pages are **p3, p8, p9, p10, p11 and p14**, verified by the literal source-readable starts SOME WISDOM, THE LOSS OF DIVINITY, WE HAVE WHAT, MOST THINGS, CE THAT HAVE (a word continuing from the previous page), and AN INSTRUCTION. Their page-local rune counts are **[157, 187, 207, 192, 169, 89]**, totaling **1,001**. These genuinely printed GP plaintext pages have **11 equal nonoverlapping four-rune block pairs**, **4 equal five-rune block pairs**, and **1 equal six-rune block pair**. The original 55 unknown LP2 rune-bearing pages still have **zero** page-local k=4 and k=5 equal-block pairs among **12,956** runes.
 
-This correction makes the genuine-author comparison stronger in direction, while retaining its limitation as a 1,001-rune reference with different page lengths. The separate 88 source-native GP-English-window tests and original-cipher equal-block counts are unchanged. The updated executable test asserts six source-readable original plaintext prefixes to prevent repeating this page-classification error.
+This correction makes the genuine-author comparison stronger in direction, while retaining its limitation as a 1,001-rune reference with different page lengths. The separate 88 source-native GP-English-window tests and original-cipher equal-block counts are unchanged. The updated executable test asserts six source-readable original plaintext prefixes to prevent repeating this page-classification error. The corrected original-source p15 and cross-page tests both pass [Windows Actions run 43464017742](https://github.com/FlareZ123/liber-primus/actions/runs/43464017742).
 
 ## Decision and scope
 
