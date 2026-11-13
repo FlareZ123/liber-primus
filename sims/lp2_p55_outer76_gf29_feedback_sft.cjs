@@ -85,9 +85,9 @@ for(const [direction,ring] of [['clockwise',cw],['counterclockwise',ccw]]){
   }
 }
 // A real GP29 source control with appended EA-initial EACH executes zero-step.
-const sourceKnown=db.pages[57].indices.concat(gp('each'));
-assert.equal(sourceKnown.length,98);
-const plant=sourceKnown.slice(0,76);
+const plant=db.pages[57].indices.slice(0,73).concat(gp('each'));
+assert.equal(plant.length,76);
+assert.equal(plant.filter(x=>x===28).length,1);
 const keyPlant=cw.map(i=>1+table.bytes[i]%28);
 const ciphertext=cipher(plant,keyPlant,0);
 assert.deepEqual(decipher(ciphertext,keyPlant,0),plant);
