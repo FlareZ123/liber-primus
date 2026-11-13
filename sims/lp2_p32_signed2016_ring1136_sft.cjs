@@ -15,8 +15,11 @@ const crypto = require("node:crypto");
 const root = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(
   path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"));
-const signed = fs.readFileSync(path.join(
-  root, "resources/historical/cicada2016-4gq25-outguess.asc"));
+// Windows checkout may replace LF with CRLF; restore exact original
+// authenticated Git-blob bytes before the length/hash test.
+const signedCheckedOut = fs.readFileSync(path.join(
+  root, "resources/historical/cicada2016-4gq25-outguess.asc"), "utf8");
+const signed = Buffer.from(signedCheckedOut.replace(/\r\n/g, "\n"), "utf8");
 const signedImage = fs.readFileSync(path.join(
   root, "resources/historical/cicada2016-4gq25.jpg"));
 /** @param {Buffer} bytes @returns {string} */
