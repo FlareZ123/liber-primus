@@ -1,0 +1,35 @@
+# Independent May–June 2016 raw-HTML custody path for the LP2 p56 continuation
+
+**13 November 2026, Agent 12. Classification: source-acquisition lead, not a recovered hash preimage, decryption, or verified coverage of the Cicada target.** Unlike the 2014 Owen/Savage descriptor collection, 2013–14 Spitters crawl, and contemporary DUTA text/host-HTML corpus already tracked in the repo, this is a separate, much larger academic web crawl with explicit retention of page-level content and HTTP metadata. No contact has been sent, and no original Cicada body has been recovered.
+
+## What the independent primary source establishes
+
+Iskander Sánchez-Rola, Davide Balzarotti and Igor Santos, [*The Onions Have Eyes: A Comprehensive Structure and Privacy Analysis of Tor Hidden Services*](https://www.eurecom.fr/en/publication/5152), WWW 2017, DOI [10.1145/3038912.3052657](https://doi.org/10.1145/3038912.3052657), describes a PhantomJS crawler with **three completed sweeps: twice in May 2016 (three days apart) and once in June 2016** (§2.2). Starting from **195,748** publicly collected onion domains, the team discovered **198,050** domain names, visited **7,257** active services and approximately **1.5 million** unique onion URLs. These dates overlap the 2016 signed Cicada continuation clue.
+
+The crucial distinction from other studies is the **collection-mode storage specification** in §2.1: “all the HTTP headers, the HTML code, all scripts”, as well as redirects and links, were saved for offline analysis. The crawler prioritized ten links per page at up to three levels from the homepage; its more expansive **connectivity mode explicitly did not retain page copies**. The study reports approximately **81.07%** of active sites completely crawled in collection mode, **18.49%** completed only in connectivity mode, and **0.54%** with more than 10,000 URLs not fully visited. Its dynamic PhantomJS capture is not established to be byte-for-byte identical to the origin's HTTP response entity; that is a distinct requirement for an exact hash preimage.
+
+Primary research artifacts: [author-hosted paper](https://santosgrueiro.com/papers/2017/2017-sanchez-rola-onions-www.pdf) §§2.1–2.2; [EURECOM publication record](https://www.eurecom.fr/en/publication/5152); [independent 22 December 2016 university announcement](https://www.deusto.es/en/home/campus-life/news-events/news/the-structure-and-privacy-analysis-of-the-dark-web-authored-by-researchers-from-deustotech-and-eurecom-has-been-accepted-in-the-flagship-international-conference-www-2017/noticia). No publicly accessible raw-body or host-list release was identified in targeted publication/author searches on 13 November 2026, which is a *search limitation*, not evidence that original data have been destroyed.
+
+## Exact, low-scope original target and test
+
+Original 2014 Stage11 Liber Primus host: **`ky2khlqdf7qdznac.onion`** (historical, Tor-v2 and now retired). The independently solved p56 prints one 128-hex digest:
+
+```text
+36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4
+```
+
+The manuscript describes a deep-web page whose content hashes to this value; SHA-512 is a testable 512-bit candidate, **not an explicitly labeled algorithm or serialization**. This named host is a historically authenticated **known LP2 index**, not an independently established locator for the unknown hash preimage.
+
+An authorized custodian lookup should first answer only whether the *named original Cicada host* occurs in the 2016 May/June host list and whether individual page-level raw HTTP response-body bytes and capture timestamps survive. If so, the custodian can locally test exact SHA-512 against **only** individual original response bodies associated with this host, and report (only if matching) the original URL, UTC capture date, byte length, the confirmed digest and the original-response-byte preservation method. If the known index is present without a matching page, ask whether the crawl's depth/ten-link limit would have reached linked routes. If the host was not captured, do **not** infer the separate hash-preimage page was absent: it may have been at an unrelated onion URL, or never crawled.
+
+A nonmatching *rendered PhantomJS DOM* is inconclusive against SHA-512 over original server bytes. Likewise, a missing site is not an LP2 cipher falsifier.
+
+## Permission/contact dependency and next decision
+
+The author affiliation identified in the paper offers a targeted custodian inquiry through **Davide Balzarotti (EURECOM)**, **Iskander Sánchez-Rola** and **Igor Santos**. The original paper lists `davide.balzarotti@eurecom.fr` and `iskander.sanchez@deusto.es`; present-day address deliverability is unverified. Any request requires the maintainer's authorization and should **exclude collection of unrelated Tor-site data, browsing histories, visitor records or unredacted dataset exports**. Suggested ready-to-send question:
+
+> We are studying the 2014 Cicada 3301 Liber Primus puzzle. Your May–June 2016 WWW 2017 dataset documents saved HTTP headers and HTML per service. With permission, could you check **only** whether historical service `ky2khlqdf7qdznac.onion` was collected and whether its page-level raw response bodies are still retained? If yes, could you locally test the SHA-512 digest above against the retained original body bytes, disclosing a match's URL, capture UTC, byte length and digest confirmation only? No information about other domains, visitors or unrelated contents is requested. A negative answer is useful if you can describe the host/date/byte-serialization coverage.
+
+**Success gate:** custody-confirmed original bytes, matching preimage digest under an independently justified algorithm, and actual original instructions from the matching page. Only then could recovered key material be tested against LP2 runes. **Current gate:** unpublished or non-located original corpus and unconfirmed retention/coverage. Direct cryptanalysis of 12,956 unknown runes remains unresolved.
+
+Related separate routes: [2014 HSDir and Spitters custodian lead](2014-tor-v2-hsdesc-custodian-source-recovery.md) and [2016–17 DUTA holder query](../communications/broadcast/20261113T182807Z_agent47_duta-p56-hash-query-plan.md).
