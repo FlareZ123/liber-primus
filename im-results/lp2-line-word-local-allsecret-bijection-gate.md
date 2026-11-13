@@ -138,10 +138,43 @@ The original-input [single-run CJS reproducer](../sims/lp2_word_independent_poly
 
 **Cryptanalytic decision:** Do not extend the prior independent per-word affine-key search to degree-two, degree-three or any degree-eight-or-lower fixed-polynomial pad while assuming printed word-preserving English: even unrestricted unknown word keys cannot meet the original's long-word finite-difference constraints. This does not exclude text absent from the pinned lexicon, non-English source material, changing within-word state beyond a fixed low-degree polynomial, different segmentation, transpositions between words, or multi-symbol transformations. No original cipher, key, unknown-page plaintext or destination has been recovered.
 
+## Independently secret second-order GP29 word streams: all coefficient pairs (13 November 2026)
+
+The physical p15 Fibonacci-prime clue motivates an evolving two-state key rather than a position-polynomial pad. The earlier [source-complete Fibonacci-specific word inverse](word-fibonacci-key-inversion.md) already excluded its two fixed forward/reverse recurrences. A stronger, algebraically complete extension now allows **each printed original word to choose its own two freely secret recurrence coefficients and its own two free starting key symbols**, without assuming Fibonacci coefficients, shared seeds, a common phase, or a globally reused recurrence:
+
+\[
+C_{w,j}=P_{w,j}+K_{w,j}\pmod{29},
+\quad K_{w,j}=a_wK_{w,j-1}+b_wK_{w,j-2}\pmod{29}\quad(j\ge2).
+\]
+
+Each word therefore has **29⁴ = 707,281 unconstrained key tuples**. The source does not select this particular additive family; the finite-field and Fibonacci references motivate testing it cheaply as a possible word-local key evolution rule.
+
+**Exact inverse without key search.** For a proposed plaintext word, calculate every inferred pad rune \(K_j=C_j-P_j\bmod29\). Then solve all linear equations \((K_{j-1},K_{j-2})\cdot(a,b)=K_j\) over GF29. Rank-two systems recover the unique coefficient pair; rank-one systems admit at most 29 pairs; rank-zero systems handle the zero-register degeneracy. Each candidate pair is checked against **every** position of the complete word, with the two starting residues inferred directly from the first two source symbols. This is a complete existence test across every possible secret coefficient/seed quartet; no beam, guessed recurrence, phase, score threshold, or arbitrary cipher key is involved.
+
+Run the exact source GP29 English 32,232-form lexicon against all **559 original words of length seven or more**, maintaining their original GP digraph lengths and page-spanning word boundaries:
+
+| Printed original word length | Original words | With any source-lexicon candidate | All candidate word forms |
+| ---: | ---: | ---: | ---: |
+| 7 | 216 | 30 | 34 |
+| 8 | 156 | **0** | **0** |
+| 9 | 78 | **0** | **0** |
+| 10 | 52 | **0** | **0** |
+| 11 | 32 | **0** | **0** |
+| 12 | 18 | **0** | **0** |
+| 13 | 4 | **0** | **0** |
+| 14 | 3 | **0** | **0** |
+| **Total ≥8** | **343** | **0** | **0** |
+
+Thus **343 independent original long words fail even this four-secret parameter family**, including all 109 length-ten-or-greater words. The 34 isolated seven-rune lexical fits are expected to become easier as the word-length-to-parameter ratio approaches the four-key degrees of freedom; no candidate is independently selected by a historical clue or validated by any second passage. None is reported as recovered plaintext.
+
+The [original-source CJS SFT](../sims/lp2_word_independent_order2_allsecret_sft.cjs) asserts all 12,956 canonical original rune indices, exact word boundaries, and all 95 authentic p57 known-cleartext GP runes. It also builds an independent new \((a_w,b_w,K_{w,0},K_{w,1})\) for each **559** matched-length native-English control word, verifies a compatible recovered key by solving from observed ciphertext and a proposed source word, and exactly inverts **4,644/4,644 planted runes**. All checks, including the preceding polynomial regression, passed in [manual-only GitHub Actions run 43342582423](https://github.com/FlareZ123/liber-primus/actions/runs/43342582423).
+
+**Research consequence:** Do not spend further computation tuning the two Fibonacci seeds or scanning arbitrary GF29 second-order coefficients separately for each original word under native GP29 English. The entire independently keyed two-state **linear** recurrence class fails its necessary full-long-word compatibility test. This leaves nonlinear state transitions, cross-word information, different plaintext registers/segmentations, secret per-position permutations, and external key material genuinely open. No unknown plaintext, author-selected key or destination is recovered by this exclusion.
+
 ## Inversion controls and reproducibility
 
 A different random secret 29-rune alphabet is independently assigned to every unit. Each planted GP-native ciphertext is reversed using the true per-unit inverse alphabet, recovering **12,956/12,956** positions. The within-unit equality invariant is preserved exactly: the 594-independent-line-key plant has 7,780 matching pairs and the 2,896-independent-word-key plant has 1,409. The reproducible PRNG uses initial state 0x3301a033.
 
 The full regression, including original source assertions, the authentic solved-text control, all 29 arithmetic-progressive slopes and a reversible 2,896-secret-seed plant, passed in [manual Node 22 CI run 43126922385](https://github.com/FlareZ123/liber-primus/actions/runs/43126922385). Existing manual-only workflow was extended; no per-commit CI hook was added.
 
-**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. The all-secret global-linear-progression word-reset family and independently secret polynomial word-pads through degree eight also fail under the stated finite lexicon. Prioritize a source-indicated genuinely nonlinear within-word operation, alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
+**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. The all-secret global-linear-progression word-reset family, independently secret polynomial word-pads through degree eight, and independently secret two-state linear word recurrences also fail under the stated finite lexicon. Prioritize a source-indicated genuinely nonlinear within-word operation, alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
