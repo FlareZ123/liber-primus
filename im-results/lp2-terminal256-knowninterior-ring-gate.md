@@ -28,6 +28,21 @@ If the table and terminal text share an operation, the two independently solved 
 
 **Strongest objection:** p56 is a separately solved prime-totient cipher with a literal-F exception, while p57 is clear GP text, and both have their own headings. No source explicitly says that three different terminal pages form a single 32×8 cipher object or supplies a transform from table values to terminal runes. This is an exact layout correspondence pending an actual executable route, not proof of creator intent. Do **not** revive the alleged shared p49/p55 3×3 marker: original-pixel Issue #379 proved those stencils differ (10 versus 13 dots).
 
+## GF(256) erasure-key interpolation: known pages reject a common byte mask
+
+**Agent 40, 13 November 2026.** A new finite original-cipher test treats the pp49–51 **32×8** table as byte ciphertext and its **30×6 row-major interior** as positions for the independently solved **85 p56 + 95 p57** GP29 rune indices. The **76 perimeter positions** remain the unknown p55 output. This is prompted by p57's original instruction to shed circumferences, but the manuscript supplies **no independent Reed–Solomon, AES-field or byte-to-rune instruction**. The experiment differs from the prior GF(29²) bivariate product-code, GF29 cyclic-generator, and static byte-codebook tests.
+
+Test just two complete common-key byte transports: XOR (`key_byte=table_byte xor GP_index`) and byte addition mod256 (`key_byte=(table_byte−GP_index) mod256`). Interpret each recovered known key byte over **GF(2⁸), irreducible `0x11b`**. Interpolate the unique degree≤84 polynomial from *only* the 85 independently decrypted p56 symbols and predict all 95 held-out p57 key bytes. Reverse the test using p57's 95 symbols to predict p56's 85. Independently, interpolate all 180 known values (necessarily overfit at degree≤179) to predict p55's 76 original source-byte positions without reading unknown p55 ciphertext.
+
+| Complete frozen transport | p56→p57 correct | p57→p56 correct | p55 extrapolated byte values in GP range 0–28 | Distinct predicted p55 bytes |
+| --- | ---: | ---: | ---: | ---: |
+| GF256 key + XOR | **1/95** | **0/85** | **7/76** | **71** |
+| GF256 key + mod256 addition | **2/95** | **0/85** | **11/76** | **67** |
+
+Both directions reject a shared degree≤84 key polynomial long before the unknown-page extrapolation. Even a completely overfitted degree≤179 interpolant returns more than 29 different p55 byte values, making it impossible to interpret all 76 as native GP29 under these two transports and any fixed 29-symbol output alphabet. These are bounded negatives for a particular unselected source geometry/byte codec, not general Reed–Solomon impossibility. Original p55 is withheld from every fit.
+
+The full original-layout planted positive control uses a degree-31 GF256 polynomial with the **same original-shape byte and GP registers**: training on p56 correctly predicts **95/95** p57 symbols and recovers **76/76** planted p55 bytes, proving the heldout test's intended sensitivity. [Complete source-exact CommonJS SFT](../sims/lp2_terminal256_gf256_erasure_sft.cjs); its command is included in the existing [manual terminal CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml). No unknown original plaintext, authentic key, source-selected decoder or hidden destination was recovered. Only a newly source-authenticated code/packing/field instruction could justify a successor, rather than variant searches.
+
 ## Nonlinear and erasure-completion original inverses (Agent20, 13 November 2026)
 
 **Decision:** Three distinct original terminal-block inverse families were completely tested against the **180 independently solved** p56–p57 rune positions, with p55 held unknown. All remain incompatible with direct native-GP decoding under the stated source assumptions. Neither yields new LP2 plaintext, a historical key, or a demonstrated cipher. [Complete runnable CJS positive/original test](../sims/lp2_terminal256_fractional_productcode_sft.cjs).
