@@ -275,6 +275,93 @@ assert.deepEqual([wordCycle,wordHeight,wordJoint,wordAnyCycle],
 console.log("20,000 page-and-word-length-preserving whole-word shuffles",
   {wordCycle,wordHeight,wordJoint,wordAnyCycle});
 
+
+/**
+ * A genuinely independent publication-envelope cross-check: the dated 2014
+ * Stage11 HTML carries <title>133</title> and <div id="331">. Keep the
+ * already frozen 2016 signed-image 563/569 book-word addressing rule and
+ * evaluate both earlier source numerals without fitting a new map.
+ *
+ * Both pairs split identically: 133 reaches the 563 33-cycle, and 331
+ * reaches the identical physical p50 first numeric token as 569. These
+ * are original-data coincidences under a *hypothetical* navigation rule.
+ */
+const stage11=read("resources/historical/stage11-2014-index.html");
+assert.match(stage11,/<title>133<\/title>/);
+assert.match(stage11,/<div id="331">/);
+const title133=walk(133,originalSums),div331=walk(331,originalSums);
+assert.deepEqual(title133.path,[
+  133,107,104,299,225,255,522,83,17,78,101,264,191,362,307,
+  384,320,290,563,180,267,66,250,157,276,245,427,211,258,
+  285,227,111,117,604,226,495,162]);
+assert.equal(title133.reason,"cycle");
+assert.equal(title133.period,33);
+assert.equal(title133.enteredAt,4);
+assert.deepEqual(div331.path,[331,68]);
+assert.equal(div331.reason,"table");
+assert.equal(div331.terminal,50);
+assert.equal(height.terminal,div331.terminal);
+assert.equal(div331.path.length,height.path.length);
+assert(width.path.includes(title133.terminal));
+console.log("Cross-release fixed map: 2014 title133 joins 2016 width563",
+  "33-cycle; 2014 div331 and 2016 height569 both reach p50:w0 after two words.");
+
+let crossState=0x13333156;
+/** @returns {number} */
+function crossRandom() {
+  crossState^=crossState<<13;
+  crossState^=crossState>>>17;
+  crossState^=crossState<<5;
+  return crossState>>>0;
+}
+const CX=30000;
+const crossCounts={sameCycle:0,same33Cycle:0,bothAnyCycle:0,
+  bothP50First:0,bothSameTable:0,bothAnyTable:0,jointCycleP50:0,
+  joint33P50:0,titleCycleDivTable:0};
+for(let trial=0;trial<CX;trial++) {
+  const fake=originalSums.map(row=>row.slice());
+  // Exact page/word-length/source-sum inventories are preserved. Only
+  // existing complete rune words swap among matching-size page slots.
+  for(let p=0;p<56;p++) {
+    if(p===50) continue;
+    for(const group of equalLengthSlots[p]) {
+      const vals=group.map(j=>fake[p][j]);
+      for(let k=vals.length-1;k>0;k--) {
+        const j=crossRandom()%(k+1);
+        [vals[k],vals[j]]=[vals[j],vals[k]];
+      }
+      for(let k=0;k<group.length;k++) fake[p][group[k]]=vals[k];
+    }
+  }
+  const a=walk(133,fake),b=walk(331,fake);
+  const c=walk(563,fake),e=walk(569,fake);
+  const bothCycle=a.reason==="cycle"&&c.reason==="cycle";
+  const cCycleMembers=new Set(c.path.slice(c.enteredAt??0));
+  const sameCycle=bothCycle&&cCycleMembers.has(a.terminal);
+  const same33=sameCycle&&c.period===33&&c.enteredAt===0;
+  const bothTable=b.reason==="table"&&e.reason==="table";
+  const bothP50=bothTable&&b.terminal===50&&e.terminal===50&&
+    b.path.length===2&&e.path.length===2;
+  const bothSame=bothTable&&b.terminal===e.terminal&&
+    b.path.length===2&&e.path.length===2;
+  if(bothCycle)crossCounts.bothAnyCycle++;
+  if(sameCycle)crossCounts.sameCycle++;
+  if(same33)crossCounts.same33Cycle++;
+  if(bothTable)crossCounts.bothAnyTable++;
+  if(bothP50)crossCounts.bothP50First++;
+  if(bothSame)crossCounts.bothSameTable++;
+  if(sameCycle&&bothP50)crossCounts.jointCycleP50++;
+  if(same33&&bothP50)crossCounts.joint33P50++;
+  if(a.reason==="cycle"&&b.reason==="table")crossCounts.titleCycleDivTable++;
+}
+assert.deepEqual(crossCounts,{
+  sameCycle:5723,same33Cycle:1,bothAnyCycle:8573,
+  bothP50First:56,bothSameTable:56,bothAnyTable:2611,
+  jointCycleP50:9,joint33P50:0,titleCycleDivTable:1688
+});
+console.log("Paired 2014+2016 numeral matched 30,000 source-word shuffles",
+  crossCounts,"seed 0x13333156; events selected after original inspection.");
+
 console.log("Caveat: cycle length, two-hop landing and AES consumer were",
   "recognized after source inspection. No calibrated discovery p-value,",
   "authenticated key, unknown plaintext or onion destination.");
