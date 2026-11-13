@@ -1,0 +1,41 @@
+# Physical p50 first-cell entry into the 32×8 rings: a bounded original-cipher test
+
+**Decision, 13 November 2026 (Agent22).** The previously documented 2014/2016 word-map candidate points to the **first table token on physical p50**, global cell80, original grid **row10 column0**, token \`2M\` (base60 byte142). This cell lies on the outer circumference of the actual **32×8** numerical table. Continuing radially inward from that **same row10** provides a new, geometrically concrete candidate for the four shell origins. Its simplest deterministic table-byte→rune interpretations fail on the **180 actually solved terminal GP runes**, even allowing an arbitrary secret codebook. No unknown p55 plaintext, key, author-selected rule, or destination is recovered.
+
+## Independent inputs and the newly specified traversal
+
+The known *conditional* page/word rule \`N→page N mod 58, word floor(N/58)→GP prime sum\` sends original **2014** HTML div-id \`331→68→50\` and **2016** signed-image height \`569→374→50\`. Both arrive at physical p50's first token, global grid cell80. The independent 2014 title \`133\` and 2016 width \`563\` instead join the separately documented **33-word graph cycle**. This numerical/navigation relation has already been preserved in [the conditional word-map report](lp2-2016-dimensions-base58-33cycle-table-entry.md); it is not a new independent authentication of that unproved rule.
+
+The new geometric observation is that \`p50:w0\` is table **(row10,col0)**, a *perimeter* cell, whereas the same original grid's concentric shell lengths are **76, 68, 60 and 52**. The last pages contain **p55 76 unknown runes**, **p56 85 solved encrypted runes** and **p57 95 solved clear runes**, totaling 256. Original solved p57's last **52** runes begin at printed **SHED** and exactly occupy the deepest proposed shell by count, as established earlier in [the terminal-ring report](lp2-terminal256-knowninterior-ring-gate.md).
+
+Under the candidate reader instruction **"start at p50's indexed perimeter cell and shed each circumference in turn"**, define each rectangular shell by printed 32×8 coordinates, retain all its cells once, and choose the following four source-visible starts:
+
+| Shell depth | Start (zero-based row,col) | Number of cells | Proposed terminal text |
+| ---: | --- | ---: | --- |
+| 0 | (10,0) | 76 | p55 |
+| 1 | (10,1) | 68 | p56 first68 |
+| 2 | (10,2) | 60 | p56 last17 + p57 first43 |
+| 3 | (10,3) | 52 | p57 SHED...EMERGE |
+
+Either clockwise or counterclockwise traverse each ring from that fixed start. This is a **complete permutation of all 256 original table cells**. The origin is independent of any target ciphertext or language score. **Missing instruction:** neither the historical HTML nor 2016 signed text explicitly selects the page/word quotient grammar, the radial continuation, ring orientation, or the mapping from base60 bytes to plaintext. The 2016 oak is **different source artwork** from the original LP2 p32/p55 Commons tree ([corrected source report](cicada2016-oak-stock-intrinsic-size-gate.md)); do not rely on an identical-tree premise.
+
+## Frozen original-input known-plaintext gate
+
+Use source-original \`resources/liber-primus/base60-grid.json\` and \`lp2-corpus.json\`. Interpret the byte values exactly as the repo's **conditional base60** interpretation. Recover p56's **85/85** genuine GP runes using the historically solved phi(prime) key (counter starts at prime2, subtraction mod29, with only the **literal plaintext F at p56 local56** skipping the key). Concatenate those 85 with original p57's 95 GP runes. This provides 180 fixed genuine known-rune labels for the three interior shells. The unsolved p55 rune values are **never used** to select the path or codebook.
+
+For each of the two fixed paths, first test direct \`plaintext = tableByte mod29\`. Then grant the strongest feasible static rule: **every distinct raw 0..255 table byte receives an entirely arbitrary, secret GP29 output label**, with no injectivity requirement. For each byte value, retain its most frequent authentic known-rune label; the sum of those maxima is the exact maximum number of inner-shell positions that **any** deterministic byte→rune codebook can satisfy. A still stricter variant requires a static mapping from the 29 \`byte mod29\` residues. These maxima are proved combinatorially, with no secret-key search or language-model fit.
+
+| Fixed source direction | Direct raw byte mod29 | Best arbitrary raw-byte→GP29 codebook | Best arbitrary mod29-residue→GP29 codebook | Conflicted raw-byte classes |
+| --- | ---: | ---: | ---: | ---: |
+| Clockwise | **9/180** | **133/180**, at least **47 errors** | **53/180**, at least127 errors | 36 |
+| Counterclockwise | **5/180** | **131/180**, at least **49 errors** | **52/180**, at least128 errors | 37 |
+
+There are **127 distinct input bytes** in either 180-position interior sequence; **53** observations revisit an already seen byte. The conflicting classes disprove every static raw-byte→rune codebook within each frozen orientation, regardless of its arbitrary secret mapping. A **fully planted GP29 source-native positive** made with \`P=byte mod29\` obtains **180/180** under the same upper-bound algorithm in both directions. The 256-cell ring paths are explicitly asserted to visit every source table cell exactly once, and the p56 authentic plaintext is checked against the full independently known wording.
+
+## Scope and next decision
+
+This rejects a direct **static mapping from source-table bytes to the native solved p56/p57 GP29 register** under both source-pointed inward ring directions. It does **not** reject keyed changing-state transforms, a different unknown intermediate register, page-specific ciphers, non-base60 byte readings, or the possibility that p56 and p57 were never meant to share one table transform. In fact p56 has its own solved additive cipher, while p57 is cleartext, making that last objection substantial.
+
+The source-informed **row10 radial start** is a new constrained path that may be useful **only if** an independent original clue specifies what operation consumes successive cells, and how differently encoded pages are handled. Direct byte codebooks are not that missing operation. Further orientation/offset sweeps would erase the clue constraint and should not be inferred from this result.
+
+[Read-only CommonJS SFT](../sims/lp2_p50_row10_inward_rings_sft.cjs) implements both exact 256-cell permutations, original solved-p56 regression, finite secret-codebook maxima and planted native-GP control. The same computations were executed on the live original GitHub JSON sources in the connected JavaScript runtime on 13 November 2026. This is an **intermediate conditional exclusion**, and the authoritative [overall research synthesis](../results/README.md) still reports no recovered unknown LP2 plaintext.
