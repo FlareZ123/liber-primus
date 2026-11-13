@@ -1,5 +1,7 @@
 # LP2 p40–55: exact common-frame JPEG pixels and quantized coefficients
 
+> **Prior-art correction (13 November 2026):** The 16-way exact side-border identity was already established by Issues [#201](https://github.com/FlareZ123/liber-primus/issues/201) (full-height RGB equality) and [#230](https://github.com/FlareZ123/liber-primus/issues/230) (`sims/jpeg_border_dct_exact.c`, exact full-height 512-pixel-wide luma/chroma DCT strips). The present smaller-strip reproducibility scripts confirm those source facts; they do not constitute a new recovered clue. The modest additional *quantification* here is the fraction (17.3264%–26.9529%) of original eligible Y AC coefficients occupied by the identical strips, yielding a conditional check on hypothetical uniform image-wide coefficient modification. This fraction is not evidence for a cipher or a new source-selected steganographic route. See earlier fuller source report `im-results/lp2-jpeg-entropy-reconstruction.md` before conducting further frame work.
+
 ## What the original sources establish
 
 The **16 consecutive physical LP2 pages p40–p55** carry the same ornamental side-frame. All are original 2400×3600 JPEGs, archive members `57.jpg`–`72.jpg`. Their two fixed strips `x=0..279` and `x=2120..2399`, `y=400..2899`, contain **1,400,000 decoded grayscale pixels per image**. Their concatenated luminance data are byte-identical on all 16 pages; the common SHA-256 is:
