@@ -1,9 +1,6 @@
 name: AN-END Common Crawl historical index probe
 
 on:
-  push:
-    paths:
-      - 'sims/anend_commoncrawl_probe.cjs'
   workflow_dispatch:
 
 permissions:
