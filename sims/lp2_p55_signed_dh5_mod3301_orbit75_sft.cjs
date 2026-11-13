@@ -111,6 +111,40 @@ for (const inverse of [false, true])
       first25Difference: translit(diff.slice(0, 25)) });
   }
 
+// The source's anti-doublet phenotype suggests a distinct lossless GP28
+// predecessor-rank cipher. Its single exact repeat is a reserved GP marker.
+/** @param {number[]} text @param {number} iv @returns {number[]} */
+function rank28(text, iv) {
+  let previous = iv;
+  return text.map(current => {
+    const rank = current === previous
+      ? 28 : (current - previous + 28) % 29;
+    previous = current;
+    return rank;
+  });
+}
+const printedRanks = rank28(payload, original[0]);
+assert.equal(printedRanks.filter(x => x === 28).length, 1);
+const rankInverses = [];
+for (const projection of ['residue', 'quotient'])
+  for (const exponent of [0, 1, 1033])
+    for (const sign of [-1, 1]) {
+      const key = payload.map((_, i) => {
+        const state = orbit[(i + exponent) % 75];
+        return projection === 'residue'
+          ? state % 28 : Math.floor(state / 28) % 28;
+      });
+      const decoded = printedRanks.map((rank, i) =>
+        rank === 28 ? 28 : (rank + sign * key[i] + 112) % 28);
+      const reRank = decoded.map((value, i) =>
+        value === 28 ? 28 : (value - sign * key[i] + 112) % 28);
+      assert.deepEqual(reRank, printedRanks);
+      rankInverses.push({ projection, exponent, sign,
+        ioc: ioc(decoded), first25: translit(decoded.slice(0, 25)) });
+    }
+assert.equal(rankInverses.length, 12);
+assert.ok(rankInverses.every(x => x.ioc < 0.05));
+
 const best = Math.max(...sourceInverses.map(x => x.ioc));
 assert.ok(best < 0.05);
 assert.ok(transpositions.every(x => x.differenceIoc < 0.05));
@@ -122,6 +156,6 @@ console.log(JSON.stringify({
   residueFirst16: orbit.slice(0, 16),
   originalBodyIoc: ioc(payload),
   solvedParablePlantIoc: ioc(clearPlant),
-  sourceInverses, transpositions
+  sourceInverses, rankInverses, transpositions
 }, null, 2));
 console.log('PASS: source-numeric orbit75 reproducible gate; no recovered plaintext');
