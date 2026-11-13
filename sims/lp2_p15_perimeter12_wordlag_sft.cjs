@@ -226,3 +226,61 @@ const result = {words: n, runes: prior.runeCount, originalChi: chi(a),
     chi:v.chi})), bestChi: best,
   allFourVariantsMatchedShuffleP: (exceeded+1)/1001};
 console.log(JSON.stringify(result, null, 2));
+
+/** Preserve exactly original p15..p22 source chapter, with word-start ownership. */
+const chapter15Words = words.filter(w => w.page >= 15 && w.page <= 22);
+assert.equal(chapter15Words.length, 437);
+const chapter15 = chapter15Words.map(w => w.len);
+assert.equal(chapter15.reduce((s,w) => s+w,0), 1903);
+
+/** @param {number[]} source @param {number[]} permutation @param {"front"|"back"} tail */
+function decodeChapter(source, permutation, tail) {
+  const extraCount = source.length % 12;
+  const rows = Math.floor(source.length / 12);
+  const front = tail === "front";
+  const body = front ? source.slice(extraCount) : source.slice(0, rows*12);
+  const rest = front ? source.slice(0, extraCount) : source.slice(rows*12);
+  const output = [];
+  for (const j of permutation) for (let i=0;i<rows;i++) {
+    output.push(body[12*i+j]);
+  }
+  return front ? rest.concat(output) : output.concat(rest);
+}
+/** @param {number[]} source @param {number[]} permutation @param {"front"|"back"} tail */
+function encodeChapter(source, permutation, tail) {
+  const extraCount = source.length % 12;
+  const rows = Math.floor(source.length / 12);
+  const front = tail === "front";
+  const body = front ? source.slice(extraCount) : source.slice(0, rows*12);
+  const rest = front ? source.slice(0, extraCount) : source.slice(rows*12);
+  const output = Array(rows*12);
+  for (let j=0;j<12;j++)for(let i=0;i<rows;i++){
+    output[12*i+permutation[j]]=body[rows*j+i];
+  }
+  return front ? rest.concat(output) : output.concat(rest);
+}
+const chapterVariants = [];
+for (const [label,permutation] of [["spiral",order],["inverse",inverseOrder]]) {
+  for (const tail of ["front","back"]) {
+    const dec=decodeChapter(chapter15,permutation,tail);
+    assert.deepEqual(encodeChapter(dec,permutation,tail),chapter15);
+    chapterVariants.push({label:label+"/"+tail,chi:chi(dec),permutation,tail});
+  }
+}
+const chapterBest = Math.max(...chapterVariants.map(v=>v.chi));
+const chapterRandom = generator(0x33014547);
+const randomChapter=chapter15.slice();
+let chapterExceed=0;
+for(let rep=0;rep<3000;rep++){
+  shuffle(randomChapter,chapterRandom);
+  let candidateMaximum=0;
+  for(const v of chapterVariants)candidateMaximum=Math.max(candidateMaximum,
+    chi(decodeChapter(randomChapter,v.permutation,v.tail)));
+  if(candidateMaximum>=chapterBest)chapterExceed++;
+}
+console.log(JSON.stringify({
+  chapter15to22: {words:chapter15.length,runes:1903,remainder:chapter15.length%12,
+    originalChi:chi(chapter15),
+    fourVariantChi:chapterVariants.map(v=>({label:v.label,chi:v.chi})),
+    maxChi:chapterBest,matchedShuffleP:(chapterExceed+1)/3001}
+},null,2));
