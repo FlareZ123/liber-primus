@@ -28,6 +28,8 @@ The *marginal* length distribution supplies an independent, sharply discriminati
 | 14 | 3 |
 | **Total** | **2,896** |
 
+The **83/2,896 = 2.866%** original singleton fraction is itself broadly compatible with independently normalized GP English prose: Gibran has **487/15,733 = 3.095%** one-rune words, Emerson **2,359/77,932 = 3.027%**, and Shakespeare **3,165/55,407 = 5.712%** (pinned resources/control datasets). Thus the following extremely small random-gap probability is **expected for language-like word-length inventories** and should only exclude unconstrained random separator placement. It is not evidence of a cipher, transposition, or a historically intentional word-length side channel by itself.
+
 ## Exact unconstrained-separator null
 
 A minimal version of the "arbitrarily inserted word breaks carry state" hypothesis is to place precisely **2,895** separators uniformly among the **12,955** internal rune gaps, while retaining the source-observed rune and printed-word totals. The equally likely compositions number \(\binom{12955}{2895}\). A particular word has length one with probability \(2895/12955\), giving
