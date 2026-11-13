@@ -12,7 +12,7 @@
  *     for exact bit length, and minimal big-endian radix29 conversion.
  *
  * Fixed public source model: 29 GP-rune frequencies from the repository's
- * independently solved LP1 reference; Laplace +1 per rune, EOS = number
+ * combined solved-LP1 / solved-terminal-LP2 reference; Laplace +1 per rune, EOS = number
  * of words + 1. Source GP transliteration is deterministic with ING
  * encoded as one NG rune (the historical solved-page orthography).
  * No 29! substitution or source-cipher fit. Word-breaks are genuine
