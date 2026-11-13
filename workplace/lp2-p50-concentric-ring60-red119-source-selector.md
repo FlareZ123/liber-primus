@@ -29,6 +29,10 @@ The separate newly reported original red119 relationship selects a hypothetical 
 
 Additional 60 relationships, including a prior 2016-vs-2012 image-dimension difference of 60, do not independently select this ring. Do not aggregate their coincidences into a significance estimate. The geometrical reconstruction stands without any historical NUMBER assumption.
 
+## One exact historical-ordinal probe within the selected layer
+
+The historically documented 2013 and 2014 Cicada book codes commonly use **one-based positions**. If the proposed NUMBER factors `17×43` and `7×53` literally become addresses within the naturally 60-cell ring, the four source-independent one-based factor ordinals `[17,43,7,53]` produce the following **unchanged printed tokens** in clockwise ring order: `0K 3C 1l 3L`, conventional byte values `[20,192,107,201]`, from original zero-based rectangle coordinates `[(15,5),(20,2),(5,5),(10,2)]`. This uses no offsets or fitted plaintext. The four source tokens do **not** by themselves form an authenticated next-step command, recognizable file signature or literal English. Historical NUMBER is not signed, and there is no authored instruction explicitly requesting **factor-to-ring addresses**, so this remains a conditional clue-selected pointer *hypothesis*. Do not append arbitrary conversion/phase/tap searches to force a message.
+
 ## Missing cipher step and decisive continuation
 
 A historical solver can select the rectangle, identify the outer perimeter, then remove two layers to obtain this exact 60-cell ring without fitting a key. But the surviving clue chain still lacks a **source-selected decoding instruction**: whether to read byte values, printed glyphs, GP residues, pair indices, a permutation, or a key is unknown. No original ciphertext plaintext, authored key or destination is recovered.
