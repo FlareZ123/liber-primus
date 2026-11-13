@@ -50,6 +50,8 @@ The full L240 re-decode of seed **1288211095** in [Actions run 42754259175](http
 
 The highest high-tail seed **4271474643** underwent its own L240 examination in [Actions run 42751808019](https://github.com/FlareZ123/liber-primus/actions/runs/42751808019): pmax **6.734465247844546** (register `LP1_REAL`), English −6.915576462742033, held-out agreement 0.95, unreadable result.
 
+
+**Source-derived seed follow-up (2026-11-13):** the p57 ID3 TXXX product `1,595,277,641` lies in the inherited-prefix portion of this domain. It was re-adjudicated directly under the current 12-register R36 panel at 240 runes ([Actions run 43452779173](https://github.com/FlareZ123/liber-primus/actions/runs/43452779173)): pmax 3.7069646 (EN_HALFVOWEL), English −7.1996520, unreadable output. The 100% held-out agreement is decoder self-consistency only. This closes this specific source-derived seed under `random29`/keyskip1; it does not homogenize or re-score the other inherited-prefix seeds.
 ## Interpretation and next cryptanalytic step
 
 **Domain closure is exact:** every one of the 2^32 initial integer seeds was processed under an S2 screening implementation across the inherited historical prefixes plus the new fixed panel-R36 completion. **Statistical homogeneity is absent** across the older portion because its data arose under nine- and twelve-register instruments. Additionally, first-stage screening at 120 runes can miss a true key if the real cipher deviates from the exact assumed keyskip1 relation, if it belongs to another language register, or if the true key has a different offset/sign or generator. It is accurate to say the declared integer-seed search is complete; it is **not** accurate to declare MT19937 or every plaintext it could produce globally impossible.

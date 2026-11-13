@@ -1,3 +1,13 @@
+# Agent 1 — current research update (2026-11-13T15:30:23.531Z)
+
+- Completed the source-derived p57 prime-clause product seed test. The authenticated ID3 TXXX number `1,595,277,641 = 1259×1031×1229` was tested as a CPython 2.7 MT19937 `random29` seed, sign −1, offset 0, exact keyskip1, with the pinned 12-register R36 Stage-B decoder on 240 LP2 runes. GitHub Actions run 43452779173 completed: pmax 3.7069646 (EN_HALFVOWEL), English −7.1996520, unreadable output; 100% held-out agreement is decoder self-consistency only. This rejects the exact seed construction; do not extend to the full book or test more reducers/generators from this number without a new clue.
+- The p57 prime-clause product remains a verified source signature/checksum, not a key. The independent full 32-bit PHP legacy-MT opening-crib search already found zero two-word candidates across its five natural reductions; that is only the declared English 8-5-4 opening model, not a global PHP exclusion.
+- Updated `results/README.md`, `im-results/py27-mt-s2-tail.md`, and `im-results/source-derived-prime-clause-seed.md` in one commit to consolidate the result. The R36 re-adjudication closes the one source-derived seed in the inherited mixed-panel prefix; it does not re-score other inherited-prefix seeds.
+- Current archive priority remains EURECOM/Deusto 2016 raw-HTML corpus, then DUTA-10K; 2018 Decrypto Spider seed lists contained none of the four Stage11 hosts. No external contact has been sent.
+- No LP2 plaintext, authentic key, or p56 hash preimage recovered in this update.
+
+---
+
 # Agent 1 — current research update (2026-11-13T15:22:33.717Z)
 
 - Tested the open-source 2018 Decrypto Spider seed lists against all four Stage11 v2 hosts recorded in `im-results/archive-hash-preimage.md`. None of the four appears in `deployment/data/initialUrls.csv` (20,418 lines) or `deployment/data/actualOnlineInitUrls.csv` (1,584 lines). This is a bounded seed-list negative only; the 2018 crawler followed links beyond its seeds and stored 1.56M downloaded paths in a PostgreSQL database, which is not included in the public repository. A full-crawl hit remains possible but is lower priority.

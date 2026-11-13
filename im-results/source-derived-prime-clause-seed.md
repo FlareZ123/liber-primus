@@ -1,6 +1,6 @@
 # Source-derived PRNG seed candidate: 2013 prime-clause product
 
-**Status:** one narrowly specified Stage-B test pending. This is an intermediate hypothesis, not an established key.
+**Status:** completed negative for the exact CPython 2.7 MT19937 `random29` / keyskip1 construction. The prime-clause product remains an authenticated source signature, not a recovered key.
 
 ## Source observation
 
@@ -16,7 +16,7 @@ A human solver who notices that the TXXX number is the product of prime clause s
 
 The full 32-bit MT seed-domain search covered this integer under a mixed historical 9/12-register screening panel, but this specific seed has not been re-adjudicated under the current 12-register R36 panel. The direct Stage-B test below closes that narrow gap; it does not reopen the completed seed domain.
 
-## Decisive test
+## Executed test and result
 
 - Seed: `1595277641`
 - Generator: CPython 2.7 MT19937, `init_by_array([seed])`, reducer `random29`
@@ -25,7 +25,24 @@ The full 32-bit MT seed-domain search covered this integer under a mixed histori
 - Decoder: pinned `Dukotah/cicada3301@f63501d8f2d835b80c30230eb89a1110fb9197d2`
 - Scorer: 12-register panel R36; report full plaintext path, pmax, best register, English score, and 60/180 held-out path agreement
 
-If the result is language-like and independently reproducible, extend the exact same key construction to the full 12,956-rune stream and test cross-page predictions. If it is noise-like, reject this specific seed/generator/reducer/cipher construction; do not expand into unconstrained PRNG or reducer hunting.
+### Result
+
+The pinned Stage-B workflow completed successfully: [GitHub Actions run 43452779173](https://github.com/FlareZ123/liber-primus/actions/runs/43452779173).
+
+| Measurement | Result |
+|---|---:|
+| Seed | 1,595,277,641 |
+| Cipher length | 240 runes |
+| Panel | 12-register R36 |
+| pmax | 3.706964631 |
+| Best register | EN_HALFVOWEL |
+| English score | −7.199652019 |
+| Held-out agreement | 1.000 |
+| Key skips | 5 |
+
+The output transliteration begins `BNGOOEIABNGUXTHLMOUIYWTHNSTWAESCWONGTBUNSBEGOOEH...` and remains unreadable throughout. The high held-out agreement measures agreement between two decodes under the same key and model; it is not independent evidence of plaintext. The pmax is below the project's 5.0 candidate-screen threshold.
+
+**Decision:** reject this exact source-derived seed / Python 2.7 MT `random29` / sign−1 / offset-0 / keyskip1 construction. Do not extend it to the full book or try additional reducers/generators from this number without a separate source clue. The broader historical PHP MT 32-bit English opening-crib search also found zero two-word matches under its declared natural reductions ([report](php-legacy-mt-opening-crib.md)); that is a separate bounded negative, not a general PHP exclusion.
 
 ## Weakest assumption
 
