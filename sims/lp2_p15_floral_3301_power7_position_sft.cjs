@@ -62,7 +62,7 @@ function mutualInformation(sequence) {
       const count = pairs[a * 29 + b];
       if (count) {
         const p = count / (n - 1);
-        information += p * Math.log(p * n * n / ((n - 1) * freq[a] * freq[b]));
+        information += p * Math.log(p * n * n / (freq[a] * freq[b]));
       }
     }
   }
