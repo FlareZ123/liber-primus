@@ -1,6 +1,6 @@
 # LP2 red-channel 13/16 repeat-filter parameter gate
 
-**Status:** provisional source-to-cipher parameter match; no plaintext, key or intended destination recovered.
+**Status:** reproducible red-span count and retrospective fit to a ciphertext-derived parameter; the cipher relationship is unselected. No plaintext, key or intended destination recovered.
 
 ## Source-derived counts
 
@@ -27,13 +27,13 @@ For the 12,901 within-page transitions, k=86:
 |---|---:|
 | Fitted suppression probability sHat | 0.812095 |
 | Approximate 95% delta-method interval | 0.772248–0.851942 |
-| Source-selected candidate 13/16 | 0.812500 |
+| Independently countable red-span ratio 13/16 | 0.812500 |
 | Repeats predicted by s=13/16 | 85.816 |
 | Log-likelihood difference from fitted value | −0.000199 nats |
 
 If page joins are retained in the flattened stream, there are 12,955 transitions and still 86 repeats: sHat=0.812884, the approximate interval is 0.773204–0.852563, and s=13/16 predicts 86.175 repeats (log-likelihood difference −0.000179 nats).
 
-Thus the source ratio is strikingly compatible with the independently measured filter rate. It is **not** statistically discriminating: the confidence interval is broad and the likelihood difference is negligible. Its value is that 13/16 is selected by an independently visible manuscript count rather than fitted freely.
+The 13/16 fraction is independently countable in the original annotations, but **no source-authored rule maps a proportion of dropcap-bearing red spans to a key-skip rejection probability**. The proposed mapping was selected after the ciphertext repeat deficit and soft-filter model were available. Numerically the fit is non-discriminating: the equally simple fractions **4/5** and **9/11** predict **91.496** and **83.232** repeats, with log-likelihood differences of only **−0.16968** and **−0.04582** nats relative to the fitted model (versus **−0.000199** for 13/16). These follow directly from the displayed r(s) formula with n=12,901 and k=86; none selects a historical cipher or explains the relationship of the red layer to attempted output symbols.
 
 ## Bounded direct key/seed tests
 
@@ -56,9 +56,9 @@ These are exclusions of the listed direct constructions, not an exhaustive rejec
 
 ## Research decision
 
-Retain **13/16 as a provisional source-selected rejection parameter** for future tests of a separately sourced keystream. Do not promote it to an established cipher mechanism, and do not continue generic seed hunting from the 30-bit dots or 13 dropcaps: the obvious direct uses tested here fail.
+Retain **13/16 as a retrospective numerical correspondence**, without elevating it to a source-selected cipher parameter. Do not continue generic seed hunting from the 30-bit dots or 13 dropcaps: the obvious direct uses tested here fail, and alternative small fractions have similar likelihood.
 
-The next productive question is whether an independently authenticated key source can be tested under this fixed filter parameter, or whether the three non-dropcap spans have an original-image-supported selector/reset role. Any such test must predict plaintext on original ciphertext without fitting its key, phase or reset positions after seeing the output.
+A credible next step must first locate an independently authenticated instruction that binds dropcap counts or positions to the filter's rejection probability or state, and separately selects any key, phase and reset rule. Merely fixing 13/16 from this match does not meet that gate. Any such test must predict plaintext on original ciphertext without fitting its key, phase or reset positions after seeing the output.
 
 ## Reproduction
 
