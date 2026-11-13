@@ -11,7 +11,7 @@ A reader could naturally attempt two standard linear stream-cipher modes using t
 - **Output feedback (OFB):** update four-rune state by `S_i=M S_(i−1)` and decrypt `P_i=C_i±S_i`. It emits a four-symbol pad for each block, independent of ciphertext.
 - **Ciphertext feedback (CFB):** decrypt `P_i=C_i±M C_(i−1)`, with a four-rune initial state. This makes the pad depend on preceding *actual* ciphertext and differs algebraically from the previously tested `M*C_i−C_(i−1)` and `M*(C_i−C_(i−1))` CBC models.
 
-Neither an OFB/CFB command nor an initial state is explicitly given by the artist. To avoid fitting a secret state, the only inspected four-symbol IVs are the **first four and last four GP values of each of p15's two original red spans**, plus zero as the standard reference. The source red spans have lengths 9 and 11. For each of these five frozen IVs, use the printed `M`, its inverse, transpose or inverse transpose, with both GP29 additive signs. This is **40 fully specified candidates per mode**, no phase optimization, alternative page clocks, lexical fitting or key search. The entire following 1,744-rune chapter is a single continuous stream.
+Neither an OFB/CFB command nor an initial state is explicitly given by the artist. To avoid fitting a secret state, the only inspected four-symbol IVs are the **first four and last four GP values of each of p15's two original red spans**, plus zero as the standard reference. The source red spans have lengths 9 and 11. For each of these five frozen IVs, use the printed `M`, its inverse, transpose or inverse transpose, with both GP29 additive signs. For the four nonzero ink-derived IVs, additionally test the **direct signed-prime-complement reading**: the original table prints the positive magnitudes `4516` and `1206`, whereas the same p15 Fibonacci-prime construction `3301−p` gives `−4516` and `−1206`. Only those two entries are sign-restored. This is a motivated alternate arithmetic interpretation, and the source does not explicitly print minus signs. Evaluate that signed matrix and its transpose with both signs. This is ****56** fully specified candidates per mode**, no phase optimization, alternative page clocks, lexical fitting or key search. The entire following 1,744-rune chapter is a single continuous stream.
 
 ## Original-cipher result
 
@@ -19,12 +19,12 @@ The original pp16–22 ciphertext IoC is **0.034509598025**. The exhaustive fixe
 
 | Reversible candidate | Declared models | Maximum original decoded IoC |
 | --- | ---: | ---: |
-| Four-state matrix OFB | 40 | **0.034735271361** |
-| Four-state matrix CFB | 40 | **0.034754351614** |
+| Four-state matrix OFB | 56 | **0.034767510409** |
+| Four-state matrix CFB | 56 | **0.034922784190** |
 
-These near-uniform outputs are nonlinguistic; neither has the concentrated GP symbol spectrum of the independent genuine cleartext control. The first **92 original clear runes** of LP2 p57 have IoC **0.062111801242**. Under each candidate, this authentic source-native GP control is encrypted and recovered exactly (**80/80** plants, 92/92 symbols each). Every original candidate likewise re-encrypts precisely to the full **1,744/1,744** unchanged ciphertext, which checks the inverse implementation but does not validate the candidate as an historical cipher.
+These near-uniform outputs are nonlinguistic; neither has the concentrated GP symbol spectrum of the independent genuine cleartext control. The first **92 original clear runes** of LP2 p57 have IoC **0.062111801242**. Under each candidate, this authentic source-native GP control is encrypted and recovered exactly (**112/112** plants, 92/92 symbols each). Every original candidate likewise re-encrypts precisely to the full **1,744/1,744** unchanged ciphertext, which checks the inverse implementation but does not validate the candidate as an historical cipher.
 
-The strict zero-state OFB candidate is especially uninformative: a linear state machine started at zero remains at zero. No nonzero source IV was selected from a solved instruction. The four printed red IVs therefore represent narrow, motivated tests rather than a claim to have exhausted unknown IVs.
+The strict zero-state OFB candidate is especially uninformative: a linear state machine started at zero remains at zero. No nonzero source IV was selected from a solved instruction. The four printed red IVs and one source-derived signed-table interpretation therefore represent narrow, motivated tests rather than a claim to have exhausted unknown IVs.
 
 ## Decision
 
