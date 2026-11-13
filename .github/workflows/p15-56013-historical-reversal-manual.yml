@@ -1,0 +1,29 @@
+name: LP2 p15 historic reversal plus 2013 DATA XOR (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-reversal:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Obtain original CicadaOS historical DATA member
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw "Historical member download failed" }
+      - name: Run three source-specific reversible original cipher tests
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p15_56013_2014_reversal_transport_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Script syntax check failed" }
+          node sims/lp2_p15_56013_2014_reversal_transport_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "Original-input transport gate failed" }
