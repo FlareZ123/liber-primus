@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_bookend_crossratio_sourcekey_sft.cjs
       - name: Original word-edge IV all-secret invariant with native controls
         run: node sims/lp2_word_edge_iv_allsecret_sft.cjs
+      - name: Original predecessor-rank word-state all-secret gate
+        run: node sims/lp2_predecessor_rank_wordstate_allsecret_sft.cjs
