@@ -1,16 +1,14 @@
 'use strict';
 
 const fs = require('node:fs');
-const text = fs.readFileSync('resources/liber-primus/lp2-transcription.txt', 'utf8').trim();
+const lp2Text = fs.readFileSync('resources/liber-primus/lp2-transcription.txt', 'utf8').trim();
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
-const pages = text.split(/\n%\n/).slice(0, 55);
+const pages = lp2Text.split(/\n%\n/).slice(0, 55);
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 
 const records = [];
 const pageStats = [];
-let pos = 0;
-let lineId = 0;
-let wordId = 0;
+let pos = 0, lineId = 0, wordId = 0;
 for (let p = 0; p < pages.length; p++) {
   const pageRecords = [];
   for (const rawLine of pages[p].split('\n')) {
@@ -21,19 +19,17 @@ for (let p = 0; p < pages.length; p++) {
         pageRecords.push(record);
         pos++;
       } else if (ch === '-' || ch === '.' || ch === '&' || ch === '$') {
-        // These are transcription word/punctuation boundaries. A line break alone
-        // does not end a word; the terminal slash is a line marker.
         wordId++;
       }
     }
     lineId++;
   }
-  wordId++; // Do not join words across page boundaries.
-  let crossPairs = 0;
-  let crossDoublets = 0;
-  const pageRuneCounts = new Int32Array(29);
-  for (const record of pageRecords) pageRuneCounts[record.index]++;
-  const expectedDoubletsUnderPageShuffle = pageRuneCounts.reduce((sum, n) => sum + n * (n - 1), 0) / pageRecords.length;
+  wordId++; // Never join words across page boundaries.
+  const runeCounts = new Int32Array(29);
+  for (const record of pageRecords) runeCounts[record.index]++;
+  const expectedDoubletsUnderPageShuffle =
+    runeCounts.reduce((sum, n) => sum + n * (n - 1), 0) / pageRecords.length;
+  let crossPairs = 0, crossDoublets = 0;
   for (let i = 1; i < pageRecords.length; i++) {
     const a = pageRecords[i - 1], b = pageRecords[i];
     if (a.word !== b.word) {
@@ -41,18 +37,25 @@ for (let p = 0; p < pages.length; p++) {
       if (a.index === b.index) crossDoublets++;
     }
   }
-  pageStats.push({ page: p, runes: pageRecords.length, crossPairs, crossDoublets, expectedDoubletsUnderPageShuffle });
+  pageStats.push({
+    page: p, runes: pageRecords.length, crossPairs, crossDoublets,
+    expectedDoubletsUnderPageShuffle
+  });
 }
 
 const allSlots = [], withinSlots = [], crossSlots = [];
 const allSites = [], withinSites = [], crossSites = [];
 const boundaryPairs = [];
 const transitionDifferences = {
-  all: new Int32Array(29), withinWord: new Int32Array(29), crossWord: new Int32Array(29),
-  p11_23WithinWord: new Int32Array(29), p11_23CrossWord: new Int32Array(29)
+  all: new Int32Array(29),
+  withinWord: new Int32Array(29),
+  crossWord: new Int32Array(29),
+  p11_23WithinWord: new Int32Array(29),
+  p11_23CrossWord: new Int32Array(29)
 };
 let lineDoublets = 0, withinWordLineDoublets = 0, crossWordLineDoublets = 0;
 let crossPageDoublets = 0;
+
 for (let i = 1; i < records.length; i++) {
   const a = records[i - 1], b = records[i];
   if (a.page !== b.page) {
@@ -63,14 +66,14 @@ for (let i = 1; i < records.length; i++) {
   const difference = (b.index - a.index + 29) % 29;
   transitionDifferences.all[difference]++;
   transitionDifferences[within ? 'withinWord' : 'crossWord'][difference]++;
-  if (a.page >= 11 && a.page <= 23) transitionDifferences[within ? 'p11_23WithinWord' : 'p11_23CrossWord'][difference]++;
-  const slots = within ? withinSlots : crossSlots;
-  const sites = within ? withinSites : crossSites;
-  slots.push(a.pos);
+  if (a.page >= 11 && a.page <= 23) {
+    transitionDifferences[within ? 'p11_23WithinWord' : 'p11_23CrossWord'][difference]++;
+  }
+  (within ? withinSlots : crossSlots).push(a.pos);
   allSlots.push(a.pos);
   if (!within) boundaryPairs.push({ page: a.page, x: a.index, y: b.index });
   if (a.index === b.index) {
-    sites.push(a.pos);
+    (within ? withinSites : crossSites).push(a.pos);
     allSites.push(a.pos);
     if (a.line !== b.line) {
       lineDoublets++;
@@ -92,6 +95,7 @@ function ac1OfGaps(positions) {
   }
   return denominator ? numerator / denominator : 0;
 }
+
 function makeRng(seed) {
   let state = seed >>> 0;
   return () => {
@@ -101,6 +105,7 @@ function makeRng(seed) {
     return state >>> 0;
   };
 }
+
 function conditionalGapTest(slots, sites, reps, seed) {
   const observed = ac1OfGaps(sites);
   const idx = Array.from({ length: slots.length }, (_, i) => i);
@@ -120,8 +125,13 @@ function conditionalGapTest(slots, sites, reps, seed) {
       [idx[i], idx[j]] = [idx[j], idx[i]];
     }
   }
-  return { observedAC1: observed, reps, exceed, pUpper: (exceed + 1) / (reps + 1), seed: '0x' + seed.toString(16) };
+  return {
+    observedAC1: observed, reps, exceed,
+    pUpper: (exceed + 1) / (reps + 1),
+    seed: '0x' + seed.toString(16)
+  };
 }
+
 function longestZeroRun(counts) {
   let best = 0, current = 0, bestStart = -1, currentStart = -1;
   for (let i = 0; i < counts.length; i++) {
@@ -133,6 +143,7 @@ function longestZeroRun(counts) {
   }
   return { length: best, start: bestStart, end: bestStart + best - 1 };
 }
+
 function maxZeroRunTest(stats, reps, seed) {
   const slots = [];
   for (const p of stats) for (let i = 0; i < p.crossPairs; i++) slots.push(p.page);
@@ -157,15 +168,12 @@ function maxZeroRunTest(stats, reps, seed) {
     }
   }
   return {
-    observed,
-    totalBoundarySlots: slots.length,
-    totalCrossWordDoublets: k,
-    reps,
-    exceed,
-    pFamilywise: (exceed + 1) / (reps + 1),
+    observed, totalBoundarySlots: slots.length, totalCrossWordDoublets: k,
+    reps, exceed, pFamilywise: (exceed + 1) / (reps + 1),
     seed: '0x' + seed.toString(16)
   };
 }
+
 function boundaryAffineTest(pairs, reps, seed) {
   const cx = new Int32Array(29), cy = new Int32Array(29);
   for (const q of pairs) { cx[q.x]++; cy[q.y]++; }
@@ -204,27 +212,57 @@ function boundaryAffineTest(pairs, reps, seed) {
     distinctFinals: cx.filter(x => x > 0).length,
     distinctInitials: cy.filter(x => x > 0).length,
     bestAffine: observed,
-    reps,
-    affineMaxExceed: exceed,
-    affineMaxP: (exceed + 1) / (reps + 1),
-    zeroDiagonalExceed: zeroDiagonal,
-    zeroDiagonalP: (zeroDiagonal + 1) / (reps + 1),
+    reps, affineMaxExceed: exceed, affineMaxP: (exceed + 1) / (reps + 1),
+    zeroDiagonalExceed: zeroDiagonal, zeroDiagonalP: (zeroDiagonal + 1) / (reps + 1),
     seed: '0x' + seed.toString(16)
   };
 }
 
+function lp1FirstThreeBlockControl() {
+  const lp1 = fs.readFileSync('resources/transcriptions/lp1_wulfic_canonical.txt', 'utf8').trim();
+  const blocks = lp1.split(/\n%\n/).slice(0, 3);
+  let runes = 0, withinPairs = 0, withinDoublets = 0, crossPairs = 0, crossDoublets = 0;
+  const withinDifferences = new Int32Array(29), crossDifferences = new Int32Array(29);
+  for (const block of blocks) {
+    const page = [];
+    let word = 0;
+    for (const rawLine of block.split('\n')) {
+      for (const ch of [...rawLine]) {
+        if (runeIndex.has(ch)) page.push({ index: runeIndex.get(ch), word });
+        else if (ch === '-' || ch === '.' || ch === '&' || ch === '$') word++;
+      }
+    }
+    runes += page.length;
+    for (let i = 1; i < page.length; i++) {
+      const a = page[i - 1], b = page[i];
+      const difference = (b.index - a.index + 29) % 29;
+      if (a.word === b.word) {
+        withinDifferences[difference]++;
+        withinPairs++;
+        if (a.index === b.index) withinDoublets++;
+      } else {
+        crossDifferences[difference]++;
+        crossPairs++;
+        if (a.index === b.index) crossDoublets++;
+      }
+    }
+  }
+  return {
+    blocks: blocks.length, runes,
+    withinPairs, withinDoublets, withinRate: withinDoublets / withinPairs,
+    crossPairs, crossDoublets, crossRate: crossDoublets / crossPairs,
+    withinDifferenceCounts: Array.from(withinDifferences),
+    crossDifferenceCounts: Array.from(crossDifferences)
+  };
+}
+
 function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
-  // Source-derived p15 spiral: red 3299 start, 16 cells, infinity mark.
   const fib = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
   const primeIndex = fib.map(x => x + 1);
   const primes = [2, 3, 5, 7, 13, 23, 43, 79, 149, 263, 463, 829, 1481, 2593, 4507, 7817];
   const printed = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516];
   const sequences = {
-    printed,
-    prime: primes,
-    totient: primes.map(x => x - 1),
-    fib,
-    primeIndex
+    printed, prime: primes, totient: primes.map(x => x - 1), fib, primeIndex
   };
   const keys = Object.fromEntries(Object.entries(sequences).map(([name, values]) =>
     [name, values.map(x => ((x % 29) + 29) % 29)]));
@@ -269,7 +307,9 @@ function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
         const b = ((candidate.sign * candidate.key[i % 16]) % 29 + 29) % 29;
         if (ys[i] === ((candidate.a * pairs[i].x + b) % 29 + 29) % 29) matches++;
       }
-      if (matches > best.matches) best = { matches, name: candidate.name, a: candidate.a, sign: candidate.sign };
+      if (matches > best.matches) best = {
+        matches, name: candidate.name, a: candidate.a, sign: candidate.sign
+      };
     }
     return best;
   }
@@ -287,114 +327,11 @@ function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
     if (score(shuffled).matches >= observed.matches) exceed++;
   }
   return {
-    sourceKeyCandidates: 5,
-    affineFormsPerKey: 4,
-    totalFixedCandidates: candidates.length,
-    p16_23Words: words.length,
-    p16_23Runes: flat.length,
-    bestWholeWordShift: wordVariants[0],
-    uniformIoCBaseline: 1 / 29,
-    boundaryPairs: pairs.length,
-    bestBoundaryRelation: observed,
+    sourceKeyCandidates: 5, affineFormsPerKey: 4, totalFixedCandidates: candidates.length,
+    p16_23Words: words.length, p16_23Runes: flat.length,
+    bestWholeWordShift: wordVariants[0], uniformIoCBaseline: 1 / 29,
+    boundaryPairs: pairs.length, bestBoundaryRelation: observed,
     boundaryMaxPermutation: { reps, exceed, p: (exceed + 1) / (reps + 1), seed: '0x16b0a11' }
-  };
-}
-
-function lp1FirstThreeBlockControl() {
-  const lp1 = fs.readFileSync('resources/transcriptions/lp1_wulfic_canonical.txt', 'utf8').trim();
-  const blocks = lp1.split(/\n%\n/).slice(0, 3);
-  let runes = 0, withinPairs = 0, withinDoublets = 0, crossPairs = 0, crossDoublets = 0;
-  const withinDifferences = new Int32Array(29), crossDifferences = new Int32Array(29);
-  for (const block of blocks) {
-    const page = [];
-    let word = 0;
-    for (const rawLine of block.split('\n')) {
-      for (const ch of [...rawLine]) {
-        if (runeIndex.has(ch)) page.push({ index: runeIndex.get(ch), word });
-        else if (ch === '-' || ch === '.' || ch === '&' || ch === '
-const withinDoublets = withinSites.length;
-const crossDoublets = crossSites.length;
-const pageBoundaryDoublets = crossPageDoublets;
-const lineBoundaryStats = {
-  total: lineDoublets,
-  withinWord: withinWordLineDoublets,
-  crossWord: crossWordLineDoublets
-};
-const regionStats = (lo, hi) => {
-  const selected = pageStats.filter(p => p.page >= lo && p.page <= hi);
-  return {
-    pages: [lo, hi],
-    runes: selected.reduce((a, p) => a + p.runes, 0),
-    wordBoundaries: selected.reduce((a, p) => a + p.crossPairs, 0),
-    crossWordDoublets: selected.reduce((a, p) => a + p.crossDoublets, 0)
-  };
-};
-const selectedBoundaryPairs = boundaryPairs.filter(p => p.page >= 11 && p.page <= 23);
-const output = {
-  source: 'resources/liber-primus/lp2-transcription.txt + lp2-corpus.json; LP2 pages 0–54',
-  lp1FirstThreeBlockControl: lp1FirstThreeBlockControl(),
-  runes: records.length,
-  adjacentPairs: allSlots.length,
-  expectedDoubletsUnderUniform: allSlots.length / 29,
-  expectedDoubletsUnderPageMarginalShuffle: pageStats.reduce((sum, p) => sum + p.expectedDoubletsUnderPageShuffle, 0),
-  repeatSuppressionVsPageMarginalShuffle: 1 - allSites.length / pageStats.reduce((sum, p) => sum + p.expectedDoubletsUnderPageShuffle, 0),
-  transitionDifferenceCounts: Object.fromEntries(Object.entries(transitionDifferences).map(([k, v]) => [k, Array.from(v)])),
-  doublets: {
-    total: totalDoublets,
-    withinWord: withinDoublets,
-    acrossWord: crossDoublets,
-    acrossLine: lineBoundaryStats,
-    acrossPage: pageBoundaryDoublets
-  },
-  blockCountsPer1000Runes: Array.from({ length: 13 }, (_, b) =>
-    allSites.filter(p => Math.floor(p / 1000) === b).length),
-  gapAC1: {
-    all: ac1OfGaps(allSites),
-    withinWord: ac1OfGaps(withinSites),
-    acrossWord: ac1OfGaps(crossSites)
-  },
-  allSitesConditionalNull: conditionalGapTest(allSlots, allSites, 10000, 0x7a71c0de),
-  withinWordConditionalNull: conditionalGapTest(withinSlots, withinSites, 10000, 0x7a71c0de),
-  acrossWordConditionalNull: conditionalGapTest(crossSlots, crossSites, 10000, 0x7a71c0de),
-  chapterWindows: {
-    p15_22: regionStats(15, 22),
-    p11_23: regionStats(11, 23),
-    longestZeroCrossWordRun: maxZeroRunTest(pageStats, 100000, 0x0b51d3)
-  },
-  p11_23BoundaryAffine: boundaryAffineTest(selectedBoundaryPairs, 5000, 0x11c0ffee),
-  p15GridRepeatingWordKey: p15GridRepeatingWordKeyTest(records, boundaryPairs),
-  pageCrossWordCounts: pageStats.filter(p => p.crossDoublets > 0)
-};
-console.log(JSON.stringify(output, null, 2));
-) word++;
-      }
-    }
-    runes += page.length;
-    for (let i = 1; i < page.length; i++) {
-      const a = page[i - 1], b = page[i];
-      const difference = (b.index - a.index + 29) % 29;
-      if (a.word === b.word) {
-        withinDifferences[difference]++;
-        withinPairs++;
-        if (a.index === b.index) withinDoublets++;
-      } else {
-        crossDifferences[difference]++;
-        crossPairs++;
-        if (a.index === b.index) crossDoublets++;
-      }
-    }
-  }
-  return {
-    blocks: blocks.length,
-    runes,
-    withinPairs,
-    withinDoublets,
-    withinRate: withinDoublets / withinPairs,
-    crossPairs,
-    crossDoublets,
-    crossRate: crossDoublets / crossPairs,
-    withinDifferenceCounts: Array.from(withinDifferences),
-    crossDifferenceCounts: Array.from(crossDifferences)
   };
 }
 
@@ -403,9 +340,7 @@ const withinDoublets = withinSites.length;
 const crossDoublets = crossSites.length;
 const pageBoundaryDoublets = crossPageDoublets;
 const lineBoundaryStats = {
-  total: lineDoublets,
-  withinWord: withinWordLineDoublets,
-  crossWord: crossWordLineDoublets
+  total: lineDoublets, withinWord: withinWordLineDoublets, crossWord: crossWordLineDoublets
 };
 const regionStats = (lo, hi) => {
   const selected = pageStats.filter(p => p.page >= lo && p.page <= hi);
@@ -417,21 +352,26 @@ const regionStats = (lo, hi) => {
   };
 };
 const selectedBoundaryPairs = boundaryPairs.filter(p => p.page >= 11 && p.page <= 23);
+const expectedPageMarginal = pageStats.reduce((sum, p) => sum + p.expectedDoubletsUnderPageShuffle, 0);
 const output = {
   source: 'resources/liber-primus/lp2-transcription.txt + lp2-corpus.json; LP2 pages 0–54',
+  lp1FirstThreeBlockControl: lp1FirstThreeBlockControl(),
   runes: records.length,
+  adjacentPairs: allSlots.length,
+  expectedDoubletsUnderUniform: allSlots.length / 29,
+  expectedDoubletsUnderPageMarginalShuffle: expectedPageMarginal,
+  repeatSuppressionVsPageMarginalShuffle: 1 - totalDoublets / expectedPageMarginal,
+  transitionDifferenceCounts: Object.fromEntries(
+    Object.entries(transitionDifferences).map(([k, v]) => [k, Array.from(v)])
+  ),
   doublets: {
-    total: totalDoublets,
-    withinWord: withinDoublets,
-    acrossWord: crossDoublets,
-    acrossLine: lineBoundaryStats,
-    acrossPage: pageBoundaryDoublets
+    total: totalDoublets, withinWord: withinDoublets, acrossWord: crossDoublets,
+    acrossLine: lineBoundaryStats, acrossPage: pageBoundaryDoublets
   },
   blockCountsPer1000Runes: Array.from({ length: 13 }, (_, b) =>
     allSites.filter(p => Math.floor(p / 1000) === b).length),
   gapAC1: {
-    all: ac1OfGaps(allSites),
-    withinWord: ac1OfGaps(withinSites),
+    all: ac1OfGaps(allSites), withinWord: ac1OfGaps(withinSites),
     acrossWord: ac1OfGaps(crossSites)
   },
   allSitesConditionalNull: conditionalGapTest(allSlots, allSites, 10000, 0x7a71c0de),
@@ -446,4 +386,5 @@ const output = {
   p15GridRepeatingWordKey: p15GridRepeatingWordKeyTest(records, boundaryPairs),
   pageCrossWordCounts: pageStats.filter(p => p.crossDoublets > 0)
 };
+
 console.log(JSON.stringify(output, null, 2));
