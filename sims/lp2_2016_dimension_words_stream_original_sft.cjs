@@ -23,7 +23,7 @@ const words=parsed.words;
 const runeId=new Map(gp.runes.map((r,i)=>[r,i]));
 assert.deepEqual([pages.length,book.length,words.length],[55,12956,2896]);
 const width=[...parsed.byStartPage[0][5].runes].map(r=>runeId.get(r));
-const height=[...parsed.byStartPage[1][32].runes].map(r=>runeId.get(r));
+const matchingHeight=parsed.byStartPage[1].filter(w=>\n  [...w.runes].map(r=>runeId.get(r))\n    .reduce((n,x)=>n+gp.prime[x],0)===569);\nassert.equal(matchingHeight.length,1);\nconst height=[...matchingHeight[0].runes].map(r=>runeId.get(r));
 assert.deepEqual(width,[9,18,7,17,24,15,22,12,10,21,1]);
 assert.deepEqual(height,[11,0,10,9,27,5,26,28,10,27]);
 assert.deepEqual([width,height].map(w=>w.reduce((n,x)=>n+gp.prime[x],0)),[563,569]);
@@ -35,7 +35,7 @@ const material=[
   {name:'source-GP29-indices-u8',bytes:Buffer.from(selected)},
   {name:'source-GP-primes-u16BE',bytes:primed},
   {name:'source-runes-UTF8',bytes:Buffer.from(
-    parsed.byStartPage[0][5].runes+parsed.byStartPage[1][32].runes,'utf8')}
+    parsed.byStartPage[0][5].runes+matchingHeight[0].runes,'utf8')}
 ];
 const keys=material.map(x=>({...x,key:digest(x.bytes)}));
 const mod=(x,n)=>(x%n+n)%n;
