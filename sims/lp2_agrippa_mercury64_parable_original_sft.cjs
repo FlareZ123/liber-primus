@@ -200,12 +200,55 @@ sunCandidates.sort((a, b) => b.ioc - a.ioc);
 assert.ok(Math.abs(sunCandidates[0].ioc - 0.047719298245614036) < 1e-12);
 assert.ok(Math.abs(sunCandidates.at(-1).ioc - 0.030175438596491227) < 1e-12);
 
+
+// Separate historical source-word transfer: 666 -> SOL -> SORATH.
+// Modern English vowel-restored SORATH is a *candidate*, because the
+// Crowley source prints consonantal SVRTh and there is no authenticated
+// spelling/consumer rule. The p39 red prime sum173 is the 40th prime,
+// making physical p40 the frozen original-cipher target (no page scan).
+const sorathTokens = ['S', 'O', 'R', 'A', 'TH'];
+const gpIndexByToken = new Map(corpus.translit.map((token, i) => [token, i]));
+const sorathKey = sorathTokens.map(s => gpIndexByToken.get(s));
+assert.deepEqual(sorathKey, [15, 3, 4, 24, 2]);
+assert.equal(primeSum(sorathKey), 173);
+assert.equal(primeSum(['S', 'O', 'L'].map(s => gpIndexByToken.get(s))), 133);
+const pointedOriginal = corpus.pages[40].indices;
+assert.equal(pointedOriginal.length, 231);
+const sorathOriginalDecoders = [];
+for (const sign of [-1, 1]) for (const literalF of [false, true]) {
+  let clock = 0;
+  const decoded = pointedOriginal.map(c => {
+    if (literalF && c === 0) return 0;
+    const p = (c + 29 + sign * sorathKey[clock % sorathKey.length]) % 29;
+    clock++;
+    return p;
+  });
+  // Exact ciphertext re-encryption, including p56's source-supported
+  // literal-F bypass rule as an optional *bounded* alternate model.
+  let reverseClock = 0;
+  const reEncrypted = decoded.map((p, i) => {
+    if (literalF && pointedOriginal[i] === 0) return 0;
+    const c = (p + 29 - sign * sorathKey[reverseClock % sorathKey.length]) % 29;
+    reverseClock++;
+    return c;
+  });
+  assert.deepEqual(reEncrypted, pointedOriginal);
+  sorathOriginalDecoders.push({sign, literalF, ioc: ioc(decoded),
+    gpPrefix: decoded.slice(0, 60).map(i => corpus.translit[i]).join('')});
+}
+assert.equal(sorathOriginalDecoders.length, 4);
+assert.deepEqual(sorathOriginalDecoders.map(x => +x.ioc.toFixed(12)),
+  [0.033879164313, 0.037417654809, 0.033992094862, 0.039073969509]);
+
 console.log(JSON.stringify({
   source: 'Agrippa Mercury 8x8, source-p57 666, source64 original physical lines',
   p57Ordinals: ordinals,
   originalSource64PrimeSum: primeSum(source64),
   gridMod64DistinctPerEightByEight: gridBlockDistinct,
   rawP55IoC: ioc(unknown),
+  sorathSource: {solGpPrimeSum: 133, sorathGpPrimeSum: 173,
+    pointedPage40Length: pointedOriginal.length, variants: sorathOriginalDecoders,
+    recoveredOriginalPlaintext: false},
   solarWordEndpoints: {words: selectedWords.length, edgeSlots: edges36.length, primeSum: primeSum(edges36), sourceSingletons: selectedWords.filter(w => w.length === 1).length},
   solarCandidateKeys: sunKeyOrders.size, solarOriginalP55Candidates: sunCandidates.length,
   solarBest: sunCandidates[0], solarWorstIoC: sunCandidates.at(-1).ioc,
