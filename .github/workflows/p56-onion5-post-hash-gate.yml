@@ -1,11 +1,7 @@
 name: p56 Onion5 post-page hash gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "sims/p56_onion5_post_hash_gate.py"
-      - ".github/workflows/p56-onion5-post-hash-gate.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
