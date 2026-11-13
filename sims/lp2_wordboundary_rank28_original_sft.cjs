@@ -156,6 +156,9 @@ const corpus = JSON.parse(readText('resources/liber-primus/lp2-corpus.json'));
 const transcription = readText('resources/liber-primus/lp2-transcription.txt');
 const pages = transcription.split('%');
 assert.equal(corpus.pages.length, 58);
+// Physical p50 is entirely numerical and has no rune-transcript block.
+assert.equal(pages.length, 57);
+pages.splice(50, 0, '');
 assert.equal(pages.length, 58);
 const runeIndex = new Map([...corpus.runes].map((rune, index) => [rune, index]));
 assert.equal(runeIndex.size, 29);
