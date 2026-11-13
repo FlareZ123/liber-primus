@@ -1,0 +1,30 @@
+name: AN-END surface proxy Common Crawl delta
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/anend-surface-proxy-commoncrawl.yml'
+      - 'sims/anend_surface_proxy_commoncrawl.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Query source-selected proxy hosts across 2014–2016 Common Crawl indexes
+        run: node sims/anend_surface_proxy_commoncrawl.cjs anend-surface-proxy-commoncrawl.json
+      - name: Preserve exact index metadata
+        uses: actions/upload-artifact@v4
+        with:
+          name: anend-surface-proxy-commoncrawl
+          path: anend-surface-proxy-commoncrawl.json
+          retention-days: 90
