@@ -1,0 +1,16 @@
+name: LP2 2014 onion7 relay original descriptor source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-relay-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public May 11 2014 relay source metadata
+        run: python sims/lp2_onion7_2014_hsdir_contact_source_sft.py
