@@ -141,6 +141,25 @@ for (const page of ink.pages) {
 // A printed punctuation mark at a rune offset precedes the rune at that offset.
 colored.sort((a, b) => a.page - b.page || a.at - b.at ||
   (a.kind === 'dot' ? -1 : 1));
+
+const markerSeparatedRuneCounts = [];
+let sectionRunes = 0;
+for (const entry of colored) {
+  if (entry.kind === 'rune') sectionRunes++;
+  else {
+    markerSeparatedRuneCounts.push(sectionRunes);
+    sectionRunes = 0;
+  }
+}
+markerSeparatedRuneCounts.push(sectionRunes);
+assert.equal(markerSeparatedRuneCounts.length, 32);
+assert.deepStrictEqual(markerSeparatedRuneCounts, [
+  13, 0, 16, 0, 3, 0, 11, 0, 14, 12, 0, 9, 11, 0, 16, 0,
+  19, 0, 10, 0, 8, 0, 3, 0, 59, 9, 0, 5, 0, 7, 0, 0
+]);
+const fixedRowSlots = markerSeparatedRuneCounts.map((n, j) => n + (j < 31 ? 1 : 0));
+assert.equal(fixedRowSlots.filter(n => n === 8).length, 1);
+
 const redInk256 = colored.map(x => x.value);
 const dotCounts = colored.filter(x => x.kind === 'dot');
 assert.equal(redInk256.length, 256);
@@ -184,6 +203,8 @@ const result = {
     total: redInk256.length,
     allRedRunes: 225,
     red13And23Dots: 31,
+    markerSeparatedRuneCounts,
+    matchedOriginalEightCellRows: fixedRowSlots.filter(n => n === 8).length,
     originalIoC: ioc(redInk256),
     equalTableResidues: redInk256.filter((x, j) => x === key[j]).length,
     hRemainder: hRemainder(redInk256),
