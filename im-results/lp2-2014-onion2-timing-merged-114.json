@@ -1,14 +1,14 @@
 {
-  "title": "2014 onion-2 inter-byte timing channel — reconciled witnesses",
-  "status": "derived intermediate data; timing-key hypothesis negative for the preregistered LP2 families",
+  "title": "2014 onion-2 inter-byte timing channel — 114 exact intervals",
+  "status": "114 exact participant-observed intervals; timing-key hypothesis negative for tested LP2 families",
   "indexing": {
-    "primary": "one-based byte positions, matching the external F5b-T witness merge",
+    "primary": "one-based byte positions",
     "zero_based_field": "byte_index_zero_based = byte_index_one_based - 1",
-    "interval_semantics": "elapsed minutes since the preceding append, associated with the byte at that position"
+    "interval_semantics": "elapsed minutes since preceding append, associated with the byte at that position"
   },
   "unit_minutes": 5,
   "coverage": {
-    "exact_intervals": 112,
+    "exact_intervals": 114,
     "exact_span_one_based": [
       143,
       256
@@ -17,50 +17,18 @@
       142,
       255
     ],
-    "missing_exact_positions_one_based": [
-      190,
-      191
-    ],
-    "missing_exact_indices_zero_based": [
-      189,
-      190
-    ],
-    "bounded_bridge": {
-      "positions": [
-        190,
-        191
-      ],
-      "sum_min": 30,
-      "variants_k": [
-        [
-          1,
-          5
-        ],
-        [
-          2,
-          4
-        ],
-        [
-          3,
-          3
-        ],
-        [
-          4,
-          2
-        ],
-        [
-          5,
-          1
-        ]
-      ]
-    }
+    "missing_exact_positions_one_based": [],
+    "missing_exact_indices_zero_based": []
   },
   "merge_summary": {
-    "multi_witness_cells": 31,
+    "original_external_exact_cells": 112,
+    "newly_resolved_bridge_cells": 2,
+    "multi_witness_cells": 33,
     "single_witness_cells": 81,
     "single_witness_unconfirmed_cells": 9,
     "interval_value_disagreements": [],
-    "raw_clock_findings": [
+    "clock_minute_transcription_root_cause": "One Cripion clock-minute transcription slip at one-based byte 168 (hex fc) creates two adjacent clock-difference findings; the elapsed column and independent wiki clock resolve it without changing interval values.",
+    "original_external_clock_findings": [
       {
         "type": "W2-internal-minute-vs-elapsed",
         "pos": 168,
@@ -82,139 +50,83 @@
         "W3_clock": "15",
         "W2_minute": "25"
       }
-    ],
-    "interpretation": "No interval-value disagreements. The clock findings have one root cause: a Cripion clock-minute transcription slip at one-based byte 168 (fc), which creates a dependent next-cell clock-difference mismatch. The elapsed column and independent wiki clock resolve the slip without changing either interval value."
+    ]
   },
-  "key_streams": {
-    "S_A": {
-      "span": [
-        143,
-        189
-      ],
-      "k": [
-        2,
-        6,
-        2,
-        3,
-        1,
-        1,
-        2,
-        3,
-        1,
-        1,
-        4,
-        1,
-        2,
-        3,
-        3,
-        2,
-        1,
-        5,
-        3,
-        3,
-        1,
-        4,
-        1,
-        4,
-        1,
-        1,
-        3,
-        2,
-        7,
-        2,
-        1,
-        2,
-        3,
-        1,
-        1,
-        3,
-        5,
-        3,
-        3,
-        2,
-        3,
-        2,
-        2,
-        2,
-        1,
-        1,
-        2
-      ]
-    },
-    "S_B": {
-      "span": [
-        192,
-        256
-      ],
-      "k": [
-        2,
-        1,
-        1,
-        3,
-        3,
-        1,
-        1,
-        3,
-        2,
-        1,
-        2,
-        4,
-        5,
-        2,
-        1,
-        2,
-        1,
-        1,
-        4,
-        1,
-        1,
-        3,
-        5,
-        1,
-        1,
-        2,
-        1,
-        2,
-        1,
-        3,
-        2,
-        2,
-        2,
-        1,
-        2,
-        1,
-        6,
-        1,
-        2,
-        1,
-        1,
-        1,
-        2,
-        2,
-        1,
-        3,
-        1,
-        3,
-        3,
-        2,
-        1,
-        1,
-        2,
-        1,
-        1,
-        1,
-        3,
-        2,
-        1,
-        2,
-        1,
-        2,
-        1,
-        1,
-        2
-      ]
-    },
-    "bridge_variants": [
+  "bridge_resolution": {
+    "positions_one_based": [
+      190,
+      191
+    ],
+    "positions_zero_based": [
+      189,
+      190
+    ],
+    "bytes": [
+      "b5",
+      "bc"
+    ],
+    "interval_div_5": [
+      2,
+      4
+    ],
+    "interval_minutes": [
+      10,
+      20
+    ],
+    "evidence_class": "independent contemporaneous participant observation cross-witness inferred; author-side generator not observed",
+    "watcher_source_url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicadaops.freenode.log",
+    "byte_snapshot_source_url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/003-second-onion/interval-irc-logs.txt",
+    "watcher_events": [
+      {
+        "site_change": "18:30",
+        "source_line": 1857,
+        "byte_length_inferred": 189
+      },
+      {
+        "site_change": "18:40",
+        "source_line": 1864,
+        "byte_length_inferred": 190
+      },
+      {
+        "site_change": "19:00",
+        "source_line": 1876,
+        "byte_length_inferred": 191
+      },
+      {
+        "site_change": "19:10",
+        "source_line": 1891,
+        "byte_length_inferred": 192
+      }
+    ],
+    "bot_sottile_snapshots": [
+      {
+        "time": "18:30",
+        "byte_count": 189,
+        "final_hex_byte": "d6",
+        "original_archived_line": 2010
+      },
+      {
+        "time": "18:56",
+        "byte_count": 190,
+        "final_hex_byte": "b5",
+        "original_archived_line": 2038,
+        "remark": "rejoined after 18:40; printed full prefix, not an 18:56 author release"
+      },
+      {
+        "time": "19:00",
+        "byte_count": 191,
+        "final_hex_byte": "bc",
+        "original_archived_line": 2044
+      },
+      {
+        "time": "19:10",
+        "byte_count": 192,
+        "final_hex_byte": "a9",
+        "original_archived_line": 2056
+      }
+    ],
+    "limitation": "The watcher timestamps are site-change observations without byte values, anchored to specific bytes using the separate BotSottile lengths; the operator clock remains unknown.",
+    "prior_bounded_variants": [
       [
         1,
         5
@@ -235,6 +147,241 @@
         5,
         1
       ]
+    ],
+    "selection": "Independent MassoBot site-change times 18:40 and 19:00, cross-referenced to BotSottile byte lengths; author-side generator remains unobserved."
+  },
+  "key_streams": {
+    "S_A": [
+      2,
+      6,
+      2,
+      3,
+      1,
+      1,
+      2,
+      3,
+      1,
+      1,
+      4,
+      1,
+      2,
+      3,
+      3,
+      2,
+      1,
+      5,
+      3,
+      3,
+      1,
+      4,
+      1,
+      4,
+      1,
+      1,
+      3,
+      2,
+      7,
+      2,
+      1,
+      2,
+      3,
+      1,
+      1,
+      3,
+      5,
+      3,
+      3,
+      2,
+      3,
+      2,
+      2,
+      2,
+      1,
+      1,
+      2
+    ],
+    "S_B": [
+      2,
+      1,
+      1,
+      3,
+      3,
+      1,
+      1,
+      3,
+      2,
+      1,
+      2,
+      4,
+      5,
+      2,
+      1,
+      2,
+      1,
+      1,
+      4,
+      1,
+      1,
+      3,
+      5,
+      1,
+      1,
+      2,
+      1,
+      2,
+      1,
+      3,
+      2,
+      2,
+      2,
+      1,
+      2,
+      1,
+      6,
+      1,
+      2,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      3,
+      1,
+      3,
+      3,
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      3,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1,
+      2
+    ],
+    "S_AB_resolved": [
+      2,
+      6,
+      2,
+      3,
+      1,
+      1,
+      2,
+      3,
+      1,
+      1,
+      4,
+      1,
+      2,
+      3,
+      3,
+      2,
+      1,
+      5,
+      3,
+      3,
+      1,
+      4,
+      1,
+      4,
+      1,
+      1,
+      3,
+      2,
+      7,
+      2,
+      1,
+      2,
+      3,
+      1,
+      1,
+      3,
+      5,
+      3,
+      3,
+      2,
+      3,
+      2,
+      2,
+      2,
+      1,
+      1,
+      2,
+      2,
+      4,
+      2,
+      1,
+      1,
+      3,
+      3,
+      1,
+      1,
+      3,
+      2,
+      1,
+      2,
+      4,
+      5,
+      2,
+      1,
+      2,
+      1,
+      1,
+      4,
+      1,
+      1,
+      3,
+      5,
+      1,
+      1,
+      2,
+      1,
+      2,
+      1,
+      3,
+      2,
+      2,
+      2,
+      1,
+      2,
+      1,
+      6,
+      1,
+      2,
+      1,
+      1,
+      1,
+      2,
+      2,
+      1,
+      3,
+      1,
+      3,
+      3,
+      2,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      3,
+      2,
+      1,
+      2,
+      1,
+      2,
+      1,
+      1,
+      2
     ]
   },
   "external_preregistered_sweep": {
@@ -270,8 +417,13 @@
     },
     "crossers": 0,
     "verdict": "negative",
+    "bridge_variant_tested": true,
+    "bridge_variant_selected_by_later_witness": [
+      2,
+      4
+    ],
     "not_covered": [
-      "intervals for bytes 2–142, absent from held sources",
+      "intervals for bytes 2–142",
       "byte values themselves as a key",
       "intervals as transposition, permutation, skip, or page-selection material",
       "arithmetic beyond the three preregistered mappings",
@@ -282,31 +434,90 @@
     ]
   },
   "local_simple_gate": {
-    "assumption": "Compress the 112 exact interval/5 values across the two bounded missing positions and repeat the resulting 112-symbol sequence from p0 rune zero. This is exploratory, not source-authenticated.",
+    "assumption": "Use all 114 exact interval/5 values in byte-position order as a repeating key from p0 rune zero. This is exploratory, not source-authenticated.",
     "tested": [
       "GP29 additive, both signs, book-continuous and page-reset",
       "p05-derived Möbius 28-cycle steps, both signs, book-continuous and page-reset"
     ],
     "observed_ioc_range": [
-      0.034466,
-      0.034516
+      0.0344535,
+      0.034514
     ],
     "observed_top12_range": [
-      0.429454,
-      0.435705
+      0.427987,
+      0.4364
     ],
-    "original_ioc": 0.034478,
+    "original_ioc": 0.0344784,
     "original_top12": 0.429762,
+    "results": [
+      {
+        "operation": "add",
+        "sign": 1,
+        "clock": "book-continuous",
+        "ioc": 0.0344719634,
+        "top12": 0.4289904291
+      },
+      {
+        "operation": "add",
+        "sign": 1,
+        "clock": "page-reset",
+        "ioc": 0.0345139664,
+        "top12": 0.4364001235
+      },
+      {
+        "operation": "add",
+        "sign": -1,
+        "clock": "book-continuous",
+        "ioc": 0.0344746682,
+        "top12": 0.4320778018
+      },
+      {
+        "operation": "add",
+        "sign": -1,
+        "clock": "page-reset",
+        "ioc": 0.0344951276,
+        "top12": 0.4331583822
+      },
+      {
+        "operation": "mobius",
+        "sign": 1,
+        "clock": "book-continuous",
+        "ioc": 0.0344535416,
+        "top12": 0.427987033
+      },
+      {
+        "operation": "mobius",
+        "sign": 1,
+        "clock": "page-reset",
+        "ioc": 0.0344854401,
+        "top12": 0.4317690645
+      },
+      {
+        "operation": "mobius",
+        "sign": -1,
+        "clock": "book-continuous",
+        "ioc": 0.034490826,
+        "top12": 0.4333127508
+      },
+      {
+        "operation": "mobius",
+        "sign": -1,
+        "clock": "page-reset",
+        "ioc": 0.0344888361,
+        "top12": 0.4325409077
+      }
+    ],
     "verdict": "no language-like output"
   },
   "sources": {
     "onion2_bytes": "resources/2014-onion2-final-256byte-hex.txt",
+    "timing_resource": "resources/cicada2014-onion2-timing.json",
     "botSottile": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5-stored/onion2-timing_BotSottile_qn8jmPJr.txt",
     "cripion101": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5-stored/onion2-timing_Cripion101_5bTLHqCN.txt",
     "wiki120": "https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/wikis/uncovering-cicada/export_cur_00120.xml",
     "wiki140": "https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/wikis/uncovering-cicada/export_cur_00140.xml",
-    "external_merge_script": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5bT-timing-keystream/merge_witnesses.py",
-    "external_sweep_script": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5bT-timing-keystream/run_f5bt.py"
+    "massobot_bridge": "im-results/onion2-massobot-timing-bridge.md",
+    "external_merge": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5bT-timing-keystream/merged_intervals.json"
   },
   "records": [
     {
@@ -1347,6 +1558,30 @@
           "interval": 10,
           "confidence": "exact"
         }
+      ]
+    },
+    {
+      "byte_index_one_based": 190,
+      "byte_index_zero_based": 189,
+      "byte_hex": "b5",
+      "interval_minutes": 10,
+      "interval_div_5": 2,
+      "confidence": "cross-witness-resolved",
+      "witnesses": [
+        "MassoBot site-change at 18:40, #cicadaops archived line 1864",
+        "BotSottile full 190-byte prefix ending b5 at 18:56, archived line 2038; reconnect snapshot, not release time"
+      ]
+    },
+    {
+      "byte_index_one_based": 191,
+      "byte_index_zero_based": 190,
+      "byte_hex": "bc",
+      "interval_minutes": 20,
+      "interval_div_5": 4,
+      "confidence": "cross-witness-resolved",
+      "witnesses": [
+        "MassoBot site-change at 19:00, #cicadaops archived line 1876",
+        "BotSottile explicit byte bc, new length 191 at 19:00, archived line 2044"
       ]
     },
     {

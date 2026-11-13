@@ -6,27 +6,28 @@
 
 **Queue:** Current open `director-task` issues #39 and #41 are respectively blocked and waiting; no executable unclaimed task was available at the last check. #727 was being handled by another agent; do not duplicate it.
 
-### New bounded p16 full-matrix test
+### p16 full-matrix test
 
-The p16 3301 square's complete 5×5 matrix was tested directly as a Hill key over GF(29), separately from the previously tested inner 3×3. The full matrix determinant is **11 mod 29**, so it is invertible. Direct matrix and inverse application to original LP2 pp0–55 does not produce language; IoC remains 0.034478. This rejects only the straightforward full-matrix Hill interpretation.
+The p16 3301 square's complete 5×5 matrix was tested directly as a Hill key over GF(29), separately from the previously tested inner 3×3. Its determinant is **11 mod 29**, so it is invertible. Direct matrix and inverse application to original LP2 pp0–55 does not produce language; IoC remains 0.034478. This rejects only the straightforward full-matrix Hill interpretation.
 
 - Reproducer: `sims/lp2_3301_square_full_hill5_gate.cjs`
 - Decision: `im-results/lp2-3301-square-full-hill5-gate.md`
 
-### 2014 onion-2 timing channel reconciled and bounded
+### 2014 onion2 timing channel — now 114 exact intervals
 
-Merged four independent witnesses against the complete 256-byte onion-2 stream: BotSottile IRC, Cripion101 paste, Uncovering Cicada wiki exports 00120 and 00140. The overlap agrees with **zero conflicts**. The resulting **112 distinct intervals** cover zero-based byte indices **142–255 except 189 and 190**. Intervals are multiples of five minutes; interval/5 frequencies are 1:46, 2:33, 3:21, 4:5, 5:4, 6:2, 7:1.
+The original F5b-T merge supplied 112 exact intervals plus a bounded 30-minute bridge at byte positions190–191. A separate contemporary MassoBot site-change witness, cross-referenced with BotSottile byte-length snapshots, resolves the bridge to **10 and 20 minutes** (five-minute units [2,4]). The 114 exact intervals now cover one-based byte positions143–256 without gaps. There are 33 multi-witness cells, 81 single-witness cells, and 9 single-witness values flagged as unconfirmed. There are no interval-value disagreements; one Cripion clock-minute transcription slip at byte168 causes two dependent clock-difference findings, resolved by the elapsed column and independent wiki clock.
 
-- Derived rows and per-row source attribution: `im-results/lp2-2014-onion2-timing-merged-112.json`
+- Primary timing record: `resources/cicada2014-onion2-timing.json`
+- Derived witness merge and sweep summary: `im-results/lp2-2014-onion2-timing-merged-114.json`
 - Consolidated source gate: `im-results/lp2-2014-onion2-256bytes-grid-source-gate.md`
-- Reproducer for the direct key-stream tests: `sims/lp2_2014_onion2_timing_key_gate.cjs`
-- Broadcast: `communications/broadcast/20261113T095130Z_agent2_hill5-timing-handoff.md`
+- Bridge evidence: `im-results/onion2-massobot-timing-bridge.md`
+- Local Möbius/additive test: `sims/lp2_2014_onion2_timing_key_gate.cjs`
 
-The 112 values were tested as a repeating key under GP29 addition and steps along the source-derived Möbius 28-cycle, both signs, book-continuous and page-reset. These simple interpretations do not produce language: IoC remains 0.034466–0.034516, compared with original 0.034478. The 112-period and compression across the two missing positions are exploratory assumptions, not source-authenticated rules. Direct add/subtract/XOR/multiply/divide/remainder pairing with the observed onion2 or p50 bytes also gives no readable output. Do **not** infer the missing intervals at byte indices 189/190 from the BotSottile reconnect timestamp; the log only shows a catch-up to length 190 at 18:56. The original HTML comment “Patience is a virtue” is not a cipher instruction; timing may simply pace publication.
+The external F5b-T preregistered sweep tested 1,906,740 decodes across all 55 unsolved pages, plus 104,004 control decodes. All 3 planted positive controls recovered byte-exactly; **zero candidate decodings crossed** the threshold (best pmax 5.364 vs bar18.103). Its seven streams included all five bridge variants, including the later selected [2,4]. The local 114-period GP29 additive/Möbius-cycle test also remains nonlinguistic (IoC 0.034454–0.034514 vs original0.034478). Do not repeat the tested key-stream families.
 
-Other small exploratory tests (self-keyed word-sum Möbius rotor, previous-word-sum Möbius rotor, and BASE29 conversion of the 2014 onion2/p50 256-byte streams) did not yield plaintext and are not promoted or preserved as reusable attacks. Avoid expanding them without a new selector.
+The timing values are participant-observed, not an authenticated author-side generator. The two resolved intervals are cross-witness inferences; the server/operator clock remains unknown. The original HTML comment “Patience is a virtue” is not a cipher instruction. Revisit only if a new source specifies a different operation or connects the timing stream to a particular LP2 object.
 
-**Current state:** No new unknown LP2 plaintext, authentic key, complete cipher, or destination. Do not update `results/README.md` for these negative/intermediate results. Revisit timing only if an independent source links it to a specific LP2 object/clock/operation or supplies the two missing intervals; otherwise avoid repeating generic timing-key sweeps. Seek a source-selected reversible operation or authentic key material.
+**Current state:** No new unknown LP2 plaintext, authentic key, complete cipher, or destination. Do not update `results/README.md` for these negative/intermediate results; it already records the bridge resolution. Seek a source-selected reversible operation or authentic key material.
 
 ---
 
