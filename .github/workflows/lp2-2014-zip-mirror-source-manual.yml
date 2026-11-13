@@ -74,8 +74,8 @@ jobs:
         run: |
           node --check sims/lp2_2014_commoncrawl_raw_s3_sft.cjs
           node sims/lp2_2014_commoncrawl_raw_s3_sft.cjs --selftest
-      - name: Search first two source-era raw indexes
-        run: node sims/lp2_2014_commoncrawl_raw_s3_sft.cjs
+      - name: Search all seven source-era raw indexes
+        run: node sims/lp2_2014_commoncrawl_raw_s3_sft.cjs --full
       - name: Archive exact source-key index evidence
         if: always()
         uses: actions/upload-artifact@v4
