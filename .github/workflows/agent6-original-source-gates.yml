@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       route:
-        description: 'Select all, dimension orbit, page delta, wordshape, or predecessor delta'
+        description: 'Select all, dimension orbit, delta-state gates, or root24 quotient inverse'
         type: choice
         required: true
         default: 'all'
@@ -13,6 +13,7 @@ on:
           - position
           - shape
           - predecessor
+          - taylor
 permissions:
   contents: read
 jobs:
@@ -60,3 +61,6 @@ jobs:
       - name: All-secret predecessor-and-word-position differential entropy gate
         if: ${{ inputs.route == 'predecessor' }}
         run: node sims/lp2_predecessor_wordposition_entropy_sft.cjs
+      - name: Original p39-root quotient Taylor reversible full-cipher gate
+        if: ${{ inputs.route == 'taylor' }}
+        run: node sims/lp2_p29_grid_root24_quotient_taylor_inverse_sft.cjs
