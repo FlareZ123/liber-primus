@@ -333,6 +333,73 @@ for(const [label,forward,inverse,nPrintable,hex32] of rotatedResults) {
    "/256 printable; all bytes and planted control round-trip");
 }
 
+
+/**
+ * Source-terminal p50 first token selects one standalone 13x8 numeric page.
+ * One minimal historical operator transfer: GP29 +/- pad using those 104
+ * source-order bytes reduced mod29 against the *authentically solved* p56
+ * 85-rune ciphertext. Calibrate against the exact native P56 plaintext and
+ * honor its one original literal-F key hold (position56).
+ */
+const knownP56="AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES "+
+ "TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
+const longFirst=corpus.translit.map((s,i)=>({s,i}))
+ .sort((a,b)=>b.s.length-a.s.length);
+/** @param {string} source */
+function gpEncodeSolved(source) {
+ const out=[];
+ for(const word of source.split(" ")) {
+  for(let i=0;i<word.length;) {
+   const alias=longFirst.find(t=>word.startsWith(t.s,i));
+   assert(alias,"Missing GP token from verified solved phrase");
+   out.push(alias.i);i+=alias.s.length;
+  }
+ }
+ return out;
+}
+const originalP56=corpus.pages.find(p=>p.page===56).indices;
+const canonicalP56=gpEncodeSolved(knownP56);
+assert.equal(originalP56.length,85);
+assert.deepEqual(originalP56
+ .map((v,i)=>v===0?i:-1).filter(i=>i>=0),[35,47,51,56,74]);
+assert.equal(canonicalP56.length,85);
+const primes56=[];
+for(let n=2;primes56.length<84;n++) {
+ let isPrime=true;
+ for(let k=2;k*k<=n;k++)if(n%k===0){isPrime=false;break;}
+ if(isPrime)primes56.push(n);
+}
+let k56=0;
+const oracleShift=originalP56.map((c,i)=>{
+ if(i===56) return null; // Only literal unencrypted F; no key spent.
+ const shift=(primes56[k56++]-1)%29;
+ assert.equal((c-shift+29)%29,canonicalP56[i]);
+ return shift;
+});
+assert.equal(k56,84);
+assert.equal(originalP56[56],canonicalP56[56]);
+const sourceP50Only=grid.byte_rows.slice(10,23).flat();
+assert.equal(sourceP50Only.length,104);
+assert.equal(sourceP50Only[0],142);
+const first85=sourceP50Only.slice(0,85);
+let p50Matches=[0,0,0,0],p50QuotientUnsupported=0;
+for(let i=0;i<85;i++) {
+ if(i===56)continue;
+ const a=first85[i]%29,b=first85[i-(i>56?1:0)]%29;
+ const key=oracleShift[i];
+ if(a===key)p50Matches[0]++;
+ if(b===key)p50Matches[1]++;
+ if((a+key)%29===0)p50Matches[2]++;
+ if((b+key)%29===0)p50Matches[3]++;
+ if(key>8)p50QuotientUnsupported++;
+}
+assert.deepEqual(p50Matches,[2,4,3,2]);
+assert.equal(p50QuotientUnsupported,58);
+console.log("P50-only 13x8 source-start known p56 84-step native control:",
+ "GP29 remainder matches advance/hold and +/-:",p50Matches,
+ "quotient0..8 incapable of matching",p50QuotientUnsupported,
+ "of84 original signed-prime shifts. No solved transfer.");
+
 console.log("Cross-release fixed map: 2014 title133 joins 2016 width563",
   "33-cycle; 2014 div331 and 2016 height569 both reach p50:w0 after two words.");
 
