@@ -1,0 +1,14 @@
+name: LP2 historical chapter word-bag source crib
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-wordbag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original pages, illustrated chapters, and planted quote
+        run: node sims/lp2_chapter_wordbag_source_crib_sft.cjs
