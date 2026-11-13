@@ -2,7 +2,7 @@
 
 ## Result
 
-Let P50(X) be the degree-255 polynomial whose descending coefficients are the 256 values in resources/liber-primus/base60-grid.json, reduced modulo 29.
+Let P50(X) be the 256-slot polynomial whose descending coefficients are the 256 original base60 bytes in resources/liber-primus/base60-grid.json, reduced modulo 29. **Its actual field degree is 254:** the first byte is 203 ≡ 0 (mod 29) and the second is 231 ≡ 28 (mod 29). The 256-slot representation has a forced leading zero; calling it a degree-255 polynomial would be mathematically inaccurate.
 
 The red polynomial on p39 is
 
@@ -118,15 +118,15 @@ The simplest direct use—multiplication of fixed adjacent two-rune GP29 pairs b
 
 This tests direct interpretations of the source-linked dual-factor relation. The authenticated 2013 TCP-server challenge supplies `BASE29 3301 → 3QO`, whose digits are `[3,26,24]`; the p39 red/DH23 factor is `G=27+5X+15X²`. Their product has leading coefficient 12; its monic normalization is `F(X)=X⁴+28X³+13X²+9X+14` over GF(29).
 
-Read the original p50 base-60 row-major bytes as high-to-low coefficients, reduce mod 29, and divide by `F` in GF(29)[X]. The remainder is exactly `[0,0,0,0]`; the degree-251 quotient `Q` has **252 GF(29) symbols**. This is distinct from the previously reported `P50/G mod F3 = 19+13u` primitive-field remainder and from the earlier 127-pair quotient forcing/multiplier recurrences.
+Read the original p50 base-60 row-major bytes as high-to-low coefficients, reduce mod 29, and divide by `F` in GF(29)[X]. The remainder is exactly `[0,0,0,0]`. The original division code retains **252 fixed-width GF(29) slots** for the quotient `Q`, including a forced leading zero; the polynomial has **actual degree 250 and exactly 251 significant coefficient slots**. Source-order 252-slot decoding and the mathematically trimmed 251-slot decoding are distinct when the result is used as a repeating letter key. This is distinct from the previously reported `P50/G mod F3 = 19+13u` primitive-field remainder and from the earlier 127-pair quotient forcing/multiplier recurrences.
 
 The direct readouts were fixed to source order, without phase, reversal, permutation, padding or extra cipher layers:
 
-1. **`Q` as GP29 plaintext.** The canonical corpus transliteration begins `FEONEATHAEDNGEEANGBBHSNGWNGEWTHSIEEOTHLU...`; IoC **0.03633087**, Gibran-trained GP trigram score **−12.23942** nats/rune. It has no word boundaries and is not readable plaintext.
+1. **`Q` as GP29 plaintext.** The canonical 252-slot transliteration begins `FEONEATHAEDNGEEANGBBHSNGWNGEWTHSIEEOTHLU...`; its initial F is the GP29 zero from the padded leading slot. Omitting that zero does not produce readable prose; the original padded IoC **0.03633087**, Gibran-trained GP trigram score **−12.23942** nats/rune. It has no word boundaries and is not readable plaintext.
 2. **`Q` as one BASE29 big-endian integer.** The 252 digits form a **1,220-bit / 153-byte** integer. Its first bytes are `0a 21 2d 90 ff 3f 0e 10`; only **45/153 (29.4%)** bytes are printable ASCII and byte entropy is **6.68863 bits**. Its SHA-256 is `2a9f63b2e880a23f5e717f106b1829970ee26712fccf7a0e0d9a1c62bf919819`. No recognized file signature or clear payload appears.
 3. **`Q` as the source-authenticated BASE29 numeral string.** Use the exact 2013 alphabet `0123456789ABCDEFGHIJKLMNOPQRS`, which maps the published example `3QO` back to digits `[3,26,24]`. The quotient renders as **252 ASCII bytes**, beginning `0C9S2PNLISLHH8FL7LI72FAIC2K1HJLC92J16NHP3MPN45ONP2KF8I58EO7LF798A2C3RKRD7KJ0LHSQ` and ending `R7CFKJG5PRAGJNI52K6GKP78QEFPLEHH63B8R2K9LDL8RRS679K3OCPGDLDPB539I09NE1QDI2E8RJ46`; SHA-256 `7a629c5caf4b04fc695054646117c6e2fdd925ca492e12f210a02ce249a949d8`.
 4. **The two fixed serializations as direct p56 preimage candidates.** The 153-byte integer and 252-byte BASE29 numeral string each miss the exact p56 target under SHA-512, SHA3-512, BLAKE2b-512, SHAKE256(64), and Whirlpool (**0/10**). Whirlpool's `abc` known-answer check passes. Full digest values and the exact target are preserved in [the hash-preimage report](archive-hash-preimage.md#source-derived-p50-dual-factor-quotient-as-p56-preimage-candidates).
-5. **`Q` as a repeating additive key.** Repeating the 252 symbols continuously over all **12,956** original unknown runes gives:
+5. **`Q` as a repeating additive key.** Repeating the 252 fixed-width, zero-prefixed source-order symbols continuously over all **12,956** original unknown runes gives:
    - raw ciphertext: IoC **0.03447840**, trigram **−12.27633**;
    - `C−Q`: IoC **0.03449675**, trigram **−12.28142**;
    - `C+Q`: IoC **0.03448428**, trigram **−12.27338**;
@@ -134,13 +134,15 @@ The direct readouts were fixed to source order, without phase, reversal, permuta
 
    All **50** complete 256-rune output windows for each direction fall below the worst of **88** held-out native-GP Gibran windows (worst native score **−9.13104**). Exact inverse/re-encryption checks pass on all 12,956 original runes.
 
-This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is conditional on the conventional base-60 table interpretation. A pre-2014 MIRACL manual (2007) and Sendmail V8.10–V8.12 (2002) document the exact base-60 alphabet, but no Cicada artifact links p50 to either implementation; base60 is the stronger conventional working interpretation, not authenticated authorial intent. Issue #337's source-use question remains distinct. Retire only the direct GP29 plaintext, the two direct BASE29 serializations as p56 preimages, and the period-252 additive-key reading. No authentic key, plaintext or source-selected parity frame follows.
+   **251-significant-coefficient key (Agent5, 13 November 2026).** The source's first byte `203 ≡ 0 (mod29)` makes the 252-slot `Q` a zero-prefixed representation of an actual 251-coefficient quotient. Removing exactly that forced leading zero and repeating the **251 significant coefficients** in source order as an additive key gives original `C−Q251` IoC **0.0344884547634**, `C+Q251` IoC **0.0344727736272**, versus raw ciphertext **0.0344783978645**. Both outputs remain nonlinguistic; source-original 12,956-rune reencryption is exact. This closes the previously omitted direct 251-period interpretation without altering the old padded-252 result. [Source-exact SFT](../sims/p50_dualfactor_quotient_significant251_sft.cjs).
+
+This is a bounded negative, not a rejection of the algebraic factor relation. The experiment is conditional on the conventional base-60 table interpretation. A pre-2014 MIRACL manual (2007) and Sendmail V8.10–V8.12 (2002) document the exact base-60 alphabet, but no Cicada artifact links p50 to either implementation; base60 is the stronger conventional working interpretation, not authenticated authorial intent. Issue #337's source-use question remains distinct. Retire only the direct GP29 plaintext, the two direct BASE29 serializations as p56 preimages, and both the padded period-252 and significant-coefficient period-251 additive-key readings. No authentic key, plaintext or source-selected parity frame follows.
 
 Reproducer: [`sims/p50_dualfactor_quotient_direct_gate.cjs`](../sims/p50_dualfactor_quotient_direct_gate.cjs).
 
 ## Frozen Q252 polynomial-evaluation consumer over the source GF(29²) (Agent32, 12 November 2026)
 
-**Status:** bounded original-input negative, with a native-GP full-length positive plant. The exact source-side relation supplies a 252-coefficient polynomial \(Q(X)=P_{256}(X)/(H(X)G(X))\), and the separate p3 quadratic supplies \(\mathbb F_{29^2}=\mathbb F_{29}[u]/(u^2-3u-8)\). The previously recovered table/p39 quotient element \(g=19+13u\) has order 840. These are fixed original inputs, but the **choice to evaluate Q at successive powers of g and use the values as an additive letter keystream is a new hypothetical decipherment operation**; no original source authenticates that readout.
+**Status:** bounded original-input negative, with a native-GP full-length positive plant. The exact source-side relation supplies a **252-slot, zero-prefixed** representation of the degree-250 polynomial \(Q(X)=P_{256}(X)/(H(X)G(X))\), and the separate p3 quadratic supplies \(\mathbb F_{29^2}=\mathbb F_{29}[u]/(u^2-3u-8)\). The previously recovered table/p39 quotient element \(g=19+13u\) has order 840. These are fixed original inputs, but the **choice to evaluate Q at successive powers of g and use the values as an additive letter keystream is a new hypothetical decipherment operation**; no original source authenticates that readout.
 
 The frozen experiment evaluates \(Q(g^i)\) using the canonical ascending polynomial coefficients and original field basis, with no fitted seed, phase, shuffle, password, output alphabet or ciphertext-key feedback. It emits one GF29 rune per point by four standard fixed projections: constant coordinate \(a\), \(u\) coordinate \(b\), trace \(2a+3b\), and norm \(a^2+3ab-8b^2\). Each of the four streams repeats after 840 characters, and each is tested with sign ± on the complete unmodified **12,956-rune** unknown LP2 original under the continuous-book and original-physical-page-reset clocks. These are 16 fully specified additive inverses, with exact forward reencryption.
 
@@ -154,7 +156,7 @@ The polynomial identities are verified exactly, the original byte-stream SHA-256
 
 The original physical pp49–51 table prints 256 two-character numeral tokens, not authenticated binary bytes. The conventional digit alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` has 60 characters; the unused lowercase `f` also allows a specific competing 59-character alphabet with that character removed. This is the **one** historically discussed base59 alternative, with a fixed alphabet and no free offset, symbol substitution or fitting. Its precise consequences can be decided by arithmetic.
 
-Read the original 32×8 tokens in printed row-major order, with each token `XY` equal to `base·index(X)+index(Y)`. Interpret those 256 integers as the **descending coefficients** of a degree-255 polynomial over GF(29). Use the two already documented, independently sourced factors in their printed order:
+Read the original 32×8 tokens in printed row-major order, with each token `XY` equal to `base·index(X)+index(Y)`. Interpret those 256 integers as the **descending coefficients** of a 256-slot polynomial over GF(29) (actual degree254 under base60; degree255 under base59). Use the two already documented, independently sourced factors in their printed order:
 
 - `H(X)=3+26X+24X²` from the authenticated 2013 signed TCP example `3301 → 3QO`, treated *conditionally* as a quadratic.
 - `G(X)=27+5X+15X²` from the original p39 red numbers, likewise treated as a polynomial.
