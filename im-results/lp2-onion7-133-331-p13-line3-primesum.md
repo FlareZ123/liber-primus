@@ -1,6 +1,6 @@
-# PARABLE 361/133/331 as candidate LP2 page-line checksum addresses
+# PARABLE 449th-prime closure across three original LP2 page-line addresses
 
-**Agent 38, 13 November 2026. Classification:** exact original-input numeric correspondence and a bounded failed direct cipher consumer. **No decrypted unknown LP2 rune, historically authenticated page-line instruction, full key, or continuation destination has been found.** These are source-constrained candidate checksum/navigation steps, not an established solve.
+**Agent 38, 13 November 2026. Classification:** exact original-input numeric correspondence and a bounded failed direct cipher consumer. **No decrypted unknown LP2 rune, historically authenticated page-line instruction, full key, or continuation destination has been found.** Three source-selected physical lines now satisfy an exact prime-index closure. The address grammar remains a candidate, and no cipher has been solved.
 
 ## Why this particular address is independently selected
 
@@ -48,6 +48,20 @@ The combined `361` and `133` matches give more cross-source structure than a sol
 
 The three independent values obtained by applying the same GP-prime modulus 449 to the three solved-p57 PARABLE body clauses are, in their original order, **361, 133, 331**. As `PP L` physical line addresses they select **p36:1 (23 runes), p13:3 (23 runes), p33:1 (18 runes)**. Thus the selected source-concatenation has precisely **64 unchanged GP29 rune symbols**. This is a newly identified, fully specified 64-symbol register. The following factual line lengths use the original image line breaks; neither punctuation nor page headers contribute runes. They should not be confused with the three 2014 HTML numbers, of which only 133 and 331 actually appear in the preserved HTML.
 
+**New decisive arithmetic check, independent of a language score:** their three unchanged GP-prime sums total **1020 + 1229 + 920 = 3169**. The one-based **449th ordinary prime is exactly 3169**. The index **449** is *independently* fixed by the solved original p57 PARABLE heading, the same number used to reduce its three clause sums to the addresses `361,133,331`. Thus the proposed route is a fully specified numeric closed loop:
+
+```text
+solved p57 heading GP prime sum H = 449
+solved p57 clause GP prime sums: [1259, 1031, 1229]
+clauses mod H: [361, 133, 331]
+interpret three values as [p36:1, p13:3, p33:1]
+original selected line GP-prime sums: [1020, 1229, 920]
+total selected GP-prime sum: 3169 = ordinary prime(449)
+original selected rune counts: [23,23,18], total 64
+```
+
+The original 2013 CicadaOS `prime_echo` provided a historical 464-prime enumeration, making one-based prime ordinals independently plausible, but **nothing in the original LP2 or parable authenticates the `PP L` address grammar or instructs players to add the indicated lines**. The relation combines one preselected heading number and the three source-selected clause residues with unedited ciphertext. It is a notably stronger constrained prediction than the two individual checksum equalities; however, the grammar was discovered after inspecting the original corpus, and the cumulative search history prevents treating the match as a formal statistical proof of intention.
+
 The **64** count is numerically compatible with a 64-byte SHA-512-family digest, such as the printed p56 AN END hash. This does not authenticate the unknown hash algorithm, an octet interpretation of GP29 runes, or the key's role. As a small, finite original-target check, interpret the source-order 64 selected runes as **one byte each**, using either their canonical GP29 indices `0..28` or their established GP prime weights `2..109`. For each of these two natural serializations compute SHA-512 and BLAKE2b-512 and require **exact equality** with the 128-hex-character source p56 digest. The four direct computed digests all **miss** the printed target. There is no hidden onion-page preimage in this literal 64-byte interpretation.
 
 As a separate one-step cipher consumer, repeat the 64 original GP indices as an additive key over all **76 original p55 runes**, starting at local index 0 and using both signs without any inferred offset or alphabet substitution. The two outputs have IoCs **0.03719298246** (subtraction) and **0.03228070175** (addition), compared with **0.03789473684** for raw p55; both look nonlinguistic and exactly re-encrypt. Thus this register has yet to yield a source-selected reversible cipher. These observations extend the original `133` checksum with two *independently frozen address residues* and a complete register, but the claimed address syntax and octave encoding remain hypotheses.
@@ -73,8 +87,8 @@ Neither decodes as ordinary GP-native text, and both exactly re-encode the origi
 
 ## Decision for future original-input work
 
-The pair of **133 -> 331** and **361 -> p36 line1 / p55 inner23 sum1020** checks is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
+The exact **449th-prime closure** joining all three source-selected lines, together with the **133 -> 331** and **361 -> p36 line1 / p55 inner23 sum1020** checks, is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
 
 **Do not promote the numeric link to a plaintext recovery, and do not scan alternative line indices, moduli, phases or whole-book key variants to rescue it.** The route itself is the candidate; its direct Vigenere consumer fails.
 
-**Reproducer:** [read-only original-corpus CommonJS SFT](../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs) checks both archive labels, the solved p57 GP-prime sums, the exact p13 and p36 line glyphs and two neighboring p13 lines, the strictly addressed three-step walk, all six complete original-cipher inverses, both source-23-to-p55-core inverses, the 64-rune three-address register, its four exact p56 hash candidates, both p55 direct-register inverses, and solved GP positive controls.
+**Reproducer:** [read-only original-corpus CommonJS SFT](../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs) checks both archive labels, the solved p57 GP-prime sums, the exact p13 and p36 line glyphs and two neighboring p13 lines, the strictly addressed three-step walk, all six complete original-cipher inverses, both source-23-to-p55-core inverses, the 64-rune three-address register, its exact independently indexed prime(449) checksum, its four exact p56 hash candidates, both p55 direct-register inverses, and solved GP positive controls.
