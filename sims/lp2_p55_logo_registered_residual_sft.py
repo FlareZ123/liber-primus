@@ -13,6 +13,7 @@ SFT: python sims/lp2_p55_logo_registered_residual_sft.py
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -94,6 +95,29 @@ def main() -> None:
     positive = negative.copy()
     for x in (100, 300, 500, 700, 900, 1100):
         cv2.circle(positive, (x, 38), 11, 0, -1, lineType=cv2.LINE_8)
+    # Independent original physical p53 carries the exact same moth motif.
+    # Register its native 600x1200 crop against physical p55 to distinguish
+    # source-template strokes from a deliberately edited final-page image.
+    p53_bytes = (ROOT / "resources/liber-primus/70.jpg").read_bytes()
+    p53_sha = hashlib.sha256(p53_bytes).hexdigest()
+    assert p53_sha == "4ec7293ba72bd52384787646d204c8a68fefaf2d22673c40d27f23812d424548"
+    p53 = cv2.imdecode(np.frombuffer(p53_bytes, np.uint8), cv2.IMREAD_GRAYSCALE)
+    assert p53 is not None and p53.shape == (3600, 2400)
+    model = p53[2700:3300, 600:1800]
+    area = cv2.imread(str(ROOT / "resources/liber-primus/72.jpg"),
+                      cv2.IMREAD_GRAYSCALE)[2600:3500, 500:1900]
+    _, same_moth_ncc, _, best_location = cv2.minMaxLoc(
+        cv2.matchTemplate(area, model, cv2.TM_CCOEFF_NORMED)
+    )
+    offset_x = 500 + best_location[0] - 600
+    offset_y = 2600 + best_location[1] - 2700
+    assert (offset_x, offset_y) == (66, 67)
+    p53_matching_crop = p53[2600-offset_y:3300-offset_y,
+                            650-offset_x:1850-offset_x]
+    assert p53_matching_crop.shape == target.shape
+    crossdiff = cv2.absdiff(target, p53_matching_crop)
+    assert int(crossdiff.max()) <= 10
+    cross_disagreements = int(((target < 160) != (p53_matching_crop < 160)).sum())
     output = {
         "scope": "Visible extra dark ink after pre-2014 logo registration",
         "source_url": IMAGE,
@@ -101,6 +125,15 @@ def main() -> None:
         "original_sha256": original_sha,
         "original_p55_crop_xyxy": [650, 2600, 1850, 3300],
         "registration": registration,
+        "cross_page_moth_control": {
+            "p53_sha256": p53_sha,
+            "p53_to_p55_translation_xy": [offset_x, offset_y],
+            "normalized_correlation": round(float(same_moth_ncc), 8),
+            "mean_abs_pixel_difference": round(float(crossdiff.mean()), 8),
+            "max_abs_pixel_difference": int(crossdiff.max()),
+            "threshold160_disagreements_720k": cross_disagreements,
+            "p53_original_reference_extra_ink": {},
+        },
         "controls": {},
         "original": {},
         "unknown_lp2_plaintext_recovered": False,
@@ -111,6 +144,11 @@ def main() -> None:
         negative_stats, _ = extra_components(negative, dist, exclusion_px=exclusion)
         positive_stats, _ = extra_components(positive, dist, exclusion_px=exclusion)
         output["original"][name] = original_stats
+        p53_stats, _ = extra_components(p53_matching_crop, dist, exclusion_px=exclusion)
+        output["cross_page_moth_control"]["p53_original_reference_extra_ink"][name] = {
+            "extra_dark_pixels": p53_stats["extra_dark_pixels"],
+            "components_ge20": p53_stats["components_area_at_least_20"],
+        }
         output["controls"][name] = {"synthetic_jpeg_negative": negative_stats,
                                     "six_dark_dots_positive": positive_stats}
         if exclusion == 4.5:
@@ -136,6 +174,7 @@ def main() -> None:
         "registration_inliers": registration["affine_inliers"],
         "registration_fuzzy_f1": registration["fuzzy_f1"],
         "source_sha256": source_sha,
+        "cross_page_moth_control": output["cross_page_moth_control"],
         "original_vs_synthetic_controls": {
             key: {
                 "original": output["original"][key]["extra_dark_pixels"],
