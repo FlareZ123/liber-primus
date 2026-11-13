@@ -81,10 +81,36 @@ Across 500 deterministic held-out native-text windows with the same 28 segment l
 
 The synthetic p57 control recovers exactly under all four inverse pairs. Thus the negative result is not a transposition implementation failure. The test is distinct from the previously recorded whole-book eight-column word-order interleaver: this experiment is a rune-level, row-specific transposition independently applied to each original thirteen-dot interval.
 
+
+## Totient transform of the eight-byte row
+
+### Plausible human solve path
+
+The LP1 p5 sentence explicitly elevates the totient function, and the solved p56 method independently demonstrates a prime-totient key stream. Combined with the source-aligned 32 rows and 32 thirteen-dot intervals, a solver could try applying Euler's phi to each of a row's eight byte values and repeating the resulting eight-symbol key across its interval. This is a more specific operation than unconstrained key hunting, although the manuscript does not explicitly connect p5's instruction to the p50 table.
+
+### Frozen variants and result
+
+For each of the first 28 unknown intervals, the eight row bytes are transformed by phi and repeated with period eight. Both additive directions are tested. Because two table cells are zero and phi(0) is undefined, only two natural conventions are tested: preserve zero as a null key, or treat the byte as a zero-based index and apply phi(byte+1).
+
+| Key construction | Decryption direction | GP29 four-gram log probability per rune |
+|---|---|---:|
+| phi(byte), zero as null | subtract key | −14.1935683 |
+| phi(byte), zero as null | add key | −14.2013267 |
+| phi(byte+1), one-based | subtract key | −14.2017751 |
+| phi(byte+1), one-based | add key | **−14.1802872** |
+| Original undecoded register | — | −14.1912584 |
+
+The best variant improves the raw score by only 0.011 nats per rune. It remains **3.10 nats per rune below the worst** of the same 500 held-out native-text windows (minimum −11.0766107; median −10.7949813). No variant produces natural plaintext.
+
+As a local check against the provisional 30-rune p55 crib at segment offset 269, row 28's generated phi key matches the required stream at most **3/30** positions across the two zero conventions and both signs. There is no exact key-stream recovery. The crib remains provisional, so this is supporting negative evidence, not an independent disproof of the proposed words.
+
+All four transforms are checked by exact synthetic p57 round trips. The source-aligned period-eight hypothesis is therefore rejected in these fixed forms; this does not rule out a different totient construction or another role for the table.
+
+
 ### Decision
 
-**Reject the direct mod-29 repeating-eight-byte-pad transfer and the four source-fixed row-ranked per-interval eight-column transpositions** as explanations of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals; neither its count nor the new row-rank experiment establishes that each row is a cipher key. The key-independent fixed-substitution obstruction remains conditional on direct native GP-English and does not exclude within-interval state changes, transposition interleaved with a symbol-changing cipher, or another original side channel.
+**Reject the direct mod-29 repeating-eight-byte-pad transfer, the four source-fixed row-ranked per-interval eight-column transpositions, and the four fixed period-eight row-wise totient streams** as explanations of direct native GP-English on unsolved LP2. The exact 31→32 segmentation is source-real but contains two empty intervals; neither its count nor these negative row-consumer tests establishes that each row is a cipher key. The key-independent fixed-substitution obstruction remains conditional on direct native GP-English and does not exclude within-interval state changes, transposition interleaved with a symbol-changing cipher, or another original side channel.
 
-A justified successor must identify an independent original instruction specifying a different row consumer, or establish plaintext/key material on a previously unfitted interval. Fitting rotations, period offsets, marker deletion, arbitrary byte relabelings, or additional rank transforms to these same 32 intervals would lack that selector.
+A justified successor must identify an independent original instruction specifying a different row consumer, or establish plaintext/key material on a previously unfitted interval. Fitting rotations, period offsets, marker deletion, arbitrary byte relabelings, or additional rank/totient transforms to these same 32 intervals would lack that selector.
 
-**Reproduction:** [single-file CommonJS SFT](../sims/lp2_13dot_32row_grid_segment_sft.cjs) now includes the four row-ranked columnar inverses, source-calibrated GP29 four-gram scoring, exact original re-encryption, and planted p57 controls. Run with Node.js 22: `node sims/lp2_13dot_32row_grid_segment_sft.cjs`. The earlier additive-pad gate was also run successfully in [GitHub Actions run 43387480566](https://github.com/FlareZ123/liber-primus/actions/runs/43387480566). It reads the pinned original corpus, ink annotation and numerical table, asserts the 31 mark/32 section geometry, checks the two empty sections and runs the exact positive-control inverses. Source references: [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), [canonical corpus](../resources/liber-primus/lp2-corpus.json), [base60 table](../resources/liber-primus/base60-grid.json).
+**Reproduction:** [single-file CommonJS SFT](../sims/lp2_13dot_32row_grid_segment_sft.cjs) includes the direct-pad gate, four row-ranked columnar inverses, four period-eight totient streams, source-calibrated GP29 four-gram scoring, exact original re-encryption, planted p57 controls, and the provisional p55 crib comparison. Run with Node.js 22: `node sims/lp2_13dot_32row_grid_segment_sft.cjs`. The earlier additive-pad gate was also run successfully in [GitHub Actions run 43387480566](https://github.com/FlareZ123/liber-primus/actions/runs/43387480566). It reads the pinned original corpus, ink annotation and numerical table, asserts the 31 mark/32 section geometry, checks the two empty sections and runs the exact positive-control inverses. Source references: [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), [canonical corpus](../resources/liber-primus/lp2-corpus.json), [base60 table](../resources/liber-primus/base60-grid.json).
