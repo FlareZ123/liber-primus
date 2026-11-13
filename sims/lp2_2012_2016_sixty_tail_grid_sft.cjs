@@ -67,6 +67,23 @@ const ascendingFirst = Object.values(first).sort((a, b) => a - b);
 const ascendingLater = Object.values(later).sort((a, b) => a - b);
 assert.deepEqual(ascendingLater.map((x, i) => x - ascendingFirst[i]), [60, 60]);
 
+/**
+ * Historically exact 2012 phone-stage operation: for an image whose width
+ * and height are prime, multiply those two primes by 3301 and append .com.
+ * Reapplication to the 2016 signed carrier is only a candidate destination.
+ * @param {number} x
+ */
+function isPrime(x) {
+  for (let d = 2; d * d <= x; d++) if (x % d === 0) return false;
+  return x > 1;
+}
+assert.ok([first.width, first.height, later.width, later.height, 3301].every(isPrime));
+const original2012Host = first.width * first.height * 3301;
+const candidate2016Host = later.width * later.height * 3301;
+assert.equal(original2012Host, 845145127);
+assert.equal(candidate2016Host, 1057465447);
+
+
 const trailer = original2012.subarray(original2012.length - 61);
 assert.equal(trailer.toString('ascii'), 'TIBERIVS CLAVDIVS CAESAR says "lxxt>33m2mqkyv2gsq3q=w]O2ntk"\n');
 const key = trailer.subarray(0, 60);
@@ -95,6 +112,9 @@ console.log(JSON.stringify({
   source2012: first,
   source2016: later,
   sortedDimensionDelta: [60, 60],
+  original2012PhoneDomain: original2012Host + '.com',
+  hypothetical2016AnalogDomain: candidate2016Host + '.com',
+  analogDomainStatus: 'arithmetic candidate only: no historical host or archive verified',
   image2012Trailer: { fullBytes: trailer.length, printablePayloadBytes: key.length },
   originalGridByteLength: sourceBytes.length,
   directReversibleReadouts: results,
