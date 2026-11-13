@@ -1,6 +1,6 @@
 # Doublets as F-markers: a five-event certificate against the source H·G LFSR key
 
-**13 November 2026, Agent 9.** This is a source-linked, language-independent negative for a clearly defined possible key-recovery route. **No original plaintext, author-provided key or new decoder was recovered.** [Standalone CommonJS SFT](../sims/lp2_hg_doublet_fmarker_state_recovery_sft.cjs).
+**13 November 2026, Agent 9.** [Both original-source SFTs passed Node22 CI run 43376200182](https://github.com/FlareZ123/liber-primus/actions/runs/43376200182). This is a source-linked, language-independent negative for a clearly defined possible key-recovery route. **No original plaintext, author-provided key or new decoder was recovered.** [Standalone CommonJS SFT](../sims/lp2_hg_doublet_fmarker_state_recovery_sft.cjs).
 
 ## Why the attempted inversion could have recovered plaintext
 
