@@ -154,6 +154,47 @@ const rsaInvalidP39 = [0, 1, 2].map((phase) =>
 assert.deepEqual(rsaInvalidByPhase, [134, 115, 119]);
 assert.deepEqual(rsaInvalidP3, [6, 3, 1]);
 assert.deepEqual(rsaInvalidP39, [2, 1, 1]);
+
+// The two source-bracketed black tails make one exact-length candidate
+// for the complete, original unsolved-only red rune stream.
+const p3Tail = pages.get(3).slice(122);
+const p39Tail = pages.get(39).slice(122);
+assert.equal(p3Tail.length, 95);
+assert.equal(p39Tail.length, 118);
+const combinedBlackTail = p3Tail.concat(p39Tail);
+const unsolvedRed = ink.pages.filter((page) => page.page <= 55)
+  .flatMap((page) => (page.red_spans || [])
+    .flatMap((span) => indexed(span.runes)));
+assert.equal(unsolvedRed.length, 213);
+assert.equal(combinedBlackTail.length, unsolvedRed.length);
+assert.equal(corpus.pages.find((p) => p.page === 57).indices.length, 95);
+function coincidenceNumerator(seq) {
+  const hist = Array(29).fill(0);
+  for (const r of seq) hist[r]++;
+  return hist.reduce((acc, n) => acc + n * (n - 1), 0);
+}
+const tailAsKeyOutcomes = [];
+for (const swap of [false, true]) for (const backwards of [false, true]) {
+  const key = swap ? p39Tail.concat(p3Tail) : combinedBlackTail.slice();
+  if (backwards) key.reverse();
+  for (const sign of [-1, +1]) {
+    const decoded = unsolvedRed.map((c, i) => (c + sign * key[i] + 29) % 29);
+    tailAsKeyOutcomes.push({swap, backwards, sign,
+      coincidence_numerator: coincidenceNumerator(decoded),
+      count_e: decoded.filter((r) => r === 18).length});
+  }
+}
+const bestTailDirect = Math.max(...tailAsKeyOutcomes
+  .map((r) => r.coincidence_numerator));
+assert.equal(bestTailDirect, 1654);
+assert.equal(Math.max(...tailAsKeyOutcomes.map((r) => r.count_e)), 13);
+// Independent same-sized original-native positive plant, truly encrypted
+// under the source-extracted 213-rune key, must decrypt losslessly.
+const parable = corpus.pages.find((p) => p.page === 57).indices;
+const plant = Array.from({length: 213}, (_, i) => parable[i % parable.length]);
+const plantCipher = plant.map((v, i) => (v + combinedBlackTail[i]) % 29);
+assert.deepEqual(plantCipher.map((v, i) =>
+  (v - combinedBlackTail[i] + 29) % 29), plant);
 console.log(JSON.stringify({
   source: { p3: { offset: 119, indices: red[0].indices, sum: s0 },
     p39: { offset: 119, indices: red[1].indices, sum: s1 } },
@@ -174,5 +215,10 @@ console.log(JSON.stringify({
     invalid_book_by_phase: rsaInvalidByPhase,
     invalid_p3_by_phase: rsaInvalidP3,
     invalid_p39_by_phase: rsaInvalidP39 },
+  red213_direct_tail_key: { p3_tail: p3Tail.length, p39_tail: p39Tail.length,
+    unsolved_red_runes: unsolvedRed.length, original_trial_results: tailAsKeyOutcomes,
+    highest_trial_ioc: bestTailDirect / (213 * 212),
+    parable_original_length: parable.length,
+    source_native_plant_recovers_exactly: true },
   verdict: 'Source-exact cross-artifact arithmetic; 1-based page adjustment is unselected; no plaintext/key.',
 }, null, 2));
