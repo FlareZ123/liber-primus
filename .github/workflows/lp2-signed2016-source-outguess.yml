@@ -2,9 +2,6 @@ name: LP2 2016 signed-source OutGuess key gate
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'sims/lp2_p55_shell32_outguess_sft.cjs'
 
 jobs:
   source-key:
