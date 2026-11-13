@@ -50,7 +50,10 @@ for (const line of dictionary.split(/\r?\n/)) {
 
 /** @type {{page: number, indices: number[], starts: number[]}[]} */
 const pages = [];
-for (const [page, source] of transcription.split('%').slice(0, 56).entries()) {
+const sourceSections = transcription.split('%');
+for (let page = 0; page < 56; page++) {
+  // The transcription omits original physical p50, which contains only numbers.
+  const source = page === 50 ? '' : sourceSections[page < 50 ? page : page - 1];
   const indices = Array.from(source).filter(ch => runeId.has(ch)).map(ch => runeId.get(ch));
   assert.deepEqual(indices, corpus.pages.find(p => p.page === page).indices);
   const starts = Array.from(source.matchAll(/\.[\u16A0-\u16FF]{4,}/gu),
@@ -77,7 +80,7 @@ for (const { page, indices, starts } of pages) {
     hits.push({ page, offset: start, ...match });
   }
 }
-assert.equal(pages.reduce((n, p) => n + p.starts.length, 0), 72);
+assert.equal(pages.reduce((n, p) => n + p.starts.length, 0), 71);
 assert.equal(word4.size, 2123);
 assert.deepEqual(hits, [
   { page: 19, offset: 152, word: 'rift', frequency: 3 },
@@ -114,10 +117,10 @@ for (let t = 0; t < trials; t++) {
   if (score >= observedScore) nScoreGE++;
   totalMatches += count;
 }
-assert.equal(nCountGE, 954);
-assert.equal(nScoreGE, 622);
+assert.equal(nCountGE, 957);
+assert.equal(nScoreGE, 607);
 console.log(JSON.stringify({
-  candidateLexiconGP4: word4.size, sentenceStarts: 72, hits,
+  candidateLexiconGP4: word4.size, sentenceStarts: 71, hits,
   observedCount, observedScore, trials, nullMean: totalMatches / trials,
   countTail: (nCountGE + 1) / (trials + 1),
   scoreTail: (nScoreGE + 1) / (trials + 1),
