@@ -50,6 +50,33 @@ A direct, inexpensive decipherment was frozen from only the source-selected eige
 
 Neither source-defined sign yields plaintext; both remain near-uniform. This rejects the **direct seven-block GP29 additive key** on the original p40–53 body. It does *not* refute the polynomial factor, a source-selected two-dimensional projector, a nonlinear key consumer, or the possibility of an accidental factor match.
 
+## Independent p3 red polynomial as an invertible four-symbol operator
+
+The source contains a second, numerically independent, identically located red quadratic: p3 local119 has coefficients `[13,23,2]`, which define `R(x)=13+23x+2x²`. Unlike the p39 polynomial, `R(M_signed)` is a **full-rank four-by-four GF29 matrix with determinant 6**:
+
+```text
+R(M_signed) = [23 19 12 24]
+              [21 23  3 10]
+              [22 18  0 10]
+              [27 19 25 26]
+
+R(M_signed)^(-1) = [20  2 25 18]
+                   [ 3 19 25 16]
+                   [21  8  5 18]
+                   [26  2 19  7]
+```
+
+This yields a distinct, completely reversible **direct Hill candidate** whose matrix coefficients are *not* the printed p15 coefficients. Test both `R(M_signed)` and its inverse without any fitted key, phase, initial state or source reordering on the 1,744 original pp16–22 runes and the separate 3,000 original pp40–53 black-body runes.
+
+| Original target | Decryption operator | Decoded GP29 IoC |
+| --- | --- | ---: |
+| pp16–22 | `R(M_signed)` | 0.034552364109 |
+| pp16–22 | `R(M_signed)^(-1)` | 0.034735271361 |
+| pp40–53 black | `R(M_signed)` | 0.034440146716 |
+| pp40–53 black | `R(M_signed)^(-1)` | 0.034346559964 |
+
+All four inverses recover **no apparent plaintext**. Each original 4-rune block re-encrypts identically under the source-derived matrix, while an independent planted 92-rune native-GP p57 control decrypts exactly in each direction. These tests retire the simplest full-rank p3-polynomial direct consumer. Both original p3 and p39 polynomials can still contain useful information about the signed matrix without specifying such a direct Hill cipher.
+
 ## Key-independent all-secret two-dimensional kernel-pad gate
 
 The common factor supplies a sharper test than adding one favored eigenvector as a key. Let `B=Q(M_signed)` with source-known rank2. If any proposed four-GP-rune cipher has `C=P+K mod29` with **an arbitrarily complex, arbitrarily changing secret four-vector `K` in the entire two-dimensional kernel of `B`**, then necessarily `BC=BP` on *every* source block, for every such key. No key search, alphabet permutation or assumed period can evade this invariant. The first two independent rows of `B` give a complete 29²-state quotient:
@@ -80,6 +107,6 @@ The source-native control mapping retains multi-letter GP digraphs, its special 
 
 ## Research decision
 
-The exact crosspage polynomial factor is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. Both the direct eigenstate key and **all additive keys confined to the quadratic kernel** fail original native-GP language tests, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**. A stronger independent source instruction would be needed before investigating a different, genuinely nonlinear consumer.
+The exact crosspage polynomial factor is a concrete **candidate selector** for the previously unmotivated signed-matrix reading of p15. It earns a bounded independent decoder investigation if a separate manuscript cue identifies **how to use `Q(M)`** to remove a state or decode output coordinates. Without that consumer, extracting arbitrary eigenstates and fitting GP language would produce an unauthenticated cipher. The direct eigenstate pad, the **p3-polynomial direct Hill decoder** and **all additive keys confined to the quadratic kernel** fail original native-GP language tests, so **do not escalate into unconstrained 812-clock/coordinate/phase sweeps**. A stronger independent source instruction would be needed before investigating a different, genuinely nonlinear consumer.
 
 [Original-input CommonJS SFT](../sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs) · [Prior literal-matrix OFB/CFB gate](lp2-p15-fourstate-ofb-cfb-source-gate.md) · [Independent p3/p39 quadratic field investigation](lp2-red-triad-frobenius56-source-state.md) · [Established p15 prime spiral](../results/lp2-p15-fibonacci-prime-spiral.md).
