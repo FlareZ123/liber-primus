@@ -22,7 +22,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
-const read = file => fs.readFileSync(path.join(root, file), "utf8");
+const read = file => fs.readFileSync(path.join(root, file), "utf8").replace(/\r\n/g, "\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const sourceLP1 = read("resources/transcriptions/lp1_wulfic_canonical.txt");
 const runeMap = new Map(gp.runes.map((glyph, ordinal) => [glyph, ordinal]));
