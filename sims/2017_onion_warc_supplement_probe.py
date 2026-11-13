@@ -66,6 +66,24 @@ def main() -> None:
                          for m in members
                      ),
                      member_names=[m.name for m in members[:60]])
+                known_cicada_hosts = (
+                    "ky2khlqdf7qdznac.onion",  # Authentic 2014 Onion7 LP2 index
+                    "eq6emgv2ehsrix6t.onion",  # Historical missing continuation
+                )
+                for member in members:
+                    if not member.isfile() or not member.name.endswith(".nodes"):
+                        continue
+                    handle = archive.extractfile(member)
+                    assert handle is not None
+                    node_bytes = handle.read().lower()
+                    lines = node_bytes.splitlines()
+                    emit(stage="node_inventory", source_file=member.name,
+                         bytes=len(node_bytes), row_count=len(lines),
+                         onion_literals=node_bytes.count(b".onion"),
+                         first_line_bytes=len(lines[0]) if lines else 0,
+                         known_cicada_hosts_present={host: host.encode() in node_bytes
+                                                     for host in known_cicada_hosts},
+                         cicada_literal_count=node_bytes.count(b"cicada"))
     except (OSError, urllib.error.URLError, tarfile.TarError, ValueError) as error:
         emit(stage="get_or_catalog", error=f"{type(error).__name__}: {error}")
 
