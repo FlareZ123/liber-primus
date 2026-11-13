@@ -41,6 +41,10 @@ Values in the control columns are **minimum equal-pair rates** for all sampled w
 
 The full-book rate is below **all 4,428** control windows. Six of nine visual chapters also lie below every one of their respective windows in all three corpora; pp0–2 have one Shakespeare tie, pp23–26 two Emerson lower controls, and the two-page pp54–55 comparison has too little discriminatory power.
 
+## Independent original-author GP plaintext control
+
+An earlier source-format audit identified a critical published-control error: LP1 physical **p5, p12 and p13** are printed in encrypted runes, though their surrounding chapters have historical solved translations. The six *genuinely source-clear* original GP pages **p3, p8, p9, p10, p11, p14** have **1,001** actual printed runes and **128/2,146 = 0.05965** matches at identical physical page-local rune offsets. The unknown LP2 whole-book rate is **10,751/311,132 = 0.03455**. This independent author-era comparison requires no editorial English-GP encoding and is qualitatively consistent with the corrected English control windows. The cleartext six-page length schedule differs from LP2's 55-page schedule, so this is **not** a matched-length null or formal p-value. The six-page source selection is independently anchored to literal plaintext word starts and asserted in both SFTs; see the [corrected original-author p15 fourblock control](lp2-p15-fourblock-allsecret-collision-gate.md).
+
 ## Interpretation and next decision
 
 A shared page-offset GP29 alphabet, however complex and secret, cannot transform the original LP2 page-aligned equality pattern into any of the **4,428 sampled English windows** under the source-native spelling and exact printed-page-length model. This is an algebraically exact pair-preservation obstruction against the tested finite windows; it strongly disfavors a single page-reset reused additive key as an intended ordinary-English inverse. The result also applies to per-chapter repeated page-offset alphabets for the seven strongly incompatible chapters.
