@@ -61,6 +61,23 @@ assert.equal(s1 - s0, red[1].page - red[0].page);
 assert.deepEqual([primeOrdinal(s0), primeOrdinal(s1)], [33, 40]);
 assert.ok(visualChapterStarts.includes(primeOrdinal(s0)));
 assert.ok(visualChapterStarts.includes(primeOrdinal(s1)));
+// The original archive has all 75 physical JPGs 00..74:
+// archive position is 1-based, so for LP2 page p, original file is p+17.jpg.
+// A single consistent 1-based archive-ordinal reading instead sends
+// triad sums to source files 32.jpg/p15 and 39.jpg/p22, which bracket
+// the original p15..22 Fibonacci chapter; p33 red heading gives file74/p57.
+const archiveFirstLP2 = 17;
+const ordinalToLP2 = (n) => n - 1 - archiveFirstLP2;
+const redHeading33 = ink.pages.find((p) => p.page === 33)
+  .red_spans.find((span) => span.start === 0);
+const sum33 = sum(indexed(redHeading33.runes));
+assert.equal(sum33, 379);
+assert.equal(primeOrdinal(sum33), 75);
+assert.deepEqual([primeOrdinal(s0), primeOrdinal(s1), primeOrdinal(sum33)],
+  [33, 40, 75]);
+assert.deepEqual([s0, s1, sum33]
+  .map((n) => ordinalToLP2(primeOrdinal(n))), [15, 22, 57]);
+assert.equal(corpus.pages.find((p) => p.page === 57).indices.length, 95);
 assert.equal(s0 - (red[0].page + 1), sourceTitle);
 assert.equal(s1 - (red[1].page + 1), sourceTitle);
 const sourceTitleSpans = ink.pages.flatMap((page) => (page.red_spans || [])
@@ -255,6 +272,13 @@ console.log(JSON.stringify({
   page_gap: red[1].page - red[0].page,
   original_onion7_html_title: sourceTitle,
   original_prime_ordinal_targets: [primeOrdinal(s0), primeOrdinal(s1)],
+  complete_archive_one_based_prime_ordinal_crosswalk: {
+    source_red_p3_p39_p33_sums: [s0, s1, sum33],
+    prime_ordinals: [primeOrdinal(s0), primeOrdinal(s1), primeOrdinal(sum33)],
+    archive_source_jpeg_files: [32, 39, 74],
+    lp2_pages: [15, 22, 57],
+    interpretations: 'p15-p22 native visual chapter endpoints, solved p57 PARABLE'
+  },
   source_red_heading_chapter_starts: visualChapterStarts,
   source_triple_chapter_reference: { on_p3: addressed3.length, on_p39: addressed39.length,
     both_address_chapters: addressed3.length * addressed39.length,
