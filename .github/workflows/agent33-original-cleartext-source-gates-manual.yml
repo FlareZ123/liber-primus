@@ -31,3 +31,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_floral_displaced_sharedpad_sft.cjs
           node sims/lp2_p15_floral_displaced_sharedpad_sft.cjs
+      - name: Test keyless GP29-delta28 historical compressed-byte transport
+        run: |
+          node --check sims/lp2_delta28_direct_compression_sft.cjs
+          node sims/lp2_delta28_direct_compression_sft.cjs
