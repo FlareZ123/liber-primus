@@ -43,8 +43,27 @@ The top five original pairs were independently subjected to an exact simultaneou
 
 These are **exact bounds for each chosen two-page word-aligned, shared-additive-pad and finite dictionary model**. They are not claims that the pages contain those many English spelling errors. They cannot exclude a cipher that changes word boundaries, uses a different plaintext alphabet or language, or carries more state; the remaining 1,321 pairs were ranked statistically but not subjected to this expensive exact DP. Source-native positive plants are included for two page-pairs, using independently GP-normalized native Gibran words matched to exact original word lengths and an arbitrary common 29-way pad; separate independent-pad negative controls demonstrate the DP's sensitivity.
 
+## Solved-p57 source key: 55 exact word interiors for 55 pages
+
+The solved p57 PARABLE prints the instruction **“SHED OUR OWN CIRCUMFERENCES”** in a 20-word, 95-rune page. Joining its printed line wraps and removing the first and last GP rune of each complete word yields **55 source-ordered interior runes**, exactly matching the **55 rune-bearing unresolved physical pages** (skip numeric p50). This creates a more source-constrained proposed assignment than an arbitrary page key: use the actual p57 interior rune `B_j` as an additive GP29 page-offset on corresponding physical page `j`, while granting a completely unknown, unrestricted *shared* positional stream `K_t`:
+
+`C_{j,t} = P_{j,t} + K_t + sign*B_j (mod 29)`.
+
+The shared stream still cancels for every pair. Thus `(C_{a,t}-C_{b,t}) - sign*(B_a-B_b)` is an exact, key-independent candidate native-plaintext difference at page-local offset `t`. The same 29×29 solved-LP1 trained difference-bigram likelihood supplies the frozen score, summed over **all 1,485 unordered pairs** of the 55 original rune-bearing pages. Both direct additive signs are granted to the source hypothesis; each random control also gets the better of those two signs. There is no freely adjusted position phase, source-rune order, page offset or author-chosen key.
+
+| Key assignment | Whole-family log-likelihood ratio |
+| --- | ---: |
+| Literal p57 interior ordering, `sign=+1` | **−9,485.4180** |
+| Literal p57 interior ordering, `sign=−1` | **−9,372.5335** |
+| Same 55 p57 runes, shuffled original page assignments, 1,500 trials: median best sign | **−9,261.6101** |
+| Same shuffles, 95th percentile of best sign | **−9,012.8807** |
+
+Of **1,500** deterministic same-multiset assignment shuffles (xorshift32 seed `0x05557f57`), **1,151** rank at least as well as the original-order source assignment, for add-one `1152/1501 ≈ 0.76749`. This is an assignment-label conditional control rather than a claim about all historical keys; cipher pair scores are dependent, so no independent-pair likelihood p-value is asserted. The original p57 ordering has **no page-key alignment signal** under this complete arbitrary-common-stream additive consumer. A 55-to-55 match is an attractive source-clue pairing, but here it specifies neither plaintext nor an executable working shared stream.
+
+The expanded source-asserting SFT validates the exact 20 original source words, key length 55, 17 distinct key symbols, key-index sum 573, all 1,485 original pair scores and all 1,500 fixed same-multiset null assignments. [Windows manual follow-up CI](https://github.com/FlareZ123/liber-primus/actions/runs/43395025807).
+
 ## Decision
 
-This full-family comparison identifies **no** source-selected shared page-start key, no meaningful pairwise difference stream, and no original unknown plaintext. Further offset/key sweeps would require a new authorial instruction selecting specific pages, pad reuse, or alignment before a new original-input test. In particular, a high single-pair score is not a handoff to a plaintext decoder without independent justification and withheld output.
+This full-family comparison and independent solved-p57 key transfer identify **no** source-selected shared page-start key, no meaningful pairwise difference stream, and no original unknown plaintext. Further offset/key sweeps would require a new authorial instruction selecting specific pages, pad reuse, or alignment before a new original-input test. In particular, a high single-pair score is not a handoff to a plaintext decoder without independent justification and withheld output.
 
 **Reproduction:** `sims/lp2_allpage_commonpad_triage_sft.cjs`, Node.js 22/CommonJS, source files committed unchanged. Original source counts, model scores, null seed `0x12563377`, all five exact DP minima, and two planted positive/negative controls are asserted. Manual-only Windows workflow: `.github/workflows/lp2-allpage-commonpad-triage-manual.yml`; [Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/43389293218). Earlier source matching baseline: `im-results/lp2-p8-14-stencil-reused-additive-pad-gate.md` and `sims/lp2_p8_14_stencil_reused_additive_pad_sft.cjs`. Whole-manuscript offset model: `sims/shifted_page_pad_crossfit.cjs`.
