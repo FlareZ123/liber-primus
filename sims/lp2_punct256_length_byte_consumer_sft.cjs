@@ -75,6 +75,16 @@ const zeroSlotBytes = Buffer.from(groups.flatMap((row, i) => row.length === 0 ? 
 assert.equal(zeroSlotBytes.length, 37);
 const zeroSlotPrintable = [...zeroSlotBytes].filter(x => x >= 32 && x <= 126).length;
 assert.equal(zeroSlotPrintable, 18);
+const emptyByteHistogram = new Map();
+for (const value of zeroSlotBytes)
+  emptyByteHistogram.set(value, (emptyByteHistogram.get(value) || 0) + 1);
+assert.equal(emptyByteHistogram.size, 33);
+const minimumStatelessChecksumMismatches = zeroSlotBytes.length -
+  Math.max(...emptyByteHistogram.values());
+assert.equal(minimumStatelessChecksumMismatches, 35);
+// Every empty interval has the same rune content. A fixed arbitrary secret
+// function of that content returns one byte, but the authentic table requires
+// 33 different bytes at these 37 positions. No CRC/hash enumeration is needed.
 // All outputs derive from unchanged original source; no fitted parameters.
 console.log(JSON.stringify({
   source: "unknown LP2 physical pp0-55; 256 intervals and 256 printed base60 bytes",
@@ -88,5 +98,7 @@ console.log(JSON.stringify({
   sha512LengthEqualsAnyAlignedTableBlock: hash64Matches.some(Boolean),
   directChecksumMatches,
   emptySlotTableBytesHex: zeroSlotBytes.toString("hex"), emptySlotPrintableAscii: zeroSlotPrintable,
+  emptySlotDistinctByteValues: emptyByteHistogram.size,
+  minimumStatelessChecksumMismatches,
   conclusion: "No zero-parameter ASCII XOR plaintext, matching aligned digest, or direct interval checksum is recovered."
 }, null, 2));
