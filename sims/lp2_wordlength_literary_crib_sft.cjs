@@ -132,6 +132,31 @@ for (const [name, file, wordCount] of sources) {
   }
 }
 
+// Beowulf original-source control: corrected case-safe thorn/eth/AE normalization.
+// The 10,885 word lengths are from the pinned Old English Harrison/Sharp
+// edition, independently of any unknown ciphertext plaintext hypothesis.
+const oldEnglish = JSON.parse(
+  read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+assert.equal(oldEnglish.acceptedSourceWords, 10885);
+assert.equal(oldEnglish.allSourceGpRunes, 48012);
+const oldLengths = oldEnglish.allSourceGpWordLengths;
+assert.equal(oldLengths.length, 10885);
+assert.equal(oldLengths.reduce((sum, len) => sum + len, 0), 48012);
+const oldResult = longestRun(lengths, oldLengths);
+assert.equal(oldResult.longestWords, 8);
+actual.push({name: "Beowulf Old English", sourceWords: oldLengths.length,
+  ...oldResult});
+
+// A planted, genuine Old English 16-word excerpt is recoverable under the
+// identical fixed manuscript/source word-length matcher.
+const oldPlant = lengths.slice();
+oldPlant.splice(1450, 16, ...oldLengths.slice(2300, 2316));
+const oldPositive = longestRun(oldPlant, oldLengths);
+assert.equal(oldPositive.longestWords, 16);
+assert(oldPositive.sites.some(x =>
+  x.manuscriptWord === 1450 && x.referenceWord === 2300),
+  "planted original Beowulf 16-word length crib missing");
+
 const latin = read("resources/control/latin-vulgate-gp-wholewords.txt")
   .split(/\r?\n/u).filter(x => /^[0-9A-S]+$/u.test(x))
   .map(x => x.length);
