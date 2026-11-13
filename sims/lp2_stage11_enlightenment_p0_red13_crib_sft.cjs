@@ -79,5 +79,3 @@ console.log(JSON.stringify({source:"2014 PGP-signed Stage11 handoff and LP2 p0 r
   targetRawIoC:ioc(body),
   variants,
   outcome:"13-rune crib fits by construction, but neither original chapter continuation is plaintext; hypothesis not validated."},null,2));
-}
-
