@@ -1,0 +1,18 @@
+name: LP2 source-square P56 five-crib affine-stencil audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-square-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute 81-to-80 source-square five-crib SFT
+        run: node sims/lp2_bookend_p56_fivecrib_stencil_sft.cjs
