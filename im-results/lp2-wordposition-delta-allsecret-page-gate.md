@@ -1,6 +1,6 @@
 # Pagewise word-position differential alphabet gate on original LP2
 
-**Decision (13 November 2026):** Two original-input, key-independent invariants sharply exclude cumulative-difference ciphers whose otherwise *arbitrary secret GP29 substitutions* depend on source-visible page, printed word position and even **word length**. The stronger conditional-entropy test grants a distinct secret alphabet for each **word-start page × current-glyph page × word length × relative position** state. All three pinned source-native English controls lie substantially below the original ciphertext. These are **finite English-register conditional exclusions**, each with a complete 12,956-rune reversible positive control. No unknown plaintext, historical key, or intended mechanism is recovered.
+**Decision (13 November 2026):** Three independent original-input, key-independent entropy/frequency invariants sharply exclude cumulative-difference ciphers with otherwise *arbitrary secret GP29 substitutions* controlled by several natural source-visible clocks, including page, printed word position, word length, and a **book-wide predecessor-ciphertext-dependent word-position map**. The stronger conditional-entropy test grants a distinct secret alphabet for each **word-start page × current-glyph page × word length × relative position** state. All three pinned source-native English controls lie substantially below the original ciphertext. These are **finite English-register conditional exclusions**, each with a complete 12,956-rune reversible positive control. No unknown plaintext, historical key, or intended mechanism is recovered.
 
 ## A distinct, generous proposed inverse
 
@@ -58,6 +58,30 @@ Even granting all 2,576 independently unknown GP29 permutations, the original in
 **Passing [manual CI 43518561426](https://github.com/FlareZ123/liber-primus/actions/runs/43518561426)**; reproducible [\`sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs\`](../sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs), \`route=shape\` in the same manual-only workflow. The original test remains independently reproducible via \`route=position\`.
 
 This is a distinct **ciphertext-feedback** result from the older word-shape entropy obstruction, which was limited to direct fixed symbol maps/within-word permutations of the original rune output. It excludes the cumulative-difference inverse even if each word length has its own hidden page-specific alphabet at *each* position. It still does not cover an alphabet that changes per individual word or a hidden state depending on preceding plaintext/ciphertext values.
+
+## Predecessor-ciphertext-conditioned secret maps: exact source-clock boundary
+
+A separate model permits **nonlinear, predecessor-ciphertext-dependent hidden substitution tables**, beyond the fixed page/word-length maps above. In each printed word, let the first rune be arbitrary and for all later relative positions j choose an entirely unknown deterministic GP29 map \`h_(j,Cprev)\` based on the *previous ciphertext rune* and j. The update is \`D[w,j] = C[w,j]−C[w,j−1] = h_(j,C[w,j−1])(P[w,j]) mod29\`. This permits 308 actually occupied \`(j,Cprev)\` states (up to 13×29 possible) and arbitrary noninjective table entries.
+
+Conditional entropy supplies a **one-sided universal obstruction** even when the predecessor state correlates with unknown plaintext:
+
+\`H(D | j,Cprev) ≤ H(P | j,Cprev) ≤ H(P | j)\`.
+
+The first inequality is deterministic data processing, and the second is the entropy conditioning inequality. Thus a source-native English candidate must have at least as much GP29 **plaintext** \`H(P|relative position)\` as the original **ciphertext** \`H(D|relative position, previous ciphertext)\`. There is no inference, guess or fit of the hidden maps in the test.
+
+All **10,060** within-word steps of original unknown LP2 yield **4.286987497 bits/rune** on the left. The pinned original-word-length source-native controls give:
+
+| English reference | Original \`H(D|j,Cprev)\` | Minimum / median / maximum over 500 \`H(P|j)\` samples |
+| --- | ---: | ---: |
+| Shakespeare | **4.28698750** | 3.83925787 / 3.87185713 / 3.90981284 |
+| Gibran | **4.28698750** | 3.85280284 / 3.89049737 / 3.92297429 |
+| Emerson | **4.28698750** | 3.90876929 / 3.94863564 / 3.97978078 |
+
+The original exceeds *all 1,500* exact-length-matched source controls; the most generous margin is **0.30720672 bits/rune**. A complete positive native GP English plant encrypts with a different affine bijection for each observed \`(j,Cprev)\`, inverts **all 12,956/12,956** original-layout runes exactly, and satisfies the theorem strictly (its \`H(D|j,Cprev)\` is 2.92221 / 2.77911 / 3.03561 versus native \`H(P|j)\` 3.89333 / 3.89841 / 3.95604). [Passing manual CI 43519644698](https://github.com/FlareZ123/liber-primus/actions/runs/43519644698) and [original-only SFT](../sims/lp2_predecessor_wordposition_entropy_sft.cjs) via \`route=predecessor\`.
+
+**Important non-exclusion.** Extending the unknown map to also depend on **full word length**, the original conditional output entropy drops to **2.84369888** across 1,689 observed states, below all 500 native control entropies for each source (source minima 3.35982 / 3.36303 / 3.49658). Making the key depend instead on one of **nine original visual chapters** yields **2.63479273** across 1,942 observed states, again below all source minima (3.71722 / 3.71874 / 3.77865). These lower original entropies mean the necessary inequality **holds** for the tested control registers; such enriched stateful models are *not excluded* by this test. They are not verified decoders and have no recovered plaintext.
+
+This identifies a concrete decision boundary: page/length/position-only *deterministic* difference maps fail (previous section), as do book-wide \`(previous ciphertext, word position)\` maps, while \`(previous ciphertext, word position, word length)\` and \`(previous ciphertext, word position, visual chapter)\` models remain mathematically possible. Their secret-key or state-update rule is entirely missing. Independently source-selected operations would be required before testing a specific consumer.
 
 ## Interpretation and next decision
 
