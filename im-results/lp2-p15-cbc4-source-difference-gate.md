@@ -78,21 +78,23 @@ Any genuine input-CBC plaintext has this form for some **a**. Enumerating **all 
 
 **Original result:** the unique maximizer is **a = [7, 0, 2, 4]**, with **7,408 ordered equal-rune pairs**, yielding **maximum IoC = 7,408/(435×434) = 0.03923936649**. That is the exact best obtainable after optimizing **every possible first inverse matrix row** on the original untouched p16–22 ciphertext, not a particular printed key.
 
-The same 343 independent fixed-length native GP29 control windows have the following **minimum IoC on the very same 435 first-column positions** after discarding the first block:
+The 343 independent English controls are supplemented by **27 corrected, source-native Old English Beowulf windows** and **one separately source-pinned Latin Vulgate GP heldout window**. These five controls span **371 disjoint 1,744-rune windows**. Their **minimum IoCs on the same 435 first-column positions** after discarding the first block are:
 
 | Reference text | Disjoint 1,744-rune windows | Minimum ordered rune collisions | Minimum first-coordinate IoC |
 | --- | ---: | ---: | ---: |
 | Shakespeare | 124 | **9,752** | **0.05165527835** |
 | Gibran, *The Prophet* | 35 | **10,142** | **0.05372106573** |
 | Emerson essays | 184 | **10,210** | **0.05408125430** |
+| Corrected Beowulf Old English GP | 27 | **9,822** | **0.05202606070** |
+| Latin Vulgate heldout GP | 1 | **12,978** | **0.06874304783** |
 | **Original, maximum over all 707,281 secret rows** | 1 | **7,408** | **0.03923936649** |
 
-This is a clean source-reference exclusion under *any* secret GF(29) Hill4 key: every original inverse row is too flat to match **even one** of the 343 native GP reference windows in this predeclared position register. The source-native controls are text excerpts, so this does **not** prove impossibility for every possible undiscovered language, every document genre, or an intermediate/compressed representation.
+This is a clean source-reference exclusion under *any* secret GF(29) Hill4 key: every original inverse row is too flat to match **even one** of the 371 independent GP reference windows in this predeclared position register. The source-native controls are text excerpts, so this does **not** prove impossibility for every possible undiscovered language, every document genre, or an intermediate/compressed representation.
 
 **Blind decoder-power positive control:** construct a source-native 1,744-rune Shakespeare plaintext, encrypt it under actual p15 `M` using **input CBC**, and search the same 707,281 row candidates without revealing the key to the scorer. The **unique highest-scoring row** is the true inverse row **[19, 1, 6, 3]**, with **11,354** ordered equal-rune pairs and **IoC 0.06014089729**. The planted plaintext reproduces the exact score. This is a genuine recoverability check for the key-family test, while no analogous original plaintext has emerged.
 
 ## Reproduction and next decision
 
-The [original-source 16-inverse and all-bijection output-CBC SFT](../sims/lp2_p15_cbc4_difference_sft.cjs) runs direct printed-matrix inverses and the algebraic source-difference test. The distinct [exhaustive all-key input-CBC SFT](../sims/lp2_p15_cbc4_allkey_firstrow_sft.cjs) enumerates all 707,281 first inverse rows on the original 435-block stream and on the separately encrypted source-native positive plant, with exact integer score assertions. Both read pinned GP29 original ciphertext and the three independent historical English controls. No fitted phases, per-page clocks or freely estimated plaintext enter either experiment.
+The [original-source 16-inverse and all-bijection output-CBC SFT](../sims/lp2_p15_cbc4_difference_sft.cjs) runs direct printed-matrix inverses and the algebraic source-difference test. The distinct [exhaustive all-key input-CBC SFT](../sims/lp2_p15_cbc4_allkey_firstrow_sft.cjs) enumerates all 707,281 first inverse rows on the original 435-block stream and on the separately encrypted source-native positive plant, with exact integer score assertions. Both read the pinned GP29 original ciphertext and the three independent historical English controls; the latter SFT additionally uses a previously corrected 48,012-rune Beowulf GP reference and an independently pinned 2,400-rune Vulgate GP heldout sequence. No fitted phases, per-page clocks or freely estimated plaintext enter either experiment.
 
-**Decision:** retire both literal p15-matrix CBC laws on p16–22. Under the source-native English reference, retire **every secret chapter-stationary GF(29) Hill4 input-CBC key and every secret bijective four-rune output-CBC map**, regardless of IV. Those are two materially different chained cipher architectures that stationary-block tests had not excluded. Other stateful, rekeyed, nonlinear, transposed, compressed or differently authored plaintext mechanisms survive. No unknown LP2 plaintext, authentic key or continuation destination has been recovered.
+**Decision:** retire both literal p15-matrix CBC laws on p16–22. Under the five-source GP reference register, retire **every secret chapter-stationary GF(29) Hill4 input-CBC key and every secret bijective four-rune output-CBC map**, regardless of IV. Those are two materially different chained cipher architectures that stationary-block tests had not excluded. Other stateful, rekeyed, nonlinear, transposed, compressed or differently authored plaintext mechanisms survive. No unknown LP2 plaintext, authentic key or continuation destination has been recovered.
