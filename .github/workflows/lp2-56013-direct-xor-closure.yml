@@ -1,0 +1,39 @@
+name: LP2 2013 56013 exhaustive direct-XOR GP29 closure
+
+on:
+  workflow_dispatch:
+    inputs:
+      fixture_only:
+        description: Run original-GP native alphabet closure plants without remote 560.13 file
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  full-closure:
+    runs-on: windows-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical and file-lock dependencies
+        run: python -m pip install numpy filelock
+      - name: Execute all offset GP29 XOR alphabet-closure tests
+        shell: pwsh
+        run: |
+          if ('${{ inputs.fixture_only }}' -eq 'true') {
+            python sims/lp2_56013_direct_xor_gp29_closure_sft.py --fixture-only
+          } else {
+            python sims/lp2_56013_direct_xor_gp29_closure_sft.py
+          }
+      - name: Preserve exact original-offset results
+        if: success() && inputs.fixture_only == false
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-2013-56013-all-offset-xor-closure
+          path: im-results/lp2-2013-56013-dense-xor5bit-closure.json
+          retention-days: 90
