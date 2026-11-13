@@ -135,16 +135,19 @@ for (const word of dictionary) {
  * @returns {{n:number,minOov:number,firstForced:number|null,maxStates:number,
  *   completeWords:number[], checkpoints:number[][]}}
  */
-function minOov(pa, pb, cipherA, cipherB, reverseB=false, op="diff") {
-  const a = pages.get(pa);
+function minOov(pa, pb, cipherA, cipherB, reverseA=false, reverseB=false, op="diff") {
+  const plainA = pages.get(pa);
   const plainB = pages.get(pb);
-  const b = reverseB ? {
-    runes: [...plainB.runes].reverse(),
-    classes: [...plainB.classes].reverse().map(x => x === 0 ? 2 : x === 2 ? 0 : x)
-  } : plainB;
-  const ca = cipherA || a.runes;
+  const reverse = p => ({
+    runes: [...p.runes].reverse(),
+    classes: [...p.classes].reverse().map(x => x === 0 ? 2 : x === 2 ? 0 : x)
+  });
+  const a = reverseA ? reverse(plainA) : plainA;
+  const b = reverseB ? reverse(plainB) : plainB;
+  const ca = cipherA ? (reverseA ? [...cipherA].reverse() : cipherA) : a.runes;
   const cb = cipherB ? (reverseB ? [...cipherB].reverse() : cipherB) : b.runes;
   const n = Math.min(a.runes.length, b.runes.length);
+  const dictionaryA = reverseA ? reverseTrie : trie;
   const reverseDictionary = reverseB ? reverseTrie : trie;
   const unknown = Math.max(trie.length, reverseTrie.length);
   const base = unknown + 1;
@@ -166,14 +169,14 @@ function minOov(pa, pb, cipherA, cipherB, reverseB=false, op="diff") {
       for (let runeA = 0; runeA < 29; runeA++) {
         const runeB = (op === "diff" ? runeA - delta + 29 : delta - runeA + 29) % 29;
         let newA = nodeA === unknown ? unknown
-          : trie[nodeA].edges.get(runeA);
+          : dictionaryA[nodeA].edges.get(runeA);
         let newB = nodeB === unknown ? unknown
           : reverseDictionary[nodeB].edges.get(runeB);
         let extra = 0;
         if (newA === undefined) {
           newA = unknown;
           extra++;
-        } else if (endA && newA !== unknown && !trie[newA].terminal) {
+        } else if (endA && newA !== unknown && !dictionaryA[newA].terminal) {
           extra++;
         }
         if (newB === undefined) {
@@ -208,14 +211,20 @@ function minOov(pa, pb, cipherA, cipherB, reverseB=false, op="diff") {
 
 
 const variants = [
-  {reverseB:false, op:"diff"}, {reverseB:false, op:"sum"},
-  {reverseB:true, op:"diff"}, {reverseB:true, op:"sum"}
+  {reverseA:false, reverseB:false, op:"diff"},
+  {reverseA:false, reverseB:false, op:"sum"},
+  {reverseA:false, reverseB:true, op:"diff"},
+  {reverseA:false, reverseB:true, op:"sum"},
+  {reverseA:true, reverseB:false, op:"diff"},
+  {reverseA:true, reverseB:false, op:"sum"},
+  {reverseA:true, reverseB:true, op:"diff"},
+  {reverseA:true, reverseB:true, op:"sum"}
 ];
 const originals = variants.map(v => ({ ...v,
-  ...minOov(0, 1, undefined, undefined, v.reverseB, v.op)
+  ...minOov(0, 1, undefined, undefined, v.reverseA, v.reverseB, v.op)
 }));
-assert.deepEqual(originals.map(x => x.minOov), [14, 16, 16, 14]);
-assert.deepEqual(originals.map(x => x.firstForced), [12, 12, 12, 7]);
+assert.deepEqual(originals.slice(0,4).map(x => x.minOov), [14, 16, 16, 14]);
+assert.deepEqual(originals.slice(0,4).map(x => x.firstForced), [12, 12, 12, 7]);
 
 /* Build native-GP controls from unchanged Gibran words of matching lengths. */
 const gibranWords = read("resources/control/gibran_prophet_58585.txt")
@@ -277,12 +286,15 @@ function nativePlant(page) {
  * giving the investigator a wholly unknown per-position key.  Reversing
  * p1 also reverses the p1 word boundary classes, with start/end swapped. */
 const controls = [];
-for (const {reverseB, op} of variants) {
+for (const {reverseA, reverseB, op} of variants) {
   const a = nativePlant(0), b = nativePlant(1);
   const n = Math.min(a.output.length, b.output.length);
   const K = Array.from({length:n}, () => randomInt(29));
   const independent = Array.from({length:n}, () => randomInt(29));
-  const encA = a.output.map((x,t) => (x + K[t]) % 29);
+  const encA = a.output.map((x,i) => {
+    const t = reverseA ? a.output.length - 1 - i : i;
+    return (x+K[t])%29;
+  });
   const encB = b.output.map((x,i) => {
     const t = reverseB ? b.output.length - 1 - i : i;
     if (t >= n) return x;
@@ -297,20 +309,21 @@ for (const {reverseB, op} of variants) {
   });
   for (let t=0;t<n;t++) {
     const j=reverseB ? b.output.length - 1 - t : t;
-    const recoveredA = (encA[t]-K[t]+29)%29;
+    const k=reverseA ? a.output.length - 1 - t : t;
+    const recoveredA = (encA[k]-K[t]+29)%29;
     const recoveredB = (encB[j] + (op === "diff" ? -K[t] : K[t]) + 29)%29;
-    assert.equal(recoveredA,a.output[t]);
+    assert.equal(recoveredA,a.output[k]);
     assert.equal(recoveredB,b.output[j]);
   }
-  const good = minOov(0,1,encA,encB,reverseB,op);
-  const bad = minOov(0,1,encA,encWrongB,reverseB,op);
+  const good = minOov(0,1,encA,encB,reverseA,reverseB,op);
+  const bad = minOov(0,1,encA,encWrongB,reverseA,reverseB,op);
   assert(good.minOov <= a.status.nativeOov + b.status.nativeOov + 4);
-  controls.push({reverseB, op, nativeA:a.status, nativeB:b.status,
+  controls.push({reverseA,reverseB, op, nativeA:a.status, nativeB:b.status,
     matchedSamePad:good.minOov, independentPads:bad.minOov});
 
 }
-assert.deepEqual(controls.map(x => x.matchedSamePad), [2,2,2,1]);
-assert.deepEqual(controls.map(x => x.independentPads), [14,11,16,16]);
+assert.deepEqual(controls.slice(0,4).map(x => x.matchedSamePad), [2,2,2,1]);
+assert.deepEqual(controls.slice(0,4).map(x => x.independentPads), [14,11,16,16]);
 console.log(JSON.stringify({
   source:"Original LP2 p0+p1 shared black crosses, additive pad both signs and p1 orientations",
   pageLengths:[pages.get(0).runes.length,pages.get(1).runes.length],
