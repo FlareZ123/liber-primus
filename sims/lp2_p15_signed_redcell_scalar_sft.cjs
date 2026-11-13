@@ -79,6 +79,14 @@ function main() {
   for(let t=0;t<812;t++) mat=mm(M,mat);
   assert.deepEqual(mat,identity());
   for(let t=0;t<812;t++) assert.equal(all[t],all[t%28]);
+  // Exact three-eigenvalue formula; the t*24^t Jordan term vanishes
+  // at the one coordinate visibly selected by the red p15 cell.
+  const closed = t => mod(
+    17*Number((8n**BigInt(t))%29n) +
+     7*Number((17n**BigInt(t))%29n) +
+     6*Number((24n**BigInt(t))%29n)
+  );
+  for(let t=0;t<812;t++) assert.equal(all[t],closed(t));
   for(const d of [1,2,4,7,14]) assert(
     Array.from({length:28},(_,t)=>all[t]===all[t%d]).some(x=>!x),
     "A lower order would contradict source-red-cell period28");
@@ -94,7 +102,7 @@ function main() {
     matrix:M, redCell:[1,1], signedRestoredCells:[12,13],
     selectedInterval:"p15 offset9 through p22, physical printed order",
     sourceRunes:source.length, fullMatrixOrder:812,
-    redCellScalarPeriod:28, redCellCycle:all.slice(0,28),
+    redCellScalarPeriod:28, redCellClosedForm:"17*8^t + 7*17^t + 6*24^t mod29", redCellCycle:all.slice(0,28),
     redCellDistinctCycleSymbols:new Set(all.slice(0,28)).size,
     originalIoC:ioc(source), decodedIoC:ioc(decoded),
     first24DecodedSymbols:decoded.slice(0,24).map(v=>gp.translit[v]),
