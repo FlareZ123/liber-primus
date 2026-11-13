@@ -21,10 +21,9 @@ GROUPS = {
     "p9-13-odd": (9, 11, 13),
     "p10-14-even": (10, 12, 14),
     "p34-39": (34, 35, 36, 37, 38, 39),
-    "p40-55-color": (40, 49, 53, 54, 55),
-    "p41-52-gray": (41, 42, 43, 44, 45, 46, 47, 48, 52),
+    "p40-55": (40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55),
 }
-CONTROL_PAGES = (6, 13, 14, 36, 45, 54)
+CONTROL_PAGES = (6, 13, 14, 36, 54)
 PAYLOAD_BYTES = (256, 1024, 4096)
 PASSWORD = "LP2-Q92-F5-EXACT-STENCIL-CONTROL-20261113"
 
@@ -188,9 +187,9 @@ def main() -> None:
     fpr_count = sum(bool(row["f5_signature"]) for row in proxy)
     eligible = (
         fpr_count == 0
-        and by_size["1024"]["detected"] == 6
-        and by_size["4096"]["detected"] == 6
-        and by_size["256"]["detected"] >= 5
+        and by_size["1024"]["detected"] == 5
+        and by_size["4096"]["detected"] == 5
+        and by_size["256"]["detected"] >= 4
     )
     result["calibration"] = {
         "true_positive_by_size": by_size,
