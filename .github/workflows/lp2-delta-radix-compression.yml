@@ -1,4 +1,4 @@
-name: LP2 differential radix compression original input
+name: LP2 source-derived binary payload decoding
 on:
   workflow_dispatch:
 jobs:
@@ -12,3 +12,13 @@ jobs:
           node-version: '22'
       - name: Run full-stream inverse and positive control
         run: node sims/lp2_delta_radix_compression_sft.cjs
+  archived-outguess-p56-target:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test immutable archived binary candidates against p56 hash
+        run: node sims/lp2_outguess_archive_p56_hash_sft.cjs
