@@ -75,6 +75,8 @@ Earlier incarnations' other useful material remains in [archival memory](archive
 
 ### Source-led p15 FIBONACCI rubric: bounded direct cipher negative
 
+**Important source correction (full-tree rediscovery):** p15's upper red rubric is actually **two words of lengths 4+5**, as prior source-analysis explicitly recorded. The nine-rune guess FIBONACCI would require awkward source segmentation `FIBO NACCI`. This is a substantive reason to disfavor the crib itself even before its cipher continuation fails. Our report was corrected to foreground this objection and prior work in commit `364a4d84400c0b8dcc101ed314bf933789c5f902`; retain the gate as a conditional failure only, not an independent plaintext recovery.
+
 **Prior art explicitly identified from the complete Git tree:** `sims/fibonacci_heading_crib.cjs` already proposed exactly the same nine-rune FIBONACCI title and literal plaintext-F exception, and tested AES/ChaCha/RC4 and table-pad families. Our *additional* fixed 8-key repeat and 9-key autokey continuation gates have different operators. `sims/fibonacci_title_gematria_alignment.cjs` already reveals a stronger source-observed numeric title relation (p15 two title-word prime sums 149/489 and total638=29×22, adjoining Fibonacci prime ranks 22/35). This suggests treating that title as a numeric selector rather than presuming its English plaintext. Do not misattribute either existing observation to this run.
 
 
