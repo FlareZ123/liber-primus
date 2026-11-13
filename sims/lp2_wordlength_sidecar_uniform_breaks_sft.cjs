@@ -268,6 +268,70 @@ assert.equal(carryMax, 45);
 assert(Math.abs(carryMean - 35.707033333333335) < 1e-9);
 assert(Math.abs(carrySD - 2.826765619140608) < 1e-8);
 
+
+// Discriminate a whole-chapter shuffle (which would leave native grammar
+// within each chapter) from a chapter-local whole-word disorder. Preserve
+// every chapter's exact observed length multiset, and measure adjacent
+// length-class mutual information against 5,000 fixed-seed permutations.
+function lengthClassMutualInformation(a) {
+  const pairCount = a.length - 1;
+  assert(pairCount > 0);
+  const joint = new Float64Array(81);
+  const rows = new Float64Array(9);
+  const cols = new Float64Array(9);
+  for (let i = 1; i < a.length; i++) {
+    const left = Math.min(a[i - 1], 9) - 1;
+    const right = Math.min(a[i], 9) - 1;
+    joint[9 * left + right]++;
+    rows[left]++;
+    cols[right]++;
+  }
+  let mi = 0;
+  for (let left = 0; left < 9; left++) {
+    for (let right = 0; right < 9; right++) {
+      const count = joint[9 * left + right];
+      if (count > 0) mi += count / pairCount *
+        Math.log(count * pairCount / (rows[left] * cols[right]));
+    }
+  }
+  return mi;
+}
+const miSeed = 0x3301434;
+const miRandom = makeXorshift32(miSeed);
+const miTrials = 5000;
+const chapterLengthGrammar = chapterGroups.map(({lo, hi, wholeWordLengths}) => {
+  const observed = lengthClassMutualInformation(wholeWordLengths);
+  let sum = 0;
+  let squares = 0;
+  let high = 0;
+  for (let trial = 0; trial < miTrials; trial++) {
+    const a = wholeWordLengths.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(miRandom() * (i + 1));
+      const previous = a[i];
+      a[i] = a[j];
+      a[j] = previous;
+    }
+    const x = lengthClassMutualInformation(a);
+    sum += x;
+    squares += x * x;
+    if (x >= observed) high++;
+  }
+  return {
+    pages: [lo, hi], words: wholeWordLengths.length, observedMI: observed,
+    shuffledMean: sum / miTrials,
+    shuffledSD: Math.sqrt(squares / miTrials - (sum / miTrials) ** 2),
+    shuffledAtLeastOriginal: high,
+    upperTail: (high + 1) / (miTrials + 1)
+  };
+});
+assert.deepEqual(chapterLengthGrammar.map(x => x.words),
+  [158, 255, 383, 437, 224, 326, 378, 669, 66]);
+assert.deepEqual(chapterLengthGrammar.map(x => x.shuffledAtLeastOriginal),
+  [3060, 1285, 1735, 812, 4267, 210, 3310, 3373, 3751]);
+assert(Math.abs(chapterLengthGrammar[5].observedMI -
+  0.1409378869781421) < 1e-8);
+
 console.log(JSON.stringify({
   source: "original rune-level LP2 physical pages 0..55; runeless p50 omitted",
   wordCount: M,
@@ -305,6 +369,8 @@ console.log(JSON.stringify({
       samplesExactly32: exactly32
     }
   },
+  chapterLocalWordLengthOrder: {seed: miSeed, trialsPerChapter: miTrials,
+    windows: chapterLengthGrammar},
   maximumBitsFromUnconstrainedPermutingThisLengthMultiset: multisetOrderBits,
   conclusion: "Uniformly random original word breaks are incompatible; a constrained " +
     "length-preserving permutation or encoded delimiter channel remains possible " +
