@@ -51,7 +51,7 @@ function base29Digits(n) {
 const native = Buffer.from('THE WORDS ARE THE MAP AND THEIR NUMBERS ARE THE DIRECTION',
   'ascii');
 const compressed = zlib.gzipSync(native);
-const planted = compressed.map((b) => base29Digits(b));
+const planted = Array.from(compressed, (b) => base29Digits(b));
 const recovered = Buffer.concat(planted.map(base29Bytes));
 assert.deepEqual(recovered, compressed);
 assert.deepEqual(zlib.gunzipSync(recovered), native);
