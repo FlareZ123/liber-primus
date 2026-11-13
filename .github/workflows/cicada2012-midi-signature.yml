@@ -1,11 +1,6 @@
 name: 2012 MIDI signed-email verification
 
 on:
-  push:
-    paths:
-      - 'resources/historical/cicada2012-midi-email.asc'
-      - 'resources/historical/cicada-3301-2012-public-key.asc'
-      - '.github/workflows/cicada2012-midi-signature.yml'
   workflow_dispatch:
 
 permissions:
