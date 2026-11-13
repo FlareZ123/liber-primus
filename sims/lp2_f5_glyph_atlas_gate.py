@@ -29,6 +29,7 @@ PAYLOAD_BYTES = 256
 F5_K = 4
 CONTROL_PASSWORD = "LP2-GLYPH-DCT-F5-HELDOUT-CONTROL-20261113"
 MIN_GENUINE_F5_NEIGHBORS = 12
+GRAYSCALE_ORIGINALS = frozenset((16, 17, 18, 19, 20, 21, 24, 25, 28, 29, 30, 31))
 
 
 def read_coefficients(reader: str, jpeg: Path) -> np.ndarray:
@@ -94,6 +95,7 @@ def run_f5_control(
     reader: str,
     embedder: str,
     f5: str,
+    apply_gray: str,
     reference: Counter[bytes],
     neighbors: set[bytes],
     workdir: Path,
@@ -105,10 +107,20 @@ def run_f5_control(
     recovered = workdir / f"p{page:02d}-recovered.bin"
     expected = payload_for(page)
     payload.write_bytes(expected)
-    subprocess.run([
+    embed_args = [
         embedder, "-cover", str(carrier), "-payload", str(payload),
-        "-password", CONTROL_PASSWORD, "-k", str(F5_K), "-pad-trailing-zeros", "-out", str(embedded),
-    ], check=True, capture_output=True)
+        "-password", CONTROL_PASSWORD, "-k", str(F5_K),
+        "-pad-trailing-zeros", "-out", str(embedded),
+    ]
+    if page in GRAYSCALE_ORIGINALS:
+        raw_coefficients = workdir / f"p{page:02d}-f5.int16"
+        embed_args.extend(["-out-coefficients", str(raw_coefficients)])
+    subprocess.run(embed_args, check=True, capture_output=True)
+    if page in GRAYSCALE_ORIGINALS:
+        subprocess.run(
+            [apply_gray, str(carrier), str(raw_coefficients), str(embedded)],
+            check=True, capture_output=True,
+        )
     subprocess.run([
         f5, "extract", str(embedded), "-p", CONTROL_PASSWORD,
         "-o", str(recovered),
@@ -152,11 +164,12 @@ def main() -> None:
     parser.add_argument("--reader", required=True)
     parser.add_argument("--embedder")
     parser.add_argument("--f5")
+    parser.add_argument("--apply-grayscale")
     parser.add_argument("--original-only", action="store_true")
     parser.add_argument("--report", type=Path, required=True)
     args = parser.parse_args()
-    if not args.original_only and (not args.embedder or not args.f5):
-        parser.error("genuine F5 calibration requires --embedder and --f5")
+    if not args.original_only and (not args.embedder or not args.f5 or not args.apply_grayscale):
+        parser.error("genuine F5 calibration requires --embedder, --f5 and --apply-grayscale")
 
     sources = args.sources
     reference = {}
@@ -193,7 +206,7 @@ def main() -> None:
                 try:
                     result = run_f5_control(
                         page, sources, args.reader, args.embedder, args.f5,
-                        atlas, nearby, Path(temp)
+                        args.apply_grayscale, atlas, nearby, Path(temp)
                     )
                 except (subprocess.CalledProcessError, ValueError, AssertionError) as e:
                     diagnostics = e.stderr.decode(errors="replace")[-1500:] if isinstance(e, subprocess.CalledProcessError) and e.stderr else ""
