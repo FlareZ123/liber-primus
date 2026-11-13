@@ -68,8 +68,9 @@ function multiply(a, b) {
 /** @param {number[][]} a @param {number[]} data @returns {number[]} */
 function blocks(a, data) {
   const answer = [];
-  for (let i = 0; i + width <= data.length; i += width) {
-    answer.push(...multiply(a, data.slice(i, i + width)));
+  const step = a.length;
+  for (let i = 0; i + step <= data.length; i += step) {
+    answer.push(...multiply(a, data.slice(i, i + step)));
   }
   return answer;
 }
@@ -141,11 +142,81 @@ for (const { label, make } of [
     }
   }
 }
+
+/**
+ * A second source-specific architecture: nine 5x5 red submatrices,
+ * allocated to the nine original visual chapters in manuscript order.
+ */
+const chapterRanges = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26], [27, 32], [33, 39], [40, 53], [54, 55]];
+const chapters = chapterRanges.map(([first, last]) => {
+  const full = [];
+  const blackOnly = [];
+  for (let n = first; n <= last; n += 1) {
+    const page = corpus.pages[n];
+    const marked = new Set();
+    const record = ink.pages.find((item) => item.page === n);
+    for (const span of record?.red_spans || []) {
+      for (let j = span.start; j < span.start + span.length; j += 1) marked.add(j);
+    }
+    full.push(...page.indices);
+    blackOnly.push(...page.indices.filter((_, i) => !marked.has(i)));
+  }
+  return { full, blackOnly };
+});
+assert.deepEqual(chapters.map((chapter) => chapter.full.length), [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+
+const chapterModels = [];
+for (const { label, make } of [
+  { label: 'GP29 index', make: (v) => v },
+  { label: 'GP prime mod29', make: (v) => corpus.prime[v] % p }
+]) {
+  const squareKeys = Array.from({ length: 9 }, (_, j) =>
+    Array.from({ length: 5 }, (_, r) => red.slice(25 * j + 5 * r, 25 * j + 5 * r + 5).map(make)));
+  const squareInverses = squareKeys.map(invert);
+  const validCount = squareInverses.filter((item) => item !== null).length;
+  assert.equal(validCount, label === 'GP29 index' ? 9 : 8);
+  for (let j = 0; j < 9; j += 1) {
+    if (!squareInverses[j]) continue;
+    assert.deepEqual(blocks(squareInverses[j], blocks(squareKeys[j], plant)), plant, 'Nine-square positive plant');
+  }
+  for (const [transform, matrices] of [
+    ['key', squareKeys],
+    ['inverse', squareInverses],
+    ['transpose', squareKeys.map(transpose)],
+    ['inverse transpose', squareInverses.map((item) => item && transpose(item))]
+  ]) {
+    for (const [target, field] of [['black only', 'blackOnly'], ['all unknown', 'full']]) {
+      const candidate = [];
+      const chaptersUsed = [];
+      const chapterIocs = [];
+      for (let j = 0; j < 9; j += 1) {
+        // A singular 5x5 matrix cannot be a reversible Hill key.
+        if (!squareInverses[j]) continue;
+        const out = blocks(matrices[j], chapters[j][field]);
+        candidate.push(...out);
+        chaptersUsed.push(j + 1);
+        chapterIocs.push(Number(coincidence(out).toFixed(8)));
+      }
+      chapterModels.push({
+        source: label,
+        transform,
+        target,
+        chaptersUsed,
+        runes: candidate.length,
+        ioc: Number(coincidence(candidate).toFixed(8)),
+        chapterIocRange: [Math.min(...chapterIocs), Math.max(...chapterIocs)]
+      });
+    }
+  }
+}
+const fiveExtrema = chapterModels.map((item) => item.ioc);
+
 const extrema = results.map((x) => x.ioc);
 console.log(JSON.stringify({
   original: { red: red.length, unknown: unknown.length, black: black.length },
   originalIoc: { black: Number(coincidence(black).toFixed(8)), unknown: Number(coincidence(unknown).toFixed(8)), solvedP57: Number(coincidence(corpus.pages[57].indices).toFixed(8)) },
   originalDecodedIocRange: [Math.min(...extrema), Math.max(...extrema)],
   plantedGPNativeRunesRecoveredPerKey: 90,
-  models: results
+  models: results,
+  nineFiveByFive: { iocRange: [Math.min(...fiveExtrema), Math.max(...fiveExtrema)], models: chapterModels }
 }, null, 2));
