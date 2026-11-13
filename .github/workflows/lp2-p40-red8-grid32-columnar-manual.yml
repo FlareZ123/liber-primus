@@ -1,4 +1,4 @@
-name: Agent39 p40 red8 grid32 columnar inverse
+name: P40 original-source columnar and boundary gates
 on:
   workflow_dispatch:
 permissions:
@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_p40_grid256_allsecret_phase_equality_sft.cjs
       - name: Frozen source GP28 chain then red8 columnar and grid28 inverse (Director 696)
         run: node sims/lp2_p40_gp28_chain_grid_columnar_sft.cjs
+      - name: Exact red8 40320-order adjacency and boundary transport all-key controls
+        run: node sims/lp2_p40_columnar_antirepeat_order_sft.cjs
