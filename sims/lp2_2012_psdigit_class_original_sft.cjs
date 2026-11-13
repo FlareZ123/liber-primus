@@ -91,8 +91,9 @@ function locallyFits(cipher, decimal, plain) {
  * @param {number[][]} words @param {Map<number,{tokens:number[],frequency:number}[]>} source
  * @returns {number[]} Candidate counts per word.
  */
-function candidateCounts(words,source){
-  const digits=[...PS].map(Number);
+function candidateCounts(words,source,digitStream=PS){
+  const digits=[...digitStream].map(Number);
+  assert.equal(digits.length,131);
   let offset=0;
   const all=[];
   for(const word of words) {
@@ -103,6 +104,24 @@ function candidateCounts(words,source){
   }
   assert.equal(offset,131);
   return all;
+}
+
+
+/** @returns {Record<string,string>} Fixed original three-line readings/rotations. */
+function sourceOrientations() {
+  const rows=[PS.slice(0,40),PS.slice(40,85),PS.slice(85)];
+  const readColumn=(r)=>Array.from({length:46},(_,i)=>r.map(x=>x[i]||'').join('')).join('');
+  const top=readColumn(rows),bottom=readColumn([...rows].reverse());
+  return {
+    original:PS,
+    reversed:[...PS].reverse().join(''),
+    rowreverse:rows.map(x=>[...x].reverse().join('')).join(''),
+    rowsup:[...rows].reverse().join(''),
+    coltop:top,
+    colbottom:bottom,
+    coltop_reversed:[...top].reverse().join(''),
+    colbottom_reversed:[...bottom].reverse().join(''),
+  };
 }
 
 /** @param {string} lexiconPath @returns {object} */
@@ -116,6 +135,26 @@ function run(lexiconPath) {
   assert.deepEqual(counts,EXPECTED_COUNTS,'original local candidate counts changed');
   const incompatible=counts.map((n,i)=>n?null:i).filter(x=>x!==null);
   assert.deepEqual(incompatible,[6,10,11,12,15,23]);
+
+  // The original 2012 hint explicitly mentions a 90-degree rotation of
+  // its ragged three-line matrix: test both column readout orientations.
+  const expectedOrientationZeros = {
+    original:[6,10,11,12,15,23],
+    reversed:[10,12,15,23],
+    rowreverse:[6,10,12,15],
+    rowsup:[10,12,15,23],
+    coltop:[10,12,15],
+    colbottom:[10,12,15],
+    coltop_reversed:[10,11,15],
+    colbottom_reversed:[10,12,15],
+  };
+  const orientationZeros = {};
+  for (const [reading, stream] of Object.entries(sourceOrientations())) {
+    const local = candidateCounts(original,vocab,stream);
+    const zeroIndices=local.map((v,i)=>v?null:i).filter(x=>x!==null);
+    assert.deepEqual(zeroIndices,expectedOrientationZeros[reading],reading);
+    orientationZeros[reading]=zeroIndices;
+  }
 
   // Reversible native-GP positive plant: same source digits, same word shapes,
   // one arbitrary 29-valued key per decimal class, exact 131/131 recovery.
@@ -140,6 +179,7 @@ function run(lexiconPath) {
     originalPage:22, runeCount:131, originalWords:28, archiveDecimalDigits:PS.length,
     lexiconNativeWordTypes:29062, originalCandidates:counts,
     incompatibleWordIndices:incompatible,
+    orientationIncompatibleWordIndices:orientationZeros,
     originalIncompatibleWords:incompatible.map(i=>({wordIndex:i, length:original[i].length})),
     positivePlant:{recoveredRuneCount:recovered.length, exactRuneCount:131,
       eligibleWords:positiveCounts.filter(x=>x>0).length} };
@@ -149,4 +189,4 @@ if(require.main===module){
   assert(source,'usage: node sims/lp2_2012_psdigit_class_original_sft.cjs path/to/en-spelling.txt');
   console.log(JSON.stringify(run(source),null,2));
 }
-module.exports={PS,WORD_LENGTHS,sourceWords,nativeSymbols,lexicon,locallyFits,candidateCounts,run};
+module.exports={PS,WORD_LENGTHS,sourceWords,nativeSymbols,lexicon,locallyFits,candidateCounts,sourceOrientations,run};
