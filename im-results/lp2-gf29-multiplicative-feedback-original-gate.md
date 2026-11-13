@@ -79,8 +79,23 @@ This preserves the historically known totient sequence exactly as exponents, and
 
 This narrows a **particularly source-motivated dynamic key** without disproving other feedback constructions. The primitive-root exponentiation itself is an investigator hypothesis: p56 authenticates the prime-totient sequence for its own Vigenère-like decipherment, not this new exponentiation or its transfer to pp0–55. No plaintext results.
 
+## Exact 76-cell outer perimeter to original p55: the strongest geometric consumer
+
+A more direct artifact-selected input than either AES or the long totient stream is the printed 32×8 table's **76-cell outer circumference**, exactly the length of the **76 original encrypted runes on p55**. The immediately following p57's solved imperative mentions `CIRCUMFERENCES`, so the perimeter is a source-visible geometric candidate. This independently motivates an original p55 direct test without fitting the key to ciphertext statistics.
+
+The [self-contained 76-rune source-native SFT](../sims/lp2_p55_outer76_gf29_feedback_sft.cjs) takes the outer ring from the printed top-left cell clockwise, and the counterclockwise traversal from that same visible start. It sets each nonzero GF29 feedback multiplier to `1 + (printed base60 byte mod28)`. It compares either page-local initial accumulator zero or continuation from p54's last original ciphertext rune (GP index26). Every case exactly forward-replays the untouched p55 and passes a 76-rune solved-p57-plus-`EACH` positive source plant with one genuine zero-step.
+
+| Original p55 inverse | GP29 IoC | Exact native English word matches among 17 printed words | Matches of length ≥6 |
+| --- | ---: | ---: | ---: |
+| Clockwise, initial 0 | 0.038596 | 0 | **0** |
+| Clockwise, initial p54 last rune | 0.037544 | 1 | **0** |
+| Counterclockwise, initial 0 | 0.039649 | 3 | **0** |
+| Counterclockwise, initial p54 last rune | 0.037544 | 4 | **0** |
+
+All four inverses remain nonlinguistic. This is a **bounded negative of a particularly natural source-ring-to-page pairing**, not evidence that the exact circumference-length equality was unintentional. A different key consumer could still use the outer ring. Do not introduce unmarked rotations, arbitrary seeds, or altered byte projections to rescue this specific multiplier model.
+
 ## Decision
 
-The multiplicative feedback hypothesis gives a clean, human-executable 29-symbol *mechanism candidate*, but **neither original plaintext nor key is recovered**. Two stronger observations change the next decision: the 23 printed-boundary repeat events fail the fixed-EA native-English expectation, and all 791 words of length≥6 eliminate a secret *word-constant* affine delta decoder. Direct original-cipher dynamic keys from the printed 32×8 table and the authentic solved-p56 prime-totient stream are both nonlinguistic. The remaining avenue demands an original clue that identifies a **rune-varying reversible key/state operation** or changes the representation of text before feedback. A claim from a few coincidental short words or an arbitrarily chosen key would not advance the solution.
+The multiplicative feedback hypothesis gives a clean, human-executable 29-symbol *mechanism candidate*, but **neither original plaintext nor key is recovered**. Two stronger observations change the next decision: the 23 printed-boundary repeat events fail the fixed-EA native-English expectation, and all 791 words of length≥6 eliminate a secret *word-constant* affine delta decoder. Direct original-cipher dynamic keys from the printed 32×8 table, the table's exact outer76→p55 circumference, and the authentic solved-p56 prime-totient stream are all nonlinguistic. The remaining avenue demands an original clue that identifies a **rune-varying reversible key/state operation** or changes the representation of text before feedback. A claim from a few coincidental short words or an arbitrarily chosen key would not advance the solution.
 
-**Reproduce:** all three CommonJS SFTs use Node.js 22 built-in modules, and [manual original-source CI run 43473445547](https://github.com/FlareZ123/liber-primus/actions/runs/43473445547) passes all three, including the exact 29-symbol word-initial frequency comparison. Inputs and vocabulary are committed in `resources/`; physical p50 contributes no rune text.
+**Reproduce:** all four CommonJS SFTs use Node.js 22 built-in modules, and [manual original-source CI run 43474801640](https://github.com/FlareZ123/liber-primus/actions/runs/43474801640) passes all three, including the exact 29-symbol word-initial frequency comparison. Inputs and vocabulary are committed in `resources/`; physical p50 contributes no rune text.
