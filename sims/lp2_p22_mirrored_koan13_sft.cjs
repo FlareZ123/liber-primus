@@ -90,4 +90,37 @@ for (const reverseInput of [false, true]) {
     }
   }
 }
-console.log('PASS: eight exact source-fixed mirror variants, zero unknown plaintext.');
+
+const chapter = corpus.pages.slice(15, 23).flatMap(p => p.indices);
+assert.equal(chapter.length, 1903);
+const chapterPlant = Array.from({ length: chapter.length },
+  (_, i) => solvedControl[i % solvedControl.length]);
+const originalChapterIoc = ioc(chapter);
+assert(Math.abs(originalChapterIoc - 0.03450194584565) < 0.00000001);
+
+for (const reverseInput of [false, true]) {
+  for (const reverseKey of [false, true]) {
+    for (const sign of [-1, +1]) {
+      const plaintext = decode(chapter, reverseInput, reverseKey, sign);
+      const reencrypted = encode(plaintext, reverseInput, reverseKey, sign);
+      assert.deepEqual(reencrypted, chapter);
+      const plantCipher = encode(chapterPlant, reverseInput, reverseKey, sign);
+      assert.deepEqual(decode(plantCipher, reverseInput, reverseKey, sign),
+        chapterPlant);
+      console.log(JSON.stringify({
+        scope: 'source-visual p15-to-p22 continuous 1903-rune chapter',
+        reverseInput,
+        reverseKey,
+        sign,
+        rawIoc: Number(originalChapterIoc.toFixed(8)),
+        outputIoc: Number(ioc(plaintext).toFixed(8)),
+        preview: plaintext.slice(0, 90).map(i => corpus.translit[i]).join(''),
+        originalForwardReencryption: true,
+        nativePlantRoundtrip: true,
+      }));
+    }
+  }
+}
+
+console.log('PASS: eight 131-rune p22 and eight 1903-rune visual-chapter mirrored koan models; no unknown plaintext.');
+
