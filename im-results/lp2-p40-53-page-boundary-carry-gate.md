@@ -4,22 +4,22 @@
 
 ## Decision
 
-The four apparent one-rune starts on physical p42, p45, p49 and p52 are best read as **word carries from the preceding page**, not as independent one-rune words. The original page images show the same boundary form in all four cases:
+The four apparent one-rune starts on physical p42, p45, p49 and p52 are **cross-page word carries**, not independent one-rune words. This is not a new discovery of the carry mechanism: the repository's canonical continuous parser, sims/lp2_word_pages.cjs, already identifies exactly 32 cross-page words and includes these four. The original JPEGs independently confirm the relevant page-edge layout.
 
-| Boundary | Original archive images | Previous page ending | Next page beginning |
-|---|---|---|---|
-| p41 → p42 | 58.jpg → 59.jpg | final line has no printed word separator | one rune, then the first word separator |
-| p44 → p45 | 61.jpg → 62.jpg | final line has no printed word separator | one rune, then the first word separator |
-| p48 → p49 | 65.jpg → 66.jpg | final line has no printed word separator | one rune, then the first word separator |
-| p51 → p52 | 68.jpg → 69.jpg | final line has no printed word separator | one rune, then the first word separator |
+| Boundary | Original archive images | Canonical complete word | Length | Body offset |
+|---|---|---|---:|---:|
+| p41 → p42 | 58.jpg → 59.jpg | ᛟᛟᚳᛏᛄᛞ | 6 | 496 |
+| p44 → p45 | 61.jpg → 62.jpg | ᚱᛗᛞᛋᚳ | 5 | 1315 |
+| p48 → p49 | 65.jpg → 66.jpg | ᛇᚠᚢᛞᚣᚪᛚᚠᛡ | 9 | 2400 |
+| p51 → p52 | 68.jpg → 69.jpg | ᛈᛚᚠᛈ | 4 | 2558 |
 
-This is the same page-edge pattern as p54 → p55 (71.jpg → 72.jpg), whose leading rune is already treated as a carry. The p53 → p54 boundary is a useful contrast: p53 ends with terminal punctuation and the red13 chapter mark, and p54 begins a new red rubric. Archive filenames map to LP2 physical pages by filename index = page + 17, as documented in resources/liber-primus/README.md.
+Body offsets count from the first rune after the eight-rune red p40 heading. In each image pair, the preceding page's final line has no printed word separator; the next page begins with one rune followed by the first word separator. This matches the p54 → p55 carry pattern (71.jpg → 72.jpg), whose complete carried word is 11 runes. The p53 → p54 boundary differs: p53 ends with terminal punctuation and the red13 chapter mark, and p54 begins a new red rubric (70.jpg → 71.jpg).
 
-The canonical transcription independently encodes the same distinction: the four preceding page-final lines do not end in a word-separator hyphen or sentence period, and each following page begins with exactly one rune before its first separator. The p54 → p55 control has the same form; p53 → p54 ends with a period. The accompanying SFT checks these transcription conditions and the exact rune counts. The image comparison is a manual inspection of the original JPEGs, not an OCR claim.
+The canonical parser reports 12,956 unknown runes, 2,896 complete words and 32 cross-page words. These four are already included in that 32-word count; do not count them again or split them into separate page-local singleton words.
 
 ## Why this does not repair the 14-column tail
 
-A carry changes **word segmentation**, not the set or count of ciphertext runes. The four leading runes remain part of the p40–p53 body; they complete words begun on the preceding pages. They cannot be deleted from a transposition input.
+A carry changes **word segmentation**, not the set or count of ciphertext runes. The four leading runes complete words begun on the preceding pages; they remain in the p40–p53 body and in any cipher input.
 
 The source counts are:
 
@@ -36,6 +36,6 @@ Run:
 
     node sims/lp2_p40_53_page_carry_gate.cjs
 
-The script verifies the transcription's page-boundary pattern, the p54→p55 positive structural control, the p53→p54 punctuation/chapter-boundary contrast, and the 3,000-rune count. It deliberately does not delete carry runes or execute a transposition. Original visual inputs are resources/liber-primus/58.jpg, 59.jpg, 61.jpg, 62.jpg, 65.jpg, 66.jpg, 68.jpg, 69.jpg, 70.jpg, 71.jpg and 72.jpg.
+The script uses the canonical continuous parser, verifies the four exact carried words and their offsets, checks the p54→p55 positive structural control and the p53→p54 punctuation/chapter-boundary contrast, and asserts the 3,000-rune body count. It deliberately does not delete carry runes or execute a transposition. Original visual inputs are resources/liber-primus/58.jpg, 59.jpg, 61.jpg, 62.jpg, 65.jpg, 66.jpg, 68.jpg, 69.jpg, 70.jpg, 71.jpg and 72.jpg.
 
-This result corrects the earlier claim that the four tokens were established standalone words. It does **not** establish a cipher key, a 14-column decryption, unknown LP2 plaintext, or a final destination. Reopen the 14-column branch only if an original source rule defines the four-symbol tail and independently selects the next identity-changing operation.
+This result corrects the earlier claim that the four tokens were established standalone words and the arithmetic proposal that their deletion yields a valid 14×214 input. It does **not** establish a cipher key, a 14-column decryption, unknown LP2 plaintext, or a final destination. Reopen the 14-column branch only if an original source rule defines the four-symbol tail and independently selects the next identity-changing operation.

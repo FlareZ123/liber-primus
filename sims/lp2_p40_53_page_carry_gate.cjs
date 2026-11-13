@@ -1,104 +1,82 @@
 'use strict';
 /**
- * Source-structural gate for the four p40-p53 page-start runes.
+ * Source-structural gate for p40-p53 cross-page word carries.
  *
- * A carry is still a ciphertext symbol. This program therefore never removes
- * the four leading runes and never executes the historical 14-column order.
+ * Uses the repository's canonical continuous parser. A carry is still a
+ * ciphertext symbol; this program never deletes carry runes and never runs
+ * the historical 14-column permutation.
  *
  * Run: node sims/lp2_p40_53_page_carry_gate.cjs
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const {parseLP2Words, physicalLP2Page} = require('./lp2_word_pages.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(
   path.join(ROOT, 'resources/liber-primus/lp2-corpus.json'), 'utf8'));
 const transcription = fs.readFileSync(
   path.join(ROOT, 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
-const chunks = transcription.split('%');
-const runeSet = new Set(corpus.runes);
+const parsed = parseLP2Words(transcription);
+assert.equal(parsed.runeCount, 12956);
+assert.equal(parsed.words.length, 2896);
+assert.equal(parsed.crossPageWords, 32);
 
-function pageLines(page) {
+const expected = [
+  {from: 41, to: 42, runes: 'ᛟᛟᚳᛏᛄᛞ', length: 6, bodyOffset: 496},
+  {from: 44, to: 45, runes: 'ᚱᛗᛞᛋᚳ', length: 5, bodyOffset: 1315},
+  {from: 48, to: 49, runes: 'ᛇᚠᚢᛞᚣᚪᛚᚠᛡ', length: 9, bodyOffset: 2400},
+  {from: 51, to: 52, runes: 'ᛈᛚᚠᛈ', length: 4, bodyOffset: 2558}
+];
+const actual = expected.map(want => {
+  const matches = parsed.words.filter(word =>
+    physicalLP2Page(word.startPage) === want.from &&
+    physicalLP2Page(word.endPage) === want.to);
+  assert.equal(matches.length, 1, 'expected one carried word at p' + want.from);
+  const word = matches[0];
+  assert.equal(word.runes, want.runes);
+  assert.equal(word.length, want.length);
+  return {...want, parserStartPage: word.startPage, parserEndPage: word.endPage};
+});
+
+const p54p55 = parsed.words.filter(word =>
+  physicalLP2Page(word.startPage) === 54 &&
+  physicalLP2Page(word.endPage) === 55);
+assert.equal(p54p55.length, 1);
+assert.equal(p54p55[0].length, 11);
+assert.equal(p54p55[0].runes, 'ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ');
+
+const pageChunks = transcription.split('%');
+const physicalPageChunk = page => page < 50 ? page : page - 1;
+const pageLines = page => {
   if (page === 50) return [];
-  const chunkIndex = page < 50 ? page : page - 1;
-  assert.ok(chunks[chunkIndex], 'missing transcription chunk for p' + page);
-  return chunks[chunkIndex].split(/\r?\n/)
-    .map(s => s.trim())
-    .filter(s => s && s !== '&' && s !== '$');
-}
-function stripLineMark(s) {
-  return s.endsWith('/') ? s.slice(0, -1) : s;
-}
-function countRunes(s) {
-  return [...s].filter(ch => runeSet.has(ch)).length;
-}
-function boundary(from, to) {
-  const previous = stripLineMark(pageLines(from).at(-1));
-  const next = stripLineMark(pageLines(to)[0]);
-  const firstWord = next.split('-')[0];
-  return {
-    from, to, previousLastLine: previous, nextFirstLine: next,
-    previousEndsWithWordSeparator: previous.endsWith('-'),
-    previousEndsWithPeriod: previous.endsWith('.'),
-    firstWord, firstWordRuneCount: countRunes(firstWord)
-  };
-}
+  return pageChunks[physicalPageChunk(page)].split(/\r?\n/)
+    .map(s => s.trim()).filter(s => s && s !== '&' && s !== '$');
+};
+const p53Last = pageLines(53).at(-1).replace(/\/$/, '');
+assert.ok(p53Last.endsWith('.'), 'p53->p54 must retain its terminal period');
 
-const targetPairs = [[41, 42], [44, 45], [48, 49], [51, 52]];
-const targetBoundaries = targetPairs.map(([a, b]) => boundary(a, b));
-for (const b of targetBoundaries) {
-  assert.equal(b.previousEndsWithWordSeparator, false);
-  assert.equal(b.previousEndsWithPeriod, false);
-  assert.equal(b.firstWordRuneCount, 1);
-}
-const p54p55 = boundary(54, 55);
-assert.equal(p54p55.previousEndsWithWordSeparator, false);
-assert.equal(p54p55.previousEndsWithPeriod, false);
-assert.equal(p54p55.firstWordRuneCount, 1);
-const p53p54 = boundary(53, 54);
-assert.equal(p53p54.previousEndsWithPeriod, true);
-
-const pages = corpus.pages.filter(p => p.page >= 40 && p.page <= 53);
-const bodyLength = pages.reduce((n, p) =>
+const bodyPages = corpus.pages.filter(p => p.page >= 40 && p.page <= 53);
+const bodyLength = bodyPages.reduce((n, p) =>
   n + p.indices.length - (p.page === 40 ? 8 : 0), 0);
 assert.equal(bodyLength, 3000);
 assert.equal(bodyLength % 14, 4);
-
-const pageStartOffsets = {};
-let offset = 0;
-for (const p of pages) {
-  const skip = p.page === 40 ? 8 : 0; // exclude red p40 heading only
-  pageStartOffsets[p.page] = offset + skip;
-  offset += p.indices.length - skip;
-}
-const carryPages = [42, 45, 49, 52];
-const carries = carryPages.map(page => {
-  const p = corpus.pages.find(x => x.page === page);
-  return {
-    page,
-    bodyOffset: pageStartOffsets[page],
-    rune: corpus.runes[p.indices[0]]
-  };
-});
-assert.deepEqual(carries.map(x => x.bodyOffset), [496, 1315, 2400, 2558]);
-assert.equal(bodyLength - carries.length, 2996); // deletion is the invalid repair
+assert.equal(bodyLength - expected.length, 2996); // invalid: deletes real runes
 
 const report = {
-  classification: 'page-boundary word-segmentation correction; no cipher transform',
-  targetBoundaries,
-  p54p55CarryControl: p54p55,
-  p53p54ChapterBoundaryControl: p53p54,
-  bodyPages: pages.map(p => ({
-    page: p.page,
-    sourceRunes: p.indices.length,
-    excludedRedHeadingRunes: p.page === 40 ? 8 : 0
-  })),
-  bodyLength,
-  carryRunesRetained: carries,
-  invalidDeletionLength: bodyLength - carries.length,
-  width14: { rows: 214, remainder: 4 },
+  classification: 'four confirmed members of the existing 32 cross-page words; no cipher transform',
+  totalUnknownRunes: parsed.runeCount,
+  completeWords: parsed.words.length,
+  crossPageWords: parsed.crossPageWords,
+  p40p53CarryWords: actual,
+  p54p55CarryControl: p54p55[0],
+  p53p54ChapterBoundaryControl: {lastLine: p53Last, terminalPeriod: true},
+  p40p53BodyRunes: bodyLength,
+  bodyLengthModulo14: 4,
+  invalidDeletionLength: bodyLength - expected.length,
+  carryRunesRetained: true,
   historical14ColumnTransformExecuted: false,
-  reason: 'carry runes remain ciphertext; no source-defined four-symbol tail rule or identity-changing second stage'
+  reason: 'word carry changes segmentation, not ciphertext inventory; no source-defined four-symbol tail rule or identity-changing second stage'
 };
 console.log(JSON.stringify(report, null, 2));

@@ -369,3 +369,10 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - Critical correction: a carry remains a ciphertext rune. The four symbols must stay in the 3,000-rune p40–p53 body; deleting them to obtain 2,996=14×214 is invalid. The actual length remains 3,000=14×214+4. No source-defined tail treatment or identity-changing second stage exists, so no 14-column transform was run.
 - Consolidated report: im-results/lp2-p40-53-page-boundary-carry-gate.md. Reproducer: sims/lp2_p40_53_page_carry_gate.cjs. Updated results/README.md in the same commit.
 - #719 should close as an underdetermined/unselected transfer, not as proof that the four runes are standalone words. Do not reopen without an original rule for the four-symbol tail and a separately selected identity-changing stage. No plaintext, authentic key, or destination recovered.
+
+
+## 2026-11-13 follow-up — canonical 32-carry parser reconciliation
+
+- Follow-up inspection found the existing canonical parser sims/lp2_word_pages.cjs already identifies exactly 32 cross-page words. The four p40–p53 cases are among them; they were not newly discovered in this run. Their combined runes are p41→42 ᛟᛟᚳᛏᛄᛞ (6), p44→45 ᚱᛗᛞᛋᚳ (5), p48→49 ᛇᚠᚢᛞᚣᚪᛚᚠᛡ (9), p51→52 ᛈᛚᚠᛈ (4), at body offsets 496, 1315, 2400, 2558 after the p40 red heading.
+- Reconciled report and reproducer to import the canonical parser rather than duplicate its logic. The key correction remains: these four runes are included in the 3,000-symbol body; the 2,996 figure deletes ciphertext and cannot repair the 14-column tail.
+- The 32-carry AES-256 table-payload negative in im-results/lp2-carry32-grid-aes256-payload-gate.md already uses the canonical 32-word extraction; do not repeat it. No change to its conclusion.
