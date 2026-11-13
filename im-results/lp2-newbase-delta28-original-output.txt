@@ -11,6 +11,10 @@ DIRECT base=60 p0+p1 runes=528 digits=435 uppercase=186 preview=1OrYC8axTGGrwRHw
 DIRECT base=59 p0 runes=262 digits=217 uppercase=101 preview=2JB1QKJE0XEVZYKbceWJRRYKVVwOYEJUEapi0eiEc5nrAqmpuV2xuqSgCRNm2kJK5T2DFe3RVlbItGUTFxihFakKKK
 DIRECT base=59 p1 runes=266 digits=220 uppercase=101 preview=CjY6nKuBRc2ONrgacpp22RqCtBZYkCphdoVih5jNATjeKwPxZqV9HWSnX4Y7nicoGooSPrKYchKXUuPqmDSo0N2VNl
 DIRECT base=59 p0+p1 runes=528 digits=436 uppercase=208 preview=ZHUigGbsM7CdANuGRF6xUWTJrV656F5I1YmXrDdJp7urkq1MqTC5FqdLGZUFuLJOHlaku1TIQmMva2j2Vbt3xN8i2P
+SELECTED-WORD base=60 p0#w6 original-offset=23 runes=11 digits=8 readout=WYBhPWn4
+SELECTED-WORD base=59 p0#w6 original-offset=23 runes=11 digits=8 readout=abVsBJKs
+SELECTED-WORD base=60 p1#w33 original-offset=135 runes=10 digits=8 readout=2KWoVmY0
+SELECTED-WORD base=59 p1#w33 original-offset=135 runes=10 digits=8 readout=2bR7asCe
 DELTA28 base=60 p5 runes=263 digits=214 uppercase=85 preview=1rQmTAad9eVVrh5Kfuc3p93BEgoKtoTa5o51RSLxBT9hDMICApUMqCagoV23cPiwH09q3h
 DELTA28 base=60 p7 runes=208 digits=169 uppercase=83 preview=390oagKftnnliVX6b02JlwTVcRh4WQXfZ7VPAGnRGOQnnBB6mlj99N6R6usFWsFKIXDM1q
 DELTA28 base=60 p13 runes=272 digits=221 uppercase=95 preview=8cAwvEAi0fAgPo8VZNm5D07TRP0aR4w8kn5njv3BOYdeZIdgiQ5eJLN3Ol2Imu8K1s3AfA
