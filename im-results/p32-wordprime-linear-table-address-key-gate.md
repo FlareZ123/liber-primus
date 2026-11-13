@@ -93,7 +93,7 @@ This is a useful alternate-register check, not proof that every possible Latin r
 
 A third language check used the repository's corrected Beowulf Old English GP29 profile. The model is trained on the first **7,960** symbols of its 12,956-symbol held-out GP sequence; the next **4,996** symbols form a same-source, non-overlapping positive-control plant matching the pp33–55 target length. The same fixed-plaintext 13/16 keyskip model and four-rejection cap were used.
 
-| Address convention | Operation | Selected skips | Decoded IoC | English? | Old English trigram score/rune | Original-key rank among 21 |
+| Address convention | Operation | Selected skips | Decoded IoC | Readable output | Old English trigram score/rune | Original-key rank among 21 |
 |---|---|---:|---:|---|---:|---:|
 | Zero-based | C−K, keyskip | 121 | 0.03495417 | No readable text | −4.97640782 | 21 |
 | Zero-based | C+K, keyskip | 98 | 0.03506637 | No readable text | −4.96883201 | 13 |
