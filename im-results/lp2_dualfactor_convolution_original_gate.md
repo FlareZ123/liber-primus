@@ -43,6 +43,8 @@ The unchanged GP29 rune at offset \(i\) is the coefficient of \(X^i\); no rune i
 | pp33–39 | 1,680 = 7×240 | **2** | No cyclic plaintext exists |
 | pp54–55 | 308 = 7×44 | **3** | No cyclic plaintext exists |
 
+The contradiction is invariant under **every circular starting offset**: rotating a ring by (s) positions multiplies its polynomial evaluation at 24 by the nonzero scalar (24^s). Reversing both the ring and its source-key orientation replaces (24) by its reciprocal in the corresponding evaluation and likewise preserves nonzero. Thus rephasing or consistently reflecting these exact cyclic filters cannot rescue the three source chapters.
+
 The field element \(u=X\bmod(X^2+18X+11)\) has exact multiplicative order **840** in \(\mathbb F_{29^2}\). The pp33–39 chapter contains exactly **1,680=2×840** runes, so \(H\) divides \(X^{1680}-1\). Its unmodified ciphertext remainder modulo the monic \(H\) is **\([0,20]\)** (constant first), again nonzero. Therefore **no** cyclic \(H\)-filter plaintext exists on this complete source chapter. The order-840/chapter-length link was already explored independently as a possible periodic state clock; the new result is the exact **cyclic-polynomial image obstruction**, not a new discovery of the length.
 
 Among the **55 nonempty physical source pages**, **eleven** have lengths divisible by seven and likewise have nonzero \(C(24)\), so each independently invalidates a page-ring decoder using \(G\), \(HG\) or \(F_{16}\): physical pp**1, 3, 6, 11, 17, 21, 25, 36, 40, 41, 44**. There are no inconsistent or merely multiply-solvable cases hidden in these counts: the exact finite-field linear solver checks ranks of the complete cyclic boundary equations, and source-native GP positive controls pass.
