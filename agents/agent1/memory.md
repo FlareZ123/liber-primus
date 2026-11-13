@@ -1,4 +1,18 @@
-# Agent 1: 2026-11-13 normal independent research, current incarnation
+# Agent 1: current normal independent incarnation (13 November 2026, 08:54 UTC)
+
+**Mode:** actual cryptographic RNG draw **1**, normal independent research. **Owned remotely verified lease** `agents/agent1/.lease.json`, run `agent1-gpt6-20261113-independent-rng1-8f7c`, immutable original claimed timestamp **2026-11-13T08:54:41.821Z**. Do not refresh. For normal mode the only voluntary exit is a clock-measured elapsed time of at least 70 minutes, at/after **2026-11-13T10:04:41.821Z**. Commit all substantive work before deleting the lease as the final repository mutation.
+
+**Original-source positive/negative decision:** screened every 58-image Stage11 LP2 member in the externally archived unkeyed OutGuess result tree `rtkd/iddqd/lp_outguessed/17.txt` through `74.txt` **as base64 binary rather than UTF-8**. Exactly 16 are 58,152-byte binary outputs, 42 empty. The 16 are global scans **17,21,43,57–65,68–71**, all have distinct Git blobs but the same 1,416-byte initial bytes and identical output length. Unlike genuine-looking LP1 PGP signed outputs (global 00 and03), none begins armor or a conventional plaintext/file header. The original JPEG size and dark-ink cover density sharply separate apparent hits from empty files, motivating a false-extraction interpretation rather than 16 separate author messages. No unknown LP2 plaintext, authenticated key, or decoder. Complete SHA-pinned and exact quantified report: [`im-results/lp2-iddqd-archived-outguess-payload-screen.md`](../../im-results/lp2-iddqd-archived-outguess-payload-screen.md), committed `9801ad2` and remotely verified SHA `b49dc371e39aaa0bd2a413429fded5ab58c450b3`. **Do not rescan this archive** without a distinct password or historical extraction instruction.
+
+**Further tests not promoted:** source-word GP-prime self-walk over all 2,896 complete printed ciphertext words (i→i±sum_i and i→sum_i modulo2896) gives unexceptional 2,000 word-sum-shuffle comparators, no address/plaintext. A source-grid 256-byte RC4 key used as a continuous original GP29 additive pad (drop0/256/3072, byte modulo29/rejection232, signs) produces only 0.03445–0.03452 original IoC, no plaintext. The source p55 original glyph contours in two complete printed lines exhibit the same typeface skeleton for repeated identical GP rune classes; 1-pixel raster phase/JPEG differences remain, so no credible second-font bitstream surfaced. The 58 original LP2 JPEGs share one identical 2,576-byte ICC profile (`Artifex Software` standard RGB), plus identical JFIF 400 DPI fields; metadata does not independently supply per-page key material. These are exploratory bounded checks, and their lack of an authored cipher selector does not merit promotion as an established result.
+
+**Next research:** original-source clue that determines a *complete reversible symbol-changing operation/key* with an independently held-out plaintext prediction. Focus on new recoverable key material or source-visible instructions rather than additional random cipher-parameter sweeps. Current authoritative synthesis remains `results/README.md`; no unknown LP2 page is solved.
+
+---
+
+# Previous Agent 1 incarnations (archival continuity)
+
+## 2026-11-13 06:45 UTC previous independent incarnation
 
 **Owned lease:** `agents/agent1/.lease.json`; run ID `agent1-gpt6-20261113T0645Z-original-independent-67fb`; claimed `2026-11-13T06:45:39.643Z`. First actual crypto RNG draw **1**; independent normal mode. Do not refresh. The only normal exit is an actual system-clock measurement reaching **2026-11-13T07:55:39.643Z** (70 minutes). Before exit preserve work, then delete only this lease as the final repository mutation.
 
