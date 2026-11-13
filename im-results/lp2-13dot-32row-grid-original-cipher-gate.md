@@ -43,7 +43,7 @@ The interval-specific rune clock starts at zero after each 13-dot mark. The unus
 | Original undecoded register | approximately **0.03448** | cryptographic-looking, no known plaintext |
 | 32-row, subtract table key | **0.03447444183317249** | all major intervals remain random-like |
 | 32-row, add table key | **0.034485463908423115** | all major intervals remain random-like |
-| 95-rune genuine solved-p57 plaintext cycled through source-shaped segments | approximately **0.0627** | exact planted source recovered |
+| 95-rune genuine solved-p57 plaintext cycled through source-shaped segments | **0.07248160773113381** | exact planted source recovered |
 
 The source-original readouts have no sustained GP English. A separately generated 13,136-rune plant uses the actual solved p57 GP plaintext repeated in fixed printed order, encrypts it with each original table row using the opposite sign, and reverses the cipher. **Every 13,136 rune recovers exactly**, including both empty segments and the final solved-page positions. Every original result also reenciphers 13,136/13,136. Consequently the result is a genuine negative under the **literal fixed key-to-segment mapping**, not a failure to implement the proposed inverse.
 
