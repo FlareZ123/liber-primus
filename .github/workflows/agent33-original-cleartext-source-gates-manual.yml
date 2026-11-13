@@ -1,0 +1,25 @@
+name: Agent33 corrected original LP1 cleartext references (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authentic-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify corrected LP1-clear source anchors and all-secret p15 block gate
+        run: |
+          node --check sims/lp2_p15_fourblock_collision_sft.cjs
+          node sims/lp2_p15_fourblock_collision_sft.cjs
+      - name: Verify source-native p57 anchor and original-author page-offset gate
+        run: |
+          node --check sims/lp2_pageoffset_allsecret_reuse_gate.cjs
+          node sims/lp2_pageoffset_allsecret_reuse_gate.cjs
