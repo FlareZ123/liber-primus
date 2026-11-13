@@ -285,6 +285,35 @@ const nativeLatinGPExclusions={
 };
 assert(Object.values(nativeLatinGPExclusions).every(Boolean));
 
+
+/**
+ * Raw uncontracted Latin26 Vulgate: eight independently SHA-pinned
+ * original Latin books, retaining distinct V, Q, K, Z letter values.
+ * This is a different plaintext register from both GP English and the
+ * Latin GP29 source control. Original source hashes are in the fixture.
+ */
+const latin26VulgateSource=read("resources/control/latin-vulgate-latin26-normalized.txt");
+const latin26VulgateData=latin26VulgateSource.split(/\r?\n/u)
+  .filter(line=>line.length&&!line.startsWith("#")).join("");
+assert.equal(latin26VulgateData.length,208680);
+const latin26VulgateRunes=[...latin26VulgateData]
+  .map(c=>c.charCodeAt(0)-65);
+const latin26VulgateWindows=[];
+for(let start=0;start+originalN<=latin26VulgateRunes.length;
+  start+=Math.floor(originalN/2)){
+  const ranked=controlSortedGroups(
+    latin26VulgateRunes.slice(start,start+originalN),26);
+  latin26VulgateWindows.push({top4:ranked[3],top5:ranked[4]});
+}
+assert.equal(latin26VulgateWindows.length,31);
+const latin26VulgateMin={
+  top4:Math.min(...latin26VulgateWindows.map(x=>x.top4)),
+  top5:Math.min(...latin26VulgateWindows.map(x=>x.top5))
+};
+assert.deepEqual(latin26VulgateMin,{top4:5258,top5:6250});
+assert(latin26VulgateMin.top4>sourceCapacity.book.latin26.top4);
+assert(latin26VulgateMin.top5>sourceCapacity.book.latin26.top5);
+
 /**
  * A public phase clock is the least additional state beyond C_(i-1).
  * Exhaust only the bounded 1..20 page-local rune phase values, keeping
@@ -337,6 +366,9 @@ console.log(JSON.stringify({
   latinVulgateOriginalControl:{runes:latinVulgateRunes.length,
     windows:latinVulgateWindows.length, min:latinVulgateMin,
     nativeGP29AllSecretExclusions:nativeLatinGPExclusions},
+  latinVulgateOriginalLatin26Control:{runes:latin26VulgateRunes.length,
+    windows:latin26VulgateWindows.length,min:latin26VulgateMin,
+    bookWideAnySecretRowExcluded:true},
   exactPhaseOccupancyEnvelope:phaseEnvelope,
   positivePlant:{gp29:gpPlant,latin26:latinPlant}
 },null,2));
