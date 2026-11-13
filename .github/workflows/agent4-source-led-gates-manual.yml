@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Run original Fibonacci-page GP29 differential-spectrum and eight-column inverse gate
+        run: node sims/lp2_fibonacci_page_delta_spectrum_sft.cjs
       - name: Run frozen p15 1903-rune Josephus gate
         run: node sims/p15_spiral_josephus_sft.cjs
       - name: Run frozen p55 75-rune Wisdom matrix gate
