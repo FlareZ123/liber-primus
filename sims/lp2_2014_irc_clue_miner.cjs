@@ -128,8 +128,8 @@ async function main() {
       '; high-signal hits: '+r.strong+'; medium-signal hits: '+r.medium+'.\n\n';
     for(const x of r.excerpts) md+='- L'+x.line+' [tier '+x.score+'] '+x.text.replace(/\u0000/g,'')+'\n';
     for (const w of r.contexts || []) {
-      md+='\\n### Original context at L'+w.center+'\\n\\n';
-      for (const e of w.lines) md+='- L'+e.line+' '+e.text.replace(/\\u0000/g,'')+'\\n';
+      md+='\n### Original context at L'+w.center+'\n\n';
+      for (const e of w.lines) md+='- L'+e.line+' '+e.text.replace(/\u0000/g,'')+'\n';
     }
 
     md+='\n';
