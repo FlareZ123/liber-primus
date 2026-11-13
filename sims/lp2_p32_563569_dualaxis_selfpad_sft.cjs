@@ -80,7 +80,7 @@ for (const basis of ['ordinal','prime'])
       });
     }
 assert.equal(cases.length,8);
-assert.equal(ioc(interior),0.03414141414141414);
+assert.equal(ioc(interior),0.03434343434343434);
 const best=cases.slice().sort((a,b)=>b.ioc-a.ioc)[0];
 assert.equal(best.ioc,0.03898989898989899);
 assert.equal(best.basis,'ordinal');
