@@ -1,0 +1,16 @@
+name: LP2 exhaustive 8-column word-order grammar gate
+on:
+  workflow_dispatch:
+jobs:
+  original-and-positive:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-exact 40320-column test, matched nulls and native plants
+        run: |
+          node --check sims/lp2_8column_allperm_wordgrammar_sft.cjs
+          node sims/lp2_8column_allperm_wordgrammar_sft.cjs
