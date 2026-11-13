@@ -195,6 +195,8 @@ def main() -> None:
         "original_source_screened": False,
         "genuine_f5_calibration_pass": False,
         "positive_controls": [],
+        "failed_positive_controls": [],
+        "calibrated_f5_screened_pages": [],
         "source_originals": [],
     }
     if not args.original_only:
@@ -210,34 +212,39 @@ def main() -> None:
                     )
                 except (subprocess.CalledProcessError, ValueError, AssertionError) as e:
                     diagnostics = e.stderr.decode(errors="replace")[-1500:] if isinstance(e, subprocess.CalledProcessError) and e.stderr else ""
-                    report["control_error"] = f"page {page}: {e}; stderr={diagnostics}"
+                    report["failed_positive_controls"].append(
+                        {"page": page, "error": str(e), "stderr": diagnostics}
+                    )
                     print(f"CONTROL_FAILED p{page}: {e}; stderr={diagnostics}", flush=True)
-                    break
+                    continue
                 report["positive_controls"].append(result)
                 print(
                     f"GENUINE_F5_EXACT p{page} "
                     f"neighbor={result['one_decrement_novel']}",
                     flush=True,
                 )
-        passed = (
-            len(report["positive_controls"]) == len(UNSCORED_PAGES)
-            and all(
-                item["one_decrement_novel"] >= MIN_GENUINE_F5_NEIGHBORS
-                for item in report["positive_controls"]
-            )
+        approved = sorted(
+            item["page"] for item in report["positive_controls"]
+            if item["extracted_exactly"]
+            and item["one_decrement_novel"] >= MIN_GENUINE_F5_NEIGHBORS
         )
-        report["genuine_f5_calibration_pass"] = passed
-        if not passed:
-            print("ORIGINAL_SCREEN_WITHHELD: failed genuine-F5 control gate", flush=True)
+        report["calibrated_f5_screened_pages"] = approved
+        report["genuine_f5_calibration_pass"] = len(approved) == len(UNSCORED_PAGES)
+        if not approved:
+            print("ORIGINAL_SCREEN_WITHHELD: no genuine-F5 positive control passed", flush=True)
             write_report(args.report, report)
             return
+        print(f"CALIBRATED_PAGE_SUBSET {approved} of {len(UNSCORED_PAGES)}", flush=True)
 
     for page in range(58):
         atlas, nearby = independent_atlases.get(page, (full_atlas, full_neighbors))
         coeff = read_coefficients(args.reader, sources / f"{page + 17:02d}.jpg")
         _, entries = ink_items(coeff)
         count = score(entries, atlas, nearby)
-        report["source_originals"].append({"page": page, **count})
+        report["source_originals"].append({
+            "page": page, **count,
+            "genuine_f5_256byte_calibrated": page in report["calibrated_f5_screened_pages"],
+        })
         print(
             f"ORIGINAL_SOURCE p{page} "
             f"neighbor={count['one_decrement_novel']} ink={count['ink_blocks']}",
@@ -248,9 +255,11 @@ def main() -> None:
         report["interpretation"] = "source-only exploratory census; genuine F5 not calibrated"
     else:
         report["interpretation"] = (
-            "genuine F5 positive controls passed; exact one-decrement glyph "
-            "reference excludes only sufficiently sensitive whole-image "
-            "luma-affecting F5 on repeated source glyphs"
+            "genuine F5 256-byte controls extract on calibrated pages only; "
+            "zero original glyph anomalies constrain source-like whole-image "
+            "luma-affecting F5 only on those particular pages. Other original "
+            "pages have descriptive source-only scores, without calibrated "
+            "F5 sensitivity. Historical embedding is not author-selected."
         )
     write_report(args.report, report)
 
