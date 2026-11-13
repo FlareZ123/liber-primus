@@ -29,5 +29,12 @@ jobs:
         run: node sims/lp2_p55_23dot_nested_rowcol_inverse_sft.cjs
       - name: Test source GP prime512 run-length direct hash preimage
         run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
-      - name: Test p57 55 interior-rune page prime offsets on original LP2
+  original-p57-prime-offset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-locked p57 word interiors as 55 prime offsets
         run: node sims/lp2_p57_shed_inner55_primeoffset_sft.cjs
