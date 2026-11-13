@@ -36,6 +36,19 @@ The 181 original, independently solved LP1 plain rune words on physical pages 10
 
 The pooled three-corpus reference, sampled without replacement conditional on the original 52/32/18 length histogram, expects about 12.79 unrecognized signatures; the finite hypergeometric upper tail of 39 or more is 4.0744123510e-12 under that exact conditional model. With rune lengths 6 through 14 included, the original has 51 incompatible shapes in 815 words; the pooled length-conditioned reference expects about 22.74 and yields an upper tail 9.7707062022e-9. This is a retrospective, word-token-pool comparison whose samples are not statistically independent English generators. It is not an authorship probability or a universal theorem about all English. A solved p57 word of 14 runes is itself outside the registered lexicon's shape inventory, demonstrating its limits.
 
+## Historical reading-operation family: reverse and circular word orientations
+
+The independently solved p57 language about shedding circumferences supplies a human-visible reason to consider *circular* orderings, while earlier Cicada puzzles used columnar transposition and reversed byte-stream reads. A bounded all-secret original-input check therefore allows each complete printed unknown word to be read forward or backwards and, more permissively, from any circular starting rune in either direction, with a different arbitrary secret GP29 alphabet bijection applied to every resulting whole word. Under such operations the ordered equality signature is allowed to change along the finite circular orbit; the frequency multiset remains unchanged.
+
+| Allowed source word reorientation before arbitrary word-wise substitution | Original words unmatched against fixed GP29 English lexicon | 10–12-rune unmatched |
+| --- | ---: | ---: |
+| Printed forward orientation only | 51 | 39 |
+| Individually choose forward or reverse | 40 | 30 |
+| Arbitrary word-wise circular shift (forward) | 26 | 20 |
+| Arbitrary word-wise circular shift and reversal | **22** | **17** |
+
+The most permissive cyclic/reversal model still fails on **22 source-original printed words**. Thus simply reading each word around its circumference, reversing boustrophedon lines, reordering words/pages, and applying a secret position-preserving substitution per word cannot recover **ordinary English from the pinned finite lexicon** at every original word boundary. This says nothing about position-dependent alphabets, noncircular transpositions, word repartition, different plaintext registers, or the unknown meaning of the p57 circumferences metaphor. The original book does not provide a unique circular start for each printed word, so the test grants this freedom deliberately rather than fits a chosen orientation.
+
 ## Adjacent cryptanalytic family: secret periodic alphabet changes inside words
 
 This gate can be relaxed independently of transposition. Allow an **arbitrary independent secret GP29 bijection per word and per position-clock phase** of fixed period k, with the phase origin freely reset at each printed word. The invariant becomes the equality patterns within each word's k interleaved residue subsequences; equality across different phases is discarded. Reconstruct the same native-English dictionary pattern inventory at the selected period.
