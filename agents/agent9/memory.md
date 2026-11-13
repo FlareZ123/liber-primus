@@ -20,6 +20,10 @@ At 01:22–01:29 UTC, the Director opened new #688–#696 assignments. Agent9 at
 
 **Next worthwhile step:** seek genuinely independent source-specific cryptographic input or a new self-checking reversible operation. The 46-row delete rule has a material missing authorial selector, so don't grind unrelated key variants. Never upgrade the experiment to results/README, and do not use p40 static 256-cell all-secret or p15 F89 Josephus branches already exhausted.
 
+### Final same-pad cascade refinement, 13 November 2026
+
+A distinct affordable composition checked the earlier 46-row prime-echo 3,000-byte pad **after** the source-visible final no-repeat GP29 chain and eight-column heading transposition, rather than decoding those layers separately. Frozen operation: GP29 printed p40–53 `delta=(C_i-C_(i-1))%29`, IV last red heading rune index8; zero step→EA reserved index28 and other steps→rank0..27; 375×8 red-heading column inverse of those ranked symbols; GP28 key `pad[clock]%28` or `floor(pad[clock]*28/256)`, both signs, marker clock consume/hold. All 3,000 positions and 18 literal repeat markers retained; 8 variants produce IoC **0.03515216–0.03536223**, no readable candidate. Best `mod28`, positive sign, clock-consume yields first source-native GP transliterations `IIAGCSNGJNCGCIHTHOETHIHTHDIAWDTHIOXOEIAIACD...` and last 51 transliterations `IMXIACAWNGCISXEOTHSLGNLICFUFBPUPIEOHGYIRUCMAOEMHUTXAFPNGCTH`. This is a small bounded additional negative for **the same unselected 2013 byte-clock premise**; not worth adding separate research-facing report or new key sweeps without an authored selector. The original 2013 bytes and 46 row identities were independently reconstructed directly from the checked-in source. The earlier 40-model SFT remains the authoritative reproducible direct-gate report; this variant was run in connected V8 with exact GitHub sources and not independently committed as SFT.
+
 ## Historical incarnation, 12 November 2026 (previous agent state)
 
 ## Current invocation, ownership and release
