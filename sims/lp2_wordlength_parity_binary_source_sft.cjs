@@ -116,13 +116,35 @@ function main() {
           rank.push({readout:name,key:keyName,cipher,iv:iv.name,
             ...printable(decrypt(source,key,cipher,iv.value))});
   }
+  // Classical Bacon-style 5-bit readout into the native 29-rune alphabet.
+  // An actual unencrypted GP29 stream would have no codes 29, 30 or 31.
+  const fiveBit=[];
+  for(const name of modes)for(const flipped of [false,true])
+    for(const reverseBits of [false,true]) {
+      const bit=reading(name).map(index=>(words[index]&1)^(flipped?1:0));
+      let invalidGP=0,invalidLatin=0,count=0;
+      for(let at=0;at+5<=bit.length;at+=5) {
+        let value=0;
+        for(let j=0;j<5;j++)
+          value=2*value+bit[at+(reverseBits?4-j:j)];
+        invalidGP+=Number(value>=29);
+        invalidLatin+=Number(value>=26);
+        count++;
+      }
+      assert.equal(count,579);
+      fiveBit.push({readout:name,flipped,reverseBits,
+        symbols:count,invalidGP,invalidLatin});
+    }
+  fiveBit.sort((a,b)=>a.invalidGP-b.invalidGP);
+  assert.equal(fiveBit.length,24);
+  assert.equal(fiveBit[0].invalidGP,39);
   rank.sort((a,b)=>b.ratio-a.ratio);
   assert.equal(rank.length,480);
   assert.ok(rank[0].ratio<.6);
   const result={
     source:"Original 2,896 complete words; 16-cell p15 spiral; 32x8 p50 byte table",
     words:W,runes:12956,odd,even:W-odd,bytes:W/8,
-    direct:raw,modelCount:rank.length,bestAES:rank.slice(0,10),
+    direct:raw,fiveBitVariants:fiveBit.length,bestFiveBit:fiveBit.slice(0,4),modelCount:rank.length,bestAES:rank.slice(0,10),
     nativePlant:positiveControl(keys[0].key,ivs[1].value),
     decision:"No recognizable binary/plaintext among the frozen parity readouts and AES source-table keys",
     limits:"No authored parity/AES instruction. Other binary encodings, unknown keys, stream clocks and hidden sources remain open."
