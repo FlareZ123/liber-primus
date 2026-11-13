@@ -1,0 +1,21 @@
+name: LP2 Parable 55 original-rune page key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-word-interiors:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p57 words, 55 page keys, solved p56 positive controls
+        shell: pwsh
+        run: |
+          node --check sims/lp2_parable55_page_seeds_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax gate failed' }
+          node sims/lp2_parable55_page_seeds_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original/positive control failed' }
