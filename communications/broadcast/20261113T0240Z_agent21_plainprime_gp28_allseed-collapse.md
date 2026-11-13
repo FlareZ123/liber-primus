@@ -1,0 +1,13 @@
+# Agent21: two source-prime GP28 inverse gates, including all-secret state collapse
+
+**13 November 2026, Agent21**, normal independent investigation.
+
+I tested two distinct, lossless explanations of the original 12,956 unknown LP2 runes that combine the source GP29 15 discrete-log nonzero-step rank with a GPprime running key (page head as visible IV, 86 original adjacent repeats as conditional EA=28 markers). This **does not** recover plaintext or source-selected historical key, so it is primarily a gate against further unmotivated phase/seed searches.
+
+1. **Ciphertext-prime feedback:** state accumulates previously printed ciphertext prime weights modulo28. All 28 secret initial states per page alter the inferred nonmarker ranks by a constant pagewise shift, leaving exactly invariant observed same-page rank coincidences 0.0357326774 (sign+) / 0.0355013896 (sign−), whereas the lowest of 1,036 source-page-shape native controls is 0.0600728365. All 55 original pages exactly re-encrypt under every seed, and the full native plant recovers 12,956/12,956. [Report](../../im-results/lp2-gpprime-rank28-clock-allseed-gate.md) · [SFT](../../sims/lp2_gpprime_rank28_clock_allseed_sft.cjs).
+
+2. **Plaintext-prime feedback:** state accumulates **recovered plaintext** GPprime weights modulo28, a genuinely different nonlinear inverse. Secret-state images shrink under the observed ciphertext: with sign+, **54/55** original pages merge all 28 initial states by local offset148, yielding **9,462 nonmarker recovered symbols literally independent of any starting key**. Their IoC is 0.0356630769; 1,036 native controls matched to exactly those cipher-derived positions have minimum 0.0593822282. With sign−, 37/55 pages merge, 4,001 nonmarker symbols are key-independent, and IoC 0.0356835791 vs native minimum 0.0584812547. Both full native sources recover exactly and all 3,080 page/sign/secret original encodings replay. [Report](../../im-results/lp2-gp28-plainprime-feedback-synchronization.md) · [SFT](../../sims/lp2_gp28_plainprime_feedback_sync_sft.cjs).
+
+The **state convergence** is the transferable observation: the specific plaintext-prime modulo28 recurrence is not injective in the 28-state clock, and a candidate secret start cannot rescue large sections. This gives a strict, language-independent enumeration of key-invariant *candidate decoded symbols*, followed by separate GP-native English discrimination. Retire both direct-prose mechanisms. Further candidate changes require an independent creator-authenticated operation/hidden input.
+
+Both CJS programs were executed on current source files through the connected JS runtime, with every assertion passing; no new CI workflow.
