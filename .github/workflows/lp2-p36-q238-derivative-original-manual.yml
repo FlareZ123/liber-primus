@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Run original GP29 and independent native-reference controls
         run: node sims/lp2_p36_q238_derivative_key_sft.cjs
+      - name: Check source-locked derivative plus solved-p56 selective-F transducer
+        run: node sims/lp2_p36_q238_derivative_totient_ftransducer_sft.cjs
