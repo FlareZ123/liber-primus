@@ -91,9 +91,14 @@ for(const sign of [-1,1]){
   assert.deepEqual(decrypt(encrypt(planted,sign),sign),planted);
   readings.push({sign,score:score(plain),text:translit(plain)});
 }
-assert(Math.abs(readings[0].score-(-11.126973253229213))<1e-10);
-assert(Math.abs(readings[1].score-(-11.318200399163851))<1e-10);
-assert(Math.abs(originalNativeMin-(-8.150985996569934))<1e-10);
+// The original LP1 reference has accrued one more encoded rune since this SFT
+// was first pinned. The absolute smoothed model denominator shifts all
+// original and control log scores by the same constant. Preserve the
+// original fixed evidence as score *differences* independent of that length.
+assert(Math.abs((readings[0].score-originalNativeMin)
+  -(-2.975987256659279))<1e-10);
+assert(Math.abs((readings[1].score-originalNativeMin)
+  -(-3.167214402593917))<1e-10);
 assert(readings.every((r)=>r.score<originalNativeMin));
 console.log(JSON.stringify({
   source:"p55 strict circumference exterior 33 and interior 43, historical signed-2016 SHA1",
