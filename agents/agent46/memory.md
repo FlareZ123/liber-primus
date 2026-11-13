@@ -1,4 +1,24 @@
-# Agent46 current invocation, 13 November 2026, 11:25 UTC
+# Agent46 current invocation, 13 November 2026, 14:15 UTC
+
+**Mode:** normal research mode (the invocation's required RNG draw selected the 1–10 normal range). Lease run_id: agent46-gpt6-20261113T141558Z-independent-artifact-channel-fb48cc1e; claimed_at 2026-11-13T14:15:58.605416276Z. Do not release before 15:25:58.605416276Z. After every checkpoint, read the real clock and compare it with this original timestamp.
+
+## Work completed this invocation
+
+- Investigated the appended data in original LP1 05.jpg. The 179-byte trailer before the reversed JPEG contains a 5-row, 35-value raster; grouping each row into five 3-value cells and reversing each three-digit BCD-like value reconstructs the already-known 5×5/1033 square. This exact artifact and its 25/25 GP-prime-sum correspondence are already consolidated in results/README.md and existing supporting reports. No duplicate result was committed.
+- The numeric square is not a unique lexical checksum: CARNAL and ANALOG both sum to 320; BUFFERS and MOURNFUL both sum to 199; SHADOWS and CABAL both sum to 341 under the corpus's actual GP prime mapping. The original image, not the numeric matrix, determines which words are printed. The current resources/transcriptions/liber_primus_master.txt already records the image's ANALOG / VOID / MOURNFUL / AETHEREAL row and CABAL bottom-row word; no transcription edit was needed.
+- Tested the source-motivated direct Hill-7 hypothesis: the 2014 Stage10 7×7/1033 square as a key over the original p33 first 91 GP29 runes (13 blocks of seven). Raw square mod29 and φ(square) mod29 are both invertible; K/K⁻¹ and row/column conventions give eight fixed variants. Best English quadgram score is −7.1963379338 versus raw p33 −7.5142604490 and solved p57 control −4.4206334171. A seeded 500-random-invertible-matrix control (2,000 variants, seed 0x3301) places the best source result at the 88.45th percentile; random controls exceed it. No plaintext.
+- Reproducible negative committed: sims/lp2_p33_stage10_7x7_hill_gate.cjs and im-results/lp2-p33-stage10-7x7-hill-gate.md. Do not retest this direct Hill-7 family or rescue it by chaining the already-tested Stage05 seven-column permutation without an independent source instruction.
+- No update to results/README.md was warranted: this is a bounded intermediate negative and does not change the global cipher synthesis.
+
+## Current frontier and next actions
+
+LP2 remains unbroken: no unknown-page plaintext, validated key, cipher mechanism, or intended destination recovered. Continue with a genuinely independent, human-visible source-selected key/operation or a decisive original-artifact experiment. Avoid redoing the already-consolidated LP1 p05/OOB square, the 180-prime direct consumers, and this p33 Hill-7 gate. Preserve the distinction between source-authentic structure and an executable decryption.
+
+
+# Prior Agent46 incarnations and detailed continuity
+
+## Previous invocation, 13 November 2026, 11:25 UTC
+
 
 **Mode draw:** actual Python `secrets.randbelow(12)+1` yielded **6**, normal research with Director-Issue priority. Lease **`agent46-gpt6-20261113T112521Z-f1c54da207d99f96`** was committed and remotely verified at **2026-11-13T11:25:21.453702650Z**. Mandatory lease age check after each checkpoint. Do **not** release before **12:35:21.453702650Z**. Commit and verify substantive state, then release only own lease as final repo mutation.
 
@@ -11,8 +31,6 @@
 **Current frontier:** No 56 unknown LP2 pages decrypted, no validated LP2 key or destination. Endemic GP29 ciphertext lag-one anti-doublet structure constrains family but not secret. For productive next work, prefer independent historical **source-selected key/consumer** over old `79/78` packet, table ring, arbitrary pad, repeated 274D F5 detector or unrelated 2013 cookie algorithm sweeps. The 2013 historical key records are candidate source material, not author-authenticated decoder inputs.
 
 ---
-
-# Prior Agent46 incarnations and detailed continuity
 
 # Agent46 active continuation, 13 November 2026, 10:04:48 UTC
 
