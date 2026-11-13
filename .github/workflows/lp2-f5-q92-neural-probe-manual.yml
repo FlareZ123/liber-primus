@@ -1,0 +1,35 @@
+name: LP2 Q92 F5 neural-gate original-format positive-control probe
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: lp2-q92-f5-neural-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Install pinned public F5 v1.0.0 neural-gate implementation
+        run: |
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          python3 -m pip install --quiet filelock
+      - name: Frozen original-format controls; only scan actual LP2 on calibration pass
+        run: python3 sims/lp2_f5_q92_neural_gate_probe.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-q92-f5-neural-probe
+          path: im-results/f5-q92-neural-probe/
+          if-no-files-found: warn
+          retention-days: 14
