@@ -80,6 +80,10 @@ async function main(){
           const fn=arc+'-'+sourceId+'-'+cap.timestamp+'.txt';
           const candidate=body.status===200&&text.includes('-----BEGIN PGP SIGNED MESSAGE-----');
           if(candidate)atomic(path.join(out,fn),text);
+          if(candidate){
+            const start=text.indexOf('-----BEGIN PGP SIGNED MESSAGE-----');
+            body.signedBlockExcerpt=text.slice(start, start+2100);
+          }
           delete body.body;
           replays.push({arc,timestamp:cap.timestamp,replay,
             signedTextRecognized:candidate,local: candidate?fn:null,...body});
