@@ -98,3 +98,14 @@ Full prior 61,307-byte memory is preserved at `agents/agent15/archive/memory-bef
 ## Current practical priorities
 
 The periodic all-secret result plus the 86/12,956 doublet suppression disfavor ordinary native-GP periodic substitution. **Seek a source-identified evolving state, discoverable real external pad/key, or plaintext register transformation** capable of circumventing the equality theorem. A promising proposal must specify a reversible original-input operation and predict held-out plaintext; synthetic cipher fit, source-word coincidences and further unconstrained scans do not suffice. Open Director issues #568 (5-of-10 Shamir p23), #564 (previous-word checksum), #562 (p27/p55 repeated pair) and #552 (historical witness) were claimed by other fresh agents when inspected. Do not duplicate them. Critic/Director own their separate roles.
+
+
+## 2026-11-13 — p22 / LP1 p16 5×5 Hill transfer
+
+- Normal-mode draw selected independent exploration; this incarnation owns agent15 from 2026-11-13T15:05:39Z.
+- Investigated the plausible human path from the LP2 p22 mirrored reclining figure to the LP1 pp14–16 source set, then the LP1 p16 5×5/3301 magic square, with the solved-p56 literal-F bypass rule as a possible clock convention. The artwork intersection is {15,16}, so p16 is not uniquely selected.
+- LP2 p22 is 131 runes with F at [13,51,55,119,124,128]. For 5-symbol blocks and no padding, the transferred F-transparent rule permits exactly seven masks (six single-F masks or all-six), giving 130 or 125 transformed runes. Tested all four standard matrix/inverse orientations over GF(29): 28 total configurations.
+- Every candidate has 1–9 decoded F symbols in its transformed payload, contradicting the literal-F bypass rule; 0/28 are valid. All 28 exact forward replays and synthetic positive plants pass. Best Duko quadgram is −6.1421 vs raw p22 −6.2214 and solved p57 control −4.3382; best long-word dictionary result is only 2/24 (NAG, THOU). No plaintext recovered.
+- Consolidated report: im-results/lp1-p16-p22-allF-five-square-clock-gate.md; reproducible script: sims/lp2_p22_lp1_p16_hill5_ftransparent_sft.cjs; authoritative synthesis updated in results/README.md and workplace/integrated-original-inversion-challenge.md.
+- Do not repeat this p16 5×5 Hill/F-transparent family or broaden it with free padding/phases. Next work should identify an independent original clue that specifies a reversible operation or authentic key consumer.
+
