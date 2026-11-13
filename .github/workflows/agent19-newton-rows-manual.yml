@@ -1,8 +1,15 @@
 name: Agent19 source-locked Newton-row key test
 on:
   workflow_dispatch:
+    inputs:
+      cross_page_pad:
+        description: 'Run opening mirrored-cross exact GP29 shared-pad inverse instead of historical gates'
+        type: boolean
+        required: false
+        default: false
 jobs:
   test:
+    if: ${{ !inputs.cross_page_pad }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,3 +22,14 @@ jobs:
         run: node sims/agent19_red_triad_gap36_transport_sft.cjs
       - name: Four seven-cycle source-grid original inverse
         run: node sims/agent19_t6_sevencycle_grid_row_inverse_sft.cjs
+  opening-cross-pad:
+    if: ${{ inputs.cross_page_pad }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p0 p1 mirrored pad inverse and native plaintext controls
+        run: node sims/lp2_p0_p1_cross_sharedpad_sft.cjs
