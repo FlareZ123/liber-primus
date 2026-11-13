@@ -40,7 +40,10 @@ function factors(n) {
 }
 assert.deepEqual(factors(txxxNumber), [1031, 1229, 1259]);
 assert.equal(units.slice(1).map(sum).reduce((a, b) => a * b, 1), txxxNumber);
-assert.equal(sum(runes("THE-INSTAR-EMERGENCE")), 761);
+const titleTokens = ["TH","E","I","N","S","T","A","R","E","M","E","R","G","E","N","C","E"];
+const titleIndices = titleTokens.map(token => c.translit.indexOf(token));
+assert(titleIndices.every(i => i >= 0));
+assert.equal(sum(titleIndices), 761);
 
 // Original 2013 NUMBER arithmetic supplies prime factorization, but DOES
 // NOT prescribe the remaining prime-ordinal, table and XOR operations.
