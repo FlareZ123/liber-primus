@@ -1,6 +1,6 @@
 # LP2: all-29 fixed plaintext markers fail source-native word-length geography
 
-**Agent 16, 13 November 2026. Scope: original-cipher necessary-condition gate with exact analytic reference distributions.** This is a substantial restriction on **one proposed reversible cipher architecture**, not a decryption, historical key, proof of the actual algorithm, or general statistical impossibility. The exact original-input CommonJS SFT is [here](../sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs); its full source and planted inverse passed [GitHub Actions #43363316842](https://github.com/FlareZ123/liber-primus/actions/runs/43363316842); the subsequent conditional-EA extension is [run #43363853236](https://github.com/FlareZ123/liber-primus/actions/runs/43363853236).
+**Agent 16, 13 November 2026. Scope: original-cipher necessary-condition gate with exact analytic reference distributions.** This is a substantial restriction on **one proposed reversible cipher architecture**, not a decryption, historical key, proof of the actual algorithm, or general statistical impossibility. The exact original-input CommonJS SFT is [here](../sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs); its full source and planted inverse passed [GitHub Actions #43363316842](https://github.com/FlareZ123/liber-primus/actions/runs/43363316842); the subsequent conditional-EA extension is [run #43363853236](https://github.com/FlareZ123/liber-primus/actions/runs/43363853236); the exact source-position comparator is covered in the same SFT.
 
 ## Mechanism being adjudicated
 
@@ -46,6 +46,12 @@ The next-best q is far weaker in every reference (corrected best-feature p ≤3.
 The total count alone can be misleading. For q=EA, the native-Cicada reference predicts about **78.31** eligible singleton-marked sites, close to the observed **86**, and about **18.10** word-initial sites, close to the observed **23**. Shakespeare predicts **88.54** eligible EA sites, also close. A mere global EA frequency comparison would falsely suggest the zero-step plaintext marker had been found.
 
 But in the original manuscript, **21** duplicate steps occur among the **343 printed words of length ≥8**. Source-matched EA predictions are **3.74**, **8.21**, **9.29**, and **7.00** for Shakespeare, Gibran, Emerson, and solved Cicada. The exact one-sided long-word tails are respectively **3.7595×10⁻¹⁰**, **9.8622×10⁻⁵**, **5.3896×10⁻⁴**, and **7.2006×10⁻⁶**, before multiple-feature correction. Emerson's still stronger word-initial tail is **1.6715×10⁻⁴**. Page-first exclusions and original long-word inventory have all been explicitly retained.
+
+### Independent source-position comparator
+
+The 343 original printed long words contain **3,119 eligible in-page successor runes** out of **12,901** eligible runes overall. Under an intentionally simple key-free *ciphertext-side* comparator that allocates exactly 86 surviving repeat events uniformly among these eligible sites, the number falling in long words is hypergeometric with mean **20.79172**. The observed **21** lies only **0.0526 standard deviations** above that mean; the exact one-sided chance of at least 21 is **0.52077938**. This comparator requires neither guessed plaintext letters nor word-specific lexical distributions.
+
+The stark contrast is informative: observed long-word events align almost perfectly with **available printed rune mass**, while any single rare plaintext GP symbol would have to inhabit those words at an unusually high rate under all four source references. It makes a ciphertext-side event process worth prioritizing over the rejected stationary transparent-rune model, subject to a real source-derived state mechanism. **Uniformly selected event sites are not a demonstrated cipher or a legitimate encryption algorithm**, and this single comparison cannot distinguish collision-rejection, adaptive formatting, or a contrived plaintext.
 
 ### Conditional test: even exactly 86 EA markers have the wrong word geometry
 
