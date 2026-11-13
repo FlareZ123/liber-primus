@@ -1,6 +1,6 @@
 # Original Artifex ICC profile as a five-cycle GP29 pad
 
-**13 November 2026, Agent 10. Source-exact bounded key transfer.** A striking exact length match selects a real embedded 2,576-byte sequence as a possible original-data key. The **complete 12,880-rune original input** rejects its two direct GP29 additive signs and two natural stream clocks as recognizable native-GP prose. This produces no recovered unknown-page plaintext, original-key schedule, or Cicada destination.
+**13 November 2026, Agent 10. Source-exact bounded key transfer.** A striking exact length match selects a real embedded 2,576-byte sequence as a possible original-data key. The **complete 12,880-rune original input** rejects its two direct GP29 additive signs and two natural stream clocks as recognizable native-GP prose. A stronger *key-independent same-phase equality invariant* separately disfavors every deterministic repeated 2,576-phase bijective substitution for native-GP English. This produces no recovered unknown-page plaintext, original-key schedule, or Cicada destination.
 
 ## Original-artifact selection, without key search
 
@@ -31,8 +31,37 @@ The original p0–54 ciphertext's whole-corpus IoC is **0.0344821412**. A genuin
 
 The first 30 original decoded GP runes under the continuous subtractive clock transliterate to `SHHTGMIAFPIENGEOHJHUTOMTHWEAGEWBASOE`; with the additive sign, they begin `SHEAMGMIAFBPENGIAAEJRLPMAERJCEOEWBASOE`. Neither reading produces the expected title or body-level language. A superficially readable fragment obtained by including one wrapper byte and concatenating GP rune labels is not a native-GP word and fails whole-page frequency checks. It is not accepted as plaintext.
 
+## Stronger all-key periodic substitution obstruction
+
+The same exact **2,576×5** coincidence supports a stricter, *key-independent* question. Suppose the 12,880 original runes are encrypted from genuine prose by any deterministic **2,576-phase repeated bijective substitution**, where each of the 2,576 GP positions may have its own independently secret permutation of the 29 runes. Write:
+
+\[
+C_{kP+t}=\sigma_t(M_{kP+t}),\qquad P=2{,}576,\quad k=0,\ldots,4,\quad t=0,\ldots,P-1.
+\]
+
+Even an arbitrary non-affine unknown \(\sigma_t\) **cannot change whether two original plaintext runes in different cycles at the same phase are equal**. For every phase and any pair of cycles, the equality \(C_{aP+t}=C_{bP+t}\) holds *if and only if* \(M_{aP+t}=M_{bP+t}\). This invariant requires no guessed key, alphabet permutation, sign, phase-specific transformation table, or independent cryptanalytic score.
+
+Across all **25,760** same-phase rune pairs of the original five cycles, exactly **899** are equal (rate **0.0348991**), near the uniform GP29 \(1/29\) benchmark. Counts for successive cycle-pair combinations \((1,2),(1,3),\ldots,(4,5)\) are **[94, 77, 100, 79, 100, 104, 100, 79, 103, 63]**, all evaluated on untouched original GP indices.
+
+As an independent genre/language comparison, fix one English-to-GP29 transliteration (historical substitutions QU→CW, V→U, K→C, Z→S and conventional GP digraph contraction, with ING→I+NG). In each existing source, examine *every* 12,880-rune window starting at strides of 2,048 runes, preserving its natural word order. These control texts were fixed independently of the manuscript and no local alphabet model is fitted.
+
+| Held-out natural-language source | 12,880-GP-rune windows | Same-phase equalities, average | Minimum in any window | Maximum |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | 100 | **1,512.79** | **1,364** | 1,622 |
+| Gibran, *The Prophet* | 25 | **1,509.40** | **1,432** | 1,590 |
+| Emerson essays | 151 | **1,546.31** | **1,429** | 1,648 |
+| **Original LP2 p0–54** | **1** | **899** | **899** | **899** |
+
+All **276** controls have substantially more same-phase equality matches than the original. Those 276 windows overlap within a text and are not 276 independent experiments. They are a source-disjoint plausibility comparison, not a discovery-wide calibrated significance probability, especially as the 2,576 hypothesis was found retrospectively.
+
+Crucially, the program also encrypts genuine 12,880-rune source prose under **2,576 independently secret, deterministic, arbitrarily non-affine 29-symbol permutations**, one per phase. On each of the three separate source texts the cipher changes nearly every GP symbol yet the **complete ten-pair equality counts remain identical to plaintext**, exactly as proved. This is a positive control on the full unknown-key cipher family, stronger than a planted additive pad.
+
+**New decision:** the entire fixed-phase 2,576-period **bijective monoalphabetic substitution family**, including all hidden permuted alphabets and arbitrary per-phase Caesar, affine or non-affine maps, is incompatible with a 12,880-rune GP29 plaintext whose long-range same-phase repeat structure resembles these independently GP-encoded English sources. This is a conditional original-cipher architecture exclusion; a nonperiodic/key-skip cipher, operation retaining additional state across cycles, binary/compressed intermediate, nonordinary language, changed tokenization or actively inserted/deleted symbols can evade the equality invariant. Neither the original metadata nor the length match selects a historically authenticated cipher.
+
+[All-key source-exact SFT](../sims/lp2_artifex_icc_2576period_allkey_equality_sft.cjs) checks the entire 899-match original source, all 276 held-out windows, exact source length, and three genuine secret non-affine permutation plants. It is executed alongside the direct 4-case ICC pad in [successful Windows/Node22 run 43339264500](https://github.com/FlareZ123/liber-primus/actions/runs/43339264500).
+
 ## Decision
 
-The source-native length relation merits preservation, but using the original profile bytes as an unaltered, repeated GP29 additive key produces **no recognizable decryption under either original clock or sign**. That direct mechanism is retired. Do not infer a salt, secret stream phase, SHA-based expansion or byte mutation from the exact size coincidence; such an additional operation requires a clue from the artifact or an independently verifiable plaintext prediction.
+The source-native length relation merits preservation. Using the original profile bytes as an unaltered, repeated GP29 additive key produces **no recognizable decryption under either original clock or sign**. The stronger source-exact equal-pair invariant excludes the entire class of constant-phase 2,576-period reversible GP29 substitutions as a plausible ordinary-English mechanism, independently of the hidden permutations. The direct ICC-byte mechanism and the general fixed-period substitution mechanism are both retired under these exact assumptions. Do not infer a salt, secret stream phase, SHA-based expansion or byte mutation from the exact size coincidence; such an additional operation requires a clue from the artifact or an independently verifiable plaintext prediction.
 
 This decision is independent of the previously exhausted 256-cell numeric table key phases and the separate historical 2013 `ssss` XTEA whole-secret inverse. No authentic key or unknown LP2 passage was recovered.
