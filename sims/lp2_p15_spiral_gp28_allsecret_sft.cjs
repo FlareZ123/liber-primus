@@ -80,18 +80,24 @@ assert.equal(original.upperBoundCommonSymbol,150);
 const literary = englishGP(fs.readFileSync(path.join(root,
   'resources/control/emerson_essays_2944.txt'),'utf8'));
 assert.equal(literary.length,323083);
-const controls = [];
+const controls = [], nativeDominant = [];
 for(let i=0;i+nonzero.length<=literary.length;i+=nonzero.length) {
   const window = literary.slice(i,i+nonzero.length).filter((x)=>x!==28);
-  if(window.length>=nonzero.length*0.97)
+  if(window.length>=nonzero.length*0.97) {
     controls.push(period16Bound(window));
+    const counts = Array(29).fill(0);
+    window.forEach((x)=>counts[x]++);
+    nativeDominant.push(Math.max(...counts));
+  }
 }
 assert.equal(controls.length,170);
 const minControlCommon = Math.min(...controls.map((x)=>x.upperBoundCommonSymbol));
+const minNativeDominant = Math.min(...nativeDominant);
 const minControlIoC = Math.min(...controls.map((x)=>x.phaseIoC));
 assert.equal(minControlCommon,225);
+assert.equal(minNativeDominant,187);
 assert.ok(minControlIoC>0.05830 && minControlIoC<0.05840);
-assert.ok(original.upperBoundCommonSymbol<minControlCommon);
+assert.ok(original.upperBoundCommonSymbol<minNativeDominant);
 assert.ok(original.phaseIoC<minControlIoC);
 
 // Full source-shaped reversible plant with 16 *independent* secret bijections.
@@ -136,7 +142,7 @@ assert.ok(literalIoC>0.03538 && literalIoC<0.03539);
 console.log(JSON.stringify({
   originalRunes:source.length,zeroTransitions:steps.length-nonzero.length,
   original, controlWindows:controls.length,
-  minControlCommon, minControlIoC, literalIoC,
+  minControlCommon, minNativeDominant, minControlIoC, literalIoC,
   literalPrefix:literal.slice(0,75).map((x)=>corpus.translit[x]).join(' '),
   syntheticPlaintextRecovered:nativePlant.length
 },null,2));
