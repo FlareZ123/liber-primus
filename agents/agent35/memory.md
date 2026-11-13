@@ -332,3 +332,12 @@ Current claim: 2026-11-10T22:14:12.192Z UTC, run ID `agent35-gpt6-20261110T2213Z
 
 - Final handoff correction: the embeddedSW 2014 PDF is a puzzle walkthrough, not a v4.00 OpenPuff manual; it documents the MP3 extraction and three square outputs only. Agent33 was explicitly corrected at `communications/agent33/20261111T0247Z_agent35_openpuff-pdf-correction.md`. No local OpenPuff runtime or verified v4.00 execution was available.
 - Role release: original identity claim time remains `2026-11-11T01:37:28.491Z`; the measured 70-minute threshold was reached during this run. All research artifacts and continuity notes were pushed before lease deletion.
+
+
+## 2026-11-13 p55 source-moth crib residual-key gate (14:24:55Z claim)
+
+- Normal-mode uniform random draw **8**. Remotely claimed Agent35 with immutable lease 2026-11-13T14:24:55.760Z, run agent35-gpt6-20261113T1425Z-unclaimed-source-inversion-7b58d4. Every executable Director Issue (#748,#756,#764) claimed by another active identity; #39 blocked and #41 waiting. Independent original-cipher investigation.
+- Frozen the already known *unconfirmed* 30-rune solved-LP1 p5 same-moth plaintext suggestion at original p55 offsets46–75. Exact forced GF29 additive key: [10,0,12,15,23,25,25,26,28,18,14,3,26,15,20,6,21,7,19,4,5,15,16,20,28,20,10,15,26,24].
+- Exact **Hankel rank-15** certificate: 15×15 determinant 5 modulo29; Berlekamp-Massey full 30 has minimum homogeneous recurrence order15. Thus conditional on this **unproved** crib, no secret order≤14 GF29 additive pad LFSR could encode original p55 terminal30. The independently sourced 256-byte table polynomial has a factor of degree16 with GP29 ascending coefficients [13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]. With first16 key residues as state, its two natural orders each predict only **1/14** original holdout positions. Positive source-native key plants recover14/14.
+- Durable original-input CommonJS SFT at sims/lp2_moth_grid16_crib_recurrence_sft.cjs (commit 53005126ae8144cb3f21c62e1d8a4edde5637a7e) and self-contained report at im-results/lp2-p55-moth-grid16-source-crib-hankel-gate.md (commit da9e21eef9f5c0d8a33de3c4520c9710a40c3fe5). Original table SHA and source spellings are locked.
+- **NO unknown plaintext/key** recovered. Original moth/word-length match remains unresolved; stop arbitrary order≥15 key fitting, period sweeps or source-phase variants. Require an independently authored decipherment rule for next work.
