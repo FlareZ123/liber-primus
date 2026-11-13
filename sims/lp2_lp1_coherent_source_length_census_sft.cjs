@@ -89,7 +89,7 @@ assert.equal(moth.runes, 30);
  * p55 has a HYPHEN there and ends the page with THINGS' suggested position.
  * The plaintext words are hypothetical, but the punctuation is original.
  */
-const sourceRunesUnwrapped = sourceRunes.replace(/\\/\\s*/gu, "");
+const sourceRunesUnwrapped = sourceRunes.replace(/\/\s*/gu, "");
 assert(sourceRunesUnwrapped.includes("ᛋᚪᚳᚱᛖᛞ.ᚪᛚᛚ"));
 assert(sourceRunes.includes("ᚦᛝᛋ-ᛋᚻᚩᚢᛚᛞ"));
 const p55Raw = original.split("%").find(part =>
