@@ -13,6 +13,7 @@ on:
           - p15-perimeter12-wordlag
           - bookend-wordpair
           - p15-local16-spiral
+          - p57-bbs-period612
 
 jobs:
   reproduce:
@@ -50,3 +51,8 @@ jobs:
       - name: P15 exact local 4x4 whole-word spiral and native English plants
         if: ${{ inputs.experiment == 'p15-local16-spiral' }}
         run: node sims/lp2_p15_local16_wordspiral_sft.cjs
+      - name: Original p57 source-factor BBS all-secret period612 and direct decoded controls
+        if: ${{ inputs.experiment == 'p57-bbs-period612' }}
+        run: |
+          node sims/lp2_p57_prime_triplet_bbs_gate_sft.cjs
+          node sims/lp2_p57_prime_triplet_bbs_period612_allsecret_sft.cjs
