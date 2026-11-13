@@ -16,6 +16,11 @@ const path=require('node:path');
 const originals=[
   'http://pastebin.com/5w5VC696',
   'https://pastebin.com/5w5VC696',
+  // 2014 Uncovering Cicada wiki links this second archived Pastebin witness.
+  'http://pastebin.com/6M3s1FtC',
+  'https://pastebin.com/6M3s1FtC',
+  'http://pastebin.com/raw.php?i=6M3s1FtC',
+  'https://pastebin.com/raw.php?i=6M3s1FtC',
 ];
 function hash(b){return crypto.createHash('sha256').update(b).digest('hex');}
 function atomic(file,data){
@@ -52,7 +57,7 @@ async function main(){
       q.searchParams.set('url',u);
       q.searchParams.set('output','json');
       q.searchParams.set('from','2014');
-      q.searchParams.set('to','2015');
+      q.searchParams.set('to','2020');
       q.searchParams.set('limit','150');
       const index=await get(q.toString()),entry={archive:arc,control,u,
         request:q.toString(),status:index.status,error:index.error};
@@ -71,7 +76,8 @@ async function main(){
             'https://arquivo.pt/wayback/'+cap.timestamp+'id_/'+(cap.url||u);
           const body=await get(replay);
           const text=body.body||'';
-          const fn=arc+'-'+cap.timestamp+'.txt';
+          const sourceId=u.includes('6M3s1FtC')?'6M3s1FtC':'5w5VC696';
+          const fn=arc+'-'+sourceId+'-'+cap.timestamp+'.txt';
           const candidate=body.status===200&&text.includes('-----BEGIN PGP SIGNED MESSAGE-----');
           if(candidate)atomic(path.join(out,fn),text);
           delete body.body;
