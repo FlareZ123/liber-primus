@@ -286,6 +286,41 @@ assert.deepStrictEqual(initialsSyntheticRecovered, p57Control);
 signedInitialAdditiveKey.p57SyntheticRoundTripPassed = true;
 
 
+
+const signedInitialTotientKey = signedInitials.map(i => mod(corpus.prime[i] - 1));
+const signedInitialTotientAdditiveKey = {
+  keyPrimeTotients: signedInitialTotientKey,
+  alignment: "forward source order; phi(GP prime(initial)) mod29",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedInitialTotientKey[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
+    cursor += n;
+  }
+  signedInitialTotientAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const totientSyntheticCipher = p57Control.map((p, i) => mod(p + signedInitialTotientKey[i]));
+const totientSyntheticRecovered = totientSyntheticCipher.map((c, i) =>
+  mod(c - signedInitialTotientKey[i]));
+assert.deepStrictEqual(totientSyntheticRecovered, p57Control);
+signedInitialTotientAdditiveKey.p57SyntheticRoundTripPassed = true;
+
+
 const outputs = [];
 for (const reverse of [false, true]) {
   const C = reverse ? inner55.slice().reverse() : inner55.slice();
@@ -341,6 +376,7 @@ const report = {
   signedMessagePrimeSumKey: signedPrimeSumKeyResult,
   signedWordInitialStationaryMapGate: signedWordInitialGate,
   signedWordInitialAdditiveKey: signedInitialAdditiveKey,
+  signedWordInitialTotientAdditiveKey: signedInitialTotientAdditiveKey,
   conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
