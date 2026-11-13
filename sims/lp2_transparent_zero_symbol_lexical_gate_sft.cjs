@@ -259,8 +259,39 @@ function homogeneousSiteNull() {
   assert.equal(eligible,12901);
   assert.equal(longEligible,3119);
   assert(Math.abs(upper-0.5207793771587872)<1e-9);
+  // Preserve each of the 55 original physical page repeat counts in this
+  // stronger source-only comparator. Each page contributes an independent
+  // hypergeometric draw among its own eligible runes.
+  let convolution=[1],pageMean=0;
+  const flat=originals.flat();
+  for(let page=0;page<55;page++) {
+    const rr=flat.filter(r=>r.page===page&&r.eligible);
+    const N=rr.length;
+    const n=rr.filter(r=>r.event).length;
+    // The original parser does not store word length on each rune, so
+    // derive long-word membership below from the same original word arrays.
+    const long=originals.filter(w=>w.length>=8).flat()
+      .filter(r=>r.page===page&&r.eligible).length;
+    assert(long<=N);
+    pageMean+=n*long/N;
+    const h=new Array(n+1).fill(0);
+    h[0]=1;
+    for(let i=0;i<n;i++)h[0]*=(N-long-i)/(N-i);
+    for(let k=0;k<n;k++)
+      h[k+1]=h[k]*((long-k)*(n-k))/
+        ((k+1)*(N-long-n+k+1));
+    const next=new Array(convolution.length+h.length-1).fill(0);
+    for(let i=0;i<convolution.length;i++)
+      for(let j=0;j<h.length;j++)next[i+j]+=convolution[i]*h[j];
+    convolution=next;
+  }
+  const pagewiseUpper=convolution.slice(actualLong)
+    .reduce((sum,value)=>sum+value,0);
+  assert(Math.abs(pagewiseUpper-0.679355588200042)<1e-9);
   return {eligible,longEligible,mean,observedLong:actualLong,
-    pAtLeastObserved:upper};
+    pAtLeastObserved:upper, pagewiseFixedEventCounts:{
+      expectedLong:pageMean,pAtLeastObserved:pagewiseUpper
+    }};
 }
 const out={observed,words:originals.length,sourceGroups:types.size,models:29,
   references:{},sourceUniformSiteComparator:homogeneousSiteNull(),
