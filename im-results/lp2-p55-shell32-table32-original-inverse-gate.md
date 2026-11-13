@@ -1,6 +1,6 @@
 # Physical p55: 32 word-shell runes as row selectors for the 32×8 numerical grid
 
-**Decision (13 November 2026): eight source-motivated, exactly invertible table-byte-to-interior GP29 transforms are original-negative.** The strongest of eight produces an English-control trigram score of **−4.387465**, below the worst of **62,450** independent Gibran and **321,285** independent Emerson native-GP control windows. None produces coherent plaintext, an authentic key, or a destination.
+**Decision (13 November 2026): sixteen source-motivated, exactly invertible table-byte-to-interior GP29 transforms are original-negative.** The strongest of sixteen produces an English-control trigram score of **−4.387465**, below the worst of **62,450** independent Gibran and **321,285** independent Emerson native-GP control windows. None produces coherent plaintext, an authentic key, or a destination.
 
 ## Why a human might try this
 
@@ -17,19 +17,19 @@ The prior original-source [exterior32 AES table gate](../sims/p55_exterior32_gri
 
 ## Frozen original-input inverse
 
-Let S[r] be the r-th exterior rune index (0..28), P[r] its prime weight, and T[r][c] the original base60 byte in printed table row r, column c. For each table row r=0..31, choose one of two fixed column rules: **ordinal** c=S[r] mod8; or **prime** c=P[r] mod8. These give one selected byte per row.
+Let S[r] be the r-th exterior rune index (0..28), P[r] its prime weight, and T[r][c] the original base60 byte in printed table row r, column c. Under both preserved base59 and base60 byte readings, for each table row r=0..31 choose one of two fixed column rules: **ordinal** c=S[r] mod8; or **prime** c=P[r] mod8. These give one selected byte per row.
 
 Turn the 32 selected bytes into a key with one of two projections: **residue** K[r]=T[r][c] mod29, or **scaled** K[r]=floor(29*T[r][c]/256). Read the 43 strict-interior ciphertext runes in original order; decode under either M[i]=C[i]−K[i mod32] (mod29) or M[i]=C[i]+K[i mod32] (mod29).
 
-Each inverse is exact with the unaltered shell. The 32-figure key uses no guessed phase, missing rune, secret permutation, or fitted password. Eight tests arise from the 2×2×2 source operations. Four direct-shell controls (raw, ±GP exterior, reflection in exterior) are also implemented but are not the novel gate.
+Each inverse is exact with the unaltered shell. The 32-figure key uses no guessed phase, missing rune, secret permutation, or fitted password. Sixteen tests arise from 2 radices × 2 selectors × 2 projections × 2 signs. Four direct-shell controls (raw, ±GP exterior, reflection in exterior) are also implemented but are not the novel gate.
 
-The numerical table is the conventional base60 **derived byte reading**, itself conditional on the original printed tokens. The author did not authenticate a byte-to-rune projection; this limits the conclusion to the eight exact cases.
+The numerical table has **two** source-compatible, exact derived digit readings: the conventional 60-character alphabet and the 59-character alphabet obtained by omitting lowercase `f`, which is absent from all 256 printed numeral tokens. The sixteen table-key tests comprise eight source-frozen selector/projection/sign variants **for each radix**, without altering original glyphs or selecting a cipher by English fit. The author authenticated neither radix nor byte-to-rune projection; this limits the conclusion to these sixteen explicit cases.
 
 ## Original results and independent controls
 
 A smoothed GP29 trigram model was trained on the repository's 300,000-character Shakespeare text, using **source-calibrated GP spelling** (ING as NG, IO as IA). The training set has **217,106** runes. Independently solved p57's first 43 runes score **−2.330958** as a native-GP positive control.
 
-| Original p55 43-core test | Mean log trigram score |
+| Original p55 43-core test (base60 table, where applicable) | Mean log trigram score |
 | --- | ---: |
 | Unchanged interior | −4.699178 |
 | Direct 32-exterior C−K | −4.553833 |
@@ -44,14 +44,16 @@ A smoothed GP29 trigram model was trained on the repository's 300,000-character 
 | Table prime / scaled / C−K | −4.761968 |
 | Table prime / scaled / C+K | −4.454866 |
 
+**Competing base59 original-token reading (same fixed selectors/projections/signs):** all eight models remain below the native minima. The descending sorted scores are prime/scaled/plus **−4.445924**, ordinal/scaled/plus **−4.480349**, prime/scaled/minus **−4.508662**, prime/residue/minus **−4.684569**, ordinal/residue/minus **−4.714045**, ordinal/scaled/minus **−4.778283**, ordinal/residue/plus **−4.861157** and prime/residue/plus **−4.974748**. The best base59 readout `TCIAPDIBTMALCIBIILETHROEEAPMAESEACSMLXEOWBNEWFJWUI` does not form prose. This controls the formerly open ambiguity of the original printed-digit alphabet for this exact inverse.
+
 The **least native-like Gibran** 43-rune window scores −4.042867 across **62,450** overlapping windows. The **least native-like Emerson** window scores −4.141443 across **321,285** overlapping windows. Every original candidate scores below **every** native window in both held-out corpora. The best table variant emits the GP transliteration:
 
     AFRXEALABPHELJSFFUUSBNTATEOEBARJEOEALTHDIDBWEOUXH
 
-The output is nonlinguistic and **not** a decryption. All **12/12** original outputs reproduce their 43 original ciphertext runes exactly when encoded, and all **12/12** planted solved-p57 43-rune passages decrypt exactly. These are implementation checks, not evidence of the historical key.
+The output is nonlinguistic and **not** a decryption. All **20/20** original outputs reproduce their 43 original ciphertext runes exactly when encoded, and all **20/20** planted solved-p57 43-rune passages decrypt exactly. These are implementation checks, not evidence of the historical key.
 
 ## Interpretation and next decision
 
-Retire the **32 original word-exterior runes → 32 table row selections → repeated period32 GP29 add/subtract of 43 strict-interior runes** for the specified selector/projection family. The table's byte meaning, p57 metaphor, 43-rune interior, and possible nonstationary or multi-stage operations remain unresolved. Further row-permutation, phase, or projection tuning on this source would be an unselected cipher search. Reopen only if a player-visible or independently authenticated clue fixes a different original operation **and predicts sustained unknown plaintext**.
+Retire the **32 original word-exterior runes → 32 table row selections → repeated period32 GP29 add/subtract of 43 strict-interior runes** for the specified selector/projection family under both source-plausible base59 and base60 codecs. The table's byte meaning, p57 metaphor, 43-rune interior, and possible nonstationary or multi-stage operations remain unresolved. Further row-permutation, phase, or projection tuning on this source would be an unselected cipher search. Reopen only if a player-visible or independently authenticated clue fixes a different original operation **and predicts sustained unknown plaintext**.
 
 **Single-file reproduction:** [p55 shell32-table32 inverse SFT](../sims/lp2_p55_shell_table32_source_inverse_sft.cjs), reading the canonical LP2 source, derived base60 table and independent Shakespeare/Gibran/Emerson corpora; no network calls, seeds, or selected score windows.
