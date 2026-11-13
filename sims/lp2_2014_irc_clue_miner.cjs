@@ -26,6 +26,10 @@ const medium = /\b(?:cipher|encrypted|encryption|message|book|puzzle|outguess|pr
 const dateRegex = /^(?:\d{4}[ -](?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b|\[?\d{4}[-/](?:0[1-9]|1[0-2])[-/]\d{2})/i;
 const targetYear = /\b2014\b/;
 const spring = /\b(?:2014 (?:Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)|2014[-/](?:0[4-9]|1[0-2]))\b/i;
+const deepContextLines = [
+  163741,163775,163785,164118,165223,165696,170858,174444,
+  177389,178970,181396,198135,205920,216040,225858,
+];
 
 /** @param {Buffer} data */
 function gitBlobSha(data) {
@@ -50,6 +54,12 @@ function mine(name, data) {
     if (report.excerpts.length < 20000) {
       report.excerpts.push({line:i+1,score,text:line.slice(0,700)});
     }
+  }
+  if (name === '#cicadasolvers.freenode.log') {
+    report.contexts = deepContextLines.map(center => ({
+      center, lines:lines.slice(Math.max(0,center-17),Math.min(lines.length,center+16))
+        .map((text,i)=>({line:Math.max(1,center-16)+i,text:text.slice(0,950)})),
+    }));
   }
   // High-signal records take precedence; preserve chronology within score.
   report.excerpts.sort((a,b)=>b.score-a.score||a.line-b.line);
@@ -117,6 +127,11 @@ async function main() {
     md+='Original lines: '+r.lineCount+'; May–December 2014 source lines (Apr included): '+r.aprilPlusDateLines+
       '; high-signal hits: '+r.strong+'; medium-signal hits: '+r.medium+'.\n\n';
     for(const x of r.excerpts) md+='- L'+x.line+' [tier '+x.score+'] '+x.text.replace(/\u0000/g,'')+'\n';
+    for (const w of r.contexts || []) {
+      md+='\\n### Original context at L'+w.center+'\\n\\n';
+      for (const e of w.lines) md+='- L'+e.line+' '+e.text.replace(/\\u0000/g,'')+'\\n';
+    }
+
     md+='\n';
   }
   writeAtomicLocked(path.join(out,'matches.md'),md);
