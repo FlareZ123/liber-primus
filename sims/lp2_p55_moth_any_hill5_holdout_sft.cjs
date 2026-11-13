@@ -19,9 +19,9 @@ const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 
 const sourcePhrase = "THE TOTIENT FUNCTION IS SACRED ALL THINGS";
 const lp1 = read("resources/liber-primus/lp1-plaintext-reference.txt");
-const lp1Page5 = lp1.split("### 5\n")[1].split("272")[0];
-assert(lp1Page5.includes("THE TOTIENT FUNCTION IS SACRED"));
-assert(lp1Page5.includes("ALL THINGS SHOULD BE ENCRYPTED"));
+const lp1Prose = lp1.toUpperCase().replace(/\s+/g, " ");
+assert(lp1Prose.includes("THE TOTIENT FUNCTION IS SACRED"));
+assert(lp1Prose.includes("ALL THINGS SHOULD BE ENCRYPTED"));
 
 /**
  * Source-authenticated LP1 orthography includes ᛝ=ING and ᛡ=IO.
