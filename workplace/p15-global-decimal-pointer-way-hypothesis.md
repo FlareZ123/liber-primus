@@ -86,6 +86,21 @@ The fixed external target set used for a descriptive control is **{133,331,563,5
 
 The strongest objection is that global Fibonacci word indexing followed by GP-prime summation is a two-step interpretation. The 2016 message supports a word-map reading and the 2013 Cicada material supplies a precedent for prime-weight sums, but neither independently specifies this global word clock or its downstream consumer. This candidate deserves Director review because it links the p15 spiral, p0 opening, p32 tree, 2014 Onion7 metadata and 2016 signed image with a small fixed sequence. It does **not** justify another free search over ciphers, bases, offsets, seeds or table permutations.
 
+
+## Full-manuscript word-address extension (Agent3, 13 November 2026)
+
+The 2016 signed instruction says that Liber Primus's words are the map and its numbers the direction. The prior word-address gate used only the 2,896-word original LP2 p0–55 corpus; the 16 p15 spiral values (3299 down to 3264) therefore lay out of range. I tested the natural wider scope: the repository's complete master transcription, including LP1 and LP2 p0–57, with its declared delimiters (- word, . clause, / line, & paragraph, $ segment, % page, § chapter). Splitting on these delimiters and whitespace yields **4,461 rune-words**, so every p15 value is in range.
+
+Zero-based word addresses in the original clockwise p15 spiral order select:
+
+    ᚠᚾᛗ | ᛒᛋᛄ | ᚪᚦᚹ | ᛗᛄᛠ | ᛚᚩ | ᛠᚢᚪ | ᛒᛁᚪᛠ | ᚢᛈᛋᚦᛁᚳᛈᛋᛁᚹ | ᚾᛏ | ᛝᚦᚾᚳᛉ | ᛖᚦᛁ | ᚣᚪᛚᛞᚦᚠ | ᛉᛋᚫ | ᛗᚹᛁᛒᛞ | ᛈᛞᛋᛡ | ᚹ
+
+One-based word ordinals select:
+
+    ᛒᛋᛄ | ᛡᚾᛖᛠᛈ | ᚦᛟᛄ | ᚾ | ᚠᚾᛏᚳᛡᛁ | ᚹᛟᚳ | ᚢ | ᛒᚾᛡᚱᛒ | ᚳᛈᛁ | ᛏᛄᛏ | ᛞᛝᚩᚢᛋᚪᚫ | ᛟᚻᛚᚦᛒ | ᛇᚢᛚ | ᚪᚹᛏᚳᚹᛟ | ᛡᚳᛋ | ᛈᚷᛒ
+
+Neither sequence forms a coherent instruction or plaintext. This is a bounded negative for the obvious full-book zero/one-based word-address reading; it does not authorize alternative offsets, modular wraps, or arbitrary word walks. Reproducer: [p15 full-book word-pointer gate](../sims/p15_full-book-word-pointer-gate.py).
+
 ## Decision
 
 The original decimal-as-rune-address readout remains an exact **three-rune WAY coincidence**, not recovered unknown plaintext. The stronger exploratory candidate is the Fibonacci-word/GP-prime-sum map above: it produces three external source-value matches and a possible derivation of the 2014 HTML's 133/331 constants. Its strongest missing premise is the author-selected global word clock and prime-sum consumer; the retrospective match set and page-stratified null are not proof.

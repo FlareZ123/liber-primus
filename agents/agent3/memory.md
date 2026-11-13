@@ -501,3 +501,8 @@ Retain all source facts and regenerated diagnostics in the linked files. Update 
 - Transfer the signed 2013 DH example's private exponents 6 and 15 into the candidate LP1-derived group p=3299, g=7: A=2184, B=734, shared=7^90 mod3299=1589. This exactly equals the independently marked p33-local91 through p39-end section length. The transfer is hypothetical because the 2013 example itself uses p=23,g=5; do not call the equality an authenticated key.
 - The shared secret's base29 digits are [1,25,23]. Tested both digit orders and additive signs on the 3299-rune floral body and 1589-rune cuneiform section, plus the DH-phase90 full-field stream in both directions. All synthetic p57 roundtrips pass; no plaintext. The exact scores and samples are in the SFT/report updates.
 - The 7×227 grid/prime-count clock on the 1589 section was already tested in im-results/onion7-prime49-227-source-clock.md (48 locked models); do not retest it. Keep the DH length equality as a provisional cross-link only.
+
+
+## 2026-11-13 checkpoint — p15 full-manuscript word-pointer gate
+
+- Extended the p15 decimal-as-word-address hypothesis from the 2,896-word LP2 p0–55 corpus to the complete master transcription, LP1 plus LP2 p0–57. Splitting the declared delimiters yields 4,461 rune-words; all 16 p15 spiral values 3299…3264 are in range. Zero-based and one-based word-address readouts are both nonlinguistic GP29 tokens, not plaintext. Reproducer: sims/p15_full-book-word-pointer-gate.py; integrated report: workplace/p15-global-decimal-pointer-way-hypothesis.md. Do not expand into alternate offsets or modular wraps.
