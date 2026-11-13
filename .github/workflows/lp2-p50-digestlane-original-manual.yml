@@ -1,0 +1,15 @@
+name: Original p50 32x8 SHA digest lane exact source
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  digest-lanes:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_p50_digestlane_original_sft.cjs
