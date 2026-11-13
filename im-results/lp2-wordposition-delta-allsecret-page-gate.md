@@ -1,6 +1,6 @@
 # Pagewise word-position differential alphabet gate on original LP2
 
-**Decision (13 November 2026):** On the original unknown LP2 rune stream, a cumulative-difference cipher with a fixed but otherwise *arbitrary secret GP29 alphabet bijection for each physical page and each relative printed-word position* is inconsistent with all three pinned, source-native English reference corpora at the second rune of printed words. This is a **finite English-plaintext conditional exclusion**, with an exact 12,956-rune reversible planted positive control. It does **not** recover unknown plaintext, a key, or the historical intended operation.
+**Decision (13 November 2026):** Two original-input, key-independent invariants sharply exclude cumulative-difference ciphers whose otherwise *arbitrary secret GP29 substitutions* depend on source-visible page, printed word position and even **word length**. The stronger conditional-entropy test grants a distinct secret alphabet for each **word-start page × current-glyph page × word length × relative position** state. All three pinned source-native English controls lie substantially below the original ciphertext. These are **finite English-register conditional exclusions**, each with a complete 12,956-rune reversible positive control. No unknown plaintext, historical key, or intended mechanism is recovered.
 
 ## A distinct, generous proposed inverse
 
@@ -39,8 +39,28 @@ The positive plant samples all **2,896** original-length English GP words, encry
 
 **Passing source-original CI:** [Actions run 43517475735](https://github.com/FlareZ123/liber-primus/actions/runs/43517475735), manual-only workflow \`.github/workflows/agent6-original-source-gates.yml\` with \`route=position\`. Reproducer [\`sims/lp2_wordposition_delta_allsecret_source_gate_sft.cjs\`](../sims/lp2_wordposition_delta_allsecret_source_gate_sft.cjs). The manual workflow leaves existing routes unchanged and never runs on commits.
 
+## Stronger all-secret word-length-conditioned cumulative inverse
+
+The previous pagewise second-rune test **does not cover** ciphers whose secret differential alphabet changes with the complete printed word length. In an independently motivated, more permissive model the author can choose a separate key at every physically visible **(word-start page, current rune's physical page, word length, relative within-word position)** tuple. Including both page selectors handles every actual crossed-page word. For each such key/state s, let \`h_s\` be **any unknown bijection of all 29 GP runes**. Encryption follows the same cumulative update \`D[w,j] = C[w,j]−C[w,j−1] = h_s(P[w,j]) mod29\`, so the exact state-conditional Shannon entropy is invariant:
+
+\`H(D | s) = H(P | s)\`.
+
+The key is fully abstract, with no assumed affine form and no period, and the model permits **2,576 distinct unguessed secret alphabets** across all original word-layout states. The original 2,896 words produce **10,060** consecutive *within-word* rune differences. Native-English controls draw 500 complete exact-original-word-length samples per corpus under the same 2,576 source-visible state partitions, and the entropy statistic averages all original state histograms weighted by their number of runes.
+
+| GP-native reference | Original \`H(D|s)\` (bits) | 500 matched control minima / medians / maxima (bits) | Source-native encrypted plant \`H(D|s)\` (bits) |
+| --- | ---: | ---: | ---: |
+| Shakespeare | **2.23070477** | 1.84434559 / 1.87606137 / 1.90653460 | 1.88423128 |
+| Gibran | **2.23070477** | 1.83191060 / 1.86807273 / 1.90455479 | 1.85133856 |
+| Emerson | **2.23070477** | 1.88108717 / 1.90779605 / 1.93187729 | 1.90747220 |
+
+Even granting all 2,576 independently unknown GP29 permutations, the original invariant is at least **0.29882748 bits per consumed rune** higher than the maximum of the 1,500 tested source-native controls. Every candidate within that architecture shares this exact invariant; the result cannot be improved by searching secret bijection keys. The 12,956-rune independent synthetic cipher uses a fixed invertible scale 17 and a distinct state-dependent additive pad; its exact inverse restores **12,956/12,956 native GP runes**, and its invariant equals its pre-encryption plaintext exactly.
+
+**Passing [manual CI 43518561426](https://github.com/FlareZ123/liber-primus/actions/runs/43518561426)**; reproducible [\`sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs\`](../sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs), \`route=shape\` in the same manual-only workflow. The original test remains independently reproducible via \`route=position\`.
+
+This is a distinct **ciphertext-feedback** result from the older word-shape entropy obstruction, which was limited to direct fixed symbol maps/within-word permutations of the original rune output. It excludes the cumulative-difference inverse even if each word length has its own hidden page-specific alphabet at *each* position. It still does not cover an alphabet that changes per individual word or a hidden state depending on preceding plaintext/ciphertext values.
+
 ## Interpretation and next decision
 
-This adds a strict **page-local** exclusion to earlier globally stationary and per-word-initial affine-feedback tests. It rules out *all* fixed secret page-by-position output alphabets in this cumulative-delta family when plain words are expected to resemble the three pinned GP-native English corpora. It does not exclude plaintext in other registers or languages; secretly changing an alphabet **per individual word**, using a different variable-plaintext word clock, modifying symbol order or count, adding nonlinear feedback that depends on ciphertext state, or introducing external keys/state whose effects are not a bijection at fixed word position.
+These two complementary tests add **page-local and word-length-conditioned** fixed-state exclusions to earlier globally stationary and per-word-initial affine-feedback tests. It rules out *all* fixed secret page-by-position output alphabets in this cumulative-delta family when plain words are expected to resemble the three pinned GP-native English corpora. It does not exclude plaintext in other registers or languages; secretly changing an alphabet **per individual word**, using a different variable-plaintext word clock, modifying symbol order or count, adding nonlinear feedback that depends on ciphertext state, or introducing external keys/state whose effects are not a bijection at fixed word position.
 
 **Do not broaden this by tuning page keys.** The statistical invariant has already removed that freedom completely. The next useful decoder hypothesis requires an independent, source-visible instruction selecting either a different *state operation* or externally sourced state/key, and should be tested against withheld original ciphertext with a genuine semantic plaintext criterion. No unknown LP2 text, authentic key, or continuation destination follows from this exclusion.
