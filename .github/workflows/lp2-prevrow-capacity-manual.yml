@@ -1,0 +1,14 @@
+name: LP2 previous-cipher state-row capacity (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original-state-row-capacity:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original-input and native-GP positive-control test
+        run: node sims/lp2_previous_cipher_row_capacity_sft.cjs
