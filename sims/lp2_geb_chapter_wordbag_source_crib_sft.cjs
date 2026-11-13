@@ -138,6 +138,66 @@ function p55Keys(cipher,plain) {
   };
 }
 
+
+/**
+ * Exact ordered K-word GP-length cribs across the whole source and target
+ * tapes, allowing any position but requiring contiguous unedited words.
+ * At a 12-word fingerprint hit recover the maximal identical run, with
+ * a five-word extension evaluated without any fitted letter substitution.
+ *
+ * @param {number[]} src
+ * @param {number[]} tgt
+ */
+function orderedCribs(src,tgt) {
+  const K=12, sourceMap=new Map(), seen=new Set(), hits=[];
+  for (let i=0;i+K<=src.length;i++) {
+    const k=src.slice(i,i+K).join(',');
+    const a=sourceMap.get(k);
+    if(a)a.push(i);else sourceMap.set(k,[i]);
+  }
+  for (let j=0;j+K<=tgt.length;j++) {
+    const a=sourceMap.get(tgt.slice(j,j+K).join(','));
+    if(!a)continue;
+    for(const i of a) {
+      let startSrc=i,startTarget=j;
+      while(startSrc>0 && startTarget>0 &&
+        src[startSrc-1]===tgt[startTarget-1]){startSrc--;startTarget--;}
+      let n=K+i-startSrc;
+      while(startSrc+n<src.length && startTarget+n<tgt.length &&
+        src[startSrc+n]===tgt[startTarget+n])n++;
+      const id=startTarget+':'+startSrc;
+      if(seen.has(id))continue;
+      seen.add(id);
+      const first12=tgt.slice(startTarget,startTarget+K)
+        .reduce((x,y)=>x+y,0);
+      hits.push({
+        originalWord:startTarget,sourceWord:startSrc,
+        matchingWords:n,first12Runes:first12,
+        qualifying:n>=12 && first12>=40,
+        fiveHeldout:n>=17
+      });
+    }
+  }
+  hits.sort((a,b)=>b.matchingWords-a.matchingWords ||
+    b.first12Runes-a.first12Runes);
+  return {hitCount:hits.length,
+    threshold12words40runes:hits.filter(x=>x.qualifying).length,
+    heldout17words:hits.filter(x=>x.fiveHeldout).length,
+    top:hits.slice(0,12)};
+}
+
+/** Deterministic source-inventory-shuffle control. @param {number[]} src */
+function shuffleLengths(src) {
+  let seed=0x20143301;
+  const x=src.slice();
+  for(let i=x.length-1;i>0;i--) {
+    seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+    const j=(seed>>>0)%(i+1);
+    [x[i],x[j]]=[x[j],x[i]];
+  }
+  return x;
+}
+
 async function main() {
   const blobId='03c403fa3db18dd9ee966e555e4978036b5f6b56';
   const url='https://api.github.com/repos/kylevedder/JChains/git/blobs/'+blobId;
@@ -156,6 +216,14 @@ async function main() {
   const source=words.map(word=>gp(word).length);
   assert.equal(source.length,318443);
 
+  const originalWordLengths = parsed.words.map(w=>w.length);
+  const orderedSource = orderedCribs(source,originalWordLengths);
+  const orderedShuffled = orderedCribs(shuffleLengths(source),originalWordLengths);
+  const positivePlain = originalWordLengths.slice();
+  positivePlain.splice(100,25,...source.slice(12000,12025));
+  const orderedPlant = orderedCribs(source,positivePlain);
+  assert.ok(orderedPlant.top.some(h=>h.matchingWords>=25 && h.originalWord<=100 &&
+    h.originalWord+h.matchingWords>=125));
   const chaptersOut=chapters.map(([low,high])=>{
     const target=parsed.words.filter(w=>{
       const page=physicalLP2Page(w.startPage);
@@ -197,6 +265,7 @@ async function main() {
     source:{name:'GEB 2014 Cicada selected book',blob:blobId,words:words.length},
     original:{runes:parsed.runeCount,words:parsed.words.length,pages:55},
     chapters:chaptersOut,wholeChapterExactHits:chaptersOut.reduce((n,x)=>n+x.exactCount,0),
+    orderedSource,orderedShuffled,orderedPlantTop:orderedPlant.top[0],
     exactPageBags:exactPages,p55FixedSymbolAndAllKeyChecks:p55,
     status:'actual plaintext not established; candidate source-bags are necessary conditions only'
   },null,2));
