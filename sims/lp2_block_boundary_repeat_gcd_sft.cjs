@@ -120,6 +120,45 @@ assert.deepEqual(minimumInternalExceptions(16),
 assert.deepEqual(minimumInternalExceptions(32),
   { globalExceptions: 80, pageExceptions: 43 });
 
+/**
+ * Classifies all original neighboring equalities by explicitly printed
+ * word/clause and line separators in the archival transcription.
+ * @returns {{ insideWords: number, acrossWords: number, insideLines: number,
+ *   acrossLines: number }}
+ */
+function originalVisibleBoundaryCounts() {
+  const original = fs.readFileSync(path.join(__dirname, '..',
+    'resources/transcriptions/liber_primus_master.txt'), 'utf8');
+  const allPhysicalPages = original.split(/^\s*%\s*$/m);
+  assert.equal(allPhysicalPages.length, 74);
+  const same = { insideWords: 0, acrossWords: 0,
+    insideLines: 0, acrossLines: 0 };
+  for (const page of pages) {
+    const glyphs = [...allPhysicalPages[15 + page.page]];
+    let lastPosition = -1;
+    let position = 0;
+    for (let t = 0; t < glyphs.length; t++) {
+      const index = corpus.runes.indexOf(glyphs[t]);
+      if (index < 0) continue;
+      assert.equal(index, page.indices[position]);
+      if (position > 0 && index === page.indices[position - 1]) {
+        const separator = glyphs.slice(lastPosition + 1, t).join('');
+        const hasWordBreak = separator.includes('-') || separator.includes('.');
+        const hasLineBreak = separator.includes('/');
+        same[hasWordBreak ? 'acrossWords' : 'insideWords']++;
+        same[hasLineBreak ? 'acrossLines' : 'insideLines']++;
+      }
+      lastPosition = t;
+      position++;
+    }
+    assert.equal(position, page.indices.length);
+  }
+  return same;
+}
+assert.deepEqual(originalVisibleBoundaryCounts(),
+  { insideWords: 63, acrossWords: 23,
+    insideLines: 82, acrossLines: 4 });
+
 // Frozen constructive positive control: every repeat lies at position 2 mod 5,
 // while the intervening stream runs over the original 29-symbol alphabet.
 const planted = makePlant(5, 2, 217);
@@ -146,4 +185,5 @@ console.log(JSON.stringify({
   plantedPhase: 2,
   plantedRepeats: plantedRepeats.length,
   fiveBlockMinimumInternalExceptions: minimumInternalExceptions(5),
+  originalVisibleBoundaryCounts: originalVisibleBoundaryCounts(),
 }));
