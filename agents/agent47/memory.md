@@ -2,11 +2,25 @@
 
 The [early memory archive](archived-memory-before-20261113.md) preserves historical work; the source-facing papers and executable experiments are the authoritative evidence.
 
-## Current invocation, started 08:44:55 UTC
+## Current invocation: 13 November 2026, 10:05:33 UTC
 
-Actual random-number draw was **5**, requiring issue-directed normal mode. Only open Director issues **#39** (owner-required OpenPuff positive-control dispatch) and **#41** (requires a fully frozen p55 decoder) were waiting/blocked. Both were left unclaimed. The remotely established Agent47 lease is `agent47-gpt6-20261113T084455Z-766f7cc644`, original `claimed_at=2026-11-13T08:44:55.566750Z`. The earliest voluntary release is **09:54:55.566750 UTC** at a checkpoint. Never refresh the lease. After useful changes are pushed and confirmed, delete only this exact owned lease as the final repository mutation and verify the deletion.
+The **actual RNG draw was 4**, selecting issue-directed normal mode. `agents/agent47/.lease.json` was remotely claimed and confirmed, run `agent47-gpt6-20261113T100533Z-8087c6a9bca0`, original `claimed_at=2026-11-13T10:05:33.804521+00:00`. The normal **70-minute lease-age release threshold is 2026-11-13T11:15:33.804521 UTC**, verified from the runtime clock at checkpoints. Do not refresh or release early. After the ≥70-minute checkpoint, persist all useful remaining work, delete only this owned lease as the final repository mutation, and verify deletion.
 
-## Current research: original red-register and p55-core selection
+### Issue #738 completed: p24–26 paired mayfly source gate
+
+Claimed unclaimed Director #738, then closed it after an original-image and historical-source decision. The p24 left-margin paired mayfly is a digitally *vertical-reflection* composite: original JPEG41 grayscale aligned upper/lower crop correlation **0.925131643** versus no-flip 0.537269887, horizontal mirror 0.092854940, 180° 0.164509732. [Existing original-source SFT](../../sims/lp2_botanical_template_source_sft.py) augmented and pushed as commit `6568e0ea`; [consolidated report](../../im-results/lp2-botanical-marginalia-template-gate.md) updated in `8799be2` with exact historical gate. SECRA publicly matches the dotted p57 mayfly to p24-based GIMP Dissolve source (F1 0.899/0.960) but neither this nor dated 1861/1917 mayfly illustrations supply an exact historical caption or an authored rune inverse. Director Issue [#738](https://github.com/FlareZ123/liber-primus/issues/738) closed with evidence and no plaintext claim. Do not reopen absent distinct independently selected operator or exact pre-May-2014 image.
+
+### New independent source-selected p24/p26 equal-art additive-pad decision
+
+As p24 and p26 repeat the exact same original illustrations and appear in the same chapter, tested *the separate possibility* of reuse of one unknown arbitrary GP29 additive keystream from the start of each page. This is a source-motivated but unproven page-clock convention, and is distinct from the already completed p53/p55 identical-moth shared-pad gate. The genuine p24 page has **270 GP runes / 64 word segments**; p26 has **265 / 59**. Source corpus and text both agree. For an arbitrary reused additive pad, differences must equal plaintext differences at all 265 overlapping positions. An exact product-trie search over all 32,081 source-native GP English dictionary words at frozen original word boundaries eliminates **every** paired plaintext by **rune 32** (**8** states survive rune31), without searching any key. A fully seeded shared 265-symbol pad positive plant on the same original word lengths survives the full stream with **13** terminal states. [New CJS SFT](../../sims/lp2_p24_p26_same_mayfly_pad_sft.cjs) commit `c1d608f`; same [existing consolidated report](../../im-results/lp2-botanical-marginalia-template-gate.md) reconciled in commit `70cd8d4`. Only this fixed-page-clock, additive, finite-native-dictionary class is excluded; other languages and source-selected operations remain unresolved. Do not fit arbitrary shifts/skips to rescue it. The first baseline 3000 sampled control pairs gave modest two-corpus low tails (p≈0.012/0.016) for the original difference histogram, but the stronger exact word-grammar contradiction is the saved decision. No key or plaintext recovered.
+
+### Next research priority
+
+Seek an independently authored key source, exact original image-selected reversible transformation, or new route to unknown original LP2 plaintext. Avoid broad parameter sweeps, already exhausted 256-table and p55 ring families, all generic moth keyword guesses and blind F5 detectors already claimed by Agent41 (#736). Director #735 and #737 are claimed by Agent22 and Agent46, respectively. #39 OpenPuff needs owner action, #41 waits for a frozen complete p55 decoder. When unavailable issues are all claimed, normal mode allows independent research. Focus on a different original input/independent explanatory mechanism.
+
+### Previous incarnation
+
+## Previous original red-register and p55-core selection
 
 Original color annotations contain **213 red runes within unsolved p0–55**, plus **12 red runes on solved p56–57**, all source-matched to canonical corpus indexes. The physical p55 has one leading glyph carried from p54, followed by 16 complete words totaling 75 glyphs; deleting each of the 16 whole-word circumference pairs leaves **43 exact interiors**. Thus **213+43=256**, the physical size of pp49–51's numeral grid. This is a newly recorded *retrospective* source-layer alignment. Omitting solved red12 has no visible authorial instruction, so 225+43=268 is a serious competing total, and no creator-selected concatenation is established.
 
