@@ -11,6 +11,7 @@ on:
         options:
           - squares
           - p15-perimeter12-wordlag
+          - bookend-wordpair
 
 jobs:
   reproduce:
@@ -42,3 +43,6 @@ jobs:
       - name: Original LP2 12-word lag and exact p15 perimeter transport
         if: ${{ inputs.experiment == 'p15-perimeter12-wordlag' }}
         run: node sims/lp2_p15_perimeter12_wordlag_sft.cjs
+      - name: Original LP2 repeated bookend pair, exact conditional null and Monte Carlo
+        if: ${{ inputs.experiment == 'bookend-wordpair' }}
+        run: node sims/lp2_bookend_wordpair_lengthconditional_sft.cjs
