@@ -132,4 +132,22 @@ for (const offset of [0, 13]) {
       'p56-first13-predicted=' + translit(carryPrediction));
   }
 }
+// Independently visible p0 word6 "NEWBAS..." begins at rune 23 and
+// ends at 33 inclusive. Its first six GP tokens hint at a new base, but
+// this is a source-shaped experiment rather than proof of instruction.
+// The next 89 original p0 runes are a unique, predeclared full-key window.
+const page0 = corpus.pages.find((page) => page.page === 0).indices;
+const word6 = [9, 18, 7, 17, 24, 15, 22, 12, 10, 21, 1];
+assert.deepEqual(page0.slice(23, 34), word6);
+const selectedP0 = page0.slice(34, 34 + key.length);
+assert.equal(selectedP0.length, 89);
+for (const sign of [-1, 1]) {
+  const decoded = decode(selectedP0, key, sign);
+  assert.deepEqual(decode(decoded, key, -sign), selectedP0);
+  console.log('ORIGINAL-P0-POST-NEWBAS',
+    'start=34',
+    'sign=' + sign,
+    'ioc=' + indexOfCoincidence(decoded).toFixed(9),
+    '89runes=' + translit(decoded));
+}
 console.log('PASS all authentic-original and planted round trips');
