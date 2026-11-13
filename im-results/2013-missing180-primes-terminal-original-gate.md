@@ -1,0 +1,23 @@
+# A 2013 missing-prime list and LP2's 180 known terminal glyphs
+
+## Source-visible hypothesis
+
+A preserved 2013 first-onion telnet `primes` transcript prints the first twenty primes through **71**, then resumes at **1229**, leaving exactly **180 consecutive primes** (73 through 1223, ordinal 21 through 200). Two old repositories preserve the command's exact jump: [neuroretransmit, original telnet transcript](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md) and [scream314, historical notes](https://github.com/scream314/cicada3301/blob/master/hints_never_used.md). These independent archives document the same reported historic response, but no original-author signature proves whether this was deliberately omitted or a transcription/software anomaly.
+
+The original pp49–51 **32×8 numeral table** has a 76-cell perimeter and exactly **180 interior cells** (30×6). The physically adjacent LP2 solved p56 and clear p57 contain **85+95=180 original runes**. Along with the original unsolved p55's **76 runes**, this recreates the source-visible terminal **76+180=256** alignment. The two LP2 counts are consequences of the *same* table-ring/terminal comparison; they are not statistically independent corroborations. The source transcript supplies a finite new 180-prime vector with a plausible human-visible path, but no direction, key derivation, operator or input binding. Original p56 runes are **ciphertext**, while p57's are clear GP, an important impediment to any single 180-symbol plaintext rule.
+
+## Direct original-input gate
+
+The deterministic [CJS SFT](../sims/2013_missing180_terminal_register_sft.cjs) loads [canonical base60 table bytes](../resources/liber-primus/base60-grid.json), [canonical original rune indices and GP primes](../resources/liber-primus/lp2-corpus.json), enumerates exactly 180 historically omitted primes, and extracts the table's strict row-major 30×6 interior and p56+p57 original terminals. Under all four independent forward/reverse assignments of these two 180-vectors, tests four pointwise GP29 rules:
+- `(tableByte+prime)%29`
+- `(tableByte-prime)%29`
+- `(prime-tableByte)%29`
+- `(tableByte XOR (prime%256))%29`
+
+Across the sixteen natural consumers the original symbol agreement is only **2–12/180**, against an independent-random equality expectation of about **6.2/180**. Even granting each candidate **an arbitrary secret stationary 29→29 lookup** (each input symbol maps to its observed most-common output, with collisions allowed), the maximum achievable original terminal matches are **49/180**. Thus each such stationary model must violate at least **131** of 180 original positions, independent of lookup key; this is a much more generous bound than a secret alphabet bijection.
+
+Two direct byte-to-printed-GP-prime equations fail: `tableByte = (missingPrime + GPprime) mod256` gives **0/180** and `tableByte = (missingPrime mod256) XOR GPprime` gives **1/180**. The direct `tableByte XOR (missingPrime mod256)` 180-byte output contains **55 printable ASCII bytes** and no plain ASCII message. Both bytes and modulo29 reductions assume the *provisional* base60 source parse.
+
+## Decision
+
+**No LP2 unknown plaintext or cipher key was recovered.** The original 180-count correspondence and historical omitted-prime vector are real as documented, but the source does not select any LP2 consumer and the direct natural model fails. Retire only the enumerated pointwise GP29/byte uses, including arbitrary stationary GP29 post-substitutions. A successor requires a historically supported instruction fixing which of the 180 missing primes keys which LP2 cell/rune, or an independently predicted original interval under a full reversible mechanism. Do not tune additional artificial traversals, clocks or lookups to the very same terminal glyphs.
