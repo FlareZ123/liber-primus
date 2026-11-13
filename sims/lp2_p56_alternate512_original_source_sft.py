@@ -1,7 +1,7 @@
 """Bounded original-source AN END alternate SHA-512-sized digest preimage screen.
 
 This is a read-only exact-byte file check, not a hash inversion or plaintext decoder.
-Python 3.10+, pip packages pyskein and gostcrypto, and OpenSSL 3 legacy provider.
+Python 3.10+, pip packages pyskein, gostcrypto and pycryptodome, and OpenSSL 3 legacy provider.
 Inputs are the 58 original LP2 JPEGs, a few archival 2014 messages / HTML,
 and source table bytes; no edited JPEGs, re-encoded text or prefix matching.
 """
@@ -15,6 +15,7 @@ import subprocess
 
 import gostcrypto
 import skein
+from Crypto.Hash import keccak
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -32,6 +33,10 @@ STREEBOG_EMPTY = (
     "8e945da209aa869f0455928529bcae4679e9873ab707b55315f56ceb98bef0a7"
     "362f715528356ee83cda5f2aac4c6ad2ba3a715c1bcd81cb8e9f90bf4c1c1a8a"
 )
+KECCAK_EMPTY = (
+    "0eab42de4c3ceb9235fc91acffe746b29c29a8c366b7c60e4e67c466f36a4304"
+    "c00fa9caf9d87976ba469bcbe06713b435f091ef2769fb160cdab33d3670680e"
+)
 WHIRLPOOL_EMPTY = (
     "19fa61d75522a4669b44e39c1d2e1726c530232130d407f89afee0964997f7a7"
     "3e83be698b288febcf88e3e03c4f0757ea8964e59b63d93708b138cc42a66eb3"
@@ -39,7 +44,7 @@ WHIRLPOOL_EMPTY = (
 
 
 def digest(data: bytes) -> dict[str, str]:
-    """Three authentic full 512-bit hash algorithms (no truncation or salting)."""
+    """Four authentic full 512-bit hash algorithms (no truncation or salting)."""
     whirlpool = subprocess.run(
         ["openssl", "dgst", "-provider", "legacy", "-whirlpool", "-binary"],
         input=data,
@@ -48,6 +53,7 @@ def digest(data: bytes) -> dict[str, str]:
     ).stdout.hex()
     return {
         "skein512_512": skein.skein512(data, digest_bits=512).hexdigest(),
+        "keccak512_pre_fips": keccak.new(data=data, digest_bits=512).hexdigest(),
         "streebog512": gostcrypto.gosthash.new(
             "streebog512", data=data
         ).hexdigest(),
@@ -62,13 +68,14 @@ def main() -> None:
     kat = digest(b"")
     assert kat == {
         "skein512_512": SKEIN_EMPTY,
+        "keccak512_pre_fips": KECCAK_EMPTY,
         "streebog512": STREEBOG_EMPTY,
         "whirlpool": WHIRLPOOL_EMPTY,
     }, f"Published empty-message test-vector failure: {kat}"
 
     positive = digest(b"AN END original-positive-plant")
-    assert len(positive) == 3
-    assert len(set(positive.values())) == 3
+    assert len(positive) == 4
+    assert len(set(positive.values())) == 4
     assert all(len(value) == 128 for value in positive.values())
     for name, expected in positive.items():
         assert digest(b"AN END original-positive-plant")[name] == expected
@@ -118,8 +125,8 @@ def main() -> None:
         "source": "original p56 AN END 128-character value",
         "target": TARGET,
         "algorithms": list(kat),
-        "test_vectors": "three published 512-bit empty-message KATs passed",
-        "positive_control": "all three algorithms rehashed exact input",
+        "test_vectors": "four published 512-bit empty-message KATs passed",
+        "positive_control": "all four algorithms rehashed exact input",
         "original_source_files": totals[0],
         "source_bytes": totals[1],
         "candidate_hashes": totals[0] * 3,
