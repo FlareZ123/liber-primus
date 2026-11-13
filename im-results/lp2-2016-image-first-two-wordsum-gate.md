@@ -29,7 +29,18 @@ Use the exact original p0/p1 262 and 266 rune histograms, their original word-sl
 | At least one 563, irrespective of 569 | 828 | 0.0276000 |
 | At least one 569, irrespective of 563 | 828 | 0.0276000 |
 
-The source-image dimensions and order fix the primary ordered-page event; the exact word-slot numbers were discovered after inspection and must not be assigned a fresh 0/30,000 claim of significance. This finite p≈0.0002 is conditional on the explicit narrow shuffle model; it does not estimate the full research-wide false-discovery rate, compensate for all historically possible image dimensions or show the authors intended this link.
+Width and height fix the 563-before-569 ordering only **after choosing which pages to examine**. The p0/p1 pair and the observed exact word slots were recognized retrospectively; the 6/30,000 result is therefore a *fixed-p0/p1 conditional* shuffle diagnostic, not a manuscript-wide discovery probability.
+
+**All-page selection audit (Critic, 13 November 2026).** A separate 3,000-draw null shuffles each of the **55 rune-bearing unknown pages** independently, preserving every original page's rune inventory, printed word lengths, word-slot positions and physical location. It searches all 55 pages for the fixed 2016 image sums, while respecting runeless p50 when testing physical adjacency. The same `0x3301563` seed initializes an *independent* PRNG stream, leaving the earlier two-page test unchanged.
+
+| Source pair event across all unknown pages | Count / 3,000 | Empirical frequency |
+| --- | ---: | ---: |
+| The exact p0 width563, p1 height569 pair | 0 | 0; too few trials to resolve this rare event |
+| Width563 on any physical page immediately before height569 | **32** | **1.0667%** |
+| Width563 on any earlier page than height569 | **492** | **16.4%** |
+| Both image sums anywhere, in either order | **828** | **27.6%** |
+
+The counts and entire original-input page layout are asserted in the existing [reproducer](../sims/lp2_2016_dimensions_firstwords_sft.cjs). This quantifies the page-pair selection opportunity missing from the fixed-p0/p1 0.0002 statistic. Even 1.0667% is conditional on the retrospectively proposed prime-sum operation, the selected historical dimensions, and this particular shuffle null; none of these probabilities proves a designer-intended instruction or yields original plaintext.
 
 ### Independent-source index interpretation and exact fixed-slot null
 

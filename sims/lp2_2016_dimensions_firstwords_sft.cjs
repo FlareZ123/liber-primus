@@ -118,6 +118,48 @@ assert.deepEqual(totals, {
   anyHeight: 828
 });
 
+// Critic all-manuscript page-choice null: p0/p1 were selected after inspection.
+// Fresh seeded RNG preserves the earlier 30,000 two-page shuffle exactly.
+let pageNullState = SEED;
+function pageNullRandom() {
+  pageNullState = (Math.imul(pageNullState, 1664525) + 1013904223) >>> 0;
+  return pageNullState / 4294967296;
+}
+const pageNullLayouts = unknownPages.map(p => p.words.map(w => w.length));
+const pageNullPools = unknownPages.map(p => p.words.flat());
+const pageNullDraws = 3000;
+const allPageNull = {firstTwo:0, physicalAdjacent:0,
+  anyObservedOrder:0, hasBothAnywhere:0};
+for (let trial = 0; trial < pageNullDraws; trial++) {
+  const flags = unknownPages.map((p, pageIndex) => {
+    const pool = pageNullPools[pageIndex].slice();
+    for (let j = pool.length - 1; j > 0; j--) {
+      const k = Math.floor(pageNullRandom() * (j + 1));
+      [pool[j], pool[k]] = [pool[k], pool[j]];
+    }
+    let offset = 0, width = false, height = false;
+    for (const wordLength of pageNullLayouts[pageIndex]) {
+      let sum = 0;
+      for (let k = 0; k < wordLength; k++)
+        sum += corpus.prime[pool[offset++]];
+      if (sum === 563) width = true;
+      if (sum === 569) height = true;
+    }
+    assert.equal(offset, pool.length);
+    return {page:p.page, width, height};
+  });
+  allPageNull.firstTwo += Number(flags[0].width && flags[1].height);
+  allPageNull.physicalAdjacent += Number(flags.some((f,i) =>
+    f.width && flags[i+1]?.page === f.page + 1 && flags[i+1].height));
+  allPageNull.anyObservedOrder += Number(flags.some((f,i) =>
+    f.width && flags.slice(i+1).some(q => q.height)));
+  allPageNull.hasBothAnywhere += Number(
+    flags.some(f => f.width) && flags.some(f => f.height));
+}
+assert.deepEqual(allPageNull, {firstTwo:0, physicalAdjacent:32,
+  anyObservedOrder:492, hasBothAnywhere:828});
+
+
 
 function mod29(value) {
   return ((value % 29) + 29) % 29;
@@ -635,6 +677,7 @@ console.log(JSON.stringify({
     counts: totals,
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
+  fullBookPageSelectionAudit: {seed:SEED, draws:pageNullDraws, counts:allPageNull},
   control2012ImageWordHitCounts: controlDimensions,
   dimensionWordSortedP32P33: {best: bestKeySort,
     variants: keySortedP32ToP33},
