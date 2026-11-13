@@ -97,6 +97,31 @@ Every 75-rune decoded output re-encrypts the untouched original ciphertext under
 
 The [self-contained 5×5 source-matrix Hill SFT](../sims/p55_moth_wisdom_5x5_hill_sft.cjs) includes source image and matrix assertions, modular determinant/inverse proof, complete original readouts, 75/75 planted controls and 22,622 held-out windows. The wrong-source matrix is a control, not permission for broader Hill-key searches.
 
+## Unknown-secret 5×5 Hill key reconstructed from the provisional seven-word crib
+
+The exact 30-rune LP1 p5 phrase tentatively associated with the original p55 final seven words occupies **p55 local offsets46–75**. Since the complete-word body starts at local offset1, the prospective crib begins at **body offset45 = 9×5**, precisely on a five-symbol block boundary. It therefore supplies **six complete original GP29 plaintext/ciphertext block pairs** for an unconstrained *unknown 5×5 Hill encryption matrix*. This construction does not presuppose any known 2014 square cells, any particular key, or any cipher score.
+
+Grant an adversary **all 25 unknown Hill key coefficients**. The first **five** proposed plaintext 5-tuples form a matrix P with determinant **2 mod29**, so they uniquely determine a GP29 row-vector encryption key X satisfying P·X=C for the five authentic source ciphertext blocks. Its exact recovered candidate is:
+
+| | | | | |
+|---:|---:|---:|---:|---:|
+|3|27|3|24|15|
+|23|4|1|4|20|
+|28|4|24|18|19|
+|4|28|2|13|22|
+|11|13|23|4|22|
+
+X has determinant **26 mod29**, so it is a legitimate invertible Hill-cipher key. The first five blocks are fitted exactly with **25/25** positions, using only their own ciphertext and prospective plaintext. Freeze X and predict the sixth original block using the untouched last five source-normalized crib runes:
+
+| Sixth block | 5 GP29 original indices |
+|---|---|
+| Predicted ciphertext from uniquely inferred X | **[13,19,22,1,22]** |
+| Actual untouched original p55 local offsets71–75 | **[11,1,17,18,10]** |
+
+**The withheld sixth block disagrees at all five positions.** Therefore **no stationary 5×5 GP29 Hill encryption key whatsoever**, even a completely unknown secret matrix and either equivalent row/column convention, can encrypt this exact proposed 30-rune phrase to the authentic source suffix under the printed 75-rune body's natural five-rune grouping. This is an algebraic impossibility conditional on the provisional plaintext and original block alignment, stronger than the direct known-square negative.
+
+The result does **not** disprove the seven-word guess: the real cipher could be stateful, non-Hill, use different segmentation, or the proposed crib could be coincidental. No natural-language plaintext has been recovered. The [Hill SFT](../sims/p55_moth_wisdom_5x5_hill_sft.cjs) asserts full source bytes, both determinants, the unique 25 fitted coefficients, 25/25 exact fit, and the full five-symbol blind failure.
+
 ## Decision
 
 The 75=3×25 relation is a source-constrained potential way to interpret the reused moth's 5×5 matrix. **The direct totient/Vigenère pad and the source-φ 5×5 Hill operation both fail to decode p55.** Retire this exact transfer; the moth, 5×5 table and exact p55 body length remain source facts. Do not broaden into different key phases, square traversals, moduli or nonadditive ciphers without an original selector.
