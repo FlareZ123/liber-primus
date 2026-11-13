@@ -62,6 +62,21 @@ Use the independently pre-existing **29,058-word native GP29 TextBlob English le
 
 This test is specific to the exact **p56-style plaintext-F transparent additive encoder, table-byte mod29 clock and row10 sourced ring order**. It does not establish whether p55 historically used the same cipher or a different one. In particular, four short lexicon hits from an 8-mask choice are not evidence of plaintext, and a raw ciphertext F should never be automatically declared literal.
 
+## Nonperiodic table-byte prime-index/totient key on the same p55 ring
+
+A second historically motivated direct consumer uses **three authentic operations that a contemporary solver could recognize**: p15's exact \`prime(index+1)\` construction, solved p56's \`phi(prime)=prime−1\` key and the p57-inspired ring. Freeze the outer shell's printed base60 byte \`B_i∈0..255\` as a **zero-based prime ordinal**, and the local key \`K_i = (prime(B_i+1)−1) mod29\`. This consumes one source byte for each of p55's 76 ciphertext runes in the exact row10 clockwise/counterclockwise order. The **first byte 142** gives \`prime(143)−1=822\`, or \`10 mod29\`. No numeral or cryptographic coefficient was fitted to plaintext.
+
+**Missing source instruction:** p15 applies the prime-index function specifically to Fibonacci values; the manuscript never instructs a solver to reuse that function on every p50 table byte. The composition is therefore a source-grounded *hypothesis*, not an authenticated original cipher.
+
+| Outer-ring origin | GP29 additive sign | 76-rune direct-inverse IoC | Valid full original plaintext-F masks / 8 | Maximum recognized complete English words / 16 |
+| --- | --- | ---: | ---: | ---: |
+| Clockwise | subtract | **0.03368421** | **1** | **2** |
+| Clockwise | add | **0.03298246** | **0** | **0** |
+| Counterclockwise | subtract | **0.02771930** | **0** | **0** |
+| Counterclockwise | add | **0.03438596** | **0** | **0** |
+
+The sole valid dynamic-key candidate (clockwise/subtract, **zero literal-F skips**) produces unreadable GP words; its two lexicon matches are short, and no long-word continuation exists. The same source-native 76-rune solved-p57 positive plant reproduces exactly under the prime-index/totient key and true literal-F rule in both directions and signs. This is a targeted negative against the **specific natural \`B→prime(B+1)−1\` inverse** on source row10's complete exterior, with no new unknown plaintext or key.
+
 ## Scope and next decision
 
 This rejects a direct **static mapping from source-table bytes to the native solved p56/p57 GP29 register** under both source-pointed inward ring directions. It does **not** reject keyed changing-state transforms, a different unknown intermediate register, page-specific ciphers, non-base60 byte readings, or the possibility that p56 and p57 were never meant to share one table transform. In fact p56 has its own solved additive cipher, while p57 is cleartext, making that last objection substantial.
