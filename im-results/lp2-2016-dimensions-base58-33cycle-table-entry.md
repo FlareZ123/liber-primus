@@ -46,6 +46,39 @@ A deterministic 10,000-trial null shuffles GP prime rune identities **within eac
 
 These are **post-inspection diagnostic constraints**: the cycle length33, word-map interpretation and first-cell event were recognized from the original graph. None of the zero counts is a calibrated manuscript-level discovery probability. The shuffle also breaks any genuine encoded source word-prime structure. Source chronology is another objection: 2012 dimensions precede LP2's 2014 publication, while the source picture containing563/569 is from 2016. A candidate must still explain how the author intended a contemporary solver to find this graph rule.
 
+## Independent 2014 Stage11 publication-envelope pair under the same map (Agent42, 13 November 2026)
+
+The earlier **May 2014 Stage11 HTML** predates the 2016 signed tree. Its literal source contains exactly \`<title>133</title>\` and \`<div id="331">\` above the 58 image links ([local original HTML](../resources/historical/stage11-2014-index.html)). Closed #233 established a contemporary human explanation of those two numerals as the 1033/3301 forms with the zero removed; the original HTML itself does **not** specify any page/word address grammar. The title/div pairing nevertheless offers an independent, earlier **test input** for the *already frozen* conditional rule from this report: \(p=N\bmod58\), zero-based word \(w=\lfloor N/58\rfloor\), then replace \(N\) by the selected original word's GP-prime sum.
+
+Under exactly that unchanged rule, the original two historical source pairs have a noteworthy *matched destination type*:
+
+| Original numeral, independent artifact | Word-map path and destination |
+| --- | --- |
+| **2014 title 133** | \`133→107→104→299→225\` then joins the **same 33-word cycle** started by signed-image **563** (at cycle node225) |
+| **2014 div id 331** | \`331→68→50\`, with terminal \`50=58×0+50\` exactly **physical p50 first table token** after two word lookups |
+| **2016 image width 563** | Begins the **same 33-word cycle**, \`563→180→...→290→563\`, 33 distinct words |
+| **2016 image height 569** | \`569→374→50\`, exactly the **same p50 first table token** after two word lookups |
+
+The complete 2014 title133 transient is \`133,107,104,299,225\` with cycle entry at index4, cycle length33, and 37 unique pre-repeat addresses. The title133 route reaches **563** at route index18; the 2016 width563 cycle reaches 225 at its cycle index19. Both numerical leads thereby select a shared word-loop. Independently, both 331 and569 select **global table cell80, row10 column0, token 2M**, after two hops and through different rune-bearing pages. This source-order correspondence is much more specific than saying that the four numbers are “prime-like.” Its nontrivial content is the original printed words and their placement, not just a numerical identity among 133,331,563,569.
+
+### Fixed-source word-permutation discriminator
+
+Preserve each of the 55 unknown rune-bearing physical pages' **entire original rune words**, all page-local word slots and word lengths, and their GP-prime-sum inventories. Uniformly reassign complete words only among **equal-length slots on the same physical page**; keep p50's table and solved pages untouched. In the existing [original-input reproducer](../sims/lp2_2016_dimensions_base58_orbit_sft.cjs), a separate seeded xorshift32 stream \`0x13333156\` generates **30,000** such synthetic books. Each uses the *same* four predetermined source seeds and the same base58 map.
+
+| Frozen event | Shuffles out of 30,000 |
+| --- | ---: |
+| 2014 title133 and 2016 width563 land on the **same** cycle, any period | **5,723** |
+| Same cycle **and** original 563 start returns in exactly 33 steps | **1** |
+| 2014 div331 and 2016 height569 both reach **p50:w0 in exactly two hops** | **56** |
+| Shared cycle **and** both source heights reach p50:w0 after two hops | **9** |
+| Exact 33-cycle shared **and** both exact p50:w0 two-hop landings | **0** |
+| 2014 title133 reaches any cycle while div331 reaches any p50 token | **1,688** |
+
+The **9/30,000** count quantifies this particular predeclared conjunction in a conditional null that retains the original word vocabulary and local length geometry. **It is not a discovery-wide p-value:** the exact 33-cycle period, two-hop length, particular terminal token, and especially the choice to compare these two source-number pairs were recognized while inspecting the original graph. The global source has other page/word maps, plausible indices, labels, and numerical input pairs; the null does not account for all those selection opportunities. The ordinary broader joint 2014 cycle/table event occurs in **1,688/30,000**.
+
+**Revised source-led decision:** The contemporaneous 2014 title/div metadata and the later signed image supply two independent, precisely matching source *destinations* under one conditional book-word-map rule. This increases the value of seeking a **historical instruction for the base58 page/word addressing grammar or a recognizable readout from the 33-word cycle**, compared with tuning yet another byte operation. It does not authenticate that rule, select a unique row-key/table cipher, decode unknown text or reveal the external destination. The already documented direct AES, 147-rune Vigenère and fixed XOR/mod256 row-key consumers remain negative. A substantive successor must recover a source-instructed **operation/output** that predicts original unknown plaintext, not optimize more graph coincidences.
+
+
 ## One complete source-key consumer; no recovered data
 
 The non-starting 32 cycle values above give a fixed 32-byte **candidate AES-256 key** by taking each value modulo256, in their original traversal order:
