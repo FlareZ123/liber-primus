@@ -195,6 +195,79 @@ const candidates = [
 assert.deepEqual(candidates.map(x => x.matchedHeldout), [1,1]);
 assert.deepEqual(candidates.map(x => x.matchOffsets), [[24],[28]]);
 
+/**
+ * Source-extension: even a completely secret constant affine output register
+ * cannot repair the observed table-factor recurrence on this fixed crib.
+ * The recurrence annihilates K; hence E(C)=a E(P)+b E(1).
+ * @param {number[]} sequence
+ * @param {number[]} polynomial
+ * @returns {number[]}
+ */
+function recurrenceResidual(sequence, polynomial) {
+  return Array.from({length: 14}, (_, i) => {
+    const n = i + 16;
+    let value = 0;
+    for (let j = 0; j <= 16; j++)
+      value = mod(value + polynomial[j] * sequence[n-j]);
+    return value;
+  });
+}
+
+const affineSecretExtension = [
+  { name:"high-to-low-factor", coefficients:factor16.slice().reverse() },
+  { name:"low-to-high-factor", coefficients:factor16.slice() }
+].map(({name, coefficients}, orientation) => {
+  const ec = recurrenceResidual(actual, coefficients);
+  const ep = recurrenceResidual(hypothesis, coefficients);
+  const e1 = recurrenceResidual(Array(30).fill(1), coefficients);
+  assert(e1.every(x => x === 5));
+  assert.notEqual(mod(ep[1] - ep[0]), 0);
+  const a = mod((ec[1] - ec[0]) * inverse(mod(ep[1]-ep[0])));
+  const b = mod((ec[0] - a*ep[0])*inverse(e1[0]));
+  assert.equal(ec[0],mod(a*ep[0]+b*e1[0]));
+  assert.equal(ec[1],mod(a*ep[1]+b*e1[1]));
+  const predictedThird = mod(a*ep[2]+b*e1[2]);
+  assert.notEqual(ec[2],predictedThird);
+  const expected = orientation===0
+    ? {a:10,b:28,third:14,actual:0}
+    : {a:28,b:3,third:20,actual:5};
+  assert.deepEqual({a,b,third:predictedThird,actual:ec[2]},expected);
+
+  let best=0, fullyMatching=0;
+  const matchingHistogram=Array(15).fill(0);
+  for (let multiplier=1;multiplier<29;multiplier++) {
+    for (let offset=0;offset<29;offset++) {
+      const matches=ec.filter((v,i) =>
+        v===mod(multiplier*ep[i]+offset*e1[i])).length;
+      matchingHistogram[matches]++;
+      best=Math.max(best,matches);
+      if(matches===14)fullyMatching++;
+    }
+  }
+  assert.equal(best,4);
+  assert.equal(fullyMatching,0);
+  assert.equal(matchingHistogram.reduce((s,x)=>s+x,0),812);
+
+  // Positive-control: source-derived key with a hidden nontrivial affine
+  // register obeys all fourteen full original-format recurrence equations.
+  const plantedKey=continueRecurrence(impliedKey.slice(0,16),coefficients,30);
+  const planted=hypothesis.map((p,i)=>mod(7*p+3+plantedKey[i]));
+  const plantedResidual=recurrenceResidual(planted,coefficients);
+  assert(plantedResidual.every((v,i)=>v===mod(7*ep[i]+3*e1[i])));
+
+  return {
+    orientation:name,
+    exactFirstTwoEquationCandidate:{a,b},
+    thirdSourcePrediction:predictedThird,
+    thirdOriginalValue:ec[2],
+    distinctSecretAffinePairsChecked:812,
+    fullConsistentPairs:fullyMatching,
+    bestFourteenEquationMatches:best,
+    matchingHistogram,
+    plantedAllFourteenConstraintsSatisfied:true
+  };
+});
+
 console.log(JSON.stringify({
   classification: "Conditional original-p55 crib exclusion; no plaintext recovered",
   input: "p55 indices 46..75, LP1-p5 same-moth seven-word source conjecture",
@@ -204,5 +277,6 @@ console.log(JSON.stringify({
   hankel15DetMod29: hankelDeterminant,
   minimumHomogeneousGF29RecurrenceOrder: linearComplexity.order,
   fixedSourceFactorPrediction: candidates,
+  affineSecretExtension,
   interpretation: "The assumed crib is incompatible with all homogeneous additive-pad GF29 LFSRs of order <=14 and with both natural orientations of the exact degree-16 table factor."
 }, null, 2));
