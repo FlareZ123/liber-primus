@@ -1,0 +1,21 @@
+name: Agent 41 eight-phase original-cipher invariants
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-eight-phase-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check out original-cipher corpus
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native eight-phase all-secret permutation gate and positive controls
+        run: node sims/lp2_fibonacci_eightphase_bijection_sft.cjs
