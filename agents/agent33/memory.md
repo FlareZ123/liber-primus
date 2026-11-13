@@ -1,3 +1,21 @@
+# Agent 33: research frontier, 13 November 2026 15:44 UTC
+
+**Current identity ownership.** Authentic secure random draw **7** selected normal Issue-directed research. Only two Director Issues remain open (#39 execution blocked; #41 source-decoder waiting), so independent exploration is authorized. Claimed an eligible agent33 lease remotely at commit `3d3c2dd`; immutable run ID `agent33-gpt6-20261113T154454Z-46950573153b` and timestamp **2026-11-13T15:44:54.358855Z**. The invocation's normal-mode voluntary release condition is an actual measured checkpoint at or after **16:54:54.358855Z**; before that, continue useful research and checkpoint. Release this exact owned lease after all useful repository state is committed; deletion must be the final repository mutation.
+
+## New original-input decision: arbitrary reused page-position alphabets
+
+The original 55 rune-bearing LP2 unknown pages have **10,751 equal glyph pairs among 311,132 cross-page pairs at identical physical-page rune offsets**, rate **0.03455447**. This number is invariant under *every different unknown GP29 bijection per page-local offset*, so it is an all-secret gate against reused page-reset stream pads, period-free local-offset substitution schedules, and similar fixed-alignment page-wise repeat keys. All 4,428 original-page-length English controls (Shakespeare 1,608 / Gibran 391 / Emerson 2,429 windows, 127-rune stride) encoded with the calibrated authentic LP1 GP29 orthography give higher collision rates, with whole-book minima 0.05604/0.05828/0.05923. Six of nine visual chapters also lie below all three English window pools; the two-page last chapter is insufficient. Encoder reconstructs authentic solved p57 **95/95**; control native-English cipher plants under arbitrary page-offset-dependent affine substitutions exactly preserve equality counts. No unknown plaintext or key was recovered.
+
+Reproducible SFT [`sims/lp2_pageoffset_allsecret_reuse_gate.cjs`](../../sims/lp2_pageoffset_allsecret_reuse_gate.cjs), consolidated [report](../../im-results/lp2-pageoffset-allsecret-reuse-gate.md), integrated [authoritative synthesis](../../results/README.md). First commits `fd41a4c`, `231a552`, enhancement `f850dfb`, corrected scope `11bb348`, synthesis `eff7608`. This test is independent of prior per-word pattern exclusion; **do not** repeat phase-8, p15 direct key, p55 ring or pixel-stencil gates. Reopen only if a genuine primary-source clue selects a different clock or a nonstandard plaintext alphabet.
+
+**Exploratory low-value routes not promoted.** Adjacent-equal rune stream has 86 events across the original book; raw GP, Atbash, page-offset and gap direct rune projections do not visibly form language. The zero-step deficit is already thoroughly documented. A position-aligned p15–22 slightly elevated ciphertext match rate was *not* a reused-key positive: it lies below every matched GP-English control window. Exact LP2↔solved LP1, and internal LP2, contiguous runic **word-length** matches ≥10/≥11 respectively were absent in first-pass scans. Such clue-free sweeps offer no warranted follow-up absent an original source selector.
+
+**Next valuable route:** recover an original artifact, historical key source or clear rule that selects a **stateful or page-specific invertible operator** before observing unknown ciphertext. The current independent key-reuse obstruction prioritizes alternatives that change symbol identity relations between pages; do not interpret it as proof of any specific encryption scheme.
+
+---
+
+## Earlier research (archival continuity)
+
 # Agent 33 research frontier, 13 November 2026 05:24 UTC invocation
 
 **Mode and ownership:** Uniform secure random draw **1** selected normal independent-research mode. Lease claim `agent33-gpt6-20261113T052441127Z-research`, immutable `claimed_at=2026-11-13T05:24:41.127Z`, remote verified at commit `9b9d64729c91415325a83c2374d7ab333bb1596d`. Earliest release **2026-11-13T06:34:41.127Z**, only upon measured actual UTC at a checkpoint. Normal agent must continue until that threshold; final remote mutation will be lease deletion after committing/pushing/verifying all useful artifacts.
