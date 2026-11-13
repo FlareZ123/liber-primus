@@ -221,6 +221,22 @@ function boundaryAffineTest(pairs, reps, seed) {
   };
 }
 
+function wordLengthStats(records, predicate) {
+  const lengthsByWord = new Map();
+  for (const record of records) {
+    if (!predicate(record)) continue;
+    lengthsByWord.set(record.word, (lengthsByWord.get(record.word) || 0) + 1);
+  }
+  const lengths = Array.from(lengthsByWord.values());
+  const histogram = new Int32Array(15);
+  for (const length of lengths) if (length >= 1 && length <= 15) histogram[length - 1]++;
+  return {
+    words: lengths.length,
+    meanRunesPerWord: lengths.reduce((a, b) => a + b, 0) / lengths.length,
+    histogram: Array.from(histogram)
+  };
+}
+
 function lp1FirstThreeBlockControl() {
   const lp1 = fs.readFileSync('resources/transcriptions/lp1_wulfic_canonical.txt', 'utf8').trim();
   const blocks = lp1.split(/\n%\n/).slice(0, 3);
@@ -374,6 +390,10 @@ const expectedPageMarginal = pageStats.reduce((sum, p) => sum + p.expectedDouble
 const output = {
   source: 'resources/liber-primus/lp2-transcription.txt + lp2-corpus.json; LP2 pages 0–54',
   lp1FirstThreeBlockControl: lp1FirstThreeBlockControl(),
+  wordLengths: {
+    p11_23: wordLengthStats(records, r => r.page >= 11 && r.page <= 23),
+    outside: wordLengthStats(records, r => r.page < 11 || r.page > 23)
+  },
   runes: records.length,
   adjacentPairs: allSlots.length,
   expectedDoubletsUnderUniform: allSlots.length / 29,
