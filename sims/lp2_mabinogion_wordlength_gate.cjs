@@ -10,6 +10,10 @@ const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const transcription = read('resources/liber-primus/lp2-transcription.txt');
 const reference = read('resources/liber-primus/lp1-plaintext-reference.txt');
 const profile = JSON.parse(read('resources/external/cicada2012-mabinogion-gutenberg5160-gp-wordlengths.json'));
+assert.equal(profile.source.mirror_commit, '86b1521ce54ddae3caaa235a6fb04a9ae67f2370');
+assert.equal(profile.source.mirror_blob_sha, 'fd9db1c7bc90e11d41433b7cc2ec3b7e1ccb0cd7');
+assert.equal(profile.source.source_selection_start_character, 16953);
+assert.equal(profile.source.source_selection_end_character, 587423);
 const ruby = new Map(corpus.runes.map((r, i) => [r, i]));
 const rune = /[\u16A0-\u16FF]/u;
 const digraphs = new Set(['TH', 'EO', 'NG', 'OE', 'AE', 'IA', 'EA']);
@@ -102,11 +106,11 @@ const p57English = [...reference.split('### 57').at(-1).matchAll(/[A-Za-z]+/g)]
 assert.equal(p57Runes.length, 20);
 assert.deepEqual(p57Runes, p57English);
 
-const full = profile.full_book_word_lengths;
+const story = profile.mabinogion_story_word_lengths;
 const chapter = profile.lady_of_the_fountain_word_lengths;
-assert.equal(full.length, 111275);
+assert.equal(story.length, 105582);
 assert.equal(chapter.length, 10400);
-const fullMatch = matchLengths(target, full);
+const storyMatch = matchLengths(target, story);
 const chapterMatch = matchLengths(target, chapter);
 const pageLocalChapter = pages.slice(0, 55).map((page, pageNumber) => {
   const lengths = runeWords(page).map((word) => Array.from(word).length);
@@ -117,7 +121,7 @@ const pageLocalMaxChapter = Math.max(...pageLocalChapter.map((x) => x.longest));
 const random = xorshift32(0x3301);
 const nullMaxima = [];
 for (let i = 0; i < 250; i++) {
-  nullMaxima.push(matchLengths(target, shuffled(full, random)).longest);
+  nullMaxima.push(matchLengths(target, shuffled(story, random)).longest);
 }
 const sorted = nullMaxima.slice().sort((a, b) => a - b);
 const nullSummary = {
@@ -132,16 +136,16 @@ const summary = {
   source: profile.source,
   target: {words: target.length, runes: observed.length, p57PositiveControlWords: p57Runes.length},
   ladyOfTheFountain: {...chapterMatch, pageLocalMaximum: pageLocalMaxChapter},
-  fullBook: fullMatch,
+  mabinogionStorySection: storyMatch,
   fullBookShuffleNull: nullSummary
 };
 assert.equal(chapterMatch.matchedWindows, 12);
 assert.equal(chapterMatch.longest, 9);
-assert.equal(fullMatch.matchedWindows, 124);
-assert.equal(fullMatch.longest, 11);
+assert.equal(storyMatch.matchedWindows, 124);
+assert.equal(storyMatch.longest, 11);
 assert.equal(pageLocalMaxChapter, 9);
 assert.equal(nullSummary.median, 10);
-assert.equal(nullSummary.p95, 11);
-assert.equal(nullSummary.maximum, 12);
+assert.equal(nullSummary.p95, 12);
+assert.equal(nullSummary.maximum, 14);
 assert.equal(nullSummary.countAtLeast11, 78);
 console.log(JSON.stringify(summary, null, 2));
