@@ -1,6 +1,6 @@
 # Original p55's 75 complete-word runes under the LP1 Wisdom-square inverse
 
-**Decision:** Three source-led mechanism families from the LP1 p05 SOME WISDOM square have now been tested on the original 75-rune LP2 p55 body: a 5×5 Hill inverse, a 25-period Euler-totient additive key, and six arithmetic inverses pairing 25 three-rune BASE29 numbers with the 25 square entries. Every frozen operation is reversible, but all outputs remain nonlinguistic. The inherited p54 rune stays outside every model; **no authentic unknown plaintext or historical key has been recovered**.
+**Decision:** Three source-led mechanism families from the LP1 p05 SOME WISDOM square have now been tested on the original 75-rune LP2 p55 body: the 5×5 Hill inverse in both conventional row- and column-vector orientations, a 25-period Euler-totient additive key, and six arithmetic inverses pairing 25 three-rune BASE29 numbers with the 25 square entries. Every frozen operation is reversible, but all outputs remain nonlinguistic. The inherited p54 rune stays outside every model; **no authentic unknown plaintext or historical key has been recovered**.
 
 ## Human-visible premise and uncertainty
 
@@ -26,7 +26,7 @@ Its determinant is **3 mod29**. Its exact modular inverse is
 17  2 15 22 23
 ```
 
-Starting with p55 rune index1, apply the inverse to successive **15 five-rune column vectors**, without phase, shift, guessed key or row reordering. Keep rune index0 as the unchanged p54 fragment. The authentic other LP1 square (5×5/3301) is a wrong-source control.
+Starting with p55 rune index1, arrange the 75-rune body as **15 five-rune blocks** and test both standard Hill vector conventions: column vectors \(P=K^{-1}C\), and row vectors \(P=CK^{-1}\) (implemented as \((K^{-1})^T C\) in the column-block routine). Keep rune index0 as the unchanged p54 fragment. Neither orientation uses a phase, shift, guessed key or row reordering. The authentic other LP1 square (5×5/3301) is a wrong-source control.
 
 ## Original result and controls
 
@@ -36,7 +36,7 @@ The original p55 75-rune source, without its inherited ᛝ, is
 AEMIWSBXMSEOGDTHAEFIAABCUWRBEAFXIMUCPHNGLEOMSDIAPFBHEOCEOEEAEIGXGSESEOTHTHESTHOECEAIMCXDJUBEI
 ```
 
-The proposed Hill inverse yields the following **complete 16-word output**, displayed with exactly the original word boundaries:
+The **column-vector inverse** yields the following complete 16-word output, displayed with exactly the original word boundaries:
 
 ```text
 LIAA / IF / NGAE / SMEADNJ / OITIXAE / NS /
@@ -44,17 +44,46 @@ OETEOSUBYPMAEEAJNG / APREAAED / NGOEOEJ / OEA /
 SAITHDUB / WNGTHORPT / LS / THNJILJ / EJA / AENY
 ```
 
+The other standard convention, **row-vector** (P=CK^{-1}), yields:
+
+```text
+USEOO / EAE / CAE / SBAEUTX / ENGFSFI / OEO /
+THNNWFGMJFWXTHD / NNAELTHP / TYUX / XB /
+IAGTHPLYOE / IAEOUACUH / EN / EAEACILI / AEUT / SIA
+```
+
 Gibran-trained GP29 trigram scores (mean log score per rune):
 
 | Test | Score |
 | --- | ---: |
 | Original p55 75 runes | −6.178724221 |
-| Fixed Wisdom 1033 inverse | **−5.773447379** |
-| Wrong authentic 3301-square inverse | −5.925491918 |
+| Fixed Wisdom 1033 column-vector inverse | **−5.773447379** |
+| Fixed Wisdom 1033 row-vector inverse | **−6.315068019** |
+| Wrong authentic 3301-square column inverse | −5.925491918 |
 | 151 separate 75-rune solved-Cicada LP1 controls | **−3.811507205 to −1.977153780** |
 | One real 75-rune solved-Cicada native positive plant | −2.327503356 |
 
-The proposed output is below **every** compared native solved passage; its 16 words lack coherent GP-language content. All 75 original ciphertext runes reconstruct exactly after forward multiplication by the frozen matrix, and the unchanged first rune reproduces all **76** source runes. A separate 75-rune positive plant from editor-normalized solved LP1 text survives encryption and the same inverse with **75/75 exact recovery**. This demonstrates algorithmic invertibility, not that the source p55 used this operation.
+Both inverse outputs are below **every** compared native solved passage; neither yields coherent GP-language content. All 75 original ciphertext runes reconstruct exactly under forward multiplication for both vector conventions, and the unchanged first rune reproduces all **76** source runes. A separate 75-rune positive plant from editor-normalized solved LP1 text survives both encryption/inverse pairs with **75/75 exact recovery**. This demonstrates arithmetic invertibility, not that the source p55 used either convention.
+
+### Source-calibrated English control
+
+The result was independently rescored using the solved-source spelling **ING→ᛝ and IO→ᛡ**, with a Shakespeare-first-300k-trained GP29 bigram model and only the **59 within-word adjacent pairs** from the original 16 printed word boundaries. This avoids relying solely on the legacy GP label encoder.
+
+| Original or inverse output | Within-word bigram score |
+| --- | ---: |
+| Original p55 body | −6.247016734 |
+| 1033 column-vector inverse | −5.203467625 |
+| 1033 row-vector inverse | −6.126552991 |
+
+Each output was compared with **20,000** deterministic word-shape-matched samples per source, using the exact p55 rune-word lengths **[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]**:
+
+| Source | Minimum | Median | Maximum | Candidate samples at or below row / column output |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare (training source) | −2.975597820 | −2.369912564 | −1.910792520 | 0 / 0 |
+| Gibran (held out) | −3.151798293 | −2.395821185 | −1.904385225 | 0 / 0 |
+| Emerson (held out) | −3.035665605 | −2.425809927 | −1.942347982 | 0 / 0 |
+
+The source-calibrated controls independently leave both Hill outputs far below every matched native sample. A source-calibrated native plant also round-trips exactly under both orientations. The row-vector inverse therefore does not rescue the direct p05 matrix transfer or validate the proposed p5/p55 seven-word crib.
 
 ## Signed BASE29 per-cell three-rune Wisdom-square inverse (Agent49, 12 November 2026)
 
@@ -147,6 +176,6 @@ The reproducer [full-body exact assignment SFT](../sims/p55_fullbody_min_symbol_
 
 ## Reproduction, scope and next decision
 
-[Self-contained CommonJS SFT](../sims/p55_wisdom5_hill75_sft.cjs) consumes the original `resources/liber-primus/lp2-corpus.json`, literal p05 square values from the authenticated 2014 magic-square source, and heldout GP control passages. The script constructs GF29 matrix inversion, exact forward reencryption, the other-square control, word-boundary display and complete solved-native positive plant.
+[Self-contained CommonJS SFT](../sims/p55_wisdom5_hill75_sft.cjs) consumes the original `resources/liber-primus/lp2-corpus.json`, literal p05 square values from the authenticated 2014 magic-square source, and pinned GP control passages. It constructs both GF29 vector inverses, exact forward reencryption, the other-square control, legacy trigram scoring, source-calibrated within-word bigram scoring, deterministic word-shape-matched controls and positive plants.
 
-**Conclusion:** The literal artwork-to-p05 5×5 Hill inverse is a bounded negative. The visible 75-rune divisibility and cross-round moth remain observations; neither supplies a complete decoder for 76 runes or a withheld p54 prediction. Further work should require a source-selected transform rather than tune five-symbol block starts.
+**Conclusion:** The literal artwork-to-p05 5×5 Hill inverse is a bounded negative in both conventional vector orientations. The visible 75-rune divisibility and cross-round moth remain observations; neither supplies a complete decoder for 76 runes or a withheld p54 prediction. Further work should require a source-selected transform rather than tune five-symbol block starts.

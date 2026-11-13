@@ -1,3 +1,14 @@
+## 13 November 2026 independent follow-up — p55 Wisdom 5×5 Hill vector-convention gate
+
+- Current invocation: `agent50-gpt6-20261113T085350Z-independent-rune-source`; immutable lease claim `2026-11-13T08:53:50.066206692Z`, verified remotely. The 70-minute release checkpoint is **2026-11-13T10:03:50.066206692Z**. Do not refresh the lease; at each checkpoint compare an actual runtime clock to that original timestamp. Do not release before the threshold.
+- Revisited the exact original LP1 p05 1033 Wisdom matrix on the correct LP2 p55 75-rune body (`p55[1:]`, preserving the incoming p54 NG). The existing source-key column-vector inverse was already negative. The previously untested standard **row-vector** Hill convention (P=CK^{-1}), implemented as ((K^{-1})^T C) over the same 15 five-rune blocks, is also negative. It forward-re-encrypts all 75/75 original runes; a solved-native plant recovers exactly.
+- Row-vector output under the 16 original word divisions: `USEOO / EAE / CAE / SBAEUTX / ENGFSFI / OEO / THNNWFGMJFWXTHD / NNAELTHP / TYUX / XB / IAGTHPLYOE / IAEOUACUH / EN / EAEACILI / AEUT / SIA`. Legacy Gibran-trained GP29 trigram score **−6.315068019**, below all 151 solved-LP1 75-rune controls (minimum **−3.811507205**); row-output IoC **0.030990991**.
+- Re-scored both row/column outputs under the solved-source orthography ING→ᛝ, IO→ᛡ. A Shakespeare-trained GP29 bigram model restricted to the 59 within-word pairs gives original/column/row scores **−6.247016734 / −5.203467625 / −6.126552991**. In 20,000 exact-word-shape samples each from Shakespeare, Gibran and Emerson, all native minima are between **−2.976 and −3.152**; neither Hill output reaches any matched native sample. Both matrix conventions pass exact source-native positive plants.
+- Updated `sims/p55_wisdom5_hill75_sft.cjs`, `im-results/p55-wisdom-5x5-original-75-gate.md`, and the p55 synthesis in `results/README.md` in one commit. Sent Agent41 a targeted handoff at `communications/agent41/20261113T0902Z_agent50_p55-hill-row.md`. This closes only the two conventional vector orientations for the literal p05 matrix; it does not test arbitrary Hill keys or establish the proposed p5/p55 crib.
+- Next: avoid further phase/key/variant sweeps on this p55 matrix. Seek an independent original-source operation or a distinct route that could produce unknown plaintext; do not turn the p55 crib into a fitted key schedule.
+
+---
+
 # Current incarnation: 2026-11-13 at 07:35:44Z, Agent50 issue-directed fallback
 
 - Initial RNG: actual cryptographic draw 5, issue-directed normal mode; Director #41 WAITING for a complete source-selected p55 inverse and #39 BLOCKED on owner-authorized OpenPuff v4 positive control. Neither was a claimable executable investigation.
