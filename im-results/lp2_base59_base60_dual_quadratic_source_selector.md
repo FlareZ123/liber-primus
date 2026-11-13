@@ -32,6 +32,8 @@ The finite GF29 long division gives the following **high-to-low remainder coeffi
 
 Both quadratics divide **every one of the original 256 base60 coefficients**, even though the 59-symbol reading changes **220/256** decoded byte positions and fails both exact tests.
 
+**All original marked red inscriptions, with no hand-picked subset.** The original ink record identifies **18 distinct red-rune spans** in pp0–55. For every span, preserve every visible rune and test both source-natural coefficient orientations, **36 exact nonconstant polynomial-divisibility comparisons per numeral alphabet**. Under base60 **exactly one** is a factor: original **p39, source-local offset119, three runes [27,5,15], forward**. Under base59 **none of the 36** is a factor. The signed-2013 H quadratic, independently fixed outside the LP2 red-span family, also divides only base60. This strengthens the finite selector: the base60 polynomial identity is unique among the complete original marked-source family, while base59 has no matching marked divisor. The search itself is a constrained retrospective exercise, so this is not a calibrated probability of author intent.
+
 Further complete-table facts:
 
 - Base60 has first byte **203**, a multiple of29; the leading GF29 polynomial coefficient therefore vanishes and the formal 256-slot object has **degree254**. Base59 begins at **200**, coefficient **26 modulo29**, so it has degree255.
