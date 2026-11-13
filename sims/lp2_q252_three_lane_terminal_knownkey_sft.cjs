@@ -48,10 +48,13 @@ function primes(n){
 function gp(text){
   const abc=corpus.translit.map((token,index)=>({token,index}))
     .sort((a,b)=>b.token.length-a.token.length);
-  const txt=text.replace(/[^A-Z]/g,'');const out=[];
-  for(let i=0;i<txt.length;){
-    const a=abc.find(x=>txt.startsWith(x.token,i));
-    assert.ok(a);out.push(a.index);i+=a.token.length;
+  const out=[];
+  for(const sourceWord of text.trim().split(/\s+/)){
+    const txt=sourceWord.replace(/[^A-Z]/g,'');
+    for(let i=0;i<txt.length;){
+      const a=abc.find(x=>txt.startsWith(x.token,i));
+      assert.ok(a);out.push(a.index);i+=a.token.length;
+    }
   }
   return out;
 }
