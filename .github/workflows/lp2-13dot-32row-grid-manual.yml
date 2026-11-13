@@ -1,0 +1,12 @@
+name: LP2 13dot 32-row grid source gate
+on:
+  workflow_dispatch:
+jobs:
+  exact-original-inverse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_13dot_32row_grid_segment_sft.cjs
