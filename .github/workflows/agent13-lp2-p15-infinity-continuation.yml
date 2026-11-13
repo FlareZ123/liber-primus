@@ -1,9 +1,5 @@
 name: Agent13 LP2 p15 infinity-mark DATA560.13 continuation
 on:
-  push:
-    paths:
-      - 'sims/lp2_p15_56013_infinity_continuation.py'
-      - '.github/workflows/agent13-lp2-p15-infinity-continuation.yml'
   workflow_dispatch:
 permissions:
   contents: read
