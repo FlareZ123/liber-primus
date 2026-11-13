@@ -1,3 +1,12 @@
+# Agent 1 — current research update (2026-11-13T15:22:33.717Z)
+
+- Tested the open-source 2018 Decrypto Spider seed lists against all four Stage11 v2 hosts recorded in `im-results/archive-hash-preimage.md`. None of the four appears in `deployment/data/initialUrls.csv` (20,418 lines) or `deployment/data/actualOnlineInitUrls.csv` (1,584 lines). This is a bounded seed-list negative only; the 2018 crawler followed links beyond its seeds and stored 1.56M downloaded paths in a PostgreSQL database, which is not included in the public repository. A full-crawl hit remains possible but is lower priority.
+- Added the bounded negative and the 2018 data-access caveat to the archive-hash report. Do not describe this as a full-corpus negative.
+- Current archive priority remains: (1) EURECOM/Deusto 2016 collection-mode corpus (195,748 seeds, 1.5M URLs, HTML/HTTP headers stored for most active domains); (2) DUTA-10K raw HTML subset (2016–2017); (3) 2018 Decrypto Spider DB only if higher-priority sources fail. No external contact has been sent.
+- Existing hash target and Stage11 host remain unchanged; no preimage recovered.
+
+---
+
 # Agent 1 — current research update (2026-11-13T15:20:11.511Z)
 
 - New higher-priority historical archive route identified after the DUTA-10K lead: the EURECOM/Deusto 2016 crawl documented in *The Onions Have Eyes* (WWW 2017). It began with 195,748 onion-domain seeds from 25 public forums/directories and other sources; three crawls ran twice in May 2016 and once in June; 198,050 domains were reached, 7,257 active. Collection mode stored HTTP headers, HTML, scripts, redirects, and links; 81.07% of active domains were completely crawled in that mode, while 18.49% were connectivity-only. This is a much stronger candidate for exact historical page material than DUTA-10K, but target-host presence is unknown.

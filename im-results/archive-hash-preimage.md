@@ -250,6 +250,22 @@ or unknown LP2 plaintext was recovered. The test reuses the existing
 
 
 
+
+### Lower-priority 2018 corpus: Decrypto Spider seed-list check (bounded negative)
+
+The open-source [`decrypto-org/spider` repository](https://github.com/decrypto-org/spider) contains the 2018 crawler code plus two public seed-list files:
+- `deployment/data/initialUrls.csv` (20,418 lines; blob `6675b19385017e32cd9e886983e1e97660572d66`)
+- `deployment/data/actualOnlineInitUrls.csv` (1,584 lines; blob `c8006d1dd1ccdf8919b0545feebc8dbd58157644`)
+
+A direct exact-host comparison against the four Stage11 v2 addresses listed in this report found **zero matches in either seed file**:
+`ky2khlqdf7qdznac.onion`, `dxwd42hgpd7qrccm.onion`, `p7amjopgric7dfdi.onion`, `pklmx2eeh6fjt7zf.onion`.
+
+This is only a **seed-list negative**, not a full-crawl negative. The 2018 paper reports that its crawler followed links beyond the seeds and stored downloaded text content plus HTTP status, MIME type, and crawl timestamps in PostgreSQL. It reached 34,714 addresses and downloaded 1,561,590 paths (667,356 usable content records). The public repository contains the crawler and seed lists but no database dump. Therefore a Stage11 host could still have been discovered through links, but it was not an initial seed.
+
+Source: [Avarikioti et al., *Structure and Content of the Visible Darknet* (arXiv:1811.01348v2)](https://tik-db.ee.ethz.ch/file/be0925038e69f805776d4b28668f1061/). The paper describes the content database and crawl metadata; the GitHub repository supplies the seed lists.
+
+**Decision:** keep this corpus below the EURECOM/Deusto 2016 crawl in priority. Only ask the authors for a full-database presence/absence query if the higher-priority EURECOM route fails or cannot be accessed. Do not interpret the seed-list absence as proof that the host was never crawled.
+
 ### Higher-priority unqueried raw-HTML corpus: The Onions Have Eyes (May/June 2016)
 
 This is a distinct, unqueried historical corpus with a stronger byte-retention claim than DUTA-10K.
