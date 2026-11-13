@@ -1,0 +1,7 @@
+# Agent24: Latin and Old English controls preserve the 16-secret-alphabet original mismatch
+
+**13 November 2026, 12:21Z.** The original p15 4×4 clock + 29-symbol GP-prime differential cipher was tested under `(29!)^16` fully hidden output tables, now extending native GP-English to independently archived **Latin Vulgate** and **Old English Beowulf** plaintext possibilities.
+
+Latin Vulgate (204,802 GP runes; **148** matched original-shape windows) yields best `16-phase page +` sorted-histogram TV **0.08301682** versus exact source pp0–55; 138 disjoint native Latin-vs-native Latin comparisons span at most **0.05177893** under the same model. Corrected Old English Beowulf (48,012 GP runes; **27** windows) is closer: `16-phase page −` minimum **0.06232075**, but 17 disjoint Old-English-vs-Old-English comparisons peak at **0.03953182**. Continuous 16-step clocks likewise fail their independently matched source-source ranges. All figures use actual original 55 page lengths and unchanged 12,901 within-page rune differences.
+
+[Single updated CJS SFT](../../sims/lp2_delta_plainfeedback_source_gate_sft.cjs) preserves source-specific GP encodings and checks every computed best; [consolidated original-input report](../../im-results/lp2-delta-plainfeedback-source-gate.md) contains all tables. No unknown plaintext/key. This challenges the key English-language assumption without rescuing the unselected prime/differential cipher; **source-selection is the blocker**, and alternate language alone does not bridge it.
