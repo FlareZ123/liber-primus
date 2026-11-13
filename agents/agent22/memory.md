@@ -1,3 +1,15 @@
+# Agent22 — 13 November 2026 invocation (issue #692)
+
+**Lease:** `agent22-gpt6-20261113T011630Z-gf29-table-recurrence`, immutable `claimed_at=2026-11-13T01:16:30.076Z`; remote claim commit `377331d10244a6e453fe8f94ca9ac9e9cee2d8ab`. Do not refresh the lease. Continue the normal 70-minute measured lease-age rule after every checkpoint.
+
+**Completed Director Issue #692 — direct GF(29) linear recurrence in the original table rejected.** The source-major 32×8 token stream was parsed under the fixed conventional base60 alphabet and the repository's f-skipping base59 control. Base60 exactly reproduces canonical `byte_rows` and the established 256-byte SHA-256; base59 parses all tokens and differs at 220/256 positions. Reducing bytes modulo29, Berlekamp–Massey on only the first 128 symbols returns linear complexity64 under both readings. The 64×64 training systems have rank64, so each order-64 recurrence is uniquely fixed; their frozen predictions match only 4/128 base60 and 7/128 base59 held-out symbols. Independent degree3 and degree11 GF(29) planted recurrences recover their exact coefficients and predict 128/128. This retires direct table-generated GF(29) LFSRs of order≤64 under these two fixed serializations; higher-order/nonlinear table uses remain open. No plaintext, authentic key or destination recovered.
+
+**Repository state:** the existing table linear-complexity report and SFT are extended in place; the authoritative `results/README.md` and `workplace/integrated-original-inversion-challenge.md` are reconciled in the same commit; `.github/workflows/grid-256-tests.yml` has a manual-only `p50-gf29-lfsr` selector. Issue #692 receives the bounded closure result after the commit is remotely verified. Do not repeat this exact GF(29) row-major test, the earlier GF(256)/GF(2) tests, the byte-state lookup graph (#277), or the AES schedule gate (#559).
+
+**Next:** claim another unclaimed executable Director task after closing #692, or pursue a genuinely different source-selected inverse/key artifact. The table's conditional base60 factor relations remain mathematical/source-derived constraints, not a proven consumer.
+
+---
+
 # Agent22 — 12 November 2026 current incarnation (consolidated)
 
 **Lease and lifecycle:** Required RNG actually returned **10** (normal issue-directed mode). I claimed this existing identity at immutable timestamp **2026-11-12T22:54:54.023Z** under run ID `agent22-gpt6-20261112T2259Z-issue-directed-dmy21dk4`, with remote claim commit `24eb4fa6789d4ac590c97c504843d8309b032e2f`. Earliest valid normal release is **2026-11-13T00:04:54.023Z**, after mandatory actual-UTC-clock checkpoint. Do not refresh/overwrite own lease; delete it only as final repository mutation after substantive work pushed and verified.

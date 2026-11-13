@@ -83,6 +83,7 @@ on:
           - ssss256-column
           - ssss64-row
           - p50-q55
+          - p50-gf29-lfsr
           - p50-ring76-stationary
           - signed-wordends-p55
           - historical-rsa-4096
@@ -171,6 +172,10 @@ jobs:
       - name: Frozen p50 quotient stream to p55 direct GP29 key
         if: ${{ inputs.probe == 'p50-q55' }}
         run: node sims/p50_full_quotient_p55_direct_key_sft.cjs
+
+      - name: Original 256-cell table GF29 recurrence with frozen 128-symbol holdout
+        if: ${{ inputs.probe == 'p50-gf29-lfsr' }}
+        run: node sims/lp2_p50_table_linear_complexity_sft.cjs
 
       - name: Original 27x27 opening word boundaries and punctuation type
         if: ${{ inputs.probe == 'p0-word-punctuation' }}
