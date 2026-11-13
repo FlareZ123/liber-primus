@@ -10,7 +10,7 @@ The source is the unchanged [Liber Primus master transcription](../resources/tra
 
 `[83,448,720,513,317,256,216,156,78,52,32,18,4,3]`.
 
-The nine source-visible chapter cuts at global rune offsets `729,1874,3603,5506,6527,7960,9640,12648,12956` are *all between* complete words. Their word counts are `[158,255,383,437,224,326,378,669,66]` and rune counts are `[729,1145,1729,1903,1021,1433,1680,3008,308]`. This independently reproduces the prior source census ([marginals and word grammar](lp2-wordlength-sidecar-marginal-gate.md)); the new result is an actual, exact permutation-rank decoding of the full original sequence.
+The nine source-visible chapter cuts at global rune offsets `729,1874,3603,5506,6527,7960,9640,12648,12956` are *all between* complete words. Their word counts are `[158,255,383,437,224,326,378,669,66]` and rune counts are `[729,1145,1729,1903,1021,1433,1680,3008,308]`. This independently reproduces the prior source census ([marginals and word grammar](lp2-wordlength-sidecar-marginal-gate.md)); the new result is an actual, exact permutation-rank decoding of the full original sequence. The whole-book exact permutation entropy is **log₂(W) ≈ 8,791.8759 bits**; its fixed unsigned integer representation requires 8,792 bits, permitting an arbitrary 991-byte payload but not every arbitrary 1,099-byte payload.
 
 ## Reversible candidate and untouched outputs
 
@@ -18,9 +18,9 @@ For an observed ordered multiset `x[0..n-1]`, let `c[v]` count each length and `
 
 Serialize `R` at the fixed mathematical width `ceil(bitlength(W−1)/8)`. Test one whole-book stream and each of nine original chapters; for each, use printed or reversed word order, increasing or decreasing original length-label order, and big- or little-endian bytes. This produces exactly **10 × 2 × 2 × 2 = 80** canonical, reversible readings. No guessed byte shift, key, interpolation, reranking around an English target, or altered page boundary is introduced.
 
-| Original source span | Words | Binary capacity bits | Fixed bytes | First 16 bytes, printed/increasing/big endian |
+| Original source span | Words | Rank width (bits) | Fixed bytes | First 16 bytes, printed/increasing/big endian |
 | --- | ---: | ---: | ---: | --- |
-| Entire LP2 unknown | 2,896 | **8,792** (floor-width) | **1,099** | `d7758df1640a621ac9d8f75d38a08131` |
+| Entire LP2 unknown | 2,896 | **8,792** | **1,099** | `d7758df1640a621ac9d8f75d38a08131` |
 | p0–2 | 158 | 461 | 58 | `0f40367a9561dc41afc2146268f67a95` |
 | p3–7 | 255 | 734 | 92 | `067083ac4b329748f282edfb7248e175` |
 | p8–14 | 383 | 1,136 | 142 | `9794de0724a8ab8911d0c7aa7ddf3d4c` |
