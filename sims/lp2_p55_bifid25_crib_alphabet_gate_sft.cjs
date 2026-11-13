@@ -326,18 +326,26 @@ function encryptBypassPlant(originalPlain,bypass,period){
 }
 const partialMothPlain=Array(75).fill(null);
 crib.forEach((v,j)=>{partialMothPlain[45+j]=v;});
+// Periods 1..75 EXHAUST every different continuous-body Bifid
+// period: larger periods take one full body block (at most75 core).
+const allPeriods=Array.from({length:75},(_,i)=>i+1);
 const bypassAllSecretResults=[];
 for(const omit of bypassEligible){
   const bypass=bypassEligible.filter(v=>v!==omit);
-  const gates=[5,25,75].map(period=>
+  const allGates=allPeriods.map(period=>
     bypassTableauGate(body,partialMothPlain,bypass,period));
-  assert(gates.every(g=>g.duplicateCells>0&&!g.possible));
+  assert(allGates.every(g=>!g.possible));
+  const gates=allGates.filter(g=>[5,25,75].includes(g.period));
+  assert(gates.every(g=>g.duplicateCells>0));
   bypassAllSecretResults.push({
-    bypass:bypass.map(v=>gp.translit[v]),gates
+    bypass:bypass.map(v=>gp.translit[v]),
+    periodsChecked:allGates.length,
+    originalPeriodsCompatible:allGates.filter(g=>g.possible).length,
+    sourceShapePeriods:gates
   });
   const plant=Array(75).fill(0);
   crib.forEach((v,j)=>{plant[45+j]=v;});
-  for(const period of [5,25,75]){
+  for(const period of allPeriods){
     const positive=encryptBypassPlant(plant,bypass,period);
     const gate=bypassTableauGate(positive,partialMothPlain,bypass,period);
     assert.equal(gate.duplicateCells,0);
@@ -366,6 +374,8 @@ console.log(JSON.stringify({
   allSecret5x5ThirteenWordGates:originalThirteenWordGates,
   allSecretBifidPositivePlants:[5,25,75],
   mothCribTransparentBypassEligible:bypassEligible.map(v=>gp.translit[v]),
+  allBypassPeriodModelsExcluded:375,
+  allBypassPeriodModelsPositivePlants:375,
   allSecretFourTransparentBypassGates:bypassAllSecretResults,
   exactInverseAndSourcePositivePlant:true
 },null,2));
