@@ -2,7 +2,7 @@
 
 **Decision (Agent21, 13 November 2026).** The original p55 body contains sixteen complete printed words, giving exactly 32 first/last rune endpoints. A distinct source-visible 32-row by eight-column numerical grid spans pp49–51. Four frozen, direct AES-256 interpretations of this candidate word-to-row bridge recover **no authenticated packet and no recognizable original plaintext**. In particular, all four fail the conventional OpenPGP-CFB 16-bit repeated-random-prefix check and the exact AES-256-GCM authentication test. These finite negatives do not rule out other uses of the perimeter, table, or cryptography. No actual source instruction selects AES or the endpoint-to-row rule.
 
-[Standalone CommonJS SFT](../sims/p55_exterior32_grid_aes_sft.cjs) · [Original-input GitHub Actions run 43376201800, step 4 passed](https://github.com/FlareZ123/liber-primus/actions/runs/43376201800) (the full workflow subsequently failed at an unrelated, preexisting 2016-SHA1 score assertion, step 9).
+[Standalone CommonJS SFT](../sims/p55_exterior32_grid_aes_sft.cjs) · [Original-input GitHub Actions run 43378085559, source-gate step passed](https://github.com/FlareZ123/liber-primus/actions/runs/43378085559) (the overall workflow failed later in an unrelated legacy signed-2016 SHA1-score assertion).
 
 ## Human-visible premise and alternative explanation
 
@@ -32,6 +32,17 @@ The stronger packet-format tests use only directly specified containers:
 - **AES-256-GCM:** nonce = first 12 source payload bytes, tag = final 16 bytes, and ciphertext = intervening 228 or 196 bytes. None authenticates. All four keys pass separately encrypted native-GCM positive-control round trips of the same payload length.
 
 The direct AES-ECB outputs have neither legible prose nor clear common binary headers. These are negative observations only for direct plaintext containers; an unknown further layer would require an independent source instruction.
+
+## Separate direct row-local XOR consumer
+
+The two exact 32-column selectors already committed above each provide one byte per row. A distinct historically used bytewise operation is to XOR that selected byte with the **seven other printed bytes in its own row**, preserving original row-major order. This is a direct one-stage 224-byte output with no AES, unknown salt, or arbitrary IV. Both candidates are now in the **same SFT**, with an exact inverse that XORs the 32 source key bytes back to reconstruct all 224 original unselected table bytes.
+
+| Fixed source selector | XOR output printable ASCII / 224 | Longest printable run | Exact decoded initial 48 bytes (hex) |
+|---|---:|---:|---|
+| GP endpoint indices modulo 8 | 86 | 5 | `2c405d860a9950882d480a23d0632e9d587631de6cab6bdf50844b43f6f740a2b3d580191d55af228e05ad407f6b06fb` |
+| GP endpoint primes modulo 8 | 84 | 4 | `260a4a578c935a82274229da690af04386a8efb2de2f84ef5bd4cfc77677c0223355801c185005aa278b56bb8490fd37` |
+
+Neither output is readable prose or a recognized direct text header. The SFT verifies exact byte outputs, full source reconstruction and the previously defined four AES-format gates. The source gate passed in [native Actions run 43378085559](https://github.com/FlareZ123/liber-primus/actions/runs/43378085559), despite the already-existing downstream regression failing. This additional negative only rejects the two specified literal row-local XOR readings. No original LP2 plaintext, authenticated key or selected alternate payload serialization was recovered.
 
 ## Scope and next decision
 
