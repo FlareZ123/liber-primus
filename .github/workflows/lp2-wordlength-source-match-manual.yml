@@ -12,5 +12,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Seven historical corpora, original word clock, solved p57 plant
+      - name: Eleven historical source records, original word clock, solved p57 plant
         run: node sims/lp2_wordlength_source_match_sft.cjs
