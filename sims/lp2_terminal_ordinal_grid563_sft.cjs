@@ -91,6 +91,33 @@ for(const [label,cells] of [["64-86",previous],["65-87",following]]){
       originalReencrypted:23,solvedP57PlantRecovered:23});
   }
 }
+// The 23 bytes can also be the unknown binary payload rather than a pad.
+// Test only the native GP index and prime-value encodings of the 23 p55
+// core runes, under conventional XOR / byte-addition / byte-subtraction.
+const binaryConsumers=[];
+for(const [label,cells] of [["64-86",previous],["65-87",following]]){
+  const payload=cells.map(c=>c.byte);
+  for(const coding of ["GPindex","GPprime"]){
+    const key=core.map(i=>coding==="GPindex"?i:book.prime[i]);
+    for(const operation of ["xor","add","subtract"]){
+      const output=payload.map((v,i)=>operation==="xor"?(v^key[i]):
+        operation==="add"?(v+key[i])%256:(v-key[i]+256)%256);
+      const printable=output.filter(v=>v>=32&&v<=126).length;
+      const letters=output.filter(v=>(v>=65&&v<=90)||
+        (v>=97&&v<=122)).length;
+      binaryConsumers.push({window:label,coding,operation,
+        printableASCII:printable,ASCIIletters:letters,
+        text:output.map(v=>v>=32&&v<=126?String.fromCharCode(v):".").join("")});
+      // Reversible binary transforms are trivial wrong-key roundtrips.
+      const restored=output.map((v,i)=>operation==="xor"?(v^key[i]):
+        operation==="add"?(v-key[i]+256)%256:(v+key[i])%256);
+      assert.deepEqual(restored,payload);
+    }
+  }
+}
+assert.equal(binaryConsumers.length,12);
+assert.equal(Math.max(...binaryConsumers.map(c=>c.printableASCII)),10);
+
 // A single frozen, artificial table-location null. It is diagnostic,
 // because the 60/563 relationships were noticed after source exploration.
 // Sample five distinct locations without replacement from the exact
@@ -131,7 +158,7 @@ console.log(JSON.stringify({
   consecutive23TableCells:{slots64to86Sum:3000,slots65to87Sum:3060},
   independentlyArchived2016Image:"563x569",
   originalP55Core:{length:core.length,GPPrimeSum:primeSum(core),
-    original:translit(core),consumers},
+    original:translit(core),consumers,binaryConsumers},
   diagnosticShuffledTable:{repetitions,seed:"0x5613666",
     pairDifference60:pair60,fourByteSum563:sum563,
     fourByteSum569:sum569,joint:joint,jointEither,
