@@ -39,3 +39,6 @@ jobs:
       - name: Check all source SHA1 blobs and original LP2 quote fingerprints
         shell: bash
         run: node sims/lp2_quote18_publicdomain_sft.cjs "$RUNNER_TEMP/quote18"
+      - name: Original five numbered p36-38 paragraphs long-crib source gate
+        shell: bash
+        run: node sims/lp2_p36_38_fiveparagraph_quote18_sft.cjs "$RUNNER_TEMP/quote18"
