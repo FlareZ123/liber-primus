@@ -111,4 +111,71 @@ async function main() {
   };
   console.log(JSON.stringify(report,null,2));
 }
-main().catch(error=>{console.error(error);process.exitCode=1;});
+
+/**
+ * Separate original-era Wayback CDX witness, selected by ARCHIVE_MODE=wayback.
+ * No onion service is requested. The replay target is always the Ahmia site.
+ */
+async function waybackMain() {
+  /** @param {string} hostname @param {number} limit */
+  async function list(hostname,limit) {
+    const q=new URL('https://web.archive.org/cdx/search/cdx');
+    q.searchParams.set('url','http://'+hostname+'/*');
+    q.searchParams.set('from','2014');
+    q.searchParams.set('to','2015');
+    q.searchParams.set('output','json');
+    q.searchParams.set('filter','statuscode:200');
+    q.searchParams.set('collapse','urlkey');
+    q.searchParams.set('gzip','false');
+    q.searchParams.set('limit',String(limit));
+    const response=await download(q.href);
+    let records=[];
+    if(response.httpStatus===200 && response.text){
+      try {
+        const matrix=JSON.parse(response.text);
+        const fields=matrix[0];
+        records=matrix.slice(1).map(row=>Object.fromEntries(fields.map((field,i)=>[field,row[i]])));
+      } catch(error) {response.parseError=String(error);}
+    }
+    delete response.text;
+    return {hostname,records,...response};
+  }
+
+  const control=await list('example.com',2);
+  const original=await list('ahmia.fi',1000);
+  const www=await list('www.ahmia.fi',1000);
+  const counts={control:control.records.length,original:original.records.length,www:www.records.length};
+  const relevant=[...original.records,...www.records].filter(r=>/^2014|^2015/.test(String(r.timestamp||'')));
+  const unique=[...new Map(relevant.map(x=>[x.original,x])).values()];
+  const hostURLs=unique.filter(r=>matches(String(r.original||'')).length);
+  const planned=unique.sort((a,b)=>{
+    const score=u=>/\/onion|\/stats|\/search|\/static\/visuals|\/directory/i.test(u)?0:1;
+    return score(a.original)-score(b.original) || a.timestamp.localeCompare(b.timestamp);
+  }).slice(0,12);
+  const replays=[];
+  for(const capture of planned){
+    const request='https://web.archive.org/web/'+capture.timestamp+'id_/'+capture.original;
+    const response=await download(request);
+    const hits=matches(response.text||'');
+    delete response.text;
+    replays.push({capture:{timestamp:capture.timestamp,url:capture.original},hits,...response});
+  }
+  delete control.records;delete original.records;delete www.records;
+  console.log(JSON.stringify({
+    schema:1,archive:'Internet Archive Wayback CDX',generatedAt:new Date().toISOString(),
+    purpose:'May-to-autumn 2014 Ahmia source-index witness, not unknown .onion crawling',
+    sources:[
+      {...control,count:counts.control},
+      {...original,count:counts.original},
+      {...www,count:counts.www},
+    ],
+    knownHosts,visibleUniqueURLs:unique.length,
+    originalURLHostMatches:hostURLs.map(r=>({url:r.original,knownHosts:matches(r.original)})),
+    selectedCaptures:planned,
+    replays,
+    caution:'A blocked CDX positive control means no coverage claims. Only exact original target body bytes could authenticate the LP2 512-bit digest.',
+  },null,2));
+}
+
+const runner=process.env.ARCHIVE_MODE==='wayback'?waybackMain:main;
+runner().catch(error=>{console.error(error);process.exitCode=1;});
