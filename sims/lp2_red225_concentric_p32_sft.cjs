@@ -44,10 +44,13 @@ function border(square, lo, hi) {
 }
 
 const sourceRed = [];
+const redPageLengths = [];
 let unsolvedRed = 0;
 for (const page of corpus.pages) {
   const marked = new Set();
   const record = ink.pages.find((item) => item.page === page.page);
+  const redOnPage = (record?.red_spans || []).reduce((sum, span) => sum + span.length, 0);
+  if (redOnPage > 0) redPageLengths.push({ page: page.page, length: redOnPage });
   for (const span of record?.red_spans || []) {
     const glyphs = Array.from(span.runes);
     assert.equal(glyphs.length, span.length);
@@ -64,6 +67,8 @@ for (const page of corpus.pages) {
 }
 assert.equal(corpus.pages.length, 58);
 assert.equal(sourceRed.length, 225);
+assert.equal(redPageLengths.length, 15);
+assert.equal(Math.max(...redPageLengths.map((item) => item.length)), 51);
 assert.equal(unsolvedRed, 213);
 assert.equal(sourceRed.length - unsolvedRed, 12);
 
@@ -101,6 +106,8 @@ console.log(JSON.stringify({
     unsolvedRed,
     solvedRed: sourceRed.length - unsolvedRed,
     sourcePages: corpus.pages.length,
+    pagesWithRedRunes: redPageLengths.length,
+    sourceRedPerPage: redPageLengths,
     unknownPhysicalPages: 56,
     unknownRuneBearingPages: starts.length,
     unknownRunelessPhysicalPages: runelessUnknownPages
