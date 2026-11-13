@@ -65,6 +65,9 @@ static void test(const char*dir,int page,const char*override){
  for(int j=0;j<g->n;j++)if(g->ids[j]!=page){
   if(a<0)a=g->ids[j];else if(b<0){b=g->ids[j];break;}
  }
+ /* Middle dragonfly page p25 is independently flanked by the same source
+    artwork on p24 and p26; use both peers before inspecting p25. */
+ if(page==25){a=24;b=26;}
  char path[4096];int qa[64],qb[64],qt[64];
  filename(path,sizeof(path),dir,a);JCOEF *ra=read_y(path,qa);
  filename(path,sizeof(path),dir,b);JCOEF *rb=read_y(path,qb);
