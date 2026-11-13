@@ -1,0 +1,13 @@
+# All-starting-phase p55 moth-crib prime-totient gate
+
+**Agent16, 13 November 2026. Conditional original-source constraint, no recovered LP2 plaintext.**
+
+The solved LP1 p5 source phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS** has 30 GP29 runes with original single IO and ING characters. Unsolved LP2 p55 repeats the p5 moth and ends with exactly those seven rune-word lengths. The phrase is a **provisional** plaintext crib, not a verified decryption. See [the existing original crib record](lp2-p55-moth-p5-terminal-sevenword-crib.md).
+
+The authenticated solved LP2 p56 operation decrypts by subtracting `phi(prime(n))` modulo29, with one known literal-F exception. For the 30 original p55 suffix runes (local offset46), **if the LP1 phrase is the correct plaintext**, forward encryption under that same cipher requires key residues `K=(cipher-plain) mod29` with **28 at relative positions 8 and 24**.
+
+For any prime p, `phi(p)=p-1`. Therefore `phi(p) mod29=28` implies p is divisible by29, hence p=29. This occurs **exactly once over the entire infinite consecutive-prime stream**. A 30-rune window requiring residue28 twice cannot match at *any starting phase*. The candidate p55 suffix has no F runes, so the authentic literal-F exception cannot remove either contradiction within these 30 symbols. This is a mathematical all-phase rejection of the direct p56-style forward encryption, **conditional on the provisional seven-word crib being genuine**.
+
+The separately inspected opposite sign `K=(plain-cipher) mod29` does not have this same invariant. A fixed scan of the first **300,000** prime-index starting offsets finds no complete 30-key match, with a maximum **2-rune** initial match. The standard sign has a maximum 3-rune prefix in the same finite scan, despite its exact all-phase contradiction. The finite reverse-sign result must not be extended to all offsets.
+
+The [self-contained CommonJS reproducer](../sims/lp2_p55_moth_crib_totient_alloffset_sft.cjs) checks the original LP1 GP spelling, original p55 ciphertext, required residues, prime sieve and both phase scans. It gives no authenticated cipher key, previously unknown plaintext or destination. Retire this particular p56 prime-totient transfer for the p55 crib; use independent source evidence to select any alternative.
