@@ -21,7 +21,7 @@ const {encodeSourceNativeGP} = require('./lp2_native_gp_source_orthography_sft.c
 const root = path.resolve(__dirname, '..');
 
 /** @param {string} file @returns {string} */
-const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
 const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const glyphMap = new Map(gp.runes.map((r, i) => [r, i]));
 const runeRx = new RegExp('[' + gp.runes.join('') + ']+', 'gu');
