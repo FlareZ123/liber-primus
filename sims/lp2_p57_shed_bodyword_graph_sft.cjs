@@ -102,9 +102,44 @@ function run() {
   // Positive test: the graph routine detects a genuine 19-word single cycle.
   assert.deepEqual(cycles(Array.from({length:19}, (_,i) => (i+1)%19)),
     [Array.from({length:19}, (_,i) => i)]);
+  // A separate conditional path navigates first and sheds the circumference
+  // afterward. Neither the two signs nor their order is source-authenticated.
+  const cycleOrder = [[1,7,8,17,16],[14,13,8,18,5]];
+  const interiorKey = cycleOrder.flatMap(walk =>
+    walk.flatMap(position => body[position - 1].slice(1, -1)));
+  assert.deepEqual(interiorKey, [
+    10,5,1,4,0,24,5,10,2,10,10,1,10,9,10,16,
+    10,9,10,4,5,1,19,0,18,4,18,9,5,18,9
+  ]);
+  assert.equal(interiorKey.length, 31);
+  // The 31 large transcribed events have only 29 distinct rune offsets;
+  // their visible morphologies are not all identical.
+  const ink = JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+  const prefix = [0];
+  for (const page of corpus.pages) prefix.push(prefix[prefix.length-1] + page.indices.length);
+  const marks = ink.pages.flatMap(page =>
+    (page.large_punctuation || []).map(event => prefix[page.page] + event[0]))
+    .sort((a,b) => a-b);
+  assert.equal(marks.length, 31);
+  assert.equal(new Set(marks).size, 29);
+  const first = prefix[39] + 240;
+  const last = prefix[53] + 179;
+  assert(marks.includes(first) && marks.includes(last));
+  assert.equal(last - first, 3008);
+  const flat = corpus.pages.flatMap(page => page.indices);
+  const sector = flat.slice(first, last);
+  const counts = Array(29).fill(0);
+  for (const index of sector) counts[index]++;
+  const sectorIoC = counts.reduce((sum,count) => sum + count*(count-1), 0) /
+    (sector.length*(sector.length-1));
+  assert(Math.abs(sectorIoC - 0.0345426274862201) < 1e-14);
   return {
     type: 'Exact source-bound interpretation gate; no recovered LP2 plaintext',
     title, bodyWords: 19, runeCount: 95,
+    conditionalInteriorKey: {indices: interiorKey,
+      latin: interiorKey.map(i => corpus.translit[i]).join(''),
+      sourceLargeRecords: marks.length, distinctLargeOffsets: new Set(marks).size,
+      largestBetweenMarkSector: {runes: sector.length, ioc: sectorIoC}},
     sourceFullPrimeSums: full, strippedPrimeSums: inner,
     strippedFixedWordPositions: strippedFixed,
     graphs: {
