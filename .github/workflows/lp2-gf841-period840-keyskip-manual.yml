@@ -1,4 +1,4 @@
-name: LP2 GF841 Period840 Collision Keyskip
+name: LP2 GF841 Period840 Cipher Channels
 on:
   workflow_dispatch:
 jobs:
@@ -10,5 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Source-native GF841 840-clock inverse
+      - name: Source-native GF841 additive rejection-clock inverse
         run: node sims/lp2_gf841_period840_collision_keyskip_sft.cjs
+      - name: Source-native GF841 nonrepeating GP28 transition inverse
+        run: node sims/lp2_gf841_period840_gp28_transition_sft.cjs
