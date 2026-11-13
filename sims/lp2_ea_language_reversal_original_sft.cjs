@@ -143,7 +143,7 @@ function evaluateWord(word, source, reverse) {
       v[reverse ? v.length-1 : 0] === 28);
     compatible ||= good;
   }
-  assert(weight > 0, "Missing source words of length " + word.length);
+  if (!weight) return null; // Source lacks words of this exact length.
   const mean = sum/weight, startProb = start/weight;
   return {
     mean, variance:sumSq/weight-mean*mean,
@@ -159,10 +159,16 @@ function evaluateWord(word, source, reverse) {
 function evaluate(original, source, reverse) {
   let expectedTotal = 0, varianceTotal = 0;
   let expectedStart = 0, varianceStart = 0;
-  let maskedWords = 0, unattainableMasks = 0;
+  let maskedWords = 0, unattainableMasks = 0, missingLengthWords = 0;
   const firstExamples = [];
   for (const word of original) {
     const result = evaluateWord(word, source, reverse);
+    if (!result) {
+      // All three original length-14 words have no repeat events.
+      assert(!word.some(x => x.mark === 1));
+      missingLengthWords++;
+      continue;
+    }
     expectedTotal += result.mean;
     varianceTotal += result.variance;
     expectedStart += result.startProb;
@@ -183,7 +189,7 @@ function evaluate(original, source, reverse) {
     sdTotal:+Math.sqrt(varianceTotal).toFixed(3),
     meanWordInitial:+expectedStart.toFixed(3),
     sdWordInitial:+Math.sqrt(varianceStart).toFixed(3),
-    unattainableMasks, firstExamples
+    unattainableMasks, missingLengthWords, firstExamples
   };
 }
 
