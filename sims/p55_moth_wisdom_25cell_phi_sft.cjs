@@ -121,6 +121,25 @@ const required=page.slice(46).map((cipher,i)=>mod29(cipher-crib[i]));
 const sourceKey=required.map((v,i)=>key[(45+i)%25]);
 const cribMatches=required.filter((v,i)=>v===sourceKey[i]).length;
 assert.equal(cribMatches,1,"moth-matched seven-word candidate direct pad prediction");
+// A 25-period additive stream has phase-independent equality K[i]=K[i+25].
+// Grant every one of the 25 key values to be secret. The prospective p5
+// 30-rune crib supplies five forced lag-25 comparisons, source-fixed by
+// p55's 75-body / 25-table shape. Include a predecessor-difference cipher
+// variant suggested by the original global anti-repeat ciphertext property.
+const sourceSuffix=page.slice(46);
+const requiredStep=sourceSuffix.map((cipher,i)=>
+  mod29(cipher-page[45+i]-crib[i]));
+const period25Witnesses=[];
+for(let i=0;i<5;i++) {
+  period25Witnesses.push({
+    positions:[46+i,71+i],
+    directKey:[required[i],required[i+25]],
+    differenceKey:[requiredStep[i],requiredStep[i+25]]
+  });
+  assert.notEqual(required[i],required[i+25],"direct 25-period secret-key witness");
+  assert.notEqual(requiredStep[i],requiredStep[i+25],
+    "ciphertext-step 25-period secret-key witness");
+}
 const format=indices=>indices.map(i=>corpus.translit[i]).join("");
 console.log(JSON.stringify({
   source:"original LP2 p55 76 runes; first NG carry excluded; 75 body runes",
@@ -130,7 +149,8 @@ console.log(JSON.stringify({
   square,totientMod29Key:key,method:"body rune i: P[i]=(C[i]-phi(square[i mod25])) mod29",
   scores:{original:scoreOriginal,originalInverse:scoreCandidate,
     matchedNative75WindowCount:scored,worstNative:worstNative},
-  p55MothSevenWordCrib:{length:30,exactKeyMatches:cribMatches},
+  p55MothSevenWordCrib:{length:30,exactKeyMatches:cribMatches,
+    secretPeriod25Witnesses:period25Witnesses},
   originalForwardRecovered:75,sourceNativePlantRecovered:75,
   decodedGP:format(originalCandidate),
   decision:"Direct square-phi repeating GP29 key fails original plaintext and provisional moth seven-word crib."
