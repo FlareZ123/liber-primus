@@ -27,7 +27,7 @@ Each is therefore an affine map (xmapsto epsilon_i x+b_ipmod{29}), with (epsilon
 (epsilon_2(epsilon_1x+b_1)+b_2)
 =(epsilon_2epsilon_1)x+(epsilon_2b_1+b_2)pmod{29}.
 ]
-A fixed transposition only permutes positions. Multiple fixed transpositions compose to one permutation, and the offset vector is permuted with it. Therefore any finite composition of fixed-key Vigenère/Beaufort, Atbash and fixed columnar permutations has the normal form
+A fixed transposition only permutes positions. Multiple fixed transpositions compose to one permutation, and the offset vector is permuted with it. Therefore any finite composition of fixed-key additive/subtractive Vigenère-style shifts, Atbash and fixed columnar permutations has the normal form
 [
 Y_i=epsilon_i X_{pi(i)}+b_ipmod{29}.
 ]
