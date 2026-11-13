@@ -1,0 +1,16 @@
+name: LP2 terminal 256 XOR binary LFSR original known-plaintext gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-terminal-bitlfsr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover synthetic 76-rune ring and bound binary recurrence on authentic 180-runic interior
+        run: node sims/lp2_terminal256_xor_bitlfsr_sft.cjs
