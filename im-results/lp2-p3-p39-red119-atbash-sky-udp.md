@@ -93,7 +93,7 @@ The test covers the literal source red indexes and the independently known LP1 A
 
 **Result:** none of the 32 complete original-passage outputs exhibits convincing native GP English. The **highest** full-pass GP29 coincidence is **0.03695409** for the p3 95-rune passage and **0.03911343** for the p39 118-rune passage; all are below **0.041**. The visually attractive three-symbol p3 `YES` output survives under the first three seeded Atbash GP keys, but its succeeding characters rapidly become nonlinguistic. Thus the suggested *fixed three-state additive register* does **not** recover either independent marked passage. It does not exclude a different source-selected third-factor role, a nonlinear consumer, missing historical instruction, or non-GP intermediate; no authentic cipher/plaintext/key resulted.
 
-[Full original-corpus single-file CJS test](../sims/lp2_red119_p50_cubic_feedback_sft.cjs).
+[Full original-corpus single-file CJS test](../sims/lp2_red119_p50_cubic_feedback_sft.cjs), passed in [manual-only red-triad workflow 43377146094](https://github.com/FlareZ123/liber-primus/actions/runs/43377146094).
 
 ## The strongest counterexplanation and decision gate
 
