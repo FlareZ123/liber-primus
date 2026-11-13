@@ -1,6 +1,6 @@
 # Original p33–39 chapter: one complete twice-840 GF(29²) clock hypothesis
 
-**Classification (12 November 2026, Agent35): original-source arithmetic and one key-independent, bounded native-language test. No unknown LP2 plaintext, selected cipher key, authenticated state clock or destination recovered.** The unusual exact chapter length is a plausible clue for a human solver, but the author did not explicitly instruct treating the 2013 BASE29 example as a cipher recurrence or reducing the 2014 sexagesimal table to GF(29).
+**Classification (12–13 November 2026, Agents35/33): exact original-source arithmetic, a key-independent native-language collision test, and a separate exact all-secret full-field enumeration obstruction. No unknown LP2 plaintext, selected cipher key, authenticated state clock or destination recovered.** The unusual exact chapter length is a plausible clue for a human solver, but the author did not explicitly instruct treating the 2013 BASE29 example as a cipher recurrence or reducing the 2014 sexagesimal table to GF(29).
 
 ## Independently visible ingredients and weakest link
 
@@ -26,6 +26,26 @@ Original-input calibration uses the checked-in independent whole-word GP Latin V
 
 These are overlapping, non-independent contiguous reference windows, so the counts are **empirical controls, not a discovery-wide significance estimate**. Shakespeare contains two native examples as low as the original. The data strongly disfavor ordinary source-like GP prose under a strictly **reused 840-position bijection**, while logically leaving rarer plaintext, different languages and unconstrained stateful or nonperiodic ciphers possible. In particular, length compatibility is inadequate evidence to select this key.
 
+## Complete 840-state coordinate enumeration: direct original pair collision gate
+
+The same 1,680-rune original chapter and source-derived **840** nonzero states permit a simpler, wholly key-independent alternative to a repeating field *clock*: perhaps the chapter literally **lists every nonzero GF(29²) state exactly once** as an ordered pair of GP29 symbols. A human puzzle-maker could intend an 840-state lookup table. Two layouts consume the original 1,680 symbols without added punctuation, direction fitting, numerical guessing or exceptional runes:
+
+1. **Two contiguous halves:** take the first 840 original GP29 indices as the coordinate \(a_i\) and the next 840 as \(b_i\).
+2. **Consecutive pair packing:** take source symbols \(C_{2i},C_{2i+1}\) as each field coordinate pair.
+
+Every nonzero state of GF(29²) has a distinct ordered GP29 coordinate pair in the source basis \(1,u\). All 840 entries in a complete enumeration must therefore be unique. The original p33–39 stream fails that exact necessary condition spectacularly:
+
+| Source-consumptive pairing | Unique ordered 29×29 pairs among 840 | Duplicate pair slots | Distinct pair types repeated | Maximum pair multiplicity | All-zero pairs |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| First 840 / last 840 | **532** | **308** | 210 | 5 | 0 |
+| Adjacent 2-rune groups | **518** | **322** | 218 | 6 | 0 |
+
+An arbitrary secret **fixed bijection of the 841 field elements**, including unknown field-basis changes or independent bijections of each of the two component alphabets, preserves equality of complete pairs. Thus none can change 532 or 518 unique observed pairs into a once-each **840-element** list. Both direct source readings are disproved without assumptions about natural language, plaintext word spacing or which primitive generator enumerates the states.
+
+The [standalone 1,680-rune source SFT](../sims/lp2_p33_39_gf841_completepair_sft.cjs) asserts exact original page lengths **[214,261,271,238,228,228,240]** and the five above counts for both modes. A positive control enumerates **all 840 nonzero pairs** and obtains **840/840 unique** with no zero pair. Swapping two second-component positions across source coordinate groups creates exactly **two duplicate pair slots**, detected as **838/840**. This control confirms that the test can accept a true once-each listing and reject a known wrong alignment.
+
+**Limit:** this excludes only an *exhaustive direct listing of 840 field elements*, not a field-valued ciphertext stream in which repeated states are allowed, a separate changing keystream, a keyed nonlinear map depending on location, or a 840-period projector applied to original ciphertext. The following period-840 clock tests remain separate because such clocks generate a nonrepeating hidden state while their observed one-rune ciphertext outputs can repeat.
+
 ## Source-root decoder was also applied without fitted parameters
 
 Freeze `s₀=1`, `sᵢ=u^i = aᵢ+bᵢu`, repeat after 840, and use the three algebraic GP29 projections `aᵢ`, `bᵢ`, and `Tr(sᵢ) = 2aᵢ+11bᵢ`, each under both ordinary additive signs. Apply the resulting **six** complete reversible readouts to **all 1,680 original pp33–39 runes**, with no initial-phase fitting, glyph skips or boundary relocation.
@@ -42,6 +62,6 @@ Exact native-GP positive controls verify the test has power at its stated target
 
 ## Research decision
 
-This new relation licenses **a one-shot original-cipher test**, and the standard, source-root 840-period and all-secret repeated-alphabet readings are now bounded negatives. **Do not** expand to arbitrary field basis rotations, fitted clock starts, secret 840-symbol keys or additional cipher layers on the sole strength of `1680=2×840`. A future source would need to specify the cryptographic role of the 2013 polynomial or an explicit nonperiodic state/key update. The original p50 polynomial identity, p39 red factor and p33 cuneiform numbers remain genuine input facts without establishing this conjectured cross-chapter key handoff.
+The source-derived 840-period relation justifies these bounded tests. The standard source-root 840-period, the all-secret positionwise repeated-alphabet model and the literal exhaustive two-rune state-list readings are now distinct negatives. **Do not** expand to arbitrary field basis rotations, fitted clock starts, secret 840-symbol keys or additional cipher layers on the sole strength of `1680=2×840`. A future source would need to specify the cryptographic role of the 2013 polynomial or an explicit nonperiodic state/key update. The original p50 polynomial identity, p39 red factor and p33 cuneiform numbers remain genuine input facts without establishing this conjectured cross-chapter key handoff.
 
-[Standalone source-input reproducer](../sims/lp2_p33_39_gf841_period840_sourcegate_sft.cjs) · [Established exact factor arithmetic](2013-base29-gf29-grid-factor.md) · [Original visual-chapter segmentation](lp2-global-original-visual-section-map.md)
+[Period-840 source-input reproducer](../sims/lp2_p33_39_gf841_period840_sourcegate_sft.cjs) · [Exact 840-pair enumeration SFT](../sims/lp2_p33_39_gf841_completepair_sft.cjs) · [Established exact factor arithmetic](2013-base29-gf29-grid-factor.md) · [Original visual-chapter segmentation](lp2-global-original-visual-section-map.md)
