@@ -7,6 +7,7 @@ const root=path.join(__dirname,'..');
 /** @param {string} filename @returns {string} */
 const read=filename=>fs.readFileSync(path.join(root,filename),'utf8');
 const runeSet=new Set([...'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ']);
+const runeOrder=[...runeSet],runeIndex=new Map(runeOrder.map((r,i)=>[r,i]));
 const source=read('resources/lp2-transcription.txt').split('%').slice(0,55).join('%');
 let page=0,previous=null,word=[],words=[],repeat=[0,0,0],total=0;
 /** @returns {void} */
@@ -18,7 +19,10 @@ function finish(){
 }
 for(const c of source){
  if(runeSet.has(c)){
-  const r={eligible:previous!==null&&previous.page===page,event:previous!==null&&previous.page===page&&previous.value===c,page,value:c};
+  const eligible=previous!==null&&previous.page===page;
+  const valueIndex=runeIndex.get(c);
+  const previousIndex=eligible?runeIndex.get(previous.value):null;
+  const r={eligible,event:eligible&&previous.value===c,page,value:c,valueIndex,previousIndex};
   word.push(r);previous=r;total++;
  }else if(c==='%')page++;
  else if(c==='/'||/\s/u.test(c)){}
@@ -50,6 +54,32 @@ const chapterDistinct=chapterRanges.map(([lo,hi])=>{
  return set.size;
 });
 assert.deepEqual(chapterDistinct,[29,29,29,29,29,29,29,29,29]);
+
+// Normalize each nonrepeat ciphertext rune by its predecessor: its rank in
+// the GP29 alphabet after removing the previous ciphertext rune. A fixed
+// 25-letter plaintext map can emit at most 25 distinct successor ranks.
+const pageRankSets=new Map(),globalRanks=new Set();
+for(const w of words)for(const r of w){
+ if(!r.eligible||r.event)continue;
+ const rank=r.valueIndex-(r.valueIndex>r.previousIndex?1:0);
+ assert(rank>=0&&rank<28);
+ globalRanks.add(rank);
+ const p=physicalPage(r.page);
+ if(!pageRankSets.has(p))pageRankSets.set(p,new Set());
+ pageRankSets.get(p).add(rank);
+}
+const pageRankDistinct=[...pageRankSets.entries()].map(([p,set])=>[p,set.size]);
+assert.equal(globalRanks.size,28);
+assert.equal(pageRankDistinct.length,55);
+assert.equal(pageRankDistinct.filter(([,n])=>n===28).length,52);
+assert.deepEqual(pageRankDistinct.filter(([,n])=>n!==28),[[22,27],[49,27],[55,24]]);
+assert.equal(pageRankDistinct.filter(([,n])=>n>25).length,54);
+const chapterRankDistinct=chapterRanges.map(([lo,hi])=>{
+ const set=new Set();
+ for(const [p,values] of pageRankSets)if(p>=lo&&p<=hi)for(const v of values)set.add(v);
+ return set.size;
+});
+assert.deepEqual(chapterRankDistinct,[28,28,28,28,28,28,28,28,28]);
 
 const histogram=new Uint32Array(14);
 for(const w of words)histogram[w.length-1]++;
@@ -120,8 +150,13 @@ for(const file of refs){
   bestMarker:String.fromCharCode(65+rank[0].q),expectedK:expected[10],
   markerSecond:String.fromCharCode(65+rank[1].q)});
 }
-console.log(JSON.stringify({result:'PASS; Latin-register discriminator and absolute-output coverage diagnostic, no cipher/key or plaintext',
+console.log(JSON.stringify({result:'PASS; Latin-register discriminator and predecessor-relative rank-map exclusion, no cipher/key or plaintext',
  original:{runes:total,words:words.length,repeat,mean:total/words.length},
  absoluteOutputCoverage:{pages:pageDistinct,visualChapterDistinct:chapterDistinct,
-  interpretation:'excludes only a fixed absolute-rune substitution; a fixed relative-rank map among 28 successors can still emit all 29 absolute runes as the previous ciphertext rune changes'},
+  interpretation:'descriptive only; absolute rune coverage does not constrain relative successor ranks'},
+ relativeSuccessorRankCoverage:{globalDistinct:globalRanks.size,pages:pageRankDistinct,
+  pagesWithAll28:pageRankDistinct.filter(([,n])=>n===28).length,
+  pagesWithMoreThan25:pageRankDistinct.filter(([,n])=>n>25).length,
+  visualChapterDistinct:chapterRankDistinct,
+  interpretation:'a fixed map from 25 ordinary Latin letters to 28 predecessor-relative successor ranks cannot produce 28 distinct ranks; it is excluded globally, per chapter, and on 54/55 physical pages'},
  references:records},null,2));

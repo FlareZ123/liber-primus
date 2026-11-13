@@ -17,13 +17,21 @@ For each of four English references, compare the original 14-bin printed-word hi
 
 **The observed printed-word lengths remain closer to the Latin register than to either GP29 encoding in all four controls.** The source-calibrated GP spelling changes the margin substantially for solved Cicada (0.03580 versus 0.03762) and slightly for Emerson, but it does not reverse the ranking. This confirms that the Latin-register observation is not an artifact of omitting the newly authenticated ING/IO contractions. The comparison remains sensitive to prose style, editorial normalization, and the possibility that printed boundaries are cipher output rather than plaintext boundaries; it is an architectural discriminator, not evidence of Latin plaintext or a recovered cipher. Previous GP29-only necessary-condition screens therefore cannot automatically be extended to ordinary 26-letter input.
 
-## Absolute-output coverage diagnostic and relative-rank caveat
+## Predecessor-relative successor-rank test: a fixed rank map is impossible
 
-The 25 ordinary Latin letters could be mapped in two materially different ways. A **fixed absolute-output substitution** assigns each ordinary letter one fixed GP rune, so it can emit at most 25 distinct nonrepeat rune values. The original nonrepeat positions use all 29 GP rune values in every visual chapter and in 54/55 rune-bearing physical pages (p49 uses 28; p55 uses 25), which excludes that narrow absolute-symbol subcase.
+The 25 ordinary Latin letters could select one of the **28 runes other than the previous ciphertext rune**. To test a stationary rank substitution correctly, normalize each nonrepeat transition using the original GP rune order:
 
-This is **not** a bound on the more natural predecessor-relative construction. If each plaintext letter selects a fixed **rank among the 28 runes other than the previous ciphertext rune**, the absolute output rune changes with the previous ciphertext state. Such a fixed rank map can emit all 29 absolute rune values without changing its rank assignment or key state. Therefore the page/chapter coverage counts do **not** force within-page key changes and do not reject a fixed relative-rank injection. The original proposed family explicitly allows this kind of predecessor-conditioned successor choice; its rank mapping and any key/update rule remain unselected and untested.
+\[
+r_i=C_i-\mathbf{1}[C_i>C_{i-1}],
+\]
 
-The counts are retained in the SFT only as a descriptive source invariant and as an exclusion of fixed absolute-output substitution. They must not be cited as evidence against the relative-successor-rank model.
+where rune indices are zero-based and the previous rune is omitted from the ordered 29-symbol alphabet. This maps each nonrepeat output to its rank in \(0,\ldots,27\), removing the predecessor-dependent absolute rune identity.
+
+Across the original 12,815 nonrepeat positions, **all 28 successor ranks occur**. Every one of the **nine** visual chapters uses all 28 ranks. **52/55** rune-bearing physical pages use all 28; p22 and p49 use 27 each, and p55 uses 24. Thus **54/55 pages** individually use more than 25 distinct ranks.
+
+If one reserved Latin letter is the repeat marker, only **25 ordinary plaintext letters** remain. A fixed mapping from those 25 letters to 28 successor ranks—whether injective or not—can emit at most 25 distinct ranks. The observed 28 therefore excludes a stationary rank substitution globally, per visual chapter, and on 54/55 pages. Unlike absolute-rune coverage, this is the correct predecessor-normalized invariant for the proposed 28-successor mechanism.
+
+This does **not** exclude a mapping whose rank assignment changes within a page/word/line, a genuinely position-keyed encoder, or a different plaintext register. Such a dynamic map needs a source-selected update rule/key and an independently predictive inverse; none is currently established. The absolute-output coverage counts remain a descriptive diagnostic only and are not used for this conclusion.
 
 ## One explicit rare-marker mechanism worth discriminating
 
