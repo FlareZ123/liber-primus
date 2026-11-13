@@ -59,11 +59,12 @@ for (let w=0;w<lengths.length;w++) {
   const rawForward=isFunction(P,C);
   const rawInverse=isFunction(C,P);
   const deltaInverse=isFunction(D,P.slice(1));
+  const deltaForward=isFunction(P.slice(1),D);
   rows.push({
     word:w+1, sourceP55Offset:46+offset, runes:n,
-    rawForward,rawInverse,deltaInverse,
+    rawForward,rawInverse,deltaInverse,deltaForward,
     rawClashes:!rawForward||!rawInverse,
-    deltaClash:!deltaInverse
+    deltaClash:!deltaInverse||!deltaForward
   });
   offset+=n;
 }
@@ -73,7 +74,9 @@ assert.deepEqual(rows.map(r=>r.rawForward),
 assert.deepEqual(rows.map(r=>r.rawInverse),
   [true,false,false,true,false,true,true]);
 assert.deepEqual(rows.map(r=>r.deltaInverse),
-  [true,false,false,true,false,false,true]);
+  [true,false,false,true,false,true,true]);
+assert.deepEqual(rows.map(r=>r.deltaForward),
+  [true,false,true,true,true,false,true]);
 assert.equal(rows.filter(x=>x.rawClashes).length,4);
 assert.equal(rows.filter(x=>x.deltaClash).length,4);
 
