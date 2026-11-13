@@ -81,7 +81,7 @@ def selftest() -> None:
     with tarfile.open(fileobj=fixture, mode="w:gz") as tar:
         for name, data in (
             ("2017/empty.txt", b"nothing"),
-            ("2017/index.txt", b"x" * (CHUNK - 14) + CANDIDATE + b"\n" + CONTROLS[0]),
+            ("2017/index.txt", b"x" * (CHUNK - 15) + b"\n" + CANDIDATE + b"\n" + CONTROLS[0]),
             ("../not-extracted/test.txt", CONTROLS[1]),
         ):
             member = tarfile.TarInfo(name)
