@@ -113,6 +113,34 @@ console.log("32-cycle-value AES256-ECB key:",key.toString("hex"));
 console.log("AES256-ECB table plaintext prefix:",decoded.subarray(0,24).toString("hex"));
 console.log("AES256-ECB printable bytes:",printable,"/256 (not recognizable plaintext)");
 
+
+/**
+ * One historical 2014 "let the text guide you" source-key transfer:
+ * concatenate the 33 original orbit words, starting with the 563-selected
+ * word. Use those exact GP tokens as the period-147 Vigenere subtraction key
+ * with an independently reset key phase at each candidate target-page start.
+ * This complete inverse does not fit any original ciphertext parameter.
+ */
+const orbitRuneKey=[...width.path.map(n=>words[n%58][Math.floor(n/58)]).join("")]
+  .map(ch=>corpus.runes.indexOf(ch));
+assert.equal(orbitRuneKey.length,147);
+/** @param {number[]} arr @returns {number} */
+function ioc(arr) {
+  const counts=Array(29).fill(0);
+  for(const v of arr)counts[v]++;
+  return counts.reduce((s,n)=>s+n*(n-1),0)/(arr.length*(arr.length-1));
+}
+for(const [page,expected] of [[32,0.03732782369146005],
+                             [53,0.03621869311405436],
+                             [55,0.03333333333333333]]) {
+  const cipher=corpus.pages.find(p=>p.page===page).indices;
+  const plain=cipher.map((v,i)=>(v-orbitRuneKey[i%147]+29)%29);
+  assert.equal(ioc(plain),expected);
+  assert(plain.every((v,i)=>(v+orbitRuneKey[i%147])%29===cipher[i]));
+  console.log("Source-key 2014-Vigenere transfer, original p"+page,
+    "count:",cipher.length,"decoded IoC:",ioc(plain).toFixed(12));
+}
+
 // Matched original-layout null: each page retains its GP-prime inventory,
 // printed word lengths, and physical page position. Shuffle rune weights only
 // within each of the 55 unknown rune-bearing physical pages. The signed 2016
