@@ -205,6 +205,29 @@ const bestTailDirect = Math.max(...tailAsKeyOutcomes
   .map((r) => r.coincidence_numerator));
 assert.equal(bestTailDirect, 1654);
 assert.equal(Math.max(...tailAsKeyOutcomes.map((r) => r.count_e)), 13);
+// Exhaust the entire hidden-slope GF29 linear mixer family with one global
+// secret output alphabet. If P = sigma(a*C+b*K+d), a != 0, then unknown
+// a, d and arbitrary 29! sigma preserve the IoC of C+(b/a)*K.
+// Thus only the 29 ratios times four source-direction pairs are needed.
+const allSecretLinear = [];
+for (const swap of [false, true]) for (const backwards of [false, true]) {
+  const key = swap ? p39Tail.concat(p3Tail) : combinedBlackTail.slice();
+  if (backwards) key.reverse();
+  for (let ratio = 0; ratio < 29; ratio++) {
+    const decoded = unsolvedRed.map((c, i) => (c + ratio * key[i]) % 29);
+    allSecretLinear.push({
+      swap, backwards, ratio,
+      coincidence_numerator: coincidenceNumerator(decoded)
+    });
+  }
+}
+assert.equal(allSecretLinear.length, 116);
+const allSecretMax = allSecretLinear.reduce((a, b) =>
+  a.coincidence_numerator > b.coincidence_numerator ? a : b);
+assert.deepEqual(allSecretMax, {
+  swap: false, backwards: false, ratio: 17,
+  coincidence_numerator: 1692
+});
 // Independent same-sized original-native positive plant, truly encrypted
 // under the source-extracted 213-rune key, must decrypt losslessly.
 const parable = corpus.pages.find((p) => p.page === 57).indices;
@@ -220,6 +243,12 @@ const plant = Array.from({length: 213}, (_, i) => parable[i % parable.length]);
 const plantCipher = plant.map((v, i) => (v + combinedBlackTail[i]) % 29);
 assert.deepEqual(plantCipher.map((v, i) =>
   (v - combinedBlackTail[i] + 29) % 29), plant);
+const slopePlantCipher = plant.map((v, i) =>
+  (v - 17 * combinedBlackTail[i] + 29 * 17) % 29);
+assert.deepEqual(slopePlantCipher.map((v, i) =>
+  (v + 17 * combinedBlackTail[i]) % 29), plant);
+assert.ok(coincidenceNumerator(plant) / (213 * 212) >
+  allSecretMax.coincidence_numerator / (213 * 212));
 console.log(JSON.stringify({
   source: { p3: { offset: 119, indices: red[0].indices, sum: s0 },
     p39: { offset: 119, indices: red[1].indices, sum: s1 } },
@@ -246,6 +275,14 @@ console.log(JSON.stringify({
     source_pair_matches_213: suffixPairMatches.length,
     original_trial_results: tailAsKeyOutcomes,
     highest_trial_ioc: bestTailDirect / (213 * 212),
+    all_secret_affine_mixer: { source_orientations: 4, coefficients: 29,
+      models: allSecretLinear.length,
+      arbitrary_output_substitution_also_covered: true,
+      maximal_original_coincidence_numerator: allSecretMax.coincidence_numerator,
+      maximal_original_ioc: allSecretMax.coincidence_numerator / (213 * 212),
+      maximizing_parameters: {swap: allSecretMax.swap,
+        backwards: allSecretMax.backwards, ratio: allSecretMax.ratio},
+      native_solved_parable_plant_ioc: coincidenceNumerator(plant) / (213 * 212) },
     parable_original_length: parable.length,
     p3_black_tail_F_offsets: p3TailF,
     solved_parable_F_offsets: parableF,
