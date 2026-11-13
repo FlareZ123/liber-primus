@@ -169,6 +169,16 @@ const p53Original = group[13].indices;
 const red53Prime = p53Original.slice(128, 179).map((x) => corpus.prime[x]);
 const red53Sum = red53Prime.reduce((sum, x) => sum + x, 0);
 assert.equal(red53Sum, 2262);
+// More geometry-faithful control: preserve exact contiguous 51-rune shape
+// and shift its start through every legal window of the original page.
+const contiguousSums = Array.from(
+  { length: p53Original.length - 51 + 1 },
+  (_, start) => p53Original.slice(start, start + 51)
+    .reduce((sum, x) => sum + corpus.prime[x], 0));
+assert.equal(contiguousSums.length, 129);
+assert.deepEqual(contiguousSums.flatMap((sum, i) =>
+  sum === red53Sum ? [i] : []), [128]);
+assert.equal(Math.min(...contiguousSums), red53Sum);
 const sourceSquares = fs.readFileSync(path.join(
   __dirname, "..", "resources", "cicada2014-openpuff-magic-squares.txt"), "utf8");
 const squares = sourceSquares.trim().split(/\r?\n\s*\r?\n/);
@@ -211,6 +221,8 @@ assert.equal(shuffleExact, 98);
 const page53Bridge = {
   page: 53, spiralIndex: 13, printedCell: printedP15[13],
   primeAtIndex: recovered[13], redLength: 51, redPrimeSum: red53Sum,
+  contiguousWindowCount: contiguousSums.length,
+  contiguousExactMatches: 1, contiguousMinimumAtSourceRed: true,
   historicalMagicCenter: historicalCenter,
   exactSourceCheck: red53Sum + printedP15[13] + historicalCenter,
   fixedMarginShuffles: shuffleTrials, exactShuffleHits: shuffleExact,
