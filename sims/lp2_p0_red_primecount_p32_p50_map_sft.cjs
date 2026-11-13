@@ -29,6 +29,17 @@ const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 assert.equal(p32.length, 121);
 assert.equal(p50.length, 0);
 assert.equal(grid.bytes.length, 256);
+// Signed image's 563 and 569 pixels are primes #103 and #104.
+// Original grid addresses #103/#104 are the last two bytes of row 13.
+const row13 = grid.bytes.slice(96, 104);
+assert.deepEqual(row13, [222, 150, 72, 34, 83, 229, 32, 206]);
+assert.equal(grid.bytes[102] % 58, 32);
+assert.equal(grid.bytes[103] % 58, 32);
+const six = grid.bytes.filter(v => v % 58 === 32).length;
+assert.equal(six, 6);
+const adjacentMatchingPage = grid.bytes.slice(0, -1)
+  .filter((v, i) => v % 58 === grid.bytes[i + 1] % 58).length;
+assert.equal(adjacentMatchingPage, 8);
 /** @param {number} max */
 function primeCountTable(max) {
   const prime = new Uint8Array(max + 1).fill(1);
@@ -109,6 +120,16 @@ const inverse = sign => {
   assert.deepEqual(plain.map((p, i) => mod29(p - sign * ring[i % 40])), p33Body);
   return { ioc: ioc(plain), first31: plain.slice(0, 31).map(i => corpus.translit[i]).join("") };
 };
+const rowKey = row13.map(v => v % 29);
+const directRow = ciphertext => {
+  const decrypt = sign => {
+    const plain = ciphertext.map((c, i) => mod29(c + sign * rowKey[i % 8]));
+    assert.deepEqual(plain.map((p, i) => mod29(p - sign * rowKey[i % 8])), ciphertext);
+    return { ioc: ioc(plain), prefix: plain.slice(0, 31)
+      .map(i => corpus.translit[i]).join("") };
+  };
+  return { rawIoc: ioc(ciphertext), minus: decrypt(-1), plus: decrypt(1) };
+};
 const output = {
   p0Red: { firstWordLength: 8, secondWordLength: 5,
     firstPrimeSum: 347, secondPrimeSum: 315, difference: 32,
@@ -118,6 +139,15 @@ const output = {
     firstColumnPrimeSum: leftCol, circumference: ring.length,
     p32InteriorRunes: interior.length, p33BoundedBodyRunes: p33Body.length,
     p50Runglyphs: p50.length, originalImageNumber: 67, base60GridBytes: grid.bytes.length },
+  signedPrimeRankTableClosure: {
+    width: 563, height: 569, widthPrimeRank: 103, heightPrimeRank: 104,
+    byte103: grid.bytes[102], byte104: grid.bytes[103], physicalPages: 58,
+    bothPointToPhysicalPage: 32, selectedRow: 13, columns: [7, 8],
+    bytesWithPage32Residue: six, adjacentPairsSameMod58: adjacentMatchingPage,
+    fixedInventoryPairProbability: six * (six - 1) / (256 * 255) },
+  directRow13ByteKey: { originalBytes: row13, gp29Residues: rowKey,
+    originalP32: directRow(p32), originalP33Body: directRow(p33Body),
+    verdict: "Neither direct source-selected GP29 key sign yields plaintext." },
   finitePopulation: { adjacentPrintedWordPairs: words.length - 1,
     exactMatches: hits },
   directP32RingToP33: { rawIoc: ioc(p33Body), subtraction: inverse(-1), addition: inverse(+1),
