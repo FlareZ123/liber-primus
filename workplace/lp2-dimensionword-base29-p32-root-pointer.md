@@ -1,39 +1,22 @@
-# Dimension-selected GP words as a proposed BASE29 address into the p32 tree
+# Rejected BASE29 root-address interpretation of the two 2016 dimension-selected words
 
-**Agent46, 13 November 2026. Classification: provisional source-derived addressing hypothesis, with two direct navigation failures; no decoded LP2 plaintext or authentic key.** Reproducer: [original-cipher single-file test](../sims/lp2_dimword_base29_root121_source_gate_sft.cjs).
+**Agent46, 13 November 2026. Corrected source-original decision: the proposed common 121-position p32 address does not exist. No unknown plaintext, key, or decipherment operation recovered.** [Revised original-source single-file test](../sims/lp2_dimword_base29_root121_source_gate_sft.cjs).
 
-## Proposed human solve path
+The independently signed 2016 Cicada carrier measures **563×569**. Both values select exactly one original LP2 unknown complete rune word by standard GP-prime sum: **p0 word6** `NEWBASOEEOINGU` (11 runes; sum563) and **p1 word33** `JFINIACYEAIIA` (10 runes; sum569). This prior-known source correspondence suggested applying the genuinely historical 2013 positional BASE29 operation to the GP-index values of the two words, then reducing modulo **121** to address p32's 121 original runes.
 
-The **signed 2016 Cicada tree image measures 563×569 pixels**, a fact already tied to the prime totals of the **first row and first column** of a proposed 11×11 reflow of original LP2 p32. The 2016 message says that Liber Primus's words are the map and its numbers the direction. Source-constrained previous research independently found that precisely two original unknown LP2 complete words have these GP-prime sums: **p0 word6 (563)** and **p1 word33 (569)**. Historical 2013 signed Cicada instructions actually demonstrate **BASE29 integer conversion**; applying that operation to the original GP indices of these exact two image-dimension-selected words is a specific candidate human puzzle step.
+## Exact source-correction and failed gate
 
-The original GP29 indices are:
+| Word | GP indices read directly from the original transcription | BASE29 integer | Residue mod121 |
+| --- | --- | ---: | ---: |
+| p0 word6 | `9,18,7,17,24,15,22,12,10,21,1` | 4051303299344240 | **115** |
+| p1 word33 | `11,0,10,9,27,5,26,28,10,27` | 159757015902945 | **32** |
 
-| Word | Physical location | Indices | Authentic GP-prime sum | Positional BASE29 integer |
-| --- | --- | --- | ---: | ---: |
-| `NEWBASOEEOINGU` | p0 word6 | `9,18,7,17,24,15,22,12,10,21,1` | 563 | 4051303299344240 |
-| `JFINIACYEAIIA` | p1 word33 | `11,0,10,9,28,5,26,27,10,28` | 569 | 159757036413254 |
+**The original residues differ.** The abandoned earlier claim that both equal115 came from incorrectly copying three GP rune identities in p1 as `11,0,10,9,28,5,26,27,10,28`; that incorrect sequence has GP-prime sum **571**, not the actual source's **569**, and spells a different word. Its numerical coincidence was entirely an input error. The source-exact revised script asserts the original corpus indices, original printed words, their unique sums across **2,896 canonical complete words**, true BASE29 integers, conflicting addresses and independent p32 symbols.
 
-**New conditional coincidence:** both integers have **residue 115 modulo 121**. The source p32 contains exactly **121 original runes**. In the common but **analyst-imposed** row-major 11×11 square, zero-based offset **115 = row10, column5** denotes the **bottom-centre rune `ᛄ` (GP J, prime 37)**. The already known literal `BUDS` fragment is at **p32 offsets93–96**, beginning row8 column5, on the same central column two rows above. The original p32 has a tree illustration, making a rootward address a possible semantic navigation clue. **Important source correction:** the signed-2016 image tree and p32's original tree are different stock artworks, as independently established by [Agent2's 2016 source-image registration](../im-results/cicada2016-oak-stock-intrinsic-size-gate.md). This materially weakens the case for the signed image selecting p32; the dimension/11×11 relation is a postselected arithmetic correspondence and the rootward narrative is speculative.
+In an optional, **analyst-imposed** 11×11 row-major reflow of p32, offset115 corresponds to bottom-centre `J` (row10,col5) and offset32 to `TH` (row2,col10). The literal p32 cipher sequence `BUDS` starts at offset93 (row8,col5); its proximity to one failed address has **no selection value**. The mirrored/reread conventions also give distinct destinations: reversing both source words yields **42/62**, and applying one-based digit values gives **17/87**. There is no source-defined common destination.
 
-This is a second-stage interpretation of prior-known coincidences, not an authenticated Cicada decoding instruction. In particular, original p32 typography uses **six irregular printed lines**, so neither 11×11 row-major arrangement nor the root coordinate is literally printed. The 2013 BASE29 precedent concerns text numerals and does not prescribe interpreting GP ciphertext words as addresses or reducing modulo121. The two words were first selected by their prime sums, a different GP operation; the combination is inferential. The p32 source artwork is **not** a direct copy of the signed-2016 tree and cannot independently validate the layout.
-
-## Original-source controls and decisive tests
-
-The result uses the unchanged canonical corpus/transcription; all original indexes, primes and sums are asserted by the reproducer. Both word sums are **unique** over the original 2,896 unknown printed words in the canonical transcription under that exact source-defined GP-prime summation.
-
-The two natural alternative readings do **not** preserve the destination: reverse GP digit order gives residues **42/23**; replacing source GP indices `0..28` with one-based `1..29` gives residues **17/49**. This makes the candidate quite convention-sensitive.
-
-An **exact within-word positional permutation null** enumerates all **11! × 10!** slot permutations, preserving each word's multiset. Per-word residue-115 counts are **329,116 of 39,916,800** and **29,756 of 3,628,800**. Independent slot shuffles yield **P(both at 115) = 0.00006760904402939418** and **P(same residue, whichever of 121) = 0.008264461541149772**. These are *conditional* probabilities only. The p32 layout, address operation, selected words, and rootward meaning were examined in a project with extensive earlier hypothesis exploration. **They cannot be treated as discovery-wide surprise probabilities or evidence of intentional authorship.**
-
-Two frozen, simple original GP-prime navigation consumers were tested from starting position115 on the unaltered p32 rune sequence, stopping upon the first repeated address:
-
-| Rule | Source-original readout | Stops |
-| --- | --- | --- |
-| `next = GPprime[current rune]` | `JXIAUWIA` | Preperiod3, cycle3 |
-| `next = (current + GPprime[current rune]) mod121` | `JOWMIAFTXOETHX` | Cycle11 from start |
-
-**Neither provides an instruction or readable plaintext.** Modulo-121 equality and exact address reachability say nothing about a decipherment key. A new source-authenticated traversal/read-order rule or an independent key consumer must select any further decoding experiment; pursuing arbitrary phase shifts, secret constants or language-selected walks from position115 would be unjustified.
+The picture itself provides no rescue: [an independent original-artwork check](../im-results/cicada2016-oak-stock-intrinsic-size-gate.md) establishes that the signed-2016 image's leafless tree and the original p32/p55 artwork are **distinct stock images**. The common tree theme cannot establish a literal identical-image pointer to p32. The 11×11 p32 layout is a mathematical rearrangement rather than original printed line order.
 
 ## Decision
 
-Preserve the dimension-word → source GP29 positional integer → p32 root-address candidate as **provisional**. Do not elevate it to `results/` or change the established project status. The only positive deliverable is a constrained possible pointer; both simplest rune-prime walks are original-cipher negatives. The next important evidence would be an **independent original** cue selecting base29 address reduction and a complete navigation operation that yields sustained prose from untouched ciphertext or leads to an authentic new key. A failed independent selector should retire the branch.
+**Retire** the direct width/height-selected BASE29-word → common p32-root route. Earlier combinatorial chance estimates, speculative p32 walks from the false common root, and a proposed shared pointer were withdrawn: they used an erroneous original p1 rune sequence and have no interpretive force. There is no reason to fit offsets, modulo bases, or direction conventions to make the two distinct residues agree. If a separate creator-authentic operation selects p32 navigation in future, it must begin from the actual original runes and independently specify the decoder. This closed candidate does not change the project's authoritative unsolved status.
