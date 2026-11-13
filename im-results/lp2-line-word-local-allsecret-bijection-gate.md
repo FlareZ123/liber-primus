@@ -108,10 +108,40 @@ A frozen 32,228-word Latin lexicon combines the repository's TextBlob spelling l
 
 **Decision and limits:** All *per-word independently affine GP29 shift keys* are excluded for plaintext composed exclusively of this finite GP-native English vocabulary under original printed word segmentation. This test does not exclude English spellings absent from the dictionary, proper names, alternate languages/registers, different word segmentation, higher-order/nonlinear state, deletions/insertions, or multi-rune encodings. It discovers no authentic unknown-LP2 plaintext or key. Avoid further slope tuning without independent evidence selecting a different model.
 
+## All-secret independent per-word polynomial pads through degree eight (13 November 2026)
+
+**Original-input extension beyond the unrestricted two-parameter affine case.** The previous per-word test allows two independent parameters per printed word. This extension grants **up to nine freely chosen GP29 coefficients per word**, with the polynomial degree selected separately for every word. A source-visible printed word of length \(L\), indexed \(j=0,\ldots,L-1\), follows the hypothetical cipher
+
+\[
+C_{w,j}=P_{w,j}+\sum_{k=0}^{d}a_{w,k}{j\choose k}\pmod{29},\quad 0\le d\le8.
+\]
+
+The Newton/binomial basis represents every polynomial of degree at most \(d\) over \(\mathbb F_{29}\) on the source lengths \(L\le14\). All \(a_{w,k}\) are unconstrained, independent secrets, so the experiment does not try guessed keys. The **complete key-independent test** is that the \((d+1)\)-st discrete forward difference of the ciphertext word must equal the same-order difference of a candidate GP-native plaintext word. This condition is both necessary and sufficient for a polynomial pad of degree at most \(d\): the first \(d+1\) source differences determine the Newton coefficients, including when \(L\le d+1\) and the condition is automatically satisfied.
+
+The independent lexical register uses the same GP transliteration, source-authentic word parsing, and reference sources as the preceding affine test. Its current TextBlob/Shakespeare/Gibran/Emerson/solved-page fixtures produce **32,232 distinct Latin word forms**, compared with 32,228 in the earlier frozen affine run; the additional forms leave the original affine tallies unchanged. The original manuscript has **2,896 words**, including **559 of length at least seven**, **109 of length at least ten**, and **25 of length at least twelve**.
+
+| Greatest freely chosen polynomial degree per word | Compatible original words / 2,896 | Compatible length ≥7 / 559 | Compatible length ≥10 / 109 | Compatible length ≥12 / 25 |
+| ---: | ---: | ---: | ---: | ---: |
+| 0 | 1,048 | **0** | **0** | **0** |
+| 1 | 1,788 | **0** | **0** | **0** |
+| 2 | 2,127 | **0** | **0** | **0** |
+| 3 | 2,380 | 44 | **0** | **0** |
+| 4 | 2,585 | 248 | **0** | **0** |
+| 5 | 2,719 | 382 | **0** | **0** |
+| 6 | 2,791 | 454 | 5 | **0** |
+| 7 | 2,841 | 504 | 54 | **0** |
+| 8 | 2,869 | 532 | 82 | **1** |
+
+This is a **whole-manuscript obstruction to arbitrary word-independent polynomial pads of any degree from zero through eight**, under the tested English lexicon and exactly preserved source word boundaries. In particular, all 559 original length-≥7 words fail the quadratic-or-lower source-word signature, even though each cipher word can have its own 29³ candidate key triples. At degree eight, the only compatible original word of length at least twelve is length-twelve **word ordinal 512**, with the isolated candidate **diametrically**. The other 24 original words of that length class have zero candidates, including every length-thirteen and length-fourteen word. The unique candidate is merely a high-degree numerical fit, **not plaintext recovery**; no manuscript clue specifies its word, the degree-eight polynomial or the required nine secret coefficients.
+
+The original-input [single-run CJS reproducer](../sims/lp2_word_independent_polynomial_allsecret_sft.cjs) checks the 12,956 exact source rune indices, source-correct word parsing, 95/95 known p57 cleartext GP runes, and the original counts for every degree. For **each** degree 0 through 8 it also generates an independently keyed native-English positive plant over all **559 long-word slots**, proving exact inverse recovery of **4,644/4,644 runes** by the true secret polynomial and preservation of the source dictionary signature. All checks passed in [manual-only GitHub Actions run 43338640041](https://github.com/FlareZ123/liber-primus/actions/runs/43338640041).
+
+**Cryptanalytic decision:** Do not extend the prior independent per-word affine-key search to degree-two, degree-three or any degree-eight-or-lower fixed-polynomial pad while assuming printed word-preserving English: even unrestricted unknown word keys cannot meet the original's long-word finite-difference constraints. This does not exclude text absent from the pinned lexicon, non-English source material, changing within-word state beyond a fixed low-degree polynomial, different segmentation, transpositions between words, or multi-symbol transformations. No original cipher, key, unknown-page plaintext or destination has been recovered.
+
 ## Inversion controls and reproducibility
 
 A different random secret 29-rune alphabet is independently assigned to every unit. Each planted GP-native ciphertext is reversed using the true per-unit inverse alphabet, recovering **12,956/12,956** positions. The within-unit equality invariant is preserved exactly: the 594-independent-line-key plant has 7,780 matching pairs and the 2,896-independent-word-key plant has 1,409. The reproducible PRNG uses initial state 0x3301a033.
 
 The full regression, including original source assertions, the authentic solved-text control, all 29 arithmetic-progressive slopes and a reversible 2,896-secret-seed plant, passed in [manual Node 22 CI run 43126922385](https://github.com/FlareZ123/liber-primus/actions/runs/43126922385). Existing manual-only workflow was extended; no per-commit CI hook was added.
 
-**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. The all-secret global-linear-progression word-reset family also fails. Prioritize a source-indicated genuinely nonlinear within-word operation, alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
+**Consequence for decrypting LP2:** Reject the class of all line-static and word-static monoalphabetic GP29 ciphers under the tested English registers, including independent Caesar shifts for every word or line and their within-unit transpositions. The all-secret global-linear-progression word-reset family and independently secret polynomial word-pads through degree eight also fail under the stated finite lexicon. Prioritize a source-indicated genuinely nonlinear within-word operation, alternate register, segmentation, or multi-symbol transform. These are still open research routes. This experiment recovered no authentic key, unknown page plaintext, or continuation destination.
