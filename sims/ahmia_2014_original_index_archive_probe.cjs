@@ -72,6 +72,7 @@ async function main() {
   const control=await cdx('www.sapo.pt',3);
   const original=await cdx(host,5000);
   const www=await cdx('www.'+host,5000);
+  const sourceCounts={root:original.captures.length,www:www.captures.length,control:control.captures.length};
   const all=[...original.captures,...www.captures].map(getRecord);
   const distinct=new Map(all.map(c=>[c.timestamp+'|'+c.url,c]));
   const records=[...distinct.values()];
@@ -96,9 +97,9 @@ async function main() {
   const report={
     schema:1, generatedAt:new Date().toISOString(),
     question:'Can an external archive provide dated 2014-15 Ahmia URL/HTML evidence for Cicada LP2?',
-    knownHosts, control:{...control, count:3}, indexes:[
-      {...original,count:all.length-valid.length?all.length:records.length},
-      {...www,count:records.length},
+    knownHosts, control:{...control,count:sourceCounts.control}, indexes:[
+      {...original,count:sourceCounts.root},
+      {...www,count:sourceCounts.www},
     ],
     unique2014to2015Captures:valid.length,
     distinctSourceUrls:new Set(valid.map(c=>c.url)).size,
