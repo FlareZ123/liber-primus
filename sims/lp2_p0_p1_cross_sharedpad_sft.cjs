@@ -223,8 +223,8 @@ const variants = [
 const originals = variants.map(v => ({ ...v,
   ...minOov(0, 1, undefined, undefined, v.reverseA, v.reverseB, v.op)
 }));
-assert.deepEqual(originals.slice(0,4).map(x => x.minOov), [14, 16, 16, 14]);
-assert.deepEqual(originals.slice(0,4).map(x => x.firstForced), [12, 12, 12, 7]);
+assert.deepEqual(originals.map(x => x.minOov), [14, 16, 16, 14, 14, 14, 15, 12]);
+assert.deepEqual(originals.map(x => x.firstForced), [12, 12, 12, 7, 12, 12, 15, 19]);
 
 /* Build native-GP controls from unchanged Gibran words of matching lengths. */
 const gibranWords = read("resources/control/gibran_prophet_58585.txt")
@@ -322,8 +322,8 @@ for (const {reverseA, reverseB, op} of variants) {
     matchedSamePad:good.minOov, independentPads:bad.minOov});
 
 }
-assert.deepEqual(controls.slice(0,4).map(x => x.matchedSamePad), [2,2,2,1]);
-assert.deepEqual(controls.slice(0,4).map(x => x.independentPads), [14,11,16,16]);
+assert.deepEqual(controls.map(x => x.matchedSamePad), [2,2,2,1,1,1,1,3]);
+assert.deepEqual(controls.map(x => x.independentPads), [14,11,16,16,12,15,14,14]);
 console.log(JSON.stringify({
   source:"Original LP2 p0+p1 shared black crosses, additive pad both signs and p1 orientations",
   pageLengths:[pages.get(0).runes.length,pages.get(1).runes.length],
