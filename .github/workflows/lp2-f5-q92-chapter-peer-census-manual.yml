@@ -25,6 +25,10 @@ jobs:
           for i in $(seq 0 55); do
             /tmp/lp2-chapter-peer resources/liber-primus "$i" | tee -a im-results/lp2-f5-q92-chapter-peer-census/originals.csv
           done
+          gcc -O3 -Wall -Wextra -o /tmp/lp2-pairgraph sims/lp2_f5_q92_pair_graph.c -ljpeg
+          /tmp/lp2-pairgraph resources/liber-primus > im-results/lp2-f5-q92-chapter-peer-census/original_pair_graph.csv
+          wc -l im-results/lp2-f5-q92-chapter-peer-census/original_pair_graph.csv
+          head -n 30 im-results/lp2-f5-q92-chapter-peer-census/original_pair_graph.csv
       - uses: actions/upload-artifact@v4
         if: always()
         with:
