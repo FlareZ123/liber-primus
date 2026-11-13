@@ -92,11 +92,17 @@ def main(path):
     counters = Counter()
     shapes = Counter()
     thirteen = []
+    red_interior_means = []
     for scan, image in source_images(path):
         red_boxes, red_centers = components(image)
         for boxes in groups(red_boxes, red_centers):
             normalized = geometry(boxes)
             size = len(normalized)
+            for x, y, w, h, area in boxes:
+                x, y, w, h = map(int, (x, y, w, h))
+                red_interior_means.append(float(np.mean(
+                    image[y + 2:y + h - 2, x + 2:x + w - 2, 2]
+                )))
             counters[("red", size)] += 1
             for x, y, w, h, area in normalized:
                 shapes[(int(w), int(h), int(area))] += 1
@@ -134,6 +140,13 @@ def main(path):
     assert int(np.ptp(layouts[:, :13], axis=0).max()) <= 2
     assert int(np.ptp(layouts[:, 13:], axis=0).max()) <= 1
 
+    red_values = np.asarray(red_interior_means, dtype=np.float64)
+    assert red_values.size == 453
+    assert 188.9 <= float(red_values.min()) <= 189.1
+    assert 194.3 <= float(red_values.max()) <= 194.6
+    assert float(red_values.std()) < 1.1
+    assert float(red_values.max() + 20) > 195  # source-contrast plant
+
     # In-memory corruption test: a missing interior pixel breaks the exact
     # square-area invariant even when the rest of a glyph is unchanged.
     planted = np.array([[0, 0, 9, 9, 80]], dtype=np.int32)
@@ -151,6 +164,11 @@ def main(path):
         "thirteen_mark_count": len(thirteen),
         "max_13dot_relative_x_spread_px": int(np.ptp(layouts[:, :13], axis=0).max()),
         "max_13dot_relative_y_spread_px": int(np.ptp(layouts[:, 13:], axis=0).max()),
+        "red_interior_rgb_r_min": float(red_values.min()),
+        "red_interior_rgb_r_max": float(red_values.max()),
+        "red_interior_rgb_r_mean": float(red_values.mean()),
+        "red_interior_rgb_r_sd": float(red_values.std()),
+        "planted_red_fill_plus20_detected": True,
         "planted_missing_dot_pixel_detected": True,
     }, indent=2))
 
