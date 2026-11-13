@@ -127,6 +127,9 @@ assert.equal(cribMatches,1,"moth-matched seven-word candidate direct pad predict
 // p55's 75-body / 25-table shape. Include a predecessor-difference cipher
 // variant suggested by the original global anti-repeat ciphertext property.
 const sourceSuffix=page.slice(46);
+assert.equal(sourceSuffix.length,30);
+assert(!sourceSuffix.includes(0),
+  "original 30-rune suffix has no ciphertext F to interrupt a 25-phase clock");
 const requiredStep=sourceSuffix.map((cipher,i)=>
   mod29(cipher-page[45+i]-crib[i]));
 const period25Witnesses=[];
