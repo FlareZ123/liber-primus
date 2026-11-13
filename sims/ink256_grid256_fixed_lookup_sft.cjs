@@ -75,7 +75,7 @@ const byteValues = grid.bytes;
 // A stronger cardinality obstruction independent of event/byte alignment:
 // interpret one source-ink symbol as a stationary five-bit field and the
 // eight printed columns as a three-bit field of each original table byte.
-// There are 31 indistinguishable 13-dot events, so their common five-bit
+// There are 30 identical red 13-dot events (and one black), so one five-bit
 // symbol requires a table bitfield value present at least 31 times.
 // This necessary condition survives arbitrary event shuffles, unknown
 // rune-alphabet relabeling and any permutation of table positions.
@@ -87,7 +87,10 @@ function maximumFiveBitMultiplicity(bytes, shift) {
 }
 const markerCount = ink.pages.reduce((total,p) => total +
   (p.large_punctuation || []).filter(m => m[1] === 13).length, 0);
+const redMarkerCount = ink.pages.reduce((total,p) => total +
+  (p.large_punctuation || []).filter(m => m[1] === 13 && m[2] === "red").length, 0);
 assert.equal(markerCount, 31);
+assert.equal(redMarkerCount, 30);
 const symbols59 = grid.byte_count;
 assert.equal(symbols59, 256);
 const radix59Alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".replace("f", "");
@@ -106,12 +109,12 @@ assert.deepEqual(directBitfieldMaxima, {
   base60High5: 16, base60Low5: 14,
   base59High5: 14, base59Low5: 14
 });
-assert(Object.values(directBitfieldMaxima).every(v => markerCount > v));
-// Positive control: when 31 identical marker symbols are represented by
+assert(Object.values(directBitfieldMaxima).every(v => redMarkerCount > v));
+// Positive control: when 30 identical red marker symbols are represented by
 // the same five-bit digit, both five-bit orientations retain multiplicity>=31.
 const planted = Array.from({length:256}, (_,i) =>
-  i < markerCount ? (31 << 3) | (i % 8) : ((i % 29) << 3) | (i % 8));
-assert(maximumFiveBitMultiplicity(planted, 3) >= markerCount);
+  i < redMarkerCount ? (31 << 3) | (i % 8) : ((i % 29) << 3) | (i % 8));
+assert(maximumFiveBitMultiplicity(planted, 3) >= redMarkerCount);
 
 const sourceEvents = inkEvents();
 assert.equal(byteValues.length, 256);
@@ -157,6 +160,6 @@ console.log(JSON.stringify({
     exactLowerTailRank:atMostOriginal/256
   },
   plantedStationaryMap:positiveResult,
-  impossibleDirectFivePlusThreePacking:{markerCount,directBitfieldMaxima},
+  impossibleDirectFivePlusThreePacking:{markerCount,redMarkerCount,directBitfieldMaxima},
   conclusion:"No stationary byte-to-ink lookup or direct 5+3-bit ink-to-grid packing; no original cipher plaintext or key."
 },null,2));
