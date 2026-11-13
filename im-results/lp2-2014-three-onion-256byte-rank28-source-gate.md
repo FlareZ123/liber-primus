@@ -10,7 +10,7 @@ A human solver could compare all three 2014 registers with the later table, and 
 
 ## Frozen, reversible tests
 
-Use source order without byte shifts or arbitrary rotations. Let \(A,B,C\) be the 1033, 761, and 3301 bytes and \(T\) the printed table. Construct the **15** distinct nonzero XOR subsets of \(\{A,B,C,T\}\), including \(T\) itself. For each of the **14** subsets involving at least one onion stream, compute its direct XOR against \(T\). The resulting 256-byte strings contain **82–100** printable 7-bit ASCII bytes and no straightforward ASCII instruction or leading common file header. This is only a direct-message failure; arbitrary binary ciphertexts remain conceivable.
+Use source order without byte shifts or arbitrary rotations. Let \(A,B,C\) be the 1033, 761, and 3301 bytes and \(T\) the printed table. Construct the **15** distinct nonzero XOR subsets of \(\{A,B,C,T\}\), including \(T\) itself. For each of the **14** subsets involving at least one onion stream, compute its direct XOR against \(T\). The resulting 256-byte strings contain **77–105** printable 7-bit ASCII bytes and no straightforward ASCII instruction or leading common file header. This is only a direct-message failure; arbitrary binary ciphertexts remain conceivable.
 
 For each of the 15 keys, repeat its **256 source bytes** from the first original unsolved rune and test two additive signs:
 
