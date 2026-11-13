@@ -85,6 +85,41 @@ for (let period = 2; period <= 1024; period++) {
   assert.equal(permitsBoundaryOnlyRepeats(p9.repeats, period), false);
 }
 
+/**
+ * Minimal source collisions that must occur inside some fixed-length block:
+ * choose the most favourable phase, either globally or independently per page.
+ * @param {number} period
+ * @returns {{ globalExceptions: number, pageExceptions: number }}
+ */
+function minimumInternalExceptions(period) {
+  const globalPhaseCounts = Array(period).fill(0);
+  let maximumSavedWithPagePhases = 0;
+  let totalEvents = 0;
+  for (const { repeats } of records) {
+    const pagePhaseCounts = Array(period).fill(0);
+    for (const i of repeats) {
+      globalPhaseCounts[i % period]++;
+      pagePhaseCounts[i % period]++;
+      totalEvents++;
+    }
+    maximumSavedWithPagePhases += Math.max(...pagePhaseCounts);
+  }
+  return {
+    globalExceptions: totalEvents - Math.max(...globalPhaseCounts),
+    pageExceptions: totalEvents - maximumSavedWithPagePhases,
+  };
+}
+assert.deepEqual(minimumInternalExceptions(2),
+  { globalExceptions: 35, pageExceptions: 17 });
+assert.deepEqual(minimumInternalExceptions(5),
+  { globalExceptions: 64, pageExceptions: 34 });
+assert.deepEqual(minimumInternalExceptions(8),
+  { globalExceptions: 67, pageExceptions: 37 });
+assert.deepEqual(minimumInternalExceptions(16),
+  { globalExceptions: 75, pageExceptions: 41 });
+assert.deepEqual(minimumInternalExceptions(32),
+  { globalExceptions: 80, pageExceptions: 43 });
+
 // Frozen constructive positive control: every repeat lies at position 2 mod 5,
 // while the intervening stream runs over the original 29-symbol alphabet.
 const planted = makePlant(5, 2, 217);
@@ -110,4 +145,5 @@ console.log(JSON.stringify({
   plantedPeriod: 5,
   plantedPhase: 2,
   plantedRepeats: plantedRepeats.length,
+  fiveBlockMinimumInternalExceptions: minimumInternalExceptions(5),
 }));
