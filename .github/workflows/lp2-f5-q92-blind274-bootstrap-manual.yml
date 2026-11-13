@@ -1,0 +1,72 @@
+name: LP2 historical F5 blind 274-feature control bootstrap
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate-tools-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Retrieve original 2007 274-feature extractor and inspect build
+        run: |
+          set -eu
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev make g++
+          mkdir -p /tmp/pev274
+          curl --fail --location --retry 3 --max-time 90 --output /tmp/pev274/extract.tar.gz https://dde.binghamton.edu/download/ccmerged/extract.tar.gz
+          sha256sum /tmp/pev274/extract.tar.gz
+          tar -tzf /tmp/pev274/extract.tar.gz | sed -n '1,90p'
+          mkdir -p /tmp/pev274/source
+          tar -xzf /tmp/pev274/extract.tar.gz -C /tmp/pev274/source
+          find /tmp/pev274/source -maxdepth 4 -type f | sort | sed -n '1,100p'
+          find /tmp/pev274/source -maxdepth 4 -type f \( -iname 'readme*' -o -iname 'makefile*' \) -print -exec sed -n '1,130p' {} \;
+      - name: Genuine F5 grayscale and RGB roundtrip with three distinct encoders
+        run: |
+          set -eu
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          F5="$(go env GOPATH)/bin/f5"
+          "$F5" version
+          mkdir -p /tmp/f5bootstrap
+          for N in 256 1024 4096; do
+            python3 -c "import hashlib,sys; n=int(sys.argv[1]); q=b''.join(hashlib.sha256(b'LP2-BLIND274-Q92-F5'+i.to_bytes(4,'big')).digest() for i in range((n+31)//32)); open('/tmp/f5bootstrap/payload'+str(n)+'.bin','wb').write(q[:n])" "$N"
+          done
+          for P in 62 71; do
+            for N in 256 1024 4096; do
+              for MODE in embed embed-x embed-jar; do
+                OUT="/tmp/f5bootstrap/p${P}-n${N}-${MODE}.jpg"
+                EXT="/tmp/f5bootstrap/p${P}-n${N}-${MODE}.out"
+                if [ "$MODE" = "embed-jar" ]; then
+                  "$F5" "$MODE" "resources/liber-primus/${P}.jpg" -q 92 -p LP2BLIND274CONTROL -in "/tmp/f5bootstrap/payload${N}.bin" -o "$OUT" || true
+                else
+                  "$F5" "$MODE" "resources/liber-primus/${P}.jpg" -p LP2BLIND274CONTROL -in "/tmp/f5bootstrap/payload${N}.bin" -o "$OUT" || true
+                fi
+                if [ -f "$OUT" ]; then
+                  "$F5" extract "$OUT" -p LP2BLIND274CONTROL -o "$EXT" || true
+                fi
+                if [ -f "$EXT" ] && cmp -s "/tmp/f5bootstrap/payload${N}.bin" "$EXT"; then
+                  echo "CONTROL_PASS page=$P bytes=$N encoder=$MODE"
+                else
+                  echo "CONTROL_FAIL page=$P bytes=$N encoder=$MODE"
+                fi
+                if [ -f "$OUT" ]; then
+                  python3 -c "import sys; b=open(sys.argv[1],'rb').read(); q=next(((int.from_bytes(b[i+2:i+4],'big'),b[i+9]) for i in range(len(b)-10) if b[i:i+2] in [b'\\xff\\xc0',b'\\xff\\xc2']),'absent'); print('CARRIER_SOF',sys.argv[1],q)" "$OUT"
+                fi
+              done
+            done
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: f5-blind274-bootstrap-info
+          path: /tmp/pev274/extract.tar.gz
+          if-no-files-found: ignore
+          retention-days: 7
