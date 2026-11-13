@@ -22,3 +22,5 @@ jobs:
         run: node sims/lp2_onion7_133331_lcg256_carrier_sft.cjs
       - name: Onion7 133/331 full-table and eight-byte direct GP29 decoder SFT
         run: node sims/lp2_onion7_133331_source_pad_consumer_sft.cjs
+      - name: Historical original BLAKE-512 p56 hash of source-linked Onion7 bytes
+        run: cc -O2 -std=c11 -fopenmp -o blake-source-check sims/lp2_onion7_133331_blake512_p56_sft.c && ./blake-source-check
