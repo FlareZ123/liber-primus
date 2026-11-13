@@ -95,6 +95,26 @@ If the cipher additionally has hidden changing state, then the minimum number of
 
 The same original-input CJS test asserts both exact six-event source tuples and excludes missing page-first predecessors.
 
+## Frozen manuscript-visible 16-cell key schedules: issue #701
+
+The **original p15 4×4 Fibonacci-prime spiral** supplies a concrete source-selected sequence of sixteen numbers, beginning at red 3299 and following the already-established clockwise spiral. Its two natural integer representations are the printed absolute differences from 3301 and their underlying Fibonacci-indexed primes. An older [full-cipher inverse](lp2-p15-base29-repeating-key-gate.md) found no readable manuscript plaintext using their expanded BASE29 keys. The present necessary-condition gate is narrower and sharper: can the sixteen direct values even furnish the **fourteen distinct GP29 Caesar alphabets** required by ordinary A/I words across the complete preserved-boundary book?
+
+| Source-visible candidate, original order | Source-period | Distinct mod29 Caesar alphabets | Literal A/I singletons after complete original-cipher subtraction | Literal A/I/O singletons |
+| --- | ---: | ---: | ---: | ---: |
+| Original p15 printed differences reduced modulo29 | 16 | **12** | 4/83 | 6/83 |
+| Recovered p15 Fibonacci-indexed primes modulo29 | 16 | **13** | 1/83 | 5/83 |
+| Printed differences individually expanded to BASE29, concatenated in spiral order | 47 | **18** | 5/83 | 7/83 |
+
+The first two fail the 14-alphabet necessary bound for **any arrangement, placement or repeated phase of these same 16 additive shifts**, if no additional page/word state or different plaintext alphabet is supplied. Their original direct continuous phase-zero inverses also fail on the 83 original singletons. The 47-digit BASE29 key does have 18 different shifts and thus passes the *cardinality* precondition. Under the frozen natural interpretation, **start the source-ordered key at original global rune0, cycle continuously across every original rune and subtract its GP29 shift**, its complete 83 original one-rune words decode to only **5** A/I symbols or **7** A/I/O symbols. Hence it fails the much stronger *literal singleton vocabulary* requirement on **76 of the 83** one-rune words. The source-ordered BASE29 key is:
+
+    3QM3QL3QJ3QH3QB3Q13PA3O33LK3HM3AP2R724MOC1CH5AL
+
+All three tests are exactly reversible on separately planted 83 native A/I singleton symbols at the same source positions, so failure is about original content rather than an implementation inability to invert. No key ordering, unknown alphabet or phase was optimized.
+
+These are **one whole-book, zero-phase additive schedule family** and an all-permutation state-cardinality argument for the 16-value variants. They do not eliminate using p15 only on its own chapter (where the required alphabet count is lower), combining it with an additional independently source-selected state, or employing a nonlinear transformation selected by another original clue. The original image identifies a spiral and its numbers; it does **not** instruct applying a bookwide repeating GP29 addition, even though that is an historically demonstrated Cicada cipher family. This bounded gate contributes no unknown plaintext or authentic key.
+
+**Decision for Director #701:** The conspicuous sixteen-state numerical source fails to supply a complete source-selected preserved-word A/I inverse. The 47-digit historical-format expansion has enough alphabet states but decisively fails actual original singletons in its frozen natural additive reading. The existing original pp49–51 byte grid similarly has abundant numbers but no author-selected GP29 14-state alphabet schedule; many previously tested direct consumers were nonlinguistic. Without a new explicit manuscript selector, a fourteen-alphabet fit would be arbitrary. Preserve the 14-state necessary bound as a front-end to future concrete proposals; retire only these natural p15 source-to-book transfers. A complete 40-rune authentic plaintext proof has not been obtained.
+
 ## Exact positive control and causal use
 
 The [standalone Node 22 CJS source test](../sims/lp2_singleton_word_state_lower_bound_sft.cjs) asserts source rune identity, one-word page handling, the original 83/28 whole-book tally, all nine chapter tallies and p17's 5/5. It then constructs **14 full GP29 bijective alphabets**, each mapping the A and I plaintext indices to two separate output glyphs. Every synthetic symbol recovers exactly, and all 28 outputs are distinct. This shows that 14 is a sharp minimum for m=2 and D=28, not that those maps were used historically.

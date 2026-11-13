@@ -170,6 +170,71 @@ function pageLocalSingletonWitness() {
 
 }
 
+/**
+ * One frozen original-input schedule preflight for the original p15
+ * Fibonacci-prime spiral and the already-published BASE29 expansion.
+ * Phase zero is the first original unsolved rune; no key search occurs.
+ * @param {Array<{runes:string,length:number}>} words All original unsolved words.
+ * @returns {{candidate:string,period:number,distinctAlphabets:number,singletonMatchesAI:number,singletonMatchesAIO:number}[]}
+ */
+function p15SourceScheduleGate(words) {
+  const differences=[3299,3298,3296,3294,3288,3278,3258,3222,
+    3152,3038,2838,2472,1820,708,1206,4516];
+  const primes=[2,3,5,7,13,23,43,79,149,263,463,829,
+    1481,2593,4507,7817];
+  assert.deepEqual(differences,primes.map(p=>Math.abs(3301-p)));
+  const digits="0123456789ABCDEFGHIJKLMNOPQRS";
+  const publishedKey="3QM3QL3QJ3QH3QB3Q13PA3O33LK3HM3AP2R724MOC1CH5AL";
+  const base29=publishedKey.split("").map(c=>digits.indexOf(c));
+  assert.equal(base29.length,47);
+  assert(base29.every(n=>n>=0&&n<29));
+  const base29String=n=>{
+    let x=n;
+    let out="";
+    do {out=digits[x%29]+out;x=Math.floor(x/29)} while(x>0);
+    return out;
+  };
+  assert.equal(differences.map(base29String).join(""),publishedKey);
+  let offset=0;
+  const singleton=[];
+  for(const word of words){
+    if(word.length===1)singleton.push({
+      offset,cipher:corpus.runes.indexOf(word.runes)});
+    offset+=word.length;
+  }
+  assert.equal(offset,12956);
+  assert.equal(singleton.length,83);
+  const schedules=[
+    {candidate:"p15 printed differences mod29",key:differences.map(n=>n%29)},
+    {candidate:"p15 recovered primes mod29",key:primes.map(n=>n%29)},
+    {candidate:"p15 printed BASE29 digits",key:base29},
+  ];
+  const results=schedules.map(({candidate,key})=>{
+    const actual=singleton.map(({offset,cipher})=>
+      (cipher-key[offset%key.length]+29)%29);
+    const singletonMatchesAI=actual.filter(p=>p===24||p===10).length;
+    const singletonMatchesAIO=actual.filter(p=>p===24||p===10||p===3).length;
+    const distinctAlphabets=new Set(key).size;
+    const plant=singleton.map(({offset},i)=>{
+      const plaintext=i%2===0?24:10;
+      const cipher=(plaintext+key[offset%key.length])%29;
+      return (cipher-key[offset%key.length]+29)%29;
+    });
+    assert(plant.every((p,i)=>p===(i%2===0?24:10)));
+    return {candidate,period:key.length,distinctAlphabets,
+      singletonMatchesAI,singletonMatchesAIO};
+  });
+  assert.deepEqual(results,[
+    {candidate:"p15 printed differences mod29",period:16,
+      distinctAlphabets:12,singletonMatchesAI:4,singletonMatchesAIO:6},
+    {candidate:"p15 recovered primes mod29",period:16,
+      distinctAlphabets:13,singletonMatchesAI:1,singletonMatchesAIO:5},
+    {candidate:"p15 printed BASE29 digits",period:47,
+      distinctAlphabets:18,singletonMatchesAI:5,singletonMatchesAIO:7},
+  ]);
+  return results;
+}
+
 function main() {
   const {words,runeCount,crossPageWords}=parseSharedCorpus();
   assert.equal(words.length,2896);
@@ -191,7 +256,8 @@ function main() {
   assert.deepEqual(physical17.glyphs,[4,10,16,17,28]);
   assert.equal(physical17.minimumStates.two,3);
   console.log(JSON.stringify({source:{runes:runeCount,words:words.length,crossPageWords},
-    whole,chapters,physical17,pageLocal:pageLocalSingletonWitness(),positivePlant:runPlant(),
+    whole,chapters,physical17,pageLocal:pageLocalSingletonWitness(),
+    p15SourceSchedules:p15SourceScheduleGate(words),positivePlant:runPlant(),
     scope:"Word boundaries preserved; at most m plaintext singleton types. No historical key."},null,2));
 }
 main();
