@@ -64,6 +64,18 @@ The all-secret maximum-matching calculation is stronger than necessary to reject
 
 This supplies an immediately inspectable counterexample in both possible ring directions **without needing any numeric conversion, language scoring, or key optimization**. Even independently changing the secret token substitution at the p56→p57 page boundary cannot resolve these four examples. The exact original GP indices and table coordinates are checked by the SFT. Any viable alternative must change state *within* a ring/page or use a different kind of encoding.
 
+### Even a newly secret-substituted alphabet for every individual word fails
+
+The most permissive deterministic interpretation of signed 2016's literal **“words are the map”** could give **each original printed word its own fully unrelated secret token→GP29 alphabet**, without sharing any mapping between words or pages. Use only the actual original p56 (25 words) and p57 (20 words) printed boundaries, giving **45 independently secret codebooks** over the fixed 180-rune solved interior.
+
+Even these 45 unfitted arbitrary codebooks are **inconsistent** with the source. The exact maximum correct native GP rune positions is **178/180 clockwise** and **179/180 counterclockwise**. The contradictions occur **within a single word**, and are especially transparent on original p57:
+
+- **CW, clear p57 word “WE”**, GP page offsets37–38: the same source table token **`1Q`** at (16,2) and (15,2) would have to mean **W** then **E**.
+- **CW, solved p56 local word8**, rune offsets25–26: original printed table token **`0W`** at (12,6) and (13,6) would have to mean **I** then **S**.
+- **CCW, solved p56 local word22**, rune offsets73–74: original table token **`1Q`** at (15,2) and (16,2) would have to mean **E** then **C**.
+
+The original token identities and independently established GP plaintext impose these minimal contradictions without assuming **any base60 or base59 interpretation, any permutation key, any language model**, or any coherence across words. An evolving *within-word* key state, a non-deterministic/variable-length transport, or an entirely different plaintext register remains logically possible. This is a source-original direct-output exclusion, not an unknown-page decryption.
+
 ## Direct outer-ring attack on the actual 76 unknown p55 runes
 
 The stronger author-facing question is whether the **76 original exterior bytes themselves decrypt the actual p55 source ciphertext**, rather than whether the separately coded p56/p57 inner pages resemble a table map. Freeze exactly the row10 inward path above and the byte-to-GP29 arithmetic used by the authentic solved-p56 additive cipher: `P[i] = C55[i] ± (exteriorByte[i] mod29)`, consuming all **76** source runes, including the original NG that completes p54's last word. Allow only the **two geometrically fixed directions** and the **two GP29 additive signs**, without a selected shift, starting offset, skip mask, byte re-encoding or post hoc transposition.
