@@ -34,3 +34,5 @@ console.log(JSON.stringify({
   exactPreimageMatch: sha512 === P56_SHA512,
   scope: "raw complete MP3 bytes only; no guessed alternate serialization"
 }, null, 2));
+
+// Trigger the pinned source gate through the path-filtered push workflow.
