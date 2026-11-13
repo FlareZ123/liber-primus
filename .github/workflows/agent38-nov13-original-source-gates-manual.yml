@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_predecessor_rank_wordstate_allsecret_sft.cjs
       - name: Onion7 133/331 complete-cycle 256-cell readout original SFT
         run: node sims/lp2_onion7_133331_lcg256_carrier_sft.cjs
+      - name: Onion7 133/331 full-table and eight-byte direct GP29 decoder SFT
+        run: node sims/lp2_onion7_133331_source_pad_consumer_sft.cjs
