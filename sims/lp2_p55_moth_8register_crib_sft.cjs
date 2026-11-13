@@ -19,6 +19,11 @@ assert.deepEqual(tokens.map(w => w.length), [2,7,7,2,6,3,3]);
 const plain = tokens.flat().map(x => corpus.translit.indexOf(x));
 assert.equal(plain.length,30);
 assert.equal(cipher.length,30);
+// Source-native FUNCTION includes a literal F; the original p55 glyph there
+// is E. Therefore every historically transparent-F cipher rejects this crib.
+assert.equal(plain[9],0, "LP1-p5 source FUNCTION's initial F");
+assert.equal(cipher[9],18, "unchanged original p55 rune E at offset55");
+assert.notEqual(plain[9],cipher[9]);
 assert(plain.every(x => x >= 0));
 assert.deepEqual(cipher, [12,18,28,18,10,6,14,6,15,18,15,12,2,2,18,15,2,22,5,28,10,19,5,14,23,11,1,17,18,10]);
 const m=x=>((x%29)+29)%29;
