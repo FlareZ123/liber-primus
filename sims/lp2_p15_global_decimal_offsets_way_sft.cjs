@@ -354,9 +354,10 @@ console.log(JSON.stringify({
   completeLp2Stride2WAYRoots: wayRoots,
   startRed: inputs[0],
   postRed: firstThree,
+  wordAddressing,
   clockwiseZeroBased,
   clockwiseOneBased,
   rowMajorZeroBased,
   warning: "Three-rune exploratory apparent word; remaining 13 cells do not spell prose. No cipher/key/plaintext independently recovered."
 }, null, 2));
-console.log("PASS: original-source p15 rune pointer and bounded Fibonacci/prime word-address gate");
+console.log("PASS: original-source p15 rune pointer, Fibonacci word addresses and GP-prime-sum cross-link gate");
