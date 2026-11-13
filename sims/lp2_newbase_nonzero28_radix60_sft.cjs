@@ -200,6 +200,35 @@ function main() {
     }
   }
 
+  // The source-linked 2016 image-axis words are read at their original
+  // printed boundaries. These whole-word numeral casts were already studied
+  // for GP29; the new question here is the distinct nonzero-delta GP28
+  // register with its first word rune preserved as a local IV.
+  const selectedWords = [
+    { name: 'p0#w6', page: p0, source: [9, 18, 7, 17, 24, 15, 22, 12, 10, 21, 1] },
+    { name: 'p1#w33', page: p1, source: [11, 0, 10, 9, 27, 5, 26, 28, 10, 27] }
+  ];
+  for (const item of selectedWords) {
+    const wordOffsets = [];
+    for (let i = 0; i + item.source.length <= item.page.indices.length; i += 1) {
+      if (item.source.every((value, k) => item.page.indices[i + k] === value)) wordOffsets.push(i);
+    }
+    assert.equal(wordOffsets.length, 1);
+    const deltas = differenceDigits(item.source);
+    assert(deltas !== null);
+    assert.deepEqual(accumulate(item.source[0], deltas), item.source);
+    for (const alphabet of [ALPHABET60, ALPHABET59]) {
+      const row = reportConversion(item.name, deltas, 28, alphabet);
+      console.log('SELECTED-WORD',
+        'base=' + alphabet.length,
+        item.name,
+        'original-offset=' + wordOffsets[0],
+        'runes=' + item.source.length,
+        'digits=' + row.output.length,
+        'readout=' + row.output);
+    }
+  }
+
   // Tests only true, zero-free complete original pages. No deletion or
   // synthetic escape mapping is permitted at the 86 repeated-rune sites.
   const plainDifferencePages = pages.map((page) => ({
