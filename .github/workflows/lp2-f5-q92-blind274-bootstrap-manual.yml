@@ -48,11 +48,6 @@ jobs:
         run: |
           go install github.com/0verkilll/f5/cmd/f5@v1.0.0
           "$(go env GOPATH)/bin/f5" version
-      - name: Matrix-k controlled F5 real grayscale 256-4096B diagnostic
-        run: |
-          cd sims/f5_detector_calibration
-          go mod download
-          go run -mod=mod gray_roundtrip_sft.go ../../resources/liber-primus/62.jpg ../../resources/liber-primus/71.jpg "$(go env GOPATH)/bin/f5"
       - name: Calibrate pilot historical blind 274-D F5 gate without original page access
         run: |
           set -eu
