@@ -73,7 +73,7 @@ The original 12,956-symbol ciphertext has empirical Shannon entropy **4.85650361
 | 21 | 3.826837083 |
 | 20 | 3.660811046 |
 
-The first **12,956 raw Shakespeare letters** include all 26 Latin letters and have entropy **4.172864607**. The independently solved **3,229-letter LP1** control includes **24 distinct Latin letters** and has entropy **4.138589607**. Both are below the rigorous minimum **4.290961410** for every static 29→24 grouping. The solved LP1 comparison directly matches the proposed 24-letter output register. This closes the **k=24 gap** left by the earlier IoC-only test, which excluded k≥25 but could not decide k=24. For k=23 the minimum 4.143078369 is slightly below the Shakespeare reference; the evidence does not justify excluding k≤23 or evolving/recurrent codebooks.
+The first **12,956 raw Shakespeare letters** include all 26 Latin letters and have entropy **4.172864607**. The independently solved **3,229-letter LP1** control includes **24 distinct Latin letters** and has entropy **4.138589607**. Both are below the rigorous minimum **4.290961410** for every static 29→24 grouping. The solved LP1 comparison directly matches the proposed 24-letter output register. This closes the **k=24 gap** left by the earlier IoC-only test, which excluded k≥25 but could not decide k=24. For k=23 the minimum 4.143078369 is slightly below the Shakespeare reference, so the IoC/entropy bound alone leaves k≤23 open. A separate adjacent-MI data-processing control now excludes every fixed deterministic one-rune→one-symbol map that would produce the tested normalized Latin Vulgate raw-letter or GP-token registers, including 29→23; this does not exclude all Latin texts or other non-English registers.
 
 The updated existing [all-secret reproducer](../sims/homophonic_downward_surjection_ioc_bound.cjs) computes exact minimum entropy alongside maximum IoC for k=20–29, asserts the k24 English-control gap, and checks explicit extremal maps. The exclusion assumes each ciphertext rune deterministically produces **one** plaintext letter, preserving all 12,956 positions. Multiple-letter outputs, deletion/insertion, variable-length units, nonstationary key states and plaintext outside the measured English registers remain open.
 
@@ -98,9 +98,9 @@ This does not prove that the cipher resets at these titles. It shows that even g
 ## Decision and remaining space
 
 - **Rejected under the measured native English registers:** all fixed global 29-to-k surjections with **k≥24**, including every arbitrary secret merge. The IoC argument excludes k≥25 and the entropy minimum independently excludes k=24.
-- **Not resolved:** k≤23, per-body k≤25 maps, evolving or position-dependent mappings, variable-length outputs, digraph/codeword output, non-GP registers, and other language distributions.
+- **Not resolved:** k≤23 under other untested registers, per-body k≤25 maps, evolving or position-dependent mappings, variable-length outputs, digraph/codeword output, non-Vulgate language distributions, and other non-GP plaintext.
 
-The result is an exact frequency bound, not a decryption. It does not justify a brute-force alias search without a source-selected k, class structure, or output register.
+The result is an exact frequency bound, not a decryption. Together with the independent Latin MI bound, it gives no reason to brute-force a static 29→k alias map without a new source-selected output register; the useful remaining space is stateful, variable-length, or otherwise nonstationary.
 
 ## Reproduction
 

@@ -36,11 +36,28 @@ A phase-dependent but position-predictable decoder f_(i mod m) obeys the **phase
 
 **Caution:** the solved-English reference is shorter and is grouped by lines, while LP2 is grouped by rune-bearing pages. Its exact phase-conditional numbers are illustrative language-register comparisons, not a probabilistic rejection threshold for every possible plaintext. The uncorrected empirical MI also contains positive finite-sample bias, which grows with period m.
 
+
+## Normalized Latin Vulgate register control
+
+The same data-processing bound also tests the previously open lower-alphabet/non-English branch. The pinned local reference `resources/control/latin-vulgate-gp-wholewords.txt` contains **39,835** Latin words encoded as GP29 tokens. Expanding each token with the pinned `resources/liber-primus/lp2-corpus.json` transliteration gives **208,680** normalized raw Latin letters using 20 distinct symbols; the unexpanded reference contains **204,802** GP tokens and uses all 29 symbols. Both source files are Git-blob-SHA-1 checked by the reproducer.
+
+Twenty fixed, evenly spaced windows of **12,956** symbols were taken from each Latin representation. Each window was partitioned using the exact 55 LP2 page lengths (including the zero-rune page), yielding the same **12,901 within-page adjacent pairs** as the ciphertext. These are deterministic overlapping windows from one reference corpus, not independent statistical trials.
+
+| Register | 20-window minimum MI | Median MI | Maximum MI |
+|---|---:|---:|---:|
+| Original LP2 ciphertext | **0.071173574** | — | — |
+| Normalized raw Latin letters | **0.441800198** | 0.469174568 | 0.506267821 |
+| Latin represented as GP29 tokens | **0.506430574** | 0.534348489 | 0.585403837 |
+
+Every tested Latin window has substantially greater adjacent dependence than LP2. Since a fixed deterministic decoder (P_i=f(C_i)) obeys (I(P_i;P_{i+1})\leq I(C_i;C_{i+1})), **no fixed one-rune-to-one-symbol map can produce either tested Latin register from this ciphertext**. This includes every static 29→23 homophonic map into the normalized Latin-letter register, and fixed mappings into the 29-token GP representation.
+
+This is a register-specific exclusion, not a claim that every Latin text has the Vulgate's statistics. It does not exclude a non-Vulgate or deliberately low-dependence plaintext, context/state-dependent mappings, variable-length encodings, transposition, or any other transformation that changes adjacency.
+
 ## Implications and precise exclusions
 
-- **Already excluded by prior work and independently corroborated here for LP1-like English:** one-rune-to-one-letter **static substitution**, including a non-injective map from 29 runes down to fewer than 29 English letter symbols. The result includes conventional simple substitutions and fixed disjoint-alphabet homophonic encoders whose plaintext decoder is static and unambiguous.
+- **Already excluded for the measured LP1-like English and normalized Latin Vulgate registers:** one-rune-to-one-symbol **static substitution**, including non-injective 29-to-k homophonic maps. The Latin control independently closes the 29→23 case for that register.
 - **A related necessary-condition check for short periodic substitutions:** independent, page-phase-specific alphabets with periods 2–8, when the target register resembles ordinary English; the phase-conditional bound applies even if the maps in adjacent phases differ.
-- **Untested here:** context-dependent or stateful substitutions, nonlinear recurrent transformations, word- or rune-position resets conditional on text, insertions/deletions, multiple plaintext symbols per rune, additive/pseudorandom streams, true external key material, transpositions, and nonlinguistic plaintext.
+- **Untested here:** context-dependent or stateful substitutions, nonlinear recurrent transformations, word- or rune-position resets conditional on text, insertions/deletions, multiple plaintext symbols per rune, additive/pseudorandom streams, true external key material, transpositions, non-Vulgate Latin and other non-English registers, and nonlinguistic plaintext.
 - **No new decrypted passage or key** is asserted. The contribution closes a concrete otherwise-unenumerated decoder family with an information-theoretic necessary condition, and narrows attention to mechanisms that can create plaintext dependence from a low-dependence ciphertext.
 
-The doublet deficit and broad flatness were already known, as documented by [Dukotah's Solvers' Dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md). The additional contribution within this repository is the **alternative universal data-processing proof** and its explicit phase-conditioned extension. The underlying fixed homophonic family was already excluded independently by Wulfic's C15, so this note is supporting mathematical evidence rather than a novel decryption or a new global exclusion.
+The doublet deficit and broad flatness were already known, as documented by [Dukotah's Solvers' Dossier](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/SOLVERS-DOSSIER.md). The additional contribution within this repository is the **alternative universal data-processing proof** and its explicit phase-conditioned extension. The underlying fixed homophonic family was already excluded independently by Wulfic's C15 for ordinary English. The Latin extension closes a separate measured register, not every conceivable plaintext language; this remains supporting mathematical evidence rather than a decryption.
