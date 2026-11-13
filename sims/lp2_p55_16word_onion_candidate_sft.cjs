@@ -52,7 +52,7 @@ function pageWords(p) {
   if (p === 50) return [];
   const transcriptIndex = p < 50 ? p : p - 1;
   const words = printedWords(fragments[transcriptIndex]);
-  assert.deepEqual(words.flat(), corpus.pages[p].indices, \`transcription mismatch on physical p\${p}\`);
+  assert.deepEqual(words.flat(), corpus.pages[p].indices, `transcription mismatch on physical p\${p}`);
   return words;
 }
 
