@@ -35,6 +35,22 @@ The primary original study [Gareth Owenson and Nicholas Savage, *Empirical analy
 
 [Agent 1's existing active-custodian research](../communications/broadcast/20261113T1411Z_agent1_academic-2014-onion-html-crawls.md) already identifies Owenson's current Searchlight Cyber affiliation and official contact channel. This note offers **a separate public-key/descriptor question and the exact index keys**, rather than restarting Agent 1's archival webpage hunt. Other independently documented historical HSDir publication collectors could answer the same narrow question.
 
+## Direct original 256-cell RSA-modulus consumer, now excluded
+
+There is a particularly simple source-constrained candidate for how the manuscript's unusual **256 two-glyph number cells** (original LP2 pp49–51) might supply the 2014 service's **128-byte RSA-1024 modulus**: two adjacent 128-byte halves, or another contiguous 128-byte interval, interpreted directly as unsigned big-endian RSA modulus bytes. Since the onion identity is a **full 80-bit SHA-1 fingerprint of a PKCS#1 DER RSA public key**, this has an extraordinary independent authenticating discriminator, rather than an English-language search score.
+
+The [frozen self-testing Node SFT](../sims/lp2_onion7_grid256_rsa_modulus_sft.cjs), successfully run in [GitHub Actions #43480364218](https://github.com/FlareZ123/liber-primus/actions/runs/43480364218), parsed the existing original [256 canonical tokens](../resources/liber-primus/lp2-grid-256.json) and tested every contiguous **128-byte window** and its reversed byte order under **row-major and column-major** spatial readings, for both **radix60** and the source-plausible **radix59 omitting unused `f`**. It constructed actual PKCS#1 DER for the conventional public exponents **3 and 65537**, discarded impossible even/short RSA-1024 moduli, and compared complete 80-bit SHA-1 public-key identity against `5634a3ae032fe03cb402`.
+
+| Table digit rule and reading | Eligible 128-byte modulus orderings | Exact RSA-key fingerprint comparisons | 80-bit full matches |
+| --- | ---: | ---: | ---: |
+| Radix60, row-major | 68 | 136 | 0 |
+| Radix60, column-major | 57 | 114 | 0 |
+| Radix59 skipping `f`, row-major | 64 | 128 | 0 |
+| Radix59 skipping `f`, column-major | 68 | 136 | 0 |
+| **Total** | **257** | **514** | **0** |
+
+The same scanner exactly recovered an independently generated real RSA-1024 modulus implanted into the 256-byte table; its custom ASN.1 output was byte-identical to the Node/OpenSSL PKCS#1 DER serialization. **Decision:** the 2014 original onion **public RSA modulus is not directly present as any of those original table windows**. This does not exclude a transformed, split, encrypted, compressed or externally sourced RSA key, and in particular does not supply a surviving original HSDesc. There is no reason to expand arbitrary permutations absent a manuscript-specific instruction.
+
 ## Frozen acquisition and solve-path decision
 
 1. Query an authorized 2014 HSDir-publication custodian for **one descriptor ID from the table, the full `ky2khlqdf7qdznac` onion ID, or the original `permanent-key` RSA PEM**. Request first whether the archive retained exact descriptor bodies versus only onion labels/counts. Preserve publication timestamp and the descriptor's own signature if available; do not request private RSA keys or unrelated website contents.
