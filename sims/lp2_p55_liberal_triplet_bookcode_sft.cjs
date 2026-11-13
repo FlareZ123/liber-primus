@@ -62,6 +62,21 @@ function decode(text) {
   return addresses.map((position) => text[position] ?? '?').join('');
 }
 
+// An independently source-grounded second numeral register uses the GP
+// prime values modulo 29, as on solved Cicada pages, in place of ordinals.
+const primeDigits = body.map((value) => corpus.prime[value] % 29);
+const primeAddresses = fromTriplets(primeDigits);
+assert.deepEqual(toTriplets(primeAddresses), primeDigits);
+assert.deepEqual(primeAddresses, [
+  12153, 16678, 15539, 10587, 4613, 17113, 11039, 9360, 2206,
+  11033, 12462, 12976, 20262, 11835, 19704, 10375, 7644, 15655,
+  8277, 4359, 20354, 11573, 11328, 1917, 2786,
+]);
+const primeRawOutput = primeAddresses.map((position) => raw[position] ?? '?').join('');
+const primeLettersOutput = primeAddresses.map((position) => letters[position] ?? '?').join('');
+assert.equal(primeRawOutput, 'ia owgred0vnne vennepr to');
+assert.equal(primeLettersOutput, 'TSNLEETNOFRARSTEROUTMOACR');
+
 const rawOutput = decode(raw);
 const lettersOutput = decode(letters);
 assert.equal(rawOutput, 'e   rrd K.n\n oed gomS,sA ');
@@ -86,5 +101,8 @@ console.log(JSON.stringify({
   letters_book_length: letters.length,
   letters_book_out_of_range: addresses.filter((position) => position >= letters.length).length,
   letters_character_readout: lettersOutput,
+  gp_prime_mod29_addresses: primeAddresses,
+  gp_prime_raw_character_readout: primeRawOutput,
+  gp_prime_letters_character_readout: primeLettersOutput,
   native_positive_control: '25/25',
 }, null, 2));
