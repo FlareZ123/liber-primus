@@ -12,6 +12,7 @@ on:
           - source27
           - peeled-79-78
           - p15-ordinal-hill28
+          - p15-signed-eigenspace
 
 jobs:
   matrix-state:
@@ -94,3 +95,17 @@ jobs:
           node-version: '22'
       - name: Invert original p16-22 rank28 GP transitions using p15 Fibonacci ordinal Hill4
         run: node sims/lp2_p15_ordinal_hill28_rank_inverse_sft.cjs
+
+  p15-signed-eigenspace:
+    if: ${{ inputs.probe == 'p15-signed-eigenspace' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test signed and literal p15 stateful source inverses
+        run: node sims/lp2_p15_fourstate_ofb_cfb_source_sft.cjs
+      - name: Test p15 signed eigenfactor and p39 source red polynomial
+        run: node sims/lp2_p15_p39_signed_matrix_eigen_sft.cjs
