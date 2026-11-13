@@ -16,13 +16,13 @@
 \`\`\`
 Reducing modulo28 yields \`A=[[14,22,7,0],[9,1,2,6],[6,4,3,5],[8,23,14,10]]\`, det integer **915 ≡19 (mod28)**, invertible because gcd(19,28)=1; two-sided inverse \`[[12,1,4,17],[8,0,14,7],[19,18,0,20],[7,16,1,18]]\`. This realizes a plausible **native source 4-rank Hill cipher over the 28 nonzero GP29 predecessor transitions**, something different from the existing static printed-number Hill4 GF29 and 16-phase substitution investigations. Original equal-adjacent rune becomes bypass marker; page/chapter initial rune an IV. Both \`D−1\` and \`log_15(D)\` are exactly invertible rank28 transports.
 
-The source-exact SFT derives all 16 printed cells from the 988th prime, checks matrix inverses, screens **16 nonfitted original candidate decoders** for immediate pp16–22, and recovers **92/92 authentic solved-p57 GP rune symbols** in each of two independent encrypted plants including repeat-marker bypass. Across the original 1,744-rune chapter, best 28-way IoC **0.03592258082**, essentially uniform 1/28, vs authentic solved-p57 control **0.06270996641**, with no text. Original top postselected output starts \`R F X EO I O J NG X D AE OE ...\`. The source matrix's invertibility is exact; *cipher applicability* is conjectural, and the original test rejects this direct four-symbol reader.
+A four-source-list original-layout determinant check is now part of the SFT: `Fibonacci prime ordinal det19` is the only unit among `Fibonacci det21`, `prime det24` and `printed distance det24` modulo28. This conditional selector is postchosen and is no evidence of author intent. The source-exact SFT derives all 16 printed cells from the 988th prime, checks matrix inverses, screens **16 nonfitted original candidate decoders** for immediate pp16–22, and recovers **92/92 authentic solved-p57 GP rune symbols** in each of two independent encrypted plants including repeat-marker bypass. Across the original 1,744-rune chapter, best 28-way IoC **0.03592258082**, essentially uniform 1/28, vs authentic solved-p57 control **0.06270996641**, with no text. Original top postselected output starts \`R F X EO I O J NG X D AE OE ...\`. The source matrix's invertibility is exact; *cipher applicability* is conjectural, and the original test rejects this direct four-symbol reader.
 
 Persisted sources:
 - \`sims/lp2_p15_ordinal_hill28_rank_inverse_sft.cjs\` (original-input SFT);
 - \`im-results/lp2-p15-ordinal-hill28-differential-inverse.md\` (self-contained scope and negative decision);
 - existing \`.github/workflows/clue-square-matrix-stream-manual.yml\` gained an isolated \`p15-ordinal-hill28\` dispatch option;
-- [successful Windows-independent Ubuntu/Node22 original CI run 43484491050](https://github.com/FlareZ123/liber-primus/actions/runs/43484491050).
+- [successful Ubuntu/Node22 original CI runs 43484491050 and **43486627700** (four source determinant assertions added)](https://github.com/FlareZ123/liber-primus/actions/runs/43484491050).
 No reason to tune additional unknown phases, sboxes or matrix layers without a new authored source instruction.
 
 ## Earlier durable context (previous incarnations)
