@@ -1,0 +1,74 @@
+# GF29 multiplicative ciphertext feedback: source-original decision
+
+**13 November 2026, Agent4. Classification: motivated reversible hypothesis, two independently calibrated original-cipher exclusions, no unknown plaintext or authentic LP2 key.**
+
+## Solve-path premise and competing explanation
+
+The 29-symbol Gematria Primus alphabet is numerically indexed 0..28. The unknown LP2 pages have only **86 equal adjacent-rune pairs across 12,901 within-page opportunities**, while the 28 *nonzero* modular ciphertext differences are approximately flat. That is an observable distinction from GP-native English. A human player could reasonably ask whether the printed prime arithmetic implies using the nonzero residues modulo29 as a multiplicative cipher alphabet, with the immediately preceding ciphertext rune acting as a feedback accumulator.
+
+One exact, invertible model is
+
+```text
+C_i = (C_(i-1) + K_i * (P_i + 1)) mod 29
+P_i = ((C_i - C_(i-1)) * inverse_mod29(K_i) - 1) mod29
+K_i ∈ {1,...,28}
+```
+
+The 29 plaintext indices map to 0..28 before multiplication. Consequently, for **every nonzero secret K_i**, and even if K_i changes arbitrarily from rune to rune, **C_i = C_(i-1) if and only if P_i = 28 (GP rune EA)**. All other symbols yield a nonzero step. This gives a direct, lossless explanation for the missing doublets without a rejection sampler or a 28-letter plaintext alphabet. The specified initial ciphertext accumulator, key and clock are necessary to decode a real passage. No original source currently provides that complete triple.
+
+The strongest independent alternative is a stateful output process which *suppresses* equal successive runes but occasionally emits repeated output independently of a fixed plaintext rune. The original word-boundary structure below favors keeping that alternative alive. The multiplication rule is a possible mechanism and is **not an identified historical cipher**.
+
+## Exact original-corpus constraints
+
+The reproducer [`sims/lp2_gf29_delta_multiplicative_original_sft.cjs`](../sims/lp2_gf29_delta_multiplicative_original_sft.cjs) reads untouched `lp2-corpus.json`, the physically mapped original printed word boundaries, and the existing TextBlob-derived GP29 English spelling-frequency control. It checks the complete original page rune arrays, the 2,896 printed words, and all 12,901 within-page adjacent pairs before scoring candidates.
+
+| Original source property | Exact result |
+| --- | ---: |
+| Rune-bearing unknown physical pages | 55 |
+| Unknown runes | 12,956 |
+| Within-page adjacent rune pairs | 12,901 |
+| Identical adjacent rune pairs | **86** |
+| Words containing one or more equal-adjacent sites | 85 |
+| Identical sites at the *start* of a printed word | **23** |
+| Nonzero-step 28-category Pearson χ² | **42.056**, df=27 (descriptive only) |
+
+If a literal unknown GP-native English word is encoded by the model, each ciphertext equal-step fixes a **plaintext EA** in the corresponding source word position. For all original word lengths, a frozen independent 29,058-word, frequency-weighted English GP29 lexicon predicts **81.513 EA sites** across the original eligible rune positions, close in total to 86. Yet it predicts only **5.445 EA sites at eligible printed word starts**, whereas **23** actual zero steps occur there. Its independent-word model gives word-start standard deviation about **2.33**, hence the observed count is **7.53 model standard deviations above prediction**. Five of the 85 zero-bearing original word masks have **no exact EA-position match** in that lexicon even if every other rune is left free. This is a source-native English-register limitation of the proposed EA-only plaintext interpretation; it does not prove an absence of unknown proper names, stylized prose, or other intervening transformations.
+
+The same fully specified length/word-frequency model can allow **any** of the 29 GP symbols to be the sole zero-step plaintext symbol. The best joint fit to the original `[86 total, 23 word-initial]` event counts is **G** (expected **146.0 total** and **52.32 word-initial**), with model-standardized two-dimensional distance **5.24**; fixed **EA** is second at distance **7.68**. All 29 single-symbol choices give a poor joint fit under this ordinary-English model. Distances account for per-word covariance between total and initial occurrences; they are **model diagnostics**, not universally calibrated author-intent probabilities.
+
+### Key-free result for all word-constant affine feedback
+
+Let `D_i=(C_i-C_(i-1)) mod29`. If the multiplier is constant throughout one printed word, the entire word's original difference sequence must be a fixed affine image of an ordinary-English GP29 word. For any candidate word of length at least two, its **affine-normalized difference fingerprint** is invariant under *every* unknown nonzero multiplier and additive intercept. The SFT builds all source-native lexicon affine fingerprints once and checks original words after the first rune of each physical page (which requires an unknown page-initial feedback state).
+
+**Among the 791 fully comparable original words of six or more runes, zero have an affine fingerprint appearing in the 29,058-word native English lexicon.** Thus 0/791 can be decoded into that lexicon under **any arbitrary independent per-word GF29 affine key**, even if each word receives its own secret multiplier and secret additive intercept. The strictly narrower `P_i=D_i/K_w−1` rule also matches zero of those words.
+
+| Fully comparable original printed length | Words | Any per-word affine GP29 decoder yields dictionary word | Even an arbitrary *per-word secret alphabet permutation* has a dictionary-compatible equality pattern |
+| --- | ---: | ---: | ---: |
+| 6 | 248 | 0 | 242 |
+| 7 | 213 | 0 | 205 |
+| 8 | 153 | 0 | 139 |
+| 9 | 76 | 0 | 71 |
+| 10 | 49 | 0 | 34 |
+| 11 | 28 | 0 | 16 |
+| 12 | 18 | 0 | 4 |
+| 13–14 | 6 | 0 | 0 |
+
+**Boundary:** a *rune-varying* nonzero `K_i` changes equality and affine shapes inside words and remains mathematically viable. Generic variable keys alone also have no predictive power: any non-EA plaintext symbol can be made to decrypt from any nonzero original difference by choosing one of the 28 units. The actual key source or a tightly constrained update rule is essential.
+
+### Exact positive control
+
+The historical clear GP29 original p57 supplies **95 real source runes**. Adding the native encoded English word `EACH` (three runes, beginning with the symbol EA) creates a 98-rune validation input that actually exercises the exception. The forward encoder using a predetermined varying nonzero multiplier and known initial state produces exactly **one equal-ciphertext step**; the inverse recovers all **98/98** input runes, including the planted EA. The original source input is unchanged; the appended word exists only as a labeled positive control. This checks the reversible implementation and the exact zero-step identity. It gives no evidence for a historical key.
+
+## Source-table AES-256 running-key consumer: original-input negative
+
+One possible source-derived key supply is the actual printed **32 rows × 8 columns** of base60-read numerical tokens across physical pp49–51. The 32 bytes per column form eight candidate AES-256 keys; there are exactly **eight** source-visible visual chapters after pp0–2. This is a motivated *candidate composition*, not an author-selected key command. The independent [AES original-source SFT](../sims/lp2_gf29_delta_table_aes256_direct_sft.cjs) applies one key to each of those eight chapters in printed order, AES-256-CTR with an all-zero 16-byte counter, mapping each output byte to `1 + (byte mod28)` as the multiplier. It checks both chapter-local and page-local key clocks, and separately checks eight consecutive 32-byte bands as a less source-visible alternative reading.
+
+Across **12,227 untouched runes** in pp3–55 and **2,738 printed words**, all four outputs remain ciphertext-like. Native-language GP29 whole-stream IoC remains **0.035230–0.035261** (source raw **0.034480**), each yields **zero dictionary words of six or more runes**, and no contiguous readable text appears. The vertical-column/chapter-clock output gives only **202/2,738** dictionary hits at *all* word lengths, mainly chance-compatible short strings. Each model exactly re-encrypts the original under its own fixed key, and its separately planted p57+`EACH` test exactly recovers **98/98** runes. Re-encryption checks implementation only, since every bijective wrong key also round-trips.
+
+The test does **not** exclude AES keyed by other source material, other nonce conventions, key derivation, actual table encryption, or different intermediate representations. There is no independent evidence for AES-CTR or the all-zero nonce, so do not create a broader parameter sweep without a source instruction.
+
+## Decision
+
+The multiplicative feedback hypothesis gives a clean, human-executable 29-symbol *mechanism candidate*, but **neither original plaintext nor key is recovered**. Two stronger observations change the next decision: the 23 printed-boundary repeat events fail the fixed-EA native-English expectation, and all 791 words of length≥6 eliminate a secret *word-constant* affine delta decoder. The directly table-derived eight-key AES consumer is nonlinguistic. The remaining avenue demands an original clue that identifies a **rune-varying reversible key/state operation** or changes the representation of text before feedback. A claim from a few coincidental short words or an arbitrarily chosen key would not advance the solution.
+
+**Reproduce:** both CommonJS SFTs are Node.js 22 built-in only, and [original-source manual CI run 43472545910](https://github.com/FlareZ123/liber-primus/actions/runs/43472545910) passes the direct table test; the expanded 29-symbol comparison is included in the next full run of the same manual workflow. The reported original inputs and vocabulary are checked into `resources/`; printed physical p50 contributes no rune text.
