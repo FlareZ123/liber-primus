@@ -1,6 +1,6 @@
-# Source-visible word-circumference key transfer: 36 original-cipher negatives
+# Source-visible word-circumference key transfer: 48 original-cipher negatives
 
-**Agent37, 13 November 2026. Classification:** bounded, reproducible negative for six simple word-local exterior-key rules, applied to three historically meaningful GP29 numerical registers and both signs. The unedited original unknown text yields no sustained GP-native English interiors. The full original-data test and 29,340 planted inverses **pass on Windows/Node22** ([manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43484635596)). **No authentic unknown LP2 plaintext, source-selected cipher, key, or destination is recovered.**
+**Agent37, 13 November 2026. Classification:** bounded, reproducible negative for 36 source-rune additive shell-key functions and twelve source-seeded consecutive-prime-totient clocks. The unedited original text yields no sustained GP-native English interiors. The full original-data test and **39,120 exact planted inverses** pass on Windows/Node22 ([latest manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43486272667)). **No authentic unknown LP2 plaintext, source-selected cipher, key, or destination is recovered.**
 
 ## Why this experiment is a plausible human route
 
@@ -16,7 +16,9 @@ For every printed GP29 ciphertext word `C=[c₀,c₁,…,cₙ₋₁]` with `n≥
 - The canonical published 29-rune prime weight, `v(i)=prime[i]`.
 - Euler's totient of that prime, `v(i)=prime[i]−1`.
 
-The proposed plaintext **interior** is `pⱼ = (cⱼ + s·h(F,L,j)) mod29` for `1≤j≤n−2` and `s∈{−1,+1}`. The six frozen key laws are `h=F`, `h=L`, `h=F+L`, `h=F−L`, `h=F·L`, and `h=F+j·L`. The last law permits a word-local changing clock, distinct from stationary per-word feedback. There are exactly **3×6×2=36** deterministic candidates, with no tunable shift, phase, secret alphabet, extra symbol deletion, or page-specific exception.
+The proposed plaintext **interior** is `pⱼ = (cⱼ + s·h(F,L,j)) mod29` for `1≤j≤n−2` and `s∈{−1,+1}`. The six frozen key laws are `h=F`, `h=L`, `h=F+L`, `h=F−L`, `h=F·L`, and `h=F+j·L`. The last law permits a word-local changing clock, distinct from stationary per-word feedback. There are exactly **3×6×2=36** simple deterministic candidates, with no tunable shift, phase, secret alphabet, extra symbol deletion, or page-specific exception.
+
+There are also **six source-defined starting-prime ordinal functions**: the first GP index, last GP index, their sum modulo29, first GP prime, last GP prime, and first GP prime minus one. For each function and either sign, decode the word interior with the independently authenticated p56 operation **Euler totient of successive ordinary primes**, starting at that public ordinal. This gives **6×2=12 additional fixed changing-within-word key streams**. The printed outer cipher runes supply only the initial clock. The precise key at zero-based interior position j is `prime(seed+j)−1`, where `prime(0)=2`. These are narrower source-based alternatives to freely fitting keys, and do not assume any secret word-specific number.
 
 The [single-file executable reproducer](../sims/lp2_word_circumference_publickey_original_sft.cjs) reads the immutable `resources/liber-primus/lp2-corpus.json`, original `lp2-transcription.txt`, and the independently established `resources/control/english_wordfreq_textblob.txt`. It joins all **32 truly unmarked cross-page word continuations**: therefore the ciphertext contains exactly **12,956 original runes** in **2,896 original printed words**. Line-break slashes do not create new words.
 
@@ -31,14 +33,16 @@ Each decoded interior is compared with the **interior of any independently encod
 | Words of at least 8 GP runes | **343** | Authentic dictionary interiors of same original lengths |
 | Dictionary-supported interiors among the 815 longest-enough words | **0–5**, depending on chosen decoder | **815/815** per model |
 | Supported interiors among the 343 words of length ≥8 | **0/343 for every one of all 36 models** | Source-native recovery retained |
-| Number of complete decoder/positive models | **36** | **29,340/29,340** exact original-layout positive inverses |
+| Simple shell-key decoder/positive models | **36** | **29,340/29,340** exact original-layout positive inverses |
+| Consecutive-prime-totient clock models | **12** | **9,780/9,780** exact original-layout positive inverses |
+| **Total** | **48** | **39,120/39,120** exact original-layout positive inverses |
 
-The single highest incidental result is five supported interiors under the *totient-of-first-rune* register, positive sign; other configurations produce zero to four. There is no sustained prose across words under any tested model. The original's direct unshifted interiors produce **zero** dictionary support among 815 words of length≥6. No selected word's exterior was changed or allowed to carry a custom secret parameter.
+The single highest incidental result is five supported interiors under the *totient-of-first-rune constant shift* register, positive sign; other simple configurations produce zero to four. Among the twelve actual p56-key-clock variants, the highest incidental match is **3/815**, and every one gives **0/343** among words with at least eight runes. No candidate produces sustained readable prose across words. The original's direct unshifted interiors produce **zero** dictionary support among 815 words of length≥6. No selected word's exterior was changed or allowed to carry a custom secret parameter.
 
-For a positive control of each candidate, the reproducer chooses an authentic corpus-independent dictionary word of precisely the original length, encrypts its interior with that candidate and the **original ciphertext first/last runes**, then decodes. Every one of all **36×815 = 29,340** implants exactly recovers its original native-GP interior and passes the same dictionary predicate. On the Windows runner, Git checkout's CRLF normalization is explicitly tolerated when parsing the English fixture.
+For a positive control of each candidate, the reproducer chooses an authentic independent dictionary word of precisely the original length, encrypts its interior with that candidate and the **original ciphertext first/last runes**, then decodes. Every one of all **48×815 = 39,120** implants exactly recovers its native-GP interior and passes the same dictionary predicate. On the Windows runner, Git checkout's CRLF normalization is explicitly tolerated when parsing the English fixture.
 
 ## Decision and remaining possibility
 
-The fixed exterior-rune keys tried here fail to recover recognizable English through the obvious direct additive GP29 consumer of solved historical ciphers. This route does not warrant widening into tuned per-word formulas. It leaves many genuinely different possibilities untouched: a hidden external key, non-additive or multi-layer encryption, altered segmentation, other languages, a checksum or routing role for word exteriors, and unknown instructions elsewhere in the original artifact.
+The fixed exterior-rune keys tried here fail to recover recognizable English through the original additive GP29 operation. The more explicit historical p56 successive-prime-totient clock also fails when seeded by each word's published outer runes. This route does not warrant widening into tuned per-word formulas. It leaves many genuinely different possibilities untouched: a hidden external key, non-additive or multi-layer encryption, altered segmentation, other languages, a checksum or routing role for word exteriors, and unknown instructions elsewhere in the original artifact.
 
 The Parable supplies a **human-readable motivation**, while the direct decoder itself remains a hypothesis. The result helps retire this bounded self-key family; it cannot turn an unexplained 2014 manuscript into a solved text.
