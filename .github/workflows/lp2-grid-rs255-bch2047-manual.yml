@@ -1,0 +1,16 @@
+name: LP2 source grid RS255 and BCH2047 gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-codeword gate with positive plants
+        run: node sims/lp2_grid_rs255_bch2047_sft.cjs
