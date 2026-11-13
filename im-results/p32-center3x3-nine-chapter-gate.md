@@ -54,35 +54,37 @@ The word-address test uses the nine prime weights as **one-based word indices**,
 
 ## Results
 
-Raw unknown-LP2 baseline: IoC **0.03447840**, mean English quadgram score **−7.43913779**. Solved p57 *PARABLE* positive control: mean score **−4.42063342**.
+Legacy inventory-label baseline: IoC **0.03447840**, mean Duko English quadgram score **−7.43913779**. Solved p57 PARABLE positive control: **−4.42063342**. Under this legacy score, every tested inverse is worse than raw ciphertext; the best is the global ordinal center-cell addition at **−7.44752535**.
 
-| Direct interpretation | Mean score range |
+A source-calibrated LP1 model is now also applied. It uses the independently source-validated spelling ᛝ→ING and ᛡ→IO, with 3,510 training GP symbols; its training score is **−2.26072801** and the solved 95-rune p57 control scores **−2.46814471**. Raw unknown LP2 scores **−3.41753406**. The 16 fixed direct interpretations have these source-native score ranges:
+
+| Direct interpretation | Source-native LP1 trigram range |
 |---|---:|
-| One constant shift per chapter | −7.47744087 to −7.50161744 |
-| One global center-cell shift | −7.44752535 to −7.50550401 |
-| Repeating nine-symbol key | −7.48974130 to −7.54446493 |
+| One constant shift per chapter | −3.41475341 to −3.42105306 |
+| One global center-cell shift | −3.41339607 to −3.42067253 |
+| Repeating nine-symbol key | −3.41152704 to −3.41989464 |
 
-Every tested inverse scores worse than raw ciphertext. The best is the global ordinal center-cell addition at **−7.44752535**, still below the raw baseline. The apparent \`LAW\` prefix in the central 3×3 transliteration does not extend into readable plaintext.
+The best fixed candidate is the prime-residue repeating key with chapter-reset phase and subtraction, **−3.41152704**, only **0.00600702** above raw ciphertext. This small gain does not approach the solved p57 control and does not yield readable text. The source-native calibration changes some displayed spellings but not the numeric operations.
 
-The one-based chapter word selections are also ciphertext-like:
+The central 3×3's legacy transliteration is LAWTHWXXAU; its source-native spelling is identical. The one-based chapter word selections are:
 
-| Chapter | Prime-weight index | Selected GP transliteration | Ordinal index | Selected GP transliteration |
-|---:|---:|---|---:|---|
-| 1 | 73 | OECBLJ | 20 | YFNGCJ |
-| 2 | 97 | OPM | 24 | EODEO |
-| 3 | 19 | YLXL | 7 | NGITO |
-| 4 | 5 | BNTFNG | 2 | AEAYOEA |
-| 5 | 19 | GLJ | 7 | WHI |
-| 6 | 47 | DOEDA | 14 | MFIAEACBGAEF |
-| 7 | 47 | NGJ | 14 | OUNWML |
-| 8 | 97 | IAEOCFBPM | 24 | ETAJCY |
-| 9 | 3 | IADPNGUWAM | 1 | A |
+| Chapter | Prime-weight index | Legacy spelling | Source-native spelling | Ordinal index | Legacy spelling | Source-native spelling |
+|---:|---:|---|---|---:|---|---|
+| 1 | 73 | OECBLJ | OECBLJ | 20 | YFNGCJ | YFINGCJ |
+| 2 | 97 | OPM | OPM | 24 | EODEO | EODEO |
+| 3 | 19 | YLXL | YLXL | 7 | NGITO | INGITO |
+| 4 | 5 | BNTFNG | BNTFING | 2 | AEAYOEA | AEAYOEA |
+| 5 | 19 | GLJ | GLJ | 7 | WHI | WHI |
+| 6 | 47 | DOEDA | DOEDA | 14 | MFIAEACBGAEF | MFIOEACBGAEF |
+| 7 | 47 | NGJ | INGJ | 14 | OUNWML | OUNWML |
+| 8 | 97 | IAEOCFBPM | IOEOCFBPM | 24 | ETAJCY | ETAJCY |
+| 9 | 3 | IADPNGUWAM | IODPINGUWAM | 1 | A | A |
 
-Neither extraction forms a readable nine-word message. The 48 planted round trips pass, confirming that the negative result is not an implementation-direction error.
+Neither extraction forms a readable nine-word message under either spelling. The 48 planted round trips pass, confirming that the negative result is not an implementation-direction error.
 
 ## Decision
 
-Retire the tested direct uses of the p32 central 3×3 as (a) one per-chapter Caesar key, (b) a global center-cell Caesar key, (c) a repeating nine-symbol additive key, or (d) one-based word addresses in the nine visual chapters.
+Retire the tested direct uses of the p32 central 3×3 as (a) one per-chapter Caesar key, (b) a global center-cell Caesar key, (c) a repeating nine-symbol additive key, or (d) one-based word addresses in the nine visual chapters. The source-native LP1 model changes some transliterations and yields tiny score gains for a few fixed variants, but no readable plaintext or material language-model improvement.
 
 This does **not** invalidate the p32 11×11 / 2016-image geometric relationships, the central values themselves, or other source-selected uses not tested here. Do not rescue these exact hypotheses with arbitrary offsets, alternate phases, or word-index tuning. A successor needs a separate original clue selecting a different operation.
 

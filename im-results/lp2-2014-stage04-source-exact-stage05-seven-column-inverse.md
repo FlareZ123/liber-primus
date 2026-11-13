@@ -29,7 +29,7 @@ For each original span, consider the Stage05 inverse followed by Stage04, or Sta
 | p54–p55 | archived bug19 | −3.41367 | −3.42184 | −3.43167 |
 | p54–p55 | corrected GP18 | −3.41367 | −3.44389 | −3.42904 |
 
-All twelve complete original output streams remain near the ciphertext register and have nonlinguistic prefixes. For example, GP18 Stage05-then-Stage04 on p8 begins WUDNWJUNGEAOENGIAWPFFEOHNGSOEFBFAES, without a recoverable phrase. These are negative results under an explicitly fixed source-language register, not a universal impossibility for non-English plaintext.
+All twelve complete original output streams remain far below the solved-text control; source-native scoring introduces only small shifts and have nonlinguistic prefixes. For example, GP18 Stage05-then-Stage04 on p8 begins WUDNWJUNGEAOENGIAWPFFEOHNGSOEFBFAES, without a recoverable phrase. These are negative results under an explicitly fixed source-language register, not a universal impossibility for non-English plaintext.
 
 ## Stage05-only final-chapter gate (p54–p55)
 
@@ -48,8 +48,38 @@ The base-8 side hypothesis gives \(133_8=91=13\times7\) and \(331_8=217=31\times
 
 This is a Stage05-only test; no Stage04 key is applied to p54–p55. The exact 2014 permutation is source-authentic, but its transfer to this LP2 chapter is only a hypothesis. The small score gain and non-extreme permutation rank do not justify a further key or cipher search.
 
+## Source-native orthography recalibration
+
+The earlier score tables use the conventional inventory-label spelling. The independent LP1 source-orthography result validates the single-rune spellings ᛝ→ING and ᛡ→IO. Re-scoring with the shared source-native LP1 trigram model (3,510 training symbols; training **−2.26072801**; solved p57 **−2.46814471**) changes some small score differences but does not reveal plaintext.
+
+### Stage04×Stage05 composite, all three original spans
+
+| Span | Raw source-native score | Key model | Stage05→Stage04 | Stage04→Stage05 |
+|---|---:|---|---:|---:|
+| p8–p14 | −3.42114678 | archived bug19 | −3.43045452 | −3.42381557 |
+| p8–p14 | −3.42114678 | corrected GP18 | **−3.40474736** | −3.41220692 |
+| p33 offset91–p39 | −3.42395742 | archived bug19 | −3.41734828 | −3.42379688 |
+| p33 offset91–p39 | −3.42395742 | corrected GP18 | −3.41800154 | −3.41933302 |
+| p54–p55 | −3.41748461 | archived bug19 | −3.41672981 | −3.43249447 |
+| p54–p55 | −3.41748461 | corrected GP18 | −3.44024190 | −3.43255232 |
+
+One p54–p55 composite variant (archived bug19, Stage05→Stage04) is only **0.00075481** above raw; the best overall composite (corrected GP18, p8–p14, Stage05→Stage04) improves by **0.01639942**. These are small score movements, not readable plaintext, and remain far below the solved p57 control.
+
+### Stage05-only p54–p55 and permutation null
+
+| Stream | Source-native LP1 trigram score |
+|---|---:|
+| Raw p54–p55 | −3.41748461 |
+| Exact Stage05 inverse | −3.40205838 |
+| Opposite permutation | −3.39972814 |
+| Solved p57 control | −2.46814471 |
+
+Under source-native scoring, the exact Stage05 order ranks **1,348/5,040** (73.25th percentile), its reverse **1,097/5,040** (78.24th percentile), and identity **3,505/5,040** (30.46th percentile). Neither direction is an exceptional fit. The native spelling changes the permutation ranking from the legacy-label model, reinforcing that a modest score increase is not enough to claim a cipher transfer.
+
+The numeric transformations and exact forward-replay checks are unchanged. The source-native model changes only the language calibration; all candidate outputs remain far from the solved-text control and no plaintext is recovered. Reproduction uses sims/lp1_source_native_trigram_model.cjs.
+
 ## Reversibility and bounded decision
 
-[Single-file Node.js 22 CommonJS test](../sims/lp2_2014_source_exact_vigenere_7column_sft.cjs) performs original onion, original Stage05 and two source-plaintext positive controls; it verifies exact re-encryption of all 1,729, 1,589, or 308 original runes for every composite candidate. It now also verifies the p54–p55 308-rune Stage05-only round trip, the 91/217 block equivalence, and the full 5,040-permutation null ranking. A native LP1 GP-English plant run through each complete composite decodes perfectly, establishing that an authentic use of this architecture would be detected. The corrected model establishes that Stage04 is an additive GP29 shift with historically unusual key conversion, rather than a new reflected output-index cipher. The original archived onion control and the separate Stage05 control pass. Each original source rune round-trips exactly, along with the native-GP plants.
+[Single-file Node.js 22 CommonJS test](../sims/lp2_2014_source_exact_vigenere_7column_sft.cjs) performs original onion, original Stage05 and two source-plaintext positive controls; it verifies exact re-encryption of all 1,729, 1,589, or 308 original runes for every composite candidate. It now also verifies the p54–p55 308-rune Stage05-only round trip, the 91/217 block equivalence, the full 5,040-permutation null ranking under both spellings, and source-native scores for every composite candidate. A native LP1 GP-English plant run through each complete composite decodes perfectly, establishing that an authentic use of this architecture would be detected. The corrected model establishes that Stage04 is an additive GP29 shift with historically unusual key conversion, rather than a new reflected output-index cipher. The original archived onion control and the separate Stage05 control pass. Each original source rune round-trips exactly, along with the native-GP plants.
 
 The composite Stage04×Stage05 test retires only the exact two chapter spans, two source-derived key variants and two operator orders with zero phase. The additional Stage05-only p54–p55 test also fails its fixed source permutation and is unexceptional in the complete 7! null distribution. It neither implies the actual puzzle creators used these operations jointly nor excludes an independently selected LP2 key, source-authenticated phase, or alternative cipher. Next actionable progress would require an authored selector linking a named LP2 passage to one of these original operations, rather than more unanchored cipher combinations.

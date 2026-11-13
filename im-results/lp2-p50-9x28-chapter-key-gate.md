@@ -53,7 +53,7 @@ Scoring uses the repository's pinned Duko Round27 English quadgram counts, 79,49
 
 ## Original-cipher results
 
-| Original or fixed inverse | Pooled GP29 IoC | Mean English quadgram score |
+| Original or fixed inverse | Pooled GP29 IoC | Legacy inventory-label Duko quadgram score |
 |---|---:|---:|
 | Raw original ciphertext | 0.03447840 | **−7.43913779** |
 | GP29 subtraction | 0.03446895 | −7.51783823 |
@@ -62,15 +62,35 @@ Scoring uses the repository's pinned Duko Round27 English quadgram counts, 79,49
 | F-null / GP28 addition | 0.03447207 | −7.51420020 |
 | Solved p57 PARABLE (95 runes) | 0.06270997 | **−4.42063342** |
 
-All four candidates score worse than the unchanged ciphertext. None produces recognizable plaintext. Their per-chapter scores remain in the ciphertext-like range; no chapter yields a coherent language passage. For example, the fixed GP29-subtraction output begins:
+Under the legacy Duko score all four fixed candidates score worse than unchanged ciphertext. Their per-chapter scores remain ciphertext-like; no chapter yields a coherent passage. The legacy GP29-subtraction output begins:
 
-\`SNYSJNEONTHNIALROECSEANIAAEHOIAAEMEONEOSDLOEYLDCOEOEJWTFNGOELEEAXWEBPSOESUEEAHYJMFOEOEOOEFLBSDUGALGFEAFOEUDIAAENOEXEAEJNHBLUDIRUPWPJBIREOEAMEGUOEPEOXTHTLYXJEOAEEOOEGEOIAPYMSORGMSCF\`
+SNYSJNEONTHNIALROECSEANIAAEHOIAAEMEONEOSDLOEYLDCOEOEJWTFNGOELEEAXWEBPSOESUEEAHYJMFOEOEOOEFLBSDUGALGFEAFOEUDIAAENOEXEAEJNHBLUDIRUPWPJBIREOEAMEGUOEPEOXTHTLYXJEOAEEOOEGEOIAPYMSORGMSCF
 
-The SFT also performs 36 planted positive round trips: every one of the nine key rows, both signs, and both reversible alphabet models correctly encrypts and decrypts the authentic solved p57 plaintext. Each original candidate inverse is independently forward-replayed to the exact original 12,956-rune ciphertext.
+The SFT also performs 36 planted positive round trips: every one of the nine key rows, both signs, and both reversible alphabet models correctly encrypts and decrypts authentic solved p57 plaintext. Each original candidate inverse is independently forward-replayed to the exact original 12,956-rune ciphertext.
 
 ## Direct quotient-as-plaintext check
 
-The quotient's natural high-to-low GP29 symbol order was also tested as a standalone 252-rune plaintext, without rearrangement. It has IoC **0.03633087** and mean quadgram score **−7.50897543**, worse than the original unresolved stream (**−7.43913779**) and far below the solved p57 control (**−4.42063342**). Its literal transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEEOXSUIWOISMTHIASIAHGNPTHNDIAYLGYNGNRAEAWCHCJYHAEFLUBOETHPPUCJJMCSYRTINRIALXJNGLGSLECCCUIAXCEARDOEBAEMFLLEOLREOHIAAEPRINDEUIAACFAEWAEHTHSUNWIAUJNSPEOWCBEOIYNJTHEONHEOFMCYEAGHAEETHICREAESPTHAHXEHIYNOEDGILDUUXWTNCAHNGLJLNCCBXYNGHWIAEAIEJLJITTHWNGPFNGSDEOOEJPADNCAEMX`. This is not readable plaintext. The natural quotient-as-message interpretation is therefore also retired; no reverse or alternative layout is promoted as a candidate.
+The quotient's natural high-to-low GP29 symbol order was tested as a standalone 252-rune plaintext, without rearrangement. Under the legacy Duko model it has IoC **0.03633087** and mean score **−7.50897543**, worse than the original unresolved stream (**−7.43913779**) and far below solved p57 (**−4.42063342**). Its literal legacy transliteration begins FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEEOXSUIWOISMTHIASIAHGNPTHNDIAYLGYNGNRAEAWCHCJYHAEFLUBOETHPPUCJJMCSYRTINRIALXJNGLGSLECCCUIAXCEARDOEBAEMFLLEOLREOHIAAEPRINDEUIAACFAEWAEHTHSUNWIAUJNSPEOWCBEOIYNJTHEONHEOFMCYEAGHAEETHICREAESPTHAHXEHIYNOEDGILDUUXWTNCAHNGLJLNCCBXYNGHWIAEAIEJLJITTHWNGPFNGSDEOOEJPADNCAEMX. This is not readable plaintext.
+
+## Source-native orthography recalibration
+
+The independent source-orthography result establishes the single-rune spellings ᛝ→ING and ᛡ→IO. The shared source-native LP1 trigram model is trained on **3,510** symbols (training score **−2.26072801**) and scores solved p57 at **−2.46814471**. It scores the unchanged unknown LP2 at **−3.41753406** and the 252-symbol quotient at **−3.42485081**.
+
+| Fixed 9×28 interpretation | Source-native LP1 trigram score |
+|---|---:|
+| Raw unknown LP2 | −3.41753406 |
+| GP29 subtraction | −3.41371486 |
+| GP29 addition | −3.41577532 |
+| F-null / GP28 subtraction | −3.41846438 |
+| F-null / GP28 addition | −3.41637007 |
+| Direct 252-symbol quotient | −3.42485081 |
+| Solved p57 PARABLE | −2.46814471 |
+
+The source-native model therefore gives two very small positive shifts (GP29 subtraction improves by **0.00381921**; F-null addition by **0.00116399**) rather than the uniform legacy-model decrease. Neither approaches the solved p57 control or forms a readable chapter. The source-native spelling of the GP29-subtraction output begins:
+
+SNYSJNEONTHNIOLROECSEANIOAEHOIOAEMEONEOSDLOEYLDCOEOEJWTFINGOELEEAXWEBPSOESUEEAHYJMFOEOEOOEFLBSDUGALGFEAFOEUDIOAENOEXEAEJNHBLUDIRUPWPJBIREOEAMEGUOEPEOXTHTLYXJEOAEEOOEGEOIOPYMSORGMSCFLAINGDEAEEWEYPCOELMYRHNACFMINGBERPJIGTE
+
+This remains ciphertext-like. The direct quotient remains worse than raw under both scoring conventions.
 
 ## Decision
 
