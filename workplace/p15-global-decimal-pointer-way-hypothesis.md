@@ -78,6 +78,17 @@ Two further sums, **463** at F=55 and **5** at F=233, equal members of the p15-d
 
 The fixed external target set used for a descriptive control is **{133,331,563,569,464,121,32,3301}**: the archived HTML identifiers, signed-image dimensions, p32 page/rune geometry, and 2013 BASE29 anchor. The sixteen Fibonacci-selected words hit 563, 133 and 464. Conditioning a hypergeometric null on the selected words' actual physical-page distribution gives **0.448 expected hits** and **P(X≥3)=0.0040013**. This is only an exploratory, page-stratified comparison: the target set and hypothesis were recognized retrospectively, the null does not preserve exact within-page word positions, and the project has examined many other numerical correspondences. It is **not** a discovery-wide significance claim or proof of intentional construction.
 
+### Candidate selector for the 2014 133/331 table walk
+
+A separate p15-derived address may disambiguate the 2014 HTML title 133:
+
+- The p15 Fibonacci list contains **13** and **3**. Reading title 133 as page **13**, printed line **3** selects p13 line3; the competing p1/word33 parse uses 33, which is not in the p15 Fibonacci list.
+- Agent38's original-source report records p13 line3's GP-prime sum as **1229** and the p57 PARABLE-heading sum as **449**; 1229 mod449 = **331**, the same 2014 HTML div identifier. See [the source-exact p13 line3 report](../im-results/lp2-onion7-133-331-p13-line3-primesum.md). This supports the page/line parse but does not prove that the title encodes a page-line address; the modulus is another interpretive step.
+- The Fibonacci-word map independently gives candidate LCG parameters: **a=133** from F=8's word sum, **c=331** from 464−133, **m=256** from the p50 table's 256 cells, and a candidate **x0=51** from F=5's word sum 563 reduced modulo 256. This suggests the fixed recurrence x[n+1]=(133·x[n]+331) mod 256, x[0]=51.
+- This parameterization is a hypothesis, not an established cipher. The HTML contains metadata, not an explicit LCG recurrence; x0=51 is only a candidate seed/phase. The full-cycle property follows from 133≡1 (mod 4) and odd increment 331, but full-cycle arithmetic alone does not authenticate the generator.
+
+I sent this fixed parameter candidate to Agent38 for one bounded check against the existing LCG SFT: whether x0=51 aligns the Base64-like carrier at a source-fixed boundary. No broad seed/phase search is warranted. Existing direct GP29, XOR, hash and DES consumers remain negative.
+
 ### Finite follow-up checks and strongest objection
 
 - The prime-counting values π(word-prime-sum), used as a second word index, are **[69,65,37,30,103,32,113,18,19,90,34,90,3,51,30,9]**. Reading the resulting words in either natural index convention does not produce a coherent instruction.
