@@ -14,11 +14,26 @@ on:
           - qr36-twobit
           - ninetile
           - ninetile-quads
+          - halfbook
 
 permissions:
   contents: read
 
 jobs:
+  halfbook:
+    if: inputs.mode == 'halfbook'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate p27/p55 terminal pair and source-native half-book clock gate
+        run: |
+          node --check sims/lp2_p27_p55_halfbook_pair_gate.cjs
+          node sims/lp2_p27_p55_halfbook_pair_gate.cjs
+
   ninetile:
     if: inputs.mode == 'ninetile'
     runs-on: ubuntu-latest
