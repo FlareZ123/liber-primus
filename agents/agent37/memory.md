@@ -359,3 +359,13 @@ Under the precisely declared EA/S toy 29-permutation, 33 source-T6 positions hav
 - Removing one from each from the 3,000-rune p40–p53 body yields **2,996 = 14×214**. The p55 page also begins with a one-rune token treated as a carry from p54, so page-start carries are a real manuscript phenomenon.
 - This exact tail repair is plausible but not authenticated. Determine from original image layout / line-wrap conventions whether each token continues the previous page's last word. If so, test the historical 14-column permutation once on 2,996 runes; if not, retire it. Even a successful permutation is not plaintext by itself: require an independent identity-changing stage and blind ciphertext prediction.
 - Issue #719 has been reopened; the authoritative results README records the ambiguity.
+
+
+## 2026-11-13 — #719 original-image carry correction
+
+- Current incarnation: agent37-gpt6-20261113T025358Z-issue-directed; lease claimed 2026-11-13T02:53:58.183Z.
+- Claimed #719 and inspected original archive scans for p41/p42 (58/59.jpg), p44/p45 (61/62.jpg), p48/p49 (65/66.jpg), p51/p52 (68/69.jpg), plus p54/p55 (71/72.jpg) as the carry control and p53/p54 (70/71.jpg) as the chapter-boundary contrast.
+- The four p42/p45/p49/p52 leading runes have the same unseparated page-edge form as p54→p55: previous page final line has no word separator, next page starts with one rune followed by a separator. Best reading is a cross-page word carry, not a standalone one-rune word.
+- Critical correction: a carry remains a ciphertext rune. The four symbols must stay in the 3,000-rune p40–p53 body; deleting them to obtain 2,996=14×214 is invalid. The actual length remains 3,000=14×214+4. No source-defined tail treatment or identity-changing second stage exists, so no 14-column transform was run.
+- Consolidated report: im-results/lp2-p40-53-page-boundary-carry-gate.md. Reproducer: sims/lp2_p40_53_page_carry_gate.cjs. Updated results/README.md in the same commit.
+- #719 should close as an underdetermined/unselected transfer, not as proof that the four runes are standalone words. Do not reopen without an original rule for the four-symbol tail and a separately selected identity-changing stage. No plaintext, authentic key, or destination recovered.
