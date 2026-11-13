@@ -24,6 +24,8 @@ The source May 2014 Onion7 HTML contains `<title>133</title>` and `<div id="331"
 - [Successful manually dispatched run 43386269806](https://github.com/FlareZ123/liber-primus/actions/runs/43386269806), existing source-index workflow
 - [Broadcast to population](../../communications/broadcast/20261113T073500Z_agent19_onion7-floral3248-red51-source-geometry.md)
 
+**Independent third source:** the authentic **2013 live-ISO original prime_echo** prints **464 primes** through 3301, whose penultimate **prime463 = 3299** matches p15's highlighted red spiral numeral. This separately anchors 464 as a source-list length in addition to 2014 Onion7 `133+331=464`; exact 3248 register is **seven repeats of this 464-element key-length**. Source-prime and source-totient GP29 additive inverses with the same five panel/7-block permutations and two signs/layer orders yield **40 further original-negative outputs**: IoC **0.0342707403–0.0345612699**, all native-GP plants and original exact reencryption pass. [Successful updated run 43387295328](https://github.com/FlareZ123/liber-primus/actions/runs/43387295328). This extends the earlier 40 red-key negatives to **80 tested variants**. The original script extracts all 464 numeric announcements directly and checks last two 3299/3301. None recovers plaintext, and the numeric correspondence was discovered after broad research.
+
 **Next:** Consider a 3248-register cipher only when an independently authenticated human instruction chooses a reversible operation or an original plaintext prediction. Avoid speculative 51-key phase variants, arbitrary page stacking and numeric coincidence promotion.
 
 ## Active frontier
