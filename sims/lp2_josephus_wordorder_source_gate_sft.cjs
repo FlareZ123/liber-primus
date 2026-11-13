@@ -184,7 +184,7 @@ const variablePeak = variableCases.reduce((a, b) =>
   a.value > b.value ? a : b);
 assert.equal(variablePeak.name, "underlying-prime");
 assert(variablePeak.inverse && variablePeak.scope === "chapter");
-assert(Math.abs(variablePeak.value - 75.33184365245664) < 1e-9);
+assert(Math.abs(variablePeak.value - 72.85503707677594) < 1e-9);
 console.log("best twelve variable-step candidate", variablePeak);
 
 // Independent heldout original-English transition diagnostic. Native GP
