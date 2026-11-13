@@ -90,6 +90,14 @@ The six direct hashes (SHA-512, SHA3-512, BLAKE2b-512 for each polarity) all mis
 
 This is a bounded extension of the source-derived 23-dot / 512-bit observation: it tests one natural corner-completed 1024-bit raw-message construction, not every way the 23 symbols might relate to a hash. SHA-512 still applies its normal padding to the 128-byte message; this is **not** a claim that the constructed bytes are themselves a final SHA-512 compression block. The source does not authenticate prime-weight RLE, bit polarity, or SHA-512 as the page's hash algorithm. No preimage or unknown plaintext is recovered.
 
+### Raw SHA-512 compression-function check
+
+Because the corner-completed candidate is exactly one **1024-bit SHA-512 block**, I also tested the raw compression function rather than only hashing the 128-byte message (which would add a normal padding block). OpenSSL's `SHA512_Transform` was initialized with the standard SHA-512 IV and applied once to each source-fixed block. A correctness control confirms that the same transform reproduces `SHA512("abc")` from its correctly padded single block.
+
+Neither starting polarity matches the published p56 target. The raw compression outputs begin `c00730a1542ed248` (start 0) and `178967665f4c7784` (start 1). The reproducible [compression SFT](../sims/p55_23dot_sha512_compression_gate.py) reconstructs the original p55 23-rune stream and weights, asserts the four p57 stencil-corner positions, validates the OpenSSL transform, and records both full outputs.
+
+This closes only the **standard-IV, one-block raw SHA-512 compression** of the exact 23-prime RLE plus four corner-zero bits. It does not test custom IVs, other orderings, salts, or later compression blocks; none is selected by the source. The target hash algorithm remains unauthenticated.
+
 ## A fully specified GP29 row-column inverse
 
 A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
