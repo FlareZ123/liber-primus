@@ -106,6 +106,50 @@ for (let trial = 0; trial < 2000; trial += 1) {
   atLeast += matches >= matchIndex;
 }
 assert.equal(atLeast, 848);
+
+// The original table also has two 193-valued source cells, at 83 and 127;
+// exactly 43 bytes between. Three independently selected 43-unit registers:
+// this table interval, p55 word interiors, and the same cells of outer256.
+// Freeze four simple historically motivated three-register arithmetic reads.
+assert.equal(grid[83], 193);
+assert.equal(grid[127], 193);
+const intervalStart = 84;
+const keys = [
+  {
+    name: 'mod29-grid-minus-exterior',
+    values: interior.map((_, i) =>
+      (grid[intervalStart + i] - exterior[intervalStart + i] + 29) % 29)
+  },
+  {
+    name: 'mod29-grid-plus-exterior',
+    values: interior.map((_, i) =>
+      (grid[intervalStart + i] + exterior[intervalStart + i]) % 29)
+  },
+  {
+    name: 'byte-xor-gpindex',
+    values: interior.map((_, i) =>
+      (grid[intervalStart + i] ^ exterior[intervalStart + i]) % 29)
+  },
+  {
+    name: 'byte-xor-gpprime',
+    values: interior.map((_, i) =>
+      (grid[intervalStart + i] ^ c.prime[exterior[intervalStart + i]]) % 29)
+  }
+];
+const expected43 = [
+  0.03322259136212625, 0.028792912513842746,
+  0.029900332225913623, 0.02547065337763012
+];
+const triple = keys.map(({ name, values }, model) => {
+  const decoded = interior.map((v, i) => (v - values[i] + 29) % 29);
+  assert.deepEqual(decoded.map((v, i) => (v + values[i]) % 29), interior);
+  const planted = c.pages[57].indices.slice(0, 43);
+  assert.deepEqual(planted.map((v, i) => (v + values[i]) % 29)
+    .map((v, i) => (v - values[i] + 29) % 29), planted);
+  assert.ok(Math.abs(ioc(decoded) - expected43[model]) < 1e-12);
+  return { name, ioc: ioc(decoded), gp: decoded.map((v) => c.translit[v]).join('-') };
+});
+
 console.log(JSON.stringify({
   sourcePartition: 'p54 heading 9 / p54 black223 + p55 word exterior33 / p55 word interior43',
   lengths: [9, 256, 43],
@@ -116,6 +160,7 @@ console.log(JSON.stringify({
   asciiPrimeXor,
   sourceP50GridAndExteriorMod29: outputs,
   matchedPermutationUpperTail: (atLeast + 1) / 2001,
+  sourceSelected43TripleRegisterInverses: triple,
   originalFullRoundtripAndNativePlant: 'PASS',
   plaintextFound: false
 }, null, 2));
