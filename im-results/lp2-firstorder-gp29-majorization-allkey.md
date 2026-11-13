@@ -4,7 +4,7 @@
 
 For comparison, an independently solved LP1 source-English GP transliteration has **406/3,287 E runes (12.35169%)**, and **2,552/3,287 occurrences of its twelve most frequent runes (77.63918%)**. Therefore the entire specified all-secret first-order cipher family is incompatible with plaintext possessing those ordinary authentic-Cicada English proportions over the 12,956 source positions. This does **not** imply a universal proof that all conceivable English distributions are excluded, and it recovers no unknown plaintext or authentic key. The exact unconditional conclusion is the numerical frequency bound.
 
-[Passing expanded original-source CI run 43379888752](https://github.com/FlareZ123/liber-primus/actions/runs/43379888752) · [Complete CommonJS SFT](../sims/lp2_firstorder_gp29_capacity_sft.cjs) · [Prior 16-symbol source-alphabet capacity gate](lp2-alternative-register-source-gate.md#12-november-2026-source-visible-chapter-alphabet-capacity-test-480).
+[Passing source plus 5,623 native-window CI run 43380890708](https://github.com/FlareZ123/liber-primus/actions/runs/43380890708) · [Complete CommonJS SFT](../sims/lp2_firstorder_gp29_capacity_sft.cjs) · [Prior 16-symbol source-alphabet capacity gate](lp2-alternative-register-source-gate.md#12-november-2026-source-visible-chapter-alphabet-capacity-test-480).
 
 ## Original source and the competing chapter maps
 
@@ -33,6 +33,19 @@ For **any** selected set of k distinct plaintext rune types, their ciphertext im
 | **Nine visual chapter tables, word reset** | **1,237** | **2,260** | **8,852** |
 
 The authorial LP1 comparison is source-specific: the checked-in solved, editorial-normalized reference is encoded using the fixed GP29 multigraphs and established K→C, V→U and Z→S spelling; its 3,287-rune sample has an E frequency of 12.35169% and top-twelve frequency of 77.63918%. Applied proportionally to the 12,956-rune unknown corpus, that would imply approximately **1,600 E** and **10,059 top-twelve** positions, respectively, both strictly above the most permissive original-source bound. This comparison illustrates what types of plaintext are excluded; it is not a claim that the unknown pages have those exact statistics.
+
+## Independent historically linked full-length English control
+
+A second source with actual historical relevance to Cicada's earlier rounds is the public-domain **1906 English edition of William Blake's *The Marriage of Heaven and Hell***, already frozen in `resources/external/blake-marriage-1906-gutenberg45315.txt` (Git blob SHA-1 `fc503b01bbedbec4e0c8b3d1ded311bed8e28874`). This control was selected by the known LP1/2012 Blake quotation history, not by a partial match to unknown ciphertext. The same frozen GP29 multigraph priority and original K→C, V→U, Z→S normalization are applied. The existing standard normalizer excludes a literal editorial bracketed insertion `[the]`, producing exactly **18,578 GP29 runes**, with **2,346 E** and **14,369 of the top twelve**; global frequencies are approximately **12.627% E and 77.344% top twelve**.
+
+Slide a complete **12,956-rune window** across every possible source offset. The exhaustive **5,623** contiguous, exactly original-length GP-Blake windows give:
+
+| Statistic | Smallest of all 5,623 windows | Largest | Required original-cipher maximum |
+|---|---:|---:|---:|
+| E count | **1,607** | 1,665 | **1,269** |
+| Twelve most abundant rune count | **9,974** | 10,061 | **9,006** |
+
+**0/5,623** source-native windows satisfy either first-order capacity condition, even with nine independent visual-chapter secret tables and fixed page resets. This matched-length all-window test is stronger than extrapolating a short LP1 average. It establishes a second, finite corpus exclusion of a historically motivated English style. It cannot exclude unknown English prose written with an unusually low E concentration or flatter unigram distribution, nor any cipher with richer state. The exact 1906 input and complete sliding control are checked by the same [passing native source CI](https://github.com/FlareZ123/liber-primus/actions/runs/43380890708).
 
 ## Independent two-history countermodel and controls
 
