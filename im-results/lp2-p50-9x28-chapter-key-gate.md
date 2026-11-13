@@ -68,6 +68,10 @@ All four candidates score worse than the unchanged ciphertext. None produces rec
 
 The SFT also performs 36 planted positive round trips: every one of the nine key rows, both signs, and both reversible alphabet models correctly encrypts and decrypts the authentic solved p57 plaintext. Each original candidate inverse is independently forward-replayed to the exact original 12,956-rune ciphertext.
 
+## Direct quotient-as-plaintext check
+
+The quotient's natural high-to-low GP29 symbol order was also tested as a standalone 252-rune plaintext, without rearrangement. It has IoC **0.03633087** and mean quadgram score **−7.50897543**, worse than the original unresolved stream (**−7.43913779**) and far below the solved p57 control (**−4.42063342**). Its literal transliteration begins `FEANGBAISLPBLUUNGLYLPYAGRPEAAHEOUAELEANGAAEEOXSUIWOISMTHIASIAHGNPTHNDIAYLGYNGNRAEAWCHCJYHAEFLUBOETHPPUCJJMCSYRTINRIALXJNGLGSLECCCUIAXCEARDOEBAEMFLLEOLREOHIAAEPRINDEUIAACFAEWAEHTHSUNWIAUJNSPEOWCBEOIYNJTHEONHEOFMCYEAGHAEETHICREAESPTHAHXEHIYNOEDGILDUUXWTNCAHNGLJLNCCBXYNGHWIAEAIEJLJITTHWNGPFNGSDEOOEJPADNCAEMX`. This is not readable plaintext. The natural quotient-as-message interpretation is therefore also retired; no reverse or alternative layout is promoted as a candidate.
+
 ## Decision
 
 Retire precisely the direct row-major 9×28 repeating additive-key schedule, with chapter resets, under both full-GP29 and F-null/GP28 interpretations. The direct row-as-substitution-permutation interpretation is separately excluded by the repeated values in every row.

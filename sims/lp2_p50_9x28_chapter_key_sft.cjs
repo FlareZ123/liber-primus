@@ -180,6 +180,10 @@ for (const variant of variants) {
   delete variant.output;
 }
 
+const directQuotient = {
+  ioc: indexOfCoincidence([quotient]),
+  score: score([quotient])
+};
 const p57 = corpus.pages.find(page => page.page === 57).indices;
 assert.equal(p57.length, 95);
 assert(translit(p57).startsWith("PARABLE"));
@@ -200,6 +204,7 @@ for (let row = 0; row < 9; row++) {
 }
 assert.equal(positiveControls, 36);
 
+assert(Math.abs(directQuotient.score.mean - (-7.508975430564677)) < 1e-10);
 assert(Math.abs(raw.score.mean - (-7.4391377865159365)) < 1e-10);
 assert(Math.abs(p57Score.mean - (-4.420633417052125)) < 1e-10);
 assert(Math.abs(variants[0].score.mean - (-7.517838228623048)) < 1e-10);
@@ -217,6 +222,7 @@ console.log(JSON.stringify({
     chapterLengths: chapters.map(x => x.length),
     keyRowDistinctCounts: rowDistinct
   },
+  directQuotientAsGp29Plaintext: directQuotient,
   raw,
   variants,
   solvedP57PositiveControl: { length: p57.length, ioc: indexOfCoincidence([p57]), score: p57Score },
