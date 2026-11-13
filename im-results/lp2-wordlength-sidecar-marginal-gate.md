@@ -71,7 +71,23 @@ A whole-book permutation of nine otherwise natural source chapters would erase s
 | 40–53 | 669 | 0.04667 | 0.05121 | 0.6747 |
 | 54–55 | 66 | 0.47252 | 0.51685 | 0.7502 |
 
-Eight of nine source chapters have unremarkable adjacency MI under an exact-inventory shuffled control. The p27–32 interval has nominal one-sided 0.0422, which is **not compelling across nine inspected chapters** (conservative Bonferroni bound 0.3797); it cannot select a special local decoding clock. Hence merely rearranging intact *chapters* of naturally ordered prose does **not** explain the unusually weak word-length grammar. A within-chapter word-order transformation, deliberately shaped spacing, or an unusual nonprose source remain alternatives. This source-chapter test adds no free key, plaintext, or unique inverse. The same [source-input SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs) asserts the nine counts and all nine seeded calibration tails.
+Eight of nine source chapters have unremarkable adjacency MI under an exact-inventory shuffled control. The p27–32 interval has nominal one-sided 0.0422, which is **not compelling across nine inspected chapters** (Bonferroni upper bound 0.3797). The shuffle null alone cannot establish that natural ordered prose is missing within each chapter, so an independent GP-native control is needed.
+
+To discriminate this, independently authored Shakespeare, Gibran and Emerson control windows of the **same chapter word count** were translated to native GP29 lengths, then each window was monotone rank-matched to the **exact original chapter word-length inventory** before computing adjacent-length MI. Deterministic original-independent index ties and nonoverlapping source windows avoid fitting the original ordering:
+
+| Chapter pp | Source words | Original MI | Exact-marginal native windows | Native MI ≤ original | Add-one lower-tail |
+|---|---:|---:|---:|---:|---:|
+| 0–2 | 158 | 0.22073 | 942 | 75 | 0.0806 |
+| 3–7 | 255 | 0.15436 | 583 | 174 | 0.2997 |
+| 8–14 | 383 | 0.09752 | 388 | 50 | 0.1311 |
+| 15–22 | 437 | 0.09389 | 340 | 82 | 0.2434 |
+| 23–26 | 224 | 0.13331 | 664 | 13 | 0.0211 |
+| 27–32 | 326 | 0.14094 | 456 | 243 | 0.5339 |
+| 33–39 | 378 | 0.08609 | 393 | 10 | 0.0279 |
+| 40–53 | 669 | 0.04667 | 221 | 3 | 0.0180 |
+| 54–55 | 66 | 0.47252 | 2,257 | 303 | 0.1346 |
+
+The three locally most distinctive sections have original MI below most finite source controls (p23–26, p33–39, p40–53); **none has a Bonferroni-adjusted lower-tail below 0.05 across nine comparisons**, and several chapters overlap native prose comfortably. The manuscript-wide length-grammar deficit therefore deserves consideration beyond simply scrambling chapters, but it **cannot independently exclude intact-chapter permutation or unusual native textual style**. A source-indicated within-chapter operation or authentic key remains necessary. This chapter test adds no plaintext or unique inverse. The same [source-input SFT](../sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs) reproduces both the seeded exact-inventory shuffle and all histogram-matched native control counts.
 
 ## Does the 32 cross-page carry count index the 32 table rows?
 
