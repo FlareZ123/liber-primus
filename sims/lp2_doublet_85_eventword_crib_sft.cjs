@@ -143,6 +143,29 @@ const genuineInverse = solvedCipher.map((x, i) => i === 56 ? 0 :
   (x - shifts[i] + 29) % 29);
 assert.deepEqual(genuineInverse, solvedPlain);
 
+// Independent direct consumer: reuse the exact solved-page prime-totient rule,
+// where a literal ciphertext F (GP index zero) is copied without consuming
+// a prime. This is a hypothesis about the 85-event carrier, not an LP2 key.
+// A true p56 positive control must pass with the same decoder.
+const nativePrimeTotient = (cipher, direction) => {
+  let clock = 0;
+  const plain = cipher.map(x => x === 0 ? 0 :
+    ((x + direction * (primes[clock++] - 1)) % 29 + 29) % 29);
+  return {plain, consumedPrimes: clock};
+};
+const nativeSolved = nativePrimeTotient(solvedCipher, -1);
+assert.deepEqual(nativeSolved.plain, solvedPlain);
+assert.equal(nativeSolved.consumedPrimes, 84);
+const eventPrimeSubtract = nativePrimeTotient(carrier, -1);
+const eventPrimeAdd = nativePrimeTotient(carrier, 1);
+assert.equal(eventPrimeSubtract.consumedPrimes, 81);
+assert.equal(eventPrimeAdd.consumedPrimes, 81);
+assert.ok(Math.abs(ioc(eventPrimeSubtract.plain) - 0.031932773109243695) < 1e-13);
+assert.ok(Math.abs(ioc(eventPrimeAdd.plain) - 0.04145658263305322) < 1e-13);
+// Source target position 56 is not a literal F in this readout, so a fixed
+// copy of the p56 exception clock would not be source consistent.
+assert.equal(carrier[56], 24);
+
 // Any static relabeling, even one of all 29! possibilities, preserves
 // profile. The source profiles differ, so no search is needed.
 const eventProfile = profile(carrier);
@@ -176,6 +199,15 @@ process.stdout.write(JSON.stringify({
   carrierLength: carrier.length,
   carrierGP29IoC: ioc(carrier),
   solvedPlainGP29IoC: ioc(solvedPlain),
+  authenticP56PrimeTotientCarrierTransfer: {
+    literalFCopyAndPrimeNonconsumption: true,
+    eventCarrierSubtractIoC: ioc(eventPrimeSubtract.plain),
+    eventCarrierAddIoC: ioc(eventPrimeAdd.plain),
+    consumedPrimes: eventPrimeSubtract.consumedPrimes,
+    first25SymbolsSubtract: eventPrimeSubtract.plain.slice(0,25).map(i => corpus.translit[i]).join(" "),
+    first25SymbolsAdd: eventPrimeAdd.plain.slice(0,25).map(i => corpus.translit[i]).join(" "),
+    recoveredUnknownOriginalPlaintext: false
+  },
   directMatches: {
     solvedP56Cipher: agreement(carrier, solvedCipher),
     solvedP56Plain: agreement(carrier, solvedPlain),
