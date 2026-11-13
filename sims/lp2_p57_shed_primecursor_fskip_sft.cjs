@@ -224,7 +224,7 @@ for (const candidateCount of [29, 110]) {
   assert.equal(impossible.length, candidateCount === 29 ? 34 : 20);
   if (candidateCount === 29) assert.ok(impossible.includes(0));
   else assert.deepEqual(rows[0].workingStarts, [107, 109]);
-  console.log("ALL-SECRET CURSOR SUPSET", candidateCount,
+  console.log("ALL-SECRET CURSOR SUPERSET", candidateCount,
     JSON.stringify({impossiblePageCount:impossible.length,
       impossiblePages:impossible,
       p0FeasibleStarts:rows[0].workingStarts}));
