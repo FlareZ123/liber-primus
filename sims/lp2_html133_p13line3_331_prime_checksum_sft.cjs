@@ -139,6 +139,31 @@ const p55Only = [-1, 1].map(sign => ({
 close(p55Only[0].ioc, 0.037192982456140354);
 close(p55Only[1].ioc, 0.028421052631578948);
 
+// Source-constrained 23-to-23 consumer, using the p55 twice-peeled 23-rune
+// word core independently selected by the p57 23-dot red stencil.
+const p55Words = sourcePages[55].split('/').join('').split(/[-.&$]/)
+  .map(runes).filter(word => word.length > 0);
+assert.deepEqual(p55Words.map(word => word.length), [
+  1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3,
+]);
+assert.deepEqual(p55Words.flat(), p55);
+const p55Core23 = p55Words.slice(1).flatMap(word => word.slice(2, word.length - 2));
+assert.deepEqual(p55Core23.map(n => corpus.translit[n]), [
+  'G', 'D', 'A', 'B', 'F', 'X', 'I', 'M', 'U', 'C', 'P', 'H', 'NG',
+  'D', 'IA', 'I', 'G', 'X', 'EO', 'TH', 'TH', 'I', 'M',
+]);
+assert.equal(p55Core23.length, key.length);
+const core23Candidates = [-1, 1].map(sign => {
+  const plain = p55Core23.map((c, i) => (c + 29 + sign * key[i]) % 29);
+  assert.deepEqual(
+    plain.map((p, i) => (p + 29 - sign * key[i]) % 29),
+    p55Core23,
+  );
+  return { sign, gp: plain.map(n => corpus.translit[n]).join('-') };
+});
+assert.equal(core23Candidates[0].gp, 'M-L-I-L-I-X-AE-U-IA-N-W-J-U-L-S-I-L-E-F-EO-R-B-EO');
+assert.equal(core23Candidates[1].gp, 'OE-Y-N-X-M-X-A-H-R-U-M-C-EO-Y-I-I-NG-I-A-NG-F-O-Y');
+
 // Fully solved authentic GP-rune p57 is the independent positive control.
 const known = corpus.pages[57].indices;
 assert.equal(known.length, 95);
@@ -155,5 +180,6 @@ console.log(JSON.stringify({
   literalAddressWalk: { addresses, sums: addressPrimeSums, stopAt: '120 (invalid line 0)' },
   originalRunes: originalRunes.length, rawIoc: ioc(originalRunes),
   fullBookCandidates: outcomes, p55Candidates: p55Only,
+  p55TwicePeeledCoreCandidates: core23Candidates,
   solvedP57PositiveControl: '95/95 for both signs',
 }, null, 2));
