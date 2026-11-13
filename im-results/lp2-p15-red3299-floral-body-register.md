@@ -153,7 +153,7 @@ Use the complete **3316=4×829** floral rune register and unchanged base29 four-
 
 The raw original is **0.034462826608** and solved native p57 is **0.062709966405**. All four candidate strings remain noisy, without recoverable unknown GP plaintext. Every transformed original can be restored exactly, and each of four **3316-rune source-native solved-p57 plants** recovers 3316/3316 rune symbols after synthetic RSA4 encoding.
 
-**Important weak link:** Both 1033 and3301 are historically real Cicada numbers, while the title red prime sums and exponent7 are independently visible arithmetic. The original does **not** say to multiply the two primes into an RSA modulus, apply a 4-rune GP block, or cycle-walk a small RSA residue. This is a specific conjectural original-source cipher, and its failure does not refute the red title checksum or an as-yet unidentified 1033-based key operation. [Complete original-source SFT](../sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs).
+**Important weak link:** Both 1033 and3301 are historically real Cicada numbers, while the title red prime sums and exponent7 are independently visible arithmetic. The original does **not** say to multiply the two primes into an RSA modulus, apply a 4-rune GP block, or cycle-walk a small RSA residue. This is a specific conjectural original-source cipher, and its failure does not refute the red title checksum or an as-yet unidentified 1033-based key operation. [Complete original-source SFT](../sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs), **passed unchanged source-native tests** in [manual GitHub Actions run 43378543637](https://github.com/FlareZ123/liber-primus/actions/runs/43378543637).
 
 ## Twin-prime RSA four-rune cycle walk
 
