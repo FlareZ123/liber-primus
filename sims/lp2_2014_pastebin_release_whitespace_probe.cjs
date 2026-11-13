@@ -83,6 +83,11 @@ async function main(){
           if(candidate){
             const start=text.indexOf('-----BEGIN PGP SIGNED MESSAGE-----');
             body.signedBlockExcerpt=text.slice(start, start+2100);
+            const metadataFields=['paste_box_line2','paste_box_info','paste_box_title','2014','2016','paste_date'];
+            body.metadataSnippets=metadataFields.map(term=>{
+              const at=text.indexOf(term);
+              return {term,at,snippet:at<0?null:text.slice(Math.max(0,at-170),at+440)};
+            });
           }
           delete body.body;
           replays.push({arc,timestamp:cap.timestamp,replay,
