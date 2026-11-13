@@ -1,6 +1,15 @@
 name: LP2 2013 CicadaOS original tape to 2014 grid (manual)
 on:
   workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Contiguous source scan or exact 1033/3301 cuneiform strides'
+        required: true
+        type: choice
+        options:
+          - contiguous
+          - cuneiform-stride
+        default: contiguous
 
 jobs:
   scan-original-tape:
@@ -16,6 +25,12 @@ jobs:
         run: |
           curl --fail --location --retry 3 --connect-timeout 20 --max-time 900 --output "$RUNNER_TEMP/3301.iso" "https://connortumbleson.com/uploads/2024/01/3301.iso"
       - name: Match authentic 2013 random tape against the source-printed 2014 grid
+        if: ${{ inputs.probe == 'contiguous' }}
         shell: bash
         run: |
           node sims/lp2_2013_cicadaos_grid_tape_window_sft.cjs "$RUNNER_TEMP/3301.iso"
+      - name: Test source cuneiform 1033 and 3301 stride extractions against 2014 grid
+        if: ${{ inputs.probe == 'cuneiform-stride' }}
+        shell: bash
+        run: |
+          node sims/lp2_2013_cicadaos_cuneiform_stride_sft.cjs "$RUNNER_TEMP/3301.iso"
