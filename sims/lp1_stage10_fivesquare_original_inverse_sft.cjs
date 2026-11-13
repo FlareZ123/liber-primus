@@ -77,7 +77,7 @@ const inv = inverse(M);
 const mt = transpose(M);
 const invt = inverse(mt);
 const orientations = [['M', M], ['MT', mt], ['M_INV', inv], ['MT_INV', invt]];
-assert.deepEqual(M.map((r) => r.reduce((s, x) => s + x, 0)),
+assert.deepEqual(M.map((r) => mod(r.reduce((s, x) => s + x, 0))),
   Array(5).fill(mod(3301)));
 for (let i = 0; i < 5; i++) {
   const unit = Array.from({ length: 5 }, (_, j) => Number(j === i));
