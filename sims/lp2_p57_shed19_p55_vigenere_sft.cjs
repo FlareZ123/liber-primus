@@ -93,10 +93,44 @@ for(const [name,key] of [["first",beginning],["last",ending]]){
   }
 }
 assert.equal(records.length,4);
+
+// A stronger all-secret necessary condition for four parallel 19-word
+// plaintext-feature channels: a fixed secret bijection in any channel
+// must preserve source equality and distinctness. Both source-natural
+// 4x19 and 19x4 layouts are granted without phase optimization.
+const features={
+  first:beginning,last:ending,
+  length:body.map(w=>w.length),
+  primeSumMod29:body.map(w=>w.reduce((s,i)=>s+db.prime[i],0)%29)
+};
+const equalityObstructions=[];
+for(const [layout,at] of [
+  ["fourRows19", (row,column)=>row*19+column],
+  ["nineteenRows4", (row,column)=>column*4+row]
+]){
+  for(const [feature,plain] of Object.entries(features)){
+    for(let row=0;row<4;row++){
+      const sameSource=new Map(),sameCipher=new Map();
+      let forwardConflicts=0,reverseConflicts=0;
+      for(let column=0;column<19;column++){
+        const p=plain[column],c=original55[at(row,column)];
+        if(sameSource.has(p)&&sameSource.get(p)!==c)forwardConflicts++;
+        if(sameCipher.has(c)&&sameCipher.get(c)!==p)reverseConflicts++;
+        sameSource.set(p,c);sameCipher.set(c,p);
+      }
+      assert(forwardConflicts>0 && reverseConflicts>0);
+      equalityObstructions.push({layout,feature,row,
+        forwardConflicts,reverseConflicts});
+    }
+  }
+}
+assert.equal(equalityObstructions.length,32);
+
 console.log(JSON.stringify({
   source:"Original p57 19 body words, first/final GP rune per word",
   target:"Original physical p55 all 76 rune positions",
   originalCipherIoC:ioc(original55),keyPeriod:19,periods:4,
   originalSourceGpPlant:"4/4 exact 76-rune roundtrips",
-  candidates:records,recoveredUnknownPlaintext:0
+  candidates:records,codebookEqualityObstructions:equalityObstructions,
+  recoveredUnknownPlaintext:0
 },null,2));
