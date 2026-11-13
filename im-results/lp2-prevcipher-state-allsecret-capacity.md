@@ -46,22 +46,26 @@ The first original ciphertext rune of each word acts as a freely supplied seed, 
 
 ## Boundary-aware source resets: a sharper decision
 
-The runeless original p50 is a plausible additional source-visible register reset. If the cipher is granted an **independent set of 29 secret alphabet rows after p50** while preserving the nine visual-chapter resets, the original occupancy allowances become **1,109 E / 2,015 E+O**. No fixed state in this *ten-segment* model then emits all 29 output runes, so the **Latin26 alphabet-size obstruction is conditional on persisting the same codebooks across p50**. This extra p50 reset still cannot supply the source-native reference's 1,487.44 E or 2,289.23 E+O expectations.
+The original rune-free numeric **p50** is a strong candidate for an additional source-visible register reset. If the cipher is granted independently secret alphabet rows after p50 while preserving all nine visual chapters, the original capacity becomes **1,109 E / 2,015 E+O**. The original chapter7 complete 29-output witness splits, yet **six state rows still produce 28 distinct glyphs** in the resulting ten segments. Therefore a p50-only reset **does not** rescue a direct 26-Latin-letter deterministic codebook. Even the weaker max-distinct constraint continues to require at least **28 plaintext symbols** in one fixed state. The English E/EO deficit also persists.
 
-To learn what added source-visible complexity could rescue the English register, the expanded exact SFT partitions **all 55 rune-bearing original pages** into consecutive segments, preserving all nine original visual-chapter reset boundaries, and permits an arbitrary new set of 29 secret predecessor-state codebooks at **any additional physical-page start**. A dynamic program enumerates *all contiguous within-chapter page partitions* and maximizes the theoretical E and E+O capacities separately for each number of extra resets. This grants the model every favorable page boundary and all 29! possible glyph permutations at each row.
+### Smallest possible additional chapter-local rekeying under physical page boundaries
 
-| Extra page-start resets beyond the nine visual chapters | Maximum possible E | Maximum possible E+O |
+The chapter-wise maximum numbers of distinct successor ciphertext values under a single predecessor-state row are precisely **[19,24,27,28,23,25,25,29,11]** for the nine original visual chapters. A deterministic 26-symbol underlying register requires **at most 26** different outputs in *every* state row. Chapters 2, 3 and 7 (zero-based) therefore each need at least one additional reset before this necessary condition could hold. An exhaustive dynamic program over **every contiguous physical-page partition inside each visual chapter** establishes that **exactly three extra page-start resets** suffice to eliminate this *cardinality* obstruction. One mathematically minimal set is at physical pages **[10,16,45]**, independently starting new state codebooks. This is a capacity upper-bound witness and **does not provide** three authentic keys, a credible authored reset instruction, English lexical consistency, or even a sufficient condition for any particular plaintext.
+
+The same DP, granting every extra segment **29 independent arbitrary secret GP29 alphabets**, maximizes E and E+O capacities separately for each permitted number of extra page-start resets. The original 55 rune-bearing pages and nine chapter boundaries are held fixed.
+
+| Extra physical-page resets beyond the nine original visual chapters | Best-case maximum E | Best-case maximum E+O |
 | ---: | ---: | ---: |
 | 0 | 1,068 | 1,938 |
 | 4 | 1,259 | 2,254 |
 | 5 | 1,300 | 2,319 |
 | 9 | 1,450 | 2,568 |
-| **10** | **1,485** | 2,628 |
-| **11** | **1,519** | 2,687 |
+| **10** | **1,485** | **2,628** |
+| **11** | **1,519** | **2,687** |
 
-Consequently, the *reference-expected* E occupancy of **1,487.4447** requires at least **11 additional page-boundary rekeys** after the nine visual chapters, even under the most advantageous hidden alphabet choices. The E+O expectation **2,289.2256** separately requires at least **5** extra rekeys. The exact E-maximizing 11-reset example starts new codebooks at physical page numbers **[1,11,18,20,25,29,35,42,44,46,51]**; this set is an *algorithmic upper-bound witness*, not a source-instructed key schedule or proposed solve route. The corresponding ten-reset optimum is **1,485**, two or three E runes short of the rounded reference expectation. These statements concern the specified native-English statistical benchmark. An atypically E-sparse authentic text could demand fewer resets, and a richer hidden-state/transport model lies outside the theorem.
+The source-native reference's expected **1,487.4447 E** tokens require at least **11 additional page-level rekeys** under this model, *even when every possible page-boundary partition and every secret alphabet permutation is optimised*. Only **five** such rekeys are needed to reach the separate expected **2,289.2256 E+O** threshold. One E-maximizing 11-reset partition starts new alphabets at original physical pages **[1,11,18,20,25,29,35,42,44,46,51]**. It is an algorithmic capacity construction, **not** an authored key schedule or a proposed decipherment.
 
-The broader interpretation is causally useful: adding the obvious p50 interruption, or a few chapter-local resets, is insufficient for source-native ordinary English. A first-order observable-state explanation would require frequent independent alphabet changes or a different underlying plaintext distribution, hence **independent source evidence for a substantially more complex schedule** before another original-cipher key search.
+These reset thresholds are conditional on the declared word-length-and-position-calibrated **native-English reference demand**. A very E-sparse authentic text, a different language, hidden state or a different transport can evade the English bound. The independently exact Latin26 cardinality condition has its own weaker three-reset threshold. The distinction determines the useful next research question: a first-order visible-state explanation of ordinary English requires many independently signaled changes of secret codebooks, beyond the obvious p50 interruption or the nine artwork chapters.
 
 ## Consequence for the solve path
 
