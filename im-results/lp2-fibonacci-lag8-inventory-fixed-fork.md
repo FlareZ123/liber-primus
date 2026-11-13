@@ -94,3 +94,5 @@ The [standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_inventory_fixed_sft.cjs
 **All-secret source-language follow-up:** [reversible pagewise 29-category GP29 transducer and 594,160-window capacity SFT](../sims/lp2_fibonacci_lag8_allsecret_pagewise_capacity_sft.cjs) (Node.js 22). It asserts exact source page inventories, 15/46 marker outcomes, 148/279 all-secret bounds, three exhaustive reference-window minima, and full source-native English positive roundtrip.
 
 **Exact manual CI:** both new original-source experiments and their independent native-English positive controls passed Node.js 22 unchanged in [GitHub Actions run 43407948437](https://github.com/FlareZ123/liber-primus/actions/runs/43407948437), main commit 0f1af429e0f3deee9e4b1ce7afafa813fbf52448.
+
+**Extended exact manual CI:** the three-clock prime-totient original and positive-control SFT also passed unchanged on Node.js 22 in [GitHub Actions run 43409123237](https://github.com/FlareZ123/liber-primus/actions/runs/43409123237), code commit 96ff3897b8cee516f2ce27f409be5d0b878ac81d.
