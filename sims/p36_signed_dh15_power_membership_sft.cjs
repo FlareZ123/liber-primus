@@ -199,6 +199,58 @@ assert(eq(beta, root0));
 assert.equal(new Set(roots.map((v) => v.initial)).size, 15);
 assert(roots.every((v) => v.ic > 0.03 && v.ic < 0.04));
 
+// The other signed DH exponent admits a complete six-root inverse as well.
+// Since N=8*odd, use Tonelli-Shanks for square roots after the unique
+// cube-root representative in the subgroup of index 3.
+/** @param {number[]} value @returns {number[]} */
+function squareRoot(value) {
+  assert(eq(power(value, N / 2n), ONE));
+  const odd = N / 8n;
+  const nonresidue = xPlusOne;
+  assert(!eq(power(nonresidue, N / 2n), ONE));
+  let c = power(nonresidue, odd);
+  let t = power(value, odd);
+  let r = power(value, (odd + 1n) / 2n);
+  let m = 3;
+  while (!eq(t, ONE)) {
+    let i = 0;
+    let v = t;
+    while (!eq(v, ONE)) {
+      v = multiply(v, v);
+      i++;
+    }
+    assert(i < m);
+    const b = power(c, 1n << BigInt(m - i - 1));
+    const b2 = multiply(b, b);
+    r = multiply(r, b);
+    t = multiply(t, b2);
+    c = b2;
+    m = i;
+  }
+  assert(eq(multiply(r, r), value));
+  return r;
+}
+const cubeRootB = power(B, inverseMod(3n, N / 3n));
+assert(eq(power(cubeRootB, 3n), B));
+const sixthRootB = squareRoot(cubeRootB);
+assert(eq(power(sixthRootB, 6n), B));
+const zeta3 = power(xPlusOne, N / 3n);
+assert(eq(power(zeta3, 3n), ONE) && !eq(zeta3, ONE));
+let bRoot = sixthRootB;
+const roots6 = [];
+for (let j = 0; j < 3; j++) {
+  for (const sign of [1, -1]) {
+    const betaB = bRoot.map((v) => mod(v * sign));
+    assert(eq(power(betaB, 6n), B));
+    roots6.push({ root: j, sign, ic: ic(betaB),
+      initial: betaB.slice(0, 16).map((v) => corpus.translit[v]).join('.') });
+  }
+  bRoot = multiply(bRoot, zeta3);
+}
+assert.equal(roots6.length, 6);
+assert(eq(bRoot, sixthRootB));
+assert(roots6.every((v) => v.ic > 0.03 && v.ic < 0.04));
+
 // One frozen direct plaintext consumer: after p36, emit the canonical
 // coefficient or absolute-field trace of successive powers of each of the
 // fifteen roots. Test +/- GP29 addition on the *unaltered* pp37-39 runes.
@@ -250,6 +302,7 @@ console.log(JSON.stringify({
     reversed_p39_p3_is_6th_power: true,
     common_DH_base_with_6_15: false },
   root_count: roots.length, root0_norm: 27, roots,
+  sixth_root_count: roots6.length, roots6,
   subsequent_page_gate: { runes: following.length, models: 60,
     original_ic: followingRawIc, minimum_decoded_ic: minDecodedIc,
     maximum_decoded_ic: maxDecodedIc },
