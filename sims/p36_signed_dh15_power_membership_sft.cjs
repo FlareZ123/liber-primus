@@ -324,6 +324,19 @@ for (let shift = 0; shift < MOD; shift++) {
 }
 assert.deepEqual(exactShiftMatches, [1]);
 
+// The exact p3 embedding also motivates one unkeyed full-field (X+1)
+// trace-of-powers stream; preserve the failed original-cipher result.
+let shiftedState = xPlusOne;
+const shiftedKey = [];
+for (let i = 0; i < following.length; i++) {
+  shiftedKey.push(fieldTrace(shiftedState));
+  shiftedState = multiply(shiftedState, xPlusOne);
+}
+const shiftedTraceIoC = [-1, 1].map((sign) => ic(
+  following.map((v, i) => mod(v + sign * shiftedKey[i]))));
+assert(Math.abs(shiftedTraceIoC[0] - 0.03430083519391383) < 1e-12);
+assert(Math.abs(shiftedTraceIoC[1] - 0.03482593235756223) < 1e-12);
+
 console.log(JSON.stringify({
   source: { bytes: 256, original_page36: A.length, p3_prefix: p3.length,
     p39_prefix: p39.length, irreducible_degree: DIM },
@@ -336,6 +349,8 @@ console.log(JSON.stringify({
     extension_degree: 238, subfield_multiplicative_order: 840,
     signed_2013_base29_quadratic_root: true },
   sixth_root_count: roots6.length, roots6,
+  shifted_projection_gate: { runes: following.length,
+    negative_trace_ic: shiftedTraceIoC[0], positive_trace_ic: shiftedTraceIoC[1] },
   subsequent_page_gate: { runes: following.length, models: 60,
     original_ic: followingRawIc, minimum_decoded_ic: minDecodedIc,
     maximum_decoded_ic: maxDecodedIc },
