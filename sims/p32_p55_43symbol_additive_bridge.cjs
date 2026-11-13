@@ -344,3 +344,5 @@ const report = {
   conclusion: 'The six fixed p32-compass additive/Beaufort alignments and the direct source-order 43-word GP-prime-sum key do not recover p55 plaintext. This rejects only these stationary additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
+
+// Trigger the signed-word-initial running-key source gate.
