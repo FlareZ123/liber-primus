@@ -61,6 +61,9 @@ This result removes a tempting missing-key rescue of a literal predecessor-exclu
 
 The underlying low-doublet phenomenon remains unexplained. A clue-supplied evolving state, a different nonnative content register, a reversible variable-length code, or an external high-entropy key may be viable only with an executable independently sourced inverse. This report does not authenticate the predecessor-exclusion mechanism itself and produces **zero recovered original plaintext**.
 
+
+**Original-source manual CI:** [passing Node 22 full-control run 43384988103](https://github.com/FlareZ123/liber-primus/actions/runs/43384988103) executed the exact current standalone SFT on the remote checkout.
+
 ## Reproduce
 
 [Standalone CommonJS SFT](../sims/lp2_no_repeat_allorder_page_capacity_sft.cjs) uses Node.js 22 and built-in libraries only. It reads the unchanged [canonical original LP2 corpus](../resources/liber-primus/lp2-corpus.json) and three fixed [source controls](../resources/control/), checks the 12,956/12,815/86/141 original inventory, exhausts the **406 adjacent-pair capacities** for each chapter and physical page, constructs a real maximizing original-order decoder, performs an exhaustive 5-way permutation theorem oracle, scans every one of the 567,679 source-native windows at exactly the original 141 free positions, and verifies a complete original-shaped native-content rank encrypt/decrypt plant with all 86 doublet markers preserved.
