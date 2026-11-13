@@ -37,6 +37,19 @@ const file = path.join(__dirname, "..", "resources", "liber-primus", "base60-gri
 const grid = JSON.parse(fs.readFileSync(file, "utf8"));
 const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
 const rows = grid.byte_rows;
+// Conditional F-skipping base59 interpretation of the same original tokens.
+const alphabet59 = grid.alphabet.replace("f", "");
+assert.equal(grid.alphabet.length, 60);
+assert.equal(alphabet59.length, 59);
+const rows59 = grid.rows.map(r => r.map(token => {
+  assert.equal(token.length, 2);
+  const a = alphabet59.indexOf(token[0]);
+  const b = alphabet59.indexOf(token[1]);
+  assert.ok(a >= 0 && b >= 0);
+  const value = 59 * a + b;
+  assert.ok(value <= 255);
+  return value;
+}));
 assert.equal(rows.length, 32);
 assert.ok(rows.every(r => r.length === 8 && r.every(v => Number.isInteger(v) && v >= 0 && v <= 255)));
 const bytes = rows.flat();
@@ -47,6 +60,10 @@ const inner = rows.slice(1, 31).flatMap(r => r.slice(1, 7));
 const outer = rows.flatMap((r, i) => r.filter((_, j) => i === 0 || i === 31 || j === 0 || j === 7));
 assert.equal(inner.length, 180);
 assert.equal(outer.length, 76);
+const inner59 = rows59.slice(1,31).flatMap(r => r.slice(1,7));
+const outer59 = rows59.flatMap((r,i) => r.filter((_,j) => i===0 || i===31 || j===0 || j===7));
+assert.equal(inner59.length, 180);
+assert.equal(outer59.length, 76);
 const p55 = corpus.pages.find(p => p.page === 55).indices;
 assert.equal(p55.length, 76);
 const historicalPrimeOrdinalRange = firstPrimes(200).slice(20, 200);
@@ -61,6 +78,8 @@ assert.equal(distinct(innerResidues), 29);
 assert.equal(primeResidues.filter(v => v === 0).length, 0);
 assert.equal(innerResidues.filter(v => v === 0).length, 4);
 assert.equal(distinct(outerResidues), 24);
+assert.equal(distinct(inner59), 29);
+assert.equal(distinct(outer59), 27);
 assert.equal(distinct(p55), 25);
 
 // Key-independent necessary condition: a stationary function f(29 residues)
@@ -83,11 +102,13 @@ console.log(JSON.stringify({
   originalPrimeZeroResidues: primeResidues.filter(v => v === 0).length,
   tableOuterResidueDistinct: distinct(outerResidues),
   p55CiphertextDistinct: distinct(p55),
+  base59InteriorDistinct: distinct(inner59),
+  base59PerimeterDistinct: distinct(outer59),
   tableOuterResidueCounts: counts29(outerResidues),
   p55CiphertextCounts: counts29(p55),
   primeResidueCounts: counts29(primeResidues),
   tableInteriorResidueCounts: counts29(innerResidues),
-  conclusion: "NO fixed deterministic GF29 map from omitted primes to 180 inner cells, nor from 76 outer cells to original p55 runes, can realize these source-matched streams, even after arbitrary reordering",
+  conclusion: "For both base60 and F-skip base59, no fixed 29-symbol bijection can match either original source partition; the directional arbitrary-function exclusion also holds for the 180-prime to interior route under both and for the perimeter to p55 route under base60 only",
   classification: "bounded source-motivated negative; not recovered plaintext or an original instruction",
   status: "PASS"
 }, null, 2));
