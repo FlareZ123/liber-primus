@@ -174,6 +174,51 @@ assert.deepEqual(output.map(r => [
   r.p55_gp29_legal, r.p55_distinct_output_bytes
 ]), [[1, 0, 7, 71], [2, 0, 11, 67]]);
 
+// The source's more direct "shed circumferences" reading winds clockwise
+// around three nested original byte rings. The deepest 52-symbol shell starts
+// with SHED at p57 local rune43, exactly the verified parable instruction.
+const rings = [];
+for (let depth = 0; depth < 4; depth++) {
+  const top = depth, bottom = 31 - depth, left = depth, right = 7 - depth;
+  const ring = [];
+  for (let c = left; c <= right; c++) ring.push(8 * top + c);
+  for (let r = top + 1; r <= bottom; r++) ring.push(8 * r + right);
+  for (let c = right - 1; c >= left; c--) ring.push(8 * bottom + c);
+  for (let r = bottom - 1; r > top; r--) ring.push(8 * r + left);
+  rings.push(ring);
+}
+assert.deepEqual(rings.map(r => r.length), [76, 68, 60, 52]);
+const ringKnown = rings.slice(1).flat();
+const ringOuter = rings[0];
+assert.equal(known[68 + 60], clearP57[43]);
+const ringOutput = [];
+for (const mode of modes) {
+  const key = ringKnown.map((cell, i) => mode.residual(table[cell], known[i]));
+  const kFrom56 = predict(ringKnown.slice(0, 85)
+    .map((cell, i) => [cell, key[i]]), ringKnown.slice(85));
+  const kFrom57 = predict(ringKnown.slice(85)
+    .map((cell, i) => [cell, key[85 + i]]), ringKnown.slice(0, 85));
+  const inferredOuterKey = predict(ringKnown
+    .map((cell, i) => [cell, key[i]]), ringOuter);
+  const candidates = ringOuter.map((cell, i) =>
+    mode.recover(table[cell], inferredOuterKey[i]));
+  ringOutput.push({
+    mode: mode.label,
+    p56_predicts_p57_exact: matches(key.slice(85), kFrom56),
+    p57_holdout_total: 95,
+    p57_predicts_p56_exact: matches(key.slice(0, 85), kFrom57),
+    p56_holdout_total: 85,
+    p55_gp29_legal: candidates.filter(x => x < 29).length,
+    p55_total: 76,
+    p55_distinct_output_bytes: new Set(candidates).size,
+    p55_first_16_bytes: candidates.slice(0, 16)
+  });
+}
+assert.deepEqual(ringOutput.map(r => [
+  r.p56_predicts_p57_exact, r.p57_predicts_p56_exact,
+  r.p55_gp29_legal, r.p55_distinct_output_bytes
+]), [[2, 0, 9, 68], [0, 0, 7, 65]]);
+
 // A complete no-secret-tuning positive control in the identical original
 // 32x8 geometry: degree-31 GP-byte XOR pad, synthetic original-shape bytes.
 const coeff = Array.from({ length: 32 }, (_, i) => (i * 37 + 13) & 255);
@@ -209,5 +254,6 @@ console.log(JSON.stringify({
   sourceByteInterpretation: 'hypothetical conventional base60',
   field: 'GF(256) irreducible polynomial 0x11b',
   plant: '31-degree interpolation key, 95/95 heldout and 76/76 perimeter',
-  output
+  rowMajorInterior: output,
+  sourceClockwiseShells: ringOutput
 }, null, 2));
