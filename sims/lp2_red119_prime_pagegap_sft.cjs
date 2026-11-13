@@ -191,6 +191,58 @@ const p3Tail = pages.get(3).slice(122);
 const p39Tail = pages.get(39).slice(122);
 assert.equal(p3Tail.length, 95);
 assert.equal(p39Tail.length, 118);
+
+/**
+ * Extract full original printed words from the rune transcription.
+ * Printed / and newline only wrap lines; punctuation ends a word.
+ * @param {number} pageNumber physical LP2 page index
+ * @returns {string[]}
+ */
+function originalPrintedWords(pageNumber) {
+  const nonempty = corpus.pages.filter((p) => p.indices.length > 0);
+  const chunks = fs.readFileSync(path.join(base, 'lp2-transcription.txt'), 'utf8')
+    .trim().split(/\\n%\\n/);
+  assert.equal(chunks.length, nonempty.length);
+  const p = nonempty.findIndex((item) => item.page === pageNumber);
+  assert.ok(p >= 0);
+  const allowed = new Set(corpus.runes);
+  const words = [];
+  let word = '';
+  for (const character of chunks[p]) {
+    if (allowed.has(character)) word += character;
+    else if ('-.assert.equal(p39Tail.length, 118);'.includes(character) && word.length) {
+      words.push(word);
+      word = '';
+    }
+  }
+  if (word.length) words.push(word);
+  assert.deepEqual(Array.from(words.join(''), (c) => corpus.runes.indexOf(c)),
+    pages.get(pageNumber));
+  return words;
+}
+const allP3Words = originalPrintedWords(3);
+const allP57Words = originalPrintedWords(57);
+const p3PrefixLengths = allP3Words.map((word) => word.length);
+let p3TailStart = 0;
+for (const length of p3PrefixLengths) {
+  if (p3TailStart >= 122) break;
+  p3TailStart += length;
+}
+assert.equal(p3TailStart, 122, 'red 13-dot closes at a printed word break');
+let cumulative = 0;
+const p3WordTailLengths = allP3Words.flatMap((word) => {
+  const start = cumulative;
+  cumulative += word.length;
+  return start >= 122 ? [word.length] : [];
+});
+const p57WordLengths = allP57Words.map((word) => word.length);
+assert.equal(p3WordTailLengths.reduce((n, len) => n + len, 0), 95);
+assert.equal(p57WordLengths.reduce((n, len) => n + len, 0), 95);
+assert.equal(p3WordTailLengths.length, 21);
+assert.equal(p57WordLengths.length, 20);
+assert.deepEqual(p3WordTailLengths.slice(0, 6), [3, 3, 2, 2, 5, 6]);
+assert.deepEqual(p57WordLengths.slice(0, 6), [7, 4, 2, 6, 7, 2]);
+
 const combinedBlackTail = p3Tail.concat(p39Tail);
 const unsolvedRed = ink.pages.filter((page) => page.page <= 55)
   .flatMap((page) => (page.red_spans || [])
