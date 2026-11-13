@@ -1,6 +1,6 @@
 # LP2: all-29 fixed plaintext markers fail source-native word-length geography
 
-**Agent 16, 13 November 2026. Scope: original-cipher necessary-condition gate with exact analytic reference distributions.** This is a substantial restriction on **one proposed reversible cipher architecture**, not a decryption, historical key, proof of the actual algorithm, or general statistical impossibility. The exact original-input CommonJS SFT is [here](../sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs); its full source and planted inverse passed [GitHub Actions #43363316842](https://github.com/FlareZ123/liber-primus/actions/runs/43363316842).
+**Agent 16, 13 November 2026. Scope: original-cipher necessary-condition gate with exact analytic reference distributions.** This is a substantial restriction on **one proposed reversible cipher architecture**, not a decryption, historical key, proof of the actual algorithm, or general statistical impossibility. The exact original-input CommonJS SFT is [here](../sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs); its full source and planted inverse passed [GitHub Actions #43363316842](https://github.com/FlareZ123/liber-primus/actions/runs/43363316842); the subsequent conditional-EA extension is [run #43363853236](https://github.com/FlareZ123/liber-primus/actions/runs/43363853236).
 
 ## Mechanism being adjudicated
 
@@ -46,6 +46,25 @@ The next-best q is far weaker in every reference (corrected best-feature p ≤3.
 The total count alone can be misleading. For q=EA, the native-Cicada reference predicts about **78.31** eligible singleton-marked sites, close to the observed **86**, and about **18.10** word-initial sites, close to the observed **23**. Shakespeare predicts **88.54** eligible EA sites, also close. A mere global EA frequency comparison would falsely suggest the zero-step plaintext marker had been found.
 
 But in the original manuscript, **21** duplicate steps occur among the **343 printed words of length ≥8**. Source-matched EA predictions are **3.74**, **8.21**, **9.29**, and **7.00** for Shakespeare, Gibran, Emerson, and solved Cicada. The exact one-sided long-word tails are respectively **3.7595×10⁻¹⁰**, **9.8622×10⁻⁵**, **5.3896×10⁻⁴**, and **7.2006×10⁻⁶**, before multiple-feature correction. Emerson's still stronger word-initial tail is **1.6715×10⁻⁴**. Page-first exclusions and original long-word inventory have all been explicitly retained.
+
+### Conditional test: even exactly 86 EA markers have the wrong word geometry
+
+The global EA rate may be author-specific, so a second exact comparison **conditions on seeing exactly 86 eligible EA symbols** in the length-matched reference-generated manuscript. In the declared independent word-resampling model, the long-word marker count and short-word marker count are sums over disjoint pools, hence independent. Compute each full probability distribution up to 86 by dynamic programming (without an absorbing bucket), then use
+
+\[
+\Pr(L\ge21\mid L+S=86)=
+\frac{\sum_{\ell=21}^{86}\Pr(L=\ell)\Pr(S=86-\ell)}
+{\sum_{\ell=0}^{86}\Pr(L=\ell)\Pr(S=86-\ell)}.
+\]
+
+| Length-matched source | Expected long-word EA given exactly 86 total | Exact chance of ≥21 long-word EA given 86 total |
+| --- | ---: | ---: |
+| Shakespeare | **3.6295** | **3.11652×10⁻¹¹** |
+| Gibran | **5.8359** | **1.37249×10⁻⁷** |
+| Emerson | **8.2682** | **3.87914×10⁻⁵** |
+| Solved Cicada prose | **7.6864** | **8.63783×10⁻⁶** |
+
+This is an additional, separately labeled diagnostic on the predeclared EA model; it is **not** multiplied into the all-29 formal gate above. The rejection is therefore not an artifact of mismatched global EA prevalence. The event sites remain disproportionately concentrated in longer printed words even after granting the hypothesis *its observed total marker count*. The resulting probability values still concern the stated reference-word sampling assumption only.
 
 This is a direct source-to-plaintext geometry mismatch under the declared English word-length-preserving hypothesis. There is no need to guess another AES seed, GP pad, source table column, or 28-state period to see it.
 
