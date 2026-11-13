@@ -132,7 +132,7 @@ def compress_one(block: bytes) -> str:
 
 # Correctness control: one compression of SHA-512's correctly padded "abc".
 abc_block = (
-    b"abc" + b"\\x80" + b"\\x00" * 108 + (24).to_bytes(16, "big")
+    b"abc" + b"\x80" + b"\x00" * 108 + (24).to_bytes(16, "big")
 )
 assert compress_one(abc_block) == hashlib.sha512(b"abc").hexdigest()
 
