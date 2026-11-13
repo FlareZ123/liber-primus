@@ -1,10 +1,6 @@
 name: p32 tree DH parameter hypothesis gate
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'sims/p32_dh_image_dimensions_parameter_sft.cjs'
-      - '.github/workflows/p32-tree-dh-parameter-gate.yml'
+  workflow_dispatch:
 jobs:
   gate:
     runs-on: ubuntu-latest
