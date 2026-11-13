@@ -97,9 +97,9 @@ function run(sourceFolder, transcriptionPath) {
   const targets = originalLengths(transcription);
   // A real, previously solved source is a better positive than an invented plant.
   // The p57 PARABLE is word-for-word in Cicada's older 761.MP3 metadata.
-  const page57 = transcription.split(/(?:\\r?\\n)?%\\s*(?:\\r?\\n)?/)[56]
-    .replace(/\\/\\s*/g, '')
-    .split(/[-.&$§!?:() \\t\\n]+/u)
+  const page57 = transcription.split(/(?:\r?\n)?%\s*(?:\r?\n)?/)[56]
+    .replace(/\/\s*/g, '')
+    .split(/[-.&$§!?:() \t\n]+/u)
     .map(word => (word.match(RUNE) || []).length).filter(Boolean);
   const solved = fs.readFileSync(
     path.join(path.dirname(transcriptionPath), 'lp1-plaintext-reference.txt'), 'utf8');
