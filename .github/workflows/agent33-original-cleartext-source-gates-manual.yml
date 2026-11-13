@@ -23,3 +23,7 @@ jobs:
         run: |
           node --check sims/lp2_pageoffset_allsecret_reuse_gate.cjs
           node sims/lp2_pageoffset_allsecret_reuse_gate.cjs
+      - name: Verify p15 four-following-page Hill matrix original inverse
+        run: |
+          node --check sims/lp2_p15_fourpage_hill_direct_inverse_sft.cjs
+          node sims/lp2_p15_fourpage_hill_direct_inverse_sft.cjs
