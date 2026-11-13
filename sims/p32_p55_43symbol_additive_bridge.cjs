@@ -104,6 +104,7 @@ const signedWordPrimeKey = signedWordPrimeSums.map(sum => mod(sum));
 // source-visible 43 p55 interior runes. A fixed cipher-to-plaintext
 // substitution must map every occurrence of one cipher rune consistently.
 const signedInitials = signedWords.map(word => LETTERS[word[0].toUpperCase()]);
+const signedFinals = signedWords.map(word => LETTERS[word[word.length - 1].toUpperCase()]);
 const initialsByCipher = new Map();
 for (let i = 0; i < inner55.length; i++) {
   const cipher = inner55[i];
@@ -354,6 +355,105 @@ assert.deepStrictEqual(totientSyntheticRecovered, p57Control);
 signedInitialTotientAdditiveKey.p57SyntheticRoundTripPassed = true;
 
 
+
+const signedFinalAdditiveKey = {
+  key: tokens(signedFinals),
+  alignment: "forward source order; 43 message-word final letters paired with 43 p55 interiors",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedFinals[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
+    cursor += n;
+  }
+  signedFinalAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const finalsSyntheticCipher = p57Control.map((p, i) => mod(p + signedFinals[i]));
+const finalsSyntheticRecovered = finalsSyntheticCipher.map((c, i) =>
+  mod(c - signedFinals[i]));
+assert.deepStrictEqual(finalsSyntheticRecovered, p57Control);
+signedFinalAdditiveKey.p57SyntheticRoundTripPassed = true;
+
+const signedFinalPrimeKey = signedFinals.map(i => mod(corpus.prime[i]));
+const signedFinalPrimeAdditiveKey = {
+  keyPrimeWeightsMod29: signedFinalPrimeKey,
+  alignment: "forward source order; GP prime(final letter) mod29",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedFinalPrimeKey[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
+    cursor += n;
+  }
+  signedFinalPrimeAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const finalPrimeSyntheticCipher = p57Control.map((p, i) => mod(p + signedFinalPrimeKey[i]));
+const finalPrimeSyntheticRecovered = finalPrimeSyntheticCipher.map((c, i) =>
+  mod(c - signedFinalPrimeKey[i]));
+assert.deepStrictEqual(finalPrimeSyntheticRecovered, p57Control);
+signedFinalPrimeAdditiveKey.p57SyntheticRoundTripPassed = true;
+
+const signedFinalTotientKey = signedFinals.map(i => mod(corpus.prime[i] - 1));
+const signedFinalTotientAdditiveKey = {
+  keyPrimeTotients: signedFinalTotientKey,
+  alignment: "forward source order; phi(GP prime(final letter)) mod29",
+  variants: [],
+  p57SyntheticRoundTripPassed: false,
+};
+for (const [operation, fn] of [
+  ["C-K", (c, k) => mod(c - k)],
+  ["C+K", (c, k) => mod(c + k)],
+  ["K-C", (c, k) => mod(k - c)],
+]) {
+  const decoded = inner55.map((c, i) => fn(c, signedFinalTotientKey[i]));
+  const fragments = [];
+  let cursor = 0;
+  for (const n of innerWordLengths) {
+    fragments.push(n ? tokens(decoded.slice(cursor, cursor + n)).join("") : "");
+    cursor += n;
+  }
+  signedFinalTotientAdditiveKey.variants.push({
+    operation,
+    tokens: tokens(decoded),
+    interiorWordFragments: fragments,
+    ioc: ioc(decoded),
+    gpShakespeareTrigramLogMean: trigramLogMean(decoded),
+  });
+}
+const finalTotientSyntheticCipher = p57Control.map((p, i) => mod(p + signedFinalTotientKey[i]));
+const finalTotientSyntheticRecovered = finalTotientSyntheticCipher.map((c, i) =>
+  mod(c - signedFinalTotientKey[i]));
+assert.deepStrictEqual(finalTotientSyntheticRecovered, p57Control);
+signedFinalTotientAdditiveKey.p57SyntheticRoundTripPassed = true;
+
 const initialOrderObserved = [
   ...signedInitialAdditiveKey.variants.map(v => ({
     keyTransform: "raw-GP-index", operation: v.operation, score: v.gpShakespeareTrigramLogMean
@@ -424,6 +524,79 @@ const signedInitialOrderShuffleGate = {
 };
 
 
+const edgeObserved = [
+  ...initialOrderObserved,
+  ...signedFinalAdditiveKey.variants.map(v => ({
+    keyTransform: "final-GP-index", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
+  ...signedFinalPrimeAdditiveKey.variants.map(v => ({
+    keyTransform: "final-prime-mod29", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
+  ...signedFinalTotientAdditiveKey.variants.map(v => ({
+    keyTransform: "final-phi-prime-mod29", operation: v.operation, score: v.gpShakespeareTrigramLogMean
+  })),
+];
+const edgeObservedBest = edgeObserved.reduce((a, b) => b.score > a.score ? b : a);
+const edgeShuffleCount = 10000;
+let edgeShuffleState = 0x330144;
+function nextEdgeShuffleU32() {
+  edgeShuffleState ^= edgeShuffleState << 13;
+  edgeShuffleState ^= edgeShuffleState >>> 17;
+  edgeShuffleState ^= edgeShuffleState << 5;
+  return edgeShuffleState >>> 0;
+}
+const edgeShuffleScores = [];
+for (let trial = 0; trial < edgeShuffleCount; trial++) {
+  const wordOrder = Array.from({length: signedWords.length}, (_, i) => i);
+  for (let i = wordOrder.length - 1; i > 0; i--) {
+    const j = nextEdgeShuffleU32() % (i + 1);
+    [wordOrder[i], wordOrder[j]] = [wordOrder[j], wordOrder[i]];
+  }
+  const shuffledInitials = wordOrder.map(i => signedInitials[i]);
+  const shuffledFinals = wordOrder.map(i => signedFinals[i]);
+  const keys = [
+    shuffledInitials,
+    shuffledInitials.map(i => mod(corpus.prime[i])),
+    shuffledInitials.map(i => mod(corpus.prime[i] - 1)),
+    shuffledFinals,
+    shuffledFinals.map(i => mod(corpus.prime[i])),
+    shuffledFinals.map(i => mod(corpus.prime[i] - 1)),
+  ];
+  let best = -Infinity;
+  for (const key of keys) {
+    for (const operation of [
+      (c, k) => mod(c - k),
+      (c, k) => mod(c + k),
+      (c, k) => mod(k - c),
+    ]) {
+      const score = trigramLogMean(inner55.map((c, i) => operation(c, key[i])));
+      if (score > best) best = score;
+    }
+  }
+  edgeShuffleScores.push(best);
+}
+edgeShuffleScores.sort((a, b) => a - b);
+const edgeGreaterEqual = edgeShuffleScores.filter(score => score >= edgeObservedBest.score).length;
+const edgeLess = edgeShuffleScores.filter(score => score < edgeObservedBest.score).length;
+const edgeEqual = edgeShuffleCount - edgeGreaterEqual - edgeLess;
+const edgeQuantile = q => edgeShuffleScores[Math.floor(q * (edgeShuffleCount - 1))];
+const signedWordEdgeOrderShuffleGate = {
+  seed: "0x330144",
+  trials: edgeShuffleCount,
+  family: "same multiset of 43 signed-message words; max over first/last letters, raw/prime/phi-prime keys, and C-K/C+K/K-C",
+  observedBest: edgeObservedBest,
+  greaterOrEqual: edgeGreaterEqual,
+  addOneUpperTail: (edgeGreaterEqual + 1) / (edgeShuffleCount + 1),
+  observedRankFraction: (edgeLess + 0.5 * edgeEqual) / edgeShuffleCount,
+  quantiles: {
+    q05: edgeQuantile(0.05),
+    median: edgeQuantile(0.5),
+    q95: edgeQuantile(0.95),
+    q99: edgeQuantile(0.99),
+  },
+};
+
+
 const outputs = [];
 for (const reverse of [false, true]) {
   const C = reverse ? inner55.slice().reverse() : inner55.slice();
@@ -481,8 +654,12 @@ const report = {
   signedWordInitialAdditiveKey: signedInitialAdditiveKey,
   signedWordInitialPrimeAdditiveKey: signedInitialPrimeAdditiveKey,
   signedWordInitialTotientAdditiveKey: signedInitialTotientAdditiveKey,
+  signedWordFinalAdditiveKey: signedFinalAdditiveKey,
+  signedWordFinalPrimeAdditiveKey: signedFinalPrimeAdditiveKey,
+  signedWordFinalTotientAdditiveKey: signedFinalTotientAdditiveKey,
   signedWordInitialOrderShuffleGate: signedInitialOrderShuffleGate,
-  conclusion: 'The six fixed p32-compass additive/Beaufort alignments, the direct source-order 43-word GP-prime-sum key, and the direct 43 word-initial raw/prime/phi-prime running keys do not recover p55 plaintext. The combined same-multiset order null for the initial-key family tests all three key transforms and all three directions. This rejects only these fixed additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
+  signedWordEdgeOrderShuffleGate: signedWordEdgeOrderShuffleGate,
+  conclusion: 'The six fixed p32-compass additive/Beaufort alignments, the direct source-order 43-word GP-prime-sum key, and the direct 43 word-edge raw/prime/phi-prime running keys (first and last letters) do not recover p55 plaintext. A same-multiset word-order null tests all six edge-key transforms and all three directions together. This rejects only these fixed additive readings; it does not test or exclude nonlinear, stateful, or differently keyed mechanisms.',
 };
 console.log(JSON.stringify(report, null, 2));
 
