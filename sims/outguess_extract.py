@@ -97,6 +97,18 @@ def build_bitmap(image: pathlib.Path) -> tuple[bytes, int]:
     return proc.stdout, bit_count
 
 
+def header_is_source_forced(bitmap: bytes, bit_count: int) -> bool:
+    """Whether every ordinary OutGuess header bit is forced to one.
+
+    The seeded iterator starts at offset 0..31 and reads 32 bits with
+    increments 1..32; its largest possible sampled index is 1023.
+    A 1,024-bit all-one source prefix therefore forces the encrypted
+    header to ffffffff under *any* password. This is a warning against
+    treating a decoded seed or length as proof of embedded data.
+    """
+    return bit_count >= 1024 and bitmap[:128] == b"\\xff" * 128
+
+
 def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
     key = password.encode("utf-8")
     iterator_stream = arc4_initkey(b"Seeding", key)
@@ -160,6 +172,8 @@ def extract(bitmap: bytes, bit_count: int, password: str) -> tuple[bytes, dict]:
     tail = payload[4:]
     metadata = {
         "header_hex": header.hex(),
+        "encrypted_header_hex": encrypted_header.hex(),
+        "header_is_source_forced": header_is_source_forced(bitmap, bit_count),
         "seed": seed,
         "length": length,
         "end_bit_offset": offset,
