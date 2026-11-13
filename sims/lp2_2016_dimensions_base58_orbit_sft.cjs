@@ -114,6 +114,32 @@ console.log("AES256-ECB table plaintext prefix:",decoded.subarray(0,24).toString
 console.log("AES256-ECB printable bytes:",printable,"/256 (not recognizable plaintext)");
 
 
+
+// One frozen source-shaped 32-row direct consumer: use the 32 noninitial
+// orbit sums as one byte key for each original eight-cell table row.
+// Original keys, row order, operations and mod-256 byte grammar stay fixed.
+const orbitRowKeys=width.path.slice(1).map(n=>n%256);
+assert.equal(orbitRowKeys.length,32);
+const orbitRowModes=[
+ ["xor",(v,k)=>(v^k)&255,(v,k)=>(v^k)&255,96,
+   "7f53130ed559ca0357f297d5fc0fbcdf3b884d6324cb7915"],
+ ["minus",(v,k)=>(v-k+256)&255,(v,k)=>(v+k)&255,98,
+   "1733f306ad39ca0351ee91d3ecf9acc93788cddf2447f915"],
+ ["plus",(v,k)=>(v+k)&255,(v,k)=>(v-k+256)&255,91,
+   "7f9b5b6e15a1326b6704a7e9020fc2dfbb0c5163a8cb7d99"]
+];
+const orbitAsciiPlant=Buffer.from(Array.from({length:256},(_,i)=>65+i%26));
+for(const [label,apply,inverse,nPrintable,expectedHex] of orbitRowModes) {
+  const transform=data=>Buffer.from(data.map((v,i)=>apply(v,orbitRowKeys[i>>3])));
+  const recover=data=>Buffer.from(data.map((v,i)=>inverse(v,orbitRowKeys[i>>3])));
+  const decoded=transform(bytes);
+  assert.equal(decoded.subarray(0,24).toString("hex"),expectedHex);
+  assert.equal(decoded.reduce((n,v)=>n+(v>=32&&v<=126),0),nPrintable);
+  assert(recover(decoded).equals(bytes));
+  assert(recover(transform(orbitAsciiPlant)).equals(orbitAsciiPlant));
+  console.log("Original 32-row",label,nPrintable,"/256 printable; roundtrip passed");
+}
+
 /**
  * One historical 2014 "let the text guide you" source-key transfer:
  * concatenate the 33 original orbit words, starting with the 563-selected
