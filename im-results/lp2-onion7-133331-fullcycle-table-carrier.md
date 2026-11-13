@@ -36,6 +36,8 @@ The exact **fixed-inventory** random-permutation probability of at least one ≥
 
 **Statistical caution:** these are narrowly conditioned combinatorial checks, not an unconditional discovery probability. The AB/AB motif was recognized after observing the 11-byte run, the LCG hypothesis was retrospectively proposed, and forward/reverse traversals are dependent. The two rare features co-occur on the very same eleven bytes. Many unrelated transformations have been considered across this research project.
 
+**Execution:** [final read-only Node22 original-input manual CI run 43458722137](https://github.com/FlareZ123/liber-primus/actions/runs/43458722137), all five manually selected source SFT steps successful; no on-push job.
+
 ## Original-input attempt at a recognizably typed output
 
 The independently recovered [original 2014 Onion2 256-byte value](../resources/2014-onion2-final-256byte-hex.txt) offers an actual historical key-shaped control. Direct positional XOR with the table after the source-value LCG traversal yields neither PGP armor nor a meaningful ASCII/header payload. In a distinct natural original structural test, the complete original row-major GF29 table polynomial is exactly divisible by the historical 2013 3QO quadratic and original p39 red-triad quadratic. The permuted readout has respective **nonzero** ascending-order remainders **[27,7]** and **[21,20]**. Thus treating this LCG walk as the table's sole meant ordering would discard two prior original-source polynomial relationships. No unknown LP2 rune has been decrypted.
