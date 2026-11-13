@@ -276,6 +276,50 @@ const high = Math.max(...compound.map((r) => r.ioc));
 assert.ok(Math.abs(low - 0.03436039350323037) < 1e-12);
 assert.ok(Math.abs(high - 0.03459309677290235) < 1e-12);
 
+
+// The most literal p15 4x4-square Hill key on the source-selected
+// 4x829-rune floral register. Earlier whole-LP2 tests used a different
+// consumer; this uses exactly the full sixteen floral pages.
+const hillPrinted = [
+  [10, 3, 20, 22], [1, 22, 21, 25],
+  [11, 17, 19, 7], [21, 17, 12, 22]
+];
+const hillInverse = [
+  [19, 1, 6, 3], [11, 7, 8, 22],
+  [2, 10, 15, 28], [25, 4, 1, 15]
+];
+for (let r = 0; r < 4; r += 1) for (let q = 0; q < 4; q += 1) {
+  const value = hillPrinted[r].reduce((sum, x, k) =>
+    sum + x * hillInverse[k][q], 0) % 29;
+  assert.equal(value, r === q ? 1 : 0);
+}
+function hill(x, mat, direction) {
+  assert.equal(x.length % 4, 0);
+  const result = [];
+  for (let i = 0; i < x.length; i += 4) {
+    for (let j = 0; j < 4; j += 1) {
+      let sum = 0;
+      for (let k = 0; k < 4; k += 1) {
+        sum += (direction === 0 ? mat[j][k] : mat[k][j]) * x[i + k];
+      }
+      result.push(sum % 29);
+    }
+  }
+  return result;
+}
+const hillDirect = [];
+for (const [key, mat, inverse] of [
+  ['printed', hillPrinted, hillInverse], ['inverse', hillInverse, hillPrinted]
+]) for (const direction of [0, 1]) {
+  const decoded = hill(floral, mat, direction);
+  assert.deepEqual(hill(decoded, inverse, direction), floral);
+  const nativeCipher = hill(native, inverse, direction);
+  assert.deepEqual(hill(nativeCipher, mat, direction), native);
+  hillDirect.push({ key, direction, ioc: indexCoincidence(decoded) });
+}
+assert.equal(hillDirect.length, 4);
+assert.ok(hillDirect.every((x) => x.ioc > 0.0344 && x.ioc < 0.0347));
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -291,6 +335,7 @@ console.log(JSON.stringify({
   p15P40P54HeadingPrimeSums: primeHeadingSums,
   p40BothSumsZeroMod29IIDProbability: dualZeroIIDProbability,
   nativeFloralChapterBodyLengths: [3000, 299],
+  p15PrintedFourSquareHillOnFourBy829: hillDirect,
   p463PrimeTotientAndFourColumnInverses: compound,
   sourceP57SolvedIoC: indexCoincidence(corpus.pages[57].indices),
   primitiveRoot: 2,
