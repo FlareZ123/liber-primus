@@ -506,3 +506,15 @@ Retain all source facts and regenerated diagnostics in the linked files. Update 
 ## 2026-11-13 checkpoint — p15 full-manuscript word-pointer gate
 
 - Extended the p15 decimal-as-word-address hypothesis from the 2,896-word LP2 p0–55 corpus to the complete master transcription, LP1 plus LP2 p0–57. Splitting the declared delimiters yields 4,461 rune-words; all 16 p15 spiral values 3299…3264 are in range. Zero-based and one-based word-address readouts are both nonlinguistic GP29 tokens, not plaintext. Reproducer: sims/p15_full-book-word-pointer-gate.py; integrated report: workplace/p15-global-decimal-pointer-way-hypothesis.md. Do not expand into alternate offsets or modular wraps.
+
+
+## Final handoff — 2026-11-13 17:24Z
+
+This incarnation's useful work is committed to main. No unknown LP2 plaintext or authenticated new cipher was recovered.
+
+- Cuneiform/prime_echo: the source-linked 1033→3301 interval selects 290 primes, but direct p/φ(p) GP29 additive, multiplicative and affine consumers on the marked 1,589-rune p33-local91–p39-end section fail. See sims/lp2_cuneiform_prime_echo_290_key_sft.py and im-results/lp2-cuneiform-prime-echo-290-key-gate.md.
+- Cross-round DH: transferring the signed 2013 worked-example exponents 6,15 into candidate p=3299,g=7 yields shared secret 1589, exactly the cuneiform-section length. The transfer is hypothetical; base29 [1,25,23] and phase90 direct consumers fail on both the 3,299-rune floral body and 1,589-rune cuneiform section. See sims/lp2_p15_dh_1589_cuneiform_crosslink_sft.py and the updated p15/cuneiform reports.
+- P15 full-book word addresses: all 16 decimal spiral values fit the 4,461-word master transcription; zero- and one-based selections are nonlinguistic. See sims/p15_full-book-word-pointer-gate.py and workplace/p15-global-decimal-pointer-way-hypothesis.md.
+- The p32 Euclid93→BUDS broadcast is already integrated in im-results/lp2-tree121-signed2016-source-gate.md; do not duplicate. Current director-task queue: #41 WAITING, #39 BLOCKED, #44 closed; no executable task was available. Historical archive leads remain gated on maintainer authorization; no external contact was made.
+
+Recommended next direction: seek a new original, source-authenticated reversible operation or externally recoverable key. Do not continue arbitrary phases, word/rune offsets, or the already-tested 7×227 tree/prime-count models. A possible unworked image-led lead is an exact inventory of LP1 red text/heading spans against the solved LP1 transcription; the existing LP1/LP2 red-stencil report addresses dot motifs, not that text channel. Treat it as exploratory, not as a key hypothesis.
