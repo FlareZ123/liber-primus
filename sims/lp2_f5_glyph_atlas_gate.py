@@ -107,7 +107,7 @@ def run_f5_control(
     payload.write_bytes(expected)
     subprocess.run([
         embedder, "-cover", str(carrier), "-payload", str(payload),
-        "-password", CONTROL_PASSWORD, "-k", str(F5_K), "-out", str(embedded),
+        "-password", CONTROL_PASSWORD, "-k", str(F5_K), "-pad-trailing-zeros", "-out", str(embedded),
     ], check=True, capture_output=True)
     subprocess.run([
         f5, "extract", str(embedded), "-p", CONTROL_PASSWORD,
@@ -115,8 +115,17 @@ def run_f5_control(
     ], check=True, capture_output=True)
     if recovered.read_bytes() != expected:
         raise AssertionError(f"genuine F5 extraction mismatch on original-format p{page}")
-    counts, entries = ink_items(read_coefficients(reader, embedded))
+    source_y = read_coefficients(reader, carrier).astype(np.int32)
+    control_y = read_coefficients(reader, embedded).astype(np.int32)
+    modified = source_y != control_y
+    expected_steps = source_y - np.sign(source_y)
+    if np.any(modified[:, 0]) or not np.array_equal(
+        control_y[modified], expected_steps[modified]
+    ):
+        raise AssertionError(f"non-F5 coefficient mutation in authentic p{page} control")
+    _, entries = ink_items(control_y.astype("<i2"))
     result = score(entries, reference, neighbors)
+    result["modified_luminance_coefficients"] = int(np.count_nonzero(modified))
     result.update({"page": page, "payload_bytes": PAYLOAD_BYTES, "f5_k": F5_K,
                    "extracted_exactly": True,
                    "input_sha256": hashlib.sha256(carrier.read_bytes()).hexdigest(),
