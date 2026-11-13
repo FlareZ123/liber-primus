@@ -115,3 +115,6 @@ jobs:
           node-version: '22'
       - name: Original source matrix algebra and direct Hill3 inverse
         run: node sims/lp2_three_source_triad_matrix_sft.cjs
+
+      - name: Test original paired red119 seeds against exact p50 cubic GF29 register
+        run: node sims/lp2_red119_p50_cubic_feedback_sft.cjs
