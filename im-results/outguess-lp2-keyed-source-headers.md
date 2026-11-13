@@ -63,6 +63,22 @@ Separately, a newly embedded 35-byte real message with password79 into the origi
 
 Executed source and complete positive/negative outputs: [synthetic detector](../sims/outguess_header_synthetic_probe.cjs), [completed manual GitHub Actions run 42782492897](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897), [machine output artifact](https://github.com/FlareZ123/liber-primus/actions/runs/42782492897/artifacts/13745984522). The source JPEG and historical LP2 images remain unchanged.
 
+
+## Source-derived p55 shell32 passwords: two more false-positive controls
+
+A separate human-path hypothesis reads the p57 parable's "shed our own circumferences" instruction as selecting the 32 first/last runes of p55's 16 complete words, with the 43 interiors left as the core. The 2016 signed image independently authenticates OutGuess/ARC4 as a Cicada tool. The exact 32-rune shell was encoded only as literal GP-Latin and as a base-29 integer, then tested against original p55 carrier `72.jpg` and the deterministic payload-free JPEG above.
+
+Both keys yielded internally consistent OutGuess headers on the clean image, proving that the corresponding original-p55 headers are not authenticated messages:
+
+| p55-shell encoding | Original p55 seed / bytes | Clean JPEG seed / bytes | Clean-output entropy | Clean-output SHA-256 |
+|---|---:|---:|---:|---|
+| Literal GP-Latin | 5746 / 17,042 | 22032 / 32,880 | 7.993760 | `b50c9af3e77da66643a00801cc4b9cf762e917a9d5e6995769d8f2d4cbba485a` |
+| Base-29 integer | 50163 / 51,071 | 63021 / 45,754 | 7.996009 | `e58324cf534a519be4f8d047b20f761ffd5a888ee2934c104d2480b6740a3017` |
+
+The original p55 outputs are also noise-like (7.989355 and 7.996568 bits/byte), with no recognized signature. The same two passwords were separately applied through the source-native OutGuess ARC4 KDF to p55's 43 interiors: eight fixed variants (two encodings × two roles × two signs) recover no language; best Emerson-GP score **−5.924762**, and direct XOR produces only **2–8/43** valid GP29 symbols. A 43-rune p57 positive-control round-trip passes.
+
+This was a separate targeted experiment, **not** part of the earlier 1,276-attempt/22-password count. It rejects only these two p55-shell encodings and the stated OutGuess/ARC4 consumers. Reproduction and raw outputs: [SFT](../sims/lp2_p55_shell32_outguess_sft.cjs), [CI run 43425488066](https://github.com/FlareZ123/liber-primus/actions/runs/43425488066), [artifact 14038050101](https://github.com/FlareZ123/liber-primus/actions/runs/43425488066/artifacts/14038050101). The original images and synthetic control remain unchanged.
+
 ## Additional isolated INSTAR candidate on the moth-bearing p55 image
 
 A separate source-derived candidate was tested after the 22-key corpus gate. Agent35's exploratory all-20-word p57 map reaches **INSTAR** from both source markers under both signs, although neither modulus nor sign is source-fixed (the reported permutation diagnostic was 604/100,000). The p55 illustration supplies an independent moth/instar semantic association. This is a plausible human clue, not an established key derivation. To avoid a dictionary sweep, only uppercase `INSTAR` was tested, once, against original physical p55 carrier `resources/liber-primus/72.jpg`.
