@@ -34,7 +34,7 @@ The direct and feedback inverses exactly recover a synthesized GP29-native passa
 | Original cipher | 0.03447840 | 492 | 439 | 458 |
 | Direct default-GIMP BASE29 pad | **0.03447043** | 484 | 433 | 484 |
 | Feedback default-GIMP BASE29 pad | **0.03445545** | 481 | 460 | 433 |
-| Wrong seed, direct pad | 0.03449290 | 479 or less (run exact script) | varies | varies |
+| Wrong seed, direct pad | 0.03446948 | 479 | 453 | 423 |
 
 The source-locked direct readout starts:
 
