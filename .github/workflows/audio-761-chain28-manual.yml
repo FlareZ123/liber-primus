@@ -1,9 +1,5 @@
 name: 2013 761 MP3 as 28-state LP2 chain key
 on:
-  push:
-    paths:
-      - "sims/audio_761_chain28_source_gate.cjs"
-      - ".github/workflows/audio-761-chain28-manual.yml"
   workflow_dispatch:
 jobs:
   source-gated-chain-inverse:
