@@ -60,7 +60,16 @@ const cuts = [0,729,1874,3603,3612,5506,6527,8051,9640,12956];
 for (let n = 0; n < cuts.length - 1; n++) {
   addRuneVersions('text-section' + n, unknown.slice(cuts[n], cuts[n + 1]));
 }
-assert.equal(candidates.length, 450, 'source encodings before image/solved passages');
+const eightSectionCuts = [
+  [0,729,1874,3612,5506,6527,8051,9640,12956],
+  [0,729,1874,3603,5506,6527,8051,9640,12956],
+];
+for (const [version, cuts8] of eightSectionCuts.entries()) {
+  for (let n = 0; n < 8; n++) {
+    addRuneVersions('eight-text-sections:' + version + ':' + n, unknown.slice(cuts8[n], cuts8[n + 1]));
+  }
+}
+assert.equal(candidates.length, 546, 'corpus encodings including the two source-natural eight-section attachments');
 
 const scans = Array.from({length: 75}, (_, i) => read('resources/liber-primus/' + String(i).padStart(2, '0') + '.jpg'));
 scans.forEach((bytes, i) => add('original-jpeg' + i, bytes));
@@ -74,7 +83,7 @@ for (const [name, passage, title] of [['p57',p57,'PARABLE\n'],['p56',p56,'AN END
     for (const ending of ['', '\n', '\r\n']) add(name + ':' + form + ':' + JSON.stringify(ending), base + ending);
   }
 }
-assert.equal(candidates.length, 560);
+assert.equal(candidates.length, 656);
 let peak = 0;
 const near = [];
 let exact = 0;
