@@ -1,0 +1,28 @@
+name: LP2 2014 original IRC source miner
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mine-original-2014-logs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check standalone CommonJS source
+        run: node --check sims/lp2_2014_irc_clue_miner.cjs
+      - name: Source miner planted control
+        run: node sims/lp2_2014_irc_clue_miner.cjs --selftest
+      - name: Mine immutable original 2014 IRC logs
+        run: node sims/lp2_2014_irc_clue_miner.cjs
+      - name: Preserve finite source extracts
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-2014-irc-clue-extracts
+          path: irc-2014-source-results/
