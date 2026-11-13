@@ -10,6 +10,7 @@ on:
         options:
           - art
           - word-pattern
+          - cumulative-zero
 permissions:
   contents: read
 jobs:
@@ -41,3 +42,16 @@ jobs:
       - name: Check arbitrary-secret per-word GP29 alphabet invariant and controls
         shell: pwsh
         run: node sims/lp2_perword_alphabet_pattern_sft.cjs
+
+  original-cumulative-zero:
+    if: ${{ inputs.check == 'cumulative-zero' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Check original stationary cumulative zero-symbol GP29 family
+        shell: pwsh
+        run: node sims/lp2_cumulative_difference_zero_symbol_sft.cjs
