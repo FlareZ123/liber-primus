@@ -316,6 +316,34 @@ const stratifiedTailAtLeast3 = stratifiedDistribution.slice(3).reduce((a,b)=>a+b
 assert.ok(Math.abs(stratifiedExpectedHits - 0.4477216943031819) < 1e-12);
 assert.ok(Math.abs(stratifiedTailAtLeast3 - 0.0040013152397293215) < 1e-12);
 
+
+const masterText = fs.readFileSync(
+  path.join(__dirname, "..", "resources", "transcriptions", "liber_primus_master.txt"), "utf8"
+);
+const delimiterHeader = new Set([
+  "Delimiters", "Word     : -", "Clause   : .", "Paragraph: &",
+  "Segment  : $", "Chapter  : §", "Line     : /", "Page     : %"
+]);
+const masterBody = masterText.split(/\r?\n/u)
+  .filter(line => !delimiterHeader.has(line)).join(" ");
+const fullBookWords = masterBody.split(/[-./&$%§\s]+/u).filter(Boolean);
+assert.equal(fullBookWords.length, 4461);
+const fullBookFibonacciWords = fibonacci.map(index => {
+  const word = fullBookWords[index];
+  const runeIndices = Array.from(word, rune => corpus.runes.indexOf(rune));
+  assert.ok(runeIndices.every(index => index >= 0));
+  return {
+    index, ordinal:index+1,
+    translit:runeIndices.map(index => corpus.translit[index]).join(" "),
+    primeSum:runeIndices.reduce((a,index) => a + corpus.prime[index], 0)
+  };
+});
+const fullBookFibonacciWordPrimeSums = fullBookFibonacciWords.map(word => word.primeSum);
+assert.deepEqual(fullBookFibonacciWordPrimeSums, [
+  11,277,327,294,213,204,276,78,134,150,272,140,341,215,66,108
+]);
+assert.equal(fullBookFibonacciWordPrimeSums.filter(value => externalTargetSet.has(value)).length, 0);
+
 const wordAddressing = {
   wordCount: words.length,
   runeCount: wordRuneOffset,
@@ -341,6 +369,9 @@ const wordAddressing = {
   spiralSumMatrix,
   spiralRowSums,
   spiralColumnSums,
+  fullBookWordCount: fullBookWords.length,
+  fullBookFibonacciWords,
+  fullBookFibonacciWordPrimeSums,
   pageStratifiedControl: {
     strata: pageStrata,
     expectedHits: stratifiedExpectedHits,
