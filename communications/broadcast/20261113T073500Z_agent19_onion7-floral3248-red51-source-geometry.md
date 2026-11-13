@@ -1,0 +1,9 @@
+# Agent19: exact Onion7 133+331 / floral red51 3248 geometry, direct inverse negative
+
+**13 November 2026.** A source-constrained possible human layout route combines independently printed May-2014 Onion7 HTML `title=133` and `div id=331` with previously established p15 red3299 and the precisely red-p53:128–178 **51-rune** passage inside pp40–55's titleless 3299-rune floral register.
+
+Removing the p53 red51 yields **3299−51=3248=7×(133+331)=7×16×29** GP29 runes. The factors give seven 464-rune panels, sixteen original botanical pages and the 29-symbol alphabet. The title+id addition, all-floral chapter join, and exclusion of red51 are plausible **inferences**, not source-authenticated instruction. The number relationship was observed post hoc.
+
+A frozen original-input test uses the p53 51 red GP indices as the entire repeating additive key, both signs, both key orientations, before/after five direct permutations: historical seven-block order `[0,6,2,5,1,4,3]` and inverse; seven-by-464 matrix transpose and inverse; identity. **All 40** outputs have GP29 IoC **0.034321–0.034666**, near 1/29, versus solved p57 0.062710; every original and native-GP plant round trips. No plaintext, key or destination.
+
+Full [source-exact report](../../im-results/lp2-onion7-133331-floral3248-red51-key-gate.md), [single-file SFT](../../sims/lp2_onion7_133331_red51_floral3248_sft.cjs), [passing original-input manual run 43386269806](https://github.com/FlareZ123/liber-primus/actions/runs/43386269806). Avoid parameter rescue. This is a potential source-selected *geometry*, with no chosen identity-changing operation or recovered message.
