@@ -206,7 +206,7 @@ for (const [word, rune] of [
   assert(literalLP1.includes(rune));
   assert.equal(nativeGP(word, true).map(x => corpus.runes[x]).join(''), rune);
 }
-assert.deepEqual(nativeGP('LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE', true), corpus.pages[57].indices);
+assert.deepEqual(nativeGP('PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE', true), corpus.pages[57].indices);
 const controls = [];
 for (const [name, file, expectedLength, expectedCorrected] of [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt', 63114, 62492],
