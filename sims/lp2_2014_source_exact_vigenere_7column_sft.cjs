@@ -12,11 +12,13 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { buildSourceNativeTrigramModel } = require("./lp1_source_native_trigram_model.cjs");
 const root = path.resolve(__dirname, "..");
 const corpus = JSON.parse(fs.readFileSync(path.join(
   root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
 const lp1 = fs.readFileSync(path.join(
   root, "resources", "liber-primus", "lp1-plaintext-reference.txt"), "utf8");
+const sourceNativeModel = buildSourceNativeTrigramModel({ corpus, referenceText: lp1 });
 
 // Historical Stage04 RUNE_LOOKUP insertion order (value alternatives shown).
 const lookup = [
@@ -241,7 +243,8 @@ assert.deepEqual(permuteSeven(finalOpposite, permuteSource), finalChapter);
 const permutationScores = [];
 function enumerateSeven(prefix, remaining) {
   if (remaining.length === 0) {
-    permutationScores.push({ order: prefix.slice(), score: score(permuteSeven(finalChapter, prefix)) });
+    const candidate = permuteSeven(finalChapter, prefix);
+    permutationScores.push({ order: prefix.slice(), score: score(candidate), sourceNativeScore: sourceNativeModel.scoreStream(candidate).mean });
     return;
   }
   for (let i = 0; i < remaining.length; i++) {
@@ -257,6 +260,14 @@ const permutationRank = order =>
 const sourceRank = permutationRank(permuteSource);
 const oppositeRank = permutationRank(permuteInverse);
 const identityRank = permutationRank([0, 1, 2, 3, 4, 5, 6]);
+const nativePermutationScores = permutationScores.slice()
+  .sort((a, b) => b.sourceNativeScore - a.sourceNativeScore);
+const nativePermutationRank = order =>
+  nativePermutationScores.findIndex(row => row.order.join(",") === order.join(",")) + 1;
+const nativeSourceRank = nativePermutationRank(permuteSource);
+const nativeOppositeRank = nativePermutationRank(permuteInverse);
+const nativeIdentityRank = nativePermutationRank([0, 1, 2, 3, 4, 5, 6]);
+assert.deepEqual([nativeSourceRank, nativeOppositeRank, nativeIdentityRank], [1348, 1097, 3505]);
 assert.equal(sourceRank, 961);
 assert.equal(oppositeRank, 1175);
 assert.equal(identityRank, 2763);
@@ -273,6 +284,9 @@ const finalChapterGate = {
   rawScore: score(finalChapter),
   sourceInverseScore: score(finalSourceInverse),
   oppositePermutationScore: score(finalOpposite),
+  sourceNativeRawScore: sourceNativeModel.scoreStream(finalChapter).mean,
+  sourceNativeSourceInverseScore: sourceNativeModel.scoreStream(finalSourceInverse).mean,
+  sourceNativeOppositePermutationScore: sourceNativeModel.scoreStream(finalOpposite).mean,
   sourceInversePreview: finalSourceInverse.slice(0, 120).map(i => corpus.translit[i]).join(""),
   oppositePreview: finalOpposite.slice(0, 120).map(i => corpus.translit[i]).join(""),
   permutationNull: {
@@ -285,13 +299,42 @@ const finalChapterGate = {
     identityPercentile: (1 - identityRank / permutationScores.length) * 100,
     bestScore: permutationScores[0].score,
     topOnePercentCutoff: permutationScores[Math.floor(permutationScores.length * 0.01)].score
+  },
+  sourceNativePermutationNull: {
+    total: nativePermutationScores.length,
+    sourceRank: nativeSourceRank,
+    sourcePercentile: (1 - nativeSourceRank / nativePermutationScores.length) * 100,
+    oppositeRank: nativeOppositeRank,
+    oppositePercentile: (1 - nativeOppositeRank / nativePermutationScores.length) * 100,
+    identityRank: nativeIdentityRank,
+    identityPercentile: (1 - nativeIdentityRank / nativePermutationScores.length) * 100,
+    bestScore: nativePermutationScores[0].sourceNativeScore
   }
 };
 assert(Math.abs(finalChapterGate.rawScore - (-3.413674261058247)) < 1e-10);
 assert(Math.abs(finalChapterGate.sourceInverseScore - (-3.3995136385008187)) < 1e-10);
 assert(Math.abs(finalChapterGate.oppositePermutationScore - (-3.401735169183637)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeRawScore - (-3.4174846129324874)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeSourceInverseScore - (-3.4020583831873124)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeOppositePermutationScore - (-3.39972814344855)) < 1e-10);
+const expectedNativeComposite = {
+  "p8-14|historical-bug19": [-3.43045452460455, -3.4238155678190743],
+  "p8-14|corrected-GP18": [-3.4047473596996873, -3.4122069225828344],
+  "p33-red8-to-p39|historical-bug19": [-3.417348275990435, -3.423796884010128],
+  "p33-red8-to-p39|corrected-GP18": [-3.418001539062974, -3.419333021508689],
+  "p54-55|historical-bug19": [-3.4167298076400625, -3.432494469773692],
+  "p54-55|corrected-GP18": [-3.440241902974488, -3.4325523223228673]
+};
+for (const row of output) {
+  const expected = expectedNativeComposite[row.originalSpan + "|" + row.historicalKey];
+  assert(expected);
+  assert(Math.abs(row.transposeThenKeySourceNativeScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.keyThenTransposeSourceNativeScore - expected[1]) < 1e-10);
+}
 console.log(JSON.stringify({
-  status:"PASS",originalRunglyphControl:originalOnion(fixedKey),
+  status:"PASS",
+  sourceNativeModel:{trainingLength:sourceNativeModel.trainingLength,trainingScore:sourceNativeModel.trainingScore,p57Score:sourceNativeModel.p57Score},
+  originalRunglyphControl:originalOnion(fixedKey),
   stage05PermutationControl:stage05Expected,
   historicalSourceBug:buggyKey.length,
   correctedGpKeySymbols:fixedKey.length,

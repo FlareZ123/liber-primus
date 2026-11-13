@@ -12,11 +12,14 @@ const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
 const fs = require("node:fs");
 const path = require("node:path");
+const { buildSourceNativeTrigramModel } = require("./lp1_source_native_trigram_model.cjs");
 
 const root = path.resolve(__dirname, "..");
 const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), "utf8"));
 const corpus = readJson("resources/liber-primus/lp2-corpus.json");
 const grid = readJson("resources/liber-primus/base60-grid.json");
+const lp1Reference = fs.readFileSync(path.join(root, "resources/liber-primus/lp1-plaintext-reference.txt"), "utf8");
+const sourceNativeModel = buildSourceNativeTrigramModel({ corpus, referenceText: lp1Reference });
 const bytes = grid.byte_rows.flat();
 
 assert.equal(grid.byte_rows.length, 32);
@@ -158,7 +161,8 @@ function applyFNull(chapterArrays, sign, rows = keyRows) {
 
 const raw = {
   ioc: indexOfCoincidence(chapters),
-  score: score(chapters)
+  score: score(chapters),
+  sourceNativeScore: sourceNativeModel.scoreChapters(chapters)
 };
 const variants = [
   { model: "GP29 all symbols", direction: "subtract", sign: -1,
@@ -177,17 +181,20 @@ for (const variant of variants) {
   assert.deepEqual(replay, chapters, "candidate must replay original ciphertext");
   variant.ioc = indexOfCoincidence(variant.output);
   variant.score = score(variant.output);
+  variant.sourceNativeScore = sourceNativeModel.scoreChapters(variant.output);
   delete variant.output;
 }
 
 const directQuotient = {
   ioc: indexOfCoincidence([quotient]),
-  score: score([quotient])
+  score: score([quotient]),
+  sourceNativeScore: sourceNativeModel.scoreStream(quotient)
 };
 const p57 = corpus.pages.find(page => page.page === 57).indices;
 assert.equal(p57.length, 95);
 assert(translit(p57).startsWith("PARABLE"));
 const p57Score = score([p57]);
+const p57SourceNativeScore = sourceNativeModel.scoreStream(p57);
 
 // Eighteen independent positive plants: every key row, both signs, and both
 // reversible alphabet models must recover authentic solved p57 plaintext.
@@ -211,8 +218,16 @@ assert(Math.abs(variants[0].score.mean - (-7.517838228623048)) < 1e-10);
 assert(Math.abs(variants[1].score.mean - (-7.51020953588241)) < 1e-10);
 assert(Math.abs(variants[2].score.mean - (-7.517046571340038)) < 1e-10);
 assert(Math.abs(variants[3].score.mean - (-7.514200204116361)) < 1e-10);
+assert(Math.abs(raw.sourceNativeScore.mean - (-3.417534064366273)) < 1e-10);
+assert(Math.abs(directQuotient.sourceNativeScore.mean - (-3.424850813952909)) < 1e-10);
+assert(Math.abs(p57SourceNativeScore.mean - (-2.468144714244746)) < 1e-10);
+assert(Math.abs(variants[0].sourceNativeScore.mean - (-3.4137148560435686)) < 1e-10);
+assert(Math.abs(variants[1].sourceNativeScore.mean - (-3.4157753240362796)) < 1e-10);
+assert(Math.abs(variants[2].sourceNativeScore.mean - (-3.4184643800813252)) < 1e-10);
+assert(Math.abs(variants[3].sourceNativeScore.mean - (-3.4163700735484186)) < 1e-10);
 
 console.log(JSON.stringify({
+  sourceNativeModel:{trainingLength:sourceNativeModel.trainingLength,trainingScore:sourceNativeModel.trainingScore,p57Score:sourceNativeModel.p57Score},
   source: {
     p50ByteSha256: "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
     polynomialHighToLow: F_DESC,
@@ -227,5 +242,5 @@ console.log(JSON.stringify({
   variants,
   solvedP57PositiveControl: { length: p57.length, ioc: indexOfCoincidence([p57]), score: p57Score },
   positiveControls,
-  result: "The fixed 9x28 row-major chapter-key inverses do not recover language."
+  result: "The fixed 9x28 row-major chapter-key inverses do not recover plaintext; source-native scoring shows only negligible shifts."
 }, null, 2));

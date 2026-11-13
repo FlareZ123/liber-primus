@@ -2,14 +2,18 @@
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
+const {buildSourceNativeTrigramModel}=require("./lp1_source_native_trigram_model.cjs");
 const root=path.resolve(__dirname,"..");
 const readJson=f=>JSON.parse(fs.readFileSync(path.join(root,f),"utf8"));
 const corpus=readJson("resources/liber-primus/lp2-corpus.json");
 const master=fs.readFileSync(path.join(root,"resources/transcriptions/liber_primus_master.txt"),"utf8");
+const lp1Reference=fs.readFileSync(path.join(root,"resources/liber-primus/lp1-plaintext-reference.txt"),"utf8");
+const sourceNativeModel=buildSourceNativeTrigramModel({corpus,referenceText:lp1Reference});
 const mod29=x=>((x%29)+29)%29;
 const glyphSet=new Set(corpus.runes);
 const glyphIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
 const translit=xs=>xs.map(i=>corpus.translit[i]).join("");
+const sourceNativeSpelling=xs=>sourceNativeModel.spell(xs);
 const runeWords=s=>s.split(/[-.&$§]/u).map(part=>Array.from(part).filter(g=>glyphSet.has(g)).map(g=>glyphIndex.get(g))).filter(w=>w.length);
 const page0Incipit=corpus.pages[0].indices.slice(0,8).map(i=>corpus.runes[i]).join("");
 const start=master.indexOf(page0Incipit);
@@ -76,9 +80,9 @@ function repeat9(chs,key,phase,sign){
  let offset=0;
  return chs.map(ch=>{const base=phase==="chapter-reset"?0:offset;const out=ch.map((x,i)=>mod29(x+sign*key[(base+i)%9]));offset+=ch.length;return out;});
 }
-const raw={ioc:ioc(chapters),score:score(chapters)};
+const raw={ioc:ioc(chapters),score:score(chapters),sourceNativeScore:sourceNativeModel.scoreChapters(chapters)};
 const variants=[];
-function add(name,meta,out,replay){assert.deepEqual(replay,chapters,name+" replay");variants.push({name,...meta,ioc:ioc(out),score:score(out)});}
+function add(name,meta,out,replay){assert.deepEqual(replay,chapters,name+" replay");variants.push({name,...meta,ioc:ioc(out),score:score(out),sourceNativeScore:sourceNativeModel.scoreChapters(out)});}
 for(const [keyName,keys] of [["ordinal",center],["prime-residue",primeResidues]])for(const sign of [-1,1]){
  const out=chapterShift(chapters,keys,sign);add("chapter Caesar",{keyName,sign},out,chapterShift(out,keys,-sign));
 }
@@ -91,12 +95,13 @@ for(const [keyName,key] of [["ordinal",center],["prime-residue",primeResidues]])
 const selectWords=keys=>keys.map((index,s)=>{
  assert(index>=1&&index<=chapterWords[s].length);
  const word=chapterWords[s][index-1];
- return {chapter:s+1,oneBasedWordIndex:index,runeLength:word.length,transliteration:translit(word)};
+ return {chapter:s+1,oneBasedWordIndex:index,runeLength:word.length,legacyTransliteration:translit(word),sourceNativeTransliteration:sourceNativeSpelling(word)};
 });
 const wordSelections={primeWeight:selectWords(primeWeights),ordinal:selectWords(center)};
 const p57=corpus.pages.find(p=>p.page===57).indices;
 assert.equal(p57.length,95);
 const p57Score=score([p57]);
+const p57SourceNativeScore=sourceNativeModel.scoreStream(p57);
 let positiveControls=0;
 for(const keys of [center,primeResidues])for(const key of keys)for(const sign of [-1,1]){
  const encrypted=chapterShift([p57],[key],sign);
@@ -122,8 +127,12 @@ assert.equal(variants.length,expectedScores.length);
 variants.forEach((v,i)=>assert(Math.abs(v.score.mean-expectedScores[i])<1e-10));
 assert(Math.abs(raw.score.mean-(-7.4391377865159365))<1e-10);
 assert(Math.abs(p57Score.mean-(-4.420633417052125))<1e-10);
+assert(Math.abs(raw.sourceNativeScore.mean-(-3.417534064366273))<1e-10);
+assert(Math.abs(p57SourceNativeScore.mean-(-2.468144714244746))<1e-10);
+const expectedSourceNativeScores=[-3.4147534132857045,-3.418528978772266,-3.415200686819373,-3.4210530630070894,-3.4134216802685744,-3.415081357865264,-3.420672528860212,-3.413396068914289,-3.415064228871744,-3.417098396528964,-3.4145684401217826,-3.419894641791138,-3.4184556645479587,-3.4132494270166935,-3.41152704455519,-3.4161898267147097];
+variants.forEach((v,i)=>assert(Math.abs(v.sourceNativeScore.mean-expectedSourceNativeScores[i])<1e-10));
 console.log(JSON.stringify({
- source:{center3x3Ordinal:center,center3x3Transliteration:translit(center),center3x3PrimeWeights:primeWeights,center3x3PrimeResidues:primeResidues,centerCellOrdinal:centerCell,centerCellPrimeResidue,chapterPages,chapterRuneLengths:chapters.map(x=>x.length),chapterWordCounts:chapterWords.map(x=>x.length),lp2RuneCount:runeCount,lp2WordCount:lp2Words.length},
+ source:{center3x3Ordinal:center,center3x3Transliteration:translit(center),center3x3SourceNativeSpelling:sourceNativeSpelling(center),center3x3PrimeWeights:primeWeights,center3x3PrimeResidues:primeResidues,centerCellOrdinal:centerCell,centerCellPrimeResidue,chapterPages,chapterRuneLengths:chapters.map(x=>x.length),chapterWordCounts:chapterWords.map(x=>x.length),lp2RuneCount:runeCount,lp2WordCount:lp2Words.length},
  raw,variants,wordSelections,solvedP57PositiveControl:{length:p57.length,score:p57Score},positiveControls,
  result:"The tested direct central-3x3 key and word-address interpretations do not recover plaintext."
 },null,2));
