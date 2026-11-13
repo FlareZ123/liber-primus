@@ -234,6 +234,72 @@ function positive() {
   return {plaintext, key, ciphertext:run, recovered};
 }
 
+/**
+ * The EA model fixes symbol 28 through P+1. To test the independent rival
+ * "a single DIFFERENT plaintext symbol emits a zero step", grant every
+ * one of the 29 source symbols that role without fitting a key or a word.
+ * Group exact original word-length and eligible-position layouts for speed.
+ *
+ * A finite language-sample diagnostic, not a cipher selector.
+ * @param {ReturnType<typeof originalWords>} original
+ * @param {Map<number,SourceWord[]>} source
+ */
+function allMarkerRanks(original, source) {
+  const groups = new Map();
+  for (const word of original) {
+    const mask = word.map(x => Number(x.mark >= 0));
+    const key = word.length + ":" + mask.join("");
+    const item = groups.get(key) || {
+      length:word.length, mask, count:0
+    };
+    item.count++;
+    groups.set(key, item);
+  }
+  const rankings = [];
+  for (let marker = 0; marker < 29; marker++) {
+    let expected = 0, expectedStart = 0;
+    let varTotal = 0, varStart = 0, covariance = 0;
+    let uncovered = 0;
+    for (const group of groups.values()) {
+      const options = source.get(group.length) || [];
+      if (!options.length) {uncovered += group.count; continue;}
+      let W = 0, sx = 0, sy = 0, sxx = 0, syy = 0, sxy = 0;
+      for (const {v, w} of options) {
+        const a = v.reduce((n, x, i) =>
+          n + Number(group.mask[i] && x === marker), 0);
+        const b = Number(group.mask[0] && v[0] === marker);
+        W += w;
+        sx += w*a;
+        sy += w*b;
+        sxx += w*a*a;
+        syy += w*b;
+        sxy += w*a*b;
+      }
+      const mx = sx/W, my = sy/W;
+      expected += group.count*mx;
+      expectedStart += group.count*my;
+      varTotal += group.count*(sxx/W - mx*mx);
+      varStart += group.count*(syy/W - my*my);
+      covariance += group.count*(sxy/W - mx*my);
+    }
+    const dx = 86-expected, dy = 23-expectedStart;
+    const determinant = varTotal*varStart-covariance*covariance;
+    const distance = determinant > 0 ?
+      Math.sqrt(Math.max(0,
+        (varStart*dx*dx-2*covariance*dx*dy+varTotal*dy*dy)/
+        determinant)) : Infinity;
+    rankings.push({
+      rune:gp.translit[marker], expected:+expected.toFixed(3),
+      expectedStart:+expectedStart.toFixed(3),
+      jointDistance:Number.isFinite(distance)?+distance.toFixed(3):null,
+      unscoredOriginalWords:uncovered
+    });
+  }
+  rankings.sort((a,b) =>
+    (a.jointDistance ?? Infinity)-(b.jointDistance ?? Infinity));
+  return rankings;
+}
+
 function run() {
   const original = originalWords();
   const sources = {
@@ -245,9 +311,16 @@ function run() {
   for (const [name, source] of Object.entries(sources)) {
     results[name] = {
       direct:evaluate(original, source, false),
-      wordReversed:evaluate(original, source, true)
+      wordReversed:evaluate(original, source, true),
+      bestAlternativeZeroStepPlaintextSymbols:allMarkerRanks(original,source)
+        .slice(0, 6)
     };
   }
+  const englishRanks = allMarkerRanks(original, sources.English);
+  assert.equal(englishRanks[0].rune, "G");
+  assert(Math.abs(englishRanks[0].expected-146.001) < 0.02);
+  assert(Math.abs(englishRanks[0].expectedStart-52.316) < 0.02);
+  assert(Math.abs(englishRanks[0].jointDistance-5.237) < 0.02);
   assert(Math.abs(results.English.direct.meanTotal-81.513) < 0.05);
   assert(Math.abs(results.English.direct.meanWordInitial-5.445) < 0.05);
   assert.equal(results.English.direct.unattainableMasks, 5);
