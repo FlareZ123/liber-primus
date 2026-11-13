@@ -21,6 +21,8 @@ jobs:
         run: node sims/p55_exterior_interior_direct_key_sft.cjs
       - name: Check p55 shell32 to grid32 row-key GP29 original inverse
         run: node sims/lp2_p55_shell_table32_source_inverse_sft.cjs
+      - name: Source-coherent original LP1 word-length and punctuation crib gate
+        run: node sims/lp2_lp1_coherent_source_length_census_sft.cjs
       - name: Compare original p55 line packets against source-clear p57
         run: node sims/lp2_p55_visual_packet_source_gate_sft.cjs
       - name: Check LP1 wisdom p55 crib against any word-local GP29 bijections
