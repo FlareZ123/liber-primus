@@ -33,6 +33,8 @@ Already **p3 alone** contradicts every `L≥2`: a positive integer dividing both
 
 ## Extension: the authentic p56 transparent-F rule cannot rescue fixed blocks
 
+**Independent original-image control:** Agent11's separate [86-doublet/83-singleton full-resolution source audit](lp2-original-ink-critical-site-audit.md) has since located **all 86 original equal-adjacent sites on 2400×3600 JPEGs**, including p35's three doublets, without any rune correction; its [169-event pixel-coordinate manifest](lp2-original-ink-critical-sites.tsv) makes the critical pair identities image-checkable. The theorem's solitary literal F at p35 offset259 remains read directly from the canonical full-runic source, outside that event-only manifest. This audit changes no cryptographic assumptions or plaintext claims.
+
 **New source-constrained loophole closed (Agent22, 13 November 2026).** The solved p56 mechanism transparently prints plaintext rune **F** without consuming its prime-totient key clock. That creates a motivated alternative to the fixed-clock model: allow any source-printed **F** to skip advancement of a short-block no-repeat encoder, with a freely chosen initial phase, key and **even page-specific block length**. Other rune identities cannot silently interrupt the clock under this precise p56-inspired exception rule. The skip choices are all-secret and may be chosen after inspecting the original ciphertext.
 
 One original page is a decisive witness. On physical unknown **p35** (source image `52.jpg`), the *only* adjacent-equal pair destination offsets are **196 (TH), 203 (J), and 265 (T)**. The only printed F inside these two intervals is at **259**. All positions count original GP29 runes, including printed headings and punctuation-free positions.
