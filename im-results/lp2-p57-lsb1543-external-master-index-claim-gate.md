@@ -14,6 +14,14 @@ The external [Python code](https://github.com/nexon33/cicada3301/blob/main/extra
 
 The original p57 union includes **62, 102, 115, 181, 333, 596, 625, 689**. Its exact combined X+Y occurrence frequencies, in target order, are **[23, 174, 281, 260, 0, 0, 484, 0, 27, 35, 35]**, contradicting the public nonzero values for the three absent indices and the claimed count of 32 for index 333. Because *all three documented headline extraction counts match exactly*, this is evidence about the **same** image/extraction, rather than an implementation variant or incorrect crop.
 
+## Independent authentic WELCOME original-cipher inverse
+
+The third-party [claimed key generator](https://github.com/nexon33/cicada3301/blob/main/BREAKTHROUGH_SUMMARY.md) asserts that its eleven WELCOME indices become a **repeating GP29 Vigenere key** after reduction modulo29, with its own skip-position list beginning at **29**. Therefore the authentic first **seven** cipher positions admit a unique unambiguous test: there are no claimed bypasses to explain a discrepancy.
+
+The original LP1 solved WELCOME passage begins with **GP ciphertext** `ᚢᛠᛝᛋᛇᚠᚳ`, exact indices **[1,28,21,15,12,0,5]**, and independently known authentic **plaintext** `ᚹᛖᛚᚳᚩᛗᛖ` (WELCOME), indices **[7,18,20,5,3,19,18]**. The historically known correct key **DIVINIT…** yields the necessary seven GP29 additive shifts **[23,10,1,10,9,10,16]**. The third-party source's first seven proposed indices, `[62,102,115,181,217,218,333]`, instead yield key residues **[4,15,28,7,14,15,14]**. Applied to the *original* ciphertext, these decrypt to **[26,13,22,8,27,14,20]** (`YPOEHIAXL` in the original source transliteration), with **zero of seven exact plaintext/key matches**. This fails before any unknown-page inference, regardless of the claimed remaining four master indices.
+
+The SFT now also reads the original preserved `resources/transcriptions/lp1_wulfic_canonical.txt`, extracts the actual WELCOME ciphertext first seven, asserts the known WELCOME indices, derives both keys and asserts the exact mismatch. It is an actual **authentic original-cipher control**, independently rejecting the proposed key mechanism even if a different image extractor could force all eleven coordinate labels.
+
 ## Why the failure matters and what would reopen
 
 Every qualifying pixel adds both of its *coordinate labels* to a large set. This is a generic property of textured image data. Even the unrelated physical p0 original yields **11/11** purported WELCOME indices using the identical rule, despite supplying no WELCOME key or plaintext. Eleven-of-eleven membership alone has no established false-positive discrimination. The claimed p57 positive fails more directly, with three missing values.
