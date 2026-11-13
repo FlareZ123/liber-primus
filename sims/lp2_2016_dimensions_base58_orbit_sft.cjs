@@ -304,6 +304,16 @@ assert.equal(height.terminal,div331.terminal);
 assert.equal(div331.path.length,height.path.length);
 assert(width.path.includes(title133.terminal));
 
+assert.equal(short2012.period,4);
+assert.equal(short2012.enteredAt,17);
+assert.deepEqual(short2012.path.slice(0,8),
+  [503,490,61,487,165,158,79,119]);
+assert.deepEqual(long2012.path,[509,7,102,125,129]);
+assert.equal(long2012.reason,"table");
+assert.equal(long2012.terminal,166); // Physical p50 third numeral, unlike 2014/2016 p50 first.
+console.log("Three dated original pairs (2012, 2014, 2016):",
+  "503/133/563 enter word cycles; 509/331/569 enter physical p50.");
+
 // A stronger source-aligned test than a generic grid origin: 2014 id331 and
 // signed-image height569 BOTH point to global grid index80, the start of
 // physical p50, namely row10 column0. Rotate complete eight-cell rows to
@@ -414,7 +424,8 @@ function crossRandom() {
 const CX=30000;
 const crossCounts={sameCycle:0,same33Cycle:0,bothAnyCycle:0,
   bothP50First:0,bothSameTable:0,bothAnyTable:0,jointCycleP50:0,
-  joint33P50:0,titleCycleDivTable:0};
+  joint33P50:0,titleCycleDivTable:0,pair2012:0,tripleBroad2012:0,
+  tripleSource2012:0,tripleStrict2012:0,pair2012Exact:0};
 for(let trial=0;trial<CX;trial++) {
   const fake=originalSums.map(row=>row.slice());
   // Exact page/word-length/source-sum inventories are preserved. Only
@@ -432,6 +443,7 @@ for(let trial=0;trial<CX;trial++) {
   }
   const a=walk(133,fake),b=walk(331,fake);
   const c=walk(563,fake),e=walk(569,fake);
+  const u=walk(503,fake),v=walk(509,fake);
   const bothCycle=a.reason==="cycle"&&c.reason==="cycle";
   const cCycleMembers=new Set(c.path.slice(c.enteredAt??0));
   const sameCycle=bothCycle&&cCycleMembers.has(a.terminal);
@@ -450,13 +462,23 @@ for(let trial=0;trial<CX;trial++) {
   if(sameCycle&&bothP50)crossCounts.jointCycleP50++;
   if(same33&&bothP50)crossCounts.joint33P50++;
   if(a.reason==="cycle"&&b.reason==="table")crossCounts.titleCycleDivTable++;
+  const pair2012=u.reason==="cycle"&&v.reason==="table";
+  const tripleBroad=pair2012&&a.reason==="cycle"&&b.reason==="table"&&bothCycle&&bothTable;
+  const pair2012Exact=pair2012&&u.period===4&&v.terminal===166&&v.path.length===5;
+  if(pair2012)crossCounts.pair2012++;
+  if(tripleBroad)crossCounts.tripleBroad2012++;
+  if(pair2012&&sameCycle&&bothP50)crossCounts.tripleSource2012++;
+  if(pair2012Exact&&sameCycle&&bothP50)crossCounts.tripleStrict2012++;
+  if(pair2012Exact)crossCounts.pair2012Exact++;
 }
 assert.deepEqual(crossCounts,{
   sameCycle:5723,same33Cycle:1,bothAnyCycle:8573,
   bothP50First:56,bothSameTable:56,bothAnyTable:2611,
-  jointCycleP50:9,joint33P50:0,titleCycleDivTable:1688
+  jointCycleP50:9,joint33P50:0,titleCycleDivTable:1688,
+  pair2012:1552,tripleBroad2012:12,tripleSource2012:0,
+  tripleStrict2012:0,pair2012Exact:5
 });
-console.log("Paired 2014+2016 numeral matched 30,000 source-word shuffles",
+console.log("Paired 2012+2014+2016 numeral matched 30,000 source-word shuffles",
   crossCounts,"seed 0x13333156; events selected after original inspection.");
 
 console.log("Caveat: cycle length, two-hop landing and AES consumer were",
