@@ -110,8 +110,8 @@ function test(family, parts, makeKey, sign) {
     const part = parts[s], key = makeKey(part, s);
     assert.equal(key.length, part.length);
     const decoded = part.map((x, i) => mod29(x + sign * key[i]));
-    assertPlant(solvedControl, key.slice(0, solvedControl.length),
-      sign);
+    const plant = solvedControl.slice(0, Math.min(key.length, solvedControl.length));
+    assertPlant(plant, key.slice(0, plant.length), sign);
     const restored = decoded.map((x, i) => mod29(x - sign * key[i]));
     assert.deepEqual(restored, part);
     output.push(...decoded);
