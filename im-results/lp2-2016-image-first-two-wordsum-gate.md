@@ -45,6 +45,16 @@ For the more restrictive **fixed word-slot null**, count exactly the ways to sam
 
 The fixed-slot product is an **exact conditional probability under the declared rune-shuffle null**. It is more discriminating than the any-word ordered-page event because the source gap and one-based tree page number select the actual two word ordinals. **Crucially, the hypothesized selection of first/second pages and the realization that these two numeric positions agree were made after inspecting the ciphertext.** The mathematical product is therefore a conditional chance diagnostic, *not* a corrected probability of authorial design or an authentic decryption rule. This source-path interpretation is a plausible opportunity for a future independent clue, not a completed step.
 
+### The width-selected word begins with three compass runes
+
+The p0 word6 whose GP-prime sum exactly equals the 2016 image width **begins with the *literal original ciphertext runes* N, E, W** (\`ᚾᛖᚹ\`). This gives a plausible semantic reading of the signed source phrase “their numbers are the direction”: north, east, west. It is also the ordinary English word “new”, so the compass reading must remain a hypothesis. The remaining eight glyphs of the same original word do not form a compass instruction, and the original page does not mark a stop after its third glyph. The literal \`NEW\` substring is **not recovered plaintext**.
+
+Of 2,928 unknown original printed segments, **five** begin with any three of the four single-rune cardinal letters N/E/S/W: p0#6, p18#39, p23#15, p37#22 and p45#35. Only p0#6 begins with \`NEW\`, and only p0#6 has the independently source-dimensioned 563-sum word.
+
+The exact combinatorial shuffle of the *original p0 page's 262 rune symbols*, preserving word6's eleven-glyph length, gives \`P(word6 sums563 and its first three runes are all compass letters)=0.00000998757847680622\`, with **P(any three compass runes | sum563)=0.00224968615989257**. The further exact event \`NEW\` in order plus sum563 has chance \`0.000000150602065391061\` under that specific fixed-slot null. Cardinal category was proposed from the signed directional clue; the three-prefix length and literal NEW order were recognized *after* inspecting the target. These are conditional combinatorial measures, never discovery-wide probabilities or proof of a designer-supplied path.
+
+**Route stop:** the clue does not specify a p32 starting square, whether movement happens before or after reading, why to truncate the source word at three glyphs, or how subsequent noncardinal glyphs turn into direction. Do not manufacture a start/path or claim an original plaintext fragment solely from the readable cardinal prefix.
+
 ## Direct source-addressed 11+10-key inverse on p32: negative
 
 The **11** runes of p0 word6 and **10** runes of p1 word33 fit the natural p32 **11×11** matrix as one complete horizontal key (11 columns) and keys for its **ten remaining rows** (the first row gets vertical offset zero). This is a stronger potential *consumer* than a numerical collision: the two unique source-addressed words determine all key symbols, and a two-dimensional additive cipher can be executed reversibly on the 121 original p32 runes.
