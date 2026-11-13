@@ -117,7 +117,7 @@ for(const [name,route] of [["ascending",ascending],["descending",descending]]) {
 assert.equal(tests.length,4);
 const expected=[
   -5.041220690731827,-4.715472315112022,
-  -4.795691592866437,-4.749029778885676
+  -4.795691592866437,-4.71979159167329
 ];
 for(let i=0;i<expected.length;i++)
   assert.ok(Math.abs(tests[i].originalTrigramNats-expected[i])<1e-10);

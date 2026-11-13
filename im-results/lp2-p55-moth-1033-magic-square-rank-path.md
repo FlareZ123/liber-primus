@@ -33,7 +33,7 @@ A fixed GP29 trigram model built from the repository's Shakespeare original text
 | Original p55 75-rune body, unchanged | **−4.54270447** |
 | Inverse using ascending rank path | **−4.71547232** |
 | Direct ascending rank path | **−5.04122069** |
-| Inverse descending rank path | **−4.74902978** |
+| Inverse descending rank path | **−4.71979159** |
 | Direct descending rank path | **−4.79569159** |
 | Actual solved p57 first 75 GP runes, language control | **−2.54084238** |
 
