@@ -6,8 +6,9 @@
  * The solved LP2 physical p57 has exactly 20 printed words and 95 runes.
  * Removing the first and last rune of each original word yields 55 runes,
  * one for every rune-bearing unsolved physical LP2 page p0..p55.
- * This tests each word-interior rune as a zero-based prime-sequence offset
- * for its corresponding unknown page. The prime-totient operation is
+ * This tests the three source-defined numeric readings of each word-interior
+ * rune (GP alphabet index, its prime value, and its prime totient) as
+ * prime-sequence offsets for the corresponding unknown page. The prime-totient operation is
  * independently demonstrated on solved p56. No phases or keys are fitted.
  *
  * Run: node sims/lp2_p57_shed_inner55_primeoffset_sft.cjs
@@ -58,7 +59,16 @@ function firstPrimes(count) {
 }
 
 const maxPageLength = Math.max(...unknown.map((p) => p.indices.length));
-const primes = firstPrimes(maxPageLength + 29);
+const offsetModes = [
+  { name: 'GP-ordinal', offsets: keys,
+    expected: [0.03447388179259219, 0.034473143015656474] },
+  { name: 'GP-prime', offsets: keys.map((k) => corpus.prime[k]),
+    expected: [0.034478314454206495, 0.03448794238588488] },
+  { name: 'GP-prime-totient', offsets: keys.map((k) => corpus.prime[k] - 1),
+    expected: [0.03451726706393006, 0.034502777503384374] },
+];
+const largestOffset = Math.max(...offsetModes.flatMap((mode) => mode.offsets));
+const primes = firstPrimes(maxPageLength + largestOffset + 1);
 
 /**
  * Decode one page under the exact source-keyed GP29 totient scheme.
@@ -100,24 +110,26 @@ console.log('Solved p57 words and interior key count:', words.length, keys.lengt
 console.log('Original IoC:', ioc(original).toFixed(12));
 console.log('Solved original p57 GP IoC:', ioc(solved57.indices).toFixed(12));
 
-for (const sign of /** @type {(-1 | 1)[]} */ ([-1, 1])) {
-  const decoded = [];
-  for (let i = 0; i < unknown.length; i++) {
-    const page = unknown[i];
-    const candidate = decode(page.indices, keys[i], sign);
-    assert.deepEqual(encode(candidate, keys[i], sign), page.indices,
-      'Exact original-cipher forward reconstruction failed at p' + page.page);
-    const plant = Array.from({ length: page.indices.length },
-      (_, j) => solved57.indices[j % solved57.indices.length]);
-    assert.deepEqual(decode(encode(plant, keys[i], sign), keys[i], sign), plant,
-      'Solved-p57 planted plaintext did not recover at p' + page.page);
-    decoded.push(...candidate);
+for (const mode of offsetModes) {
+  for (const sign of /** @type {(-1 | 1)[]} */ ([-1, 1])) {
+    const decoded = [];
+    for (let i = 0; i < unknown.length; i++) {
+      const page = unknown[i];
+      const candidate = decode(page.indices, mode.offsets[i], sign);
+      assert.deepEqual(encode(candidate, mode.offsets[i], sign), page.indices,
+        'Exact original-cipher forward reconstruction failed at p' + page.page);
+      const plant = Array.from({ length: page.indices.length },
+        (_, j) => solved57.indices[j % solved57.indices.length]);
+      assert.deepEqual(decode(encode(plant, mode.offsets[i], sign), mode.offsets[i], sign), plant,
+        'Solved-p57 planted plaintext did not recover at p' + page.page);
+      decoded.push(...candidate);
+    }
+    const score = ioc(decoded);
+    const expected = mode.expected[sign === -1 ? 0 : 1];
+    assert.ok(Math.abs(score - expected) < 1e-12, 'Original decoding score drift');
+    const preview = decoded.slice(0, 80).map((rune) => corpus.translit[rune]).join(' ');
+    console.log('Offset:', mode.name, 'sign:', sign, 'decoded IoC:', score.toFixed(12),
+      'sample 80 GP runes:', preview);
   }
-  const score = ioc(decoded);
-  const expected = sign === -1 ? 0.03447388179259219 : 0.034473143015656474;
-  assert.ok(Math.abs(score - expected) < 1e-12, 'Original decoding score drift');
-  const preview = decoded.slice(0, 80).map((rune) => corpus.translit[rune]).join(' ');
-  console.log('Sign:', sign, 'decoded IoC:', score.toFixed(12),
-    'sample 80 GP runes:', preview);
 }
-console.log('PASS: exact source input, source-key decoding, 55 page plants, forward inverses.');
+console.log('PASS: original source, all three GP number interpretations, all 330 page plants and inverses.');
