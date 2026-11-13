@@ -142,6 +142,17 @@ assert.deepEqual(encodeGP("FUNCTION"), [0,1,9,5,16,27,9]);
  * @returns {number}
  */
 function controlTopK(window, alphabetSize, k) {
+  return controlSortedGroups(window, alphabetSize)[k-1];
+}
+
+/**
+ * The top-k occupancy for every group size k=1..A, with the same
+ * source's 55 physical page-initial exclusions.
+ * @param {number[]} window
+ * @param {26|29} alphabetSize
+ * @returns {number[]}
+ */
+function controlSortedGroups(window, alphabetSize) {
   assert.equal(window.length, originalN);
   const counts = new Uint32Array(alphabetSize);
   let offset = 0;
@@ -149,8 +160,8 @@ function controlTopK(window, alphabetSize, k) {
     for (let i = 1; i < size; i++) counts[window[offset+i]]++;
     offset += size;
   }
-  return [...counts].sort((a,b)=>b-a).slice(0,k)
-    .reduce((sum,count)=>sum+count,0);
+  let sum=0;
+  return [...counts].sort((a,b)=>b-a).map(n=>(sum+=n));
 }
 const sources = [
   ["Shakespeare", "resources/control/shakespeare_first300k.txt",32,34],
@@ -158,6 +169,7 @@ const sources = [
   ["Emerson", "resources/control/emerson_essays_2944.txt",48,51]
 ];
 const controlResults = [];
+const originalControlGroups={gp29:[],latin26:[]};
 for(const [name,filename,expectedGP,expectedLatin] of sources){
   const original=read(filename);
   for(const [register,encoder,alphabetSize,expected] of [
@@ -169,9 +181,9 @@ for(const [name,filename,expectedGP,expectedLatin] of sources){
     for(let start=0;start+originalN<=encoded.length;
       start+=Math.floor(originalN/2)){
       const window=encoded.slice(start,start+originalN);
-      data.push({top1:controlTopK(window,alphabetSize,1),
-        top4:controlTopK(window,alphabetSize,4),
-        top5:controlTopK(window,alphabetSize,5)});
+      const groups=controlSortedGroups(window,alphabetSize);
+      originalControlGroups[register].push(groups);
+      data.push({top1:groups[0],top4:groups[3],top5:groups[4]});
     }
     assert.equal(data.length,expected,name+" "+register+" control windows");
     const minima=Object.fromEntries(["top1","top4","top5"]
@@ -232,11 +244,56 @@ function positivePlant(input, alphabetSize) {
 }
 const gpPlant=positivePlant(encodeGP(read(sources[1][1])).slice(0,originalN),29);
 const latinPlant=positivePlant(encodeLatin(read(sources[0][1])).slice(0,originalN),26);
+
+/**
+ * A public phase clock is the least additional state beyond C_(i-1).
+ * Exhaust only the bounded 1..20 page-local rune phase values, keeping
+ * all row tables arbitrary and secret. Zero survivor windows means all
+ * independently encoded original-layout controls fail at least one exact
+ * necessary top-k occupancy inequality; a survivor is NOT a decoder.
+ * @param {number} period
+ * @returns {Map<string, Uint32Array>}
+ */
+function periodicTransitionRows(period) {
+  const rows=new Map();
+  for(const p of pages){
+    for(let i=1;i<p.indices.length;i++){
+      const key=String((i-1)%period)+":"+p.indices[i-1];
+      if(!rows.has(key)) rows.set(key,new Uint32Array(29));
+      rows.get(key)[p.indices[i]]++;
+    }
+  }
+  return rows;
+}
+const phaseEnvelope=[];
+for(let period=1;period<=20;period++){
+  const rows=periodicTransitionRows(period);
+  const result={period,stateRows:rows.size};
+  for(const [register,A] of [["gp29",29],["latin26",26]]) {
+    const bounds=Array.from({length:A},(_,i)=>
+      maxGroupOccupancy(rows,A,i+1));
+    const survivors=originalControlGroups[register].filter(group =>
+      group.every((observed,i)=>observed<=bounds[i])).length;
+    result[register]={survivors,controls:originalControlGroups[register].length,
+      top1Bound:bounds[0],top5Bound:bounds[4]};
+  }
+  phaseEnvelope.push(result);
+}
+assert.deepEqual(phaseEnvelope.slice(0,12).map(x=>x.gp29.survivors),
+  Array(12).fill(0));
+assert.equal(phaseEnvelope[12].gp29.survivors,2);
+assert.deepEqual(phaseEnvelope.slice(0,8).map(x=>x.latin26.survivors),
+  Array(8).fill(0));
+assert.equal(phaseEnvelope[8].latin26.survivors,14);
+assert.equal(phaseEnvelope[9].latin26.survivors,77);
+assert.equal(phaseEnvelope[10].latin26.survivors,94);
+
 console.log(JSON.stringify({
   result:"PASS: exact original all-secret complete first-order row capacity; no plaintext recovered",
   original:{runes:originalN,runeBearingPages:lengths.length,
     eligibleWithinPage:observedEligible},
   sourceCapacity,
   originalControls:controlResults,
+  exactPhaseOccupancyEnvelope:phaseEnvelope,
   positivePlant:{gp29:gpPlant,latin26:latinPlant}
 },null,2));
