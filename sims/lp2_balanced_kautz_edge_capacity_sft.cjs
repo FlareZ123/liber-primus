@@ -109,9 +109,19 @@ function plantedControl(pageSizes) {
   // any new non-diagonal edge, so all 16-fold capacities remain invariant.
   const holds = EXPECTED_WITHIN_PAGE_REPEATS;
   const source = path.slice(0, EXPECTED_RUNES - holds);
-  const sites = new Set(Array.from({ length: holds }, (_, i) =>
-    Math.floor((i + 0.5) * source.length / holds)
-  ));
+  const boundaries = new Set();
+  let cumulative = 0;
+  for (let i = 0; i < pageSizes.length - 1; i++) {
+    cumulative += pageSizes[i];
+    boundaries.add(cumulative);
+  }
+  const sites = new Set();
+  for (let j = 0; j < holds; j++) {
+    let location = Math.floor((j + 0.5) * source.length / holds);
+    while (sites.has(location) || boundaries.has(location + j + 1)) location++;
+    assert.ok(location < source.length);
+    sites.add(location);
+  }
   assert.equal(sites.size, holds);
   const generated = [];
   for (let i = 0; i < source.length; i++) {
@@ -121,6 +131,7 @@ function plantedControl(pageSizes) {
   assert.equal(generated.length, EXPECTED_RUNES);
   assert.equal(countTransitions([generated]).repeats, holds);
   const byPage = countTransitions(repartition(pageSizes, generated));
+  assert.equal(byPage.repeats, holds);
   assert.ok(byPage.max <= COPIES);
   return { runes: generated.length, continuousHolds: holds,
     withinPagePairs: byPage.pairs, withinPageRepeats: byPage.repeats,
