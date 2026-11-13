@@ -183,6 +183,132 @@ assert(Math.abs(expectedE - 1487.4447156192) < 1e-5);
 assert(Math.abs(expectedEO - 2289.22558091775) < 1e-5);
 assert(plantedCapacity.E >= plantE && plantedCapacity.EO >= plantEO);
 
+// Allow one extra, visibly motivated rekey at the rune-free numeric p50.
+const postNumericEnds = [...CHAPTER_ENDS.slice(0, 7), 12114,
+  ...CHAPTER_ENDS.slice(7)];
+assert.equal(postNumericEnds.length, 10);
+const postNumericCounts = Array.from({ length: 10 }, blank);
+let postNumericPosition = 0;
+for (const word of words)
+  for (let j = 0; j < word.length; j++, postNumericPosition++) {
+    if (j === 0) continue;
+    const segment = postNumericEnds.findIndex(x => postNumericPosition < x);
+    postNumericCounts[segment][word[j - 1]][word[j]]++;
+  }
+assert.equal(postNumericPosition, 12956);
+const postNumericRekey = capacity(postNumericCounts);
+assert.deepEqual(postNumericRekey, { E: 1109, EO: 2015, fullRows: 0 });
+
+// Optimize every possible physically visible page boundary as an additional
+// reset. This is a dynamic program over all contiguous within-chapter
+// partitions, with an independent arbitrary alphabet per segment/state.
+const runePages = gp.pages.filter(p => p.page <= 55 && p.runic_count > 0);
+assert.equal(runePages.length, 55);
+const pageOfRune = Array(12956);
+let pageOffset = 0;
+for (let i = 0; i < runePages.length; i++)
+  for (let j = 0; j < runePages[i].runic_count; j++)
+    pageOfRune[pageOffset++] = i;
+assert.equal(pageOffset, 12956);
+const pageRows = runePages.map(blank);
+let p = 0;
+for (const word of words)
+  for (let j = 0; j < word.length; j++, p++)
+    if (j >= 1) pageRows[pageOfRune[p]][word[j - 1]][word[j]]++;
+assert.equal(p, 12956);
+const pageChapterStarts = [0, 3, 8, 15, 23, 27, 33, 40, 54, 56];
+const chapterPageGroups = Array.from({ length: 9 }, (_, i) =>
+  runePages.map((page, k) => ({ page: page.page, rows: pageRows[k] }))
+    .filter(page => page.page >= pageChapterStarts[i] &&
+      page.page < pageChapterStarts[i + 1]));
+for (let i = 0; i < 9; i++) {
+  const count = chapterPageGroups[i]
+    .reduce((total, item) =>
+      total + runePages.find(x => x.page === item.page).runic_count, 0);
+  assert.equal(count, CHAPTER_LENGTHS[i]);
+}
+/**
+ * @param {{page:number,rows:number[][]}[]} pages
+ * @param {number} start
+ * @param {number} end
+ * @returns {{E:number, EO:number}}
+ */
+function pageSegmentCapacity(pages, start, end) {
+  const h = blank();
+  for (let j = start; j < end; j++)
+    for (let prev = 0; prev < 29; prev++)
+      for (let c = 0; c < 29; c++)
+        h[prev][c] += pages[j].rows[prev][c];
+  const score = capacity([h]);
+  return { E: score.E, EO: score.EO };
+}
+/**
+ * Exactly maximize independently secret state capacity for each number of
+ * extra page-start resets, preserving the nine visual chapter boundaries.
+ * @param {'E' | 'EO'} metric
+ * @returns {{value:number, resets:number[]}[]}
+ */
+function bestPageRekeys(metric) {
+  let best = [{ value: 0, resets: [] }];
+  for (const pages of chapterPageGroups) {
+    const n = pages.length;
+    const scores = Array.from({ length: n + 1 }, () =>
+      Array(n + 1).fill(null));
+    for (let i = 0; i < n; i++)
+      for (let j = i + 1; j <= n; j++)
+        scores[i][j] = pageSegmentCapacity(pages, i, j);
+    const dp = Array.from({ length: n + 1 }, () =>
+      Array(n + 1).fill(null));
+    dp[0][0] = { value: 0, resets: [] };
+    for (let end = 1; end <= n; end++)
+      for (let start = 0; start < end; start++)
+        for (let k = 0; k <= start; k++) {
+          const previous = dp[start][k];
+          if (!previous) continue;
+          const candidate = {
+            value: previous.value + scores[start][end][metric],
+            resets: [...previous.resets,
+              ...(start ? [pages[start].page] : [])]
+          };
+          if (!dp[end][k + 1] ||
+              candidate.value > dp[end][k + 1].value)
+            dp[end][k + 1] = candidate;
+        }
+    const local = dp[n].slice(1);
+    const updated = [];
+    for (let k = 0; k < best.length; k++) {
+      if (!best[k]) continue;
+      for (let q = 0; q < local.length; q++) {
+        if (!local[q]) continue;
+        const candidate = {
+          value: best[k].value + local[q].value,
+          resets: [...best[k].resets, ...local[q].resets]
+        };
+        const resetCount = k + q;
+        if (!updated[resetCount] ||
+            candidate.value > updated[resetCount].value)
+          updated[resetCount] = candidate;
+      }
+    }
+    best = updated;
+  }
+  return best;
+}
+const bestE = bestPageRekeys('E');
+const bestEO = bestPageRekeys('EO');
+assert.equal(bestE[0].value, 1068);
+assert.equal(bestEO[0].value, 1938);
+assert.equal(bestE[10].value, 1485);
+assert.equal(bestE[11].value, 1519);
+assert.equal(bestEO[4].value, 2254);
+assert.equal(bestEO[5].value, 2319);
+const minExtraE = bestE.findIndex(x => x && x.value >= expectedE);
+const minExtraEO = bestEO.findIndex(x => x && x.value >= expectedEO);
+assert.equal(minExtraE, 11);
+assert.equal(minExtraEO, 5);
+assert.deepEqual(bestE[11].resets,
+  [1, 11, 18, 20, 25, 29, 35, 42, 44, 46, 51]);
+
 console.log(JSON.stringify({
   status: 'PASS', hypothesis: 'state = preceding printed GP ciphertext rune',
   originalRunes: at, originalWords: words.length, interiorPairs: recovered,
@@ -190,6 +316,16 @@ console.log(JSON.stringify({
   secretAlphabets: '29 per chapter, each any GP29 permutation',
   original: { global, nineChapterIndependent: chapters },
   originalFullStateWitness: fullState,
+  p50OnlyExtraRekey: postNumericRekey,
+  optimalPageBoundaryRekeyDemand: {
+    minExtraResetsForReferenceE: minExtraE,
+    minExtraResetsForReferenceEplusO: minExtraEO,
+    tenResetUpperBoundE: bestE[10].value,
+    elevenResetUpperBoundE: bestE[11].value,
+    elevenResetExamplePageStarts: bestE[11].resets,
+    fourResetUpperBoundEplusO: bestEO[4].value,
+    fiveResetUpperBoundEplusO: bestEO[5].value
+  },
   sourceNativeExpected: { E: expectedE, EplusO: expectedEO },
   nonLinearGP29PositivePlant: {
     recovered, exact: true, actualE: plantE, actualEplusO: plantEO,
