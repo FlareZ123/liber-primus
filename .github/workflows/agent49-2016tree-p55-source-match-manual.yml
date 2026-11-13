@@ -11,6 +11,7 @@ on:
           - art
           - word-pattern
           - cumulative-zero
+          - numbered-phi
 permissions:
   contents: read
 jobs:
@@ -55,3 +56,18 @@ jobs:
       - name: Check original stationary cumulative zero-symbol GP29 family
         shell: pwsh
         run: node sims/lp2_cumulative_difference_zero_symbol_sft.cjs
+
+  original-five-number-phi:
+    if: ${{ inputs.check == 'numbered-phi' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original numbered cuneiform prime-totient feasibility, source control
+        shell: pwsh
+        run: |
+          node --check sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs
+          node sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs
