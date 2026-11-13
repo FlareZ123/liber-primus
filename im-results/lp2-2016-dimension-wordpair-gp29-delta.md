@@ -35,6 +35,18 @@ The last event has empirical frequency **1/200,000 under this very specific null
 
 A direct independent cross-artifact control asks whether the same ten-difference key appears from p32's **11 original top-row** and **11 original left-column** runes, which also sum to 563 and569. Comparing the two natural ten-token trims of each axis and either additive sign gives **at most 3/10 identical source rune positions**, nowhere near an exact shared Vigenère pad equality.
 
+## Direct original-cipher consumer: negative
+
+The carrier's 2016 tree image is reproduced on **physical p32**, whose original 121 rune symbols are independently available. A simple full-loop consumer repeats the exact ten-rune candidate `WWWSBBSJJO` as a GP29 Vigenère key starting at **p32 local rune0**, both previously attested signs. With no fitted phase or secret alphabet, the source-original readouts are:
+
+| Original 121-rune target | IoC |
+|---|---:|
+| Unchanged p32 | **0.034159779614** |
+| Subtract `WWWSBBSJJO` | **0.033884297521** |
+| Add `WWWSBBSJJO` | **0.033057851240** |
+
+The two inverse outputs begin respectively `PAENGHPIATDRXUFTHTHIAWWEA...` and `IANOOEPEEANTIEASXOWOHFNG...`; neither is source-native English or supplies a coherent address. Both are ordinary Vigenère reversals of the original runes and have no inferable plaintext. This tests the most obvious source-pictured target without opening an arbitrary phase/key search. The linked SFT now asserts both **original 121-rune** scores and preserves the unaltered matched-word null.
+
 ## Operational consequence
 
 If a dated source independently prescribes subtracting these two image-dimension-matched original rune words, or selecting the length difference as a key/state, this exact ten-rune output becomes a useful *withheld test*. The known 2016 text only says that words and numbers lead through the book; no authenticated source directs this pairwise subtraction or selects its use on unknown LP2 ciphertext. The string's three leading W's can tempt a web-address reading, but **no exact historically authenticated URL is supplied or recovered**. No unknown manuscript runes decrypt under this observation.
