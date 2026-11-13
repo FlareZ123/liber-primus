@@ -69,11 +69,44 @@ assert.equal(outputs[0].digests.sha512.slice(0, 16),
   "fc6531f1fcd1f715");
 assert.equal(outputs[1].digests.sha512.slice(0, 16),
   "7b44f334250146ac");
+
+// The complete 23-dot stencil is a 9x5 mask with four empty corner cells.
+// The 23 source runes occupy the remaining marked cells in row-major order.
+// Their GP-prime weights total 1020; insert one literal zero bit at each
+// empty corner (before run 0, after run 2, before run 20, after run 22).
+const fullPrimeWeights = twicePeeled.map(i => corpus.prime[i]);
+assert.equal(fullPrimeWeights.reduce((a, b) => a + b), 1020);
+const fullStencilOutputs = [];
+for (const firstBit of [0, 1]) {
+  const runs = fullPrimeWeights.map((n, i) => String((firstBit + i) % 2).repeat(n));
+  const bits = "0" + runs.slice(0, 3).join("") + "0" +
+    runs.slice(3, 20).join("") + "0" + runs.slice(20).join("") + "0";
+  assert.equal(bits.length, 1024);
+  const bytes = Buffer.alloc(128);
+  for (let i = 0; i < bits.length; i++) {
+    if (bits[i] === "1") bytes[i >> 3] |= 1 << (7 - (i & 7));
+  }
+  const digests = {};
+  for (const [name, algorithm] of [
+    ["sha512", "sha512"], ["sha3_512", "sha3-512"],
+    ["blake2b", "blake2b512"]
+  ]) {
+    const digest = crypto.createHash(algorithm).update(bytes).digest("hex");
+    assert.equal(digest.length, 128);
+    assert.notEqual(digest, target);
+    digests[name] = digest;
+  }
+  fullStencilOutputs.push({ firstBit, bitLength: bits.length,
+    rawPrefix: bytes.toString("hex").slice(0, 48), digests });
+}
+assert.equal(fullStencilOutputs[0].digests.sha512.slice(0, 16), "0e873d48a15650f3");
+assert.equal(fullStencilOutputs[1].digests.sha512.slice(0, 16), "c2327e586c444d5a");
 console.log(JSON.stringify({
   source: "Original p55 two-peel 13-dot projection, original solved p56 hash",
   primeRunLengths: lengths, totalBits: 512,
   targetHash: target,
   test: "Exactly two bit polarities, raw 64-byte RLE input, three standard 512-bit hash functions",
   results: outputs,
-  decision: "No direct 13-prime-run-length 512-bit preimage of the published target under SHA-512, SHA3-512, BLAKE2b-512; no authentic hash algorithm or preimage established."
+  fullStencil1024: fullStencilOutputs,
+  decision: "No direct 13-prime-run-length 512-bit or four-corner-completed 23-prime-run-length 1024-bit preimage of the published target under SHA-512, SHA3-512, BLAKE2b-512; no authentic hash algorithm or preimage established."
 }, null, 2));

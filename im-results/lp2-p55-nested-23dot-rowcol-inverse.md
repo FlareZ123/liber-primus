@@ -78,6 +78,18 @@ The *same independently fixed thirteen retained rune positions* have GP prime we
 
 This retires only **alternating binary run-length coding of the exact 13 original GP-prime weights as raw 64-byte inputs to these three conventional hash functions**. The authentic page does not specify a hash algorithm or what representation of an onion page was hashed. There is no evidence selecting reversed runs, ASCII bit strings, other transformations, variable salt or a later cipher layer. The numerical 512-bit match remains an exploratory source observation, and this computation found no hash preimage or unknown manuscript plaintext.
 
+### Full 23-dot stencil: four-corner-completed 1024-bit candidate
+
+A second, separately frozen construction uses **all 23** twice-peeled source runes rather than only the 13-dot projection. Their original GP-prime weights are:
+
+`[17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]`
+
+They sum to **1020**. The p57 9×5 stencil has four empty corner cells at (row 0, column 0), (0,4), (8,0), and (8,4). Interpret each of the 23 prime weights as an alternating binary run length in row-major occupied-cell order, and insert one literal zero bit for each empty corner: before the first run, after the first three runs, before the last three runs, and after the final run. The resulting candidate is exactly **1024 bits (128 bytes)**. Both possible starting run polarities were frozen; corner bits remain zero because the source cells are empty.
+
+The six direct hashes (SHA-512, SHA3-512, BLAKE2b-512 for each polarity) all miss the published 128-hex p56 target. The SHA-512 outputs begin `0e873d48a15650f3` (start 0) and `c2327e586c444d5a` (start 1). The SFT records every full digest and raw-byte prefix.
+
+This is a bounded extension of the source-derived 23-dot / 512-bit observation: it tests one natural corner-completed 1024-bit raw-message construction, not every way the 23 symbols might relate to a hash. SHA-512 still applies its normal padding to the 128-byte message; this is **not** a claim that the constructed bytes are themselves a final SHA-512 compression block. The source does not authenticate prime-weight RLE, bit polarity, or SHA-512 as the page's hash algorithm. No preimage or unknown plaintext is recovered.
+
 ## A fully specified GP29 row-column inverse
 
 A human could map the **23 GP29 survivors** to the **23 occupied stencil cells** from top to bottom, left to right. Read the nine further-peeled symbols as row masks and the five further-peeled symbols as column masks, in their original order. Using the already-authentic **additive GP29** vocabulary from solved p56, test a plain, unfitted, subtractive transfer:
