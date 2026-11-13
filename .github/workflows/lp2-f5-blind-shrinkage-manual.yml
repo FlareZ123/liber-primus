@@ -1,0 +1,44 @@
+name: LP2 F5 magnitude-shrinkage original-format heldout calibration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  shrinkage-heldout-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Build F5 v1.0.0 exact positive-control tools and DCT scorer
+        run: |
+          set -eu
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          (cd sims/f5_detector_calibration && go build -mod=mod -o /tmp/f5-q92-native-embed native_f5_embed.go)
+          gcc -std=c99 -O3 -Wall -Wextra -o /tmp/f5-shrinkage-residual sims/f5_detector_calibration/f5_shrinkage_residual.c -ljpeg
+          "$(go env GOPATH)/bin/f5" version
+      - name: Source-compatible 24 train / 50 heldout art-family control
+        run: |
+          set -eu
+          python3 -m pip install --quiet pillow numpy scipy opencv-python-headless filelock
+          python3 sims/f5_detector_calibration/blind_shrinkage_gate.py \
+            --f5 "$(go env GOPATH)/bin/f5" \
+            --embedder /tmp/f5-q92-native-embed \
+            --residual /tmp/f5-shrinkage-residual \
+            --workdir /tmp/f5-blind-shrinkage \
+            --report im-results/f5-blind-shrinkage/summary.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-f5-blind-shrinkage-locked-controls
+          path: im-results/f5-blind-shrinkage/summary.json
+          if-no-files-found: ignore
+          retention-days: 7
