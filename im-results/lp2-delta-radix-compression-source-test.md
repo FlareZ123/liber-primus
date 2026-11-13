@@ -52,9 +52,9 @@ Three direct numeric-to-byte rules were checked in both printed and word-reverse
 | Word as BASE29 integer → least-significant eight bits | 2,896 | 0/2 | 0/2 |
 | Sum original 29 GP prime weights within each word → one byte mod256 | 2,896 | 0/2 | 0/2 |
 
-The last row uses the historically demonstrated *prime sum* mapping rather than a second guessed digit alphabet; its later reduction to a byte is only a conditional hypothesis. No direct unknown plaintext or compressed 2014-style packet appears. A **66-byte genuine gzip** of 57 bytes of original plain text was independently converted into separate BASE29-number words and recovered **exactly 66/66 source bytes** and **57/57 plain bytes**, providing a relevant positive control for word-wise framing.
+The last row uses the historically demonstrated *prime sum* mapping rather than a second guessed digit alphabet; its later reduction to a byte is only a conditional hypothesis. No direct unknown plaintext or compressed 2014-style packet appears. As an independent literal-text check, **none of the six source-word binary streams contains even one uninterrupted 12-byte ASCII printable run** (tested at every output byte); thus no long direct ASCII fragment was hidden by the compression-only success criterion. A **66-byte genuine gzip** of 57 bytes of original plain text was independently converted into separate BASE29-number words and recovered **exactly 66/66 source bytes** and **57/57 plain bytes**, providing a relevant positive control for word-wise framing.
 
-These are strict whole-file direct consumers, with no KDF, trailing side channel, padding search, variable word-to-byte alignment or downstream cipher. [Passing Windows original run](https://github.com/FlareZ123/liber-primus/actions/runs/43405343066) · [CJS source, original round-trip and plant](../sims/lp2_word_base29_binary_sft.cjs).
+These are strict whole-file direct consumers, with no KDF, trailing side channel, padding search, variable word-to-byte alignment or downstream cipher. [Passing Windows original run](https://github.com/FlareZ123/liber-primus/actions/runs/43405937172) · [CJS source, original round-trip and plant](../sims/lp2_word_base29_binary_sft.cjs).
 
 ## Research decision
 
