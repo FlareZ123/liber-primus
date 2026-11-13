@@ -143,7 +143,7 @@ function prng(seedValue) {
 }
 
 /**
- * @param {number[][]} pool
+ * @param {Record<number, number[][]>} pool
  * @param {number} length
  * @param {() => number} draw
  * @returns {number[]}
@@ -174,6 +174,7 @@ const additiveIV = {};
 const rndA = prng(0x3848300);
 for (const {name, byLength} of corpora) {
   additiveIV[name] = {};
+  const pool = Object.fromEntries(byLength);
   for (const nHeader of [1, 2, 3]) {
     /** @type {number[]} */
     const observations = [];
@@ -181,7 +182,6 @@ for (const {name, byLength} of corpora) {
       let count = 0;
       for (const cipherWord of words) {
         const size = cipherWord.length - nHeader;
-        const pool = Object.fromEntries(byLength);
         const plainWord = sampleExact(pool, size, rndA);
         count += collisions(plainWord);
       }
