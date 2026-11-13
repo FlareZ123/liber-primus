@@ -38,7 +38,9 @@ const endpoints = p55Words.flatMap(w => [runeIndex.get([...w][0]), runeIndex.get
 const interior = p55Words.flatMap(w => [...w].slice(1,-1).map(r => runeIndex.get(r)));
 assert.equal(endpoints.length, 32);
 assert.equal(interior.length, 43);
-assert.deepEqual(interior, corpus.pages.find(p => p.page === 55).indices.filter((_,i)=>false)); // replaced below by count-only contract
+assert.deepEqual(p55WordsAll.flatMap(w => [...w].map(r => runeIndex.get(r))),
+  corpus.pages.find(p => p.page === 55).indices,
+  "Printed p55 transcription must match the canonical source rune sequence");
 assert.ok(fs.existsSync(carrier), "Original p55 carrier 72.jpg must exist");
 
 const literalPassword = endpoints.map(i => corpus.translit[i]).join("");
