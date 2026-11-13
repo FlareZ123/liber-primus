@@ -50,6 +50,17 @@ The same original p56/p57 known plaintext and quartic-selected block width4 prov
 
 Finally, a standard **full-field-evaluation GF256 RS(256,180)** codeword cannot be the direct printed grid byte sequence under any permutation of its 256 evaluation points: the XOR of all 256 evaluations of a degree<180 polynomial over GF256 must vanish, whereas original radix60 table bytes XOR to **148** (radix59 bytes XOR to **33**). The argument assumes all 256 finite field elements are evaluated and does not cover codes with an added evaluation at infinity or a nonlinear byte mapping.
 
+### Reverse GF841 [256,76]: 76 unknown data, 180 known checks (Agent17, 13 November 2026)
+
+The existing GF841 [256,180] candidate assumes the p55 outer **76** are parity while the solved p56+p57 inner **180** are data. The reverse [256,76] candidate is a distinct **direct original-cipher recovery attempt**: treat unknown p55 as the message and the 180 solved runes as overdetermining parity. The same pre-existing p3 field u²=3u+8, source-derived g=19+13u and natural ring positions x[j]=g^j fix all points. A degree-less-than-76 polynomial is uniquely determined by **76 of the 180 known** parity symbols. Its predictions at the **remaining 104 known** positions are independent checks, and its first 76 positions would recover p55. The manuscript does not authenticate a Reed–Solomon construction, so this is a finite conditional model.
+
+| p56 input register, p57 clear in both | Held-out parity symbol matches | First discrepant value at codeword slot152 | Candidate unknown p55 elements inside GP29 | Candidate unknown values equal visible p55 |
+| --- | ---: | --- | ---: | ---: |
+| Independently solved p56 plaintext | **0/104** | predicted **24+22u**, actual **1** | 1/76 | 0/76 |
+| Original visible p56 ciphertext | **0/104** | predicted **25+5u**, actual **6** | 6/76 | 0/76 |
+
+The **77th known parity value alone falsifies** each same-register [256,76] model; all remaining 103 checks fail too. A separately planted genuine degree-75 polynomial is exactly recovered at **256/256** positions after withholding all 76 data evaluations. Thus the result rules out this reverse RS code, rather than treating any arbitrary interpolated gibberish as plaintext. This complements the prior [256,180] test; no unknown LP2 plaintext or authentic key was obtained. [Source-input CJS reproducer](../sims/lp2_terminal256_rs76_data180_check_sft.cjs).
+
 ## Source-red quartic LFSR: exact elimination of every additive seed
 
 The two original red triads already determine the monic GF(29) factor
@@ -199,6 +210,6 @@ The strongest contribution here is a **geometrically prescribed 76/180 source sp
 
 Earlier [circumference-corner key experiments](../sims/circumference_corner_key_inverse.cjs) already explored AES/ChaCha streams derived from concentric grid corners; this new 76/180 terminal-page framing is a different source claim and does not revive those failed direct key families.
 
-The verified count concordance and quartic divisibility make an exact source-defined framing worth pursuing, but the direct codeword, full-field Reed–Solomon, four-block all-secret affine Hill, simple ink/word transformations, and every additive GP29 quartic LFSR seed under the tested language registers above have failed. The next decision-grade test requires an **additional original clue** fixing a nontrivial operation connecting table cell values to GP runes or state before p55 is used to select the rule. A proposed chain must explain why the 180 solved rune positions fit it and then predict the untouched 76 original p55 ciphertext runes or meaningful plaintext, with exact re-encryption and wrong-key controls. Without that independent operation, arbitrary border/interior transposition or pad searches would be postselected and low-value.
+The verified count concordance and quartic divisibility make an exact source-defined framing worth pursuing, but the direct codeword, both data/parity orientations of the fixed full-field Reed–Solomon model, four-block all-secret affine Hill, simple ink/word transformations, and every additive GP29 quartic LFSR seed under the tested language registers above have failed. The next decision-grade test requires an **additional original clue** fixing a nontrivial operation connecting table cell values to GP runes or state before p55 is used to select the rule. A proposed chain must explain why the 180 solved rune positions fit it and then predict the untouched 76 original p55 ciphertext runes or meaningful plaintext, with exact re-encryption and wrong-key controls. Without that independent operation, arbitrary border/interior transposition or pad searches would be postselected and low-value.
 
 No unknown plaintext, authentic key, or final Cicada destination was recovered. The authoritative solved-status statement in `results/README.md` remains unchanged.
