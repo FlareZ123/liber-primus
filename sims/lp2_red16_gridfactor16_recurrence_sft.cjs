@@ -29,9 +29,9 @@ function remainder(coefficients,factor) {
   }
   return a.slice(0,factor.length-1);
 }
-const factors=[[25,10,1],[11,18,1],[24,16,14,1],[11,15,9,1,0,5,10,20,12,1]];
+const factors=[[25,10,1],[11,18,1],[24,16,14,1],[11,15,0,9,1,5,10,20,12,1]];
 const F=factors.reduce(multiply,[1]);
-assert.deepEqual(F,[13,20,5,8,17,17,10,14,7,3,19,6,15,11,17,25,1]);
+assert.deepEqual(F,[13,20,26,12,6,2,13,26,6,26,11,7,15,11,17,25,1]);
 assert.equal(grid.bytes.length,256);
 assert.deepEqual(remainder(grid.bytes.map(b=>b%29).reverse(),F),Array(16).fill(0));
 const reciprocal=F.slice().reverse().map(x=>mod(x*9));
@@ -58,10 +58,10 @@ function cipher(original,key,sign) {
   return original.map((r,i)=>mod(r+sign*key[i]));
 }
 const expected={
- '3-forward--1':0.034901909051504816,'3-forward-1':0.03437423440061813,
- '3-reciprocal--1':0.03427529540357688,'3-reciprocal-1':0.034534421348208735,
- '23-forward--1':0.03435809002794791,'23-forward-1':0.034050861231690155,
- '23-reciprocal--1':0.03414600305246675,'23-reciprocal-1':0.035028047015916434
+ '3-forward--1':0.034510864444151294,'3-forward-1':0.03424859757897845,
+ '3-reciprocal--1':0.034352247956831186,'3-reciprocal-1':0.03428157724465886,
+ '23-forward--1':0.03424709123704188,'23-forward-1':0.03445323184872451,
+ '23-reciprocal--1':0.034306554875027255,'23-reciprocal-1':0.03489326276981626
 };
 const native=corpus.pages.find(p=>p.page===57).indices;
 assert.equal(native.length,95);
