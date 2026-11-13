@@ -26,6 +26,7 @@ jobs:
             /liber-primus/analysis/round42/C1-keytexts/run_c1.py
             /liber-primus/analysis/round19/I2/adjudicate.py
             /liber-primus/analysis/round34/I1-v3-null/bars_v3.py
+            /liber-primus/analysis/round34/I1-v3-null/fit.json
             /liber-primus/analysis/run_stats.py
             /liber-primus/analysis/round19/I1/*
             /liber-primus/analysis/round11/*
@@ -84,6 +85,8 @@ jobs:
           python3 analysis/round42/C1-keytexts/run_c1.py | tee /tmp/qbl-c1.log
           cp analysis/round42/C1-keytexts/c1_results.json "$GITHUB_WORKSPACE/qbl-c1-results.json"
           cp analysis/round12/C2/texts/achad_qbl.txt "$GITHUB_WORKSPACE/qbl-1972-extracted.txt"
+          cp /tmp/qbl-source.sha256 "$GITHUB_WORKSPACE/qbl-source.sha256"
+          cp /tmp/qbl-c1.log "$GITHUB_WORKSPACE/qbl-c1.log"
       - name: Upload reproducible result and source fingerprint
         uses: actions/upload-artifact@v4
         with:

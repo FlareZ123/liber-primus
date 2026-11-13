@@ -1,6 +1,6 @@
 # Full-text Q.B.L. running-key test
 
-**Status:** first source mirror failed TLS verification (self-signed certificate); no content was downloaded or used. Re-running against the independent TarrDaniel 1972 transcription over HTTPS with normal certificate verification. No cryptanalytic result yet.
+**Status:** full source recovered successfully from the independent TarrDaniel 1972 transcription over verified HTTPS. The first C1 execution failed before scoring because the sparse checkout omitted the R36 calibration file `analysis/round34/I1-v3-null/fit.json`; this is an execution/harness failure, not a cryptanalytic negative. The workflow now includes the calibration file and is being rerun.
 
 ## Why this source
 
@@ -23,3 +23,8 @@ This is deliberately not a new cipher family or an unconstrained search. It clos
 
 A bar-crossing page is only a candidate and must be inspected for a coherent plaintext and independent held-out prediction. A no-crosser result rejects this full-text Q.B.L. running-key construction at the tested offsets; it does not reject Q.B.L. as a structural/reference source for Gematria or Temurah. If the workflow cannot download/extract at least 10,000 letters, classify the run as source-retrieval failure, not a cryptanalytic negative.
 
+
+
+## Source restoration result (2026-11-13)
+
+The verified HTTPS download succeeded. Source HTML SHA-256: `cdae6831e1cd6f266c5646ca932c6c0ffebb5560c869deb35af6f3c4a20a01ba`. Extracted text SHA-256: `f7fcb1fc58397dbc3141ea8b5eb566b2a21395f29abd4421fac567f5f8e9510f`. The extraction contained 212,810 characters and 128,751 ASCII letters after normalization, compared with the 5,336-rune truncated capture in R26/B. The first C1 run recognized one real text and zero corrupt files, then stopped because `fit.json` was absent from the sparse checkout. No page was scored in that run.
