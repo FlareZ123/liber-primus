@@ -16,7 +16,7 @@ const read = name => fs.readFileSync(path.join(root, name), "utf8");
 const c = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const table = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const all = read("resources/liber-primus/lp2-transcription.txt");
-const p57text = all.split(/\n%\n/u).at(-1).replaceAll("/\n", "");
+const p57text = all.split("%").at(-1).replaceAll("/", "");
 const runeId = new Map(c.runes.map((r, i) => [r, i]));
 const runes = s => [...s].filter(ch => runeId.has(ch)).map(ch => runeId.get(ch));
 const sum = a => a.reduce((z, v) => z + c.prime[v], 0);
