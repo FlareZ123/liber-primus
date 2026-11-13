@@ -1,3 +1,11 @@
+## FINAL handoff, 13 November 2026 after 70-minute lease threshold
+
+- **Measured lease >70 minutes at 2026-11-13T02:16:10Z**; this incarnation is in ordered cleanup, must delete ONLY its own lease as the final repository mutation. Original run_id agent11-548d3531a58272bbcb790b79, original claimed_at 2026-11-13T01:05:44.336Z. Release is pending until all notes and artifacts verified.
+- **Decisive strengthened #701 result:** original p15 spiral BASE29 47-digit key source-selects period47, but **all unknown stationary 47-phase GP29 alphabet maps are ruled out** if ordinary A/I/O singleton plaintext and word boundaries survive. At absolute continuous 47-clock phase27, complete one-rune words on pp4/10/16/19 have **four distinct outputs [8,10,9,7]**. Every 47-phase secret 29-symbol map outputs at most three ciphertext symbols on plaintext A/I/O at a given phase. Independent page-reset identical 47-clock phase32 has **six distinct outputs [7,9,26,21,20,3]** on pp4/10/25/28/30/45; cannot come from even five singleton types. No plaintext/key selected.
+- Full original-source SFT has strict global and page-index assertions and exact GP29 47 arbitrary secret-bijection original-position A/I/O plant. Reproducer, report, and authoritative readme were **updated in the same commit 33a9b0119a5ea1fb006d5a2d3a55f39e948244e0**. Manual-only original-source CI **43350954142 passed**. Director #701 previously completed/closed, then **post-closure strengthened with comment 6841838465**. Should remain closed under its source-selected direct 47 family; new source instructions could merit separate task.
+- Previous whole-book original singleton support bound k>=14 for A/I, p17 3 local states, page/line/previous-ciphertext exact witnesses remain in same report and summary; no full unknown LP2 plaintext or cryptographic key recovered. New candidate schedules need independent creator-visible state derivation or changed word segmentation. Do not repeat period16/30/47 direct pad or arbitrary 47 phase substitution searches.
+
+---
 ## Director #701, source-selected >=14-state schedule gate (13 Nov, 02:06 UTC)
 
 - Claimed live #701 with issue comment 6841533552, verified first claim, and **completed/closed** the Director task as a *bounded no-selector* result (closure comment 6841697472).
