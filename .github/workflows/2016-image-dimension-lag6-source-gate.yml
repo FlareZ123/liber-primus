@@ -12,6 +12,7 @@ on:
           - tree-pixel
           - bookword43
           - tree-diagonal
+          - firstwords
         default: original
 jobs:
   source-gate:
@@ -98,3 +99,15 @@ jobs:
         run: python -m pip install --disable-pip-version-check Pillow==11.3.0
       - name: Inspect frozen six-tile southeast route and all 36 matched diagonals
         run: python sims/p32_2016_fixed_diagonal_tiles_sft.py
+
+  dimension-selected-first-words:
+    if: ${{ inputs.probe == 'firstwords' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify unique dimension-selected rune words and direct NEWBAS key gates
+        run: node sims/lp2_2016_dimensions_firstwords_sft.cjs
