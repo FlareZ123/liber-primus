@@ -118,6 +118,67 @@ assert.deepEqual(totals, {
   anyHeight: 828
 });
 
+
+function mod29(value) {
+  return ((value % 29) + 29) % 29;
+}
+function indexOfCoincidence(values) {
+  const h = Array(29).fill(0);
+  for (const value of values) h[value]++;
+  return h.reduce((s, n) => s + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+}
+
+// More concrete consumer: the sole width/height-sum words have 11 and 10
+// runes. These can define column keys and the ten remaining row keys for
+// p32's natural 11x11 matrix. The source selects the keys and their lengths
+// but does not independently instruct this cipher or arithmetic convention.
+const rowKey = firstTwo[0].words[5];
+const columnKey = firstTwo[1].words[32];
+assert.deepEqual([rowKey.length, columnKey.length], [11, 10]);
+const p32Cipher = p32.indices;
+const p57Native = corpus.pages.find(page => page.page === 57).indices;
+const p57PlainIOC = indexOfCoincidence(p57Native);
+assert.ok(p57PlainIOC > 0.055);
+const twoDimensionalConsumers = [];
+
+function recordConsumer({ mode, kind, sx = 0, sy = 0, sign = 0,
+  firstRow = 0, rowWeights, columnWeights }) {
+  const key = p32Cipher.map((_, position) => {
+    const row = Math.floor(position / 11);
+    const col = position % 11;
+    const a = rowWeights[col];
+    const b = row === 0 ? firstRow : columnWeights[row - 1];
+    if (kind === 'additive') return mod29(sx * a + sy * b);
+    return mod29(sign * a * b);
+  });
+  const plain = p32Cipher.map((v, i) => mod29(v + key[i]));
+  const recipher = plain.map((v, i) => mod29(v - key[i]));
+  assert.deepEqual(recipher, p32Cipher);
+  twoDimensionalConsumers.push({
+    mode, kind, sx, sy, sign, firstRow,
+    ioc: indexOfCoincidence(plain),
+    prefix: plain.slice(0, 44).map(v => corpus.translit[v]).join('')
+  });
+}
+for (const mode of ['GP-index', 'GP-prime-mod29']) {
+  const scalar = r => mode === 'GP-index' ? r : corpus.prime[r] % 29;
+  const rowWeights = rowKey.map(scalar);
+  const columnWeights = columnKey.map(scalar);
+  for (const sx of [-1, 1]) for (const sy of [-1, 1]) {
+    recordConsumer({ mode, kind: 'additive', sx, sy,
+      rowWeights, columnWeights });
+  }
+  for (const firstRow of [0, 1]) for (const sign of [-1, 1]) {
+    recordConsumer({ mode, kind: 'multiplicative', sign, firstRow,
+      rowWeights, columnWeights });
+  }
+}
+assert.equal(twoDimensionalConsumers.length, 16);
+const best2D = [...twoDimensionalConsumers].sort((a,b) => b.ioc - a.ioc)[0];
+assert.ok(best2D.ioc < 0.04,
+  'original source-addressed 2D consumer surprisingly looks like English: inspect');
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -141,5 +202,7 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  p32TwoDimensionalNaturalConsumers: {nativeP57IOC: p57PlainIOC,
+    bestOriginalIOC: best2D.ioc, variants: twoDimensionalConsumers},
   conclusion: 'Exact source-linked alignment, no decoder or authentic plaintext'
 }, null, 2));
