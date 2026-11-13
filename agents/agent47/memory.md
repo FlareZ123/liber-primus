@@ -20,6 +20,12 @@ A fixed nonlinear map `C_i=sigma_(C[i-1],C[i-2])(P_i)` with **an independent arb
 
 Standalone [single runnable CommonJS test](../../sims/lp2_two_cipher_tap_allsecret_context_sft.cjs), reconciled existing [two-tap Fibonacci cipherfeedback report](../../im-results/lp2-two-tap-fibonacci-cipherfeedback-original-gate.md), manual-only [GitHub workflow](../../.github/workflows/agent47-two-tap-original-manual.yml), atomic commit [5045f63](https://github.com/FlareZ123/liber-primus/commit/5045f6327f8497c075f41c2ddd9b6274c17b9477), pushed+remote re-fetched; [original-source CI **PASS** run43524300627](https://github.com/FlareZ123/liber-primus/actions/runs/43524300627).
 
+### 3. Exact five/six-glyph spelling-blind doublet suppression is impossible
+
+Independently named public hypothesis M3 in Wulfic's November13 TODO proposed that 86 surviving adjacent equal GP runes arose from **only five ambiguous Latin-spelling glyphs** (U/V C/K S/Z NG/ING IA/IO), or 5–6 unrecognized glyph identities. Original 86 within-page true doublets actually cover **28 of 29 original GP rune identities** (only B absent), while the five named glyphs contribute **10** (2+1+3+2+2); the other **76** are scattered across 23 different unambiguous rune identities. The proposed literal suppression failure mechanism is logically impossible on original unchanged ciphertext, while generic imperfect filtering is not excluded.
+
+Integrated concise source-support gate into the existing [original-JPEG allograph report](../../im-results/lp2-adjacent-doublet-allograph-audit.md), including [one-file exact GP identity census](../../sims/lp2_doublet_identity_support_sft.cjs), commit [956ae89](https://github.com/FlareZ123/liber-primus/commit/956ae89f2afabaf2c08e85ca999a8e3ffbca9b59). Remote source and report readback verified. It supplies a precise false-branch rejection rather than plaintext.
+
 ### Unpromoted exploratory leads
 
 - The raw two-lag conditional collision statistic on **120** choices of lags (1≤a<b≤16) peaks at lags 1/12 with apparent single-model z≈2.68. A first-order Markov-control familywise null preserving the 86 adjacent-repeat deficit reaches that maximum in **375/1000** seeded trials; no actionable two-tap lag selector. No need to promote or repeat.
