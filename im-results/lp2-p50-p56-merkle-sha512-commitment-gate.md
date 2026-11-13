@@ -36,7 +36,7 @@ All counts are powers of two, so there is no leaf-duplication ambiguity.
 | Individual original two-character ASCII tokens, row-major | 256 | \`c67dfb2405c81033229339eb\` | **No** |
 | Consecutive pairs of decoded table bytes, row-major | 128 | \`9c27f11f1fcdf09e3369342e\` | **No** |
 
-The complete 128-digit roots and exact source serialization are asserted in the runnable [original-source CommonJS SFT](../sims/lp2_p50_sha512_merkle_tree_source_sft.cjs). Independent Python 3 \`hashlib.sha512\` computation on the exact printed cells confirmed all five full roots, and the script validates the published SHA-512 digest of \`abc\`, the table SHA-256, token-to-byte agreement and a source-shaped flipped-byte negative control. The committed JavaScript was separately parsed successfully; the result above comes from the independently executed Python calculation, so there is **no claim of a completed Node.js CI execution**.
+The complete 128-digit roots and exact source serialization are asserted in the runnable [original-source CommonJS SFT](../sims/lp2_p50_sha512_merkle_tree_source_sft.cjs). Independent Python 3 \`hashlib.sha512\` computation on the exact printed cells confirmed all five full roots, and the script validates the published SHA-512 digest of \`abc\`, the table SHA-256, token-to-byte agreement and a source-shaped flipped-byte negative control. The standalone Node.js 22 original-source test **passed** in [manual CI run 43475047988](https://github.com/FlareZ123/liber-primus/actions/runs/43475047988) after its committed source passed JavaScript parsing. Both independent Python and source-original Node executions agree on all five full roots.
 
 ## What changed, and what remains
 
