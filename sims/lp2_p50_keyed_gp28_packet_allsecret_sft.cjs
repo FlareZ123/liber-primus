@@ -254,6 +254,31 @@ function positive(packetWidth, bytesPerPacket) {
   }
   return {packets: groups, bytesRecovered: receivedBytes.length, pageRunesRecovered: 12956};
 }
+// Independent original visual-chapter reset: p40..53 has 3,008 runes over
+// 13 rune-bearing pages (p50 is runeless). The 18 exact doublets are excluded.
+// An independently keyed chapter-specific secret alphabet still needs a source
+// label missing from ten-digit packet starts. None is missing in any setting.
+const p40to53 = pages.filter(p => p.page >= 40 && p.page <= 53);
+assert.equal(p40to53.length, 13);
+assert.equal(p40to53.reduce((sum, p) => sum + p.indices.length, 0), 3008);
+function chapterSteps(rank) {
+  const result = [];
+  for (const p of p40to53) {
+    for (let i = 1; i < p.indices.length; i++) {
+      const a = p.indices[i - 1], b = p.indices[i];
+      if (a !== b) result.push(stepRank(rank, a, b));
+    }
+  }
+  return result;
+}
+const originalChapter = {cyclic: chapterSteps('cyclic'), sorted: chapterSteps('sorted')};
+assert.equal(originalChapter.cyclic.length, 2977);
+assert.equal(originalChapter.sorted.length, 2977);
+const chapterTenLeaders = variants.map(v =>
+  tenGate(unwhiten(originalChapter[v.rank], v, 10)).distinctLeaders);
+assert(chapterTenLeaders.every(n => n === 28),
+  'a secret chapter-specific 28-way alphabet can avoid a forbidden leader');
+
 const plant5 = positive(5, 3);
 const plant10 = positive(10, 6);
 
@@ -261,6 +286,10 @@ console.log(JSON.stringify({
   source: {runes: 12956, pageIVs: 55, adjacentRepeats: 86, nonzeroSteps: 12815},
   sourceKeyBytes: rowKey.length,
   testedSettingsPerPacketWidth: variants.length,
+  visualChapterP40to53: {runes: 3008, pageIVs: 13, adjacentRepeats: 18,
+    nonzeroSteps: 2977, completeTenDigitPackets: 297,
+    perChapterClockWithSecretChapterAlphabet: {testedSettings: variants.length,
+      minDistinctLeaders: Math.min(...chapterTenLeaders), allModelsExcluded: true}},
   fiveToThree: {minFollowers, maxFollowers, secretAlphabetNecessaryMaximum: 9,
     visibleOrderInvalidPackets: [minInvalid, maxInvalid], validSyntheticPlant: plant5},
   tenToSix: {minDistinctLeaders: minLeaders, secretAlphabetNecessaryMaximum: 27,
