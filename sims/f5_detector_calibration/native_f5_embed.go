@@ -67,7 +67,7 @@ func main() {
     roundtrip = append(roundtrip,make([]int,missing)...)
     fmt.Fprintf(os.Stderr,"SERIALIZED_F5_TERMINAL_ZERO_PAD count=%d blocks=%d\n",missing,missing/64)
   }
-  if len(roundtrip)!=len(final) {panic(fmt.Sprintf("JPEG coeff count changed %d -> %d",len(final),len(roundtrip))}
+  if len(roundtrip)!=len(final) {panic(fmt.Sprintf("JPEG coeff count changed %d -> %d",len(final),len(roundtrip)))}
   for i:=range final {
     if roundtrip[i]!=final[i] {panic(fmt.Sprintf("JPEG coefficient modified at %d",i))}
   }
