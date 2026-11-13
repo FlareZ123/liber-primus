@@ -1,44 +1,37 @@
-# Solved p57 word interiors as 55 page-local prime-totient offsets
+# P57 word interiors as per-page prime-start offsets
 
-**13 November 2026; Agent50. Classification: source-anchored, bounded original-cipher negative.** No unknown LP2 plaintext, authentic key, complete cipher, or final destination was recovered. The new test addresses a previously untested *page-specific prime-start* choice for the independently solved p56 prime-totient family.
+**13 November 2026, Agent50. Classification: bounded original-cipher negative.** No unknown LP2 plaintext or authentic key was recovered. This report concerns the *all-symbols-consume* version of a direct prime-totient cipher, explicitly separated from Agent10's stronger literal-plaintext-Fehu skip-cursor feasibility analysis.
 
-## Why this is a plausible human solve path
+## Human-solvable clue and fixed source choice
 
-The original solved physical p57 **PARABLE** asks the reader to “shed our own circumferences” and “find the divinity within.” Taking the strict interiors of its complete printed words yields 55 rune indices. The 56 physical unknown pages p0–55 contain exactly 55 rune-bearing pages because p50 is a purely numeric table. Thus the original document itself offers 55 visible candidate per-page numbers. This goes beyond the previous literal pagewise Caesar use of the same key vector: p56 demonstrates subtracting consecutive prime totients, and per-page prime-start offsets remain distinct parameters of that cipher. No original inscription explicitly mandates the association, so the candidate is provisional.
+The solved original p57 PARABLE includes “shed our own circumferences” and “find the divinity within.” Its **20 fully printed words and 95 GP29 runes** yield exactly **55 strict interior runes** when each word's first and last rune are removed. The unknown physical pp0–55 have **55 rune-bearing pages** because p50 is a numerical table without runes. A human can therefore map the 55 inner values in order onto 55 original pages without tuning a key.
 
-The exact p57 printed-word lengths are `[7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]`. All 95 GP rune indices agree with the canonical source transcription. Removing each word's first and last rune gives 55 strict interiors, in printed order:
+P57 word lengths are `[7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]`; their strict interiors (zero-based GP indices) are:
 
 `[24,4,24,17,20,10,5,9,15,16,24,1,9,9,18,20,1,4,0,24,5,1,15,8,18,1,7,10,4,5,1,19,0,18,4,18,9,5,18,10,9,10,1,10,9,10,16,10,2,10,9,19,18,4,6]`
 
-All are *zero-based GP29 alphabet indices*, a natural, explicitly fixed interpretation; there is no selected secret phase. The vector checksum is 573. They are assigned to the 55 source-order, rune-bearing physical pages. p50 consumes no key and no prime state.
+The vector sum is 573. All 95 source p57 rune indices match the canonical corpus and original printed word divisions exactly.
 
-## Frozen full-original inverse
+The 2016 signed instruction that numbers are the direction motivates testing the **three canonical, source-defined numeric readings** of each key rune: (i) GP alphabet index 0–28, (ii) its GP prime weight, and (iii) that prime's Euler totient, prime−1. A single direct operation is chosen from the genuine p56 known method: let `q[0]=2,q[1]=3,...` be the consecutive primes and let `s[p]` be the per-page key numeral. Then test
 
-Let `c[p,j]` be original page-local rune `j` on the `p`-th rune-bearing unsolved page, `k[p]` the corresponding p57 interior index, and `q[n]` the `n`-th prime with `q[0]=2`. Test the two literal arithmetic orientations
+`candidate[p,j]=(original[p,j] ± (q[s[p]+j]−1)) mod29`.
 
-`candidate[p,j] = (c[p,j] ± (q[k[p]+j] − 1)) mod 29`.
+The per-page clock starts at the source-derived offset and advances on **every** source rune, including Fehu. Page boundaries reset the clock, and numeric-only p50 consumes no key symbol. This is a fully reversible fixed-clock prime-pad analogue, **not the exact solved-p56 cipher where literal plaintext Fehu is an interrupter**. The alternative literal-Fehu skip model has its own previously completed all-secret feasibility analysis, and these results must not be read as superseding it.
 
-Because each prime is greater than 1, Euler's totient of a prime is exactly `q−1`. The original p56 uses subtraction, while the second orientation is a frozen sign control. Every page resets its consecutive prime cursor, with all original runes consuming one prime, including Fehu/GP0. This is the simplest completely reversible prime-offset model; a p56-specific nonconsuming literal-Fehu exception would require a separate page-local instruction to be a historical cipher.
+## Results, 12,956 original unknown runes
 
-Every candidate can be exactly re-enciphered using its original source key, and each variant independently recovers a 55-page synthetic native GP message planted from repeated segments of genuinely solved p57. That proves implementation consistency, but exact round-trip under a bijection is not independent key evidence.
+| Source interpretation of each p57 interior rune | Subtract totients IoC | Add totients IoC |
+|---|---:|---:|
+| GP ordinal 0–28 | **0.03447388179259219** | **0.034473143015656474** |
+| GP prime weight | **0.034478314454206495** | **0.03448794238588488** |
+| GP prime totient | **0.03451726706393006** | **0.034502777503384374** |
 
-## Results on untouched pp0–55
+The source ciphertext has IoC **0.03447839786450569**; genuine solved p57 has IoC **0.0627099664**. Every six whole-book candidate remains essentially uniform and nonlinguistic in direct GP29 transcription. No unknown plaintext is identified. Exact decryption/re-encryption holds for all 55 source pages for each variant. All **330** independent page-specific positive controls, containing original native GP plaintext plants from solved p57, recover their plaintext when encrypted under the respective frozen model. These are implementation checks, rather than independent evidence that a historical key was found.
 
-| Original-source register | Total GP runes | GP29 index of coincidence |
-| --- | ---: | ---: |
-| Printed unsolved ciphertext | 12,956 | 0.0344784 (rounded) |
-| Subtract p57 interior-derived page prime-offset stream | 12,956 | **0.03447388179259219** |
-| Add p57 interior-derived page prime-offset stream | 12,956 | **0.034473143015656474** |
-| Actual solved p57 plaintext | 95 | **0.0627099664** |
+The test uses the printed original `resources/liber-primus/lp2-transcription.txt` and `resources/liber-primus/lp2-corpus.json`, without selecting offsets from ciphertext. Its standalone CommonJS source is [the original-input SFT](../sims/lp2_p57_shed_inner55_primeoffset_sft.cjs); the updated six-model test **passed in its isolated manual GitHub Actions job** ([run 43378085559, job 131729200958](https://github.com/FlareZ123/liber-primus/actions/runs/43378085559/job/131729200958)). The unrelated legacy job in the same multi-job manual workflow failed; the independent source-key test was successful.
 
-Neither whole-book output is recognizably readable GP-native prose. Across both direct inverses, no decoded individual page reaches an original IoC of 0.04. The tiny movements from the nearly uniform original histogram leave the recovered text in the original noise-like distribution. These empirical metrics do not mathematically exclude short non-English text or a second encryption layer.
+## Decision
 
-The original-input implementation uses canonical `resources/liber-primus/lp2-corpus.json` for all 58 physical pages, the original `resources/liber-primus/lp2-transcription.txt` for exact p57 word divisions, and no key fitting or external wordlists. No tuning across secret offsets, start primes, signs per page, or individual word ranges was conducted.
+The exact p57 55-symbol extraction remains a real source-side numerical clue; the direct six fixed-clock prime-totient consumers above **do not** turn it into plaintext. Do not expand this into unselected prime phases, independent signs on pages or rescues by arbitrary cipher layering.
 
-## Decision and boundary
-
-Retire exactly **the two natural source-derived, direct GP29 prime-totient page-offset decoders** described above as methods for immediately recovering unknown LP2 plaintext. The result differs from the previous literal 55-page Caesar-key test and the large all-secret *stationary* prime-residue substitution screen: it consumes the same original p57 interiors as **variable prime sequence starts**, one page at a time. No new arbitrary key sweep is warranted without independent text or a manuscript-specified phase rule.
-
-**Reproduction:** [standalone CommonJS SFT](../sims/lp2_p57_shed_inner55_primeoffset_sft.cjs), which asserts source rune identity, exact 55-symbol key vector, p50 skip, full ciphertext transforms, all page-level solved-p57 plaintext positive plants, and forward re-encryption. This report records an original-cipher test, not a proposed decryption or new recovered LP2 result.
-
-**Execution:** The independently isolated Node.js 22 original-source test job passed on GitHub Actions ([job 131725500048](https://github.com/FlareZ123/liber-primus/actions/runs/43376934061/job/131725500048), run 43376934061, source commit `42d6f51e18cb38805c6be356b405395e2d6735d6`). A separate preexisting legacy job in the same manually dispatched workflow failed on its signed-2016 p55 SHA-1 gate; that failure is independent of this experiment and was not treated as a model result.
+**Important overlapping work:** Agent10's contemporaneous [literal-Fehu skip feasibility gate](lp2-p57-shed-primecursor-fskip-gate.md) proves an even stronger result about the *authentic p56 interruption law*: many original pages cannot be decoded under any 0–109 prime-start offset with that law, even with arbitrarily chosen secret per-page offsets and F positions. The present six-score table addresses only the alternate all-runes-consuming convention and documents numeric reading ambiguity; it is **not** new evidence for the 55-character correspondence as an authentic LP2 key.
