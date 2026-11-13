@@ -85,6 +85,16 @@ Applying the same frozen GP29 Atbash to other source-visible red fragments does 
 
 **Interpretation:** The hypothesis must be restricted to the uniquely paired, 13-dot-bracketed, length-three red spans on p3/p39. The red ink in general is not an Atbash instruction, and it does not license applying Atbash to every other unsolved rubric. This narrow selection is externally observable before decryption but still lacks proof of author intent.
 
+## Source-factor cubic LFSR from the two red119 triple seeds (Agent11, 13 November 2026)
+
+The source's **two unique three-rune red, red13-bracketed spans** on physical p3 and p39 at page-local rune offset119 suggest a literal three-symbol register initialization. Independently, the complete 32×8 base60-conditioned pp49–51 table polynomial has an **exact GF29 cubic factor** `X³+14X²+16X+24`. This suggests one bounded cross-artifact cipher hypothesis: seed the source cubic's ordinary order-three recurrence with each original red triple and subtract its generated stream from the **immediate** black passage beginning at position122, 95 p3 and 118 p39 runes respectively.
+
+The test covers the literal source red indexes and the independently known LP1 Atbash reading of those same three indexes as alternative seeds, the cubic or its monic reciprocal, whether the three seed values themselves are first consumed or the first newly generated values, and either GF29 additive sign: **16 exact reversible original-input decoders per passage**, 32 total. Source positions and table polynomial are fixed and asserted, and every original candidate re-encodes completely. Each model separately decodes a matched full-length native-GP solved-p57 plant and returns the original planted text exactly.
+
+**Result:** none of the 32 complete original-passage outputs exhibits convincing native GP English. The **highest** full-pass GP29 coincidence is **0.03695409** for the p3 95-rune passage and **0.03911343** for the p39 118-rune passage; all are below **0.041**. The visually attractive three-symbol p3 `YES` output survives under the first three seeded Atbash GP keys, but its succeeding characters rapidly become nonlinguistic. Thus the suggested *fixed three-state additive register* does **not** recover either independent marked passage. It does not exclude a different source-selected third-factor role, a nonlinear consumer, missing historical instruction, or non-GP intermediate; no authentic cipher/plaintext/key resulted.
+
+[Full original-corpus single-file CJS test](../sims/lp2_red119_p50_cubic_feedback_sft.cjs).
+
 ## The strongest counterexplanation and decision gate
 
 Two three-letter outputs are short enough to invite post-hoc semantics. `SCY` requires the conventional C/K phonetic normalization; `UDP` is a common internet acronym, and neither fragment includes the word `SEND`, `PORT`, an address or a separate 2014 source instruction selecting this Atbash application. It is possible that both are encrypted decorative rubrics and their matching offset119 is ordinary page composition. Statistical language hits would be unconvincing when selected after seeing the outputs.
