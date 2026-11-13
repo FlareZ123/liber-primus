@@ -282,6 +282,15 @@ function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
     for (const count of counts) numerator += count * (count - 1);
     return numerator / (n * (n - 1));
   };
+  const runeStream = records.filter(record => record.page >= 16 && record.page <= 23).map(record => record.index);
+  const runeVariants = [];
+  for (const [name, key] of Object.entries(keys)) {
+    for (const a of [1, 28]) for (const sign of [1, -1]) {
+      const decoded = runeStream.map((x, i) => ((a * x + sign * key[i % 16]) % 29 + 29) % 29);
+      runeVariants.push({ name, a, sign, ioc: ioc(decoded) });
+    }
+  }
+  runeVariants.sort((x, y) => y.ioc - x.ioc);
   const wordVariants = [];
   for (const [name, key] of Object.entries(keys)) {
     for (const a of [1, 28]) for (const sign of [1, -1]) {
@@ -329,7 +338,9 @@ function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
   return {
     sourceKeyCandidates: 5, affineFormsPerKey: 4, totalFixedCandidates: candidates.length,
     p16_23Words: words.length, p16_23Runes: flat.length,
-    bestWholeWordShift: wordVariants[0], uniformIoCBaseline: 1 / 29,
+    bestWholeWordShift: wordVariants[0],
+    bestContinuousRuneKey: runeVariants[0],
+    uniformIoCBaseline: 1 / 29,
     boundaryPairs: pairs.length, bestBoundaryRelation: observed,
     boundaryMaxPermutation: { reps, exceed, p: (exceed + 1) / (reps + 1), seed: '0x16b0a11' }
   };
