@@ -28,9 +28,9 @@ finish();
 assert.equal(total,12956);assert.equal(words.length,2896);
 assert.deepEqual(repeat,[86,21,23]);
 
-// A fixed Latin26 K-marker state has only 25 ordinary letters, so its
-// nonrepeat injection can emit at most 25 distinct rune values. Exclude
-// page-first headers and K-marker repeats, then count observed outputs.
+// Descriptive absolute-output coverage only. A fixed rank map into the 28
+// successors is state-relative and can produce all 29 absolute runes, so
+// these counts do not bound that model. Exclude page-first headers/repeats.
 const pageAlphabets=new Map();
 const physicalPage=p=>p>=50?p+1:p; // physical p50 has no runic transcription segment.
 for(const w of words)for(const r of w){
@@ -120,8 +120,8 @@ for(const file of refs){
   bestMarker:String.fromCharCode(65+rank[0].q),expectedK:expected[10],
   markerSecond:String.fromCharCode(65+rank[1].q)});
 }
-console.log(JSON.stringify({result:'PASS; Latin-register discriminator and static-map bound, no cipher/key or plaintext',
+console.log(JSON.stringify({result:'PASS; Latin-register discriminator and absolute-output coverage diagnostic, no cipher/key or plaintext',
  original:{runes:total,words:words.length,repeat,mean:total/words.length},
- staticMapBound:{pages:pageDistinct,visualChapterDistinct:chapterDistinct,
-  interpretation:'a fixed 25-letter→nonrepeat-rune injection is impossible globally, per page on 54/55 pages, or per visual chapter'},
+ absoluteOutputCoverage:{pages:pageDistinct,visualChapterDistinct:chapterDistinct,
+  interpretation:'excludes only a fixed absolute-rune substitution; a fixed relative-rank map among 28 successors can still emit all 29 absolute runes as the previous ciphertext rune changes'},
  references:records},null,2));
