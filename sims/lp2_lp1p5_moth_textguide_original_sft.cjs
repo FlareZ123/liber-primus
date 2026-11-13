@@ -8,8 +8,12 @@
  * message revealing an onion hostname. This is one direct transfer of that
  * historical operation, with source page p5 selected by duplicated art.
  *
- * Test full, original p5 prose (82 GP runes, including title, excluding
- * its separately printed numeric square) as one repeating key. Start at
+ * HISTORICAL APPROXIMATE KEY ONLY: this code tests 82 rune tokens derived
+ * from the LP1 p5 English reference before its numeric square. Original p5
+ * prints FUNCTION with one ᛡ=IO glyph, so its exact key is 81 runes.
+ * The source-corrected inverse supersedes this approximation at
+ * sims/lp2_lp1p5_moth_source81_corrected_sft.cjs. Preserve this script
+ * solely to reproduce the earlier 82-rune negative and expose the error. Start at
  * the beginning of the source-oriented physical pages p53 and p55;
  * subtract key GP indices modulo29 and consume every F. No fitted shift,
  * substring, replacement, phase, skip mask, word break, or direction.
@@ -125,12 +129,12 @@ for (const physicalPage of [53,55]) {
   });
 }
 console.log(JSON.stringify({
-  keySource: "whole plaintext prose on solved LP1 p5, selected by exact moth art",
+  keySource: "82-rune approximate Latin-derived LP1 p5 prose; NOT the exact printed 81-rune source key",
   keyRunes:key.length, keySha256:sha256(key),
   historicallySolvedStage04GpPositive:stage04Plain,
   stage04NativeGp29Equivalence: "reverse-lookup GP shift == canonical GP29 subtraction",
   oldPageIocReference:ioc(positive),
   native179RunePositivePlant:true,
   mothPages:output,
-  decision:"No readable unknown GP29 plaintext. Source artwork alone never specified the key clock, beginning or exclusive p55 target; no further search justified."
+  decision:"Obsolete approximate 82-rune original-key claim. This finite-control negative is superseded by the exact81 source-key gate in lp2_lp1p5_moth_source81_corrected_sft.cjs; neither yields readable source plaintext."
 },null,2));
