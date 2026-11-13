@@ -214,8 +214,8 @@ const variants = [
 const originals = variants.map(v => ({ ...v,
   ...minOov(0, 1, undefined, undefined, v.reverseB, v.op)
 }));
-assert.deepEqual(originals.slice(0,2).map(x => x.minOov), [14, 16]);
-assert.deepEqual(originals.slice(0,2).map(x => x.firstForced), [12, 12]);
+assert.deepEqual(originals.map(x => x.minOov), [14, 16, 16, 14]);
+assert.deepEqual(originals.map(x => x.firstForced), [12, 12, 12, 7]);
 
 /* Build native-GP controls from unchanged Gibran words of matching lengths. */
 const gibranWords = read("resources/control/gibran_prophet_58585.txt")
@@ -304,12 +304,13 @@ for (const {reverseB, op} of variants) {
   }
   const good = minOov(0,1,encA,encB,reverseB,op);
   const bad = minOov(0,1,encA,encWrongB,reverseB,op);
-  console.log('positive',JSON.stringify({reverseB,op,good:good.minOov,bad:bad.minOov,
-    knownOov:a.status.nativeOov+b.status.nativeOov}));
   assert(good.minOov <= a.status.nativeOov + b.status.nativeOov + 4);
   controls.push({reverseB, op, nativeA:a.status, nativeB:b.status,
     matchedSamePad:good.minOov, independentPads:bad.minOov});
+
 }
+assert.deepEqual(controls.map(x => x.matchedSamePad), [2,2,2,1]);
+assert.deepEqual(controls.map(x => x.independentPads), [14,11,16,16]);
 console.log(JSON.stringify({
   source:"Original LP2 p0+p1 shared black crosses, additive pad both signs and p1 orientations",
   pageLengths:[pages.get(0).runes.length,pages.get(1).runes.length],
