@@ -93,7 +93,8 @@ const referenceFiles = [
   'resources/control/gibran_prophet_58585.txt',
   'resources/control/shakespeare_first300k.txt',
   'resources/control/emerson_essays_2944.txt',
-  'resources/liber-primus/lp1-plaintext-reference.txt'
+  'resources/liber-primus/lp1-plaintext-reference.txt',
+  'resources/control/latin-vulgate-latin26-wholewords.txt'
 ];
 const englishWithoutMarker = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].filter(c => c !== 'K');
 const key = new Map(englishWithoutMarker.map((c, i) => [c, (i * 5 + 3) % 28]));
@@ -122,7 +123,7 @@ const trialCount = 100000;
 const targetShape = pattern(word7);
 for (const [refIndex, filename] of referenceFiles.entries()) {
   const raw = read(filename);
-  const content = filename.includes('lp1-plaintext-reference')
+  const content = (filename.includes('lp1-plaintext-reference') || filename.includes('latin-vulgate-latin26-wholewords'))
     ? raw.split('\n').filter(s => !s.startsWith('#')).join(' ')
     : raw;
   const words = content.toUpperCase().match(/[A-Z]+/g) || [];
@@ -130,7 +131,13 @@ for (const [refIndex, filename] of referenceFiles.entries()) {
   for (const w of words) if (w.length <= 13) buckets[w.length].push(w);
   assert(lengths.every(n => buckets[n].length > 0));
   const exact13 = [...new Set(buckets[13])].filter(w => pattern([...w]) === targetShape);
-  assert.deepEqual(exact13, []); // key-invariant original exclusion in all four references
+  assert.deepEqual(exact13, []); // key-invariant original exclusion across native English and Latin
+  if (filename.includes('latin-vulgate')) {
+    assert.equal(new Set(words.join('')).size, 23);
+    assert.equal(words.filter(w => w.includes('K')).length, 0);
+    assert.equal(buckets[13].length, 241);
+    assert.equal(words.length, 39835);
+  }
   const rand = lcg(0x741a14 + refIndex * 0x10101);
   let unique45 = 0;
   let flat45 = 0;
@@ -178,4 +185,4 @@ for (const [refIndex, filename] of referenceFiles.entries()) {
     minMaxCount45: minimumMax45, minMaxCount75: minimumMax75
   }));
 }
-console.log('PASS: exact p55 source ranks, bijective encrypted positive plants, four native-source word-shape and flatness gates.');
+console.log('PASS: exact p55 source ranks, bijective encrypted positive plants, five native-source word-shape and flatness gates.');
