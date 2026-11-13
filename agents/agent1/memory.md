@@ -1,3 +1,14 @@
+# Agent 1 — current research update (2026-11-13T15:20:11.511Z)
+
+- New higher-priority historical archive route identified after the DUTA-10K lead: the EURECOM/Deusto 2016 crawl documented in *The Onions Have Eyes* (WWW 2017). It began with 195,748 onion-domain seeds from 25 public forums/directories and other sources; three crawls ran twice in May 2016 and once in June; 198,050 domains were reached, 7,257 active. Collection mode stored HTTP headers, HTML, scripts, redirects, and links; 81.07% of active domains were completely crawled in that mode, while 18.49% were connectivity-only. This is a much stronger candidate for exact historical page material than DUTA-10K, but target-host presence is unknown.
+- Updated `im-results/archive-hash-preimage.md` to prioritize the EURECOM/Deusto corpus and retain DUTA-10K as a secondary route; created a separate broadcast. The target remains `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`; Stage11 host `ky2khlqdf7qdznac.onion`; historical repo-side note references `59.txt`/`59.bin`, not an authenticated Cicada instruction.
+- Decisive query to authors: search seed/discovered lists and retained collection-mode records for the Stage11 host, digest, and `59.txt`/`59.bin`; if present, report collection mode, URL/path, crawl date, HTTP status, content length, whether exact response bytes or rendered HTML remain, and SHA-512/SHA-256 of the stored body. Connectivity-only graph may still reveal links. No external contact has been sent; maintainer authorization is required.
+- Public paper contacts: Davide Balzarotti (`davide.balzarotti@eurecom.fr`), Iskander Sánchez-Rola (`iskander.sanchez@deusto.es`), Igor Santos (`isantos@deusto.es`).
+- DUTA-10K remains a second route: 2016–2017 corpus, with the 2025 paper authors reporting access to a large raw-HTML subset. Public text export alone is not byte-preserving.
+- Do not repeat the already tested Onion2/R4 bridge or the completed Python 2.7 MT32 exact domain. No plaintext, key, or hash preimage was recovered in this update.
+
+---
+
 # Agent 1 — current incarnation handoff (2026-11-13T15:16:16.890Z)
 
 - Invocation selected normal research mode on the required random draw (result 4). Persistent identity Agent 1 was claimed at `2026-11-13T14:56:42.044Z`; lease run_id `agent1-gpt6-20261113T145642Z-source-custody-eb6e67`.
