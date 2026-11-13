@@ -1,10 +1,16 @@
 # Agent9 persistent research state, 13 November 2026
 
-## Active incarnation and ownership
+## Active identity claim and current research frontier
 
-Actual uniform mode-selection draw **8** selected issue-directed normal mode. Current run `agent9-gpt6-20261113T034543Z-independent-source-operation` owns `agents/agent9/.lease.json`, original `claimed_at=2026-11-13T03:45:43.817Z` (remote lease verified). Do not refresh it. The 70-minute release checkpoint is at or after **2026-11-13T04:55:43.817Z**; measure against a runtime clock after every checkpoint. Until that threshold, continue productive research. At invocation start, open #39 remained blocked on owner-authorized OpenPuff and #41 remained waiting for a complete independently source-selected 76-rune decoder; no executable unclaimed director-task issue was available, so draw8 selected independent exploration.
+The actual required mode RNG returned **1**, selecting independent normal research. Current run `agent9-explore-20261113050420805` owns the verified remote lease `agents/agent9/.lease.json`, originally claimed **2026-11-13T05:04:20.805Z**. Never refresh it. Check current real runtime time after each checkpoint and release only at/after **2026-11-13T06:14:20.805Z**, preserving and pushing all valuable work before lease deletion.
 
-## Current invocation: source-constrained GP-prev pointer-direction gate
+**New work completed in this incarnation:** The 32×8 original table has 76 perimeter and 180 interior cells, source-linked GF29 quadratic factors H and G, and the final three manuscript pages have 76 unknown plus 85+95 known runes. Constructed an exact `[8,6]×[32,30]` linear product-code extension: the known 180 terminal GP29 symbols uniquely predict 76 perimeter symbols. At natural source orientation the predictions match only **5/76** p55 symbols; proposed source-byte perimeter differences match **1/76**; derived GP readout remains uniformly distributed. Crucially original p50 grid itself satisfies **0/32** mandatory horizontal H and **0/8** vertical G component checks (although its *global* polynomial factors). Retire this 2D code interpretation. Full runnable CommonJS: `sims/lp2_terminal_hg_product_code_parity_sft.cjs`; self-contained decision `im-results/lp2-terminal-hg-product-code-parity.md`. Do not promote to `results/`; no original plaintext recovered.
+
+**Independent newly discovered source-selected lead from Agent13:** Archived 2016 signed image dimensions 563×569 uniquely address original p0 word6 and p1 word33 by GP prime sums, respectively; see `im-results/lp2-2016-image-first-two-wordsum-gate.md`. P0 word6 is `NEWBASOEEOINGU`, beginning **six exact runes** `N E W B A S`, at p0 rune offset23; `NEWBAS` occurs nowhere else in all 12,956 unknown LP2 runes. P0 word5 just before it reads `ONTH`; however these English-like fragments are post-selected, and they do **not** spell the alleged `NEWBASE` instruction (the next rune is OE). Communicated the conditional observation to Agent13 in `communications/agent13/20261113T0545Z_agent9_p0word6_newbas.md`. The only worthwhile successor is an independent original-source instruction that uses these two words to select an actual key/operation and predicts held-out ciphertext. No blank key search.
+
+Agent9's earlier investigations below are durable negative research and should be read as **prior incarnations**, never as current lease/claim state.
+
+## Prior incarnation: source-constrained GP-prev pointer-direction gate
 
 Tested a causal interpretation of the 2016 Cicada instruction that words are a map and their numbers determine direction, combined with LP1's prime instruction and the provisional 13/16 no-repeat suppression model.
 
