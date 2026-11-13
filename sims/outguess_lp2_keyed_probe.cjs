@@ -22,15 +22,20 @@ const KEYS=process.env.LP2_OUTGUESS_PASSWORD
   ? [process.env.LP2_OUTGUESS_PASSWORD] : DEFAULT_KEYS;
 // A single source-justified original JPEG may be probed without scanning 58 pages.
 const TARGET_IMAGE=process.env.LP2_OUTGUESS_SOURCE_IMAGE;
-const PAGES=TARGET_IMAGE
+const PAGES=TARGET_IMAGE==="2016"
+  ? ["2016"]
+  : TARGET_IMAGE
   ? [Number(TARGET_IMAGE)]
   : Array.from({length:58},(_,i)=>17+i);
-if(TARGET_IMAGE){
+if(TARGET_IMAGE && TARGET_IMAGE!=="2016"){
   assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=17 && PAGES[0]<=74,
-    "Single target must be an original LP2 JPEG index from 17 through 74");
+    "Single target must be an original LP2 JPEG index from 17 through 74, or 2016");
 }
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
-const image=n=>path.join(SOURCE,String(n).padStart(2,"0")+".jpg");
+/** @param {number | "2016"} n @returns {string} */
+const image=n=>n==="2016"
+  ? path.join(ROOT,"resources/historical/cicada2016-4gq25.jpg")
+  : path.join(SOURCE,String(n).padStart(2,"0")+".jpg");
 const outguess=(args,timeout=20000)=>spawnSync("outguess",args,{
   encoding:"utf8",timeout,maxBuffer:256*1024
 });
