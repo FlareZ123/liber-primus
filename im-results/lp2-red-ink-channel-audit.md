@@ -46,7 +46,9 @@ Thus the apparent dot matrices are repeatable punctuation glyphs distinguished b
 
 ## Disposition
 
-The obvious red-channel readings—direct Caesar plaintext, a global repeating-red-key Vigenère, and variable per-instance dot-matrix bits—are negative. Red ink remains visually meaningful as a section/selection marker, and its exact positions may still select a different register or operation. Do not continue generic red Caesar shifts, arbitrary matrix traversals, or bit extraction from identical dot glyphs without a new source clue.
+The obvious red-channel readings—direct Caesar plaintext, a global repeating-red-key Vigenere, and variable per-instance dot-matrix bits—remain negative. A new cross-channel count relation is source-constrained: on unknown pages p0–55, **13 of the 16 red-rune spans begin with a red dropcap**; the three unmarked spans are p7@194, p15@9 and p53@128. This gives 13/16 = 0.8125, a candidate rejection probability for the soft key-skip model. With q=1/29, 86/12,901 within-page repeats imply an MLE suppression probability 0.81210; 13/16 predicts 85.82 repeats. This is compatible, not proof: the approximate 95% interval is 0.772–0.852, and the likelihood barely distinguishes 13/16 from the fitted value.
+
+The separate 30-mark red 13/10-dot stream on p0–55 is 27 ones and three zeros: 111111111111111111111001110111. Direct dot-stream and dropcap-sequence key/seed constructions tested under Perl 5.14 drand48, Python 2.7 MT, glibc rand and RC4 did not yield a valid plaintext path; direct periodic use of the 13 dropcaps also failed. Red ink should therefore remain a source-derived parameter/selector channel, not be promoted to plaintext or a confirmed key. Do not continue generic Caesar shifts, arbitrary matrix traversals or unconstrained seed searches without a new source-selected operation. [Detailed gate and bounded tests](lp2-red-ink-1316-filter-parameter-gate.md).
 
 ## Reproduction
 
