@@ -107,18 +107,13 @@ function match(doc,words,mode,book) {
   }
   return [...found.values()].sort((a,b)=>b.matchingWords-a.matchingWords).slice(0,3);
 }
-// Exact-source 30-word planted control, independent of the original ciphertext.
-const plant=Array.from({length:30},(_,i)=>i%5===0?13:i%7+1);
-assert.equal(plant.length,30);
-const shadow=target.slice();
-shadow.splice(111,30,...plant);
-assert.deepEqual(shadow.slice(111,141),plant);
-const plantedIndex=new Map();
-for(let i=0;i+WIDTH<=shadow.length;i++){
- const k=shadow.slice(i,i+WIDTH).join(',');
- const xs=plantedIndex.get(k)||[];xs.push(i);plantedIndex.set(k,xs);
-}
-assert((plantedIndex.get(plant.slice(0,WIDTH).join(','))||[]).includes(111));
+// Actual 30-word known-source planted control exercises the same complete
+// seven-word seed lookup and maximal-left/right extension as the search.
+const plantedExcerpt=target.slice(111,141);
+const positiveMatches=match(plantedExcerpt,Array(30).fill('PLANT'),'GP29','positive');
+assert(positiveMatches.some(hit=>hit.originalWord===111&&
+  hit.sourceWord===0&&hit.matchingWords>=30),
+  'source-exact 30-word sequence must be recovered by the real matcher');
 async function run(){
   const recorded=[],failures=[],best=[];
   let next=0;
@@ -158,7 +153,7 @@ async function run(){
     sourceSelection:'32 pre-2014 philosophical/literary eBooks',
     corpusSearched:recorded.length,totalSourceWords:recorded.reduce((s,r)=>s+r.words,0),
     failures,bookDigests:recorded.sort((a,b)=>a.id-b.id),
-    positivePlant:{insertedWord:111,length:30,seedFingerprintRecovered:true},
+    positivePlant:{insertedWord:111,length:30,actualThirtyWordMatchRecovered:true},
     topMatches:sorted,decision
   },null,2));
 }
