@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_p40_red8_grid32_columnar_inverse_sft.cjs
       - name: All-secret 256 table-cell GP29 phase invariant with real source-native plant
         run: node sims/lp2_p40_grid256_allsecret_phase_equality_sft.cjs
+      - name: Frozen source GP28 chain then red8 columnar and grid28 inverse (Director 696)
+        run: node sims/lp2_p40_gp28_chain_grid_columnar_sft.cjs
