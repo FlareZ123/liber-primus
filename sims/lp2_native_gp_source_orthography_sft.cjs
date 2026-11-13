@@ -114,7 +114,7 @@ assert.deepEqual(referenceWords.map(word => toRunes(encodeNativeGP(word))),
 // P56's 85 source runes are encrypted and must not be used as plaintext.
 const heldOutP57 = plainLP1.split("### 57\n")[1].trim();
 const p57Words = heldOutP57.match(/[A-Z]+/g) || [];
-const p57SourceRunes = corpus.pages[57].indices;
+const p57SourceRunes = gp.pages[57].indices;
 assert.equal(p57Words.length, 20);
 assert.equal(p57SourceRunes.length, 95);
 assert.equal(encodeNativeGP(heldOutP57, false).length, 96);
