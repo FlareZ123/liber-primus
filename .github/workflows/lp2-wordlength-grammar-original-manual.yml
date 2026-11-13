@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/lp2_wordlength_grammar_original_sft.cjs
+      - run: node sims/lp2_wordlength_sidecar_uniform_breaks_sft.cjs
