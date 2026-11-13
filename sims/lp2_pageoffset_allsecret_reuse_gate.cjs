@@ -146,6 +146,17 @@ const book = results.at(-1);
 assert.deepEqual(
   [book.original.matches, book.original.comparisons], [10751, 311132]);
 assert(book.controls.every(control => control.atOrBelowOriginal === 0));
+// Genuine author-readable LP1 GP plaintext: p3, p8-p11 and p14.
+// Other solved-era LP1 pages p5/p12/p13 retain encrypted original runes.
+const lp1Original = read("resources/transcriptions/lp1_wulfic_canonical.txt").split("%");
+const idxOfRune = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const clearLP1Pages = [3, 8, 9, 10, 11, 14];
+const authorPages = clearLP1Pages.map(page => [...lp1Original[page]]
+  .filter(rune => idxOfRune.has(rune)).map(rune => idxOfRune.get(rune)));
+assert.deepEqual(authorPages.map(page => page.length), [157, 187, 207, 192, 169, 89]);
+const authorNative = equality(authorPages);
+assert.deepEqual([authorNative.matches, authorNative.comparisons], [128, 2146]);
+
 const chapter15 = results.find(result => result.startPage === 15);
 assert.deepEqual(
   [chapter15.original.matches, chapter15.original.comparisons], [240, 5861]);
@@ -157,6 +168,8 @@ console.log(JSON.stringify({
   originalUnknownPages: 55,
   originalUnknownRunes: 12956,
   independentSolvedP57ExactRuneControl: 95,
+  sourceNativeClearLP1Pages: clearLP1Pages,
+  sourceNativeOriginalGPControl: authorNative,
   sourceEnglishControlLengths: sources.map(source =>
     ({source: source.name, runes: source.indices.length})),
   sourceNativeSharedSecretPositivePlant: "exact for each chapter and whole book",
