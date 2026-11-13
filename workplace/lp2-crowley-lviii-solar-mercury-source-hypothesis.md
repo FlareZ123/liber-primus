@@ -14,7 +14,7 @@ A prior **conjectural** p57 modulo449-to-page/line grammar selects untouched p36
 
 Use Agrippa's historical row-major Mercury square, normalised 1..64 to zero-based offsets:
 
-\`\`\`text
+```text
  8 58 59  5  4 62 63  1
 49 15 14 52 53 11 10 56
 41 23 22 44 45 19 18 48
@@ -23,11 +23,11 @@ Use Agrippa's historical row-major Mercury square, normalised 1..64 to zero-base
 17 47 46 20 21 43 42 24
  9 55 54 12 13 51 50 16
 64  2  3 61 60  6  7 57
-\`\`\`
+```
 
 For the source-ordered 64-rune sequence, apply its square as a permutation of source positions (and its inverse), including only the eight physically natural dihedral symmetries of the square. Eight resulting keys are distinct. Repeat each transformed key over the **unmodified original 76 p55 runes** as an additive GP29 keystream, both arithmetic directions. These are 16 directly reversible candidates with a 95/95 solved-p57 *synthetic plant* check; such a plant does **not** certify any key as authentic.
 
-**Original-input result:** the 16 p55 IoCs range from **0.029473684211 to 0.037894736842**, against **0.037894736842** on untouched original p55. The best is the original IoC itself, and its candidate starts \`EISPOEEANGNEOAYEOHAERNIANLTHIAXJ...\`, with no source-authenticated or recognizable plaintext. The straightforward eight magic-square-only source64 re-orderings also do not read as coherent GP prose. There is no key recovery.
+**Original-input result:** the 16 p55 IoCs range from **0.029473684211 to 0.037894736842**, against **0.037894736842** on untouched original p55. The best is the original IoC itself, and its candidate starts `EISPOEEANGNEOAYEOHAERNIANLTHIAXJ...`, with no source-authenticated or recognizable plaintext. The straightforward eight magic-square-only source64 re-orderings also do not read as coherent GP prose. There is no key recovery.
 
 The original p49–51 table really is **32×8 = four 8×8 grids**, an independent physical format that could invite the same historical Mercury square. However, interpreting the canonical base60-derived 256 bytes modulo64 produces **36,40,40,40 unique residues per successive 8×8 block**, respectively, instead of 64 unique values in any block. Thus the literal four untransformed Mercury-square interpretation fails; no claim is made about transformed bytes or hidden permutations.
 
