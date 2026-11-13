@@ -131,6 +131,45 @@ for (let page = 40; page <= 55; page++) {
 assert.equal(trials, 256);
 assert.deepEqual(matches, [],
   'A genuine full SHA-512 root match requires immediate independent investigation.');
+
+// Independent complete 16-leaf tree: each physical printed image/symbol
+// is hashed as one original leaf, rather than using table-proposed siblings.
+// Check the actual full root and every original sibling against p50's four
+// physical 64-byte groups. These are exact digest equalities, without scores.
+const sourcePages = Array.from({ length: 16 }, (_, i) => pageRegisters(40 + i));
+let fullTreeRootsMatching = 0;
+let exactGridSiblingMatches = 0;
+const fullTreeRoots = {};
+for (let kind = 0; kind < 4; kind++) {
+  const label = sourcePages[0][kind].name;
+  const levels = [sourcePages.map((page) => sha512(page[kind].bytes))];
+  while (levels.at(-1).length > 1) {
+    const previous = levels.at(-1);
+    const next = [];
+    for (let i = 0; i < previous.length; i += 2)
+      next.push(sha512(Buffer.concat([previous[i], previous[i + 1]])));
+    levels.push(next);
+  }
+  assert.deepEqual(levels.map((xs) => xs.length), [16, 8, 4, 2, 1]);
+  const root = levels[4][0];
+  fullTreeRoots[label] = root.toString('hex');
+  if (root.equals(target)) fullTreeRootsMatching++;
+  for (let leaf = 0; leaf < 16; leaf++) {
+    for (const group of groupings) {
+      for (const reversed of [false, true]) {
+        for (let level = 0; level < 4; level++) {
+          const authenticSibling = levels[level][(leaf >>> level) ^ 1];
+          const printedSibling = group.siblings[reversed ? 3 - level : level];
+          if (authenticSibling.equals(printedSibling)) exactGridSiblingMatches++;
+        }
+      }
+    }
+  }
+}
+assert.equal(fullTreeRootsMatching, 0,
+  'Original-source complete Merkle root matches p56 target: investigate');
+assert.equal(exactGridSiblingMatches, 0,
+  'One printed table 64-byte group is a true source-page Merkle sibling: investigate');
 console.log(JSON.stringify({
   sourceGridSHA256: sha256Hex(gridBytes),
   sha512Target: target.toString('hex'),
@@ -140,5 +179,8 @@ console.log(JSON.stringify({
   registerKinds: pageRegisters(55).map((x) => x.name),
   matchedRoots: matches,
   strongestPrefix: longestPrefix,
+  fullTreeRoots,
+  fullTreeRootsMatching,
+  exactGridSiblingMatches,
 }, null, 2));
-console.log('PASS: 256 exact original-leaf Merkle paths, no p56 digest match; tamper controls pass.');
+console.log('PASS: 256 proof variants and four complete 16-leaf roots, no printed-SHA512 match or table-sibling equality; tamper controls pass.');
