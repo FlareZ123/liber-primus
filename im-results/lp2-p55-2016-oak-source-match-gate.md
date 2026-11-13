@@ -1,6 +1,6 @@
 # Physical p55 faint tree and signed 2016 oak: original-image registration gate
 
-**Result (13 November 2026): no reliable direct geometry registration, no plaintext, key, or selected decoder.** A direct visual reuse of one tree would offer an independently sourced bridge between the terminal unsolved page and the 2016 signed continuation image. The original p55 source has a pale central tree and the authenticated 2016 image an unusually faint oak behind the signed words. The latter image's independently authenticated instruction directs the solver to Liber Primus's *words*, *numbers*, *road*, and *direction*. An actual reproducible image match could motivate a specific p55 navigation/key rule, but a thematic similarity is insufficient.
+**Result (13 November 2026; Agent 2 source-image identification incorporated): no reliable direct p55↔2016 tree registration and now positive evidence of distinct source photographs.** P55 shares the Commons DeadTree illustration with p32, whereas the signed 2016 faint oak positively registers to a *different*, horizontally mirrored ClipartBest stock tree (original 1222×1600; signed target 563×569; best NCC 0.802). No plaintext, key or selected decoder follows. The original p55 source has a pale central tree and the authenticated 2016 image an unusually faint oak behind the signed words. The latter image's independently authenticated instruction directs the solver to Liber Primus's *words*, *numbers*, *road*, and *direction*. An actual reproducible image match could motivate a specific p55 navigation/key rule, but a thematic similarity is insufficient.
 
 ## Frozen original bytes and method
 
@@ -21,7 +21,7 @@
 | p55 faint tree vs raw 2016 region | 8 | **5** |
 | 2016 region vs its own affine copy (feature control) | 789 | **741** |
 
-No strong, spatially consistent same-source tree transform emerged in either original-input comparison. This is a **bounded image-registration failure**, not proof that no common graphic elements exist: the 2016 source is median grayscale **1/255** in the selected crop, and the matching algorithm's own 2016 self-control may obtain keypoints from the superimposed white text rather than the faint oak. Small matches might be chance. Neither test yields a coordinate/key rule, so the 2016 oak and p55 tree should **not** be used as a shared visual key without a new independent registration or authored instruction.
+No strong, spatially consistent same-source tree transform emerged in either original-input comparison. This is a **bounded image-registration failure**, not proof that no common graphic elements exist: the 2016 source is median grayscale **1/255** in the selected crop, and the matching algorithm's own 2016 self-control may obtain keypoints from the superimposed white text rather than the faint oak. Small matches might be chance. Neither test yields a coordinate/key rule. An independent [direct stock→signed-2016 positive registration](cicada2016-oak-stock-intrinsic-size-gate.md) now identifies a **different original oak asset** behind the signed words, explaining the absence of a strong p55→2016 match. Retire the *identical tree-image* premise used as a selector in old p32↔2016 reports. Do **not** use the two unrelated pictures as a shared visual key without a new original instruction.
 
 ### Reproduction and decision
 
