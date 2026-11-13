@@ -30,3 +30,5 @@ jobs:
 
       - name: Exclude all-secret full-width 8x8 affine filter on solved 180 terminal runes
         run: node sims/lp2_terminal256_8x8_allsecret_kernel_sft.cjs
+      - name: Gate all-secret column and shell-local GP29 lookup maps on known terminal rings
+        run: node sims/lp2_terminal256_column_ring_secret_sft.cjs
