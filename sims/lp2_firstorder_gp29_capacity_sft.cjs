@@ -174,6 +174,14 @@ function main() {
   });
   headingCuts.push(all.length);
   assert.deepEqual(headingCuts,[0,729,1874,3612,5506,6527,7960,8051,9640,12956]);
+  // The distinct original *top-level visual chapter* map uses the first
+  // (rather than second) red heading in p15 and p33, and begins a final
+  // p54-p55 chapter after a p53 red terminal mark. It is not the derivative
+  // nine-text partition with interior p15/p33 starts above.
+  const visualChapterStartPages=[0,3,8,15,23,27,33,40,54];
+  const visualCuts=visualChapterStartPages.map(page=>offsets.get(page));
+  visualCuts.push(all.length);
+  assert.deepEqual(visualCuts,[0,729,1874,3603,5506,6527,7960,9640,12648,12956]);
   const wordStarts=new Set([0]);
   const pageStarts=new Set([0]);
   let running=0;
@@ -187,13 +195,22 @@ function main() {
     splitInterval(all,start,headingCuts[i+1],wordStarts));
   const chaptersPage=headingCuts.slice(0,-1).map((start,i)=>
     splitInterval(all,start,headingCuts[i+1],pageStarts));
+  const visualChapters=visualCuts.slice(0,-1).map((start,i)=>
+    [all.slice(start,visualCuts[i+1])]);
+  const visualPage=visualCuts.slice(0,-1).map((start,i)=>
+    splitInterval(all,start,visualCuts[i+1],pageStarts));
+  const visualWord=visualCuts.slice(0,-1).map((start,i)=>
+    splitInterval(all,start,visualCuts[i+1],wordStarts));
   const variants=[
     {name:"continuous",segments:[all],expected:[717,1365,6769]},
     {name:"page-reset",segments:pages,expected:[719,1368,6784]},
     {name:"word-reset",segments:words,expected:[695,1318,6671]},
     {name:"nine-red-head-specific",chapters,expected:[1253,2285,8886]},
     {name:"nine-red-head+page-reset",chapters:chaptersPage,expected:[1256,2296,8911]},
-    {name:"nine-red-head+word-reset",chapters:chaptersWord,expected:[1226,2246,8767]}
+    {name:"nine-red-head+word-reset",chapters:chaptersWord,expected:[1226,2246,8767]},
+    {name:"nine-top-visual-chapters",chapters:visualChapters,expected:[1267,2303,8982]},
+    {name:"nine-top-visual+page-reset",chapters:visualPage,expected:[1269,2314,9006]},
+    {name:"nine-top-visual+word-reset",chapters:visualWord,expected:[1237,2260,8852]}
   ];
 
   // A historically solved Cicada GP-English reference supplies a domain
@@ -236,8 +253,8 @@ function main() {
   console.log(JSON.stringify({scope:"all 12,956 original unsolved GP29 runes, 55 rune-bearing physical pages, 2,896 original complete words",
     theorem:"for each state and any lossless bijection onto plaintext symbols, top-k plaintext total <= sum of k largest observed outgoing state-transition counts",
     source:"original LP2; authentic solved LP1 English GP tokens as comparison",
-    conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent red-heading state tables (9.69% and 68.78% are generous upper bounds)",
-    exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent red-heading state tables, under continuous/page/word-reset original segmentation",
+    conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent top-level visual-chapter state tables (9.80% and 69.51% are generous upper bounds)",
+    exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent original visual-chapter or alternative red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
     countermodelTwoPrevious:{shared:{states:secondOrder.states,
       top1:secondOrder.capacity[0],top12:secondOrder.capacity[11]},
