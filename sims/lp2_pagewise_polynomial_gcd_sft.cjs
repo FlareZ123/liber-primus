@@ -101,6 +101,16 @@ for (let i = 0; i < pages.length; i++) {
 assert.deepEqual(histogram, { 0: 1399, 1: 85, 2: 1 });
 assert.deepEqual(overlaps, [{ pages: [27, 48], degree: 2, polynomial: [0, 6, 1] }]);
 
+// Repeat the same exact full-page test under the other literal coefficient orientation.
+const inverseHistogram = {};
+for (let i = 0; i < pages.length; i++) {
+  for (let j = i + 1; j < pages.length; j++) {
+    const degree = gcd(pages[i].indices, pages[j].indices).length - 1;
+    inverseHistogram[degree] = (inverseHistogram[degree] ?? 0) + 1;
+  }
+}
+assert.deepEqual(inverseHistogram, { 0: 1403, 1: 82 });
+
 const p27 = pages.findIndex(p => p.page === 27);
 const p48 = pages.findIndex(p => p.page === 48);
 assert.equal(polys[p27][0], 0);
@@ -120,8 +130,9 @@ console.log(JSON.stringify({
   pages: pages.length,
   pairs: 1485,
   gcd_degree_histogram: histogram,
+  reverse_coefficient_histogram: inverseHistogram,
   quadratic_overlap: overlaps,
   wrong_source_gcd: gcd(polys[p27], wrongSource),
   planted_gcd_degree: gcd(plantedA, plantedB).length - 1,
-  conclusion: 'No page pair shares a factor of degree >= 3; no common higher-degree fixed generator over all pages.'
+  conclusion: 'No page pair shares a degree >= 3 factor in either literal orientation; reversed source order has no degree >= 2 shared factor.'
 }, null, 2));
