@@ -10,7 +10,8 @@
  *
  * Every g and h is an otherwise arbitrary SECRET permutation of GP29.
  * In particular, h_page,1 is completely unknown and can differ on all
- * 55 rune-bearing pages. Its existence preserves the SORTED frequency
+ * 55 rune-bearing pages. Only PAGE-stratified counts are invariant under
+ * independently chosen page alphabets; pooling across pages is invalid. Its existence preserves the SORTED frequency
  * distribution of the second plaintext rune in each page's printed words.
  *
  * Source-native English controls use the established LP1 ING/IO orthography.
@@ -239,7 +240,7 @@ const controls = [
   ["Gibran", "resources/control/gibran_prophet_58585.txt"],
   ["Emerson", "resources/control/emerson_essays_2944.txt"]
 ];
-const originalGroups = stratify(records);
+const originalGroups = {page: stratify(records).page};
 const trials = 500;
 const summary = {};
 
@@ -262,7 +263,7 @@ for (let sourceId = 0; sourceId < controls.length; sourceId++) {
       controlMax: baseline[trials - 1]
     };
     assert(item.original > baseline[trials - 1] + 0.10,
-      name + " source-conditional position-alphabet page/chapter/book bound " + key);
+      name + " source-conditional position-alphabet page bound " + key);
   }
 
   // A source-native complete positive plant, preserving every original
@@ -294,7 +295,6 @@ console.log(JSON.stringify({
   originalRunes: flat.length,
   availableSecondRunePositions: records.length,
   pageBoundaryExcluded: pageCrossings,
-  chapterBoundaryExcluded: chapterCrossings,
   controlTrialsPerCorpusAndStratum: trials,
   nativeExactRecoveredPlantRunesPerCorpus: flat.length,
   summary
