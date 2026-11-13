@@ -47,7 +47,28 @@ This is an **exact enumeration**, not sampled keys or tuned output statistics. E
 
 **Decision:** the restored 101 is unexceptional under this stringent same-block null. Both the observed increase toward the GP29 random baseline and the migration of printed short-lag equalities are expected after generic column rearrangement. The red title and the precise 375×8 body still supply a possible human-visible key; this null specifically removes the apparent *adjacent-repeat-count evidence* in favor of its particular sort or of a real columnar layer. Source-keyed columnar remains hypothetical, and the independent source-selected operation needed for plaintext is unchanged.
 
-NaN## A reversible native-source order control
+## Whole-body word-boundary transport: exhaustive all-key test (13 November 2026)
+
+The original pp40–53 body contains **3,000 printed GP runes in 667 words**, of which only **13 are one-rune words**. The preceding eight red title runes constitute two words and are excluded. Original transcription punctuation is mapped to a word-final bit attached to the rune that precedes it, retaining printed line and page wraps as soft boundaries. These 3,008 rune positions align exactly against the canonical source, with **669** full-chapter word-final flags and **667** on the body.
+
+**Specific testable architecture:** each printed word-final bit travels with its preceding rune through the same classical eight-column permutation as the glyph. Under the source-visible red8 key, decolumnar yields **668 words, 153 one-rune words, 121 words of length at least nine, and maximum word length23**. The original body has **667/13/42/14** respectively. The inverse perfectly re-encodes its complete original flags.
+
+An **exhaustive 8! = 40,320-key census** of this punctuation transport has no ambiguity about cipher letters or key values. Each candidate rearranges the same eight blocks of 375 source word-ending flags. Every one-rune word is created by adjacent end-of-word bits (or an end bit at the very first rune). Complete 8×8 within-row and cross-row bit-pair matrices count these exactly.
+
+| Original boundary transport | One-rune words |
+| --- | ---: |
+| Source printed word boundaries before inverse | **13** |
+| Visible red-heading inverse | **153** |
+| Lowest under any of the 40,320 column orders | **122** |
+| 5th percentile / median / 95th percentile | 138 / 153 / 167 |
+| Maximum across all orders | 180 |
+| Orders with counts at most visible-key 153 | 21,799 / 40,320 |
+
+**External GP-native calibration:** all **147,071** overlapping windows of 668 complete words from previously pinned Shakespeare (54,740 windows), Gibran (15,066), and Emerson (77,265) controls, encoded in the same GP digraph conventions, have respective maximum one-rune-word counts **72, 43, and 50**. The same maxima hold for all 667-word windows. Therefore even the most favourable eight-column key demands at least **122 / 668 (18.26%)** one-rune words, far beyond every finite source-native control. A separate genuine Gibran 3,000-rune word-boundary plant round-trips through the same exact source-keyed bit transport, preventing a false negative due to incorrect permutation geometry.
+
+**Scope and consequence:** This is a key-independent obstruction to **the specific whole-body eight-column architecture that transports word-final flags along with their preceding runes** while yielding ordinary GP-English plaintext words. It does not exclude textbook columnar transposition that strips and later reinserts unrelated spaces, a changed punctuation alphabet, a per-word rearrangement, or a different plaintext-language register. The original ink does not instruct the solver to carry punctuation bits, so no real cipher identity, unknown plaintext or key has been recovered. Any new claim of whole-body columnar must specify its punctuation/word-boundary contract independently rather than silently assume that printed words remain natural after the inverse.
+
+## A reversible native-source order control
 
 The [source-only CommonJS SFT](../sims/lp2_p40_columnar_antirepeat_order_sft.cjs) uses 3,000 GP28-valued symbols derived from actual Gibran GP-transliterated prose as a positive input register. It constructs an exact predecessor-exclusion coder: each GP28 digit is emitted as a GP29 rune **other than the preceding output rune**, with the initial GP29 state fixed at 0. Given that state, the map is invertible. The same red-eight-rune keyed columnar operation is separately invertible.
 
