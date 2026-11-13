@@ -1,0 +1,16 @@
+name: LP2 729/1729 fixed shared-pad gate (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-aligned:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native two-time pad controls and original aligned gate
+        run: node sims/lp2_1729_taxicab_729_sharedpad_sft.cjs
