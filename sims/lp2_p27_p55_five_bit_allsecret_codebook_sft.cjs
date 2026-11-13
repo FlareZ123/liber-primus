@@ -96,8 +96,54 @@ function plant(cols) {
   const output=codes.map(c=>dictionary.get(c));
   const check=forcedCollisions(cols,output,equalOutputEvents(output));
   assert.equal(check.collisions.length,0);
+  // Map all 32 binary codewords to GP29 via c % 29. This is a fully
+  // surjective 32-to-29 decoder with exactly three binary-code aliases.
+  const aliasPositive=aliasGate(cols,codes.map(c=>c%29));
+  assert(aliasPositive.feasibleExceptionSets>0);
   return {uniqueCodewords:distinct.length,outputReruns:43-distinct.length,
-    sourceBitOnes:bits.filter(Boolean).length,classes:check.sourceSymbolClasses};
+    sourceBitOnes:bits.filter(Boolean).length,classes:check.sourceSymbolClasses,
+    surjectiveAliasedDecoderPlantAccepted:true,
+    positiveAliasExceptionSets:aliasPositive.feasibleExceptionSets};
+}
+
+
+/**
+ * Exactly at most three aliases are available in a total surjective
+ * 32-code to 29-rune decoder (including a partial injective decoder as
+ * the zero-alias case). Only at most three target rune TYPES may receive
+ * two codes. Grant those rune types unlimited aliases and omit ALL their
+ * equal-code implications, a strict overapproximation of the actual
+ * decoder freedom. If even this relaxation always fails, every full
+ * GP29 codebook fails without a search over secret coloring.
+ *
+ * @param {number[][]} cols @param {number[]} output
+ */
+function aliasGate(cols,output) {
+  const labels=[...new Set(output)].sort((a,b)=>a-b);
+  const events=equalOutputEvents(output);
+  let checks=0,feasible=0;
+  let firstFeasible=null;
+  function visit(start,remaining,exempt){
+    if(remaining===0){
+      checks++;
+      const exceptionSet=new Set(exempt);
+      const forced=forcedCollisions(cols,output,
+        events.filter(([i])=>!exceptionSet.has(output[i])));
+      if(forced.collisions.length===0){
+        feasible++;
+        if(firstFeasible===null)firstFeasible=exempt.slice();
+      }
+      return;
+    }
+    for(let i=start;i<=labels.length-remaining;i++){
+      exempt.push(labels[i]);
+      visit(i+1,remaining-1,exempt);
+      exempt.pop();
+    }
+  }
+  for(let aliases=0;aliases<=3;aliases++)visit(0,aliases,[]);
+  return {exceptionSetsChecked:checks,feasibleExceptionSets:feasible,
+    firstFeasible};
 }
 
 function main(){
@@ -125,8 +171,11 @@ function main(){
       &&j===witness.collision[1]));
     assert.notEqual(target[witness.collision[0]],
       target[witness.collision[1]]);
+    const aliasOriginal=aliasGate(col,target);
+    assert.deepEqual([aliasOriginal.exceptionSetsChecked,
+      aliasOriginal.feasibleExceptionSets],[1562,0]);
     const positive=plant(col);
-    cases.push({layout,
+    cases.push({layout,aliasSurjective29Codebook:aliasOriginal,
       sourceSymbols:29,sourceQuintets:col.length,
       outputTypes:new Set(target).size,repeatedOutputRequirements:allEvents.length,
       allRepetitionForcedSourceClasses:source.sourceSymbolClasses,
@@ -141,7 +190,7 @@ function main(){
   }
   console.log(JSON.stringify({original:{p27Black:215,p55Body:75,
     p55Interior:43,p55UniqueInteriorRunes:21},cases,
-    decision:"Both natural packings exclude every stationary source-rune-to-bit map plus injective five-bit-to-GP29 codebook as an exact direct p27 to p55 interior decoder. The codebook, bit order and alphabet mappings are entirely unknown. Neither packing is printed; this is a conditional gate, not plaintext."},null,2));
+    decision:"Both natural packings exclude every stationary source-rune-to-bit map plus any surjective five-bit-to-GP29 codebook with at most three aliases as an exact direct p27 to p55 interior decoder. The codebook, bit order and alphabet mappings are entirely unknown. Neither packing is printed; this is a conditional gate, not plaintext."},null,2));
 }
 if(require.main===module)main();
 module.exports={columns,equalOutputEvents,forcedCollisions,plant};
