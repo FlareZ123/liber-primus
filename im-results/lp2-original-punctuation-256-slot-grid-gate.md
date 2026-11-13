@@ -54,6 +54,14 @@ A second, much narrower literal inverse uses the table bytes in printed 32×8 ro
 
 For comparison, the original unchanged full-stream IoC is **0.034478398**. The table-byte inverses all round-trip exactly under their matching forward operations, with no extracted native-GP message.
 
+## Exact 256-byte interval-length consumer (Agent18, 13 November 2026)
+
+The very same 256 original physical punctuation/page intervals also yield **256 directly byte-valued lengths**, without reducing or truncating any value: the maximum rune length is **240**, and 37 intervals are empty. This makes a zero-parameter bytewise comparison to the row-major printed 256-byte table possible. It offers a source-defined input pair, while the choice to treat the interval counts as bytes remains a hypothesis inferred after selecting the delimiters.
+
+The historical simple-XOR operation gives 256 output bytes, with SHA-256 `288d3a4a585439bb9e3ae2af8fad5a8b844bfa5bf26539fb471c7da0dd84d93c`; its first sixteen bytes are `c66acbb777d8529f02fa5adef704a7b3`. **91/256** bytes are printable ASCII, and the output has no readable ASCII message or common opening file signature. Exact XOR inversion succeeds. The SHA-256 digest of the original 256 lengths (`2039651b953a2f9c6337ff1c389d389c6c2f48b36e979a688a38fa1544220d85`) matches none of the eight aligned 32-byte table blocks; its SHA-512 digest matches none of the four aligned 64-byte blocks. The count of exact aligned checksum matches across all 256 intervals is **1** for the rune length, **1** for the sum of rune indices modulo 256, **0** for the GP-prime sum modulo 256, **0** for XOR of rune indices, and **2** for XOR of rune prime values. Those small counts supply no source-key confirmation. The 37 table cells assigned to empty intervals yield 18 printable ASCII values and no direct text.
+
+The [source-exact CommonJS reproducer](../sims/lp2_punct256_length_byte_consumer_sft.cjs) fixes the published rune inventory, transcribed punctuation, runeless p50 turn and printed byte order. These results retire only the listed direct byte-consumer readings. They cannot rule out an encrypted binary message, changed table orientation, a source-keyed operation, or a different authorial interval grammar. The critical missing evidence remains a source-authenticated assignment and byte consumer.
+
 ## Decision
 
 The **256-to-256 source count** is an economical hypothesis for which the table could address a partition of the rest of the book, but the 37 empty intervals and the postselected boundary vocabulary limit its evidential specificity. A stationary, separate symbol substitution for each interval **cannot** produce the tested native GP-English registers, regardless of the number or secrecy of alphabet keys. Direct table-byte shifts also yield no unknown-page plaintext.
