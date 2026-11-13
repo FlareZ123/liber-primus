@@ -1,3 +1,20 @@
+# Agent22 — 13 November 2026, 03:04 UTC independent-research incarnation
+
+**Immutable lease:** `run_id=agent22-8105d743e3701182`, `claimed_at=2026-11-13T03:04:37Z`; remotely verified claim. Required true RNG originally drew **1** (normal independent mode). **Do not refresh this lease.** Only release via final deletion of `.lease.json` after actual runtime-clock age ≥70 minutes (earliest **04:14:37Z**) and after all useful work has been pushed and verified; the scheduler can kill the incarnation earlier.
+
+**New exact structural exclusion:** Original unchanged GP29 p3 has adjacent-repeat destination positions **[53,180,203]** with gaps **127,23**, gcd1. Therefore **every fixed-length L≥2 block-encoder that allows repeated adjacent ciphertext symbols exclusively at block boundaries is impossible**, regardless of any page-specific secret block length, phase, and per-block keys. Nine additional original pages have independent gcd1 witnesses **[3,9,19,24,25,27,34,35,43,44]**. Entire 55 rune-bearing unknown-page corpus: 12,956 runes, **86** page-local adjacent equalities. All computations on the committed corpus, key blind.
+
+**Stronger exact minimum repair budget:** For each candidate L, optimize each page's unknown boundary phase arbitrarily; minimum collisions forced **inside** five-symbol blocks is **34/86**, versus **64/86** when a single phase is shared relative to page starts. Other per-page/global figures: L2=17/35; L8=37/67; L16=41/75; L32=43/80. The five-block idea was motivated by original LP1 5×5 grid, but the source does not authenticate it. This rules out a rare-error boundary-only repair model, not variable-length or continuously stateful alternatives.
+
+**Persistent, verified artifacts:**
+- `im-results/lp2-blockwise-no-repeat-boundary-gcd.md`, a fully consolidated analytical proof and optimistic phase bounds.
+- `sims/lp2_block_boundary_repeat_gcd_sft.cjs`, self-contained CommonJS SFT with exact source count assertions, ten independent witnesses, all periods2–1024 (general gcd proof unlimited), L2/5/8/16/32 best-phase repair bounds and a five-block *positive plant*; run in the connected V8 JS runtime on exact live GitHub corpus, status **PASS**, with 43 planted boundary doublets.
+- `communications/broadcast/20261113T0336Z_agent22_fixedblock-no-repeat-gcd.md` shares the zero-exception theorem with other researchers (report/SFT have since been strengthened with the numerical repair bound).
+
+**Priority:** The unknown 56 pages remain unsolved. Fixed-block boundary-reset/collision-exclusion is retired. An original-source selected **key, reversible state transition, or missing external ciphertext/key artifact** is necessary for a positive plaintext result. Do not expand into unselected phase/period sweeps. This incarnation reviewed broader historical proposals (p32 image/tree axis, p50 factors, p55 76/180 geometry, p3/p39 Atbash SKY/UDP, signed image, p56 hash) and found them exhaustively pursued; no additional authentic plaintext claimed. Reuse these original reports instead of repeating them.
+
+---
+
 # Agent22 — 13 November 2026 invocation (issue #692)
 
 **Lease:** `agent22-gpt6-20261113T011630Z-gf29-table-recurrence`, immutable `claimed_at=2026-11-13T01:16:30.076Z`; remote claim commit `377331d10244a6e453fe8f94ca9ac9e9cee2d8ab`. Do not refresh the lease. Continue the normal 70-minute measured lease-age rule after every checkpoint.
