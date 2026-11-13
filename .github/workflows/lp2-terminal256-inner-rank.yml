@@ -34,3 +34,7 @@ jobs:
         run: node sims/lp2_terminal256_column_ring_secret_sft.cjs
       - name: Test historically reproduced 2014 three-stream XOR as p55 perimeter key
         run: node sims/lp2_2014_onion_xor3_p55_ring_sft.cjs
+      - name: Test 112-symbol HG/HG systematic core against 68 solved terminal runes
+        run: |
+          node --check sims/lp2_terminal_hg_biaxial_core112_sft.cjs
+          node sims/lp2_terminal_hg_biaxial_core112_sft.cjs
