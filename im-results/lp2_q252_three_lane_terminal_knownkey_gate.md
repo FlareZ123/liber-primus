@@ -18,6 +18,25 @@ for four *arbitrary, secret* coefficients. No coefficient guessing or language t
 
 For an even more constrained alternative, take the three coefficients from each of three independently printed original triples: p3 red `[13,23,2]`, p39 red `[27,5,15]`, and signed 2013 `3QO=[3,26,24]`. Across the four layouts, these twelve fixed combinations match only **1–7** of 84 literal p56 shifts each. Even allowing the *best* constant GP29 offset after viewing the key gives at most **10/84** matches, never 84.
 
+## Stronger exact all-secret nonlinear lookup obstruction (13 November 2026)
+
+The original three-lane Q252 hypothesis has an additional **key-independent rejection**. A stationary secret lookup may be arbitrarily nonlinear: for any chosen lane subset S, the known p56 key must satisfy \`K[i]=f(lanes[S][i])\` for some wholly unknown function \`f\`. Such a function exists **if and only if** identical lane-input tuples always have identical desired key outputs. This requires no key search, algebraic-degree assumption, language score, or guessing the 29^841 possible two-lane tables.
+
+For each of the four existing frozen quotient layouts, examine every one of the 84 known original prime-totient key positions and every subset of two lanes, along with the full three-lane tuple:
+
+| Layout | Contradicting repeated inputs for lanes (0,1) / (0,2) / (1,2) | Full three-lane repeated-input conflicts |
+| --- | --- | --- |
+| Forward, contiguous 84+84+84 | **4 / 4 / 5** | **1** |
+| Forward, 84 interleaved triples | **5 / 6 / 7** | **0** (all 84 triples distinct) |
+| Reversed, contiguous 84+84+84 | **5 / 4 / 3** | **1** |
+| Reversed, 84 interleaved triples | **9 / 6 / 5** | **0** (all 84 triples distinct) |
+
+A **decisive original witness** for the source-natural *forward contiguous* layout occurs at p56 clock positions **7 and 30** (zero-based): both have the same complete quotient-lane input **(20,4,6)**, while the genuinely solved p56 key demands **18** and **10**. Therefore **no deterministic source-independent function, however large or nonlinear its secret table**, can generate the known p56 clock from those exact three contemporaneous contiguous quotient cells. The reversed contiguous direction likewise repeats input **(6,4,20)** at positions **53 and 76**, but needs conflicting key values **18 and 11**.
+
+Every two-lane subset in **all four layouts** also has such exact contradictions, so **every arbitrary stationary two-lane lookup is excluded** for the known p56 key. The two *interleaved* full three-lane cases contain 84 unique input triples, therefore a wholly secret 3-input lookup can trivially memorize the needed key and **cannot be excluded** by this equality invariant. The earlier rank5 versus4 proof independently excludes every *affine* interleaved three-lane lookup. This distinction is essential; do not imply an all-secret nonlinear exclusion for interleaved triplets.
+
+The updated original-input [same standalone CJS SFT](../sims/lp2_q252_three_lane_terminal_knownkey_sft.cjs) asserts all 16 lane-subset/source-orientation witness sets, the specific 83-versus84 unique complete triples, both explicit key contradictions, and positive controls using a synthetic nonlinear-safe 3-lane key. Its full original-source assertions were rerun successfully after the extension. This strengthens the existing bounded hypothesis rather than claiming an independently authenticated key or a new LP2 plaintext.
+
 ## Direct p55 76-rune readout
 
 Apply each of those twelve historically visible coefficient triples/lane-layout combinations as a complete 76-symbol key to the **unchanged p55 GP29 ciphertext**, with both source-common additive signs, 24 named inverses total. All operations exactly reencrypt the original and reconstruct an independently solved p57 first-76-rune GP plant. Their original decrypted GP29 IoCs remain **0.02877–0.04561**; the independently solved p57 first 76 GP runes have IoC **0.05965**. The strongest original p55 candidate is forward/interleaved with the p3 red coefficients and positive sign, IoC **0.04561404**, beginning `JGRYWXLWDEOUEUNTIFTGHDOBYLIALTJT`, without continuous native-GP prose.
