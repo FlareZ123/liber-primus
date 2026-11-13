@@ -294,6 +294,36 @@ for (let r = 0; r < 15; r++) {
 assert(Math.abs(followingRawIc - 0.034466220127346396) < 1e-12);
 assert(minDecodedIc > 0.033 && maxDecodedIc < 0.036);
 
+// New source-to-source embedding: project X+1 into the unique GF(29^2)
+// subfield by raising it to (29^238-1)/(29^2-1). This lands on one
+// exact root of the original p3 red quadratic 2u^2+23u+13=0.
+const subfieldOrder = 29n ** 2n - 1n;
+assert.equal(subfieldOrder, 840n);
+assert.equal(N % subfieldOrder, 0n);
+const smallFieldElement = power(xPlusOne, N / subfieldOrder);
+const zeroVector = Array(DIM).fill(0);
+const addScalar = (a, b) => a.map((v, i) => mod(v + (i === 0 ? b : 0)));
+const p3Quadratic = (y) => {
+  const square = multiply(y, y);
+  return square.map((v, i) => mod(v - 3 * y[i] - (i === 0 ? 8 : 0)));
+};
+assert(eq(p3Quadratic(smallFieldElement), zeroVector));
+assert(eq(power(smallFieldElement, subfieldOrder), ONE));
+assert(!eq(power(smallFieldElement, subfieldOrder / 2n), ONE));
+const signedBase29Root = smallFieldElement.map((v, i) =>
+  mod(-2 * v + (i === 0 ? 23 : 0)));
+const signedQuadraticCheck = multiply(signedBase29Root, signedBase29Root)
+  .map((v, i) => mod(v + 18 * signedBase29Root[i] + (i === 0 ? 11 : 0)));
+assert(eq(signedQuadraticCheck, zeroVector),
+  "2013 signed BASE29 quadratic root must follow from p3 root");
+// Every smallest possible scalar shift is checked, with no output-fitting.
+const exactShiftMatches = [];
+for (let shift = 0; shift < MOD; shift++) {
+  const projected = power(addScalar(x, shift), N / subfieldOrder);
+  if (eq(p3Quadratic(projected), zeroVector)) exactShiftMatches.push(shift);
+}
+assert.deepEqual(exactShiftMatches, [1]);
+
 console.log(JSON.stringify({
   source: { bytes: 256, original_page36: A.length, p3_prefix: p3.length,
     p39_prefix: p39.length, irreducible_degree: DIM },
@@ -302,6 +332,9 @@ console.log(JSON.stringify({
     reversed_p39_p3_is_6th_power: true,
     common_DH_base_with_6_15: false },
   root_count: roots.length, root0_norm: 27, roots,
+  exact_p3_subfield_projection: { source_shift: 1, matched_shifts: exactShiftMatches,
+    extension_degree: 238, subfield_multiplicative_order: 840,
+    signed_2013_base29_quadratic_root: true },
   sixth_root_count: roots6.length, roots6,
   subsequent_page_gate: { runes: following.length, models: 60,
     original_ic: followingRawIc, minimum_decoded_ic: minDecodedIc,
