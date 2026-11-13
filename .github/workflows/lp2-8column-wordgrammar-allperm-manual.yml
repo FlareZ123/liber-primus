@@ -14,3 +14,7 @@ jobs:
         run: |
           node --check sims/lp2_8column_allperm_wordgrammar_sft.cjs
           node sims/lp2_8column_allperm_wordgrammar_sft.cjs
+      - name: Source-square sixteen-column fullword clue gate
+        run: |
+          node --check sims/lp2_p15_16column_wholeword_sft.cjs
+          node sims/lp2_p15_16column_wholeword_sft.cjs
