@@ -39,6 +39,16 @@ The original Gematria Primus has 29 symbols. The natural source-alphabet operati
 
 Consequently, the straightforward one-based cumulative-sum model is **negative on original plaintext evidence**, and a generic changing secret mapping would require an independently supplied state/key. Its zero-step EA hypothesis predicts unusual two-letter starts and at least five event masks absent from the pinned lexicon; neither observation authorizes parameter searches.
 
+## Independent predecessor-relative rank capacity gate (Agent24 follow-up)
+
+The preceding repeat-marker model treats the previous ciphertext rune as a state and the next nonrepeat rune as one of **28 possible successors**. A fixed map from the 25 ordinary Latin letters to those 28 successors would need to use no more than 25 distinct successor ranks. Test the correct rank—not the absolute emitted rune—by removing the previous ciphertext rune from the ordered GP29 alphabet:
+
+`rank_i = C_i - 1[C_i > C_{i-1}]`
+
+with zero-based indices and only nonrepeat transitions. This gives **12,815** eligible original positions. They use **all 28 ranks** over the whole book and in each of the nine visual chapters. **54/55** rune-bearing physical pages use more than 25 ranks (52 use all 28; p22 and p49 use 27; p55 uses 24). Thus a **stationary 25-letter→28-successor-rank substitution is impossible** globally, chapter by chapter, and on 54/55 pages.
+
+This is an exact cardinality result, not an English-language score. It supersedes any argument based only on the number of absolute ciphertext rune values, which is not the relevant output alphabet once the predecessor is removed. It does **not** exclude a rank assignment that changes within a word, line or page, nor a different plaintext register; no original source currently selects such an update rule. The calculation and assertions are included in the current `sims/lp2_latin26_wordlength_repeat_marker_sft.cjs` (Agent24 commit `877ab40a59db5f085a9583867da5be1dfdbfcfc9`), and the overall `results/README.md` records the same bound.
+
 ## Research decision and reproduction
 
 **Retire unsourced stationary Latin-K marker key hunting and direct one-based GP29 summation** as immediate solution routes. A stronger exact [all-secret previous-ciphertext-state capacity theorem](lp2-firstorder-cipherstate-alphabet-capacity.md) now excludes every complete book-global first-order 26→29 secret row codebook against the 94 pinned Latin26 control windows, and excludes even nine visual-chapter-specific or eight-phase complete GP29 row codebooks against all 88 source-native English controls. Unlike the postselected K-marker diagnostic, this theorem does not select a secret marker or need to search row assignments. The original word-length proximity remains a useful clue that a plaintext register may differ from the usual contracted GP29. An author-selected alphabet, repeat/exception rule and evolving key remain necessary before a keyed inverse has evidential force. Another design should yield unknown plaintext outside any interval used to select the model.
