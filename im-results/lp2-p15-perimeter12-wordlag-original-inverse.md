@@ -19,6 +19,8 @@ Two **500-draw** Fisher–Yates controls use fixed xorshift32 seeds and preserve
 
 Both nulls represent fixed original word identities; no plaintext or translated English was used to select the lag. The printed-line null can move text-block positions and keeps line-internal lengths untouched. These finite Monte Carlo p-values are precision-limited. The 12-lag signal **does not persist harmonically**: raw original r(24) ≈ 0.00912 and r(36) ≈ 0.00128. A pure 12-strand cipher would need further independent evidence.
 
+**Independent within-printed-line control.** In another 500 fixed-seed original-inventory shuffles (xorshift32 `0x3301beef`), freeze the **exact printed line order**, the number of words on each line, and each line's word-length multiset; randomize only the word *order within each line*. This retains the editorial vertical layout and line-length budgets while destroying local left-to-right word order. The null mean r(12) is **0.0087242902**, the marginal upper-tail p is **1/501**, and the 181-lag familywise upper-tail p is **20/501 ≈ 0.03992016**. Thus the original positive lag12 correlation cannot be explained merely by long/short word allocation to particular original lines under this null. In conjunction with the separate whole-line-order shuffle, line allocation *and* the order inside lines each constrain the signal. There remains no source-selected operator, no periodic harmonic at lags24/36, and no evidence that reordering words can decipher them.
+
 ## Locked original-input perimeter consumer
 
 The original p15 twelve perimeter cells, read in spiral order, map to zero-based row-major perimeter slots
