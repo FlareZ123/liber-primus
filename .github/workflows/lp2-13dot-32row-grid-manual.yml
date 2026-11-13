@@ -1,6 +1,16 @@
-name: LP2 13dot 32-row grid source gate
+name: LP2 13dot source-ordered inversion gates
 on:
   workflow_dispatch:
+    inputs:
+      case:
+        description: Which source-ordered original-cipher gate to test
+        required: true
+        default: grid32
+        type: choice
+        options:
+          - grid32
+          - icmp28
+          - all
 jobs:
   exact-original-inverse:
     runs-on: ubuntu-latest
@@ -9,4 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node sims/lp2_13dot_32row_grid_segment_sft.cjs
+      - name: Original 13dot 32-row grid
+        if: ${{ inputs.case == 'grid32' || inputs.case == 'all' }}
+        run: node sims/lp2_13dot_32row_grid_segment_sft.cjs
+      - name: Historical 2013 ICMP 28-row fragment inverse
+        if: ${{ inputs.case == 'icmp28' || inputs.case == 'all' }}
+        run: node sims/lp2_2013_icmp28_fragment_inverse_sft.cjs
