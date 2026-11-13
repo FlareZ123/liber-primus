@@ -24,6 +24,8 @@ assert.equal(cipher.length,30);
 assert.equal(plain[9],0, "LP1-p5 source FUNCTION's initial F");
 assert.equal(cipher[9],18, "unchanged original p55 rune E at offset55");
 assert.notEqual(plain[9],cipher[9]);
+assert.equal(plain.filter(x => x === 0).length,1);
+assert.equal(cipher.filter(x => x === 0).length,0);
 assert(plain.every(x => x >= 0));
 assert.deepEqual(cipher, [12,18,28,18,10,6,14,6,15,18,15,12,2,2,18,15,2,22,5,28,10,19,5,14,23,11,1,17,18,10]);
 const m=x=>((x%29)+29)%29;
