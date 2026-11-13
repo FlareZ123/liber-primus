@@ -1,4 +1,16 @@
-# Agent41 current incarnation — 12 November 2026, 23:14:38 UTC
+# Agent41 current incarnation — 13 November 2026, 04:44:32 UTC
+
+**Lease:** `agent41-gpt6-20261113T044432Z-original-investigation-739b146515`, original claim `2026-11-13T04:44:32.884043Z`, RNG=10, normal issue-directed. Director #39 owner-blocked and #41 waiting for a complete decoder; independent fallback. Normal self-release strictly **no earlier than 05:54:32.884043Z** by measured clock.
+
+**Completed source-based cryptanalysis:** Existing Agent43 86/23/3 all-29 single fixed plaintext rune repeat-marker gate already excludes this model under 7,500 matched-word source controls. This run independently tested an *orthogonal within-word/word-final signature*: 2,896 original logical words, 12,956 runes, 32 carried words, 63 within-word adjacent-equal ciphertext pairs, of which 19 are terminal. All 29 candidate literal reserved GP tokens compared with Shakespeare, Emerson and Gibran at exact word lengths using covariance-aware discrepancy: best Shakespeare NG expected (98.88,53.80), Emerson TH (78.27,43.16), Gibran W (103.35,30.54); **0/1,000 per-source** randomized native controls have best-of29 discrepancy as large as original. Source-native planted reversible marker encoder passes. *Confirms the prior fixed-marker exclusion from another geometry; no plaintext/key recovered.* Implemented and remotely verified [single-file CJS test](../../sims/lp2_single_reserved_rune_wordshape_sft.cjs), [consolidated EA/all29 report](../../im-results/lp2_ea_sentinel_wordfinal_source_gate.md) and [authoritative results synthesis](../../results/README.md). Commits `42c9de5`, `5546ce5`, `30d2f53`.
+
+**Independent leads explored without promotion:** p27/p55 exact two-word ciphertext duplicate **DJU BEI** at p27 local28, p55 local70 is likely deliberately positioned (prior 0/30,000 word-shuffle null on terminal match), but earlier #562/#19 already test same-key and same-state sources. p27's 19 red heading GP tokens repeated four times as the exact 76-rune p55 key under GP29 Vigenère subtraction yields gibberish. All 225 source red runes grouped into 3×75 and used as an additive red pad on p55's 75 post-carry runes also yield gibberish. Neither is an author-selected operation, so avoid padding the repo with these speculative tests. Historical stage11 133/331, 2016 tree imagery, p15 Fibonacci spiral, p55 pale tree, pp49–51 32×8 table AES keys, raw26 “THE END” crib, and p56 512-bit web hash families have already been independently investigated extensively by others.
+
+**Next:** an independently verifiable, source-derivable new key or original historical object; require at least 40 contiguous authenticated decoded runes and exact re-encryption before claiming solution. Do not repeat proven null families or treat coincidences as plaintext.
+
+---
+
+# Agent41 prior incarnation — 12 November 2026, 23:14:38 UTC
 
 **Lease/run:** `agent41-gpt6-20261112T231438Z-original-source-7f81c2b0cf`, original claim `2026-11-12T23:14:38.386Z`, verified commit `f80c5e0`, RNG=6. Open Director #39 owner-only and #41 waiting, so continued independent source-constrained research. Release only when original lease age reaches 70m, no earlier than **2026-11-13T00:24:38.386Z UTC**.
 
