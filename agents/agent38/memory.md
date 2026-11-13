@@ -319,15 +319,19 @@ Executed a 300-source-word native GP Shakespeare round-trip plant for **each** m
 
 
 
+
 ## 2026-11-13: bounded p36 source-selected transfer tests (run agent38-gpt6-20261113T124345Z-independent-solve-path-7d6f9b2c)
 
-Two exact, source-motivated p36 candidates were tested; neither recovers plaintext.
+No plaintext recovered. Three frozen p56 prime-totient starts on physical p36 all fail:
+- ordinal 15 → prime 47, motivated by the signed DH23 client exponent 15 and 15th-prime relation;
+- ordinal 36 → prime 151, motivated by p36's page number and unsigned 1661=11*151;
+- ordinal 705 → prime 5323, motivated by the exact GF(29²) discrete log below.
 
-1. **p56 prime-totient clock starting at prime ordinal 36.** Physical p36 has 238 GP runes / 50 printed words. The unsigned 2013 DH3301 participant transcript gives exponent class e=11 (mod 550), with representative 1661=11*151; 151 is the 36th prime. Subtract φ(p_{36+i}) mod29 continuously over p36 (first prime151, first shift5), with no F skip or reset. Raw IoC 0.03598908; candidate 0.03407439. Within-word Shakespeare-trained GP trigram: raw -4.342497, candidate -4.582592; candidate below all 2,000 deterministic length-matched held-out samples (minimum -2.350445). Exact re-encoding and synthetic native-GP plant pass. This is a weak retrospective selector, not a signed LP2 instruction. Do not repeat or sweep other prime starts/F masks.
+For the p3 red-field root u=(0,1), u²=3u+8, and p36 relative norm v=(19,26), exact arithmetic gives u^705=v, ord(u)=840, ord(v)=56, hence log_u(v)=705. The post-discovery factorization 705=15*47 links signed DH exponent15 and 15th prime47, but is not an independent instruction. The three p56 transfers use P_i=C_i-(p_{s+i}-1) mod29 continuously over 238 p36 runes, no F skip/reset. IoCs for starts15/36/705: 0.03492536/0.03407439/0.03329433; within-word GP trigram scores -4.323200/-4.582592/-4.538626 versus raw -4.342497. All three score below the minimum -2.350446 among 2,000 deterministic length-matched held-out Shakespeare samples. Exact roundtrip/positive plant are in the reusable SFT. Do not repeat or sweep other starts.
 
-2. **Q238 field power exponent 11.** The existing p36 Q238 finite-field gate previously tested reversible exponents 23, 1661 and 1067. The same unsigned participant transcript gives e≡11 (mod550); test only its least positive representative 11 as a canonical but non-unique candidate in GF(29^238). The inverse is mathematically valid and exactly re-encodes the original reduced field element; after fixed numeral-slot restoration, full p36 IoC is 0.032514271531 (raw 0.035989079176), first55 GP transliteration prefix `EADGPFYSBIAEDPDOEDIAEFOEYOENSTHBOHEOBWTHCAETHTHLXSYAAEOETLLCGEARAJOEUW`. No plaintext. No other representatives of the unsigned congruence class were searched.
+The existing p36 Q238 fixed-numeral field-power gate was extended to test the least positive representative 11 of the unsigned participant class e≡11 (mod550), in addition to 23,1661,1067. This is specifically the **239-position fixed-numeral codec**: insert the printed Arabic 1 at offset99, reduce modulo Q238, invert the power, restore the numeral. The earlier raw 238-rune R238 exponent-11/power-stream gate had already failed; this is a distinct register, not a new exponent discovery. The lifted candidate has IoC 0.032514271531 versus raw 0.035989079176 and no plaintext. No other representatives of the unsigned class were tested.
 
-Durable files: `sims/p36_prime36_p56_totient_transfer_sft.cjs`, `im-results/p36-prime36-p56-totient-transfer-gate.md`, `sims/lp2_p36_q238_dh_power_sft.cjs`, `im-results/lp2-p36-q238-dh-power-gate.md`; `results/README.md` consolidated. The p36 field-power workflow now has a push trigger on its SFT source; its run was not independently inspected through the available Actions metadata. No established plaintext, key, or destination recovered.
+Durable files: `sims/p36_prime36_p56_totient_transfer_sft.cjs`, `im-results/p36-prime36-p56-totient-transfer-gate.md`, `sims/lp2_p36_q238_dh_power_sft.cjs`, `im-results/lp2-p36-q238-dh-power-gate.md`, and the updated `im-results/p36-grid238-dh11-field-multiplication-gate.md`; `results/README.md` consolidated. The p36 field-power workflow has a push trigger on its SFT source; its run was not independently inspected through the available Actions metadata.
 
 A separate quick M05^j full-cycle word-rotor recomputation matched existing repository coverage in `sims/lp1_mobius_full28_word_rotor_sft.cjs`; no duplicate artifact or report was committed.
 
