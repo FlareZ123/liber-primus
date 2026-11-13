@@ -167,6 +167,23 @@ const unsolvedRed = ink.pages.filter((page) => page.page <= 55)
     .flatMap((span) => indexed(span.runes)));
 assert.equal(unsolvedRed.length, 213);
 assert.equal(combinedBlackTail.length, unsolvedRed.length);
+// This is the unique pair of complete red-bracketed page suffixes whose
+// lengths sum to the original unsolved-only red-runic count 213.
+const sourceSuffixes = ink.pages.filter((page) => page.page <= 55)
+  .flatMap((page) => (page.red_spans || []).map((span) => ({
+    page: page.page, start: span.start, length: span.length,
+    suffix: page.rune_count - span.start - span.length,
+  })));
+assert.equal(sourceSuffixes.length, 16);
+const suffixPairMatches = [];
+for (let i = 0; i < sourceSuffixes.length; i++)
+  for (let j = i + 1; j < sourceSuffixes.length; j++)
+    if (sourceSuffixes[i].suffix + sourceSuffixes[j].suffix === 213)
+      suffixPairMatches.push([sourceSuffixes[i], sourceSuffixes[j]]);
+assert.deepEqual(suffixPairMatches, [[
+  {page: 3, start: 119, length: 3, suffix: 95},
+  {page: 39, start: 119, length: 3, suffix: 118},
+]]);
 assert.equal(corpus.pages.find((p) => p.page === 57).indices.length, 95);
 function coincidenceNumerator(seq) {
   const hist = Array(29).fill(0);
@@ -224,7 +241,10 @@ console.log(JSON.stringify({
     invalid_p3_by_phase: rsaInvalidP3,
     invalid_p39_by_phase: rsaInvalidP39 },
   red213_direct_tail_key: { p3_tail: p3Tail.length, p39_tail: p39Tail.length,
-    unsolved_red_runes: unsolvedRed.length, original_trial_results: tailAsKeyOutcomes,
+    unsolved_red_runes: unsolvedRed.length,
+    red_suffix_pairs_in_unknown_book: sourceSuffixes.length * (sourceSuffixes.length - 1) / 2,
+    source_pair_matches_213: suffixPairMatches.length,
+    original_trial_results: tailAsKeyOutcomes,
     highest_trial_ioc: bestTailDirect / (213 * 212),
     parable_original_length: parable.length,
     p3_black_tail_F_offsets: p3TailF,
