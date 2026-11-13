@@ -23,3 +23,5 @@ jobs:
         run: node sims/lp2_native_gp_source_orthography_sft.cjs
       - name: Test exact printed LP1 p5 moth key versus earlier approximate key
         run: node sims/lp2_lp1p5_moth_source81_corrected_sft.cjs
+      - name: Source moth-linked p55 terminal seven-word historical crib
+        run: node sims/lp2_p55_moth_p5_sevenword_crib_sft.cjs
