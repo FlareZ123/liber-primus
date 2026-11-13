@@ -142,8 +142,8 @@ const plant256 = truePath.map(cell => {
   return mod((3 * column + 1) * (bytes[cell] % 29) + 5 * column + 2);
 });
 assert.equal(obstruction(truePath, plant256.slice(76), groupings.column).errors, 0);
-const fitted = [];
-for (let column = 0; column < 8; column++) {
+const fitted = Array(8).fill(null);
+for (let column = 1; column <= 6; column++) {
   const samples = [];
   for (let i = 76; i < 256; i++) {
     const cell = truePath[i];
@@ -158,15 +158,21 @@ for (let column = 0; column < 8; column++) {
   assert(samples.every(([x, y]) => mod(a * x + b) === y));
   fitted[column] = [a, b];
 }
+// Inner rings occupy only source columns 1 through 6. The authentic geometry
+// therefore cannot determine a column-0 or column-7 key from known p56/p57.
 const recoveredOuter = truePath.slice(0, 76).map(cell => {
-  const [a, b] = fitted[cell % 8];
-  return mod(a * (bytes[cell] % 29) + b);
+  const key = fitted[cell % 8];
+  return key === null ? null : mod(key[0] * (bytes[cell] % 29) + key[1]);
 });
-assert.deepEqual(recoveredOuter, plant256.slice(0, 76));
+assert.equal(recoveredOuter.filter(x => x !== null).length, 12);
+assert.equal(recoveredOuter.filter(x => x === null).length, 64);
+for (let i = 0; i < 76; i++) {
+  if (recoveredOuter[i] !== null) assert.equal(recoveredOuter[i], plant256[i]);
+}
 console.log(JSON.stringify({
   source: {tableCells:256, p55Unknown:76, solvedP56:85, clearP57:95,
     originalBytesSha256:'3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290'},
   outcomes, bestErrors: {column:61, shellColumn:57, row:10},
-  positiveControl:{correctPath:[0,1], knownFitErrors:0, recoveredUnknown:76},
+  positiveControl:{correctPath:[0,1], knownFitErrors:0, recoveredOuterWithLearnedKeys:12, unconstrainedOuterColumns:64},
   decision:'No stationary column-local, shell-and-column-local, or row-local 29->29 table, regardless of secret keys, fits 180 authentic known terminal runes in any of eight ring orientations.'
 },null,2));
