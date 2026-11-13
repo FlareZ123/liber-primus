@@ -34,6 +34,23 @@ assert.equal(orbit.length, 75);
 assert.equal(new Set(orbit).size, 75);
 assert.deepEqual(orbit.slice(0, 8), [1, 5, 25, 125, 625, 3125, 2421, 2202]);
 
+// The same source cuneiform motif also displays 1033. Only the 3301
+// reading gives this orbit length for the historically specified base5.
+/** @param {number} baseValue @param {number} mod @returns {number} */
+function order(baseValue, mod) {
+  let residue = 1;
+  for (let exponent = 1; exponent < mod; exponent++) {
+    residue = residue * baseValue % mod;
+    if (residue === 1) return exponent;
+  }
+  throw Error('unexpected nonunit base');
+}
+assert.equal(order(5, 1033), 1032);
+assert.equal(order(5, 3301), 75);
+const smallPrimeBases = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
+assert.deepEqual(smallPrimeBases.filter(baseValue =>
+  order(baseValue, 3301) === 75), [5]);
+
 /** @param {number[]} data @returns {number} */
 function ioc(data) {
   const counts = Array(29).fill(0);
