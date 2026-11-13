@@ -36,7 +36,7 @@ function printedSegments(pageText) {
   for (const ch of pageText) {
     if (primes.has(ch)) {
       word += ch;
-    } else if (ch === "/" || /\\s/u.test(ch)) {
+    } else if (ch === "/" || /\s/u.test(ch)) {
       // A visual line wrap does not end a printed word.
     } else if (word) {
       result.push(word);
@@ -61,7 +61,7 @@ function primeSum(word) {
 }
 
 const solved56 = known.split("### 56")[1].split("### 57")[0]
-  .split(/\\r?\\n\\r?\\n/u).slice(0, 2).join(" ").match(/[A-Z]+/gu);
+  .split(/\r?\n\r?\n/u).slice(0, 2).join(" ").match(/[A-Z]+/gu);
 const solved57 = known.split("### 57")[1].match(/[A-Z]+/gu);
 assert.equal(solved56[1], "END");
 assert.equal(solved56[4], "DEEP");
