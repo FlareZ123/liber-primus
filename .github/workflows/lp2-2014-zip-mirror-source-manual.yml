@@ -10,6 +10,7 @@ on:
         default: commoncrawl
         options:
           - commoncrawl
+          - commoncrawl-raw
           - wayback-arquivo
 
 permissions:
@@ -58,4 +59,27 @@ jobs:
         with:
           name: original-2014-commoncrawl-mirror
           path: mirror-2014-original-recovery/commoncrawl-index.json
+          if-no-files-found: error
+
+  raw-index-commoncrawl:
+    if: ${{ inputs.source == 'commoncrawl-raw' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify standalone direct-raw archive reader
+        run: |
+          node --check sims/lp2_2014_commoncrawl_raw_s3_sft.cjs
+          node sims/lp2_2014_commoncrawl_raw_s3_sft.cjs --selftest
+      - name: Search first two source-era raw indexes
+        run: node sims/lp2_2014_commoncrawl_raw_s3_sft.cjs
+      - name: Archive exact source-key index evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-2014-commoncrawl-raw-index
+          path: mirror-2014-original-recovery/commoncrawl-raw-index.json
           if-no-files-found: error
