@@ -31,9 +31,25 @@ Input: unchanged [original numeric corpus](../resources/liber-primus/lp2-corpus.
 
 Already **p3 alone** contradicts every `L≥2`: a positive integer dividing both 127 and 23 must be 1. Nine other independent source pages give the same contradiction. A five-symbol-block model would need p3's three repeat positions to agree modulo five; they equal 3,0,3 instead. Hidden choice of a different initial block phase cannot fix this.
 
+## Exact minimum repairs for the author-visible five-block model
+
+Even if an encoder permits occasional repeated runes *inside* its blocks, original exceptions cannot be confined to rare one-off errors. Fix the candidate block length L and let the phase be wholly unknown. There are exactly two optimistic choices: one common block phase across the book, or a separate phase chosen *after seeing ciphertext* for each original rune-bearing page. All original adjacent-repeat locations are retained.
+
+For each page and candidate phase, count observed repeats at that phase. This is the **maximum possible number of repeats explained as block joins**. Subtract the maximum from the original 86 to get the exact minimum count of repeats that must occur strictly inside blocks, requiring an exception or another cipher rule. The phase is selected to favour the hypothesis, so this is a rigorous lower bound for every untested secret cipher key in that model.
+
+| Block length L | Minimum internal repeat exceptions with one common page-relative phase | With arbitrary independent page phase |
+| ---: | ---: | ---: |
+| 2 | 35 / 86 | 17 / 86 |
+| **5** (original LP1 five-by-five motif) | **64 / 86** | **34 / 86** |
+| 8 (printed numeric-table columns) | 67 / 86 | 37 / 86 |
+| 16 (p15 number-square cells) | 75 / 86 | 41 / 86 |
+| 32 (printed numeric-table rows) | 80 / 86 | 43 / 86 |
+
+Thus the direct source-motivated length-five architecture demands at least **34 within-block exceptions**, even granting every page an optimally and independently chosen start phase. With one shared phase relative to each page start it demands **64**. These are exact minimum values, not a probability model. They refute a *small exceptional repair budget* under fixed five-symbol blocks, without fitting plaintext or assuming any key.
+
 ## Reproduction and constructive control
 
-[Single runnable CommonJS test](../sims/lp2_block_boundary_repeat_gcd_sft.cjs) reads the original numeric GP29 corpus, asserts 55 pages / 12,956 runes / 86 page-local adjacent repeats, fixes both page3 and page9 repeat positions, enumerates periods 2–1,024 under every unknown phase, and checks ten independent gcd-one witnesses. The general integer-gcd theorem extends the exclusion beyond that numerical range.
+[Single runnable CommonJS test](../sims/lp2_block_boundary_repeat_gcd_sft.cjs) reads the original numeric GP29 corpus, asserts 55 pages / 12,956 runes / 86 page-local adjacent repeats, fixes both page3 and page9 repeat positions, enumerates periods 2–1,024 under every unknown phase, and checks ten independent gcd-one witnesses. It also asserts the exact minimum internal-repeat exceptions under periods 2, 5, 8, 16 and 32, granting independently optimized page phases. The general integer-gcd theorem extends the exclusion beyond that numerical range.
 
 As a source-shaped positive plant, the test constructs a 217-symbol 29-alphabet sequence with a five-rune block phase at 2 and 43 repeated adjacent pairs **only** at the eligible block boundaries. The same detector accepts the planted length-five phase and rejects length four. The actual committed SFT source was independently executed using the exact current GitHub corpus with ordinary assertions and logged **PASS** on 13 November 2026; no CI was needed.
 
