@@ -12,6 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: p50 self-pointer 11-cycle versus exact original p32 11x11
+        run: node sims/lp2_p32_p50_pointer11_wordfree_gate_sft.cjs
       - name: Original p55 source-moth crib all-key affine recurrence
         run: node sims/lp2_p55_moth_8register_crib_sft.cjs
       - name: Source-corrected LP1 p5 moth-prose key (81 original runes)
