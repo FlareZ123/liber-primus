@@ -320,6 +320,65 @@ for (const [key, mat, inverse] of [
 assert.equal(hillDirect.length, 4);
 assert.ok(hillDirect.every((x) => x.ioc > 0.0344 && x.ioc < 0.0347));
 
+
+// Red-ink-only, visually selected floral material: the p40 red8 rubric,
+// the p53 red51 ending and the p54 red9 rubric. GP-prime addition is an
+// authentic earlier Cicada operation. The sum matches a printed p15 cell.
+const floralRedPages = [40, 53, 54];
+const floralRedParts = floralRedPages.map((page) =>
+  ink.pages.find((p) => p.page === page).red_spans.flatMap((span) =>
+    corpus.pages[page].indices.slice(span.start, span.start + span.length)));
+const floralRedPrimeSums = floralRedParts.map((runes) =>
+  runes.reduce((sum, rune) => sum + corpus.prime[rune], 0));
+assert.deepEqual(floralRedParts.map((x) => x.length), [8, 51, 9]);
+assert.deepEqual(floralRedPrimeSums, [435, 2262, 597]);
+assert.equal(floralRedPrimeSums.reduce((sum, value) => sum + value, 0), 3294);
+assert.ok(printedSpiral.includes(3294));
+assert.equal(3301 - 3294, 7);
+assert.equal(primeList[3], 7);
+
+// Source-stratified fixed-inventory null. Because the p15 square has
+// sixteen cells, the **any-cell** probability is the apt exploratory
+// postselection statistic, rather than the exact 3294 probability.
+let redShuffleState = 19333885;
+function redRandomInt(n) {
+  redShuffleState ^= redShuffleState << 13;
+  redShuffleState ^= redShuffleState >>> 17;
+  redShuffleState ^= redShuffleState << 5;
+  return Math.floor(((redShuffleState >>> 0) / 4294967296) * n);
+}
+const redTrials = 30000;
+const p15Cells = new Set(printedSpiral);
+let anyCellCount = 0;
+let exact3294Count = 0;
+for (let trial = 0; trial < redTrials; trial += 1) {
+  let sum = 0;
+  for (let part = 0; part < 3; part += 1) {
+    const source = corpus.pages[floralRedPages[part]].indices.slice();
+    for (let j = 0; j < floralRedParts[part].length; j += 1) {
+      const k = j + redRandomInt(source.length - j);
+      [source[j], source[k]] = [source[k], source[j]];
+      sum += corpus.prime[source[j]];
+    }
+  }
+  anyCellCount += p15Cells.has(sum);
+  exact3294Count += sum === 3294;
+}
+assert.equal(anyCellCount, 398);
+assert.equal(exact3294Count, 39);
+const redSumExploratory = {
+  redRuns: [8, 51, 9],
+  sumGpPrimes: floralRedPrimeSums,
+  totalGpPrime: 3294,
+  exactP15SpiralCell: 3294,
+  selectedPrime: 7,
+  trials: redTrials,
+  anyP15CellCount: anyCellCount,
+  anyP15CellP: (anyCellCount + 1) / (redTrials + 1),
+  exactValueCount: exact3294Count,
+  exactValueP: (exact3294Count + 1) / (redTrials + 1)
+};
+
 console.log(JSON.stringify({
   source: 'LP2 physical p40-55; remove opening red8 at p40 and red9 at p54',
   titlelessLength: modulus,
@@ -330,6 +389,7 @@ console.log(JSON.stringify({
   fourTimes829EqualsOriginalFloralLength: true,
   naturalFourBy829Readouts: fourBy829,
   floralRedHeadingPrimeSums: headingPrimeSums,
+  floralAllRedPrimeSumAndP15CellNull: redSumExploratory,
   historicalPrime1033Totient: 1032,
   p15P40P54HeadingIndexSums: indexHeadingSums,
   p15P40P54HeadingPrimeSums: primeHeadingSums,
