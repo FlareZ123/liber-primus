@@ -88,6 +88,15 @@ assert.equal(body.length, 3000);
 const seed = red.reduce((v, d) => v * 29n + BigInt(d), 0n);
 assert.equal(seed, 5761677436n);
 assert(seed > 0xffffffffn); // Prior 2^32 searches did not contain this integer.
+const tableBytes = load('resources/liber-primus/base60-grid.json').byte_rows.flat();
+assert.equal(tableBytes.length, 256);
+const tableRand = new PythonMT(seed);
+const emittedBytes = Array.from({length: 256}, () => Math.floor(256 * tableRand.random()));
+assert.deepEqual(emittedBytes.slice(0, 16), [249,225,13,240,149,80,47,6,92,235,60,76,249,42,19,221]);
+assert.deepEqual(tableBytes.slice(0, 16), [203,231,167,186,97,237,126,183,92,249,156,222,247,4,183,212]);
+const byteMatches = emittedBytes.flatMap((n,i) => n === tableBytes[i] ? [i] : []);
+assert.deepEqual(byteMatches, [8]); // 1/256 matching, rather than 256/256.
+
 
 const GP = n => ((n % 29) + 29) % 29;
 /** @param {number[]} input */
@@ -133,6 +142,7 @@ assert.deepEqual(cases.map(x => x.decoded_ioc), [
 console.log(JSON.stringify({
   source: 'LP2 p40-53 original 3008 GP29 symbols, red8 + body3000',
   wide_base29_seed: seed.toString(),
+  original_table_256_byte_exact_rand_matches: byteMatches.length,
   independent_seed0_and_seed1_python27_vectors: 'PASS',
   models: cases,
   conclusion: 'No native-GP29 plaintext from the source-selected wide-seed direct RAND pad'
