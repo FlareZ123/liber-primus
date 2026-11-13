@@ -9,6 +9,7 @@ on:
         options:
           - legacy
           - signed-dh-mobius
+          - frobenius
         default: legacy
 
 permissions:
@@ -41,3 +42,15 @@ jobs:
         run: node sims/p36_dh23_totalized_mobius_original_sft.cjs
       - name: Signed-DH totalized degree238-field Mobius original-cipher control
         run: node sims/p36_dh23_fullfield_mobius_original_sft.cjs
+
+  frobenius:
+    if: inputs.suite == 'frobenius'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p36 exact 238-member Frobenius inverse SFT
+        run: node sims/lp2_p36_field_frobenius_orbit_sft.cjs
