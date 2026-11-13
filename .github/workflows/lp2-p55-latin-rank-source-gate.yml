@@ -1,0 +1,15 @@
+name: LP2 p55 Latin predecessor-rank source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-and-plants:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original p55, forward/inverse plant, control-corpus invariant
+        run: node sims/lp2_p55_latin_rank_wordshape_sft.cjs
