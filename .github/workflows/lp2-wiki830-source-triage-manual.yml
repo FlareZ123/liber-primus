@@ -9,7 +9,7 @@ on:
         type: boolean
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   source-census:
@@ -28,6 +28,10 @@ jobs:
         env:
           ARCHIVE_ROOT: /tmp/cicada-original-archive
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs
+      - name: Publish exact Wiki source metadata and duplicates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node sims/lp2_wiki830_pin_source_index.cjs
       - name: Inspect source-key imagery
         if: github.event.inputs.inspect_images == 'true'
         run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-image
