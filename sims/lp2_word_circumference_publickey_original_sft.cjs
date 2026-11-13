@@ -64,7 +64,7 @@ assert.equal(eligible8.length, 343);
 const dictionary = new Set();
 const sampleByLength = new Map();
 for (const line of spelling.split('\n')) {
-  const match = line.match(/^([a-z]+)\s+\d+$/u);
+  const match = line.trim().match(/^([a-z]+)\s+\d+$/u);
   if (!match) continue;
   const value = encodeEnglish(match[1]);
   if (!value || value.length < 3) continue;
