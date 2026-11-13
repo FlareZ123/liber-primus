@@ -15,14 +15,14 @@ The CommonJS [reproducer](../sims/lp2_grid_2013_ssss_xtea_diffusion_sft.cjs) loa
 | Original input | Decoded secret size | Printable ASCII bytes | Zero bytes | Longest uninterrupted printable run |
 | --- | ---: | ---: | ---: | ---: |
 | 32×8 row-major full table | 256 | **91/256** | 1 | **9** |
-| Column 1 | 32 | 13 | 0 | — |
-| Column 2 | 32 | 7 | 0 | — |
-| Column 3 | 32 | 11 | 1 | — |
-| Column 4 | 32 | 6 | 0 | — |
-| Column 5 | 32 | 12 | 0 | — |
-| Column 6 | 32 | 13 | 0 | — |
-| Column 7 | 32 | 12 | 0 | — |
-| Column 8 | 32 | 10 | 0 | — |
+| Column 1 | 32 | 13 | 0 | n/a |
+| Column 2 | 32 | 7 | 0 | n/a |
+| Column 3 | 32 | 11 | 1 | n/a |
+| Column 4 | 32 | 6 | 0 | n/a |
+| Column 5 | 32 | 12 | 0 | n/a |
+| Column 6 | 32 | 13 | 0 | n/a |
+| Column 7 | 32 | 12 | 0 | n/a |
+| Column 8 | 32 | 10 | 0 | n/a |
 
 The 256-byte single-secret output begins with hex `fc 68 86 27 61 7e 4a d0 ff b0 f7 3c 72 0b 28 ce` and ends `8b b9 7a 15 fa 2d 5a 62 8c 1b e4 70 71 33 52 73 4e 45 59 4b d9 ee c2 33 d0 d9 d0 d5 f3 54 26 d5`. Its 91 printable bytes, isolated NUL and longest 9-byte printable run supply no natural-language or self-identifying file readout. Eight separately decoded column streams likewise lack a readable address or self-describing message. Forward inversion succeeds on all nine complete original source inputs and the independently known historical address. Source-native inverse/forward consistency confirms arithmetic correctness; it does not prove a historical key choice.
 
