@@ -55,11 +55,13 @@ function affineShape(v) {
   return v.map(x => mod((x - first) * multInv)).join(',');
 }
 const lexByLen = Array.from({length: 40}, () => []);
+const weightedByLen = Array.from({length: 40}, () => []);
 const lexExact = new Set();
 for (const match of textblob.matchAll(/^([a-z]+) (\d+)$/gm)) {
   const values = encode(match[1]);
   if (values && values.length < 40) {
     lexByLen[values.length].push(values);
+    weightedByLen[values.length].push({values, weight: Number(match[2])});
     lexExact.add(values.join(','));
   }
 }
@@ -94,6 +96,8 @@ const unknown = words.filter(w => w[0].page <= 55);
 assert.equal(unknown.length, 2896);
 assert.equal(original.reduce((a, p) => a + p.indices.length, 0), 12956);
 let previous = null, repeats = 0, eligible = 0, sourceTotal = 0;
+let expectedEa = 0, expectedEaInitial = 0, observedBoundaryRepeats = 0;
+const eaUnattainable = [];
 const byLength = new Map();
 const repeatMasks = [];
 let missingLong = 0;
@@ -114,6 +118,29 @@ for (const wordItems of unknown) {
     previous = item;
   }
   if (mask.includes(1)) repeatMasks.push({page: wordItems[0].page, len: mask.length, mask});
+  if (mask[0] === 1) observedBoundaryRepeats++;
+  const options = weightedByLen[mask.length] || [];
+  let totalWeight = 0, eaWeight = 0, eaStartWeight = 0, compatible = false;
+  for (const item of options) {
+    totalWeight += item.weight;
+    let count = 0, allowed = true;
+    for (let j = 0; j < item.values.length; j++) {
+      if (mask[j] < 0) continue;
+      const z = +(item.values[j] === 28);
+      count += z;
+      if (mask[j] !== z) allowed = false;
+    }
+    eaWeight += item.weight * count;
+    if (mask[0] >= 0 && item.values[0] === 28) eaStartWeight += item.weight;
+    compatible ||= allowed;
+  }
+  if (totalWeight) {
+    expectedEa += eaWeight / totalWeight;
+    expectedEaInitial += eaStartWeight / totalWeight;
+  }
+  if (mask.includes(1) && !compatible) {
+    eaUnattainable.push({page:wordItems[0].page, len:mask.length, mask:mask.join('')});
+  }
   if (!complete) continue;
   assert.equal(values.length, wordItems.length);
   eligible++;
@@ -133,6 +160,8 @@ for (const wordItems of unknown) {
 assert.equal(repeats, 86);
 assert.equal(eligible, 2841);
 assert.equal(repeatMasks.length, 85);
+assert.equal(observedBoundaryRepeats, 23);
+assert.equal(eaUnattainable.length, 5);
 const allLong = [...byLength.entries()].filter(([len]) => len >= 6);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.words, 0), 791);
 assert.equal(allLong.reduce((a, [len, rec]) => a + rec.affine, 0), 0);
@@ -146,8 +175,12 @@ assert.equal(nonzero[0], 86);
 const chiMean = (12901 - 86) / 28;
 const chi = nonzero.slice(1).reduce((s, c) => s + (c-chiMean)**2 / chiMean, 0);
 // Complete known-original GP29 positive plant, no bypass or output-mutation.
-const originalSolved = db.pages.find(p => p.page === 57).indices;
-assert.equal(originalSolved.length, 95);
+const knownP57 = db.pages.find(p => p.page === 57).indices;
+assert.equal(knownP57.length, 95);
+// Insert a real EA-initial English word as an independent synthetic sentinel.
+const eaWord = encode('each');
+assert.deepEqual(eaWord, [28, 5, 8]);
+const originalSolved = knownP57.concat(eaWord);
 const key = originalSolved.map((_, i) => 1 + ((i * 17 + 5) % 28));
 const cipher = []; let prev = 13;
 for (let i = 0; i < originalSolved.length; i++) {
@@ -166,14 +199,18 @@ assert.equal(cipher.filter((c, i) => c === (i ? cipher[i-1] : 13)).length,
   'the zero-step escape is exactly the rune EA');
 const report = {
   original: {pages:55, runeCount:12956, words:unknown.length,
-    withinPageAdjacent:12901, equalAdjacent:86, zeroBearingWords:85,
+    withinPageAdjacent:12901, equalAdjacent:86, zeroBearingWords:85, observedBoundaryRepeats,
+    expectedEaFromLengthAndWordFrequency:+expectedEa.toFixed(3),
+    expectedEaWordInitial:+expectedEaInitial.toFixed(3),
+    eaWordMaskMissing:eaUnattainable,
     nonzeroDifferenceChiSquare27df:chi, differenceFrequencies:nonzero},
   hypothesis: 'C_i=C_(i-1)+K_i*(P_i+1) mod29, K_i in 1..28',
   keyIndependent: {eligibleWords:eligible, eligibleDeltaRunes:sourceTotal,
     wordsLen6OrMore:791, matchingAnyPerWordAffineNativeEnglish:0,
     matchingAnyPerWordConstantMultiplierNativeEnglish:0,
     lengths: Object.fromEntries([...byLength.entries()].sort((a,b)=>a[0]-b[0]))},
-  syntheticPlant: {solvedGpRunes:originalSolved.length,
+  syntheticPlant: {solvedOriginalGpRunes:knownP57.length,
+    appendedNativeEnglishEaRunes:eaWord.length,
     exactRecovered:decoded.length, observedRepeatCount:cipher.filter((c,i) =>
       c === (i ? cipher[i-1] : 13)).length},
   limitations: 'Not a recovered original key or original plaintext. Native-English controls are finite, and a rune-varying multiplier is unconstrained by these exclusions.'
