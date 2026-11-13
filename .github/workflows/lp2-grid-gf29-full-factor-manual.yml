@@ -36,3 +36,5 @@ jobs:
           node sims/lp2_marked_quadratic_crosspage_sft.cjs
       - name: Source-signed 2013 DH2 and p29/table G-adic original inverse
         run: node sims/p29_grid_2013_dh_gadic_bridge_sft.cjs
+      - name: Recover p55 perimeter via original 180-rune interior and 2D GF29 recurrence gate
+        run: node sims/lp2_p50_inner180_to_p55_2d_recurrence_sft.cjs
