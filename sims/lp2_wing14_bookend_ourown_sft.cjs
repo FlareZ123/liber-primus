@@ -66,6 +66,7 @@ function main() {
   const page55First = byPage(55)[0];
   const page27First = byPage(27).slice(0, 4);
   const read = (/** @type {number[]} */ x) => x.map(v => corpus.translit[v]).join('');
+  const expected = new Map([[1, ['EAOF', 'U']], [28, ['WEAH', 'C']], [14, ['JYEO', 'W']]]);
   for (const a of [1, 28, 14]) {
     const inverse = Array.from({ length: 28 }, (_, i) => i + 1).find(v => mod(a * v) === 1);
     assert.ok(inverse);
@@ -76,9 +77,10 @@ function main() {
     const prediction27 = read(page27First.map((v, i) => decodedRune(v, i)));
     const recipher = known.map((v, i) => mod(a * v + keys[i]));
     assert.deepEqual(recipher, original);
+    assert.deepEqual([prediction27, prediction55], expected.get(a));
     console.log(`affine slope ${a}: phase-0..5 keys=${keys.join(',')} ; p27 first complete word=${prediction27}; p55 first complete word=${prediction55}`);
   }
-  console.log(`original p27:28 / p55:70 both phase 0 mod14; 56? no, p55 76-rune boundary is preserved`);
+  console.log(`original p27:28 / p55:70 both phase 0 mod14; page-local 14-rune register`);
   console.log(`known crib OUR OWN first-three GF29 Fibonacci residual = ${rP}; original DJU BEI residual = ${rC}`);
   console.log('Fibonacci-affine crib rejected for every GF29 scalar; planted affine-Fibonacci control passed.');
   console.log('Independent affine phase-14 direct predictions are non-native words; no unknown LP2 plaintext or key recovered.');
