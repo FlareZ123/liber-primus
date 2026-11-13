@@ -59,7 +59,7 @@ const sources = [
     commit: "1df00324a35b316bb0e537ff15514fa9c9523d8e",
     file: "7096-8.txt",
     gitBlob: "bc03ea95546e43ebb77781688ab49146c6d00382",
-    expected: [7,5,6,4]
+    expected: [7,5,6,6]
   }
 ];
 
