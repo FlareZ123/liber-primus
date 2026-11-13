@@ -20,6 +20,22 @@ const grid = gridSource.byte_rows;
 assert.deepEqual(grid.map(row => row.length), Array(32).fill(8));
 assert.equal(grid[10][0], 142);
 assert.equal(gridSource.rows[10][0], '2M');
+// A completely secret printed-token codebook cannot evade the collision bound
+// by changing base59/base60 alphabets: this byte mapping is a bijection of
+// ORIGINAL two-character printed token identities on all 256 cells.
+const printedTokens = gridSource.rows.flat();
+const canonicalBytes = grid.flat();
+const tokenByteMap = new Map();
+const byteTokenMap = new Map();
+for (let cell = 0; cell < 256; cell++) {
+  const token = printedTokens[cell], byte = canonicalBytes[cell];
+  if (tokenByteMap.has(token)) assert.equal(tokenByteMap.get(token), byte);
+  if (byteTokenMap.has(byte)) assert.equal(byteTokenMap.get(byte), token);
+  tokenByteMap.set(token, byte);
+  byteTokenMap.set(byte, token);
+}
+assert.equal(tokenByteMap.size, 161);
+assert.equal(byteTokenMap.size, 161);
 
 /** @param {number} count @returns {number[]} */
 function primes(count) {
