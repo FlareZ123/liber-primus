@@ -1,4 +1,4 @@
-# Cross-round 2014 `FIRFUMFERENCE` key on LP2
+# Cross-round 2014/008 `FIRFUMFERENCE` key on LP2
 
 **Decision: reject the direct continuous-key transfer and the p57-selected word-interior composition.** The 2014 key is a real, source-documented GP29 Vigenere key for LP1 prime pages 107 and 167. LP2 p57's “circumferences” is a plausible human-facing callback. Applying the exact 2014 key schedule continuously to the 12,956 unknown LP2 runes does not produce plaintext or a meaningful language-score improvement.
 
@@ -17,7 +17,8 @@ Sources:
 - [Original 2014 GP/Vigenere implementation](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/gematriaprimus.py)
 - [2014 page 107 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/107.jpg.runes-possibilities.txt)
 - [2014 page 167 rune source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes.txt) and [archived decryption possibilities](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/167.jpg.runes-possibilities.txt)
-- The 2014/009 README contains the spelling `FIRFUMFERENFE`; the actual 2014/008 README and executable source use `FIRFUMFERENCE`. Only the code-backed spelling was tested.
+- The 2014/008 sixth-onion stage uses `FIRFUMFERENCE` in its README and executable source. The separate 2014/009 squares-submission/A-KOAN stage uses `FIRFUMFERENFE` in both its README and its own `gematriaprimus.py`; its archived combined-page output recovers the A-KOAN text. This is a second code-backed, stage-specific key, not a README typo. The present test deliberately covers only the 2014/008 key. The 2014/009 key is separately evaluated in the [p55 dual historical-key test](p55-dual-historical-keys-original-gate.md) and [p55 fold/key study](lp2-2016-p55-fold-circumference-keys.md).
+- [2014/009 squares-submission README](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/README.md), [executable source](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/gematriaprimus.py), and [archived A-KOAN output](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/009-squares-submission-pages/107,167.jpg.runes-possibilities.txt).
 
 ## Positive control
 
@@ -72,4 +73,4 @@ node sims/lp2_2014_firfumference_vigenere_gate.cjs
 
 The script reads only repository inputs, asserts the 55-page/12,956-rune corpus and key-shift vector, and prints the control, raw, decoded and IoC statistics.
 
-Do not retune key offsets, reset the key at page boundaries, test the README typo, or invent skip positions to rescue either tested route. The p57-selected word-interior composition is also negative; reopen only if a new independent LP2 source clue selects a different use of the 2014 key or supplies the missing skip/reset rule. No LP2 plaintext, authentic key, complete cipher mechanism or destination is recovered.
+Do not conflate the 2014/008 and 2014/009 stage-specific keys. This report's negative applies only to the exact 2014/008 `FIRFUMFERENCE` transfer and its endpoint-strip composition; the 2014/009 `FIRFUMFERENFE` key is a separate code-backed input, already tested on p55 in the linked dual-key gate. Do not retune offsets or invent skip positions without a new source selector. No LP2 plaintext, authentic key, complete cipher mechanism or destination is recovered.
