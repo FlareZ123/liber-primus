@@ -2,7 +2,7 @@
  * Q92 F5 known-stencil, independent peer cover test.
  * On every test page, two OTHER source pages select common original-image
  * luma DCT blocks. Decrement matches are counted only in nonzero AC values
- * from those blocks. Scope: source-visible repeated-artwork groups, 30 pages.
+ * from those blocks. Scope: source-visible repeated-artwork groups, 32 pages.
  * Build: gcc -O2 -Wall -Wextra lp2_f5_q92_shared_stencil_sft.c -ljpeg -o stencil
  * Usage: stencil resources/liber-primus physical_page [candidate_stego.jpg]
  */
@@ -20,16 +20,14 @@ static const int g0[]={4,5,6,7};
 static const int g1[]={9,11,13};
 static const int g2[]={10,12,14};
 static const int g3[]={34,35,36,37,38,39};
-static const int g4[]={40,49,53,54,55};
-static const int g5[]={41,42,43,44,45,46,47,48,52};
+static const int g4[]={40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55};
 typedef struct {const char*name;const int *ids;int n;} Group;
 static const Group groups[]={
  {"p4-7",g0,sizeof(g0)/sizeof(int)},
  {"p9-13-odd",g1,sizeof(g1)/sizeof(int)},
  {"p10-14-even",g2,sizeof(g2)/sizeof(int)},
  {"p34-39",g3,sizeof(g3)/sizeof(int)},
- {"p40-55-color",g4,sizeof(g4)/sizeof(int)},
- {"p41-52-gray",g5,sizeof(g5)/sizeof(int)}
+ {"p40-55",g4,sizeof(g4)/sizeof(int)}
 };
 static JCOEF* read_y(const char*path,int quant[64]){
  FILE *f=fopen(path,"rb");if(!f){perror(path);exit(3);}
