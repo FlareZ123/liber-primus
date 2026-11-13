@@ -71,8 +71,33 @@ Every one of the **438** native reference windows, under either sign and **all 2
 
 This is a **key-independent original-cipher obstruction** for a stationary substitution of a native-English GP prime/totient predecessor step. Changing the initial plaintext state cannot affect the distributional necessary condition. The finite control corpora do not establish that every possible unknown authored English text has these profiles, and a position-changing substitution table, secret pseudorandom stream, non-English intermediate or other feedback law is outside the result. The test rules out repairing the six failed direct inverses merely by inventing a global **unknown 29-letter output permutation**.
 
+## Source-motivated sixteen-state secret alphabets: 4×4 original-grid clock
+
+The original p15 scan contains a **4×4 numerical spiral**, providing a clue-visible length-sixteen clock. A new candidate would apply the previous GP-prime plaintext step `U[i]` and then rotate through **16 independent, completely secret GP29 substitutions**:
+
+```text
+phase[i] = pageRuneOffset[i] mod 16, or globalRuneOffset[i] mod 16
+D[i] = secretPermutation[phase[i]][U[i]]
+```
+
+Each of the sixteen tables may be **any permutation of 29 symbols**. Consequently the phase-specific **sorted GP29 output-symbol histograms are exact, key-independent invariants** even across all `(29!)^16` possible secret assignments. The GPprime±1 and Euler-φ(prime) variants translate the output alphabet by a constant, preserving the same necessary histogram. Neither clock has been explicitly selected by an original instruction; the p15 grid merely motivates testing it.
+
+With the original **12,956** pp0–55 runes and **12,901** within-page increments, compare against source-native GP English controls with the same original 55 page shapes. For each source use contiguous 12,956-rune windows at offsets 0, 1301, 2602 and so forth, compute the GP-prime step with both signs, and optimize *separate secret-symbol assignments* by sorting bins independently at each phase. Minimum optimal phase-wise total-variation mismatch:
+
+| Reference | Windows | Page-local + | Page-local − | Global + | Global − |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Shakespeare | 159 | 0.06604139 | 0.06828928 | 0.06301837 | 0.06921944 |
+| Emerson | 240 | 0.06704907 | 0.07487792 | 0.06751415 | 0.07309511 |
+| Gibran | 39 | 0.08611736 | 0.07604062 | 0.08495465 | 0.07859856 |
+
+As a finite *within-language* calibration, compare Shakespeare's first GP-native 12,956-rune block to the **149** Shakespeare blocks at GP offsets **13,010 through 205,558**, disjoint from that first block, with the same sixteen page-local phase masks and plus GP-prime law. Their sorted-histogram distances range **0.03557864 to 0.04743818**, median **0.04177971**. The real-source best is **0.06604139** for the same page-local clock. Even the globally indexed original minimum **0.06301837** is appreciably larger than those reference-source divergences, although it uses a different clock.
+
+A planted 16-alphabet positive applies `σ_phase(u)=(7u+3phase+7) mod29` under each clock and verifies that all 16 sorted histograms survive each independent phase-specific bijection **exactly**, including original-length and phase alignment checks. This validates the invariance against genuine hidden keys, not language-model fitting.
+
+**Decision:** the tested 16-step prime/totient-plaintext difference plus an arbitrary fixed substitution per phase does not describe native-GP prose with frequency profiles represented by three independently pinned historical controls. The missing author-selected cipher instruction remains decisive. A changing alphabet within each phase or a different state evolution is outside this exact test; arbitrary additions are not justified by the 4×4 picture alone. No unknown plaintext or actual LP2 key is recovered.
+
 ## Decision
 
-The tests close the direct pagewise prime/totient plaintext-driven cipher increments with every possible starting rune, the complete shared-coefficient first-order affine differential family, **and all 29! fixed output permutations of the prime/totient predecessor-step alphabet within the measured native-GP controls**. The only surviving score improvement is the already recognized raw first difference. Do not use a guessed seed, a new fitted nonlinear correction, or a 76-rune p55 coincidence to rescue either hypothesis. A future attempt needs an independently observable mechanism selecting a different operation or actual hidden key material.
+The tests close the direct pagewise prime/totient plaintext-driven cipher increments with every possible starting rune, the complete shared-coefficient first-order affine differential family, **all 29! fixed output permutations and the original p15-motivated (29!)^16 sixteen-phase stationary output-substitution class on native-GP controls**. The only surviving score improvement is the already recognized raw first difference. Do not use a guessed seed, a new fitted nonlinear correction, or a 76-rune p55 coincidence to rescue either hypothesis. A future attempt needs an independently observable mechanism selecting a different operation or actual hidden key material.
 
-**Reproduce:** `node sims/lp2_delta_plainfeedback_source_gate_sft.cjs` on Windows 11 or other Node.js 22 installations; one file, original corpus, no third-party dependencies or file writes. It asserts the exact source counts, each six-family pooled value, original-layout native p57 encryption/decryption/re-encryption, all 813 affine-class scores, the complete 438-control-window sorted-profile gap, and a secret-permutation positive invariant.
+**Reproduce:** `node sims/lp2_delta_plainfeedback_source_gate_sft.cjs` on Windows 11 or other Node.js 22 installations; one file, original corpus, no third-party dependencies or file writes. It asserts the exact source counts, each six-family pooled value, original-layout native p57 encryption/decryption/re-encryption, all 813 affine-class scores, the complete 438-control-window sorted-profile gap, the 16-phase all-secret permutation bounds, the 149-window disjoint native benchmark, and planted secret-permutation invariants.
