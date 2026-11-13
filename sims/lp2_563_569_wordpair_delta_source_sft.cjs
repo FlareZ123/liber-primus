@@ -86,6 +86,20 @@ for(const x of axes)for(const y of sides)for(const sign of [-1,1]){
   maxIdentical=Math.max(maxIdentical,matching);
 }
 assert.equal(maxIdentical,3);
+/** @param {number[]} data @returns {number} */
+function ioc(data){
+  const hist=Array(29).fill(0);
+  for(const v of data)hist[v]++;
+  return hist.reduce((n,k)=>n+k*(k-1),0)/(data.length*(data.length-1));
+}
+const directP32=[-1,1].map(sign=>{
+  const clear=grid.map((v,i)=>mod(v+sign*diff[i%diff.length]));
+  const score=ioc(clear);
+  return {sign,score,first32:clear.slice(0,32).map(i=>corpus.translit[i]).join('')};
+});
+assert.equal(directP32.length,2);
+assert(Math.abs(directP32[0].score-0.033884297520661154)<1e-12);
+assert(Math.abs(directP32[1].score-0.03305785123966942)<1e-12);
 console.log(JSON.stringify({
   status:'Provisional paired source-word delta; not authenticated plaintext or an address',
   sourceWordGP:[a,b],sourcePrimeSums:[563,569],
@@ -102,5 +116,6 @@ console.log(JSON.stringify({
     selectionWarning:'The alignment, WWW and repeat-pattern statistics were post-inspection; no manuscript-wide p-value.'
   },
   p32MatchedRowColKeysMaxSameLocations:maxIdentical,
+  originalP32DirectVigenereIoCs:directP32,
   originalUnknownPlaintextRecovered:0
 },null,2));
