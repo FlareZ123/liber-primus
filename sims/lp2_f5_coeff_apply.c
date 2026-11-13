@@ -34,13 +34,25 @@ int main(int argc, char **argv) {
     }
     jvirt_barray_ptr *coefficients = jpeg_read_coefficients(&src);
     jpeg_component_info *y = &src.comp_info[0];
+    /* The Go F5 source stores each block in JPEG zigzag coefficient order.
+       libjpeg's JCOEF blocks use natural 8x8 raster coefficient order. */
+    static const unsigned char zz[64] = {
+        0,1,8,16,9,2,3,10,17,24,32,25,18,11,4,5,
+        12,19,26,33,40,48,41,34,27,20,13,6,7,14,21,28,
+        35,42,49,56,57,50,43,36,29,22,15,23,30,37,44,51,
+        58,59,52,45,38,31,39,46,53,60,61,54,47,55,62,63
+    };
     for (JDIMENSION row = 0; row < y->height_in_blocks; row++) {
         JBLOCKARRAY line = (*src.mem->access_virt_barray)(
             (j_common_ptr)&src, coefficients[0], row, 1, TRUE);
         for (JDIMENSION col = 0; col < y->width_in_blocks; col++) {
-            if (fread(line[0][col], sizeof(JCOEF), 64, raw) != 64) {
+            JCOEF input_zigzag[64];
+            if (fread(input_zigzag, sizeof(JCOEF), 64, raw) != 64) {
                 fprintf(stderr, "incomplete F5 quantized coefficient stream\n");
                 return 2;
+            }
+            for (int k = 0; k < 64; k++) {
+                line[0][col][zz[k]] = input_zigzag[k];
             }
         }
     }
