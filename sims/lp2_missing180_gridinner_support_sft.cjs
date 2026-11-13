@@ -35,6 +35,7 @@ function distinct(data) {
 
 const file = path.join(__dirname, "..", "resources", "liber-primus", "base60-grid.json");
 const grid = JSON.parse(fs.readFileSync(file, "utf8"));
+const corpus = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
 const rows = grid.byte_rows;
 assert.equal(rows.length, 32);
 assert.ok(rows.every(r => r.length === 8 && r.every(v => Number.isInteger(v) && v >= 0 && v <= 255)));
@@ -46,16 +47,21 @@ const inner = rows.slice(1, 31).flatMap(r => r.slice(1, 7));
 const outer = rows.flatMap((r, i) => r.filter((_, j) => i === 0 || i === 31 || j === 0 || j === 7));
 assert.equal(inner.length, 180);
 assert.equal(outer.length, 76);
+const p55 = corpus.pages.find(p => p.page === 55).indices;
+assert.equal(p55.length, 76);
 const historicalPrimeOrdinalRange = firstPrimes(200).slice(20, 200);
 assert.equal(historicalPrimeOrdinalRange.length, 180);
 assert.equal(historicalPrimeOrdinalRange[0], 73);
 assert.equal(historicalPrimeOrdinalRange[179], 1223);
 const primeResidues = historicalPrimeOrdinalRange.map(v => v % 29);
 const innerResidues = inner.map(v => v % 29);
+const outerResidues = outer.map(v => v % 29);
 assert.equal(distinct(primeResidues), 28);
 assert.equal(distinct(innerResidues), 29);
 assert.equal(primeResidues.filter(v => v === 0).length, 0);
 assert.equal(innerResidues.filter(v => v === 0).length, 4);
+assert.equal(distinct(outerResidues), 24);
+assert.equal(distinct(p55), 25);
 
 // Key-independent necessary condition: a stationary function f(29 residues)
 // cannot emit more distinct symbols than it receives, even when all 180
@@ -63,6 +69,9 @@ assert.equal(innerResidues.filter(v => v === 0).length, 4);
 const positive = primeResidues.map(v => (7 * v + 3) % 29).reverse();
 assert.equal(distinct(positive), 28);
 assert.ok(distinct(innerResidues) > distinct(primeResidues));
+const ringPositive = outerResidues.map(v => (3 * v + 5) % 29).reverse();
+assert.equal(distinct(ringPositive), 24);
+assert.ok(distinct(p55) > distinct(outerResidues));
 console.log(JSON.stringify({
   source: "2013 prime_echo omission and LP2 pp49-51 original 32x8 base60 grid",
   candidate: "180 omitted prime residues mapped to 30x6 grid interior under one arbitrary stationary 29-symbol substitution",
@@ -72,9 +81,13 @@ console.log(JSON.stringify({
   tableInnerResidueDistinct: distinct(innerResidues),
   interiorZeroResidues: innerResidues.filter(v => v === 0).length,
   originalPrimeZeroResidues: primeResidues.filter(v => v === 0).length,
+  tableOuterResidueDistinct: distinct(outerResidues),
+  p55CiphertextDistinct: distinct(p55),
+  tableOuterResidueCounts: counts29(outerResidues),
+  p55CiphertextCounts: counts29(p55),
   primeResidueCounts: counts29(primeResidues),
   tableInteriorResidueCounts: counts29(innerResidues),
-  conclusion: "NO stationary deterministic GF29 symbol map can make these 180 symbol streams equal, even after arbitrary position permutation",
+  conclusion: "NO fixed deterministic GF29 map from omitted primes to 180 inner cells, nor from 76 outer cells to original p55 runes, can realize these source-matched streams, even after arbitrary reordering",
   classification: "bounded source-motivated negative; not recovered plaintext or an original instruction",
   status: "PASS"
 }, null, 2));
