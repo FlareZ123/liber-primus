@@ -1,10 +1,10 @@
-# Original p15 four-rune chaining: exact inverse and key-independent output-CBC gate
+# Original p15 four-rune chaining: complete Hill4 input/output feedback gates
 
 **13 November 2026, Agent 1. Classification: bounded original-cipher exclusion; no recovered plaintext or key.**
 
 The original physical LP2 p15 prints a **4×4** Fibonacci-prime numeral square. The seven immediately following original pages **p16–22** contain **[267, 273, 260, 271, 269, 273, 131] = 1,744 runes**, an exact multiple of four. A 4×4 GF(29) Hill cipher operating on consecutive four-rune blocks with ciphertext-block feedback is therefore a concrete human-executable candidate, though neither the word "Hill" nor a feedback rule is printed. Unlike a stationary 4-rune substitution, chaining can conceal repeated plaintext blocks.
 
-This study tests that alternative against **untouched, original p16–22 ciphertext**. It makes no key inference from candidate plaintext and does not extend the trial to fitted phases, page permutations, or alternative matrices. The already established [stationary four-block source gate](lp2-p15-fourblock-allsecret-collision-gate.md) does **not** cover the feedback families studied here.
+This study tests that alternative against **untouched, original p16–22 ciphertext**. It makes no key inference from candidate plaintext and does not extend the trial to fitted phases, page permutations, or alternative matrices. Both chained laws receive complete first-class unknown-key tests under a source-native English reference register. The already established [stationary four-block source gate](lp2-p15-fourblock-allsecret-collision-gate.md) does **not** cover the feedback families studied here.
 
 ## Source-locked two-law trial
 
@@ -64,10 +64,35 @@ The independent, checked-in GP29 English controls use the authentic solved-LP1 G
 
 Every one of the **343** finite English-reference windows retains at least **10** equal four-block pairs even after dropping its first block. The original differences have zero such pairs; with *any* IV their maximum count is one. Thus no **chapter-stationary bijective four-rune output-feedback map**, with any secret key and any initial state, can map any one of these exact native-English reference windows to the unchanged original p16–22 ciphertext. This exclusion does not assume the p15 matrix is the actual key.
 
-This is a bounded source-native-English comparison. It does not establish an impossibility result against all conceivable plaintext languages, unusual register encodings, per-page rekeys, a changing `F`, a transposition stage, or unknown nonlinear *input-feedback* mechanisms. In particular the key-independent difference-block invariant **does not apply** to the input-feedback law, for which only the 16 directly source-matrix-keyed variants above have been excluded.
+This remains a bounded source-native-English comparison; the known writer may use a different language or register. The all-secret difference-block result concerns one chapter-stationary map and cannot exclude hidden varying-state or per-page operations.
+
+## New exact all-key exclusion for the input-feedback law
+
+The input-feedback family survives the difference-block argument above because its equation is different. However, granting an *unknown invertible GF(29) 4×4 matrix* yields a different exhaustive and key-independent necessary condition. Let **a** be the arbitrary first row of the unknown inverse matrix (M^{-1}). For every complete four-rune block after the IV-affected first block,
+
+\[
+P_{b,0}=a_0 C_{b,0}+a_1 C_{b,1}+a_2 C_{b,2}+a_3 C_{b,3}-C_{b-1,0}\pmod{29}.
+\]
+
+Any genuine input-CBC plaintext has this form for some **a**. Enumerating **all (29^4 = 707,281) vectors**, including zero and rows of singular matrices, grants more freedom than any invertible key permits and requires no guessed matrix. Drop the initial four-rune block completely so the test is valid under **every possible IV**. The source then leaves **435 first-coordinate plaintext candidates per key**. The observable GP rune coincidence index `IoC` of those 435 symbols is invariant under a constant alphabet relabeling, and a simple exact collision-count implementation can find its *global maximum* across all keys.
+
+**Original result:** the unique maximizer is **a = [7, 0, 2, 4]**, with **7,408 ordered equal-rune pairs**, yielding **maximum IoC = 7,408/(435×434) = 0.03923936649**. That is the exact best obtainable after optimizing **every possible first inverse matrix row** on the original untouched p16–22 ciphertext, not a particular printed key.
+
+The same 343 independent fixed-length native GP29 control windows have the following **minimum IoC on the very same 435 first-column positions** after discarding the first block:
+
+| Reference text | Disjoint 1,744-rune windows | Minimum ordered rune collisions | Minimum first-coordinate IoC |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 124 | **9,752** | **0.05165527835** |
+| Gibran, *The Prophet* | 35 | **10,142** | **0.05372106573** |
+| Emerson essays | 184 | **10,210** | **0.05408125430** |
+| **Original, maximum over all 707,281 secret rows** | 1 | **7,408** | **0.03923936649** |
+
+This is a clean source-reference exclusion under *any* secret GF(29) Hill4 key: every original inverse row is too flat to match **even one** of the 343 native GP reference windows in this predeclared position register. The source-native controls are text excerpts, so this does **not** prove impossibility for every possible undiscovered language, every document genre, or an intermediate/compressed representation.
+
+**Blind decoder-power positive control:** construct a source-native 1,744-rune Shakespeare plaintext, encrypt it under actual p15 `M` using **input CBC**, and search the same 707,281 row candidates without revealing the key to the scorer. The **unique highest-scoring row** is the true inverse row **[19, 1, 6, 3]**, with **11,354** ordered equal-rune pairs and **IoC 0.06014089729**. The planted plaintext reproduces the exact score. This is a genuine recoverability check for the key-family test, while no analogous original plaintext has emerged.
 
 ## Reproduction and next decision
 
-[Original-source CommonJS SFT](../sims/lp2_p15_cbc4_difference_sft.cjs) reads the pinned GP29 corpus and the three previously committed independent English controls, asserts all 16 original/plant full inverses, and checks the complete key-independent difference-block statistics. The file contains every source matrix entry and comparison bound.
+The [original-source 16-inverse and all-bijection output-CBC SFT](../sims/lp2_p15_cbc4_difference_sft.cjs) runs direct printed-matrix inverses and the algebraic source-difference test. The distinct [exhaustive all-key input-CBC SFT](../sims/lp2_p15_cbc4_allkey_firstrow_sft.cjs) enumerates all 707,281 first inverse rows on the original 435-block stream and on the separately encrypted source-native positive plant, with exact integer score assertions. Both read pinned GP29 original ciphertext and the three independent historical English controls. No fitted phases, per-page clocks or freely estimated plaintext enter either experiment.
 
-**Decision:** retire both directly printed p15-matrix CBC conventions on the following 1,744 runes. Retire the much wider **fixed-bijection output-feedback** family for the checked native-English source register, even if its secret key and IV are arbitrary. A new route would need independent original evidence specifying a changing cipher state, a different transport, or an authentic decoder/key. No unknown LP2 plaintext, key or final destination has been recovered.
+**Decision:** retire both literal p15-matrix CBC laws on p16–22. Under the source-native English reference, retire **every secret chapter-stationary GF(29) Hill4 input-CBC key and every secret bijective four-rune output-CBC map**, regardless of IV. Those are two materially different chained cipher architectures that stationary-block tests had not excluded. Other stateful, rekeyed, nonlinear, transposed, compressed or differently authored plaintext mechanisms survive. No unknown LP2 plaintext, authentic key or continuation destination has been recovered.
