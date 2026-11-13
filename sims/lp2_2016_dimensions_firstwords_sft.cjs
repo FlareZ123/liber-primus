@@ -179,6 +179,64 @@ const best2D = [...twoDimensionalConsumers].sort((a,b) => b.ioc - a.ioc)[0];
 assert.ok(best2D.ioc < 0.04,
   'original source-addressed 2D consumer surprisingly looks like English: inspect');
 
+
+/**
+ * Exact without-replacement combinatorial probability that a *fixed*
+ * printed slot of a fixed length has the specified GP-prime sum, conditional
+ * on the source page's original rune inventory. The two pages are shuffled
+ * independently in the null; this estimates no discovery-wide probability.
+ */
+function choose(n, k) {
+  let value = 1n;
+  for (let j = 1; j <= k; j++)
+    value = value * BigInt(n - j + 1) / BigInt(j);
+  return value;
+}
+function exactFixedSlot(pageIndices, length, target) {
+  const hist = Array(29).fill(0);
+  pageIndices.forEach(i => hist[i]++);
+  const newTable = () => Array.from({ length: length + 1 },
+    () => Array(target + 1).fill(0n));
+  let table = newTable();
+  table[0][0] = 1n;
+  for (let rune = 0; rune < 29; rune++) {
+    const combinations = Array.from({
+      length: Math.min(hist[rune], length) + 1
+    }, (_, k) => choose(hist[rune], k));
+    const next = newTable();
+    for (let j = 0; j <= length; j++) {
+      for (let sum = 0; sum <= target; sum++) {
+        const ways = table[j][sum];
+        if (ways === 0n) continue;
+        const kMax = Math.min(length - j, combinations.length - 1,
+          Math.floor((target - sum) / corpus.prime[rune]));
+        for (let k = 0; k <= kMax; k++)
+          next[j + k][sum + k * corpus.prime[rune]] +=
+            ways * combinations[k];
+      }
+    }
+    table = next;
+  }
+  const numerator = table[length][target];
+  const denominator = choose(pageIndices.length, length);
+  return { numerator: numerator.toString(), denominator: denominator.toString(),
+    probability: Number(numerator) / Number(denominator) };
+}
+const indexedSelectors = {
+  gapSelectedP0Word: DIMENSIONS[1] - DIMENSIONS[0],
+  treePageOneBased: p32.page + 1
+};
+assert.deepEqual(indexedSelectors, {
+  gapSelectedP0Word: 6, treePageOneBased: 33
+});
+const fixedWord0 = exactFixedSlot(corpus.pages[0].indices, 11, 563);
+const fixedWord1 = exactFixedSlot(corpus.pages[1].indices, 10, 569);
+assert.equal(fixedWord0.numerator, '35899236695815881');
+assert.equal(fixedWord0.denominator, '8086245943682454912');
+assert.equal(fixedWord1.numerator, '711438468463099');
+assert.equal(fixedWord1.denominator, '411805263302065633');
+const fixedTwoSlotJoint = fixedWord0.probability * fixedWord1.probability;
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -202,6 +260,8 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  fixedWordIndexHypothesis: {indexSelectors: indexedSelectors,
+    p0: fixedWord0, p1: fixedWord1, jointProbability: fixedTwoSlotJoint},
   p32TwoDimensionalNaturalConsumers: {nativeP57IOC: p57PlainIOC,
     bestOriginalIOC: best2D.ioc, variants: twoDimensionalConsumers},
   conclusion: 'Exact source-linked alignment, no decoder or authentic plaintext'
