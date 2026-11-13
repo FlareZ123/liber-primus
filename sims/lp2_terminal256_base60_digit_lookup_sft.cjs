@@ -179,6 +179,32 @@ function checkByteLookup(positions, target) {
   return { contradictions, firstConflict, usedEntries };
 }
 
+
+/**
+ * Exact closest fit for every possible stationary GP29 byte codebook.
+ * For each source-byte equality class, select its most frequent target
+ * rune. Distinct-byte classes have independent secret mapping entries.
+ * @param {number[]} positions
+ * @param {number[]} target
+ * @returns {{bestMatches:number,minEdits:number,distinctBytes:number,conflictingBytes:number}}
+ */
+function minimumByteCodebookRepair(positions, target) {
+  assert.equal(positions.length, target.length);
+  const groups = new Map();
+  for (let i = 0; i < positions.length; i++) {
+    const b = grid[positions[i]];
+    if (!groups.has(b)) groups.set(b, Array(29).fill(0));
+    groups.get(b)[target[i]]++;
+  }
+  let bestMatches = 0, conflictingBytes = 0;
+  for (const votes of groups.values()) {
+    bestMatches += Math.max(...votes);
+    if (votes.filter(x => x !== 0).length > 1) conflictingBytes++;
+  }
+  return { bestMatches, minEdits: target.length - bestMatches,
+    distinctBytes: groups.size, conflictingBytes };
+}
+
 // Stronger necessary-condition gate: each inner ring must fit independently,
 // even if each ring has its own arbitrary 256-entry secret codebook and the
 // producer can start at ANY boundary site in either winding direction.
@@ -256,6 +282,54 @@ const planted = plantedRoute.map((idx) =>
 assert.deepEqual(checkLookup(plantedRoute, planted),
   { conflicts: 0, firstConflict: -1, independent: 60, rank: 60 });
 
+
+// Globally optimal Hamming repair count, granting all 256 secret byte entries.
+// Unlike the online first-observation witness, this is the exact minimum
+// number of altered known runes needed for any stationary secret table.
+const exactRepairHistogram = new Map();
+let exactRepairBest = { minEdits: Infinity };
+for (let a = 0; a < 8; a++) for (let b = 0; b < 8; b++) for (let c = 0; c < 8; c++) {
+  const positions = paths[0][a].concat(paths[1][b], paths[2][c]);
+  const r = minimumByteCodebookRepair(positions, known);
+  exactRepairHistogram.set(r.minEdits, (exactRepairHistogram.get(r.minEdits) ?? 0) + 1);
+  if (r.minEdits < exactRepairBest.minEdits)
+    exactRepairBest = { ...r, orientation: [a, b, c] };
+}
+assert.deepEqual(exactRepairBest, {
+  bestMatches: 137, minEdits: 43,
+  distinctBytes: 127, conflictingBytes: 34, orientation: [7, 5, 2]
+});
+assert.equal([...exactRepairHistogram.values()].reduce((a,b)=>a+b,0),512);
+assert.deepEqual([...exactRepairHistogram.keys()].sort((a,b)=>a-b),[43,44,45,46,47,48,49,50,51,52,53]);
+const naturalRowMajor = minimumByteCodebookRepair(
+  Array.from({ length: 180 }, (_, i) => i + 76), known
+);
+assert.deepEqual(naturalRowMajor, {
+  bestMatches: 133, minEdits: 47, distinctBytes: 129, conflictingBytes: 42
+});
+const independentRingRepairs = [];
+let ringKnownOffset = 0;
+for (const depth of [1,2,3]) {
+  const sourceRing = ring(depth);
+  const target = known.slice(ringKnownOffset, ringKnownOffset + sourceRing.length);
+  ringKnownOffset += sourceRing.length;
+  let minEdits = Infinity, maxEdits = 0;
+  for (let start = 0; start < sourceRing.length; start++) {
+    for (const direction of [1,-1]) {
+      const positions = sourceRing.map((_,i)=>
+        sourceRing[(start + direction*i + 2*sourceRing.length) % sourceRing.length]);
+      const r = minimumByteCodebookRepair(positions,target);
+      minEdits = Math.min(minEdits,r.minEdits);
+      maxEdits = Math.max(maxEdits,r.minEdits);
+    }
+  }
+  independentRingRepairs.push({ depth, knownRunes: sourceRing.length, minEdits, maxEdits });
+}
+assert.equal(ringKnownOffset,180);
+assert.deepEqual(independentRingRepairs.map(x=>x.minEdits),[5,5,4]);
+const exactPlant = minimumByteCodebookRepair(plantedRoute,bytePlanted);
+assert.equal(exactPlant.minEdits,0);
+
 console.log(JSON.stringify({
   source: 'original LP2 pp49-51 grid, solved p56 and clear p57',
   hypothesis: 'independent arbitrary secret GF29 addends per high/low base60 digit',
@@ -268,6 +342,9 @@ console.log(JSON.stringify({
   histogram: Object.fromEntries([...histogram].sort((x, y) => x[0] - y[0])),
   positivePlant: 'PASS 180/180',
   unrestrictedByteCodebook: {
+    exactMinimumRepairs: { naturalRowMajor, all512Best: exactRepairBest,
+      histogram: Object.fromEntries([...exactRepairHistogram].sort((a,b)=>a[0]-b[0])),
+      perRingEveryStart: independentRingRepairs, positivePlantMinEdits: exactPlant.minEdits },
     secretEntries: 256,
     independentCompleteRings: completeRingGates,
     testedOrientations: 512,
