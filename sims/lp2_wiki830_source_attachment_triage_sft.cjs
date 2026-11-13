@@ -142,6 +142,33 @@ async function main() {
     console.log("SELFTEST PASS");
     return;
   }
+  if(process.argv.includes("--inspect-image")) {
+    const images=await wikiList();
+    const selected=["New_potential_clue_from_MIT_keyservers.png",
+      "Liberprimus_key_uncovered.jpg","SubstitutionKeyKoan.jpg"];
+    for(const name of selected) {
+      const im=images.find(x=>x.name===name);
+      assert(im,"Missing target image "+name);
+      const direct=im.url.replace(/\/revision\/latest.*$/,"");
+      let record=null;
+      for(const url of [im.url,direct,direct+"/revision/latest?format=original"]) {
+        try {
+          const r=await load(url,{referer:"https://uncovering-cicada.fandom.com/"});
+          const b=Buffer.from(await r.arrayBuffer());
+          const sha1=crypto.createHash("sha1").update(b).digest("hex");
+          const pass=sha1===im.sha1;
+          record={name,sha1,expectedSha1:im.sha1,matched:pass,
+            bytes:b.length,expectedBytes:im.size,mime:r.headers.get("content-type"),
+            base64:b.toString("base64")};
+          if(pass) break;
+        } catch(error) {
+          console.log("INSPECTION_URL_FAILED",name,String(error));
+        }
+      }
+      if(record) console.log("SOURCE_IMAGE_JSON",JSON.stringify(record));
+    }
+    return;
+  }
   fs.mkdirSync(OUTPUT,{recursive:true});
   const lock=path.join(OUTPUT,".source-lock");
   const fd=fs.openSync(lock,"wx");
