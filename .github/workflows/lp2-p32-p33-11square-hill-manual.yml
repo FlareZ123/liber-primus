@@ -1,4 +1,4 @@
-name: LP2 p32 full 11-square Hill consumer
+name: LP2 p32 full 11-square Hill consumers
 
 on:
   workflow_dispatch:
@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Try original p32 full-square key on p33
         run: node sims/lp2_p32_p33_11square_hill_sft.cjs
+      - name: Try tree-echo p54 to p55 source-linked terminal chapter
+        run: node sims/lp2_p32_p54_55_11square_hill_sft.cjs
