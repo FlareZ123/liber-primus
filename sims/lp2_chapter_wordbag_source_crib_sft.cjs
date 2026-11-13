@@ -193,6 +193,24 @@ const missingShapes = britainExcerpt.filter((_, i) => !p55.some(
   c => equalityPattern(c) === equalityPattern(english[i])));
 assert.deepEqual(missingShapes, ['prepare','orders','became','Cadbury','Somersetshire']);
 
+
+// A stronger keyed model resets one arbitrary position-wise GP29 additive pad
+// at every printed word, reusing the same key index for all 16 source words.
+// The unique thirteen-rune source/cipher pair fixes all thirteen unknown key
+// symbols without a dictionary, beam search, or language fit.
+const p55Long = p55.find(w => w.length === 13);
+const excerptLong = english.find(w => w.length === 13);
+assert.ok(p55Long && excerptLong);
+const restartPad = excerptLong.map((plain, i) =>
+  (p55Long[i] - plain + 29) % 29);
+const positionPadAssignmentOptions = english.map(plain =>
+  p55.reduce((count, cipher) =>
+    count + Number(cipher.length === plain.length &&
+      cipher.every((value, position) =>
+        (value - plain[position] + 29) % 29 === restartPad[position])), 0));
+assert.deepEqual(positionPadAssignmentOptions,
+  [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0]);
+
 // Even an unrestricted secret 29-way substitution plus any permutation of
 // complete words cannot map this 16-word source passage to original LP2 p55.
 console.log(JSON.stringify({
@@ -202,6 +220,10 @@ console.log(JSON.stringify({
   illustratedChapters: sectionResults,
   originalPageExactBagHits: exactHits,
   p55Britannica: {candidateStartWord: 140754, distinctSourceWords: 16,
-    missingEqualityPatterns: missingShapes, globalSubstitutionPossible: false},
+    missingEqualityPatterns: missingShapes,
+    repeatedWordPositionAdditivePad: restartPad,
+    sourceWordAssignmentOptions: positionPadAssignmentOptions,
+    fullWordAssignmentPossible: false,
+    globalSubstitutionPossible: false},
   status: 'no complete-chapter source crib; two incidental exact single-page inventory hits'
 }, null, 2));
