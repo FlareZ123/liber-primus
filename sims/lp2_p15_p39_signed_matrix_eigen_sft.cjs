@@ -235,6 +235,70 @@ for(const r0 of rows[0]) for(const r1 of rows[1])
     rowNullCount+=+hasDouble24([r0,r1,r2,r3]);
 assert.equal(rowNullCount,378);
 
+
+/** Invert a full-rank 4x4 matrix over GP29 by field Gaussian elimination. */
+function invert4(A) {
+  const augmented=A.map((row,i)=>row.map(mod).concat(I[i]));
+  let determinant=1;
+  for(let j=0;j<4;j++) {
+    let pivot=j;
+    while(pivot<4 && augmented[pivot][j]===0)pivot++;
+    assert(pivot<4,"Expected invertible red-p3 matrix");
+    if(pivot!==j){
+      [augmented[j],augmented[pivot]]=[augmented[pivot],augmented[j]];
+      determinant=mod(-determinant);
+    }
+    const scalar=augmented[j][j];
+    determinant=mod(determinant*scalar);
+    const inverse=Array.from({length:29},(_,v)=>v)
+      .find(v=>mod(v*scalar)===1);
+    augmented[j]=augmented[j].map(x=>mod(x*inverse));
+    for(let k=0;k<4;k++)if(k!==j){
+      const factor=augmented[k][j];
+      augmented[k]=augmented[k].map((x,l)=>
+        mod(x-factor*augmented[j][l]));
+    }
+  }
+  return {matrix:augmented.map(row=>row.slice(4)),determinant};
+}
+// This independent red word at p3 is irreducible as a GF29 quadratic,
+// and evaluates to an invertible degree-two polynomial in signed M.
+// The source does not supply an instruction to perform this direct Hill
+// operation; the test asks exactly whether it would decrypt the chapters.
+const p3Matrix=quadratic([13,23,2]);
+const p3Inv=invert4(p3Matrix);
+assert.equal(p3Inv.determinant,6);
+assert.deepEqual(mmul(p3Matrix,p3Inv.matrix),I);
+assert.deepEqual(mmul(p3Inv.matrix,p3Matrix),I);
+/** Apply an exact source-derived four-symbol Hill transform. */
+function hill4(input,A) {
+  assert.equal(input.length%4,0);
+  const result=[];
+  for(let i=0;i<input.length;i+=4)
+    result.push(...mv(A,input.slice(i,i+4)));
+  return result;
+}
+const p3Direct=[];
+for(const [targetName,input] of [
+  ["p16-22",gp.pages.slice(16,23).flatMap(p=>p.indices)],
+  ["p40-53-black",body]
+]) for(const [operation,A,inverseA] of [
+  ["p3-polynomial",p3Matrix,p3Inv.matrix],
+  ["p3-polynomial-inverse",p3Inv.matrix,p3Matrix]
+]){
+  const deciphered=hill4(input,A);
+  assert.deepEqual(hill4(deciphered,inverseA),input);
+  const encryptedControl=hill4(known,inverseA);
+  assert.deepEqual(hill4(encryptedControl,A),known);
+  p3Direct.push({targetName,operation,originalIoC:ioc(deciphered)});
+}
+assert.deepEqual(p3Direct.map(x=>x.originalIoC),[
+  0.034552364109123254,
+  0.034735271360672046,
+  0.03444014671557186,
+  0.03434655996443259
+]);
+
 console.log(JSON.stringify({
   p15PrintedCharpoly:c1,
   p15SignedCharpoly:c2,
@@ -243,6 +307,8 @@ console.log(JSON.stringify({
   p39MatrixRank:rank(quadratic(p39)),
   p3MatrixRank:rank(quadratic([13,23,2])),
   signedMatrixOrder:812,
+  sourceP3InvertibleMatrixDet:p3Inv.determinant,
+  sourceP3PolynomialDirectHill:p3Direct,
   rowPreservingExhaustiveNull:{successes:rowNullCount,total:24**4},
   uniqueNormalizedEigenvector24:seed,
   originalTargetRunes:body.length,
