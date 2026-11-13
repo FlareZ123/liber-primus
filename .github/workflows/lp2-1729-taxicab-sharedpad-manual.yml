@@ -1,10 +1,20 @@
-name: LP2 729/1729 fixed shared-pad gate (manual)
+name: LP2 729/1729 source-aligned original gates (manual)
 
 on:
   workflow_dispatch:
+    inputs:
+      variant:
+        description: Which original-input gate to run
+        type: choice
+        required: true
+        default: taxicab
+        options:
+          - taxicab
+          - sevenrow
 
 jobs:
   original-aligned:
+    if: inputs.variant == 'taxicab'
     runs-on: windows-latest
     timeout-minutes: 5
     steps:
@@ -14,3 +24,15 @@ jobs:
           node-version: '22'
       - name: Native two-time pad controls and original aligned gate
         run: node sims/lp2_1729_taxicab_729_sharedpad_sft.cjs
+
+  sevenrow-original:
+    if: inputs.variant == 'sevenrow'
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-fixed seven-row SFT and native controls
+        run: node sims/lp2_p8_14_sevenrow_allsecret_sft.cjs
