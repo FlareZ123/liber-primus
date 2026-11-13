@@ -87,6 +87,61 @@ const plus = combined.map((value, i) => mod29(value + originalP5[i]));
 assert(Math.abs(ioc(minus) - 0.030555555555555555) < 1e-12);
 assert(Math.abs(ioc(plus) - 0.03611111111111111) < 1e-12);
 
+// A source-authentic provisional CRIB uses the actual 81 solved LP1 p5
+// glyphs as assumed plaintext. An arbitrary positional pad always fits;
+// test the historically meaningful shorter-key alternatives *without*
+// fitting secret phase, alphabet or field coefficients.
+const inferredPad = combined.map((x, i) => mod29(x - originalP5[i]));
+
+/** @param {number[]} sequence @param {number} period */
+function incompatiblePhases(sequence, period) {
+  let inconsistent = 0;
+  for (let phase = 0; phase < period; phase++) {
+    const values = new Set();
+    for (let i = phase; i < sequence.length; i += period)
+      values.add(sequence[i]);
+    if (values.size > 1) inconsistent++;
+  }
+  return inconsistent;
+}
+const period5 = incompatiblePhases(inferredPad, 5);
+const period25 = incompatiblePhases(inferredPad, 25);
+const period29 = incompatiblePhases(inferredPad, 29);
+assert.deepEqual([period5, period25, period29], [5, 25, 28]);
+assert.equal(inferredPad[0], 1);
+assert.equal(inferredPad[29], 21);
+assert.equal(inferredPad[58], 27);
+
+/** @param {number} value */
+function reciprocal(value) {
+  for (let i = 1; i < 29; i++) if (mod29(value * i) === 1) return i;
+  throw Error("Cannot invert zero in F29");
+}
+/** @param {number[]} sequence */
+function linearComplexity(sequence) {
+  let C = [1], B = [1], degree = 0, shift = 1, last = 1;
+  for (let pos = 0; pos < sequence.length; pos++) {
+    let discrepancy = sequence[pos];
+    for (let j = 1; j <= degree; j++)
+      discrepancy += (C[j] || 0) * sequence[pos - j];
+    discrepancy = mod29(discrepancy);
+    if (!discrepancy) { shift++; continue; }
+    const old = C.slice(), factor = mod29(discrepancy * reciprocal(last));
+    for (let j = 0; j < B.length; j++)
+      C[shift+j] = mod29((C[shift+j] || 0) - factor * B[j]);
+    if (2 * degree <= pos) {
+      degree = pos + 1 - degree; B = old; last = discrepancy; shift = 1;
+    } else shift++;
+  }
+  return degree;
+}
+const inferredPadLinearComplexity = linearComplexity(inferredPad);
+assert.equal(inferredPadLinearComplexity, 41); // generic for 81 GP digits
+// A truly periodic source-native key plant must pass the same invariant.
+const nativePeriod29Plant = Array.from({length: 81}, (_, i) => i % 29);
+assert.equal(incompatiblePhases(nativePeriod29Plant, 29), 0);
+assert(linearComplexity(nativePeriod29Plant) <= 29);
+
 const plantedPlain = gp.pages[57].indices.slice(0, 81);
 assert.equal(plantedPlain.length, 81);
 const plantedCipher = encrypt(plantedPlain, originalP5);
@@ -110,6 +165,9 @@ console.log(JSON.stringify({
   nativePositiveControlGP81IoC: ioc(plantedPlain),
   originalVigenereSubtractIoC: ioc(minus),
   originalVigenereAddIoC: ioc(plus),
+  inferredPadPeriodicPhaseContradictions: {period5, period25, period29},
+  inferredPadFirstThreeAtPhase0Period29: [inferredPad[0], inferredPad[29], inferredPad[58]],
+  inferredPadF29LinearComplexity: inferredPadLinearComplexity,
   sourceKeyDirectVigenereSubtract: show(minus),
   sourceKeyDirectVigenereAdd: show(plus),
   exactOriginalReencryption: true,
