@@ -31,6 +31,20 @@ Use the exact original p0/p1 262 and 266 rune histograms, their original word-sl
 
 The source-image dimensions and order fix the primary ordered-page event; the exact word-slot numbers were discovered after inspection and must not be assigned a fresh 0/30,000 claim of significance. This finite p≈0.0002 is conditional on the explicit narrow shuffle model; it does not estimate the full research-wide false-discovery rate, compensate for all historically possible image dimensions or show the authors intended this link.
 
+### Independent-source index interpretation and exact fixed-slot null
+
+There are two natural *additional* source numbers, recognized after the word-sum match. The image's pixel-axis difference is **569−563=6**, exactly the p0 matching word's **one-based word number 6**. The matching tree image is printed on LP2 **physical p32**, which is the **33rd physical LP2 page** under the historically documented one-based book-code convention; this is exactly the p1 matching word's **one-based word number 33**. Thus a hypothetical human route could start from image dimensions, recognize the tree page, take **word 6 from the first page** and **word 33 from the second**, and read their GP-prime sums to reconstruct width563 and height569. The first two page choices, the use of dimensions as checksums, and the division of the two source ordinals among those pages are *not* stated in the source. The gap6 also occurs between the separately archived 2012 image dimensions503 and509, so the gap itself is not unique to this JPEG.
+
+For the more restrictive **fixed word-slot null**, count exactly the ways to sample each target word's original number of rune tokens without replacement from its page's original multiset, weighting rune-category compositions by binomial multiplicities. A BigInt polynomial dynamic program obtains:
+
+| Fixed word slot, source target | Favorable combinations | All combinations | Conditional chance |
+| --- | ---: | ---: | ---: |
+| p0 word6 (11 runes), sum563 | 35,899,236,695,815,881 | 8,086,245,943,682,454,912 | **0.004439543015** |
+| p1 word33 (10 runes), sum569 | 711,438,468,463,099 | 411,805,263,302,065,633 | **0.001727608974** |
+| Both source-ordered exact slots | independent-page product | | **0.00000766979435** |
+
+The fixed-slot product is an **exact conditional probability under the declared rune-shuffle null**. It is more discriminating than the any-word ordered-page event because the source gap and one-based tree page number select the actual two word ordinals. **Crucially, the hypothesized selection of first/second pages and the realization that these two numeric positions agree were made after inspecting the ciphertext.** The mathematical product is therefore a conditional chance diagnostic, *not* a corrected probability of authorial design or an authentic decryption rule. This source-path interpretation is a plausible opportunity for a future independent clue, not a completed step.
+
 ## Direct source-addressed 11+10-key inverse on p32: negative
 
 The **11** runes of p0 word6 and **10** runes of p1 word33 fit the natural p32 **11×11** matrix as one complete horizontal key (11 columns) and keys for its **ten remaining rows** (the first row gets vertical offset zero). This is a stronger potential *consumer* than a numerical collision: the two unique source-addressed words determine all key symbols, and a two-dimensional additive cipher can be executed reversibly on the 121 original p32 runes.
