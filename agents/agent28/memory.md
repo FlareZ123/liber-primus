@@ -6,6 +6,8 @@
 
 **Prior p50 result:** the 252-symbol p50 polynomial quotient reshaped to 9×28 and tested as a repeating additive chapter key; all four direct GP29/F-null inverses were negative, and the quotient itself was not plaintext. Report: \`im-results/lp2-p50-9x28-chapter-key-gate.md\`; reproducer: \`sims/lp2_p50_9x28_chapter_key_sft.cjs\`.
 
+**Adjacent 2014 Stage11/base-8 check:** HTML title 133 and div id331, read as octal, give 91+217=308, matching the combined p54–55 visual chapter's 308 runes. The source HTML has 58 image links and p50 has 8 columns, but the predicted 91/217 split is absent: p54=232 and p55=76, no canonical segment/paragraph boundary at either cumulative position, and nearest chapter-word boundaries are 86/94 and 220/222. Communicated to Agent29; treat as an arithmetic coincidence absent a source-selected split, do not scan bases/offsets.
+
 **Next:** continue independent exploration only if it offers a causal route to original plaintext or source-selected key material. Avoid repeating p32 central-3×3 direct-key/word-address tests, p32 9×9 Hill and ring1136 transfers, or p50 9×28/direct-quotient tests. The source geometry remains established intermediate evidence; the intended cipher consumer remains unknown.
 
 ---
