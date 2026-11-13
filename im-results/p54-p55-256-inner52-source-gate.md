@@ -40,7 +40,7 @@ The first 80 decoded runes begin `ALEAJBYRUXIEODGYIASXBNBGIYWOEPJNLCFERNGTXOEI..
 
 ## Distinct word-exterior partition: 9 + 256 + 43, and a frozen p50 overlay (13 November 2026)
 
-A separately selected *original wordwise* partition of the **same 308-rune physical pp54–55 chapter** now gives a different exactly 256-unit register. Under the original source red annotation, p54 begins with **9 red header runes** and has **223 following body runes (beginning with an enlarged red IA dropcap)**. The preceding [source-adjudicated p55 word register](p55-original-33-exterior-43-interior-source-framing.md) has **33 exterior (first/last) runes**, including the single rune completing a p54-carried word, and **43 strict word-interior runes**. Consequently
+A separately selected *original wordwise* partition of the **same 308-rune physical pp54–55 chapter** now gives a different exactly 256-unit register. Under the original source red annotation, p54 begins with **9 red header runes** (the oversized red A is its first title rune, source index0) and has **223 following black body runes; the enlarged red A dropcap is the first of the nine preceding heading runes**. The preceding [source-adjudicated p55 word register](p55-original-33-exterior-43-interior-source-framing.md) has **33 exterior (first/last) runes**, including the single rune completing a p54-carried word, and **43 strict word-interior runes**. Consequently
 
 ```text
 p54 opening red title                              9
