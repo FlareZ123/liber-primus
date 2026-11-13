@@ -295,6 +295,48 @@ The bracketed values are 5-bit outputs 29–31, which are not members of the 29-
 
 **Decision:** retire the direct 5-bit GP-index three-share XOR transfer under both contiguous 5×43 packings. Do not rescue it by reducing 29–31 modulo29 or inventing an escape code. This does not exclude a different, independently specified byte encoding or share construction. Reproducer: [sims/p27_p55_three_share_xor_gate.cjs](../sims/p27_p55_three_share_xor_gate.cjs).
 
+## Exact five-share GF29 transfer exclusion, including all Shamir coefficients (Agent46, 13 November 2026)
+
+**Conditional original-human route.** The source p27 red title has exactly **19 runes**, leaving **215 black-body runes = 5 × 43**. After excluding the leading p54 carry symbol and shaving the first/last GP rune from each of p55's 16 complete printed words, exactly **43** source-printed interior runes remain. The historical 2013 Cicada process included **five-of-ten Shamir secret sharing**; adapting five equal-length shares to the 29-symbol prime GP alphabet suggests one natural direct transfer from p27 to p55. Two fixed orderings exhaust the unpermuted natural packings: five contiguous strands of 43, or 43 successive quintets. The GP29 adaptation and direct transfer are hypotheses, not authenticated instructions.
+
+The proposed family is deliberately *much larger* than any fixed Shamir x-coordinate choice: for source five-vector \(X_i\) at p55 core position \(i\), let
+
+\[
+Y_i=\pi\!\left(b+\sum_{k=1}^{5}w_kX_{ik}\pmod {29}\right),
+\]
+
+where \(w_1,\ldots,w_5,b\) are **arbitrary** unknown GF29 coefficients and \(\pi\) is an **entirely unknown, fixed, bijective GP29 output alphabet**. Every degree-four Shamir/Lagrange reconstruction from five GP29 shares with any distinct x-coordinates is contained in this family, along with much more general stationary affine five-tap decoders. In particular, the canonical historical-style x=1,2,3,4,5 weights are \( (5,19,10,24,1)\pmod {29}\).
+
+The 43 original p55 core runes contain **21 distinct symbols** and **31 equal-symbol position pairs**. Since an output alphabet permutation preserves symbol equality, for every target-equal pair \((i,j)\), any proposed transfer must satisfy \((X_i-X_j)\cdot w=0\pmod {29}\). The first five target-equal pairs \((0,14),(0,39),(1,13),(1,28),(1,38)\) already give the following exact five-by-five matrices, constructed solely from the 215 unchanged original p27 symbols:
+
+\[
+D_{\rm strands}=\begin{pmatrix}
+28&12&8&16&21\\
+21&21&2&3&27\\
+19&12&6&14&23\\
+18&22&15&16&14\\
+3&19&25&22&12
+\end{pmatrix},\quad
+\det D_{\rm strands}\equiv\mathbf{11}\pmod{29}.
+\]
+
+\[
+D_{\rm quintets}=\begin{pmatrix}
+20&19&19&26&26\\
+9&18&14&22&12\\
+5&25&22&11&26\\
+5&26&14&11&26\\
+4&25&7&16&0
+\end{pmatrix},\quad
+\det D_{\rm quintets}\equiv\mathbf{22}\pmod{29}.
+\]
+
+**Both determinants are nonzero.** Each homogeneous system therefore has only \(w=(0,0,0,0,0)\), which makes every output the same fixed \(\pi(b)\). The actual p55 core has 21 different symbols. This is a complete exact contradiction for **every** member of the defined original-order stationary GF29 five-tap family, including any original-secret Shamir share IDs, arbitrary affine offsets, and all 29! fixed alphabet permutations. It does not depend on scoring English or testing candidate keys. The canonical x1..5 interpolation directly agrees with just **2/43** p55 runes under strands and **0/43** under quintets.
+
+The [single-file original-source SFT](../sims/lp2_p27_p55_five_share_rank_obstruction_sft.cjs) checks the p27 19-rune red span, complete p27/p55 canonical inputs, p55 source words including line-wrap handling, all five witness pairs, both exact determinant residues, and direct canonical interpolation. A 43-column five-share synthetic positive control with authentic Lagrange weights and a secret affine GP29 output permutation recovers all **43/43** symbols and satisfies the equality equations. All source assertions and the positive plant executed successfully on the remote repository resources.
+
+**Decision:** retire direct **fixed-output-alphabet stationary GF29 linear five-share p27→p55 interior transfer** over either fixed original packing, rather than scanning more x-coordinates or arbitrary constant shifts. This does **not** exclude using the 215 p27 symbols as a changing key for an independent p55 cipher, a GF256 byte-level secret-sharing format, nonlinear encoders, varying per-output coefficients, a different source layout selected by an authentic clue, or unknown plaintext elsewhere. The source 5×43 coincidence remains real; no unknown text or key was recovered.
+
 ## Decision
 
 The durable route is:
