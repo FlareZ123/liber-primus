@@ -91,6 +91,58 @@ for(const mode of ['cipher','plain']) {
     sourceOriginalRoundtrip:1680,nativeControlRoundtrip:1680
   };
 }
+// Hidden initial plaintext pair under the SOURCE g, exhaustive all 841 seeds.
+// Any two solutions differ by a full-field (-g)^i pad; no language key chosen.
+const sourceG=/** @type {Field} */ ([19,13]);
+const originalWithGSeed=seed=>{
+  /** @type {Field} */
+  let prior=seed;
+  const out=[];
+  for(let i=0;i<original.length;i+=2){
+    const C=/** @type {Field} */ ([original[i],original[i+1]]);
+    const P=subtract(C,mul(sourceG,prior));
+    out.push(...P);prior=P;
+  }
+  return out;
+};
+const seedResults=[];
+for(let a=0;a<29;a++)for(let b=0;b<29;b++) {
+  seedResults.push({a,b,ioc29:ioc29(originalWithGSeed([a,b]))});
+}
+seedResults.sort((x,y)=>y.ioc29-x.ioc29);
+assert.equal(seedResults.length,841);
+assert.equal(seedResults.filter(x=>x.ioc29>=1.15).length,0);
+near(seedResults[0].ioc29,1.0160568932754757);
+near(seedResults.at(-1).ioc29,0.9890793839870672);
+assert.deepEqual([seedResults[0].a,seedResults[0].b],[22,25]);
+const seed24=/** @type {Field} */ ([24,0]);
+const seed24Cipher=[];
+{
+  /** @type {Field} */
+  let previous=seed24;
+  for(let i=0;i<plant.length;i+=2){
+    const P=/** @type {Field} */ ([plant[i],plant[i+1]]);
+    seed24Cipher.push(...add(P,mul(sourceG,previous)));
+    previous=P;
+  }
+}
+{
+  /** @type {Field} */
+  let previous=seed24;
+  const recovered=[];
+  for(let i=0;i<seed24Cipher.length;i+=2){
+    const C=/** @type {Field} */ ([seed24Cipher[i],seed24Cipher[i+1]]);
+    const P=subtract(C,mul(sourceG,previous));
+    recovered.push(...P);previous=P;
+  }
+  assert.deepEqual(recovered,plant);
+}
+all.plainSourceGAllSeeds={
+  tested:841,min:seedResults.at(-1).ioc29,max:seedResults[0].ioc29,
+  bestSeed:[seedResults[0].a,seedResults[0].b],above115:0,
+  exactKnown24SeedPlantRecovery:plant.length
+};
+
 near(ioc29(original),0.9964406250886297);
 near(all.cipher.min,0.9891616324909952);
 near(all.cipher.max,1.0179280467398395);
