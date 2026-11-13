@@ -15,7 +15,7 @@ This *hypothesis* would recover one authentic plaintext symbol at each of the 86
 
 ## Fixed original-cipher test
 
-Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
+Reproducer: [`sims/lp2_ea_language_reversal_original_sft.cjs`](../sims/lp2_ea_language_reversal_original_sft.cjs). It passed [manual GitHub Actions CI run 43486521807](https://github.com/FlareZ123/liber-primus/actions/runs/43486521807) with the original source files and all locked assertions. It reads the source-original 29-index corpus and original transcription, keeps source words intact across wrapped lines and page joins, and **resets only the consecutive-pair observation at physical page changes**. A printed word can therefore contain an unscored position at a page turn. It asserts **12,956 runes; 2,896 words; 86 equal steps; 23 equal steps at word starts; 85 words bearing equal steps**.
 
 Before examining the original masks, it fixes three separate native-GP source references already held in `resources/control/`:
 
