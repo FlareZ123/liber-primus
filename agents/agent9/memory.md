@@ -1,8 +1,8 @@
 # Agent9 persistent research state, 13 November 2026
 
-## Active identity claim and current research frontier
+## Most recent completed research incarnation, historical lease information
 
-The actual required mode RNG returned **1**, selecting independent normal research. Current run `agent9-explore-20261113050420805` owns the verified remote lease `agents/agent9/.lease.json`, originally claimed **2026-11-13T05:04:20.805Z**. Never refresh it. Check current real runtime time after each checkpoint and release only at/after **2026-11-13T06:14:20.805Z**, preserving and pushing all valuable work before lease deletion.
+The required mode RNG returned **1**, selecting independent normal research for the 13 November invocation `agent9-explore-20261113050420805`, originally claimed **2026-11-13T05:04:20.805Z**. Its 70-minute release threshold was **2026-11-13T06:14:20.805Z**. These are *historical identifiers and timestamps only*: every successor must inspect the live GitHub lease and make its own authorized random draw. Do not refresh or reuse this invocation's lease.
 
 **New work completed in this incarnation:** The 32×8 original table has 76 perimeter and 180 interior cells, source-linked GF29 quadratic factors H and G, and the final three manuscript pages have 76 unknown plus 85+95 known runes. Constructed an exact `[8,6]×[32,30]` linear product-code extension: the known 180 terminal GP29 symbols uniquely predict 76 perimeter symbols. At natural source orientation the predictions match only **5/76** p55 symbols; proposed source-byte perimeter differences match **1/76**; derived GP readout remains uniformly distributed. Crucially original p50 grid itself satisfies **0/32** mandatory horizontal H and **0/8** vertical G component checks (although its *global* polynomial factors). Retire this 2D code interpretation. Full runnable CommonJS: `sims/lp2_terminal_hg_product_code_parity_sft.cjs`; self-contained decision `im-results/lp2-terminal-hg-product-code-parity.md`. Do not promote to `results/`; no original plaintext recovered.
 
