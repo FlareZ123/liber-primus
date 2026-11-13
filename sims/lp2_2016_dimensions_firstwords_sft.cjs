@@ -508,6 +508,63 @@ assert.equal(bestWordMap121.downstreamSign, -1);
 assert.ok(Math.abs(bestWordMap121.ioc - 0.03950617283950617) < 1e-12);
 assert.ok(wordMap121Results.every(result => result.ioc < 0.04));
 
+// The signed words/numbers/direction clue can also be read as a walk,
+// assigning the opening 121 whole-word GP-prime totals to 121 tree cells.
+// The only two source-selected omitted words are p0#6 and p1#33.
+// Test the literal one-dimensional modular walk and the usual 11x11
+// coordinate-carry interpretation. An actual bijective cell ordering
+// must visit all 121 distinct cells; repeated visits prevent that
+// particular simple word-as-permutation decoding. No tuned start/steps.
+function wordSumWalk(numbers, cartesian) {
+  let cursor = 0;
+  let row = 0;
+  let column = 0;
+  const occurrences = Array(121).fill(0);
+  for (const number of numbers) {
+    const cell = cartesian ? row * 11 + column : cursor;
+    occurrences[cell]++;
+    if (cartesian) {
+      row = (row + Math.floor(number / 11)) % 11;
+      column = (column + number % 11) % 11;
+    } else {
+      cursor = (cursor + number) % 121;
+    }
+  }
+  return {distinct: occurrences.filter(count => count > 0).length,
+    maxVisits: Math.max(...occurrences),
+    end: cartesian ? row * 11 + column : cursor};
+}
+// Explicit synthetic Hamiltonian paths confirm the walk decoder can
+// recognize complete coverage under both fixed arithmetic conventions.
+assert.equal(wordSumWalk(Array(121).fill(1), false).distinct, 121);
+const syntheticCartesianSteps = Array.from({length: 121}, (_, i) =>
+  i % 11 === 10 ? 12 : 1);
+assert.equal(wordSumWalk(syntheticCartesianSteps, true).distinct, 121);
+const wordMapWalkResults = [];
+for (const omitted of [5, 59 + 32]) {
+  const numbers = firstTwoWordsFlat
+    .filter((_, wordIndex) => wordIndex !== omitted)
+    .map(word => word.reduce((sum, rune) =>
+      sum + corpus.prime[rune], 0));
+  for (const cartesian of [false, true]) {
+    wordMapWalkResults.push({
+      removed: omitted === 5 ? 'p0word6' : 'p1word33',
+      mode: cartesian ? 'cartesian-11x11' : 'linear-mod121',
+      ...wordSumWalk(numbers, cartesian)
+    });
+  }
+}
+assert.deepEqual(wordMapWalkResults, [
+  {removed:'p0word6', mode:'linear-mod121', distinct:79,
+    maxVisits:4, end:75},
+  {removed:'p0word6', mode:'cartesian-11x11', distinct:78,
+    maxVisits:4, end:53},
+  {removed:'p1word33', mode:'linear-mod121', distinct:75,
+    maxVisits:5, end:69},
+  {removed:'p1word33', mode:'cartesian-11x11', distinct:74,
+    maxVisits:4, end:47}
+]);
+
 // 2012 original first-image dimensions 509x503 do not supply the same pair.
 const controlDimensions = [503, 509].map(value =>
   sourceWords.filter(word => word.sum === value).length);
@@ -531,6 +588,7 @@ console.log(JSON.stringify({
     ratioOriginalOrder: totals.orderedPages / NUMBER_OF_SHUFFLES
   },
   control2012ImageWordHitCounts: controlDimensions,
+  opening121WordDirectionalWalks: wordMapWalkResults,
   opening122WordMapToP32: {totalWords: firstTwoWordsFlat.length,
     p32KeySlots: 121, best: bestWordMap121, variants: wordMap121Results},
   newBASp32AsKeyP33Body81: {
