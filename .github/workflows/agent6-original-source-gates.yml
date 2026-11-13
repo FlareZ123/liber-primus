@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       route:
-        description: 'Select all, 2016 dimension orbit, or word-position delta'
+        description: 'Select all, dimension orbit, pagewise delta, or word-shape delta entropy'
         type: choice
         required: true
         default: 'all'
@@ -11,6 +11,7 @@ on:
           - all
           - orbit
           - position
+          - shape
 permissions:
   contents: read
 jobs:
@@ -52,3 +53,6 @@ jobs:
       - name: Source-native pagewise word-position delta all-secret gate
         if: ${{ inputs.route == 'position' }}
         run: node sims/lp2_wordposition_delta_allsecret_source_gate_sft.cjs
+      - name: All-secret word-length-conditioned differential entropy gate
+        if: ${{ inputs.route == 'shape' }}
+        run: node sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs
