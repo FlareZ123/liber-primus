@@ -17,3 +17,5 @@ jobs:
           node-version: "22"
       - name: Scan prime-sum, index-sum and anchor self-key models
         run: node sims/word_selfkey_scan.cjs --trials ${{ inputs.trials }}
+      - name: Reject or verify plaintext-prime-sum affine slope inverse
+        run: node sims/lp2_word_prime_self_slope_sft.cjs
