@@ -1,8 +1,11 @@
 "use strict";
 
 /**
- * Exact source-motivated 512-bit preimage gate for the p55 13-dot stencil
- * projection. The hash algorithm and input type are not authenticated.
+ * Source-motivated p55 13/10/23-dot GP-prime run-length hash gates.
+ * Tests the 13-dot 512-bit stream, ten-dot complement plus four corners
+ * (512 bits), and full 23-dot stencil plus four corners (1024 bits), both
+ * starting polarities, direct digest equality where lengths agree, and
+ * SHA-512/SHA3-512/BLAKE2b-512. The source does not authenticate RLE or hash.
  * Run: node sims/p55_prime512_rle_hash_preimage_sft.cjs
  */
 const assert = require("node:assert/strict");
@@ -52,6 +55,8 @@ for (const firstBit of [0, 1]) {
   for (let i = 0; i < bits.length; i++) {
     if (bits[i] === "1") bytes[i >> 3] |= 1 << (7 - (i & 7));
   }
+  const rawHex = bytes.toString("hex");
+  assert.notEqual(rawHex, target);
   const digests = {};
   for (const [name, algorithm] of [
     ["sha512", "sha512"], ["sha3_512", "sha3-512"],
