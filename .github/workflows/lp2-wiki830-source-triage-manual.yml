@@ -1,0 +1,28 @@
+name: LP2 Wiki 830 source-attachment triage (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline controls
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --selftest
+      - name: Original Wiki file-list and source-object retrieval
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs
+      - name: Preserve source triage and retrieved exact-byte objects
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-wiki830-source-triage
+          path: im-results/wiki-source-triage/
+          retention-days: 15
+          if-no-files-found: warn
