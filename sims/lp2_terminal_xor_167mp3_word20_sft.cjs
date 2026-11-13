@@ -12,6 +12,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 /** @param {string} file @returns {string} */
@@ -76,6 +77,23 @@ const xorPointer = index => index ^ bytes[index - 1];
 const destinations = fourIndices.map(xorPointer);
 assert.deepEqual(destinations, [56, 15, 57, 167]);
 assert.equal(Number('761'.split('').reverse().join('')), destinations[3]);
+// Independent stronger historical object: 2014 signed Stage10 actually links
+// to /167.jpg, byte-identical to canonical first-release LP1 scan 15.jpg.
+// Pinned external blob SHA and image identity are documented separately in
+// im-results/2014-stage10-three-images-lp1-source-handoff.md.
+const lp1P15Image = fs.readFileSync(path.join(root, 'resources/liber-primus/15.jpg'));
+assert.equal(
+  crypto.createHash('sha256').update(lp1P15Image).digest('hex'),
+  'f163903bec1236f1c89c96343d0bd1dee610b697c3ba82514651f04c5fbee4b9',
+);
+assert.equal(destinations[1], 15);
+assert.equal(destinations[3], 167);
+const verifiedHistorical167 = {
+  stage10Filename: '167.jpg',
+  canonicalFirstReleaseScan: '15.jpg',
+  lp1Page: 15,
+  knownKey: 'FIRFUMFERENFE',
+};
 // The original 2013 recording is AUDIO/761.MP3 and has displayed runtime 2:47.
 // The displayed 167 seconds is approximate, so no exact frame-duration claim.
 
@@ -150,6 +168,7 @@ console.log(JSON.stringify({
   source: 'original p57, p56, pp49-51 table and 2013 761.MP3 label',
   fourIndices, selectedBytes, destinations,
   audio761Reverse: 167,
+  independentHistorical2014Image: verifiedHistorical167,
   p57PrintedWords: words.length,
   xorOrbitLength: orbit.length,
   xorOrbit: orbit,
