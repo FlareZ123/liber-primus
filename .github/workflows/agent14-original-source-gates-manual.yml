@@ -32,3 +32,7 @@ jobs:
         run: |
           node --check sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
           node sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
+      - name: Verify p15 circulant16 frozen original inverse and GP source plants
+        run: |
+          node --check sims/lp2_p15_circulant16_source_inverse_sft.cjs
+          node sims/lp2_p15_circulant16_source_inverse_sft.cjs
