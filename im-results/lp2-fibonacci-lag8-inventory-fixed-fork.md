@@ -71,6 +71,22 @@ A **positive planted control** uses exactly the first source-native 2,256 Shakes
 
 **Fork:** The original lag-eight effect survives the fixed-inventory shuffle control, yet **the most direct complete lag-eight 29-state alphabet cannot hide ordinary GP-native English under any static alphabet per physical page**. To obtain native prose, the mechanism must change symbol labels *inside* a page, rearrange positions, or operate on an independently authenticated non-GP plaintext representation. None of those alternatives follows solely from the statistical lag-eight anomaly. Retire pagewise arbitrary-key fitting for this conditional cipher family. A fully specified author-visible key-state rule, with held-out original plaintext and exact reencryption, remains the next indispensable input.
 
+## Frozen direct inverse using the authenticated p56 prime-totient stream
+
+The page-fixed 29-rune alphabet is excluded above, so a varying key is needed for that conditional cipher family to encode normal GP-English. Cicada's independently solved original p56 supplies an actual **varying numeric operation**, subtraction of Euler's totients of successive primes modulo29. A narrow source-led test is therefore to treat each page's lag-eight 29-category label as the ciphertext symbol and subtract the authenticated prime-totient schedule from it.
+
+Only three simple source-defined clock alignments are tested: (1) reset the prime clock on the first non-IV symbol of every Fibonacci page; (2) use each original physical-page position, including the preceding nine IV positions; (3) run continuously across only the ten selected Fibonacci page tails. Fix the p56 **subtraction sign**, prime2 as initial prime, and the unchanged complete input, with no key fitting, alternative literal-F convention, or changing label alphabet. The transfer of the solved p56 operation to these earlier pages is itself a conjecture.
+
+| Original 2,256-rune output | GP29 IoC |
+| --- | ---: |
+| Untouched source lag-eight label stream | **0.035465710557** |
+| Totient subtraction, key reset after page IV | **0.034397949395** |
+| Totient subtraction, whole physical-page clock | **0.034673145571** |
+| Totient subtraction, continuous across F page tails | **0.034571322986** |
+| Independently solved GP-native p57 plaintext reference | **0.062709966405** |
+
+None approaches native GP prose or provides recognizable source English. All **three** complete original-input transforms re-encode the exact 2,256 input rank labels; an independent complete 2,256-rune native-GP English plant passes the full stateful forward encoding and exact prime-totient inverse in each clock. The test rejects precisely this direct p56-key transfer under the proposed complete lag-eight-rank alphabet, without ruling out a separately instructed intra-page evolving key or another cipher architecture. [Reproducer](../sims/lp2_fibonacci_lag8_prime_totient_original_sft.cjs).
+
 ## Reproduction
 
 The [standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_inventory_fixed_sft.cjs) reads the unchanged source JSON and asserts exact original counts on both Fibonacci and non-Fibonacci pages, original lag-eight and lag-sixteen equalities, exact analytical expectations, 30,000 deterministic Fisher–Yates permutations with seed **0x4bad5eed** and both empirical tails. The prior **64-lag familywise chapter-label adjustment** is a separate decision and remains necessary for overall significance context: [earlier original-source report](lp2-fibonacci-page-delta-spectrum.md). This additional conditional null does **not** remove the selection-bias caveat about choosing the Fibonacci mask and lag after exploratory work.
