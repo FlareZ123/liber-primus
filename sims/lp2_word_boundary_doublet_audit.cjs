@@ -202,6 +202,93 @@ function boundaryAffineTest(pairs, reps, seed) {
   };
 }
 
+function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
+  // Source-derived p15 spiral: red 3299 start, 16 cells, infinity mark.
+  const fib = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987];
+  const primeIndex = fib.map(x => x + 1);
+  const primes = [2, 3, 5, 7, 13, 23, 43, 79, 149, 263, 463, 829, 1481, 2593, 4507, 7817];
+  const printed = [3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, 1206, 4516];
+  const sequences = {
+    printed,
+    prime: primes,
+    totient: primes.map(x => x - 1),
+    fib,
+    primeIndex
+  };
+  const keys = Object.fromEntries(Object.entries(sequences).map(([name, values]) =>
+    [name, values.map(x => ((x % 29) + 29) % 29)]));
+  const wordMap = new Map();
+  for (const record of records) {
+    if (record.page < 16 || record.page > 23) continue;
+    if (!wordMap.has(record.word)) wordMap.set(record.word, []);
+    wordMap.get(record.word).push(record.index);
+  }
+  const words = Array.from(wordMap.values());
+  const flat = words.flat();
+  const ioc = values => {
+    const counts = new Int32Array(29);
+    for (const x of values) counts[x]++;
+    const n = values.length;
+    let numerator = 0;
+    for (const count of counts) numerator += count * (count - 1);
+    return numerator / (n * (n - 1));
+  };
+  const wordVariants = [];
+  for (const [name, key] of Object.entries(keys)) {
+    for (const a of [1, 28]) for (const sign of [1, -1]) {
+      const decoded = [];
+      for (let wi = 0; wi < words.length; wi++) {
+        for (const x of words[wi]) decoded.push(((a * x + sign * key[wi % 16]) % 29 + 29) % 29);
+      }
+      wordVariants.push({ name, a, sign, ioc: ioc(decoded) });
+    }
+  }
+  wordVariants.sort((x, y) => y.ioc - x.ioc);
+
+  const pairs = boundaryPairs.filter(p => p.page >= 16 && p.page <= 23);
+  const candidates = [];
+  for (const [name, key] of Object.entries(keys)) {
+    for (const a of [1, 28]) for (const sign of [1, -1]) candidates.push({ name, key, a, sign });
+  }
+  function score(ys) {
+    let best = { matches: -1, name: '', a: 0, sign: 0 };
+    for (const candidate of candidates) {
+      let matches = 0;
+      for (let i = 0; i < pairs.length; i++) {
+        const b = ((candidate.sign * candidate.key[i % 16]) % 29 + 29) % 29;
+        if (ys[i] === ((candidate.a * pairs[i].x + b) % 29 + 29) % 29) matches++;
+      }
+      if (matches > best.matches) best = { matches, name: candidate.name, a: candidate.a, sign: candidate.sign };
+    }
+    return best;
+  }
+  const ys = pairs.map(p => p.y);
+  const observed = score(ys);
+  const rand = makeRng(0x16b0a11);
+  const reps = 10000;
+  let exceed = 0;
+  for (let r = 0; r < reps; r++) {
+    const shuffled = ys.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = rand() % (i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    if (score(shuffled).matches >= observed.matches) exceed++;
+  }
+  return {
+    sourceKeyCandidates: 5,
+    affineFormsPerKey: 4,
+    totalFixedCandidates: candidates.length,
+    p16_23Words: words.length,
+    p16_23Runes: flat.length,
+    bestWholeWordShift: wordVariants[0],
+    uniformIoCBaseline: 1 / 29,
+    boundaryPairs: pairs.length,
+    bestBoundaryRelation: observed,
+    boundaryMaxPermutation: { reps, exceed, p: (exceed + 1) / (reps + 1), seed: '0x16b0a11' }
+  };
+}
+
 const totalDoublets = allSites.length;
 const withinDoublets = withinSites.length;
 const crossDoublets = crossSites.length;
@@ -247,6 +334,7 @@ const output = {
     longestZeroCrossWordRun: maxZeroRunTest(pageStats, 100000, 0x0b51d3)
   },
   p11_23BoundaryAffine: boundaryAffineTest(selectedBoundaryPairs, 5000, 0x11c0ffee),
+  p15GridRepeatingWordKey: p15GridRepeatingWordKeyTest(records, boundaryPairs),
   pageCrossWordCounts: pageStats.filter(p => p.crossDoublets > 0)
 };
 console.log(JSON.stringify(output, null, 2));
