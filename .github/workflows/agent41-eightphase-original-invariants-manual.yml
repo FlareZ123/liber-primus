@@ -21,3 +21,5 @@ jobs:
         run: node sims/lp2_fibonacci_eightphase_bijection_sft.cjs
       - name: Verify calibrated ING and IO source spelling and English controls
         run: node sims/lp2_native_gp_source_orthography_sft.cjs
+      - name: Test exact printed LP1 p5 moth key versus earlier approximate key
+        run: node sims/lp2_lp1p5_moth_source81_corrected_sft.cjs
