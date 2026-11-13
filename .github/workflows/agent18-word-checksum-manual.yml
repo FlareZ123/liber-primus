@@ -1,0 +1,23 @@
+name: Agent18 source-native running-checksum gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact source-input reproducible scripts
+        run: |
+          node --check sims/lp2_running_checksum_anyalphabet_sft.cjs
+          node --check sims/lp2_running_wordprime_anyalphabet_sft.cjs
+          node sims/lp2_running_checksum_anyalphabet_sft.cjs
+          node sims/lp2_running_wordprime_anyalphabet_sft.cjs
