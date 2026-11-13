@@ -136,12 +136,79 @@ assert.equal(candidates.length, 16);
 candidates.sort((a, b) => b.ioc - a.ioc);
 assert.ok(Math.abs(candidates[0].ioc - 0.037894736842105266) < 1e-12);
 assert.ok(Math.abs(candidates.at(-1).ioc - 0.029473684210526315) < 1e-12);
+
+// Source-p57 666 also names Sol, whose 6x6 square contains 36 positions.
+// The source-selected three lines contain 18 complete printed words.
+// Initial+final Notariqon gives 36 endpoint slots (counting a singleton twice).
+const selectedWords = [[36, 0], [13, 2], [33, 0]].flatMap(([p, line]) =>
+  pageText[p].split('/').filter(t => runes(t).length)[line]
+    .split(/[-.&$]/).map(runes).filter(w => w.length),
+);
+assert.equal(selectedWords.length, 18);
+assert.deepEqual(selectedWords.map(w => w.length), [
+  2, 4, 3, 2, 3, 3, 5, 1, 3, 4, 6, 2, 5, 3, 2, 8, 2, 6,
+]);
+const edges36 = selectedWords.flatMap(w => [w[0], w.at(-1)]);
+assert.equal(edges36.length, 36);
+assert.equal(primeSum(edges36), 1579);
+const sun = [
+   6, 32,  3, 34, 35,  1,
+   7, 11, 27, 28,  8, 30,
+  19, 14, 16, 15, 23, 24,
+  18, 20, 22, 21, 17, 13,
+  25, 29, 10,  9, 26, 12,
+  36,  5, 33,  4,  2, 31,
+].map(n => n - 1);
+assert.deepEqual([...sun].sort((a, b) => a - b), Array.from({length: 36}, (_, i) => i));
+for (let y = 0; y < 6; y++) {
+  assert.equal(sun.slice(y * 6, (y + 1) * 6).reduce((s, n) => s + n + 1, 0), 111);
+}
+const sunKeyOrders = new Set();
+const sunCandidates = [];
+for (let flip = 0; flip < 2; flip++) {
+  for (let rotation = 0; rotation < 4; rotation++) {
+    const order = Array(36);
+    for (let i = 0; i < 36; i++) {
+      let y = Math.floor(i / 6);
+      let x = i % 6;
+      if (flip) x = 5 - x;
+      for (let turn = 0; turn < rotation; turn++) {
+        const nx = 5 - y;
+        y = x;
+        x = nx;
+      }
+      order[y * 6 + x] = sun[i];
+    }
+    for (let inverse = 0; inverse < 2; inverse++) {
+      const key = (inverse
+        ? Array.from({length: 36}, (_, i) => order.indexOf(i))
+        : order).map(i => edges36[i]);
+      if (sunKeyOrders.has(key.join(','))) continue;
+      sunKeyOrders.add(key.join(','));
+      for (const sign of [-1, 1]) {
+        const plain = unknown.map((c, i) => (c + 29 + sign * key[i % 36]) % 29);
+        assert.deepEqual(plain.map((p, i) => (p + 29 - sign * key[i % 36]) % 29), unknown);
+        sunCandidates.push({flip, rotation, inverse, sign, ioc: ioc(plain),
+          gp: plain.map(i => corpus.translit[i]).join('')});
+      }
+    }
+  }
+}
+assert.equal(sunKeyOrders.size, 14);
+assert.equal(sunCandidates.length, 28);
+sunCandidates.sort((a, b) => b.ioc - a.ioc);
+assert.ok(Math.abs(sunCandidates[0].ioc - 0.047719298245614036) < 1e-12);
+assert.ok(Math.abs(sunCandidates.at(-1).ioc - 0.030175438596491227) < 1e-12);
+
 console.log(JSON.stringify({
   source: 'Agrippa Mercury 8x8, source-p57 666, source64 original physical lines',
   p57Ordinals: ordinals,
   originalSource64PrimeSum: primeSum(source64),
   gridMod64DistinctPerEightByEight: gridBlockDistinct,
   rawP55IoC: ioc(unknown),
+  solarWordEndpoints: {words: selectedWords.length, edgeSlots: edges36.length, primeSum: primeSum(edges36), sourceSingletons: selectedWords.filter(w => w.length === 1).length},
+  solarCandidateKeys: sunKeyOrders.size, solarOriginalP55Candidates: sunCandidates.length,
+  solarBest: sunCandidates[0], solarWorstIoC: sunCandidates.at(-1).ioc,
   keyVariants: candidates.length,
   best: candidates[0],
   worstIoC: candidates.at(-1).ioc,
