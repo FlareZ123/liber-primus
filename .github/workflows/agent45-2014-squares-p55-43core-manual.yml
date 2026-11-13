@@ -1,7 +1,16 @@
-name: Agent45 2014 squares to p55 original 43-core SFTs
+name: Agent45 source-selected original LP2 independent gates
 
 on:
   workflow_dispatch:
+    inputs:
+      experiment:
+        description: Select a single research family
+        type: choice
+        required: true
+        default: squares
+        options:
+          - squares
+          - p15-perimeter12-wordlag
 
 jobs:
   reproduce:
@@ -13,14 +22,23 @@ jobs:
         with:
           node-version: "22"
       - name: All-permutation invariant and original-word-shape controls
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_p55_inner43_square_permutation_invariant_sft.cjs
       - name: Original 2014 inner-square GF29 Hill inverses and native plants
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_p55_2014_three_inner_squares_hill_sft.cjs
       - name: Seventeen original square rows on every p55 rune with native positive controls
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs
       - name: Source-prime holes in original 2014 squares against complete p55 76-rune input
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_2014_primeholes_p55_99cell_sft.cjs
       - name: Key-independent p55 word9-to-word10 source-value prediction on original ciphertext
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_2014_primeholes_p55_word9_10_keyfree_sft.cjs
       - name: All-secret 37 same-value pair invariant across 858983 original GP native windows
+        if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_2014_primeholes_p55_allsecret_equalvalue_sft.cjs
+      - name: Original LP2 12-word lag and exact p15 perimeter transport
+        if: ${{ inputs.experiment == 'p15-perimeter12-wordlag' }}
+        run: node sims/lp2_p15_perimeter12_wordlag_sft.cjs
