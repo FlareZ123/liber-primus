@@ -1,0 +1,18 @@
+name: LP2 p32 HOMEX source-key OutGuess SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Ensure original JPEG coefficient access
+        run: sudo apt-get install -y libjpeg-dev
+      - name: Source-pinned p32 and p55 keys with exact historical positive control
+        run: python sims/lp2_p32_home_outguess_sft.py
