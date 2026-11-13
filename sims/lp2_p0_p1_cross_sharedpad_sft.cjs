@@ -2,9 +2,12 @@
 /**
  * SFT: original p0 and p1 matching black-cross artwork as a candidate
  * common GP29 additive pad, granting both directions and signs.
- * A common unknown keystream cancels as C0-C1=P0-P1 (same sign) or
- * C0+C1=P0+P1 (opposing signs). A reversed p1 reading is a source-cued
- * candidate; each model is tested against exact original word boundaries.
+ * A common unknown keystream cancels as C0-C1=P0-P1 (same additive sign)
+ * or C0+C1=P0+P1 (opposing signs), or as C0/C1=P0/P1
+ * (common nonzero multiplicative pad) or C0*C1=P0*P1
+ * (opposing reciprocal pads) over GF(29).
+ * Both original pages are independently allowed forward or reverse reading.
+ * All models use their exact source-printed word boundaries.
  *
  * The dynamic program grants every possible GP29 plaintext pair, and
  * minimizes how many source-printed words cannot belong to the generous
@@ -135,6 +138,12 @@ for (const word of dictionary) {
  * @returns {{n:number,minOov:number,firstForced:number|null,maxStates:number,
  *   completeWords:number[], checkpoints:number[][]}}
  */
+function inverse29(value) {
+  assert(value > 0 && value < 29);
+  for(let j=1;j<29;j++) if((j*value)%29===1)return j;
+  throw Error('noninvertible nonzero element of prime field');
+}
+
 function minOov(pa, pb, cipherA, cipherB, reverseA=false, reverseB=false, op="diff") {
   const plainA = pages.get(pa);
   const plainB = pages.get(pb);
@@ -162,12 +171,27 @@ function minOov(pa, pb, cipherA, cipherB, reverseA=false, reverseB=false, op="di
     const endA = a.classes[t] === 2 || a.classes[t] === 3;
     const endB = b.classes[t] === 2 || b.classes[t] === 3;
     const delta = (ca[t] + (op === "diff" ? -cb[t] : cb[t]) + 29) % 29;
+    const pairs = [];
+    if (op === "diff" || op === "sum") {
+      for (let runeA=0;runeA<29;runeA++)
+        pairs.push([runeA,(op === "diff" ? runeA-delta+29:delta-runeA+29)%29]);
+    } else {
+      const cA=ca[t],cB=cb[t];
+      if (cA===0&&cB===0) pairs.push([0,0]);
+      else if (cA===0) for(let runeB=1;runeB<29;runeB++) pairs.push([0,runeB]);
+      else if (cB===0) for(let runeA=1;runeA<29;runeA++) pairs.push([runeA,0]);
+      else for(let runeA=1;runeA<29;runeA++) {
+        const runeB=op === "mulSame"
+          ? (runeA*cB*inverse29(cA))%29
+          : (cA*cB*inverse29(runeA))%29;
+        pairs.push([runeA,runeB]);
+      }
+    }
     const next = new Map();
     for (const [key, cost] of states) {
       const nodeA = Math.floor(key / base);
       const nodeB = key % base;
-      for (let runeA = 0; runeA < 29; runeA++) {
-        const runeB = (op === "diff" ? runeA - delta + 29 : delta - runeA + 29) % 29;
+      for (const [runeA,runeB] of pairs) {
         let newA = nodeA === unknown ? unknown
           : dictionaryA[nodeA].edges.get(runeA);
         let newB = nodeB === unknown ? unknown
@@ -218,13 +242,15 @@ const variants = [
   {reverseA:true, reverseB:false, op:"diff"},
   {reverseA:true, reverseB:false, op:"sum"},
   {reverseA:true, reverseB:true, op:"diff"},
-  {reverseA:true, reverseB:true, op:"sum"}
+  {reverseA:true, reverseB:true, op:"sum"},
+  ...[false,true].flatMap(reverseA=>[false,true].flatMap(reverseB=>
+    [{reverseA,reverseB,op:"mulSame"},{reverseA,reverseB,op:"mulInverse"}]))
 ];
 const originals = variants.map(v => ({ ...v,
   ...minOov(0, 1, undefined, undefined, v.reverseA, v.reverseB, v.op)
 }));
-assert.deepEqual(originals.map(x => x.minOov), [14, 16, 16, 14, 14, 14, 15, 12]);
-assert.deepEqual(originals.map(x => x.firstForced), [12, 12, 12, 7, 12, 12, 15, 19]);
+assert.deepEqual(originals.slice(0,8).map(x => x.minOov), [14, 16, 16, 14, 14, 14, 15, 12]);
+assert.deepEqual(originals.slice(0,8).map(x => x.firstForced), [12, 12, 12, 7, 12, 12, 15, 19]);
 
 /* Build native-GP controls from unchanged Gibran words of matching lengths. */
 const gibranWords = read("resources/control/gibran_prophet_58585.txt")
@@ -289,29 +315,34 @@ const controls = [];
 for (const {reverseA, reverseB, op} of variants) {
   const a = nativePlant(0), b = nativePlant(1);
   const n = Math.min(a.output.length, b.output.length);
-  const K = Array.from({length:n}, () => randomInt(29));
-  const independent = Array.from({length:n}, () => randomInt(29));
+  const nonzero=op === "mulSame"||op === "mulInverse";
+  const K = Array.from({length:n}, () => nonzero ? randomInt(28)+1 : randomInt(29));
+  const independent = Array.from({length:n}, () => nonzero ? randomInt(28)+1 : randomInt(29));
   const encA = a.output.map((x,i) => {
     const t = reverseA ? a.output.length - 1 - i : i;
-    return (x+K[t])%29;
+    return nonzero ? (x*K[t])%29 : (x+K[t])%29;
   });
   const encB = b.output.map((x,i) => {
     const t = reverseB ? b.output.length - 1 - i : i;
     if (t >= n) return x;
+    if(nonzero) return (x*(op === "mulSame"?K[t]:inverse29(K[t])))%29;
     const k = op === "diff" ? K[t] : 29 - K[t];
     return (x+k)%29;
   });
   const encWrongB = b.output.map((x,i) => {
     const t = reverseB ? b.output.length - 1 - i : i;
     if (t >= n) return x;
+    if(nonzero) return (x*(op === "mulSame"?independent[t]:inverse29(independent[t])))%29;
     const k = op === "diff" ? independent[t] : 29-independent[t];
     return (x+k)%29;
   });
   for (let t=0;t<n;t++) {
     const j=reverseB ? b.output.length - 1 - t : t;
     const k=reverseA ? a.output.length - 1 - t : t;
-    const recoveredA = (encA[k]-K[t]+29)%29;
-    const recoveredB = (encB[j] + (op === "diff" ? -K[t] : K[t]) + 29)%29;
+    const recoveredA = nonzero ? (encA[k]*inverse29(K[t]))%29
+      : (encA[k]-K[t]+29)%29;
+    const recoveredB = nonzero ? (encB[j]*(op === "mulSame" ? inverse29(K[t]):K[t]))%29
+      : (encB[j] + (op === "diff" ? -K[t] : K[t]) + 29)%29;
     assert.equal(recoveredA,a.output[k]);
     assert.equal(recoveredB,b.output[j]);
   }
@@ -322,8 +353,8 @@ for (const {reverseA, reverseB, op} of variants) {
     matchedSamePad:good.minOov, independentPads:bad.minOov});
 
 }
-assert.deepEqual(controls.map(x => x.matchedSamePad), [2,2,2,1,1,1,1,3]);
-assert.deepEqual(controls.map(x => x.independentPads), [14,11,16,16,12,15,14,14]);
+assert.deepEqual(controls.slice(0,8).map(x => x.matchedSamePad), [2,2,2,1,1,1,1,3]);
+assert.deepEqual(controls.slice(0,8).map(x => x.independentPads), [14,11,16,16,12,15,14,14]);
 console.log(JSON.stringify({
   source:"Original LP2 p0+p1 shared black crosses, additive pad both signs and p1 orientations",
   pageLengths:[pages.get(0).runes.length,pages.get(1).runes.length],
