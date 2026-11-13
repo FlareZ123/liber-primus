@@ -14,3 +14,5 @@ jobs:
         run: node sims/lp2_gf841_period840_collision_keyskip_sft.cjs
       - name: Source-native GF841 nonrepeating GP28 transition inverse
         run: node sims/lp2_gf841_period840_gp28_transition_sft.cjs
+      - name: Source-native GF841 literal F and reserved-output rejection inverse
+        run: node sims/lp2_gf841_period840_ftransparent_rejection_sft.cjs
