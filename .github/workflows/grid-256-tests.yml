@@ -63,6 +63,7 @@ on:
           - p29-gadic-field-projections
           - p29-signed2016-91-alllinear
           - q252-gf841-eval
+          - hg252-nine-chapter
           - nonic-red9-p55
           - image-dim-page
           - microqr-finder
@@ -101,6 +102,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: H/G 252-coefficient original nine-chapter key and feedback test
+        if: ${{ inputs.probe == 'hg252-nine-chapter' }}
+        run: |
+          node --check sims/lp2_grid_hg252_nine_chapter_sft.cjs
+          node sims/lp2_grid_hg252_nine_chapter_sft.cjs
+
       - name: Exact original p36 full-slot GF29^238 field-power inverse and native plant
         if: ${{ inputs.probe == 'p36-q238-full-slot' }}
         run: node sims/lp2_p36_q238_dh_power_sft.cjs
