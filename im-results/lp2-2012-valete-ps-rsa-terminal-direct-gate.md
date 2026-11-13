@@ -6,7 +6,7 @@
 
 The original signed 2012 Cicada final message ends with a three-line postscript integer. The contemporary solver [2012 source archive](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2012/011-valete/README.md) preserves the text and later-determined exact factorization. This was an unusually concrete, period-visible unresolved source number; the authors previously used RSA, and a GP29 base-29 positional integer is a source-native plaintext representation. Physical p55 contains exactly **76 original GP29 ciphertext runes**, forming a 368–369-bit integer which fits the postscript's 432-bit modulus.
 
-The source does **not** name a p55 decoder, assign an exponent to the postscript, or explicitly select RSA for LP2. **65,537** is the conventional historical *candidate* exponent, not a verified Cicada instruction. This is a bounded source-conditioned hypothesis.
+The source does **not** name a p55 decoder, assign an exponent to the postscript, or explicitly select RSA for LP2. The **65,537** exponent is both conventional and explicitly used in the [authentic 2014 Cicada signed RSA stage](https://github.com/scream314/cicada3301/blob/master/2014.md), alongside the named *Crypt::RSA::ES::OAEP* scheme, so this is a historically motivated exponent rather than a blind search. Whether it belongs to the separate 2012 P.S. is **unverified**. This is a bounded source-conditioned hypothesis.
 
 Concatenating the postscript's three original numeric lines yields:
 
