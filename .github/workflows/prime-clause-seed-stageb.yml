@@ -1,0 +1,49 @@
+name: Source-derived prime-clause MT seed Stage B
+
+on:
+  push:
+    paths:
+      - "im-results/source-derived-prng-seed.txt"
+
+permissions:
+  contents: read
+
+jobs:
+  stageb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned upstream decoder and corpus
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: upstream
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /liber-primus/analysis/run_stats.py
+            /liber-primus/analysis/round11/*
+            /liber-primus/analysis/round19/G3/*
+            /liber-primus/analysis/round19/I1/*
+            /liber-primus/analysis/round19/I2/*
+            /liber-primus/analysis/campaign18_skip/*
+            /liber-primus/src/**
+            /liber-primus/data/krisyotam_runes.txt
+            /liber-primus/data/english_quadgrams.txt
+            /liber-primus/data/panels/panel-r36.npz
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install numerical score support
+        run: python3 -m pip install --disable-pip-version-check numpy
+      - name: Full 240-rune decode plus heldout reproduction
+        run: |
+          SEEDS="$(tr '\n' ' ' < im-results/source-derived-prng-seed.txt)"
+          python3 sims/mt_nearmiss_stageb.py upstream/liber-primus $SEEDS | tee stageb.jsonl
+      - name: Save candidate plaintext path and exact measurements
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-derived-prime-clause-mt-seed-stageb
+          retention-days: 90
+          path: stageb.jsonl
