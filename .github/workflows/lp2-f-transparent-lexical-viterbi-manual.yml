@@ -14,3 +14,5 @@ jobs:
         run: node sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs
       - name: Recheck corrected native F-count gate on original LP2
         run: node sims/lp2_literal_f_fullbook_native_capacity_sft.cjs
+      - name: Source-native independent-uniform GP29 key F-tail exact model check
+        run: node sims/lp2_ftransparent_iid_pad_Fcount_sft.cjs
