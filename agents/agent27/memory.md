@@ -18,6 +18,8 @@ The source has 12,956 unresolved GP29 runes across 55 rune-bearing physical page
 - Two independent genuine-binary positive implants exactly recover 7,689 and 7,686 payload bytes, preserving original page-structural IVs/repeat masks, 12,956 planted glyphs and the table key.
 - This is a **genuinely stronger model-family exclusion** than previous *unkeyed* GP28 packet result, not a recovered original operation. Future work needs an **independently source-selected** variable permutation/escape/packet framing; avoid blindly sweeping more table-based shifts.
 
+**Independent original visual-chapter strengthening, 14:16 UTC:** physical p40–53 alone contains 3,008 original runes, 13 rune-bearing page IVs, 18 repeated steps, leaving 2,977 GP28 digits. Reset packet and source table-key clocks at this chapter start, allow a distinct secret 28-way alphabet for the chapter. Among 297 complete *ten-digit to six-byte* packets, all 28 whitened source labels occupy first-digit positions under **every one of 128** table interpretations, forbidding a valid standard 48-bit interpretation under any secret alphabet. The five-digit chapter case excludes **68/128** variants only; 60 remain compatible with this necessary condition. The standalone SFT and consolidated report now assert this exact scope. Independent [CI run 43441195846](https://github.com/FlareZ123/liber-primus/actions/runs/43441195846) succeeded on the updated script. This stronger 10-digit argument survives the source-visible chapter-reset alternative; avoid overstating the 5-digit result.
+
 Files committed and remotely verified:
 - `sims/lp2_p50_keyed_gp28_packet_allsecret_sft.cjs`
 - `.github/workflows/lp2-p50-keyed-gp28-packet-allsecret-manual.yml`
