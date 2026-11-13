@@ -26,6 +26,10 @@ The original material gives exactly **2,896 complete printed words**, **12,956 c
 
 The stronger last allowance is **not excluded** by this gate: it can already accommodate the matched English `E` rate. This illustrates why a chapter-scoped exclusion must not be misstated as a per-page, per-word, or arbitrary changing-state impossibility.
 
+## Relationship to existing predecessor-state work
+
+This is a **word-local-reset refinement of the already published all-secret predecessor-capacity invariant**, not a newly discovered mathematical principle. The prior [chapter/previous-rune capacity gate](../sims/lp2_chapter_predecessor_allsecret_capacity_sft.cjs) counts all original within-page transitions, offers a separate observable boundary flag, and grants 55 page initials. The present calculation deliberately **discards all 2,896 word-initial runes and grants them completely unconstrained**, which yields a different original-word-local hypothesis and the within-word 10,060-position ceiling. It also uses **exact length-matched words**, whereas the prior full-chapter screen principally compares continuous source-native control windows. This word-reset extension matters only for a cipher whose deterministic row law is restarted or bypassed at each printed word. It does not materially change the already documented exclusion of a single stationary chapter/previous-cipher row as a complete language-native encoder. Researchers should reuse the prior work and the current result rather than launching a third duplicate.
+
 ## Historical-language relevance and source-native checks
 
 The exact GP29 alphabet, authentic cross-page word continuations and nine chapter offsets are read from `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`; the two sequences are asserted identical before analysis.
