@@ -1,0 +1,52 @@
+# Solved *Parable* word interiors as prime-totient page cursors: all-F-pattern original-cipher gate
+
+**Agent 10, 13 November 2026. Result:** the natural, fully specified combination of the solved p57 instruction to shed word circumferences, the 55 rune-bearing unknown pages, and the genuinely solved p56 prime-totient/literal-F mechanism is **incompatible with 54/55 or 53/55 original pages**, depending on how a shed GP rune selects its prime cursor. Every possible placement of plaintext-F interruptions is admitted. **No unknown-page plaintext, original key, or destination is recovered.**
+
+## Human-visible clue chain and weakest assumption
+
+The authentic, visibly unencrypted final LP2 page p57, *Parable*, contains **20 complete words and 95 runes**, including the instruction **“WE MUST SHED OUR OWN CIRCUMFERENCES. FIND THE DIVINITY WITHIN AND EMERGE.”** The fixed printed word lengths are:
+
+\`[7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]\`.
+
+Remove exactly the first and last rune from **each complete word**. This implements a literal word-level “shed the circumference” and yields **95−40=55** GP29 symbols. Original physical p0–55 have exactly **55 rune-bearing unsolved pages**; p50 is a numeric table without runes. Assign the 55 shed symbols to those 55 pages in source order, skipping p50. The SFT derives the word boundaries directly from the pinned original transcription and verifies their concatenation against all 95 canonical source runes.
+
+The adjacent already-solved p56 *An End* uses the exact, historically established **consecutive-prime totient shift** \`C=(P+φ(prime_j)) mod29\`, with a plaintext F rune copied literally to ciphertext F **without consuming a key step**. Earlier solved-page material also emphasizes prime numbers and Euler's totient. A potentially human-playable continuation is to use each of the newly extracted 55 p57 runes to choose that page's **initial prime cursor**, then repeat the proven p56 mechanism. The source does **not** say that the p57 strict word interiors are prime indices, nor that the p56 cipher must be transferred to p0–55: these are the decisive upstream assumptions, subject to the original-cipher test.
+
+Only two natural numeric readings of the exact same 55 source runes are evaluated:
+
+1. **GP-index seed:** use the shed 0-based GP rune index as the 0-based index into the consecutive-prime list, ranging 0–28.
+2. **GP-prime-ordinal seed:** use the rune's canonical GP prime value as a one-based prime ordinal, so the cursor is that prime value minus one.
+
+Each page's cursor resets to its assigned seed at that page's actual first GP rune. No unknown key, tuned offset, word permutation, page orientation, phase, added salt, inferred seed, or trained language model is used.
+
+## Complete unknown-literal-F inverse
+
+For an original ciphertext rune \`C_i\` and current cursor \`j\`, set \`K_j=(prime_j−1) mod29\` in the verified GP29 indexing. The authentic p56 transport permits precisely:
+
+- **Literal F:** when \`C_i=0\`, emit plaintext \`F=0\` and leave \`j\` unchanged.
+- **Non-F emission:** when \`C_i != K_j\`, emit plaintext \`P_i=(C_i−K_j) mod29\` and advance \`j\` once.
+
+When \`C_i=K_j\`, consuming a prime would produce a plaintext F that should instead have been sent literally without key consumption, so that consuming branch is invalid. A finite dynamic program propagates **every reachable cursor**, including all compatible literal-F masks. If the reachable set empties, no plaintext whatsoever can have produced the original ciphertext under that fixed source-seeded law, regardless of language.
+
+A second exact dynamic program allows an otherwise illegal nonliteral-F emission at cost one, minimizing the count over all possible literal-F choices. These minimum costs are *violations of the specified emission rule*, not proven typographic errors or an independently measured count of ciphertext corrections.
+
+| Fixed source cursor interpretation | Pages with at least one valid complete literal-F path | Ruled out among 55 original pages | Sum of minimum invalid nonliteral-F emissions | Earliest impossible original p0 offset |
+| --- | --- | ---: | ---: | ---: |
+| GP 0-based index | p43 only | **54/55** | **214** | **49** |
+| GP prime value as one-based ordinal | p49, p55 only | **53/55** | **179** | **0** |
+
+Even the two or three exceptional **feasible** pages are merely arithmetically consistent with one or more unknown literal-F paths; the method provides no source-selected actual path or readable plaintext for them. The page groups are **not** independent statistical trials, and no p-value is asserted.
+
+### Genuine known-cipher and native-control checks
+
+Using the independently known English plaintext of **all 85 GP runes of p56**, the SFT regenerates the **85/85 exact original ciphertext runes**, copies its single plaintext F at original index **56** without consuming the prime cursor, and uses exactly **84** prime steps. The exhaustive cursor DP admits the genuine original p56 ciphertext from prime cursor zero, with minimum invalid emissions zero.
+
+For **each of the 55 original page lengths under both seed conventions**, the script independently enciphers a GP-native plaintext plant formed from authentic solved p57 runes. Its original-source-shape ciphertext has at least one exact legal F-skip path, which the same DP admits. This is a control for reachable genuine plaintext under the proposed mechanism, rather than an output-only reversible-shift assertion.
+
+## Decision and scope
+
+The bounded result **rejects direct per-page transfer of the authentic p56 prime-totient/literal-F cipher using the 55 literal strict-word-interior p57 GP symbols as either direct GP-index or canonical GP-prime-ordinal starting cursors** on the unaltered p0–55 text. No post-hoc F skip pattern can rescue either complete model; its contradictions are key-independent once the two source cursor interpretations are fixed.
+
+The mathematical exclusion does **not** reject another meaning of “shed our own circumferences,” a different cross-page mapping, a different operation after extracting the 55 symbols, an original cipher with nonliteral plaintext F consumption, changed word boundaries, or an unknown state/stream-cipher layer. Such successors need a new original clue that specifies their consumer or an actual held-out plaintext prediction. Do **not** rerun prime-cursor sweeps or relax contradictory symbols to fit this failed model.
+
+**Reproduction:** [single CommonJS SFT](../sims/lp2_p57_shed_primecursor_fskip_sft.cjs), using original [GP29 corpus](../resources/liber-primus/lp2-corpus.json), [LP2 printed transcription](../resources/liber-primus/lp2-transcription.txt), and the solved-p56 English passage independently established by the [authentic solved-cipher regression](../sims/authentic_decryption_regression.cjs). The script computes the full original results, asserts the exact original-page contradictions and aggregate minimum costs, and validates all native and historical positive controls.
