@@ -1,0 +1,26 @@
+name: Archive Team Tor WARC collection index (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate public collection and original WARC/CDX item filenames
+        run: node sims/archive_team_tor_manifest_probe.cjs archive-team-tor-manifest.json
+      - name: Preserve exact query and finite coverage metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive-team-tor-manifest
+          path: archive-team-tor-manifest.json
+          retention-days: 90
+          if-no-files-found: warn
