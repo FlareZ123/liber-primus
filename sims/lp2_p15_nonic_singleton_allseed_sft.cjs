@@ -154,6 +154,152 @@ function ioc(a) {
   return count.reduce((sum, c) => sum + c * (c - 1), 0) / (a.length * (a.length - 1));
 }
 
+
+const mod28 = number => (number % 28 + 28) % 28;
+const exp15 = Array(28);
+const log15 = Array(29).fill(-1);
+{
+  let value = 1;
+  for (let i = 0; i < 28; i++) {
+    exp15[i] = value;
+    log15[value] = i;
+    value = mod(value * 15);
+  }
+  assert.equal(value, 1);
+  assert.ok(log15.slice(1).every(i => i >= 0));
+}
+
+/**
+ * Interpret each nonzero ciphertext step as a GF29 multiplicative-group
+ * element. The rare zero step is an explicit GP rune EA (index 28).
+ * @param {number[]} ciphertext
+ * @param {'every'|'skip-repeat'} clock
+ */
+function exponentPositions(ciphertext, clock) {
+  let previous = 0;
+  let t = 0;
+  const indices = [];
+  const exponents = [];
+  let repeats = 0;
+  for (const c of ciphertext) {
+    const delta = mod(c - previous);
+    previous = c;
+    indices.push(t);
+    exponents.push(delta === 0 ? -1 : log15[delta]);
+    if (delta === 0) repeats++;
+    if (clock === 'every' || delta !== 0) t++;
+  }
+  return {indices, exponents, repeats};
+}
+
+/**
+ * All possible GF29 nonic states compatible with 9 one-rune words become
+ * 3^9 GP A/I/O choices times exactly the necessary k=0/28 aliases.
+ *
+ * No secret state, starting phase, or ciphertext target is optimized.
+ * @param {number[]} ciphertext
+ * @param {number[][]} rows
+ * @param {'every'|'skip-repeat'} clock
+ */
+function recoverExponent28(ciphertext, rows, clock) {
+  const positions = exponentPositions(ciphertext, clock);
+  assert.equal(positions.repeats, 10, 'original-aligned repeat landmarks');
+  const words = singletons.map(s => ({
+    exponent: positions.exponents[s.at],
+    vector: rows[positions.indices[s.at]]
+  }));
+  assert.ok(words.every(word => word.exponent >= 0),
+    'none of the original 18 singletons is a repeat-escape event');
+  const matrix = invert9(words.slice(0, 9).map(w => w.vector));
+  const alphabet = [24, 10, 3];
+  const survivorSeeds = [];
+  const mismatchCounts = Array(words.length - 8).fill(0);
+  let bestMismatch = words.length;
+  let bestCandidateCount = 0;
+  let seedsChecked = 0;
+
+  for (let mask = 0; mask < 19683; mask++) {
+    let digits = mask;
+    const sets = words.slice(0, 9).map(word => {
+      const plain = alphabet[digits % 3];
+      digits = Math.floor(digits / 3);
+      const key = mod28(word.exponent - plain);
+      return key === 0 ? [0, 28] : [key];
+    });
+    const variants = sets.reduce((n, choices) => n * choices.length, 1);
+    for (let alias = 0; alias < variants; alias++) {
+      let value = alias;
+      const cribKey = sets.map(set => {
+        const item = set[value % set.length];
+        value = Math.floor(value / set.length);
+        return item;
+      });
+      const seed = matrix.map(row => dot(row, cribKey));
+      seedsChecked++;
+      let mismatched = 0;
+      for (const word of words.slice(9)) {
+        const plain = mod28(word.exponent - (dot(word.vector, seed) % 28));
+        if (!alphabet.includes(plain)) mismatched++;
+      }
+      mismatchCounts[mismatched]++;
+      if (mismatched < bestMismatch) {
+        bestMismatch = mismatched;
+        bestCandidateCount = 1;
+      } else if (mismatched === bestMismatch) {
+        bestCandidateCount++;
+      }
+      if (mismatched === 0) survivorSeeds.push(seed);
+    }
+  }
+  assert.equal(mismatchCounts.reduce((sum, count) => sum + count, 0), seedsChecked);
+  return {survivorSeeds, seedsChecked, bestMismatch, bestCandidateCount,
+    mismatchCounts, repeats: positions.repeats};
+}
+
+/**
+ * Exact reversible GP28 exponent/EA-escape forward encoder.
+ * @param {number[]} plain
+ * @param {number[][]} rows
+ * @param {number[]} seed
+ * @param {'every'|'skip-repeat'} clock
+ */
+function encodeExponent28(plain, rows, seed, clock) {
+  let previous = 0;
+  let t = 0;
+  const out = [];
+  for (const p of plain) {
+    assert.ok(Number.isInteger(p) && p >= 0 && p < 29);
+    const c = p === 28 ? previous :
+      mod(previous + exp15[mod28(p + (dot(rows[t], seed) % 28))]);
+    out.push(c);
+    if (clock === 'every' || p !== 28) t++;
+    previous = c;
+  }
+  return out;
+}
+
+/**
+ * Exact inverse under a known secret stream state.
+ * @param {number[]} ciphertext
+ * @param {number[][]} rows
+ * @param {number[]} seed
+ * @param {'every'|'skip-repeat'} clock
+ */
+function decodeExponent28(ciphertext, rows, seed, clock) {
+  let previous = 0;
+  let t = 0;
+  const out = [];
+  for (const c of ciphertext) {
+    const delta = mod(c - previous);
+    const plain = delta === 0 ? 28 :
+      mod28(log15[delta] - (dot(rows[t], seed) % 28));
+    out.push(plain);
+    if (clock === 'every' || delta !== 0) t++;
+    previous = c;
+  }
+  return out;
+}
+
 function run() {
   const reciprocal = nonic.slice().reverse().map(x => mod(x * inverse(nonic[0])));
   const candidates = [
@@ -185,7 +331,46 @@ function run() {
     assert.deepEqual(roundTrip, plantedPlain);
     assert.deepEqual(roundTrip.map((p, i) => mod(p + dot(rows[i], plantedSeed))), plantedCipher);
 
+    const exponent28 = [];
+    for (const clock of ['every', 'skip-repeat']) {
+      const found28 = recoverExponent28(body, rows, clock);
+      assert.equal(found28.survivorSeeds.length, 0,
+        'original exponent/EA decoder must reject every source-compatible seed');
+
+      // Keep exactly the ten original repeat-escape positions while deriving
+      // the synthetic GP native source, so both clock rules are exercised.
+      const known28 = source.pages.find(p => p.page === 57).indices;
+      const plantedPlain28 = Array.from({length: body.length}, (_, i) => {
+        const gp = known28[i % known28.length];
+        return gp === 28 ? 18 : gp;
+      });
+      let preceding = 0;
+      for (let i = 0; i < body.length; i++) {
+        if (body[i] === preceding) plantedPlain28[i] = 28;
+        preceding = body[i];
+      }
+      for (let i = 0; i < singletons.length; i++)
+        plantedPlain28[singletons[i].at] = [24, 10, 3][i % 3];
+      const plantedCipher28 = encodeExponent28(plantedPlain28, rows, plantedSeed, clock);
+      const plantedFound28 = recoverExponent28(plantedCipher28, rows, clock);
+      assert.ok(plantedFound28.survivorSeeds.some(seed =>
+        seed.every((x, i) => x === plantedSeed[i])),
+        'unknown source-state recovered from three-valued one-rune cribs');
+      assert.deepEqual(decodeExponent28(plantedCipher28, rows, plantedSeed, clock),
+        plantedPlain28, 'whole source-native plaintext recovered');
+      exponent28.push({
+        clock, sourceRepeatEscapes: found28.repeats,
+        allCribConsistentSeedAssignments: found28.seedsChecked,
+        sourceSurvivors: found28.survivorSeeds.length,
+        minimumHeldoutWordErrors: found28.bestMismatch,
+        candidatesAtMinimum: found28.bestCandidateCount,
+        heldoutErrorDistribution: found28.mismatchCounts,
+        syntheticUnknownSeedRecovered: true,
+        syntheticBodySymbolsRecovered: body.length
+      });
+    }
     reports.push({
+      exponent28,
       polynomial: candidate.name,
       sourceOneRuneWords: singletons.length,
       independentSeedConstraints: 9,
