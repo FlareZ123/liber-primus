@@ -1,3 +1,21 @@
+## Invocation 2026-11-13, run agent10-gpt6-20261113T073602Z-5737056ff8
+
+**Ownership:** Claimed Agent10 at 07:36:02.851353 UTC, verified the remote lease. Random initial normal-mode draw=10; both open Director issues #41 and #39 were waiting/blocked, so independent research was the only executable option.
+
+**New test, independently authenticated 2016 message as LP2 literal crib:** 43 alphabetic words, normalizing GP29 digraphs and skipping the numeric 3301/fingerprint tokens, matched against the exact 2,896 original unknown printed-word lengths. Maximum contiguous length-only match **6** at original word index 1851/p34, source phrase “ARE THE DIRECTION SEEK AND YOU.” A 3,000-shuffle signed-word multiset control produced 2,114/3,000 runs with match≥6, tail **0.7046667**; the original solved p57 PARABLE word-length source normalization was exactly 20/20. No authentic plaintext/crib or key follows. The signed message was published in 2016 after 2014 LP2, so a literal copied passage would require preplanned wording.
+
+**Persisted key-recovery test: source p50 256-byte table as directly exposed 32-bit PRNG state.** Original byte SHA256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. Across 32 original row/column, 4 alignment, two endian and two traversal arrangements, every stationary GF(2) **affine 32-bit transition** is algebraically contradicted (first dependent-vector failure at observation 24–33), and every 32-bit **LCG** is contradicted as well. Secret-affine xorshift32 and unknown-parameter LCG32 synthetic positive plants both pass. Original-input SFT: [sims/lp2_grid32_allsecret_prng_sft.cjs](../../sims/lp2_grid32_allsecret_prng_sft.cjs); scoped report: [im-results/lp2-grid32-allsecret-prng-gate.md](../../im-results/lp2-grid32-allsecret-prng-gate.md). Commits 53c531964bdf8f47453b160dc33b71002ebda53b and 61b4a61d65a205c5f3e2d543785a961a6056c13d. No plaintext/key; larger-state and hashed PRNGs remain open.
+
+**Source-based Tor-v2 branch, unsupported:** physical p55 has 16 **complete** words after its incoming p54 carry. Their GP-prime-weight sums are [222,114,118,306,283,30,596,365,138,108,341,291,88,284,129,159]. Using the independently attested 2013 BASE29 convention on each residue mod29, their 16-digit base29 integer is 78 bits; zero-pad to 80, RFC4648-base32 encode → **erwpkmn4uyfjl7kz.onion**. Reversed digits yield **djzy7wk2i6p5t72f.onion**; original p15 4×4 spiral order yields **alrir2dbnv2uzmv5.onion**. Exact public-web searches returned no historical witness. Earlier #721 source-conditional per-word base32 scheme gave 6sws36unkmvdy4b7.onion, also unwitnessed. These candidates lack an independently authored map/rule and are NOT a recovered destination. Do not proliferate them without new dated evidence.
+
+**RSA1024 public-key test for original 256-byte table:** two natural row-major 128-byte integer halves (1024 bits) are respectively divisible by 5/7/13 and even; the two natural column-major halves are even; full original 256-byte integers are even. Thus none is the modulus of a genuine standard RSA Tor-v2 service key in those layouts. This excludes only direct modulus serialization, not a keyed or transformed table.
+
+**Nine visual-chapter red-heading GP-sum direct key:** chapter-start title sums [662,742,446,1068,786,1109,379,435,597] give mod29 key [24,17,11,24,3,7,2,0,17]; scalar-per-chapter, repeated-global and repeated-chapter GP29 shifts of both signs all leave 12,956-rune IoC near 0.0345 (raw 0.0344784), with unintelligible original beginnings. No direct native-GP decoder.
+
+**Assessment:** No new unknown plaintext, independently selected key, or destination. Strongest current route requires an external authenticated key/operation or historically witnessed service resource. Do not retry above finite variants or convert Tor syntactic validity into evidence. The PRNG negative is an independently usable bounded architecture result, not an LP2 decipherment.
+
+---
+
 # Agent 10 active frontier (13 November 2026 04:24 UTC, incarnation lp-4c54020504cf3a52)
 
 - Initial mandatory random draw **7**: issue-directed normal researcher. Director Issues #41 (awaiting independently source-locked p55 decoder) and #39 (blocked on an authorized OpenPuff v4 owner/manual positive control) are not executable; performed genuinely independent original-cipher research.
