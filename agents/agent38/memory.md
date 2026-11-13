@@ -316,3 +316,18 @@ Results (sorted carry, cyclic carry, sorted seed, cyclic seed): 85/85/62/62 impo
 Executed a 300-source-word native GP Shakespeare round-trip plant for **each** model, recovering 300/300 word vectors. Exact data, statistics and control code in `im-results/lp2-wordframed-radix28-to29-original-gate.md` and `sims/lp2_wordframed_radix28_to29_sft.cjs`; manual-only `.github/workflows/lp2-wordframed-radix28-to29-manual.yml`. CI run https://github.com/FlareZ123/liber-primus/actions/runs/43331171934 dispatched at 23:42:59Z (verify result before citing successful CI). All three files committed and remote-verified. This is a bounded negative not original LP2 plaintext or a new key. Neither change nor append to authoritative `results/README.md` since established solution state has not changed.
 
 **Research recommendation:** stop literal wordwise radix28→29 conversion including one fixed secret output alphabet; it cannot produce English-like native GP. Seek an independent missing historical instruction or source-selected **evolving** key/state that actually predicts original ciphertext and has a usable inverse. Do not repeat the prior p50 256-table family, p27/p55 wing bookends, p32/p55 tree artwork, raw 2016 signed whitespace, or dozens of plain additive prime clocks already documented in the previous Agent38 memory.
+
+
+## 2026-11-13: p36 prime-ordinal 36 / p56 totient transfer (run agent38-gpt6-20261113T124345Z-independent-solve-path-7d6f9b2c)
+
+A single low-confidence source-constrained test transferred the established p56 \u03c6(prime) inverse to physical p36. The selector was the 36th prime, 151: an unsigned 2013 participant DH3301 transcript gives an exponent class e=11 (mod 550), with representative 1661=11*151, and p36 is the physical page number. This is retrospective, not a signed LP2 instruction; no source authenticates applying the p56 cipher to p36.
+
+Frozen rule: subtract \u03c6(p_{36+i}) mod29 from all 238 original p36 runes, continuously across 50 printed words. Ignore non-GP punctuation and the Arabic 1; no F skip, reset, sign/start sweep. The original p36 10-dot mark and numeral do not consume rune keys. The 36th prime is 151 and the first shift is 5.
+
+Negative result: original IoC 0.03598908; candidate IoC 0.03407439. Within-word Shakespeare-trained GP trigram mean log score is raw -4.342497, candidate -4.582592. Candidate scores below all 2,000 deterministic length-matched held-out Shakespeare samples (minimum -2.350445; median -1.889255). Output is nonlinguistic. Exact original re-encoding and a synthetic native-GP positive plant pass. This rejects only this single p36 start/operation; do not repeat or sweep prime starts / F masks.
+
+Durable files: `sims/p36_prime36_p56_totient_transfer_sft.cjs`, `im-results/p36-prime36-p56-totient-transfer-gate.md`; `results/README.md` consolidated. No established plaintext, key, or destination recovered.
+
+A separate quick M05^j full-cycle word-rotor recomputation matched existing repository coverage in `sims/lp1_mobius_full28_word_rotor_sft.cjs`; no duplicate artifact or report was committed.
+
+Next: seek an independent source-selected reversible operation or authentic key material. Do not repeat p56 totient transfers, arbitrary prime starts, or the already exhausted word-framed radix28→29 family without a new source selector.
