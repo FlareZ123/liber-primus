@@ -31,12 +31,13 @@ function readControl(name) {
  * @param {string} text
  * @returns {number[]}
  */
-function nativeLengths(text) {
+function nativeLengths(text, includeIng = false) {
   const words = text.toUpperCase()
     .replace(/QU/g, "CW")
     .replace(/[VKZQ]/g, ch => ({V: "U", K: "C", Z: "S", Q: "C"})[ch])
     .match(/[A-Z]+/g) || [];
-  return words.map(word => (word.match(/TH|EO|NG|OE|AE|IA|EA|./g) || []).length);
+  return words.map(word => (word.match(includeIng
+    ? /ING|TH|EO|NG|OE|AE|IA|EA|./g : /TH|EO|NG|OE|AE|IA|EA|./g) || []).length);
 }
 
 /**
@@ -99,11 +100,11 @@ function mixHash(value) {
  * @param {number[]} targetSorted
  * @returns {number[]}
  */
-function rankMatch(a, targetSorted) {
+function rankMatch(a, targetSorted, tieSeed = 0x3301) {
   const indices = Array.from({length: a.length}, (_, i) => i);
   indices.sort((i, j) =>
     a[i] - a[j] ||
-    mixHash(i + 0x3301) - mixHash(j + 0x3301));
+    mixHash(i + tieSeed) - mixHash(j + tieSeed));
   const out = Array(a.length);
   for (let rank = 0; rank < indices.length; rank++) {
     out[indices[rank]] = targetSorted[rank];
@@ -176,6 +177,35 @@ function main() {
   assert.deepEqual(controls.map(c => c.windows), [19, 5, 26, 13]);
   assert.equal(controls.reduce((s, c) => s + c.rankMatchedBelowOriginal, 0), 0);
 
+  // Adversarial sensitivity: preserve the original histogram exactly,
+  // independently vary all tie handling, and allow the GP ING ligature.
+  const seeds = [0x3301, 0x2014, 0x2016, 0xDEAD, 0x7A35];
+  let sensitivityCases = 0;
+  let sensitivityViolations = 0;
+  let sensitivityMinimumChi = Infinity;
+  for (const ing of [false, true]) {
+    const variedControls = [
+      nativeLengths(readControl("shakespeare_first300k.txt"), ing),
+      nativeLengths(readControl("gibran_prophet_58585.txt"), ing),
+      nativeLengths(readControl("emerson_essays_2944.txt"), ing),
+      samples[3][1]
+    ];
+    for (const seed of seeds) {
+      for (const input of variedControls) {
+        for (let start = 0; start + N <= input.length; start += N) {
+          const adjusted = stats(rankMatch(input.slice(start, start + N),
+            sorted, seed));
+          sensitivityCases++;
+          sensitivityViolations += adjusted.chi <= observed.chi;
+          sensitivityMinimumChi = Math.min(sensitivityMinimumChi, adjusted.chi);
+        }
+      }
+    }
+  }
+  assert.equal(sensitivityCases, 630);
+  assert.equal(sensitivityViolations, 0);
+  assert.ok(Math.abs(sensitivityMinimumChi - 85.63966793443952) < 1e-8);
+
   // An exact-inventory positional null, independent of language models.
   const draws = 20000;
   const next = random(SEED);
@@ -202,7 +232,9 @@ function main() {
 
   console.log(JSON.stringify({source: {words: N, runes: corpus.runeCount,
     crossPageWords: corpus.crossPageWords, ...observed},
-  controls, exactHistogramShuffleNull: nullResult}, null, 2));
+  controls, sensitivity: {cases: sensitivityCases, violations: sensitivityViolations,
+    minimumChi: sensitivityMinimumChi},
+  exactHistogramShuffleNull: nullResult}, null, 2));
 }
 
 if (require.main === module) main();
