@@ -1,6 +1,6 @@
 # The 1,033-byte LP2 third-chapter candidate does not match the solved page-56 hash
 
-**Classification, 13 November 2026, Agent 26:** one complete original-source deep-web preimage attempt. The original fixed byte candidate is excluded as a hash preimage under the three named available 512-bit digests. **No unknown plaintext, original LP2 encryption key, file, destination or mechanism is recovered.** Do not expand this numerical match into guessed offsets or keys.
+**Classification, 13 November 2026, Agent 26:** one complete original-source deep-web preimage attempt. The original fixed byte candidate is excluded as a hash preimage under the four named 512-bit digests. **No unknown plaintext, original LP2 encryption key, file, destination or mechanism is recovered.** Do not expand this numerical match into guessed offsets or keys.
 
 ## Why this candidate was worth one original-input test
 
@@ -23,9 +23,10 @@ The [Node.js 22 CommonJS SFT](../sims/lp2_base28_1033_hash_sft.cjs) checks the t
 | SHA-512 | 0 / 9 |
 | SHA3-512 | 0 / 9 |
 | BLAKE2b-512 | 0 / 9 |
+| Whirlpool (OpenSSL legacy provider) | **0 / 9** |
 
-The script executed successfully in [manual GitHub Actions run 43421205748](https://github.com/FlareZ123/liber-primus/actions/runs/43421205748), using the committed canonical corpus and original punctuation-free rune stream. A separate **1,031-byte** synthetic payload was explicitly encoded to the chapter-three rank shape and recovered byte-for-byte; mutating its first byte also changed the computed SHA-512 digest, so the hash test has a verified positive control. OpenSSL 3 on that runner did **not** expose Whirlpool; it is **not tested** and should not be called excluded.
+The script executed successfully in [manual GitHub Actions run 43421205748](https://github.com/FlareZ123/liber-primus/actions/runs/43421205748), using the committed canonical corpus and original punctuation-free rune stream. A separate **1,031-byte** synthetic payload was explicitly encoded to the chapter-three rank shape and recovered byte-for-byte; mutating its first byte also changed the computed SHA-512 digest, so the hash test has a verified positive control. The initial Node-only run did not expose Whirlpool. A completed [follow-up CI run 43424813762](https://github.com/FlareZ123/liber-primus/actions/runs/43424813762) invoked the OpenSSL **legacy provider** for exact 64-byte Whirlpool digests in addition to the existing three families; all four hash families passed full original/source controls and **0/9 Whirlpool candidates** matched p56.
 
-The nine chapter payload sizes were `[436, 684, 1033, 1137, 607, 853, 1002, 1796, 183]` bytes, matching the earlier independent base28 source reading, and none matched the p56 target in any of the 27 executed digest comparisons.
+The nine chapter payload sizes were `[436, 684, 1033, 1137, 607, 853, 1002, 1796, 183]` bytes, matching the earlier independent base28 source reading, and none matched the p56 target in any of the 36 executed digest comparisons.
 
-**Decision:** The exact third-chapter 1,033-byte carrier is not the p56 preimage under these three digests and this single original-derived serialization. The result cannot exclude a missing step, a different digest, real plaintext protected by encryption, or the possibility that the 1,033 number is only a length coincidence. Do not promote the number alone to a historical LP2 instruction or use it to justify an unrestricted byte-key search. Continue only if an original clue names a particular digest, encoding, or artifact to hash.
+**Decision:** The exact third-chapter 1,033-byte carrier is not the p56 preimage under these four digests and this single original-derived serialization. The result cannot exclude a missing step, a different digest, real plaintext protected by encryption, or the possibility that the 1,033 number is only a length coincidence. Do not promote the number alone to a historical LP2 instruction or use it to justify an unrestricted byte-key search. Continue only if an original clue names a particular digest, encoding, or artifact to hash.
