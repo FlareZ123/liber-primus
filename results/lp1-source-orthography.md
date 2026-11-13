@@ -24,6 +24,12 @@ The **16** extra exact matches arise from a small set of repeated ING/IO-bearing
 
 This directly supports the existence of the spelling choices on solved LP1 p10–p13. A deterministic **ING before NG, IO before IA** encoder is one demonstrated consistent implementation for that passage. It is a hypothesis for new English texts, which may have genuinely ambiguous ING/NG/IA/IO pronunciation or historical author spelling variants.
 
+## Independent solved LP2 page-57 positive control
+
+The same deterministic source-calibrated encoder also reconstructs the separately solved **LP2 physical page 57** in full. Its source-authentic [95 original GP rune indices](../resources/liber-primus/lp2-corpus.json) correspond, in exact order, to the **20 words** of its published *PARABLE* plaintext in [the independent solved-page reference](../resources/liber-primus/lp1-plaintext-reference.txt): “LIKE THE INSTAR TUNNELING TO THE SURFACE …”. The naive longest-inventory-label encoder produces **96** runes, because **TUNNELING** becomes I+NG, whereas the printed original has a single **ᛝ** for ING. The source-calibrated encoder produces **exactly 95/95**, in the original order, without position corrections.
+
+This is an out-of-sample, cross-release positive control independent of the 181-word solved LP1 p10–p13 reconstruction. Only LP2 p57 is used as source plaintext here. The original p56 has 85 encrypted runes and its decoded English must not be confused with untransformed p56 source rune indices.
+
 ## Consequence for computational plaintext controls
 
 The legacy 29-token GP labels use **IA** for ordinal 27. Therefore a naive token-based conversion normally represents common English **IO** as two separate runes. The original solved LP1 instead clearly uses the single **ᛡ** rune in many IO-bearing words. The same baseline represents **ING** with **I+ᛝ**, adding an extra rune relative to the solved LP1 spelling.
@@ -42,7 +48,7 @@ One important cipher conclusion is **robust** to this correction. The original L
 
 ## Reuse and evidence
 
-The [source-calibrated encoder and full 181-word SFT](../sims/lp2_native_gp_source_orthography_sft.cjs) exports CommonJS **encodeSourceNativeGP** and independently asserts all 181 p10–p13 word pairs, both spellings, source counts, all 88 corrected native controls and a known-key positive encryption plant. The complete source-checked test passes on [GitHub Actions run 43392652828](https://github.com/FlareZ123/liber-primus/actions/runs/43392652828).
+The [source-calibrated encoder and full 181-word SFT](../sims/lp2_native_gp_source_orthography_sft.cjs) exports CommonJS **encodeSourceNativeGP** and independently asserts all 181 p10–p13 word pairs, all 95 source LP2 p57 runes, both spellings, source counts, all 88 corrected native controls and a known-key positive encryption plant. The complete source-checked test passes on [GitHub Actions run 43392652828](https://github.com/FlareZ123/liber-primus/actions/runs/43392652828).
 
 **Research decision:** require both the conventional inventory-label GP encoder and the empirically source-calibrated GP encoder wherever an exclusion depends on native-English corpus frequencies, rune lengths, word shapes or cross-word alignments. A claimed text recovery should be checked against the **actual original runes** under an explicitly stated spelling convention. Existing historical results that used the naive encoder remain reproducible within their stated model; they cannot automatically be recast as having tested every source-attested GP spelling.
 
