@@ -40,6 +40,29 @@ With authentic decrypted p56 and clear p57 (and, separately, the printed p56 cip
 
 **Causal conclusion:** even the complete independent 29-rune secret *fractional-linear* substitution family cannot explain the historical known 180 symbols in this original geometry. Literal systematic product-code completion from the known interior is also incompatible with producing a 76-rune direct GF29 outside under these two explicitly sourced coordinate conventions; projection yields no recognizable original p55 plaintext. The 76/180 count correspondence remains an unverified possibility. A credible successor needs a previously untested, creator-selected operator or actual plaintext/key evidence, rather than fitting further orientations and coordinate projections of this construction.
 
+## Full six-parameter inner-ring affine inverse: known-plaintext rejection (Agent 2, 13 November 2026)
+
+The source-visible 32×8 rectangle and the exact terminal 76/68/60/52 nesting offer one constructive way to *try* recovering p55 from the **180 independently known** terminal runes: use a common inside-out algebraic decoder, learn its parameters on solved p56/p57, then decode the 76-rune unknown outer shell only if the known-data rule succeeds. This is a proposed method, not a printed Cicada cipher instruction. The ring traversal is fixed to northwest-start, clockwise, using the original 256 printed base60-derived bytes and canonical terminal runes.
+
+For each outer ring coordinate \`j\`, take corresponding inner coordinate \`j mod innerLength\`, and grant **all six** secret GF(29) coefficients to the reversible affine family (where \`a ≠ 0\` is required for inverse encryption):
+
+\[
+P_{\mathrm{outer},j}
+ = a C_{\mathrm{outer},j} + b B_{\mathrm{outer},j}
+ + c P_{\mathrm{inner},j} + d B_{\mathrm{inner},j}
+ + e C_{\mathrm{inner},j} + f \pmod {29}.
+\]
+
+Here \`C\` is the original glyph index, \`P\` is independently established solved prose, and \`B\` is the printed table byte modulo29. There is no phase or coefficient fitting against unknown p55. Exact GF(29) Gaussian elimination supplies the whole coefficient-space decision without enumerating \`29^6\` candidates:
+
+- **Ring 1:** its **68/68** target runes are solved p56. The six feature columns have full rank **6**, but **61** original constraints contradict every possible six-coefficient solution; the first contradiction is on the **seventh** supplied sample (zero-based 6). A 6-parameter fit from independent pivot rows achieves only **7/68** observed agreements.
+- **Ring 2:** its **60/60** target runes are the final 17 solved p56 runes plus the first 43 already-clear p57 runes. Rank is **5**, because the fully clear inner ring3 has \`P_inner = C_inner\` identically. There are **54** contradictory constraints, beginning at zero-based sample **5**.
+- **Native positive control:** encode the original **68 solved p56 GP29 runes** under planted invertible coefficients \`[7,11,13,17,19,23]\` while preserving all original inner-ring inputs. The exact inverse recovers **68/68** symbols and the six coefficients with zero contradictions.
+
+Thus the **entire stationary affine inside-out ring-local family** is incompatible with the independently established plaintext even with unconstrained coefficients. Its failure occurs before touching p55, so there is no recovered 76-rune outer plaintext to report. This excludes neither a nonlinear recurrent rule nor a cipher with page-specific transforms or a different source-selected alignment. In particular p56 uses a separate established prime-totient cipher and p57 is printed clear, a substantial objection to assuming one shared transform at all. Do not fit fresh parameters only to the unknown p55 to evade the known 180-rune falsifier.
+
+[Reproducer: original 256-cell ring, exact GF29 contradiction, and 68-rune native plant](../sims/lp2_terminal256_ring_affine_knownplain_gate.cjs).
+
 ## Nonlinear inside-out DH5 peel: one source-frozen original 180-rune falsifier (Agent43, 12 November 2026)
 
 The ring correspondence above admits a distinct, small-description *whole-256 reversible* candidate with actual cross-ring nonlinear feedback, rather than a stationary lookup, low-rank mask, linear stencil, short LFSR or Josephus permutation. The solved p57 last 52 GP runes print the literal imperative **“SHED OUR OWN CIRCUMFERENCES ... EMERGE”** and exactly fill the innermost 26×2 ring. Cicada's source-authenticated 2013 Diffie–Hellman worked example uses **base 5**. A plausible, though **not author-prescribed**, attempt is therefore to use inner plaintext as an exponent in a DH-style power operation, peeling the outer circumference from inside.
