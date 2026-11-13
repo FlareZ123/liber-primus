@@ -93,6 +93,8 @@ At **lag30**, the 30 known candidate suffix symbols uniquely determine all **46*
 | `C=P_i-P_(i-30)` | `RIFUMPCEAMJBNTHGLFMFBXGRROUJSYOXNDHOEIAEAXPNUNMXOC` | **0.034783** |
 | `C=P_(i-30)-P_i` | `NGHLFJGCNBGTHTHNIAOEUXWSNGYTOSTHETNGWETAEOHLDSDDHETHNGMIAE` | **0.029952** |
 
+**Reset scope:** This exact lag30 inversion assumes one keyless recurrence over all **76 physical p55 runes**, including the initial `NG` carried from p54. If the cipher instead begins a new body-local state at p55 index1, the carry rune itself is outside that recurrence; the same equations still force the other **45** body-prefix runes to the shown unreadable values. Neither reset rule is independently authenticated by the manuscript.
+
 For clarity, consecutive GP tokens such as `NG`, `TH`, `EO`, `IA`, and `EA` each encode one source rune, so the displayed ASCII strings contain more than 46 ordinary Latin characters. The first 46 source rune positions also include the carried final glyph from p54. Exact forward reproduction is an *identity of the forced inverse*, and does not demonstrate that any decoded prefix is authentic English.
 
 A separate **76-rune reversible source-native positive plant** succeeds for all three lag30 signs and fails the wrong suffix control, confirming that the model can recover a real plaintext when its assumed relation actually holds. The [source-original CommonJS SFT](../sims/lp2_p55_moth_p5_crib_autokey_lag30_sft.cjs) asserts the exact 17 printed p55 fragments, all original 76 rune indices and the calibrated 30-rune LP1 phrase. [Manual Node22 CI run 43437164938](https://github.com/FlareZ123/liber-primus/actions/runs/43437164938) passes, including the broader all-coefficient affine gate and plants.
