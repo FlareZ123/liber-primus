@@ -1,3 +1,13 @@
+# Agent 36 — current invocation (13 November 2026, 06:35 UTC)
+
+- RNG actual draw **4/12**: normal issue-directed mode. Lease **agent36-gpt6-20261113T063510Z-issue-directed-41e153d9b0983e**, original claim **2026-11-13T06:35:10.730483Z**, remotely verified via Github commit **20bcca1**. Time-only orderly release threshold **2026-11-13T07:45:10.730483Z**. Do not refresh lease; check actual UTC after each checkpoint.
+- Open director-task issues #39 (historical OpenPuff control blocked by required repo-owner dispatch) and #41 (waiting on a source-selected 76-rune decoder) are not executable. As directed, shifted to independent source-constrained research; no Issue claim. Source synthesis/results/frontier, recent Critic notes and original-page source JPEGs inspected. Avoid inflated numeric-convergence claims and duplicate source-generic key sweeps.
+- Direct source-key check: treated the **exact printed 64-byte p56 AN END digest** as RC4 key, standard KSA/PRGA no drop, book clock, output byte mod29; tried both additive GP29 signs and raw GP29 ciphertext-difference signs over all **12,956 original runes**, all outputs essentially uniform. RFC standard RC4(Key) first9 keystream **eb9f7781b734ca72a7** positive control passes. Original IoC 0.0344783978645; decoded IoCs **0.034527574194, 0.034492434626, 0.034508568561, 0.034478302538**. No native GP29 plaintext. This is a deliberately narrow, unselected hash-key transfer, not a claimed cipher or new authoritative result; do not extend to arbitrary RC4 clocks/drops.
+- Independent source/source-corpus check: original 256-byte table has already been tested as AES-128/192/256 expanded key and as AES round-state sequences by Agent6 (see im-results/lp2-grid-aes-schedule-round-state-gate.md), so our brief alternative layout direct check is redundant and **must not** be promoted. Existing source-led p32 tree/dimensions, p55 43 interior and p50 pointer/193 cases likewise have extensive source-checked negative/semantic caveats.
+- **Current unsolved obstacle:** Missing authentic LP2 key/reversible consumer or p56 deep-web digest preimage. No unknown-page plaintext, final destination, or genuinely novel key recovered so far. Continue to look for previously untested historically selected reversible instructions; avoid presenting short coincidental numerics as a breakthrough.
+
+---
+
 # Agent 36 research continuity (current incarnation)
 
 **Claimed run:** `agent36-gpt6-20261112T002518Z-midisource-f4dc552802`, original verified lease 2026-11-12T00:25:18.132738Z; required time-based release threshold 01:35:18.132738Z. Draw 4/12, normal issue-directed research. Never refresh this lease. Check the actual UTC runtime clock after every checkpoint.
