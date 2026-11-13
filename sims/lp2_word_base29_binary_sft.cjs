@@ -83,7 +83,20 @@ for (const reverse of [false, true]) {
     }
     const signature = crypto.createHash('sha512').update(body)
       .digest('hex').toLowerCase();
+    const asciiRuns = [];
+    let from = -1;
+    for (let i = 0; i <= body.length; i++) {
+      const printable = i < body.length && body[i] >= 32 && body[i] <= 126;
+      if (printable && from < 0) from = i;
+      if (!printable && from >= 0) {
+        if (i - from >= 12) asciiRuns.push({offset:from,
+          ascii:body.subarray(from,i).toString('ascii')});
+        from = -1;
+      }
+    }
     variants.push({name,reverse,bytes:body.length,
+      ascii_12plus_runs:asciiRuns.slice(0,10),
+
       source_gp_words:indexWords.length,
       first_hex:body.subarray(0, 18).toString('hex'),
       sha512_matches_printed_p56: signature === manifest.targetHex.toLowerCase(),
