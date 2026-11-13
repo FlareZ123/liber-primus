@@ -179,6 +179,42 @@ function checkByteLookup(positions, target) {
   return { contradictions, firstConflict, usedEntries };
 }
 
+// Stronger necessary-condition gate: each inner ring must fit independently,
+// even if each ring has its own arbitrary 256-entry secret codebook and the
+// producer can start at ANY boundary site in either winding direction.
+const ringCounts = [68, 60, 52];
+let ringStart = 0;
+const completeRingGates = [1, 2, 3].map((depth) => {
+  const sourceRing = ring(depth);
+  assert.equal(sourceRing.length, ringCounts[depth - 1]);
+  const target = known.slice(ringStart, ringStart + sourceRing.length);
+  ringStart += sourceRing.length;
+  let best = { contradictions: Infinity };
+  let zeroFits = 0;
+  let tested = 0;
+  for (let offset = 0; offset < sourceRing.length; offset++) {
+    for (const direction of [1, -1]) {
+      const position = sourceRing.map((_, i) =>
+        sourceRing[(offset + direction * i + sourceRing.length * 2) % sourceRing.length]);
+      const result = checkByteLookup(position, target);
+      tested++;
+      if (result.contradictions === 0) zeroFits++;
+      if (result.contradictions < best.contradictions)
+        best = { ...result, offset, direction };
+    }
+  }
+  assert.equal(tested, 2 * sourceRing.length);
+  assert.equal(zeroFits, 0);
+  // Planted independent per-ring 256-byte static map on original numerical cells.
+  const route = sourceRing;
+  const shadowByteMap = Array.from({ length: 256 }, (_, i) => mod(13 * i + 9));
+  const shadow = route.map(idx => shadowByteMap[grid[idx]]);
+  assert.equal(checkByteLookup(route, shadow).contradictions, 0);
+  return { depth, knownRunes: sourceRing.length, orientations: tested, zeroFits, best };
+});
+assert.equal(ringStart, 180);
+assert.deepEqual(completeRingGates.map(g => g.best.contradictions), [5, 5, 4]);
+
 const byteHistogram = new Map();
 let bestByte = { contradictions: Infinity };
 for (let a = 0; a < 8; a++) for (let b = 0; b < 8; b++) for (let c = 0; c < 8; c++) {
@@ -233,6 +269,7 @@ console.log(JSON.stringify({
   positivePlant: 'PASS 180/180',
   unrestrictedByteCodebook: {
     secretEntries: 256,
+    independentCompleteRings: completeRingGates,
     testedOrientations: 512,
     best: bestByte,
     histogram: Object.fromEntries([...byteHistogram].sort((x, y) => x[0] - y[0])),
