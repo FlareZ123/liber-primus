@@ -289,6 +289,93 @@ function p15GridRepeatingWordKeyTest(records, boundaryPairs) {
   };
 }
 
+function lp1FirstThreeBlockControl() {
+  const lp1 = fs.readFileSync('resources/transcriptions/lp1_wulfic_canonical.txt', 'utf8').trim();
+  const blocks = lp1.split(/\n%\n/).slice(0, 3);
+  let runes = 0, withinPairs = 0, withinDoublets = 0, crossPairs = 0, crossDoublets = 0;
+  for (const block of blocks) {
+    const page = [];
+    let word = 0;
+    for (const rawLine of block.split('\n')) {
+      for (const ch of [...rawLine]) {
+        if (runeIndex.has(ch)) page.push({ index: runeIndex.get(ch), word });
+        else if (ch === '-' || ch === '.' || ch === '&' || ch === '
+const withinDoublets = withinSites.length;
+const crossDoublets = crossSites.length;
+const pageBoundaryDoublets = crossPageDoublets;
+const lineBoundaryStats = {
+  total: lineDoublets,
+  withinWord: withinWordLineDoublets,
+  crossWord: crossWordLineDoublets
+};
+const regionStats = (lo, hi) => {
+  const selected = pageStats.filter(p => p.page >= lo && p.page <= hi);
+  return {
+    pages: [lo, hi],
+    runes: selected.reduce((a, p) => a + p.runes, 0),
+    wordBoundaries: selected.reduce((a, p) => a + p.crossPairs, 0),
+    crossWordDoublets: selected.reduce((a, p) => a + p.crossDoublets, 0)
+  };
+};
+const selectedBoundaryPairs = boundaryPairs.filter(p => p.page >= 11 && p.page <= 23);
+const output = {
+  source: 'resources/liber-primus/lp2-transcription.txt + lp2-corpus.json; LP2 pages 0–54',
+  lp1FirstThreeBlockControl: lp1FirstThreeBlockControl(),
+  runes: records.length,
+  doublets: {
+    total: totalDoublets,
+    withinWord: withinDoublets,
+    acrossWord: crossDoublets,
+    acrossLine: lineBoundaryStats,
+    acrossPage: pageBoundaryDoublets
+  },
+  blockCountsPer1000Runes: Array.from({ length: 13 }, (_, b) =>
+    allSites.filter(p => Math.floor(p / 1000) === b).length),
+  gapAC1: {
+    all: ac1OfGaps(allSites),
+    withinWord: ac1OfGaps(withinSites),
+    acrossWord: ac1OfGaps(crossSites)
+  },
+  allSitesConditionalNull: conditionalGapTest(allSlots, allSites, 10000, 0x7a71c0de),
+  withinWordConditionalNull: conditionalGapTest(withinSlots, withinSites, 10000, 0x7a71c0de),
+  acrossWordConditionalNull: conditionalGapTest(crossSlots, crossSites, 10000, 0x7a71c0de),
+  chapterWindows: {
+    p15_22: regionStats(15, 22),
+    p11_23: regionStats(11, 23),
+    longestZeroCrossWordRun: maxZeroRunTest(pageStats, 100000, 0x0b51d3)
+  },
+  p11_23BoundaryAffine: boundaryAffineTest(selectedBoundaryPairs, 5000, 0x11c0ffee),
+  p15GridRepeatingWordKey: p15GridRepeatingWordKeyTest(records, boundaryPairs),
+  pageCrossWordCounts: pageStats.filter(p => p.crossDoublets > 0)
+};
+console.log(JSON.stringify(output, null, 2));
+) word++;
+      }
+    }
+    runes += page.length;
+    for (let i = 1; i < page.length; i++) {
+      const a = page[i - 1], b = page[i];
+      if (a.word === b.word) {
+        withinPairs++;
+        if (a.index === b.index) withinDoublets++;
+      } else {
+        crossPairs++;
+        if (a.index === b.index) crossDoublets++;
+      }
+    }
+  }
+  return {
+    blocks: blocks.length,
+    runes,
+    withinPairs,
+    withinDoublets,
+    withinRate: withinDoublets / withinPairs,
+    crossPairs,
+    crossDoublets,
+    crossRate: crossDoublets / crossPairs
+  };
+}
+
 const totalDoublets = allSites.length;
 const withinDoublets = withinSites.length;
 const crossDoublets = crossSites.length;
