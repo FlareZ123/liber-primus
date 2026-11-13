@@ -23,6 +23,12 @@ assert.equal(original.length, 12956);
 const n = original.length;
 const fOriginal = original.filter(x => x === 0).length;
 assert.equal(fOriginal,458);
+// The original large p40–p53 red-heading section gives a standalone gate.
+const section=pages.filter(p=>p.page >= 40 && p.page <= 53)
+  .flatMap(p => p.indices);
+assert.equal(section.length,3008);
+const sectionF=section.filter(x=>x===0).length;
+assert.equal(sectionF,125);
 
 /**
  * Exact extrema over all contiguous source-native GP windows of length n.
@@ -44,17 +50,21 @@ function extrema(gp,n) {
 }
 /** @type {Control[]} */
 const observations=[];
-for(const [name,filename,wantedLength,wantedMaximum] of [
-  ['Shakespeare','resources/control/shakespeare_first300k.txt',217106,321],
-  ['Gibran','resources/control/gibran_prophet_58585.txt',62492,390],
-  ['Emerson','resources/control/emerson_essays_2944.txt',321327,432],
+for(const [name,filename,wantedLength,wantedMaximum,wantedSectionMaximum] of [
+  ['Shakespeare','resources/control/shakespeare_first300k.txt',217106,321,96],
+  ['Gibran','resources/control/gibran_prophet_58585.txt',62492,390,109],
+  ['Emerson','resources/control/emerson_essays_2944.txt',321327,432,119],
 ]) {
   const native=encodeSourceNativeGP(read(filename));
   assert.equal(native.length,wantedLength);
   const r=extrema(native,n);
   assert.equal(r.maxF,wantedMaximum);
   assert(r.maxF < fOriginal, name + ': possible original literal-F count');
-  observations.push({name,sourceLength:native.length,...r});
+  const sectionR=extrema(native,section.length);
+  assert.equal(sectionR.maxF,wantedSectionMaximum);
+  assert(sectionR.maxF < sectionF, name + ': standalone section literal-F capacity');
+  observations.push({name,sourceLength:native.length,...r,
+    section40to53:{requiredF:sectionF,...sectionR}});
 }
 // Blind positive: any unknown non-F bijection may change all other letters,
 // while the source/native F rune is transmitted exactly.
@@ -67,7 +77,8 @@ assert.equal(extrema(encrypted,n).maxF,extrema(native,n).maxF);
 assert.equal(encrypted.filter(x=>x===0).length,322);
 console.log(JSON.stringify({
   hypothesis:'every LP2 ciphertext F is an unchanged plaintext F',
-  original:{runes:n,ciphertextLiteralFRequired:fOriginal},
+  original:{runes:n,ciphertextLiteralFRequired:fOriginal,
+    standaloneSection:{pages:'40-53',runes:section.length,ciphertextLiteralFRequired:sectionF}},
   controls:observations,
   finiteSourceVerdict:'all source-native windows violate required literal-F capacity',
   limitations:'does not exclude novel F-rich text, ciphertext-dependent F, other languages, or secret F relocation'
