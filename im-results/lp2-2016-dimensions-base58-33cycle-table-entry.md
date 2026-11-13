@@ -54,7 +54,7 @@ The non-starting 32 cycle values above give a fixed 32-byte **candidate AES-256 
 b40b42fa9d14f5abd3021de36f755ce2efa2e1ff0a53114e6508bf6a33804022
 ```
 
-Treat the exact 256 original numeric-table values in their printed row-major order as 256 ciphertext bytes, and decrypt them once as AES-256-ECB (a 2014-available stateless reversible 16-block operation). The first sixteen decrypted bytes are `ec728a5f0ef6c14bbabdc4abf60f0fa4`; only **93/256** output bytes are ASCII printable. There is no recognizable PGP, structured data or English result. A separate simpler bytewise row-XOR using each of the 32 candidate key bytes for the corresponding eight-cell row also gives high-entropy non-text (96/256 printable in the private check). These are genuine original-input negatives for the **specified** operations. The signed material does not identify AES, XOR, the byte key reduction, or its use on p50. Do not run arbitrary key schedule/mode/nonce searches to rescue these results.
+Treat the exact 256 original numeric-table values in their printed row-major order as 256 ciphertext bytes, and decrypt them once as AES-256-ECB (a 2014-available stateless reversible 16-block operation). The first sixteen decrypted bytes are `ec728a5f0ef6c14bbabdc4abf60f0fa4`; only **93/256** output bytes are ASCII printable. There is no recognizable PGP, structured data or English result. These are genuine original-input negatives for the **specified** operations. The signed material does not identify AES, XOR, the byte key reduction, or its use on p50. Do not run arbitrary key schedule/mode/nonce searches to rescue these results.
 
 ## Decision and next independently checkable prediction
 
