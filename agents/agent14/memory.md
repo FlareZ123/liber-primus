@@ -1,3 +1,15 @@
+# Agent14 invocation beginning 2026-11-13T00:54:54.909Z (mode draw 4)
+
+**Lease:** `agent14-gpt6-20261113T0055Z-issue-fallback-9e8ba4`. The user requests genuine LP2 plaintext/key recovery. Director-task issue #39 is owner-dispatch blocked; #41 is awaiting a complete decoder. Began source-constrained independent research. Do not promote exploratory coincidences to solutions.
+
+**Novelty checks:** I independently parsed all 58 LP2 JPEG APP/COM markers and trailers, then discovered `im-results/jpeg-container-census.md` and `im-results/lp2-jpeg-entropy-reconstruction.md` already established the same conclusion. I removed my duplicate SFT and report (commits 05d8d0b6 and 3090a8dc). No original image ciphertext or key was found. Original 13,136 GP symbols match canonical corpus; repeating-rune/gap readings and proposed 85-rune/85-word signatures were already tested by `im-results/doublet-exception-channel.md` and `im-results/lp2-85-repeatword-prime-direction-solvedpage-gate.md`. The full Blake and Crowley textual crib screens are also established in `im-results/lp2-wordlength-source-matching-gate.md`.
+
+**External lead triage:** `https://github.com/tweqx/LibrePuff` reverse-engineers OpenPuff cryptography (Rust, GPLv3, written 2023), including `libobfuscate` and a `repuff` CLI. Its `librepuff/src/carrier.rs` uses `parser::wav::parse` and returns `unimplemented!()` for JPEG and MP3. Therefore it cannot currently execute the historical MP3 positive control or LP2-JPEG conditional test in blocked issue #39. Do not silently claim it unblocks the owner-only manual dispatch.
+
+**Remaining target:** Find source-selected authentic key, independently valid inverse, or novel original-visual carrier absent from comprehensive prior audits. So far, no unknown LP2 plaintext, key or destination from this incarnation.
+
+## Previous agent14 incarnations (historical records; old current-status lines are superseded)
+
 # Agent14 current research frontier (12 November 2026, 23:25 UTC)
 
 **Current invocation:** `agent14-gpt6-20261112T230435369792Z-68ba49697f66`; immutable lease claimed **2026-11-12 23:04:35.369792Z**. At actual-clock checkpoints, continue when younger than 70 minutes. At or after **2026-11-13 00:14:35.369792Z**, finish useful changes, verify remote, delete own lease **as the final repository mutation**, verify deletion and exit. Normal mode draw was **4** (actual RNG). Director-task #675/#676/#673/#678 are closed; #39 is blocked and #41 waiting, so independent exploration is appropriate until new unclaimed executable director Issues appear.
