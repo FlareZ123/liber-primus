@@ -1,6 +1,6 @@
-# Historical 133 -> 331 as an LP2 page-line GP-prime checksum
+# PARABLE 361/133/331 as candidate LP2 page-line checksum addresses
 
-**Agent 38, 13 November 2026. Classification:** exact original-input numeric correspondence and a bounded failed direct cipher consumer. **No decrypted unknown LP2 rune, historically authenticated page-line instruction, full key, or continuation destination has been found.** This is a new, source-anchored candidate first navigation step, rather than an established solve.
+**Agent 38, 13 November 2026. Classification:** exact original-input numeric correspondence and a bounded failed direct cipher consumer. **No decrypted unknown LP2 rune, historically authenticated page-line instruction, full key, or continuation destination has been found.** These are source-constrained candidate checksum/navigation steps, not an established solve.
 
 ## Why this particular address is independently selected
 
@@ -13,15 +13,36 @@ GP29 indices:
 16 3 14 26 19 0 14 18 3 25 6 26 20 3 12 0 15 25 12 19 27 22 7
 ```
 
-Its **exact GP-prime sum is 1229**, matching the *third* solved-p57 body sentence, which has **28 GP runes**. Applying the independently specified PARABLE heading modulus gives
-
-[
-1229mod449=oxed{331},
-]
-
-exactly the second numeric tag in the original 2014 HTML. Thus one executable, fully original-rune route is **HTML title 133 -> p13 line 3 -> GP-prime sum 1229 -> mod PARABLE heading 449 -> HTML id 331**. The sum and the page-line address are computed without replacing any unknown runes by guessed plaintext.
+Its **exact GP-prime sum is 1229**, matching the *third* solved-p57 body sentence, which has **28 GP runes**. Applying the independently specified PARABLE heading modulus gives **1229 mod 449 = 331**, exactly the second numeric tag in the original 2014 HTML. Thus one executable, fully original-rune route is **HTML title 133 -> p13 line 3 -> GP-prime sum 1229 -> mod PARABLE heading 449 -> HTML id 331**. The sum and the page-line address are computed without replacing any unknown runes by guessed plaintext.
 
 For a narrow line-index control, p13 printed lines **2** and **4** yield prime sums **957** and **1142** and residues **59** and **244**, respectively. The same source line's true 23-symbol inventory and the solved parable's 28-symbol inventory are distinct; their equal prime sums do not imply identical text, a reversible substitution, or recovered plaintext.
+
+## The independent 361 -> p36:1 -> p55-inner-23 checksum
+
+The *first* previously established solved-PARABLE clause residue, **361**, can be read with exactly the same frozen **two decimal page digits + one 1-based physical line digit** grammar. It selects **physical p36 line1**. This original printed line has **23 unaltered GP29 runes**:
+
+```text
+26 9 1 7 21 8 6 26 4 3 10 20 9 14 9 3 13 0 28 25 25 3 14
+```
+
+Its exact GP-prime sum is **1020**. Independent of the HTML-number and p13-line observation, the existing [p55/p57 red-dot and twice-peeled inner-word study](lp2-p55-nested-23dot-rowcol-inverse.md) established **23 inner-core runes on p55 whose GP-prime sum is also 1020**. This yields a second source-selected exact equality, under the *same* candidate address grammar:
+
+```text
+PARABLE first body clause: 1259 mod 449 = 361
+361 -> LP2 physical page 36, line 1 -> 23 runes, GP prime sum 1020
+p55 twice-peeled 23-rune word-interior core -> GP prime sum 1020
+```
+
+The twice-peeled p55 core is `G D A B F X I M U C P H NG D IA I G X EO TH TH I M`. Its 23-rune identity and sum predate this p36-line identification. The two 23-rune sequences are **not anagrams**; their equality is only an aggregate checksum. An independently prepared 23-dot stencil on solved p57 supplies a visible selection mechanism for the p55 core, though there is **no original instruction linking that stencil specifically to page36**.
+
+A fixed no-phase, no-offset direct additive GP29 readout of the p55 core under p36 line1 gives:
+
+- Core minus p36 line1: `N X D I H G R OE Y TH O B EO N E W OE X P G G W C`.
+- Core plus p36 line1: `O O AE A NG OE T T C H D EA U H W P M X J IA IA P R`.
+
+Neither is readable native-GP text. Both inversions exactly re-encode the unchanged original p55 core. The reproducible test now asserts the literal p36 rune identities, both independent original source sums, and the two direct candidates. The **remaining PARABLE residue 331** selects p33 line1, with a prime sum of **920**. No independent destination or parity object of 920 is currently established; inventing one would be postselection.
+
+The combined `361` and `133` matches give more cross-source structure than a solitary `133 -> 331` checksum. Still, **the original artifacts do not prescribe the page-line address grammar**, and summing random-looking printed lines commonly produces similar-sized integers. Their true discovery probability is unknown because the decoding grammar was selected after seeing the data. The second observation therefore improves a *testable hypothesis*, rather than demonstrating deliberate authorial construction or a decryptor.
 
 ## The strongest objection and how far the operation reaches
 
@@ -44,8 +65,8 @@ Neither decodes as ordinary GP-native text, and both exactly re-encode the origi
 
 ## Decision for future original-input work
 
-The matched **133 -> 331** check is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
+The pair of **133 -> 331** and **361 -> p36 line1 / p55 inner23 sum1020** checks is distinctive enough to preserve as a candidate human-visible wayfinding clue: one fixed contemporary index number points to an original physical line whose unchanged GP-prime sum, modulo a separately solved heading, yields the second fixed historical index number. The strongest necessary next evidence would be an independent original instruction selecting `PP L` over page-word addressing **and** specifying how to resolve the subsequent `120` dead end or how to consume the 23-rune selected line to decrypt *untouched* ciphertext. A prediction on an independent source address before examining its sum would be more persuasive than further matches found by free format or numeral searches.
 
 **Do not promote the numeric link to a plaintext recovery, and do not scan alternative line indices, moduli, phases or whole-book key variants to rescue it.** The route itself is the candidate; its direct Vigenere consumer fails.
 
-**Reproducer:** [read-only original-corpus CommonJS SFT](../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs) checks both archive labels, the solved p57 GP-prime sums, the exact p13 glyph sequence and two neighboring lines, the strictly addressed three-step walk, all six complete original-cipher inverses, p55 and solved GP positive controls.
+**Reproducer:** [read-only original-corpus CommonJS SFT](../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs) checks both archive labels, the solved p57 GP-prime sums, the exact p13 and p36 line glyphs and two neighboring p13 lines, the strictly addressed three-step walk, all six complete original-cipher inverses, both source-23-to-p55-core inverses, p55 and solved GP positive controls.
