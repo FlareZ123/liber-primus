@@ -73,7 +73,7 @@ The original untouched 12,956 GP29 unknown LP2 runes have 12,901 eligible within
 | Eight phase alphabets across all pages | 366,695 / 10,396,697 | 0.03527034 | 0.05849473 | 0 / 89 |
 | Eight phase alphabets, Fibonacci-indexed pages only | 12,128 / 339,910 | 0.03568003 | 0.05663852 | 0 / 89 |
 | Independent eight alphabets per original physical page | 6,859 / 192,687 | 0.03559659 | 0.05842117 | 0 / 89 |
-| Independent page-local alphabets, Fibonacci-indexed pages only | 1,237 / 35,013 | 0.03532973 | measured by linked SFT, greater than original | 0 / 89 |
+| Independent page-local alphabets, Fibonacci-indexed pages only | 1,237 / 35,013 | 0.03532973 | 0.05646474 | 0 / 89 |
 
 The native controls are 32 Shakespeare, eight Gibran and 49 Emerson overlapping 12,956-rune windows. GP-normalized text is placed over the **same original 55 page lengths and page/phase slots**, including the ten observed Fibonacci page labels. Every permitted unknown phase permutation leaves the source collisions unchanged. A native-English positive plant encrypted with random bijections is restored exactly, and the CI passing test asserts the corresponding cipher/plain collision invariants. This rejects exact recovery of each tested native-English control under these entire direct eight-phase bijective-difference families, including independent page-local keys. It **does not** prove all possible English prose incompatible or exclude stateful, many-to-one, non-GP, multi-step or boundary-changing operations.
 
