@@ -85,6 +85,47 @@ assert.equal(candidate.length, 16);
 assert.equal(digits[7], 13);
 assert.equal(digits[15], 31);
 
+// Independent 2014 source cross-check: the Stage11 metadata strips/reverses
+// the original Stage10 magic sums, and its outer digits match p55 positions 8/16.
+const squareText = fs.readFileSync('resources/cicada2014-openpuff-magic-squares.txt', 'utf8');
+const squareValues = squareText.match(/\d+/g).map(Number);
+assert.equal(squareValues.length, 99);
+let squareOffset = 0;
+const magicSums = [];
+for (const order of [5, 7, 5]) {
+  const cells = squareValues.slice(squareOffset, squareOffset + order * order);
+  assert.equal(cells.length, order * order);
+  squareOffset += order * order;
+  const rowSums = Array.from({length: order}, (_, row) =>
+    cells.slice(row * order, (row + 1) * order).reduce((a, b) => a + b, 0));
+  assert.ok(rowSums.every(sum => sum === rowSums[0]));
+  magicSums.push(rowSums[0]);
+}
+assert.equal(squareOffset, 99);
+assert.deepEqual(magicSums, [3301, 1033, 1033]);
+
+const stage11Html = fs.readFileSync('resources/cicada2014-onion7-index.html', 'utf8');
+const stage11Title = stage11Html.match(/<title>(.*?)<\/title>/i)?.[1];
+const stage11Id = stage11Html.match(/\bid="([^"]+)"/i)?.[1];
+assert.deepEqual([stage11Title, stage11Id], ['133', '331']);
+const zeroStrippedSums = magicSums.slice(0, 2).map(value => String(value).replace('0', ''));
+assert.deepEqual(zeroStrippedSums, ['331', '133']);
+assert.deepEqual([stage11Title, stage11Id], [zeroStrippedSums[1], zeroStrippedSums[0]]);
+const outerDigits = value => Number(value[0] + value[value.length - 1]);
+const stage11Check = [outerDigits(stage11Title), outerDigits(stage11Id)];
+assert.deepEqual(stage11Check, [13, 31]);
+assert.deepEqual([digits[7], digits[15]], stage11Check);
+
+// Existing signed-2016 16-word alternative under the same fixed recipe:
+// its check positions are 20/17, not the original Stage11 13/31 pair.
+const alternative2016 = 'ptpits7uimxshpir';
+const alternative2016Check = [
+  base32.indexOf(alternative2016[7]),
+  base32.indexOf(alternative2016[15]),
+];
+assert.deepEqual(alternative2016Check, [20, 17]);
+assert.notDeepEqual(alternative2016Check, stage11Check);
+
 let windowCount = 0;
 const matchingWindows = [];
 const decoratedEndings = [];
@@ -127,4 +168,13 @@ console.log(JSON.stringify({
   matchingWithinPage16Windows: matchingWindows,
   totalWithinPage16Windows: windowCount,
   decoratedPageLast16Controls: decoratedEndings,
+  stage10Stage11NumericChecksum: {
+    stage10MagicSums: magicSums,
+    stage11Title: stage11Title,
+    stage11DivId: stage11Id,
+    zeroStrippedSumsInReverseOrder: zeroStrippedSums,
+    stage11OuterDigits: stage11Check,
+    candidateWord8And16: [digits[7], digits[15]],
+    signed2016Alternative: {host: alternative2016, word8And16: alternative2016Check},
+  },
 }, null, 2));

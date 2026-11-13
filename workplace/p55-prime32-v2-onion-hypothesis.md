@@ -39,6 +39,14 @@ The sole forward, source-order result of this **exact** construction is
 
 This is a syntactically well-formed **retired v2-style address string**, **not an authenticated or currently accessible service**. Its reverse printed-order variant is `7b4ydvmknu63sws6.onion`, but reversal is not source-selected for this purpose; the forward result is the primary falsifiable archival prediction.
 
+## Cross-round Stage10→Stage11 checksum (13 Nov 2026)
+
+The original 2014 Stage10 square source has row sums **3301, 1033, 1033**. The archived original Stage11 onion7 HTML, present in the 2014-05-11 source commit [`6c3421a4d245596e403c88e037509d162a2afd17`](https://github.com/micheloosterhof/cicada-2014/commit/6c3421a4d245596e403c88e037509d162a2afd17), contains `<title>133</title>` and `<div id="331">`. Deleting the single zero from the two distinct Stage10 sums gives **331** and **133**; Stage11 stores these values in reverse order (title **133**, div ID **331**). Taking the first and last decimal digits of those Stage11 values gives **13** and **31**.
+
+That ordered pair independently matches (a) the original p55 floral-frame values **13/31**, and (b) the eighth and sixteenth base32 digit indices of the frozen p55 candidate **`6sws36unkmvdy4b7`**. The Stage11 numeric title/ID pair is unique among the archived Stage index HTML files inspected. The same prime-sum/mod32 recipe applied to the competing 16-word 2016 signed sentence gives **`ptpits7uimxshpir`**, whose eighth/sixteenth base32 indices are **20/17**, not 13/31. This makes the new check discriminating between the p55 block and that obvious alternative 16-word block.
+
+This is a new cross-round **source-linked checksum hypothesis**, not a decryption or proof that the candidate ever hosted a service. It is distinct from the previously tested raw 133/331 modulo-58 page-address and GP29 pair-mixer interpretations (Director #135; `im-results/onion7-133331-gp29-pair-inverse.md`), which remain negative. Neither zero deletion nor outer-digit extraction is explicitly prescribed by the sources. The candidate still requires an attributable historical service descriptor or page bytes; page bytes must independently match the p56 512-bit digest before any destination claim.
+
 ## Strong objections and decisive evidence required
 
 1. **A 16-character base32 output is guaranteed by construction.** Any 16 original words can supply one residue each; all **2,881** contiguous 16-word windows of the canonical 2,896-word unknown LP2 transcript also form syntactically valid v2 hostnames under the same recipe. Address format and the unique 16-word p55 page are at most a location/format cue. They carry *zero cryptographic proof* of the hostname's existence.
@@ -50,10 +58,10 @@ This is a syntactically well-formed **retired v2-style address string**, **not a
 
 ## Reproduce
 
-The one-file [dependency-free CommonJS check](../sims/p55_16word_prime32_onion_sft.cjs) uses the unchanged `resources/lp2-transcription.txt`, the existing `sims/lp2_word_pages.cjs` page/word parser and `resources/liber-primus/lp2-corpus.json`. It asserts all 2,896 source word counts, 16 unique p55 word starts, exact 76 = 1 + 75 rune accounting, every individual prime sum and base32 character, and the 2,881-window tautology. Run it on a locally checked-out repository with Node.js:
+The current full source and numeric-check reproduction is the [dependency-free CommonJS SFT](../sims/lp2_p55_16word_onion_candidate_sft.cjs). It reads the unchanged canonical transcription, original p55 rune indices, GP prime table, Stage10 magic-square values and Stage11 HTML metadata; it asserts the exact 16 word sums, all 2,103 page-local windows, the 13/31 checksum and the 2016 competing-block negative control. The earlier [independent arithmetic script](../sims/p55_16word_prime32_onion_sft.cjs) remains available. Run the current SFT on a locally checked-out repository with Node.js:
 
 ```text
-node sims/p55_16word_prime32_onion_sft.cjs
+node sims/lp2_p55_16word_onion_candidate_sft.cjs
 ```
 
 The original-source inputs and 2016 source wording are unchanged. This is an independently testable **proposed destination**, with zero newly decrypted rune symbols.
