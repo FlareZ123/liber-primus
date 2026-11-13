@@ -132,6 +132,12 @@ The [master-branch ELIMINATION-LEDGER](https://github.com/Dukotah/cicada3301/blo
 
 The older [OPEN-AVENUES](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/OPEN-AVENUES.md) file is dated 17 June 2026 and still lists independent vision re-transcription as top priority; the later Campaign XV label-free audit is the relevant follow-up, so do not repeat that June recommendation as if it were still untouched. The master-branch ledger is a large external measurement program, not proof that LP2 is literally a one-time pad or that plaintext cannot exist.
 
+### F5 reference toolchain (grayscale-control caveat)
+
+- [`0verkilll/f5`](https://github.com/0verkilll/f5) v1.0.0 provides coefficient-level F5 `embed`/`extract` and an `embed-jar` compatibility path. The latter is **RGB-only**: its `WriteBMP24` path feeds a Java reference encoder whose `JpegInfo.NumberOfComponents` is hard-coded to 3. Do not use `embed-jar` as a one-component grayscale positive control.
+- [`0verkilll/jpeg`](https://github.com/0verkilll/jpeg) v1.0.1 has explicit one-component grayscale specs and a grayscale coefficient-encoding path. Its full coefficient-preservation regression covers 4:2:0/4:2:2/4:4:4 but omits grayscale; synthetic grayscale coefficient-encoding tests exist.
+- Detailed source-level capability assessment and control requirements: [F5 reference implementation capabilities](f5-reference-implementation-capabilities.md). This is tooling prior art, not an LP2 payload finding.
+
 ### Historical onion-hash search tooling
 
 - [martinlindhe/gohash](https://github.com/martinlindhe/gohash): a historical SHA-512 preimage-search tool whose README gives a base32 `.onion` brute-force example. Enumerating all 16-character base32 labels is (32^{16}=2^{80}), not a practical attack. Its bundled [eight-address candidate list](https://github.com/martinlindhe/gohash/blob/master/data/onion-sites.txt) was checked against the AN-END digest using SHA-512, SHA3-512 and BLAKE2b-512 over bare-address and URL forms; no match. This is a historical attempt, not evidence that the full address space was searched.
