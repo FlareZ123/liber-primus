@@ -44,6 +44,28 @@ The repository's original source-calibrated 29-rune GP English encoder, with sin
 
 The former interpretation took `max(reference plaintext F) < observed ciphertext F` as a contradiction. Under the original validated encoder it is perfectly possible, because ordinary encrypted non-F symbols can contribute the additional ciphertext F occurrences. Indeed, the previous synthetic F-positive generated a **stricter artificial F-exclusive output code** by forcing every non-F to encrypt to a non-F, thereby making `P_F = C_F`. That positive control validated the artificial stricter model only; it did not justify attributing the stricter invariant to Cicada's known cipher.
 
+## New, separately stated statistical constraint: independent-uniform random key plus plaintext-F bypass
+
+The correction above restores all candidate English windows under the **deterministic F-count necessary condition**. A **stronger, explicitly stochastic cipher hypothesis** does produce a meaningful whole-book constraint. Assume that the original p0–55 plaintext is any contiguous source-native GP-English window in the three frozen reference corpora; the historical **plaintext F** is copied verbatim without consuming key, while every non-F plaintext GP symbol is added to an **independently uniform 29-valued key symbol**, then output modulo29. This is the canonical missing-key/random-pad model with the authentic Cicada F exception. Independence of the key from the plaintext and across ordinary positions is essential; nonuniform, feedback or constrained-output keys fall outside this model.
+
+For fixed plaintext length `N` and plaintext F count `f`, the **number of ciphertext Fs** has the exact distribution
+
+\[
+C_F=f+\operatorname{Binomial}(N-f,1/29).
+\]
+
+An entire-book source-native GP English window of length **12,956** contains **at least 203 F runes** across all 562,060 reference windows (Shakespeare minimum203; Gibran255; Emerson294). Lower plaintext F count makes low ciphertext F outcomes more likely, so using the global minimum **f=203** is the most permissive bound for this null. Under this most favorable native-English candidate, the source ciphertext F count would have expectation **642.7586**, standard deviation **20.6057**. The original contains only **458** Fs. Its exact probability is
+
+\[
+\Pr[C_F\le458]\;\le\;
+\Pr[\operatorname{Binomial}(12753,1/29)\le255]
+=1.905185396\times10^{-22}.
+\]
+
+A union bound over **all 562,060** fixed corpus windows is at most **1.07083×10⁻¹⁶**, despite their overlapping dependency. This is a **conditional rejection of an independently uniform modulo29 pad combined with plaintext-F transparency** for source-native ordinary English of the kind represented by these three corpus segments. It is not the old incorrect hard count exclusion, not a general key-independent impossibility, and not a discovery of unknown plaintext. The known genuine **85-rune** p56 example has **one plaintext F** and **five ciphertext Fs**; under the same iid-key assumption, the probability of at least five ciphertext Fs is **0.32917**, which is unexceptional at this short length and does not contradict the historical local cipher.
+
+The [new standalone exact CJS SFT](../sims/lp2_ftransparent_iid_pad_Fcount_sft.cjs) recalculates all three source-native minimum F counts from original archived prose, evaluates the binomial lower tail through a numerically stable recurrence, checks the complete union bound, and runs the authentic short-page comparison. [GitHub Actions run43433482418 passed](https://github.com/FlareZ123/liber-primus/actions/runs/43433482418). **Research fork:** if the unknown book does retain plaintext-F transparency, a naive independent uniform per-rune missing pad is disfavoured for native-GP English; look instead for a **source-selected nonuniform/key-correlated or stateful output mechanism**. An altogether different unknown LP2 cipher remains equally possible. No creator-authenticated route selects any of these mechanisms yet.
+
 ## Reproducible correction and operational decision
 
 The [corrected CommonJS source SFT](../sims/lp2_literal_f_fullbook_native_capacity_sft.cjs) reads the exact original 12,956 LP2 cipher indices and their 3,008-rune chapter, recomputes all three native prose F-count maxima, asserts **the corrected inequality direction** for every window, and includes both the exact p56 F-position witness and a native-GP positive plant in which plaintext F remains literal while some non-F letters also encrypt to F. This is a narrow **source-based correction**, not a new cipher-search sweep. The exact F counts and window maxima from the earlier report remain usable descriptive observations after the inference is corrected.
