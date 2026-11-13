@@ -100,6 +100,26 @@ function positivePlant(plaintextSegments) {
     upperTop1:capacity[0],plainTop1:plainTop[0],
     upperTop12:capacity[11],plainTop12:plainTop[11]};
 }
+/**
+ * Strongest independent comparator: 29x29 previous-two-cipher states, with
+ * actual 29 sentinel for the two initial positions of every segment.
+ * @param {number[][]} segments
+ */
+function twoPreviousCapacity(segments) {
+  const rows=new Map();
+  for (const part of segments) {
+    let older=29,previous=29;
+    for (const symbol of part) {
+      const state=older*30+previous;
+      let row=rows.get(state);
+      if(!row){row=Array(29).fill(0);rows.set(state,row);}
+      row[symbol]++;
+      older=previous;
+      previous=symbol;
+    }
+  }
+  return {states:rows.size,capacity:majorizationCapacity([...rows.values()])};
+}
 /** @param {number[][][]} chapterGroups */
 function independentChapterCapacity(chapterGroups) {
   const perChapter=chapterGroups.map(groups=>majorizationCapacity(transitions(groups)));
@@ -181,6 +201,12 @@ function main() {
   const native=encodeNativeEnglish(read("resources/liber-primus/lp1-plaintext-reference.txt"),
     corpus.translit);
   assert.equal(native.length,3287);
+  const secondOrder=twoPreviousCapacity([all]);
+  const secondOrderPages=twoPreviousCapacity(pages);
+  assert.deepEqual([secondOrder.states,secondOrder.capacity[0],secondOrder.capacity[1],
+    secondOrder.capacity[11]],[842,2021,3618,12034]);
+  assert.deepEqual([secondOrderPages.states,secondOrderPages.capacity[0],
+    secondOrderPages.capacity[1],secondOrderPages.capacity[11]],[865,2041,3650,12044]);
   const nativeE=native.filter(i=>i===corpus.translit.indexOf("E")).length;
   assert.equal(nativeE,406);
   const nativeTop=topCounts(native);
@@ -213,6 +239,11 @@ function main() {
     conditionalConclusion:"native-GP English with E at 12.35% or top twelve at 77.64% is incompatible even with nine independent red-heading state tables (9.69% and 68.78% are generous upper bounds)",
     exclusions:"arbitrary per-predecessor GP29 permutations, including nine independent red-heading state tables, under continuous/page/word-reset original segmentation",
     outsideScope:"multiple-history state, position-dependent rotor, variable-width, auxiliary key stream, other intermediate alphabets, compressed plaintext, stochastic outputs",
+    countermodelTwoPrevious:{shared:{states:secondOrder.states,
+      top1:secondOrder.capacity[0],top12:secondOrder.capacity[11]},
+      pageReset:{states:secondOrderPages.states,top1:secondOrderPages.capacity[0],
+        top12:secondOrderPages.capacity[11]},
+      meaning:"two preceding ciphertext runes have enough frequency capacity to admit solved-LP1-like 12.35% E and top-twelve 77.64%; this is possibility, not an actual decoder"},
     results},null,2));
 }
 if (require.main===module)main();
