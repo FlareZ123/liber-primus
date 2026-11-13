@@ -240,7 +240,9 @@ function pageSegmentCapacity(pages, start, end) {
       for (let c = 0; c < 29; c++)
         h[prev][c] += pages[j].rows[prev][c];
   const score = capacity([h]);
-  return { E: score.E, EO: score.EO };
+  const maxDistinct = Math.max(...h.map(row =>
+    row.filter(count => count > 0).length));
+  return { E: score.E, EO: score.EO, maxDistinct };
 }
 /**
  * Exactly maximize independently secret state capacity for each number of
@@ -294,6 +296,48 @@ function bestPageRekeys(metric) {
   }
   return best;
 }
+// A p50 reset eliminates the single 29-output row, but leaves rows with
+// 28 distinct outputs, so direct Latin26 remains impossible in that model.
+const postNumericMaxOutputs = Math.max(...postNumericCounts
+  .flatMap(matrix => matrix.map(row =>
+    row.filter(count => count > 0).length)));
+assert.equal(postNumericMaxOutputs, 28);
+const maxOutputsByChapter = chapterPageGroups.map(pages =>
+  pageSegmentCapacity(pages, 0, pages.length).maxDistinct);
+assert.deepEqual(maxOutputsByChapter,
+  [19, 24, 27, 28, 23, 25, 25, 29, 11]);
+
+// Minimum *additional physical-page resets* necessary to eliminate every
+// >26-output public-state cardinality obstruction. This is necessary only;
+// it does not produce a lexical plaintext or determine secret codebooks.
+const latin26PageRekeys = [];
+for (const pages of chapterPageGroups) {
+  const n = pages.length;
+  const dp = Array(n + 1).fill(null);
+  dp[0] = { segments: 0, pageStarts: [] };
+  for (let end = 1; end <= n; end++)
+    for (let start = 0; start < end; start++) {
+      if (!dp[start]) continue;
+      if (pageSegmentCapacity(pages, start, end).maxDistinct > 26)
+        continue;
+      const candidate = {
+        segments: dp[start].segments + 1,
+        pageStarts: [...dp[start].pageStarts,
+          ...(start ? [pages[start].page] : [])]
+      };
+      if (!dp[end] || candidate.segments < dp[end].segments)
+        dp[end] = candidate;
+    }
+  assert(dp[n], 'missing 26-symbol capacity partition');
+  latin26PageRekeys.push(dp[n]);
+}
+const minimumLatin26ExtraResets = latin26PageRekeys.reduce(
+  (n, x) => n + x.segments - 1, 0);
+const latin26ExamplePageStarts = latin26PageRekeys
+  .flatMap(x => x.pageStarts);
+assert.equal(minimumLatin26ExtraResets, 3);
+assert.deepEqual(latin26ExamplePageStarts, [10, 16, 45]);
+
 const bestE = bestPageRekeys('E');
 const bestEO = bestPageRekeys('EO');
 assert.equal(bestE[0].value, 1068);
@@ -316,7 +360,14 @@ console.log(JSON.stringify({
   secretAlphabets: '29 per chapter, each any GP29 permutation',
   original: { global, nineChapterIndependent: chapters },
   originalFullStateWitness: fullState,
-  p50OnlyExtraRekey: postNumericRekey,
+  p50OnlyExtraRekey: { ...postNumericRekey,
+    maximumDistinctOutputsAtFixedState: postNumericMaxOutputs },
+  latin26FixedStateCardinality: {
+    originalChapterMaxDistinctOutputs: maxOutputsByChapter,
+    minimumAdditionalPageRekeys: minimumLatin26ExtraResets,
+    witnessPageStarts: latin26ExamplePageStarts,
+    caveat: 'three resets remove the cardinality obstruction only; no 26-letter plaintext or key is recovered'
+  },
   optimalPageBoundaryRekeyDemand: {
     minExtraResetsForReferenceE: minExtraE,
     minExtraResetsForReferenceEplusO: minExtraEO,
