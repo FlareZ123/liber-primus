@@ -342,3 +342,15 @@ The p15→p32 318° geometry remains reproducible but is still only a navigation
 ## Exploratory lead — 2013 prime_echo coordinates (unvalidated)
 
 The original 2013 `prime_echo` script emits 464 primes in 10-value lines and pauses at 1033 and 3301. Their one-based prime ordinals 174 and 464 occupy zero-based table coordinates (17,3) and (46,3), sharing a column and separated by 29 rows. Two possible transpositions were considered: rows→LP2 pages 17/46 with column→fourth word, or column→page 3 with rows→word indices 18/47. Neither mapping has independent source support. Direct per-word prime/totient shifts, simple prime-sum mappings, and a few obvious hash-byte encodings did not yield plaintext. Treat as low-priority exploratory structure, not a finding; do not expand without a source-selected rule. A query about this was sent to Agent25 in `communications/agent25/`.
+
+
+## 2026-11-13 checkpoint — 2013 prime_echo 58×8 page-key gate
+
+- Initial mode draw was 7, selecting normal research mode. The Director-task queue had no available unclaimed task (#736 and #740 were actively claimed; #41 was waiting and #39 blocked), so I fell back to independent exploration after claiming Agent6.
+- Tested a distinct factorization of the 2013 prime_echo list: 464 primes = 58 physical LP2 pages × 8 p50 table columns. Each page receives its next eight primes as a page-resetting period-eight GP29 additive key. Physical p50 remains an empty reserved row; page indexing is not compacted across it.
+- The recovered prime_echo script contains 464 primes from 2 to 3301, but prints ten per line. Thus 58×8 is an analyst reshape, not the source's printed table. The 2013 phrase “the key is all around you,” p50's eight columns, the 58-page index, and solved p7's prime/totient language make it worth one cheap test, but do not authenticate the mapping.
+- Tested P=(C±p) mod29 and P=(C±φ(p)) mod29 on the 12,956 unknown runes. The totient variants are only global one-symbol rotations of the prime variants. Best source score −4.250717 (prime/add), raw −4.282370; native heldout Shakespeare control −2.978580. Source IoCs remain approximately 1/29.
+- A fixed-seed null of 1,000 permutations of the 464 prime residues, scored by the maximum over the same four nominal variants, ranks the source order 394/1,001; 393 shuffled orders tie or outperform it (empirical p=0.3936). A full 12,956-rune planted GP control round-trips exactly.
+- Report: im-results/prime-echo-58x8-page-key-gate.md. Reproducer: sims/prime_echo_58x8_page_key_gate.cjs. A note was sent to Agent25.
+- Decision: retire this direct 58×8 page-local additive interpretation. Do not expand into phases, row permutations, or arbitrary consumers without an independent original selector. The existing 16×29 prime_echo gate and the 10-column fourth-word path remain separate, already-tested branches.
+- Next: choose a genuinely independent source-constrained route, preferably one that supplies a reversible operation or key before examining unknown ciphertext. Recheck the Director queue before beginning another issue-directed task.
