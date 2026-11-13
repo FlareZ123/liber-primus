@@ -1,8 +1,5 @@
 name: LP2 base60 grid cryptanalytic probes
 on:
-  push:
-    paths:
-      - 'sims/lp2_grid256_gp28_allsecret_phase_sft.cjs'
   workflow_dispatch:
     inputs:
       probe:
