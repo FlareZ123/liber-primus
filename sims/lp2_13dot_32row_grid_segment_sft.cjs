@@ -288,6 +288,99 @@ const columnarTransposition = {
   decision: "all four source-fixed variants score slightly worse than raw ciphertext and over 3 nats/rune below every sampled held-out native window; no plaintext"
 };
 
+
+function phiSmall(n) {
+  assert(Number.isInteger(n) && n >= 1 && n <= 256);
+  let remaining = n, result = n;
+  for (let p = 2; p * p <= remaining; p++) {
+    if (remaining % p === 0) {
+      while (remaining % p === 0) remaining /= p;
+      result -= result / p;
+    }
+  }
+  if (remaining > 1) result -= result / remaining;
+  return result;
+}
+assert.deepEqual([1,2,3,4,5,6,8,9,10,12].map(phiSmall), [1,1,2,2,4,2,4,6,4,4]);
+const phiByteZeroRows = grid.map(row => row.map(n => n === 0 ? 0 : phiSmall(n) % 29));
+const phiByteOneRows = grid.map(row => row.map(n => phiSmall(n + 1) % 29));
+function decodeTotientRows(keys, sign) {
+  const out = [];
+  for (let segment = 0; segment < 28; segment++) {
+    const from = boundaries[segment], to = boundaries[segment + 1], rowKey = keys[segment];
+    for (let i = from; i < to; i++) {
+      const k = rowKey[(i - from) % 8];
+      out.push(((ciphertext[i] + sign * k) % 29 + 29) % 29);
+    }
+  }
+  return out;
+}
+const totientVariants = [];
+for (const [name, keys] of [
+  ["phi(byte), zero sentinel", phiByteZeroRows],
+  ["phi(byte+1), one-based", phiByteOneRows]
+]) {
+  for (const [direction, sign] of [["subtract", -1], ["add", 1]]) {
+    const decoded = decodeTotientRows(keys, sign);
+    const planted = [];
+    for (let segment = 0; segment < 28; segment++) {
+      const length = unknownLengths[segment], rowKey = keys[segment];
+      const plantChunk = Array.from({ length }, (_, i) => p57PlantSource[(planted.length + i) % p57PlantSource.length]);
+      const encrypted = plantChunk.map((x, i) => ((x - sign * rowKey[i % 8]) % 29 + 29) % 29);
+      const recovered = encrypted.map((x, i) => ((x + sign * rowKey[i % 8]) % 29 + 29) % 29);
+      assert.deepEqual(recovered, plantChunk);
+      planted.push(...recovered);
+    }
+    assert.equal(planted.length, 12956);
+    totientVariants.push({
+      key_rule: name,
+      direction,
+      gp4_log_probability_per_rune: scoreGp4(decoded, unknownLengths),
+      prefix: decoded.slice(0, 96).map(i => corpus.translit[i]).join("")
+    });
+  }
+}
+assert(totientVariants.every(v => v.gp4_log_probability_per_rune < controlSummary.min - 3),
+  "all row-wise totient streams must remain well below held-out native controls");
+const p55GlobalStart = corpus.pages.slice(0, 55).reduce((sum, p) => sum + p.indices.length, 0);
+const p55CribStart = p55GlobalStart + 46;
+assert.equal(p55CribStart - boundaries[27], 269);
+const p55CribCipher = ciphertext.slice(p55CribStart, p55CribStart + 30);
+const p55CribGlyphs = [..."ᚦᛖᛏᚩᛏᛁᛖᚾᛏᚠᚢᚾᚳᛏᛡᚾᛁᛋᛋᚪᚳᚱᛖᛞᚪᛚᛚᚦᛝᛋ"];
+assert.equal(p55CribGlyphs.length, 30);
+const p55CribPlain = p55CribGlyphs.map(glyph => corpus.runes.indexOf(glyph));
+assert(p55CribPlain.every(i => i >= 0));
+const mod29 = n => ((n % 29) + 29) % 29;
+const requiredPlus = p55CribCipher.map((x, i) => mod29(x - p55CribPlain[i]));
+const requiredMinus = p55CribCipher.map((x, i) => mod29(p55CribPlain[i] - x));
+function matches(a, b) { return a.reduce((sum, x, i) => sum + (x === b[i] ? 1 : 0), 0); }
+const cribTotientMatches = [];
+for (const [name, keys] of [
+  ["phi(byte), zero sentinel", phiByteZeroRows],
+  ["phi(byte+1), one-based", phiByteOneRows]
+]) {
+  const generated = Array.from({ length: 30 }, (_, i) => keys[27][(269 + i) % 8]);
+  cribTotientMatches.push({
+    key_rule: name,
+    generated_key: generated,
+    matches_if_cipher_adds_key: matches(generated, requiredPlus),
+    matches_if_cipher_subtracts_key: matches(generated, requiredMinus)
+  });
+}
+assert(cribTotientMatches.every(v => Math.max(v.matches_if_cipher_adds_key, v.matches_if_cipher_subtracts_key) <= 3));
+const totientRowStream = {
+  source_hypothesis: "LP1 p5 totient instruction + solved p56 phi-prime method; one 8-byte table row per 13-dot interval",
+  key_rule: "apply Euler phi to each byte and repeat the resulting eight GP29 values within the interval",
+  zero_conventions: ["phi(byte) with zero treated as a null zero key", "phi(byte+1) for a positive one-based domain"],
+  raw_gp4_log_probability_per_rune: rawColumnarScore,
+  variants: totientVariants,
+  p55_candidate_crib_at_segment_offset_269: cribTotientMatches,
+  control_model: "same source-calibrated GP29 4-gram and 500 held-out native windows used by columnar gate",
+  heldout_native_windows: controlSummary,
+  best_candidate_margin_below_worst_native_window: controlSummary.min - Math.max(...totientVariants.map(v => v.gp4_log_probability_per_rune)),
+  decision: "no exact p55 crib key stream; all four fixed period-eight totient streams remain over 3 nats/rune below native controls; no plaintext"
+};
+
 console.log(JSON.stringify({
   original_runes: ciphertext.length,
   original_13dot_marks: markerEvents.length,
@@ -301,5 +394,6 @@ console.log(JSON.stringify({
   row_count: grid.length, row_width: 8,
   original_long_interval_ioc: longOriginalIntervals,
   readings,
-  columnar_transposition: columnarTransposition
+  columnar_transposition: columnarTransposition,
+  totient_row_stream: totientRowStream
 }, null, 2));
