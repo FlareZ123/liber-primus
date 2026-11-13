@@ -221,8 +221,136 @@ for (const file of controlFiles) {
     bestMinus: minima[1], lowestSourceMaximum });
 }
 assert.deepEqual(allSecret.map(x => x.windows), [159, 240, 39]);
+/**
+ * Source p15 has an original 4x4 numeric grid. Permit SIXTEEN secret,
+ * unrelated output alphabets, keyed either by the page-local or by the
+ * continuous global rune position modulo 16. Every alphabet is an arbitrary
+ * 29-symbol bijection. Sorted bins at each phase remain exact invariants.
+ */
+const PHASES = 16;
+const originalPhase = [0, 1].map(() =>
+  Array.from({ length: PHASES }, () => Array(29).fill(0)));
+let globalStart = 0;
+for (const page of pages) {
+  for (let i = 1; i < page.indices.length; i++) {
+    const d = mod(page.indices[i] - page.indices[i - 1]);
+    originalPhase[0][i % PHASES][d]++;
+    originalPhase[1][(globalStart + i) % PHASES][d]++;
+  }
+  globalStart += page.indices.length;
+}
+const originalRanked = originalPhase.map(rows =>
+  rows.map(v => v.slice().sort((a, b) => a - b)));
+function phaseDistance(actual, reference) {
+  let numerator = 0;
+  for (let p = 0; p < PHASES; p++)
+    for (let k = 0; k < 29; k++)
+      numerator += Math.abs(actual[p][k] - reference[p][k]);
+  return numerator / (2 * 12901);
+}
+function secretPhaseProfile(values, pageClock) {
+  const hist = Array.from({ length: PHASES }, () => Array(29).fill(0));
+  let at = 0;
+  for (const page of pages) {
+    for (let i = 1; i < page.indices.length; i++) {
+      const phase = (pageClock === 'page' ? i : at + i) % PHASES;
+      hist[phase][values[at + i - 1]]++;
+    }
+    at += page.indices.length;
+  }
+  return hist.map(h => h.sort((a, b) => a - b));
+}
+
+const phase16 = [];
+for (const file of controlFiles) {
+  const native = nativeGP(fs.readFileSync(path.join(__dirname, '..', file), 'utf8'));
+  const best = [0, 1].map(() => [{ tv: Infinity }, { tv: Infinity }]);
+  const sourceSource = [];
+  let referenceProfile = null;
+  let windows = 0;
+  for (let offset = 0; offset + 12956 <= native.length; offset += 1301) {
+    windows++;
+    for (let direction = 0; direction < 2; direction++) {
+      const sign = direction === 0 ? 1 : -1, step = [];
+      let at = offset;
+      for (const page of pages) {
+        for (let i = 1; i < page.indices.length; i++)
+          step.push(mod(native[at + i] + sign * prime[native[at + i - 1]]));
+        // Maintain source page boundaries by emitting one transparent first
+        // value for each page, which is never observed as a cipher delta.
+        step.push(0);
+        at += page.indices.length;
+      }
+      // step is 12,956 items after inserting a dummy at each page end;
+      // secretPhaseProfile expects an explicit one-value page start instead.
+      const phaseData = [0, 1].map(mode => {
+        const h = Array.from({ length: PHASES }, () => Array(29).fill(0));
+        let gpOffset = offset, globalOffset = 0;
+        for (const page of pages) {
+          for (let i = 1; i < page.indices.length; i++) {
+            const phase = (mode === 0 ? i : globalOffset + i) % PHASES;
+            const v = mod(native[gpOffset + i] +
+              sign * prime[native[gpOffset + i - 1]]);
+            h[phase][v]++;
+          }
+          gpOffset += page.indices.length;
+          globalOffset += page.indices.length;
+        }
+        return h.map(v => v.sort((a, b) => a - b));
+      });
+      for (let mode = 0; mode < 2; mode++) {
+        const tv = phaseDistance(phaseData[mode], originalRanked[mode]);
+        if (tv < best[mode][direction].tv)
+          best[mode][direction] = { tv, offset };
+      }
+      if (file === controlFiles[0] && direction === 0) {
+        if (offset === 0) referenceProfile = phaseData[0];
+        else if (offset >= 12956)
+          sourceSource.push(phaseDistance(phaseData[0], referenceProfile));
+      }
+      if (offset === 0 && direction === 0) {
+        // One independent secret alphabet for each of sixteen phases.
+        const keyPhase = Array.from({ length: PHASES }, (_, p) => 3 * p + 7);
+        for (let mode = 0; mode < 2; mode++) {
+          const plaintextHist = phaseData[mode];
+          const relabeled = Array.from({ length: PHASES }, () =>
+            Array(29).fill(0));
+          // Recover counts from the original native input, rather than
+          // from an already sorted histogram.
+          let base = offset, global = 0;
+          for (const page of pages) {
+            for (let i = 1; i < page.indices.length; i++) {
+              const p = (mode === 0 ? i : global + i) % PHASES;
+              const symbol = mod(native[base + i] +
+                prime[native[base + i - 1]]);
+              relabeled[p][(7 * symbol + keyPhase[p]) % 29]++;
+            }
+            base += page.indices.length;
+            global += page.indices.length;
+          }
+          assert.deepEqual(relabeled.map(h =>
+            h.sort((a, b) => a - b)), plaintextHist);
+        }
+      }
+    }
+  }
+  assert.ok(best.flat().every(x => x.tv > 0.06));
+  if (sourceSource.length) {
+    sourceSource.sort((a, b) => a - b);
+    assert.equal(sourceSource.length, 149);
+    assert.ok(sourceSource.at(-1) < 0.05);
+  }
+  phase16.push({ control: file, windows, pageLocal: best[0],
+    bookGlobal: best[1], sourceSourceBenchmark:
+      sourceSource.length ? { comparisons: sourceSource.length,
+        min: sourceSource[0], median: sourceSource[Math.floor(sourceSource.length / 2)],
+        max: sourceSource.at(-1) } : null });
+}
+assert.deepEqual(phase16.map(x => x.windows), [159, 240, 39]);
 console.log(JSON.stringify({ source: 'unchanged LP2 pp0-55', runes: 12956, pages: 55,
   nonlinearPrimeFeedback: results, affineDelta: affine,
   allSecretPermutationGate: { observedMin: 86, observedMax: 510,
-    controlProfiles: allSecret } }, null, 2));
+    controlProfiles: allSecret },
+  phase16AllSecretGate: phase16 }, null, 2));
+
 
