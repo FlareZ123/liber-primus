@@ -1,6 +1,15 @@
 name: LP2 source-wordlength public-domain crib discovery
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Select one independent manual research test
+        required: true
+        type: choice
+        default: source-cribs
+        options:
+          - source-cribs
+          - latin26-repeat-marker
 jobs:
   source-cribs:
     runs-on: ubuntu-latest
@@ -11,4 +20,8 @@ jobs:
         with:
           node-version: '22'
       - name: Match exact original GP word-lengths against source texts
+        if: ${{ inputs.suite == 'source-cribs' }}
         run: node sims/source_wordlength_gutenberg_cribs.cjs
+      - name: Original Latin26/GP29 rare-repeat-marker dictionary and inverse control
+        if: ${{ inputs.suite == 'latin26-repeat-marker' }}
+        run: node sims/lp2_latin26_wordlength_repeat_marker_sft.cjs
