@@ -164,6 +164,7 @@ for (const [shape, sites] of byShape) {
   const [a, b] = shape.split(",").map(Number);
   const n = sites.length;
   const totalPairs = n * (n - 1) / 2;
+  if (totalPairs === 0) continue;
   const overlaps = a === b
     ? sites.filter((site, k) => k > 0 && sites[k - 1] === site - 1).length
     : 0;
