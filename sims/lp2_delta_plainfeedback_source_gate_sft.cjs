@@ -248,19 +248,6 @@ function phaseDistance(actual, reference) {
       numerator += Math.abs(actual[p][k] - reference[p][k]);
   return numerator / (2 * 12901);
 }
-function secretPhaseProfile(values, pageClock) {
-  const hist = Array.from({ length: PHASES }, () => Array(29).fill(0));
-  let at = 0;
-  for (const page of pages) {
-    for (let i = 1; i < page.indices.length; i++) {
-      const phase = (pageClock === 'page' ? i : at + i) % PHASES;
-      hist[phase][values[at + i - 1]]++;
-    }
-    at += page.indices.length;
-  }
-  return hist.map(h => h.sort((a, b) => a - b));
-}
-
 const phase16 = [];
 for (const file of controlFiles) {
   const native = nativeGP(fs.readFileSync(path.join(__dirname, '..', file), 'utf8'));
@@ -271,18 +258,7 @@ for (const file of controlFiles) {
   for (let offset = 0; offset + 12956 <= native.length; offset += 1301) {
     windows++;
     for (let direction = 0; direction < 2; direction++) {
-      const sign = direction === 0 ? 1 : -1, step = [];
-      let at = offset;
-      for (const page of pages) {
-        for (let i = 1; i < page.indices.length; i++)
-          step.push(mod(native[at + i] + sign * prime[native[at + i - 1]]));
-        // Maintain source page boundaries by emitting one transparent first
-        // value for each page, which is never observed as a cipher delta.
-        step.push(0);
-        at += page.indices.length;
-      }
-      // step is 12,956 items after inserting a dummy at each page end;
-      // secretPhaseProfile expects an explicit one-value page start instead.
+      const sign = direction === 0 ? 1 : -1;
       const phaseData = [0, 1].map(mode => {
         const h = Array.from({ length: PHASES }, () => Array(29).fill(0));
         let gpOffset = offset, globalOffset = 0;
