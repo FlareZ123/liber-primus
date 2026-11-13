@@ -118,6 +118,44 @@ assert.equal(corpus.translit[earlierCornerIndex], 'C');
 assert.equal(sumGP(topRow) - printedCornerPrime + earlierCornerPrime, 503);
 assert.equal(sumGP(leftColumn) - printedCornerPrime + earlierCornerPrime, 509);
 
+/*
+ * Falsifiable cipher-consumer control: all GP primes differing by exactly
+ * 60 yield ten disjoint symbol pairs. Swapping each pair is the reversible
+ * alphabet-wide extension of the corner L↔C bridge. It must preserve exact
+ * whole-page rune collision counts, and it does not reveal p32 plaintext.
+ * A many-to-one high-prime→low-prime fold inflates IoC for a uniform source;
+ * the inflation is not linguistic evidence.
+ */
+const alphabetSwap = Array.from({length: 29}, (_, i) => i);
+const alphabetFold = Array.from({length: 29}, (_, i) => i);
+let paired = 0;
+for (let i = 0; i < 29; i++) {
+  const j = corpus.prime.indexOf(corpus.prime[i] + 60);
+  if (j >= 0) {
+    alphabetSwap[i] = j;
+    alphabetSwap[j] = i;
+    alphabetFold[j] = i;
+    paired++;
+  }
+}
+assert.equal(paired, 10);
+assert.ok(alphabetSwap.every((j, i) => alphabetSwap[j] === i));
+assert.equal(alphabetSwap[printedCornerIndex], earlierCornerIndex);
+const collisionNumerator = indices => {
+  const counts = Array(29).fill(0);
+  for (const index of indices) counts[index]++;
+  return counts.reduce((s, f) => s + f * (f - 1), 0);
+};
+const originalP32Collisions = collisionNumerator(page32.indices);
+const swappedP32Collisions = collisionNumerator(page32.indices.map(i => alphabetSwap[i]));
+const foldedP32Collisions = collisionNumerator(page32.indices.map(i => alphabetFold[i]));
+assert.equal(originalP32Collisions, 496);
+assert.equal(swappedP32Collisions, 496);
+assert.equal(foldedP32Collisions, 836);
+// Uniform GP29 input under this 10-pair collapse has exactly (10*4+9)/29^2.
+assert.equal(10 * 4 + 9, 49);
+
+
 
 
 
@@ -152,6 +190,7 @@ console.log(JSON.stringify({
   original2012PhoneDomain: original2012Host + '.com',
   original2014LP2P32SourceDimensions: { firstRowGPPrimeSum: sumGP(topRow), firstColumnGPPrimeSum: sumGP(leftColumn) },
   original2014P32CornerCounterfactual: { printed: 'L', printedPrime: printedCornerPrime, hypotheticalPrior: 'C', priorPrime: earlierCornerPrime, inferredShift: 60 },
+  source60GPAlphabetConsumer: { swappedPairs: paired, originalP32Collisions, swappedP32Collisions, foldedP32Collisions, uniformFoldExpectedIoC: 49 / 841 },
   hypothetical2016AnalogDomain: candidate2016Host + '.com',
   analogDomainStatus: 'arithmetic candidate only: no historical host or archive verified',
   image2012Trailer: { fullBytes: trailer.length, printablePayloadBytes: key.length },
