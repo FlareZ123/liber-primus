@@ -36,6 +36,7 @@ jobs:
           sed -i 's/-DBOOST_FILESYSTEM_VERSION=2//g' /tmp/pev274/source/src/Makefile
           sed -i 's/CFLAGS = /CFLAGS = -fpermissive /' /tmp/pev274/source/src/Makefile
           mv /tmp/pev274/source/src/jpeglib.h /tmp/pev274/source/src/jpeglib.h.legacy
+          ln -s /usr/include/jpeglib.h /tmp/pev274/source/src/jpeglib.h
           sed -i '1i#include <boost/filesystem.hpp>' /tmp/pev274/source/src/cimage.cpp
           sed -i 's/full_path.leaf()/full_path.filename().string()/g' /tmp/pev274/source/src/cimage.cpp
           make -C /tmp/pev274/source/src -j2
