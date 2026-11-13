@@ -1,0 +1,21 @@
+name: LP2 Q238 terminal 180-to-76 original-source codeword SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-q238:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original p50 Q238 all-secret terminal codeword and positive plant
+        run: |
+          node --check sims/lp2_terminal_q238_180_76_codeword_sft.cjs
+          node sims/lp2_terminal_q238_180_76_codeword_sft.cjs
