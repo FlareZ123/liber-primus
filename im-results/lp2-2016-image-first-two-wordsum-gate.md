@@ -47,13 +47,26 @@ The fixed-slot product is an **exact conditional probability under the declared 
 
 ### The width-selected word begins with three compass runes
 
-The p0 word6 whose GP-prime sum exactly equals the 2016 image width **begins with the *literal original ciphertext runes* N, E, W** (\`ᚾᛖᚹ\`). This gives a plausible semantic reading of the signed source phrase “their numbers are the direction”: north, east, west. It is also the ordinary English word “new”, so the compass reading must remain a hypothesis. The remaining eight glyphs of the same original word do not form a compass instruction, and the original page does not mark a stop after its third glyph. The literal \`NEW\` substring is **not recovered plaintext**.
+The p0 word6 whose GP-prime sum exactly equals the 2016 image width **begins with the *literal original ciphertext runes* N, E, W** (\`ᚾᛖᚹ\`). This gives a plausible semantic reading of the signed source phrase “their numbers are the direction”: north, east, west. It is also the ordinary English word “new”, so the compass reading must remain a hypothesis. The next three glyphs are **B, A, S**, so the six-glyph prefix is the exact original **\`NEWBAS\`**; this is the *only* original unknown printed segment with that contiguous six-rune sequence. Its seventh glyph is **OE**, rather than the distinct E rune, and no complete source word spells **\`NEWBASE\`**. The remaining eight glyphs after NEW do not form a compass instruction, and the original page does not mark a stop after its third or sixth glyph. Neither the apparent English word NEW nor the suggestive incomplete phrase NEWBAS is **recovered plaintext**.
 
 Of 2,928 unknown original printed segments, **five** begin with any three of the four single-rune cardinal letters N/E/S/W: p0#6, p18#39, p23#15, p37#22 and p45#35. Only p0#6 begins with \`NEW\`, and only p0#6 has the independently source-dimensioned 563-sum word.
 
 The exact combinatorial shuffle of the *original p0 page's 262 rune symbols*, preserving word6's eleven-glyph length, gives \`P(word6 sums563 and its first three runes are all compass letters)=0.00000998757847680622\`, with **P(any three compass runes | sum563)=0.00224968615989257**. The further exact event \`NEW\` in order plus sum563 has chance \`0.000000150602065391061\` under that specific fixed-slot null. Cardinal category was proposed from the signed directional clue; the three-prefix length and literal NEW order were recognized *after* inspecting the target. These are conditional combinatorial measures, never discovery-wide probabilities or proof of a designer-supplied path.
 
 **Route stop:** the clue does not specify a p32 starting square, whether movement happens before or after reading, why to truncate the source word at three glyphs, or how subsequent noncardinal glyphs turn into direction. Do not manufacture a start/path or claim an original plaintext fragment solely from the readable cardinal prefix.
+
+## Literal NEWBAS / numeral-base consumer: bounded negative
+
+The width-selected original word begins with \`NEWBAS\` and the independently authenticated 2013 Cicada server used the operation \`BASE29\`. A natural human hypothesis is that the opening word hints at a **new numeral base**. The original pp49–51 numeric grid has an externally documented candidate base60 alphanumeric convention, with a separately discussed base59 alternative. No original source spells out NEW BASE, selects base59/60, or says to re-express an entire rune-word as an integer; **this test is conditional on that interpretation**.
+
+Freeze each of the 2,928 original page-local printed word segments as a big-endian GP-index base29 integer. Convert each entire integer, without changing boundaries, into ordinary unpadded base59 or base60 digits under the candidate p50 alphabet (the first 59 or 60 symbols of \`0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx\`). This is exact reversible numeral conversion when each original digit count is retained, and the original-input SFT positively round-trips the independently chosen base-60/base-59 English word \`HELLO\` through GP29 digits.
+
+| Candidate target base | p0#6 width-word output | p1#33 height-word output | Uppercase-only outputs, first two original pages | Uppercase-only outputs, all unknown pages |
+| --- | --- | --- | ---: | ---: |
+| 59 | \`RYriPRWG4\` | \`15BR2c2dI\` | **6 / 122** | **189 / 2,928** |
+| 60 | \`O7DTNDFbK\` | \`v48oELtj\` | **6 / 122** | **188 / 2,928** |
+
+Both direct conversions yield overwhelmingly mixed digits, upper- and lowercase letters rather than original-order uppercase GP-readable prose. This excludes a **literal one-stage per-word BASE29→base59/60 uppercase-message decoding**. Mixed-case or further enciphered material is outside this test, but no authenticated later operation was supplied. The incomplete NEWBAS appearance is a post-inspection lead, not a source-issued key or a reason for free-radix searches. Reproduction is integrated into the [existing source-words SFT](../sims/lp2_2016_dimensions_firstwords_sft.cjs).
 
 ## Direct source-addressed 11+10-key inverse on p32: negative
 
