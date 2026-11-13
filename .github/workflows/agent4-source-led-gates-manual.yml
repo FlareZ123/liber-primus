@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Run exact Fibonacci page lag-eight collision and 64-lag familywise gate
+        run: node sims/lp2_fibonacci_page_step_lag8_sft.cjs
       - name: Run original Fibonacci-page GP29 differential-spectrum and eight-column inverse gate
         run: node sims/lp2_fibonacci_page_delta_spectrum_sft.cjs
       - name: Run frozen p15 1903-rune Josephus gate
