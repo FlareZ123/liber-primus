@@ -28,6 +28,14 @@ async function check(timestamp){
   }
   const onionHits=[...body.matchAll(/[a-z2-7]{16}\\.onion/gi)];
   out.onionContext=onionHits.slice(0,20).map(m=>body.slice(Math.max(0,m.index-130),Math.min(body.length,m.index+160)));
+  const chats=[...body.matchAll(/\\{"time":\\d{13},"userId":"[^"]+","lineText":"(?:\\\\.|[^"\\\\])*"\\}/g)]
+   .map(m=>JSON.parse(m[0]));
+  out.chatSummary={count:chats.length,
+   earliest:chats.length?new Date(Math.min(...chats.map(x=>x.time))).toISOString():null,
+   latest:chats.length?new Date(Math.max(...chats.map(x=>x.time))).toISOString():null,
+   yearCounts:Object.fromEntries([...new Set(chats.map(x=>new Date(x.time).getUTCFullYear()))].map(y=>[y,chats.filter(x=>new Date(x.time).getUTCFullYear()===y).length])),
+   originalMayToAugust2014:chats.filter(x=>x.time>=Date.UTC(2014,4,1)&&x.time<Date.UTC(2014,8,1)).slice(0,80),
+   p56Context:chats.filter(x=>/36367763|deep web|\\.onion|page 56|prime|hash|cluosh/i.test(x.lineText)).slice(0,30)};
   seen.add(out.sha256);
  }catch(e){out.error=String(e.message??e)}
  console.log(JSON.stringify(out));
