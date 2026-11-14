@@ -73,6 +73,20 @@ The Vulgate control reads the exact checked-in base29 encoded GP rune words usin
 
 Thus **0 of 62 full-manuscript windows** across modern English, Old English and Latin falls below the original **1,177** E capacity. At most thirteen independent page-contiguous line-reset alphabet domains can represent only **1,368** E, so Latin controls require **at least fourteen** such domains (five extra unmarked resets). Old English controls require **at least sixteen**, as for the original 44 modern-English controls. These are finite comparisons with pinned literary corpora, not statements about every conceivable Latin or Old English manuscript. No authentic plaintext or ciphertext key emerges.
 
+## Printed-word-shape-preserving English controls
+
+As a stricter alternative to taking contiguous native-English excerpts, preserve **every one of the original 2,896 printed word lengths**, including the manuscript's cross-line and cross-page word carries. At each original word site, independently sample a word of exactly that GP29 length from the corresponding Shakespeare, Gibran, or Emerson control after the source-attested IO→IA normalization. This keeps the **original 12,956-rune total, 594 printed-line lengths, and all nine chapter boundaries** without inferring any plaintext segmentation from ciphertext. A fixed LCG seed `0x3301aa6d` reproduces 500 complete books per author.
+
+| Native GP29 word pool | Complete source-shaped book plants | Smallest E count in any book |
+| --- | ---: | ---: |
+| Shakespeare | 500 | **1,451** |
+| Gibran | 500 | **1,454** |
+| Emerson | 500 | **1,464** |
+
+Every one of the **1,500** books exceeds the original 1,177-E chapter-column capacity, and every matching-position collision rate is above the original 0.034978377. This rejects the possibility that the earlier full-book control failure was merely due to failing to match the manuscript's unusual word-length distribution. The **1,451** minimum is just below the least-E 1,458 contiguous source passage, but it remains above the exhaustive 15-domain page-reset limit of **1,451** only at equality: the word-shaped controls strictly exclude the original **nine-domain** model, while the **at least sixteen-domain** statement remains calibrated to the 44 contiguous-English or the three Old English passages. It would overstate the word-matched result to say all 1,500 independently prove sixteen domains necessary; one sampled word-shaped book might meet the optimistic 15-domain E capacity exactly.
+
+All 1,500 matching-word trials, the 62 contiguous English/Latin/Old-English passages, the exact original-source capacity dynamic program and both 12,956-rune secret-key positive plants passed on **Windows / Node.js 22** in [read-only CI run 43572671518](https://github.com/FlareZ123/liber-primus/actions/runs/43572671518).
+
 ## Exact implementation and positive control
 
 [Source-exact CommonJS SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) parses the original 55 rune-bearing physical-page transcriptions, preserves the 594 printed line breaks, confirms both the 12,956-rune original and the nine source-visible chapter sizes, recomputes every capacity and equality invariant, and runs both English spellings. Its second phase encrypts a complete 12,956-rune native-GP positive plant with **independent arbitrary 29! keys at every book-wide line position** and then with **independent arbitrary 29! keys at every chapter-specific line position**. It verifies 12,956/12,956 exact key-known decoding and unchanged original-family invariants. No special key, rune or phase is chosen from the original language score.
