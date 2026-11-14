@@ -16,12 +16,18 @@ async function check(timestamp){
   out.http=r.status;out.finalUrl=r.url;out.contentType=r.headers.get('content-type');
   const body=await r.text();out.bytes=Buffer.byteLength(body);
   out.sha256=crypto.createHash('sha256').update(body).digest('hex');
-  out.head=body.slice(0,1600);
   const indicators=['36367763ab73783c7af28444','AN END','THE DEEP WEB','p56','page 56','cluosh','ky2khlqdf7qdznac','cicada','primus','clientVars','padVars','ace2','export/txt','readOnlyId'];
   out.matches=indicators.filter(term=>body.toLowerCase().includes(term.toLowerCase()));
   out.links=[...body.matchAll(/(?:href|src)=['"]([^'"]{1,400})['"]/gi)].map(m=>m[1]).filter(v=>/https?|onion|titanpad|etherpad|export/i.test(v)).slice(0,36);
   out.urls=[...new Set([...body.matchAll(/(?:https?:\/\/|[a-z2-7]{16}\.onion)[^\s"'<>]{0,150}/gi)].map(m=>m[0]))].slice(0,55);
-  out.tail=body.slice(-900);
+  const lower=body.toLowerCase();
+  out.contexts={};
+  for(const phrase of ['36367763ab73783c7af28444','AN END','THE DEEP WEB','page 56','cluosh','initialAttributedText','clientVars']){
+   const i=lower.indexOf(phrase.toLowerCase());
+   if(i>=0)out.contexts[phrase]=body.slice(Math.max(0,i-450),Math.min(body.length,i+1500));
+  }
+  const onionHits=[...body.matchAll(/[a-z2-7]{16}\\.onion/gi)];
+  out.onionContext=onionHits.slice(0,20).map(m=>body.slice(Math.max(0,m.index-130),Math.min(body.length,m.index+160)));
   seen.add(out.sha256);
  }catch(e){out.error=String(e.message??e)}
  console.log(JSON.stringify(out));
