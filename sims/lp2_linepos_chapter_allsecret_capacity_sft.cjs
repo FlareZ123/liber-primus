@@ -152,6 +152,53 @@ for (const [name, file] of references) {
 }
 assert.ok(plantTape && plantTape.length === total);
 
+
+// Independent historically plausible registers: normalized Latin Vulgate and
+// original-sourced Old English Beowulf, already pinned in repository controls.
+// These are genuinely GP29-encoded sequences, with distinct digit alphabets.
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).map(line => line.trim())
+  .filter(line => /^[0-9A-S]+$/.test(line));
+assert.equal(latinWords.length, 39835);
+const latinAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latin = [...latinWords.join("")].map(r => latinAlphabet.indexOf(r));
+assert.equal(latin.length, 204802);
+assert.ok(latin.every(value => value >= 0));
+
+const beowulf = JSON.parse(read(
+  "resources/control/beowulf_oe_gp_profile_corrected.json"));
+const oldEnglish = [...beowulf.sourceGpBase29].map(
+  rune => beowulf.positiveControlAlphabet.indexOf(rune));
+assert.equal(oldEnglish.length, 48012);
+assert.ok(oldEnglish.every(value => value >= 0));
+assert.equal(oldEnglish.filter(value => value === e).length,
+  beowulf.allGpCounts[e]);
+
+const alternateRegisters = {};
+for (const [name, tape] of [
+  ["LatinVulgate", latin], ["OldEnglishBeowulf", oldEnglish]
+]) {
+  const E = [], chapterRate = [];
+  for (let k = 0; k + total <= tape.length; k += total) {
+    const window = tape.slice(k, k + total);
+    E.push(window.filter(value => value === e).length);
+    chapterRate.push(profile(partition(window)).rate);
+  }
+  assert.ok(E.length);
+  assert.ok(E.every(n => n > observed.chapters.capacity));
+  assert.ok(chapterRate.every(n => n > observed.chapters.rate));
+  alternateRegisters[name] = {
+    nativeRunes: tape.length, E: summary(E),
+    nineChapterLinePositionRates: summary(chapterRate)
+  };
+}
+assert.deepEqual([
+  alternateRegisters.LatinVulgate.E.n,
+  alternateRegisters.LatinVulgate.E.min,
+  alternateRegisters.OldEnglishBeowulf.E.n,
+  alternateRegisters.OldEnglishBeowulf.E.min
+], [15, 1381, 3, 1480]);
+
 let seed = 0x3301cafe;
 /** @returns {number} */
 function random32() {
@@ -293,7 +340,7 @@ const linePositionResetLowerBound = {
 console.log(JSON.stringify({
   classification: "source-native conditional all-key exclusion, no decrypt",
   original: {runes: total, lines: allLines.length, observed},
-  controls, positive, linePositionResetLowerBound,
+  controls, alternateRegisters, positive, linePositionResetLowerBound,
   exclusions: "repeated unknown GP29 position-specific key per printed line, one global key or nine independently keyed source-visible chapters",
   exceptions: "independently keyed lines/pages, changing state, nonnative prose, altered original text and intermediary transport",
 }, null, 2));
