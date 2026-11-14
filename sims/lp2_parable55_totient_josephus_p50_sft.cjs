@@ -67,6 +67,43 @@ function josephus(steps, pageCount) {
   return { survivor: remaining.length === 1 ? remaining[0] : null, eliminated, remaining };
 }
 
+/**
+ * Ordinary (non-eliminating) circular navigation; count the current page
+ * as 1 on every step. Returns to the full original 56-page ring after
+ * each hop, unlike Josephus, which removes its visited page.
+ * @param {number[]} steps - Positive source step lengths.
+ * @param {number} pageCount - Page-circle size.
+ * @returns {number} Destination physical page index.
+ */
+function circularPageWalk(steps, pageCount) {
+  let cursor = 0;
+  for (const step of steps) {
+    assert.ok(step > 0);
+    cursor = (cursor + step - 1) % pageCount;
+  }
+  return cursor;
+}
+const ordinaryWalk = circularPageWalk(totientSteps, 56);
+const fullPage57Steps = printed.map(index => corpus.prime[index] - 1);
+const endpointSteps = words.flatMap(word => {
+  const runes = Array.from(word, glyph => glyphIndex.get(glyph));
+  return [corpus.prime[runes[0]] - 1, corpus.prime[runes.at(-1)] - 1];
+});
+const ordinaryWalkControls = {
+  whole_95_runes: circularPageWalk(fullPage57Steps, 56),
+  excluded_40_boundary_runes: circularPageWalk(endpointSteps, 56),
+  raw_gp_primes: circularPageWalk(interiors.map(index => corpus.prime[index]), 56),
+  gp_ordinal_plus_one: circularPageWalk(interiors.map(index => index + 1), 56)
+};
+assert.equal(totientSteps.reduce((a, b) => a + b, 0), 1952);
+assert.equal(ordinaryWalk, 49);
+assert.deepEqual(ordinaryWalkControls, {
+  whole_95_runes: 26,
+  excluded_40_boundary_runes: 33,
+  raw_gp_primes: 48,
+  gp_ordinal_plus_one: 13
+});
+
 // A standard independent control: Josephus(7, constant step 2) leaves item 6.
 assert.deepEqual(josephus(Array(6).fill(2), 7).remaining, [6]);
 
@@ -223,9 +260,12 @@ console.log(JSON.stringify({
     after_first_last_per_word: interiors.length,
     original_unsolved_pages: 56,
     rune_bearing_unsolved_pages: 55,
-    runeless_numeric_page: 50
+    runeless_numeric_page: 50,
+    numeric_table_first_page: 49,
+    numeric_table_last_page: 51
   },
   totient_steps: totientSteps,
+  ordinary_circular_page_walk: { destination: ordinaryWalk, controls: ordinaryWalkControls },
   clockwise_forward: forward,
   clockwise_reversed_steps: reversed,
   controls: {
