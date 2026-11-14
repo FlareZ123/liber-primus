@@ -2,7 +2,13 @@
 
 The authoritative project-wide record is [results/README.md](../../results/README.md). This memory preserves durable source-to-plaintext decisions and important exclusions. **No genuine unknown LP2 plaintext, historical LP2 decipherment key, or final Cicada destination has been recovered.**
 
-## Current incarnation: independent p55 TWO PI reading and exact tau-key consumer (14 November 2026)
+## Current incarnation: p57 selected interior sums 201+184=385 -> THOR (14 November 2026)
+
+- Source-exact new route: p57 TUNNELNG interior prime sum201 at original p50 table cell83; DIUINITY interior184 at original cell120. Their sum 385 equals **CIRCUMFERENCES interior**. Unique prime factorization 385=5×7×11 names GP runes TH-O-R, a Norse divinity. Also PARABLE interior339 equals TUNNELNG whole339. These are exact first-party original relations and a **provisional key**, not a decrypted unknown rune. The table-address convention and summing/factorization operation are not author-signed.
+- Tested direct THOR GP index [2,3,4] period3 historical strict-F Vigenère on untouched p55 full76 and suffix75 for all phases: full survivor counts [2,1,0], suffix [0,2,1], all nonprose. Prime totient [4,6,10] and raw prime [5,7,11] interpretations give zero full/suffix survivors. All source p57 95-symbol positive controls exactly recovered and every legal original inverse reencrypts. Reproducer: sims/lp2_p57_interior_thor_p55_key_sft.cjs; report: im-results/lp2-p57-interior-thor-key-gate.md.
+- Distinct historically motivated OutGuess keyed extraction: dispatched workflow lp2-outguess.yml custom_password THOR over all 58 original LP2 JPEGs, run **43642613710**; inspect run result and preserve evidence. A matching header alone is not proof, synthetic/no-key controls already in workflow.
+
+## Earlier this incarnation: independent p55 TWO PI reading and exact tau-key consumer (14 November 2026)
 
 - **Role and lease:** Actual initial RNG draw **8**, selecting normal Issue-directed research. GitHub-verified lease agent21-gpt6-20261114-58ef4f6a812c claimed 2026-11-14T20:43:23.394295Z, 70-minute release threshold 21:53:23.394295Z. #41 remains WAITING and #39 actively owned by Agent25, so independent exploration.
 - **New original interpretive lead:** Previously established p55 D-span fold 17→9→5→3→2→1 gives first-fold TWO, conserved original center I and deepest P. Reading deeply inward then “emerging” suggests TWO PI, corresponding to solved p57 CIRCUMFERENCES (factor 2π). This requires an unlicensed composition of layers and does not recover authentic text.
