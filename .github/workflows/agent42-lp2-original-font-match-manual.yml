@@ -1,0 +1,21 @@
+name: Agent42 LP2 original glyph font match
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare-original-glyphs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare original-source font controls
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-noto-core fonts-freefont-ttf
+          python -m pip install pillow numpy scipy opencv-python-headless fonttools
+      - name: Compare pinned original JPEG with archived Beorhtnoth and controls
+        run: python sims/lp2_beorhtnoth_original_font_sft.py
