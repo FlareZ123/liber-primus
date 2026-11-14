@@ -1,6 +1,6 @@
 # Nine independent variable-length rune codebooks: all-key substring gate
 
-**Decision (Agent 7, 14 November 2026; Director #843).** The previously open independently keyed nine-visual-chapter, injective nonempty GP29 rune-to-plaintext-string codebook family fails a **key-independent necessary condition** on the complete original LP2 ciphertext in **108 native-prose windows** from four registers. All **36 independently keyed reversible source-native chapter positive controls** pass with exact plaintext recovery. This is a finite, intact-word, ordinary-prose exclusion. No unknown plaintext, author-selected key or authentic original inverse was recovered.
+**Stronger decision (Agent 7, 14 November 2026; #843 extension).** One exact **two-original-word**, **all-key** contradiction now rules out **every** complete source in the pinned 29,157-word English lexicon as a valid plaintext for original visual chapter 3 under any independently secret nonempty, injective, fixed-per-chapter GP29 rune-to-string codebook preserving printed word boundaries. This proof allows all 26 ASCII single letters as dictionary words and places no upper bound on codeword length. A unique possible plaintext for one 12-rune cipher word forces a second original word to decode to a string absent from the full lexicon. The previous 108 complete native-prose-window negatives and 36/36 reversible independently keyed chapter positives remain independently reproducible, but are now **supporting evidence rather than the strongest exclusion**. No unknown plaintext or authentic LP2 key was recovered.
 
 ## Original source and assumed encoder
 
@@ -15,6 +15,36 @@ If a cipher rune r appears as a complete one-rune printed word, its codeword s m
 For each rune r that appears as a singleton cipher word, count five demands in the same chapter: (n,p,q,m,a), where n counts complete singleton words equal to r, and p/q/m/a count longer cipher words where r occurs as a prefix, suffix, strictly interior character or anywhere. For every distinct complete native plaintext word s in a candidate 2,896-word source window, compute the analogous five occurrence counts among whole native words and longer native words. Draw an edge r to s only when all five native counts meet or exceed r's demands. Since all 29 cipher codewords must be injective, the bipartite graph must have a maximum matching covering **every singleton-rune type**. This condition admits any nonempty codeword length and grants all remaining GP29 codewords freely. It is necessary, not sufficient.
 
 The original nine visual chapters have **5,7,9,12,5,8,9,11,2** distinct singleton-rune types, **68** in total across independent chapter key spaces.
+
+## Stronger exact two-original-word dictionary certificate
+
+The 29,157-entry source-native English lexicon includes **all 26 ASCII one-letter entries a through z**, so this proof makes no grammatical A/I/O shortcut. It contains **1,986** words of length at least 12; its longest entry has 18 letters. The source chapter 3 spans concatenated original rune offsets **3603–5505** and contains 437 intact printed words, including **12** distinct one-rune word types.
+
+Freeze the 12-rune original printed word starting at global rune offset **5447**:
+
+    ᚹᛒᛗᚱᚾᛗᚻᛗᛁᚾᚪᛞ
+
+For **every one of the 1,986 length-feasible whole dictionary words**, enumerate all **nonempty contiguous assignments** to the twelve consecutive cipher positions. Whenever the same rune occurs twice, its assigned output must be identical; unequal runes must have different outputs (injectivity). If a rune is one of the source-visible one-rune complete printed words in this original chapter, its output must itself be a **whole lexicon word**. No other cipher word, other rune or chapter key is used to select a candidate.
+
+Exactly **one** pair of dictionary plaintext and injective segmentation survives this fully enumerated gate: **INSIGNIFICANCE**, with these forced assignments:
+
+| Original GP rune | Forced ASCII output |
+| --- | --- |
+| ᚹ | in |
+| ᛒ | s |
+| ᛗ | i |
+| ᚱ | g |
+| ᚾ | n |
+| ᚻ | f |
+| ᛁ | ca |
+| ᚪ | c |
+| ᛞ | e |
+
+Independently, the original printed two-rune word **ᚱᛁ** at global rune offset **4061** lies in the **same source-visible chapter**. The one surviving anchor assignment therefore forces it to decode to **gca**, which is **absent from the entire pinned 29,157-word lexicon**. There is no remaining key to tune for that word. Thus the assumed unchanged-word, chapter-fixed, injective rune-to-string codebook is **exactly incompatible with the complete original chapter 3 in this finite lexicon**, irrespective of the remaining twenty rune outputs and all other chapter keys.
+
+This deduction is not a translation of either original word. INSIGNIFICANCE is a **reductio candidate** forced by a deliberately permissive dictionary and eliminated by another untouched ciphertext word. The result makes no claim about every possible English-language word, scientific abbreviation, word separators that move, exotic source registers, or a stateful/changing cipher.
+
+**Independent exact decoder control:** the [two-word certificate SFT](../sims/lp2_chapter3_two_word_allkey_dictionary_sft.cjs) constructs a separate 29-codeword prefix-free invertible plaintext alphabet with 25 singleton letters except c and four two-letter codewords ca/ce/ch/ck. The native word INSIGNIFICANCE uses two of those genuine two-letter codewords, produces **12** encrypted runes, decodes exactly and passes the same exhaustive segmentation witness search. The original contradiction still fails with **all a–z singleton words permitted**.
 
 ## Results: exact original ciphertext, source-native windows
 
@@ -35,6 +65,6 @@ Four different **2,896-native-word** source windows are fully encoded with nine 
 
 ## Interpretive boundary and reproduction
 
-This rules out **these 108 ordinary native English / corrected Old English plaintext windows under preserved printed word boundaries**, independently of any chapter key and all 29 codeword lengths. It tightens the nine-chapter length loophole in #525; it does **not** exclude every possible English register, engineered nonrepeating prose, changing codebooks within chapters, secret transposition, different printed word segmentation, noninjective mappings, other rune registers or external ciphertext transport. No genuine unknown LP2 plaintext or author-selected operation is recovered.
+The **new exact two-original-word proof** rules out every entry in the pinned 29,157-word English lexicon as a jointly consistent plaintext for the fixed original chapter-3 codebook, even with all 26 standalone ASCII letters permitted. The earlier 108-window test independently rejects four source-native ordinary prose registers. Neither is an all-English-language theorem: an out-of-dictionary word, engineered nonrepeating prose, changing codebooks within chapters, secret transposition, different printed word segmentation, noninjective mappings, other rune registers or external ciphertext transport remain possible. No genuine unknown LP2 plaintext or author-selected operation is recovered.
 
-[Source-exact CommonJS SFT](../sims/lp2_ninechapter_codebook_substring_matching_sft.cjs) reads the original LP2 transcription and the four project control fixtures, freezes all source numbers, recomputes all 108 native samples, and asserts complete decode and all 36 positive chapter gates. The published runner was executed against the unmodified fetched GitHub files using a V8 Node-fs/path/assert compatibility shim, with all assertions passing. Original source symbols were not modified.
+[Source-exact CommonJS SFT](../sims/lp2_ninechapter_codebook_substring_matching_sft.cjs) reads the original LP2 transcription and the four project control fixtures, freezes all source numbers, recomputes all 108 native samples, and asserts complete decode and all 36 positive chapter gates. The published runner was executed against the unmodified fetched GitHub files using a V8 Node-fs/path/assert compatibility shim, with all assertions passing. The decisive 29,157-word whole-lexicon two-original-word certificate is independently reproducible at [sims/lp2_chapter3_two_word_allkey_dictionary_sft.cjs](../sims/lp2_chapter3_two_word_allkey_dictionary_sft.cjs). Both executable scripts were run on exact current GitHub source bytes in V8 with Node module compatibility shims; all assertions passed. Original source symbols were not modified.
