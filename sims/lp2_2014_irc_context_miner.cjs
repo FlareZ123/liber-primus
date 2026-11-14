@@ -64,26 +64,29 @@ function collect(path) {
     }
   }
 
-  const allHits = [...direct, ...cluoshMethods].sort((a,b)=>a.lineNo-b.lineNo);
-  const clusters = [];
-  for (const hit of allHits) {
-    const last = clusters[clusters.length - 1];
-    if (last && hit.lineNo <= last.end + 4) {
-      last.hits.push(hit);
-      last.end = Math.max(last.end, hit.lineNo);
-      last.score = Math.max(last.score, hit.score);
-    } else {
-      clusters.push({start:hit.lineNo,end:hit.lineNo,score:hit.score,hits:[hit]});
+  function makeWindows(hits) {
+    const clusters = [];
+    for (const hit of hits.sort((a,b)=>a.lineNo-b.lineNo)) {
+      const last = clusters[clusters.length - 1];
+      if (last && hit.lineNo <= last.end + 4) {
+        last.hits.push(hit);
+        last.end = Math.max(last.end, hit.lineNo);
+        last.score = Math.max(last.score, hit.score);
+      } else {
+        clusters.push({start:hit.lineNo,end:hit.lineNo,score:hit.score,hits:[hit]});
+      }
     }
+    return clusters.map(cluster => {
+      const lo = Math.max(1, cluster.start - 2), hi = Math.min(entries.length, cluster.end + 2);
+      return {
+        from: lo, to: hi, score: cluster.score,
+        hitTags: [...new Set(cluster.hits.flatMap(h=>h.tags))],
+        lines: entries.slice(lo-1,hi).map(e=>({n:e.lineNo,date:e.date,nick:e.nick,text:e.body.slice(0,500)}))
+      };
+    });
   }
-  const windows = clusters.map(c => {
-    const lo = Math.max(1, c.start - 2), hi = Math.min(entries.length, c.end + 2);
-    return {
-      from: lo, to: hi, score: c.score,
-      hitTags: [...new Set(c.hits.flatMap(h=>h.tags))],
-      lines: entries.slice(lo-1,hi).map(e=>({n:e.lineNo,date:e.date,nick:e.nick,text:e.body.slice(0,500)}))
-    };
-  });
+  const directWindows = makeWindows(direct);
+  const cluoshWindows = makeWindows(cluoshMethods);
 
   const first = {};
   for (const [name,re] of directPatterns) {
@@ -91,18 +94,20 @@ function collect(path) {
     if (e) first[name] = {lineNo:e.lineNo,date:e.date,nick:e.nick,text:e.body.slice(0,500)};
   }
   const cluoshFirst = cluoshMethods[0] || null;
+  const liberPrimusMentions = dated.filter(e=>/\\bliber\\s+primus\\b/i.test(e.body)).length;
   return {
     source: path.split(/[\\/]/).pop(),
     bytes: raw.length,
     totalLines: lines.length,
     dated2014Lines: dated.length,
     mayAug2014Lines: mayAug.length,
-    counts: {...counts, cluoshCryptoMessages:cluoshMethods.length, longHexOccurrences:longHexCount, urlOccurrences:urlCount, solveMessagesNearP56:solveCount},
+    counts: {...counts, liberPrimusMentions, cluoshCryptoMessages:cluoshMethods.length, longHexOccurrences:longHexCount, urlOccurrences:urlCount, solveMessagesNearP56:solveCount},
     first,
     firstCluoshCryptoMessage: cluoshFirst && {lineNo:cluoshFirst.lineNo,date:cluoshFirst.date,text:cluoshFirst.body.slice(0,500)},
     longHexSamples: hashes.slice(0,30),
     urlSamples: urls.slice(0,50),
-    directAndCluoshContextWindows: windows.slice(0,100)
+    directContextWindows: directWindows.slice(0,60).concat(directWindows.length>60?directWindows.slice(-20):[]),
+    cluoshMethodContextWindows: cluoshWindows.slice(0,35).concat(cluoshWindows.length>35?cluoshWindows.slice(-10):[])
   };
 }
 
@@ -115,8 +120,10 @@ const summary = reports.map(r=>({
 console.log('=== 2014 ORIGINAL IRC CONTEXT MINER: SUMMARY ===');
 console.log(JSON.stringify(summary,null,2));
 for (const r of reports) {
-  console.log('\n=== SOURCE: '+r.source+' | DIRECT + CLUOSH CONTEXT WINDOWS ===');
-  console.log(JSON.stringify(r.directAndCluoshContextWindows,null,2));
+  console.log('\n=== SOURCE: '+r.source+' | DIRECT P56 / HASH CONTEXT WINDOWS ===');
+  console.log(JSON.stringify(r.directContextWindows,null,2));
+  console.log('\n=== SOURCE: '+r.source+' | CLUOSH METHOD CONTEXT WINDOWS ===');
+  console.log(JSON.stringify(r.cluoshMethodContextWindows,null,2));
   console.log('\n=== SOURCE: '+r.source+' | LONG HEX SAMPLES ===');
   console.log(JSON.stringify(r.longHexSamples,null,2));
   console.log('\n=== SOURCE: '+r.source+' | URL SAMPLES ===');
