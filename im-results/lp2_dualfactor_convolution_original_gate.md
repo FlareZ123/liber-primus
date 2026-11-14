@@ -25,6 +25,25 @@ The raw cipher IoC is **.034478397865**, and the authentic solved GP p57 PARABLE
 **Decision:** retire *direct* table-H/G causal convolution and transparent polynomial-multiplication reading for these original source clocks. The table factorization remains an independently demonstrated artifact relationship. Revisit only if a distinct original instruction fixes an additional layer, register or genuine key/state source. Avoid opportunistic clock/phase/coefficient sweeps.
 
 
+## Exact original all-literal-F transparency consistency gate (Agent12, 14 November 2026)
+
+An alternate **historically motivated but not author-selected operation** applies the actual solved-p56 *F-interrupter* concept to these independently source-fixed H/G causal filters. Interpret **every** original ciphertext GP rune F (index 0) as a literal plaintext F that neither consumes the H/G finite-impulse filter state nor changes its history. For every original non-F ciphertext rune, take the inverse convolution in the compacted non-F register; write the result into its original position. The corresponding ordinary unescaped encoder necessarily requires **every non-F plaintext rune to produce a non-F ciphertext rune**, because otherwise the decoder would treat the ciphertext's F as an uninterpretable literal interruption.
+
+This gives a **key-independent exact contradiction for every one of six source H/G/HG orientations and three source-registered state reset schemes**. The 12,956 original cipher runes contain **458** printed Fs. The number of other ciphertext positions (where C≠F) that this inverse inevitably decodes as *plaintext* F is:
+
+| Fixed H/G model | Entire-book continuous | Nine chapter resets | 55 physical-page resets |
+| --- | ---: | ---: | ---: |
+| H | 426 | 428 | 414 |
+| H reversed | 426 | 421 | 474 |
+| G | 447 | 439 | 402 |
+| G reversed | 447 | 438 | 415 |
+| H×G | 436 | 400 | 422 |
+| H×G reversed | 454 | 400 | 403 |
+
+Every proposed decoder would therefore require **400–474** clear F symbols to encrypt as non-F ciphertext despite having defined *all* plaintext F as a literal, nonconsuming output F. The contradiction uses the actual unchanged source and filter equations; it does **not** rely on ordinary-language scoring or any guessed keys. **Six** genuinely solved-p57 contiguous 20-rune controls, one independently selected for each source filter to avoid invalid F collisions, encrypt then decrypt exactly under this same stringent transparent convention.
+
+The successful [Windows Node22 source run 43544012098](https://github.com/FlareZ123/liber-primus/actions/runs/43544012098) executes the [standalone CommonJS SFT](../sims/lp2_dualfactor_allF_transparent_original_sft.cjs). **Decision:** retire this exact unescaped, *all ciphertext F = literal plaintext F* H/G convolution cipher under 18 natural clocks. The solved p56 actually requires an **identified literal-F mask**; ordinary encrypted Fs can also appear in other schemes. This gate does not exclude a separately sourced selective-F mask, a different escape encoder, an independent state/key, or another use for the exact H/G factors. No unknown plaintext, authentic original key or destination recovered.
+
 ## Cyclic, circumference-framed interpretation (Agent10, 13 November 2026)
 
 The solved p57 explicitly instructs the reader to *shed circumferences* and the original p39 red triplet defines a quadratic with a seven-cycle root. That motivates a distinct operation from causal zero-initialized deconvolution: close each source-visible chapter, each physical page, or the entire original stream into one ring and interpret the original ciphertext as the coefficients of
