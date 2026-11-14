@@ -57,6 +57,22 @@ Thirteen original one-rune words occur at p40-body-local positions **128, 298, 1
 
 The [successful Windows p40 and p16 combined run](https://github.com/FlareZ123/liber-primus/actions/runs/43539850251) verifies the complete original two-section test. The [independent p40 reproducer](../sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs) imports the same exact all-secret search and tests an independent **3,000-rune** solved-p57 native-GP forward/encrypted plant. Its hidden planted state is recovered from its own A/I/O words, with exact decryption and re-encryption of all 3,000 GP runes. Hence the entire eight-member family fails for **two independently selected original locations** without choosing any original key.
 
+
+## Distinct plaintext-feedback architecture, every unknown initial state
+
+The same source grid also motivates a *different* four-state construction: let the previous **plaintext** block, rather than an autonomous public matrix power, drive the next decode, using
+
+\[
+P_t=C_t+\sigma A P_{t-1}\pmod{29},\quad
+P_{-1}=v\in\mathrm{GF}(29)^4,\quad \sigma\in\{-1,+1\}.
+\]
+
+For any unknown previous-plaintext state \(v\), define \(B=\sigma A\) and its known zero-state candidate \(U_t=C_t+B U_{t-1}\). Then the exact solution is \(P_t=U_t+B^{t+1}v\). This identity makes the entire **707,281-state** secret IV search feasible with the same four independent singleton constraints and thirteen/nine held-out singletons. There is no guessed IV, fitted shift, or learned matrix. Variants include the printed/signed matrix, either transpose, forward/inverse generator, and both feedback signs: **16 complete secret-key models per target**, separately at original pp16–22 and p40–53 black body.
+
+The full [source-native CommonJS SFT](../sims/lp2_p15_plainfeedback_alliv_singleton_sft.cjs) asserts every original A/I/O one-rune constraint and validates the algebra with **two independent positive plants**: 1,744 or 3,000 genuine solved-p57 GP rune symbols encrypted under arbitrary planted plaintext-IV and decrypted exactly, with the initial state recovered blindly from the planted singletons. [Windows Node22 CI execution 43540466688](https://github.com/FlareZ123/liber-primus/actions/runs/43540466688) passed syntax and every original/source-positive assertion.
+
+**Original result:** all sixteen operators have **zero** compatible secret states at each original source chapter. Even the best candidate fails **7 of 13** original pp16–22 heldout one-rune constraints and **4 of 9** original pp40–53 holdouts. This removes the straightforward four-block *plaintext-autokey* mechanism in addition to the autonomous additive matrix key stream. It leaves unrelated non-GP-native, nonlinear or externally seeded operations untouched.
+
 ## Independent positive and reproducibility
 
 The [successful Windows Node22 execution](https://github.com/FlareZ123/liber-primus/actions/runs/43539292133) confirms syntax, every original assertion, the full key search and the positive plant. The [CommonJS single-file reproducer](../sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs) parses the exact 2,896 original LP2 words, asserts all 1,744 ciphertext runes and 17 singleton offsets, generates the original GF29 matrix powers, performs exact Gaussian elimination and exhausts each set of 81 compatible four-state keys. It reports all eight original results above.
@@ -65,4 +81,4 @@ A separate positive control constructs an entirely hidden state (9,2,15,20), use
 
 ## Decision and surviving routes
 
-The 2014 source gives a well-established Fibonacci-prime numerical square and a mathematically intriguing p39 red-quadratic relationship. The direct unknown-IV four-state **additive** consumer has no viable original-English key under either signed or printed matrix and either time orientation at **both** independently motivated source chapters, p16–22 and p40–53 black body. Do not repeat unknown-IV searches for this exact eight-model family. Unrelated dynamic nonlinear operators, a binary intermediate, alternative source-selected state resets, non-English texts or a different source-directed use of the square remain open. A new premise should identify what the human solver would read as the operation and how plaintext or a key would be recovered.
+The 2014 source gives a well-established Fibonacci-prime numerical square and a mathematically intriguing p39 red-quadratic relationship. The autonomous matrix-stream and the independent plaintext-feedback four-state **additive** consumers have no viable original-English key under either signed or printed matrix and either time orientation at **both** independently motivated source chapters, p16–22 and p40–53 black body. Do not repeat unknown-IV searches for this exact eight-model family. Unrelated dynamic nonlinear operators, a binary intermediate, alternative source-selected state resets, non-English texts or a different source-directed use of the square remain open. A new premise should identify what the human solver would read as the operation and how plaintext or a key would be recovered.
