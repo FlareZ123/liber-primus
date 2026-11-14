@@ -233,13 +233,27 @@ for (const sign of [1, -1]) {
   const zeroSeedDecipheredPlant = decrypt(encryptedPlant, sign, "index", 0, 0);
   assert.equal(samePhasePairs(zeroSeedDecipheredPlant, period).equal,
     samePhasePairs(nativeFirst, period).equal);
+
+  // Allow a completely unknown fixed bijection of the native plaintext
+  // alphabet BEFORE plaintext-index feedback. The same exact same-phase
+  // equality invariant applies because bijections preserve equality.
+  const secretAlphabetPlain = nativeFirst.map(v => mod(7 * v + 3));
+  const secretAlphabetCipher = encrypt(
+    secretAlphabetPlain, sign, "index", 9, 24);
+  const secretAlphabetParticular = decrypt(
+    secretAlphabetCipher, sign, "index", 0, 0);
+  assert.equal(samePhasePairs(secretAlphabetParticular, period).equal,
+    samePhasePairs(nativeFirst, period).equal);
+  assert.deepEqual(decrypt(secretAlphabetCipher,
+    sign, "index", 9, 24).map(v => mod(25 * (v - 3))), nativeFirst);
   indexAutokeyPeriodInvariant.push({
     sign, period, original: originalCount,
     nativeWordMatchedControls: {
       count: controls.length, min: controls[0],
       median: controls[49], max: controls[99]
     },
-    plantedNativeEqualityPreserved: true
+    plantedNativeEqualityPreserved: true,
+    arbitraryFixedPlaintextAlphabetPreservesEquality: true
   });
 }
 
