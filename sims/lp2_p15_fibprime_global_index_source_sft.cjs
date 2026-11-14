@@ -217,6 +217,20 @@ const strict91Negative = allTransparentFStates(quotation, quoteKey91, -1);
 assert.equal(strict91Positive.firstFailure, 220);
 assert.equal(strict91Negative.firstFailure, 199);
 
+// The only other original-visible start is the very word PNW that supplied 91.
+// No arbitrary phase search: the source pointer starts this 264-rune interval.
+const pointerRegion = ciphertext.slice(10175, 10439);
+assert.equal(pointerRegion.length, 264);
+const pointerKey91 = pointerRegion.map((_,i) =>
+  (nthPrime(91+i)-1)%29);
+const strictPointerPositive = allTransparentFStates(
+  pointerRegion, pointerKey91, 1);
+const strictPointerNegative = allTransparentFStates(
+  pointerRegion, pointerKey91, -1);
+assert.equal(strictPointerPositive.firstFailure, 28);
+assert.equal(strictPointerNegative.firstFailure, 2);
+
+
 // The p15 infinity mark also motivates a finite circular continuation.
 // This is a second, unproved address grammar: reduce every later numeric
 // value modulo the *entire* 12956-rune unknown book and use one-based positions.
@@ -280,6 +294,8 @@ console.log(JSON.stringify({
   historical2014ThirdSquareCentre:historicalSquares[2][2][2],
   originalP42P43QuotationStartAndEnd:[quoteStart,quoteEnd],
   p42P43AllLiteralFSchedules:{authenticP56:knownP56Reach,
+    startAtPNWPositive:strictPointerPositive,
+    startAtPNWNegative:strictPointerNegative,
     p42Positive:strict91Positive,p42Negative:strict91Negative},
   p42P43PrimeOrdinal91OriginalInverse:{sourceIoC:ioc(quotation),
     minusIoC:ioc(dec91),plusIoC:ioc(add91),
