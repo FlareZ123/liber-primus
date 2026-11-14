@@ -1,0 +1,21 @@
+name: Agent7 original p15 fourstate unknown-IV English singleton gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-fourstate-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm CommonJS syntax
+        run: node --check sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs
+      - name: Run all-secret GF29 singleton decoder on exact LP2 original
+        run: node sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs
