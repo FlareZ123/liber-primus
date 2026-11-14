@@ -16,7 +16,15 @@ Read original \`resources/liber-primus/lp2-transcription.txt\` unchanged as **55
 
 Positive source control: the separately authenticated 20 words of the already clear physical p57 *PARABLE* (95 original runes) match the fixed GP29 source-language normalizer **20/20**, byte-for-byte at word lengths.
 
-**Run:** [successful manual-only GitHub Actions execution 43582175076](https://github.com/FlareZ123/liber-primus/actions/runs/43582175076). [Standalone CommonJS SFT](../sims/lp2_jung229_prologue_crib_sft.cjs); [manual-only workflow](../.github/workflows/lp2-jung229-prologue-crib.yml).
+**Ordered-crib run:** [successful manual-only GitHub Actions execution 43582175076](https://github.com/FlareZ123/liber-primus/actions/runs/43582175076). [Standalone CommonJS SFT](../sims/lp2_jung229_prologue_crib_sft.cjs); [manual-only workflow](../.github/workflows/lp2-jung229-prologue-crib.yml).
+
+## Whole-page word-permutation invariant: additional independent architecture test
+
+An alternate reading could rearrange **complete page-local printed word segments** while preserving their lengths, even if the source's original ordered quotation no longer matches. Such a route cannot change the *multiset* of word lengths on each physical page. The same frozen Jung excerpt and GP29/Latin26 spelling registers therefore supply a stronger second test: slide a contiguous source window of **exactly the same word-segment count** across each of the 55 original rune-bearing unknown LP2 physical pages; compare the full 18-bin word-length histogram (lengths1–17 and 18+), ignoring the order of tokens entirely. This grants any arbitrary secret permutation of those page-local segments, without searching its key.
+
+**Result:** **zero exactly matching page-sized source windows** under **both GP29 and Latin26** in **all three independent PDF extraction modes**. A near miss is common on short pages and is not source evidence: e.g., in default extraction, the 18-segment p49 length bag can be made to match a source window after changing **one** segment's length, while the actual exact-edit-free source window does not exist. Likewise the original 10-word ordered p10 coincidence does **not** extend to a whole-page word-inventory match. Every run checks 55 physical page-local records. For longer pages this is a stronger rejection of a verbatim source passage with intra-page reordering; it remains conditional on unaltered word counts/lengths, source extraction and page boundaries. Moving source words *between* printed pages, changing word boundaries, paraphrasing or using a different book passage lies outside the test.
+
+[Successful extended Actions run 43583665540](https://github.com/FlareZ123/liber-primus/actions/runs/43583665540) executes the updated same [CommonJS source scanner](../sims/lp2_jung229_prologue_crib_sft.cjs) in all three PDF orders; its JSON reports 55 checked page inventories and zero exact matches for each of the six cases. No additional key, plaintext or authenticated passage was found.
 
 ## Observations
 
