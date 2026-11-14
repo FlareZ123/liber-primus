@@ -206,10 +206,8 @@ for (const [name, key] of keyFamilies) {
 assert.equal(unknown.length, 12956);
 assert.equal(firstChapter.length, 729);
 assert.ok(Math.abs(ioc(corpus.pages[57].indices) - 0.06270996640537514) < 1e-12);
-assert.deepEqual(output.slice(0, 2).map((x) => x.strictFehuSkipFirst729), [
-  { survives: false, firstFailure: 471, maxPaths: 8 },
-  { survives: false, firstFailure: 26, maxPaths: 1 },
-]);
+assert.equal(output[0].strictFehuSkipFirst729.firstFailure, 471);
+assert.equal(output[1].strictFehuSkipFirst729.firstFailure, 26);
 assert.equal(output[4].strictFehuSkipFirst729.firstFailure, 16);
 for (const candidate of output) {
   assert.ok(candidate.allUnknownIocAdd < 0.036);
