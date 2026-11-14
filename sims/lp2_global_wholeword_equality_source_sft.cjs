@@ -17,6 +17,14 @@ function count(ws,minLen=4){
   return {tokens:[...f.values()].reduce((s,c)=>s+c,0),unique:f.size,pairs:[...f.values()].reduce((s,c)=>s+c*(c-1)/2,0)};
 }
 assert.equal(original.length,2896);
+function maxWordFrequency(words){
+  const f=new Map();
+  for(const w of words)f.set(w,(f.get(w)||0)+1);
+  return Math.max(...f.values());
+}
+assert.equal(maxWordFrequency(original),5);
+assert.deepEqual([1,2,3,4].map(k=>maxWordFrequency(
+  original.filter(w=>k===4?L(w)>=4:L(w)===k))),[5,4,3,1]);
 assert.deepEqual(count(original),{tokens:1645,unique:1645,pairs:0});
 assert.deepEqual([1,2,3].map(n=>count(original.filter(w=>L(w)===n),n).pairs),[107,106,17]);
 const n=Array.from({length:15},(_,j)=>original.filter(w=>L(w)===j).length);
@@ -54,6 +62,8 @@ const alphabet='0123456789ABCDEFGHIJKLMNOPQRS';
 native.push(read(files[4]).split(/\r?\n/).filter(w=>w&&!w.trimStart().startsWith('#'))
   .map(w=>[...w].map(c=>alphabet.indexOf(c)).join(',')));
 assert.deepEqual(native.map(ws=>ws.length),[55407,15733,77932,10885,39835]);
+assert.deepEqual(native.map(ws=>maxWordFrequency(ws.slice(0,2896))),
+  [134,168,226,66,249]);
 function windows(words){
   const N=2896,f=new Map();let pairs=0,long=0;
   const update=(w,d)=>{
@@ -106,8 +116,11 @@ const randomExpected=n.reduce((sum,c,i)=>i>0?sum+c*(c-1)/2/Math.pow(29,i):sum,0)
 assert(randomExpected>247&&randomExpected<248);
 console.log(JSON.stringify({
  original:{allWords:original.length,byLength:n,wordPairsByLengthOneToThree:[107,106,17],
-  lengthFourPlus:count(original),iid29ExpectedAllLengthPairs:randomExpected},
- nativeContiguous:files.map((file,i)=>({file,...cont[i]})),
+  lengthFourPlus:count(original),maxWordFrequency:5,
+  maxWordFrequencyByLengthOneTwoThreeFourPlus:[5,4,3,1],
+  iid29ExpectedAllLengthPairs:randomExpected},
+ nativeContiguous:files.map((file,i)=>({file,...cont[i],
+  first2896WordMaximumFrequency:maxWordFrequency(native[i].slice(0,2896))})),
  nativeLengthMatched:{lengths,counts,trialsPerSource:NTRIALS,seed:'0x33012014',
   tests:files.map((file,i)=>({file,...matched[i]}))},
  fixedMonoalphabeticControl:{originalPairs:count(shakespeare).pairs,
