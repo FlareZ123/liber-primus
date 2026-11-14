@@ -415,3 +415,32 @@ for(let i=0;i<83;i++) {
 }
 assert.deepEqual(keyPlant,historicalKey);
 console.log("PASS: 83/83 positive projective transitions with a valid original-shape source.");
+
+
+/**
+ * Universal keyless collision certificate: if the same triple appears twice
+ * at different source-key positions, NO position-independent deterministic
+ * function of those three inputs can produce two different authentic keys,
+ * even with an unrestricted secret nonlinear lookup table. This is stronger
+ * than the degree-limited polynomial/rational tests above.
+ */
+const repeatedTriples=[];
+for(const geometry of ["blocks","triples"]) {
+  const seen=new Map();
+  for(let i=0;i<84;i++) {
+    const label=dataTriple(geometry,i).join(",");
+    if(seen.has(label)) {
+      const j=seen.get(label);
+      repeatedTriples.push({geometry,first:j,second:i,
+        triple:label,earlierKey:historicalKey[j],laterKey:historicalKey[i]});
+    }
+    seen.set(label,i);
+  }
+}
+assert.deepEqual(repeatedTriples,[{geometry:"blocks",first:7,second:30,
+  triple:"21,10,15",earlierKey:18,laterKey:10}]);
+assert.equal(primes[7],19);
+assert.equal(primes[30],127);
+console.table(repeatedTriples);
+console.log("PASS: every stationary 3-input readout, however nonlinear,");
+console.log("is impossible for contiguous Q252 three-blocks at source indices 7/30.");
