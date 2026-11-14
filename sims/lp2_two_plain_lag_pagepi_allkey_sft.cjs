@@ -183,10 +183,25 @@ function positivePlant(plain,seed,a,b){
   assert.deepEqual(cipher.map((c,k)=>decryptPage(c,k)),plain);
   assert.deepEqual(cipher.map((c,k)=>encryptPage(decryptPage(c,k),k)),cipher);
   assert.notDeepEqual(cipher.map((c,k)=>decryptPage(c,k,true)),plain);
-  assert.deepEqual(profile(cipher,0,0,true),profile(plain,a,b));
+  const blindedCipherProfile=profile(cipher,0,0,true);
+  assert.deepEqual(blindedCipherProfile,profile(plain,a,b));
+  // Recover the shared coefficients with all 55 secret page alphabets hidden;
+  // only the preserved plaintext candidate and ciphertext histograms are used.
+  const blindCompatible=[];
+  for(let candidateA=0;candidateA<29;candidateA++){
+    for(let candidateB=0;candidateB<29;candidateB++){
+      const expected=profile(plain,candidateA,candidateB);
+      if(expected.every((bins,j)=>
+        bins.every((n,i)=>n===blindedCipherProfile[j][i]))){
+        blindCompatible.push([candidateA,candidateB]);
+      }
+    }
+  }
+  assert.deepEqual(blindCompatible,[[a,b]]);
   return {runes:plain.flat().length,pages:55,secretPageAlphabets:55,
     sharedCoefficients:[a,b],exactInverse:true,exactReencryption:true,
-    allSecretPageProfilesMatch:true,wrongPageKeyRejected:true};
+    allSecretPageProfilesMatch:true,wrongPageKeyRejected:true,
+    blindKeyFreeCoefficientRecovery:blindCompatible};
 }
 
 const sources=[
