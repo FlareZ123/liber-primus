@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Check exact source-selected 2014 workpad in public CDX
         run: node sims/lp2_2014_titanpad_cdx_source_sft.cjs
+      - name: Replay five indexed April-July 2016 workpad responses
+        run: node sims/lp2_2016_titanpad_wayback_replay_sft.cjs
