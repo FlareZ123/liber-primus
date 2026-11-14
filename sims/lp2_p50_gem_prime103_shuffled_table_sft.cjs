@@ -112,12 +112,13 @@ function isGem(i, next, symbol) {
 /**
  * Measure exact simple three-cycles and the prime-ordinal start 103.
  * @param {number[]} bytes
- * @returns {{n3:number, ngem:number, reach:boolean, reachGem:boolean, startEnglish:boolean}}
+ * @returns {{n3:number, ngem:number, reach:boolean, reachGem:boolean, startEnglish:boolean, anyEnglishCycle:boolean}}
  */
 function measure(bytes) {
   const {next, symbol} = graph(bytes);
   let n3 = 0;
   let ngem = 0;
+  let anyEnglishCycle = false;
   for (let i = 0; i < 256; i++) {
     const j = next[i];
     if (j < 0 || j === i) continue;
@@ -126,6 +127,10 @@ function measure(bytes) {
         i > j || i > k) continue;
     n3++;
     if (isGem(i, next, symbol)) ngem++;
+    if ([i, j, k].some(t =>
+      englishThree.has([symbol[t], symbol[next[t]],
+        symbol[next[next[t]]]].join(","))
+    )) anyEnglishCycle = true;
   }
 
   let current = 102; // one-based 103rd prime is 563, width of signed image.
@@ -149,7 +154,7 @@ function measure(bytes) {
     }
     current = next[current];
   }
-  return {n3, ngem, reach, reachGem, startEnglish};
+  return {n3, ngem, reach, reachGem, startEnglish, anyEnglishCycle};
 }
 
 const sourceGraph = graph(source);
@@ -158,7 +163,7 @@ assert.deepEqual([102, 110, 118, 126, 127].map(i => sourceGraph.symbol[i]),
 assert.deepEqual([102, 110, 118, 126, 127].map(i => sourceGraph.next[i]),
   [110, 118, 126, 127, 118]);
 const original = measure(source);
-assert.deepEqual(original, {n3:1, ngem:1, reach:true, reachGem:true, startEnglish:true});
+assert.deepEqual(original, {n3:1, ngem:1, reach:true, reachGem:true, startEnglish:true, anyEnglishCycle:true});
 
 // Reproducible xorshift32; every group retains the authentic multiset.
 // The same PRNG state is continued across all three calibration families.
@@ -175,12 +180,13 @@ function random32() {
  * Fisher-Yates permutations under three distinct source constraints.
  * @param {"global"|"row"|"column"} mode
  * @param {number} samples
- * @returns {{mode:string,samples:number,geThree:number,anyGem:number,startThree:number,startGem:number,startEnglish:number}}
+ * @returns {{mode:string,samples:number,geThree:number,anyGem:number,startThree:number,startGem:number,startEnglish:number, anyEnglishCycle:number, singleEnglishCycle:number}}
  */
 function calibrate(mode, samples) {
   const bytes = source.slice();
   const counts = {mode, samples, geThree:0, anyGem:0,
-    startThree:0, startGem:0, startEnglish:0};
+    startThree:0, startGem:0, startEnglish:0,
+    anyEnglishCycle:0, singleEnglishCycle:0};
   for (let iteration = 0; iteration < samples; iteration++) {
     if (mode === "global") {
       for (let i = 255; i > 0; i--) {
@@ -211,6 +217,8 @@ function calibrate(mode, samples) {
     counts.startThree += Number(result.reach);
     counts.startGem += Number(result.reachGem);
     counts.startEnglish += Number(result.startEnglish);
+    counts.anyEnglishCycle += Number(result.anyEnglishCycle);
+    counts.singleEnglishCycle += Number(result.anyEnglishCycle && result.n3 === 1);
   }
   return counts;
 }
@@ -220,10 +228,11 @@ const row = calibrate("row", 100000);
 const column = calibrate("column", 100000);
 assert.deepEqual(
   [global, row, column].map(x =>
-    [x.geThree, x.anyGem, x.startThree, x.startGem, x.startEnglish]),
-  [[90707, 68, 6892, 2, 592],
-   [88372, 1520, 5107, 61, 185],
-   [92178, 198, 7216, 19, 717]]
+    [x.geThree, x.anyGem, x.startThree, x.startGem, x.startEnglish,
+      x.anyEnglishCycle, x.singleEnglishCycle]),
+  [[90707, 68, 6892, 2, 592, 17478, 2029],
+   [88372, 1520, 5107, 61, 185, 16031, 2223],
+   [92178, 198, 7216, 19, 717, 18877, 1892]]
 );
 console.log(JSON.stringify({
   source: "resources/liber-primus/base60-grid.json",
