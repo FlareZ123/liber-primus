@@ -22,7 +22,7 @@ Input is **all 12,956 original unknown GP29 rune indices** on 55 rune-bearing ph
 | Gibson *Agrippa* | **7,097** | **7,043** |
 | *Britannica* from CICADA | **155,123** | **153,995** |
 
-At full original rune position `i`, the direct reverse takes `P[i]=(C[i]±K[t]) mod29`. Both key signs are tested, and `t` either runs uninterrupted from the original first rune or resets to zero at each of the original nine visual chapter starts. The shorter *Agrippa* key repeats cyclically only after its final rune. Both books begin at their historically specified source text, rather than selecting a secret offset. This is **2 source books × 2 source spellings × 2 printed clocks × 2 signs = 16 fully reversible original-cipher inverses**. There is no arbitrary output permutation, secret phase/page key, guessed plaintext crib or unverified rune skip.
+At full original rune position `i`, the direct reverse takes `P[i]=(C[i]±K[t]) mod29`. Both *decryption* signs are tested, and `t` either runs uninterrupted from the original first rune or resets to zero at each of the original nine visual chapter starts. The shorter *Agrippa* key repeats cyclically only after its final rune. Both books begin at their historically specified source text, rather than selecting a secret offset. This is **2 source books × 2 source spellings × 2 printed clocks × 2 signs = 16 fully reversible original-cipher inverses**. There is no arbitrary output permutation, secret phase/page key, guessed plaintext crib or unverified rune skip.
 
 **The authentic Cicada plaintext-F bypass is also tested separately as an exact decision procedure.** If plaintext `P=F` (GP rune0), ciphertext must be `C=F` and no key tick is consumed. For ordinary `P≠F`, ciphertext is `C=P±K[t] mod29` and the key clock advances. Inverting `C=F` therefore allows both a transparent-F branch and, when the active key is nonzero, an ordinarily enciphered non-F branch. Inverting `C≠F` forces one clock advancement and forbids `C=±K[t]`, which would otherwise produce the impermissible ordinary plaintext F. An exact set of all reachable key-consumption counts per ciphertext position handles the full ambiguity; there is **no guessed skip mask, language pruning or hidden key phase**.
 
@@ -43,23 +43,23 @@ Under the real historical Cicada plaintext-F bypass, **all eight source×spellin
 
 | Historical source | GP spelling | Subtract-key branch first impossible rune | Add-key branch first impossible rune |
 |---|---|---:|---:|
-| *Agrippa* | legacy | 36 | 1 |
-| *Agrippa* | LP1 writer | 128 | 1 |
-| *Britannica* CICADA-to-end | legacy | 4 | 111 |
-| *Britannica* CICADA-to-end | LP1 writer | 4 | 138 |
+| *Agrippa* | legacy | 1 | 36 |
+| *Agrippa* | LP1 writer | 1 | 128 |
+| *Britannica* CICADA-to-end | legacy | 111 | 4 |
+| *Britannica* CICADA-to-end | LP1 writer | 138 | 4 |
 
-Importantly, **every one of the nine original visual chapters also becomes algebraically impossible when independently restarted with each source/key/sign**, even granting a fresh key clock at all nine source-visible boundaries. In original chapter order, the earliest local impossible rune positions are:
+Importantly, **every one of the nine original visual chapters also becomes algebraically impossible when independently restarted with each source/key/sign**, even granting a fresh key clock at all nine source-visible boundaries. In original chapter order, the earliest local impossible rune positions are (directions name the ordinary **decrypt** sign, so the corresponding encryption sign is opposite):
 
 | Source, spelling, direction | Local impossible indices for the nine separately reset chapters |
 |---|---|
-| *Agrippa*, legacy, subtract | 36, 24, 98, 133, 16, 0, 33, 58, 22 |
-| *Agrippa*, legacy, add | 1, 7, 19, 124, 95, 6, 6, 94, 40 |
-| *Agrippa*, LP1, subtract | 128, 70, 123, 133, 16, 0, 78, 58, 27 |
-| *Agrippa*, LP1, add | 1, 7, 19, 124, 42, 6, 6, 94, 20 |
-| *Britannica*, legacy, subtract | 4, 5, 16, 41, 4, 6, 3, 4, 0 |
-| *Britannica*, legacy, add | 111, 16, 1, 134, 14, 16, 38, 23, 7 |
-| *Britannica*, LP1, subtract | 4, 5, 16, 41, 4, 6, 3, 4, 0 |
-| *Britannica*, LP1, add | 138, 16, 1, 70, 14, 16, 38, 23, 7 |
+| *Agrippa*, legacy, subtract | 1, 7, 19, 124, 95, 6, 6, 94, 40 |
+| *Agrippa*, legacy, add | 36, 24, 98, 133, 16, 0, 33, 58, 22 |
+| *Agrippa*, LP1, subtract | 1, 7, 19, 124, 42, 6, 6, 94, 20 |
+| *Agrippa*, LP1, add | 128, 70, 123, 133, 16, 0, 78, 58, 27 |
+| *Britannica*, legacy, subtract | 111, 16, 1, 134, 14, 16, 38, 23, 7 |
+| *Britannica*, legacy, add | 4, 5, 16, 41, 4, 6, 3, 4, 0 |
+| *Britannica*, LP1, subtract | 138, 16, 1, 70, 14, 16, 38, 23, 7 |
+| *Britannica*, LP1, add | 4, 5, 16, 41, 4, 6, 3, 4, 0 |
 
 Each impossibility is exact and **independent of a plaintext-language model**, because the key-conserving skip rule would be violated for *every possible assignment* of transparent F sites. Eight whole-stream keys and 72 independently restarted chapter/key tests fail. The apparent contradictory use of GP rune F as cipher F versus plaintext F is resolved by carrying *both* legal branches at every ciphertext F. This is stronger than a low frequency score, but applies only to the specific source-started book keys and the historically real GP-additive/F-bypass rule.
 
