@@ -95,6 +95,46 @@ function scan(words, lengths, register) {
   return {register, best, strongest:results.slice(0,12)};
 }
 
+/**
+ * Word-permutation-invariant whole-page source crib.
+ * Retain authentic printed original page-local word slots; do not fit a
+ * transposition, delete words or tune alphabet size. A zero L1 histogram
+ * distance means a source passage could have had its words permuted to the
+ * original physical page; it does not identify the cipher or the permutation.
+ *
+ * @param {number[]} lengths ordered source word lengths
+ * @param {string} register conversion label
+ */
+function pageBagCheck(lengths, register) {
+  const B = 18; // 1..17, 18+; all larger lengths in a stable final bin
+  const idx = n => Math.min(B - 1, n - 1);
+  const found = [];
+  for (const page of unknownPages) {
+    const target = new Int32Array(B);
+    for (const v of page.lengths) target[idx(v)]++;
+    const n = page.lengths.length;
+    if (n < 15 || n > lengths.length) continue;
+    const running = new Int32Array(B);
+    for (let j = 0; j < n; j++) running[idx(lengths[j])]++;
+    let best = Infinity, at = -1, exact = 0;
+    for (let j = 0; j + n <= lengths.length; j++) {
+      let d = 0;
+      for (let b = 0; b < B; b++) d += Math.abs(running[b]-target[b]);
+      if (d < best) { best = d; at = j; }
+      if (d === 0) exact++;
+      if (j + n < lengths.length) {
+        running[idx(lengths[j])]--;
+        running[idx(lengths[j+n])]++;
+      }
+    }
+    found.push({page:page.page, originalWords:n, bestL1:best,
+      minimumSubstitutions:best/2, earliestSourceWord:at, exactWindows:exact});
+  }
+  found.sort((a,b)=>a.minimumSubstitutions-b.minimumSubstitutions || b.originalWords-a.originalWords);
+  return {register, exactSourceWindows:found.reduce((x,y)=>x+y.exactWindows,0),
+    strongest:found.slice(0,8), pagesScanned:found.length};
+}
+
 const words = source.match(/[A-Za-z]+/g) || [];
 assert(words.length > 400, "Extracted PDF missing expected 2009 prologue text");
 const results = [
@@ -102,6 +142,10 @@ const results = [
   scan(words,words.map(w=>w.length),"Latin26")
 ];
 const maximum = Math.max(...results.map(r=>r.best));
+const wordBag = [
+  pageBagCheck(words.map(gpLength), "GP29 source-calibrated"),
+  pageBagCheck(words.map(w=>w.length), "Latin26")
+];
 console.log(JSON.stringify({
   pdf:"Jung, The Red Book, Liber Primus, Prologue, English translation (printed page 229 onward)",
   source:"https://www.jungiananalysts.org.uk/wp-content/uploads/2024/09/The-Way-of-What-is-to-Come-from-C.-G.-Jung-Liber-Novus-The-Red-Book-1-1.pdf",
@@ -110,5 +154,6 @@ console.log(JSON.stringify({
   solvedP57WordLengthPositive:clear57.length,
   sourceWords:words.length,
   results,
+  permutationInvariantWholePage:wordBag,
   decision:maximum>=12 ? "Follow this candidate with withheld word-lengths and independently recovered key" : "No intact >=12-word direct source crib in this extracted text and fixed spelling"
 },null,2));
