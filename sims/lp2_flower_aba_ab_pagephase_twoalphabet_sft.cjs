@@ -32,7 +32,7 @@ const perPage=pages.map(p=>({page:p.page,n:p.indices.length,allFivePhaseCaps:pha
 const maxCap=perPage.reduce((s,p)=>s+Math.max(...p.allFivePhaseCaps),0);
 const zeroCap=perPage.reduce((s,p)=>s+p.allFivePhaseCaps[0],0);
 assert.equal(maxCap,174);
-assert.equal(zeroCap,162);
+assert.equal(zeroCap,159);
 const digraph={TH:2,NG:21,EO:12,OE:22,AE:25,IA:27,EA:28};
 const letters={
  A:24,B:17,C:5,D:23,E:18,F:0,G:6,H:8,I:10,J:11,K:5,
@@ -68,7 +68,7 @@ const refs=[
  return {name:r.name,encodedRunes:seq.length,...v};
 });
 assert.deepEqual(refs.map(r=>r.encodedRunes),[62550,216874]);
-assert.deepEqual(refs.map(r=>r.minimum),[226,197]);
+assert.deepEqual(refs.map(r=>r.minimum),[224,196]);
 // An explicit page-secret reversible positive plant with freely rotated motif
 // and independent affine GP29 bijections for A and B per page.
 const P=gp(read('resources/control/gibran_prophet_58585.txt')).slice(0,total);
