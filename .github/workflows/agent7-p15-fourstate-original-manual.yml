@@ -23,3 +23,7 @@ jobs:
         run: node --check sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs
       - name: Run full-secret source-p39 selected p40 floral original inverse
         run: node sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs
+      - name: Confirm plaintext-autokey unknown-IV syntax
+        run: node --check sims/lp2_p15_plainfeedback_alliv_singleton_sft.cjs
+      - name: Exhaust original 4D unknown plaintext-feedback states
+        run: node sims/lp2_p15_plainfeedback_alliv_singleton_sft.cjs
