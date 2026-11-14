@@ -34,6 +34,8 @@ The self-contained program generates arbitrary independent secret full-29 permut
 
 ## General deterministic whole-word reset: singleton-capacity theorem
 
+**Relation to earlier established exclusion:** [The independent whole-word collision theorem](lp2-word-collision-injective-source-gate.md) had already excluded book-, page- and line-static deterministic word encoders for ordinary GP-native English under preserved word breaks. This section supplies a **tighter, transparent A/I/O singleton exception lower bound** (including chapter-specific results and exact failing pages) for one subset of that established exclusion. It does **not** newly discover the general stationary-word-cipher impossibility.
+
 **Original-input generalization (Agent11, 14 November 2026).** The five-phase result above does not cover every internal word algorithm. For any deterministic length-preserving cipher that begins every printed word at the same initial key/state within a chosen book, visual chapter or physical page, equal one-rune input words necessarily give equal one-rune outputs, regardless of nonlinear feedback or other operations inside longer words. For ordinary GP-native English, the available one-rune plaintext words are A and I, generously allowing O as a third.
 
 The original 2,896 unknown printed words contain **83 one-rune words spanning 28 distinct ciphertext glyphs**. Within each scope at most three output glyphs could be generated from A/I/O. Minimizing the contradictions by selecting the three most frequent symbols separately in each scope gives:
