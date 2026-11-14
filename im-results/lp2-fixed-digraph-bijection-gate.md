@@ -33,6 +33,17 @@ For each segmentation, both block phases (0 and 1) were tested. Pair blocks rest
 
 Across all eight cases, the ciphertext uses 828–838 of the 841 possible pairs and no pair occurs more than 20 times. Its pair spectrum is close to the occupancy profile expected from a near-uniform stream.
 
+
+## Distinct key-independent obstruction: standard Playfair output digraphs
+
+Classical Playfair encryption on a keyed square (5×5 or 7×7, with an expanded symbol inventory where needed) pairs letters and shifts same-row/same-column entries or swaps their rectangle columns. It maps **two distinct input symbols to two distinct output symbols** for every keyed square. The customary filler rule also prevents identical plaintext pair members. Thus **no resulting ciphertext digraph can consist of two equal symbols**, regardless of square order, key, plaintext register, or key frequency. This is a strict source-only exclusion for *standard Playfair*, stronger in kind than the English-reference pair-frequency test above, and is not a statement about arbitrary stateful digraph ciphers.
+
+The untouched 12,956 GP29 runes across 55 physical pages give **86 same-page equal-rune adjacent pairs**. Of these, 37 occupy the original global pairs (runes at offsets 0–1, 2–3, etc.) and 49 occupy the opposite global pairing. With independent page-local pair clocks, 35 equal pairs violate the phase-zero convention and 51 violate phase one. **Fourteen physical pages individually contain an equal adjacent pair in both parities** (p0, p3, p4, p8, p9, p19, p24, p25, p27, p34, p35, p41, p43, p44), so even granting a secret binary pairing phase on every page leaves **at least 17 pair violations**. For a fixed printed-word block clock, the 63 interior-word equalities split as 27 and 36 across its two phases. The authentic 2,896 printed words are preserved, including page-carrying words.
+
+This excludes standard filler-preprocessed Playfair under any **global, page-reset or fixed word-reset pair phase** on the original, unedited ciphertext. It does not exclude a hypothetical nonstandard Playfair variant with its own externally selected and recoverable insertions, deletions, variable pairing choices or reset positions; allowing unlimited edits or independent arbitrary phases per word removes this particular impossibility. A 29-letter GP alphabet also lacks a literal square layout, so a proposed square expansion needs an independently specified representation. No unknown plaintext, key or historical Playfair clue follows.
+
+[Single-runnable original-input and all-digraph 5×5/7×7 positive theorem check](../sims/lp2_playfair_noidentical_pair_sft.cjs).
+
 ## Native-English controls
 
 Three independent source corpora were converted using the established GP29 tokenizer: Shakespeare (300,000-character excerpt), Gibran's *The Prophet*, and Emerson's *Essays, First Series*. Contiguous control windows were sampled at fixed 120-rune steps for global/page/line clocks; word-reset controls used consecutive source-word windows, sampled every ten words and truncated only at the final pair to match the original pair count.
