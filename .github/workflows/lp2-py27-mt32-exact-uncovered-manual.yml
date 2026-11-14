@@ -35,36 +35,24 @@ jobs:
 
   control:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - name: Check out immutable independent decoder and all source control vectors
+      - name: Check out immutable original 12-register engine and panel
         uses: actions/checkout@v4
         with:
           repository: Dukotah/cicada3301
           ref: 9087dc36b5aa64c1786428e32180261ab9420c29
           path: upstream
           persist-credentials: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install pinned-engine dependency
-        run: python -m pip install 'numpy>=1.26,<3'
-      - name: Build unchanged original bit-exact C stage-A engine
+      - name: Gate committed panel-R36 against source hashes, frozen 64 vectors and true-key plant
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
         shell: bash
-        working-directory: upstream/liber-primus/analysis/round27/P1-engine
         run: |
           set -euo pipefail
-          python export_data.py
-          gcc -O3 -march=native -fopenmp -std=gnu17 -ffp-contract=off -o grind27 grind27.c -lm
-          ./grind27 --self-test
-          ./grind27 --drill
-      - name: Mandatory 64-vector exact keyskip1 parity and known-seed 777 full recovery
-        shell: bash
-        working-directory: upstream/liber-primus/analysis/round27/P2-harness/s2check
-        run: |
-          set -euo pipefail
-          python check_s2.py
+          python3 check_panel_gate.py
+          gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
+          ./grind27 --self-test --data engine.dat
+          ./grind27 --drill --data engine.dat
 
   sweep:
     needs:
@@ -78,45 +66,40 @@ jobs:
     timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch exact independent decoder and frozen six-worker coverage receipt
+      - name: Fetch source-pinned panel-R36 engine, plus exact six-worker coverage checkpoint
         uses: actions/checkout@v4
         with:
           repository: Dukotah/cicada3301
           ref: 9087dc36b5aa64c1786428e32180261ab9420c29
           path: upstream
           persist-credentials: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Required numerical model
-        run: python -m pip install 'numpy>=1.26,<3'
-      - name: Build and self-test original byte-exact scorer
+      - name: Validate committed 12-register scorer and known planted truth
         shell: bash
-        working-directory: upstream/liber-primus/analysis/round27/P1-engine
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
         run: |
           set -euo pipefail
-          python export_data.py
-          gcc -O3 -march=native -fopenmp -std=gnu17 -ffp-contract=off -o grind27 grind27.c -lm
-          ./grind27 --self-test
+          python3 check_panel_gate.py
+          gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
+          ./grind27 --self-test --data engine.dat
       - name: Select source-disjoint S2 exact key range
         shell: bash
         run: |
           set -euo pipefail
           node sims/lp2_py27_mt32_uncovered_shards_sft.cjs plan '${{ matrix.band }}' '${{ matrix.shard }}' '${{ inputs.scope }}'
-      - name: Exhaust assigned interval under the validated exact keyskip1 clock
+      - name: Exhaust assigned interval under the pinned R36 exact keyskip1 clock
         shell: bash
-        working-directory: upstream/liber-primus/analysis/round27/P1-engine
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
         env:
           GRIND27_S2_CONTROL_OK: '1'
         run: |
           set -euo pipefail
-          ./grind27 --plan "${{ github.workspace }}/run/plan.json" --run-dir "${{ github.workspace }}/run" --threads 2
-      - name: Verify 100 percent local coverage, capture all flags and durable receipt
+          ./grind27 --data engine.dat --plan "${{ github.workspace }}/run/plan.json" --run-dir "${{ github.workspace }}/run" --threads 2
+      - name: Verify complete local coverage and retain all flags
         shell: bash
         run: |
           set -euo pipefail
           node sims/lp2_py27_mt32_uncovered_shards_sft.cjs verify
-      - name: Preserve complete shard evidence including candidate seeds and histogram
+      - name: Preserve shard evidence, including candidates and histogram
         if: always()
         uses: actions/upload-artifact@v4
         with:
