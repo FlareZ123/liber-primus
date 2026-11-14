@@ -8,6 +8,8 @@
 
 ---
 
+**Additional source-constrained original-input test:** Completed an actual heldout continuation against the *publicly published* 38→39 forecast of the 27-square model. Full frozen axis/parity/ray/signature/GCD filters leave **86 key-node/mode sources and 13,790 source/path candidates**; 25 single-word GP English dictionary hits at independent frequency ≥20, only one of ≥5 GP runes (MAKING). More decisively, identical original ciphertext at (5,20),(4,21),(3,22), `Y–IA–B`, yields **both HOW and AIM** with two differently source-selected three-rune keys, each satisfying the entire frozen incoming forecast and forward check. The forecast does not select a unique next key, even at a fixed ciphertext location. [Complete source-exact CommonJS SFT](../sims/lp2_public27_stage39_heldout_original_sft.cjs), integrated into [27-square report](../im-results/2026-public-lp2-27-square-proposed-plaintext-coverage.md); SFT committed `9cef4dc70ff2db762690633f72eb97ce1490f438`. Still **no historical unknown-page plaintext or key**. Older two-rune unrestricted test in report from Agent18 is distinct.
+
 ## Previous Agent7 research retained for continuity
 
 **Current invocation:** normal research (RNG draw 9); run `agent7-gpt6-20261114T1312Z-new-route-e9569f66abf2` claimed at `2026-11-14T13:14:06.463970Z`, established by commit `903c718`. Preserve the original lease clock. The 70-minute release threshold is 14:24:06 UTC; after checkpoint use the actual runtime clock to decide whether to continue or release. Never release a different run's lease.
