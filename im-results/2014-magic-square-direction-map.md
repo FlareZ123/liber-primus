@@ -131,6 +131,47 @@ The expanded square has all five row sums, all five column sums, and both princi
 
 **Evidence boundary:** the cellwise arithmetic identity is established and reproducible. Attribution of the prime-sum operation to intended author instruction is strongly clue-constrained by the page's explicit prose, but remains a historical interpretation. This is a **word-cell→numeric-cell-value encoding**, not a rule that maps a value to an LP2 word or physical page address. It does not recover LP2 plaintext or establish that every later LP2 page uses the same mechanism. The following `φ(n) mod 29` labels and degree bearings are the next operation in the 2014 analysis, not a newly proven LP2 cipher.
 
+### Literal MOBIUS cell → Möbius arithmetic μ(n) as a direct p55 key (14 November 2026)
+
+The mixed 2014 LP1 p05 table contains the literal word **MOBIUS** at row 3, column 5; the independently reconstructed numeric square assigns that cell **226**. The same page explicitly foregrounds prime arithmetic and the totient function. A minimal arithmetic reading is to interpret MOBIUS as the classical Möbius function μ and apply it to each of the 25 exact square values in printed row-major order. This is a clue-constrained interpretation of the word, not an authenticated LP2 instruction.
+
+Freeze the simplest direct consumer: use K[i] = μ(square[i]) mod 29 as a period-25 additive GP29 key, starting at key index zero. No phase, cell permutation, secondary arithmetic, or extra cipher layer is introduced. Test both additive signs on the complete physical p55 sequence (76 runes) and on its page-local body (75 runes, excluding the inherited leading NG). No p56 plaintext-F bypass is imported: this model is a direct repeating additive key, and the source does not select a bypass for it.
+
+The exact μ sequence is:
+
+~~~text
+[0,-1,1,-1,-1,-1,-1,-1,0,0,1,0,1,0,1,0,0,-1,-1,-1,-1,-1,1,-1,0]
+~~~
+
+Modulo 29, the fixed key is:
+
+~~~text
+[0,28,1,28,28,28,28,28,0,0,1,0,1,0,1,0,0,28,28,28,28,28,1,28,0]
+~~~
+
+It contains eight zeroes, five +1 values and twelve −1 values. Original full-page IoC is **0.03789474**; the 75-rune body IoC is **0.03855856**. The four frozen inverses have IoCs:
+
+| Original framing | Inverse sign | IoC |
+| --- | --- | ---: |
+| 76 runes | subtract μ key | 0.03684211 |
+| 76 runes | add μ key | 0.03543860 |
+| 75-rune body | subtract μ key | 0.03603604 |
+| 75-rune body | add μ key | 0.03711712 |
+
+None yields coherent GP29 plaintext. Their complete transliterations are:
+
+~~~text
+76 / subtract: NGYEJHTESMSJGOETHAFIAAEEGTHHOEEAFSNLTHGXNNGLJMXDYPFENPGPBFEIWPWTMTPTHTHBSUOEREAILGSAEOFEEI
+76 / add:      NGALNGXTPMSPGATHYFIADTRFGCTEAFPJEFREOWNGLPMTDEAPFTWJRJMIAEICSCXBXJTHTHMSOOEGEAIERPOEITHTEI
+75 / subtract: AELNHTESLSEOCDUAEEAIAAEGTHHCTFFXJETHGXNOELEOESOEIAEOFBNPGPMIAMIGSCTMTPOTHEXTHNGCIAIMGSAEOTHTMI
+75 / add:      AEEJGXTPESEOWDOAEUIAATRFGOEIAFXNLFREOWLLEOLSAIAXFBWJRJBFBIGPWXBXJUTHETTHDCFIMRPOEIFEBI
+~~~
+
+All four inverse/forward pairs reproduce their exact original input (76/76 or 75/75); as with every bijective additive key, this is an implementation invariant, not evidence that μ was the historical cipher. The fixed direct μ-key consumer is therefore rejected. This does **not** test Möbius inversion, a Möbius transformation, or μ as a routing/selection mask; none of those has a source-selected LP2 operand or reversible rule yet.
+
+Reproducer: [sims/lp1_wisdom_mobius_p55_gate.cjs](../sims/lp1_wisdom_mobius_p55_gate.cjs).
+
+
 ### Two original LP2 cipher triples hypothetically navigate into the 2014 LP1 Wisdom square
 
 The historically documented transformation of the original 2014 LP1 p05 mixed rune-and-number Wisdom table into the 2014 **5×5** magic square is source-constrained: take the GP-prime sum of each original rune-word cell. The original 2014 LP1 p05 prose expressly calls both primes and the totient function sacred. A new *hypothetical* continuation interprets three successive unknown-LP2 **printed word sums** as `starting cell / compass-direction code / destination cell`, with the middle value decoded as **φ(sum) mod29**, and only the ordinary GP runes W, E, N and S treated as cardinal directions. This operation is motivated by the authenticated 2016 wording “words are the map, numbers are the direction,” but the source does **not** explicitly prescribe its phi→compass step.
