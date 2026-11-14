@@ -42,6 +42,16 @@ function scan(entries,name){
   hits.push({e,i,score:10*Number(same)+Number(stronger.test(e.body))});
  }
  console.log(name+'-CANDIDATE-COUNTS '+JSON.stringify({sameOrNearby:hits.length,exact:hits.filter(x=>x.score>=10).length}));
+
+// Fixed source-line windows from first-pass original 2016 dated signal screen.
+ const frozenOriginalLines=[267324,269444,270854,270865,273768,248923,209988];
+ for(const sourceLine of frozenOriginalLines){
+  const i=entries.findIndex(e=>e.line===sourceLine);
+  if(i<0)continue;
+  const chosen=entries.slice(Math.max(0,i-23),i+27);
+  console.log(name+'-FROZEN-2016-CONTEXT '+JSON.stringify({sourceLine,entries:chosen}));
+ }
+
  const dedup=[],daily=new Map();
  for(const x of hits.sort((a,b)=>b.score-a.score||a.e.line-b.e.line)){
   const day=x.e.date.slice(0,11);
