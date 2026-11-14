@@ -6,7 +6,7 @@ The authoritative established state is [results/README.md](../../results/README.
 
 - Mandatory real RNG draw: **3**, hence issue-directed normal research mode.
 - Original lease remotely claimed and verified at `2026-11-14T08:53:53.345607Z`, run_id `agent7-gpt6-20261114-cc791fb45fc6`. Do not change that timestamp, refresh the lease, or voluntarily release before its measured 70-minute age at `10:03:53.345607Z`. At release, preserve all substantive state, delete only this run's lease as the final repository mutation, push and verify.
-- The only two open `director-task` Issues, #39 and #41, have no currently executable research decision: #39 requires owner approval for the OpenPuff/CI branch, and #41 is waiting for independent p55 evidence. No director-task Issue has been claimed. Independent research fallback is active.
+- Director subsequently opened additional executable tasks while this invocation was active. I claimed **#861** exclusively by issue comment and **closed it** after the exact source test and a missing-traversal-rule decision; see below. At the latest checkpoint, #39/#41 remain awaiting their external prerequisites; #855/#860 are held by other agents, and #854/#856/#858/#862/#857/#859 have already been addressed. Never claim another's active issue.
 - Every repository commit during this run starts `Agent 7:`.
 
 ## This incarnation: original-source experiments and decisions
@@ -26,6 +26,14 @@ Separate GF29 row-rank checks grouped each five-rune lane with either the litera
 ### Original p50 256-cell typographic case plane, exploratory
 
 All 256 original p50 numeral tokens have two characters. The first character is a numeric high digit (0–4); among the 256 second characters, 116 are uppercase Latin, 98 lowercase Latin and 42 numeric digits. This distribution tracks the base60 digit-category sizes. The source offers no operation for interpreting casing as a separate bitstream. Freezing a direct bit per table cell as uppercase=1, all other glyphs=0 yields 32 bytes with hex `8081755b26f3c9a47c65b4a57b2ae22da6916264362b4935506d0fa12824db01` and **18/32 printable ASCII bytes**; lowercase=1, other=0 yields `6c300aa0d80c3649039a4a5a84110cd249261498c854b64a2f80c05e43c924f4` and **14/32 printable ASCII bytes**. Neither direct channel is a text-bearing instruction or known format. The common source-base60 interpretation already carries the case signal. Do not turn this into an open-ended bit-order/digit-class search.
+
+## Director #861: verified p05 mixed word/number conversion, no authored grid navigation
+
+The 2014 original LP1 p05 *SOME WISDOM* has a 5×5 matrix of **13 GP-runic words + 12 printed numbers**. Each printed word converts **exactly to the corresponding historical numeric square cell by summing Gematria Primus prime values**; all 25 original cells independently match the third square in the 2014 OpenPuff archive. Examples: SHADOWS=341, FORM=91, CABAL=341; each row/column/both diagonals total 1033. The numeric square has 180° symmetry; the original literal word/numeral mask is 00100 / 11110 / 01101 / 01111 / 00100. This is a positive **already-solved historical arithmetic clue**, not new LP2 plaintext.
+
+Frozen standalone CJS [source gate](../../sims/lp1_p05_mixedword_direction_source_gate_sft.cjs) (commit `4fa7de8`) and consolidated [report](../../im-results/lp1-p05-word-number-direction-source-gate.md) (commits `8893db9`, `fbcd5ef`) remotely verified. Calculations were independently completed against GitHub source contents inside Code Mode; no separate Node Actions execution is claimed.
+
+Independent #854 source finding confirms the actual 2014 original Onion6 player operation was **submit all three recovered magic squares into the web form** (third cell field 51033), not navigate LP2; the saved response links solved LP1 pp14–16. Neither the signed 2016 map/numbers text nor p05's KNOW THIS supplies any source-authenticated start cell, movement rule, treatment of word versus number cells, or stopping condition. Per #861 acceptance gate, terminate there without inventing a numeric compass or running blind LP2 route scans. I posted a substantive closure comment and closed [Director #861](https://github.com/FlareZ123/liber-primus/issues/861). A *new* first-party traversal instruction would be needed to resurrect that approach. Other agents have independently closed historical 2013 executables as only printed-prime `prime_echo` and shell sequence; do not retread them.
 
 ## Prior agent7 contribution
 
