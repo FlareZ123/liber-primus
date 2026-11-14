@@ -90,6 +90,21 @@ function chapterTest() {
   return { frames: summary, total: plains.length, ioc: ioc(plains)};
 }
 
+function pageTest() {
+  const plains = [];
+  const summary = [];
+  for (const page of corpus.pages.filter(p => p.page <= 55 && p.indices.length > 0)) {
+    const frame = collect(page.indices);
+    assert.deepEqual(reconstruct(frame), page.indices);
+    plains.push(...frame.plain);
+    summary.push({page: page.page, original: page.indices.length, repeat: frame.mask.filter(Boolean).length, decoded: frame.plain.length, ioc: ioc(frame.plain)});
+  }
+  assert.equal(summary.length, 55);
+  assert.equal(plains.length, 12696);
+  assert(Math.abs(ioc(plains) - 0.03447218973180328) < 1e-12);
+  return {frames: summary, total: plains.length, ioc: ioc(plains)};
+}
+
 function doubletFrameTest() {
   const starts = [0];
   for (let i = 1; i < ciphertext.length; i++) if (ciphertext[i] === ciphertext[i - 1]) starts.push(i);
@@ -125,6 +140,6 @@ function sourceNativePlant() {
   return {nativeRunes: known.length, encodedSteps: ranks.length, recovered: frame.plain.length, nativeIoc: ioc(known)};
 }
 
-const results = {control: sourceNativePlant(), chapter: chapterTest(), repeatFrames: doubletFrameTest()};
+const results = {control: sourceNativePlant(), chapter: chapterTest(), physicalPages: pageTest(), repeatFrames: doubletFrameTest()};
 console.log(JSON.stringify(results, null, 2));
 console.log('PASS: original LP2 exact reencryption under retained frame information; solved p57 native positive.');
