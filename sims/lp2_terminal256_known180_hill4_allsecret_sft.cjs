@@ -40,7 +40,7 @@ results.push({order:o.name,direction:reverse?"known-to-table":"table-to-known",f
 // Source-independent secret key and a complete planted 256-rune text whose
 // last 180 are literally the established p56+p57 GP-native plaintext.
 const plaintext=gp.pages[57].indices.slice(0,76).concat(known);
-const K=[[1,0,0,0],[2,1,0,0],[0,2,1,0],[0,0,2,1]],bias=[4,9,13,17];
+const K=[[1,2,0,0],[0,1,2,0],[0,0,1,2],[0,0,0,1]],bias=[4,9,13,17];
 const plant=blocks(plaintext).flatMap(y=>{let x=[];for(let i=0;i<4;i++)x[i]=mod(y[i]-bias[i]-x.reduce((s,v,j)=>s+v*K[j][i],0));return x;});
 const learned=solve(blocks(plant.slice(76)).map(x=>x.concat(1)),B);
 assert.equal(learned.consistent,true);assert.equal(learned.rank,5);assert.deepEqual(learned.W,K.concat([bias]));
