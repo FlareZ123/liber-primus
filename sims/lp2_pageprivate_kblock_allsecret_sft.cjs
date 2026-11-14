@@ -197,4 +197,144 @@ assert.equal(p57.length, 95);
 const p57Words = "PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE";
 assert(sourceNativeGP(p57Words).every((v, i) => p57[i] === v),
   "original source-authentic PARABLE prefix");
+
+/**
+ * The additive-postfeedback block family is different from CBC prewhitening:
+ *
+ *    C_block[t] = F_page(P_block[t]) + C_block[t-1] mod 29
+ *
+ * Since D_block[t] = C_block[t]-C_block[t-1] = F_page(P_block[t]),
+ * equality of complete noninitial D blocks is a key-independent invariant
+ * for EVERY unknown per-page k-block bijection F_page, even nonlinear ones.
+ * This works with an unknown initial block IV; the first block is skipped.
+ *
+ * @param {number[]} sequence
+ * @param {number} k
+ * @param {number} phase
+ * @returns {number}
+ */
+function feedbackPairs(sequence, k, phase) {
+  let previous = null;
+  const seen = new Map();
+  let pairs = 0;
+  for (let i = phase; i + k <= sequence.length; i += k) {
+    const current = sequence.slice(i, i + k);
+    if (previous) {
+      const key = current.map((v, j) => (v - previous[j] + 29) % 29)
+        .join(",");
+      const n = seen.get(key) || 0;
+      pairs += n;
+      seen.set(key, n + 1);
+    }
+    previous = current;
+  }
+  return pairs;
+}
+
+/**
+ * @param {number[]} sequence
+ * @param {number} k
+ * @returns {{minimum:number,maximum:number,phaseZero:number}}
+ */
+function feedbackEnvelope(sequence, k) {
+  assert.equal(sequence.length, original.length);
+  let offset = 0;
+  let minimum = 0;
+  let maximum = 0;
+  let phaseZero = 0;
+  for (const length of lengths) {
+    const page = sequence.slice(offset, offset + length);
+    const scores = Array.from({length:k}, (_,phase) => feedbackPairs(page,k,phase));
+    minimum += Math.min(...scores);
+    maximum += Math.max(...scores);
+    phaseZero += scores[0];
+    offset += length;
+  }
+  assert.equal(offset, original.length);
+  return {minimum,maximum,phaseZero};
+}
+
+/**
+ * Independent hidden per-page, per-slot invertible affine GP29 maps F.
+ * Each ciphertext block uses the preceding OUTPUT block, including
+ * the opening block's source-independent zero IV. A planted ciphertext
+ * must preserve the plaintext's noninitial delta-block collisions.
+ *
+ * @param {number[]} plain
+ * @param {number} k
+ * @returns {{cipher:number[],restored:number[]}}
+ */
+function pagePrivatePostfeedbackPlant(plain,k) {
+  const cipher=plain.slice();
+  const restored=plain.slice();
+  let offset=0;
+  for (let pageIndex=0;pageIndex<lengths.length;pageIndex++) {
+    const length=lengths[pageIndex];
+    const a=1+((7*pageIndex+3*k)%28);
+    const inverse=Array.from({length:28},(_,i)=>i+1)
+      .find(x=>(x*a)%29===1);
+    assert(inverse);
+    let priorC=Array(k).fill(0);
+    for (let j=0;j+k<=length;j+=k) {
+      const current=[];
+      for (let slot=0;slot<k;slot++) {
+        const at=offset+j+slot;
+        const bias=(11*pageIndex+5*slot+k)%29;
+        const f=(a*plain[at]+bias)%29;
+        const c=(f+priorC[slot])%29;
+        current.push(c);
+        cipher[at]=c;
+        restored[at]=(inverse*((c-priorC[slot]-bias+58)%29))%29;
+      }
+      priorC=current;
+    }
+    offset+=length;
+  }
+  return {cipher,restored};
+}
+
+const feedbackControls = [...literary,{name:"Emerson",runes:sourceNativeGP(
+  read("resources/control/emerson_essays_2944.txt")),expectedWindows:201}];
+const feedbackMinimum = {
+ "2:Gibran":761, "2:Shakespeare":608, "2:Emerson":564,
+ "3:Gibran":46, "3:Shakespeare":20, "3:Emerson":12,
+ "4:Gibran":7, "4:Shakespeare":1, "4:Emerson":0
+};
+const feedbackExpected = {
+ 2:{minimum:392,maximum:526,phaseZero:447},
+ 3:{minimum:0,maximum:23,phaseZero:7},
+ 4:{minimum:0,maximum:0,phaseZero:0}
+};
+
+for(const k of [2,3,4]) {
+ const source=feedbackEnvelope(original,k);
+ assert.deepEqual(source,feedbackExpected[k]);
+ for(const {name,runes,expectedWindows} of feedbackControls) {
+   const windows=[];
+   for(let start=0;start+original.length<=runes.length;start+=1536) {
+     windows.push(feedbackEnvelope(runes.slice(start,start+original.length),k));
+   }
+   assert.equal(windows.length,expectedWindows);
+   const minFixed=Math.min(...windows.map(v=>v.phaseZero));
+   assert.equal(minFixed,feedbackMinimum[String(k)+":"+name]);
+   if(k<=3)assert(source.phaseZero<minFixed,
+     "page-start block feedback unexpectedly overlaps original English control");
+   if(name==="Gibran")assert(source.maximum<
+     Math.min(...windows.map(v=>v.minimum)),
+     "arbitrary page-phase feedback unexpectedly overlaps Gibran control");
+   const planted=pagePrivatePostfeedbackPlant(runes.slice(0,original.length),k);
+   assert.deepEqual(planted.restored,runes.slice(0,original.length));
+   assert.equal(feedbackEnvelope(planted.cipher,k).phaseZero,
+     feedbackEnvelope(runes.slice(0,original.length),k).phaseZero);
+   console.log(JSON.stringify({
+     family:"page-private-additive-postfeedback",blockRunes:k,
+     source: name, windows:windows.length,
+     originalPhaseZero:source.phaseZero,originalAllPhasesMax:source.maximum,
+     minimumEnglishPhaseZero:minFixed,
+     minimumEnglishAllPhases:Math.min(...windows.map(v=>v.minimum)),
+     fullLengthPositiveRoundtrip:true
+   }));
+ }
+}
+
 console.log("Original 12956 source runes and first 37 runes of solved p57 verified.");
