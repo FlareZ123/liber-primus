@@ -188,6 +188,38 @@ const recoveredFromPageNonce = withSourcePageNonce.map((x, i) =>
 assert.deepEqual(recoveredFromPageNonce, encryptedInitials);
 assert.equal(equalityPairs(recoveredFromPageNonce), 91);
 
+// Orthography sensitivity: first-rune equality can be ordinary in source
+// registers outside modern English. These are separately source-pinned GP29
+// corpora, rather than re-encodings with a modern-English tokenizer.
+const gp29Digits = "0123456789ABCDEFGHIJKLMNOPQRS";
+/**
+ * @param {string} data Rune indices represented by one GP-base29 digit each.
+ * @returns {number[]}
+ */
+function parseGpBase29(data) {
+  return [...data].map(ch => {
+    const index = gp29Digits.indexOf(ch);
+    assert(index >= 0, "invalid GP-base29 rune");
+    return index;
+  });
+}
+const beowulf = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).filter(x => /^[0-9A-S]+$/.test(x)).join("");
+const otherRegisters = [
+  ["Old English Beowulf", beowulf.sourceGpBase29, 48012, 35057, 15, 10052, 9219],
+  ["Latin Vulgate", latinWords, 204802, 191847, 62, 0, 0]
+];
+const otherRegisterControls = [];
+for (const [name, digits, len, windows, min, tail52, tail51] of otherRegisters) {
+  assert.equal(digits.length, len);
+  const verdict = scanControl(parseGpBase29(digits), originalPairs, nonceRemovedPairs);
+  assert.deepEqual([verdict.testedWindows, verdict.minimum,
+    verdict.atMostOriginal, verdict.atMostNonceDerived],
+  [windows, min, tail52, tail51], name);
+  otherRegisterControls.push({name, ...verdict});
+}
+
 const totalControlWindows = sourceControls.reduce((sum, x) => sum + x.testedWindows, 0);
 const totalControlAtMost = sourceControls.reduce((sum, x) => sum + x.atMostOriginal, 0);
 assert.equal(totalControlWindows, 562060);
@@ -202,6 +234,7 @@ console.log(JSON.stringify({
     sameRunePairs: originalPairs, rate: originalPairs / nPairs,
     sourceTablePageNonceRemovedPairs: nonceRemovedPairs},
   controls: sourceControls,
+  otherRegisterControls,
   allSourceWindows: totalControlWindows,
   allSourceWindowsAtMostOriginal: totalControlAtMost,
   allSourceWindowsAtMostSourcePageNonce: totalControlsAtMostNonce,
