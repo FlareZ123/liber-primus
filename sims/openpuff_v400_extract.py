@@ -116,6 +116,29 @@ def tree_state(tree):
     return state
 
 
+def toggle_tree_item(item, desired):
+    """Choose the actual checked state even if the native TreeView omits a checkbox hit rectangle."""
+    if bool(item.is_checked()) == desired:
+        return
+    failures = []
+    for area in ("check", "icon", "text"):
+        try:
+            item.ensure_visible()
+            item.click_input(where=area)
+        except RuntimeError as exc:
+            failures.append(f"{area}: {exc}")
+            continue
+        time.sleep(0.2)
+        if bool(item.is_checked()) == desired:
+            print(f"Bit-selection item {item.text()!r} toggled via {area}")
+            return
+        failures.append(f"{area}: click did not change checked state")
+    raise RuntimeError(
+        f"Bit-selection item {item.text()!r} could not reach checked={desired}: "
+        + "; ".join(failures)
+    )
+
+
 def select_bit_level(window, format_name, level_name):
     tree = window.child_window(control_id=1049, class_name="SysTreeView32")
     root = next((item for item in tree.roots() if item.text() == format_name), None)
@@ -125,12 +148,10 @@ def select_bit_level(window, format_name, level_name):
     target = root.get_child(level_name, exact=True)
     target.ensure_visible()
 
-    # Native TreeView checkbox hit testing is exposed by pywinauto as where='check'.
     for item in root.children():
-        if item.text() != level_name and item.is_checked():
-            item.click_input(where="check")
-    if not target.is_checked():
-        target.click_input(where="check")
+        if item.text() != level_name:
+            toggle_tree_item(item, False)
+    toggle_tree_item(target, True)
     time.sleep(0.3)
 
     selected = [item.text() for item in root.children() if item.is_checked()]
