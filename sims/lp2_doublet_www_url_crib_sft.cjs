@@ -153,7 +153,14 @@ function main() {
   assert.equal(fixedBijectionCompatible(cipher.slice(82, 86).reverse(), t("HTTP")), false);
   assert.equal(fixedBijectionCompatible(cipher.slice(74, 79), t("HTTPS")), false);
   assert.equal(fixedBijectionCompatible(t("HTTP"), t("HTTP")), true);
-  console.log("All-secret fixed-alphabet HTTP forward and backward exclusions PASS");
+  for (const word of ["HTTP", "HTTPS"]) {
+    const plain = t(word);
+    for (let i = 0; i + plain.length <= cipher.length; i++) {
+      assert.equal(fixedBijectionCompatible(cipher.slice(i, i + plain.length), plain), false,
+        "No contiguous literal " + word + " anywhere under any 29-way bijection");
+    }
+  }
+  console.log("All-secret fixed-alphabet HTTP(S) anywhere and both WWW directions PASS");
   for (const trial of [
     {word: "HTTPWWW", start: 75, period: 7, key: [10, 16, 2, 0, 0, 0, 0], expected: 0.03255813953488372},
     {word: "HTTPSWWW", start: 74, period: 8, key: [6, 2, 16, 5, 27, 0, 0, 0], expected: 0.03228454172366621}
