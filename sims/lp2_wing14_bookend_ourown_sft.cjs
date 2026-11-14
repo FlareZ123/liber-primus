@@ -5,7 +5,7 @@
  * Run from the repository root with Node.js; reads only bundled source files.
  *
  * Assumptions tested:
- *  - 14 visible-rune positions per page-local clock cycle.
+ *  - A conjectural 14-rune page-local clock. The wing actually contains\n *    15 source-enclosed faces when the arbitrary 500px area cutoff is\n *    reduced to 200px; it does NOT source-select this clock.
  *  - The two source-identical six-rune bookends at offsets 28 and 70
  *    are plaintext "OUR OWN", a phrase independently preserved in p57.
  *  - Either an affine Fibonacci key stream, or a simple affine period-14
@@ -92,7 +92,7 @@ function main() {
     {slope:22, page27:'TNB', page55:'A'},
   ]);
   console.log(`native A/I singleton slopes: ${JSON.stringify(nativeSingletonCandidates)}`);
-  // A genuinely source-authenticated alternative is the p56 plaintext-F
+  // A source-authenticated operation, but an unselected transfer, is p56's plaintext-F
   // transparent bypass: F prints literally and consumes no key position.
   // On p27, the source-visible word BF at offsets26..27 can conditionally
   // stand for OF; bypass at27 shifts the bookend clock to phase13.
