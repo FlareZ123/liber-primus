@@ -41,6 +41,32 @@ function decode(cipher, config) {
     return (value + (config.mode === "add" ? k : 29 - k)) % 29;
   });
 }
+/**
+ * Exact solved-p56-style plaintext-F bypass feasibility over ALL possible
+ * F-site skip masks. At C=F, either literal F bypasses the key, or a non-F
+ * rune is decoded with the current key. At C!=F a key step must decode
+ * to non-F. Key clocks are sufficient states, since no earlier plaintext
+ * influences this particular candidate operation.
+ *
+ * @param {number[]} cipher
+ * @param {{mode:"add"|"sub",key:number[]}} config
+ * @returns {number} First impossible source offset, or -1 if feasible.
+ */
+function firstImpossibleTransparentF(cipher, config) {
+  let clocks = new Set([0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const clock of clocks) {
+      const k = config.key[clock % config.key.length];
+      const p = (cipher[i] + (config.mode === "add" ? k : 29 - k)) % 29;
+      if (cipher[i] === 0) next.add(clock); // unencrypted F, no key step
+      if (p !== 0) next.add(clock + 1); // encrypted non-F, key step
+    }
+    if (next.size === 0) return i;
+    clocks = next;
+  }
+  return -1;
+}
 for (const [pageName, config] of Object.entries(cases)) {
   const page = Number(pageName);
   const cipher = corpus.pages[page].indices;
@@ -52,6 +78,17 @@ for (const [pageName, config] of Object.entries(cases)) {
   const printed = (v) => ioc(v).toFixed(10);
   assert.ok(ioc(plain.slice(0, n)) > 0.05);
   assert.ok(ioc(plain.slice(n)) < 0.04);
+  // Every hypothetical placement of the solved-p56 transparent F bypass
+  // becomes impossible on the original page under the published fixed key.
+  const deadAt = firstImpossibleTransparentF(cipher, config);
+  assert.equal(deadAt, page === 18 ? 5 : 114);
+  const nativeP57 = corpus.pages[57].indices;
+  const ciphertextPlant = nativeP57.map((p, i) => {
+    const k = config.key[i % n];
+    return (p + (config.mode === "add" ? 29 - k : k)) % 29;
+  });
+  assert.deepEqual(decode(ciphertextPlant, config), nativeP57);
+  console.log("Exact all-F-mask p56 bypass gate first impossible at original offset " + deadAt + "; authentic p57 plant recovered " + nativeP57.length + "/95.");
   console.log("Physical p" + page + ", " + cipher.length + " runes; published " + config.mode + " key length " + n);
   console.log("First key cycle: " + config.prefix);
   console.log("Second cycle: " + config.post);
