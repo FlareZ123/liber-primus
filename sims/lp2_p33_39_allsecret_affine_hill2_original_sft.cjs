@@ -349,3 +349,102 @@ for (let i = 0; i < sourceFields.length; i++) {
     conclusion: 'No member of this complete source-field power and affine class yields ordinary native-GP unigram concentration on original pp33-39.'
   }));
 }
+
+
+/**
+ * Stronger, key-independent necessary condition:
+ * An ARBITRARY secret fixed 841-state substitution of GP29 rune pairs
+ * preserves exactly every pair equality and the full collision count,
+ * even when the map is nonlinear and has no affine or power structure.
+ *
+ * This covers all 841! possible secret pair permutations on one unchanged
+ * chapter-wide pair alignment, rather than a subset of cipher keys.
+ * Native Shakespeare/Gibran/Emerson GP benchmarks are sampled with an
+ * independently fixed stride and word-preserving source orthography.
+ *
+ * @param {number[]} stream
+ * @returns {{unique:number,collisions:number,repeatedTypes:number,maxFrequency:number}}
+ */
+function fullPairCollisionCount(stream) {
+  assert.equal(stream.length % 2, 0);
+  const f = new Uint16Array(841);
+  for (let i = 0; i < stream.length; i += 2) f[stream[i] + 29 * stream[i + 1]]++;
+  let unique = 0, collisions = 0, repeatedTypes = 0, maxFrequency = 0;
+  for (const n of f) {
+    unique += n > 0 ? 1 : 0;
+    repeatedTypes += n >= 2 ? 1 : 0;
+    collisions += n * (n - 1) / 2;
+    maxFrequency = Math.max(maxFrequency, n);
+  }
+  return {unique, collisions, repeatedTypes, maxFrequency};
+}
+
+const originalPairs = fullPairCollisionCount(original);
+const rotatedPairs = fullPairCollisionCount([...original.slice(1), original[0]]);
+assert.deepEqual(originalPairs, {
+  unique: 518, collisions: 461, repeatedTypes: 218, maxFrequency: 6
+});
+assert.deepEqual(rotatedPairs, {
+  unique: 530, collisions: 417, repeatedTypes: 202, maxFrequency: 5
+});
+
+const languageSources = [
+  ['Shakespeare', 'resources/control/shakespeare_first300k.txt', 1021, 1687],
+  ['Gibran', 'resources/control/gibran_prophet_58585.txt', 289, 2025],
+  ['Emerson', 'resources/control/emerson_essays_2944.txt', 1515, 1784]
+];
+const pairPermutationA = 137, pairPermutationB = 251;
+let inversePermutationA = -1;
+for (let i = 1; i < 841; i++) {
+  if (pairPermutationA * i % 841 === 1) { inversePermutationA = i; break; }
+}
+assert(inversePermutationA > 0);
+
+/** @param {number[]} source @param {boolean} invert @returns {number[]} */
+function permuteAll841States(source, invert) {
+  const out = [];
+  for (let i = 0; i < source.length; i += 2) {
+    const n = source[i] + 29 * source[i + 1];
+    const y = invert ? ((n - pairPermutationB + 841) * inversePermutationA) % 841 :
+      (pairPermutationA * n + pairPermutationB) % 841;
+    out.push(y % 29, Math.floor(y / 29));
+  }
+  return out;
+}
+
+for (const [name, file, expectedWindows, expectedMinimum] of languageSources) {
+  const plain = sourceNativeGP(read(file));
+  let windows = 0, minimum = Infinity, maximum = -Infinity;
+  for (let start = 0; start + original.length <= plain.length; start += 211) {
+    const window = plain.slice(start, start + original.length);
+    const score = fullPairCollisionCount(window).collisions;
+    windows++;
+    minimum = Math.min(minimum, score);
+    maximum = Math.max(maximum, score);
+  }
+  assert.equal(windows, expectedWindows, name + ' window count');
+  assert.equal(minimum, expectedMinimum, name + ' minimum pair-repeat count');
+  assert(minimum > originalPairs.collisions && minimum > rotatedPairs.collisions);
+  const planted = plain.slice(0, original.length);
+  const encrypted = permuteAll841States(planted, false);
+  const recovered = permuteAll841States(encrypted, true);
+  assert.deepEqual(recovered, planted, name + ' arbitrary secret pair substitution positive control');
+  assert.deepEqual(fullPairCollisionCount(encrypted), fullPairCollisionCount(planted),
+    '841-state bijection preserves every pair repeat');
+  console.log(JSON.stringify({
+    kind: 'fixed-841-secret-bijection-native-control',
+    name, windows, nativeSourceRunes: plain.length,
+    minPairCollisions: minimum, maxPairCollisions: maximum,
+    plantedPairCollisions: fullPairCollisionCount(planted).collisions,
+    plantedRecovered: recovered.length
+  }));
+}
+
+console.log(JSON.stringify({
+  kind: 'all-stationary-pair-permutation-collision',
+  chapter: 'physical pp33-39', runeCount: original.length,
+  pairCount: original.length / 2, phaseZero: originalPairs,
+  rotatedOneRne: rotatedPairs,
+  mathematicalScope: 'Any static bijection of 841 complete GP29 pair states with one shared substitution table',
+  result: 'Original paired-symbol equality pattern is unlike all source-native English reference windows; every static 841-state substitution preserves it exactly.'
+}));
