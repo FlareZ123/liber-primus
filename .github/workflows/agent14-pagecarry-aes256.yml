@@ -10,5 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Original sixteen-lane word-order SFT
+        run: node sims/lp2_p15_sixteen_lane_wordlength_sft.cjs
       - name: Original page-carry AES256 full-corpus SFT
         run: node sims/lp2_pagecarry_grid32_aes256_ctr_sft.cjs
