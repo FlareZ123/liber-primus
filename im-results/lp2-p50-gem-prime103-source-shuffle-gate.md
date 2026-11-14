@@ -54,27 +54,36 @@ calibration. A single reproducible PRNG seed **0x33010331** feeds
 For each table, enumerate all simple directed three-cycles, count whether
 any spells G→E→M in cyclic reading order, and follow the exact source-selected
 one-based cell103 to test whether it actually reaches a GEM three-cycle.
+An additional, more conservative event allows **any English three-GP-rune
+word** as the reached cycle instead of postselecting GEM. The fixed
+[TextBlob English frequency source](../resources/control/english_wordfreq_textblob.txt)
+has **753 distinct three-rune sequences** under original-source-calibrated
+GP29 spelling including ING/IO contractions; GEM is one such sequence.
 
-| Null (100,000 each) | At least one three-cycle | GEM three-cycle anywhere | Cell103 reaches any three-cycle | Cell103 reaches GEM |
-| --- | ---: | ---: | ---: | ---: |
-| Global shuffle | 90,707 | 68 | 6,892 | **2** |
-| Within-row shuffle | 88,372 | 1,520 | 5,107 | **61** |
-| Within-column shuffle | 92,178 | 198 | 7,216 | **19** |
+| Null (100,000 each) | At least one three-cycle | GEM cycle anywhere | Start103 reaches any three-cycle | Start103 reaches GEM | Start103 reaches any GP-native English 3-rune word |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Global shuffle | 90,707 | 68 | 6,892 | **2** | **592** |
+| Within-row shuffle | 88,372 | 1,520 | 5,107 | **61** | **185** |
+| Within-column shuffle | 92,178 | 198 | 7,216 | **19** | **717** |
 
-The final event frequencies are **0.000020**, **0.000610** and **0.000190**
-in these *conditional artificial null families*. Existence of an ordinary
-three-cycle is commonplace; the particular GEM label and reachability from
-the dimension-selected cell are the unusual conjunction. Row conditioning
-increases the event rate considerably, which cautions against relying on
-the stronger global-shuffle estimate. A synthetic positive is unnecessary:
+The exact-GEM conjunction frequencies are **0.000020**, **0.000610**
+and **0.000190**, whereas accepting *any of 753 dictionary GP three-rune
+words* gives **0.00592**, **0.00185** and **0.00717**, respectively.
+These are *conditional artificial null frequencies*. Existence of an ordinary
+three-cycle is commonplace, and the more generous word criterion directly
+shows how a researcher-selected English label changes the apparent rarity.
+Row conditioning sharply increases the exact-GEM rate, further cautioning
+against relying on the strong global-shuffle estimate. A synthetic positive is unnecessary:
 the script reconstructs and asserts all five original cells and their
 exact graph links before simulating permutations.
 
 **Caveat on multiplicity:** GEM was *noticed in a searched graph*, the
 29q+r/keypad convention was investigator-selected, and the use of prime
 **ordinal** 103 rather than the literal dimension was also a researcher
-choice. The frequencies are **not corrected p-values** for trying many
-encodings, dimension readings, English words or navigational rules. The
+choice. Even the **any-word** frequencies are **not corrected p-values** for
+trying many encodings, image dimensions, starting coordinates or navigation
+rules. The dictionary adjustment covers label selection within one frozen
+GP29 English vocabulary, not the entire route search. The
 table is not assumed to have been randomly shuffled by its maker.
 Consequently this result raises a question worth testing historically,
 without statistically authenticating an intended instruction.
