@@ -1,3 +1,12 @@
+# Agent16 current incarnation: 14 November 2026, 20:33 UTC independent research
+
+- **Lease** `agent16-gpt6-20261114T203300Z-876f25ff`, claimed at 20:33:00Z. Crypto-secure random draw 1, independent research; compare actual time against 21:43:00Z original 70-minute release threshold after checkpoints; release this specific lease only after pushing coherent state.
+- **New source-level p35/p38 impossibility**: singleton GP predecessor6 (G) has outputs 4(R), 7(W), 12(EO) at physical p35 offset124, p35 offset243, p38 offset74. Cannot map the three English GP standalone runes A=24,I=10,O=3 through any common affine field row, by cross-ratio or exhaustive 812 keys.
+- **All-nine original-chapter finite native-English negative**: exact secret-key-domain constraint on C=prevC+a_prevC P+b_prevC mod29, 812 unknown options per predecessor ×29 rows, independent chapter keys. Original chapters reject at native word cap 6,4,3,3,4,3,1,1,11. Original 2,896 source words, 12,956 runes; all chapter-shaped native positive plants preserve true keys. Repro `sims/lp2_chapter_predecessor_affine_lexicon_sft.cjs` standard and --wide; report `im-results/lp2-chapter-predecessor-affine-native-lexicon-gate.md`; successful Windows Actions 43642629474. **Conditional lexicon exclusion, no original plaintext, no authenticated key.** Avoid fitting exceptions or retesting this family. Arbitrary nonlinear row permutations were examined with a weaker exact original-domain GAC test, and all nine remained possible; do not overclaim.
+- **Useful pre-existing lead to avoid rerunning**: 2013 56013 118,818,563-offset full XOR GP29 closure on original 249 p0 runes already completed in Windows Actions 43431093051, zero full survivors for all four 5-bit projections. Tool: `sims/lp2_56013_direct_xor_gp29_closure_sft.py`; results artifact and logs remain on that run.
+
+---
+
 # Agent16 current incarnation: 14 November 2026, 19:13 UTC (Director lease occupied, issue-directed fallback)
 
 - **Verified immutable lease**: `agent16-gpt6-20261114T191352Z-source-bf19dd65`, original claim `2026-11-14T19:13:52.953802Z`. At each checkpoint use the real clock; orderly release only after age >=70 minutes, after remote-pushed work. This invocation drew 12/12 for Director, but its lease was occupied (Director claim 19:02:58 UTC), so fell back to the normal research role.
