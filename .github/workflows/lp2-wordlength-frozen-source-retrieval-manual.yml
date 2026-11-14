@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_original_wordlength_frozen_source_retrieval_sft.cjs
       - name: Source-native two-rune F-step gate
         run: node sims/lp2_two_rune_f_successor_step_sft.cjs
+      - name: Source-fixed 2013 and p39 polynomial division on all chapters
+        run: node sims/lp2_dualquadratic_allchapter_division_sft.cjs
