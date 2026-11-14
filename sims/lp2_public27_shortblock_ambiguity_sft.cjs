@@ -2,8 +2,8 @@
 
 /**
  * Original-source SFT for the public November-2026 LP2 27x27 route.
- * Audits the 38 published MAIN ciphertext readings, and enumerates all
- * geometrically eligible three-rune nodes under the public phi/Mobius decoder.
+ * Enumerates all geometrically eligible source-key nodes and every possible
+ * two-rune plaintext against the 729 authentic original ciphertext cells.
  * Only finite geometry and two-rune ambiguity are evaluated. This does not
  * assert an unknown-page plaintext or a historical encryption key.
  *
@@ -54,86 +54,12 @@ function mu(n) {
 }
 
 /**
- * Exact coordinates and proposed outputs in 38 public Markdown walkthroughs,
- * ordered MAIN routes only; exclude optional alternative SOON in block 16.
- * Each row contains block number and one-based (r,c,plaintext-rune) readings.
- * The published cipher/math rows are linked in the accompanying source audit.
+ * This study begins after the independently committed original-cell coverage
+ * audit in sims/lp2_public27_original_cell_conflicts_sft.cjs. The published
+ * 38-block manifest is intentionally not duplicated here. The test below asks
+ * a different question: what does the proposed three-rune rule constrain when
+ * both the source node and the two-rune ciphertext position are unselected?
  */
-const publicMainRoute = `
-01|13:25:A,13:26:S,13:27:I,14:1:G,14:2:O,14:3:TH,14:4:E
-02|14:14:W,14:15:EA,14:16:TH,14:17:E,14:18:R
-03|14:19:T,13:19:U,12:19:R,11:19:N,10:19:S
-04|14:7:C,13:7:O,12:7:L,11:7:D
-05|26:19:I,26:18:M,26:17:A,26:16:Y
-06|19:16:C,18:16:R,17:16:Y
-07|11:16:N,12:17:O,13:18:W,14:19:TH,15:20:E
-08|15:20:I,16:19:D,17:18:EA
-09|18:15:O,18:16:F
-10|19:17:TH,19:16:E
-11|19:23:E,20:23:N,21:23:D
-12|21:9:I,21:10:S
-13|26:3:D,26:2:EA,26:1:TH
-14|25:16:S,26:15:E,27:14:E
-15|27:18:Y,26:17:O,25:16:U
-16|25:16:S,25:17:O,25:18:O,25:19:N
-17|25:25:TH,25:26:E,25:27:N
-18|22:21:TH,21:20:E
-19|21:4:C/K,20:4:E,19:4:Y
-20|18:7:I,19:6:S
-21|9:16:T,8:17:O
-22|9:20:G,9:21:O
-23|12:23:T,12:22:O
-24|9:19:TH,9:18:E
-25|14:24:EA,15:23:S,16:22:T
-26|6:12:O,7:13:F
-27|20:12:TH,20:13:E
-28|19:11:M,18:12:A,17:13:P,16:14:L,15:15:I,14:16:F,13:17:E
-29|18:11:M,18:12:A,18:13:Y
-30|25:12:B,26:11:E
-31|11:11:TH,11:12:E
-32|10:10:D,11:9:EA,12:8:TH
-33|12:18:O,12:17:F
-34|6:11:Y,6:12:O,6:13:U
-35|7:2:G,8:1:O
-36|27:1:D,27:2:O
-37|22:2:A,22:1:S
-38|5:17:I,6:17:A,7:17:S,8:17:C/K
-`.trim();
-
-const byCell = new Map();
-let readCount = 0;
-const lines = publicMainRoute.split('\n');
-assert.equal(lines.length, 38);
-for (const line of lines) {
-  const [blockText, entries] = line.split('|');
-  const block = Number(blockText);
-  for (const entry of entries.split(',')) {
-    const [rText, cText, plain] = entry.split(':');
-    const r = Number(rText), c = Number(cText);
-    assert.ok(Number.isInteger(r) && r >= 1 && r <= 27);
-    assert.ok(Number.isInteger(c) && c >= 1 && c <= 27);
-    assert.ok(plain.length > 0);
-    const id = 27 * (r - 1) + c - 1;
-    const v = byCell.get(id) || [];
-    v.push({block, plain});
-    byCell.set(id, v);
-    readCount++;
-  }
-}
-const reused = [...byCell.entries()].filter(([, assignments]) => assignments.length > 1);
-const conflicts = reused.filter(([, assignments]) =>
-  new Set(assignments.map((assignment) => assignment.plain)).size > 1);
-assert.equal(readCount, 115);
-assert.equal(byCell.size, 103);
-assert.equal(reused.length, 11);
-assert.equal(readCount - byCell.size, 12);
-assert.equal(conflicts.length, 9);
-const conflictCoords = conflicts.map(([id]) =>
-  String(Math.floor(id / 27) + 1) + ':' + String(id % 27 + 1)).sort();
-assert.deepEqual(conflictCoords, [
-  '12:17', '14:16', '14:19', '15:20', '18:16',
-  '19:16', '25:16', '26:17', '8:17'
-].sort());
 
 /** Count keys by their first two aligned GP29 indices. */
 const prefixCounts = new Int32Array(29 * 29);
@@ -208,13 +134,10 @@ assert.equal(prefixCounts[22 * 29 + 22], 22);
 
 console.log(JSON.stringify({
   sourceGrid: 'LP2 p0-2: 27x27, 729 original indices',
-  publicMainRoute: {blocks: 38, runeReadings: readCount, uniqueCells: byCell.size,
-    repeatedCells: reused.length, excessReadings: readCount - byCell.size,
-    conflictingPlaintextCells: conflicts.length, conflictingCellCoordinates: conflictCoords},
   threeRuneNodes: {geometricNodes, centerModeVariants: nodeModes,
     reachablePositiveKeyPrefixes: 784, totalPositiveKeyPrefixes: 784},
   twoRuneInverse: {directedNeighborPaths: neighborPairs.length,
     testedPlaintextPairs: 841, minMatchingPaths: min, maxMatchingPaths: max,
     exampleTHE: candidates(2, 18), publishedTHEAlternativeNodes: 22}
 }, null, 2));
-console.log('PASS: exhaustive original-source short-block ambiguity and public route cell reuse.');
+console.log('PASS: exhaustive original-source short-block ambiguity, all GP29 target pairs.');
