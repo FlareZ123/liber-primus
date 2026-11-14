@@ -117,6 +117,56 @@ assert.deepEqual(pointerWord,{
   originalWordIndex:2284,globalZeroBased:10175,
   originalRunes:"ᛈᚾᚹ",transliteration:"PNW",
 });
+// The selected three-rune word has an additional source-visible prime checksum.
+// This was noticed after PNW, so it is an exploratory cross-link, not a
+// statistically calibrated decipherment or a key instruction.
+const gpPrimes = corpus.prime;
+const primeSum = word => [...word].reduce((sum, rune) => {
+  const index = corpus.runes.indexOf(rune);
+  assert(index >= 0);
+  return sum + gpPrimes[index];
+}, 0);
+assert.equal(primeSum(pointerWord.originalRunes), 91);
+const threeRune91 = runicWords.filter(w =>
+  w.length === 3 && primeSum(w) === 91);
+assert.deepEqual(threeRune91.map(w =>
+  [...w].map(r => corpus.translit[corpus.runes.indexOf(r)]).join("")),
+  ["OTHNG", "WETH", "PNW"]);
+
+// The third original 2014 OpenPuff-recovered square has 91 in its centre.
+// This square predates the LP2 page delivery; equality alone does not choose
+// the square as a cipher key.
+const historicalSquares = fs.readFileSync(
+  "resources/cicada2014-openpuff-magic-squares.txt", "utf8").trim()
+  .split(/\r?\n\s*\r?\n/).map(block => block.trim().split(/\r?\n/)
+    .map(row => row.trim().split(/\s+/).map(Number)));
+assert.deepEqual(historicalSquares.map(square => square.length), [5, 7, 5]);
+assert.equal(historicalSquares[2][2][2], 91);
+
+// A single direct, clue-constrained consumer: use the checksum as the
+// one-based starting prime ordinal under p56's established phi-prime shift.
+// The original printed p42/p43 quotation is a 228-rune continuous source unit.
+// It stays ciphertext-like; no post-hoc clock, phase or F-skip is fitted.
+const quoteStart = 10211;
+const quoteEnd = 10439;
+const quotation = ciphertext.slice(quoteStart, quoteEnd);
+assert.equal(quotation.length, 228);
+const phi91 = quotation.map((_, i) => (nthPrime(91 + i) - 1) % 29);
+const dec91 = quotation.map((r, i) => (r - phi91[i] + 29) % 29);
+const add91 = quotation.map((r, i) => (r + phi91[i]) % 29);
+/** @param {number[]} runes @returns {number} */
+function ioc(runes) {
+  const counts = Array(29).fill(0);
+  for (const r of runes) counts[r]++;
+  return counts.reduce((s, count) => s + count * (count - 1), 0) /
+    (runes.length * (runes.length - 1));
+}
+assert(Math.abs(ioc(quotation) - 0.033542004791715) < 1e-12);
+assert(Math.abs(ioc(dec91) - 0.032653218950642) < 1e-12);
+assert(Math.abs(ioc(add91) - 0.035358219336888) < 1e-12);
+assert.deepEqual(dec91.map((r, i) => (r + phi91[i]) % 29), quotation);
+assert.deepEqual(add91.map((r, i) => (r - phi91[i] + 29) % 29), quotation);
+
 const threeRuneWords=runicWords.filter(w=>w.length===3).length;
 assert.equal(threeRuneWords,720);
 
@@ -132,6 +182,15 @@ console.log(JSON.stringify({
     seventeenthPosition:x.selected[16],sampledOriginalPositions:x.selected.map(y=>y.index)})),
   oneBasedSelectedPrintedWord:pointerWord,
   originalThreeRuneWordCount:threeRuneWords,
+  originalThreeRunePrimeSum91:threeRune91.length,
+  originalThreeRunePrimeSum91Words:threeRune91.map(w =>
+    [...w].map(r => corpus.translit[corpus.runes.indexOf(r)]).join("")),
+  historical2014ThirdSquareCentre:historicalSquares[2][2][2],
+  originalP42P43QuotationStartAndEnd:[quoteStart,quoteEnd],
+  p42P43PrimeOrdinal91OriginalInverse:{sourceIoC:ioc(quotation),
+    minusIoC:ioc(dec91),plusIoC:ioc(add91),
+    minusOpening:dec91.slice(0,30).map(r=>corpus.translit[r]).join(""),
+    plusOpening:add91.slice(0,30).map(r=>corpus.translit[r]).join("")},
   p42FirstQuotedRuneGlobalOffset:p42QuotationStart,
   p42QuoteDistanceFromExtrapolatedPointer:35,
   conclusion:"No readable original LP2 plaintext or key from the complete 17-symbol direct literal numeric-index extraction."
