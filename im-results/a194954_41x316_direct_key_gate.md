@@ -1,6 +1,6 @@
 # A194954 / 41×316 direct-key gate
 
-**Status (14 November 2026):** key-independent original-cipher exclusion of all **41 independently secret, stationary GP29 substitution alphabets** under each of two source-shaped 41×316 groupings, plus the earlier bounded negative for direct additive keys. This is a finite source-native-English-register result. No unknown LP2 plaintext, cipher key, or final destination recovered. The cross-round 41×316 selector is still hypothetical.
+**Status (14 November 2026):** key-independent original-cipher exclusion of **41 or 316 independently secret, stationary GP29 substitution alphabets** under all three source-shaped 41×316 row, column and opposite-orientation phase groupings, plus the earlier bounded negative for direct additive keys. This is a finite source-native-English-register result. No unknown LP2 plaintext, cipher key, or final destination recovered. The cross-round 41×316 selector is still hypothetical.
 
 ## Hypothesis tested
 
@@ -49,31 +49,32 @@ The result rejects these direct additive interpretations of the 41×316 structur
 
 ## Any secret alphabet per row or column: key-independent original-cipher gate (14 November)
 
-The previous direct-key negative still left a stronger and genuinely different model open: **each one of the 41 classes may have its own wholly secret permutation of all 29 runes**. This includes all Caesar/Vigenère shifts, secret arbitrary static substitution alphabets, source-derived or unknown 41-symbol seed schedules, and different alphabet choices per class. A fixed classwise permutation cannot change how often two symbols in that class are equal; no key search is required.
+The previous direct-key negative still left a stronger and genuinely different model open: **each one of the 41 or 316 position classes may have its own wholly secret permutation of all 29 runes**. This includes all Caesar/Vigenère shifts, secret arbitrary static substitution alphabets, source-derived or unknown 41-symbol seed schedules, and different alphabet choices per class. A fixed classwise permutation cannot change how often two symbols in that class are equal; no key search is required.
 
 Flatten the 55 rune-bearing, still-unsolved physical LP2 pages p0–55 in original reading order, omitting runeless p50, for exactly **12,956 GP29 runes**. The source-shaped partitions are:
 
 - **Contiguous rows:** 41 consecutive blocks of 316 runes, class `floor(i/316)`.
-- **Interleaved columns:** 41 residue classes `i mod41`, each holding 316 runes. This covers a period-41 secret alphabet and the opposite 316×41 orientation.
+- **Opposite-orientation 41 phases:** 41 residue classes `i mod41`, each holding 316 runes. This covers a period-41 secret alphabet and a 316×41 transposed reading.
+- **Actual 41×316 matrix columns:** 316 residue classes `i mod316`, each holding 41 runes. This stronger alternative permits **316 independently unknown alphabet permutations**, one for each real column; it was not covered by the earlier 41-phase screen.
 
 For each class `g` and GP29 symbol `a`, let `n[g,a]` count its observed appearances. The exact key-independent invariant is
 
 `Q = sum_g sum_a n[g,a] * (n[g,a]-1) / 2`.
 
-A bijection of the 29 symbol labels within class `g` merely permutes the 29 frequencies, leaving `Q` unchanged, regardless of the hidden alphabet order or source of its key. Each geometry has exactly `41 * choose(316,2) = 2,040,570` comparable position pairs.
+A bijection of the 29 symbol labels within class `g` merely permutes the 29 frequencies, leaving `Q` unchanged, regardless of the hidden alphabet order or source of its key. The first two geometries have `41 * choose(316,2) = 2,040,570` comparable position pairs; the 316-column geometry has `316 * choose(41,2) = 259,120`. The different denominators must be used when comparing collision fractions.
 
-| Original input or GP29 plaintext reference | Windows checked | Contiguous-row equal pairs | Interleaved-column equal pairs |
-| --- | ---: | ---: | ---: |
-| **Original unknown LP2, unchanged** | 1 | **69,661** | **70,220** |
-| Shakespeare source-native GP29 | 32 | **119,491–126,174** | **117,225–125,113** |
-| Gibran source-native GP29 | 8 | **122,916–125,401** | **120,924–123,464** |
-| Emerson source-native GP29 | 48 | **124,012–129,178** | **123,151–128,299** |
+| Original input or GP29 plaintext reference | Windows checked | 41 contiguous rows | 41 interleaved phases | **316 actual columns** |
+| --- | ---: | ---: | ---: | ---: |
+| **Original unknown LP2, unchanged** | 1 | **69,661** | **70,220** | **8,916** |
+| Shakespeare source-native GP29 | 32 | **119,491–126,174** | **117,225–125,113** | **14,850–15,928** |
+| Gibran source-native GP29 | 8 | **122,916–125,401** | **120,924–123,464** | **15,538–15,866** |
+| Emerson source-native GP29 | 48 | **124,012–129,178** | **123,151–128,299** | **15,700–16,373** |
 
-All 88 frozen original-length, half-overlapping source-native controls exceed the exact original-invariant bounds under both partitions. The closest control still exceeds the original by **47,005 equal-symbol pairs** (the minimum interleaved Shakespeare 117,225 versus observed 70,220); the contiguous-row minimum margin is **49,830 pairs**. Original equal-pair fractions are **0.03413801046** (rows) and **0.03441195352** (columns), versus control minima **0.05855765791** and **0.05744718388** respectively. The controls use the established LP1 GP spelling convention `QU→CW, V→U, K/Q→C, Z→S, ING→ᛝ, IO→ᛡ`; exact corpus path, source lengths and sliding-window step 6,478 are frozen in the reproducer.
+All 88 frozen original-length, half-overlapping source-native controls exceed the exact original-invariant bounds under **all three partitions**. The closest 41-phase control exceeds original by **47,005 equal-symbol pairs** (minimum interleaved Shakespeare 117,225 versus original 70,220), and the 41-row minimum margin is **49,830 pairs**. The newly covered 316-secret-column family still has a strict gap of **5,934 equal pairs** (closest Shakespeare 14,850 against original 8,916). Original equal-pair fractions are **0.03413801046** (rows), **0.03441195352** (41 phases), **0.03440876814** (316 columns); the corresponding control minima are **0.05855765791**, **0.05744718388**, and **0.05730935474**. The controls use the established LP1 GP spelling convention `QU→CW, V→U, K/Q→C, Z→S, ING→ᛝ, IO→ᛡ`; exact corpus path, source lengths and sliding-window step 6,478 are frozen in the reproducer.
 
-**Completeness and positive control.** The result grants **every possible secret substitution permutation per one of 41 classes**, far beyond the fixed keys tested earlier. The new CommonJS [original-source SFT](../sims/lp2_41x316_allsecret_capacity_sft.cjs) asserts source-original counts and every control range, then applies 41 different invertible affine GP29 maps `E_g(x)=7x+3g+5 mod29` to held-out native-GP plaintext, recovers it exactly using inverse `7^(−1)=25 mod29`, and verifies the equality-pair invariant is preserved. This checks the architecture and decoder independent of any original ciphertext. The key-independent bound itself does not need those planted keys.
+**Completeness and positive control.** The result grants **every possible secret substitution permutation per class, including all 316 independent column alphabets**, far beyond the fixed keys tested earlier. The CommonJS [original-source SFT](../sims/lp2_41x316_allsecret_capacity_sft.cjs) asserts original counts and every control range, then applies independently indexed invertible affine GP29 maps `E_g(x)=7x+3g+5 mod29` to held-out native-GP plaintext under **all three geometries**, recovers it exactly using inverse `7^(−1)=25 mod29`, and verifies the equality-pair invariant is preserved. This checks the architecture and decoder independent of any original ciphertext. The key-independent bound itself does not need those planted keys.
 
-**What is excluded:** a 41×316 source-shape cipher using one fixed-position, **one-to-one GP29 substitution independently per row or column** and producing any of the 88 source-native English control windows as its original-length plaintext. No unknown permutation choice can avoid the contradiction.
+**What is excluded:** a 41×316 source-shape cipher using one fixed-position, **one-to-one GP29 substitution independently per row, one of 316 true columns, or one of 41 transposed phase classes**, and producing any of the 88 source-native English control windows as its original-length plaintext. No unknown permutation choice can avoid the contradiction.
 
 **What survives:** a transposition or other rearrangement between positions, changing alphabet within a class, state feedback using previous symbols, non-English/encoded plaintext, or a separately supported variable-word-length transport. These models have different invariants and cannot be dismissed by this test. The 41×316 geometry remains a retrospective cross-round association: this mathematical exclusion is conditional on the partition and on the finite tested English-register controls. It neither proves the historical authors used this shape nor recovers a single unknown plaintext rune.
 
@@ -87,7 +88,7 @@ The 2016 43-word count and A194954(12)=43 / final key-ID selection remain an int
 
 ## Decision
 
-Do not repeat direct period-41 additive, 41×316 row-wise Caesar, key-order shuffles or any search for wholly secret **stationary per-class GP29 substitutions** under the two fixed original-input partitions. A key-independent original-invariant contradiction already covers every member of that substitution family against all 88 source-native English controls. The remaining useful question is whether the selected words' *meaning* and the original p57 page's two-dimensional word layout source-select a different, reversible state-changing operation or a unique route through the 2014 square. Freeze that operation from a fresh original clue before evaluating more original ciphertext.
+Do not repeat direct period-41 additive, 41×316 row-wise Caesar, key-order shuffles or any search for wholly secret **stationary per-class GP29 substitutions** under all three fixed original-input partitions. A key-independent original-invariant contradiction already covers every member of that substitution family against all 88 source-native English controls. The remaining useful question is whether the selected words' *meaning* and the original p57 page's two-dimensional word layout source-select a different, reversible state-changing operation or a unique route through the 2014 square. Freeze that operation from a fresh original clue before evaluating more original ciphertext.
 
 ## Sources and supporting work
 
