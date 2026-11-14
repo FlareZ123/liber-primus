@@ -216,6 +216,55 @@ const planted = knownNative.map((v, i) => mod29(v + key[i]));
 assert.deepEqual(planted.map((v, i) => mod29(v - key[i])),
   knownNative);
 
+// Cross-chapter five-of-ten hypothesis, deliberately narrow: the 2013
+// Cicada Shamir threshold was five, and exactly five 76-symbol source
+// lanes can be laid out from 3 p27 tapes + p50's 32x8 perimeter + p55.
+// The original p50 perimeter is 76 *bytes*, not a GP29 share; byte
+// modulo 29 is an explicitly hypothesized, unauthenticated transport.
+const grid = JSON.parse(fs.readFileSync(path.join(root,
+  "resources/liber-primus/lp2-grid-256.json"), "utf8"));
+assert.equal(grid.bytes.length, 256);
+const rows = Array.from({length: 32},
+  (_, r) => grid.bytes.slice(8 * r, 8 * r + 8));
+const outer76 = [...rows[0], ...rows.slice(1, 31).map(row => row[7]),
+  ...rows[31].slice().reverse(),
+  ...rows.slice(1, 31).reverse().map(row => row[0])];
+assert.equal(outer76.length, 76);
+const fiveSourceLanes = [...tapes, outer76.map(v => v % 29), p55];
+const shamir5Coeffs = [5, -10, 10, -5, 1];
+/** @param {number[][]} lanes */
+function interpolateFive(lanes) {
+  return Array.from({length: 76}, (_, i) => mod29(
+    shamir5Coeffs.reduce((sum, weight, j) =>
+      sum + weight * lanes[j][i], 0)));
+}
+const shamir5Recovered = interpolateFive(fiveSourceLanes);
+assert(Math.abs(ioc(shamir5Recovered) - 0.030526315789473683) < 1e-14);
+assert.equal(shamir5Recovered.filter(v => v === 18).length, 3);
+assert.equal(shamir5Recovered.slice(0, 16)
+  .map(i => corpus.translit[i]).join("."),
+"S.NG.H.P.U.EO.OE.W.N.S.S.I.C.NG.E.F");
+// Positive with authentic clear p57 as the degree-0 polynomial term.
+// Arbitrary fixed degree 1..4 coefs generate five true GP29 shares.
+const plantedFive = Array.from({length: 5}, (_, k) =>
+  Array.from({length: 76}, (_, i) => {
+    const x = k + 1;
+    return mod29(knownNative[i] +
+      (i + 1) * x + (2 * i + 3) * x ** 2 +
+      (3 * i + 5) * x ** 3 + (4 * i + 7) * x ** 4);
+  }));
+assert.deepEqual(interpolateFive(plantedFive), knownNative);
+const fiveLaneRimShamir = {
+  originalSourceLengths: fiveSourceLanes.map(v => v.length),
+  sourceRimWidth: 32, sourceRimHeight: 8,
+  p50RimByteToGP: "byte mod 29 is hypothesized, not source-authorized",
+  interpolatedPlaintextIoC: ioc(shamir5Recovered),
+  interpolatedPlaintextECount: 3,
+  opening16: shamir5Recovered.slice(0, 16)
+    .map(i => corpus.translit[i]).join("."),
+  genuineP57First76PositiveExact: true
+};
+
 console.log(JSON.stringify({
   classification: "source-length candidate with negative literal consumers; no plaintext",
   originalPages: [27, 55],
@@ -242,6 +291,7 @@ console.log(JSON.stringify({
     remainingBits: bits.slice(376)
   },
   fixedShamirAffineFourthShare: shamirAffineGate,
+  fiveLaneRimShamir,
   historicalBase29XorByte: {
     width: 47,
     printableBytes: printable(base29RecoveredBytes),
