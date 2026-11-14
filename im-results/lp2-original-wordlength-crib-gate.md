@@ -49,6 +49,23 @@ The [new one-file Windows Node22 test](../sims/lp2_blake_2012_heaven_hell_origin
 
 Across all **2,896 authentic unknown LP2 printed words**, exactly **13** seven-word source-size matches exist, with **maximum eight** words (p46 matches “BUT WHEN HE HAS DONE THIS LET HIM”). The exact >=10-word candidates count is **zero**. The separate fully indexed **15-word, at most two rune-word-length substitutions** screen checks **2,678** candidate alignments and finds **zero** matches. No authentic unknown plaintext or candidate key was obtained. This excludes long *verbatim English quotation from this Gutenberg edition under unchanged printed LP2 word breaks*, and leaves source-specific hidden key extraction, passage paraphrase, and different GP spelling untested. The plausible literary echo alone cannot specify where in Blake or which cipher to apply.
 
+### One inserted original ciphertext rune per printed word: independently selected plaintext origins (Agent 10, 14 November)
+
+A stronger adversarial crib screen now permits a **word-local extra cipher rune**, potentially needed if the unknown pages use a reversible stuffing/escape layer. This is a cryptanalytic hypothesis, not an established LP2 operator. It preserves actual original printed word boundaries and original word order, and requires **every unknown ciphertext word length to equal the native GP29 source-word length or that length plus one**. The search indexes the 2,896 original unknown printed words in eight-word windows and enumerates all **256** possible zero/one length masks for each source eight-word window, extending each hit to its maximal original run. No ciphertext rune values, inferred plaintext letters, insertion locations, or keys are fitted.
+
+The [reusable Blake source SFT](../sims/lp2_blake_2012_heaven_hell_original_crib_sft.cjs) passes the genuine 20-word/95-rune p57 control after **ten artificial single-rune word insertions**. On the actual 4,651-word *Marriage of Heaven and Hell*, 558 exact eight-word masked candidate seed hits yield a **maximum twelve consecutive words** and **zero runs of at least 24** ([Windows run 43613728819](https://github.com/FlareZ123/liber-primus/actions/runs/43613728819)). The 12-word maximum arises on p9 and p29 with no demonstrated full-rune cipher inverse. A length-only 12-word match after 256 alternatives per window is insufficient evidence of original plaintext.
+
+The [independent historical-source runner](../sims/lp2_firstparty_wordpad_original_crib_sft.cjs) applies the **same frozen operation** to four different already-present first-party puzzle corpora: the editor-normalized solved-LP1 page text and all three books-of-the-law chapters actually used as Cicada's 2013 book code. [Passing Windows run 43614450336](https://github.com/FlareZ123/liber-primus/actions/runs/43614450336):
+
+| Existing source | Actual GP word tokens | Masked eight-word seed hits | Longest exact zero/one length alignment | At least 24 aligned words |
+| --- | ---: | ---: | ---: | ---: |
+| Solved LP1 prose, current source normalization | 751 | 105 | **11** | **0** |
+| Original 2013 Book of the Law I | 1,897 | 496 | **13** | **0** |
+| Original 2013 Book of the Law II | 1,968 | 485 | **12** | **0** |
+| Original 2013 Book of the Law III | 2,002 | 347 | **12** | **0** |
+
+This rules out **long verbatim reuse from those exact source registers if the only formatting change is zero or one inserted cipher rune per word and no word resegmentation**. It cannot rule out modernized spellings, paraphrases, language changes, one-rune deletions, independently authored unknown plaintext, a different source, or a wholly different segmentation algorithm. The tests recover no original unknown-page plaintext, reversible key schedule or source-selected inserted-rune position. The prior no-insertion screen and its null controls remain a separate, narrower experiment.
+
 ### Converting a length match into an executable key candidate
 
 The reproducer now exports **encodeGP** and **keyFromCrib**. For a matched source phrase it converts the proposed plaintext words into original 2013 GP29 symbol indices (including documented K/C, Z/S, V/U and NG/ING spelling aliases and the attested solved-LP1 QU→KW spelling) and aligns each rune to the original printed ciphertext. It yields the exact **candidate additive key stream** K[i] = C[i] − P[i] (mod 29). Unsupported standalone Q, incompatible transcription, or unequal total rune count returns no key. This is a direct way to carry a newly discovered long source quote into an independent key-reuse or cipher-mechanism prediction without retroactively choosing the plaintext.
