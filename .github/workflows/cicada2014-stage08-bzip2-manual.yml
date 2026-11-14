@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Pin repository commit and source tree for reproducible audits
+        run: echo "SOURCE_HEAD=$(git rev-parse HEAD) SOURCE_TREE=$(git rev-parse HEAD^{tree})"
       - name: Audit archived bzip2 members and original signed output
         run: python sims/cicada2014_stage08_bzip2_member_sft.py
       - name: Audit source-authentic JPEG and MP3 daughter files
