@@ -47,9 +47,19 @@ Keep the red triad's high-first divisor `[15,5,27]` and the original 277-rune p2
 
 Both original inverses exactly reencrypt **275/275** quotient runes and reconstruct all **277/277** physical p29 cipher runes on multiplication by the source G polynomial. Each also decrypts a separate **275-rune source-native plant** generated from independently solved p57 prose, recovering every rune. The original outputs, including each complete 55-rune segment, remain nonlinguistic. In particular, the exact **fivefold repetition** does not recover an authentic key or an unknown plaintext block.
 
+### All-secret five-share linear combination: 55 held-out Parable interiors
+
+A second, stronger route treats the **five consecutive 55-rune quotient slices** as five ciphertext shares and p57's **55 independently clear interior runes** as a possible known target. Instead of guessing one Shamir interpolation point or specific five-row sum, **allow every fixed affine GP29 combination**, including a free constant:
+
+`T_j = b + a_0 Q_j + a_1 Q_{55+j} + a_2 Q_{110+j} + a_3 Q_{165+j} + a_4 Q_{220+j} (mod29)`, for all `j=0..54`.
+
+The six coefficients are completely secret and arbitrary over `GF(29)`, hence **29^6 possible keys** are covered by exact linear elimination with no enumerated-key scoring. The original coefficient matrix has rank **6**, but appending the actual p57 source target raises the rank to **7**. A six-pivot solution fits the six determining positions and only one other, **7/55**; the remaining **48 independently known positions** contradict every possible coefficient assignment. The fixed first-pivot representative is `[b,a0,a1,a2,a3,a4]=[21,1,10,1,20,10]`, with matching source positions `[0,1,2,3,4,5,33]`. A wholly independent **55-position planted** affine share transform with coefficients `[2,3,5,7,11,13]` is recovered **55/55** and has rank6 with zero contradictions.
+
+This proves a more general, **key-independent exclusion**: no identical six-parameter affine combination of the **five exact p29 quotient rows** can yield the **55 known p57 word-interior runes**, even under fully secret coefficients. It does not prove the pages share a message; such an identification remains unprinted, and a nonlinear/nonstationary encoder has not been tested. The same standalone SFT recomputes both ranks and the full positive plant on original materials, passing [Windows Node22 run 43578106085](https://github.com/FlareZ123/liber-primus/actions/runs/43578106085).
+
 **Decision:** The simple `p57 strict interiors → 55-period GP29 additive key → p29 275-rune G quotient` is now tested and negative in both fixed signs. Its source-visible lengths are a useful independently testable linkage, but after the failed original inverses they do **not** justify fitting a secret phase, arbitrary letter mapping, additional cipher layer or p29 plaintext crib. This is limited to a fixed repeating GP29 key on the exact G quotient; no different prospective historical cipher is ruled out.
 
-[Read-only standalone CJS SFT](../sims/lp2_p29_275_parable55_direct_key_sft.cjs) · [Passed original-repository Windows Node22 run 43577713509](https://github.com/FlareZ123/liber-primus/actions/runs/43577713509).
+[Read-only standalone CJS SFT](../sims/lp2_p29_275_parable55_direct_key_sft.cjs) · [Passed fixed-sign original-repository Windows Node22 run 43577713509](https://github.com/FlareZ123/liber-primus/actions/runs/43577713509).
 
 ## Decision and reproducibility
 
