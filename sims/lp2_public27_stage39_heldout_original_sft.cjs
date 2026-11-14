@@ -5,9 +5,12 @@
  * on the original unchanged 729-rune pp0-2 ciphertext, with a frozen
  * source-native GP wordlist. No plaintext or key is fitted to prior stages.
  *
- * This is a test of the 2026 third-party model, NOT of a Cicada-authored
- * rule. The 38-stage prefix and outgoing predictions were chosen by that
- * project's author, and key/coordinate choice after them is unfixed.
+ * This tests the FORWARD horizontal source-key order, a strict subset of the
+ * third-party model's both-source-orientations stage39 forecast. A prior
+ * exhaustive both-orientations test is sims/external27_block39_complete_gate.cjs
+ * (21,818 candidate placements). This smaller, independently frozen subset
+ * yields a same-ciphertext, multiple-plain-words ambiguity certificate.
+ * Neither the 38-stage prefix nor its forecast is Cicada-authenticated.
  *
  * SFT: node sims/lp2_public27_stage39_heldout_original_sft.cjs
  */
@@ -144,6 +147,8 @@ for (const node of nodes) {
         const col = 17 + dc * ray;
         if (row < 1 || row > 27 || col < 1 || col > 27) continue;
         if (row % 2 !== 1 || col % 2 !== 0) continue;
+        // Report 11's local Direct leftmost-mode filter.
+        if (mu(n1(row, col)) === -1) continue;
         for (const stepRow of [-1, 1]) {
           for (let length = 3; length <= 27; length += 2) {
             const endRow = row + stepRow * (length - 1);
@@ -182,30 +187,30 @@ for (const node of nodes) {
 
 assert.equal(nodes.length, 86);
 assert.equal(vocabulary.size, 4988);
-assert.equal(completePlacements, 13790);
-assert.equal(placementsLengthAtLeast5, 10636);
-assert.equal(matches.length, 25);
+assert.equal(completePlacements, 10909);
+assert.equal(placementsLengthAtLeast5, 8602);
+assert.equal(matches.length, 19);
 const sameCells = matches.filter((m) =>
   m.row === 5 && m.col === 20 && m.stepRow === -1 && m.length === 3
 );
 const words = new Set(sameCells.map((m) => m.word));
-assert.ok(words.has('how') && words.has('aim'));
+assert.ok(words.has('how') && words.has('aim') && words.has('row'));
 const longer = matches.filter((m) => m.length >= 5);
 assert.equal(longer.length, 1);
 assert.equal(longer[0].word, 'making');
 assert.deepEqual(longer[0].key, [2, 19, 21]);
 assert.deepEqual(longer[0].ciphertext, [21, 14, 26, 12, 11]);
 assert.deepEqual(longer[0].plaintext, [19, 24, 5, 10, 21]);
-for (const word of ['how', 'aim']) {
+for (const word of ['how', 'aim', 'row']) {
   const entry = sameCells.find((m) => m.word === word);
   assert.deepEqual(entry.ciphertext, [26, 27, 17]);
-  assert.deepEqual(entry.plaintext, word === 'how' ? [8, 3, 7] : [24, 10, 19]);
-  assert.deepEqual(entry.key, word === 'how' ? [18, 24, 10] : [2, 17, 27]);
+  assert.deepEqual(entry.plaintext, word === 'how' ? [8, 3, 7] : word === 'aim' ? [24, 10, 19] : [4, 3, 7]);
+  assert.deepEqual(entry.key, word === 'how' ? [18, 24, 10] : word === 'aim' ? [2, 17, 27] : [22, 24, 10]);
 }
 
 console.log('PASS: original 729 cipher cells; 86 eligible original source-node/mode choices');
-console.log('PASS: 13,790 forecast-compatible source/path placements, 10,636 length>=5');
-console.log('PASS: 25 source-native frequency>=20 English word hits across 4,988 GP spellings');
-console.log('PASS: same original Y-IA-B segment decodes both HOW and AIM under distinct source nodes');
+console.log('PASS: 10,909 FORWARD-source-ordered forecast-compatible source/path placements, 8,602 length>=5');
+console.log('PASS: 19 source-native frequency>=20 English word hits across 4,988 GP spellings');
+console.log('PASS: same original Y-IA-B segment decodes HOW, AIM and ROW under distinct source nodes');
 console.log('PASS: unique >=5-rune dictionary output is conditional MACING (MAKING), 5 runes');
-console.log('No uniquely selected stage39 key, no original author-authenticated plaintext, no full inverse.');
+console.log('Subset of prior full 21,818-placement stage39 gate; no uniquely selected stage39 key, authenticated plaintext or full inverse.');
