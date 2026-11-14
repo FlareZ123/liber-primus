@@ -35,7 +35,7 @@ The four allowable ciphertext poles are `{10,12,24,4}`, fixed **before** reading
 Therefore for **every** possible choice of the four projective alphabets, including an unknown secret choice at every single source position that depends on *all past or future plaintext and ciphertext*, the exact count bound is
 
 ```text
-plaintext word breaks <= count(C in {7,14,13,3}) = 1,776
+plaintext word breaks <= count(C in {10,12,24,4}) = 1,776
 original printed between-word breaks = 2,895
 necessary deficit = 2,895 - 1,776 = 1,119
 ```
