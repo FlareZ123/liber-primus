@@ -15,6 +15,8 @@ The complete 7,136-record original fixture parses as:
 | ahmia.hiddenwebsitepopularity | **1,391** | Original clicks and public backlink counts, without target links |
 | Other administrative/session/site records | **101** | Framework objects unrelated to cipher text |
 
+The fixture's `md5` field hashes the **onion hostname**, not a 2014 HTTP entity body: the author’s [June 2014 `ahmia/models.py`](https://github.com/juhanurmi/ahmia/blob/7db4e805c072ff3e133aaab174815aaa1abb86d6/ahmia/models.py) documents `hashlib.md5(url[8:-1])`; applying MD5 to the positive-control literal `3g2upl4pq6kufc4m.onion` yields `08194edddf09feeb6cc1d435d32a424a`, exactly its stored `md5` field. The 1,410 MD5 strings cannot be treated as preserved webpage hashes or clues to the original p56 128-hex content digest.
+
 Every one of the 1,410 host keys has description records. Among 4,234 descriptions, **3,582 titles are nonempty** and **894 distinct nonempty title strings** occur. Original ahmia.hiddenwebsite records have updated dates between **17 May and 10 June 2014**; their seenOnline fields range between **17 May 2014 20:09:58** and **8 June 2014 08:53:10**. The description model includes older records beginning 2013. These are dated **database observations**, not authenticated raw HTTP entity response capture times. A known contemporaneous positive coverage control is DuckDuckGo v2 onion **3g2upl4pq6kufc4m.onion**, seenOnline on **4 June 2014 at 20:06:53**.
 
 ### Exact historical-LP2 queries
