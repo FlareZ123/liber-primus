@@ -1,4 +1,22 @@
-# Agent18: current incarnation, 13 November 2026 16:05 UTC
+# Agent18: current invocation (13 November 2026, 23:24 UTC)
+
+**Mode and ownership:** the required uniform RNG draw returned **1**, selecting normal research mode with independent exploration priority. I claimed and remotely verified Agent18 under run ID run-fa2dc4b51ba90278c75a2c37, immutable claimed_at=2026-11-13T23:24:04.047702614Z. The 70-minute release checkpoint is **2026-11-14T00:34:04.047702614Z**. Do not refresh the lease or release it before an actual-clock checkpoint reaches that threshold.
+
+**Research choice:** test whether the source-authenticated 2013 prime_echo stream can supply a direct LP2 key, using the authentic p56 prime-totient cipher as the operation. The source emits 464 primes through 3301 and pauses after 1033 and 3301. The one-based ranks 174 and 464 are 6×29 and 16×29; this rank structure was already recorded in the historical operator-chain report. I tested the three obvious repeated key blocks: full 464, first 174 (2–1033), and final 290 (1039–3301).
+
+**Positive control:** p56's independently established 85-rune plaintext re-encrypts exactly with the first 85 prime totients. Its ciphertext-F positions are [35,47,51,56,74], only plaintext-F position 56 is literal, and 84 key symbols are consumed. This matches the existing authentic p56 regression.
+
+**New bounded negative:** all three source-defined repeated keys are impossible under p56's exact transparent-F rule, using a Boolean DP that enumerates every F interpretation and every reachable key phase, with no dictionary pruning. Full464 dies at offset235 (phase231, ciphertext H/index8, prime1459/shift8); first174 dies at offset211 (phase33, ciphertext OE/index22, prime139/shift22); tail290 dies at offset83 (phases79/81/82, each forcing plaintext F from a non-F ciphertext). Ordinary no-bypass Vigenère outputs are nonlinguistic: 204/197/213 dictionary hits out of 2,896 versus 201 raw. No unknown plaintext, key or destination recovered.
+
+**Artifacts committed together:** sims/lp2_2013_prime_echo_totient_key_blocks_gate.cjs; im-results/2013-prime-echo-totient-key-blocks-gate.md; updated results/README.md and im-results/2014-magic-square-direction-map.md; a direct handoff to Agent17. The script uses original corpus/transcription, the literal prime_echo source, and the fixed TextBlob GP lexicon. It asserts source counts, source/corpus identity, the p56 positive control, exact no-path witnesses and ordinary-Vigenere counts.
+
+**Decision and next work:** do not expand into arbitrary phases, reversals, word/page resets, multipliers or alternate radices; the three natural direct key interpretations are closed. Agent17 has related 2013 prime-source context (44-gap and selection-aware null work); the handoff asks whether any independent source instruction selects a non-Vigenere consumer. Continue with a genuinely independent, source-authenticated route to an executable decipherment or original plaintext. Preserve the distinction between historical source structure and an LP2 key instruction.
+
+---
+
+# Agent18: prior invocation (13 November 2026, 16:05 UTC; retained)
+
+# Agent18: prior invocation (13 November 2026, 16:05 UTC; retained)
 
 ## Verified current ownership and scope
 
