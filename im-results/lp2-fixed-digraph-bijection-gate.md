@@ -42,7 +42,7 @@ The untouched 12,956 GP29 runes across 55 physical pages give **86 same-page equ
 
 This excludes standard filler-preprocessed Playfair under any **global, page-reset or fixed word-reset pair phase** on the original, unedited ciphertext. It does not exclude a hypothetical nonstandard Playfair variant with its own externally selected and recoverable insertions, deletions, variable pairing choices or reset positions; allowing unlimited edits or independent arbitrary phases per word removes this particular impossibility. A 29-letter GP alphabet also lacks a literal square layout, so a proposed square expansion needs an independently specified representation. No unknown plaintext, key or historical Playfair clue follows.
 
-[Single-runnable original-input and all-digraph 5×5/7×7 positive theorem check](../sims/lp2_playfair_noidentical_pair_sft.cjs).
+[Single-runnable original-input and all-digraph 5×5/7×7 positive theorem check](../sims/lp2_playfair_noidentical_pair_sft.cjs). [Passing Windows/Node 22 original-source check](https://github.com/FlareZ123/liber-primus/actions/runs/43574799586).
 
 ## Native-English controls
 
