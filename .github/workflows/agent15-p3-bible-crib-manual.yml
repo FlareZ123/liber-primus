@@ -1,0 +1,19 @@
+name: Agent15 source-dated p3 Acts24 Bible crib original gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p3-scripture:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify p3 source-anchored Biblical crib and unguessed word continuation
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_p3_acts243_bible_crib_sft.cjs
+          node sims/lp2_2014_p3_acts243_bible_crib_sft.cjs
