@@ -24,3 +24,4 @@ jobs:
           node sims/lp2_2015_2016_frozen_6_artifact_retrieval_sft.cjs
           node sims/lp2_2015_wiki_fib4_original_acquisition_sft.cjs
           node sims/lp2_2015_wiki_fib4_three_comment_pages_sft.cjs
+          node sims/lp2_2015_etherpad_x29_three_rev_acquisition_sft.cjs
