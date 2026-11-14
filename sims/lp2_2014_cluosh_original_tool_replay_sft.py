@@ -118,17 +118,19 @@ def main() -> None:
             tool.update()
             p = primes(len(ciphertext))
             key = tool.key_from_primes(p)
-            assert len(key.split("-")) == len(ciphertext)
+            assert len(key.split("-")) == len(ciphertext) + 1
             four = tool.vigenereTry(keyword=key, max_displayed_chars=len(ciphertext))
             assert len(four) == 4
-            # One character x comes from the historical key_from_primes
-            # collision of -1 key sentinel and prime29's q%29-1 == -1.
-            assert four[0].split().count("x") == 1
+            # The historical prime29 yields -1 in a hyphen-delimited key.
+            # VigenereTry splits --1 into empty and 1, silently mapping
+            # the -1 intended residue to +1 at local index9.
+            assert key.split("-")[9:11] == ["", "1"]
+            assert four[0].split().count("x") == 0
             candidate = [(ciphertext[i] - ((p[i] - 1) % 29)) % 29
                          for i in range(len(ciphertext))]
             variants.append({
                 "register": label, "runes": len(ciphertext),
-                "prime_source_key_missing_29th_prime_at_index": 9,
+                "prime_source_key_minus1_misparsed_as_plus1_at_index": 9,
                 "direct_prime_key_ioc": round(index_of_coincidence(candidate), 10),
                 "first_32_direct": "".join(corpus["translit"][x] for x in candidate[:32]),
                 "historical_four_vigenere_views": len(four),
