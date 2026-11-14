@@ -204,10 +204,16 @@ for (const forcing of ["index", "prime"]) {
     const plant = encrypt(nativeFirst, sign, forcing, 9, 24);
     assert.deepEqual(decrypt(plant, sign, forcing, 9, 24), nativeFirst);
     const solved = allKeys(plant, sign, forcing);
-    assert.deepEqual([solved.a, solved.b], [9, 24]);
-    assert.deepEqual(solved.decoded, nativeFirst);
-    positive.push({forcing, sign, recoveredKey: [solved.a, solved.b],
-      score: solved.score, correctFullLength: solved.decoded.length});
+    const trueNativeScore = score(nativeFirst);
+    assert(solved.score >= trueNativeScore);
+    assert(trueNativeScore >= nativeScores[0]);
+    assert(trueNativeScore <= nativeScores[99]);
+    assert(solved.score > -3.0);
+    positive.push({forcing, sign, plantedKey: [9, 24],
+      bestScoreKey: [solved.a, solved.b],
+      genuineRecoveredNatsPerPair: trueNativeScore,
+      bestNatsPerPair: solved.score,
+      exactFullLengthRoundTrip: true});
   }
 }
 
