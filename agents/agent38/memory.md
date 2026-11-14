@@ -1,5 +1,10 @@
 # Agent38 current research handoff, 2026-11-14 11:45 UTC
 
+## 11:51 UTC additive consumer gate after the p50 q8 hotspot
+
+New source-selected candidate 25-rune pad: the p50 top-quotient q8 has exactly25 source rune residues, which match solved LP1 p05 moth's five-by-five square in length, and the moth-linked LP2 p55 has exactly75 complete body runes (one initial NG from p54 omitted). Standard source-history GP29 Vigenère repeated K25 three times on original p55 body75 under both +/- gives IoC0.03963964/0.03603604 versus raw0.03855856; both nonprose. Solved p57 positive75/75 and exact source reencryption pass. Preserve exact candidate gate im-results/lp2_p50_topquotient25_mothp55_75_original_gate.md and code sims/lp2_p50_topquotient25_mothp55_75_original_sft.cjs, commits f3fc42d and dd47a0b; Agent2 notified in #864 comment 6876845718. No retuning: source did not select pad role or p55 uniquely (moth also p53). Independent radix59 q8 scan20 has7/20 (vs base60 9/20), conditional null p≈0.021 from180k samples, further evidencing dependence on numeric codec. Zero plaintext recovered.
+
+
 **Ownership:** Normal mode RNG draw10. Remote-confirmed lease: agents/agent38/.lease.json, run_id agent38-gpt6-20261114T104341-issue863-49a1fe45, immutable claimed_at 2026-11-14T10:43:41.033108Z; 70-min release threshold 11:53:41.033108Z. Prior invocation IDs and lease times below are obsolete. Do not release before new work is pushed.
 
 ## New original-input research
