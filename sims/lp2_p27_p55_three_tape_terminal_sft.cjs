@@ -80,6 +80,20 @@ assert.equal(bits.slice(376), "1011");
 assert.equal(Buffer.from(packed).toString("hex").slice(0, 32),
   "fed9f91300f988f69957c4c8a7bb91f7");
 
+// Original GP prime weights, unlike the ordinal indices, fit directly
+// in a byte. Test the literal historical three-share XOR on those
+// printed-chart numerical operands as a separate fixed byte register.
+const primeTape = tapes.map(tape => tape.map(v => corpus.prime[v]));
+const primeCipher = p55.map(v => corpus.prime[v]);
+const primeXor3 = primeTape[0].map((_, i) =>
+  primeTape[0][i] ^ primeTape[1][i] ^ primeTape[2][i]);
+const primeXor4 = primeCipher.map((v, i) => v ^ primeXor3[i]);
+const printable = bytes => bytes.filter(v => v >= 32 && v <= 126).length;
+assert.equal(printable(primeXor3), 54);
+assert.equal(printable(primeXor4), 59);
+assert.equal(primeXor4.filter(v => v < 32).length, 17);
+assert.equal(Buffer.from(primeXor4).toString("hex").slice(0, 32),
+  "6e6034485e0c6678526e4c0c3e0e2037");
 // A separate fully invertible GP29 arithmetic analog of combining the
 // three source tapes; this uses no fitted phase, scale or word boundary.
 const key = tapes[0].map((_, i) => mod29(
@@ -109,6 +123,12 @@ console.log(JSON.stringify({
   tapeStartIndices: [34, 110, 186].map(i => i % 234),
   literalXorThreeInvalidGP29Offsets: invalid3,
   literalXorFourInvalidGP29Offsets: invalid4,
+  primeWeightByteXor: {
+    threeSharePrintableBytes: printable(primeXor3),
+    fourSharePrintableBytes: printable(primeXor4),
+    fourShareControlBytes: primeXor4.filter(v => v < 32).length,
+    fourShareLeading16Hex: Buffer.from(primeXor4).toString("hex").slice(0, 32)
+  },
   tripleXorEqualP55: threeTapeXorMatches,
   fiveBitPack: {
     byteLength: packed.length,
