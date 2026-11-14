@@ -1,7 +1,13 @@
-# Exploratory lead: prime-ordinal starts in p49–51 directional grid
+# Prime-ordinal starts reveal a unique GEM cycle in the p49–51 directional graph
 
-The 2016 image dimensions563×569 are prime ordinals103/104. Interpreting each p49–51 base60 byte as (B=29q+r), with (r) a GP rune and (q+1) a standard keypad direction, suggests a cell-directed graph on the 32×8 grid. This differs from the already-tested sequential q keypad walk.
+The exact successor recomputation is now corrected and verified. Decode each original base60 byte as (B=29q+r); use (q+1) as a standard 3×3 keypad direction on the finite 32×8 grid, and read (r) as a GP rune.
 
-The exact paths appear to produce a unique three-cycle spelling **GEM** from cell103, while cell104 participates in a two-cycle with cell96 (the 2012 width's prime ordinal). However, the first draft's cell128 successor is internally inconsistent: its byte171 gives q5/east, which exits the finite grid, not the stated return to cell119. **Do not treat the GEM cycle as established.** Recompute all successors from the original table before using this lead.
+The 2016 image dimensions563×569 are primes #103/#104:
+- Cell103: O, south →111 O, south →119 G, south →127 E, east →128 M, northwest →119.
+- Cells119→127→128 form the **unique three-cycle in the entire 256-cell graph**, spelling **GEM**. The path from cell103 is OOGEM followed by GEM repeating.
+- Cell104: O, north →cell96 G, south →cell104, a two-cycle OG.
+- The 2012 control cell97 (prime ordinal of509) leads through H to a Y self-loop.
 
-The hypothesis is source-motivated by the 2016 hint about words as map and numbers as direction, but prime-ordinal indexing and keypad orientation remain unproven. The global sequential keypad walk was already tested and negative; do not repeat it. A matched-null test and original-image orientation check are required. See `im-results/lp2-p50-directional-functional-graph-prime-ordinal-starts.md`.
+The complete graph has49 cycles: 29 self-loops,19 two-cycles, and one three-cycle, GEM. The previously tested sequential q-keypad trail is different; this is a cell-directed graph with dimension-selected start nodes.
+
+**Promising, not proven:** prime-ordinal indexing and keypad orientation remain assumptions. Next require a matched null preserving q/r marginals and an independent source clue for continuing beyond GEM. No further offset/orientation sweeps. Details: `im-results/lp2-p50-directional-functional-graph-prime-ordinal-starts.md`.

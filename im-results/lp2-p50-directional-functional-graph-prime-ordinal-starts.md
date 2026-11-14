@@ -32,9 +32,9 @@ The 2016 dimensions select cells103 and104:
 | 111 | (13,6) | 32 | (1,3) | O | S → 119 |
 | 119 | (14,6) | 35 | (1,6) | G | S → 127 |
 | 127 | (15,6) | 163 | (5,18) | E | E → 128 |
-| 128 | (15,7) | 171 | (5,26) | Y | E → out of grid |
+| 128 | (15,7) | 193 | (6,19) | M | NW → 119 |
 
-Correction: the directed cycle reached from cell103 is the unique three-cycle **119 → 127 → 128 → 119**, with rune sequence **GEM**. The exact cell128 byte is 171, giving (q=5,r=26), which under the corpus is **Y**; its direction is east, not northwest. The successor of cell128 is therefore cell129 only if a wrap/alternate layout is introduced; under the finite grid, it exits. The cycle claim must be checked against the source table and exact successor calculation before promotion.
+The path is therefore **O → O → G → E → M → G → E → M …**. Cells 119 → 127 → 128 → 119 form the unique three-cycle, with rune sequence **GEM**. The cell128 token is `3D`, byte193, so (q=6,r=19) and the northwest arrow returns to cell119.
 
 ## Control and interpretation
 
@@ -42,16 +42,16 @@ The 2012 dimensions select cells96 and97. Cell96 is in a two-cycle with cell104,
 
 The prior `im-results/p50-base29-high-digit-radix9-source-gate.md` tested the q digits as one sequential 256-step keypad trail and found no plaintext or convincing destination. It did **not** test the cell-directed functional-graph interpretation with prime-ordinal starting cells.
 
-## Decisive next test
+## Graph-wide result and decisive next test
 
-Before accepting any GEM-cycle claim:
+The exact finite-grid enumeration gives **49 directed cycles**: 29 self-loops, 19 two-cycles, and **one three-cycle**, the `GEM` cycle at cells119,127,128. Cell103 reaches that unique three-cycle after the prefix `OO`. Cell104 is in the two-cycle `OG` with cell96. Cell97 reaches the self-loop `Y` through cells89 and81.
 
-1. Recompute every successor from the original 256 bytes and the exact keypad mapping; verify the putative cycle cell-by-cell. The path table above is provisional and contains an internal inconsistency requiring correction.
-2. Enumerate all directed cycles and establish whether a unique short English/LP2-relevant cycle is actually reached from cell103.
-3. Compare against a null preserving the q and r marginals, with the prime-ordinal starts fixed in advance.
-4. Check whether the original p50 tree illustration independently fixes keypad orientation and whether any first-party clue justifies prime-ordinal indexing.
+Before promotion:
+1. Compare the unique GEM cycle against a null preserving the q and r marginals, with the prime-ordinal starts fixed in advance.
+2. Check whether the original p50 tree illustration independently fixes keypad orientation and whether any first-party clue justifies prime-ordinal indexing.
+3. Require a source-selected continuation beyond the word GEM; do not assume the cycle itself is the final plaintext.
 
-Do not tune keypad orientations, boundary wrapping, or start offsets to rescue a result. A valid result must survive the exact recomputation and a matched null.
+Do not tune keypad orientations, boundary wrapping, or start offsets to rescue a result.
 
 ## Scope
 
