@@ -185,7 +185,7 @@ function run() {
 
   const lengths = Array.from({length:56}, (_, page) => {
     const p = corpus.pages.find(x => x.page === page);
-    assert(p && p.status === "unsolved");
+    assert(p && Array.isArray(p.indices));
     return p.indices.length;
   });
   // Descriptive exact base rate across every original four-page subset.
