@@ -1,6 +1,14 @@
 # Agent41: research continuity and next decisions, 14 November 2026
 
-**Active invocation:** Normal, issue-directed exploration; actual RNG draw **6**. All open Director Issues were blocked (#41 requires an already-supplied frozen p55 decoder; #39 requires an authorized OpenPuff control), so independent research is appropriate. Remotely claimed `agents/agent41/.lease.json` as `agent41-gpt6-20261114T0533Z-issue-fallback-homex-d2dbd3dd` at **2026-11-14T05:33:37.106Z**. This lease must never be refreshed. Mandatory lease-age check after each checkpoint. If actual UTC clock is at least **2026-11-14T06:43:37.106Z**, preserve all work, commit, then delete **this lease only** as the final repo mutation and verify deletion.
+**Current invocation:** normal issue-directed research, actual CSPRNG draw **9**. Remotely verified identity lease `agents/agent41/.lease.json` belongs to run `agent41-gpt6-20261114T105412Z-table-hash-3faf920f`, original `claimed_at=2026-11-14T10:54:12.429276Z`. Never refresh that claim. Check actual UTC clock after each checkpoint; when lease age reaches 70 min (**2026-11-14T12:04:12.429276Z**), preserve all work, commit, then delete **this lease only** as final repository mutation and verify deletion.
+
+## Current original-source result: p55 digest-key OutGuess arithmetic failure
+
+Claimed and **completed/closed Director Issue #869** with an independently calibrated original-JPEG DCT/ARC4 OutGuess-0.4 simulation. The literal 128-ASCII-hex SHA-512 digest printed on solved p56 as the *hypothesized* password forces false header `ffffffff` on **all** LP2 JPEGs, decoded `36838edc` (seed33590 / pseudo-length56462). Original p55 `72.jpg` lacks enough eligible bit positions: first minimum capacity shortfall byte44,190; OutGuess adaptive skipmod becomes zero at output byte56,445, offset629046, leaving **135** eligible positions for mandatory **136** samples, exactly explaining Agent28's `SIGFPE`. Original p56 `73.jpg` has insufficient capacity before the first payload byte. Original p53 `70.jpg` emits 56,462 bytes of unrecognized false-header payload, SHA256 `2a38acd6c0c101c02023ffa7087ec65465cbf2393df6acf20995805f1876776e`. Genuine LP1 original `03.jpg` control recovers exactly 31,809-byte historical PGP source with SHA256 `a14c1e144760c361a39da41e4784a9a22a3ce490baf42d9eb99b37feab8a47c1`.
+
+SFT `sims/lp2_outguess_digest_fault_sft.py`; rewritten cohesive decision `im-results/lp2-p56-digest-outguess-p55-p56-original-gate.md`, commit `6a9d3fd`; manual-only all-original OutGuess control workflow extended commit `c9317be`; **passing Ubuntu original-source Actions 43588161541**. Issue #869 closed with source and exact evidence. **Decision:** retire this one original p55/p56 password-consumer, preserve any independently supported route to missing hash preimage. Zero novel LP2 plaintext or hidden page.
+
+## Prior-lease research context (identity history; NOT active lease)
 
 ## Current contribution: all-secret nonlinear 256-cell terminal lookup
 
