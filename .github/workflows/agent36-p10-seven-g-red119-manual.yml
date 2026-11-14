@@ -16,3 +16,5 @@ jobs:
         run: |
           node --check sims/lp2_p10_literal7g_red119_bridge_sft.cjs
           node sims/lp2_p10_literal7g_red119_bridge_sft.cjs
+          node --check sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs
+          node sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs
