@@ -107,6 +107,47 @@ assert.deepEqual(results.map(x => x.historicalKeyExact), [3, 10]);
 assert.deepEqual(results.map(x => x.allSecretEqualityConflicts), [200, 207]);
 assert.deepEqual(results.map(x => x.distinctSharedSymbols), [29, 26]);
 
+// Genuine historical 2013 Shamir interpolation supplies a distinct three-share
+// operator: three field evaluations f(1), f(2), f(3) of one degree-two secret
+// polynomial recover f(0) = 3*f(1) - 3*f(2) + f(3) over GF29.
+// The x coordinates 1,2,3 and both physical quotient geometries are frozen
+// before comparing against the independently solved complete p56 key.
+const shamirResults = [];
+for (const geometry of ["three-blocks", "interleaved-triplets"]) {
+  const key = Array.from({length:84}, (_, i) => {
+    const [y1, y2, y3] = triple(quotient, i, geometry);
+    return mod(3 * y1 - 3 * y2 + y3);
+  });
+  const exact = key.filter((value, i) => value === historicalKey[i]).length;
+  const contradictions = equalityConflicts(key, historicalKey);
+  const p55Recovered = decrypt(p55, key);
+  const chapterRecovered = decrypt(finalChapter, key);
+  const nativePlant = gp.pages[57].indices.slice(0, 76);
+  assert.deepEqual(decrypt(encrypt(nativePlant, key), key), nativePlant);
+  assert.deepEqual(encrypt(p55Recovered, key), p55);
+
+  // A positive three-of-three quadratic share plant must recover the genuine
+  // solved-page key at every position, without source-cipher tuning.
+  const recoveredHistoricalKey = historicalKey.map((secret, i) => {
+    const a = mod(11 * i + 7);
+    const b = mod(3 * i + 17);
+    const f = x => mod(secret + a * x + b * x * x);
+    return mod(3 * f(1) - 3 * f(2) + f(3));
+  });
+  assert.deepEqual(recoveredHistoricalKey, historicalKey);
+  shamirResults.push({geometry, historicalKeyExact:exact,
+    allSecretEqualityConflicts:contradictions, distinctSharedSymbols:new Set(key).size,
+    p55Ioc:ioc(p55Recovered), finalChapterIoc:ioc(chapterRecovered),
+    first25P55:p55Recovered.slice(0, 25).map(i => gp.translit[i]).join("")});
+}
+assert.deepEqual(shamirResults.map(x => x.historicalKeyExact), [3, 1]);
+assert.deepEqual(shamirResults.map(x => x.allSecretEqualityConflicts), [215, 198]);
+assert.deepEqual(shamirResults.map(x => x.distinctSharedSymbols), [27, 28]);
+assert.ok(Math.abs(shamirResults[0].p55Ioc - 0.04245614035087719) < 1e-13);
+assert.ok(Math.abs(shamirResults[1].p55Ioc - 0.03192982456140351) < 1e-13);
+assert.ok(Math.abs(shamirResults[0].finalChapterIoc - 0.03403274250179788) < 1e-13);
+assert.ok(Math.abs(shamirResults[1].finalChapterIoc - 0.03462498413638479) < 1e-13);
+
 // Historical three-byte XOR on the 252 systematic input slots: no ASCII payload.
 // The last four original coefficients are source-compatible GF29 parity positions.
 const systematic = bytes.slice(0, 252);
@@ -142,5 +183,5 @@ assert.deepEqual(xorKeyTransfers.map(x => x.historicalKeyExact), [4, 6, 2, 2]);
 assert.deepEqual(xorKeyTransfers.map(x => x.allSecretEqualityConflicts), [199, 195, 205, 206]);
 console.log(JSON.stringify({originalGrid256Sha256:"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
   historicalP56KeyLength:historicalKey.length, rawP55Ioc:ioc(p55), rawChapterIoc:ioc(finalChapter),
-  originalResults:results, byteXorControls:xorControls, xorKeyTransfers,
-  decision:"Both independently motivated 3-share sources fail complete authentic p56 key and original p55 plaintext gates"}, null, 2));
+  originalResults:results, historicalShamir3of3:shamirResults, byteXorControls:xorControls, xorKeyTransfers,
+  decision:"GF29 sum, historical 3-of-3 Shamir interpolation, and original byte XOR fail complete authentic p56 key and p55 plaintext gates"}, null, 2));
