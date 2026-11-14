@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+import zipfile
 from pathlib import Path
 from urllib.request import urlopen
 
@@ -137,6 +138,17 @@ def main() -> None:
     assert blob == CANDIDATE_GIT_BLOB, blob
     print("Candidate blob verified", blob)
     font_report("Archived BabelStone Beorhtnoth", candidate, original)
+
+    # All six official fonts provide stronger within-family controls.
+    # Their latest versions postdate LP2; use for shape discrimination only.
+    modern_url = "https://www.babelstone.co.uk/Fonts/Download/BabelStoneAngloSaxon.zip"
+    with urlopen(modern_url, timeout=40) as response:
+        modern_zip = response.read()
+    with zipfile.ZipFile(io.BytesIO(modern_zip)) as archive:
+        names = sorted(n for n in archive.namelist() if n.lower().endswith(".ttf"))
+        print("MODERN BABELSTONE COMPARISON: six post-2014 candidates", names)
+        for name in names:
+            font_report("2023 official " + name, archive.read(name), original)
 
     for label, path in [
         ("Noto Sans Runic control", "/usr/share/fonts/truetype/noto/NotoSansRunic-Regular.ttf"),
