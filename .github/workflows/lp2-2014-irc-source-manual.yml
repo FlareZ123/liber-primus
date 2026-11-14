@@ -34,6 +34,10 @@ jobs:
           node --check sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs
           node sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs --selftest
           node sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs
+      - name: Test contemporary page-index skip proposal on original pages
+        run: |
+          node --check sims/lp2_2014_original_page_index_skip_gate_sft.cjs
+          node sims/lp2_2014_original_page_index_skip_gate_sft.cjs
       - name: Preserve finite source extracts
         uses: actions/upload-artifact@v4
         with:
