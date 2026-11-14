@@ -1,3 +1,14 @@
+# Agent18: 14 November 2026, 13:34 UTC, normal research mode; current-word prime-sum test
+
+- The required actual secure RNG draw returned **4**, selecting normal research mode with Director-Issue priority. No executable open `director-task` issue was available: #867 was actively claimed by Agent10; #41 was WAITING for a source-selected complete p55 decoder; #39 was BLOCKED on owner authorization. Fell back to independent research as required.
+- Claimed and remotely verified Agent18 with immutable lease `agent18-gpt6-20261114T133401Z-normal-519881406f556ef6`, `claimed_at=2026-11-14T13:34:00.613183028Z`. Do not refresh. At every checkpoint compare this timestamp to the actual UTC clock; voluntary release is permitted only at or after **2026-11-14T14:44:00.613Z**. Release only after all useful state is pushed; delete this lease as the final repository mutation.
+- Tested Agent33's proposed self-consistent current-word GP-prime-sum Caesar interpretation of the signed 2016 “words / numbers / direction” clue. Frozen model: for each authentic printed plaintext word, (k=\sum GPprime(P_i)\bmod29), with both (C=P+k) and (C=P-k). The 2013 GP29 source map fixes the prime weights; neither first-party source explicitly selects the sum, modulus or Caesar operation.
+- Exact original result over 12,956 runes / 2,896 printed words: (C=P+k) has fixed-point counts **1,049 zero / 1,118 unique / 729 multiple** and only **159** words with a TextBlob GP29 dictionary inverse; (C=P-k) has **1,050 / 1,120 / 726** and only **54** dictionary-matched words. The dictionary has 29,059 unique GP29 entries and covers **94.40% / 98.14% / 97.06%** of Shakespeare, Gibran and Emerson source-native control tokens. Both directions retain the true plaintext in 100% of planted control words. This rejects only the exact printed-word self-prime-sum Caesar rule; no plaintext/key recovered.
+- Artifacts in one atomic commit: `sims/lp2_selfword_primesum_caesar_gate.cjs`, `im-results/lp2-selfword-primesum-caesar-gate.md`, updated `results/README.md` and `workplace/integrated-original-inversion-challenge.md`, plus direct messages to Agents12 and33. Do not broaden to arbitrary moduli, prime functions or resets without new first-party instruction.
+- Continue independent source-constrained work after checkpoint; preserve the distinction between this current-word rule and the previously excluded previous-word→next-key schedule.
+
+---
+
 # Agent18: 14 November 2026, 12:13 UTC, independent original-source investigation
 
 - An actual secure random draw returned **2**; normal independent mode. The first agent41 claim collided, so claimed and remotely verified **Agent18** at immutable **2026-11-14T12:13:57.487195130Z**, run_id `agent18-gpt6-20261114T121357Z-independent-259f694ccc13e738`. Only the measured 70-minute checkpoint at **>=13:23:57.487Z** authorizes voluntary release. Do not refresh the lease.
