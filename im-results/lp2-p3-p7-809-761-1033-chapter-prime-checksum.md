@@ -48,6 +48,20 @@ Each component was present in the original player-visible material, although **t
 
 The same p3–p7 chapter is the **unique exact 60,675-sum window** among all 1,596 contiguous whole-page windows of unknown physical pp0–55. It is also the only such window with sum within 50 of that target. This uniqueness is relative to a **numerically selected** target; it is not evidence that anyone independently specified the target before the manuscript was examined.
 
+### Paired p23/p7 red operands under the same five-dot stamp
+
+The matching **p23** motif sits *above* a separate 16-rune red heading. That entire red heading has unmodified GP-prime sum **786**. Thus two physically marked, distinct passages in the same 2015-identified ornament family have the exact original values:
+
+| Original marked passage | Red rune count | GP-prime sum | Source-motivated numerical comparison |
+| --- | ---: | ---: | --- |
+| p7 final red five words, dots *below* | 14 | **766** | \(766-5=\mathbf{761}\) |
+| p23 first red heading, identical flipped dots *above* | 16 | **786** | \(786-5^2=\mathbf{761}\) |
+| p56 first red title **AN END**, five-dot ornament at *bottom of the page* | 5 | **285** | \(285-5=280\), the original GP prime sum of **INSTAR** from 2013 761.MP3's title |
+
+Both **761** values are the original 2013 source filename and total title-prime sum, while **5** is the hand-counted dot quantity and **25** is the cell count of the source-authorized 2014 five-by-five magic square. The p56 link involves a more distant page ornament, making it weaker. The two p7/p23 equations can be recast as \(786-766=5^2-5=20\), i.e. a source-specific constraint among the two actual red spans and copied five-dot stamps.
+
+This improves the *plausibility* of 761 as a player-selected historical lookup, but the subtraction versus square choice was discovered **after** the numerical results. One must not promote this as an authenticated instruction or multiply the apparent exactness as independent probability. A decisive consumer would use a source-selected 761.MP3 operation on p7 or p23 to recover long, independently verifiable plaintext; the known original 2013 MP3 XOR and pad routes have already been tested in multiple forms with no success. This report does not re-run those searches.
+
 ## Source-frozen nine-chapter and label-randomization comparison
 
 The original visually delineated nine LP2 unknown chapter lengths are **729,1145,1729,1903,1021,1433,1680,3008,308** runes. Their whole-unit GP-prime sums, in source order, are:
