@@ -54,9 +54,40 @@ Use the repository's source-calibrated GP29 encoder, which reproduces the indepe
 
 Consequently the globally shared two-variable, symbolwise, bijective GP29 predecessor-plus-word-position encoder is incompatible with the tested ordinary English register **for every secret alphabet table**, even if phase five is replaced by the maximum observed word-local position. This extends rather than repeats either predecessor-only or five-phase-only exclusion. It does not prove a universal language impossibility and it is not a key.
 
+## Stronger exact one-rune-word constraint: a chapter-rekey lower bound
+
+The original manuscript contains **83 complete single-rune printed words**. In source-calibrated English they would ordinarily be **A** or **I**; allow the archaic vocative **O** as a deliberately generous third choice. At a one-rune word, the within-word position is exactly j=0. For any *fixed epoch* and the same previous published ciphertext rune h, an invertible substitution table \(\pi_{(0,h)}\) can map **at most three distinct published ciphertext glyphs** into the three permissible plaintext letters. This yields a complete key-free necessary test over every original singleton site. It does not require an n-gram model, word dictionary, unknown cipher table or fitted decryption.
+
+In the global carried-predecessor model, the 83 original singleton sites occupy **28 predecessor groups**. **Nine** groups contain more than three distinct published singleton glyphs (maximum **six**), with an aggregate **15 surplus distinct glyphs** beyond the maximum of three. Consequently this *entire* global all-secret cipher family is already excluded by a local word-grammar contradiction, independently of the global top-12 frequency theorem.
+
+Rekeying at **one** original visual-chapter boundary still leaves contradictory singleton groups, regardless of which of the eight chapter cuts is chosen:
+
+| Number of authorized rekeys | Chapter-cut combinations | Combinations admitting all 83 singleton words as A/I/O |
+| ---: | ---: | ---: |
+| 0 | 1 | **0** |
+| 1 | 8 | **0** |
+| 2 | 28 | **2** |
+| 3 | 56 | 11 |
+| 4 | 70 | 25 |
+| 5 | 56 | 30 |
+| 6 | 28 | 20 |
+| 7 | 8 | 7 |
+| 8 | 1 | 1 |
+
+The complete **256 = 2⁸ original-chapter partitions** were enumerated without plaintext fitting. Among all **28 possible two-rekey** patterns, the only two that survive this necessary singleton-word constraint are:
+
+- **After chapter 3 and after chapter 4**, so the shared table changes at original **p15 and p23**.
+- **After chapter 3 and after chapter 5**, so it changes at original **p15 and p27**.
+
+These positions are independently visible, and the original **p15 Fibonacci-indexed number square** is a potential key-bearing object at the common first change. That connection is a *conditional research lead* discovered after examining the cipher-word constraints; no original authored instruction selects these epochs or assigns that square to a substitution table. The necessary grammar consistency does **not** demonstrate that either epoch pattern has a valid English full-word decoder.
+
+For comparison, even nine independent chapter tables are insufficient if single-rune English is restricted strictly to **A/I**: two chapter×predecessor groups contain three distinct singleton ciphertext values. The generous three-letter test is the stated result and should not be quietly tightened.
+
+**The strongest reproducible decision:** under a whole-book shared GP29 previous-ciphertext + word-position substitution, ordinary English singleton words demand **at least two** source-visible chapter rekeys, and the only two-rekey placements are **3+4** or **3+5**. All modes with a fresh per-page or per-word *secret key*, invisible state, altered plaintext word breaks, or non-bijective transport lie outside this conclusion.
+
 ## How much extra state remains possible?
 
-One additional author-visible **chapter rekey** can lift the bound sufficiently that an English-like source is no longer excluded by this invariant. For a single key-table replacement at each of the eight exact original chapter cuts, retain the previous published ciphertext across the cut and again permit all 29! secret tables per epoch/state:
+One author-visible **chapter rekey** can lift the **frequency-only** bound; the exact singleton-word constraint above still rejects **every** one-rekey choice for ordinary A/I/O English. For a single key-table replacement at each of the eight exact original chapter cuts, retain the previous published ciphertext across the cut and again permit all 29! secret tables per epoch/state:
 
 | Cut after visual chapter | Global rune cut | Upper bound, top-12 count |
 | --- | ---: | ---: |
@@ -69,10 +100,10 @@ One additional author-visible **chapter rekey** can lift the bound sufficiently 
 | 7 (p33–39) | 9,640 | 9,969 |
 | 8 (p40–53) | 12,648 | 9,110 |
 
-This is a **necessary-condition ceiling only**. A value above a sampled plaintext's top-twelve total cannot establish a matching encoder, and none of the eight cuts is an independently authenticated rekey instruction. Still, a one-rekey at either bookend is already too weak for all 192 native controls, whereas a central-chapter rekey lifts this particular bound. A wholly independent table per visual chapter, secret word nonces, nonbijective/variable-length transport, plaintext-dependent state, longer history, alternate orthography, or changed word boundaries also fall outside the excluded family.
+This is a **frequency-only necessary-condition ceiling**. A value above a sampled plaintext's top-twelve total cannot establish a matching encoder, and none of the eight cuts is an independently authenticated rekey instruction. A one-rekey at either bookend is too weak even for all 192 native concentration controls; central-chapter rekeys lift the frequency ceiling but **still fail the independent singleton constraint**. A wholly independent table per visual chapter, secret word nonces, nonbijective/variable-length transport, plaintext-dependent state, longer history, alternate orthography, or changed word boundaries also fall outside the excluded family.
 
 ## Decision for the next attack
 
-**Retire globally reused word-local five-phase (and even exact-j) predecessor-only bijections as native-English plaintext decoders.** A new candidate using the five-dot or lag-five clue needs source-selected additional state or rekeying, with an original observable prediction and complete inverse. A successful search for a source-specific chapter key might matter; freely adding independent keys to rescue the family would make it non-discriminating. Original plaintext, a key schedule and a continuation destination remain unknown.
+**Retire globally reused word-local five-phase (and even exact-j) predecessor-only bijections as native-English plaintext decoders, including every one-chapter-rekey variant under the source-calibrated A/I/O singleton register.** A new candidate using the five-dot or lag-five clue needs source-selected additional state or at least two rekeys, with an original observable prediction and complete inverse. A successful search for a source-specific chapter key might matter; freely adding independent keys to rescue the family would make it non-discriminating. Original plaintext, a key schedule and a continuation destination remain unknown.
 
 **Reproduce:** [Node22 CJS SFT](../sims/lp2_wordposition_prevstate_allsecret_sft.cjs) uses original \`lp2-corpus.json\`, \`lp2-transcription.txt\`, three checked-in independent source corpora and the existing solved-LP1-calibrated GP encoder; the SFT prints every table, the chapter-cut vector and a 12,956-rune state-driven encode/decode plant. Sources, clocks, seed family and claims are completely fixed in that script.
