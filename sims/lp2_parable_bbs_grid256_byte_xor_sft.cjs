@@ -2,7 +2,7 @@
 
 /**
  * Source-selected 2013 PARABLE Blum-Blum-Shub prime triple -> original LP2 p50
- * 32x8 base60-byte grid, eight bit-extraction conventions. No fitted keys/clocks.
+ * 32x8 base60-byte grid, sixteen bit-extraction conventions. No fitted keys/clocks.
  * This SFT is separate from the full-corpus GP29 decoder and tests a native
  * *byte* transport: direct BBS parity-byte XOR against the original grid order.
  * Windows 11 / Node22 CommonJS; no external dependencies.
@@ -24,19 +24,41 @@ assert.ok(grid.byte_rows.every((row) => row.length === 8));
 const original = Buffer.from(grid.byte_rows.flat());
 assert.equal(original.length, 256);
 
+const QR_ORDER = ((P - 1) / 2) * ((Q - 1) / 2);
+const QR_SQRT_EXP = (QR_ORDER + 1) / 2;
+
+/** @param {number} a @param {number} e @param {number} m */
+function modpow(a, e, m) {
+  let out = 1;
+  let base = a % m;
+  for (let n = e; n > 0; n = Math.floor(n / 2)) {
+    if (n % 2) out = (out * base) % m;
+    base = (base * base) % m;
+  }
+  return out;
+}
+assert.equal(QR_ORDER, 323935);
+assert.equal(QR_SQRT_EXP, 161968);
+assert.equal(modpow(SEED, (P - 1) / 2, P), 1);
+assert.equal(modpow(SEED, (Q - 1) / 2, Q), 1);
+assert.equal(modpow(modpow(SEED, QR_SQRT_EXP, N), 2, N), SEED);
+
 /**
- * Either classic BBS's one parity bit per squaring or conventional
- * Blum-Goldwasser's h=floor(log2(floor(log2(N))))=4 low bits per squaring.
- * Both selectors are pinned by the historical three-prime modulus; neither
- * introduces an unknown plaintext-trained phase.
+ * Either one classic BBS parity bit per square or Blum-Goldwasser's
+ * h=floor(log2(floor(log2(N))))=4 low bits per square.
+ * Backward direction *hypothetically* treats historical third factor SEED
+ * as the BBS terminal state instead of as its initial seed.
+ * Unique square-root extraction occurs in QR(N); source does not identify
+ * SEED as a published Blum-Goldwasser terminal state.
  * @param {number} size
  * @param {'x0'|'x1'} timing
  * @param {'msb'|'lsb'} order
  * @param {1|4} bitsPerStep
+ * @param {'forward'|'backward'} direction
  * @returns {Buffer}
  */
-function bbsParityKey(size, timing, order, bitsPerStep) {
-  let x = X0;
+function bbsParityKey(size, timing, order, bitsPerStep, direction) {
+  let x = direction === 'forward' ? X0 : SEED;
   let first = true;
   const bytes = Buffer.alloc(size);
   const chunks = 8 / bitsPerStep;
@@ -44,7 +66,10 @@ function bbsParityKey(size, timing, order, bitsPerStep) {
   for (let i = 0; i < size; i++) {
     let v = 0;
     for (let j = 0; j < chunks; j++) {
-      if (!first || timing === 'x1') x = (x * x) % N;
+      if (!first || timing === 'x1') {
+        x = direction === 'forward' ? (x * x) % N
+          : modpow(x, QR_SQRT_EXP, N);
+      }
       first = false;
       const fragment = x & mask;
       if (order === 'msb') v = v * (mask + 1) + fragment;
@@ -103,27 +128,31 @@ function recognizedHeaders(bytes) {
 }
 
 const cases = [];
-for (const bitsPerStep of [1, 4])
-  for (const timing of ['x0', 'x1'])
-    for (const order of ['msb', 'lsb']) {
-      const key = bbsParityKey(256, timing, order, bitsPerStep);
-      const cipherPlant = xor(plant, key);
-      assert.deepEqual(
-        xor(cipherPlant, bbsParityKey(256, timing, order, bitsPerStep)),
-        plant
-      );
-      const candidate = xor(original, key);
-      const s = stats(candidate);
-      cases.push({
-        bitsPerStep, timing, order, ...s,
-        first32Hex: candidate.subarray(0, 32).toString('hex'),
-        recognizedHeaders: recognizedHeaders(candidate)
-      });
-    }
-assert.equal(cases.length, 8);
-assert.deepEqual(cases.map((c) => c.printable), [96, 97, 92, 101, 105, 97, 98, 95]);
+for (const direction of ['forward', 'backward'])
+  for (const bitsPerStep of [1, 4])
+    for (const timing of ['x0', 'x1'])
+      for (const order of ['msb', 'lsb']) {
+        const key = bbsParityKey(256, timing, order, bitsPerStep, direction);
+        const cipherPlant = xor(plant, key);
+        assert.deepEqual(
+          xor(cipherPlant, bbsParityKey(256, timing, order, bitsPerStep, direction)),
+          plant
+        );
+        const candidate = xor(original, key);
+        const s = stats(candidate);
+        cases.push({
+          direction, bitsPerStep, timing, order, ...s,
+          first32Hex: candidate.subarray(0, 32).toString('hex'),
+          recognizedHeaders: recognizedHeaders(candidate)
+        });
+      }
+assert.equal(cases.length, 16);
+assert.deepEqual(cases.map((c) => c.printable), [
+  96, 97, 92, 101, 105, 97, 98, 95,
+  117, 115, 99, 98, 93, 93, 92, 86
+]);
 assert.ok(cases.every((c) => c.recognizedHeaders.length === 0));
-assert.ok(cases.every((c) => c.printableOrWhitespace <= 108));
+assert.ok(cases.every((c) => c.printableOrWhitespace <= 119));
 
 const summary = {
   original: 'resources/liber-primus/base60-grid.json printed 32x8 bytes',
@@ -133,7 +162,8 @@ const summary = {
   bytes: original.length, distinctRawBytes: new Set(original).size,
   firstOriginal32Hex: original.subarray(0, 32).toString('hex'),
   originalSha256: createHash('sha256').update(original).digest('hex'),
-  firstOutput: '1 BBS parity bit or 4 Blum-Goldwasser low bits per squaring, ' +
+  firstOutput: 'forward seed-square or hypothetical reversed terminal-factor, ' +
+    '1 BBS parity bit or 4 Blum-Goldwasser bits per squaring, ' +
     'x0/x1 timing, MSB/LSB packing',
   cases, plantRecovered: true, recoveredPlaintext: false
 };
