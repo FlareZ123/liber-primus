@@ -69,6 +69,36 @@ async function main() {
   }
   assert.equal(url,null,"Repository tree exceeds exact-file bounded traversal");
   console.log(JSON.stringify({status:"tree-complete",pages:n,matches}));
+  // Search original participant's bounded public commit history as well:
+  // the target names might have been deleted after repository creation.
+  const commitsReq=await request(gitlab+"/projects/"+project.id+
+    "/repository/commits?per_page=100");
+  assert.equal(commitsReq.ok,true,"Could not retrieve public commit history");
+  const commits=await commitsReq.json();
+  assert.equal(Array.isArray(commits),true);
+  const historicalMatches=[];
+  for(const commit of commits) {
+    const diffReq=await request(gitlab+"/projects/"+project.id+
+      "/repository/commits/"+commit.id+"/diff?per_page=100");
+    assert.equal(diffReq.ok,true,"Could not retrieve public commit diff");
+    const files=await diffReq.json();
+    assert.equal(Array.isArray(files),true);
+    for(const changed of files) {
+      const candidates=[changed.old_path,changed.new_path];
+      if(candidates.some((name)=>filenames.has(name?.split("/").at(-1)))) {
+        historicalMatches.push({commit:commit.id,date:commit.committed_date,
+          old_path:changed.old_path,new_path:changed.new_path,
+          deleted:changed.deleted_file,created:changed.new_file});
+      }
+    }
+  }
+  console.log(JSON.stringify({status:"bounded-public-history",
+    inspectedCommits:commits.length,
+    incompletePagination:commits.length===100,
+    oldestChecked:commits.at(-1)?.committed_date,
+    newestChecked:commits.at(0)?.committed_date,
+    historicalMatches}));
+
   for(const match of matches) {
     const fileURL=gitlab+"/projects/"+project.id+"/repository/files/"+
       encodeURIComponent(match.path)+"/raw?ref="+
