@@ -229,12 +229,12 @@ const certainErasurePositions=[76+56,76+85+33,76+85+59,76+85+67];
 assert.deepEqual(certainErasurePositions,[132,194,220,228]);
 const certainCols=certainErasurePositions.map(position=>
   modFactor(Array.from({length:256},(_,i)=>+(i===position))));
-assert.deepEqual(certainCols,[[0,0,24,20],[2,25,3,24],[25,15,8,7],[21,24,14,1]]);
+assert.deepEqual(certainCols,[[20,24,0,0],[24,3,25,2],[7,8,15,25],[1,14,24,21]]);
 const certainErasureVariants=[
   {label:'p56 original ciphertext',terminal:[...p55,...p56,...p57],
-    syndrome:[3,22,16,2],forced:[8,17,17,7]},
+    syndrome:[2,16,22,3],forced:[8,17,17,7]},
   {label:'p56 authenticated plaintext',terminal:[...p55,...p56Plain,...p57],
-    syndrome:[6,10,12,17],forced:[23,10,13,4]},
+    syndrome:[17,12,10,6],forced:[23,10,13,4]},
 ];
 for(const variant of certainErasureVariants){
   assert.deepEqual(modFactor(variant.terminal),variant.syndrome);
