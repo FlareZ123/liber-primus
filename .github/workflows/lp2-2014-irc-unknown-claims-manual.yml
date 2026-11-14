@@ -1,0 +1,26 @@
+name: Agent11 source-pinned 2014 IRC unknown-LP2 claims
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unknown-claims:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source miner selftest and syntax
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_irc_unknown_claim_scan_sft.cjs
+          node sims/lp2_2014_irc_unknown_claim_scan_sft.cjs --selftest
+      - name: Fetch original source and search dated in-channel unknown-page claims
+        shell: pwsh
+        run: |
+          $url = 'https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23cicadasolvers.freenode.log'
+          $dest = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014-original.log'
+          Invoke-WebRequest -Uri $url -OutFile $dest -MaximumRetryCount 3 -RetryIntervalSec 2
+          node sims/lp2_2014_irc_unknown_claim_scan_sft.cjs $dest
