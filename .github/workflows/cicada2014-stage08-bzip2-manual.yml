@@ -21,6 +21,8 @@ jobs:
         run: python sims/cicada2014_stage08_bzip2_member_sft.py
       - name: Audit source-authentic JPEG and MP3 daughter files
         run: python sims/cicada2014_stage08_daughter_source_sft.py
+      - name: Verify 2014 Stage04 and Stage08 original OpenPGP signature witnesses
+        run: python sims/cicada2014_stage04_stage08_signature_gate.py
       - name: Build pinned historic OutGuess tool
         if: ${{ inputs.probe_daughter_outguess }}
         run: |
