@@ -103,9 +103,31 @@ function positivePlant(originalText, layout) {
   return { ciphertext, decrypted };
 }
 
+/**
+ * Upper capacity of one arbitrary plaintext GP29 rune under any fixed
+ * independent secret alphabet permutation in the specified source classes.
+ * A per-class bijection can map only one ciphertext rune identity to E,
+ * so its best possible E count is the largest observed class frequency.
+ * @param {readonly number[]} indices
+ * @param {'rows41'|'phase41'|'columns316'} layout
+ * @returns {number}
+ */
+function maximumOneRune(indices, layout) {
+  const n = layout === 'columns316' ? WIDTH : CLASSES;
+  const freq = Array.from({ length: n }, () => new Uint16Array(ALPHABET));
+  for (let i = 0; i < LENGTH; i++) {
+    const group = layout === 'rows41' ? Math.floor(i / WIDTH)
+      : layout === 'phase41' ? i % CLASSES : i % WIDTH;
+    freq[group][indices[i]]++;
+  }
+  return freq.reduce((sum, counts) => sum + Math.max(...counts), 0);
+}
+
 const layouts = /** @type {const} */ (['rows41', 'phase41', 'columns316']);
 const observed = layouts.map(layout => equalPairs(original, layout));
 assert.deepEqual(observed, [69661, 70220, 8916]);
+const eCapacity = layouts.map(layout => maximumOneRune(original, layout));
+assert.deepEqual(eCapacity, [726, 746, 1346]);
 const denominators = layouts.map(layout => {
   const groupCount = layout === 'columns316' ? WIDTH : CLASSES;
   const groupSize = layout === 'columns316' ? CLASSES : WIDTH;
@@ -115,23 +137,28 @@ assert.deepEqual(denominators, [2040570, 2040570, 259120]);
 
 const controls = [
   ['Shakespeare', 'resources/control/shakespeare_first300k.txt',
-    32, [119491, 117225, 14850], [126174, 125113, 15928]],
+    32, [119491, 117225, 14850], [126174, 125113, 15928], 1428],
   ['Gibran', 'resources/control/gibran_prophet_58585.txt',
-    8, [122916, 120924, 15538], [125401, 123464, 15866]],
+    8, [122916, 120924, 15538], [125401, 123464, 15866], 1445],
   ['Emerson', 'resources/control/emerson_essays_2944.txt',
-    48, [124012, 123151, 15700], [129178, 128299, 16373]]
+    48, [124012, 123151, 15700], [129178, 128299, 16373], 1510]
 ];
 
 let totalWindows = 0;
 const summary = [];
-for (const [name, filename, expectedWindows, expectedMin, expectedMax] of controls) {
+for (const [name, filename, expectedWindows, expectedMin, expectedMax, expectedMinE] of controls) {
   const plaintext = nativeGP(read(filename));
   const min = [Infinity, Infinity, Infinity];
   const max = [-Infinity, -Infinity, -Infinity];
+  let minE = Infinity;
   let windows = 0;
   for (let start = 0; start + LENGTH <= plaintext.length; start += WINDOW_STEP) {
     const window = plaintext.slice(start, start + LENGTH);
     const sample = layouts.map(layout => equalPairs(window, layout));
+    const e = window.filter(value => value === 18).length;
+    minE = Math.min(minE, e);
+    assert.ok(e > Math.max(...eCapacity),
+      'English source control fits a secret-layout E maximum unexpectedly');
     for (let k = 0; k < layouts.length; k++) {
       min[k] = Math.min(min[k], sample[k]);
       max[k] = Math.max(max[k], sample[k]);
@@ -151,9 +178,10 @@ for (const [name, filename, expectedWindows, expectedMin, expectedMax] of contro
   assert.equal(windows, expectedWindows, name + ' window count');
   assert.deepEqual(min, expectedMin, name + ' minimum pair counts');
   assert.deepEqual(max, expectedMax, name + ' maximum pair counts');
+  assert.equal(minE, expectedMinE, name + ' exact E-count minimum');
   totalWindows += windows;
   summary.push({ name, nativeGPRunes: plaintext.length, windows,
-    minimumEqualPairs: min, maximumEqualPairs: max });
+    minimumEqualPairs: min, maximumEqualPairs: max, minimumE: minE });
 }
 assert.equal(totalWindows, 88);
 
@@ -163,6 +191,7 @@ const output = {
   layoutKeys: layouts,
   keyFamily: '41 or 316 wholly arbitrary independent GP29 bijections, one per fixed source-geometry class',
   originalWithinClassEqualPairs: observed,
+  maximumPlaintextECapacity: eCapacity,
   sameClassPositionPairs: denominators,
   originalRates: observed.map((value, i) => value / denominators[i]),
   calibratedControls: summary,
