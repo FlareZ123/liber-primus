@@ -26,6 +26,9 @@ class FakeControl:
     def is_enabled(self):
         return True
 
+    def is_visible(self):
+        return True
+
     def window_text(self):
         return self.label
 
@@ -42,6 +45,12 @@ class FakeDialog:
         self.edit = FakeControl("Edit")
         self.button = FakeControl("Button", button)
         self.static = None
+        self.tree = None
+        self.sent_message = None
+        self.written_folder = None
+
+    def send_message(self, message, wparam=0, lparam=0):
+        self.sent_message = (message, wparam, lparam)
 
     def is_visible(self):
         return True
@@ -52,7 +61,7 @@ class FakeDialog:
     def descendants(self):
         return ([self.edit] if self.edit is not None else []) + (
             [self.static] if self.static is not None else []
-        ) + [self.button]
+        ) + ([self.tree] if self.tree is not None else []) + [self.button]
 
 
 class FakeApp:
@@ -73,7 +82,25 @@ def load_driver():
     root.Desktop = object  # Stub the additional top-level symbol imported by the driver.
     root.application = app
     root.keyboard = keyboard
+    # The native Win32 folder selector marshals a Unicode path into the
+    # dialog process. Model only its observable API, with no GUI dependency.
+    remote = types.ModuleType("pywinauto.remote_memory_block")
+
+    class FakeRemoteMemoryBlock:
+        def __init__(self, control, size=4096):
+            assert size >= 2
+            self.control = control
+
+        def Write(self, buffer):
+            self.control.written_folder = buffer.value
+
+        def Address(self):
+            return 0x1234
+
+    remote.RemoteMemoryBlock = FakeRemoteMemoryBlock
+    root.remote_memory_block = remote
     sys.modules["pywinauto"] = root
+    sys.modules["pywinauto.remote_memory_block"] = remote
     sys.modules["pywinauto.application"] = app
     sys.modules["pywinauto.keyboard"] = keyboard
     filename = Path(__file__).with_name("openpuff_v400_extract.py")
@@ -102,12 +129,21 @@ def main():
 
         legacy = FakeDialog("Browse for Folder", "OK")
         legacy.edit = None
+        legacy.tree = FakeControl("SysTreeView32")
+        assert driver["save_dialog_if_present"](FakeApp(legacy), target, output_dir)
+        assert legacy.written_folder == str(output_dir.resolve())
+        assert legacy.sent_message == (0x0400 + 103, 1, 0x1234)
+        assert legacy.button.clicked
+        print("PASS: native legacy folder picker receives marshalled directory path")
+
+        unsupported = FakeDialog("Browse for Folder", "OK")
+        unsupported.edit = None
         try:
-            driver["save_dialog_if_present"](FakeApp(legacy), target, output_dir)
-            raise AssertionError("A path-less native chooser must fail explicitly")
+            driver["save_dialog_if_present"](FakeApp(unsupported), target, output_dir)
+            raise AssertionError("A missing native chooser tree must fail explicitly")
         except RuntimeError as error:
-            assert "not a negative steganographic test" in str(error)
-            print("PASS: unsupported legacy folder picker reports an automation blocker")
+            assert "no native shell TreeView" in str(error)
+            print("PASS: absent native tree remains an explicit automation blocker")
 
         completed = FakeDialog("Task completed - Info", "OK")
         completed.edit = None
