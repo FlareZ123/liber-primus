@@ -143,7 +143,7 @@ The existing p32-derived M7 candidate has a projective pole at **7**; its marked
 A specific, still-unverified composition is:
 
 1. Decode each p49–51 base60 byte (b).
-2. Map (b mod 29) to a Gematria Primus rune index.
+2. Map (b mod 29) to a Gematria Primus rune index.
 3. Replace that rune index with its Gematria Primus prime weight, reduced modulo 29.
 4. Apply the forward p32 M7 map (f(x)=(14x+25)/(25x+28)pmod{29}), treating its pole (x=7) as infinity/empty.
 
