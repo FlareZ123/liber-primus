@@ -28,3 +28,7 @@ jobs:
         run: |
           node --check sims/p15_fibonacci_prime_base29_key_sft.cjs
           node sims/p15_fibonacci_prime_base29_key_sft.cjs
+      - name: Run source-correct p15 BASE29 key through authentic F-transparent decoder
+        run: |
+          node --check sims/lp2_p15_base29_ftransparent_original_sft.cjs
+          node sims/lp2_p15_base29_ftransparent_original_sft.cjs
