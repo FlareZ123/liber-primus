@@ -22,7 +22,11 @@ function urls(revision){
   {kind:'original-specific-cdx',url:'https://web.archive.org/cdx/search/cdx?url='+encodeURIComponent(path)+'&output=json&filter=statuscode%3A200'},
   {kind:'2016-capture-fixed-original-view',url:'https://web.archive.org/web/20160412061055/'+path},
   {kind:'2016-capture-http-saved-view',url:'https://web.archive.org/web/20160412061055/'+old},
-  {kind:'2016-capture-rawtext',url:'https://web.archive.org/web/20160412061055/'+path+'?pt=1'}
+  {kind:'2016-capture-rawtext',url:'https://web.archive.org/web/20160412061055/'+path+'?pt=1'},
+  {kind:'2016-saved-export-original',url:'https://web.archive.org/web/20160412061055/https://titanpad.com/ep/pad/export/'+pad+'/'+revision.id+'?format=txt'},
+  {kind:'2016-saved-export-rev-form',url:'https://web.archive.org/web/20160412061055/https://titanpad.com/ep/pad/export/'+pad+'/rev.'+revision.id+'?format=txt'},
+  {kind:'exact-export-archive-availability',url:'https://archive.org/wayback/available?url='+encodeURIComponent('https://titanpad.com/ep/pad/export/'+pad+'/'+revision.id+'?format=txt')+'&timestamp='+revision.timestamp},
+  {kind:'exact-export-cdx',url:'https://web.archive.org/cdx/search/cdx?url='+encodeURIComponent('https://titanpad.com/ep/pad/export/'+pad+'/'+revision.id+'?format=txt')+'&output=json&filter=statuscode%3A200'}
  ];
 }
 /** @param {{id:string,timestamp:string}} rev @param {{kind:string,url:string}} target */
