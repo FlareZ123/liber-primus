@@ -230,6 +230,18 @@ const strictPointerNegative = allTransparentFStates(
 assert.equal(strictPointerPositive.firstFailure, 28);
 assert.equal(strictPointerNegative.firstFailure, 2);
 
+// A second natural, preexisting printed-word boundary starts immediately
+// AFTER PNW, rather than on the three-rune source word itself. These source
+// positions exhaust the two simple PNW-anchored starts without fitting phase.
+const afterPNW = ciphertext.slice(10178,10439);
+assert.equal(afterPNW.length,261);
+const afterPNWKey = afterPNW.map((_,i) => (nthPrime(91+i)-1)%29);
+const afterPNWPositive = allTransparentFStates(afterPNW,afterPNWKey,1);
+const afterPNWNegative = allTransparentFStates(afterPNW,afterPNWKey,-1);
+assert.equal(afterPNWPositive.firstFailure,12);
+assert.equal(afterPNWNegative.firstFailure,58);
+
+
 // The two printed quotation delimiters are also independently visible.
 // Exact resets at each, with the *same* original 91 prime, are the only
 // additional source-defined boundaries; neither solves the second quotation.
@@ -313,6 +325,8 @@ console.log(JSON.stringify({
   p42P43AllLiteralFSchedules:{authenticP56:knownP56Reach,
     startAtPNWPositive:strictPointerPositive,
     startAtPNWNegative:strictPointerNegative,
+    startAfterPNWPositive:afterPNWPositive,
+    startAfterPNWNegative:afterPNWNegative,
     firstQuotedPositive:firstQuotePositive,firstQuotedNegative:firstQuoteNegative,
     secondQuotedPositive:secondQuotePositive,secondQuotedNegative:secondQuoteNegative,
     p42Positive:strict91Positive,p42Negative:strict91Negative},
