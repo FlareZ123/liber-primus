@@ -55,6 +55,25 @@ The [original-input SFT](../sims/lp2_p27_p55_three_tape_terminal_sft.cjs) gives 
 
 The result **does not exclude** a higher-degree scheme with hidden shares, changing coordinates, nonlinear field/byte transport, a different source alignment, or p55 as ciphertext rather than a fourth share. No p55 plaintext follows. The source and five-row contradiction are preserved in the existing three-tape test rather than creating another stand-alone cipher proposal.
 
+## Historical Shamir secret-at-zero as a direct p55 key (Agent30, 14 November 2026)
+
+The fixed fourth-share relation above is impossible, but a separate *historically defined* use of three shares is to interpolate the **secret at x=0**, then use that reconstructed secret as a key rather than treating p55 as another share. This tests one explicit consumer of the original `234 − 6 = 3×76` alignment, without choosing keys to fit English or expanding share layouts. The actual 2013 Cicada Shamir mechanism establishes the interpolation primitive; its use on these LP2 pages remains a hypothesis.
+
+After deleting p27's matching `DJU BEI` at local offsets28–33 and starting with the next rune at offset34, read the remaining 228 runes cyclically. The only two source-order layouts tested are three contiguous 76-rune strips and triplets interleaved into three 76-rune tapes. With the three hypothetical share abscissae fixed at 1,2,3, the unique degree≤2 interpolation to the secret at 0 has the exact GF(29) formula `K[i] = 3A[i] − 3B[i] + C[i] (mod 29)`. Each full 76-symbol result is used as an **unshifted positional additive key** for the original unaltered 76 p55 ciphertext runes. Test both signs of `P = C ± K (mod29)`.
+
+Apply the actual p56 **plaintext-F transparency** as the sole extra conditional hypothesis: source plaintext F emits ciphertext F and does not consume a key symbol; an observed ciphertext F may alternatively be an encrypted non-F symbol. P55 has exactly three F ciphertext symbols at local offsets15,25,41, so **all eight branches** are enumerated under each sign and layout, for **32 full-length original-input decodings**. Every branch is impossible before encountering the first F ciphertext:
+
+| p27 share layout | Decode sign | First source p55 offset where non-F ciphertext would decode as prohibited plaintext F | Valid branches / 8 |
+| --- | --- | ---: | ---: |
+| Three contiguous tapes | `C−K` | **8** | 0 |
+| Three contiguous tapes | `C+K` | **0** | 0 |
+| Three interleaved tapes | `C−K` | **9** | 0 |
+| Three interleaved tapes | `C+K` | **5** | 0 |
+
+These are exact fixed-key contradictions, independent of letter frequency, guessed whitespace and later F-clock ambiguities. In a forward-encoding positive control, the independently solved *p57* first 76 native GP runes are encrypted under each corresponding 76-rune reconstructed key with the same F-transparent rule, then completely recovered by the branch decoder. Therefore **the test's cipher equations can work** and the original input violates this particular hypothesis.
+
+The [standalone Windows Node22 SFT](../sims/lp2_p27_p55_shamir_zero_key_sft.cjs) enforces original source counts, the exact p27 terminal-pair match, both 76×3 layouts, 32 source decoding gates, and both signs' native p57 positive controls. [The successful original-source CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/43646861373) includes the four source contradiction coordinates. This retires **only Shamir-x0 plus a p56-style F-transparent direct additive key on p55**. Without assuming p56 F behavior transfers, the same 76-rune no-bypass shifts yield near-uniform, nonlinguistic GP outputs and no authenticated plaintext. No genuine LP2 key, original instruction or previously unknown plaintext is recovered.
+
 ## Evidential boundary and decision
 
 The length relation was noticed retrospectively, after finding the p27/p55 repeated words. It is source-exact but **does not authenticate** triple sharing or provide a discovery-wide significance probability. In particular, nothing surviving specifies the marker removal, cyclic cut, share order, XOR-to-byte framing, or GF29 additive analog as the intended encryption algorithm. The five-bit XOR outputs could encode some non-runic binary object. An additional exact original-input test combines the genuine 2013 **BASE29 numeral conversion** with the historical three-share XOR. Interpreting each full 76-rune tape as a single big-endian base-29 number, padding all four values to the shortest shared 47-byte width and XORing three source bytes into the target recovers neither prose nor a recognized file header. This adds no fitted shifts or recovered secret, but the byte-framing step is still not explicitly authored for LP2. The distinct, fully byte-native GP-prime-weight XOR also yields an unrecognized 76-byte sequence with 17 control characters. No surviving instruction selects a serialization or file format that would identify either as a message.
