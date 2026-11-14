@@ -42,6 +42,14 @@ At k=10 with ING-as-NG, the p3 word admits **62** individually compatible dictio
 
 **Positive control:** Twelve source-shaped native-GP test headings use exactly the 23 original word lengths and deliberately hidden short keys for periods 1, 9 and 16, each under both clocks and both orthographies. The same candidate/projection test admits each planted shared key. These successful models demonstrate discrimination within the stated cipher family and do not authenticate the original-Cicada cipher.
 
+## Stronger independent result: any secret monoalphabet on one p27 title word
+
+The exact printed twelve-rune middle title word at original **p27 local3–14** has this *equality pattern* (first occurrence of a rune receives consecutive labels): **0,1,2,3,4,5,0,6,7,8,9,0**. Thus its first, seventh and twelfth rune positions repeat the **same glyph**, while each of the other nine glyphs is distinct.
+
+Every invertible, fully arbitrary substitution of all 29 source rune identities preserves this repetition pattern, even if the entire p27 title or this single word receives its own independent secret 29! key. The exact source-fixed TextBlob/Norvig dictionary contains **zero** words whose GP29 spelling matches the p27 twelve-rune length *and* this equality pattern, using either of the NG/ING authentic spelling conventions. This is a stronger direct necessary-condition obstruction than the bounded 1–16 periodic additive-key result: **even a freely chosen 29! monoalphabetic key for this single word cannot turn it into a word in that entire finite native-English lexicon**.
+
+The stand-alone gate checks the literal source pattern, scans all lexicon words of the corresponding rune length, and confirms a planted 29-symbol-permutation encryption of a true twelve-rune source word remains detectable through its unchanged equality pattern. It follows that rescuing an ordinary dictionary reading requires an independently justified *nonstationary/stateful transformation*, a different source language/word register, or a change to the printed segmentation. The current evidence does not authorize any particular rescue.
+
 ## Decision and limitations
 
 This is an **English-lexicon-conditional exclusion** for a sharply specified historical cipher interpretation. It is not a theorem about arbitrary English words, punctuation alterations, historical languages or text outside the 29,157-entry dictionary. Other plausible choices remain untested: a clock advancing through black body runes, a distinct key per heading, a key longer than sixteen, different word boundaries, a transposition layer, a changing-state cipher or compressed intermediate text. Period sixteen is permitted by the test without asserting that the p15 square instructs it.
