@@ -20,7 +20,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const {parseLP2Words} = require("./lp2_word_pages.cjs");
+const {parseLP2Words, physicalLP2Page} = require("./lp2_word_pages.cjs");
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -163,8 +163,8 @@ console.log(JSON.stringify({
   lag5Hits: echoCount,
   lag5Opportunities: opportunityCount,
   originalWitnessWordIndexZeroBased: witnessIndex,
-  originalWitnessStartPage: parsed.words[witnessIndex].startPage,
-  originalWitnessEndPage: parsed.words[witnessIndex].endPage,
+  originalWitnessPhysicalPage: physicalLP2Page(parsed.words[witnessIndex].startPage),
+  originalWitnessPhysicalEndPage: physicalLP2Page(parsed.words[witnessIndex].endPage),
   witnessOriginalGP: witness.map(i => corpus.translit[i]).join(" "),
   witnessEchoOffsetsZeroBased: lag5Hits(witness),
   modelImpliedWordEnding: "m m m under every one of 29 reserved runes and every secret 28-way alphabet",
