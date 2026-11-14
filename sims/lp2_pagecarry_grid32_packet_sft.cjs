@@ -82,6 +82,31 @@ for (const x of records) toy[(x.packet-1)*8+(x.right-1)] =
   planted[x.packet-1];
 const recovered = records.map(x => toy[(x.packet-1)*8+(x.right-1)]);
 assert.deepEqual(Buffer.from(recovered),planted);
+// One historical cipher family (repeating Vigenere), with a deliberately
+// disclosed speculative byte->GP-index reduction. Zero phase, no key fitting.
+/** @param {number[]} a @returns {number} */
+function ioc(a) {
+  const histogram = Array(29).fill(0);
+  for (const x of a) histogram[x]++;
+  return histogram.reduce((sum,n) => sum+n*(n-1), 0)/(a.length*(a.length-1));
+}
+const candidateGPKey = raw.map(x => x%29);
+const terminal = corpus.pages.filter(p => p.page===54 || p.page===55);
+/** @param {number[]} c @param {number} sign @returns {number[]} */
+const decrypt = (c,sign) => c.map((v,i) =>
+  (v + sign*candidateGPKey[i%32] + 29)%29);
+const terminalResults = terminal.map(p => {
+  const minus = decrypt(p.indices,-1), plus=decrypt(p.indices,1);
+  assert.deepEqual(decrypt(minus,1),p.indices);
+  assert.deepEqual(decrypt(plus,-1),p.indices);
+  return {page:p.page,originalIoC:ioc(p.indices),
+    minusIoC:ioc(minus),plusIoC:ioc(plus),
+    minusFirst30:minus.slice(0,30).map(x => corpus.translit[x]).join(""),
+    plusFirst30:plus.slice(0,30).map(x => corpus.translit[x]).join("")};
+});
+assert.ok(Math.abs(terminalResults[0].minusIoC-0.03735632183908046)<1e-14);
+assert.ok(Math.abs(terminalResults[1].minusIoC-0.03333333333333333)<1e-14);
+
 const result = {
   totalUnknownRunes:12956, completeWords:2896,
   genuinelySplitWords:32, precedingPageSeparators:2,
@@ -89,6 +114,7 @@ const result = {
   originalSourceCells:records.map(x => x.cell),
   selected: Object.fromEntries(Object.entries(mapped).map(
     ([key,a]) => [key,format(a)])),
+  exploratoryRepeatVigenere:{keyIndices:candidateGPKey,terminal:terminalResults},
   positive:"32/32 planted bytes recovered without changing the source selector",
   conclusion:"No direct typed/plaintext sequence from this 32-row packet mapping"
 };
