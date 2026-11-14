@@ -548,6 +548,14 @@ def main():
         result.update(classify_outputs(
             extracted_files(output_dir), args.expected_crc32, args.expected_size
         ))
+        # Absence of a saved file at the polling deadline is not a native
+        # negative when the application has never displayed completion.
+        if result["output_present"]:
+            result["native_probe_outcome"] = "output-file"
+        elif result["completion_dialogs"]:
+            result["native_probe_outcome"] = "completed-without-file"
+        else:
+            result["native_probe_outcome"] = "inconclusive-timeout"
         result["windows_after_unhide"] = snapshot(app, out_dir, "after-unhide")
     finally:
         if app is not None:
