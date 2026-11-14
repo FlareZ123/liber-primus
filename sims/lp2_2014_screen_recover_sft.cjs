@@ -15,7 +15,7 @@ const sources = [
   {id:'3ilh97',line:175366,date:'2014-05-12',url:'http://prntscr.com/3ilh97',claim:'Nem0 key-length proof-of-concept'},
   {id:'3ix2fd',line:177109,date:'2014-05-13',url:'http://prntscr.com/3ix2fd',claim:'Nem0 key reset / length diagram'},
   {id:'3fugdf',line:165756,date:'2014-05-03',url:'http://prntscr.com/3fugdf',claim:'Ammar page43 guessed phrase'},
-  {id:'1mkseB8',line:198062,date:'2014-06-11',url:'http://i.imgur.com/1mkseB8.jpg',claim:'idontworkfor3301 page34/35 proposed ITS / LESS'},
+  {id:'1mkseB8',line:198062,date:'2014-06-11',url:'http://i.imgur.com/1mkseB8.jpg',claim:'idontworkfor3301 p55/p54 visual asymmetry; separate earlier p34/p35 guesses'},
   {id:'474ruj',line:228534,date:'2014-07-28',url:'http://prntscr.com/474ruj',claim:'Nem0 restricted-shift frequency illustration'}
 ];
 
