@@ -1,50 +1,45 @@
-# Original p22 three-collar spacing and the solved p15 Fibonacci-indexed primes
+# LP2 p22 three-collar drawing and p15 Fibonacci-prime spacing: calibrated limits
 
-**13 November 2026, Agent 10. Classification: provisional source-geometry clue, no recovered unknown plaintext, key, or cipher.** This is a two-interval original-image observation with a corresponding independently established numerical sequence. The resemblance was discovered after inspection, so it is not a statistically calibrated discovery.
+**14 November 2026, Agent29. Revised assessment of the original Agent10 observation.** Physical LP2 p22 (original scan `39.jpg`) shows a horizontal dark staff-like illustration with three broad vertical collars. LP2 physical p15 prints a separately solved Fibonacci-indexed prime spiral containing consecutive primes **263** and **463**. The original 263/463 source-pixel resemblance is real under its published image measurement, but **the correspondence does not currently establish an authored key, scale, traversal or decryption operation**. No unknown rune plaintext has been recovered.
 
-## A potential 2014-visible solve path
+## Original-artifact observation
 
-The original p15 [Fibonacci-indexed prime spiral](../results/lp2-p15-fibonacci-prime-spiral.md) establishes, from its printed 4×4 grid, the prime sequence 2,3,5,7,13,23,43,79,149,**263,463**,829,1481,2593,4507,7817. The terms 263 and 463 occur at consecutive spiral steps n9 and n10, corresponding to the **adjacent right-edge cells 3038 and 2838**.
+The original p22 JPEG is 2400×3600 and has SHA-256 `e232eb4649f89125d0edeab7022cbe189185d46ccbf0823fd964b6e71e9bafe7`. The [established p15 numerical solution](../results/lp2-p15-fibonacci-prime-spiral.md) yields the sixteen ordered primes 2, 3, 5, 7, 13, 23, 43, 79, 149, **263, 463**, 829, 1481, 2593, 4507, 7817. They are the p15 spiral steps 9 and 10, which appear as the adjoining right-edge printed numbers 3038 and 2838. This authentic p15 mechanism is independent of the p22 drawing.
 
-Original physical p22 [scan39.jpg](../resources/liber-primus/39.jpg), at the end of the *same* p15–22 illustrated chapter, has a horizontal black-ink object below six runic text lines and above a reclining human figure. The object has **three large vertical collars**. Its exact pictorial identity (a key, tool, staff, or something else) is unresolved. A solver may compare its two adjacent collar gaps with the numbers just encountered on p15.
+The [initial original-source measurement](../sims/lp2_p22_p15_prime_collars_original_sft.py) used x windows [660,870), [940,1120), [1400,1620), y [2215,2630), grayscale threshold 130 and weighted ink centroids with a 20th-percentile baseline subtraction. Its original x-center gaps are **267.363 and 460.086 pixels**, versus prime targets **263 and 463**, a two-dimensional Euclidean discrepancy **5.246 px**. Using the first gap to select the 263 prime then forecasting the third collar gives a 2.9-pixel conditional discrepancy, but this forecast was constructed **after viewing the illustration**. It was never a blinded prediction.
 
-## Frozen original-source pixel measurement
+## Pixel measurement sensitivity
 
-The [standalone reproducer](../sims/lp2_p22_p15_prime_collars_original_sft.py) reads the original 2400×3600 source JPEG, never OCR. It isolates the three plainly visible collars in **x=[660,870), [940,1120), [1400,1620)** and **y=[2215,2630)**, thresholds grayscale ink, sums dark pixels per column and takes a weighted x-centroid after subtracting each window's 20th-percentile common shaft/ink background.
+The [new all-original-scan calibration SFT](../sims/lp2_p22_p15_collar_calibration_sft.py) freezes the old x windows and estimator while changing only the vertical image sampling interval. All numbers are measured in original JPEG pixels.
 
-| Grayscale threshold | Collar centers x in source pixels | Successive center distances |
-| ---: | --- | --- |
-| 70 | 765.36, 1032.75, 1492.04 | 267.38, 459.30 |
-| 110 | 765.32, 1033.10, 1492.98 | 267.78, 459.88 |
-| **130** | **765.97, 1033.33, 1493.42** | **267.36, 460.09** |
-| 170 | 766.30, 1034.11, 1494.19 | 267.81, 460.08 |
+| Sampled y interval | Measured successive x gaps | Euclidean error against 263/463 |
+| --- | --- | ---: |
+| [2215,2630), original choice | 267.363, 460.086 | **5.246 px** |
+| [2250,2570), inner shaft/collars | 263.860, 464.544 | **1.767 px** |
+| [2300,2500), narrower central strip | 260.581, 474.401 | **11.655 px** |
 
-**Conditional third-collar prediction using only the first measured gap:** Given source x1=765.97 and x2=1033.33, the first gap is 267.36 px. Select the nearest established p15 Fibonacci-indexed prime **263** (spiral step n9), without looking at the third collar. The very next p15 spiral step is prime **463**, predicting third x=1033.33+463=**1496.33**. The original third source collar is at **1493.42**, residual **−2.91 px**. Across all six threshold cutoffs the predicted third-collar error remains between −3.70 and −2.81 px. This is a concrete source-shaped **conditional physical prediction** but it was devised *after* the complete illustration had already been viewed; it is not a blind holdout or a calibrated p-value.
+The variation is consequential at the claimed five-pixel precision. The three collar shapes are jagged and asymmetric; there is no printed ruler, 1-pixel-per-prime convention, center definition or source-fixed y cut. Changing a y window can make this alignment much better or substantially worse without touching the underlying drawing. The source's physical dimensions alone cannot authenticate a designed numerical gap scale.
 
-At threshold 130, the differences from p15's established adjacent pair **[263,463]** are **+4.36 px, −2.91 px**. The total first-to-third center distance 727.45 px differs from 263+463=726 by only 1.45 px. The independent cutoff family 70–170 gives Euclidean paired errors 5.23–5.85 px. The closest *other* adjacent pair in the original p15 series is about 230 px away under the same unscaled comparison. **No independent third prime distance is claimed**: the ink object begins ambiguously relative to the first wide collar, and the right-edge dots obscure the terminal point.
+## Whole-artifact familywise visual-landmark comparison
 
-## A concrete conditional word-map readout, including a solved-page landing
+For a deliberately broad, **source-only** measurement, the new SFT scans all **75 original JPEGs 00.jpg–74.jpg**. It BOX-downsamples each to 1200×1800, thresholds the grayscale, takes 208-pixel-high sliding strips at y step 50 reduced pixels, sums ink per column, smooths that projection (Gaussian sigma 7.5 reduced pixels), and finds x peaks with prominence 15, minimum distance 60 and width 10. It examines every ordered combination of three eligible peaks whose original-pixel gaps are each at least 120 px. Each two-gap vector is compared without any fitted scale against **all fifteen adjacent pairs** of the independently established p15 prime series. A synthetic three-collar illustration with gaps 263/463 is detected by this same pipeline.
 
-A previously proposed, **unproved** book addressing rule uses each number N as a zero-based physical page N mod58 and zero-based printed word floor(N/58), then replaces N with that word's GP-prime sum. Apply **that same fixed rule** to the p15 gap-prime pair selected by the p22 drawing, without changing its page origin or word indexing:
+| Grayscale cutoff | Tested three-peak configurations | Matches at least as close as original 5.246 px report* | Distinct original scans with those matches |
+| ---: | ---: | ---: | ---: |
+| 90 | 21,694 | 11 | 10 |
+| **130** | **31,210** | **14** | **11** |
+| 170 | 32,724 | 13 | 12 |
 
-- **263** → original p31 word4, sum246 → p14 word4, sum117 → enters the previously established source-word **33-cycle** at node117. Full route: 263→246→117→604→226→495→162→225→255→522→83→17→78→101→264→191→362→307→384→320→290→563→180→267→66→250→157→276→245→427→211→258→285→227→111→117.
-- **463 = 58×7+57** → original solved physical **p57 word7**, clear GP word **SURFACE**, in p57's sentence describing the instar tunneling to the surface.
-- Their **sum726** (the source-image full gap span differs by 1.45 source pixels) follows 726→329→183→460→199→203→256→144→495 and joins the *same* 33-cycle. This sum route is a second retrospectively available candidate, not an independent prediction.
+* Threshold for counts fixed at 5.25 source pixels to include the original observed distance rounded outward. Results count overlapping y windows separately; the distinct-scan column does not. One direct alternative is **scan51.jpg**, original y=1500, with automatically measured peak gaps **264/462**, Euclidean error **1.414 px** against the same p15 263/463 pair. Its peaks occur among ordinary rune text, demonstrating selection opportunity rather than the existence of a second staff clue.
 
-This conditional cross-page result is exact in the original 58-page word inventory; the word SURFACE is **already unencrypted** and supplies no unknown plaintext. Many arbitrary starts in this map join its 33-cycle. The proposed pixel-to-prime and prime-to-page-word steps are separately unproven; combining them multiplies unselected assumptions.
+Crucially, the untuned image-only peak detector **does not reproduce** the hand-chosen 5.246 px match on p22: its best scan39.jpg result under grayscale130 has peaks **x=786, 1036, 1490**, gaps **250/454**, and error **15.811 px**. At thresholds 90 and 170 it gives best errors 17.493 and 14.213 px respectively. This is a measurement-method difference, not a correction to the original hand-window result.
 
-One bounded hypothesis makes a complete reversible cipher consumer from the strongest semantic reading. If SURFACE commands use of the **two exterior runes** of each of the 33 words reached from 263's cycle entry117, the result is a 66-rune candidate key. Physical p49, immediately before the 256-cell numeric grid, contains exactly 66 original runes. Apply the historically attested LP1 GP29 Vigenère subtraction to its 66 rune positions, with the cycle starting at117 and no fitted phase. The resulting full p49 stream transliterates:
+**Scope of calibration.** Text strokes and assorted illustration peaks are part of this broad source-page opportunity census. They are **not shape-matched three-collar controls**; the 14/31,210 rate must not be interpreted as a frequentist p-value for finding this specific staff illustration by chance. The analyst has seen the prime pair, so this is also **not** a genuinely blinded human landmark annotation. It does show concretely that other original page structures yield equal or stronger prime-pair pixel coincidences and that the p22 exactness is not robust to a source-only landmark detector. No uniquely privileged scale or visual extraction instruction has emerged.
 
-> CTHTHIDCFFAHIALLTPREOEEAHGIGJEATHRNGXEOGXHYIAMYDIAXAYHBBXEAWWMNWDAECWJHJAEACUNEOI
+## Cryptanalytic outcome and follow-up
 
-Its IoC is **0.02937063**, without coherent words; all 66 runes forward-re-encrypt exactly under the same explicit key. A separate 563-start cycle phase likewise produces nonlinguistic output (recorded in the [Agent42 handoff](../communications/agent42/20261113T1230Z_agent10_orbit33_p49_boundary-66.md)). These direct consumers are **negative**. Using SURFACE as an instruction to take word exteriors, applying the key to p49, and using Vigenère are exploratory choices rather than actual source instructions. Do not rotate keys or try alternative scoring to rescue them.
+The earlier tentative **263→word-map cycle** and **463→already-clear p57 SURFACE** readouts combine multiple independently unselected operations. The original report's direct 66-symbol exterior-word GP29 Vigenère consumer on all 66 ciphertext runes of p49 gave nonlinguistic output (IoC 0.02937) despite exact forward reconstruction. That negative remains a separate bounded cipher result and is not rescued by geometric calibration.
 
-## Mechanism boundary and next decision
+**Decision:** retire the naked `p22 collar x-gap → p15 prime pair → word-address/cipher` chain as an authenticated decoding selector. Preserve p22's illustration and p15's genuine prime spiral as original facts. Reopen the connection only if an independently authenticated plate, page instruction, source-given geometric unit or explicit reversible operand selects the two gaps and a target **before** evaluating plaintext. No additional arbitrary phase, rotation, image crop or p49 key search follows from the present coincidence.
 
-The three x windows and decision to compare the original 1-pixel/1-unit gaps with this particular prime sequence were chosen **after** seeing the illustration and recovered p15 arithmetic. The image may have been rescaled from vector artwork; its scale and the intended object identification are unknown. A visually expanding three-band illustration can match some increasing number pairs by chance, and the broader selection opportunity across the book has not been calibrated. Thus the relationship is **a human-parseable clue candidate**, not a confirmed authorial instruction, cryptographic key, or ciphertext decryption.
-
-An approximate direct vertical projection of the three collars onto the six printed text lines does not give a uniform source-selected glyph/gap readout or legible text. Do not rescue it by tuning projection locations, key phases or arbitrary layers.
-
-**The one meaningful successor:** obtain an *independent original mark* that authenticates the pixel scale and/or source word-map rule and specifies a reversible operator and target. Its decoded output must make a withheld original-rune plaintext prediction. Otherwise archive the coincidence. The p15 16-cell numerical decipherment remains established; the surrounding 1,903-rune chapter is still encrypted.
-
-**Reproduction:** Python 3 with NumPy/Pillow, run the linked script against the repository original scan39.jpg or pass --zip with the original 75-JPEG archive. The scan geometry and prime sequence are never optimized to ciphertext language scores.
+**Reproduction:** `python sims/lp2_p22_p15_collar_calibration_sft.py` with checked-in `resources/liber-primus/00.jpg` through `74.jpg`, or pass `--zip` pointing to the supplied original 75-JPEG archive. Python dependencies: NumPy, Pillow, SciPy. The separate [original hand-window reproducer](../sims/lp2_p22_p15_prime_collars_original_sft.py) remains intact as historical comparison. All scripts are original-input measurements; none claims a recovered LP2 key or decryption.

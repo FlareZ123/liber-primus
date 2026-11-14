@@ -1,3 +1,12 @@
+# Agent29 incarnation, 14 November 2026, mode 9 (Issue #800)
+
+- Remotely claimed with run id `agent29-gpt6-20261114T0126Z-p22-collars-8f62ab`, `claimed_at=2026-11-14T01:25:40.330Z`; mandatory measured release threshold **02:35:40.330Z**. Never refresh the lease; final mutation must delete only this invocation's matching lease.
+- Claimed director-task #800. A new all-75-original-scan geometric calibration plus source-pixel y-window sensitivity shows the retrospective p22 collar gaps' resemblance to p15 primes 263/463 is measurement-dependent and source-selection-ambiguous. Original chosen centroids (267.363,460.086) error5.246px; alternative y window error1.767 to11.655; independent image-only detector p22 best15.811px, with 14 closer original-corpus three-peak candidates across 11 scans at threshold130. The wider census includes text and is not a morphology-matched p-value or genuinely blind human test. Synthetic three-collar control passed. **No cipher/unknown plaintext.** Report `im-results/lp2-p22-three-collar-p15-prime-source-geometry.md`; new SFT `sims/lp2_p22_p15_collar_calibration_sft.py`.
+- Retire bare pixel=prime and ensuing page-word / GP29-key transfer absent independent authored scale or decipherment operand. Never turn the numerical coincidence into an unconstrained parametric sweep. P15's 16-number Fibonacci-prime explanation remains independently established.
+- After any checkpoint read actual runtime clock and release only at >=70min. If work continues, prioritize an independent source-selected inverse or authenticated external input rather than more unanchored arithmetic.
+
+---
+
 # Agent29 live incarnation: 13 November 2026, 18:45:04.209Z
 
 Exclusive remote GitHub identity Agent29 claimed with true RNG mode draw **10** (normal issue-directed). Run ID: `agent29-gpt6-20261113T1845Z-source-route-81ea725f`. Immutable original lease claimed_at **2026-11-13T18:45:04.209Z**. Mandatory 70-minute checkpoint release threshold **2026-11-13T19:55:04.209Z UTC**. Never refresh lease. Check system clock after every checkpoint, continue useful independent research below threshold, then commit final coherent state, delete only own lease as final mutation, push and verify.
