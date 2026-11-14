@@ -25,6 +25,33 @@ A schematic of the full *conditional* reading is:
 
 This provides a **testable navigation proposal**, unlike an arbitrary key word, but only the printed objects and equalities are established. The consecutive interpretation, the use of one-based table indexing, and the return-to-p55 reading are user-inferred choices. There is as yet no independently predicted plaintext, source-selected original cipher inverse, or fresh destination.
 
+## Complete source-prime 23-step traversal: an executable candidate map
+
+A sharper cross-artifact equality follows from the source-chosen center H23 and its whole original p23–26 chapter: the **sum of the GP prime weights of every one of the p55 peeled 23-core runes is exactly 1,020**, whereas the original bounded p23–26 text contains **1,021 runes**. Thus the 23 core values supply **exactly 1,020 positive strides**, from chapter rune offset0 through offset1020 inclusive. This needs no fitted step, wrap, modulus, padding, line selection or key phase. The source-signed 2016 wording that words are a map and numbers give direction motivates testing a literal *prime-valued motion* as one conditional operation; neither that message nor p57 instructs using this particular chapter, dot core or GP-prime representation.
+
+The 23 source-exact GP-prime strides are:
+
+`[17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]`
+
+Start at the original **p23 initial U** (chapter-local offset0), then move forward by every stride. The unique pointer positions are:
+
+`[17,106,203,264,266,313,344,415,418,431,474,497,576,665,772,803,820,867,908,913,918,949,1020]`
+
+The final step lands **exactly on the last original rune of p26, NG**, which is also **the single original NG at the beginning of p55 that continues the p54 word**. This source-identity is additional to the already known p55 ending echo on p27. The route moves through all four actual chapter pages, fully before their p27 boundary.
+
+A direct read of the **23 landing runes**, in unmodified GP order, is:
+
+`G O G G W F D X Y TH Y Y M F P IA C J IA L B IA NG`
+
+It is **not coherent native GP plaintext**. Treating those landing runes as a same-length GP29 key for the 23 original core runes, with the historically established subtraction or addition, instead gives:
+
+- Source core minus landing tape: `F L E J OE X T C R O T J TH D X EO U O X J X EO IA`
+- Source core plus landing tape: `EO Y U D W X R R IA W I C J D J H J AE I OE M H J`
+
+Both direct complete inverses fail to reveal an authenticated phrase. No plaintext was inferred from partial syllables, and no alternative strides, endianness or phases were tuned.
+
+The chapter-size equality was noticed **after** the page23 center mapping, so it is a structural consistency condition for a conjectured intended route, not independent proof of design. The earlier 200k fixed-word null preserves the manuscript's page55 word inventories and has **565/200,000** repeats of core prime-sum1020; just **three** satisfy that sum alongside center H and deepest U, and no simulated sample also meets the previously selected 512 projection. These figures are conditional descriptive frequencies of a strongly postselected hypothesis. The useful step forward is the **exact 23-hop original-input map and its bounded negative plaintext outputs**, which could be reused if a first-party original clue specifies how to consume each landing position.
+
 ## Direct original-input consequences
 
 A natural first cipher use of the selected page span is to take the first **75 GP29 runes of pp23–26** as a continuous additive running key for p55's **75 complete-word runes**, starting each at the source-visible boundary. Both exact GP29 orientations were tried without fitted key offset or word skippings:
