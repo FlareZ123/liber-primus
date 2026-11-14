@@ -1,4 +1,4 @@
-# Original p50 GEM three-cycle as a direct GP29 p55 key: strict-F impossibility gate
+# Original p50 GEM cycle: historical strict-F key tests on p55 and table neighbors
 
 **Agent 14, 14 November 2026. Evidence status:** bounded original-cipher negative for the exact historically attested F-transparent Vigenère consumer. This is **not** an authenticated unknown LP2 decryption or a rejection of the p50 graph as a possible clue.
 
@@ -68,8 +68,24 @@ This rules out the direct **cyclic prime-totient IOGEM** as a full-chapter p56-l
 
 [Exact source-native Node22 CommonJS SFT](../sims/lp2_p57_divinity_iogem_p55_strictf_sft.cjs).
 
+## Original page-adjacent GEM consumer (Agent 10, 14 November 2026)
+
+The independently original-visible **p48 `G E M Y`** fourgram points via Y's GP prime **103** into the same provisional table path whose unique three-cycle reads **GEM**. That pointer occurs immediately **before** the printed p49–51 256-cell table, so the physically adjacent rune passages, **p49 (66 runes)** and **p51 (92 runes)**, are a more economical local key-consumer test than the remote p55 terminal page. This uses the existing source-selected GEM loop `[G,E,M]=[6,18,19]`, with no fitted key; the letter sequence is original ciphertext, so its status as an intended clue remains uncertain.
+
+The exact [standalone original-source CommonJS test](../sims/lp2_p49_p51_gem_original_strictf_sft.cjs) reads the unaltered [LP2 rune corpus](../resources/liber-primus/lp2-corpus.json) and [256 original table bytes](../resources/liber-primus/lp2-grid-256.json). It asserts the original table cells 119→127→128→119, the source GEM spelling, original rune lengths and ciphertext-F locations. It then applies the *authenticated historical* plaintext-F-transparent GP29 Vigenère inverse under **all three GEM starting phases**, retaining every literal-F bypass/key-consuming interpretation. Because physical p50 has no runes, it also tests concatenating p49 and p51 under one uninterrupted clock, without claiming those two passages are a single sentence.
+
+| Untouched source passage | GP rune count | Earliest **zero-based** impossible offset, GEM/EMG/MGE phases | Complete legal inverses |
+| --- | ---: | --- | ---: |
+| Physical p49 | 66 | **1, 25, 25** | 0/3 phases |
+| Physical p51 | 92 | **38, 38, 24** | 0/3 phases |
+| p49 concatenated with p51 across the table | 158 | **1, 25, 25** | 0/3 phases |
+
+A real plaintext-F-transparent encoder can never consume key when its computed plaintext is F. Each listed earliest offset encounters an unavoidable violation of that rule, even considering every earlier ciphertext-F branch. The test independently encrypts the original **95-rune clear p57 PARABLE** with GEM in each phase and fully recovers all 95 known source runes among its unmasked inverse states, including the genuine F bypass positions. The complete controls and original gates **passed on Windows, Node.js 22**: [Actions run 43645563826](https://github.com/FlareZ123/liber-primus/actions/runs/43645563826).
+
+**Decision:** a repeated literal-GEM key under the original historical strict-F Vigenère rule cannot decipher either table-flanking rune passage or their cross-table concatenation. This is a new, exact rejection of the *most local natural consumer*. It does not exclude the provisional p48/table navigation as a clue, source-selected alternative numeric conversions, nonperiodic keys, a distinct cipher architecture or an encrypted binary payload. There is **no authenticated new plaintext** to promote.
+
 ## Decision
 
-The **three-phase direct repeating GEM-cycle key**, and all **five cyclic phases of the newly source-derived IOGEM path key**, cannot invert original p55 under the historically solved strict-F Vigenère mechanism, irrespective of whether the p54 carry rune is included at the restart. Retire only that specific original-space consumer. It does not reject a different original LP2 cipher, the source's tentative graph/navigation scheme, an unknown-page cipher without F bypass, or a different originally selected key. The decisive missing upstream element remains a first-party instruction selecting the graph decomposition and the GP29 key consumer; no unknown original plaintext/key/destination is recovered.
+The **three-phase direct repeating GEM-cycle key** cannot invert original p55, either adjacent p49/p51 passage or their concatenation; all **five cyclic phases of the newly source-derived IOGEM path key** also cannot invert original p55 under the historically solved strict-F Vigenère mechanism, irrespective of whether the p54 carry rune is included at the restart. Retire only that specific original-space consumer. It does not reject a different original LP2 cipher, the source's tentative graph/navigation scheme, an unknown-page cipher without F bypass, or a different originally selected key. The decisive missing upstream element remains a first-party instruction selecting the graph decomposition and the GP29 key consumer; no unknown original plaintext/key/destination is recovered.
 
 **Single-file reproducible test:** [`sims/lp2_p50_gem_p55_gp29_original_sft.cjs`](../sims/lp2_p50_gem_p55_gp29_original_sft.cjs) loads unchanged checked-in source JSON and executes the enumerator, source assertions, full/suffix comparison and native planted controls in Node.js 22. This result was calculated against the canonical GitHub original arrays; no GitHub Actions execution is claimed.
