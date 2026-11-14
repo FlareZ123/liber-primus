@@ -10,6 +10,7 @@ on:
           - sentence-prefix
           - release-whitespace
           - rift-split
+          - wordlocal-fivephase
         default: all
 permissions:
   contents: read
@@ -46,3 +47,9 @@ jobs:
       - name: Stage11 missing-prime p19 RIFT boundary original-input split gate
         if: inputs.test == 'rift-split'
         run: node sims/lp2_stage11_p19_rift_split_sft.cjs
+
+      - name: Independent-key, word-local five-phase additive original inverse
+        if: inputs.test == 'wordlocal-fivephase'
+        run: |
+          node --check sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
+          node sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
