@@ -1,6 +1,6 @@
 # p55 inner43 BASE29 polynomial bridge
 
-**Status: Intermediate structural finding — not a decryption.**
+**Status: Two related original-source polynomial evaluation observations, both conditional on an unselected ascending-coefficient interpretation; neither is a decryption.**
 
 ## Claim
 
@@ -55,11 +55,27 @@ Writing (u=X\bmod H), the normalized relation is (u^2=11u+18). Therefore the fie
 
 The norm match is an independent algebraic invariant of the same source-selected polynomial, not a plaintext result.
 
+## The complementary 33 source-visible outer runes (Agent7, 14 November 2026)
+
+The same p55 segmentation yields another exact identity that could, under a future authored rule, constrain the 2014 five-by-five squares as a candidate operand. Its **17 page-local printed segments** split into **43 strict-interior GP29 digits and 33 outer/boundary digits** when retaining both first and last rune of every segment, counting the initial one-rune page carry once. The 33-digit exterior is
+
+`[21,25,7,15,17,14,19,15,25,0,1,7,4,17,12,5,17,18,28,15,18,15,2,22,5,14,23,1,17,10, ...]`.
+
+The exact complete edge array, not this abbreviated display, is reconstructed from original ciphertext and source word lengths by the [reproducer](../sims/lp2_p55_outer33_square25_polynomial_gate_sft.cjs). Let `O(X)` treat these 33 printed indices as ascending GF29 polynomial coefficients, using the same **conditional, unselected** operation as the 43-rune inner polynomial `I(X)` above. The historical 2014 magic-square sums `3301` and `1033` reduce to `24` and `18`, respectively. On the exact original runes:
+
+\[
+O(24)=25,\quad O(18)=25,\qquad I(24)=18,\quad I(18)=23.
+\]
+
+The exterior equalities give the exact polynomial identity `O(X)−25 = (X²+16X+26) Q(X)` over GF29 with a 31-coefficient quotient `Q` and zero remainder. **This factorization is simply the algebraic consequence of those two evaluations, not independent corroboration.** The two preserved 2014 five-by-five magic squares each have 25 cells, providing an independently player-available possible meaning for the output 25. Both 2014 sums, the p57 circumference instruction, and the 25-cell object are authentic source objects; the *choice to evaluate p55 word-edge coefficients as a finite-field polynomial and choose these two inputs* is retrospective. No original signer specifies that operation or identifies its output as a square-key selector.
+
+A third source-visible field input provides an immediate limitation: `O(23)=1`, **not** 25, when 23 is selected from the original signed 2013 DH modulus or the p57 red-dot count. Across all 29 possible GP field inputs, exactly `X=18` and `X=24` yield 25; the exterior polynomial has 17 colliding input pairs overall, versus 14 expected under independent uniform outputs, so finding *some* equal-output pair is ordinary. Neither the quadratic quotient nor the inner/outer pair yields source-fixed plaintext, an executable inverse, or a new key clock. Do **not** multiply this conditional numerical correspondence into new GP29 cipher parameter sweeps without an independent authored key-use rule.
+
 ## Controls and interpretation
 
 - Reversing the 43 coefficients gives (P(24)=4) and (P(18)=19), so the ascending order matters.
 - Using all 76 p55 runes instead of the strict interior gives (P(24)=24) and (P(18)=26); the literal interior extraction matters.
-- The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but the polynomial construction and chosen evaluation points were proposed after inspecting them. The resulting arithmetic checks are not statistically independent and no historical operation selects the evaluation route. No p-value is claimed.
+- The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but both the inner and outer polynomial constructions and the chosen evaluation points were proposed after inspecting them. The resulting arithmetic checks are not statistically independent and no historical operation selects the evaluation route. No p-value is claimed.
 - A first source-selected consumer was tested on the 1,680-rune p33–39 chapter: the powers of alpha have period 210, and the chapter is 8×210. The six phase-zero additive GP29 readouts using the two coordinates and trace, under both signs, all remain uniform (IoCs 0.03429–0.03466); no plaintext. See [the p33–39 report](lp2-p33-39-gf841-period840-original-gate.md). This rejects the direct scalar-additive consumer, not every possible use of the polynomial.
 - **DH provenance caution:** the signed 2013 source's worked exchange also prints base 5, server public share 8, client public share 19 and shared key 2, but explicitly says the server base and secret are participant-selected for each request. Do not treat those example values (or matches to the polynomial's trace 8 / orbit value 19) as organizer-fixed clues or key material. The cross-round bridge uses only the protocol's fixed modulus 23.
 - This finding does not identify how (P_{55}), (\alpha), its norm, trace or order should be consumed by a cipher. No arbitrary keystream, phase, stream-cipher or page-decoder search was performed. Waiting decoder challenge [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains waiting; this report is a structural lead, not an attempt to bypass its acceptance gate.
