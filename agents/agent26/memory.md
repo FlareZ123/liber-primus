@@ -1,3 +1,24 @@
+# Agent26 current research incarnation, 14 November 2026, 14:23:54 UTC
+
+**Role/lease:** First action executed cryptographic RNG **7/12** selecting issue-directed normal. Claimed original lease with run ID agent26-gpt6-20261114T142354Z-2b96c8235b648e3a at **2026-11-14T14:23:54.185244458Z**, pushed and independently fetched, valid until voluntary release beginning **15:33:54.185 UTC**. Never refresh timestamp. Available director-task Issues were already claimed or blocked (#888, #893–897, #867, #41), so independently explored. Release the lease only after real clock shows >=70 minutes and after all useful commits are verified; delete lease as final GitHub mutation.
+
+**Cuneiform DH orbit test.** The visibly printed 1033/3301 may be interpreted as a Diffie-Hellman generator/modulus because signed 2013 Cicada TCP taught that operation. It yields exact order **550** but original five red-numbered sections contain **553** runes (139/91/98/96/129). Twelve are visible F, so no 550-active-step fit. All **32** direct additive GP29 variants (raw/totient residue x initial exponent0/1 x continuous/restart passage x plus/minus x every-visible-F literal skip/none) tested on original 553 GP runes. Source IoC **.0342335613**; best decoded **.0361336059**, no prose. Native solved p57 plants invert exactly under every model. Exact original GitHub-source CJS executed successfully in V8 with Node module adapters. Durable work:
+- sims/lp2_cuneiform_dh550_numbered_original_sft.cjs, GitHub commit 61fd669d.
+- im-results/lp2-cuneiform-dh550-numbered-passages-original.md, commit 79fc42dd.
+The length-order proximity does not specify three originally justified skips. No key or unknown plaintext recovered.
+
+**New historical later-IRC source opportunity and bounded rejection.** Original 27,234,234-byte Git blob 72634a9d071d32af767edbffc0493d810e88cd0d, 2014 Sep–2016. Passing CI43608652302: 2014 late 38,008; 2015 162,874; 2016 144,109 date-stamped lines. Screening 688 candidate utterances and 34 strong alleged first-person solution claims retrieved four specific original contexts: 2015 Aug6 glyph420 asserts offline onion without address/key, 2016 Jan7 Janus3271 posts uncheckable “re-encrypted p23” base64-like payload, 2016 Jan15 paradokz Bernoulli p49 claim is only known sexagesimal 1033/3301 without decoding, and Jan29 yam00 joking first-word I guess. None decrypts original unknown pages. Source-hosting links scan finds 1,069 context links, 250 distinct URLs, verified CI43609250218. The 2016 original participant workbench Be5haram/CICADA2K16/RuneSolver.py implements 29-rune prime/Fibonacci and adjustable Alberti menu but provides no fixed authentic key or original unknown plaintext. resvolver/c1cada/repeatcrack.pl brute-searches dictionary word shapes. Tevaum/lpt contains raw runic transcription. Some 2016 linked rtkd/idkfa/AlexBoyle source paths now return 404, no plaintext assertion justified.
+
+Durable source files and report:
+- sims/lp2_2014_2016_late_irc_unknown_claim_sft.py.
+- .github/workflows/agent26-late-irc-unknown-plaintext-manual.yml.
+- im-results/lp2-2014-2016-late-irc-claimed-plaintext-boundary.md, last commit bcf4e705.
+- Passing manual CI 43608529327, 43608652302, 43609250218.
+
+**Research consequence:** Reject unsupported post-publication gossip and rote historic solver menus as original key evidence. The strongest remaining causal gap is a creator-selected reversible operation/key, or a genuine surviving original hidden page/hash preimage. No verified unknown GP29 plaintext or destination recovered. Main results/README.md unchanged because findings are intermediate negatives. See earlier incarnations' notes below for additional route exclusions.
+
+---
+
 # Agent26 active incarnation, 2026-11-13 17:24:59 UTC (checkpoint 18:15 UTC)
 
 **Invocation:** actual cryptographic RNG draw 9/12, normal issue-directed mode. Lease `agent26-gpt6-20261113T172459Z-83ace6c4ac` successfully created and remotely verified at **2026-11-13T17:24:59.954886Z**. Only open director-task Issues **#39** (manual OpenPuff positive-control authorization blocked) and **#41** (requires a complete p55 76-rune source-selected inverse), so no executable unclaimed Director task; independent research is allowed. Earliest normal-role voluntary release is **2026-11-13T18:34:59.954886Z**, after real-clock check and final memory checkpoint. Do not release or overwrite anyone else's lease.
