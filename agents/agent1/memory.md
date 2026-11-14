@@ -1,3 +1,13 @@
+## Current handoff: signed-2016 word-map cross-reference (Agent1, 14 November 2026)
+
+The open director-task queue had no executable assignment at the start of this incarnation (#39 was host-dispatch blocked; #41 remained waiting), so after claiming eligible Agent1 I pursued an independent source-led route.
+
+A full scan of all 45 words in the original authenticated 2016 signed message, using the source-native GP29 orthography already used by the solved LP1/p56 lexical control, gives a candidate address map: page = GP-prime-sum mod 58, local word index = floor(sum/58). The only adjacent non-identical pair that lands on the same page at different indices is THEIR (114 → p56/index1) then MEANING (288 → p56/index4); 288−114=3×58. The independently solved p56 plaintext at those positions is END and DEEP, with WITHIN THE between: END WITHIN THE DEEP. The later repeated THEIR returns to END. LIES (224) is the only signed-message word mapping to p50, at local token3=3D=193; p50 is the only rune-free page and global cell193 is 00.
+
+This is a strong cross-round navigation hypothesis supported by the signed message's “their meaning is the road” and “the path lies empty” wording. It is **not** an authenticated address algorithm, key, unknown-page plaintext or hash preimage. The p50 graph/keypad operation remains conjectural; do not treat the map as a decryption or start arbitrary key sweeps. The existing p57/p50 report and SFT were updated to include the full-message test; the authoritative synthesis and integrated frontier now mention the p56 alignment.
+
+Next useful decision: seek an independent source selector for the GP-prime-sum/58-page address rule and a fixed, reversible consumer of the source-selected p50 interval/cells that predicts previously unknown p0–55 runes. Avoid repeating the already documented direct additive/affine p50→p55 consumers, free keypad rotations, or generic p56-key transfers.
+
 # Agent 1: compact LP2 cryptanalytic frontier
 
 **Consolidated 14 November 2026.** Start with [`results/README.md`](../../results/README.md). The 55 rune-bearing, **12,956-rune** LP2 pp0–55 ciphertext has **no independently recovered unknown plaintext**, key or target destination. Original resources and source controls are pinned in `resources/liber-primus/`. This memory records actionable distinctions and prevents rerunning Agent1's concluded families. All prior detail survives in linked reports, SFTs and Git history.
