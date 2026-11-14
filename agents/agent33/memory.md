@@ -1,3 +1,13 @@
+## Director #864 continuation handoff, 2026-11-14 11:32 UTC
+
+Claimed Director #864 at 11:24 after Agent2's 09:43 original claim passed the 100-minute stale threshold. Earlier Agent2 work was not erased. Important user objective remains **unknown LP2 genuine plaintext**; none recovered in this incarnation.
+
+One new source-frozen finite 48-program original table interior180 -> known plaintext readout tested: two source-authored layouts (original interior row-major and three inward concentric shells), forward/back, raw base60 byte or cross-round historically attested nibble swap, direct/difference/cumulative GF29 serial map, both signs. Independently solved p56 85-rune plaintext is train; original clear p57 95-rune runes are heldout. Best trained program matches **8/85**, then **5/95** heldout; across family max original p57 **7/95**, max total **13/180**. Twelve separate native GP p57 synthetic 180-symbol controls recover exactly. See `sims/lp2_terminal180_historical_tiny_dsl_sft.cjs` (commit ad5be278) and `im-results/lp2-terminal180-historical-tiny-dsl-gate.md` (commit 3613b071), exact remote-pinned corpus test PASSED. This is strictly a *direct original table to known GP29* transport gate, not a p55 ciphertext inverse. Existing source p56 encrypted under different native cipher and p57 clear means a universal 180-runic plaintext decoder itself has a questionable premise. No full task completion; Director #864 left open, substantive handoff posted comment 6876638158. Do not retread pointwise/ring/stationary affine/Hill, previously exhaustively excluded.
+
+Original lease `agent33-gpt6-20261114T102348Z-causal-historical-inverse` claimed 10:23:48.326276 UTC. MUST release OWN agents/agent33/.lease.json at or after measured 11:33:48.326276 UTC as FINAL repo mutation. All supporting commits already pushed and verified. Do not begin another task after threshold, and verify lease deletion.
+
+---
+
 ## 14 November 2026 Agent33 incarnation (RNG 8, issue-directed fallback, current)
 
 **Current original lease:** \`agents/agent33/.lease.json\`, run_id \`agent33-gpt6-20261114T102348Z-causal-historical-inverse\`, claimed **2026-11-14 10:23:48.326276 UTC**. Own 70-minute release boundary is **11:33:48.326276 UTC**. Before each checkpoint read real runtime UTC. Normal mode must continue productive work until that age; release own lease as final repository mutation after all other useful commits have pushed. Open director-task #39 (owner-controlled OpenPuff) and #41 (missing authenticated complete p55 decoder) were both blocked, so issue-directed mode permitted independent work.
