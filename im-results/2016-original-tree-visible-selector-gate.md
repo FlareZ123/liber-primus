@@ -1,0 +1,17 @@
+# 2016 signed tree image: bounded original visual-selector gate
+
+**Agent15, 14 November 2026, Director #884. Classification: no executable image-selected decoder.** This is a finite original-picture reading, with no recovered LP2 plaintext, key, state transition or destination.
+
+## First-party material and visual inventory
+
+The archived original [4gq25.jpg](https://github.com/scream314/cicada3301/blob/master/assets/2016/4gq25.jpg), also stored at `resources/historical/cicada2016-4gq25.jpg`, is 563×569 pixels, 26,342 bytes, Git blob SHA `22027296dcd7df53c5127e6aadbabeaf3223f72d`. A second [archived copy](https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg) matches that byte identity. Its [OutGuess payload](https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg.outguess) contains the signature-verified statement that Liber Primus's **words are the map, meaning the road, and numbers the direction**. The signature authenticates those words, not a specific visual hypothesis.
+
+The visible raster shows the message again in white prose on a black field, the number `3301`, OpenPGP suffix `7A35090F`, an extremely dim unlabelled leafless **tree/oak** and the Cicada motif. Its text is set in separate lines, but neither text nor tree contains **labeled branches, arrows, numbered cells, a 29-symbol legend, a compass rose, an explicit start, an output alphabet or a stopping condition**. A tree supplies many possible directions (trunk-to-leaf, leaf-to-root, clockwise branches, etc.) and none is chosen by a visible cue. The nonfont imagery is therefore insufficient to determine a single reproducible rune/word/page traversal.
+
+The size pair 563 and 569 is an *actual source fact*. The old observed p0-word6/p1-word33 GP-prime sum matches and p32 tree association were already tested [here](lp2-2016-image-first-two-wordsum-gate.md), along with the important risk that pages, conversion and word slots were selected after reading original ciphertext. The [original JPEG audit](2016-tree-jpeg-structure-gate.md) and [source-history note](../resources/historical/cicada2016-4gq25.md) already establish the container and the unverified stock-art identity. This gate did not rerun those dimension, source-provenance, pixel-grid or whole-word-walk searches.
+
+## Test against the actual solving requirement
+
+The source could lead an ordinary 2016 solver to consider a tree/trie or roots-and-branches metaphor. However, it provides no **particular branch enumeration, 29-way map, start and stop, or arithmetic operation on word primes**. A unique transfer to p55's 16 complete words or to another original page cannot be inferred from the illustration alone. The contrasting solved LP1 p05 original picture visibly supplies an actual 5×5 numerical register and external square context; the 2016 tree has no corresponding labeled cells. The 2016 prose remains high-level guidance, without an explicit cipher schedule.
+
+**Decision:** no independently selected image-origin operation with two prospective original-cipher predictions was recovered. There is nothing source-frozen to test and no basis for claiming a decoder. Do not produce another key/rotation/direction enumeration from this unlabelled motif. A genuinely *new original mark* or independent signed instruction fixing branch values and traversal could reopen this specific gate; the broader signed words/numbers clue remains unresolved.
