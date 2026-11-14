@@ -86,7 +86,7 @@ function run() {
   const key = primeValues.flatMap(base29Digits);
   const signedBase29Key = primeValues.map(base29String).join('');
   assert.equal(key.length, 30);
-  assert.equal(signedBase29Key, '2357DN1E2L5492FSH1M23CM5AK98G');
+  assert.equal(signedBase29Key, '2357DN1E2L5492FSSH1M232C5AC98G');
 
   const cipher = corpus.pages.slice(0, 56).flatMap(page => page.indices);
   assert.equal(cipher.length, 12956);
@@ -102,7 +102,12 @@ function run() {
     let consumed = 0;
     const planted = Array.from({ length: 4096 }, (_, i) => {
       if (skipF && i % 13 === 0) return 0;
-      const value = (6 - key[consumed % key.length] + 29) % 29;
+      // Exclude an accidental F in the ordinary shifted branch, since this
+      // narrow control models a ciphertext-F skip. A true plaintext-F bypass
+      // requires the separate word-level Viterbi decoder.
+      const current = key[consumed % key.length];
+      let value = 1;
+      while ((value + current) % 29 === 0) value++;
       consumed++;
       return value;
     });
@@ -148,7 +153,8 @@ function run() {
     additionalAssumptions: [
       'The 2013 signed BASE29 numeric digits are reused as GP29 modular shift values; the signed output alphabet itself is alphanumeric, not Gematria Primus.',
       'The 30 digits are concatenated in p15 spiral order and repeated continuously across LP2.',
-      'The operation is additive Vigenere; neither this cipher operation nor the GP29-shift interpretation is source-authenticated.'
+      'The operation is additive Vigenere; neither this cipher operation nor the GP29-shift interpretation is source-authenticated.',
+      'The skipF=true branch skips observed ciphertext F. The authentic historical bypass depends on plaintext F and needs a separate lexical decoder.'
     ],
     corpus: { physicalPages: 56, runes: cipher.length, rawIoc: ioc(cipher), rawEmersonGpLanguageScore: languageScore(cipher, model) },
     positiveControls,
