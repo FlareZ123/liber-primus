@@ -32,7 +32,7 @@ The README identifies `prime_echo` as an ISO root-filesystem script. I parsed it
 - extra/non-prime entries: **0**
 - 73, 1223, 1033 and 3301 are all present.
 
-Thus the OS animation's prime generator does not omit 73–1223. It is a different artifact/interface from the first-onion telnet `primes` command. This does not prove what the original telnet server did internally.
+Thus the OS animation's prime generator does not omit 73–1223. It is a different artifact/interface from the first-onion telnet `primes` command. This does not prove what the original telnet server did internally. This archived ISO script also has exceptional two-second pauses after **1033** and **3301** (ordinary prime entries use 0.05-second pacing). Those are exactly the two published 2013 BASE29 test vectors, **1033 → 16I** and **3301 → 3QO**. This is a direct cross-artifact correspondence and supports treating both numbers as deliberate 2013 anchors. It does not authenticate the first-onion telnet gap, and no LP2 consumer for 1033 has yet been established.
 
 ### 3. Do not conflate the signed 2013 TCP challenge
 
