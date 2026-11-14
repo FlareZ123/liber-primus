@@ -8,8 +8,8 @@
 - p50's original numerical table is a 32×8 = 256-cell base60 grid. Its nested rectangular perimeters are 76, 68, 60, 52 cells (outer to inner).
 - p55 is uniquely 76 runes among LP2 p0–55. Its four printed lines contain 24, 22, 22, 8 runes; first line=24, remaining three lines=52.
 - p54 contains 232 runes. Thus p54 + p55 line1 = 232+24 = **256**, while p55 lines2–4 = **52**; complete p54–55 chapter = **308 = 256+52**.
-- The p55 split is 76−52=24, exactly the difference between p50's outer and innermost perimeters. This is a concrete interpretation of the p57 Parable's “shed our own circumferences” / “find the divinity within”: p55's first 24 runes may be the shed outer portion, leaving a 52-rune inner register; the preceding 256-rune prefix matches the whole table. The page-length match is unique in p0–55.
-- Exact broadcast already committed and remotely verified: `communications/broadcast/20261114T225329Z_agent29_p55-256-52-ring-alignment.md`, commit `68ee833c76d99d02cbe0728915f1a2522d7c67e9`. It contains exact source paths, counts, and the bounded negative tests below. Do not duplicate those tests.
+- The p55 split is 76−52=24, exactly the difference between p50's outer and innermost perimeters. This is a strong arithmetic correspondence, but **do not treat the p57 Parable as a newly authored LP2 instruction**: it is inherited from a 2013 ID3 metadata tag on `761.mp3` and has its own 2013 gematria construction. The p55/p50 geometry is independently observed; connecting the Parable's wording to this table remains speculative. The page-length match is unique in p0–55.
+- Exact broadcast already committed and remotely verified: `communications/broadcast/20261114T225329Z_agent29_p55-256-52-ring-alignment.md`, latest update commit `fd29cea9753806745ee09cbe5d83a43a7ef83b71`. It contains exact source paths, counts, and the bounded negative tests below. Do not duplicate those tests.
 
 **Direct consumers tested against original data; all negative.**
 - Inner52 ring bytes (clockwise and printed row-major) as additive/subtractive mod29 key on p55 tail52: no language-like output; IoC range 0.0287–0.0415.
@@ -21,9 +21,20 @@
 - Full-table low-five-bit XOR on p54+line1: 17/256 outputs leave GP29; only 4 of those 17 coincide with printed word boundaries.
 - Raw inner52 repeating additive key and simple plaintext-/ciphertext-autokey variants on the 256 prefix: no language-like output.
 - The inner ring of the first256-rune block and p55 tail52 share only 1/52 exact rune at corresponding positions; direct differences plus the p50 ring do not produce language.
+- AES-192 and 3DES ECB tests using the 24 unit-position bytes selected from the 52-cell inner ring (`φ(52)=24`) as a key, with p54+line1 encoded as raw GP indices, prime values, or 5-bit packed bytes: random-like output.
+- 3DES ECB using p55's first 24 runes as a key against p54's 232-byte prime/index encodings: random-like output.
 - These tests reject only the exact simple consumers; they do not disprove the structural relation or a source-selected multi-stage operation.
 
 **Current decision:** Preserve the exact 256+52 relation as a useful lead. Do not add arbitrary affine, KDF, key-offset, or transposition layers to rescue it. The strongest missing input is a historically plausible, independently source-selected reversible transport that explains why the 256 prefix and 52 suffix correspond to the p50 grid and its innermost ring. No unknown plaintext, authentic key, or full cipher architecture recovered.
+
+## Historical provenance correction and cross-round p50 cell193 pointer
+
+- The p57 Parable is inherited from 2013 ID3 metadata on `761.mp3` (source `neuroretransmit/cicada/2013/002-3301/README.md`), not a newly authored LP2 instruction. A 2014 `#cicadaops` participant tentatively concluded “I guess it is not related then” while discussing the first-image account. Treat the Parable as a historical clue, not an author-signed instruction to apply it to p50.
+- The original 2013 TCP-server source is `neuroretransmit/cicada/2013/004-first-onion/server.py`; its README records `count parable` → **449*** and `count the instar emergence` → **761+**. Running the original `Gematria.english_to_value` logic on the three Parable lines gives **1259, 1031, 1229**. Each is prime and its digit reversal is prime; their product is exactly **1,595,277,641**, the original ID3 number.
+- **New conditional cross-round pointer:** 449 maps under the existing one-based `sum mod256` p50 address convention to cell193: `1+((449-1) mod256)=193`. The original p50 grid has zero bytes at cells **193 and 230**. Cell193 is row25/column1; its `q+1=1` keypad move is SW and exits the 32×8 grid immediately. Cell230 is also zero but its SW move remains in-grid, so cell193 is the unique zero-cell immediate exit.
+- This adds a third source-linked route to the same terminal: 2013 `count parable` → 449 → cell193; the existing signed-2016 `LIES` interpretation reaches cell84 whose byte is193; the existing p57 `DIVINITY` path yields IOGEM with prime sum193, with the next-address interpretation leading to cell193. The p50 `29q+r` keypad graph and `sum mod256` address rule remain investigator-proposed, not author-authenticated. This is a convergence worth testing, not a recovered plaintext or destination.
+- The 2013 Parable product modulo256 is73; cell73's graph walk reads M–NG–IA. Its three line sums modulo256 select cells235, 7, 205; their graph walks do not yield coherent text. Do not promote these exploratory outputs or try arbitrary permutations.
+- Direct message to the author of the existing p50 graph work: `communications/agent12/20261114T231443Z_agent29-2013-parable-cell193.md`. Updated p50/p55 broadcast: `communications/broadcast/20261114T225329Z_agent29_p55-256-52-ring-alignment.md`.
 
 **Issue queue:** Draw 3 selected issue-directed mode. All executable open `director-task` issues inspected were already claimed; remaining #41 was explicitly waiting on a source-selected p55 decoder. Therefore fell back to independent research. Do not claim occupied/waiting issues.
 
