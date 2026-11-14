@@ -223,6 +223,17 @@ for (let phase = 0; phase < totientKey.length; phase++) {
 }
 assert.equal(p55LexiconChecks.length, 5);
 
+// Independently, the actual historical LP1 DIVINITY key is directly named
+// by the p57 instruction and the p55 43 strict *word* interiors are original
+// source geometry. This extends the earlier loose F-mask test to ALL legal
+// ciphertext-F choices and ALL eight original key phases. No full decoding.
+const p55StrictInteriors = p55OriginalWords.flatMap((word) =>
+  [...word].slice(1, -1).map((rune) => runeMap.get(rune)));
+assert.equal(p55StrictInteriors.length, 43);
+const divinity43PhaseFailures = Array.from({length: divinity.length}, (_, phase) =>
+  invert(p55StrictInteriors, phase, divinity).impossibleAt);
+assert.deepEqual(divinity43PhaseFailures, [1,28,1,22,1,28,28,28]);
+
 console.log(JSON.stringify({
   input: "unaltered LP2 physical p55 original 76 GP29 runes",
   originalSourceSelector: "p57 DIVINITY GP prime-sum 376, %256 cell120, 29q+r keypad",
@@ -238,6 +249,7 @@ console.log(JSON.stringify({
   legalPageStarts,
   p55PrintedWordLengths,
   p55LexiconChecks,
+  divinity43PhaseFailures,
   interpretation: "Literal GP-index IOGEM is impossible for p55 in all cyclic strict-F phases. The source-prime-totient IOGEM key remains legal on nine isolated original pages including p55, but all nine full source visual chapters have zero legal phases. No unknown plaintext."
 },null,2));
 console.log("PASS");
