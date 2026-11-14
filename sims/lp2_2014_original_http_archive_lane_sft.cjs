@@ -8,6 +8,7 @@
  * https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API
  */
 const { createHash } = require('node:crypto');
+const fs = require('node:fs');
 
 const arquivo = [
   {url: 'http://www.publico.pt/',from:'2014',to:'2014',control:true},
@@ -19,14 +20,18 @@ const arquivo = [
   {url: 'http://ky2khlqdf7qdznac.onion.city/',from:'2014',to:'2016'},
   {url: 'http://ky2khlqdf7qdznac.onion.cab/',from:'2014',to:'2016'},
   {url: 'http://ky2khlqdf7qdznac.onion.sh/',from:'2014',to:'2016'},
-  {url: 'http://ky2khlqdf7qdznac.onion.ly/',from:'2014',to:'2016'}
+  {url: 'http://ky2khlqdf7qdznac.onion.ly/',from:'2014',to:'2016'},
+  // Missing 2014 IRC-linked eight-letter p0 candidate/key table.
+  {url: 'http://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-arquivo-http-replay.txt'},
+  {url: 'https://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-arquivo-https-replay.txt'}
 ];
 
 const archiveit = [
   {collection:'8232',url:'https://twitter.com/internetarchive/',from:'2016',to:'2016',control:true},
   {collection:'4399',url:'http://archive-it.org/',from:'2014',to:'2014',control:true},
   {collection:'4399',url:'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2016'},
-  {collection:'8232',url:'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2016'}
+  {collection:'8232',url:'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2016'},
+  {collection:'4399',url:'http://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-archiveit-4399-replay.txt'}
 ];
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
@@ -73,16 +78,24 @@ async function checkArquivo(item) {
   const response=await fetchText(endpoint.href);
   const records=response.body?parsedArquivo(response.body):[];
   const summary={provider:'arquivo',query:item,...{status:response.status,error:response.error},records:records.map(r=>({url:r.url,time:r.timestamp,status:r.status,mime:r.mime,digest:r.digest,collection:r.collection,filename:r.filename})),rawLength:response.bodySize};
-  if(item.control) {
+  if(item.control || item.replay) {
     const chosen=records.find(r=>String(r.status)==='200' && String(r.mime).startsWith('text/'));
     if(chosen) {
       const replay='https://arquivo.pt/noFrame/replay/'+chosen.timestamp+'id_/'+chosen.url;
       try {
         const r=await fetch(replay,{signal:AbortSignal.timeout(22000)});
         const bytes=new Uint8Array(await r.arrayBuffer());
-        summary.controlReplay={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),cdxDigest:chosen.digest,match:base32Sha1(bytes)===chosen.digest,replay};
-      }catch(e){summary.controlReplay={error:String(e),replay};}
-    } else summary.controlReplay={error:'No 200 text capture among returned records'};
+        const detail={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),cdxDigest:chosen.digest,match:base32Sha1(bytes)===chosen.digest,replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        if(item.control) summary.controlReplay=detail;
+        else {
+          summary.replay=detail;
+          if(item.output) fs.writeFileSync(item.output,Buffer.from(bytes));
+        }
+      }catch(e){if(item.control)summary.controlReplay={error:String(e),replay};else summary.replay={error:String(e),replay};}
+    } else {
+      const detail={error:'No 200 text capture among returned records'};
+      if(item.control)summary.controlReplay=detail;else summary.replay=detail;
+    }
   }
   console.log(JSON.stringify(summary));
 }
@@ -92,10 +105,26 @@ async function checkArchiveIt(item) {
     endpoint.searchParams.set(k,v);
   const response=await fetchText(endpoint.href);
   const entries=response.body?parsedArchiveIt(response.body):[];
-  console.log(JSON.stringify({provider:'archive-it',query:item,status:response.status,error:response.error,excerpt:response.status===200?undefined:response.body?.slice(0,200),records:entries.slice(0,10),rawLength:response.bodySize}));
+  const summary={provider:'archive-it',query:item,status:response.status,error:response.error,excerpt:response.status===200?undefined:response.body?.slice(0,200),records:entries.slice(0,10),rawLength:response.bodySize};
+  if(item.replay) {
+    const chosen=entries.find(r=>String(r.status)==='200' && String(r.mime).startsWith('text/'));
+    if(chosen) {
+      const replay='https://wayback.archive-it.org/'+item.collection+'/'+chosen.timestamp+'id_/'+chosen.url;
+      try {
+        const r=await fetch(replay,{signal:AbortSignal.timeout(22000)});
+        const bytes=new Uint8Array(await r.arrayBuffer());
+        summary.replay={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        if(item.output) fs.writeFileSync(item.output,Buffer.from(bytes));
+      } catch(e) { summary.replay={error:String(e),replay}; }
+    } else summary.replay={error:'No 200 text capture among returned records'};
+  }
+  console.log(JSON.stringify(summary));
 }
 (async()=>{
   console.log('original-archive-cdx-gate '+new Date().toISOString());
-  for(const item of arquivo)await checkArquivo(item);
-  for(const item of archiveit)await checkArchiveIt(item);
+  const pbptOnly=process.argv.includes('--pbpt-only');
+  const arquivoItems=pbptOnly?arquivo.filter(item=>item.url.includes('sprunge.us/PBPT')):arquivo;
+  const archiveItItems=pbptOnly?archiveit.filter(item=>item.url.includes('sprunge.us/PBPT')):archiveit;
+  for(const item of arquivoItems)await checkArquivo(item);
+  for(const item of archiveItItems)await checkArchiveIt(item);
 })().catch(e=>{console.error(e);process.exitCode=1;});

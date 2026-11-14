@@ -1,0 +1,28 @@
+name: LP2 2014 PBPT paste archive retrieval gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pbpt-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check archive probe source
+        run: node --check sims/lp2_2014_original_http_archive_lane_sft.cjs
+      - name: Query Arquivo.pt and Archive-It for the original 2014 PBPT URL
+        run: node sims/lp2_2014_original_http_archive_lane_sft.cjs --pbpt-only
+      - name: Preserve any recovered original paste body
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-2014-pbpt-archive-replay
+          path: pbpt-*-replay.txt
+          if-no-files-found: ignore
+          retention-days: 90
