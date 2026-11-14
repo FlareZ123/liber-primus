@@ -26,6 +26,15 @@ jobs:
             "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
             "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
             "$RUNNER_TEMP/#33012014.freenode.log"
+      - name: Screen original May-August 2014 in-channel GP29 keys and operators
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs
+          node sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs --selftest
+          node sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
+            "$RUNNER_TEMP/#33012014.freenode.log"
       - name: Extract original p56 solve, continuation, and first-solver method context
         shell: bash
         run: |
