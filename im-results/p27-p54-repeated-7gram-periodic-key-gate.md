@@ -41,6 +41,70 @@ For positional scale, *conditional on selecting these exact two source pages and
 
 **Decision:** preserve this unusually specific, easy-to-inspect original footer-to-wing-page alignment as a possible *navigation or key-location* clue. Do not promote it to plaintext or start arbitrary alternative cipher searches; a successor needs an independently authored operation for consuming the p27 following text and a 70+ rune exact reciphered p55 original plaintext result. Source image scans: [p27](../resources/liber-primus/44.jpg) and [p55](../resources/liber-primus/72.jpg). Exact test successful in [manual CI run 43605401162](https://github.com/FlareZ123/liber-primus/actions/runs/43605401162).
 
+## Source-selected following-word difference and table cell103 direct-key gates (Agent35, 14 November 2026)
+
+The exact original p55 terminal two printed words `DJU BEI` match p27 local
+runes 28–33, and the immediately following complete p27 printed word is
+`AE.F` at local offsets 34–35. Its source GP prime sum is `101+2=103`.
+The original p49–51 grid's one-based **103rd** and **104th** cells are
+`0W` (byte 32) and `3Q` (byte 206). These are independently sourced
+position and object selections, although no original instruction commands
+using them as an additive key, or tells us to decode the 70 preceding p55 runes.
+
+Two non-fitted 70-rune candidate keys were tested against the **unaltered
+p55 offsets 0–69**, with GP29 addition and subtraction:
+
+1. **p27 successor difference:** `K_i=(p27[34+i]-p27[33+i]) mod29`.
+   This uses the first 70 transitions after the matched six-rune anchor.
+2. **Grid cell103 continuation:** `K_i=byte[102+i] mod29`,
+   where the byte sequence is the original table's complete physical
+   row-major order, and the first key byte is exactly 32.
+
+| Frozen key | `P=C+K` GP29 IoC | `P=C-K` GP29 IoC | First forbidden non-F plaintext F under solved-page transparent-F rule |
+| --- | ---: | ---: | --- |
+| p27 70 successive differences | **0.04637681159** | **0.02857142857** | plus at original p55 offset **1**; minus at offset **10** |
+| p50 table bytes from cell103 | 0.03436853002 | 0.03685300207 | plus at offset **20** if F15 is encrypted, **22** if F15 is bypassed; minus at offset **5** |
+
+The table-derived **plus** inverse opens with the standalone letter **A**, but
+the next words and the complete 70-rune output are nonlinguistic. That first
+letter is a one-symbol coincidence, not recovered plaintext. Likewise the
+p27-difference plus sign has a moderately elevated 70-rune IoC; among all
+**234** intact cyclic p27 starting phases it ranks **second** by this
+statistic, yet its full output is not prose. The reverse sign ranks **227th**.
+In the p55 original printed **13-rune** word at local offsets23–35, neither
+p27-difference sign matches any equality pattern among all **29,157** source-
+native GP29 English dictionary entries. Even allowing an arbitrary unknown
+shared output substitution on that word cannot turn it into one of those
+dictionary types while preserving its original printed boundaries.
+
+More strongly, conditionally applying the *actually solved* LP1/p56
+**plaintext-F transparent bypass** to unknown p55 makes **all 16 consumers
+impossible**. Original p55 has exactly three ciphertext F runes before its
+six-rune tail, at local **15,25,41**. For each sign and each of all eight
+choices of whether these Fs are literal bypasses, the purported plaintext
+necessarily becomes F at the original ciphertext position identified in the
+table, **where the source ciphertext rune is not F**. A genuine transparent
+plaintext F would have appeared as ciphertext F, so this is an exact
+source-cipher equation contradiction before any English scorer. For plus
+grid key, the earliest impossible position remains 20 or 22 across all mask
+choices. For the other three consumers, it occurs before the first source
+ciphertext F and is completely mask-independent.
+
+The exact read-only Windows Node22 [single-file SFT](../sims/lp2_p55_p27_delta_p50_103_exact_sft.cjs)
+checks the original six-rune equality, p27 following word, the two grid bytes,
+all F masks, phase ranks, complete original outputs, dictionary pattern
+obstruction, and positive 70-rune arithmetic inversion. **CI passed**, with
+the new gate as independent successful job step9: [run 43619726627](https://github.com/FlareZ123/liber-primus/actions/runs/43619726627).
+
+**Scope and decision:** This rejects only these two concrete additive
+consumers **if** p55 inherits the solved pages' F-transparent rule; their
+standard unskipped versions also give no authentic plaintext. The actual
+p55 cipher could use a different F rule, a more complex state machine,
+a hidden word boundary, or a different operation consuming the original
+p27 or grid data. There is no historical key selected here, and the
+p55→p27→103 navigation remains a conjectured clue path. Do not rescue
+these failures with arbitrary shifts, masks or fitted phases.
+
 ## Tests
 
 The canonical transcription was parsed as 55 rune-bearing pages and checked rune-for-rune against resources/liber-primus/lp2-corpus.json: **12,956/12,956** symbols matched. Printed line breaks were retained separately from rune positions.
