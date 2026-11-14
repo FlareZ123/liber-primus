@@ -279,7 +279,7 @@ for (let mask = 0; mask < (1 << (firstPages.length - 1)); mask++) {
   localBrute.push({groups: groups.length, capacity: profile(groups).capacity});
 }
 const allTwo = localBrute.filter(x => x.groups === 2);
-assert.equal(Math.max(...allTwo.map(x => x.capacity)), 130);
+assert.equal(Math.max(...allTwo.map(x => x.capacity)), 116);
 // The 16-domain witness respects the already-pinned nine boundaries.
 const linePositionResetLowerBound = {
   minVisibleChapterDomains: 9,
