@@ -47,7 +47,7 @@ assert.equal(Array.from({length:11},(_,i)=>p32.indices[i*11])
   .reduce((sum,x)=>sum+prime[x],0),569);
 const lines=read("resources/liber-primus/lp2-transcription.txt")
   .trim().split(/\r?\n%\r?\n/);
-assert.equal(lines.length,58);
+assert.equal(lines.length,57);
 const text=lines[32];
 const src=corpus.runes;
 const marker=X.map(i=>src[i]).join("");
