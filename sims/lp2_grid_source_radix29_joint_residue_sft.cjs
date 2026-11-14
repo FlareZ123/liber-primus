@@ -110,6 +110,40 @@ for (const base of [61, 88, 90]) {
   assert(factors.every(factor => remainder(values, factor.coefficients).some(x => x !== 0)));
 }
 
+// Exactly one of the 60 ways to insert an unused placeholder into the
+// observed 59-character alphanumeric ordering satisfies both source factors.
+// This independently selects the canonical missing lowercase 'f' slot 41,
+// conditional on keeping the 59 original characters in their natural order.
+const observedAlphabet = alphabet.replace('f', '');
+assert.equal(observedAlphabet.length, 59);
+assert(tokens.every(token => [...token].every(ch => observedAlphabet.includes(ch))));
+const insertionCandidates = [];
+for (let emptySlot = 0; emptySlot < 60; emptySlot++) {
+  /** @param {string} ch @returns {number} */
+  const index = ch => {
+    const i = observedAlphabet.indexOf(ch);
+    return i + Number(i >= emptySlot);
+  };
+  const left = tokens.map(token => index(token[0]));
+  const right = tokens.map(token => index(token[1]));
+  const factorRoots = factors.map(({coefficients}) => {
+    const ra = remainder(left, coefficients), rb = remainder(right, coefficients);
+    return Array.from({length: 29}, (_, b) => b)
+      .filter(b => ra.every((v, i) => mod(b * v + rb[i]) === 0));
+  });
+  if (factorRoots.some(roots => roots.length)) {
+    insertionCandidates.push({emptySlot, factorRoots,
+      joint: factorRoots[0].filter(b => factorRoots[1].includes(b))});
+  }
+}
+assert.deepEqual(insertionCandidates, [
+  {emptySlot: 5, factorRoots: [[21], []], joint: []},
+  {emptySlot: 28, factorRoots: [[27], []], joint: []},
+  {emptySlot: 30, factorRoots: [[], [13]], joint: []},
+  {emptySlot: 41, factorRoots: [[2], [2]], joint: [2]}
+]);
+assert.equal(alphabet.indexOf('f'), 41);
+
 // Natural physical traversals test orientation *jointly with radix*, without
 // choosing a radix by scoring ciphertext or fitting a secret codebook.
 // Exact physical layout: 32 rows of eight original printed tokens.
@@ -162,6 +196,7 @@ console.log(JSON.stringify({
   canonicalAlphabetLength: 60,
   strongestRadixInference: 'b congruent 2 mod 29; minimal admissible b=60',
   excludedAlternative: 'base59 with f omitted',
+  missingDigitInsertionCandidates: insertionCandidates,
   originalSourcePhysicalReadouts: physicalReadouts,
   reversedTokenOrderRadixResidues: swappedTokenRoots,
   unexcludedRadices: admissibleNaturalBases,
