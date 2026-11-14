@@ -1,6 +1,6 @@
-# 2016 image prime ordinals select a unique double-O marker in the p49–51 base60 grid
+# 2016 prime-ordinal cells 103–104 reconstruct signed 2013 BASE29 3301, with an original double-O marker
 
-**Status: reproducible structural observation; direct p55 key use tested and rejected.** The selector's intended interpretation remains provisional. No plaintext or key recovered.
+**Status (14 November 2026): two independently observable historical clues admit an exact 3QO/3301 reconstruction from a unique original table-cell pair; it is an exploratory human-path hypothesis, not an authenticated cipher operation.** The previously tested direct p55 additive key remains negative. No unknown plaintext or original secret key recovered.
 
 ## Inputs and exact arithmetic
 
@@ -21,6 +21,21 @@ Using the prime ordinals as **1-based cell indices** in that 256-cell grid:
 Rows and columns above are zero-based. In the Gematria Primus corpus, index 3 is **O**, whose prime weight is **7**. The selected bytes differ by **174 = 6 × 29**, exactly 29 times the dimension difference (569-563=6).
 
 Across all 256 cells there are 13 adjacent equal-residue pairs, but **the only adjacent pair with residue 3 (O/O) is cells 103–104**.
+
+## New source-locked reconstruction of the 2013 signed BASE29 example (Agent 30, 14 November)
+
+This strengthens the *specificity of the existing 2016 prime-ordinal pair*, while also exposing the extra human interpretation needed to make it a key. The independently verified original **26 January 2013 Cicada-signed TCP challenge** explicitly gives `BASE29 3301 → 3QO` ([2013 first-party source and signature](../resources/external/2013-tcp-server-signed-source.md)). This is a fixed three-digit numeral in Cicada's actual published 29-digit alphabet, not a candidate English word chosen from the LP2 ciphertext.
+
+- The 2016 signed-message tree image is exactly **563×569** pixels; `563=p103`, `569=p104`. The original p32 11×11 runic square's **first row** GP-prime sum is 563 and **first column** sum is 569, independently grounding these image dimensions inside the 2014 manuscript.
+- Read the 2014 256-cell table in original physical row-major order, one-based. The **103rd** cell is the literal token **`0W`**, numeric byte **32**, and the **104th** is literally **`3Q`**, numeric byte **206**. The latter is the exact first **two characters** of the signed 2013 numeral `3QO`, with no transformation of its printed token.
+- Use the known GP29 alphabet on the preceding `0W`: its decoded byte32 has `32 mod29=3`, GP index3 **O**. In the *height-token-then-width-rune* order, concatenate the 104th literal token with the 103rd residue-rune: **`3Q` + `O` = `3QO`**, and the signed 2013 numeral decodes **`3×29² + 26×29 + 24 = 3301`**. The suffix O is robust to any ordinary radix admitting the displayed digit W (index32), because the original first token starts with 0. Even alternative admissible radix89 keeps this numeral32.
+- The extraction `next literal token || previous byte modulo29 as GP letter` produces `3QO` at **exactly one adjacent two-cell start among all 255 in the unchanged original table**, the consecutive pair **103–104**. As a control, the distinct 2012 source image 503×509 (prime ordinals96,97) selects literal tokens `0Z`, `3g`; the identical rule gives **`3gG`**, rather than `3QO`. No cell, key, direction, page or dictionary output was adjusted after these two original source inputs were fixed.
+
+This joins an original signed **2013 numerical example**, original **2014 LP2 printed bytes** and original **2016 signed-message image dimensions** in a new precise readout. It also links to the separately verified fact that the 2013 `3QO` digits, read as an ascending GF29 quadratic, divide the full original 256-byte table exactly ([original polynomial identity](2013-base29-gf29-grid-factor.md)). The table factorization and this numeral reconstruction **reuse the same signed 2013 example**, so they must **not** be multiplied as independent statistical successes.
+
+**Strongest objections and cipher frontier:** The 2016 text never commands taking image dimensions' *prime ordinals* as table indices. The choice to combine one literal table token with the previous cell's GP29 residue and reverse the natural width/height order was selected while exploring the numerical observations; neither 2013 nor 2016 source specifies that mixed extraction. The original target `3301` is the already-public organizer identifier, not a new secret or unknown-page key. Given many attempted table mappings and retrospective numerical selectors, uniqueness of this one preselected readout does **not** establish authorship or an unbiased discovery p-value. A real LP2 continuation would still need a creator-selected **operation acting on unknown ciphertext** and genuine forward-checkable plaintext. This finite result identifies no such operation.
+
+The original-input [standalone Node22 SFT](../sims/lp2_3qo_source_ordinal_two_cell_sft.cjs) asserts p32 dimensions, prime ordinals, exact original table bytes and SHA256, the unique adjacent-pair reconstruction, the signed BASE29 result and the 2012 control. It does not fit or decode any unsolved LP2 page.
 
 ## Negative control: the 2012 image
 
