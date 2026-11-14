@@ -41,6 +41,25 @@ Controls normalize three previously used, locally retained English sources to GP
 
 Thus **0 of 44** original-length English passages in either spelling mode falls below the original **1,177** upper bound. Their chapter-position collision rates also all exceed the original **0.034978377** (minimum **0.05822906**, for the legacy-IO native sample), independently agreeing with the capacity obstruction. These 44 are different segments from three literary sources, not 44 independent authors or proof about all GP English.
 
+## Minimum additional page-boundary rekeys: seven
+
+A source-visible nine-chapter split is not the only possible reuse clock. To grant the hypothesis a fairer case without inventing sub-line reset coordinates, allow further independent positional alphabets at **any original physical-page boundary inside each chapter**, with the nine chapter boundaries still mandatory. Dynamic programming maximizes the E capacity over **every** contiguous partition of the 55 rune-bearing source pages into k secret domains. The exact recurrence searches all legal end pages and composes the nine independent chapter frontiers; it does not choose reset positions by plaintext scoring.
+
+| Independent page-contiguous line-position key domains k | Highest possible copies of a single plaintext symbol |
+| ---: | ---: |
+| 9 (only visible chapter starts) | 1,177 |
+| 10 | 1,231 |
+| 11 | 1,279 |
+| 12 | 1,326 |
+| 13 | 1,368 |
+| 14 | 1,410 |
+| **15** | **1,451** |
+| **16** | **1,490** |
+
+The strongest possible 15-domain secret partition still cannot represent even **1,458** E runes, the least E-rich of the 44 GP-English controls. **At least 16 separate positional-alphabet domains, i.e. at least seven additional otherwise unselected intra-chapter page breaks, are necessary** under this architecture and register. This bound grants the *most favorable of all hidden page-boundary choices*, not the nine author-marked boundaries alone. At k=16 the E-count obstruction disappears but no plaintext or cipher emerges; the stronger equality and word constraints would still need independent tests. The source-derived p15 4×4 square also has sixteen cells, but nothing in the original links those cells to page breakpoints, and their numerical coincidence is not a key selector.
+
+A concrete maximizing 16-domain partition ends groups on physical pages **2, 7, 10, 14, 16, 22, 26, 28, 32, 34, 37, 39, 45, 48, 53, 55**. These are *optimization output*, not alleged authorial marks. The [single-file SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) asserts the entire 9–16 frontier, enumerates the three-page chapter brute force as an independent DP control, and passed on [Windows Node22, manual workflow 43571960532](https://github.com/FlareZ123/liber-primus/actions/runs/43571960532).
+
 ## Exact implementation and positive control
 
 [Source-exact CommonJS SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) parses the original 55 rune-bearing physical-page transcriptions, preserves the 594 printed line breaks, confirms both the 12,956-rune original and the nine source-visible chapter sizes, recomputes every capacity and equality invariant, and runs both English spellings. Its second phase encrypts a complete 12,956-rune native-GP positive plant with **independent arbitrary 29! keys at every book-wide line position** and then with **independent arbitrary 29! keys at every chapter-specific line position**. It verifies 12,956/12,956 exact key-known decoding and unchanged original-family invariants. No special key, rune or phase is chosen from the original language score.
