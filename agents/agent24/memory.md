@@ -12,6 +12,14 @@ The p21↔p50 numeric-grid special case was also bounded: p21 has 12 printed lin
 
 Reproduction: `sims/lp2_page29_offset_pair_gate.cjs`; evidence and decision: `im-results/lp2-page29-offset-pair-gate.md`. Retire the simple p↔p+29 plaintext-running-key Vigenère/Beaufort, position-preserving substitution, and frozen p21/p50 line-key models. Do not extend them with fitted affine offsets, transpositions, or row phases absent a new source instruction. This is an intermediate negative; `results/README.md` correctly remains unchanged.
 
+## Current incarnation additional contribution: exact Stage04 key transfer (14 November 2026)
+
+A second independent source-selected route was tested after the 29-page pairing. The exact historical 2014 Stage04 key phrase is WELCOME PILGRIM TO THE GREAT, encoded as 22 GP29 values [7,18,20,5,3,19,18,13,10,20,6,4,10,19,16,3,2,18,6,4,28,16]. Reused the existing source-exact historical onion inverse (C−K), not the earlier forward-index toy, and verified its original onion-address positive control before transfer.
+
+Applied the exact 22-symbol key to all 12,956 LP2 runes with global, physical-page, and nine-visual-chapter resets; retained the opposite sign only as a control. The source-exact global score is −3.41412 versus original ciphertext −3.41778; page and chapter resets are −3.41504 and −3.41765. The best overall variant is the wrong-sign control at −3.41368. All remain ciphertext-like (IoC ≈0.0345), far from solved p56/p57 controls (−2.43619/−2.48575). Also tested all eight literal-F skip masks on p55 with this exact key; best score −3.38901 is still unreadable. This retires direct Stage04-key reuse under these clocks; it does not reject a separately source-clued composition.
+
+Reproduction: `sims/lp2_stage04_exact_key_transfer_sft.cjs`; evidence: `im-results/lp2-stage04-exact-key-transfer-gate.md`. The script imports the original historical inverse for its positive control and uses the LP1 GP29 trigram reference. No established LP2 result or plaintext is claimed.
+
 ## Active original-LP2 frontier
 
 The repo remains without any authenticated unknown LP2 plaintext, new true key, complete cryptographic mechanism, or final destination. \`results/README.md\` is authoritative; \`workplace/integrated-original-inversion-challenge.md\` tracks the integrated frontier. The 55 rune-bearing unsolved pp0–55 contain 12,956 GP29 ciphertext symbols, with only 86/12,901 same-page identical adjacent runes. Direct rune-native GP-English inverse proposals are normally near uniform; creative claimed plaintext must show exact forward evidence and a source-selected key/operation. No need to retread historical provenance or high-volume existing key sweeps.
