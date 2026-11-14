@@ -29,9 +29,21 @@ async function main(){
     const url=`https://web.archive.org/web/${date}/https://titanpad.com/${id}`;
     const response=await fetch(url,{signal:AbortSignal.timeout(18000)});
     const raw=await response.text();
+    const revisionMatch=raw.match(/"initialRevisionList":(\\[.*?\\]),"/s);
+    if(revisionMatch) {
+      try {
+        const revisions=JSON.parse(revisionMatch[1]);
+        console.log("REVISION_META "+JSON.stringify({date,count:revisions.length,earliest:revisions.slice(-4).map(r=>({id:r.id,timestamp:r.timestamp,label:r.label})),latest:revisions.slice(0,2).map(r=>({id:r.id,timestamp:r.timestamp,label:r.label}))}));
+      } catch(e) { console.log("REVISION_METADATA_ERROR "+String(e)); }
+    }
     console.log("CAPTURE "+JSON.stringify({date,url:response.url,http:response.status,
       bytes:raw.length,sha256:crypto.createHash("sha256").update(raw).digest("hex"),
       parsed:uncover(raw)}));
   }
+  const prefix="titanpad.com/ep/pad/view/X29BZhdBBe";
+  const query="https://web.archive.org/cdx/search/cdx?url="+encodeURIComponent(prefix)+"&matchType=prefix&output=json&filter=statuscode:200";
+  const resp=await fetch(query,{signal:AbortSignal.timeout(12000)});
+  const raw=await resp.text();
+  console.log("REVISION_ARCHIVE_INDEX "+JSON.stringify({url:query,http:resp.status,bytes:raw.length,preview:raw.slice(0,5000)}));
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});
