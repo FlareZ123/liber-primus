@@ -6,10 +6,10 @@
 
 At the two identical original bookend word pairs `DJU BEI`, whose second occurrence is the last two printed words of unknown LP2, each three-rune word has an integral average GP-prime weight that itself belongs to the 29-symbol Gematria Primus alphabet:
 
-- `DJU`: (89+11+3)/3 = **43 = P**. (Here the actual rune-prime ordering is D=89, J=11, U=3.)
-- `BEI`: (61+67+?)/3 is **53 = S**; consult the canonical GP-prime mapping in the SFT for exact constituents.
+- `DJU`: (89+37+3)/3 = **43 = P**.
+- `BEI`: (61+67+31)/3 = **53 = S**.
 
-**Correction:** exact sum/means of the two bookend words were already established independently in [the duplicated-word-pair study](dju-bei-terminal-repeat.md): DJU sum129 → mean43 → P, BEI sum159 → mean53 → S. The second word's exact GP primes follow the source transcription, regardless of its visually English transliteration. The resulting `PS` bookend is conjectural, as the manuscript never explicitly authorizes the average-prime operation.
+The duplicated `DJU BEI` phrase is already established in [the repeated-word-pair study](dju-bei-terminal-repeat.md). Its `PS` reading is conjectural because the manuscript does not explicitly authorize prime averages.
 
 This investigation asks the *new, one-step downstream question*: does the **unchanged** rule applied to all other complete original words reveal a readable message rather than merely a terminal marker?
 
