@@ -10,10 +10,12 @@ const fs=require('node:fs');
 const path=require('node:path');
 const crypto=require('node:crypto');
 const ROOT=path.resolve(__dirname,'..');
-const center=fs.readFileSync(path.join(ROOT,'im-results','lp1-p05-central-block.txt'));
-assert.equal(center.length,360);
-assert(center.subarray(0,2).equals(Buffer.from([10,10])));
-const hex=center.subarray(2).toString('ascii');
+const preserved=fs.readFileSync(path.join(ROOT,'im-results','lp1-p05-central-block.txt'),'utf8');
+// The repository transcription carries one editorial final CRLF. The original
+// 360 JPEG bytes contain exactly two leading LF and 358 lowercase hex digits.
+assert(preserved.startsWith('\n\n'));
+const hex=preserved.trim();
+assert.equal(Buffer.byteLength('\n\n'+hex,'ascii'),360);
 assert.match(hex,/^[0-9a-f]{358}$/);
 const payload=Buffer.from(hex,'hex');
 assert.equal(payload.length,179);
