@@ -147,7 +147,7 @@ assert.ok(stats["Latin Vulgate"].stripes.lessOrEqual>0,
 // recovered from LP1's original runes under the historically established keys.
 // This avoids relying on generic modern-English orthographic assumptions.
 const {parseSegments, runeWords}=require("./solved_cipher_regression.cjs");
-const oldSections=parseSegments(read("resources/transcriptions/liber_primus_master.txt"))
+const oldSections=parseSegments("\n\n"+read("resources/transcriptions/liber_primus_master.txt"))
   .map((section)=>runeWords(section).flat());
 assert.equal(oldSections.length,18);
 assert.deepEqual(oldSections.slice(0,5).map((v)=>v.length),
