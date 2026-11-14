@@ -159,6 +159,17 @@ assert.deepEqual(markerPath.path.map(v => v.byte), [35, 163, 193]);
 assert.equal(markerPath.glyphs, "GEM");
 assert.equal(markerPath.cycleStart, 0);
 
+// Direct source-native continuation: GP-prime sum of the recovered whole GEM
+// cycle supplies one next table address, without a fitted word or modulus.
+// The fixed graph returns XXR, not an independent message or useful next key.
+const gemPrimeSum = markerPath.path.reduce((sum, entry) =>
+  sum + corpus.prime[sourceBytes[entry.cell - 1] % 29], 0);
+assert.equal(gemPrimeSum, 155);
+const nextWordPath = original.walk(gemPrimeSum);
+assert.deepEqual(nextWordPath.path.map(v => v.cell), [155, 162, 154]);
+assert.equal(nextWordPath.glyphs, "XXR");
+assert.deepEqual(nextWordPath.cycle.map(v => v.rune), ["X", "R"]);
+
 // No later arbitrary 3-cycle selection: this is the sole 3-cycle
 // of the directed graph on all 256 exact original printed source cells.
 const threeCycles = [];
@@ -226,6 +237,7 @@ console.log(JSON.stringify({
   originalPrintedMarker: numerals[0],
   independentContemporaneousImage: {dimensions: image, primeOrdinalStarts: ranks},
   selectedCycle: markerPath,
+  directGpPrimeWordContinuation: {sourceWord: "GEM", primeSum: gemPrimeSum, path: nextWordPath},
   widthSelectedPath: widthPath,
   heightSelectedPath: heightPath,
   uniqueThreeCycle: threeCycles,
