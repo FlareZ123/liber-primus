@@ -109,6 +109,21 @@ def load_driver():
 
 def main():
     driver = load_driver()
+    # The real pinned MP3 run #43641015921 returned "1.088 bytes".
+    # The legacy Windows GUI may render the same thousands value using comma.
+    for label, expected in [
+        ("0 bytes", 0), ("432 bytes", 432), ("1088 bytes", 1088),
+        ("1.088 bytes ", 1088), ("1,088 bytes", 1088),
+        ("10.088 bytes", 10088),
+    ]:
+        assert driver["parse_capacity"](label) == expected
+    for label in ["1.08 bytes", "1..088 bytes", "1.088 Kbytes"]:
+        try:
+            driver["parse_capacity"](label)
+            raise AssertionError(f"Invalid capacity accepted: {label!r}")
+        except RuntimeError as error:
+            assert "was not numeric" in str(error)
+    print("PASS: native dot/comma thousand grouping, strict capacity validation")
     with tempfile.TemporaryDirectory(prefix="openpuff-capture-") as tmp:
         root = Path(tmp)
         output_dir = root / "extracted"
