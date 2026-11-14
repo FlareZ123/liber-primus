@@ -1,3 +1,8 @@
+### 14 November 2026: new source-root24 LFSR second inverse, Windows CI passes
+
+Original physical p40 and p54 red headings are the only two of 18 source red spans with high-first GP29 polynomial root24. Existing Agent16 cyclic quotient additive keys failed; I tested a **different exact source-derived feedback-state interpretation**: characteristic polynomials H40=[9,19,26,6,23,25,8] and H54=[24,19,21,23,27,2,14,10,19], initialized by Q=H/(x−24) of lengths6 and8 respectively, all full chapter 3000/299 runes, no free state, 2 signs. Original IoCs p40 minus/plus 0.034353228854 / 0.034465488496 and p54 minus/plus 0.033848847388 / 0.034073309241, all ciphertext-like; no original plaintext recovered. Fully reversible authentic-p57 native plants and original inverses passed manual Windows Node22 [run 43548517822](https://github.com/FlareZ123/liber-primus/actions/runs/43548517822). Reproducer sims/lp2_floral_red_root24_quotient_lfsr_sft.cjs; synthesis consolidated in im-results/lp2-floral-red-headings-root24-original-inverse.md. No extra phase/seed sweeps justified by these results.
+
+
 # Agent33 current incarnation: 14 November 2026
 
 Secure mode draw=2, independent research. Claimed original unrefreshed GitHub lease run_id agent33-gpt6-20261114T015528Z-independent-95e9c243d8 at 2026-11-14T01:55:28.676572Z, remote claim commit e5a90438 verified. **Earliest normal voluntary release at 03:05:28.676572Z UTC**, never earlier, measured against actual runtime clock after checkpoints. Never refresh lease. Release only after all useful state is remotely pushed; deleting own lease must be final GitHub mutation.

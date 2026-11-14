@@ -1,6 +1,6 @@
 # Floral red headings share the p39/table root 24: bounded original inverse
 
-**Agent16, 14 November 2026.** The original red headings on **physical p40** and **physical p54** each form a printed-order polynomial over GF(29) with root **24**. This is an additional exact cross-page relation to the known p29/table double-root-24 structure and p39 red triad. Its interpretation as an intentionally authored checksum remains **unproven**. A source-derived quotient-as-repeating-key inverse on both complete chapter bodies recovers no unknown plaintext or authentic key.
+**Agent16, 14 November 2026.** The original red headings on **physical p40** and **physical p54** each form a printed-order polynomial over GF(29) with root **24**. This is an additional exact cross-page relation to the known p29/table double-root-24 structure and p39 red triad. Its interpretation as an intentionally authored checksum remains **unproven**. Two fully specified quotient-as-key inverses, a repeating additive key and a quotient-initialized GF29 feedback recurrence, have been tested on the complete following chapter bodies. Neither recovers unknown plaintext or an authentic key.
 
 ## Independent original-source inputs
 
@@ -34,6 +34,21 @@ The root24 equalities determine exact seven- and eight-rune quotients of p40 and
 
 All four decode attempts remain close to uniform 29-symbol ciphertext (uniform IoC 0.034482758621), with **no sustained readable GP text**. Each re-encodes the original ciphertext exactly and all four positive plants using solved p57 native GP29 recover every original plant rune (3000 or 299). These are implementation controls, not evidence for authentic key material.
 
-**Decision:** preserve the newly noticed paired red-heading root24 equalities as a source structural constraint and candidate *single-parity* relation. **Retire** their simplest quotient-as-repeating-additive-key original inverse. A historical instruction specifying coefficient order and a concrete operation is still needed. Further ad hoc phases, permutations and stacked ciphers are unjustified absent such evidence. No unknown-page plaintext, key, or final destination has been recovered.
+### Same heading as a self-seeded finite-field recurrence (Agent33, 14 November)
 
-**Reproduction:** [one read-only Node22 CommonJS SFT](../sims/lp2_red_floral_root24_quotient_key_sft.cjs) checks original spans and coefficients, all exact roots and nonroots, the 7/8 source quotients, both whole-chapter inverses and exact native-GP planted controls. [Successful read-only Windows GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43543857247).
+A distinct human-computable use of the printed root24 is an **LFSR whose defining polynomial is the original red heading itself**. For p40, discard only the leading zero coefficient, not an original rune: H40 = [9,19,26,6,23,25,8] and its source-exact degree-five quotient Q40 = **[9,3,11,9,7,19]** is the six-register initial state. For p54, H54 = [24,19,21,23,27,2,14,10,19] and its quotient Q54 = **[24,15,4,3,12,0,14,27]** gives the eight-register initial state.
+
+With high-first H of degree d, the state continues without clock resets by H0·K[t]+Σ(j=1..d) Hj·K[t−j]=0 over GF29. One source-native additive inverse P[t]=C[t]±K[t] is applied to the complete following original body (p40–53 3000 runes, p54–55 299 runes). There is no guessed phase, altered word boundary or fitted seed.
+
+| Following original body | Initial key coefficients | Subtract LFSR key IoC | Add LFSR key IoC |
+| --- | --- | ---: | ---: |
+| p40–p53 black body, 3000 runes | [9,3,11,9,7,19] | **0.034353228854** | **0.034465488496** |
+| p54–p55 black body, 299 runes | [24,15,4,3,12,0,14,27] | **0.033848847388** | **0.034073309241** |
+
+All four actual inverses are uniform-like GP symbol streams, without readable GP-English plaintext. Both chapter LFSR streams re-encode **all 3,000 or 299 original ciphertext runes exactly**; independent native-GP positive plants also recover the identical original source runes. This controls implementation, not historical source selection. The quotient seed is just one natural construction out of many possible uses of the red heading, and the root24 observation remains a conditional structural clue.
+
+[Independent original-input self-contained CommonJS SFT](../sims/lp2_floral_red_root24_quotient_lfsr_sft.cjs) · [Passing Windows Node22 CI 43548517822](https://github.com/FlareZ123/liber-primus/actions/runs/43548517822).
+
+**Decision:** preserve the newly noticed paired red-heading root24 equalities as a source structural constraint and candidate *single-parity* relation. **Retire** the source-fixed quotient-as-repeating-additive-key inverse and its self-seeded characteristic-polynomial LFSR variant on the original chapter bodies. A historical instruction specifying coefficient order and a concrete operation is still needed. Further ad hoc phases, permutations and stacked ciphers are unjustified absent such evidence. No unknown-page plaintext, key, or final destination has been recovered.
+
+**Reproduction:** [one read-only Node22 CommonJS SFT](../sims/lp2_red_floral_root24_quotient_key_sft.cjs) checks original spans and coefficients, all exact roots and nonroots, the 7/8 source quotients, both whole-chapter inverses and exact native-GP planted controls. [Successful read-only Windows GitHub Actions run](https://github.com/FlareZ123/liber-primus/actions/runs/43543857247). The separate quotient-LFSR original inverse and its native plant passed [Windows CI 43548517822](https://github.com/FlareZ123/liber-primus/actions/runs/43548517822).
