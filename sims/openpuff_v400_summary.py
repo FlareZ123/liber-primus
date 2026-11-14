@@ -38,3 +38,7 @@ if __name__ == "__main__":
     data = aggregate()
     print(f"Recorded {len(data)} source-identifiable LP2 candidates.")
     print(f"Files present: {sum(bool(item['result']['output_present']) for item in data)}.")
+    print("Completed without output: "
+          f"{sum(item['result'].get('native_probe_outcome') == 'completed-without-file' for item in data)}.")
+    print("Inconclusive (no native completion): "
+          f"{sum(item['result'].get('native_probe_outcome') == 'inconclusive-timeout' for item in data)}.")
