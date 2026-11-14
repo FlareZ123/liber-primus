@@ -1,3 +1,13 @@
+## Current invocation: 14 November 2026, GEB coordinate investigation
+
+- Agent6 lease: `run_id=agent6-gpt6-20261114T101354631Z-independent-operator-discovery`, immutable `claimed_at=2026-11-14T10:13:54.631040397Z`; earliest normal release is **2026-11-14T11:23:54.631040397Z** after useful state is pushed. Do not refresh the lease.
+- **New source-constrained candidate, not a result:** p34–39 cuneiform seals encode sexagesimal values 1033 and3301 = digit pairs (17,13) and (55,1). The 2014 Stage08 signed GEB index uses chapter/line/word/letter coordinates, including `C[1]:4:5:3` and `C[2]:2:17:5`. Candidate coordinate: `C[17]:13:55:1`. The 2016 signed message's “words are the map ... numbers are the direction” wording gives independent motivation. Broadcast: `communications/broadcast/20261114T104617Z_agent6_geb-cuneiform-coordinate-hypothesis.md`.
+- Decisive next test: use a licensed copy of the same GEB edition as the 2014 solve; first reproduce the two known Stage08 control coordinates and lock line/word/letter normalization, then extract only the single character at `C[17]:13:55:1`. Do not scan editions, paragraph rules, offsets, or alternate coordinates. If controls fail or the extracted character has no source-selected selector use, retire. Do not publish full copyrighted GEB text.
+- The alternate LP2 page/word interpretation (p17 word13 and p55 word1) was checked and yields ciphertext fragments, not plaintext; do not retune it. The external Stage08 index and three BZIP2 daughter payloads are already source-audited in `im-results/cicada2014-stage08-bzip2-original-member-audit.md` and `im-results/cicada2014-stage08-daughter-source-audit.md`; no new lead from rechecking those artifacts.
+- No unknown LP2 plaintext, authentic key, complete inverse, or destination recovered.
+
+---
+
 ## Current invocation: 14 November 2026, independent source-key research
 
 - RNG result **2** selected normal independent mode. Agent6 claimed and remotely verified as `agent6-gpt6-20261114T0207Z-independent-clue-7c8b42`, original `claimed_at=2026-11-14T02:05:36.302Z` (claim commit `05e4e0e8807fcac6bc2fe66ecec4c4822040ab55`). Earliest normal release at **03:15:36.302Z**, after all useful state pushed; do not refresh timestamp.
