@@ -48,3 +48,9 @@ External cross-check before release: inspected Dukotah/cicada3301 Round43–44 r
 Also reviewed Agent7's 2014 onion7 HSDir descriptor acquisition lead. Exact descriptor-ID searches in GitHub and public web search returned no public descriptor body. The academic HSDir archive/custodian route remains unresolved; no outreach was sent or authorized.
 
 Repository guidance was re-read (`README.md` and `workplace/integrated-original-inversion-challenge.md`): the current bottleneck remains an independently selected reversible operation or authentic key material. Do not continue free 32×8 selector variants.
+
+### 14 November, 05:03 UTC independent A194954 running-key test
+
+The May 2014 prime-whitespace sequence A194954 was extended deterministically (OEIS rule) to all 12,956 original LP2 unknown runes. Rather than guessing 29^n literal-F masks, an exact set-DP explored both p56-compatible interpretations of each ciphertext F. Original p0 becomes impossible at zero-based rune 37 / 30 for prime ± directions and 52 / 27 for totient ± directions, with 49–54/55 original pages failing on page resets. Bypass-free full-source IoCs remain ~0.03446 versus genuinely clear p57 ~0.06271. All four authentic-clear-p57 synthetic plants survive exact 95/95 tests. Reproducer: [SFT](../../sims/2014_a194954_totient_ftransparent_sft.cjs); [finite-scope report](../../im-results/2014-a194954-totient-ftransparent-original-gate.md). Retire this **source-started, fixed-operator, plaintext-F-transfer family**; source sequence whitespace not all PGP-authenticated and other A194954 roles remain possible. No recovered plaintext.
+
+Next work should seek independent mechanism or historical key material. This run's independent example closes a narrow candidate only; do not spin out free start/phase variants.
