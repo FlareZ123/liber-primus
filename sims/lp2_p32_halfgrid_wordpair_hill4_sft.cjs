@@ -158,6 +158,129 @@ assert.deepEqual(exactWindows, [{
 console.log('source-native 121-rune windows checked:', totalWindows);
 console.log('windows with +5,+5 common-word pair:', JSON.stringify(exactWindows));
 
+
+// A less selective, source-native second lookaround. Permit any horizontal
+// four-letter lexicon pair whose start cells lie on any northeast/southeast
+// diagonal, for every possible distance 1..7. This tests rather than assumes
+// that the retrospectively selected +5,+5 offset is uniquely informative.
+const singleRuneIndex = new Map(alphabet.flatMap((name, index) =>
+  name.length === 1 ? [[name, index]] : []
+));
+/** @param {string} word @returns {number} unique four-index base29 code */
+function encodeFour(word) {
+  const letters = [...word].map((letter) => singleRuneIndex.get(letter));
+  assert.ok(letters.every((value) => Number.isInteger(value)));
+  return (((letters[0] * 29 + letters[1]) * 29 + letters[2]) * 29) + letters[3];
+}
+const fourCodes = new Set([...dictionary.get(5)].map(encodeFour));
+assert.equal(fourCodes.size, 864);
+const horizontalAnchors = [];
+for (let row = 0; row < 11; row++) {
+  for (let col = 0; col <= 7; col++) {
+    horizontalAnchors.push({row, col, index: row * 11 + col});
+  }
+}
+
+/**
+ * Return all common four-letter words starting horizontally in a 121-GP
+ * window; used in the original-source window census and fixed-marginal null.
+ * @param {number[]} runes source GP indices
+ * @param {number} start window offset
+ * @returns {{row:number,col:number,index:number}[]}
+ */
+function horizontalHits(runes, start) {
+  const hits = [];
+  for (const anchor of horizontalAnchors) {
+    const index = start + anchor.index;
+    const encoded = (((runes[index] * 29 + runes[index + 1]) * 29 +
+      runes[index + 2]) * 29) + runes[index + 3];
+    if (fourCodes.has(encoded)) hits.push(anchor);
+  }
+  return hits;
+}
+
+/**
+ * Return first-hits, exact +5,+5, any forward diagonal, either diagonal,
+ * and any nonaxial pair, respectively.
+ * @param {{row:number,col:number}[]} hits
+ * @returns {boolean[]}
+ */
+function scanPairFlags(hits) {
+  const flags = [hits.length >= 2, false, false, false, false];
+  for (let i = 0; i < hits.length; i++) {
+    for (let j = i + 1; j < hits.length; j++) {
+      const dr = hits[j].row - hits[i].row;
+      const dc = hits[j].col - hits[i].col;
+      if (dr === 5 && dc === 5) flags[1] = true;
+      if (dr > 0 && dr === dc) flags[2] = true;
+      if (dr > 0 && Math.abs(dr) === Math.abs(dc) && dc !== 0) flags[3] = true;
+      if (dr !== 0 && dc !== 0) flags[4] = true;
+    }
+  }
+  return flags;
+}
+
+assert.deepEqual(horizontalHits(page32, 0).map((x) => [x.row, x.col]), [
+  [3, 0], [8, 5]
+]);
+
+const broadCounts = [0, 0, 0, 0, 0];
+const broadIterations = 100000;
+const broadRandom = rngFactory();
+const broadShuffle = page32.slice();
+for (let iteration = 0; iteration < broadIterations; iteration++) {
+  for (let i = broadShuffle.length - 1; i > 0; i--) {
+    const other = broadRandom() % (i + 1);
+    [broadShuffle[i], broadShuffle[other]] =
+      [broadShuffle[other], broadShuffle[i]];
+  }
+  const flags = scanPairFlags(horizontalHits(broadShuffle, 0));
+  flags.forEach((flag, i) => { if (flag) broadCounts[i]++; });
+}
+assert.deepEqual(broadCounts, [363, 0, 19, 41, 234]);
+console.log('Broader p32 shuffles: 100000, any shift, same 864-word lexicon');
+console.log('Counts (2+ words, exact+5, any +diag, either diag, any off-axis):',
+  JSON.stringify(broadCounts));
+
+let broadOriginalWindows = 0;
+let broadTwoWords = 0;
+const broadDiagonalWindows = [];
+let broadExactFive = 0;
+for (const page of corpus.pages) {
+  if (page.page > 55 || page.indices.length < 121) continue;
+  for (let offset = 0; offset + 121 <= page.indices.length; offset++) {
+    broadOriginalWindows++;
+    const pair = horizontalHits(page.indices, offset);
+    const flags = scanPairFlags(pair);
+    if (flags[0]) broadTwoWords++;
+    if (flags[1]) broadExactFive++;
+    if (flags[3]) broadDiagonalWindows.push({page: page.page, offset});
+  }
+}
+assert.equal(broadOriginalWindows, 6482);
+assert.equal(broadTwoWords, 89);
+assert.equal(broadExactFive, 1);
+assert.deepEqual(broadDiagonalWindows, [
+  {page: 32, offset: 0},
+  {page: 37, offset: 62},
+  {page: 37, offset: 73},
+  {page: 37, offset: 84},
+  {page: 37, offset: 95}
+]);
+// All four p37 windows contain the same one diagonal NEAR -> TIER pair,
+// displaced +7 rows and +7 columns. A unique +5,+5 hit does not imply a
+// globally unique grid-displaced English wordpair mechanism.
+const p37 = corpus.pages.find((page) => page.page === 37).indices;
+assert.equal(wordAt(p37, 95), 'NEAR');
+assert.equal(wordAt(p37, 179), 'TIER');
+console.log('All-shift original-window controls:',
+  JSON.stringify({
+    windows: broadOriginalWindows, twoWords: broadTwoWords,
+    anyDiagonal: broadDiagonalWindows.length,
+    exactFive: broadExactFive, broadDiagonalWindows,
+    alternativePage37Pair: ['NEAR', 'TIER']
+  }));
+
 /** @param {number} value @returns {number} canonical element of GF(29) */
 const mod = (value) => ((value % 29) + 29) % 29;
 
