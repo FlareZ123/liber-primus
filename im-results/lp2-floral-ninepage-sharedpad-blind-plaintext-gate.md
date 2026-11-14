@@ -10,6 +10,8 @@ Train a GP29 conditional trigram model from the first 120,000 GP rune symbols of
 
 A necessary key-invariant test precedes language fitting: when two pages reuse exactly the same additive pad, `C_pageA,t=C_pageB,t` if and only if `P_pageA,t=P_pageB,t`. For the nine original pages and 231 aligned positions there are 36×231=**8,316** inter-page equal-symbol opportunities. Repeated GP English letter statistics therefore survive the unknown key *exactly* in the pairwise equality count.
 
+**Stronger algebraic reach of this invariant:** the equality identity also holds for **any arbitrary shared, positionwise secret 29-symbol permutation** `C_page,t=π_t(P_page,t)`, not just for field addition. Each `π_t` may be independently chosen from all **29!** permutations. The visible 323/8,316 equality rate is therefore a key-independent obstruction to *native-English-like plaintext under any common page-aligned one-to-one substitution*, without trying any secret alphabets at all. This is a reference-conditioned incompatibility, not a language-universal impossibility theorem. The Viterbi cipher recovery and its 231/231 positive specifically test the **additive subclass**, because one key per position becomes solvable by combining nine language-model signals.
+
 ## Original and positive results
 
 | Fixed diagnostic | Original p40–48 | Nine genuine native-GP plaintexts, encrypted with one shared unknown random pad |
