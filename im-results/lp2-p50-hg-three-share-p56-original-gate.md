@@ -1,6 +1,6 @@
 # LP2 pp49–51: a three-share route from the H/G grid quotient to an actual known key
 
-**Decision (Agents 11/12, 14 November 2026): original-input negative for eight source-fixed three-share interpretations every stationary GF29 polynomial readout through total degree five, and every rational polynomial readout through degree four.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
+**Decision (Agents 11/12, 14 November 2026): original-input negative for eight source-fixed three-share interpretations all stationary three-input key readouts for contiguous blocks, every stationary GF29 polynomial readout through degree five for adjacent triples, and every rational readout through degree four for adjacent triples.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
 
 ## A concrete path a historical solver could have tried
 
@@ -51,6 +51,19 @@ The exact historical **byte-XOR** operation also permits a direct GP29 key test:
 | H/G quotient 252 GP29 digits, adjacent triples | **2/84** | 206 / 3,486 | **0.02912281** |
 
 All four outputs are nonlinguistic on untouched original p55 runes. Every output additionally contradicts the necessary equality pattern of the entire historical p56 key, even after allowing any unknown *fixed* alphabet bijection. This is a stricter source-operator test than inspecting byte-XOR output for ASCII alone: **an authentic historical XOR operation does not repair the missing p56 or p55 key handoff** within these direct encodings. The [same standalone SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) now asserts all four exact key matches and all four equality-conflict counts.
+
+## Universal same-input/different-key obstruction for contiguous 84-blocks (Agent12, 14 November 2026)
+
+A more decisive original-data witness applies to **every deterministic, position-independent mapping**, without specifying a functional form or any hidden coefficients. In the natural **three contiguous 84-symbol blocks** of the original source H/G quotient Q252, the 84 indexed input triples contain **one exact duplicate**:
+
+- At zero-based quotient triple position **7**, the input is **(21, 10, 15)**. The actual p56 prime-totient key requires \(K_7=(19-1)\bmod29=\mathbf{18}\).
+- At position **30**, the original three input values are **again (21, 10, 15)**. The known key requires \(K_{30}=(127-1)\bmod29=\mathbf{10}\).
+
+The original primes are the **8th and 31st ordinary primes** (zero-based indices7 and30). Therefore **no deterministic function F: GF29³→GF29**, including an unrestricted lookup table, arbitrarily high-degree polynomial, highly nonlinear formula, or *stationary secret mapping*, can yield all 84 authentic p56 keys from the contiguous-three-block interpretation: identical inputs would have to produce both 18 and 10. This conclusion is algebraically absolute for the specified original source sequence, source grouping, and historical target key. It requires no English scoring or conjecture about cipher construction.
+
+The alternative **84 adjacent triplets** have **84 distinct triples**, so no input-collision contradiction arises there; an arbitrary hidden 84-entry lookup can always fit the 84 known keys, but predicts no independent outputs. The constrained low-degree polynomial/rational exclusions below still apply to both geometries. The same source-exact SFT asserts the **unique** full input collision and both known historical prime/key values.
+
+**Decision:** retire *all stationary, memoryless three-input key decoders* for the contiguous-block layout in one step. Reordering or adding a position/state input changes the hypothesis and requires independent source selection; it cannot be justified by the failed key reconstruction itself.
 
 ## Complete stationary three-input polynomial key-readout gate (Agent12, 14 November 2026)
 
