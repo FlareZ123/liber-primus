@@ -198,19 +198,24 @@ def main():
         line = int(row["line0"])
         index = int(row["index0"])
         rune = row["gp_rune"]
+        site_id = f"p{page:02d}-{row['kind']}{row['ordinal']}"
         if positions.get((page, line, index)) != rune:
             raise ValueError(
-                f"Source transcription mismatch: site={row['site_id']} "
+                f"Source transcription mismatch: site={site_id} "
                 f"page={page} line={line} index={index} rune={rune!r} "
                 f"got={positions.get((page, line, index))!r}"
             )
-        if row["kind"] == "D" and positions.get((page, line, index + 1)) != rune:
-            raise ValueError(f"Doublet source mismatch at {row['site_id']}")
         source_checks += 1
+        if row["kind"] == "D":
+            line2 = int(row["line0_2"])
+            index2 = int(row["index0_2"])
+            if positions.get((page, line2, index2)) != rune:
+                raise ValueError(f"Doublet source mismatch at {site_id}")
+            source_checks += 1
 
         if row["placement"] != "component-ink":
             manual_excluded.append({
-                "site_id": row["site_id"], "page": page, "rune": rune,
+                "site_id": site_id, "page": page, "rune": rune,
                 "placement": row["placement"], "kind": row["kind"],
             })
             continue
@@ -231,7 +236,7 @@ def main():
             extracted, reason = extract_component(gray, cx, cy, args.threshold)
             if extracted is None:
                 failures.append({
-                    "site_id": row["site_id"], "ordinal": ordinal,
+                    "site_id": site_id, "ordinal": ordinal,
                     "page": page, "rune": rune, "reason": reason,
                     "center": [cx, cy],
                 })
@@ -249,7 +254,7 @@ def main():
             else:
                 color = "unknown"
             sample = {
-                "site_id": row["site_id"], "kind": row["kind"],
+                "site_id": site_id, "kind": row["kind"],
                 "page": page, "rune": rune, "transliteration": row["transliteration"],
                 "ordinal": ordinal, "bbox": extracted["bbox"],
                 "width": w, "height": h, "area": extracted["area"],
@@ -262,7 +267,7 @@ def main():
             observed = shifted_iou(pair_samples[0]["normalized"], pair_samples[1]["normalized"])
             recorded = float(row["iou"]) if row.get("iou") else None
             doublet_controls.append({
-                "site_id": row["site_id"], "rune": rune, "page": page,
+                "site_id": site_id, "rune": rune, "page": page,
                 "recorded_iou": recorded, "recomputed_iou": round(observed, 4),
                 "abs_error": round(abs(observed - recorded), 4) if recorded is not None else None,
             })
@@ -363,7 +368,7 @@ def main():
     for row_i, rune in enumerate(runes):
         y0 = row_i * cell_h
         samples = sorted(samples_by_rune.get(rune, []), key=lambda s: (s["page"], s["site_id"], s["ordinal"]))
-        label = f"{rune} {samples[0]['transliteration'] if samples else ''}"
+        label = f"{rune_index[rune]} {samples[0]['transliteration'] if samples else ''}"
         draw.text((4, y0 + 8), label, fill="black", font=font)
         for col_i, sample in enumerate(samples[:cols]):
             x0 = label_w + col_i * cell_w
