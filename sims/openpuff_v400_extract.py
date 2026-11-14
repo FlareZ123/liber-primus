@@ -9,11 +9,13 @@ import time
 import traceback
 import zlib
 from pathlib import Path
+from ctypes import create_unicode_buffer, sizeof
 
 from filelock import FileLock
 from pywinauto import Desktop
 from pywinauto.application import Application
 from pywinauto.keyboard import send_keys
+from pywinauto.remote_memory_block import RemoteMemoryBlock
 
 
 def safe(method):
@@ -250,11 +252,33 @@ def save_dialog_if_present(app, output_path, output_dir):
             or "save" in button_names or looks_like_folder
         )
         if looks_like_folder and save_button is not None and not edits:
-            raise RuntimeError(
-                f"OpenPuff folder picker {title!r} has no editable path. "
-                "No output-directory selection was performed; this is a UI "
-                "automation failure, not a negative steganographic test."
+            # The old SHBrowseForFolder dialog can expose a TreeView and no
+            # editable field. BFFM_SETSELECTIONW requires a path pointer in
+            # the target process; WM_USER+103 is not system-marshalled.
+            shell_tree = next(
+                (c for c in controls if safe(c.class_name) == "SysTreeView32"),
+                None,
             )
+            if shell_tree is None:
+                raise RuntimeError(
+                    f"OpenPuff folder picker {title!r} has no native shell "
+                    "TreeView; refusing to send a private window message."
+                )
+            folder = str(output_dir.resolve())
+            folder_buffer = create_unicode_buffer(folder)
+            remote_path = RemoteMemoryBlock(dialog, size=sizeof(folder_buffer))
+            try:
+                remote_path.Write(folder_buffer)
+                dialog.send_message(0x0400 + 103, 1, remote_path.Address())
+                time.sleep(0.5)
+                # The extracted file's existence and CRC remain the final
+                # acceptance test. This UI action is never its own proof.
+                save_button.click_input()
+            finally:
+                del remote_path
+            handled = True
+            time.sleep(1.5)
+            continue
         if edits and save_button is not None and looks_like_save:
             # OpenPuff can ask for an output *directory* and restore its embedded
             # filename. Passing a filename to a folder picker would be invalid.
