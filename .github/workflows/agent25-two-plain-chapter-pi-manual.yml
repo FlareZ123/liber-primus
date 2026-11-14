@@ -1,0 +1,16 @@
+name: Agent25 chapter-wise output-alphabet original gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chapter-pi-native-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact original chapter profiles and planted all-key controls
+        run: node sims/lp2_two_plain_lag_chapterpi_allkey_sft.cjs
