@@ -29,6 +29,23 @@ The original mod29 arithmetic is **real and reproducible**. Example block1: `AE�
 
 **Source-exact CI:** [successful manual GitHub Actions 43645006765](https://github.com/FlareZ123/liber-primus/actions/runs/43645006765), using a fixed external commit plus original GP29 corpus. The exact rowwise output is in the workflow log; the source script prints file SHA-256s and each selected block's original positions for an independent replay. The public repo does not contain a first-party license file at its root; only independently derived numeric summaries were retained here.
 
+## Prospective next-block trial using the author's published post-block38 forecast
+
+A further **source-frozen forward test** was run only **after** recording and replaying the 38 published selections. Block 38 ends at original grid `(8,17)` with accumulated `S=32`, and its [public outgoing forecast](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/ab9d8190e60009179563ac21b2d750271c2782b3/plaintext-i-found/38-i-ask.md) explicitly selects a phase-1 `(0,+1,0)` source-key signature, an even/even *horizontal* original source center and *even* radius, non-mirror outer runes, and a diagonal next ciphertext of odd first row, even first column, exact eight-ray deviation0 from the previous leftmost cell `(8,17)`, with leftmost endpoint at its beginning. We enumerated **all** original eligible source nodes using both direct and center-φ options and both orientation readings (a deliberately broad superset), then every 3–27-rune odd-length diagonal original ciphertext path satisfying these frozen geometric filters. No next word, key source or position was chosen from its output.
+
+The [passing prospective-source SFT](../sims/lp2_2026_public_27x27_nextblock_frozen_sft.cjs) and [manual CI 43646365429](https://github.com/FlareZ123/liber-primus/actions/runs/43646365429) found **172 candidate source keys**, **21 permitted next beginnings**, **166 source-coordinate diagonal paths**, and **28,552 combinations**. We scanned the 26,183-entry native-GP29-encoded TextBlob dictionary of words at least 5 runes long. Exactly **one** original candidate matches an English dictionary word, and its complete inverse on untouched original source is:
+
+| Operand | Original source | GP29 rune indices |
+| --- | --- | --- |
+| Original horizontal source key | `(10,14)=NG,` `(10,18)=R,` `(10,22)=M` (radius4) | `21,4,19` |
+| Center totient and phase1 | `φ(4)=2`, then left rotate `[NG,TH,M]` | `[2,19,21]` = `TH,M,NG` |
+| Original ciphertext, up-right diagonal | `(17,8)=NG`, `(16,9)=X`, `(15,10)=Y`, `(14,11)=EO`, `(13,12)=J` | `21,14,26,12,11` |
+| Modular difference | `(C−K) mod29`, repeated key | `19,24,5,10,21` = `M,A,C,I,NG` |
+
+The GP29 output reads `MACING`, conventionally **MAKING** because the single C/K rune can stand for K, and TextBlob frequency for `making` is 217. This is **a conditional 5-rune readable candidate**, not verified Cicada plaintext: neither the public outgoing rule nor the original printed source selects *this one* of 28,552 possibilities independently. Twelve seeded permutations of the original 729 symbols gave **0,1 or 2** corresponding dictionary matches **each**, versus **1** on the original; the chosen word is statistically unexceptional. A deliberate synthetic planting of **ABOUT** in a five-rune source path under one allowed key was successfully recognized, independently checking that the forward scanner can detect a real planted word. These results **preclude promoting MAKING as decipherment evidence** or using the manuscript's English semantics to tune the next path.
+
+There is no frozen forecast for the remaining 35 consecutive unknown runes needed for the minimum holdout. Do not generalize a single short match to a proven 40-rune extrapolation or falsify the whole transposition concept from this bounded English-word test.
+
 ## Cryptanalytic decision
 
 The candidate supplies an instructive large, human-readable **in-sample fit**, including real math over original unsolved ciphertext. Its key and location choices are insufficiently constrained to predict the next unknown original runic positions, and the alternative SOON path directly demonstrates nonuniqueness. The many post-selected prime/totient numerological identities do not repair the missing route-selection rule.
