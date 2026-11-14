@@ -30,7 +30,7 @@ function clean(text) {
   return [...text].filter(c => runes.has(c));
 }
 
-/** @param {string[]} seqs */
+/** @param {Array<Array<string|number>>} seqs */
 function count(seqs) {
   let runesN = 0;
   let eligible = 0;
