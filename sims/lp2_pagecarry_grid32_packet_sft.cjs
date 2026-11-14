@@ -107,6 +107,39 @@ const terminalResults = terminal.map(p => {
 assert.ok(Math.abs(terminalResults[0].minusIoC-0.03735632183908046)<1e-14);
 assert.ok(Math.abs(terminalResults[1].minusIoC-0.03333333333333333)<1e-14);
 
+// Two frozen, historically motivated XOR consumers. 2013 Cicada stages
+// explicitly XORed supplied data files; this does not prove reuse in LP2.
+// (1) One carry byte per table row, repeated across that row's eight cells.
+// (2) The 32-byte carry stream repeated over the 256 terminal GP29 indices.
+const tableRows = Array.from({length:32}, (_,i) => values.slice(i*8, i*8+8));
+const tableRowXor = tableRows.flatMap((row,i) => row.map(v => v ^ raw[i]));
+const terminalPages = [55,56,57].map(n => corpus.pages.find(p => p.page===n));
+assert.deepEqual(terminalPages.map(p => p.indices.length), [76,85,95]);
+const terminalRunes = terminalPages.flatMap(p => p.indices);
+assert.equal(terminalRunes.length, 256);
+const terminalXor = terminalRunes.map((v,i) => v ^ raw[i%32]);
+const byteEntropy = a => {
+  const h = Array(256).fill(0);
+  for (const x of a) h[x]++;
+  return -h.filter(Boolean).reduce((s,n) => s + (n/a.length)*Math.log2(n/a.length), 0);
+};
+const byteStats = a => ({
+  ...format(a),
+  length:a.length,
+  nul:a.filter(x => x===0).length,
+  high:a.filter(x => x>=128).length,
+  entropy:byteEntropy(a)
+});
+const terminalXorGP = terminalXor.map(x => x%29);
+assert.deepEqual(terminalXor.map((x,i) => x ^ raw[i%32]), terminalRunes);
+assert.deepEqual(tableRowXor.map((x,i) => x ^ raw[Math.floor(i/8)]), values);
+const historicalXorConsumer = {
+  tableRowXor:byteStats(tableRowXor),
+  terminalRuneXor:byteStats(terminalXor),
+  terminalRuneXorModulo29:terminalXorGP.map(x => corpus.translit[x]).join(""),
+  sourceNote:"XOR is documented in 2013 Cicada source puzzles; the repeated 32-byte key use is an exploratory LP2 hypothesis, not an authored instruction."
+};
+
 const result = {
   totalUnknownRunes:12956, completeWords:2896,
   genuinelySplitWords:32, precedingPageSeparators:2,
@@ -115,6 +148,7 @@ const result = {
   selected: Object.fromEntries(Object.entries(mapped).map(
     ([key,a]) => [key,format(a)])),
   exploratoryRepeatVigenere:{keyIndices:candidateGPKey,terminal:terminalResults},
+  historicalXorConsumer,
   positive:"32/32 planted bytes recovered without changing the source selector",
   conclusion:"No direct typed/plaintext sequence from this 32-row packet mapping"
 };
