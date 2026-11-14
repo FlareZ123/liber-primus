@@ -51,9 +51,17 @@ async function main() {
     examples[key] = rows;
   }
   assert.ok(lines.length > 190000, "unexpected historical log truncation");
+  // Freeze original early-stage leads, then inspect neighbors for exact endpoints
+  // and the author's 2013 chronology without relying on search snippets.
+  const jan14UdpContexts = [21558, 21566, 22301].map(anchor => ({
+    anchor,
+    lines: Array.from({length: 41}, (_, j) => ({
+      line: anchor - 20 + j, text: lines[anchor - 21 + j].slice(0, 450)
+    }))
+  }));
   console.log(JSON.stringify({
     source: SOURCE, sha256: SHA256, size: bytes.length,
-    lines: lines.length, counts, examples
+    lines: lines.length, counts, examples, jan14UdpContexts
   }, null, 2));
 }
 main().catch(e => { console.error(e); process.exitCode = 1; });
