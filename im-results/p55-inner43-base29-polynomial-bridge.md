@@ -14,11 +14,11 @@ P_{55}(3301\bmod29)=P_{55}(24)=18=1033\bmod29
 P_{55}(1033\bmod29)=P_{55}(18)=23.
 \]
 
-The output 23 independently matches the 23 terminal red dots on p57 and the modulus 23 of the signed 2013 Diffie–Hellman challenge. This is a reproducible cross-round algebraic correspondence. It does **not** yet provide plaintext, a cipher inverse, or a key-use rule.
+The output 23 numerically matches the 23 terminal red dots on p57 and the modulus 23 of the signed 2013 Diffie–Hellman challenge. These are reproducible **retrospectively chosen arithmetic correspondences**. Nothing in the authenticated p56, p57 or signed 2013 source instructs the solver to evaluate this proposed p55 polynomial at the two magic-square residues; no unknown plaintext, cipher inverse, or key-use rule follows.
 
 ## Human-visible route
 
-1. The solved p56 text says “The first nourishes the last.” This is a human-visible reason to connect the first 2014 square's 3301 sum to the last p57 marker through the intervening p55 construction.
+1. **Correction to a mistaken historical selector:** the authenticated p56 decryption actually begins “AN END WITHIN THE DEEP WEB” and discusses finding a page that hashes to a specified digest. The claimed sentence “The first nourishes the last” does **not** occur in p56 plaintext or in the other known p57 rune text. Therefore no first-to-last instruction authorizes connecting the first 2014 square to the last p57 dots. That assignment is an exploratory researcher interpretation.
 2. The clear p57 parable says to shed circumferences and find what is within. Applying the literal first/last-rune removal to p55's printed words selects its strict interiors.
 3. Physical p55 has 17 printed rune segments with lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The first is a one-rune page carry; the remaining complete words contribute exactly 43 interior runes.
 4. Cicada's signed 2013 source explicitly demonstrates the BASE29 coefficient convention with `3301 -> 3QO`: digits `[3,26,24]` are the coefficients of (3+26X+24X^2), in increasing degree. This fixes the orientation without a fitted reversal.
@@ -59,7 +59,7 @@ The norm match is an independent algebraic invariant of the same source-selected
 
 - Reversing the 43 coefficients gives (P(24)=4) and (P(18)=19), so the ascending order matters.
 - Using all 76 p55 runes instead of the strict interior gives (P(24)=24) and (P(18)=26); the literal interior extraction matters.
-- The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but the resulting arithmetic checks are not statistically independent. No p-value is claimed.
+- The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but the polynomial construction and chosen evaluation points were proposed after inspecting them. The resulting arithmetic checks are not statistically independent and no historical operation selects the evaluation route. No p-value is claimed.
 - **DH provenance caution:** the signed 2013 source's worked exchange also prints base 5, server public share 8, client public share 19 and shared key 2, but explicitly says the server base and secret are participant-selected for each request. Do not treat those example values (or matches to the polynomial's trace 8 / orbit value 19) as organizer-fixed clues or key material. The cross-round bridge uses only the protocol's fixed modulus 23.
 - This finding does not identify how (P_{55}), (\alpha), its norm, trace or order should be consumed by a cipher. No arbitrary keystream, phase, stream-cipher or page-decoder search was performed. Waiting decoder challenge [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains waiting; this report is a structural lead, not an attempt to bypass its acceptance gate.
 
