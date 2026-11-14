@@ -148,6 +148,22 @@ def select_bit_level(window, format_name, level_name):
     return tree_state(tree)
 
 
+def parse_capacity(readout):
+    """Read native OpenPuff capacity under comma or dot thousands grouping.
+
+    Original pinned 2014 Windows GUI emitted "1.088 bytes" in run
+    43641015921. These group characters are not decimal fractions.
+    """
+    match = re.fullmatch(
+        r"\s*((?:\d{1,3}(?:[.,]\d{3})+)|\d+)\s+bytes?\s*", readout
+    )
+    if match is None:
+        raise RuntimeError(
+            f"OpenPuff carrier-capacity readout was not numeric: {readout!r}"
+        )
+    return int(match.group(1).replace(",", "").replace(".", ""))
+
+
 def disable_optional_passwords(window):
     states = {}
     for control_id in (1042, 1043):
@@ -523,12 +539,7 @@ def main():
             control_id=1048, class_name="Static"
         ).window_text()
         result["selected_carrier_bytes_after_level"] = after_label
-        capacity_match = re.fullmatch(r"\s*([\d,]+)\s+bytes?\s*", after_label)
-        if capacity_match is None:
-            raise RuntimeError(
-                f"OpenPuff carrier-capacity readout was not numeric: {after_label!r}"
-            )
-        capacity = int(capacity_match.group(1).replace(",", ""))
+        capacity = parse_capacity(after_label)
         result["selected_capacity_bytes_after_level"] = capacity
         if args.expected_size is not None and capacity < args.expected_size:
             raise RuntimeError(
