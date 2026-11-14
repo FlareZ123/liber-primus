@@ -1,0 +1,19 @@
+name: LP2 original word-length historical plaintext retrieval
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-source length sequence retrieval with planted native control
+        run: node sims/lp2_original_wordlength_frozen_source_retrieval_sft.cjs
