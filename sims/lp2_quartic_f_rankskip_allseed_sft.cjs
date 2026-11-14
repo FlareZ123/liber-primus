@@ -39,9 +39,11 @@ const contributions=bases.map(b=>Array.from({length:29},(_,v)=>{
  for(let i=0;i<p.length;i++)p[i]=(v*b[i])%29;
  return p;
 }));
+const continuous=process.argv.includes('--book-continuous');
 const begins=new Set(),chapterA=729;
 let start=0;
 for(const n of counts){begins.add(start);start+=n;}
+if(continuous){begins.clear();begins.add(0);}
 const rank=new Uint8Array(1874);
 for(let i=0;i<c.length;i++){
  if(begins.has(i)){rank[i]=c[i];continue;}
@@ -171,7 +173,7 @@ const plantKeys=keyFromSeed(planted);
 const plantMatches=knownPlant.every((r,i)=>r===mod((begins.has(i)?synthetic[i]:(synthetic[i]===synthetic[i-1]?0:synthetic[i]-(synthetic[i]>synthetic[i-1]?1:0)+1))-plantKeys[i]));
 assert(plantMatches);
 console.log(JSON.stringify({
- model:'2013 BASE29+p39-red-triad quartic GF29 recurrence; book-continuous 4-state key; page-start seed; GP F=0 reserved predecessor-exclusion marker',
+ model:'2013 BASE29+p39-red-triad quartic GF29 recurrence; book-continuous 4-state key; '+(continuous?'book-continuous predecessor':'physical-page predecessor resets')+'; GP F=0 reserved predecessor-exclusion marker',
  original:{runes:1874,pages:8,firstChapter:729,secondChapter:1145,
   rawInverseRankIoC:originalPairs/(729*728),
   allSeeds:707281,trainThreshold:0.05,numTrainAtOrAboveThreshold:thresholdCount,
