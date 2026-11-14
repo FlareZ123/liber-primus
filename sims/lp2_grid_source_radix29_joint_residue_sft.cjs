@@ -99,6 +99,46 @@ for (const base of [61, 88, 90]) {
   assert(factors.every(factor => remainder(values, factor.coefficients).some(x => x !== 0)));
 }
 
+// Natural physical traversals test orientation *jointly with radix*, without
+// choosing a radix by scoring ciphertext or fitting a secret codebook.
+// Exact physical layout: 32 rows of eight original printed tokens.
+/** @param {'row'|'column'} major @param {boolean} serpentine @param {boolean} reverse */
+function sourceOrder(major, serpentine, reverse) {
+  const out = [], rows = major === 'row' ? 32 : 8, cols = major === 'row' ? 8 : 32;
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+    const j = serpentine && r % 2 ? cols - c - 1 : c;
+    out.push(major === 'row' ? r * 8 + j : j * 8 + r);
+  }
+  if (reverse) out.reverse();
+  assert.equal(new Set(out).size, 256);
+  return out;
+}
+const physicalReadouts = [];
+for (const major of ['row', 'column']) {
+  for (const serpentine of [false, true]) {
+    for (const reverse of [false, true]) {
+      const order = sourceOrder(major, serpentine, reverse);
+      const x = order.map(i => digitX[i]), y = order.map(i => digitY[i]);
+      const rootsByFactor = factors.map(({coefficients}) => {
+        const ar = remainder(x, coefficients), br = remainder(y, coefficients);
+        return Array.from({length: 29}, (_, b) => b)
+          .filter(b => ar.every((u, i) => mod(b * u + br[i]) === 0));
+      });
+      const sharedRoots = rootsByFactor[0].filter(b => rootsByFactor[1].includes(b));
+      physicalReadouts.push({major, serpentine, reverse, rootsByFactor, sharedRoots});
+    }
+  }
+}
+assert.equal(physicalReadouts.length, 8);
+assert.deepEqual(physicalReadouts.filter(r => r.sharedRoots.length), [
+  {major: 'row', serpentine: false, reverse: false,
+    rootsByFactor: [[2], [2]], sharedRoots: [2]}
+]);
+assert.equal(physicalReadouts.filter(r => r.rootsByFactor[1].length).length, 2);
+assert.deepEqual(physicalReadouts.filter(r =>
+  r.major === 'column' && !r.serpentine && r.reverse)[0].rootsByFactor,
+  [[], [15]]);
+
 // Full original perturbation and positive-controls: change exactly one
 // original cell by one GP29 coefficient and both exact divisibilities break.
 const corrupted = grid.bytes.slice();
@@ -111,6 +151,7 @@ console.log(JSON.stringify({
   canonicalAlphabetLength: 60,
   strongestRadixInference: 'b congruent 2 mod 29; minimal admissible b=60',
   excludedAlternative: 'base59 with f omitted',
+  originalSourcePhysicalReadouts: physicalReadouts,
   unexcludedRadices: admissibleNaturalBases,
   conclusion: 'conditional GF29 divisor constraints; no authenticated numeral codec or recovered plaintext'
 }, null, 2));
