@@ -12,7 +12,8 @@ const print=obj=>console.log(JSON.stringify(obj));
 function padText(body){
  const m=body.match(/"initialAttributedText"\s*:\s*\{\s*"text"\s*:\s*("(?:\\.|[^"\\])*")/s);
  if(!m)throw Error('Missing period original initialAttributedText');
- try{return JSON.parse(m[1]).replace(/\r\n?/g,'\n')}catch(e){const p=Number(/position (\d+)/.exec(String(e))?.[1]??0);throw Error('Embedded pad text JSON issue near '+p+': '+JSON.stringify(m[1].slice(Math.max(0,p-100),p+120))+'; '+e)}
+ const jsEscapesDecoded=m[1].replace(/\\x([0-9a-f]{2})/gi,(_,h)=>String.fromCharCode(Number.parseInt(h,16)));
+ try{return JSON.parse(jsEscapesDecoded).replace(/\r\n?/g,'\n')}catch(e){const p=Number(/position (\d+)/.exec(String(e))?.[1]??0);throw Error('Embedded pad text JSON issue near '+p+': '+JSON.stringify(m[1].slice(Math.max(0,p-100),p+120))+'; '+e)}
 }
 function chats(body){
  return [...body.matchAll(/\{"time":\d{13},"userId":"[^"]+","lineText":"(?:\\.|[^"\\])*"\}/g)]
