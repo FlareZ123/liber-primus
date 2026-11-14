@@ -1,41 +1,47 @@
-# Original Q252 three-share to authentic p56 key: all GF29 coordinates fail
+# Original Q252 quadratic sharing: every fixed GF29 four-point route fails the p56 key
 
-**Decision, 14 November 2026:** the original 256-cell table's source-factor quotient Q252 does **not** encode the independently authenticated p56 prime-totient key as a fourth evaluation of one common quadratic Shamir sharing rule, under either natural three-share layout or either full coefficient orientation. The result is stronger than a simple no-exact-key negative: **even an unrestricted secret stationary output function** over the 29 possible predicted residues cannot fit all 84 known key positions. This rejects this finite direct handoff, not arbitrary secret-sharing systems or every possible use of the table. No unknown-page plaintext or key was recovered.
+**Decision, 14 November 2026:** the authentic 84-symbol prime-totient key of solved LP2 p56 cannot be recovered from the original p50 Q252 dual-factor quotient by any fixed quadratic Shamir interpolation with three distinct share coordinates and a fourth distinct evaluation coordinate over GF(29), under either source-natural share layout or complete quotient orientation. Even an unrestricted secret **stationary symbol function** over the predicted 29 residues can reproduce at most **37 of 84** independently known key positions. This closes the finite *direct fixed-coordinate sharing* proposal. It does **not** disprove more general secret-sharing, changing-state maps, a different table interpretation or historical unknown-page keys. No unknown LP2 plaintext recovered.
 
-## Source-to-key proposal and its falsifiable prediction
+## Source-constrained premise and decisive prediction
 
-The original LP2 physical pp49–51 contain 256 two-character numeral cells. With the existing conditional base60 normalization, their exact byte stream has SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The *independent, prior-source* operands are the 2013 signed BASE29 `3301 = 3QO` digits `H=[3,26,24]` and the original p39 red triad `G=[27,5,15]`, both interpreted as ascending GF29 polynomial coefficients. Their product divides the 256 original table residue slots exactly. Descending long division leaves a **252-slot quotient, including its first zero**. The required zero remainder is checked against the unchanged table.
+The original physical pp49–51 contain exactly **256 printed numeral cells**, conditionally parsed using the conventional base60 alphabet. Their original byte sequence hashes SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Dividing the descending GF29 coefficient polynomial by the product of two independently visible factors is exact:
 
-An exact potential next step is to read those 252 slots as **three shares at each of 84 positions**, and evaluate the unique degree-at-most-two polynomial through share coordinates `x=1,2,3` at a fourth fixed coordinate. The 84 count is independently fixed: original solved p56 has 85 ciphertext runes with one literal plaintext-F bypass at local offset 56, and therefore consumes **84 consecutive-prime totient residues** from prime 2 through prime **433**. This is the authentic key against which the hypothetical fourth share can be compared. The test never uses unknown p0–55 plaintext for parameter selection.
+- `H=3+26X+24X²`, from the signed 2013 BASE29 example `3301=3QO`.
+- `G=27+5X+15X²`, from the original p39 red rune triad.
+- Their product has ascending coefficient values `[23,21,11,17,12]`; **the four-field-element division remainder is zero** and the quotient is exactly **252** coefficient slots (including a leading zero).
 
-This premise is **not** an author-specified decoder. An original source demonstrates a BASE29 operation; no surviving instruction specifies that the Q252 quotient is a Shamir share bundle or that the points are at 1,2,3. The alignment `252=3×84` is suggestive but post-noticed. The purpose of the test is to reject this *complete, cheap, recognizable* handoff before anyone optimizes it.
+The original solved p56 has **85** ciphertext rune symbols, but its historical prime-totient inverse includes a literal plaintext-F at zero-based offset 56 that consumes no prime. Consequently, its published cleartext is authenticated by **84** key values `K[i]=(prime[i]-1) mod29`, ranging from the first prime 2 through the 84th prime **433**. The 252 quotient slots could arithmetically be arranged as **three shares of 84 positions**.
 
-## Finite exhaustive test
+The recognizable human-puzzle proposal is to interpolate a quadratic polynomial through three source-symbol shares per key position and evaluate it at one fourth field coordinate, expecting exactly the independent known key sequence. The **upstream assumption is unverified**: no Cicada source instructs the solver to use the table as Shamir shares, fixes the share points, or selects the expected output from the quotient. The 252=3×84 alignment is retrospective, so this is a bounded exact proposal whose failure is worth recording before pursuing further free-key variants.
 
-Keep both natural 84-position layouts: three consecutive blocks of 84 coefficients, or 84 adjacent triples. Also allow the coefficient stream in printed division order or completely reversed. For each of those four source layouts, evaluate the same quadratic at **all 29 field coordinates** `x=0..28`, including the original three share coordinates: **116 complete predicted 84-symbol keys**. No free offset, cyclic phase, prime skip, per-position evaluation point or secret coefficients are fitted.
+## Exhaust all distinct GF29 share-point and target-point placements
 
-For each predicted key `S[i]`, compare it against the true p56 key `K[i]=(prime[i]-1) mod29` in two ways:
+Let `y0,y1,yt` be the three Q252 shares for a position. Any ordered triple of *distinct* GF29 source coordinates is equivalent by affine coordinate normalization to `x=[0,1,t]`, where `t∈{2,...,28}`. Every fourth coordinate `u∈GF29\{0,1,t}` is then evaluated using exact Lagrange weights:
 
-1. Literal rune-residue equality, requiring all 84 matches for an authentic direct-key handoff.
-2. A stronger key-independent constraint allowing *any* fixed output function `f: GF29→GF29`, with no injectivity requirement. The tight maximum over all such functions is `sum over v of max_w count(S[i]=v and K[i]=w)`. An arbitrary secret 29! alphabet permutation is a subset of this much larger family. If even one predicted symbol v requires distinct key values at different positions, a deterministic f cannot fit.
+`a=(u-1)(u-t)/t,quad b=u(u-t)/(1-t),quad c=u(u-1)/(t(t-1)) mod29`
 
-| Verified original-input outcome | Result |
+The predicted fourth share is `S[i]=a y0[i]+b y1[i]+c yt[i] mod29`. The **702** finite `(t,u)` pairs produce **390 distinct ordered weight triples**; duplicated triples have mathematically identical effects on every input. This covers all fixed four-point interpolation rules over GF29 with distinct share points. The remaining ordinary source-readout choices are three consecutive 84-position blocks or 84 adjacent triples, each with the entire quotient in forward or reversed order. Hence **390×2×2 = 1,560** genuinely different original-input candidate streams. The 12 cases in which the target coordinate is itself one of the three given share coordinates are tested separately as trivial direct-share controls; none reproduces the true p56 key.
+
+Every candidate is measured against the 84 independently authenticated target residues in two exact ways: direct position-by-position equality, and an exact, optimistic upper bound that grants *any* fixed function `f:GF29→GF29`, including non-injective secret substitutions. For each predicted symbol `v`, choose whichever true target symbol `w` appears most often among positions with `S[i]=v`. Adding these maxima gives the **provable most matches achievable by any stationary output function**. Any conflicting assignments to one input symbol prevent complete recovery. This bound includes every secret 29-symbol alphabet permutation.
+
+| Source-original result | Exact outcome |
 | --- | ---: |
-| Source table cells / GF29 quotient slots | 256 / 252 |
-| Quotient remainder by H×G | `[0,0,0,0]` |
-| Independently solved key positions | 84 |
-| Original-input complete candidate models | **116** |
-| Largest direct coordinate/key equality count | **8 / 84** |
-| Largest count even with arbitrary fixed f | **36 / 84** |
-| Fewest conflicting input-symbol groups in any model | **17** |
-| Complete matches under literal or any fixed secret f | **0 / 116** |
+| Original table cells / Q252 quotient symbols | **256 / 252** |
+| Polynomial division remainder | `[0,0,0,0]` |
+| Known p56 prime-key positions | **84** |
+| Candidate distinct interpolation-weight triples | **390** |
+| Evaluated original-input streams | **1,560** |
+| Highest literal known-key matches | **9 / 84** |
+| Highest matches under any stationary output function | **37 / 84** |
+| Fewest conflicting predicted-symbol groups in any candidate | **17** |
+| Complete authentic p56 key recoveries | **0 / 1,560** |
 
-The best unrestricted-function upper bound is 36/84, attained by two variants: forward adjacent triples evaluated at `x=3`, and reversed adjacent triples at `x=22`. Both have many contradictory repeated-symbol constraints. Across the 116 direct comparisons, the maximum exact equality count is eight, consistent with an unrelated 29-symbol stream. No significance estimate is needed to reject these deterministic *exact-recovery* contracts, because the original key is already known.
+The strongest unrestricted-function bound occurs for forward 84-block shares, normalized `t=7,u=17`, with weights `[27,20,12]`: **37/84** matches at best, with **24** contradictory source-symbol groups. There is no model-dependent threshold or English scoring: the authentic known key fixes the required **84/84** exact outcome.
 
-## Controls, conclusion and next decision
+## Positive controls and interpretation
 
-The standalone CommonJS source test `sims/lp2_q252_shamir_allx_p56_key_sft.cjs` asserts the original 256-byte SHA-256, both historical polynomial factors, exact zero remainder, 252-coefficient quotient, 84th prime 433 and the full established p56 GP transliteration. It independently reconstructs all 85 original p56 ciphertext symbols from the known plaintext/totient key with the one F bypass. A separately constructed 84-position quadratic three-share positive control uses a hidden full-field bijection `f(v)=7v+3 mod29`; evaluation at `x=4` recovers **84/84** source-native planted key positions, with **zero** contradictory output-function groups. Thus the exclusion criterion recognizes a genuine complete secret-alphabet fourth share when one exists.
+The [CommonJS original-input SFT](../sims/lp2_q252_shamir_allx_p56_key_sft.cjs) asserts the unchanged table SHA-256, exact H×G division, all 84 primes through 433 and the complete p56 original plaintext. It re-encrypts the original **85** ciphertext runes, correctly handling the single plaintext-F bypass. Independently constructed 84-position quadratic shares encoding that authentic key under a secret symbol bijection `f(v)=7v+3 mod29` pass **84/84** with zero assignment conflicts, establishing the discriminating power of the fixed-function test when a matching share system exists. A separate direct-source-share subset covers the three evaluation points occupied by shares and fails as well.
 
-**Inference:** the source-constrained three-share geometry does not provide the p56 known key under any fixed GF29 evaluation coordinate or fixed output-symbol relabeling in the four natural layouts. A future proposal would need a newly sourced different share-placement rule, nonstationary state, or independently authenticated next operation. Do not merely search more x values, symbol permutations, or prime phases in this rejected family.
+The original-image quotient/factor arithmetic is a source-aligned observation, while the sharing and target-page choice remain proposals. This exact negative rules out an appealing *complete known-key transfer* and prevents spending compute on new point-coordinate, fixed-symbol-permutation, or sign/phase searches in the same model. A successor requires an **independent original instruction selecting a different operation, clock, state, or key source**, ideally one producing unknown p0–55 plaintext on held-out ciphertext rather than merely fitting the known p56 key.
 
-**Reproducer:** [original-source single-file test](../sims/lp2_q252_shamir_allx_p56_key_sft.cjs). Related, distinct narrower tests: [dual-factor source study](2013-base29-gf29-grid-factor.md) and earlier direct x=0/3-share p56 comparisons in the [#41 discussion](https://github.com/FlareZ123/liber-primus/issues/41). Both the original share rule and this all-coordinate extension remain exploratory hypotheses about the creator's design, not established evidence of the historical encryption mechanism.
+Related research: [2013 H/G factor source and existing direct consumers](2013-base29-gf29-grid-factor.md); [existing narrower interpolation handoff](https://github.com/FlareZ123/liber-primus/issues/41); [authoritative research frontier](../results/README.md). **No new LP2 plaintext, unknown-page key, or final destination established.**
