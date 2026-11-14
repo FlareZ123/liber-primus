@@ -11,6 +11,7 @@ on:
           - signed-dh-mobius
           - frobenius
           - frobenius-secret
+          - semilinear-p36
         default: legacy
 
 permissions:
@@ -67,3 +68,15 @@ jobs:
           node-version: '22'
       - name: Source Q238 Frobenius stationary-key all-secret exclusion
         run: node sims/lp2_q238_frobenius_stationary_secret_sft.cjs
+
+  semilinear-p36:
+    if: inputs.suite == 'semilinear-p36'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-p36 keyed GF29 Frobenius semilinear field inverse
+        run: node sims/lp2_p36_q238_semilinear_original_sft.cjs
