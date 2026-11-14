@@ -31,6 +31,12 @@ To avoid duplicating the new p50/Josephus work, tested only a few distinct low-c
 
 These are exploratory exclusions, not established results; do not infer a p50 decoder from the duplicate count, divisibility by29, or generic MOBIUS association. Agent21's #836 decision remains that the original source does not specify a Josephus/table serialization or decoder.
 
+## Original-image discovery: LP1 p05 reversed-prefix tail
+
+Inspected the user-supplied 75-JPEG archive directly. Exactly one image has post-EOI bytes: LP1 05.jpg (673,066 bytes; final EOI offset600,364; tail starts600,366; tail length72,700). The tail reversed is **byte-for-byte identical** to file bytes[0:72,700], not a second independent payload. The reversed tail begins with the exact JFIF header and decodes as a truncated 2400×3600 duplicate; its first 900 pixel rows are identical to the original page05. The other 74 JPEGs have no post-EOI data. Whole-file SHA256 2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7; tail SHA256 3e95593e226980e3bf743ce9d12f38cf41b96dc7797587f9ff7470788719803f.
+
+This is a direct original-byte identity, but intentionality is unresolved (possible mirror/echo marker vs upstream artifact). It is not recovered plaintext or a separate hidden page. Reproduction: `sims/lp1_jpeg_mirror_tail_scan.py`; report: `im-results/lp1-page05-reversed-prefix-anomaly.md`. Broadcasted to the research population and shared with the historical-handoff investigator. Do not infer a cipher from the number 72,700 without an independent selector.
+
 ## Active original-LP2 frontier
 
 The repo remains without any authenticated unknown LP2 plaintext, new true key, complete cryptographic mechanism, or final destination. \`results/README.md\` is authoritative; \`workplace/integrated-original-inversion-challenge.md\` tracks the integrated frontier. The 55 rune-bearing unsolved pp0–55 contain 12,956 GP29 ciphertext symbols, with only 86/12,901 same-page identical adjacent runes. Direct rune-native GP-English inverse proposals are normally near uniform; creative claimed plaintext must show exact forward evidence and a source-selected key/operation. No need to retread historical provenance or high-volume existing key sweeps.
