@@ -1,0 +1,16 @@
+name: LP2 lossless 29-to-28 rank escape byte transport original test
+on:
+  workflow_dispatch:
+jobs:
+  source-original-colex-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source chapters and independent native GP positive controls
+        run: |
+          node --check sims/lp2_enumerative_rank28_escape_transport_sft.cjs
+          node sims/lp2_enumerative_rank28_escape_transport_sft.cjs
