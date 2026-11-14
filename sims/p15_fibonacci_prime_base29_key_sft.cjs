@@ -72,8 +72,10 @@ function run() {
   assert.equal(base29String(1033), '16I');
   assert.equal(base29String(3301), '3QO');
 
-  const primeValues = GRID_OFFSETS_IN_SPIRAL_ORDER.map(offset =>
-    offset <= ANCHOR ? ANCHOR - offset : ANCHOR + offset);
+  // The source printed absolute differences cross 3301 at ordinal 611:
+  // 1206 is 4507-3301, not 3301-1206 (=2095, composite).
+  const primeValues = GRID_OFFSETS_IN_SPIRAL_ORDER.map((offset, i) =>
+    i < 14 ? ANCHOR - offset : ANCHOR + offset);
   const allPrimes = primesThrough(Math.max(...primeValues));
   const ordinal = new Map(allPrimes.map((prime, i) => [prime, i + 1]));
   assert.deepEqual(primeValues, [
