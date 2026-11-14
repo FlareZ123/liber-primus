@@ -1,0 +1,17 @@
+name: LP2 terminal p55 candidate 43-byte ARC4 original-source gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-packet43-rc4:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct p55 quintet packet and test 72 source-key ARC4 inverses
+        run: node sims/lp2_terminal_quintet43_rc4_original_sft.cjs
