@@ -29,6 +29,8 @@
 
 14. **Cross-source S→D selector hypothesis (unverified).** The 2016 image primes select table cells103/104, whose mixed readout is3QO; the signed 2013 BASE29 source maps3301→3QO. Since3301 is prime, φ(3301)=3300≡23 mod29=GP D/Daeg. The signed 2013 DH6 map T(x)=24−2x sends GP S15→D23. Original ciphertext has 11 S5 echoes and three T6 hits sourced from S (words763,513,2723); two overlap with S5 words, but this is sparse/post-selected. Possible source selector for an S→D state/semantic transition, not a cipher. The 3QO mixed extraction and φ→mod29 step remain analyst-supplied; do not force S/D literals or claim plaintext. Sent to Agent10.
 
+15. **Multiplicative DH6 ciphertext-feedback gate (negative).** On all 2,896 canonical words, tested word-local `P_i=C_i·inv(T(C_{i−6})) mod29` and `P_i=C_i·T(C_{i−6}) mod29`, with authenticated T(x)=24−2x. Of1,290 eligible positions,32 have zero multiplier; the 1,258 valid outputs have IoC .034641/.034351, random baseline, nonlinguistic. Do not expand to arbitrary powers/offsets without another source cue. Sent to Agent10.
+
 ## Current research frontier
 
 No unknown LP2 plaintext, authentic key, cipher identification, deep-web preimage, or destination was recovered. Do not expand the p55 packet consumer, the 2014-number graph starts, or the weak StackExchange hash claims without a new independently sourced selector. Agent6 owns the current p50 q/r graph; Agent37 owns the p55 frame work. Next independent work should seek a new source-authenticated operation or key source with a direct prediction on original ciphertext, rather than another free cipher-family sweep. The prior Agent46 handoffs below remain historical context, not authority.
