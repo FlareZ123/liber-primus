@@ -9,6 +9,7 @@ over the entire Markov type class; outcomes are descriptive Monte Carlo.
 import collections
 import hashlib
 import json
+import math
 import random
 import re
 from pathlib import Path
@@ -19,6 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SEED = 0x9C129A93
 REPS = 10000
 PLANT_REPS = 1000
+FREQ_REPS = 3000
 LENGTHS = (4, 5, 6)
 FOLDS = str.maketrans({"K": "C", "Q": "C", "V": "U", "Z": "S"})
 DIGRAPHS = {"TH", "NG", "EO", "OE", "AE", "IA", "EA"}
@@ -52,6 +54,93 @@ def lexicon(tiles):
     assert HOME in prefixes[4]
     return prefixes, len(source), hashlib.sha256(
         "\n".join(source).encode("utf-8")).hexdigest()
+
+
+
+def textblob_longword_prefix_weights(tiles):
+    """Independent English frequency witness: >=7-GP long source words only."""
+    lookup = {token: i for i, token in enumerate(tiles)}
+    prefix_frequency = collections.Counter()
+    forms = 0
+    original = (ROOT / "resources/control/english_wordfreq_textblob.txt"
+                ).read_text(encoding="utf-8")
+    for line in original.splitlines():
+        match = re.fullmatch(r"([a-z]+) (\\d+)", line)
+        if match is None:
+            continue
+        source_word = match.group(1).upper().translate(FOLDS)
+        symbols = []
+        i = 0
+        while i < len(source_word):
+            token = source_word[i:i + 2]
+            if token in DIGRAPHS:
+                symbols.append(lookup[token])
+                i += 2
+            else:
+                symbols.append(lookup[source_word[i]])
+                i += 1
+        if len(symbols) >= 7:
+            prefix_frequency[tuple(symbols[:4])] += int(match.group(2))
+            forms += 1
+    assert forms == 18420
+    return ({prefix: math.log2(1 + count)
+             for prefix, count in prefix_frequency.items()}, forms)
+
+
+def longword_frequency_census(pages, records, weights):
+    scores = [0.0] * 4
+    hits = [0] * 4
+    total = 0
+    for slots, _ in records:
+        if len(slots) < 7:
+            continue
+        total += 1
+        for pos in range(4):
+            prefix = tuple(pages[page][offset]
+                           for page, offset in slots[pos:pos + 4])
+            weight = weights.get(prefix, 0.0)
+            scores[pos] += weight
+            hits[pos] += weight > 0
+    assert total == 559
+    return {
+        "start": scores[0],
+        "inner1": scores[1],
+        "inner2": scores[2],
+        "inner3": scores[3],
+        "start_minus_interiors": 3 * scores[0] - sum(scores[1:]),
+        "hits": hits,
+    }
+
+
+def simulate_frequency(original_pages, records, weights):
+    """Separate full-bigram Markov null, avoiding post-hoc dictionary tuning."""
+    observed = longword_frequency_census(original_pages, records, weights)
+    names = ("start", "inner1", "inner2", "inner3",
+             "start_minus_interiors")
+    rng = random.Random(SEED)
+    totals = {key: [0.0, 0.0, 0] for key in names}
+    for _ in range(FREQ_REPS):
+        shuffled = [euler_surrogate(p, rng) for p in original_pages]
+        sample = longword_frequency_census(shuffled, records, weights)
+        for name in names:
+            value = sample[name]
+            total = totals[name]
+            total[0] += value
+            total[1] += value * value
+            total[2] += value >= observed[name]
+    result = {}
+    for name in names:
+        s, s2, ge = totals[name]
+        mean = s / FREQ_REPS
+        result[name] = {
+            "original_score": observed[name],
+            "null_mean": mean,
+            "null_sd": max(0.0, s2 / FREQ_REPS - mean * mean) ** 0.5,
+            "surrogates_ge_original": ge,
+            "mc_upper_tail": (ge + 1) / (FREQ_REPS + 1),
+        }
+    return {"original_hits": observed["hits"],
+            "long_words": 559, "reps": FREQ_REPS, "scores": result}
 
 
 def parse_source():
@@ -224,6 +313,14 @@ def main():
     emit("original", counts=original, hits=hits)
     surrogate = simulate(pages, records, prefixes, REPS, SEED)
     emit("original_euler_surrogates", summary=surrogate)
+
+    # This distinguishes common-language clues from matches to the many
+    # obscure CMUDICT variants and proper names. It tests a new corpus.
+    weighted, long_forms = textblob_longword_prefix_weights(corpus["translit"])
+    frequency_outcome = simulate_frequency(pages, records, weighted)
+    emit("independent_long_english_frequency", corpus="TextBlob Norvig frequency list",
+         source_long_gp_words=long_forms, outcome=frequency_outcome)
+
 
     # Frozen positive: twelve post-stop 4-rune HOME implants, same punctuation.
     planted = [list(seq) for seq in pages]
