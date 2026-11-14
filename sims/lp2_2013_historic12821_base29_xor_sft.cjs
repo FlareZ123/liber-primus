@@ -47,6 +47,38 @@ function recoverBase29(raw, runeCount) {
   return result;
 }
 
+/** @param {number[]} indices */
+function packed5Bytes(indices) {
+  const data = Buffer.alloc(Math.ceil(indices.length * 5 / 8));
+  for (let i = 0; i < indices.length; i++) {
+    const value = indices[i];
+    assert.ok(Number.isInteger(value) && value >= 0 && value < 29);
+    for (let b = 0; b < 5; b++) {
+      const at = 5 * i + b;
+      data[at >> 3] |= ((value >> (4 - b)) & 1) << (7 - (at & 7));
+    }
+  }
+  return data;
+}
+
+/** @param {Buffer} data @param {number} count */
+function readPacked5(data, count) {
+  assert.equal(data.length, Math.ceil(count * 5 / 8));
+  const indices = [];
+  for (let i = 0; i < count; i++) {
+    let value = 0;
+    for (let b = 0; b < 5; b++) {
+      const at = 5 * i + b;
+      value = (value << 1) | ((data[at >> 3] >> (7 - (at & 7))) & 1);
+    }
+    assert.ok(value < 29);
+    indices.push(value);
+  }
+  assert.deepEqual(packed5Bytes(indices), data,
+    'Five-bit MSB packet and its terminal zero pad must round-trip exactly');
+  return indices;
+}
+
 /** @param {Buffer} data @param {Buffer} key */
 function xor(data, key) {
   assert.equal(data.length, key.length);
@@ -99,15 +131,18 @@ function run() {
   ];
   const results = [];
 
-  for (const transport of ['rune-index-bytes', 'whole-section-base29-integer']) {
+  for (const transport of ['rune-index-bytes', 'whole-section-base29-integer', 'native-fivebit-msb-packed']) {
     let clock = HISTORIC_OFFSET;
     for (const section of groups) {
       assert.equal(section.runes.length, section.expected);
-      const encoded = transport === 'rune-index-bytes'
-        ? Buffer.from(section.runes) : base29Bytes(section.runes);
+      const encoded = transport === 'rune-index-bytes' ? Buffer.from(section.runes)
+        : transport === 'native-fivebit-msb-packed' ? packed5Bytes(section.runes)
+        : base29Bytes(section.runes);
       if (transport === 'whole-section-base29-integer') {
         assert.deepEqual(recoverBase29(encoded, section.expected), section.runes,
           'Whole-section BASE29 encoding must be exact and reversible');
+      } else if (transport === 'native-fivebit-msb-packed') {
+        assert.deepEqual(readPacked5(encoded, section.expected), section.runes);
       } else {
         assert.deepEqual([...encoded], section.runes);
       }
@@ -165,7 +200,7 @@ function run() {
     status: 'experimental original-input test, no automatic plaintext claim',
     historicalOffset: HISTORIC_OFFSET,
     sourceSha256: ISO_SHA, originalOnionKnownControl: 'exact',
-    finiteTransports: 2, finiteSections: 2,
+    finiteTransports: 3, finiteSections: 2,
     results
   }, null, 2));
 }
