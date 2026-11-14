@@ -342,6 +342,23 @@ def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30, comple
     return save_dialog_seen
 
 
+def openpuff_crc32(data: bytes) -> str:
+    """OpenPuff/libObfuscate's MSB-first, no-final-XOR variant (not zlib CRC32).
+
+    Verified against the original 745-byte Cicada magicsquares.txt:
+    OpenPuff 6A8C41E3; ordinary reflected CRC32 5E547914.
+    Reference: tweqx/LibrePuff librepuff/src/crc32.rs.
+    """
+    checksum = 0xFFFFFFFF
+    for byte in data:
+        for bit in range(7, -1, -1):
+            if ((checksum >> 31) ^ ((byte >> bit) & 1)) != 0:
+                checksum = (((checksum ^ 0x02608EDB) << 1) | 1) & 0xFFFFFFFF
+            else:
+                checksum = (checksum << 1) & 0xFFFFFFFF
+    return f"{checksum:08X}"
+
+
 def file_facts(path):
     if not path.is_file():
         return None
@@ -352,6 +369,7 @@ def file_facts(path):
         "sha256": hashlib.sha256(data).hexdigest(),
         "md5": hashlib.md5(data).hexdigest(),
         "crc32": f"{zlib.crc32(data) & 0xffffffff:08X}",
+        "openpuff_crc32": openpuff_crc32(data),
     }
 
 
@@ -362,7 +380,7 @@ def classify_outputs(files, expected_crc32=None, expected_size=None):
     matches = [
         item for item in outputs
         if (expected_crc32 is None
-            or item["crc32"].upper() == expected_crc32.upper())
+            or item["openpuff_crc32"].upper() == expected_crc32.upper())
         and (expected_size is None or item["size"] == expected_size)
     ] if expectation_supplied else []
     return {
