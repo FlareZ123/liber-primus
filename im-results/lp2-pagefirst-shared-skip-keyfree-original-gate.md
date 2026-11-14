@@ -30,6 +30,23 @@ To calibrate the possible native plaintext front page words, use the already ind
 
 The source-observed 52 is rare: **42/562,060 ≈ 0.0000747** of all selected source windows match or fall below the source. These windows heavily overlap and the register includes source and genre assumptions, so this is an **exact finite reference-class fraction**, not a frequentist independently replicated significance or universal mathematical impossibility. Non-English text with unusually broad initial rune coverage could evade it. Most native-source same-page-position comparisons have considerably more matches.
 
+## The original table's first 56 cells as page-specific initial nonces
+
+The shared-first-symbol invariant does **not** automatically exclude a page-dependent first-key offset. A specific visible source candidate for such an offset is the **256-byte p49–51 numeric table**. Freeze the simple page-address rule before ciphertext measurement: for physical rune-bearing page `p` in 0–55, use the original row-major table byte `B[p]`; the runeless physical p50 retains its address, and the nonce is `B[p] mod29`. A cipher whose initial output is `C[p,0] = P[p,0] + B[p] + K₀ (mod29)`, with one unknown **common** `K₀`, becomes a shared-secret additive first-key model when `B[p]` is subtracted from each original initial ciphertext symbol.
+
+This is source-grounded as an *operand* and page-index hypothesis, but the manuscript does not say to address its table by physical page, use byte modulo29, or begin there. It is a bounded test rather than an authenticated author instruction. The original corrected 55 page initials have **51/1,485 equal pairs**, compared with **52/1,485** uncorrected. The same fixed source-native English reference windows are eligible, because every ciphertext correction would leave all equality structure of the unknown native plaintext unchanged once the nonce was removed:
+
+| Source-native reference | Exact-length windows | Windows ≤ 51 |
+|---|---:|---:|
+| Shakespeare | 204,151 | **10** |
+| Gibran | 49,537 | **3** |
+| Emerson | 308,372 | **14** |
+| **Total finite reference** | **562,060** | **27** |
+
+Thus the exact page-indexed, row-major `B[p] mod29` initial nonce **fails to rescue** a shared first-position additive key under these English source controls. The native-reference finite fraction is **27/562,060 ≈ 0.0000480**. It is source-conditional and based on overlapping windows, not a universal probability that this source clue is accidental. This result covers neither arbitrary independent nonces nor other cipher architectures; the table's intended role remains unknown.
+
+The extended [original-input SFT](../sims/lp2_pagezero_shared_skip_first_rune_sft.cjs) also applies these genuine table-derived nonces to every **synthetic** first ciphertext symbol after the seeded shared-key/variable-skip encoder. It then subtracts the exact corresponding physical-page nonce, recovering all **91** plant first-position equality pairs with a perfect symbol-by-symbol source-state check. This table-nonce extension passed the independent [Windows Node22 workflow run 43655607618](https://github.com/FlareZ123/liber-primus/actions/runs/43655607618).
+
 ## Positive code and skip-architecture control
 
 The [self-contained SFT](../sims/lp2_pagezero_shared_skip_first_rune_sft.cjs) uses the original GP29 corpus, existing independently calibrated native-English GP encoder and the literal original 32×8 table bytes. It asserts all source control sizes, enumerates **every** matching control window, and verifies that a completely secret first-position GP29 affine permutation preserves initial-pair count.
@@ -40,7 +57,7 @@ The Windows Node22 [manual run 43653342096](https://github.com/FlareZ123/liber-p
 
 ## Cryptanalytic decision
 
-The source strongly disfavors a **single shared page-start key or secret first-symbol bijection**, even when later stream positions are rekeyed by any number of attempted-collision skips. This closes one specific loophole in earlier page-offset shared-alphabet and original base60-grid keyskip work; it does not diagnose the true low-doublet mechanism, recover plaintext, or exclude a table whose page-start address depends on the printed page number. The next substantive experiment would require an **independent source selector for per-page initial state**, an authenticated continuation byte source, or a distinctly structured reversible encoder that explains why page starts are as flat as the interior without independent arbitrary keys.
+The source strongly disfavors a **single shared page-start key or secret first-symbol bijection**, even when later stream positions are rekeyed by any number of attempted-collision skips. This closes one specific loophole in earlier page-offset shared-alphabet and original base60-grid keyskip work and additionally rejects **the fixed row-major first-56 table-byte physical-page nonce** as a rescue of a shared initial additive key. It does not diagnose the true low-doublet mechanism, recover plaintext, or exclude other independently source-selected page-state schedules. The next substantive experiment would require an **independent source selector for per-page initial state**, an authenticated continuation byte source, or a distinctly structured reversible encoder that explains why page starts are as flat as the interior without independent arbitrary keys.
 
 ### Related research
 
