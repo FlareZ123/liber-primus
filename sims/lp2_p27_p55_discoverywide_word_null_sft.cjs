@@ -218,6 +218,56 @@ near(Eterminal, 2.0936511388519296e-8);
 near(Eallcuts, 0.00017287530568108379);
 near(EsourceAny, 0.0000049420519191150765);
 
+
+// Broader sensitivity model: keep the same equal-length whole-word shuffle,
+// but scan every rune cut (including cuts inside words) for all 44 page-length
+// geometries. This is an MC estimate, whereas the word-site 2/91 is exact.
+const pageByNumber = new Map(pages.map((p) => [p.page, p]));
+const relevantNumbers = new Set(geometry.flatMap((g) => [g.a, g.b]));
+const affectedPages = pages.filter((p) => relevantNumbers.has(p.page));
+const lengthPositions = new Map();
+for (const page of affectedPages) {
+  const positions = new Map();
+  for (let i = 0; i < page.words.length; i++) {
+    const len = page.words[i].len;
+    if (!positions.has(len)) positions.set(len, []);
+    positions.get(len).push(i);
+  }
+  lengthPositions.set(page.page, positions);
+}
+function scrambledSource(page) {
+  const tokens = page.words.map((w) => w.token);
+  for (const positions of lengthPositions.get(page.page).values()) {
+    const mixed = positions.map((i) => tokens[i]);
+    shuffle(mixed);
+    for (let i = 0; i < positions.length; i++) tokens[positions[i]] = mixed[i];
+  }
+  return tokens.join('');
+}
+let allCutHits = 0;
+let terminalCutHits = 0;
+const allCutTrials = 5000;
+for (let trial = 0; trial < allCutTrials; trial++) {
+  const scrambled = new Map(affectedPages.map((p) => [p.page, scrambledSource(p)]));
+  let any = false, terminalFound = false;
+  for (const g of geometry) {
+    const source = scrambled.get(g.a), target = scrambled.get(g.b);
+    const substrings = new Set();
+    for (let i = 0; i <= source.length - g.m; i++) substrings.add(source.slice(i, i + g.m));
+    for (let j = 0; j <= target.length - g.m; j++) {
+      if (substrings.has(target.slice(j, j + g.m))) {
+        any = true;
+        if (j + g.m === target.length) terminalFound = true;
+      }
+    }
+    if (any && terminalFound) break;
+  }
+  if (any) allCutHits++;
+  if (terminalFound) terminalCutHits++;
+}
+assert.ok(allCutHits > 40 && allCutHits < 300);
+assert.ok(terminalCutHits <= allCutHits);
+
 console.log(JSON.stringify({
   original: '55 pages / 12956 runes; only p27 offset28 to p55 offset70: DJU BEI',
   geometryPairs: geometry.length,
@@ -237,6 +287,10 @@ console.log(JSON.stringify({
     mcHits: hits,
     mcProbability: empirical,
     positivePlantedStart: 95,
-    negativeReversedTerminalMatchCount: 0
+    negativeReversedTerminalMatchCount: 0,
+    broaderAllCutMcTrials: allCutTrials,
+    broaderAllCutMcHits: allCutHits,
+    broaderTerminalCutMcHits: terminalCutHits,
+    broaderAllCutMcRate: allCutHits / allCutTrials
   }
 }, null, 2));
