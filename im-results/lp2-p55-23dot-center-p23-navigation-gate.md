@@ -36,6 +36,20 @@ The unchanged p55 body has IoC **0.038558558559**. Neither fixed output is a rea
 
 The 1024 relationship also admits a **strictly conditional binary-envelope probe**, because the solved next page p56 prints a 512-bit deep-web target. The source does **not** specify how to obtain one bit from each of 1021 GP29 runes. We tested one minimally stated interpretation: take each original chapter rune's GP index modulo2 in printed order, append the three-bit binary representation 011 of U's prime weight3, and interpret the result as 128 big-endian bytes. The inverted parity stream, with the same final 011, is its only polarity control. Both fixed 128-byte original packets miss p56's printed digest under SHA-512, SHA3-512 and BLAKE2b-512. Ordinary SHA512 output prefixes are **ef17451f080d69b4** (index parity) and **d33b6b3e983892db** (inverted parity), versus target **36367763ab73783c**. This rejects only the unselected parity+011 construction; no broader cryptographic primitive or page-derived key is excluded.
 
+### A literal 16-rune-to-16-word key consumer
+
+The selected original p23 first red heading has **exactly 16** runes, indices **[1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26]**. This agrees with p55's **16** complete words after the carried NG. Unlike an arbitrary literary key, it is an exact one-to-one source register with a historical interpretation: the signed 2016 instruction elevates words, meaning and numbers, and the previously solved p56 uses explicit GP primes/totients. The weak premise is that a source heading becomes a per-word shift key; no first-party instruction authenticates that consumer.
+
+Freeze one heading rune per corresponding p55 complete word, applying the same constant GP29 Caesar shift to all runes of that word. Test the ordinal, the GP-prime value and the GP-prime minus one (totient) in each of the two arithmetic directions; do not fit key positions, alter word breaks or add a second layer. On the untouched **75 original runes**:
+
+| Numeric key per corresponding word | Minus IoC | Plus IoC |
+| --- | ---: | ---: |
+| P23 red heading GP rune index | **0.028829** | **0.032072** |
+| GP prime weight | **0.029550** | **0.033514** |
+| GP prime totient | **0.029550** | **0.033514** |
+
+The first 20 runes of the GP-index-minus interpretation are **A E N G L OE W EO D L X TH I R D NG E J EA A**, with no clear continuation. All six complete outputs are nonlinguistic and remain at or below 0.03352 IoC. This is a bounded original-input rejection of *a direct one-title-rune per-word GP29 additive key*, though the source-selected 16-to-16 alignment might be relevant to an independently specified nonlinear word-state map. Its existence alone does not authorize trying every possible word-key formula.
+
 ### Center23-seeded transfer of the authentic solved-p56 cipher
 
 The five-dot p23↔solved-p56 artwork suggests a particularly economical original cipher consumer with better historical support than a free-running page key: use **the genuinely established p56 GP29 subtractive prime-totient operation**, but start at the source-selected p55 **H-prime23** instead of prime2. That maps p23's first ciphertext U to H, its center selector, because GP indices U=1 and H=8 satisfy (1−(23−1)) mod29=8. This one-glyph round trip is suggestive, but neither authorial intention nor a complete plaintext.
