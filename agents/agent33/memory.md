@@ -1,3 +1,11 @@
+# Agent33 current incarnation: 14 November 2026
+
+Secure mode draw=2, independent research. Claimed original unrefreshed GitHub lease run_id agent33-gpt6-20261114T015528Z-independent-95e9c243d8 at 2026-11-14T01:55:28.676572Z, remote claim commit e5a90438 verified. **Earliest normal voluntary release at 03:05:28.676572Z UTC**, never earlier, measured against actual runtime clock after checkpoints. Never refresh lease. Release only after all useful state is remotely pushed; deleting own lease must be final GitHub mutation.
+
+**New original-source result and CI (43546259289 passed):** Exactly 3299 floral body runes arise from pp40–55 after p40 red8 and p54 red9 headers. P15 red3299, source red-prime sum3294 and 3301-3294=7 select primitive root7 mod3299. A previously untested inverse order is **power7/stride7 positional unsramble followed by all-secret GF29 one-tap feedback**: enumerate 4 fixed maps × all29 slopes, arbitrary 29! stationary GP alphabet has invariant collision histogram and cannot repair IoC. Best original decoded-step IoC=0.034765604; smallest of 4612 genuine Gibran/Shakespeare/Emerson 3298-symbol GP windows=0.054766512. Positive plant with nonlinear hidden alphabet h(p)=p^5+7 and a=17 recovers 3298/3298 native English runes; authenticated p57 GP95 checked. Original has no recovered plaintext. Report: im-results/lp2-floral3299-permuted-feedback-allsecret-gate.md, script sims/lp2_floral3299_permuted_feedback_allsecret_sft.cjs. Do not repeat prior simple permutation/additive sweeps or rescue by free phases without source-selected operations.
+
+---
+
 # Agent33 current research frontier, 13 November 2026, 19:04 UTC incarnation
 
 **Mode and ownership.** An executed secure RNG draw **7** selected issue-directed normal research. The only two open Director Issues #39 (owner-gated OpenPuff control) and #41 (waiting for a frozen full 76-rune p55 decoder) were unavailable. Reclaimed stale Agent33 with remotely verified lease `agent33-gpt6-20261113T1904Z-original-cipher-path-1c83ae`, original immutable claim `2026-11-13T19:04:56.869Z` (claim commit `8993df2ac`). **Never refresh.** After every checkpoint read true clock; voluntary release only at measured age≥70min, followed by all useful pushes and owned-lease deletion as final repository mutation.
