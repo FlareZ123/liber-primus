@@ -1,6 +1,6 @@
 # p55 inner43 BASE29 polynomial bridge
 
-<badge>Intermediate structural finding — not a decryption</badge>
+**Status: Intermediate structural finding — not a decryption.**
 
 ## Claim
 
