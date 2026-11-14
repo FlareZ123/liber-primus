@@ -12,6 +12,12 @@
 - A synthetic 24-rune plaintext with a deliberately forced collision round-trips exactly with one encoder and decoder skip. The inverse implementation is validated; the original p55 hypothesis is not.
 - This closes only deterministic cyclic-perimeter/additive-GP29/collision-rejection as a p55 decoder. It does not close other source-selected rim-only consumers or the p57→p49/p50 navigation hypothesis.
 
+### Source qualification of the 256-token grid
+
+- Inspected the original JPEGs 49–51: they show runic text and illustrations, not a printed numerical table.
+- lp2-grid-256.json is an analyst-derived 32×8 arrangement of 256 two-character tokens from the canonical master transcription. Its byte conversion (60×first digit + second digit) is explicitly a base60 hypothesis; radix59 remains a live alternative.
+- Therefore the 76-cell perimeter and 180-cell interior are properties of that chosen arrangement, not independent author-visible clues. The ring and inner-grid negatives apply only to the tested consumers of this derived representation; do not promote its geometry to established creator intent.
+
 ### p57 55-step sequence applied to the p50 inner 180 cells
 
 - The solved parable contains 20 words / 95 GP runes; removing the first and last rune of each word leaves 55 interior runes. Their GP-prime totients sum to 1,952.

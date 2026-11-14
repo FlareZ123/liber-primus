@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-// Apply the solved-parable 55-step Josephus sequence to the p50 table's
-// 180-cell interior. Test the resulting per-page prime-totient starts and
+// Apply the solved-parable 55-step Josephus sequence to the derived 32x8 arrangement's
+// 180-cell interior (the base60 byte interpretation and 32x8 layout are hypotheses). Test the resulting per-page prime-totient starts and
 // direct additive-key readings. Run from repository root.
 
 const fs = require('node:fs');
