@@ -230,6 +230,23 @@ const strictPointerNegative = allTransparentFStates(
 assert.equal(strictPointerPositive.firstFailure, 28);
 assert.equal(strictPointerNegative.firstFailure, 2);
 
+// The two printed quotation delimiters are also independently visible.
+// Exact resets at each, with the *same* original 91 prime, are the only
+// additional source-defined boundaries; neither solves the second quotation.
+const firstQuotation = ciphertext.slice(10211,10279);
+const secondQuotation = ciphertext.slice(10279,10439);
+assert.deepEqual([firstQuotation.length,secondQuotation.length],[68,160]);
+const q1Key = firstQuotation.map((_,i)=>(nthPrime(91+i)-1)%29);
+const q2Key = secondQuotation.map((_,i)=>(nthPrime(91+i)-1)%29);
+const firstQuotePositive = allTransparentFStates(firstQuotation,q1Key,1);
+const firstQuoteNegative = allTransparentFStates(firstQuotation,q1Key,-1);
+const secondQuotePositive = allTransparentFStates(secondQuotation,q2Key,1);
+const secondQuoteNegative = allTransparentFStates(secondQuotation,q2Key,-1);
+assert.deepEqual([firstQuotePositive.firstFailure,
+  firstQuoteNegative.firstFailure,secondQuotePositive.firstFailure,
+  secondQuoteNegative.firstFailure],[-1,-1,46,2]);
+
+
 
 // The p15 infinity mark also motivates a finite circular continuation.
 // This is a second, unproved address grammar: reduce every later numeric
@@ -296,6 +313,8 @@ console.log(JSON.stringify({
   p42P43AllLiteralFSchedules:{authenticP56:knownP56Reach,
     startAtPNWPositive:strictPointerPositive,
     startAtPNWNegative:strictPointerNegative,
+    firstQuotedPositive:firstQuotePositive,firstQuotedNegative:firstQuoteNegative,
+    secondQuotedPositive:secondQuotePositive,secondQuotedNegative:secondQuoteNegative,
     p42Positive:strict91Positive,p42Negative:strict91Negative},
   p42P43PrimeOrdinal91OriginalInverse:{sourceIoC:ioc(quotation),
     minusIoC:ioc(dec91),plusIoC:ioc(add91),
