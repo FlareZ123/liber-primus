@@ -39,9 +39,29 @@ Since N is the product of two *distinct primes*, x²≡0 (mod N) implies x≡0 (
 
 The zero-key model is degenerate: direct decoding leaves the exact source unchanged (whole-book GP IoC **0.0344783978645**). Differential decoding yields the original GP29 first-difference stream (IoC **0.0353246147771**). That latter interpretation is already separately disfavoured as an English-register cumulative substitution in the more general [zero-symbol original gate](lp2-cumulative-difference-zero-symbol-gate.md). Neither zero-key output supplies coherent unknown LP2 prose.
 
+## Fully independent unknown seed at every original visual chapter
+
+The source's nine red-heading/large-mark chapters are a plausible alternative to a continuous book clock. Grant **all 3,409,933 hidden initial states anew** at every one of those nine original boundaries, not a guessed seed or fitted phase. The chapter-local difference mode keeps its first original rune as IV. Original rune boundaries are `0,729,1874,3603,5506,6527,7960,9640,12648,12956`.
+
+| Original chapter | Original runes | Difference + states at end | Difference − | Direct + | Direct − |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| pp0–2 | 729 | **1 (zero)** | **1 (zero)** | 17 | 17 |
+| pp3–7 | 1,145 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp8–14 | 1,729 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp15–22 | 1,903 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp23–26 | 1,021 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp27–32 | 1,433 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp33–39 | 1,680 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp40–53 | 3,008 | **1 (zero)** | **1 (zero)** | **1 (zero)** | **1 (zero)** |
+| pp54–55 | 308 | 26 | 18 | 93 | 91 |
+
+The exact singleton state is verified as **zero**, not merely one numerically unidentified key. The alternative with fresh, arbitrary independent secret seeds therefore still cannot supply a nonzero GP29 squaring pad on **eight of nine** actual visual chapters for the two difference modes, or **seven of nine** for the direct modes. The residual 17/26/18/93/91 state sets in short chapters are genuine feasible *intermediate states*, not authenticated originating seeds or plaintext. Their existence does not rescue the failed long chapters.
+
+This is an additional original-source exclusion in the same four strict-F architectures. It costs no English assumptions and no starting-key search; it does not exclude a changing modulus, a different state-update law or some entirely different source-selected per-chapter cipher.
+
 ## Independent positive and scope
 
-The [single runnable CommonJS test](../sims/lp2_1033_3301_allseed_square_sft.cjs) asserts original source dimensions, exact original elimination coordinates, squarefree integer arithmetic, all final singleton states, and the two zero-key IoCs. It then encrypts **190 genuine independently clear GP29 p57 runes**, namely twice the complete p57 plaintext, under a previously hidden **nonzero initial seed 3299**, for **each** source register and both signs. The same all-seed propagation retains the exact planted final state **1032729** in every case (direct plaintext190 symbols, differential with one explicit IV191 cipher runes). This confirms that the four branch machines can recognize truly generated nonzero-state ciphertext when it exists.
+The [single runnable CommonJS test](../sims/lp2_1033_3301_allseed_square_sft.cjs) asserts original source dimensions, exact original elimination coordinates, squarefree integer arithmetic, all final singleton states, and the two zero-key IoCs. It additionally checks the complete **36 source-chapter model invocations** with the frozen nine original boundaries and exact survivor counts. It then encrypts **190 genuine independently clear GP29 p57 runes**, namely twice the complete p57 plaintext, under a previously hidden **nonzero initial seed 3299**, for **each** source register and both signs. The same all-seed propagation retains the exact planted final state **1032729** in every case (direct plaintext190 symbols, differential with one explicit IV191 cipher runes). This confirms that the four branch machines can recognize truly generated nonzero-state ciphertext when it exists.
 
 **Decision:** retire direct and cumulative-difference GP29 additive modular-squaring keystreams from **the exact original 1033×3301 modulus** under a continuous book clock, mandatory transparent-F bypass and any unknown initial state. Alternative state projections, different power recurrences, per-page resets, binary encodings, extra layers and the actual intended role of the two printed numbers are outside this theorem. Since the source never authorizes modular squaring, a new branch needs a *different independently visible instruction* with a causal path to plaintext; do not extend this result into untethered generator searches.
 
