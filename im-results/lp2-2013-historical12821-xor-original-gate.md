@@ -32,6 +32,17 @@ Expected printable-ASCII proportion for uniformly random byte output is 95/256 =
 
 A second source-byte transfer, **GP29 additive instead of native 2013 XOR**, was independently tested with all offsets **0–12,899**, including the historical 12,821 start. For each source offset and sign, a previously defined original-cipher decoder allowed up to eight individually admissible repeat-skipped key draws and ranked the **96 original first-page runes** before decoding its 249-rune body. On the actual original inputs, the best-of-12,900 discovery scores were **−339.290 (minus sign, offset 12,024)** and **−332.790 (plus sign, offset 7,462)**, with the historical 12,821 offset absent from both top-twelve lists. Forty independently planted 96-rune native GP positives all outscored the best original candidate (worst plant −313.598, best original −332.790); 32 of 40 plants recovered every rune, so the decoder has meaningful but imperfect power. The best original body finalist was a different freely selected offset **9,610**, with gibberish `BTHCIOMRYSNYAPDEEAPNGUUULYNRGOEORIABRTHJAEEOIAJNBYDHDUNEUAUFTBSNG...`, and no independently coherent output. The [Windows original source run 43644197553](https://github.com/FlareZ123/liber-primus/actions/runs/43644197553) and [native artifact inspection run 43644829661](https://github.com/FlareZ123/liber-primus/actions/runs/43644829661) preserve the complete finite numerical output. This additive screen is a distinct, source-offset-inclusive **negative**, and its searched offset maxima cannot be promoted into a key without an independent clue selecting the offset.
 
+## Independent 256-byte table-consumer check
+
+A separate, strongly typed operand exists: the original printed pp49–51 numerical table has exactly **256 byte values**, with a dated May 2014 solver-copied 256-byte version preserved independently. The 2013 challenge's original `DATA/560.13` method used raw **bytewise XOR**, so reusing the same **source-selected offset 12,821** on both 256-byte sources is an affordable, distinct test from packing GP29 rune sequences. This was added to the same SFT before inspecting output, without fitting an offset or transforming table bytes. Both original 256-byte vectors are checked for exact length; the known 2013 onion-address and planted 256-byte ASCII controls remain exact.
+
+| Historical 256-byte ciphertext | Decoded printable ASCII | Latin letters | Spaces | Readable letter/space runs of 8+ | First 16 decoded hex bytes |
+|---|---:|---:|---:|---:|---|
+| Original printed pp49–51 base60 table | 94/256 (36.72%) | 50 | 1 | 0 | `8445a0c946ba5d8626809cd58b33ad47` |
+| May 2014 original solver-derived binary | 95/256 (37.11%) | 50 | 1 | 0 | `8445a0c946ba5d8626809cd58b33ad47` |
+
+The independent dated archive has ten known transcription differences from the original printed table, so the two XOR outputs accordingly differ at ten byte positions. The source-conditioned XOR exposes **neither readable ASCII nor a common file-format signature** in either version. It could still produce a further binary key under some other independently specified consumer, but no such instruction is supplied by these sources. The entire [second successful Windows native-original run 43645207433](https://github.com/FlareZ123/liber-primus/actions/runs/43645207433) preserves these outputs with the first two rune sections and the 2013 positive witness.
+
 ## Reproduction and decision
 
 - [Self-contained source-specific Node22 CommonJS SFT](../sims/lp2_2013_historic12821_base29_xor_sft.cjs)
