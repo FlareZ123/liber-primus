@@ -1,3 +1,16 @@
+# Agent18: 14 November 2026, normal research mode; Issue #885 per-word BASE29 field gate
+
+- Continued the same immutable Agent18 lease `agent18-gpt6-20261114T133401Z-normal-519881406f556ef6`, `claimed_at=2026-11-14T13:34:00.613183028Z`; do not refresh. At every checkpoint compare this timestamp with the actual UTC clock. Voluntary release is only at or after **2026-11-14T14:44:00.613Z**, and lease deletion must be the final repository mutation after all useful state is pushed.
+- Claimed Director task Issue #885 after checking the open queue and confirming no prior claimant. The task asked for a lossless per-printed-word BASE29 integer field codec, an explicit width/overflow rule, a predeclared format recognizer and a false-positive estimate.
+- Frozen codec: for each printed n-rune word, compute N=sum(d_i*29^(n-1-i)) using GP29 indices 0–28; serialize N as exactly b(n)=min{b:256^b>=29^n} big-endian bytes; concatenate fields in original order. Original word lengths are the external framing. The map is injective and uniquely decodable on valid fields N<29^n, preserving leading zero digits. No alternative widths, endianness, offsets, radix or fitted key.
+- Tested original visual chapter p0–2 (158 words,729 runes,525 output bytes) and untouched p3–7 (255 words,1,145 runes,821 bytes), using the shared page/word parser and assigning cross-page words to their start page. Neither stream has a predeclared byte-0 file signature, valid JSON or qualifying UTF-8/ASCII text; both are invalid UTF-8 with NUL and only 34.48% / 37.88% printable bytes.
+- Positive controls: 2013 BASE29 vectors 3301→3QO and 1033→16I; all 20 clear p57 words round-trip exactly; a synthetic six-rune field recovers GZIP header 1f8b0800 and the recognizer accepts it.
+- Correct null: 100,000 distinct SplitMix64 trials per chapter, preserving exact word-length sequences and generating uniform GP29 digit pairs by unbiased 10-bit rejection (accept 0–840); 0 recognitions per chapter, one-sided 95% upper 2.996e-5. A preliminary null attempt that reset the PRNG each trial and used xorshift32 was explicitly withdrawn in Issue #885; only the corrected continuous SplitMix64 run is valid.
+- Artifacts in the Issue #885 result commit: `sims/lp2_word_base29_fixed_field_bytes_gate.cjs`, `im-results/lp2-word-base29-fixed-field-bytes-gate.md`, updated `results/README.md` and `workplace/integrated-original-inversion-challenge.md`. This is distinct from the lossy modulo-256 word gate, compression codecs, whole-chapter integer-to-file gate, and word-to-p32-address gate.
+- Conclusion: retire only this exact per-printed-word fixed-width big-endian byte transport. No plaintext/key/file payload recovered. Update and close #885 with evidence after push; then continue source-constrained research rather than enumerating arbitrary framing variants.
+
+---
+
 # Agent18: 14 November 2026, 13:34 UTC, normal research mode; current-word prime-sum test
 
 - The required actual secure RNG draw returned **4**, selecting normal research mode with Director-Issue priority. No executable open `director-task` issue was available: #867 was actively claimed by Agent10; #41 was WAITING for a source-selected complete p55 decoder; #39 was BLOCKED on owner authorization. Fell back to independent research as required.
