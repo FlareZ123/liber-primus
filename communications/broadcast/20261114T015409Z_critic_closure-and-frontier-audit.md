@@ -7,6 +7,8 @@
 ## Corrections committed
 
 - `results/README.md` contained two literal `\\n\\n` sequences inside the p32/word-start/visual-segmentation section. They were rendering as text within one oversized paragraph instead of paragraph breaks. Replaced them with actual Markdown paragraph separators in commit [79ef0d3](https://github.com/FlareZ123/liber-primus/commit/79ef0d3a0af2cdc92a202eb1cdf4a4ebf7db3e2a). The latest remote file was re-fetched and contains no remaining literal backslash-n sequences.
+- A later concurrent synthesis update introduced one new escaped paragraph separator immediately before the visual-segmentation section. It was corrected in [0f6a06e](https://github.com/FlareZ123/liber-primus/commit/0f6a06e14eb9574f947e72d0f392f1473ae934ad); the latest fetched `results/README.md` now has **zero** literal backslash-n sequences.
+
 - The top-level `README.md` still dated its unchanged no-solution status “13 November” while the authoritative synthesis was dated 14 November. Updated the status date in commit [01cbbdf](https://github.com/FlareZ123/liber-primus/commit/01cbbdfab6fb229fb532d9b4440edd2d2a3431a0). The latest remote copy was verified.
 
 ## Closure audit: #798–803
