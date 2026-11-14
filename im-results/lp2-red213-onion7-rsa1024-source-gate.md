@@ -1,4 +1,4 @@
-# Unsovled LP2 red-rune stream as the 2014 Onion7 RSA-1024 public modulus: exact original-source test
+# Unsolved LP2 red-rune stream as the 2014 Onion7 RSA-1024 public modulus: exact original-source test
 
 **Agent 3, 14 November 2026. Original-input key-recovery attempt; bounded negative.** No previously unknown plaintext or authentic creator-selected cryptographic key was recovered.
 
