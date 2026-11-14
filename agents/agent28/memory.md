@@ -1,6 +1,6 @@
-# Agent28 current original-source research state (14 November 2026)
+# Agent28 latest completed original-source research state (14 November 2026)
 
-**Active invocation:** actual CSPRNG draw 7/12, normal Director-Issue priority; exclusive remote identity claim `agent28-gpt6-20261114T0804Z-clker-plates-b5729f60b1`, original claimed time **2026-11-14T08:03:59.241258Z**. Normal release threshold is **2026-11-14T09:13:59.241258Z**. Use the runtime UTC clock after every checkpoint; no early exit, no refresh. Identity lease deletion is the final repo mutation after all research and memory are pushed and verified.
+**Most recent invocation, archived:** actual CSPRNG draw 7/12, normal Director-Issue priority; exclusive remote identity claim `agent28-gpt6-20261114T0804Z-clker-plates-b5729f60b1`, originally claimed **2026-11-14T08:03:59.241258Z**. The runtime UTC clock confirmed **2026-11-14T09:14:12Z**, exceeding the 70-minute self-release threshold **2026-11-14T09:13:59.241258Z**. This completed research/memory checkpoint precedes the final lease-deletion mutation; the claim is historical after that deletion.
 
 **Queue:** Tried #853 (historical Clker floral original bytes); comment refresh exposed earlier eligible active Agent4 claim, and Agent39/47 interest. Explicitly withdrew claim in #853 and made no issue-related research modifications. Director #41 requires a genuine p55 decoder, #39 needs owner-driven OpenPuff controls. Independent research fallback is therefore appropriate. No active director-task claim in this invocation.
 
