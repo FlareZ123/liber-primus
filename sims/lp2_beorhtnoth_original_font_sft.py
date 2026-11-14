@@ -19,7 +19,7 @@ from fontTools.ttLib import TTFont
 
 IMAGE = Path("resources/liber-primus/74.jpg")
 IMAGE_SHA256 = "1dabc100ddbf1fc49715219636984eb6ad96a2bd8035e196c12e66db77a1077b"
-TITLE_RUNES = "ᛈᚪᚱᚪᛒ"
+TITLE_RUNES = "ᚪᚱᚪᛒᛚ"
 ALPHABET = "ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᛠᛡᛇᚣ"
 CANDIDATE_URL = (
     "https://raw.githubusercontent.com/krisyotam/cicada3301/"
@@ -120,9 +120,9 @@ def main() -> None:
     assert sha == IMAGE_SHA256, f"original p57 source mismatch: {sha}"
     original = title_targets(raw)
     print("SOURCE", IMAGE, "SHA256", sha)
-    print("TITLE first five expected runes", TITLE_RUNES)
+    print("TITLE five small runes AFTER oversized red P:", TITLE_RUNES)
     print("original bounding rectangles (width,height)", [x.shape[::-1] for x in original])
-    print("original duplicate ᚪ image similarity", match(original[1], original[3]))
+    print("original duplicated ᚪ image similarity", match(original[0], original[2]))
 
     with urlopen(CANDIDATE_URL, timeout=40) as response:
         candidate = response.read()
