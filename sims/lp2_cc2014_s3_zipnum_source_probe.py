@@ -19,7 +19,7 @@ PREFIXES = (
     "org,tor2web,",
 )
 
-def get(url, maximum=100_000_000, byte_range=None):
+def get(url, maximum=400_000_000, byte_range=None):
     headers = {"User-Agent": "LiberPrimus-2014-Crawl-ZipNum/1.0"}
     if byte_range:
         off, n = byte_range
