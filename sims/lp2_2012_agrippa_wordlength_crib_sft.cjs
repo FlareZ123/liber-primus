@@ -116,7 +116,9 @@ const planted = target.slice();
 const gp = referenceWords.map(gp29Length);
 for (let i = 0; i < 16; i++) planted[1000 + i] = gp[500 + i];
 assert(findMatches(gp, planted).some(m =>
-  m.unknown === 1000 && m.reference === 500 && m.n >= 16),
+  m.unknown <= 1000 && m.reference <= 500 &&
+  m.unknown + m.n >= 1016 && m.reference + m.n >= 516 &&
+  1000 - m.unknown === 500 - m.reference),
   "16-word source-native planted crib was not recovered");
 
 console.log(JSON.stringify({
