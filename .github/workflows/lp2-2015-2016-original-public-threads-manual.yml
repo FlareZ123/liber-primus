@@ -16,3 +16,7 @@ jobs:
         run: |
           node --check sims/lp2_2015_2016_original_public_thread_locator_sft.cjs
           node sims/lp2_2015_2016_original_public_thread_locator_sft.cjs
+      - name: Acquire five frozen 2015–16 public discussions, native period revisions
+        run: |
+          node --check sims/lp2_2015_2016_five_frozen_public_threads_sft.cjs
+          node sims/lp2_2015_2016_five_frozen_public_threads_sft.cjs
