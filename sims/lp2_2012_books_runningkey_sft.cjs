@@ -102,6 +102,82 @@ function transform(input, key, sign, reset, forward) {
   return output;
 }
 
+
+/**
+ * Exact nondeterministic inverse of Cicada's authentic plaintext-F bypass.
+ * The full key clock is unknown to the decoder because C=F can be either a
+ * literal transparent F (no tick) or a normal enciphered non-F (one tick).
+ * No language score, guessed skip mask or beam pruning is used.
+ *
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} sign +1 or -1 is the encryption key sign.
+ * @returns {{firstFailure: number, maxStates: number, survivors: Set<number>}}
+ */
+function reachableF(cipher, key, sign) {
+  let states = new Set([0]), maxStates = 1;
+  for (let i = 0; i < cipher.length; i++) {
+    const c = cipher[i], next = new Set();
+    for (const t of states) {
+      const shift = ((sign * key[t % key.length]) % 29 + 29) % 29;
+      if (c === 0) {
+        next.add(t); // literal plaintext F, key clock does not advance
+        if (shift !== 0) next.add(t + 1); // enciphered non-F
+      } else if (c !== shift) {
+        // Normal decryption P=C-shift; forbidden P=F cannot be encrypted.
+        next.add(t + 1);
+      }
+    }
+    states = next;
+    maxStates = Math.max(maxStates, states.size);
+    if (states.size === 0) return {
+      firstFailure: i, maxStates, survivors: states,
+    };
+  }
+  return {firstFailure: -1, maxStates, survivors: states};
+}
+
+/**
+ * Grounded positive-control encoder for exactly the original F-transparent rule.
+ * @param {number[]} clear
+ * @param {number[]} key
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function encodeTransparentF(clear, key, sign) {
+  let t = 0;
+  return clear.map(p => p === 0 ? 0 :
+    ((p + sign * key[t++ % key.length]) % 29 + 29) % 29);
+}
+
+function firstPrimes(n) {
+  const primes = [];
+  for (let p = 2; primes.length < n; p++) {
+    if (primes.every(x => x * x > p || p % x !== 0)) primes.push(p);
+  }
+  return primes;
+}
+const knownP56 = corpus.pages.find(p => p.page === 56).indices;
+assert.equal(knownP56.length, 85);
+const authenticKey = firstPrimes(84).map(p => (p - 1) % 29);
+const knownClear = [];
+let historicalTick = 0;
+for (let i = 0; i < knownP56.length; i++) {
+  if (i === 56) {
+    assert.equal(knownP56[i], 0);
+    knownClear.push(0);
+  } else {
+    knownClear.push((knownP56[i] - authenticKey[historicalTick++] + 29) % 29);
+  }
+}
+assert.equal(historicalTick, 84);
+assert.equal(knownClear.map(i => corpus.translit[i]).join(""),
+  "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE");
+assert.deepEqual(encodeTransparentF(knownClear, authenticKey, 1), knownP56);
+const authenticatedInverse = reachableF(knownP56, authenticKey, 1);
+assert(authenticatedInverse.survivors.has(84),
+  "Authentic original p56 plaintext-F path must remain reachable");
+
 const outcomes = [];
 for (const [name, sourceText] of [
   ["2012 Gibson Agrippa", agrippaText],
@@ -117,6 +193,21 @@ for (const [name, sourceText] of [
         const plantedC = transform(solved, key, sign, false, true);
         const recovered = transform(plantedC, key, sign, false, false);
         assert.deepEqual(recovered, solved, "Authentic p57 plant failed");
+        const exactF = reachableF(ciphertext, key, sign);
+        assert(exactF.firstFailure >= 0 && exactF.survivors.size === 0,
+          "An original full-book F-transparent source path unexpectedly survives");
+        let foffset = 0;
+        const independentChapterFFailures = chapters.map(n => {
+          const result = reachableF(ciphertext.slice(foffset, foffset + n), key, sign);
+          foffset += n;
+          assert(result.firstFailure >= 0 && result.survivors.size === 0,
+            "A separately reset F-transparent original chapter unexpectedly survived");
+          return result.firstFailure;
+        });
+        const plantedTransparent = encodeTransparentF(solved, key, sign);
+        const plantedReachability = reachableF(plantedTransparent, key, sign);
+        assert(plantedReachability.survivors.has(solved.filter(x => x !== 0).length),
+          "A planted real solved-p57 F-transparent key path was incorrectly rejected");
         const score = ioc(P);
         let offset = 0;
         const chapterScores = chapters.map(n => {
@@ -135,6 +226,10 @@ for (const [name, sourceText] of [
           direction: sign === -1 ? "subtract" : "add",
           completeInverseIoC: score,
           maxChapterIoC,
+          originalTransparentFFirstContradiction: exactF.firstFailure,
+          individualOriginalChapterTransparentFFirstContradictions: independentChapterFFailures,
+          historicalTransparentFPositiveP56: true,
+          plantedTransparentFPositiveP57: true,
           originalForwardPass: true,
           knownP57Plant95of95: true,
         });
@@ -149,11 +244,14 @@ assert(ioc(solved) > 0.06);
 console.log(JSON.stringify({
   sourceScope: "Two authentic Cicada 2012 source books; full 12956 original runes",
   testedDirectInverseVariants: outcomes.length,
+  transparentFOriginalP56Positive: true,
+  transparentFOriginalEntireBookExclusions: 8,
+  independentlyResetChapterFFailures: 8 * chapters.length,
   originalIoC: ioc(ciphertext),
   authenticSolvedP57IoC: ioc(solved),
   bestInverse: best,
   bestAnyChapterIoC: Math.max(...outcomes.map(o => o.maxChapterIoC)),
   all: outcomes,
-  decision: "No directly transferred 2012 book-source additive GP29 running key",
+  decision: "No directly transferred 2012 book-source additive GP29 running key; all authentic plaintext-F bypass paths die on original",
   limits: "Unchosen book offsets, rewritten source, F-transparent branch and further layers remain untested",
 }, null, 2));
