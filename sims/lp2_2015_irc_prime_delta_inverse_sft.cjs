@@ -194,6 +194,14 @@ function main(){
   assert.deepEqual(chapters.map(c=>c.exactUpperTail),
     ['1/729','735/1145','580/1729','78/1903','327/1021',
       '919/1433','585/1680','2410/3008','101/308']);
+  // Alternative unbroken prime clock: source text without any extra resets.
+  // Its first chapter is identical to the independently reconstructed one.
+  const global=inverse(original,primes(original.length+1));
+  assert.deepEqual(global.slice(0,729),recovered);
+  assert.equal(equalsAdjacent(global),472);
+  assert(Math.abs(ioc(global)-0.034509200096422304)<1e-12);
+  const fullBookContinuousClock={length:global.length,
+    derivedAdjacentEquals:equalsAdjacent(global),decodedIoC:ioc(global)};
   const fourWays=fourWayRotationAudit(page0to2,ps);
   assert.deepEqual(fourWays.sourceScores,[26,25,34,40]);
   assert.equal(fourWays.upperTailOverCompleteCyclicPhases,'2/729');
@@ -207,6 +215,7 @@ function main(){
     originalBytesSha256:sha,phaseZeroUniqueMaximumInFirstChapter:true,
     realP0to2:{cipherDoublets:4,primeDeltaDoublets:40,IoC:ioc(recovered)},
     sourceConstrainedFourWayPhaseControl:fourWays,
+    fullBookContinuousClock,
     plantedP57:{length:plant.length,IoC:ioc(plant),exactRecovered:true},
     visualChapterHoldout:chapters,
     interpretation:'2015 participant count reproduced exactly; original first visual chapter phase singled out against its 729 rotations, but eight held-out chapters show no repeated global phase effect and none yields source-native plaintext.'},null,2));
