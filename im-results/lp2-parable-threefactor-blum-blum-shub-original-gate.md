@@ -42,9 +42,26 @@ The highest-IoC candidate uses **physical-page resets, raw BBS state modulo28, c
 
 The **canonical parity-bit BBS extractor** and all fixed clocks likewise fail to recover native GP prose. No candidate gives a verified contiguous unknown-page plaintext. No ciphertext-only round trip identifies the historical key: any bijective inverse can forward-reencrypt its own decoding. The positive-control plant solely tests program correctness.
 
+## Independent original artifact consumer: the 256-byte printed numerical grid
+
+The same three independently historical primes also select a concrete direct operation on a **different native register**. The manuscript's p49–p51 numerical table contains exactly **256** authentic two-character base60 entries, already converted without reordering to original bytes `0..255` in [the canonical 32×8 grid](../resources/liber-primus/base60-grid.json). That explicit byte table is an actual candidate encrypted binary payload, distinct from the GP29 rune prose. Its 256 positions and source-raster order are fixed before decoding; no arbitrary row permutation, guessed nonce, pad shift, or secret byte assignment is introduced.
+
+Apply the conventionally defined **BBS parity output**, grouped eight bits to a byte, as the bytewise XOR pad on the entire original 256-byte array. To avoid treating a conventional output indexing convention as historical fact, test precisely four one-time readings: output the parity of the public seed-square state `x0` or the next squared state `x1`, and place eight successive BBS bits into each byte MSB-first or LSB-first. This is **4 bounded direct inverses**. A 256-byte source-native English control, XOR-enciphered with every candidate pad, fully recovers with the same operation and exact original byte length.
+
+| Fixed state/bit convention | Decoded printable ASCII bytes / 256 | Recognized binary file prefix |
+| --- | ---: | --- |
+| `x0`, MSB-first | **96** | None |
+| `x0`, LSB-first | **97** | None |
+| `x1`, MSB-first | **92** | None |
+| `x1`, LSB-first | **101** | None |
+
+The bytes remain broadly opaque (at most **105/256** when tab, LF and CR are additionally accepted as textual whitespace); none starts with the directly tested PDF, ZIP, gzip, PNG, JPEG, bzip2, ID3, Ogg, 7z or RAR signatures. These direct XOR decodes do not reveal the expected immediately recognizable instructions or standard binary container. This **does not** exclude a secondary encrypted/compressed binary payload under a different historical key; such a second layer needs its own clue rather than blind header fitting.
+
+[Independent original-byte CommonJS SFT](../sims/lp2_parable_bbs_grid256_byte_xor_sft.cjs) with fully reversible native-English XOR positive control, source table assertions, four decoded header and printability gates; [Windows Node22 CI PASS run 43629039822](https://github.com/FlareZ123/liber-primus/actions/runs/43629039822).
+
 ## Decision and exact reproducibility
 
-**Retire this explicit triple-selected BBS architecture** for direct GP29 additive decoding and the three declared GP28 nonrepeating predecessor transports, including F/EA marker alternatives and the three source-visible restart scopes. Do **not** retire other mathematically motivated uses of the PARABLE factors, recoverable external key material, separate bitmap/word mechanisms, or non-English registers. The source did not prescribe BBS, and the low IoC evidence addresses the exact finite, reproducible readings above rather than all possible transformations.
+**Retire this explicit triple-selected BBS architecture** for original-table direct byte-XOR, direct GP29 additive decoding, and the three declared GP28 nonrepeating predecessor transports, including F/EA marker alternatives and the three source-visible restart scopes. Do **not** retire other mathematically motivated uses of the PARABLE factors, recoverable external key material, separate bitmap/word mechanisms, or non-English registers. The source did not prescribe BBS, and the low IoC evidence addresses the exact finite, reproducible readings above rather than all possible transformations.
 
 - [Read-only single-file Windows Node22 CommonJS SFT](../sims/lp2_parable_threefactor_bbs_original_sft.cjs) loads the untouched source corpus, proves the distinct factor properties, exact BBS return period and modulus/seed, implements all 63 inverses and full native p57 planted re-encryption checks, and asserts original/best/worst IoCs.
 - [Successful original-source Windows 11-equivalent GitHub Actions run 43627695938](https://github.com/FlareZ123/liber-primus/actions/runs/43627695938), from the repository's existing **manual-only** read-only CommonJS SFT runner. The workflow did not modify the corpus or run on push.
