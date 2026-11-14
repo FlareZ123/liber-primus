@@ -91,6 +91,35 @@ assert.equal(amounts[17] > ciphertext.length,true,
 const p42QuotationStart = 10211;
 assert.equal(p42QuotationStart - amounts[16], 35);
 
+// Verify the pointer's original word boundaries, without interpreting the text.
+const transcription = fs.readFileSync(
+  "resources/liber-primus/lp2-transcription.txt", "utf8");
+const runicWords = transcription.split("%").slice(0,55).join("%")
+  .replace(/\/\n/g,"").replace(/[\r\n%]/g,"")
+  .match(new RegExp("[" + corpus.runes.join("") + "]+", "gu")) || [];
+assert.equal(runicWords.length,2896);
+let wordRunePosition=0;
+let pointerWord;
+for(let i=0;i<runicWords.length;i++){
+  const w=runicWords[i];
+  if(wordRunePosition===10175){
+    pointerWord={originalWordIndex:i,globalZeroBased:wordRunePosition,
+      originalRunes:w,transliteration:[...w].map(rune=>{
+        const j=corpus.runes.indexOf(rune);
+        assert(j>=0);
+        return corpus.translit[j];
+      }).join("")};
+  }
+  wordRunePosition+=w.length;
+}
+assert.equal(wordRunePosition,ciphertext.length);
+assert.deepEqual(pointerWord,{
+  originalWordIndex:2284,globalZeroBased:10175,
+  originalRunes:"ᛈᚾᚹ",transliteration:"PNW",
+});
+const threeRuneWords=runicWords.filter(w=>w.length===3).length;
+assert.equal(threeRuneWords,720);
+
 console.log(JSON.stringify({
   originalGridVerifiedCells:16,
   firstUnprinted:{fibonacci:1597,primeOrdinal:1598,
@@ -101,6 +130,8 @@ console.log(JSON.stringify({
   directReadouts:sourceReadouts.map(x=>({clock:x.clock,
     readout:x.originalRunes,
     seventeenthPosition:x.selected[16],sampledOriginalPositions:x.selected.map(y=>y.index)})),
+  oneBasedSelectedPrintedWord:pointerWord,
+  originalThreeRuneWordCount:threeRuneWords,
   p42FirstQuotedRuneGlobalOffset:p42QuotationStart,
   p42QuoteDistanceFromExtrapolatedPointer:35,
   conclusion:"No readable original LP2 plaintext or key from the complete 17-symbol direct literal numeric-index extraction."
