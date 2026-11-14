@@ -41,6 +41,10 @@ def run() -> None:
     original, labels = p55_original_masks()
     positions = [i for i, ch in enumerate(labels) if ch == "ᚢ"]
     assert positions == [20, 29, 72], positions
+    for u in positions:
+        same = sorted((match(original[u], original[j])[0], j+1) for j, ch in enumerate(labels) if ch == "ᚢ" and j != u)
+        other = sorted((match(original[u], original[j])[0], j+1, ch) for j, ch in enumerate(labels) if ch != "ᚢ")
+        print("P55 ORIGINAL U SAME-CLASS", u+1, same, "NEAREST OTHER-CLASS", other[:5])
     font = TTFont(io.BytesIO(data))
     base_glyph = font.getBestCmap()[ord("ᚢ")]
     print("BABELSTONE ORIGINAL U", base_glyph, "p55 positions", [i+1 for i in positions])
