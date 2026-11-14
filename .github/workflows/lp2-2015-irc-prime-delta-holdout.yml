@@ -1,0 +1,19 @@
+name: Original 2015 IRC prime-delta inverse and chapter holdout
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-prime-delta:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pinned original prime-delta exact inversion and nine-section control
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_irc_prime_delta_inverse_sft.cjs
+          node sims/lp2_2015_irc_prime_delta_inverse_sft.cjs
