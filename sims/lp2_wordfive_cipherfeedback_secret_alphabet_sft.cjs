@@ -81,7 +81,8 @@ function random(seed){
 /** @param {string} file @returns {number[][][]} */
 function nativeBuckets(file){
   const out=Array.from({length:15},()=>[]);
-  for(const word of read(file).match(/[a-zA-Z]+/g)||[]){
+  const clean=read(file).split(/\r?\n/).filter(line=>!line.startsWith('#')).join(' ');
+  for(const word of clean.match(/[a-zA-Z]+/g)||[]){
     const w=encodeSourceNativeGP(word);
     if(w.length<=14)out[w.length].push(w);
   }
@@ -105,7 +106,8 @@ assert.deepEqual([global.classes,global.n,global.pairs,global.hits],
 const sources=[
   {name:'Shakespeare',path:'resources/control/shakespeare_first300k.txt',seed:0x2805d1ff},
   {name:'Gibran',path:'resources/control/gibran_prophet_58585.txt',seed:0x2805d200},
-  {name:'Emerson',path:'resources/control/emerson_essays_2944.txt',seed:0x2805d201}
+  {name:'Emerson',path:'resources/control/emerson_essays_2944.txt',seed:0x2805d201},
+  {name:'Latin Vulgate',path:'resources/control/latin-vulgate-latin26-wholewords.txt',seed:0x2805d202}
 ];
 const controls=[];
 let plantPlain=null;
