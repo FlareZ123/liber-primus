@@ -1,6 +1,6 @@
 # LP2 pp49–51: a three-share route from the H/G grid quotient to an actual known key
 
-**Decision (Agents 11/12, 14 November 2026): original-input negative for eight source-fixed three-share interpretations and every stationary GF29 polynomial readout through total degree five.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
+**Decision (Agents 11/12, 14 November 2026): original-input negative for eight source-fixed three-share interpretations every stationary GF29 polynomial readout through total degree five, and every rational polynomial readout through degree four.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
 
 ## A concrete path a historical solver could have tried
 
@@ -69,6 +69,22 @@ For each of the two source-natural 252-to-3×84 geometries above, write the thre
 | 6 (complexity comparator) | 84 | 83 / **84** | 84 / 84 |
 
 **New exact constraint:** every stationary polynomial readout of degree at most five fails on the *original* H/G quotient, regardless of its hidden coefficients, for both frozen layouts. Even degree six is inconsistent for the contiguous three-block layout. Adjacent triples at degree six have full 84×84 rank and can interpolate **any** target 84-symbol key, making the exact fit there uninformative: it spends 84 free parameters to reproduce 84 known key symbols and predicts no withheld key. There is no compressed or independently selected p56 key in the tested low-complexity family.
+
+**Independent nonlinear class, exact full-key exclusion:** A source-driven extension can grant a completely secret **rational** readout \(f(x,y,z)=N(x,y,z)/D(x,y,z)\) over GF29, with arbitrary and independently chosen numerator/denominator coefficients up to a shared total degree \(d\), provided \(D(x_i,y_i,z_i)\ne0\) at every original input. This includes an unrestricted three-input Möbius/fractional-linear function at \(d=1\), a mathematically recognizable alternative to Shamir's polynomial interpolation. There is no authenticated source instruction to choose this operation.
+
+The complete 84-key necessary conditions are *homogeneous linear equations* in the unknown coefficients: \(N(x_i,y_i,z_i)-k_i D(x_i,y_i,z_i)=0\). With \(m=\binom{d+3}{3}\) monomials per side, exact GF29 elimination gives the following independently source-checked ranks:
+
+| Rational maximum degree | Unknown numerator + denominator coefficients | Three 84-blocks: exact rank | Adjacent triples: exact rank |
+| ---: | ---: | ---: | ---: |
+| 0 | 2 | **2** | **2** |
+| 1 (fully general affine ratio) | 8 | **8** | **8** |
+| 2 | 20 | **20** | **20** |
+| 3 | 40 | **40** | **40** |
+| 4 | 70 | **70** | **70** |
+
+Every matrix has full column rank, so its **only** compatible numerator/denominator coefficient choice is the simultaneous zero polynomial pair, which has undefined \(0/0\) output. In other words, **no valid rational function of total degree ≤4 in each numerator and denominator can map all 84 source triples to the independently known authentic p56 key**, irrespective of hidden coefficients. The rational class is strictly different from polynomial readouts; its degree-one subclass already contains every stationary three-input fractional-linear map.
+
+The same exact test recognizes a planted genuine degree-two rational map \((7+5x+11y+13z+3xy+4yz+2x^2)/(x^2+2)\) on *all 84 original source positions* in both geometries, giving a nontrivial kernel. The denominator never vanishes anywhere in GF29 because \(-2\) is a nonsquare. The preserved [standalone SFT](../sims/lp2_p50_hg_q252_polynomial_p56_84key_sft.cjs) checks this positive and all full-rank originals. Beyond degree four, enough free parameters can make retrospective fitting easy, so raising the degree without another source-selected instruction would be a poor route to an authentic predictive key.
 
 An immediate, short witness exists already for arbitrary affine readouts \(k_i=a x_i+b y_i+c z_i+d\). The first four original rows have full coefficient rank four. The fifth row contradicts their unique fitted relation: for blocks, \(x,y,z,k=(2,27,27,10)\) produces a nonzero GF29 elimination residual **26**; for interleaved triples, \((17,8,15,10)\) gives residual **3**. A change of language score, source glyph, or affine coefficients cannot repair these exact original-key contradictions.
 
