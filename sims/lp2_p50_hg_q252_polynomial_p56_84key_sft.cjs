@@ -472,3 +472,17 @@ for(const witness of twoLaneWitnesses){
 console.table(twoLaneWitnesses);
 console.log("PASS: all three 2-of-3 adjacent-triplet inputs have a");
 console.log("source-exact same-input/different-known-key impossibility witness.");
+
+
+// The only other source-natural orientation reverses all 84 aligned triples.
+// It relocates the same duplicate to 53 and 76, where the genuine historical
+// prime-totient keys again disagree (18 versus 11). Reversing the historical
+// target as well recovers the original obstruction; orientation cannot cure it.
+const reversedBlockFirst=83-30, reversedBlockSecond=83-7;
+assert.equal(reversedBlockFirst,53);
+assert.equal(reversedBlockSecond,76);
+assert.deepEqual(dataTriple("blocks",30),dataTriple("blocks",7));
+assert.equal(historicalKey[reversedBlockFirst],18);
+assert.equal(historicalKey[reversedBlockSecond],11);
+assert.notEqual(historicalKey[reversedBlockFirst],historicalKey[reversedBlockSecond]);
+console.log("PASS: reversed three-block source order also has a conflicting key pair.");
