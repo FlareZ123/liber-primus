@@ -217,7 +217,23 @@ def add_carrier(app, window, carrier, out_dir):
         open_buttons[-1].click_input()
     else:
         send_keys("{ENTER}")
-    time.sleep(2)
+    # A multi-megabyte MP3 can leave the "Adding Carriers" progress
+    # window open while the main window already reports nonzero bytes.
+    # The modal overlay intercepts tree clicks until carrier parsing ends.
+    deadline = time.monotonic() + 300
+    while True:
+        pending = [
+            candidate for candidate in Desktop(backend="win32").windows()
+            if safe(candidate.is_visible)
+            and "Adding Carriers" in (safe(candidate.window_text) or "")
+        ]
+        if not pending:
+            break
+        if time.monotonic() > deadline:
+            snapshot_desktop(out_dir, "carrier-parse-timeout")
+            raise RuntimeError("Historical carrier parsing modal exceeded 300 seconds")
+        time.sleep(1)
+    time.sleep(0.5)
     snapshot_desktop(out_dir, "carrier-after-selection")
     snapshot(app, out_dir, "carrier-after-selection-app")
     return app.top_window()
