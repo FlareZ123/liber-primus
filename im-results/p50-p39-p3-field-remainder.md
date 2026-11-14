@@ -202,6 +202,8 @@ with order 812. These are the natural 2D regular representations of the two quot
 
 A bounded direct-consumer test applied (G,G^{-1},G^T,(G^{-1})^T), (H,H^{-1},H^T,(H^{-1})^T), and the provisional p0-DH-derived (K=G^{7\cdot16}=G^{112}=\begin{pmatrix}27&28\\18&23\end{pmatrix}) with its inverse and transposes. Each transform was applied to every original GP29 page p0–p55 in adjacent two-rune column blocks; an odd final rune was left unchanged. No page yielded coherent plaintext; the best per-page IoCs remained around 0.039, with no sustained language-like output. The p0 exponents (7,16) remain a hypothesis, so the (K) branch is lower-confidence than the direct (G/H) tests.
 
+A complete breadth-first closure under the four generators (G,G^{-1},H,H^{-1}) contains **682,080 distinct matrices**, exactly (|GL_2(29)|=29(29-1)(29^2-1)). Thus these two source-derived units do not merely have orders whose product equals the group order: their natural 2×2 representations **generate all of (GL_2(29))**. This is an exact structural fact, not a key recovery. It does not select a word in the generators, a plaintext action, or an encryption mode; the direct Hill consumers above remain negative. The updated SFT verifies the full subgroup closure.
+
 **Decision:** the quotient units' orders and the identity (840\cdot812=|GL_2(29)|) remain exact algebraic facts, but the most obvious 2×2 Hill consumers do not decode LP2. This rejects direct blockwise use of these matrices; it does not rule out a different, independently specified group action. Reproduce with [the 2×2 Hill SFT](../sims/lp2_p50_gf29_squaredh_hill_gate_sft.cjs).
 
 ## Current assessment
