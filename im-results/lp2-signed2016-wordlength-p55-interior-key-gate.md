@@ -56,6 +56,8 @@ This retires this specific **GP-prime-weight key transfer** alongside the separa
 
 The signed 2016 message has exactly **43 alphabetic words**, while stripping the first and last rune from each complete p55 printed word leaves **43 strict-interior runes**. The verified message says “words are the map”; the solved p57 parable says “shed our own circumferences.” A further, deliberately narrow reading is that each signed word's own *circumference* (its first or last GP rune) supplies one key symbol for the corresponding p55 interior rune. This is a hypothesis only: the source does not explicitly prescribe a positional pairing, edge selection, or additive cipher.
 
+**Scope distinction:** the existing Agent37 circumference gate uses each unknown ciphertext word's own outer runes as a per-word self-key; the existing p32/p55 bridge tests the signed message's first/last **Latin letters** (and their raw/prime/totient values) as keys, plus a keyless stationary-substitution check. The existing signed-word report tests word lengths and GP-prime sums. This gate adds only the narrower **canonical GP-token edge** reading: greedily encode each signed word under the published GP29 digraph orthography, then take its first or last GP symbol. Thus, for example, *The* contributes TH (one GP rune), not T. The p56 F-bypass is a separate sensitivity check. No broad new edge/key family is opened.
+
 The original GP transliteration is preserved, including digraphs such as TH and NG. The two exact 43-symbol keys are:
 
 - First GP rune of each signed word: `[8,2,13,20,18,18,15,2,23,20,13,10,2,7,10,7,24,2,19,2,19,10,2,4,24,2,9,24,2,23,15,24,26,7,17,0,6,20,17,0,13,1,3]`
