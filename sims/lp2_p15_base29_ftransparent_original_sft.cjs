@@ -27,7 +27,14 @@ const transcript = fs.readFileSync(
 const pages = transcript.split(/^\s*%\s*$/m);
 const p15Parts = pages[15].split('$');
 assert.ok(p15Parts.length > 1, 'Missing original p15 grid/body separator');
-const afterGrid = p15Parts.slice(1).join('
+const afterGrid = p15Parts.slice(1).join('$');
+// The p15 number plate is followed by an 11-rune second red heading.
+// The narrative begins after its first printed period.
+const secondTitleEnd = afterGrid.indexOf('.');
+assert.ok(secondTitleEnd > 0);
+const sourceTextBody = afterGrid.slice(secondTitleEnd + 1);
+const originalBody = original.pages.filter(p => p.page >= 15 && p.page <= 22)
+  .flatMap((p) => p.page === 15 ? p.indices.slice(20) : p.indices);
 assert.equal(originalBody.length, 1883);
 const sourceParts = [sourceTextBody, ...pages.slice(16, 23)];
 const joined = sourceParts.map(part => part.replace(/[&$\s]+$/gu, '').trim())
