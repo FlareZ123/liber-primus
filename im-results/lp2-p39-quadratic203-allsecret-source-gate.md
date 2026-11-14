@@ -121,6 +121,16 @@ This is a key-complete original negative on a fixed 2014-available two-state pla
 
 **Reproducer:** [quadratic plaintext-autokey all-secret SFT](../sims/lp2_p39_quadratic_plaintext_autokey_allsecret_sft.cjs). [Passing Windows Node22 original all-seed, all-model regression 43542272241](https://github.com/FlareZ123/liber-primus/actions/runs/43542272241), after correcting the planted-seed uniqueness assumption exposed by the prior test.
 
+### Arbitrary unknown fixed GP29 alphabet extension
+
+The same source-derived **equality proofs cover more than identity rune labels**, at **zero extra key search**. In the autonomous 203-period model, allow **both** (i) an arbitrary fixed unknown bijective relabeling of all 29 native plaintext runes **before** the periodic additive step and (ii) an arbitrary fixed unknown bijection of the final cipher runes **after** the step. For any two positions 203 apart, the identical key value cancels and injectivity preserves equality through both relabelings. Thus **745/20,685** is the required native same-phase coincidence count for **every** possible fixed secret input and output alphabet permutation, including all 29! substitutions in each position. A native-GP positive plant with a hidden outer affine permutation confirms this equality and inverts exactly.
+
+In the four public-ciphertext-forced models, the known particular stream can be subtracted **after** encryption. Their all-secret same-phase equality tests likewise remain valid under an arbitrary fixed unknown **plaintext-input alphabet bijection** in the additive GP29 state register. The extension does **not** cover an arbitrary unknown ciphertext-output permutation in the feedback models, because the literal published ciphertext is itself the state-forcing source.
+
+For the plaintext-**index** autokey, the exact period28/7 **seed-difference proof** remains valid if **all native plaintext runes first pass through any one fixed unknown 29-symbol bijection**, because the feedback is on the transformed index. The decoded particular text's same-phase equality is unchanged by every unknown seed, and equality of the inner transformed plaintext is exactly equality of the native text. A separate source-native positive plant under nonidentity fixed affine relabeling passes both the same-phase invariant and full inverse relabeling. The non-linear plaintext-**prime** feedback remains outside this exact arbitrary-alphabet argument.
+
+**Scope:** the proof handles truly arbitrary *fixed* GP29 bijections without enumerating 29! keys; evolving keys, position-dependent alphabets, non-bijective encoders, variable clocking, altered word segmentation and other plaintext language registers remain untested. The manuscript does not authenticate such a substitution layer.
+
 ## Reproduce and decision
 
 Run the [single runnable CommonJS original-input test](../sims/lp2_p39_quadratic203_allsecret_sft.cjs) on Windows Node 22 from the repository root:
