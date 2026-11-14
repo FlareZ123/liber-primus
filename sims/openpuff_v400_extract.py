@@ -490,6 +490,26 @@ def main():
             write_json_atomic(out_dir / "bit-selection-failure-state.json", tree_state(tree))
             snapshot_desktop(out_dir, "bit-selection-failure")
             raise
+        # Independently inspect OpenPuff's own carrier-capacity readout after
+        # changing the bit-selection level. Selection highlighting alone is
+        # not proof that enough carrier bits are available for the known control.
+        after_label = window.child_window(
+            control_id=1048, class_name="Static"
+        ).window_text()
+        result["selected_carrier_bytes_after_level"] = after_label
+        capacity_match = re.fullmatch(r"\s*([\d,]+)\s+bytes?\s*", after_label)
+        if capacity_match is None:
+            raise RuntimeError(
+                f"OpenPuff carrier-capacity readout was not numeric: {after_label!r}"
+            )
+        capacity = int(capacity_match.group(1).replace(",", ""))
+        result["selected_capacity_bytes_after_level"] = capacity
+        if args.expected_size is not None and capacity < args.expected_size:
+            raise RuntimeError(
+                f"Selected carrier capacity {capacity} bytes is smaller than "
+                f"known historical output {args.expected_size} bytes; "
+                "bit selection cannot yet validate this source control"
+            )
         result["bit_selection_verified"] = True
         snapshot(app, out_dir, "configured")
 
