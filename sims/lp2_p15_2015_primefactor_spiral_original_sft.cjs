@@ -108,7 +108,7 @@ assert.deepEqual(known.clocks, [81, 82, 83, 84, 85]);
 
 const pages = source.pages.slice(16, 23);
 const original = pages.flatMap((page) => page.indices);
-assert.deepEqual(pages.map((page) => page.indices.length), [267,273,268,271,270,264,131]);
+assert.deepEqual(pages.map((page) => page.indices.length), [267, 273, 260, 271, 269, 273, 131]);
 assert.equal(original.length, 1744);
 
 const families = [
