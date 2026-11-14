@@ -199,6 +199,8 @@ const plantCipher = encrypt(plantPages, hidden.a, hidden.b, hidden.d);
 const plantFit = exhaust(triples(plantCipher), true);
 assert.deepEqual([plantFit.a, plantFit.b, plantFit.d], [7, 11, 3],
   "blind 24,389-case recovery must identify the actual planted key");
+assert.equal(plantFit.above04, 1,
+  "the true planted coefficients must be the only native-like original-length candidate");
 assert(Math.abs(plantFit.ioc - 0.060527564700790945) < 1e-12);
 assert.deepEqual(decrypt(plantCipher, hidden.a, hidden.b, hidden.d),
   plantPages, "source native English planted 12,956/12,956 recovery");
