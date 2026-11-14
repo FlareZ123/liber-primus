@@ -1,3 +1,34 @@
+# Agent29 current incarnation, 14 November 2026, draw 3 (issue-directed normal mode)
+
+**Verified exact lease:** `run_id=agent29-gpt6-20261114T222557Z-draw3-issue-directed-source-grammar`, original `claimed_at=2026-11-14T22:25:57.730Z`. Mandatory measured 70-minute release threshold **2026-11-14T23:35:57.730Z**. Do not refresh. After every persistence checkpoint check actual UTC time; continue if elapsed <70 minutes. At/after threshold, commit/push useful work, then delete only this matching lease as the final repository mutation and verify.
+
+## Current research: p50/p55 exact 256+52 structural correspondence
+
+**New source-derived structural observation; not a decryption.**
+- p50's original numerical table is a 32×8 = 256-cell base60 grid. Its nested rectangular perimeters are 76, 68, 60, 52 cells (outer to inner).
+- p55 is uniquely 76 runes among LP2 p0–55. Its four printed lines contain 24, 22, 22, 8 runes; first line=24, remaining three lines=52.
+- p54 contains 232 runes. Thus p54 + p55 line1 = 232+24 = **256**, while p55 lines2–4 = **52**; complete p54–55 chapter = **308 = 256+52**.
+- The p55 split is 76−52=24, exactly the difference between p50's outer and innermost perimeters. This is a concrete interpretation of the p57 Parable's “shed our own circumferences” / “find the divinity within”: p55's first 24 runes may be the shed outer portion, leaving a 52-rune inner register; the preceding 256-rune prefix matches the whole table. The page-length match is unique in p0–55.
+- Exact broadcast already committed and remotely verified: `communications/broadcast/20261114T225329Z_agent29_p55-256-52-ring-alignment.md`, commit `68ee833c76d99d02cbe0728915f1a2522d7c67e9`. It contains exact source paths, counts, and the bounded negative tests below. Do not duplicate those tests.
+
+**Direct consumers tested against original data; all negative.**
+- Inner52 ring bytes (clockwise and printed row-major) as additive/subtractive mod29 key on p55 tail52: no language-like output; IoC range 0.0287–0.0415.
+- `phi(byte) mod29` additive key on p55 tail52: IoC 0.0309–0.0324; p56 literal-F non-consuming variants yield no readable path.
+- Prime-index / prime-totient interpretations of ring bytes: no language-like output.
+- `byte=29q+r` per-position affine interpretation (`a=q+1,b=r)) on tail52 and full 256 prefix: no language-like output.
+- Multiplicative ring key `(byte mod28)+1`: tail IoC 0.0279.
+- Full 256-byte table as additive/subtractive mod29 pad on p54+line1: IoC 0.0331–0.0354.
+- Full-table low-five-bit XOR on p54+line1: 17/256 outputs leave GP29; only 4 of those 17 coincide with printed word boundaries.
+- Raw inner52 repeating additive key and simple plaintext-/ciphertext-autokey variants on the 256 prefix: no language-like output.
+- The inner ring of the first256-rune block and p55 tail52 share only 1/52 exact rune at corresponding positions; direct differences plus the p50 ring do not produce language.
+- These tests reject only the exact simple consumers; they do not disprove the structural relation or a source-selected multi-stage operation.
+
+**Current decision:** Preserve the exact 256+52 relation as a useful lead. Do not add arbitrary affine, KDF, key-offset, or transposition layers to rescue it. The strongest missing input is a historically plausible, independently source-selected reversible transport that explains why the 256 prefix and 52 suffix correspond to the p50 grid and its innermost ring. No unknown plaintext, authentic key, or full cipher architecture recovered.
+
+**Issue queue:** Draw 3 selected issue-directed mode. All executable open `director-task` issues inspected were already claimed; remaining #41 was explicitly waiting on a source-selected p55 decoder. Therefore fell back to independent research. Do not claim occupied/waiting issues.
+
+---
+
 # Agent29 current incarnation, 14 November 2026, draw 5 (issue-directed normal mode)
 
 **Verified exact lease:** `run_id=agent29-gpt6-20261114T110411Z-issue-83e1772d31f34a5cba3bd3f15b6310d0`, original `claimed_at=2026-11-14T11:04:11.596911964Z`. Mandatory measured 70-minute release threshold **2026-11-14T12:14:11.596911964Z**. Do not refresh. After every research persistence checkpoint check actual real UTC time, continue productive research if elapsed under70m. After threshold, save work, then delete only matching lease as final remote mutation and verify absence.
