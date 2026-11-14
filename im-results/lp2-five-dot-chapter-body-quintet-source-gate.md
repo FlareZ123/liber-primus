@@ -25,6 +25,22 @@ A byte-0 gate finds **no GZIP, BZIP2, XZ, PNG, ZIP, PDF, 7ZIP, RIFF or SQLite ma
 
 A complete positive plant encodes a fixed group of standard header bytes as successive base29 quintets and recovers all bytes exactly; a second control uses the maximum allowed base29 quintet to verify its one-bit overflow. On both original intervals all **4,005 / 4,005** consumed GP29 rune positions round-trip exactly. [Windows Node22 run 43654287600](https://github.com/FlareZ123/liber-primus/actions/runs/43654287600) passed the [self-contained CommonJS SFT](../sims/lp2_five_dot_chapter_body_quintet_sft.cjs) against the canonical original-GP transcription and independently source-typed red spans.
 
+## Source-contained p49–51 256-byte table as a direct bytewise consumer
+
+The p40–53 visual chapter itself contains the **256 original base60-encoded bytes printed on pp49–51**. This supplies a source-derived external-looking numeric operand and a finite reversal hypothesis distinct from the already-negative *unkeyed* quintet pack: repeat those 256 bytes as a 256-byte cyclic tape over the p40 1,800-byte low24 stream, beginning at the independently locked p40 red-heading/body boundary. The page does not actually instruct XOR or byte addition, and a five-rune/base29/24-bit codec is likewise an interpretation, so these are **conditional tests**, not established intended operations.
+
+[The original-source CJS SFT](../sims/lp2_p40_fivedot_grid256_byte_sft.cjs) pins the canonical table's full 256-byte SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`; checks p40's eight-rune red heading and all **600** complete quintets; and uses the same starting table byte (index zero) for each of **XOR, subtraction and addition modulo 256**. No key offset, table permutation, omitted ciphertext, file prefix, or test-selected output is fitted.
+
+| Exactly specified reversible consumer | First 16 resulting bytes | Printable ASCII | UTF-8 | Standard magic / zlib header |
+| --- | --- | ---: | --- | --- |
+| Repeat table, XOR | `c3ecb63198a093e6cbec4a143de09124` | **681/1800** | Invalid | None |
+| Repeat table, subtract | `3d246ad198606f9a3b1c3aecd3e06f1c` | **631/1800** | Invalid | None |
+| Repeat table, add | `d3f2b8455a3a6b08f30e72a8c1e8ddc4` | **638/1800** | Invalid | None |
+
+Every transform is explicitly inverted to recover all 1,800 packed bytes. Three independent positive plants take an actual 25-byte English headline, apply the inverse table consumer and reproduce all 25 bytes exactly; their successes prove the direct-consumer implementation and do not mean any original plaintext was recovered. All three original outputs lack the tested PNG, PDF, ZIP, gzip, bzip2, XZ, SQLite, RIFF and 7z signatures, fail the zlib header and are not valid UTF-8. The [passing Windows Node22 source run 43655582688](https://github.com/FlareZ123/liber-primus/actions/runs/43655582688) includes both the p23 matched control and new p40 bytewise table result.
+
+**Decision:** The simplest unphased, unpermuted cyclic-table bytewise inverse does not reveal a direct unencrypted file or ASCII text. This does not exclude a *ciphertext* byte stream requiring another explicitly sourced operation. The grid's presence alone cannot justify searching arbitrary column orders, table starts, rounds, offsets, byte endianness and independent cryptosystem layers.
+
 ## Next actionable condition
 
 The source itself still lacks an explicit rule saying to convert five runes to base29 byte triplets or how to use the 256-cell table. The five-site pictures could cue a genuinely different operation. Preserve the exact chapter-body clock as a conditional candidate, but require an **independent color/position-to-operand mapping, a recognized data header, an external known plaintext, or a held-out original-rune prediction** before trying more packing variants or treating these high-entropy bytes as meaningful ciphertext. Original unknown-page plaintext remains unrecovered.
