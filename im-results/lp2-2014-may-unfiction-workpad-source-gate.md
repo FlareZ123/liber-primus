@@ -43,6 +43,8 @@ The April-to-July complete-line comparison finds **15 inserted or rewritten** an
 
 The [source-pinned chat-entry extractor](../sims/lp2_2016_titanpad_wayback_replay_sft.cjs) parsed JSON `time` / `userId` / `lineText` messages embedded in the replayed pad HTML on [successful Windows run 43594389204](https://github.com/FlareZ123/liber-primus/actions/runs/43594389204). Each April snapshot carries **21** messages dated **3 March–8 April 2016**; the July snapshot carries **27** messages dated **22 May–1 July 2016**. No captured embedded message dates to May–August **2014**. This proves a **chat-history window limitation**, rather than the absence of the original 2014 conversation from all services or archives.
 
+A similar p54 `A Beginning` speculation already appears in **23 May 2014 original IRC L186651**, where the participant immediately adds that `beginning doesn't fit` ([source-verified dialogue](../im-results/lp2-2014-original-irc-unknown-page-crib-holdout.md)). The following source-dated 2016 recurrence is therefore an additional participant witness to an older unsupported idea, rather than evidence of a first 2016 discovery.
+
 One new, exact period-user hypothesis survives in the July 2016 chat at original millisecond timestamp **1463897861205**, i.e. **22 May 2016 06:17:41.205 UTC**:
 
 > Since the first 2 words of page 56 translates to "AN END", I believe the fist 2 words of page 54 are : "A BEGINNING", try to find the key or some pattern that decode "A / M-NG-D-IA-TH-X-I-M" to "A BEGINNING"
