@@ -1,0 +1,36 @@
+# P27 terminal-repeat three-tape gate for p55
+
+**Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the genuine historical three-share XOR primitive and one direct reversible GF(29) analog do not recover p55 plaintext. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
+
+## Source-selected setup and new finite hypothesis
+
+The final **six original p55 ciphertext runes** are the two complete printed words **DJU BEI**. They occur verbatim as two printed words on original physical p27 at local rune offsets **28–33**. P27 carries a conspicuous single illustrated wing and p55 a complete moth/cicada. The exact repeated marker and the unique p55/p56 cross-page seven-rune seam were established earlier in [the source-repeat investigation](p27-p54-repeated-7gram-periodic-key-gate.md); ciphertext equality does not imply plaintext equality.
+
+The previously unexplored length relation is **p27 length234 = 3 × p55 length76 + repeated-marker length6**. Remove precisely the six matched runes from p27. Read in original order, beginning at the first rune *after* the matched p27 marker at offset34, wrapping once at the original page end and stopping before offset28. This leaves exactly **228 runes**. Split them into three consecutive **76-rune** tapes starting at original offsets **34, 110 and 186**; all remaining p27 runes are consumed once.
+
+A genuine early Cicada operation combined three independent **991-byte** shares by bitwise XOR to recover a signed message ([2014 historical solve-path source](../workplace/historical-solve-path-to-original-lp2.md)). That precedent motivates testing one direct three-share reading, with no fitted phase. It does **not** select that operation for LP2: the 2014 shares were bytes, whereas this proposed input is runic, and no first-party instruction identifies p27 as a key source for p55.
+
+## Exact original ciphertext gate
+
+The standalone [Node22 original-input SFT](../sims/lp2_p27_p55_three_tape_terminal_sft.cjs) asserts the authentic corpus lengths, complete six-rune match, anchored 228-rune traversal, every tape and the following outcomes:
+
+| Frozen consumer | Outcome | Inference |
+| --- | --- | --- |
+| XOR the three p27 GP index tapes as five-bit values, then compare the 76 outputs to p55 | **3/76** symbols equal p55; outputs at offsets **2,25,50,57** exceed GP index28 | The p55 ciphertext is not the literal XOR of these three GP29 shares |
+| XOR original p55 GP indices with all three source tapes | **8/76** output values lie outside 0–28, at offsets **0,3,8,24,25,26,32,49** | Not a direct native-GP29 plaintext decoder without a further transport |
+| Pack the four-way XOR result as successive five-bit data units, MSB first | **47 full bytes**, residual four bits **1011**; first sixteen bytes hexadecimal **fed9f91300f988f69957c4c8a7bb91f7** | No obvious plain message or common file header; the missing framing prevents authentication |
+| GF29 additive analogue: key[i] = (tapeA[i] + tapeB[i] + tapeC[i]) mod29; plaintext[i] = (p55[i] − key[i]) mod29 | Original decoded IoC **0.0347368421**, coherent prose absent; key equals p55 in **2/76** positions | Losslessly reversible but not an actual decipherment |
+
+P55 source ciphertext IoC is **0.0378947368**. The first76 original clear p57 runes have **IoC 0.0596491228**. Every proposed GF29 output reenciphers to the exact original 76 ciphertext runes. A p57-native planted 76-rune message recovers 76/76. These controls check the implementation but do not supply an authentic key.
+
+The original GF29 additive output opens with the transliterated GP rune identities:
+
+**M.D.N.AE.Y.NG.Y.A.F.A.A.X.E.E.H.U.C.H.NG.EO.J.R.J.W.P.AE.IA.Y.L.NG.EO.A.S.I.R.A.H.U.NG.W.P.R.J.IA**
+
+No unknown plaintext is recovered. The earlier p27 **single-tape following-marker additive** and **source-difference pads** were already tested; this new bounded test uses all three 76-rune source shares, selected by the independent page-length relation, and does not repeat those direct 70-rune consumers.
+
+## Evidential boundary and decision
+
+The length relation was noticed retrospectively, after finding the p27/p55 repeated words. It is source-exact but **does not authenticate** triple sharing or provide a discovery-wide significance probability. In particular, nothing surviving specifies the marker removal, cyclic cut, share order, XOR-to-byte framing, or GF29 additive analog as the intended encryption algorithm. The five-bit XOR outputs could encode some non-runic binary object, but no source picks a serialization or file format.
+
+**Retire both literal consumers.** Revisit the three-tape location only if an independent original Cicada instruction selects the share-combining operation and a concrete held-out ciphertext prediction. This is an intermediate report; the authoritative [results synthesis](../results/README.md) correctly remains unchanged.
