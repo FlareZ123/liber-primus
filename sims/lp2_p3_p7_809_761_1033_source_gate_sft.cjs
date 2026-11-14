@@ -502,6 +502,35 @@ assert.ok(patienceSourceKeyResults.every(x => x.deathAt !== null));
 const patienceBest = patienceSourceKeyResults.reduce((a, b) =>
   a.deathAt >= b.deathAt ? a : b);
 assert.ok(patienceBest.deathAt < 500);
+const patiencePageReset = [];
+for (const [chapter, first, last] of [['p3-7', 3, 7], ['p23-26', 23, 26]]) {
+  for (const alphabet of ['original', 'Atbash']) {
+    for (const order of ['printed', 'reversed']) {
+      for (const reverseKey of [false, true]) {
+        for (const sign of /** @type {const} */ ([-1, 1])) {
+          const key = reverseKey ? patienceKey.slice().reverse() : patienceKey;
+          const firstForcedFailures = [];
+          for (let pg = first; pg <= last; pg++) {
+            let cipher = alphabet === 'Atbash' ?
+              pages[pg].indices.map(v => 28 - v) : pages[pg].indices.slice();
+            if (order === 'reversed') cipher.reverse();
+            firstForcedFailures.push(keyedFDeath(cipher, key, sign));
+          }
+          patiencePageReset.push({
+            chapter, alphabet, order, reverseKey, sign,
+            firstForcedFailures,
+            sourcePagesFullyAccepted: firstForcedFailures.filter(x => x === null).length
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(patiencePageReset.length, 32);
+assert.ok(patiencePageReset.every(x =>
+  x.sourcePagesFullyAccepted < (x.chapter === 'p3-7' ? 5 : 4)));
+assert.equal(Math.max(...patiencePageReset.map(x =>
+  x.sourcePagesFullyAccepted)), 2);
 
 console.log(JSON.stringify({
   classification: 'conditional source-number coincidence; no unknown-page decryption',
@@ -529,5 +558,6 @@ console.log(JSON.stringify({
   stage10ContiguousQuintets: { originalSections: hillSectionInputs.map(x => [x[0], x[1].length]), originalModels: hillOriginal.length, best: hillBest, authenticKnownP57ClearIoC: ioc29(pages[57].indices), nativeP57PlantRecovered: solvedNativeHillRecovered.length },
   atbashSourcePrimeGates: { models: originalAtbashPrimeGates.length, allFail: true, longest: atbashLongest },
   original2014Patience761Key: { originalGPKeyLength: patienceKey.length, sourceGPPrimeSum: 761, models: patienceSourceKeyResults.length, allFail: true, longest: patienceBest, plantedKnownP57AcceptedRunes: patiencePlant.length },
+  original2014Patience761PageReset: { originalModels: patiencePageReset.length, allChaptersFail: true, mostFullSourcePagesAccepted: 2 },
   result: 'observed checksum equality does not select an authentic key or decipherment'
 }, null, 2));
