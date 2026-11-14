@@ -21,6 +21,10 @@ jobs:
           node sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs --selftest
       - name: Read-only static source acquisition
         run: node sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs --network
+      - name: Static ZIP and Java constant-pool inspection, no code execution
+        run: |
+          python3 sims/lp2_2014_unrunejar_static_sft.py --selftest
+          python3 sims/lp2_2014_unrunejar_static_sft.py irc-2014-nonpaste-live/unrune1.jar irc-2014-nonpaste-live/unrune2.jar
       - uses: actions/upload-artifact@v4
         if: always()
         with:
