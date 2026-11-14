@@ -18,3 +18,17 @@ jobs:
       - name: Query exact 2014 pad IDs and historical revision paths
         shell: pwsh
         run: node sims/lp2_2014_titanpad_twoid_history_gate_sft.cjs
+  original-irc-pad-history:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate original IRC pad-context miner
+        shell: pwsh
+        run: node --check sims/lp2_2014_irc_pad_revision_context_sft.cjs
+      - name: Mine two exact pad IDs and source-pinned 2014 revision context
+        shell: pwsh
+        run: node sims/lp2_2014_irc_pad_revision_context_sft.cjs
