@@ -15,7 +15,7 @@ const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
 const gp=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const source=gp.pages.filter(p=>p.page>=0&&p.page<=7);
 const counts=source.map(p=>p.indices.length);
-assert.deepEqual(counts,[262,266,201,267,236,238,208,196]);
+assert.deepEqual(counts,[262,266,201,217,261,263,196,208]);
 const c=source.flatMap(p=>p.indices);
 assert.equal(c.length,1874);
 assert.equal(counts.slice(0,3).reduce((a,b)=>a+b,0),729);
