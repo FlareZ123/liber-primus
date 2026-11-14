@@ -128,22 +128,35 @@ const sources = [
 // Independent GP29 source editions: Beowulf Anglo-Saxon and the Vulgate.
 // These repository fixtures already encode each original word in its own
 // native alphabet register; do not pass them through the English encoder.
-const radix29 = "0123456789ABCDEFGHIJKLMNOPQRS";
-/** @param {string} value @returns {number[]} */
-function decodeGpBase29(value) {
+/**
+ * Decode a fixture with its declared 29-index alphabet. Different historical
+ * source fixtures use different printable index encodings. They must never be
+ * silently interpreted as one shared text alphabet.
+ * @param {string} value
+ * @param {string} alphabet
+ * @returns {number[]}
+ */
+function decodeEncodedGP(value, alphabet) {
+  assert.equal(new Set(alphabet).size, 29);
   return [...value].map(ch => {
-    const n = radix29.indexOf(ch);
-    assert(n >= 0, "original historical GP fixture contains only GP29 digits");
+    const n = alphabet.indexOf(ch);
+    assert(n >= 0, "original GP fixture contains only its declared symbols");
     return n;
   });
 }
 const beowulf = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
-sources.push({name:"Corrected Old English Beowulf",
-  indices:decodeGpBase29(beowulf.sourceGpBase29)});
+const beowulfIndices = decodeEncodedGP(
+  beowulf.sourceGpBase29, beowulf.positiveControlAlphabet);
+const originalBeowulfCounts = new Array(29).fill(0);
+for (const rune of beowulfIndices) originalBeowulfCounts[rune]++;
+assert.deepEqual(originalBeowulfCounts, beowulf.allGpCounts,
+  "correct Old English alphabet matches the source-original 29-index histogram");
+sources.push({name:"Corrected Old English Beowulf", indices:beowulfIndices});
 const latin = read("resources/control/latin-vulgate-gp-wholewords.txt")
   .split("\n").filter(line => line.trim() && !line.trimStart().startsWith("#"))
   .join("");
-sources.push({name:"Latin Vulgate", indices:decodeGpBase29(latin)});
+sources.push({name:"Latin Vulgate",
+  indices:decodeEncodedGP(latin, "0123456789ABCDEFGHIJKLMNOPQRS")});
 assert.deepEqual(sources.map(s => s.indices.length),
   [217106, 62492, 321327, 48012, 204802]);
 
