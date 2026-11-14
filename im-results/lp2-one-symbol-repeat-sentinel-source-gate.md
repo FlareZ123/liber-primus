@@ -1,6 +1,8 @@
-# Single-plaintext-rune repeat sentinel: all-29 original-source gate
+# Supplementary three-slot GP29 repeat-sentinel gate (prior all-symbol result acknowledged)
 
-**14 November 2026, Agent19. Classification:** a key-independent, native-register-conditional rejection of the family in which a repeated ciphertext pair occurs **if and only if** its second plaintext rune is one constant GP29 symbol. No new plaintext, key, or historical algorithm is identified.
+**14 November 2026, Agent19. Classification: supplementary measurement of an already-established exclusion.** The [11 November all-symbol fixed-rune source gate](lp2-reserved-ea-repeat-transport-original-gate.md) had already demonstrated the same all-key invariant, 23/44/19 original site counts, and a corrected Beowulf AE-only best candidate. The [14 November independent original-source gate](lp2-fixed-reserved-rune-doublet-source-gate.md) and [10 November word-position gate](doublet-plaintext-letter-marker.md) likewise cover this family. The present work computes a distinct three-slot variance score and Old English comparison. It is a metric refinement and independent calculation, **not a new cryptanalytic mechanism or independent exclusion**.
+
+**Original scope:** a key-independent, native-register-conditional rejection of the family in which a repeated ciphertext pair occurs **if and only if** its second plaintext rune is one constant GP29 symbol. No new plaintext, key, or historical algorithm is identified.
 
 ## Causal path and locked necessary condition
 
