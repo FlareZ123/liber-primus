@@ -112,6 +112,27 @@ function residueCounts(originalPage, k) {
 }
 
 /**
+ * Page-inventory fixed-k word index-sum distribution in GF29.
+ * @param {number[]} indices
+ * @param {number} k
+ * @returns {number[]}
+ */
+function gpIndexResidueCounts(indices, k) {
+  const dp = Array.from({ length: k + 1 }, () => Array(29).fill(0));
+  dp[0][0] = 1;
+  let seen = 0;
+  for (const sourceRune of indices) {
+    seen++;
+    for (let n = Math.min(k, seen); n >= 1; n--) {
+      for (let residue = 0; residue < 29; residue++) {
+        dp[n][(residue + sourceRune) % 29] += dp[n - 1][residue];
+      }
+    }
+  }
+  return dp[k];
+}
+
+/**
  * All possible real F-transparent key clocks for ciphertext-minus-key
  * modulo 29. A source plaintext F emits ciphertext F consuming no key;
  * ciphertext F may alternatively represent encrypted plaintext non-F.
@@ -205,6 +226,21 @@ assert.equal(primeSum(addressed40.indices), 228);
 assert.equal(primeSum(addressed33.indices) % 56, 40); // 40th page, p39
 assert.equal(primeSum(addressed40.indices) % 56, 4); // 4th page, p3
 
+// Independent possible consumer with only the original GP29 index alphabet:
+// the addressed word-index sums are 27 and 61 mod29=3, selecting original
+// pages p27 and p3. The p27 site has the same source seven-rune bookend as
+// p55->p56. This is a second retrospective reading, not a decoder.
+const indexTargets = [
+  addressed33.indices.reduce((sum, i) => sum + i, 0) % 29,
+  addressed40.indices.reduce((sum, i) => sum + i, 0) % 29
+];
+assert.deepEqual(indexTargets, [27, 3]);
+assert.deepEqual(page(27).slice(28, 35), [...page(55).slice(70, 76), page(56)[0]]);
+const gp29Sum33 = gpIndexResidueCounts(page(33), 2);
+const gp29Sum40 = gpIndexResidueCounts(page(40), 5);
+assert.equal(gp29Sum33[27], 782);
+assert.equal(gp29Sum40[3], 180946082);
+
 // Conditional readout p3 -> p33 -> p39 -> p40 -> p3: 3+2+3+5=13 runes.
 // The independently printed p0 red heading has exactly 13 runes.
 const key = [...triad3, ...addressed33.indices, ...triad39, ...addressed40.indices];
@@ -253,6 +289,17 @@ console.log(JSON.stringify({
     { targetPage: 33, startOrdinal: 33, startPrime: 137, firstImpossibleRune: rankStart33.failAt },
     { targetPage: 40, startOrdinal: 40, startPrime: 173, firstImpossibleRune: rankStart40.failAt }
   ],
+  alternativeGP29IndexReturn: {
+    destinations: indexTargets,
+    source7gramAnchor: 'p27:28-34 = p55:70-75 + p56:0',
+    inventoryConditioned: {
+      p33To27: gp29Sum33[27] / count33,
+      p40To3: gp29Sum40[3] / count40,
+      joint: gp29Sum33[27] / count33 * gp29Sum40[3] / count40
+    },
+    authorSelected: false,
+    plaintextRecovered: false
+  },
   proposedDirectKey: { spell: spell(key), length: key.length, p0HeadingLength: p0heading.length },
   sourceNativePlant: { runes: 95, recoveredClock: nativePlant.clock },
   originalP0: { runes: page(0).length, exhaustiveStrictFInverseImpossibleAt: originalP0.failAt },
