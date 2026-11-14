@@ -76,8 +76,8 @@ function relevantLines(text){
    print({kind:'target-page-original-pad',ts:v.ts,target,found:from>=0,
     excerpt:from>=0?v.text.slice(Math.max(0,from-180),until>from?Math.min(until,from+4500):from+4500):''});
   }
-  print({kind:'all-source-annotation-lines',ts:v.ts,lines:v.text.split('\\n').flatMap((line,i)=>
-   /(?:^\\s*\\/\\/|\\b(?:translated|decoded|decrypt|cipher|key|prime|clue|solved|unknown|believe|note|code|numeric|outguess|mayfly|page 28)\\b)/i.test(line)
+  print({kind:'all-source-annotation-lines',ts:v.ts,lines:v.text.split('\n').flatMap((line,i)=>
+   /(?:^\s*\/\/|\b(?:translated|decoded|decrypt|cipher|key|prime|clue|solved|unknown|believe|note|code|numeric|outguess|mayfly|page 28)\b)/i.test(line)
    ?[{line:i+1,text:line.slice(0,400)}]:[]).slice(0,220)});
   print({kind:'chat-entries',ts:v.ts,entries:v.chat.map(x=>({timestamp:new Date(x.time).toISOString(),message:x.lineText.slice(0,2000)}))});
  }
