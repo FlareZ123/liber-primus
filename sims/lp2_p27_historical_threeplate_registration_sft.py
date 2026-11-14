@@ -95,7 +95,8 @@ def match(source: np.ndarray, target: np.ndarray) -> dict[str, object]:
     if d_s is None or d_t is None or len(kp_s) < 3 or len(kp_t) < 3:
         return {**result, "ratio_matches": 0, "affine_inliers": 0, "target_span_x": 0.0, "target_span_y": 0.0}
     pairs = cv2.BFMatcher(cv2.NORM_L2).knnMatch(d_t, d_s, k=2)
-    good = [a for a, b in pairs if a.distance < 0.75 * b.distance]
+    reverse = {m.queryIdx: m.trainIdx for m in cv2.BFMatcher(cv2.NORM_L2).match(d_s, d_t)}
+    good = [a for a, b in pairs if a.distance < 0.75 * b.distance and reverse.get(a.trainIdx) == a.queryIdx]
     result["ratio_matches"] = len(good)
     if len(good) < 4:
         return {**result, "affine_inliers": 0, "target_span_x": 0.0, "target_span_y": 0.0}
