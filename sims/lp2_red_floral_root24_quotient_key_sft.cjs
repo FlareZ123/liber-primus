@@ -51,7 +51,6 @@ function divideByRoot(coefficients) {
     check[i] = mod(check[i] + quotient[i]);
     check[i + 1] = mod(check[i + 1] - root * quotient[i]);
   }
-  check.at(-1);
   check[check.length - 1] = mod(check.at(-1) + remainder);
   assert.deepEqual(check, coefficients);
   return { quotient, remainder };
