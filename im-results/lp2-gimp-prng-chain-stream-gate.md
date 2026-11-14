@@ -40,17 +40,9 @@ The inverse additive direction was scored as the natural sign alternative. No se
 
 The standard deviation of a chance match count is about **21.05**. All six scores are within 1.64 standard deviations of chance. None is remotely consistent with a recovered key stream.
 
-## Independent direct GP29-key interpretation (Agent27, 13 November 2026)
-
-The same historically source-reproduced GIMP field has a separate, straightforward cryptographic use which the 28-way step comparison above did not address: take its 32-bit output as a **29-way GP rune keystream**, then use a one-to-one additive cipher `C = P ± K (mod 29)` with no ciphertext feedback or deleted symbols. The source supplies seed **314159265**; the possible initial generator states tested are the master GLib GRand state and the first genuine Dissolve row seed **1428665816**. A third control cycles through the exact **4,096** underlying random-table words. No seed search or fitted offset is used. The image supplies neither a rule linking text to this generator nor a required GP29 projection, so the experiment freezes both standard 32-bit-to-29 reductions: GLib's scaled range and unsigned integer modulo 29.
-
-These are **3 streams × 2 page/global clocks × 2 reductions × 2 signs = 24** fully reversible, source-seeded original-cipher inverses, measured on all **12,956** unmodified unknown LP2 runes. All outputs retain IoC within **0.0344453793–0.0345189710**, essentially the uniform GP29 baseline `1/29≈0.03448276`; even the highest candidate contains no recognizable GP-native passage. Repeated 4,096-entry table and direct-master modes coincide under page reset where pages have fewer than 4,096 runes, as expected from their common initial stream. The best candidate is master-seed, per-page reset, scaled GP29 projection, positive inverse, IoC **0.0345189710**. A known solved-p57 native-GP plant repeated to the full exact source length recovers **12,956/12,956** runes under these keys, while every original inverse exactly re-encrypts. This rejects only a **direct additive** GP29 use of this documented PRNG; it does not support trying arbitrary variants of the historical seed.
-
-The standalone [GP29 direct-key SFT](../sims/lp2_gimp_pi29_source_key_sft.cjs) (passing [original-input Windows Actions run 43530202473](https://github.com/FlareZ123/liber-primus/actions/runs/43530202473)) reconstructs all 24 outputs from the shared original corpus and implements the same historical GRand engine as the separate 28-way step test. It contains exact maximum/minimum IoC assertions and a GP-native planted inverse. **Result: no recovered unknown-page plaintext, key, or authenticated text-key instruction.**
-
 ## Decision and scope
 
-**Reject the direct 1-D GIMP-PRNG-to-chain-step key hypothesis and its direct 29-way additive variant under the 24 documented source-seeded readings.** The p57 dissolve fingerprint is a genuine image-generation clue, but these direct streams do not decrypt LP2.
+**Reject the direct 1-D GIMP-PRNG-to-chain-step key hypothesis.** The p57 dissolve fingerprint is a genuine image-generation clue, but these direct streams do not decrypt LP2.
 
 A two-dimensional sample of the GIMP field at rune pixel coordinates was not run. The sources currently provide no rule selecting a rune's sample pixel (center, edge, first ink pixel, etc.) or establishing that the text was keyed from the same field. Choosing such a mapping after seeing ciphertext would introduce an unconstrained parameter and fail the Director's source-to-plaintext criterion. Do not launch coordinate sweeps unless an independent clue fixes that mapping.
 
