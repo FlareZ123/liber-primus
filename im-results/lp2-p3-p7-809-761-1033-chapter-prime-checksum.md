@@ -69,8 +69,15 @@ The only previously authenticated LP2 reversible glyph cipher is the p56 prime-t
 | 58 | 27 |
 | 761 | 33 |
 | 1033 | 74 |
+| 134 (first prime = **761**) | 10 |
+| 139 (first prime = **809**) | 22 |
 
 All offsets are zero-based from the first printed rune on p3. The same decoder successfully reproduces the entire independently solved 85-rune p56 plaintext with the actual single F bypass at local offset56; its state-survival DP also accepts the authentic p56. The proposed key starts are exploratory choices, not a claim that the source requested them. The strict-F contradiction rejects only **these prime-start applications of that precise historical cipher**, not an unknown non-additive cipher, a different key source, or an English-orthography variant.
+
+The **five black dots** also suggest five successor steps in the publicly known ordinary-prime list. The two independently source-labeled numbers actually satisfy \(\pi(809)-\pi(761)=140-135=5\): the **five next primes after 761 are [769,773,787,797,809]**. This is an exact, reversible integer-key selector at the level of a *candidate operation*, and supplies a narrower test than arbitrary prime indices.
+
+Applying the original p56 GP prime-totient/F-bypass cipher starting with the **actual primes** 761 or 809 fails at original p3 zero-based rune positions **10** and **22**, respectively, under all legal F-skip histories. Starting each of the five original pages p3,p4,p5,p6,p7 separately at the corresponding five successive primes [769,773,787,797,809] fails at original page-local rune positions **[24,54,21,3,71]**. These are deterministic complete-mask obstructions, not poor language-fit scores. They retire only direct consecutive-prime-totient consumers of the five-step source values, not the possibility of another authorized 761.MP3 binary XOR/key operation. The 2013 original audio byte/pad and BASE29→XOR proposals were already examined separately in [the original audio report](audio-761-pad-scan.md) and [the byte-header gate](lp2-2013-audio-base29-xor-header-gate.md); an exploratory new route must identify an operation genuinely different from these completed direct-audio tests.
+
 
 ## Research decision
 
