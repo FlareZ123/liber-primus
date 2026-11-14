@@ -65,7 +65,7 @@ Every row, every column, and both main diagonals of this newly recovered square 
 
 The inference is **fully reversible**: reverse every decimal token again, swap its ASCII high/low nibbles back, hex-encode, prepend the two original newlines, and recover all **360 central bytes**, including exact leading-zero digit strings. The [single-file Node22 SFT](../sims/lp1_p05_magic_square_nibble_inverse_sft.cjs) checks the 179-byte SHA-256, exact encoded central stream, 25 individual historical values, independent mismatch if token reversal is omitted, and 180° matrix symmetry. Its independent input is the historical square resource. It is a **recovered original 2014 stage numerical object** embedded as an overlooked binary appendage on LP1's prime/totient page, *not* unknown LP2 plaintext. The 2014 square already existed elsewhere in the public archival record. This newly established copy and its historical handoff may inform further cryptanalysis, but supplies no authenticated cipher operator connecting these 25 numbers to LP2's 12,956 unsolved runes.
 
-## One directly motivated LP2 consumer tested, with original plaintext decision
+## Original p55: source-motivated additive consumer and original plaintext decision
 
 The source LP1 p05 text explicitly calls **primes and Euler's totient sacred**. Its newly decoded hidden square contains **25 numbers**. Physical LP2 p55 contains **76 GP29 runes**; its original ciphertext has a literal F at local rune position **25**, so treating only this exact F as a transparent, non-key-consuming interrupt leaves **75 key-consuming runes**, three complete passes over 25 table values. The repeated moth illustration provides an independently authored LP1 p05→LP2 p53/p55 visual relationship, though the art also occurs on p53 and therefore **cannot uniquely select p55**. This specific geometry-and-operand combination was not covered by previous #495's negative using the *different* 5×5 **printed Wisdom 1033 square**.
 
@@ -76,6 +76,31 @@ NINAETHJOEAWNTEONHFDSCOEUAEOEDTHTFTHANTFNPTHHGDNGNRBDCEBUWREOIADEAAEUPJBEOMEOMHH
 ```
 
 The recovered output has **IoC 0.0333333333**, whereas the independently solved source-native p56 ciphertext inverse is **0.0700280112** and clear p57 **0.06270997**. All 76 original runes re-encrypt exactly, and the key has consumed **75** values; the output is not coherent GP29 historical prose or a typed instruction. This rejects **this single fixed historical-square φ transfer**, without ruling out other possible keys, phases, F masks, text registers, or source-selected uses of the hidden historical square. The same [single-file SFT](../sims/lp1_p05_magic_square_nibble_inverse_sft.cjs) tests the full exact historical-square extraction and the frozen p55 original hypothesis. Do not retune this mechanism after its observed failure absent another first-party instruction.
+
+## Original p55: direct non-additive Hill5 inverse from the newly recovered square (bounded negative)
+
+The exact recovered 2014 numerical square offers a further historically plausible **non-additive** use, distinct from the failed totient pad above. Reduce its source-ordered entries modulo the authenticated GP29 modulus and use it as a classical five-rune Hill-cipher block matrix, with ciphertext vectors as columns. The original square is nonsingular: its determinant is **3 mod 29**; no matrix repair, trial permutations, key search or chosen plaintext is required. The original p55 has **76** runes, and the one original ciphertext F at local index **25** can be hypothesized as a literal key-clock interruption, leaving **75 = 15 × 5** runes. The skip is an explicit *hypothesis* transferred from solved Cicada ciphers, not a proven property of this unknown page.
+
+The exact row-major matrix and its inverse over GF(29) are:
+
+~~~text
+M                         M^{-1} mod 29
+11 22 22 15  6             23 22 15  2 17
+18 25 14  1 18             24 25  4  2 24
+23 13  4 13 23             20 28 12 28 20
+18  1 14 25 18             24  2  4 25 24
+ 6 15 22 22 11             17  2 15 22 23
+~~~
+
+Applying the fixed inverse \(P_j=M^{-1} C_j\pmod{29}\) independently to each consecutive ciphertext block of five, restoring F at index25, yields this complete original-page candidate:
+
+~~~text
+WUEARFRNGWNSOEOOEIALFYAEEAROEOEALWFSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY
+~~~
+
+The 75 transformed non-F runes have coincidence index **0.03855855855855856**, without coherent source-native prose or a readable command. Exact forward Hill5 multiplication re-encrypts all **75/75** consumed original runes; F is restored unchanged at its original source position. That round-trip is guaranteed by the invertible matrix and **does not authenticate** the key. The historically given other 5×5 square yields another nonprose 75-rune output (IoC **0.02990990990990991**); the 7×7 square cannot consume 75 runes in complete seven-symbol blocks under this same fixed clock, so no further key phase was fitted.
+
+**Decision:** The source-derived 5×5 matrix is genuinely invertible, but the direct, block-aligned Hill5 transfer **does not decipher p55**. The source provides no instruction selecting Hill5 as a consumer or this skip clock. Retire this exact candidate without a fresh source-backed operator. The canonical source-coupled SFT tests the original 76 runes, exact matrix inverse and reencryption.
 
 ## p05 179-byte payload → p53 179-rune stream (bounded direct-key negative)
 

@@ -83,6 +83,68 @@ assert.equal(p55ioc,1/30);
 const p55runeglish=p55Inverse.map(r=>corpus.translit[r]).join('');
 assert.equal(p55runeglish,'NINAETHJOEAWNTEONHFDSCOEUAEOEDTHTFTHANTFNPTHHGDNGNRBDCEBUWREOIADEAAEUPJBEOMEOMHHJORWSMMGTWOIA');
 
+
+// One source-fixed non-additive consumer: the recovered 2014 5x5 numerical
+// square is a fully invertible Hill5 matrix over the authenticated GP29 field.
+// Original p55's single F at position25 is provisionally treated as a literal
+// no-clock-advance symbol, leaving 75 runes in 15 five-rune blocks. This is a
+// bounded key-transfer test, NOT an authenticated instruction or decryption.
+/** @param {number} value @returns {number} */
+const mod29=value=>((value%29)+29)%29;
+/** @param {number[][]} matrix5 @returns {{det:number, inverse:number[][]}} */
+function invert5(matrix5) {
+  const a=matrix5.map((row,i)=>row.map(mod29).concat(
+    Array.from({length:5},(_,j)=>i===j?1:0)));
+  let det=1;
+  for(let col=0;col<5;col++){
+    let pivot=col;
+    while(pivot<5 && a[pivot][col]===0)pivot++;
+    assert(pivot<5,'source matrix must be invertible in GF29');
+    if(pivot!==col){[a[col],a[pivot]]=[a[pivot],a[col]];det=mod29(-det);}
+    const v=a[col][col];det=mod29(det*v);
+    const reciprocal=Array.from({length:28},(_,i)=>i+1).find(x=>mod29(x*v)===1);
+    assert.notEqual(reciprocal,undefined);
+    a[col]=a[col].map(x=>mod29(x*reciprocal));
+    for(let r=0;r<5;r++)if(r!==col){
+      const scale=a[r][col];
+      a[r]=a[r].map((x,j)=>mod29(x-scale*a[col][j]));
+    }
+  }
+  return {det,inverse:a.map(row=>row.slice(5))};
+}
+/** @param {number[][]} matrix5 @param {number[]} block @returns {number[]} */
+const multiply5=(matrix5,block)=>matrix5.map(row=>
+  mod29(row.reduce((sum,x,j)=>sum+x*block[j],0)));
+/** @param {number[][]} key @param {number[]} input @returns {number[]} */
+function transform5(key,input) {
+  assert.equal(input.length%5,0);
+  const out=[];
+  for(let start=0;start<input.length;start+=5){
+    out.push(...multiply5(key,input.slice(start,start+5)));
+  }
+  return out;
+}
+const fiveMatrix=numeric.map(row=>row.map(mod29));
+const {det:hill5Det,inverse:hill5Inverse}=invert5(fiveMatrix);
+assert.equal(hill5Det,3);
+assert.deepEqual(hill5Inverse,[
+  [23,22,15,2,17],[24,25,4,2,24],[20,28,12,28,20],
+  [24,2,4,25,24],[17,2,15,22,23]
+]);
+const p55WithoutF=originalP55.filter((value,i)=>i!==25);
+assert.equal(p55WithoutF.length,75);
+const p55HillPlain=transform5(hill5Inverse,p55WithoutF);
+assert.deepEqual(transform5(fiveMatrix,p55HillPlain),p55WithoutF);
+const p55HillFull=p55HillPlain.slice();
+p55HillFull.splice(25,0,originalP55[25]);
+const p55HillText=p55HillFull.map(r=>corpus.translit[r]).join('');
+assert.equal(p55HillText,
+ 'WUEARFRNGWNSOEOOEIALFYAEEAROEOEALWFSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY');
+const hillCounts=Array(29).fill(0);
+p55HillPlain.forEach(r=>hillCounts[r]++);
+const hillIoC=hillCounts.reduce((sum,n)=>sum+n*(n-1),0)/(75*74);
+assert.ok(Math.abs(hillIoC-0.03855855855855856)<1e-15);
+
 const output=decoded.map(r=>r.join(' ')).join('\n');
 console.log(JSON.stringify({
  status:'PASS',source:'original LP1 05.jpg central 179-byte object',
@@ -90,5 +152,7 @@ console.log(JSON.stringify({
  sourceBytes:179,sourceSha256:crypto.createHash('sha256').update(payload).digest('hex'),
  target:'2014 OpenPuff magic squares, independently preserved third 5x5 square',
  exactSquare:true,magicSum1033:true,rotationallySymmetric:true,exactByteReencoding:true,
- matrix:output,provisionalP55PhiKey:gridKey,provisionalP55Decoded:p55runeglish,provisionalP55IoC:p55ioc,unknownLP2PlaintextRecovered:false
+ matrix:output,provisionalP55PhiKey:gridKey,provisionalP55Decoded:p55runeglish,provisionalP55IoC:p55ioc,hill5Mod29Det:hill5Det,
+ hill5Inverse,hill5Decoded:p55HillText,hill5PlaintextIoC:hillIoC,
+ hill5ExactForwardReencryption:true,unknownLP2PlaintextRecovered:false
 },null,2));
