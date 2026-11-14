@@ -24,7 +24,25 @@ The **only occurrence** across all 428 outputs is the already source-selected **
 
 The original-source [standalone CommonJS SFT](../sims/lp2_p32_route43_p55_interior_peel_sft.cjs) asserts the 43 signed words' preexisting interval, exact p55 word parsing including the cross-page first boundary, p32 landmark, all 43 selected source steps, entire unedited direct result, unique 428-variant motif and an independent **43/43 solved-p57 GP-native encrypted/decoded plant**. [Manual Windows Node22 run 43498984209](https://github.com/FlareZ123/liber-primus/actions/runs/43498984209) runs the source test alongside Agent36's preceding source gates.
 
+## Source-authenticated transparent-F continuation test
+
+The 43-rune p55 interior strip contains exactly one ciphertext F, at interior offset **11**. The solved p56 cipher establishes that a literal plaintext F passes through unchanged and does not consume a key symbol. I transferred only that clock convention to the fixed 43-rune p32-route key; I did **not** transfer p56's consecutive-prime key schedule.
+
+There are exactly two masks:
+
+- **No literal-F bypass:** direct subtraction reaches plaintext F at interior offset **13** while consuming the key. This is invalid under the p56 transparent-F rule, because plaintext F would have had to pass through without consuming a key.
+- **Treat ciphertext F at offset 11 as literal:** skip that key symbol and continue. This is the only valid path; it consumes **42/43** key symbols and yields:
+
+```text
+J P E E L I TH S S X N F T L N S Y J E U O L G P Y L IA Y L M O T H L H M L L TH TH C B R
+```
+
+The retrospective `PEEL` at offsets 1–4 survives because it precedes the F. The remaining stream is still nonlinguistic. Its IoC is **0.0520487**, but its mean English-quadgram score is **−15.7510065**, versus **−10.0984554** for a clear 43-rune p57 control under the same 79,495-quadgram model. The one-runic F-skip shift therefore does not recover sustained plaintext.
+
+A synthetic 43-rune p57 plant containing its genuine F at offset 33 encrypts and decrypts exactly under the same p32-route key and transparent-F convention (**43/43**). This validates the implementation, not the proposed key.
+
+
 ## Decision and non-obvious failure mode
 
-This is the closest source-constrained **word-like local readout** in this invocation, but four symbols plus 39 nonlinguistic symbols do **not** establish original plaintext or an authentic LP2 cipher. It is not a source-locked 76-rune decoder for the waiting original-p55 challenge. **Do not** rotate key phase, manually repair `JPEELITHSS...` into a phrase, decode arbitrary offsets or introduce new plaintext cribs from this exploratory four-letter hit. The most useful independent next step would be an **authentic earlier Cicada instruction** selecting rune-ordinal GP29 subtraction on the 43-interior strip, and a locked prediction for previously unseen original ciphertext beyond these four characters. Otherwise treat PEEL as a plausible coincidence under an extensive accumulated search space.
+This is the closest source-constrained **word-like local readout** in this invocation, but four symbols plus 39 nonlinguistic symbols do **not** establish original plaintext or an authentic LP2 cipher. It is not a source-locked 76-rune decoder for the waiting original-p55 challenge. **Do not** rotate key phase, manually repair `JPEELITHSS...` into a phrase, decode arbitrary offsets or introduce new plaintext cribs from this exploratory four-letter hit. The exact p56 transparent-F continuation has now also been tested and does not improve the result. The next useful step would require an independently authored clue selecting the 2016→p32 compass/key path and a locked prediction on unseen original ciphertext beyond these four characters. Otherwise treat PEEL as a plausible coincidence under an extensive accumulated search space.
 
