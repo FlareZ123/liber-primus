@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scan original JPEGs for bytes after the final EOI and exact reverse-prefix echoes."""
+"""Scan original JPEGs for post-EOI data and maximal byte-mirror shells."""
 
 from __future__ import annotations
 
@@ -16,25 +16,32 @@ def sha256(data: bytes) -> str:
 
 def inspect(name: str, data: bytes) -> dict:
     eoi = data.rfind(b"\xff\xd9")
-    if eoi < 0:
-        return {
-            "name": name,
-            "size": len(data),
-            "has_eoi": False,
-            "sha256": sha256(data),
-        }
-    tail = data[eoi + 2 :]
+    tail = data[eoi + 2 :] if eoi >= 0 else b""
+
+    mirror = 0
+    while mirror < len(data) // 2 and data[mirror] == data[-1 - mirror]:
+        mirror += 1
+    middle = data[mirror : len(data) - mirror]
+    stripped = middle.strip()
+    is_hex = bool(stripped) and len(stripped) % 2 == 0 and all(
+        byte in b"0123456789abcdefABCDEF" for byte in stripped
+    )
+    decoded = bytes.fromhex(stripped.decode("ascii")) if is_hex else b""
+
     return {
         "name": name,
         "size": len(data),
         "sha256": sha256(data),
         "eoi_offset": eoi,
-        "tail_start": eoi + 2,
-        "tail_length": len(tail),
-        "tail_sha256": sha256(tail) if tail else None,
-        "tail_is_exact_reversed_prefix": bool(tail) and tail[::-1] == data[: len(tail)],
-        "tail_prefix_hex": tail[:16].hex() if tail else "",
-        "tail_suffix_hex": tail[-16:].hex() if tail else "",
+        "post_eoi_length": len(tail),
+        "post_eoi_sha256": sha256(tail) if tail else None,
+        "post_eoi_is_exact_reversed_prefix": bool(tail) and tail[::-1] == data[: len(tail)],
+        "mirror_shell_length": mirror,
+        "central_length": len(middle),
+        "central_sha256": sha256(middle) if middle else None,
+        "central_is_ascii_hex": is_hex,
+        "central_hex_decoded_length": len(decoded) if is_hex else None,
+        "central_hex_decoded_sha256": sha256(decoded) if is_hex else None,
     }
 
 
@@ -58,11 +65,14 @@ def main() -> None:
     args = parser.parse_args()
 
     records = [inspect(name, data) for name, data in load_images(args.source)]
-    anomalies = [r for r in records if r.get("tail_length", 0)]
+    anomalies = [
+        record for record in records
+        if record["post_eoi_length"] or record["central_length"]
+    ]
     print(json.dumps({
         "image_count": len(records),
-        "trailing_data_count": len(anomalies),
-        "trailing_data": anomalies,
+        "anomaly_count": len(anomalies),
+        "anomalies": anomalies,
     }, indent=2))
 
 
