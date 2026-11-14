@@ -52,48 +52,51 @@ def make_lexicon(tiles):
     return prefixes, included, hashlib.sha256("\n".join(source).encode("utf8")).hexdigest()
 
 def parse_pages(text, runes, source_pages):
-    tokens = set(runes)
-    records = []
-    index = {ch: i for i,ch in enumerate(runes)}
+    """Preserve all 32 authentic page-spanning words; '%' is transparent."""
+    rune_index = {ch: i for i, ch in enumerate(runes)}
     page_arrays = []
-    period_count = 0
-    for p, raw in enumerate(text.strip().split("\n%\n")[:55]):
+    words = []
+    current_slots = []
+    current_after = False
+    after_period = False
+    periods = 0
+
+    def flush():
+        nonlocal current_slots
+        if current_slots:
+            first_page, first_offset = current_slots[0]
+            words.append((first_page, first_offset, len(current_slots),
+                          current_after, tuple(current_slots[:6]),
+                          current_slots[-1][0]))
+            current_slots = []
+
+    for p, raw_page in enumerate(text.strip().split("%")[:55]):
         arr = []
-        words = []
-        word = []
-        start = 0
-        after_period = False
-        current_after = False
-        def flush():
-            nonlocal word
-            if word:
-                words.append((start, len(word), current_after))
-                word = []
-        for ch in raw:
-            if ch in tokens:
-                if not word:
-                    start = len(arr)
+        for ch in raw_page:
+            if ch in rune_index:
+                if not current_slots:
                     current_after = after_period
                     after_period = False
-                arr.append(index[ch])
-                word.append(index[ch])
-            elif ch in "-.&$":
+                current_slots.append((p, len(arr)))
+                arr.append(rune_index[ch])
+            elif ch in "/ \n\r\t":
+                # All line wraps and whitespace are layout, not word limits.
+                continue
+            else:
+                # - . & $ § and original non-rune symbols delimit words.
                 flush()
                 if ch == ".":
-                    period_count += 1
+                    periods += 1
                     after_period = True
-            # '/' and physical line feed wrap transparently
-        flush()
-        # Source corpus indexes are the original rune sequence (no guessed rune OCR).
-        actual = source_pages[p]["indices"]
-        assert arr == actual, f"physical source mismatch page={p}"
+        assert arr == source_pages[p]["indices"], f"source rune mismatch page={p}"
         page_arrays.append(arr)
-        for start, length, after in words:
-            records.append((p, start, length, after))
+    flush()
     assert len(page_arrays) == 55
     assert sum(map(len, page_arrays)) == 12956
-    assert any(p==32 and start==33 and after for p,start,length,after in records)
-    return page_arrays, records, period_count
+    assert len(words) == 2896, f"historical whole-word parser count changed {len(words)}"
+    assert sum(end != start for start, _, _, _, _, end in words) == 32
+    assert any(p == 32 and start == 33 and after for p,start,_,after,_,_ in words)
+    return page_arrays, words, periods
 
 def summarize(pages, records, prefixes, include_hits=False):
     counts = {k:0 for k in LENGTHS}
@@ -103,11 +106,11 @@ def summarize(pages, records, prefixes, include_hits=False):
     exact_home = 0
     after_home = 0
     examples = []
-    for page, start, length, after in records:
-        text = pages[page]
+    for page, start, length, after, slots, endpage in records:
+        stem = tuple(pages[p][pos] for p,pos in slots)
         hit_length = 0
         for k in LENGTHS:
-            if length >= k and tuple(text[start:start+k]) in prefixes[k]:
+            if length >= k and stem[:k] in prefixes[k]:
                 hit_length = k
                 counts[k] += 1
                 if after:
@@ -116,7 +119,7 @@ def summarize(pages, records, prefixes, include_hits=False):
             all_max = hit_length
         if after:
             post_max = max(post_max, hit_length)
-        if length >= 4 and tuple(text[start:start+4]) == HOME:
+        if length >= 4 and stem[:4] == HOME:
             exact_home += 1
             if after:
                 after_home += 1
@@ -124,11 +127,13 @@ def summarize(pages, records, prefixes, include_hits=False):
             examples.append({"page":page if page<50 else page+1,
                              "rune_start":start,"word_length":length,
                              "after_period":after,"prefix_length":hit_length,
-                             "gp_indices":text[start:start+hit_length]})
+                             "gp_indices":list(stem[:hit_length]),
+                             "spans_page":endpage!=page})
     return {"all_counts":counts, "post_counts":post, "all_max":all_max,
             "post_max":post_max, "home_all":exact_home,
             "home_after_period":after_home,
             "examples":examples if include_hits else None}
+
 
 def main():
     corpus = json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text("utf8"))
@@ -138,9 +143,9 @@ def main():
     pages, words, period_count = parse_pages(raw, corpus["runes"], source_pages)
     prefixes, lex_words, sha = make_lexicon(corpus["translit"])
     assert (pages[32][33:38] == [*HOME, 14])
-    assert len(words) == 2928, f"canonical page-word census changed: {len(words)}"
-    assert sum(length-1 for _,_,length,_ in words)==10028
-    after_positions = [(p,st,ln) for p,st,ln,after in words if after]
+    assert len(words) == 2896, f"canonical whole-word census changed: {len(words)}"
+    assert sum(length-1 for _,_,length,_,_,_ in words)==10060
+    after_positions = [(p,st,ln,slots) for p,st,ln,after,slots,_ in words if after]
     original = summarize(pages,words,prefixes,True)
     emit("contract",seed=SEED,reps=REPS,source_runes=12956,
          pages=len(pages),source_words=len(words),period_marks=period_count,
@@ -154,10 +159,11 @@ def main():
     # Native-text planted marker control: make HOME a genuine four-GP-rune
     # prefix at 12 separate period-start word slots; no word boundary altered.
     planted = [list(page) for page in pages]
-    eligible = [(p,st,ln) for p,st,ln in after_positions if ln>=4]
+    eligible = [(p,st,ln,slots) for p,st,ln,slots in after_positions if ln>=4]
     assert len(eligible)>=12
-    for p, st, _ in eligible[:12]:
-        planted[p][st:st+4] = list(HOME)
+    for _, _, _, slots in eligible[:12]:
+        for (p,off),rune in zip(slots[:4],HOME):
+            planted[p][off] = rune
     plant = summarize(planted,words,prefixes)
     assert plant["home_after_period"] >= 12
     emit("native_gp_positive_plant",planted_markers=12,
