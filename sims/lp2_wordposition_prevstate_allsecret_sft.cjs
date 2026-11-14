@@ -307,6 +307,28 @@ assert.equal(new Set(proofRight.map(x => x[2])).size, 4);
 assert.equal(proofLeft.at(-1)[0], 4006);
 assert.equal(proofRight[0][0], 5319);
 
+/**
+ * A second disjoint certificate covers word-reset and word-or-page-reset
+ * predecessor policies. At every original singleton the predecessor becomes
+ * the same sentinal 29. Four distinct C symbols occur by offset530 and
+ * another four occur from offset12233 onward, again ruling out any one cut.
+ * The carried-predecessor witnesses above are never at a physical-page
+ * first rune, so the first certificate also covers page-only resets.
+ */
+const wordResetLeft = [[176, 28], [244, 15], [350, 9], [530, 1]];
+const wordResetRight = [[12233, 28], [12254, 19],
+  [12648, 24], [12770, 21]];
+for (const [position, cipher] of [...wordResetLeft, ...wordResetRight]) {
+  assert.equal(originalSingletonLookup.get(position).cipher, cipher);
+}
+assert.equal(new Set(wordResetLeft.map(x => x[1])).size, 4);
+assert.equal(new Set(wordResetRight.map(x => x[1])).size, 4);
+assert.equal(wordResetLeft.at(-1)[0], 530);
+assert.equal(wordResetRight[0][0], 12233);
+for (const [position] of [...proofLeft, ...proofRight]) {
+  assert.equal(pageStarts.has(position), false);
+}
+
 /** @param {number} start @param {number} end */
 function feasibleSingletonInterval(start, end) {
   const h = new Map();
@@ -442,8 +464,10 @@ console.log(JSON.stringify({
   singletonByOneRekey,
   singletonCutCounts,
   minimumViableTwoCuts,
-  arbitraryRekeyCertificate: {left: proofLeft, right: proofRight,
+  arbitraryRekeyCertificate: {carryOrPage: {left: proofLeft, right: proofRight,
     oneRekeyContradiction: 'e <= 4006 and e > 5319'},
+    wordOrEither: {left: wordResetLeft, right: wordResetRight,
+    oneRekeyContradiction: 'e <= 530 and e > 12233'}},
   singletonGapTwoRekeyChoices: singletonGapTwoRekeys.length,
   physicalPageTwoRekeyChoices: validPhysicalTwoCuts,
   nativeMatchedControls: controls,
