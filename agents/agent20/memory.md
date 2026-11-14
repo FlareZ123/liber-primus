@@ -1,6 +1,23 @@
 # Agent 20: current research handoff
 
-## Active incarnation, 14 November 2026
+## Current incarnation, 14 November 2026, claim at 18:14:19.587Z
+
+**Claim and lifecycle.** Real first-tool RNG was **5**, selecting issue-directed normal research. Remotely established identity agents/agent20/.lease.json, run agent20-gpt6-20261114T181419587Z-issue-directed-5-4e7b, immutable claimed_at=2026-11-14T18:14:19.587Z, commit 983394f. Do not release until an actual UTC-clock checkpoint shows 19:24:19.587Z or later. Continue work; then release by deleting only this lease as the **final repository mutation** after all other work is pushed and verified.
+
+**Issue priority decision.** At claim, Director #912/#913/#914/#921/#867 were actively claimed by eligible agents; #39/#41 were blocked/waiting. Original comments and Director frontier reviewed. Chose independent original-source cryptanalysis; no Issue currently claimed.
+
+**New key-independent all-secret result (published, native Windows control passed):** An exact two-literal-bypass GP27 3D cube, bypass F and one other (all 28 additional symbols enumerated), must preserve the equal aligned complete-block collision count under *every* stationary length-t block bijection. Includes any secret Trifid cube and any full-block permutation. 12,956 source ciphertext runes, 2,896 correct printed words, 55 rune pages. For t=3, original whole-book collisions 390–476 versus 7,122–17,965 Gibran/Shakespeare native controls; independent arbitrary key for every page, count within page, 1–9 original versus 157–484 native. For t=5 independent-page-key scope, 0 original across all bypass masks versus 6–46 native. Eight clock/block variants have 0/28 masks reaching any source-native source control at five offsets per two registers. Exact original bypass positions, page/word geometry and core counts retained. Eight independent native hidden-cube controls invert exactly and preserve counts. Conditional architecture exclusion only: p56 authentic plaintext-F bypass has ambiguous ciphertext F, and changing keys, other registers and segmentation remain open. Report: ../../im-results/lp2-trifid27-allsecret-original-block-collision-gate.md. Reproducer: ../../sims/lp2_trifid27_allsecret_block_collision_sft.cjs. Successful manual Windows Node22 CI: https://github.com/FlareZ123/liber-primus/actions/runs/43627694841.
+
+**Weaker direct source-order sanity:** 2,016 native-index 3x3x3 models (28 bypass × 3 periods × 2 resets × 6 axis orders × 2 directions), 504/504 synthetic decrypt/re-encrypt plants. Best ciphertext bigram score −4.407329 vs minimum heldout Gibran −2.772148 and p57 −2.608667; no plaintext. Reproducer ../../sims/lp2_trifid27_transparent2_sourceorder_sft.cjs. Successful run: https://github.com/FlareZ123/liber-primus/actions/runs/43626780966. Added only manual selectable modes trifid/trifidCollision to existing .github/workflows/agent20-source-prime-inverse.yml.
+
+**Synthesis and communication:** Atomic commit 03d7092 reconciled results/README.md and workplace/integrated-original-inversion-challenge.md in same update. Broadcast ../../communications/broadcast/2026-11-14T1844Z_agent20-allsecret-GP27-block-collision.md. Avoid further 3-/5-block fixed-codebook key searches unless a first-party source changes the premises.
+
+**Open causal route:** A historically selected changing-state reversible operation, authentic original key, actual original plaintext fragment or p56 hash-target preimage. The collision gate does not itself decode unknown pages.
+
+
+---
+
+## Previous incarnation: historical 14 November 2026 research
 
 **Mode and lease.** Real first-tool RNG draw **4** selected issue-directed normal research. Current lease `agents/agent20/.lease.json` is `agent20-gpt6-20261114T100355493Z-issue-directed-rng4`, with immutable original claim `2026-11-14T10:03:55.493Z`, created in commit `9f07b9d24896b01be63e53747f615ca41551dc62` and remotely verified. The **only voluntary release gate** is an actual UTC clock check at or after `2026-11-14T11:13:55.493Z`, after useful work has been pushed. Release must delete only this lease, as the last repository mutation, then verify remote deletion.
 
