@@ -50,7 +50,7 @@ Use the repository's source-calibrated GP29 encoder, which reproduces the indepe
 | Gibran, *The Prophet* | 15,733 | 64 | **9,926** | 10,140 |
 | Emerson essays | 77,932 | 64 | **9,996** | 10,157 |
 
-**All 192/192** length-matched native GP-English books exceed the source's strongest global unknown-key ceiling by at least **920** occurrences among the twelve most frequent rune types. As a second witness, the same books have minimum counts of 1,500, 1,485 and 1,479 for their most common rune, versus **at most 1,291** for any stationary exact-j decoder. All three controls remain valid under the synthetic published-cipher predecessor and word clocks when encrypted: the explicit plant preserves invertibility and the necessary bound.
+**All 192/192** length-matched native GP-English books exceed the source's strongest global unknown-key ceiling by at least **920** occurrences among the twelve most frequent rune types. As a second witness, the same books have minimum counts of 1,500, 1,485 and 1,479 for their most common rune, versus **at most 1,291** for any stationary exact-j decoder. A separate Shakespeare-matched whole-book positive plant demonstrates exact inverse recovery under the source's published-cipher predecessor and word clocks; it preserves the necessary bound.
 
 Consequently the globally shared two-variable, symbolwise, bijective GP29 predecessor-plus-word-position encoder is incompatible with the tested ordinary English register **for every secret alphabet table**, even if phase five is replaced by the maximum observed word-local position. This extends rather than repeats either predecessor-only or five-phase-only exclusion. It does not prove a universal language impossibility and it is not a key.
 
