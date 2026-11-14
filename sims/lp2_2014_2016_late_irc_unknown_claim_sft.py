@@ -92,6 +92,46 @@ def main() -> None:
         matches.append(item)
         if score >= 8:
             direct.append(item)
+    # Independently source-dated period code links, rather than another
+    # unknown-key sweep. Require a code/document hosting URL and LP2 context.
+    archive_links = []
+    link_pat = re.compile(
+        r"https?://(?:www\\.)?"
+        r"(?:github\\.com|gist\\.github\\.com|bitbucket\\.org|"
+        r"gitlab\\.com|pastebin\\.com|sprunge\\.us|titanpad\\.com|"
+        r"dpaste\\.de|hastebin\\.com)/[^\\s<>]+", re.I
+    )
+    lp_context = re.compile(
+        r"\\b(?:liber\\s*primus|rune(?:s|aylze)?|decrypt|"
+        r"decipher|vigenere|cipher|code|script|python|solver|"
+        r"cryptanalysis|gematria)\\b", re.I
+    )
+    for i, line in enumerate(lines):
+        if not DATE.search(line):
+            continue
+        links = [m.group().strip(".,)]}") for m in link_pat.finditer(line)]
+        if not links:
+            continue
+        nearby = " ".join(lines[max(0, i-2):min(len(lines), i+3)])
+        if not lp_context.search(nearby):
+            continue
+        for url in links:
+            if re.search(r"/(?:issues|pull|search|wiki)/", url, re.I):
+                continue
+            score = (
+                5 * bool(re.search(r"rune|primus|cicada|crypt", url, re.I))
+                + 3 * bool(re.search(r"solver|decrypt|vigenere|code|source|script", line, re.I))
+                + 2 * bool(re.search(r"github|gist|pastebin|sprunge", url, re.I))
+                + 1 * bool(re.search(r"liber\\s*primus", nearby, re.I))
+            )
+            archive_links.append({
+                "line": i+1, "url": url, "score": score,
+                "text": compact(line, 320)
+            })
+    dedup = {}
+    for item in sorted(archive_links, key=lambda x: (-x["score"], x["line"])):
+        dedup.setdefault(item["url"], item)
+    unique_archive_links = list(dedup.values())
     matches.sort(key=lambda x: (-x["score"], x["line"]))
     direct.sort(key=lambda x: (-x["score"], x["line"]))
 
@@ -118,6 +158,9 @@ def main() -> None:
         "highest_score": [with_context(x) for x in matches[:25]],
         "direct_sample": [with_context(x, 1) for x in direct[:25]],
         "rune_sample": rune_mentions[:20],
+        "relevant_archive_link_count": len(archive_links),
+        "unique_relevant_links": len(unique_archive_links),
+        "source_code_link_sample": unique_archive_links[:70],
         "specific_historical_contexts": [
             {
                 "center": center,
