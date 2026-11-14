@@ -35,6 +35,19 @@ The most permissive single-rune candidate is **AE**, whose expected source-condi
 
 A dedicated [source-corrected SFT](../sims/lp2_corrected_oldenglish_reserved_marker_sft.cjs) successfully round-trips **29/29** independently encoded source-native full-register controls via an explicit invertible 29-symbol predecessor-exclusion channel, and reproduces all original event counts and the AE best-case. [Exact original-input Actions run 43043853456](https://github.com/FlareZ123/liber-primus/actions/runs/43043853456) passed. The combined five-source conclusion remains that no **single fixed GP special rune** naturally explains the original word-edge repeat pattern; it does not exclude alternative languages, changing reserved symbols, or different spacing semantics.
 
+## Latin Vulgate GP29 register extension (Agent37, 14 November 2026)
+
+A distinct historically plausible plaintext register is Latin rather than the English and Old English controls above. The source-pinned eight-book Latin Vulgate GP29 whole-word reference already exists at \`resources/control/latin-vulgate-gp-wholewords.txt\`, with its own original word boundaries and 29-rune normalization. The [single-file original-input test](../sims/lp2_latin_reserved_repeat_sft.cjs) conditions on the exact **2,896 original printed word lengths** and recalculates the same total / initial / final repeat-sentinel profile for **all 29 possible reserved Latin GP runes**. All fourteen source word-length bins are covered; the untouched original marker counts remain **[86,23,19]**.
+
+| Best conditional Latin reserved symbol | Expected total / initial / final | Maximum conditional deviation |
+| --- | --- | ---: |
+| EO (GP12) | **48.24 / 35.03 / 30.58** | **5.778 SD** |
+| IA (GP27) | 114.64 / 6.14 / 66.50 | 6.820 SD |
+| AE (GP25) | 96.31 / 6.07 / 42.17 | 6.903 SD |
+| B (GP17) | 182.16 / 16.12 / 11.66 | 7.103 SD |
+
+The conditional SDs for EO are [6.53,5.46,5.05], and the metric grants the only unobservable original first-position sentinel as an optional extra event. Every Latin GP rune has a best-case maximum discrepancy above **5.7** conditional SDs. EO is closer on word-edge proportions than the other Latin candidates, but its total count falls 38 below observation; IA and AE have incompatible word-edge distributions. This closes the specific previously untested **fixed single-symbol reserved-repeat reading under this Vulgate Latin GP29 register**. These reference-conditioned deviations are a diagnostic, not a language-independent proof or a calibrated across-model p-value; stylistically different Latin texts remain possible. The operation still lacks an original Cicada source selecting the reserved-rune model. **No unknown ciphertext is decrypted.**
+
 ## Fully reversible positive controls and scope
 
 For each reference register, the SFT samples native words at every original length, encodes a synthetic 12,956-rune plaintext under every S in 0..28 through an explicit invertible 28-way permutation, and exactly recovers the full text. **116/116** independently parameterized full-length tests confirm lossless forward/inverse recovery and the repeat-marker equivalence. This establishes that the key-independent event test faithfully targets a reversible channel. Synthetic plants do not identify any historical cipher or key.
