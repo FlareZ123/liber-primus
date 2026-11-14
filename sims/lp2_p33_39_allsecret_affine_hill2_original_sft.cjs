@@ -198,3 +198,154 @@ console.log(JSON.stringify({
   cycleShiftOneRneSensitivity: phase1,
   conclusion: 'No stationary affine Hill2 decoder can yield a GP29 IoC above the stated 0.03589438 necessary upper bound on original p33-39.'
 }));
+
+
+/**
+ * Source-conditioned nonlinear extension:
+ * Test ALL 192 reversible field power exponents on the 840 native GP29
+ * rune pairs, followed by EVERY completely unknown stationary affine Hill2
+ * decoder. The 840-projection norm theorem bounds the entire affine layer.
+ *
+ * Field choices are exactly the previously established p3 original red
+ * quadratic (u²=3u+8) and 2013 signed BASE29 monic field (u²=11u+18).
+ * This is a full inversion architecture negative, not a historical cipher.
+ */
+function gcd(a, b) {
+  return b ? gcd(b, a % b) : a;
+}
+
+/**
+ * @param {string} name
+ * @param {number} constant u² = constant + linear*u
+ * @param {number} linear
+ * @param {[number,number]} generator source-attested primitive field element
+ * @returns {{name:string, table:[number,number][], logarithm:Int16Array}}
+ */
+function makePrimitiveField(name, constant, linear, generator) {
+  /** @param {[number,number]} x @param {[number,number]} y */
+  const multiply = (x, y) => [
+    modulo(x[0] * y[0] + constant * x[1] * y[1]),
+    modulo(x[0] * y[1] + x[1] * y[0] + linear * x[1] * y[1])
+  ];
+  const logarithm = new Int16Array(841).fill(-1);
+  /** @type {[number,number][]} */
+  const table = [];
+  /** @type {[number,number]} */
+  let state = [1, 0];
+  for (let k = 0; k < 840; k++) {
+    const addr = state[0] + 29 * state[1];
+    assert.equal(logarithm[addr], -1, name + ' generator repeats early');
+    logarithm[addr] = k;
+    table.push(state);
+    state = multiply(state, generator);
+  }
+  assert.deepEqual(state, [1, 0], name + ' primitive element has wrong order');
+  assert.equal(logarithm[0], -1);
+  assert.equal(table.length, 840);
+  return {name, table, logarithm};
+}
+
+/**
+ * Exact reversible field exponent map, with zero fixed as zero.
+ * @param {number[]} input
+ * @param {number} exponent
+ * @param {{name:string,table:[number,number][],logarithm:Int16Array}} field
+ * @returns {number[]}
+ */
+function applyPower(input, exponent, field) {
+  assert.equal(input.length % 2, 0);
+  const transformed = [];
+  for (let i = 0; i < input.length; i += 2) {
+    const addr = input[i] + 29 * input[i + 1];
+    const k = field.logarithm[addr];
+    if (addr === 0) {
+      transformed.push(0, 0);
+    } else {
+      assert(k >= 0 && k < 840, field.name + ' logarithm missing source element');
+      transformed.push(...field.table[(exponent * k) % 840]);
+    }
+  }
+  return transformed;
+}
+
+/** @param {number} target @returns {number} */
+function inverseExponent(target) {
+  for (let e = 1; e < 840; e++) if ((e * target) % 840 === 1) return e;
+  throw new Error('nonunit power exponent ' + target);
+}
+
+/**
+ * For every invertible power map x->x^e, maximize the all-secret affine
+ * output upper bound over all 840 nonzero GF29 coefficient rows.
+ * @param {number[]} input
+ * @param {{name:string,table:[number,number][],logarithm:Int16Array}} field
+ */
+function completePowerThenAllAffineBound(input, field) {
+  let count = 0;
+  let minimum = Infinity;
+  let maximum = -Infinity;
+  let winner = null;
+  let maxRawIoC = -Infinity;
+  for (let exponent = 1; exponent < 840; exponent++) {
+    if (gcd(exponent, 840) !== 1) continue;
+    const powered = applyPower(input, exponent, field);
+    const candidate = allSecretHill2UpperBound(powered);
+    const raw = ioc(powered);
+    count++;
+    maxRawIoC = Math.max(maxRawIoC, raw);
+    minimum = Math.min(minimum, candidate.bound);
+    if (candidate.bound > maximum) {
+      maximum = candidate.bound;
+      winner = {exponent, maxQ: candidate.maxQ,
+        maxRow: candidate.maxRow, poweredIoC: raw};
+    }
+  }
+  assert.equal(count, 192);
+  return {source: field.name, exponentCount: count, minimumBound: minimum,
+    maximumBound: maximum, winner, maximumPowerOnlyIoC: maxRawIoC};
+}
+
+const sourceFields = [
+  makePrimitiveField('p3-red-quadratic u²=3u+8', 8, 3, [19, 13]),
+  makePrimitiveField('2013-signed-BASE29 u²=11u+18', 18, 11, [0, 1])
+];
+const expected = [
+  {maxQ: 26474, exponent: 109, bound: 0.036946595195552906},
+  {maxQ: 26410, exponent: 193, bound: 0.03685583822570124}
+];
+for (let i = 0; i < sourceFields.length; i++) {
+  const field = sourceFields[i];
+  const test = completePowerThenAllAffineBound(original, field);
+  assert.equal(test.winner.maxQ, expected[i].maxQ);
+  assert.equal(test.winner.exponent, expected[i].exponent);
+  assert(Math.abs(test.maximumBound - expected[i].bound) < 1e-15);
+  assert(test.maximumBound < 0.05);
+
+  const decipherExponent = test.winner.exponent;
+  const encipherExponent = inverseExponent(decipherExponent);
+  for (const [name, nativeEnglish] of nativeControls) {
+    // Plant the source-native plaintext under a fully secret, deliberately
+    // nonlinear power map followed by a fully secret invertible Hill2 map.
+    const affinePreimage = decryptNative(nativeEnglish);
+    const plantedCipher = applyPower(affinePreimage, encipherExponent, field);
+    const recoveredPlain = encryptNative(applyPower(plantedCipher,
+      decipherExponent, field));
+    assert.deepEqual(recoveredPlain, nativeEnglish,
+      'nonlinear field-power plus affine key must recover every native rune');
+    const plantedUpperBound = allSecretHill2UpperBound(
+      applyPower(plantedCipher, decipherExponent, field)).bound;
+    assert(plantedUpperBound + 1e-12 >= ioc(nativeEnglish));
+    console.log(JSON.stringify({
+      kind: 'secret-power-and-affine-planted-control',
+      field: field.name, name, decipherExponent,
+      nativeIoC: ioc(nativeEnglish), encryptedIoC: ioc(plantedCipher),
+      allSecretPostPowerBound: plantedUpperBound,
+      recoveredCount: recoveredPlain.length
+    }));
+  }
+  console.log(JSON.stringify({
+    kind: 'all-192-reversible-exponents-plus-any-secret-Hill2',
+    ...test,
+    conclusion: 'No member of this complete source-field power and affine class yields ordinary native-GP unigram concentration on original pp33-39.'
+  }));
+}
