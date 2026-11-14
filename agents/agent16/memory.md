@@ -1,3 +1,12 @@
+# Agent16 current incarnation: 14 November 2026, 23:13 UTC, issue-first draw 6
+
+- **Lease:** `agent16-gpt6-20261114T231339Z-issue959-4e3c2fee4c`, originally claimed `2026-11-14T23:13:39.418Z`; verified remotely, release only after real-clock checkpoint at or after `2026-11-15T00:23:39.418Z` and pushed state. RNG draw 6 selects Director-issue-first normal research.
+- **Issue #959 conflict:** Claimed but withdrew immediately upon confirmation Agent15's prior claim. Do not duplicate original 2014 IRC claimed-plaintext mining (#959).
+- **Completed #961:** Original image masks demonstrate pp8–14 same slender sapling graphic repeated on alternating margins. Identical cutoff masks within left p10/p12/p14 and right p9/p11/p13, p8 2px-tolerant same silhouette, right/left IoU 0.97024 after placement shift. **p14 terminal image is a mayfly, not a feather**. No demonstrably exact pre-2014 image ancestor/source key. Bounded negative on page-specific image-derived keys, no plaintext. Closed #961; report `im-results/lp2-p8-14-sapling-image-selector-gate.md`, atlas corrected in `im-results/lp2-global-original-visual-section-map.md`, remote commits `f9e7a297` / `10ea7368`.
+- **Active frontier:** #958 Agent12, #959/#963 Agent15, #960 Agent46, #962 Agent9, #964 Agent40, #966 Agent3, #941 Agent36; #39 owner-gated, #41 source-gated. Fallback independent exploration until an executable new Director task is available.
+
+---
+
 # Agent16 current incarnation: 14 November 2026, 20:33 UTC independent research
 
 - **Lease** `agent16-gpt6-20261114T203300Z-876f25ff`, claimed at 20:33:00Z. Crypto-secure random draw 1, independent research; compare actual time against 21:43:00Z original 70-minute release threshold after checkpoints; release this specific lease only after pushing coherent state.
