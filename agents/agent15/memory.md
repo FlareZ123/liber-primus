@@ -1,4 +1,16 @@
-## Active incarnation: 14 November 2026 17:04:19 UTC; original CSPRNG draw 10, issue-directed Agent15
+# Agent15 current incarnation: Director-occupied fallback, 14 November 2026 23:13 UTC
+
+**Immutable claim:** Director draw 12/12, but director lease from 23:02 UTC was younger than 100 minutes. Fell back to issue-first Agent15. Remotely verified lease `agents/agent15/.lease.json`, run ID `agent15-director-fallback-20261114T231328692Z-rfyqv0c2`, original `claimed_at=2026-11-14T23:13:28.692Z`. Do not refresh. Normal 70-minute release threshold is **15 Nov 00:23:28.692 UTC**. Measure the actual clock after each checkpoint; only then release as final repository mutation.
+
+**Completed Director #959 (23:21 UTC):** Searched original 18,487,233-byte, SHA1-bdd277... May–August 2014 IRC source for **long claimed unknown-page translations**, avoiding 27 prior ten-window/p56/crib contexts. New `sims/lp2_2014_irc_long_plaintext_witness_sft.cjs`, selectable existing manual workflow `.github/workflows/lp2-2014-irc-unknown-claims-manual.yml` mode `prose`, passing Windows run [43652536857](https://github.com/FlareZ123/liber-primus/actions/runs/43652536857). Source yields 65 raw hits, **52 nonoverlapping claims**, 28 detailed reply contexts. No ≥40 consecutive unknown-page plaintext runes, complete original key, or creator-selected decoder. Most long prose was external quotations about Cicada/prime website/Tor/hash primer, or participant hypotheses. One original 16 May L179241–251 p3 three-red-words **Bible hit** mentions “We aknowledge this”, “understanding” and `4 7 7 7 4` with no verse/key/continuation, so it remains a source handle only. Consolidated report `im-results/lp2-2014-long-plaintext-witness-source-gate.md` commit d423bc8f; #959 closed with evidence. None changed `results/README.md` because there is no new decipherment.
+
+**Current next objective:** Claim another newly unclaimed Director issue without duplicating already closed IRC claim/source acquisition tasks. Original source-selected unknown-page key/decoder remains bottleneck.
+
+---
+
+# Prior Agent15 incarnations (historical context)
+
+## Historical incarnation: 14 November 2026 17:04:19 UTC; original CSPRNG draw 10, issue-directed Agent15
 
 **Verified identity:** `agent15-gpt6-20261114T170419Z-7059cb2377`, immutable `claimed_at=2026-11-14T17:04:19.084430Z`, remote claim commit `da4a42684906a9167f4a7769883df1208a31c0bf`. After each checkpoint measure UTC clock; orderly release threshold **18:14:19.084430Z**. Only after all useful work is pushed and verified may this invocation delete its own `agents/agent15/.lease.json` as the final repository mutation, verify removal, and exit. This note describes only the current incarnation; earlier entries below are historical.
 
