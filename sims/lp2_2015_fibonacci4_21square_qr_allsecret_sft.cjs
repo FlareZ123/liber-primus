@@ -101,6 +101,28 @@ function xorTwoRuneCodebookContradictions(tape, omit) {
   return contradictoryClosures;
 }
 
+
+/**
+ * Exact global lower bound allowing a completely arbitrary binary lookup
+ * for EVERY distinct ordered rune pair (29*29 = 841 independent bit entries).
+ * This includes all stationary binary codebooks of paired GP runes, even
+ * nonseparable, nonlinear codebooks. No enumeration of 2^841 keys needed.
+ */
+function allSecretPairCodebookBound(tape, omit) {
+  assert.equal(tape.length, 882);
+  const counts = Array.from({length: 841}, () => [0, 0]);
+  for (const [site, requiredBit] of finderSites(omit)) {
+    const pair = 29 * tape[2 * site] + tape[2 * site + 1];
+    counts[pair][requiredBit]++;
+  }
+  return {
+    forcedWrong:counts.reduce((n, [white, black]) =>
+      n + Math.min(white, black), 0),
+    conflictingPairs:counts.filter(([white, black]) =>
+      white > 0 && black > 0).length
+  };
+}
+
 const partitions = [
   ["contiguous", [tape.slice(0, 441), tape.slice(441)]],
   ["paired-lanes", [
@@ -148,12 +170,18 @@ function run() {
   const twoCodebookXorContradictions = [0, 1, 2, 3]
     .map(omit => xorTwoRuneCodebookContradictions(tape, omit));
   assert.deepEqual(twoCodebookXorContradictions, [45, 40, 40, 39]);
+  const allSecretPairMap = [0, 1, 2, 3]
+    .map(omit => allSecretPairCodebookBound(tape, omit));
+  assert.deepEqual(allSecretPairMap.map(x => x.forcedWrong), [5, 5, 6, 2]);
+  assert.deepEqual(allSecretPairMap.map(x => x.conflictingPairs),
+    [5, 5, 6, 2]);
 
   // A valid codebook plant using distinct right-rune symbols 0/1 and
   // constant left-rune symbol 2. The XOR codebook can reproduce it exactly.
   const xorPlant = Array(882).fill(2);
   for (let pos = 0; pos < 441; pos++) xorPlant[2 * pos + 1] = plant[pos];
   assert.equal(xorTwoRuneCodebookContradictions(xorPlant, 3), 0);
+  assert.equal(allSecretPairCodebookBound(xorPlant, 3).forcedWrong, 0);
 
   const minSingle = Math.min(...result.flatMap(r =>
     r.panels.flat().map(x => x.forcedWrong)));
@@ -167,6 +195,7 @@ function run() {
     pairedEqualRunes:pairedMatches,
     directPairedEqualityFinderErrorsByMissingCorner:equalityFinderErrors,
     twoUnknownCodebookXorCycleConflicts:twoCodebookXorContradictions,
+    everySecretOrderedPairCodebookFinderBound:allSecretPairMap,
     positiveTwoCodebookXorCycleConflicts:
       xorTwoRuneCodebookContradictions(xorPlant, 3),
     sourceSizedPositiveFinderMismatches:allSecretFinderBound(plant, 3).forcedWrong,
@@ -176,4 +205,4 @@ function run() {
 
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
 module.exports = {run, allSecretFinderBound, finderSites,
-  xorTwoRuneCodebookContradictions};
+  xorTwoRuneCodebookContradictions, allSecretPairCodebookBound};
