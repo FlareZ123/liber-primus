@@ -285,6 +285,71 @@ const arbitraryKnownCipher = applySecretPacketPermutation([known], "encrypt");
 assert.deepEqual(applySecretPacketPermutation(
   arbitraryKnownCipher, "decrypt"), [known]);
 
+// One finite route past the fixed-alphabet obstruction: use the already
+// authenticated p56 consecutive-prime-totient operator, restarting at each
+// original output-doublet event. The clear p57 rune in that event slot
+// supplies the ordinal of the first prime. No free offset, F bypass,
+// synthetic expansion or plaintext-dependent phase is selected.
+/** @param {number} count */
+function firstPrimes(count) {
+  const result = [];
+  for (let n = 2; result.length < count; n++) {
+    let prime = true;
+    for (let divisor = 2; divisor * divisor <= n; divisor++) {
+      if (n % divisor === 0) {
+        prime = false;
+        break;
+      }
+    }
+    if (prime) result.push(n);
+  }
+  return result;
+}
+const primeList = firstPrimes(1000);
+/**
+ * @param {number[][]} chapters
+ * @param {"encrypt"|"decrypt"} operation
+ * @returns {{chapters:number[][],slots:number}}
+ */
+function packetPrimeTotient(chapters, operation) {
+  let event = -1;
+  const output = [];
+  for (const chapter of chapters) {
+    event++;
+    let local = 0;
+    let previousCipher = -1;
+    const next = [];
+    for (const rune of chapter) {
+      assert(event >= 0 && event < sourceKey.length);
+      const primeIndex = sourceKey[event] + local;
+      const shift = mod29(primeList[primeIndex] - 1);
+      const converted = operation === "encrypt"
+        ? mod29(rune + shift) : mod29(rune - shift);
+      next.push(converted);
+      const ciphertextRune = operation === "encrypt" ? converted : rune;
+      if (ciphertextRune === previousCipher) {
+        event++;
+        local = 0;
+      } else {
+        local++;
+      }
+      previousCipher = ciphertextRune;
+    }
+    output.push(next);
+  }
+  return {chapters: output, slots: event + 1};
+}
+const totientOriginal = packetPrimeTotient(chapterCipher, "decrypt");
+assert.equal(totientOriginal.slots, 95);
+assert.deepEqual(packetPrimeTotient(
+  totientOriginal.chapters, "encrypt").chapters, chapterCipher);
+const totientKnownPlant = packetPrimeTotient([known], "encrypt");
+assert.deepEqual(packetPrimeTotient(
+  totientKnownPlant.chapters, "decrypt").chapters, [known]);
+const totientOriginalStats = stats(totientOriginal.chapters.flat());
+assert.ok(Math.abs(totientOriginalStats.ioc - 0.034452564503269625) < 1e-12);
+assert.equal(totientOriginalStats.eCount, 469);
+
 const summary = {
   finding: "source 95-key coincidence, both frozen direct online consumers nonprose",
   chapterRuneCounts: chapterCipher.map(c => c.length),
@@ -295,6 +360,11 @@ const summary = {
   p57KnownRuneCount: sourceKey.length,
   sourceP57: stats(sourceKey),
   originalDirectKeyTests: results,
+  sourceIndexedPacketPrimeTotient: {
+    ...totientOriginalStats,
+    originalRoundtrip: true,
+    clearP57PositiveRoundtrip: true
+  },
   allSecretPacketPermutationInvariant: {
     observedSameSymbolPairs: sourcePacketPairs,
     allWithinPacketPositionPairs: packetOpportunities,
