@@ -106,10 +106,12 @@ function main(){
     const runes=corpus.pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices);
     const dec=decode(runes), count=dec.decoded.filter(v=>v!==null).length;
     repeats+=dec.repeats;valid+=count;
-    const digits=dec.frames.flat();
-    const pairs=new Set();
-    for(let k=0;k+1<digits.length;k+=2)pairs.add(digits[k]*28+digits[k+1]);
-    results.push({chapter:'p'+a+'-'+b,runes:runes.length,doublets:dec.repeats,packets:dec.frames.length,validCOBS:count,firstSixBytes:hex(digitsToBytes(dec.frames[0]).slice(0,6)),distinctNonrepeatPairs:pairs.size});
+    const pairs=new Set();let oddLengthPackets=0;
+    for(const digits of dec.frames){
+      for(let k=0;k+1<digits.length;k+=2)pairs.add(digits[k]*28+digits[k+1]);
+      if(digits.length%2)oddLengthPackets++;
+    }
+    results.push({chapter:'p'+a+'-'+b,runes:runes.length,doublets:dec.repeats,packets:dec.frames.length,validCOBS:count,firstSixBytes:hex(digitsToBytes(dec.frames[0]).slice(0,6)),distinctNonrepeatPairs:pairs.size,oddLengthPackets});
   }
   assert.equal(results.reduce((n,x)=>n+x.runes,0),12956);
   assert.equal(repeats,86);
