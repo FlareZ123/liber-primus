@@ -19,3 +19,6 @@ jobs:
           python -m pip install pillow numpy scipy opencv-python-headless fonttools
       - name: Compare pinned original JPEG with archived Beorhtnoth and controls
         run: python sims/lp2_beorhtnoth_original_font_sft.py
+
+      - name: Test 2014 font alternate U glyphs against original p55
+        run: python sims/lp2_beorhtnoth_source_alternates_sft.py
