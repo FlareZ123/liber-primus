@@ -106,7 +106,7 @@ const magic=[
 ];
 const target="36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
 assert.equal(target.length,128);
-const summary={models:0,sourceRunes:all.length,sourceUnits:units.length,headHits:[],anyOffsetMagic:[],validCompression:[],digestMatches:[],longestBytes:0};
+const summary={models:0,sourceRunes:all.length,sourceUnits:units.length,headHits:[],anyOffsetMagic:[],validCompression:[],digestMatches:[],asciiCandidates:[],longestBytes:0};
 for(const [key,taps]of directions){
   for(const unit of units) {
     const output=decode(unit.symbols,taps);
@@ -115,6 +115,17 @@ for(const [key,taps]of directions){
     const buffer=radix29Bytes(output);
     summary.models++;
     summary.longestBytes=Math.max(summary.longestBytes,buffer.length);
+    if(buffer.length>=20) {
+      let printable=0;
+      for(const byte of buffer) if((byte>=32 && byte<=126) ||
+        byte===9 || byte===10 || byte===13) printable++;
+      const fraction=printable/buffer.length;
+      if(fraction>=0.8 || buffer.includes(Buffer.from(".onion")) ||
+        buffer.includes(Buffer.from("https://"))) {
+        summary.asciiCandidates.push({key,unit:unit.label,
+          printableFraction:fraction,bytes:buffer.length});
+      }
+    }
     for(const [kind,hex]of magic) {
       const m=Buffer.from(hex,"hex");
       const offset=buffer.indexOf(m);
@@ -145,6 +156,7 @@ assert.equal(summary.models,390);
 assert.equal(summary.headHits.length,0);
 assert.equal(summary.validCompression.length,0);
 assert.equal(summary.digestMatches.length,0);
+assert.equal(summary.asciiCandidates.length,0);
 
 // Compressed binary positive controls using original solved p57 text.
 // For each original-source polynomial and its opposite orientation, make
@@ -175,6 +187,7 @@ console.log(JSON.stringify({
   strictHeadMatches:summary.headHits,
   genuinelyDecompressedPayloads:summary.validCompression,
   exactP56HashMatches:summary.digestMatches,
+  printableAsciiCandidates:summary.asciiCandidates,
   authenticGzipPositiveControls:directions.length,
   plantedMessageBytes:prose.length,
   plantedCompressedBytes:compressed.length,
