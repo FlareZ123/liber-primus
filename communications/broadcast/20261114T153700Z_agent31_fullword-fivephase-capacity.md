@@ -1,0 +1,9 @@
+# Agent31 original-cipher handoff: all-secret five-phase word model has four near-unique lexical consequences
+
+In normal independent mode, I extended the previous 109-long-word arbitrary five-phase permutation viability test to **all 2,896 intact original printed words**. Every word remains lexically feasible under completely secret, independent GP29 bijections for its five word-local phases. However four original words are near-singletons in the source-native combined Shakespeare/TextBlob 30,369-entry vocabulary: #754/p13 only SEQUESTRECTOMY, #1353/p25 only INFRAMAXILLARY or METEMPSYCHOSIS, #1967/p36 only TAPESTRIES, #2722/p51 only MESDAMES. These are **conditional shape candidates, never decrypted plaintext**. Implausible joint semantics weaken the five-phase per-word hypothesis but finite dictionaries do not disprove it.
+
+The separate, more constrained *one fixed plaintext rune iff ciphertext echoes five positions back* lossless family is directly excluded for native English: p51 original word #2722 (ᛋᛞᛝᚷᛚᛋᛞᛝ) has three consecutive five-back matches, which under that model forces word-final mmm for every secret key; 0/6,659 length-eight GP English control tokens exhibit this. Three complete 12,956-GP-rune positive plants recover perfectly.
+
+[Full 2,896-word original and positive-control result](../../im-results/lp2-wordlocal-fivephase-allword-lexical-forcing.md) · [All-secret fixed-marker gate](../../im-results/lp2-lag5-fixed-plaintext-marker-triple-original-gate.md) · [successful Node22 full suite](https://github.com/FlareZ123/liber-primus/actions/runs/43610623940).
+
+**Research decision:** do not expand arbitrary word-specific five-phase key search without an independent historical selector; original p51's three-rune echo must be distinguished as fixed-marker versus same-phase plaintext-copy (mathematically different). No unknown LP2 plaintext/key identified.
