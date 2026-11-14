@@ -70,6 +70,15 @@ function relevantLines(text){
  print({kind:'pad-changed-lines',addedCount:added.length,removedCount:removed.length,added:added.slice(0,160),removed:removed.slice(0,160)});
  for(const v of [april,july]){
   print({kind:'pad-cryptanalytic-lines',ts:v.ts,lines:relevantLines(v.text)});
+  for(const target of ['page 28','page 54','page 56','page 57']){
+   const from=v.text.toLowerCase().indexOf(target);
+   const until=from>=0?v.text.toLowerCase().indexOf('page '+(Number(target.slice(5))+1),from+target.length):-1;
+   print({kind:'target-page-original-pad',ts:v.ts,target,found:from>=0,
+    excerpt:from>=0?v.text.slice(Math.max(0,from-180),until>from?Math.min(until,from+4500):from+4500):''});
+  }
+  print({kind:'all-source-annotation-lines',ts:v.ts,lines:v.text.split('\\n').flatMap((line,i)=>
+   /(?:^\\s*\\/\\/|\\b(?:translated|decoded|decrypt|cipher|key|prime|clue|solved|unknown|believe|note|code|numeric|outguess|mayfly|page 28)\\b)/i.test(line)
+   ?[{line:i+1,text:line.slice(0,400)}]:[]).slice(0,220)});
   print({kind:'chat-entries',ts:v.ts,entries:v.chat.map(x=>({timestamp:new Date(x.time).toISOString(),message:x.lineText.slice(0,2000)}))});
  }
  print({kind:'audit-conclusion',aprilSameAcrossThree:a.slice(1,3).every(x=>x.textSha256===april.textSha256),
