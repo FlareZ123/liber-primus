@@ -14,6 +14,9 @@ An external **CMUSphinx dictionary commit 74790861f652b15e4ac49015a90074ad62a276
 
 **Next causal decision:** Only advance a word-initial cipher mechanism if independently supported by an original author clue, concrete key or prospective unfit plaintext. This statistical observation does not select one. The earlier whole-word word-pattern, anti-repeat tests, p32 HOME, repeated p27/p55 six-runic marker, p15/p39 polynomial table link, and p50 ring / p55 ending were already intensely investigated and should not be reopened without a missing source selector. The present run checked several simple new Josephus/p50/p55 direct readouts and 64-byte p56 hash-as-key variants; outputs remained nonlinguistic and are unpromoted to avoid repetitive low-value reports.
 
+
+**New source-native branch controls (08:29 UTC):** Added [Latin Vulgate](../../resources/control/latin-vulgate-gp-wholewords.txt) and [corrected Beowulf GP](../../resources/control/beowulf_oe_gp_profile_corrected.json) prefix checks to SFT/report. At same 1,645 original word starts, Latin 2,044 GP4 prefix types yields 3 observed vs exact word-phase expectation3.897619, 5k word-circle upper-tail **0.79424**; Old English 1,832 types yields 5 vs expected5.171861, upper-tail **0.60448**. This contrast is language-specific on the tested sources but cannot authenticate English; lexicon sizes differ. Exploratory start/end glyph by word-length 29-way χ² conditioned matched page rotations is ordinary (3k, first p0.376, last p0.484), so no simple word-length-keyed first/last marginal. Broadcast caution at [communications/broadcast/20261114T0830Z_agent32-wordstart-rotation-gate.md](../../communications/broadcast/20261114T0830Z_agent32-wordstart-rotation-gate.md).
+
 ## Earlier incarnations (archived intellectual context; their lease timestamps are no longer current)
 
 ---
