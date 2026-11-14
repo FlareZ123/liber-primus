@@ -169,6 +169,60 @@ const legalPageStarts = originalUnknownPages.flatMap((p) => {
 });
 assert.deepEqual(legalPageStarts.map((x) => x.page), [0,9,22,24,27,49,51,52,55]);
 
+// Compare the five algebraically legal p55 outputs to original physical
+// *printed* words, joining line-end "/" continuations before tokenizing.
+const runeMap = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const p55OriginalTranscript = fs.readFileSync(
+  path.join(root, "resources/liber-primus/lp2-transcription.txt"), "utf8")
+  .trim().split("%")[54].replace(/\/\s*/g, "");
+const p55OriginalWords = p55OriginalTranscript.match(/[\u16A0-\u16FF]+/gu) || [];
+const p55PrintedWordLengths = p55OriginalWords.map((w) => [...w].length);
+assert.deepEqual(p55PrintedWordLengths, [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+assert.deepEqual(p55OriginalWords.flatMap((word) =>
+  [...word].map((rune) => runeMap.get(rune))), p55);
+const englishOriginal = fs.readFileSync(
+  path.join(root, "resources/control/english_wordfreq_textblob.txt"), "utf8");
+const longTokens = new Set(["TH","NG","EO","OE","AE","IA","EA"]);
+const lexicon = new Set();
+for (const line of englishOriginal.split("\n")) {
+  const match = /^([a-z]+) (\d+)$/.exec(line);
+  if (!match) continue;
+  const word = match[1].toUpperCase().replace(/[KQ]/g, "C").replace(/V/g, "U").replace(/Z/g, "S");
+  const values = [];
+  for (let i = 0; i < word.length;) {
+    const digraph = word.slice(i, i + 2);
+    if (longTokens.has(digraph)) {
+      values.push(gp.get(digraph));
+      i += 2;
+    } else {
+      const value = gp.get(word[i]);
+      if (value === undefined) { values.length = 0; break; }
+      values.push(value);
+      i++;
+    }
+  }
+  if (values.length) lexicon.add(values.join(","));
+}
+const p55LexiconChecks = [];
+for (let phase = 0; phase < totientKey.length; phase++) {
+  for (const candidate of invert(p55, phase, totientKey).states) {
+    let offset = 0;
+    const matchedWords = [];
+    for (const size of p55PrintedWordLengths) {
+      const word = candidate.plain.slice(offset, offset + size);
+      if (lexicon.has(word.join(","))) {
+        matchedWords.push({ runeOffset: offset, runeCount: size,
+          translit: word.map((v) => corpus.translit[v]).join("") });
+      }
+      offset += size;
+    }
+    assert.equal(offset, p55.length);
+    assert.equal(matchedWords.filter((w) => w.runeCount >= 3).length, 0);
+    p55LexiconChecks.push({ phase, bypassOffsets: candidate.bypass, matchedWords });
+  }
+}
+assert.equal(p55LexiconChecks.length, 5);
+
 console.log(JSON.stringify({
   input: "unaltered LP2 physical p55 original 76 GP29 runes",
   originalSourceSelector: "p57 DIVINITY GP prime-sum 376, %256 cell120, 29q+r keypad",
@@ -182,6 +236,8 @@ console.log(JSON.stringify({
   totientCases,
   sourceChapterTests,
   legalPageStarts,
+  p55PrintedWordLengths,
+  p55LexiconChecks,
   interpretation: "Literal GP-index IOGEM is impossible for p55 in all cyclic strict-F phases. The source-prime-totient IOGEM key remains legal on nine isolated original pages including p55, but all nine full source visual chapters have zero legal phases. No unknown plaintext."
 },null,2));
 console.log("PASS");
