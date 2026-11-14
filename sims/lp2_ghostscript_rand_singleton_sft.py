@@ -171,6 +171,79 @@ def synthetic_control(entries, seed, mode):
     return tuple(planted), first_state
 
 
+def grid_views(grid):
+    """Six source-geometry-respecting views of the 32x8 printed byte grid."""
+    assert len(grid) == 256
+    columns = [grid[row * 8 + col] for col in range(8) for row in range(32)]
+    page_columns = []
+    start = 0
+    for rows in (10, 13, 9):
+        page_columns.extend(grid[start + row * 8 + col]
+                            for col in range(8) for row in range(rows))
+        start += rows * 8
+    assert start == 256
+    return (
+        ("row-major", grid),
+        ("reverse-row-major", grid[::-1]),
+        ("column-major", columns),
+        ("reverse-column-major", columns[::-1]),
+        ("page-column-major", page_columns),
+        ("reverse-page-column-major", page_columns[::-1]),
+    )
+
+
+def prefix_states(data, mode, prefix=4):
+    """Enumerate every first-output state compatible with N full PRNG bytes."""
+    assert prefix >= 2
+    first = data[0]
+    if mode == "mod256":
+        states = np.arange(first or 256, M_INT, 256, dtype=np.uint64)
+    else:
+        lo = max(1, (first * M_INT + 255) // 256)
+        hi = min(M_INT, ((first + 1) * M_INT + 255) // 256)
+        states = np.arange(lo, hi, dtype=np.uint64)
+    stage_counts = []
+    for target in data[1:prefix]:
+        state_next = times_constant(states, A)
+        value = (state_next % np.uint64(256) if mode == "mod256"
+                 else state_next * np.uint64(256) // M)
+        keep = value == target
+        states = states[keep]
+        stage_counts.append(len(states))
+        if not len(states):
+            break
+    return states, stage_counts
+
+
+def check_grid_full_output():
+    """Exact first-four-byte gate on the 256-number printed table, both projections."""
+    table = json.loads((ROOT / "resources/liber-primus/lp2-grid-256.json")
+                       .read_text(encoding="utf-8"))
+    grid = table["bytes"]
+    assert len(grid) == 256
+    assert len(table["pages"]) == 3
+    assert [p["rows"] for p in table["pages"]] == [10, 13, 9]
+    for name, view in grid_views(grid):
+        for mode in ("mod256", "scaled256"):
+            states, counts = prefix_states(view, mode, prefix=4)
+            print("GRID", name, mode, "survivors-after-2/3/4", counts,
+                  flush=True)
+            assert len(states) == 0, (name, mode, states)
+    seed = 3301
+    stream = []
+    for _ in range(8):
+        seed = int(times_constant(np.array([seed], dtype=np.uint64), A)[0])
+        stream.append(seed % 256)
+    positive, counts = prefix_states(stream, "mod256", prefix=8)
+    assert positive.tolist() == [stream_state_after_first(3301)]
+    print("GRID planted full 8-byte stream: recovered unique first-state seed",
+          positive.tolist(), flush=True)
+
+
+def stream_state_after_first(seed):
+    return (seed * A) % M_INT
+
+
 def main():
     data = extract_singletons()
     assert int(times_constant(np.array([M-1], np.uint64), 16807)[0]) == (
@@ -180,6 +253,8 @@ def main():
         result = scan(data, mode)
         print("ORIGINAL", result, flush=True)
         assert result["unique_surviving_generator_states"] == 0
+
+    check_grid_full_output()
 
     plant, expected = synthetic_control(data, seed=3301, mode="mod")
     result = scan(plant, "mod")
