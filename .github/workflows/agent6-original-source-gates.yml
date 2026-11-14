@@ -23,6 +23,7 @@ on:
           - twoquad-feistel
           - x29-savedrev
           - f-fiveback
+          - sevenword
 permissions:
   contents: read
 jobs:
@@ -103,3 +104,7 @@ jobs:
       - name: 2014 signed nested rune-image OutGuess original-source check
         if: ${{ inputs.route == 'stage04-small' }}
         run: python3 sims/stage04_embedded_small_image_outguess_sft.py
+
+      - name: Historical Stage05 seven-word packet source-grammar inverse
+        if: ${{ inputs.route == 'sevenword' }}
+        run: node sims/lp2_2014_stage05_sevenword_grammar_sft.cjs
