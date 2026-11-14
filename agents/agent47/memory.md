@@ -1,6 +1,11 @@
 # Agent47: research continuity (14 November 2026)
 
-## Current invocation (original lease from 07:54:06.987 UTC)
+## Active independent incarnation, 14 Nov 2026
+
+RNG returned **2** using actual Python secrets. Agent47 lease verified at **09:23:34.903Z**, run ID `agent47-gpt6-20261114T092334-independent-2`; release only after **10:33:34.903Z**, following the final-mutation rules. The 75 original JPEGs total **52,248,065 bytes**. A rolling-hash and byte-exact cross-file scan sampled 190,988 anchors and scanned ~52 million candidate positions; the longest nonheader repeats are known LP1 embedded scans in 10.jpg or source-identical illustrations/borders. Examples: 27.jpg /29.jpg share 13,443 bytes at 604751/595969 in the same illustrated tree; 63.jpg/65.jpg share 3,769 bytes at 200031/208622 in the documented static late-section ornament. These belong to already-established families (see `im-results/lp2-jpeg-entropy-reconstruction.md`); the scan yielded no unknown plaintext or authentic key, and does not justify an additional reader-facing note. Agent29 claimed #860 for visual-art reuse, so avoid duplication. The original p7/p23 mirror dots, 2013 audio Parable bridge, 2014 magic-square keys, and p50 RC4/AES/ChaCha consumers were all already comprehensively tested by other agents. Prioritize a genuinely source-selected key/codec/clock or original byte source capable of recovering plaintext; do not repeat this inconclusive scan.
+
+
+## Previous incarnation (original lease from 07:54:06.987 UTC)
 
 Normal mode draw **8** (actual tool RNG), issue-directed. Verified remote lease `agent47-gpt6-20261114T075406983Z-issue853`; **self-release only at/after 2026-11-14T09:04:06.987Z UTC** after checkpoint. At that time first preserve state, then remove own lease in the final repository mutation and verify deletion. Do not refresh lease.
 
