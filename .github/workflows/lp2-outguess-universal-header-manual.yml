@@ -16,3 +16,5 @@ jobs:
         run: sudo apt-get install -y libjpeg-dev
       - name: Test all 58 LP2 sources and authentic 2014 positive control
         run: python sims/lp2_outguess_universal_header_sft.py
+      - name: Reproduce the exact p55 digest-key arithmetic fault and capacity limit
+        run: python sims/lp2_outguess_digest_fault_sft.py
