@@ -153,6 +153,39 @@ assert.equal(skip.keyConsumed, 42);
 const skipText = skip.out.map(x => c.translit[x]).join("");
 assert.equal(skipText, "JPEELITHSSXNFTLNSYJEUOLGPYLIAYLMOTHLHMLLTHTHCBR");
 assert.deepEqual(skip.out.slice(1, 5), peel);
+
+const lettersMOTH = ["M", "O", "T", "H"].map(x => c.translit.indexOf(x));
+const nativeMOTH = ["M", "O", "TH"].map(x => c.translit.indexOf(x));
+assert.deepEqual(skip.out.slice(29, 33), lettersMOTH);
+assert.notDeepEqual(skip.out.slice(29, 32), nativeMOTH);
+const contains = (sequence, motif) => sequence.some((_, index) =>
+  motif.every((symbol, step) => sequence[index + step] === symbol));
+const family = { directPEEL: [], directMOTH4: [], skipPEEL: [],
+  skipMOTH4: [], skipBoth: [], sourceCount: 214 * 2 };
+let validFSkip = 0;
+for (let window = 0; window <= g.bytes.length - inner.length; window++) {
+  const candidate = route(g.bytes.slice(window, window + inner.length)).result;
+  for (const sign of [-1, 1]) {
+    const signedKey = candidate.map(x => mod29(-sign * x));
+    const direct = inner.map((x, index) => mod29(x - signedKey[index]));
+    if (contains(direct, peel)) family.directPEEL.push({ window, sign });
+    if (contains(direct, lettersMOTH)) family.directMOTH4.push({ window, sign });
+    const checked = decodeTransparentF(inner, signedKey, innerF);
+    if (!checked.valid) continue;
+    validFSkip++;
+    const hasPeel = contains(checked.out, peel);
+    const hasMoth = contains(checked.out, lettersMOTH);
+    if (hasPeel) family.skipPEEL.push({ window, sign });
+    if (hasMoth) family.skipMOTH4.push({ window, sign });
+    if (hasPeel && hasMoth) family.skipBoth.push({ window, sign });
+  }
+}
+const only84 = [{ window: 84, sign: -1 }];
+assert.deepEqual(family.directPEEL, only84);
+assert.deepEqual(family.directMOTH4, []);
+assert.deepEqual(family.skipPEEL, only84);
+assert.deepEqual(family.skipMOTH4, only84);
+assert.deepEqual(family.skipBoth, only84);
 assert.equal(Number(ioc(skip.out).toFixed(12)), 0.052048726467);
 
 // Independent 43-rune p57 plant includes one literal F at offset 33.
@@ -192,6 +225,16 @@ console.log(JSON.stringify({
       literalFPositions: plantFPositions,
       exactRecovered: plantRecovered.out.length + "/" + planted.length,
     },
+  },
+  sourceMothFourRuneCoincidence: {
+    title: "M O T H (four separate runes, not native M O TH)",
+    originalImage: "resources/liber-primus/72.jpg",
+    offset: 29,
+    sourcePrintedWordsCrossed: [11, 12],
+    nativeGPContainsTHLigature: true,
+    validFSkipConfigurations: validFSkip,
+    family,
+    authenticUnsolvedPlaintextRecovered: false
   },
   recoveredUnknownPlaintext: false,
 }, null, 2));
