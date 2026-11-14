@@ -1,0 +1,22 @@
+name: Agent30 alternate and late original IRC witness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-late-irc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve two original independently SHA-pinned IRC records
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --silent --show-error "https://raw.githubusercontent.com/neuroretransmit/cicada/master/irc-logs/%23ARG.freenode.log" --output "$RUNNER_TEMP/#ARG.freenode.log"
+          curl --fail --location --retry 3 --silent --show-error "https://raw.githubusercontent.com/neuroretransmit/cicada/master/irc-logs/%23cicadasolvers.freenode.2.log" --output "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
+          node sims/lp2_2014_2016_late_irc_witness_sft.cjs --selftest
+          node sims/lp2_2014_2016_late_irc_witness_sft.cjs "$RUNNER_TEMP/#ARG.freenode.log" "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
