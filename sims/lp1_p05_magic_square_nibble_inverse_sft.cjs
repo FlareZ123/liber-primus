@@ -13,7 +13,7 @@ const ROOT=path.resolve(__dirname,'..');
 const preserved=fs.readFileSync(path.join(ROOT,'im-results','lp1-p05-central-block.txt'),'utf8');
 // The repository transcription carries one editorial final CRLF. The original
 // 360 JPEG bytes contain exactly two leading LF and 358 lowercase hex digits.
-assert(preserved.startsWith('\n\n'));
+assert(preserved.replace(/\r\n/g,'\n').startsWith('\n\n'));
 const hex=preserved.trim();
 assert.equal(Buffer.byteLength('\n\n'+hex,'ascii'),360);
 assert.match(hex,/^[0-9a-f]{358}$/);
