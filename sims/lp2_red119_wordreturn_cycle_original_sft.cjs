@@ -146,12 +146,52 @@ function plant(plain, key) {
   return { encrypted, clock };
 }
 
+/**
+ * Consecutive-prime totient clock, beginning at a first-party number that
+ * is literally the prime at the selected ordinal. Exhaust all F-bypass paths.
+ *
+ * @param {number[]} cipher
+ * @param {number} firstPrimeOrdinal 1-based
+ * @returns {{ failAt:number|null, endClocks:number[] }}
+ */
+function primeClockFeasible(cipher, firstPrimeOrdinal) {
+  /** @type {number[]} */
+  const primes = [];
+  for (let n = 2; primes.length < firstPrimeOrdinal + cipher.length + 1; n++) {
+    let isPrime = true;
+    for (let k = 2; k * k <= n; k++) {
+      if (n % k === 0) { isPrime = false; break; }
+    }
+    if (isPrime) primes.push(n);
+  }
+  let clocks = new Set([firstPrimeOrdinal - 1]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const clock of clocks) {
+      const q = (primes[clock] - 1) % 29;
+      if (cipher[i] === 0) next.add(clock);
+      if ((cipher[i] - q + 29) % 29 !== 0) next.add(clock + 1);
+    }
+    if (!next.size) return { failAt: i, endClocks: [] };
+    clocks = next;
+  }
+  return { failAt: null, endClocks: [...clocks].sort((a, b) => a - b) };
+}
+
 // Independently selected origin objects: p3/p39's only two isolated red119 triads.
 const triad3 = redAt(3, 119), triad39 = redAt(39, 119);
 assert.deepEqual(triad3, [13, 23, 2]); // P,D,TH
 assert.deepEqual(triad39, [27, 5, 15]); // IA,C,S
 assert.equal(primeSum(triad3), 137); // the 33rd prime
 assert.equal(primeSum(triad39), 173); // the 40th prime
+
+// Literal source-prime starts in the already-solved p56 operation, one
+// direct, clue-selected clock per pointed page, without phase fitting.
+const rankStart33 = primeClockFeasible(page(33), 33);
+const rankStart40 = primeClockFeasible(page(40), 40);
+assert.equal(rankStart33.failAt, 3);
+assert.equal(rankStart40.failAt, 106);
+assert.equal(primeClockFeasible(page(56), 1).failAt, null);
 
 // The same weights are one-based rune offsets on the original addressed pages.
 const addressed33 = wordAt(33, 136);
@@ -209,6 +249,10 @@ console.log(JSON.stringify({
     conditionalJoint: p33[40] / count33 * p40[4] / count40,
     discoveryWideSignificance: 'not established, route selected retrospectively'
   },
+  sourcePrimeStarts: [
+    { targetPage: 33, startOrdinal: 33, startPrime: 137, firstImpossibleRune: rankStart33.failAt },
+    { targetPage: 40, startOrdinal: 40, startPrime: 173, firstImpossibleRune: rankStart40.failAt }
+  ],
   proposedDirectKey: { spell: spell(key), length: key.length, p0HeadingLength: p0heading.length },
   sourceNativePlant: { runes: 95, recoveredClock: nativePlant.clock },
   originalP0: { runes: page(0).length, exhaustiveStrictFInverseImpossibleAt: originalP0.failAt },
