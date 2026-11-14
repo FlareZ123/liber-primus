@@ -1,0 +1,21 @@
+name: Agent34 p15 projective GP30 original all-state gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Projective GF29 original all-state capacity and authentic native inverse
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p15_projective_infinity_quadrant_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax failed' }
+          node sims/lp2_p15_projective_infinity_quadrant_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original source test failed' }
