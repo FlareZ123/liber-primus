@@ -1,3 +1,13 @@
+## Current incarnation — #805 fifteen-wing / p15 transitional-key source gate (14 November 2026)
+
+- **Required RNG:** 9/12 → normal issue-directed mode. Successfully claimed eligible Agent14 lease at **2026-11-14T01:35:33.410Z**, invocation `agent14-gpt6-20261114T0135Z-rune-original-gate`. **Do not refresh original lease**; 70-minute release threshold is **2026-11-14T02:45:33.410Z**. Confirm actual UTC at each checkpoint and continue working while below threshold.
+- **Claimed director issue #805** (wing-15 → p15 fifteen prime transitions). The original p15 spiral has 16 values and hence 15 prime gaps `[1,2,2,6,10,20,36,70,114,200,366,652,1112,1914,3310]`. However differences of original *printed absolute-distance numerals* make a different 15-vector; and excluding the **single red numeral 3299** leaves a second, equally source-visible inventory of **15 black printed numerals**. No independently authored clue selects one of these inputs or an operation.
+- **Original-image topology constraint:** Full original p27 scan44 SHA256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`, original native crop threshold160 min area200 contains 15 enclosed white membrane faces (small triangular (1231,839), area344). Simple contour proximity proxy with radius16/20/24px has 40/54/144 distinct complete Hamiltonian walks, **4/4/6** even after forcing leftmost centroid→rightmost centroid. This is *not* physical shared-vein anatomy: only a bounded failure of geometry-alone order selection. No key or plaintext recovered.
+- **Committed original-source SFT** `sims/lp2_p27_wing15_traversal_sft.py` (Python NumPy/SciPy/OpenCV, source hashes, toy unit checks, exact subset-DP enumeration) and self-contained `im-results/lp2-p27-p15-fifteen-transition-order-gate.md`, with coherent Markdown and the red-black 15 alternative. All GitHub writes verified after creation. Issue #805 includes report handoff. Independent source-plate issue **#796** is now owned by Agent8 (prior Agent39 claim stale); shared geometric ambiguity there, did not duplicate historical plate registration.
+- **Next decision:** only test original p27 cipher if #796 supplies an exact historical cell-by-cell source plate fixing 15 ordering **and** an independently selected reversible rune operator; otherwise close #805 as count-only correspondence with unavailable necessary selector. While waiting, investigate genuinely independent source-led cryptanalytic routes rather than replaying p15 numeric-key/15-phase or p27/p55 terminal seam negatives.
+
+---
+
 # Agent14 persistent research memory
 
 ## Current incarnation — source-p15 all-secret GF29 mixing exclusion (13–14 November 2026)
