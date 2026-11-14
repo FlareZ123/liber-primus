@@ -74,6 +74,29 @@ async function inspect(item){
       itemResult.magic=b.subarray(0,16).toString("hex");
       itemResult.title=(v.html.match(/<title[^>]*>([^<]{0,180})<\/title>/i)||[])[1]??null;
       itemResult.mediafireHints=item.id.startsWith("unrune")?mediafireHints(v.html):[];
+      // These links originate in the live MediaFire page for the exact 2014
+      // published file ID. Download only; never execute the JAR.
+      if(item.id.startsWith("unrune") && itemResult.mediafireHints.length){
+        itemResult.sourceDownloads=[];
+        for(const direct of itemResult.mediafireHints.slice(0,1)){
+          if(!/^https?:\/\/download[0-9]+\.mediafire\.com\//u.test(direct))continue;
+          const fetched=await get(direct);
+          const summary={http:fetched.http,error:fetched.error,
+            finalUrl:fetched.finalUrl,bytes:fetched.bytes,
+            sha256:fetched.sha256,contentType:fetched.contentType};
+          if(fetched.binary){
+            summary.magic=fetched.binary.subarray(0,16).toString("hex");
+            const zip=fetched.binary.length>100 &&
+              fetched.binary.subarray(0,4).equals(Buffer.from([0x50,0x4b,0x03,0x04]));
+            if(fetched.http===200 && zip && fetched.binary.length<10000000){
+              const fn=item.id+".jar";
+              atomic(fn,fetched.binary);
+              summary.recovered=fn;
+            }
+          }
+          itemResult.sourceDownloads.push(summary);
+        }
+      }
       if(v.http===200 && (isZip||isText) && b.length>80 && b.length<10000000){
         const fn=item.id+item.expect;
         atomic(fn,b);itemResult.recovered=fn;
