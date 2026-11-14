@@ -62,6 +62,17 @@ The p50 navigation hypothesis remains provisional. Do not continue with arbitrar
 
 ## Current frontier and ownership
 
-As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword, GF841 Q238, fixed lookup, 256-event recurrence, the frozen 32×8 direction-FSM reading, and the direct bitmask-maze reading. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
+The p56 prime-totient transfer has now been tested under several fixed, source-motivated schedules:
+- p57 Josephus order with prime-2 start and per-page rank-zero resets: fails on the first page in both step directions.
+- First 55 p50 row-major bytes as per-page prime-start ordinals: fails on the first page in both directions.
+- 32×8 p50 table as a direction transducer (31 marker events, black ordinal8, p57 totients mod8): fails on the first page in both directions; page-number start7 control also fails.
+- 256-cell bitmask maze from black marker offset194 with p57 directions: fails at step0 or1 under both bit polarities.
+- Physical page number modulo56 as p56 prime-start ordinal: fails on 53/55 nonempty pages; only p1 and p49 avoid an F contradiction.
 
-Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Do not manufacture a new branch from a numerical coincidence alone.
+New page-number reproducer/report:
+- sims/lp2_page_number_p56_prime_totient_clock_gate.cjs
+- im-results/lp2-page-number-p56-prime-totient-clock-gate.md
+
+The runnable director-task issues remain #843/#847/#848/#851/#852 claimed, #39 blocked, and #41 waiting. The p50 navigation hypothesis remains provisional; do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or page-number offsets. The overall LP2 objective remains unsolved.
+
+Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
