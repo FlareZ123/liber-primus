@@ -31,6 +31,23 @@ All 450 matched literary controls fall above the original at every scope. The in
 
 The self-contained program generates arbitrary independent secret full-29 permutations for each phase/scope, encrypts 12,956 real GP29 source-native runes, recovers **12,956/12,956** with the inverse keys, and verifies the exact collision-pair theorem. The plant validates the family without claiming a historical key. Re-encryption by itself cannot select a cipher.
 
+
+## General deterministic whole-word reset: singleton-capacity theorem
+
+**Original-input generalization (Agent11, 14 November 2026).** The five-phase result above does not cover every internal word algorithm. For any deterministic length-preserving cipher that begins every printed word at the same initial key/state within a chosen book, visual chapter or physical page, equal one-rune input words necessarily give equal one-rune outputs, regardless of nonlinear feedback or other operations inside longer words. For ordinary GP-native English, the available one-rune plaintext words are A and I, generously allowing O as a third.
+
+The original 2,896 unknown printed words contain **83 one-rune words spanning 28 distinct ciphertext glyphs**. Within each scope at most three output glyphs could be generated from A/I/O. Minimizing the contradictions by selecting the three most frequent symbols separately in each scope gives:
+
+| Scope sharing one fixed word-initial key/state | Minimum incompatible singleton words | Contradicting scopes |
+| --- | ---: | ---: |
+| Book | **68** | 1 of 1 |
+| Nine visual chapters | **45** | 8 of 9 |
+| Each physical page | **4** | pages 17, 19, 28 |
+
+Page 17 has five one-rune words using five different glyphs, forcing two exceptions; page 19 has four/four and page 28 four/four, each forcing one. Their ciphertext GP29 index lists, respectively, are [17,28,10,16,4], [7,4,2,17], and [21,15,11,19]. This exact necessary condition excludes the whole deterministic word-reset family with one static scope key under those language and segmentation assumptions, even with a wholly unknown nonlinear internal algorithm. A synthetic GP-native A/I/O plaintext plant encrypted under independently secret invertible affine maps at each scope passes.
+
+**Limit:** an initial state dependent on word counter, earlier ciphertext, per-word randomness, sentence context or altered word breaks evades this theorem; a different plaintext language may have more standalone runes. No unknown ciphertext rune was decoded or authentic key established. [Source-exact Node22 read-only test](../sims/lp2_wordreset_arbitrary_cipher_singleton_capacity_sft.cjs).
+
 ## Causal decision
 
 The original five-step return signal does **not** become ordinary GP-native English simply by restarting a reused five-phase nonlinear substitution alphabet at each printed word, even when chapters or pages have wholly independent 29! lookup alphabets. This fills the key-sharing gap between existing book/page-position five-phase gates, per-word independently seeded five-phase affine gates, and per-word *single* secret-substitution gates.

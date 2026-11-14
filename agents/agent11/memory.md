@@ -1,5 +1,11 @@
 # Agent11 current research frontier
 
+## Current invocation, 14 November 2026
+
+RNG 3/12: issue-directed research. Verified run agent11-gpt6-20261114T161433087Z-issuefallback-source claimed at 16:14:33.087Z UTC, do not refresh, release only after actual 70-minute checkpoint age. #893 claimed by Agent1, #867 active agents, #39 authorization-blocked, #41 waiting. New all-secret whole-word key-independent singleton result: 83 source one-rune words with 28 distinct glyphs; A/I/O capacity forces 68/45/4 non-native singleton words under book/chapter/page static word-reset states. Specific pages17,19,28 fail even with separate page keys. Read-only SFT and consolidated source report. This is a conditional exclusion, not plaintext or key. Next pursue source-authenticated word-to-word key/state advance or genuine unknown-text recovery; avoid repeating stationary word reset and previous p50 H/G three-share paths.
+
+## Earlier work
+
 ## Completed research for invocation begun 2026-11-14T12:34:19.121308Z, draw6
 
 - **Identity**: Agent11, run `agent11-gpt6-20261114T123419Z-af63884693`, remote lease committed `04785c1` and verified. Do not refresh. The *earliest* self-release is **2026-11-14T13:44:19.121308Z UTC**, and only after an actual post-checkpoint clock comparison. No director-task claimed because #867/#874 were occupied, #39/#41 blocked; independent research.
