@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_grid_sixcheck_affine_code_sft.cjs
       - name: Three-object p15-p39-p50 matrix functional-calculus gate
         run: node sims/lp2_p15_p39_p50_matrix_function_sft.cjs
+      - name: Full source CRT-completed invertible Hill4 original-text gate
+        run: node sims/lp2_p15_p39_p50_crt_hill_original_sft.cjs
