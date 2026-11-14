@@ -127,6 +127,46 @@ const held=top.map(entry=>{
   opening:[...d.slice(0,32)].map(q=>gp.translit[q]).join('')};
 });
 held.sort((u,v)=>v.p3to7IoC-u.p3to7IoC);
+
+/**
+ * Discovery-power control: run the SAME exhaustive 707281-key search
+ * against an independently constructed source-native English cipher.
+ * Do not settle for merely checking known-seed encryption/decryption.
+ */
+const srank=new Uint8Array(1874);
+for(let i=0;i<1874;i++){
+  if(begins.has(i))srank[i]=synthetic[i];
+  else srank[i]=synthetic[i]===synthetic[i-1]
+    ?0:1+synthetic[i]-(synthetic[i]>synthetic[i-1]?1:0);
+}
+const plantTruth=pairs(knownPlant,0,chapterA);
+let plantBestPair=-1,plantBestSeed=[],plantKeysAtOrAboveTruth=0,plantKeysAtOrAbove005=0;
+for(let a=0;a<29;a++){
+ const u=contributions[0][a];
+ for(let b=0;b<29;b++){
+  const v=contributions[1][b];
+  for(let d=0;d<29;d++){
+   const w=contributions[2][d];
+   for(let e=0;e<29;e++){
+    const x=contributions[3][e];
+    hist.fill(0);
+    for(let i=0;i<chapterA;i++){
+     const p=rem[srank[i]+116-u[i]-v[i]-w[i]-x[i]];
+     hist[p]++;
+    }
+    let score=0;
+    for(let k=0;k<29;k++)score+=hist[k]*(hist[k]-1);
+    if(score>=plantTruth)plantKeysAtOrAboveTruth++;
+    if(score>=0.05*chapterA*(chapterA-1))plantKeysAtOrAbove005++;
+    if(score>plantBestPair){plantBestPair=score;plantBestSeed=[a,b,d,e];}
+   }
+  }
+ }
+}
+assert.deepEqual(plantBestSeed,planted);
+assert.equal(plantBestPair,plantTruth);
+assert.equal(plantKeysAtOrAboveTruth,1);
+
 const plantKeys=keyFromSeed(planted);
 const plantMatches=knownPlant.every((r,i)=>r===mod((begins.has(i)?synthetic[i]:(synthetic[i]===synthetic[i-1]?0:synthetic[i]-(synthetic[i]>synthetic[i-1]?1:0)+1))-plantKeys[i]));
 assert(plantMatches);
@@ -138,5 +178,6 @@ console.log(JSON.stringify({
   bestSeed,bestTrainIoC:bestPair/(729*728),frozenTop32BestHeldout:held.slice(0,8)},
  positive:{plantedSeed:planted,originalShape:true,exactlyRecovered:plantMatches,
    plantedRepeatCount:syntheticRepeats,
-   trueSeedTrainIoC:trainPairPlant/(729*728),trueSeedHeldoutIoC:heldPairPlant/(1145*1144)}
+   trueSeedTrainIoC:trainPairPlant/(729*728),trueSeedHeldoutIoC:heldPairPlant/(1145*1144),
+   exhaustiveSeedRank:plantKeysAtOrAboveTruth,keysAbove005:plantKeysAtOrAbove005}
 },null,2));
