@@ -12,6 +12,14 @@
 - A synthetic 24-rune plaintext with a deliberately forced collision round-trips exactly with one encoder and decoder skip. The inverse implementation is validated; the original p55 hypothesis is not.
 - This closes only deterministic cyclic-perimeter/additive-GP29/collision-rejection as a p55 decoder. It does not close other source-selected rim-only consumers or the p57→p49/p50 navigation hypothesis.
 
+### p57 55-step sequence applied to the p50 inner 180 cells
+
+- The solved parable contains 20 words / 95 GP runes; removing the first and last rune of each word leaves 55 interior runes. Their GP-prime totients sum to 1,952.
+- Reused the same 55-step Josephus convention on the p50 30×6 interior after removing the 76-cell perimeter. The 180-cell elimination removes 55 and leaves 125; paired the removed bytes in order with the 55 page-Josephus removals as per-page prime-totient start ordinals.
+- Tested eight source-natural variants: row/column inner layout, forward/reversed selected-byte order, zero-/one-based prime ordinal. The F-transparent bigram Viterbi recovers known p56 exactly (85/85 runes, one literal-F bypass), but the proposed schedule admits at most 3/55 unknown pages; the survivors are gibberish. Canonical row-major/forward/zero-based admits 1/55; one-based admits 2/55.
+- The 125 survivor and 55 removed sequences also fail as direct additive GP29 keys for p55 across 32 mapping/layout/order/sign variants; best score −5.543 per event versus −2.435 for known p56 English.
+- This rejects only these explicit inner-grid consumers. Do not retune the same Josephus page-key mapping; other source-selected uses of the 180-cell interior remain open. Reproducer: sims/lp2_p50_inner180_josephus_page_key_gate.cjs.
+
 ### Prime–totient collision-filter extension
 
 - Tested the source-authenticated p56 key stream K_j = (prime_j − 1) mod 29 with an output-aware collision-skip model and bigram scoring.
@@ -28,6 +36,7 @@
 ## Files changed in this checkpoint
 
 - sims/lp2_p50_rim_collision_skip_gate.cjs — reproducible 608-candidate test and synthetic positive control.
+- sims/lp2_p50_inner180_josephus_page_key_gate.cjs — 55-step inner-grid schedule, F-transparent page decoder, p56 positive control and direct-key gates.
 - im-results/lp2-parable55-totient-josephus-p50-original-route.md — consolidated route report with the new bounded negative.
 - results/README.md — current synthesis updated.
 - workplace/integrated-original-inversion-challenge.md — frontier updated without closing other rim-only hypotheses.
