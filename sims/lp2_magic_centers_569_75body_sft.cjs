@@ -142,6 +142,18 @@ function run() {
   assert.deepEqual(repeatSites, [29, 103]);
   assert.deepEqual(p32.slice(103, 105).map(v => corpus.translit[v]), ["N", "N"]);
   assert.deepEqual(p32.slice(102, 104).map(v => corpus.translit[v]), ["E", "N"]);
+  // The p32 word following the 103/104 zero-based doublet begins N W.
+  // The direct NW diagonal from its first rune is not an instruction string.
+  const northwest = start => {
+    const result = [];
+    for (let row = Math.floor(start / 11), col = start % 11;
+      row >= 0 && col >= 0; row--, col--) {
+      result.push(corpus.translit[p32[11 * row + col]]);
+    }
+    return result;
+  };
+  assert.deepEqual(northwest(104), ["N", "M", "EO", "X", "Y", "NG"]);
+  assert.deepEqual(northwest(103), ["N", "O", "H", "R", "T"]);
 
   // The original first p55 rune completes a p54 word: the 75 complete
   // body runes alone have an exact 3 x 25 numerical-square counterpart.
@@ -190,6 +202,8 @@ function run() {
     originalP32ZeroBasedDoubletStarts: repeatSites,
     zeroBasedDimensionOrdinalRead: "N N",
     conventionalOneBasedPrimeOrdinalRead: "E N",
+    northwestFromPrime104ZeroBased: northwest(104),
+    northwestFromPrime103ZeroBased: northwest(103),
     p55FullRunes: p55.length, p55CompleteBodyRunes: body.length,
     threeKeyMatricesDeterminantsRaw: raw.map(mat => invert(mat).det),
     threeKeyMatricesDeterminantsPhi: totient.map(mat => invert(mat).det),
