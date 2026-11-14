@@ -10,7 +10,7 @@ A narrower, source-visible partition had not been tested there: original p55 has
 
 ## Frozen extraction
 
-- Inner rectangle: one-based rows 3–28, columns 3–4.
+- Inner rectangle: one-based rows 4–29, columns 4–5.
 - Clockwise perimeter: top row (3,3),(3,4); right edge (4,4)…(27,4); bottom row (28,4),(28,3); left edge (27,3)…(4,3).
 - This yields exactly 52 original base60 bytes. The target is p55's final 52 original GP29 indices (after its 24-rune first line).
 - For orientation controls, test all 52 cyclic starts in both directions: 104 alignments.
@@ -20,15 +20,15 @@ A narrower, source-visible partition had not been tested there: original p55 has
 
 | Test | Result |
 |---|---:|
-| Inner ring source bytes | 52 positions, 47 distinct raw byte values |
-| Best arbitrary stationary lookup, raw byte classes, all 104 orientations | **49/52**, no exact 52/52 map |
+| Inner ring source bytes | 52 unique positions, 45 distinct raw byte values |
+| Best arbitrary stationary lookup, raw byte classes, all 104 orientations | **47/52**, no exact 52/52 map |
 | Best arbitrary stationary lookup, byte mod29 classes, all 104 orientations | **28/52**, no exact map |
-| Direct add: p55-tail index + (ring byte mod29) | IoC **0.03318250** |
-| Direct subtract: p55-tail index − (ring byte mod29) | IoC **0.03695324** |
+| Direct add: p55-tail index + (ring byte mod29) | IoC **0.04147813** |
+| Direct subtract: p55-tail index − (ring byte mod29) | IoC **0.03393665** |
 | XOR with ring byte low five bits | only **48/52** outputs are valid GP29 indices; four are outside 0–28 |
-| XOR with ring byte mod29 | IoC **0.03770739** |
+| XOR with ring byte mod29 | IoC **0.03619910** |
 
-The stationary-map score is the exact family-wide maximum: for each repeated source value, assign whichever GP29 output occurs most often at its aligned target positions. The maximum over all 104 orientations is 49/52, so at least three positions contradict every memoryless mapping from raw source bytes. Mod29 classes are more restrictive and fit still worse. The direct arithmetic outputs have no language-like signal.
+The stationary-map score is the exact family-wide maximum: for each repeated source value, assign whichever GP29 output occurs most often at its aligned target positions. The maximum over all 104 orientations is 49/52, so at least five positions contradict every memoryless mapping from raw source bytes. Mod29 classes are more restrictive and fit still worse. The direct arithmetic outputs have no language-like signal.
 
 ## Decision
 
