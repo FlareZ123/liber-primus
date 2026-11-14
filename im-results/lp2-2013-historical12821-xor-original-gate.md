@@ -46,6 +46,22 @@ A separate, strongly typed operand exists: the original printed pp49–51 numeri
 
 The independent dated archive has ten known transcription differences from the original printed table, so the two XOR outputs accordingly differ at ten byte positions. The source-conditioned XOR exposes **neither readable ASCII nor a common file-format signature** in either version. It could still produce a further binary key under some other independently specified consumer, but no such instruction is supplied by these sources. The entire [second successful Windows native-original run 43645207433](https://github.com/FlareZ123/liber-primus/actions/runs/43645207433) preserves these outputs with the first two rune sections and the 2013 positive witness.
 
+## Source-red p0 heading as a different single fixed 2013 XOR byte address (Agent14, 14 November 2026)
+
+A fresh, bounded candidate chooses the **first 13 original red runes of physical LP2 p0**, explicitly excluding the title from the body to be decoded. Their original GP29 indexes are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`. Read as a positional most-significant-first BASE29 integer, they give **5,412,445,423,142,629,857**. The 2013 Cicada-signed BASE29 numeral example, together with the genuine 2013 `DATA/560.13` XOR operation, motivates testing the heading as a possible byte address in the old 118,818,811-byte source file. The deliberately single proposed reduction, number modulo original file length, gives a definite **offset 69,948,647**. **This modulo-file-length step is an investigator's conjecture; it is not an original Cicada instruction.** It is a different fixed offset from the historically witnessed 12,821, and no alternate phase or key is fitted.
+
+A [completed Windows/Node22 original-source CI job, run 43647291164](https://github.com/FlareZ123/liber-primus/actions/runs/43647291164), downloaded the entire genuine `DATA/560.13`, verified its source SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`, and recovered the exact authentic 2013 address `gbyh7znm6c7ezsmr.onion\n` by XOR of the 23 historic source-cipher bytes at offset12,821. It checked the original physical p0's 262 runes, retained **all 249 runes after the 13-rune red header**, and round-tripped all three encoded registers and each source XOR without byte alteration.
+
+| Fixed source p0 body register | XOR output bytes | Printable ASCII | ASCII letters | High-bit bytes | Longest alphabetic/space run | Output first 16 hex |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| One GP29 index per byte | 249 | 102 | 48 | 118 | **3** | `fb04241e518406cf475ed4f4e32a4c23` |
+| One MSB-first BASE29 integer | 152 | 60 | 35 | 79 | **2** | `f94eadafddb057f6af36ead612ba9141` |
+| Packed MSB-first five-bit GP indexes | 156 | 57 | 35 | 83 | **3** | `ebc2b22992c783ef89536ef3b49c727` |
+
+All three byte outputs are nonlinguistic and have no byte-zero PNG, PDF, ZIP, gzip, armored-PGP or ordinary ASCII-text signature. Full first-48-hex-byte fingerprints, ASCII previews, source-hash control and double-XOR checks are printed by the [self-contained original-input SFT](../sims/lp2_2013_p0_red13_56013_xor_sft.cjs). The exact manual workflow is [`lp2-p0-red13-56013-xor-manual.yml`](../.github/workflows/lp2-p0-red13-56013-xor-manual.yml).
+
+**Decision:** the heading-derived, source-file-length-reduced 2013 **XOR at exactly offset 69,948,647** cannot directly recover ordinary source-language plaintext in any of these three unaltered GP-to-byte representations. The authentic historical 12,821 XOR positive passes. No source instruction independently selects the reduction, and no unknown-page plaintext, cipher key, or destination is recovered. Do not expand this into unconstrained red-title offset or endian searches without an additional first-party selector.
+
 ## Reproduction and decision
 
 - [Self-contained source-specific Node22 CommonJS SFT](../sims/lp2_2013_historic12821_base29_xor_sft.cjs)
