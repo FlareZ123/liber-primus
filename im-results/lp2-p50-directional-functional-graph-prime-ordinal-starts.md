@@ -54,6 +54,20 @@ A noncanonical base59 `f`-skip fork changes the same cells: 84→75→66 emits T
 
 A second candidate marker is cell 81, the first p50 table cell. Its token `2M` is base60 byte 142, so (142=29\times4+26): the candidate keypad maps (q=4) to stay and (r=26) to Y, producing a Y self-loop. Agent5 identified two word-map-derived paths converging on p50 word 0/cell 81 (2014 div331 and 2016 image height569); this is a candidate source convergence, not a validated address rule. The 2016 word “direction” has prime sum 337, which also selects cell 81 under one-based modulo-256 indexing, but that modulus/offset is another analyst choice.
 
+### Original p50 first-cell Y → GP-prime 103 → existing GEM path
+
+A further source-visible connection begins from a fixed position without choosing an arbitrary cell number: **the first printed numerical token on the rune-free middle physical page p50** is `2M`, joined-grid **cell81**. Under the already frozen canonical base60 interpretation it is byte **142 = 29×4 + 26**. Quotient 4 is the centre/stay position of the provisional standard 3×3 keypad, and remainder26 is **Y**, whose authentic GP prime weight is **103**. If, **only at a stationary cell**, the solver treats the remainder's GP prime weight as a fresh one-based table address, then the additional exact source step is:
+
+```text
+p50 first cell81: 2M = 142 = 29×4+26 → Y (GP prime 103)
+jump 103 → 111 → 119 → 127 → 128 → 119...
+          O     O     G     E     M      [repeat GEM]
+```
+
+The resulting **Y/O/O/G/E/M** route supplies an independent starting-cell rationale for exactly the **same previously frozen 103→OOGEM** path selected by the signed 2016 JPEG width's prime ordinal103. The earlier p10 7×G-prime marker independently selects cell119, the start of the GEM loop. Of the **29 centre/stay cells in the unchanged full table**, exactly **two** produce the GEM cycle by this GP-prime reroute: cells **81 and 217**. Both encode Y, which makes this an exact identity of the source table rather than three unrelated rune decodings.
+
+The **critical missing source step is the rerouting rule**. No authenticated Cicada instruction says that keypad-centre/stay means jump to the GP-prime-indexed table cell; its introduction is retrospective, following the discovery of GEM. The numeral table starts physically at p49, not p50; choosing the rune-free middle page's first cell is a plausible separate layout cue, not an explicit start command. This equality reuses the original GEM event and is **not an independent statistical confirmation** of the keypad. A centre-jump extends the original graph by a new state transition and remains a short navigation hypothesis, with no plaintext/key material. The original source-locked [p10/2016 SFT](../sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs) now asserts the entire first-cell/prime-address route and tests all 29 centre cells.
+
 ## Decision and next work
 
 The q/r graph is a bounded navigation hypothesis, not a cipher inverse. Physical p10's independently printed 7–G marker now offers a concrete *additional start selector* to the exact GEM cycle, distinct from the 2016 prime-dimension route. But the author never explicitly instructs a player to multiply the decimal by the next rune's GP prime, decompose base60 bytes into GP29 quotient/remainder, or interpret the quotient as a keypad direction. The 2016 “numbers are direction” phrase motivates testing directionality without authenticating the keypad, orientation, centre/stay state, hollow-corner stop rule, or prime-ordinal starts. The base59 TEAM readout is rejected as plaintext because it does not use the canonical byte stream. The base60 GEM cycle is a structural observation, not recovered text; rune meanings may matter more than transliteration.
