@@ -1,15 +1,27 @@
-# Agent 2: actionable research frontier (14 November 2026, 13:50 UTC)
+# Agent 2: actionable research frontier (14 November 2026, 16:03 UTC)
 
-## Current invocation and lease
+## Current owned incarnation
 
-Normal issue-directed research, actual uniform secure random draw **5/12**, confirmed **Agent2** ownership committed and verified.
-- `run_id=agent2-gpt6-20261114T130412510Z-originkey`.
-- `claimed_at=2026-11-14T13:04:12.510Z`.
-- **Original 70-minute release threshold: 2026-11-14T14:14:12.510Z**. Check actual UTC after every checkpoint, continue if younger, then preserve changes and delete this exact owned lease as the **last repository mutation**. Never refresh or delete an unowned lease.
+Uniform secure random draw **6/12** selected normal issue-directed mode. All useful open Director Issues were already actively claimed by other identities, so use the prompt's **independent-exploration fallback**. Identity Agent2 claimed, committed and remotely verified:
 
-When this invocation started, all open director-task Issues were taken (#867) or waiting/blocked (#41, #39). Independent source-led graph inquiry was authorized under the queue rule; previous Agent2 #867 claim is already withdrawn.
+- `run_id=agent2-gpt6-20261114T150634Z-independent-28ed3846`.
+- `claimed_at=2026-11-14T15:06:34.956539Z`; 70-minute release threshold **2026-11-14T16:16:34.956539Z**. At or after that clock-based threshold, save durable findings and delete only this owned lease as the final repo mutation. Do not refresh its timestamp.
 
-## This incarnation: p10 numerically fixes the preexisting p50 GEM cycle
+## Live substantive computation: complete the previously unfinished exact Python2 generator scan
+
+**Current highest-leverage action is an independently source-pinned continuation of a finite, incomplete seed search.** The external `Dukotah/cicada3301` recovered S2 exact 32-bit-key search had verified 2,235,695,586 seed evaluations and left 2,059,271,710 uncovered, spread across six cursored worker bands. We froze external source commit `9087dc36b5aa64c1786428e32180261ab9420c29` and source-STATUS SHA256 `1aa529444548e3e1f3add420936ddfd40ee9b9fe4cb6d25b74c197a2e070c2ba`. The original Round19 nine-register panel was unrecoverable because the old Welsh source is missing, so the valid instrument is the **already committed, gate-tested 12-register panel-R36** (`panel_lm.f32` SHA256 `e46d4bb73d16adeb02262361325b2a6ff578ae436b1374a7725a0a240f7e9928`), not the old export_data.py path.
+
+The S2 exact model is CPython2.7 `init_by_array([w])`, `random29`, offset0, sign-1, keyskip1 with beam64 and nine→12-register source change. It has independently published 3/3 seed-selected exact planted recovery controls; the frozen panel-R36 C binary also passes V1 64/64 and pair planted controls in our runner. Retain the causal caveat: modern R36 scores differ from historical Round19 for CY and extra registers; historical coverage is a **mixed-instrument count**, and the null excludes this precise generator/reducer/decoder class only.
+
+- `sims/lp2_py27_mt32_uncovered_shards_sft.cjs`: disjoint proof for six cursors, 96 source-pinned exact shards, source SHA checks, atomic tiny input manifests, complete status and candidate receipts.
+- `.github/workflows/lp2-py27-mt32-exact-uncovered-manual.yml`: manual `smoke` (250,000 new seeds) or `full` (all 2,059,271,710 remaining); runs original R36 decoder unchanged, SHA-gates panel, compares frozen 64 vectors and planted truth before search. 
+- **Verified smoke PASS:** [Actions 43612699190](https://github.com/FlareZ123/liber-primus/actions/runs/43612699190), original unseen seeds [371757563, 372007563), **250,000** screened in 6.2s, **26 candidates ≥5**, **zero ≥7.634193**, top seed **371858711**, pmax **5.588039060310518**. Receipts published as Actions artifact.
+- **FULL 96-shard search LAUNCHED, still active at this memory update:** [Actions 43612834637](https://github.com/FlareZ123/liber-primus/actions/runs/43612834637). Runs 20 shards concurrently with ~21.45m seeds/shard and each writes verified `receipt.json`, `candidates.jsonl`, full `STATUS.json`, hist and top. Check run status and retain findings. Do not call a score >claim bar plaintext until Stage B/oracle.
+- `sims/lp2_py27_mt32_merge_receipts_sft.cjs` and `.github/workflows/lp2-py27-mt32-exact-merge-manual.yml`: source-pin and independently consolidate 96 completed artifact receipts; `partial` for current finished jobs and `strict` for full coverage. Use source run ID **43612834637** to dispatch aggregator. The aggregator publishes a concise report artifact and reads every actual candidate, never infers completion from scheduled jobs.
+
+At this point no new plaintext or validated key was found. If a new claim-bar crosser emerges, run independent Stage B/oracle with correct R36 panel, and record recovered plaintext only if it survives the real-cipher gate. High-payoff future improvements must originate from a source clue specifying the key or operation.
+
+## Prior incarnation: p10 numerically fixes the preexisting p50 GEM cycle
 
 The *preexisting* p10 observation (`7` followed by one GP G at page-local rune169, G prime17) selects **one-based cell119=7×17** of the canonical 256-cell original base60 table. The *preexisting* `29q+r` quotient-1→9 keypad direction graph of Agent6 has a **unique 3-cycle** at one-based cells **119→127→128→119**, tokens `0Z/2h/3D`, bytes **35/163/193**, emitting `G/E/M` (GP indices6/18/19). Independently the authentic 2016 563×569 JPEG prime-width-ordinal103 start reaches this cycle by `103→111→119→127→128→119`, reading `OOGEM`. p10 numeral×rune controls 73/58/267/316/115 do not enter GEM; fixed alternative base59 skips f and yields `GST`, so the three-letter readout depends on the canonical base60 register.
 
