@@ -1,6 +1,6 @@
 # Five-phase ciphertext-feedback with arbitrary page-secret alphabets: complete source-native exclusion
 
-**Agent28, 14 November 2026. Evidence class: original-input key-independent necessary-condition failure under a source-native-English plaintext register, plus source-shaped positive plant.** This yields no unknown LP2 plaintext, creator key, intended decipherment mechanism or destination.
+**Agent28, 14 November 2026. Evidence class: original-input key-independent necessary-condition failure under a source-native-English and Vulgate Latin plaintext registers, plus source-shaped positive plant.** This yields no unknown LP2 plaintext, creator key, intended decipherment mechanism or destination.
 
 ## Motivating clue and fixed cipher family
 
@@ -25,22 +25,23 @@ The unchanged 55-page, 12,956-rune manuscript has **10,060 within-word consecuti
 
 A concrete unchanged original key drawn from this family would merely *relabel* the 29 plaintext rune identities in each class; it could not change these class-collision rates.
 
-For each of Shakespeare, Gibran and Emerson, the reproducible program samples **250 complete GP-native English controls** from a source-calibrated alphabet register (`ING`, `IO`, `QU→CW`, `V→U`, and the canonical GP variants), **holding all 2,896 exact original word lengths and physical page/rune positions fixed**. Every control is generated from its archived source text, and the target/controls are compared on the same noninitial positions:
+For each of Shakespeare, Gibran, Emerson and the eight-book Latin Vulgate, the reproducible program samples **250 complete GP-native English or Latin controls** from a source-calibrated alphabet register (`ING`, `IO`, `QU→CW`, `V→U`, and the canonical GP variants), **holding all 2,896 exact original word lengths and physical page/rune positions fixed**. Every control is generated from its archived source text, and the target/controls are compared on the same noninitial positions:
 
 | Source corpus | Controls | Minimum 275-class rate | Median rate | Controls ≤ original |
 | --- | ---: | ---: | ---: | ---: |
 | Shakespeare | 250 | **0.0821835** | 0.0854103 | 0 |
 | Gibran | 250 | **0.0786799** | 0.0834119 | 0 |
 | Emerson | 250 | **0.0756088** | 0.0788442 | 0 |
+| Latin Vulgate | 250 | **0.0768156** | 0.0794152 | 0 |
 
-Thus **0/750** matched source-native English controls give the original's sparse differential collisions, even when all 275 phases allow independent hidden relabeling. This is a finite language-register exclusion, not a probability of authorship or proof against every conceivable source text.
+Thus **0/1,000** matched source-native English and Latin controls give the original's sparse differential collisions, even when all 275 phases allow independent hidden relabeling. This is a finite language-register exclusion, not a probability of authorship or proof against every conceivable source text.
 
 **Constructive positive:** On exactly the same original word/page length geometry, choose independent hidden random bijections at each of 275 page×phase slots, encrypt 12,956 GP runes of a length-matched English control under the declared evolving feedback mechanism, and invert directly. The decoder recovers **12,956/12,956** original control plaintext runes. Its **20,059** observed within-class differential equalities are preserved exactly from source-native plaintext before encryption to ciphertext difference outputs. The authentic real-cipher rejection is therefore discriminating within this wide family.
 
 ## Cryptanalytic decision
 
-**Reject this complete page-reused five-phase modular ciphertext-feedback family for ordinary source-native GP English under the original printed segmentation.** The cipher may change raw letter marginals and still cannot conceal the strong phase-conditioned *plaintext equality frequencies* in its observable one-step differences. This is distinct from the earlier direct five-phase substitution all-secret test and from per-word affine/Vigenère exclusions.
+**Reject this complete page-reused five-phase modular ciphertext-feedback family for the tested source-native GP English and Latin Vulgate registers under the original printed segmentation.** The cipher may change raw letter marginals and still cannot conceal the strong phase-conditioned *plaintext equality frequencies* in its observable one-step differences. This is distinct from the earlier direct five-phase substitution all-secret test and from per-word affine/Vigenère exclusions.
 
 It does not reject noninvertible phase maps; an independent map for **every word**; keyed nonlinear feedback; a hidden intermediate encoding; edit/insert/delete operations; plaintext written in another register; or a mechanism whose phase changes with state. Those would require an original instruction or a source-locked recovered-key prediction before serious compute. There is no authentic new unknown-page decryption.
 
-**Reproduction:** [standalone Node22 original-input all-key SFT](../sims/lp2_wordfive_cipherfeedback_secret_alphabet_sft.cjs) · [successful GitHub Actions 43617442619](https://github.com/FlareZ123/liber-primus/actions/runs/43617442619). It checks two independent full source rune registers against each other, 750 native-English controls, 275 independent secret maps, full positive inversion and preserved equal-pair invariants.
+**Reproduction:** [standalone Node22 original-input all-key SFT](../sims/lp2_wordfive_cipherfeedback_secret_alphabet_sft.cjs) · [successful expanded GitHub Actions run 43619016826](https://github.com/FlareZ123/liber-primus/actions/runs/43619016826). It checks two independent full source rune registers against each other, **1,000** native-English and Vulgate Latin controls, 275 independent secret maps, full positive inversion and preserved equal-pair invariants.
