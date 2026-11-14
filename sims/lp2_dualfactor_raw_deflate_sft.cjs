@@ -101,6 +101,133 @@ function proseQuality(bytes) {
   return ["THE","AND","YOU","OUR","WITH","THIS","FROM"].some(w => words.has(w));
 }
 
+
+/**
+ * Decode complete RFC4880 packets from the *first* byte, without guessed
+ * offsets. Reject implicit old-format EOF lengths because they are not
+ * self-delimiting and would accept random data as arbitrary packets.
+ * We parse packet framing and extract literal text, including ZIP/ZLIB
+ * compressed literal packets. Other well-framed packet types are recorded.
+ * @param {Buffer} bytes
+ * @param {number} level
+ * @returns {object|null}
+ */
+function parseOpenPGP(bytes, level = 0) {
+  if (!bytes.length || level > 3) return null;
+  const recognized = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 17, 18, 19]);
+  const packets = [];
+  let offset = 0;
+  let literal = null;
+  while (offset < bytes.length) {
+    const header = bytes[offset++];
+    if ((header & 0x80) === 0) return null;
+    const fresh = (header & 0x40) !== 0;
+    const tag = fresh ? header & 63 : (header >> 2) & 15;
+    if (!recognized.has(tag)) return null;
+    const oldType = header & 3;
+    if (!fresh && oldType === 3) return null;
+    let body, n;
+    if (fresh) {
+      const chunks = [];
+      let first = true;
+      do {
+        if (offset >= bytes.length) return null;
+        let a = bytes[offset++];
+        let partial = a >= 224 && a < 255;
+        if (a < 192) n = a;
+        else if (a < 224) {
+          if (offset >= bytes.length) return null;
+          n = ((a - 192) << 8) + bytes[offset++] + 192;
+        } else if (a < 255) n = 1 << (a & 31);
+        else {
+          if (offset + 4 > bytes.length) return null;
+          n = bytes.readUInt32BE(offset);
+          offset += 4;
+        }
+        if (first && partial && (n < 512 || ![8, 9, 11, 18].includes(tag))) return null;
+        first = false;
+        if (n > bytes.length - offset) return null;
+        chunks.push(bytes.subarray(offset, offset + n));
+        offset += n;
+        if (!partial) break;
+      } while (true);
+      body = Buffer.concat(chunks);
+    } else {
+      if (oldType === 0) {
+        if (offset >= bytes.length) return null;
+        n = bytes[offset++];
+      } else if (oldType === 1) {
+        if (offset + 2 > bytes.length) return null;
+        n = bytes.readUInt16BE(offset);
+        offset += 2;
+      } else {
+        if (offset + 4 > bytes.length) return null;
+        n = bytes.readUInt32BE(offset);
+        offset += 4;
+      }
+      if (n > bytes.length - offset) return null;
+      body = bytes.subarray(offset, offset + n);
+      offset += n;
+    }
+    packets.push({tag, length: body.length});
+    if (tag === 10 && !body.equals(Buffer.from("PGP"))) return null;
+    if (tag === 11) {
+      if (body.length < 6 || ![98, 116, 117].includes(body[0])) return null;
+      const nameLength = body[1];
+      if (body.length < nameLength + 6) return null;
+      const content = body.subarray(nameLength + 6);
+      literal = {
+        bytes: content.length, readable: proseQuality(content),
+        hexPrefix: content.subarray(0, 48).toString("hex"),
+        textPrefix: content.subarray(0, 125).toString("latin1")
+      };
+    }
+    if (tag === 8) {
+      if (body.length < 2 || body[0] > 3) return null;
+      let decoded;
+      if (body[0] === 0) decoded = body.subarray(1);
+      else if (body[0] === 1 || body[0] === 2) {
+        try {
+          decoded = body[0] === 1 ?
+            zlib.inflateRawSync(body.subarray(1), {maxOutputLength: 1048576}) :
+            zlib.inflateSync(body.subarray(1), {maxOutputLength: 1048576});
+        } catch (_) { return null; }
+      } else {
+        packets.push({tag: "bzip2-compressed-body-not-natively-decoded"});
+        continue;
+      }
+      const inner = parseOpenPGP(decoded, level + 1);
+      if (!inner) return null;
+      if (inner.literal) literal = inner.literal;
+      packets.push({tag: "nested", packets: inner.packets});
+    }
+  }
+  return {packets, literal};
+}
+
+/**
+ * Construct valid definite-length RFC4880 old/new packet headers for
+ * source-authentic literal/compressed native text positive controls.
+ * @param {number} tag
+ * @param {Buffer} body
+ * @param {boolean} old
+ */
+function makePacket(tag, body, old = false) {
+  if (old) {
+    assert(tag <= 15 && body.length < 256);
+    return Buffer.concat([Buffer.from([0x80 | (tag << 2), body.length]), body]);
+  }
+  if (body.length < 192)
+    return Buffer.concat([Buffer.from([0xC0 | tag, body.length]), body]);
+  if (body.length <= 8383) {
+    const v = body.length - 192;
+    return Buffer.concat([Buffer.from([0xC0 | tag, 192 + (v >> 8), v & 255]), body]);
+  }
+  const h = Buffer.from([0xC0 | tag, 255, 0, 0, 0, 0]);
+  h.writeUInt32BE(body.length, 2);
+  return Buffer.concat([h, body]);
+}
+
 const directions = [
   ["H", [3, 26, 24]],
   ["Hr", [24, 26, 3]],
@@ -111,13 +238,17 @@ const directions = [
 ];
 const digestTarget = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4";
 const summary = {models: 0, rawInflates: [], pgpZipInflates: [], actualProse: [],
-  digestMatches: [], positiveRawPlants: 0, positivePgpZipPlants: 0};
+  digestMatches: [], pgpPacketMatches: [], positiveRawPlants: 0, positivePgpZipPlants: 0, positivePgpPacketPlants: 0};
 for (const [name, taps] of directions) {
   for (const unit of units) {
     const candidate = decode(unit.symbols, taps);
     assert.deepEqual(encode(candidate, taps), unit.symbols);
     const bytes = toBytes(candidate);
     summary.models++;
+    const pgp = parseOpenPGP(bytes);
+    if (pgp) summary.pgpPacketMatches.push({
+      key: name, unit: unit.label, packets: pgp.packets, literal: pgp.literal
+    });
     const kinds = [["raw", bytes]];
     // RFC 4880 ZIP compressed packet body: algorithm octet 1, then
     // raw DEFLATE. No discretionary skip offsets.
@@ -164,13 +295,33 @@ for (const [name, taps] of directions) {
   assert.equal(recoveredPgp[0], 1);
   assert.deepEqual(zlib.inflateRawSync(recoveredPgp.subarray(1)), prose);
   summary.positivePgpZipPlants++;
+
+  // A complete RFC4880 compressed OpenPGP message containing a literal
+  // text packet. Verify both old- and new-format packet framing.
+  for (const old of [false, true]) {
+    const literalBody = Buffer.concat([Buffer.from([98, 0, 0, 0, 0, 0]), prose]);
+    const inner = makePacket(11, literalBody, old);
+    const compressedPacket = makePacket(8,
+      Buffer.concat([Buffer.from([1]), zlib.deflateRawSync(inner)]), old);
+    const digits = fromBytes(compressedPacket);
+    assert(digits.length < 250);
+    const encoded = encode(Array(250 - digits.length).fill(0).concat(digits), taps);
+    const decodedBytes = toBytes(decode(encoded, taps));
+    const found = parseOpenPGP(decodedBytes);
+    assert(found && found.literal);
+    assert(found.literal.readable);
+    assert.equal(found.literal.bytes, prose.length);
+    assert.equal(found.literal.textPrefix, prose.toString("utf8").slice(0, 125));
+    summary.positivePgpPacketPlants++;
+  }
 }
 assert.equal(summary.models, 390);
 assert.equal(summary.positiveRawPlants, 6);
 assert.equal(summary.positivePgpZipPlants, 6);
+assert.equal(summary.positivePgpPacketPlants, 12);
 console.log(JSON.stringify({
   model: "source causal H/G/HG -> GP29 integer -> RFC1951 raw DEFLATE",
   status: summary.actualProse.length ? "PLAINTEXT CANDIDATE REQUIRES VERIFICATION" : "no qualifying original plaintext",
   ...summary
 }, null, 2));
-if (summary.actualProse.length) process.exitCode = 2;
+if (summary.actualProse.length || summary.pgpPacketMatches.some(p => p.literal?.readable)) process.exitCode = 2;
