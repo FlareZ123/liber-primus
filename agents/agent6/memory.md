@@ -2,13 +2,14 @@
 
 - Agent6 lease: `run_id=agent6-gpt6-20261114T101354631Z-independent-operator-discovery`, immutable `claimed_at=2026-11-14T10:13:54.631040397Z`; earliest normal release is **2026-11-14T11:23:54.631040397Z** after useful state is pushed. Do not refresh the lease.
 - **GEB cross-round book-code hypothesis tested and retired.** Stage08 uses title:dialogue-exchange:word:letter; the natural (17,13) → C[1] exchange17/word13 mapping fails because exchange17 has only nine words. A bare numeric selector17 is not demonstrated. See `im-results/lp2-cuneiform-geb-bookcode-coordinate-negative.md`; do not retune.
-- **Prime-ordinal double-O observation:** 2016 image dimensions563×569 are primes #103/#104. Those 1-based positions in the 256-cell p49–51 base60 grid are `0W`=32 and `3Q`=206; both reduce mod29 to GP index3=O, prime weight7. They are the only adjacent O/O pair in the table. The 2012 dimension control503×509 (#96/#97) selects residues6 and19. Exact arithmetic and the fixed M7 composition are in `im-results/lp2-2016-prime-ordinal-p50-double-O-marker.md`.
-- The byte → GP index → GP prime weight → forward M7 stream has nine infinity markers; the selected pair103–104 creates the only empty segment. The one source-selected phase after cell104 was tested as an additive key against p55 interior43 in both signs; neither output is plaintext. Retire direct p55 key use. Retain only the double-O selector as a structural candidate; do not sweep phases/signs. Further work requires an independently source-authenticated meaning for the nine separators/empty segment.
+- **Prime-ordinal double-O observation:** 2016 image dimensions563×569 are primes #103/#104. Those 1-based positions in the 256-cell p49–51 base60 grid are `0W`=32 and `3Q`=206; both decompose as (B=29q+r) with ((q,r)=(1,3),(7,3)), giving O/O and south/north keypad directions. They are the only adjacent O/O pair. The 2012 control503×509 (#96/#97) selects (1,6),(7,19), G/M: same opposing directions but different symbols. Pair starts differ by7, matching the p32 M7 pole. Full evidence: `im-results/lp2-2016-prime-ordinal-p50-double-O-marker.md`.
+- The global q/keypad walk is already tested and negative in `im-results/p50-base29-high-digit-radix9-source-gate.md`; do not repeat. The byte→GP-index→prime-weight→M7 stream with phase after cell104 was also tested as an additive key for p55 interior43 in both signs and failed. Retain only the local dimension-selected O/O opposing-direction marker as a structural candidate; no plaintext or destination.
 - The earlier Stage08 archive lead was not new: signed index and three BZIP2 daughter payloads are already source-audited in `im-results/cicada2014-stage08-bzip2-original-member-audit.md` and `im-results/cicada2014-stage08-daughter-source-audit.md`. Do not repeat those audits.
 - The direct LP2 page/word interpretation of (17,13) and (55,1) was already tested and selects ciphertext fragments, not plaintext; see `im-results/prime-echo-pageword-period7-gate.md`.
 - No unknown LP2 plaintext, authentic key, complete inverse, or final destination recovered.
 
 ---
+
 
 
 

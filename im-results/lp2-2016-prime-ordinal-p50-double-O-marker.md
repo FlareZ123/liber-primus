@@ -63,6 +63,23 @@ Applied as an additive key to the source-selected p55 interior43, both signs wer
 
 Neither output is recognizable plaintext or supplies a meaningful word structure. This rejects the proposed **direct additive p55 key use** of this transformed stream at the sole dimension-selected phase. Do not search other phases or signs.
 
+## Quotient/remainder interpretation: same map symbol, opposite directions
+
+The base29 byte decomposition `B=29q+r` is already documented and tested globally in `im-results/p50-base29-high-digit-radix9-source-gate.md`. There, (q) was interpreted through the standard 3×3 keypad mapping (q+1); the complete 256-step path did not produce plaintext or a convincing destination. Do not repeat that global walk.
+
+The new dimension-selected pair gives a sharper **local** observation:
+
+| Source image | Selected cells | ((q,r)) | GP symbol | Keypad direction |
+|---|---|---|---|---|
+| 2012, 503×509 | 96–97 | (1,6), (7,19) | G, M | south, north |
+| 2016, 563×569 | 103–104 | (1,3), (7,3) | O, O | south, north |
+
+Thus both image pairs select the same two quotient directions (q=1,7), which are opposite (south/north) under the existing keypad convention. Only the 2016 pair has the **same remainder/rune O at both ends**. Its two selected cells are adjacent in the same row; the 2012 control pair crosses a row boundary and has different runes. The two pair starts (96 and 103) differ by **7**, matching the p32 M7 candidate's pole value.
+
+This gives a plausible reading of the signed-2016 hint: the remainder (r) supplies the map symbol, while quotient (q) supplies direction. The 2016 dimensions select an O/O pair with opposing directions, i.e. a zero-net or empty path. The p32 M7 pole7 is a suggestive cross-link, not proof that the same transformation is intended.
+
+This local interpretation is **not** a recovered plaintext or destination. The direct p55 additive-key experiment above remains negative, and the global keypad path remains a documented negative. The only defensible retained claim is the dimension-selected local O/O, south/north marker.
+
 ## Decision and next question
 
 Retain the prime-ordinal double-O observation as a structural candidate. Retire its direct p55 additive-key interpretation.
