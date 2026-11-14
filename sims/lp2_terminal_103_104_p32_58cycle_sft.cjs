@@ -42,6 +42,43 @@ assert.equal(p56[0],25); // AE, the seventh source seam rune
 assert.deepEqual(p27.slice(34,36),[25,0]);
 const followerWordPrimeSum = gp.prime[25] + gp.prime[0];
 assert.equal(followerWordPrimeSum,103);
+// A second, disjoint, *whole printed* p27 word independently sums 104.
+// Its first rune starts 32 physical p27 runes after the AEF 103-word,
+// exactly the destination page number pointed to by source table cell103.
+const follower104 = p27.slice(66, 68);
+assert.equal(follower104.map(i => gp.translit[i]).join(""), "PB");
+assert.equal(follower104.reduce((sum,i) => sum + gp.prime[i], 0), 104);
+assert.equal(66-34, 32);
+
+// Use the manuscript's original physical *word separators*, instead of
+// treating a postselected two-rune substring as a complete printed word.
+const physicalP27 = fs.readFileSync(path.join(root,
+  "resources/liber-primus/lp2-transcription.txt"),"utf8").split("%")[27];
+const pageWords=[];
+let runesInWord=[],startWord=0,offset=0;
+const finishWord=() => {
+  if(!runesInWord.length)return;
+  const sum=runesInWord.reduce((a,v)=>a+gp.prime[v],0);
+  pageWords.push({start:startWord, sum, text:runesInWord.map(i=>
+    gp.translit[i]).join(".")});
+  runesInWord=[];
+};
+for(const glyph of physicalP27) {
+  const val=gp.runes.indexOf(glyph);
+  if(val!==-1) {
+    if(!runesInWord.length)startWord=offset;
+    runesInWord.push(val);
+    offset++;
+  } else if(glyph==="-" || glyph===".")finishWord();
+}
+finishWord();
+assert.equal(offset,234);
+const source103Words=pageWords.filter(w=>w.sum===103);
+const source104Words=pageWords.filter(w=>w.sum===104);
+assert.deepEqual(source103Words,[{start:34,sum:103,text:"AE.F"}]);
+assert.deepEqual(source104Words,[{start:66,sum:104,text:"P.B"}]);
+assert.equal(source104Words[0].start-source103Words[0].start,32);
+
 const tokens = grid.rows.flat(), bytes = grid.byte_rows.flat();
 assert.equal(tokens.length,256);
 assert.equal(bytes.length,256);
@@ -176,6 +213,7 @@ assert.equal(base29,3301);
 console.log(JSON.stringify({
   classification:"conditional original-source coordinate loop, not plaintext or key",
   footerWordSums:wordSums,
+  independentOriginalP27PrimeOrdinalWords:{first:source103Words,second:source104Words,positionDifference:32},
   footerTarget:{page:27,offset:28},
   followerPrimeSum:followerWordPrimeSum,
   source2016Image:{width,height,originalP32FirstRowAndColumnSums:[firstRowSum,firstColSum]},
