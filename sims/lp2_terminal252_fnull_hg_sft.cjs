@@ -72,10 +72,10 @@ assert.deepEqual(findF(p56Plain), [56]);
 const p56PlainNoSkip = p56Plain.filter((_, index) => index !== 56);
 
 const spans = [
-  {label: 'p55 ciphertext excluding all three F', data: p55NoF, start: 0, matches: 0, bestShift: 6, witness: [3, 9, 17, 10, 15]},
-  {label: 'p56 ciphertext excluding authenticated F', data: p56NoSkip, start: 73, matches: 4, bestShift: 6, witness: [8, 9, 13, 3, 8]},
-  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7, witness: [8, 9, 13, 10, 9]},
-  {label: 'p57 clear original', data: p57, start: 157, matches: 1, bestShift: 8, witness: [3, 9, 12, 24, 5]},
+  {label: 'p55 ciphertext excluding all three F', data: p55NoF, start: 0, matches: 0, bestShift: 6, witness: [3, 9, 17, 10, 15], pairWitness: [8, 18, 20, 13, 19, 5]},
+  {label: 'p56 ciphertext excluding authenticated F', data: p56NoSkip, start: 73, matches: 4, bestShift: 6, witness: [8, 9, 13, 3, 8], pairWitness: [34, 35, 5, 5, 5, 0]},
+  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7, witness: [8, 9, 13, 10, 9], pairWitness: [34, 35, 5, 5, 12, 0]},
+  {label: 'p57 clear original', data: p57, start: 157, matches: 1, bestShift: 8, witness: [3, 9, 12, 24, 5], pairWitness: [5, 37, 10, 26, 20, 7]},
 ];
 for (const item of spans) {
   const observed = quotient.slice(item.start, item.start + item.data.length);
@@ -101,6 +101,25 @@ for (const item of spans) {
     if (!previous) symbolRule.set(q, {i, output: item.data[i]});
   }
   assert.deepEqual(firstConflict, item.witness);
+  // A first-order state-less local transducer with one position of source
+  // memory must map each pair [Q[i-1],Q[i]] to one fixed output symbol.
+  /** @type {Map<string, {i:number,output:number}>} */
+  const pairRule = new Map();
+  /** @type {number[] | null} */
+  let firstPairConflict = null;
+  for (let i = 1; i < observed.length; i += 1) {
+    const key = observed[i - 1] + ',' + observed[i];
+    const previous = pairRule.get(key);
+    if (previous && previous.output !== item.data[i]) {
+      firstPairConflict = [
+        previous.i, i, observed[i - 1], observed[i],
+        previous.output, item.data[i]
+      ];
+      break;
+    }
+    if (!previous) pairRule.set(key, {i, output: item.data[i]});
+  }
+  assert.deepEqual(firstPairConflict, item.pairWitness);
   item.matches = exact;
 }
 // A true 252-symbol source-native planted GP message would encode and recover
@@ -113,7 +132,7 @@ console.log(JSON.stringify({
   sourceTable: 'LP2 p49-p51 256 numeric cells', factor: F,
   quotientLength: quotient.length,
   terminalClock: {p55NoF: 73, p56NoLiteralF: 84, p57Clear: 95, total: 252},
-  observed: spans.map(({label, start, matches, bestShift, data, witness}) =>
-    ({label, start, length: data.length, exactMatches: matches, bestCaesarMatches: bestShift, allSecretFunctionConflict: witness})),
+  observed: spans.map(({label, start, matches, bestShift, data, witness, pairWitness}) =>
+    ({label, start, length: data.length, exactMatches: matches, bestCaesarMatches: bestShift, allSecretFunctionConflict: witness, allSecretPairConflict: pairWitness})),
   sourceCodewordReconstructed: true, positivePlantRecovered: true,
 }, null, 2));
