@@ -58,6 +58,49 @@ function allSecretFinderBound(panel, omit) {
   };
 }
 
+
+/**
+ * A second natural two-runes-per-module interpretation:
+ * pixel = independentSecretLeftBit(glyphEven) XOR
+ *         independentSecretRightBit(glyphOdd).
+ * Every finder equation is an edge between the two 29-vertex codebooks.
+ * A failed parity-union on an already connected pair is a constructive
+ * inconsistent XOR cycle, independent of all 2^58 possible secret maps.
+ */
+function xorTwoRuneCodebookContradictions(tape, omit) {
+  assert.equal(tape.length, 882);
+  const parent = Array.from({length: 58}, (_, i) => i);
+  const parity = Array(58).fill(0);
+  const rank = Array(58).fill(0);
+  function find(id) {
+    if (parent[id] === id) return [id, 0];
+    const [root, upstream] = find(parent[id]);
+    const newParity = parity[id] ^ upstream;
+    parent[id] = root;
+    parity[id] = newParity;
+    return [root, newParity];
+  }
+  let contradictoryClosures = 0;
+  for (const [pos, requiredBit] of finderSites(omit)) {
+    const left = tape[pos * 2];
+    const right = 29 + tape[pos * 2 + 1];
+    let [a, pA] = find(left);
+    let [b, pB] = find(right);
+    if (a === b) {
+      if ((pA ^ pB) !== requiredBit) contradictoryClosures++;
+      continue;
+    }
+    if (rank[a] < rank[b]) {
+      [a, b] = [b, a];
+      [pA, pB] = [pB, pA];
+    }
+    parent[b] = a;
+    parity[b] = pA ^ pB ^ requiredBit;
+    if (rank[a] === rank[b]) rank[a]++;
+  }
+  return contradictoryClosures;
+}
+
 const partitions = [
   ["contiguous", [tape.slice(0, 441), tape.slice(441)]],
   ["paired-lanes", [
@@ -86,6 +129,32 @@ function run() {
   // Strengthen by requiring one common codebook for both panels, freely
   // sharing the same missing corner. The individual strict positives above
   // already rule out any such shared mapping.
+  const pairEqualityPixels = Array.from({length:441}, (_, i) =>
+    +(tape[2 * i] === tape[2 * i + 1]));
+  const pairedMatches = pairEqualityPixels.reduce((n, bit) => n + bit, 0);
+  assert.equal(pairedMatches, 3);
+  const equalityFinderErrors = [0, 1, 2, 3].map(omit => {
+    const sites = finderSites(omit);
+    return [
+      sites.filter(([pos, expected]) =>
+        pairEqualityPixels[pos] !== expected).length,
+      sites.filter(([pos, expected]) =>
+        1 - pairEqualityPixels[pos] !== expected).length
+    ];
+  });
+  assert.deepEqual(equalityFinderErrors, [[99, 48], [99, 48],
+    [99, 48], [99, 48]]);
+
+  const twoCodebookXorContradictions = [0, 1, 2, 3]
+    .map(omit => xorTwoRuneCodebookContradictions(tape, omit));
+  assert.deepEqual(twoCodebookXorContradictions, [45, 40, 40, 39]);
+
+  // A valid codebook plant using distinct right-rune symbols 0/1 and
+  // constant left-rune symbol 2. The XOR codebook can reproduce it exactly.
+  const xorPlant = Array(882).fill(2);
+  for (let pos = 0; pos < 441; pos++) xorPlant[2 * pos + 1] = plant[pos];
+  assert.equal(xorTwoRuneCodebookContradictions(xorPlant, 3), 0);
+
   const minSingle = Math.min(...result.flatMap(r =>
     r.panels.flat().map(x => x.forcedWrong)));
   assert.equal(minSingle, 40);
@@ -95,10 +164,16 @@ function run() {
     runes:tape.length, qrV1ModuleCount:441,
     independentlyMappedPanelFinderBounds:result,
     minimumForcedWrongFinderModules:minSingle,
+    pairedEqualRunes:pairedMatches,
+    directPairedEqualityFinderErrorsByMissingCorner:equalityFinderErrors,
+    twoUnknownCodebookXorCycleConflicts:twoCodebookXorContradictions,
+    positiveTwoCodebookXorCycleConflicts:
+      xorTwoRuneCodebookContradictions(xorPlant, 3),
     sourceSizedPositiveFinderMismatches:allSecretFinderBound(plant, 3).forcedWrong,
     interpretation:"No exact QR-v1 direct GP-rune bitmap, source link remains speculative"
   };
 }
 
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
-module.exports = {run, allSecretFinderBound, finderSites};
+module.exports = {run, allSecretFinderBound, finderSites,
+  xorTwoRuneCodebookContradictions};
