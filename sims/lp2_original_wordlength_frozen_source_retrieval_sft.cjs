@@ -78,7 +78,6 @@ sources.forEach((s,sourceIndex)=>{
 function search(arr, track=false) {
   let best=0,hits=0;
   const leaders=[];
-  const equals=(i,j)=>arr[i]===arr[j];
   for(let i=0;i+SEED_LEN<=arr.length;i++){
     const bound=originalChapters[i];
     if(originalChapters[i+SEED_LEN-1]!==bound)continue;
@@ -89,7 +88,6 @@ function search(arr, track=false) {
       const control=sources[sourceIndex].lengths;
       let left=0,right=SEED_LEN;
       while(i-left>0&&j-left>0&&originalChapters[i-left-1]===bound&&
-            equals(i-left-1,j-left-1)===false&&
             arr[i-left-1]===control[j-left-1])left++;
       while(i+right<arr.length&&j+right<control.length&&
             originalChapters[i+right]===bound&&
