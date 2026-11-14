@@ -10,7 +10,7 @@ from lp2_cc2014_tor2web_warc_probe import INDEXES, emit, inspect_warc
 
 ROOT = "https://data.commoncrawl.org/cc-index/collections"
 PREFIXES = (
-    "org,wikipedia,www)/",
+    "org,wikipedia)/",
     "to,onion,ky2khlqdf7qdznac)/",
     "link,onion,ky2khlqdf7qdznac)/",
     "org,tor2web,ky2khlqdf7qdznac)/",
@@ -120,7 +120,7 @@ def main():
             for u,ts,rec in found[:30]:
                 emit("capture", index=index, urlkey=u, timestamp=ts,
                      record={k:rec.get(k) for k in ("url","mime","status","offset","length","filename","redirect")})
-            if prefix == "org,wikipedia,www)/" and found:
+            if prefix == "org,wikipedia)/" and found:
                 emit("positive_control", index=index, capture_time=found[0][1])
             for _,_,rec in found[:12]:
                 url = (rec.get("url") or "").lower()
