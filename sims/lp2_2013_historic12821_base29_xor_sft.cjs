@@ -132,6 +132,34 @@ function run() {
       clock += encoded.length;
     }
   }
+  const originalGrid = JSON.parse(fs.readFileSync(path.join(ROOT,
+    'resources/liber-primus/lp2-grid-256.json'), 'utf8')).bytes;
+  const historic2014Table = JSON.parse(fs.readFileSync(path.join(ROOT,
+    'resources/cicada2014-sexagesimal-source.json'), 'utf8')).decimal_values;
+  assert.equal(originalGrid.length, 256);
+  assert.equal(historic2014Table.length, 256);
+  const originalGridBytes = Buffer.from(originalGrid);
+  const historic2014Bytes = Buffer.from(historic2014Table);
+  const tableKey = source.subarray(HISTORIC_OFFSET, HISTORIC_OFFSET + 256);
+  const tableCases = [
+    ['original-LP2-printed-p49-p51-256-bytes', originalGridBytes],
+    ['2014-stage11-solver-256-byte-archive', historic2014Bytes]
+  ];
+  for (const [label, encoded] of tableCases) {
+    const decoded = xor(encoded, tableKey);
+    const control = Buffer.from('CICADA HISTORICAL SOURCE XOR TEST '.repeat(8));
+    assert.equal(control.length, 272);
+    assert.deepEqual(xor(xor(control.subarray(0, 256), tableKey), tableKey),
+      control.subarray(0, 256));
+    results.push({
+      transport: 'fixed-256-byte-table-original-2013-XOR',
+      section: label, sourceAbsoluteOffset: HISTORIC_OFFSET,
+      keyBytes: 256, originalRunes: null, result: inspect(decoded),
+      plantedBytesRecovered: 256
+    });
+  }
+  assert.equal(Buffer.compare(originalGridBytes, historic2014Bytes) === 0, false);
+
   console.log(JSON.stringify({
     method: 'original 2013 DATA/560.13 absolute-offset XOR into LP2',
     status: 'experimental original-input test, no automatic plaintext claim',
