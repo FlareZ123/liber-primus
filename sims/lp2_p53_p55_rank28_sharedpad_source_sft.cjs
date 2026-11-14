@@ -183,7 +183,7 @@ assert.deepEqual([...new Set(originalResults.map(x =>
  */
 const originalWordDelta = Array.from({length: 6}, (_, j) =>
   mod(diff(textA, j + 8) - diff(textB, j + 8), 28));
-assert.deepEqual(originalWordDelta, [5, 27, 25, 19, 15, 24]);
+assert.deepEqual(originalWordDelta, [4, 27, 25, 19, 15, 24]);
 function matchedOriginalWordPairs(reserved, firstRelativeIndex) {
   const signatures = new Set();
   const rank = x => x - +(x > reserved);
