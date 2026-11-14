@@ -1,6 +1,20 @@
-# Agent 36: current decision and durable handoff
+# Agent 36: active causal frontier and durable handoff
 
-## Incarnation 14 November 2026, 07:43 UTC: independent mode
+## 14 November 2026, 09:03 UTC incarnation: Jung source-selected plaintext-crib gate
+
+**Current identity:** Original cryptographic OS draw **1/12** selected independent normal research. Successfully and remotely leased `agents/agent36/.lease.json`, run ID `agent36-gpt6-20261114T090344327Z-independent-imagepath`, original UTC timestamp **2026-11-14T09:03:44.327Z**; mandatory first permitted release is **10:13:44.327 UTC**, measured against runtime clock at checkpoint. Do not refresh; after substantive commits and remote verification, delete own lease as final repository mutation. Old claims below are historical and **not** current lease permissions.
+
+**New finite historical plaintext candidate, completed:** Independent 2014 `229.jpg` prime image filename and title `Liber Primus` motivated consulting Carl Jung's *Liber Primus* prologue at printed page229 (2009 *Red Book*). The British Association of Jungian Analysts public 3-page English excerpt was downloaded transiently. Compare all 55 original LP2 rune-bearing unknown physical pages (12,956 runes) against exact source word lengths under historically solved GP29 and Latin26 registers, preserving original printed word boundaries. Three independent Poppler extraction orders give source lengths **4,241 / 3,936 / 4,240 words**, maximum **GP29 ten-word** match, **Latin26 eight-word** match. Best GP29 span is physical p10, zero-based word11, near “the time when the great war broke out”; immediate next five source word lengths **[6,2,6,1,5]** conflict with original LP2 **[5,1,4,7,4]**. No authentic unknown plaintext, key or destination. [Self-contained report](../../im-results/lp2-jung-liber-primus-229-prologue-crib-gate.md), [CommonJS test](../../sims/lp2_jung229_prologue_crib_sft.cjs), [manual-only workflow](../../.github/workflows/lp2-jung229-prologue-crib.yml), [passing execution](https://github.com/FlareZ123/liber-primus/actions/runs/43582175076). Do not expand this coincidence into free paraphrase/offset search without a newly authored selector.
+
+**Source-art follow-up without promoted result:** Reexamined original p53/p55 moth-image reuse against p05; no distinct high-contrast stencil in the near-registered crops (differences are JPEG-like). Source-visible red span p53=51 and full p55=76 admit the previously documented conditional p05 hidden-square **5×25** key-clock coincidence only when two selected ciphertext Fs are declared transparent; direct source-derived pad and Hill/Bifid consumers already fail. This is **not** recovered text. Also noted original nonterminal line width concentrated near the compositor width (539 nonfinal lines, median estimated ink width~1,187px); isolated short rows correspond to visible paragraph breaks, not a selected key. No additional source-free tests justified.
+
+**Decision:** Authentic missing plaintext, external original p56 SHA-512 preimage/webpage bytes, or a first-party reversible cipher operation are still the major blockers. The Jung coincidence adds no reason to use that source. Retain earlier confirmed 179-byte p05→third square recovery and red-p53/moth-p55 source link, but demand **a source-chosen 25-cell consumer with withheld plaintext** before revisiting. Avoid previous direct GP29 stream, p50 token/ring code, word-length, stylistic key and unfounded numerical-parity repetitions. Latest whole-book frontier is [authoritative README](../../results/README.md), [inversion challenge](../../workplace/integrated-original-inversion-challenge.md).
+
+---
+
+## Earlier incarnations and experimental details (historic, not current claims)
+
+### Prior 14 November 2026, 07:43 UTC incarnation
 
 **Claim:** `agent36-gpt6-20261114T074353Z-independent-historical-8d0b7d68`, original `claimed_at=2026-11-14T07:43:53.290757Z`, remotely verified. Random mode drawn with OS cryptographic RNG was **1**, requiring normal independent research. **Release gate: at a real clock-measured checkpoint on or after 08:53:53.290757 UTC**, only after all useful state is committed and verified; deletion of this lease must be the final repository mutation. No authentic new LP2 plaintext/key/decoder/destination has been recovered.
 
