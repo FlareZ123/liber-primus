@@ -1,47 +1,43 @@
 # LP2 p27 isolated wing: original-image source attribution gate
 
-**Status (11 November 2026): bounded no-match; no recovered key, plaintext, or operation.** This audit compares a reproducible native crop to named dated references. It does not assert that the wing has no historical source.
+**Current conclusion (14 November 2026).** No verified pre-2014 illustration plate has been attributed to the isolated wing on Liber Primus physical p27. The latest original-source registration tested three actual dated original PDFs, with a native image positive control and a distinct-art negative control. All three fail the fixed full-image near-exact-match criterion. This is a **bounded no-near-exact-match**, not proof that the p27 design has no historical source, was never redrawn from one, or cannot contain an instruction. **No author-selected key, operation, or unknown-page plaintext was recovered.**
 
-## The source-visible object and intended human route
+## Original artifact and decisive source question
 
-Physical LP2 p27 is original `resources/liber-primus/44.jpg` (2400 × 3600 RGB; original JPEG SHA-256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`). At the top of this page is a black isolated wing. The pixel-preserving source crop is `im.crop((575,485,1810,910))`, Python Pillow half-open coordinates; cropped width/height **1235 × 425**, raw RGB-byte SHA-256 `721ba7b9cd5297964044f609ea8a1bf78b3cddfc613f7dfdffe4887fa7e3af40`. The crop itself is not a derived source and needs no artwork reinterpretation. The adjacent page text supplies no legend or species name.
+The primary source is `resources/liber-primus/44.jpg`, 2400×3600 pixels, SHA-256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`. The isolated wing near its top has a thick left basal wedge, an extended upper margin, differentiated central vein branches, and a cluster of distal cells. The 1,144×339-pixel test crop is `[643,516,1787,855]` in half-open x/y coordinates. The adjacent GP29 red heading gives **no printed source title, species name, or reading order**.
 
-The wing's discriminating landmarks are a thick black basal wedge on the left, an elongated upper edge with a branch descending near the center, a large middle parallelogram-like vein cell, and several small partly closed cells around the rounded right tip. Its simple venation is especially important: matching merely a narrow wing outline is weak. The separately printed complete Cicada 3301 insect illustration on p53 and p55 (archive scans `70.jpg` and `72.jpg`) is a different compositional object. The latter has multiple feather-patterned wings rather than this isolated network.
+Another reproducible source audit found **15 actual enclosed white faces** when 200-pixel compartments are retained, including the small triangular face at centroid (1231,839). A 500-pixel post-hoc threshold drops that real region and gives fourteen. Neither count implies an authored key. See [fifteenth-face original-image test](lp2-p27-fifteenth-wing-face-source-gate.md) and [current wing synthesis](../workplace/lp2-p27-wing-venation-source-route.md). The concrete human solve-path question was whether an *exact dated illustration* carries a label sequence, caption, or operation independently selecting what to do with the p27 ciphertext.
 
-A human might look for a copied illustration whose original caption specifies a species, number, fold, or orientation. Only an **exactly attributable pre-2014 plate** plus a unique original-derived readout would justify carrying it into the unknown cipher.
+## Three dated original plate sources, native-pixel registration
 
-## Dated candidate originals inspected
+The [original-input registration SFT](../sims/lp2_p27_historical_threeplate_registration_sft.py) downloaded each **actual pre-2014 PDF** in GitHub Actions, verified its bytes, rasterized the relevant printed figure pages, and extracted disconnected ink regions to blind printed labels. Source and p27 SIFT points were bidirectionally matched, then a similarity transformation was fitted by RANSAC. Success was frozen as **at least 30 affine inlier correspondences**, scale between 0.08 and 4, and normalized p27 feature span greater than 0.50 horizontally and 0.15 vertically. Full-page images and extracted connected plate regions were both tested. A 4° rotation/0.87-scale native p27 image plant recovered **383 inliers** and target-span 0.979×0.959. An independent p53 artwork negative gave **3 inliers** and failed.
 
-| Candidate original and date | What actually distinguishes it from p27 |
+| Primary original and exact PDF SHA-256 | Frames tested | Most inliers on any scanned frame | Fixed criterion |
+| --- | ---: | ---: | --- |
+| [Moulds 2012, Zootaxa 3287](https://www.mapress.com/zootaxa/2012/f/zt03287p262.pdf), `f08eeaaee15221b2ca16510893ca1e77f80a3321516691167a4cfbb3dd5e9264` | 8 | **5** | Fail |
+| [Moulds 2005, Australian Museum](https://media.australian.museum/media/Uploads/Journals/18025/1447_complete.pdf), `a7e1eaa3559ccee2509f67d58d389b76d12809e712d3da0fb6f3e5eb7f54a829` | 10 | **6** | Fail |
+| [Great Lakes cicada wing paper 1972](https://orthsoc.org/sina/i00lap72.pdf), `7d9aec65c4a3297ea4f654eecfec3b2cc5009d4f711ab5f41a6a6eb4da2f2bc5` | 7 | **5** | Fail |
+
+The **final corrected manual workflow** is [GitHub Actions run 43543333950, 14 November 2026, successful](https://github.com/FlareZ123/liber-primus/actions/runs/43543333950). Its `lp2-p27-pre2014-threeplate-registration` artifact contains individual frame-level match metrics and source byte hashes, reproducible from the linked SFT. The actual PDFs were retrieved and processed; this is a measured result rather than a comparison of article abstracts or tiny thumbnails.
+
+**Important earlier-output correction:** [run 43536440469](https://github.com/FlareZ123/liber-primus/actions/runs/43536440469) used a version of the ranking flag `valid_noncollapsed` that lacked the minimum-30-inliers requirement. One 2012 region with **only 2 inliers** was incorrectly labeled `true`. The repo SFT was subsequently corrected; the latest run categorizes that same spurious match as false. Even in the older run, the maximal raw 2012 match had only 5 inliers. Do not quote its boolean field as evidence for a plate attribution.
+
+## Earlier original artwork comparators
+
+These distinct original sources were examined in [the earlier p27 source audit / Director #314](https://github.com/FlareZ123/liber-primus/issues/314); they were not retested in the new three-plate workflow.
+
+| Historical candidate | Why it remains unselected |
 | --- | --- |
-| **Bee wing**, *Chambers's Encyclopaedia* (1881), [ClipArt ETC reproduction](https://etc.usf.edu/clipart/21200/21209/bee_wing_21209.htm) | Broad forewing with the characteristic bee/hymenopteran basal cells; its internal connections and tip arrangement do not match the p27 large center-cell and clustered apical branches |
-| **Wasp wing**, *Our Household Insects* (1896), figure 23, [archival scan](https://upload.wikimedia.org/wikipedia/commons/5/56/Our_household_insects_-_an_account_of_the_insect-pests_found_in_dwelling-houses_%28IA_b28050666%29.pdf) | Shows an explicit dashed fold axis across the wing, unlike p27; the top cell and right-end vein partitions have different locations; cannot attribute p27 to this particular engraving |
-| **Folded queen-wasp wing**, Grant Allen, *The Strand Magazine*, volume XV (1898), illustration 12, [original article](https://www.victorianvoices.net/ARTICLES/STRAND/1898A/S1898A-Nature1-Wasps.pdf) | Illustrated with a queen and a separate small folded-wing view; the illustration and its source text describe folding and paired wings. The original p27 does not preserve the distinct folded/paired anatomy or this caption, and the candidate supplies no unique p27 key |
-| **Cicadidae wing**, J. H. Comstock, *The Wings of Insects* (1918), figure 269, [historical drawing catalog](https://drawwing.org/insects/hemiptera) | Anatomically a natural comparator, but a general 1918 cicada wing diagram is insufficient as a distinct vein-by-vein match, much less as a cipher operator |
-| **Cicada 3301 logo species identification**, [Cicada Mania](https://www.cicadamania.com/cicadas/category/genera/distantalna/), commentary dated 2017–2019 | Identifies *Distantalna splendida* as a possible model of the familiar **whole-cicada logo**. Attribution is tentative even there, postdates LP2 and does not independently identify this isolated p27 wing |
+| [Chambers's Encyclopaedia bee wing (1881)](https://etc.usf.edu/clipart/21200/21209/bee_wing_21209.htm) | The documented bee internal connections and tip partitions diverge from the source drawing |
+| [Our Household Insects wasp wing (1896), fig. 23](https://upload.wikimedia.org/wikipedia/commons/5/56/Our_household_insects_-_an_account_of_the_insect-pests_found_in_dwelling-houses_%28IA_b28050666%29.pdf) | A distinctive dashed wing-fold axis is absent on p27 |
+| [Grant Allen, The Strand Magazine wasp fold (1898)](https://www.victorianvoices.net/ARTICLES/STRAND/1898A/S1898A-Nature1-Wasps.pdf) | Printed original portrays two wing states and supplies no matching venation/cipher operand |
+| [Comstock 1918 Cicadidae plate, figure 269](https://drawwing.org/insects/hemiptera) | Generic cicada anatomy is insufficient to attribute this particular tracing |
+| [Cicada Mania logo identity commentary](https://www.cicadamania.com/cicadas/category/genera/distantalna/) | Concerns the *whole-cicada* emblem, not the isolated p27 wing; commentary also postdates LP2 |
 
-The earlier community [Liber Primus artwork inventory](https://uncovering-cicada.fandom.com/wiki/Symbols/Drawing/Art_of_Liber_Primus) only calls p27 an insect wing, “probably cicada,” without an exact source, caption, or cryptographic instruction. The separately studied Instar/wing-fold literal experiments (#189/#191) already found no source-selected decipherment; these are not repeated here.
+Moulds 2012 acknowledges older work, including the 2005 plate; these two original articles are a related anatomical lineage, not two independent discoveries of p27. Their labels vary by taxonomic convention. The p27 fifteen-face graph is also **not** uniquely ordered by wing shape or a 14-face proximity heuristic. The existing [15-face traversal SFT](../sims/lp2_p27_wing15_traversal_sft.py) addresses that separate question without using ciphertext.
 
-## Decision
+## Decision, limitations, and next causal input
 
-No inspected source has the matching interior venation plus dated original-caption provenance needed for an exact p27 attribution. Generic wasp/bee/cicada similarity supplies no source-defined transformation, page offset, key or plaintext prediction. In particular, the 1896/1898 wing-fold illustrations cannot independently rescue the rejected geometric fold candidate by thematic association.
+The specific named **2005/2012/1972 plate-as-exact-source** explanation is retired after byte-authenticated image comparisons and a passing source-native control. A redrawn, rotated-nonaffinely, simplified, composited, or different historical artwork could evade this similarity-registration test; the figure selection itself only examined designated figure pages and connected line components. Do not generalize this result into an exhaustive source attribution theorem.
 
-**Close the bounded p27 source-attribution Issue #314 with no source match.** Retire the existing inspected plates and page/wing keyword routes from active cipher work. A genuinely new primary-image match with identifiable vein junctions and a historically fixed caption would reopen the source question; absent one, allocate effort to independently specified ciphertext operations rather than inventing a wing-key convention.
-
-### Reproduction
-
-With Pillow and the packaged 75 original scans:
-
-```python
-from io import BytesIO
-from hashlib import sha256
-from zipfile import ZipFile
-from PIL import Image
-
-with ZipFile("liber-primus-jpegs.zip") as archive:
-    original = archive.read("liber-primus-jpegs/44.jpg")
-page = Image.open(BytesIO(original)).convert("RGB")
-crop = page.crop((575, 485, 1810, 910))
-print(page.size, sha256(original).hexdigest())
-print(crop.size, sha256(crop.tobytes()).hexdigest())
-```
+Because the tested captions do not come from a uniquely identified copy, there is **no author-selected wing-face order, 15-transition p15 linkage, numeric key, GP29 transform, or p27 plaintext**. [Director #805](https://github.com/FlareZ123/liber-primus/issues/805) must remain contingent on a separately found source-fixed traversal and reversible operation. A future candidate becomes actionable only if an identifiable pre-2014 original plate reproduces several distinctive vein forks and the fifteenth small region **and** supplies a human-readable caption, label, or explicit operation that can be frozen before examining original p27 ciphertext. A further arbitrary 15-step key scan would repeat already invalidated assumptions.
