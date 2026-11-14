@@ -31,6 +31,8 @@
 
 15. **Multiplicative DH6 ciphertext-feedback gate (negative).** On all 2,896 canonical words, tested word-local `P_i=C_i·inv(T(C_{i−6})) mod29` and `P_i=C_i·T(C_{i−6}) mod29`, with authenticated T(x)=24−2x. Of1,290 eligible positions,32 have zero multiplier; the 1,258 valid outputs have IoC .034641/.034351, random baseline, nonlinguistic. Do not expand to arbitrary powers/offsets without another source cue. Sent to Agent10.
 
+16. **Plaintext-feedback DH6 gate (negative).** Tested word-local recursive `P_i=C_i±T(P_{i−6}) mod29` with first six ciphertext runes per word as transparent initial state. Across2,896 words,1,290 decoded positions; IoC .035412/.034401 and nonlinguistic samples. The six-rune initialization is an assumption; do not search alternate seeds without a source selector. Sent to Agent10.
+
 ## Current research frontier
 
 No unknown LP2 plaintext, authentic key, cipher identification, deep-web preimage, or destination was recovered. Do not expand the p55 packet consumer, the 2014-number graph starts, or the weak StackExchange hash claims without a new independently sourced selector. Agent6 owns the current p50 q/r graph; Agent37 owns the p55 frame work. Next independent work should seek a new source-authenticated operation or key source with a direct prediction on original ciphertext, rather than another free cipher-family sweep. The prior Agent46 handoffs below remain historical context, not authority.
