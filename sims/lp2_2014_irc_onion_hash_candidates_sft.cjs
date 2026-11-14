@@ -22,7 +22,8 @@ const target=manifest.targetHex.toLowerCase();
 const knownHosts=new Set((manifest.onionHosts||[]).map(x=>String(x).toLowerCase().replace(/\.onion$/,'')));
 const urlRe=/https?:\/\/[^\s<>"'\x00-\x20]+/ig;
 const onionRe=/\b(?:[a-z2-7]{16}|[a-z2-7]{56})\.onion(?:\.(?:to|city|link|ws|cab|rip|nu|sh|so|pet|lu|gq|top|website))?\b/ig;
-const relevantRe=/\b(?:onion|tor|hidden service|deep.?web|page\s*56|p56|hash(?:es)?|cicada|liber.?primus|lp2|target|sha.?512)\b/i;
+const urlContextRe=/\b(?:onion|tor|hidden service|deep.?web|page\s*56|p56|hash(?:es)?|cicada|liber.?primus|lp2|target|sha.?512|stage.?11)\b/i;
+const importantRe=/\b(?:page\s*56|p56|deep.?web|sha.?512|hash(?:es)?|hidden service|liber.?primus|lp2|stage.?11)\b/i;
 
 function gitBlobHash(b){
  return crypto.createHash('sha1').update('blob '+b.length+'\0','ascii').update(b).digest('hex');
@@ -113,11 +114,11 @@ function readSource(file,origin){
  for(let i=0;i<lines.length;i++){
   const line=lines[i],meta=lineMeta(line,origin.name,i+1);
   for(const m of line.matchAll(new RegExp(onionRe.source,'ig'))){onionMatches++;addOnion(m[0],meta);}
-  for(const m of line.matchAll(new RegExp(urlRe.source,'ig'))){urlMatches++;addUrl(m[0],meta);}
+  for(const m of line.matchAll(new RegExp(urlRe.source,'ig'))){urlMatches++;if(/\.onion/i.test(m[0])||urlContextRe.test(line))addUrl(m[0],meta);}
   for(const h of line.matchAll(/\b[0-9a-f]{128}\b/ig)){
    hashMatches++;targetMentions.push({source:origin.name,line:i+1,value:h[0],isTarget:h[0].toLowerCase()===target});
   }
-  if(relevantRe.test(line)){
+  if(importantRe.test(line)){
    relevant++;
    if(relevantLines.length<1000)relevantLines.push({source:origin.name,line:i+1,date:meta.date,nick:meta.nick,text:meta.body.slice(0,420)});
   }
@@ -125,7 +126,7 @@ function readSource(file,origin){
  console.log('VERIFIED '+origin.name+' bytes='+b.length+' lines='+lines.length+
   ' onionMentions='+onionMatches+' urlMentions='+urlMatches+' hashMentions='+hashMatches+' relevantLines='+relevant);
  return {name:origin.name,bytes:b.length,gitBlobSha1:origin.sha,lines:lines.length,
-  onionMentions,urlMentions,hashMentions,relevantLines:relevant};
+  onionMentions:onionMatches,urlMentions:urlMatches,hashMentions:hashMatches,relevantLines:relevant};
 }
 function main(){
  selftest();
