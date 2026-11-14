@@ -123,6 +123,64 @@ const plantedRecovered = plantedCipher.map((rune, i) => mod29(rune - sourceKey[i
 assert.deepEqual(plantedRecovered, plantedPlain);
 assert.ok(ioc(plantedPlain) > ioc(subtractTable));
 
+/**
+ * The table's source-selected 0..255 byte register can also be tested as a
+ * book-code byte ciphertext under original GP prime-number key weights.
+ * Cicada's earlier byte XOR and GP additive operations motivate these finite
+ * readouts; no fitted key or secret byte alphabet is allowed.
+ * @param {number[]} bytes
+ */
+function byteMetrics(bytes) {
+  const printable = bytes.map((byte) => byte >= 32 && byte <= 126);
+  let currentRun = 0;
+  let longestRun = 0;
+  for (const yes of printable) {
+    currentRun = yes ? currentRun + 1 : 0;
+    longestRun = Math.max(longestRun, currentRun);
+  }
+  const counts = Array(256).fill(0);
+  for (const byte of bytes) counts[byte]++;
+  const entropy = -counts.reduce((sum, count) => count > 0
+    ? sum + (count / bytes.length) * Math.log2(count / bytes.length) : sum, 0);
+  return {printable: printable.filter(Boolean).length, longestRun, entropy,
+    first16Hex: bytes.slice(0, 16).map((byte) => byte.toString(16).padStart(2, "0")).join("")};
+}
+const sourcePrime = sourceKey.map((rune) => original.prime[rune]);
+const byteCandidate = {
+  original: table.bytes,
+  xorPrime: table.bytes.map((byte, i) => byte ^ sourcePrime[i]),
+  subtractPrime: table.bytes.map((byte, i) => (byte - sourcePrime[i] + 256) % 256),
+  addPrime: table.bytes.map((byte, i) => (byte + sourcePrime[i]) % 256)
+};
+const byteScores = Object.fromEntries(
+  Object.entries(byteCandidate).map(([name, bytes]) => [name, byteMetrics(bytes)])
+);
+assert.equal(byteScores.original.printable, 103);
+assert.deepEqual(
+  [byteScores.xorPrime.printable, byteScores.subtractPrime.printable, byteScores.addPrime.printable],
+  [105, 87, 92]
+);
+assert.deepEqual(
+  [byteScores.xorPrime.longestRun, byteScores.subtractPrime.longestRun, byteScores.addPrime.longestRun],
+  [5, 5, 4]
+);
+near(byteScores.xorPrime.entropy, 6.770611707231604);
+near(byteScores.subtractPrime.entropy, 6.754015417874233);
+near(byteScores.addPrime.entropy, 6.713239785461156);
+assert.ok(table.bytes.every((byte, i) => (byteCandidate.xorPrime[i] ^ sourcePrime[i]) === byte));
+assert.ok(table.bytes.every((byte, i) =>
+  (byteCandidate.subtractPrime[i] + sourcePrime[i]) % 256 === byte));
+
+/* Source-native ASCII positive: GP transliteration of independently clear p57. */
+const clearWords = pages[57].indices.map((rune) => original.translit[rune]).join("");
+const asciiPlant = Array.from({length: 256}, (_, i) => clearWords.charCodeAt(i % clearWords.length));
+assert.ok(asciiPlant.every((byte) => byte >= 65 && byte <= 90));
+const xorPlant = asciiPlant.map((byte, i) => byte ^ sourcePrime[i]);
+const addPlant = asciiPlant.map((byte, i) => (byte + sourcePrime[i]) % 256);
+assert.deepEqual(xorPlant.map((byte, i) => byte ^ sourcePrime[i]), asciiPlant);
+assert.deepEqual(addPlant.map((byte, i) => (byte - sourcePrime[i] + 256) % 256), asciiPlant);
+assert.equal(byteMetrics(asciiPlant).printable, 256);
+
 console.log(JSON.stringify({
   source: {passageLengths: passage.map((part) => part.length),
     tableCells: table.bytes.length, coordinatePassageCounts: usedPassages,
@@ -130,5 +188,6 @@ console.log(JSON.stringify({
   table: {sourceKeyIoC: ioc(sourceKey), originalResidueIoC: ioc(table.bytes.map(mod29)),
     subtractIoC: ioc(subtractTable), addIoC: ioc(addTable)},
   receiverResults: receivers,
+  byteReceiverResults: byteScores,
   planted: {runesRecovered: plantedRecovered.length, nativePlainIoC: ioc(plantedPlain)}
 }, null, 2));
