@@ -3,8 +3,10 @@
  * Cross-round original-source lead: the thirteen printed word cells of
  * LP1 p05 SOME WISDOM concatenate to exactly 76 GP29 runes, precisely the
  * full original length of moth-linked LP2 p55. Frozen row-major printed
- * order and six direct additive inverses; no phase, F skip, altered words,
- * fitted alphabet or guessed historical plaintext.
+ * order and six direct additive inverses. In addition, the authentic
+ * prime-totient plaintext-F bypass is tested for both visually justified
+ * key orientations and all eight possible original ciphertext-F masks.
+ * No phase, altered words, fitted alphabet or guessed plaintext.
  * Windows 11 / Node.js 22:
  * node sims/lp1_p05_wordcells76_p55_exact_sourcekey_sft.cjs
  */
@@ -71,6 +73,78 @@ function run() {
     candidates.push({representation:name,decodeSign:sign,originalRunes:76,
       plaintextIoC:observed,translit:decoded.map(x=>book.translit[x]).join("")});
   }
+  // Solved p56 gives the strict forward rule: if plaintext P=F, then the
+  // ciphertext MUST be F with no key consumption. Ciphertext C=F may also
+  // result from encrypting a non-F plaintext. Exhaust both meanings for all
+  // three actual source C=F positions, without any language-model fitting.
+  const cipherFs=p55.flatMap((v,i)=>v===0?[i]:[]);
+  assert.deepEqual(cipherFs,[15,25,41]);
+  /**
+   * @param {number[]} fixedKey An actual p05 source-printed 76-rune order
+   * @param {number[]} ciphertext Exactly original unmodified source runes
+   * @param {number} mask One bit per source ciphertext-F location
+   * @returns {{skipPositions:number[], forbiddenPlainF:number[], consumed:number, ioc:number}}
+   */
+  function sourceStrictFDecode(fixedKey,ciphertext,mask) {
+    const skipPositions=cipherFs.filter((_,j)=>(mask&(1<<j))!==0);
+    const skipped=new Set(skipPositions),decoded=[],forbiddenPlainF=[];
+    let clock=0;
+    for(let i=0;i<ciphertext.length;i++){
+      if(skipped.has(i)){decoded.push(0);continue;}
+      const k=(book.prime[fixedKey[clock++]]-1)%29;
+      const p=mod29(ciphertext[i]-k);
+      decoded.push(p);
+      if(p===0)forbiddenPlainF.push(i);
+    }
+    return {skipPositions,forbiddenPlainF,consumed:clock,ioc:ioc(decoded)};
+  }
+  // The source p05 original JPEG contains A||center||reverse(A), so a
+  // complete literal reverse of the printed rune tape is a meaningful
+  // second orientation. Do not invent rotations or phases.
+  const strictVariants=[
+    ["printed",key],
+    ["reversed",key.slice().reverse()]
+  ].map(([order,fixedKey])=>{
+    const candidates=Array.from({length:8},(_,mask)=>{
+      const result=sourceStrictFDecode(fixedKey,p55,mask);
+      assert.ok(result.forbiddenPlainF.length>0,
+        "Every original F interpretation must fail this exact cipher key.");
+      return {mask,...result};
+    });
+    return {order,viableMasks:candidates.filter(x=>!x.forbiddenPlainF.length).length,
+      candidates};
+  });
+  assert.deepEqual(strictVariants.map(x=>x.viableMasks),[0,0]);
+  // Stronger, local, key-independent-of-future-mask contradictions:
+  // printed key at i13 gives encrypted P=F while source C=TH, before
+  // any ciphertext F can shift the clock; reversed key at i20 gives
+  // encrypted P=F under both possible earlier F15 decisions.
+  assert.equal(p55[13],2); // TH
+  assert.equal(p55[20],1); // U
+  assert.equal((book.prime[key[13]]-1)%29,2);
+  const reversedKey=key.slice().reverse();
+  assert.equal((book.prime[reversedKey[20]]-1)%29,1);
+  assert.equal((book.prime[reversedKey[19]]-1)%29,1);
+  for(const candidate of strictVariants[0].candidates)
+    assert.ok(candidate.forbiddenPlainF.includes(13));
+  for(const candidate of strictVariants[1].candidates)
+    assert.ok(candidate.forbiddenPlainF.includes(20));
+  // Genuine solved-p57 GP plaintext plant under exactly the historical
+  // strict plaintext-F forward emitter, using the immutable p05 key.
+  const nativeOriginal=p57.slice(0,76);
+  const nativeCipher=[];let originalClock=0;
+  for(const p of nativeOriginal){
+    if(p===0)nativeCipher.push(0);
+    else nativeCipher.push(mod29(p+(book.prime[key[originalClock++]]-1)));
+  }
+  const knownLiteralF=new Set(nativeOriginal.flatMap((v,i)=>v===0?[i]:[]));
+  const nativeRecovered=[];let recoveredClock=0;
+  for(let i=0;i<nativeCipher.length;i++){
+    if(knownLiteralF.has(i)){assert.equal(nativeCipher[i],0);nativeRecovered.push(0);}
+    else nativeRecovered.push(mod29(nativeCipher[i]-(book.prime[key[recoveredClock++]]-1)));
+  }
+  assert.deepEqual(nativeRecovered,nativeOriginal);
+  assert.equal(recoveredClock,originalClock);
   const xored=p55.map((v,i)=>v^key[i]);
   assert.equal(xored.filter(x=>x>=29).length,8,
     "Ordinary five-bit XOR leaks symbols outside the native 29-rune inventory");
@@ -83,8 +157,13 @@ function run() {
     sourceKeyWordNames:wordNames,p55OriginalIoC:ioc(p55),
     positivePlantSource:"Solved p57 first 76 original clear GP runes",
     directAdditiveCandidates:candidates,
+    strictFPrimeTotient:{originalCipherFPositions:cipherFs,
+      keyOrders:strictVariants,firstIllegalPairPrinted:{position:13,cipherGP:2,keyPhi:2},
+      firstIllegalPairReversed:{position:20,cipherGP:1,
+        keyPhiWithZeroOrOneEarlierSkip:[1,1]},
+      genuineP57PlantRecovered:76},
     fiveBitOrdinalXOROutOfAlphabet:xored.filter(x=>x>=29).length,
-    verdict:"A previously unstated exact source-tape length fit; none of the six fully source-fixed direct GP29 keys recovers ordinary native GP prose."};
+    verdict:"A source-tape 76/76 fit, but all direct inverses are nonprose and every F-skip interpretation of the historical prime-totient cipher is structurally impossible in both printed and reversed key order."};
   console.log(JSON.stringify(result,null,2));
   return result;
 }
