@@ -58,6 +58,27 @@ The single matches are isolated: Book I original block 1 / source word 1,029; Bo
 
 This is a finite comparison with two historically chosen literary sources, not a proof that arbitrary other books, edited text, noncontiguous quotes or unaligned 16-word fragments are absent. In particular, the two historically selected texts were used as previous *book-code sources* and are not authenticated LP2 plaintext. The 16-word alignment is inferred from p15 and the 2,896-word divisor; it is not independently prescribed.
 
+## Independent 2013 prime-gap Josephus schedule across 181 word slots (Agent13, 14 November 2026)
+
+A **separate, source-prime elimination schedule** was tested after the fixed 16-number p15 spiral above. The preserved 2013 Cicada telnet PRIMES response omits exactly **180 ordinary primes at one-based ordinals 21–200 (73 through 1223)**; independently, the original LP2 pp0–55 ciphertext contains **2,896 complete words = 16×181**, after preserving the 32 words continued over a printed page. The genuine 4×4 p15 numerical spiral gives a source-visible reason to examine a 16×181 rectangle. A human might eliminate 180 of 181 slots using the 180 conspicuous historical numbers, retaining one survivor. This **cross-round handoff is unproven**: no authorial source instructs a 2013-to-LP2 Josephus cipher or assigns the words to slots.
+
+Take an initial 181-slot circle numbered 0..180 and consume the 180 omitted primes in increasing order. Count the current slot as one, eliminate the p-th remaining slot at prime step p, and continue with the next survivor. The **source-fixed permutation** begins [72,151,53,143,61,165,90,19,132,70,23,162], has 181 distinct positions, and ends with sole survivor 2. Apply it to the original whole-word rectangles **16×181** or **181×16**, as a row-local permutation or as the column coordinate in a row/column transposition. Both reading directions are tested, eight original-cipher candidates altogether. No rune identity, printed word length, source prime order or cryptographic key is fitted.
+
+Measure whole-book adjacent GP word-length mutual information with lengths capped at 9+, directly on 2,896 actual printed source words. The unchanged original value is **0.012299693 nats**. Eight source-frozen outcomes are:
+
+| Whole-word reading | Forward MI | Inverse MI |
+| --- | ---: | ---: |
+| Each of 16 rows, 181-slot prime Josephus | 0.007972281 | 0.011821514 |
+| 16×181 transposed using Josephus column order | 0.008253915 | 0.007401578 |
+| Each of 181 rows, Josephus row order | 0.012174123 | **0.012523084** |
+| 181×16 transposed using Josephus row order | 0.007243932 | 0.009998603 |
+
+No inverse restores native-prose word-order signal. A separately sourced GP-contracted 2,896-word Gibran control has adjacent-length MI **0.050301940**. The exact source-fixed forward operation followed by the paired inverse reconstructs **all 2,896 control word lengths** and the original native MI under all eight readouts; this checks invertibility, not historical correctness. The best original inverse only reaches **0.012523084**, barely above unchanged.
+
+**Decision:** this prime-gap Josephus construction does **not** reveal ordinary GP-source English word order or unknown-page plaintext. The separately studied 180/76 telnet-list-and-table correspondence is already documented [in the original 2013 terminal synthesis](2013-telnet-missing-primes-terminal-180-76.md) and is **not** claimed as a new discovery. This negative leaves different language registers and independently author-selected clocks open. Do not add fitted starts, reordered prime schedules or extra cipher layers to rescue this failed inverse.
+
+[Read-only, Windows-compatible CommonJS source reproducer](../sims/lp2_2013_gap180_josephus_181word_inverse_sft.cjs) asserts the original inventory, source primes, permutation, all eight original scores, and each native positive inverse. This is distinct from the earlier **16-number p15 spiral test** and **fixed-step Josephus word test**.
+
 ## Decision
 
 The source arithmetic **2,896 = 16×181** is exact, and the p15 16-position spiral is authentic. Under the proposed coupling these eight complete original-cipher word-reordering operations do not recover native-GP prose adjacency; no unknown plaintext or key follows. Do not treat the 181 association as historically selected or enlarge the scan with unconstrained starts, offsets, orientation choices or additional numeral-cipher layers.
