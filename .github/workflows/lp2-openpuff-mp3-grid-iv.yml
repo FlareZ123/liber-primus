@@ -1,0 +1,24 @@
+name: LP2 historical OpenPuff MP3 and table byte-collision gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download historical Cicada 2014 carrier and run exact comparison
+        shell: bash
+        run: |
+          curl --fail --location --show-error --silent --retry 3 \
+            'https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3' \
+            --output "$RUNNER_TEMP/interconnected.mp3"
+          node sims/lp2_openpuff_256_iv_source_gate_sft.cjs "$RUNNER_TEMP/interconnected.mp3"
