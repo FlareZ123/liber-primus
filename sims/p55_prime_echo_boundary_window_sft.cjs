@@ -168,13 +168,127 @@ assert.deepEqual(byStart[174].outputs.map(x => x.branch), ['BBB']);
 assert.deepEqual(byStart[390].outputs.map(x => x.branch), ['EBB']);
 assert.deepEqual(byStart[100].outputs.map(x => x.branch), ['BBE', 'BEB', 'EBB']);
 
+
+const p55Words = [];
+let wordOffset = 0;
+for (const length of wordLengths) {
+  p55Words.push(body.slice(wordOffset, wordOffset + length));
+  wordOffset += length;
+}
+assert.equal(wordOffset, 75);
+assert.equal(p55Words.length, 16);
+
+function wordBlockGate(stripCircumferences) {
+  const segments = stripCircumferences ? p55Words.map(w => w.slice(1, -1)) : p55Words;
+  const perWord = [];
+  const noBypassIndices = [];
+  let globalParseCount = 1;
+
+  for (let i = 0; i < segments.length; i++) {
+    const blockStart = i * 29;
+    const key = primes.slice(blockStart, blockStart + 29).map(p => (p - 1) % 29);
+    const segment = segments[i];
+    let states = [{ cursor: 0, out: [], branch: '' }];
+    let firstDeadPosition = null;
+    let firstDeadWitness = null;
+
+    for (let j = 0; j < segment.length; j++) {
+      const ct = segment[j];
+      const previous = states;
+      const next = [];
+      for (const state of previous) {
+        const k = key[state.cursor];
+        if (ct === 0) {
+          next.push({ cursor: state.cursor, out: state.out.concat(0), branch: state.branch + 'B' });
+          if (k !== undefined) {
+            const pt = (ct - k + 29) % 29;
+            if (pt !== 0) next.push({ cursor: state.cursor + 1, out: state.out.concat(pt), branch: state.branch + 'E' });
+          }
+        } else if (k !== undefined) {
+          const pt = (ct - k + 29) % 29;
+          if (pt !== 0) next.push({ cursor: state.cursor + 1, out: state.out.concat(pt), branch: state.branch });
+        }
+      }
+      states = next;
+      if (!states.length) {
+        firstDeadPosition = j + 1;
+        const state = previous[0];
+        const keyValue = key[state.cursor];
+        const keyPrimeOrdinal = blockStart + state.cursor + 1;
+        const keyPrime = primes[keyPrimeOrdinal - 1];
+        const forcedPlaintextIndex = (ct - keyValue + 29) % 29;
+        firstDeadWitness = {
+          localPosition: j + 1,
+          ciphertextIndex: ct,
+          ciphertextRune: corpus.translit[ct],
+          keyPrimeOrdinal,
+          keyPrime,
+          keyValue,
+          forcedPlaintextIndex,
+          forcedPlaintextRune: corpus.translit[forcedPlaintextIndex]
+        };
+        break;
+      }
+    }
+
+    globalParseCount *= states.length;
+    const noBypass = segment.map((ct, j) => (ct - key[j] + 29) % 29);
+    noBypassIndices.push(...noBypass);
+    perWord.push({
+      word: i + 1,
+      originalLength: p55Words[i].length,
+      testedLength: segment.length,
+      blockPrimeStart: primes[blockStart],
+      blockPrimeEnd: primes[blockStart + 28],
+      fBypassStateCount: states.length,
+      firstDeadPosition,
+      firstDeadWitness,
+      fBypassOutputs: states.map(s => ({ branch: s.branch, output: s.out.map(x => corpus.translit[x]).join('') })),
+      noBypassOutput: noBypass.map(x => corpus.translit[x]).join('')
+    });
+  }
+
+  const failed = perWord.find(x => x.fBypassStateCount === 0);
+  return {
+    mapping: stripCircumferences ? 'one 29-prime block per word, strict interiors' : 'one 29-prime block per word, complete words',
+    wordCount: p55Words.length,
+    testedRuneCount: segments.reduce((n, x) => n + x.length, 0),
+    globalFBypassParseCount: globalParseCount,
+    firstFailedWord: failed ? failed.word : null,
+    perWord,
+    noBypassIoC: ioc(noBypassIndices),
+    noBypassOutput: perWord.map(x => x.noBypassOutput).join(' ')
+  };
+}
+
+const wordBlockFull = wordBlockGate(false);
+const wordBlockInterior = wordBlockGate(true);
+assert.equal(wordBlockFull.globalFBypassParseCount, 0);
+assert.equal(wordBlockFull.firstFailedWord, 3);
+assert.deepEqual(wordBlockFull.perWord[2].firstDeadWitness, {
+  localPosition: 2, ciphertextIndex: 19, ciphertextRune: 'M',
+  keyPrimeOrdinal: 60, keyPrime: 281, keyValue: 19,
+  forcedPlaintextIndex: 0, forcedPlaintextRune: 'F'
+});
+assert.equal(wordBlockInterior.globalFBypassParseCount, 0);
+assert.equal(wordBlockInterior.firstFailedWord, 4);
+assert.deepEqual(wordBlockInterior.perWord[3].firstDeadWitness, {
+  localPosition: 4, ciphertextIndex: 2, ciphertextRune: 'TH',
+  keyPrimeOrdinal: 91, keyPrime: 467, keyValue: 2,
+  forcedPlaintextIndex: 0, forcedPlaintextRune: 'F'
+});
+assert(Math.abs(wordBlockFull.noBypassIoC - 0.03495495495495495) < 1e-12);
+assert(Math.abs(wordBlockInterior.noBypassIoC - 0.03211517165005537) < 1e-12);
+
 const report = {
   test: 'p55 75-body source-fixed 2013 prime_echo phi-prime windows with p56 F bypass',
   sourcePrimeCount: primes.length,
   sourcePrimeEndpoint: primes[463],
   p55BodyLength: body.length,
   p55BodyFPositions1Based: bodyFPositions,
-  selectedStarts: results
+  selectedStarts: results,
+  wordBlockFull,
+  wordBlockInterior
 };
 
 process.stdout.write(JSON.stringify(report, null, 2) + '\n');

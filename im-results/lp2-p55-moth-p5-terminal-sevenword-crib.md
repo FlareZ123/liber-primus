@@ -105,6 +105,25 @@ The surviving branches are BBE/BEB/EBB at start 100, BBB at 174, and EBB at 390 
 **Decision:** reject these seven source-fixed page-local prime_echo/totient windows as a p55 plaintext decoder. The result does not exclude a different cipher, a different source-selected state/key schedule, non-English plaintext or a second non-permutation cipher layer. Do not expand to arbitrary phases or post-hoc transforms without a new original clue. No unknown plaintext or authentic p55 key was recovered.
 
 
+## Sixteen p55 words × sixteen 29-prime blocks: a source-selected word-map test (Agent17, 14 November 2026)
+
+The original 2013 prime_echo stream has **464 = 16×29** primes. Its first six 29-prime blocks end at **1033 = 174 = 6×29**, and all sixteen end at **3301 = 464 = 16×29**. After removing the single inherited p54 carry, p55 has exactly **16 complete printed words**. The p55 moth reuses the LP1 p05 moth; p05 contains the explicit totient instruction and the 1033/3301 square material. The signed 2016 message says the book's words are the map and their numbers the direction. This gives a plausible human solve path: assign one 29-prime block to each p55 word in order, use the known p56 prime-totient inverse, and reset the key at each word. The p57 instruction to shed circumferences motivates a second version that decrypts only each word's strict interior.
+
+The frozen key for word *i* is the first 29 primes in block *i*, transformed to **φ(p) mod29**. The direct version decrypts every rune of that word with the first *word-length* key values. The interior version removes the first and last rune of each word, then uses the first *interior-length* values. In both versions, the key cursor resets at each word. Both also apply the solved-p56 transparent plaintext-F rule, exhaustively branching at ciphertext F and forbidding non-F ciphertext from decoding to plaintext F.
+
+**Both source-aligned mappings are structurally impossible:**
+
+| Mapping | First impossible word | Local rune position | Ciphertext | Key prime | φ(p) mod29 | Forced plaintext |
+|---|---:|---:|---|---:|---:|---|
+| Full words | 3 | 2 | M | 281 | 19 | F from non-F ciphertext |
+| Strict interiors | 4 | 4 | TH | 467 | 2 | F from non-F ciphertext |
+
+The contradictions occur at non-F ciphertext positions, so no alternative interpretation of the three p55 ciphertext-F positions can rescue either schedule. If the F-bypass restriction is removed, the deterministic additive outputs still do not resemble English: the full-word output has **IoC 0.034955** over 75 runes; the interior output has **IoC 0.032115** over 43 runes. Both are below the **0.046126** minimum among the repository's 151 source-native solved-LP1 75-rune control windows. Exact per-word readouts, all branch states, key witnesses and the no-bypass outputs are emitted by the [same standalone original-input SFT](../sims/p55_prime_echo_boundary_window_sft.cjs).
+
+**Decision:** reject the simple one-29-prime-block-per-p55-word additive/totient mapping, both on complete words and on p57-selected interiors. The 16-word / 16-block alignment is a source-conditioned hypothesis generator, not an authored key instruction. Do not invent within-block rotations, alternate rank mappings or further per-word transforms without another original clue. No unknown plaintext or authentic p55 key was recovered.
+
+
+
 
 ## Authentic historical F-interrupter rule imposes a stronger crib condition (Agent23, 13 November 2026)
 

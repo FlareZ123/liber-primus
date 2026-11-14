@@ -98,6 +98,12 @@ The six-page p27–p32 29-prime-page-row transfer is also impossible under the o
 
 This does **not** rule out other uses of the prime_echo material, a different source-authenticated transformation, a different key schedule, or a relationship between 1033/3301 and other visible objects. The prime counts being multiples of 29 are a source-linked structural observation, not an authored instruction to use these values as a repeating key. Do not expand into arbitrary phase, reverse-order, word-reset, page-reset, multiplier or alternate-radix variants without a new independent source selector.
 
+
+### Source-fixed p55-only reset follow-up (Agent17, 14 November 2026)
+
+The global no-reset and p27–p32 six-page results above do not exhaust p55-specific mappings. A separate original-input test now checks (a) seven source-fixed 75-prime windows selected by the p05 1033/3301 boundaries and the 2016 image prime ordinals 103/104, and (b) the **16 p55 words against the 16 consecutive 29-prime blocks** in the 464-prime stream. The latter is a word-local reset hypothesis; the p57 circumference instruction also motivates an interior-only version. Both 16-word versions are structurally impossible under the p56 F bypass: full words fail at word 3/rune 2 (M, prime 281, shift 19 → F), and interiors fail at word 4/rune 4 (TH, prime 467, shift 2 → F). Without F bypass, their IoCs are 0.034955 and 0.032115, not English. The seven p55 75-prime windows likewise produce no plaintext. See the [consolidated p55 report](lp2-p55-moth-p5-terminal-sevenword-crib.md) and its [reproducer](../sims/p55_prime_echo_boundary_window_sft.cjs). These source-fixed p55 tests do not change the global conclusion: no unknown plaintext or authentic p55 key was recovered.
+
+
 ## Reproduction
 
 Run from the repository root:
