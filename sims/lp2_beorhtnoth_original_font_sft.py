@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+import json
 import zipfile
 from pathlib import Path
 from urllib.request import urlopen
@@ -85,6 +86,57 @@ def match(a: np.ndarray, b: np.ndarray) -> tuple[float, float]:
     return round(float(chamfer), 4), round(float(intersection / union), 4)
 
 
+
+def p55_original_masks() -> tuple[list[np.ndarray], list[str]]:
+    manifest = json.loads(Path("resources/liber-primus/lp2-p55-source-glyph-coordinates.json").read_text(encoding="utf-8"))
+    source = Path("resources/liber-primus/72.jpg").read_bytes()
+    actual_sha = hashlib.sha256(source).hexdigest()
+    assert actual_sha == manifest["sha256"], ("p55 source mismatch", actual_sha)
+    runes = json.loads(Path("resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))["runes"]
+    assert len(runes) == 29
+    rgb = np.asarray(Image.open(io.BytesIO(source)).convert("RGB"))
+    ink = np.max(rgb, axis=2) < 160
+    masks, labels = [], []
+    for index, item in enumerate(manifest["glyphs"]):
+        assert item["ordinal"] == index + 1
+        x0, y0, x1, y1 = item["rect"]
+        mask = tight(ink[y0:y1 + 1, x0:x1 + 1])
+        masks.append(mask)
+        labels.append(runes[item["gp29_index"]])
+    assert len(masks) == len(labels) == 76
+    print("P55 HELD-OUT ORIGINAL", actual_sha, "runes", len(labels), "unique", len(set(labels)))
+    return masks, labels
+
+
+def p55_font_report(name: str, data: bytes, originals: list[np.ndarray], labels: list[str]) -> None:
+    coverage = TTFont(io.BytesIO(data), lazy=True).getBestCmap()
+    face = ImageFont.truetype(io.BytesIO(data), size=160)
+    templates = {ch: glyph(face, ch) for ch in ALPHABET if ord(ch) in coverage}
+    if any(ch not in templates for ch in labels):
+        print("P55 HELD-OUT", name, "MISSING EXPECTED SYMBOLS")
+        return
+    chamfers, ious, ranks, ratios, hard = [], [], [], [], []
+    for i, (correct, target) in enumerate(zip(labels, originals)):
+        distances = sorted((match(target, other)[0], ch) for ch, other in templates.items())
+        rank = next(j + 1 for j, (_, ch) in enumerate(distances) if ch == correct)
+        d, overlap = match(target, templates[correct])
+        aspect_target = target.shape[1] / target.shape[0]
+        aspect_template = templates[correct].shape[1] / templates[correct].shape[0]
+        ratios.append(abs(np.log(aspect_target / aspect_template)))
+        chamfers.append(d)
+        ious.append(overlap)
+        ranks.append(rank)
+        if rank >= 15:
+            hard.append(f"{i + 1}:{correct}:rank{rank}:nearest{distances[0][1]}")
+    print(f"P55 HELD-OUT {name}: mean_chamfer={np.mean(chamfers):.5f} "
+          f"median_chamfer={np.median(chamfers):.5f} mean_IoU={np.mean(ious):.5f} "
+          f"top1={sum(r == 1 for r in ranks)}/{len(ranks)} "
+          f"top3={sum(r <= 3 for r in ranks)}/{len(ranks)} "
+          f"mean_true_rank={np.mean(ranks):.3f} "
+          f"mean_log_aspect_error={np.mean(ratios):.4f} "
+          f"hard={','.join(hard[:12])}")
+
+
 def font_report(name: str, data: bytes, originals: list[np.ndarray]) -> None:
     font = TTFont(io.BytesIO(data), lazy=True)
     coverage = font.getBestCmap()
@@ -137,7 +189,9 @@ def main() -> None:
     blob = hashlib.sha1(b"blob " + str(len(candidate)).encode() + b"\0" + candidate).hexdigest()
     assert blob == CANDIDATE_GIT_BLOB, blob
     print("Candidate blob verified", blob)
+    p55_masks, p55_labels = p55_original_masks()
     font_report("Archived BabelStone Beorhtnoth", candidate, original)
+    p55_font_report("Archived BabelStone Beorhtnoth", candidate, p55_masks, p55_labels)
 
     # All six official fonts provide stronger within-family controls.
     # Their latest versions postdate LP2; use for shape discrimination only.
@@ -148,7 +202,9 @@ def main() -> None:
         names = sorted(n for n in archive.namelist() if n.lower().endswith(".ttf"))
         print("MODERN BABELSTONE COMPARISON: six post-2014 candidates", names)
         for name in names:
-            font_report("2023 official " + name, archive.read(name), original)
+            data = archive.read(name)
+            font_report("2023 official " + name, data, original)
+            p55_font_report("2023 official " + name, data, p55_masks, p55_labels)
 
     for label, path in [
         ("Noto Sans Runic control", "/usr/share/fonts/truetype/noto/NotoSansRunic-Regular.ttf"),
@@ -156,7 +212,9 @@ def main() -> None:
     ]:
         found = Path(path)
         if found.exists():
-            font_report(label, found.read_bytes(), original)
+            data = found.read_bytes()
+            font_report(label, data, original)
+            p55_font_report(label, data, p55_masks, p55_labels)
         else:
             print("Control unavailable", label, path)
 
