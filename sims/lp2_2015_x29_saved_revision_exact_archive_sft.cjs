@@ -55,6 +55,32 @@ async function main() {
     const response=await fetch(original2016,{signal:AbortSignal.timeout(18000)});
     const html=await response.text();
     const keys=['initialChatMessages','chatHead','chatHistory','chatMessage','initialRevisionList','rune','frequen'];
+    const chatTag=html.indexOf('"chatHistory":');
+    if(chatTag>=0){
+      const beginning=html.indexOf('{',chatTag);
+      let depth=0,quoted=false,escaped=false,ending=-1;
+      for(let k=beginning;k<html.length;k++){
+        const char=html[k];
+        if(quoted){if(escaped) escaped=false;else if(char==='\\')escaped=true;else if(char==='"')quoted=false;}
+        else {if(char==='"')quoted=true;else if(char==='{')depth++;else if(char==='}'&&--depth===0){ending=k+1;break;}}
+      }
+      try {
+        const chunk=html.slice(beginning,ending)
+          .replace(/\\x([0-9a-fA-F]{2})/g,'\\u00$1')
+          .replace(/\\'/g,"'");
+        const data=JSON.parse(chunk);
+        console.log('CHAT_HISTORY_ISOLATED '+JSON.stringify({
+          keys:Object.keys(data),start:data.start,
+          messageCount:data.messages?.length??data.chatMessages?.length??null,
+          messages:data.messages??data.chatMessages??null,
+          historicalAuthors:data.historicalAuthorData??null
+        }).slice(0,24000));
+      } catch(error) {
+        console.log('CHAT_HISTORY_ISOLATED '+JSON.stringify({
+          error:String(error),length:ending-beginning,rawStart:html.slice(beginning,beginning+100)
+        }));
+      }
+    }
     const segments=keys.map(key=>({
       key,at:html.indexOf(key),count:html.split(key).length-1,
       context:html.indexOf(key)<0?null:html.slice(
