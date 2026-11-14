@@ -93,7 +93,7 @@ const plantedDigest = hash("sha512", first192);
 assert.equal(plantedDigest.length, last64.length);
 assert(hash("sha512", first192).equals(plantedDigest));
 const plantedAscii = Buffer.from(
-  "CICADA SOURCE SELECTED BYTE XOR ORIGINAL 64 BYTE CONTROL       ",
+  "CICADA SOURCE SELECTED BYTE XOR ORIGINAL 64 BYTE CONTROL".padEnd(64, " "),
   "ascii",
 );
 assert.equal(plantedAscii.length, 64);
