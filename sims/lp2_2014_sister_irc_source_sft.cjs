@@ -14,7 +14,11 @@ function load(file,pin){
  const b=fs.readFileSync(file);
  assert.equal(b.length,pin.size,'source byte count');
  assert.equal(sha(b),pin.hash,'Git blob SHA1');
- const entries=b.toString('latin1').split(/\r?\n/).flatMap((s,i)=>{
+ const originalLines=b.toString('latin1').split(/\r?\n/);
+ const rawPeriod=originalLines.filter(s=>/^2014 (?:May|Jun|Jul|Aug) /.test(s));
+ const administrative=rawPeriod.filter(s=>!/^2014 (?:May|Jun|Jul|Aug) \d\d \d\d:\d\d <[^>]+>/.test(s) && /\b(?:liber\s*primus|lp2|p(?:age)?\s*\d{1,2}|runes?|cipher|decryp|plaintext|key\s*=)\b/i.test(s));
+ console.log('RAW-2014 '+pin.name+' '+JSON.stringify({all:rawPeriod.length,nonMessageCandidateCount:administrative.length,samples:administrative.slice(0,15)}));
+ const entries=originalLines.flatMap((s,i)=>{
   const m=s.match(/^(2014 (?:May|Jun|Jul|Aug) \d\d \d\d:\d\d) <([^>]+)> ?(.*)$/);
   return m?[{line:i+1,date:m[1],nick:m[2],body:m[3]}]:[];
  });
@@ -62,6 +66,7 @@ function main(){
  assert.equal(process.argv.length,4,'pass original two log paths');
  const primary=load(process.argv[2],inputs[0]),sister=load(process.argv[3],inputs[1]);
  scanNames(primary,'PRIMARY');
+ for(const e of primary.filter(e=>/#(?:33012014|cicada3301|cicada2014)\b/i.test(e.body)))console.log('DIRECT-SISTER-NAME '+JSON.stringify(e));
  scanNames(sister,'SISTER');
  scanSister(sister);
 }
