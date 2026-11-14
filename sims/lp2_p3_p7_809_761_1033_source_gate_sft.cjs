@@ -103,6 +103,29 @@ assert.equal(p7OriginalRedSum, 766);
 const originalFiveDotCount = 5; // Hand-counted on unmodified combined original 24.jpg.
 assert.equal(p7OriginalRedSum - originalFiveDotCount, mp3TitleSum);
 
+// The same five-dot ornament is reproduced on p23 and solved p56.
+// The red heading prime sums are preselected by source-visible ink, and
+// the same historically named title values appear under 5^2 and 5.
+// These secondary arithmetic operations are also post-hoc, not an inverse.
+const sourceInk = JSON.parse(source('resources/liber-primus/lp2-ink-annotations.json'));
+/** @param {number} page @returns {number} */
+function entireInitialRedSum(page) {
+  const ann = sourceInk.pages.find(p => p.page === page);
+  assert.ok(ann);
+  const red = ann.red_spans.find(s => s.start === 0);
+  assert.ok(red);
+  return pages[page].indices.slice(red.start, red.start + red.length)
+    .reduce((total, glyph) => total + prime[glyph], 0);
+}
+const otherFiveDotHeadingPrimeSums = [
+  { originalPage: 23, gpPrimeSum: entireInitialRedSum(23) },
+  { originalPage: 56, gpPrimeSum: entireInitialRedSum(56) }
+];
+assert.deepEqual(otherFiveDotHeadingPrimeSums.map(x => x.gpPrimeSum),
+  [786, 285]);
+assert.equal(otherFiveDotHeadingPrimeSums[0].gpPrimeSum - 5 * 5, 761);
+assert.equal(otherFiveDotHeadingPrimeSums[1].gpPrimeSum - 5, titleParts[1]);
+
 const totalOriginalImageCount = 17 + pages.length;
 assert.equal(totalOriginalImageCount, 75);
 const interestingSum = selected.sum;
@@ -257,6 +280,7 @@ console.log(JSON.stringify({
   originalRuneCount: selected.length,
   historicalTitlePrimeComponents: titleParts,
   p7RedFooter: { originalWords: p7PrintedRedWords.map(w => [...w].length), originalPrimeSum: p7OriginalRedSum, handCountedBlackDots: originalFiveDotCount, difference: mp3TitleSum },
+  otherFiveDotHeadingPrimeSums,
   identities: ['60675 = 58 * 1033 + 761', '60675 = 75 * 809'],
   countOfExactOriginalWholePageWindows: matchingWindows.length,
   matchingWindows, originalWindowsWithin50: windowsWithin50,
