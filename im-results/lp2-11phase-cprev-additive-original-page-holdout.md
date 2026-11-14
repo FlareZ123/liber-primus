@@ -35,10 +35,20 @@ Original unchanged held-out ciphertext has mean IoC **0.034500872** and mean Gib
 
 All five actual withheld folds produce nonlinguistic GP-rune outputs. Their differences from native GP-English output are much larger than train/holdout score variation. The two frozen cross-validated estimates yield no readable original decryption; these observations cannot rule out other secret-shift choices selected by an independent original key.
 
+## The original 11-cell pointer orbit as the actual known key
+
+The cross-fitted experiment above grants 319 otherwise secret GP29 shifts. A simpler human puzzle operation uses the **11-byte source orbit itself** as an ordinary source-selected cyclic key. The canonical printed table's first-cell pointer path is exactly **[0,203,68,199,47,76,114,197,115,247,192]**, returning to index0. There is no free phase if the first cell of the printed table initializes each page or the original full book.
+
+Two source-unique key readouts are each fully specified: the **11 visited cell addresses** reduced modulo29, or the **11 printed successor bytes** at those addresses reduced modulo29. Decode every noninitial original rune either directly as `P[i]=C[i]±K[phase]` or with one literal preceding ciphertext difference, `P[i]=C[i]−C[i−1]±K[phase]`. Include both conventional orientations of the key sign and the two original page/global phase clocks. This is a **complete fixed menu of 16 source-readable models** on all **12,901** eligible original transitions. It has no fitted state keys, alphabet, feedback coefficients or start offset.
+
+The **maximum original decoded GP29 IoC across all 16 models is 0.03467984273798858**, at source-address key, ciphertext predecessor subtraction, addition of the source key and page-reset phase. The other fifteen models have IoC at or below this figure. Every decoded stream remains in the random-like GP29 register and has no recognizable source-selected plaintext. All sixteen exact source-shape synthetic English plants independently forward-encrypt and recover **12,901/12,901** rune positions. This checks a *source-written key candidate* rather than learning 319 unprovided secret shifts, but the explicit pointer-as-key and feedback combination is still our hypothesis, not an authenticated Cicada instruction.
+
+The same source-pinned SFT now asserts the exact 11-node orbit, all 16 original decoded IoCs, maximum, and complete re-encryption controls. [Passing updated Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43636630742). **Decision:** the original table's literal 11-cycle does not directly supply a recoverable complete-book GP29 additive key through the simple source-natural consumers. This result leaves the table's genuine orbit and the possibility of a source-selected *different* cipher or receiver open.
+
 ## Interpretation and reproducibility
 
 - [Single runnable Windows Node22 CJS original source and independent control](../sims/lp2_11phase_cprev_additive_holdout_sft.cjs)
-- [Passing original-source and control CI run 43635433944](https://github.com/FlareZ123/liber-primus/actions/runs/43635433944)
+- [Passing updated original-source and control CI run 43636630742](https://github.com/FlareZ123/liber-primus/actions/runs/43636630742)
 - The estimator is maximum-likelihood for a **fixed secret additive shift for each (phase,previous ciphertext) state** under the original, preselected native GP-English *unigram* prior. It does not fit GP bigrams or plaintext passages, nor optimize a shift using held-out pages.
 - All secret shifts are inferred independently, and cross-page prediction actually succeeds on a distinct literary English control. The results therefore reject this particular learnable English solution route for the two source-natural clocks; they do not make a mathematical impossibility claim against adversarially chosen secret 319-state shifts, position-dependent keys, truly random OTPs, different output alphabets, binary payloads or further encryption layers.
 - The 11-cycle and numeric table remain observable first-party material, but the link between them and a running-key cipher remains conjectural. Neither supports a full inverse on all original pages.
