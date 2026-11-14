@@ -72,10 +72,10 @@ assert.deepEqual(findF(p56Plain), [56]);
 const p56PlainNoSkip = p56Plain.filter((_, index) => index !== 56);
 
 const spans = [
-  {label: 'p55 ciphertext excluding all three F', data: p55NoF, start: 0, matches: 0, bestShift: 6},
-  {label: 'p56 ciphertext excluding authenticated F', data: p56NoSkip, start: 73, matches: 4, bestShift: 6},
-  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7},
-  {label: 'p57 clear original', data: p57, start: 157, matches: 1, bestShift: 8},
+  {label: 'p55 ciphertext excluding all three F', data: p55NoF, start: 0, matches: 0, bestShift: 6, witness: [3, 9, 17, 10, 15]},
+  {label: 'p56 ciphertext excluding authenticated F', data: p56NoSkip, start: 73, matches: 4, bestShift: 6, witness: [8, 9, 13, 3, 8]},
+  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7, witness: [8, 9, 13, 10, 9]},
+  {label: 'p57 clear original', data: p57, start: 157, matches: 1, bestShift: 8, witness: [3, 9, 12, 24, 5]},
 ];
 for (const item of spans) {
   const observed = quotient.slice(item.start, item.start + item.data.length);
@@ -85,6 +85,22 @@ for (const item of spans) {
     observed.filter((x, i) => mod(x + d) === item.data[i]).length);
   assert.equal(exact, item.matches);
   assert.equal(Math.max(...counts), item.bestShift);
+  // All-secret necessary-condition test: even an arbitrary stationary
+  // (possibly noninjective) 29-entry symbol function must preserve equality.
+  /** @type {Map<number, {i:number,output:number}>} */
+  const symbolRule = new Map();
+  /** @type {number[] | null} */
+  let firstConflict = null;
+  for (let i = 0; i < observed.length; i += 1) {
+    const q = observed[i];
+    const previous = symbolRule.get(q);
+    if (previous && previous.output !== item.data[i]) {
+      firstConflict = [previous.i, i, q, previous.output, item.data[i]];
+      break;
+    }
+    if (!previous) symbolRule.set(q, {i, output: item.data[i]});
+  }
+  assert.deepEqual(firstConflict, item.witness);
   item.matches = exact;
 }
 // A true 252-symbol source-native planted GP message would encode and recover
@@ -97,7 +113,7 @@ console.log(JSON.stringify({
   sourceTable: 'LP2 p49-p51 256 numeric cells', factor: F,
   quotientLength: quotient.length,
   terminalClock: {p55NoF: 73, p56NoLiteralF: 84, p57Clear: 95, total: 252},
-  observed: spans.map(({label, start, matches, bestShift, data}) =>
-    ({label, start, length: data.length, exactMatches: matches, bestCaesarMatches: bestShift})),
+  observed: spans.map(({label, start, matches, bestShift, data, witness}) =>
+    ({label, start, length: data.length, exactMatches: matches, bestCaesarMatches: bestShift, allSecretFunctionConflict: witness})),
   sourceCodewordReconstructed: true, positivePlantRecovered: true,
 }, null, 2));
