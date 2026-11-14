@@ -18,11 +18,12 @@ The output 23 independently matches the 23 terminal red dots on p57 and the modu
 
 ## Human-visible route
 
-1. The clear p57 parable says to shed circumferences and find what is within. Applying the literal first/last-rune removal to p55's printed words selects its strict interiors.
-2. Physical p55 has 17 printed rune segments with lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The first is a one-rune page carry; the remaining complete words contribute exactly 43 interior runes.
-3. Cicada's signed 2013 source explicitly demonstrates the BASE29 coefficient convention with `3301 -> 3QO`: digits `[3,26,24]` are the coefficients of (3+26X+24X^2), in increasing degree. This fixes the orientation without a fitted reversal.
-4. The original 2014 three-square source has magic sums 3301, 1033 and 1033. Reducing these constants modulo 29 gives 24 and 18.
-5. The original p57 page has a terminal cluster of 23 red dots; the signed 2013 DH source independently uses modulus 23.
+1. The solved p56 text says “The first nourishes the last.” This is a human-visible reason to connect the first 2014 square's 3301 sum to the last p57 marker through the intervening p55 construction.
+2. The clear p57 parable says to shed circumferences and find what is within. Applying the literal first/last-rune removal to p55's printed words selects its strict interiors.
+3. Physical p55 has 17 printed rune segments with lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The first is a one-rune page carry; the remaining complete words contribute exactly 43 interior runes.
+4. Cicada's signed 2013 source explicitly demonstrates the BASE29 coefficient convention with `3301 -> 3QO`: digits `[3,26,24]` are the coefficients of (3+26X+24X^2), in increasing degree. This fixes the orientation without a fitted reversal.
+5. The original 2014 three-square source has magic sums 3301, 1033 and 1033. Reducing these constants modulo 29 gives 24 and 18.
+6. The original p57 page has a terminal cluster of 23 red dots; the signed 2013 DH source independently uses modulus 23.
 
 ## Exact polynomial and field check
 
@@ -69,4 +70,4 @@ Run:
 
 The script checks the original p55 transcription against the canonical corpus, verifies the three 2014 square sums, evaluates the polynomial, reduces it modulo (H), and independently computes the field trace, norm and multiplicative order.
 
-**Source anchors:** [original LP2 transcription](../resources/liber-primus/lp2-transcription.txt) · [canonical rune corpus](../resources/liber-primus/lp2-corpus.json) · [original 2014 squares](../resources/cicada2014-openpuff-magic-squares.txt) · [signed 2013 TCP/BASE29/DH source](../resources/external/2013-tcp-server-signed-source.md) · original p57 image `resources/liber-primus/74.jpg`.
+**Source anchors:** solved p56 plaintext summarized in [the authoritative synthesis](../results/README.md) · [original LP2 transcription](../resources/liber-primus/lp2-transcription.txt) · [canonical rune corpus](../resources/liber-primus/lp2-corpus.json) · [original 2014 squares](../resources/cicada2014-openpuff-magic-squares.txt) · [signed 2013 TCP/BASE29/DH source](../resources/external/2013-tcp-server-signed-source.md) · original p57 image `resources/liber-primus/74.jpg`.
