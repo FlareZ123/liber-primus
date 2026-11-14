@@ -307,3 +307,40 @@ for(const geometry of ["blocks","triples"])for(const endian of ["big","little"])
 }
 assert.equal(tapeIdx,4);
 console.log("PASS: exact historical p56 plaintext-F skip positive plus original negative gates.");
+
+
+/** Source GP-prime-sum -> 2014 Euler totient key readout (two 3x84 layouts). */
+const primeSumResults=[];
+for(const geometry of ["blocks","triples"]) {
+  const sums=Array.from({length:84},(_,i)=>
+    dataTriple(geometry,i).reduce((acc,v)=>acc+gp.prime[v],0));
+  const key=sums.map(n=>mod(totient(n)));
+  const matched=key.filter((v,i)=>v===historicalKey[i]).length;
+  const p55=gp.pages[55].indices, p0=gp.pages[0].indices;
+  const decode=values=>values.map((v,i)=>mod(v-key[i%84]));
+  const plant=gp.pages[57].indices.slice(0,76);
+  assert.deepEqual(decode(plant.map((v,i)=>mod(v+key[i%84]))),plant);
+  const p55ExactF=transparentFPaths(p55,key);
+  const p0ExactF=transparentFPaths(p0,key);
+  const expected=geometry==="blocks"
+    ? {sum:[182,87,74,131,219,209,149,163],matched:4,
+      ioc55:0.032280701754385965,ioc0:0.03471673832295048,
+      dead0:149,clocks55:[75]}
+    : {sum:[72,215,235,249,137,177,91,151],matched:1,
+      ioc55:0.03192982456140351,ioc0:0.03381006697668977,
+      dead0:171,clocks55:[74,75]};
+  assert.deepEqual(sums.slice(0,8),expected.sum);
+  assert.equal(matched,expected.matched);
+  assert.ok(Math.abs(coincidence(decode(p55))-expected.ioc55)<1e-12);
+  assert.ok(Math.abs(coincidence(decode(p0))-expected.ioc0)<1e-12);
+  assert.equal(p55ExactF.firstDead,null);
+  assert.deepEqual(p55ExactF.remainingClocks,expected.clocks55);
+  assert.equal(p0ExactF.firstDead,expected.dead0);
+  primeSumResults.push({geometry,matchedP56Key:matched,
+    originalP55Ioc:coincidence(decode(p55)),
+    originalP0Ioc:coincidence(decode(p0)),
+    literalFInvalidP0Rune:p0ExactF.firstDead,
+    literalFP55Clocks:p55ExactF.remainingClocks.join(",")});
+}
+console.table(primeSumResults);
+console.log("PASS: SOURCE GP prime-sum -> Euler totient original p55,p0,p56 gates.");
