@@ -17,7 +17,7 @@ const root = path.resolve(__dirname, '..');
 const read = (name) => fs.readFileSync(path.join(root, name), 'utf8');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
-const text = read('resources/liber-primus/lp2-transcription.txt');
+const text = read('resources/liber-primus/lp2-transcription.txt').replace(/\r\n/g, '\n');
 const bytes = grid.bytes;
 const literalTokens = grid.pages.flatMap((page) => page.tokens);
 const moves = [
