@@ -34,7 +34,7 @@ The first natural block is digits [15,8,18,3] = 373088, already greater than n. 
 
 ## Prime-totient continuation result
 
-I also applied the known p56 shift, C_i minus (p_i-1) modulo 29, continuously to the 12,956 unknown runes, starting at prime 563 or 569. Both no-skip and skip-any-literal-F variants were checked. Input token IoC is 0.034478; output IoCs range only 0.034454–0.035899, with no language-like symbol concentration or readable prefix. This rejects those two direct continuous key starts. Page-local resets and other source-selected operations were not tested.
+I also applied the known p56 shift, C_i minus (p_i-1) modulo 29, continuously to the 12,956 unknown runes, starting at prime 563 or 569. Both no-skip and skip-any-literal-F variants were checked. Input token IoC is 0.034478; output IoCs range only 0.034454–0.035899, with no language-like symbol concentration or readable prefix. This rejects those two direct continuous key starts. I also reset the prime stream at each of the 56 page boundaries: aggregate IoC was 0.034452/0.034487 without F skipping and 0.035824/0.035752 with skip-any-F for starts 563/569 respectively. No page produced a language-like distribution. Thus the same direct key is rejected under both continuous and page-local clocks; other source-selected operations remain untested.
 
 ## Reproduction inputs
 
