@@ -85,7 +85,7 @@ def main() -> None:
     assert len([e for e in entries if e["neutral_black_pixels"] >= 4000]) == 15
 
     print(json.dumps({
-        "source": str(SOURCE.relative_to(SOURCE.parents[1])).replace("\\", "/"),
+        "source": str(SOURCE.relative_to(SOURCE.parents[2])).replace("\\", "/"),
         "sha256": SOURCE_SHA256,
         "grid": entries,
         "red_controls": ctrl,
