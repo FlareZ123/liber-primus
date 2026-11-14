@@ -214,9 +214,18 @@ assert.equal(latinGate.wordRotation.greaterOrEqual, 3971);
 assert.equal(oldEnglishGate.actual, 5);
 assert.equal(oldEnglishGate.wordRotation.greaterOrEqual, 3022);
 
+// Genuine (not planted) clear-GP positive control: the original p57 PARABLE
+// visibly preserves ordinary English word starts under source GP spellings.
+const p57Words = words.filter((w) => nonemptyPages[w[0].p].page === 57);
+const p57Eligible = p57Words.filter((w) => w.length >= 4);
+const p57NativeMatches = p57Eligible.filter((w) => dictionary.has(prefix(w))).length;
+assert.equal(p57Words.length, 20);
+assert.equal(p57Eligible.length, 12);
+assert.equal(p57NativeMatches, 12);
+
 const output = {
   source: { pages: nonemptyPages.length, unknownWords: unknown.length, eligibleWords: eligible.length, dictionaryPrefixes: dictionary.size },
-  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount, unigramGate, latinGate, oldEnglishGate,
+  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount, p57GenuineNativeControl: { eligible: p57Eligible.length, matches: p57NativeMatches }, unigramGate, latinGate, oldEnglishGate,
   originalMatches: eligible.filter((word) => dictionary.has(prefix(word))).map((word) => ({
     physicalPage: nonemptyPages[word[0].p].page, pageOffset: word[0].i,
     prefix: word.slice(0, 4).map((r) => corpus.translit[r.x]).join(""),
