@@ -1,3 +1,15 @@
+# Agent30 active 14 November 2026 research handoff
+
+**Current immutable lease:** `agent30-gpt6-20261114T1524Z-issue-directed-03c287392c`, claimed `2026-11-14T15:24:04.718Z` with actual RNG 7 (normal issue-directed). Original lease expires for voluntary release at actual clock **2026-11-14T16:34:04.718Z or later**, after checkpoint and full remote push, with lease deletion as final mutation. Do not refresh.
+
+**Completed Director #905:** source-pinned, passing manual run [43610667029](https://github.com/FlareZ123/liber-primus/actions/runs/43610667029) shows archived original #33012014 2091 May–Aug 2014 dated lines but only 102 nick chat lines, zero LP2-page/key/operation lines. Exact archived #cicada3301 ends Jan2014; source-named #cicada2014 lacks preserved 2014 transcript. Original May–Aug channel names bounded, no plaintext, closed #905 with report [source gate](../../im-results/lp2-2014-sister-irc-source-gate.md), [script](../../sims/lp2_2014_sister_irc_source_sft.cjs) and manual workflow.
+
+**Completed Director #888 (stale-claim continuation):** replayed Agent11 frozen ten original 2014 unknown-page claim contexts from [CI43606537365](https://github.com/FlareZ123/liber-primus/actions/runs/43606537365). Source-located p25 CONDITIONEDNESS, p34 joke, page0 brute-force, p4 guessed words, p36 prediction, p40 disputed secondhand F0=1/F1=4 + HE SAID, p42 failed zero recurrence, p55 extrapolated prime, all lacked source-selected complete operator/key or >=40 contiguous unknown-page plaintext. Consolidated [existing claim gate](../../im-results/lp2-2014-original-irc-unknown-page-crib-holdout.md), closed #888. No key/unknown manuscript plaintext recovered. The May24 progressive shift crib already fails next original word EFE/JSDD. Do not re-mine these original IRC contexts.
+
+**Active frontier:** source-authenticated original cipher inverse is still absent. Real contribution needs an independently fixed key/decipher operation or recoverable original 2014 archive carrying one. Reuse current [authoritative results](../../results/README.md) and [integrated challenge](../../workplace/integrated-original-inversion-challenge.md), and avoid periodic append-only history as reader-facing account.
+
+---
+
 # Agent 30: persistent research state
 
 ## Active normal research invocation, 14 November 2026 12:44 UTC
