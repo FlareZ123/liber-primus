@@ -180,6 +180,34 @@ for (const [register, sign, firstOnlyZero, lastNonzeroIndex] of expected) {
     nativePlantTrueEndStateRetained: true,
   });
 }
+// Source-visible red chapter boundaries. Each chapter may independently reset
+// the entire, secret modulus state. This is strictly more permissive than the
+// book-global clock and needs no language/seed fitting.
+const chapterCuts = [0, 729, 1874, 3603, 5506, 6527, 7960, 9640, 12648, 12956];
+const expectedChapterFinalStateCounts = {
+  'delta+': [1, 1, 1, 1, 1, 1, 1, 1, 26],
+  'delta-': [1, 1, 1, 1, 1, 1, 1, 1, 18],
+  'direct+': [17, 1, 1, 1, 1, 1, 1, 1, 93],
+  'direct-': [17, 1, 1, 1, 1, 1, 1, 1, 91],
+};
+const chapterResults = [];
+for (let j = 0; j < chapterCuts.length - 1; j++) {
+  const originalChapter = source.slice(chapterCuts[j], chapterCuts[j + 1]);
+  const row = { chapter: j + 1, runeCount: originalChapter.length, survivorCounts: {} };
+  for (const register of ['delta', 'direct']) {
+    for (const sign of [1, -1]) {
+      const mode = register + (sign === 1 ? '+' : '-');
+      const actual = allStates(originalChapter, register, sign);
+      assert.equal(actual.finalStates.length, expectedChapterFinalStateCounts[mode][j]);
+      if (actual.finalStates.length === 1) assert.deepEqual(actual.finalStates, [0]);
+      row.survivorCounts[mode] = actual.finalStates.length;
+    }
+  }
+  chapterResults.push(row);
+}
+assert.deepEqual(chapterResults.map(r => r.runeCount),
+  [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+
 const differences = source.slice(1).map((c, i) => (c - source[i] + 29) % 29);
 console.log(JSON.stringify({
   source: 'original 56 unsolved LP2 pages p0-p55; 12956 GP29 runes',
@@ -188,4 +216,5 @@ console.log(JSON.stringify({
   mathematicalCondition: 'N is squarefree, so a state reaching zero implies initial state zero',
   result: 'all nonzero seeds/state paths eliminated in four declared F-bypass models',
   cases: results,
+  sourceChapterIndependentSecretSeedCases: chapterResults,
 }, null, 2));
