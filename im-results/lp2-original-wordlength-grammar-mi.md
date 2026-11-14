@@ -69,6 +69,22 @@ A source-matched baseline prevents overinterpretation. In **600 seeded shuffles*
 
 The original full-length exact parser, native-text coding, all five source alignments, 600 within-chapter controls and a planted ten-word genuine Gibran phrase are checked by the [independent CommonJS SFT](../sims/lp2_wordlength_source_crib_sft.cjs). [Windows Node22 run 43579738262](https://github.com/FlareZ123/liber-primus/actions/runs/43579738262) passes the original and 600-shuffle checks, as does the later [combined original-source run 43580390413](https://github.com/FlareZ123/liber-primus/actions/runs/43580390413). This remains a **conditional source-crib route**, useful to rerun on a new historically indicated text, rather than a decryption.
 
+### Source-p15 4×4 square: frozen four- and sixteen-lane whole-word check (14 November 2026)
+
+The independent **original p15 printed 4×4 Fibonacci-prime square** supplies two concrete widths, four columns and sixteen cells, absent from the earlier 8/32 terminal-grid test. Additionally the 2,896 source printed words equal **16×181**. This equality is descriptive and could be accidental; the original p15 page does not instruct sixteen-lane interleaving. A fixed-width rowwise interleaver of contiguous prose, even when its lane labels are permuted secretly, must preserve natural adjacent-word-length relationships at lag 4 or 16. The existing source-native word-length SFT was extended to these *two preselected widths*, without optimizing the lane order.
+
+All nine original chapters have 2,896 words; the p15–22 visual chapter has 437. Test both independent options: resetting every original chapter or treating the full 2,896-word book as one 16-lane transport. Source shuffles preserve exact chapter word inventories for chapter-reset mode, and the full-book word inventory for continuous mode. Each source full-book measurement uses 350 deterministic permutations. A separate p15–22-only measurement uses 2,000 chapter-local permutations. Native Gibran GP spellings, including historical single-rune ING, are interleaved under exactly the same widths as functional positive controls.
+
+| Original complete-word order | Lag4 MI (nats) | Source shuffle z / upper tail | Lag16 MI (nats) | Source shuffle z / upper tail |
+| --- | ---: | --- | ---: | --- |
+| Nine visual chapters, width-local | **0.008721** | −1.27 / 0.912 | **0.009399** | −1.28 / 0.892 |
+| Whole book continuous | **0.008077** | −1.56 / 0.943 | **0.008824** | −1.28 / 0.923 |
+| p15–22 chapter alone, 437 words | **0.078125** | −0.21 / 0.563 | **0.061893** | −1.54 / 0.947 |
+
+The all-chapter **native source-language interleaving controls** instead yield lag4 MI 0.053191 (z +19.89) and lag16 MI 0.051457 (z +18.53), using the same 350-draw source-chapter permutation comparison. The continuous full-book positive controls also have z above +20 for both widths. The SFT prints additional p15-only native controls and preserves the original eight-/thirty-two-lane benchmark exactly.
+
+**Decision:** A simple four- or sixteen-lane rowwise complete-word interleaving of ordinary GP-native prose has no keyless word-length signal in the original, including the source-chapter in which the square appears. This is a finite linguistic-register exclusion, not evidence against cryptographic interleaving of individual runes, changing lane order within rows, revised printed boundaries, a different language register, or a separate source-selected operation. The numerical 16×181 coincidence supplies no key or recovered plaintext. The [same original-input SFT](../sims/lp2_wordlength_gridlane_allsecret_sft.cjs) now covers all four clue-derived widths and both planted/reference cases.
+
 ## Cryptanalytic consequence and limitations
 
 The source-visible **printed spaces and dots cannot currently be assumed to preserve natural prose word order**. Their marginal resemblance to raw Latin English word lengths ([prior original unigram test](../sims/lp2_original_rawlatin_vs_gp_wordlength_register_sft.cjs)) does not establish natural-language word boundary preservation; the higher-order structural evidence is absent.
