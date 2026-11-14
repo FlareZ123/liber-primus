@@ -129,6 +129,38 @@ function run() {
     assert.ok(candidate.forbiddenPlainF.includes(13));
   for(const candidate of strictVariants[1].candidates)
     assert.ok(candidate.forbiddenPlainF.includes(20));
+  // The first p55 rune NG is visibly carried over from p54. Test the
+  // independent, original-source 75-rune complete-word body clock too,
+  // with its unique four lossless 75-of-76 source-key end alignments
+  // (printed/reversed, drop final/initial key rune), all eight historical
+  // F interpretations, and no other phase or inserted rune.
+  const p55CompleteBody=p55.slice(1);
+  const bodyF=p55CompleteBody.flatMap((v,i)=>v===0?[i]:[]);
+  assert.deepEqual(bodyF,[14,24,40]);
+  const bodyKeys=[
+    ["printedFirst75",key.slice(0,75)],
+    ["printedLast75",key.slice(1)],
+    ["reversedFirst75",reversedKey.slice(0,75)],
+    ["reversedLast75",reversedKey.slice(1)]
+  ];
+  const strictBodyVariants=bodyKeys.map(([order,fixedKey])=>{
+    const masks=Array.from({length:8},(_,mask)=>{
+      const skipped=new Set(bodyF.filter((_,j)=>(mask&(1<<j))!==0));
+      let consumed=0;
+      const forbiddenPlainF=[];
+      for(let i=0;i<p55CompleteBody.length;i++){
+        if(skipped.has(i))continue;
+        const p=mod29(p55CompleteBody[i]-(book.prime[fixedKey[consumed++]]-1));
+        if(p===0)forbiddenPlainF.push(i);
+      }
+      assert.ok(forbiddenPlainF.length>=1,
+        `The source body key ${order}, F mask ${mask} must violate the historical F rule.`);
+      return {mask,consumed,forbiddenPlainF};
+    });
+    return {order,viableMasks:masks.filter(x=>!x.forbiddenPlainF.length).length,
+      minForbiddenPositions:Math.min(...masks.map(x=>x.forbiddenPlainF.length))};
+  });
+  assert.deepEqual(strictBodyVariants.map(v=>v.viableMasks),[0,0,0,0]);
   // Genuine solved-p57 GP plaintext plant under exactly the historical
   // strict plaintext-F forward emitter, using the immutable p05 key.
   const nativeOriginal=p57.slice(0,76);
@@ -161,9 +193,10 @@ function run() {
       keyOrders:strictVariants,firstIllegalPairPrinted:{position:13,cipherGP:2,keyPhi:2},
       firstIllegalPairReversed:{position:20,cipherGP:1,
         keyPhiWithZeroOrOneEarlierSkip:[1,1]},
-      genuineP57PlantRecovered:76},
+      genuineP57PlantRecovered:76,
+      strict75RunicCompleteBodyVariants:strictBodyVariants},
     fiveBitOrdinalXOROutOfAlphabet:xored.filter(x=>x>=29).length,
-    verdict:"A source-tape 76/76 fit, but all direct inverses are nonprose and every F-skip interpretation of the historical prime-totient cipher is structurally impossible in both printed and reversed key order."};
+    verdict:"A source-tape 76/76 fit, but all direct inverses are nonprose and every F-skip interpretation of the historical prime-totient cipher is structurally impossible in both printed and reversed key order, including all four natural p55 complete-word 75-rune body alignments."};
   console.log(JSON.stringify(result,null,2));
   return result;
 }
