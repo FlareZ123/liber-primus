@@ -188,6 +188,22 @@ A predeclared **matched source-number control** uses the other p33 cuneiform lab
 **Extension across every originally marked red inscription (Agent47, 13 November 2026).** The original ink annotations list **18 red spans** across the unresolved manuscript. Each source span's exact GP29 indices was independently matched against the source corpus, then tested as a GF29 polynomial in both printed-source directions: **36 complete tests per digit alphabet**. Under the conventional base60 table the **only** original marked factor is the previously known p39 red triple at local offset119, forward (1/36). The competing f-deleted base59 table has **zero marked factors (0/36)**. The original signed 2013 factor H also divides only the base60 source. This strengthens the bounded source-family interpretation, but the radical mathematical interpretation was already established by **Agent3 on 12 November**, and the red-span divisor's previous uniqueness under base60 was established in an earlier source SFT. The new addition is the complete **base59 red-family holdout**. The same original [CJS SFT](../sims/p50_radix59_vs60_factor_gate_sft.cjs) now asserts all 36 against both radices; the standalone previously duplicated comparison has been consolidated into this section. All claims remain conditional on the creator actually intending the GF29 polynomial model.
 
 
+### Direct 2×2 Hill-consumer gate (Agent37, 14 November 2026)
+
+The quadratic quotient has relation (u^2=3u+8), and its source-derived unit is (g=19+13u). In the basis ((1,u)), multiplication by (g) is the 2×2 matrix
+[
+G=\begin{pmatrix}19&17\\13&0\end{pmatrix},
+]
+with order 840. The p15 dual-number element (19+13\epsilon), (\epsilon^2=0), is represented by
+[
+H=\begin{pmatrix}19&0\\13&19\end{pmatrix},
+]
+with order 812. These are the natural 2D regular representations of the two quotient units, not fitted matrices.
+
+A bounded direct-consumer test applied (G,G^{-1},G^T,(G^{-1})^T), (H,H^{-1},H^T,(H^{-1})^T), and the provisional p0-DH-derived (K=G^{7\cdot16}=G^{112}=\begin{pmatrix}27&28\\18&23\end{pmatrix}) with its inverse and transposes. Each transform was applied to every original GP29 page p0–p55 in adjacent two-rune column blocks; an odd final rune was left unchanged. No page yielded coherent plaintext; the best per-page IoCs remained around 0.039, with no sustained language-like output. The p0 exponents (7,16) remain a hypothesis, so the (K) branch is lower-confidence than the direct (G/H) tests.
+
+**Decision:** the quotient units' orders and the identity (840\cdot812=|GL_2(29)|) remain exact algebraic facts, but the most obvious 2×2 Hill consumers do not decode LP2. This rejects direct blockwise use of these matrices; it does not rule out a different, independently specified group action. Reproduce with [the 2×2 Hill SFT](../sims/lp2_p50_gf29_squaredh_hill_gate_sft.cjs).
+
 ## Current assessment
 
 The exact quotient `P50/F39 mod F3 = 19+13u` is reproducible and has an exact p55-matrix eigenvalue correspondence. Its direct power, discrete-log, pair, and source-quotient coordinate/trace/norm-feedback interpretations remain nonlinguistic under the bounded original-input tests documented above. The separate dual-factor polynomial quotient `P50/(H·G)` gives 252 GF29 symbols. Its direct GP plaintext, both direct BASE29 serializations as p56 preimages (0/10 across five 512-bit families each), and period-252 additive-key readouts are all negative. The pre-2014 MIRACL and Sendmail sources strengthen base60 as the conventional alphabet, but do not authenticate Cicada's use of it on p50. The p53/2013 NUMBER selector remains a hypothesis; no source instruction selects a parity frame, transfer or tested trace-feedback architecture.
