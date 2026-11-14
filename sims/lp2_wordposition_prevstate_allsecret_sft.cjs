@@ -267,6 +267,87 @@ assert.deepEqual(minimumViableTwoCuts, [[3, 4], [3, 5]]);
 assert.deepEqual(singletonGate(visualChapterCuts, 2),
   {badGroups: 2, excess: 2, maxDistinct: 3, groups: 68});
 
+/**
+ * Two disjoint four-distinct singleton groups prove a one-time key rekey
+ * impossible EVEN AT AN ARBITRARY RUNE OFFSET, without assuming any chapter
+ * boundaries. Original zero-based absolute source positions:
+ *
+ * predecessor L: (EA,Y,W,I) appear by position 4006;
+ * predecessor EA: (AE,N,M,J) appear after position 5319.
+ *
+ * A single rekey at e would require e <= 4006 to split the former
+ * and e > 5319 to split the latter. This is a contradiction.
+ */
+const singletonEvents = [];
+let singletonPosition = 0;
+let singletonPrevious = 29;
+for (const word of original) {
+  if (word.length === 1) {
+    singletonEvents.push({position: singletonPosition,
+      previous: singletonPrevious, cipher: word[0]});
+  }
+  for (const c of word) {
+    singletonPrevious = c;
+    singletonPosition++;
+  }
+}
+assert.equal(singletonPosition, 12956);
+assert.equal(singletonEvents.length, 83);
+const originalSingletonLookup = new Map(singletonEvents.map(x => [x.position, x]));
+const proofLeft = [[176, 20, 28], [3275, 20, 7],
+  [3738, 20, 26], [4006, 20, 10]];
+const proofRight = [[5319, 28, 25], [5336, 28, 9],
+  [6994, 28, 19], [7683, 28, 11]];
+for (const [position, previous, cipher] of [...proofLeft, ...proofRight]) {
+  assert.deepEqual(originalSingletonLookup.get(position),
+    {position, previous, cipher});
+}
+assert.equal(new Set(proofLeft.map(x => x[2])).size, 4);
+assert.equal(new Set(proofRight.map(x => x[2])).size, 4);
+assert.equal(proofLeft.at(-1)[0], 4006);
+assert.equal(proofRight[0][0], 5319);
+
+/** @param {number} start @param {number} end */
+function feasibleSingletonInterval(start, end) {
+  const h = new Map();
+  for (let i = start; i < end; i++) {
+    const event = singletonEvents[i];
+    let seen = h.get(event.previous);
+    if (!seen) {
+      seen = new Set();
+      h.set(event.previous, seen);
+    }
+    seen.add(event.cipher);
+    if (seen.size > 3) return false;
+  }
+  return true;
+}
+
+const E = singletonEvents.length;
+const ok = Array.from({length: E + 1}, (_, a) =>
+  Array.from({length: E + 1}, (_, b) =>
+    b >= a && feasibleSingletonInterval(a, b)));
+const singletonGapOneRekeys = [];
+const singletonGapTwoRekeys = [];
+for (let i = 0; i <= E; i++) {
+  if (ok[0][i] && ok[i][E]) singletonGapOneRekeys.push(i);
+  for (let j = i; j <= E; j++) {
+    if (ok[0][i] && ok[i][j] && ok[j][E]) {
+      singletonGapTwoRekeys.push([i, j]);
+    }
+  }
+}
+assert.equal(singletonGapOneRekeys.length, 0);
+assert.equal(singletonGapTwoRekeys.length, 172);
+assert.deepEqual([
+  Math.min(...singletonGapTwoRekeys.map(x => x[0])),
+  Math.max(...singletonGapTwoRekeys.map(x => x[0]))
+], [16, 27]);
+assert.deepEqual([
+  Math.min(...singletonGapTwoRekeys.map(x => x[1])),
+  Math.max(...singletonGapTwoRekeys.map(x => x[1]))
+], [41, 57]);
+
 const sources = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -330,6 +411,9 @@ console.log(JSON.stringify({
   singletonByOneRekey,
   singletonCutCounts,
   minimumViableTwoCuts,
+  arbitraryRekeyCertificate: {left: proofLeft, right: proofRight,
+    oneRekeyContradiction: 'e <= 4006 and e > 5319'},
+  singletonGapTwoRekeyChoices: singletonGapTwoRekeys.length,
   nativeMatchedControls: controls,
   sourceNativePositivePlant: '12956/12956 exact inverse',
   caveat: 'no unknown plaintext/key, altered word segmentation, extra state or chapter-specific keys remain open'
