@@ -1,6 +1,6 @@
 # Two original LP2 three-dot section breaks: p33 and p39
 
-**14 November 2026, Agent 30. Classification:** original-image structural result and bounded negative instruction gate for Director [#803](https://github.com/FlareZ123/liber-primus/issues/803). The full original source makes the three-dot mark **a repeated, deliberate section-divider motif**, while providing no unique reversible cipher operation. **No unknown-page plaintext or key was recovered.**
+**14 November 2026, Agent 30. Classification:** original-image structural result and bounded negative instruction gate for Director [#803](https://github.com/FlareZ123/liber-primus/issues/803). The full original source makes the three-dot mark **a repeated, deliberate section-divider motif**, and the two instances reuse one near-identical scalable image template, while providing no unique reversible cipher operation. **No unknown-page plaintext or key was recovered.**
 
 ## What a 2014 reader could actually see
 
@@ -25,6 +25,28 @@ The accompanying [read-only original-JPEG SFT](../sims/lp2_p39_three_dot_origina
 The p33 triad's component ink areas are **3,559, 3,542, 3,533** pixels; p39's are **784, 784, 817** pixels. They are scaled differently, with all three elements exactly aligned in a single row within each scan. Both triads remain three discs under separate RGB thresholds **100, 150 and 200**. The p39 source JPEG's SHA-256 is pinned independently at `d1b7ea5a6ffb79709753e3565d1d46e05edbe3d82ca70c3ed6065d46b131bd00`.
 
 This is a **specific morphology and source-structure inventory**, not an assertion that there are no other small circular glyphs, red dots, cuneiform circles or decorative marks. The three five-disc source controls in pp7/23/56 matter because a loose “there are dots” comparison would conflate visually different motifs. The exact count and two independent intra-page placements are what survive this targeted test.
+
+## Direct pixel registration: the two triads are one resized graphic
+
+**Agent29, 14 November 2026, original-JPEG continuation to #813.** In the original `50.jpg` and `56.jpg`, the p33 dots and p39 dots have essentially identical **relative positions and actual disk masks after a single scale-and-translation transformation**. This is stronger evidence than the previously recorded three-dot recurrence: the triads appear to be a *reused source graphic* scaled to different sizes, consistent with a typographic divider. It does not specify a cipher state, numeric skip, page mapping or plaintext.
+
+The [read-only exact original-template test](../sims/lp2_ellipsis_scaled_template_sft.py) pins the p33 and p39 original JPEG SHA-256s (`13ff4c8d8ab934032a001b8c1fda16433aa44a38dd7272b3ff0dd7ac8300c62d` and `d1b7ea5a6ffb79709753e3565d1d46e05edbe3d82ca70c3ed6065d46b131bd00`), then applies the same disk classifier to **all 75 source scans**, including all **17 solved LP1** scans 00–16. Only scan01 has two isolated circle-like components and scan13 has one, neither an LP2-shaped triad. The 58 LP2 scans retain the exact previously measured five- and three-dot groups. Therefore there is **no matching three-dot solved-LP1 convention** for calibrating a cipher-state action.
+
+Let p33 disk x centres in source pixels be **[767, 1184, 1662.5]** and p39 centres **[1298, 1494, 1718.5]**. Use only the *outer* dots to fit an x-axis scale and translation: `x39=0.469570072585*x33+937.835...` (translation computed in the SFT). The held-out p33 **middle-dot** centre forecasts p39 x=**1493.8107203**, while the actual centre is **1494.0**: **0.189280 original pixels** error. The y-axis registration uses just the source-measured first-dot heights **69 and 33 pixels** (y scale **0.47826087**) and their centres.
+
+Rasterizing this source-only affine transform with nearest-neighbour interpolation, thresholding all three RGB channels, and comparing original target three-dot masks in fixed p39 ROI x[1270,1750), y[1668,1724) gives:
+
+| Original RGB threshold | Correct source-scaled three-dot ink-mask F1 | Wrong x displacement +5 px | Wrong x displacement +10 px |
+| ---: | ---: | ---: | ---: |
+| 100 | **0.982486** | 0.778378 | 0.588541 |
+| 150 | **0.986795** | 0.781388 | 0.583945 |
+| 200 | **0.979154** | 0.791743 | 0.597855 |
+
+F1 is `2 × intersection / (source-ink count + target-ink count)`; this is a *pixel identity/registration test*, not a probability of cipher intentionality. The held-out dot coordinate was never used for the transform. No per-dot rotations, rescalings, crop shifts, opacity fitting, threshold tuning or source-value changes were needed to obtain the 98.7% central-threshold match. All three dots share the one 2D affine transform. This establishes a near-exact **shared graphical template**; it does not establish whether the compositor attached any independent textual meaning to that motif.
+
+**Cipher-state decision for #813:** The repeated triad is a deliberately reused layout mark at two original red-rubric boundaries. None occurs in solved LP1 with a known cipher reset, and solved p56's *five-dot* motif is a morphologically different art object. LP1's verified decryptions demonstrate changes at source-given chapter/segment and key boundaries, but supply no original rule assigning the **p33/p39 triad itself** a clock, key-update, skip or state-carry operation. The p39 121-rune lower segment is already excluded as a transposition/bijective relabelling of p32 by the exact histogram invariant below. No independent operation remains to apply unchanged at both dividers; a guessed three-step cipher at this stage would be numerical fitting. **The immediate state-handoff hypothesis is unsupported**, though a future recovered external instruction could repurpose the art. Do not generate a successor from the source-template registration alone.
+
+**Reproduce:** `python sims/lp2_ellipsis_scaled_template_sft.py` with the repository's original `resources/liber-primus/*.jpg`, or pass `--zip` for the complete 75-image archive. NumPy and OpenCV are required. It has been executed successfully against the maintainer-provided original archive. The existing 58-scan triad SFT remains unchanged for its independent original inventory and explicit pixel areas.
 
 ## Adjacent 121-unit map-transfer gate (source-count follow-up for #804)
 

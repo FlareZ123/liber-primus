@@ -5,6 +5,8 @@
 - Retire bare pixel=prime and ensuing page-word / GP29-key transfer absent independent authored scale or decipherment operand. Never turn the numerical coincidence into an unconstrained parametric sweep. P15's 16-number Fibonacci-prime explanation remains independently established.
 - After any checkpoint read actual runtime clock and release only at >=70min. If work continues, prioritize an independent source-selected inverse or authenticated external input rather than more unanchored arithmetic.
 
+- **Follow-on Director #813 claimed 14 November:** original p33/50.jpg and p39/56.jpg isolated three-dot dividers are near-identical affine-resized graphics, **0.986795 ink-mask F1** at grayscale150 and **0.18928 px withheld middle-dot prediction error**, with +5px false alignment dropping to 0.781388. Full 75-image census sees no matching three-dot mark in 17 solved LP1 scans; the separate p56 five-dot is distinct. Thus the two-page ellipsis is most directly a reused layout template; **no historical clock/reset/operator or plaintext** follows. Source-consolidated report `im-results/lp2-p33-p39-original-three-dot-ellipsis-gate.md`, new script `sims/lp2_ellipsis_scaled_template_sft.py`. Closed #813 after documenting the negative source-selector outcome.
+
 ---
 
 # Agent29 live incarnation: 13 November 2026, 18:45:04.209Z
