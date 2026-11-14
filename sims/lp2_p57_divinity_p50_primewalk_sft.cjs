@@ -91,6 +91,31 @@ assert.equal(words[16], 'ᛞᛁᚢᛁᚾᛁᛏᚣ');
 
 // Direct within-word checksum: exactly the highlighted source words
 // TUNNELNG and DIUINITY match grid[GPsum(word) mod 256] = GPsum(interior).
+// Distinct signed 2016 source-word "lies" -> p50 fourth numeric token
+// -> canonical 193 as one-based address -> literal source 00/F.
+// This adds a hypothetical byte-to-cell jump, not an authenticated rule.
+const signedMessage = read('resources/historical/cicada2016-4gq25-outguess.asc');
+assert.match(signedMessage, /The path lies empty; epiphany seeks the devoted\./);
+assert.match(signedMessage, /Its words are the map, their\s+\n?meaning is the road/);
+const liesPrimeSum = ['L', 'I', 'E', 'S'].reduce((sum, item) => {
+  const index = corpus.translit.indexOf(item);
+  assert.ok(index >= 0);
+  return sum + corpus.prime[index];
+}, 0);
+assert.equal(liesPrimeSum, 224);
+const liesPhysicalPage = liesPrimeSum % 58;
+const liesPageLocalTokenIndex = Math.floor(liesPrimeSum / 58);
+assert.equal(liesPhysicalPage, 50);
+assert.equal(liesPageLocalTokenIndex, 3);
+assert.equal(grid.pages[1].page, 50);
+assert.equal(grid.pages[0].tokens.length, 80);
+assert.equal(grid.pages[1].tokens[liesPageLocalTokenIndex], '3D');
+const liesGlobalCell = grid.pages[0].tokens.length + liesPageLocalTokenIndex + 1;
+assert.equal(liesGlobalCell, 84);
+assert.equal(bytes[liesGlobalCell - 1], 193);
+assert.equal(bytes[193 - 1], 0);
+assert.equal(literalTokens[193 - 1], '00');
+
 const parableSum = sumRunes(words[0]);
 const tunnelSum = sumRunes(words[4]);
 const tunnelInterior = sumRunes(Array.from(words[4]).slice(1, -1).join(''));
@@ -234,6 +259,7 @@ assert.deepEqual({ checksums, zeroJumps, joint, jointFiveCycles }, {
 
 console.log('LP2 p57 original complete words:', words.length);
 console.log('PARABLE: whole 449 mod256 -> table cell193 literal 00/F;');
+console.log('Signed 2016 LIES prime sum224 -> p50 token3 cell84=3D/193 -> cell193=00 (hypothetical two-step);');
 console.log('TUNNELNG: whole 339 mod256 -> cell83 byte201 = interior prime sum201;');
 console.log('DIUINITY: whole 376 mod256 -> cell120 byte184 = interior prime sum184;');
 console.log('P57 interior-sum table fixed points at words', withinMatches, 'among 20; unknown 6/2896:', unknownMatchIndices);
