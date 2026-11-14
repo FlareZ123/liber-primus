@@ -74,6 +74,13 @@ def main():
     assert (ink_a, ink_b, common) == (17908, 17888, 17684)
     assert iou > 0.97
     print(f"Original 180-degree ink overlap: {common}/{ink_a + ink_b - common} = {iou:.9f} IoU")
+    diff = p23_ink ^ p56_aligned
+    assert int(diff.sum()) == 428
+    dist_a = cv2.distanceTransform(p23_ink.astype(np.uint8), cv2.DIST_L2, cv2.DIST_MASK_PRECISE)
+    dist_b = cv2.distanceTransform(p56_aligned.astype(np.uint8), cv2.DIST_L2, cv2.DIST_MASK_PRECISE)
+    mismatch_edge_distance = np.where(p23_ink[diff], dist_a[diff], dist_b[diff])
+    assert float(np.max(mismatch_edge_distance)) < 1.5
+    print(f"All {int(diff.sum())} nonoverlapping ink pixels lie within {float(np.max(mismatch_edge_distance)):.4f} pixels of a circle boundary")
 
     # Source-wide image census at quarter resolution and both orientations.
     a_thumb = cv2.resize(a, (600, 900), interpolation=cv2.INTER_AREA)
