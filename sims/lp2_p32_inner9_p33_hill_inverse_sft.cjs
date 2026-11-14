@@ -70,6 +70,37 @@ function decodeCols(inv,ciphertext){
 }
 /** @param {number[]} nums @returns {string} */
 const latin=nums=>nums.map(i=>corpus.translit[i]).join("");
+/** @param {number[]} v @param {number[][]} m @returns {number[]} */
+function rowMulVec(v,m){
+  return Array.from({length:m.length},(_,j)=>
+    mod(v.reduce((sum,x,i)=>sum+x*m[i][j],0)));
+}
+/** @param {number[][]} inv @param {number[][]} ciphertext @param {number[]} iv @param {"column"|"row"} orientation */
+function decodeCbc(inv,ciphertext,iv,orientation){
+  const plaintext=[];
+  let previous=iv;
+  for(const block of ciphertext){
+    const delta=block.map((x,i)=>mod(x-previous[i]));
+    plaintext.push(orientation==="column"
+      ?matMulVec(inv,delta):rowMulVec(delta,inv));
+    previous=block;
+  }
+  return plaintext;
+}
+/** @param {number[][]} key @param {number[][]} plaintext @param {number[]} iv @param {"column"|"row"} orientation */
+function encodeCbc(key,plaintext,iv,orientation){
+  const ciphertext=[];
+  let previous=iv;
+  for(const block of plaintext){
+    const product=orientation==="column"
+      ?matMulVec(key,block):rowMulVec(block,key);
+    const current=product.map((x,i)=>mod(x+previous[i]));
+    ciphertext.push(current);
+    previous=current;
+  }
+  return ciphertext;
+}
+
 function run(){
   const all=[...source].filter(ch=>R.has(ch)).map(ch=>A.indexOf(ch));
   assert.equal(all.length,13136);
@@ -100,6 +131,35 @@ function run(){
   }
   const originalKey=invert(key);
   assert.equal(originalKey.det,28);
+
+  // Source-red-ink CBC-Hill extension: p33 red spans [0,10) and [91,99)
+  // concatenate to 18 symbols, then test the two source-sized 9-symbol IVs.
+  const redSpans=[all.slice(7960,7970),all.slice(8051,8059)];
+  assert.deepEqual(redSpans.map(x=>x.length),[10,8]);
+  const red18=[...redSpans[0],...redSpans[1]];
+  assert.equal(red18.length,18);
+  const ivOptions=[
+    {name:"red18-first9",iv:red18.slice(0,9)},
+    {name:"red18-second9",iv:red18.slice(9,18)}
+  ];
+  const cbcOutputs=[];
+  const cbcControls=[];
+  const p57Plant=corpus.pages.find(page=>page.page===57).indices.slice(0,81);
+  assert.equal(p57Plant.length,81);
+  const p57Blocks=Array.from({length:9},(_,i)=>p57Plant.slice(i*9,i*9+9));
+  for(const option of ivOptions){
+    for(const orientation of ["column","row"]){
+      const decoded=decodeCbc(originalKey.inverse,originalP33,option.iv,orientation).flat();
+      cbcOutputs.push({iv:option.name,orientation,ioc:ioc(decoded),latin:latin(decoded)});
+      const encryptedPlant=encodeCbc(key,p57Blocks,option.iv,orientation);
+      const recoveredPlant=decodeCbc(originalKey.inverse,encryptedPlant,option.iv,orientation).flat();
+      assert.deepEqual(recoveredPlant,p57Plant);
+      cbcControls.push({iv:option.name,orientation,recovered:recoveredPlant.length});
+    }
+  }
+  assert.deepEqual(cbcOutputs.map(x=>x.ioc.toFixed(8)),
+    ["0.02932099","0.03148148","0.03179012","0.03055556"]);
+  assert.equal(cbcControls.length,4);
   assert.equal(invert(originalP32).det,8);
   assert.equal(invert(originalP33).det,12);
   const cropDeterminants=Array.from({length:9},(_,k)=>{

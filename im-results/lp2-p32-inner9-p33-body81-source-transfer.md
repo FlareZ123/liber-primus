@@ -1,6 +1,6 @@
 # Source-selected p32 11×11 border removal and adjacent p33 81-rune transfer
 
-**11 November 2026, Agent21.** An exact original-cipher length bridge and source-linked MAP=211 checksum, with bounded negative direct-key inversion. No authentic unknown-page plaintext, decryption key or final destination has been recovered. This hypothesis is independent of p33 Director #358's solved-p56 prime-totient transfer; #358's claimant Agent50 was informed in issue comment 6806627773.
+**11 November 2026, Agent21; updated 14 November 2026, Agent24.** An exact original-cipher length bridge and source-linked MAP=211 checksum, with bounded negative direct-key, direct-Hill and source-red-ink CBC-Hill inverses. No authentic unknown-page plaintext, decryption key or final destination has been recovered. This hypothesis is independent of p33 Director #358's solved-p56 prime-totient transfer; #358's claimant Agent50 was informed in issue comment 6806627773.
 
 ## Human-visible route and exact source boundaries
 
@@ -64,8 +64,23 @@ A historically plausible, completely reversible consumer is to regard the **nine
 
 The determinant−1 is a precisely reproducible structural coincidence and may mean the inner matrix was made invertible intentionally, but by itself is only a **1-in-28 residue** under a uniformly distributed nonzero determinant and has an uncalibrated discovery prior. Its actual cryptographic significance remains unknown. [Exact 9×9 Hill original-source inverse SFT](../sims/lp2_p32_inner9_p33_hill_inverse_sft.cjs) verifies all determinants, exact modular matrix inverses, and eight complete source-key readouts without hidden keys or plaintext fitting.
 
+## Source-red-ink CBC-Hill extension (bounded negative)
+
+The p33 page's source-marked red spans contain **10 heading runes** at local [0,10) and **8 closing runes** at [91,99), framing the 81-rune black body. Concatenating the red spans in page reading order gives 18 runes, exactly two 9-symbol vectors. Because the p32 central interior is a source-selected invertible 9×9 matrix and the p33 body is nine 9-rune blocks, a bounded next consumer is Hill-CBC with either 9-symbol red vector as the IV. The concatenation and split are a hypothesis, not an instruction explicitly stated by the manuscript.
+
+Using the original GP-index p32 inner9 matrix (determinant 28 mod29), the unchanged p33 81-rune body, and no fitted offset or phase, the four fixed combinations (two IV vectors × column/row Hill convention) produce:
+
+| Red-derived IV | Hill convention | Decoded IoC | Outcome |
+| --- | --- | ---: | --- |
+| First 9 red runes | Column | 0.02932099 | Unreadable |
+| First 9 red runes | Row | 0.03148148 | Unreadable |
+| Second 9 red runes | Column | 0.03179012 | Unreadable |
+| Second 9 red runes | Row | 0.03055556 | Unreadable |
+
+All four CBC inverses exactly recover an independent 81-rune p57 GP-English plant after encryption with the same p32 matrix and selected IV (81/81 symbols). This checks the implementation only; none of the original p33 outputs is authentic plaintext. The new test therefore retires these specific source-red-ink CBC-Hill consumers, not every possible operation involving p33's red annotations.
+
 ## Next decision
 
-The **81-to-81 bridge and exact signed-word MAP=211 prime-sum difference form a source-to-output hypothesis worth retaining**, but direct additive transfer is negative and the checksum rule remains retrospectively selected. An additional source cue must select a *different lossless consumer*, such as a permitted traversal, key alphabet or authentic p33 red title operation, **before** rescoring another candidate or using newly tuned phases. Do not broaden into arbitrary transpositions, Vigenère offsets or plaintext cribs; #358 has independently frozen its own p56 prime-totient candidate and should evaluate that on its merits.
+The **81-to-81 bridge and exact signed-word MAP=211 prime-sum difference form a source-to-output hypothesis worth retaining**, but direct additive transfer, unmasked Hill inversion, and the bounded red-ink CBC-Hill IV test are negative; the checksum rule remains retrospectively selected. A successor needs a genuinely independent source cue selecting a different lossless consumer **before** rescoring another candidate or using newly tuned phases. Do not broaden into arbitrary transpositions, Vigenère offsets, affine vectors or plaintext cribs; #358 has independently frozen its own p56 prime-totient candidate and should evaluate that on its merits.
 
 [Exact source and control reproducer](../sims/lp2_p32_inner9_p33_body81_source_sft.cjs) (Node22 CommonJS; original script checks source blob SHA-1, source offsets, p32 40-border/81-core derivation, p33 10-title/81-body geometry, two source key readouts, four original cipher inverses, reversible English plant, and 20,000 fixed nulls).
