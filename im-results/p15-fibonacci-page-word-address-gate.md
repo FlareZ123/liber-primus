@@ -1,6 +1,6 @@
 # p15 Fibonacci-prime spiral: direct-key negatives and a 318° p32 navigation candidate
 
-**Classification:** exact original-source navigation experiment with finite negative results. The p15 Fibonacci-prime construction is real and reproducible, but the direct page/word mapping, the source-fixed floral-page prime-totient test, and the infinity-arrow Fibonacci additive reading yield no independently useful plaintext route or key. **No unknown LP2 plaintext or authentic cipher key is recovered.**
+**Classification:** original-source numerical-grid decipherment plus bounded page/key and navigation tests. The p15 Fibonacci-prime construction is real and reproducible, but the tested direct page/word mappings, the p16–31 page-reset prime-totient transfer, the p40–55 floral-page transfer, and the infinity-arrow continuation yield no unknown LP2 plaintext or authentic cipher key. The p32 318° alignment remains a navigation hypothesis.
 
 ## Source-fixed input
 
@@ -105,6 +105,35 @@ The original starting ordinals are **1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,
 **Original result:** all 16 direct title/verse readouts are incoherent. The original 213 red ciphertext runes have IoC **0.033838250**; the direct totient-decoded concatenation has **0.032775268**, and the literal-F variant **0.033882541**, versus independently readable solved p57 **0.062709966**. The alignment of sixteen clue items remains a hypothesis, so 100,000 source-preserving permutations reassign the same sixteen fixed prime starts among the same sixteen fixed source spans. With seed 0x3301, the actual order has lower-tail ranks **7736/100001** (ordinary) and **18587/100001** (literal-F). Matched permuted mean IoCs are **0.034380666** and **0.035214375**. Hence the observed page-order pairing supplies no plaintext, authentic key, or independently distinctive readout. There is no warrant to fit arbitrary shifts, permutations, or extra cipher layers after this gate.
 
 **Single runnable reproducer:** [p15 red-span Fibonacci-prime totient test](../sims/p15_red_span_fibonacci_totient_sft.cjs). It validates all sixteen original marked span positions against the canonical ciphertext, all printed p15 prime identities, the two solved heading controls and the 100,000-shuffle comparison.
+
+## Next-16-page Fibonacci-prime start schedule with the p56 inverse
+
+**14 November 2026, Agent 2. Bounded original-input negative; no plaintext or key.** A natural forward reading of the p15 4×4 grid is that its sixteen Fibonacci-derived prime starting ordinals key the next sixteen physical pages, p16–31, in source order. Each page restarts the established p56 prime-totient inverse at its assigned one-based prime ordinal. The p56 forward encoder copies plaintext F literally and does not consume a key symbol; therefore an inverse path may treat ciphertext F as literal or decrypt it, but a non-F ciphertext rune may never decrypt to plaintext F.
+
+The exact p56 known-answer control passes: the established 85-rune plaintext forward-encrypts to the original p56 ciphertext **85/85**, with one literal F and **84** consumed key symbols. The complete transparent-F state search then finds **no valid inverse path on any of p16–31** under the fixed pagewise schedule:
+
+| Target page | Start prime ordinal | First impossible ciphertext offset | Cipher rune | Key prime ordinal | Prime | φ(prime) mod 29 |
+|---:|---:|---:|---|---:|---:|---:|
+| 16 | 1 | 7 | E | 8 | 19 | 18 |
+| 17 | 2 | 93 | Y | 94 | 491 | 26 |
+| 18 | 3 | 3 | EO | 6 | 13 | 12 |
+| 19 | 4 | 82 | A | 83 | 431 | 24 |
+| 20 | 6 | 12 | TH | 18 | 61 | 2 |
+| 21 | 9 | 29 | B | 38 | 163 | 17 |
+| 22 | 14 | 24 | J | 37 | 157 | 11 |
+| 23 | 22 | 1 | A | 23 | 83 | 24 |
+| 24 | 35 | 57 | TH | 91 | 467 | 2 |
+| 25 | 56 | 17 | E | 73 | 367 | 18 |
+| 26 | 90 | 0 | IA | 90 | 463 | 27 |
+| 27 | 145 | 137 | M | 278 | 1789 | 19 |
+| 28 | 234 | 181 | M | 411 | 2833 | 19 |
+| 29 | 378 | 2 | G | 380 | 2617 | 6 |
+| 30 | 611 | 77 | R | 688 | 5167 | 4 |
+| 31 | 988 | 64 | H | 1052 | 8419 | 8 |
+
+At each listed offset, every surviving earlier transparent-F branch has the same key-consumption count (shown by the reproducer); the current non-F ciphertext rune would be forced to plaintext F. The first page alone is decisive: p16 offset 7 is ciphertext E (index 18), while the eighth key prime is 19 and φ(19)=18, forcing F. No choice of literal-F skips can repair that contradiction.
+
+**Decision:** retire only the exact p15 → next-sixteen-pages p16–31, page-reset, φ(prime)-subtraction interpretation. This does not reject the established p15 number-grid formula, other page ranges, other uses of the values, or other LP2 cipher families. Do not tune page offsets, phase, or F masks after this gate. Reproducer: [`sims/lp2_p15_next16_page_totient_gate.cjs`](../sims/lp2_p15_next16_page_totient_gate.cjs).
 
 ## Direct sixteen-floral-page candidate: consolidated in its source-specific report
 

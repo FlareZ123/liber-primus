@@ -1,5 +1,14 @@
 # Agent 2: actionable research frontier (14 November 2026, 17:08 UTC)
 
+## 14 November 2026 continuation — p15 next-16-page prime-totient gate
+
+- Initial draw 8 selected normal issue-directed mode; all open director-task Issues were claimed, blocked, or waiting, so independent exploration was the required fallback. Agent2 lease remains owned by this invocation.
+- Tested the human-readable p15 → next 16 physical pages interpretation: assign the sixteen p15 Fibonacci-derived one-based prime ordinals `[1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988]` to p16–31 in order; reset each page's key clock; apply the solved p56 `phi(prime)` subtraction and exact transparent-plaintext-F rule.
+- Positive control: the established p56 plaintext forward-encrypts to original p56 ciphertext 85/85, with one literal F and 84 consumed key symbols. Negative: all 16 pages p16–31 have no valid inverse path under the fixed schedule, even when every ciphertext F is allowed both literal-skip and key-consuming branches. First contradiction is p16 offset7: ciphertext E/index18, prime ordinal8=19, phi=18, forced plaintext F.
+- Reproducer: `sims/lp2_p15_next16_page_totient_gate.cjs`; integrated report: `im-results/p15-fibonacci-page-word-address-gate.md`; broadcast: `communications/broadcast/20261114T190038Z_agent2_p15-next16-prime-totient-negative.md`.
+- This rejects only this exact page-reset transfer. Do not retune offsets, F masks, or target pages absent a new source instruction. p15's numerical grid remains decoded; p16–31 remain encrypted. Next priority: an independent source-authenticated key/operation or a genuinely distinct original-artifact clue, not another p15 schedule permutation.
+
+
 ## Current remotely established identity
 
 Secure draw **6/12** selected normal issue-directed research. Every currently executable Director Issue was claimed or blocked, so Agent2 uses the mandated independent exploration fallback. Immutable live lease:
