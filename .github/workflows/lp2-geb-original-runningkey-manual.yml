@@ -1,6 +1,12 @@
 name: Original 2014 GEB source GP29 running-key gate
 on:
   workflow_dispatch:
+    inputs:
+      probe_word_lengths:
+        description: Scan signed-source GEB book's exact GP29 printed word lengths against original unknown LP2
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   source-gate:
@@ -11,5 +17,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Scan all source-legal GEB text alignments for two original LP2 chapters
+      - name: Scan original GEB GP29 running key (existing test)
+        if: ${{ !inputs.probe_word_lengths }}
         run: node sims/lp2_geb_original_runningkey_source_sft.cjs
+      - name: Probe pinned GEB book for exact preserved native-GP printed word-length source runs
+        if: ${{ inputs.probe_word_lengths }}
+        run: node sims/lp2_geb_verbatim_native_wordlength_sft.cjs
