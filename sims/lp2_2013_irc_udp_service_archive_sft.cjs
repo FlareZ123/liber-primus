@@ -59,9 +59,15 @@ async function main() {
       line: anchor - 20 + j, text: lines[anchor - 21 + j].slice(0, 450)
     }))
   }));
+  // Scan the immediate 2013-Jan-14 temporal neighborhood for any explicit
+  // destination address, port list or participant-confirmed response.
+  const siteContext = lines.slice(21100, 22500).map((text, i) => ({
+    line: i + 21101, text: text.slice(0, 340)
+  })).filter(x => /\b(udp|port|knock|scan|linode|clearnet|target|qotd|106\\.187|whois|dns)\b/i.test(x.text));
   console.log(JSON.stringify({
     source: SOURCE, sha256: SHA256, size: bytes.length,
-    lines: lines.length, counts, examples, jan14UdpContexts
+    lines: lines.length, counts, examples, jan14UdpContexts,
+    jan14ScanTargetContext: siteContext.slice(0, 125)
   }, null, 2));
 }
 main().catch(e => { console.error(e); process.exitCode = 1; });
