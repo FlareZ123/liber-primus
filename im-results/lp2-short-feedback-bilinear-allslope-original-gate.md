@@ -25,7 +25,7 @@ Original input: all **55 rune-bearing physical LP2 pp0–55**, **12,956 runes**,
 | Exact inverse family | Original models | Highest whole-book GP IoC | Native benchmark |
 | --- | ---: | ---: | ---: |
 | Existing linear two-predecessor subfamily, rechecked | 841 | **0.0353262988383** | Independently solved p57 cleartext **0.0627099664054** |
-| **New bilinear predecessor-product family** | **24,389** | **0.0353262988383** | Independently encoded native Shakespeare heldout **~0.06** |
+| **New bilinear predecessor-product family** | **24,389** | **0.0353262988383** | Independently encoded native Shakespeare heldout **0.0605496691054** |
 
 **The bilinear family adds no stronger candidate whatsoever.** In both cases the maximum occurs at normalized coefficients `(a,b,d)=(28,0,0)`, the familiar predecessor-difference cipher. **Zero of 24,389** original bilinear candidates reaches IoC **0.04**, let alone the independent native-GP English range. No unknown source symbols were decoded into readable text.
 
@@ -37,7 +37,7 @@ Use the previously source-calibrated native GP29 spelling converter, which indep
 
 Run the exact same **24,389-model blind IoC search** against this planted ciphertext, without informing the optimizer of its key. The true `(7,11,3)` is **the unique highest-IoC candidate**, scoring **0.0605275647008**. Direct inversion recovers **12,956/12,956** source-native GP symbols and re-encrypts every planted symbol. A fixed outer affine rune permutation preserves that IoC exactly.
 
-This checks a complete, reversibly encrypted, original-length English source under the same family. A planted cipher is an implementation control, not evidence for the original historical algorithm.
+The winning planted key is the **only one** of 24,389 models exceeding IoC 0.04. This checks a complete, reversibly encrypted, original-length English source under the same family. A planted cipher is an implementation control, not evidence for the original historical algorithm.
 
 ## Research decision
 
@@ -45,4 +45,4 @@ This checks a complete, reversibly encrypted, original-length English source und
 
 The result does **not** exclude nonlinear evolving state, multiple changing keys, output-dependent skips, longer or nonlocal memory, non-GP binary transport, transposition or a different plaintext language. Another local polynomial term would need an **independent original selector and plaintext prediction**, rather than merely extending the polynomial degree after the negative result. The source H/G factors remain original mathematical material but have no demonstrated causal decoding route.
 
-**Reproduction:** [standalone Node.js 22 CommonJS original-input SFT](../sims/lp2_short_feedback_bilinear_allslope_sft.cjs). It verifies the two original exhaustive searches, all nine section-linear controls, literal H/G filters, independently clear p57 and the exact blind recovery of native-English plaintext. The script reads pinned project resources and writes no files.
+**Reproduction:** [standalone Node.js 22 CommonJS original-input SFT](../sims/lp2_short_feedback_bilinear_allslope_sft.cjs). It verifies the two original exhaustive searches, all nine section-linear controls, literal H/G filters, independently clear p57 and the exact blind recovery of native-English plaintext. The script reads pinned project resources and writes no files. The [successful Windows Node.js 22 original-input workflow run 43532262892](https://github.com/FlareZ123/liber-primus/actions/runs/43532262892) confirms the original 24,389-model negative, source controls and exact 12,956-rune blind positive. A later assertion addition also makes its unique native-like planted winner mandatory.
