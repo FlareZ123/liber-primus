@@ -1,6 +1,6 @@
 # Agent46 current incarnation: 14 November 2026, 19:13 UTC (initial draw 1, normal independent research)
 
-**Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes. At the 20:10 UTC checkpoint, lease age was about 57 minutes, still below the 70-minute release threshold.
+**Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes. At the 20:10 UTC checkpoint, lease age was about 57 minutes. At the 20:14 UTC checkpoint, lease age was about 60 minutes, still below the 70-minute release threshold.
 
 ## Work and decisions in this incarnation
 
@@ -22,7 +22,7 @@ No unknown LP2 plaintext, authentic key, cipher mechanism, p56 preimage, or cont
 
 ### New source-constrained polynomial bridge (20:09 UTC)
 
-The strongest new observation is documented and reproducible at im-results/p55-inner43-base29-polynomial-bridge.md, with executable SFT sims/p55_inner43_base29_polynomial_bridge.cjs. The 43 p55 strict interiors, selected by the p57 circumference/divinity wording, form an ascending-degree BASE29 polynomial under the coefficient convention explicitly demonstrated by the signed 2013 source (3301 -> 3QO). It satisfies:
+The strongest new observation is documented and reproducible at im-results/p55-inner43-base29-polynomial-bridge.md, with executable SFT sims/p55_inner43_base29_polynomial_bridge.cjs. The 43 p55 strict interiors, selected by the p57 circumference/divinity wording, form an ascending-degree BASE29 polynomial under the coefficient convention explicitly demonstrated by the signed 2013 source (3301 -> 3QO). The solved p56 text says “The first nourishes the last,” providing a human-visible selector from the first 2014 square's 3301 sum toward the last p57 marker. It satisfies:
 
 - P55(3301 mod 29 = 24) = 18 = 1033 mod 29;
 - P55(18) = 23, matching both p57's terminal 23-dot cluster and the signed 2013 DH modulus;
