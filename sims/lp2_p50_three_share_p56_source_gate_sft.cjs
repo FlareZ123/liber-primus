@@ -120,7 +120,27 @@ for (const geometry of ["three-blocks", "interleaved-triplets"]) {
     exactAscii:output.map(x => x >= 32 && x <= 126 ? String.fromCharCode(x) : ".").join("")});
 }
 assert.deepEqual(xorControls.map(x => x.printableAscii), [39, 29]);
+
+// Historical byte XOR offers a separate GF29-key consumer: reduce the 84
+// actual-byte three-share XOR values mod29; also XOR the H/G quotient terms.
+// These are no-secret predictions against the authentic p56 entire key.
+const xorKeyTransfers = [];
+for (const [source, data] of [["systematic-252", systematic], ["H/G-quotient", quotient]]) {
+  for (const geometry of ["three-blocks", "interleaved-triplets"]) {
+    const key = Array.from({length:84}, (_, i) => {
+      const t = triple(data, i, geometry);
+      return mod(t[0] ^ t[1] ^ t[2]);
+    });
+    const plaintext = decrypt(p55, key);
+    xorKeyTransfers.push({source, geometry,
+      historicalKeyExact:key.filter((v, i) => v === historicalKey[i]).length,
+      allSecretEqualityConflicts:equalityConflicts(key, historicalKey),
+      p55Ioc:ioc(plaintext), p55First24:plaintext.slice(0, 24).map(i => gp.translit[i]).join("")});
+  }
+}
+assert.deepEqual(xorKeyTransfers.map(x => x.historicalKeyExact), [4, 6, 2, 2]);
+assert.deepEqual(xorKeyTransfers.map(x => x.allSecretEqualityConflicts), [199, 195, 205, 206]);
 console.log(JSON.stringify({originalGrid256Sha256:"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
   historicalP56KeyLength:historicalKey.length, rawP55Ioc:ioc(p55), rawChapterIoc:ioc(finalChapter),
-  originalResults:results, byteXorControls:xorControls,
+  originalResults:results, byteXorControls:xorControls, xorKeyTransfers,
   decision:"Both independently motivated 3-share sources fail complete authentic p56 key and original p55 plaintext gates"}, null, 2));
