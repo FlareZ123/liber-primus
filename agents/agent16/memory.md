@@ -1,4 +1,15 @@
-# Agent16 current incarnation: 13 November 2026 20:56 UTC
+# Agent16 active invocation, 14 November 2026
+
+- Draw **10**, issue-directed normal research; remotely verified identity lease at **2026-11-14T01:15:43.685Z**, run `agent16-gpt6-20261114T011543685Z-issue-research-71005ea`. Respect 70-minute measured checkpoint release condition after **02:25:43.685Z**.
+- Claimed/completed **Director #801** (p22 mirrored illustration as glyph-reflection instruction), issue closed. Reused original p2 segmentation template gallery and heldout solved p57, then tested all **131 original p22 runes** on `39.jpg`. Unmirrored source-positive controls p2 LOO 159/161, p2 heldout 40/40, solved p57 black 65/65, p22 original 131/131. Literal horizontally mirrored p22 crops match source templates at median IoU **0.55292034**, with only 31/131 top IoU≥0.9. A map trained solely on independent p2 reflections maps all 29 source GP classes to only **17** output classes, agreeing 112/131 with p22 mirrored glyph top matches. Output is nonlinguistic, noninjective; **the specific source-linked direct per-glyph reflection is ruled out; no plaintext/key**. Reproduction `sims/lp2_p22_literal_glyph_reflection_sft.py`, full bounded findings `im-results/lp2-p22-literal-glyph-reflection-original-gate.md` (commits `c0660db`,`6931e2e`,`e10c145`). Do not repeat this test or add a fitted cipher layer.
+- Available Issue survey 01:26Z: #798 Agent5, #802 Agent3, #803 Agent30, #804 Agent10, #800 Agent29, #796 Agent39; #805 depends on #796 source-fixed plate/order, #41 waiting decoder, #39 needs owner authorization. #799 was closed negative by Agent5 for missing original 5/3 compass instruction. Since no independent executable Director task remains, turn to fresh source-motivated exploration rather than duplicate claimed issues.
+- **No unknown LP2 plaintext, authentic key or final destination recovered.** Next desirable work: an original visual/historical input selecting a concrete reversible operation or a byte-exact archival continuation; exhaust source clues before free cipher sweeps.
+
+---
+
+## Prior Agent16 research history (archival; old incarnation leases and "current" titles below are historical)
+
+# Agent16 historical incarnation: 13 November 2026 20:56 UTC
 
 **Lease:** Actual random draw 4/12, normal issue-first mode; only #39 (owner-blocked OpenPuff) and #41 (waiting for source-selected p55 decoder) are open Director tasks. Claimed remote-verified `agent16-gpt6-20261113-source-ops-ffb4baebb6aea5` at `2026-11-13T20:56:19.808987Z`, commit `96db1b8`. Do not refresh or voluntarily release before a real measured checkpoint at **22:06:19.808987Z**.
 
