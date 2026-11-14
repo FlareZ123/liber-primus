@@ -117,9 +117,13 @@ function decompress(b,fmt){
  * @param {Buffer} b
  */
 function literalPacket(b){
-  if(b.length<8 || (b[0]&0xc0)!==0xc0 || (b[0]&63)!==11) return null;
+  if(b.length<8 || (b[0]&0x80)===0 || (b[0]&0x40 && (b[0]&63)!==11) ||
+    (!(b[0]&0x40) && ((b[0]>>2)&15)!==11))return null;
   let len,p;
-  if(b[1]<192){len=b[1];p=2;}
+  if(!(b[0]&0x40)){
+    if((b[0]&3)!==0)return null;
+    len=b[1];p=2;
+  }else if(b[1]<192){len=b[1];p=2;}
   else if(b[1]<224){
     if(b.length<3)return null;
     len=((b[1]-192)<<8)+b[2]+192;p=3;
@@ -164,17 +168,7 @@ assert(!originalCandidate.gzip && !originalCandidate.zlib);
 const known=Buffer.from(
   "LIKE THE INSTAR TUNNELING TO THE SURFACE. WE MUST SHED OUR OWN " +
   "CIRCUMFERENCES. FIND THE DIVINITY WITHIN AND EMERGE.","ascii");
-const literal=Buffer.concat([
-  Buffer.from([98,0,0,0,0,0]),
-  Buffer.from((known.toString("ascii")+" ").repeat(3).slice(0,144),"ascii")
-]);
-assert.equal(literal.length,150);
-const openpgp=Buffer.concat([
-  Buffer.from([0xcb,192,0]),literal
-]);
-assert.equal(openpgp.length,153);
-// The new-format two-byte length 150 is invalid (must be >=192);
-// make a 153-byte complete packet using the old-format tag 11,
+// Old-format one-byte definite length: tag11 + 151-byte body.
 const packet=Buffer.concat([Buffer.from([0xac,151]),Buffer.from([98,0,0,0,0,0]),
   Buffer.from((known.toString("ascii")+" ").repeat(3).slice(0,145),"ascii")]);
 assert.equal(packet.length,153);
@@ -187,7 +181,8 @@ assert.deepEqual(digitsToBytes(recovered.coefficients),packet);
 // Explicit exact old-format one-octet definite-length literal packet.
 assert.equal(packet[0],0xac);
 assert.equal(packet[1],151);
-const extracted=packet.subarray(8);
+const extracted=literalPacket(digitsToBytes(recovered.coefficients));
+assert(extracted);
 assert(textLike(extracted));
 assert(extracted.subarray(0,known.length).equals(known));
 assert.equal(originalCandidate.raw,false);
