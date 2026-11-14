@@ -21,3 +21,4 @@ jobs:
           node sims/lp2_2014_2016_late_irc_witness_sft.cjs --selftest
           node sims/lp2_2014_2016_late_irc_witness_sft.cjs "$RUNNER_TEMP/#ARG.freenode.log" "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
           node sims/lp2_2015_2016_irc_artifact_link_inventory_sft.cjs "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
+          node sims/lp2_2015_2016_frozen_6_artifact_retrieval_sft.cjs
