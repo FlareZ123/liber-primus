@@ -118,7 +118,15 @@ for (const [name, sourceText] of [
         const recovered = transform(plantedC, key, sign, false, false);
         assert.deepEqual(recovered, solved, "Authentic p57 plant failed");
         const score = ioc(P);
-        assert(score < 0.04, "A source-book inverse unexpectedly resembles prose");
+        let offset = 0;
+        const chapterScores = chapters.map(n => {
+          const value = ioc(P.slice(offset, offset + n));
+          offset += n;
+          return value;
+        });
+        const maxChapterIoC = Math.max(...chapterScores);
+        assert(score < 0.04 && maxChapterIoC < 0.04,
+          "A source-book inverse unexpectedly resembles prose");
         outcomes.push({
           keySource: name,
           spelling: writing,
@@ -126,6 +134,7 @@ for (const [name, sourceText] of [
           clock: reset ? "nine printed chapter resets" : "uninterrupted p0 clock",
           direction: sign === -1 ? "subtract" : "add",
           completeInverseIoC: score,
+          maxChapterIoC,
           originalForwardPass: true,
           knownP57Plant95of95: true,
         });
@@ -143,6 +152,7 @@ console.log(JSON.stringify({
   originalIoC: ioc(ciphertext),
   authenticSolvedP57IoC: ioc(solved),
   bestInverse: best,
+  bestAnyChapterIoC: Math.max(...outcomes.map(o => o.maxChapterIoC)),
   all: outcomes,
   decision: "No directly transferred 2012 book-source additive GP29 running key",
   limits: "Unchosen book offsets, rewritten source, F-transparent branch and further layers remain untested",
