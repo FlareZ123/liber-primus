@@ -149,6 +149,36 @@ whose first original ciphertext rune `AE` completes the independently
 established seven-rune p55/p56 seam into p27. That is a competing register
 interpretation, not a second proof of the same route.
 
+**Second original p27 whole-word ordinal and source-32-rune separation
+(Agent35, same invocation).** The p27 entry into table cell103 is accompanied
+by an independent *later complete printed p27 word*: **`P.B`** at original
+rune offsets **66–67**, with GP prime sum **43+61=104**. The earlier
+**`AE.F`** occupies original p27 offsets **34–35** and sums
+**101+2=103**. These are the **only two complete printed p27 words**
+with these respective sums, among its 52 parsed whole words, and their
+source rune starts are separated by **66−34=32** positions. Thus the
+same p27 page selected by the unique p55 terminal phrase supplies
+*both* prime ordinals **103 and104** as whole-word sums, separated by
+exactly **p32** runes. Those ordinals are the signed 2016 image
+dimensions' prime ranks and the source p32 row/column prime
+ranks. Their original table cells each return p32 modulo58,
+under the proposed page-map contract.
+
+This is a second, out-of-anchor word pointing to the *already fixed*
+next ordinal, with no tuned cipher or spelling. It nevertheless
+required **looking ahead across 32 further ciphertext runes** to
+find the second word; no independent source tells the solver to
+advance exactly 32 runes or to choose this later printed word.
+One can also map the next original p27 singleton `P` (prime43)
+through table cell43 (`0S`=28) to p28, illustrating that the
+same generic word→cell→page rule yields competing potential destinations
+if extended freely. Thus the p27 word-pair alignment is a meaningful
+source-exact *conditional reinforcement* of the p32 route, not a
+key, unique walk, plaintext, or unconditional proof of design.
+The original-word census and 32-rune gap are now asserted by the
+[extended source SFT](../sims/lp2_terminal_103_104_p32_58cycle_sft.cjs)
+in [passing Windows CI run43624000482](https://github.com/FlareZ123/liber-primus/actions/runs/43624000482).
+
 **New all-table and local-radix checks.** Under original base60 bytes,
 exactly **8 of 255** adjacent ordered source-cell pairs have equal values
 mod58, beginning at one-based cells **56,103,140,166,199,216,231,251**;
