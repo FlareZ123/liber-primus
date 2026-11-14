@@ -12,6 +12,12 @@ The canonical original LP2 pp0–55 (p50 has no runes) contains **12,956 runes**
 
 The 2016 author's 89 includes three repeats from the independently *solved* p56–57, producing W, D and N after the 86 unknown-page events. Those solved-page repeats are not part of this experiment's unknown ciphertext stream. Previous research tested raw event-value, gap and other residue channels without obtaining native GP plaintext ([prior narrower original events study](doublet-exception-channel.md)). The fixed *literal-URL* crib below addresses a distinct prerequisite of an externally proposed key-length-five/six search; it does not suggest repeating that general search.
 
+## Exact all-secret alphabet obstruction for the historical HTTP interpretation
+
+The 2016 post also specifically asks whether the **four runes after WWW** could encode HTTP. This permits an even simpler necessary condition, independent of period/key clocks and any English score. A single fixed monoalphabetic substitution, however arbitrarily secretly permuted, preserves equality between rune values at each pair of positions. Here the four original event glyphs **after** the triple are **Y NG G TH**, all distinct. Literal `HTTP` has repeated T in its second and third positions. No secret 29-way bijection can change that mismatch. Reversing the four glyphs still leaves them pairwise distinct.
+
+The four glyphs immediately **before** the triple are **E O E P**; their repeated E occurs at positions zero and two. Literal `HTTP` repeats T at positions one and two, so these equality patterns also disagree. The complete five-glyph candidate `HTTPS` preceding WWW is **X E O E P**, whose equality constraints likewise fail. The executable checks all four statements and a same-pattern positive control. Thus the historical local `HTTP` / `HTTPS` cribs are excluded under **every** possible globally fixed GP29 substitution on extracted event symbols, including arbitrary atbash, Caesar and secretly permuted alphabets. This theorem does not exclude an evolving-state cipher, polyalphabetic substitution, reordering of event symbols, or a transformation of a nonliteral URL.
+
 ## Repeated-key contradiction on unchanged original symbols
 
 Suppose the extracted 86 event glyphs themselves form a GP29 Vigenère ciphertext, with each event advancing one key step. Let C[i] be each actual repeated symbol, P[i] its proposed plaintext and k[i mod L] an arbitrary repeating additive key of period L, so **C[i] ≡ P[i] + k[i mod L] (mod 29)**.
