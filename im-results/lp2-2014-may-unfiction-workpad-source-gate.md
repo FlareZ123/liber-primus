@@ -31,6 +31,16 @@ Using only the first-party, dated forum locator, [the Windows Node22 exact-sourc
 
 For direct human inspection, the [3:30 UTC April 12 archived pad](https://web.archive.org/web/20160412033034/https://titanpad.com/vFCy7T5p0O) and [2 July 2016 archived pad](https://web.archive.org/web/20160702002913/https://titanpad.com/vFCy7T5p0O) have exact original snapshot URLs. The source-pinned reproducer extracts surrounding p56/digest contexts and original `clientVars`/chat material from the same fetched body without arbitrary URL enumeration. Do not confuse this 2016 surviving editable state with proof of a fully preserved May 2014 revision or with an original participant IRC log.
 
+## Embedded original chat: a preserved 2016 crib hypothesis, no early 2014 discussion
+
+The [source-pinned chat-entry extractor](../sims/lp2_2016_titanpad_wayback_replay_sft.cjs) parsed JSON `time` / `userId` / `lineText` messages embedded in the replayed pad HTML on [successful Windows run 43594389204](https://github.com/FlareZ123/liber-primus/actions/runs/43594389204). Each April snapshot carries **21** messages dated **3 March–8 April 2016**; the July snapshot carries **27** messages dated **22 May–1 July 2016**. No captured embedded message dates to May–August **2014**. This proves a **chat-history window limitation**, rather than the absence of the original 2014 conversation from all services or archives.
+
+One new, exact period-user hypothesis survives in the July 2016 chat at original millisecond timestamp **1463897861205**, i.e. **22 May 2016 07:37:41.205 UTC**:
+
+> Since the first 2 words of page 56 translates to "AN END", I believe the fist 2 words of page 54 are : "A BEGINNING", try to find the key or some pattern that decode "A / M-NG-D-IA-TH-X-I-M" to "A BEGINNING"
+
+This is a **2016 participant's proposed crib**, with an explicit encrypted word spelling and plain-English guess. It is **not an author-authenticated instruction, a solved page, or evidence for a cipher**. It can be tested only against the original GP orthography, exact first-word segmentation and a genuinely constrained inverse, rather than by fitting an unrestricted key to a conjecture. No original p56 continuation URL or 2014 IRC provenance is supplied by this chat. The July archive preserves the proposed crib verbatim, allowing later independent study without relying on modern hearsay.
+
 ## Research decision and next operation
 
 The historical pad is **recovered as a bounded document**, replacing the previous false assumption that only its URL survived. It is the best concrete newly acquired period-origin solver context from this invocation; nonetheless its p56 annotations only confirm a solution already independently known. A meaningful successor would obtain the original *May 2014* pad revision history, source-authenticated `#cicadasolvers` chat for May–August 2014, or a genuinely earlier outbound deep-web link with historical provenance. Those could supply a previously missing target URL or key. Do not search arbitrary onion hostnames or infer preimages from the pad's numerical speculation.
