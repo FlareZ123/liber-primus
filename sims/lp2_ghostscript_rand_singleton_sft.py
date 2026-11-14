@@ -202,17 +202,19 @@ def prefix_states(data, mode, prefix=4):
         lo = max(1, (first * M_INT + 255) // 256)
         hi = min(M_INT, ((first + 1) * M_INT + 255) // 256)
         states = np.arange(lo, hi, dtype=np.uint64)
+    first_states = states
     stage_counts = []
     for target in data[1:prefix]:
         state_next = times_constant(states, A)
         value = (state_next % np.uint64(256) if mode == "mod256"
                  else state_next * np.uint64(256) // M)
         keep = value == target
-        states = states[keep]
+        first_states = first_states[keep]
+        states = state_next[keep]
         stage_counts.append(len(states))
         if not len(states):
             break
-    return states, stage_counts
+    return first_states, stage_counts
 
 
 def check_grid_full_output():
