@@ -256,7 +256,7 @@ function wordBlockGate(stripCircumferences) {
     globalFBypassParseCount: globalParseCount,
     firstFailedWord: failed ? failed.word : null,
     perWord,
-    noBypassIoC: ioc(noBypassIndices),
+    noBypassIoC: indexOfCoincidence(noBypassIndices),
     noBypassOutput: perWord.map(x => x.noBypassOutput).join(' ')
   };
 }
