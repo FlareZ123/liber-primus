@@ -57,8 +57,7 @@ function encode(plain, key, sign) {
 function allDecodings(cipher, key, sign) {
   const results = [];
   const fsites = cipher.flatMap((x, i) => x === 0 ? [i] : []);
-  assert.deepEqual(fsites, [15, 25, 41]);
-  for (let mask = 0; mask < 8; mask++) {
+  for (let mask = 0; mask < 2 ** fsites.length; mask++) {
     let j = 0;
     const plain = [];
     const violations = [];
@@ -91,9 +90,10 @@ for (const [layout, shares] of Object.entries(layouts)) {
     const attempts = allDecodings(ciphertext, key, sign);
     assert.equal(attempts.length, 8);
     // Each of eight F branch histories has a violation before any observed F.
-    const expectedFirst = {contiguous: {-1: 8, 1: 0}, interleaved: {-1: 9, 1: 5}};
+    const expectedFirst = layout === 'contiguous'
+      ? (sign === -1 ? 8 : 0) : (sign === -1 ? 9 : 5);
     for (const attempt of attempts) {
-      assert.equal(attempt.violations[0], expectedFirst[layout][sign]);
+      assert.equal(attempt.violations[0], expectedFirst);
       assert.ok(attempt.violations.length >= 1);
     }
     outcomes.push({
