@@ -51,7 +51,7 @@ jobs:
         shell: pwsh
         run: |
           python -c "import struct; assert struct.calcsize('P') == 4, 'OpenPuff requires 32-bit Python'"
-          python -m pip install --disable-pip-version-check filelock pywinauto
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
           python sims/openpuff_output_capture_sft.py
 
       - name: Prepare evidence directory
@@ -158,7 +158,7 @@ jobs:
         shell: pwsh
         run: |
           python -c "import struct; assert struct.calcsize('P') == 4, 'OpenPuff requires 32-bit Python'"
-          python -m pip install --disable-pip-version-check filelock pywinauto
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
           python sims/openpuff_output_capture_sft.py
 
       - name: Prepare evidence directory
