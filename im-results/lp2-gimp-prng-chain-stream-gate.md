@@ -57,7 +57,7 @@ Run from the repository root:
 
 node sims/lp2_gimp_prng_chain_stream_gate.cjs
 
-The script reads the canonical corpus, verifies the 12,956/12,955/86 input counts and the complete 28-bin difference histogram, implements **both** GLib 2.38.2 versions 20 and 22 with independently verified source vectors, generates each 4,096-word seed table, and asserts all **twelve** exact/inverse scores. Historical version22 is GLib's documented normal mode; version20 is an explicit legacy compatibility control.
+[Passing original-input Windows/Node22 Actions run 43533073542](https://github.com/FlareZ123/liber-primus/actions/runs/43533073542). The script reads the canonical corpus, verifies the 12,956/12,955/86 input counts and the complete 28-bin difference histogram, implements **both** GLib 2.38.2 versions 20 and 22 with independently verified source vectors, generates each 4,096-word seed table, and asserts all **twelve** exact/inverse scores. Historical version22 is GLib's documented normal mode; version20 is an explicit legacy compatibility control.
 
 ## Sources
 
