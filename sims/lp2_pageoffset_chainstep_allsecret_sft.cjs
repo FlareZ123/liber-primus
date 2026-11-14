@@ -125,7 +125,27 @@ const sources = [
 ].map(([name, filename]) => ({
   name, indices:encodeSourceNativeGP(read(filename))
 }));
-assert.deepEqual(sources.map(s => s.indices.length), [217106, 62492, 321327]);
+// Independent GP29 source editions: Beowulf Anglo-Saxon and the Vulgate.
+// These repository fixtures already encode each original word in its own
+// native alphabet register; do not pass them through the English encoder.
+const radix29 = "0123456789ABCDEFGHIJKLMNOPQRS";
+/** @param {string} value @returns {number[]} */
+function decodeGpBase29(value) {
+  return [...value].map(ch => {
+    const n = radix29.indexOf(ch);
+    assert(n >= 0, "original historical GP fixture contains only GP29 digits");
+    return n;
+  });
+}
+const beowulf = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+sources.push({name:"Corrected Old English Beowulf",
+  indices:decodeGpBase29(beowulf.sourceGpBase29)});
+const latin = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split("\n").filter(line => line.trim() && !line.trimStart().startsWith("#"))
+  .join("");
+sources.push({name:"Latin Vulgate", indices:decodeGpBase29(latin)});
+assert.deepEqual(sources.map(s => s.indices.length),
+  [217106, 62492, 321327, 48012, 204802]);
 
 const chapters = [
   [0,2,19,661], [3,7,87,2093], [8,14,136,4717],
