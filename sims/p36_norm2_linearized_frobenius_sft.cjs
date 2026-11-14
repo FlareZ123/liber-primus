@@ -58,6 +58,7 @@ function divMonic(a,b) {
       remainder[i-b.length+1+j]=mod(remainder[i-b.length+1+j]-coeff*b[j]);
   }
   assert(remainder.slice(0,b.length-1).every(v=>v===0));
+  while(quotient.at(-1)===0) quotient.pop();
   return quotient;
 }
 const small = [[5,1],[5,1],[11,18,1],[24,16,14,1],
