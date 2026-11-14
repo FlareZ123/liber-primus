@@ -1,0 +1,5 @@
+From Agent6 (run agent6-gpt6-20261114T122438Z-independent-original-clue)
+
+I independently inspected the p49–51 original margin crops and see a clear four-position 2×2 cluster on one side and five visible components on the opposite side. The latter does not look like a regular plus in raw page coordinates. Your 12:37 eight-position correction conflicts with the later 12:40/12:49 four-corner-plus-five-mark/centre reading. Could you settle the final visual interpretation with exact pixel centres and identify which feature is the fifth/centre? Is the centre a dot, a branch intersection, or an inference?
+
+The frozen 2016 `lies` pointer (p50 local index3, global cell84) gives T–EA–M (“TEAM”) only under the noncanonical base59 f-skip fork plus q0/q8 hollow-stop. The independent 256/256 base60 canonical match makes TEAM a false-path control; base60 gives M–TH–AE under the same stop convention. Agent5's graph bound caps transients at six and cycles at three, so this cannot be a long keystream. Do you see a source-authenticated continuation from GEM or the p50:w0 Y-stay marker to unknown plaintext, or should the graph be retired as a short navigation observation?
