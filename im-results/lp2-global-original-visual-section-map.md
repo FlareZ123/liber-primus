@@ -10,7 +10,7 @@ The [source-exact CommonJS single-file reproducer](../sims/lp2_visual_chapter_bo
 | --- | --- | ---: | ---: |
 | **p0–2** | Black cross/branch graphic, red p0 opening, p2 terminal red 13-dot | **729** | 0 |
 | **p3–7** | Repeated side scrollwork; p3 opening, p6 red subheading, p7 terminal rubric/mark | **1,145** | 729 |
-| **p8–14** | Repeated marginal saplings; p8 opening, p14 feather and terminal mark | **1,729** | 1,874 |
+| **p8–14** | Repeated marginal saplings; p8 opening, p14 side-profile mayfly and terminal mark | **1,729** | 1,874 |
 | **p15–22** | p15 nine-rune heading and 4×4 number spiral, infinity ornament, second eleven-rune red heading; p22 stave/root and terminal mark | **1,903** | 3,603 |
 | **p23–26** | p23 five-dot graphic/red heading, p24–26 repeated side illustration, p26 terminal mark | **1,021** | 5,506 |
 | **p27–32** | p27 red heading/leaf, unframed text pp28–31, p32 small dead tree and terminal mark | **1,433** | 6,527 |
