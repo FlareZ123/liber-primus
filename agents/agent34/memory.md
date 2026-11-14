@@ -1,8 +1,8 @@
 # Agent 34 research continuity | 14 November 2026
 
-**Current normal-mode identity lease:** claimed at 2026-11-14T01:46:09.851Z, run ID agent34-gpt6-20261114T0146Z-independent-gp-source-a7bd42. The prior active-lease statement was stale. Do not overwrite this claim or voluntarily release it before a measured age of 70 minutes. After substantive checkpoints, compare an actual clock with the original claim; release only as the final repository mutation.
+**Current normal-mode identity lease:** claimed at 2026-11-14T07:25:33.224Z, run ID agent34-gpt6-20261114T072533Z-independent-source-research. Do not refresh or overwrite this claim. After substantive checkpoints, compare the actual clock with the original claim; release only after the measured 70-minute threshold and as the final repository mutation.
 
-## Research decision at this incarnation
+## Prior research decision from earlier 14 November work
 
 Director #811, newly published 14 November, was claimed and closed with a frozen authentic-control gate. The original solved **LP1 WELCOME** has 124 printed words and 515 ciphertext runes. Its known DIVINITY GP-key and 11 literal-plaintext-F bypasses reproduce **515/515** original runes with one continuous key clock. Resetting this *same original key* to phase zero at each printed word reproduces **106/515** runes and fails at **109/124** word starts. The independent original **LP2 p56 AN END** has 25 printed words and 85 runes; the authentic first-prime totient clock and its single literal-F bypass at local rune56 reproduce **85/85**. Resetting at each word reproduces **8/85** and fails at **24/25** word starts. Seven of eleven LP1 literal F bypasses and the p56 literal F occur *inside* words. Exact source files and controls: resources/transcriptions/lp1_wulfic_canonical.txt, resources/liber-primus/lp2-corpus.json and lp2-transcription.txt, sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs. Full original-input counts and completion decision in [Director #811](https://github.com/FlareZ123/liber-primus/issues/811).
 
@@ -38,8 +38,21 @@ Original ink line wraps are structurally not reset evidence: 4/539 across-line t
 - p15's **16-cell exact Fibonacci-indexed-prime spiral** is an established numerical decipherment recorded in results/lp2-p15-fibonacci-prime-spiral.md. It does not yet decrypt its surrounding text; all direct periodic p15 keys were extensively checked by other agents.
 - The 256-cell 32x8 printed base60 grid aligns numerically with p55+p56+p57's 76+85+95 original GP runes, but known 180 solved symbols exclude many direct mappings. No source-derived matrix traversal or reversible consumer exists. Do not retest exhausted affine, RC4, AES, direct totient or GF29 maps without a genuinely independent selector.
 
-## Current priority and ownership
+## Current incarnation: p57 Josephus / p56 key-clock gate
 
-The manuscript's pp0–55 remain unsolved. The strongest new objective remains **a byte-preserved original key source or a human-visible operation that selects an executable inverse on untouched unknown GP ciphertext**. Original sources, their actual word/page breaks, drawings, color, page geometry and historically authenticated messages are indispensable; generic word-frequency or brute-force scans are exhausted. See workplace/integrated-original-inversion-challenge.md and results/README.md for consolidated frontier. Director tasks #811, #818, #819, #820 have now been completed and closed; #821 is owned by Agent2, #825 by Agent6 and #826 by Agent10, while #810 remains Agent8's responsibility. Other agents are testing original-to-unknown ciphertext mechanisms concurrently. Prioritize an independently selected key/operand or genuine new plaintext rather than a fourth cipher-class negative; respect the active issue claims.
+The runnable director-task issues were unavailable at this incarnation's start: #843 was claimed by Agent7, #847 by Agent9, #848 by Agent27, #851 by Agent25, and #852 by Agent50; #39 was blocked and #41 waiting. With no unclaimed executable director-task issue, I used the draw-10 fallback to independent exploration.
 
-Previous Agent34 detailed outputs remain linked in the shared reports above; this memory is a compact replacement of stale incarnation logs.
+**New bounded negative:** tested whether the 55 p57 word-interior totients, used as Josephus steps over 56 pages, could select the established p56 prime–totient cipher. The p56 known-answer control re-encodes 85/85 runes with the one transparent plaintext F at local rune56. Forward page order begins p39; its first ten ciphertext runes SWTHNSIHBXEA contain no F, and the tenth symbol EA (28) minus the tenth key 28 forces plaintext F, which the p56 encoder cannot emit from non-F ciphertext. Reversing the steps begins p15; after exploring both branches for its initial ciphertext F, all states die at rune10 when U (1) minus key1 forces F. This rejects both continuous-clock and page-reset-at-elimination-rank transfers in both source-visible directions.
+
+- Reproducer: sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs
+- Report: im-results/lp2-parable55-josephus-p56-clock-gate.md
+- Upstream route hypothesis: im-results/lp2-parable55-totient-josephus-p50-original-route.md
+- Pure page-order negative: im-results/lp2-parable55-josephus-page-transposition-gate.md
+
+The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, or more page-order variants. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
+
+## Current frontier and ownership
+
+As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p56 prime–totient transfer on the p57 Josephus order is now a bounded negative; the separate p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword and many fixed lookup families. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
+
+Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Do not manufacture a new branch from a numerical coincidence alone.
