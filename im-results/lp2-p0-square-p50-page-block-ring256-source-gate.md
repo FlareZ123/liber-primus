@@ -37,6 +37,26 @@ The best model reads p49's ring from corner4 counterclockwise, p50's from corner
 
 The independent positive control plants all 256 GP values from the cleartext p57 and applies exactly the same 256-byte modular shifts: all **256/256** symbols recover under each sign. The CJS source original assertions and positive controls passed on [Windows Node 22 workflow run 43627425582](https://github.com/FlareZ123/liber-primus/actions/runs/43627425582). [Single-file original-input reproducer](../sims/lp2_p0_square_p50_page_ring_256_sft.cjs).
 
+## Distinct GP28 differential inverse, 2,048 additional original readings
+
+The actual LP2 source has strongly suppressed adjacent identical runes, making the most literal nonzero-step reading a relevant, fully reversible rival to direct GP29 subtraction. Keep exactly the same physical 80/104/72 byte blocks and 8³ source-ring orientations. Set initial previous ciphertext GP rune index to zero (the conventional F), then map each current cipher difference `delta=(C[i]-C[i-1]) mod29` to a 28-valued step; `delta=0` becomes the literal **F=index0**, a value outside the 1..28 encrypted alphabet. For nonzero delta, try only two fixed reversible number-theoretic codings:
+
+1. **Rank28:** `rank=delta-1` in 0..27.
+2. **GP prime-group dlog28:** `rank=log_15(delta)` in the multiplicative field GF(29), whose primitive root 15 enumerates all 28 nonzero residues.
+
+For both key signs, `P[i]=1+((rank ± (gridByte[i] mod28)) mod28)`. The forward encoder reconstructs every original `delta` from its rank, integrates it against previous ciphertext mod29, and copies literal F as a zero step. All **2,048** original-cipher inverses round-trip **256/256 actual ring runes**; the same operation round-trips **256/256** GP-native p57 planted plaintext runes for both maps and signs. The extra GP28 family is a *specific conditional test* of the observed anti-repeat design, rather than a claimed original GP28 instruction.
+
+| Distinct source-fixed differential test | GP29 IoC |
+| --- | ---: |
+| Natural rings, rank28 with subtraction | **0.0353553922** |
+| Natural rings, rank28 with addition | **0.0352328431** |
+| Natural rings, discrete-log28 with subtraction | **0.0365502451** |
+| Natural rings, discrete-log28 with addition | **0.0348039216** |
+| **Best** of all 2,048 combinations | **0.0375919118** |
+| Models achieving IoC ≥0.040 | **0/2,048** |
+
+Only **five or six** zero steps arise under the searched ring choices, so treating them as the literal-F sentinel does not make the remaining output linguistic. The highest IoC under rank28 appears in two orientations, `(a,b,c)=(0,4,2)` with minus key and `(4,6,6)` with plus key. Neither orientation is selected by original ink or historical instructions. [The same original-input SFT](../sims/lp2_p0_square_p50_page_ring_256_sft.cjs) includes the complete differential inverse, forward replay, primitive-root assertion, and known-p57 symbol plants. It passed [Windows Node22 workflow run 43629763038](https://github.com/FlareZ123/liber-primus/actions/runs/43629763038).
+
 ## Decision
 
-A direct table-byte key for these three source-length-matched rings does **not** yield native-GP prose in any of the 1,024 obvious corner and direction combinations. This removes the straightforward direct-additive consumer of a fresh physical page-block ↔ square-ring crosswalk. The unproven grid shape and page-to-ring association do not justify a larger keyed search. A useful reopening would need a separate original ink, signed sentence, number or historical operation that selects **how** the 80/104/72 blocks address and decode the 256 first-chapter cells and predicts a withheld original plaintext interval.
+Under the unchanged source ring/page-block pairing, neither of two simple complete 256-symbol decoding architectures produces native GP prose: **0/1,024 additive GP29 candidates** and **0/2,048 differential GP28 candidates** attain even IoC 0.040, versus 0.06271 on 95 authentic solved-p57 source runes. This is a **bounded failure of the proposed direct original-page coupling**, with exact inverse and planted positive controls for both architectures. It cannot exclude a missing authentically selected key operation or the possibility the three matching square rings are a layout coincidence. The p0–2 27×27 shape and p49–51 table pairing alone do not justify increasingly tuned keys, shifts or new perimeters. Reopen only if an original cue actually selects the operator and predicts withheld unknown plaintext.
