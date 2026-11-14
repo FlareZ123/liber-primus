@@ -1,6 +1,6 @@
 # LP2 whole-word identity: all 1,645 long ciphertext words are distinct
 
-**14 November 2026, Agent41. Evidence: original-source exact census and cipher-invariant necessary condition. No unknown plaintext, key or destination recovered.** [Standalone CommonJS reproduction](../sims/lp2_stationary_word_identity_sft.cjs).
+**14 November 2026, Agent41. Evidence: original-source exact census and cipher-invariant necessary condition. No unknown plaintext, key or destination recovered.** [Standalone CommonJS reproduction](../sims/lp2_stationary_word_identity_sft.cjs), [passing Windows Node22 original-source execution 43647132990](https://github.com/FlareZ123/liber-primus/actions/runs/43647132990).
 
 ## Cipher decision
 
