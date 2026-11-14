@@ -21,7 +21,7 @@ async function request(url,ms=12000){
   const body=Buffer.from(await r.arrayBuffer());
   return {status:r.status,final:r.url,mime:r.headers.get('content-type'),size:body.length,
    sha256:crypto.createHash('sha256').update(body).digest('hex'),
-   sample:body.toString('utf8',0,Math.min(body.length,1800))};
+   sample:body.toString('utf8',0,Math.min(body.length,process.argv.includes('--full')?16000:1800))};
  }catch(e){return {error:String(e).slice(0,220)};}
 }
 /** @param {string} url */
@@ -39,7 +39,7 @@ async function main(){
  if(process.argv.includes('--selftest'))return;
  for(const [line,url] of candidates){
   console.log('===SOURCE L'+line+' '+url);
-  const checks=await Promise.all(routes(url).map(async ([kind,link])=>({kind,link,...await request(link)})));
+  const checks=await Promise.all((process.argv.includes('--full')?routes(url).filter(x=>x[0]==='direct'):routes(url)).map(async ([kind,link])=>({kind,link,...await request(link)})));
   for(const x of checks)console.log('RESULT '+JSON.stringify(x));
  }
 }
