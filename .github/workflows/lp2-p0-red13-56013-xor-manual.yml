@@ -1,0 +1,31 @@
+name: LP2 source-red p0 2013 DATA XOR gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-p0-red13-xor:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve 2013 historical DATA/560.13
+        shell: pwsh
+        run: |
+          $source = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $source
+          if ($LASTEXITCODE -ne 0) { throw 'Historical DATA/560.13 download failed' }
+      - name: Original LP2 one-offset inverse and original 2013 positive
+        shell: pwsh
+        run: |
+          $source = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_2013_p0_red13_56013_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Node syntax check failed' }
+          node sims/lp2_2013_p0_red13_56013_xor_sft.cjs $source
+          if ($LASTEXITCODE -ne 0) { throw 'Original source inverse failed' }
