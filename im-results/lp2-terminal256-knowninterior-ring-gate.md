@@ -1,6 +1,6 @@
 # Terminal p55–57: 256-rune known-interior ring hypothesis
 
-**Classification:** new exact **innermost-word-boundary relationship** and reproducible terminal known-plaintext inversion gates, extending the count-level p55+p56+p57=256 alternative already mentioned in completed Director Issue #391. The alignment may be coincidental; no authentic p55 plaintext, key, cipher, or deep-web hash preimage has been recovered.
+**Classification:** new exact **innermost-word-boundary relationship** and reproducible terminal known-plaintext inversion gates, extending the count-level p55+p56+p57=256 alternative already mentioned in completed Director Issue #391. The alignment may be coincidental; no authentic p55 plaintext, key, cipher, or deep-web hash preimage has been recovered. A new source-conditioned **Boolean-lattice Möbius inversion** directly tests the complete original 180-rune known ending and fails (at most 12 exact matches in eight printed-ring orientations). See the focused original-input gate below. The 2013 source's literal **MOBIUS** clue does not itself prescribe a Boolean operation on the later 2014 table.
 
 ## Why this is a plausible human-facing next route
 
@@ -124,6 +124,25 @@ The solved p57 imperative to shed circumferences, the four nested perimeters **7
 On the 180 independently known plaintext runes (p56's exact prime-totient solution with only F at index56 skipped, plus unchanged p57), the source-frozen inverse gets **9/180**, with **3/68**, **3/60** and **3/52** matches on the three inner rings. The **first** known symbol fails. The same 256-position encoder/decoder recovers an independently planted native-GP passage **256/256**, and round-trips the original ciphertext unchanged. It cannot yield the authentic 76-rune p55 plaintext.
 
 **Decision:** reject this one phi-shift/byte-mask operation outright; do not tune ring phase, direction or extra key layers to rescue it. The count geometry remains an unconfirmed clue without an authenticated decoder. [Complete CJS reproducible exact source gate](../sims/lp2_terminal256_totient_ring_rotate_sft.cjs).
+
+## 2013 MOBIUS as an eight-bit Boolean-lattice inverse: direct 180-rune negative (Agent21, 14 November 2026)
+
+**Human-visible source clue and strongest objection.** The original first-party 2013 *0_wisdom* five-by-five matrix visibly prints the word **MOBIUS** in runes, alongside its explicit statement that the primes and totient function are sacred. The printed LP2 pp49–51 numerical table contains **32×8 = 256** provisional base60 bytes; its 256 positions can be addressed by exactly eight bits. Boolean-lattice Möbius inversion is a classical, fully reversible transform of a subset-indexed array of size \(2^8\), and so is a narrow, exact candidate to test on this independently known table. However, the original **MOBIUS** is a label in an earlier 5×5 matrix and does not say *Boolean*, *subset*, *GF29*, *p50*, *ring*, or *Josephus*. This is one bounded exploratory transfer, **not an authored LP2 cipher instruction**. The later p57 Josephus route merely selects runeless p50 provisionally; it does not select any table codec.
+
+**Frozen operation.** Preserve all 256 source cell positions in printed row-major order, reduce their canonical base60 byte values mod29, and apply the exact eight-stage Möbius transform over \(\mathbb F_{29}\): for bit \(b=0,\ldots,7\) and every cell address \(i\) with \(i\mathbin{\&}2^b\ne0\), replace \(x_i \leftarrow x_i-x_{i\oplus2^b}\pmod{29}\). Its exact inverse is the same eight stages with plus. The empty transform and its additive-zeta inverse are independent fixed controls, not fitted candidate keys. Compare the three 256-cell output arrays in **all eight** corner/direction perimeter-to-centre shell readings of the original **32×8** layout, each split **76/68/60/52**. For each reading, hold out the unknown outermost 76 cells and compare the other **180 values** against independently established *plaintext* GP29 indices of **all 85 original p56 runes**, decrypted with its actual \(C-\phi(p)\) prime key and literal F bypass at p56 local index56, plus **all 95 genuinely clear p57 GP runes**. Both original data and historical p56 forward reencryption are asserted before comparison. There is no unknown p55 tuning.
+
+| Source-fixed table readout against known p56+p57 | Exact rune matches among 180, across eight orientations |
+| --- | ---: |
+| Raw table GP29 residues | **2–13** |
+| Additive subset-zeta transform | **3–13** |
+| Subset-Möbius inverse transform | **3–12** |
+
+All 24 tests fail the complete known-runic target. The maximum subset-Möbius reading recovers only **12/180** GP symbols; a random uniform 29-rune output would average approximately **6.2** coincident symbols. Invertibility is independently asserted by applying zeta and Möbius in the opposite order and recovering **256/256** source residues; that check prevents arithmetic mistakes but is not plaintext evidence.
+
+**Decision:** Retire only this precise original-table byte→GF29 subset Möbius/zeta→perimeter-to-centre readout. Since its known 180-rune prerequisite fails, the unknown 76 p55 runes were never scored or disclosed as candidate plaintext. There remains **no first-party instruction selecting a Josephus-to-table cipher operation**, no verified source key, and no decoded unknown page. An independently authored consumer and a complete serialization convention are required before any new p55 attack.
+
+[Standalone source-native CommonJS SFT, with exact p56 reencryption and original 180-rune match controls](../sims/lp2_p50_boolean_mobius_known180_sft.cjs).
+
 
 ## Original-cipher complete-inverse gates
 
