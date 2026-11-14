@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from outguess_extract import build_bitmap, extract
@@ -46,18 +47,26 @@ def extract_summary(bitmap: bytes, bit_count: int, password: str) -> dict:
     }
 
 
+def checked_bitmap(image: Path) -> tuple[bytes, int]:
+    try:
+        return build_bitmap(image)
+    except subprocess.CalledProcessError as exc:
+        detail = exc.stderr.decode("utf-8", "replace") if isinstance(exc.stderr, bytes) else exc.stderr
+        raise RuntimeError(f"OutGuess JPEG bitmap compiler failed: {detail}") from exc
+
+
 def main() -> None:
     small = SMALL.read_bytes()
     assert len(small) == 15188
     assert blob_sha1(small) == EXPECTED_SMALL_BLOB
 
-    control_bits, control_bit_count = build_bitmap(CONTROL)
+    control_bits, control_bit_count = checked_bitmap(CONTROL)
     control_payload, control_meta = extract(control_bits, control_bit_count, "Default key")
     assert hashlib.sha256(control_payload).hexdigest() == EXPECTED_CONTROL_SHA256
     assert control_payload.startswith(b"-----BEGIN PGP SIGNED MESSAGE-----")
     assert control_meta["length"] == 31809
 
-    bitmap, bit_count = build_bitmap(SMALL)
+    bitmap, bit_count = checked_bitmap(SMALL)
     results = [extract_summary(bitmap, bit_count, key) for key in (
         "Default key", "WELCOME PILGRIM TO THE"
     )]
