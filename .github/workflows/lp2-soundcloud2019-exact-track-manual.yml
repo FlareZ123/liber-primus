@@ -1,0 +1,16 @@
+name: LP2 2019 interview original audio link gate (manual only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test only the original public SoundCloud track identifier
+        run: node sims/lp2_2019_soundcloud_public_track_gate.cjs
