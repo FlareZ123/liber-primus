@@ -61,12 +61,6 @@ assert.deepEqual(maps, [
 // The *inverse* returns plaintext infinity at C=a/c, not at -d/c.
 const poles = maps.map(([a, , c]) => mod(a * inverse(c)));
 assert.deepEqual(poles, [10, 12, 24, 4]);
-for (let i = 0; i < maps.length; i++) {
-  const inverseMap = invertMatrix(maps[i]);
-  for (let cipher = 0; cipher <= 29; cipher++) {
-    assert.equal(mobius(inverseMap, cipher) === 29, cipher === poles[i]);
-  }
-}
 
 // GP30: finite GP indices 0..28 and a word break as infinity (29).
 // For M=(a,b;c,d), M(x)=(ax+b)/(cx+d), with the usual projective
@@ -81,6 +75,12 @@ function mobius(M, x) {
 }
 /** @param {number[]} M */
 const invertMatrix = ([a, b, c, d]) => [d, mod(-b), mod(-c), a];
+for (let i = 0; i < maps.length; i++) {
+  const inverseMap = invertMatrix(maps[i]);
+  for (let cipher = 0; cipher <= 29; cipher++) {
+    assert.equal(mobius(inverseMap, cipher) === 29, cipher === poles[i]);
+  }
+}
 for (const M of maps) {
   const inverseMap = invertMatrix(M);
   for (let x = 0; x <= 29; x++) {
