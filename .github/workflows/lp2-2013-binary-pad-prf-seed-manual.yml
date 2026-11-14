@@ -65,5 +65,5 @@ jobs:
           name: lp2-2013-binary-pad-prf-seed-gate
           retention-days: 90
           path: |
-            \${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.json
-            \${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.log
+            ${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.json
+            ${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.log
