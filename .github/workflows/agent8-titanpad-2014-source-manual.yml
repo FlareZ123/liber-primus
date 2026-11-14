@@ -1,0 +1,16 @@
+name: Agent8 original May 2014 Titanpad public-index lookup
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact source-selected 2014 workpad in public CDX
+        run: node sims/lp2_2014_titanpad_cdx_source_sft.cjs
