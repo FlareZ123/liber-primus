@@ -54,7 +54,16 @@ In the source conventional base60 byte register, these adjacent cells are
 literally **`0W` and `3Q`** and decode to **32 and 206**. Since LP2 has
 **58 physical pages p0–p57, including the entirely numerical p50 and the two
 solved terminal pages**, both source bytes point to the **same physical page
-p32** if one takes their values modulo the complete number of physical pages:
+p32** if one takes their values modulo the complete number of physical pages.
+Crucially, LP2's **May 2014 first-party file listing actually named its 58
+images `0.jpg` through `57.jpg`**, so page `32.jpg` is a historical
+player-visible named file, rather than merely a later researcher-assigned
+page number (see [CicadaSolvers structural overview](https://www.cicadasolvers.com/wiki/liber-primus/liber-primus-structural-overview/)
+and the [period stage11 Onion7 page index](https://github.com/micheloosterhof/cicada-2014/tree/master/stage11)).
+The project's consolidated original JPEG mirror calls that same LP2 p32
+image `49.jpg` because it prepends 17 earlier LP1 pages; do **not** perform
+this modulo58 addressing against the mirror's sequential archive filenames.
+Under the contemporary LP2-specific filenames, the two congruences are:
 
 `32 mod 58 = 32; 206 mod 58 = 32; 206 - 32 = 174 = 3 × 58.`
 
