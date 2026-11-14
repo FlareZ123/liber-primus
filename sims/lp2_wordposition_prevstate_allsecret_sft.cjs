@@ -401,6 +401,46 @@ assert.deepEqual([...new Set(validPhysicalTwoCuts.map(p => p[1]))],
   [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]);
 assert.equal(validPhysicalTwoCuts.filter(p => p[0] === 15).length, 10);
 
+/**
+ * Exact minimum number of arbitrary consecutive key epochs when the cipher
+ * predecessor resets at EVERY printed word. Every single-rune word uses the
+ * same j=0, sentinel29 state, and each epoch's bijection may encode at most
+ * three distinct ciphertext singleton values from A/I/O.
+ *
+ * Greedy longest feasible intervals minimize the number of contiguous
+ * intervals: any earlier cut can only increase the remaining suffix length.
+ * Verify that proof algorithm by an independent exhaustive 83-site DP.
+ */
+const uniqueSingletonCipherValues = new Set(
+  singletonEvents.map(event => event.cipher)).size;
+assert.equal(uniqueSingletonCipherValues, 28);
+let greedyEpochs = 0;
+let symbols = new Set();
+for (const event of singletonEvents) {
+  if (!symbols.has(event.cipher) && symbols.size === 3) {
+    greedyEpochs++;
+    symbols = new Set();
+  }
+  symbols.add(event.cipher);
+}
+if (symbols.size) greedyEpochs++;
+assert.equal(greedyEpochs, 26);
+const minimumWordResetEpochs = Array(E + 1).fill(Infinity);
+minimumWordResetEpochs[0] = 0;
+for (let stop = 1; stop <= E; stop++) {
+  for (let start = 0; start < stop; start++) {
+    const distinct = new Set(singletonEvents.slice(start, stop)
+      .map(event => event.cipher)).size;
+    if (distinct <= 3) {
+      minimumWordResetEpochs[stop] = Math.min(
+        minimumWordResetEpochs[stop], minimumWordResetEpochs[start] + 1);
+    }
+  }
+}
+assert.equal(minimumWordResetEpochs[E], greedyEpochs);
+assert.ok(uniqueSingletonCipherValues > 9 * 3,
+  'even all nine independently keyed chapters cannot cover singleton alphabet');
+
 const sources = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -470,6 +510,9 @@ console.log(JSON.stringify({
     oneRekeyContradiction: 'e <= 530 and e > 12233'}},
   singletonGapTwoRekeyChoices: singletonGapTwoRekeys.length,
   physicalPageTwoRekeyChoices: validPhysicalTwoCuts,
+  wordResetMinimum: {distinctCipherSingletonTypes: uniqueSingletonCipherValues,
+    minimumEpochs: greedyEpochs, minimumRekeys: greedyEpochs - 1,
+    nineChapterAbsoluteCapacity: 9 * 3},
   nativeMatchedControls: controls,
   sourceNativePositivePlant: '12956/12956 exact inverse',
   caveat: 'no unknown plaintext/key, altered word segmentation, extra state or chapter-specific keys remain open'
