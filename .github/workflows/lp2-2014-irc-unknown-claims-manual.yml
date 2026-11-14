@@ -1,10 +1,20 @@
 name: Agent11 source-pinned 2014 IRC unknown-LP2 claims
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Choose prior claimant screen or new long-prose original witness search'
+        required: true
+        default: 'legacy'
+        type: choice
+        options:
+          - legacy
+          - prose
 permissions:
   contents: read
 jobs:
   unknown-claims:
+    if: ${{ inputs.mode == 'legacy' }}
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -30,3 +40,25 @@ jobs:
           node sims/lp2_2014_irc_claim_frozen10_sft.cjs --selftest
           $dest = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014-original.log'
           node sims/lp2_2014_irc_claim_frozen10_sft.cjs $dest
+
+  prose-claims:
+    if: ${{ inputs.mode == 'prose' }}
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source search syntax and controls
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_irc_long_plaintext_witness_sft.cjs
+          node sims/lp2_2014_irc_long_plaintext_witness_sft.cjs --selftest
+      - name: Source-pin original chat and inspect reported long translations
+        shell: pwsh
+        run: |
+          $url = 'https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23cicadasolvers.freenode.log'
+          $dest = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014-original.log'
+          Invoke-WebRequest -Uri $url -OutFile $dest -MaximumRetryCount 3 -RetryIntervalSec 2
+          node sims/lp2_2014_irc_long_plaintext_witness_sft.cjs $dest
