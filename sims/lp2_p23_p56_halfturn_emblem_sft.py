@@ -5,6 +5,7 @@ Requires: numpy, opencv-python-headless. Reads only repository-pinned source byt
 """
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import cv2
@@ -118,7 +119,47 @@ def main():
         inp = list(reversed(heading)) if reverse_cipher else heading
         plain = [(28 - c) % 29 for c in inp]
         print("p23 red16: Crot180=%s, direct Atbash=%s" % (reverse_cipher, glyphs(plain, corpus["translit"])))
-    print("RESULT: original five-dot half-turn confirmed; no 16-rune decoded plaintext or key established")
+    # The whole p23–26 visual chapter has a source-fixed 1,021-rune length.
+    # Test every half-turn combination against the exact p56 prime-totient
+    # algorithm with all optional ciphertext-F bypass paths, no fitted phase.
+    chapter = [x for page in corpus["pages"][23:27] for x in page["indices"]]
+    assert len(chapter) == 1021
+    primes = [
+        x for x in range(2, 20000)
+        if all(x % divisor for divisor in range(2, math.isqrt(x) + 1))
+    ][:1021]
+    assert len(primes) == len(chapter)
+    forward = [(p - 1) % 29 for p in primes]
+
+    def first_strict_f_failure(cipher, stream):
+        states = {0}
+        for position, c in enumerate(cipher):
+            next_states = set()
+            for key_tick in states:
+                k = stream[key_tick]
+                if c == 0:
+                    next_states.add(key_tick)  # literal plaintext F passthrough
+                    if k != 0:
+                        next_states.add(key_tick + 1)  # encrypted non-F plaintext
+                elif (c - k) % 29:
+                    next_states.add(key_tick + 1)
+            if not next_states:
+                return position
+            states = next_states
+        return None
+
+    assert first_strict_f_failure(corpus["pages"][56]["indices"], forward) is None
+    expected_failures = {(False, False): 0, (False, True): 7, (True, False): 162, (True, True): 24}
+    for (reverse_cipher, reverse_key), expected in expected_failures.items():
+        sequence = list(reversed(chapter)) if reverse_cipher else chapter
+        stream = list(reversed(forward)) if reverse_key else forward
+        first_failure = first_strict_f_failure(sequence, stream)
+        assert first_failure == expected, (reverse_cipher, reverse_key, first_failure)
+        print(
+            "p23–26 strict plaintext-F gate Crot180=%s Krot180=%s: first forced contradiction at rune %s"
+            % (reverse_cipher, reverse_key, first_failure)
+        )
+    print("RESULT: unique original five-dot half-turn confirmed; direct p56 prime cipher fails all four full-chapter half-turn arrangements")
 
 
 if __name__ == "__main__":
