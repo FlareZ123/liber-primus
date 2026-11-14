@@ -94,24 +94,24 @@ for (let k = 0; k < 14; k++) {
 
 // Native GP29 orthographic register taken from repository controls:
 // TH, NG, EO, OE, AE, IA, EA; ING represented as one NG rune;
-// K->C, V->U, Z->S, QU->CW. A counts do not depend on IO/IA style.
+// K->C, V->U, Z->S, QU->CW. A counts do not depend on IO/IA style. Printed English word breaks
+// are enforced during encoding, so cross-word digraphs cannot merge.
 /** @param {string} text */
 function toGP(text) {
   const source = text.toUpperCase().replace(/QU/g, 'CW')
     .replace(/K/g, 'C').replace(/V/g, 'U')
     .replace(/Z/g, 'S').replace(/ING/g, 'NG')
-    .replace(/[^A-Z]/g, '');
+    .split(/[^A-Z]+/);
   const tokens = corpus.translit.map((token, index) => ({token, index}))
     .sort((a, b) => b.token.length - a.token.length);
   const out = [];
-  for (let i = 0; i < source.length;) {
-    const matched = tokens.find(item => source.startsWith(item.token, i));
-    if (!matched) {
-      i++;
-      continue;
+  for (const word of source) {
+    for (let i = 0; i < word.length;) {
+      const matched = tokens.find(item => word.startsWith(item.token, i));
+      if (!matched) { i++; continue; }
+      out.push(matched.index);
+      i += matched.token.length;
     }
-    out.push(matched.index);
-    i += matched.token.length;
   }
   return out;
 }
@@ -146,11 +146,11 @@ const controls = {
   gibran: nativeWindows(toGP(read('resources/control/gibran_prophet_58585.txt')))
 };
 assert.deepEqual(controls.shakespeare,
-  {runes:215718, windows:202763, minA:707, maxA:919, atOrBelowOriginal:0,
-    minG:105, maxG:224, atOrAboveOriginalG:0});
+  {runes:217644, windows:204689, minA:746, maxA:983, atOrBelowOriginal:0,
+    minG:107, maxG:231, atOrAboveOriginalG:0});
 assert.deepEqual(controls.gibran,
-  {runes:62132, windows:49177, minA:729, maxA:922, atOrBelowOriginal:0,
-    minG:136, maxG:300, atOrAboveOriginalG:0});
+  {runes:62696, windows:49741, minA:787, maxA:974, atOrBelowOriginal:0,
+    minG:138, maxG:298, atOrAboveOriginalG:0});
 
 // Real LP2 p57 plaintext positive: every publicly selected p15 spiral
 // key correctly recovers all original solved GP runes. Importantly,
@@ -182,5 +182,5 @@ console.log(JSON.stringify({
     matchedEnglishWindows:controls
   },
   positive: { originalP57Runes:95, recovered:95, sourceOriginalRoundtrips:12956 },
-  conclusion:'No secret per-position sequence of Fibonacci projective powers can change the original 482 GP-A and 438 GP-G runes into the native GP-English ranges A=707..922, G=105..300 across 251940 contiguous source windows; no unknown plaintext or historical key recovered.'
+  conclusion:'No secret per-position sequence of Fibonacci projective powers can change the original 482 GP-A and 438 GP-G runes into the native GP-English ranges A=746..983, G=107..298 across 254430 contiguous source windows; no unknown plaintext or historical key recovered.'
 }, null, 2));
