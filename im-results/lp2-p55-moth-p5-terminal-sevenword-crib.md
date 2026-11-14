@@ -50,6 +50,24 @@ Five completely specified channels are tested: the original byte remainder modul
 
 **Decision:** the original 2013 audio's raw continuous bytes are **not** a direct key for this particular provisional moth-page suffix under these five source-format and cipher conventions, at *any* offset. This fails a potential historical key-recovery route and recovers no unknown LP2 plaintext. Transcoding the audio, cryptographic hashes/KDFs, a changed cipher format, discontinuous byte sampling and a different proposed plaintext are outside this narrow result. No additional unselected MP3 transformations should be optimized solely from the observed four-rune prefix matches.
 
+## 2013 prime_echo totient-window gate against the provisional p5 crib (Agent18, 14 November 2026)
+
+The provisional terminal crib fixes the last 30 p55 runes as the source-native GP phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS**. This is not established plaintext: it is supported by the repeated p5 moth, exact 30-rune length and word-length sequence **[2, 7, 7, 2, 6, 3, 3]**. The original p5 text itself says **THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED**, making the prime-totient operation a motivated test.
+
+The candidate plaintext contains one F at crib offset 9, while the corresponding original p55 ciphertext suffix contains no F. As established in the F-interrupter section below, the p56 literal-F bypass cannot encode this fixed crib. This test therefore uses ordinary subtractive GP29 Vigenère without an F bypass. The required key is fixed rune-by-rune as **K = C − P (mod 29)**; no key text or phase is fitted.
+
+The required 30-symbol pad is:
+
+    [10, 0, 12, 15, 23, 25, 25, 26, 28, 18, 14, 3, 26, 15, 20,
+     6, 21, 7, 19, 4, 5, 15, 16, 20, 28, 20, 10, 15, 26, 24]
+
+The original 2013 prime_echo source provides 464 primes. I searched every cyclic starting phase in three source-defined streams, using key symbol (p−1) mod29: all 464 phases of the full stream, all 174 phases of the first block (2–1033), and all 290 phases of the second block (1039–3301), for **928 phase trials**. There is **no exact 30/30 match** in any block.
+
+The best alignment is only **5/30** in every block: full stream phases 44, 71 and 264; first block phases 44 and 71; final block phase 90. The corresponding first/last key primes are 197–373, 359–547 and 1697–1931. These short coincidences do not recover a key.
+
+**Decision:** reject direct contiguous or cyclically rotated prime-totient windows from the original 2013 prime_echo list as the subtractive key for this *conditional p55 crib*. This does not disprove the seven-word plaintext hypothesis, nor exclude a different key generator, non-Vigenère operation or other use of the prime source. Do not tune offsets or transforms beyond the complete rotation search without a new source selector. The [standalone original-input gate](../sims/lp2_p55_moth_prime_echo_totient_key_gate.cjs) reproduces the result.
+
+
 ## Authentic historical F-interrupter rule imposes a stronger crib condition (Agent23, 13 November 2026)
 
 The candidate phrase's **FUNCTION** begins at its own GP rune index **9** (within the hypothesized 30-rune p55 suffix); its first symbol is the genuine LP1 original **ᚠ = F**, GP index **0**. Original p55 at global page-local offset **46+9=55** instead has cipher rune GP index **18 = E**. More strongly, the **entire 30-rune original suffix contains zero F glyphs**, while the hypothesized plaintext contains exactly one F. Consequently **no permutation of the proposed words or any change of within-suffix F position** can rescue an F-preserving transformation of these two fixed 30-rune multisets. The candidate therefore fails the **literal-F transparent bypass** used in known solved Cicada pages, including original LP2 p56 `AN END`, regardless of the non-F key schedule: such a cipher necessarily preserves every plaintext F at the same position. The native-source check is pinned in the [30-rune SFT](../sims/lp2_p55_moth_8register_crib_sft.cjs).
