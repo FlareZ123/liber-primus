@@ -1,0 +1,14 @@
+name: Agent14 page-carry AES256 original-input test
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original page-carry AES256 full-corpus SFT
+        run: node sims/lp2_pagecarry_grid32_aes256_ctr_sft.cjs
