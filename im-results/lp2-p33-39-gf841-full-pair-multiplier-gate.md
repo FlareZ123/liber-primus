@@ -33,19 +33,18 @@ The [standalone CommonJS SFT](../sims/lp2_p33_39_fullfield_pair_multiplier_sft.c
 **Decision:** retire this exact single-cycle, pairwise full GF(29²) multiplicative pad as the complete direct native-GP-English decoding of pp33–39, including all constant field phases and fixed outer alphabet permutations. The source's 840-pair capacity equality is still intriguing but unproven as an authorial hint. A renewed field branch needs independent source evidence for a different reversible operation, packet grammar or keyed state update, plus a prospectively testable original plaintext. No further field multiplication phase search is justified by this negative result.
 
 
-
 ## Source-group-order alternative: complete 840-point finite-field Fourier transform (14 November 2026)
 
 The same **original-source chapter with precisely 840 two-rune field elements** and the same **primitive order-840 element g=19+13u** have another natural all-coefficients interpretation: the finite-field discrete Fourier transform (number-theoretic transform, NTT). This operates on **all** source pairs jointly, unlike the preceding independent-position multiplier and first-order field feedback. An advanced cryptographic puzzle creator familiar with finite fields could use a number-theoretic Fourier inverse. The strongest objection is historical: neither the original page nor any signed instruction says "Fourier", specifies the 840-point transform convention, or distinguishes it from vastly simpler arithmetic.
 
-Represent printed two-rune pairs in source chapter order as (C_j=a_j+b_ju\) for (j=0,...,839\), over (F=\mathbb F_{29}[u]/(u^2-3u-8)\). Because the source g has order840, every (g^{jk}\) exists and the complete **invertible** transform is
+Represent printed two-rune pairs in source chapter order as \(C_j=a_j+b_ju\) for \(j=0,\ldots,839\), over \(\mathbb F_{29}[u]/(u^2-3u-8)\). Because source \(g\) has order 840, every \(g^{jk}\) exists and the complete **invertible** transform is
 
-[
+\[
 \widehat C_k=\sum_{j=0}^{839}C_jg^{jk},\qquad
 C_j=840^{-1}\sum_{k=0}^{839}\widehat C_k g^{-jk}.
-]
+\]
 
-Here (840\equiv28\equiv-1\pmod {29}\), so the exact inverse scalar is **−1**, and g's full order prevents singularity. The native GP29 coefficient readout is one symbol per field coordinate, preserving all 1,680 rune positions. Source-visible ambiguity reasonably licenses only three binary choices: direct versus inverse transform, original versus reversed whole-pair order, and original versus swapped coordinate order. These are **eight** complete, zero-parameter original-cipher inversions. No key guessed; each choice is numerically reversible.
+Here \(840\equiv28\equiv-1\pmod {29}\), so the exact inverse scalar is **−1**, and g's full order prevents singularity. The native GP29 coefficient readout is one symbol per field coordinate, preserving all 1,680 rune positions. Source-visible ambiguity reasonably licenses only three binary choices: direct versus inverse transform, original versus reversed whole-pair order, and original versus swapped coordinate order. These are **eight** complete, zero-parameter original-cipher inversions. No key guessed; each choice is numerically reversible.
 
 | Original-field orientation | Forward 840-point NTT IoC29 | Inverse 840-point NTT IoC29 |
 | --- | ---: | ---: |
@@ -56,7 +55,7 @@ Here (840\equiv28\equiv-1\pmod {29}\), so the exact inverse scalar is **−1**, 
 
 All **eight original decodes** retain near-uniform native-GP frequencies, versus normalized IoC **2.08269662** for a 1,680-rune control made from the 95 authentic solved p57 GP indices repeated in source length. The most favorable source is only **1.01215009**. Source original before transformation is **0.99644063**. The direct original-pair inverse begins transliterated `DAWTLGDGIOEAEAPGFILERHBLLXEGFAEOWENGMPIA`, which is not intelligible GP prose. There is no 40-symbol native-GP-English recovery and no cipher key.
 
-**Exact invertibility and original-runic positive:** the manual-only [Windows Node22 CI run 43561385177](https://github.com/FlareZ123/liber-primus/actions/runs/43561385177) passed all original and plant assertions. [One-file reproducible implementation](../sims/lp2_p33_39_gf841_ntt_exact_inverse_sft.cjs) constructs all 840 distinct g powers, proves computationally that (g^{30}=11\), (g^{420}=-1\) and (g^{840}=1\), verifies the original seven source page lengths `[214,261,271,238,228,228,240]`, then independently encrypts a 1,680-rune solved-p57 text plant and recovers **1,680/1,680 exactly** under inverse NTT. The NTT's inverse-forward direction is also checked exactly. No source rune, printed word or page is omitted.
+**Exact invertibility and original-runic positive:** the manual-only [Windows Node22 CI run 43561385177](https://github.com/FlareZ123/liber-primus/actions/runs/43561385177) passed all original and plant assertions. [One-file reproducible implementation](../sims/lp2_p33_39_gf841_ntt_exact_inverse_sft.cjs) constructs all 840 distinct g powers, proves computationally that \(g^{30}=11\), \(g^{420}=-1\) and \(g^{840}=1\), verifies the original seven source page lengths `[214,261,271,238,228,228,240]`, then independently encrypts a 1,680-rune solved-p57 text plant and recovers **1,680/1,680 exactly** under inverse NTT. The NTT's inverse-forward direction is also checked exactly. No source rune, printed word or page is omitted.
 
 **Decision:** the mathematically natural zero-parameter full-840-pair NTT interpretation fails under both transform directions and all four source-visible orientation choices. A secret pointwise field multiplier, a distinct non-native plaintext encoding, a larger multilayer program or unprovided source key remain outside its scope. Revisit only if an authentic source specifically chooses a different operation or plaintext representation. The 840-count coincidence alone is insufficient to infer a Fourier cipher.
 
