@@ -310,4 +310,5 @@ const report = {
   claimLimit: 'Recovers known solved plaintext given the authentic key. No independent key for unsolved LP2 pages.'
 };
 assert.equal(report.independentLP1Koan.forwardCipherIdentity, true);
-console.log(JSON.stringify(report, null, 2));
+if (require.main === module) console.log(JSON.stringify(report, null, 2));
+module.exports = { decode, encrypt, encodeWord, printedWords, lexicon, concat, original };
