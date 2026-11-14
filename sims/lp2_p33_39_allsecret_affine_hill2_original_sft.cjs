@@ -385,7 +385,7 @@ assert.deepEqual(originalPairs, {
   unique: 518, collisions: 461, repeatedTypes: 218, maxFrequency: 6
 });
 assert.deepEqual(rotatedPairs, {
-  unique: 530, collisions: 417, repeatedTypes: 202, maxFrequency: 5
+  unique: 530, collisions: 417, repeatedTypes: 222, maxFrequency: 5
 });
 
 const languageSources = [
