@@ -11,3 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Locate original source-dated discussion URLs
         run: python sims/lp2_2015_2016_public_thread_locator_sft.py
+      - name: Acquire five original 2015-2016 period discussions
+        run: node sims/lp2_2015_2016_five_threads_acquisition_sft.cjs
