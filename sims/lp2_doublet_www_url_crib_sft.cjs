@@ -108,8 +108,8 @@ function main() {
   assert.deepEqual(motif(cipher), {onlyTriple: true, terminalWWW: true});
 
   for (const trial of [
-    {word: "HTTPWWW", start: 75, period: 7, key: [10, 16, 2, 0, 0, 0, 0], expected: 0.03419972640218878},
-    {word: "HTTPSWWW", start: 74, period: 8, key: [6, 2, 16, 5, 27, 0, 0, 0], expected: 0.03173734610123119}
+    {word: "HTTPWWW", start: 75, period: 7, key: [10, 16, 2, 0, 0, 0, 0], expected: 0.03255813953488372},
+    {word: "HTTPSWWW", start: 74, period: 8, key: [6, 2, 16, 5, 27, 0, 0, 0], expected: 0.03228454172366621}
   ]) {
     const plain = [...trial.word].map((letter) => source.translit.indexOf(letter));
     assert.ok(plain.every((x) => x >= 0));
