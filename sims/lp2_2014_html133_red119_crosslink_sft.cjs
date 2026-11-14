@@ -35,6 +35,32 @@ const title=Number(html.match(/<title>(\d+)<\/title>/)[1]);
 const ident=Number(html.match(/<div id="(\d+)"/)[1]);
 assert.equal(title,133);assert.equal(ident,331);
 assert.equal(Number(String(ident).split("").reverse().join("")),title);
+
+// The two prime-value-addressed rune offsets are not both word starts.
+const transcript=get("resources/liber-primus/lp2-transcription.txt").split("%");
+const glyphIndex=new Map(canon.runes.map((glyph,i)=>[glyph,i]));
+/** @param {number} page @param {number} zeroBased @returns {{word:string,offsetInWord:number}} */
+function printedWordAt(page,zeroBased){
+  const source=transcript[page];
+  let globalRune=0,wordStart=0,part="",found=null;
+  function finish(){
+    if(part&&zeroBased>=wordStart&&zeroBased<wordStart+[...part].length){
+      found={word:[...part].map(ch=>canon.translit[glyphIndex.get(ch)]).join(""),
+        offsetInWord:zeroBased-wordStart};
+    }
+    part="";
+  }
+  for(const char of source){
+    if(glyphIndex.has(char)){if(!part)wordStart=globalRune;part+=char;globalRune++;}
+    else if("-.assert.equal(Number(String(ident).split("").reverse().join("")),title);".includes(char))finish();
+  }
+  finish();
+  assert(found,"rune must belong to a printed word");
+  return found;
+}
+assert.deepEqual(printedWordAt(33,136),{word:"TJ",offsetInWord:0});
+assert.deepEqual(printedWordAt(40,172),{word:"FDREAG",offsetInWord:1});
+
 let primeList=[];
 for(let x=2;primeList.length<1000;x++){
   let prime=true;
