@@ -71,6 +71,12 @@ The [new independent 43-rune SFT](../sims/p55_divinity_within_43_sft.cjs) assert
 
 **Decision:** the p57 phrase provides a compelling human-facing proposal for both *target* and *historical key*. The direct authentic GP29 Vigenère consumer does not recover plaintext under either originally motivated F convention and both natural continuous/word-reset source clocks. This is a bounded failure of the proposed direct 43-rune operation, not a verdict on p57's instructions, p55's possible underlying language or another uniquely sourced reversible mechanism.
 
+### Complete historical plaintext-F inverse for the original p55 43 interiors
+
+A later original-cipher refinement retains **every legal ciphertext-F literal/encrypted interpretation** rather than pre-assigning the sole F in the 43-rune interior text, and admits **all eight cyclic phases** of the exact historical DIVINITY GP key `[23,10,1,10,9,10,16,26]`. Source words and slash-line continuations reproduce the 17 fixed lengths already recorded above. Under the authentic rule, an encrypted transition yielding plaintext F is impossible since historical plaintext F must be emitted as literal F without consuming key. The complete 43-rune original inverse fails at zero-based interior offsets **[1,28,1,22,1,28,28,28]** for phases 0–7, respectively, with **no legal full original source plaintext for any phase**.
+
+This is a stronger, exact legality exclusion for the continuous strict-interior key already tested above. It independently retires the direct p57 “DIVINITY within” interpretation **without relying on English-language scoring or chosen bypass masks**. It does not exclude unknown variable keys, other original p55 target selections, the whole-word reset convention, or alternative cipher algorithms. Source-control: [extended 95-rune native positive-backed SFT](../sims/lp2_p57_divinity_iogem_p55_strictf_sft.cjs). No unknown plaintext was recovered.
+
 ## Source-motivated p55 own-circumference key (negative)
 
 The same p57 instruction also admits one complete, source-shaped self-key hypothesis: treat the **33 exterior runes** as a repeating GP29 Vigenère key for the **43 strict interiors**. The 33-symbol key is not guessed: it is the one-rune incoming p54 carry followed by the first and last rune of each of the 16 complete p55 words, in printed physical order. The 43-symbol ciphertext is the concatenation of those words' strict interiors. Thus all 76 p55 runes are assigned exactly once (33 key + 43 ciphertext), with no omitted exterior or unaccounted carry.
