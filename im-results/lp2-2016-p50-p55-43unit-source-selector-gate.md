@@ -1,6 +1,6 @@
 # The 2014 / 2016 / p50 / p55 43-unit bridge: source-selector gate
 
-**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. A bounded rank-transposition gate now tests global and per-square numeric sorting, including source-row and spiral tie-breaks; all 16 fixed variants remain nonlinguistic. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, prime-count-difference, and the fixed φ(square-core) pad interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a complete 37-pair key-independent original-cipher constraint excludes **arbitrary value-stationary additive GP29 key tables** from decoding this placement into any of 858,983 pinned native-GP control windows; the ninth/tenth-word gate adds stricter printed-word evidence. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
+**Classification:** a source-grounded 43-unit selector candidate has now been found, but no reversible square-to-p55 or p50-to-p55 operation is established. A bounded rank-transposition gate tests global and per-square numeric sorting, including source-row and spiral tie-breaks; all 16 fixed variants remain nonlinguistic. A new source-ordered lookup gate also rejects the 43 square-core values as indices into either the full 256-byte p50 table (mod 256) or its marker-bracketed 43-byte interval (mod 43), when the selected bytes are used as direct GP29 additive keys. The three 2014 prior-puzzle squares (5×5, 7×7, 5×5) were explicitly required before the LP2 pages were returned. Their inner cells total 43, their perimeters 56, their rows 17, and all cells 99. This aligns with p55's 43 interior runes, 33 boundary runes, 17 words, and p57's 23-dot mark: 43=43, 33+23=56, 76+23=99, and 17=17. The p57 Parable's instruction to shed circumferences is a plausible literal selector for the square interiors. Direct mod-29, prime-count, spiral, prime-count-difference, and the fixed φ(square-core) pad interpretations fail. A distinct exact prime-hole mask now fills all 76 p55 source runes into the 99 historic square cells and reserves 23 prime-valued positions in the two 1033-sum squares; it supplies a lossless **candidate placement** but no authenticated key or cipher inverse. Its raw-value and totient additive consumers fail on original ciphertext, and a complete 37-pair key-independent original-cipher constraint excludes **arbitrary value-stationary additive GP29 key tables** from decoding this placement into any of 858,983 pinned native-GP control windows; the ninth/tenth-word gate adds stricter printed-word evidence. Earlier p32-compass and 2016/p50 direct-key gates remain negative.
 
 ## Fixed source observations
 
@@ -376,6 +376,30 @@ For the 43-symbol sample, IoC is only descriptive; the word-break-preserving out
 A direct byte-level alternative was tested on the same fixed alignment: XOR each raw p50 byte with the corresponding p55 GP29 index. Forward XOR yields `be166347c4dedd29fd512423d09c5b2356e828db6e3008c103b02c614389cbf139a721ba38f15c25081fb1`; only 20/43 bytes are printable ASCII and 7/43 are letters. Reversing the p50 byte sequence yields `b01e013041ef31a032ae2af7cb855a7225b506cf0b306dd52ded5f304290d0253758ee33d4c0d9526a17bf`; again only 20/43 bytes are printable and 8/43 are letters. Neither is readable text. The script reproduces both byte-level outputs.
 
 This rejects the direct `raw_byte mod 29` additive/Beaufort pairing and the direct raw-byte XOR pairing only. It does not reject a separately source-selected use of p50 bytes as base-60 digits, directions, or another representation; no such mapping is currently selected by evidence.
+
+## 2014 square-core values as addresses into the p50 table (new bounded negative)
+
+The three historical 2014 square interiors provide **43 values** in fixed row-major/source order, while the p50 32×8 grid supplies **256 base60-derived bytes**. Independently, the p50 tokens at row-major offsets **83 and 127** are both `3D` (base60 value 193), bracketing the **43 bytes at offsets 84–126**. Together with the source-selected 43 p55 strict word interiors, these objects motivate one simple missing-selector candidate: let each square-core value choose a p50 byte, then reduce that byte modulo29 to form a one-rune GP29 additive key.
+
+This tests exactly two natural address domains, without tuning:
+1. **Full table:** address (n_i \bmod 256), then (K_i=T[n_i\bmod256]\bmod29).
+2. **Bracketed interval:** address (n_i \bmod43) within p50 bytes 84–126, then (K_i=T_{84+[n_i\bmod43]}\bmod29).
+
+For each, apply only the two additive directions (P_i=C_i\pm K_i\pmod{29}) to the original 43 p55 interiors. The 2014 cores remain in their original 3×3 / 5×5 / 3×3 order; the p50 table and bracket remain in printed row-major order. No phase, reversed table, rotation, permutation, extra layer, or fitted parameter is introduced.
+
+| Fixed address interpretation | Distinct addresses | Direction | GP29 IoC | Shakespeare-trained within-word GP bigram mean |
+|---|---:|---|---:|---:|
+| Full 256-byte table, mod 256 | 22 | subtract | 0.04872647 | −6.963677 |
+| Full 256-byte table, mod 256 | 22 | add | 0.03543743 | −5.571527 |
+| Bracketed 43-byte interval, mod 43 | 18 | subtract | 0.02990033 | **−5.300424** |
+| Bracketed 43-byte interval, mod 43 | 18 | add | 0.02990033 | −5.755599 |
+| Original p55 interiors | — | unchanged | 0.03433001 | −6.341505 |
+
+The best indexed output is still substantially worse than the existing exact-word-shape native-GP controls for this same score model: their minimum scores were −3.38994 (Shakespeare), −3.50531 (Gibran) and −3.38088 (Emerson). The 43-symbol outputs are not coherent plaintext under either source-natural address width. Both signs exactly re-encrypt all 43 original runes; that confirms only the arithmetic, not the historical mechanism.
+
+**Decision:** reject these two direct square-core→p50 lookup/additive consumers. The 43/43 source geometry remains a legitimate selector candidate, but it does not supply the missing table-address operation. Do not expand this into arbitrary moduli, offsets, square rotations or key permutations without a new first-party selector.
+
+**Reproducer:** [`sims/lp2_2014_square_core_p50_index_sft.cjs`](../sims/lp2_2014_square_core_p50_index_sft.cjs), a standalone Node.js source-exact test using the original square transcription, p50 grid, p55 word boundaries and pinned Shakespeare control. It asserts the 43/43 input, both marker offsets, both fixed address maps, the original baseline score, all four original outputs, and exact forward re-encryption.
 
 ## Exact missing selector
 
