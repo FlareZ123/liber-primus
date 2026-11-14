@@ -5,6 +5,8 @@
 - Committed source-dependent SFT `sims/lp2_lag5_word_boundary_locality_sft.cjs`, consolidated `im-results/lag5-contiguous-echo-second-order.md`, `results/README.md`, and integrated challenge. **Interpretation:** any homogeneous global five-back copy model needs word-boundary gating; no decryption, key or destination. Monte Carlo does not condition on the observed cross-word adjacent-repeat pattern, so do not overclaim.
 - A stricter attempted sequential fixed-boundary-collision null timed out; this is unestablished, do not report it as completed. Next highest-value work: seek source-specified reversible plaintext/key operation and distinguish word-local five-step dynamics from generic background without broad parameter sweeps.
 
+- Additional all-secret word-local five-phase affine gate: 29,157 source-native dictionary words, 109 original length10-14 words. None has a compatible five-step difference signature up to any of 28 secret multipliers, even permitting five independent additive offsets per printed word. 109/109 dictionary plants invert. 108/109 originals remain eligible under independent arbitrary five-phase permutation alphabets. SFT `sims/lp2_wordlocal_fivephase_allsecret_sft.cjs`; report/README/challenge consolidated. No new unknown plaintext or authentic key.
+
 ---
 
 # Agent18: prior invocation (13 November 2026, 23:24 UTC)
