@@ -112,6 +112,21 @@ All 24 original readouts are nonprose. Their 76-rune indices of coincidence rang
 
 **Prior exclusion and decision:** The full-corpus [fixed-rune repeat-sentinel invariant](lp2-one-symbol-repeat-sentinel-source-gate.md) already rejects **every fixed one-symbol repeat sentinel**, independently of secret key, state updates and alphabet relabeling, against word-position-calibrated native GP registers. It therefore **subsumes** this GP28 model's reserved `28`/EA repeat rule; our 24 p55-only tests are a strictly narrower original-key application, **not an independent exclusion or novel generic cipher insight**. Their short-run IoCs are supplementary. Retire these readings without further variants. The independent GP29 76-tape source candidate and its additive/strict-F gates are distinct; a genuinely new cipher would need a changing exception rule or another independent author-selected consumer.
 
+### A changing-symbol 29-way exception that retains all plaintext runes (Agent 30)
+
+The previous GP28 test's fixed EA/28 repeat sentinel is already rejected by the whole-book native-language word-position invariant. The **same independent 76-rune source tape** permits a stronger, *different*, fully reversible cipher which avoids that fixed-sentinel assumption. Let the original predecessor C[-1] be p54's last GP rune **26** and let original p55's 76 rune values be C[i]. For each source key digit K[i] (GP ordinal, prime or prime-totient reduced modulo29, source p05 printed or fully reversed), define:
+
+\[
+P_i \equiv s_d(C_i-C_{i-1})+s_kK_i\pmod {29},\qquad
+C_i \equiv C_{i-1}+s_d(P_i-s_kK_i)\pmod {29},
+\]
+
+with s_d and s_k each +1 or −1. This model has an exact original source-derived **changing repeat sentinel**: C[i] equals C[i−1] if and only if P[i] equals s_k K[i] modulo29. It is bijective on **all 29 plaintext runes**, needs **no separate escape side-channel**, consumes all **76** source key digits and uses one independently observed p54 initial state. A changing marker is necessary to evade the previously disproved fixed-symbol marker family, although the manuscript does **not** independently select this particular recurrence.
+
+The integrated [original-source 48-model SFT](../sims/lp1_p05_wordcells76_p55_gp28_source_inverse_sft.cjs) evaluates **24** fixed-sentinel GP28 variants separately from **24** GP29 feedback variants here. All 24 feedback models exactly recover **76/76** genuine solved-p57 GP plants from freshly encrypted originals, re-encode all unchanged p55 glyphs, and require **no hand-fitted exception site or 29th-symbol special value**. The original decoded 76-rune IoCs range **0.031578947368–0.038245614035**, all below the **0.059298245614–0.063859649123** observed among p57's 20 overlapping 76-rune authentic plaintext windows. No model produces a readable unknown p55 passage, authenticated key or next-stage locator.
+
+**Decision:** this source-matched, full-capacity changing-exception inverse is also a negative as a direct p55 cipher. It tests an independently instantiated moving-sentinel family left open by the universal fixed-sentinel exclusion; the short native reference and unselected historical operation limit the inference. Further rotations, alternative clocks, or new source key transformations require a separate original author-selected instruction.
+
 ## Original p55: source-motivated additive consumer and original plaintext decision
 
 The source LP1 p05 text explicitly calls **primes and Euler's totient sacred**. Its newly decoded hidden square contains **25 numbers**. Physical LP2 p55 contains **76 GP29 runes**; its original ciphertext has **three F runes at local positions 15, 25 and 41**. Treating **only position 25** as a transparent, non-key-consuming interrupt and processing the other two normally leaves **75 key-consuming runes**, three passes over 25 table values. The manuscript does not authenticate this one-of-three skip choice. The repeated moth illustration provides an independently authored LP1 p05→LP2 p53/p55 visual relationship, though the art also occurs on p53 and therefore **cannot uniquely select p55**. This specific geometry-and-operand combination was not covered by previous #495's negative using the *different* 5×5 **printed Wisdom 1033 square**.
