@@ -1,7 +1,7 @@
 "use strict";
 /**
  * All-secret GF29 4x4 Hill/affine key recovery from the terminal p56+p57
- * 180 solved GP runes against the original pp49-51 256-cell numeric table.
+ * 180 GP runes against the original pp49-51 256-cell numeric table.
  * Read-only, Node 22 CommonJS, no dependencies. Rowwise or NW clockwise
  * 32x8 shells under every source-canonical corner and turn direction.
  * Tests both input directions, all-secret keys and independent GP positives.
@@ -53,12 +53,16 @@ for(let corner=0;corner<4;corner++)
    indices:orientedRings(corner,direction)});
 assert.equal(orders.length,9);
 const results=[];
+const registers=[{name:"historically-decoded",runes:known},{name:"as-printed",runes:gp.pages[56].indices.concat(gp.pages[57].indices)}];
+assert.deepEqual(registers.map(r=>r.runes.length),[180,180]);
 for(const o of orders){const values=o.indices.map(i=>grid[i]),A=blocks(values.slice(76)),B=blocks(known);
-assert.equal(A.length,45);for(const reverse of [false,true])for(const affine of [false,true]){
-const X=reverse?B:A,Y=reverse?A:B,ans=solve(affine?X.map(x=>x.concat(1)):X,Y);
+assert.equal(A.length,45);
+for(const register of registers){const target=blocks(register.runes);
+for(const reverse of [false,true])for(const affine of [false,true]){
+const X=reverse?target:A,Y=reverse?A:target,ans=solve(affine?X.map(x=>x.concat(1)):X,Y);
 assert.equal(ans.rank,affine?5:4);assert.equal(ans.consistent,false);
 assert.equal(ans.bad,affine?5:4);
-results.push({order:o.name,direction:reverse?"known-to-table":"table-to-known",family:affine?"affine":"linear",rank:ans.rank,firstContradiction:ans.bad,residual:ans.residual});}
+results.push({order:o.name,register:register.name,direction:reverse?"known-to-table":"table-to-known",family:affine?"affine":"linear",rank:ans.rank,firstContradiction:ans.bad,residual:ans.residual});}}
 // Source-independent secret key and a complete planted 256-rune text whose
 // last 180 are literally the established p56+p57 GP-native plaintext.
 const plaintext=gp.pages[57].indices.slice(0,76).concat(known);
@@ -69,4 +73,4 @@ assert.equal(learned.consistent,true);assert.equal(learned.rank,5);assert.deepEq
 assert.deepEqual(blocks(plant).flatMap(x=>dot(x.concat(1),learned.W)),plaintext);
 results.push({order:o.name,family:"affine native positive",known:180,unknownRecovered:76});
 }
-console.log(JSON.stringify({source:"original 256-cell pp49-51 and original p56-57 180 solved plaintext",decision:"Every secret 4x4 GF29 linear/affine table-to-terminal model fails in 9 natural source readouts and both mapping directions; native GP 76-rune positives recovered",results},null,2));
+console.log(JSON.stringify({source:"original 256-cell pp49-51 and original p56-57 180 solved plaintext",decision:"Every secret 4x4 GF29 linear/affine decoder fails in 9 natural source readouts, 2 known registers and 2 directions; 76-rune native positives recovered",originalCases:72,results},null,2));
