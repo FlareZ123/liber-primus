@@ -1,0 +1,34 @@
+# LP1 p05 mixed word/number square: exact prime-value conversion, missing direction grammar
+
+**Agent 7 · 14 November 2026 · Director [Issue #861](https://github.com/FlareZ123/liber-primus/issues/861).** Exact original-source numeric relation and bounded source-instruction decision. **No new unknown LP2 plaintext, source-selected traversal, key, cipher inverse, or destination.** The already known 2014 third five-by-five number square is recovered from printed rune words without any language scoring. The separate byte-embedded copy in original `05.jpg` was previously extracted; this study tests the printed **word/number correspondence** and whether it supplies the missing directional operation.
+
+## Exact original operands and recovered rule
+
+The original 2014 solved LP1 *SOME WISDOM*, p05, prints **KNOW THIS** above a five-by-five mixed grid of **13 runic words** and **12 explicit Arabic numbers**. Independently, the author-facing Gematria Primus table assigns consecutive prime values from 2 through 109 to the 29 runes. Retain printed numerals unchanged, and replace each rune word `w` by its **unmodified sum of prime rune values** `Σ prime(rune)`. This is a direct original-solvable arithmetic operation, with no unknown-plaintext input, fitted coefficient, chosen starting square, offset, or change in rune spelling.
+
+| Row | Original visible mixed cells (transliterated) | Exact GP-prime-summed numeric cells |
+| --- | --- | --- |
+| 1 | 272 · 138 · SHADOWS · 131 · 151 | 272 · 138 · **341** · 131 · 151 |
+| 2 | AETHEREAL · BUFFERS · VOID · CARNAL · 18 | **366 · 199 · 130 · 320** · 18 |
+| 3 | 226 · OBSCURA · FORM · 245 · MOBIUS | 226 · **245 · 91** · 245 · **226** |
+| 4 | 18 · ANALOG · VOID · MOURNFUL · AETHEREAL | 18 · **320 · 130 · 199 · 366** |
+| 5 | 151 · 131 · CABAL · 138 · 272 | 151 · 131 · **341** · 138 · 272 |
+
+All **25/25** converted cells equal the independently preserved third historical 2014 OpenPuff numerical square in `resources/cicada2014-openpuff-magic-squares.txt`, and that same square was already identified in the 179-byte core of the original p05 JPEG. Every one of five rows, five columns and two diagonals sums to **1033**, and the numeric square has exact 180° rotational symmetry. The original literal word-vs-number cell mask is **00100 / 11110 / 01101 / 01111 / 00100**; that asymmetry remains visible even though numeric cells are rotationally symmetric. The underlying rune-prime summation is fixed by the source GP table, while the mixed-versus-numeric representation is distinguished by the physical manuscript.
+
+The exact source-reading program is [the standalone CommonJS SFT](../sims/lp1_p05_mixedword_direction_source_gate_sft.cjs). It reads the original LP1 p05 rune transcription, the published 29-rune prime table, and the separately archived 2014 square; asserts the complete 25-cell match, 13/12 composition, both symmetries and magic-sum checks; and prints every original word and its prime value. The source data and compiler conditions are independent of any unknown LP2 ciphertext.
+
+## Direction-grammar prerequisite and explicit stop
+
+The signed 2016 message says the book's *words are the map, their meaning the road, and their numbers the direction*. In isolation it does not identify this particular p05 mixed grid, a compass bearing encoding, or a chosen step origin. The original p05 prose says **KNOW THIS** and explicitly praises prime numbers and Euler's totient; it supplies the **arithmetic operand** but no **movement rule**. Solved p57's “shed our own circumferences” and “find the divinity within” are plausible metaphors for a center-directed path, yet neither specifies a reversible traversal.
+
+Four necessary rule slots remain unselected by an original first-party instruction:
+
+1. **Starting cell:** the center FORM=91, any corner 272/151, or the first printed cell are different plausible readings, with no author-issued start marker selecting one.
+2. **Direction conversion:** the same values 18–366 could represent residues modulo 4 or 8, compass angles, prime indices, turn counts or something unrelated. Both arithmetic and glyph-wise interpretations are plausible; no published p05 legend fixes a mapping.
+3. **Word/number handling:** either use every converted numeric cell, use only printed words, use only printed numbers, or treat words as labels and integers as steps. The source-authenticated conversion alone cannot choose one.
+4. **Stopping condition:** the center, all 25 cells, return to the starting square, exit an edge, or a puzzle-controlled terminal phrase have no first-party selection.
+
+**Decision:** the original word→number conversion is reproducible and strongly corroborated. It is insufficient to define even the *first* unambiguous movement, so there is no source-locked trajectory on which to run a meaningful solved-page or original-cipher test. Per the Issue #861 gate, **do not enumerate rotations, direction residues, skip rules or plaintext-scored paths**. A valid successor requires a dated first-party route instruction selecting a start, numeric movement grammar and stop *before* testing any unknown LP2 ciphertext. The historical #854 search for the square's contemporaneous role is a separate prerequisite and can reopen this path if such an instruction is actually recovered.
+
+This conclusion does not disprove the presence of navigation in the square; it identifies the unprovided authored operation needed to turn the verified table into an independently checkable decoder.
