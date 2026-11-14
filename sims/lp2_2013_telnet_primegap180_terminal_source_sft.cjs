@@ -37,7 +37,7 @@ function gp(value) {
 
 /**
  * @param {number[]} source
- * @param {number[]} key
+ * @param {number[][]} key
  * @param {-1 | 1} direction
  * @returns {number}
  */
