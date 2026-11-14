@@ -12,7 +12,7 @@ Let the cipher at word w and zero-based rune position j be:
 
     C[w,j] = pi[w,j mod 5](P[w,j])
 
-Each pi is a separately unknown full GP29 bijection. The family is deliberately generous: all five permutations may be chosen independently **for every word**, with no shared keys, prime clock, page reset or public inverse assumption. For any positions i,j in one word with i ≡ j (mod 5), the cipher must satisfy C[i]=C[j] exactly if and only if P[i]=P[j]. This invariant survives *every secret key*, and the full equality/inequality signature is decisive for lexicon viability.
+Each pi is a separately unknown full GP29 bijection. The family is deliberately generous: all five permutations may be chosen independently **for every word**, with no shared keys, prime clock, page reset or public inverse assumption. For any positions i,j in one word with i ≡ j (mod 5), the cipher must satisfy C[i]=C[j] exactly if and only if P[i]=P[j]. This invariant survives *every secret key*, and the full equality/inequality signature is decisive for lexicon viability. **It is also sufficient for the unrestricted cipher family:** each phase appears at most three times per original word, and the lag-five/lag-ten bits specify every within-phase equality or inequality. Equal signatures therefore define an injective map from the observed plaintext-symbol classes to the observed ciphertext-symbol classes. Any such partial injection extends to a permutation of the entire 29-rune alphabet, independently for each word/phase. This proves exact all-secret wordwise lexical feasibility under the stated model without fitting a finite list of phase keys.
 
 ## Full original manuscript versus native-GP English
 
