@@ -163,9 +163,60 @@ const unigramGate = { originalChi: origInitialChi, pageRotation: summary(initial
 assert(Math.abs(unigramGate.originalChi - 22.300843244811944) < 1e-9);
 assert.equal(unigramGate.pageRotation.greaterOrEqual, 3916);
 
+// Source-native alternative-register controls: the same original word-start
+// coordinates and rotation protocol should not automatically enrich any
+// language's four-GP-rune lexicon.
+function otherRegisterControl(candidates) {
+  let actual = 0;
+  let expected = 0;
+  for (const word of eligible) {
+    if (candidates.has(prefix(word))) actual++;
+    let h = 0;
+    for (let i = 0; i < word.length; i++) {
+      if (candidates.has([0, 1, 2, 3].map((j) => word[(i + j) % word.length].x).join(","))) h++;
+    }
+    expected += h / word.length;
+  }
+  const rng = makeRng();
+  const nullCounts = [];
+  for (let rep = 0; rep < 5000; rep++) {
+    let h = 0;
+    for (const word of eligible) {
+      const off = rng() % word.length;
+      if (candidates.has([0, 1, 2, 3].map((j) => word[(j + off) % word.length].x).join(","))) h++;
+    }
+    nullCounts.push(h);
+  }
+  return { candidatePrefixes: candidates.size, actual, exactMean: expected, wordRotation: summary(nullCounts, actual) };
+}
+const latinWords = fs.readFileSync("resources/control/latin-vulgate-gp-wholewords.txt", "utf8");
+const latinPrefixes = new Set();
+for (const raw of latinWords.split(/\r?\n/)) {
+  const token = raw.trim();
+  if (!/^[0-9A-S]{4,}$/.test(token)) continue;
+  latinPrefixes.add(Array.from(token.slice(0, 4), (ch) => parseInt(ch, 36)).join(","));
+}
+const oldEnglish = JSON.parse(fs.readFileSync("resources/control/beowulf_oe_gp_profile_corrected.json", "utf8"));
+const oldEnglishPrefixes = new Set();
+let cursor = 0;
+for (const n of oldEnglish.allSourceGpWordLengths) {
+  if (n >= 4) {
+    const indices = Array.from(oldEnglish.sourceGpBase29.slice(cursor, cursor + 4), (ch) => oldEnglish.positiveControlAlphabet.indexOf(ch));
+    if (indices.every((n) => n >= 0)) oldEnglishPrefixes.add(indices.join(","));
+  }
+  cursor += n;
+}
+assert.equal(cursor, oldEnglish.sourceGpBase29.length);
+const latinGate = otherRegisterControl(latinPrefixes);
+const oldEnglishGate = otherRegisterControl(oldEnglishPrefixes);
+assert.equal(latinGate.actual, 3);
+assert.equal(latinGate.wordRotation.greaterOrEqual, 3971);
+assert.equal(oldEnglishGate.actual, 5);
+assert.equal(oldEnglishGate.wordRotation.greaterOrEqual, 3022);
+
 const output = {
   source: { pages: nonemptyPages.length, unknownWords: unknown.length, eligibleWords: eligible.length, dictionaryPrefixes: dictionary.size },
-  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount, unigramGate,
+  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount, unigramGate, latinGate, oldEnglishGate,
   originalMatches: eligible.filter((word) => dictionary.has(prefix(word))).map((word) => ({
     physicalPage: nonemptyPages[word[0].p].page, pageOffset: word[0].i,
     prefix: word.slice(0, 4).map((r) => corpus.translit[r.x]).join(""),
