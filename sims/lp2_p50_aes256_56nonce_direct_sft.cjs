@@ -68,6 +68,7 @@ function decode(c,k,kind,sign) {
   return c.map((v,i)=>{
     const diff=mod(v-prev,29);
     prev=v;
+    if(kind==="gp28_f") return diff===0?0:1+mod(diff-1+sign*(k[i]%28),28);
     return diff===0?28:mod(diff-1+sign*(k[i]%28),28);
   });
 }
@@ -75,7 +76,9 @@ function encodePlain(p,k,kind,sign) {
   let prev=0;
   if(kind==="gp29")return p.map((v,i)=>mod(v-sign*(k[i]%29),29));
   return p.map((v,i)=>{
-    if(v!==28)prev=mod(prev+1+mod(v-sign*(k[i]%28),28),29);
+    if(kind==="gp28_f") {
+      if(v!==0) prev=mod(prev+1+mod(v-1-sign*(k[i]%28),28),29);
+    } else if(v!==28) prev=mod(prev+1+mod(v-sign*(k[i]%28),28),29);
     return prev;
   });
 }
@@ -99,7 +102,7 @@ const native0=native.slice(0,p0.length);
 for(const [layout,v] of Object.entries(layouts)) {
 for(const position of ["prefix","suffix"]) {
  const pads=pages.map(p=>stream(v.key,v.nonces,p.page,position,p.indices.length));
- for(const kind of ["gp29","gp28"]) {
+ for(const kind of ["gp29","gp28_f","gp28"]) {
   for(const sign of [-1,1]) {
    const decoded=pages.map((p,i)=>decode(p.indices,pads[i],kind,sign));
    const plaintext=decoded.flat();
@@ -129,13 +132,13 @@ console.log(JSON.stringify({
   slots:56,runeless_slot:50,key_len:32,nonces:56,nonce_len:4,
   layout:"first printed column / seven columns row-major OR first four rows / other 28 rows row-major; physical page offset",
   cipher:"AES-256-CTR, standard 16-byte IV with nonce at first or last 4 positions",
-  consumers:"GP29 additive +/-; GP28 predecessor rank +/- with zero-delta reserved EA",
+  consumers:"GP29 additive +/-; GP28 predecessor rank +/- with duplicate sentinel F (source solved-cipher interrupter) or EA",
   initial_clock:"page 0, source-native GP29 index zero at each page for GP28",
   untouched_runes:all.length,raw,reference,
-  positive:"16/16 complete source-shaped native controls and all 12,956 exact forward inverse checks pass per mapping",
+  positive:"24/24 complete source-shaped native controls and all 12,956 exact forward inverse checks pass per mapping",
   maximum_full_trigram:best.full_trigram,
   original:rows,
   decision:best.full_trigram<reference.trigram-1
-    ?"No credible GP-native original plaintext in this frozen 16-variant AES transfer"
+    ?"No credible GP-native original plaintext in this frozen 24-variant AES transfer"
     :"Inspect best result for possible authentic original plaintext"
 },null,2));
