@@ -73,6 +73,22 @@ For the moth, a fixed art-only LP1 crop (original pixels y=1450:1900, x=750:1650
 
 The source image relationships are stronger than visual similarity. They establish literal artwork reproduction in the authored book, with deliberately varied position, scale and horizontal reflection.
 
+### Original moth edited-mark discrimination (Agent36, 14 November 2026)
+
+**Decision on the specific edited-moth-key hypothesis:** An independent original-byte, differential-geometry test finds **no large localized ink addition or deletion** in either LP2 moth compared with the source LP1 p05 drawing, under a fixed, source-scale two-pixel morphological tolerance. The p53 and p55 artworks are the same enlarged raster to within small JPEG gray residuals. **No visual bitmask, key, cipher inverse or unknown plaintext** is recovered. This is an optical edit exclusion at the stated scale; it does not rule out tiny or grayscale modifications, raw-file steganography, or a cryptographic meaning attached to *reuse itself*.
+
+The new [standalone original-JPEG SFT](../sims/lp1_lp2_moth_edited_mark_sft.py) pins six source SHA-256s and registers the art-only LP1 p05 crop (750,1450)-(1650,1900) to original LP2 p53 (450,2500)-(1950,3250): **369** ratio-selected SIFT correspondences, **351** RANSAC inliers and principal scales **2.32944734, 2.32604001**. An exactly translated p55 crop uses **(+66,+67)** without refitting the transform. The source-scale moth ROI is x205:695, y142:350 relative to the LP1 crop; a 125/255 dark-ink threshold and two-source-pixel circular-neighborhood comparison eliminate antialiasing-edge differences without changing the source artwork.
+
+| Original comparison | Source dark pixels | Source-only outside 2-pixel match | LP2-only outside 2-pixel match | Largest remaining connected component |
+| --- | ---: | ---: | ---: | ---: |
+| LP1 p05→LP2 p53 | 14,619 | **0** | **219** | **9 pixels** |
+| LP1 p05→LP2 p55 | 14,619 | **0** | **221** | **9 pixels** |
+| LP1 p05→wrong-page p54 | 14,619 | **10,543 source pixels** | not needed | overwhelming negative |
+
+The six largest p53 unmatched-source-scale components have area and top-left coordinates **9@(446,168), 9@(496,211), 9@(526,279), 8@(252,214), 8@(501,281), 6@(482,221)** in the fixed LP1 art crop. They are scattered microscopic extra dark fragments at sharper re-rendered strokes, rather than connected new symbols. A deliberately inserted black circular spot of **15 LP2 pixels radius**, at the frozen, white source-area point (400,240), produces a **137-source-pixel connected residual**, verifying sensitivity to one visible high-contrast alteration before looking for a cipher. The independent LP1 p09→LP2 p2 mirrored-insect copy is an unscaled ink-rendering control with **IoU 0.9999723909**.
+
+The original p53/p55 common 550×1270 moth rectangle has **524,971 exactly matching grayscale pixels** of 698,500, **3,723 pixels with difference >4**, and **maximum absolute gray difference 10**. Those two source artworks thus cannot furnish different printed high-contrast edit messages. By contrast, source p05 is a lower-resolution rendering than the enlarged copies: its subpixel, shade and thickness discrepancies must not be promoted as intentional edits. No residual connected component reaches the conservative **20-source-pixel** visible-edit gate, whereas the planted positive exceeds that by >6×. This result advances the edited-image branch to a bounded **no-selector** and does not justify a key sweep over the tiny unstructured residual.
+
 ## Human solve-path relevance and limitation
 
 The corresponding **solved LP1 pages** are conspicuous:
