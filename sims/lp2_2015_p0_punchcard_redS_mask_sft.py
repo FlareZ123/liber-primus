@@ -12,6 +12,7 @@ No arbitrary mask phase, offset tuning, GP key, or NLP interpretation.
 """
 from pathlib import Path
 import json
+from sympy import primerange
 import cv2
 import numpy as np
 
@@ -27,7 +28,9 @@ assert lines[3].startswith("ᛋᛈᛏ"), "p0 first full-width line changed"
 b, g, r = (src[:, :, k].astype(np.int16) for k in (0, 1, 2))
 red = (r > 130) & (g < 90) & (b < 90)
 assert 30000 <= red[667:1166, 601:751].sum() < 34000
+GP = 'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᛠᛡᚣ'
 selected = []
+selected_offsets = []
 per_line = []
 for idx in range(3, 12):
     row = idx + 1
@@ -57,17 +60,36 @@ for idx in range(3, 12):
             found.append({"column": j, "rune": symbol, "overlap": round(fraction, 6)})
             if symbol not in ".-":
                 selected.append(symbol)
+                before = sum(ch in GP for line in lines[:idx] for ch in line)
+                within = sum(ch in GP for ch in lines[idx][:j])
+                selected_offsets.append(before + within)
     per_line.append({"printed_line": row, "hits": found})
 
 literal = "".join(selected)
 assert literal == "ᛋᚫᚻᛉᛖᛒᛉᚷᛝᛇᚻᛞᛝ", literal
 assert len(literal) == 13
+assert selected_offsets == [62,84,85,86,129,150,151,152,196,216,217,218,241]
+# Independent, source-dated Feb 4 2015 first-chapter prime-then-difference
+# candidate (original IRC L89874 and L89901), applied without key/phase fitting.
+p0r = "".join(ch for line in lines for ch in line if ch in GP)
+assert len(p0r) == 262
+primes = list(primerange(2, 2000))
+previous = (-2) % 29  # imagined F before first source rune at prime 2
+delta = []
+for i, rune in enumerate(p0r):
+    shifted = (GP.index(rune) - primes[i+1]) % 29
+    delta.append((shifted-previous) % 29)
+    previous = shifted
+delta_mask = "".join(GP[delta[pos]] for pos in selected_offsets)
+assert delta_mask == "ᛄᛄᚷᛡᚩᚹᚪᛒᚠᛁᛗᚾᛏ"
 print("P0_PERIOD_PUNCHCARD_SOURCE_GATE " + json.dumps({
     "date": "2015-01-28T23:03:42Z",
     "status": "bounded natural-stencil readout, no authenticated decryption",
     "source": "original LP2 p0 17.jpg and first 12 source transcription lines",
     "hypothesis": "repeat red S every 3 lines and select rune glyphs with >=50% black-ink intersection",
     "literal_runes": literal,
+    "source_zero_based_rune_positions": selected_offsets,
+    "after_independent_2015_prime_delta_stage": delta_mask,
     "length": len(literal),
     "per_line": per_line,
     "limitation": "community source image CDN preview SHA1 differs from original upload; stencil operation is only a participant illustration",
