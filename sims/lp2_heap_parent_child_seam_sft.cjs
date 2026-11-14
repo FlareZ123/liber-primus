@@ -168,12 +168,22 @@ const padCandidates = [-1, 1].map((sign) => {
 assert(Math.abs(padCandidates[0].ioc - 0.03333333333333333) < 1e-12);
 assert(Math.abs(padCandidates[1].ioc - 0.030877192982456142) < 1e-12);
 
+// Additional exact source-native self-indexing check: seven boundary
+// GP-prime weights add to the (76+1)th ordinary prime (389).
+const sharedSeven = pages[55].slice(-6).concat(pages[56][0]);
+assert.deepEqual(sharedSeven, pages[27].slice(28, 35));
+const boundaryPrimeSum = sharedSeven.reduce(
+  (total, rune) => total + corpus.prime[rune], 0
+);
+assert.equal(boundaryPrimeSum, 389);
+assert.equal(pages[55].length + 1, 77);
+
 // The independent solved p56 schedule is Euler phi(successive primes)
 // modulo29 with one literal, nonconsuming Fehu at source local index56.
 // A parent tape used as the same direct pad for the right child would
 // have to reproduce those 84 independently known key symbols.
 const primes = [];
-for (let n = 2; primes.length < 85; n++) {
+for (let n = 2; primes.length < 400; n++) {
   if (primes.every((p) => n % p !== 0)) primes.push(n);
 }
 assert.equal(pages[56][56], 0);
@@ -190,8 +200,36 @@ for (let i = 0; i < 85; i++) {
 assert.equal(exactSolvedPadMatches, 2);
 assert.deepEqual(matchesAt, [63, 66]);
 
+assert.equal(primes[76], 389);
+const selfIndexingSeams = [];
+let eligibleAdjacentSeams = 0;
+for (let left = 0; left < 57; left++) {
+  const leftPage = pages[left];
+  const rightPage = pages[left + 1];
+  if (leftPage.length < 6 || rightPage.length < 1) continue;
+  eligibleAdjacentSeams++;
+  const span = leftPage.slice(-6).concat(rightPage[0]);
+  const gpSum = span.reduce((sum, i) => sum + corpus.prime[i], 0);
+  const primeAtOrdinal = primes[leftPage.length];
+  if (gpSum === primeAtOrdinal) {
+    selfIndexingSeams.push({ left, right: left + 1,
+      leftLength: leftPage.length, ordinal: leftPage.length + 1,
+      gpSum, primeAtOrdinal });
+  }
+}
+assert.equal(eligibleAdjacentSeams, 55);
+assert.deepEqual(selfIndexingSeams, [{
+  left: 55, right: 56, leftLength: 76,
+  ordinal: 77, gpSum: 389, primeAtOrdinal: 389
+}]);
+
 console.log(JSON.stringify({
   source: "original 58 LP2 physical pages; source GP29 indices",
+  sevenBoundaryPrimeSum: boundaryPrimeSum,
+  nextPrimeOrdinal: 77,
+  nextPrime: primes[76],
+  sourceAdjacentSevenSelfIndexingCount: eligibleAdjacentSeams,
+  sourceAdjacentSevenSelfIndexingHits: selfIndexingSeams,
   zeroBasedCompleteHeapParents: parents.length,
   maxCrossingMatchCounts: counts,
   exactSevenRuneCrossing: crossing7[0],
