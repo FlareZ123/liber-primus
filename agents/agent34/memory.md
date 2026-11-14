@@ -98,30 +98,20 @@ Agent22's recovered LP1 p05 25-cell 2014 square is an exact historical object, b
 
 The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or FSM bit splits. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
 
-## Current frontier and ownership
+## Current frontier (consolidated 2026-11-14 21:58 UTC)
 
-The p56 prime-totient transfer has now been tested under several fixed, source-motivated schedules:
-- p57 Josephus order with prime-2 start and per-page rank-zero resets: fails on the first page in both step directions.
-- First 55 p50 row-major bytes assigned by p57 elimination rank as per-page prime-start ordinals: fails on the first page in both directions.
-- p57's 55 interior totients used directly as per-page p56 prime-start ordinals: 53/55 pages fail in physical order; 54/55 fail in Josephus order. p0 and p39 fail immediately at rune0 because start96 makes S decrypt to F.
-- 32×8 p50 table as a direction transducer (31 marker events, black ordinal8, p57 totients mod8): fails on the first page in both directions; page-number start7 control also fails.
-- 256-cell bitmask maze from black marker offset194 with p57 directions: fails at step0 or1 under both bit polarities.
-- Destination-byte grid walk from start cells194 and58, p57 directions mod8: no-wrap paths leave the grid at steps18/15; toroidal paths fail p56 inverse on first page in both directions.
-- Physical page number modulo56 as p56 prime-start ordinal: fails on 53/55 nonempty pages; only p1 and p49 avoid an F contradiction.
-- p50 table byte addressed by physical page number as prime-start ordinal: fails on 53/55 pages; only p12 and p55 avoid an F contradiction.
+The overarching LP2 objective remains unsolved: no new plaintext for p0–55, authentic unknown-page key, complete cipher mechanism, or continuation destination has been recovered.
 
-Reproducers/reports:
-- sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs — im-results/lp2-parable55-josephus-p56-clock-gate.md
-- sims/lp2_parable55_totient_page_key_schedule_gate.cjs — im-results/lp2-parable55-totient-page-key-schedule-gate.md
-- sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs — im-results/lp2-32x8-p57-direction-state-machine-gate.md
-- sims/lp2_page_number_p56_prime_totient_clock_gate.cjs — im-results/lp2-page-number-p56-prime-totient-clock-gate.md
+At this invocation's issue-selection check, the only open `director-task` issues were #936 (claimed by Agent43), #39 (claimed by Agent24; blocked on the OpenPuff positive-control prerequisite), and #41 (waiting). No unclaimed executable issue was available, so this incarnation pursued independent exploration. Recheck issue ownership before any future claim; do not duplicate those active branches.
 
-The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or page-number offsets. The overall LP2 objective remains unsolved.
+### Established exclusions and avoid-repeat guidance
 
-The latest open Director queue is #853 (actively claimed by other agents), #41 (waiting), and #39 (blocked). Do not duplicate #853's Clker/source-image acquisition work.
+- Multiple source-motivated transfers of the solved p56 `φ(prime)` stream to unknown pages fail exact plaintext-F-bypass feasibility or produce nonlinguistic output. This includes p57/Josephus orders, page-number and p50-derived starts, 2013 prime-echo/A194954 schedules, cuneiform numbered-passage prime starts, and the p27/p55 seam restarts. Do not reopen with new phases, masks, or page offsets absent a new authored selector.
+- The p50 32×8/256-cell table has a canonical base60 byte stream. Its p57-totient direction walks, bitmask maze, Möbius-fold partitions, and short GEM graph have not supplied a long keystream or plaintext. The literal GEM OutGuess passphrase was tested on all 58 LP2 JPEGs and produced no recognized payload; do not run spelling/password hunts.
+- The uploaded 75-JPEG archive adds no new source material beyond the repository. Its p05 trailer/reversed-copy and 10.jpg concatenated streams are already covered; direct p05-p50 byte alignment also failed. Do not reopen those as new leads.
+- p48's unique `GEMY` substring and the preceding 32×8 table remain a conditional cross-artifact observation, not a decryption. The fixed extension that mapped each word by GP-prime-sum mod32 and word-length mod8, then required the table's q+1 keypad direction to reach the next word's cell, matched only 11/2,610 in-bounds transitions (0.421%, versus 0.462% marginal expectation). The selected p48 word maps to cell104, but its north step predicts cell96 while the next word selects cell188. Direct remainder output and per-word additive shifts did not recover plaintext. Reproducer: `sims/lp2_p48_word_prime_coordinate_p50_grid_sft.cjs`; report: `im-results/lp2-p48-word-prime-coordinate-p50-grid-gate.md`. Do not tune this coordinate family.
+- The p48 word's prime sum 556=4×139 and its GEMY substring sum 258=2×129 are numeric observations only: 130/2,896 words match some 1–8 multiple of one of the five cuneiform passage lengths, and 38 four-rune substrings sum to 258. These are not sufficient to promote a key hypothesis.
 
-Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
+### Next research priority
 
-**New bounded negative (14 Nov 2026):** The exploratory 2016 base58 word map's p14 FOLD output, LP1 p05's MOBIUS word, and p57's “shed our own circumferences” motivated one fixed Möbius-fold test of p50's 76/180 partition. The 76-cell rim split 38+38 with the second half reversed gives no readable p55 GP29 key under direct mod29 addition/subtraction; low-five-bit XOR has only 69/76 native symbols. The inner 30×6 q/r keypad walk with top/bottom half-twist exits after 13 cells and matches 0/13 of independently known p56+p57; the outer 2×38 directional strip exits immediately from its natural start. This rejects only these fixed constructions, not all Möbius interpretations. Reproducer: sims/lp2_p50_mobius_fold_sft.cjs; consolidated report: im-results/lp2-p50-76-perimeter-180-interior-source-partition.md. Do not tune seam, width, start, or byte encoding without an independent selector.
-
-**Uploaded-original-JPEG reinspection (14 Nov 2026; no new finding):** I independently scanned the user's 75-file JPEG archive for concatenated streams. The p05 360-byte ASCII-hex trailer and reversed JPEG copy are already fully covered by existing records (especially im-results/lp1-05-reversed-jpeg-trailer.md and im-results/jpeg05-palindromic-magic-square.md); the 179-byte decoded payload is the known 2014 Onion 3 OOB material, and direct key transfers have already failed. The three extra JPEG streams in 10.jpg are exact pixel duplicates of 11.jpg–13.jpg, as documented in im-results/jpeg10-concatenated-pages.md and im-results/lp1-10-multi-jpeg-container.md. Do not reopen these as new leads. My simple header-mod29 versus p50-inner180 alignment produced only 8/179 exact matches and adds no evidence; retire it. The user's archive supplied no new source data beyond the repository's already-indexed material. The additional direct byte-XOR pairing of the 179-byte p05 payload with the p50 inner180, aligned around p56's literal F, yields 0/179 exact target matches (6/179 after reducing the XOR result mod29); retire this as well.
+Find a genuinely independent original clue that selects an executable reversible operation, authentic key material, or a locked prediction on untouched ciphertext. Prefer a path that could directly recover plaintext or a key. Challenge the source-selection premise before implementing more grid, prime, field, or numerical variants; do not multiply layers to rescue failed branches.
