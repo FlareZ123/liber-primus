@@ -60,6 +60,7 @@ The norm match is an independent algebraic invariant of the same source-selected
 - Reversing the 43 coefficients gives (P(24)=4) and (P(18)=19), so the ascending order matters.
 - Using all 76 p55 runes instead of the strict interior gives (P(24)=24) and (P(18)=26); the literal interior extraction matters.
 - The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but the resulting arithmetic checks are not statistically independent. No p-value is claimed.
+- **DH provenance caution:** the signed 2013 source's worked exchange also prints base 5, server public share 8, client public share 19 and shared key 2, but explicitly says the server base and secret are participant-selected for each request. Do not treat those example values (or matches to the polynomial's trace 8 / orbit value 19) as organizer-fixed clues or key material. The cross-round bridge uses only the protocol's fixed modulus 23.
 - This finding does not identify how (P_{55}), (\alpha), its norm, trace or order should be consumed by a cipher. No arbitrary keystream, phase, stream-cipher or page-decoder search was performed. Waiting decoder challenge [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains waiting; this report is a structural lead, not an attempt to bypass its acceptance gate.
 
 ## Reproduction
