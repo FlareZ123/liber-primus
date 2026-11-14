@@ -50,9 +50,14 @@ function inspect(path, max) {
     if (search.test(line)) matches.push({i:i+1,text:line.slice(0,390)});
   }
   const sample = matches.length<=max?matches:matches.slice(0,max/2).concat(matches.slice(-max/2));
+  const high = matches.filter(v => /^2014 (May|Jun|Jul|Aug) /.test(v.text) &&
+    /(page.?56|p56\b|an end|36367763|hashes to|deep.web|totient|sha.?512|<cluosh>.*(solv|key|page|rune|cipher|prime|hash|decrypt))/i.test(v.text));
+  const highSamples = high.length <= 200 ? high : high.slice(0,100).concat(high.slice(-100));
+
   const result = {source:meta.name,sourceGitBlob:meta.hash,totalLines:lines.length,
     years:Object.fromEntries(yearCounts),months2014:Object.fromEntries(months2014),
-    first2014,last2014,focusMatchesTotal:matches.length,focusSamples:sample};
+    first2014,last2014,focusMatchesTotal:matches.length,focusSamples:sample,
+    highSignalMayAugTotal:high.length,highSignalMayAugSamples:highSamples};
   console.log(JSON.stringify(result,null,2));
 }
 assert.equal(process.argv.length, 5,'Pass three original local log paths');
