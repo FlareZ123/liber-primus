@@ -176,6 +176,43 @@ assert.equal(p40Words.cipher.length, 3008);
 assert.equal(p40Words.firstFailure, 33);
 assert.deepEqual(p40Words.clockBefore, [33]);
 assert.equal(p40Words.cipher[33], 22); // OE; key[33 mod8] also 22.
+// Ordinary repeating GP29 Vigenere is a *different* historical consumer.
+// Keep its independent native-English diagnostic on the same four signed
+// heading locations; it does not obey the plaintext-F bypass convention.
+/** @param {number[]} values @returns {number} */
+function ioc(values) {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0)
+    / (values.length * (values.length - 1));
+}
+/**
+ * @param {number[]} ciphertext
+ * @param {number[]} titlePlain
+ * @returns {number}
+ */
+function directPeriodBodyIoc(ciphertext, titlePlain) {
+  const key = titlePlain.map((p, i) => mod29(ciphertext[i] - p));
+  const decoded = ciphertext.map((c, i) => mod29(c - key[i % key.length]));
+  assert.deepEqual(decoded.slice(0, titlePlain.length), titlePlain);
+  return ioc(decoded.slice(titlePlain.length));
+}
+const directIoC = {
+  enlightenment2014: directPeriodBodyIoc(firstChapter, allegedHeadingPlain),
+  epiphany2016: directPeriodBodyIoc(firstChapter, epiphanyPlain),
+  willBeFound2016: directPeriodBodyIoc(p15Found.cipher, p15Found.plain),
+  itsWordsP33: directPeriodBodyIoc(p33Words.cipher, p33Words.plain),
+  itsWordsP40: directPeriodBodyIoc(p40Words.cipher, p40Words.plain)
+};
+const expectedIoC = [
+  0.03414462632339727, 0.03415243973903192,
+  0.034371520337174215, 0.03456953218200306,
+  0.034379682116260975
+];
+for (const [i, observed] of Object.values(directIoC).entries()) {
+  assert.ok(Math.abs(observed - expectedIoC[i]) < 1e-12);
+  assert.ok(observed < 0.04);
+}
 // Independent known-solved original p56 control: prime-totient running key,
 // the exact F skip at local56 and all original ciphertext symbols.
 function primeList(n) {
@@ -250,6 +287,7 @@ process.stdout.write(JSON.stringify({
   offendingKeyRune: original.translit[p0Shift(41)],
   attemptedPlaintextRune: 'F (forbidden when ciphertext is not F)',
   originalAnyValidPathPast42: contradiction.passed,
+  directPeriodBodyIoC: directIoC,
   epiphany2016SourceKey: epiphanyKey,
   epiphany2016FirstImpossiblePosition: epiphanyContradiction.firstFailure,
   epiphany2016KeyClockBeforeFailure: epiphanyContradiction.before,
