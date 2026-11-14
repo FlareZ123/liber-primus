@@ -194,6 +194,8 @@ for (const span of spans) {
       cipherScore:score(span.text), nativePlantScore:score(plant),
       transposeThenKeyScore:score(transposeThenKey),
       keyThenTransposeScore:score(keyThenTranspose),
+      transposeThenKeySourceNativeScore:sourceNativeModel.scoreStream(transposeThenKey).mean,
+      keyThenTransposeSourceNativeScore:sourceNativeModel.scoreStream(keyThenTranspose).mean,
       preview:transposeThenKey.slice(0,48).map(x => corpus.translit[x]).join("")
     });
   }
@@ -403,9 +405,9 @@ for (const row of p3Gate.variants) {
 assert.equal(p3Gate.variants.length, 8);
 assert.ok(p3Gate.variants.every(row =>
   row.canonicalScore < -3.4 && row.sourceNativeScore < -3.39));
-assert.equal(p3Gate.variants.find(row =>
-  row.name === "Stage04 GP18 then Stage05 exact").sourceNativeScore,
-  -3.3995323087493747);
+assert(Math.abs(p3Gate.variants.find(row =>
+  row.name === "Stage04 GP18 then Stage05 exact").sourceNativeScore
+  - (-3.3995323087493747)) < 1e-10);
 
 console.log(JSON.stringify({
   status:"PASS",
