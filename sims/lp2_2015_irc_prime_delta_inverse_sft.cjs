@@ -167,6 +167,9 @@ function main(){
   assert.equal(equalsAdjacent(page0to2),4);
   assert.equal(equalsAdjacent(recovered),40);
   assert.equal(ioc(recovered),0.03450459006014561);
+  const evenDerived=recovered.filter(v=>v%2===0).length;
+  assert.equal(evenDerived,376);
+  assert.equal(recovered.length-evenDerived,353);
   assert.deepEqual(forward(recovered,ps),page0to2);
 
   // A genuine original-LP2 solved control, preserved as a literal GP rune
@@ -213,7 +216,9 @@ function main(){
   console.log(JSON.stringify({source:'2015 Feb 04 original IRC L89874, L89887–905',
     operation:'F=0 prepended; shift C_i by -prime(i+2), output consecutive modular difference',
     originalBytesSha256:sha,phaseZeroUniqueMaximumInFirstChapter:true,
-    realP0to2:{cipherDoublets:4,primeDeltaDoublets:40,IoC:ioc(recovered)},
+    realP0to2:{cipherDoublets:4,primeDeltaDoublets:40,IoC:ioc(recovered),
+      evenDerived,oddDerived:recovered.length-evenDerived,
+      uniformGP29EvenExpectation:recovered.length*15/29},
     sourceConstrainedFourWayPhaseControl:fourWays,
     fullBookContinuousClock,
     plantedP57:{length:plant.length,IoC:ioc(plant),exactRecovered:true},
