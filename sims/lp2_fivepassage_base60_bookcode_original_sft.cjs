@@ -116,6 +116,49 @@ const receivers = originalScopes.map(({name, cipher, minus, plus}) => {
     subtractIoC: ioc(negative), addIoC: ioc(positive)};
 });
 
+/**
+ * The published period-available alternative treats the absent lowercase f
+ * as a removed radix digit, so every printed token is a base59 number.
+ * This is source-motivated; no other alphabet or tuning is introduced.
+ */
+const alphabet59 = table.alphabet.replace("f", "");
+assert.equal(alphabet59.length, 59);
+const alternatePassageUse = Array(5).fill(0);
+const alternateByte = tokens.map((token) => {
+  const high = alphabet59.indexOf(token[0]);
+  const low = alphabet59.indexOf(token[1]);
+  assert.ok(high >= 0 && high < 5 && low >= 0 && low < 59);
+  alternatePassageUse[high]++;
+  return 59 * high + low;
+});
+const alternateKey = tokens.map((token) =>
+  passage[alphabet59.indexOf(token[0])][alphabet59.indexOf(token[1])]);
+assert.deepEqual(alternatePassageUse, [60, 58, 65, 56, 17]);
+assert.equal(new Set(alternateKey).size, 27);
+near(ioc(alternateKey), 0.03909313725490196);
+near(ioc(alternateByte.map(mod29)), 0.034895833333333334);
+const alternateGP = {
+  minus: alternateByte.map((byte, i) => mod29(byte - alternateKey[i])),
+  plus: alternateByte.map((byte, i) => mod29(byte + alternateKey[i]))
+};
+near(ioc(alternateGP.minus), 0.03719362745098039);
+near(ioc(alternateGP.plus), 0.03740808823529412);
+assert.ok(alternateByte.every((byte, i) =>
+  mod29(alternateGP.minus[i] + alternateKey[i]) === byte % 29));
+const alternateXor = alternateByte.map((byte, i) => byte ^ original.prime[alternateKey[i]]);
+assert.equal(alternateXor.filter((byte) => byte >= 32 && byte <= 126).length, 102);
+assert.ok(alternateByte.every((byte, i) =>
+  (alternateXor[i] ^ original.prime[alternateKey[i]]) === byte));
+const alternateCode = {
+  radix: 59, selectedRunes: alternateKey.length,
+  distinctRunes: new Set(alternateKey).size,
+  keyIoC: ioc(alternateKey),
+  tableIoC: ioc(alternateByte.map(mod29)),
+  tableMinusKeyIoC: ioc(alternateGP.minus),
+  tablePlusKeyIoC: ioc(alternateGP.plus),
+  byteXorPrintable: byteMetrics(alternateXor).printable
+};
+
 /* Independent positive plant: encrypt and recover actual solved p57 GP runes. */
 const plantedPlain = sourceKey.map((_, i) => pages[57].indices[i % pages[57].indices.length]);
 const plantedCipher = plantedPlain.map((rune, i) => mod29(rune + sourceKey[i]));
@@ -189,5 +232,6 @@ console.log(JSON.stringify({
     subtractIoC: ioc(subtractTable), addIoC: ioc(addTable)},
   receiverResults: receivers,
   byteReceiverResults: byteScores,
+  publishedRadix59Alternative: alternateCode,
   planted: {runesRecovered: plantedRecovered.length, nativePlainIoC: ioc(plantedPlain)}
 }, null, 2));
