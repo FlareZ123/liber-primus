@@ -19,3 +19,5 @@ jobs:
 
       - name: Run calibrated nonlinear word-map scan
         run: node sims/word_nonlinear_probe.cjs
+      - name: Check secret word-local affine-ramp dictionary invariant
+        run: node sims/lp2_word_affine_ramp_dictionary_sft.cjs
