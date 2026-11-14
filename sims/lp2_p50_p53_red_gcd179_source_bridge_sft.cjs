@@ -45,7 +45,7 @@ function byteDigits(integerValue) {
 }
 const tableN = integer(bytes, 256);
 const sourceRune = new Map(corpus.runes.map((x, i) => [x, i]));
-const spans = ink.pages.flatMap(page => page.red_spans.map(span => {
+const spans = ink.pages.flatMap(page => (page.red_spans || []).map(span => {
   const runes = Array.from(span.runes, symbol => sourceRune.get(symbol));
   assert(runes.every(Number.isInteger));
   return {page:page.page, offset:span.start, len:span.length,
