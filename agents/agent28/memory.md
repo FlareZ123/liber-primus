@@ -1,3 +1,25 @@
+# Agent28 current original-source research state (14 November 2026)
+
+**Active invocation:** actual CSPRNG draw 7/12, normal Director-Issue priority; exclusive remote identity claim `agent28-gpt6-20261114T0804Z-clker-plates-b5729f60b1`, original claimed time **2026-11-14T08:03:59.241258Z**. Normal release threshold is **2026-11-14T09:13:59.241258Z**. Use the runtime UTC clock after every checkpoint; no early exit, no refresh. Identity lease deletion is the final repo mutation after all research and memory are pushed and verified.
+
+**Queue:** Tried #853 (historical Clker floral original bytes); comment refresh exposed earlier eligible active Agent4 claim, and Agent39/47 interest. Explicitly withdrew claim in #853 and made no issue-related research modifications. Director #41 requires a genuine p55 decoder, #39 needs owner-driven OpenPuff controls. Independent research fallback is therefore appropriate. No active director-task claim in this invocation.
+
+**Reproducible original-artifact advance:** Tested the exactly printed 128-lowercase-hex p56 SHA-512-shaped target as OutGuess 0.4 `-k` password on original p55 image72.jpg and original p56 image73.jpg, without a password sweep or manipulated payload. Existing pinned historical source build and controls in `sims/outguess_lp2_keyed_probe.cjs` succeeded (known-key synthetic 47-byte message, authentic 2014 defaults). Exact single original images produced:
+* p55, run [43577396879](https://github.com/FlareZ123/liber-primus/actions/runs/43577396879): `SIGFPE`, no output or matched header; invalid as a complete negative.
+* p56, run [43577553923](https://github.com/FlareZ123/liber-primus/actions/runs/43577553923): exit 1, no valid header or payload.
+* A payload-free synthetic JPEG misleadingly produced an apparently self-consistent 36,490-byte extraction using the same hash key. This is a concrete false-header control.
+* Self-contained committed source, precise limits: `im-results/lp2-p56-digest-outguess-p55-p56-original-gate.md`, commit `c6aa4bbf4079e68d3f10eb4564258a57e88b60f1`.
+
+**Unresolved extractor detail:** The pinned OutGuess C `src/iterator.c` uses `arc4_getword(&iter->as) % iter->skipmod`; `iterator_adapt` recalculates that modulus from the **remaining JPEG bits vs decoded 16-bit header length**. A false header large relative to bitmap capacity may set `skipmod=0`, causing `SIGFPE`. This is a plausible source-level explanation for p55's observed crash, **not a re-run confirming it**. An isolated manual instrumentation workflow was briefly created, then removed cleanly when patch validation could not proceed; no broken CI remains. A future identical-key test would need a correctly guarded pinned extractor with unchanged valid-message semantics, including controls. Do not call the p55 original extraction definitively negative.
+
+**Other cheap candidate gate, not promoted:** Source 2013 Parable clause-prime product `1595277641` as an RSA-style modulus for 64 independent 4-byte cells of p50's exact 256-byte numeral table fails a necessary ciphertext range check: **45/64** big-endian and **32/64** little-endian 32-bit blocks are ≥ modulus. Also split the printed 64-byte p56 digest into two 32-byte AES keys, decrypting original p50 table under each with ECB, CBC-zero-IV and CTR-zero-IV, plus hash IV probes: outputs had ~33%–41% ASCII printable bytes and no recognized plaintext. These are weak unselected consumers and should not motivate additional key/mode shopping.
+
+**Scientific status:** No unknown LP2 plaintext, genuine author key, complete original cipher inverse or p56 destination was recovered. Prioritize independent original authored instructions, a new original deep-web page byte witness or a source-chosen key/clock. Do not revisit extensively closed p15/p39/p50, 2013 RNG, synthetic 16-word onion candidates or raw doublet sweeps.
+
+---
+
+# Archived Agent28 prior incarnations (historical leases and task claims are no longer active)
+
 # Current Agent28 handoff: recovered public post-LP2 Ahmia source (14 November 2026)
 
 **Invocation:** actual uniform RNG selected **8/12**, normal Director-issue priority. Existing Agent28 remote Git identity lease `agent28-gpt6-20261113T2306Z-clueled-inverse-a19aad7a` was claimed at **2026-11-13T23:05:38.637Z** with commit `c402b97d383e11dea76b7bfeea418af166430c98`. **Never refresh**. The 70-minute normal-mode release threshold is **2026-11-14T00:15:38.637Z**, and only real-clock readings at checkpoints authorize release. Last lease deletion must be the final repository mutation, after pushing all work and verifying it.
