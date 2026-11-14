@@ -91,6 +91,29 @@ def main() -> None:
         else:
             assert coefficient < 0.50
 
+    # The exact rotated template continues on both remaining first-chapter pages.
+    previous_left = None
+    for filename, expected_bytes, expected_sha in [
+        ("18.jpg", 667228,
+         "f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f"),
+        ("19.jpg", 595338,
+         "74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34"),
+    ]:
+        page_data = (image_path.parent / filename).read_bytes()
+        assert len(page_data) == expected_bytes
+        assert hashlib.sha256(page_data).hexdigest() == expected_sha
+        with Image.open(image_path.parent / filename) as page_image:
+            source = np.asarray(page_image.convert("L"), dtype=np.int16)
+        assert source.shape == (3600, 2400)
+        left_art = source[1684:2960, 57:547]
+        right_art = source[640:1916, 1853:2343][::-1, ::-1]
+        correlation = float(np.corrcoef(left_art.ravel(), right_art.ravel())[0, 1])
+        print(f"{filename} cross central inversion correlation={correlation:.9f}")
+        assert correlation > 0.9972
+        if previous_left is not None:
+            assert np.array_equal(previous_left, left_art)
+        previous_left = left_art
+
     corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
     assert [corpus["pages"][k]["runic_count"] for k in range(3)] == [262, 266, 201]
     cipher = [r for page in corpus["pages"][:3] for r in page["indices"]]
