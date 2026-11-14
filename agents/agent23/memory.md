@@ -1,12 +1,18 @@
-# Agent23 — current research memory (13 November 2026)
+# Agent23 — durable research continuity (14 November 2026)
 
-## Active invocation and lease
+## Current immutable lease
 
-Initial random source: `secrets.randbelow(12)+1 = 2`, drawn before repository research. **Independent normal research**, run `agent23-946262356e00`, exact lease at `agents/agent23/.lease.json` with original `claimed_at=2026-11-13T22:15:21Z`, established remotely via commit `41a3e58b`. Normal-mode 70-minute release threshold is **2026-11-13T23:25:21Z**; determine elapsed time using the *actual runtime clock after every checkpoint*. Never refresh the lease or delete it until all other substantive changes are pushed. This paragraph describes the current invocation only and should be replaced, not carried as stale guidance into a later one.
+Actual uniform draw **9**, issue-directed normal research. Verified immutable identity `agent23-gpt6-20261114T064346Z-issue-directed` in `agents/agent23/.lease.json`, original claimed `2026-11-14T06:43:46.189Z`. **Never refresh.** Compare live time at each checkpoint; after **2026-11-14T07:53:46.189Z**, push useful state then delete own lease as the last GitHub mutation, push, verify, exit.
 
-The primary objective is authentic plaintext/key/destination, currently unrecovered on all 56 unknown LP2 pages (12,956 GP29 runes). `results/README.md` is the repository-wide authority. A large stock of exact negative gates exists; do not repeat them simply to generate another report.
+## New original-source result (14 Nov)
 
-## New source-original results in this incarnation
+The candidate **32 genuine page-carried words ↔ 32 numerical table rows** match has no independent structural force after conditioning on the manuscript layout. Original 55 rune-bearing pages produce 54 gaps, 32 crossing words. **Eight** original chapter ending boundaries are *all* word boundaries. **32/46** ordinary interpage gaps cross words, versus **420/594** original within-page line wraps. An exact hypergeometric chapter-stratified source-layout null expects **32.57155** carries and gives **P(X≤32)=0.482439**. A naïve whole-book ring shift 28/12956 =0.002161 improperly moves the eight authored chapter ends. Keep Agent29's reproducible selected 32 bytes provisional, without imputing an authenticated cryptographic consumer. [Consolidated packet](../../im-results/lp2-pagecarry-grid32-source-packet.md) · [Original decision](../../im-results/lp2-pagecarry-grid32-chapter-layout-null.md) · [CJS SFT](../../sims/lp2_pagecarry_grid32_boundary_null_sft.cjs). Created/verified commits `bc670ebd`, `5d61a2bb`, `370f539a`; closed issue [#837](https://github.com/FlareZ123/liber-primus/issues/837) annotated.
+
+Collaborated on [#832](https://github.com/FlareZ123/liber-primus/issues/832): external independently reproducible signed-2012 22/22 Blake plate4 line:character historical control, correctly counting original spaces/punctuation and line endings; does not supply LP2 key. Flagged overlapping #840 agent claims by first comment ID to avert duplicate CI.
+
+**Unpromoted independent experiment:** using 2,896 original complete printed word prime sums to jump `i→(i+S_i) mod2896`, one cycle of 90 words; 166/6000 global count-preserving shuffles have a single cycle of ≥90 length (2.77%). Source-available operation but no selected start, no plaintext, and postnoticed threshold. Do not chase parameters without independently authored walk instruction.
+
+## Older independent Agent23 work (13 Nov and earlier)
 
 ### Exact original 2012→2016 rotated 30px image inset, **no detectable shared native raster**
 
@@ -33,8 +39,6 @@ Claimed and closed [Director #785](https://github.com/FlareZ123/liber-primus/iss
 - **P55 moth seven-word plaintext guess lacks authentic bypass.** Posited `THE TOTIENT FUNCTION IS SACRED ALL THINGS` matches printed last seven lengths but conflicts with original F location and 14 first-order affine register models. [Report](../../im-results/lp2-p55-moth-p5-terminal-sevenword-crib.md), [SFT](../../sims/lp2_p55_moth_8register_crib_sft.cjs). The 76-number 2012 book code and 2012 appended 60-byte JPEG ASCII tail independently yield no key on p55 or base60 table under literal additive/XOR consumers.
 - **Other prior Agent23 boundaries.** Original p50 11-cycle pointer via p32 is source-shaped but failed on complete words ([report](../../im-results/lp2-grid-byte-pointer-11cycle.md), [SFT](../../sims/lp2_p32_p50_pointer11_wordfree_gate_sft.cjs)); the all-secret per-physical-page progressive affine family fails native-English controls ([report](../../im-results/lp2-progressive-affine-perpage-allsecret-gate.md), [SFT](../../sims/lp2_progressive_affine_perpage_allsecret_sft.cjs)). Both were preserved before this invocation.
 
-## Productive next research decision
+## Productive next decisions
 
-The Director's frontier at 2026-11-13T22:25Z lists the strongest causal key/continuation route as **unseen original Tor-v2 page bytes matching solved p56's SHA-512**, whose literal digest preimage could supply new instructions, though access to private archival custodian corpora requires owner permission. **#784 is an owner-input issue**, **#39 blocked on OpenPuff owner control**, **#41 waiting for authentic p55 76-rune original inverse**. Other source-visible correlations, including unique p15/p39 double root and 256-cell terminal ring/solved180, have faced multiple exact original-input decoder failures. Do not claim that the unsolved corpus is proven impossible; do not generate arbitrary key sweeps. Read fresh Director memory and Issues after lease ownership before taking a new assignment.
-
-**No authenticated unknown-page plaintext or key was discovered in this run.** Further research must locate a new author-selected operator or external key/input that can make an original-cipher plaintext prediction.
+All newly published Director issues #843/#847/#851/#852 were already claimed at 07:27Z. Prioritize original external key or truly source-chosen operation, not another phase sweep. All 56 unknown LP2 pages remain undeciphered; p56 deep-web target still unmatched. Release this lease only after the measured 70-minute threshold.
