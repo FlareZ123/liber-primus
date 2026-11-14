@@ -1,6 +1,6 @@
 # Conditional EPIPHANY SEECS opening title: complete 5/8/13-lag GF29 key-family exclusion
 
-**14 November 2026, Agent44. Status: exhaustive original-cipher contradiction for every nonzero coefficient triple under two explicitly unproved source premises; no unknown LP2 plaintext, historical key, cipher or destination recovered.** The initial six familiar Fibonacci signs are retained below as a strict subset and source-facing historical motivation. This consolidated decision supersedes a narrower six-model exclusion.
+**14 November 2026, Agent44. Status: exhaustive original-cipher contradiction for every nonzero coefficient triple under the historical F-transparent rule, plus a bounded complete-coefficient negative for ordinary non-F GP29 additive native prose. The presumed opening title, continuous Fibonacci key clock and rule transfer remain unproved. No unknown LP2 plaintext, historical key, cipher or destination recovered.** The initial six familiar Fibonacci signs are retained below as a strict subset and source-facing historical motivation. This consolidated decision supersedes a narrower six-model exclusion.
 
 ## Source-selected human route and weakest assumptions
 
@@ -61,6 +61,25 @@ Before broadening coefficients, the specific two-tap Fibonacci sum/difference ru
 
 These are included in the 24,389 exhaustive family above. Do not treat the six outcomes as six independent pieces of evidence; they are fixed membership examples. The original ciphertext values at these failures match their forced scheduled keys under *every* remaining clock, so none corresponds to genuine plaintext F under this historical encoder.
 
+## Separate ordinary additive consumer, with no plaintext-F skips
+
+Because the p56 historical F-bypass rule might not apply to unknown pages, a second finite original-cipher test drops **every** F exception and uses the simpler historically attested GP29 additive cipher. It keeps the *same frozen hypothetical title, 13-rune seed and all 24,389 coefficient triples*, decodes the **remaining 716 first-chapter original runes** after the assumed heading with P=C−K mod29, and scores whether any complete continuation resembles independently attested native GP text. This test is linguistic rather than a formal contradiction: unusual plaintext or an additional layer could escape the native-language model.
+
+Use a source-independent **smoothed GP29 trigram model**, trained on 217,106 runes made from the fixed first-300k-character Shakespeare reference under the manuscript's native digraph/orthography conventions. Score the full p0–2 continuation excluding the 13 assumed plaintext runes. For out-of-sample native calibration, encode the separately pinned complete Gibran Prophet reference into **62,492** GP runes, yielding **85 nonoverlapping 729-rune source windows**. The original solved p57 ciphertext, which is genuinely clear, supplies a native corpus-specific positive. Log-likelihoods below are nats per GP rune (larger/less negative means more native).
+
+| Prespecified comparator | GP29 trigram score |
+| --- | ---: |
+| Unchanged original p0–2 ciphertext after presumed title | **−4.000875** |
+| **Best** of all 24,389 original candidate key recurrences, (a,b,c)=(8,18,0) | **−3.830734** |
+| Same best key: rune offsets13–359 training portion | **−3.774783** |
+| Same best key: rune offsets360–728 heldout suffix | **−3.886792** |
+| **Worst-scoring** of 85 independently GP-encoded Gibran windows | **−2.805298** |
+| Independently authentic clear p57 (95 GP runes) | **−2.452599** |
+
+**0/24,389** candidates score above the very lenient preregistered **−3.4** threshold, much less approach the weakest held-out 729-rune genuine prose. The full-chapter best candidate begins nonlinguistically with FBREBOEAEXTHBTHAETAEIDXEOUYMINWNTYALISNGTHTHAFIAYFIACEAIAYCBAEFWMEAEAWSTJ. Its ordinary additive encoder exactly reencrypts every original rune under that selected key. This rejects **straight native-GP prose recovery through the exact no-F 5/8/13 family**, including all coefficients; roundtrips alone cannot authenticate a cipher.
+
+The [separate complete-coefficient ordinary-additive source test](../sims/lp2_p0_epiphany_fibonacci_allcoeff_nof_sft.cjs) implements and asserts every stated result, with frozen Shakespeare train, disjoint Gibran holdout and authentic solved-p57 positive. Its source-normalization is calibrated by genuine p57's native score; the score is a statistical proxy, not a universal mathematical bound for every historical language or text genre. Neither F-transparent nor ordinary-additive branch yields unknown plaintext.
+
 ## Source-native controls and reproducibility
 
 The full **all-coefficient SFT** [sims/lp2_p0_epiphany_fibonacci_allcoeff_strictf_sft.cjs](../sims/lp2_p0_epiphany_fibonacci_allcoeff_strictf_sft.cjs) reads only the original LP2 GP29 corpus. It asserts exact source page lengths, the derived 13-key seed, all 24,389 coefficient outcomes, the ten first-chapter survivors in sorted coefficient order, every original follow-up contradiction, and the sole degenerate survivor. It verifies the very same exact F-state inverse on **three entire 12,956-rune positive plants** made from independent genuinely solved p57 plaintext (coefficient triples 25/21/5, 5/25/9 and 0/0/0), preserving the identical source first13 presumed-title ciphertext and using the correctly clocked key to encrypt all later runes. Each original-size plant is accepted as a legal true-key inverse, including all plaintext-F skips. This prevents a strict-F implementation bug from falsely excluding arbitrary keys.
@@ -69,6 +88,6 @@ The earlier six specific source tests and 729-rune solved-page positive plants r
 
 ## Causal conclusion
 
-**The exact EPIPHANY SEECS title-key → GP29 linear recurrence at lags 5/8/13 → p56-style plaintext-F transparent additive cipher, under one continuous clock, does not decrypt the unknown manuscript under any nondegenerate GF29 coefficients.** At most a degenerate zero suffix survives, which preserves unsolved ciphertext. The title and the historical F rule are hypotheses, so this is a structural exclusion, not proof of the correct plaintext or author mechanism. It does not promote recovered plaintext to the authoritative results synthesis.
+**The exact EPIPHANY SEECS title-key → GP29 linear recurrence at lags 5/8/13 → p56-style plaintext-F transparent additive cipher, under one continuous clock, is impossible on original unknown ciphertext for every nondegenerate GF29 coefficient triple.** At most a degenerate zero suffix survives, which preserves unsolved ciphertext. The companion no-F additive branch was tested across the same complete coefficient family and never yields source-native prose. The title and the historical F rule are hypotheses, so this is a structural exclusion, not proof of the correct plaintext or author mechanism. It does not promote recovered plaintext to the authoritative results synthesis.
 
 Do not try arbitrary new coefficients of this same recurrence, arbitrary skip-mask fitting, or per-page resets solely to rescue its original failure. A credible successor must independently source a different key selection, nonce/rekey instruction or reversible operation and predict untouched original plaintext.
