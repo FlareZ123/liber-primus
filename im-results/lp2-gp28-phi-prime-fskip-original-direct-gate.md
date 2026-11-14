@@ -23,7 +23,7 @@ The source corpus contains **12,956 GP runes** with **86 within-page repeated pa
 
 For comparison the genuine *printed*, already-solved p57 GP text has IoC **0.0627099664**; raw LP2 ciphertext is **0.0344784**. The four original outputs are nonlinguistic and carry only 441–480 literal E symbols across the whole book. The original corpus and the source-native controls elsewhere in the project establish that ordinary GP-English passages of this length have substantially higher E abundance. Thus the proposed **direct** decoder is incompatible with the tested natural GP-English register.
 
-The SFT forward-reencrypts **every original page exactly** under each variant. It also independently plants a complete p0-length stream of the actual solved p57 GP symbols, encrypts with every model, and recovers all planted symbols with the matching inverse. These are exact implementation controls; they cannot authenticate the speculative rule.
+The [Windows Node.js 22 GitHub Actions run 43640439690](https://github.com/FlareZ123/liber-primus/actions/runs/43640439690) completed successfully against the committed canonical source. The SFT forward-reencrypts **every original page exactly** under each variant. It also independently plants a complete p0-length stream of the actual solved p57 GP symbols, encrypts with every model, and recovers all planted symbols with the matching inverse. These are exact implementation controls; they cannot authenticate the speculative rule.
 
 ## Disposition
 
