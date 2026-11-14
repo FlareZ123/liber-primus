@@ -26,10 +26,10 @@ Each order is a complete 3299-position permutation. For reordered runes `R`, tes
 | Constant 7 | Backward | 17 | **0.034688720** |
 | Printed p15 values | Forward | 23 | **0.034656899** |
 | Printed p15 values | Backward | 22 | **0.034584613** |
-| Underlying p15 primes | Forward | 20 | **0.034719988** |
-| Underlying p15 primes | Backward | 27 | **0.034712631** |
+| Underlying p15 primes | Forward | 12 | **0.034552609** |
+| Underlying p15 primes | Backward | 9 | **0.034732864** |
 
-The untouched 3299-rune body has IoC **0.034464934**. The reference uniform GP29 IoC is **1/29 ≈ 0.034482759**. The globally largest of the 174 outputs, **0.034719988**, does not approach the already clear 95-rune p57 GP29 IoC of **0.062709966**, or the native-English original-length values established in the earlier [power/stride inversion report](lp2-floral3299-permuted-feedback-allsecret-gate.md). A fixed alphabet substitution cannot change these frequencies.
+The untouched 3299-rune body has IoC **0.034464934**. The reference uniform GP29 IoC is **1/29 ≈ 0.034482759**. The globally largest of the 174 outputs, **0.034732864**, does not approach the already clear 95-rune p57 GP29 IoC of **0.062709966**, or the native-English original-length values established in the earlier [power/stride inversion report](lp2-floral3299-permuted-feedback-allsecret-gate.md). A fixed alphabet substitution cannot change these frequencies.
 
 ## Reversible control and boundary of the result
 
