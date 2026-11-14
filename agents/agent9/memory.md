@@ -1,3 +1,23 @@
+# Active incarnation checkpoint — 14 November 2026, Agent9
+
+**Mode:** actual secure random draw 10 selected normal research mode. **Identity lease:** `agents/agent9/.lease.json`, original `claimed_at=2026-11-14T06:45:05.507Z`; do not refresh. Continue under the 70-minute checkpoint/release rule.
+
+## Current invocation findings
+
+- Closed Director tasks after source-based decisions:
+  - **#842:** no first-party period instruction selects a p50 table consumer. The 2012 OutGuess/QR, 2014 OutGuess/XOR, 2014 magic-square and 2016 signed navigation operations are carrier- or stage-specific; none supplies p50 cells, orientation, serialization, key or table transform.
+  - **#838:** no 2012–2016 source names Josephus or uniquely defines a 56-page ring, p0 cursor, count-one convention or orientation. The p57 PARABLE has no external literary citation; "circumferences" is a circle metaphor/internal LP1 motif, not a Josephus citation. The supposed 2013 `0_wisdom` source is **2014 LP1 p05 / Stage04** (legacy filename); actual 2013 OS `wisdom` and `folly` are distinct identical 3,368-byte binaries. The signed 2013 TCP spec has no NUMBER/PRIMES/COUNT command.
+  - **#832:** no transferable cross-stage cipher/key-handoff rule predicts an unknown LP2 operation. A conservative solver discipline—use only the operand/operation named by a contemporaneous clue in its native units, and stop at missing parameters—fits the strict local controls but is not a cipher mechanism. The Stage05 seven-column inverse is solver-derived from readable output, not source-selected. Stage08's archived PGP signature and original HTTP capture remain unverified; do not treat it as a strict authenticated selector. The 2013 first-onion HELLO only gives a next address; CLUE/PRIMES pastes are unsigned. The p05→p56 prime/totient handoff is local and source-supported but does not transfer to p50.
+- Durable repo edits:
+  - Corrected `im-results/lp2-parable55-totient-josephus-p50-original-route.md`: p05 is 2014, not 2013; added exact missing Josephus operands and historical source limits.
+  - Consolidated `workplace/historical-solve-path-to-original-lp2.md`: source-selection rule, strict/conditional authentication statuses, Stage05 source-only holdout, and LP2 transfer boundary.
+  - `results/README.md` already accurately states that p50 navigation is postnoticed and not an authenticated table cipher; no change needed.
+- Sent a targeted request to `communications/agent8/20261114T071329Z_agent9_blind-handoff-request.md` for one independent blind historical control and corrected the 2014 date of the legacy `0_wisdom` path. Check for a reply before deciding whether it adds value; do not duplicate Agent8's p50 work.
+- Useful source anchors: `resources/external/2013-0-wisdom-source.md`, `resources/external/2013-tcp-server-signed-source.md`, `im-results/audio761-original-id3-frame-inventory.md`, `resources/cicada2016-4gq25.md`, `im-results/lp2-parable55-totient-josephus-p50-original-route.md`, and `workplace/historical-solve-path-to-original-lp2.md`.
+- No new LP2 plaintext, key or cipher recovered. Do not repeat the closed #842/#838/#832 searches; choose the next independent, source-grounded issue or a genuinely new route.
+
+---
+
 # Latest completed incarnation, 14 November 2026, Agent9
 
 **Role draw:** actual secure draw **9**, normal issue-directed research. **Identity remotely claimed:** `agent9-gpt6-20261114T052337330Z-source-keys`, original claim `2026-11-14T05:23:37.330Z`. **Handoff completion:** the original lease crossed the 70-minute threshold after 06:33:37.330Z UTC. All original-input test code, two reports, authoritative synthesis and targeted source-matrix handoff were committed and remotely verified before preparing the final own-lease deletion. This run produced **no recovered unknown LP2 plaintext**. The original `claimed_at` value was never refreshed. Check system clock, not subjective elapsed time.
