@@ -48,5 +48,23 @@ async function main() {
   const rev2='http://titanpad.com/ep/pad/view/'+pad+'/lMfDxJwCBo';
   const capture='https://web.archive.org/web/20150123120000id_/'+rev2;
   console.log('DIRECT_ORIGINAL_REV2 '+JSON.stringify(await inspect(capture)));
+  // Existing April 2016 archive contains entire client bootstrap data;
+  // recover only any embedded chat/history metadata without executing HTML.
+  const original2016='https://web.archive.org/web/20160412061055/https://titanpad.com/X29BZhdBBe';
+  try {
+    const response=await fetch(original2016,{signal:AbortSignal.timeout(18000)});
+    const html=await response.text();
+    const keys=['initialChatMessages','chatHead','chatHistory','chatMessage','initialRevisionList','rune','frequen'];
+    const segments=keys.map(key=>({
+      key,at:html.indexOf(key),count:html.split(key).length-1,
+      context:html.indexOf(key)<0?null:html.slice(
+        Math.max(0,html.indexOf(key)-100),html.indexOf(key)+500)
+    }));
+    console.log('ORIGINAL_2016_CHAT_BOOTSTRAP '+JSON.stringify({
+      http:response.status,htmlChars:html.length,
+      sha256:crypto.createHash('sha256').update(html).digest('hex'),
+      segments
+    }));
+  }catch(error){console.log('ORIGINAL_2016_CHAT_BOOTSTRAP '+JSON.stringify({error:String(error)}));}
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});
