@@ -17,3 +17,5 @@ jobs:
           node-version: '22'
       - name: Test original p54 historical heading and native orthography
         run: node sims/lp2_2016_beginning_crib_source_native_sft.cjs
+      - name: Test original manuscript grammar under doubled-plaintext-rune insertion
+        run: node sims/lp2_doubled_plaintext_escape_wordgrammar_sft.cjs
