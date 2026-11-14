@@ -89,6 +89,53 @@ assert.equal(words.length, 20);
 assert.equal(spell(words[16]), 'DIUINITY');
 assert.equal(words[16], 'ᛞᛁᚢᛁᚾᛁᛏᚣ');
 
+// Direct within-word checksum: exactly the highlighted source words
+// TUNNELNG and DIUINITY match grid[GPsum(word) mod 256] = GPsum(interior).
+const parableSum = sumRunes(words[0]);
+const tunnelSum = sumRunes(words[4]);
+const tunnelInterior = sumRunes(Array.from(words[4]).slice(1, -1).join(''));
+const divinityInterior = sumRunes(Array.from(words[16]).slice(1, -1).join(''));
+assert.equal(spell(words[0]), 'PARABLE');
+assert.equal(spell(words[4]), 'TUNNELNG');
+assert.equal(parableSum, 449);
+assert.equal(parableSum % 256, 193);
+assert.equal(bytes[(parableSum % 256) - 1], 0);
+assert.equal(literalTokens[(parableSum % 256) - 1], '00');
+assert.equal(tunnelSum, 339);
+assert.equal(tunnelSum % 256, 83);
+assert.equal(tunnelInterior, 201);
+assert.equal(bytes[(tunnelSum % 256) - 1], tunnelInterior);
+assert.equal(divinityInterior, 184);
+assert.equal(bytes[((sumRunes(words[16]) % 256) || 256) - 1], divinityInterior);
+const withinMatches = words.map((word, index) => {
+  const runeList = Array.from(word);
+  const full = sumRunes(word);
+  const inside = runeList.length < 3 ? 0 :
+    sumRunes(runeList.slice(1, -1).join(''));
+  const addr = full % 256 || 256;
+  return { index, match: inside === bytes[addr - 1] };
+}).filter((x) => x.match).map((x) => x.index);
+assert.deepEqual(withinMatches, [4, 16]);
+
+// All 2,896 original complete unknown printed words retain cross-page carry.
+// This check rules out the checksum as a universal ciphertext-word property.
+const physicalChunks = text.split(/\n%\n/);
+assert.equal(physicalChunks.length, 57);
+const unsolvedJoined = physicalChunks.slice(0, -2).join('')
+  .replace(/\/\n/g, '').replace(/[\n&$%§]/g, '');
+const unsolvedWords = unsolvedJoined.split(/[.-]/)
+  .filter((word) => word.length > 0);
+assert.equal(unsolvedWords.length, 2896);
+assert.equal(unsolvedWords.reduce((acc, word) => acc + Array.from(word).length, 0), 12956);
+const unknownMatchIndices = unsolvedWords.map((word, index) => {
+  const letters = Array.from(word);
+  const full = sumRunes(word);
+  const inside = letters.length < 3 ? 0 :
+    sumRunes(letters.slice(1, -1).join(''));
+  return { index, match: inside === bytes[(full % 256 || 256) - 1] };
+}).filter((x) => x.match).map((x) => x.index);
+assert.deepEqual(unknownMatchIndices, [161, 360, 953, 973, 986, 2013]);
+
 const divinitySum = sumRunes(words[16]);
 const start = divinitySum % 256 || 256;
 assert.equal(divinitySum, 376);
@@ -185,6 +232,10 @@ assert.deepEqual({ checksums, zeroJumps, joint, jointFiveCycles }, {
 });
 
 console.log('LP2 p57 original complete words:', words.length);
+console.log('PARABLE: whole 449 mod256 -> table cell193 literal 00/F;');
+console.log('TUNNELNG: whole 339 mod256 -> cell83 byte201 = interior prime sum201;');
+console.log('DIUINITY: whole 376 mod256 -> cell120 byte184 = interior prime sum184;');
+console.log('P57 interior-sum table fixed points at words', withinMatches, 'among 20; unknown 6/2896:', unknownMatchIndices);
 console.log('Solved p57 DIVINITY GP prime sum:', divinitySum, 'mod 256 ->', start);
 for (const node of route.path) {
   console.log('cell', node.cell, 'token', literalTokens[node.cell - 1],
