@@ -69,6 +69,16 @@ GP29 spelling including ING/IO contractions; GEM is one such sequence.
 The exact-GEM conjunction frequencies are **0.000020**, **0.000610**
 and **0.000190**, whereas accepting *any of 753 dictionary GP three-rune
 words* gives **0.00592**, **0.00185** and **0.00717**, respectively.
+If the source-image start is **not fixed** and we accept *an English-labelled
+three-cycle anywhere among all 256 cells*, the event occurs in
+**17,478/100,000**, **16,031/100,000**, and **18,877/100,000** global,
+row and column shuffles. Even retaining the original property of **exactly
+one** three-cycle, a coincidentally English-labelled unique cycle occurs
+**2,029**, **2,223**, and **1,892** times per 100,000. An English word
+somewhere in the complete graph is therefore common (~16–19%). The unusual
+conjunction depends on independently motivating the specific width→prime
+ordinal→cell103 selection; without that source-selector its probability
+cannot be assessed from the exact-GEM frequencies alone.
 These are *conditional artificial null frequencies*. Existence of an ordinary
 three-cycle is commonplace, and the more generous word criterion directly
 shows how a researcher-selected English label changes the apparent rarity.
