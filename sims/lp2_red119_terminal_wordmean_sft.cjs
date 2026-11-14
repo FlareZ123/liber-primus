@@ -59,6 +59,7 @@ assert.equal(17 * 43, 731);
 assert.equal(7 * 53, 371);
 assert.equal(17 + 43, 60);
 assert.equal(7 + 53, 60);
+assert.equal(17 * 7, 119, "two smaller reversed factors reproduce BOTH red starts");
 
 const adjacent33 = [];
 for (let i = 0; i < words.length - 1; i++) {
@@ -110,6 +111,8 @@ console.log(JSON.stringify({
     redInscriptionPrimeSums: [137, 173],
     reversedDecimalFactors: [[17, 43], [7, 53]],
     complements: [60, 60],
+    commonRedOffset: 119,
+    offsetFromSmallFactors: 17 * 7,
     repeatedWordSums: [129, 159],
     repeatedWordMeanPrimes: [43, 53],
     allAdjacentThreeThreePairs: adjacent33.length,
