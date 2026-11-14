@@ -15,6 +15,7 @@ from io import BytesIO
 import json
 import re
 import urllib.request
+import urllib.error
 from urllib.parse import urljoin
 
 from warcio.archiveiterator import ArchiveIterator
@@ -137,10 +138,67 @@ def inspect(item: str, filename: str, expected: int) -> None:
          html_records=html_count, p56_matches=matched)
 
 
+def probe_http_metadata(item: str) -> None:
+    """Inspect the exact item's public availability without treating it as WARC bytes."""
+    url = f"https://archive.org/metadata/{item}"
+    try:
+        with urllib.request.urlopen(url, timeout=20) as resp:
+            doc = json.loads(resp.read(256 * 1024))
+        names = [entry.get("name") for entry in doc.get("files", [])]
+        emit(event="item_metadata", item=item, available=True,
+             is_dark=doc.get("is_dark"), is_restricted=doc.get("is_restricted"),
+             metadata_access=doc.get("metadata", {}).get("access-restricted-item"),
+             archive_file_names=[name for name in names if name and name.endswith(".warc.gz")],
+             server=doc.get("server"), d1=doc.get("d1"), d2=doc.get("d2"))
+    except (OSError, ValueError, urllib.error.HTTPError) as error:
+        emit(event="item_metadata", item=item, error=f"{type(error).__name__}: {error}")
+
+
+def probe_exact_wayback() -> None:
+    """Two pinned public CDX observations, distinguish replay from original WARC entity."""
+    captures = (
+        ("20170629043935", "http://1711141131131.xyz/"),
+        ("20170616042751", "http://www.1711141131131.xyz:80/092317.html"),
+    )
+    for timestamp, url in captures:
+        replay = f"https://web.archive.org/web/{timestamp}id_/{url}"
+        req = urllib.request.Request(replay, headers={"User-Agent": "LiberPrimusSourceReader/1.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                body = response.read(HTML_CAP + 1)
+                final_url = response.url
+                content_type = response.headers.get("Content-Type")
+                memento = response.headers.get("Memento-Datetime")
+            if len(body) > HTML_CAP:
+                emit(event="wayback_oversize", source=replay)
+                continue
+            text = body.decode("utf-8", errors="replace")
+            parser = LinkParser(url)
+            parser.feed(text)
+            emit(event="wayback_replay", source=replay, final_url=final_url,
+                 content_type=content_type, memento_datetime=memento,
+                 replay_bytes=len(body), sha256=sha256(body).hexdigest(),
+                 sha512=sha512(body).hexdigest(), p56_sha512_match=sha512(body).hexdigest() == TARGET,
+                 links=parser.links[:40],
+                 contains_pgp="BEGIN PGP" in text,
+                 contains_cicada=bool(re.search("cicada", text, re.I)),
+                 text_excerpt=" ".join(text[:800].split()),
+                 source_boundary="Wayback replay, not original raw WARC bytes")
+        except (OSError, urllib.error.HTTPError) as error:
+            emit(event="wayback_replay_unavailable", source=replay,
+                 error=f"{type(error).__name__}: {error}")
+
+
 def main() -> None:
     emit(event="start", target_sha512_appearance=TARGET, archive_count=len(ARCHIVES))
     for archive in ARCHIVES:
-        inspect(*archive)
+        try:
+            inspect(*archive)
+        except (OSError, urllib.error.HTTPError, ValueError) as error:
+            emit(event="archive_unavailable", item=archive[0], filename=archive[1],
+                 error=f"{type(error).__name__}: {error}")
+            probe_http_metadata(archive[0])
+    probe_exact_wayback()
 
 
 if __name__ == "__main__":
