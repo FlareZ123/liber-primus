@@ -33,18 +33,20 @@ The 2013 Cicada **bootable ISO** prime-printing script yields **all 464 primes t
 
 ## Minimal source-selection rule and Stage05 holdout (Director #832)
 
-A conservative rule derived from the source-authenticated controls is:
+A conservative rule derived from the strict source-authenticated controls is:
 
 > **Transfer only the exact operand or operation named by a contemporaneous authenticated clue, in the clue's native order and units. Use the established alphabet or standard representation. Do not carry a previous cipher family or invent missing parameters by analogy. Require a complete, independently recognizable result (a valid signed output, next address, or full plaintext with exact forward replay). If the source does not select a unique operand/operation, stop.**
 
-This is a solver-selection discipline, not a universal Cicada cipher or a reusable key schedule. The fixed control roster is:
+This is a solver-selection discipline, not a universal Cicada cipher or a reusable key schedule. The fixed examples (with authentication status preserved) are:
 
 | Control | Source-visible selector | Native operand and operation | What the control establishes |
 |---|---|---|---|
 | **2012 second-chance book code** | The PGP-valid `162667212858` payload names the 29-volume reference, the Mabinogion clue, and literal `line:character` coordinates; it asks for a first name. | The source-selected book text, literal line and character positions, with prime expressions stated in the message. | A genuine book-code handoff: the clue fixes the source and coordinate units instead of asking the solver to search arbitrary books or offsets. |
 | **2013 signed TCP protocol** | The PGP-valid `tcp-server.asc` names `BASE29` and the operand `3301`. | Convert decimal 3301 to the specified base-29 representation. | Exact deterministic control `BASE29 3301 → 3QO`. The same signed specification contains no `NUMBER`, `PRIMES` or `COUNT` command. The signed first-onion `HELLO` only gives the next onion; the separate `CLUE`/`PRIMES` pastes are unsigned participant artifacts and cannot select an LP2 operation. |
-| **2014 Stage04 small-image handoff** | The recovered original PGP-signed `03-outguess.asc` says "Let the text guide you" and contains an 18-rune image. | The original LP1 text phrase `WELCOME PILGRIM TO THE`, tokenized in GP29 order (TH is one rune), supplies the Vigenère key. | The source-faithful reproducer yields `avowyfgl5lkzfj3n.onion`. The older key parser's TH handling must be corrected to the native GP29 tokenization; the output address and original source object provide the full-stage check. |
+| **2014 Stage04 source-present handoff (conditional)** | The recovered original-carrier `03-outguess.asc` has a PGP signature block, says "Let the text guide you" and contains an 18-rune image. | The original LP1 text phrase `WELCOME PILGRIM TO THE`, tokenized in GP29 order (TH is one rune), supplies the Vigenère key. | The source-faithful reproducer yields `avowyfgl5lkzfj3n.onion`. The older key parser's TH handling must be corrected to the native GP29 tokenization; the output address and original source object provide the full-stage check. The existing packet gate checks signature syntax/structure but does **not** establish GnuPG `Good signature/VALIDSIG`; this is not counted as a cryptographically authenticated message. |
 | **2014 LP1 p05 → LP2 p56** | Original p05 `SOME WISDOM` says the primes and totient function are sacred. This is **2014 LP1 p05**, not a 2013 page; `resources/external/2013-0-wisdom-source.md` is legacy naming. | Ordered prime sequence; apply `φ(p_n) mod 29` in the established GP alphabet to p56. | The known p56 `AN END` plaintext recovers all 85 runes and exact forward re-encryption. The operation family is source-selected; the first-prime start, subtraction direction and literal-F mask are resolved by whole-page success, not each separately named by p05. |
+
+**Authentication boundary:** the strict PGP-valid message controls are the 2012 second-chance payload and 2013 TCP-server specification. The p05/p56 handoff is based on original manuscript artifacts. The Stage04 source-present example and Stage08 archived index are conditional because their signature blocks are preserved but the local audits do not establish cryptographic signature validity; Stage08 also lacks an original HTTP capture.
 
 **Excluded from the authenticated roster:** the archived Stage08 index has a PGP signature block and GEB book-code tokens, but its local audit did not cryptographically re-verify the signature; the Stage08 archive is not a raw 2014 HTTP capture. It remains a conditional source lead, not evidence for a general handoff rule.
 
