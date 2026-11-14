@@ -116,14 +116,18 @@ def main() -> None:
 
     corpus = json.loads(corpus_path.read_text(encoding="utf-8"))
     assert [corpus["pages"][k]["runic_count"] for k in range(3)] == [262, 266, 201]
-    cipher = [r for page in corpus["pages"][:3] for r in page["indices"]]
+    chapter_pages = [page["indices"] for page in corpus["pages"][:3]]
+    cipher = [r for page in chapter_pages for r in page]
     assert len(cipher) == 729
+    pagewise_rotated = [r for page in chapter_pages for r in reversed(page)]
     primes = first_primes(730)
     trials = [
         ("original-order", cipher, 40,
          "16701bee70c4b19d90abf1d05127911a06105c711f6cd4623ca8cc1c2063ea0b"),
         ("180-reversed-order", cipher[::-1], 21,
          "0a498603cc1fff37bd8eb44cff86fd940f4824f547c7e25ef28de715777b6bd8"),
+        ("each-page-180-rotated", pagewise_rotated, 28,
+         "0a7210df7f7e7df1848426596b27dbcdd350ed6a0c922fa689bd18945fde8ed9"),
     ]
     for label, sequence, expected_doublets, expected_hex in trials:
         derived = derive(sequence, primes)
