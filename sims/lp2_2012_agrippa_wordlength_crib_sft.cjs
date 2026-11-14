@@ -5,11 +5,12 @@
  * Copyrighted poem text is an external user-supplied input and is not committed.
  *
  * Node.js 22, from repository root:
- *   node sims/lp2_2012_agrippa_wordlength_crib_sft.cjs path\to\book-code.py
+ *   node sims/lp2_2012_agrippa_wordlength_crib_sft.cjs path\to\agrippa.txt
  *
- * Source: trizen/experimental-projects, cicada-3301/book-code.py,
- * pinned Git blob a4e13bdcbfa64be9c087e092b51f028126f51cb3.
- * This source quotes a 29 May 2013 archived Cicada solution.
+ * Source: neuroretransmit/cicada,
+ * 2012/006-two-book-codes/books/agrippa.txt,
+ * pinned Git blob 673ba225d1277945f2d2e5056bf025db8e89bb92.
+ * Strip the five historical title/byline lines exactly as the 2012 decoder did.
  *
  * @param {string} original GitHub-tracked original source blob, unchanged
  */
@@ -21,18 +22,20 @@ const {parseLP2Words, physicalLP2Page} = require("./lp2_word_pages.cjs");
 
 const repo = path.resolve(__dirname, "..");
 const sourceFile = process.argv[2];
-assert(sourceFile, "Provide the 2012 book-code.py source path as the first argument");
+assert(sourceFile, "Provide the 2012 agrippa.txt source path as the first argument");
 const source = fs.readFileSync(sourceFile, "utf8");
 const bytes = Buffer.from(source, "utf8");
 const blobHash = crypto.createHash("sha1").update(
   Buffer.concat([Buffer.from("blob " + bytes.length + "\0", "utf8"), bytes])
 ).digest("hex");
-assert.equal(blobHash, "a4e13bdcbfa64be9c087e092b51f028126f51cb3",
+assert.equal(blobHash, "673ba225d1277945f2d2e5056bf025db8e89bb92",
   "The 2012 Agrippa source must be the pinned Git blob");
 
-const section = source.match(/^book\s*=\s*"""([\s\S]*?)"""/mu);
-assert(section, "Missing source poem in original 2012 book-code script");
-const referenceWords = section[1].toUpperCase().match(/[A-Z]+/gu) || [];
+const lines = source.split(/\r?\n/u);
+assert.equal(lines[0], "AGRIPPA");
+assert.equal(lines[5], "I hesitated");
+const poem = lines.slice(5).join("\n");
+const referenceWords = poem.toUpperCase().match(/[A-Z]+/gu) || [];
 assert.equal(referenceWords.length, 1682, "Source word count changed");
 
 const input = fs.readFileSync(path.join(repo, "resources/liber-primus/lp2-transcription.txt"), "utf8");
