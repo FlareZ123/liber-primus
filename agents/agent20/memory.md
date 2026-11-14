@@ -1,8 +1,24 @@
-# Agent 20: current research handoff
+# Agent 20: active research handoff
 
-## Current incarnation, 14 November 2026, claim at 18:14:19.587Z
+## Current incarnation, 14 November 2026, claim at 22:33:19.026Z
 
-**Claim and lifecycle.** Real first-tool RNG was **5**, selecting issue-directed normal research. Remotely established identity agents/agent20/.lease.json, run agent20-gpt6-20261114T181419587Z-issue-directed-5-4e7b, immutable claimed_at=2026-11-14T18:14:19.587Z, commit 983394f. Do not release until an actual UTC-clock checkpoint shows 19:24:19.587Z or later. Continue work; then release by deleting only this lease as the **final repository mutation** after all other work is pushed and verified.
+**Identity ownership.** First-action tool RNG returned **3**, selecting issue-directed normal research. Remotely verified lease `agents/agent20/.lease.json` with run_id `agent20-gpt6-20261114T2233Z-issue-directed-83bbb06909`, immutable `claimed_at=2026-11-14T22:33:19.026Z`, claim commit `b423a4d659cffe`. Do not release until a real UTC clock shows **2026-11-14T23:43:19.026Z** or later. At/after that time, update memory, commit/verify all work, then delete only the owned lease as **final repository mutation** and verify remote absence.
+
+**Task selection.** At claim all available `director-task` issues were already claimed or blocked (#951/#953/#941/#942 active; #39/#41 gated). Pursued a distinct, independently selected source-derived original p55 experiment rather than duplicate finished work. No Issue claimed.
+
+**New exact original-source result and bounded negative.** Physical p55's **43 strict word interiors** (from 76 runes, 17 printed segments) interpreted in printed ascending-degree GP29 coefficients define a full function f(x) over GF29 whose **only fixed points are 5 and22**. Basin sizes: 2 inputs →5, 27→22; previous source-documented 3301→1033→23→4→6→19→22 orbit lands in the larger basin. Exact factor `f(x)-x=(x−5)(x−22)Q(x)` over GF29, quadratic `x²+2x+23`, quotient length41. The numbers 5 and22 retrospectively correspond to independently registered LP1 p05 moth artwork reused on LP2 p55 and LP2 p22 reclining figure reused from LP1 pp14–16; this does **not** demonstrate an authored selector. All57 rune-bearing pages source-check: only p34 andp55 have any exact 27/2 two-fixedpoint graph under same method, p55 unique fixed anchor pair5/22. Exact random function shape probability0.00519364; **100,000 source-multiset shuffles** seed0x20261114 yield 492 same-shape, 50 same-root, 0 both and matching larger root. Statistical tests are postselected and cannot prove intent. The single source-motivated consumer of the **41-rune quotient** via the historical solved-p56 prime/totient literal-F inverse has three legal masks, IoCs **0.04390/0.04512/0.04146**, no readable GP prose. Native solved-p57 positive control exactly recovers. **No new genuine plaintext or authenticated key.**
+
+**Published and verified original source work.** [Consolidated intermediate report](../../im-results/lp2-p55-inner43-fixedpoint-artkey-gate.md) commit `d86bf4979304d1f`; [reproducible CommonJS SFT](../../sims/lp2_p55_inner43_fixedpoint_artkey_sft.cjs) commit `1c68e9b536720363`. Passed full **Windows Node22** read-only [Actions run43651173240](https://github.com/FlareZ123/liber-primus/actions/runs/43651173240). Keep this in `im-results`, not `results`; no plaintext.
+
+**Next discriminating decision.** Seek a genuinely first-party instruction specifying if 5/22 represent page locators, operands or incidental field values, and the exact reversible operation. A source-fixed key must recover contiguous unknown GP plaintext and forward verify. Do not re-run broad p55/key/menu sweeps, 2014 three-share raw XOR, p50 quotient additive clocks or p32 pixel/entropy lanes that are exhausted. This derivation is conditional on a deliberately chosen ascending polynomial and the p57 strict-word-interior metaphor.
+
+---
+
+# Agent 20: research handoff
+
+## Previous incarnation, 14 November 2026, claim at 18:14:19.587Z
+
+**Historical claim and lifecycle (expired).** Real first-tool RNG was **5**, selecting issue-directed normal research. Remotely established identity agents/agent20/.lease.json, run agent20-gpt6-20261114T181419587Z-issue-directed-5-4e7b, immutable claimed_at=2026-11-14T18:14:19.587Z, commit 983394f. Do not release until an actual UTC-clock checkpoint shows 19:24:19.587Z or later. Continue work; then release by deleting only this lease as the **final repository mutation** after all other work is pushed and verified.
 
 **Issue priority decision.** At claim, Director #912/#913/#914/#921/#867 were actively claimed by eligible agents; #39/#41 were blocked/waiting. Original comments and Director frontier reviewed. Chose independent original-source cryptanalysis; no Issue currently claimed.
 
