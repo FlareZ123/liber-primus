@@ -33,7 +33,7 @@ async function main(){
  const target=all.filter(x=>x.timestamp>=START&&x.timestamp<END)
    .sort((a,b)=>a.timestamp.localeCompare(b.timestamp)||a.name.localeCompare(b.name));
  const candidates=target.filter(x=>/\.(?:bin|exe|py|pl|sh|bat|js|jar|zip|rar|7z|asc|gpg|pgp|txt|pdf|html?|json|dat|c|h|cpp)$/i.test(x.name)
- ||/(\b|_)(?:bin|script|key|binary|base64|fibonacci|prime|rune|decode|solver|page.?15)(\b|_)/i.test(x.name));
+ ||/(?:bin|script|key|binary|base64|fibonacci|rune|decode|solver|page.?15|punch|puch)/i.test(x.name));
  const jan=target.filter(x=>x.timestamp>='2015-01-01T00:00:00Z'&&x.timestamp<'2015-02-15T00:00:00Z');
  const compressed=target.map(x=>({name:x.name,date:x.timestamp,bytes:x.size,sha1:x.sha1,
    user:x.user,comment:x.comment?.slice(0,150)}));
@@ -46,6 +46,7 @@ async function main(){
    url:x.url,user:x.user,comment:x.comment?.slice(0,300)
   })),
   complete_jan1_to_feb15:jan.map(x=>({name:x.name,date:x.timestamp,bytes:x.size,sha1:x.sha1})),
+  narrow_jan28_to_feb1:target.filter(x=>x.timestamp>='2015-01-28'&&x.timestamp<'2015-02-02').map(x=>({name:x.name,date:x.timestamp,user:x.user,comment:x.comment,url:x.url})),
   all_window_manifest_digest:hash(JSON.stringify(compressed)),
   month_counts:Object.fromEntries(['2014-11','2014-12','2015-01','2015-02'].map(m=>[m,target.filter(x=>x.timestamp.startsWith(m)).length]))
  }));
