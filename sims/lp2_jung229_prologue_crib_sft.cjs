@@ -136,12 +136,68 @@ function pageBagCheck(lengths, register) {
 }
 
 const words = source.match(/[A-Za-z]+/g) || [];
+/**
+ * Finite historical *running-key* rather than quoted-plaintext alternative.
+ * Jung's p229 source supplies a book-length key under the creator's actual
+ * mod29 GP Vigenere operation. The two fixed source starts are the first
+ * extracted token and the visible title, with no secret offset search.
+ * @param {string[]} w extracted source words
+ * @returns {object}
+ */
+function bookKeyCheck(w) {
+  const ct = pages.slice(0,55).join("").match(/\p{Script=Runic}/gu)
+    .map(x=>corpus.runes.indexOf(x));
+  assert.equal(ct.length,12956);
+  const title = ["THE","WAY","OF","WHAT","IS","TO","COME"];
+  const firstTitle = w.findIndex((v,i)=>title.every((x,j)=>(w[i+j]||"").toUpperCase()===x));
+  const tokenize = str => {
+    const s=str.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U")
+      .replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/[^A-Z]/g,"");
+    const result=[];
+    for(let i=0;i<s.length;){
+      if(s.startsWith("ING",i)){result.push(corpus.translit.indexOf("I"),corpus.translit.indexOf("NG"));i+=3;}
+      else if(s.startsWith("IO",i)){result.push(corpus.translit.indexOf("IA"));i+=2;}
+      else {
+        const x=tokens.find(x=>s.startsWith(x,i));
+        assert(x,"invalid source GP token at "+s.slice(i,i+10));
+        result.push(corpus.translit.indexOf(x));i+=x.length;
+      }
+    }
+    return result;
+  };
+  const candidateStarts=[{name:"PDF-first-token",wordStart:0}];
+  if(firstTitle>=0)candidateStarts.push({name:"visible-prologue-title",wordStart:firstTitle});
+  const result=[];
+  const ioc=a=>{
+    const freq=Array(29).fill(0);
+    for(const v of a)freq[v]++;
+    return freq.reduce((x,n)=>x+n*(n-1),0)/(a.length*(a.length-1));
+  };
+  const solvedPlain=pages[56].match(/\p{Script=Runic}/gu).map(x=>corpus.runes.indexOf(x));
+  for(const origin of candidateStarts){
+    const key=tokenize(w.slice(origin.wordStart).join(" "));
+    if(key.length<ct.length){result.push({start:origin.name,keyLen:key.length,reason:"source too short"});continue;}
+    for(const sign of [-1,1]){
+      const plain=ct.map((v,i)=>(v+sign*key[i]+29)%29);
+      const original=ct.slice(0,120).map(x=>corpus.translit[x]).join("");
+      const decoded=plain.slice(0,120).map(x=>corpus.translit[x]).join("");
+      const plant=solvedPlain.map((v,i)=>(v-sign*key[i]+29)%29);
+      assert.deepEqual(plant.map((v,i)=>(v+sign*key[i]+29)%29),solvedPlain);
+      result.push({start:origin.name,wordStart:origin.wordStart,sign,keyLen:key.length,
+        originalIoC:ioc(ct),decodedIoC:ioc(plain),originalPrefix:original,
+        decodedPrefix:decoded,solvedPlantRecovered:solvedPlain.length});
+    }
+  }
+  return result;
+}
+
 assert(words.length > 400, "Extracted PDF missing expected 2009 prologue text");
 const results = [
   scan(words,words.map(gpLength),"GP29 source-calibrated"),
   scan(words,words.map(w=>w.length),"Latin26")
 ];
 const maximum = Math.max(...results.map(r=>r.best));
+const runningKey = bookKeyCheck(words);
 const wordBag = [
   pageBagCheck(words.map(gpLength), "GP29 source-calibrated"),
   pageBagCheck(words.map(w=>w.length), "Latin26")
@@ -155,5 +211,6 @@ console.log(JSON.stringify({
   sourceWords:words.length,
   results,
   permutationInvariantWholePage:wordBag,
+  jung229RunningKey:runningKey,
   decision:maximum>=12 ? "Follow this candidate with withheld word-lengths and independently recovered key" : "No intact >=12-word direct source crib in this extracted text and fixed spelling"
 },null,2));
