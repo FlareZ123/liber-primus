@@ -17,6 +17,11 @@ PREFIXES = (
     "to,onion,",
     "link,onion,",
     "org,tor2web,",
+    # Three additional gateways documented by a contemporaneous 20 Aug 2014 answer:
+    # https://tor.stackexchange.com/a/3899
+    "fi,tor2web,",
+    "de,blutmagie,tor2web,",
+    "sh,onion,",
 )
 
 def get(url, maximum=400_000_000, byte_range=None):
