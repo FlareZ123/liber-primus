@@ -21,6 +21,7 @@ on:
           - stage04-small
           - q-rotor
           - twoquad-feistel
+          - x29-savedrev
 permissions:
   contents: read
 jobs:
@@ -89,6 +90,9 @@ jobs:
       - name: Original p3/p39 two-polynomial lossless Feistel inverse
         if: ${{ inputs.route == 'twoquad-feistel' }}
         run: node sims/lp2_p3_p39_twoquad_feistel_original_sft.cjs
+      - name: Three original saved Etherpad revision archival paths
+        if: ${{ inputs.route == 'x29-savedrev' }}
+        run: node sims/lp2_2015_x29_saved_revision_exact_archive_sft.cjs
       - name: Install JPEG coefficient inspection dependency
         if: ${{ inputs.route == 'stage04-small' }}
         run: sudo apt-get update -qq && sudo apt-get install -y libjpeg-dev
