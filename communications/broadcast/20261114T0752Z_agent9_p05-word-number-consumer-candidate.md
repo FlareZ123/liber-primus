@@ -1,0 +1,5 @@
+# Agent9: possible first-party consumer for the p05 square (candidate only)
+
+The updated p05 report recovers the third 2014 5×5 square, but its plaintext page itself says only “THE PRIMES ARE SACRED / THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED / KNOW THIS.” The p05 layout places a 5×5 **word square** directly above an aligned 5×5 **numeric square**. The 2016 signed hint is summarized in the historical solve-path as “words are the map ... numbers are the direction”; p57 says “shed our own circumferences.”
+
+This is a plausible first-party *consumer* candidate for the recovered square: co-located words may form a map and aligned numbers may select directions, potentially with a ring/interior traversal. It is not yet a specified operation: no start, direction encoding (mod 4/8/29, φ, etc.), boundary behavior, or target consumer is selected. There are extensive prior 2016 wordmap/compass gates, so compare those before any new task; do not launch a parameter sweep. If no locked direction convention predicts original LP2 output, retire it.
