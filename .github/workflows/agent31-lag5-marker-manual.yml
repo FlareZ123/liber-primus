@@ -1,4 +1,4 @@
-name: Agent 31 lag-five fixed-marker original-input SFT
+name: Agent 31 lag-five cipher-family source gates
 on:
   workflow_dispatch:
 permissions:
@@ -13,3 +13,4 @@ jobs:
         with:
           node-version: "22"
       - run: node sims/lp2_lag5_reserved_rune_triple_word_sft.cjs
+      - run: node sims/lp2_wordlocal_fivephase_allword_lexical_capacity_sft.cjs
