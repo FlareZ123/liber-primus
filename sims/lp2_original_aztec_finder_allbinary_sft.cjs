@@ -61,6 +61,47 @@ function binaryMapOptimum(events){
 const opening=corpus.pages.slice(0,3).flatMap(p=>p.indices);
 assert.equal(opening.length,729);
 const openingEvents=finderConstraints(opening,27);
+
+/**
+ * Micro QR M1/M3 has one 7x7 concentric dark/white/dark finder
+ * at a symbol corner. Try all four corners to grant all rotations
+ * and reflections. The dark center is 3x3 (radius<=1).
+ * @param {number[]} cells
+ * @param {11|15} width
+ * @param {number} top
+ * @param {number} left
+ * @returns {FinderEvent[]}
+ */
+function microQrFinder(cells,width,top,left){
+  assert.equal(cells.length,width*width);
+  /** @type {FinderEvent[]} */
+  const events=[];
+  for(let row=0;row<7;row++)for(let column=0;column<7;column++){
+    const radius=Math.max(Math.abs(row-3),Math.abs(column-3));
+    events.push({
+      symbol:cells[(top+row)*width+left+column],
+      bit:/** @type {0|1} */ (radius===3||radius<=1?1:0),
+      row:top+row,column:left+column
+    });
+  }
+  assert.equal(events.length,49);
+  return events;
+}
+
+/**
+ * @param {number[]} source
+ * @param {11|15} size
+ */
+function microQrCornerOptima(source,size){
+  const out=[];
+  for(const row of [0,size-7])for(const column of [0,size-7]){
+    const metrics=binaryMapOptimum(microQrFinder(source,size,row,column));
+    out.push({row,column,minimumErrors:metrics.unavoidableMismatches,
+      conflicted:metrics.contradictedSymbols});
+  }
+  return out;
+}
+
 const p32=corpus.pages.find(p=>p.page===32).indices;
 assert.equal(p32.length,121);
 const originalRed=ink.pages.flatMap(p=>(p.red_spans||[])
@@ -75,6 +116,10 @@ const result={
   red:binaryMapOptimum(redEvents),
   joint:binaryMapOptimum([...openingEvents,...p32Events,...redEvents])
 };
+const microQrP32=microQrCornerOptima(p32,11);
+const microQrRed=microQrCornerOptima(originalRed,15);
+assert.deepEqual(microQrP32.map(x=>x.minimumErrors),[9,9,7,12]);
+assert.deepEqual(microQrRed.map(x=>x.minimumErrors),[8,8,11,7]);
 assert.deepEqual(
  [result.opening.contradictedSymbols,result.opening.unavoidableMismatches],
  [20,24]);
@@ -102,6 +147,7 @@ console.log(JSON.stringify({
  assumedMapping:'one arbitrary stationary GP-rune-to-bit assignment',
  positivePlantExact:true,
  findings:result,
+ microQrFinderOverAllFourCorners:{p32:microQrP32,red225:microQrRed},
  newPlaintext:false,
  authenticatedBinaryCodec:false
 },null,2));

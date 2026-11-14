@@ -1,4 +1,4 @@
-# Three original rune-square counts versus the fixed Aztec finder: all-binary-codebook negative
+# Three rune-square counts versus historic Aztec and Micro QR finders: all-binary-codebook negative
 
 **Decision, 14 November 2026.** A 2008-era Aztec Code family provides a newly considered, human-recognizable interpretation of three independently present GP29 counts. The original physical p0–2 chapter has **262+266+201=729 runes =27×27**, physical p32 has **121 runes =11×11**, and the bookwide original red spans have **225 runes =15×15**. These match the total dimensions of the **largest compact Aztec Code (27×27, four layers)**, **Aztec Rune (11×11, one-byte special symbol)** and **smallest compact Aztec Code (15×15, one layer)** respectively. The name *rune* could motivate a human to inspect this barcode family. The source-based p32 11×11 row-major reading was already suggested by the 2016 563×569 prime-sum coincidence, and the p0–2 27×27 reflow has prior community precedent. However, **none of these source artifacts actually prints a binary-color mapping**, and concatenating all 225 red rune events into a matrix is a retrospective choice, not an authorial instruction. The dimension matches cannot themselves authenticate a hidden Aztec barcode.
 
@@ -15,6 +15,18 @@ Grant every GP rune an entirely **unknown fixed binary value**: all 2^29 possibl
 
 Each image is individually impossible as an exact **direct Aztec finder** under **any fixed rune→binary codebook**, including parity and threshold maps, secret 29-bit assignments, or changing the overall black/light polarity. More importantly, permitting **different** 29-bit maps independently for each image cannot repair any of the three individual contradictions. The joint minimum of 86 has no independent relationship to the manuscript's unrelated count of 86 adjacent doublets; equating these numerals would be a post-selected coincidence.
 
-The [standalone source-input CJS SFT](../sims/lp2_original_aztec_finder_allbinary_sft.cjs) uses only the canonical 12,956-rune GP corpus and original 225 red-span annotations. It asserts all three source lengths, 81 fixed finder constraints per matrix and exact all-secret error minima. A planted 11×11 binary finder painted with two GP symbols produces **zero contradictions** as a positive implementation control.
+The [standalone source-input CJS SFT](../sims/lp2_original_aztec_finder_allbinary_sft.cjs) uses only the canonical 12,956-rune GP corpus and original 225 red-span annotations. It asserts all three source lengths, 81 fixed Aztec finder constraints per matrix, four Micro QR finder corners for both eligible sizes and exact all-secret error minima. A planted 11×11 binary finder painted with two GP symbols produces **zero contradictions** as a positive implementation control.
 
-**Scope:** Retire only the *exact direct Aztec barcode* reading of these row-major rune matrices under a fixed GP29→bit mapping. This does not test unknown spatial permutations, page-dependent or position-dependent bitmap ciphers, use of Aztec error correction as an unrelated cryptographic operation, or original plaintext encoded as ordinary data instead of barcode pixels. Those alternatives lack any manuscript instruction selecting their operators. **No original unknown-page plaintext, historical key, or continuation destination has been recovered.**
+
+## Independent pre-2014 Micro QR candidate: 11×11 M1 and 15×15 M3
+
+The same p32 11×11 and red-tape 15×15 counts also match **Micro QR M1/M3**, a barcode family standardized in 2004/2006 and documented by [the original QR Code manufacturer DENSO WAVE](https://www.qrcode.com/en/codes/microqr.html) and the [2006 ISO/IEC 18004 standard](https://www.iteh.eu/catalog/standards/iso/d059f11e-6d68-42de-817a-477cc7117736/iso-iec-18004-2006). Unlike Aztec, Micro QR has **one** fixed 7×7 corner finder, consisting of a dark seven-module perimeter, light 5×5 inner ring and dark 3×3 center. The same all-2^29-assignments certificate can test this necessary condition, allowing **all four possible corners** to account for rotations and reflections:
+
+| Candidate | Finder location top left | Top right | Bottom left | Bottom right |
+| --- | ---: | ---: | ---: | ---: |
+| p32 11×11 Micro M1, minimum fixed-module mismatches | 9 | 9 | 7 | 12 |
+| Red225 15×15 Micro M3, minimum fixed-module mismatches | 8 | 8 | 11 | 7 |
+
+Every candidate orientation has unavoidable finder contradictions, before checking timing stripes, format parity, masking or payload. This also retires the **direct fixed per-rune bitmap** interpretation as Micro QR under both originally available dimensions. As with the Aztec test, nothing here excludes position-dependent steganographic transforms absent an original instruction selecting them.
+
+**Scope:** Retire the *exact direct Aztec and Micro QR bitmap* readings of these row-major rune matrices under a fixed GP29→bit mapping. This does not test unknown spatial permutations, page-dependent or position-dependent bitmap ciphers, use of Aztec error correction as an unrelated cryptographic operation, or original plaintext encoded as ordinary data instead of barcode pixels. Those alternatives lack any manuscript instruction selecting their operators. **No original unknown-page plaintext, historical key, or continuation destination has been recovered.**
