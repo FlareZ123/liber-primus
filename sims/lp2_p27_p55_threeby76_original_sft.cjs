@@ -133,6 +133,28 @@ assert.deepEqual(records.map(row => row.negatedMatches),
 assert(Math.max(...records.flatMap(row => row.keys.map(x => x.ioc)))
   < 0.043, "original GP direct three-share consumers remain flat");
 
+// An independently period-authentic rival: 2014 Cicada actually XORed
+// three byte shares (not modulo29). Literal bitwise XOR of THREE GP29
+// ordinal-valued lanes is reversible over the 5-bit register 0..31,
+// but GP29 ciphertext/plaintext can only represent 0..28. Check both
+// original direct-share identity and whole-p55 one-time XOR inverse.
+const xorRecords = layouts.map(layout => {
+  const [a, b, c] = layout.shares;
+  const key = c55.map((_, i) => a[i] ^ b[i] ^ c[i]);
+  const decoded = c55.map((v, i) => v ^ key[i]);
+  assert.deepEqual(decoded.map((v, i) => v ^ key[i]), c55);
+  return {
+    layout: layout.name,
+    originalMatches: key.filter((v, i) => v === c55[i]).length,
+    keyOutsideGP29: key.flatMap((v, i) => v >= 29 ? [i] : []),
+    plaintextOutsideGP29: decoded.flatMap((v, i) => v >= 29 ? [i] : [])
+  };
+});
+assert.deepEqual(xorRecords.map(x => x.originalMatches), [0, 3, 2, 4]);
+assert.deepEqual(xorRecords.map(x => x.keyOutsideGP29.length), [4, 3, 9, 3]);
+assert.deepEqual(xorRecords.map(x => x.plaintextOutsideGP29.length),
+  [10, 6, 6, 8]);
+
 // Independent, genuine solved-LP2 page57 source-native rune plaintext
 // under an intentionally planted unknown 76-rune Shamir GP29 key.
 // This checks the full source-length circuit and exact inverse.
@@ -154,6 +176,30 @@ assert.deepEqual(recovered, solved);
 assert.deepEqual(recovered.map((p, i) => mod(p + recoveredKey[i])),
   plantedCipher);
 
+// Construct a true full-length 2014-style three-share XOR cipher using
+// only GP29-valued shares and 29-valued ciphertext. Its source-native
+// solved-p57 input is NEVER used for any original ciphertext key fit.
+const xorShares = [[], [], []];
+const xorCipher = [];
+for (let i = 0; i < solved.length; i++) {
+  const cipher = mod(solved[i] + 1);
+  const requiredKey = solved[i] ^ cipher;
+  const first = (i * 7 + 5) % 29;
+  const second = Array.from({length: 29}, (_, j) => j).find(
+    j => (requiredKey ^ first ^ j) < 29);
+  assert.notEqual(second, undefined);
+  const third = requiredKey ^ first ^ second;
+  assert(third >= 0 && third < 29);
+  xorShares[0].push(first);
+  xorShares[1].push(second);
+  xorShares[2].push(third);
+  xorCipher.push(cipher);
+}
+assert.deepEqual(xorCipher.map((v, i) =>
+  v ^ xorShares[0][i] ^ xorShares[1][i] ^ xorShares[2][i]), solved);
+assert.deepEqual(solved.map((v, i) =>
+  v ^ xorShares[0][i] ^ xorShares[1][i] ^ xorShares[2][i]), xorCipher);
+
 console.log(JSON.stringify({
   status: "source-selected three-by-76 direct GF29 key gate; no original plaintext",
   originalPage27Runes: c27.length,
@@ -163,5 +209,8 @@ console.log(JSON.stringify({
   strippedPage27Runes: stripped.length,
   sourceNativeShamirPlant: {length: solved.length,
     inverseExact: true, forwardExact: true, plainIoC: ioc(solved)},
+  sourceNativeXorPlant: {length: solved.length,
+    inverseExact: true, forwardExact: true},
+  sourceOriginalXor: xorRecords,
   records
 }, null, 2));
