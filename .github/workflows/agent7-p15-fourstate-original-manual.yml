@@ -19,3 +19,7 @@ jobs:
         run: node --check sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs
       - name: Run all-secret GF29 singleton decoder on exact LP2 original
         run: node sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs
+      - name: Confirm independent p40 original source body test syntax
+        run: node --check sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs
+      - name: Run full-secret source-p39 selected p40 floral original inverse
+        run: node sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs
