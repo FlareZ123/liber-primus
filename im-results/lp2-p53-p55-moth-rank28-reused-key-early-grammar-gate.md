@@ -46,10 +46,10 @@ The original paired ciphertext becomes incompatible with *any* corresponding pai
 
 ### Six-rune local certificate, independent of the longer word stream
 
-The first obstruction can be isolated to just two visibly printed words. Original p53's **third word** is seven runes long and occupies local positions **8–14**. Original p55's **fourth complete body word** is six runes long and occupies body positions **8–13**. Their first six positions coincide under the frozen page-start alignment; neither original ciphertext has a repeated rune within these six predecessor transitions. The exact, source-only vector of the six differences `(ΔC53−ΔC55) mod28` is:
+The first obstruction can be isolated to just two visibly printed words. Original p53's **third word** is seven runes long and occupies local positions **8–14**. Original p55's **fourth complete body word** is six runes long and occupies body positions **8–13**. Their first six positions coincide under the frozen page-start alignment; neither original ciphertext has a repeated rune within these six predecessor transitions. The exact, source-only vector is computed by first reducing **each** cyclic ciphertext difference modulo 29, then subtracting the two resulting differences modulo 28. This ordering matters: applying modulo 28 directly to raw rune-index differences would incorrectly replace the first coordinate **4** by **5**. The six resulting values are:
 
 ```
-[5, 27, 25, 19, 15, 24]
+[4, 27, 25, 19, 15, 24]
 ```
 
 The pinned TextBlob lexicon supplies **4,776 distinct native-GP seven-rune words** and **4,657 distinct native-GP six-rune words**. Hash-index every complete six-rune dictionary word by its compressed GP28 rank sequence; for each possible seven-rune word ask if its first six rune ranks differ by precisely the six original values. Repeat for every R, discarding candidate words containing that R at positions where both original ciphertext deltas are nonzero. **Result: zero matched dictionary-word pairs for all 29 reserved runes.** This gives a small, independently intelligible cryptanalytic incompatibility, without needing the remainder of the 75-rune dynamic program.
