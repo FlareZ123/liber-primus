@@ -1,0 +1,24 @@
+name: Agent5 original 2014 Python34 numeric bytecode gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-pyc-unmarshal:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install cross-version bytecode reader
+        shell: pwsh
+        run: |
+          & python -m pip install --disable-pip-version-check xdis==6.3.0
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Verify original-byte numeric constants without executing original code
+        shell: pwsh
+        run: |
+          & python sims/lp2_cluosh2014_pyc_numeric_unmarshal_sft.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
