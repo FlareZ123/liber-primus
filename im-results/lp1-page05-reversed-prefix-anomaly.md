@@ -142,6 +142,22 @@ Three exact p05 representations were tested: the raw 179-byte decoded payload, t
 
 **Decision:** reject the direct bytewise-mod-29 and φ(byte)-mod-29 additive mappings of these three exact p05 representations to p53, under both signs. The 179/179 length match and repeated moth remain a plausible selector, but this result does not test OpenPuff extraction, non-additive operations, transposition, or a separately source-selected key transformation. Do not tune byte offsets or arbitrary maps to rescue the failed direct streams.
 
+## p05 hidden179 → p53 historical XOR consumer (independent non-additive source gate)
+
+The original **p05 LP1 moth illustration recurs on original LP2 p53**, whose complete unaltered body has **179 GP29 runes**. The exact recoverable p05 center also yields **179 binary bytes**. Historical Cicada puzzles visibly used bytewise XOR, making it a limited, concrete non-additive candidate that is distinct from the twelve direct modular/totient **addition** tests above. The original artifact neither instructs this cross-page transfer nor equates GP rune symbols with arbitrary bytes, so the following two **source-fixed** representations are tested separately: each rune's canonical GP ordinal (0–28) and its author-printed GP prime value (2–109).
+
+Use exactly the three independently recovered **179-byte** representations of the p05 payload: original hidden binary bytes (SHA-256 `82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa`); their bytewise nibble-swapped ASCII decimal-and-space stream; and the final token-digit-reversed ASCII decimal square. The hidden center's mirror shell separately motivates both the original left-to-right and entire-reversed read order. Those **2 rune interpretations × 3 fixed p05 byte streams × 2 directional orders = 12** complete, phase-zero, whole-p53 XOR outputs involve no key search, omitted runes, fitted alphabet or new file transform.
+
+| Source-byte operand | Ordinal-GP direct / reversed: ASCII letters in 179 bytes | GP-prime direct / reversed: ASCII letters in 179 bytes |
+| --- | ---: | ---: |
+| Raw p05 hidden 179 bytes | **15 / 16** | **57 / 58** |
+| Nibble-swapped 179-byte ASCII | **0 / 0** | **60 / 58** |
+| Token-digit-reversed 179-byte ASCII | **0 / 0** | **60 / 57** |
+
+No candidate yields ordinary readable ASCII prose, a complete GP29-ordinal output, a typed file signature or an identifiable LP2 key. Even the most letter-rich candidate has just **60/179 ASCII alphabetic characters**, scattered among punctuation and nonprinting bytes. The nibble-swapped/ASCII key forms combined with ordinal GP give **zero alphabetic characters**, a decisive counterexample for that particularly direct decoding. All twelve XORs re-encrypt all **179 source runes exactly**; source-native planted solved-p57 GP prose also round-trips **95/95** rune values, which validates XOR arithmetic but cannot authenticate a candidate plaintext. The original center still decodes exactly to the independently archived 2014 square, so this gate is based on the actual original payload, rather than arbitrary numeric material.
+
+**Decision:** reject all twelve fully source-fixed direct XOR interpretations as plain GP29 or ordinary ASCII p53 recovery. This excludes these historical-operation/representation combinations only; XOR against an independently supplied unknown key or an unselected format transformation is out of scope. It supplies no reason to scan pad phases or unrelated byte encodings. [Reproducer and positive checks](../sims/lp1_p05_p53_moth179_xor_original_sft.cjs).
+
 ## Research significance
 
 The exact match to a separately attested 2014 magic-square table elevates the central block from unexplained binary to an independently recognized historical puzzle artifact. The 336,353-byte reversed JPEG shell, combined with a nibble-swapped and digit-reversed inner table, establishes **intentional-looking multiple reversal layers** in the original LP1 *SOME WISDOM* image. Authorship of the layering and its ultimate key use remain questions. There is no evidence that this middle table itself is a new private LP2 decryption key, because its recovered numbers match already public 2014 material. The direct next research decision is whether a first-party instruction or a *different* original encrypted artifact consumes this exact table under an unambiguous operator; generic arithmetic searches on the 25 values are unwarranted.
