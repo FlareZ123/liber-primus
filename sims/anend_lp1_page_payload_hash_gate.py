@@ -104,6 +104,27 @@ def p05_components(data):
         "magic_constant": 1033}
 
 
+def p10_components(source):
+    data = (source / "10.jpg").read_bytes()
+    sois = [m.start() for m in re.finditer(bytes([255, 216]), data)]
+    eois = [m.start() for m in re.finditer(bytes([255, 217]), data)]
+    assert sois == [0, 754662, 1467395, 2170823]
+    assert eois == [754660, 1467393, 2170821, 4240955]
+    segments = [data[s:e + 2] for s, e in zip(sois, eois)]
+    assert [len(x) for x in segments] == [754662, 712733, 703428, 2070134]
+    for page, segment in enumerate(segments[1:], start=11):
+        assert segment == (source / f"{page:02d}.jpg").read_bytes()
+    assert hashlib.sha256(segments[0]).hexdigest() == "07910a858c17314c72c1af0fda25f8a04e5a700a71e25661111fc7bcf87e5210"
+    tail = b"".join(segments[1:])
+    assert hashlib.sha256(tail).hexdigest() == "8c90214a46cb6fa563bcfb46012c1cf7c4dcbd9d1db62c37c856074c756aafff"
+    return {
+        "jpeg_segment0_754662": segments[0],
+        "tail_pages11_13_3486295": tail,
+    }, {"file_bytes": len(data), "jpeg_offsets": sois, "eoi_offsets": eois,
+        "segment_bytes": [len(x) for x in segments],
+        "trailing_segments_equal_standalone_pages": [11, 12, 13]}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path,
@@ -121,20 +142,22 @@ def main():
         matches.extend({"candidate": name, "algorithm": alg} for alg in hit)
         page_rows.append({"file": name, "bytes": len(data), "sha256": sha256, "matches": hit})
 
-    components, envelope = p05_components((args.source / "05.jpg").read_bytes())
-    for name, data in components.items():
+    p05_objects, p05_envelope = p05_components((args.source / "05.jpg").read_bytes())
+    p10_objects, p10_structure = p10_components(args.source)
+    for name, data in {**p05_objects, **p10_objects}.items():
         hit = [alg for alg, fn in funcs.items() if fn(data).lower() == TARGET]
         matches.extend({"candidate": name, "algorithm": alg} for alg in hit)
         component_rows.append({"candidate": name, "bytes": len(data), "matches": hit})
 
     comparisons = (len(page_rows) + len(component_rows)) * len(funcs)
-    assert comparisons == (110 if args.whirlpool else 88)
+    assert comparisons == (120 if args.whirlpool else 96)
     assert not matches
     print(json.dumps({
         "target": TARGET, "source": str(args.source),
         "algorithms": list(funcs), "raw_lp1_pages": len(page_rows),
-        "p05_exact_components": len(component_rows), "comparisons": comparisons,
-        "matches": matches, "p05_envelope": envelope,
+        "p05_exact_components": len(p05_objects), "p10_exact_components": len(p10_objects),
+        "comparisons": comparisons, "matches": matches,
+        "p05_envelope": p05_envelope, "p10_structure": p10_structure,
         "pages": page_rows, "components": component_rows,
     }, indent=2))
 
