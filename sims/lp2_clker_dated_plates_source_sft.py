@@ -10,6 +10,8 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import subprocess
+import tempfile
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -70,14 +72,36 @@ def fetch(url: str) -> tuple[bytes, dict]:
             "Accept": "image/png,image/*;q=0.8,*/*;q=0.1",
             "User-Agent": "Mozilla/5.0 (compatible; source-attribution research)",
         })
-    with urllib.request.urlopen(request, timeout=18) as response:
-        content = response.read(10_000_001)
-        if len(content) > 10_000_000:
-            raise ValueError("response exceeds 10MB source-file cap")
-        return content, {
-            "content_type": response.headers.get("Content-Type", ""),
-            "last_modified": response.headers.get("Last-Modified", ""),
-        }
+    try:
+        with urllib.request.urlopen(request, timeout=18) as response:
+            content = response.read(10_000_001)
+            if len(content) > 10_000_000:
+                raise ValueError("response exceeds 10MB source-file cap")
+            return content, {
+                "content_type": response.headers.get("Content-Type", ""),
+                "last_modified": response.headers.get("Last-Modified", ""),
+                "tls_transport": "python_default_ca",
+            }
+    except urllib.error.URLError as error:
+        if "CERTIFICATE_VERIFY_FAILED" not in str(error):
+            raise
+        # GitHub Windows Python's CA bundle can lack an OS-trusted root.
+        # curl.exe uses Windows Schannel and still enforces TLS validation.
+        with tempfile.TemporaryDirectory(prefix="clker-tls-") as folder:
+            output = Path(folder) / "plate.png"
+            command = [
+                "curl.exe", "--fail", "--location", "--silent", "--show-error",
+                "--max-time", "25", "--max-filesize", "10000000",
+                "--output", str(output), url,
+            ]
+            process = subprocess.run(command, capture_output=True, text=True,
+                                     timeout=30, check=False)
+            if process.returncode != 0:
+                raise ValueError(
+                    "Python OpenSSL verification failed; Windows Schannel curl also failed: "
+                    + process.stderr.strip()[:160]
+                ) from error
+            return output.read_bytes(), {"tls_transport": "windows_schannel_curl"}
 
 
 def main() -> None:
