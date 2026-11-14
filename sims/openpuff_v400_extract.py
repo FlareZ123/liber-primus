@@ -268,10 +268,10 @@ def save_dialog_if_present(app, output_path, output_dir):
                 )
             folder = str(output_dir.resolve())
             folder_buffer = create_unicode_buffer(folder)
-            remote_path = RemoteMemoryBlock(dialog, size=sizeof(folder_buffer))
+            remote_path = RemoteMemoryBlock(window, size=sizeof(folder_buffer))
             try:
                 remote_path.Write(folder_buffer)
-                dialog.send_message(0x0400 + 103, 1, remote_path.Address())
+                window.send_message(0x0400 + 103, 1, remote_path.Address())
                 time.sleep(0.5)
                 # The extracted file's existence and CRC remain the final
                 # acceptance test. This UI action is never its own proof.
