@@ -171,7 +171,7 @@ for(let k=0;k<plantStarts.length;k++){
   assert.deepEqual(chosen,plantKeys[k],'blind model must recover exact synthetic key');
   assert.equal(match,12956,'blind complete original-length plant must decode losslessly');
   assert.ok(wrongMatch<9000,'wrong transition control must fail majority of rune positions');
-  assert.ok(controlScore>-6,'English source plant must be intelligible under fixed language model');
+  assert.equal(controlScore,score(native.slice(9640,9640+3008),model),'plant must recover exact native-source trigram score');
 }
 const authentic=blindSearch(train,5);
 const best=authentic[0];
