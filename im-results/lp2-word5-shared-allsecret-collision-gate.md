@@ -1,20 +1,20 @@
 # Original LP2: a shared five-phase secret alphabet is incompatible with source-native prose
 
-**Decision (14 November 2026, Agent49):** A GP29 cipher which resets phase at each printed word and applies **the same five arbitrary secret symbol bijections** to all 2,896 original words cannot directly encode the tested source-native English registers. This result rules out the full \`(29!)^5\` shared-key family without guessing any substitution alphabet. It does not recover an unknown rune, key, or final destination.
+**Decision (14 November 2026, Agent49):** A GP29 cipher which resets phase at each printed word and applies **the same five arbitrary secret symbol bijections** to all 2,896 original words cannot directly encode the tested source-native English registers. This result rules out the full `(29!)^5` shared-key family without guessing any substitution alphabet. It does not recover an unknown rune, key, or final destination.
 
 ## Why this family is worth a keyless decision
 
 The original 2014 ciphertext has a conditioned within-word lag-five echo excess: 104 exact rune equalities across 2,105 five-back opportunities, especially concentrated inside authentic printed word boundaries. A plausible human-readable model is a polyalphabetic substitution with one alphabet at each word-relative position modulo five: it would preserve the equality of positions separated by five while permitting very different adjacent-symbol behavior. The source does **not** authenticate this operation. It is a sharply bounded alternative to the already rejected word-local **five-phase affine** family.
 
-Let the word index \`w\` and within-word position \`i\` start at zero. The complete, otherwise secret original cipher hypothesis is
+Let the word index `w` and within-word position `i` start at zero. The complete, otherwise secret original cipher hypothesis is
 
-\`C[w,i] = S[i mod 5](P[w,i])\`,
+`C[w,i] = S[i mod 5](P[w,i])`,
 
-where each \`S[0]...S[4]\` is an arbitrary one-to-one permutation of all 29 GP rune labels, shared by all words. The phase restarts at each real printed word, with all 32 cross-physical-page continued words rejoined before the phase assignment. For each phase \`j\`, the 29 original rune frequencies can be permuted but cannot change in magnitude. In particular the number of equal ordered symbol pairs \`H_j = sum_x count(j,x)*(count(j,x)-1)\` is an **exact all-secret-key invariant**. Its pooled within-phase index is \`sum(H_j)/sum(n_j*(n_j-1))\`, equally invariant under every possible key.
+where each `S[0]...S[4]` is an arbitrary one-to-one permutation of all 29 GP rune labels, shared by all words. The phase restarts at each real printed word, with all 32 cross-physical-page continued words rejoined before the phase assignment. For each phase `j`, the 29 original rune frequencies can be permuted but cannot change in magnitude. In particular the number of equal ordered symbol pairs `H_j = sum_x count(j,x)*(count(j,x)-1)` is an **exact all-secret-key invariant**. Its pooled within-phase index is `sum(H_j)/sum(n_j*(n_j-1))`, equally invariant under every possible key.
 
 ## Original source and heldout native-register controls
 
-The source-exact parser reads \`resources/lp2-transcription.txt\` and the canonical 29-GP rune map. It returns exactly 2,896 complete words and 12,956 original rune labels across p0–55. These are the five original phase populations:
+The source-exact parser reads `resources/lp2-transcription.txt` and the canonical 29-GP rune map. It returns exactly 2,896 complete words and 12,956 original rune labels across p0–55. These are the five original phase populations:
 
 | Phase | Original rune positions | Equal ordered symbol pairs | Original phase IoC |
 | ---: | ---: | ---: | ---: |
@@ -38,7 +38,7 @@ Independently encode Shakespeare, Gibran and Emerson words under the **source-at
 
 All 60 native controls are well separated from the original for the *exact key-invariant statistic*. These controls sample a finite English register, not every possible plaintext language. Samples within a literary corpus overlap and should not be treated as 60 independent statistical experiments or an unconditional probability of author intent.
 
-A positive control takes a full **12,956-rune**, source-native length-matched Shakespeare sample; applies all five secret phase alphabets \`S_j(p)=(11*p+7*j+3) mod29\`; and verifies all five invariant counts unchanged. The genuine inverse with multiplier \`11^-1=8 mod29\` restores **12,956/12,956** plaintext runes. This confirms the key-invariant test would accept a source-native message encrypted by the exact proposed family.
+A positive control takes a full **12,956-rune**, source-native length-matched Shakespeare sample; applies all five secret phase alphabets `S_j(p)=(11*p+7*j+3) mod29`; and verifies all five invariant counts unchanged. The genuine inverse with multiplier `11^-1=8 mod29` restores **12,956/12,956** plaintext runes. This confirms the key-invariant test would accept a source-native message encrypted by the exact proposed family.
 
 ## Cipher decision and its limits
 
