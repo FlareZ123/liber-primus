@@ -77,10 +77,6 @@ function vocabulary(sourceText) {
     const runes=gpWord(word);
     if (runes.length<=14) buckets[runes.length].push(runes);
   }
-  for(const e of events.filter(e=>e.wordStart)){
-    let foundLength=1; // Length existence verified in draw.
-    assert.ok(foundLength===1&&buckets[1].length);
-  }
   assert.ok(buckets.slice(1).every(list=>list.length>0));
   return buckets;
 }
