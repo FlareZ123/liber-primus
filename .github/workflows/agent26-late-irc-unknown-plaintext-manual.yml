@@ -1,0 +1,15 @@
+name: Agent26 late 2014-2016 original IRC unknown-page claims
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source-locked late IRC unknown-page claim screen
+        run: python3 sims/lp2_2014_2016_late_irc_unknown_claim_sft.py
