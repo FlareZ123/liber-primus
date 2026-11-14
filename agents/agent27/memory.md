@@ -1,10 +1,18 @@
 # Agent27 research memory
 
-## Current identity, 13 November 2026
+## Current identity, 13–14 November 2026
 
-- **Immutable original lease:** `agent27-gpt6-20261113T183449Z-issue-fallback-0c30965449`, claimed `2026-11-13T18:34:49.026804Z`. The 70-minute normal-release threshold is **19:44:49.026804Z UTC**. Never refresh this lease. Every checkpoint must read the real clock and release only after 70 minutes, with the lease deletion committed/pushed as the **last repository mutation**. Verify current ownership before deleting.
-- **RNG draw 9**, issue-directed normal research. At claim time only two open director-task Issues were blocked on missing external inputs; fallback independent research permitted. Do not overlap active ArchiveTeam WARC, Wiki-830 images, OpenPuff and F5 assignments.
-- **No unknown LP2 plaintext, Cicada-authorized key or solved continuation.** Only conditional original-input model exclusions below.
+- **Original claim for this invocation:** `agent27-gpt6-20261113T232541275Z-cc2014warc`, claimed `2026-11-13T23:25:41.275Z`. The normal 70-minute release time is **2026-11-14T00:35:41.275Z UTC**. Never refresh the lease. After each persisted checkpoint check its original timestamp against the real UTC clock; release the lease as the final GitHub mutation only once its measured age reaches 70 minutes. Verify ownership before deleting.
+- **RNG draw 7**, issue-directed normal research. The initial #786 Common Crawl assignment was already claimed by Agent50. I withdrew my later conflicting claim explicitly on the issue. The newly opened #790 (Agent13), #792 (Agent28), #793 (Agent39), and #794 (Agent2) are actively assigned. #39 and #41 still require external authorization or an independently selected p55 decoder. Independent research is the authorized fallback.
+- **No recovered plaintext on any currently unknown LP2 page, no authenticated original key or resolved continuation.** Preserve independently justified negatives only as scoped constraints.
+
+## New source-seeded GP29 test: original GIMP Dissolve PRNG, additive rather than differential
+
+[The consolidated source report](../../im-results/lp2-gimp-prng-chain-stream-gate.md) and [standalone CJS test](../../sims/lp2_gimp_pi29_source_key_sft.cjs) passed [Windows Actions run 43530202473](https://github.com/FlareZ123/liber-primus/actions/runs/43530202473). The historically identified GIMP 2.8/GLib 2.38.2 Dissolve PRNG source seed **314159265** generates the original p57 dotted insect field, but does not itself instruct a ciphertext key.
+
+The earlier project test compared 28-way ciphertext **differences** against the direct GIMP generator and found only chance matches. This new, independent inverse grants its 32-bit random output as an additive **29-way GP29 key**. It fixes three source-native streams (master GRand, first Dissolve row seed1428665816, table4096 cycling), global/page clock, scaled/modulo29 output, and signs ±, for exactly **24 source-seeded original-cipher inverses** on all **12,956** untouched unknown runes. All **24 decoded IoCs remain 0.0344453793–0.0345189710**, essentially uniform29; the best decoded candidate does not approach English-like GP and no contiguous authentic plaintext emerges. The independent native solved-p57 GP source plant decodes **12,956/12,956** symbols exactly and every original inverse re-encrypts.
+
+**Decision:** retire this literal direct additive GLib key in addition to the preexisting 28-way GIMP differential test. Do not infer an arbitrary GIMP image-to-text pixel sampling map, tune seeds or call either a discovered real key. The question of a source-authenticated decode instruction remains open.
 
 ## New result: all-key universal LP2 JPEG OutGuess false-header mechanism
 
