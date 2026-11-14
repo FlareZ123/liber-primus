@@ -197,6 +197,18 @@ assert.deepEqual(dimensionRoute.path.map((x) => x.cell),
   [103, 111, 119, 127, 128]);
 assert.equal(dimensionRoute.path.map((x) => x.rune).join(''), 'OOGEM');
 
+// Frozen, source-driven complete PARABLE wordmap: the same graph is invoked
+// for *every* original p57 word in printed order. The output is not a
+// plaintext message under the direct unaltered readout.
+const allP57Readouts=words.map((word)=>{
+  const start=sumRunes(word)%256||256;
+  return trace(bytes,start).path.map((node)=>node.rune).join('');
+});
+assert.deepEqual(allP57Readouts, [
+  'F','D','NGA','FUB','IANG','DUJAE','NGA','IAW','EAR','JMIXTH',
+  'UOEU','SRAEDAC','JOE','XTH','HSSW','NGA','IOGEM','DC','MNG','SEAOE',
+]);
+
 // All 256 original starts: the three-factor circuit is uniquely start 120.
 // This is an exact inventory, not a multiple-hypothesis-corrected p-value.
 const all = Array.from({ length: 256 }, (_, i) => {
@@ -274,6 +286,7 @@ console.log('Cycle:', route.terminal, 'GP readout: IOGEM');
 console.log('Whole path GP prime sum', routePrimeSum,
   '= last byte193 -> table cell193 00/F -> edge exit');
 console.log('Source 2016 width-prime-ordinal start103: OOGEM; paths meet at111');
+console.log('All 20 original p57 word-to-graph outputs:',allP57Readouts.join('|'),'= nonlinguistic');
 console.log('Full 256-start census: checksum [120,123], zero jump [66,120,180,247], joint [120]');
 console.log('Solved p57 other-word starts reaching GEM: 0/19');
 console.log('Fixed multiset shuffle xorshift32 seed 0x12010357, N=100000:',
