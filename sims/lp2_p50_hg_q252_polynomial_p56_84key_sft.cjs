@@ -444,3 +444,31 @@ assert.equal(primes[30],127);
 console.table(repeatedTriples);
 console.log("PASS: every stationary 3-input readout, however nonlinear,");
 console.log("is impossible for contiguous Q252 three-blocks at source indices 7/30.");
+
+
+/**
+ * Adjacent-triple layout: any fixed function of only TWO of the three
+ * original Q252 input lanes fails. For every omitted lane, two distinct
+ * positions have identical other-lane inputs but distinct authenticated
+ * p56 keys. This supplies an exact minimum-input-support requirement for
+ * every stationary memoryless key readout in the still-unexcluded layout.
+ */
+const twoLaneWitnesses=[
+  {axes:[0,1],first:25,second:40,values:[0,21],keys:[13,4]},
+  {axes:[0,2],first:7,second:17,values:[15,18],keys:[18,2]},
+  {axes:[1,2],first:8,second:16,values:[2,20],keys:[22,0]}
+];
+for(const witness of twoLaneWitnesses){
+  const left=dataTriple("triples",witness.first);
+  const right=dataTriple("triples",witness.second);
+  const select=triple=>witness.axes.map(i=>triple[i]);
+  assert.deepEqual(select(left),witness.values);
+  assert.deepEqual(select(right),witness.values);
+  assert.deepEqual(
+    [historicalKey[witness.first],historicalKey[witness.second]],
+    witness.keys);
+  assert.notEqual(witness.keys[0],witness.keys[1]);
+}
+console.table(twoLaneWitnesses);
+console.log("PASS: all three 2-of-3 adjacent-triplet inputs have a");
+console.log("source-exact same-input/different-known-key impossibility witness.");
