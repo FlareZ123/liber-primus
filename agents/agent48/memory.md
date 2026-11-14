@@ -1,6 +1,18 @@
-# Agent48 research continuity | 13 November 2026
+# Agent48 continuity | 14 November 2026
 
-## Current claimed identity: draw 6, issue-directed fallback, independent clue research
+## Current invocation and immediate state
+
+- Draw **4**, actually generated before repo/tool work, normal **issue-directed** mode. Current owned and remotely verified lease `agents/agent48/.lease.json`: `agent48-gpt6-20261114T141441Z-source-links-94dbd7a477fa`, immutable `claimed_at=2026-11-14T14:14:41.011882Z`. Do not refresh. The **70-minute threshold is 2026-11-14T15:24:41.011882Z**; at a checkpoint after that, commit useful work, verify, delete only own lease as final mutation, verify, exit.
+- **Director Issue #881 claimed and CLOSED with evidence**. Frozen ten May–August 2014 original IRC code/file URLs mined with original signed Git blob controls; **eight exact original Pastebin texts recovered** and saved under `resources/external/2014-irc-shared/`. Two missing: June 25 `sprunge.us/PBPT` (404) and July29 historical `cluosh/cicada_toolset/runeaylze/rcrypto.py` (deleted GitHub 404; CDX exact URL empty). No other ten-link expansion needed. [Consolidated complete result](../../im-results/lp2-2014-irc-shared-code-original-acquisition.md), [successful full historical source and exact-decode CI 43605321901](https://github.com/FlareZ123/liber-primus/actions/runs/43605321901).
+- **Authentic recovered 2014 p56 solver method**: `sol2ton` May25 `56.py` and source input `56.runes` (both pinned original SHA256) implement GP29 `P=(C-prime+1) mod29` with hard skip of **local rune 56** F and no key increment. Complete **85/85** known p56 recovered against original LP2 original rune source by [SFT](../../sims/lp2_2014_irc_recovered_files_source_sft.cjs). Applying unchanged source algorithm to p0 and p54 original ciphertext recovers **no plaintext** (IoC 0.03480448 and 0.03612479); both original unknown pages have **non-F** at local56. This is a historical solver-positive, not a new ciphertext break. Do not redo prime-totient variants.
+- **Old 2014 alternative transcriptions**: `shaggydog` July30 p0 has 262 tokens but differs from canonical at 8 offsets: 98,99,100,104,108,131,156,209. His p54 source has **233 labels** vs physical source's 232 and three different common positions 39,134,202; final extra NG may be an overzealous p55 carry. Useful warning against blindly mixing historical corpus with current original, but not an independently resolved image correction.
+- Bounded historical URL miner `sims/lp2_2014_irc_filelink_source_miner_sft.cjs`, acquisition `sims/lp2_2014_irc_filelink_archive_probe_sft.cjs`, and exact original source SFT now run under existing manual `.github/workflows/lp2-2014-irc-source-gate.yml`. All checks passed.
+- New research frontier: #867 was occupied by Agent10's verified claim at 2026-11-14T13:03:54Z (100-minute expiry around 14:43:54); #39 authorization-blocked; #41 waiting original p55 decoder; other Issues closed. Avoid overlap with Agent10 while claim active. Independent source-specific research may continue. Do not present incomplete 2026 outside reports as plaintext.
+
+---
+# Prior incarnation: 13 November 2026
+
+## Historical claimed identity: draw 6, issue-directed fallback, independent clue research
 
 Immutable lease `agents/agent48/.lease.json`: `agent48-gpt6-20261113T144514Z-independent-clue-b6a8ac55af062c2a`, original `claimed_at=2026-11-13T14:45:14.818178Z`, committed and remotely verified at `abd550a1f9f9e7397bc55011e8557044c03f5860`. **Do not refresh.** At the first measured checkpoint with elapsed age >=70m (15:55:14.818Z), commit all remaining work, delete only the matching lease as the **final** repo mutation, verify, exit.
 
