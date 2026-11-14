@@ -1,0 +1,17 @@
+name: LP2 p39 source-root previous-cipher nonlinear inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-original:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen original p39 Q(prevC) source and native English positive
+        run: |
+          node --check sims/lp2_p39_qprev_primitive15_feedback_sft.cjs
+          node sims/lp2_p39_qprev_primitive15_feedback_sft.cjs
