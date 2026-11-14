@@ -46,6 +46,36 @@ assert.notDeepEqual(matrix(readable),blocks[2]);
 const reconstructed=Buffer.from([...Buffer.from(unmirrorDigits(revealed),'ascii')].map(swapNibble));
 assert.deepEqual(reconstructed,payload);
 assert.equal(reconstructed.toString('hex'),hex);
+// One frozen, expressly hypothetical historical key transfer: p05's words
+// teach Euler's totient; the newly revealed 25 values would give three complete
+// 25-rune cycles on the 76-rune LP2 p55 if the source p55 F at index25 is literal.
+// This exact natural transfer is a negative. No key phase/mask optimization.
+/** @param {number} n @returns {number} */
+function totient(n) {
+  let out=n,remaining=n;
+  for(let d=2;d<=remaining;d++){
+    if(remaining%d!==0)continue;
+    while(remaining%d===0)remaining/=d;
+    out-=out/d;
+  }
+  return out;
+}
+const gridKey=decoded.flat().map(s=>totient(Number(s))%29);
+const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,'resources','liber-primus','lp2-corpus.json'),'utf8'));
+const originalP55=corpus.pages.find(page=>page.page===55).indices;
+assert.equal(originalP55.length,76);
+assert.equal(originalP55[25],0);
+let clock=0;
+const p55Inverse=originalP55.map((r,i)=>i===25?0:(r-gridKey[(clock++)%25]+29)%29);
+assert.equal(clock,75);
+assert(p55Inverse.every((r,i)=>i===25?originalP55[i]===0:(r+gridKey[(i<25?i:i-1)%25])%29===originalP55[i]));
+const p55counts=Array(29).fill(0);
+p55Inverse.forEach(r=>p55counts[r]++);
+const p55ioc=p55counts.reduce((sum,n)=>sum+n*(n-1),0)/(76*75);
+assert.equal(p55ioc,1/30);
+const p55runeglish=p55Inverse.map(r=>corpus.translit[r]).join('');
+assert.equal(p55runeglish,'NINAETHJOEAWNTEONHFDSCOEUAEOEDTHTFTHANTFNPTHHGDNGNRBDCEBUWREOIADEAAEUPJBEOMEOMHHJORWSMMGTWOIA');
+
 const output=decoded.map(r=>r.join(' ')).join('\n');
 console.log(JSON.stringify({
  status:'PASS',source:'original LP1 05.jpg central 179-byte object',
@@ -53,5 +83,5 @@ console.log(JSON.stringify({
  sourceBytes:179,sourceSha256:crypto.createHash('sha256').update(payload).digest('hex'),
  target:'2014 OpenPuff magic squares, independently preserved third 5x5 square',
  exactSquare:true,rotationallySymmetric:true,exactByteReencoding:true,
- matrix:output,unknownLP2PlaintextRecovered:false
+ matrix:output,provisionalP55PhiKey:gridKey,provisionalP55Decoded:p55runeglish,provisionalP55IoC:p55ioc,unknownLP2PlaintextRecovered:false
 },null,2));
