@@ -41,8 +41,8 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let k=0;k<29;k++){
  assert.equal(dist(a,b),dist(mod(-a+k),mod(-b+k)));
 }
 function countTrigrams(step){
- const ct=new Uint32Array(15**3);
- for(let i=0;i+2<step.length;i++)ct[225*step[i]+15*step[i+1]+step[i+2]]++;
+ const ct=new Uint32Array(15**4);
+ for(let i=0;i+3<step.length;i++)ct[3375*step[i]+225*step[i+1]+15*step[i+2]+step[i+3]]++;
  return ct;
 }
 function steps(v){
@@ -50,7 +50,7 @@ function steps(v){
  for(let i=1;i<v.length;i++)d.push(dist(v[i-1],v[i]));
  return d;
 }
-const counts=new Uint32Array(15**3);
+const counts=new Uint32Array(15**4);
 for(const src of files){
  const c=countTrigrams(steps(src.train));
  c.forEach((v,i)=>counts[i]+=v);
@@ -59,9 +59,9 @@ const total=counts.reduce((x,y)=>x+y,0);
 function score(v){
  let s=0;
  const d=steps(v);
- for(let j=0;j+2<d.length;j++)
-  s+=Math.log((counts[225*d[j]+15*d[j+1]+d[j+2]]+0.5)/(total+0.5*counts.length));
- return s/(d.length-2);
+ for(let j=0;j+3<d.length;j++)
+  s+=Math.log((counts[3375*d[j]+225*d[j+1]+15*d[j+2]+d[j+3]]+0.5)/(total+0.5*counts.length));
+ return s/(d.length-3);
 }
 const W=40;
 const p=gp.pages.filter(x=>x.page<=55&&x.indices.length);
