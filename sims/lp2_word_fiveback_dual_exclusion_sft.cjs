@@ -255,9 +255,10 @@ function run() {
     const pool = makePool(load(sourcePaths[z]));
     const reference = sourceExpectations(lengths, pool);
     const originalTV = bestFivePhaseTV(originalRank, reference);
+    const plantRandom = makeRandom((0x17330f + z * 0x9e3779b9) >>> 0);
+    const plant = sampleWords(lengths, pool, plantRandom);
+    assert.equal(proveExactCipherRoundTrip(plant, plantRandom), 2105);
     const random = makeRandom((0x29b3301 + z * 0x9e3779b9) >>> 0);
-    const plant = sampleWords(lengths, pool, random);
-    assert.equal(proveExactCipherRoundTrip(plant, random), 2105);
 
     let maxControl = 0, exceed = 0, sumControl = 0;
     for (let t = 0; t < trials; t++) {
