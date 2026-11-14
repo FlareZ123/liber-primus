@@ -15,7 +15,6 @@ const source=d.pages.filter(page=>page.page>=0&&page.page<=2);
 assert.deepEqual(source.map(page=>page.indices.length),[262,266,201]);
 const runes=source.flatMap(page=>page.indices);assert.equal(runes.length,729);
 const at=(r,c)=>runes[27*(r-1)+c-1];
-const prime=n=>n>1&&Array.from({length:Math.floor(Math.sqrt(n))-1},(_,i)=>i+2).every(q=>n%q!==0);
 const phi=n=>Array.from({length:n},(_,i)=>i+1)
  .filter(k=>{let a=k,b=n;while(b){const t=a%b;a=b;b=t}return a===1}).length;
 const mobius=n=>{if(n===1)return 1;let rem=n,sign=1;
@@ -60,5 +59,5 @@ for(let i=0;i<20;i++){
 assert.deepEqual(continuous.slice(0,7),cases[0].expected);
 console.log(JSON.stringify({originalPages:[0,1,2],sourceRunes:729,
  examples:verified,firstKeyContinuousNext13:continuous.slice(7),
- projectClaimedPlainRunes:115,unmappedRemainder:614,
+ projectClaimedPlainRunes:115,minimumUntouchedCells:614,
  decision:'Selected examples reproduce; no complete source-selected decoder or heldout prediction'},null,2));
