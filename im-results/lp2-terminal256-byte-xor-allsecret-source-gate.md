@@ -46,7 +46,7 @@ For each of the 68-, 60- and 52-cell inner rings, independently allow four start
 The complete standalone CommonJS test consumes unchanged `resources/liber-primus/lp2-grid-256.json` (byte SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`) and `lp2-corpus.json`:
 
 - [Exact SFT](../sims/lp2_grid256_terminal_inner180_xor_allsecret_sft.cjs)
-- [Windows Node22 CI replay](https://github.com/FlareZ123/liber-primus/actions/runs/43634392237) (version before the later four-cell regression assertion; that assertion was independently computed on unchanged original bytes)
+- [Passing Windows Node22 CI replay with the four-cell regression witness](https://github.com/FlareZ123/liber-primus/actions/runs/43634809508)
 
 ## Why this matters for future p55 research
 
