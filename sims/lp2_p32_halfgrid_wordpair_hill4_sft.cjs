@@ -10,6 +10,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(
@@ -335,5 +336,46 @@ assert.ok(Math.abs(additiveResults[0].ioc - 0.0347301398) < 1e-9);
 assert.ok(Math.abs(additiveResults[15].ioc - 0.0342309765) < 1e-9);
 console.log('16 direct periodic source-matrix GP29 additive inverses:');
 for (const result of additiveResults) console.log(JSON.stringify(result));
+
+
+// Cross-artifact direct binary consumer: the original p50 32x8 number table
+// is provisionally interpreted as 256 base60 bytes. The four-track p32
+// interior is exactly 16 native ordinals or 16 raw GP prime values, suitable
+// as one AES-128 key without hashing or arbitrary padding.
+const grid = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'base60-grid.json'), 'utf8'
+));
+const tableBytes = Buffer.from(grid.byte_rows.flat());
+assert.equal(tableBytes.length, 256);
+const aesCandidates = [];
+for (const [keyName, byteMatrix] of [
+  ['ordinal', ordinalMatrix],
+  ['raw-prime', ordinalMatrix.map((row) => row.map(
+    (index) => corpus.prime[index]
+  ))]
+]) {
+  for (const orientation of ['rows', 'columns']) {
+    const cells = orientation === 'rows'
+      ? byteMatrix.flat() : transpose(byteMatrix).flat();
+    const key = Buffer.from(cells);
+    assert.equal(key.length, 16);
+    for (const mode of ['ecb', 'cbc-zero-iv']) {
+      const algorithm = mode === 'ecb' ? 'aes-128-ecb' : 'aes-128-cbc';
+      const iv = mode === 'ecb' ? null : Buffer.alloc(16);
+      const decoder = crypto.createDecipheriv(algorithm, key, iv);
+      decoder.setAutoPadding(false);
+      const decoded = Buffer.concat([decoder.update(tableBytes), decoder.final()]);
+      const readable = [...decoded].filter((b) => b >= 32 && b <= 126).length;
+      aesCandidates.push({
+        keyName, orientation, mode, printableBytes: readable,
+        firstBlockHex: decoded.subarray(0, 16).toString('hex')
+      });
+    }
+  }
+}
+assert.deepEqual(aesCandidates.map((item) => item.printableBytes),
+  [96, 104, 86, 87, 79, 92, 99, 95]);
+console.log('eight fixed AES-128 p32-interior-key / p50-grid decodes:');
+for (const candidate of aesCandidates) console.log(JSON.stringify(candidate));
 
 console.log('PASS: exact originals, shuffle controls and reversible GP29 plants');
