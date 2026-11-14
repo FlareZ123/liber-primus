@@ -113,6 +113,62 @@ results.sort((a,b)=>b.ioc-a.ioc);
 assert.equal(results.length,24);
 assert.ok(Math.abs(results[0].ioc-0.03754385964912281)<1e-12);
 assert.ok(Math.abs(results.at(-1).ioc-0.028421052631578948)<1e-12);
+/**
+ * Complete 29-way ciphertext-feedback key consumer. For every key symbol K_i,
+ * a repeated ciphertext output encodes plaintext K_i (under the +K rule),
+ * so the exception symbol evolves rather than being a fixed reserved rune.
+ * This avoids the prior all-fixed-sentinel invariant, though it is still a
+ * speculative source-tape consumer and must reveal native text to qualify.
+ * @param {number[]} ct
+ * @param {number[]} k
+ * @param {number} signDifference
+ * @param {number} signKey
+ * @returns {number[]}
+ */
+function movingDecode(ct,k,signDifference,signKey) {
+  let previous=iv;
+  return ct.map((c,i)=>{
+    const step=mod(c-previous,29);
+    previous=c;
+    return mod(signDifference*step+signKey*k[i],29);
+  });
+}
+/**
+ * @param {number[]} pt
+ * @param {number[]} k
+ * @param {number} signDifference
+ * @param {number} signKey
+ * @returns {number[]}
+ */
+function movingEncode(pt,k,signDifference,signKey) {
+  let previous=iv;
+  return pt.map((p,i)=>{
+    const c=mod(previous+signDifference*(p-signKey*k[i]),29);
+    previous=c;
+    return c;
+  });
+}
+const moving=[];
+for(const order of ["printed","reversed"])
+for(const [keyType,raw] of keys)
+for(const signDifference of [-1,1])
+for(const signKey of [-1,1]){
+  const k=(order==="printed"?raw:raw.slice().reverse()).map(x=>mod(x,29));
+  const pt=movingDecode(cipher,k,signDifference,signKey);
+  assert.deepEqual(movingEncode(pt,k,signDifference,signKey),cipher);
+  const planted=native.slice(0,76);
+  assert.deepEqual(movingDecode(
+    movingEncode(planted,k,signDifference,signKey),k,
+    signDifference,signKey),planted);
+  assert.deepEqual(repeatIndices,[59]);
+  assert.equal(pt[59],mod(signKey*k[59],29));
+  moving.push({order,keyType,signDifference,signKey,ioc:ioc(pt),
+    first24:pt.slice(0,24).map(x=>corpus.translit[x]).join("")});
+}
+moving.sort((a,b)=>b.ioc-a.ioc);
+assert.equal(moving.length,24);
+assert.ok(Math.abs(moving[0].ioc-0.03824561403508772)<1e-12);
+assert.ok(Math.abs(moving.at(-1).ioc-0.031578947368421054)<1e-12);
 const control=Array.from({length:20},(_,i)=>ioc(native.slice(i,i+76)));
 assert.ok(Math.min(...control)>0.059);
 console.log(JSON.stringify({
@@ -125,5 +181,11 @@ console.log(JSON.stringify({
   nativeP57Clear76WindowIoC:[Math.min(...control),Math.max(...control)],
   exactOriginalReencryptions:24,nativeP57ExactPlants:24,
   bestFour:results.slice(0,4),
+  moving29VariantCount:moving.length,
+  moving29FullOriginalReencryptions:moving.length,
+  moving29NativeFullPlants:moving.length,
+  moving29IoCRange:[moving.at(-1).ioc,moving[0].ioc],
+  bestFourMoving29:moving.slice(0,4),
+  moving29Interpretation:"Repetition now decodes to position-specific GP symbol from the complete source key, so prior fixed-repeat marker exclusion does not subsume this moving-sentinel family; no original plaintext."
   limitation:"This is a bounded source-key GP28 feedback/register hypothesis, not an exclusion of every source-key cipher or every possible plaintext register."
 },null,2));
