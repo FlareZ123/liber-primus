@@ -1,0 +1,29 @@
+name: LP2 p27 pre-2014 original-wing plate comparison
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register-three-sources:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source image comparison dependencies
+        run: python -m pip install numpy opencv-python-headless pymupdf requests filelock
+      - name: Compare source wings with original p27 and fixed planted control
+        run: python sims/lp2_p27_historical_threeplate_registration_sft.py
+      - name: Save original-source metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p27-pre2014-threeplate-registration
+          path: im-results/lp2-p27-historical-threeplate-registration.json
+          if-no-files-found: warn
+          retention-days: 90
