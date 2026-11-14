@@ -285,6 +285,87 @@ for (const reserved of [0, 17, 28]) {
     nativeA: nativeA.length, nativeB: nativeB.length, exactInverse: true});
 }
 
+
+/**
+ * Second original-ink alignment: the identical moths lie at the foot of both
+ * pages, so key reuse may be anchored at page END rather than page START.
+ * Last 75 p53 runes are source indices 104..178, starting one rune into a
+ * three-rune printed word at p53 original offset103.
+ * Initialize all native three-rune trie prefixes after one unknown rune
+ * rather than silently requiring that the remaining two runes form a word.
+ */
+const suffixStartA = 104;
+const suffixWordsA = wordsA.slice(21);
+assert.equal(ends(wordsA.slice(0, 21)).at(-1), 103);
+const suffixEndsA = ends(suffixWordsA).map(n => n - 1);
+assert.equal(suffixEndsA.at(-1), 75);
+const lastA = textA.slice(suffixStartA);
+assert.equal(lastA.length, 75);
+const suffixPrefixTrie = tries.get(suffixWordsA[0].length);
+const prefixStates = [...new Set(Array.from(suffixPrefixTrie[0].children)
+  .filter(n => n !== -1))];
+assert.ok(prefixStates.length > 1);
+
+/** @param {number[]} a @param {number[]} b @param {number} reserved */
+function testSuffix(a, b, reserved) {
+  let statePairs = new Map(prefixStates.map(n => [n + ",0", [n, 0]]));
+  let wordA = 0, wordB = 0;
+  let maximumStates = statePairs.size;
+  for (let offset = 0; offset < 75; offset++) {
+    while (suffixEndsA[wordA] <= offset) wordA++;
+    while (endB[wordB] <= offset) wordB++;
+    const ta = tries.get(suffixWordsA[wordA].length);
+    const tb = tries.get(wordsB[wordB].length);
+    assert.ok(ta && tb);
+    const finishA = suffixEndsA[wordA] === offset + 1;
+    const finishB = endB[wordB] === offset + 1;
+    const da = offset ? diff(a, offset) : -1;
+    const db = offset ? diff(b, offset) : -1;
+    const next = new Map();
+    for (const [left, right] of statePairs.values()) {
+      for (let x = 0; x < 29; x++) {
+        if (da === 0 && x !== reserved) continue;
+        if (da > 0 && x === reserved) continue;
+        const childA = ta[left].children[x];
+        if (childA < 0 || (finishA && !ta[childA].terminal)) continue;
+        for (let y = 0; y < 29; y++) {
+          if (db === 0 && y !== reserved) continue;
+          if (db > 0 && y === reserved) continue;
+          if (da > 0 && db > 0) {
+            const rankA = x - +(x > reserved);
+            const rankB = y - +(y > reserved);
+            if (mod(rankA - rankB - (da - db), 28) !== 0) continue;
+          }
+          const childB = tb[right].children[y];
+          if (childB < 0 || (finishB && !tb[childB].terminal)) continue;
+          const aa = finishA ? 0 : childA;
+          const bb = finishB ? 0 : childB;
+          next.set(aa + "," + bb, [aa, bb]);
+        }
+      }
+    }
+    statePairs = next;
+    maximumStates = Math.max(maximumStates, next.size);
+    if (!next.size) {
+      return {possible: false, firstImpossibleRune: offset + 1,
+        maximumStates};
+    }
+  }
+  return {possible: true, finalStates: statePairs.size, maximumStates};
+}
+const endAlignedOriginal = Array.from({length: 29},
+  (_, reserved) => ({reserved, ...testSuffix(lastA, textB, reserved)}));
+const endAlignedPlants = [];
+for (const reserved of [0, 17, 28]) {
+  const sourceA = nativeA.slice(104);
+  const ca = encrypt(sourceA, reserved, keys, 5);
+  const cb = encrypt(nativeB, reserved, keys, 21);
+  assert.deepEqual(decrypt(ca, reserved, keys, 5), sourceA);
+  const result = testSuffix(ca, cb, reserved);
+  assert.ok(result.possible, "end-aligned native plant must survive");
+  endAlignedPlants.push({reserved, finalStates: result.finalStates});
+}
+
 console.log(JSON.stringify({
   source: {p53Image: "70.jpg", p55Image: "72.jpg",
     p53Runes: 179, p55BodyRunes: 75, dictionaryWords: distinctLexicon,
@@ -299,5 +380,6 @@ console.log(JSON.stringify({
       ({reserved, matches})).filter(x => x.matches)
   },
   positivePlants,
+  endAligned: {original: endAlignedOriginal, positivePlants: endAlignedPlants},
   decision: "All 29 possible reserved symbols fail source-native whole-word grammar before position 15; first repeat is at position 59. This closes this conditional same-key original-rune-order model, not other keys or cipher families."
 }, null, 2));
