@@ -1,0 +1,69 @@
+name: LP2 2013 binary-pad PRF-seed gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prf-seed-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned numerical and cipher dependencies
+        run: python -m pip install "numpy==2.2.6" "cryptography==45.0.7"
+
+      - name: Fetch pinned skip-aware decoder
+        env:
+          EXTERNAL_SHA: f63501d8f2d835b80c30230eb89a1110fb9197d2
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/dukotah"
+          git -C "$RUNNER_TEMP/dukotah" init
+          git -C "$RUNNER_TEMP/dukotah" remote add origin https://github.com/Dukotah/cicada3301.git
+          git -C "$RUNNER_TEMP/dukotah" fetch --depth=1 origin "$EXTERNAL_SHA"
+          git -C "$RUNNER_TEMP/dukotah" checkout --detach FETCH_HEAD
+          ACTUAL_SHA="$(git -C "$RUNNER_TEMP/dukotah" rev-parse HEAD)"
+          test "$ACTUAL_SHA" = "$EXTERNAL_SHA"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/analysis/campaign18_skip/sweep.py"
+          test -f "$RUNNER_TEMP/dukotah/liber-primus/analysis/campaign18_skip/skipdecode.py"
+          echo "Pinned decoder commit: $ACTUAL_SHA"
+
+      - name: Fetch exact 2013 CicadaOS data files
+        env:
+          SOURCE_SHA: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/pads"
+          BASE="https://raw.githubusercontent.com/neuroretransmit/cicada/$SOURCE_SHA/2013/002-3301/3301-contents/data"
+          curl -fL --retry 3 --retry-delay 2 "$BASE/_560.00" -o "$RUNNER_TEMP/pads/_560.00"
+          curl -fL --retry 3 --retry-delay 2 "$BASE/560.17" -o "$RUNNER_TEMP/pads/560.17"
+          test "$(wc -c < "$RUNNER_TEMP/pads/_560.00")" -eq 3992970
+          test "$(wc -c < "$RUNNER_TEMP/pads/560.17")" -eq 1183811
+          sha256sum "$RUNNER_TEMP/pads/_560.00" "$RUNNER_TEMP/pads/560.17"
+
+      - name: Run bounded PRF-seed screen and independent holdouts
+        run: |
+          set -euo pipefail
+          python -u sims/lp2_2013_binary_pad_prf_seed_gate.py \
+            --external-root "$RUNNER_TEMP/dukotah/liber-primus" \
+            --pad-dir "$RUNNER_TEMP/pads" \
+            --output "$RUNNER_TEMP/lp2-2013-binary-pad-prf-seed-gate.json" \
+            | tee "$RUNNER_TEMP/lp2-2013-binary-pad-prf-seed-gate.log"
+          cat "$RUNNER_TEMP/lp2-2013-binary-pad-prf-seed-gate.json"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-2013-binary-pad-prf-seed-gate
+          retention-days: 90
+          path: |
+            \${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.json
+            \${{ runner.temp }}/lp2-2013-binary-pad-prf-seed-gate.log
