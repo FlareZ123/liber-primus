@@ -152,8 +152,44 @@ Both outputs are nonlinguistic and have lower IoC than the original. The fixed i
 
 This retires only the direct three-symbol GP29 additive use of the p57 clause remainders on p55. It does not invalidate the historical 133/331 association or establish that the clause sums were intended as a key.
 
+## Three-clause totient key on the p55 word interiors (bounded negative)
+
+A distinct, source-constrained reading combines two explicit p57/p56 clues rather than reusing the earlier clause-remainder key:
+
+- The three p57 body clauses (excluding the red PARABLE heading) have GP-prime sums **[1259, 1031, 1229]**, each prime.
+- The adjacent solved p56 cipher establishes the prime-totient step phi(p)=p-1, and p57 says “find the divinity within.”
+- “Shed our own circumferences” selects the strict interior of each complete p55 printed word: remove its first and last rune, ignoring the single carried rune at p55's start. The 16 complete words yield **43 interior runes**, grouped with lengths **[2,0,0,4,4,0,11,4,2,0,5,5,0,4,1,1]**.
+
+Taking each clause prime's totient and reducing modulo 29 gives the fixed three-symbol GP29 key:
+
+~~~
+phi([1259,1031,1229]) = [1258,1030,1228]
+key = [11,15,10]
+~~~
+
+Apply the authentic p56 subtraction direction continuously from the first interior rune, repeating this three-symbol key. No phase, reversal, key permutation, per-word reset, or fitted operation is used.
+
+**Ordinary continuous subtraction (no F bypass)** produces:
+
+~~~
+HATHAHNGTNWDPMOANMMOYGIRHBTHOETHWAAEOLCUTNGWPFHMUW
+~~~
+
+It is not readable English. The only interior ciphertext F is at offset 11. If p56's literal-plaintext-F bypass is transferred, there are exactly two possible readings:
+
+| Reading of interior ciphertext F at offset 11 | Key symbols consumed | Output | F emitted by a key-consuming step (invalid under p56 rule) |
+|---|---:|---|---|
+| Treat it as literal plaintext F | 42 | HATHAHNGTNWDPFREARLDIAIAICCEOEOOYYHEALRAFTHLTHBANDAEH | offset 32 |
+| Treat it as encrypted | 43 | HATHAHNGTNWDPMOANMMOYGIRHBTHOETHWAAEOLCUTNGWPFHMUW | offset 38 |
+
+Neither branch is compatible with the p56 forward rule: every plaintext F must be literal and must not consume a key symbol, yet each branch creates another plaintext F at a nonzero ciphertext position. The fixed 43-rune implementation round-trips an independent 43-rune p57 plaintext plant exactly, including its literal-F position; this validates the arithmetic and clock, not the authenticity of the proposed key.
+
+The [reproducer](../sims/p57_clause_totient_key_p55_interior_gate.cjs) asserts the original p55 word parse and 43-rune interior, recomputes the three p57 clause prime sums from the canonical transcription, asserts the key, prints both outputs and both F-rule failures, and verifies the p57 positive control.
+
+This retires only the fixed **p57 clause-prime -> Euler-totient -> GP29 repeating key on p55 strict word interiors**. It does not establish that p57's parable is a p55 cipher instruction or that the p56 F-bypass applies to p55.
+
 ## Decision and scope
 
-Retire the direct repeating 19-symbol GP29 additive key in both signs and the direct three-symbol clause-remainder GP29 additive key in both signs, the p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders, and the per-column rotations modulo four. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend these candidates into alternate key encodings, phases, widths, or transposition families without an independent source instruction. No source-selected p55 decoder or plaintext has been established.
+Retire the direct repeating 19-symbol GP29 additive key in both signs and the direct three-symbol clause-remainder GP29 additive key in both signs; also retire the fixed p57 clause-prime → Euler-totient → GP29 key on p55 strict word interiors. Retire the p57-body-prime-sum → p55 19-column transposition in both standard directions and both key orders, and the per-column rotations modulo four. Preserve the exact 19-body-word / 76-rune dimensional fit and the 2016 “words/numbers” clue as observations, but do not extend these candidates into alternate key encodings, phases, widths, or transposition families without an independent source instruction. No source-selected p55 decoder or plaintext has been established.
 
 **Reproducer:** [sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs](../sims/p57_bodyword_prime_sum_p55_columnar_gate.cjs). It asserts the 20-word source parse, the 19 body-word sums, both direct additive outputs and a 76-rune positive-control round trip, four columnar outputs, both per-column rotation controls, and the matched 47,959-window Gibran control.
