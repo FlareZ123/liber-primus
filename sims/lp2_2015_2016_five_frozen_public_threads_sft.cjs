@@ -84,6 +84,14 @@ async function main(){
  const results=await Promise.all(others.map(async ([name,url])=>{
    const r=await fetchText(url);
    if(name==='board-direct'&&r.body){
+    const post=/<div class="message">([\s\S]*?)<\/div>/i.exec(r.body);
+    if(post){
+      const body=post[1].replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]*>/g,' ')
+        .replace(/&nbsp;/g,' ').replace(/&quot;/g,'"').replace(/&#39;/g,"'")
+        .replace(/&gt;/g,'>').replace(/&lt;/g,'<');
+      console.log('BOARD_MAIN_POST '+JSON.stringify({rawSha256:r.hash,htmlOffset:post.index,text:body}));
+    }
+
      const re=/(?:mortlach|shift independent|post-message|message-content|message-text|thread-title|post-content|decryption|cipher)/gi;
      const matches=[];let m;
      while((m=re.exec(r.body))!==null&&matches.length<65){
