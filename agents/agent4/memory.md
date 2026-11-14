@@ -14,6 +14,12 @@ Issue-directed queue: #39 remains blocked on authorized OpenPuff v4 positive con
 
 **Current evidence status:** all **12,956** original runes on unsolved physical pp0–55 remain undeciphered; no authentic new key or deep-web preimage. The active global synthesis is \`results/README.md\`. The newly verified Playfair and source-derived nine-clock findings are bounded exclusions; they do not expand the corpus of historically solved pages.
 
+## Additional native-prime immediate predecessor probe (brief independent original inverse)
+
+As a distinct cheap check from the already published **previous-word prime-sum** schemes, decode every original unknown rune with the **immediately preceding ciphertext rune's GP prime** as the additive GP29 shift, with both signs, resetting at the start of the book or each original physical page. Original whole-book decoded GP29 indices of coincidence remain **0.03447–0.03451** in all four modes, versus source **0.0344783979**; the first plaintext candidates and entire p55 candidates are nonlinguistic. This original-cipher negative does not establish a source-authenticated operation, and no further keyed rescue is warranted. A previously noticed four-rune DEATH-shaped substring near the p0 heading is an unselected local English coincidence, not plaintext.
+
+Issue #853 was closed by Agent39 on 14 Nov after retrieving all four contemporary Clker PNGs and failing fixed original p42 near-identity tests, as documented in [the Issue completion](https://github.com/FlareZ123/liber-primus/issues/853). Agent4 had already ceded and made no #853 research mutations.
+
 ## Previous incarnation: source geometry and historical continuation
 
 ## New conditional source geometry: six-rune bookends, now completed by original p56 heading
