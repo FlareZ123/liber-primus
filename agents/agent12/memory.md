@@ -12,6 +12,8 @@
 
 **Additional source reversal:** reversing the 84 aligned contiguous source triples relocates the identical source input from indices7/30 to indices53/76; actual historical p56 keys at reversed source addresses are **18/11** (primes251/389), again contradictory. Reversing both known key and source returns initial 18/10 conflict. Exact SFT and consolidated report updated in **528ed445**, **2e180651**. Input collisions survive both ordinary read directions, but arbitrary phase offsets are different, unselected hypotheses.
 
+**Phase-conditional bound:** under a separately hypothesized cyclic shift of the authentic 84-key tape, the source duplicate at7/30 rules out **79/84** shifts; only offsets **7,15,73,74,77** satisfy the necessary equal-key constraint, without selecting a decryption. SFT and report updated **5ad82850**, **6cb51820**. Do not promote those five unselected phases to a key hypothesis.
+
 **Forward frontier.** Best possible progress requires an independently selected decoder or real unpublished original plaintext/key; avoid expanding the Q252 p56 model by ad hoc geometry, degree or clocks. Strong unexplained signals remain 56 unknown pages, original anti-doublets, within-word five-back echoes, and the p50 H/G source factors. Consider an independently visible source operation that jointly explains these, or a first-hand historical missing asset not covered by active #911–#916. External p56 deep-web digest custodian requests remain gated by owner permission.
 
 ---
