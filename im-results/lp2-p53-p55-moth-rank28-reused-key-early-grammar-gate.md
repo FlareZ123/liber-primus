@@ -44,6 +44,18 @@ Construct a trie from **29,060 distinct source-native GP word forms** drawn from
 
 The original paired ciphertext becomes incompatible with *any* corresponding pair of full source-native English dictionary words before its first repeated output and before the 15th symbol, for every R. The largest live intermediate product-trie state count is 2,425, so this is an exhaustive finite-state conclusion, not beam-search pruning.
 
+### Six-rune local certificate, independent of the longer word stream
+
+The first obstruction can be isolated to just two visibly printed words. Original p53's **third word** is seven runes long and occupies local positions **8–14**. Original p55's **fourth complete body word** is six runes long and occupies body positions **8–13**. Their first six positions coincide under the frozen page-start alignment; neither original ciphertext has a repeated rune within these six predecessor transitions. The exact, source-only vector of the six differences `(ΔC53−ΔC55) mod28` is:
+
+```
+[5, 27, 25, 19, 15, 24]
+```
+
+The pinned TextBlob lexicon supplies **4,776 distinct native-GP seven-rune words** and **4,657 distinct native-GP six-rune words**. Hash-index every complete six-rune dictionary word by its compressed GP28 rank sequence; for each possible seven-rune word ask if its first six rune ranks differ by precisely the six original values. Repeat for every R, discarding candidate words containing that R at positions where both original ciphertext deltas are nonzero. **Result: zero matched dictionary-word pairs for all 29 reserved runes.** This gives a small, independently intelligible cryptanalytic incompatibility, without needing the remainder of the 75-rune dynamic program.
+
+If the first overlapping coordinate at the newly printed word boundary is deliberately omitted, the five-step window still has no dictionary match for **25** of 29 reserved runes; R indices 19–22 retain three possible seven-rune words each. Thus the six-step impossibility requires the stated **page-continuous predecessor update**, rather than assuming an independently reset state at every printed word. The model's word-boundary convention and key reuse are unverified creator hypotheses.
+
 **Three independent secret-key positive plants** (R = GP indices 0, 17, 28) encode separate native dictionary passages with all 179 p53 and 75 p55 runes under the exact same unknown rank28 key at aligned positions and independent page IVs. All three recover the exact original native plaintext under the known true key and re-encrypt it verbatim. The same **key-blind** product trie reaches all 75 positions for every plant, with 20/21/21 final compatible state pairs. This confirms the original rejection is not caused by a broken inverse, misread word boundaries or a solver unable to detect true shared-key examples.
 
 [Complete Windows-compatible CommonJS SFT](../sims/lp2_p53_p55_rank28_sharedpad_source_sft.cjs), with [successful manual Windows/Node22 GitHub Actions run 43584021778](https://github.com/FlareZ123/liber-primus/actions/runs/43584021778). The program asserts the exact source runes, 75-body correction, native word lengths, 29/29 original exclusions and three complete reversible plants.
