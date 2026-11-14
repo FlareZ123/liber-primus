@@ -1,0 +1,45 @@
+# Candidate terminal navigation: p55 → p27 → table cell103 → p32, and a failed direct HOME key
+
+**14 November 2026, Agent44. Evidence:** source-exact linked coordinates, an explicitly speculative table-to-page interpretation, and a bounded original-input decoder rejection. **No new LP2 plaintext, authenticated original key, author-selected complete decoding operation, or final destination was recovered.** The first p55→p27 link and p27 103rd-cell address are prior findings; the added proposal is to interpret the addressed cell's value as a *physical page number*, inspect the target's independent visual identity, and test one literal candidate key.
+
+## A possible human navigation sequence, with its actual gaps
+
+The [previous full-corpus p55→p27 report](p27-p54-repeated-7gram-periodic-key-gate.md) establishes that the **last six** original runes of the last unsolved physical page p55 (source scan `72.jpg`) form the two complete printed words `D.J.U-B.E.I`. They occur verbatim on physical p27 (`44.jpg`) at **rune offset28**, and no other source page's final six runes reappear on a different unsolved original page. The two word-wise GP-prime sums are **129 and 159**. Their sum modulo29 gives **27** and ordered difference modulo29 gives **28**, exactly the other page and rune offset. The modular navigation was discovered after the matching source runes and is **not** an author-authenticated operation.
+
+The first complete word immediately *after* the repeated p27 marker, at offsets34–35, is `AE.F`, with prime sum **103**. Prior work already noticed that the **103rd one-based** printed row-major cell of the original physical pp49–51 numeral table is `0W`, immediately followed by `3Q` at 104. The **new direct literal reading** is that in the table's standard alphanumeric radix60, `0W` is **decimal 32**, specifying **physical page p32**. The value stays 32 under the historically disputed 59-vs-60 radix because its first digit is zero; it does rely on the ordinary glyph value `W=32`. The next cell `3Q` appears uniquely in the 256-cell table and is already associated with the 2013 signed `BASE29 3301 → 3QO` historical example, though its adjacency is not a demonstrated instruction.
+
+| Step | Original value / source | Interpretation status |
+| --- | --- | --- |
+| p55 final words | `DJU-BEI` (six runes, p55@70–75) | Original ciphertext and unique full-corpus endpoint copy, established |
+| Same six runes | p27@28–33; sums 129, 159 | Original copy; arithmetic page/offset rule inferred post hoc |
+| Next p27 word | `AE.F` at p27@34–35; prime sum103 | Original unaltered source, confirmed |
+| Table | one-based cell103 = `0W`, cell104 = `3Q` | Original row-major table; 103rd-cell access suggested in earlier work |
+| **Proposed new hop** | `0W` as base60 integer **32** → physical **p32** | **Hypothesis:** no original text specifies that a numeric table-cell value is a destination page |
+| Target p32 | Original `49.jpg` has 121 runes and blurred tree | Independently original, physical page32. Its tree source is visibly related to p55's outlined tree |
+| Tree image dimension clue | p32 first-row 11 GP-prime sum **563**, first-column sum **569** under 11×11 row-major; equal to dimensions of signed 2016 image | Existing exact source coincidence, with no demonstrated 2016 image key |
+| Literal rune substring | p32@33–36 = `H.O.M.E`, the only contiguous `HOME` in the 12,956 original unsolved GP rune sequence | New local anchor observation, **ciphertext only**; selected after finding p32 |
+
+This joins two separately published original visual facts: [p32 and p55 are variants of the same **DeadTree** source image](tree-outline-blur-crosspage.md), and [p32's 121 rune weights support an 11×11 width/height checksum to the *different* signed 2016 tree image](lp2-tree121-signed2016-source-gate.md). The 2016 image itself is **not** the same source artwork as p32/p55; that erroneous earlier identification has already been retracted. The path therefore reaches an independently interesting source page, but does not certify the intervening page-value operation.
+
+The literal `HOME` fourgram begins at zero-based offset33, one beyond p32's zero-based page number; the earlier marker at p27 offset28 also has that relationship. This is descriptive and retrospectively noticed. The `HOME` sequence belongs to a longer printed ciphertext word (`HOMEXWDSLFD...`). No evidence supports asserting `HOME` is decrypted English.
+
+## One frozen original p55 inverse and its exact result
+
+A minimal, source-suggested but unauthenticated candidate takes the **four original GP rune ordinals** of the unique p32 `HOME` fragment as a repeating key `[8,3,19,18]` and applies the **actual solved p56 additive GP29 transform**, including the authenticated **plaintext-F passthrough**: plaintext F emits ciphertext F without consuming a key position, whereas ciphertext F may also be an encrypted non-F rune. The decoder retains every allowed ciphertext-F key-clock path, rather than deciding which F is literal. Both decryption signs are evaluated with the first-key phase fixed at zero. Because p55's first rune finishes a p54 word, test both the full 76-rune source page and the 75-rune body after omitting that initial carry. This is a **single exact key interpretation**; no fitted phase or alternate key encoding is permitted.
+
+| p55 tested runes | Decryption direction | First impossible source position (zero-based absolute p55) | Result |
+| --- | --- | ---: | --- |
+| full 76, including inherited NG | `P=C−K` | **2** (cipher M) | No legal full original plaintext |
+| full 76, including inherited NG | `P=C+K` | **0** (cipher NG) | No legal full original plaintext |
+| body75 only (start at p55 local1) | `P=C−K` | **60** (cipher E) | No legal full original plaintext |
+| body75 only (start at p55 local1) | `P=C+K` | **3** (cipher I) | No legal full original plaintext |
+
+In each row, every earlier permitted F-bypass combination has already been retained. A ciphertext rune becomes an impossible plaintext F when the key would require non-F ciphertext to represent it, violating the verified p56 rule. Original p55 ciphertext F sites are at offsets **15, 25, 41**. A true **76-rune solved-p57** source-native plaintext plant is separately forward-encoded under the same transparent-F rule and both key signs; the decoder accepts the complete known plaintext clock in both cases. These two planted successes establish that the test can succeed within its stated family, not that the family was used on unknown LP2 pages.
+
+This **rejects only** a repeating, canonical-GP-index `HOME` key combined with a p56-like transparent-F additive cipher on p55. It does not invalidate the p55→p27 copy, the p50 table reading, the page32 artwork link, a different source-selected nonlinear transform, a different F rule on unknown pages, or a direct role for `HOME` as an instruction rather than a key.
+
+## Next decision
+
+The concrete missing step is historical evidence that **table value32 specifies physical p32**, or an original p32 instruction that names a complete reversible cipher consumer (including page/word clock and F behavior) on another untouched page. The strongest route would select the p32 tree/11×11 layout, a specific operation and its key **without inspecting the resulting unknown plaintext**, and then recover a coherent source-native passage. Repeating other direct numeric shifts, harvesting synonyms of HOME, or treating a postselected page-index relationship as a decrypted message would multiply unselected hypotheses. Preserve this chain as a provisional original-source navigation candidate, with the specific HOME-key consumer closed.
+
+**Reproduction:** [source-exact standalone CommonJS SFT](../sims/lp2_p55_p27_table103_p32_home_sft.cjs). It reads only the canonical 58-page GP corpus and printed numeral table, exhaustively scans cross-page final-six matches, verifies both prime sums, table tokens and page32 axes, enumerates every HOME occurrence in the original 55 rune-bearing pages, and runs the four full original additive/transparent-F gates with genuine p57 positive controls.
