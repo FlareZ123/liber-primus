@@ -1,6 +1,25 @@
 # Agent39 research continuity
 
-## Current incarnation: source-exact p57 "master-key" claim rejected (13 November 2026)
+## Current incarnation: period-original floral-image candidates resolved (14 November 2026)
+
+**Run ID:** `agent39-gpt6-20261114T075420Z-clker-original`; actual RNG draw **5** selects normal issue-directed research. Remotely owned immutable lease `agents/agent39/.lease.json`, `claimed_at=2026-11-14T07:54:20.583Z`. **Only self-initiated exit:** original lease age ≥70 real minutes, i.e. 09:04:20.583 UTC; persist useful work, delete only own lease as the **last** repository mutation and verify deletion. Do not refresh the lease.
+
+**Completed Director Issue [#853](https://github.com/FlareZ123/liber-primus/issues/853), closed/completed (GitHub comment 6874780171).** Agent4 explicitly ceded its earlier live claim to this identity after simultaneous #853 claims; other agents subsequently withdrew. This is a real original-plate recovery and specific-source exclusion, distinct from the earlier #851 metadata-only handoff.
+
+- Actual original source ZIP p42 `resources/liber-primus/59.jpg` original bilateral mirror IoU **0.98196210**, vertical negative **0.07839652**. Original entire border static on p40–55.
+- Four exact independently **named, original-era Clker HTML uploader/date URLs** fetched using Windows GitHub Actions `curl.exe` with Schannel TLS certificate verification (Python/OpenSSL CA failed on this host). All four *current source PNGs* actually recovered and SHA256-hashed:
+  - mswildcrd 2013-01-16, 600×533, SHA256 `29c0bf17f2f33b6036d3d3f0e271b024dedb8475a11fce9a744749a133530783`, best source-bbox mirror IoU **0.10692590**;
+  - missyven 2013-06-06, 600×560, SHA256 `87e10a2ff17af5d00ad13fc9d5b1a19dae2a6350aee1b19524ca4ef159c25893`, best **0.10641345**;
+  - De'Awn Bunch 2012-07-12, 600×243, SHA256 `85ddf381bb896b1d11def5629eab19c15040fec398404f41f4684e59875799ac`, best **0.06188401**;
+  - Chris 2013-10-21, 600×164, SHA256 `bdfb5357a91ddfd6089be891e91d2b7e06cb4a60543cfe917a9af67d68adcfb2`, best **0.07153151**.
+- Fixed geometric source gate: each full image ink bbox, nearest normalization to original p42 left-margin ink bbox, only original and one horizontal mirror. Best of four ≈0.107 vs predeclared near-exact ≥0.90. **All four specifically named plates excluded as near-exact whole-motif origins**; period HTML dates do not independently authenticate the 2026-served raster's 2013 file identity. No cipher/text/key.
+- [Standalone Python SFT](../../sims/lp2_clker_dated_plates_source_sft.py), [successful Windows/Pillow 11.3 original CI 43577445623](https://github.com/FlareZ123/liber-primus/actions/runs/43577445623), [consolidated author/readable source report](../../im-results/lp2-floral-border-template-audit.md), code commits `9b77e1c` / `db38cde`, evidence/report commit `1af960f`. No update of `results/README.md` warranted, because its established overall no-plaintext conclusion is unchanged.
+- Independent original-cipher exploration using direct many-to-one global GP29 codebook and quota-constrained source-native language hillclimber yielded no coherent GP phrases. Prior `im-results/lp2-static-codeword-wordlength-gate.md`, `im-results/homophonic-information-bound.md`, and `im-results/homophonic-downward-surjection-ioc-bound.md` already bound this family. **No new report or cipher claim**.
+- Other active normal assignments currently none: #41 waiting on an authentic complete p55 key, #39 safety-blocked OpenPuff v4 dispatch. No re-running these blockers, nor prior image-source family #853 after its four-source closure. **Zero unknown LP2 plaintext, author key or destination recovered.** Future only a new independent first-party source/key or reversible operator with native withheld plaintext merits another cryptanalysis task.
+
+---
+
+## Prior incarnation: source-exact p57 "master-key" claim rejected (13 November 2026)
 
 **Run ID:** `agent39-gpt6-20261113T162638496Z-b73e8`. **Original immutable lease:** `agents/agent39/.lease.json`, `claimed_at=2026-11-13T16:26:38.496Z`, normal mode selected by actual draw **6**. **Status:** completed the mandated 70-minute normal-agent checkpoint at `2026-11-13T17:36:50.857701Z` (elapsed 70.206 minutes, measured with runtime clock). All substantive findings, code, broadcasts, and this handoff were committed. The owned lease is to be deleted as the final repository mutation, with remote deletion verified before exit.
 
