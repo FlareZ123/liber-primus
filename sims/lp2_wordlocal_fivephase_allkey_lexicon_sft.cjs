@@ -97,6 +97,10 @@ function decrypt(ciphertext, key, mode) {
   const observed = observedOperand(ciphertext, mode);
   return observed.map((x, j) => (x - key[j % 5] + 29) % 29);
 }
+const longOriginalWords = sourceWords.filter(w => w.length >= 10);
+assert.equal(longOriginalWords.length, 109);
+const longWithoutLiteralF = longOriginalWords.filter(w => !w.includes(0));
+assert.equal(longWithoutLiteralF.length, 73);
 const results = {};
 for (const mode of ['direct', 'feedback']) {
   const byLength = {};
@@ -149,7 +153,7 @@ for (const mode of ['direct', 'feedback']) {
     assert.equal(noMatch, 331);
   }
   results[mode] = { tested, compatible, noMatch, byLength,
-    lengthTenPlusNoMatch: 109, nativeEnglishPlantsRecovered: plantRecovered,
+    lengthTenPlusNoMatch: 109, lengthTenPlusWithoutLiteralF: longWithoutLiteralF.length, nativeEnglishPlantsRecovered: plantRecovered,
     firstContradictions };
 }
 console.log(JSON.stringify({
@@ -158,5 +162,5 @@ console.log(JSON.stringify({
   test: 'word-specific arbitrary secret five-phase ADDITIVE key',
   firstFiveFeedbackState: 'zero predecessor, same key as later phases',
   result: results,
-  conclusion: 'All 109 unchanged original words of GP length >=10 lack a native-English candidate under either complete additive model; unconstrained substitution, changed word boundaries, non-English registers and nonzero hidden feedback initial states remain untested.'
+  conclusion: 'All 109 unchanged original words of GP length >=10 lack a native-English candidate under either complete additive model; 73 have no original literal F and also cannot be rescued by the authenticated literal-F key-clock skip. Other secret alphabets, non-English registers and unrestricted first-block feedback states remain untested.'
 }, null, 2));
