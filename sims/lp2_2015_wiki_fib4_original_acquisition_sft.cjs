@@ -8,6 +8,8 @@ const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root='https://uncovering-cicada.fandom.com';
 const targets=[
+  {label:'LP core wiki title search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('Liber Primus')+'&srlimit=100&format=json'},
+  {label:'p15 spiral wiki title search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('page 15 spiral')+'&srlimit=100&format=json'},
   {label:'p15 spiral comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title='+encodeURIComponent('Onion 7: numbers on page 15')+'&namespace=0&hideDeleted=false&page=0'},
   {label:'LP article comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus&namespace=0&hideDeleted=false&page=0'},
   {label:'LP ideas comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus_Ideas_and_Suggestions&namespace=0&hideDeleted=false&page=0'},
@@ -29,12 +31,19 @@ const targets=[
 /** @param {string} t @param {number} n */
 function sha(t,n){return crypto.createHash('sha256').update(t.slice(0,n)).digest('hex');}
 async function main(){
- assert.equal(targets.length,17);
+ assert.equal(targets.length,19);
  const out=await Promise.all(targets.map(async t=>{
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
       headers:{'user-agent':'LP2OriginalSourceResearch/1.0 (historical source read only)'}});
    const b=await r.text();
+   if(t.label.endsWith('wiki title search')){
+     try{
+      const j=JSON.parse(b);
+      console.log('WIKI_PAGE_CANDIDATES '+JSON.stringify({label:t.label,
+       titles:j.query?.search?.map(v=>({title:v.title,id:v.pageid,ns:v.ns}))}));
+     }catch(e){console.log('SEARCH_PARSE '+String(e))}
+   }
    if(t.label==='p15 spiral comment page zero'){
       try{
        const j=JSON.parse(b);
