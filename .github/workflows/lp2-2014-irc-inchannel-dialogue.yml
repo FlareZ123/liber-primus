@@ -1,0 +1,19 @@
+name: LP2 2014 IRC in-channel unknown-page dialogue gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-dialogue:
+    runs-on: windows-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the pinned original IRC dialogue scanner
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_irc_inchannel_dialogue_sft.cjs
+          node sims/lp2_2014_irc_inchannel_dialogue_sft.cjs
