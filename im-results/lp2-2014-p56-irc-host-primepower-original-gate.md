@@ -51,6 +51,25 @@ Original p55 has exactly **76 ciphertext runes**, with three ciphertext F glyphs
 
 **All eight produce at least one impossible F.** Accordingly all eight fail strict forward reconstruction of original p55; the best 76-rune output has index of coincidence only **0.03543860**, independently demonstrating no coherent original-language passage. The second [Windows/Node22 manually dispatched run 43600830105](https://github.com/FlareZ123/liber-primus/actions/runs/43600830105) passed source controls, mask enumeration and rejection asserts.
 
+## Independent July 28 layered-prime necessary-condition test
+
+The same original IRC archive also records a **28 July 2014** participant discussion at L228577–L228617. `Hydroperoxy` proposes additional encryption layers on successive earlier pages in response to solved p57's prose about shedding layers; `Nem0` suggests p55 `prime*2`, and `lvkm` explicitly suggests `page 57 = prime seq^0, 56 prime seq^1, 55 = prime seq^2`. These are historically contemporary solver proposals, not signed Cicada instructions, and they supply an independent reason to test a stacked p56-style outer layer without inventing its underlying cipher.
+
+A **necessary condition** for *any* model that applies the actual p56 transparent-F prime-totient Vigenère operation as its **outermost encryption layer**, with the original 0-based page-reset prime clock on p55, is that at least one choice of p55 ciphertext-F bypasses admits a strict forward inverse. The same source-code SFT separately tested all eight masks with exponent **1** (the real p56 key), independently of the exponent2 page-power test above. All eight inverse intermediate streams contain a forbidden plaintext/intermediate F at a position where original ciphertext is non-F:
+
+| p55 outer phi(prime) literal-F mask | Forbidden intermediate-F positions |
+| ---: | --- |
+| 0 | 39, 51 |
+| 1 | 28, 62 |
+| 2 | 28, 62 |
+| 3 | 34, 53, 55, 74 |
+| 4 | 39, 62 |
+| 5 | 28, 53, 55, 74 |
+| 6 | 28, 53, 55, 74 |
+| 7 | 34, 61 |
+
+**No intermediate input alphabet stream exists for this exact outer operation**, no matter what inner cipher is hypothesized; adding more secret inner layers cannot repair the forbidden output of the outermost layer. Earlier [p55 moth/phi(prime) 25-seam test](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md) verified round-trip algebra by forcing the same hand-selected positional skip at both directions, but its mapped backward output does **not** satisfy the authentic plaintext-F implication everywhere. Thus the earlier reported algebraic `apply(apply(...))` identity must not be read as a strict p56-native cipher re-encoding of original p55. The current eight-mask result is a stronger, independent categorical exclusion under the explicitly frozen original p55 alignment.
+
 ## Fork and scope
 
 The **exact** page-reset, GP29 additive, prime-power family selected by the original June 2014 page-number hypothesis is rejected for p55. This establishes that extending p56 by the simplest source-era exponent cannot directly solve the preceding encrypted page. A different clock, signed operation, register, variable-rate symbol transport, or source-selected independent key is outside this finite model, but requires new original evidence before spending additional search resources.
