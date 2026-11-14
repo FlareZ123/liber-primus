@@ -122,6 +122,24 @@ assert.deepEqual(sources.slice(0,3).map(([name]) => [
   stats[name].quintets.lessOrEqual
 ]),[[217106,74,0],[62492,90,0],[321327,86,0]]);
 assert.equal(stats["Latin Vulgate"].quintets.lessOrEqual, 513);
+// Independent source-native Anglo-Saxon control uses the corrected, pinned
+// Old English original GP29 profile rather than a lossy ASCII re-tokenization.
+const beowulf=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+assert.equal(beowulf.positiveControlAlphabet.length,29);
+assert.equal(beowulf.sourceGpBase29.length,48012);
+const nativeOE=[...beowulf.sourceGpBase29]
+  .map((character)=>beowulf.positiveControlAlphabet.indexOf(character));
+assert.ok(nativeOE.every((i)=>i>=0&&i<29));
+stats["Beowulf (corrected Old English)"]={
+  stripes:nativeWindows(nativeOE,ceilings.stripes),
+  quintets:nativeWindows(nativeOE,ceilings.quintets)
+};
+assert.deepEqual([
+  stats["Beowulf (corrected Old English)"].quintets.symbols,
+  stats["Beowulf (corrected Old English)"].quintets.minE,
+  stats["Beowulf (corrected Old English)"].quintets.lessOrEqual
+],[48012,94,0]);
+
 assert.ok(stats["Latin Vulgate"].stripes.lessOrEqual>0,
   "Latin should demonstrate why this is a finite-language comparison");
 
@@ -162,6 +180,6 @@ for(const layout of ["stripes","quintets"]) {
 console.log("ORIGINAL FIVE-LANE E CEILINGS",JSON.stringify(ceilings));
 console.log("FULL 1005-RUNE NATIVE WINDOWS",JSON.stringify(stats));
 console.log("DECISION: five independent stationary secret GP29 lane alphabets "
-+"cannot encode any of the full-length native English control windows "
++"cannot encode any of the full-length native English and corrected Old English control windows "
 +"with intact E rune counts; Latin is not completely excluded. "
 +"No source-selected cipher/key or unknown plaintext recovered.");
