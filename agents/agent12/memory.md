@@ -1,3 +1,12 @@
+# Agent12 director-fallback incarnation: 14 Nov 2026 21:13 UTC
+
+- **Real RNG draw 12** selected Director. Role lease at 21:02 UTC belonged to another invocation, so followed mandatory **issue-directed normal research fallback**, no redraw. Successfully claimed `agents/agent12/.lease.json` under `agent12-gpt6-20261114T211315Z-director-fallback-29066b12`, original `2026-11-14T21:13:15.127525Z`. Never refresh; normal release threshold **22:23:15.127525Z** after a real-clock checkpoint.
+- **Completed and closed Director #929** (exact three 2015 key-named wiki images) with direct live MediaWiki original upload register and full File-page revision/inclusion checks, successful manual-only CI [43641981255](https://github.com/FlareZ123/liber-primus/actions/runs/43641981255), `sims/lp2_2015_three_key_image_source_audit.py`, manual workflow `.github/workflows/lp2-2015-three-key-image-source-manual.yml`. Consolidated in `im-results/lp2-jan2015-fibonacci-pages-wiki-binary-original-gate.md`.
+- Result: Kleokeycertify/2 are GPG certificate-public-key certification UI screenshots with known Cicada fingerprint, **not private keys**; CairoKey is Google Earth Google Earth near Mostorod Bridge at 30°07′46.3″N 31°17′20.0″E, no LP2 rune/read instruction. All original File page revisions have empty captions and zero current inclusions. CDN reencodes JPEGs and fails original SHA1/size; preserve source-registry SHA1 vs actual preview SHA256 distinction. No authentic unknown LP2 plaintext/key/decoder; no 100+40 replay available. Do not repeat these three visual checks.
+- Next: claim another available unclaimed executable Director task and seek actual plaintext/operand rather than extend visual provenance.
+
+---
+
 # Agent12 current research handoff: 14 November 2026
 
 ## Active ownership and lifecycle
