@@ -29,6 +29,31 @@ charpoly(M_signed)   = x^4 + 14x^3 + 27x^2 + 10x + 7
 
 Thus the **complete independent p39 red-triad quadratic** is a scalar multiple of an **exact characteristic-polynomial factor** of the signed p15 Fibonacci matrix, with algebraic multiplicity two for the same root **24**. The absolute-value printed matrix does not have this factor. Under the two-source polynomial-matrix operation, `Q(M_signed)` has **rank 2 and nullity 2** over GF29, while the original p3 quadratic `13+23x+2x²` evaluated at the same matrix has **rank 4 and is invertible** (determinant **6**). A distinct p39-selected two-dimensional generalized eigenstate therefore exists without guessing a rune or plaintext key.
 
+### New three-object p15/p39/p50 polynomial-matrix identity (14 November 2026)
+
+A distinct check connects the *original* 256-cell pp49–51 numeric table to those already established p15/p39 objects without changing any ciphertext. Take its source-order **byte** coefficients reduced modulo29 as the descending polynomial `P(X)` (the published binary byte SHA-256 is `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`). This polynomial is already known to contain the p39 factor `G(X)=15(X−24)^2`. In the independently calculated signed-p15 matrix's *other two* eigenvalues, an additional exact two-value match occurs:
+
+| Fixed eigenvalue / original p39 target | Original table polynomial |
+| --- | --- |
+| x=8; p39's **first** red coefficient = **27** | **P(8)=27** |
+| x=17; p39's **last** red coefficient = **15** | **P(17)=15** |
+| x=24; p39's **double** root = **24** | **P(24)=0; P′(24)=0** |
+
+Thus, using the known characteristic polynomial `χ_M=(X−8)(X−17)(X−24)^2`, the exact original table reduces to `P(X) mod χ_M = 6X³+24X²+22X+28 = (X−24)^2(6X+22)`. In particular, **P(M) = G(M) (12M+15I)** over GF29. The complete original-output 4×4 matrix is
+
+```text
+P(M) =  2  9  3 25
+       22 13 24 12
+        5  4  0 27
+       14 21 22 27
+```
+
+It has **rank two** with nonzero eigenvalues **27,15**, the outer values of the same printed p39 red triad. This is a three-source exact arithmetic coincidence extending the previously known shared eigenroot, rather than another test of the already failed Hill/M-power decoders. As source alternatives, the table evaluated on the **literal unsigned** p15 matrix has **rank four**; reversing the 256 printed table coefficients before evaluating on the signed matrix also yields **rank four**. The original p3 red quadratic remains full-rank on the signed matrix. The 256-byte input, all 256 Horner steps, the four field values, matrix identity, rank controls and reconstructed characteristic remainder are independently rerunnable with the [original-source CommonJS SFT](../sims/lp2_p15_p39_p50_matrix_function_sft.cjs), [successful Windows Node22 run 43544735956](https://github.com/FlareZ123/liber-primus/actions/runs/43544735956).
+
+**Evidence boundary and solve path.** If `P` is sampled uniformly among all GF29 polynomials sharing the original p39 double-root factor, its values at two *distinct*, independent fixed points 8 and17 are uniform, so the **specified two-value match** has probability 1/841 under this narrow conditional null. That calculation **does not** account for hindsight, the many cross-artifact relations considered in this repository, sign restoration or alternative polynomials. The signed p15 matrix, selected field/evaluation rule, table-byte parse and p39 triad are independently visible/inferred but **no creator instruction asks for P(M)**. Crucially **P(M) is singular**, so it cannot serve directly as a reversible four-symbol Hill key. A source-picked complementary projection or cipher rule with a real untouched original plaintext prediction is needed before this can yield a decipherment. None has been recovered.
+
+
+
 The signed matrix's exact multiplicative order is **812 = 28×29**, verified by `M^812=I` and `M^(812/q) != I` for prime factors `q∈{2,7,29}`. Its eigenvalue 24 has multiplicative order **7** in GF29 and a one-dimensional ordinary eigenspace. The unique eigenvector normalized to final coordinate 1 is **`v=[27,3,13,1]`**; `M v = 24v`, giving a frozen seven-block keystream without fitting a key. The extended generalized eigenspace can support a 203-step component under a Jordan chain, but there is no printed instruction choosing a generalized state, coordinate, or output mapping.
 
 ## Exact sign ambiguity resolves to the source-correct pair
