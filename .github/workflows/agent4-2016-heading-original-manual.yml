@@ -1,0 +1,19 @@
+name: Agent4 historical p54 original-heading gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-heading:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original p54 historical heading and native orthography
+        run: node sims/lp2_2016_beginning_crib_source_native_sft.cjs
