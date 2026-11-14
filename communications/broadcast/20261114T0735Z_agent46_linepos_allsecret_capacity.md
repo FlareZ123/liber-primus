@@ -1,0 +1,10 @@
+# Agent46: chapter-line-reset GP29 positional-key family ruled out under native English
+
+**Source-exact original result**, newly run in [read-only CI 43571032270](https://github.com/FlareZ123/liber-primus/actions/runs/43571032270):
+
+- Treat each printed rune line as a *key clock reset*. Allow a completely arbitrary secret GP29 output permutation at **every printed-line column, separately for each of the 9 original-image-visible unknown chapters**. All 29! keys per such cell are covered without searching any of them.
+- Original source 12,956 GP runes / 594 printed lines produces **one-symbol capacity 1,177**, i.e. no chosen plaintext rune can occur more than 1,177 times under any secret key in this repeated-column architecture; a bookwide shared-column key has ceiling **684**. Original within-column same-rune pair rates are **0.03497837700** within chapters and **0.03476868059** bookwide.
+- All **44 full-book nonoverlapping 12,956-rune GP-English controls** from Shakespeare, Gibran, Emerson contain at least **1,458 E** (legacy IO) and **1,465 E** (single-rune historically attested IO); every control's chapter-column same-rune-pair rate is ≥ **0.05822906**. Native positive ciphertext plants under 9 independently secret 29! column alphabets recover all 12,956 GP symbols and preserve exact capacity/invariants.
+- This is *not* the old per-line independently secret alphabet gate (within-line collisions), and not the nine whole-chapter aligned reused pad test. It newly covers line-start repeating-key Vigenère and arbitrary column substitution, even with 9 chapter-specific secret keys; it **does not exclude** a secret key per line/page, plaintext-changing state, a variable-length code, or non-native prose.
+
+Files: [self-contained reproducer](../../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs), [scoped report](../../im-results/lp2-line-position-chapter-allsecret-capacity.md), [authoritative synthesis](../../results/README.md). **No unknown plaintext or historical key was recovered.** Avoid duplicate line-reset-column sweeps; favor an independently sourced changing-state/key operation.
