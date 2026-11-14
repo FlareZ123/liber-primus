@@ -177,7 +177,57 @@ const max = Math.max(...outputRows.map((x) => x.ioc));
 assert(Math.abs(raw - 0.03447839786450569) < 1e-12);
 assert(Math.abs(min - 0.034452218946315824) < 1e-12);
 assert(Math.abs(max - 0.03452396371937963) < 1e-12);
+// Key-independent cancellation on identical square-exterior seed values.
+// Compare full original physical pages and source-defined pre-fourth-F clocks.
+const pageByNumber = new Map(corpus.pages.map((p) => [p.page, p.indices]));
+/** @param {number[]} runes @returns {number} */
+function fourthFIndex(runes) {
+  let f = 0;
+  for (let i = 0; i < runes.length; i++) {
+    if (runes[i] === 0 && ++f === 4) return i;
+  }
+  return runes.length;
+}
+const cancellation = [];
+for (const order of /** @type {const} */ (['printed', 'clockwise'])) {
+  const ring = squares.flatMap((square) => perimeter(square, order));
+  let pairs = 0, fullCount = 0, fullEqual = 0, preFCount = 0, preFEqual = 0;
+  for (let left = 0; left < 56; left++) {
+    for (let right = left + 1; right < 56; right++) {
+      if (ring[left] !== ring[right]) continue;
+      const a = pageByNumber.get(left);
+      const b = pageByNumber.get(right);
+      if (a.length === 0 || b.length === 0) continue;
+      pairs++;
+      const full = Math.min(a.length, b.length);
+      const preF = Math.min(full, fourthFIndex(a), fourthFIndex(b));
+      for (let i = 0; i < full; i++) if (a[i] === b[i]) fullEqual++;
+      for (let i = 0; i < preF; i++) if (a[i] === b[i]) preFEqual++;
+      fullCount += full;
+      preFCount += preF;
+    }
+  }
+  cancellation.push({order, pairedOriginalPages: pairs, fullEqual, fullCount,
+    preFourthFEqual: preFEqual, preFourthFCount: preFCount});
+}
+assert.deepStrictEqual(cancellation, [
+  {order:'printed',pairedOriginalPages:31,fullEqual:221,fullCount:6582,
+   preFourthFEqual:90,preFourthFCount:2660},
+  {order:'clockwise',pairedOriginalPages:31,fullEqual:216,fullCount:6536,
+   preFourthFEqual:95,preFourthFCount:2743}
+]);
+const controlDistribution = (runes) => {
+  const f = Array(29).fill(0);
+  runes.forEach((x) => f[x]++);
+  return f.map((n) => n / runes.length);
+};
+const nativeP56 = controlDistribution(solvedNative);
+const nativeP57 = controlDistribution(corpus.pages.find((p) => p.page === 57).indices);
+const nativeCrossCollision = nativeP56.reduce(
+  (total, probability, i) => total + probability * nativeP57[i], 0);
+assert(Math.abs(nativeCrossCollision - 0.06910216718266254) < 1e-12);
 console.log(JSON.stringify({
+  cancellation, nativeCrossCollision,
   input: '2014 signed three-square records + original LP2 GP29 runes',
   squareShapes: [5, 7, 5], innerCoreCells: 43, outerRingCells: 56,
   pageSlots: 56, runeBearingPages: 55, unknownRunes: 12956,

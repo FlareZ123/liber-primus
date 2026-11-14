@@ -22,6 +22,21 @@ For LP2 unknown page p, assign the p-th exterior value in the three source squar
 
 The source unaltered GP29 pooled index of coincidence is **0.0344783978645**. All 24 inverse outputs have pooled IoC between **0.0344522189463** and **0.0345239637194**, indistinguishable at this descriptive resolution from 1/29 = 0.0344827586207. A genuinely solved p57 control has IoC approximately 0.06271. The maximum-score candidate, row-major exterior / value mod29 / addition / fourth-F rule, begins with the nonlinguistic rune transliteration WREABYEOUCYXIMNHIAAEAEEOYCTHSY. None recovers an unknown plain-language passage.
 
+## Key-independent cancellation of equal exterior values
+
+There is a stronger, algorithm-independent test of **page-reset additive key reuse** than specifying the prime generator. The authentic magic-square outer rings **repeat integer values** by construction. If two pages receive equal exterior seed numbers and a deterministic *same starting stream* of GP29 additive shifts, then, wherever their key clock has not diverged, the keystream cancels exactly: **the two original ciphertext runes are equal at position i precisely when the two original plaintext runes are equal at position i**. Neither the unknown key values nor the generator need be guessed.
+
+Frozen source square perimeter readings, printed and clockwise, each yield **31 distinct pairs of rune-bearing LP2 pages with identical exterior numbers**. Counting all aligned positions within the shorter physical page gives:
+
+| Square exterior order | Repeated-number page pairs | Equal original cipher runes / aligned positions | Rate | Until either page's original fourth ciphertext F |
+| --- | ---: | ---: | ---: | --- |
+| Printed row-major ring | 31 | **221 / 6,582** | **0.0335764** | **90 / 2,660 = 0.0338346** |
+| Clockwise perimeter | 31 | **216 / 6,536** | **0.0330477** | **95 / 2,743 = 0.0346336** |
+
+The **pre-fourth-F** comparison respects the historical p56 rule: if only the fourth F is literal/nonconsuming, the additive keystream clocks cannot have diverged *because of that specific skip* yet. Across the independent solved GP-native p56 plaintext and directly readable p57, the unigram cross-collision probability is **0.0691022**. Those two small texts illustrate the roughly double coincidence expected for **conventionally written English-like GP plaintext**. In contrast, the cipher page pairs show approximately **1/29 = 0.0344828** collisions even before that possible skip. A direct shared-seed additive consumer preserving normal English-GP unigram concentration is therefore incompatible with this source-selected pairing, without any particular seed-generation formula.
+
+This is an **observed necessary-condition negative under a specified model**, not a calibrated discovery-wide probability: the 31 source page pairs share some pages, their aligned symbols are correlated, the two short known-plaintext controls are not representative of every possible original language register, and any per-page IV, position-dependent secret, differing phase, nonlinear feedback cipher or earlier custom interrupter may break key synchronization. The repeated exterior-cell geometry itself remains unauthenticated. Source SFT pins all 31 pairs and both original pre-fourth-F counts with exact assertions, alongside the p56/p57 language control.
+
 ## Next decision
 
 **Reject this explicit exterior-number → per-page prime-index clock, with the historical p56 operator.** The dual geometry remains a conditional proposal worth keeping visible if a fresh first-party consumer or independently predictive plaintext clue appears. Avoid searching arbitrary page permutations, source rotations or hand-fitted per-page shifts to rescue this failed direct cipher. The prior three-core Hill negative is independent and remains valid. The [authoritative status](../results/README.md) remains unchanged: all 56 unknown LP2 physical pages remain undeciphered.
