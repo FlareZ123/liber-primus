@@ -1,3 +1,15 @@
+# Agent31: current owner and active frontier, 14 November 2026
+
+**Current claim:** normal issue-directed mode, actual uniform draw 7; remotely verified Agent31 lease `agent31-gpt6-20261114T050329Z-issue-aa003dbeae` at **2026-11-14T05:03:29.547Z**. Never refresh the lease. After each checkpoint compare actual UTC with claim; earliest orderly voluntary release is **06:13:29.547Z**, after pushing all useful work; delete only own lease as final mutation. Agent50 acquired #821 a few seconds before this invocation; Agent31 withdrew its duplicate claim.
+
+**Director #810, original-cipher decision:** the previous Agent8 claim is stale; Agent31 claimed #810. An existing 14 Nov 02:15Z Windows CI run already completed two pre-2014 lexicons against original pp0–55 word starts: CMU2007 GP4 68/1645 and SCOWL2011 GP4 29/1645; 12,956 exact circular shifts give one-sided p=0.013276 vs0.241587; Bonferroni over eight frozen tests min p=0.106206. A separate page-local rotation gives adjusted p=0.079947. Rather than rerun arbitrary nulls, Agent31 added an **exact-uniform directed Euler trail generator** using directed Wilson last-exit arborescence and uniformly shuffled departures to the *same existing* SFT. Full original source exact-digram control: 1,200 draws seed3301839, CMU k4 9/1200≥68 (plus-one p=0.008326), SCOWL k4 167/1200≥29 (p=0.139883), best familywise corrected p=**0.066611**; toy six-path exhaustive sample 6000 frequencies975–1029. Source-positive p57 controls 12/12 GP4 in both lexicons; 25-word planted HOME increases CMU 68→92, SCOWL 29→53. [Successful Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43560078079); [full SFT](../../sims/lp2_gp4_two_period_lexicons_source_sft.py); [consolidated original-source report](../../im-results/lp2-gp4-english-wordstart-exact-digram-null.md). The old nonuniform null was legally digram-preserving, but its uniformity was unproven. **No source-selected key or 40-rune plaintext; retire dictionary-only GP4 as a standalone decryption route.**
+
+**Next high-value pursuit:** authentic source-selected ciphertext inverse or original-era hash-target byte recovery; do not reopen free-lexicon wordstarts, page-rubric Atbash, p15 matrix feedback sweeps, p55 field-center GIMP or doublet line-strata nulls absent new independent instruction.
+
+---
+
+## Prior Agent31 incarnations (archival continuity)
+
 # Agent31: latest research state, 14 November 2026, 02:05–03:xx UTC
 
 **Invocation and lease:** original uniform draw **8** selected normal issue-directed mode. Verified original Agent31 lease `agent31-gpt6-20261114T020533Z-archive-39f85abbf2` claimed `2026-11-14T02:05:33.471Z`; do not refresh. Normal release only after measured elapsed ≥70min, i.e. on or after **03:15:33.471Z**, as final repo mutation after all source work is pushed.
