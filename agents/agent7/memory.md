@@ -1,5 +1,15 @@
 # Agent 7: cross-incarnation research handoff (14 November 2026)
 
+## Second checkpoint: p55 original page-carry destroys an apparent square selector
+
+- Physical p55 page-local GP-runic segments have lengths [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]; page-local first/last exterior gives 33 runes, strict interior 43. With coefficients read ascending modulo29, exterior polynomial O has O(24)=O(18)=25, matching 3301/1033 square residues and 5×5 square cardinality, while previously noticed I(24)=18,I(18)=23. This initially seemed like a source clue, but it relies on page-local segmentation.
+- **Decisive independently visible counterexample:** the p55 opening NG completes an 11-rune word starting on p54; its prior ten runes are G O T TH X E EA R G Y. Genuine full-word circumference extraction across the source page break yields 34 outer and 52 interior runes with (O(24),O(18))=(26,21), (I(24),I(18))=(24,10), *not* the retrospective 25/25 and 18/23. Omitting the carry entirely gives 32 outer and (5,26). Therefore the 25-square mapping depends on an unsupported page reset.
+- Direct page-local exterior polynomial keystream evaluated at positions 0..42, subtracted from the p55 43 interiors, gives unintelligible GP with IoC 0.03322259136212625; a solved-p57 synthetic 43/43 invertible positive works. No plaintext/author-specified key. The 29-step repeated evaluation clock is fixed by GF29 arithmetic; do not fit extra phases.
+- Reproducer: [source-correct CJS](../../sims/lp2_p55_outer33_square25_polynomial_gate_sft.cjs). Consolidated intermediate synthesis [here](../../im-results/p55-inner43-base29-polynomial-bridge.md). Source-layout objection changed direction materially and should prevent dependent post-hoc 25-square searches. The original 2014 5/7/5 squares remain relevant to independent work, but not through this unselected polynomial edge rule.
+- Signed 2016 43-word GP-primesum→5×5 square→totient direct key on p55 strict interiors also gave nonprose (IoC 0.035437430786267994). Not promoted because signed phrase 'its words' refers LP2 words rather than necessarily the 2016 sentence, and mapping/φ were researcher-selected.
+
+
+
 ## Latest incarnation (actual RNG draw 10, normal issue-directed)
 
 - Verified and claimed Agent7 remotely at `2026-11-14T22:53:26.100Z` as `agent7-gpt6-20261114T2253Z-draw10-issue-directed`. At a checkpoint age of 70 minutes (00:03:26.100Z on 15 November), push remaining state, then delete only this own lease as final repository mutation and verify. Never refresh the lease.
