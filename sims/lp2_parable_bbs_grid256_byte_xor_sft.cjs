@@ -2,7 +2,7 @@
 
 /**
  * Source-selected 2013 PARABLE Blum-Blum-Shub prime triple -> original LP2 p50
- * 32x8 base60-byte grid, four bit-extraction conventions. No fitted keys/clocks.
+ * 32x8 base60-byte grid, eight bit-extraction conventions. No fitted keys/clocks.
  * This SFT is separate from the full-corpus GP29 decoder and tests a native
  * *byte* transport: direct BBS parity-byte XOR against the original grid order.
  * Windows 11 / Node22 CommonJS; no external dependencies.
@@ -25,23 +25,30 @@ const original = Buffer.from(grid.byte_rows.flat());
 assert.equal(original.length, 256);
 
 /**
+ * Either classic BBS's one parity bit per squaring or conventional
+ * Blum-Goldwasser's h=floor(log2(floor(log2(N))))=4 low bits per squaring.
+ * Both selectors are pinned by the historical three-prime modulus; neither
+ * introduces an unknown plaintext-trained phase.
  * @param {number} size
  * @param {'x0'|'x1'} timing
  * @param {'msb'|'lsb'} order
+ * @param {1|4} bitsPerStep
  * @returns {Buffer}
  */
-function bbsParityKey(size, timing, order) {
+function bbsParityKey(size, timing, order, bitsPerStep) {
   let x = X0;
   let first = true;
   const bytes = Buffer.alloc(size);
+  const chunks = 8 / bitsPerStep;
+  const mask = (1 << bitsPerStep) - 1;
   for (let i = 0; i < size; i++) {
     let v = 0;
-    for (let j = 0; j < 8; j++) {
+    for (let j = 0; j < chunks; j++) {
       if (!first || timing === 'x1') x = (x * x) % N;
       first = false;
-      const bit = x & 1;
-      if (order === 'msb') v = 2 * v + bit;
-      else v |= bit << j;
+      const fragment = x & mask;
+      if (order === 'msb') v = v * (mask + 1) + fragment;
+      else v |= fragment << (bitsPerStep * j);
     }
     bytes[i] = v;
   }
@@ -96,22 +103,27 @@ function recognizedHeaders(bytes) {
 }
 
 const cases = [];
-for (const timing of ['x0', 'x1']) for (const order of ['msb', 'lsb']) {
-  const key = bbsParityKey(256, timing, order);
-  const cipherPlant = xor(plant, key);
-  assert.deepEqual(xor(cipherPlant, bbsParityKey(256, timing, order)), plant);
-  const candidate = xor(original, key);
-  const s = stats(candidate);
-  cases.push({
-    timing, order, ...s,
-    first32Hex: candidate.subarray(0, 32).toString('hex'),
-    recognizedHeaders: recognizedHeaders(candidate)
-  });
-}
-assert.equal(cases.length, 4);
-assert.deepEqual(cases.map((c) => c.printable), [96, 97, 92, 101]);
+for (const bitsPerStep of [1, 4])
+  for (const timing of ['x0', 'x1'])
+    for (const order of ['msb', 'lsb']) {
+      const key = bbsParityKey(256, timing, order, bitsPerStep);
+      const cipherPlant = xor(plant, key);
+      assert.deepEqual(
+        xor(cipherPlant, bbsParityKey(256, timing, order, bitsPerStep)),
+        plant
+      );
+      const candidate = xor(original, key);
+      const s = stats(candidate);
+      cases.push({
+        bitsPerStep, timing, order, ...s,
+        first32Hex: candidate.subarray(0, 32).toString('hex'),
+        recognizedHeaders: recognizedHeaders(candidate)
+      });
+    }
+assert.equal(cases.length, 8);
+assert.deepEqual(cases.map((c) => c.printable), [96, 97, 92, 101, 105, 97, 98, 95]);
 assert.ok(cases.every((c) => c.recognizedHeaders.length === 0));
-assert.ok(cases.every((c) => c.printableOrWhitespace <= 105));
+assert.ok(cases.every((c) => c.printableOrWhitespace <= 108));
 
 const summary = {
   original: 'resources/liber-primus/base60-grid.json printed 32x8 bytes',
@@ -121,7 +133,8 @@ const summary = {
   bytes: original.length, distinctRawBytes: new Set(original).size,
   firstOriginal32Hex: original.subarray(0, 32).toString('hex'),
   originalSha256: createHash('sha256').update(original).digest('hex'),
-  firstOutput: 'parity bit of x0 or x1; eight bits per byte, MSB/LSB regrouping',
+  firstOutput: '1 BBS parity bit or 4 Blum-Goldwasser low bits per squaring, ' +
+    'x0/x1 timing, MSB/LSB packing',
   cases, plantRecovered: true, recoveredPlaintext: false
 };
 console.log(JSON.stringify(summary, null, 2));
