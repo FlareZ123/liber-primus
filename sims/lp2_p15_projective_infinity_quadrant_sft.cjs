@@ -58,8 +58,15 @@ assert.deepEqual(maps, [
   [11, 17, 21, 17],
   [19, 7, 12, 22]
 ]);
-const poles = maps.map(([, , c, d]) => mod(-d * inverse(c)));
-assert.deepEqual(poles, [7, 14, 13, 3]);
+// The *inverse* returns plaintext infinity at C=a/c, not at -d/c.
+const poles = maps.map(([a, , c]) => mod(a * inverse(c)));
+assert.deepEqual(poles, [10, 12, 24, 4]);
+for (let i = 0; i < maps.length; i++) {
+  const inverseMap = invertMatrix(maps[i]);
+  for (let cipher = 0; cipher <= 29; cipher++) {
+    assert.equal(mobius(inverseMap, cipher) === 29, cipher === poles[i]);
+  }
+}
 
 // GP30: finite GP indices 0..28 and a word break as infinity (29).
 // For M=(a,b;c,d), M(x)=(ax+b)/(cx+d), with the usual projective
@@ -125,9 +132,9 @@ source.forEach(x => sourceHistogram[x]++);
 // all-secret bound on how many plaintext word breaks can be generated.
 const arbitraryScheduleMaxSpaces =
   [...new Set(poles)].reduce((sum, pole) => sum + sourceHistogram[pole], 0);
-assert.deepEqual(poles.map(x => sourceHistogram[x]), [401, 458, 445, 458]);
+assert.deepEqual(poles.map(x => sourceHistogram[x]), [471, 399, 482, 424]);
 assert.equal(sourceHistogram[29], 2895);
-assert.equal(arbitraryScheduleMaxSpaces, 1762);
+assert.equal(arbitraryScheduleMaxSpaces, 1776);
 assert(arbitraryScheduleMaxSpaces < sourceHistogram[29]);
 
 // One concrete source-matrix, changing-state reversible proposal: the
