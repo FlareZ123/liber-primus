@@ -18,6 +18,8 @@ with maximum absolute centroid-coordinate discrepancies **0.5818 source pixels**
 
 Compare full source-resolution binary ink in p23 (x=735..1599,y=450..849) with the exact corresponding p56 patch after a 180° rotation, threshold 125. P23 contains **17,908** dark pixels; p56 contains **17,888**; intersection **17,684**. This is **17,684 / 18,112 = 0.976369258 intersection-over-union**, despite independent JPEG encoding, and demonstrates reproduction of the actual drawn dot artwork.
 
+The two thresholded patches differ in exactly **428 dark-pixel memberships**. Every changed pixel lies within **1.4143 pixels of the corresponding dark-circle boundary**, leaving no changed dot interior at this threshold. That confines the detected differences to one-pixel edge and resampling effects; it does not support an added internal dot payload.
+
 For uniqueness, resize all **58** original LP2 scan pages 17.jpg–74.jpg to 600×900, use the frozen p23 rectangle x=184..399,y=113..212 as the template, and search each image with normalized cross-correlation in both 0° and 180° orientations. Rankings:
 
 | Image and orientation | Maximum template correlation |
