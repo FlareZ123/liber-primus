@@ -19,3 +19,5 @@ jobs:
         run: node --check sims/lp2_2014_unsolved_page_witness_scan_sft.cjs
       - name: Extract page-identified 2014 original plaintext claims
         run: node sims/lp2_2014_unsolved_page_witness_scan_sft.cjs
+      - name: Frozen original p34 and p35 immediate-next-word holdout
+        run: node sims/lp2_2014_progressive_crib_holdout_sft.cjs
