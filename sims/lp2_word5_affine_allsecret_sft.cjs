@@ -366,6 +366,64 @@ for (let len = 10; len <= 14; len++) {
 }
 assert.equal(independentPhase.planted, 5);
 
+
+/** Authentic F-copy with key consumption suppressed, plus five independent
+ * invertible phase-affine secret alphabets per printed word.
+ * @param {number[]} cipher @param {number[]} plain @returns {boolean}
+ */
+function independentPhaseTransparentF(cipher, plain) {
+  const groups = Array.from({length: 5}, () => []);
+  let tick = 0;
+  for (let j = 0; j < plain.length; j++) {
+    if (plain[j] === 0) {
+      if (cipher[j] !== 0) return false;
+    } else groups[tick++ % 5].push([plain[j], cipher[j]]);
+  }
+  for (const group of groups) {
+    if (group.length < 2) continue;
+    const [firstPlain, firstCipher] = group[0];
+    const other = group.find(([p]) => p !== firstPlain);
+    if (!other) {
+      if (group.some(([, c]) => c !== firstCipher)) return false;
+      continue;
+    }
+    const [otherPlain, otherCipher] = other;
+    const slope = mod29(otherCipher - firstCipher) *
+      inv[mod29(otherPlain - firstPlain)] % 29;
+    if (slope === 0) return false;
+    const shift = mod29(firstCipher - slope * firstPlain);
+    if (group.some(([p,c]) => mod29(slope*p+shift) !== c)) return false;
+  }
+  return true;
+}
+const phaseWithHistoricalF = {byLength: {}, matched: 0, unrecognized: 0};
+for (let len = 10; len <= 14; len++) {
+  const corpus = native.get(len), originals = original.filter(w => w.length === len);
+  const compatible = originals.filter(cipher => corpus.some(plain =>
+    independentPhaseTransparentF(cipher, plain))).length;
+  phaseWithHistoricalF.byLength[len] = {total: originals.length,
+    compatible, unrecognized: originals.length-compatible};
+  phaseWithHistoricalF.matched += compatible;
+  phaseWithHistoricalF.unrecognized += originals.length-compatible;
+}
+assert.deepEqual([10,11,12,13,14].map(len =>
+  phaseWithHistoricalF.byLength[len].compatible), [52,31,13,0,0]);
+assert.equal(phaseWithHistoricalF.unrecognized, 13);
+// Positive true-F plant with phasewise independent slopes; include a non-F
+// source rune that encrypts to F to preserve genuine ciphertext ambiguity.
+for (let len = 10; len <= 14; len++) {
+  const plain = native.get(len).find(word => word.includes(0));
+  assert(plain);
+  const slopes = [3,7,11,17,23], shifts = [5,9,13,19,2];
+  const first = plain.find(x => x !== 0);
+  shifts[0] = mod29(-slopes[0] * first);
+  let tick = 0;
+  const cipher = plain.map(p => p === 0 ? 0 :
+    mod29(slopes[tick%5]*p + shifts[tick++%5]));
+  assert(independentPhaseTransparentF(cipher, plain));
+  assert(cipher.some((c,j) => c === 0 && plain[j] !== 0));
+}
+
 process.stdout.write(JSON.stringify({
   status: 'bounded exact original-input negative, no recovered plaintext',
   model: 'word-specific invertible slope and five arbitrary phase shifts in GP29',
@@ -376,6 +434,7 @@ process.stdout.write(JSON.stringify({
   minimumChangedRuneIdentities: editBudget,
   strictPlaintextFBypassAndKeySkip: fSkip,
   independentAffineSlopePerPhaseAndWord: independentPhase,
+  independentPhaseWithAuthenticFSkip: phaseWithHistoricalF,
   availableAdjacentRepeatEvents: 86,
   sourceNativeClearLp1: {longWords: 25, additiveCompatible: 21, affineCompatible: 23},
   positiveControls: {wordSpecificSecrets: positives, allRuneRoundTrips: true}
