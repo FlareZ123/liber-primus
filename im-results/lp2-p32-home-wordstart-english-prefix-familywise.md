@@ -29,7 +29,8 @@ The six post-period four-rune GP prefixes are, in physical-page, rune-offset ord
 
 | Physical page | Original zero-based page-rune offset | Four GP indices | Literal GP rendering |
 |---|---:|---|---|
-| p15 | 0 | 0,1,20,19 | FULM |\n| p19 | 152 | 4,10,0,16 | RIFT |
+| p15 | 0 | 0,1,20,19 | FULM |
+| p19 | 152 | 4,10,0,16 | RIFT |
 | p30 | 177 | 23,24,20,13 | DALP |
 | p31 | 231 | 2,12,4,18 | THEORE... |
 | **p32** | **33** | **8,3,19,18** | **HOME** |
