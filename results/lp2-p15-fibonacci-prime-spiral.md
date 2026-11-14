@@ -4,7 +4,7 @@
 
 ## Source image and recovered operation
 
-Original source: [LP2 original archive scan 32.jpg](../resources/liber-primus/32.jpg), physical LP2 page **15**. The recorded four printed rows are:
+Original source: [LP2 original archive scan 32.jpg](../resources/liber-primus/32.jpg), physical LP2 page **15**. The original 3299 glyph is **red by design**, rather than a separate faint-gray numeral: the exact source JPEG's 3299, upper rune heading and lower rune rubric all share the most common RGB value **(192,0,0)**. All other 15 grid numerals are black. The 3299-only red selection is already the source-visible spiral origin; a later report that this cell is lighter in grayscale supplies no second cipher, opacity or key instruction. See the [16-cell original-pixel comparison and test](../im-results/lp2-p15-3299-source-palette-gate.md).\n\nThe recorded four printed rows are:
 
 ```text
 3258  3222  3152  3038
