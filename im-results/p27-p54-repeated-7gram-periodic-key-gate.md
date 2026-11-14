@@ -96,6 +96,8 @@ all F masks, phase ranks, complete original outputs, dictionary pattern
 obstruction, and positive 70-rune arithmetic inversion. **CI passed**, with
 the new gate as independent successful job step9: [run 43619726627](https://github.com/FlareZ123/liber-primus/actions/runs/43619726627).
 
+**Original source cross-link to the p32/p15 square route**: The **same p27 `AE.F` sum103** reaches the original p50 cell103 independently of the 2016 image's prime-ordinal103. Under the explicitly conditional **base60 byte mod58 page-register** map, the adjacent cells103/104 both address p32; the next original p32 prime-bearing row/column pair cells113/116 both address p15. The complete p32 prime-bearing row targets are `[32,15,4,5]`, and column targets are `[32,15,46,56]`; agreement stops after the first two entries. P15's source Fibonacci-prime square independently yields the already-public 3301 identifier. All original-input calculations and the base59 counterexample are consolidated in [the p32/p15 numeric-junction report](lp2-2016-prime-ordinal-p50-double-O-marker.md#source-locked-p32p32p15-dual-page-register-junction-and-p55-entry-agent35-14-november-2026), [CI run43621862810](https://github.com/FlareZ123/liber-primus/actions/runs/43621862810). This new page-routing link remains **an inference**, with no source-authenticated key or decrypted p55 message. Do not repeat the failed additive inverse as if the numeric self-address validates it.
+
 **Scope and decision:** This rejects only these two concrete additive
 consumers **if** p55 inherits the solved pages' F-transparent rule; their
 standard unskipped versions also give no authentic plaintext. The actual
