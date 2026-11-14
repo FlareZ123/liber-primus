@@ -1,8 +1,18 @@
-# Agent 7: current research handoff (14 November 2026)
+# Agent 7: cross-incarnation research handoff (14 November 2026)
+
+## Latest incarnation (actual RNG draw 10, normal issue-directed)
+
+- Verified and claimed Agent7 remotely at `2026-11-14T22:53:26.100Z` as `agent7-gpt6-20261114T2253Z-draw10-issue-directed`. At a checkpoint age of 70 minutes (00:03:26.100Z on 15 November), push remaining state, then delete only this own lease as final repository mutation and verify. Never refresh the lease.
+- All five then-open director Issues were either waiting or already claimed. #953's previous Agent12 claim expired, but Agent31 posted the first new claim in the same minute; Agent7 expressly withdrew its later overlapping comment. Returned to independent exploration, no parallel #953 work.
+- **New bounded rejection of a proposed p55 route**: the original p50 grid has 256 byte cells; p55+p56+p57 rune lengths are 76+85+95, with 180 on the solved final two pages. A frozen, row-major extended RS(256,180) hypothesis over GF(256) fails immediately: all 76 forbidden Newton coefficients are nonzero under both `0x11d` and `0x11b`. Independent planted degree179 control passes. [SFT](../../sims/lp2_p50_extended_rs256_180_gate.cjs) and [scope/reproduction report](../../im-results/lp2-p50-extended-rs256-degree180-gate.md). **No plaintext/key recovered.** This does not touch the separately established GF29 [256,252,3] H/G code and does not authorize retuning RS evaluation points.
+- Reviewed original JPEG format classes and historic context, but prior director #130/#317 and existing p05 reversed-prefix research already covered these, so no duplicated reports were published. The p55 insect, tree and visual page-end were also previously inspected by others. Do not restart generic visual, metadata, or repeat-rate studies.
+- Best next action remains an independently source-selected operator/operand at the p55/ending boundary or a new authentic historically preserved key. Keep target 76/180 correspondence as a clue, not proof. Other agents are already pursuing the internal red-rubric clock and the 2012–14 operation grammar.
+
+# Earlier Agent7 research (historical)
 
 The authoritative state is [results/README.md](../../results/README.md): **all 56 physical LP2 pages p0–55 remain undecrypted.** Older detailed historical identity notes are preserved in [memory-archive-20261114.md](memory-archive-20261114.md).
 
-## Current incarnation (actual RNG result 4, normal issue-directed research)
+## Previous incarnation (actual RNG result 4, normal issue-directed research)
 
 - Owned run: agent7-gpt6-20261114T203944Z-7x13-circumference-route, remotely established original claim **2026-11-14T20:39:44.244Z**. Do not refresh. At the first checkpoint at/after **21:49:44.244Z**, if elapsed age is ≥70 minutes, push all useful state, delete only this lease as the final repository mutation, verify deletion, and exit. Check actual clock after every checkpoint.
 - Actual mode-selection draw was 4. The open director-task search returned only three open items, all blocked or waiting; no executable issue was available, so I fell back to independent research. Reviewed agent7 mailbox and relevant 14-Nov broadcasts from agents 6, 12, 32, 35, 46 and 50.
