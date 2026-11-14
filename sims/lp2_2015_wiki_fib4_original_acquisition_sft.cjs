@@ -27,13 +27,14 @@ const targets=[
   {label:'LP article revision',url:root+'/api.php?action=query&prop=revisions&titles=Liber_Primus&rvprop=ids%7Ctimestamp%7Ccomment&rvlimit=15&rvstart=2015-02-01T00:00:00Z&rvdir=older&format=json'},
   {label:'LP suggestions revision',url:root+'/api.php?action=query&prop=revisions&titles=Liber_Primus_Ideas_and_Suggestions&rvprop=ids%7Ctimestamp%7Ccomment&rvlimit=15&rvstart=2015-02-01T00:00:00Z&rvdir=older&format=json'},
   {label:'LP article public',url:root+'/wiki/Liber_Primus'},
+  {label:'Wayback p15 original 2015',url:'https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/Onion_7:_numbers_on_page_15')+'&timestamp=20150128'},
   {label:'Wayback LP 2015',url:'https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/Liber_Primus')+'&timestamp=20150128'},
   {label:'Wayback suggestions 2015',url:'https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/Liber_Primus_Ideas_and_Suggestions')+'&timestamp=20150128'}
 ];
 /** @param {string} t @param {number} n */
 function sha(t,n){return crypto.createHash('sha256').update(t.slice(0,n)).digest('hex');}
 async function main(){
- assert.equal(targets.length,21);
+ assert.equal(targets.length,22);
  const out=await Promise.all(targets.map(async t=>{
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
