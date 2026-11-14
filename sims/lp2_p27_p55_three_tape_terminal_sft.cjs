@@ -94,6 +94,44 @@ assert.equal(printable(primeXor4), 59);
 assert.equal(primeXor4.filter(v => v < 32).length, 17);
 assert.equal(Buffer.from(primeXor4).toString("hex").slice(0, 32),
   "6e6034485e0c6678526e4c0c3e0e2037");
+// Full source-prescribed 2013 BASE29 numeral interpretation before the
+// historical 2014 bytewise three-share XOR. Every 76-rune source tape
+// becomes a single 47-byte big-endian number (zero-padded to the common
+// minimum fixed width), with all source rune values preserved.
+const base29 = 29n ** BigInt(p55.length);
+const toInt29 = word => word.reduce((a, v) => a * 29n + BigInt(v), 0n);
+const toBytes47 = number => {
+  const out = Array(47).fill(0);
+  let v = number;
+  for (let i = 46; i >= 0; i--) {
+    out[i] = Number(v & 255n);
+    v >>= 8n;
+  }
+  assert.equal(v, 0n);
+  return out;
+};
+const fromBytes = bytes => bytes.reduce(
+  (a, v) => 256n * a + BigInt(v), 0n);
+const sourceByteTapes = tapes.map(w => toBytes47(toInt29(w)));
+const nativeP55Bytes = toBytes47(toInt29(p55));
+const base29KeyBytes = sourceByteTapes[0].map((_, i) =>
+  sourceByteTapes[0][i] ^ sourceByteTapes[1][i] ^
+  sourceByteTapes[2][i]);
+const base29RecoveredBytes = nativeP55Bytes.map(
+  (v, i) => v ^ base29KeyBytes[i]);
+assert.equal(base29RecoveredBytes.length, 47);
+assert.equal(Buffer.from(base29RecoveredBytes).toString("hex").slice(0, 32),
+  "014a6d1c45acd1cb103cd8a33373c912");
+assert.equal(printable(base29RecoveredBytes), 17);
+assert.equal(base29RecoveredBytes.filter(v => v < 32).length, 8);
+const recoveredNumber = fromBytes(base29RecoveredBytes);
+assert(recoveredNumber < base29);
+const nativePlantBytes = toBytes47(toInt29(p57.slice(0, 76)));
+const plantedCipherBytes = nativePlantBytes.map(
+  (v, i) => v ^ base29KeyBytes[i]);
+assert(fromBytes(plantedCipherBytes) < base29);
+assert.deepEqual(plantedCipherBytes.map(
+  (v, i) => v ^ base29KeyBytes[i]), nativePlantBytes);
 // A separate fully invertible GP29 arithmetic analog of combining the
 // three source tapes; this uses no fitted phase, scale or word boundary.
 const key = tapes[0].map((_, i) => mod29(
@@ -134,6 +172,14 @@ console.log(JSON.stringify({
     byteLength: packed.length,
     leading16BytesHex: Buffer.from(packed).toString("hex").slice(0, 32),
     remainingBits: bits.slice(376)
+  },
+  historicalBase29XorByte: {
+    width: 47,
+    printableBytes: printable(base29RecoveredBytes),
+    asciiControlBytes: base29RecoveredBytes.filter(v => v < 32).length,
+    leading16Hex: Buffer.from(base29RecoveredBytes).toString("hex").slice(0, 32),
+    originalRecoveredIntegerFitsGp29: recoveredNumber < base29,
+    nativeP57PlantExact: true
   },
   additiveKeyMatchesP55: key.filter((v, i) => v === p55[i]).length,
   candidateAdditiveIoC: ioc(candidate),
