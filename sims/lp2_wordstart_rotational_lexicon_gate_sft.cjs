@@ -65,8 +65,7 @@ const prefix = (word) => word.slice(0, 4).map((x) => x.x).join(",");
 const original = eligible.filter((word) => dictionary.has(prefix(word))).length;
 assert.equal(original, 26);
 
-function makeRng() {
-  let seed = 0x33013214;
+function makeRng(seed = 0x33013214) {
   return () => {
     seed ^= seed << 13;
     seed ^= seed >>> 17;
@@ -133,9 +132,40 @@ const plantCount = planted.filter((word) => dictionary.has(prefix(word))).length
 assert(plantCount >= original + 40);
 assert(wordResult.pUpper < 0.03);
 assert(pageResult.pUpper < 0.10);
+// Direct first-rune control: the lexical excess must not be attributed to a
+// word-initial alphabet-frequency skew without source-calibrated evidence.
+const initialPositions = unknown.map((word) => word[0]);
+const totalUnknownRunes = nonemptyPages.slice(0, 55).reduce((n, p) => n + p.indices.length, 0);
+assert.equal(totalUnknownRunes, 12956);
+assert.equal(initialPositions.length, 2896);
+const firstFraction = initialPositions.length / totalUnknownRunes;
+const fullHist = Array(29).fill(0);
+for (const p of nonemptyPages.slice(0, 55)) for (const x of p.indices) fullHist[x]++;
+function initialChi(phases) {
+  const hist = Array(29).fill(0);
+  for (const { p, i } of initialPositions) {
+    const page = nonemptyPages[p].indices;
+    hist[page[(i + (phases ? phases[p] : 0)) % page.length]]++;
+  }
+  return hist.reduce((sum, h, x) => {
+    const expected = fullHist[x] * firstFraction;
+    return sum + (h - expected) ** 2 / (expected * (1 - firstFraction));
+  }, 0);
+}
+const origInitialChi = initialChi(null);
+const initialRng = makeRng(0x33013133);
+const initialNull = [];
+for (let rep = 0; rep < 5000; rep++) {
+  const phases = nonemptyPages.slice(0, 55).map((p) => initialRng() % p.indices.length);
+  initialNull.push(initialChi(phases));
+}
+const unigramGate = { originalChi: origInitialChi, pageRotation: summary(initialNull, origInitialChi) };
+assert(Math.abs(unigramGate.originalChi - 22.300843244811944) < 1e-9);
+assert.equal(unigramGate.pageRotation.greaterOrEqual, 3916);
+
 const output = {
   source: { pages: nonemptyPages.length, unknownWords: unknown.length, eligibleWords: eligible.length, dictionaryPrefixes: dictionary.size },
-  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount,
+  original, exactWordMean, wordRotation: wordResult, pageRotation: pageResult, plantedPrefixCount: plantCount, unigramGate,
   originalMatches: eligible.filter((word) => dictionary.has(prefix(word))).map((word) => ({
     physicalPage: nonemptyPages[word[0].p].page, pageOffset: word[0].i,
     prefix: word.slice(0, 4).map((r) => corpus.translit[r.x]).join(""),
