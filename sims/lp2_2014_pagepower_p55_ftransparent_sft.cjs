@@ -9,6 +9,10 @@
  *
  * This frozen, human-executable continuation fits solved p56 for exponent1,
  * and clear p57 for exponent0. Test direct next unknown p55 exponent2.
+ * IMPORTANT: a global all-plaintext-F bypass is a candidate extension, not
+ * proved by p56's single observed plaintext F at index56. Other plaintext F
+ * might be encrypted on unknown pages. Therefore strict-F failures below
+ * are conditional exclusions only.
  *
  * node sims/lp2_2014_pagepower_p55_ftransparent_sft.cjs
  */
@@ -45,7 +49,7 @@ function powerMod29(n,exponent){
 }
 /**
  * An F cipher glyph may be a bypassed literal-F or encrypted non-F.
- * The bypass consumes no prime-key position. For strict authentic
+ * The bypass consumes no prime-key position. For this hypothetical
  * encoding, plaintext F MUST emit ciphertext F via bypass.
  *
  * @param {number[]} ciphertext
@@ -110,8 +114,8 @@ for(let mask=0;mask<1<<fPositions.length;mask++){
   const plain=decode(p55,2,mask);
   const forbidden=plain.map((p,i)=>p===0&&p55[i]!==0?i:-1).filter(i=>i>=0);
   const roundTrip=encode(plain,2).every((v,i)=>v===p55[i]);
-  assert(forbidden.length>0,'Original p55 unexpectedly admits a strict-F inverse');
-  assert(!roundTrip,'Illegal plaintext-F must prevent strict native reencryption');
+  assert(forbidden.length>0,'Original p55 unexpectedly admits a transparent-F model inverse');
+  assert(!roundTrip,'Transparent-all-F hypothesis must prevent strict reencryption');
   outcomes.push({mask,unrecoverablePlaintextFPositions:forbidden,
     ioc:+ioc(plain).toFixed(8),
     first50GP:plain.slice(0,50).map(i=>gp[i]).join('')});
@@ -125,7 +129,7 @@ const outerLayerOutcomes=[];
 for(let mask=0;mask<1<<fPositions.length;mask++){
   const intermediate=decode(p55,1,mask);
   const forbidden=intermediate.map((p,i)=>p===0&&p55[i]!==0?i:-1).filter(i=>i>=0);
-  assert(forbidden.length>0,'Original p55 admits an unexpected strict phi outer layer');
+  assert(forbidden.length>0,'Original p55 admits an unexpected all-F-transparent phi outer layer');
   assert.notDeepEqual(encode(intermediate,1),p55);
   outerLayerOutcomes.push({mask,unrecoverableIntermediateFPositions:forbidden});
 }
@@ -138,6 +142,7 @@ console.log(JSON.stringify({
   p57NativeClearControl:'95/95 original GP symbols unchanged; strict forward reencryption',
   testedOriginalP55Masks:outcomes,
   p56PhiOuterLayerOriginalMasks:outerLayerOutcomes,
-  decision:'8/8 page-power inverses impossible; independently 8/8 outer phi(prime) strict-F inverses impossible, excluding any extra-layer model with precisely that outermost source-native p56 step on page-reset p55.',
+  decision:'Conditional hypothesis: all eight masks violate global plaintext-F transparency under both exponent2 and exponent1 outer layers. Since p56 supplies only one observed plaintext-F bypass, nontransparent positional F handling remains possible; this is NOT an unconditional impossibility for original p55.',
+  sourceFTransparencyBeyondP56IsUnproven:true,
   noUnknownPlaintextOrKeyRecovered:true
 },null,2));
