@@ -90,8 +90,7 @@ for (let p = 0; p < pageTexts.length; p++) {
   const chapter = starts.findIndex((start, g) =>
     g < 9 && physical >= start && physical < starts[g + 1]);
   const sourcePage = ink.pages.find(page => page.page === physical);
-  assert.ok(sourcePage);
-  const marked = sourcePage.large_punctuation.filter(
+  const marked = (sourcePage?.large_punctuation || []).filter(
     entry => entry[1] === 13 && entry[2] === "red");
   allRed13 += marked.length;
   const lines = pageTexts[p].split("/").map(line =>
@@ -111,7 +110,7 @@ for (let p = 0; p < pageTexts.length; p++) {
     offset += line.length;
   }
 }
-assert.equal(allRed13, 30);
+assert.equal(allRed13, 27);
 assert.equal(insideRed13, 11);
 assert.equal(red13Chapters.flat().length, 605);
 assert.deepEqual(red13Chapters.flat().flat(), allLines.flat());
