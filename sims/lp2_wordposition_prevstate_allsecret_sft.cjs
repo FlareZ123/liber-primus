@@ -348,6 +348,37 @@ assert.deepEqual([
   Math.max(...singletonGapTwoRekeys.map(x => x[1]))
 ], [41, 57]);
 
+/**
+ * Source-physical-page control: visible chapter cuts alone make p15 appear
+ * more specific than the singleton data actually warrant. Count all two-key
+ * replacements at any printed physical page start.
+ */
+let runningPageOffset = 0;
+const physicalCuts = [];
+for (const page of gp.pages.filter(p => p.page < 56)) {
+  if (page.page > 0 && page.indices.length) {
+    physicalCuts.push({page: page.page, offset: runningPageOffset});
+  }
+  runningPageOffset += page.indices.length;
+}
+assert.equal(runningPageOffset, 12956);
+assert.equal(physicalCuts.length, 54);
+const validPhysicalTwoCuts = [];
+for (let i = 0; i < physicalCuts.length; i++) {
+  for (let j = i + 1; j < physicalCuts.length; j++) {
+    const x = physicalCuts[i], y = physicalCuts[j];
+    if (singletonGate([x.offset, y.offset]).badGroups === 0) {
+      validPhysicalTwoCuts.push([x.page, y.page]);
+    }
+  }
+}
+assert.equal(validPhysicalTwoCuts.length, 54);
+assert.deepEqual([...new Set(validPhysicalTwoCuts.map(p => p[0]))],
+  [11, 12, 13, 14, 15, 16]);
+assert.deepEqual([...new Set(validPhysicalTwoCuts.map(p => p[1]))],
+  [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]);
+assert.equal(validPhysicalTwoCuts.filter(p => p[0] === 15).length, 10);
+
 const sources = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -414,6 +445,7 @@ console.log(JSON.stringify({
   arbitraryRekeyCertificate: {left: proofLeft, right: proofRight,
     oneRekeyContradiction: 'e <= 4006 and e > 5319'},
   singletonGapTwoRekeyChoices: singletonGapTwoRekeys.length,
+  physicalPageTwoRekeyChoices: validPhysicalTwoCuts,
   nativeMatchedControls: controls,
   sourceNativePositivePlant: '12956/12956 exact inverse',
   caveat: 'no unknown plaintext/key, altered word segmentation, extra state or chapter-specific keys remain open'
