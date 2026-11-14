@@ -486,3 +486,16 @@ assert.equal(historicalKey[reversedBlockFirst],18);
 assert.equal(historicalKey[reversedBlockSecond],11);
 assert.notEqual(historicalKey[reversedBlockFirst],historicalKey[reversedBlockSecond]);
 console.log("PASS: reversed three-block source order also has a conflicting key pair.");
+
+
+// Conditional 84-cycle phase analysis, NOT an authored phase instruction:
+// the block collision at source indices 7 and 30 excludes 79 of 84
+// possible cyclic alignments to the historical prime-totient key.
+const phasesEscapingBlockCollision=[];
+for(let phase=0;phase<84;phase++){
+  if(historicalKey[(7+phase)%84]===historicalKey[(30+phase)%84])
+    phasesEscapingBlockCollision.push(phase);
+}
+assert.deepEqual(phasesEscapingBlockCollision,[7,15,73,74,77]);
+console.log("79/84 cyclic phases refuted by block collision alone;");
+console.log("five unselected phases evade this necessary condition, not a decryption.");
