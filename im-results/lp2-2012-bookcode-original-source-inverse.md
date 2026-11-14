@@ -8,7 +8,7 @@ Cicada's **actual 2012 puzzle** used two source texts in a line-and-character bo
 
 Exact source inputs are pinned by their Git blob identity rather than distributing Gibson's copyrighted poem:
 
-- 2012 [Gibson *Agrippa* source in the preserved original book-code script](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/book-code.py), blob `a4e13bdcbfa64be9c087e092b51f028126f51cb3`, taking only its authentic `book = """..."""` text assignment (1,682 ASCII word tokens).
+- 2012 [Gibson *Agrippa* text used by Cicada's original book code](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/006-two-book-codes/books/agrippa.txt), blob `673ba225d1277945f2d2e5056bf025db8e89bb92`, excluding the source file's five title/byline lines as the original decoder did (1,682 ASCII poem word tokens). The later [2013 solution script](https://github.com/trizen/experimental-projects/blob/master/cicada-3301/book-code.py) independently quotes the same poem word sequence.
 - 2012 [*Britannica* source edition](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2012/006-two-book-codes/books/31447.txt), blob `8cba4356812ff852e3fe9c88e80ab1e9b5b8670c`, beginning at the actual `CICADA (_Cicadidae_)` heading on zero-based source line 15,388 (34,487 ASCII word tokens through end of file).
 
 A related, separately reproducible test of **intact quotations preserving LP2's printed word boundaries** appears in the [consolidated full-source crib study](lp2-allwords-authored-prose-crib-screen.md): neither historically used source yields a nine-word exact match in its original selected scope. The present running-key gate tests a *different* possibility: a key derived from the source letters even when the LP2 plaintext is independently authored.
@@ -67,7 +67,7 @@ The F-bypass algorithm itself is checked against **the actual original solved p5
 
 The exact original-cipher forward transform is applied to *every reconstructed rune* in every variant, asserting 12,956/12,956 ciphertext equality. Independently, the actual known-clear p57 95-rune text is encoded under the corresponding source key, then recovered **95/95** by the same inverse, for each of the 16 variants. These controls establish the transformations and clocks, without authenticating either source as a real LP2 key.
 
-The [single-file source-authenticating CommonJS reproducer](../sims/lp2_2012_books_runningkey_sft.cjs) uses only two separately downloaded, Git-blob-pinned historical source texts plus checked-in `resources/liber-primus/lp2-corpus.json`. It asserts all 16 unambiguous original transforms, exact original forward equalities, complete authentic plaintext-F branch-exhaustion on all nine original chapters, the historical p56 prime/F control, planted p57 controls, and prints the exact rejection sites. Run `node sims/lp2_2012_books_runningkey_sft.cjs <local-book-code.py> <local-31447.txt>`.
+The [single-file source-authenticating CommonJS reproducer](../sims/lp2_2012_books_runningkey_sft.cjs) uses only two separately downloaded, Git-blob-pinned historical source texts plus checked-in `resources/liber-primus/lp2-corpus.json`. It asserts all 16 unambiguous original transforms, exact original forward equalities, complete authentic plaintext-F branch-exhaustion on all nine original chapters, the historical p56 prime/F control, planted p57 controls, and prints the exact rejection sites. Run `node sims/lp2_2012_books_runningkey_sft.cjs <local-agrippa.txt> <local-31447.txt>`.
 
 ## Decision
 
