@@ -190,7 +190,7 @@ const Rinv=[
 ];
 const identity=Array.from({length:4},(_,i)=>Array.from({length:4},(_,j)=>Number(i===j)));
 function multiply(A,B) {
-  return A.map(row=>B[0].map((_,j)=>mod29(row.reduce((s,x,k)=>s+x*B[k][j],0)));
+  return A.map(row=>B[0].map((_,j)=>mod29(row.reduce((s,x,k)=>s+x*B[k][j],0))));
 }
 assert.deepEqual(multiply(R,Rinv),identity);
 assert.deepEqual(multiply(Rinv,R),identity);
