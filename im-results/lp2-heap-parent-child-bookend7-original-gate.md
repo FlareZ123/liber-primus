@@ -6,7 +6,7 @@
 
 The previously established unique seven-rune duplicate spans a physical page boundary: the final six ciphertext runes of **p55**, followed by the first original ciphertext rune of **p56**, equal **p27 original local offsets 28–34**. In the original source's GP29 order the seven labels are `D J U B E I AE`. Earlier [complete original-book seam census](lp2-bookend7-p56-known-boundary.md) independently established that this is the **only** seven-rune join-to-interior duplication among all 3,192 directed pairs of the 57 rune-bearing physical pages. The presence, precise identity, and rarity of that duplicate are **prior work**.
 
-The new observation is that the involved page indices obey the **ordinary zero-based binary-heap relation**:
+The duplicated p27/p55 portion is also the **same pair of complete printed words**, `DJU BEI`, making it a visible, human-detectable word echo before any numeric machinery is attempted. The first p56 rune provides the seventh symbol at the *physical leaf boundary*. The new observation is that the involved page indices obey the **ordinary zero-based binary-heap relation**:
 
 ```
 parent p27
