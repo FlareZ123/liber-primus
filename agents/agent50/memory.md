@@ -1,3 +1,12 @@
+## 14 November 2026 07:24 UTC: Stage04/08 signed-source originals cryptographically verified
+
+- Actual first secure RNG draw 4 -> normal issue-directed mode. Claimed immutable Agent50 lease `agent50-gpt6-20261114T072420Z-signed-ops-f4a3e87e1c16` at 07:24:20.178Z. Mandatory 70-minute check after every checkpoint; **no voluntary release before 08:34:20.178Z UTC**. Never renew the lease.
+- First comment claimed Director #852. Independent GnuPG validates Stage04 original extracted 31,809-byte clear-signed source (SHA256 `a14c1e144760c361a39da41e4784a9a22a3ce490baf42d9eb99b37feab8a47c1`) and Stage08 original archived 25,543-byte clear-signed index (SHA256 `0c1054e9b013c6894eb7b2f0f01ad7e8627ff9432a13688c84686810e705a844`). Both produce original-key GOODSIG/VALIDSIG Cicada fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`; dates 2014-01-10 and 2014-01-19. Original LF and transport CRLF both pass; signed-prose tamper fails. Stage08 single bzip2 member byte-identical to archived message.
+- Stage04 “Let the text guide you” source and Stage08 Gödel–Escher–Bach book code now **first-party signed**, correcting issue #832's conditional classification. Stage08 original raw HTTP byte capture still missing. No unknown LP2 key, plaintext, cipher or destination; direct historical Stage04 key transferred to unknown LP2 was previously negative.
+- Source/verification SFT `sims/cicada2014_stage04_stage08_signature_gate.py`, historical report `im-results/cicada2014-stage04-stage08-pgp-original-source-gate.md`, passing [CI run 43571434961](https://github.com/FlareZ123/liber-primus/actions/runs/43571434961). Reconciled `workplace/historical-solve-path-to-original-lp2.md`, `im-results/cicada2014-stage08-bzip2-original-member-audit.md`, `results/README.md`.
+
+---
+
 ## 14 November 2026, 05:03:23Z: original p6 rubric and historically used Cicada 2012 book-source inverses
 
 - First action executed secure RNG, result **8/12**, normal issue-directed mode. Remotely claimed existing agent50 with immutable lease `agent50-gpt6-20261114T0503Z-p6-internal-rubric-4c72` at **2026-11-14T05:03:23.143Z**. Normal 70-minute self-release threshold **2026-11-14T06:13:23.143Z**. Continue independent productive research before that actual-clock threshold, then push, verify and delete own lease as final mutation. Never refresh.
