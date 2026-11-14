@@ -23,6 +23,19 @@ Using the original row-major table and monic H/G divisor, calculate the unique G
 | p56 *solved plaintext* with literal-F removed | 84 | **1** | 7 |
 | p57 original plaintext | 95 | **1** | 8 |
 
+## Exact all-secret stationary-alphabet obstruction
+
+The failure is stronger than the finite Caesar-offset table suggests. Allow a **completely arbitrary hidden function** \(f:\mathrm{GF}(29)\to\mathrm{GF}(29)\), not even requiring an invertible GP alphabet, and ask whether each terminal segment could be obtained as \(P_i=f(Q_i)\) from the same printed quotient alignment. Any repeated quotient value must always predict the **same** original symbol. That necessary condition fails on every segment independently:
+
+| Original terminal segment | Earliest repeated quotient value, 0-based positions within segment | Two incompatible original output values |
+| --- | --- | --- |
+| p55 original ciphertext after three F removals | Q=17 at local **3,9** | **10,15** |
+| p56 printed ciphertext after authenticated F removal | Q=13 at local **8,9** | **3,8** |
+| p56 authentic plaintext after F removal | Q=13 at local **8,9** | **10,9** |
+| p57 original cleartext, untouched | Q=12 at local **3,9** | **24,5** |
+
+For example, both quotient digits at the known-clear p57 offsets3 and9 equal12; the original p57 GP indices there are24 and5. Any stationary lookup would have to set both \(f(12)=24\) and \(f(12)=5\). This two-position contradiction excludes **every** secret stationary 29-entry lookup for the locked terminal clock, including all 29! permutations, all affine substitutions and noninjective maps. It is exact source arithmetic, without a dictionary or language scoring. A cipher that changes state over positions could still give different outputs for equal quotient values; its state rule would need an independent original clue.
+
 The 252-term original quotient matches only **5/252** positions of the mixed-mode printed terminal stream, against **252/252** needed for direct identity. Even an arbitrary *single* GP29 Caesar offset in each separately paired segment fails far short of literal recovery. In particular, the complete known p57 plaintext supplies an untouched **95-rune source-authenticated negative**.
 
 A 252-rune synthetic planted terminal stream, systematically encoded by the **same** fourth-degree polynomial, decodes back to all 252 known rune indices exactly, and the authentic 256-byte original codeword reconstitutes byte-residue-for-byte-residue from its quotient. The original p56 prime-totient decryptor is checked against its actual 85 symbols. This detects a wrong polynomial division, clock length or terminal segmentation independently of the original negative.
