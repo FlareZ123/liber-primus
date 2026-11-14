@@ -93,6 +93,24 @@ The manuscript supplies a stronger human-visible restart cue than bare printed l
 
 The recomputed exact all-secret cross-segment equality invariant is **17,647 / 503,465 = 0.03505109591**, and the maximum single-plaintext-rune capacity is **still precisely 1,177**. Thus even allowing those original red13 interrupters to start new position-indexed keys does **not** relax the English, Old English or Latin capacity obstruction. This is a motivated source-specific variant of the same no-go family, with all marker sites taken verbatim from the existing original-JPEG ink annotations; it does not select a nonstationary cipher or permit other independent secret resets. The SFT now verifies the 27 original-unknown-page marks, 11 interior linebreak sites, exact 12,956-rune preservation and marked equality invariant; [Windows Node22 successful run 43573873564](https://github.com/FlareZ123/liber-primus/actions/runs/43573873564).
 
+## Each of the nine chapters separately also fails the original-language equality invariant
+
+A different cryptographic mechanism could govern each chapter. The manuscript-wide 1,177-E count alone would be insufficient to rule out a *single* short chapter: for p54–55, the source 308-rune chapter permits 55 E positions, while the 44 chapter-matched English passages have only 23–49 E. We therefore also calculate the chapter-specific original **equal-rune pair rate at the same printed column**. An arbitrary hidden 29-symbol permutation per column within one chapter leaves that equality rate exactly unchanged, regardless of how the other eight chapters are encrypted.
+
+| Original visible chapter | Original within-column equality rate | Lowest chapter-matched English rate in 44 controls | Controls higher than source |
+| --- | ---: | ---: | ---: |
+| p0–2 | 0.032612 | 0.055957 | 44/44 |
+| p3–7 | 0.036415 | 0.054866 | 44/44 |
+| p8–14 | 0.035592 | 0.057789 | 44/44 |
+| p15–22 | 0.034394 | 0.055938 | 44/44 |
+| p23–26 | 0.034251 | 0.055573 | 44/44 |
+| p27–32 | 0.034229 | 0.056841 | 44/44 |
+| p33–39 | 0.035025 | 0.056607 | 44/44 |
+| p40–53 | 0.035130 | 0.056137 | 44/44 |
+| **p54–55** | **0.038928** | **0.046006** | **44/44** |
+
+Consequently **even the 308-rune terminal chapter individually** does not resemble any of the source-native GP English controls under a repeated printed-line column alphabet. This is stronger than the aggregate E-count test for that short body. The small sample and finite literary controls mean the result is a precise *register-conditional* key-independent mismatch, rather than a theorem about every conceivable 308-rune English composition. It is not evidence for a new cipher or plaintext.
+
 ## Exact implementation and positive control
 
 [Source-exact CommonJS SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) parses the original 55 rune-bearing physical-page transcriptions, preserves the 594 printed line breaks, confirms both the 12,956-rune original and the nine source-visible chapter sizes, recomputes every capacity and equality invariant, and runs both English spellings. Its second phase encrypts a complete 12,956-rune native-GP positive plant with **independent arbitrary 29! keys at every book-wide line position** and then with **independent arbitrary 29! keys at every chapter-specific line position**. It verifies 12,956/12,956 exact key-known decoding and unchanged original-family invariants. No special key, rune or phase is chosen from the original language score.
