@@ -100,6 +100,23 @@ for(const entry of hosted){
    contentType:response.contentType,found:media?.length||null,media});
  break;
 }
+const wpV2Media=[];
+for(const entry of hosted){
+ if(!entry.details?.site_ID||!entry.details?.ID)continue;
+ const url="https://public-api.wordpress.com/wp/v2/sites/"
+  +entry.details.site_ID+"/media?parent="+entry.details.ID+"&per_page=100";
+ const resp=await get(url);
+ let media=null;
+ if(resp.status===200){
+  try{const v=JSON.parse(resp.text);if(Array.isArray(v))
+    media=v.map(m=>({id:m.id,date:m.date,mime_type:m.mime_type,
+      media_type:m.media_type,source_url:m.source_url,slug:m.slug,
+      parent:m.post,filename:m.media_details?.file}));}catch{}
+ }
+ wpV2Media.push({url,status:resp.status,bytes:resp.bytes,
+    contentType:resp.contentType,media});
+ break;
+}
 const attachments=[];
 if(post?.id){
  for(const url of [
@@ -144,7 +161,7 @@ console.log(JSON.stringify({
   transcriptMentionsDraft:/pdfs? of the runes|37 pages before they were encrypted/i.test(main.text),
   linkCount:links.length,sourceCandidates,
   linkedPDF:links.filter(s=>/\.pdf(?:[?#]|$)/i.test(s))},
- wordpress:attempts,attachments,hosted,hostedMedia,historical,
+ wordpress:attempts,attachments,hosted,hostedMedia,wpV2Media,historical,
  archive:{url:cdxUrl,status:cdx.status,bytes:cdx.bytes,
   error:cdx.status===0?cdx.contentType:null,captures}
 },null,2));
