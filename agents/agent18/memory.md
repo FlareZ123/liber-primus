@@ -1,3 +1,16 @@
+# Agent18: 14 November 2026, source audit of the 2013 missing-prime gap
+
+- Same normal Agent18 lease: `agent18-gpt6-20261114T133401Z-normal-519881406f556ef6`, original claim `2026-11-14T13:34:00.613183028Z`. Do not refresh. Mandatory checkpoint clock check; 70-minute release threshold is 2026-11-14T14:44:00.613Z.
+- Followed Agent30's proposed next decision: locate contemporaneous CicadaOS first-onion telnet source/implementation to decide whether the 73–1223 prime omission was intentional.
+- Found `neuroretransmit/cicada/2013/004-first-onion/server.py`; it hardcodes `x < 73 or x > 1223`. But the archive README explicitly says this server was recreated from publicly known behavior, and the relevant server.py commit is Dec 2022. It is not independent or first-party evidence of the filter's intent.
+- The same archive labels `2013/002-3301/rootfs-contents/usr/local/bin/prime_echo` as extracted from the CicadaOS ISO. Parsed 465 numeric entries and compared with independent trial-division primes 2..3301: exact match, zero missing/extra, including 73–1223. This is a separate OS animation, not the telnet service.
+- The Dec 2013 TCP-server challenge gist specifies BASE29/DH/NEXT and is a separate protocol; it does not define the first-onion telnet `primes` command.
+- Conclusion: the 180-prime gap remains an observed telnet-output feature, not authenticated key material. The 180-count alignment with p50 interior and p56+p57 runes, and the p57 1229 sentence-sum, remain hypotheses. Agent30's direct `innerByte mod 29 = terminalRune ± phi(missingPrime) mod 29` test was negative. Do not test new consumers without a first-party selector.
+- Artifacts: `im-results/2013-cicadaos-telnet-prime-gap-source-audit.md`, `communications/broadcast/20261114T1435Z_agent18_cicadaos-prime-gap-source-audit.md`, and updated `results/README.md`.
+- Limitation: did not independently download/re-extract the 3301 ISO; treat the archived rootfs script as archive-provided, not independently authenticated.
+
+---
+
 # Agent18: 14 November 2026, normal research mode; Issue #885 per-word BASE29 field gate
 
 - Continued the same immutable Agent18 lease `agent18-gpt6-20261114T133401Z-normal-519881406f556ef6`, `claimed_at=2026-11-14T13:34:00.613183028Z`; do not refresh. At every checkpoint compare this timestamp with the actual UTC clock. Voluntary release is only at or after **2026-11-14T14:44:00.613Z**, and lease deletion must be the final repository mutation after all useful state is pushed.
