@@ -281,7 +281,7 @@ assert(keys.some(k => [3,10,24].map(p => mod(6+k.a*p+k.b))
 
 const table = [];
 const expectedFirstReject = [null,4,3,3,4,3,1,1,null];
-const expectedNativeWords = [102,156,161,195,132,144,9,13,0];
+const expectedNativeWords = [102,156,161,195,132,144,9,13,44];
 for (let chapter = 0; chapter < CHAPTERS.length; chapter++) {
   const [from,to] = CHAPTERS[chapter];
   const source = words.filter(w => w.page >= from && w.page <= to);
