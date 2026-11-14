@@ -92,6 +92,23 @@ An immediate, short witness exists already for arbitrary affine readouts \(k_i=a
 
 This is a **known-key constraint**, not an original unknown-page decryption. It does not reject nonlinear stateful functions with memory, changes of source geometry, a separate first-party key source, hidden byte channels, or an entirely different target for Q252. With no independent hint prescribing a high-degree 84-parameter interpolation, do not rescue the three-share hypothesis by increasing polynomial degree or fitting coefficients to unknown plaintext.
 
+## Historical BASE29 triple-to-totient consumer: original p56 and p55/p0 gate (Agent12, 14 November 2026)
+
+One distinct original-source operator could specify a key: the signed **2013 BASE29** example fixes positional radix29 notation, and authentic solved LP2 p56 takes GP29 keystream elements from the **Euler totient of consecutive primes**. The 252 quotient digits form exactly 84 three-digit base29 numbers under either the three-block or adjacent-triple layout. The proposed chain is *three digits → a number n → φ(n) modulo29 → a repeating 84-key GP29 additive shift*. The manuscript does not explicitly instruct three-digit grouping, totient application, or p55/p0 receiver; these are hypotheses. This nonlinear **integer number-theory** readout is distinct from the preceding GF29 polynomial and rational-function constraints.
+
+Use every original printed quotient digit, fix both natural layouts, and consider both ordinary digit directions (big- and little-endian). All 84 integers fall in [1,29³−1], so φ(n) is defined without sentinels. Compare the complete derived key to p56's **84 independently known historical** prime-totient shifts. Then, regardless of mismatch, try each tape on **all 76 untouched original p55 runes** and **all 262 untouched original p0 runes** with the historical P=C−K mod29 rule and straightforward periodic clock.
+
+| 84 three-digit BASE29 grouping | Exact historical p56 key symbols | p55 original decoded GP29 IoC | p0 original decoded GP29 IoC |
+| --- | ---: | ---: | ---: |
+| Three 84-blocks, big-endian | **0/84** | 0.04140351 | 0.03360533 |
+| Three 84-blocks, little-endian | **3/84** | 0.03859649 | 0.03340060 |
+| 84 adjacent triples, big-endian | **5/84** | 0.02947368 | 0.03465824 |
+| 84 adjacent triples, little-endian | **4/84** | 0.03368421 | 0.03322512 |
+
+No original decoded output contains coherent GP prose. The longer p0 readouts remain close to uniform; the short 76-rune IoC fluctuations are not plaintext evidence. The three-block big-endian first eight source integers are **803, 10470, 7946, 23668, 2492, 21699, 19558, 17966**, with totients **720, 2784, 3808, 11520, 1056, 14460, 7560, 8280**, fixing the calculation. All four complete tapes re-encrypt their respective original ciphertext exactly, and an independently GP-native 76-rune passage from solved p57 is encrypted and recovered **76/76** under every tape.
+
+**Decision:** the four complete original-source **BASE29 → Euler φ → GP29 shift** interpretations fail the authentic p56 key anchor and do not recover p55 or p0 plaintext. A distinct integer framing, unprovided cipher mode or a page-specific alternative receiver is not excluded. Do not tune an offset or insert corrective symbols to rescue a wrong known key. [Same standalone SFT, original sources and positive checks](../sims/lp2_p50_hg_q252_polynomial_p56_84key_sft.cjs).
+
 ## Direct original unknown-page consequences
 
 Use the same two complete, source-derived 84-rune GF29 sum tapes with no phase or skip and the historically familiar `P=(C−K) mod29` inverse. Decode the untouched **76** original p55 runes and, independently, repeat the same tape continuously over the actual final **308** unknown p54–55 runes. These are direct low-cost attempts at real plaintext; no correct word or rune was chosen to tune the key.
