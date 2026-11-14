@@ -60,6 +60,46 @@ function channel(pages, slope) {
   return pages.flatMap((p) => decode(corpus.pages[p].indices, slope));
 }
 
+
+/**
+ * Key-independent concentration capacity over arbitrary page-specific scalar
+ * and page-specific 29-symbol permutation secrets.
+ * @param {number[]} pages @returns {{one:number,two:number,n:number,eightPhaseRelaxedOne:number,eightPhaseRelaxedTwo:number}}
+ */
+function allSecretCapacity(pages) {
+  let one=0,two=0,n=0,eightPhaseRelaxedOne=0,eightPhaseRelaxedTwo=0;
+  for(const page of pages){
+    const cipher=corpus.pages[page].indices;
+    const step=cipher.slice(1).map((x,i)=>mod(x-cipher[i]));
+    n+=cipher.length-9;
+    let largest=0,largest2=0;
+    for(let a=0;a<29;a++){
+      const bins=Array(29).fill(0);
+      for(let i=8;i<step.length;i++)bins[mod(step[i]-a*step[i-8])]++;
+      bins.sort((x,y)=>y-x);
+      largest=Math.max(largest,bins[0]);
+      largest2=Math.max(largest2,bins[0]+bins[1]);
+    }
+    one+=largest;two+=largest2;
+    // A deliberately generous upper bound permitting eight different
+    // slopes and even independent relabelings on each eight-phase lane.
+    for(let phase=0;phase<8;phase++){
+      let phaseLargest=0,phaseLargest2=0;
+      for(let a=0;a<29;a++){
+        const bins=Array(29).fill(0);
+        for(let i=8;i<step.length;i++)
+          if(i%8===phase)bins[mod(step[i]-a*step[i-8])]++;
+        bins.sort((x,y)=>y-x);
+        phaseLargest=Math.max(phaseLargest,bins[0]);
+        phaseLargest2=Math.max(phaseLargest2,bins[0]+bins[1]);
+      }
+      eightPhaseRelaxedOne+=phaseLargest;
+      eightPhaseRelaxedTwo+=phaseLargest2;
+    }
+  }
+  return{one,two,n,eightPhaseRelaxedOne,eightPhaseRelaxedTwo};
+}
+
 function main() {
   const unknown = corpus.pages.slice(0, 56);
   const fibonacci = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55];
@@ -72,6 +112,11 @@ function main() {
   assert.equal(channel(fibonacci, 0).length, 2256);
   assert.equal(channel(trio, 0).length, 773);
   assert.equal(channel(all, 0).length, 12461);
+  const capacity=allSecretCapacity(fibonacci);
+  assert.deepEqual(capacity,{one:177,two:316,n:2256,
+    eightPhaseRelaxedOne:419,eightPhaseRelaxedTwo:685});
+  assert.ok(capacity.one<195 && capacity.two<386);
+  assert.ok(capacity.eightPhaseRelaxedOne>195);
 
   // Frozen observed values: exact unmodified input, no fitted key or phase.
   const expected = {
@@ -133,6 +178,7 @@ function main() {
     unknownRunes: 12956,
     originalFibonacciTail: 2256,
     sourceSlopeReadouts: relevant,
+    allPageSecretCapacity: capacity,
     strongestOf29: scored[0],
     exactOriginalRoundTrips: 29 * all.length,
     solvedPageNativePositiveRoundTrips: 29 * fibonacci.length,
@@ -142,4 +188,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {decode, encode, channel, ioc, mod};
+module.exports = {decode, encode, channel, ioc, mod, allSecretCapacity};
