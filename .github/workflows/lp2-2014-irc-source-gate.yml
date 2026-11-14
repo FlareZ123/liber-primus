@@ -51,3 +51,10 @@ jobs:
           set -euo pipefail
           node sims/lp2_2014_irc_filelink_archive_probe_sft.cjs --selftest
           node sims/lp2_2014_irc_filelink_archive_probe_sft.cjs --full
+
+      - name: Test the eight recovered exact historical files and genuine p56 inverse
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check sims/lp2_2014_irc_recovered_files_source_sft.cjs
+          node sims/lp2_2014_irc_recovered_files_source_sft.cjs
