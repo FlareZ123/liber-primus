@@ -98,9 +98,26 @@ As a secondary geometry control, physical pages **p23–26** independently delim
 
 [Full original 181/14/16 inverse, exact round-trip and source-positive SFT](../sims/lp2_wordlength_16x181_original_inverse_sft.cjs). The overlapping full-book lag16 measurement in that SFT independently agrees with the new 4/16-lane subsection above: observed **0.008824**, source-null mean **0.011345**, native plant **0.053199**.
 
+## One checksum-bearing extra rune per printed word: exact all-position obstruction (Agent14, 14 November 2026)
+
+The 2016 signed wording about word numbers, the established GP29 index/prime tables, and the externally proposed **extra ciphertext rune in roughly 42% of multi-rune words** offer a concrete, falsifiable architecture: a displayed rune might redundantly encode the modular sum of the other runes in its printed word. This could make one rune removable and expose a shorter encrypted text without knowing a secret key. This is an *investigator-proposed* check-symbol rule; none of the sources states that a checksum is inserted.
+
+Unlike a fitted last-rune screen, the exact test allows the check symbol to occupy **any rune position** in the word. For the ordinary GP index checksum `r_k = sum_{j≠k} r_j mod29`, a candidate word necessarily satisfies `2r_k = sum_j r_j mod29`. For the equally source-natural GP-prime checksum, apply the same equation to the **GP prime weights** of each rune. These tests are independent of the check rune's original location, other words, and the choice of a secret cipher key; they are necessary arithmetic conditions on the printed source.
+
+| Original source, unchanged | GP index sum checkpoint | GP prime-weight sum checkpoint |
+| --- | ---: | ---: |
+| Printed multi-rune words in physical LP2 pp0–55 | **2,813** | **2,813** |
+| Words admitting at least one possible same-word checksum rune | **382** | **382** |
+| Maximum possible fraction of words that can contain this type of exact check symbol | **13.58%** | **13.58%** |
+| Words **incapable** of containing such a symbol, regardless of placement | **2,431** | **2,431** |
+
+Counting all 83 single-rune words gives 383/2,896 (index) and 386/2,896 (prime). Thus a literal, unaltered **42%** same-word checksum-insertion model is *mathematically impossible* for both source-defined checksum values: about 1,181 multi-rune words would need the property, but the unmodified ciphertext supports at most **382**. The code also plants the exact index check in the final position of the first **1,181** source-length-matched multi-rune words and verifies that the identical all-position detector recognizes at least that many. This is a functional positive, without any fitted ciphertext model, English lexicon or null hypothesis.
+
+[Self-contained Node.js 22 source-original reproducer](../sims/lp2_wordlocal_single_checksum_capacity_sft.cjs) asserts the 2,896/12,956 source transcription against all 56 original physical page tapes and exhaustively tests every potential checksum location. **Decision:** exclude the precise *single visible word-local sum checksum* as the explanation for the hypothesized one-rune word-length excess. A check symbol calculated before an additional encryption, a nonadditive keyed checksum, altered plaintext boundaries, or cross-word checksum channel remains outside this exact exclusion. This result supplies no plaintext/key and does not authenticate the extra-rune premise itself.
+
 ## Cryptanalytic consequence and limitations
 
-The source-visible **printed spaces and dots cannot currently be assumed to preserve natural prose word order**. Their marginal resemblance to raw Latin English word lengths ([prior original unigram test](../sims/lp2_original_rawlatin_vs_gp_wordlength_register_sft.cjs)) does not establish natural-language word boundary preservation; the higher-order structural evidence is absent.
+The new exact word-checksum capacity limit excludes a direct word-local GP29 index or GP-prime check rune in approximately 42% of words, without restricting other hidden insertion mechanisms. The source-visible **printed spaces and dots cannot currently be assumed to preserve natural prose word order**. Their marginal resemblance to raw Latin English word lengths ([prior original unigram test](../sims/lp2_original_rawlatin_vs_gp_wordlength_register_sft.cjs)) does not establish natural-language word boundary preservation; the higher-order structural evidence is absent.
 
 Highest-value next operation is an **independently selected reversible permutation of complete printed words** beyond the source-grid 8/32 fixed-lane family tested above, or a **variable-length transport/register model** whose encoding deterministically accounts for *all* 2,896 boundaries, 175 stops and 12,956 rune symbols. Such a decoder must be chosen by visible original art, historical Cicada operations, or signed directions **before** scoring its output, and must predict held-out chapters. A postselected word shuffle, dictionary fit or language-based boundary repair is not a solution. For an original plaintext language or constrained literature unlike the five registered source corpora, supply an independent control first.
 
