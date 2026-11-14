@@ -43,6 +43,21 @@ The 180° clue motivates two finite reversals of p23's first16 source runes: rev
 
 The first and fourth cases decrypt a **non-F ciphertext rune into plaintext F**, impossible under the authentic p56 plaintext-F bypass. Those two exact consumers cannot transfer the solved-page rule. The middle two satisfy the F constraint but do **not** yield an independently recognizable phrase; 16 runes are insufficient for a universal exclusion of additional state or non-English intermediate outputs. Frozen direct GP Atbash on original/reversed headings likewise gives IARNGWOEXCOEEJETEOJETH / THEJEOTEJEOECXOEWNGRIA without established prose. No source-authorized phase or added key was fitted.
 
+
+### Original full-chapter inverse, allowing every F bypass
+
+The entire source-selected p23–26 chapter has **1,021 original ciphertext runes** (page lengths 213, 270, 273, 265). For each of the four direct half-turn arrangements, the reproducible SFT runs a complete state-set decoder of the historical **plaintext-F bypass**, allowing every source-consistent skip or encrypted-non-F branch at each ciphertext F. The clock starts at consecutive prime 2; the reverse-clock hypothesis uses exactly the 1,021 source-length primes in reverse. No hidden parameter, padding, word reset, skipped page or post hoc phase is introduced. The same state-set decoder accepts the actual solved p56 source ciphertext with its legitimate bypass path.
+
+| Original chapter p23–26 rune direction | 1,021 prime-totient key direction | First unavoidable plaintext-F contradiction, zero-based rune offset |
+| --- | --- | ---: |
+| Forward | Forward | **0** |
+| Forward | Reversed | **7** |
+| Reversed | Forward | **162** |
+| Reversed | Reversed | **24** |
+
+At each stated offset, **all** still-reachable F-skip clock states would force a non-F ciphertext rune to decrypt to literal plaintext F, contradicting the established p56 encryption rule. This is an exact original-input exclusion of the four **direct, whole-chapter, no-offset prime-totient consumers** of the new half-turn motif. It says nothing about stateful or non-prime consumers, a separate source-selected key, or nonlocal symbol operations. The independent exact visual match remains sound.
+
+
 ## Interpretation and decisive next research
 
 The dots appear in **upper opening matter** on p23, first page of the original p23–26 visual chapter (1,021 runes), and in **lower concluding matter** on solved p56, headed *AN END*. Reused artwork and opposite placement make an intended bookend/inversion hypothesis testable. The page designer could also reuse a decorative element rotated to fit the layout.
