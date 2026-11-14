@@ -14,6 +14,18 @@ const read = p => fs.readFileSync(path.join(__dirname, "..", p), "utf8");
 const c = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const t = read("resources/liber-primus/lp2-transcription.txt").split("%");
 const g = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const qgramText = read("resources/control/duko_round27_english_quadgrams.txt");
+const qgrams = new Map();
+let qtotal = 0;
+for (const line of qgramText.trim().split("\n")) {
+  const m = line.trim().match(/^([A-Z]{4})\s+(\d+)$/);
+  if (m) {
+    const n = Number(m[2]);
+    qgrams.set(m[1], n);
+    qtotal += n;
+  }
+}
+assert.equal(qgrams.size, 79495);
 assert.equal(t.length, 57); // Physical p50 is rune-free, omitted in transcription.
 const runeId = new Map(c.runes.map((r, i) => [r, i]));
 const parse = s => [...s].filter(x => runeId.has(x)).map(x => runeId.get(x));
@@ -25,6 +37,8 @@ assert.deepEqual(words.flat(), p55);
 assert.equal(words[0].length, 1); // Incoming word's FINAL rune from p54.
 const inner = words.slice(1).flatMap(word => word.slice(1, -1));
 assert.equal(inner.length, 43);
+const innerF = inner.map((x, i) => x === 0 ? i : -1).filter(i => i >= 0);
+assert.deepEqual(innerF, [11]);
 const p32 = c.pages.find(x => x.page === 32).indices;
 assert.equal(p32.length, 121);
 assert.equal(p32.slice(33, 38).map(x => c.translit[x]).join(""), "HOMEX");
@@ -84,6 +98,76 @@ const planted = c.pages.find(x => x.page === 57).indices.slice(0, 43);
 const ct = planted.map((v, i) => mod29(v + selected.result[i]));
 assert.deepEqual(ct.map((v, i) => mod29(v - selected.result[i])),
   planted);
+
+// Transfer the solved-p56 transparent-plaintext-F convention to this exact
+// 43-rune p32-route key. The interior has one ciphertext F, at offset 11.
+// A key-consuming position that decrypts to F is invalid: plaintext F must
+// have passed through without consuming the key.
+function decodeTransparentF(cipher, key, literalFPositions) {
+  const literal = new Set(literalFPositions);
+  let j = 0;
+  const out = [];
+  for (let i = 0; i < cipher.length; i++) {
+    if (literal.has(i)) {
+      if (cipher[i] !== 0) return { valid: false, invalidAt: i, keyConsumed: j };
+      out.push(0);
+      continue;
+    }
+    const p = mod29(cipher[i] - key[j]);
+    if (p === 0) return { valid: false, invalidAt: i, keyConsumed: j };
+    out.push(p);
+    j++;
+  }
+  return { valid: true, out, keyConsumed: j };
+}
+function encodeTransparentF(plain, key) {
+  let j = 0;
+  const cipher = [];
+  const literalFPositions = [];
+  for (let i = 0; i < plain.length; i++) {
+    if (plain[i] === 0) {
+      cipher.push(0);
+      literalFPositions.push(i);
+    } else {
+      cipher.push(mod29(plain[i] + key[j]));
+      j++;
+    }
+  }
+  return { cipher, literalFPositions };
+}
+function quadgramScore(seq) {
+  const letters = seq.map(x => c.translit[x]).join("");
+  let score = 0;
+  for (let i = 0; i + 3 < letters.length; i++) {
+    score += Math.log((qgrams.get(letters.slice(i, i + 4)) || 0.1) / qtotal);
+  }
+  const n = Math.max(1, letters.length - 3);
+  return { letters, score, meanNatsPerQuadgram: score / n };
+}
+
+const noSkip = decodeTransparentF(inner, selected.result, []);
+assert.deepEqual(noSkip, { valid: false, invalidAt: 13, keyConsumed: 13 });
+const skip = decodeTransparentF(inner, selected.result, innerF);
+assert.equal(skip.valid, true);
+assert.equal(skip.keyConsumed, 42);
+const skipText = skip.out.map(x => c.translit[x]).join("");
+assert.equal(skipText, "JPEELITHSSXNFTLNSYJEUOLGPYLIAYLMOTHLHMLLTHTHCBR");
+assert.deepEqual(skip.out.slice(1, 5), peel);
+assert.equal(Number(ioc(skip.out).toFixed(12)), 0.052048726467);
+
+// Independent 43-rune p57 plant includes one literal F at offset 33.
+const plantFPositions = planted.map((x, i) => x === 0 ? i : -1).filter(i => i >= 0);
+assert.deepEqual(plantFPositions, [33]);
+const plantF = encodeTransparentF(planted, selected.result);
+assert.deepEqual(plantF.literalFPositions, plantFPositions);
+const plantRecovered = decodeTransparentF(plantF.cipher, selected.result, plantF.literalFPositions);
+assert.equal(plantRecovered.valid, true);
+assert.deepEqual(plantRecovered.out, planted);
+const skipScore = quadgramScore(skip.out);
+const p57ControlScore = quadgramScore(planted);
+assert.ok(Math.abs(skipScore.meanNatsPerQuadgram - (-15.751006548020609)) < 1e-12);
+assert.ok(Math.abs(p57ControlScore.meanNatsPerQuadgram - (-10.098455443038175)) < 1e-12);
+
 console.log(JSON.stringify({
   signedWords: 43, printedTableCells: g.bytes.length,
   selectedTableInterval: [84, 127],
@@ -92,5 +176,22 @@ console.log(JSON.stringify({
   directInverseIoC: ioc(decoded), directInverseText: decodedText,
   retrospectivePeelHits: hits, comparisonVariants: 214 * 2,
   independentSourcePositive: "43/43",
+  transparentFExtension: {
+    interiorCiphertextFPositions: innerF,
+    noSkip: noSkip,
+    literalFSkip: {
+      literalFPositions: innerF,
+      keySymbolsConsumed: skip.keyConsumed,
+      decodedText: skip.out.map(x => c.translit[x]).join(" "),
+      ioc: ioc(skip.out),
+      englishQuadgramMean: skipScore.meanNatsPerQuadgram,
+      quadgramText: skipScore.letters,
+    },
+    clearP57Control43: p57ControlScore,
+    syntheticFPlant: {
+      literalFPositions: plantFPositions,
+      exactRecovered: plantRecovered.out.length + "/" + planted.length,
+    },
+  },
   recoveredUnknownPlaintext: false,
 }, null, 2));
