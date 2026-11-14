@@ -70,7 +70,16 @@ def main() -> None:
     results = [extract_summary(bitmap, bit_count, key) for key in (
         "Default key", "WELCOME PILGRIM TO THE"
     )]
+    # Only the exact phrase that decrypts the small image is additionally
+    # tested on page 04, the other original 2014 OutGuess carrier.
+    page04_bits, page04_count = checked_bitmap(ROOT / "resources/liber-primus/04.jpg")
+    page04_source_key = extract_summary(page04_bits, page04_count, "WELCOME PILGRIM TO THE")
     report = {
+        "page04_frozen_signed_phrase": {
+            "source": "resources/liber-primus/04.jpg",
+            "eligible_coefficients": page04_count,
+            "result": page04_source_key,
+        },
         "scope": "One original 2014 PGP-signed nested JPEG, distinct from the 75 page images",
         "source_image": str(SMALL.relative_to(ROOT)),
         "source_bytes": len(small),
