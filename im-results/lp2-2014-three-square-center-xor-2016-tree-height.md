@@ -16,7 +16,7 @@ A human could retain both clues and make the smallest three-square common geomet
 The last comparison is exact:
 
 - Source centers **809, 331, 91**, bitwise XOR **569**. The distinct simple alternating sum **809 − 331 + 91** also equals **569**. The coexistence of these arithmetic routes means the result does **not uniquely select XOR**.
-- The original archived Cicada-signed 2016 tree JPEG is **563×569**, verified from its JPEG frame header, so the result matches the **height**.
+- The original archived Cicada-signed 2016 tree JPEG is **563×569**, verified from its JPEG frame header. The result matches the **height 569**, which is prime, and the **immediately preceding prime is 563**, its width. Thus an additional *inferred* “previous prime” operation reconstructs the full source-image size from the center value. This was recognized retrospectively and remains unlicensed by the 2014 or 2016 instructions.
 - The **121 original GP runes on p32**, reshaped as the previously documented source-order **11×11** square, have prime-weighted **top-row sum 563** and **first-column sum 569**. This reflow is not printed as a square in the original.
 - The 2014 delivery HTML has div-id **331**, also the central value of the 7×7 square. However, its 133/331 labels already have the contemporary alternative derivation by deleting zeros from 1033/3301, so this is **not independent attribution** of the HTML to the square center.
 
