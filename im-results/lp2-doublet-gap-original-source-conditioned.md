@@ -8,7 +8,7 @@ The 86 original adjacent-identical GP29 rune pairs on physical LP2 pp0–55 have
 
 We instead asked the **previously untested mechanism question**: at which actually printed geographic unit does the observed T7 stop being unusual after conditioning on the number of repeat-bearing positions?
 
-Fixing the nine-chapter repeat counts leaves the observed T7 in the upper `0.000075` of 40,000 draws; fixing all **56 per-page counts** raises the null baseline from about `-0.012` to `+0.230` but leaves upper-tail `0.005025`. Source-selected **upper/lower printed-page halves** further raise it to `+0.312`, leaving upper-tail `0.0383`. When the original number of events on **each individual printed line** is also held fixed, the null mean becomes `+0.373` and the original T7 is unexceptional (upper-tail `0.232`). Exact-line conditioning is an intentionally high-dimensional descriptive control: 594 distinct eligible line strata for 86 events make site locations nearly known, so its near-null result alone does not prove a line-level cipher. This localizes T7 chiefly to the printed **line-occupancy sequence**, without selecting an encryption layer, key, generator, event clock or authored intent.
+Fixing the nine-chapter repeat counts leaves the observed T7 in the upper `0.000075` of 40,000 draws; fixing all **56 per-page counts** raises the null baseline from about `-0.012` to `+0.230` but leaves upper-tail `0.005025`. Splitting each original page at the midpoint of its printed lines further raise it to `+0.312`, leaving upper-tail `0.0383`. When the original number of events on **each individual printed line** is also held fixed, the null mean becomes `+0.373` and the original T7 is unexceptional (upper-tail `0.232`). Exact-line conditioning is an intentionally high-dimensional descriptive control: 594 distinct eligible line strata for 86 events make site locations nearly known, so its near-null result alone does not prove a line-level cipher. This localizes T7 chiefly to the printed **line-occupancy sequence**, without selecting an encryption layer, key, generator, event clock or authored intent.
 
 ## Exact original source and test
 
@@ -27,7 +27,9 @@ Each null selects without replacement exactly the source-observed number of even
 | Global 86 out of 12,901 legal within-page positions | −0.012084 | 0.105197 | 18 / 40,000 | **0.00047499** |
 | 9 original visually marked chapter totals | −0.029542 | 0.096270 | 2 / 40,000 | **0.000074998** |
 | All 56 physical-page totals | +0.229984 | 0.060295 | 200 / 40,000 | **0.00502487** |
-| Each page × printed boundary kind | +0.229460 | 0.060525 | 200 / 40,000 | **0.00502487** |\n| Each page's upper/lower physical-line half | +0.311912 | 0.038328 | 1,530 / 40,000 | **0.03827404** |\n| Exact count on every printed line | +0.373012 | 0.009439 | 9,277 / 40,000 | **0.23194420** |
+| Each page × printed boundary kind | +0.229460 | 0.060525 | 200 / 40,000 | **0.00502487** |
+| Each page's upper/lower physical-line half | +0.311912 | 0.038328 | 1,530 / 40,000 | **0.03827404** |
+| Exact count on every printed line | +0.373012 | 0.009439 | 9,277 / 40,000 | **0.23194420** |
 
 The page×word-kind partition contains 162 distinct strata, with positive counts in 56; only `inside`, `word` and `sentence` are nonzero observed categories. The line-conditioned model contains **594 eligible line strata**, with doublets present on **83 lines** (three lines hold two events). It preserves how many repeats occur at actual print word gaps, removing differences in simple word/sentence-boundary opportunity counts as an explanation. A second independently seeded short calculation with 40,000 realizations recovered upper-tail `0.004975` for per-page and `0.005825` for page × word-kind, confirming the effect is not a lucky pseudorandom stream in the committed SFT.
 
