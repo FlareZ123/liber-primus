@@ -1,6 +1,6 @@
 # p49–51 directional graph: canonical base60 structure and false-path controls
 
-**Status: structural navigation hypothesis only. No unknown LP2 plaintext, key, or complete inverse has been recovered.**
+**Status: original-page numerical selector now converges with the independently proposed 2016 prime-dimension start on the same GEM three-cycle. This is a stronger cross-artifact navigation hypothesis, still without an authenticated operation, unknown LP2 plaintext, key, or complete inverse.**
 
 ## Source objects and codec
 
@@ -14,7 +14,25 @@ Historical context is consistent with caution: the 2014 `#cicadaops` log records
 
 ## Canonical base60 graph
 
-The 2016 image is 563×569 pixels; these dimensions are the 103rd and 104th primes. Under the candidate (q+1) mapping:
+### An original-page selector independent of the 2016 image
+
+Original **physical p10** (image `27.jpg`) prints the lone non-list decimal **7** immediately before a one-rune word **ᚷ (G)** at original page-local rune offset **169**. In the original GP table, G has one-based rune ordinal 7 and prime weight **17**. The **candidate multiplication** `7 × 17 = 119` addresses the 119th of the exact 256 original printed table cells. This start is independent of the 2016 image dimensions and was already isolated in [the preexisting p10 address report](p10-7g-p50-cell119-phase119-gate.md), which tested a *different* period-256 direct additive key and found no original plaintext.
+
+Under the **already specified, unchanged** base60 `29q+r` / keypad graph, starting at one-based cell **119** gives the *entire directed cycle*:
+
+| One-based cell | Original token | Base60 byte | Quotient q, remainder r | Rune | Following cell |
+| ---: | --- | ---: | --- | --- | ---: |
+| **119** | `0Z` | 35 | 1, 6 | **G** | 127 (S) |
+| **127** | `2h` | 163 | 5, 18 | **E** | 128 (E) |
+| **128** | `3D` | 193 | 6, 19 | **M** | 119 (NW) |
+
+The spelling **GEM** comes from the published GP29 rune transliteration and the preexisting keypad interpretation; nothing was tuned after selecting start119. The same preexisting p10 experiment found the selected cell is physical p50 local row5/column7, its printed value **35=5×7**, and the *only* cell in all three table pages where the original base60 byte equals the product of its **physical-page-local** row and column numbers. The table has no printed row/column indices, so this auxiliary equality is conditional and does not prove intended indexing.
+
+The original transcription has five other decimal-label/next-rune pairs: their products select cells **73, 58, 267, 316, 115**, respectively; two exceed the grid, and the others enter **NG/IA, TH, and D/C** cycles under exactly this graph. None reaches GEM. That makes the p10 selector distinct from the nearby numbered lists, without validating the multiplication operation. As a second frozen counterfactual, removing the unused lowercase `f` from the base60 alphabet creates a 59-symbol register: start119 still follows **119→127→128→119**, but reads **G–S–T** instead of GEM. The base60 convention is independently established from all 256 table cells, while a meaningful transliteration after choosing a radix remains exploratory.
+
+### Independently published 2016 dimension starts
+
+The archived 2016 image is 563×569 pixels; these dimensions are the 103rd and 104th primes. Under the same candidate (q+1) mapping:
 
 - Start 103 (width prime ordinal) emits **O → O → G → E → M**, then enters the unique three-cycle **G → E → M** at cells 119 → 127 → 128 → 119.
 - Start 104 (height prime ordinal) enters the two-cycle **O ↔ G** at cells 96 and 104.
@@ -36,11 +54,14 @@ A second candidate marker is cell 81, the first p50 table cell. Its token `2M` i
 
 ## Decision and next work
 
-The q/r graph is a bounded navigation hypothesis, not a cipher inverse. The 2016 “numbers are direction” phrase motivates testing directionality, but does not authenticate the q+1 keypad, the orientation, the centre/stay state, the hollow-corner stop rule, or the prime-ordinal starts. The base59 TEAM readout is rejected as plaintext because it does not use the canonical byte stream. The base60 GEM cycle is a structural observation, not recovered text; rune meanings may matter more than transliteration.
+The q/r graph is a bounded navigation hypothesis, not a cipher inverse. Physical p10's independently printed 7–G marker now offers a concrete *additional start selector* to the exact GEM cycle, distinct from the 2016 prime-dimension route. But the author never explicitly instructs a player to multiply the decimal by the next rune's GP prime, decompose base60 bytes into GP29 quotient/remainder, or interpret the quotient as a keypad direction. The 2016 “numbers are direction” phrase motivates testing directionality without authenticating the keypad, orientation, centre/stay state, hollow-corner stop rule, or prime-ordinal starts. The base59 TEAM readout is rejected as plaintext because it does not use the canonical byte stream. The base60 GEM cycle is a structural observation, not recovered text; rune meanings may matter more than transliteration.
 
-Do not continue arbitrary keypad rotations, wrap rules, start offsets, or language scoring. A worthwhile successor must supply an independent source selector and a locked prediction on original unknown ciphertext, or explain how a short marker such as GEM/Y leads to such a prediction.
+Do not continue arbitrary keypad rotations, wrap rules, start offsets, or language scoring. A worthwhile successor must turn this new original-page selector into an author-supported **key, decoding operation, or locked prediction on another untouched unknown ciphertext interval**. The short GEM/Y marker alone does not establish a cipher or a page-length message. The previously negative period-256 source-key screen must not be rerun simply because two candidate starts now converge.
 
 ## Reproduction and related evidence
+
+- **New original-file cross-artifact SFT:** [p10 7–G → GEM / signed 2016 JPEG dimensions](../sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs); reads source p10 transcription, canonical table, and actual 2016 JPEG, checks all six printed decimal controls, exactly reconstructs GEM, and asserts the base59 GST counterfactual without modifying any bytes.
+- Original independent printed-numeral address and p50 local row/column identity: [p10 source-marker report](p10-7g-p50-cell119-phase119-gate.md).
 
 - Canonical base60 cross-check: [`p50_miracl_base60_alphabet_match_sft.cjs`](../sims/p50_miracl_base60_alphabet_match_sft.cjs).
 - Base59/base60 comparison: [`p50_radix59_vs60_factor_gate_sft.cjs`](../sims/p50_radix59_vs60_factor_gate_sft.cjs).
