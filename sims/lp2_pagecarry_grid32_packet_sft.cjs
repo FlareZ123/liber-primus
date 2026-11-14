@@ -137,6 +137,9 @@ assert.deepEqual(terminalPages.map(p => p.indices.length), [76,85,95]);
 const terminalRunes = terminalPages.flatMap(p => p.indices);
 assert.equal(terminalRunes.length, 256);
 const terminalXor = terminalRunes.map((v,i) => v ^ raw[i%32]);
+const tablePadXor = terminalRunes.map((v,i) => v ^ values[i]);
+const mobiusValues = tableRows.flatMap((row,r) => r%2===0 ? row : [...row].reverse());
+const mobiusPadXor = terminalRunes.map((v,i) => v ^ mobiusValues[i]);
 const byteEntropy = a => {
   const h = Array(256).fill(0);
   for (const x of a) h[x]++;
@@ -152,10 +155,14 @@ const byteStats = a => ({
 const terminalXorGP = terminalXor.map(x => x%29);
 assert.deepEqual(terminalXor.map((x,i) => x ^ raw[i%32]), terminalRunes);
 assert.deepEqual(tableRowXor.map((x,i) => x ^ raw[Math.floor(i/8)]), values);
+assert.deepEqual(tablePadXor.map((x,i) => x ^ values[i]), terminalRunes);
+assert.deepEqual(mobiusPadXor.map((x,i) => x ^ mobiusValues[i]), terminalRunes);
 const historicalXorConsumer = {
   tableRowXor:byteStats(tableRowXor),
   terminalRuneXor:byteStats(terminalXor),
   terminalRuneXorModulo29:terminalXorGP.map(x => corpus.translit[x]).join(""),
+  tableAsRowMajorPad:byteStats(tablePadXor),
+  tableAsMobiusSnakePad:byteStats(mobiusPadXor),
   sourceNote:"XOR is documented in 2013 Cicada source puzzles; the repeated 32-byte key use is an exploratory LP2 hypothesis, not an authored instruction."
 };
 
