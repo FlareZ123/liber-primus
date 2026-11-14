@@ -123,6 +123,22 @@ function transparent(cipher, start, plaintext, mode) {
   };
 }
 
+
+/** Test consistency of every potential fixed rune alphabet, without enumerating 29! keys. */
+function fixedBijectionCompatible(cipher, plain) {
+  assert.equal(cipher.length, plain.length);
+  const forward = Array(29).fill(null);
+  const reverse = Array(29).fill(null);
+  for (let i = 0; i < cipher.length; i++) {
+    const c = cipher[i], p = plain[i];
+    if ((forward[c] !== null && forward[c] !== p) ||
+        (reverse[p] !== null && reverse[p] !== c)) return false;
+    forward[c] = p;
+    reverse[p] = c;
+  }
+  return true;
+}
+
 function main() {
   const events = extract();
   const cipher = events.map((event) => event.value);
@@ -131,6 +147,13 @@ function main() {
   assert.deepEqual(events.slice(79, 82).map((event) => event.page), [47, 48, 51]);
   assert.deepEqual(motif(cipher), {onlyTriple: true, terminalWWW: true});
 
+  const t = (value) => [...value].map((letter) => source.translit.indexOf(letter));
+  assert.equal(fixedBijectionCompatible(cipher.slice(75, 79), t("HTTP")), false);
+  assert.equal(fixedBijectionCompatible(cipher.slice(82, 86), t("HTTP")), false);
+  assert.equal(fixedBijectionCompatible(cipher.slice(82, 86).reverse(), t("HTTP")), false);
+  assert.equal(fixedBijectionCompatible(cipher.slice(74, 79), t("HTTPS")), false);
+  assert.equal(fixedBijectionCompatible(t("HTTP"), t("HTTP")), true);
+  console.log("All-secret fixed-alphabet HTTP forward and backward exclusions PASS");
   for (const trial of [
     {word: "HTTPWWW", start: 75, period: 7, key: [10, 16, 2, 0, 0, 0, 0], expected: 0.03255813953488372},
     {word: "HTTPSWWW", start: 74, period: 8, key: [6, 2, 16, 5, 27, 0, 0, 0], expected: 0.03228454172366621}
