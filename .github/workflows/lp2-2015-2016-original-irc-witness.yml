@@ -1,0 +1,19 @@
+name: Original 2015–16 IRC LP2 unknown-page witness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-2015-2016:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pinned 2015–16 original IRC source and claim replay
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_2016_original_irc_vision_sft.cjs
+          node sims/lp2_2015_2016_original_irc_vision_sft.cjs
