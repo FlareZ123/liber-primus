@@ -136,6 +136,87 @@ def main():
         assert legacy.button.clicked
         print("PASS: native legacy folder picker receives marshalled directory path")
 
+        # The original 14 Nov Windows run stopped because the OpenPuff
+        # single-selected TreeView leaf has no checkbox state image. Lock
+        # the exact selected-item operation without simulating cryptography.
+        class BitLeaf:
+            def __init__(self, tree, label):
+                self.tree = tree
+                self.label = label
+                self.last_click = None
+
+            def text(self):
+                return self.label
+
+            def ensure_visible(self):
+                pass
+
+            def select(self):
+                self.tree.current = self
+
+            def click_input(self, where):
+                self.last_click = where
+
+            def is_selected(self):
+                return self.tree.current is self
+
+            def is_checked(self):
+                return False
+
+            def state(self):
+                return 2 if self.is_selected() else 0
+
+        class BitRoot:
+            def __init__(self, tree):
+                self.tree = tree
+                self.levels = [
+                    BitLeaf(tree, "1/5 (20%) - Medium"),
+                    BitLeaf(tree, "1/2 (50%) - Maximum"),
+                ]
+                self.expanded = False
+
+            def text(self):
+                return "Mp3 (Audio)"
+
+            def expand(self):
+                self.expanded = True
+
+            def get_child(self, label, exact=False):
+                assert exact
+                return next(item for item in self.levels if item.text() == label)
+
+            def children(self):
+                return self.levels
+
+        class BitTree:
+            def __init__(self):
+                self.current = None
+                self.root = BitRoot(self)
+
+            def roots(self):
+                return [self.root]
+
+        class BitWindow:
+            def __init__(self):
+                self.tree = BitTree()
+
+            def child_window(self, control_id, class_name):
+                assert (control_id, class_name) == (1049, "SysTreeView32")
+                return self.tree
+
+        bit_window = BitWindow()
+        states = driver["select_bit_level"](
+            bit_window, "Mp3 (Audio)", "1/2 (50%) - Maximum"
+        )
+        assert bit_window.tree.root.expanded
+        assert bit_window.tree.current is bit_window.tree.root.levels[1]
+        assert bit_window.tree.current.last_click == "text"
+        assert [row["level"] for row in states if row["selected"]] == [
+            "1/2 (50%) - Maximum"
+        ]
+        assert not any(row["checked"] for row in states)
+        print("PASS: native single-selected TreeView bit level needs no checkbox state")
+
         unsupported = FakeDialog("Browse for Folder", "OK")
         unsupported.edit = None
         try:
