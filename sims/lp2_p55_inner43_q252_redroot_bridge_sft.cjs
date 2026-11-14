@@ -18,7 +18,7 @@ function evalp(cs,x){let y=0;for(let i=cs.length-1;i>=0;i--)y=mod(y*x+cs[i]);ret
 function deriv(cs,x){let y=0;for(let i=cs.length-1;i>=1;i--)y=mod(y*x+i*cs[i]);return y;}
 /** @param {number[]} cs @param {number[]} d @returns {number[]} */
 function remainder(cs,d) {
-  const a=cs.map(mod),inv=17; // leading coefficient of G is15 -> 2; F 12 ->17, so generic inversion below
+  const a=cs.map(mod);
   let inverse=1;
   while(mod(inverse*d[d.length-1])!==1)inverse++;
   for(let i=a.length-d.length;i>=0;i--) {
@@ -50,7 +50,6 @@ assert.equal(off,76);
 assert.equal(inner.length,43);
 assert.deepEqual(G,[27,5,15]);
 assert.deepEqual(remainder(G,[mod(-24),1]),[0]); // root24
-assert.deepEqual(remainder(G,[mod(-24),1,0]),[]); // intentionally not relied upon
 const pValue=evalp(inner,24),qValue=evalp(q,24);
 const pSlope=deriv(inner,24),qSlope=deriv(q,24);
 assert.deepEqual([pValue,qValue,pSlope,qSlope],[18,9,22,22]);
