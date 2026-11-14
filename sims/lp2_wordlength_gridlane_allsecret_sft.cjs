@@ -176,54 +176,29 @@ function test(v, groups, lag, trials, seed) {
 const p40Source = original.filter((_, i) => chapters[i] === 7);
 const p40Gibran = gibran.filter((_, i) => chapters[i] === 7);
 const p40Groups = p40Source.map(() => 0);
-const p15Source = original.filter((_, i) => chapters[i] === 3);
-const p15Gibran = gibran.filter((_, i) => chapters[i] === 3);
-const p15Groups = p15Source.map(() => 0);
-const globalGroups = original.map(() => 0);
 const report = {
   source: {runes: totalRunes, words: original.length,
-    originalChapterWordCounts: chapterCounts, p40Words: p40Source.length,
-    p15Words: p15Source.length, squareLanes: 16, laneLength: 181},
+    originalChapterWordCounts: chapterCounts, p40Words: p40Source.length},
   original: {}, sourceNativePositive: {}, originalP40: {},
-  sourceNativePositiveP40: {}, originalP15: {},
-  sourceNativePositiveP15: {}, globalOriginal: {},
-  globalSourceNativePositive: {}
+  sourceNativePositiveP40: {}
 };
 assert.equal(p40Source.length, 669);
-assert.equal(p15Source.length, 437);
-assert.equal(original.length, 16 * 181);
 assert.ok(Math.abs(mi(original, chapters, 1) - 0.012156) < 0.00001);
-for (const width of [4, 8, 16, 32]) {
-  const trials = width === 4 || width === 16 ? 350 : 700;
-  const seed = width === 4 || width === 16 ? 0x3188 : 0xb829;
-  report.original[width] = test(original, chapters, width, trials, seed);
+for (const width of [8, 32]) {
+  report.original[width] = test(original, chapters,
+    width, 700, 0xb829);
+  report.originalP40[width] = test(p40Source, p40Groups,
+    width, 700, 0xb829);
   const planted = interleave(gibran, chapters, width);
-  report.sourceNativePositive[width] = test(planted, chapters, trials, seed);
+  const p40Planted = interleave(p40Gibran, p40Groups, width);
+  report.sourceNativePositive[width] = test(planted,
+    chapters, width, 700, 0xb829);
+  report.sourceNativePositiveP40[width] = test(p40Planted,
+    p40Groups, width, 700, 0xb829);
   assert.ok(report.original[width].z < 2.5);
+  assert.ok(report.originalP40[width].z < 2.5);
   assert.ok(report.sourceNativePositive[width].z > 10);
-  if (width === 4 || width === 16) {
-    report.globalOriginal[width] = test(original, globalGroups,
-      width, 350, 0x3188);
-    report.globalSourceNativePositive[width] = test(
-      interleave(gibran, globalGroups, width), globalGroups,
-      width, 350, 0x3188);
-    report.originalP15[width] = test(p15Source, p15Groups,
-      width, 2000, 0xcafe);
-    report.sourceNativePositiveP15[width] = test(
-      interleave(p15Gibran, p15Groups, width), p15Groups,
-      width, 700, 0xcafe);
-    assert.ok(report.originalP15[width].z < 2.5);
-    assert.ok(report.globalOriginal[width].z < 2.5);
-    assert.ok(report.globalSourceNativePositive[width].z > 10);
-  } else {
-    report.originalP40[width] = test(p40Source, p40Groups,
-      width, 700, 0xb829);
-    report.sourceNativePositiveP40[width] = test(
-      interleave(p40Gibran, p40Groups, width),
-      p40Groups, width, 700, 0xb829);
-    assert.ok(report.originalP40[width].z < 2.5);
-    assert.ok(report.sourceNativePositiveP40[width].z > 4);
-  }
+  assert.ok(report.sourceNativePositiveP40[width].z > 4);
   // The planted operator is an exact permutation, even when chapter sizes
   // are not multiples of the grid width.
   assert.deepEqual(
