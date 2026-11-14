@@ -79,12 +79,13 @@ function encode(plaintext, sign) {
  * The literal-F branch is available iff observed delta is zero.
  * @param {number[]} cipher
  * @param {1|-1} sign
+ * @param {number} [start=0]
  * @returns {{ complete:boolean, firstImpossible:number, finalClockCount:number,
  *              repeatCount:number, maxClockCount:number }}
  */
-function invertAllLiteralFMasks(cipher, sign) {
+function invertAllLiteralFMasks(cipher, sign, start = 0) {
   let previous = 0;
-  let states = new Set([0]);
+  let states = new Set([start]);
   let zeroDeltas = 0;
   let maxClockCount = 1;
   for (let i = 0; i < cipher.length; i++) {
@@ -154,7 +155,15 @@ for (const sign of /** @type {(1|-1)[]} */ ([1,-1])) {
   for(const x of originals) {
     const result=invertAllLiteralFMasks(x.cipher,sign);
     assert.equal(result.complete,false);
-    report.original[x.name+" sign"+sign]=result;
+    const starts = Array.from({length:29}, (_, start) =>
+      invertAllLiteralFMasks(x.cipher, sign, start));
+    const survivors = starts.flatMap((v, k) => v.complete ? [k] : []);
+    if (x.cipher.length > 76) assert.deepEqual(survivors, []);
+    report.original[x.name+" sign"+sign] = {
+      ...result, first29PrimeStartSurvivors: survivors,
+      max29StartValidPrefix: Math.max(...starts.map((v) =>
+        v.complete ? x.cipher.length : v.firstImpossible))
+    };
   }
 }
 console.log(JSON.stringify(report,null,2));

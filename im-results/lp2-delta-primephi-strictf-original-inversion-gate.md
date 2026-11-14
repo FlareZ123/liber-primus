@@ -37,6 +37,12 @@ Every result is an **exact contradiction before the supplied scope ends**, so ne
 
 [Single source-exact CommonJS Node22 reproduction](../sims/lp2_delta_primephi_strictf_original_sft.cjs). Uses the original rune indices and the independently known solved p56 text; no lexicon, free key, scorer, token rearrangement or external network.
 
+### All 29 native alphabet-indexed initial prime ordinals
+
+A separate finite *unselected-start* diagnostic grants **each** zero-based prime-list start 0 through 28, one for every possible GP29 rune index, rather than assuming only p56's authentic start0. The strict all-F-path recurrence is identical. Full 308-rune p54–55 remains impossible under **all 29/29 starts for both signs** (maximum prefix survival before the first contradiction: 146 positive, 144 negative). The opening p0–2 full 729-rune chapter also fails **29/29 both signs** (max 164 positive, 91 negative). The short 76-rune p55 alone admits 4/29 positive starts **[6,16,17,24]** and 3/29 reversed starts **[6,16,26]**; survival means merely that at least one GP29 symbol string is algebraically possible, not meaningful plaintext. No original instruction selects one of those seven values, and the standalone p55 scope omits its genuine word carried from p54.
+
+This **strict mathematical exclusion across a complete visually bounded chapter**, while stronger than the single first-prime reset, still concerns only this explicit feedback-plus-prime-phi decoder. It does not justify arbitrary offsets beyond 28 or a different clock.
+
 ## Decision and missing input
 
 **Retire the precise cumulative-ciphertext previous-rune + p56 initial-prime-totient F-transparent composition**, at these three natural original input scopes, under either sign. The no-repeat observation and p56 operation alone are not a full historical decoder. A different source-selected additive-state recurrence, intermediate alphabet, prime start, output-phase convention, or F behavior could still operate elsewhere; do not rescue this model by arbitrary key phases or changeable exceptions without an original authorial selector. The test does not decode any unknown glyph.
