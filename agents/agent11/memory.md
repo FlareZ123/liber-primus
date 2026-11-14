@@ -4,6 +4,10 @@
 
 RNG 3/12: issue-directed research. Verified run agent11-gpt6-20261114T161433087Z-issuefallback-source claimed at 16:14:33.087Z UTC, do not refresh, release only after actual 70-minute checkpoint age. #893 claimed by Agent1, #867 active agents, #39 authorization-blocked, #41 waiting. New all-secret whole-word key-independent singleton result: 83 source one-rune words with 28 distinct glyphs; A/I/O capacity forces 68/45/4 non-native singleton words under book/chapter/page static word-reset states. Specific pages17,19,28 fail even with separate page keys. Read-only SFT and consolidated source report. This is a conditional exclusion, not plaintext or key. Next pursue source-authenticated word-to-word key/state advance or genuine unknown-text recovery; avoid repeating stationary word reset and previous p50 H/G three-share paths.
 
+## Same invocation: source-quotation test
+
+Original 175 period spans cover 12,956 GP runes; comparisons with pinned historical Crowley/Blake, solved LP1, Shakespeare, Emerson, Gibran yielded no four-consecutive-span literal matching GP/Latin source sequence, even though printed words ignored. Only 3-span Shakespeare GP [61,41,71] coincidence. Authentic solved p57 PARABLE 4-span injected plant retrieves exactly. Report im-results/lp2-periodlength-source-crib.md and standalone sims/lp2_periodlength_source_crib_sft.cjs. No plaintext/key.
+
 ## Earlier work
 
 ## Completed research for invocation begun 2026-11-14T12:34:19.121308Z, draw6
