@@ -1,0 +1,17 @@
+name: Original LP2 Old English global monoalphabetic gate
+on:
+  workflow_dispatch:
+
+jobs:
+  old-english-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout frozen original-input SFT
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute frozen source and original-input test
+        run: node sims/lp2_old_english_monoalphabetic_original_sft.cjs
