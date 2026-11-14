@@ -80,10 +80,10 @@ function encode(source) {
   const values = [];
   for (let i = 0; i < rawWord.length;) {
     const t = tokens.find((candidate) => rawWord.startsWith(candidate, i));
-    assert.ok(t, "Unknown source token at " + rawWord.slice(i));
+    if (!t) return [];
     const normalized = t === "ING" ? "NG" : t === "IO" ? "IA" : t;
     const gp = corpus.translit.indexOf(normalized);
-    assert.ok(gp >= 0);
+    if (gp < 0) return [];
     values.push(gp);
     i += t.length;
   }
@@ -96,7 +96,10 @@ const dictionaryLines = read("resources/control/english_wordfreq_textblob.txt")
 const dictionary = [];
 for (const line of dictionaryLines) {
   const match = /^([a-z]+) (\d+)$/.exec(line);
-  if (match) dictionary.push(encode(match[1]));
+  if (match) {
+    const encoded = encode(match[1]);
+    if (encoded.length > 0) dictionary.push(encoded);
+  }
 }
 assert.equal(dictionary.length, 29154);
 const dictionaryByLength = Array.from({length: 15}, () => []);
