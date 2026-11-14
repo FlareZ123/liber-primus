@@ -75,12 +75,23 @@ async function main(){
  const others=[
   ['board-direct','https://cicada3301.boards.net/thread/12/case-shift-independent-text-analysis'],
   ['board-wayback','https://archive.org/wayback/available?url='+encodeURIComponent('http://cicada3301.boards.net/thread/12/case-shift-independent-text-analysis')+'&timestamp=20160126'],
+  ['old-wikia-novus-wayback','https://archive.org/wayback/available?url='+encodeURIComponent('http://uncovering-cicada.wikia.com/wiki/LIBER_NOVUS')+'&timestamp=20150801'],
+  ['old-wikia-p0-wayback','https://archive.org/wayback/available?url='+encodeURIComponent('http://uncovering-cicada.wikia.com/wiki/PAGE_0')+'&timestamp=20150801'],
   ['fandom-novus-wayback','https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/LIBER_NOVUS')+'&timestamp=20150801'],
   ['fandom-p0-wayback','https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/PAGE_0')+'&timestamp=20150801'],
   ['fandom-2016-wayback','https://archive.org/wayback/available?url='+encodeURIComponent(root+'/wiki/2016_Puzzle')+'&timestamp=20160106']
  ];
  const results=await Promise.all(others.map(async ([name,url])=>{
    const r=await fetchText(url);
+   if(name==='board-direct'&&r.body){
+     const re=/(?:mortlach|shift independent|post-message|message-content|message-text|thread-title|post-content|decryption|cipher)/gi;
+     const matches=[];let m;
+     while((m=re.exec(r.body))!==null&&matches.length<65){
+       const start=Math.max(0,m.index-200),end=Math.min(r.body.length,m.index+600);
+       matches.push({offset:m.index,match:m[0],near:r.body.slice(start,end)});
+     }
+     console.log('BOARD_HTML_HIGHLIGHTS '+JSON.stringify({url,status:r.status,matches}));
+   }
    return {name,url,status:r.status,error:r.error,final:r.url,bytes:r.bytes,
       sha256:r.hash,preview:r.body?.slice(0,1300)};
  }));
