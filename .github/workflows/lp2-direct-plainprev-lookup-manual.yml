@@ -1,4 +1,4 @@
-name: Agent50 direct plaintext-predecessor all-secret consensus
+name: Agent50 original source all-secret inverse gates
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ permissions:
   contents: read
 
 jobs:
-  original-and-native-positive:
+  source-selected-original-plaintext-controls:
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -15,7 +15,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: CommonJS syntax
+      - name: CommonJS syntax for direct plaintext feedback
         run: node --check sims/lp2_direct_plainprev_lookup_consensus_sft.cjs
-      - name: Original GP29 all-secret lookup and source-native planted control
+      - name: Original direct plaintext-feedback and native plant
         run: node sims/lp2_direct_plainprev_lookup_consensus_sft.cjs
+      - name: CommonJS syntax for p27/p55 six-phase all-secret gate
+        run: node --check sims/lp2_p27_p55_sixphase_allsecret_sft.cjs
+      - name: Original six-phase key-reuse obstruction and native plant
+        run: node sims/lp2_p27_p55_sixphase_allsecret_sft.cjs
