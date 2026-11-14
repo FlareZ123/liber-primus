@@ -1,3 +1,5 @@
+- In the same center-out 9×9 spiral overlay, reading the remaining 26 p32 interior cells (the complement after the first 55) in spiral order for each of four orientations gives no recognizable plaintext. The “path lies empty”/26-cell complement interpretation is therefore also unsupported by this direct placement.
+
 ## Final 2016-phrase key check
 
 - Greedy GP29 encoding of the signed 2016 clause “their meaning is the road, and their numbers are the direction” yields 45 symbols under the repository transliteration map, not 43. Applying rune-index, prime, and φ(prime) additive keys (both signs) to p55's 43 interior runes gives no language. The often-repeated 43-rune count is not reproduced by this explicit encoding; do not treat the phrase as a 43-symbol key without resolving that discrepancy from an authoritative transcription.
