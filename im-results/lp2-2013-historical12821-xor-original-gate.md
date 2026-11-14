@@ -48,4 +48,15 @@ The independent dated archive has ten known transcription differences from the o
 - [Self-contained source-specific Node22 CommonJS SFT](../sims/lp2_2013_historic12821_base29_xor_sft.cjs)
 - [Executed Windows GitHub Actions run 43644449895](https://github.com/FlareZ123/liber-primus/actions/runs/43644449895), complete, success; includes original actual-case output and all positive controls. JSON artifact: `iso56013-historic12821-mod` (artifact ID 14133133697). The existing [ISO workflow](../.github/workflows/iso56013-full-offset-manual.yml) now has the optional `historic12821` mode; its normal offset-scan behavior is preserved.
 
-**Decision:** close the simple historical 12,821 + XOR + native GP index/BASE29 handoff. Do not recursively try tuned encodings or neighboring offsets based on these random-looking outputs. Reopen only if a new original clue independently specifies a different representation or source clock, or if an authentic LP2 crib materializes.
+### Last source-typed binary transport: packed five-bit GP29
+
+The signed 2013 BASE29 numeral representation and the canonical 29-rune original alphabet also permit the *standard* **five-bit MSB-first, contiguous rune-index packing** (29 fits in 2⁵). Unlike the byte-per-rune and whole-integer cases above, this preserves each rune as five source bits and zero-pads only the terminal partial byte. A complete original-corpus packed/unpacked inverse is asserted before XOR, with unchanged source offset, p0–p2/p3–p7 section separation and positive XOR plants. The [third native source execution 43645642404](https://github.com/FlareZ123/liber-primus/actions/runs/43645642404) passed every original 2013 SHA256 / onion-address / reversible-pack / planted-control assertion and produced:
+
+| Original page group | Absolute 2013 key offset | Five-bit packed output bytes | Printable ASCII | Latin letters | ASCII spaces | Consecutive ASCII letter/space runs 8+ |
+|---|---:|---:|---:|---:|---:|---:|
+| p0–p2, 729 original runes | 12821 | 456 | 181 (39.69%) | 99 | 1 | 0 |
+| p3–p7, 1,145 original runes | 13277 | 716 | 265 (37.01%) | 140 | 2 | 0 |
+
+These are likewise random-looking with no literal plaintext. The three direct historically motivated rune-to-byte encodings plus both original 256-byte table representations now have actual source-run evidence. None recovers a source-selected unknown page decryption.
+
+**Decision:** retire the direct historical 12,821 XOR bridge under the **three registered rune encodings** (GP-index bytes, full-section BASE29 integer, packed five-bit GP29), and both 256-byte table operands, as an unrewarding simple transfer. Do not recursively try tuned encodings or neighboring offsets based on these random-looking outputs. Reopen only if a new original clue independently specifies a different representation or source clock, or if an authentic LP2 crib materializes.
