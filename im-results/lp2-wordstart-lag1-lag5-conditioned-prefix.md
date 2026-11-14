@@ -1,37 +1,28 @@
-# LP2 word-start English-prefix survival under exact lag-1/lag-5-marker conditioning
+# LP2 printed word starts: lag1/lag5-conditioned English-prefix test
 
-**Exploratory finding (Agent18, 14 November 2026).** A modest word-initial GP29 English-prefix excess remains after a source-preserving randomization that holds **the exact positions of every within-page adjacent-equal rune pair and every within-page lag-five-equal pair** unchanged. This is a refinement of the prior all-wordstart prefix signal in [the p32 HOME lexical familywise study](lp2-p32-home-wordstart-english-prefix-familywise.md), whose independent per-page shuffles did not control adjacent-equality suppression. The result **does not identify even one authentic plaintext word**, source-selected key, cipher, destination, or creator intent; the reported marginal upper-tail probabilities are exploratory and **not familywise corrected** for four overlapping lexicons.
+**Corrected final decision (Agent18, 14 November 2026): No independently significant English-prefix signal, no recovered plaintext, no key.**
 
-## Source-linked question
+The original first-pass experiment inadvertently accepted a four-rune string beginning in a printed word shorter than four runes and **continuing across a printed delimiter**. This was a genuine substantive parser flaw: it could erroneously count a 2- or 3-rune word followed by its next word as an English-looking prefix. That initial 2,895-start test and its marginal p≈0.043 union result are **superseded**, and must not be cited as evidence of plaintext leakage.
 
-The original unknown LP2 has 12,956 GP29 rune symbols and 2,896 printed words over 55 nonempty physical rune pages. Independently solved LP1 ciphers sometimes preserve literal word delimiters, so original printed word starts could contain plaintext-looking prefixes even if subsequent symbols are enciphered. The prior original-input HOME/HOMEX study found 68 dictionary four-rune prefixes at printed word starts under its broad CMU lexicon and p=0.0072 against page-marginal-only shuffles. That null did not preserve the distinct anti-doublet or lag-five word-local structure, so the lexical observation was not cipher evidence.
+## Correct source-constrained test
 
-This study instead derives four exact source-native prefixes from **three separately archived, already checked-in literary controls**, under the same conventional normalized GP29 digraph spelling:
+Using original `resources/liber-primus/lp2-corpus.json` and `lp2-transcription.txt`, derive exactly 2,896 full printed source words, each beginning at its canonical rune coordinate. Only **1,645** original words contain at least four rune symbols **within that same word**; these alone are eligible. Do not cross a printed word boundary or pad from the following word.
 
-- `resources/control/shakespeare_first300k.txt`, 2,741 distinct four-rune prefixes;
-- `resources/control/gibran_prophet_58585.txt`, 1,395;
-- `resources/control/emerson_essays_2944.txt`, 3,549;
-- union, 4,369 distinct prefixes.
+Source-native GP29 orthography applied to the three previously checked-in literary controls gives 2,741 distinct Shakespeare four-rune prefixes, 1,395 Gibran prefixes, 3,549 Emerson prefixes, and their 4,369-prefix union. These are frozen before scoring any unknown original rune content.
 
-These sources were *not* chosen because a substring fitted the unknown cipher, but the decision to probe word-initial English-like strings followed earlier exploratory evidence, making inference conditional. There are **2,895** valid original printed starts with at least four following runes. The same exact original transcription and canonical runic index list are asserted to agree rune-for-rune on the 12,956-source positions.
+A source-preserving swap Markov chain keeps every original within-page lag1 and lag5 duplicate-indicator location fixed, every page-local rune multiset fixed, every printed word boundary fixed, and all source page lengths fixed. A swap changing any original equality indicator is rejected. Seed xorshift32 `0x18053301`; 100,000 attempted-move burn, then 350 observations 14,000 swap attempts apart, five million attempts and 3,060,356 acceptances. This constrained Markov sampler has no established uniformity/mixing proof; a matched null is only provisional.
 
-## More conservative null and observed values
-
-At each step, choose a physical rune page, select two source positions, and propose swapping their rune labels. Reject the swap unless **all** adjacent equality indicators (lag1) and all lag-five equality indicators potentially affected by either swap are identical to the unchanged original indicators, at each exact within-page coordinate. This preserves every original printed word start and length, each page's rune multiset, all 86 original within-page adjacent repeats, and the *locations* of the independently noted word-local lag5 echoes. It is a reversible, symmetrical swap Markov chain on a highly constrained source-conditioned state space; neither independent uniform draws nor an exact uniform-sampling proof are claimed.
-
-Frozen PRNG xorshift32 seed `0x18053301`; 100,000 burn-in attempts, then 350 observations separated by 14,000 swap attempts, totaling five million attempted moves; **3,060,356** moves accepted. All scores are original-runic, with no key or plaintext fitted.
-
-| Lexicon | Original prefix hits | Conditional-null mean | Null range | Replicates at least original | Marginal plus-one upper tail |
+| GP29 prefix set | Original hits, within-word | Conditional-null mean | Range | Null ≥ original | Marginal plus-one upper tail |
 | --- | ---: | ---: | --- | ---: | ---: |
-| Shakespeare | 18 | 10.9543 | 4–21 | 9/350 | 0.02849 |
-| Gibran | 9 | 5.5543 | 1–14 | 39/350 | 0.11396 |
-| Emerson | 22 | 14.4286 | 6–27 | 14/350 | 0.04274 |
-| Three-source union | **26** | **17.7457** | 7–29 | **14/350** | **0.04274** |
+| Shakespeare | 10 | 6.3571 | 0–15 | 34/350 | 0.09972 |
+| Gibran | 7 | 3.2829 | 0–9 | 19/350 | 0.05698 |
+| Emerson | 13 | 8.3086 | 2–17 | 25/350 | 0.07407 |
+| Union | **15** | **10.2229** | 3–20 | **31/350** | **0.09117** |
 
-This controls the two best documented ciphertext autocorrelation artifacts *more tightly* than per-page shuffling. On these specific three fixed sources, the word-start excess is **not fully erased** by preserving original lag1/lag5 equality sites. However the four tests are dependent, the source text is limited, Markov observations can be correlated, and other non-English source registers or hidden cipher processes could produce the excess. It is inappropriate to call the individual p≈0.03–0.04 values independent confirmed detections or to infer that ciphertext prefixes are literal plaintext.
+None meets p<0.05 even *before* correction for the four overlapping lexicons. A separately corrected Monte Carlo p-value or a larger lexicon would still require prospective specification and a cipher-consistent positive control before asserting any partial plaintext. The original p32 `HOME` is merely the beginning of a longer ciphertext word and remains post-hoc. No coherent multiword plaintext appears.
 
-## Next useful decision
+## What changed in the research decision
 
-The additional evidence makes one potential route worth a **single prospective** test: before inspecting any unknown-looking candidate English prefix, predeclare a cross-source broad GP lexicon, a full-family statistic and an independent transition-matched sampler with audited mixing or multiple seeded chains, then require a localized cluster that predicts a **longer, withheld source-native phrase**. A mere familywise word-start excess without consecutive plaintext and a reversible cipher remains an intermediate distributional observation. If the prospectively calibrated signal disappears, retire the plaintext-island reading rather than searching individual strings.
+The precise within-word requirement reverses the earlier misleading interpretation: the source-constrained lexical excess **does not survive with usable confidence** after preserving adjacency and lag-five duplicate locations. Do **not** promote any English-looking ciphertext prefix into a crib or justify a new hidden-English decoder on this experiment. Further randomization without an independently source-selected plaintext/register is lower priority than obtaining an actual key or original instruction.
 
-**Reproducer:** [standalone CommonJS exact-input SFT](../sims/lp2_wordstart_lag1_lag5_conditioned_prefix_sft.cjs), using only Node.js22 built-ins and the four original/independent text files listed above. It asserts source rune counts, original scores, fixed lexicon sizes, and the seeded null exceedance counts. It writes no files or workflows.
+The corrected [CommonJS original-input SFT](../sims/lp2_wordstart_lag1_lag5_conditioned_prefix_sft.cjs) asserts the original 2,896 words, exactly 1,645 eligible word starts, original counts [10,7,13,15], and 350-seed conditional exceedances [34,19,25,31]. No CI was scheduled.
