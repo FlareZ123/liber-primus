@@ -1,0 +1,14 @@
+name: Agent28 original moth rank28 shared-key test
+on:
+  workflow_dispatch:
+jobs:
+  exact-rank28-original:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-native exact all-reserved and planted controls
+        run: node sims/lp2_p53_p55_rank28_sharedpad_source_sft.cjs
