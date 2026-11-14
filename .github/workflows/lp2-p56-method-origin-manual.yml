@@ -1,0 +1,21 @@
+name: LP2 p56 first-method original IRC witness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  first-p56-method:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse-check original 2014 method witness screen
+        run: node --check sims/lp2_2014_p56_method_origin_sft.cjs
+      - name: Extract original May-July 2014 first p56 method witnesses
+        run: node sims/lp2_2014_p56_method_origin_sft.cjs
