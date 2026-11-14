@@ -94,6 +94,52 @@ const words=unsolved.slice(0,20).map(x=>{
  const vals=gp.pages.find(z=>z.page===x.page).indices.slice(x.offset,x.offset+W);
  return {...x,cipherGP:vals.map(v=>gp.translit[v]).join(''),rawIndices:vals};
 });
+
+const ptcounts=new Uint32Array(29**3);
+for(const f of files)for(let i=0;i+2<f.train.length;i++){
+ const x=f.train;ptcounts[841*x[i]+29*x[i+1]+x[i+2]]++;
+}
+const pttotal=ptcounts.reduce((a,b)=>a+b,0);
+function plainScore(v){
+ let s=0;
+ for(let i=0;i+2<v.length;i++)
+  s+=Math.log((ptcounts[841*v[i]+29*v[i+1]+v[i+2]]+0.5)/
+    (pttotal+0.5*ptcounts.length));
+ return s/(v.length-2);
+}
+function phaseRank(original){
+ const rows=[];
+ for(let sign of [1,-1])for(let shift=0;shift<29;shift++){
+  const dec=original.map(x=>mod(sign*x+shift));
+  rows.push({sign,shift,score:plainScore(dec),
+    text:dec.map(x=>gp.translit[x]).join('')});
+ }
+ return rows.sort((a,b)=>b.score-a.score);
+}
+const best=words[0],page24=gp.pages.find(p=>p.page===best.page);
+const full=page24.indices;
+const p24cur=full.slice(best.offset,best.offset+W);
+const p24next=full.slice(best.offset+W,best.offset+2*W);
+const topRank=phaseRank(p24cur);
+const p57Rank=phaseRank(solved57.indices.slice(0,W));
+const nativePlain=[];
+for(const f of files)for(let i=0;i+W<=f.test.length;i+=W)
+ nativePlain.push(plainScore(f.test.slice(i,i+W)));
+nativePlain.sort((a,b)=>a-b);
+const phase=topRank[0];
+const nextRank=plainScore(p24next.map(x=>mod(phase.sign*x+phase.shift)));
+console.log('PHASE_READOUT '+JSON.stringify({
+ candidate:{page:best.page,offset:best.offset,top4:topRank.slice(0,4),
+  next40Length:p24next.length,next40SamePhaseScore:nextRank,
+  next40SamePhaseText:p24next.map(x=>gp.translit[mod(phase.sign*x+phase.shift)]).join('')},
+ genuineP57:{phaseRankIdentity:p57Rank.findIndex(x=>x.sign===1&&x.shift===0)+1,
+  identityScore:p57Rank.find(x=>x.sign===1&&x.shift===0).score,
+  top3:p57Rank.slice(0,3)},
+ nativeScores:{p1:nativePlain[Math.floor(nativePlain.length*.01)],
+  median:nativePlain[Math.floor(nativePlain.length*.5)],
+  p99:nativePlain[Math.floor(nativePlain.length*.99)]}
+}));
+
 console.log('ORIGINAL_DIFFERENCE_QUADGRAM '+JSON.stringify({
  controls:{trainLengths:files.map(x=>({name:x.label,length:x.train.length})),
   nativeWindowCount:nSource.length,nativeP1:sourceThreshold,
