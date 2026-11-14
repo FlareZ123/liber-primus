@@ -46,6 +46,24 @@ All **10 original inverse state spaces are empty**. This is a formal rule-level 
 
 **Distinct authentic-number conversion checked:** the historical p56 cipher consumes shifts `φ(p)=p−1`. The same five IOGEM *runes* have GP-prime values **[31,7,17,67,71]**, so applying the actual historically solved numeric rule produces cyclic shifts **[1,6,16,8,12] mod29**. This is mathematically different from using the literal GP index labels [10,3,6,18,19]. With the same complete ciphertext-F branch enumeration, the original p55 full76 survivor counts across five phases are **[0,1,2,2,0]**, and suffix75 gives **[0,0,1,2,2]**. The surviving candidate strings begin, for example, `S N J IA G N U G W X G M` (full76 phase1) and `C B W N U EA N TH E N AE IA` (phase2); none forms coherent readable GP-native plaintext. The exact 95-rune original p57 forward/inverse plants also pass for all five prime-totient phases. Thus the **literal-index key is exactly excluded**, while the **prime-totient interpretation is algebraically legal but yields no recovered text**. Do not generalize the literal-index impossibility to every numeric interpretation of the graph.
 
+**Whole-chapter legal-inverse test for the surviving prime-totient reading:** A longer source-led decoder would need to survive beyond p55. Holding `[1,6,16,8,12]` fixed, starting at **each of all five possible key phases** and preserving **every** legal ciphertext-F bypass for **each original visual chapter** gives no complete valid inverse at all. Original visual chapter lengths are **[729,1145,1729,1903,1021,1433,1680,3008,308]**. Earliest impossible zero-based offsets within each chapter for the five phases are:
+
+| Original chapter (physical page range) | Five earliest impossible rune offsets |
+| --- | --- |
+| 1 (p0–2) | 46, 36, 1, 388, 46 |
+| 2 (p3–7) | 3, 12, 2, 23, 13 |
+| 3 (p8–14) | 116, 4, 28, 14, 116 |
+| 4 (p15–22) | 10, 14, 64, 64, 57 |
+| 5 (p23–26) | 0, 30, 4, 11, 7 |
+| 6 (p27–32) | 8, 306, 306, 11, 24 |
+| 7 (p33–39) | 10, 81, 81, 1, 40 |
+| 8 (p40–53) | 101, 17, 7, 42, 101 |
+| 9 (p54–55) | 17, 170, 13, 25, 38 |
+
+In contrast, granting an independent fresh IOGEM phase on **each individual physical page** yields a completely legal inverse for **nine of the 55** original rune-bearing pages: **p0, p9, p22, p24, p27, p49, p51, p52, p55**. The remaining **46** pages cannot be decoded in full under any of five phases. The pages with algebraically legal outputs are *not* authenticated prose. In particular, the five original p55 survivors, parsed using original line-continuation-aware printed words of lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`, have **zero exact English lexicon matches of length ≥3 GP runes** in the already-pinned TextBlob dictionary. One contains the accidental two-rune GP spelling `TH E` = THE. Do not mistake this one word for a complete reading.
+
+This rules out the direct **cyclic prime-totient IOGEM** as a full-chapter p56-like decoder under any source-chapter initial phase, and as a complete-page decoder for 46/55 pages. It does **not** rule out independent per-page keys with a different register/clock, non-F bypass behavior, variable key updates, or the provisional p57/p50 source graph itself. The operation remains unsupported by an author-signed LP2 instruction.
+
 **Decision for IOGEM:** the literal GP-index IOGEM key is not a valid cyclic historical strict-F Vigenère decoder for the original terminal p55 under either of these source-visible start clocks. This adds one **new bounded direct inverse** to the distinct GEM and OOGEM tests above. It does not invalidate the provisional keypad navigation, a different source-selected downstream cipher, a non-periodic use of the path, or any missing external key. Most importantly, no original unknown plaintext is recovered by this operation.
 
 [Exact source-native Node22 CommonJS SFT](../sims/lp2_p57_divinity_iogem_p55_strictf_sft.cjs).
