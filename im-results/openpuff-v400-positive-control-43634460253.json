@@ -1,0 +1,90 @@
+{
+  "schema": "source-native-openpuff-v400-positive-control-evidence-v1",
+  "github_actions_run_id": 43634460253,
+  "run_url": "https://github.com/FlareZ123/liber-primus/actions/runs/43634460253",
+  "carrier": {
+    "filename": "interconnected.mp3",
+    "size_bytes": 6651873,
+    "md5": "7638414d35f416084b7ddcc94aa53685",
+    "sha256": "1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6",
+    "git_blob": "09fe068192b76a3697c47ec1d604b527703db798"
+  },
+  "original_binary": {
+    "name": "OpenPuff.exe",
+    "size_bytes": 520192,
+    "git_blob": "466e03c792075313ce533a5dc7a789e8a41209f9",
+    "required": "libObfuscate.dll"
+  },
+  "jobs": [
+    {
+      "job_id": 132568093367,
+      "artifact_id": 14129467356,
+      "artifact_zip_sha256": "9e86b81bbee5db3122f0a5e2c1c29b7161351aacd4e9373d4ef8a1f17ea18254",
+      "artifact_contains_files": 18,
+      "result": {
+        "attempted": false,
+        "carrier": "D:\\a\\_temp\\interconnected.mp3",
+        "carrier_basename": "interconnected.mp3",
+        "carrier_added": true,
+        "password_BC_states": {
+          "1042": 0,
+          "1043": 0
+        },
+        "bit_format": "Mp3 (Audio)",
+        "bit_level": "1/2 (50%) - Maximum",
+        "bit_selection_verified": false,
+        "save_dialog_seen": false,
+        "completion_dialogs": [],
+        "output": null,
+        "outputs": [],
+        "output_present": false,
+        "expected_crc32": "6A8C41E3",
+        "expected_size": 745,
+        "expected_match": null,
+        "password_status": "A = B = C",
+        "selected_carrier_bytes": "432 bytes ",
+        "password_A": "33011033"
+      },
+      "error_last_line": "RuntimeError: Bit-selection item '1/2 (50%) - Maximum' could not reach checked=True: check: Area ('check') not found for this tree view item; icon: click did not change checked state; text: click did not change checked state"
+    },
+    {
+      "job_id": 132568093070,
+      "artifact_id": 14129511362,
+      "artifact_zip_sha256": "70b6a614cbf479d4987e9893d842dca381b9f735588622eeb31a2faf762ea042",
+      "artifact_contains_files": 18,
+      "result": {
+        "attempted": false,
+        "carrier": "D:\\a\\_temp\\interconnected.mp3",
+        "carrier_basename": "interconnected.mp3",
+        "carrier_added": true,
+        "password_BC_states": {
+          "1042": 0,
+          "1043": 0
+        },
+        "bit_format": "Mp3 (Audio)",
+        "bit_level": "1/2 (50%) - Maximum",
+        "bit_selection_verified": false,
+        "save_dialog_seen": false,
+        "completion_dialogs": [],
+        "output": null,
+        "outputs": [],
+        "output_present": false,
+        "expected_crc32": "6A8C41E3",
+        "expected_size": 745,
+        "expected_match": null,
+        "password_status": "A = B = C",
+        "selected_carrier_bytes": "432 bytes ",
+        "password_A": "33011103"
+      },
+      "error_last_line": "RuntimeError: Bit-selection item '1/2 (50%) - Maximum' could not reach checked=True: check: Area ('check') not found for this tree view item; icon: click did not change checked state; text: click did not change checked state"
+    }
+  ],
+  "scope": "Both source-native jobs succeeded adding and parsing the historical original MP3. Both stopped before clicking Unhide, so no password verification or source JPEG extraction occurred.",
+  "superseding_code_commits": [
+    "81c950b787941b6b6d28b12f511466b81a37183d",
+    "7950a6bdd19e388cc3cfc4481f297135a5d1a54c",
+    "eb4f8411cf74682e2c6996b37d4a1fe63c72a770",
+    "14c793a4d9c792d897ab0e9b86a219ebd4ac6490"
+  ],
+  "driver_correction_tested_natively": false
+}
