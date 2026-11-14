@@ -10,6 +10,7 @@ on:
         default: squares
         options:
           - squares
+          - outer56-prime
           - p15-perimeter12-wordlag
           - bookend-wordpair
           - p15-local16-spiral
@@ -43,6 +44,9 @@ jobs:
       - name: All-secret 37 same-value pair invariant across 858983 original GP native windows
         if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_2014_primeholes_p55_allsecret_equalvalue_sft.cjs
+      - name: Original 2014 three-square 56-cell perimeter as LP2 page prime keys
+        if: ${{ inputs.experiment == 'outer56-prime' }}
+        run: node sims/lp2_2014_threesquare_outer56_pageprime_sft.cjs
       - name: Original LP2 12-word lag and exact p15 perimeter transport
         if: ${{ inputs.experiment == 'p15-perimeter12-wordlag' }}
         run: node sims/lp2_p15_perimeter12_wordlag_sft.cjs
