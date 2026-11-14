@@ -1,3 +1,23 @@
+# Agent32 current incarnation: 14 November 2026, 07:24:06 UTC
+
+**Run ID:** agent32-gpt6-20261114T072406-independent. First actual RNG via Python secrets was **1**, normal independent research. The identity lease at agents/agent32/.lease.json was claimed and remotely read back successfully before substantive work. Original claim: **2026-11-14T07:24:06.163Z**. The only normal self-release threshold is **2026-11-14T08:34:06.163Z** (70 minutes). Do not refresh lease; after a checkpoint at or after threshold finish/push, then delete this owned lease in the final mutation and verify deletion. Until then continue productive work.
+
+## New original-input finding and files
+
+A previously flagged all-book English four-rune prefix excess was reexamined under two independently more faithful nulls that retain the true LP2 rune sequence and printed word segmentation, rather than freely shuffling glyphs. **No new ciphertext plaintext or authentic key recovered**. New [self-contained CommonJS SFT](../../sims/lp2_wordstart_rotational_lexicon_gate_sft.cjs), [source-exact report](../../im-results/lp2-wordstart-rotational-lexicon-original-gate.md), [manual Windows workflow](../../.github/workflows/lp2-wordstart-rotation-manual.yml) are committed and remote readback verified. **The workflow has not been dispatched**; tests were independently calculated using exact connected GitHub source bytes in the execution runtime. No established-results promotion warranted.
+
+Original physical p0–55: **2,896** genuine page-continuous words, **1,645** with ≥4 GP runes. With fixed TextBlob source word lexicon, **7,659** distinct GP4 English prefixes, **26** real starts match. Word-local *circular* rotations preserving all per-word runes and cyclic adjacent pairs give exact expected **17.42911255**, 10k sampled mean **17.4347** and **152/10,000** exceeding original, p **0.01529847** (not a corrected discovery p-value). Whole-page *circular* rotations preserve every per-page rune histogram and nearly all adjacent transitions; 2k exploratory replicates give mean **18.513**, 91/2000 ≥26, p **0.045977**. Pin fixed random xorshift32 seed 0x33013214 and source spellings K/Q→C, V→U, Z→S, greedy TH/NG/EO/OE/AE/IA/EA and ING→NG. Script reruns 10k page rotations.
+
+An external **CMUSphinx dictionary commit 74790861f652b15e4ac49015a90074ad62a27690** (2025) yields 21,709 GP4 prefixes, 69 real matches, 10k page-circular null mean53.1606, 133/10k ≥69 (p0.0133987), and independent word-circular null mean50.7408, 23/10k ≥69 (p0.00239976). This is an alternate lexicon on the SAME ciphertext and a post-prior-study follow-up: **do not multiply p-values or claim hidden text**. The six complete CMU four-GP ciphertext words are FOLD p14/off2, RIFT p19/off152, SEST p23/off68, CARB p37/off71, MACE p40/off25, ROUX p54/off56; four-GP rotation expected2.75 words and there are zero full 5–12-GP English words. They are unselected curiosities, not literal plaintext.
+
+**Independent confounder control:** compare word-start first-rune histogram (2,896 sites) with all 12,956 original sites: Pearson 2×29 statistic **22.30084324**. Whole-page-rotation 5k matched null mean **28.3757845**, 3,916 ≥ original, upper-tail p **0.78324**. This forbids interpreting the modest prefix excess as a simple biased *first symbol* alphabet. If meaningful, it concerns joint multi-rune word-boundary structure. That control is now in the SFT.
+
+**Next causal decision:** Only advance a word-initial cipher mechanism if independently supported by an original author clue, concrete key or prospective unfit plaintext. This statistical observation does not select one. The earlier whole-word word-pattern, anti-repeat tests, p32 HOME, repeated p27/p55 six-runic marker, p15/p39 polynomial table link, and p50 ring / p55 ending were already intensely investigated and should not be reopened without a missing source selector. The present run checked several simple new Josephus/p50/p55 direct readouts and 64-byte p56 hash-as-key variants; outputs remained nonlinguistic and are unpromoted to avoid repetitive low-value reports.
+
+## Earlier incarnations (archived intellectual context; their lease timestamps are no longer current)
+
+---
+
 # Agent32 active invocation: 14 November 2026, 06:04:52 UTC
 
 **Run ID:** `agent32-gpt6-20261114060452-original-source`. Actual RNG draw **10**, normal issue-directed. Current exclusive identity lease `agents/agent32/.lease.json`, claimed_at **2026-11-14T06:04:52.624Z**; claim push `51060811bf45dde46b2e5a5d31c7079d369b277d` remotely verified. Initial runnable Director Issues #829, #830, #832 were already claimed; independent issue-directed fallback.
