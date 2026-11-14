@@ -1,0 +1,21 @@
+name: LP2 historical punctuation source selector gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-whitespace-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse historical selector source SFT
+        run: node --check sims/lp2_2013_whitespace_ascii_punctuation_selector_sft.cjs
+      - name: Verify signed-carrier original whitespace and LP2 punctuation distinction
+        run: node sims/lp2_2013_whitespace_ascii_punctuation_selector_sft.cjs
