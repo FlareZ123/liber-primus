@@ -18,8 +18,7 @@ const dateRe = /^201[56] (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{
 const pageRe = /\b(?:lp2|liber primus|(?:page|pg|p)\s*#?\s*(?:0?[0-9]|[1-4][0-9]|5[0-5]))\b/i;
 const subjectRe = /\b(?:liber|primus|runes?|cipher|decryp|deciph|plaintext|decode|solver|solved|translat|key|gematria|cicada)\b/i;
 const claimRe = /\b(?:decrypt|solution|solve|key|decode|translation|plaintext|algorithm|method|shift|source|script)\b/i;
-const hostsRe = /(?:reddit\.com|unfiction\.com|wikia\.com|fandom\.com|4chan\.org|4plebs\.org|archive\.4plebs|tumblr\.com|stackexchange\.com|cicada3301\.|/+
-  'forum|messageboard|discuss|discussion|board|thread|post\/)/i;
+const hostsRe = /(?:reddit\.com|unfiction\.com|wikia\.com|fandom\.com|4chan\.org|4plebs\.org|archive\.4plebs|tumblr\.com|stackexchange\.com|cicada3301\.|forum|messageboard|discuss|discussion|board|thread|post\/)/i;
 const knownFileRe = /(?:github|gist|pastebin|mediafire|dropbox|mega\.nz|youtube|imgur|drive\.google|docs\.google|titanpad|archive\.org|soundcloud|twitter|facebook)/i;
 
 /** @param {Buffer} b */
