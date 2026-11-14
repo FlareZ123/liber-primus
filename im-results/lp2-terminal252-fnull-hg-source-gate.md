@@ -51,6 +51,21 @@ The 252-term original quotient matches only **5/252** positions of the mixed-mod
 
 A 252-rune synthetic planted terminal stream, systematically encoded by the **same** fourth-degree polynomial, decodes back to all 252 known rune indices exactly, and the authentic 256-byte original codeword reconstitutes byte-residue-for-byte-residue from its quotient. The original p56 prime-totient decryptor is checked against its actual 85 symbols. This detects a wrong polynomial division, clock length or terminal segmentation independently of the original negative.
 
+## Competing four-F erasure interpretation of the intact 256 runes
+
+Instead of deleting four F glyphs to obtain a 252-term quotient, treat their **original terminal positions** as four erased/check slots in a 256-coefficient GF29 codeword divisible by H×G. This is the other simple 256↔252 use of the identical degree-four factor. The four stipulated positions are **p55 local 15,25,41 and p56 local56**, corresponding to **global offsets [15,25,41,132]** in the 256-rune p55–p57 stream. The author has not specified that these F glyphs denote erasures. The authentic p56 prime-totient rule does identify the fourth as its only literal, non-key-consuming F.
+
+The monic factor induces four linearly independent parity checks on a 256-symbol GP29 stream. With the same untouched 252 other original symbols, solving the exact four-by-four GF29 syndrome system gives a **unique** erasure fill, rather than a guessed output:
+
+| Source-frozen 256-symbol register | Four unique replacement GP indices | Rendered GP symbols | Restores all four original F symbols? |
+| --- | --- | --- | --- |
+| p55 ciphertext + p56 printed ciphertext + p57 clear | **15,20,9,27** | S L N IA | **No** |
+| p55 ciphertext + p56 authenticated plaintext + p57 clear | **6,19,28,20** | G M EA L | **No** |
+
+The four syndrome columns for the specified zero-based positions, in constant/linear/quadratic/cubic remainder order, are **[19,26,24,0]**, **[8,18,12,12]**, **[16,4,5,2]**, and **[20,24,0,0]**; they form a full-rank matrix. Both computed replacement streams divide exactly by the original H/G factor, confirming the construction. In neither original mode does the required p56 local56 replacement equal its **known** GP F value0. Thus the four physical F glyphs do **not** simply act as erasure slots for an otherwise literal terminal H/G codeword in either printed-ciphertext or known-plaintext p56 register. The two replacement strings are numerical artifacts of forcing an arbitrary codeword constraint, not recovered plaintext or instructions.
+
+This closes the direct four-erasure version alongside the no-F 252 quotient identity and all-secret one-/two-rune lookup versions. It leaves open a separately authored nonlinear code, a different input register or an explicitly selected stateful consumer. The same [source-exact SFT](../sims/lp2_terminal252_fnull_hg_sft.cjs) asserts all four syndrome columns, both solutions, exact remainders and mismatch to known F.
+
 ## Decision
 
 The four-F removal delivers an exact **conditional 252-symbol alignment** between the original terminal source and the GF29 quotient, but that alignment fails as a direct GP29 identity or a constant-shift message. Do not promote the alignment to an authorial instruction, and do not rescue it by choosing a secret per-rune permutation, a new F mask or an arbitrary byte decoder. This is separate from the previously closed [180-inner-cell tiny DSL test](lp2-terminal180-historical-tiny-dsl-gate.md) because the source input is the entire table's **H/G quotient**, and the candidate terminal clock explicitly removes four physical F glyphs.
