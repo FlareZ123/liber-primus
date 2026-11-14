@@ -118,6 +118,19 @@ def main() -> None:
         "highest_score": [with_context(x) for x in matches[:25]],
         "direct_sample": [with_context(x, 1) for x in direct[:25]],
         "rune_sample": rune_mentions[:20],
+        "specific_historical_contexts": [
+            {
+                "center": center,
+                "lines": [
+                    {"line": j + 1, "text": compact(lines[j], 520)}
+                    for j in range(
+                        max(0, center - 1 - 13),
+                        min(len(lines), center + 13)
+                    )
+                ],
+            }
+            for center in (149655, 230833, 265003, 285354)
+        ],
     }, ensure_ascii=False, indent=2))
     print("LATE_IRC_JSON_END")
 
