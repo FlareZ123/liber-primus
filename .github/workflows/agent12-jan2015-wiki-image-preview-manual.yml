@@ -11,3 +11,6 @@ jobs:
         run: python -m pip install -q pillow
       - name: Fetch only three original Jan2015 uploaded candidates
         run: python sims/lp2_2015_wiki_adjacent_image_preview.py
+
+      - name: Check independent 21 Jan 2015 translator visual
+        run: python sims/lp2_2015_wiki_rune_translator_preview.py
