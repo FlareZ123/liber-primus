@@ -9,17 +9,17 @@ const crypto = require('node:crypto');
 
 /** Original source line, participant, exact posted URL, and safe byte-only retrieval endpoint. */
 const objects = [
-  {line:Math.round(149000), date:'2015 Jul 31',name:'infotomb 4cwzx text',source:'https://infotomb.com/4cwzx.txt',
+  {line:144465, date:'2015 Jul 31',name:'infotomb 4cwzx text',source:'https://infotomb.com/4cwzx.txt',
    fetch:'https://infotomb.com/4cwzx.txt'},
   {line:297511, date:'2016 Feb 15',name:'LP2 p3 red-triad proposal',source:'http://pastebin.com/XVwtsUZ1',
    fetch:'https://pastebin.com/raw/XVwtsUZ1'},
-  {line:Math.round(300000), date:'2016 Jan 17',name:'rune-prime XOR cipher candidate',source:'http://pastebin.com/fTs2TtVD',
+  {line:270848, date:'2016 Jan 17',name:'rune-prime XOR cipher candidate',source:'http://pastebin.com/fTs2TtVD',
    fetch:'https://pastebin.com/raw/fTs2TtVD'},
-  {line:299000, date:'2016 Feb 19',name:'page-specific prime output',source:'http://pastebin.com/kawPjVSD',
+  {line:300334, date:'2016 Feb 19',name:'page-specific prime output',source:'http://pastebin.com/kawPjVSD',
    fetch:'https://pastebin.com/raw/kawPjVSD'},
   {line:274002, date:'2016 Jan 19',name:'ricercar reversed offsets',source:'https://github.com/rtkd/idkfa/blob/master/assets/data/key-ricercar-reverse.txt',
    fetch:'https://raw.githubusercontent.com/rtkd/idkfa/master/assets/data/key-ricercar-reverse.txt'},
-  {line:311000,date:'2016 Mar 22',name:'page28 original Google Doc',source:'https://docs.google.com/document/d/1ctxsvOS6jluTs52w6yymjk_qNrThlmA8NRsRCgl5MXY/edit?pref=2&pli=1',
+  {line:313526,date:'2016 Mar 22',name:'page28 original Google Doc',source:'https://docs.google.com/document/d/1ctxsvOS6jluTs52w6yymjk_qNrThlmA8NRsRCgl5MXY/edit?pref=2&pli=1',
    fetch:'https://docs.google.com/document/d/1ctxsvOS6jluTs52w6yymjk_qNrThlmA8NRsRCgl5MXY/export?format=txt'}
 ];
 /** @param {Buffer} buf @returns {string} */
