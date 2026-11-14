@@ -18,3 +18,5 @@ jobs:
         run: python sims/lp2_outguess_universal_header_sft.py
       - name: Reproduce the exact p55 digest-key arithmetic fault and capacity limit
         run: python sims/lp2_outguess_digest_fault_sft.py
+      - name: Test LP1 original square key on moth-reused JPEG carriers
+        run: python sims/lp1_p05_square_outguess_moth_sft.py
