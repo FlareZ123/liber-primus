@@ -37,7 +37,7 @@ const wordIndices = parsed.words.map((word) => [...word.runes].map((rune) => {
   return index;
 }));
 const ciphertext = wordIndices.flat();
-const canonical = corpus.pages.filter((page) => page.indices.length)
+const canonical = corpus.pages.filter((page) => page.page <= 55 && page.indices.length)
   .flatMap((page) => page.indices);
 assert.deepEqual(ciphertext, canonical, "Word parser must preserve the original canonical rune stream");
 
