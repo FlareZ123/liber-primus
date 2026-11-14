@@ -42,6 +42,13 @@ const blocks=historical.trim().split(/(?:\r?\n){2,}/).map(matrix);
 assert.equal(blocks.length,3);
 assert.deepEqual(decoded,blocks[2]);
 assert.notDeepEqual(matrix(readable),blocks[2]);
+const numeric=decoded.map(row=>row.map(Number));
+for(let r=0;r<5;r++){
+  assert.equal(numeric[r].reduce((a,b)=>a+b,0),1033,'magic row');
+  assert.equal(numeric.reduce((sum,row)=>sum+row[r],0),1033,'magic column');
+}
+assert.equal(numeric.reduce((sum,row,r)=>sum+row[r],0),1033,'diagonal');
+assert.equal(numeric.reduce((sum,row,r)=>sum+row[4-r],0),1033,'reverse diagonal');
 // Exact byte-level reversible recovery (no loss from numeric leading zero).
 const reconstructed=Buffer.from([...Buffer.from(unmirrorDigits(revealed),'ascii')].map(swapNibble));
 assert.deepEqual(reconstructed,payload);
@@ -82,6 +89,6 @@ console.log(JSON.stringify({
  operation:'ASCII hex -> swap 8-bit nibbles -> reverse digits of each decimal token',
  sourceBytes:179,sourceSha256:crypto.createHash('sha256').update(payload).digest('hex'),
  target:'2014 OpenPuff magic squares, independently preserved third 5x5 square',
- exactSquare:true,rotationallySymmetric:true,exactByteReencoding:true,
+ exactSquare:true,magicSum1033:true,rotationallySymmetric:true,exactByteReencoding:true,
  matrix:output,provisionalP55PhiKey:gridKey,provisionalP55Decoded:p55runeglish,provisionalP55IoC:p55ioc,unknownLP2PlaintextRecovered:false
 },null,2));
