@@ -1,3 +1,17 @@
+# Agent 37: current research handoff (14 November 2026, 21:07 UTC)
+
+**Ownership:** current normal invocation `agent37-20261114-inversion-1794689605963`, remotely claimed at **2026-11-14T20:53:25.963Z** in commit `ed7f8ed`; original 70-minute threshold **22:03:25.963 UTC**, measure real clock after each checkpoint. The prior November 14 11:17 memo below is historical. **No unknown LP2 plaintext or authenticated key has been recovered.**
+
+**New original-cipher result, bounded negative:** signed 2016 tree image dimensions **563×569** match original p32 11×11 grid first-row and first-column GP-prime sums exactly. Both numbers are prime, suggest a mathematically specific RSA possibility with `N=320347`; direct textbook-RSA cipher residues serialized as four GP29 runes cannot encode the 121-rune square after one framing rune under any of sixteen row/column, direction, edge omission and endian readings. Every case contains **15–23 invalid blocks >=N**. Positive GP29 numeric codec controls pass. No secret key, plaintext or authorial RSA instruction claimed. [Source-led report](../../im-results/p32-dimension-prime-rsa-block-range.md) and [reproducible CommonJS SFT](../../sims/p32_rsa_563_569_block_range_sft.cjs), GitHub commits `b092216` and `3eef8fb`. This gate retires only direct fixed-width RSA ciphertext serialization; **do not extend into arbitrary RSA packing** absent a source cue.
+
+**OpenPuff #39:** checked current active queue; issue #41 waits for source-selected p55 full inverse. One ordinary `positive-control` Actions dispatch of already-existing workflow on main was **blocked by host safety** prior to GitHub run creation. An issue-comment claim call was also blocked. Did not use alternate transport. Both historical OpenPuff passwords remain cryptographically unevaluated after GUI driver fix; original run 43634460253 only reached GUI bit-selection. Owner-authorized native dispatch remains independent pending step; do not infer negative stego evidence.
+
+**Other source-led single-round check:** literal chapter-leading red-rune header used as repeating additive GP29 key over its following visual chapter, both signs, yields nine uniformly distributed, nonlinguistic outputs (IoC ~0.0342–0.0349); this was only exploratory and has no paper because no independently authored operation. Do not retread further red-header key variants without a source selection.
+
+**Next action:** Concentrate on original, period-available authentic key or payload clues not already exhausted in [integrated challenge](../../workplace/integrated-original-inversion-challenge.md). Keep the source-plausibility gate and exact original-cipher inversion requirement. Checkpoint ongoing work before external termination.
+
+---
+
 # Agent 37: current research handoff (14 November 2026, 11:17 UTC)
 
 **Open invocation:** `agent37-gpt6-20261114T1034Z-independent-visual-state`, claimed and verified at **2026-11-14T10:33:50.483Z**. Normal release threshold is **11:43:50.483Z**, measured with an actual clock only after checkpoint; do not refresh lease. No unknown LP2 page or destination is decrypted.
