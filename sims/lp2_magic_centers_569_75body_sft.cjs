@@ -103,6 +103,20 @@ function encryptHill(sourceMatrices, stream) {
   }
   return result;
 }
+/** Compose source matrices over GF29: A times B. */
+function multiply(a, b) {
+  return a.map(row => b[0].map((_, j) =>
+    mod(row.reduce((sum, value, i) => sum + value * b[i][j], 0))));
+}
+function combinedHill(matrices, source) {
+  const combined = matrices.slice(1).reduce((a,b) => multiply(a,b), matrices[0]);
+  const inv = invert(combined).inverse;
+  const result = [];
+  for (let i = 0; i < source.length; i += 5) {
+    result.push(...apply(inv, source.slice(i,i+5)));
+  }
+  return {combined,result};
+}
 function run() {
   const sections = text("resources/cicada2014-openpuff-magic-squares.txt")
     .trim().split(/\r?\n\s*\r?\n/).map(section =>
@@ -173,8 +187,17 @@ function run() {
   assert.deepEqual(totient.map(mat => invert(mat).det), [23, 27, 28]);
   const rawHill = hill(raw, body);
   const phiHill = hill(totient, body);
+  const compositeRaw = combinedHill(raw, body);
+  const compositePhi = combinedHill(totient, body);
   assert.deepEqual(encryptHill(raw, rawHill), body);
   assert.deepEqual(encryptHill(totient, phiHill), body);
+  for (const composite of [compositeRaw, compositePhi]) {
+    const replay = [];
+    for(let i = 0; i < 75; i += 5) {
+      replay.push(...apply(composite.combined, composite.result.slice(i,i+5)));
+    }
+    assert.deepEqual(replay, body);
+  }
   assert.deepEqual(padPlain.map((value, i) => mod(value + pad[i])), body);
   assert.deepEqual(xorPlain.map((value, i) => mod(value + xor25[i % 25])), body);
   assert.deepEqual(leftPlain.map((value, i) => mod(value + left[i % 11])), body);
@@ -187,7 +210,9 @@ function run() {
     original: body, xorThreeSquaresPad: xorPlain,
     threeSquaresTotientPad: padPlain, threeSquaresTotientAdd: padPlus,
     firstColumn569Pad: leftPlain, threeRawMatricesHill5: rawHill,
-    threeTotientMatricesHill5: phiHill
+    threeTotientMatricesHill5: phiHill,
+    compositeRawMatrixHill5: compositeRaw.result,
+    compositeTotientMatrixHill5: compositePhi.result
   };
   const result = {
     sources: ["resources/cicada2014-openpuff-magic-squares.txt",
