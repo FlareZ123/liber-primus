@@ -56,10 +56,7 @@ literally **`0W` and `3Q`** and decode to **32 and 206**. Since LP2 has
 solved terminal pages**, both source bytes point to the **same physical page
 p32** if one takes their values modulo the complete number of physical pages:
 
-[
-32\bmod 58=32,\qquad 206\bmod 58=32,\qquad
-206-32=174=3\times58.
-]
+`32 mod 58 = 32; 206 mod 58 = 32; 206 - 32 = 174 = 3 × 58.`
 
 This is a genuine *closed numerical circuit*: **p32 first-row/column prime
 sums → 2016 image dimensions → prime ordinals 103/104 → 2014 grid
