@@ -41,7 +41,7 @@ assert(parts.length > 3);
 const p3text = parts[3];
 const firstDot = p3text.indexOf('.');
 assert(firstDot > 0 && p3text.includes(red.runes.slice(0,2)));
-const afterTitle = p3text.slice(firstDot+1).replace(/\//g,'').replace(/\n/g,'');
+const afterTitle = p3text.slice(firstDot+1).replace(/\//g,'').replace(/\r?\n/g,'');
 const afterWords = afterTitle.split(/[.\-]/).filter(Boolean).slice(0,5);
 const observed = afterWords.map(word => [...word].length);
 assert.deepEqual(observed, [4,7,7,7,4]);
