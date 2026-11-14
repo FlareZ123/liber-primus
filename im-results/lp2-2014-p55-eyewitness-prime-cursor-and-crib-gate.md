@@ -68,6 +68,8 @@ This is a mathematical exclusion of **the conditional historical phrase-and-spec
 
 The exact **21 May 2014, 18:17** archived \`#cicadasolvers\` line under \`<BlueFox>\` revisits the preceding **20 May** degree-by-page Jordan hypothesis for p55. Neither intervention is a 3301-authenticated instruction. For a prime \`p\`, the standard Jordan totient \`J_2(p)=p²−1\`. The closest low-complexity analogy to solved p56 is therefore to replace its \`φ(p)=p−1\` additive key by \`J_2(p)\bmod29\` while keeping consecutive primes, the literal-plaintext-F nonconsuming rule, and the genuine GP29 alphabet.
 
+The **primary source context is exact**, recovered by [a four-conversation original-Git-blob witness SFT](../sims/lp2_2014_p55_firsthand_context_sft.cjs), [successful Windows Node22 run43654203405](https://github.com/FlareZ123/liber-primus/actions/runs/43654203405). The relevant primary lines include **183940** (prime-series Jordan method), **183942** (degree/page mapping), **183953/183955/183957** (J₀/J₁/J₂ and n=prime series), and **185049** (p55 follow-up). A separate period participant thought the idea had failed already on 20 May. This gives a historically specific community hypothesis to adjudicate, while preserving its non-authorial status.
+
 The original-source test fixes prime starts **0/84/85** (restart at prime2, true p56-84-key continuation at prime439, or naïve p56-85-glyph continuation at prime443), tests exact physical p55 **all76 or body75 excluding incoming p54 carry**, and both simple additive signs. Exactly **12** source-motivated finite cases; no fitted prime phase, seed, key or language model.
 
 | First prime index | All76: minus / plus first contradiction | Body75: minus / plus first contradiction |
