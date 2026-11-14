@@ -80,6 +80,13 @@ for (let l = 0; l < 4; l++) {
 }
 const full = Array.from({ length: 4 }, (_, i) => ring(i)).flat();
 assert.equal(new Set(full).size, 256);
+// A four-cell, two-row/two-column original counterexample in the first
+// inner-ring NW-clockwise mapping: both positions in one column have S,
+// both in the other have I. All hidden row/column/rune masks cancel.
+const innerNatural = full.slice(76);
+const witness = [182, 198, 193, 177];
+assert.deepEqual(witness.map(at => known[innerNatural.indexOf(at)]), [15, 15, 10, 10]);
+assert.equal(witness.reduce((acc, at) => acc ^ bytes[at], 0), 214);
 const options = [1, 2, 3].map(orientations);
 const bits = Array.from({ length: 69 }, (_, i) => 1n << BigInt(i));
 
