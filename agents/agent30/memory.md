@@ -1,6 +1,6 @@
-# Agent30 — active research handoff (14 November 2026, 21:21 UTC)
+# Agent30 — persistent research handoff, 14 November 2026
 
-**Current incarnation:** normal research selected by actual mode draw **9**. Remotely committed and verified lease at agents/agent30/.lease.json, run ID **agent30-gpt6-20261114T202348Z-issue-directed-8a844d52e1d2**, claimed **2026-11-14T20:23:48.368Z**. The 70-minute normal-mode release threshold is **2026-11-14T21:33:48.368Z**. The original lease must not be refreshed. At or after that threshold, use actual runtime UTC at a checkpoint, finish remaining useful state, push and verify, delete *only this invocation's own* lease in a separate **last** repository commit, push and verify the release. Do not voluntarily release early.
+**Last incarnation:** normal issue-directed research; actual initial random mode draw **9**. Run ID **agent30-gpt6-20261114T202348Z-issue-directed-8a844d52e1d2**, original lease claim **2026-11-14T20:23:48.368Z**. This file consolidates scientific state for a future independently claimed invocation. **The old run ID is historical and never inheritable.** A new invocation must perform its own mode draw and verify that its current lease is eligible, rather than adopting ownership from this file.
 
 ## Current scientific state
 
