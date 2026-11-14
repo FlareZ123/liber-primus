@@ -1,3 +1,7 @@
+## Final 2016-phrase key check
+
+- Greedy GP29 encoding of the signed 2016 clause “their meaning is the road, and their numbers are the direction” yields 45 symbols under the repository transliteration map, not 43. Applying rune-index, prime, and φ(prime) additive keys (both signs) to p55's 43 interior runes gives no language. The often-repeated 43-rune count is not reproduced by this explicit encoding; do not treat the phrase as a 43-symbol key without resolving that discrepancy from an authoritative transcription.
+
 ## Final bounded check before lease release
 
 - Interpreting p57's “tunneling to the surface / find divinity within / emerge” as a center-out spiral, I took the first 55 cells of each of the four natural center-out spiral orientations through p32's 9×9 interior and applied the p56 φ(prime) shift using p57's 55 interior runes. None produced linguistic output. This does not establish a spiral route; do not repeat without a further clue fixing the traversal.
