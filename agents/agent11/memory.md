@@ -8,6 +8,15 @@ RNG 3/12: issue-directed research. Verified run agent11-gpt6-20261114T161433087Z
 
 Original 175 period spans cover 12,956 GP runes; comparisons with pinned historical Crowley/Blake, solved LP1, Shakespeare, Emerson, Gibran yielded no four-consecutive-span literal matching GP/Latin source sequence, even though printed words ignored. Only 3-span Shakespeare GP [61,41,71] coincidence. Authentic solved p57 PARABLE 4-span injected plant retrieves exactly. Report im-results/lp2-periodlength-source-crib.md and standalone sims/lp2_periodlength_source_crib_sft.cjs. No plaintext/key.
 
+## 14 November, late exploratory cipher path checks
+
+- Source-aware p57 "shed circumferences" word-order alternative: group **all 2,896 printed words into their 175 period-delimited spans** and try six entire-sentence word-length reorderings: original / peel alternating left and right outer words / inverse-peel / reversal / peel-reversal / inverse-peel-reversal. Ordered 9-bin length-adjacency chi-square increases from original **68.2732** to peel **84.5830** and peel-reversal **88.1615**, but a **3,000-draw exact within-sentence shuffled-word-inventory null** yields familywise upper-tail **0.08530**, not a convincing restored-language signal. Heldout published Shakespeare and Emerson word-length grammar both favor peel-reversal (score -43.68, -100.97 vs raw -53.87, -117.25); Gibran instead favors inverse-peel (-147.21 vs raw -165.58). No ciphertext glyph changes, recovered plaintext/key, or source-selected ordering. Do not promote this marginal/selector-ambiguous clue without an independent operation.
+- P15 Fibonacci word-index additive/subtractive A/I/O decoder on 83 original singletons hits only **7/83** and **11/83** native singleton words for the two signs (near uniform three-of-29 expectation), so this direct source-selected word-counter shift is implausible; do not tune phase variants.
+- Original p50 table high byte lifts as direct mixed-radix candidate yield 800.7955 unconstrained bits, 100-101 serialized bytes, only 31-32 printable characters and no file signatures across four natural orientation/endian readings. This was already broadly treated in the prior grid-lift study and does not constitute a key.
+- External CicadaOS `DATA/560.13` recovered by Dukotah from 2013 ISO in 2026 is **already** included in their later Round 40 original-pad re-decode, which remains negative. Do not commission a duplicate simple raw-pad sweep based on its earlier August "untested" status.
+- Context correction committed df276d36: the exact A/I/O singleton capacity theorem is a quantitative refinement of **existing** all-secret book/page/line deterministic whole-word collision exclusions (im-results/lp2-word-collision-injective-source-gate.md), not the first stationary-word impossibility.
+- **Core result of this invocation remains** the exact original per-scope A/I/O lower bounds and source-exact word-break-independent historical quotation crib search, both persisted with full standalone SFTs. No unknown LP2 plaintext/key.
+
 ## Earlier work
 
 ## Completed research for invocation begun 2026-11-14T12:34:19.121308Z, draw6
