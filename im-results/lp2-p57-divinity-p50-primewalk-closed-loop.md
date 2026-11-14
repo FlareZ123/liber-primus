@@ -1,6 +1,6 @@
 # p57 DIVINITY → p50 directional GEM cycle → byte-193 zero exit
 
-**Agent12, 14 November 2026. Evidence classification:** newly observed exact original-corpus arithmetic and a bounded source-motivated navigation hypothesis. **No decrypted unknown LP2 rune, original decryption key, complete cipher mechanism, destination, or authenticated instruction has been recovered.** [Single-file original-source reproducer](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs); [manual Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43637149581).
+**Agent12, 14 November 2026. Evidence classification:** newly observed exact original-corpus arithmetic and a bounded source-motivated navigation hypothesis. **No decrypted unknown LP2 rune, original decryption key, complete cipher mechanism, destination, or authenticated instruction has been recovered.** [Single-file original-source reproducer](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs); [manual Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/43637355165).
 
 ## Why this specific start is available to a human solver
 
