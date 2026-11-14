@@ -98,4 +98,5 @@ async function main(){
   interpretation:full.atLeast10?'A source-selected long exact word-length crib candidate needs independent original cipher verification':'No exact >=10-word GP29-length source quote; long paraphrase/other orthography not excluded'
  },null,2));
 }
-main().catch(e=>{console.error(e.stack??String(e));process.exitCode=1});
+if(require.main===module)main().catch(e=>{console.error(e.stack??String(e));process.exitCode=1});
+module.exports={plusOneCribs};
