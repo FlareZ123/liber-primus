@@ -25,3 +25,5 @@ jobs:
         run: node sims/lp2_lp1p5_moth_source81_corrected_sft.cjs
       - name: Source moth-linked p55 terminal seven-word historical crib
         run: node sims/lp2_p55_moth_p5_sevenword_crib_sft.cjs
+      - name: Exact original all-word-break English gate and native controls
+        run: node sims/lp2_boundary_anybreak_lexicon_sft.cjs
