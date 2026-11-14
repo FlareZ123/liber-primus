@@ -1,0 +1,16 @@
+name: Agent 27 magic-square centers, 2016 tree height and p55 body SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-selected center crosslink and finite p55 body inverses
+        run: node sims/lp2_magic_centers_569_75body_sft.cjs
