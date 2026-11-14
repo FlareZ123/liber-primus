@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** original-print geometric correspondence; two source-sized manuscript receivers and a conditional dual-region stationarity gate; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; direct key, prime-removal and stationary-lookup consumers negative; one bounded FOLD/MOBIUS interpretation also rejected; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -85,8 +85,32 @@ Under the strict full-token lookup hypothesis, grant every distinct original int
 
 **Decision:** The attractive `p50 inner180 → known p56+p57 → learn secret lookup → decode p55 outer76` chain fails *before* touching the unknown p55 alphabet, so no fitted decoder or actual plaintext is obtained. The two sources' matching lengths are exact geometry, not an authenticated assignment. An independently authored stateful coder, per-position pad, nonnatural reordering, unknown transformation of the known runes or different cell mapping remains outside this stationary lookup exclusion. The next useful advancement is a creator-selected operation able to handle **repeated source tokens with different target runes** without arbitrary exceptions.
 
+
+### Source-conditioned FOLD/MOBIUS test (14 November 2026)
+
+A plausible, bounded selector combines three clues: the exploratory 2016 base58 word map sends “the” to p14 word 1, FOLD; the LP1 p05 word-number square contains MOBIUS; and clear p57 says “shed our own circumferences.” The FOLD address depends on an unproven word-map interpretation, so this is a hypothesis, not an authenticated maker instruction. It nevertheless selects one natural test of the exact 76/180 partition.
+
+The fixed construction is:
+1. Read the p50 76-cell perimeter from top-left clockwise. Split it into 38+38 cells and reverse the second half, forming a 2×38 Möbius strip.
+2. Use that folded 76-byte sequence as a direct p55 key. Convert each byte to GP29 by residue mod29; test addition and subtraction. Low-five-bit XOR is a source-era operation control.
+3. Remove the perimeter, leaving the 30×6 interior. For each byte B, use B=29q+r: q+1 is a standard numeric-keypad direction and r is the output GP rune. Join the six-cell top and bottom edges with a half-twist, reversing the column on wrap. Start at the top-left interior cell.
+4. As a separate boundary check, treat the folded 2×38 perimeter itself as a directional Möbius strip, starting at its top-left cell.
+
+| Fixed consumer | Result |
+| --- | --- |
+| Folded perimeter as p55 key, subtract byte mod29 | IoC 0.03543860; first 12 runes: NG Y Y IA Y I W C I S A U |
+| Folded perimeter as p55 key, add byte mod29 | IoC 0.02912281; first 12 runes: NG A EO OE B L IA D EA S F J |
+| Folded perimeter low-five-bit XOR | 69/76 outputs are valid GP29 indices; 7 positions are outside the alphabet |
+| Reversed folded-key control | Mod29 outputs remain nonlinguistic; low-five-bit XOR has only 67/76 valid GP29 indices |
+| Inner 30×6 directional Möbius walk | From cell 0, visits 13 distinct cells, then exits an open side boundary. Output: B IA J M OE S P R S R AE D A; 0/13 match the independently known p56+p57 receiver |
+| Outer 2×38 directional Möbius walk | From cell 0, the first quotient selects keypad direction 8 (north) and immediately exits the open width boundary |
+
+The known 180-rune comparison target is independently reconstructed as the established 85-rune p56 prime-totient plaintext plus the 95 clear p57 runes. The reproducer asserts the p56 regression before using that target. It also asserts the exact 13-cell path, output and boundary termination.
+
+**Decision:** The straightforward FOLD/MOBIUS interpretation does not supply a p55 plaintext or a 180-rune known-plaintext decoder. This rejects only the fixed top-left Möbius folds, q/r keypad mapping, and direct mod29/XOR key consumers above. Do not tune strip width, seam, start, or byte mapping to rescue the hypothesis without a new independent selector. [Original-input reproducer](../sims/lp2_p50_mobius_fold_sft.cjs).
+
 ## Decision and reproduction
 
-The **76/180 perimeter/interior partition is exact and source-visible**, with a separate p53+p54-start 180-rune candidate that is not an authenticated consumer. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the four source-native direct additive GP29 inverses also give unreadable text; the direct 180-place prime-removal operation gives noise. Retire these exact candidate transfers. Further tests should require original evidence selecting a different consumer and should not overinterpret the matching counts or refit position-specific exceptions.
+The **76/180 perimeter/interior partition is exact and source-visible**, with a separate p53+p54-start 180-rune candidate that is not an authenticated consumer. It gives two concrete historically adjacent candidate input lengths, but no operation selected by the maker. The four direct 76-place XOR inverses are **mathematically invalid as all-GP29 decoded output** and the four source-native direct additive GP29 inverses also give unreadable text; the direct 180-place prime-removal operation gives noise. The bounded FOLD/MOBIUS test also fails: the folded 76-cell key gives no readable GP29 output, the inner 30×6 directional walk exits after 13 cells, and the outer 2×38 walk exits immediately. These negatives reject only the fixed constructions documented above, not every possible transform. Retire these exact candidate transfers. Further tests should require an independently source-selected consumer and should not overinterpret the matching counts or refit positions, seams, or encodings.
 
 The [standalone CommonJS SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs) reconstructs the 32×8 perimeter without duplicate cells, checks dimension uniqueness and p55 exact length, parses all 180 original archived primes, asserts the original source counts and direct outputs, and checks both the XOR and GP29 additive inverses. It uses [original p50 tokens](../resources/liber-primus/base60-grid.json), [original p55 runes](../resources/liber-primus/lp2-corpus.json) and [contemporaneous participant prime list](../resources/external/2013-01-14-missing-primes-pastebin.md).
