@@ -17,3 +17,8 @@ jobs:
         run: |
           node --check sims/lp2_2015_2016_original_irc_vision_sft.cjs
           node sims/lp2_2015_2016_original_irc_vision_sft.cjs
+      - name: Enumerate original 2015–16 IRC-linked media candidates
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_2016_linked_media_gate.cjs
+          node sims/lp2_2015_2016_linked_media_gate.cjs
