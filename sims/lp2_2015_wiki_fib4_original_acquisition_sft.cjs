@@ -8,6 +8,11 @@ const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root='https://uncovering-cicada.fandom.com';
 const targets=[
+  {label:'LP article comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus&namespace=0&hideDeleted=false&page=1'},
+  {label:'LP ideas comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus_Ideas_and_Suggestions&namespace=0&hideDeleted=false&page=1'},
+  {label:'p15 spiral comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title='+encodeURIComponent('Onion 7: numbers on page 15')+'&namespace=0&hideDeleted=false&page=1'},
+  {label:'p15 spiral first edit',url:root+'/api.php?action=query&prop=revisions&titles='+encodeURIComponent('Onion 7: numbers on page 15')+'&rvprop=ids%7Ctimestamp%7Ccomment&rvlimit=1&rvdir=newer&format=json'},
+  {label:'LP ideas first edit',url:root+'/api.php?action=query&prop=revisions&titles='+encodeURIComponent('Liber Primus Ideas and Suggestions')+'&rvprop=ids%7Ctimestamp%7Ccomment&rvlimit=1&rvdir=newer&format=json'},
   {label:'site namespaces',url:root+'/api.php?action=query&meta=siteinfo&siprop=namespaces%7Cgeneral&format=json'},
   {label:'literal quote search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('"The key is in page 15"')+'&srlimit=20&format=json'},
   {label:'spiral claim search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('spiral fibonacci binary')+'&srlimit=20&format=json'},
@@ -20,7 +25,7 @@ const targets=[
 /** @param {string} t @param {number} n */
 function sha(t,n){return crypto.createHash('sha256').update(t.slice(0,n)).digest('hex');}
 async function main(){
- assert.equal(targets.length,8);
+ assert.equal(targets.length,13);
  const out=await Promise.all(targets.map(async t=>{
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
