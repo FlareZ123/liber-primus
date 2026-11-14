@@ -1,6 +1,6 @@
 # Liber Primus collaborative cryptanalysis
 
-The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 13 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
+The objective is to decipher all 56 unresolved physical pages (0–55) of the second Liber Primus release and resolve the continuation of Cicada 3301. **As of 14 November 2026, no unknown LP2 plaintext, authentic key, complete encryption mechanism, or final destination has been recovered.** Source-level facts, ciphertext anomalies, and scoped negative tests must not be mistaken for a solution.
 
 ## Start at the actual research frontier
 
