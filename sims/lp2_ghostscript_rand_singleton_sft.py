@@ -217,6 +217,63 @@ def prefix_states(data, mode, prefix=4):
     return first_states, stage_counts
 
 
+def filtered_prefix_states(data, mode, max_skips=2):
+    """Allow skips only when a candidate PRNG byte has forbidden base60 low f.
+
+    First displayed byte is the unrestricted initial generator state; all
+    subsequent missing emissions require projected_byte % 60 == 41.
+    Return first-output states and exact prefix survivor counts. This covers
+    any earlier seed phase by allowing all nonzero first-output states.
+    """
+    first = data[0]
+    if mode == "mod256":
+        current = np.arange(first or 256, M_INT, 256, dtype=np.uint64)
+    else:
+        lo = max(1, (first * M_INT + 255) // 256)
+        hi = min(M_INT, ((first + 1) * M_INT + 255) // 256)
+        current = np.arange(lo, hi, dtype=np.uint64)
+    first_states = current
+    used = np.zeros(len(current), dtype=np.uint8)
+    counts = []
+    for target in data[1:]:
+        accepted_first = []
+        accepted_current = []
+        accepted_used = []
+        intermediate = current
+        seed_state = first_states
+        skips_so_far = used
+        for add in range(max_skips + 1):
+            if not len(intermediate):
+                break
+            next_state = times_constant(intermediate, A)
+            symbol = (next_state % np.uint64(256) if mode == "mod256"
+                      else next_state * np.uint64(256) // M)
+            matches = symbol == target
+            if matches.any():
+                accepted_first.append(seed_state[matches])
+                accepted_current.append(next_state[matches])
+                accepted_used.append(skips_so_far[matches] +
+                                     np.uint8(add))
+            if add < max_skips:
+                skip_ok = (symbol % np.uint64(60) == 41) & (
+                    skips_so_far + add < max_skips)
+                seed_state = seed_state[skip_ok]
+                skips_so_far = skips_so_far[skip_ok]
+                intermediate = next_state[skip_ok]
+        if accepted_first:
+            first_states = np.concatenate(accepted_first)
+            current = np.concatenate(accepted_current)
+            used = np.concatenate(accepted_used)
+        else:
+            first_states = np.empty(0, dtype=np.uint64)
+            current = first_states
+            used = np.empty(0, dtype=np.uint8)
+        counts.append(len(first_states))
+        if not len(first_states):
+            break
+    return first_states, counts
+
+
 def check_grid_full_output():
     """Exact first-four-byte gate on the 256-number printed table, both projections."""
     table = json.loads((ROOT / "resources/liber-primus/lp2-grid-256.json")
@@ -231,6 +288,18 @@ def check_grid_full_output():
             print("GRID", name, mode, "survivors-after-2/3/4", counts,
                   flush=True)
             assert len(states) == 0, (name, mode, states)
+            if mode == "mod256":
+                filtered, fs_counts = filtered_prefix_states(
+                    view[:8], mode, max_skips=2)
+                print("GRID F-SKIP", name, mode,
+                      "survivors-after-2/3/4", fs_counts, flush=True)
+                assert len(filtered) == 0, (name, filtered)
+    planted_fskip = [2, 84, 32, 116, 250, 210, 195, 0]
+    filtered, filtered_counts = filtered_prefix_states(
+        planted_fskip, "mod256", max_skips=2)
+    assert filtered.tolist() == [773122], filtered.tolist()
+    print("GRID F-SKIP planted, seed=46, two rejected f bytes:",
+          filtered.tolist(), flush=True)
     seed = 3301
     stream = []
     for _ in range(8):
