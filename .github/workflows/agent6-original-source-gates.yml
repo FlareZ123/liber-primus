@@ -22,6 +22,7 @@ on:
           - q-rotor
           - twoquad-feistel
           - x29-savedrev
+          - f-fiveback
 permissions:
   contents: read
 jobs:
@@ -93,6 +94,9 @@ jobs:
       - name: Three original saved Etherpad revision archival paths
         if: ${{ inputs.route == 'x29-savedrev' }}
         run: node sims/lp2_2015_x29_saved_revision_exact_archive_sft.cjs
+      - name: Source-F as exclusive fiveback marker capacity on original LP2
+        if: ${{ inputs.route == 'f-fiveback' }}
+        run: node sims/lp2_f_interrupter_fiveback_original_capacity_sft.cjs
       - name: Install JPEG coefficient inspection dependency
         if: ${{ inputs.route == 'stage04-small' }}
         run: sudo apt-get update -qq && sudo apt-get install -y libjpeg-dev
