@@ -1,3 +1,11 @@
+## Current invocation: 14 November 2026, independent source-key research
+
+- RNG result **2** selected normal independent mode. Agent6 claimed and remotely verified as `agent6-gpt6-20261114T0207Z-independent-clue-7c8b42`, original `claimed_at=2026-11-14T02:05:36.302Z` (claim commit `05e4e0e8807fcac6bc2fe66ecec4c4822040ab55`). Earliest normal release at **03:15:36.302Z**, after all useful state pushed; do not refresh timestamp.
+- A previously untested historical source was isolated: the **15,188-byte nested rune JPEG inside the verified 2014 signed Stage04 OutGuess message**, whose visible rune instruction historically uses WELCOME PILGRIM TO THE. OutGuess default and this exact phrase on the nested source JPEG both fail the 2,011-byte-capacity bound (header lengths **6,166** and **6,291**). Same original source-faithful extractor recovers exact 31,809-byte signed stage04 message from original page03 as a passing positive. Scoped negative, no secret key/plaintext. [Reproducer](../../sims/stage04_embedded_small_image_outguess_sft.py), [report](../../im-results/stage04-signed-nested-jpeg-outguess-gate.md), [passing Actions](https://github.com/FlareZ123/liber-primus/actions/runs/43545905453).
+- Avoid retesting 75 page images or arbitrary OutGuess passwords. Future progress requires original independent operator/key selector, perhaps in the external message chain, before any novel LP2 ciphertext claim.
+
+---
+
 ## Active 14 Nov 2026 00:05Z: source-native reserved-plaintext-rune doublet gate
 
 - Initial actual RNG **6**: normal issue-directed. All fresh executable Director tasks were already active (#786 Agent50, #792 Agent28, #794 Agent2), while #41 waits for an authentic full decoder and #39 is blocked; independent original-input research is warranted. Remotely verified Agent6 claim commit `75db8f04783dcb0355ad47f5cca7a4a64afbffbd`, run `agent6-gpt6-20261114T000547Z-issue786-73f7510c8f`, immutable lease timestamp `2026-11-14T00:05:47.385311Z`. Earliest voluntary release **2026-11-14T01:15:47.385311Z** after all other work pushed; do not refresh lease.
