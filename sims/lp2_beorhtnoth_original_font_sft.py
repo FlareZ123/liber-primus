@@ -19,7 +19,7 @@ from fontTools.ttLib import TTFont
 
 IMAGE = Path("resources/liber-primus/74.jpg")
 IMAGE_SHA256 = "1dabc100ddbf1fc49715219636984eb6ad96a2bd8035e196c12e66db77a1077b"
-TITLE_RUNES = "ᚪᚱᚪᛒᛚ"
+TITLE_RUNES = "ᚪᚱᚪᛒᛚᛖᛚᛁ"
 ALPHABET = "ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᛠᛡᛇᚣ"
 CANDIDATE_URL = (
     "https://raw.githubusercontent.com/krisyotam/cicada3301/"
@@ -40,7 +40,7 @@ def title_targets(data: bytes) -> list[np.ndarray]:
         & (rgb[:, :, 0] >= rgb[:, :, 1] + 45)
         & (rgb[:, :, 0] >= rgb[:, :, 2] + 45)
     )
-    counts = red[890:1050, 885:1080].sum(axis=0)
+    counts = red[890:1050, 885:1135].sum(axis=0)
     hits = np.flatnonzero(counts > 0) + 885
     runs: list[list[int]] = []
     for x in hits:
@@ -49,11 +49,16 @@ def title_targets(data: bytes) -> list[np.ndarray]:
         else:
             runs[-1].append(int(x))
     intervals = [(s[0], s[-1]) for s in runs if len(s) >= 9]
-    assert len(intervals) == 5, intervals
-    assert intervals[0][0] == 890 and intervals[-1][1] == 1077, intervals
+    assert len(intervals) == 6, intervals
+    assert intervals[0][0] == 890 and intervals[-1][1] == 1132, intervals
     masks = []
     for x0, x1 in intervals:
         masks.append(tight(red[890:1050, x0:x1 + 1]))
+    # First two source-black letters of LIKE immediately after the red title:
+    # L is a shape discriminator; I is a narrow vertical positive control.
+    black = np.all(rgb < 160, axis=2)
+    for x0, x1 in [(1185, 1218), (1222, 1230)]:
+        masks.append(tight(black[890:1050, x0:x1 + 1]))
     return masks
 
 
@@ -120,9 +125,10 @@ def main() -> None:
     assert sha == IMAGE_SHA256, f"original p57 source mismatch: {sha}"
     original = title_targets(raw)
     print("SOURCE", IMAGE, "SHA256", sha)
-    print("TITLE five small runes AFTER oversized red P:", TITLE_RUNES)
+    print("TITLE six red runes after giant P + first two black LIKE runes:", TITLE_RUNES)
     print("original bounding rectangles (width,height)", [x.shape[::-1] for x in original])
-    print("original duplicated ᚪ image similarity", match(original[0], original[2]))
+    print("duplicate ᚪ similarity", match(original[0], original[2]))
+    print("cross-ink L similarity", match(original[4], original[6]))
 
     with urlopen(CANDIDATE_URL, timeout=40) as response:
         candidate = response.read()
