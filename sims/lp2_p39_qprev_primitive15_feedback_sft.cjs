@@ -81,6 +81,30 @@ const nativeSingles=new Set([3,10,24]);
 assert(actualSingletons.every(i=>!nativeSingles.has(i)),
  'Predeclared original singleton mismatch count changed');
 assert.equal(singletonOffsets.length,13);
+// Stronger all-secret source-original gate, independent of Q or the author's
+// unknown predecessor-key algebra: any fixed affine GP29 alphabet row
+// C=Cprev+a(Cprev)*P+b(Cprev), a nonzero, must map the three genuine
+// standalone GP source tokens A,I,O to the three outputs that share Cprev=15.
+const commonPrevSites=singletonOffsets.filter(i=>actual[i-1]===15);
+assert.deepEqual(commonPrevSites,[1347,2154,2606]);
+const commonDelta=commonPrevSites.map(i=>mod(actual[i]-actual[i-1]));
+assert.deepEqual(commonDelta,[17,20,4]);
+const targetSet=commonDelta.slice().sort((a,b)=>a-b);
+const allSecretPredecessorAffineKeys=[];
+for(let a=1;a<29;a++)for(let b=0;b<29;b++) {
+ const mapped=[3,10,24].map(p=>mod(a*p+b)).sort((x,y)=>x-y);
+ if(mapped.every((value,i)=>value===targetSet[i]))
+  allSecretPredecessorAffineKeys.push([a,b]);
+}
+assert.equal(allSecretPredecessorAffineKeys.length,0,
+ 'A fixed secret affine predecessor row unexpectedly matches three original singletons');
+// Both directly source-motivated one-parameter subfamilies are special cases:
+// fixed additive offset a=1, and fixed multiplier of (P+1) b=a.
+for(const target of [{a:1},{bEqualsA:true}]) {
+ const passes=allSecretPredecessorAffineKeys.filter(([a,b])=>
+  target.a===undefined ? b===a : a===target.a);
+ assert.equal(passes.length,0);
+}
 const wordsSingletons=[];
 let offset=0;
 for(const length of lengths) {
@@ -172,6 +196,7 @@ console.log(JSON.stringify({
  sourceNativeSingleAIO: [...nativeSingles],
  inverseOriginalSingletons:actualSingletons.map(n=>corpus.translit[n]),
  successfulSingletons:0,requiredEnglishSingletons:13,
+ independentAllSecretAffinePredecessorGate:{previousCipherRune:15,originalRuneOffsets:commonPrevSites,observedDeltaSet:targetSet,nativeStandaloneSet:[3,10,24],allUnknownAffinePairsTested:812,compatibleKeys:0},
  independentNativeControls:trials,
  nativeControlIoCMin:Math.min(...controlIoc),nativeControlIoCMax:Math.max(...controlIoc),
  matchedLengthNativeCipherDoubletsMin:Math.min(...cipherDoublets),
