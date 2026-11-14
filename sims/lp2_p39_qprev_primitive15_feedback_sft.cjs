@@ -174,6 +174,98 @@ for(let trial=0;trial<trials;trial++) {
 }
 assert(Math.min(...controlIoc)>candidateIoc);
 assert(singletonSites.every(x=>x===13));
+// A wider, existing-source-compatible k=3 singleton capacity extension.
+// Predecessor chooses an arbitrary GP29 permutation row, never just affine.
+// Unlike older A/I-only k=2 gates, explicitly admit the additional native O.
+// The exact top-three ciphertext output count is the maximum achievable by
+// ANY 29! secret bijection for a given stationary row. No key is guessed.
+const runeMap = new Map(corpus.runes.map((r,i)=>[r,i]));
+const transcript=read('resources/liber-primus/lp2-transcription.txt')
+ .split('%').slice(0,55).join('%');
+let gpSeen=0,wordSeen=0,pagePos=0,sectionPos=0,lastPage=-1,lastRune=null;
+let currentWord=[],wordStartPage=0,wordStartSection=0,wordPrevious=null;
+const singletonRecords=[];
+function finishWord() {
+ if(!currentWord.length)return;
+ wordSeen++;
+ if(currentWord.length===1&&wordPrevious!==null)
+  singletonRecords.push({page:wordStartPage,section:wordStartSection,
+   prev:wordPrevious,c:currentWord[0]});
+ currentWord=[];
+}
+for(const ch of transcript) {
+ if(runeMap.has(ch)) {
+  if(currentWord.length===0) {
+   wordStartPage=pagePos;wordStartSection=sectionPos;
+   wordPrevious=lastPage===pagePos?lastRune:null;
+  }
+  currentWord.push(runeMap.get(ch));
+  lastRune=runeMap.get(ch);lastPage=pagePos;gpSeen++;
+ } else if(ch==='%')pagePos++;
+ else if(ch==='/'||/\s/u.test(ch)) {}
+ else {finishWord();if(ch==='
+const plant=page(57).concat(encodeWord('EACH'));
+assert.deepEqual(encodeWord('EACH'),[28,5,8]);
+const plantC=encrypt(plant,8);
+assert.deepEqual(decrypt(plantC,8),plant);
+const countDoublets=(xs,start)=>xs.filter((c,i)=>c===(i?xs[i-1]:start)).length;
+assert.equal(countDoublets(plantC,8),plant.filter(p=>p===28).length);
+const observedDoublets=countDoublets(actual,8);
+assert.equal(observedDoublets,18);
+assert.equal(actualDecoded.filter(x=>x===28).length,observedDoublets);
+console.log(JSON.stringify({
+ evidence:'Original LP2 p39 red GP triad [27,5,15], printed p40 heading last GP H=8',
+ reversibleModel:'Q(x)=15*(x-24)^2 mod29; K=15^Q(prevC) mod29; C=prevC+K*(P+1) mod29; P=(C-prevC)*K^-1-1 mod29',
+ sourceConjectureNotAuthenticated:true,
+ chapter:'Original LP2 p40-p53 black body',runes:3000,printedWords:667,iv:8,
+ actualCiphertextDoublets:observedDoublets,
+ actualRecoveredEAcount:actualDecoded.filter(x=>x===28).length,
+ originalIoC:ioc(actual),inverseIoC:candidateIoc,
+ exactSourceOriginalSingletonOffsets:singletonOffsets,
+ sourceNativeSingleAIO: [...nativeSingles],
+ inverseOriginalSingletons:actualSingletons.map(n=>corpus.translit[n]),
+ successfulSingletons:0,requiredEnglishSingletons:13,
+ independentAllSecretAffinePredecessorGate:{previousCipherRune:15,originalRuneOffsets:commonPrevSites,observedDeltaSet:targetSet,nativeStandaloneSet:[3,10,24],allUnknownAffinePairsTested:812,compatibleKeys:0},
+ expandedAllSecretBookPredecessorPermutationsAIO:{eligibleSingletons:singletonRecords.length,book:completeBookRows,section:redChapterRows,page:physicalPageRows,allowedNativeGPValues:[3,10,24]},
+ independentNativeControls:trials,
+ nativeControlIoCMin:Math.min(...controlIoc),nativeControlIoCMax:Math.max(...controlIoc),
+ matchedLengthNativeCipherDoubletsMin:Math.min(...cipherDoublets),
+ matchedLengthNativeCipherDoubletsMax:Math.max(...cipherDoublets),
+ nativeCipherLagFiveRange:[Math.min(...cipherLagFive),Math.max(...cipherLagFive)],
+ exactNativePlantRunes:plant.length,authenticSolvedP57PlusEACH:plant.length,
+ roundTrip:'all 3000 original; all 160 native shape controls; p57+EACH',
+ originalFirst65:preview,
+ decision:'Reject exact GP-native-English direct decoder without phase/key rescue: every one of the 13 original one-rune words is outside A/I/O, and output IoC falls below all 160 independently matched native GP source controls. Unknown 56-page plaintext remains unsolved.'
+},null,2));
+)sectionPos++;}
+}
+finishWord();
+assert.equal(gpSeen,12956);assert.equal(wordSeen,2896);
+assert.equal(singletonRecords.length,82);
+/** @param {'book'|'section'|'page'} scope */
+function singletonCapacity(scope) {
+ const groups=new Map();
+ for(const item of singletonRecords) {
+  const key=(scope==='book'?'':scope==='section'?item.section+':':item.page+':')+item.prev;
+  if(!groups.has(key))groups.set(key,Array(29).fill(0));
+  groups.get(key)[item.c]++;
+ }
+ let forced=0,violations=0;
+ for(const h of groups.values()) {
+  const total=h.reduce((a,b)=>a+b,0);
+  const top=[...h].sort((a,b)=>b-a).slice(0,3).reduce((a,b)=>a+b,0);
+  forced+=total-top;
+  if(total>top)violations++;
+ }
+ return {rowStates:groups.size,forcedExceptions:forced,violatingRows:violations};
+}
+const completeBookRows=singletonCapacity('book'),
+ redChapterRows=singletonCapacity('section'),
+ physicalPageRows=singletonCapacity('page');
+assert.deepEqual(completeBookRows,{rowStates:28,forcedExceptions:15,violatingRows:9});
+assert.deepEqual(redChapterRows,{rowStates:67,forcedExceptions:0,violatingRows:0});
+assert.deepEqual(physicalPageRows,{rowStates:80,forcedExceptions:0,violatingRows:0});
+
 const preview=actualDecoded.slice(0,65).map(x=>corpus.translit[x]).join('-');
 const plant=page(57).concat(encodeWord('EACH'));
 assert.deepEqual(encodeWord('EACH'),[28,5,8]);
