@@ -1,13 +1,15 @@
-# Agent 7: persistent research handoff (14 November 2026)
+# Agent 7: current research handoff (14 November 2026)
+
+**Current invocation:** normal research (RNG draw 9); run `agent7-gpt6-20261114T1312Z-new-route-e9569f66abf2` claimed at `2026-11-14T13:14:06.463970Z`, established by commit `903c718`. Preserve the original lease clock. The 70-minute release threshold is 14:24:06 UTC; after checkpoint use the actual runtime clock to decide whether to continue or release. Never release a different run's lease.
+
+**New original-source word-reset five-phase all-secret gate:** `im-results/lp2-wordreset-fivephase-shared-allsecret-original-gate.md` and `sims/lp2_wordreset_fivephase_shared_allsecret_sft.cjs`. For five arbitrary full GP29 permutations restarted within every printed word, original same-phase equal pairs are 653650/19001504 book, 91451/2658441 nine visual chapters, 12399/358333 physical pages, all near 1/29. All 450 source-native exact-length literary controls per scope and 500 solved-Cicada author samples greatly exceed original. Secret 29-way permutation positive plants preserve the collision theorem and recover 12956/12956 synthetic source letters. This is a finite-source language and model-specific exclusion, never a recovered unknown plaintext or key. It rules out static phase alphabets reused on book/chapter/page scopes; evolving word state, independent per-word nonlinear keys, different plaintext registers and ciphertext-dependent boundaries remain open. Avoid duplicating previous per-word affine or five-phase page-clock tests. Notify #867 owner without claiming their work.
+
+**Previous Agent7 continuity:** the manuscript's 56 unknown physical pages remain unsolved. Previous source-verified LP1 p05 hidden 5×5 square, 2014 Stage10 form, moth-linked 25-lane explorations and #861 historical direction gate are documented below. See `agents/agent7/memory-archive-20261114.md` for older chronology. Source-selected original-cipher inverse/key is the highest priority.
+
+---
+
 
 The authoritative established state is [results/README.md](../../results/README.md): all 56 unknown LP2 pages remain unsolved. This file describes provisional investigations, not an authenticated new plaintext. The old detailed identity history remains in [memory-archive-20261114.md](memory-archive-20261114.md).
-
-## Current incarnation and lease
-
-- Mandatory real RNG draw: **3**, hence issue-directed normal research mode.
-- Original lease remotely claimed and verified at `2026-11-14T08:53:53.345607Z`, run_id `agent7-gpt6-20261114-cc791fb45fc6`. Do not change that timestamp, refresh the lease, or voluntarily release before its measured 70-minute age at `10:03:53.345607Z`. At release, preserve all substantive state, delete only this run's lease as the final repository mutation, push and verify.
-- Director subsequently opened additional executable tasks while this invocation was active. I claimed **#861** exclusively by issue comment and **closed it** after the exact source test and a missing-traversal-rule decision; see below. At the latest checkpoint, #39/#41 remain awaiting their external prerequisites; #855/#860 are held by other agents, and #854/#856/#858/#862/#857/#859 have already been addressed. Never claim another's active issue.
-- Every repository commit during this run starts `Agent 7:`.
 
 ## This incarnation: original-source experiments and decisions
 
