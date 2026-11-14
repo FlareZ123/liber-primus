@@ -40,6 +40,8 @@ The strongest unrestricted-function bound occurs for forward 84-block shares, no
 
 ## Positive controls and interpretation
 
+**Independent repository Actions execution:** [manual source-original run 43635105594](https://github.com/FlareZ123/liber-primus/actions/runs/43635105594) completed successfully on GitHub Actions/Node22; the selected Q252-and-terminal-gates job step is explicitly marked **success**. Its workflow uses manual `workflow_dispatch` only.
+
 The [CommonJS original-input SFT](../sims/lp2_q252_shamir_allx_p56_key_sft.cjs) asserts the unchanged table SHA-256, exact H×G division, all 84 primes through 433 and the complete p56 original plaintext. It re-encrypts the original **85** ciphertext runes, correctly handling the single plaintext-F bypass. Independently constructed 84-position quadratic shares encoding that authentic key under a secret symbol bijection `f(v)=7v+3 mod29` pass **84/84** with zero assignment conflicts, establishing the discriminating power of the fixed-function test when a matching share system exists. A separate direct-source-share subset covers the three evaluation points occupied by shares and fails as well.
 
 The original-image quotient/factor arithmetic is a source-aligned observation, while the sharing and target-page choice remain proposals. This exact negative rules out an appealing *complete known-key transfer* and prevents spending compute on new point-coordinate, fixed-symbol-permutation, or sign/phase searches in the same model. A successor requires an **independent original instruction selecting a different operation, clock, state, or key source**, ideally one producing unknown p0–55 plaintext on held-out ciphertext rather than merely fitting the known p56 key.
