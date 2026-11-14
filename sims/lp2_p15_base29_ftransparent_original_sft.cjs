@@ -94,6 +94,18 @@ for (const sign of [1, -1]) {
   }
 }
 const survivors = results.filter(p => p.completed);
+// A separate, independently source-credible reset policy starts the same
+// p15 key fresh on the immediately following physical p16 page (267 runes).
+// Testing all thirty phases makes its exact internal phase immaterial.
+const page16 = original.pages.find(p => p.page === 16).indices;
+assert.equal(page16.length, 267);
+const p16Reset = [];
+for (const sign of [1, -1]) {
+  for (let phase = 0; phase < 30; phase++) {
+    p16Reset.push({ sign, phase, ...reach(page16, sign, phase) });
+  }
+}
+const p16Survivors = p16Reset.filter(p => p.completed);
 const worstCases = results.slice().sort((a, b) =>
   b.validPrefixLength - a.validPrefixLength).slice(0, 12);
 const report = {
@@ -108,6 +120,12 @@ const report = {
   nativeGpAuthenticFTransparentPositiveControls: 60,
   completedOriginalVariants: survivors.length,
   survivors,
+  independentPage16Reset: {
+    originalRunes: page16.length, testedSignPhaseVariants: p16Reset.length,
+    completedVariants: p16Survivors.length,
+    survivors: p16Survivors,
+    longestValidPrefix: Math.max(...p16Reset.map(p => p.validPrefixLength))
+  },
   mostPersistentFailedVariants: worstCases,
   earliestObstruction: Math.min(...results.filter(p => !p.completed).map(p => p.deadAtZeroBased)),
   claimLimit: 'Exact necessary-condition test of one source-derived key and historical cipher. Other mechanisms, keys and symbol encodings are outside scope.'
