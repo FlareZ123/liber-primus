@@ -55,7 +55,7 @@ assert.deepEqual(reconstructed,payload);
 assert.equal(reconstructed.toString('hex'),hex);
 // One frozen, expressly hypothetical historical key transfer: p05's words
 // teach Euler's totient; the newly revealed 25 values would give three complete
-// 25-rune cycles on the 76-rune LP2 p55 if the source p55 F at index25 is literal.
+// 25-rune cycles on the 76-rune LP2 p55 if the source p55 F at index25 is the only plaintext-F bypass among three ciphertext Fs (15,25,41).
 // This exact natural transfer is a negative. No key phase/mask optimization.
 /** @param {number} n @returns {number} */
 function totient(n) {
@@ -72,6 +72,7 @@ const corpus=JSON.parse(fs.readFileSync(path.join(ROOT,'resources','liber-primus
 const originalP55=corpus.pages.find(page=>page.page===55).indices;
 assert.equal(originalP55.length,76);
 assert.equal(originalP55[25],0);
+assert.deepEqual(originalP55.flatMap((r,i)=>r===0?[i]:[]),[15,25,41]);
 let clock=0;
 const p55Inverse=originalP55.map((r,i)=>i===25?0:(r-gridKey[(clock++)%25]+29)%29);
 assert.equal(clock,75);
@@ -86,7 +87,7 @@ assert.equal(p55runeglish,'NINAETHJOEAWNTEONHFDSCOEUAEOEDTHTFTHANTFNPTHHGDNGNRBD
 
 // One source-fixed non-additive consumer: the recovered 2014 5x5 numerical
 // square is a fully invertible Hill5 matrix over the authenticated GP29 field.
-// Original p55's single F at position25 is provisionally treated as a literal
+// One of original p55's three Fs, at position25, is provisionally treated as a literal
 // no-clock-advance symbol, leaving 75 runes in 15 five-rune blocks. This is a
 // bounded key-transfer test, NOT an authenticated instruction or decryption.
 /** @param {number} value @returns {number} */

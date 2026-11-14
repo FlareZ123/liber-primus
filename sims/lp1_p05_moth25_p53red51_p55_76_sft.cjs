@@ -44,11 +44,11 @@ const red = p53.slice(color.red_text.start_rune_inclusive,
 assert.equal(red.length, 51);
 assert.equal(p55.length, 76);
 assert.deepEqual(red.flatMap((r, i) => r === 0 ? [i] : []), [38]);
-assert.deepEqual(p55.flatMap((r, i) => r === 0 ? [i] : []), [25]);
+assert.deepEqual(p55.flatMap((r, i) => r === 0 ? [i] : []), [15, 25, 41]);
 
 /**
  * @param {number[]} cipher Exact original GP29 symbol vector.
- * @param {number} skip Known ciphertext-F position treated provisionally as
+ * @param {number} skip One chosen ciphertext-F position treated provisionally as
  *   literal plaintext-F bypass.
  * @returns {number[]}
  */
@@ -89,7 +89,8 @@ for (const [cipher, skip] of [[red, 38], [p55, 25]]) {
 console.log(JSON.stringify({
   selected_latin_square_side: 5,
   matched_lengths: {p53_red: 51, p55_full: 76, concatenated: 127},
-  source_F_indices: {p53_red: 38, p55: 25},
+  source_F_indices: {p53_red: [38], p55: [15, 25, 41]},
+  hypothetical_plaintext_F_skips: {p53_red: [38], p55: [25]},
   hypothetical_key_consumption: {p53_red: 50, p55: 75, total: 125},
   exact_hidden_square_cycles: 5,
   phi_minus_p53_red_ioc: ioc(redPlain),
