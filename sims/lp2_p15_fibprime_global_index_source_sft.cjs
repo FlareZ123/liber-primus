@@ -95,7 +95,7 @@ assert.equal(p42QuotationStart - amounts[16], 35);
 const transcription = fs.readFileSync(
   "resources/liber-primus/lp2-transcription.txt", "utf8");
 const runicWords = transcription.split("%").slice(0,55).join("%")
-  .replace(/\/\n/g,"").replace(/[\r\n%]/g,"")
+  .replace(/\/\r?\n/g,"").replace(/[\r\n%]/g,"")
   .match(new RegExp("[" + corpus.runes.join("") + "]+", "gu")) || [];
 assert.equal(runicWords.length,2896);
 let wordRunePosition=0;
