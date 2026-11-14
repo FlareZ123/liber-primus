@@ -19,7 +19,7 @@ jobs:
       - name: Fetch archived authentic Cicada 2012 book-code source files
         shell: pwsh
         run: |
-          git clone --depth 1 https://github.com/neuroretransmit/cicada.git "$env:RUNNER_TEMP\cicada2012"
+          git -c core.autocrlf=false clone --depth 1 https://github.com/neuroretransmit/cicada.git "$env:RUNNER_TEMP\cicada2012"
           $books = Join-Path $env:RUNNER_TEMP 'cicada2012\2012\006-two-book-codes\books'
           if (-not (Test-Path (Join-Path $books 'agrippa.txt'))) { throw 'Missing original Agrippa' }
           if (-not (Test-Path (Join-Path $books '31447.txt'))) { throw 'Missing original Britannica' }
