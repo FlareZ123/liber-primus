@@ -4,7 +4,7 @@
 
 ## One proposed operation and its necessary consequence
 
-The original 2013 *0_wisdom* material foregrounds the GP primes, and the authenticated 2016 message says that the book's words are the map and their numbers the direction. A reversible but **hypothetical** way to make a word's numbers direct each next letter is a causal additive plaintext-feedback cipher over the native 29-rune alphabet:
+The 2014 LP1 physical p05 *Some Wisdom* page foregrounds the GP primes and totient; the legacy `2013-0-wisdom` path is a filename, not a 2013 source date. The original 2013 `761.MP3` ID3 metadata independently gives prime-sum checksums for its title and Parable, but neither artifact prescribes a previous-word→next-key transition. The authenticated 2016 message says that the book's words are the map and their numbers the direction. A reversible but **hypothetical** way to make a word's numbers direct each next letter is a causal additive plaintext-feedback cipher over the native 29-rune alphabet:
 
 \[
  C_{w,j}=P_{w,j}+K_{w,j}\pmod{29},\qquad

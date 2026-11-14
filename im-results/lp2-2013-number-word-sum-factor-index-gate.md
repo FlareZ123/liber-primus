@@ -6,13 +6,13 @@
 
 A solver sees three related source features:
 
-1. The 2013 `0_wisdom` material demonstrates assigning each GP word a number by summing its Gematria Primus prime values.
+1. The 2014 LP1 physical p05 / Stage04 *Some Wisdom* page demonstrates assigning its own GP-word cells numbers by summing their Gematria Primus prime values. The legacy `2013-0-wisdom` archive path is not a 2013 date; this is an intra-artifact reconstruction of the 2014 magic square.
 2. The archived 2013 Cicada `NUMBER` command takes an integer, reverses it when the input is prime, and returns divisors; when both the input and its reversal are prime, it returns `+`.
 3. The GP alphabet itself is indexed by the first 29 primes. The 2016 signed message says that the words' numbers are directional.
 
 A compact composite hypothesis is therefore: for each word, compute its GP prime sum (n), apply the 2013 `NUMBER` rule, factor the selected integer, convert each prime factor to its zero-based ordinal in the prime sequence, sum those ordinals modulo 29, and map the result to a GP rune. The modulo-29 factor-index fold is **not** specified by the 2013 service; it is the single extra reduction tested here.
 
-The `NUMBER` behavior is source-grounded in the archived 2013 service README:
+The `NUMBER` behavior is reconstructed from an archived 2013 first-onion service README, a secondary participant/archive source rather than the signature-verified 26 January 2013 TCP challenge. The signed TCP challenge specifies BASE29, DH and NEXT, and explicitly contains no `NUMBER`, `PRIMES` or `COUNT` command. Treat this command grammar as a historical reconstruction, not an authenticated signed instruction. Its archived examples are:
 - `NUMBER 283` reverses to 382 and returns divisors `[1,2,191,382]`.
 - `NUMBER 222` returns divisors `[1,2,3,6,37,74,111,222]`.
 - A prime whose reversal is also prime returns `+`.
