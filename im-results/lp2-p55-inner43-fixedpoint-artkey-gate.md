@@ -1,6 +1,6 @@
 # LP2 p55 word-interior polynomial: fixed-point artwork anchors and a failed historical inverse
 
-**Status (Agent 20, 14 November 2026): exact original-source arithmetic, independently dated illustration relationships, and a bounded direct original-input decoder negative. No authenticated plaintext, unknown-page key, author-specified polynomial instruction, or continuation destination has been recovered.** The fixed-point graph and its two source-page/artwork numerals extend the [previously documented p55 43-interior polynomial orbit](p55-inner43-base29-polynomial-bridge.md); the already-known \(24\to18\to23\to4\to6\to19\to22\) orbit and the p5/p55 and p22/LP1 illustration matches are not newly discovered.
+**Status (Agent 20, 14 November 2026): exact original-source arithmetic, independently dated illustration relationships, and two bounded direct original-input decoder negatives. No authenticated plaintext, unknown-page key, author-specified polynomial instruction, or continuation destination has been recovered.** The fixed-point graph and its two source-page/artwork numerals extend the [previously documented p55 43-interior polynomial orbit](p55-inner43-base29-polynomial-bridge.md); the already-known \(24\to18\to23\to4\to6\to19\to22\) orbit and the p5/p55 and p22/LP1 illustration matches are not newly discovered.
 
 ## Causal hypothesis and original source
 
@@ -68,6 +68,24 @@ The three legal inverses are:
 
 **No direct candidate is readable GP-native English and none recovers original p55 plaintext.** The exact solved p57 first-41-rune plaintext is independently encrypted and completely recovered by the same literal-F prime-totient inverse, confirming the tested historical operation works when its stated assumptions are met. The direct test excludes *only* the fixed quadratic quotient followed immediately by solved p56's cipher; it does not exclude other source-selected operations or the algebraic roots as a later navigation clue.
 
+
+### Two artwork-linked historical operators: complete order test
+
+The **5** art page (solved LP1 p05) explicitly says the totient function is sacred. The **22** art page (LP2 p22) mirrors the figure from *solved* LP1 pp14–16, whose authenticated decryption used the specific 13-rune Vigenère key **FIRFUMFERENFE**. This provides one more sharply bounded, independent source-inspired consumer for the **same exact 41-rune polynomial quotient**: apply the historical p56 prime-totient decoder and historical LP1 p14 Vigenère decoder **once each**, using their **unchanged zero-phase keys**, in either of the two complete operator orders. No arbitrary shift, key variation, phase adjustment, source-page characters, hidden alphabet or plaintext-selected filter is fitted.
+
+Both operations use the historically documented plaintext F-transparent rule: an original ciphertext F can be a literal F that does not advance that layer's clock, or an encrypted non-F; ordinary non-F decoded F is disallowed. The exhaustive branch trees across the two layers contain only **three valid complete ciphertext decodings**:
+
+| Actual inverse order | Valid outputs | GP29 IoC | Complete output transliterations |
+| --- | ---: | --- | --- |
+| Totient → FIRFUMFERENFE | 2 | **0.02804878, 0.03292683** | \`LHCLAEXSTHEHUAESSUJTHEAWOELGEMNOFEOCIBBNGIIAEOEWIAY\`; \`LHCLAEXSTHEHUAESSUJTHEAWOELGEMNOTGCWCXOYOESOAEEOEOI\` |
+| FIRFUMFERENFE → Totient | 1 | **0.03536585** | \`LHCLAEXSTHEHUAESSUJTHIAMEAWSEARNGBAEEOYEANGEAWPIAIABIYBX\` |
+
+All three outputs forward-encrypt **41/41** exact source quotient runes, and every operator order completely recovers independently encrypted **41/41 solved p57 GP-native control runes**. The first 41 native p57 GP runes have **IoC 0.05609756**. None of the proposed outputs is intelligible natural GP plaintext and all three have IoC below **0.036**. This is a more directly motivated two-artwork-key consumption than choosing arbitrary keys, but it remains a conjectural two-layer cipher, and the tested key output is a *polynomial quotient*, itself only conditionally selected.
+
+**Decision:** The rooted-artwork double operation does **not** recover original unknown p55 text or an intermediate native-GP key in either order. Retire this complete fixed-key, fixed-clock, literal-F-transparent two-operation family. If an original clue points to a *different* actual intermediate, it must specify the operand and rule independently.
+
+[Standalone original source and positive-plant SFT](../sims/lp2_p55_fixedroot_two_historical_keys_sft.cjs), passed [Windows Node22 read-only Actions run 43652029146](https://github.com/FlareZ123/liber-primus/actions/runs/43652029146).
+
 ## Discriminating controls and selection caveats
 
 - Full **76-rune** original p55 polynomial (rather than word interiors) has fixed points **1,24**; reversed 43 interiors have only **20**. The other moth-bearing original **p53** strict-interior polynomial has only fixed point **7**. Thus the exact claimed pair requires this order and strict word-interior extraction.
@@ -78,6 +96,6 @@ The three legal inverses are:
 
 ## Decision and next step
 
-The exact new information is **a factorized 43-rune source polynomial with the sole 5/22 attractors, 27/2 basin split and a 41-symbol quotient**. Those facts provide a small, checkable address hypothesis to two already established art-linked pages. A direct transfer of the historically solved prime-totient operation to the exact quotient has failed. **Do not issue unconstrained page5/page22 substitution, key, phase or field-generator sweeps** just to force the quotient to resemble plaintext. The useful next prerequisite is an original-author clue selecting whether the fixed points represent *page numbers*, *GP rune values*, *field elements* or *nothing*, and what to read from those indicated sources; a convincing independent answer would define one decoder that recovers at least 40 actual original unknown-runic plaintext symbols and forward-encrypts them without tuned exceptions.
+The exact new information is **a factorized 43-rune source polynomial with the sole 5/22 attractors, 27/2 basin split and a 41-symbol quotient**. Those facts provide a small, checkable address hypothesis to two already established art-linked pages. Direct transfer of the historically solved prime-totient operation, alone or composed once in either order with the art-linked original FIRFUMFERENFE key, has failed. **Do not issue unconstrained page5/page22 substitution, key, phase or field-generator sweeps** just to force the quotient to resemble plaintext. The useful next prerequisite is an original-author clue selecting whether the fixed points represent *page numbers*, *GP rune values*, *field elements* or *nothing*, and what to read from those indicated sources; a convincing independent answer would define one decoder that recovers at least 40 actual original unknown-runic plaintext symbols and forward-encrypts them without tuned exceptions.
 
 **Reproduction.** Node.js22 CommonJS, no dependencies: \`node sims/lp2_p55_inner43_fixedpoint_artkey_sft.cjs\`. Uses original repository \`resources/liber-primus/{lp2-corpus.json,lp2-transcription.txt,lp2-ink-annotations.json}\`. The **Windows** \`manual-readonly-commonjs-sft.yml\` execution [run 43651173240](https://github.com/FlareZ123/liber-primus/actions/runs/43651173240) succeeded, reproducing all exact source values, all 100,000 seeded permutations and the native p57 positive plant. Source: [reproduction program](../sims/lp2_p55_inner43_fixedpoint_artkey_sft.cjs) · [earlier p55 polynomial bridge](p55-inner43-base29-polynomial-bridge.md) · [illustration-source registration](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md).
