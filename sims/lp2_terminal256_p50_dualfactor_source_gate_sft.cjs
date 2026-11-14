@@ -17,13 +17,14 @@ const gp = book.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 const mod = x => (x%29+29)%29;
 /** @param {string} text @returns {number[]} */
 function encode(text) {
-  const s = text.replace(/ /g,"");
   const out = [];
-  for(let i=0;i<s.length;) {
-    const item=gp.find(x=>s.startsWith(x.s,i));
-    assert.ok(item,"No GP mapping for "+s.slice(i));
-    out.push(item.i);
-    i+=item.s.length;
+  for(const word of text.split(" ")) {
+    for(let i=0;i<word.length;) {
+      const item=gp.find(x=>word.startsWith(x.s,i));
+      assert.ok(item,"No GP mapping for "+word.slice(i));
+      out.push(item.i);
+      i+=item.s.length;
+    }
   }
   return out;
 }
