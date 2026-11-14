@@ -355,6 +355,10 @@ function testSuffix(a, b, reserved) {
 }
 const endAlignedOriginal = Array.from({length: 29},
   (_, reserved) => ({reserved, ...testSuffix(lastA, textB, reserved)}));
+assert.ok(endAlignedOriginal.every(result => !result.possible),
+  "all 29 end-aligned rank28 shared keys must fail");
+assert.equal(Math.min(...endAlignedOriginal.map(x => x.firstImpossibleRune)), 13);
+assert.equal(Math.max(...endAlignedOriginal.map(x => x.firstImpossibleRune)), 29);
 const endAlignedPlants = [];
 for (const reserved of [0, 17, 28]) {
   const sourceA = nativeA.slice(104);
@@ -381,5 +385,5 @@ console.log(JSON.stringify({
   },
   positivePlants,
   endAligned: {original: endAlignedOriginal, positivePlants: endAlignedPlants},
-  decision: "All 29 possible reserved symbols fail source-native whole-word grammar before position 15; first repeat is at position 59. This closes this conditional same-key original-rune-order model, not other keys or cipher families."
+  decision: "All 29 reserved symbols fail under both start-aligned and end-aligned moth-page key reuse against printed native-word grammar, earliest failure at 13. Both key-blind gates pass native GP planted controls. Other clocks, languages, and cipher families remain outside this model."
 }, null, 2));
