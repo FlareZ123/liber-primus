@@ -184,7 +184,9 @@ def main():
     with MANIFEST.open(encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
 
-    image_cache = {}
+    current_archive = None
+    current_rgb = None
+    current_gray = None
     samples_by_rune = defaultdict(list)
     doublet_controls = []
     failures = []
@@ -214,13 +216,12 @@ def main():
             continue
 
         archive = row["archive_jpeg"]
-        if archive not in image_cache:
+        if archive != current_archive:
             path = IMAGE_DIR / archive
-            rgb = np.asarray(Image.open(path).convert("RGB"))
-            gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
-            image_cache[archive] = (rgb, gray)
-
-        rgb, gray = image_cache[archive]
+            current_rgb = np.asarray(Image.open(path).convert("RGB"))
+            current_gray = cv2.cvtColor(current_rgb, cv2.COLOR_RGB2GRAY)
+            current_archive = archive
+        rgb, gray = current_rgb, current_gray
         centers = [(int(row["x1"]), int(row["y1"]))]
         if row["kind"] == "D":
             centers.append((int(row["x2"]), int(row["y2"])))
