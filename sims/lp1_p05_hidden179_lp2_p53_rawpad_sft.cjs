@@ -87,10 +87,66 @@ const expected = [
 for (let i = 0; i < 8; i++) {
   assert.ok(Math.abs(outputs[i].ioc - expected[i]) < 1e-8);
 }
+
+/**
+ * A separate source-shaped bytewise XOR consumer. The original hidden p05
+ * square is serialized in three attested, exact-length forms; p53 has the
+ * identical 179-rune length and reuses p05's moth artwork. GP ordinals and
+ * GP prime weights are the two original-authored representations, each
+ * occupying one byte. This test does not fit shifts, permutations or phases.
+ *
+ * Outputs are evaluated as literal ASCII. This is deliberately distinct
+ * from the eight GP29 additive/Vigenere tests above.
+ */
+const swappedBytes = Array.from(raw, swapNibbles);
+const reconstructedSquare = Buffer.from(swappedBytes).toString("ascii")
+  .replace(/[0-9]+/g, digits => Array.from(digits).reverse().join(""));
+const serializedSquare = Array.from(Buffer.from(reconstructedSquare, "ascii"));
+assert.equal(serializedSquare.length, 179);
+const runeBytes = [
+  ["ordinal", page53],
+  ["prime", page53.map(index => corpus.prime[index])]
+];
+const byteForms = [
+  ["raw", Array.from(raw)],
+  ["swapped", swappedBytes],
+  ["reconstructed-square", serializedSquare]
+];
+/** @param {number[]} bytes @returns {{printable:number,letters:number,longestLetters:number}} */
+function asciiProfile(bytes) {
+  let longest = 0;
+  let current = 0;
+  let printable = 0;
+  let letters = 0;
+  for (const value of bytes) {
+    if (value >= 32 && value <= 126) printable++;
+    const letter = value >= 65 && value <= 90 || value >= 97 && value <= 122;
+    if (letter) { letters++; current++; } else current = 0;
+    longest = Math.max(longest, current);
+  }
+  return {printable, letters, longestLetters:longest};
+}
+const xorOutputs = [];
+for (const [keyForm, keyBytes] of byteForms) {
+  for (const [runeForm, runeValues] of runeBytes) {
+    const bytes = keyBytes.map((value, i) => value ^ runeValues[i]);
+    assert.deepEqual(bytes.map((value, i) => value ^ runeValues[i]), keyBytes);
+    xorOutputs.push({keyForm, runeForm, ...asciiProfile(bytes),
+      first32Hex: Buffer.from(bytes).subarray(0, 32).toString("hex")});
+  }
+}
+assert.deepEqual(xorOutputs.map(x =>
+  [x.printable, x.letters, x.longestLetters]), [
+  [40, 15, 2], [111, 57, 3],
+  [174, 0, 0], [134, 60, 4],
+  [174, 0, 0], [135, 60, 4]
+]);
+assert(xorOutputs.every(row => row.longestLetters < 5));
+
 console.log(JSON.stringify({
   source: "original LP1 05.jpg hidden binary",
   p53_original_runic_length: page53.length,
   hidden_binary_bytes: raw.length,
   result: "no coherent 179-rune GP29 plaintext recovered",
-  outputs
+  outputs, xorOutputs
 }, null, 2));
