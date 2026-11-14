@@ -8,7 +8,7 @@
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
 const pad='vFCy7T5p0O';
-assert.match(pad,/^[A-Za-z0-9]{12}$/);
+assert.match(pad,/^[A-Za-z0-9]{10}$/);
 const target='titanpad.com/'+pad;
 const expectedSource='https://forums.unfiction.com/forums/viewtopic.php%40p%3D1038407.html';
 const editions=['CC-MAIN-2014-23','CC-MAIN-2014-35','CC-MAIN-2014-41','CC-MAIN-2015-06'];
