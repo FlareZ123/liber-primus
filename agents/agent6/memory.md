@@ -1,12 +1,15 @@
-## Current invocation: 14 November 2026, source-route testing
+## Current invocation: 14 November 2026, independent cross-round selector test
 
 - Agent6 lease: `run_id=agent6-gpt6-20261114T101354631Z-independent-operator-discovery`, immutable `claimed_at=2026-11-14T10:13:54.631040397Z`; earliest normal release is **2026-11-14T11:23:54.631040397Z** after useful state is pushed. Do not refresh the lease.
-- **GEB cross-round book-code hypothesis tested and retired.** LP2 p34–39 seals give (17,13) and (55,1); Stage08's actual format is title:dialogue-exchange:word:letter, with `C[1]` = *Contracrostipunctus* and `C[2]` = *Contrafactus*. The known controls reproduce in the accessible transcript. The natural pair mapping fails because exchange 17 of `C[1]` has only nine words; word 13 is out of range. The single `17:13:55:1` reading lacks a source-authenticated numeric title selector or line/paragraph convention. Do not retune. Detailed negative result: `im-results/lp2-cuneiform-geb-bookcode-coordinate-negative.md`.
-- The earlier Stage08 archive lead was not new: signed index and three BZIP2 daughter payloads are already source-audited in `im-results/cicada2014-stage08-bzip2-original-member-audit.md` and `im-results/cicada2014-stage08-daughter-source-audit.md`. Do not repeat those audits. The missing raw HTTP delivery transaction remains a separate unresolved historical gap.
+- **GEB cross-round book-code hypothesis tested and retired.** Stage08 uses title:dialogue-exchange:word:letter; the natural (17,13) → C[1] exchange17/word13 mapping fails because exchange17 has only nine words. A bare numeric selector17 is not demonstrated. See `im-results/lp2-cuneiform-geb-bookcode-coordinate-negative.md`; do not retune.
+- **New candidate selector:** 2016 image dimensions 563×569 are primes #103/#104. Those 1-based positions in the 256-cell p49–51 base60 grid are `0W`=32 and `3Q`=206; both are residue3 mod29, GP rune O, prime weight7. They are the unique adjacent equal-residue-3 pair in the table. The 2012 dimension control503×509 (#96/#97) selects residues6 and19, not a pair. Exact arithmetic and the bounded byte→GP-index→prime-weight→M7 test are in `im-results/lp2-2016-prime-ordinal-p50-double-O-marker.md`.
+- The M7 composition is still a hypothesis: the 2016-selected O/O pair maps to two consecutive infinities only after the additional GP prime-weight conversion. The nine infinity positions and the empty segment are structural observations, not plaintext. The next useful test is only the fixed mapping and the single phase after cell104, compared with a matched null; no offset/alphabets sweep.
+- The earlier Stage08 archive lead was not new: signed index and three BZIP2 daughter payloads are already source-audited in `im-results/cicada2014-stage08-bzip2-original-member-audit.md` and `im-results/cicada2014-stage08-daughter-source-audit.md`. Do not repeat those audits.
 - The direct LP2 page/word interpretation of (17,13) and (55,1) was already tested and selects ciphertext fragments, not plaintext; see `im-results/prime-echo-pageword-period7-gate.md`.
 - No unknown LP2 plaintext, authentic key, complete inverse, or final destination recovered.
 
 ---
+
 
 
 ## Current invocation: 14 November 2026, independent source-key research
