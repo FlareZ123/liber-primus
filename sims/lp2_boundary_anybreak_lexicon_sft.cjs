@@ -265,21 +265,6 @@ const affineCoverage = {
 assert.equal(affineCoverage.atLeastOneLexicalSegmentation, 102);
 assert.equal(affineCoverage.impossibleForEverySecretAffine, 73);
 
-// Positive 3: a changing hidden affine alphabet, independent for every one
-// of the 175 complete source-sized native planted punctuation segments,
-// must always have the correctly recovered GP-native lexical segmentation.
-for (let index = 0; index < plantedSentences.length; index++) {
-  const plain = plantedSentences[index].flat();
-  const a = 1 + (index % 28);
-  const b = (7 * index + 13) % 29;
-  let aInverse = 1;
-  while ((a * aInverse) % 29 !== 1) aInverse++;
-  const cipher = plain.map(p => (aInverse * ((p - b + 29) % 29)) % 29);
-  assert.deepEqual(cipher.map(c => (a * c + b) % 29), plain);
-  const result = allAffineEnglish(cipher, trie);
-  assert(result.count > 0, 'source-sized affine native-English positive');
-}
-
 // Positive 1: authentic 95-rune p57 GP plaintext, including three uncommon
 // words absent from the TextBlob+literature lexicon, must be recognized.
 const solvedP57 = read('resources/liber-primus/lp1-plaintext-reference.txt')
@@ -306,6 +291,21 @@ assert.equal(plantedSentences.flat().length, words.length);
 const nativeCoverage = plantedSentences.map(sentence =>
   wordBreakReachability(sentence.flat(), sentence.length, trie));
 assert.equal(nativeCoverage.filter(x => x.printedCount).length, 175);
+
+// Positive 3: a changing hidden affine alphabet, independent for every one
+// of the 175 complete source-sized native planted punctuation segments,
+// must always have the correctly recovered GP-native lexical segmentation.
+for (let index = 0; index < plantedSentences.length; index++) {
+  const plain = plantedSentences[index].flat();
+  const a = 1 + (index % 28);
+  const b = (7 * index + 13) % 29;
+  let aInverse = 1;
+  while ((a * aInverse) % 29 !== 1) aInverse++;
+  const cipher = plain.map(p => (aInverse * ((p - b + 29) % 29)) % 29);
+  assert.deepEqual(cipher.map(c => (a * c + b) % 29), plain);
+  const result = allAffineEnglish(cipher, trie);
+  assert(result.count > 0, 'source-sized affine native-English positive');
+}
 
 // Demonstrate exact reversibility on the genuine original and native control.
 let transformations = 0;
