@@ -55,7 +55,7 @@ for (const path of process.argv.slice(2)) {
     const thisOp=operationRe.test(line),thisStrong=strongRe.test(line);
     const nearStrong=near.some(v=>strongRe.test(v));
     const claims=/\b(?:found|think|possibly|seems|got|works|result|translat(?:e|ion)|guess|try|got|reveal)\b/i.test(line);
-    const codeOrKey=/\b(?:mod\s*29|fibonacci|vigen[eè]re|totient|prime|rotate|xor|+1|hill|aes|sha|key(?:s|stream)?|formula|atbash)\b/i.test(near.join(' '));
+    const codeOrKey=/\b(?:mod\s*29|fibonacci|vigen[eè]re|totient|prime|rotate|xor|\+1|hill|aes|sha|key(?:s|stream)?|formula|atbash)\b/i.test(near.join(' '));
     const score=(thisStrong?5:0)+(thisOp?3:0)+(nearStrong?2:0)+(claims?2:0)+(codeOrKey?3:0)+Math.min(3,pages.length);
     hits.push({source:src.name,line:i+1,date:line.slice(0,20),pages:[...new Set(pages)],score,
       text:line.slice(0,340),
