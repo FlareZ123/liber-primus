@@ -48,7 +48,9 @@ To test reuse, keep precisely the same negative-prime3-and-fictitious-F rule, re
 | 8 | 3,008 | 99 | 2,410 / 3,008 | 0.034511 |
 | 9 | 308 | 11 | 101 / 308 | 0.034794 |
 
-The first-chapter source phase is exceptional **for this original statistic**, and the remaining eight chapter phases are generally ordinary. Chapter4's 78/1,903 is mild and unadjusted across eight held-outs. None gives English-like GP29 symbol frequencies, and a direct manuscript-wide reuse of this one step is unsupported.
+The first-chapter source phase is exceptional **for this original statistic**, and the remaining eight chapter phases are generally ordinary. Chapter4's 78/1,903 is mild and unadjusted across eight held-outs. None gives English-like GP29 symbol frequencies.
+
+**Independent no-reset whole-book test:** If the same exact prime list **continues** after p2 instead of restarting on the eight later visual chapters, the inverse of all **12,956** original runes produces **472 adjacent derived equals** and an all-book GP29 IoC of **0.034509200096422304**. This is checked independently in the same original-input SFT; the first 729 transformed runes match the historical reconstruction exactly. The alternative continuous clock therefore does not salvage an English-like one-step decoder. Any **pure transposition**, spiral route or **fixed bijective GP29 alphabet substitution** applied afterward preserves this IoC *exactly*. A recovered native-English plaintext would require another value-changing/stateful operation, a different source-selected register or a non-English payload. This is a key-independent structural statement about these particular downstream families, not a proof that no English text can ever have such a frequency spectrum.
 
 ## Concrete research decision
 
