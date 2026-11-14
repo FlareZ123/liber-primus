@@ -155,7 +155,7 @@ function bookKeyCheck(w) {
       .replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/[^A-Z]/g,"");
     const result=[];
     for(let i=0;i<s.length;){
-      if(s.startsWith("ING",i)){result.push(corpus.translit.indexOf("I"),corpus.translit.indexOf("NG"));i+=3;}
+      if(s.startsWith("ING",i)){result.push(corpus.translit.indexOf("ING"));i+=3;}
       else if(s.startsWith("IO",i)){result.push(corpus.translit.indexOf("IA"));i+=2;}
       else {
         const x=tokens.find(x=>s.startsWith(x,i));
