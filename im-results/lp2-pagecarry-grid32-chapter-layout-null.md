@@ -23,10 +23,30 @@ Parse only the original `resources/lp2-transcription.txt`. As in the source word
 
 The conditional null freezes each of nine **original visual chapter ranges** as a separate pool, preserving its observed counts of internal-word line wraps and its number of ordinary page breaks. Each chapter's count has a finite hypergeometric law. Convolution of the nine probability vectors gives the exact total-tail probability above. This uses **no cipher key, original plaintext guess, optimized source phase, freely adjusted chapter cut or Monte Carlo approximation**.
 
+## The original carry fragments also fit the table's eight-column width by chance
+
+The **32 actual page-carry suffix lengths**, in original source order, are
+
+```text
+5 2 2 2 6 2 5 1 2 5 1 2 3 2 1 2
+4 1 2 2 3 1 2 2 1 7 3 4 1 1 5 1
+```
+
+Every length fits within the original numerical table's eight columns without modular reduction. This initially looks more distinctive than cardinality alone. Extend the *same original nine-chapter conditional line-wrap model* with a three-way population classification of each original within-page line wrap: (1) no rune-word carry, (2) word carry with right fragment of **1–7** runes, (3) word carry with **8 or more**. Eleven of 594 original line wraps belong to category 3, so long right fragments are rare even before seeing page breaks. Among the actual 32 page-carry words, none has a suffix of length 8 or more.
+
+The additional exact source-conditioned results, with no fitted parameters, are:
+
+- Expected long-suffix page carries: **0.770338** over 46 within-chapter page boundaries.
+- Probability of **zero** long-suffix page carries: **0.444762**, using nine independent chapter hypergeometric factors.
+- Joint probability of exactly 32 short page carries and no long carries: **0.0586643**; probability of exactly 32 carries of any length: **0.130201**.
+- Therefore, given the already observed count of 32 crossing words, the exact probability that **all 32** right fragments fit in seven runes is **0.450568**.
+
+Thus neither the 32-row packet count nor the absence of a suffix longer than seven is a distinctive enough constraint to select the 32×8 table as an authored byte-packet operand. The calculation does not assess finer semantic correlations between actual suffix lengths and the selected table bytes, and the column-address extraction itself remains reproducible.
+
 The null is a comparison model, not a claim that creators randomly placed page boundaries. It does not test which table column should be selected from each crossing word. It shows that the **row count** is explained by preexisting visible section boundaries and ordinary line wrapping, so its apparently exact match to the grid is weak independent evidence. The 32 specific row/column addresses and the 32-byte output remain mathematically well-defined, although no first-party cryptographic consumer has been recovered under [Director #837](https://github.com/FlareZ123/liber-primus/issues/837).
 
 ## Reproduce and decision
 
-The complete [Node.js CommonJS SFT](../sims/lp2_pagecarry_grid32_boundary_null_sft.cjs) reads the unchanged published runic transcription, counts the 55 rune-bearing pages, verifies 2,896 words/12,956 runes/32 carries and all nine authentic chapter cuts, evaluates all 12,956 naïve cyclic shifts, and computes the nine-chapter exact hypergeometric convolution. It asserts the numerical values above and prints every chapter's sample/population details. The SFT writes no files.
+The complete [Node.js CommonJS SFT](../sims/lp2_pagecarry_grid32_boundary_null_sft.cjs) reads the unchanged published runic transcription, counts the 55 rune-bearing pages, verifies 2,896 words/12,956 runes/32 carries and all nine authentic chapter cuts, evaluates all 12,956 naïve cyclic shifts, and computes the nine-chapter exact hypergeometric convolution, including the three-way right-fragment-length conditional probabilities. It asserts the numerical values above and prints every chapter's sample/population details. The SFT writes no files.
 
-**Decision:** retain the original 32-byte extraction as a provisional source-addressed value; **retire the inference that 32 matching 32 is unlikely to occur without authored design**. Require a distinctive first-party row/column operation or independently predictable authentic plaintext before assigning this packet cryptographic priority.
+**Decision:** retain the original 32-byte extraction as a provisional source-addressed value; **retire the inference that either the 32-to-32 count or the observed seven-rune maximum right-fragment width independently indicate authored design**. Require a distinctive first-party row/column operation or independently predictable authentic plaintext before assigning this packet cryptographic priority.
