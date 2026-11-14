@@ -59,9 +59,9 @@ The norm match is an independent algebraic invariant of the same source-selected
 
 The same p55 segmentation yields another exact identity that could, under a future authored rule, constrain the 2014 five-by-five squares as a candidate operand. Its **17 page-local printed segments** split into **43 strict-interior GP29 digits and 33 outer/boundary digits** when retaining both first and last rune of every segment, counting the initial one-rune page carry once. The 33-digit exterior is
 
-`[21,25,7,15,17,14,19,15,25,0,1,7,4,17,12,5,17,18,28,15,18,15,2,22,5,14,23,1,17,10, ...]`.
+`[21,25,7,15,17,14,19,15,25,0,1,7,4,17,12,19,0,17,5,12,18,28,15,18,15,2,22,5,14,23,1,17,10]`.
 
-The exact complete edge array, not this abbreviated display, is reconstructed from original ciphertext and source word lengths by the [reproducer](../sims/lp2_p55_outer33_square25_polynomial_gate_sft.cjs). Let `O(X)` treat these 33 printed indices as ascending GF29 polynomial coefficients, using the same **conditional, unselected** operation as the 43-rune inner polynomial `I(X)` above. The historical 2014 magic-square sums `3301` and `1033` reduce to `24` and `18`, respectively. On the exact original runes:
+The full edge array is reconstructed from original ciphertext and source word lengths by the [reproducer](../sims/lp2_p55_outer33_square25_polynomial_gate_sft.cjs). Let `O(X)` treat these 33 printed indices as ascending GF29 polynomial coefficients, using the same **conditional, unselected** operation as the 43-rune inner polynomial `I(X)` above. The historical 2014 magic-square sums `3301` and `1033` reduce to `24` and `18`, respectively. On the exact original runes:
 
 \[
 O(24)=25,\quad O(18)=25,\qquad I(24)=18,\quad I(18)=23.
