@@ -108,5 +108,18 @@ async function main(){
       console.log('  L'+r.line+' '+r.date+' '+r.clock+' <'+r.nick+'> '+r.body.slice(0,430));
     }
   }
+  const anchors=[82289,84447,89874,102799,256472,271355,294013,340195,340853];
+  const record=all.find(x=>x.source==='#cicadasolvers.freenode.2.log');
+  for(const line of anchors){
+    const i=record.rows.findIndex(r=>r.line===line);
+    assert(i>=0,'missing dated original-line focus '+line);
+    const center=record.rows[i];
+    console.log('FOCUS '+line+' '+center.date+' '+center.clock);
+    for(let j=Math.max(0,i-15);j<Math.min(record.rows.length,i+21);j++){
+      const r=record.rows[j];
+      if(r.date!==center.date)continue;
+      console.log('  L'+r.line+' '+r.date+' '+r.clock+' <'+r.nick+'> '+r.body.slice(0,650));
+    }
+  }
 }
 main().catch(e=>{console.error(e.stack||e);process.exitCode=1});
