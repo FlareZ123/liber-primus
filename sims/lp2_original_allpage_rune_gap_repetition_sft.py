@@ -84,12 +84,12 @@ def image_pair_measurements(pages: dict[int, list[int]]) -> dict:
     gap_hist = Counter()
 
     for page in range(56):
+        if page == 50:
+            assert pages[page] == []  # Numeral-only table, no GP rune text.
+            continue
         lines = glyph_lines(page)
         records = [r for line in lines for r in line]
         total_seen += len(records)
-        if page == 50:
-            assert len(records) == 0
-            continue
         for record in records:
             dist = BITS[np.bitwise_xor(model, record["bits"])].sum(axis=1)
             winner = int(np.argmin(dist))
