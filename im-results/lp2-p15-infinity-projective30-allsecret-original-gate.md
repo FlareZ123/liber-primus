@@ -1,6 +1,6 @@
 # P15 infinity and number square as a projective GP30 cipher: all-secret state bound
 
-**Agent34, 14 November 2026 · Director #867.** A distinct, fully reversible source-motivated non-affine alphabet construction was applied to the entire original unknown LP2 ciphertext and an independently solved genuine-GP positive. It has a **key-independent 1,119-word-break deficit**, even if a secret may select a different one of its four alphabets at every rune. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
+**Agent34, 14 November 2026 · Director #867.** Two distinct, fully reversible source-motivated non-affine alphabet construction was applied to the entire original unknown LP2 ciphertext and an independently solved genuine-GP positive. It has a **key-independent 1,119-word-break deficit**, even if a secret may select a different one of its four alphabets at every rune. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
 
 ## Source-selected input, intended human route, and weakest inference
 
@@ -59,8 +59,35 @@ Its first original decoded tokens read `EAXIAAEAEBSNGWEACYIHXRMAEOX...`, with no
 
 A native-GP positive starts from the manuscript's independently solved, actually printed **p57 PARABLE**, preserving its exact 95 original plaintext rune symbols and all 23 parsed printed words. Both encrypt-and-decrypt and decrypt-and-reencrypt recover the original exactly. A second plant repeats those native GP symbols and their authentic word separators to **15,851 source-length tokens** and again recovers every token. An additional check verifies every one of the 30 possible alphabet tokens round-trips under **each** of the four matrices. These affirm the mathematical inverse while remaining independent of unknown-page plaintext.
 
+## Independent Fibonacci-ratio projective cipher: key-free fixedpoint obstruction
+
+The page's **Fibonacci** generator and adjacent **infinity** figure also motivate a second exact 30-symbol projective map **without choosing four arbitrary 2×2 quadrants**. Ratios of successive Fibonacci numbers satisfy the invertible recurrence
+
+```text
+T(x) = 1 + 1/x  over P¹(F29)
+T(0) = ∞, T(∞) = 1
+```
+
+Its quadratic fixedpoint condition is `x²−x−1=0 mod29`, with exact solutions **6 and 24**. These correspond to GP rune identities **G** and **A**. The p15 generator explicitly uses **3301**, whose residue modulo29 is **24**. In an independently printed object, p39's red triad at positions119–121 encodes `Q(x)=27+5x+15x²=15(x−24)²`; thus **24 is also p39's double root**. At the same location p3's red triple `[13,23,2]` does not vanish at24. This is a candidate interpage link through an elementary Fibonacci operation that uses the *literal* p15 Fibonacci information and infinity, without the separate signed-matrix assumption described in the existing [p15/p39 matrix study](lp2-p15-p39-signed-matrix-eigen-crosslink.md). It is **not an authenticated authored cipher instruction**.
+
+The exact group action has order14: it fixes two runes **G/A** and partitions the other **28** GP30 symbols into two 14-cycles. A solver might use the 16 visible spiral numbers to choose powers `T^k` as a changing-key non-affine cipher. Crucially, **under every possible key schedule**, even a hidden changing `k_i∈{0,...,13}` dependent on ciphertext or plaintext, `T^k(A)=A` and `T^k(G)=G`, and no other input glyph can produce A or G. Hence the plaintext's A and G **counts are each exactly preserved** under every such map. This provides a cryptographic prediction independent of key-fitting.
+
+For the **12,956 actual original unknown rune tokens** the exact source counts are **A=482**, **G=438**. Against genuinely native GP English encoded **within printed word boundaries** from the unchanged Shakespeare and Gibran controls, an exhaustive test compares all **254,430** contiguous **12,956-rune windows**:
+
+| Source-native control | Matched windows | Number of A runes | Number of G runes | Windows satisfying original A or G count |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare, GP 217,644 runes | 204,689 | **746–983** | **107–231** | **0** |
+| Gibran, GP 62,696 runes | 49,741 | **787–974** | **138–298** | **0** |
+| Original unknown LP2 | 1 | **482** | **438** | Original |
+
+Both fixed-rune predictions fail in **opposite directions**, even after granting *any secret per-rune power state*. The original has too few A symbols and too many G symbols compared with every source-native window at this exact rune length. The independent original p57 genuine 95-rune solved GP sequence encrypts and decrypts **95/95** under a fixed source-spiral-selected power clock; every original rune likewise roundtrips under the same demonstration key. Neither roundtrip identifies a historical key.
+
+This is a **finite English-register exclusion under the source-matched 12,956-rune plain-length hypothesis**. If an unknown GP30 transport changes the number of plaintext letter positions by moving spaces, the exact same-window comparisons need reconditioning on its true rune count; otherwise the source-break count need not hold. It does not exclude an unfamiliar language, a different source register, or other projective transformations that move the two fixed symbols. The p39 golden fixedpoint supplies a plausible *clue to a candidate group action*, while the independent original symbol counts reject its direct all-powers native-register decryption. Do not expand into arbitrary affine conjugations, per-page replacement of the fixedpoints, or fitted variable-length streams without another author-visible instruction.
+
+**Independent reproducer:** [Fibonacci 14-state source and fixedpoint SFT](../sims/lp2_p15_projective_fibonacci_allstate_sft.cjs) proves both 14-cycles and the two fixed roots, checks original p3/p39 red triads, exhaustively scans both native sources without crossing English word boundaries in the digraph encoder, tests every secret power's A/G invariance, and decrypts a genuine solved-LP2 p57 plant. Both original projective SFTs pass [Windows GitHub Actions 43616645220](https://github.com/FlareZ123/liber-primus/actions/runs/43616645220).
+
 ## Decision
 
 The original p15 square and infinity glyph supply a possible **non-affine and variable-segmentation** reading, but these four exact projective maps cannot encode the observed amount of original source whitespace into a word-count-preserving English plaintext, even under **arbitrary secret per-position switching**. This is a new, source-bounded construction and a decisive no-key barrier; its concrete predecessor-state inverse is also nonlinguistic. It does **not** explain the original anti-doublet and within-word lag-five anomalies, so it is not a positive solution to Director #867 and supplies no reason to vary pole sets, invent a fifth matrix, or fit an alternate space symbol. A successor would first need a different original instruction selecting the cipher and a discriminating original-language prediction.
 
-**Reproducer:** [standalone Node 22 CommonJS SFT](../sims/lp2_p15_projective_infinity_quadrant_sft.cjs). Source inputs are the original `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-corpus.json` and the 16 image-transcribed p15 cells. The SFT asserts all 30 per-quadrant inverse pole classifications, exact original pole counts and every source/cipher inverse, with two genuine-GP plants. [Successful original-source Windows GitHub Actions run 43615833352](https://github.com/FlareZ123/liber-primus/actions/runs/43615833352), executed 14 November 2026. The workflow is manual-only and adds no scheduled CI.
+**Reproducer:** [standalone Node 22 CommonJS SFT](../sims/lp2_p15_projective_infinity_quadrant_sft.cjs). Source inputs are the original `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-corpus.json` and the 16 image-transcribed p15 cells. The SFT asserts all 30 per-quadrant inverse pole classifications, exact original pole counts and every source/cipher inverse, with two genuine-GP plants. [Successful original-source Windows GitHub Actions run 43616645220](https://github.com/FlareZ123/liber-primus/actions/runs/43615833352), executed 14 November 2026. The workflow is manual-only and adds no scheduled CI.
