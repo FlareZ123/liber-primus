@@ -176,6 +176,26 @@ const plantedOuter = plantedCipher.map(v => mod(7 * v + 3));
 assert.deepEqual(phasePairs(plantedOuter), nativePhase);
 assert.deepEqual(plantedOuter.map((v, i) =>
   mod(25 * (v - 3) - plantedKey[i])), firstPlain);
+// Much stronger theorem: ANY 203-periodic family of 203 wholly secret
+// symbol bijections (29! options at each phase) preserves same-phase
+// equality. A varying positive affine permutation for every phase is a
+// concrete plant, independent of source words or original fitted key.
+const phasePermutation = firstPlain.map((v, i) => {
+  const phase = i % period;
+  return mod((1 + phase % 28) * v + 7 * phase + 3);
+});
+assert.deepEqual(phasePairs(phasePermutation), nativePhase);
+const phaseUnpermuted = phasePermutation.map((v, i) => {
+  const phase = i % period;
+  const multiplier = 1 + phase % 28;
+  const inverse = Array.from({length: 29}, (_, x) => x)
+    .find(x => mod(x * multiplier) === 1);
+  assert.notEqual(inverse, undefined);
+  return mod(inverse * (v - 7 * phase - 3));
+});
+assert.deepEqual(phaseUnpermuted, firstPlain);
+const period203ArbitraryPhasePermutationPositive = true;
+
 
 
 /** @param {number} cipherRune
@@ -276,6 +296,7 @@ console.log(JSON.stringify({
   allSecret: {initialStates: 29 * 29, signs: 2,
     testedInverses: 29 * 29 * 2, keyIndependentOriginal: original},
   feedbackVariants,
+  period203ArbitraryPhasePermutationPositive,
   matchedNativeControls: {count: controls.length, min: controls[0],
     median: controls[149], max: controls[299]},
   positiveNativePlant: {initialKey: [9, 24],
