@@ -22,6 +22,7 @@
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 
 const original = JSON.parse(fs.readFileSync(
@@ -278,6 +279,7 @@ for (const test of tests) {
     runes: indices.length, repetitions: encoded.count,
     maskBits: encoded.maskBits, nonrepeatBits: encoded.rankBits,
     frameBytes: encoded.frame.length, payloadBytes: payload.length,
+    payloadSha256: crypto.createHash('sha256').update(payload).digest('hex'),
     first16PayloadHex: payload.subarray(0, 16).toString('hex'),
     first32Printable: payload.subarray(0, 32).toString('latin1')
       .replace(/[^\x20-\x7e]/g, '.'),
