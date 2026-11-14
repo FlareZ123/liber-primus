@@ -199,6 +199,76 @@ assert.deepEqual([
   alternateRegisters.OldEnglishBeowulf.E.min
 ], [15, 1381, 3, 1480]);
 
+
+// Stronger source-plaintext controls: preserve all 2896 genuine printed
+// word lengths, including words that span original line or page breaks.
+const transcription = pageTexts.join("%");
+const originalWords = [];
+let pendingWord = [];
+for (const glyph of transcription) {
+  if (rune.has(glyph)) {
+    pendingWord.push(rune.get(glyph));
+  } else if (glyph === "%" || glyph === "/" || /\s/u.test(glyph)) {
+    // Physical layout wraps do not end a printed word.
+  } else if (pendingWord.length) {
+    originalWords.push(pendingWord);
+    pendingWord = [];
+  }
+}
+if (pendingWord.length) originalWords.push(pendingWord);
+assert.equal(originalWords.length, 2896);
+assert.equal(originalWords.flat().length, 12956);
+assert.deepEqual(originalWords.flat(), allLines.flat());
+const wordCounts = originalWords.map(w => w.length);
+assert.equal(Math.max(...wordCounts), 14);
+
+let wordSamplingSeed = 0x3301aa6d;
+/** @returns {number} */
+function nextWordRandom() {
+  wordSamplingSeed = (Math.imul(wordSamplingSeed, 1664525) +
+    1013904223) >>> 0;
+  return wordSamplingSeed;
+}
+const shapeMatchedControls = {};
+for (const [name, file] of [
+  ["Shakespeare", "resources/control/shakespeare_first300k.txt"],
+  ["Gibran", "resources/control/gibran_prophet_58585.txt"],
+  ["Emerson", "resources/control/emerson_essays_2944.txt"]
+]) {
+  const buckets = Array.from({length: 15}, () => []);
+  const sourceWords = read(file).toUpperCase().match(/[A-Z]+/g) || [];
+  for (const sourceWord of sourceWords) {
+    const term = native(sourceWord, true); // source-calibrated IO rune.
+    if (term.length > 0 && term.length <= 14) {
+      buckets[term.length].push(term);
+    }
+  }
+  const E = [], rates = [];
+  for (let trial = 0; trial < 500; trial++) {
+    const selected = originalWords.map(w => {
+      const candidates = buckets[w.length];
+      assert.ok(candidates && candidates.length,
+        "No source-native word of length " + w.length);
+      return candidates[nextWordRandom() % candidates.length];
+    });
+    const tape = selected.flat();
+    assert.equal(tape.length, total);
+    E.push(tape.filter(x => x === e).length);
+    rates.push(profile(partition(tape)).rate);
+  }
+  assert.ok(E.every(n => n > observed.chapters.capacity));
+  assert.ok(rates.every(n => n > observed.chapters.rate));
+  shapeMatchedControls[name] = {
+    trials: E.length, independentNativeWords: sourceWords.length,
+    E: summary(E), nineChapterLinePositionRates: summary(rates)
+  };
+}
+assert.deepEqual([
+  shapeMatchedControls.Shakespeare.E.min,
+  shapeMatchedControls.Gibran.E.min,
+  shapeMatchedControls.Emerson.E.min
+], [1451, 1454, 1464]);
+
 let seed = 0x3301cafe;
 /** @returns {number} */
 function random32() {
@@ -340,7 +410,7 @@ const linePositionResetLowerBound = {
 console.log(JSON.stringify({
   classification: "source-native conditional all-key exclusion, no decrypt",
   original: {runes: total, lines: allLines.length, observed},
-  controls, alternateRegisters, positive, linePositionResetLowerBound,
+  controls, alternateRegisters, shapeMatchedControls, positive, linePositionResetLowerBound,
   exclusions: "repeated unknown GP29 position-specific key per printed line, one global key or nine independently keyed source-visible chapters",
   exceptions: "independently keyed lines/pages, changing state, nonnative prose, altered original text and intermediary transport",
 }, null, 2));
