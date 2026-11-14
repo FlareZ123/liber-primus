@@ -36,7 +36,7 @@ async function main() {
     console.log("PASS four date-locked 2015/16 original-pad source handles");
     return;
   }
-  if (!process.argv.includes("--network")) throw new Error("Use --network on a network-enabled runner");
+  // The existing manual-only Windows workflow invokes this committed source without arguments.
   const control = await acquire("https://web.archive.org/cdx/search/cdx?url=example.com&output=json&filter=statuscode:200&collapse=urlkey");
   console.log("WAYBACK CONTROL "+JSON.stringify(control));
   const other = await acquire("https://arquivo.pt/wayback/cdx?url=example.com&output=json&filter=statuscode:200");
