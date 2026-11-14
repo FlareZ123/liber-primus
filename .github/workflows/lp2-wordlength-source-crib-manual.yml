@@ -1,0 +1,17 @@
+name: LP2 source-word-length crib audit
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-crib:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Evaluate original input and source native controls
+        run: node sims/lp2_wordlength_source_crib_sft.cjs
