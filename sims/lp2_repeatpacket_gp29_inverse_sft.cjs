@@ -93,6 +93,8 @@ function run() {
   for (const mode of ["sorted", "cyclic"]) {
     let separators = 0, packets = 0, plantRunes = 0, ordinal = 0;
     const decoded = [];
+    const decodedPackets = [];
+    const parable = book.pages.find(p => p.page === 57).indices;
     const perChapter = [];
     for (const [start,end] of chapters) {
       const source = book.pages.filter(p => p.page >= start && p.page <= end)
@@ -107,10 +109,23 @@ function run() {
         const candidate = inverse(pack);
         assert.deepEqual(forward(candidate, pack.length), pack);
         decoded.push(...candidate);
+        decodedPackets.push(candidate);
         chapterRunes += candidate.length;
         const plantedPlain = nativePositive(pack.length, ordinal++);
         assert.deepEqual(inverse(forward(plantedPlain, pack.length)), plantedPlain);
         plantRunes += plantedPlain.length;
+        // A second source-native control: use the actual 95-rune clear
+        // p57 parable as one GP29 additive key rune for each packet.
+        const k = parable[ordinal - 1];
+        const keyedPlain = plantedPlain.slice();
+        const keyedCipher = keyedPlain.map(x => (x + k) % 29);
+        if (keyedCipher.length && (keyedCipher[0] === 0 ||
+            (pack.length === 1 && keyedCipher[0] === 28))) {
+          keyedCipher[0] = 1;
+          keyedPlain[0] = (1 - k + 29) % 29;
+        }
+        const cipherRanks = forward(keyedCipher, pack.length);
+        assert.deepEqual(inverse(cipherRanks).map(x => (x - k + 29) % 29), keyedPlain);
       }
       perChapter.push({pages:start+"-"+end, cipherRunes:source.length,
         delimiters:section.packets.length-1, plaintextRunes:chapterRunes});
@@ -122,7 +137,23 @@ function run() {
       : {n:12748, ic:0.034466897703512266};
     assert.equal(decoded.length, expected.n);
     assert.ok(Math.abs(ioc(decoded) - expected.ic) < 1e-12);
+    const meanPacketIoC = decodedPackets.reduce((sum,p) =>
+      sum + (p.length > 1 ? ioc(p) * p.length : 0), 0) / decoded.length;
+    const packetIocExpected = mode === "sorted"
+      ? 0.03433959015950163 : 0.03464409924579924;
+    assert.ok(Math.abs(meanPacketIoC - packetIocExpected) < 1e-12);
+    const parableKeyReadings = [];
+    for (const order of ["forward", "reverse"]) {
+      for (const sign of [-1, 1]) {
+        const shifted = decodedPackets.flatMap((pack,i) =>
+          pack.map(value => (value + sign * parable[order === "forward" ? i : 94-i] + 29) % 29));
+        parableKeyReadings.push({order, sign, ioc:ioc(shifted),
+          first20:shifted.slice(0,20).map(i => book.translit[i]).join(" ")});
+      }
+    }
+    assert.ok(parableKeyReadings.every(x => x.ioc < 0.04));
     outputs.push({mode, packets, delimiters:separators,
+      meanPacketIoC, parableKeyReadings,
       runeCount:decoded.length, ioc:ioc(decoded), positiveNativeRunes:plantRunes,
       first40:decoded.slice(0,40).map(i => book.translit[i]).join(" "),
       perChapter});
