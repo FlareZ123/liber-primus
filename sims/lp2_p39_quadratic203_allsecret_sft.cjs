@@ -143,6 +143,7 @@ function random32() {
 }
 
 const controls = [];
+const controlTapes = [];
 let firstPlain = [];
 for (let trial = 0; trial < 300; trial++) {
   const native = [];
@@ -152,6 +153,7 @@ for (let trial = 0; trial < 300; trial++) {
   }
   assert.equal(native.length, cipher.length);
   if (trial === 0) firstPlain = native;
+  controlTapes.push(native);
   controls.push(phasePairs(native).rate);
 }
 controls.sort((a, b) => a - b);
@@ -159,6 +161,61 @@ assert(Math.abs(controls[0] - 0.05458061397147691) < 1e-12);
 assert(Math.abs(controls[149] - 0.05975344452501813) < 1e-12);
 assert(Math.abs(controls[299] - 0.06540971718636693) < 1e-12);
 assert(original.rate < controls[0]);
+
+
+// A distinct source-visible state clock: restart the same unknown 203-phase
+// substitution at each original physical page boundary in the long floral
+// chapter. No key, alphabet, number of layers or plaintext selected.
+const resetChunks = bodyPages.map(p => p.page === 40
+  ? p.indices.slice(8) : p.indices);
+assert.deepEqual(resetChunks.flat(), cipher);
+const resetLabels = resetChunks.flatMap(chunk =>
+  chunk.map((_, i) => i % period));
+assert.equal(resetLabels.length, 3000);
+
+/** @param {number[]} symbols
+ * @param {number[]} labels
+ * @returns {{pairs:number,total:number,rate:number}} */
+function phaseLabeledPairs(symbols, labels) {
+  assert.equal(symbols.length, labels.length);
+  const bins = Array.from({length: period}, () => new Int32Array(29));
+  const hist = new Int32Array(period);
+  let pairs = 0, total = 0;
+  for (let i = 0; i < symbols.length; i++) {
+    const phase = labels[i];
+    pairs += bins[phase][symbols[i]];
+    total += hist[phase];
+    bins[phase][symbols[i]]++;
+    hist[phase]++;
+  }
+  return {pairs, total, rate: pairs / total};
+}
+const resetOriginal = phaseLabeledPairs(cipher, resetLabels);
+assert.equal(resetOriginal.pairs, 855);
+assert.equal(resetOriginal.total, 23501);
+const resetNative = controlTapes.map(x =>
+  phaseLabeledPairs(x, resetLabels).pairs).sort((a, b) => a - b);
+assert(resetNative[0] > resetOriginal.pairs);
+
+// The same secret seed and a nonidentity 203-phase bijection, reset at every
+// page, exactly preserves source-native same-phase symbol equalities.
+const resetPad = resetChunks.flatMap(chunk => pad(9, 24, chunk.length));
+const resetCipherPlant = firstPlain.map((v, i) =>
+  mod(7 * (v + resetPad[i]) + 3 + 5 * resetLabels[i]));
+assert.deepEqual(
+  phaseLabeledPairs(resetCipherPlant, resetLabels),
+  phaseLabeledPairs(firstPlain, resetLabels));
+assert.deepEqual(resetCipherPlant.map((v, i) =>
+  mod(25 * (v - 3 - 5 * resetLabels[i]) - resetPad[i])), firstPlain);
+
+const resetSameSecretAcrossPhysicalPages = {
+  original: resetOriginal, pageRuneLengths: resetChunks.map(c => c.length),
+  nativeWordMatchedControls: {
+    count: resetNative.length, min: resetNative[0],
+    median: resetNative[149], max: resetNative[299]
+  },
+  hiddenPhaseAlphabetPositive: true
+};
 
 const plantedKey = pad(9, 24, firstPlain.length);
 const plantedCipher = firstPlain.map((v, i) => mod(v + plantedKey[i]));
@@ -297,6 +354,7 @@ console.log(JSON.stringify({
     testedInverses: 29 * 29 * 2, keyIndependentOriginal: original},
   feedbackVariants,
   period203ArbitraryPhasePermutationPositive,
+  resetSameSecretAcrossPhysicalPages,
   matchedNativeControls: {count: controls.length, min: controls[0],
     median: controls[149], max: controls[299]},
   positiveNativePlant: {initialKey: [9, 24],
