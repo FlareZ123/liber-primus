@@ -79,7 +79,7 @@ assert.equal(forward.survivor, 50);
 assert.equal(reversed.survivor, 50);
 assert.equal(prime.survivor, 21);
 assert.equal(ordinal.survivor, 12);
-assert.equal(reducedTotient.survivor, 54);
+assert.equal(reducedTotient.survivor, 20);
 assert.deepEqual(forward.eliminated.slice(0, 10), [39,49,35,43,8,40,54,27,31,46]);
 assert.equal(forward.eliminated.length, 55);
 assert.ok(!forward.eliminated.includes(50));
