@@ -92,6 +92,7 @@ function run() {
   const outputs = [];
   for (const mode of ["sorted", "cyclic"]) {
     let separators = 0, packets = 0, plantRunes = 0, ordinal = 0;
+    let plantedWeightedIoCSum = 0;
     const decoded = [];
     const decodedPackets = [];
     const parable = book.pages.find(p => p.page === 57).indices;
@@ -114,6 +115,8 @@ function run() {
         const plantedPlain = nativePositive(pack.length, ordinal++);
         assert.deepEqual(inverse(forward(plantedPlain, pack.length)), plantedPlain);
         plantRunes += plantedPlain.length;
+        if (plantedPlain.length > 1)
+          plantedWeightedIoCSum += ioc(plantedPlain) * plantedPlain.length;
         // A second source-native control: use the actual 95-rune clear
         // p57 parable as one GP29 additive key rune for each packet.
         const k = parable[ordinal - 1];
@@ -152,8 +155,10 @@ function run() {
       }
     }
     assert.ok(parableKeyReadings.every(x => x.ioc < 0.04));
+    const plantedNativeMeanIoC = plantedWeightedIoCSum / plantRunes;
+    assert.ok(plantedNativeMeanIoC > 0.06);
     outputs.push({mode, packets, delimiters:separators,
-      meanPacketIoC, parableKeyReadings,
+      meanPacketIoC, plantedNativeMeanIoC, parableKeyReadings,
       runeCount:decoded.length, ioc:ioc(decoded), positiveNativeRunes:plantRunes,
       first40:decoded.slice(0,40).map(i => book.translit[i]).join(" "),
       perChapter});
