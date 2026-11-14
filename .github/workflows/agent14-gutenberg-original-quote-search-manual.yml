@@ -1,0 +1,35 @@
+name: Agent14 original LP2 long-quote Gutenberg source acquisition
+on:
+  workflow_dispatch:
+    inputs:
+      book_limit:
+        description: 'Number of books to inspect, 0 for all'
+        required: true
+        default: '1000'
+        type: choice
+        options:
+          - '1000'
+          - '10000'
+          - '0'
+
+permissions:
+  contents: read
+
+jobs:
+  quote-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original-page quotation matcher and controls
+        run: python sims/lp2_hf_gutenberg_quote_crib_sft.py --selftest
+      - name: Install public-domain dataset streaming dependencies
+        run: python -m pip install "datasets>=4.0,<5" "pyarrow>=20,<25"
+      - name: Source-matched long quoted-text crib acquisition
+        env:
+          BOOK_LIMIT: ${{ inputs.book_limit }}
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python sims/lp2_hf_gutenberg_quote_crib_sft.py --limit "$BOOK_LIMIT"
