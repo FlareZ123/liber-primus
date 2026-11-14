@@ -123,8 +123,8 @@ async function main(){
     for(const x of pair){out.push(x);console.log("OBJECT "+JSON.stringify(x));}
   }
   console.log("SUMMARY "+JSON.stringify({
-    sourceUrls:urls.length,liveDownloaded:out.flatMap(x=>x.answers)
-      .filter(x=>x.recovered).map(x=>x.recovered),
+    sourceUrls:urls.length,liveDownloaded:out.flatMap(x=>x.answers).flatMap(x=>x.sourceDownloads || [])
+      .filter(x=>x.recovered).map(x=>({file:x.recovered,sha256:x.sha256,bytes:x.bytes})),
     caution:"Original URL host response does not alone prove 2014 byte authenticity; inspect ZIP statically, never execute JAR"
   }));
 }
