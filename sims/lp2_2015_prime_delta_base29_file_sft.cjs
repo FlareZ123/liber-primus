@@ -99,7 +99,7 @@ function main() {
   const bytes = base29ToBytes(deltas, width);
   assert.equal(bytes.subarray(0, 16).toString('hex'), '16701bee70c4b19d90abf1d05127911a');
   assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),
-    '6e81c23349c766eaabeab0fbe4caba13ae791077083ec64f43f5417873e8682');
+    '6e81c23349c766eaabeab0fbe4caba13ae791077083ec64f43f5417873e8682e');
 
   const hasSignature = {
     gzip: bytes.subarray(0, 3).equals(Buffer.from('1f8b08', 'hex')),
