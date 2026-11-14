@@ -1,6 +1,6 @@
 # 2015 OnionCity original-index route: what survives and what would yield plaintext
 
-**Status (14 November 2026):** A contemporaneous, authenticated *index endpoint* is identified, but no dated original 2015 sitemap, full Cicada-linked URL, response entity or p56 digest preimage has been recovered. A live archival-CDX probe is **inconclusive because every positive control failed**. This is an actionable source-acquisition boundary, not a negative historical coverage claim.
+**Status (14 November 2026):** A contemporaneous, authenticated *index endpoint* is identified, but no dated original 2015 sitemap, full Cicada-linked URL, response entity or p56 digest preimage has been recovered. A 2015 Common Crawl query is **inconclusive because every control failed**; a genuinely independent 2015 Arquivo.pt URL-index query has now yielded a **positive-controlled, narrowly scoped absence of exact requested URL records**. This is an actionable source-acquisition boundary, not a negative historical coverage claim.
 
 ## Source-selected human path
 
@@ -24,8 +24,14 @@ Executable read-only Node22/CommonJS probe: [`sims/lp2_onioncity_2015_sitemap_cd
 
 The new probe and its results are distinct from the already closed 2014 IA OnionCity WARC collection (#794 issue context), 2014 Common Crawl (#786), March/late-2014 Ahmia (#792), and the 2015 Moore–Rid text-sanitized crawl (#768).
 
+## Independent archival URL-index result with working controls
+
+[\`sims/lp2_onioncity_2015_arquivo_cdx_sft.cjs\`](../sims/lp2_onioncity_2015_arquivo_cdx_sft.cjs) queried the official [Arquivo.pt CDX API](https://arquivo.pt/wayback/cdx/api-docs/v3), \ `from=2015&to=2015&output=json&limit=20\ `, under explicit original URLs. Its manual-only Node22/Windows [CI run 43531700518](https://github.com/FlareZ123/liber-primus/actions/runs/43531700518) succeeded on 14 November 2026. The index **passed both independent positive controls** with 20 2015 capture records each for \ `http://www.publico.pt/\ ` and \ `http://www.sapo.pt/\ `, including dated 200 responses and published ARC filenames.
+
+The **eight target URL queries** all returned **HTTP 200 with zero CDX records**: \ `http://onion.city/sitemap.xml\ `, \ `http://www.onion.city/sitemap.xml\ `, \ `http://onion.city/\ `, \ `http://skunksworkedp2cg.onion.city/sites.txt\ `, \ `http://xlmvhk3rpdux26dz.onion.city/\ `, \ `http://kkkkkku5juzqh33a.onion.city/\ `, \ `http://ky2khlqdf7qdznac.onion.city/\ ` and \ `https://ahmia.fi/onions/\ `. The archival service's documented 200/empty response denotes no matches **in its own exact-URL 2015 capture register**. This is an actual independent archive-scoped negative; it does not establish absence from Internet Archive, private historical backups, uncited subpages or other capture periods.
+
 ## Decision and remaining unknown
 
 **Best supported next opportunity:** locate a publicly preserved, individually time-stamped **2015 `onion.city/sitemap.xml` XML snapshot, or archived Google Custom Search result page** retaining original full URLs. The host `ky2khlqdf7qdznac.onion` is a *coverage probe only*, not a prerequisite for a distinct target to exist. A real source-linked URL would justify checking *public original 2014/2015 response bytes* for the precise p56 digest. Do not infer original response bytes from Google snippets, normalized HTML, a sitemap-domain listing, or today's re-used onion addresses. No direct onion crawling, private logs, owner contacts or inaccessible custody requests are licensed by this work.
 
-**Current verdict:** historical source route clarified; no authentic unknown-page plaintext, key, new continuation URL, or final destination. Keep the index hypothesis explicitly conditional until an original dated witness is recovered or a working positive-controlled public index conclusively excludes the specified captures.
+**Current verdict:** the fixed Arquivo exact-URL 2015 register gives no witness while the Common Crawl endpoint remains inaccessible; no authentic unknown-page plaintext, key, new continuation URL, or final destination. Keep the index hypothesis explicitly conditional until an original dated witness is recovered or a working positive-controlled public index conclusively excludes the specified captures.
