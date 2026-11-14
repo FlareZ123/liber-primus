@@ -22,3 +22,5 @@ jobs:
         run: node sims/lp2_p15_p39_p50_crt_hill_original_sft.cjs
       - name: Decode original LP1 p05 mirror-center against historical 2014 magic square
         run: node sims/lp1_p05_magic_square_nibble_inverse_sft.cjs
+      - name: P55 terminal pointer, p27 differential and p50 cell103 original-input gate
+        run: node sims/lp2_p55_p27_delta_p50_103_exact_sft.cjs
