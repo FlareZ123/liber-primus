@@ -1,0 +1,13 @@
+name: Agent12 period Jan2015 image preview gate
+on:
+  workflow_dispatch:
+jobs:
+  original-image-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image reader
+        run: python -m pip install -q pillow
+      - name: Fetch only three original Jan2015 uploaded candidates
+        run: python sims/lp2_2015_wiki_adjacent_image_preview.py
