@@ -14,9 +14,11 @@ const inputs=[
 ];
 /** @param {string} filename @param {string} sha @returns {any} */
 function source(filename,sha){
- const data=fs.readFileSync(path.join(root,filename));
+ const raw=fs.readFileSync(path.join(root,filename));
+ // Windows Git checkout may expand LF to CRLF; the pinned Git blob uses LF.
+ const data=Buffer.from(raw.toString("utf8").replace(/\r\n/g,"\n"),"utf8");
  const git=crypto.createHash("sha1").update(Buffer.from("blob "+data.length+"\0")).update(data).digest("hex");
- assert.equal(git,sha,"Pinned input changed: "+filename);
+ assert.equal(git,sha,"Pinned source Git blob changed: "+filename);
  return JSON.parse(data.toString("utf8"));
 }
 const corpus=source(...inputs[0]),ink=source(...inputs[1]);
