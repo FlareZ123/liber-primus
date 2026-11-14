@@ -126,8 +126,8 @@ const p27Words = unsolved.filter((w) => w.page === 27);
 assert.equal(p27Words.length, 52);
 assert.deepEqual(p27Words.filter((w) => [34,66].includes(w.start))
   .map((w) => [w.start, w.sum]), [[34,103],[66,104]]);
-assert.equal(grid.rows, 32);
-assert.equal(grid.columns, 8);
+assert.equal(grid.rows.length, 32);
+assert.ok(grid.rows.every((row) => row.length === 8));
 assert.equal(bytes[102], 32);
 assert.equal(bytes[103], 206);
 assert.equal(206 - 32, 3 * 58);
