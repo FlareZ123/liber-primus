@@ -12,21 +12,23 @@ const root = path.resolve(__dirname, "..");
 const read = rel => fs.readFileSync(path.join(root, rel), "utf8");
 
 const raw = read("resources/lp2-transcription.txt").split("%").slice(0, 55).join("%");
-/** @type {Array<{length:number,start:number}>} */
+/** @type {Array<{length:number,start:number,page:number}>} */
 const words = [];
-let length = 0, start = 0, runePosition = 0;
+let length = 0, start = 0, runePosition = 0, page = 0, wordPage = 0;
 function finish() {
   if (!length) return;
-  words.push({length, start});
+  words.push({length, start, page:wordPage});
   length = 0;
 }
 for (const ch of raw) {
   if (/[\u16A0-\u16FF]/u.test(ch)) {
-    if (!length) start = runePosition;
+    if (!length) {start = runePosition; wordPage = page;}
     length++;
     runePosition++;
-  } else if (ch === "/" || ch === "%" || /\s/u.test(ch)) {
-    // Printed line and page breaks can continue a single word.
+  } else if (ch === "%") {
+    page++;
+  } else if (ch === "/" || /\s/u.test(ch)) {
+    // Printed line breaks can continue a single word.
   } else finish();
 }
 finish();
@@ -38,6 +40,11 @@ const chapters = chapterStarts.slice(1).map((end, j) =>
     .map(w => w.length));
 assert.deepEqual(chapters.map(a => a.length),
   [158,255,383,437,224,326,378,669,66]);
+const pageChunks = Array.from({length:55}, (_, i) =>
+  words.filter(w => w.page === i).map(w => w.length));
+assert.equal(pageChunks.reduce((s, a) => s + a.length, 0), 2896);
+assert.equal(Math.min(...pageChunks.map(x => x.length)), 16);
+assert.equal(Math.max(...pageChunks.map(x => x.length)), 71);
 
 const pairs = new Set(["TH","NG","EO","OE","AE","IA","EA","IO"]);
 /**
@@ -119,6 +126,20 @@ function moments(a) {
   const sd = Math.sqrt(a.reduce((s, x) => s + (x - mean) ** 2, 0) / a.length);
   return {mean, sd};
 }
+/** Separate page-shuffle RNG: the chapter-level Monte Carlo remains unchanged. */
+let pageSeed = 0x55c0ffee;
+/** @param {number[]} a */
+function shufflePage(a) {
+  const b = a.slice();
+  for (let i = b.length - 1; i > 0; i--) {
+    pageSeed ^= pageSeed << 13;
+    pageSeed ^= pageSeed >>> 17;
+    pageSeed ^= pageSeed << 5;
+    const j = (pageSeed >>> 0) % (i + 1);
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
 const results = [];
 for (let h = 0; h < sources.length; h++) {
   const model = fit(sources.filter((_, i) => i !== h).map(x => x.lengths));
@@ -142,6 +163,35 @@ for (let h = 0; h < sources.length; h++) {
   };
   assert.ok(Math.abs(result.originalZ) < 2, JSON.stringify(result));
   assert.ok(result.nativeZ > 5, JSON.stringify(result));
+  // A pure permutation of physical pages leaves all within-page pairs intact.
+  // Word fragments continuing onto another page belong to their start page.
+  const pageOriginal = chapterScore(pageChunks, model);
+  const pageOriginalSamples = Array.from({length:900}, () =>
+    chapterScore(pageChunks.map(shufflePage), model));
+  const pageOriginalNull = moments(pageOriginalSamples);
+  let offset = 0;
+  const nativePages = pageChunks.map(p => {
+    const a = native.slice(offset, offset + p.length);
+    offset += p.length;
+    return a;
+  });
+  assert.equal(offset, native.length);
+  const pageNative = chapterScore(nativePages, model);
+  const pageNativeSamples = Array.from({length:500}, () =>
+    chapterScore(nativePages.map(shufflePage), model));
+  const pageNativeNull = moments(pageNativeSamples);
+  result.withinPage = {
+    original: pageOriginal,
+    null: pageOriginalNull,
+    z: (pageOriginal - pageOriginalNull.mean) / pageOriginalNull.sd,
+    upperP: (1 + pageOriginalSamples.filter(x => x >= pageOriginal).length) / 901,
+    native: pageNative,
+    nativeNull: pageNativeNull,
+    nativeZ: (pageNative - pageNativeNull.mean) / pageNativeNull.sd,
+    nativeUpperP: (1 + pageNativeSamples.filter(x => x >= pageNative).length) / 501
+  };
+  assert.ok(Math.abs(result.withinPage.z) < 2, JSON.stringify(result));
+  assert.ok(result.withinPage.nativeZ > 5, JSON.stringify(result));
   results.push(result);
 }
 console.log(JSON.stringify({
