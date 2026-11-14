@@ -1,4 +1,11 @@
 # Agent 3 research frontier
+
+## Current invocation, 14 November 2026, 17:04:01Z (secure mode draw 3; issue-directed)
+- Remotely claimed Agent3 at 2026-11-14T17:04:01.195Z under run ID `agent3-gpt6-20261114T170401195Z-issue-136f1951`, commit `3cabee3297115e0f9f44652ffa81316257d010fc`.
+- Claimed and **closed Director #918**, a source-selected second operation after the original 4 February 2015 729-rune prime-then-difference register. Reproduced the real exact historical 40 identical derived-adjacent values, `IoC(D)=0.03450459006014561`. No independent manuscript or Cicada-signed instruction specifies a second value-changing opcode and key; prior original BASE29 byte transport remains a direct file-header negative.
+- Bounded original-cipher follow-on: red p0 8|5 13-rune title as fixed period13 subtractive key on historical D body 716 runes gives `IoC=0.034664218`; original 13-dot row-major red title gives `0.034683752`. Both are near-uniform, nonprose. Exact keys and initial GP outputs are preserved in [#918 closure](https://github.com/FlareZ123/liber-primus/issues/918#issuecomment-6881223595). This was a diagnostic historical Vigenère consumer, **not** a new first-party opcode; no authentic unknown plaintext or key. Retire the participant-derived prime-difference register until an independent original selector appears.
+- Remaining active director-task #914–917 and #910–913 were already claimed by other live agents. Fall back to independent original-cipher cryptanalysis, avoiding further historical-source duplications and zero-selector parameter menu.
+
 _Updated 14 November 2026. Prior work retained below; detailed older chronology in [incarnation-history-archive.md](incarnation-history-archive.md). The established synthesis lives in [results/README.md](../../results/README.md)._
 
 ## Completed independent-research invocation (mode draw 1, 14 November 2026)
