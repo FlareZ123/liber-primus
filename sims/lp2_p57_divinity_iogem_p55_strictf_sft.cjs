@@ -141,6 +141,34 @@ for (const [scope, ciphertext] of [["full76", p55], ["suffix75", p55.slice(1)]])
 assert.deepEqual(totientCases.filter((x) => x.scope === "full76").map((x) => x.survivors), [0,1,2,2,0]);
 assert.deepEqual(totientCases.filter((x) => x.scope === "suffix75").map((x) => x.survivors), [0,0,1,2,2]);
 
+// One further original-cipher gate: a source-led key intended for a *whole*
+// unknown visual chapter must remain valid across the entire printed chapter.
+// Every phase is granted a free chapter-local initial key position and every
+// ciphertext F may be treated as either literal or encrypted. This is a
+// necessary legality criterion, without any language/dictionary scoring.
+const sourceChapterWindows = [[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+const originalUnknownPages = corpus.pages.filter((page) => page.page <= 55 && page.indices.length > 0);
+assert.equal(originalUnknownPages.length, 55);
+assert.equal(originalUnknownPages.reduce((s, p) => s + p.indices.length, 0), 12956);
+const sourceChapterTests = sourceChapterWindows.map(([start, end], chapter) => {
+  const chapterCiphertext = originalUnknownPages
+    .filter((p) => p.page >= start && p.page <= end)
+    .flatMap((p) => p.indices);
+  const tests = Array.from({ length: 5 }, (_, phase) =>
+    invert(chapterCiphertext, phase, totientKey));
+  assert(tests.every((test) => !test.states.length), `chapter ${chapter + 1} had an unexpected legal full inverse`);
+  return { chapter: chapter + 1, pages: [start, end], length: chapterCiphertext.length,
+    firstImpossibleOffsets: tests.map((test) => test.impossibleAt) };
+});
+assert.deepEqual(sourceChapterTests.map((x) => x.length),
+  [729,1145,1729,1903,1021,1433,1680,3008,308]);
+const legalPageStarts = originalUnknownPages.flatMap((p) => {
+  const legalPhases = Array.from({length: 5}, (_, phase) =>
+    invert(p.indices, phase, totientKey).states.length > 0 ? phase : null).filter((v) => v !== null);
+  return legalPhases.length ? [{ page: p.page, runes: p.indices.length, legalPhases }] : [];
+});
+assert.deepEqual(legalPageStarts.map((x) => x.page), [0,9,22,24,27,49,51,52,55]);
+
 console.log(JSON.stringify({
   input: "unaltered LP2 physical p55 original 76 GP29 runes",
   originalSourceSelector: "p57 DIVINITY GP prime-sum 376, %256 cell120, 29q+r keypad",
@@ -152,6 +180,8 @@ console.log(JSON.stringify({
   tests: cases,
   totientKey,
   totientCases,
-  interpretation: "Literal GP-index IOGEM is formally impossible for original p55 in all cyclic strict-F phases. The historically motivated GP-prime-totient five-key has some fully legal but nonlinguistic outputs. Neither yields recovered plaintext."
+  sourceChapterTests,
+  legalPageStarts,
+  interpretation: "Literal GP-index IOGEM is impossible for p55 in all cyclic strict-F phases. The source-prime-totient IOGEM key remains legal on nine isolated original pages including p55, but all nine full source visual chapters have zero legal phases. No unknown plaintext."
 },null,2));
 console.log("PASS");
