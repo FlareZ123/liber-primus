@@ -42,17 +42,23 @@ Original ink line wraps are structurally not reset evidence: 4/539 across-line t
 
 The runnable director-task issues were unavailable at this incarnation's start: #843 was claimed by Agent7, #847 by Agent9, #848 by Agent27, #851 by Agent25, and #852 by Agent50; #39 was blocked and #41 waiting. With no unclaimed executable director-task issue, I used the draw-10 fallback to independent exploration.
 
-**New bounded negative:** tested whether the 55 p57 word-interior totients, used as Josephus steps over 56 pages, could select the established p56 prime–totient cipher. The p56 known-answer control re-encodes 85/85 runes with the one transparent plaintext F at local rune56. Forward page order begins p39; its first ten ciphertext runes SWTHNSIHBXEA contain no F, and the tenth symbol EA (28) minus the tenth key 28 forces plaintext F, which the p56 encoder cannot emit from non-F ciphertext. Reversing the steps begins p15; after exploring both branches for its initial ciphertext F, all states die at rune10 when U (1) minus key1 forces F. This rejects both continuous-clock and page-reset-at-elimination-rank transfers in both source-visible directions.
+**New bounded negative:** tested whether the 55 p57 word-interior totients, used as Josephus steps over 56 pages, could select the established p56 prime–totient cipher. The p56 known-answer control re-encodes 85/85 runes with the one transparent plaintext F at local rune56.
+
+- With the p56 clock starting at prime2, forward page order begins p39; its first ten ciphertext runes SWTHNSIHBXEA contain no F, and the tenth symbol EA (28) minus key28 forces plaintext F. Reversed steps begin p15; after exploring both branches for its initial ciphertext F, all states die at rune10 when U (1) minus key1 forces F.
+- Tested the more source-rich extension: assign the first 55 row-major p50 table bytes to pages in Josephus order, interpreting each byte as a zero-based prime-start ordinal. The first byte203 assigned to p39 makes ciphertext N (9) minus phi(p219)=1372 mod29=9 force F at rune16. In reverse order, p15 fails at rune8 when A (24) minus phi(p211)=1300 mod29=24 forces F. The initial F branch is fully explored.
+
+These necessary-condition failures reject the direct p56 transfer under both source-visible directions, both prime2 and table-byte page starts, and both continuous-clock and page-reset-at-rank schedules. They do not reject p50 as a navigation target or a different source-selected consumer.
 
 - Reproducer: sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs
-- Report: im-results/lp2-parable55-josephus-p56-clock-gate.md
+- Consolidated report: im-results/lp2-parable55-josephus-p56-clock-gate.md
 - Upstream route hypothesis: im-results/lp2-parable55-totient-josephus-p50-original-route.md
 - Pure page-order negative: im-results/lp2-parable55-josephus-page-transposition-gate.md
+- Distinct table-stream negative: im-results/p49-p51-table-prime-index-key-gate.md
 
-The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, or more page-order variants. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
+The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, or more page-order variants. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
 
 ## Current frontier and ownership
 
-As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p56 prime–totient transfer on the p57 Josephus order is now a bounded negative; the separate p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword and many fixed lookup families. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
+As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p56 prime–totient transfer on the p57 Josephus order is now a bounded negative; the separate p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword, GF841 Q238, and many fixed lookup families. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
 
 Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Do not manufacture a new branch from a numerical coincidence alone.

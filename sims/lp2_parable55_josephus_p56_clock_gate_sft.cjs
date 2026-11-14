@@ -1,16 +1,16 @@
 "use strict";
 
 /**
- * Bounded original-source test: does p57's 55-interior Josephus page order
- * select the established p56 prime-totient cipher as a page-reading clock?
+ * Bounded original-source tests of p57's 55-interior Josephus page order
+ * as a selector for the established p56 prime-totient cipher.
  *
  * Node.js 22, CommonJS, no dependencies.
  * Run: node sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs
  *
- * This test checks the two source-visible counting directions. It also
- * verifies the p56 known-answer cipher before testing either unknown-page
- * route. A strict plaintext-F transparency rule is enforced: plaintext F
- * is copied to ciphertext F and does not consume a key symbol.
+ * Checks both source-visible Josephus directions and three fixed page-start
+ * readings: prime-2 baseline, first-55 p50 table bytes as zero-based prime
+ * ordinals assigned in elimination order, and the reverse-direction analog.
+ * It verifies the p56 known-answer cipher before testing unknown pages.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -20,6 +20,7 @@ const root = path.resolve(__dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/lp2-transcription.txt");
+const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const segments = transcription.split(/^\s*%\s*$/m);
 assert.equal(segments.length, 57);
 
@@ -189,30 +190,62 @@ const reproducedP56 = p56Plain.map(plain => {
 assert.deepEqual(reproducedP56, corpus.pages[56].indices);
 assert.equal(consumed, 84);
 
-// The first page has rank zero in either elimination order. Therefore this
-// necessary-condition check rejects both a continuous clock over the route
-// and a per-page clock reset to that page's elimination rank.
-const forwardFailure = firstImpossible(forward.eliminated[0], 0);
-const reverseFailure = firstImpossible(reverseSteps.eliminated[0], 0);
-assert.equal(forwardFailure.page, 39);
-assert.equal(forwardFailure.failAt, 9);
-assert.equal(forwardFailure.cipher, 28);
-assert.equal(forwardFailure.cases.length, 1);
-assert.equal(forwardFailure.cases[0].keyMod29, 28);
-assert.equal(forwardFailure.cases[0].plaintext, 0);
-assert.deepEqual(forwardFailure.prefixLiteralFPositions, []);
+// Candidate A: p56 stream begins at prime 2, with either a continuous clock
+// over the route or a per-page reset to the page's elimination rank.
+const forwardPrime2 = firstImpossible(forward.eliminated[0], 0);
+const reversePrime2 = firstImpossible(reverseSteps.eliminated[0], 0);
+assert.equal(forwardPrime2.page, 39);
+assert.equal(forwardPrime2.failAt, 9);
+assert.equal(forwardPrime2.cipher, 28);
+assert.equal(forwardPrime2.cases.length, 1);
+assert.equal(forwardPrime2.cases[0].keyMod29, 28);
+assert.equal(forwardPrime2.cases[0].plaintext, 0);
+assert.deepEqual(forwardPrime2.prefixLiteralFPositions, []);
+assert.equal(reversePrime2.page, 15);
+assert.equal(reversePrime2.failAt, 10);
+assert.equal(reversePrime2.cipher, 1);
+assert.deepEqual(reversePrime2.statesBefore, [10]);
+assert.equal(reversePrime2.cases.length, 1);
+assert.equal(reversePrime2.cases[0].keyMod29, 1);
+assert.equal(reversePrime2.cases[0].plaintext, 0);
+assert.deepEqual(reversePrime2.prefixLiteralFPositions, [0]);
 
-assert.equal(reverseFailure.page, 15);
-assert.equal(reverseFailure.failAt, 10);
-assert.equal(reverseFailure.cipher, 1);
-assert.deepEqual(reverseFailure.statesBefore, [10]);
-assert.equal(reverseFailure.cases.length, 1);
-assert.equal(reverseFailure.cases[0].keyMod29, 1);
-assert.equal(reverseFailure.cases[0].plaintext, 0);
-assert.deepEqual(reverseFailure.prefixLiteralFPositions, [0]);
+// Candidate B: the first 55 row-major p50 table bytes are zero-based prime
+// start ordinals, one per page in the Josephus elimination order. The first
+// byte is therefore the start ordinal for the first eliminated page.
+const tableBytes = grid.byte_rows.flat();
+assert.equal(tableBytes.length, 256);
+assert.equal(tableBytes[0], 203);
+const forwardTableStart = firstImpossible(forward.eliminated[0], tableBytes[0]);
+const reverseTableStart = firstImpossible(reverseSteps.eliminated[0], tableBytes[0]);
+assert.equal(forwardTableStart.page, 39);
+assert.equal(forwardTableStart.startOrdinal, 203);
+assert.equal(forwardTableStart.failAt, 16);
+assert.equal(forwardTableStart.cipher, 9);
+assert.deepEqual(forwardTableStart.statesBefore, [16]);
+assert.equal(forwardTableStart.cases.length, 1);
+assert.equal(forwardTableStart.cases[0].keyIndex, 219);
+assert.equal(forwardTableStart.cases[0].prime, 1373);
+assert.equal(forwardTableStart.cases[0].keyTotient, 1372);
+assert.equal(forwardTableStart.cases[0].keyMod29, 9);
+assert.equal(forwardTableStart.cases[0].plaintext, 0);
+assert.deepEqual(forwardTableStart.prefixLiteralFPositions, []);
+
+assert.equal(reverseTableStart.page, 15);
+assert.equal(reverseTableStart.startOrdinal, 203);
+assert.equal(reverseTableStart.failAt, 8);
+assert.equal(reverseTableStart.cipher, 24);
+assert.deepEqual(reverseTableStart.statesBefore, [8]);
+assert.equal(reverseTableStart.cases.length, 1);
+assert.equal(reverseTableStart.cases[0].keyIndex, 211);
+assert.equal(reverseTableStart.cases[0].prime, 1301);
+assert.equal(reverseTableStart.cases[0].keyTotient, 1300);
+assert.equal(reverseTableStart.cases[0].keyMod29, 24);
+assert.equal(reverseTableStart.cases[0].plaintext, 0);
+assert.deepEqual(reverseTableStart.prefixLiteralFPositions, [0]);
 
 console.log(JSON.stringify({
-  decision: "NO VALID p56 PRIME-TOTIENT TRANSFER UNDER EITHER JOSEPHUS DIRECTION",
+  decision: "NO VALID p56 PRIME-TOTIENT TRANSFER UNDER THE TESTED JOSEPHUS/TABLE STARTS",
   source: {
     p57PrintedWords: p57Words.length,
     p57InteriorRunes: interiors.length,
@@ -227,20 +260,17 @@ console.log(JSON.stringify({
     keySymbolsConsumed: consumed,
     exactOriginalCiphertextReproduced: true
   },
-  forward: {
-    firstPage: forwardFailure.page,
-    firstTenCipherRunes: forwardFailure.prefix,
-    firstTenKeyShiftsMod29: totients.slice(0, 10).map(x => x % 29),
-    failure: forwardFailure
-  },
-  reverseSteps: {
-    firstPage: reverseFailure.page,
-    firstElevenCipherRunes: reverseFailure.prefix,
-    failure: reverseFailure
+  prime2Start: {forward: forwardPrime2, reverseSteps: reversePrime2},
+  tableBytePageStart: {
+    tableBytes: tableBytes.length,
+    first55RowMajorBytes: tableBytes.slice(0, 55),
+    forward: forwardTableStart,
+    reverseSteps: reverseTableStart
   },
   scope: [
     "Rejects the p56 transparent-F prime-totient cipher starting at prime 2 when applied continuously in either p57-derived page order.",
-    "Also rejects page-reset clocks whose first page starts at its Josephus rank zero.",
+    "Rejects page-reset clocks whose first page starts at its Josephus rank zero.",
+    "Rejects the first-55-row-major-table-byte page-start schedule, with each byte interpreted as a zero-based prime ordinal.",
     "Does not reject p50 as a navigation target or a different, independently selected table consumer, key, or cipher."
   ]
 }, null, 2));
