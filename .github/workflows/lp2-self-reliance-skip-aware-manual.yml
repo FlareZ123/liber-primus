@@ -37,6 +37,11 @@ jobs:
           test -f "$RUNNER_TEMP/dukotah/liber-primus/analysis/campaign18_skip/skipdecode.py"
           test -f "$RUNNER_TEMP/dukotah/liber-primus/data/keys/self_reliance.txt"
           test -f "$RUNNER_TEMP/dukotah/liber-primus/data/english_quadgrams.txt"
+          # The pinned Campaign XVIII gate still expects the old key path.
+          # Its current Mabinogion control lives under analysis/bookcipher/books.
+          mkdir -p "$RUNNER_TEMP/dukotah/liber-primus/data/keys"
+          cp "$RUNNER_TEMP/dukotah/liber-primus/analysis/bookcipher/books/mabinogion.txt" \
+             "$RUNNER_TEMP/dukotah/liber-primus/data/keys/mabinogion.txt"
 
       - name: Run source-calibrated Self-Reliance key against all original unknown pages
         run: |
