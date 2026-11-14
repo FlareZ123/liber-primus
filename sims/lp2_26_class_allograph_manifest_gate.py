@@ -56,7 +56,7 @@ def extract_component(gray: np.ndarray, cx: int, cy: int, threshold: int):
     local_x, local_y = cx - x0, cy - y0
     for k in range(1, n):
         bx, by, bw, bh, area = [int(v) for v in stats[k]]
-        if area < 180 or bh < 60 or bw < 10:
+        if area < 100 or bh < 60 or bw < 4:
             continue
         contains = bx <= local_x < bx + bw and by <= local_y < by + bh
         dx = float(centroids[k][0] + x0 - cx)
@@ -66,14 +66,14 @@ def extract_component(gray: np.ndarray, cx: int, cy: int, threshold: int):
             continue
         # Prefer a component whose bounding box contains the manually audited
         # glyph centre; then prefer the closest centroid and a normal glyph width.
-        score = distance - (18.0 if contains else 0.0) + max(0, bw - 65) * 0.7
+        score = distance - (18.0 if contains else 0.0) + max(0, bw - 100) * 0.2
         candidates.append((score, k, bx, by, bw, bh, area))
     if not candidates:
         return None, "no-nearby-component"
     candidates.sort()
     _, k, bx, by, bw, bh, area = candidates[0]
-    if bw > 82:
-        return None, "merged-or-wide-component"
+    if bw > 130:
+        return None, "oversize-component"
     if bh > 140:
         return None, "oversize-component"
     comp = (labels[by:by + bh, bx:bx + bw] == k).astype(np.uint8)
@@ -89,6 +89,32 @@ def extract_component(gray: np.ndarray, cx: int, cy: int, threshold: int):
             centroids[k][0] + x0 - cx, centroids[k][1] + y0 - cy
         )),
     }, None
+
+
+
+def split_component(extracted: dict, split_x_abs: int):
+    """Split a connected doublet at the midpoint between its audited centres."""
+    x0, y0, w0, h0 = extracted["bbox"]
+    raw = extracted["mask"][1:-1, 1:-1]
+    cut = int(split_x_abs - x0)
+    if cut <= 2 or cut >= raw.shape[1] - 2:
+        return None
+    outputs = []
+    for xoff, part in ((0, raw[:, :cut]), (cut, raw[:, cut:])):
+        ys, xs = np.where(part > 0)
+        if len(xs) == 0:
+            return None
+        tight = part[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+        if int(tight.sum()) < 100:
+            return None
+        outputs.append({
+            "mask": np.pad(tight.astype(np.uint8), 1, constant_values=0),
+            "bbox": [x0 + xoff + int(xs.min()), y0 + int(ys.min()),
+                     int(xs.max() - xs.min() + 1), int(ys.max() - ys.min() + 1)],
+            "area": int(tight.sum()),
+            "centroid_distance": extracted["centroid_distance"],
+        })
+    return outputs
 
 
 def normalize_mask(mask: np.ndarray, out_w: int = 64, out_h: int = 96) -> np.ndarray:
@@ -231,9 +257,16 @@ def main():
         if row["kind"] == "D":
             centers.append((int(row["x2"]), int(row["y2"])))
 
+        extracted_points = [extract_component(gray, cx, cy, args.threshold) for cx, cy in centers]
+        if row["kind"] == "D" and all(item[0] is not None for item in extracted_points):
+            first, second = extracted_points[0][0], extracted_points[1][0]
+            if first["bbox"] == second["bbox"] and first["bbox"][2] > 70:
+                split = split_component(first, (centers[0][0] + centers[1][0]) // 2)
+                if split is not None:
+                    extracted_points = [(split[0], None), (split[1], None)]
+
         pair_samples = []
-        for ordinal, (cx, cy) in enumerate(centers, start=1):
-            extracted, reason = extract_component(gray, cx, cy, args.threshold)
+        for ordinal, ((cx, cy), (extracted, reason)) in enumerate(zip(centers, extracted_points), start=1):
             if extracted is None:
                 failures.append({
                     "site_id": site_id, "ordinal": ordinal,
