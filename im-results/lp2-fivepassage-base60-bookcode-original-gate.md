@@ -49,8 +49,23 @@ Neither original decoded output is readable GP29-native prose. For one direct ke
 
 Short-page scores have significant sample variance; they cannot exclude other operations or non-English targets. The same exact original-input decoder forward-reencodes every GP rune. A positive plant using independently clear, known p57 GP text and the actual 256-coordinate lookup recovers **256/256 original-format symbols**, verifying the inverse can successfully recover a language signal when this mechanism genuinely produces one.
 
+## Byte-register consumer: the historically used GP prime weights
+
+The cuneiform page is explicitly numerical and the table's raw entries are bytes in the original range 0–255. A separate fixed recipient therefore stays in the **byte domain**, using the already-authentic Gematria Primus **prime weight** of each selected rune as a source-derived byte key. This tests three finite operations with real Cicada precedents, rather than tuning a letter table: historical byte XOR and Vigenère-like addition/subtraction. For source-selected K_i, let W_i=prime(K_i), an integer from 2 to109. Compute **B_i XOR W_i**, **(B_i−W_i) mod256**, and **(B_i+W_i) mod256** on the complete original 256 cells in printed order.
+
+| Source-byte register | Printable ASCII bytes / 256 | Longest printable run | Empirical byte entropy (bits) |
+| --- | ---: | ---: | ---: |
+| Original raw numeric grid | **103** | **5** | **7.16965** |
+| XOR indexed GP-prime weight | **105** | **5** | **6.77061** |
+| Subtract indexed GP-prime weight | **87** | **5** | **6.75402** |
+| Add indexed GP-prime weight | **92** | **4** | **6.71324** |
+
+No derived byte register contains extended English ASCII or an immediately recognizable file prefix. The XOR stream begins in hex **92d2b4fd76f21f921fdc97f7a46592b5**, and the subtract stream begins **72b294734ace1d9219d491b5a4a39273**. Both are binary-looking. The original has 103 printable bytes, so XOR's 105 printable bytes supply no distinctive plaintext gain. The decoder also recovers **all 256/256** real solved-p57 GP-transliteration ASCII bytes from an independently constructed native-language positive plant under the exact source-extracted prime key.
+
+This directly closes the most natural **original byte-and-GP-prime consumer** of the new five-passage lookup. The mechanism would need a separately motivated second layer or different receiver to become a credible LP2 decipherment.
+
 ## Conclusion and limits
 
-The 256-cell numeric table and five red-numbered passages admit a **complete, finite, source-only codebook lookup** that a human solver could reasonably attempt. A literal recovered-text reading of that lookup, its table-residue Vigenère differences, and its simple direct page recipients are **negative**. No surviving signed instruction explicitly selects this book-code interpretation, a consumer, a key schedule or a second cipher layer. The verified GF29 H/G factors of the numeric table are unaffected. An independently supplied target/consumer or an authentic instruction to use passage coordinates would materially change this decision.
+The 256-cell numeric table and five red-numbered passages admit a **complete, finite, source-only codebook lookup** that a human solver could reasonably attempt. A literal recovered-text reading of that lookup, its table-residue Vigenère differences, the source-numbered **byte XOR / prime-weight** consumers, and its simple direct page recipients are **negative**. No surviving signed instruction explicitly selects this book-code interpretation, a consumer, a key schedule or a second cipher layer. The verified GF29 H/G factors of the numeric table are unaffected. An independently supplied target/consumer or an authentic instruction to use passage coordinates would materially change this decision.
 
-**Reproduce:** The standalone [Windows/Node CommonJS original-source SFT](../sims/lp2_fivepassage_base60_bookcode_original_sft.cjs) uses the canonical LP2 corpus and printed 256-byte table, pins the canonical byte SHA256, all original passage boundaries, coordinate and symbol populations, six direct source reconstructions, and a 256/256 native solved-page positive plant. The original ciphertext and resources were not modified.
+**Reproduce:** The standalone [Windows/Node CommonJS original-source SFT](../sims/lp2_fivepassage_base60_bookcode_original_sft.cjs) uses the canonical LP2 corpus and printed 256-byte table, pins the canonical byte SHA256, all original passage boundaries, coordinate and symbol populations, source-rooted byte XOR/additive consumers, reversible original cipher checks, and independent 256/256 native-GP and ASCII positive plants. The original ciphertext and resources were not modified.
