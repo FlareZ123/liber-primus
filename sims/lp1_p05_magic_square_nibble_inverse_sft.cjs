@@ -162,6 +162,37 @@ trueP55Decoded.forEach(r=>trueP55Counts[r]++);
 const trueP55IoC=trueP55Counts.reduce((sum,n)=>sum+n*(n-1),0)/(75*74);
 assert.equal(trueP55IoC,hillIoC);
 
+
+// A separate, source-indicated π(x) mapping comes from the documented 2014
+// three-square centers: π(809)-π(331)=73 (GP L), π(331)-π(91)=43 (GP P).
+// It is community-proposed, not a signed 2014 instruction to key LP2.
+// Test the smallest 25-value row-major π table against the actual 75-rune
+// physical p55 body, keeping the source-carried NG outside and F in-band.
+/** @param {number} bound @returns {number} */
+function primeCount(bound) {
+  let count=0;
+  for(let n=2;n<=bound;n++){
+    let prime=true;
+    for(let q=2;q*q<=n;q++)if(n%q===0){prime=false;break;}
+    if(prime)count++;
+  }
+  return count;
+}
+assert.equal(primeCount(809),140);
+assert.equal(primeCount(331),67);
+assert.equal(primeCount(91),24);
+const primeCountKey=numeric.flat().map(n=>primeCount(n)%29);
+assert.equal(primeCountKey.length,25);
+const primeCountP55=trueP55Body.map((r,i)=>mod29(r-primeCountKey[i%25]));
+assert(primeCountP55.every((p,i)=>mod29(p+primeCountKey[i%25])===trueP55Body[i]));
+const primeCountP55Text=primeCountP55.map(r=>corpus.translit[r]).join('');
+assert.equal(primeCountP55Text,
+ 'AESFRHOYBWCTEAWUILTSBTFUWAFXGNIAIAEALMEOCFLEAODOENGALCSEXIGIAEEOJUAFDJAEWIAINOJOYNRIAWXI');
+const primeCountFreq=Array(29).fill(0);
+primeCountP55.forEach(x=>primeCountFreq[x]++);
+const primeCountIoC=primeCountFreq.reduce((sum,n)=>sum+n*(n-1),0)/(75*74);
+assert.ok(Math.abs(primeCountIoC-0.03207207207207208)<1e-15);
+
 const output=decoded.map(r=>r.join(' ')).join('\n');
 console.log(JSON.stringify({
  status:'PASS',source:'original LP1 05.jpg central 179-byte object',
@@ -173,5 +204,6 @@ console.log(JSON.stringify({
  hill5Inverse,hill5Decoded:p55HillText,hill5PlaintextIoC:hillIoC,
  hill5ExactForwardReencryption:true,
  hill5TrueP55BodyDecoded:trueP55Text,hill5TrueP55BodyIoC:trueP55IoC,
+ primeCountP55Decoded:primeCountP55Text,primeCountP55IoC:primeCountIoC,
  unknownLP2PlaintextRecovered:false
 },null,2));

@@ -110,6 +110,26 @@ The 75 transformed non-F runes have coincidence index **0.03855855855855856**, w
 
 **Decision:** The source-derived 5×5 matrix is genuinely invertible, but the direct, block-aligned Hill5 transfer **does not decipher p55 under either independently delimited 75-rune clock**. The source provides no instruction selecting Hill5 as a consumer or this skip clock. Retire this exact candidate without a fresh source-backed operator. The canonical source-coupled SFT tests the original 76 runes, exact matrix inverse and reencryption.
 
+## Independently proposed historical prime-counting π rule as a frozen 25-cell p55 key
+
+A **separate community-proposed** interpretation of the three 2014 archived squares applies the prime-counting function π to their centers: π(809)=140, π(331)=67, π(91)=24; consecutive differences are **73 and 43**, the authentic GP-prime values of L and P. SECRA's [October 2026 research synthesis](https://secra.tech/research/liber-primus-strongest-findings/) reproduces this exact arithmetic and stresses that no original signed instruction specifies the center/π/difference rule. This observation supplies a concrete reason to test **π**, independently of the already-tested LP1 φ/totient rule. It does not authenticate π as a p55 cipher operation.
+
+Freeze **one** table consumer: map each of the 25 newly recovered LP1 square entries in original row-major order to **π(value) mod29**, repeat the resulting 25-value tape exactly three times over the **true 75-rune body of physical p55** (excluding its inherited first NG), decrypt P_i=(C_i−K_(i mod25)) mod29, and retain every F in-band. The source-derived key is:
+
+~~~text
+0 4 10 3 7 14 17 2 8 7 19 24 24 24 19 7 8 2 17 14 7 3 10 4 0
+~~~
+
+The complete original 75-rune inverse is:
+
+~~~text
+AESFRHOYBWCTEAWUILTSBTFUWAFXGNIAIAEALMEOCFLEAODOENGALCSEXIGIAEEOJUAFDJAEWIAINOJOYNRIAWXI
+~~~
+
+Its rune coincidence index is **0.03207207207207208**, with no coherent original-source GP-English or typed instruction. The fixed key re-encrypts all 75 ciphertext runes exactly; this is a reversibility check, not plaintext validation. The existing source-controlled SFT now asserts the three historical prime-counts, 25 frozen key values, complete ciphertext result and exact forward check.
+
+**Decision:** reject this specific historical-square π→additive GP29 direct consumer as a p55 decryption. The underlying three-center LP proposal remains an unverified historical signpost; do not expand it into arbitrary key phases or alternative prime-counting transforms absent new authorial evidence.
+
 ## p05 179-byte payload → p53 179-rune stream (bounded direct-key negative)
 
 The hidden p05 center decodes to **179 bytes**, exactly the rune count of LP2 p53. The p05 moth illustration is also repeated on p53 (and p55), making a one-to-one p05→p53 byte/rune alignment a plausible, finite consumer hypothesis. The simplest GP29 interpretation is to reduce each byte of a source-fixed 179-byte p05 representation modulo 29 and use it as an additive stream against the 179 original p53 runes.
