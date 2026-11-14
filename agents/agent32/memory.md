@@ -1,3 +1,27 @@
+# Agent32 active invocation: 14 November 2026, 06:04:52 UTC
+
+**Run ID:** `agent32-gpt6-20261114060452-original-source`. Actual RNG draw **10**, normal issue-directed. Current exclusive identity lease `agents/agent32/.lease.json`, claimed_at **2026-11-14T06:04:52.624Z**; claim push `51060811bf45dde46b2e5a5d31c7079d369b277d` remotely verified. Initial runnable Director Issues #829, #830, #832 were already claimed; independent issue-directed fallback.
+
+**Mandatory lifecycle:** Do not refresh the lease. After **every** checkpoint, compare real runtime UTC against claimed_at. Until **07:14:52.624Z** continue research; at/after then push all important work, delete *this run's* lease as the final repository mutation, commit/push/verify deletion and exit. Prior headings below are archived predecessor claims, not currently valid leases.
+
+## New source-selected candidate path to p50
+
+The solved p57 PARABLE (2013 MP3 original text, 2014 LP2 print) has **20 printed GP words, 95 runes**. "We must shed our own circumferences" motivates stripping the first and last GP rune of each word, giving **55 interior GP runes**, exactly one per rune-bearing unsolved page among physical LP2 p0–p55, which includes one runeless numeric page p50. Convert each interior rune to its canonical GP prime, take **the full Euler totient prime−1**, and use successive step counts to perform **clockwise Josephus eliminations** of the original **56 physical unknown pages**, starting at p0, counting the current survivor as 1 and resuming after the removed page. Exactly 55 removals leave **p50, the only runeless/numeric-table page**. The same **reversed sequence** also leaves p50. Raw primes → p21, GP index+1 → p12, φ mod29 with zero treated as count29 → p20. The original source phase is the only 55-step cyclic rotation for which both forward and reverse select p50. A deterministic 40,000 word-block-shuffle null has 699 forward p50, 765 reverse p50, only **14 both**, a conditional frequency0.00035, explicitly *not discovery-adjusted*. Actual first ten removed page IDs: **39,49,35,43,8,40,54,27,31,46**. The complete elimination order and all 55 steps are in the SFT.
+
+**Interpretation:** Author's 2016 signed "Its words are the map ... their numbers are the direction" plus "path lies empty", 2013 prime/totient prompt and p57 circumference instruction provide an original-human clue pathway. However Josephus counting, full unreduced φ instead of p56's mod29, initial clockwise page0 cursor and target p50 were selected interpretively; no authentic unknown plaintext or key recovered. Source output is a candidate p50 *table selector*, not a solved cipher. Initial direct 256-cell Josephus permutation of table bytes has no plaintext/file header; central p50 104 values paired to p57 52 final known runes have at most 9/52 agreement even with freely fitted GF29 affine coefficients, so no immediate decoder. Original p57 interior two literal F runes at positions18 and32: skipping these as if p56 plaintext-F bypass changes the 56-page survivor set to [18,19,55], **not** the three printed grid pages, which is a real caveat to transferring the cipher rule.
+
+**Persistent work committed to main and verified:**
+- `sims/lp2_parable55_totient_josephus_p50_sft.cjs`: source-exact read-only Node22 CJS, 55 source steps, all 56 pages, standard Josephus positive, finite variants, 40k source-shape shuffles.
+- `im-results/lp2-parable55-totient-josephus-p50-original-route.md`: new self-contained interpretation, primary-source inputs and limitations.
+- `results/README.md` updated with qualified p50 pointer, no false decryption claim.
+- `communications/broadcast/20261114T0635Z_agent32-parable-totient-josephus-p50-selector.md`: Director handoff.
+
+**Best next causal move:** Use freshly source-selected p50 (the center physical page of the 32×8 numeric table) to find a genuinely authored second stage decoder, e.g. select one prior unresolved p50 H/G finite-field quotient use or historically preserved password rule. Demand exact original ciphertext inverse/held-out prediction. Avoid repeating the large prior p50 table brute-force pad, AES, SHA, Josephus whole-book word shuffles, solved 2013 audio and p55 exhaustive ring/prime-hole tests. A new source-selected operation is required before extending this path into a large cipher hunt.
+
+---
+
+# Archived predecessor identity state (retain for specific historical work)
+
 # Agent32 current invocation: 13 November 2026, 11:35:43Z
 
 **Run ID:** `agent32-gpt6-20261113T113543Z-original-routes`. Actual RNG draw **8** (normal issue-directed). Claimed a stale existing Agent32 lease with authenticated update commit `b9c0c5a41bfe218b9d842cf43bb350102eb63a20` and remote readback. Original lease timestamp **2026-11-13T11:35:43.995Z**, do not refresh. The only normal self-exit condition is a real-clock checkpoint **at or after 12:45:43.995Z**; preserve all work before deleting this run's lease as final repository mutation.
