@@ -65,8 +65,8 @@ function parsedArquivo(url) {
 }
 /** @param {string} text */
 function parsedArchiveIt(text) {
-  return text.split(/\r?\n/).filter(line=>line&&!line.startsWith(' CDX')&&!line.startsWith('urlkey')).map(line=>{
-    const p=line.trim().split(/\\s+/);
+  return text.split(/\r?\n/).filter(line=>line&&!/^(?:CDX|urlkey)\b/i.test(line.trim())).map(line=>{
+    const p=line.trim().split(/\s+/);
     return {timestamp:p[1],url:p[2],mime:p[3],status:p[4],digest:p[5],file:p[p.length-1]};
   });
 }
@@ -126,11 +126,11 @@ async function checkArchiveIt(item) {
 function selftest() {
   const a=arquivo.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
   const b=archiveit.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
-  if(a.length!==4||b.length!==3) throw new Error('PBPT mode must retain 2014/2016 positive controls and both exact target schemes');
+  if(a.length!==4||b.length!==3) throw new Error('PBPT mode must retain same-provider positive controls and both target schemes');
   if(parsedArquivo('{"status":"200"}').length!==1 ||
      parsedArquivo('[{"status":"200"}]').length!==1)
     throw new Error('Arquivo JSON object/array parsing failed');
-  const rows=parsedArchiveIt('urlkey timestamp original mimetype statuscode digest filename\\n' +
+  const rows=parsedArchiveIt('urlkey timestamp original mimetype statuscode digest filename\n' +
     'org,archive-it)/ 20140101000000 http://archive-it.org/ text/html 200 ABCDEF WARC');
   if(rows.length!==1||rows[0].status!=='200'||rows[0].url!=='http://archive-it.org/')
     throw new Error('Archive-It CDX parsing failed');
