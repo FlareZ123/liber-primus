@@ -1,0 +1,18 @@
+name: "Agent44 p55-p27-103-p32 original source navigation and HOME-key gate"
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - name: Checkout original corpus
+        uses: actions/checkout@v4
+      - name: Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce exact source and transparent-F inverse
+        run: node sims/lp2_p55_p27_table103_p32_home_sft.cjs
