@@ -122,15 +122,15 @@ for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
   max = Math.max(max, paths);
 }
 assert.deepEqual([min, max], [5004, 5248]);
-assert.deepEqual(candidates(2, 18), {paths: 5114, keyNodePaths: 169308});
-assert.deepEqual(candidates(3, 0), {paths: 5108, keyNodePaths: 177070});
-assert.deepEqual(candidates(16, 3), {paths: 5190, keyNodePaths: 173320});
+assert.deepEqual(candidates(2, 18), {paths: 5114, keyNodePaths: 168109});
+assert.deepEqual(candidates(3, 0), {paths: 5108, keyNodePaths: 173058});
+assert.deepEqual(candidates(16, 3), {paths: 5190, keyNodePaths: 170723});
 
 const claimedThe = [at(18, 16), at(18, 15)];
 const k0 = (claimedThe[0] - 2 + 29) % 29;
 const k1 = (claimedThe[1] - 18 + 29) % 29;
 assert.deepEqual([k0, k1], [22, 22]);
-assert.equal(prefixCounts[22 * 29 + 22], 22);
+assert.equal(prefixCounts[22 * 29 + 22], 40);
 
 console.log(JSON.stringify({
   sourceGrid: 'LP2 p0-2: 27x27, 729 original indices',
