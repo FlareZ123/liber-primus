@@ -108,7 +108,7 @@ assert.deepEqual(pages[56][1].map((v,i) =>
   (v - [4,6,10][i] + 29) % 29), [18,9,23]);
 assert.equal(pages[57][1].map(i => corpus.translit[i]).join(""), "LICE");
 // A controlled direct table destination, X+U = 47+3 = 50, p50 cell zero.
-assert.deepEqual(walk([13,1]), {kind:"numeric",steps:1,index:0,byte:142});
+assert.deepEqual(walk([14,1]), {kind:"numeric",steps:1,index:0,byte:142});
 
 console.log(JSON.stringify({
   status:"No universal terminal decoder under the frozen 2016 base-58 word-walk",
