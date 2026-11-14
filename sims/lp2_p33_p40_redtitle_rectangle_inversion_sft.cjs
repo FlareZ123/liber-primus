@@ -73,6 +73,37 @@ function plantedAntiRepeat(length) {
     out.push((out[i-1] + 1 + (i * 7) % 28) % 29);
   return out;
 }
+/**
+ * Reversible 29-way predecessor exclusion, with rare repeated ciphertext
+ * symbol representing the highest GP29 plaintext value 28. Red key's last
+ * symbol is a source-fixed initial predecessor.
+ * @param {number[]} input
+ * @param {number} predecessor
+ */
+function predecessorExcludeDecode(input, predecessor) {
+  let previous = predecessor;
+  return input.map(cipher => {
+    const plain = cipher === previous ? 28 : cipher < previous ? cipher : cipher - 1;
+    previous = cipher;
+    return plain;
+  });
+}
+/** @param {number[]} input @param {number} predecessor */
+function predecessorExcludeEncrypt(input, predecessor) {
+  let previous = predecessor;
+  return input.map(plain => {
+    const cipher = plain === 28 ? previous : plain < previous ? plain : plain + 1;
+    previous = cipher;
+    return cipher;
+  });
+}
+/** @param {number[]} input */
+function ioc(input) {
+  const count = Array(29).fill(0);
+  for (const v of input) count[v]++;
+  return count.reduce((sum, n) => sum + n * (n - 1), 0)
+    / (input.length * (input.length - 1));
+}
 const scenarios = [
   {first:33, last:39, keyLength:10, pageRunes:1680, bodyRunes:1670,
    rawDoubles:12, forwardOrderDoubles:69, reverseOrderDoubles:61,
@@ -117,13 +148,30 @@ for (const s of scenarios) {
     const encrypted=forward(planted,key,descending);
     assert.deepEqual(inverse(encrypted,key,descending),planted,
       "a valid final-columnar inverse restores 0-doublet input exactly");
+    const predecessor = key.at(-1);
+    const noRepeatInverse = predecessorExcludeDecode(body, predecessor);
+    assert.deepEqual(predecessorExcludeEncrypt(noRepeatInverse, predecessor), body,
+      "predecessor-exclusion outer layer inverts all original symbols");
+    const twoStage = inverse(noRepeatInverse, key, descending);
+    assert.deepEqual(forward(twoStage, key, descending), noRepeatInverse);
+    const plantedGP = Array.from({length:body.length}, (_, i) =>
+      book.pages[57].indices[i % book.pages[57].indices.length]);
+    const twoStagePlant = predecessorExcludeEncrypt(
+      forward(plantedGP, key, descending), predecessor);
+    assert.deepEqual(inverse(
+      predecessorExcludeDecode(twoStagePlant, predecessor), key, descending),
+      plantedGP, "composed source-keyed two-layer positive exactly recovers GP");
+    assert(ioc(twoStage) < 0.04, "source-fixed original two-stage still uniform");
     outcome[label]={restoredDoubles:doubles(plain),
       syntheticFinalLayerRestoresZero:true,
+      rank29ThenColumnar:{ioc:ioc(twoStage), doublets:doubles(twoStage),
+        reservedSymbol28Count:noRepeatInverse.filter(x=>x===28).length,
+        nativeGpPlantExact:true},
       prefixGP:plain.slice(0,55).map(i=>book.translit[i]).join("")};
   }
   result.push(outcome);
 }
 console.log(JSON.stringify({classification:"frozen original-source final-transposition gate",
-  conclusion:"Both original key-ranked 10/8-column inverse outputs lose the anti-repeat signature and do not recover ordinary GP29 prose; no unknown plaintext/key.",
+  conclusion:"Direct final 10/8-keyed column inverse and a complete reversible rank29-predecessor-exclusion outer layer followed by that columnar inverse both fail on original GP prose; authentic GP plants invert exactly; no unknown plaintext/key.",
   source:"LP2 p33-39 and p40-53 original corpus and red-ink annotations",
   scenarios:result},null,2));
