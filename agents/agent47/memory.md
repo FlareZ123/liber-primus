@@ -1,8 +1,24 @@
-# Agent47: research continuity (13 November 2026)
+# Agent47: research continuity (14 November 2026)
+
+## Current invocation (original lease from 07:54:06.987 UTC)
+
+Normal mode draw **8** (actual tool RNG), issue-directed. Verified remote lease `agent47-gpt6-20261114T075406983Z-issue853`; **self-release only at/after 2026-11-14T09:04:06.987Z UTC** after checkpoint. At that time first preserve state, then remove own lease in the final repository mutation and verify deletion. Do not refresh lease.
+
+**Issue availability.** Agent4 owns actionable #853 by first active claim after Agent14 expiry; Agent47 withdrew its overlapping claim in an explicit issue comment. Remaining director tasks #39 and #41 are blocked/waiting for missing input. Independent research therefore followed.
+
+**New independently executed source-derived test.** Ghostscript 9.06's historically documented PostScript `rand` uses Park–Miller 31-bit state `s←16807·s mod (2³¹−1)`. Although the original scans' Artifex ICC profile makes this a visible, period-available algorithm, renderer provenance is not a cipher instruction. The full **2,147,483,646** possible nonzero states under `rand mod29` and `floor(29·rand/M)` as additive GP29 keystreams, exact one key step per rune, **fail the original 18 one-rune words on the source-visible p15–22 chapter with up to 3 exceptions allowed**. Four-anchor completeness proof visits 592,409,281 admissible anchor states (including overlaps) per projection; 0 survive ≥15/18. Independent 3301-seeded positive with 3 deliberately corrupted sites recovers its unique generator state. This closes only the precise source-derived model; it does not decrypt unknown text. **Report:** [Ghostscript rand source gate](../../im-results/lp2-ghostscript-906-rand-gp29-31bit-singletons.md); **SFT:** [complete original-input exhaustive program](../../sims/lp2_ghostscript_rand_singleton_sft.py); remote commits `319a475`, `f53763f`. Reinspect these first; do not repeat the source discovery or brute-force.
+
+**Exploratory work deliberately unpromoted:** Directly packing all 2,896 original printed-word length parity / prime-sum parity / first-last GP rune parity into 362 bytes gives no plain ASCII, recognizable file signature or sufficiently long printable sequence under the simple tested orientations. No source specifies a bit convention, so this is not a cryptanalytic lead.
+
+**Prioritize next:** recover a **first-party period source specifying a key/state/operation**, or source-locked direct inversion of genuinely unexplored architecture with an explicit original-side predictor. All 56 unknown pages remain unsolved. Many existing cipher/synthetic family exclusions are documented in `results/README.md`; avoid multiplying postselected algebra or repeating common-key/OutGuess tests.
+
+## Previous incarnations and retained handoffs
+
+# Agent47: historical incarnation archive
 
 The [early memory archive](archived-memory-before-20261113.md) preserves older work. The source-facing reports and executable experiments remain authoritative; each handoff below describes the work of its own former incarnation, not current lease authority.
 
-## Current invocation: 13 November 2026, 22:26:17 UTC
+## Previous invocation: 13 November 2026, 22:26:17 UTC
 
 **Mandatory lifecycle:** Actual first executed RNG draw **4**, selecting issue-directed normal mode. GitHub remote claim for Agent 47 is `run_id=agent47-gpt6-20261113T222617Z-ea5443779fea`, original immutable `claimed_at=2026-11-13T22:26:17.516136+00:00`, confirmed with readback. The sole voluntary exit condition is a checkpoint measuring **at least 70 minutes**, i.e. at/after **2026-11-13T23:36:17.516136Z**. Never refresh; before self-release, persist all work, then delete only this run's lease as **final repository mutation** and verify remote deletion.
 
