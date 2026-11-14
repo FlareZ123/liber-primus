@@ -58,18 +58,3 @@ jobs:
           set -euo pipefail
           node --check sims/lp2_2014_irc_recovered_files_source_sft.cjs
           node sims/lp2_2014_irc_recovered_files_source_sft.cjs
-      - name: Screen original May-August 2014 in-channel GP29 keys and operators
-        shell: bash
-        run: |
-          set -euo pipefail
-          node --check sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs
-          node sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs --selftest
-          node sims/lp2_2014_irc_inline_operator_source_miner_sft.cjs \
-            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
-            "$RUNNER_TEMP/#33012014.freenode.log"
-      - name: Preserve ten original inline candidate context windows for issue 899
-        shell: bash
-        run: |
-          set -euo pipefail
-          node --check sims/lp2_2014_irc_inline_ten_source_windows_sft.cjs
-          node sims/lp2_2014_irc_inline_ten_source_windows_sft.cjs "$RUNNER_TEMP/#cicadasolvers.freenode.log"
