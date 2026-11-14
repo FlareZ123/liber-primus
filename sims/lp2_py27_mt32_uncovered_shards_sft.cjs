@@ -4,7 +4,7 @@
  * One-file original-cipher SFT, plus exact range/receipt utility for the
  * unfinished 2016 LP2 Python-2.7 MT19937 keyskip1 search.
  *
- * The independent frozen recovery is pinned to Dukotah/cicada3301 commit
+ * The independent frozen recovery and committed 12-register panel are pinned to Dukotah/cicada3301 commit
  * 9087dc36b5aa64c1786428e32180261ab9420c29. No previously swept seed
  * is sent to the runner. Node.js 22, CommonJS, no third-party dependencies.
  *
@@ -122,10 +122,11 @@ function prepare(band, shard, mode) {
     upstream_commit: UPSTREAM,
     external_frozen_status_sha256: sourceSha,
     source: SOURCE,
+    panel_r36_f32_sha256: 'e46d4bb73d16adeb02262361325b2a6ff578ae436b1374a7725a0a240f7e9928',
     mode, band, shard, shard_count_per_band: SHARDS,
     original_full_shard: original,
     requested: {from, to, seeds: to - from},
-    model: 'CPython 2.7 MT19937 init_by_array([w]), random29, keyskip1/exact, 9-register panel'
+    model: 'CPython 2.7 MT19937 init_by_array([w]), random29, keyskip1/exact, 12-register panel-R36'
   };
   writeAtomicJson('plan.json', [lane]);
   writeAtomicJson('manifest.json', manifest);
