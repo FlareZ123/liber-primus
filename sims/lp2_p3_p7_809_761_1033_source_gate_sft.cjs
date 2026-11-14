@@ -442,6 +442,67 @@ const atbashLongest = originalAtbashPrimeGates.reduce((a, b) =>
   a.firstForcedFailure >= b.firstForcedFailure ? a : b);
 assert.ok(atbashLongest.firstForcedFailure < 500);
 
+
+// Distinct historical 2014 source: stage03 Onion comment "Patience is a
+// virtue", literally GP-sum 761; its 17 GP runes are a fully sourced
+// candidate 761-key, unlike an arbitrary integer-seeded keystream.
+// Historical LP1 Vigenere uses an exact source word key plus transparent F.
+const patienceKey = [...'PATIENCEISAUIRTUE'].map(ch => translit.indexOf(ch));
+assert.equal(patienceKey.length, 17);
+assert.ok(patienceKey.every(n => n >= 0));
+assert.equal(patienceKey.reduce((s, n) => s + prime[n], 0), 761);
+/**
+ * Exhaustive F mask survival for a fixed periodic 17-rune GP native key.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ * @param {-1|1} sign
+ * @returns {number|null}
+ */
+function keyedFDeath(ciphertext, key, sign) {
+  let states = new Set([0]);
+  for (let i = 0; i < ciphertext.length; i++) {
+    const next = new Set();
+    for (const consumed of states) {
+      const plain = mod29(ciphertext[i] + sign * key[consumed % key.length]);
+      if (plain !== 0) next.add(consumed + 1);
+      if (ciphertext[i] === 0) next.add(consumed);
+    }
+    if (!next.size) return i;
+    states = next;
+  }
+  return null;
+}
+// Genuine p57 clear-rune plant: encrypt under *this* sourced key respecting
+// bypass and prove the exhaustive decoder admits all95 original positions.
+let patienceConsumed = 0;
+const patiencePlant = pages[57].indices.map(p => p === 0 ? 0 :
+  mod29(p + patienceKey[(patienceConsumed++) % patienceKey.length]));
+assert.equal(keyedFDeath(patiencePlant, patienceKey, -1), null);
+const patienceSourceKeyResults = [];
+for (const [section, original] of atbashInputSets) {
+  for (const alphabet of ['original', 'Atbash']) {
+    for (const order of ['printed', 'reversed']) {
+      let arr = alphabet === 'Atbash' ?
+        original.map(g => 28 - g) : original.slice();
+      if (order === 'reversed') arr.reverse();
+      for (const reverseKey of [false, true]) {
+        const key = reverseKey ? patienceKey.slice().reverse() : patienceKey;
+        for (const sign of /** @type {const} */ ([-1, 1])) {
+          patienceSourceKeyResults.push({
+            section, alphabet, order, reverseKey, sign,
+            deathAt: keyedFDeath(arr, key, sign)
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(patienceSourceKeyResults.length, 64);
+assert.ok(patienceSourceKeyResults.every(x => x.deathAt !== null));
+const patienceBest = patienceSourceKeyResults.reduce((a, b) =>
+  a.deathAt >= b.deathAt ? a : b);
+assert.ok(patienceBest.deathAt < 500);
+
 console.log(JSON.stringify({
   classification: 'conditional source-number coincidence; no unknown-page decryption',
   source: 'original LP2 canonical rune indices and 2014 three magic squares',
@@ -467,5 +528,6 @@ console.log(JSON.stringify({
   oneSuccessorPerPhysicalPage,
   stage10ContiguousQuintets: { originalSections: hillSectionInputs.map(x => [x[0], x[1].length]), originalModels: hillOriginal.length, best: hillBest, authenticKnownP57ClearIoC: ioc29(pages[57].indices), nativeP57PlantRecovered: solvedNativeHillRecovered.length },
   atbashSourcePrimeGates: { models: originalAtbashPrimeGates.length, allFail: true, longest: atbashLongest },
+  original2014Patience761Key: { originalGPKeyLength: patienceKey.length, sourceGPPrimeSum: 761, models: patienceSourceKeyResults.length, allFail: true, longest: patienceBest, plantedKnownP57AcceptedRunes: patiencePlant.length },
   result: 'observed checksum equality does not select an authentic key or decipherment'
 }, null, 2));
