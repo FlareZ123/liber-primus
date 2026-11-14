@@ -10,6 +10,7 @@ on:
           - legacy
           - signed-dh-mobius
           - frobenius
+          - frobenius-secret
         default: legacy
 
 permissions:
@@ -54,3 +55,15 @@ jobs:
           node-version: '22'
       - name: Original p36 exact 238-member Frobenius inverse SFT
         run: node sims/lp2_p36_field_frobenius_orbit_sft.cjs
+
+  frobenius-secret:
+    if: inputs.suite == 'frobenius-secret'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source Q238 Frobenius stationary-key all-secret exclusion
+        run: node sims/lp2_q238_frobenius_stationary_secret_sft.cjs
