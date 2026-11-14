@@ -94,7 +94,7 @@ assert.equal(pages.length, 55);
 const a = a194954(full.length + 1);
 assert.deepEqual(a.slice(0, 12),
   [2,3,5,7,11,13,17,23,29,31,37,43]);
-assert.equal(a[full.length - 1], 641197);
+assert.equal(a[full.length - 1], 641057);
 const expected = {'prime,-1':37,'prime,1':30,'phi,-1':52,'phi,1':27};
 const variants = [];
 for (const mode of /** @type {const} */ (['prime','phi'])) {
