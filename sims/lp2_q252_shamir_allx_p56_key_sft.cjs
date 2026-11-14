@@ -7,8 +7,9 @@
  * Run under Node.js 22 from any working directory. No dependencies beyond
  * Node and this repository's pinned source JSONs. No files are written.
  *
- * This tests all GF(29) evaluation coordinates, both natural share layouts,
- * and both orientations. Each candidate is tested both literally and under
+ * This tests all distinct GF(29) four-point evaluation configurations,
+ * both natural share layouts, both orientations, and even arbitrary
+ * stationary symbol relabelings. Each candidate is tested both literally and under
  * the entire family of secret stationary symbol-to-symbol functions.
  */
 const assert = require('node:assert/strict');
@@ -164,38 +165,93 @@ assert.deepEqual(measure(positiveRaw, target), {
   conflictingGroups: 0
 });
 
-// Blind original-input exhaustive evaluation of the finite frozen family.
-/** @type {{reverse: boolean, layout: string, x: number, literal: number, functionUpperBound: number, conflictingGroups: number}[]} */
+/**
+ * All evaluation weights of a degree-2 polynomial through any three
+ * distinct GF29 coordinates, read at any fourth distinct coordinate.
+ *
+ * Affine normalization of the independent-coordinate axis lets the
+ * three share positions be 0,1,t and evaluation point be u. This
+ * enumerates all quadratic interpolation coefficient triples.
+ * @returns {{t:number,u:number,lambda:number[]}[]}
+ */
+function distinctFourPointWeights() {
+  /** @type {{t:number,u:number,lambda:number[]}[]} */
+  const out = [];
+  const visited = new Set();
+  /** @param {number} a @returns {number} */
+  const inverse = a => {
+    for (let n = 1; n < 29; n++) if (mod(a * n) === 1) return n;
+    throw new Error('Noninvertible field coordinate');
+  };
+  for (let t = 2; t < 29; t++) {
+    for (let u = 0; u < 29; u++) {
+      if (u === 0 || u === 1 || u === t) continue;
+      const lambda = [
+        mod((u - 1) * (u - t) * inverse(t)),
+        mod(u * (u - t) * inverse(mod(1 - t))),
+        mod(u * (u - 1) * inverse(mod(t * (t - 1))))
+      ];
+      assert.equal(mod(lambda[0] + lambda[1] + lambda[2]), 1);
+      const signature = lambda.join(',');
+      if (!visited.has(signature)) {
+        visited.add(signature);
+        out.push({ t, u, lambda });
+      }
+    }
+  }
+  assert.equal(out.length, 390);
+  return out;
+}
+
+const coordinateClasses = distinctFourPointWeights();
 const cases = [];
 for (const reverse of [false, true]) {
   const coeffs = reverse ? q.slice().reverse() : q;
   for (const layout of ['blocks', 'triplets']) {
     const triplets = shares(coeffs, layout);
-    for (let x = 0; x < 29; x++) {
-      const predicted = triplets.map(row => interpolate(x, row));
-      cases.push({ reverse, layout, x, ...measure(predicted, target) });
+    for (const { t, u, lambda } of coordinateClasses) {
+      const predicted = triplets.map(row => mod(lambda[0] * row[0]
+        + lambda[1] * row[1] + lambda[2] * row[2]));
+      cases.push({ reverse, layout, t, u, lambda, ...measure(predicted, target) });
     }
   }
 }
-assert.equal(cases.length, 116);
+assert.equal(cases.length, 1560);
 assert(cases.every(t => t.functionUpperBound < 84 && t.conflictingGroups > 0));
-assert.equal(Math.max(...cases.map(t => t.literal)), 8);
-assert.equal(Math.max(...cases.map(t => t.functionUpperBound)), 36);
+assert.equal(Math.max(...cases.map(t => t.literal)), 9);
+assert.equal(Math.max(...cases.map(t => t.functionUpperBound)), 37);
 assert.equal(Math.min(...cases.map(t => t.conflictingGroups)), 17);
+
+// The three source-share coordinates themselves are also ineligible
+// as a "fourth" share: every source layout's literal known-key check fails.
+for (const reverse of [false, true]) {
+  const coeffs = reverse ? q.slice().reverse() : q;
+  for (const layout of ['blocks', 'triplets']) {
+    const triplets = shares(coeffs, layout);
+    for (let k = 0; k < 3; k++) {
+      const directShare = triplets.map(row => row[k]);
+      const check = measure(directShare, target);
+      assert(check.functionUpperBound < 84 && check.conflictingGroups > 0);
+    }
+  }
+}
 cases.sort((a, b) => b.functionUpperBound - a.functionUpperBound
   || b.literal - a.literal);
 console.log(JSON.stringify({
-  gate: 'Q252 3-of-3 GF29 quadratic-share -> known p56 prime key',
+  gate: 'Q252 quadratic GF29 3-of-3 shares to known p56 prime key',
   sourceSHA256: tableSHA,
   quotientLength: q.length,
   consumedPrimes: target.length,
   lastPrime: primes[83],
-  tested: cases.length,
-  maxLiteralMatches: 8,
-  maxSecretFunctionMatches: 36,
+  rawDistinctFourPointChoices: 702,
+  distinctInterpolationWeights: coordinateClasses.length,
+  completeFourPointModels: cases.length,
+  directShareControls: 12,
+  maxLiteralMatches: 9,
+  maxSecretFunctionMatches: 37,
   minConflictingInputGroups: 17,
   bestModels: cases.slice(0, 8),
-  sourcePositiveControl: '84/84 literal and ciphertext round trip',
+  sourcePositiveControl: '84/84 original p56 recovered and re-encrypted',
   plantedSecretBijectionControl: '84/84; no equality conflict',
-  decision: 'No four-point Shamir evaluation at any GF29 coordinate, in either frozen layout or orientation, can recover the authentic p56 key under even an arbitrary stationary output function.'
+  decision: 'No fixed distinct GF29 four-point Shamir evaluation, in either natural layout or coefficient orientation, can recover the authentic p56 key under even an arbitrary stationary output function.'
 }, null, 2));
