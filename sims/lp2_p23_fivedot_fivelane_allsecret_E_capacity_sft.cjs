@@ -143,6 +143,51 @@ assert.deepEqual([
 assert.ok(stats["Latin Vulgate"].stripes.lessOrEqual>0,
   "Latin should demonstrate why this is a finite-language comparison");
 
+// Strongest internal reference: authentic SOLVED Cicada GP29 letter stream,
+// recovered from LP1's original runes under the historically established keys.
+// This avoids relying on generic modern-English orthographic assumptions.
+const {parseSegments, runeWords}=require("./solved_cipher_regression.cjs");
+const oldSections=parseSegments(read("resources/transcriptions/liber_primus_master.txt"))
+  .map((section)=>runeWords(section).flat());
+assert.equal(oldSections.length,18);
+assert.deepEqual(oldSections.slice(0,5).map((v)=>v.length),
+  [184,515,157,778,755]);
+/** @param {number} n @returns {number} */
+const mod29=(n)=>((n%29)+29)%29;
+const warningPlain=oldSections[0].map((v)=>28-v);
+assert.deepEqual(warningPlain.map((v)=>28-v),oldSections[0]);
+const welcomeLiteralSites=[48,74,84,132,159,160,250,421,443,465,514];
+const welcomeSkips=new Set(welcomeLiteralSites);
+const divinity=[23,10,1,10,9,10,16,26];
+let clock=0;
+const welcomePlain=oldSections[1].map((v,i)=>welcomeSkips.has(i)?0:
+  mod29(v-divinity[(clock++)%divinity.length]));
+assert.equal(clock,504);
+assert.deepEqual(welcomePlain.flatMap((v,i)=>v===0?[i]:[]),welcomeLiteralSites);
+let reencryptionClock=0;
+assert.deepEqual(welcomePlain.map((v)=>v===0?0:mod29(v+
+  divinity[(reencryptionClock++)%divinity.length])),oldSections[1]);
+const koanPlain=oldSections[3].map((v)=>mod29(28-v+3));
+assert.deepEqual(koanPlain.map((v)=>mod29(28-v+3)),oldSections[3]);
+const solvedCicada=[
+  ...warningPlain,...welcomePlain,...oldSections[2],...koanPlain,...oldSections[4]
+];
+assert.equal(solvedCicada.length,2389);
+assert.deepEqual(
+  [warningPlain,welcomePlain,oldSections[2],koanPlain,oldSections[4]]
+    .map((section)=>section.slice(0,5).map((v)=>corpus.translit[v]).join("")),
+  ["AWARN","WELCO","SOMEW","ACOAN","THELOS"]);
+stats["Authentic solved Cicada LP1 GP"]={
+  stripes:nativeWindows(solvedCicada,ceilings.stripes),
+  quintets:nativeWindows(solvedCicada,ceilings.quintets)
+};
+assert.deepEqual([
+  stats["Authentic solved Cicada LP1 GP"].quintets.symbols,
+  stats["Authentic solved Cicada LP1 GP"].quintets.windows,
+  stats["Authentic solved Cicada LP1 GP"].quintets.minE,
+  stats["Authentic solved Cicada LP1 GP"].quintets.lessOrEqual
+],[2389,1385,108,0]);
+
 /** @param {number} seed Positive deterministic seed.
  * @returns {()=>number} 32-bit test-only PRNG. */
 function seeded(seed) {
