@@ -145,8 +145,8 @@ function run() {
   assert(Math.abs(singleWordBits[305] - 2051.9599111292) < 1e-7);
   assert(Math.abs(singleWordBits[372] - 2388.8181902847) < 1e-7);
   const toy = log2OneCopyPerWord([2, 3], 2);
-  assert.equal(2 ** toy[1], 5);
-  assert.equal(2 ** toy[2], 6);
+  assert(Math.abs(2 ** toy[1] - 5) < 1e-12);
+  assert(Math.abs(2 ** toy[2] - 6) < 1e-12);
   const result = {
     kind: "Necessary capacity bound; no original plaintext or key",
     hypothesis: "Delete adjacent equal symbols; p50 bytes are the sole arbitrary restoration sidecar",
