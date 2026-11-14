@@ -47,7 +47,7 @@ A different, historically conventional **5×5 Hill cipher** uses the entire thir
 
 All **20** untouched-source cases are nonlinguistic: four matrix conventions × p53-red50, p55-body75 and combined125, plus four matrices × the other two p55 skip positions. For example, the source matrix applied to p53-red50 returns IoC **0.037551020408163265** and the prefix `TWOEEORTPAEUHBIO`; the mathematical inverse matrix applied to p55-body75 at its source-suggested skip25 returns IoC **0.03855855855855856** and the prefix `WUEARFRNGWNSOEOOEI`. Neither develops coherent GP-native words or sentences. A genuine 95-rune p57 GP-native plant forward-encrypts and recovers **95/95** under all four paired matrix conventions, and every original output re-encodes to its exact 50/75 source runes. The short `TWO` beginning of one nonlinguistic candidate is a chance-compatible motif, not authenticated plaintext.
 
-This **retire-the-specific-operator** result complements the totient-key gate above. It does not preclude a differently instructed use of the source square, an actual hidden key, a dynamically changing matrix, or source material omitted from the archive. [Original-source CommonJS SFT](../sims/lp1_p05_moth25_hill5_original_gate_sft.cjs).
+This **retire-the-specific-operator** result complements the totient-key gate above. It does not preclude a differently instructed use of the source square, an actual hidden key, a dynamically changing matrix, or source material omitted from the archive. [Original-source CommonJS SFT](../sims/lp1_p05_moth25_hill5_original_gate_sft.cjs). [Passing Windows Node22 reproduction](https://github.com/FlareZ123/liber-primus/actions/runs/43583206504).
 
 ## Research consequence
 
