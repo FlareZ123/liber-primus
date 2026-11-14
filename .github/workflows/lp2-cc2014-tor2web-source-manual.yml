@@ -2,6 +2,15 @@ name: LP2 2014 Common Crawl WARC source gate
 
 on:
   workflow_dispatch:
+    inputs:
+      backend:
+        description: Archive-index access path
+        required: true
+        default: cdx
+        type: choice
+        options:
+          - cdx
+          - s3
 
 permissions:
   contents: read
@@ -9,11 +18,15 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Index positive controls then bounded Tor2web WARC checks
+      - name: Controlled CDX API date-scoped source check
+        if: inputs.backend == 'cdx'
         run: python sims/lp2_cc2014_tor2web_warc_probe.py
+      - name: Independent S3 ZipNum bounded-range source check
+        if: inputs.backend == 's3'
+        run: python sims/lp2_cc2014_s3_zipnum_source_probe.py
