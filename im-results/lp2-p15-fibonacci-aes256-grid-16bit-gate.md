@@ -31,4 +31,17 @@ Across all 72 direct AES256 decryptions:
 
 **Decision:** reject direct same-width AES-256 plaintext extraction from the original 256-byte table under the 8 unadjusted keys and 3 ordinary modes/IV conventions. Unlike AES-128 (already exhaustively tried), this test checks the natural **literal 16×16-bit** key packing. It does not exclude nontext binary payloads, genuine unknown nonce/IV values, some other creator-specified transform, another plaintext register, or steganography. There is no rationale to expand to arbitrary IVs, per-cell offsets or postselected key derivations until an independent original instruction selects them.
 
+
+## Completed OpenPGP / raw-compressed binary recipient test (Agent12, 14 November 2026)
+
+The original 16×uint16 p15 square suggests a 32-byte AES-256 key; the original pp49–51 table is exactly 256 decoded bytes. Earlier source tests showed that 72 fixed direct AES-256 inverse candidates failed both ordinary ASCII text and one-byte-per-GP-rune expectations. That is a *text-format* exclusion only: the encrypted table might instead hold an OpenPGP packet or standard compressed payload, because earlier Cicada stages actually used signed OpenPGP messages and compression.
+
+A new strict [single-file Node22 test](../sims/lp2_p15_aes256_grid_pgp_binary_sft.cjs) repeats **all 72 original source-fixed candidate decryptions** without changing an original input, guessing a key, reading an arbitrary offset or adding a nonce. It checks each complete original 256-byte inverse at **byte offset zero** for:
+- a self-delimiting RFC4880 OpenPGP packet sequence containing a literal text packet, optionally ZIP or ZLIB compressed, with recognized packet tags and exact old/new definite-length framing;
+- gzip, zlib and RFC1951 raw-DEFLATE complete-byte-stream decompression (strictly consuming all 256 original source bytes) that yields at least 50 bytes of predominantly printable original-language candidate.
+
+The successful [Windows/Node22 original-cipher run 43542527504](https://github.com/FlareZ123/liber-primus/actions/runs/43542527504) found **0/72 complete OpenPGP literal messages and 0/72 complete ordinary compressed messages** under those frozen transformations. Three independently generated *complete 256-byte RFC4880 literal-packet positive controls*, containing actual solved-p57 prose, survived AES-256 encrypt/decrypt and parsed correctly in **all three standard AES modes**.
+
+This constrains the specific *binary plaintext format* left open in the earlier direct-text study. It does **not** exclude an unknown IV/nonce, an unrecognized encrypted OpenPGP packet, unframed/randomized metadata, a different byte ordering or an unrelated use for the grid. The source provides no historical AES instruction, so this is a finite hypothetical decoder test with no recovered original unknown plaintext, authentic key or continuation. No further AES key/mode fitting is justified by this negative.
+
 **Executable reproduction:** [single-file CommonJS source](../sims/lp2_p15_fibonacci_aes256_grid_sft.cjs), requiring only standard Node.js 22 `crypto`, `fs`, `path`, and the checked-in canonical base60 grid. The program asserts the table's exact SHA-256, 72 original round trips and the full AES-256 positive plant. The preceding counts were independently computed with Python's `cryptography` AES implementation on the same canonical grid and source-number vectors; the CJS SFT is retained for reproducibility.
