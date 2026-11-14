@@ -1,6 +1,6 @@
 # A194954 / 41×316 direct-key gate
 
-**Status:** bounded negative for direct additive use of the A194954-selected p57 phrase and the 2014 square's 41 active symbols. No LP2 plaintext or key recovered. Preserve the cross-round sequence as a possible navigation clue, not as a cipher key.
+**Status (14 November 2026):** key-independent original-cipher exclusion of all **41 independently secret, stationary GP29 substitution alphabets** under each of two source-shaped 41×316 groupings, plus the earlier bounded negative for direct additive keys. This is a finite source-native-English-register result. No unknown LP2 plaintext, cipher key, or final destination recovered. The cross-round 41×316 selector is still hypothetical.
 
 ## Hypothesis tested
 
@@ -47,6 +47,36 @@ The opposite signs are also tested and score worse. The best candidate is still 
 
 The result rejects these direct additive interpretations of the 41×316 structure. It does **not** reject A194954 as a word selector, a non-additive route through the 2014 square, or a source-selected navigation operation on LP2.
 
+## Any secret alphabet per row or column: key-independent original-cipher gate (14 November)
+
+The previous direct-key negative still left a stronger and genuinely different model open: **each one of the 41 classes may have its own wholly secret permutation of all 29 runes**. This includes all Caesar/Vigenère shifts, secret arbitrary static substitution alphabets, source-derived or unknown 41-symbol seed schedules, and different alphabet choices per class. A fixed classwise permutation cannot change how often two symbols in that class are equal; no key search is required.
+
+Flatten the 55 rune-bearing, still-unsolved physical LP2 pages p0–55 in original reading order, omitting runeless p50, for exactly **12,956 GP29 runes**. The source-shaped partitions are:
+
+- **Contiguous rows:** 41 consecutive blocks of 316 runes, class `floor(i/316)`.
+- **Interleaved columns:** 41 residue classes `i mod41`, each holding 316 runes. This covers a period-41 secret alphabet and the opposite 316×41 orientation.
+
+For each class `g` and GP29 symbol `a`, let `n[g,a]` count its observed appearances. The exact key-independent invariant is
+
+`Q = sum_g sum_a n[g,a] * (n[g,a]-1) / 2`.
+
+A bijection of the 29 symbol labels within class `g` merely permutes the 29 frequencies, leaving `Q` unchanged, regardless of the hidden alphabet order or source of its key. Each geometry has exactly `41 * choose(316,2) = 2,040,570` comparable position pairs.
+
+| Original input or GP29 plaintext reference | Windows checked | Contiguous-row equal pairs | Interleaved-column equal pairs |
+| --- | ---: | ---: | ---: |
+| **Original unknown LP2, unchanged** | 1 | **69,661** | **70,220** |
+| Shakespeare source-native GP29 | 32 | **119,491–126,174** | **117,225–125,113** |
+| Gibran source-native GP29 | 8 | **122,916–125,401** | **120,924–123,464** |
+| Emerson source-native GP29 | 48 | **124,012–129,178** | **123,151–128,299** |
+
+All 88 frozen original-length, half-overlapping source-native controls exceed the exact original-invariant bounds under both partitions. The closest control still exceeds the original by **47,005 equal-symbol pairs** (the minimum interleaved Shakespeare 117,225 versus observed 70,220); the contiguous-row minimum margin is **49,830 pairs**. Original equal-pair fractions are **0.03413801046** (rows) and **0.03441195352** (columns), versus control minima **0.05855765791** and **0.05744718388** respectively. The controls use the established LP1 GP spelling convention `QU→CW, V→U, K/Q→C, Z→S, ING→ᛝ, IO→ᛡ`; exact corpus path, source lengths and sliding-window step 6,478 are frozen in the reproducer.
+
+**Completeness and positive control.** The result grants **every possible secret substitution permutation per one of 41 classes**, far beyond the fixed keys tested earlier. The new CommonJS [original-source SFT](../sims/lp2_41x316_allsecret_capacity_sft.cjs) asserts source-original counts and every control range, then applies 41 different invertible affine GP29 maps `E_g(x)=7x+3g+5 mod29` to held-out native-GP plaintext, recovers it exactly using inverse `7^(−1)=25 mod29`, and verifies the equality-pair invariant is preserved. This checks the architecture and decoder independent of any original ciphertext. The key-independent bound itself does not need those planted keys.
+
+**What is excluded:** a 41×316 source-shape cipher using one fixed-position, **one-to-one GP29 substitution independently per row or column** and producing any of the 88 source-native English control windows as its original-length plaintext. No unknown permutation choice can avoid the contradiction.
+
+**What survives:** a transposition or other rearrangement between positions, changing alphabet within a class, state feedback using previous symbols, non-English/encoded plaintext, or a separately supported variable-word-length transport. These models have different invariants and cannot be dismissed by this test. The 41×316 geometry remains a retrospective cross-round association: this mathematical exclusion is conditional on the partition and on the finite tested English-register controls. It neither proves the historical authors used this shape nor recovers a single unknown plaintext rune.
+
 ## Evidence limits on the A194954 selector
 
 The preserved 2014 cleartext-signed message contains the visible 2-space internal gap after “Hello.” and 5-space leading indentation before the onion address. Most of the other runs used to form the eleven-term sequence are trailing or blank-line whitespace. RFC 4880 §7.1 specifies that trailing spaces and tabs are removed before a cleartext signature is generated; those runs therefore are not authenticated by the PGP signature. The repository copy also contains a separate 2-space trailing run after “you.” that is absent from the published eleven-number list. The sequence may have been deliberately present in the original transport bytes, but its exact form is archive-dependent; do not call the full sequence PGP-authenticated.
@@ -57,7 +87,7 @@ The 2016 43-word count and A194954(12)=43 / final key-ID selection remain an int
 
 ## Decision
 
-Do not repeat direct period-41 additive, 41×316 row-wise Caesar, or key-order shuffles for these same source-derived keys. The remaining useful question is whether the selected words' *meaning* and the original p57 page's two-dimensional word layout specify a unique route through the 2014 square or unknown LP2. Require that route to be fixed from the original clue before testing another cipher family.
+Do not repeat direct period-41 additive, 41×316 row-wise Caesar, key-order shuffles or any search for wholly secret **stationary per-class GP29 substitutions** under the two fixed original-input partitions. A key-independent original-invariant contradiction already covers every member of that substitution family against all 88 source-native English controls. The remaining useful question is whether the selected words' *meaning* and the original p57 page's two-dimensional word layout source-select a different, reversible state-changing operation or a unique route through the 2014 square. Freeze that operation from a fresh original clue before evaluating more original ciphertext.
 
 ## Sources and supporting work
 
@@ -66,6 +96,6 @@ Do not repeat direct period-41 additive, 41×316 row-wise Caesar, or key-order s
 - 2016 signed message: `resources/historical/cicada2016-4gq25-outguess.asc`.
 - 2014 41-symbol square construction and prior direct-key negatives: `im-results/onion7-magic-center-source-prime-gate.md`.
 - p57 19-word map and 2013 marker route: `im-results/p57-word-map-19-direction-cycles.md`.
-- Reproducer: `sims/a194954_41x316_direct_key_gate.cjs`.
+- Reproducers: `sims/a194954_41x316_direct_key_gate.cjs` (earlier frozen keys) and `sims/lp2_41x316_allsecret_capacity_sft.cjs` (new all-secret exact invariant).
 - OpenPGP cleartext canonicalization: [RFC 4880 §7.1](https://www.rfc-editor.org/rfc/rfc4880#section-7.1).
 - Sequence: [OEIS A194954](https://oeis.org/A194954).
