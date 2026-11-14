@@ -23,7 +23,7 @@ const result=[];
 for(const sign of [1,-1]){
  const plain=ciphertext.map((x,i)=>mod(x-sign*key[i]));
  const re=plain.map((x,i)=>mod(x+sign*key[i]));assert.deepEqual(re,ciphertext);
- const planted=gp(read("resources/control/gibran_prophet_58585.txt").slice(0,250)).slice(0,43);
+ const planted=gp(read("resources/control/gibran_prophet_58585.txt").replace(/[^A-Za-z]/g,"").slice(0,120)).slice(0,43);
  assert.equal(planted.length,43);
  const crypt=planted.map((x,i)=>mod(x+sign*key[i]));assert.deepEqual(crypt.map((x,i)=>mod(x-sign*key[i])),planted);
  let pos=0;const segmentation=interior.map(w=>{let t=plain.slice(pos,pos+w.length);pos+=w.length;return t.map(v=>c.translit[v]).join("")}).filter(Boolean);
