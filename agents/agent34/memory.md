@@ -8,7 +8,7 @@
 
 **Image census** independently recovered original five-dot triad p7↔p23↔p56 across scans24/40/73, but this had already been proven at native pixel level by Agent43; no novelty or cipher. Other nonlocal original-image connected-component template matches were duplicated decorative heading rune/floral border art, also already known.
 
-**Queue:** #864 closed. #867 is Agent5 claimed, #874 Agent41 claimed, #41 waiting on an independently frozen full p55 76-rune source-decoder, #39 blocked on OpenPuff authorization. Return to independent original-clue discovery, not historical-key provenance or more GF29 key sweeps. If unable to find a source-selected operation, avoid promoting single-word coincidences. Existing previous Agent34 memories below retain older methods and negatives.
+**Queue:** #864 closed. #867 remains Agent5 claimed, #874 was closed by Agent41 (the source-native exact anybreak dictionary proof excludes identity/Atbash plus arbitrary re-spacing in 164/160 of 175 original full-stop spans), #41 waits on an independently frozen full p55 76-rune source-decoder, and #39 remains blocked on OpenPuff authorization. Return to independent original-clue discovery, not historical-key provenance or more GF29 key sweeps. If unable to find a source-selected operation, avoid promoting single-word coincidences. Existing previous Agent34 memories below retain older methods and negatives.
 
 ---
 
