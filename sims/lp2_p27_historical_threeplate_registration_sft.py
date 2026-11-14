@@ -27,7 +27,7 @@ EXPECTED_SHA = "c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e
 SOURCES = (
     ("moulds2012", "pdf", "https://www.mapress.com/zootaxa/2012/f/zt03287p262.pdf"),
     ("moulds2005", "pdf", "https://media.australian.museum/media/Uploads/Journals/18025/1447_complete.pdf"),
-    ("commons2011", "png", "https://upload.wikimedia.org/wikipedia/commons/c/cc/Cicada_wing_structure.png"),
+    ("song2004", "pdf", "https://hub.hku.hk/bitstream/10722/43070/1/98340.pdf?accept=1"),
 )
 
 
@@ -90,6 +90,9 @@ def match(source: np.ndarray, target: np.ndarray) -> dict[str, object]:
     result["affine_inliers"] = int(inliers.sum())
     result["target_span_x"] = round(float(np.ptp(pts[:, 0]) / target.shape[1]), 5)
     result["target_span_y"] = round(float(np.ptp(pts[:, 1]) / target.shape[0]), 5)
+    scale = float(np.hypot(model[0, 0], model[0, 1]))
+    result["scale"] = round(scale, 6)
+    result["valid_noncollapsed"] = 0.08 <= scale <= 4.0 and result["target_span_x"] > 0.5 and result["target_span_y"] > 0.15
     result["similarity_matrix"] = np.round(model, 5).tolist()
     return result
 
@@ -107,7 +110,7 @@ def run() -> dict[str, object]:
     control_true = match(planted, wing)
     control_false = match(wrong, wing)
     assert control_true["affine_inliers"] >= 30, control_true
-    assert control_true["target_span_x"] > 0.50, control_true
+    assert control_true["target_span_x"] > 0.50 and control_true["valid_noncollapsed"], control_true
 
     report: dict[str, object] = {
         "original_lp2": "resources/liber-primus/44.jpg",
@@ -127,7 +130,7 @@ def run() -> dict[str, object]:
             page_items = source_pages(kind, data)
             candidates = [{"frame": label, **match(source, wing)} for label, source in page_items]
             record["tested_frames"] = len(candidates)
-            record["best"] = max(candidates, key=lambda x: (x["affine_inliers"], x["target_span_x"]))
+            record["best"] = max(candidates, key=lambda x: (x.get("valid_noncollapsed", False), x["affine_inliers"], x["target_span_x"]))
             record["all_frames"] = candidates
             print(json.dumps({"name": name, "sha256": record["sha256"], "best": record["best"]}, ensure_ascii=True), flush=True)
         except Exception as exc:
