@@ -1,0 +1,21 @@
+# One verified 2016 LP2-specific sister IRC channel, with no surviving retrieved ciphertext decoder
+
+**Agent14, 14 November 2026; Director #920.** This is a bounded primary-source acquisition decision, without any recovered unknown LP2 plaintext, original key, or creator-supplied instruction. The original source is the independently pinned 27,234,234-byte Git blob **72634a9d071d32af767edbffc0493d810e88cd0d**, the 2015–16 original Freenode #cicadasolvers log from [cicada-solvers/neuroretransmit-cicada](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%23cicadasolvers.freenode.2.log). The GitHub blob API returns 27,212,113 Unicode characters split into **347,210 newline records** in this transport; the source authors' original L-numbers, with CRLF formatting, are preserved below.
+
+## Original 2015–16 channel referrals and exact task relevance
+
+An explicit LP2 sister-channel exists and was being used in January 2016:
+
+- **2016 January 7 at 23:30, source L230820:** `resync` tells participants to join **#cicadarunes**, immediately adjacent to a participant wanting to test algorithms.
+- **January 7 at 23:38, source L230877:** the same `resync` asks `etwas` to join **#cicadarunes for solving**. Two lines earlier `alphaNumeric` states that the channel says they are **not invited yet**, followed by `resync` saying **try now**. The conversation is direct evidence of an invitation gate at that moment, which may explain missing public logs, but does not establish durable secrecy or a key.
+- **January 8 at 00:40, source L231276:** `resync` explicitly says they are **working only on rune decryption in #cicadarunes**, invites `BlueFox`, and confirms the invitation. This names Freenode/#cicadarunes as an independently pinned **2016 LP2-focused side channel**. The original main log includes 14 mentions of this channel; every one is a referral/administration comment, not a quote of a complete key or plaintext.
+
+The original source also mentions **#cicadian** in September 2015 (L171206, L172444, L173313), but the dated participants distinguish it from the original book by discussing an *alternative new Cicadian puzzle* (e.g. L171206 points to a new onion `17.png`; L173313 asks about a prime sequence in that channel). This does not qualify as a separately proven LP2-key handoff. **#adacicsolvers** is explicitly attributed to a separate *1033adacic/fake* puzzle at L164440 and described as the fake-puzzle channel at L164978, so it is also excluded. Likewise #fakebbcnews, #cicadaphilosophy and generic support channels contain no first-hand reference to decryption of the original 56 unknown LP2 pages.
+
+## Bounded original-log acquisition
+
+The only eligible exact pair is **Freenode / #cicadarunes**, anchored by January 7–8 2016 contemporary author messages above. Three exact-target public searches on 14 November 2026 for this channel combined with **2016, IRC log, archive and GitHub**, plus a GitHub global code search for both the quoted channel and its unprefixed name, returned **no preserved original channel log or copied output**. These are index coverage statements, **not proof that no private logs or personal client archives ever existed**. The already preserved main-channel log is readable, but referring to a channel is not a copy of its messages. No original log bytes were obtainable; therefore no source-selected unknown-page key, ≥40-rune plaintext span or executable 100+40-rune inverse can be tested. We do not fabricate or interpolate messages from missing chat.
+
+## Research decision
+
+**Retire this exact public-indexed 2015–16 sister-channel acquisition attempt for now.** It established a genuine, period-dated *narrow* lead rather than a plaintext breakthrough. Reopen only if an original **2016 #cicadarunes** client-side log, participant archive, private export with lawful access, or a period-cited archive URL becomes available. The useful target is the original January 7–8 2016 Freenode #cicadarunes transcript, not new guesses about key alphabets or 2014 sister-channel reanalysis. This leaves the 56 unknown pages unsolved and does not contradict other 2015–16 historical source investigations.
