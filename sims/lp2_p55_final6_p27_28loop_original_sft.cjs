@@ -58,6 +58,11 @@ assert.deepEqual(wordPrimeSums, [129,159]);
 assert.equal(combinedPrimeSum, 288);
 assert.equal(combinedPrimeSum % 29, p27.page);
 assert.equal(combinedPrimeSum % 58, 56);
+const directedPrimeDifference =
+  ((wordPrimeSums[0] - wordPrimeSums[1]) % 29 + 29) % 29;
+assert.equal(directedPrimeDifference, 28);
+assert.equal(directedPrimeDifference, p55.page-p27.page);
+
 
 const afterAnchor = p27.indices.slice(34, 104);
 const front = p55.indices.slice(0, 70);
@@ -94,6 +99,8 @@ console.log(JSON.stringify({
   sourceNumberDirectionCandidate: {
     wordPrimeSums, combinedPrimeSum,
     modAlphabet29: combinedPrimeSum % 29,
+    firstMinusSecondMod29: directedPrimeDifference,
+    targetPageRuneOffset: 28,
     destinationPhysicalPage: p27.page,
     modTotalPages58: combinedPrimeSum % 58
   },
