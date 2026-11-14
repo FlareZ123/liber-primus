@@ -65,7 +65,7 @@ def textblob_longword_prefix_weights(tiles):
     original = (ROOT / "resources/control/english_wordfreq_textblob.txt"
                 ).read_text(encoding="utf-8")
     for line in original.splitlines():
-        match = re.fullmatch(r"([a-z]+) (\\d+)", line)
+        match = re.fullmatch(r"([a-z]+) (\d+)", line)
         if match is None:
             continue
         source_word = match.group(1).upper().translate(FOLDS)
