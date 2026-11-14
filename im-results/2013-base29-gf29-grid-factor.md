@@ -364,6 +364,26 @@ The 119,213 native-GP 238-rune control windows range from **−8.56711 to −7.4
 
 **Decision:** retire only this fixed Q252-row → continuous chain-step key schedule. It does not recover plaintext and does not support a second-page prediction. This does not establish or disprove the broader chain-cipher hypothesis, and it does not exclude other uses of Q252. The chain-step/EA premise itself remains conditional; see [the doublet exception-channel analysis](doublet-exception-channel.md). Reproducer: **sims/p50_q252_chain_step_key_sft.cjs**.
 
+### Whole-p36 GF(29^238) power decoder using the 2013 DH3301 exponent: exact source-reversible negative (14 November 2026, Agent5)
+
+**New candidate mechanism and decision.** The original table's monic, irreducible factor `Q238` defines a 238-dimensional extension field `GF(29)[X]/Q238`, and the original physical p36 contains **238 complete GP29 ciphertext runes**, one coefficient per field coordinate. The historically attested 2013 DH3301 challenge, reconciled with the original NUMBER/151 routing hypothesis, produces a *conditional* source candidate private exponent **1661**. Unlike the previously executed direct additive Q238-key or GF(29²) ElGamal trials, this tests **one whole 238-rune p36 field element as a complete source-motivated exponent-cipher message**, rather than an independent rune stream. The true source does not prescribe giant-field exponentiation, so the operator remains a proposed consumer, not an authenticated decryption instruction.
+
+Read all original 256 table bytes as descending GF29 coefficients; divide by the exact monic source factors `(X+5)^2`, `X²+18X+11` (2013 BASE29 3301 factor), the original cubic, and the original degree-nine factor. Multiply the 239 quotient coefficients by 28 to obtain exactly the **monic degree-238 Q238**, independently matching the original [complete factorization](lp2-grid-complete-gf29-factorization.md), SHA256 of its **high-to-low** 239 byte coefficients `9cb443bed228623bbd522efcd73888d3a4870c3db0ddcc147011765f3c8a9eb3`. Interpret p36 rune indices as polynomial coefficients in either literal original reading orientation, **highest coefficient first** or **lowest coefficient first**. Use the source-conditional exponent `e=1661` directly or its multiplicative inverse modulo `29^238−1`.
+
+A useful necessary fact is newly fixed: **gcd(1661,29^238−1)=1**. The exponent has a **1,153-bit inverse**, so both maps `x ↦ x^1661` and `x ↦ x^(1661^(−1) mod (29^238−1))` are exact automorphisms of the multiplicative cyclic group `GF(29^238)^×`; each is invertible at *every nonzero 238-rune field object*. The original p36 elements are nonzero. This makes the proposed full-page inverse mathematically serious and eliminates secret exponent-rescue ambiguity; a wrong source exponent or a different field is a different model.
+
+| Literal full-page input order | Frozen operation | Source p36 GP29 index of coincidence |
+| --- | --- | ---: |
+| Source raw ciphertext | none | **0.0359890792** |
+| First printed rune as highest coefficient | raise to 1661 | **0.0331170443** |
+| First printed rune as highest coefficient | raise to inverse 1661 | **0.0347480764** |
+| First printed rune as lowest coefficient | raise to 1661 | **0.0339325604** |
+| First printed rune as lowest coefficient | raise to inverse 1661 | **0.0351735631** |
+
+All four field outputs are full-length, nonlinguistic GP29 symbol streams. Every original output exactly reverses under its complementary exponent and restores **all 238 original runes**. An independent positive encrypts an actual known solved p57 GP plaintext segment, repeated only to the same 238-rune source length, under the same exponent and recovers all **238/238** symbols exactly; its GP29 IoC remains above 0.055, so a native-language-shaped result is detectable. The positive tests functional power inversion but cannot authenticate the source candidate. No unknown plaintext or key result is claimed.
+
+**Decision:** Retire the direct single-message `Q238` whole-field power cipher for p36 under e=1661, both original coefficient orientations and both signs of the exponent, as a native GP29 plaintext decoder. The irreducible field and source-derived exponent are real, but neither a successful original output nor an instruction linking this full-field message to p36 has surfaced. Further exponent selection, field basis changes, or plaintext register projections require independent original-cipher evidence. [Complete original-and-positive Node22 SFT](../sims/lp2_q238_p36_gf29dh_fieldpower_sft.cjs).
+
 ### Q238 and the 238-rune p36 page
 
 The monic irreducible factor Q238 has 238 non-leading coefficients, while physical p36 contains exactly 238 runes. Using those coefficients as a repeating key, with continuous, per-page or per-body clocks, both orientations and signs, gives a best IoC of **0.0359**. Using p36 itself as the initial 238-symbol state of an LFSR with Q238 (or its reciprocal), forward or bidirectional extension, both seed orders and signs, gives a best IoC of **0.0346**. Neither produces language. The length match is retrospective; no authenticated instruction selects p36 as a seed or Q238 as a key.
