@@ -4,9 +4,9 @@
 
 ## Previously available evidence, and why one new test was justified
 
-The first-hand archived [2014 Freenode logs](../resources/external/2014-cicadasolvers-freenode-log-corpus.md) are recovered original Git blobs from [\`neuroretransmit/cicada\` pinned at \`ade9a02889ef8acbc8cde8edbfd0a785c369f4c3\`](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs). The primary \`#cicadasolvers.freenode.log\` is 18,487,233 bytes, Git blob SHA-1 \`bdd277c14f94c34b5ae714cd00c238065beeed4e\`. Its 2014 record is a dated human-conversation witness, **not** an authenticated Cicada author instruction. The file and two companion log files were independently fetched and blob-hash verified by [the targeted original-period witness inventory](../sims/lp2_2014_irc_p55_original_keywitness_sft.cjs), [successful Windows Node22 run43652620838](https://github.com/FlareZ123/liber-primus/actions/runs/43652620838).
+The first-hand archived [2014 Freenode logs](../resources/external/2014-cicadasolvers-freenode-log-corpus.md) are recovered original Git blobs from [`neuroretransmit/cicada` pinned at `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs). The primary `#cicadasolvers.freenode.log` is 18,487,233 bytes, Git blob SHA-1 `bdd277c14f94c34b5ae714cd00c238065beeed4e`. Its 2014 record is a dated human-conversation witness, **not** an authenticated Cicada author instruction. The file and two companion log files were independently fetched and blob-hash verified by [the targeted original-period witness inventory](../sims/lp2_2014_irc_p55_original_keywitness_sft.cjs), [successful Windows Node22 run43652620838](https://github.com/FlareZ123/liber-primus/actions/runs/43652620838).
 
-In the primary log on **19 May 2014, 02:37**, \`<Ammar__>\` writes:
+In the primary log on **19 May 2014, 02:37**, `<Ammar__>` writes:
 
 > Try this the last prime used on 56 the one after starts on page 55
 
@@ -24,7 +24,7 @@ P_i=C_i-\big(p_{k_i}-1\big)\pmod {29},
 
 and branch exhaustively on all ciphertext-F interrupter possibilities. At any non-F ciphertext position, a calculated plaintext F is a contradiction: the authentic encoder would have emitted literal F without consuming a key, which is not the observed non-F original glyph.
 
-The original p55 first eight GP glyph labels are \`NG AE M I W S B X\`. At zero-based position **7**, the next prime is **479**. Since \((479-1)\bmod29=14\), and the ciphertext glyph **X** has index14, the proposed inverse forces **plaintext F** at ciphertext **X**. Thus this **complete** prime-cursor model is algebraically impossible after just eight original glyphs, with no language score or unknown plaintext assumption.
+The original p55 first eight GP glyph labels are `NG AE M I W S B X`. At zero-based position **7**, the next prime is **479**. Since \((479-1) mod 29=14\), and the ciphertext glyph **X** has index14, the proposed inverse forces **plaintext F** at ciphertext **X**. Thus this **complete** prime-cursor model is algebraically impossible after just eight original glyphs, with no language score or unknown plaintext assumption.
 
 A permissive alternative starts at prime-index85 = the **86th prime443**, pretending all 85 p56 glyphs consumed keys (contrary to the actual known solved F bypass). Enumerating all valid p55 F branches likewise yields a contradiction at original p55 index **71**, ciphertext glyph **J**, when the demanded key is prime **911**. The full original p55 contains 76 glyphs and exactly three ciphertext-F sites at indices **15,25,41**; the decoder explores every branch permitted by the authentic emission semantics at these positions. The same original has **75 glyphs in complete words**, with its first one-glyph segment finishing an incoming p54 word. We also tested starting the resumed prime stream at the first complete p55 word by excluding that one-glyph carry. All four source-fixed combinations have **zero complete legal p55 plaintext strings**.
 
@@ -43,20 +43,20 @@ This retires **both chronological consecutive-prime p56→p55 starts under both 
 
 The same May2014 channel records an independently historical, sharply local *plaintext* idea for the p55 large artwork:
 
-- **20 May 2014, 21:19 and22:29**, participant \`<silence_>\` proposes original p55 **word #7 (13 runes)** might be **MULTIBRANCHED**, citing the visible dendrite/tree.
-- **21 May 2014, 18:09**, \`<amone>\` suggests that if the 13-rune word is **ENLIGHTENMENT**, its next two words might read **AWAITS THOSE**.
-- **19 May 2014, 20:50**, \`<Mothwing>\` describes p55 artwork as a cicada, saplings and a tree/dendrite. This describes the visible motif and provides context for the hypotheses.
+- **20 May 2014, 21:19 and22:29**, participant `<silence_>` proposes original p55 **word #7 (13 runes)** might be **MULTIBRANCHED**, citing the visible dendrite/tree.
+- **21 May 2014, 18:09**, `<amone>` suggests that if the 13-rune word is **ENLIGHTENMENT**, its next two words might read **AWAITS THOSE**.
+- **19 May 2014, 20:50**, `<Mothwing>` describes p55 artwork as a cicada, saplings and a tree/dendrite. This describes the visible motif and provides context for the hypotheses.
 
 In the exact canonical source p55 page, **page-local word indices 7–9** have lengths **13,6,4 GP29 runes**, totaling23. GP29 transliteration exactly preserves all four proposed words at their expected rune lengths:
 
 | Proposed 2014 source-language guess | Original GP29 rune lengths | Conditional key residues 28 at local positions |
 | --- | --- | --- |
-| \`ENLIGHTENMENT AWAITS THOSE\` | **13,6,4** | **0,15** |
-| \`MULTIBRANCHED AWAITS THOSE\` | **13,6,4** | **15** |
+| `ENLIGHTENMENT AWAITS THOSE` | **13,6,4** | **0,15** |
+| `MULTIBRANCHED AWAITS THOSE` | **13,6,4** | **15** |
 
-The text **MULTIBRANCHED AWAITS THOSE** is a combined analytical control: the original participant proposed *MULTIBRANCHED* separately, while another proposed *AWAITS THOSE* after **ENLIGHTENMENT**. **No 2014 participant authenticated this combined sentence.** Both candidate phrases are unverified cribs. Their original ciphertext word union is the unchanged **23-rune** string \`BEAFXIMUCPHNGLEOMSDIAPFBHEOC\` and includes ciphertext F at local offsets2 and18.
+The text **MULTIBRANCHED AWAITS THOSE** is a combined analytical control: the original participant proposed *MULTIBRANCHED* separately, while another proposed *AWAITS THOSE* after **ENLIGHTENMENT**. **No 2014 participant authenticated this combined sentence.** Both candidate phrases are unverified cribs. Their original ciphertext word union is the unchanged **23-rune** string `BEAFXIMUCPHNGLEOMSDIAPFBHEOC` and includes ciphertext F at local offsets2 and18.
 
-One exact useful exclusion applies independently of the previous p56→p55 cursor: for any GP plaintext candidate P encoded with consecutive primes via \(C=P+\phi(p)\bmod29\), a required key residue **28** can occur only where the prime \(p=29\), since \(\phi(p)=p-1\) and \(p-1=28\bmod29\Rightarrow p=0\bmod29\), so prime \(p\) must equal29. The prime29 appears **only once** in the entire forward consecutive-prime key schedule, at **zero-based ordinal9**. Any demanded 28 at local phrase index15 is impossible for **every nonnegative starting prime ordinal**, as the 16th consumed prime cannot be earlier than ordinal15. Both candidate phrases demand 28 at that local position, so **both cannot be p55 plaintext under a forward prime-totient cipher from any starting offset**. \`ENLIGHTENMENT ...\` independently demands two separate 28 residues, impossible under any consecutive-prime sequence even if negative or backwards indices were considered. Neither candidate has a literal plaintext F, so p56's special plaintext-F clock rule cannot skip either local position.
+One exact useful exclusion applies independently of the previous p56→p55 cursor: for any GP plaintext candidate P encoded with consecutive primes via \(C=P+\phi(p) mod 29\), a required key residue **28** can occur only where the prime \(p=29\), since \(\phi(p)=p-1\) and \(p-1=28 mod 29\Rightarrow p=0 mod 29\), so prime \(p\) must equal29. The prime29 appears **only once** in the entire forward consecutive-prime key schedule, at **zero-based ordinal9**. Any demanded 28 at local phrase index15 is impossible for **every nonnegative starting prime ordinal**, as the 16th consumed prime cannot be earlier than ordinal15. Both candidate phrases demand 28 at that local position, so **both cannot be p55 plaintext under a forward prime-totient cipher from any starting offset**. `ENLIGHTENMENT ...` independently demands two separate 28 residues, impossible under any consecutive-prime sequence even if negative or backwards indices were considered. Neither candidate has a literal plaintext F, so p56's special plaintext-F clock rule cannot skip either local position.
 
 This is a mathematical exclusion of **the conditional historical phrase-and-specific-cipher pairs**, without implying the guesses are false plaintext under other key systems. The 13-rune visual word could encode any other word of the same GP length, or use the text lengths only as cipher structure.
 
@@ -66,7 +66,7 @@ This is a mathematical exclusion of **the conditional historical phrase-and-spec
 
 
 
-The exact **21 May 2014, 18:17** archived \`#cicadasolvers\` line under \`<BlueFox>\` revisits the preceding **20 May** degree-by-page Jordan hypothesis for p55. Neither intervention is a 3301-authenticated instruction. For a prime \`p\`, the standard Jordan totient \`J_2(p)=p²−1\`. The closest low-complexity analogy to solved p56 is therefore to replace its \`φ(p)=p−1\` additive key by \`J_2(p)\bmod29\` while keeping consecutive primes, the literal-plaintext-F nonconsuming rule, and the genuine GP29 alphabet.
+The exact **21 May 2014, 18:17** archived `#cicadasolvers` line under `<BlueFox>` revisits the preceding **20 May** degree-by-page Jordan hypothesis for p55. Neither intervention is a 3301-authenticated instruction. For a prime `p`, the standard Jordan totient `J_2(p)=p²−1`. The closest low-complexity analogy to solved p56 is therefore to replace its `φ(p)=p−1` additive key by `J_2(p) mod 29` while keeping consecutive primes, the literal-plaintext-F nonconsuming rule, and the genuine GP29 alphabet.
 
 The **primary source context is exact**, recovered by [a four-conversation original-Git-blob witness SFT](../sims/lp2_2014_p55_firsthand_context_sft.cjs), [successful Windows Node22 run43654203405](https://github.com/FlareZ123/liber-primus/actions/runs/43654203405). The relevant primary lines include **183940** (prime-series Jordan method), **183942** (degree/page mapping), **183953/183955/183957** (J₀/J₁/J₂ and n=prime series), and **185049** (p55 follow-up). A separate period participant thought the idea had failed already on 20 May. This gives a historically specific community hypothesis to adjudicate, while preserving its non-authorial status.
 
@@ -78,7 +78,7 @@ The original-source test fixes prime starts **0/84/85** (restart at prime2, true
 | **84** | p55 index **12 / 3** | p55 index **11 / one complete formal output** |
 | **85** | p55 index **2 / 11** | p55 index **12 / 3** |
 
-Offsets above are original physical page-local **zero-based** glyph positions. Under the **only formally legal** output (body75, prime index84, **plus** inverse), original ciphertext exactly forward-encrypts but recovered GP29 IoC is **0.035315315315**, and its transliteration begins \`JATHYDBOEJNGSEOGAEAEFIAWOJEAJYAEE\`. This is nonlinguistic and cannot be promoted to plaintext. All other eleven original variants exhaust all legal original F positions and fail the known plaintext-F emission constraint. Every variant has an independently generated original solved-p57 native GP cipher positive control, recovering **76/76** or **75/75** symbols with no exceptions.
+Offsets above are original physical page-local **zero-based** glyph positions. Under the **only formally legal** output (body75, prime index84, **plus** inverse), original ciphertext exactly forward-encrypts but recovered GP29 IoC is **0.035315315315**, and its transliteration begins `JATHYDBOEJNGSEOGAEAEFIAWOJEAJYAEE`. This is nonlinguistic and cannot be promoted to plaintext. All other eleven original variants exhaust all legal original F positions and fail the known plaintext-F emission constraint. Every variant has an independently generated original solved-p57 native GP cipher positive control, recovering **76/76** or **75/75** symbols with no exceptions.
 
 **Decision:** The archival Jordan suggestion supplies a *specific testable community cipher family* (prime-series `n` and page-degree `k=57−page`); the correct original p55 Jordan experiment still has no readable GP text, and the community did not supply a valid clock/sign/boundary or author confirmation. No authenticated unknown plaintext. This excludes exactly the fixed three-prime-start/physical-geometry 12-case direct Jordan variant; composite Jordan inputs or independently sourced keys remain outside scope.
 
@@ -95,4 +95,4 @@ Retire these precise direct operations. A new attempt needs authenticated key ma
 - [Original p55 fully branched prime-continuation inverse](../sims/lp2_2014_p55_prime_cursor_continuation_sft.cjs) with [successful complete four-geometry run43653679078](https://github.com/FlareZ123/liber-primus/actions/runs/43653679078) (the earlier 76-glyph-only positive was [run43653243815](https://github.com/FlareZ123/liber-primus/actions/runs/43653243815))
 - [Original23-rune May2014 conditional-crib all-phase arithmetic gate](../sims/lp2_2014_p55_13rune_eyewitness_crib_sft.cjs) with [successful run43653413248](https://github.com/FlareZ123/liber-primus/actions/runs/43653413248)
 
-Original source: \`resources/liber-primus/lp2-corpus.json\`, \`resources/liber-primus/lp2-transcription.txt\` and exact pinned archived 2014 Freenode source log identified above.
+Original source: `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-transcription.txt` and exact pinned archived 2014 Freenode source log identified above.
