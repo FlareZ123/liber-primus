@@ -126,11 +126,13 @@ const classes={
  * @param {number[]} positions
  * @param {number[]} symbols
  * @param {(cell:number,ring:number,position:number)=>string} tag
+ * @param {boolean} [ignoreF]
  * @returns {{errors:number,classes:number,contradictoryClasses:number}}
  */
-function fit(positions,symbols,tag){
+function fit(positions,symbols,tag,ignoreF=false){
   const bins=new Map();
   for(let i=0;i<180;i++){
+    if(ignoreF && symbols[i]===0)continue;
     const ring=i<68?1:i<128?2:3;
     const key=tag(positions[i],ring,i);
     if(!bins.has(key))bins.set(key,new Map());
@@ -155,10 +157,21 @@ for(const textMode of Object.keys(known)){
   }
 }
 let candidates=0;
+let minNonFWithIndependentTerminals=Infinity;
+let minNonFWithSharedRingColumn=Infinity;
 for(let a=0;a<8;a++)for(let b=0;b<8;b++)for(let c=0;c<8;c++){
   const positions=[...orient(1,a),...orient(2,b),...orient(3,c)];
   assert.equal(new Set(positions).size,180);
   candidates++;
+  minNonFWithIndependentTerminals=Math.min(
+    minNonFWithIndependentTerminals,
+    fit(positions,known.decoded,
+      classes.terminal_page_ring_column_token,true).errors
+  );
+  minNonFWithSharedRingColumn=Math.min(
+    minNonFWithSharedRingColumn,
+    fit(positions,known.decoded,classes.ring_column_token,true).errors
+  );
   for(const [mode,symbols] of Object.entries(known)){
     for(const [kind,tag] of Object.entries(classes)){
       const tested=fit(positions,symbols,tag);
@@ -173,6 +186,8 @@ for(let a=0;a<8;a++)for(let b=0;b<8;b++)for(let c=0;c<8;c++){
   }
 }
 assert.equal(candidates,512);
+assert.equal(minNonFWithIndependentTerminals,4);
+assert.equal(minNonFWithSharedRingColumn,5);
 // The broadest of these source-visible direct lookup families already fails.
 for(const mode of Object.keys(known)){
   assert.equal(stats[mode+":ring_column_token"].exactRoutes,0);
@@ -236,6 +251,9 @@ console.log(JSON.stringify({
   independentCornerWindingRoutes:candidates,
   statistic:"exact minimum GP symbol edits under any secret lookup map per source-visible class",
   results:stats,
+  noFOverride:{decodedTargetFPositions:[56,118,144,152],
+    minErrorsSharedRingColumn:minNonFWithSharedRingColumn,
+    minErrorsIndependentTerminalPageRingColumn:minNonFWithIndependentTerminals},
   positivePlant:{all180Exact:true,oneCorruptedRepeatedClassDetected:true},
   decision:"No tested ring/column/page-aware stationary direct codebook explains 180 authentic known source runes in any original 3-ring orientation.",
   limit:"The 256-token terminal ring hypothesis itself is unproven. This does not exclude multi-cell, stateful, keyed-by-position, or nonlocal operations and recovers no p55 plaintext."
