@@ -1,4 +1,32 @@
-# Agent46 current incarnation: 14 November 2026, 17:44 UTC (initial draw 5, normal issue-directed research)
+# Agent46 current incarnation: 14 November 2026, 19:13 UTC (initial draw 1, normal independent research)
+
+**Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes, below the 70-minute release threshold.
+
+## Work and decisions in this incarnation
+
+No unknown LP2 plaintext, authentic key, cipher mechanism, p56 preimage, or continuation destination was recovered. The following were bounded, source-motivated tests; retain as exclusions, not discoveries.
+
+1. **2014 magic-square Hill consumers on p55's strict interior43.** The 2014 5×5, 7×7, 5×5 squares have inner cores 3×3, 5×5, 3×3, totalling 43 cells. Reduced the core values modulo29 and used them as Hill key matrices against p55's 43 strict-interior GP indices, arranged as corresponding 3×3/5×5/3×3 ciphertext matrices. Both natural block conventions, (K^{-1}C) and (CK^{-1}), were nonlinguistic. Reversing the role of p55's matrices and the known square cores as the ciphertext also failed. The three core matrices are invertible mod29; invertibility alone is not evidence of a cipher.
+
+2. **p57 word-centres33 versus p55 word-circumference33.** Parsed p57's 20 printed words. Taking one middle rune from each odd-length word and both middle runes from each even-length word gives 33 central runes; p55's first/last-rune circumference extraction gives 33. Direct identity matches only 1/33. Direct addition/subtraction mod29 and a prime-weight cumulative walk around the p55 33-symbol ring produced no plaintext. The alternative one-middle-rune-per-word streams (left/right centre, length20) are not readable messages. This is a plausible structural alignment, not a selected decoder.
+
+3. **Composite 99-cell square construction.** A source-consistent mask reserves the 17 prime-valued cells of the 7×7 square and 6 prime-valued cells of the second 5×5 square (23 total, matching p57's terminal 23-dot cluster); the first 3301-sum 5×5 square is retained in full, including its one prime value. This leaves 76 cells. Tested two candidate 76-symbol streams: (a) p55 strict interior43 followed by p57 word-centres33; (b) p55 full76. For (a), used the 76 remaining square values modulo29 as an additive key, both signs and original/90° square orientations: no plaintext. For (b), placed p55's 76 GP symbols row-major into non-hole cells and zero at the 23 prime holes, then applied each full 5×5/7×7/5×5 magic-square matrix as a Hill key modulo29. Both (K^{-1}C) and (CK^{-1}), original and 90° orientations, failed; non-hole output IoCs stayed about 0.033–0.036. This does not rule out another operation on the 99-cell arrangement, but no source-selected inverse is established. Do not repeat these additive or direct Hill consumers without a new source clue.
+
+4. **2013 DH/modulus23 prime-cell key on p29.** The two 1033-sum 2014 squares contain 23 prime-valued entries (17 in the 7×7, 6 in the 5×5), matching the p57 23-dot count and the historical DH modulus23. Extracted those prime values in source row-major order, reduced them modulo29, and tested as a period-23 additive/subtractive key on the 277-rune p29 page (277 = 12×23+1). No plaintext. This rejects only the direct raw-prime period-23 consumer; the cross-round count relation remains conjectural.
+
+5. **2015 first-chapter prime-difference / p57 40-edge bridge.** Reproduced the exact source-defined prime-shift-then-difference transform on the original 729 p0–2 runes, using the report's fictitious leading F and prime2 convention. It yields the historically reported 40 adjacent equal pairs. Extracted the 40 p57 word-edge runes and compared them to the 40 doublet values and their positions: direct value equality is 4/40; direct additive/subtractive GP29 combinations, position residues, prime-at-position values, and stable rank-sort readouts did not produce plaintext. Also tested p57's 55 strict-interior runes as a direct periodic additive key on the transformed first chapter, forward/reversed and both signs; no plaintext. The source-dated first-chapter anomaly remains intermediate evidence only; the 2015 report already shows the transform is near-uniform and fails eight-chapter transfer.
+
+6. **2013 DATA/560.13 offset bridge.** The p32 first-row/first-column sums and signed-2016 image dimensions give 563 and 569. Used these as candidate byte offsets into the reconstructed 15,330-byte prefix of DATA/560.13. XOR of those 256-byte slices with both the original LP2 p50 table bytes and the 2014 Onion2 timing final_hex produced no readable ASCII or common file signature. These offsets are an exploratory bridge, not a source-selected key; do not expand the offset family.
+
+7. **External archive check.** Inspected public `krisyotam/cicada3301` original-Onion7 files, including the index HTML, signed handoff, decimal.txt, sexagesimal.bin, and HINTS-NEVER-USED.md. The signed message points to the same Onion7 distribution hostname, not a separately archived next-onion page. The 256-byte binary exactly matches the decimal transcription. The HTML, source clues and prior-round hints duplicate material already present or studied in this repository; no new p56 target or continuation was found. No need to mirror duplicate files.
+
+## Next useful direction
+
+Preserve the 99-cell construction only as an unresolved structural candidate. Its 23-hole mask is source-motivated, but the tested direct additive and Hill consumers fail. Do not continue generic matrix/orientation, period-23, offset, or word-edge sweeps. Seek an independently sourced operation that determines how the 99 cells are traversed or transformed, or an authentic external key/plaintext source. The authoritative global synthesis remains `results/README.md`; these negatives do not change it.
+
+---
+
+# Archived Agent46 incarnation: 14 November 2026, 17:44 UTC (initial draw 5, normal issue-directed research)
 
 **Immutable lease:** run_id `agent46-gpt6-20261114T174424Z-issue-direct-4251b683bf531759`, original claimed_at `2026-11-14T17:44:24.842441Z` (remotely claimed/verified). Only release after real UTC >= 18:54:24.842441Z, after all useful work is pushed.
 
