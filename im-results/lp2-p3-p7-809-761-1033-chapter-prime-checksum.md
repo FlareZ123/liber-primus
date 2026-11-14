@@ -17,6 +17,19 @@ Source-canonical whole-page totals, without dropping headings, punctuation-adjac
 | p7 | 208 | 11,251 |
 | **Entire p3–p7 chapter** | **1,145** | **60,675** |
 
+### The page-local 761 operand is independently readable
+
+The original image [combined scan 24.jpg](../resources/liber-primus/24.jpg), physical LP2 **p7**, closes this five-page chapter with a **separately red 14-rune footer**, followed lower down by exactly **five large black filled dots**. The five intact printed footer words, read without changing their physical order, have rune counts **[2,4,3,2,3]**. Their GP-prime sums are **[96,248,69,156,197]**, so their complete red-rune sum is exactly **766**. The image independently displays **five printed words and five black dots**, giving the provisional numerical reading:
+
+\[
+\text{GPprime(red terminal)}-\text{number of black dots}
+=766-5=\mathbf{761}.
+\]
+
+This is a **source-local method to notice the 2013 MP3 number** directly within the same chapter whose full original rune sum is60,675. The printed word boundaries, fourteen-rune span and five-dot motif are independently visible before doing arithmetic; the difference operation was **selected after observing the match**. The original source has no instruction identifying five dots as a subtractive key. Furthermore the same chapter contains five physical pages, and the independently published values **761 and809 are the 135th and140th ordinary primes**, five prime successors apart. These repetitions of five make a human solve-path reconstruction plausible, but they are correlated observations and cannot establish authored intent or recover a key on their own.
+
+The SFT reads the original printed word separators in the canonical transcription, verifies all **14** red glyph identities against the unmodified p7 ciphertext indices, checks all five word sums and the exact 766−5 relation, and explicitly labels the original-image dot count as hand-adjudicated. The associated original image must be consulted for the five large black dots; they are different from the nearby **thirteen smaller red terminator dots** and must not be conflated.
+
 The result has two exact source-number representations:
 
 \[
@@ -61,6 +74,6 @@ All offsets are zero-based from the first printed rune on p3. The same decoder s
 
 ## Research decision
 
-**Keep p3–p7 = 60,675 as a precisely reproducible candidate complete-chapter checksum.** Its numerically connected historical values make it a bounded human clue, but without an independently selected operation the identity cannot turn original ciphertext into plaintext. A substantive successor would extract a *second, previously unexamined* whole-source prediction or a reversible 29-symbol cipher/key from the same historical square/title geometry, and reconstruct a coherent withheld original passage. Do not treat arbitrary prime-seed expansions, retuned chapter cuts, more multiplication matches or English-looking two-rune fragments as progress.
+**Keep the p7 five-dot/five-word red 766→761 relation together with the p3–p7 = 60,675 candidate complete-chapter checksum.** Its numerically connected historical values make it a bounded human clue, but without an independently selected operation the identity cannot turn original ciphertext into plaintext. A substantive successor would extract a *second, previously unexamined* whole-source prediction or a reversible 29-symbol cipher/key from the same historical square/title geometry, and reconstruct a coherent withheld original passage. Do not treat arbitrary prime-seed expansions, retuned chapter cuts, more multiplication matches or English-looking two-rune fragments as progress.
 
 Inputs: [canonical 58-page rune arrays](../resources/liber-primus/lp2-corpus.json), [three authentic preserved squares](../resources/cicada2014-openpuff-magic-squares.txt), [2013 GP source chart](../results/2013-original-gp29-source-map.md), and [historical 2014 square provenance](../results/2014-onion-chain.md). All original ciphertext remains unchanged.
