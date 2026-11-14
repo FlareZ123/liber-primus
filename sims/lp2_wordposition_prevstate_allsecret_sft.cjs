@@ -198,6 +198,75 @@ const oneRekeyTop12ByChapter = visualChapterCuts.map(oneRekeyTop12);
 assert.deepEqual(oneRekeyTop12ByChapter,
   [9275, 9714, 10000, 10140, 10163, 10142, 9969, 9110]);
 
+/**
+ * A stronger lexicon-limited invariant: source-native English permits at
+ * most the one-rune words A, I, O (generously including archaic O).
+ * At every predecessor+epoch state, distinct published singleton C values
+ * require distinct plaintext runes under a bijective substitution.
+ *
+ * @param {number[]} cuts - source-visible rune indices at which keys rekey
+ * @param {number} vocabularySize - default 3 (A/I/O)
+ * @returns {{badGroups:number,excess:number,maxDistinct:number,groups:number}}
+ */
+function singletonGate(cuts, vocabularySize = 3) {
+  const groups = new Map();
+  let index = 0;
+  let previous = 29;
+  for (const word of original) {
+    for (let j = 0; j < word.length; j++, index++) {
+      if (word.length === 1) {
+        let epoch = 0;
+        for (const cut of cuts) if (index >= cut) epoch++;
+        const key = epoch * 30 + previous;
+        let letters = groups.get(key);
+        if (!letters) {
+          letters = new Set();
+          groups.set(key, letters);
+        }
+        letters.add(word[0]);
+      }
+      previous = word[j];
+    }
+  }
+  let badGroups = 0;
+  let excess = 0;
+  let maxDistinct = 0;
+  for (const set of groups.values()) {
+    maxDistinct = Math.max(maxDistinct, set.size);
+    if (set.size > vocabularySize) {
+      badGroups++;
+      excess += set.size - vocabularySize;
+    }
+  }
+  return {badGroups, excess, maxDistinct, groups: groups.size};
+}
+
+const singletonGlobal = singletonGate([]);
+assert.deepEqual(singletonGlobal,
+  {badGroups: 9, excess: 15, maxDistinct: 6, groups: 28});
+const singletonByOneRekey = visualChapterCuts.map(cut => singletonGate([cut]));
+assert.deepEqual(singletonByOneRekey.map(x => x.excess),
+  [13, 10, 4, 3, 3, 6, 9, 15]);
+const singletonCutCounts = Array.from({length: 9},
+  (_, cuts) => ({cuts, combinations: 0, viable: 0}));
+const minimumViableTwoCuts = [];
+for (let mask = 0; mask < 256; mask++) {
+  const cuts = visualChapterCuts.filter((_, i) => (mask & (1 << i)) !== 0);
+  const count = cuts.length;
+  const score = singletonGate(cuts);
+  singletonCutCounts[count].combinations++;
+  if (score.badGroups === 0) {
+    singletonCutCounts[count].viable++;
+    if (count === 2) minimumViableTwoCuts.push(
+      visualChapterCuts.flatMap((_, i) => (mask & (1 << i)) ? [i + 1] : []));
+  }
+}
+assert.deepEqual(singletonCutCounts.map(x => x.viable),
+  [0, 0, 2, 11, 25, 30, 20, 7, 1]);
+assert.deepEqual(minimumViableTwoCuts, [[3, 4], [3, 5]]);
+assert.deepEqual(singletonGate(visualChapterCuts, 2),
+  {badGroups: 2, excess: 2, maxDistinct: 3, groups: 68});
+
 const sources = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -257,6 +326,10 @@ console.log(JSON.stringify({
   clocks,
   oneRekeyTop12ByChapter,
   visualChapterCuts,
+  singletonGlobal,
+  singletonByOneRekey,
+  singletonCutCounts,
+  minimumViableTwoCuts,
   nativeMatchedControls: controls,
   sourceNativePositivePlant: '12956/12956 exact inverse',
   caveat: 'no unknown plaintext/key, altered word segmentation, extra state or chapter-specific keys remain open'
