@@ -1,0 +1,149 @@
+'use strict';
+
+/**
+ * Source-exact all-page census for the p27 pair 103/104 -> p32 pointer.
+ * Read-only Node.js 22 CommonJS standalone test. No fitted keys, clocks,
+ * word segmentation, image offsets or other input transformations.
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.join(__dirname, '..');
+/** @param {string} name @returns {string} */
+function source(name) {
+  return fs.readFileSync(path.join(root, 'resources', 'liber-primus', name), 'utf8');
+}
+const corpus = JSON.parse(source('lp2-corpus.json'));
+const grid = JSON.parse(source('base60-grid.json'));
+const transcription = source('lp2-transcription.txt');
+const runeToIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const bytes = grid.byte_rows.flat();
+assert.equal(bytes.length, 256);
+assert.equal(corpus.runes.length, 29);
+assert.equal(corpus.prime.length, 29);
+assert.equal(new Set(bytes).size, 161);
+
+/** @typedef {{page:number, start:number, sum:number, runes:string}} RuneWord */
+/** @type {RuneWord[]} */
+const words = [];
+const pageChunks = transcription.split('%')
+  .filter((chunk) => [...chunk].some((rune) => runeToIndex.has(rune)));
+assert.equal(pageChunks.length, 57, '55 unknown rune pages and two solved pages');
+for (let chapter = 0; chapter < pageChunks.length; chapter++) {
+  const physicalPage = chapter < 50 ? chapter : chapter + 1;
+  const page = corpus.pages.find((record) => record.page === physicalPage);
+  assert.ok(page, 'physical page must be represented');
+  const chunk = pageChunks[chapter];
+  const sourceIndices = [...chunk].filter((c) => runeToIndex.has(c))
+    .map((c) => runeToIndex.get(c));
+  assert.deepEqual(sourceIndices, page.indices, 'physical-page original rune tape');
+  let start = 0;
+  let position = 0;
+  let token = '';
+  /** Finish a complete printed word or, at a page turn, one page fragment. */
+  function flush() {
+    if (!token) return;
+    const sum = [...token].reduce((s, c) => s + corpus.prime[runeToIndex.get(c)], 0);
+    words.push({page:physicalPage, start, sum, runes:token});
+    token = '';
+  }
+  for (const c of chunk) {
+    if (runeToIndex.has(c)) {
+      if (!token) start = position;
+      token += c;
+      position++;
+    } else if ('/\r\n \t'.includes(c)) {
+      // Line wrapping does not break the source's printed runic words.
+    } else {
+      assert.ok('-.$&§1234567'.includes(c), 'unexpected physical punctuation ' + c);
+      flush();
+    }
+  }
+  flush();
+}
+const unsolved = words.filter((word) => word.page < 56);
+assert.equal(unsolved.length, 2928, '2896 complete words plus 32 page split fragments');
+
+/**
+ * An ordered pair of original physical-page words is a self-consistent
+ * page pointer precisely when:
+ * 1. their complete GP-prime sums are consecutive 1-based grid cell numbers;
+ * 2. the two original grid bytes select the same page modulo 58;
+ * 3. their absolute source rune-start separation equals that page index.
+ * The arithmetic predicate is invariant to word-sum order.
+ * @param {RuneWord[]} pageWords
+ * @returns {{pairs:number,consecutive:number,matches:Array<object>,candidates:Array<object>}}
+ */
+function scan(pageWords) {
+  let pairs = 0;
+  let consecutive = 0;
+  /** @type {Array<object>} */
+  const candidates = [];
+  /** @type {Array<object>} */
+  const matches = [];
+  for (let i = 0; i < pageWords.length; i++) {
+    for (let j = i + 1; j < pageWords.length; j++) {
+      pairs++;
+      const left = pageWords[i], right = pageWords[j];
+      const low = Math.min(left.sum, right.sum);
+      const high = Math.max(left.sum, right.sum);
+      if (high !== low + 1 || low < 1 || high > 256) continue;
+      consecutive++;
+      const pageLow = bytes[low - 1] % 58;
+      const pageHigh = bytes[high - 1] % 58;
+      const gap = right.start - left.start;
+      const candidate = {
+        page: left.page, leftStart: left.start, rightStart: right.start,
+        low, high, gap, pageLow, pageHigh
+      };
+      candidates.push(candidate);
+      if (pageLow === pageHigh && gap === pageLow) matches.push(candidate);
+    }
+  }
+  return {pairs, consecutive, matches, candidates};
+}
+let totalPairs = 0, consecutive = 0;
+const matches = [];
+let p27 = null;
+for (let p = 0; p < 56; p++) {
+  const found = scan(unsolved.filter((word) => word.page === p));
+  totalPairs += found.pairs;
+  consecutive += found.consecutive;
+  matches.push(...found.matches);
+  if (p === 27) p27 = found;
+}
+assert.equal(totalPairs, 81159);
+assert.equal(consecutive, 289);
+assert.equal(matches.length, 1, 'single full-original pointer among 289 candidate pairs');
+assert.deepEqual(matches[0], {
+  page:27, leftStart:34, rightStart:66,
+  low:103, high:104, gap:32, pageLow:32, pageHigh:32
+});
+assert.ok(p27);
+assert.equal(p27.consecutive, 7, 'original p27 seven consecutive-sum whole-word pairs');
+assert.equal(p27.matches.length, 1);
+const p27Words = unsolved.filter((w) => w.page === 27);
+assert.equal(p27Words.length, 52);
+assert.deepEqual(p27Words.filter((w) => [34,66].includes(w.start))
+  .map((w) => [w.start, w.sum]), [[34,103],[66,104]]);
+assert.equal(grid.rows, 32);
+assert.equal(grid.columns, 8);
+assert.equal(bytes[102], 32);
+assert.equal(bytes[103], 206);
+assert.equal(206 - 32, 3 * 58);
+// Deterministic planted pair: original whole words at starts34 and66
+// also satisfy the source-selected rule in a standalone synthetic page.
+const fake = [
+  {page:27,start:34,sum:103,runes:p27Words.find((w)=>w.start===34).runes},
+  {page:27,start:66,sum:104,runes:p27Words.find((w)=>w.start===66).runes},
+];
+assert.equal(scan(fake).matches.length, 1);
+fake[1] = {...fake[1],start:67};
+assert.equal(scan(fake).matches.length, 0, 'one-rune offset counterexample');
+console.log(JSON.stringify({
+  status:'PASS', unknownPages:55, originalRunes:12956,
+  fragmentWords:unsolved.length, pagePairs:totalPairs,
+  consecutivePrimeSumPairs:consecutive, matchingPointerPairs:matches,
+  p27ConsecutivePairs:p27.consecutive,
+  scope:'postselected original-source location invariant; no deciphered plaintext'
+},null,2));
