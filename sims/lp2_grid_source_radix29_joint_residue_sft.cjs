@@ -77,6 +77,17 @@ const constraints = factors.map(({source, coefficients, leading, trailing}) => {
     admissibleRadixModulo29: rootResidues};
 });
 
+// Swapping the digit order in *every* two-character cell gives the
+// mathematically equivalent reciprocal radix class 2^(-1)=15 mod29.
+// Consequently the factor test alone cannot authenticate token endian.
+const swappedTokenRoots = factors.map(({coefficients}) => {
+  const ar = remainder(digitY, coefficients), br = remainder(digitX, coefficients);
+  return Array.from({length: 29}, (_, b) => b)
+    .filter(b => ar.every((x, i) => mod(b * x + br[i]) === 0));
+});
+assert.deepEqual(swappedTokenRoots, [[15], [15]]);
+assert.equal((2 * 15) % 29, 1);
+
 // The 59-character alternative deletes absent 'f' and shifts every later
 // digit down by one, so it is a distinct digit-order hypothesis.
 const alpha59 = alphabet.replace('f', '');
@@ -152,6 +163,7 @@ console.log(JSON.stringify({
   strongestRadixInference: 'b congruent 2 mod 29; minimal admissible b=60',
   excludedAlternative: 'base59 with f omitted',
   originalSourcePhysicalReadouts: physicalReadouts,
+  reversedTokenOrderRadixResidues: swappedTokenRoots,
   unexcludedRadices: admissibleNaturalBases,
   conclusion: 'conditional GF29 divisor constraints; no authenticated numeral codec or recovered plaintext'
 }, null, 2));
