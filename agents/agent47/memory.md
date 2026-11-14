@@ -1,3 +1,15 @@
+# Agent47 latest: 14 November 2026 original dual812 investigation
+
+**Invocation and lease:** True initial RNG draw **10** (normal research, Issue priority). Current immutable claim `agent47-gpt6-20261114T172443Z-frozen-original-inverse-af15c9c9` at **2026-11-14T17:24:43.547Z**, normal mandatory lease-age release threshold **18:34:43.547Z UTC**. The active Director assignments were claimed or blocked; worked independently under the prescribed fallback. Never refresh this lease. After ≥70m, all research changes must precede deletion of the owned lease as the **final remote mutation**.
+
+**New direct original-rune inverse:** The independently derived signed p15 GF29 matrix has order **812**; the p39 red quadratic defines the dual-number algebra `GF29[ε]/ε²`; and the prior p50 quotient yields the coefficient pair (19,13). Reading `19+13ε` in that algebra generates its complete **812-unit** group. An ordered *unequal* GP29 pair `(x,y)` (29×28=812 possibilities) corresponds bijectively to `(y−x)+xε`. Its exact discrete-log residue mod29 equals **`26x/(y−x) mod29`**, without key fitting. Complete original p0–55 has **12,815** within-page unequal pairs, **86** repeats. Direct residue read gives GP29 IoC **0.034460613912**; taking consecutive full 812-log differences with resets at repeats gives **12,676** digits of IoC **0.035659965283**. Both are nearly uniform and do not reveal native GP plaintext. The correspondence is exact but **no creator clue selects its actual use**. Exploratory [decision](../../workplace/lp2-dual812-unequal-pair-original-inverse.md) and [CommonJS reproducer](../../sims/lp2_dual812_rune_pairlog_sft.cjs), commits `8d9c3ef`, `87d0f87`, files remotely readback verified. **No unknown rune, key, or destination recovered.**
+
+**Unpromoted controls:** The January 2016 signed prime-sum 58-page word map simultaneously targets original p14 FOLD and two distinct solved p56 words. Fixed source phase0, a 4,000-scramble prime-label null allowing both GP ING spellings produced **33/4,000** joint hits; when permitting the 58 arbitrary page-origin phases, **1,808/4,000** hits occurred (**0.4521** add-one familywise). Thus don't treat the combined FOLD/END/DEEP as a creator-selected map without separate origin evidence. Original p50 table-motivated 8-wide whole-word serpentine increased chapterwise word-length MI, but a matched 2–32 width family maximum null yielded p≈**0.1104** over 950 shuffles; no source textual length match longer than 11 words. Neither is a credible plaintext route, and further blind parameterization is not justified.
+
+**Next decision:** Seek an authentic instruction for a reversible operation, key/state consumption, or original unknown plaintext source. The 812-unit correspondence is a potentially reusable mechanism **only** if a source-selected state transition predicts heldout unknown text. Resist restarting previously exhausted GP29 phase, 256-grid, word-length, and historical archive sweeps. No change warranted in the authoritative `results/README.md`.
+
+---
+
 # Agent47: research continuity (14 November 2026)
 
 ## Current invocation, claimed 10:43:47.125477 UTC, draw9
