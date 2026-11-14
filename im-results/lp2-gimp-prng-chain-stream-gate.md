@@ -1,6 +1,6 @@
 # GIMP Dissolve PRNG as an LP2 chain-step key: direct-stream gate
 
-**Status (12 November 2026, Agent32): direct one-dimensional interpretations rejected.** A recent external analysis describes the unsolved LP2 ciphertext as having 86 zero first-differences and an approximately flat distribution over the 28 nonzero differences. A separate recent image analysis identifies the p57 mayfly mask with GIMP Dissolve's seeded random field. Combining these observations suggests a testable key-source hypothesis: the GIMP field might supply the nonzero step stream. Three source-natural one-dimensional projections were tested against the original LP2 corpus; all match only at chance. No plaintext or key was recovered.
+**Status (14 November 2026, Agent32/Agent27): both default and optional-legacy GLib one-dimensional interpretations are original-input negatives.** A recent external analysis describes the unsolved LP2 ciphertext as having 86 zero first-differences and an approximately flat distribution over the 28 nonzero differences. A separate recent image analysis identifies the p57 mayfly mask with GIMP Dissolve's seeded random field. Combining these observations suggests a testable key-source hypothesis: the GIMP field might supply the nonzero step stream. Three direct one-dimensional projections were originally tested using GLib's optional **2.0 legacy** PRNG mode. The re-executed original comparison below now also tests the actual GLib 2.38.2 **default 2.2** PRNG mode; all six fixed projections match only at chance. No plaintext or key was recovered.
 
 ## What is actually observed
 
@@ -18,31 +18,34 @@ Defining s[i] = C[i] − C[i−1] mod 29 is a descriptive identity, not by itsel
 
 ## Why the GIMP connection was worth one test
 
-The recent SECRA image analysis reports that the p57 mayfly's sparse mask is reproduced by the historical GIMP Dissolve random field, with seed **314159265**, a **4096-entry row-seed table**, and row-specific GLib GRand streams. The GIMP 2.8.10 paint code explicitly dispatches GIMP_COMPOSITE_DISSOLVE with image x/y coordinates; the later operation implementation exposes the 4096 row seeds and per-pixel random draw. GLib 2.38.2 documents the contemporaneous GRand random-version-20 generator and range mapping.
+The recent SECRA image analysis reports that the p57 mayfly's sparse mask is reproduced by the historical GIMP Dissolve random field, with seed **314159265**, a **4096-entry row-seed table**, and row-specific GLib GRand streams. The GIMP 2.8.10 paint code explicitly dispatches GIMP_COMPOSITE_DISSOLVE with image x/y coordinates; the later operation implementation exposes the 4096 row seeds and per-pixel random draw. The [actual GLib 2.38.2 source](https://github.com/GNOME/glib/blob/2.38.2/glib/grand.c) explicitly defaults to `G_RANDOM_VERSION=2.2` (internal version **22**, MT expansion multiplier 1812433253) and only enables `G_RANDOM_VERSION=2.0` (internal version **20**, older 69069 multiplier) when requested through an environment variable. **The earlier comparison used version20 and incorrectly treated it as GIMP's default.** The historical GIMP 2.8 random field is reproduced under default version22 with first generated row seed **3721122731**, as independently checked in [the GIMP source reproducer](../sims/gimp_table_grid_cogeneration.cjs).
 
 This gives a plausible visual source for a deterministic random field. It does **not** establish that LP2 text uses that field as a key. The following deliberately narrow tests ask whether its most direct 1-D forms are the observed 28-way step sequence.
 
 ## Frozen tests
 
-The nonzero LP2 differences were compared, in their original order and with no offset search, to these source-natural 28-way streams:
+The nonzero LP2 differences were compared, in their original order and with no offset search, using **both** historically supported GLib 2.38.2 configurations, default version22 and opt-in legacy version20, for the same three direct 28-way interpretations:
 
-1. **Master-seed stream:** initialize GLib GRand random-version 20 with 314159265 and draw g_rand_int_range(1, 29) once per nonzero step.
+1. **Master-seed stream:** initialize GLib GRand with 314159265 in the declared version and draw `g_rand_int_range(1,29)` once per nonzero step. Version22 uses the actual GLib 2.2 rejection/modulo range algorithm; version20 uses its documented legacy floating-range algorithm.
 2. **First dissolve-row stream:** generate the documented 4096 row seeds from the master generator, initialize a row generator from row seed 0, and draw g_rand_int_range(1, 29) left-to-right.
 3. **Repeated row-seed table:** map the 4096 raw row seeds to 1–28 using the same GLib range scaling, then repeat the table to the required length.
 
-The inverse additive direction was scored as the natural sign alternative. No seed search, offset search, row search, or post-hoc permutation was performed.
+The inverse additive direction was scored as the natural sign alternative. For each version, the script asserts its exact first eight master and first-row 32-bit output words, not merely the final near-chance match counts. No seed search, offset search, row search, or post-hoc permutation was performed.
 
-| Candidate | Exact matches | Inverse matches | Random expectation |
-| --- | ---: | ---: | ---: |
-| Master-seed stream | 438 | 425 | 459.61 |
-| First dissolve row | 456 | 460 | 459.61 |
-| Repeated 4096 row-seed table | 432 | 457 | 459.61 |
+| GLib PRNG version | Candidate | Exact matches | Inverse matches | Random expectation |
+| --- | --- | ---: | ---: | ---: |
+| **22, default** | Master-seed stream | **452** | **435** | 459.61 |
+| **22, default** | First dissolve row | **478** | **497** | 459.61 |
+| **22, default** | Repeated 4,096 row-seed table | **460** | **441** | 459.61 |
+| 20, explicit legacy | Master-seed stream | 438 | 425 | 459.61 |
+| 20, explicit legacy | First dissolve row | 456 | 460 | 459.61 |
+| 20, explicit legacy | Repeated 4,096 row-seed table | 432 | 457 | 459.61 |
 
-The standard deviation of a chance match count is about **21.05**. All six scores are within 1.64 standard deviations of chance. None is remotely consistent with a recovered key stream.
+The standard deviation of a chance match count is about **21.05**. The default-generator maximum **497** is about **1.78** standard deviations above the chance expectation. Its corresponding direct match count is 478. The old legacy-mode six scores are within 1.64 standard deviations. Even the strongest default comparison agrees at only 497/12,869 nonzero positions; no tested sequence is consistent with an exact originating keystream. The fixed six-model version comparison is exploratory because no original Cicada clue selects this text-key role. The result gives no decrypted plaintext.
 
 ## Decision and scope
 
-**Reject the direct 1-D GIMP-PRNG-to-chain-step key hypothesis.** The p57 dissolve fingerprint is a genuine image-generation clue, but these direct streams do not decrypt LP2.
+**Reject direct identity of the nonzero 28-way ciphertext-step stream with the six one-dimensional source-seeded sequences under the true historical generator and its opt-in legacy alternative.** The p57 dissolve fingerprint is a genuine image-generation clue, but these fixed streams do not recover LP2 plaintext. The prior legacy-only result was incomplete rather than an authenticated GIMP default-key failure.
 
 A two-dimensional sample of the GIMP field at rune pixel coordinates was not run. The sources currently provide no rule selecting a rune's sample pixel (center, edge, first ink pixel, etc.) or establishing that the text was keyed from the same field. Choosing such a mapping after seeing ciphertext would introduce an unconstrained parameter and fail the Director's source-to-plaintext criterion. Do not launch coordinate sweeps unless an independent clue fixes that mapping.
 
@@ -54,7 +57,7 @@ Run from the repository root:
 
 node sims/lp2_gimp_prng_chain_stream_gate.cjs
 
-The script reads the canonical corpus, verifies the 12,956/12,955/86 input counts, implements GLib 2.38.2 GRand random-version 20, generates the GIMP seed table, and emits the six exact-match scores.
+The script reads the canonical corpus, verifies the 12,956/12,955/86 input counts and the complete 28-bin difference histogram, implements **both** GLib 2.38.2 versions 20 and 22 with independently verified source vectors, generates each 4,096-word seed table, and asserts all **twelve** exact/inverse scores. Historical version22 is GLib's documented normal mode; version20 is an explicit legacy compatibility control.
 
 ## Sources
 
