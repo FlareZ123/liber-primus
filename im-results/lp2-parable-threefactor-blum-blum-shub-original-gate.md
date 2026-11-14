@@ -46,7 +46,7 @@ The **canonical parity-bit BBS extractor** and all fixed clocks likewise fail to
 
 The same three independently historical primes also select a concrete direct operation on a **different native register**. The manuscript's p49–p51 numerical table contains exactly **256** authentic two-character base60 entries, already converted without reordering to original bytes `0..255` in [the canonical 32×8 grid](../resources/liber-primus/base60-grid.json). That explicit byte table is an actual candidate encrypted binary payload, distinct from the GP29 rune prose. Its 256 positions and source-raster order are fixed before decoding; no arbitrary row permutation, guessed nonce, pad shift, or secret byte assignment is introduced.
 
-Apply both the conventionally defined **BBS parity output** (one output bit per squaring) and the **standard Blum–Goldwasser output size** `h=floor(log2(floor(log2(N))))=4` low bits per squaring, grouped respectively in eight-bit or two-four-bit bytes, as bytewise XOR pads on the entire original 256-byte array. To avoid treating an indexing convention as historical fact, test precisely **eight** fixed readings: first output from seed-square state `x0` or the next squared state `x1`, packing the one- or four-bit chunks MSB-first or LSB-first. This is **2 specified source-standard output widths × 2 source-state origins × 2 fixed packing orders = 8 bounded direct inverses**. A 256-byte source-native English control, XOR-enciphered with every candidate pad, fully recovers with the same operation and exact original byte length.
+Apply both the conventionally defined **BBS parity output** (one output bit per squaring) and the **standard Blum–Goldwasser output size** `h=floor(log2(floor(log2(N))))=4` low bits per squaring, grouped respectively in eight-bit or two-four-bit bytes, as bytewise XOR pads on the entire original 256-byte array. To avoid treating an indexing convention as historical fact, test first output from seed-square state `x0` or the next squared state `x1`, packing one- or four-bit chunks MSB-first or LSB-first. **A mathematically distinct, speculative endpoint interpretation** treats the third authentic prime, 1229, as a *terminal BBS state* rather than an initial seed: it is a quadratic residue both modulo1259 and modulo1031, so repeated unique square-root extraction in QR(N) uses the exact inverse power `x_previous=x_current^161968 mod1298029`. Neither the original page nor the 2013 audio names the third prime as a Blum–Goldwasser terminal state. Together this gives **2 (forward/backward) × 2 output widths × 2 initial-emission conventions × 2 byte packing orders = 16 bounded direct inverses**. A 256-byte source-native English control, XOR-enciphered with every candidate pad, fully recovers with the same operation and exact original byte length.
 
 | Extractor, fixed state and byte packing | Decoded printable ASCII bytes / 256 | Recognized binary file prefix |
 | --- | ---: | --- |
@@ -58,10 +58,18 @@ Apply both the conventionally defined **BBS parity output** (one output bit per 
 | 4-bit Blum–Goldwasser, `x0`, LSB | **97** | None |
 | 4-bit Blum–Goldwasser, `x1`, MSB | **98** | None |
 | 4-bit Blum–Goldwasser, `x1`, LSB | **95** | None |
+| Backward 1-bit BBS, terminal `1229`, MSB | **117** | None |
+| Backward 1-bit BBS, terminal `1229`, LSB | **115** | None |
+| Backward 1-bit BBS, one square root first, MSB | **99** | None |
+| Backward 1-bit BBS, one square root first, LSB | **98** | None |
+| Backward 4-bit Blum–Goldwasser, terminal `1229`, MSB | **93** | None |
+| Backward 4-bit Blum–Goldwasser, terminal `1229`, LSB | **93** | None |
+| Backward 4-bit Blum–Goldwasser, one root first, MSB | **92** | None |
+| Backward 4-bit Blum–Goldwasser, one root first, LSB | **86** | None |
 
-The bytes remain broadly opaque (at most **108/256** when tab, LF and CR are additionally accepted as textual whitespace); none starts with the directly tested PDF, ZIP, gzip, PNG, JPEG, bzip2, ID3, Ogg, 7z or RAR signatures. These direct XOR decodes do not reveal the expected immediately recognizable instructions or standard binary container. This **does not** exclude a secondary encrypted/compressed binary payload under a different historical key; such a second layer needs its own clue rather than blind header fitting.
+The bytes remain broadly opaque (at most **119/256** when tab, LF and CR are additionally accepted as textual whitespace); none starts with the directly tested PDF, ZIP, gzip, PNG, JPEG, bzip2, ID3, Ogg, 7z or RAR signatures. These direct XOR decodes do not reveal the expected immediately recognizable instructions or standard binary container. This **does not** exclude a secondary encrypted/compressed binary payload under a different historical key; such a second layer needs its own clue rather than blind header fitting.
 
-[Independent original-byte CommonJS SFT](../sims/lp2_parable_bbs_grid256_byte_xor_sft.cjs) with fully reversible native-English XOR positive control, source table assertions, eight decoded header and printability gates; [final Windows Node22 CI PASS run 43629248118](https://github.com/FlareZ123/liber-primus/actions/runs/43629248118).
+[Independent original-byte CommonJS SFT](../sims/lp2_parable_bbs_grid256_byte_xor_sft.cjs) with fully reversible native-English XOR positive control, source table assertions, sixteen decoded header and printability gates including the mathematically verified backwards square-root states; [final Windows Node22 CI PASS run 43630572516](https://github.com/FlareZ123/liber-primus/actions/runs/43630572516).
 
 ## Decision and exact reproducibility
 
