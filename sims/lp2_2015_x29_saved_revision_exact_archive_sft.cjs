@@ -73,7 +73,9 @@ async function main() {
           keys:Object.keys(data),start:data.start,
           messageCount:data.messages?.length??data.chatMessages?.length??null,
           messages:data.messages??data.chatMessages??null,
-          historicalAuthors:data.historicalAuthorData??null
+          historicalAuthors:data.historicalAuthorData??null,
+          chatStart:data.start,chatEnd:data.end,
+          chatLines:data.lines??null
         }).slice(0,24000));
       } catch(error) {
         console.log('CHAT_HISTORY_ISOLATED '+JSON.stringify({
