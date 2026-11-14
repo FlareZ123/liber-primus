@@ -1,6 +1,6 @@
 # Terminal 256-cell grid: source-inner separability and local-stencil gate
 
-**Original-input result, 12 November 2026.** The proposed correspondence between the 256 numerical grid cells and the 76 unknown p55 plus 180 solved p56–57 runes yields **no** stationary low-rank GF(29) row/column consumer or radius-one/radius-two stationary linear stencil. This is a bounded negative for an explicitly optional **terminal ring hypothesis**. It recovers no p55 plaintext, source-selected key, actual cipher, or continuation URL.
+**Original-input result, 12 November 2026.** The proposed correspondence between the 256 numerical grid cells and the 76 unknown p55 plus 180 solved p56–57 runes yields **no** stationary low-rank GF(29) row/column consumer, radius-one/radius-two stationary linear stencil, or direct unrestricted four-rune affine Hill consumer under the two natural source orders. This is a bounded negative for an explicitly optional **terminal ring hypothesis**. It recovers no p55 plaintext, source-selected key, actual cipher, or continuation URL.
 
 ## Why this decoding route was worth testing
 
@@ -67,9 +67,28 @@ A third model uses the independently fixed source quadratic factors: the PGP-ver
 
 This excludes the historically motivated degree-four factor recurrence, and indeed any lower-than-89-state linear additive GP29 pad on this frozen 180-symbol ring register. It does not constrain nonlinear generators, different table serializations, nonadditive or time-varying decoding, or the unconfirmed original terminal-ring alignment. No authentic key or unknown p55 plaintext results.
 
+## Gate D: unrestricted secret Hill4 inferred from 180 authentic runes
+
+**Original-source decision (Agent15, 14 November).** The manuscript contains a printed 4×4 numerical matrix at p15, and the terminal **76 + 180 = 256** rune split is also exactly **19 + 45 four-rune blocks**. This motivates an independent four-component GF29 Hill transform with an arbitrary secret matrix, without assuming the actual p15 coefficients. There is no 2014 instruction selecting that transfer. Unlike a direct fixed-source Hill trial, the **180 authentic solved GP29 positions** can uniquely determine any candidate secret matrix from the unchanged numeric table, and the withheld 76 positions would then be decrypted if the 45 known blocks satisfy it.
+
+Take the original 256 numerical-cell values modulo29. Two explicit, source-visible readouts are frozen before solving: (a) printed row-major order and (b) clockwise concentric perimeters from the upper-left cell, with shell lengths **76/68/60/52**. For each, assume the first 76 readout positions correspond to unknown p55 and the final 180 to known p56+p57, with p56 first decrypted by its independently authenticated prime-totient and literal-F-skip rule. Partition that known suffix into **45 consecutive four-component vectors**, then ask whether an **arbitrary** 4×4 matrix \`M\` over GF29 satisfies \`P_block=C_block·M\`. Grant an additional freely selected four-component bias vector for affine Hill4. Independently test both directions, table-to-plaintext and plaintext-to-table. A single row of the resulting linear system provides four output equations simultaneously; full coefficient rank means any inconsistency excludes *every* matrix, including singular maps and unknown secret keys.
+
+| Fixed original source readout | Secret family | Direction | Input coefficient rank | Earliest inconsistent RREF row |
+| --- | --- | --- | ---: | ---: |
+| Row-major | Any linear Hill4 | Table → known plaintext | **4/4** | **4** |
+| Row-major | Any affine Hill4 | Table → known plaintext | **5/5** | **5** |
+| Clockwise four-shell | Any linear Hill4 | Table → known plaintext | **4/4** | **4** |
+| Clockwise four-shell | Any affine Hill4 | Table → known plaintext | **5/5** | **5** |
+
+All reverse-direction tests also reach full rank and contradict the known output by the next RREF row. **No stationary secret four-rune linear/affine map exists for these readouts**, regardless of whether its secret matrix is invertible. This is an exact original-data field-algebra obstruction, independent of English-likeness or unknown-p55 assumptions.
+
+The [standalone CommonJS original-input SFT](../sims/lp2_terminal256_known180_hill4_allsecret_sft.cjs) tests all **eight** direction/family/readout configurations, checks the authenticated 180-rune known suffix, and constructs a separate full-length **256-rune positive** containing 76 withheld native-GP p57 symbols plus the exact genuine p56+p57 plaintext. An arbitrary invertible upper-triangular Hill4 with unknown additive bias is recovered from the 180 planted known symbols and independently recovers all **76/76** hidden symbols. The script passed on [Windows Node22 run 43581482875](https://github.com/FlareZ123/liber-primus/actions/runs/43581482875).
+
+This new gate excludes the **complete unspecified-key stationary 4×4 family** in the two simplest source readings. It does not exclude a changing four-rune key, cross-block mixing, different geometric permutations, distinct p56/p57 encodings, or an independently source-selected nonlinear operator. The 76/180 and 4×4 numerical coincidences remain conditional; a decoder that cannot explain the 180 authentic solved runes does not justify reporting p55 guesses as plaintext.
+
 ## Reproduction and decision
 
-All three standalone CJS scripts consume original repository source JSON and use only Node 22 built-ins. They are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing all-three-tests original-source run 43260125837](https://github.com/FlareZ123/liber-primus/actions/runs/43260125837). There are no automatic push or PR triggers.
+The original three stencil/recurrence CJS scripts and the fourth, independent Hill4 all-secret source SFT consume original repository source JSON and use only Node 22 built-ins. The three historical tests are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing original-source run 43260125837](https://github.com/FlareZ123/liber-primus/actions/runs/43260125837); the new four-rune all-secret test passed in the separate [manual-only combined source gates run 43581482875](https://github.com/FlareZ123/liber-primus/actions/runs/43581482875). There are no automatic push or PR triggers.
 
 The tests eliminate a meaningful, source-visible path that would have promoted **180 independently known plaintext symbols** into a full original p55 decoder under a source-plausible 2D tabular transform. They leave open all unselected layout correspondences, different alphabets/byte serializations, hidden nonlinear maps, stateful transforms, source-independent keys, and other forms of intermediate text. In particular, they do **not** show that the table is unrelated to the final pages.
 
