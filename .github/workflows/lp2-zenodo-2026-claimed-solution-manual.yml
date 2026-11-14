@@ -1,0 +1,11 @@
+name: LP2 2026 Zenodo specific PDF source gate
+on:
+  workflow_dispatch:
+jobs:
+  exact-public-pdf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Query exact 2026 claimed-solution Zenodo public PDF, verify byte MD5 before parsing
+        run: python sims/lp2_2026_zenodo_best_pdf_native_gate.py
