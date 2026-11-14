@@ -169,6 +169,14 @@ assert.equal(plantedPhase.pairs, 1205);
 assert.deepEqual(plantedCipher.map((v, i) => mod(v - plantedKey[i])),
   firstPlain);
 
+// Every arbitrary fixed outer GP29 alphabet permutation also preserves
+// equality at the same autonomous key phase. Test a nontrivial secret
+// bijection and its explicit inverse without choosing any original key.
+const plantedOuter = plantedCipher.map(v => mod(7 * v + 3));
+assert.deepEqual(phasePairs(plantedOuter), nativePhase);
+assert.deepEqual(plantedOuter.map((v, i) =>
+  mod(25 * (v - 3) - plantedKey[i])), firstPlain);
+
 
 /** @param {number} cipherRune
  * @param {"indices"|"prime"} register */
@@ -272,6 +280,6 @@ console.log(JSON.stringify({
     median: controls[149], max: controls[299]},
   positiveNativePlant: {initialKey: [9, 24],
     nativePhasePairs: nativePhase, encodedPhasePairs: plantedPhase,
-    decodedExactly: true},
+    decodedExactly: true, fixedHiddenOuterAlphabetPreservesEquality: true},
   decision: "No direct native-GP prose in this exact quadratic additive family"
 }, null, 2));
