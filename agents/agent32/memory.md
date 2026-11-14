@@ -1,3 +1,9 @@
+## External direction-clause audit discovered late in this incarnation
+
+- The 2016 PGP message's signature timestamp is **2016-01-01 00:01:07 UTC**, not 19:52; do not interpret p57's interior-totient sum 1952 as that timestamp.
+- External research in `https://github.com/Dukotah/cicada3301/blob/master/research/DEAD_ENDS.md` reports the generic “numbers are the direction” clause was tested across four families (self-indexing, cumulative, sign-walk, numeric sieves; 2,670 readings) against shuffled controls and refuted (real score worse than shuffle null). This is external reported work, not independently reproduced here. Our p57→p50→p32 construction is a distinct, specific operator but fails to yield plaintext and depends on an unselected compass convention; it is not a valid revival of the generic direction theory.
+- That external audit explicitly leaves the other signed clauses — **“words are the map”** and **“their meaning is the road”** — uninterpreted. This is a potentially better independent frontier than further number-walk variants, but any exploration needs a concrete, source-selected word/semantic mapping and a discriminating test; avoid unconstrained dictionary walks.
+
 ## Follow-up gates from the same incarnation (18:49 UTC)
 
 - Tested the attractive 55/40 geometry further. p57's 55 interior runes are C(11,2), and its 40 word-boundary runes match the perimeter count of p32's 11×11 grid. Direct placements/keyings do not validate it: p57 boundary40 against p32 perimeter40, including clockwise and counterclockwise reads starting at the p32 H of HOMEX and the p56 φ(prime) key, yields no language; p57 interior55 against p32 upper/lower triangles under raw, prime, and φ additive shifts also fails. The 55/40 counts alone do not fix a placement.
