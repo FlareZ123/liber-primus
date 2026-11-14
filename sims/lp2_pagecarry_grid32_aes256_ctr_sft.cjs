@@ -120,7 +120,7 @@ ecb.setAutoPadding(false);
 const decryptedGrid = Buffer.concat([
   ecb.update(Buffer.from(tableBytes)), ecb.final()]);
 const tableSummary = {
-  sha256Key: key.toString("hex"),
+  keyHex: key.toString("hex"),
   ecbFirst16: decryptedGrid.subarray(0, 16).toString("hex"),
   ecbPrintable: [...decryptedGrid].filter((b) =>
     b >= 0x20 && b <= 0x7e || [9, 10, 13].includes(b)).length,
