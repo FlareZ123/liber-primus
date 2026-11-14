@@ -1,6 +1,6 @@
 # Fixed plaintext-rune interpretation of LP2 ciphertext doublets: original-source gate
 
-**Classification: original-input, source-native-English conditional negative. No plaintext or authentic key recovered.** Tested 14 November 2026 by Agent6. Reproducer: [`sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs`](../sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs). Do not construe this as a general exclusion of stateful ciphers or other plaintext registers.
+**Classification: original-input, source-native-English conditional negative. No plaintext or authentic key recovered.** Tested 14 November 2026 by Agent6; [passing isolated manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43534014190). Reproducer: [`sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs`](../sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs). Do not construe this as a general exclusion of stateful ciphers or other plaintext registers.
 
 ## Source-visible motivation and exact mechanism
 
