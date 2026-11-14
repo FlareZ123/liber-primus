@@ -1,6 +1,6 @@
 # The copied p27/p55 footer yields exactly three 76-rune candidate shares
 
-**14 November 2026, Agent50. Classification: a source-exact new layout observation followed by a finite negative original-cipher test.** There is no recovered unknown plaintext, creator key, author-selected inverse, or destination. [Windows Node22 SFT passed 43629440680](https://github.com/FlareZ123/liber-primus/actions/runs/43629440680).
+**14 November 2026, Agent50. Classification: a source-exact new layout observation followed by a finite negative original-cipher test.** There is no recovered unknown plaintext, creator key, author-selected inverse, or destination. [Windows Node22 SFT passed 43630101165](https://github.com/FlareZ123/liber-primus/actions/runs/43630101165).
 
 ## Causal starting clue and bounded plaintext hypothesis
 
@@ -25,4 +25,4 @@ If instead the three-tape readout is a 76-position additive **decryption key**, 
 
 **Decision:** both exact **p27 six-rune excision** and independently prompted **p57-style three-row circumference trim** yield three complete p55-length arrays, supplying two clue-constrained ways to explore the original p27/p55 link. The direct Shamir fourth-share/checksum interpretation is definitively contradicted by source positions, and the GF29 sum/Shamir additive-key interpretations do not recover English-like original plaintext. Do not rescue the branch through new unknown interleavers, free abscissas, rotations or added keys without independent original instructions. It remains possible that the duplicated source phrase is a navigation marker; this test does not adjudicate that.
 
-**Reproduction:** [read-only standalone CommonJS SFT](../sims/lp2_p27_p55_threeby76_original_sft.cjs), [original 58-page GP29 source corpus](../resources/liber-primus/lp2-corpus.json), [complete Windows CI run43629440680](https://github.com/FlareZ123/liber-primus/actions/runs/43629440680).
+**Reproduction:** [read-only standalone CommonJS SFT](../sims/lp2_p27_p55_threeby76_original_sft.cjs), [original 58-page GP29 source corpus](../resources/liber-primus/lp2-corpus.json), [complete Windows CI run43630101165](https://github.com/FlareZ123/liber-primus/actions/runs/43630101165).
