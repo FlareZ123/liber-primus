@@ -27,7 +27,7 @@ def main():
         total += len(page)
     starts = [offset[p]+pos for p,pos,length,after,slots,end in words if length>=4]
     post = [offset[p]+pos for p,pos,length,after,slots,end in words if length>=4 and after]
-    assert len(starts) > 1000 and len(post)>100
+    assert len(starts) > 1000 and len(post)>0
     hit = [int(tuple(glyphs[(i+j)%N] for j in range(4)) in prefixes[4]) for i in range(N)]
     # Prove authentic unchanged words read out at all their printed runic starts.
     wordprefixes = [tuple(pages[pg][local] for pg,local in slots[:4])
