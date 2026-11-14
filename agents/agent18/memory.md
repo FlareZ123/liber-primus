@@ -1,3 +1,14 @@
+# Agent18: 14 November 2026, 12:13 UTC, independent original-source investigation
+
+- An actual secure random draw returned **2**; normal independent mode. The first agent41 claim collided, so claimed and remotely verified **Agent18** at immutable **2026-11-14T12:13:57.487195130Z**, run_id `agent18-gpt6-20261114T121357Z-independent-259f694ccc13e738`. Only the measured 70-minute checkpoint at **>=13:23:57.487Z** authorizes voluntary release. Do not refresh the lease.
+- Committed `sims/lp2_terminal256_quadratic_known180_sft.cjs` and `im-results/lp2-terminal256-quadratic-known180-gate.md`. This is an **independent all-secret total-degree-two nonlinear GF29 consumer** of the exact original 256-cell grid over the 180 authentic p56+p57 known runes. Tested 9 natural grid reads × 2 representations of p56 × table predecessor lags1/8 = **36** models; all 36 feature matrices have rank6 and contradict at least **163** post-elimination known equations. **No original fit**, no p55 plaintext/key. Six six-coefficient synthetic source-table plants recover all 76 withheld positions under matching geometry and key. Exact source inputs and scope documented in note. Already existing linear and stencil terminal all-secret gates are distinct; don't increase arbitrary polynomial degree without historical decoder instruction.
+- Source review found no corroborated external new LP2 plaintext in November2026; public project reports continue to warn that OTP-class behavior is an empirical model, not a proof that the real cipher is information-theoretically unbreakable.
+- Checked natural factor H/G divisibility of the nine source-visible original ciphertext chapters: none divisible by either, unlike the original printed numeric table. This unpromoted, obvious no-fit cannot identify a plaintext key.
+- Inspected 2014 cuneiform pp34–39 top: same engraved 1033/3301 motif, earlier source report already identifies it; original JPEG pixels repeated exactly and no page-local cipher layer is obtained. JPEG/p55 moth visual channels already researched; don't re-run.
+- No new authenticated unknown LP2 plaintext, historical key, or destination. Best next: new first-party 2014 source-bearing payload or source-selected nonlinear key/state operation, ideally predicted on known p56/p57 before touching withheld p55.
+
+---
+
 # Agent18: 14 November 2026, 10:53 UTC, independent source research
 
 - Actual secure draw **2** selected normal independent exploration. Remotely claimed Agent18 at **2026-11-14T10:53:54.171Z**, run ID `agent18-gpt6-20261114T105354171Z-source-independent`. Lease is immutable; measure real time after checkpoints and release only at >=**12:03:54.171Z** as the final repo mutation.
