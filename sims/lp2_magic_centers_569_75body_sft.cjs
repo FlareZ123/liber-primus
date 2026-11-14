@@ -130,6 +130,18 @@ function run() {
   const top = p32.slice(0, 11);
   assert.equal(left.reduce((s, v) => s + corpus.prime[v], 0), dims[1]);
   assert.equal(top.reduce((s, v) => s + corpus.prime[v], 0), dims[0]);
+  const ordinals = [];
+  for (let value = 2; ordinals.length < 104; value++) {
+    if (ordinals.every(divisor => value % divisor !== 0)) ordinals.push(value);
+  }
+  assert.deepEqual(ordinals.slice(102, 104), [563, 569]);
+  const repeatSites = [];
+  for (let j = 1; j < p32.length; j++) {
+    if (p32[j] === p32[j - 1]) repeatSites.push(j - 1);
+  }
+  assert.deepEqual(repeatSites, [29, 103]);
+  assert.deepEqual(p32.slice(103, 105).map(v => corpus.translit[v]), ["N", "N"]);
+  assert.deepEqual(p32.slice(102, 104).map(v => corpus.translit[v]), ["E", "N"]);
 
   // The original first p55 rune completes a p54 word: the 75 complete
   // body runes alone have an exact 3 x 25 numerical-square counterpart.
@@ -174,6 +186,10 @@ function run() {
     treePage32AxisPrimeSums: [
       top.reduce((s,v) => s + corpus.prime[v], 0),
       left.reduce((s,v) => s + corpus.prime[v], 0)],
+    dimensionPrimeOneBasedOrdinals: [103, 104],
+    originalP32ZeroBasedDoubletStarts: repeatSites,
+    zeroBasedDimensionOrdinalRead: "N N",
+    conventionalOneBasedPrimeOrdinalRead: "E N",
     p55FullRunes: p55.length, p55CompleteBodyRunes: body.length,
     threeKeyMatricesDeterminantsRaw: raw.map(mat => invert(mat).det),
     threeKeyMatricesDeterminantsPhi: totient.map(mat => invert(mat).det),
