@@ -16,6 +16,7 @@ on:
           - pgpSkip
           - pgpSkipSections
           - radix
+          - trifid
 
 jobs:
   source-prime-inverse:
@@ -138,3 +139,16 @@ jobs:
       - name: Exact two-source GF29 radix residue and base59 rejection
         shell: pwsh
         run: node sims/lp2_grid_source_radix29_joint_residue_sft.cjs
+
+  original-trifid27-source-order:
+    if: ${{ inputs.mode == 'trifid' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source-order Trifid27 candidate and authentic GP controls
+        shell: pwsh
+        run: node sims/lp2_trifid27_transparent2_sourceorder_sft.cjs
