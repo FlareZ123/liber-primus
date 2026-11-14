@@ -184,6 +184,71 @@ for (const test of erasureTests) {
   assert.notEqual(answer[3], 0); // Known p56 literal F must remain rune0.
 }
 
+// Independent alternate 256 -> 252 clock with four *known* plaintext F's,
+// rather than the three still-unknown plaintext interpretations of p55 F.
+// One confirmed skip is solved p56 local56; three more are clear original
+// p57 local33/59/67. All 76 original p55 ciphertext symbols are retained.
+// No authorial source specifies that unencrypted p57 F's should control
+// a GF29 arithmetic decoder; this is a finite conditional source test.
+assert.deepEqual(findF(p57), [33, 59, 67]);
+const p57NoClearF = p57.filter((value) => value !== 0);
+assert.deepEqual([p55.length, p56NoSkip.length, p57NoClearF.length], [76,84,92]);
+const certainFSpans = [
+  {label: 'p55 unaltered ciphertext', data:p55,start:0,exact:7,
+    symbol:[3,9,17,10,15],pair:[8,18,20,13,19,17]},
+  {label: 'p56 original ciphertext, authenticated F omitted',data:p56NoSkip,start:76,exact:2,
+    symbol:[5,6,13,19,26],pair:[31,32,5,5,9,26]},
+  {label: 'p56 solved plaintext, authenticated F omitted',data:p56PlainNoSkip,start:76,exact:2,
+    symbol:[5,6,13,7,10],pair:[31,32,5,5,24,6]},
+  {label: 'p57 original cleartext, all three printed F omitted',data:p57NoClearF,start:160,exact:2,
+    symbol:[0,6,12,13,18],pair:[2,34,10,26,4,5]}
+];
+for (const item of certainFSpans) {
+  const observed=quotient.slice(item.start,item.start+item.data.length);
+  assert.equal(observed.length,item.data.length);
+  assert.equal(observed.filter((v,i)=>v===item.data[i]).length,item.exact);
+  const values=new Map(),pairs=new Map();
+  let symbolConflict=null,pairConflict=null;
+  for(let i=0;i<observed.length;i++){
+    const v=observed[i],target=item.data[i],earlier=values.get(v);
+    if(!symbolConflict&&earlier&&earlier.target!==target)
+      symbolConflict=[earlier.i,i,v,earlier.target,target];
+    if(!earlier)values.set(v,{i,target});
+    if(i>0){
+      const key=observed[i-1]+','+v;
+      const prev=pairs.get(key);
+      if(!pairConflict&&prev&&prev.target!==target)
+        pairConflict=[prev.i,i,observed[i-1],v,prev.target,target];
+      if(!prev)pairs.set(key,{i,target});
+    }
+  }
+  assert.deepEqual(symbolConflict,item.symbol);
+  assert.deepEqual(pairConflict,item.pair);
+}
+const certainErasurePositions=[76+56,76+85+33,76+85+59,76+85+67];
+assert.deepEqual(certainErasurePositions,[132,194,220,228]);
+const certainCols=certainErasurePositions.map(position=>
+  modFactor(Array.from({length:256},(_,i)=>+(i===position))));
+assert.deepEqual(certainCols,[[0,0,24,20],[2,25,3,24],[25,15,8,7],[21,24,14,1]]);
+const certainErasureVariants=[
+  {label:'p56 original ciphertext',terminal:[...p55,...p56,...p57],
+    syndrome:[3,22,16,2],forced:[8,17,17,7]},
+  {label:'p56 authenticated plaintext',terminal:[...p55,...p56Plain,...p57],
+    syndrome:[6,10,12,17],forced:[23,10,13,4]},
+];
+for(const variant of certainErasureVariants){
+  assert.deepEqual(modFactor(variant.terminal),variant.syndrome);
+  const erased=variant.terminal.slice();
+  for(const p of certainErasurePositions)assert.equal(erased[p],0);
+  const matrix=Array.from({length:4},(_,row)=>certainCols.map(col=>col[row]));
+  const forced=solve4(matrix,variant.syndrome.map(value=>mod(-value)));
+  assert.deepEqual(forced,variant.forced);
+  assert.ok(forced.every(value=>value!==0),
+    'All four known literal F symbols must be incorrectly rewritten');
+  certainErasurePositions.forEach((position,i)=>{erased[position]=forced[i];});
+  assert.deepEqual(modFactor(erased),[0,0,0,0]);
+}
+
 // A true 252-symbol source-native planted GP message would encode and recover
 // exactly, with the same fixed four coefficients and byte length.
 const plant = [...p55NoF, ...p56PlainNoSkip, ...p57];
@@ -199,4 +264,5 @@ console.log(JSON.stringify({
   sourceCodewordReconstructed: true, positivePlantRecovered: true,
   erasurePositions,
   erasureTests: erasureTests.map(({label, expected}) => ({label, recoveredGP: expected})),
+  fourKnownPlainFClock: {p55:76,p56:84,p57:92,segments: certainFSpans.map(({label,start,data,exact,symbol,pair})=>({label,start,length:data.length,exactMatches:exact,allSecretSymbolConflict:symbol,allSecretPairConflict:pair})),erasurePositions:certainErasurePositions,erasureVariants:certainErasureVariants.map(({label,syndrome,forced})=>({label,syndrome,requiredNonLiteralF:forced}))},
 }, null, 2));
