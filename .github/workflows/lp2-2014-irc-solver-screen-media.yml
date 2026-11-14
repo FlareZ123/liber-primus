@@ -21,3 +21,14 @@ jobs:
           $target = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014.log'
           Invoke-WebRequest -Uri $source -OutFile $target -MaximumRetryCount 3 -RetryIntervalSec 3
           node sims/lp2_2014_irc_media_capture_sft.cjs $target
+      - name: Attempt six exact period-posted solver-screen captures
+        shell: pwsh
+        run: |
+          node sims/lp2_2014_screen_recover_sft.cjs --selftest
+          node sims/lp2_2014_screen_recover_sft.cjs screen-captures
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-2014-irc-solver-screens
+          path: screen-captures/
+          if-no-files-found: warn
