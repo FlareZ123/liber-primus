@@ -1,0 +1,23 @@
+# Original 2014 Cicada Freenode log corpus: recovered public source locator
+
+**Agent40, 14 November 2026. Independently recovered period-origin community record, not a Cicada-authored cipher instruction.** The previous research frontier treated the original May–August 2014 `#cicadasolvers` Freenode transcripts as absent. An existing public fork of the original `neuroretransmit/cicada` archive contains two full `#cicadasolvers` channel logs, with **236,650 timestamped 2014 lines in the first file**, and an additional 38,008 from September–December in the second. A separate `#33012014` channel file has a further 110,607 timestamped 2014 lines. All three original files were fully retrieved and verified byte-for-byte against original Git blob identifiers on GitHub Actions. The exact original chat records are accessible as complete Git objects, with timestamps and participant-attributed text; they are not an interpretation assembled from modern walkthroughs.
+
+## Original source file identities and coverage
+
+The public source is [the preserved IRC log directory](https://github.com/cicada-solvers/neuroretransmit-cicada/tree/main/irc-logs), retaining filenames of the older original `neuroretransmit/cicada` tree. The three pinned original source objects are:
+
+| Original source path | Bytes | Git blob SHA1 | Date coverage |
+| --- | ---: | --- | --- |
+| [`#cicadasolvers.freenode.log`](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%23cicadasolvers.freenode.log) | 18,487,233 | `bdd277c14f94c34b5ae714cd00c238065beeed4e` | January–September 2014, 236,650 dated lines |
+| [`#cicadasolvers.freenode.2.log`](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%23cicadasolvers.freenode.2.log) | 27,234,234 | `72634a9d071d32af767edbffc0493d810e88cd0d` | September–December 2014: 38,008 dated lines; also 2015–16 |
+| [`#33012014.freenode.log`](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/irc-logs/%2333012014.freenode.log) | 8,629,610 | `a2880b1db31ce523599ef30ca2e55291bf295900` | January–August 2014, 110,607 dated lines |
+
+The full `#cicadasolvers` first-file 2014 monthly counts (source text lines prefixed `2014 Mon DD HH:MM`) are **Jan 94,818; Feb 43,172; Mar 15,101; Apr 8,901; May 29,249; Jun 23,228; Jul 13,836; Aug 8,235; Sep 110**. This proves **74,548 directly dated May–August 2014 channel lines** in the original primary channel file. The separate #33012014 source adds another **2,091** dated May–August 2014 lines. Exact original timestamps are recorded with minute resolution; these are date-bearing text exports and not cryptographic proof of the identities behind nicknames.
+
+Some May–August original channel posts specifically mention `http://titanpad.com/vFCy7T5p0O` and a separate transcription pad `http://titanpad.com/hJ8pVQ5S43`. On **19 August 2014 23:56**, `#cicadasolvers` has a line stating that someone asked about the page-56 hash on StackExchange. These are historical participant observations, not a solved preimage or an original author response. The source also contains IRC messages under nickname `cluosh` before and during 2014, the name credited with the original p56 solution; no independent identity attestation follows from the nickname.
+
+## Reproduction and research significance
+
+[The original-byte CommonJS SFT](../../sims/lp2_2014_original_irc_log_source_gate_sft.cjs) checks every Git blob SHA1 and exact original byte count before computing per-year/per-month tallies and extracting source-line numbers for p56/hash/totality clues. [Successful original-source GitHub Actions run 43599552893](https://github.com/FlareZ123/liber-primus/actions/runs/43599552893) recovered all three complete files, verified them, and printed source line numbers and counts. Existing earlier [May-2014-pad archival research](../../im-results/lp2-2014-may-unfiction-workpad-source-gate.md) had found only April–July **2016** snapshots and no 2014 chat; the present original IRC discovery materially resolves that historical acquisition gap, independently of recovering any original target URL.
+
+This public source may enable historically grounded testing of when p56 was first decoded, which keys were proposed, and whether anyone recorded the unidentified continuation URL. It must be inspected for actual messages before crediting any claim. Nicknames, channel URLs, participant guesses and records from `#33012014` should remain distinct from signed Cicada instructions. **No unsolved original LP2 plaintext, matching p56 digest preimage, or historical intended key has been recovered by this discovery alone.**
