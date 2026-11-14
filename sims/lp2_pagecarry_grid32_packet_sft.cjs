@@ -56,6 +56,25 @@ const records = carries.map((x,i) => {
   return {packet:i+1,page:x.start>=50?x.start+1:x.start,
     left:x.parts[0],right,word:x.word,cell,byte,prime:gpPrime(x.word)};
 });
+// The 2014 participant's May-11 table-to-byte conversion is a derived,
+// historically wrong (ten glyph entries) witness, NOT the original image.
+const historical2014 = JSON.parse(read("resources/cicada2014-sexagesimal-source.json"));
+assert.equal(historical2014.decimal_values.length,256);
+const historicalDiffIndices = values.flatMap((v,i) =>
+  v===historical2014.decimal_values[i] ? [] : [i]);
+assert.deepEqual(historicalDiffIndices,
+  [25,45,50,165,170,172,175,182,199,246]);
+const selectedHistoricalConflicts = records.flatMap(x => {
+  const at = (x.packet-1)*8+(x.right-1);
+  const older = historical2014.decimal_values[at];
+  return older===x.byte ? [] : [{
+    packet:x.packet,row:x.packet,col:x.right,
+    canonical:x.byte,historical2014:older
+  }];
+});
+assert.deepEqual(selectedHistoricalConflicts,
+  [{packet:4,row:4,col:2,canonical:198,historical2014:224}]);
+
 const raw = records.map(x => x.byte);
 const mapped = {
   table:raw,
@@ -145,6 +164,8 @@ const result = {
   genuinelySplitWords:32, precedingPageSeparators:2,
   gridDimensions:[32,8], rightFragmentLengths:records.map(x => x.right),
   originalSourceCells:records.map(x => x.cell),
+  historical2014TableConflicts:{allTenIndices:historicalDiffIndices,
+    selected: selectedHistoricalConflicts},
   selected: Object.fromEntries(Object.entries(mapped).map(
     ([key,a]) => [key,format(a)])),
   exploratoryRepeatVigenere:{keyIndices:candidateGPKey,terminal:terminalResults},
