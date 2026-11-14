@@ -34,7 +34,18 @@ The failure is stronger than the finite Caesar-offset table suggests. Allow a **
 | p56 authentic plaintext after F removal | Q=13 at local **8,9** | **10,9** |
 | p57 original cleartext, untouched | Q=12 at local **3,9** | **24,5** |
 
-For example, both quotient digits at the known-clear p57 offsets3 and9 equal12; the original p57 GP indices there are24 and5. Any stationary lookup would have to set both \(f(12)=24\) and \(f(12)=5\). This two-position contradiction excludes **every** secret stationary 29-entry lookup for the locked terminal clock, including all 29! permutations, all affine substitutions and noninjective maps. It is exact source arithmetic, without a dictionary or language scoring. A cipher that changes state over positions could still give different outputs for equal quotient values; its state rule would need an independent original clue.
+For example, both quotient digits at the known-clear p57 offsets3 and9 equal12; the original p57 GP indices there are24 and5. Any stationary lookup would have to set both \(f(12)=24\) and \(f(12)=5\). This two-position contradiction excludes **every** secret stationary 29-entry lookup for the locked terminal clock, including all 29! permutations, all affine substitutions and noninjective maps. It is exact source arithmetic, without a dictionary or language scoring.
+
+**A stronger two-symbol memory test also fails.** Grant an arbitrary secret **first-order local decoder** \(P_i=g(Q_{i-1},Q_i)\), where every one of the 29² possible ordered pairs may independently map to any of 29 output runes, with no requirement that \(g\) be invertible. Under this model, repeated consecutive quotient pairs must give the same output. The original terminal data contain the following exact contradictory repeated pairs:
+
+| Original terminal segment | Identical consecutive quotient pair | Local endpoint offsets | Incompatible output indices |
+| --- | --- | --- | --- |
+| p55 original ciphertext, three F omitted | (20,13) | 8,18 | 19,5 |
+| p56 printed ciphertext, one literal-F omitted | (5,5) | 34,35 | 5,0 |
+| p56 solved plaintext, one literal-F omitted | (5,5) | 34,35 | 2,24 |
+| p57 original cleartext | (10,26) | **5,37** | **20,7** |
+
+The p57 line alone is an untouched known-plaintext counterexample to the entire **29^(29²) arbitrary deterministic two-input local lookup family**, under this exact source order. This includes every fixed output alphabet applied to a source-adjacent difference, source pair, first-order source-only transition or sum. The demonstration does **not** disprove ciphertext-feedback machines, changing output alphabets, a secret running state, longer memory, secret position clocks, or different source order; those mechanisms require separate clues and a complete reversible construction.
 
 The 252-term original quotient matches only **5/252** positions of the mixed-mode printed terminal stream, against **252/252** needed for direct identity. Even an arbitrary *single* GP29 Caesar offset in each separately paired segment fails far short of literal recovery. In particular, the complete known p57 plaintext supplies an untouched **95-rune source-authenticated negative**.
 
