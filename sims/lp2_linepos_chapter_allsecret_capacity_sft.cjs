@@ -201,10 +201,99 @@ const positive = {
 };
 assert.deepEqual([positive.global.recovered, positive.chapterSpecific.recovered],
   [12956, 12956]);
+
+// Exact dynamic program over ALL extra physical-page-boundary resets.
+// The nine red-marked chapter starts are compulsory group boundaries.
+// We ask how many additional (visually unmarked) page cuts are necessary
+// to give the same secret line-position alphabet family enough per-rune
+// capacity even to represent the least E-heavy of the native controls.
+const pageGroups = Array.from({length: 9}, () => []);
+for (let i = 0; i < pageTexts.length; i++) {
+  const physical = i < 50 ? i : i + 1;
+  const chapter = starts.findIndex((start, g) =>
+    g < 9 && physical >= start && physical < starts[g + 1]);
+  const pageLines = pageTexts[i].split("/")
+    .map(line => [...line].filter(ch => rune.has(ch)).map(ch => rune.get(ch)))
+    .filter(line => line.length);
+  pageGroups[chapter].push({page: physical, lines: pageLines});
+}
+/** @type {{capacity:number, cuts:number[]}[]} */
+let frontier = [{capacity: 0, cuts: []}];
+for (const pages of pageGroups) {
+  const n = pages.length;
+  // Local DP: exact maximum with k groups ending after page e.
+  const dp = Array.from({length: n + 1}, () =>
+    Array(n + 1).fill(null));
+  dp[0][0] = {capacity: 0, cuts: []};
+  for (let k = 1; k <= n; k++) {
+    for (let end = k; end <= n; end++) {
+      for (let begin = k - 1; begin < end; begin++) {
+        const previous = dp[k - 1][begin];
+        if (!previous) continue;
+        const slice = pages.slice(begin, end);
+        const value = previous.capacity +
+          profile([slice.flatMap(page => page.lines)]).capacity;
+        if (!dp[k][end] || value > dp[k][end].capacity) {
+          dp[k][end] = {capacity: value, cuts: [
+            ...previous.cuts, pages[end - 1].page
+          ]};
+        }
+      }
+    }
+  }
+  const next = [];
+  for (let priorCount = 0; priorCount < frontier.length; priorCount++) {
+    const state = frontier[priorCount];
+    if (!state) continue;
+    for (let localCount = 1; localCount <= n; localCount++) {
+      const local = dp[localCount][n];
+      if (!local) continue;
+      const count = priorCount + localCount;
+      const capacity = state.capacity + local.capacity;
+      if (!next[count] || capacity > next[count].capacity) {
+        next[count] = {capacity, cuts: [...state.cuts, ...local.cuts]};
+      }
+    }
+  }
+  frontier = next;
+}
+assert.equal(frontier[9].capacity, observed.chapters.capacity);
+assert.deepEqual(frontier.slice(9, 17).map(v => v.capacity),
+  [1177, 1231, 1279, 1326, 1368, 1410, 1451, 1490]);
+assert.ok(frontier[15].capacity < 1458);
+assert.ok(frontier[16].capacity >= 1458);
+// Independently exhaust all four contiguous partitions of p0-p2 to
+// confirm the local DP's endpoints rather than trusting a recurrence.
+const firstPages = pageGroups[0];
+const localBrute = [];
+for (let mask = 0; mask < (1 << (firstPages.length - 1)); mask++) {
+  const groups = [];
+  let start = 0;
+  for (let b = 0; b < firstPages.length; b++) {
+    if (b === firstPages.length - 1 || (mask & (1 << b))) {
+      groups.push(firstPages.slice(start, b + 1)
+        .flatMap(page => page.lines));
+      start = b + 1;
+    }
+  }
+  localBrute.push({groups: groups.length, capacity: profile(groups).capacity});
+}
+const allTwo = localBrute.filter(x => x.groups === 2);
+assert.equal(Math.max(...allTwo.map(x => x.capacity)), 130);
+// The 16-domain witness respects the already-pinned nine boundaries.
+const linePositionResetLowerBound = {
+  minVisibleChapterDomains: 9,
+  minAdditionalUnmarkedPageCutsToReach1458E: 7,
+  minDomainsToReach1458E: 16,
+  domainCapacityFrontier9Through16: frontier.slice(9, 17)
+    .map((state, i) => ({domains: i + 9, capacity: state.capacity})),
+  maximizer16PageEnds: frontier[16].cuts
+};
+
 console.log(JSON.stringify({
   classification: "source-native conditional all-key exclusion, no decrypt",
   original: {runes: total, lines: allLines.length, observed},
-  controls, positive,
+  controls, positive, linePositionResetLowerBound,
   exclusions: "repeated unknown GP29 position-specific key per printed line, one global key or nine independently keyed source-visible chapters",
   exceptions: "independently keyed lines/pages, changing state, nonnative prose, altered original text and intermediary transport",
 }, null, 2));
