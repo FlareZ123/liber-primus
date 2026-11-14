@@ -120,26 +120,37 @@ function nativeWindows(gp) {
   const n = original.length;
   assert(gp.length >= n);
   let count = 0, lowest = Infinity, highest = -Infinity, below = 0;
-  for (let i = 0; i < n; i++) count += Number(gp[i] === 24);
+  let gCount = 0, minG = Infinity, maxG = -Infinity, atOrAboveOriginalG = 0;
+  for (let i = 0; i < n; i++) {
+    count += Number(gp[i] === 24);
+    gCount += Number(gp[i] === 6);
+  }
   for (let i = 0; i <= gp.length - n; i++) {
     lowest = Math.min(lowest, count);
     highest = Math.max(highest, count);
     below += Number(count <= originalA);
+    minG = Math.min(minG, gCount);
+    maxG = Math.max(maxG, gCount);
+    atOrAboveOriginalG += Number(gCount >= originalG);
     if (i + n < gp.length) {
       count += Number(gp[i + n] === 24) - Number(gp[i] === 24);
+      gCount += Number(gp[i + n] === 6) - Number(gp[i] === 6);
     }
   }
   return {runes: gp.length, windows: gp.length - n + 1,
-    minA: lowest, maxA: highest, atOrBelowOriginal: below};
+    minA: lowest, maxA: highest, atOrBelowOriginal: below,
+    minG, maxG, atOrAboveOriginalG};
 }
 const controls = {
   shakespeare: nativeWindows(toGP(read('resources/control/shakespeare_first300k.txt'))),
   gibran: nativeWindows(toGP(read('resources/control/gibran_prophet_58585.txt')))
 };
 assert.deepEqual(controls.shakespeare,
-  {runes:215718, windows:202763, minA:707, maxA:919, atOrBelowOriginal:0});
+  {runes:215718, windows:202763, minA:707, maxA:919, atOrBelowOriginal:0,
+    minG:105, maxG:224, atOrAboveOriginalG:0});
 assert.deepEqual(controls.gibran,
-  {runes:62132, windows:49177, minA:729, maxA:922, atOrBelowOriginal:0});
+  {runes:62132, windows:49177, minA:729, maxA:922, atOrBelowOriginal:0,
+    minG:136, maxG:300, atOrAboveOriginalG:0});
 
 // Real LP2 p57 plaintext positive: every publicly selected p15 spiral
 // key correctly recovers all original solved GP runes. Importantly,
@@ -171,5 +182,5 @@ console.log(JSON.stringify({
     matchedEnglishWindows:controls
   },
   positive: { originalP57Runes:95, recovered:95, sourceOriginalRoundtrips:12956 },
-  conclusion:'No secret per-position sequence of Fibonacci projective powers can change the original 482 native GP-A runes into the >=707 observed in any same-length Shakespeare or Gibran window; no plaintext or historical key recovered.'
+  conclusion:'No secret per-position sequence of Fibonacci projective powers can change the original 482 GP-A and 438 GP-G runes into the native GP-English ranges A=707..922, G=105..300 across 251940 contiguous source windows; no unknown plaintext or historical key recovered.'
 }, null, 2));
