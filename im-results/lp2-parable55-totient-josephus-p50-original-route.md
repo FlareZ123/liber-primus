@@ -66,6 +66,17 @@ The joint source-rearrangement frequency is **0.00035** in this deliberately bou
 
 **Unshorn-source control:** The same original p57 contains **41** contiguous 55-rune windows without deleting word boundaries. Use each of those original complete windows as 55 prime-totient Josephus counts on the same 56 pages. **Zero** of the 41 forward windows finish on p50; just **one** reversed window does (original offset36, forward survivor p42). Thus the dual p50 endpoint specifically depends on the text-relevant *word-interior* transformation, rather than following from taking any readily available 55-rune portion of p57. This finite comparison does not correct for the broader search over all possible operations.
 
+## Direct source-selected table readout: another 256-cell circle
+
+The ordinary 56-page ring walk finishes at the first numerical-table page, p49. Without introducing an external key, the same 55 fixed full totients can now serve as **count-current-as-one** advances around a second source-visible circular register: the table's **256 row-major cells**, beginning at the first p49 cell. Read the selected byte after every step and convert the byte to a GP rune using each of the two already studied natural numerical reductions. This creates two original-input 55-rune candidate directions from the table, exactly the length of the word-interior seed:
+
+| Frozen source-grid55 readout | GP29 IoC | Beginning of 55-rune GP transliteration |
+| --- | ---: | --- |
+| Table byte modulo29 | **0.03771044** | `GGEOENGOIAPRYWHSSNGUFEAEAMUPAEO` |
+| floor(table byte×29/256) | **0.03501684** | `OPCEHOTIAOEOWDIAETHGNPPNGYUMG` |
+
+Neither complete output resembles a GP-language instruction or yields a source-authenticated key; the first readout is `GGEOENGOIAPRYWHSSNGUFEAEAMUPAEOSNGBEIAWHMMOEUOEEBWOEEAFOEHUSNEAOICFAC`, the second `OPCEHOTIAOEOWDIAETHGNPPNGYUMGJSSNGEOWDEAEACMNNGCBTCTFEWTIAXMYWPGOEW`. The same full original-input SFT checks both values and all prior PARABLE page-navigation controls. This is a precise **negative for those two direct table-byte-to-GP readouts**, not an argument against a hidden key, a separately instructed table coordinate operation, a different number system or cryptographic output register.
+
 ## Direct consumer tested: assigning p56's authentic prime-totient stream by the Josephus path
 
 The forward Josephus elimination pairs **each of the 55 p57 interior runes with exactly one of the 55 rune-bearing unknown pages**. An obvious source-specified consumer is the **actual solved p56 encryption rule**, where consecutive ordinary prime totients form the additive GP29 key and plaintext F bypasses encryption. Try three literal ways to turn the source rune at each removal into the destination page's first ordinary prime **ordinal**: its GP index, its associated GP prime value, or the associated full totient. Each page's key begins at that index and the local cipher begins with its first runic symbol. These are distinct from the prior natural physical-page-ordered 55-source-seed test because the complete **Josephus page permutation is now fixed**.
