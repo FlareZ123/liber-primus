@@ -85,6 +85,24 @@ assert.equal(bytes.length,256);
 assert.deepEqual(tokens.slice(102,104),["0W","3Q"]);
 assert.deepEqual(bytes.slice(102,104),[32,206]);
 
+// Exhaust all original p27 whole-word pairs whose prime sums are
+// consecutive in [1,256]; require two table values address same page and
+// the rune-start gap equal that page. The selected pair is unique.
+const pairedP27=[];
+for(let i=0;i<pageWords.length;i++)for(let j=i+1;j<pageWords.length;j++){
+  const a=pageWords[i],b=pageWords[j],lo=Math.min(a.sum,b.sum),
+    hi=Math.max(a.sum,b.sum);
+  if(hi-lo!==1 ||lo<1 ||hi>256)continue;
+  const pa=bytes[lo-1]%58,pb=bytes[hi-1]%58,
+    gap=b.start-a.start;
+  pairedP27.push({starts:[a.start,b.start],cells:[lo,hi],
+    gap,pa,pb,fullMatch:pa===pb&&pa===gap});
+}
+assert.equal(pairedP27.length,7);
+assert.deepEqual(pairedP27.filter(x=>x.fullMatch),[{
+  starts:[34,66],cells:[103,104],gap:32,pa:32,pb:32,fullMatch:true
+}]);
+
 // Authentic January 2016 signed JPEG has source-frame dimensions 563x569.
 // SOF0 marker is in the header before the entropy-coded SOS data.
 const picture = fs.readFileSync(path.join(root,
@@ -224,6 +242,7 @@ console.log(JSON.stringify({
   base59LocalDecoded:tokens.slice(102,104).map(t=>digitValue(t,59)),
   allConsecutiveMod58EqualPairs:pairs,
   doubleP32Pairs:doubleP32,
+  allP27ConsecutiveWordSumPairs:pairedP27,
   originalP32AllPrimeRows:rows,
   originalP32AllPrimeColumns:columns,
   repeatedPrimeAxisPagePair:[32,15],
