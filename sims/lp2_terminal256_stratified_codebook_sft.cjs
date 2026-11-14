@@ -108,20 +108,31 @@ const classes={
   physical_page_token:(cell,ring)=>
     (cell<80?49:cell<184?50:51)+":"+tokens[cell],
   ring_column_token:(cell,ring)=>
-    ring+":"+(cell%8)+":"+tokens[cell]
+    ring+":"+(cell%8)+":"+tokens[cell],
+  // Solved p56 and clear p57 have distinct original page headings and
+  // genuinely different observed cipher status. Grant each an independent
+  // unlimited secret codebook, even within the same ring+column+token class.
+  terminal_page_token:(cell,ring,i)=>
+    (i<85?56:57)+":"+tokens[cell],
+  terminal_page_ring_token:(cell,ring,i)=>
+    (i<85?56:57)+":"+ring+":"+tokens[cell],
+  terminal_page_column_token:(cell,ring,i)=>
+    (i<85?56:57)+":"+(cell%8)+":"+tokens[cell],
+  terminal_page_ring_column_token:(cell,ring,i)=>
+    (i<85?56:57)+":"+ring+":"+(cell%8)+":"+tokens[cell]
 };
 
 /**
  * @param {number[]} positions
  * @param {number[]} symbols
- * @param {(cell:number,ring:number)=>string} tag
+ * @param {(cell:number,ring:number,position:number)=>string} tag
  * @returns {{errors:number,classes:number,contradictoryClasses:number}}
  */
 function fit(positions,symbols,tag){
   const bins=new Map();
   for(let i=0;i<180;i++){
     const ring=i<68?1:i<128?2:3;
-    const key=tag(positions[i],ring);
+    const key=tag(positions[i],ring,i);
     if(!bins.has(key))bins.set(key,new Map());
     const counts=bins.get(key),value=symbols[i];
     counts.set(value,(counts.get(value)||0)+1);
@@ -165,6 +176,7 @@ assert.equal(candidates,512);
 // The broadest of these source-visible direct lookup families already fails.
 for(const mode of Object.keys(known)){
   assert.equal(stats[mode+":ring_column_token"].exactRoutes,0);
+  assert.equal(stats[mode+":terminal_page_ring_column_token"].exactRoutes,0);
 }
 assert.deepEqual(
   Object.fromEntries(Object.entries(stats).map(([k,v])=>[k,v.minErrors])),
@@ -174,11 +186,19 @@ assert.deepEqual(
     "decoded:column_token":6,
     "decoded:physical_page_token":9,
     "decoded:ring_column_token":6,
+    "decoded:terminal_page_token":21,
+    "decoded:terminal_page_ring_token":14,
+    "decoded:terminal_page_column_token":5,
+    "decoded:terminal_page_ring_column_token":5,
     "printed:token":46,
     "printed:ring_token":20,
     "printed:column_token":7,
     "printed:physical_page_token":12,
-    "printed:ring_column_token":7
+    "printed:ring_column_token":7,
+    "printed:terminal_page_token":24,
+    "printed:terminal_page_ring_token":16,
+    "printed:terminal_page_column_token":6,
+    "printed:terminal_page_ring_column_token":6
   }
 );
 
@@ -209,6 +229,7 @@ console.log(JSON.stringify({
   hypothesis:"256 table cells directly encode 76+85+95 GP runes",
   sourceTablePages:[49,50,51],
   originalKnown:"p56 solved totient plaintext and p57 direct plaintext",
+  sourceVisibleDecoderReset:"independent p56 and p57 secret codebooks also exhausted",
   alternateKnown:"p56 and p57 literally printed rune symbols",
   originalGridSize:"32x8",
   knownInnerRings:[68,60,52],
