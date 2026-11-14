@@ -33,6 +33,24 @@ This does not resemble ordinary GP English. The nearly uniform quotient symbol c
 
 A **source-native positive implementation control** forms a 275-rune GP stream by repeating the already solved p57 original GP symbols, multiplies it by the same `G`, and divides the 277-rune synthetic cipher. The inverse recovers all **275/275** original-source control symbols exactly; multiplication restores the planted 277 coefficients. This confirms the implemented method would recover authentic GP data when such data had actually been encoded by the proposed operation.
 
+## Source-selected 275 = 5 × 55 quotient-key consumer (Agent16, 14 November 2026)
+
+The exact preceding `G` quotient is **275 original-source rune coefficients**. Separately, the **95 rune / 20 word** already-clear p57 `PARABLE` explicitly says to *SHED OUR OWN CIRCUMFERENCES*. Removing the first and last GP rune of each original printed p57 word leaves **55 exact source-known runes**; the [Parable page-seed study](lp2-parable55-source-interiors-page-key-gate.md) already noted the 55 source-word interiors but had not combined them with the distinct **275-rune p29 quotient**. The quotient therefore admits exactly **five source-shaped repetitions** of a 55-rune key without padding, rotation, or secret letter selection. This makes one reproducible, bounded candidate, although **no signed instruction independently selects p29, repeating this key, or additive subtraction**. Both length matches were recognized after broad exploration.
+
+Keep the red triad's high-first divisor `[15,5,27]` and the original 277-rune p29 ciphertext unchanged. Extract the 275-coefficient exact quotient (zero 2-rune remainder). Key `K[j]` is source-native GP29 ordinal of the `j`th p57 strict word-interior rune, in original word order; for every `i=0..274`, test the two finite GP29 Vigenère inverses `P[i]=(Q[i] ± K[i mod55]) mod29`. Both are historically plausible arithmetic directions and completely reversible, using the **same nonfitted key**.
+
+| Original 275-rune register | Full-stream GP29 IoC | Original-source language result |
+| --- | ---: | --- |
+| Bare p29 polynomial quotient | **0.0340544127405** | Ciphertext-like |
+| Quotient **minus** p57 interiors | **0.0349834107498** | No readable plaintext |
+| Quotient **plus** p57 interiors | **0.0342667551427** | No readable plaintext |
+
+Both original inverses exactly reencrypt **275/275** quotient runes and reconstruct all **277/277** physical p29 cipher runes on multiplication by the source G polynomial. Each also decrypts a separate **275-rune source-native plant** generated from independently solved p57 prose, recovering every rune. The original outputs, including each complete 55-rune segment, remain nonlinguistic. In particular, the exact **fivefold repetition** does not recover an authentic key or an unknown plaintext block.
+
+**Decision:** The simple `p57 strict interiors → 55-period GP29 additive key → p29 275-rune G quotient` is now tested and negative in both fixed signs. Its source-visible lengths are a useful independently testable linkage, but after the failed original inverses they do **not** justify fitting a secret phase, arbitrary letter mapping, additional cipher layer or p29 plaintext crib. This is limited to a fixed repeating GP29 key on the exact G quotient; no different prospective historical cipher is ruled out.
+
+[Read-only standalone CJS SFT](../sims/lp2_p29_275_parable55_direct_key_sft.cjs) · [Passed original-repository Windows Node22 run 43577713509](https://github.com/FlareZ123/liber-primus/actions/runs/43577713509).
+
 ## Decision and reproducibility
 
 The finite hypothesis `C_p29(X)=G(X)·P_GP(X)`, with the source G and the published coefficient order, fails as a **direct natural-language GP29 decipherment** despite its exact divisibility. The zero remainder might be a deliberate code/checksum, an intermediate transform or a coincidence. A source-fixed outer key, state, decoding register or independent page selector would be required before further interpretation. Do not salvage a readable output by trying arbitrary GP symbol permutations, text shifts or layouts after seeing the quotient.
