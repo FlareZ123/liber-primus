@@ -1,0 +1,15 @@
+name: LP2 p0 square to p50 page-ring original source test
+on:
+  workflow_dispatch:
+jobs:
+  original-input:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-native single-file test
+        run: node sims/lp2_p0_square_p50_page_ring_256_sft.cjs
