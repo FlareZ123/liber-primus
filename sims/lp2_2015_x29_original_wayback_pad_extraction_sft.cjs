@@ -12,13 +12,17 @@ function uncover(raw){
   const chunks=matches.filter(x=>x.idx>=0).map(x=>({key:x.key,
     context:raw.slice(Math.max(0,x.idx-90),x.idx+620).replace(/\s+/g," ")}));
   const rx=/"initialAttributedText"\s*:\s*\{\s*"text"\s*:\s*"((?:\\.|[^"\\])*)"/g;
-  const texts=[...raw.matchAll(rx)].map(m=>JSON.parse('"'+m[1]+'"'));
-  return {matches,contexts:chunks,extracted_texts:texts.map(s=>({
+  const texts=[...raw.matchAll(rx)].map(m=>{
+    const encoded=m[1].replace(/\\x([0-9a-fA-F]{2})/g,"\\u00$1").replace(/\\'/g,"'");
+    try{return JSON.parse('"'+encoded+'"');}
+    catch(e){return {decodeError:String(e),rawStart:m[1].slice(0,1200),rawEnd:m[1].slice(-100)};}
+  });
+  return {matches,contexts:chunks,extracted_texts:texts.map(s=>typeof s==="string"?({
     length:s.length,start:s.slice(0,1400),end:s.slice(-300),
     words:{"prime":(s.match(/prime/gi)||[]).length,"key":(s.match(/key/gi)||[]).length,
       "frequency":(s.match(/frequen/gi)||[]).length},
     sha256:crypto.createHash("sha256").update(s).digest("hex")
-  }))};
+  }):s)};
 }
 async function main(){
   for(const date of stamp){
