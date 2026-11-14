@@ -60,7 +60,7 @@ assert.deepEqual(p55.flatMap((v,i) => v === 0 ? [i] : []), [15,25,41]);
  * @param {number[]} ciphertext
  * @param {number} phase
  */
-function invert(ciphertext, phase) {
+function invert(ciphertext, phase, currentKey = key) {
   let states = [{ clock: phase, bypass: [], plain: [] }];
   let impossibleAt = null;
   for (let i = 0; i < ciphertext.length; i++) {
@@ -69,7 +69,7 @@ function invert(ciphertext, phase) {
       if (ciphertext[i] === 0) {
         next.push({ clock: state.clock, bypass: [...state.bypass, i], plain: [...state.plain, 0] });
       }
-      const candidate = (ciphertext[i] - key[state.clock % key.length] + 29) % 29;
+      const candidate = (ciphertext[i] - currentKey[state.clock % currentKey.length] + 29) % 29;
       if (candidate !== 0) {
         next.push({ clock: state.clock + 1, bypass: state.bypass, plain: [...state.plain, candidate] });
       }
@@ -84,12 +84,12 @@ function invert(ciphertext, phase) {
 }
 
 /** Strict source-authentic forward encoder, including plaintext-F transparency. */
-function encrypt(plain, phase) {
+function encrypt(plain, phase, currentKey = key) {
   let clock = phase;
   const cipher = [];
   for (const symbol of plain) {
     if (symbol === 0) cipher.push(0);
-    else cipher.push((symbol + key[clock++ % key.length]) % 29);
+    else cipher.push((symbol + currentKey[clock++ % currentKey.length]) % 29);
   }
   return cipher;
 }
@@ -114,6 +114,33 @@ for (const [scope, ciphertext] of [["full76", p55], ["suffix75", p55.slice(1)]])
 }
 assert.deepEqual(cases.map((x) => x.earliestImpossibleAt),
   [55,8,2,67,67,66,54,7,1,66]);
+// The historically verified p56 key uses phi(prime)=prime-1, not the GP
+// rune's ordinal index. This is a distinct source-motivated consumer of the
+// IOGEM path's actual prime weights, so do not conflate its survivors with
+// the strict impossibility of the literal GP-index key above.
+const totientKey = key.map((symbol) => (primes[symbol] - 1) % 29);
+assert.deepEqual(totientKey, [1,6,16,8,12]);
+for (let phase = 0; phase < totientKey.length; phase++) {
+  const planted = encrypt(p57, phase, totientKey);
+  const recovered = invert(planted, phase, totientKey);
+  assert.equal(recovered.impossibleAt, null);
+  assert(recovered.states.some((state) => state.plain.every((symbol, i) => symbol === p57[i])));
+}
+const totientCases = [];
+for (const [scope, ciphertext] of [["full76", p55], ["suffix75", p55.slice(1)]]) {
+  for (let phase = 0; phase < totientKey.length; phase++) {
+    const outcome = invert(ciphertext, phase, totientKey);
+    totientCases.push({
+      scope, phase, earliestImpossibleAt: outcome.impossibleAt, survivors: outcome.states.length,
+      firstNativeGpCandidate: outcome.states.length
+        ? outcome.states[0].plain.slice(0, 28).map((index) => corpus.translit[index]).join(" ")
+        : null
+    });
+  }
+}
+assert.deepEqual(totientCases.filter((x) => x.scope === "full76").map((x) => x.survivors), [0,1,2,2,0]);
+assert.deepEqual(totientCases.filter((x) => x.scope === "suffix75").map((x) => x.survivors), [0,0,1,2,2]);
+
 console.log(JSON.stringify({
   input: "unaltered LP2 physical p55 original 76 GP29 runes",
   originalSourceSelector: "p57 DIVINITY GP prime-sum 376, %256 cell120, 29q+r keypad",
@@ -123,6 +150,8 @@ console.log(JSON.stringify({
   sourceCiphertextFOffsets: [15,25,41],
   knownPlaintextPositive: "all 5 cyclic phases exactly recover native p57 95/95 with genuine plaintext-F bypass",
   tests: cases,
-  interpretation: "The newly sourced IOGEM is impossible as a cyclic strict-F Vigenere key for all p55 or the page-local suffix, for every phase; no unknown plaintext recovered."
+  totientKey,
+  totientCases,
+  interpretation: "Literal GP-index IOGEM is formally impossible for original p55 in all cyclic strict-F phases. The historically motivated GP-prime-totient five-key has some fully legal but nonlinguistic outputs. Neither yields recovered plaintext."
 },null,2));
 console.log("PASS");
