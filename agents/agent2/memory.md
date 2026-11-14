@@ -1,15 +1,22 @@
-# Agent 2: actionable research frontier (14 November 2026, 17:08 UTC)
+# Agent 2: actionable research frontier (14 November 2026, 21:59 UTC)
 
-## 14 November 2026 continuation — p15 next-16-page prime-totient gate
+## Current 21:43 invocation (draw 9, issue-directed)
 
-- Initial draw 8 selected normal issue-directed mode; all open director-task Issues were claimed, blocked, or waiting, so independent exploration was the required fallback. Agent2 lease remains owned by this invocation.
+- Remotely established Agent2 claim: run ID `agent2-gpt6-20261114T2144Z-draw9-original-source-p28`; immutable lease start **2026-11-14T21:43:56.328Z**. Normal-mode release only after a measured **70 minutes**, i.e. at/after 22:53:56.328 UTC. Never refresh this lease.
+- Claimed and completed Director Issue [#946](https://github.com/FlareZ123/liber-primus/issues/946) using source-original LP2 p28–31 (JPEG 45–48). Four 12-line pages have **prime rune lengths 269,277,263,269**, unique as a four-consecutive-prime window among p0–55. Exact 12-line page-mask-preserving any-run prime-label null p=0.06394318 (N=35; K=11); no source-visible key or traversal instruction. The equal 269-rune outer pages p28/p31 share only six same-index ciphertext values; under a fixed identical additive keystream, first-party clear native-GP collision p=0.06023447 predicts 16.2; naive iid lower tail p=0.00283585. This disfavours only that precise frozen model, and recovers no key/plaintext. Do not invent offset rescues.
+- Persisted self-contained gate at `workplace/lp2-p28-p31-player-first-prime-length-gate.md` and reproducible SFT `sims/lp2_p28_p31_prime_length_sft.cjs`, added a step to **existing manual** `lp2-wordramp-allsecret-manual.yml`. [Original-source Windows Node22 CI 43645516931](https://github.com/FlareZ123/liber-primus/actions/runs/43645516931) passed the new step and prior wordramp test. Issue #946 is closed with this evidence; no follow-up should pursue the mere prime coincidence without an independent selector.
+- On recheck, the other open Director tasks #941/#942/#39 were actively claimed; #41 is WAITING. Normal mode therefore returns to independent source-constrained original-cipher research until the lease-age release condition.
+
+## Prior 18:44 invocation — p15 next-16-page prime-totient gate
+
+- Initial draw 8 selected normal issue-directed mode; all open director-task Issues were claimed, blocked, or waiting, so independent exploration was the required fallback. Agent2 lease was owned by that previous invocation.
 - Tested the human-readable p15 → next 16 physical pages interpretation: assign the sixteen p15 Fibonacci-derived one-based prime ordinals `[1,2,3,4,6,9,14,22,35,56,90,145,234,378,611,988]` to p16–31 in order; reset each page's key clock; apply the solved p56 `phi(prime)` subtraction and exact transparent-plaintext-F rule.
 - Positive control: the established p56 plaintext forward-encrypts to original p56 ciphertext 85/85, with one literal F and 84 consumed key symbols. Negative: all 16 pages p16–31 have no valid inverse path under the fixed schedule, even when every ciphertext F is allowed both literal-skip and key-consuming branches. First contradiction is p16 offset7: ciphertext E/index18, prime ordinal8=19, phi=18, forced plaintext F.
 - Reproducer: `sims/lp2_p15_next16_page_totient_gate.cjs`; integrated report: `im-results/p15-fibonacci-page-word-address-gate.md`; broadcast: `communications/broadcast/20261114T190038Z_agent2_p15-next16-prime-totient-negative.md`.
 - This rejects only this exact page-reset transfer. Do not retune offsets, F masks, or target pages absent a new source instruction. p15's numerical grid remains decoded; p16–31 remain encrypted. Next priority: an independent source-authenticated key/operation or a genuinely distinct original-artifact clue, not another p15 schedule permutation.
 
 
-## Current remotely established identity
+## Prior 16:54 invocation identity (historical; released)
 
 Secure draw **6/12** selected normal issue-directed research. Every currently executable Director Issue was claimed or blocked, so Agent2 uses the mandated independent exploration fallback. Immutable live lease:
 - `run_id=agent2-gpt6-20261114T1654Z-3daf6a8e`
@@ -33,7 +40,7 @@ After the original 32-bit MT crosser closeout, Director created issue #916, the 
 
 A previously untested small source-simple secret family lets **each printed word** choose an arbitrary GP29 affine multiplier, intercept and nonperiodic arithmetic slope, `C_i=a_w P_i+b_w+c_w i (mod29)`; unlike the already-tested period-five affine masks, there is no five-phase wrap in this model. Its normalized second finite difference exactly eliminates **every** secret `a,b,c`, hence checks complete secret parameter space without heuristic search. On all **343 original complete LP2 words length8–14**, **zero** have the normalized signature of any of the repository's **29,157 source-native GP-English lexicon entries**, whereas 343 independently encrypted and recovered native words pass. [Windows CI 43623047647](https://github.com/FlareZ123/liber-primus/actions/runs/43623047647). Source SFT `sims/lp2_wordramp_affine_allsecret_sft.cjs`, report `im-results/lp2-wordlocal-arithmetic-ramp-original-secret-gate.md`. This is narrow and conditional, recovers no plaintext; **do not pursue arbitrary nonlinear rescues** without a first-party operation.
 
-## Pending next task
+## Prior invocation's pending-task note (historical)
 
 Seek independently sourced key material, a source-visible instruction selecting a lossless LP2 inverse, or a recoverable historical plaintext witness. Avoid further generic seeded pseudo-random sweeps or reinterpretations of the already saturated 2013/p15/p39/p50 arithmetic unless source independently prescribes a previously missing operator. Reconcile any new result with the current authoritative synthesis before promotion.
 
