@@ -75,11 +75,16 @@ const reversed = josephus(totientSteps.slice().reverse(), 56);
 const prime = josephus(interiors.map(index => corpus.prime[index]), 56);
 const ordinal = josephus(interiors.map(index => index + 1), 56);
 const reducedTotient = josephus(totientSteps.map(step => step % 29 || 29), 56);
+// The known p56 plaintext-F bypass, transplanted as a hypothetical skip,
+// would remove only 53 pages and does not select the numerical-page spread.
+const fTransparent = josephus(interiors.filter(index => index !== 0)
+  .map(index => corpus.prime[index] - 1), 56);
 assert.equal(forward.survivor, 50);
 assert.equal(reversed.survivor, 50);
 assert.equal(prime.survivor, 21);
 assert.equal(ordinal.survivor, 12);
 assert.equal(reducedTotient.survivor, 20);
+assert.deepEqual(fTransparent.remaining, [18, 19, 55]);
 assert.deepEqual(forward.eliminated.slice(0, 10), [39,49,35,43,8,40,54,27,31,46]);
 assert.equal(forward.eliminated.length, 55);
 assert.ok(!forward.eliminated.includes(50));
@@ -145,6 +150,7 @@ console.log(JSON.stringify({
     original_prime_values_survivor: prime.survivor,
     gp_ordinal_plus_one_survivor: ordinal.survivor,
     totient_reduced_mod29_survivor: reducedTotient.survivor,
+    skipped_plaintext_F_survivors: fTransparent.remaining,
     joint_p50_phase_shifts: phases
   },
   shuffled_whole_word_blocks: {
