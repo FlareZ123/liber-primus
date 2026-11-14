@@ -147,6 +147,8 @@ jobs:
           node sims/lp2_q252_shamir_allx_p56_key_sft.cjs
           node --check sims/lp2_terminal256_stationary_byte_codebook_sft.cjs
           node sims/lp2_terminal256_stationary_byte_codebook_sft.cjs
+          node --check sims/lp2_p55_inner43_q252_redroot_bridge_sft.cjs
+          node sims/lp2_p55_inner43_q252_redroot_bridge_sft.cjs
 
       - name: Original p32 source-locked signed 2016 image tile-pixel key
         if: ${{ inputs.probe == 'tree-p32-image-direct-key' }}
