@@ -161,6 +161,43 @@ assert.deepEqual(clocks.either.exact,
 assert.equal(clocks.word.five.top12, 7942);
 assert.equal(clocks.carry.five.top12, 8248);
 
+/**
+ * One author-visible chapter-boundary rekey, with the published previous
+ * ciphertext carried across the cut. This upper bound is independent of
+ * either epoch's completely secret alphabet tables.
+ * @param {number} cut - global source rune ordinal, 0-based
+ * @returns {number} maximal count among plaintext's twelve most common runes
+ */
+function oneRekeyTop12(cut) {
+  const rows = new Map();
+  let previous = 29;
+  let index = 0;
+  for (const word of original) {
+    for (let j = 0; j < word.length; j++, index++) {
+      const epoch = index >= cut ? 1 : 0;
+      const state = epoch * 450 + j * 30 + previous;
+      let h = rows.get(state);
+      if (!h) {
+        h = Array(29).fill(0);
+        rows.set(state, h);
+      }
+      h[word[j]]++;
+      previous = word[j];
+    }
+  }
+  let top12 = 0;
+  for (const h of rows.values()) {
+    h.sort((a, b) => b - a);
+    top12 += h.slice(0, 12).reduce((a, b) => a + b, 0);
+  }
+  return top12;
+}
+
+const visualChapterCuts = [729, 1874, 3603, 5506, 6527, 7960, 9640, 12648];
+const oneRekeyTop12ByChapter = visualChapterCuts.map(oneRekeyTop12);
+assert.deepEqual(oneRekeyTop12ByChapter,
+  [9275, 9714, 10000, 10140, 10163, 10142, 9969, 9110]);
+
 const sources = [
   'resources/control/shakespeare_first300k.txt',
   'resources/control/gibran_prophet_58585.txt',
@@ -218,6 +255,8 @@ console.log(JSON.stringify({
   runes: 12956,
   words: 2896,
   clocks,
+  oneRekeyTop12ByChapter,
+  visualChapterCuts,
   nativeMatchedControls: controls,
   sourceNativePositivePlant: '12956/12956 exact inverse',
   caveat: 'no unknown plaintext/key, altered word segmentation, extra state or chapter-specific keys remain open'
