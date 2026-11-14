@@ -101,7 +101,8 @@ function extractCipherRows(raw) {
   const seen = new Set(), cells = [], blocks=[], mismatch=[];
   let expectedCursor=0, exactInverse=0;
   for(const {file,hash,content} of retrieved) {
-    const records=extractCipherRows(content);
+    const canonical=content.split(/\n## Alternative route|\n<details>/i)[0];
+    const records=extractCipherRows(canonical);
     assert(records.length>0,`No original source records found in ${file}`);
     const disclosedClaim=(content.match(/Decrypted rune sequence[^\n]*/i)||[])[0]||"";
     for(const a of records) {
