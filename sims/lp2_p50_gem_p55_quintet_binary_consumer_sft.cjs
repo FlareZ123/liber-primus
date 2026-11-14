@@ -159,7 +159,7 @@ const encrypted=process(planted,sourceKeys[0].bytes,"xor");
 assert.deepEqual(process(encrypted,sourceKeys[0].bytes,"xor"),planted);
 assert.equal(planted.filter(isPrintable).length,43);
 
-process.stdout.write(JSON.stringify({
+console.log(JSON.stringify({
   source: "2016 signed dimensions 563x569, source 256-cell base60 grid",
   graph: {
     widthPath:pathWidth.cells,
