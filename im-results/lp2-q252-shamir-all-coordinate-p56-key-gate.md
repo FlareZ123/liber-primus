@@ -6,7 +6,7 @@
 
 The original physical pp49–51 contain exactly **256 printed numeral cells**, conditionally parsed using the conventional base60 alphabet. Their original byte sequence hashes SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Dividing the descending GF29 coefficient polynomial by the product of two independently visible factors is exact:
 
-- `H=3+26X+24X²`, from the signed 2013 BASE29 example `3301=3QO`.
+- `H=3+26X+24X²`, a **conditional ascending-polynomial reinterpretation** of the signed 2013 BASE29 digits `3301=3QO`. Ordinary base29 is most-significant-first (`3×29²+26×29+24=3301`); the source itself never fixes this ascending polynomial order.
 - `G=27+5X+15X²`, from the original p39 red rune triad.
 - Their product has ascending coefficient values `[23,21,11,17,12]`; **the four-field-element division remainder is zero** and the quotient is exactly **252** coefficient slots (including a leading zero).
 
