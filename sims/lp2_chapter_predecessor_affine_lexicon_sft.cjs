@@ -26,7 +26,7 @@ const runeIndex = new Map(corpus.runes.map((c, i) => [c, i]));
 const translit = corpus.translit.map((symbol, i) => ({symbol, i}))
   .sort((a, b) => b.symbol.length - a.symbol.length);
 const CHAPTERS = [[0,2], [3,7], [8,14], [15,22], [23,26],
-  [27,32], [33,39], [40,53], [54,55]];
+  [27,32], [33,39], [40,52], [53,54]];
 const LIMIT = 5;
 const SIZE = 29;
 
@@ -281,10 +281,12 @@ assert(keys.some(k => [3,10,24].map(p => mod(6+k.a*p+k.b))
 
 const table = [];
 const expectedFirstReject = [null,4,3,3,4,3,1,1,null];
-const expectedNativeWords = [102,156,161,195,132,144,9,14,9];
+const expectedNativeWords = [102,156,161,195,132,144,9,13,0];
 for (let chapter = 0; chapter < CHAPTERS.length; chapter++) {
   const [from,to] = CHAPTERS[chapter];
   const source = words.filter(w => w.page >= from && w.page <= to);
+  assert.equal(source.reduce((n,w)=>n+w.c.length,0),
+    [729,1145,1729,1903,1021,1433,1680,3008,308][chapter]);
   // Produce the first contradiction threshold without fitting any source word.
   let firstReject = null, result = null;
   for (let len = 1; len <= LIMIT; len++) {
