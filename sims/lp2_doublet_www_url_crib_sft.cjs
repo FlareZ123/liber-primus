@@ -99,6 +99,30 @@ function chapterControl(events, rounds) {
   return {rounds, onlyTriple, terminalWWW};
 }
 
+
+/** Recover a repeating additive key while a WWW marker or every W skips its key tick. */
+function transparent(cipher, start, plaintext, mode) {
+  const W = source.translit.indexOf("W");
+  const skip = cipher.map((value, i) => mode === "all-W" ? value === W : i >= 79 && i <= 81);
+  let consumed = 0;
+  const tick = skip.map((s) => s ? null : consumed++);
+  const length = plaintext.length;
+  const keys = Array(length).fill(null);
+  for (let i = 0; i < length; i++) {
+    const at = start + i;
+    assert.equal(skip[at], false);
+    const needed = mod(cipher[at] - plaintext[i]);
+    const phase = tick[at] % length;
+    if (keys[phase] !== null && keys[phase] !== needed) return null;
+    keys[phase] = needed;
+  }
+  assert.ok(keys.every((key) => key !== null));
+  return {
+    keys, tick, skip,
+    output: cipher.map((c, i) => skip[i] ? c : mod(c - keys[tick[i] % length]))
+  };
+}
+
 function main() {
   const events = extract();
   const cipher = events.map((event) => event.value);
@@ -130,6 +154,41 @@ function main() {
     console.log(trial.word + " period>=" + trial.period + " key=" + JSON.stringify(recoveredKey) +
       " IoC=" + ioc(output).toFixed(12) + " plant recovered 86/86");
     console.log("original inverse: " + output.map((i) => source.translit[i]).join(" "));
+  }
+  for (const mode of ["WWW-only", "all-W"]) {
+    for (const spelling of ["HTTP", "HTTPS"]) {
+      const start = spelling.length === 4 ? 75 : 74;
+      const plaintext = [...spelling].map((letter) => source.translit.indexOf(letter));
+      const outcome = transparent(cipher, start, plaintext, mode);
+      assert.ok(outcome);
+      assert.deepEqual(outcome.output.slice(start, start + plaintext.length), plaintext);
+      assert.deepEqual(outcome.output.slice(79, 82), [W, W, W]);
+      const target = source.pages.find((page) => page.page === 57).indices.slice(0, 86);
+      const plantedKey = Array.from({length: spelling.length}, (_, i) => i + 1);
+      for (let i = 0; i < plaintext.length; i++) target[start + i] = plaintext[i];
+      const plant = Array(86);
+      for (let i = 0; i < 86; i++) {
+        if (outcome.skip[i]) {
+          target[i] = W;
+          plant[i] = W;
+        } else {
+          let encrypted = mod(target[i] + plantedKey[outcome.tick[i] % spelling.length]);
+          if (mode === "all-W" && encrypted === W) {
+            target[i] = mod(target[i] + 1);
+            encrypted = mod(target[i] + plantedKey[outcome.tick[i] % spelling.length]);
+          }
+          plant[i] = encrypted;
+        }
+      }
+      const control = transparent(plant, start, plaintext, mode);
+      assert.ok(control);
+      assert.deepEqual(control.keys, plantedKey);
+      assert.deepEqual(control.output, target);
+      console.log(mode + " transparent " + spelling + " inferred-key=" +
+        JSON.stringify(outcome.keys) + " full-original-IoC=" + ioc(outcome.output).toFixed(12) +
+        " plant 86/86");
+      console.log("original inverse: " + outcome.output.map((i) => source.translit[i]).join(" "));
+    }
   }
   const calibration = chapterControl(events, 250000);
   assert.ok(calibration.terminalWWW > 100 && calibration.terminalWWW < 600);
