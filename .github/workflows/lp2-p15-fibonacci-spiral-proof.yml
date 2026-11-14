@@ -24,3 +24,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_fibprime_global_index_source_sft.cjs
           node sims/lp2_p15_fibprime_global_index_source_sft.cjs
+      - name: Test exact p15 signed BASE29 numeric digits as direct original-cipher key
+        run: |
+          node --check sims/p15_fibonacci_prime_base29_key_sft.cjs
+          node sims/p15_fibonacci_prime_base29_key_sft.cjs
