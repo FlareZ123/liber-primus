@@ -32,6 +32,26 @@ All eight original-p53 streams remain nonlinguistic in the first 40–85 indepen
 
 [Source-exact CommonJS SFT](../sims/lp1_p05_hidden179_lp2_p53_rawpad_sft.cjs) reads the **actual LP1 JPEG** and original LP2 corpus, asserts the complete mirrored JPEG shell, central hex length and payload SHA, validates 179 original p53 rune positions, executes all eight fixed candidates, and fixes the measured IoCs. The original ciphertext is never modified.
 
+
+## One-to-one bytewise XOR with original GP representations
+
+**Agent 23, 14 November 2026.** The historical 2014 puzzle chain used binary and arithmetic transports, and the 179-byte source block is independently tied to the GP-prime square and moth. A distinct, finite byte-level candidate asks whether p53's 179 original ciphertext glyphs, interpreted as the **source-authored GP ordinals** (0–28) or **GP prime weights** (2–109), are XORed position-by-position with the decoded p05 bytes. XOR is exactly reversible without inventing a key, guessed shift or random IV. For completeness, three exact-length p05 views are fixed from the already proven p05 decoding: the **raw 179 bytes**, the **nibble-swapped 179 bytes** (which display an ASCII decimal square with reversed digit groups), and the **reversed-decimal-token 179-byte ASCII reconstruction** of that square. The latter two are fixed by p05's independently verified original decoding; no key phase or arbitrary rotation is fitted.
+
+The independently checked entire 179-byte output is tested as literal ASCII, preserving every nonprintable value. These are direct byte XOR readouts and are different from the GP29 arithmetic inverse above:
+
+| P05 byte representation | P53 rune representation | ASCII printable / 179 | Alphabetic / 179 | Longest uninterrupted ASCII letter run |
+| --- | --- | ---: | ---: | ---: |
+| Raw hidden bytes | GP ordinal | **40** | 15 | 2 |
+| Raw hidden bytes | GP prime weight | **111** | 57 | 3 |
+| Nibble-swapped bytes | GP ordinal | **174** | **0** | **0** |
+| Nibble-swapped bytes | GP prime weight | **134** | 60 | 4 |
+| Reconstructed decimal square | GP ordinal | **174** | **0** | **0** |
+| Reconstructed decimal square | GP prime weight | **135** | 60 | 4 |
+
+None produces ordinary readable ASCII. The two GP-ordinal plus nibble/square variants are stronger algebraic negatives: the source's ASCII spaces, decimal digits and newline are XORed with one-byte values 0–28, so the result **cannot contain ASCII letters** regardless of the original p53 symbols. The remaining four original-input candidates are independently nonprose; every longest alphabetic run is at most four. XORing each output with its same source glyph byte exactly recovers the unchanged p05 stream, a complete lossless positive sanity check. An extra bytewise XOR layer or arbitrary later text transcode would need a new source-selected opcode.
+
+This closes **direct aligned 8-bit ASCII XOR** between the hidden p05 payload and the original p53 rune stream, including both historical source representations of GP symbol values. It does **not** exclude a different cryptographic use of the square, key schedule or physically selected reading order. The [same source-exact CommonJS SFT](../sims/lp1_p05_hidden179_lp2_p53_rawpad_sft.cjs) has been extended with all six XOR readouts and fixed output statistics instead of adding a second test file.
+
 ## Decision
 
-The original hidden 179-byte payload and p53's 179 glyphs share a previously untested, artwork-selected **one-to-one key capacity**. The most direct source-defined GP29 additive key consumers all fail to recover readable unknown-page text. Do **not** infer that the hidden square has been proven irrelevant: a genuine use could involve the recovered 25 decimal numbers as an indexing instruction, a separate steganographic password, or an unspecified state transformation. Pursue the relationship further only if an independent period-original clue specifies an operation that can predict **heldout original LP2 plaintext**, rather than trying arbitrary byte reductions, rotations, salt phrases or cipher families. The parent report's existing 25-cell p55 key tests remain unchanged.
+The original hidden 179-byte payload and p53's 179 glyphs share a previously untested, artwork-selected **one-to-one key capacity**. The source-defined GP29 additive consumers and six one-to-one bytewise XOR consumers likewise fail to recover readable unknown-page text. Do **not** infer that the hidden square has been proven irrelevant: a genuine use could involve the recovered 25 decimal numbers as an indexing instruction, a separate steganographic password, or an unspecified state transformation. Pursue the relationship further only if an independent period-original clue specifies an operation that can predict **heldout original LP2 plaintext**, rather than trying arbitrary byte reductions, rotations, salt phrases or cipher families. The parent report's existing 25-cell p55 key tests remain unchanged.
