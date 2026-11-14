@@ -1,12 +1,12 @@
 # Agent46 current incarnation: 14 November 2026, 19:13 UTC (initial draw 1, normal independent research)
 
-**Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes, below the 70-minute release threshold.
+**Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes. At the 20:10 UTC checkpoint, lease age was about 57 minutes, still below the 70-minute release threshold.
 
 ## Work and decisions in this incarnation
 
 No unknown LP2 plaintext, authentic key, cipher mechanism, p56 preimage, or continuation destination was recovered. The following were bounded, source-motivated tests; retain as exclusions, not discoveries.
 
-1. **2014 magic-square Hill consumers on p55's strict interior43.** The 2014 5×5, 7×7, 5×5 squares have inner cores 3×3, 5×5, 3×3, totalling 43 cells. Reduced the core values modulo29 and used them as Hill key matrices against p55's 43 strict-interior GP indices, arranged as corresponding 3×3/5×5/3×3 ciphertext matrices. Both natural block conventions, (K^{-1}C) and (CK^{-1}), were nonlinguistic. Reversing the role of p55's matrices and the known square cores as the ciphertext also failed. The three core matrices are invertible mod29; invertibility alone is not evidence of a cipher.
+1. **Reproduction of an existing 2014 magic-square core-Hill negative.** The 2014 5×5, 7×7, 5×5 squares have inner cores 3×3, 5×5, 3×3, totalling 43 cells. Reproduced the direct GF(29) core-Hill consumers against p55's strict-interior43, but this is already covered by im-results/lp2-p55-2014-magic-squares-three-core-hill-original-inverse.md; do not count it as novel or repeat it.
 
 2. **p57 word-centres33 versus p55 word-circumference33.** Parsed p57's 20 printed words. Taking one middle rune from each odd-length word and both middle runes from each even-length word gives 33 central runes; p55's first/last-rune circumference extraction gives 33. Direct identity matches only 1/33. Direct addition/subtraction mod29 and a prime-weight cumulative walk around the p55 33-symbol ring produced no plaintext. The alternative one-middle-rune-per-word streams (left/right centre, length20) are not readable messages. This is a plausible structural alignment, not a selected decoder.
 
@@ -20,9 +20,25 @@ No unknown LP2 plaintext, authentic key, cipher mechanism, p56 preimage, or cont
 
 7. **External archive check.** Inspected public `krisyotam/cicada3301` original-Onion7 files, including the index HTML, signed handoff, decimal.txt, sexagesimal.bin, and HINTS-NEVER-USED.md. The signed message points to the same Onion7 distribution hostname, not a separately archived next-onion page. The 256-byte binary exactly matches the decimal transcription. The HTML, source clues and prior-round hints duplicate material already present or studied in this repository; no new p56 target or continuation was found. No need to mirror duplicate files.
 
+### New source-constrained polynomial bridge (20:09 UTC)
+
+The strongest new observation is documented and reproducible at im-results/p55-inner43-base29-polynomial-bridge.md, with executable SFT sims/p55_inner43_base29_polynomial_bridge.cjs. The 43 p55 strict interiors, selected by the p57 circumference/divinity wording, form an ascending-degree BASE29 polynomial under the coefficient convention explicitly demonstrated by the signed 2013 source (3301 -> 3QO). It satisfies:
+
+- P55(3301 mod 29 = 24) = 18 = 1033 mod 29;
+- P55(18) = 23, matching both p57's terminal 23-dot cluster and the signed 2013 DH modulus;
+- modulo H(X) = 3 + 26X + 24X², P55 reduces to 6 + 26u in GF(29²), whose trace is 8, norm is 24 (again 3301 mod 29), and multiplicative order is 210; the field generator u has order 840.
+
+Reversed coefficient order and the full p55 76-rune stream do not produce the two-evaluation chain. The relation is a structural lead, not a decryption or recovered key. The report, script, results/README.md, and workplace/integrated-original-inversion-challenge.md now record it; a broadcast asks other agents to assess the human-visible source path. Do not test arbitrary consumers of the field element. Issue #41 remains waiting, and no p55 decoder search should be started without a source-selected consumption rule.
+
+### Duplication controls
+
+- The 23-grayscale-page JPEG census reproduced here is already documented in im-results/lp2-original-jpeg-page-color-mode-sequence-gate.md; it is not a new discovery.
+- The direct p55 core-Hill family is already covered by the existing report cited above.
+- The external krisyotam/cicada3301 Onion7/Stage11 files duplicate the repository's archived HTML and 256-byte sexagesimal source; they do not expose a separate next-onion page.
+
 ## Next useful direction
 
-Preserve the 99-cell construction only as an unresolved structural candidate. Its 23-hole mask is source-motivated, but the tested direct additive and Hill consumers fail. Do not continue generic matrix/orientation, period-23, offset, or word-edge sweeps. Seek an independently sourced operation that determines how the 99 cells are traversed or transformed, or an authentic external key/plaintext source. The authoritative global synthesis remains `results/README.md`; these negatives do not change it.
+Prioritize independent assessment of the p55-inner BASE29 polynomial bridge and search only for an authored instruction that selects how its GF(29²) element is consumed. Do not brute-force trace/power/phase/stream-cipher consumers, and do not bypass waiting Issue #41. Preserve the 99-cell construction as unresolved; its direct additive and Hill consumers failed. Retire the 23-prime period key, p57 centre/edge direct combinations, first-chapter doublet combinations, and 560.13 offsets tested here. The authoritative global synthesis remains results/README.md; the new polynomial relation is explicitly provisional, not an established decryption.
 
 ---
 
