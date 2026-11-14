@@ -3,7 +3,8 @@
  * All-secret GF29 4x4 Hill/affine key recovery from the terminal p56+p57
  * 180 solved GP runes against the original pp49-51 256-cell numeric table.
  * Read-only, Node 22 CommonJS, no dependencies. Rowwise or NW clockwise
- * 32x8 shells. Tests both directions and independent native GP positives.
+ * 32x8 shells under every source-canonical corner and turn direction.
+ * Tests both input directions, all-secret keys and independent GP positives.
  */
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
@@ -29,7 +30,28 @@ const W=Array.from({length:d},()=>Array(m).fill(0));for(let i=0;i<rank;i++)W[piv
 return{rank,consistent:bad===-1,bad,residual:bad<0?[]:R[bad].slice(d),W};
 }
 const dot=(x,W)=>W[0].map((_,j)=>mod(x.reduce((s,v,k)=>s+v*W[k][j],0)));
-const orders=[{name:"rowwise",indices:grid.map((_,i)=>i)},{name:"clockwise-rings",indices:rings()}];
+/** All four corners and both directions, same orientation on all four rings. */
+function orientedRings(corner,direction) {
+ const canonical=rings(),readout=[];
+ let offset=0;
+ for(let k=0;k<4;k++){
+  const w=8-2*k,h=32-2*k,len=2*(w+h)-4;
+  const shell=canonical.slice(offset,offset+len);
+  const starts=[0,w-1,w+h-2,2*w+h-3];
+  for(let j=0;j<len;j++)
+   readout.push(shell[(starts[corner]+direction*j+len*10)%len]);
+  offset+=len;
+ }
+ assert.equal(offset,256);
+ assert.equal(new Set(readout).size,256);
+ return readout;
+}
+const orders=[{name:"rowwise",indices:grid.map((_,i)=>i)}];
+for(let corner=0;corner<4;corner++)
+ for(const direction of [1,-1])
+  orders.push({name:["NW","NE","SE","SW"][corner]+(direction===1?"-CW":"-CCW"),
+   indices:orientedRings(corner,direction)});
+assert.equal(orders.length,9);
 const results=[];
 for(const o of orders){const values=o.indices.map(i=>grid[i]),A=blocks(values.slice(76)),B=blocks(known);
 assert.equal(A.length,45);for(const reverse of [false,true])for(const affine of [false,true]){
@@ -47,4 +69,4 @@ assert.equal(learned.consistent,true);assert.equal(learned.rank,5);assert.deepEq
 assert.deepEqual(blocks(plant).flatMap(x=>dot(x.concat(1),learned.W)),plaintext);
 results.push({order:o.name,family:"affine native positive",known:180,unknownRecovered:76});
 }
-console.log(JSON.stringify({source:"original 256-cell pp49-51 and original p56-57 180 solved plaintext",decision:"Every secret 4x4 GF29 linear/affine table-to-terminal model fails; full native GP 76-rune positive recovered",results},null,2));
+console.log(JSON.stringify({source:"original 256-cell pp49-51 and original p56-57 180 solved plaintext",decision:"Every secret 4x4 GF29 linear/affine table-to-terminal model fails in 9 natural source readouts and both mapping directions; native GP 76-rune positives recovered",results},null,2));
