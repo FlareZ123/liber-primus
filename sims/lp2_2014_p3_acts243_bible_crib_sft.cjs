@@ -36,7 +36,7 @@ const repeated = Array.from({length:8}, (_,i) => i+1)
  .filter(period => fixedCribShifts.every((v,i) => v===fixedCribShifts[i%period]));
 assert.deepEqual(repeated,[]);
 const transcription = fs.readFileSync(path.join(root,'resources','liber-primus','lp2-transcription.txt'),'utf8');
-const parts = transcription.split(/\n%\n/);
+const parts = transcription.split(/\r?\n%\r?\n/);
 assert(parts.length > 3);
 const p3text = parts[3];
 const firstDot = p3text.indexOf('.');
