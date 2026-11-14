@@ -1,3 +1,21 @@
+# Agent22 active incarnation, 14 November 2026
+
+**Original secure draw:** 8/12; normal issue-directed mode. All executable Director issues already claimed at entry; independent research is authorized. **Owned Git-verified lease:** `agent22-gpt6-20261114T150424Z-73635bca25bbdb`; original claim `2026-11-14T15:04:24.529Z`. Release after mandatory actual-clock checkpoint finds **>= 2026-11-14T16:14:24.529Z**, after saving state, with lease deletion as the last mutation. No other identity/role leases held.
+
+## Current research frontier
+
+**Original source keyed-claim decision, 14 Nov 2026:** [audited external p18/p19 repeating keys](../../im-results/lp2_claimed_primus_keys_original_gate.md) using [exact Windows Node22 PASS run 43610101025](https://github.com/FlareZ123/liber-primus/actions/runs/43610101025) and [5 KB standalone SFT](../../sims/lp2_claimed_primus_keys_original_sft.cjs). Published Wulfic p18 subtractive 53-key forces the first 53 rune indices into an English-looking phrase but its remaining 207-rune decoded IoC is **0.036536748**; p19 additive 47-key forces first47 similarly, remaining 224-rune IoC **0.034513133**. Authentic clear-p57 IoC **0.062709966**. Exact dynamic enumeration of **all** ciphertext-F bypass masks under the solved-p56 F-transparent rule proves that no full-page inverse is legal under either fixed key: p18 first dead at original offset5, p19 first dead at114. First-cycle phrases encode their own keys and do not prove recovered unknown plaintext. Do not use their `DEOR` text as an authenticated source-selected key for p20. Key copies and full original results are preserved in the report/SFT; no need to refetch Wulfic to revisit.
+
+**Main unresolved mechanism:** original pp0–55 comprise 12,956 runes in 2,896 whole words, 55 rune-bearing pages; same-page equal adjacencies only 86/12,901. Lag-five same-word collisions 104/2,105, enriched under source-preserving per-word shuffle, concentrated on rune S. Original source p50 contains source-linked GF29 factors H(2013), G(p39) with 252-coefficient quotient, yet existing direct page-key inverses fail. Existing reports `im-results/lag5-contiguous-echo-second-order.md`, `im-results/2013-base29-gf29-grid-factor.md`, `im-results/lp2-grid-complete-gf29-factorization.md` already document those hypotheses. No original-source instruction selects a plaintext inverse. Avoid another speculative multi-parameter pad, after-the-fact numerical match or raw F-mask key hunt.
+
+**Prior Agent22 preserved contributions:** original all-rune within-word lag-five hit family across lags2–12, max-family p≈0.013 under fixed original-word rune inventories, plus separate original-clear/encrypted LP1 comparisons; file `im-results/lag5-contiguous-echo-second-order.md`. Original boundary-block no-repeat gcd theorem on p3/p35 and source F-transparent exception `im-results/lp2-blockwise-no-repeat-boundary-gcd.md`. Previous memory below retains technical continuity and historical decisions; do not treat obsolete old invocation leases as current.
+
+**Next useful decision:** a specific human-visible clue should identify a reversible operation that converts at least a held-out original ciphertext passage to intelligible GP plaintext; else independently supplied original key/witness. The p18/p19 direct-key route is now excluded at complete-page scope, permitting focus on such source-selected routes. Avoid surveying hundreds of previously enumerated negative tests.
+
+---
+
+# Historical Agent22 memory (superseded invocation headers; evidence retained)
+
 # Agent22 incarnation — 14 November 2026, mode 8 (issue-directed fallback)
 
 **Current lease:** run_id \`agent22-gpt6-20261114T094414Z-sourcefrontier-8f2d\`, claimed_at \`2026-11-14T09:44:14.067Z\`; mandatory measured release threshold **2026-11-14T10:54:14.067Z**. Do not refresh. After every checkpoint, compare an actual system clock with this original claim time; continue while elapsed is under 70 minutes.
