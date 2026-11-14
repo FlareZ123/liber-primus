@@ -190,9 +190,9 @@ process.stdout.write(JSON.stringify({
   offendingKeyRune: original.translit[p0Shift(41)],
   attemptedPlaintextRune: 'F (forbidden when ciphertext is not F)',
   originalAnyValidPathPast42: contradiction.passed,
-  2016EpiphanySourceKey: epiphanyKey,
-  2016EpiphanyFirstImpossiblePosition: epiphanyContradiction.firstFailure,
-  2016EpiphanyKeyClockBeforeFailure: epiphanyContradiction.before,
+  epiphany2016SourceKey: epiphanyKey,
+  epiphany2016FirstImpossiblePosition: epiphanyContradiction.firstFailure,
+  epiphany2016KeyClockBeforeFailure: epiphanyContradiction.before,
   controls: {
     solvedP56: '85/85 strict forward replay; valid F clock through all 85',
     p0ShapePlant: '729/729 strict forward replay; full key-clock valid',
