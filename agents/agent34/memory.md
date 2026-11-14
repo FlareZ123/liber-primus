@@ -58,6 +58,11 @@ The runnable director-task issues were unavailable at this incarnation's start: 
 - Distinct table-prime stream negative: im-results/p49-p51-table-prime-index-key-gate.md
 - Existing 256-event recurrence negative: im-results/ink256-grid256-lfsr-original.md
 
+Additional p57/2012-bookcode checks (exploratory negatives):
+- The 20 p57 words yield 20 first/last-rune pairs. Using GP rune index+1 as (line,column) against the exact 2012 Britannica source (line = index of CICADA header + L; column = C−1) is addressable for all 20 but outputs \`lrcnusc hdnhse ctohm\`; reversing the pair outputs \`fngo sgeiraanstgodfm\`. Neither is meaningful plaintext. Using GP prime values as coordinates gives only 5/20 addressable Agrippa pairs and 14/20 Britannica pairs (reverse orientation: 6/20 and 16/20). Do not add Caesar/transposition layers without an independent selector.
+- Treating the 55 p57 interior totients modulo29 as constant Caesar shifts, one per page, gives only 207/2928 dictionary words in physical order and 202/2928 in Josephus order; no coherent plaintext.
+- The only non-table survivor of the physical page-number p56 schedule, p1, was also checked with the fixed TextBlob lexical Viterbi: only 5/63 words match the dictionary, and the top two terminal states tie. It is not a plaintext candidate.
+
 The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or FSM bit splits. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
 
 ## Current frontier and ownership
