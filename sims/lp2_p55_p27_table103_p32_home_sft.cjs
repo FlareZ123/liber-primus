@@ -69,6 +69,9 @@ assert.deepEqual(terminalMatches, [[55, 27, 28]]);
 // AE-F, whose GP-prime sum 103 selects 1-based 103rd table token "0W".
 assert.equal(translit(p27.slice(34, 36)), "AE.F");
 assert.equal(sum(p27.slice(34, 36)), 103);
+// Independently, 103 is exactly the 27th canonical GP prime; the same
+// word after the p55 copy numerically echoes physical page 27 itself.
+assert.equal(corpus.prime[27 - 1], 103);
 const cells = table.rows.flat();
 assert.equal(cells.length, 256);
 assert.equal(cells[102], "0W");
@@ -187,6 +190,7 @@ console.log(JSON.stringify({
   footerPrimeWordSums: sums,
   pointer: {page: 27, runeOffset: 28,
     nextWholeWordGP: "AE.F", nextWordPrimeSum: 103,
+    nextWordEqualsPage27thPrime: true,
     tablePositionOneBased: 103, token: cells[102], numericValue: 32,
     nextToken: cells[103], destinationPage: 32},
   target: {physicalPage: 32, runes: p32.length,
