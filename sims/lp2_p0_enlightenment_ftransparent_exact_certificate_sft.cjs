@@ -104,11 +104,28 @@ assert.deepEqual(encrypt(allegedHeadingPlain, p0Shift), originalHeading);
 const contradiction = allClockPaths(firstChapter, p0Shift, 13, 13);
 assert.equal(contradiction.passed, false);
 assert.equal(contradiction.firstFailure, 42);
-assert.deepEqual(contradiction.before, [28]);
+assert.deepEqual(contradiction.before, [41]);
 assert.equal(firstChapter[17], 0);
 assert.equal(fixedKey[17 % 13], 0); // This F must be literal, not key-consuming.
 assert.equal(firstChapter[42], 27);
-assert.equal(fixedKey[28 % 13], 27); // Would decode to F, but C is IA.
+assert.equal(fixedKey[41 % 13], 27); // Would decode to F, but C is IA.
+
+
+// Stronger independent 2016 signed word-shape candidate: original heading 8+5
+// exactly matches "EPIPHANY SEEKS" when K is spelled C in GP29.
+// This key is derived separately from the same immutable ciphertext red13.
+const epiphanyPlain = encodeGp('EPIPHANYSEECS');
+assert.equal(epiphanyPlain.length, 13);
+const epiphanyKey = epiphanyPlain.map((p, i) => mod29(firstChapter[i] - p));
+assert.deepEqual(epiphanyKey, [26, 24, 8, 19, 27, 24, 18, 3, 0, 8, 0, 16, 19]);
+const epiphanyShift = (clock) => epiphanyKey[clock % epiphanyKey.length];
+assert.deepEqual(encrypt(epiphanyPlain, epiphanyShift), originalHeading);
+const epiphanyContradiction = allClockPaths(firstChapter, epiphanyShift, 13, 13);
+assert.equal(epiphanyContradiction.passed, false);
+assert.equal(epiphanyContradiction.firstFailure, 57);
+assert.deepEqual(epiphanyContradiction.before, [56]);
+assert.equal(firstChapter[57], 27);
+assert.equal(epiphanyShift(56), 27); // Non-F ciphertext would decode to bypass F.
 
 // Independent known-solved original p56 control: prime-totient running key,
 // the exact F skip at local56 and all original ciphertext symbols.
@@ -149,6 +166,18 @@ const trueConsumed = plantedPlain.filter((rune) => rune !== 0).length;
 assert.equal(plantedControl.passed, true);
 assert.ok(plantedControl.after.includes(trueConsumed));
 
+
+// Separate full-length native-positive plant for the 2016 signed title too.
+const epiphanyPlantPlain = epiphanyPlain.concat(
+  Array.from({ length: 716 }, (_, i) => sourceNative[i % sourceNative.length])
+);
+const epiphanyPlantCipher = encrypt(epiphanyPlantPlain, epiphanyShift);
+const epiphanyPlantControl = allClockPaths(epiphanyPlantCipher, epiphanyShift, 13, 13);
+assert.equal(epiphanyPlantControl.passed, true);
+assert.ok(epiphanyPlantControl.after.includes(
+  epiphanyPlantPlain.filter((rune) => rune !== 0).length
+));
+
 process.stdout.write(JSON.stringify({
   source: 'Original physical LP2 p0-p2, 2014 ENLIGHTENMENT crib, authentic p56/p57 controls',
   hypothesis: 'period-13 GP29 Vigenere with plaintext-F literal/bypass',
@@ -158,12 +187,16 @@ process.stdout.write(JSON.stringify({
   originalFirstImpossiblePositionZeroBased: contradiction.firstFailure,
   originalPrefixStateBeforeFailure: contradiction.before,
   failedCipherRune: original.translit[firstChapter[42]],
-  offendingKeyRune: original.translit[p0Shift(28)],
+  offendingKeyRune: original.translit[p0Shift(41)],
   attemptedPlaintextRune: 'F (forbidden when ciphertext is not F)',
   originalAnyValidPathPast42: contradiction.passed,
+  2016EpiphanySourceKey: epiphanyKey,
+  2016EpiphanyFirstImpossiblePosition: epiphanyContradiction.firstFailure,
+  2016EpiphanyKeyClockBeforeFailure: epiphanyContradiction.before,
   controls: {
     solvedP56: '85/85 strict forward replay; valid F clock through all 85',
-    p0ShapePlant: '729/729 strict forward replay; full key-clock valid'
+    p0ShapePlant: '729/729 strict forward replay; full key-clock valid',
+    p0EpiphanyShapePlant: '729/729 strict forward replay; full key-clock valid'
   },
   claimLimit: 'Excludes only this derived 13-key GP29 F-transparent model. No unknown plaintext recovered.'
 }, null, 2) + '\n');
