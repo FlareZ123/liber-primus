@@ -114,6 +114,9 @@ for(const word of read('resources/control/gibran_prophet_58585.txt').match(/[A-Z
  const enc=encodeWord(word);
  if(enc&&enc.length<pools.length)pools[enc.length].push(enc);
 }
+// Punctuation-split source apostrophes produce bare S/T fragments; a printed
+// standalone English word is A, I or O, as the frozen original test assumes.
+pools[1]=pools[1].filter(x=>nativeSingles.has(x[0]));
 for(const length of lengths)assert(pools[length].length>0,'No authentic native word of length '+length);
 let state=0x29c3301;
 /** @returns {number} */
