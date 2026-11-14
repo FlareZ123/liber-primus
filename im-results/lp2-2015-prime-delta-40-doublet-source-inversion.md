@@ -28,6 +28,8 @@ The inverse is exact for every GP29 sequence: starting at `S[-1]=27`, set `S[i]=
 | `D` GP29 index of coincidence | **0.03450459006014561** |
 | Uniform GP29 comparison | **1/29 ≈ 0.0344827586** |
 
+**Follow-up historical inference falsified:** At original L89905 the same solver speculated that the transformed sequence contained “lots of even numbers.” Under the precise GP29 operation above it has **376 even** and **353 odd** residues. Uniform GP29 has 15 even values among 29 residues, predicting **729 × 15/29 = 377.07** even values. Thus the observed output has **no even-residue enrichment**. The original repetition-count observation survives, while this suggested explanatory clue does not. The screen also finds no source-selected second decoder at original L89906–16.
+
 The original **40** exactly reproduces the count from historical L89901; it is therefore an independently dated *historical reconstruction*, rather than an unexplained fitted count. The transformed tape remains almost completely uniform, with **no authenticated readable GP plaintext**.
 
 ## Alignment discrimination and untouched nine-chapter transfer
