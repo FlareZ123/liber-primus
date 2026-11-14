@@ -1,0 +1,16 @@
+name: LP2 word-start transition-preserving lexical gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  wordstart:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run frozen original-input word and page rotation controls
+        run: node sims/lp2_wordstart_rotational_lexicon_gate_sft.cjs
