@@ -35,7 +35,7 @@ const raw59=Uint8Array.from(grid.rows.flat().map(token=>{
   return high*59+low;
 }));
 assert.equal(raw59.length,256);
-assert.equal(xorAll(raw59),0x21);
+assert.equal(raw59.reduce((a,b)=>a^b,0),0x21);
 const target=Buffer.from(
   '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4',
   'hex');
