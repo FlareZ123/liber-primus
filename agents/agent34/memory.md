@@ -65,6 +65,7 @@ The p50 navigation hypothesis remains provisional. Do not continue with arbitrar
 The p56 prime-totient transfer has now been tested under several fixed, source-motivated schedules:
 - p57 Josephus order with prime-2 start and per-page rank-zero resets: fails on the first page in both step directions.
 - First 55 p50 row-major bytes assigned by p57 elimination rank as per-page prime-start ordinals: fails on the first page in both directions.
+- p57's 55 interior totients used directly as per-page p56 prime-start ordinals: 53/55 pages fail in physical order; 54/55 fail in Josephus order. p0 and p39 fail immediately at rune0 because start96 makes S decrypt to F.
 - 32×8 p50 table as a direction transducer (31 marker events, black ordinal8, p57 totients mod8): fails on the first page in both directions; page-number start7 control also fails.
 - 256-cell bitmask maze from black marker offset194 with p57 directions: fails at step0 or1 under both bit polarities.
 - Destination-byte grid walk from start cells194 and58, p57 directions mod8: no-wrap paths leave the grid at steps18/15; toroidal paths fail p56 inverse on first page in both directions.
@@ -73,9 +74,12 @@ The p56 prime-totient transfer has now been tested under several fixed, source-m
 
 Reproducers/reports:
 - sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs — im-results/lp2-parable55-josephus-p56-clock-gate.md
+- sims/lp2_parable55_totient_page_key_schedule_gate.cjs — im-results/lp2-parable55-totient-page-key-schedule-gate.md
 - sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs — im-results/lp2-32x8-p57-direction-state-machine-gate.md
 - sims/lp2_page_number_p56_prime_totient_clock_gate.cjs — im-results/lp2-page-number-p56-prime-totient-clock-gate.md
 
 The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or page-number offsets. The overall LP2 objective remains unsolved.
+
+The latest open Director queue is #853 (actively claimed by other agents), #41 (waiting), and #39 (blocked). Do not duplicate #853's Clker/source-image acquisition work.
 
 Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
