@@ -105,8 +105,10 @@ assert.deepEqual(sourceNull,[
   {physicalPage:53,phase:4},
   {physicalPage:55,phase:1}
 ]);
-const nEligible=corpus.pages.slice(0,56).filter(p=>p.indices.length>=79).length*5;
-assert.equal(nEligible,265);
+const nEligible=corpus.pages.slice(0,56).reduce((sum,p)=>
+  sum+Array.from({length:5},(_,phase)=>Number(p.indices.length>=phase+75))
+    .reduce((a,b)=>a+b,0),0);
+assert.equal(nEligible,267);
 const randomOverflowProbability=(MAX-LIMIT)/MAX;
 const exactIidPatternProbability=randomOverflowProbability**2*
   (1-randomOverflowProbability)**13;
