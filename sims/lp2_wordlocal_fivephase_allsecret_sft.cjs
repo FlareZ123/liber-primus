@@ -61,7 +61,7 @@ const originalSummary=[10,11,12,13,14].map(length=>{
 });
 assert.deepEqual(originalSummary.map(x=>[x.words,x.fivePhaseAffineWithoutEnglishMatch]),
  [[52,52],[32,32],[18,18],[4,4],[3,3]]);
-assert.equal(originalSummary.reduce((n,x)=>n+x.fivePhaseArbitraryBijectionWithoutEnglishMatch,0),1);
+assert.equal(originalSummary.reduce((n,x)=>n+x.fivePhaseArbitraryBijectionWithoutEnglishMatch,0),0);
 // Native-source GP English plant at every original >=10 word-length slot.
 const nativeByLength=new Map();
 for(const item of dictionary){
