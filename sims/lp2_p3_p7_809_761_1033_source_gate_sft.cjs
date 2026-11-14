@@ -381,6 +381,67 @@ const solvedNativeHillRecovered = hill5(solvedNativeHillPlant, stage10Inverse,
   blockReadOrders[0][1]);
 assert.deepEqual(solvedNativeHillRecovered, pages[57].indices);
 
+
+// Historical 2015/2016 participants explicitly proposed reversing the
+// GP alphabet or the prime-minus-one algorithm for the three five-dot pages.
+// Source-fixed p3-7 and p23-26, red-trimmed and complete. This DP allows
+// ALL legal F masks, rather than choosing a favorable mask by language score.
+/**
+ * @param {number[]} ciphertext
+ * @param {number} startPrimeIndex
+ * @param {-1|1} keySign
+ * @returns {number|null} First impossible zero-based rune offset.
+ */
+function signedPrimeFDeath(ciphertext, startPrimeIndex, keySign) {
+  let states = new Set([0]);
+  for (let offset = 0; offset < ciphertext.length; offset++) {
+    const cipher = ciphertext[offset];
+    const next = new Set();
+    for (const taken of states) {
+      const primeShift = (primes[startPrimeIndex + taken] - 1) % 29;
+      const plain = mod29(cipher + keySign * primeShift);
+      if (plain !== 0) next.add(taken + 1);
+      if (cipher === 0) next.add(taken);
+    }
+    if (!next.size) return offset;
+    states = next;
+  }
+  return null;
+}
+assert.equal(signedPrimeFDeath(p56, 0, -1), null);
+const atbashInputSets = [
+  ['p3-7 entire', targetCipher],
+  ['p3-7 trim red', targetCipher.slice(16, -14)],
+  ['p23-26 entire', p23Group],
+  ['p23-26 trim red', p23Group.slice(16)]
+];
+const originalAtbashPrimeGates = [];
+for (const [section, original] of atbashInputSets) {
+  for (const alphabet of ['original', 'Atbash']) {
+    for (const order of ['printed', 'reversed']) {
+      let cipher = alphabet === 'Atbash' ?
+        original.map(x => 28 - x) : original.slice();
+      if (order === 'reversed') cipher.reverse();
+      for (const keySign of /** @type {const} */ ([-1, 1])) {
+        for (const primeIndex of [0, titlePrimeOrdinal,
+          squareCenterPrimeOrdinal]) {
+          originalAtbashPrimeGates.push({
+            section, alphabet, order, keySign,
+            firstPrime: primes[primeIndex],
+            firstForcedFailure: signedPrimeFDeath(cipher, primeIndex, keySign)
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(originalAtbashPrimeGates.length, 96);
+assert.ok(originalAtbashPrimeGates.every(x =>
+  x.firstForcedFailure !== null));
+const atbashLongest = originalAtbashPrimeGates.reduce((a, b) =>
+  a.firstForcedFailure >= b.firstForcedFailure ? a : b);
+assert.ok(atbashLongest.firstForcedFailure < 500);
+
 console.log(JSON.stringify({
   classification: 'conditional source-number coincidence; no unknown-page decryption',
   source: 'original LP2 canonical rune indices and 2014 three magic squares',
@@ -405,5 +466,6 @@ console.log(JSON.stringify({
   actualPrimeValueStarts,
   oneSuccessorPerPhysicalPage,
   stage10ContiguousQuintets: { originalSections: hillSectionInputs.map(x => [x[0], x[1].length]), originalModels: hillOriginal.length, best: hillBest, authenticKnownP57ClearIoC: ioc29(pages[57].indices), nativeP57PlantRecovered: solvedNativeHillRecovered.length },
+  atbashSourcePrimeGates: { models: originalAtbashPrimeGates.length, allFail: true, longest: atbashLongest },
   result: 'observed checksum equality does not select an authentic key or decipherment'
 }, null, 2));
