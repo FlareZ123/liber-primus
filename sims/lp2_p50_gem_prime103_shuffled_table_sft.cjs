@@ -18,6 +18,47 @@ assert.equal(source.length, 256);
 assert.equal(table.byte_rows.length, 32);
 for (const row of table.byte_rows) assert.equal(row.length, 8);
 
+// Replace English-letter spelling by the historically attested GP29 rune
+// inventory; direct ING/IO contractions follow original solved LP1/p57.
+const translit = [
+  "F", "U", "TH", "O", "R", "C", "G", "W", "H", "N", "I", "J", "EO",
+  "P", "X", "S", "T", "B", "E", "M", "L", "NG", "OE", "D", "A",
+  "AE", "Y", "IA", "EA"
+];
+const tokens = translit.map((text, index) => ({text, index}))
+  .sort((a, b) => b.text.length - a.text.length);
+
+/**
+ * Encode a dictionary word with the verified source-native GP spelling.
+ * @param {string} raw
+ * @returns {number[]}
+ */
+function encodeNative(raw) {
+  const word = raw.toUpperCase().replace(/QU/g, "CW")
+    .replace(/V/g, "U").replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const out = [];
+  for (let i = 0; i < word.length;) {
+    if (word.startsWith("ING", i)) { out.push(21); i += 3; continue; }
+    if (word.startsWith("IO", i)) { out.push(27); i += 2; continue; }
+    const token = tokens.find(t => word.startsWith(t.text, i));
+    if (!token) return [];
+    out.push(token.index);
+    i += token.text.length;
+  }
+  return out;
+}
+const wordList = fs.readFileSync(path.join(__dirname, "..", "resources",
+  "control", "english_wordfreq_textblob.txt"), "utf8");
+const englishThree = new Set(wordList.split(/\r?\n/).flatMap(line => {
+  const match = /^([a-z]+) \d+$/.exec(line);
+  if (!match) return [];
+  const token = encodeNative(match[1]);
+  return token.length === 3 ? [token.join(",")] : [];
+}));
+assert.equal(englishThree.size, 753);
+assert(englishThree.has("6,18,19")); // GEM is in the native dictionary.
+
+
 // Standard telephone keypad direction: 1 SW, 2 S, 3 SE, 4 W, 5 stay,
 // 6 E, 7 NW, 8 N, 9 NE. This convention is a hypothesis, not source-signed.
 const moves = [
@@ -71,7 +112,7 @@ function isGem(i, next, symbol) {
 /**
  * Measure exact simple three-cycles and the prime-ordinal start 103.
  * @param {number[]} bytes
- * @returns {{n3:number, ngem:number, reach:boolean, reachGem:boolean}}
+ * @returns {{n3:number, ngem:number, reach:boolean, reachGem:boolean, startEnglish:boolean}}
  */
 function measure(bytes) {
   const {next, symbol} = graph(bytes);
@@ -91,6 +132,7 @@ function measure(bytes) {
   const seen = new Uint8Array(256);
   let reach = false;
   let reachGem = false;
+  let startEnglish = false;
   while (current >= 0 && !seen[current]) {
     seen[current] = 1;
     const j = next[current];
@@ -99,11 +141,15 @@ function measure(bytes) {
         next[k] === current) {
       reach = true;
       reachGem = isGem(current, next, symbol);
+      startEnglish = [current, j, k].some(t =>
+        englishThree.has([symbol[t], symbol[next[t]],
+          symbol[next[next[t]]]].join(","))
+      );
       break;
     }
     current = next[current];
   }
-  return {n3, ngem, reach, reachGem};
+  return {n3, ngem, reach, reachGem, startEnglish};
 }
 
 const sourceGraph = graph(source);
@@ -112,7 +158,7 @@ assert.deepEqual([102, 110, 118, 126, 127].map(i => sourceGraph.symbol[i]),
 assert.deepEqual([102, 110, 118, 126, 127].map(i => sourceGraph.next[i]),
   [110, 118, 126, 127, 118]);
 const original = measure(source);
-assert.deepEqual(original, {n3:1, ngem:1, reach:true, reachGem:true});
+assert.deepEqual(original, {n3:1, ngem:1, reach:true, reachGem:true, startEnglish:true});
 
 // Reproducible xorshift32; every group retains the authentic multiset.
 // The same PRNG state is continued across all three calibration families.
@@ -129,12 +175,12 @@ function random32() {
  * Fisher-Yates permutations under three distinct source constraints.
  * @param {"global"|"row"|"column"} mode
  * @param {number} samples
- * @returns {{mode:string,samples:number,geThree:number,anyGem:number,startThree:number,startGem:number}}
+ * @returns {{mode:string,samples:number,geThree:number,anyGem:number,startThree:number,startGem:number,startEnglish:number}}
  */
 function calibrate(mode, samples) {
   const bytes = source.slice();
   const counts = {mode, samples, geThree:0, anyGem:0,
-    startThree:0, startGem:0};
+    startThree:0, startGem:0, startEnglish:0};
   for (let iteration = 0; iteration < samples; iteration++) {
     if (mode === "global") {
       for (let i = 255; i > 0; i--) {
@@ -164,6 +210,7 @@ function calibrate(mode, samples) {
     counts.anyGem += Number(result.ngem > 0);
     counts.startThree += Number(result.reach);
     counts.startGem += Number(result.reachGem);
+    counts.startEnglish += Number(result.startEnglish);
   }
   return counts;
 }
@@ -173,15 +220,16 @@ const row = calibrate("row", 100000);
 const column = calibrate("column", 100000);
 assert.deepEqual(
   [global, row, column].map(x =>
-    [x.geThree, x.anyGem, x.startThree, x.startGem]),
-  [[90707, 68, 6892, 2],
-   [88372, 1520, 5107, 61],
-   [92178, 198, 7216, 19]]
+    [x.geThree, x.anyGem, x.startThree, x.startGem, x.startEnglish]),
+  [[90707, 68, 6892, 2, 592],
+   [88372, 1520, 5107, 61, 185],
+   [92178, 198, 7216, 19, 717]]
 );
 console.log(JSON.stringify({
   source: "resources/liber-primus/base60-grid.json",
   interpretation: "byte=29q+r; keypad(q+1); rune(r); 1-based start 103",
   authenticPath: "103:O -> 111:O -> 119:G -> 127:E -> 128:M -> 119:G",
-  original, global, row, column,
+  original, nativeEnglishThreeRuneTypes: englishThree.size,
+  global, row, column,
   caution: "Exploratory post-selected route; significance does not authenticate selector or plaintext."
 }, null, 2));
