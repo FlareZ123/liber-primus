@@ -88,6 +88,7 @@ on:
           - p50-q55
           - p50-gf29-lfsr
           - p50-ring76-stationary
+          - agent21-original-known-key-gates
           - signed-wordends-p55
           - historical-rsa-4096
           - onion2-2014-source-direct
@@ -138,6 +139,14 @@ jobs:
         run: |
           node sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs
           node sims/lp2_p50_dualregion_stationary_allsecret_sft.cjs
+
+      - name: Q252 complete GF29 Shamir and terminal256 three-ring secret-codebook gates
+        if: ${{ inputs.probe == 'agent21-original-known-key-gates' }}
+        run: |
+          node --check sims/lp2_q252_shamir_allx_p56_key_sft.cjs
+          node sims/lp2_q252_shamir_allx_p56_key_sft.cjs
+          node --check sims/lp2_terminal256_stationary_byte_codebook_sft.cjs
+          node sims/lp2_terminal256_stationary_byte_codebook_sft.cjs
 
       - name: Original p32 source-locked signed 2016 image tile-pixel key
         if: ${{ inputs.probe == 'tree-p32-image-direct-key' }}
