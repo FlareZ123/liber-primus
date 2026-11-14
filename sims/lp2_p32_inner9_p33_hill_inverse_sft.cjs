@@ -175,9 +175,17 @@ function run(){
     original9x9CropsDeterminants:cropDeterminants,
     original11x11Det:8,originalP33BodyDet:12,
     originalP33BodyIoC:ioc(originalP33.flat()),
-    outputs,sourceSelectedPlaintextRecovered:false};
+    outputs,
+    redInkCbc:{
+      redSpanLengths:redSpans.map(x=>x.length),
+      ivOptions:ivOptions.map(x=>({name:x.name,latin:latin(x.iv)})),
+      outputs:cbcOutputs,
+      syntheticP57Roundtrips:cbcControls,
+      sourceSelectedPlaintextRecovered:false
+    },
+    sourceSelectedPlaintextRecovered:false};
   assert.ok(outputs.every(r=>r.rows.ioc<0.04&&r.columns.ioc<0.04));
   console.log(JSON.stringify(report,null,2));
 }
 if(require.main===module)run();
-module.exports={run,invert,matMulVec,decodeRows,decodeCols};
+module.exports={run,invert,matMulVec,decodeRows,decodeCols,decodeCbc,encodeCbc};

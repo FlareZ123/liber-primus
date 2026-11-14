@@ -77,7 +77,7 @@ Using the original GP-index p32 inner9 matrix (determinant 28 mod29), the unchan
 | Second 9 red runes | Column | 0.03179012 | Unreadable |
 | Second 9 red runes | Row | 0.03055556 | Unreadable |
 
-All four CBC inverses exactly recover an independent 81-rune p57 GP-English plant after encryption with the same p32 matrix and selected IV (81/81 symbols). This checks the implementation only; none of the original p33 outputs is authentic plaintext. The new test therefore retires these specific source-red-ink CBC-Hill consumers, not every possible operation involving p33's red annotations.
+All four CBC inverses exactly recover an independent 81-rune p57 GP-English plant after encryption with the same p32 matrix and selected IV (81/81 symbols). The supplementary [CBC-Hill reproducer](../sims/lp2_p32_inner9_p33_hill_inverse_sft.cjs) emits the four outputs and verifies all four p57 round trips. This checks the implementation only; none of the original p33 outputs is authentic plaintext. The new test therefore retires these specific source-red-ink CBC-Hill consumers, not every possible operation involving p33's red annotations.
 
 ## Next decision
 
