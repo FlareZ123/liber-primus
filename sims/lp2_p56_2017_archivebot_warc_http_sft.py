@@ -9,7 +9,8 @@ Run: python sims/lp2_p56_2017_archivebot_warc_http_sft.py
 from __future__ import annotations
 
 from collections import Counter
-from hashlib import blake2b, sha256, sha512, sha3_512
+from hashlib import blake2b, sha1, sha256, sha512, sha3_512
+from base64 import b32encode
 from html.parser import HTMLParser
 from io import BytesIO
 import json
@@ -157,10 +158,12 @@ def probe_http_metadata(item: str) -> None:
 def probe_exact_wayback() -> None:
     """Two pinned public CDX observations, distinguish replay from original WARC entity."""
     captures = (
-        ("20170629043935", "http://1711141131131.xyz/"),
-        ("20170616042751", "http://www.1711141131131.xyz:80/092317.html"),
+        ("20170629043935", "http://1711141131131.xyz/",
+         "GPMGLFNUMSJSUJVXPZSRAZPQJBVLRDPV", 4521),
+        ("20170616042751", "http://www.1711141131131.xyz:80/092317.html",
+         "7YVF4J7SVN5YO4VRCDYQG52ACLAP7V2O", 680),
     )
-    for timestamp, url in captures:
+    for timestamp, url, cdx_sha1_base32, cdx_record_length in captures:
         replay = f"https://web.archive.org/web/{timestamp}id_/{url}"
         req = urllib.request.Request(replay, headers={"User-Agent": "LiberPrimusSourceReader/1.0"})
         try:
@@ -175,7 +178,12 @@ def probe_exact_wayback() -> None:
             text = body.decode("utf-8", errors="replace")
             parser = LinkParser(url)
             parser.feed(text)
+            sha1_base32 = b32encode(sha1(body).digest()).decode("ascii").rstrip("=")
             emit(event="wayback_replay", source=replay, final_url=final_url,
+                 cdx_sha1_base32=cdx_sha1_base32,
+                 replay_sha1_base32=sha1_base32,
+                 index_payload_digest_matches=sha1_base32 == cdx_sha1_base32,
+                 cdx_record_length=cdx_record_length,
                  content_type=content_type, memento_datetime=memento,
                  replay_bytes=len(body), sha256=sha256(body).hexdigest(),
                  sha512=sha512(body).hexdigest(), p56_sha512_match=sha512(body).hexdigest() == TARGET,
