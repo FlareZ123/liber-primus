@@ -68,6 +68,7 @@ function profile(groups) {
   return {same, possible, rate: same / possible, capacity, byGroup};
 }
 const observed = {global: profile([allLines]), chapters: profile(chapters)};
+const originalChapterRates = chapters.map(group => profile([group]).rate);
 assert.deepEqual([observed.global.same, observed.global.possible,
   observed.global.capacity, observed.chapters.same,
   observed.chapters.possible, observed.chapters.capacity],
@@ -176,6 +177,7 @@ for (const [name, file] of references) {
   for (const sourceIO of [false, true]) {
     const flat = native(read(file), sourceIO);
     const E = [], shared = [], chapter = [];
+    const minPerChapter = chapters.map(() => Infinity);
     for (let k = 0; k + total <= flat.length; k += total) {
       const tape = flat.slice(k, k + total);
       if (plantTape === null) plantTape = tape;
@@ -183,14 +185,19 @@ for (const [name, file] of references) {
       E.push(tape.filter(x => x === e).length);
       shared.push(profile([grouped.flat()]).rate);
       chapter.push(profile(grouped).rate);
+      grouped.forEach((lines, index) => {
+        minPerChapter[index] = Math.min(minPerChapter[index], profile([lines]).rate);
+      });
     }
     assert.ok(E.length);
     assert.ok(E.every(n => n > observed.chapters.capacity));
     assert.ok(chapter.every(n => n > observed.chapters.rate));
+    assert.ok(minPerChapter.every((value, index) => value > originalChapterRates[index]));
     controls[name][sourceIO ? "originalIO" : "legacyIO"] = {
       nativeRunes: flat.length, E: summary(E),
       originalLinePositionRates: summary(shared),
-      nineChapterLinePositionRates: summary(chapter)
+      nineChapterLinePositionRates: summary(chapter),
+      minimumEachChapterSamePositionRate: minPerChapter
     };
   }
 }
@@ -453,7 +460,7 @@ const linePositionResetLowerBound = {
 
 console.log(JSON.stringify({
   classification: "source-native conditional all-key exclusion, no decrypt",
-  original: {runes: total, lines: allLines.length, observed},
+  original: {runes: total, lines: allLines.length, observed, originalChapterRates},
   controls, alternateRegisters, shapeMatchedControls, markedSourceReset: {allRed13, insideRed13, segmentCount: red13Chapters.flat().length, markedObserved}, positive, linePositionResetLowerBound,
   exclusions: "repeated unknown GP29 position-specific key per printed line, one global key or nine independently keyed source-visible chapters",
   exceptions: "independently keyed lines/pages, changing state, nonnative prose, altered original text and intermediary transport",
