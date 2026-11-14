@@ -122,7 +122,7 @@ assert.deepEqual(withinMatches, [4, 16]);
 const physicalChunks = text.split(/\n%\n/);
 assert.equal(physicalChunks.length, 57);
 const unsolvedJoined = physicalChunks.slice(0, -2).join('')
-  .replace(/\/\n/g, '').replace(/[\n&$%§]/g, '');
+  .replace(/\/\n/g, '').replace(/[\n&$%§\/]/g, '');
 const unsolvedWords = unsolvedJoined.split(/[.-]/)
   .filter((word) => word.length > 0 &&
     Array.from(word).every((rune) => corpus.runes.includes(rune)));
