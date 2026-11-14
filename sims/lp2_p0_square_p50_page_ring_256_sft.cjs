@@ -130,3 +130,87 @@ console.log(JSON.stringify({
   modelsIoCAtLeast004: 0,
   solvedP57PlantRecovered: '256/256 for both signs',
 }, null, 2));
+
+
+/**
+ * Invert one GP28 nonzero-step consumer, with GP index0 as the literal-F
+ * sentinel whenever delta=0. The source rune trail is traversed exactly once.
+ * @param {number[]} input Source cipher values in ring-reading order.
+ * @param {'rank'|'dlog'} kind Nonzero step rank or discrete log base15.
+ * @param {-1|1} sign Key sign.
+ * @returns {number[]}
+ */
+function decodeSteps(input, kind, sign) {
+  let previous = 0;
+  return input.map((value, i) => {
+    const delta = (value - previous + 29) % 29;
+    previous = value;
+    if (delta === 0) return 0;
+    const rank = kind === 'rank' ? delta - 1 : log15[delta];
+    return 1 + (rank + sign * (key[i] % 28) + 56) % 28;
+  });
+}
+
+/**
+ * Forward reconstruction of all 256 original GP29 ciphertext values.
+ * @param {number[]} plain Source-native GP29 plaintext indices.
+ * @param {'rank'|'dlog'} kind
+ * @param {-1|1} sign
+ * @returns {number[]}
+ */
+function encodeSteps(plain, kind, sign) {
+  let previous = 0;
+  return plain.map((value, i) => {
+    const rank = (value - 1 - sign * (key[i] % 28) + 56) % 28;
+    const delta = value === 0 ? 0 : kind === 'rank' ? rank + 1 : pow15[rank];
+    previous = (previous + delta) % 29;
+    return previous;
+  });
+}
+
+const pow15 = Array.from({ length: 28 }, (_, i) => {
+  let value = 1;
+  for (let k = 0; k < i; k++) value = (value * 15) % 29;
+  return value;
+});
+assert.equal(new Set(pow15).size, 28);
+const log15 = Array(29).fill(-1);
+pow15.forEach((value, i) => { log15[value] = i; });
+const differentialScores = [];
+for (let a = 0; a < 8; a++) {
+  for (let b = 0; b < 8; b++) {
+    for (let c = 0; c < 8; c++) {
+      const input = alternatives[0][a].concat(alternatives[1][b], alternatives[2][c]);
+      for (const kind of ['rank', 'dlog']) {
+        for (const sign of [-1, 1]) {
+          const plain = decodeSteps(input, kind, sign);
+          assert.deepEqual(encodeSteps(plain, kind, sign), input);
+          differentialScores.push({ a, b, c, kind, sign, coincidence: ioc(plain) });
+        }
+      }
+    }
+  }
+}
+assert.equal(differentialScores.length, 2048);
+differentialScores.sort((a, b) => b.coincidence - a.coincidence);
+assert.equal(differentialScores[0].coincidence, 0.03759191176470588);
+assert.deepEqual(differentialScores.slice(0, 2).map(({ a, b, c, kind, sign }) => [a, b, c, kind, sign]), [
+  [0, 4, 2, 'rank', -1],
+  [4, 6, 6, 'rank', 1],
+]);
+assert.equal(differentialScores.filter(s => s.coincidence >= 0.04).length, 0);
+assert.deepEqual(differentialScores.filter(s => s.a === 0 && s.b === 0 && s.c === 0).map(s => s.coincidence).sort((a, b) => b - a), [
+  0.03655024509803922, 0.035355392156862744, 0.0352328431372549, 0.03480392156862745,
+]);
+for (const kind of ['rank', 'dlog']) {
+  for (const sign of [-1, 1]) {
+    const encrypted = encodeSteps(planted, kind, sign);
+    assert.deepEqual(decodeSteps(encrypted, kind, sign), planted);
+  }
+}
+console.log(JSON.stringify({
+  differentialOriginalModels: differentialScores.length,
+  differentialBest: differentialScores[0],
+  differentialAtLeast004: differentialScores.filter(s => s.coincidence >= 0.04).length,
+  differentialPlantedGPRecovery: '256/256 for rank and log15, both signs',
+}, null, 2));
