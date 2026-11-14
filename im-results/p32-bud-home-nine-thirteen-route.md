@@ -1,6 +1,6 @@
 # P32 HOME/BUDS grid routes: parallel tracks and provisional nine/thirteen-step navigation
 
-**Status (14 November 2026): exact original-source navigation geometry, a lexicon-conditioned common-word alignment anomaly, and a bounded negative original-cipher test of an extracted 4×4 matrix. No unknown-page plaintext, authenticated historical key, demonstrated original cipher, or destination has been recovered.** The original 11×11 p32 arrangement contains HOME, BUDS and a second diagonal BUD, allowing distinct human-readable path interpretations. None is explicitly selected by Cicada; they must be judged alongside rival explanations and the full family of inspected layouts.
+**Status (14 November 2026): exact original-source navigation geometry, a lexicon-conditioned common-word alignment anomaly, and bounded negative original-cipher tests of an extracted 4×4 matrix and its linearized 16-rune pad. No unknown-page plaintext, authenticated historical key, demonstrated original cipher, or destination has been recovered.** The original 11×11 p32 arrangement contains HOME, BUDS and a second diagonal BUD, allowing distinct human-readable path interpretations. None is explicitly selected by Cicada; they must be judged alongside rival explanations and the full family of inspected layouts.
 
 ## Human-visible source route
 
@@ -32,7 +32,7 @@ A deterministic **200,000-shuffle** null preserves all **121 original p32 GP-run
 
 A stronger source-native lookaround keeps the actual unaltered text rather than shuffling. Among **6,482 overlapping 121-rune windows** wholly inside the 52 unknown physical pages long enough to contain such a window, exactly **one** contains any frequency≥5 pair at this displacement: **p32 starting at rune 0**, HOME → BUDS. The windows overlap heavily and this is an observed corpus census, **not an independent probability**. It identifies a concentrated original feature worth remembering without demonstrating that Cicada intended a word-search puzzle.
 
-## A complete original-input inverse using the four track interiors
+## Two complete original-input inverses using the four track interiors
 
 The phrase **“shed our own circumferences”** on the independently solved p57 suggests a possible human extraction from the four six-rune tracks: discard each path's two readable boundary letters and retain its four middle GP symbols. This yields the **source-exact 4×4 GP-index matrix** (the four tracks are rows):
 
@@ -46,6 +46,8 @@ The phrase **“shed our own circumferences”** on the independently solved p57
 Its determinant modulo29 is **22**, and the matrix of corresponding GP **prime** values reduced modulo29 has determinant **7**. Thus both are invertible. The immediately following original visual section **p33–39 comprises 1,680 runes = 420 × 4**. A simple, complete proposed consumer is a four-rune Hill cipher over GF(29), with either matrix encoding, the original/transposed matrix, multiplying by it or its inverse, and either consecutive four-rune groups or four contiguous 420-rune strands: **16 fixed configurations**.
 
 All sixteen candidate inverses re-encode the original **1,680/1,680** runes exactly, and all recover a separate **84/84** GP-rune planted control taken from the genuinely clear p57. These are implementation checks; every wrong invertible Hill key has the same original re-encryption property. The unchanged p33–39 runes have **IoC 0.03436002**. The 16 candidate outputs span **0.03421254–0.03470958**, with no readable GP-native plaintext. The 84-rune solved p57 reference has IoC **0.05823293**. Under these exact source-selected mappings and block clocks, the proposed direct Hill4 handoff is unproductive. Different word segmentation, nonlinear feedback, another language and a source-specified unrelated operator are outside this negative.
+
+A second, simpler consumer uses the same source-selected interior matrix **as sixteen consecutive additive GP29 key symbols**, an operation with precedent in the solved LP2 prime/totient arithmetic. Freeze rune-index versus GP-prime residues, row-major versus column-major key ordering, both arithmetic signs, and continuous versus page-local key clocks: **16 additional exact inverse candidates** against the same original pp33–39 chapter. Every original rune round-trips by subtraction/addition; every candidate's IoC remains **0.03423098–0.03473014**, and none yields GP-native prose. The alternative repeating-key handoff therefore fails under these source-frozen clocks as well. These results do not exclude all possible matrix ciphers or secret stream keys, only the two specified direct original-input consumers.
 
 **The missing causal input is still an authorial selection** of the (+5,+5) rule, why the words signify boundaries, and which mathematical consumer applies to the four middle tracks. The matrix extraction is testable and lossless as a key, yet the manuscript does not prescribe Hill4. Stop at this negative rather than rescuing it with fitted offsets or new cipher layers.
 
@@ -112,7 +114,7 @@ These tails **only quantify the conditional experiment just defined**. HOME, BUD
 
 ## Research decision
 
-The direct original-cipher Hill4 transfer from the new 4×4 middle-track matrix is closed under its sixteen source-frozen variants: there is no natural GP-English output, and exact inverse round trips alone cannot identify a historical cipher. The underlying HOME/BUDS **(+5,+5)** source relationship remains potentially interesting, although its retrospective selection and the lack of an authored direction or cipher rule prevent promotion to an established key or intended route.
+The direct original-cipher Hill4 transfer and sixteen-symbol periodic GP29 additive transfer from the four-track interior matrix are closed under their **32 combined source-frozen variants**: none yields natural GP-English output, and exact inverse round trips alone cannot identify a historical cipher. The underlying HOME/BUDS **(+5,+5)** source relationship remains potentially interesting, although its retrospective selection and the lack of an authored direction or cipher rule prevent promotion to an established key or intended route.
 
 Further dependent work needs an independently dated manuscript or signed-source operation selecting a BUD-to-HOME path, the matrix consumer, or a testable original p50 table address. Arbitrary key compositions and fitted shifts would destroy the discrimination. The earlier M7 navigation and competing E/X endpoints remain provisional. **No unknown LP2 rune has been deciphered, and no final destination is verified.**
 
