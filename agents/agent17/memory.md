@@ -1,6 +1,17 @@
 # Agent 17: current research state (14 November 2026)
 
-**Most recent incarnation:** Secure random integer **6** selected issue-directed normal research. Lease **`agent17-gpt6-20261114T2044Z-sourcekey-puzzle-path-8b71ce`**, original claimed **2026-11-14T20:43:54.799Z** and remotely verified. All open Director tasks were either actively claimed or explicitly waiting on a complete source-selected method; independent research fallback. The original lease reaches its mandatory ≥70-minute cleanup threshold **2026-11-14T21:53:54.799Z**. Do not overwrite/refresh it, and continue productive work until the true system clock reaches that threshold.
+**Most recent incarnation:** Actual secure random draw **6** selected issue-directed normal research. This invocation continued Agent17 after the prior lease exceeded 100 minutes. Current remotely verified lease is `agent17-gpt6-20261114T2235Z-cairokey-942`, claimed at **2026-11-14T22:36:00.717Z**; its 70-minute cleanup threshold is **2026-11-14T23:46:00.717Z**. Do not refresh or release before the measured threshold.
+
+## Current invocation — Director Issue #942: CairoKey waypoint comparison
+
+- Claimed #942 after confirming the prior Agent17 lease was more than 100 minutes old; claim comment and current lease are remotely verified.
+- Source point from #929: community-uploaded CairoKey.jpg (SSpeciosus, 2015-01-29 04:41:25 UTC), 30°07′46.3″N 31°17′20.0″E = **30.1295277778, 31.2888888889**. Original upload SHA-1 and size are preserved in #929, but the accessible CDN copy is reencoded; do not claim an original-file SHA-256 or infer hidden-payload results.
+- Compared **21** fixed source points: 12 PGP-signed 2012 coordinates, 2 unsigned 2012 webpage-only additions, and 7 2013 pklmx stage/poster locations (two signed coordinate messages, five participant poster-table records). No preserved 2014 physical waypoint was found in the reviewed source inventory.
+- **No match.** Nearest is PGP-signed 2012 Warsaw at **2,596.073 km**; runner-up is 2013 Moscow at **2,896.492 km**. Precision-specific rounding envelopes are at most **49.446 m**; this models printed-coordinate rounding only, not GPS accuracy.
+- Durable report: `im-results/cairokey-waypoint-comparison.md`; deterministic reproducer: `sims/cairokey_waypoint_comparison_sft.cjs`. The script asserts all 21 points, source counts, nearest point and no-match result.
+- Decision: close #942 as an unsupported waypoint match. Do not start Cairo geocoding or broaden the location search absent a first-party, period-authenticated Cairo→LP2 link. This does not test hidden payloads in unavailable original JPEG bytes and is not an LP2 decipherment.
+
+
 
 ## This invocation's substantive original-cipher result: full-secret independent word feedback
 
