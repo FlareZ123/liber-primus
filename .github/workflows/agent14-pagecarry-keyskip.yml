@@ -1,4 +1,4 @@
-name: Agent14 source-addressed AES keyskip heldout test
+name: Agent14 bounded original-input cipher checks
 on:
   workflow_dispatch:
 jobs:
@@ -10,5 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+      - name: Run 55-secret-page two-lag exact all-key gate
+        run: node sims/lp2_two_plain_lag_pagepi_allkey_sft.cjs
       - name: Run exact source-key anti-repeat gate
         run: node sims/lp2_pagecarry_aes_keyskip_original_sft.cjs
