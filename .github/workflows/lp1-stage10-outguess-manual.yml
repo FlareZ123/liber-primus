@@ -1,0 +1,39 @@
+name: LP1 Stage10 response images OutGuess follow-up
+on:
+  workflow_dispatch:
+
+jobs:
+  source-locked-extraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev file gnupg
+      - name: Build pinned 2014-compatible OutGuess
+        run: |
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Reproduce original 2014 Stage09 positive controls
+        run: python sims/cicada2014_stage09_missing_first_outguess_sft.py
+      - name: Test the three LP1 Stage10 response images
+        run: python sims/lp1_stage10_outguess_sft.py
+      - name: Preserve extraction outputs and report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp1-stage10-outguess-sft
+          path: lp1-stage10-outguess-output/
+          if-no-files-found: warn
+          retention-days: 30
