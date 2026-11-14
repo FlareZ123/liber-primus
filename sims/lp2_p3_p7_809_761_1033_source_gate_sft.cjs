@@ -185,6 +185,13 @@ function firstPrimes(count) {
 }
 const primes = firstPrimes(2200);
 const targetCipher = pages.slice(3, 8).flatMap(p => p.indices);
+const titlePrimeOrdinal = primes.indexOf(761);
+const squareCenterPrimeOrdinal = primes.indexOf(809);
+assert.equal(titlePrimeOrdinal, 134); // Zero-based, i.e. 135th ordinary prime.
+assert.equal(squareCenterPrimeOrdinal, 139); // Zero-based, 140th.
+const fiveDotPrimeSuccessors = primes.slice(titlePrimeOrdinal + 1,
+  squareCenterPrimeOrdinal + 1);
+assert.deepEqual(fiveDotPrimeSuccessors, [769, 773, 787, 797, 809]);
 /**
  * Tests every source-legal F skip mask by DP over consumed prime positions.
  * @param {number[]} ciphertext
@@ -227,6 +234,20 @@ const keySeedFailures = [0, 58, 761, 1033].map(start => ({
   primeIndex: start, ...strictFSurvival(targetCipher, start)
 }));
 assert.deepEqual(keySeedFailures.map(x => x.deadAt), [22, 27, 33, 74]);
+const actualPrimeValueStarts = [titlePrimeOrdinal, squareCenterPrimeOrdinal]
+  .map(start => ({
+    firstPrime: primes[start], primeIndex: start, ...strictFSurvival(targetCipher, start)
+  }));
+assert.deepEqual(actualPrimeValueStarts.map(x => x.deadAt), [10, 22]);
+// One source-visible prime-successor per each of the five physical pages,
+// resetting the authentic p56-type clock on each original page.
+const oneSuccessorPerPhysicalPage = pages.slice(3, 8).map((page, i) => ({
+  originalPage: page.page,
+  firstPrime: fiveDotPrimeSuccessors[i],
+  ...strictFSurvival(page.indices, titlePrimeOrdinal + 1 + i)
+}));
+assert.deepEqual(oneSuccessorPerPhysicalPage.map(x => x.deadAt),
+  [24, 54, 21, 3, 71]);
 
 console.log(JSON.stringify({
   classification: 'conditional source-number coincidence; no unknown-page decryption',
@@ -247,5 +268,8 @@ console.log(JSON.stringify({
   },
   independentlyKnownPrimeTotientPositive: 'p56 recovered 85/85',
   strictFKeySeedFailures: keySeedFailures,
+  fiveDotPrimeSuccessors,
+  actualPrimeValueStarts,
+  oneSuccessorPerPhysicalPage,
   result: 'observed checksum equality does not select an authentic key or decipherment'
 }, null, 2));
