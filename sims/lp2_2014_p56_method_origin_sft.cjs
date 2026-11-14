@@ -61,6 +61,13 @@ async function main(){
     display(lines,matched,'page56 and method same line',80);
     const important=new Set([...specific.slice(0,30),...solved.slice(0,30),...end.slice(0,18),...cluosh.slice(0,25)]);
     const ix=[...important].sort((a,b)=>a-b);
+    // Exact first-success period and immediately preceding cue discussion.
+    if(name === '#cicadasolvers.freenode.log') {
+      for(const [first,last] of [[180760,180820],[180850,181165],[184912,184935]]) {
+        console.log('=== COMPLETE ORIGINAL SOURCE WINDOW '+first+'..'+last);
+        for(let k=first;k<=last;k++) console.log('L'+k+' '+lines[k-1].slice(0,620));
+      }
+    }
     console.log('=== CONTEXT source='+name+' windows='+ix.length);
     for(const i of ix)console.log('WINDOW '+name+' '+(i+1)+'\n'+window(lines,i,2).join('\n'));
   }
