@@ -143,3 +143,48 @@ console.table(results);
 console.log("PASS: all 0..5 stationary polynomial mappings refuted for both layouts.");
 console.log("Degree6: 3x84 blocks impossible; adjacent triples exactly interpolatable");
 console.log("with 84 free coefficients and no untouched original key positions.");
+
+
+/**
+ * General fractional rational readout k = N(x,y,z)/D(x,y,z) in GF29.
+ * Both N and D have independent arbitrary coefficients of total degree <= d.
+ * The source/known-key constraints N(x_i)-k_i D(x_i)=0 are homogeneous;
+ * if the full matrix has column rank 2*monomials, ONLY N=D=0 works,
+ * which is invalid because D must be nonzero at every source position.
+ * This excludes all Möbius/affine-ratio functions without fitting any keys.
+ * A degree-2 rational positive uses D=x^2+2, never zero in GF29.
+ */
+const rationalResults = [];
+for(const geometry of ["blocks","triples"]) {
+  for(let degree=0; degree<=4; degree++) {
+    const exponents=monomials(degree);
+    const rows=Array.from({length:84},(_,i)=>{
+      const v=evaluate(dataTriple(geometry,i),exponents);
+      return [...v,...v.map(x=>mod(-historicalKey[i]*x))];
+    });
+    const constraint=linearSystem(rows,Array(84).fill(0));
+    assert.equal(constraint.rank,2*exponents.length);
+    rationalResults.push({geometry,degree,
+      freeNumeratorAndDenominatorCoefficients:2*exponents.length,
+      exactConstraintRank:constraint.rank,
+      nonzeroRationalSolution:false});
+    if(degree===2) {
+      const values=Array.from({length:84},(_,i)=>{
+        const [x,y,z]=dataTriple(geometry,i);
+        const numerator=mod(7+5*x+11*y+13*z+3*x*y+4*y*z+2*x*x);
+        const denominator=mod(x*x+2);
+        assert.notEqual(denominator,0);
+        return mod(numerator*inverse(denominator));
+      });
+      const plantRows=Array.from({length:84},(_,i)=>{
+        const v=evaluate(dataTriple(geometry,i),exponents);
+        return [...v,...v.map(x=>mod(-values[i]*x))];
+      });
+      const plant=linearSystem(plantRows,Array(84).fill(0));
+      assert.ok(plant.rank<2*exponents.length);
+    }
+  }
+}
+console.table(rationalResults);
+console.log("PASS: no fixed three-input rational readout N/D through degree4");
+console.log("can reproduce all 84 historical p56 key runes in either Q252 layout.");
