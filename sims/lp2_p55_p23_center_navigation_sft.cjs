@@ -83,6 +83,53 @@ assert.equal(grid.rows.length, 32);
 assert.equal(grid.rows[12][6], '0W');
 assert.equal(grid.byte_rows[12][6], 32);
 
+// The p23 five-dot emblem is a 180-degree copy of solved p56's emblem.
+// Candidate transfer: p56's φ(prime) cipher with center-H's prime23,
+// or with the 23rd prime, under complete original literal-F clock branching.
+const primeList = [];
+for (let n = 2; primeList.length < 1100; n++) {
+  let prime = true;
+  for (const p of primeList) {
+    if (p * p > n) break;
+    if (n % p === 0) {prime = false; break;}
+  }
+  if (prime) primeList.push(n);
+}
+assert.equal(primeList[8], 23);
+assert.equal(primeList[22], 83);
+/**
+ * @param {number[]} cipherRunes
+ * @param {number} firstPrimeIndex
+ * @returns {{valid:boolean,deadAt:number,states:number}}
+ */
+function skipAwareTotient(cipherRunes,firstPrimeIndex) {
+  let states = new Set([0]);
+  for (const [i,c] of cipherRunes.entries()) {
+    const next = new Set();
+    for (const consumed of states) {
+      const k = mod(primeList[firstPrimeIndex+consumed]-1);
+      const candidate = mod(c-k);
+      if (candidate !== 0) next.add(consumed+1);
+      if (c === 0) next.add(consumed);
+    }
+    states=next;
+    if (!states.size) return {valid:false,deadAt:i,states:0};
+  }
+  return {valid:true,deadAt:-1,states:states.size};
+}
+assert.equal(skipAwareTotient(page(56),0).valid,true);
+const totientGates = {
+  printedPrime23: skipAwareTotient(section,8),
+  reversedPrime23: skipAwareTotient([...section].reverse(),8),
+  printedPrimeOrdinal23: skipAwareTotient(section,22),
+  reversedPrimeOrdinal23: skipAwareTotient([...section].reverse(),22)
+};
+assert.deepEqual(Object.fromEntries(Object.entries(totientGates)
+  .map(([name,result])=>[name,result.deadAt])),{
+  printedPrime23:11,reversedPrime23:22,
+  printedPrimeOrdinal23:8,reversedPrimeOrdinal23:88
+});
+
 const cipher = page(55).slice(1);
 const subtract = cipher.map((c,i) => mod(c - section[i]));
 const add = cipher.map((c,i) => mod(c + section[i]));
@@ -161,6 +208,6 @@ console.log(JSON.stringify({
   originalRunningKey:{minusIoc:ioc(subtract),plusIoc:ioc(add),
     minusPrefix:label(subtract.slice(0,20)),
     plusPrefix:label(add.slice(0,20)),solvedP57Plant:'75/75'},
-  bitPacketDigests:digests,sourceWordNull:{trials,seed:'0x235557',hits},
+  bitPacketDigests:digests,totientGates,sourceWordNull:{trials,seed:'0x235557',hits},
   conclusion:'exact source navigation equalities, two nonlinguistic direct inverses, six mismatched hashes'
 },null,2));
