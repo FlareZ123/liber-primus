@@ -18,34 +18,33 @@ const {
 const ALPHABET = [...'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ'];
 const RUNE_INDEX = new Map(ALPHABET.map((rune, index) => [rune, index]));
 
-/**
- * Use only the six LP1 pages printed in clear GP29, not the translated text
- * of pages whose original rune stream is encrypted.
- * @param {string} source Wulfic canonical master transcription.
- */
-function parseClearLp1(source) {
+/** Parse source-selected LP1 pages with exact page-level word/rune contracts. */
+function parseLp1Pages(source, selected, expectedWords, expectedRunes) {
   const pageRecords = source.split('%');
-  const selected = [3, 8, 9, 10, 11, 14];
-  const expectedWords = [31, 40, 55, 49, 38, 18];
-  const expectedRunes = [157, 187, 207, 192, 169, 89];
   const pages = selected.map((pageIndex, j) => {
     const normalized = pageRecords[pageIndex].replace(/[\r\n\t\/ ]/g, '');
     const words = normalized.split(/[-.&$§0-9]+/).filter(Boolean).map(word =>
       [...word].map(rune => {
         const value = RUNE_INDEX.get(rune);
-        if (value === undefined) throw new Error('Unknown rune in LP1 clear page ' + pageIndex);
+        if (value === undefined) throw new Error('Unknown rune in LP1 page ' + pageIndex);
         return value;
       }));
     const runes = words.reduce((sum, word) => sum + word.length, 0);
     if (words.length !== expectedWords[j] || runes !== expectedRunes[j]) {
-      throw new Error('LP1 clear-page contract changed at p' + pageIndex);
+      throw new Error('LP1 page contract changed at p' + pageIndex);
     }
     return { page: pageIndex, words, runes };
   });
   return { pages, words: pages.flatMap(page => page.words) };
 }
-
-
+function parseClearLp1(source) {
+  return parseLp1Pages(source, [3, 8, 9, 10, 11, 14],
+    [31, 40, 55, 49, 38, 18], [157, 187, 207, 192, 169, 89]);
+}
+function parseEncryptedLp1(source) {
+  return parseLp1Pages(source, [1, 2, 4, 5, 6, 7, 12, 13],
+    [62, 62, 61, 58, 55, 36, 63, 25], [251, 264, 209, 210, 218, 141, 226, 93]);
+}
 
 /**
  * @param {number[][]} words Canonical whole LP2 words.
@@ -157,24 +156,33 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
   const controlSource = fs.readFileSync(path.resolve(__dirname,
     '../resources/transcriptions/lp1_wulfic_canonical.txt'), 'utf8');
   const clearControl = parseClearLp1(controlSource);
-  const controlWords = clearControl.words;
-  const controlObserved = tally(controlWords);
-  if (controlObserved.singles[3] !== 7 || controlObserved.exposures[3] !== 156) {
-    throw new Error('LP1 printed-clear control invariant changed');
+  const encryptedControl = parseEncryptedLp1(controlSource);
+  const clearWords = clearControl.words;
+  const encryptedWords = encryptedControl.words;
+  const clearObserved = tally(clearWords);
+  const encryptedObserved = tally(encryptedWords);
+  if (clearObserved.singles[3] !== 7 || clearObserved.exposures[3] !== 156 ||
+      encryptedObserved.singles[3] !== 11 || encryptedObserved.exposures[3] !== 201) {
+    throw new Error('LP1 control invariants changed');
   }
-  const controlAdjacent = controlWords.map(adjacentEqualCount);
-  const controlSeed = 0x51a5c0de;
-  const controlRandom = random32(controlSeed);
-  const controlTraining = [];
-  for (let i = 0; i < train; i++) {
-    controlTraining.push(tally(shuffledBook(controlWords, controlAdjacent, controlRandom)));
+  const clearAdjacent = clearWords.map(adjacentEqualCount);
+  const encryptedAdjacent = encryptedWords.map(adjacentEqualCount);
+  const clearRandom = random32(0x51a5c0de);
+  const encryptedRandom = random32(0x1a2b3c4d);
+  function calibrateControl(words, adjacent, random) {
+    const counts = [];
+    for (let i = 0; i < train; i++) counts.push(tally(shuffledBook(words, adjacent, random)).singles[3]);
+    const mean = average(counts);
+    const sd = Math.sqrt(average(counts.map(value => (value - mean) ** 2)));
+    if (sd <= 0) throw new Error('Degenerate LP1 control calibration');
+    return { mean, sd };
   }
-  const controlMean = average(controlTraining.map(sample => sample.singles[3]));
-  const controlSd = Math.sqrt(average(controlTraining.map(sample =>
-    (sample.singles[3] - controlMean) ** 2)));
-  if (controlSd <= 0) throw new Error('Degenerate LP1 control calibration');
-  const controlZ = (controlObserved.singles[3] - controlMean) / controlSd;
-  const observedZDifference = singleZ[3] - controlZ;
+  const clearCalibration = calibrateControl(clearWords, clearAdjacent, clearRandom);
+  const encryptedCalibration = calibrateControl(encryptedWords, encryptedAdjacent, encryptedRandom);
+  const clearZ = (clearObserved.singles[3] - clearCalibration.mean) / clearCalibration.sd;
+  const encryptedZ = (encryptedObserved.singles[3] - encryptedCalibration.mean) / encryptedCalibration.sd;
+  const observedZDifferenceClear = singleZ[3] - clearZ;
+  const observedZDifferenceEncrypted = singleZ[3] - encryptedZ;
 
 
   const winner = Math.max(...z);
@@ -187,11 +195,16 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
   let aboveSingleFamily = 0;
   let aboveFixedSingleLag5 = 0;
   let singleLag5Total = 0;
-  let controlAboveObserved = 0;
-  let controlLag5Total = 0;
-  let jointZDifferenceExceedances = 0;
-  let jointZDifferenceTotal = 0;
-  let jointZDifferenceSquared = 0;
+  let clearAboveObserved = 0;
+  let clearLag5Total = 0;
+  let encryptedAboveObserved = 0;
+  let encryptedLag5Total = 0;
+  let jointClearExceedances = 0;
+  let jointClearTotal = 0;
+  let jointClearSquared = 0;
+  let jointEncryptedExceedances = 0;
+  let jointEncryptedTotal = 0;
+  let jointEncryptedSquared = 0;
   let largestSingleNullAbsZ = -Infinity;
   let nullMaximum = -Infinity;
   let pairTotal = 0;
@@ -200,15 +213,23 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
   let pairSq = 0;
   for (let i = 0; i < test; i++) {
     const m = tally(shuffledBook(words, adjacent, random));
-    const controlNull = tally(shuffledBook(controlWords, controlAdjacent, controlRandom));
+    const clearNull = tally(shuffledBook(clearWords, clearAdjacent, clearRandom));
+    const encryptedNull = tally(shuffledBook(encryptedWords, encryptedAdjacent, encryptedRandom));
     const zLp2 = (m.singles[3] - singleMeans[3]) / singleSd[3];
-    const zLp1 = (controlNull.singles[3] - controlMean) / controlSd;
-    const zDifference = zLp2 - zLp1;
-    if (zDifference >= observedZDifference) jointZDifferenceExceedances++;
-    jointZDifferenceTotal += zDifference;
-    jointZDifferenceSquared += zDifference * zDifference;
-    if (controlNull.singles[3] >= controlObserved.singles[3]) controlAboveObserved++;
-    controlLag5Total += controlNull.singles[3];
+    const zClear = (clearNull.singles[3] - clearCalibration.mean) / clearCalibration.sd;
+    const zEncrypted = (encryptedNull.singles[3] - encryptedCalibration.mean) / encryptedCalibration.sd;
+    const differenceClear = zLp2 - zClear;
+    const differenceEncrypted = zLp2 - zEncrypted;
+    if (differenceClear >= observedZDifferenceClear) jointClearExceedances++;
+    jointClearTotal += differenceClear;
+    jointClearSquared += differenceClear * differenceClear;
+    if (clearNull.singles[3] >= clearObserved.singles[3]) clearAboveObserved++;
+    clearLag5Total += clearNull.singles[3];
+    if (differenceEncrypted >= observedZDifferenceEncrypted) jointEncryptedExceedances++;
+    jointEncryptedTotal += differenceEncrypted;
+    jointEncryptedSquared += differenceEncrypted * differenceEncrypted;
+    if (encryptedNull.singles[3] >= encryptedObserved.singles[3]) encryptedAboveObserved++;
+    encryptedLag5Total += encryptedNull.singles[3];
     const best = Math.max(...m.pairs.map((n, j) => (n - means[j]) / sd[j]));
     const p = m.pairs[3];
     const singleMaxAbsZ = Math.max(...m.singles.map((n, j) =>
@@ -236,7 +257,8 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
       null: 'exact original whole-word multiset, length, and immediate repeat count',
       pairFamily: 'contiguous multi-rune lag-gap adjacency for lags 2 through 7',
       singleFamily: 'absolute standardized single-hit counts for lags 2 through 12',
-      controlSeed: '0x51a5c0de', controlPages: [3, 8, 9, 10, 11, 14] },
+      controlSeeds: { clear: '0x51a5c0de', encrypted: '0x1a2b3c4d' },
+      clearPages: [3, 8, 9, 10, 11, 14], encryptedPages: [1, 2, 4, 5, 6, 7, 12, 13] },
     observed,
     lags: z.map((value, j) => ({
       lag: j + 2, originalContiguousPairs: observed.pairs[j],
@@ -264,18 +286,35 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
       source: 'resources/transcriptions/lp1_wulfic_canonical.txt',
       sourceSha256: createHash('sha256').update(controlSource).digest('hex'),
       pages: clearControl.pages.map(page => ({ page: page.page, words: page.words.length, runes: page.runes })),
-      words: controlWords.length, runes: controlWords.reduce((sum, word) => sum + word.length, 0),
-      adjacentEqualities: controlAdjacent.reduce((sum, count) => sum + count, 0),
-      lagFive: { observed: controlObserved.singles[3], opportunities: controlObserved.exposures[3],
-        nullMean: controlMean, nullSd: controlSd, z: controlZ,
-        upperTailExceedances: controlAboveObserved,
-        upperTailEmpiricalP: (controlAboveObserved + 1) / (test + 1),
-        testNullMean: controlLag5Total / test },
-      comparison: { statistic: 'z(LP2) - z(LP1 clear-GP)', observed: observedZDifference,
-        nullMean: jointZDifferenceTotal / test,
-        nullSd: Math.sqrt(jointZDifferenceSquared / test - (jointZDifferenceTotal / test) ** 2),
-        exceedances: jointZDifferenceExceedances,
-        empiricalP: (jointZDifferenceExceedances + 1) / (test + 1) }
+      words: clearWords.length, runes: clearWords.reduce((sum, word) => sum + word.length, 0),
+      adjacentEqualities: clearAdjacent.reduce((sum, count) => sum + count, 0),
+      lagFive: { observed: clearObserved.singles[3], opportunities: clearObserved.exposures[3],
+        nullMean: clearCalibration.mean, nullSd: clearCalibration.sd, z: clearZ,
+        upperTailExceedances: clearAboveObserved,
+        upperTailEmpiricalP: (clearAboveObserved + 1) / (test + 1),
+        testNullMean: clearLag5Total / test },
+      comparison: { statistic: 'z(LP2) - z(LP1 clear-GP)', observed: observedZDifferenceClear,
+        nullMean: jointClearTotal / test,
+        nullSd: Math.sqrt(jointClearSquared / test - (jointClearTotal / test) ** 2),
+        exceedances: jointClearExceedances,
+        empiricalP: (jointClearExceedances + 1) / (test + 1) }
+    },
+    knownEncryptedLp1Control: {
+      source: 'resources/transcriptions/lp1_wulfic_canonical.txt',
+      sourceSha256: createHash('sha256').update(controlSource).digest('hex'),
+      pages: encryptedControl.pages.map(page => ({ page: page.page, words: page.words.length, runes: page.runes })),
+      words: encryptedWords.length, runes: encryptedWords.reduce((sum, word) => sum + word.length, 0),
+      adjacentEqualities: encryptedAdjacent.reduce((sum, count) => sum + count, 0),
+      lagFive: { observed: encryptedObserved.singles[3], opportunities: encryptedObserved.exposures[3],
+        nullMean: encryptedCalibration.mean, nullSd: encryptedCalibration.sd, z: encryptedZ,
+        upperTailExceedances: encryptedAboveObserved,
+        upperTailEmpiricalP: (encryptedAboveObserved + 1) / (test + 1),
+        testNullMean: encryptedLag5Total / test },
+      comparison: { statistic: 'z(LP2) - z(LP1 encrypted)', observed: observedZDifferenceEncrypted,
+        nullMean: jointEncryptedTotal / test,
+        nullSd: Math.sqrt(jointEncryptedSquared / test - (jointEncryptedTotal / test) ** 2),
+        exceedances: jointEncryptedExceedances,
+        empiricalP: (jointEncryptedExceedances + 1) / (test + 1) }
     },
     positiveControl: { syntheticWordLag5Hits: plantedLag5Hits, expected: 7 },
     lagFive: { originalPairedMatches: observed.pairs[3],
@@ -291,7 +330,7 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
       nullSExceedances: aboveLag5S,
       jointPairedAndSExceedances: aboveJoint,
       jointConditionalP: (aboveJoint + 1) / (test + 1) },
-    caution: 'The LP1 printed-clear control is smaller and is not a complete language model; the contrast is a ciphertext-side constraint, not a decryption or proof of a period-five cipher.'
+    caution: 'Both LP1 controls are smaller than LP2 and do not form a complete language model; the contrasts are ciphertext-side constraints, not a decryption or proof of a period-five cipher.'
   };
 }
 if (require.main === module) {
