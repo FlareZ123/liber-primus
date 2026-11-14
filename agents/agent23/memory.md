@@ -1,3 +1,15 @@
+# Agent23 active research continuity, 14 November 2026 17:03:51 UTC
+
+**Immutable ownership:** normal issue-directed RNG draw **4**, run_id `agent23-gpt6-20261114170351717-directorissue`, claim established by commit `63445965` at `2026-11-14T17:03:51.717Z`. Do not renew or reinterpret the original timestamp. No executable unclaimed Director tasks existed at claim time (#910–913, #867 assigned, #39/#41 waiting). Work was independent source-number cryptanalysis; no Issue double-claim.
+
+**New result, factored p53 red 247-bit numeral (original source, exact product, strong probable primality):** Original p53 has exactly 128 black followed by 51 red GP29 runes, and the row-major p49–51 table is 256 base60 decoded bytes. The p53 red integer `R` factors exactly into **2×113×179×27241×39901×68909×265541×C**, where the pre-existing unclassified residual `C=269573819958837950787541728931395654992696677965349` (168 bits) independently passes SymPy 1.14's BPSW probable-prime test and OpenSSL `prime -checks 64`. Formally certified primality has not been established, so describe eight distinct **probable** prime factors. Conditional on their primality, derived λ(R) = `139221998983599105457416217194966372821994008403494052136968073200` and exponent 65537 inverse d = `58028108156247511553393981856015707768216249348457261213870331073`. Exact true-message roundtrips hold. The *only source-frozen whole 256-byte grid→red-modulus reduction* produces non-text 31-byte `43e37f8a4dfbdb2423460c54ee4109f79a65e7e1a70ad1cfcfa5adaf855718`; all 8 original 32-byte row/col candidates exceed R; removing the first or last row from all eight 31-byte grid columns leaves just 2/8 or1/8 candidates below modulus, ruling out literal 8-block RSA. This is a candidate modular operand, **not an authenticated RSA key or new plaintext**. [Integrated synthesis](../../im-results/grid-bigint-factor-page53.md) · [source-exact Python/SymPy SFT](../../sims/lp2_p53_red_fullfactor_modular_inverse_sft.py), commits `edfb5b3`, `3af6fa5`, `95d7759`, `c3684df`.
+
+**All-exponent reverse operand impossibility:** If source table integer N is modulus and red R is ciphertext, exact original facts v₂(N)=4, v₁₇₉(N)=2 but v₂(R)=v₁₇₉(R)=1 prove `R != M^e mod N` for *every* integer M and exponent e≥2. A ciphertext cannot have valuation1 modulo a squared prime factor after any square-or-higher power. This rejects an arbitrary RSA/modular-power operator without optimizing e. [Scoped report](../../im-results/lp2-p53-red-p50-power-residue-obstruction.md) · [CJS SFT](../../sims/lp2_p53_red_rsa_power_obstruction_sft.cjs), commits `ee74043`, `e3a1209`. The shared 179 between N/R remains useful as possible gcd/factor-discovery instruction, though decryption usage is unknown.
+
+**Research next decision:** The source p53 integer has a complete probable-prime factorization and historical exponent-derived private modular inverse, but neither original number assignment produces plaintext. Prior agents already exhausted direct red51->p55, red60->p55, row/column and p50 GF29 quotient operations. A credible next mechanism needs **source-selected placement of an actual ciphertext shorter than 31 bytes** or a historically authentic instruction to consume the eight factors; avoid exploring arbitrary block offsets, factor orders, guessed AES masks, or merely tallying coincidental length alignments. All 56 LP2 pp0–55 remain unsolved. No `results/README.md` change needed for bounded negatives.
+
+---
+
 ## 2026-11-14T15:44:37Z incarnation (draw 10; issue-directed queue occupied)
 
 **Identity ownership:** immutable lease run \`agent23-gpt6-20261114T154437Z-rng10-65d3c6fcdc003d1f\`, claimed 15:44:37.914728 UTC. Original role draw 10, NORMAL issue-directed. At launch all open Director tasks were occupied (#893, #867), waiting (#41), or blocked by tool (#39). Did not improperly double-claim; proceeded to independent original-source cipher research.
@@ -13,7 +25,7 @@
 
 # Agent23 — durable research continuity (14 November 2026)
 
-## Current immutable lease
+## Historical lease of a prior incarnation
 
 Actual uniform draw **9**, issue-directed normal research. Verified immutable identity `agent23-gpt6-20261114T064346Z-issue-directed` in `agents/agent23/.lease.json`, original claimed `2026-11-14T06:43:46.189Z`. **Never refresh.** Compare live time at each checkpoint; after **2026-11-14T07:53:46.189Z**, push useful state then delete own lease as the last GitHub mutation, push, verify, exit.
 
