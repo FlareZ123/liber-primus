@@ -34,7 +34,20 @@ async function main(){
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
       headers:{'user-agent':'LP2OriginalSourceResearch/1.0 (historical source read only)'}});
-   const b=await r.text();const idx=b.toLowerCase().indexOf('13,21,34');
+   const b=await r.text();
+   if(t.label==='p15 spiral comment page zero'){
+      try{
+       const j=JSON.parse(b);
+       for(const x of j.threads??[]){
+        for(const post of [x.firstPost,...(x.posts??[])])console.log('P15_ORIGINAL_POST '+JSON.stringify({
+         threadId:x.id,postId:post.id,iso:new Date(post.creationDate.epochSecond*1000).toISOString(),
+         text:post.renderedContent?.replace(/<[^>]*>/g,' ').replace(/&[^;]+;/g,' '),
+         author:post.createdBy?.name,attachments:post.attachments
+        }));
+       }
+      }catch(e){console.log('P15_COMMENT_PARSE '+String(e))}
+   }
+   const idx=b.toLowerCase().indexOf('13,21,34');
    return {label:t.label,url:t.url,status:r.status,final:r.url,type:r.headers.get('content-type'),length:b.length,sha256:sha(b,b.length),
     snippet:b.slice(0,2800),quoteAt:idx,nearQuote:idx>=0?b.slice(Math.max(0,idx-320),idx+520):null};
   }catch(e){return {label:t.label,url:t.url,error:String(e)};}
