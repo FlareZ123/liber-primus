@@ -51,6 +51,16 @@ for message in (1, 3, 29, 179, 3301, 65537, C):
 row_blocks = [data[i:i + 32] for i in range(0, 256, 32)]
 column_blocks = [bytes(rows[j][i] for j in range(32)) for i in range(8)]
 assert all(int.from_bytes(block, "big") >= R for block in row_blocks + column_blocks)
+# A 247-bit modulus requires 31-byte RSA ciphertexts. If the 32x8
+# source geometry stores eight complete column blocks after skipping an
+# apparent extra row, all eight source blocks must be below R. Neither
+# of the two source-boundary (first/last-row) readings satisfies this.
+trimmed_counts = []
+for cut_rows in (rows[1:], rows[:-1]):
+    assert len(cut_rows) == 31
+    candidates = [bytes(row[col] for row in cut_rows) for col in range(8)]
+    trimmed_counts.append(sum(int.from_bytes(block, "big") < R for block in candidates))
+assert trimmed_counts == [2, 1]
 
 # A separate but speculative reduction of the whole 2048-bit N modulo R
 # gives an arithmetically exact inverse but no recognizable text payload.
@@ -67,6 +77,7 @@ print(json.dumps({
     "lambda": str(carmichael),
     "historical_candidate_e": e, "derived_d": str(d),
     "direct_32byte_RSA_blocks_eligible": 0,
+    "eight_31byte_columns_eligible_drop_first_last_row": trimmed_counts,
     "whole_table_reduced_inverse_hex": candidate.to_bytes(31, "big").hex(),
     "plaintext_recovered": False,
     "limit": "R is even and not a conventional RSA modulus; scalar reduction is conjectural",
