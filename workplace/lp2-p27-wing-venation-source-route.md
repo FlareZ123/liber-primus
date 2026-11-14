@@ -1,12 +1,12 @@
 # LP2 p27 illustrated wing: bounded venation-cell clue route
 
-**Status (Agent40, 13 November 2026):** New reproducible visual anatomy input, **unselected cryptanalytic route**. No authentic unknown plaintext, password, key, or cipher is recovered here. The wing's enclosed region count may help identify a historically nameable ordered set, but a mere cell count is not an instruction to read or decrypt the surrounding runes.
+**Status (Agent40 and Agent13, 13 November 2026):** Original source contains **15 stable enclosed faces** with min-area200, or **14** under the prior min-area500 filter. The omitted 29×24-pixel wing pocket is a real drawn compartment; fourteen is therefore *not* an intrinsic/anatomically selected key size. A complete period venation-label match and a GP29 key remain missing. No unknown plaintext is recovered.
 
 ## Direct original-image observation
 
 Physical LP2 p27 is the original archive `resources/liber-primus/44.jpg`, SHA-256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`, 2400×3600. The upper drawing depicts an isolated dark-veined wing with no letter labels. The red heading below it has **19 GP29 runes**, divided into printed **3/12/4** words (see `resources/liber-primus/lp2-ink-annotations.json`). Neither wing cells nor vein names are printed in the image.
 
-To isolate the substantial pale membrane faces bounded by original dark veins, use the padded native-scale rectangle x=520..1939, y=450..929. Label 8-connected pixels with grayscale value strictly greater than threshold. Reject any connected pale component touching the rectangular edge and all regions below **500 pixels**. This recovers **14 enclosed components** at each of original thresholds **80, 120, 160, 200, 235**. At threshold160, centroids (x,y, original image pixels) sorted left to right are:
+To isolate the substantial pale membrane faces bounded by original dark veins, use the padded native-scale rectangle x=520..1939, y=450..929. Label 8-connected pixels with grayscale value strictly greater than threshold. Reject any connected pale component touching the rectangular edge and all regions below **500 pixels**. This recovers **14 enclosed components under its 500-pixel minimum**, at each of original thresholds **80, 120, 160, 200, 235**. Lowering the *area threshold only* to 200 preserves a **fifteenth real membrane face** at every grayscale threshold; details and source-pixel coordinates below. At threshold160, the original fourteen larger-component centroids (x,y, original image pixels) sorted left to right are:
 
 ```text
 (812,723), (920,736), (970,591), (1064,733), (1114,803),
@@ -19,6 +19,12 @@ To isolate the substantial pale membrane faces bounded by original dark veins, u
 ### Why the graph itself does not yet provide a Hill key
 
 The 26-edge graph uses a **30-pixel** proximity criterion fixed for the shape fingerprint. Its 14×14 symmetric zero-diagonal adjacency matrix has rational rank13 and **GF(29) rank12**, so it cannot be inverted as an ordinary 14-rune Hill key. A tempting observation would be the extra modulo29 rank loss, but its dependence on the arbitrary contour-distance radius is decisive: with the *same source image and 25-point contact criterion*, distance thresholds **16, 18, 20 pixels** produce 22,22,23 edges and GF29 rank **14**; radii **22–26** produce 25 edges and rank13; only radii **28–32** produce 26–27 edges and rank12. The proximity-radius choice is **not** a creator-authenticated ciphertext operation. Consequently, neither the singularity nor its exceptional modulo29 rank should be promoted to a planted key relation or used to tune a new matrix. Only a historically defined anatomical shared-vein graph with a justified region ordering could select a genuine original key. All counts are determined from the exact contact algorithm in the SFT, with the varied-radius rank calculations used as sensitivity diagnostics.
+
+### Source-visible fifteenth cell changes the fourteen-face inference
+
+[Agent13's source-exact follow-up](../im-results/lp2-p27-fifteenth-wing-face-source-gate.md) and [single-file test](../sims/lp2_p27_wing_fifteenth_cell_sft.py) keep the identical original JPEG, crop, component connectivity and grayscale thresholds, changing only the minimum retained area from 500 to 200 pixels. At all five thresholds the component counts change from **14 to 15**. The extra **genuine, enclosed white triangular face** has source centroid **(1231,839)** and 29×24-pixel bbox at threshold160, with areas **385/375/344/314/288px** across thresholds80/120/160/200/235. Its small size does not authorize discarding an anatomical compartment.
+
+The selected fourteen historical categories in Moulds (2012) (eight apical, three ulnar, radial, medial, basal) omit the diagram's separately labeled **cubital cell**. Moulds (2003) instead labels four ulnar cells and Moulds (2012) notes that medial cell is also ulnar cell4. The 2005 *Tamasa* plate is the acknowledged ancestor of the 2012 diagram and offers no independent plate identity. Therefore neither a unique 14-label traversal nor a 14-step key is fixed by this picture. The original p27 rune-28 coincidence with 2×14 remains arithmetic, but the 14 arises from a free minimum-area choice. There is also no positive decrypted unknown-page text.
 
 ## Independent original ciphertext seam that intersects the wing route
 
@@ -50,4 +56,4 @@ The artist supplied a left-base/right-tip orientation and branching veins. A pot
 
 The repository's earlier [insect image gate](../sims/insect_wing_fold_artwork_gate.py) measured the p27 wing's axis and its relationship to p53/p55 moth ornamentation. This test adds a separate enclosed-face inventory; it does **not** revisit image-header/chroma gates, title/Instar crib rejection, MP3 XOR, existing p27/p55 bookend-key attacks or generic cipher sweeps. The 2013 MP3's known parable already explains why insect symbolism may be thematic. A new anatomical source should be treated as cipher evidence only if it yields a unique, reversible source-locked operation.
 
-**Current decision:** preserve this indexed image route as a potential human-readable clue; no basis to change `results/README.md` or claim a breakthrough.
+**Current decision:** the proposed **exactly fourteen** enclosed-cell source key is blocked by the fifteenth genuine wing compartment and inconsistent historic cell nomenclatures. A *new* attempt would need an exact pre-2014 anatomical plate registered with **all original cells**, a creator-selected ordered numeric conversion, and a successful withheld-rune inversion. No basis to promote this to `results/README.md` or to invent a fifteen-step keystream.
