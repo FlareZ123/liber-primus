@@ -140,10 +140,105 @@ const fake = [
 assert.equal(scan(fake).matches.length, 1);
 fake[1] = {...fake[1],start:67};
 assert.equal(scan(fake).matches.length, 0, 'one-rune offset counterexample');
+/**
+ * Whole-book null for the ALREADY CHOSEN 103/104-to-p32 pointer predicate.
+ * A single hit anywhere is the statistic: selecting p27 or those exact
+ * ordinals after discovery would invalidate the calibration.
+ * @param {RuneWord[]} array
+ * @returns {number}
+ */
+function countHits(array) {
+  let count = 0;
+  for (let i = 0; i < array.length; i++) {
+    const a = array[i];
+    for (let j = i + 1; j < array.length; j++) {
+      const b = array[j];
+      const low = Math.min(a.sum, b.sum);
+      const high = Math.max(a.sum, b.sum);
+      if (high !== low + 1 || low < 1 || high > 256) continue;
+      const mapped = bytes[low - 1] % 58;
+      if (bytes[high - 1] % 58 === mapped && b.start - a.start === mapped) count++;
+    }
+  }
+  return count;
+}
+const pageWords = Array.from({length:56}, (_, page) =>
+  unsolved.filter((word) => word.page === page)).filter((w) => w.length);
+assert.equal(pageWords.length, 55);
+assert.equal(pageWords.reduce((sum, w) => sum + countHits(w), 0), 1);
+
+/** @type {number} */ let randomState = 0x7fab0283;
+/** @returns {number} Deterministic uniform-integer pseudorandom fraction. */
+function nextRandom() {
+  randomState ^= randomState << 13;
+  randomState ^= randomState >>> 17;
+  randomState ^= randomState << 5;
+  return (randomState >>> 0) / 4294967296;
+}
+/** @param {Array<number|RuneWord>} a */
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(nextRandom() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+}
+const nullTrials = 1600;
+let sameLengthAtLeastOne = 0;
+let wholeWordAtLeastOne = 0;
+let sameLengthTotal = 0;
+let wholeWordTotal = 0;
+for (let trial = 0; trial < nullTrials; trial++) {
+  let sameLengthHits = 0;
+  let wholeWordHits = 0;
+  for (const original of pageWords) {
+    // Preserve the page, every original word slot and its length. Relabel
+    // only words of the same printed GP-rune length on the same page.
+    const groups = new Map();
+    const fixed = original.map((word) => ({...word}));
+    for (let i = 0; i < fixed.length; i++) {
+      const len = fixed[i].runes.length;
+      if (!groups.has(len)) groups.set(len, []);
+      groups.get(len).push(i);
+    }
+    for (const group of groups.values()) {
+      const sums = group.map((i) => fixed[i].sum);
+      shuffle(sums);
+      group.forEach((i, k) => { fixed[i].sum = sums[k]; });
+    }
+    sameLengthHits += countHits(fixed);
+    // Independent relaxation: reorder entire original words on the same
+    // page and recompute contiguous rune starts in the moved word order.
+    const moved = original.map((word) => ({...word}));
+    shuffle(moved);
+    let offset = 0;
+    for (const word of moved) {
+      word.start = offset;
+      offset += word.runes.length;
+    }
+    wholeWordHits += countHits(moved);
+  }
+  sameLengthTotal += sameLengthHits;
+  wholeWordTotal += wholeWordHits;
+  if (sameLengthHits >= 1) sameLengthAtLeastOne++;
+  if (wholeWordHits >= 1) wholeWordAtLeastOne++;
+}
+assert.equal(sameLengthAtLeastOne, 115);
+assert.equal(wholeWordAtLeastOne, 128);
+assert.equal(sameLengthTotal, 118);
+assert.equal(wholeWordTotal, 135);
+const nullResults = {
+  trials: nullTrials,
+  seed: '0x7fab0283',
+  sameLength: {atLeastOne: sameLengthAtLeastOne, meanHits: sameLengthTotal / nullTrials,
+    addOneP: (sameLengthAtLeastOne + 1) / (nullTrials + 1)},
+  wholeWordOrder: {atLeastOne: wholeWordAtLeastOne, meanHits: wholeWordTotal / nullTrials,
+    addOneP: (wholeWordAtLeastOne + 1) / (nullTrials + 1)}
+};
 console.log(JSON.stringify({
   status:'PASS', unknownPages:55, originalRunes:12956,
   fragmentWords:unsolved.length, pagePairs:totalPairs,
   consecutivePrimeSumPairs:consecutive, matchingPointerPairs:matches,
   p27ConsecutivePairs:p27.consecutive,
+  conditionalNull:nullResults,
   scope:'postselected original-source location invariant; no deciphered plaintext'
 },null,2));
