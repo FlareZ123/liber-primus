@@ -1,6 +1,6 @@
 # Original 2014 LP1 page-05 Wisdom square and hypothetical direction map
 
-**Status:** the original 2014 LP1 page-05 printed Wisdom grid and same-file 1033 square match exactly by GP-prime sums (25/25 cells), and the p15 Fibonacci-prime spiral is independently established prior art. Issue #237's source-first p15→2014 perimeter gate found a plausible cell-6 start and clockwise orientation, but no historical source links the p15 numeric values to the ring or specifies a reversible operation. The only economical totient-ring GP29 Vigenère extension is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations. Earlier p55 FOLD/circumference transfer and direct table-to-LP2 routes remain unselected. No LP2 plaintext or authentic key has been recovered. A separate p57-selected inner-3×3 Wisdom Hill consumer of Q252 was tested and rejected below every held-out native 252-rune window.
+**Status:** the original 2014 LP1 page-05 printed Wisdom grid and same-file 1033 square match exactly by GP-prime sums (25/25 cells), and the p15 Fibonacci-prime spiral is independently established prior art. Issue #237's source-first p15→2014 perimeter gate found a plausible cell-6 start and clockwise orientation, but no historical source links the p15 numeric values to the ring or specifies a reversible operation. The only economical totient-ring GP29 Vigenère extension is eight-periodic and leaves the p15 arrow-started body ciphertext-like in both orientations. Earlier p55 FOLD/circumference transfer and direct table-to-LP2 routes remain unselected. No LP2 plaintext or authentic key has been recovered. A separate p57-selected inner-3×3 Wisdom Hill consumer of Q252 was tested and rejected below every held-out native 252-rune window. The nine original inner-square cells also fail as nine source-derived prime-clock chapter starts under **every possible authentic plaintext-F bypass mask**, as the exact original-cipher gate below establishes.
 
 **Original-byte source correction, 12 November 2026:** The supposed **2013** `0_wisdom.jpg` file is identical by Git blob SHA `2829e13812015601ff1014cb4427587b4a8aa3a6` to the **2014 original LP1 page-05 complete binary**, as separately preserved in the Stage04 server-status source. The numeric 1033 square is physically embedded after that same JPEG as 178 ASCII bytes recovered by reversed-hex decoding. The 13 printed rune-word prime sums exactly recover its 13 word-cell values, but this is one 2014 artifact containing two mutually agreeing encodings. No independently dated 2013 appearance has been established. This changes claims of a cross-round 2013→2014 bridge; it does **not** change the 25/25 identity, the observed LP2 p36/p55 word sums, or the absence of a source-selected compass/key operation. [Source note](../resources/external/2013-0-wisdom-source.md) · [passing original source CI](https://github.com/FlareZ123/liber-primus/actions/runs/43126749975).
 
@@ -33,6 +33,39 @@ The selector is independently constrained. The 2014 stage03 comment is “Patien
 ```
 
 The 2016 message was published on 5 January, immediately before Epiphany (6 January). Both the historical phrase and the date therefore select **cell 6**.
+
+
+## The nine inner Wisdom cells as nine chapter prime-clock starts (Agent4, 14 November 2026)
+
+**Decision: exact all-Fehu-mask original-cipher exclusion for this source-derived clock family.** This is a new nine-chapter consumer, separate from the earlier p15 perimeter pad and the Q252 inner-3×3 Hill-matrix test. It recovers no unknown plaintext or selected historical key.
+
+The original LP1 p05 Wisdom text explicitly names **primes**, **the totient function**, and encryption. Its original printed 5×5 numeric/rune-word square has GP-prime total **1,033** in every row and column. The independently solved LP2 p57 PARABLE says to **shed circumferences**. Removing the square's outside ring yields exactly **nine** numbers, matching the original nine visually distinguished unknown LP2 chapters. The source-derived row-major 3×3 core and its Euler totients are:
+
+- Printed GP-prime-value core: **[199,130,320,245,91,245,320,130,199]**.
+- Euler-totient core: **[198,48,128,168,72,168,128,48,198]**.
+
+This suggests a finite, human-plausible candidate: use each interior number as the initial *zero-based index into the prime sequence* for its corresponding original LP2 chapter, and apply the **authentic solved-p56 prime-totient additive rule**, i.e. key increments \`φ(prime[k]) = prime[k]−1\` modulo29. The source does **not** explicitly say that the inner numbers are prime-list ordinals, or that each visual chapter restarts the prime clock. Both are experimental assumptions, clearly separated from the observed nine/nine and the source's words.
+
+### Complete strict-F ambiguity calculation
+
+Authentic p56 has a **plaintext-F bypass**: plaintext rune \`F\` encrypts as literal ciphertext F, consuming no prime index. A ciphertext F may instead arise from a *different* plaintext rune through ordinary modular addition. Consequently testing only a predetermined F mask would risk falsely dismissing a correct key. This experiment performs an exact dynamic program over **every possible valid bypass assignment**, retaining every reachable prime index at each ciphertext rune. A normal key-consuming branch that deciphers to plaintext F is forbidden, because the historical forward encoder would have bypassed it.
+
+The four source-frozen cases are core values or their totients as prime-list ordinals, each with \`P=C−(prime[k]−1)\` or the opposite sign. The original nine chapter lengths are **[729,1145,1729,1903,1021,1433,1680,3008,308]** runes, total **12,956**, without changing any cipher runes or page boundaries. The table lists the **first original rune at which every possible strict-F bypass path has become impossible**, counted zero-based within each chapter:
+
+| Initial prime-list ordinal | GP29 inverse sign | First impossible local rune offsets, chapters 1–9 |
+| --- | --- | --- |
+| Core | Subtract | **352, 59, 5, 81, 21, 179, 65, 9, 99** |
+| Core | Add | **34, 81, 1, 17, 5, 6, 56, 15, 1** |
+| Totient(core) | Subtract | **79, 41, 12, 82, 1, 4, 42, 27, 30** |
+| Totient(core) | Add | **29, 4, 23, 45, 43, 2, 136, 70, 55** |
+
+Every one of the **36 chapter/case combinations is mathematically incompatible** with the fixed solved-p56 cipher rule, irrespective of an unobserved literal-F mask, language scoring, or any secret English plaintext. This is stronger and less model-sensitive than simply observing ciphertext-like IoC after subtracting a guessed key. Neither sign can encode a complete original chapter with these exact source-derived clock starts.
+
+**Positive controls:** the runner independently reconstructs the historically solved p56 **85/85 plaintext runes**, including its genuine F bypass at source offset56, and re-encodes the source ciphertext **85/85**. Under all **36** chapter-start/sign combinations, encrypting the separately clear original p57 95-rune PARABLE gives a ciphertext for which the same exact all-mask inverse retains a valid path. The negative is therefore an original-cipher impossibility under the specified proposed clock, with an authentic-control demonstration that its F branching does not reject a true cipher.
+
+**Reproducer:** [original-input Node22 CommonJS single-file test](../sims/lp1_wisdom_inner9_chapter_fmask_sft.cjs); [passing Windows/Node22 GitHub Actions run 43576116529](https://github.com/FlareZ123/liber-primus/actions/runs/43576116529). The SFT derives every mixed original LP1 p05 table cell from the source rune words and printed numbers, checks the historical 5×5 square, and reads original LP2 cipher runes without editorial substitutions.
+
+**Stop condition:** retire only this direct nine-chapter prime-*ordinal* transfer. An independently selected mapping of inner cells to a cipher operation, state update or historical external source could remain, but inventing arbitrary phases, skips, or secondary layers to rescue this failed proposal has no current source justification.
 
 
 ## p15 Fibonacci spiral → 2014 Wisdom perimeter (Issue #237)
