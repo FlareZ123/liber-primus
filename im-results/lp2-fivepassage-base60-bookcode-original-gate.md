@@ -64,8 +64,21 @@ No derived byte register contains extended English ASCII or an immediately recog
 
 This directly closes the most natural **original byte-and-GP-prime consumer** of the new five-passage lookup. The mechanism would need a separately motivated second layer or different receiver to become a credible LP2 decipherment.
 
+## Published lowercase-f-omitting radix59 alternate
+
+The printed table contains no lowercase `f` digit, and the community's documented **radix59** reading removes that single character from the conventional 60-symbol digit alphabet. This is the only second numeral codec tested here; it was already published independently of this experiment. Each high digit still selects a numbered passage 0–4 and each low digit selects a rune 0–58, so all 256 coordinates remain valid with **no retuning**.
+
+| Original exact radix59 register | GP29 IoC |
+| --- | ---: |
+| Alternate source-coordinate key (27 rune values represented) | **0.0390931373** |
+| Alternate 256 table bytes modulo29 | **0.0348958333** |
+| Alternate table minus coordinate key | **0.0371936275** |
+| Alternate table plus coordinate key | **0.0374080882** |
+
+A bytewise XOR with the selected original Gematria prime weight yields **102/256 printable ASCII** (versus **103/256** in the original base60 numeric table); no recognizable direct message. Both original-source GP29 inverses and the byte XOR reencode their own unchanged input exactly. Base59 adds no plaintext candidate. The source-linked original p39 **H/G polynomial factor tests independently favor printed-order base60**, but that prior conditional discriminator does not need to be assumed to close this finite book-code test. Reproducer: same updated CJS source file.
+
 ## Conclusion and limits
 
-The 256-cell numeric table and five red-numbered passages admit a **complete, finite, source-only codebook lookup** that a human solver could reasonably attempt. A literal recovered-text reading of that lookup, its table-residue Vigenère differences, the source-numbered **byte XOR / prime-weight** consumers, and its simple direct page recipients are **negative**. No surviving signed instruction explicitly selects this book-code interpretation, a consumer, a key schedule or a second cipher layer. The verified GF29 H/G factors of the numeric table are unaffected. A different proposed consumer, a **period-256 predecessor-exclusion/rank cipher**, is already excluded for all stationary secret per-phase GP28 alphabets by the existing [original-cipher 256-clock key-independent test](lp2-chain256-allsecret-source-gate.md), so replacing that test's source key with this lookup cannot rescue that stationary model. This experiment neither assumes nor needs a new 256-clock search. An independently supplied target/consumer or an authentic instruction to use passage coordinates would materially change this decision.
+The 256-cell numeric table and five red-numbered passages admit a **complete, finite, source-only codebook lookup** under both the published radix60 and missing-f radix59 readings that a human solver could reasonably attempt. A literal recovered-text reading of that lookup, its table-residue Vigenère differences, the source-numbered **byte XOR / prime-weight** consumers, and its simple direct page recipients are **negative**. No surviving signed instruction explicitly selects this book-code interpretation, a consumer, a key schedule or a second cipher layer. The verified GF29 H/G factors of the numeric table are unaffected. A different proposed consumer, a **period-256 predecessor-exclusion/rank cipher**, is already excluded for all stationary secret per-phase GP28 alphabets by the existing [original-cipher 256-clock key-independent test](lp2-chain256-allsecret-source-gate.md), so replacing that test's source key with this lookup cannot rescue that stationary model. This experiment neither assumes nor needs a new 256-clock search. An independently supplied target/consumer or an authentic instruction to use passage coordinates would materially change this decision.
 
 **Reproduce:** The standalone [Windows/Node CommonJS original-source SFT](../sims/lp2_fivepassage_base60_bookcode_original_sft.cjs) uses the canonical LP2 corpus and printed 256-byte table, pins the canonical byte SHA256, all original passage boundaries, coordinate and symbol populations, source-rooted byte XOR/additive consumers, reversible original cipher checks, and independent 256/256 native-GP and ASCII positive plants. The original ciphertext and resources were not modified.
