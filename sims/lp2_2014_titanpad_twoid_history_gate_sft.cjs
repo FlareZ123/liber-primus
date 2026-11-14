@@ -149,7 +149,7 @@ async function probe(item) {
   const summary = {
     ids, requests:outcomes.length,
     live:live.length, unavailable:errors.length,
-    2014_2015_capture_sources:early.map(x=>({
+    early_capture_sources:early.map(x=>({
       id:x.id,system:x.system,shape:x.shape,early:x.early,
       records:x.earlyRecords,
     })),
