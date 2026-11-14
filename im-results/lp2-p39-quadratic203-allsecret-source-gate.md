@@ -96,6 +96,27 @@ Use original printed word boundaries without fitting them. Train a fixed GP29 wi
 
 Even the strongest of the **3,364 full original decryptions** falls far below *every* length-matched true English control under this independently fixed text metric. The SFT forward-reconstructs all **3,000 original ciphertext runes** from each of the four best complete keys. Four source-native positive plants of the same length under planted seed [9,24] reverse to their complete native plaintext **exactly**, and the exhaustive language ranker detects the correct native-language register. The ranker is **not assumed to recover the unique planted seed**: in one positive experiment a different seed scored higher while the true seed reconstructed perfectly. This distinction is explicitly preserved in the executable as an identifiability limitation rather than silently calling a score-maximizing seed the true key.
 
+### Stronger all-key period-28/7 invariant for the plaintext-index models
+
+There is a stronger, **language-ranker-independent, key-independent necessary condition** for the two GP-index-feedback models above. Here the injection is exactly the recovered GP-index \(f(P_i)=P_i\), which is linear over GF(29). Hold the published ciphertext \(C\) fixed and compare solutions for any two secret starting states. Their pad differences satisfy
+
+\[
+\Delta k_{i+2}=19\,\Delta k_{i+1}+(4-s)\,\Delta k_i\pmod{29},
+\]
+
+because \(\Delta P_i=-s\,\Delta k_i\). When cipher sign \(s=+1\), the characteristic roots are **7 and 12**, with multiplicative orders seven and four, so **every** seed difference has period dividing **28**. When \(s=-1\), the roots are **23 and 25**, both of order seven, so **every** seed difference has period dividing **7**. The roots are distinct in each case. Hence at any two positions in the same phase modulo28 or modulo7, respectively, all possible secret seed differences cancel. **Plaintext equality within one phase is an exact invariant of the observed ciphertext under all 841 secret states**.
+
+Count equal rune pairs in the zero-seed decoded particular text; the count is identical for all other keys. Compare with **100 native GP-Gibran controls independently drawn with all 667 exact source word lengths**:
+
+| Original model | Exact phase | Original equal pairs | Total pairs | GP-native 100-control range, equal pairs |
+| --- | ---: | ---: | ---: | ---: |
+| GP-index autokey, sign +1 | 28 | **5,335** | 159,216 | **9,142–9,970** (median 9,477) |
+| GP-index autokey, sign −1 | 7 | **22,194** | 641,358 | **37,098–39,953** (median 38,260) |
+
+These observed counts are far below every original-word-matched control, for **all secret keys**, with no trigram-fitting premise. The new SFT computes both exact original key-independent counts, checks periodic equality of the two independent seed-basis differences, and verifies equality preservation under a **real** source-native GP-encrypted positive plant. [Full original Windows Node22 regression, success run 43542754148](https://github.com/FlareZ123/liber-primus/actions/runs/43542754148).
+
+The **prime-residue plaintext-autokey** variants are nonlinear in the decoded plaintext, so this new cancellation proof does **not** apply to them. Those two variants remain excluded only by the complete 841-key search and source-native score comparison documented above. The original red inscription does not supply an autokey instruction; this is a precisely bounded alternative architecture test.
+
 This is a key-complete original negative on a fixed 2014-available two-state plaintext-autokey construction. A non-GP English output, a different injection alphabet, page-local resets, an independent non-additive layer, or another meaning of the red inscription remains outside this finite test. No source establishes that the creator meant autokey.
 
 **Reproducer:** [quadratic plaintext-autokey all-secret SFT](../sims/lp2_p39_quadratic_plaintext_autokey_allsecret_sft.cjs). [Passing Windows Node22 original all-seed, all-model regression 43542272241](https://github.com/FlareZ123/liber-primus/actions/runs/43542272241), after correcting the planted-seed uniqueness assumption exposed by the prior test.
@@ -110,4 +131,4 @@ Run the [single runnable CommonJS original-input test](../sims/lp2_p39_quadratic
 
 It reads the immutable resources/liber-primus/lp2-corpus.json, the full original lp2-transcription.txt word-boundary source and the same checked resources/control/gibran_prophet_58585.txt reference already used by the per-page progressive-affine gate. It asserts the original p39 red-triad indices, the complete 3,000-rune/667-word original target, quadratic normalization, period proof, original 745/20,685 result, all 1,682 original autonomous keyed inverses, four ciphertext-forced all-key invariants, all three reference quantiles and independent encrypted-GP positive plants. The exact decoded output is intentionally not language-fitted.
 
-**Decision:** retire the *fixed continuous p39 quadratic two-state GP29 additive cipher* in its autonomous, four ciphertext-forced and four plaintext-autokey variants as direct unchanged-word-boundary GP-English explanations of the p40 section. The autonomous and ciphertext-forced decisions use exact all-key collision invariants; the plaintext-autokey decision exhausts all 3,364 keys and uses a frozen, positive-controlled GP-native scoring gate. A page-reset clock, different use of the quadratic, non-additive or transformed interior symbol register, and a different plaintext language remain open; no original instruction selects them. Further seed optimization is logically unable to change the original equality count. Prefer an independently source-supplied output operation or genuine key material before revisiting this branch.
+**Decision:** retire the *fixed continuous p39 quadratic two-state GP29 additive cipher* in its autonomous, four ciphertext-forced and four plaintext-autokey variants as direct unchanged-word-boundary GP-English explanations of the p40 section. The autonomous and ciphertext-forced decisions use exact all-key collision invariants; both plaintext-index autokey models now also admit exact all-key period-28/7 collision invariants. The two nonlinear plaintext-prime autokey models retain the frozen, positive-controlled exhaustive GP-native scoring gate. A page-reset clock, different use of the quadratic, non-additive or transformed interior symbol register, and a different plaintext language remain open; no original instruction selects them. Further seed optimization is logically unable to change the original equality count. Prefer an independently source-supplied output operation or genuine key material before revisiting this branch.
