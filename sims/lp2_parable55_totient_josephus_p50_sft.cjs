@@ -220,6 +220,45 @@ assert.ok(Math.abs(sourcePageClock.gp_ordinal.ioc - 0.03468752409592104) < 1e-12
 assert.ok(Math.abs(sourcePageClock.prime_value_as_ordinal.ioc - 0.034701981648546536) < 1e-12);
 assert.ok(Math.abs(sourcePageClock.totient_value_as_ordinal.ioc - 0.034526563343357235) < 1e-12);
 
+// Source-locked post-arrival consumer: after the 56-page no-removal
+// walk reaches p49, use the identical 55 totients to count through the
+// first cell and all 256 original row-major numerical-table cells.
+// Both natural GP29 projections give nonlinguistic source output.
+const sourceGrid = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-grid-256.json'), 'utf8'
+));
+assert.equal(sourceGrid.bytes.length, 256);
+
+/**
+ * Read one table byte per original PARABLE totient step on a fixed ring.
+ * @param {(v:number)=>number} byteToRune - Frozen byte-to-GP rule.
+ * @returns {number[]} 55 GP rune indices.
+ */
+function navigateTable(byteToRune) {
+  let position = 0;
+  return totientSteps.map(step => {
+    position = (position + step - 1) % sourceGrid.bytes.length;
+    return byteToRune(sourceGrid.bytes[position]);
+  });
+}
+const tableWalkModulo = navigateTable(byte => byte % 29);
+const tableWalkScaled = navigateTable(byte => Math.floor(byte * 29 / 256));
+assert.equal(tableWalkModulo.length, 55);
+assert.ok(Math.abs(coincidence(tableWalkModulo) - 0.03771043771043771) < 1e-12);
+assert.ok(Math.abs(coincidence(tableWalkScaled) - 0.035016835016835016) < 1e-12);
+const directTableWalk = {
+  original_rune_count: 55,
+  table_cells: sourceGrid.bytes.length,
+  byte_mod29: {
+    ioc: coincidence(tableWalkModulo),
+    transliteration: tableWalkModulo.map(i => corpus.translit[i]).join('')
+  },
+  scaled_byte_to29: {
+    ioc: coincidence(tableWalkScaled),
+    transliteration: tableWalkScaled.map(i => corpus.translit[i]).join('')
+  }
+};
+
 // Conditioning null: rearrange only the 20 complete interior word blocks,
 // holding the original page count, word interiors and step values fixed.
 // A planted model is not assumed; these are descriptive randomization
@@ -266,6 +305,7 @@ console.log(JSON.stringify({
   },
   totient_steps: totientSteps,
   ordinary_circular_page_walk: { destination: ordinaryWalk, controls: ordinaryWalkControls },
+  direct_table_walk: directTableWalk,
   clockwise_forward: forward,
   clockwise_reversed_steps: reversed,
   controls: {
