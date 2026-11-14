@@ -27,6 +27,26 @@ A text-mode candidate screen combined 2015–16 date and message provenance with
 
 No candidate above states enough source-selected inputs, operation, key-state initialization and output to run the required **100 contiguous original unknown GP runes plus 40 independently withheld runes**. Consequently **no original-plaintext forward reencryption was possible or claimed**. The historical p15 operation can be independently reproduced as *grid mathematics* from the original image and has already been completely solved; it is not a new original text inverse.
 
+## Direct original-cipher test of the 2015 Fibonacci-page claim
+
+The dated 2015 quote (L84447) identifies four physical pages **13,21,34,55** and alleges a Base64 segment and binary script. One finite, historically documented consumer is the authentic 2013 **BASE29** positional numeral: convert each original GP29 rune index to a base29 digit, then read the whole concatenated number in its minimal big-endian byte representation. This is a *hypothesis*, because the 2015 claim does not specify a byte codec.
+
+| Unaltered original input | GP29 runes | Converted bytes | Base64-alphabet bytes | Longest Base64 run | First 8 bytes, hex |
+| --- | ---: | ---: | ---: | ---: | --- |
+| p13 | 272 | 165 | 46 | 2 | 8a90681e0e4c3b5c |
+| p21 | 273 | 166 | 44 | 3 | 0f3fbf35127a0e00 |
+| p34 | 261 | 159 | 39 | 4 | 0a5268d9a7e1b5fb |
+| p55 | 76 | 47 | 9 | 2 | 01bddc70abe92230 |
+| p13→21→34→55, one integer | **882** | **536** | **146** | **5** | 059702336a3819a2 |
+| Reversed page order | 882 | 536 | 151 | 4 | 1427eb26564a6246 |
+| Whole rune sequence reversed | 882 | 536 | 136 | 4 | 09ccdad8e0c66393 |
+
+No ordinary Base64 string can be recovered directly from these fixed original complete-page readings. The largest contiguous Base64-alphabet run is only **five bytes**. The controlled real ASCII/Base64 test string **TWFu** converts to GP29 digits **2,10,28,18,5,20,26** and is recovered byte-for-byte under this exact fixed serialization. Thus the tested direct transport is operational, but the actual unknown-page inputs do not contain the alleged directly exposed Base64.
+
+The original page15 Fibonacci-prime spiral and the four consecutive Fibonacci indices motivate the page selection. **The historic wiki quote has no exact local rune start, segment boundaries, original key, or saved script.** Do not add fitted substrings and alphabet mappings to rescue a result. This negative retires only the natural complete-page GP29-to-binary consumer, not hypothetical lost artifact bytes or independently specified alternative operations.
+
+[Original-source Windows11 / Node22 CommonJS reproducer](../sims/lp2_2015_wiki_fib4_base29_binary_sft.cjs) asserts all source lengths and six/seven output summaries and an exact positive binary plant. The same arithmetic was separately performed on the GitHub canonical corpus; a completed CI run for the new SFT is not claimed.
+
 ## Most promising retained lead and next decision
 
 The historically early **anonymous p15→13/21/34/55→base64→script** account (L84447) is worth retaining only as a concrete **historical object-acquisition question**, because the four consecutive Fibonacci indices are consistent with the original p15 spiral's theme. Importantly, it supplies none of the four page-local operands, no extraction rule selecting a base64 alphabet from GP29 runes, no binary framing, and no attested script. The original contemporaneous commenters regarded it skeptically. If an independently archived exact wiki revision or historic script is acquired with a source timestamp and real bytes, one could test its fixed extraction on untouched original pages, then require a native 100+40 exact rerender. Do not invent missing page coordinates or fit an arbitrary base64 conversion to validate an unattributed assertion.
