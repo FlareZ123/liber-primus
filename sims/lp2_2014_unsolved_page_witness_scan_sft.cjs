@@ -17,6 +17,9 @@ const date=/^2014 (?:May|Jun|Jul|Aug) \d{2} \d{2}:\d{2} /;
 const page=/(?:\b(?:page|pg|pic|picture)\s*[#:.\-]?\s*|\bp\s*#?)(?:0?\d|[1-4]\d|5[0-5])\b/ig;
 const discovery=/\b(?:solv\w*|decrypt\w*|decipher\w*|crack\w*|plaintext|cleartext|readable|read\s+as|translat\w*|got\s+(?:the|a|it)|work(?:s|ed)?\s+(?:for|on)|key\s+(?:for|on|works|found)|means|says|text\s+(?:is|reads|says))\b/i;
 const strong=/\b(?:solved|decrypted|deciphered|cracked|plaintext|cleartext|i\s+(?:got|found|think)|reads|says|gives|makes\s+sense|first\s+(?:word|line)|last\s+(?:word|line))\b/i;
+const tablePage=/\\b(?:page|pg|pic|p)\\s*[#:.\\-]?\\s*(?:49|50|51)\\b/i;
+const tableLanguage=/\\b(?:numeric|numerical|base[ -]?(?:29|60|59|64)|grid|matrix|table|32[\\s×x*]+8|256|hexadecimal|filetype|image|aes|rsa|numbers|digits|cells|character\\s+code)\\b/i;
+const tableExplicit=/\\b(?:base[ -]?(?:29|60|59|64)|32[\\s×x*]+8|256\\s+(?:numbers|values|bytes)|number\\s+grid|numerical\\s+page|number\\s+table)\\b/i;
 const textlike=/\b(?:the|and|that|there|within|find|hidden|seek|truth|end|beginning|pilgrim|key)\b/i;
 function gitBlob(data) {return crypto.createHash('sha1').update('blob '+data.length+'\0').update(data).digest('hex');}
 function context(lines,i,r=3){return lines.slice(Math.max(0,i-r),i+r+1).map((s,j)=>'L'+(Math.max(0,i-r)+j+1)+' '+s.slice(0,420)).join('\n');}
@@ -31,16 +34,24 @@ async function run() {
     const b=Buffer.from(await response.arrayBuffer());
     assert.equal(b.length,size,name+' bytes');assert.equal(gitBlob(b),sha,name+' pinned blob');
     const lines=b.toString('latin1').split(/\r?\n/);
-    const strongMatches=[],allMatches=[],english=[],solvers=[],pageMentions=new Map();
+    const strongMatches=[],allMatches=[],english=[],solvers=[],tablePageHits=[],tableExplicitHits=[],pageMentions=new Map();
     for(let i=0;i<lines.length;i++) {
       const s=lines[i];if(!date.test(s)||!/<[^>]+>/.test(s))continue;
       const matches=[...s.matchAll(page)];if(matches.length)for(const m of matches){
         const no=+m[0].match(/\d+/)[0];pageMentions.set(no,(pageMentions.get(no)||0)+1);
       }
+      if((tablePage.test(s)&&tableLanguage.test(s)))tablePageHits.push(i);
+      if(tableExplicit.test(s))tableExplicitHits.push(i);
       if(matches.length&&discovery.test(s))allMatches.push(i);
       if(matches.length&&strong.test(s))strongMatches.push(i);
       if(matches.length&&textlike.test(s)&&strong.test(s))english.push(i);
       if(/<(?:cluosh|mdzhb|Nem0|nikkler|Ammar__)>/i.test(s)&&/(?:decryp|decipher|key|plaintext|plain.?text|solv|prime|totient)/i.test(s)&&matches.length)solvers.push(i);
+    }
+    console.log('TABLE PRIMARY '+tablePageHits.length+' '+tableExplicitHits.length);
+    for(const [label,hits] of [['TABLE_P49-51',tablePageHits],['TABLE_EXPLICIT',tableExplicitHits]]) {
+      console.log('CATEGORY '+label+' '+hits.length);
+      for(const i of hits.slice(0,150))console.log('L'+(i+1)+' '+lines[i].slice(0,500));
+      for(const i of hits.slice(0,50))console.log('TABLE_WINDOW '+label+' L'+(i+1)+'\\n'+context(lines,i,2));
     }
     const format=hits=>hits.map(i=>('L'+(i+1)+' '+lines[i].slice(0,500))).slice(0,180);
     console.log('ARCHIVE '+name+' bytes='+size+' sha='+sha+' date-matched lines='+lines.filter(x=>date.test(x)).length);
