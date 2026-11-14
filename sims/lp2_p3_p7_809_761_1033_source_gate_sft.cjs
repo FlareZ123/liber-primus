@@ -272,6 +272,115 @@ const oneSuccessorPerPhysicalPage = pages.slice(3, 8).map((page, i) => ({
 assert.deepEqual(oneSuccessorPerPhysicalPage.map(x => x.deadAt),
   [24, 54, 21, 3, 71]);
 
+
+// A different direct consumer, distinct from prior five-*parallel-page*
+// 3301-square Hill tests: the actual p3-p7 source CHAPTER has 1145=5*229
+// printed runes; excluding its p3 red16 intro and p7 red14 close yields
+// 1115=5*223 source-contiguous body runes. The similarly five-dot-headed
+// p23-p26 source group has 1021-16=1005=5*201 body runes.
+// Test only the genuine recovered 2014 5x5 square on consecutive quintets,
+// not an arbitrary fitted matrix or a search over plaintext cribs.
+/** @param {number} n @returns {number} */
+const mod29 = n => (n % 29 + 29) % 29;
+/** @param {number} a @returns {number} */
+function invert29(a) {
+  for (let k = 1; k < 29; k++) if (mod29(a * k) === 1) return k;
+  throw Error('singular GF29 pivot');
+}
+/** @param {number[][]} matrix @returns {number[][]} */
+function inverse5(matrix) {
+  const m = matrix.map((row, i) => row.concat(
+    Array.from({ length: 5 }, (_, j) => +(i === j))));
+  for (let j = 0; j < 5; j++) {
+    let pivot = j;
+    while (pivot < 5 && m[pivot][j] === 0) pivot++;
+    assert.ok(pivot < 5, 'historical 5x5 source matrix is singular');
+    [m[pivot], m[j]] = [m[j], m[pivot]];
+    const inv = invert29(m[j][j]);
+    for (let col = 0; col < 10; col++) m[j][col] = mod29(m[j][col] * inv);
+    for (let row = 0; row < 5; row++) if (row !== j) {
+      const factor = m[row][j];
+      for (let col = 0; col < 10; col++) {
+        m[row][col] = mod29(m[row][col] - factor * m[j][col]);
+      }
+    }
+  }
+  return m.map(row => row.slice(5));
+}
+/** @param {number[][]} matrix @returns {number[][]} */
+const transpose5 = matrix => matrix[0].map((_, col) =>
+  matrix.map(row => row[col]));
+/**
+ * Apply a reversible 5x5 GF29 transform to consecutive complete quintets.
+ * @param {number[]} data
+ * @param {number[][]} matrix
+ * @param {number[]} order
+ * @returns {number[]}
+ */
+function hill5(data, matrix, order) {
+  assert.equal(data.length % 5, 0);
+  const out = [];
+  for (let offset = 0; offset < data.length; offset += 5) {
+    const vec = order.map(i => data[offset + i]);
+    for (const row of matrix) {
+      out.push(mod29(row.reduce((s, v, j) => s + v * vec[j], 0)));
+    }
+  }
+  return out;
+}
+/** @param {number[]} seq @returns {number} */
+function ioc29(seq) {
+  const freq = Array(29).fill(0);
+  for (const glyph of seq) freq[glyph]++;
+  return freq.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (seq.length * (seq.length - 1));
+}
+const stage10Square = Array.from({ length: 5 }, (_, r) =>
+  firstSquare.slice(r * 5, r * 5 + 5).map(mod29));
+const stage10Inverse = inverse5(stage10Square);
+const stage10Ops = [
+  ['M', stage10Square],
+  ['Mtranspose', transpose5(stage10Square)],
+  ['Minverse', stage10Inverse],
+  ['MtransposeInverse', transpose5(stage10Inverse)]
+];
+// Original five-dot rank order x-left-to-right to y-top-to-bottom,
+// taken as a *candidate* physical transport, not a proven key.
+const dotRankOrder = [2, 4, 0, 3, 1];
+const blockReadOrders = [['printed', [0, 1, 2, 3, 4]],
+  ['fiveDot', dotRankOrder]];
+const p23Group = pages.slice(23, 27).flatMap(p => p.indices);
+const hillSectionInputs = [
+  ['p3-p7 all original', targetCipher],
+  ['p3-p7 without red16+14', targetCipher.slice(16, -14)],
+  ['p23-p26 without red16', p23Group.slice(16)]
+];
+assert.deepEqual(hillSectionInputs.map(x => x[1].length),
+  [1145, 1115, 1005]);
+const hillOriginal = [];
+for (const [section, original] of hillSectionInputs) {
+  for (const [operation, matrix] of stage10Ops) {
+    for (const [reading, order] of blockReadOrders) {
+      const output = hill5(original, matrix, order);
+      hillOriginal.push({
+        section, operation, reading, length: output.length,
+        ioc: ioc29(output),
+        sample: output.slice(0, 15).map(i => translit[i]).join(' ')
+      });
+    }
+  }
+}
+assert.equal(hillOriginal.length, 24);
+const hillBest = hillOriginal.reduce((a, b) => a.ioc >= b.ioc ? a : b);
+assert.ok(hillBest.ioc < 0.04, 'unexpected English-marginal candidate');
+assert.ok(ioc29(pages[57].indices) > 0.06);
+// Genuine GP29 English plant from 95 clear p57 runes, not learned from unknown.
+const solvedNativeHillPlant = hill5(pages[57].indices, stage10Square,
+  blockReadOrders[0][1]);
+const solvedNativeHillRecovered = hill5(solvedNativeHillPlant, stage10Inverse,
+  blockReadOrders[0][1]);
+assert.deepEqual(solvedNativeHillRecovered, pages[57].indices);
+
 console.log(JSON.stringify({
   classification: 'conditional source-number coincidence; no unknown-page decryption',
   source: 'original LP2 canonical rune indices and 2014 three magic squares',
@@ -295,5 +404,6 @@ console.log(JSON.stringify({
   fiveDotPrimeSuccessors,
   actualPrimeValueStarts,
   oneSuccessorPerPhysicalPage,
+  stage10ContiguousQuintets: { originalSections: hillSectionInputs.map(x => [x[0], x[1].length]), originalModels: hillOriginal.length, best: hillBest, authenticKnownP57ClearIoC: ioc29(pages[57].indices), nativeP57PlantRecovered: solvedNativeHillRecovered.length },
   result: 'observed checksum equality does not select an authentic key or decipherment'
 }, null, 2));
