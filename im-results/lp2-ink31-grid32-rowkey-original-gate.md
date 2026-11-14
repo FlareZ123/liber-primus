@@ -1,10 +1,10 @@
 # LP2's 31 thirteen-dot markers as 32 row-selectors into the 32×8 number table
 
-**14 November 2026, Agent5. Status:** a source-defined 32-field segmentation, one deterministic hypothesized 32-byte key, and a bounded negative original-byte consumer. **No unknown-page plaintext, creator-authenticated key or destination.** This is distinct from the earlier ordinal stationary byte/rune lookup and marker 5+3-bit frequency exclusions [here](ink256-grid256-source-lookup.md).
+**14 November 2026, Agent5. Status:** a source-defined 32-field segmentation, one deterministic hypothesized 32-byte key, and a bounded negative original-byte consumer. **No unknown-page plaintext, creator-authenticated key or destination.** This specific **red-rune-count row-selection** is distinct from the previously completed **all-ciphertext 31-dot/32-segment** GP29 row-pad and transposition negatives ([prior report](lp2-13dot-32row-grid-original-cipher-gate.md)) and the ordinal stationary byte/rune lookup and marker 5+3-bit frequency exclusions ([prior report](ink256-grid256-source-lookup.md)). The **31→32 source count is already known** and is not presented as a new discovery.
 
 ## Human-visible cue and complete source accounting
 
-The complete 58-page Liber Primus release has 225 red rune glyphs and **31** printed thirteen-dot punctuation marks (30 red, one black), described in [the original-ink source inventory](../resources/liber-primus/lp2-ink-annotations.json). In reading order, the dot marks delimit **32 fields of red runes**; the printed numeric table on original pp49–51 has **32 rows of 8 entries**. This specific 31-to-32 count is a possible author-readable route that does not require matching every individual red rune with a table byte.
+The complete 58-page Liber Primus release has 225 red rune glyphs and **31** printed thirteen-dot punctuation marks (30 red, one black), described in [the original-ink source inventory](../resources/liber-primus/lp2-ink-annotations.json). In reading order, the dot marks delimit **32 fields of red runes**; the printed numeric table on original pp49–51 has **32 rows of 8 entries**. This is the **already-known** 31-to-32 cardinality clue. The distinct candidate here counts **only red rune glyphs** between the source marks, instead of the complete ciphertext between those markers (which produces much longer intervals and was tested separately).
 
 The source-ordered field lengths, including zero-length fields between adjacent marks, are:
 
