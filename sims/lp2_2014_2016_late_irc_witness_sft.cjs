@@ -33,6 +33,21 @@ const op=/\b(?:decryp(?:t|ted|tion|ting)|decipher(?:ed)?|plaintext|solv(?:ed|e)|
 const stronger=/\b(?:i|we|my|our|found|decoded|solved|solv|translated|worked|plaintext|solution)\b/i;
 /** @param {any[]} entries @param {string} name */
 function scan(entries,name){
+ 
+// Direct original-page breakthrough language, independent of chosen topics.
+ const decisive=entries.filter(e=>e.date.startsWith('2016 ')&&
+  /(?:(?:i|we|my code|someone)\s+(?:just\s+|have\s+|already\s+|finally\s+|managed to\s+)?(?:solved|decoded|decrypted|deciphered|translated|found the key for|figured out the cipher for)|(?:plaintext|cleartext)\s+(?:is|reads|says)|(?:page\s*[0-9]{1,2}|LP2).{0,60}(?:reads|says|is decoded))/i.test(e.body) &&
+  /\b(?:page|p\s*[0-9]|runes?|liber|manuscript|cipher|key)\b/i.test(e.body));
+ const bins=new Map();
+ for(const e of decisive){
+  const key=e.date.slice(0,8);
+  const v=bins.get(key)||[];v.push(e);bins.set(key,v);
+ }
+ console.log(name+'-DIRECT-CLAIMS '+JSON.stringify([...bins].map(([month,a])=>({month,n:a.length}))));
+ for(const [month,a] of bins){
+  for(const e of a.slice(0,30))console.log(name+'-DIRECT-2016 '+JSON.stringify(e));
+ }
+
  const hits=[];
  for(let i=0;i<entries.length;i++){
   const e=entries[i],same=pages.test(e.body)&&op.test(e.body);
