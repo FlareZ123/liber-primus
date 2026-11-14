@@ -12,6 +12,7 @@ on:
           - word-pattern
           - cumulative-zero
           - numbered-phi
+          - critical-hill7
 permissions:
   contents: read
 jobs:
@@ -71,3 +72,18 @@ jobs:
         run: |
           node --check sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs
           node sims/lp2_cuneiform_numbered_prime_start_ftransparent_sft.cjs
+
+  original-critical-polynomial-hill7:
+    if: ${{ inputs.check == 'critical-hill7' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Test original p53 critical polynomial, 7x7 key and chapter inverse
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p53_criticalpoly_hill7_original_sft.cjs
+          node sims/lp2_p53_criticalpoly_hill7_original_sft.cjs
