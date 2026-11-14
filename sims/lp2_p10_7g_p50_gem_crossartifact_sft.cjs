@@ -190,6 +190,31 @@ const ranks = {width: primeRank(image.width), height: primeRank(image.height)};
 assert.deepEqual(ranks, {width: 103, height: 104});
 const widthPath = original.walk(ranks.width);
 const heightPath = original.walk(ranks.height);
+
+// The first numerical cell on rune-free physical p50 is original table cell81.
+// Its q=4 points to the keypad centre, while its GP remainder Y has prime
+// weight 103. One explicit extra prime-address jump connects this centre to
+// the already frozen 2016-width ordinal103 path; the jump-on-centre rule is
+// exploratory and is NOT supplied by an authenticated Cicada instruction.
+const firstP50Cell = 81;
+const firstP50Byte = sourceBytes[firstP50Cell - 1];
+assert.equal(firstP50Byte, 142);
+assert.equal(Math.floor(firstP50Byte / 29), 4);
+assert.equal(firstP50Byte % 29, corpus.translit.indexOf("Y"));
+const firstP50PrimeAddress = corpus.prime[firstP50Byte % 29];
+assert.equal(firstP50PrimeAddress, 103);
+assert.equal(firstP50PrimeAddress, ranks.width);
+const firstP50PrimePath = original.walk(firstP50PrimeAddress);
+assert.deepEqual(firstP50PrimePath.path.map(v => v.cell), [103, 111, 119, 127, 128]);
+assert.equal(firstP50PrimePath.glyphs, "OOGEM");
+const centreJumpCandidates = sourceBytes.flatMap((value, i) =>
+  Math.floor(value / 29) === 4 ?
+    [{cell: i + 1, GPprime: corpus.prime[value % 29],
+      cycle: original.walk(corpus.prime[value % 29]).cycle.map(v => v.rune).join("")}] :
+    []);
+assert.equal(centreJumpCandidates.length, 29);
+assert.deepEqual(centreJumpCandidates.filter(c => c.cycle === "GEM").map(c => c.cell),
+  [81, 217]);
 assert.deepEqual(widthPath.path.map(v => v.cell), [103, 111, 119, 127, 128]);
 assert.equal(widthPath.glyphs, "OOGEM");
 assert.deepEqual(heightPath.path.map(v => v.cell), [104, 96]);
@@ -240,6 +265,11 @@ console.log(JSON.stringify({
   directGpPrimeWordContinuation: {sourceWord: "GEM", primeSum: gemPrimeSum, path: nextWordPath},
   widthSelectedPath: widthPath,
   heightSelectedPath: heightPath,
+  conditionalFirstP50YPrimeJump: {
+    start: firstP50Cell, firstRune: "Y", GPprime: firstP50PrimeAddress,
+    path: firstP50PrimePath, selectivityAmongCentreCells: [81, 217],
+    caveat: "jump-on-centre is analyst proposed; not source-authenticated"
+  },
   uniqueThreeCycle: threeCycles,
   originalNumberedPageControls: controls,
   uniqueLocalRowColumnEquality: rowColumnCoincidences,
