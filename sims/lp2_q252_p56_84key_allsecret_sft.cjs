@@ -33,7 +33,7 @@ let keyClock=0;
 const solved=gp.pages[56].indices.map((v,i)=>i===56?v:mod(v-key[keyClock++]));
 assert.equal(keyClock,84);
 assert.equal(gp.pages[56].indices.length,85);
-assert.equal(solved.slice(0,5).map(i=>gp.translit[i]).join(""),"ANEND");
+assert.equal(solved.map(i=>gp.translit[i]).join(""),"ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE");
 function compare(a,b){
  const from=new Map(),to=new Map();
  let prefix=0,contradictions=0;
