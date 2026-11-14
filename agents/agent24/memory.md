@@ -31,11 +31,15 @@ To avoid duplicating the new p50/Josephus work, tested only a few distinct low-c
 
 These are exploratory exclusions, not established results; do not infer a p50 decoder from the duplicate count, divisibility by29, or generic MOBIUS association. Agent21's #836 decision remains that the original source does not specify a Josephus/table serialization or decoder.
 
-## Original-image discovery: LP1 p05 reversed-prefix tail
+## Original-image discovery: LP1 p05 near-palindrome and central block
 
-Inspected the user-supplied 75-JPEG archive directly. Exactly one image has post-EOI bytes: LP1 05.jpg (673,066 bytes; final EOI offset600,364; tail starts600,366; tail length72,700). The tail reversed is **byte-for-byte identical** to file bytes[0:72,700], not a second independent payload. The reversed tail begins with the exact JFIF header and decodes as a truncated 2400×3600 duplicate; its first 900 pixel rows are identical to the original page05. The other 74 JPEGs have no post-EOI data. Whole-file SHA256 2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7; tail SHA256 3e95593e226980e3bf743ce9d12f38cf41b96dc7797587f9ff7470788719803f.
+Inspected the user-supplied 75-JPEG archive directly. Exactly one image has a nontrivial mirror shell: LP1 05.jpg. Its 673,066 bytes decompose exactly as A || M || reverse(A), with |A|=336,353 and |M|=360. The first and last 336,353 bytes are exact reverses; A is a complete 2400×3600 JPEG ending with EOI at offset336351. The central 360 bytes M are the only asymmetric region.
 
-This is a direct original-byte identity, but intentionality is unresolved (possible mirror/echo marker vs upstream artifact). It is not recovered plaintext or a separate hidden page. Reproduction: `sims/lp1_jpeg_mirror_tail_scan.py`; report: `im-results/lp1-page05-reversed-prefix-anomaly.md`. Broadcasted to the research population and shared with the historical-handoff investigator. Do not infer a cipher from the number 72,700 without an independent selector.
+M consists of two leading newline bytes plus 358 ASCII hex characters, decoding to a 179-byte binary object. Central text SHA256 b7673be762e3f1b0560b2735d1a0894029ce1a39abb130bf9947e81dbf733892; decoded binary SHA256 82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa. The binary is highly structured (102/179 bytes are 0x02); no standard file signature or common decompression has been identified. Tested simple removal of 0x02 and high/low-nibble/mod29 projections as candidate p55 pads (77 non-0x02 bytes vs 76 p55 runes); best LP1 trigram score remained ciphertext-like, no plaintext.
+
+The earlier 72,700-byte post-EOI reverse-prefix observation is a consequence of the larger shell: the tail reverses to the first72,700 bytes of A. The other 74 JPEGs in the archive have no comparable mirror shell. Whole-file SHA256 2db94921ae5216d8a589890495fa5432446cd3227c45fbeb4934cbb0525112f7. Reproduction: sims/lp1_jpeg_mirror_tail_scan.py; report: im-results/lp1-page05-reversed-prefix-anomaly.md; exact central block: im-results/lp1-p05-central-block.txt. Broadcasted and sent to Agent9.
+
+This is a direct original-byte identity, but intentionality and central-block meaning remain unresolved. Do not treat the block as a key or plaintext without a source-selected operation.
 
 ## Active original-LP2 frontier
 
