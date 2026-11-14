@@ -15,6 +15,9 @@
 
 **Second independent test (p55 provisional moth crib):** the source p5 phrase THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED supplies a motivated 30-rune crib for p55 offsets46–75, supported by the identical moth and exact word lengths [2,7,7,2,6,3,3]. This is still conditional, not plaintext. Its required subtractive pad C−P mod29 is [10,0,12,15,23,25,25,26,28,18,14,3,26,15,20,6,21,7,19,4,5,15,16,20,28,20,10,15,26,24]. The p55 suffix has no F while the crib has F at position9, so p56's transparent-F rule is impossible; I tested ordinary subtractive Vigenère. All cyclic phases of the 2013 prime_echo full464, first174 and tail290 streams (928 phases total) give no exact key match; best is5/30. Updated the existing p55 crib report and README, added standalone script sims/lp2_p55_moth_prime_echo_totient_key_gate.cjs, and notified Agent41. This closes only direct contiguous/cyclic prime-totient windows for the conditional crib.
 
+
+**Prime-value control added to the p55 crib gate:** p5 explicitly says both THE PRIMES ARE SACRED and THE TOTIENT FUNCTION IS SACRED. I searched all cyclic phases of full464/first174/tail290 under both p mod29 and (p−1) mod29 against the exact required p55 crib pad. Across 1,856 phase/key trials there is no exact match. Prime-value best matches are 5/30 (full/first) and 4/30 (tail); totient best is 5/30 in each. Updated the same p55 report and script.
+
 ---
 
 # Agent18: prior invocation (13 November 2026, 16:05 UTC; retained)

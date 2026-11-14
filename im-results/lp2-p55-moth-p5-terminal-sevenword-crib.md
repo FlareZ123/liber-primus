@@ -50,9 +50,9 @@ Five completely specified channels are tested: the original byte remainder modul
 
 **Decision:** the original 2013 audio's raw continuous bytes are **not** a direct key for this particular provisional moth-page suffix under these five source-format and cipher conventions, at *any* offset. This fails a potential historical key-recovery route and recovers no unknown LP2 plaintext. Transcoding the audio, cryptographic hashes/KDFs, a changed cipher format, discontinuous byte sampling and a different proposed plaintext are outside this narrow result. No additional unselected MP3 transformations should be optimized solely from the observed four-rune prefix matches.
 
-## 2013 prime_echo totient-window gate against the provisional p5 crib (Agent18, 14 November 2026)
+## 2013 prime_echo prime/totient-window gate against the provisional p5 crib (Agent18, 14 November 2026)
 
-The provisional terminal crib fixes the last 30 p55 runes as the source-native GP phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS**. This is not established plaintext: it is supported by the repeated p5 moth, exact 30-rune length and word-length sequence **[2, 7, 7, 2, 6, 3, 3]**. The original p5 text itself says **THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED**, making the prime-totient operation a motivated test.
+The provisional terminal crib fixes the last 30 p55 runes as the source-native GP phrase **THE TOTIENT FUNCTION IS SACRED ALL THINGS**. This is not established plaintext: it is supported by the repeated p5 moth, exact 30-rune length and word-length sequence **[2, 7, 7, 2, 6, 3, 3]**. The original p5 text explicitly says **THE PRIMES ARE SACRED / THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED**, so both prime values and their totients are motivated candidate key streams.
 
 The candidate plaintext contains one F at crib offset 9, while the corresponding original p55 ciphertext suffix contains no F. As established in the F-interrupter section below, the p56 literal-F bypass cannot encode this fixed crib. This test therefore uses ordinary subtractive GP29 Vigenère without an F bypass. The required key is fixed rune-by-rune as **K = C − P (mod 29)**; no key text or phase is fitted.
 
@@ -61,11 +61,11 @@ The required 30-symbol pad is:
     [10, 0, 12, 15, 23, 25, 25, 26, 28, 18, 14, 3, 26, 15, 20,
      6, 21, 7, 19, 4, 5, 15, 16, 20, 28, 20, 10, 15, 26, 24]
 
-The original 2013 prime_echo source provides 464 primes. I searched every cyclic starting phase in three source-defined streams, using key symbol (p−1) mod29: all 464 phases of the full stream, all 174 phases of the first block (2–1033), and all 290 phases of the second block (1039–3301), for **928 phase trials**. There is **no exact 30/30 match** in any block.
+I searched every cyclic starting phase in three source-defined streams—full 464, first 174 (2–1033), and final 290 (1039–3301)—under both source-explicit key functions, **p mod 29** and **(p−1) mod 29**. This is **1,856 phase/key trials**. There is **no exact 30/30 match**.
 
-The best alignment is only **5/30** in every block: full stream phases 44, 71 and 264; first block phases 44 and 71; final block phase 90. The corresponding first/last key primes are 197–373, 359–547 and 1697–1931. These short coincidences do not recover a key.
+For the totient key, the best alignment is 5/30 in each block: full-stream phases 44, 71 and 264; first-block phases 44 and 71; final-block phase 90. For prime values, the best is 5/30 in the full and first blocks (phases 60 and 122), and 4/30 in the final block (phases 53, 110, 133, 159 and 261). These short coincidences do not recover a key.
 
-**Decision:** reject direct contiguous or cyclically rotated prime-totient windows from the original 2013 prime_echo list as the subtractive key for this *conditional p55 crib*. This does not disprove the seven-word plaintext hypothesis, nor exclude a different key generator, non-Vigenère operation or other use of the prime source. Do not tune offsets or transforms beyond the complete rotation search without a new source selector. The [standalone original-input gate](../sims/lp2_p55_moth_prime_echo_totient_key_gate.cjs) reproduces the result.
+**Decision:** reject direct contiguous or cyclically rotated prime-value and prime-totient windows from the original 2013 prime_echo list as the subtractive key for this *conditional p55 crib*. This does not disprove the seven-word plaintext hypothesis, nor exclude a different key generator, non-Vigenère operation or other use of the prime source. Do not tune offsets or transforms beyond this complete rotation search without a new source selector. The [standalone original-input gate](../sims/lp2_p55_moth_prime_echo_totient_key_gate.cjs) reproduces the result.
 
 
 ## Authentic historical F-interrupter rule imposes a stronger crib condition (Agent23, 13 November 2026)
