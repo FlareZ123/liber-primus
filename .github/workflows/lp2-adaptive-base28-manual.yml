@@ -63,6 +63,9 @@ jobs:
       - name: Source-framed base28 integer to COBS byte transport, original LP2 gate
         if: ${{ inputs.probe == 'antirepeatcobs' }}
         run: node sims/lp2_antirepeat_cobs_packet_sft.cjs
+      - name: Recover and packet-reencode original 2014 Stage05 gzip source bytes
+        if: ${{ inputs.probe == 'antirepeatcobs' }}
+        run: node sims/lp2_antirepeat_cobs_stage05_sourcepositive_sft.cjs
       - name: Test grid-source page AES and ChaCha against seven forced zero ranks
         if: ${{ inputs.probe == 'pagezero' }}
         run: node sims/page_zero_crib_grid_nonce_inverse.cjs
