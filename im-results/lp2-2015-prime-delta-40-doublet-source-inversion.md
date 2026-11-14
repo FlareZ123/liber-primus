@@ -32,6 +32,22 @@ The inverse is exact for every GP29 sequence: starting at `S[-1]=27`, set `S[i]=
 
 The original **40** exactly reproduces the count from historical L89901; it is therefore an independently dated *historical reconstruction*, rather than an unexplained fitted count. The transformed tape remains almost completely uniform, with **no authenticated readable GP plaintext**.
 
+## Reading the 2015 participant's repeated glyphs directly
+
+The original 2015 participant explicitly noticed **40 equal adjacent values** in the transformed chapter. A human would naturally try reading those values themselves, rather than only counting them. This creates a new *direct plaintext-producing* test with **zero additional unknown choices**: retain each second symbol of the 40 equal adjacent transformed pairs, in source order. The resulting 40 GP rune labels are:
+
+```text
+N E O EA W O OE W C EA EA O T P Y TH B W AE NG I EA M R M O Y Y Y P T W H NG O NG A B B X
+```
+
+There are only **36 maximal equal-value runs**, since three equal-valued plateaus create duplicate event entries. Retaining the symbol only once per maximal run gives:
+
+```text
+N E O EA W O OE W C EA O T P Y TH B W AE NG I EA M R M O Y P T W H NG O NG A B X
+```
+
+Neither literal GP readout is coherent native English or a typed key. This is the complete *source-proposed equal-values-as-message* fork, with no fitted grouping, shift, or post hoc reordering. It does not invalidate the 2015 participant's real 40-event observation, nor infer a universal cipher mechanism from the 40-event count. Event positions and both direct readouts are newly asserted and printed by the [same original-source regression](../sims/lp2_2015_irc_prime_delta_inverse_sft.cjs). The originally observed four-run plateau remains part of this readout rather than being silently discarded.
+
 ## Alignment discrimination and untouched nine-chapter transfer
 
 As a source-preserving control, rotate the original chapter's **entire unchanged 729-rune ciphertext** against the fixed prime stream by each of the 729 possible circular offsets. This preserves every source rune, the unigram histogram and almost every original adjacency. At the historically specified unrotated original alignment, **40** equal pairs is the **unique maximum** among all 729 rotations; the ensemble mean is **25.504801**, standard deviation **4.763578**, and only **1/729** exact orientations reach 40. If both cipher signs and starts with either prime2 or prime3 are included before selecting a result, **2/729** rotations attain the best original 40, the other one corresponding to the same physical alignment under the other starting-prime convention. These are empirical orientation ranks under a defined finite surrogate ensemble, **not discovery-adjusted probabilities that Cicada authored this mechanism**. The operation and its reported count were discovered in 2015, after exploration of prime shifts, and should never be represented as a fresh preregistered prediction.

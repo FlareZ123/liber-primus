@@ -172,6 +172,22 @@ function main(){
   assert.equal(recovered.length-evenDerived,353);
   assert.deepEqual(forward(recovered,ps),page0to2);
 
+  // Natural direct readout of the 2015 witness: read equal-adjacent
+  // prime-difference event values, once per event, or once per run.
+  // No extra key, phase, alphabet fit or word splitting is permitted.
+  const echoIndices=Array.from({length:recovered.length-1},(_,i)=>i+1)
+    .filter(i=>recovered[i]===recovered[i-1]);
+  const runIndices=echoIndices.filter((i,j)=>j===0||
+    i!==echoIndices[j-1]+1);
+  const echoTokens=echoIndices.map(i=>corpus.translit[recovered[i]]);
+  const runTokens=runIndices.map(i=>corpus.translit[recovered[i]]);
+  assert.equal(echoIndices.length,40);
+  assert.equal(runIndices.length,36);
+  assert.equal(echoTokens.join(' '),
+    'N E O EA W O OE W C EA EA O T P Y TH B W AE NG I EA M R M O Y Y Y P T W H NG O NG A B B X');
+  assert.equal(runTokens.join(' '),
+    'N E O EA W O OE W C EA O T P Y TH B W AE NG I EA M R M O Y P T W H NG O NG A B X');
+
   // A genuine original-LP2 solved control, preserved as a literal GP rune
   // tape of p57; the cipher is shown to invert a separate known plaintext,
   // rather than "decrypting" arbitrary synthetic gibberish.
@@ -216,6 +232,14 @@ function main(){
   console.log(JSON.stringify({source:'2015 Feb 04 original IRC L89874, L89887–905',
     operation:'F=0 prepended; shift C_i by -prime(i+2), output consecutive modular difference',
     originalBytesSha256:sha,phaseZeroUniqueMaximumInFirstChapter:true,
+    original2015EqualGlyphReadout:{
+      identicalNeighborEvents:echoIndices.length,
+      distinctEventRuns:runIndices.length,
+      eventOriginalRunePositions:echoIndices,
+      everyEventGPLabels:echoTokens.join(' '),
+      oncePerRunGPLabels:runTokens.join(' '),
+      literalReadoutIsNativeEnglish:false,
+    },
     realP0to2:{cipherDoublets:4,primeDeltaDoublets:40,IoC:ioc(recovered),
       evenDerived,oddDerived:recovered.length-evenDerived,
       uniformGP29EvenExpectation:recovered.length*15/29},
