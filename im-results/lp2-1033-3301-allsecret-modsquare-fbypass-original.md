@@ -59,6 +59,23 @@ The exact singleton state is verified as **zero**, not merely one numerically un
 
 This is an additional original-source exclusion in the same four strict-F architectures. It costs no English assumptions and no starting-key search; it does not exclude a changing modulus, a different state-update law or some entirely different source-selected per-chapter cipher.
 
+## Blind original p55 continuation from a p54-selected state
+
+The only full original visual chapter shorter than the 786–968-rune direct seed-elimination distances is **p54–55, 308 runes**. Its all-state terminal sets therefore contain 18–93 residual states per model. This permits one actual original-source *plaintext attempt*, distinct from counting states: freeze the transition family above, fit the **best remaining state after p54's 232 original runes alone**, then **carry that single state into uninspected p55's 76 original runes**. Do not refit the state, seed, cipher direction or model on p55.
+
+Use an independent GP29 unigram prior from the already solved LP1 translation resource, a fixed **2,162-character native-GP sample with 29 Laplace pseudocounts**. A max-log-likelihood Viterbi over **all initial states** and **all F-skip paths** on p54 yields the following four selected boundary states:
+
+| Declared model | p54 Viterbi-selected state | p54 end states feasible | Training score, nats/rune | p55 fixed-state feasibility | p55 score, nats/rune |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Difference + | 3116091 | 105 | −3.96117 | **impossible** | — |
+| Difference − | **461832** | 123 | **−3.86635** | 1 terminal state | **−4.04924** |
+| Direct + | 3382427 | 238 | −3.89158 | **impossible** | — |
+| Direct − | 2377539 | 223 | −3.87233 | **impossible** | — |
+
+The p54 *best training score* itself selects the negative-difference model before revealing p55. Three of four frozen p54 winners cannot even emit the original 76-runic p55 continuation under mandatory F bypass. The remaining one yields a 76-rune candidate with GP29 IoC **0.03263158** and first transliterated runes **`TH EO TH TH U M R C Y L N P B X E D...`**. It has no coherent contiguous English text. Under the *same* independently solved LP1 unigram prior, the real untouched **95-rune solved p57** scores **−2.89960 nats/rune**, whereas that p55 candidate scores **−4.04924**. The raw p55 ciphertext itself scores **−4.17666** under the same reference. This is a substantial heldout native-language failure rather than authentic plaintext.
+
+The result does **not** exclude every conceivable nonzero state on p54–55: it checks the **single state selected by p54 alone** in each exact model and uses an unambiguous, source-independent scoring prior. Different source-derived initial-state selectors, non-GP output registers or different cipher rules are outside the test. Source-original methods and all four frozen scores are asserted by [the separate standalone p54/p55 heldout SFT](../sims/lp2_1033_3301_p54_holdout_sft.cjs). This stops a retrospective p55-only model search from being mistaken for decryption.
+
 ## Independent positive and scope
 
 The [single runnable CommonJS test](../sims/lp2_1033_3301_allseed_square_sft.cjs) asserts original source dimensions, exact original elimination coordinates, squarefree integer arithmetic, all final singleton states, and the two zero-key IoCs. It additionally checks the complete **36 source-chapter model invocations** with the frozen nine original boundaries and exact survivor counts. It then encrypts **190 genuine independently clear GP29 p57 runes**, namely twice the complete p57 plaintext, under a previously hidden **nonzero initial seed 3299**, for **each** source register and both signs. The same all-seed propagation retains the exact planted final state **1032729** in every case (direct plaintext190 symbols, differential with one explicit IV191 cipher runes). This confirms that the four branch machines can recognize truly generated nonzero-state ciphertext when it exists.
