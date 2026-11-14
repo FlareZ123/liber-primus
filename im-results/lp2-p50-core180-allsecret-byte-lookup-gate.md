@@ -2,7 +2,7 @@
 
 **Status (14 November 2026): a finite original-cipher exclusion, no plaintext recovery.** The printed 32×8 table on physical LP2 pp49–51 has a geometrically literal 30×6 interior of **180 two-character BASE60-derived byte candidates**. That equals the **85** ciphertext runes on solved p56 plus **95** clear GP29 runes on p57. This alignment has already motivated table/known-text hypotheses, but the 180 interior values have only **127 distinct bytes**. Repeated values give a key-independent existence test for any deterministic same-table-byte → same-GP-rune mechanism.
 
-## Locked all-secret test
+**Prior-art boundary.** The [13 November 2026 Agent48 terminal-table gate](lp2-grid256-terminal-solved180-lookup-gate.md) already ruled out all-secret byte→GP29 lookups under full 256-cell traversals and the more natural nested-ring orders for the *same* terminal 76+180 alignment. This result contributes a **distinct row/column traversal of the cropped 30×6 interior** and a separate lag-one affine obstruction below, rather than a first discovery of the 180-symbol terminal correspondence or the general fixed-lookup exclusion. It should be read alongside that stronger 64-ring-per-key analysis.\n\n## Locked all-secret test
 
 - Original input: `resources/liber-primus/lp2-grid-256.json`, 32 table rows × 8 columns; retain rows 1–30 and columns 1–6, in zero-based coordinates. This leaves 180 cells. Original scans are `66.jpg`, `67.jpg`, `68.jpg`. The BASE60 byte reading is derived and conditional; the canonical token readings remain the source transcription.
 - Independently known targets: `resources/liber-primus/lp2-corpus.json` p57's **95 clear source-native runes** and either p56's **85 printed ciphertext runes**, or the independently solved **85-rune plaintext** `AN END WITHIN THE DEEP WEB ... OUT THIS PAGE` in authentic GP orthography. No fitted plaintext or guessed key enters the comparison.
@@ -23,6 +23,23 @@
 These are counts of later positions disagreeing with the **first-seen** assignment for each byte, not minimum edits or p-values. The minimum is **14 unavoidable p57-only inconsistencies** over the eight allowed orders. Even if p56’s 85 positions are ignored completely, no shared deterministic byte→rune mapping explains the last 95 clear runes for any of these order choices.
 
 **A direct human-checkable contradiction.** In the unflipped row-major interior, offsets **85** and **91** (zero-based; printed full-grid row,col **(15,2)** and **(16,2)**) contain the identical byte **86** (printed BASE60 token `1Q`). These become solved p57 rune offsets **0** and **6**, whose authentic plaintext runes are **P** and **E**. Thus `f(86)` would have to equal both distinct letters. This kills even a wholly secret, non-bijective fixed lookup. The SFT also plants an arbitrary secret table-byte function and confirms it gives exactly zero contradictions on duplicated bytes.
+
+
+## Independent p57-only first-neighbor affine family
+
+Static lookups are already obstructed above and in Agent48's prior study. A different potentially reversible interpretation uses an *evolving local state* and a completely arbitrary secret **three-coefficient** GF(29) relation. It is cheap to test with the exact 95-rune clear p57 target because the unknown coefficients can be eliminated by linear algebra rather than searched.
+
+For each original 30×6 interior readout, allow eight rectangular dihedral orders plus eight geometric ring orders (four corners × either direction, three nested rings read from outside inward). Apply each of three independent candidate relations to the authentic **94 postinitial p57 runes**, deliberately omitting its first rune to permit a chapter-boundary state reset:
+
+- **Input feedback:** `T[i] = a·B[i] + b·B[i-1] + c (mod 29)`
+- **Output feedback:** `T[i] = a·B[i] + b·T[i-1] + c (mod 29)`
+- **Lookahead:** `T[i] = a·B[i] + b·B[i+1] + c (mod 29)`
+
+Here `B` is the exact chosen 180-cell byte stream reduced modulo29; `T[i]` is the target GP29 rune at the aligned p57 position. The prior p56 85 positions may be either ciphertext or plaintext; **the result needs neither**, since it begins at p57's second letter. The lookahead stream is wrapped only at its final cell, a fixed convention; the positive or negative conclusion does not rely on the last target rune alone.
+
+For **all 16×3=48** source-shaped layout/operator cases, the 94×3 coefficient matrix has rank **3** and the corresponding 94×4 augmented matrix has rank **4** over GF(29). This proves there is no possible secret coefficient triple `(a,b,c)` that produces the original 94 p57 runes in **any** of the 48 cases. In every case, replacing the target with an independently generated full-length synthetic affine output using secret coefficients `(3,7,11)` produces equal coefficient/augmented ranks, providing a correct detector control.
+
+**Consequence:** the source-driven 76+180 terminal-table geometry does not yield a simple first-neighbor affine byte-to-GP29 decoder, even with its full three-parameter secret space and with output feedback, under these 16 original-layout readings. This is a bounded extension of the prior terminal all-secret lookup test, not evidence against all stateful, GF256, nonlinear, key-dependent or permuted decoders. It provides **no p55 plaintext, true key or historical cipher selection**. Reproduce with the **same expanded** `sims/lp2_p50_inner180_allsecret_lookup_sft.cjs`, which asserts the exact rank obstructions and 48 positive plants.
 
 ## Consequence and limits
 
