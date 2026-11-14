@@ -1,6 +1,6 @@
 # Original p39 red quadratic: all-secret 203-period additive-stream exclusion
 
-**Agent 50, 14 November 2026. Evidence status: key-independent original-cipher exclusion, conditional on a newly specified source-based operation and native GP-English register.** The additive and ciphertext-forced feedback hypotheses tested below do **not** recover unknown LP2 plaintext, an original author-specified key, a full cipher, or Cicada's continuation address. The reason to retain it is a decisive, inexpensive result for a distinct **two-state recurrence whose coefficients come from a visibly marked three-rune original clue**, rather than fitting a guessed keystream.
+**Agent 50, 14 November 2026. Evidence status: key-independent original-cipher exclusion, conditional on a newly specified source-based operation and native GP-English register.** The autonomous, ciphertext-forced and plaintext-autokey hypotheses tested below do **not** recover unknown LP2 plaintext, an original author-specified key, a full cipher, or Cicada's continuation address. The reason to retain it is a decisive, inexpensive result for a distinct **two-state recurrence whose coefficients come from a visibly marked three-rune original clue**, rather than fitting a guessed keystream.
 
 ## Authored source and precise missing step
 
@@ -74,6 +74,32 @@ Every alternative remains below **1,129 pairs**, the lowest of the **300 exact-o
 
 **Decision for this extension:** these four *source-defined quadratic, ciphertext-forced two-state GP29 additive variants* likewise fail the fixed original pp40–53 English register for **every possible two-rune starting key**. This covers an independent, generally aperiodic feedback family; it does not establish that Cicada used ciphertext-driven feedback, the p39 quadratic as taps, or an additive cipher at all. Secret state-dependent symbol alphabets, word/page clocks and further nonlocal operations are outside these tests.
 
+## Plaintext-driven quadratic autokey: all 3,364 original full-seed inverses
+
+A third, historically familiar operation is a **plaintext-autokey cipher**, advancing a two-rune register from the recovered previous plaintext rather than from published ciphertext. It is a genuinely different family from the additive autonomous and ciphertext-forced cases above. Take the exact same original p39 quadratic and solve
+
+\[
+C_i=P_i+s\,k_i\pmod{29},\qquad
+k_{i+2}=19k_{i+1}+4k_i+f(P_i)\pmod{29},
+\]
+
+where \(s\) is either sign, \(f(P)\) is either the **GP index** or the corresponding **GP prime value reduced modulo29**, and \(k_0,k_1\) are completely unknown. This is a reversible sequential cipher under any initial state: recover \(P_i=C_i-s\,k_i\), then compute \(k_{i+2}\). Plaintext feedback generally destroys the exact 203-period all-secret cancellation of the preceding tests, so here **every one of the 841 possible seed pairs is actually decrypted** for each of the four finite models, **3,364 distinct complete 3,000-rune original inverses**.
+
+Use original printed word boundaries without fitting them. Train a fixed GP29 within-word bigram log model on repository Shakespeare, using standard published GP multigraph and historical orthography normalizations. Evaluate the untouched 2,333 within-word transitions in each original inverse. Independently construct 100 length-matched GP-native Gibran controls using the exact 667 original word sizes; source-word values never enter the original key search. The entire controls' scores are **−2.41812 through −2.30111 nats/within-word pair**, with median **−2.36351**. The unmodified original ciphertext scores **−5.69732**.
+
+| Decoded plaintext feedback injection | Cipher sign | Best secret seed \((k_0,k_1)\) of all 841 | Best original GP-English log score |
+| --- | --- | --- | ---: |
+| GP rune index | +1 | (10, 5) | **−5.49550** |
+| GP rune index | −1 | (26, 10) | **−5.53483** |
+| Assigned GP prime modulo29 | +1 | (14, 12) | **−5.73197** |
+| Assigned GP prime modulo29 | −1 | (3, 13) | **−5.65701** |
+
+Even the strongest of the **3,364 full original decryptions** falls far below *every* length-matched true English control under this independently fixed text metric. The SFT forward-reconstructs all **3,000 original ciphertext runes** from each of the four best complete keys. Four source-native positive plants of the same length under planted seed [9,24] reverse to their complete native plaintext **exactly**, and the exhaustive language ranker detects the correct native-language register. The ranker is **not assumed to recover the unique planted seed**: in one positive experiment a different seed scored higher while the true seed reconstructed perfectly. This distinction is explicitly preserved in the executable as an identifiability limitation rather than silently calling a score-maximizing seed the true key.
+
+This is a key-complete original negative on a fixed 2014-available two-state plaintext-autokey construction. A non-GP English output, a different injection alphabet, page-local resets, an independent non-additive layer, or another meaning of the red inscription remains outside this finite test. No source establishes that the creator meant autokey.
+
+**Reproducer:** [quadratic plaintext-autokey all-secret SFT](../sims/lp2_p39_quadratic_plaintext_autokey_allsecret_sft.cjs). [Passing Windows Node22 original all-seed, all-model regression 43542272241](https://github.com/FlareZ123/liber-primus/actions/runs/43542272241), after correcting the planted-seed uniqueness assumption exposed by the prior test.
+
 ## Reproduce and decision
 
 Run the [single runnable CommonJS original-input test](../sims/lp2_p39_quadratic203_allsecret_sft.cjs) on Windows Node 22 from the repository root:
@@ -84,4 +110,4 @@ Run the [single runnable CommonJS original-input test](../sims/lp2_p39_quadratic
 
 It reads the immutable resources/liber-primus/lp2-corpus.json, the full original lp2-transcription.txt word-boundary source and the same checked resources/control/gibran_prophet_58585.txt reference already used by the per-page progressive-affine gate. It asserts the original p39 red-triad indices, the complete 3,000-rune/667-word original target, quadratic normalization, period proof, original 745/20,685 result, all 1,682 original autonomous keyed inverses, four ciphertext-forced all-key invariants, all three reference quantiles and independent encrypted-GP positive plants. The exact decoded output is intentionally not language-fitted.
 
-**Decision:** retire the *fixed continuous p39 quadratic two-state GP29 additive cipher*, including the autonomous period-203 variant and the four ciphertext-forced index/prime variants, as direct unchanged-word-boundary GP-English explanations of the p40 section. A page-reset clock, different use of the quadratic, non-additive or transformed interior symbol register, and a different plaintext language remain open; no original instruction selects them. Further seed optimization is logically unable to change the original equality count. Prefer an independently source-supplied output operation or genuine key material before revisiting this branch.
+**Decision:** retire the *fixed continuous p39 quadratic two-state GP29 additive cipher* in its autonomous, four ciphertext-forced and four plaintext-autokey variants as direct unchanged-word-boundary GP-English explanations of the p40 section. The autonomous and ciphertext-forced decisions use exact all-key collision invariants; the plaintext-autokey decision exhausts all 3,364 keys and uses a frozen, positive-controlled GP-native scoring gate. A page-reset clock, different use of the quadratic, non-additive or transformed interior symbol register, and a different plaintext language remain open; no original instruction selects them. Further seed optimization is logically unable to change the original equality count. Prefer an independently source-supplied output operation or genuine key material before revisiting this branch.
