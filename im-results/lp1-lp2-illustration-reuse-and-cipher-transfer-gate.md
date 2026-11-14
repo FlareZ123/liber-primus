@@ -22,6 +22,27 @@ Original-JPEG registration of the LP1 p9 690×185 insect crop gives an **exact b
 
 This is a material limitation on the first line of the table: **LP2 p2 has at least three separately positioned solved-LP1 appearances of the same insect**, and none selects p9's first-koan cipher over p13's instructions or p16's square. Therefore direct P=2−C remains a historical operation worth one source-literal check, but its *selection* is not unique and neither a positive nor negative would establish what the maker intended without more evidence.
 
+## Same moth, different JPEG block phase: paired-image hidden-instruction gate (Agent 50, 14 November 2026)
+
+The two source-original moth copies at `70.jpg` (LP2 p53) and `72.jpg` (LP2 p55) are positioned **67 rows and 66 columns apart** within their 2400×3600 JPEGs. The matching 550×1270 source artwork crops are p53 `[2663:3213, 564:1834]` and p55 `[2730:3280, 630:1900]` in row/column order. The existing exact-raster comparison finds 524,971 identical gray pixels out of 698,500 and signed pixel differences between −10 and +9. These faint differences could tempt a difference-image steganography interpretation.
+
+**A new source-specific compression control explains most of the differences without a second message.** Both original JPEGs carry identical quantization tables and 4:2:0 chroma sampling. Average their two geometrically registered RGB artwork crops, insert this **one reconstructed common source** into two otherwise white full-size pages at the source positions, then JPEG-encode both pages with the **exact original quantization tables and 4:2:0 sampling**. No original cipher rune or JPEG coefficient is overwritten. The synthetic pair has only the **two different original JPEG 8×8 block phases**; no inserted secret. Compare the original signed RGB-mean image difference with the synthetic pair's signed difference, pixel by pixel:
+
+| Frozen 550×1270 paired artwork readout | Original | One-source, two-JPEG-phase control |
+| --- | ---: | ---: |
+| Mean absolute signed RGB-mean difference | **0.43757337** | **0.41416321** |
+| Pixelwise original/control difference correlation | \- | **0.86169541** |
+| Squared correlation (descriptive fit only) | \- | **0.74251897** |
+| Original minus phase-predicted difference, absolute mean | \- | **0.20321546** |
+| Residual root-mean-square | \- | **0.52160756** |
+| Residual pixels whose absolute RGB-mean discrepancy exceeds 3 | \- | **158/698,500** |
+
+An **independent planted local RGB+12 modification** to a 40×200-pixel rectangle in the first image survives the same two-phase correction: residual RMS grows to **1.09558560** from **0.52160756**, proving the method is responsive to an actual source-only alteration. The original residual has only scattered sparse discrepancies and no visually legible additional letters or bitplane structure when inspected as an amplified signed image. This isolates a mundane, physically specific cause of most apparent mismatch: encoding the same raster at two different native JPEG block alignments.
+
+**Decision:** The raw p53/p55 moth pixel difference is **not by itself a decipherment instruction or authenticated stego readout**. Most of its magnitude is predicted by phase-dependent JPEG loss, without hidden information. This is an original-image conditional explanation, **not proof that lower-amplitude, embedded JPEG-DCT/LSB, keyed steganography, or a nonvisual payload is absent**. The reconstructed common source is an estimated average and does not reproduce the author's true uncompressed drawing. A future claim of deliberate differential marking should specify a recoverable channel **remaining after** this original-phase null, and a positive decoding on withheld pixels, rather than treating every 1–3-level artifact as a bit.
+
+[Read-only Python/Pillow/NumPy reproducer with source-only planted positive](../sims/lp2_moth_jpeg_phase_pair_sft.py). It loads the actual unmodified 70/72 JPEGs from `resources/liber-primus/`, checks dimensions and quantization, reconstructs the single underlying crop, performs two full-page JPEG encodings at their original coordinates, and prints/asserts all statistics. The source file was independently run against exact ZIP bytes of the archive on 14 November 2026.
+
 ## Duplicated moth as a two-time-pad clue: exact original word-grammar and 25-phase decisions
 
 **Source-selected comparison.** The image-aligned p53/p55 moths are virtually identical rasters after a (+66,+67) translation, but the pictures supply no common clock or explicit reused-key instruction. If the same position-wise GP29 additive key was reused, the unknown key cancels: (C53[i]−C55[i]) mod29 = (P53[i]−P55[i]) mod29. This is a *necessary* plaintext-pair condition independent of all 29^75 possible common keys. Freeze original physical p53 local offsets 0–74 against the actual complete-body p55 runes at page-local 1–75, omitting the p54 NG carry. Neither a freely shifted pad nor a fitted F skip is permitted.
