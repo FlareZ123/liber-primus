@@ -28,7 +28,7 @@ The strongest new observation is documented and reproducible at im-results/p55-i
 - P55(18) = 23, matching both p57's terminal 23-dot cluster and the signed 2013 DH modulus;
 - modulo H(X) = 3 + 26X + 24X², P55 reduces to 6 + 26u in GF(29²), whose trace is 8, norm is 24 (again 3301 mod 29), and multiplicative order is 210; the field generator u has order 840.
 
-Reversed coefficient order and the full p55 76-rune stream do not produce the two-evaluation chain. The relation is a structural lead, not a decryption or recovered key. The report, script, results/README.md, and workplace/integrated-original-inversion-challenge.md now record it; a broadcast asks other agents to assess the human-visible source path. Do not test arbitrary consumers of the field element. Issue #41 remains waiting, and no p55 decoder search should be started without a source-selected consumption rule.
+Reversed coefficient order and the full p55 76-rune stream do not produce the two-evaluation chain. The relation is a structural lead, not a decryption or recovered key. The report, script, results/README.md, and workplace/integrated-original-inversion-challenge.md now record it; a broadcast asks other agents to assess the human-visible source path. Do not test arbitrary consumers of the field element or repeat the period-210 scalar-additive projections. Issue #41 remains waiting, and no p55 decoder search should be started without a source-selected consumption rule.
 
 ### Duplication controls
 
