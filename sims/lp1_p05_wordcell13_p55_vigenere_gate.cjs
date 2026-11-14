@@ -11,6 +11,8 @@
  *   GP29 operation with literal, non-consuming F interrupters.
  * - The 2016 signed message says "words are the map, numbers are the direction",
  *   motivating a numeric-rank columnar-transposition control.
+ * - The p57 "shed circumferences" reading of the p05 central column gives
+ *   CABAL→UOID→FORM (13 GP runes); test its φ(GP-prime-weight) key as well.
  *
  * Test only the row-major 13-word-cell key, raw sums or phi(sum) mod 29,
  * either additive direction, two source-motivated p55 alignments (include
@@ -82,6 +84,17 @@ assert.deepEqual(wordCellSums, [
 const rawKey = wordCellSums.map((value) => mod(value));
 const wordCellTotients = wordCellSums.map(phi);
 const phiKey = wordCellTotients.map(mod);
+
+// The source-derived p05 central-column path CABAL → UOID → FORM is 13 GP
+// runes. Apply the page's prime/totient instruction to each key rune's GP
+// prime weight, matching the known p56 φ(prime) operation.
+const phraseKeySymbols = plaintextWords("CABAL UOID FORM").flat();
+const phraseKeyText = phraseKeySymbols.map((index) => corpus.translit[index]).join("");
+assert.equal(phraseKeyText, "CABALUOIDFORM");
+assert.equal(phraseKeySymbols.length, 13);
+const phraseKeyPrimeWeights = phraseKeySymbols.map((index) => gpPrime[index]);
+const phraseKeyPhiMod29 = phraseKeyPrimeWeights.map((value) => mod(phi(value)));
+assert.deepEqual(phraseKeyPhiMod29, [12, 9, 2, 9, 14, 2, 6, 1, 1, 1, 6, 10, 12]);
 assert.equal(rawKey.length, 13);
 
 const p55 = corpus.pages.find((page) => page.page === 55).indices;
@@ -202,7 +215,7 @@ function columnarInverse(cipher, values, descending, carryLiteral) {
 // Positive implementation control: a held-out native-GP plant must round-trip
 // under each source-derived additive key, sign, and carry alignment with no F bypass.
 let plantedControls = 0;
-for (const key of [rawKey, phiKey]) {
+for (const key of [rawKey, phiKey, phraseKeyPhiMod29]) {
   for (const sign of [-1, 1]) {
     for (const carryLiteral of [false, true]) {
       const encrypted = forward(heldoutShakespeare, key, sign, 0, carryLiteral);
@@ -212,7 +225,7 @@ for (const key of [rawKey, phiKey]) {
     }
   }
 }
-assert.equal(plantedControls, 8);
+assert.equal(plantedControls, 12);
 
 // Positive implementation control for the source-motivated 13-column
 // numerical-rank transposition, with stable row-major tie handling.
@@ -230,7 +243,11 @@ for (const values of [wordCellSums, wordCellTotients]) {
 assert.equal(plantedColumnarControls, 8);
 
 const variants = [];
-for (const [keyName, key] of [["word-prime-sums", rawKey], ["word-sum-totients", phiKey]]) {
+for (const [keyName, key] of [
+  ["word-prime-sums", rawKey],
+  ["word-sum-totients", phiKey],
+  ["central-column-phrase-phi-prime", phraseKeyPhiMod29]
+]) {
   for (const sign of [-1, 1]) {
     for (const carryLiteral of [false, true]) {
       for (let mask = 0; mask < (1 << FPositions.length); mask++) {
@@ -250,7 +267,7 @@ for (const [keyName, key] of [["word-prime-sums", rawKey], ["word-sum-totients",
     }
   }
 }
-assert.equal(variants.length, 64);
+assert.equal(variants.length, 96);
 
 const columnarVariants = [];
 for (const [keyName, values] of [["word-prime-sums", wordCellSums], ["word-sum-totients", wordCellTotients]]) {
@@ -280,6 +297,10 @@ const rank = (items) => items.slice().sort((a, b) => b.score - a.score);
 const bestOverall = rank(variants)[0];
 const bestRaw = rank(variants.filter((item) => item.keyName === "word-prime-sums"))[0];
 const bestPhi = rank(variants.filter((item) => item.keyName === "word-sum-totients"))[0];
+const bestPhrase = rank(variants.filter((item) => item.keyName === "central-column-phrase-phi-prime"))[0];
+const bestPhraseSubtract = rank(variants.filter((item) =>
+  item.keyName === "central-column-phrase-phi-prime" && item.direction === "subtract"
+))[0];
 const bestColumnar = rank(columnarVariants)[0];
 const bestRawColumnar = rank(columnarVariants.filter((item) => item.keyName === "word-prime-sums"))[0];
 const bestPhiColumnar = rank(columnarVariants.filter((item) => item.keyName === "word-sum-totients"))[0];
@@ -294,6 +315,9 @@ const report = {
     rawPrimeSumKeyMod29: rawKey,
     eulerTotientKeyMod29: phiKey,
     wordCellTotients: wordCellTotients,
+    centralColumnPhrase: phraseKeyText,
+    centralColumnPhrasePrimeWeights: phraseKeyPrimeWeights,
+    centralColumnPhrasePhiMod29: phraseKeyPhiMod29,
     p55OriginalRunes: p55.length,
     p55IncomingCarryRune: corpus.translit[p55[0]],
     p55VisibleFPositions: FPositions
@@ -318,6 +342,8 @@ const report = {
   bestAdditiveOverall: bestOverall,
   bestRaw,
   bestPhi,
+  bestPhrase,
+  bestPhraseSubtract,
   topAdditiveEight: rank(variants).slice(0, 8),
   bestColumnar,
   bestRawColumnar,
