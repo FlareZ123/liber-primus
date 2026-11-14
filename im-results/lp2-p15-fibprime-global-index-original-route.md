@@ -17,6 +17,8 @@ Before examining output, fix the source-generated sixteen printed p15 numbers in
 | Zero-based | `OE W A Y L U M U L H T G AE B U M N` |
 | One-based | `W G IA X F OE O NG H AE AI W L L F P` |
 
+**Internal comparison of the entire source-generated index family:** under the same one-based convention, **four of the sixteen original printed grid terms** already hit the beginning of ordinary unrelated ciphertext words; with the one extrapolated term the result is **five word starts in seventeen indices**. There are 2,896 printed-word starts among 12,956 rune positions, a book-wide baseline of 22.35%. The p42 PNW term is the only three-rune-word *start* among the seventeen sampled positions, but there are **720** such starts across the manuscript, a book-wide baseline of 5.56% per uniformly sampled position. The prime-generated indices are clustered, so these baselines are descriptive rather than independent-trial p-values. The distinctive PNW interpretation was noticed after reading the output. The first-word alignment alone does not demonstrate that the authors intended the route.
+
 The source exact sampled zero-based positions are `3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516,10176`; the one-based positions subtract exactly one. Neither direct readout is a coherent English/GP instruction. The first 16 numerical outputs match **all sixteen original printed p15 cells**, and the next two computed values are checked exactly. The complete original corpus and target location are asserted by the runnable reproducer.
 
 ## Research decision
