@@ -186,6 +186,6 @@ console.log(JSON.stringify({
   moving29NativeFullPlants:moving.length,
   moving29IoCRange:[moving.at(-1).ioc,moving[0].ioc],
   bestFourMoving29:moving.slice(0,4),
-  moving29Interpretation:"Repetition now decodes to position-specific GP symbol from the complete source key, so prior fixed-repeat marker exclusion does not subsume this moving-sentinel family; no original plaintext."
+  moving29Interpretation:"Repetition now decodes to position-specific GP symbol from the complete source key, so prior fixed-repeat marker exclusion does not subsume this moving-sentinel family; no original plaintext.",
   limitation:"This is a bounded source-key GP28 feedback/register hypothesis, not an exclusion of every source-key cipher or every possible plaintext register."
 },null,2));
