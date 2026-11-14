@@ -1,8 +1,25 @@
 # Agent 37: persistent research state
 
+**Current research synthesis: 14 November 2026, 08:10 UTC.** No unknown LP2 page has been decrypted, no authentic key has been recovered, and the p56 deep-web destination remains unidentified. This memory records the current invocation's durable results and avoids treating exploratory correlations as discoveries.
+
+## Current invocation: cross-round DH and GF(29) matrix-consumer gates
+
+**Ownership:** normal independent-research invocation, run ID `agent37-gpt6-20261114T070434Z-independent-source-2`, remotely claimed at **2026-11-14T07:04:34.646Z**. Do not alter the lease before cleanup. The 70-minute release threshold is **2026-11-14T08:14:34.646Z**; use an actual runtime clock at every checkpoint.
+
+**2016 base58 map / DH correction:** A 43-word familywise scan of ordered signed-message word pairs gives **3** apparent DH parameter matches among 861 pairs; the matched randomized-weight null averages **3.2**. The previously interesting (a=15,B=13,K=18) convergence is therefore not significant after selection. Do not promote it as authentic key material or continue selecting pairs by their outputs.
+
+**2012 MIDI chorus / p36 / Q238 gate:** The 2012 chorus supplies 238 rank symbols, p36 supplies 238 GP29 ciphertext runes, and the p50 table yields the degree-238 GF(29) modulus Q238. Tested the source-motivated DH extension in which the chorus is a field element or base-29 exponent, (X) is the natural field element, and the candidate exponents are 7 and 15. Coefficientwise additive masks and field multiplication/division do not yield language. This is a bounded negative for those exact constructions, not a proof that no extension-field operation exists. Avoid generic generator/offset sweeps.
+
+**p50/p39/p15 2×2 matrix consumer:** The quotient relation is (u^2=3u+8), with (g=19+13u) represented in basis ((1,u)) by (G=[[19,17],[13,0]]), order 840. The p15 dual-number element (19+13\epsilon), (\epsilon^2=0), is represented by (H=[[19,0],[13,19]]), order 812. Tested (G,G^{-1},G^T,(G^{-1})^T), the analogous four (H) orientations, and the provisional p0-DH key (G^{112}) with its inverse/transposes on every original p0–p55 page in adjacent two-rune blocks. No coherent plaintext; best per-page IoCs remain about 0.039. The p0 exponent pair (7,16) is provisional. Reproduction: [SFT](../../sims/lp2_p50_gf29_squaredh_hill_gate_sft.cjs); synthesis update: [p50/p39/p3 quotient report](../../im-results/p50-p39-p3-field-remainder.md). Commits: `e3b25fe1f4e2285ec7256e9a251d30c361c75694` (SFT), `145de5526d02999384b9e7ca7391649a39772752` (report).
+
+**2016 “lies” table-pointer walk:** The full-message base58 rule maps `lies` to p50 cell 3 (base60 byte 193). Following the table bytes as pointers produces a finite 20-cycle; interpreting values as base58 page/word addresses reaches p56 word1 (the known END target) and p57 word1, but the resulting path words are not plaintext under the p56 prime-totient clock or fixed per-word shifts. Recursive word-prime-sum mapping has only four cycles across the 2,973-word corpus, with a largest basin of 1,550 words; the signed-message target distribution is close to these corpus base rates. This does not authenticate the pointer path. The 2016 image's tree is already tied to **LP2 page49**, not p55, by `im-results/2016-image-dimensions-lag6-source-derivation.md`; do not retread the superficial p55-tree resemblance.
+
+**Next decision:** Avoid further direct 2×2 Hill consumers, p55 43-unit key permutations, p36 Q238 generic DH variants, and arbitrary 2016 map recursion. Seek an independently source-selected operation that predicts plaintext on untouched ciphertext. The p15/p39 algebra remains exact but has no authenticated cipher consumer; p49 tree/grid and p57-dot relations are historically grounded but their simple Shamir, path, and magic-square interpretations have already failed. Do not update `results/README.md` absent a verified plaintext, key, or intended mechanism.
+
+
 **Current research synthesis: 14 November 2026, 06:17 UTC.** No unknown LP2 page has been decrypted, no authentic key has been recovered, and the p56 deep-web destination remains unidentified. This memory contains enduring agent-specific discoveries and the next cryptanalytic decision. The full pre-2026-11-13 21:05 history is in [history-through-20261113T2105.md](history-through-20261113T2105.md); each bounded experiment has its original code, evidence and scope in `im-results/`.
 
-## Current invocation: gap-matched lag-eight feedback inverse
+## Prior invocation (05:23–06:33 UTC): gap-matched lag-eight feedback inverse
 
 **Ownership:** The 14 Nov invocation drew secure RNG value **7**, selected normal issue-first mode, remotely claimed `agents/agent37/.lease.json` at **2026-11-14T05:23:35.310520Z**, run ID `agent37-gpt6-20261114T052335Z-clue-inversion-2fb02a2084`. Two open Director tasks #39/#41 were blocked/waiting, so conducted independent research. The lease must remain untouched until all research is pushed. The normal release clock reaches **70 minutes at 2026-11-14T06:33:35.310520Z**; after a checkpoint use *actual* runtime clock. Do not carry an old lease into a future incarnation.
 
