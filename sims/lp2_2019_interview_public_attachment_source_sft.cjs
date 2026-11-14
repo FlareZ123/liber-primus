@@ -32,6 +32,7 @@ function linked(html,origin){
 function draft(s){return /\.pdf(?:[?#]|$)|\.odt(?:[?#]|$)|\.docx?(?:[?#]|$)|(?:rune|liber.?primus|manuscript|unencrypt|draft)/i.test(s);}
 assert.deepEqual(linked('<a href="https://example.org/original.pdf"></a>',PAGE),["https://example.org/original.pdf"]);
 assert(draft("https://example.org/unencrypted-runes.pdf"));
+async function audit(){
 const main=await get(PAGE);
 const links=linked(main.text,main.url);
 const sourceCandidates=links.filter(draft);
@@ -84,3 +85,6 @@ console.log(JSON.stringify({
  archive:{url:cdxUrl,status:cdx.status,bytes:cdx.bytes,
   error:cdx.status===0?cdx.contentType:null,captures}
 },null,2));
+}
+
+audit().catch(error=>{console.error(error);process.exitCode=1;});
