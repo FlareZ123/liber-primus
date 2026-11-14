@@ -19,3 +19,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Syntax failed' }
           node sims/lp2_p15_projective_infinity_quadrant_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Original source test failed' }
+          node --check sims/lp2_p15_projective_fibonacci_allstate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Fibonacci syntax failed' }
+          node sims/lp2_p15_projective_fibonacci_allstate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Fibonacci original all-secret test failed' }
