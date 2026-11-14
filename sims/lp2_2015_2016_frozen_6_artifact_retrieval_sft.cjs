@@ -59,5 +59,18 @@ async function main() {
  // Parallel acquisition: same six frozen source-linked objects, no follow-on key search.
  const results=await Promise.all(objects.map(acquire));
  for(const r of results)console.log('FROZEN_SOURCE '+JSON.stringify(r));
+ const missing=results.map((r,i)=>({r,item:objects[i]}))
+  .filter(x=>x.r.error||!x.r.looksLikeSourceDocument);
+ const archived=await Promise.all(missing.map(async ({item})=>{
+   const stamp=item.date.replace(/^(\d{4}) (\w{3}) (\d{2})$/,(_a,y,m,d)=>
+     y+String(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(m)+1).padStart(2,'0')+d);
+   const url='https://archive.org/wayback/available?url='+encodeURIComponent(item.source)+'&timestamp='+stamp;
+   try {
+     const res=await fetch(url,{signal:AbortSignal.timeout(12000)});
+     const body=await res.text();
+     return {name:item.name,original:item.source,status:res.status,available:body.slice(0,800)};
+   } catch(e){return {name:item.name,original:item.source,error:String(e)};}
+ }));
+ for(const r of archived)console.log('SAME_OBJECT_ARCHIVE '+JSON.stringify(r));
 }
 main().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
