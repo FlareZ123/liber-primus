@@ -23,6 +23,16 @@ These starts are reproducible from the original grayscale images by summing dark
 
 Each printed row visibly groups eight two-character tokens across the same eight horizontal positions. The original glyph audit segments the full table as 512 glyphs / 256 tokens / 32 rows; one touching pair (0J, p51 first row) needs connected-component splitting rather than a simple horizontal projection. The table has no printed cell borders, but the stable token gaps and aligned positions define its eight columns.
 
+## Original runic handoff around the table (14 November 2026 source clarification)
+
+The **66** rune positions printed above the numerical rows on p49 (66.jpg) and the **92** positions printed below them on p51 (68.jpg) are adjacent to the table, but they are **not a self-contained 158-rune unit of complete printed words**. The original p48 last line (65.jpg) ends with eight runes of an unbroken word, transliterated `EO-F-U-D-Y-A-L-F`; the first and only first-rune fragment on p49 is `IA`, completing the nine-rune word `EO-F-U-D-Y-A-L-F-IA`. The text above the grid ends with the complete six-rune word `OE-EO-W-J-P-D`, followed by an original **red ten-dot punctuation mark at p49 local rune offset 66**. It is not the red thirteen-dot marker defining a top-level visual-chapter ending.
+
+After the 32nd numeric row on p51, the first black runic text word is `W-W-P`, **without a new red heading or source-visible cipher-state instruction**. The last three runes on p51 are `P-L-F`; the first rune of p52 (69.jpg) is `P`, completing `P-L-F-P` across that physical page break. Neither the p49 pre-grid runic passage nor the p51 post-grid passage can be extracted as a complete standalone word sequence without changing the original printed boundaries. The table's 10 / 13 / 9 row breaks occur at complete numeric rows, and the adjacent text's physical-page word carries occur outside the table.
+
+This is a **constraint on proposed consumers**, not a decoding rule: a table-as-key proposal must specify whether its clock follows complete words, only page-local runes, or the continuous p40–53 chapter. The straightforward 158-rune centred key hypothesis was already exhaustively tested under its explicitly conditional direct GP29 additive model in [the flank-pad gate](lp2-p49-p51-centred-grid-pad-gate.md), with nonprose output. The independently established **nine visual chapters** put the next top-level ending at p53, not at the internal p49 red ten-dot sentence marker. There remains no first-party instruction choosing a particular table cell, byte-to-rune transport, starting state, reversibility, or adjacent ciphertext consumer. Further unsourced centred windows and cipher-key enumerations are not justified by this layout.
+
+Source witnesses: unchanged original `65.jpg`, `66.jpg`, `68.jpg`, `69.jpg`; canonical printed word/line/page delimiters in `resources/liber-primus/lp2-transcription.txt`; physical rune counts in `lp2-corpus.json`; original-image-adjudicated red marker `lp2-ink-annotations.json`. All page labels here are physical LP2 page numbers, with archive numbers +17.
+
 ## Reading-order cues and limits
 
 - The printed rows are read conventionally left-to-right; the rows proceed top-to-bottom, and the physical pages proceed 49→50→51. The eight token positions recur across every row and all three scans.
