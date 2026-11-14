@@ -127,5 +127,20 @@ async function main(){
       console.log('  L'+r.line+' '+r.day+' '+r.minute+' <'+r.nick+'> '+r.body.slice(0,360));
     }
   }
+  // Predeclared follow-up: original claim contexts, retaining all transcript
+  // voices and exact source line numbers rather than inference from scores.
+  const anchors=[165608,179464,195923,204070,212616,220697,227842,237791,237816,237863];
+  const original=full.find(f=>f.name==='#cicadasolvers.freenode.log');
+  for(const anchor of anchors){
+    const center=original.rows.findIndex(r=>r.line===anchor);
+    if(center<0){console.log('FOCUS_MISSING '+anchor);continue;}
+    const ref=original.rows[center];
+    console.log('FOCUS '+anchor+' '+ref.day+' '+ref.minute);
+    for(let j=Math.max(0,center-12);j<Math.min(original.rows.length,center+17);j++){
+      const r=original.rows[j];
+      if(r.day!==ref.day)continue;
+      console.log('  L'+r.line+' '+r.day+' '+r.minute+' <'+r.nick+'> '+r.body.slice(0,500));
+    }
+  }
 }
 main().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
