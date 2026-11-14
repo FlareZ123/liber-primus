@@ -40,8 +40,21 @@ The page count makes **p28** the next potential parent, with left child **p57** 
 
 This negative changes the decision. The matched p27 triple is a precise, unusually structured **one-off pointer candidate**. It does not authorize claiming a complete binary-tree cipher, inferring p58 content, or replaying the same suffix extraction recursively. The most valuable next input would be a second independent source-visible instruction that explicitly selects page-parent/child relationships and states **what operation to perform on the target at p27[28]**. Without that, translating arbitrary other page pointers or trying secret-key phases would be another fitted route.
 
+## Complete original-p55 inverse under the literal parent-tape hypothesis
+
+The observed pointer identifies p27 offset **28** without fitting a phase. If a hypothetical binary-tree parent page directly provides a GP29 additive key to its children, the shortest direct test is to take the next **76 original p27 runes** as the keystream for all **76 unknown original p55 runes**. This yields fully invertible GP29 candidates under the two arithmetic signs:
+
+| p55 full original inverse | GP29 index of coincidence | First original decoded GP runes |
+| --- | ---: | --- |
+| Cipher minus p27[28..103] | **0.033333333333** | `IA X E OE E C NG X G M EA R M EO C A I E L S` |
+| Cipher plus p27[28..103] | **0.030877192982** | `S W L IA AE AE P X O J AE H IA NG T C S U X A` |
+
+Both outputs remain nonlinguistic and near the ciphertext's uniform-register frequency collision level. Exact forward re-encryption checks recover **76/76 source runes** for both signs; this confirms a reversible implementation, not genuine decryption.
+
+There is also an independently decrypted **right-child** control: p56 is known to use the ordinary consecutive-prime-totient GP29 schedule, except one original unenciphered `F` at local offset56 which does not consume the next prime. The proposed p27 parent-tape residues starting at offset28 equal those **independently authenticated 84 p56 key values at only 2 of 84 positions**, local p56 offsets **63 and66**. Thus the fixed *same-parent direct-additive-key* interpretation fails against a solved child and produces no plaintext on the unknown child. Another source-specified tree operation remains possible, but no arbitrary phase/affine salvage follows from the seam.
+
 ## Reproducibility and current limit
 
-The [single-file original-corpus CommonJS reproducer](../sims/lp2_heap_parent_child_seam_sft.cjs) asserts all 58 page indices and the original p27, p55, p56, p57 lengths, enumerates the 28 ordered and reversed-child families, proves the unique seven-rune triple, and runs the independent p28/p57 terminal-six test. It uses only [the canonical original GP29 corpus](../resources/liber-primus/lp2-corpus.json), with no text training, manual plaintext or image threshold.
+The [single-file original-corpus CommonJS reproducer](../sims/lp2_heap_parent_child_seam_sft.cjs) asserts all 58 page indices and the original p27, p55, p56, p57 lengths, enumerates the 28 ordered and reversed-child families, proves the unique seven-rune triple, runs the independent p28/p57 terminal-six test, and tests the complete p55 parent-tape inverse against the independently known solved-p56 key. It uses only [the canonical original GP29 corpus](../resources/liber-primus/lp2-corpus.json), with no text training, manual plaintext or image threshold.
 
 **Research status unchanged:** all 56 encrypted LP2 pages remain without independently recovered plaintext. Preserve the heap coincidence as a *source-led navigation hypothesis*, not as an authenticated decoding operation.
