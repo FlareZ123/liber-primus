@@ -31,7 +31,10 @@ assert.equal(body.length, 3299);
 assert.equal(3301 - 3294, 7);
 const printed = [3299,3298,3296,3294,3288,3278,3258,3222,
   3152,3038,2838,2472,1820,708,1206,4516];
-const primes = printed.map(n => Math.abs(3301 - n));
+// First fourteen indexed primes are below 3301; the last two exceed it.
+// The printed square uses absolute differences, so invert with the known
+// strictly increasing Fibonacci-prime sequence, not abs(3301 - cell).
+const primes = printed.map((n, i) => i < 14 ? 3301 - n : 3301 + n);
 assert.deepEqual(primes,
   [2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507]);
 
