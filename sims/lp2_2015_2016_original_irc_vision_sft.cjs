@@ -108,7 +108,7 @@ async function main(){
       console.log('  L'+r.line+' '+r.date+' '+r.clock+' <'+r.nick+'> '+r.body.slice(0,430));
     }
   }
-  const anchors=[82289,84447,89874,89905,89950,90000,90050,102799,256472,271355,294013,340195,340853];
+  const anchors=[82289,84447,89874,89905,102799,256472,271355,294013,340195,340853];
   const record=all.find(x=>x.source==='#cicadasolvers.freenode.2.log');
   for(const line of anchors){
     const i=record.rows.findIndex(r=>r.line===line);
