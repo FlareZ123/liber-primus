@@ -1,0 +1,37 @@
+name: LP2 26-class original-ink allograph gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manifest-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout source corpus
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install analysis dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow opencv-python-headless
+
+      - name: Run source-located 26-class screen
+        run: |
+          python sims/lp2_26_class_allograph_manifest_gate.py \
+            --out-dir /tmp/lp2-26-class-allograph-gate \
+            --threshold 170 \
+            --cluster-iou 0.72
+
+      - name: Preserve reproducible outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-26-class-original-ink-allograph-gate
+          path: /tmp/lp2-26-class-allograph-gate/
+          if-no-files-found: error
