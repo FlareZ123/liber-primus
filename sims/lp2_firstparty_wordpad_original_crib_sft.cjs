@@ -40,11 +40,36 @@ for(const x of selected){
 }
 assert.equal(out[0].sourceWords,751);
 assert.deepEqual(out.slice(1).map(x=>x.sourceWords),[1897,1968,2002]);
+// Exact first-party 2012–2017 signed cleartext: source-visible candidate
+// plaintext/register, stripping OpenPGP signatures and attached MIDI armor.
+const signed=[
+ 'cicada2012-countdown-message.asc',
+ 'cicada2012-midi-email.asc',
+ 'cicada2013-first-onion-hello.asc',
+ 'cicada2013-forest-clue.asc',
+ 'cicada2013-second-onion-everything-you-need.asc',
+ 'cicada2013-second-onion-icmp-echo.asc',
+ 'cicada2014-stage11-message.asc',
+ 'cicada2016-4gq25-outguess.asc',
+ 'cicada2017-yEiTHhvF.asc'
+];
+const signedResults=signed.map(name=>{
+ const envelope=read('resources/historical/'+name);
+ const clear=envelope.split('-----BEGIN PGP SIGNATURE-----')[0]
+  .split('- -----BEGIN PGP MESSAGE-----')[0]
+  .replace(/^[\s\S]*?Hash:\s*[A-Z0-9-]+\s*/,'');
+ const words=latinWords(clear);
+ const hit=plusOneCribs(unknown,words);
+ return {source:'resources/historical/'+name,sourceWords:words.length,
+  longest:hit.longest,atLeast24:hit.atLeast24,eightWordSeedHits:hit.eightWordSeedHits,
+  best:hit.best.slice(0,2)};
+});
+assert.deepEqual(signedResults.map(x=>x.sourceWords),[19,85,15,15,22,13,18,45,10]);
 const qualifying=out.filter(x=>x.atLeast24>0);
 console.log(JSON.stringify({
  hypothesis:'At most one extraneous ciphertext rune per authentic printed word, native GP29 word length, uninterrupted source word order',
  controls:'20 exact solved-p57 word lengths recovered under ten synthetic +1 inserts',
  unknown:{words:2896,runes:12956,physicalPages:'p0-p55 excluding numeric p50'},
- sources:out,qualifyingSourceCount:qualifying.length,
+ sources:out,signedFirstPartyMessages:signedResults,qualifyingSourceCount:qualifying.length+signedResults.filter(x=>x.atLeast24>0).length,
  conclusion:qualifying.length?'Inspect each >=24-word original-text crib independently for cipher and re-encryption':'None of the four authentic source-text candidates supplies a >=24 word-length crib even with one inserted rune per printed word'
 },null,2));
