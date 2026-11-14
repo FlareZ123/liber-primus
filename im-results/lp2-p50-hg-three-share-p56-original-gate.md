@@ -65,7 +65,9 @@ The original primes are the **8th and 31st ordinary primes** (zero-based indices
 
 The alternative **84 adjacent triplets** have **84 distinct triples**, so no input-collision contradiction arises there; an arbitrary hidden 84-entry lookup can always fit the 84 known keys, but predicts no independent outputs. The constrained low-degree polynomial/rational exclusions below still apply to both geometries. The same source-exact SFT asserts the **unique** full input collision and both known historical prime/key values.
 
-**Decision:** retire *all stationary, memoryless three-input key decoders* for the contiguous-block layout in one step. Reordering or adding a position/state input changes the hypothesis and requires independent source selection; it cannot be justified by the failed key reconstruction itself.
+**Decision:** retire *all stationary, memoryless three-input key decoders* for the contiguous-block layout in one step. Even granting an **unselected arbitrary cyclic 84-key alignment**, this single duplicated triple already rules out **79 of 84** possible phase offsets; only offsets **7, 15, 73, 74, 77** escape the one-collision necessary condition. Those five phases are neither author-specified nor demonstrated to decode anything. The SFT asserts the complete finite phase count to prevent claiming an all-phase exclusion.
+
+Reordering or adding a position/state input changes the hypothesis and requires independent source selection; it cannot be justified by the failed key reconstruction itself.
 
 ### Every stationary adjacent-triple decoder requires all three coordinates
 
