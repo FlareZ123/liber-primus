@@ -11,6 +11,7 @@ on:
           - release-whitespace
           - rift-split
           - wordlocal-fivephase
+          - prime58x8
         default: all
 permissions:
   contents: read
@@ -53,3 +54,9 @@ jobs:
         run: |
           node --check sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
           node sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
+
+      - name: 2013 prime464 / 2014 HTML 133-331 / 58-page eight-column SFT
+        if: inputs.test == 'prime58x8'
+        run: |
+          node --check sims/lp2_2013_2014_prime464_58page8_sft.cjs
+          node sims/lp2_2013_2014_prime464_58page8_sft.cjs
