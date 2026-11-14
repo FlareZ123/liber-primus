@@ -8,6 +8,8 @@ const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root='https://uncovering-cicada.fandom.com';
 const targets=[
+  {label:'2015 p15 original revision',url:root+'/api.php?action=query&prop=revisions&titles='+encodeURIComponent('Onion 7: numbers on page 15')+'&rvprop=ids%7Ctimestamp%7Ccontent%7Csha1%7Cuser&rvlimit=6&rvstart=2015-02-01T00:00:00Z&rvdir=older&format=json'},
+  {label:'2015 p15 talk revision',url:root+'/api.php?action=query&prop=revisions&titles='+encodeURIComponent('Talk:Onion 7: numbers on page 15')+'&rvprop=ids%7Ctimestamp%7Ccontent%7Csha1%7Cuser&rvlimit=6&rvstart=2015-02-01T00:00:00Z&rvdir=older&format=json'},
   {label:'LP core wiki title search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('Liber Primus')+'&srlimit=100&format=json'},
   {label:'p15 spiral wiki title search',url:root+'/api.php?action=query&list=search&srsearch='+encodeURIComponent('page 15 spiral')+'&srlimit=100&format=json'},
   {label:'p15 spiral comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title='+encodeURIComponent('Onion 7: numbers on page 15')+'&namespace=0&hideDeleted=false&page=0'},
@@ -31,12 +33,21 @@ const targets=[
 /** @param {string} t @param {number} n */
 function sha(t,n){return crypto.createHash('sha256').update(t.slice(0,n)).digest('hex');}
 async function main(){
- assert.equal(targets.length,19);
+ assert.equal(targets.length,21);
  const out=await Promise.all(targets.map(async t=>{
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
       headers:{'user-agent':'LP2OriginalSourceResearch/1.0 (historical source read only)'}});
    const b=await r.text();
+   if(t.label.startsWith('2015 p15')){
+      try{
+       const j=JSON.parse(b);
+       const pg=Object.values(j.query?.pages??{})[0];
+       console.log('P15_FROZEN_REVISIONS '+JSON.stringify({label:t.label,pageid:pg?.pageid,title:pg?.title,
+         revs:pg?.revisions?.map(x=>({id:x.revid,at:x.timestamp,hash:x.sha1,author:x.user,
+           length:x['*']?.length??0,quote:x['*']?.match(/.{0,120}(?:base64|13.{1,3}21.{1,3}34.{1,3}55|\\.bin).{0,180}/gi)?.slice(0,5)}))??[]}));
+      }catch(e){console.log('REVISION_PARSE '+String(e))}
+   }
    if(t.label.endsWith('wiki title search')){
      try{
       const j=JSON.parse(b);
