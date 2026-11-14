@@ -108,6 +108,8 @@ function main() {
     zip: bytes.subarray(0, 4).equals(Buffer.from('504b0304', 'hex')),
     pdf: bytes.subarray(0, 4).equals(Buffer.from('25504446', 'hex')),
     openpgp: (bytes[0] & 128) !== 0,
+    rawDeflate: ((bytes[0] >>> 1) & 3) !== 3, // RFC 1951 BTYPE=11 is reserved.
+
   };
   assert(Object.values(hasSignature).every(value => value === false));
 
