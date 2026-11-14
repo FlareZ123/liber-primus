@@ -108,6 +108,46 @@ const matched=native.map(ws=>{
 });
 assert.deepEqual(matched.map(x=>x.minPairs),[2157,3274,1531,1061,2849]);
 assert(matched.every(x=>x.zeroSamples===0));
+// A book-wide codebook is already excluded. This original page-local control
+// addresses the distinct proposal that the same codebook resets at each page.
+const physicalParts=read('resources/lp2-transcription.txt').split('%').slice(0,55);
+const localPageWords=physicalParts.map(page=>
+  (page.replace(/\/\r?\n/g,'').replace(/[\r\n]/g,'').match(rx)||[]));
+const originalPageWordCounts=localPageWords.map(words=>words.length);
+const nLocal=originalPageWordCounts.reduce((a,b)=>a+b,0);
+assert.equal(localPageWords.length,55);
+assert.equal(nLocal,2928);
+const pairsInPage=ws=>{const f=new Map();for(const w of ws)f.set(w,(f.get(w)||0)+1);
+  return [...f.values()].reduce((a,b)=>a+b*(b-1)/2,0);};
+const originalPagePairs=localPageWords.map(pairsInPage);
+assert.equal(originalPagePairs.reduce((a,b)=>a+b,0),4);
+assert.deepEqual(originalPagePairs.map((x,i)=>x?i:null).filter(x=>x!==null),[7,10,19,45]);
+assert(Math.max(...originalPagePairs)===1);
+let pageState=0x33014411;
+const pageRand=()=>{pageState^=pageState<<13;pageState^=pageState>>>17;
+  pageState^=pageState<<5;return (pageState>>>0)/4294967296;};
+const pageLengthControls=native.map(words=>{
+  const cases=1200;
+  let minPairs=Infinity,maxPairs=0,minRepeatedPages=Infinity,sumPairs=0,sumRepeatedPages=0,belowOriginal=0;
+  for(let sample=0;sample<cases;sample++){
+    const start=Math.floor(pageRand()*(words.length-nLocal+1));
+    let offset=start,total=0,repeated=0;
+    for(const count of originalPageWordCounts){
+      const pairs=pairsInPage(words.slice(offset,offset+count));
+      offset+=count;total+=pairs;repeated+=Number(pairs>0);
+    }
+    minPairs=Math.min(minPairs,total);maxPairs=Math.max(maxPairs,total);
+    minRepeatedPages=Math.min(minRepeatedPages,repeated);
+    sumPairs+=total;sumRepeatedPages+=repeated;
+    if(total<=4&&repeated<=4)belowOriginal++;
+  }
+  return {samples:cases,minPairs,maxPairs,meanPairs:sumPairs/cases,
+    minRepeatedPages,meanRepeatedPages:sumRepeatedPages/cases,atOrBelowOriginal:belowOriginal};
+});
+assert.deepEqual(pageLengthControls.map(x=>x.minPairs),[631,1194,963,195,740]);
+assert.deepEqual(pageLengthControls.map(x=>x.minRepeatedPages),[51,52,51,43,51]);
+assert(pageLengthControls.every(x=>x.atOrBelowOriginal===0));
+
 const shakespeare=native[0].slice(0,2896);
 assert.equal(count(shakespeare).pairs,4506);
 const planted=shakespeare.map(w=>w.split(',').map(i=>(Number(i)+13)%29).join(','));
@@ -121,6 +161,10 @@ console.log(JSON.stringify({
   iid29ExpectedAllLengthPairs:randomExpected},
  nativeContiguous:files.map((file,i)=>({file,...cont[i],
   first2896WordMaximumFrequency:maxWordFrequency(native[i].slice(0,2896))})),
+ originalPageLocal:{totalFragments:nLocal,numberOfRunePages:55,
+  totalRepeatedWordPairs:4,repeatedWordPages:4,maxPairsPerPage:1},
+ nativePageReset:{seed:'0x33014411',
+  tests:files.map((file,i)=>({file,...pageLengthControls[i]}))},
  nativeLengthMatched:{lengths,counts,trialsPerSource:NTRIALS,seed:'0x33012014',
   tests:files.map((file,i)=>({file,...matched[i]}))},
  fixedMonoalphabeticControl:{originalPairs:count(shakespeare).pairs,
