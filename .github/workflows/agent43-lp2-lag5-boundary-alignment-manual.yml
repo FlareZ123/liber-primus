@@ -1,0 +1,15 @@
+name: Agent43 LP2 lag5 word-boundary alignment
+on:
+  workflow_dispatch:
+
+jobs:
+  fixed-source-rune-segmentation:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original-rune word-boundary permutations
+        run: node sims/lp2_lag5_boundary_alignment_sft.cjs
