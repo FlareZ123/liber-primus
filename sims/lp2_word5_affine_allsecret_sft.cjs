@@ -240,6 +240,81 @@ for (const row of original.filter(w => w.length >= 10 && w.length <= 14)) {
 }
 assert.equal(positives, 109);
 
+/**
+ * Historically genuine p56 operator extension: plaintext F (GP0) transmits
+ * as cipher F verbatim and consumes no key; all other plaintext consumes
+ * one of the five word-local phases, still with an arbitrary secret slope.
+ * A ciphertext F may ALSO originate from an ordinary non-F plaintext rune.
+ * This finite all-secret test therefore does not force C==F to mean P==F.
+ * @param {number[]} cipher @param {number[]} plain @returns {boolean}
+ */
+function feasibleTransparentF(cipher, plain) {
+  for (let j = 0; j < plain.length; j++) {
+    if (plain[j] === 0 && cipher[j] !== 0) return false;
+  }
+  for (let a = 1; a < 29; a++) {
+    const shifts = [-1,-1,-1,-1,-1];
+    let keypos = 0, valid = true;
+    for (let j = 0; j < plain.length; j++) {
+      if (plain[j] === 0) continue;
+      const phase = keypos++ % 5;
+      const residual = mod29(cipher[j] - a * plain[j]);
+      if (shifts[phase] === -1) shifts[phase] = residual;
+      else if (shifts[phase] !== residual) {
+        valid = false;
+        break;
+      }
+    }
+    if (valid) return true;
+  }
+  return false;
+}
+const fSkip = {originalLongWords: 109, withoutCipherF: 0,
+  withCipherF: 0, compatibleWithAnyNativeWord: 0, plantedLongWords: 0};
+for (const cipher of original.filter(w => w.length >= 10 && w.length <= 14)) {
+  if (!cipher.includes(0)) {
+    fSkip.withoutCipherF++;
+    // No cipher F => no plaintext F can be present, so the established
+    // five-phase projective invariant still applies unchanged.
+    assert(!affineSignatures.has(signatures(cipher)[1]));
+    continue;
+  }
+  fSkip.withCipherF++;
+  const compatible = native.get(cipher.length).some(plain => feasibleTransparentF(cipher, plain));
+  fSkip.compatibleWithAnyNativeWord += +compatible;
+}
+assert.deepEqual([fSkip.withoutCipherF, fSkip.withCipherF,
+  fSkip.compatibleWithAnyNativeWord], [73,36,0]);
+// Positive-control source word for each length, including an encrypted
+// non-F rune that deliberately becomes ciphertext F. This validates the
+// genuine F-branch ambiguity instead of treating all C==F as plaintext F.
+for (let len = 10; len <= 14; len++) {
+  const plain = native.get(len).find(word => word.includes(0));
+  assert(plain, 'missing plaintext-F native control length ' + len);
+  const a = 2 + len;
+  const shifts = [7,11,13,17,19];
+  const firstConsumed = plain.findIndex(c => c !== 0);
+  shifts[0] = mod29(-a * plain[firstConsumed]);
+  const cipher = [];
+  let tick = 0;
+  for (const p of plain) {
+    if (p === 0) cipher.push(0);
+    else cipher.push(mod29(a * p + shifts[tick++ % 5]));
+  }
+  assert(cipher[firstConsumed] === 0 && plain[firstConsumed] !== 0);
+  assert(feasibleTransparentF(cipher, plain));
+  // Explicit source plant exactly reconstructs every original planted rune.
+  const recovered = [];
+  tick = 0;
+  for (let j = 0; j < plain.length; j++) {
+    if (plain[j] === 0) recovered.push(0);
+    else recovered.push(mod29(inv[a] * (cipher[j] - shifts[tick++ % 5])));
+  }
+  assert.deepEqual(recovered, plain);
+  fSkip.plantedLongWords++;
+}
+assert.equal(fSkip.plantedLongWords, 5);
+
 process.stdout.write(JSON.stringify({
   status: 'bounded exact original-input negative, no recovered plaintext',
   model: 'word-specific invertible slope and five arbitrary phase shifts in GP29',
@@ -248,6 +323,7 @@ process.stdout.write(JSON.stringify({
     additiveSignatures: additiveSignatures.size, affineSignatures: affineSignatures.size},
   byLength: expected.map(([len]) => buckets[len]),
   minimumChangedRuneIdentities: editBudget,
+  strictPlaintextFBypassAndKeySkip: fSkip,
   availableAdjacentRepeatEvents: 86,
   sourceNativeClearLp1: {longWords: 25, additiveCompatible: 21, affineCompatible: 23},
   positiveControls: {wordSpecificSecrets: positives, allRuneRoundTrips: true}
