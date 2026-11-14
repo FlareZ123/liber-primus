@@ -9,6 +9,8 @@
  * - p05 explicitly calls primes and the totient function sacred.
  * - The solved p56 inverse supplies a historically demonstrated additive
  *   GP29 operation with literal, non-consuming F interrupters.
+ * - The 2016 signed message says "words are the map, numbers are the direction",
+ *   motivating a numeric-rank columnar-transposition control.
  *
  * Test only the row-major 13-word-cell key, raw sums or phi(sum) mod 29,
  * either additive direction, two source-motivated p55 alignments (include
@@ -78,7 +80,8 @@ assert.deepEqual(wordCellSums, [
   341, 366, 199, 130, 320, 245, 91, 226, 320, 130, 199, 366, 341
 ], "row-major p05 rune-word prime sums");
 const rawKey = wordCellSums.map((value) => mod(value));
-const phiKey = wordCellSums.map((value) => mod(phi(value)));
+const wordCellTotients = wordCellSums.map(phi);
+const phiKey = wordCellTotients.map(mod);
 assert.equal(rawKey.length, 13);
 
 const p55 = corpus.pages.find((page) => page.page === 55).indices;
@@ -145,8 +148,59 @@ function decode(cipher, key, sign, mask, carryLiteral) {
   return { plaintext, consumed: result.consumed };
 }
 
+function columnOrder(values, descending) {
+  return values.map((_, index) => index).sort((a, b) => {
+    const difference = values[a] - values[b];
+    return (descending ? -difference : difference) || (a - b);
+  });
+}
+
+function columnarForward(symbols, values, descending, carryLiteral) {
+  const target = carryLiteral ? symbols.slice(1) : symbols;
+  const width = values.length;
+  const rowCount = Math.ceil(target.length / width);
+  const remainder = target.length % width;
+  const columnLengths = Array.from({ length: width }, (_, column) =>
+    column < remainder ? rowCount : rowCount - 1
+  );
+  const grid = Array.from({ length: rowCount }, () => Array(width));
+  for (let i = 0; i < target.length; i++) {
+    grid[Math.floor(i / width)][i % width] = target[i];
+  }
+  const encrypted = [];
+  for (const column of columnOrder(values, descending)) {
+    for (let row = 0; row < columnLengths[column]; row++) {
+      encrypted.push(grid[row][column]);
+    }
+  }
+  return carryLiteral ? [symbols[0], ...encrypted] : encrypted;
+}
+
+function columnarInverse(cipher, values, descending, carryLiteral) {
+  const target = carryLiteral ? cipher.slice(1) : cipher;
+  const width = values.length;
+  const rowCount = Math.ceil(target.length / width);
+  const remainder = target.length % width;
+  const columnLengths = Array.from({ length: width }, (_, column) =>
+    column < remainder ? rowCount : rowCount - 1
+  );
+  const columns = Array(width);
+  let offset = 0;
+  for (const column of columnOrder(values, descending)) {
+    columns[column] = target.slice(offset, offset + columnLengths[column]);
+    offset += columnLengths[column];
+  }
+  const plaintext = [];
+  for (let row = 0; row < rowCount; row++) {
+    for (let column = 0; column < width; column++) {
+      if (row < columnLengths[column]) plaintext.push(columns[column][row]);
+    }
+  }
+  return carryLiteral ? [cipher[0], ...plaintext] : plaintext;
+}
+
 // Positive implementation control: a held-out native-GP plant must round-trip
-// under each source-derived key, sign, and carry alignment with no F bypass.
+// under each source-derived additive key, sign, and carry alignment with no F bypass.
 let plantedControls = 0;
 for (const key of [rawKey, phiKey]) {
   for (const sign of [-1, 1]) {
@@ -159,6 +213,21 @@ for (const key of [rawKey, phiKey]) {
   }
 }
 assert.equal(plantedControls, 8);
+
+// Positive implementation control for the source-motivated 13-column
+// numerical-rank transposition, with stable row-major tie handling.
+let plantedColumnarControls = 0;
+for (const values of [wordCellSums, wordCellTotients]) {
+  for (const descending of [false, true]) {
+    for (const carryLiteral of [false, true]) {
+      const encrypted = columnarForward(heldoutShakespeare, values, descending, carryLiteral);
+      const recovered = columnarInverse(encrypted, values, descending, carryLiteral);
+      assert.deepEqual(recovered, heldoutShakespeare);
+      plantedColumnarControls++;
+    }
+  }
+}
+assert.equal(plantedColumnarControls, 8);
 
 const variants = [];
 for (const [keyName, key] of [["word-prime-sums", rawKey], ["word-sum-totients", phiKey]]) {
@@ -182,10 +251,38 @@ for (const [keyName, key] of [["word-prime-sums", rawKey], ["word-sum-totients",
   }
 }
 assert.equal(variants.length, 64);
+
+const columnarVariants = [];
+for (const [keyName, values] of [["word-prime-sums", wordCellSums], ["word-sum-totients", wordCellTotients]]) {
+  for (const descending of [false, true]) {
+    for (const carryLiteral of [false, true]) {
+      const plaintext = columnarInverse(p55, values, descending, carryLiteral);
+      assert.deepEqual(
+        columnarForward(plaintext, values, descending, carryLiteral),
+        p55,
+        "every columnar candidate must replay original p55 exactly"
+      );
+      columnarVariants.push({
+        keyName,
+        direction: descending ? "descending" : "ascending",
+        alignment: carryLiteral ? "incoming carry left literal; transpose first complete p55 word"
+          : "transpose from physical p55 page boundary",
+        score: languageScore(plaintext, model),
+        ioc: ioc(plaintext),
+        preview: plaintext.map((index) => corpus.translit[index]).join("")
+      });
+    }
+  }
+}
+assert.equal(columnarVariants.length, 8);
+
 const rank = (items) => items.slice().sort((a, b) => b.score - a.score);
 const bestOverall = rank(variants)[0];
 const bestRaw = rank(variants.filter((item) => item.keyName === "word-prime-sums"))[0];
 const bestPhi = rank(variants.filter((item) => item.keyName === "word-sum-totients"))[0];
+const bestColumnar = rank(columnarVariants)[0];
+const bestRawColumnar = rank(columnarVariants.filter((item) => item.keyName === "word-prime-sums"))[0];
+const bestPhiColumnar = rank(columnarVariants.filter((item) => item.keyName === "word-sum-totients"))[0];
 
 const report = {
   classification: "bounded original-p55 negative; no plaintext or authentic LP2 key recovered",
@@ -196,6 +293,7 @@ const report = {
     p05WordCellSumsRowMajor: wordCellSums,
     rawPrimeSumKeyMod29: rawKey,
     eulerTotientKeyMod29: phiKey,
+    wordCellTotients: wordCellTotients,
     p55OriginalRunes: p55.length,
     p55IncomingCarryRune: corpus.translit[p55[0]],
     p55VisibleFPositions: FPositions
@@ -212,13 +310,19 @@ const report = {
     score: languageScore(p55, model),
     ioc: ioc(p55)
   },
-  testedVariants: variants.length,
+  testedAdditiveVariants: variants.length,
+  testedColumnarVariants: columnarVariants.length,
+  testedTotalVariants: variants.length + columnarVariants.length,
   exactOriginalReencryption: true,
-  plantedPositiveControls: plantedControls,
-  bestOverall,
+  plantedPositiveControls: plantedControls + plantedColumnarControls,
+  bestAdditiveOverall: bestOverall,
   bestRaw,
   bestPhi,
-  topEight: rank(variants).slice(0, 8)
+  topAdditiveEight: rank(variants).slice(0, 8),
+  bestColumnar,
+  bestRawColumnar,
+  bestPhiColumnar,
+  allColumnarVariants: rank(columnarVariants)
 };
 
 console.log(JSON.stringify(report, null, 2));
