@@ -401,6 +401,52 @@ The best indexed output is still substantially worse than the existing exact-wor
 
 **Reproducer:** [`sims/lp2_2014_square_core_p50_index_sft.cjs`](../sims/lp2_2014_square_core_p50_index_sft.cjs), a standalone Node.js source-exact test using the original square transcription, p50 grid, p55 word boundaries and pinned Shakespeare control. It asserts the 43/43 input, both marker offsets, both fixed address maps, the original baseline score, all four original outputs, and exact forward re-encryption.
 
+## All-secret stationary additive-key obstruction for the 43 square-core values
+
+The 43 historical square-core values contain **23 distinct numbers** and **20 repeated-value pairs**. This permits a stronger test than the fixed raw-value, prime-count, totient, or table-index keys above: suppose an arbitrary stationary additive GP29 key is used, with no restriction on the key values, but its symbol depends only on the corresponding square value, (K_i=f(n_i)). Equal square values must then receive equal key symbols. For every repeated pair (i,j), either additive sign necessarily obeys:
+
+`P_i - P_j = C_i - C_j \pmod{29}`.
+
+This gives **20 key-independent equations** on the unknown 43-rune plaintext. The exact original-cipher constraints, using zero-based p55-interior positions, are:
+
+| Square value | Paired positions | Required plaintext difference \(P_i-P_j\) mod 29 |
+|---:|---:|---:|
+| 812 | 0, 8 | 2 |
+| 934 | 1, 7 | 15 |
+| 280 | 2, 6 | 14 |
+| 620 | 3, 5 | 4 |
+| 223 | 9, 33 | 22 |
+| 14 | 10, 32 | 13 |
+| 47 | 11, 31 | 23 |
+| 293 | 12, 30 | 0 |
+| 98 | 13, 29 | 4 |
+| 232 | 14, 28 | 9 |
+| 121 | 15, 27 | 12 |
+| 114 | 16, 26 | 22 |
+| 72 | 17, 25 | 5 |
+| 23 | 18, 24 | 24 |
+| 65 | 19, 23 | 23 |
+| 270 | 20, 22 | 26 |
+| 199 | 34, 42 | 13 |
+| 130 | 35, 41 | 20 |
+| 320 | 36, 40 | 13 |
+| 245 | 37, 39 | 9 |
+
+I tested the constraints against **60,000 deterministic source-native GP controls** with the exact p55 word-segment lengths [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. Each control selects 20,000 word-shaped samples from Shakespeare, Gibran and Emerson, uses the source-calibrated GP encoder (including the independently verified single-rune ING and IO spellings), strips the same word endpoints, and concatenates the resulting 43 interiors. The source-calibrated encoder independently reproduces all **95/95** original p57 runes.
+
+| Native-GP source | Exact-shape controls | Full 20/20 matches | Best match |
+|---|---:|---:|---:|
+| Shakespeare | 20,000 | 0 | 5/20 |
+| Gibran | 20,000 | 0 | 6/20 |
+| Emerson | 20,000 | 0 | 6/20 |
+| **Total** | **60,000** | **0** | **6/20** |
+
+A synthetic positive control encrypts a source-native 43-interior plant using an arbitrary stationary key function (f(n_i)) and satisfies **20/20** equations, confirming the invariant and implementation. The random-control test is not exhaustive over all possible English prose; it establishes that none of these 60,000 exact-shape native-GP samples can be decrypted by *any* stationary additive key function of the 43 square values, regardless of the 23 unknown key symbols or additive sign.
+
+**Decision:** retire the entire stationary (K_i=f(n_i)) additive family for this source-ordered 43-core/p55-interior alignment on the tested native-GP controls. This is stronger than rejecting the two direct table lookups, but it is not a general exclusion of positional/stateful keys, another square-to-page placement, another language, or unknown prose. Do not rescue it by fitting 23 arbitrary key symbols to a desired passage.
+
+**Reproducer:** [`sims/lp2_2014_square_core_allsecret_additive_sft.cjs`](../sims/lp2_2014_square_core_allsecret_additive_sft.cjs). It derives all 20 constraints from the original square and p55 transcription, verifies the p57 source-native encoding, samples the three pinned control texts with a fixed xorshift32 seed, and asserts the 20/20 synthetic positive control.
+
 ## Exact missing selector
 
 The 2014 5/7/5 squares provide a source-grounded structural selector for the p55 43 interior units, but not a cipher or unique reversible map.
