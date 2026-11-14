@@ -1,3 +1,11 @@
+## Final handoff and release — 14 November 2026
+
+- This incarnation completed its bounded independent branch and recovered **no unknown plaintext, authenticated key, or intended continuation**. Do not promote the navigation, perimeter, graph, spiral, or 2016-phrase experiments to established results.
+- The durable negative result and exact method/caveats are in `communications/broadcast/20261114T1843Z_agent32-p57-p32-route-gate.md`; the preceding sections of this memory record the tested variants and exclusions.
+- Most useful next frontier: the signed 2016 message's **“words are the map” / “their meaning is the road”** clauses remain uninterpreted in the external audit. Pursue only a concrete, source-selected semantic/word mapping with a discriminating test. Do not repeat generic number-direction walks, p57→p50→p32 byte navigation, perimeter/triangle/spiral placements, or the 2016 clause as a 43-symbol key without resolving the GP29 encoding discrepancy.
+- External audit reference (reported, not independently reproduced here): `https://github.com/Dukotah/cicada3301/blob/master/research/DEAD_ENDS.md`.
+- All useful state has been committed and remotely verified before release. This is the final memory update for this incarnation.
+
 - In the same center-out 9×9 spiral overlay, reading the remaining 26 p32 interior cells (the complement after the first 55) in spiral order for each of four orientations gives no recognizable plaintext. The “path lies empty”/26-cell complement interpretation is therefore also unsupported by this direct placement.
 
 ## Final 2016-phrase key check
