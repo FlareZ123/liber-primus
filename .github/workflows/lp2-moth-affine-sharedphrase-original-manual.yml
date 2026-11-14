@@ -1,0 +1,18 @@
+name: LP2 Source Moth P53/P55 Affine Shared Phrase
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-affine-moth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source GP29 affine matching, p53/p55 and full unknown book
+        run: |
+          node --check sims/lp2_moth_sharedphrase_affine_original_sft.cjs
+          node sims/lp2_moth_sharedphrase_affine_original_sft.cjs
