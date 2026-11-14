@@ -254,6 +254,16 @@ const plantedFive = Array.from({length: 5}, (_, k) =>
       (3 * i + 5) * x ** 3 + (4 * i + 7) * x ** 4);
   }));
 assert.deepEqual(interpolateFive(plantedFive), knownNative);
+// Distinct authenticated earlier source operation: 2014 bytewise XOR.
+// Convert four GP rune lanes to their printed prime weights and XOR
+// those byte values with the original p50 byte perimeter.
+const fiveLaneByteXor = outer76.map((value, i) => value ^
+  primeTape[0][i] ^ primeTape[1][i] ^ primeTape[2][i] ^ primeCipher[i]);
+assert.equal(printable(fiveLaneByteXor), 28);
+assert.equal(fiveLaneByteXor.filter(v => v < 32).length, 9);
+assert.equal(fiveLaneByteXor.filter(v => v >= 128).length, 39);
+assert.equal(Buffer.from(fiveLaneByteXor).toString("hex").slice(0, 32),
+  "a58793f23fe118cf8639c909725e135b");
 const fiveLaneRimShamir = {
   originalSourceLengths: fiveSourceLanes.map(v => v.length),
   sourceRimWidth: 32, sourceRimHeight: 8,
@@ -292,6 +302,12 @@ console.log(JSON.stringify({
   },
   fixedShamirAffineFourthShare: shamirAffineGate,
   fiveLaneRimShamir,
+  fiveLaneHistoricalByteXor: {
+    printableAscii: printable(fiveLaneByteXor),
+    controlBytes: fiveLaneByteXor.filter(v => v < 32).length,
+    highBytes: fiveLaneByteXor.filter(v => v >= 128).length,
+    first16BytesHex: Buffer.from(fiveLaneByteXor).toString("hex").slice(0, 32)
+  },
   historicalBase29XorByte: {
     width: 47,
     printableBytes: printable(base29RecoveredBytes),
