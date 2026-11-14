@@ -78,7 +78,7 @@ const sources = {
 };
 assert.deepEqual(Object.fromEntries(Object.entries(sources)
   .map(([key, value]) => [key, value.length])),
-{LP1:904,Shakespeare:55407,Gibran:15733,Emerson:77932});
+{LP1:942,Shakespeare:55407,Gibran:15733,Emerson:77932});
 /** @param {number} n */
 function bin(n) {return n <= 4 ? n-1 : n <= 6 ? 4 : n <= 8 ? 5 : 6;}
 /** @param {number[]} sequence */
