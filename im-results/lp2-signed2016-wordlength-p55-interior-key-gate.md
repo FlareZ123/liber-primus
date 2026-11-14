@@ -1,4 +1,4 @@
-# Signed 2016 43-word lengths and GP-prime values as p55 strict-interior keys
+# Signed 2016 word-derived keys on p55 strict interiors: lengths, prime sums and edges
 
 **Decision:** all four frozen source-order GP29 additive readings fail the original 43-rune language check. This closes direct signed-word **length** and **GP-prime-sum** key transfers. It recovers no unknown Liber Primus plaintext, authenticated key, or destination. The full 76-rune p55 decoder remains unavailable.
 
@@ -51,6 +51,34 @@ Both original 43-rune strings are nonlinguistic under the same independently tra
 Reproduce with [`sims/lp2_signed2016_gematria_word_p55_interior_sft.cjs`](../sims/lp2_signed2016_gematria_word_p55_interior_sft.cjs); successful [manual-only GitHub Actions run 43115260087](https://github.com/FlareZ123/liber-primus/actions/runs/43115260087).
 
 This retires this specific **GP-prime-weight key transfer** alongside the separately tested literal word-length transfer. It neither determines the unobserved p55 plaintext nor resolves the 33 exterior glyphs. A different word-to-symbol interpretation requires independent source support or a frozen held-out prediction.
+
+## Signed-word edge runes as the 43-symbol key (bounded negative)
+
+The signed 2016 message has exactly **43 alphabetic words**, while stripping the first and last rune from each complete p55 printed word leaves **43 strict-interior runes**. The verified message says “words are the map”; the solved p57 parable says “shed our own circumferences.” A further, deliberately narrow reading is that each signed word's own *circumference* (its first or last GP rune) supplies one key symbol for the corresponding p55 interior rune. This is a hypothesis only: the source does not explicitly prescribe a positional pairing, edge selection, or additive cipher.
+
+The original GP transliteration is preserved, including digraphs such as TH and NG. The two exact 43-symbol keys are:
+
+- First GP rune of each signed word: `[8,2,13,20,18,18,15,2,23,20,13,10,2,7,10,7,24,2,19,2,19,10,2,4,24,2,9,24,2,23,15,24,26,7,17,0,6,20,17,0,13,1,3]`
+- Last GP rune of each signed word: `[3,18,2,15,26,26,15,18,23,4,15,15,18,26,15,15,18,18,13,4,21,15,18,23,23,4,15,18,18,9,5,23,1,20,18,23,23,5,18,18,15,26,13]`
+
+Each key was applied directly to the original 43 p55 interior ciphertext symbols with both additive signs. Because the adjacent solved p56 cipher preserves literal F without consuming a key symbol, the same four readings were also tested with that exact F-bypass clock. No phase, reordering, edge-pair sum/difference, or alternate key encoding was searched.
+
+| Key selector | Inverse sign | p56 literal-F bypass | GP-English mean log-quadgram | Native held-out 43-rune windows at or below candidate |
+|---|---:|---:|---:|---:|
+| First GP rune | − | no | −6.562035 | 0/1,018 |
+| First GP rune | − | yes | −6.253212 | 0/1,018 |
+| First GP rune | + | no | −7.289628 | 0/1,018 |
+| First GP rune | + | yes | −6.662177 | 0/1,018 |
+| Last GP rune | − | no | −6.603029 | 0/1,018 |
+| Last GP rune | − | yes | −6.184813 | 0/1,018 |
+| Last GP rune | + | no | −7.073789 | 0/1,018 |
+| Last GP rune | + | yes | −5.694723 | 0/1,018 |
+
+The best candidate is still below **every** one of the 1,018 held-out native GP-English windows (the existing control minimum is −3.118039). Each candidate re-encrypts exactly under its fixed rule, and the same implementation round-trips an independent 43-rune solved-p57 plant, including the literal-F bypass. These checks validate implementation only; they do not make an arbitrary key authentic.
+
+**Decision:** retire the direct first-GP-rune and last-GP-rune additive transfers, in both signs and with/without the p56 F-bypass. Do not expand this into arbitrary edge-pair combinations or key phases absent a new source instruction. No p55 plaintext, key, or new decryptor is recovered.
+
+Reproduce alongside the length and prime-sum gates with `sims/lp2_signed2016_wordlength_p55_interior_sft.cjs`; the script asserts both edge keys, all eight original outputs, language-control ranks, exact re-encryption, and positive-control round trips.
 
 ## Detection controls and limitations
 

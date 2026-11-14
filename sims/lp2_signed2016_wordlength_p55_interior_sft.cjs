@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * Signed 2016 word-length key -> original p55 strict-interior GP29 gate.
+ * Signed 2016 word-derived keys -> original p55 strict-interior GP29 gates.
  * The script is deterministic and read-only. Node.js 22, CommonJS.
  *
  * All candidate settings are frozen by the historical signed message,
@@ -165,6 +165,83 @@ for (const sign of [-1,1]) {
 assert.deepEqual(candidates.map(z=>z.nativeWindowsAsPoorOrWorse),[0,0]);
 assert.deepEqual(candidates.map(z=>z.shuffledKeysAsGoodOrBetter),[1374,398]);
 assert.deepEqual(positives.map(z=>z.wrongKeyLiteralMatches),[9,9]);
+
+/*
+ * Additional source-motivated edge-symbol test:
+ * the signed message has 43 words and p55 has 43 strict-interior runes.
+ * Preserve GP digraphs, then take the first or last GP rune of each word.
+ * Test only direct additive readings, both signs, and with/without p56's
+ * literal-F key-clock bypass. This is a hypothesis, not an authenticated rule.
+ */
+const signedWordGP = signedWords.map(w => gpEncode(w));
+assert.equal(signedWordGP.length,43);
+const edgeKeys = {
+  first: signedWordGP.map(w => w[0]),
+  last: signedWordGP.map(w => w[w.length-1])
+};
+assert.deepEqual(edgeKeys.first,[
+  8,2,13,20,18,18,15,2,23,20,13,10,2,7,10,7,24,2,19,2,19,10,2,4,
+  24,2,9,24,2,23,15,24,26,7,17,0,6,20,17,0,13,1,3
+]);
+assert.deepEqual(edgeKeys.last,[
+  3,18,2,15,26,26,15,18,23,4,15,15,18,26,15,15,18,18,13,4,21,15,
+  18,23,23,4,15,18,18,9,5,23,1,20,18,18,23,5,18,18,15,26,13
+]);
+assert.equal(cipher.filter(c=>c===0).length,1);
+const wordEdgeCandidates=[];
+for(const [selector,key] of Object.entries(edgeKeys)){
+  for(const sign of [-1,1]){
+    for(const skipF of [false,true]){
+      let consumed=0;
+      const plain=cipher.map(c=>{
+        if(skipF&&c===0)return 0;
+        return mod(c+sign*key[consumed++]);
+      });
+      assert.equal(consumed,skipF?42:43);
+      let cursor=0;
+      const reencryption=plain.map((p,i)=>{
+        if(skipF&&cipher[i]===0)return 0;
+        return mod(p-sign*key[cursor++]);
+      });
+      assert.deepEqual(reencryption,cipher);
+      let plantCursor=0;
+      const plantCipher=nativePlain.map(p=>{
+        if(skipF&&p===0)return 0;
+        return mod(p-sign*key[plantCursor++]);
+      });
+      let recoverCursor=0;
+      const plantRecovered=plantCipher.map(c=>{
+        if(skipF&&c===0)return 0;
+        return mod(c+sign*key[recoverCursor++]);
+      });
+      assert.deepEqual(plantRecovered,nativePlain);
+      const scoreValue=languageScore(plain);
+      wordEdgeCandidates.push({
+        selector,sign,skipF,key,consumed,
+        gpIndices:plain,
+        transliteration:plain.map(i=>corpus.translit[i]).join(""),
+        score:scoreValue,
+        nativeWindowsAsPoorOrWorse:nativeScores.filter(v=>v<=scoreValue).length,
+        nativeWindows:nativeScores.length,
+        exactReencryption:true,
+        plantedNativeRoundTrip:true
+      });
+    }
+  }
+}
+assert.deepEqual(wordEdgeCandidates.map(z=>z.transliteration),[
+  "JHEASCPEOOEDXSMEOONDIJEMUCNGDEGODHEOEAJECXTHEOHOEMNGIS",
+  "JHEASCPEOOEDXSFRHEOLIAEGTHEAEPAENPINSRLLLSAXEOEMTHCIAB",
+  "IAEOAEYEOLPYJAEEOITBFHFSIADIAEAETHHINGPEOFFUEOMMTHAMIAMEEONG",
+  "IAEOAEYEOLPYJAEEOFAEOYJEOHIJOECRFBOXIACHHNGINNMECUWCAM",
+  "TNGILYCEOGDUPXAEPRSTAABEAFCRMRYFNGYNEOXNGPHADNGUMXC",
+  "TNGILYCEOGDUPFEANGOESMAMHTDHNMXHONGBCUNGJJPACCUTAENG",
+  "OEEAXNGLEAPPJNXSOWCTDTHNGAEEOUEONGWEOIAWEASMFTOLAEEOREAHLHTH",
+  "OEEAXNGLEAPPJNXFFEATTLTHYCAWNTWTHTREAADJNPOELEOOESHDYS"
+]);
+assert.deepEqual(wordEdgeCandidates.map(z=>z.nativeWindowsAsPoorOrWorse),
+  [0,0,0,0,0,0,0,0]);
+
 console.log(JSON.stringify({
   input:{signedWords:signedWords.length,sourceKey:key,
     p55PhysicalPage:55,p55LocalRunners:76,p55PrintedWords:17,
@@ -175,5 +252,6 @@ console.log(JSON.stringify({
     nativeScoreMedian:nativeScores[Math.floor(nativeScores.length/2)],
     plantedNative:positives},
   original:candidates,
-  decision:"Neither frozen additive orientation yields plaintext; specific 43-length key gate negative."
+  wordEdgeCandidates,
+  decision:"Neither frozen additive orientation yields plaintext; specific 43-length key gate and direct word-edge key gate negative."
 },null,2));
