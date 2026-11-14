@@ -1,4 +1,4 @@
-name: Agent 9 LP2 two-plain-lag original all-key gate
+name: Agent 9 independent original-source inverse gates
 
 on:
   workflow_dispatch:
@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Test exact LP2 and matched native-GP plants
         run: node sims/lp2_two_plain_lag_feedback_allkey_sft.cjs
+      - name: Test original p50 quotient Hill4 terminal pages
+        run: node sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs
