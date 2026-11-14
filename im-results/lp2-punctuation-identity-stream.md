@@ -1,5 +1,9 @@
 # LP2 punctuation identity stream: source-audited inventory, not a decryptor
 
+## Historical creator-era binary transport precedent (Director #892)
+
+A source-pinned 2013 Cicada 3301 whitespace-only PGP carrier decodes as **69 bytes of ordinary ASCII** using tab=1 and space=0. The full result is the known first 2013 Tor onion instruction, not Morse despite the archival filename. The 552-bit trailing-whitespace payload is **not itself PGP authenticated**. The original LP2 three-/four-/ten-/thirteen-dot printed marks have no author-signed mapping to those 2013 binary units, so the transport precedent does not select an unknown-page punctuation cipher. No source-selected direct decoder was found; do not sweep dot/dash or ASCII assignments. [Original-byte historical reproducer and decision](lp2-punctuation-2013-original-binary-selector-gate.md) · [successful CI run 43607023164](https://github.com/FlareZ123/liber-primus/actions/runs/43607023164).
+
 ## Decision
 
 The 180-event derivative transcription is **not** a homogeneous 180-mark original-ink stream. The four p15 numeric-row terminators (event indices 57–60, page-local offset 9 / global rune offset 3,612) remain transcription-only editorial markers, as established by the prior p15 image audit. The remaining 141 `⁘` stops and four `⁚` commas were checked against the original JPEGs.
