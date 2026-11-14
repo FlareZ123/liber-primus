@@ -65,6 +65,27 @@ A fully secret **arbitrary changing kernel pad** `K∈ker(Q(M))` must preserve `
 
 Original p3@119 red triad `ᛈᛞᚦ` and p39@119 red triad `ᛡᚳᛋ` have GP-prime sums **137=prime(33)** and **173=prime(40)**. These prime ordinals select physical red-titled p33 and p40, and subtracting `page_number+1` from the corresponding sums gives **133**, exactly the 2014 Stage11 onion7 original HTML title. Only these two three-rune spans in the eighteen red spans qualify; their positional and numerical coincidences are not author-authenticated. A real p56 prime-totient inverse under the source-derived p33/p40 ordinals, including all supported F bypass histories, fails; source-native positive controls pass. [Red119 original-gate report](../../im-results/lp2-p3-p39-red119-atbash-sky-udp.md#independently-indexed-red119-page-addresses-and-the-historical-title-133-agent37-13-november-2026) and [SFT](../../sims/lp2_red119_gpprime_page133_bridge_sft.cjs).
 
+
+## Current invocation additions (14 November 2026, 17:18 UTC)
+
+### 2012 chorus / Q238 LFSR gate
+
+The 2012 decoded chorus is exactly 238 letters and LP2 p36 is exactly 238 runes. Tested the distinct hypothesis that the chorus is a GF(29) LFSR state and p50's degree-238 residual factor Q238 is its feedback polynomial. Four seed mappings (GP single-letter, Latin A=0, 2012 MIDI 23-letter rank, raw note-plus-delta mod 29), Q238 and normalized reciprocal, forward/reversed seed, and including/after-state stream starts gave 32 variants over the full 12,956-rune ciphertext. Best I(C;K) = 0.04877027; 200×32 random-key max null median 0.04895037, p95 0.05106418. Positive fixed-bijection control = 0.61224204; independent native baseline = 0.04141006. No signal. Report: im-results/2012-midi-chorus-p36-238-gate.md; reproducer: sims/2012_chorus_q238_lfsr_lp2_gate_sft.cjs.
+
+Q238 is low-to-high with Q[238]=1 and Q[0]=5. The reciprocal recurrence must use 6×reverse(Q) mod 29. I notified Agent11 at communications/agent11/20261114T170238Z_agent37_q238-reciprocal-normalization.md that the existing red119 LFSR script's raw-reverse branch is non-monic; corrected reciprocal MI values on both p3/p39 seed orders remain near baseline, so the broad negative conclusion survives.
+
+### p55 terminal packet / p56 digest
+
+The source-derived 75-rune p55 body yields the framed 45-byte packet 15023cbcedd14959802c8aee4d43d09b0ead8f8e12d2f139066f3e8892b6460c27a66059a2e9bc73106377502d and 43-byte interior 023cbcedd14959802c8aee4d43d09b0ead8f8e12d2f139066f3e8892b6460c27a66059a2e9bc7310637750. Direct raw/ASCII-hex forms do not hash to the p56 128-hex digest under SHA-512, SHA3-512, BLAKE2b-512 or Whirlpool (8 serializations ×4 families). Report: im-results/lp2-terminal-quintet-overflow-channel.md; reproducer: sims/lp2_terminal_quintet_hash_preimage_sft.cjs. This only rejects direct serialization, not transformed/HTML/URL content.
+
+### Other bounded checks; do not elevate
+
+- The p15 16 matrix residues as an H16-factor LFSR seed for p16–22 (1,744 runes) produced best MI 0.416417. A 1,000-replicate null preserving the 16-value seed multiset and maximizing over the 8 polynomial/seed/start conventions gave empirical p = 0.086. Hungarian fixed-outer-alphabet recovery was nonlinguistic. Do not prioritize without a new source selector.
+- Correcting the 2014 M5BccDpT script's final eight-row condition to require equality across all eight rows gives no common modulus 1..330; the old truthiness checks were not an intersection. No key candidate.
+- Newly created Director Issues were already claimed on refresh (#916 Agent2, #918 Agent3, #917 Agent14, and the remaining new issues by other agents); do not duplicate the active floral/2015-prime/lag-five assignments.
+
+Current invocation has produced no plaintext or key. Continue seeking a source-selected operation/key that predicts unknown plaintext; do not reopen these rejected direct routes without new independent evidence.
+
 ## Overall objective and next decision
 
 Original LP2 p0–55 remain **56 unsolved physical pages, 55 rune-bearing, 12,956 cipher runes**; p50 is a 256-cell number grid; p56 and p57 are independently solved. The source has 86 original within-page adjacent equal-rune pairs. Avoid assuming a page's entire contents use one cipher or plain GP prose, and avoid mistaking arbitrary invertible forward roundtrips for genuine key identification.

@@ -1,4 +1,4 @@
-# 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment and field-key tests
+# 2012 MIDI chorus ↔ LP2 p36: exact 238-symbol alignment, field-key and Q238-LFSR tests
 
 **Classification (Agents 7, 17, 31 and 34, 11 November 2026):** source-motivated cross-round clue with retrospective page selection; bounded negative for direct GP29 letters, the exact historical 7-/14-column running-key permutations, full-block GF(29²³⁸) field-key transfers, direct MIDI-timing→GP29 key reuse, and the full arbitrary-seed 16-tap additive key implied by the Blake crib. The MIDI's 23-bar/23-pair chorus structure is exact but internal to the 2012 decode. No unknown LP2 plaintext, key, or intended continuation recovered.
 
@@ -121,6 +121,20 @@ This is a key-independent exclusion of this **additive 16-tap recurrence** for t
 
 [Source-asserting single-file gate](../sims/2012_chorus_p36_h16_derived_key_gate.cjs).
 
+### 3c. 238-stage Q238 feedback register seeded by the 2012 chorus (Agent37)
+
+The exact 238-letter chorus / 238-rune p36 alignment and the signed 2012 instruction to let the Chorus guide the solver motivate one distinct, low-parameter test: treat the chorus as a GF(29) LFSR state and the unique degree-238 residual factor of the p50 table polynomial as its feedback polynomial. Generate a stream and test it against all 12,956 unknown LP2 runes, allowing an arbitrary fixed outer 29-symbol bijection. This is distinct from the earlier full-block field multiplication tests.
+
+The p50 quotient coefficients are stored low-to-high, with Q238[238] = 1 and Q238[0] = 5. The direct polynomial is monic. Its reciprocal must be normalized by 5^-1 = 6 mod 29; simply reversing the coefficient array leaves a non-monic polynomial and is not the reciprocal recurrence used here.
+
+Four source-native seed encodings were frozen: (1) one-letter GP29 indices with K/Q→C, V→U, Z→S; (2) Latin A=0; (3) rank in the 2012 23-letter MIDI alphabet; and (4) the original MIDI note-plus-delta values reduced mod 29. For each, the test used direct Q238 and normalized reciprocal Q238, forward and reversed seed order, and either the initial state as the stream prefix or the first generated outputs after the state. That is 32 variants; no phase, arbitrary offset, or fitted key was introduced.
+
+On the full 12,956-rune LP2 ciphertext, the best source variant was the raw MIDI note-plus-delta seed, normalized reciprocal Q238, forward seed, with the initial state included: I(C;K) = 0.04877027 bits. A multiple-comparison null taking the maximum of 32 independent random keys in each of 200 replicates had median 0.04895037, 95th percentile 0.05106418, and 99th percentile 0.05289535. The source best is below even the null median.
+
+A positive control encrypted a held-out native GP29 Shakespeare segment with the same best key and the fixed bijection σ(x) = 7x + 3; it produced I(C;K) = 0.61224204 bits, while the independent native text/key control was 0.04141006. The statistic therefore detects the intended additive-key/fixed-bijection relationship when present. The chorus-seeded Q238 stream does not exhibit it.
+
+**Decision:** reject the 2012-chorus-seeded Q238 LFSR as an additive key stream for LP2 under a fixed outer alphabet. The exact 238/238 alignment remains a cross-round clue, but this natural feedback-register interpretation supplies no key or plaintext. Do not rescue it with unselected stateful filters or other cipher layers. Reproducer: ../sims/2012_chorus_q238_lfsr_lp2_gate_sft.cjs.
+
 ### 4. Raw MIDI timing and GP29-key source gate (Agent34)
 
 The pinned 10,889-byte `song.mid` was parsed from its original SMF event stream, not from the 238-event transcription. Its metadata records format 1, 96 ticks/quarter, tempo 500,000 µs/quarter, and an explicit **7/2** time signature, so a bar is **1,344 ticks**. Both musical tracks are monophonic: for every paired note, the note-off event's delta equals that note's duration. The historical `note + note_off_delta` rule is therefore exactly `pitch + duration` for this file.
@@ -143,6 +157,6 @@ The 23-bar segmentation was also tested against p36's project transcription (238
 
 ### Decision
 
-**Retire the direct p36-as-Blake-chorus crib, the direct and source-fixed T7/T14 transposed running-key interpretations, and the tested full-block Q238 field-key correspondence.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify a distinct independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
+**Retire the direct p36-as-Blake-chorus crib, the direct and source-fixed T7/T14 transposed running-key interpretations, the tested full-block Q238 field-key correspondence, and the 238-stage Q238 LFSR seeded by the 2012 chorus.** The exact 238/238 length alignment remains an unresolved cross-round clue, not a decryption. A new attempt must identify a distinct independently motivated reversible operation or key representation from an original source; do not rescue this route with arbitrary phase, reversal, transposition, or alphabet searches.
 
-Reproducers: ../sims/2012_midi_chorus_p36_238_gate.cjs (cross-round p36 tests) and ../sims/2012_midi_timing_source_gate.cjs (raw MIDI timing gate). Derived MIDI input and timing summary: 2012-midi-chorus-p36-238-inputs.json; pinned source pointer: ../resources/external/cicada2012-midi-source.json. The script verifies the source-rank decode, page-length uniqueness, word counts, direct-key IoCs, source-fixed 7-/14-column transpositions in both directions, exact ciphertext-side permutation equivalence, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.
+Reproducers: ../sims/2012_midi_chorus_p36_238_gate.cjs (cross-round p36 tests), ../sims/2012_midi_timing_source_gate.cjs (raw MIDI timing gate), and ../sims/2012_chorus_q238_lfsr_lp2_gate_sft.cjs (full-book Q238 feedback-register gate). Derived MIDI input and timing summary: 2012-midi-chorus-p36-238-inputs.json; pinned source pointer: ../resources/external/cicada2012-midi-source.json. The script verifies the source-rank decode, page-length uniqueness, word counts, direct-key IoCs, source-fixed 7-/14-column transpositions in both directions, exact ciphertext-side permutation equivalence, substitution consistency, held-out affine-pair prediction, and the Q238 cross-round coefficient gate. The p50 factorization source is im-results/lp2-grid-complete-gf29-factorization.md.
