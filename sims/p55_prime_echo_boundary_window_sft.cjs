@@ -29,7 +29,7 @@ assert.equal(wordLengths.reduce((a, b) => a + b, 0), 75);
 const body = p55.indices.slice(1);
 assert.equal(body.length, 75);
 const bodyFPositions = body.map((rune, i) => rune === 0 ? i + 1 : null).filter(Boolean);
-assert.deepEqual(bodyFPositions, [14, 24, 40], 'p55 body F positions must match original page-local positions 15,25,41');
+assert.deepEqual(bodyFPositions, [15, 25, 41], 'p55 body 1-based F positions must match original page-local positions 15,25,41');
 
 function firstPrimes(count) {
   const out = [];
