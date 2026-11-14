@@ -12,7 +12,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const {createHash} = require('node:crypto');
+const {createHash, createDecipheriv, createCipheriv} = require('node:crypto');
 const root = path.resolve(__dirname, '..');
 /** @param {string} name @returns {any} */
 const json = name => JSON.parse(fs.readFileSync(path.join(root, name), 'utf8'));
@@ -41,6 +41,14 @@ function byteDigits(integerValue) {
   const out = [];
   do { out.unshift(Number(n % 256n)); n /= 256n; }
   while (n > 0n);
+  return out;
+}
+/** @param {bigint} value @param {number} length @returns {Buffer} */
+function fixedBytes(value,length) {
+  const out=Buffer.alloc(length);
+  let n=value;
+  for(let i=length-1;i>=0;i--){out[i]=Number(n%256n);n/=256n;}
+  assert.equal(n,0n);
   return out;
 }
 const tableN = integer(bytes, 256);
@@ -82,6 +90,35 @@ const lowDigits = grid.rows.flat().map(t => t[1]);
 assert.deepEqual(Array.from(grid.alphabet)
   .filter(ch => !lowDigits.includes(ch)),['f']);
 assert.equal(grid.alphabet.indexOf('f'),41);
+// Source-specific symmetric-key consumer: base29 red integer is 247 bits,
+ // so its canonical fixed-width 32-byte representation is an AES-256 key.
+ // The reduced red integer is an independently defined alternate key.
+ // There is no Cicada-authenticated instruction selecting AES/IV/mode.
+const redKeys=[
+  ['p53 red as base29 integer',fixedBytes(target.number,32)],
+  ['p53 red divided by shared 179',fixedBytes(target.number/179n,32)]
+];
+const aes=[];
+for(const [keyLabel,key] of redKeys){
+  for(const [mode,iv] of [
+    ['aes-256-ecb',null],
+    ['aes-256-cbc',Buffer.alloc(16)],
+    ['aes-256-ctr',Buffer.alloc(16)]]) {
+    const decoder=createDecipheriv(mode,key,iv);
+    decoder.setAutoPadding(false);
+    const out=Buffer.concat([decoder.update(Buffer.from(bytes)),decoder.final()]);
+    assert.equal(out.length,256);
+    const encoder=createCipheriv(mode,key,iv);
+    encoder.setAutoPadding(false);
+    assert.deepEqual(Buffer.concat([encoder.update(out),encoder.final()]),
+      Buffer.from(bytes));
+    const printable=Array.from(out).filter(x=>
+      (x>=32 && x<=126) || x===10 || x===13).length;
+    aes.push({keyLabel,mode,printableOf256:printable,
+      initial16Hex:out.subarray(0,16).toString('hex')});
+  }
+}
+assert.equal(aes.length,6);
 const quotient255 = byteDigits(tableN/(179n*179n));
 assert.equal(quotient255.length,255);
 assert.equal(p53.indices.length+p55.indices.length,255);
@@ -175,6 +212,7 @@ console.log(JSON.stringify({
   sourceQuotientLengths:[quotient251.length,quotient252.length,quotient255.length],
   uniqueNonemptyPagePairs:{251:pairs(251),252:pairs(252),255:pairs(255)},
   frozenDirectGP29SubtractionsAndAdditions:tests,
+  frozenAES256OriginalTableInversion:aes,
   solvedP57SyntheticAdditiveControl:reference.length,
   result:'No unknown LP2 plaintext, key schedule or chosen cipher operation recovered'
 },null,2));
