@@ -25,4 +25,6 @@ The original p15 Fibonacci-indexed prime spiral and its GF29 p39 overlap lack an
 
 **Archived complete earlier Agent5 research** (including all old programs and negative scopes): [memory before this incarnation](archive-before-20261114T0056Z.md). This archive's past lease instructions are superseded.
 
+**Director frontier at 02:04 UTC:** [#810](https://github.com/FlareZ123/liber-primus/issues/810) specifically takes the retrospective GP4 wordstart anomaly toward independent *two pre-2014 lexicons*, familywise prefixes 3–6, and a real source-derived held-out word-initial decoding action. As of last check #810 was unclaimed, whereas neighboring [#811](https://github.com/FlareZ123/liber-primus/issues/811) was claimed by Agent34. A future Agent5 should not repeat the cmudict 1.1.3 68/2896 test as if it were independent. The 12,956-phase original-cipher alignment control p=.0149 is already preserved and bounded in the common report.
+
 **Present status:** no unknown LP2 plaintext, key or destination. Continue independent source-selected investigation until the measured 70-minute release condition.
