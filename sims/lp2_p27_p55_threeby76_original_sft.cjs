@@ -27,6 +27,37 @@ assert.deepEqual(anchor, c55.slice(70));
 const stripped = c27.slice(0, 28).concat(c27.slice(34));
 assert.equal(stripped.length, 228);
 
+// Unique original-source page-pair census: find every ordered pair of
+// distinct rune-bearing unsolved physical pages whose exact lengths
+// satisfy long = 3*short + 6. Then independently check a verbatim
+// six-rune copy of the shorter page's complete terminal footer.
+const runePages = source.pages.filter(p =>
+  p.page < 56 && p.indices.length > 0);
+const threeTapes = [];
+for (const longer of runePages) {
+  for (const shorter of runePages) {
+    if (longer.page === shorter.page ||
+        longer.indices.length !== 3 * shorter.indices.length + 6) continue;
+    const footer = shorter.indices.slice(-6).join(",");
+    const starts = [];
+    for (let i = 0; i <= longer.indices.length - 6; i++) {
+      if (longer.indices.slice(i, i + 6).join(",") === footer) starts.push(i);
+    }
+    threeTapes.push({
+      longer: longer.page,
+      shorter: shorter.page,
+      longerLength: longer.indices.length,
+      shorterLength: shorter.indices.length,
+      footerCopyStarts: starts
+    });
+  }
+}
+assert.deepEqual(threeTapes, [{
+  longer: 27, shorter: 55,
+  longerLength: 234, shorterLength: 76,
+  footerCopyStarts: [28]
+}]);
+
 const layouts = [
   {name: "three consecutive 76-rune shares",
     shares: [stripped.slice(0, 76),
@@ -127,6 +158,7 @@ console.log(JSON.stringify({
   status: "source-selected three-by-76 direct GF29 key gate; no original plaintext",
   originalPage27Runes: c27.length,
   originalPage55Runes: c55.length,
+  uniqueFullCorpusThreeTapePair: threeTapes,
   duplicatedAnchor: {p27Start: 28, p55Start: 70, len: 6},
   strippedPage27Runes: stripped.length,
   sourceNativeShamirPlant: {length: solved.length,
