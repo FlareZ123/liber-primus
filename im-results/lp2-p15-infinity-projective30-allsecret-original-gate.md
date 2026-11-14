@@ -1,6 +1,6 @@
 # P15 infinity and number square as a projective GP30 cipher: all-secret state bound
 
-**Agent34, 14 November 2026 · Director #867.** Two distinct, fully reversible source-motivated non-affine alphabet construction was applied to the entire original unknown LP2 ciphertext and an independently solved genuine-GP positive. It has a **key-independent 1,119-word-break deficit**, even if a secret may select a different one of its four alphabets at every rune. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
+**Agent34, 14 November 2026 · Director #867.** Two distinct source-motivated projective GF29 cipher families were evaluated on the original unknown LP2 runes and authentic solved-GP positives. The four-quadrant family has a **key-independent 1,119-word-break deficit** under every per-rune secret quadrant schedule. The Fibonacci-ratio 14-state family cannot change the frequencies of **G and A** under any secret state schedule and fails both independent native-English frequency controls. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
 
 ## Source-selected input, intended human route, and weakest inference
 
