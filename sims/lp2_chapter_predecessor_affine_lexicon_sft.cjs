@@ -27,7 +27,8 @@ const translit = corpus.translit.map((symbol, i) => ({symbol, i}))
   .sort((a, b) => b.symbol.length - a.symbol.length);
 const CHAPTERS = [[0,2], [3,7], [8,14], [15,22], [23,26],
   [27,32], [33,39], [40,52], [53,54]];
-const LIMIT = 5;
+const WIDE = process.argv.includes('--wide');
+const LIMIT = WIDE ? 14 : 5;
 const SIZE = 29;
 
 /** @param {number} x @returns {number} */
@@ -64,7 +65,9 @@ for (const word of lexiconText.match(/^[A-Za-z]+/gm) || []) {
 }
 byLength[1] = new Map([[3, [3]], [10, [10]], [24, [24]]]);
 const native = byLength.map(m => [...m.values()]);
-assert.deepEqual(native.map(a => a.length), [0, 3, 188, 752, 2123, 3613]);
+assert.deepEqual(native.map(a => a.length), WIDE ?
+  [0,3,188,752,2123,3613,4657,4776,4325,3397,2388,1450,767,379,153] :
+  [0,3,188,752,2123,3613]);
 
 /** @typedef {{page:number,offset:number,prev:number|null,c:number[],ordinal:number}} Word */
 /** @returns {Word[]} */
@@ -278,6 +281,23 @@ const generated = [3,10,24].map(p =>
   mod(6 + knownKey.a * p + knownKey.b)).sort((a,b)=>a-b);
 assert(keys.some(k => [3,10,24].map(p => mod(6+k.a*p+k.b))
   .sort((a,b)=>a-b).every((v,i)=>v===generated[i])));
+
+if (WIDE) {
+  for (const chapter of [0, 8]) {
+    const [from,to] = CHAPTERS[chapter];
+    const source = words.filter(w => w.page >= from && w.page <= to);
+    for (let length = 5; length <= LIMIT; length++) {
+      const result = analyze(source, length);
+      console.log('WIDE', JSON.stringify({chapter:chapter+1, maxLength:length,
+        selectedWords:result.selectedWords, possible:result.possible,
+        firstConflict:result.firstConflict || null,
+        remainingKeys:result.remainingKeys}));
+      if (!result.possible) break;
+    }
+    console.log('WIDE_POSITIVE',JSON.stringify({chapter:chapter+1, ...plant(source,chapter)}));
+  }
+  process.exit(0);
+}
 
 const table = [];
 const expectedFirstReject = [null,4,3,3,4,3,1,1,null];
