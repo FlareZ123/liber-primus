@@ -49,6 +49,74 @@ const tapes = Array.from({length: 3},
   (_, k) => run.slice(k * p55.length, (k + 1) * p55.length));
 assert.deepEqual(tapes.flat(), run);
 const mod29 = x => (x % 29 + 29) % 29;
+
+/**
+ * The historical 2013 Cicada share scheme motivates a stronger, exact
+ * test: could p55 be a fourth GF(29) share predicted by the three p27
+ * 76-rune tapes? Every fixed-degree <=2 Shamir relation would require
+ * one common linear combination of the three source shares. Grant
+ * an arbitrary intercept as well, and test both natural strip layouts.
+ * This is a source-shaped conditional gate, not proof of a cipher.
+ *
+ * @param {number[][]} rows
+ * @returns {number}
+ */
+function gf29Rank(rows) {
+  const a = rows.map(row => row.map(mod29));
+  let r = 0;
+  for (let col = 0; col < a[0].length && r < a.length; col++) {
+    let pivot = r;
+    while (pivot < a.length && a[pivot][col] === 0) pivot++;
+    if (pivot === a.length) continue;
+    [a[r], a[pivot]] = [a[pivot], a[r]];
+    let inverse = 0;
+    for (let i = 1; i < 29; i++) {
+      if (mod29(i * a[r][col]) === 1) {
+        inverse = i;
+        break;
+      }
+    }
+    assert.notEqual(inverse, 0);
+    for (let j = col; j < a[r].length; j++) {
+      a[r][j] = mod29(a[r][j] * inverse);
+    }
+    for (let i = 0; i < a.length; i++) {
+      if (i === r) continue;
+      const factor = a[i][col];
+      for (let j = col; j < a[i].length; j++) {
+        a[i][j] = mod29(a[i][j] - factor * a[r][j]);
+      }
+    }
+    r++;
+  }
+  return r;
+}
+const shamirAffineGate = {};
+for (const layout of ["contiguous", "interleaved"]) {
+  const shares = layout === "contiguous"
+    ? tapes
+    : Array.from({length: 3}, (_, j) =>
+      Array.from({length: 76}, (_, i) => run[3 * i + j]));
+  const predictor = Array.from({length: 76}, (_, i) =>
+    [1, shares[0][i], shares[1][i], shares[2][i]]);
+  const augmented = predictor.map((x, i) => [...x, p55[i]]);
+  const rank = gf29Rank(predictor);
+  const augmentedRank = gf29Rank(augmented);
+  // A five-row contradiction is independently reproducible from the
+  // original first five glyphs; no language scoring or fitted key.
+  assert.equal(gf29Rank(predictor.slice(0, 4)), 4);
+  assert.equal(gf29Rank(augmented.slice(0, 5)), 5);
+  assert.equal(rank, 4);
+  assert.equal(augmentedRank, 5);
+  shamirAffineGate[layout] = {
+    sourceTapeArrangement: layout,
+    rank,
+    augmentedRank,
+    contradictionAtRuneOffset: 4,
+    sourceShareRows: predictor.slice(0, 5),
+    p55RuneValues: p55.slice(0, 5)
+  };
+}
 /** @param {number[]} data @returns {number} */
 function ioc(data) {
   const hist = Array(29).fill(0);
@@ -173,6 +241,7 @@ console.log(JSON.stringify({
     leading16BytesHex: Buffer.from(packed).toString("hex").slice(0, 32),
     remainingBits: bits.slice(376)
   },
+  fixedShamirAffineFourthShare: shamirAffineGate,
   historicalBase29XorByte: {
     width: 47,
     printableBytes: printable(base29RecoveredBytes),
