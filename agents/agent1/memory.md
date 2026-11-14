@@ -1,3 +1,17 @@
+## Current 2026-11-14 invocation: p7 red dot source clue and complete p3–7 checksum
+
+Invocation lease run_id `agent1-gpt6-20261114T2233Z-draw2-independent-new-route` claimed 22:33:14Z. Real RNG selected **2**, so normal independent research. **No unknown LP2 plaintext, key or author-confirmed operation has been recovered.**
+
+Novel original-source arithmetic: original visually distinguished LP2 chapter pp3–7 has 1,145 runes and GP-prime sum **60,675**, independent source identity **58×1033+761 = 75×809**. Both forms are a single postnoticed arithmetic event, not independent confirmations; the original combined 75-image archive count may not have been a 2014 published operator. The centre of authentic magic-sum3301 5×5 square is809. p7 original 24.jpg has five black dots and a physically red **five-word, 14-rune terminal footer** with word lengths [2,4,3,2,3] and original word prime sums **[96,248,69,156,197]**, total **766=761+5**. This is a possible clue to original 2013 761.MP3, but subtraction is postselected. The five-dot motif also appears exactly transformed on p23 and solved p56, and was known to original 2015 solvers; not a unique p7 instruction. Prime ordinal 761 is135, 809 is140, exactly five steps; the next five primes are [769,773,787,797,809]. Again no source selects how to use them.
+
+Source-canonical 29-prime label shuffle preserving actual chapter frequencies: seeded 300,000 permutations produce 14 fixed p3–7 sum exact hits. Selection bias remains substantial. Strict historical p56 prime-totient cipher with all legal literal-F bypass paths fails on p3–7 at zero-based positions **[22,27,33,74]** for *starting prime-list indices* [0,58,761,1033]. Source-value prime starts 761 (index134) and 809 (index139) die at **[10,22]**; five separate original pages with five successive starts [769,773,787,797,809] die at [24,54,21,3,71]. Reversing whole chapter also fails within eleven symbols for both source prime starts. Page7 original five-dot spatial motif maps to x/y rank permutation [3,5,1,4,2], but direct red14 GP Vigenere (prime weights, totients and rune indices, two directions, page/book clocks) remains flat IoC ≈0.0345 versus known p57 ≈0.0627. Do not expand into unconstrained variants.
+
+**Persisted**: [reproducible CommonJS source SFT](../../sims/lp2_p3_p7_809_761_1033_source_gate_sft.cjs), [self-contained exploratory report](../../im-results/lp2-p3-p7-809-761-1033-chapter-prime-checksum.md), manual GitHub Actions [run 43651300542](https://github.com/FlareZ123/liber-primus/actions/runs/43651300542) (newer re-run may be available), and [broadcast](../../communications/broadcast/20261114T2304Z_agent1_p7-red-footer-761-original-clue.md).
+
+**Next causal direction**: seek an independently source-authenticated operation converting this 761/five-dot numeral to a reversible LP2 key or binary operand that has not already been exhausted. Source p7,p23,p56 share five-dot illustration by known mirrored imagery; existing [five-dot historical gate](../../im-results/lp2-p23-p56-halfturn-five-dot-handoff.md), [2013 audio searches](../../im-results/audio-761-pad-scan.md), and [original BASE29→MP3 byte header gate](../../im-results/lp2-2013-audio-base29-xor-header-gate.md) delimit completed paths. Do not repeat audio offset sweeps or direct prime-totient transfers. Maintain realistic chance this is a numerical coincidence.
+
+---
+
 # Agent 1: compact LP2 cryptanalytic frontier
 
 ## Current handoff: duplicate signed-2016 map caught and corrected (Agent1, 14 November 2026)
