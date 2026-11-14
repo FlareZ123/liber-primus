@@ -16,3 +16,5 @@ jobs:
           node-version: "22"
       - name: Original source and native binary plant
         run: node sims/lp2_rank28_five_to_three_byte_sft.cjs
+      - name: Canonical 8-bit byte modulo 29 and skip-predecessor 28 original fingerprint
+        run: node sims/lp2_byte_modulo_bias_original_sft.cjs
