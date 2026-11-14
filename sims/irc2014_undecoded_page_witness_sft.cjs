@@ -74,6 +74,18 @@ function scan(data, file) {
   for (const m of matches.slice(0, 75)) {
     console.log(`  L${m.line} score${m.score} ${m.text}`);
   }
+  const contextTargets = {
+    '#cicadasolvers.freenode.log': [175235, 178134, 178803, 186651, 190223, 193676, 200358, 216040, 217218, 235420, 236703],
+    '#cicadasolvers.freenode.2.log': [230620, 256472, 256507, 261448, 271355, 274598],
+  };
+  const targetLines = contextTargets[file] || [];
+  console.log('FROZEN SOURCE CONTEXT (six preceding/following lines):');
+  for (const center of targetLines) {
+    console.log(`  CENTER ${file}:${center}`);
+    for (let i = Math.max(0, center - 7); i < Math.min(lines.length, center + 6); i++) {
+      console.log(`    L${i + 1}: ${redact(lines[i])}`);
+    }
+  }
   console.log('CHRONOLOGICAL EXPLICIT LP2/LIBER (first 35):');
   for (const m of bookLines.slice(0, 35)) {
     console.log(`  L${m.line} ${m.text}`);
