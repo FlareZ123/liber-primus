@@ -19,6 +19,10 @@ const chapters=chapterEnds.map(()=>({pool:[],count:0}));
 const pages=Array.from({length:56},()=>({pool:[],count:0}));
 /** @type {Map<string,Stratum>} */
 const pageContext=new Map();
+/** @type {Map<string,Stratum>} */
+const printedLine=new Map();
+/** @type {Stratum[]} */
+const printedHalf=[];
 /** @type {number[]} */
 const sites=[];
 /** @type {{[key:string]:number}} */
@@ -27,10 +31,20 @@ let globalOffset=0;
 for(let p=0;p<56;p++){
   const original=corpus.pages[p].indices.map(i=>corpus.runes[i]);
   const printed=p===50?"":originalPages[p<50?p:p-1];
-  let prior=null,sep="",local=-1;
+  let prior=null,sep="",local=-1,line=0,previousRuneLine=0;
+  let totalLines=1;
+  for(let k=0;k<printed.length;k++){
+    if(printed[k]==="/" || printed[k]==="\n" && k>0 && printed[k-1]!=="/" && printed[k-1]!=="\r")totalLines++;
+  }
+  const halfway=Math.floor(totalLines/2);
+  const halves=[{pool:[],count:0},{pool:[],count:0}];
+  printedHalf.push(...halves);
   /** @type {string[]} */
   const discovered=[];
-  for(const symbol of printed){
+  for(let cursor=0;cursor<printed.length;cursor++){
+    const symbol=printed[cursor];
+    if(symbol==="/"){line++;continue;}
+    if(symbol==="\n" && cursor>0 && printed[cursor-1]!=="/" && printed[cursor-1]!=="\r"){line++;continue;}
     if(runeSet.has(symbol)){
       local++;
       discovered.push(symbol);
@@ -46,7 +60,16 @@ for(let p=0;p<56;p++){
         chapters[ch].pool.push(site);
         pages[p].pool.push(site);
         entry.pool.push(site);
+        const lineKey=p+":"+previousRuneLine;
+        if(!printedLine.has(lineKey))printedLine.set(lineKey,{pool:[],count:0});
+        const lineEntry=printedLine.get(lineKey);
+        assert.ok(lineEntry);
+        lineEntry.pool.push(site);
+        const halfEntry=halves[previousRuneLine<halfway?0:1];
+        halfEntry.pool.push(site);
         if(prior===symbol){
+          lineEntry.count++;
+          halfEntry.count++;
           chapters[ch].count++;
           pages[p].count++;
           entry.count++;
@@ -55,6 +78,7 @@ for(let p=0;p<56;p++){
         }
       }
       prior=symbol;
+      previousRuneLine=line;
       sep="";
     }else sep+=symbol;
   }
@@ -65,6 +89,9 @@ assert.equal(globalOffset,12956);
 assert.equal(sites.length,86);
 assert.deepEqual(chapters.map(x=>x.count),[4,6,9,10,11,13,12,18,3]);
 assert.deepEqual(contextCounts,{word:22,inside:63,sentence:1});
+assert.equal(printedLine.size,594);
+assert.equal([...printedLine.values()].filter(group=>group.count>0).length,83);
+assert.equal(printedHalf.reduce((sum,g)=>sum+g.count,0),86);
 
 /** @param {readonly number[]} pos @returns {number} */
 function gapAc1(pos){
@@ -119,16 +146,21 @@ const outcomes={
   flat:simulate(global,draws),
   fixedVisibleChapterCounts:simulate(chapters,draws),
   fixedPageCounts:simulate(pages,draws),
-  fixedPageAndWordBoundaryCounts:simulate([...pageContext.values()],draws)
+  fixedPageAndWordBoundaryCounts:simulate([...pageContext.values()],draws),
+  fixedPageUpperLowerHalfCounts:simulate(printedHalf,draws),
+  fixedPrintedLineCounts:simulate([...printedLine.values()],draws)
 };
 assert.ok(outcomes.flat.upperTail<0.005);
 assert.ok(outcomes.fixedVisibleChapterCounts.upperTail<0.005);
 assert.ok(outcomes.fixedPageCounts.upperTail<0.025);
 assert.ok(outcomes.fixedPageAndWordBoundaryCounts.upperTail<0.025);
+assert.ok(outcomes.fixedPageUpperLowerHalfCounts.upperTail>0.005 && outcomes.fixedPageUpperLowerHalfCounts.upperTail<0.10);
+assert.ok(outcomes.fixedPrintedLineCounts.upperTail>0.08 && outcomes.fixedPrintedLineCounts.upperTail<0.50);
 console.log(JSON.stringify({
   source:"Original LP2 pp0–55, printed source chapter/page/word boundaries",
   runes:12956,sites:86,sourceContextCounts:contextCounts,
   sourceChapterCounts:chapters.map(x=>x.count),originalGapPearsonAc1:observed,
+  printedLineStrata:printedLine.size, printedLineStrataWithRepeats:[...printedLine.values()].filter(x=>x.count>0).length,
   sourceConditionedNulls:outcomes,positivePlantGapAc1:gapAc1(plant),status:"PASS",
-  limits:"Conditional placement tests, not decryption, and exploratory once external T7 statistic known."
+  limits:"Conditional placement tests, not decryption, and exploratory once external T7 statistic known. Printed-line conditioning uses 594 fine strata and nearly pins event site positions."
 },null,2));
