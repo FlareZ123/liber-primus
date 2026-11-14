@@ -52,6 +52,23 @@ None produces ordinary readable ASCII. The two GP-ordinal plus nibble/square var
 
 This closes **direct aligned 8-bit ASCII XOR** between the hidden p05 payload and the original p53 rune stream, including both historical source representations of GP symbol values. It does **not** exclude a different cryptographic use of the square, key schedule or physically selected reading order. The [same source-exact CommonJS SFT](../sims/lp1_p05_hidden179_lp2_p53_rawpad_sft.cjs) has been extended with all six XOR readouts and fixed output statistics instead of adding a second test file.
 
+## Recovered square as motif-selected OutGuess password (14 November 2026)
+
+The same source-derived 179-byte numeric square is also a concrete **OutGuess 0.4 passphrase candidate**, because Cicada's authentic 2014 Stage04 `03.jpg` and Stage05 `08.jpg` contained recoverable JPEG DCT steganography. The copied Cicada emblem independently chooses LP2 p53 and p55 as target images. The two exact full-length, fixed ASCII source strings are (a) the recovered 179-byte, decimal-direction-corrected square including its spaces and newlines, and (b) the original 358 printed hex digits from LP1 `05.jpg`'s embedded center. Neither string is truncated to make an attractive password.
+
+The existing source-faithful [OutGuess extractor](../sims/outguess_extract.py) and C JPEG coefficient bitmap reader reproduce the historical `03.jpg` **31,809-byte PGP-signed cleartext**, full SHA-256 `a14c1e144760c361a39da41e4784a9a22a3ce490baf42d9eb99b37feab8a47c1`, under the authentic **`Default key`**. This is the positive detection control. Each original image is hashed before its quantized coefficients are accessed; page `71.jpg` (p54, no copied moth emblem) serves as an exact wrong-target control.
+
+| Original JPEG | Source-179-ASCII header | Reported length | Recovered bytes SHA-256 (first 12) | Printable fraction | Byte entropy |
+| --- | --- | ---: | --- | ---: | ---: |
+| `05.jpg` (solved LP1, source) | `9721b90a` | 2,745 | `cf3c82cd0a89` | 0.3767 | 7.9401 |
+| `70.jpg` (LP2 p53) | `9721b90a` | 2,745 | `d5a0a9025dc6` | 0.3945 | 7.9353 |
+| `71.jpg` (LP2 p54, negative control) | `9721b90a` | 2,745 | `12f6973a335f` | 0.3934 | 7.9312 |
+| `72.jpg` (LP2 p55) | `9721b90a` | 2,745 | `02db0a488263` | 0.3774 | 7.9315 |
+
+**The identical header is a mechanistic false positive.** Each of these unrelated original JPEGs contains **at least 3,168 leading bytes of all-one bits** in the original OutGuess-eligible coefficient bitmap. The entire four-byte pseudoheader is selected within the first 1,024 such bits, independently of each password. Therefore its apparent capacity fit, matching `8599` seed and `2745` length do **not** indicate embedded data. Even p54's unrelated drawing yields the identical fake result. Every extracted candidate is high-entropy, lacks a known magic/file header or PGP armor and fails to recover readable original text. The second exact 358-hex source key yields capacity failure on p05, two unrelated random 53,779-byte outputs on p53/p54, and an invalid skip modulus on p55. The pair of surviving random outputs have the same forced 4-byte header and no identified payload.
+
+**Decision:** close these two full-length, historically plausible, motif-selected original OutGuess password transfers. The general possibility of some *other independently instructed* password or keyed JPEG transport is unaffected, but neither authentic p05 source string supplies the missing image key. Original inputs, known PGP control, full payload hashes and false-header comparison are executable in [the standalone SFT](../sims/lp1_p05_square_outguess_moth_sft.py), using the already established original-source extractor. No new LP2 plaintext, authentic key or continuation follows.
+
 ## Decision
 
 The original hidden 179-byte payload and p53's 179 glyphs share a previously untested, artwork-selected **one-to-one key capacity**. The source-defined GP29 additive consumers and six one-to-one bytewise XOR consumers likewise fail to recover readable unknown-page text. Do **not** infer that the hidden square has been proven irrelevant: a genuine use could involve the recovered 25 decimal numbers as an indexing instruction, a separate steganographic password, or an unspecified state transformation. Pursue the relationship further only if an independent period-original clue specifies an operation that can predict **heldout original LP2 plaintext**, rather than trying arbitrary byte reductions, rotations, salt phrases or cipher families. The parent report's existing 25-cell p55 key tests remain unchanged.
