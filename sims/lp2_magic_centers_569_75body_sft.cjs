@@ -116,6 +116,12 @@ function run() {
   assert.equal(centers[0] - centers[1] + centers[2], 569);
   const dims = jpegDimensions(bytes("resources/historical/cicada2016-4gq25.jpg"));
   assert.deepEqual(dims, [563, 569]);
+  const isPrime = value => value >= 2 &&
+    Array.from({length: Math.floor(Math.sqrt(value)) - 1}, (_, i) => i + 2)
+      .every(divisor => value % divisor !== 0);
+  assert.ok(isPrime(xor) && isPrime(dims[0]));
+  assert.ok(Array.from({length: dims[1] - dims[0] - 1}, (_, i) =>
+    !isPrime(dims[0] + i + 1)).every(Boolean));
   const corpus = JSON.parse(text("resources/liber-primus/lp2-corpus.json"));
   const get = number => corpus.pages.find(page => page.page === number).indices;
   const p32 = get(32), p55 = get(55), known = get(57);
