@@ -10,6 +10,7 @@ on:
         default: commoncrawl-sheet
         options:
           - commoncrawl-sheet
+          - sheet-chat-context
           - wayback-arquivo-six
 
 permissions:
@@ -54,3 +55,17 @@ jobs:
           name: agent28-2014-original-sheet-commoncrawl
           path: sheet-commoncrawl.jsonl
           if-no-files-found: ignore
+
+  original-sheet-chat-context:
+    if: ${{ inputs.mode == 'sheet-chat-context' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original June 18 2014 keystream spreadsheet transcript
+        run: |
+          node --check sims/lp2_2014_sheet_irc_context_sft.cjs
+          node sims/lp2_2014_sheet_irc_context_sft.cjs --network
