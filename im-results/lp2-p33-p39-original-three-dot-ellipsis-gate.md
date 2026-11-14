@@ -26,6 +26,14 @@ The p33 triad's component ink areas are **3,559, 3,542, 3,533** pixels; p39's ar
 
 This is a **specific morphology and source-structure inventory**, not an assertion that there are no other small circular glyphs, red dots, cuneiform circles or decorative marks. The three five-disc source controls in pp7/23/56 matter because a loose “there are dots” comparison would conflate visually different motifs. The exact count and two independent intra-page placements are what survive this targeted test.
 
+## Adjacent 121-unit map-transfer gate (source-count follow-up for #804)
+
+The p39 lower red-X section is exactly **121 GP29 runes**, the same length as physical p32's independently defined **121-rune** square. This offers a narrow, source-motivated candidate: p39 could be a rearranged copy of p32's 11×11 rune matrix, perhaps with one secret but fixed rune-substitution alphabet. An arbitrary transposition must preserve each symbol's count; additionally allowing a completely unknown 29-symbol bijection preserves the **sorted multiset of 29 histogram counts**, even if labels are permuted.
+
+Under the frozen original physical reading order, compare all **121 original p32** rune indices with **p39 local runes 119–239** (the exact runic segment after the printed black dots). The first twelve sorted symbol frequencies on p32 are `[10,8,7,7,6,5,5,5,5,5,4,4]`; for p39 lower they are `[8,8,7,7,7,7,6,6,6,6,5,5]`. The histograms differ already at the maximum (10 versus 8), proving that **no arbitrary rune rearrangement plus one bijective secret GP29 relabeling** maps the entire first segment onto the second. Under unchanged labels, at most **92 of 121** rune identities can be preserved even after an arbitrary permutation. Only **6 of 121** physical positions have the same rune in their original relative positions. These are exact key-independent necessary-condition comparisons; they do not depend on linguistic scoring or a tuned grid traversal.
+
+This closes a *direct same-rune-inventory 121↔121 overlay/transposition* idea, while leaving unrelated independent ciphertext streams, changing cipher states, additive masks and word-map paths unaffected. Neither number equality nor its exclusion supplies a historical map-reading opcode.
+
 ## Plausible operations and missing selector
 
 The most economical reading of a horizontally aligned three-dot symbol at the end of one text block and before another is **ellipsis, omission or continuation punctuation**. Either might be a human-facing signal to connect the upper and lower passages, possibly to carry a cipher state across the visible division. A 2014 participant could notice the same structure on p33 and p39, as the original geometry itself invites comparison.
