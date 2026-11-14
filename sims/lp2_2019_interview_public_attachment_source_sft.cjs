@@ -52,6 +52,31 @@ for(const url of wp){
      link:z.link,slug:z.slug})).slice(0,3)||null});
  if(arr?.length){post=arr.find(v=>v.slug==="cicada-files-ghost3301-interview")||arr[0];break;}
 }
+// Public WordPress.com hosted-site API, documented by WordPress.com:
+ // GET /rest/v1.1/sites/$site/posts/slug:$post_slug (no auth).
+ // The archived in-page ma91c1an.files.wordpress.com is an independently
+ // source-visible hosting hint, not a guessed manuscript filename.
+const hosted=[];
+for(const site of ["therealsamizdat.com","ma91c1an.wordpress.com"]){
+ const url="https://public-api.wordpress.com/rest/v1.1/sites/"
+    +site+"/posts/slug:cicada-files-ghost3301-interview";
+ const resp=await get(url);
+ let details=null;
+ if(resp.status===200){
+   try{
+     const obj=JSON.parse(resp.text);
+     details={ID:obj.ID,site_ID:obj.site_ID,date:obj.date,modified:obj.modified,
+       URL:obj.URL,attachment_count:obj.attachment_count,
+       attachments:Object.values(obj.attachments||{}).map(m=>({
+         ID:m.ID,mime_type:m.mime_type,URL:m.URL,slug:m.slug,date:m.date,
+         file:m.file,title:m.title
+       })).slice(0,30)};
+   }catch{}
+ }
+ hosted.push({site,url,status:resp.status,contentType:resp.contentType,
+   bytes:resp.bytes,details});
+ if(details?.ID)break;
+}
 const attachments=[];
 if(post?.id){
  for(const url of [
@@ -96,7 +121,7 @@ console.log(JSON.stringify({
   transcriptMentionsDraft:/pdfs? of the runes|37 pages before they were encrypted/i.test(main.text),
   linkCount:links.length,sourceCandidates,
   linkedPDF:links.filter(s=>/\.pdf(?:[?#]|$)/i.test(s))},
- wordpress:attempts,attachments,historical,
+ wordpress:attempts,attachments,hosted,historical,
  archive:{url:cdxUrl,status:cdx.status,bytes:cdx.bytes,
   error:cdx.status===0?cdx.contentType:null,captures}
 },null,2));
