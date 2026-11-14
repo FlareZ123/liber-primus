@@ -1,0 +1,23 @@
+name: Agent8 original 2014 IRC attachment archive locator
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-archive-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and frozen objects
+        run: |
+          node --check sims/lp2_2014_irc_sixfiles_archive_gate.cjs
+          node sims/lp2_2014_irc_sixfiles_archive_gate.cjs --selftest
+      - name: Six exact original-date file archive queries
+        run: node sims/lp2_2014_irc_sixfiles_archive_gate.cjs --network
