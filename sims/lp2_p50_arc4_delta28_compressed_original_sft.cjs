@@ -133,6 +133,22 @@ const gzip = decrypted.subarray(0, 3).equals(Buffer.from('1f8b08','hex'));
 const bzip2 = /^425a683[1-9]/i.test(decrypted.subarray(0, 4).toString('hex'));
 const zlibHeader = decrypted[0] === 0x78 && [0x01,0x5e,0x9c,0xda].includes(decrypted[1]);
 const printable = Array.from(decrypted).filter(x=>x>=32&&x<=126).length;
+const originalOutguessMd5 = crypto.createHash('md5').update('EncryptionKey').digest('hex');
+assert.equal(originalOutguessMd5, '387414bcd0862806df84e831b3b6c613');
+// OutGuess 0.2 original arc.c arc4_initkey: MD5(type || key),
+// with type literal "Encryption" (confirmed outguess.c do_embed/do_retrieve),
+// then arc4_addrandom(digest16) = ordinary 16-byte RC4 KSA.
+const originalOutguessKey = crypto.createHash('md5')
+  .update(Buffer.from('Encryption', 'ascii')).update(Buffer.from(key)).digest();
+const outguessBytes = xor(serialized, rc4(Array.from(originalOutguessKey), serialized.length));
+const outguessGzip = outguessBytes.subarray(0, 3).equals(Buffer.from('1f8b08', 'hex'));
+const outguessBzip2 = /^425a683[1-9]/i.test(outguessBytes.subarray(0,4).toString('hex'));
+const outguessZlib = outguessBytes[0] === 0x78 &&
+  [0x01, 0x5e, 0x9c, 0xda].includes(outguessBytes[1]);
+const outguessPrintable = Array.from(outguessBytes).filter(x=>x>=32&&x<=126).length;
+assert.equal(outguessGzip, false);
+assert.equal(outguessBzip2, false);
+assert.equal(outguessZlib, false);
 assert.equal(gzip, false);
 assert.equal(bzip2, false);
 assert.equal(zlibHeader, false);
@@ -163,6 +179,20 @@ const plainExtracted = xor(plantExtracted, rc4(key, plantExtracted.length));
 assert.deepEqual(plainExtracted, compressed);
 assert.deepEqual(zlib.gunzipSync(plainExtracted), synthetic);
 assert.deepEqual(rank(planted).repeatSuccessors, ranked.repeatSuccessors);
+// Independent original-OutGuess-MD5-then-ARC4 positive on the identical
+// source geometry, all 86 zero sites and the *same* real gzip plant.
+const plantedOutguessBytes = xor(compressed,
+  rc4(Array.from(originalOutguessKey), compressed.length));
+const plantedOutguess = unrank({
+  first: ranked.first,
+  digits: bytesToBase28(plantedOutguessBytes, ranked.digits.length),
+  repeatSuccessors: ranked.repeatSuccessors
+},unknown.length);
+assert.deepEqual(rank(plantedOutguess).repeatSuccessors,ranked.repeatSuccessors);
+const rereadOutguess = base28ToBytes(rank(plantedOutguess).digits);
+assert.deepEqual(rereadOutguess,plantedOutguessBytes);
+assert.deepEqual(zlib.gunzipSync(xor(rereadOutguess,
+  rc4(Array.from(originalOutguessKey), rereadOutguess.length))),synthetic);
 
 console.log('ARC4_DELTA28_GATE', JSON.stringify({
   source: 'Original LP2 pp0–55 + source p49–51 table, original printed-order all pages',
@@ -180,6 +210,16 @@ console.log('ARC4_DELTA28_GATE', JSON.stringify({
   decodedZlibHeader: zlibHeader,
   printableAscii: printable,
   printableFraction: Number((printable/decrypted.length).toFixed(6)),
+  sourceNativeOutguessKdf: 'MD5(ASCII Encryption || row-major 256 table bytes)',
+  sourceNativeOutguessMd5Hex: originalOutguessKey.toString('hex'),
+  sourceNativeOutguessPrefix: outguessBytes.subarray(0,24).toString('hex'),
+  sourceNativeOutguessGzipHeader: outguessGzip,
+  sourceNativeOutguessBzip2Header: outguessBzip2,
+  sourceNativeOutguessZlibHeader: outguessZlib,
+  sourceNativeOutguessPrintable: outguessPrintable,
+  sourceNativeOutguessPrintableFraction:
+    Number((outguessPrintable/outguessBytes.length).toFixed(6)),
+  plantSourceNativeOutguessPass: true,
   plantGzipLength: compressed.length,
   plantSameLengthAndAll86RepeatSites: true,
   plantReversibleAndGunzip: true,
