@@ -30,7 +30,7 @@ Both source table interpretations disagree with the target. The **complete famil
 
 A full 256-byte synthetic original-shaped control is built with the first three 64-byte chunks copied from source and the final 64-byte chunk determined by the exact expected XOR digest. The standard four-chunk fold recovers all **64/64 target bytes**. An independently scrambled 256-position plant, with its assignment indices carried through that permutation, also recovers **64/64**, proving the grouping implementation and order-independent invariant are correct. Two fixed original groupings are shown to fail; the algebra covers the entire arbitrary-partition family.
 
-**SFT:** [`sims/lp2_p50_p56_xor_partition_invariant_sft.cjs`](../sims/lp2_p50_p56_xor_partition_invariant_sft.cjs), Windows Node22, original data and authentic digest. [Manual CI workflow](https://github.com/FlareZ123/liber-primus/actions/workflows/manual-readonly-commonjs-sft.yml).
+**SFT:** [`sims/lp2_p50_p56_xor_partition_invariant_sft.cjs`](../sims/lp2_p50_p56_xor_partition_invariant_sft.cjs), Windows Node22, original data and authentic digest. [passing manual Windows CI run 43588686168](https://github.com/FlareZ123/liber-primus/actions/runs/43588686168).
 
 ## Discriminating decision
 
