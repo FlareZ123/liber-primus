@@ -17,6 +17,7 @@ const fs=require("node:fs");
 const path=require("node:path");
 const corpus=JSON.parse(fs.readFileSync(path.join(__dirname,"..","resources",
   "liber-primus","lp2-corpus.json"),"utf8"));
+const runes=new Set(corpus.runes);
 const original=corpus.pages[55].indices;
 assert.equal(original.length,76);
 const body=original.slice(1);
