@@ -58,10 +58,18 @@ async function main(){
       const buf=Buffer.from(await response.arrayBuffer());
       const type=format(buf);
       const data={...item,started,http_status:response.status,final_url:response.url,content_type:response.headers.get('content-type'),bytes:buf.length,sha256:sha256(buf),image_type:type};
-      if(response.ok && type!=='other' && buf.length<=25000000) {
+      const isRemoved = response.url.endsWith('/removed.png') || (buf.length === 503 && sha256(buf) === '9b5936f4006146e4e1e9025b474c02863c0b5614132ad40db4b925a10e8bfbb9');
+      data.removed_placeholder=isRemoved;
+      if(response.ok && type!=='other' && !isRemoved && buf.length<=25000000) {
         const filename=item.id+'.'+(type==='jpeg'?'jpg':type);
         atomicWriteLocked(path.join(out,filename),buf);
         data.saved_file=filename;
+        if(process.env.LP2_EMIT_BASE64 === '1') {
+          const b64=buf.toString('base64');
+          console.log('IMAGE_BEGIN '+item.id+' '+type+' '+b64.length);
+          for(let start=0;start<b64.length;start+=4000)console.log('IMAGE_CHUNK '+item.id+' '+b64.slice(start,start+4000));
+          console.log('IMAGE_END '+item.id);
+        }
       }else data.sample=buf.subarray(0,170).toString('utf8').replace(/[\r\n]/g,' ');
       manifest.push(data);
       console.log('FROZEN_IMAGE '+JSON.stringify(data));
