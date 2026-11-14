@@ -75,7 +75,7 @@ assert.equal(format(raw).hex,
 "61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671");
 // A planted, independently chosen printable 32-byte record roundtrips the
 // same fixed 32 row/column lookup, proving no overwritten index or off-by-one.
-const planted = Buffer.from("CICADA 3301 PAGE-CARRY GRID TEST!","ascii");
+const planted = Buffer.from("CICADA 3301 PAGE-CARRY GRID TEST","ascii");
 assert.equal(planted.length,32);
 const toy = values.slice();
 for (const x of records) toy[(x.packet-1)*8+(x.right-1)] =
