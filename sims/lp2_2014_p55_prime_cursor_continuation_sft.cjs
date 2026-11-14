@@ -82,29 +82,46 @@ function encryptWithPlaintextFRule(source, start) {
 }
 
 const output = [];
-for (const start of [84, 85]) {
-  const reading = invertWithPlaintextFRule(p55, start);
-  assert.ok(reading.firstFailure);
-  assert.equal(reading.states.length > 0, true); // last nonempty stage retained
-  assert.equal(reading.firstFailure.atZeroBasedIndex, start === 84 ? 7 : 71);
-  assert.equal(reading.firstFailure.cipherGP, start === 84 ? 'X' : 'J');
-  const controlText = p57.slice(0, 76);
-  const controlCipher = encryptWithPlaintextFRule(controlText, start);
-  const control = invertWithPlaintextFRule(controlCipher, start);
-  assert.equal(control.firstFailure, null);
-  assert.ok(control.states.some((candidate) =>
-    candidate.plain.length === 76
-      && candidate.plain.every((value, i) => value === controlText[i])));
-  output.push({
-    p56KeyCountAssumption: start === 84
-      ? 'Authentic p56 plaintext F transparently bypassed'
-      : 'Counterfactual all 85 p56 glyphs consume primes',
-    startOrdinalOneBased: start + 1, startPrime: primes[start],
-    remainingStatesAtContradiction: 0,
-    maxBranchStatesBeforeContradiction: reading.maxStates,
-    firstFailure: reading.firstFailure,
-    knownP57SourceNativePlant: 'PASS exact 76/76'
-  });
+for (const pageReading of [
+  { name: 'all76 glyphs, including incoming p54 carry', cipher: p55, firstPageOffset: 0 },
+  { name: '75 complete-word glyphs after incoming carry', cipher: p55.slice(1), firstPageOffset: 1 }
+]) {
+  for (const start of [84, 85]) {
+    const reading = invertWithPlaintextFRule(pageReading.cipher, start);
+    assert.ok(reading.firstFailure);
+    assert.equal(reading.states.length > 0, true); // last nonempty stage retained
+    const expectedIndex = pageReading.firstPageOffset === 0
+      ? (start === 84 ? 7 : 71)
+      : (start === 84 ? 18 : 6);
+    assert.equal(reading.firstFailure.atZeroBasedIndex, expectedIndex);
+    assert.equal(reading.firstFailure.cipherGP,
+      pageReading.firstPageOffset === 0
+        ? (start === 84 ? 'X' : 'J')
+        : (start === 84 ? 'C' : 'X'));
+    const controlText = p57.slice(0, pageReading.cipher.length);
+    const controlCipher = encryptWithPlaintextFRule(controlText, start);
+    const control = invertWithPlaintextFRule(controlCipher, start);
+    assert.equal(control.firstFailure, null);
+    assert.ok(control.states.some((candidate) =>
+      candidate.plain.length === controlText.length
+        && candidate.plain.every((value, i) => value === controlText[i])));
+    output.push({
+      originalPageReading: pageReading.name,
+      p56KeyCountAssumption: start === 84
+        ? 'Authentic p56 plaintext F transparently bypassed'
+        : 'Counterfactual all 85 p56 glyphs consume primes',
+      startOrdinalOneBased: start + 1, startPrime: primes[start],
+      remainingStatesAtContradiction: 0,
+      maxBranchStatesBeforeContradiction: reading.maxStates,
+      firstFailure: {
+        ...reading.firstFailure,
+        originalPage55ZeroBasedOffset: reading.firstFailure.atZeroBasedIndex
+          + pageReading.firstPageOffset
+      },
+      knownP57SourceNativePlant: 'PASS exact ' + controlText.length
+        + '/' + controlText.length
+    });
+  }
 }
 assert.deepEqual(p55.flatMap((v, i) => v === 0 ? [i] : []), [15, 25, 41]);
 console.log(JSON.stringify({
@@ -114,5 +131,5 @@ console.log(JSON.stringify({
   historicalP56: { consumedPrimes: known.keySymbolsConsumed,
     originalRunes: known.recoveredRunes, actualPlaintextFBypasses: known.FInterrupters },
   outputs: output,
-  conclusion: 'Both exact p56 phi-prime clock continuations contradict untouched original p55 under its authentic plaintext-F rule. No unknown LP2 plaintext found.'
+  conclusion: 'Both prime-count continuations on both original p55 body/carry boundaries contradict the authentic plaintext-F rule. No unknown LP2 plaintext found.'
 }, null, 2));
