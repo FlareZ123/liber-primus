@@ -1,6 +1,6 @@
 # LP2 p53→p54 60-red-rune digit dictionary: p56 key and p55 rim gate
 
-**Agent34, 14 November 2026. Evidence:** a source-visible 60-rune *candidate operand* followed by an original-cipher negative, not an authenticated key, unknown-page decryption or destination. [Complete read-only CommonJS test](../sims/lp2_red60_radix60_p56_key_and_p55_rim_sft.cjs).
+**Agent34, 14 November 2026. Evidence:** a source-visible 60-rune *candidate operand* followed by an original-cipher negative, not an authenticated key, unknown-page decryption or destination. [Complete read-only CommonJS test](../sims/lp2_red60_radix60_p56_key_and_p55_rim_sft.cjs), independently executed successfully on Windows Node.js 22 in [manual CI run 43595536657](https://github.com/FlareZ123/liber-primus/actions/runs/43595536657).
 
 ## Original clue and the strongest rival
 
