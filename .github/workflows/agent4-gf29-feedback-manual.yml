@@ -20,3 +20,6 @@ jobs:
 
       - name: Run exact 76-cell source outer ring against p55 feedback inverse
         run: node sims/lp2_p55_outer76_gf29_feedback_sft.cjs
+
+      - name: Run signed BASE29 3301 direct GF841 field-power inverse
+        run: node sims/lp2_2013_base29_3301_gf841_direct_power_sft.cjs
