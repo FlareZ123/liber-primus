@@ -51,10 +51,27 @@ A frozen, no-phase, original-input test subtracts or adds each complete candidat
 
 All twelve remain near uniform GP29 ciphertext rather than source-native solved text. The Q251 primitive-root GP28 nonzero-step inversion was also independently tried with both signs, reversed key and page-reset alternatives, and its eight whole-pair IoCs were **0.03490–0.03576**, with no readable result. Those additional exploratory GP28 reads are not promoted as a new source-selected operation.
 
+## A source-selected 32-byte key candidate: decrypt the 256-byte table as AES-256
+
+The same unique GCD suggests a second *orientation of the problem*: use the p53 **51-rune GP29 integer** as secret key material to decrypt the printed 256-byte numerical table itself. The red number has exactly **247 significant bits**, and therefore fits without truncation into a canonical **32-byte big-endian AES-256 key** after one leading zero byte. The alternative `R/179` also fits 32 bytes with two leading zeroes. This is a concrete source-selected **key pair and 256-byte target**, rather than another unconstrained search over arbitrary number strings. Historical Cicada used encryption, although the source does not explicitly prescribe AES-256, these key bytes, an IV or this direction.
+
+Run only six ordinary no-custom-parameter decryptions on the **original unmodified 256 source bytes**: each of those two fixed keys under **AES-256-ECB**, **AES-256-CBC with sixteen zero IV bytes**, and **AES-256-CTR with sixteen zero counter/IV bytes**. Disable PKCS padding in ECB/CBC to preserve all 256 bytes. Each decoder is independently re-encrypted using the same key/IV/mode to all original bytes, confirming exact implementation round-trip.
+
+| Original red-derived 32-byte key | AES-256 mode | Printable ASCII bytes among 256 | Original decrypted first 16 bytes |
+| --- | --- | ---: | --- |
+| p53 red GP29 integer | ECB | **86** | `30bc955089cf12a17f9fb4f65b7f3123` |
+| p53 red GP29 integer | CBC (zero IV) | **91** | `30bc955089cf12a17f9fb4f65b7f3123` |
+| p53 red GP29 integer | CTR (zero counter) | **96** | `2a12df3f5ba0045cc55f4527374e2338` |
+| p53 red GP29 integer ÷ 179 | ECB | **108** | `70667c5f4550322bfe672dd5a30ed147` |
+| p53 red GP29 integer ÷ 179 | CBC (zero IV) | **95** | `70667c5f4550322bfe672dd5a30ed147` |
+| p53 red GP29 integer ÷ 179 | CTR (zero counter) | **105** | `0f9d0c72f842d1ce8e55c8b87a51eddc` |
+
+All six are random-looking binary data, with no decoded instruction, recognizable starting format or credible plaintext. Their ciphertext/cleartext rounds trip exactly; that is necessary for a cipher test and cannot authenticate the wrong key or operation. This retires **these exact fixed key/IV/mode choices only**. A historical AES key derivation, password policy, per-row IV or different encrypted object is not selected by the current manuscript. There is no basis for adding more arbitrary mode/phase/password variants without a new original instruction.
+
 ## Decision and next authentic-text criterion
 
 **Established under the exact numerical representation:** among all original red inscriptions, only p53's long red span shares the source-visible prime factor179 with the table, with exact GCD358, and only that direction/original radix retains the factor under the specified controls. This supplies a bounded, internally consistent candidate for **source-selected arithmetic operands** and perhaps an original clue linking the table to the terminal moth section.
 
 **Still missing:** a first-party instruction to form a big integer or GCD, a specific reversible cipher using its quotient, exact byte-to-GP transport, original initial state/clock, and an independently readable full passage. The matched lengths and source factor cannot be treated as a decipherment. The natural direct additive consumer fails, as do the previously tested 255-byte extensions. Any successor should obtain one of those missing original instructions or independently source-selected operations **before** implementing new cryptographic modes on these same numbers.
 
-[Read-only original-source CommonJS SFT](../sims/lp2_p50_p53_red_gcd179_source_bridge_sft.cjs) asserts the SHA256 of the exact 256 table bytes, 18 red spans, all original runes and cross-radix GCDs, wrong-input controls, the exact GF29 quadratic quotient, all unique page-length pairs and twelve original-cipher reversible key-consumer tests. It requires only the three checked-in source JSON files and Node.js 22, and writes nothing. The source-exact numerical findings and twelve variants were independently computed from GitHub-fetched original JSON in the current JS runtime. A fresh stand-alone Node execution is not asserted.
+[Read-only original-source CommonJS SFT](../sims/lp2_p50_p53_red_gcd179_source_bridge_sft.cjs) asserts the SHA256 of the exact 256 table bytes, 18 red spans, all original runes and cross-radix GCDs, wrong-input controls, the exact GF29 quadratic quotient, all unique page-length pairs, twelve original-cipher reversible GP key-consumer tests and the six fixed AES-256 original-byte inverses. It requires only the three checked-in source JSON files and Node.js 22, and writes nothing. The source-exact numerical findings and twelve variants were independently computed from GitHub-fetched original JSON in the current JS runtime. A fresh stand-alone Node execution is not asserted.
