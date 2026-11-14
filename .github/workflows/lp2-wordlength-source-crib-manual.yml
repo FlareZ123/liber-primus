@@ -17,3 +17,5 @@ jobs:
         run: node sims/lp2_wordlength_source_crib_sft.cjs
       - name: Test source-derived periodic keys without fitting a key
         run: node sims/lp2_sourceperiod_keyblind_gate_sft.cjs
+      - name: Fit entire secret Hill4 family to 180 authentic terminal runes
+        run: node sims/lp2_terminal256_known180_hill4_allsecret_sft.cjs
