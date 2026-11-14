@@ -59,14 +59,14 @@ function parsedArquivo(url) {
   return url.split(/\r?\n/).filter(Boolean).flatMap(line=>{
     try {
       const data=JSON.parse(line);
-      return Array.isArray(data) ? [] : [data];
+      return Array.isArray(data) ? data : [data];
     } catch(e){return [];}
   });
 }
 /** @param {string} text */
 function parsedArchiveIt(text) {
   return text.split(/\r?\n/).filter(line=>line&&!line.startsWith(' CDX')&&!line.startsWith('urlkey')).map(line=>{
-    const p=line.trim().split(' ');
+    const p=line.trim().split(/\\s+/);
     return {timestamp:p[1],url:p[2],mime:p[3],status:p[4],digest:p[5],file:p[p.length-1]};
   });
 }
@@ -106,25 +106,42 @@ async function checkArchiveIt(item) {
   const response=await fetchText(endpoint.href);
   const entries=response.body?parsedArchiveIt(response.body):[];
   const summary={provider:'archive-it',query:item,status:response.status,error:response.error,excerpt:response.status===200?undefined:response.body?.slice(0,200),records:entries.slice(0,10),rawLength:response.bodySize};
-  if(item.replay) {
+  if(item.replay || item.control) {
     const chosen=entries.find(r=>String(r.status)==='200' && String(r.mime).startsWith('text/'));
     if(chosen) {
       const replay='https://wayback.archive-it.org/'+item.collection+'/'+chosen.timestamp+'id_/'+chosen.url;
       try {
         const r=await fetch(replay,{signal:AbortSignal.timeout(22000)});
         const bytes=new Uint8Array(await r.arrayBuffer());
-        summary.replay={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        const detail={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),
+          cdxDigest:chosen.digest,match:base32Sha1(bytes)===chosen.digest,
+          replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        if(item.control) summary.controlReplay=detail; else summary.replay=detail;
         if(item.output) fs.writeFileSync(item.output,Buffer.from(bytes));
       } catch(e) { summary.replay={error:String(e),replay}; }
     } else summary.replay={error:'No 200 text capture among returned records'};
   }
   console.log(JSON.stringify(summary));
 }
+function selftest() {
+  const a=arquivo.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
+  const b=archiveit.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
+  if(a.length!==4||b.length!==3) throw new Error('PBPT mode must retain 2014/2016 positive controls and both exact target schemes');
+  if(parsedArquivo('{"status":"200"}').length!==1 ||
+     parsedArquivo('[{"status":"200"}]').length!==1)
+    throw new Error('Arquivo JSON object/array parsing failed');
+  const rows=parsedArchiveIt('urlkey timestamp original mimetype statuscode digest filename\\n' +
+    'org,archive-it)/ 20140101000000 http://archive-it.org/ text/html 200 ABCDEF WARC');
+  if(rows.length!==1||rows[0].status!=='200'||rows[0].url!=='http://archive-it.org/')
+    throw new Error('Archive-It CDX parsing failed');
+  console.log('PASS PBPT archive selection retains same-provider positive controls; JSON/CDX parsers handle both response forms');
+}
 (async()=>{
+  if(process.argv.includes('--selftest')) {selftest();return;}
   console.log('original-archive-cdx-gate '+new Date().toISOString());
   const pbptOnly=process.argv.includes('--pbpt-only');
-  const arquivoItems=pbptOnly?arquivo.filter(item=>item.url.includes('sprunge.us/PBPT')):arquivo;
-  const archiveItItems=pbptOnly?archiveit.filter(item=>item.url.includes('sprunge.us/PBPT')):archiveit;
+  const arquivoItems=pbptOnly?arquivo.filter(item=>item.control||item.url.includes('sprunge.us/PBPT')):arquivo;
+  const archiveItItems=pbptOnly?archiveit.filter(item=>item.control||item.url.includes('sprunge.us/PBPT')):archiveit;
   for(const item of arquivoItems)await checkArquivo(item);
   for(const item of archiveItItems)await checkArchiveIt(item);
 })().catch(e=>{console.error(e);process.exitCode=1;});
