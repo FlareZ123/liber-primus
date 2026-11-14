@@ -95,12 +95,35 @@ function ioc(a){
 /** @param {number[]} ct @param {number[]} key @param {1|-1} sign @returns {number[]} */
 function decode(ct,key,sign){return ct.map((v,i)=>(v+sign*key[i]+58)%29);}
 const output={};
+const originalPrevious=p54.indices.at(-1);
+assert.equal(typeof originalPrevious,"number");
+/** @param {number[]} cipher @param {number[]} key @param {1|-1} sign @param {number} previous */
+function feedbackDecode(cipher,key,sign,previous){
+  return cipher.map((v,i)=>(v-(i?cipher[i-1]:previous)+sign*key[i]+58)%29);
+}
+/** @param {number[]} plain @param {number[]} key @param {number} previous */
+function feedbackEncode(plain,key,previous){
+  const cipher=[];
+  let prior=previous;
+  for(let i=0;i<plain.length;i++){prior=(prior+plain[i]+key[i])%29;cipher.push(prior);}
+  return cipher;
+}
 for(const [name,key] of Object.entries(mapping)){
   const positive=p57.indices.slice(0,76),planted=positive.map((v,i)=>(v+key[i])%29);
   assert.deepEqual(decode(planted,key,-1),positive);
   assert.deepEqual(decode(p55.indices,key,-1).map((v,i)=>(v+key[i])%29),p55.indices);
   const minus=decode(p55.indices,key,-1),plus=decode(p55.indices,key,1);
-  output[name]={minusIoC:ioc(minus),plusIoC:ioc(plus),minusOpening:minus.slice(0,14),plusOpening:plus.slice(0,14)};
+  const feedbackCipher=feedbackEncode(positive,key,originalPrevious);
+  assert.deepEqual(feedbackDecode(feedbackCipher,key,-1,originalPrevious),positive);
+  assert.deepEqual(feedbackEncode(feedbackDecode(p55.indices,key,-1,originalPrevious),key,originalPrevious),p55.indices);
+  const feedbackMinus=feedbackDecode(p55.indices,key,-1,originalPrevious);
+  const feedbackPlus=feedbackDecode(p55.indices,key,1,originalPrevious);
+  output[name]={
+    minusIoC:ioc(minus),plusIoC:ioc(plus),
+    feedbackMinusIoC:ioc(feedbackMinus),feedbackPlusIoC:ioc(feedbackPlus),
+    minusOpening:minus.slice(0,14),plusOpening:plus.slice(0,14),
+    feedbackMinusOpening:feedbackMinus.slice(0,14)
+  };
 }
 const prior=p54.indices.at(-1);
 assert.equal(typeof prior,"number");
@@ -114,7 +137,9 @@ for(const [name,values] of Object.entries(stepMappings)){
 }
 const originalIoC=ioc(p55.indices);
 assert.ok(originalIoC>=0&&originalIoC<=1);
-assert.ok(Object.values(output).every(x=>x.minusIoC<0.085&&x.plusIoC<0.085));
+assert.ok(Object.values(output).every(x=>
+  x.minusIoC<0.085 && x.plusIoC<0.085 &&
+  x.feedbackMinusIoC<0.085 && x.feedbackPlusIoC<0.085));
 assert.ok(Object.values(stepScores).every(x=>x.same<16&&x.inverse<16));
 console.log(JSON.stringify({
  source:"Original 2400x3600 LP2 p55 / 72.jpg, 76 original ink boxes",
@@ -122,8 +147,8 @@ console.log(JSON.stringify({
  historicSeed:314159265,rootFirstEight:rowSeeds.slice(0,8),originalIoC,
  directGP29:output,originalP54ToP55NonzeroSteps:nonzeroSites.length,
  sourcePixelStepComparisons:stepScores,
- positiveNativeP57Plant:"76/76 correct under each GP29 mapping",
- decision:"Source-faithful 2-D GIMP pixel-center field does not identify a direct original p55 additive or nonzero-step key.",
+ positiveNativeP57Plant:"76/76 correct under each GP29 mapping, both direct and predecessor-cipher feedback",
+ decision:"Source-faithful 2-D GIMP pixel-center field does not identify a direct original p55 additive, p54-carry ciphertext-feedback, or nonzero-step key.",
  caution:"Original Cicada does not authorize using GIMP field as LP2 glyph key or prescribe pixel center conversion.",
  status:"PASS"
 },null,2));
