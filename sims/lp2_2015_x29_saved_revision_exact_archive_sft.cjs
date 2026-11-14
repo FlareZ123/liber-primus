@@ -60,6 +60,41 @@ async function main() {
       context:html.indexOf(key)<0?null:html.slice(
         Math.max(0,html.indexOf(key)-100),html.indexOf(key)+500)
     }));
+    // The public archived client bootstrap additionally embeds chatHistory.
+    // Parse the literal JSON value by balancing object delimiters; never eval
+    // or execute archived script code.
+    const at=html.indexOf('var clientVars = ');
+    if(at>=0) {
+      let j=html.indexOf('{',at),start=j,depth=0,quoted=false,escape=false,end=-1;
+      for(;j<html.length;j++){
+        const ch=html[j];
+        if(quoted) {
+          if(escape) escape=false;
+          else if(ch==='\\') escape=true;
+          else if(ch==='"') quoted=false;
+        } else {
+          if(ch==='"') quoted=true;
+          else if(ch==='{') depth++;
+          else if(ch==='}' && --depth===0) {end=j+1;break;}
+        }
+      }
+      if(end>start) {
+        try {
+          const data=JSON.parse(html.slice(start,end));
+          const chat=data.chatHistory;
+          console.log('CHAT_HISTORY_STRUCTURED '+JSON.stringify({
+            topKeys:Object.keys(data),
+            chatKeys:chat?Object.keys(chat):null,
+            chatMessages:chat?.messages||chat?.chatMessages||null,
+            chatAuthors:chat?.historicalAuthorData||null
+          }).slice(0,16000));
+        } catch(error) {
+          console.log('CHAT_HISTORY_STRUCTURED '+JSON.stringify({
+            error:String(error),rawStart:html.slice(start,start+100)
+          }));
+        }
+      }
+    }
     console.log('ORIGINAL_2016_CHAT_BOOTSTRAP '+JSON.stringify({
       http:response.status,htmlChars:html.length,
       sha256:crypto.createHash('sha256').update(html).digest('hex'),
