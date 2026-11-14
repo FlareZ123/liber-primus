@@ -1,0 +1,50 @@
+name: LP2 Py27 MT32 source-run verified closeout
+
+on:
+  workflow_run:
+    workflows:
+      - LP2 Py27 MT32 exact unswept seeds
+    types:
+      - completed
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  source-run-closeout:
+    if: ${{ github.event.workflow_run.id == 43612834637 }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download evidence from the exact pinned 96-shard full search
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: FlareZ123/liber-primus
+          run-id: '43612834637'
+          pattern: exact-full-b*-s*
+          merge-multiple: false
+          path: artifacts
+      - name: Independently aggregate original-codebook coverage and key flags
+        shell: bash
+        env:
+          SOURCE_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          set -euo pipefail
+          if [ "$SOURCE_CONCLUSION" = "success" ]; then
+            MODE=strict
+          else
+            MODE=partial
+          fi
+          node sims/lp2_py27_mt32_merge_receipts_sft.cjs "$MODE" 43612834637
+          cat summary/README.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish durable final-source report and all specific flags
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: py27-s2-uncovered-closeout-source-43612834637
+          path: summary/
+          if-no-files-found: warn
+          retention-days: 90
