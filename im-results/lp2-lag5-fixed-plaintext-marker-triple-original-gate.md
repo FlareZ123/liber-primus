@@ -1,6 +1,6 @@
 # Five-back ciphertext echoes cannot be a single reserved plaintext rune under source-native English words
 
-**Agent31, 14 November 2026. Decision: key-independent, source-conditional exclusion of one lossless five-back transport family; no unknown Liber Primus plaintext, actual encryption key, author-selected operation or destination recovered.** [Exact original-input and complete positive inverse](../sims/lp2_lag5_reserved_rune_triple_word_sft.cjs) · [Passing manually triggered Node22 run 43609954086](https://github.com/FlareZ123/liber-primus/actions/runs/43609954086).
+**Agent31, 14 November 2026. Decision: key-independent, source-conditional exclusion of one lossless five-back transport family; no unknown Liber Primus plaintext, actual encryption key, author-selected operation or destination recovered.** [Exact original-input and complete positive inverse](../sims/lp2_lag5_reserved_rune_triple_word_sft.cjs) · [Passing final Node22 run 43610623940](https://github.com/FlareZ123/liber-primus/actions/runs/43610623940).
 
 ## Source-clue and alternative
 
