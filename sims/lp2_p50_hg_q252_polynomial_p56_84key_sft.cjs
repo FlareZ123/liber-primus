@@ -255,3 +255,55 @@ for(const geometry of ["blocks","triples"]) {
 console.table(totientResults);
 console.log("PASS: SOURCE BASE29+TOTIENT 3-digit key masks tested on original");
 console.log("p56 historical key, p55 and p0 unknown rune pages; native plant exact.");
+
+
+/**
+ * Exact authentic plaintext-F-transparent consumer, including all possible
+ * bypass clocks, rather than treating every ciphertext F as a skipped rune.
+ * P=0 is transmitted as literal ciphertext 0 without consuming K. Any
+ * nonzero plaintext is emitted as (P+K)%29, consuming one K element, so if
+ * a consumed candidate would be P=0 it is inadmissible. The key restarts
+ * from clock0 for each separately tested original page.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @returns {{firstDead:number|null,remainingClocks:number[]}}
+ */
+function transparentFPaths(cipher,key) {
+  let clocks=new Set([0]);
+  for(let i=0;i<cipher.length;i++) {
+    const next=new Set();
+    for(const t of clocks) {
+      const p=mod(cipher[i]-key[t%key.length]);
+      if(p!==0)next.add(t+1);
+      if(cipher[i]===0)next.add(t);
+    }
+    clocks=next;
+    if(!clocks.size)return {firstDead:i,remainingClocks:[]};
+  }
+  return {firstDead:null,remainingClocks:[...clocks].sort((a,b)=>a-b)};
+}
+const authenticKnown=transparentFPaths(gp.pages[56].indices,historicalKey);
+assert.equal(authenticKnown.firstDead,null);
+assert.ok(authenticKnown.remainingClocks.includes(84));
+const expectedDead55=[null,12,null,7];
+const expectedDead0=[44,2,135,161];
+let tapeIdx=0;
+for(const geometry of ["blocks","triples"])for(const endian of ["big","little"]) {
+  const key=Array.from({length:84},(_,i)=>{
+    const d=dataTriple(geometry,i);
+    if(endian==="little")d.reverse();
+    return mod(totient(d[0]*841+d[1]*29+d[2]));
+  });
+  const p55=transparentFPaths(gp.pages[55].indices,key);
+  const p0=transparentFPaths(gp.pages[0].indices,key);
+  assert.equal(p55.firstDead,expectedDead55[tapeIdx]);
+  assert.equal(p0.firstDead,expectedDead0[tapeIdx]);
+  if(tapeIdx===0)assert.deepEqual(p55.remainingClocks,[73,74]);
+  if(tapeIdx===2)assert.deepEqual(p55.remainingClocks,[73,76]);
+  console.log("literal-F exact gate",geometry,endian,
+    {p55FirstInvalidRune:p55.firstDead,p55RemainingClocks:p55.remainingClocks,
+      p0FirstInvalidRune:p0.firstDead});
+  tapeIdx++;
+}
+assert.equal(tapeIdx,4);
+console.log("PASS: exact historical p56 plaintext-F skip positive plus original negative gates.");
