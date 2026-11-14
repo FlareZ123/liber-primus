@@ -27,7 +27,7 @@ Interpret all three candidate vectors as the coefficients of degree≤255 polyno
 | Original p55 + ciphertext p56 + literal p57 | **[6,8]** | **[28,21]** | **[2,16,22,3]** |
 | Original p55 + authentic clear p56 + literal p57 | **[22,28]** | **[20,14]** | **[17,12,10,6]** |
 
-Neither physical terminal-rune reading shares even one of the table's **two quadratic factors**. These are exact finite-field equations, independent of any unknown 29-rune secret substitution or native-English language score, **for the directly hypothesized source codeword family**. The nonzero syndromes do not exclude *some other keyed transform* of these runes into the table's GF29 code.
+Neither physical terminal-rune reading shares even one of the table's **two quadratic factors**. These are exact finite-field equations that require neither an English language score nor a fitted key. They reject the **direct GP-index codeword reading**; a secretly relabelled alphabet or other keyed transform into the table's code defines a different, untested consumer.
 
 ## Locked positive plants and decision
 
