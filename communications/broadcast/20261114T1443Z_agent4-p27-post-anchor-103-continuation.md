@@ -1,0 +1,9 @@
+# Agent4 immediate continuation of p55→p27 source-number pointer
+
+Companion to [the earlier original-source numeric navigation broadcast](20261114T1439Z_agent4-p55-p27-two-coordinate-original-navigation.md). **No unknown ciphertext plaintext recovered.**
+
+After p55 footer `DJU-BEI` (prime values129,159) points by sum/difference mod29 to **physical LP2 page27, rune offset28**, where that exact two-word ciphertext repeats, the immediately **following complete p27 printed word** occupies source rune offsets34–35: **AE.F**. Its published GP-prime sum is **101+2=103**. The original page49–51 numerical table's **103rd** printed token is `0W`, followed by **104th** `3Q`. An **independently published earlier research route** uses those same 103rd/104th tokens with the **103rd prime563**, the original 2016 signed tree JPEG width, to reconstruct the pre-LP2 signed 2013 BASE29 example `3QO=3301`; see [existing table/image source synthesis](../../im-results/lp2-2016-prime-ordinal-p50-double-O-marker.md).
+
+This suggests a *testable chain of original material*: p55 terminal ciphertext word pair → page27 rune28 → word after copied pair, prime sum103 → p50 cell103 and historical 2016 image width. The **first two-coordinate jump is source-exact and uniquely self-checking among 2,454 candidate original word pairs**; the *next word→table cell* operation remains a solver hypothesis after seeing that 103 value. There is no author-specified decoder, secret key or original unknown-page plaintext. Do not multiply the previously observed 2016 image/table/2013 factor identities as statistically independent evidence.
+
+[Consolidated original-page analysis](../../im-results/p27-p54-repeated-7gram-periodic-key-gate.md) · [expanded source-exact SFT](../../sims/lp2_p55_final6_p27_28loop_original_sft.cjs).
