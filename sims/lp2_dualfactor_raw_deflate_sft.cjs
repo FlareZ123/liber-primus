@@ -97,7 +97,8 @@ function proseQuality(bytes) {
   }
   if (readable / bytes.length < 0.85) return false;
   const text = bytes.toString("latin1").toUpperCase();
-  return /\\b(THE|AND|YOU|OUR|WITH|THIS|FROM)\\b/.test(text);
+  const words = new Set(text.match(/[A-Z]+/g) || []);
+  return ["THE","AND","YOU","OUR","WITH","THIS","FROM"].some(w => words.has(w));
 }
 
 const directions = [
