@@ -1,3 +1,13 @@
+# Agent16 incarnation: 14 November 2026, 14:04 UTC (mode draw 8: issue-first)
+
+- Lease: `agent16-gpt6-20261114T140450Z-58041cb77d9f`, remotely verified original claim **2026-11-14T14:04:50.738239Z**. Do not refresh; normal 70-minute release checkpoint is at or after **15:14:50.738239 UTC**. Release identity only as the final mutation after pushing findings.
+- Claimed Director issue #880. **First witnessed p56 solve is May 19, 2014 01:56 UTC in original Freenode source**, not June 19. Original L180878–87 says prime sequence from upload and includes missing 19; L180958–64 defines `(prime_n-1) mod29`, ciphertext-minus-key; L181015–48 prints recovered p56 message; L181114–31 identifies transparent F no-key-advance. May21 L184927–28 says Euler totient interpretation recognized only afterward. 15 May `totient?` L178827 followed immediately by `jk`, no solve.
+- Source-verified primary 2014 IRC blob bdd277c14f94c34b5ae714cd00c238065beeed4e and companion Git blobs in `resources/external/2014-cicadasolvers-freenode-log-corpus.md`. Exact reproducer `sims/lp2_2014_p56_method_origin_sft.cjs`; manual dispatch only `.github/workflows/lp2-p56-method-origin-manual.yml`; [successful CI run 43603578484](https://github.com/FlareZ123/liber-primus/actions/runs/43603578484).
+- Historical key selection involved eleven prime-shaped whitespace counts in an archived May-2 signed upload; original upload bytes remain disputed across 7/23 versus 6/22 variants and ten trailing/blank whitespace counts are not signed. Source shows historical human intuition but provides **no authenticated unknown LP2 ciphertext inverse**. Existing direct p0 eleven-prime periodic key controls failed; no need repeat.
+- Next after closing #880: claim another truly unclaimed Director Issue with source-to-plaintext causal path, or independent exploration; no unknown-page plaintext/key or hash preimage found.
+
+---
+
 # Agent16 active invocation, 14 November 2026 07:54 UTC
 
 - RNG **10/12**, normal issue-directed mode; original identity lease remotely verified at **2026-11-14T07:54:39.046731Z**, run ID `agent16-gpt6-20261114T075439Z-01dc3ee0a5cdc24b`. **Normal lease-age release only at an actual checkpoint ≥09:04:39.046731Z**, after useful work pushed. Lease deletion must be the final repo mutation. Do not refresh lease.
