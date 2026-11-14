@@ -1,7 +1,7 @@
 'use strict';
 
 // Standalone, source-complete original manuscript test for direct
-// Aztec Rune 11x11 and compact Aztec 15x15 finder patterns.
+// Aztec Rune 11x11 and compact Aztec 15/27x15/27 finder patterns.
 // A stationary GP29->binary map is granted all 2^29 choices
 // analytically; no English scoring, arbitrary guessed codebook,
 // fitted origin, ciphertext alteration or barcode decoding.
@@ -16,7 +16,7 @@ const ink=require('../resources/liber-primus/lp2-ink-annotations.json');
  * The central 9x9 finder in the 2008 Aztec spec has black rings of
  * Chebyshev radii 0,2,4, with light rings at 1,3.
  * @param {number[]} cells
- * @param {11|15} width
+ * @param {11|15|27} width
  * @returns {FinderEvent[]}
  */
 function finderConstraints(cells,width){
@@ -58,6 +58,9 @@ function binaryMapOptimum(events){
   };
 }
 
+const opening=corpus.pages.slice(0,3).flatMap(p=>p.indices);
+assert.equal(opening.length,729);
+const openingEvents=finderConstraints(opening,27);
 const p32=corpus.pages.find(p=>p.page===32).indices;
 assert.equal(p32.length,121);
 const originalRed=ink.pages.flatMap(p=>(p.red_spans||[])
@@ -67,10 +70,14 @@ assert(originalRed.every(i=>i>=0&&i<29));
 const p32Events=finderConstraints(p32,11);
 const redEvents=finderConstraints(originalRed,15);
 const result={
+  opening:binaryMapOptimum(openingEvents),
   p32:binaryMapOptimum(p32Events),
   red:binaryMapOptimum(redEvents),
-  joint:binaryMapOptimum([...p32Events,...redEvents])
+  joint:binaryMapOptimum([...openingEvents,...p32Events,...redEvents])
 };
+assert.deepEqual(
+ [result.opening.contradictedSymbols,result.opening.unavoidableMismatches],
+ [20,24]);
 assert.deepEqual(
  [result.p32.contradictedSymbols,result.p32.unavoidableMismatches],
  [16,19]);
@@ -79,7 +86,7 @@ assert.deepEqual(
  [16,22]);
 assert.deepEqual(
  [result.joint.contradictedSymbols,result.joint.unavoidableMismatches],
- [24,50]);
+ [27,86]);
 
 // Native 2-rune positive plant: paint every required finder module with
 // F for dark and U for light. The all-secret inversion must accept.
@@ -90,8 +97,8 @@ assert.equal(positive.unavoidableMismatches,0);
 assert.equal(positive.contradictedSymbols,0);
 console.log(JSON.stringify({
  status:'PASS',
- source:'original GP29 p32 (121 cells), entire red ink (225 cells)',
- structures:'Aztec 11x11 Rune and compact 15x15 1-layer',
+ source:'original GP29 opening p0-2 (729 cells), p32 (121 cells), entire red ink (225 cells)',
+ structures:'Aztec 11x11 Rune, compact 15x15 1-layer, compact 27x27 4-layer',
  assumedMapping:'one arbitrary stationary GP-rune-to-bit assignment',
  positivePlantExact:true,
  findings:result,
