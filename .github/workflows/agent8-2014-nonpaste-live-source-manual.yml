@@ -1,0 +1,30 @@
+name: Agent8 bounded original 2014 solver file live probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover-six-files:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and fixed parsing control
+        run: |
+          node --check sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs
+          node sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs --selftest
+      - name: Read-only static source acquisition
+        run: node sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs --network
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent8-2014-solver-source-bytes-untrusted
+          path: irc-2014-nonpaste-live/
+          if-no-files-found: ignore
+          retention-days: 7
