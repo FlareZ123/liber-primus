@@ -106,7 +106,19 @@ def census(pages, words, prefixes, hits=False):
     output = {label: 0 for length in LENGTHS
               for label in ("all" + str(length), "post" + str(length))}
     found = []
+    # A preregistered placement discriminator: same 4-rune prefix dictionary
+    # at starts versus offsets 1, 2 and 3 of each printed long word.
+    # All four comparisons use precisely the same 559 words of length >=7.
+    for key in ("long_start4", "long_inner1_4", "long_inner2_4",
+                "long_inner3_4", "long_start_minus_interiors_4"):
+        output[key] = 0
     for slots, after in words:
+        if len(slots) >= 7:
+            for pos, name in enumerate(("long_start4", "long_inner1_4",
+                                        "long_inner2_4", "long_inner3_4")):
+                segment = tuple(pages[page][offset]
+                                for page, offset in slots[pos:pos + 4])
+                output[name] += segment in prefixes[4]
         available = min(len(slots), max(LENGTHS))
         first = tuple(pages[page][index] for page, index in slots[:available])
         for length in LENGTHS:
@@ -124,6 +136,9 @@ def census(pages, words, prefixes, hits=False):
                         "after_period": after,
                         "prefix_length": length,
                     })
+    output["long_start_minus_interiors_4"] = (
+        3 * output["long_start4"] - output["long_inner1_4"]
+        - output["long_inner2_4"] - output["long_inner3_4"])
     return output, found
 
 
