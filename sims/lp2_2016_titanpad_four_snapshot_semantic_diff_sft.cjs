@@ -70,7 +70,7 @@ function relevantLines(text){
  print({kind:'pad-changed-lines',addedCount:added.length,removedCount:removed.length,added:added.slice(0,160),removed:removed.slice(0,160)});
  for(const v of [april,july]){
   print({kind:'pad-cryptanalytic-lines',ts:v.ts,lines:relevantLines(v.text)});
-  for(const target of ['page 28','page 54','page 56','page 57']){
+  for(const target of ['page 28','page 33','page 54','page 56','page 57']){
    const from=v.text.toLowerCase().indexOf(target);
    const until=from>=0?v.text.toLowerCase().indexOf('page '+(Number(target.slice(5))+1),from+target.length):-1;
    print({kind:'target-page-original-pad',ts:v.ts,target,found:from>=0,
