@@ -4,7 +4,7 @@
 
 ## Claim
 
-The 43 strict-interior runes of physical p55, interpreted as coefficients in the ascending-degree BASE29 convention explicitly demonstrated in Cicada's signed 2013 TCP source, define a polynomial (P_{55}(X)\in GF(29)[X]) with two source-anchored evaluations:
+The 43 strict-interior runes of physical p55, conditionally interpreted as coefficients in ascending polynomial degree, an orientation used in earlier p39 GF29 analysis but **not established by Cicada's signed 2013 BASE29 example**, define a polynomial (P_{55}(X)\in GF(29)[X]) with two source-anchored evaluations:
 
 \[
 P_{55}(3301\bmod29)=P_{55}(24)=18=1033\bmod29
@@ -21,7 +21,7 @@ The output 23 numerically matches the 23 terminal red dots on p57 and the modulu
 1. **Correction to a mistaken historical selector:** the authenticated p56 decryption actually begins “AN END WITHIN THE DEEP WEB” and discusses finding a page that hashes to a specified digest. The claimed sentence “The first nourishes the last” does **not** occur in p56 plaintext or in the other known p57 rune text. Therefore no first-to-last instruction authorizes connecting the first 2014 square to the last p57 dots. That assignment is an exploratory researcher interpretation.
 2. The clear p57 parable says to shed circumferences and find what is within. Applying the literal first/last-rune removal to p55's printed words selects its strict interiors.
 3. Physical p55 has 17 printed rune segments with lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The first is a one-rune page carry; the remaining complete words contribute exactly 43 interior runes.
-4. Cicada's signed 2013 source explicitly demonstrates the BASE29 coefficient convention with `3301 -> 3QO`: digits `[3,26,24]` are the coefficients of (3+26X+24X^2), in increasing degree. This fixes the orientation without a fitted reversal.
+4. The signed 2013 source demonstrates **ordinary base-29 positional conversion** `3301 → 3QO`: `3×29²+26×29+24=3301`. It does **not** specify using the printed `[3,26,24]` digits as *ascending* polynomial coefficients `3+26X+24X²`. That polynomialization and its order are conditional analytical choices. The conventional descending polynomial `3X²+26X+24` fails the original table divisibility check, as already documented in the base29-grid factor report.
 5. The original 2014 three-square source has magic sums 3301, 1033 and 1033. Reducing these constants modulo 29 gives 24 and 18.
 6. The original p57 page has a terminal cluster of 23 red dots; the signed 2013 DH source independently uses modulus 23.
 

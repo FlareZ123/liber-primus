@@ -92,7 +92,7 @@ function shares(q, layout) {
 
 /** @param {number[]} bytes @returns {number[]} */
 function sourceQuotient(bytes) {
-  const H = [3, 26, 24];    // signed-2013 BASE29 3301 = 3QO, ascending powers
+  const H = [3, 26, 24];    // conditional ascending polynomial, NOT historical positional BASE29 orientation
   const G = [27, 5, 15];    // original physical p39 red triad, ascending powers
   const F = Array(5).fill(0);
   for (let i = 0; i < H.length; i++) {

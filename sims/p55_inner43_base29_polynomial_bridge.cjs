@@ -89,9 +89,10 @@ for (let k = 0; k < squares.length; k++) {
   assert.ok(Array.from({ length: n }, (_, c) => squares[k].reduce((s, row) => s + row[c], 0)).every(x => x === target));
 }
 
-// The signed 2013 source's BASE29 example 3301 -> 3QO fixes ascending
-// coefficient order: [3,26,24] represents 3 + 26X + 24X^2.
-// H(X) = 3 + 26X + 24X^2 is the corresponding GF(29^2) modulus.
+// Signed 2013 BASE29 example 3301 -> 3QO uses *descending* positional
+// powers: 3 * 29^2 + 26 * 29 + 24 = 3301. Ascending polynomial
+// coefficients [3,26,24] are a conditional, retrospective choice.
+// H(X)=3 + 26X + 24X^2 is therefore not specified by BASE29 alone.
 const H = [3, 26, 24];
 const x3301 = mod(3301);
 const x1033 = mod(1033);
