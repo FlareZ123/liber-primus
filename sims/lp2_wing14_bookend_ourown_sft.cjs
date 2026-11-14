@@ -92,11 +92,54 @@ function main() {
     {slope:22, page27:'TNB', page55:'A'},
   ]);
   console.log(`native A/I singleton slopes: ${JSON.stringify(nativeSingletonCandidates)}`);
+  // A genuinely source-authenticated alternative is the p56 plaintext-F
+  // transparent bypass: F prints literally and consumes no key position.
+  // On p27, the source-visible word BF at offsets26..27 can conditionally
+  // stand for OF; bypass at27 shifts the bookend clock to phase13.
+  // For an equal shared bookend phase on p55, exactly one of its three
+  // preceding original F ciphertext symbols must likewise be literal F.
+  // This fixes phase12 from O at p27:26 and phases13,0..4 from OUR OWN.
+  assert.deepEqual(byPage(27).slice(26, 34), [17, 0, ...original]);
+  assert.equal(byPage(55).slice(0, 70).filter(x => x === 0).length, 3);
+  assert.deepEqual(byPage(55).slice(1, 5), [25, 19, 10, 7]);
+  /** @type {{slope:number, page27:string, page55First:string, page55Second:string}[]} */
+  const bypassSingletonCandidates = [];
+  for (let a = 1; a <= 28; a++) {
+    const inv = Array.from({length:28}, (_, i) => i + 1).find(v => mod(a * v) === 1);
+    assert.ok(inv);
+    /** @type {Map<number,number>} */
+    const keys = new Map([[12, mod(17 - a * 3)]]);
+    for (let i = 0; i < known.length; i++) {
+      keys.set((13 + i) % 14, mod(original[i] - a * known[i]));
+    }
+    const dec = (/** @type {number} */ v, /** @type {number} */ phase) => {
+      const k = keys.get(phase);
+      assert.notEqual(k, undefined);
+      return corpus.translit[mod(inv * mod(v - k))];
+    };
+    const p55First = dec(byPage(55)[0], 0);
+    if (p55First === 'A' || p55First === 'I') {
+      bypassSingletonCandidates.push({
+        slope:a,
+        page27:byPage(27).slice(0, 3).map((v, i) => dec(v, i)).join(''),
+        page55First:p55First,
+        page55Second:byPage(55).slice(1, 5).map((v, i) => dec(v, i + 1)).join(''),
+      });
+    }
+  }
+  assert.deepEqual(bypassSingletonCandidates, [
+    {slope:8, page27:'THLS', page55First:'A', page55Second:'WAEGC'},
+    {slope:14, page27:'XNX', page55First:'I', page55Second:'XEADS'},
+  ]);
+  console.log(`one-literal-F-bypass native A/I singleton slopes: ${JSON.stringify(bypassSingletonCandidates)}`);
+  console.log('Both all-slope cases fail on the source-visible first two p55 words.');
+
+
   console.log(`original p27:28 / p55:70 both phase 0 mod14; page-local 14-rune register`);
   console.log(`known crib OUR OWN first-three GF29 Fibonacci residual = ${rP}; original DJU BEI residual = ${rC}`);
   console.log('Fibonacci-affine crib rejected for every GF29 scalar; planted affine-Fibonacci control passed.');
   console.log('Among all 28 nonzero affine slopes, only a=8/22 yields an A/I singleton; both yield a p27 first word that is not native English.');
-  console.log('All-secret phase14 affine + OUR OWN crib + preserved native-English word segmentation fails; no unknown LP2 plaintext or key.');
+  console.log('All-secret phase14 affine + OUR OWN crib + preserved native-English word segmentation fails with zero bypass, and OF OUR OWN with one shared F bypass; no unknown LP2 plaintext or key.');
 }
 
 main();
