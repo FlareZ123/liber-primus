@@ -115,6 +115,29 @@ const sources = sourceFiles.map(([name, file]) => ({
   words: (read(file).match(/[A-Za-z]+/g) || [])
     .map(encodeNativeWord).filter(Boolean)
 }));
+
+const latinAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/)
+  .filter(line => line.trim() && !line.trimStart().startsWith("#"))
+  .map(line => line.trim().split("").map(symbol => latinAlphabet.indexOf(symbol)));
+assert.ok(latinWords.every(word => word.every(value => value >= 0 && value < 29)));
+const oldEnglish = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const oldRunes = [...oldEnglish.sourceGpBase29]
+  .map(symbol => oldEnglish.positiveControlAlphabet.indexOf(symbol));
+assert.ok(oldRunes.every(value => value >= 0 && value < 29));
+let oldAt = 0;
+const oldEnglishWords = oldEnglish.allSourceGpWordLengths.map(length => {
+  const word = oldRunes.slice(oldAt, oldAt + length);
+  oldAt += length;
+  return word;
+});
+assert.equal(oldAt, oldRunes.length);
+const allSources = [
+  ...sources,
+  {name:"Latin Vulgate", words:latinWords},
+  {name:"Old English Beowulf", words:oldEnglishWords}
+];
 let seed = 0x45001113;
 function random32() {
   seed ^= seed << 13;
@@ -158,6 +181,41 @@ assert.deepEqual(controls.map(row => [row.fullMatches, row.maximumMatchedPairs])
   [0,5],[0,6],[0,6]
 ]);
 
+// Five of the 20 constraints connect the 13-rune and 7-rune p55 words.
+// Enumerate every ordered pair of such source words across all five corpora.
+const thirteenWords = allSources.flatMap(source => source.words
+  .filter(word => word.length === 13)
+  .map(word => ({source:source.name, interior:word.slice(1, -1)})));
+const sevenWords = allSources.flatMap(source => source.words
+  .filter(word => word.length === 7)
+  .map(word => ({source:source.name, interior:word.slice(1, -1)})));
+assert.equal(thirteenWords.length, 397);
+assert.equal(sevenWords.length, 12285);
+const sevenByInterior = new Map();
+for (const word of sevenWords) {
+  const key = word.interior.join(",");
+  if (!sevenByInterior.has(key)) sevenByInterior.set(key, []);
+  sevenByInterior.get(key).push(word);
+}
+const exactWordPairMatches = [];
+for (const word13 of thirteenWords) {
+  const A = word13.interior;
+  const required7Interior = [
+    mod(A[5] - 12), mod(A[4] - 9), mod(A[3] - 4),
+    mod(A[2]), mod(A[1] - 23)
+  ];
+  const found = sevenByInterior.get(required7Interior.join(",")) || [];
+  if (found.length) exactWordPairMatches.push({
+    word13, word7:found, required7Interior
+  });
+}
+assert.equal(exactWordPairMatches.length, 0);
+const wordPairSourceCounts = allSources.map(source => ({
+  name:source.name,
+  words13:source.words.filter(word => word.length === 13).length,
+  words7:source.words.filter(word => word.length === 7).length
+}));
+
 // Synthetic positive control: encrypt a source-native word-shape plant with
 // an arbitrary stationary f(value). Every repeated-value equation must hold.
 const shakespeareBuckets = Array.from({length:32}, () => []);
@@ -193,6 +251,14 @@ console.log(JSON.stringify({
     requiredPlaintextDifference: c.delta
   })),
   controls,
+  exactWordPairGate: {
+    sourceCounts: wordPairSourceCounts,
+    thirteenRuneWords: thirteenWords.length,
+    sevenRuneWords: sevenWords.length,
+    orderedPairs: thirteenWords.length * sevenWords.length,
+    matches: exactWordPairMatches.length,
+    requiredSevenRuneInterior: "B=[A[5]-12,A[4]-9,A[3]-4,A[2],A[1]-23] mod 29"
+  },
   aggregate: {
     samples: controls.reduce((sum, row) => sum + row.trials, 0),
     fullMatches: controls.reduce((sum, row) => sum + row.fullMatches, 0),
