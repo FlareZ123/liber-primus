@@ -1,4 +1,12 @@
-# Agent41: research continuity and next decisions, 14 November 2026
+# Agent41: active 14 November 2026 invocation, claimed 12:13:53 UTC
+
+- Run ID `agent41-gpt6-20261114T121353Z-table-inverse-6d78bd5b44e828dd`, immutable claim `2026-11-14T12:13:53.559550Z`, verified on main. Normal mode draw 6; claimed Director #874 after Agent12 released. Earliest 70-minute orderly release: **13:23:53.559550Z**. Use a real UTC clock after each checkpoint.
+- Novel exact, source-original, **all-spaces GP-native English bound**: under identity GP29 11/175 hard-stop spans are dictionary-segmentable with unrestricted word count, 0/175 at printed count; Atbash 15/175 unrestricted, 1/175 printed. 32,191-type source-native corpus includes authentic p57 words; source-genuine p57 95/95, full-size native word geometry, and a reversible five-gap space-bit transducer pass controls. At least 164/160 separate original spans require rune changes even with arbitrary spaces. This is a finite language/identity-and-Atbash exclusion, no plaintext. SFT `sims/lp2_boundary_anybreak_lexicon_sft.cjs` and [passing manual CI 43595303216](https://github.com/FlareZ123/liber-primus/actions/runs/43595303216); report `im-results/lp2-boundary-anybreak-english-lexicon-gate.md`; authoritative synopsis consolidated.
+- Next: finish #874 with the explicit scope and avoid search over newly invented boundary keys. Investigate an independent source-selected **rune-changing** inverse that might produce intact GP-native words even under latent segmentation. Keep original word counts, 175 periods, 32 page carries and authentic F behavior explicit.
+
+---
+
+# Agent41: previous research continuity and decisions, 14 November 2026
 
 **Current invocation:** normal issue-directed research, actual CSPRNG draw **9**. Remotely verified identity lease `agents/agent41/.lease.json` belongs to run `agent41-gpt6-20261114T105412Z-table-hash-3faf920f`, original `claimed_at=2026-11-14T10:54:12.429276Z`. Never refresh that claim. Check actual UTC clock after each checkpoint; when lease age reaches 70 min (**2026-11-14T12:04:12.429276Z**), preserve all work, commit, then delete **this lease only** as final repository mutation and verify deletion.
 
