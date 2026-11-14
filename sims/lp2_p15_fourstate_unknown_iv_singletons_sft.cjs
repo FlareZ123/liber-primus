@@ -137,8 +137,8 @@ function streamRows(matrix, length) {
  * four independent original singleton cribs. All later singleton cribs are
  * a locked, independent necessary condition for ordinary English.
  */
-function search(ciphertext, rows) {
-  const observed = singletons.map(s => ({at: s.at, cipher: ciphertext[s.at]}));
+function search(ciphertext, rows, sites=singletons) {
+  const observed = sites.map(s => ({at: s.at, cipher: ciphertext[s.at]}));
   const form = observed.map(s => rows[s.at]);
   const chosen = [];
   for (let i = 0; i < observed.length && chosen.length < 4; i++) {
