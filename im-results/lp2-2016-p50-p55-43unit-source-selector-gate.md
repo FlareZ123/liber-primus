@@ -382,10 +382,10 @@ This rejects the direct `raw_byte mod 29` additive/Beaufort pairing and the dire
 The three historical 2014 square interiors provide **43 values** in fixed row-major/source order, while the p50 32×8 grid supplies **256 base60-derived bytes**. Independently, the p50 tokens at row-major offsets **83 and 127** are both `3D` (base60 value 193), bracketing the **43 bytes at offsets 84–126**. Together with the source-selected 43 p55 strict word interiors, these objects motivate one simple missing-selector candidate: let each square-core value choose a p50 byte, then reduce that byte modulo29 to form a one-rune GP29 additive key.
 
 This tests exactly two natural address domains, without tuning:
-1. **Full table:** address (n_i \bmod 256), then (K_i=T[n_i\bmod256]\bmod29).
-2. **Bracketed interval:** address (n_i \bmod43) within p50 bytes 84–126, then (K_i=T_{84+[n_i\bmod43]}\bmod29).
+1. **Full table:** address `n_i % 256`, then `K_i = table[address] % 29`.
+2. **Bracketed interval:** address `n_i % 43` within p50 bytes 84–126, then `K_i = interval[address] % 29`.
 
-For each, apply only the two additive directions (P_i=C_i\pm K_i\pmod{29}) to the original 43 p55 interiors. The 2014 cores remain in their original 3×3 / 5×5 / 3×3 order; the p50 table and bracket remain in printed row-major order. No phase, reversed table, rotation, permutation, extra layer, or fitted parameter is introduced.
+For each, apply only the two additive directions, `P_i = C_i ± K_i (mod 29)`, to the original 43 p55 interiors. The 2014 cores remain in their original 3×3 / 5×5 / 3×3 order; the p50 table and bracket remain in printed row-major order. No phase, reversed table, rotation, permutation, extra layer, or fitted parameter is introduced.
 
 | Fixed address interpretation | Distinct addresses | Direction | GP29 IoC | Shakespeare-trained within-word GP bigram mean |
 |---|---:|---|---:|---:|
