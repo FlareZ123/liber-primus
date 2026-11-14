@@ -14,7 +14,7 @@ const ink=JSON.parse(fs.readFileSync(path.join(root,'lp2-ink-annotations.json'),
 const grid=JSON.parse(fs.readFileSync(path.join(root,'lp2-grid-256.json'),'utf8'));
 const table=Buffer.from(grid.bytes);
 assert.equal(table.length,256);
-assert.equal(crypto.createHash('sha256').update(table).digest('hex'),'3b9b07d9a26e6d55c432d94d2661fdff3c2bdb23184a4b290');
+assert.equal(crypto.createHash('sha256').update(table).digest('hex'),'3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
 const head=ink.pages.find(p=>p.page===40).red_spans.find(s=>s.start===0);
 assert.equal(head.length,8);
 const original=data.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices);
