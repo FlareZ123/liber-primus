@@ -63,6 +63,11 @@ for (let v = 0; v < 256; v++) {
   }
 }
 assert.ok(Math.abs(expected - 0.15842524509803924) < 1e-12);
+// If an independently specified clue preselects prime #44 = 193, the exact
+// chance that the two original occurrences of 193 are 44 cells apart is:
+const fixed193Probability = (256 - 44) * frequency[193] * (frequency[193] - 1) / (256 * 255);
+assert.equal(frequency[193], 2);
+assert.ok(Math.abs(fixed193Probability - 53 / 8160) < 1e-12);
 
 // Fixed-seed exact-multiset Fisher-Yates controls. The XOR-shift generator
 // matches the historical in-repo source-shaped null conventions.
@@ -90,6 +95,7 @@ const matchesAtLeastOne = repeats - distribution[0];
 assert.equal(matchesAtLeastOne, 29665);
 console.log('Source prime-ordinal self-pair:', JSON.stringify(actual));
 console.log('Exact expected number under multiset permutations:', expected.toFixed(12));
+console.log('Conditional exact p when preselecting byte193 and gap44:', fixed193Probability.toFixed(9));
 console.log('Permutations:', repeats, 'seed: 0x33014344');
 console.log('Null counts for 0,1,2,3,4,5,6,7+ hits:', distribution.join(','));
 console.log('At least one hit:', matchesAtLeastOne, '/', repeats,
