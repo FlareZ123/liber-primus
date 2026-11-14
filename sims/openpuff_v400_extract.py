@@ -220,6 +220,9 @@ def add_carrier(app, window, carrier, out_dir):
     # A multi-megabyte MP3 can leave the "Adding Carriers" progress
     # window open while the main window already reports nonzero bytes.
     # The modal overlay intercepts tree clicks until carrier parsing ends.
+    # Allow the asynchronous file-picker-to-progress transition to begin
+    # before judging the native modal absent.
+    time.sleep(2)
     deadline = time.monotonic() + 300
     while True:
         pending = [
