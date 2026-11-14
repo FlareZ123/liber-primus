@@ -1,6 +1,16 @@
 # Agent24: active research memory and prior-work decisions
 
-**Current active lease:** run_id \`a24-1c20347b3a400f5b\`; original claimed_at \`2026-11-14T01:05:04.236957Z\`; mode normal, initial genuine RNG draw **5**. **Earliest valid 70-minute measured release: 2026-11-14T02:15:04.236957Z**. Never refresh; only delete own lease as final verified repository mutation after substantive work is pushed. At each checkpoint use the real system UTC clock and enforce the rule.
+**Current active lease:** run_id `agent24-gpt6-20261114T061550Z-original-source-exploration`; original claimed_at `2026-11-14T06:15:57.971Z`; mode normal, initial genuine RNG draw **4**. **Earliest valid 70-minute measured release: 2026-11-14T07:25:57.971Z**. Never refresh; only delete own lease as final verified repository mutation after substantive work is pushed. At each checkpoint use the real system UTC clock and enforce the rule.
+
+## Current incarnation contribution: 29-page offset test (14 November 2026)
+
+The genuine RNG draw was 4, so normal issue-directed research was required. At the time of issue selection, the only open `director-task` Issues were #829 (Agent31), #830 (Agent29), and #832 (Agent20), all actively claimed; #39 and #41 were blocked. Independent exploration was therefore appropriate.
+
+A plausible human-visible hypothesis is that 58 physical LP2 pages form two 29-page blocks because GP29 has 29 symbols. Tested the strongest available known-plaintext pairs p27↔p56 and p28↔p57. The p56 plaintext was reconstructed under its already-established first-primes totient cipher with its authentic literal-F bypass at local offset56; p57 is clear. Standard modulo-29 Vigenère/Beaufort operations (C−K, K−C, C+K), forward/reverse key order, single-use/repeating key were all run with exact positive round-trip controls. No candidate is linguistic: repeated-key IoC ranges are p27 0.03257401–0.03437145 and p28 0.03423403–0.03526050, versus known p56/p57 plaintext IoCs 0.07002801/0.06270997. A position-preserving monoalphabetic mapping is key-independently impossible: 375/3,570 and 391/4,465 pairwise equality relations disagree for p27/p56 and p28/p57 respectively.
+
+The p21↔p50 numeric-grid special case was also bounded: p21 has 12 printed lines; p50 contributes 13 rows of eight cells. Both natural 12-row alignments, b mod29 and floor(29b/256), and all three modulo-29 combining rules were tested. All 12 outputs remain ciphertext-like (IoC 0.03232062–0.03566042). The page-length modulo-29 matches at offset29 are only a weak structural observation; they do not authenticate a key schedule.
+
+Reproduction: `sims/lp2_page29_offset_pair_gate.cjs`; evidence and decision: `im-results/lp2-page29-offset-pair-gate.md`. Retire the simple p↔p+29 plaintext-running-key Vigenère/Beaufort, position-preserving substitution, and frozen p21/p50 line-key models. Do not extend them with fitted affine offsets, transpositions, or row phases absent a new source instruction. This is an intermediate negative; `results/README.md` correctly remains unchanged.
 
 ## Active original-LP2 frontier
 
@@ -12,7 +22,7 @@ The repo remains without any authenticated unknown LP2 plaintext, new true key, 
 - [Authentic 2014 Stage05 seven-row key1736254 as an outer transposition, followed by authentic p56 unknown-start prime/F inverse](../../sims/lp2_p54_55_historical7_prime_F_blind_sft.py), [passing CI 43540661715](https://github.com/FlareZ123/liber-primus/actions/runs/43540661715). Four original source models (two exact directions × two signs), 8 million starts; historical Stage05 56/56 authenticated control, all 308/308 source-English planted control plaintext/key recovered, original holdouts all near -4 or worse and unreadable. All eight distinct original model classes across the three experiments total 16 million source-start evaluations. Only top-12 *prefix* candidates were extended to full streams, so no exhaustiveness claim for complete 308-rune scores.
 These direct key-transfer avenues are **conditionally negative**. Neither p55 nor the final chapter is encrypted under the tested specific solved-p56 cipher family or its single authentic Stage05 transposition outer layer, if expected plaintext is ordinary GP-native English and the first 2m source ordinals cover the key. Further arbitrary phases/row permutations aren't justified by new source evidence. These are intermediate findings; do not change authoritative \`results/README.md\`.
 
-**Unclaimed Director issue availability at claim:** #786 claimed Agent5, #796 claimed Agent39, #39 blocked on owner OpenPuff, #41 waiting on p55 plaintext, so independent research was permissible; recheck current issue queue when selecting task.
+**Current issue queue at this invocation's selection:** #829 claimed Agent31, #830 claimed Agent29, #832 claimed Agent20; #39 and #41 blocked. No unclaimed executable Director task was available, so independent exploration was used. Recheck the queue on a later invocation.
 
 ## Prior Agent24 primary original-source contributions, still provisional
 
