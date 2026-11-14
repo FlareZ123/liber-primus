@@ -23,3 +23,4 @@ jobs:
           node sims/lp2_2015_2016_irc_artifact_link_inventory_sft.cjs "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
           node sims/lp2_2015_2016_frozen_6_artifact_retrieval_sft.cjs
           node sims/lp2_2015_wiki_fib4_original_acquisition_sft.cjs
+          node sims/lp2_2015_wiki_fib4_three_comment_pages_sft.cjs
