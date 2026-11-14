@@ -58,10 +58,12 @@ function equalityPairs(data) {
  *
  * @param {number[]} source
  * @param {number} actual
+ * @param {number} nonceDerived
  */
-function scanControl(source, actual) {
+function scanControl(source, actual, nonceDerived) {
   let minimum = Infinity;
   let atMostOriginal = 0;
+  let atMostNonceDerived = 0;
   let sum = 0;
   const count = source.length - nRunes + 1;
   assert(count > 0);
@@ -73,6 +75,7 @@ function scanControl(source, actual) {
     for (const m of bins) hits += m * (m - 1) / 2;
     if (hits < minimum) minimum = hits;
     if (hits <= actual) atMostOriginal++;
+    if (hits <= nonceDerived) atMostNonceDerived++;
     sum += hits;
   }
   return {
@@ -80,6 +83,7 @@ function scanControl(source, actual) {
     testedWindows: count,
     minimum,
     atMostOriginal,
+    atMostNonceDerived,
     averagePairs: sum / count
   };
 }
@@ -88,20 +92,29 @@ const originalFirstRunes = pages.map(p => p.indices[0]);
 const originalPairs = equalityPairs(originalFirstRunes);
 assert.equal(originalPairs, 52);
 
+// Source-selected page-dependent nonce hypothesis. Printed 32x8 grid has
+// 256 literal bytes; first 56 row-major values address physical pp0..55.
+// Page p50 is runeless but retains its physical address. Any common unknown
+// initial additive key cancels in equality of the nonce-removed first runes.
+const nonceRemovedInitials = pages.map(p =>
+  (p.indices[0] - grid.bytes[p.page] % 29 + 29) % 29);
+const nonceRemovedPairs = equalityPairs(nonceRemovedInitials);
+assert.equal(nonceRemovedPairs, 51);
+
 const fixedSources = [
-  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 217106, 204151, 50, 18],
-  ["Gibran", "resources/control/gibran_prophet_58585.txt", 62492, 49537, 50, 8],
-  ["Emerson", "resources/control/emerson_essays_2944.txt", 321327, 308372, 49, 16]
+  ["Shakespeare", "resources/control/shakespeare_first300k.txt", 217106, 204151, 50, 18, 10],
+  ["Gibran", "resources/control/gibran_prophet_58585.txt", 62492, 49537, 50, 8, 3],
+  ["Emerson", "resources/control/emerson_essays_2944.txt", 321327, 308372, 49, 16, 14]
 ];
 const sourceControls = [];
 let plant = null;
-for (const [name, file, expectedLength, expectedCount, expectedMin, expectedTail] of fixedSources) {
+for (const [name, file, expectedLength, expectedCount, expectedMin, expectedTail, expectedNonceTail] of fixedSources) {
   const encoded = encodeSourceNativeGP(read(file));
   assert.equal(encoded.length, expectedLength, name);
-  const verdict = scanControl(encoded, originalPairs);
+  const verdict = scanControl(encoded, originalPairs, nonceRemovedPairs);
   assert.deepEqual(
-    [verdict.testedWindows, verdict.minimum, verdict.atMostOriginal],
-    [expectedCount, expectedMin, expectedTail],
+    [verdict.testedWindows, verdict.minimum, verdict.atMostOriginal, verdict.atMostNonceDerived],
+    [expectedCount, expectedMin, expectedTail, expectedNonceTail],
     name
   );
   sourceControls.push({name, ...verdict});
@@ -165,23 +178,38 @@ assert(totalRejected > 0 && repeated < 300);
 assert.equal(equalityPairs(encryptedInitials), equalityPairs(plantedInitials));
 assert.equal(encryptedInitials[0], (plantedInitials[0] + grid.bytes[7]) % 29);
 
+// A page-index source nonce changes every physical page's actual C[0],
+// but removing its exactly printed 256-table value recovers the same common
+// initial secret-key invariant even if later key skips remain present.
+const withSourcePageNonce = encryptedInitials.map((x, i) =>
+  (x + grid.bytes[pages[i].page]) % 29);
+const recoveredFromPageNonce = withSourcePageNonce.map((x, i) =>
+  (x - grid.bytes[pages[i].page] % 29 + 29) % 29);
+assert.deepEqual(recoveredFromPageNonce, encryptedInitials);
+assert.equal(equalityPairs(recoveredFromPageNonce), 91);
+
 const totalControlWindows = sourceControls.reduce((sum, x) => sum + x.testedWindows, 0);
 const totalControlAtMost = sourceControls.reduce((sum, x) => sum + x.atMostOriginal, 0);
 assert.equal(totalControlWindows, 562060);
 assert.equal(totalControlAtMost, 42);
+const totalControlsAtMostNonce = sourceControls.reduce((sum, x) => sum + x.atMostNonceDerived, 0);
+assert.equal(totalControlsAtMostNonce, 27);
 
 console.log(JSON.stringify({
   classification: "page-reset shared-first-key collision-skip gate; no unknown plaintext recovered",
   hypothesis: "C_page[0] = same secret permutation(plaintext_page[0])",
   original: {pages: pages.length, totalRunes: nRunes, pairComparisons: nPairs,
-    sameRunePairs: originalPairs, rate: originalPairs / nPairs},
+    sameRunePairs: originalPairs, rate: originalPairs / nPairs,
+    sourceTablePageNonceRemovedPairs: nonceRemovedPairs},
   controls: sourceControls,
   allSourceWindows: totalControlWindows,
   allSourceWindowsAtMostOriginal: totalControlAtMost,
+  allSourceWindowsAtMostSourcePageNonce: totalControlsAtMostNonce,
   reversiblePositivePlant: {
     firstRunePairsBefore: equalityPairs(plantedInitials),
     afterSecretPermutation: equalityPairs(permutedInitials),
     afterSourceGridCollisionSkip: equalityPairs(encryptedInitials),
+    afterKnownPageNonceRemoval: equalityPairs(recoveredFromPageNonce),
     sourceGridCommonStart: 7,
     rejectedKeySteps: totalRejected,
     acceptedAdjacentRepeats: repeated,
