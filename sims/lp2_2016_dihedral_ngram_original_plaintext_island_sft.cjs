@@ -40,7 +40,7 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let k=0;k<29;k++){
  assert.equal(dist(a,b),dist(mod(a+k),mod(b+k)));
  assert.equal(dist(a,b),dist(mod(-a+k),mod(-b+k)));
 }
-function countTrigrams(step){
+function countTetragrams(step){
  const ct=new Uint32Array(15**4);
  for(let i=0;i+3<step.length;i++)ct[3375*step[i]+225*step[i+1]+15*step[i+2]+step[i+3]]++;
  return ct;
@@ -52,7 +52,7 @@ function steps(v){
 }
 const counts=new Uint32Array(15**4);
 for(const src of files){
- const c=countTrigrams(steps(src.train));
+ const c=countTetragrams(steps(src.train));
  c.forEach((v,i)=>counts[i]+=v);
 }
 const total=counts.reduce((x,y)=>x+y,0);
