@@ -1,6 +1,6 @@
 # Original LP2 seven-rune bookend crossing into independently solved p56
 
-**Status, 12 November 2026:** Exact source-physical ciphertext alignment, with a separately calibrated descriptive rarity experiment. This constrains a possible human-visible alignment mechanism but has **not** recovered unknown LP2 plaintext, a key, or an authenticated cipher reset.
+**Status, updated 14 November 2026:** Exact source-physical ciphertext alignment, with a separately calibrated descriptive rarity experiment. This constrains a possible human-visible alignment mechanism but has **not** recovered unknown LP2 plaintext, a key, or an authenticated cipher reset.
 
 ## Source observation and why the solved boundary matters
 
@@ -38,8 +38,21 @@ The strong chapter-level effect localizes the surprise to the **cross-page co-as
 
 An independent public solver project already called out the same seven-gram crossing into solved material in its [Round 44 synthesis, 9–11 November 2026](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round44/SYNTHESIS.md). This repository's value-added is an exact independent full-source original-index reproducer and calibrated anti-doublet null; it does not claim novelty of the substring.
 
+## Exact p56 prime-totient restart at the repeated ciphertext (14 November 2026)
+
+The seven-rune match gives an unusually specific **conditional cipher-transfer question**: does original p27 resume the independently solved p56 prime-totient running-key rule at the same ciphertext `AE`, or at the first symbol of the seven-rune shared segment? Both anchors are fixed before decryption by source coordinates: p27:34 is the same `AE` as p56:0, and p27:28 starts the `DJU-BEI-AE` match. The operation is exactly p56's established GP29 decryption, `P=C−(prime[k]−1) mod29`, with first key 2−1=1, no secret phase, no fitted keyword and no page-local variants. Every original ciphertext F is exhaustively assigned either a bypassed **literal plaintext F** without key consumption, or a shifted non-F plaintext; all other cipher runes must decode to non-F. These are necessary conditions independent of English scoring.
+
+[The source-locked single-file test](../sims/lp2_bookend7_prime_restart_sft.cjs) uses canonical `resources/liber-primus/lp2-corpus.json`, asserts the source's seven-rune equality and the exact p56 opening A, and performs dynamic programming over **all** legal bypass clocks. The authentic original p56 full 85-rune cipher survives, with five possible final consumed-key counts. An independently clear original p57 95-rune passage, encrypted under the same exact rule, also survives with its true key-clock count. Thus the exclusion is not caused by accidentally treating every ciphertext F as a literal F or by a broken key generator.
+
+| Frozen p27 key restart | Unmodified original segment | First position at which **every** legal F clock fails | Outcome |
+| --- | --- | --- | --- |
+| First repeated `D`, p27:28 | p27:28–233, 206 runes | relative 129 = original p27:157 | No valid inverse over whole segment |
+| Repeated `AE`, p27:34 = p56:0 | p27:34–233, 200 runes | relative 56 = original p27:90 | No valid inverse over whole segment |
+
+**Decision:** neither natural no-phase, fresh-start transfer can continue p56's prime-totient/F clock across the original p27 passage. This is an **exact finite impossibility for those two keyed restarts**, before any linguistic scoring. It says nothing about a separately authorized key, a shifted prime start, non-prime operation, earlier nonzero clock state, or the repeated segment serving as a book-code address. No unknown plaintext, key or destination is recovered. The seven-symbol coincidence still stands as an original-cipher navigation clue, but it does not on its own tell the solver to reuse the known p56 cipher on p27.
+
 ## Research decision
 
-Treat the exact source crossing as a **free, sealed boundary constraint** on any future p27/p55/p56 shared-state, seven-column or literal repeated-marker proposal. A candidate that selectively explains the six unknown same runes and p56's independently solved first rune, predicts a further withheld ciphertext/plaintext position, and inverses the complete original text would be meaningful. Reinterpreting the seven characters as a self-key, launching arbitrary phase searches, or treating coincidental modulo-seven structure as a historical instruction would add little.
+Treat the exact source crossing as a **free, sealed boundary constraint** on any future p27/p55/p56 shared-state, seven-column or literal repeated-marker proposal. The two immediately suggested p56 prime-totient restarts are now excluded under exhaustive original F-bypass clocks above. A candidate that selectively explains the six unknown same runes and p56's independently solved first rune, predicts a further withheld ciphertext/plaintext position, and inverses the complete original text would be meaningful. Reinterpreting the seven characters as a self-key, launching arbitrary phase searches, or treating coincidental modulo-seven structure as a historical instruction would add little.
 
 CI: [Original-source seven-rune gate run 43295344134](https://github.com/FlareZ123/liber-primus/actions/runs/43295344134) and [original-word-inventory conditional gate run 43300412855](https://github.com/FlareZ123/liber-primus/actions/runs/43300412855), Node 22, both passing.
