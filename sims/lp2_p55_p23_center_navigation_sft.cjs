@@ -158,6 +158,22 @@ assert.deepEqual(titleWordGates.map(x=>Number(x.ioc.toFixed(6))),
 // "Words as map; numbers as direction" candidate with no fitted offset:
 // GP-prime weights of the 23 peeled symbols exactly cover the 1020 steps
 // from the first to the last original rune of the selected p23–26 chapter.
+// The signed 2016 phrase "its words are the map ... their numbers are the
+// direction" more directly suggests word-aggregated GP prime shifts.
+// After the two source-visible peels, exactly seven original word fragments
+// survive. Their seven sums traverse the same full chapter without padding.
+const sevenInnerWords = words.map(w => w.slice(2,-2)).filter(w => w.length);
+assert.deepEqual(sevenInnerWords.map(w=>w.length),[2,2,9,2,3,3,2]);
+const sevenWordPrimeSteps = sevenInnerWords.map(weight);
+assert.deepEqual(sevenWordPrimeSteps,[106,158,312,196,95,51,102]);
+let wordPointer = 0;
+const sevenWordOffsets = sevenWordPrimeSteps.map(step => (wordPointer += step));
+assert.deepEqual(sevenWordOffsets,[106,264,576,772,867,918,1020]);
+assert.equal(wordPointer,section.length-1);
+const sevenWordLandings = sevenWordOffsets.map(i => section[i]);
+assert.deepEqual(sevenWordLandings.map(x=>gp.translit[x]),
+  ['O','G','M','P','J','B','NG']);
+
 const primeStepTape = core.map(v => gp.prime[v]);
 assert.deepEqual(primeStepTape,
   [17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]);
@@ -261,7 +277,9 @@ console.log(JSON.stringify({
     minusPrefix:label(subtract.slice(0,20)),
     plusPrefix:label(add.slice(0,20)),solvedP57Plant:'75/75'},
   bitPacketDigests:digests,totientGates,titleWordGates,
-  chapterPrimeStepMap:{steps:primeStepTape,landingOffsets:pointerPositions,
+  chapterPrimeStepMap:{wordSteps:sevenWordPrimeSteps,wordLandingOffsets:sevenWordOffsets,
+    wordLandingReadout:sevenWordLandings.map(i=>gp.translit[i]).join(' '),
+    steps:primeStepTape,landingOffsets:pointerPositions,
     endingGP:gp.translit[landingRunes.at(-1)],landingReadout:pointerReadout,
     keyMinus:mapAsKeyMinus.map(i=>gp.translit[i]).join(' '),
     keyPlus:mapAsKeyPlus.map(i=>gp.translit[i]).join(' ')},sourceWordNull:{trials,seed:'0x235557',hits},
