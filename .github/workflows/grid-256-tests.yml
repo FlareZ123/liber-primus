@@ -59,6 +59,7 @@ on:
           - source-dh-log
           - signed2013-field-dh-p29
           - source-base29-literal
+          - source-base29-whole
           - p55-base29-original-integer
           - p29-gadic-field-projections
           - p29-signed2016-91-alllinear
@@ -254,6 +255,12 @@ jobs:
       - name: Literal 2013 BASE29 quotient and 1033 polynomial control
         if: ${{ inputs.probe == 'source-base29-literal' }}
         run: node sims/base29_protocol_literal_quotient_sft.cjs
+
+      - name: Original 256-cell BASE29 whole-integer and known-plaintext all-secret gate
+        if: ${{ inputs.probe == 'source-base29-whole' }}
+        run: |
+          node --check sims/lp2_p50_2013_base29_fullinteger_sft.cjs
+          node sims/lp2_p50_2013_base29_fullinteger_sft.cjs
 
       - name: Fixed Q252 GF841 polynomial evaluation against all original LP2 runes
         if: ${{ inputs.probe == 'q252-gf841-eval' }}
