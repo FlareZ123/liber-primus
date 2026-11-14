@@ -33,7 +33,17 @@ const layouts = [
       stripped.slice(76, 152), stripped.slice(152, 228)]},
   {name: "76 consecutive 3-rune shares",
     shares: [0, 1, 2].map(phase =>
-      Array.from({length: 76}, (_, i) => stripped[3 * i + phase]))}
+      Array.from({length: 76}, (_, i) => stripped[3 * i + phase]))},
+  // Independently solved p57 explicitly mentions shedding circumferences.
+  // p27 has 234 = 3*78 source runes; shedding BOTH boundary runes
+  // of each of three 78-rune source lines yields exactly 3*76.
+  // No original graphic authenticates these particular 78-wide rows.
+  {name: "three 78-rune strips; discard two outside runes per strip",
+    shares: [0, 1, 2].map(row =>
+      c27.slice(78 * row + 1, 78 * row + 77))},
+  {name: "78 triples as rows; discard first/last triple",
+    shares: [0, 1, 2].map(phase =>
+      Array.from({length: 76}, (_, i) => c27[3 * (i + 1) + phase]))}
 ];
 
 const operators = [
@@ -86,11 +96,11 @@ for (const layout of layouts) {
 }
 
 assert.deepEqual(records.map(row => row.exactSecret0OrShare4Matches),
-  [3, 3, 4, 3, 3, 4]);
+  [3, 3, 4, 3, 3, 4, 3, 0, 1, 4, 2, 3]);
 assert.deepEqual(records.map(row => row.negatedMatches),
-  [4, 2, 3, 4, 2, 3]);
+  [4, 2, 3, 4, 2, 3, 3, 2, 5, 4, 3, 5]);
 assert(Math.max(...records.flatMap(row => row.keys.map(x => x.ioc)))
-  < 0.039, "original GP direct three-share consumers remain flat");
+  < 0.043, "original GP direct three-share consumers remain flat");
 
 // Independent, genuine solved-LP2 page57 source-native rune plaintext
 // under an intentionally planted unknown 76-rune Shamir GP29 key.
