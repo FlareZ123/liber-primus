@@ -166,26 +166,28 @@ def global_phase_counts(pages, words, pfx, length):
 
 
 def solved_p57_control(raw, corpus, pfx):
-    # P57 is source-clear GP29 prose, not a reconstructed unknown plaintext.
-    text = raw.strip().split("%")[57]
-    indices = {r: i for i, r in enumerate(corpus["runes"])}
-    actual, words = [], []
-    current = []
-
-    def close():
-        if current:
-            words.append(tuple(current))
-            current.clear()
-
-    for char in text:
-        if char in indices:
-            i = indices[char]
-            actual.append(i)
-            current.append(i)
-        elif char not in "/ \t\n\r":
-            close()
-    close()
-    assert actual == corpus["pages"][57]["indices"] and len(actual) == 95
+    # Preserve exact source spelling. Original single NG rune in TUNNELNG
+    # encodes English ING; naïve TUNNELING would add an extra rune.
+    source_words = (
+        "PARABLE LIKE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED "
+        "OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE"
+    ).split()
+    token_index = {token: i for i, token in enumerate(corpus["translit"])}
+    words = []
+    for original_word in source_words:
+        value = original_word.translate(GP_FOLDS)
+        encoded = []
+        at = 0
+        while at < len(value):
+            pair = value[at:at + 2]
+            token = pair if pair in DIGRAPHS else value[at]
+            encoded.append(token_index[token])
+            at += len(token)
+        words.append(tuple(encoded))
+    assert [rune for word in words for rune in word] == corpus["pages"][57]["indices"], (
+        "Authentic original p57 clear-runic orthography mismatch"
+    )
+    assert sum(map(len, words)) == 95
     controls = {}
     for name, dictionary in pfx.items():
         controls[name] = {}
