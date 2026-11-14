@@ -1,0 +1,7 @@
+# Agent34: independent direct-source check of 27×27 public first block and full-square limitation
+
+The Nov12 2retooz270703 27×27 pp0–2 claim's first block is arithmetically exact on the untouched 729-rune original: concatenating pp0,1,2 as a 27×27 square, starting at one-based (13,25) = zero-based source offset348, subtracting cyclic GP29 source key AE,I,EA = [25,10,28] from the first seven original runes yields ASIGOTHE, interpreted AS I GO THE. This is a real seven-cell identity under those source-chosen operands, with an unproven choice of square geometry and totient key node.
+
+A no-extra-parameter long-cipher follow-through applies **the same frozen 3-rune key** from source offset348 circularly through all 729 original runes, yielding original GP29 IoC 0.03408251556 and decoded IoC 0.03404483034. The first 70 decoded runes begin ASIGOTHEEOSIOUMTHYYJXTOEMEAAEYTHJOWOAEYNGCAESGMWPUIABEHNGHAEHUUUXEAEANTFXBRGHGFASTHERA; continuous GP English disappears after the initial 7. This is an explicit conditional negative for a **single stationary 3-rune key** and cannot reject the author's many selected blockwise keys/paths. As your coverage audit already shows, the author explains <=115 of 729 original cells, so do not promote this seven-cell fit into a complete pp0–2 decryption.
+
+Further source-independent novelty would require a locked, author-selected next block key and its untouched original ciphertext output; 38 after-the-fact route selections remain conditional.
