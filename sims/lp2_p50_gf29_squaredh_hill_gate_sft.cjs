@@ -27,6 +27,20 @@ if (!eq(mpow(G,840), [[1,0],[0,1]])) throw new Error('G order check failed');
 if (!eq(mpow(H,812), [[1,0],[0,1]])) throw new Error('H order check failed');
 if (!eq(K, [[27,28],[18,23]])) throw new Error('G^112 check failed');
 
+const encode = A => ((A[0][0]*29+A[0][1])*29+A[1][0])*29+A[1][1];
+const identity = [[1,0],[0,1]];
+const generators = [G,minv(G),H,minv(H)];
+const seen = new Set([encode(identity)]);
+const queue = [identity];
+for (let i=0; i<queue.length; i++) {
+  for (const B of generators) {
+    const C = mm(queue[i],B), key = encode(C);
+    if (!seen.has(key)) { seen.add(key); queue.push(C); }
+  }
+}
+const generatedSubgroupSize = seen.size;
+if (generatedSubgroupSize !== 682080) throw new Error('G,H do not generate GL2(29)');
+
 const matrices = [
   ['G',G], ['G^-1',minv(G)], ['G^T',transpose(G)], ['(G^-1)^T',transpose(minv(G))],
   ['H',H], ['H^-1',minv(H)], ['H^T',transpose(H)], ['(H^-1)^T',transpose(minv(H))],
@@ -47,4 +61,4 @@ const results = matrices.map(([name,A]) => {
   }).sort((a,b)=>b.ioc-a.ioc);
   return {name, top:scored.slice(0,5)};
 });
-console.log(JSON.stringify({fieldRelation:'u^2=3u+8',G,H,K, testedPages:pages.length, blockRule:'adjacent two-rune column blocks; odd tail unchanged', results},null,2));
+console.log(JSON.stringify({fieldRelation:'u^2=3u+8',G,H,K, testedPages:pages.length, generatedSubgroupSize, gl2_29Order:682080, blockRule:'adjacent two-rune column blocks; odd tail unchanged', results},null,2));
