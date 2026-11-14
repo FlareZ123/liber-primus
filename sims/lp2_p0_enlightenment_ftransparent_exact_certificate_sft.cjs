@@ -127,6 +127,55 @@ assert.deepEqual(epiphanyContradiction.before, [56]);
 assert.equal(firstChapter[57], 27);
 assert.equal(epiphanyShift(56), 27); // Non-F ciphertext would decode to bypass F.
 
+
+// Complete the independently published 2016 red-caption word-shape family.
+// Source-fixed exact positions are physical p15:r9, p33:r91, p40:r0.
+// Their Latin phrases are from the same signed 2016 message; the original
+// GP29 ciphertext and chapter edges are held constant.
+/**
+ * @param {number} startPage
+ * @param {number} startRune
+ * @param {number} lastPage
+ * @param {string} candidateTitle
+ * @returns {{plain:number[],cipher:number[],key:number[],firstFailure:number,clockBefore:number[],headerForbidden:number[]}}
+ */
+function testSigned2016Title(startPage, startRune, lastPage, candidateTitle) {
+  const cipher = original.pages.slice(startPage, lastPage + 1)
+    .flatMap((page) => page.indices).slice(startRune);
+  const plain = encodeGp(candidateTitle);
+  const printed = cipher.slice(0, plain.length);
+  const headerForbidden = plain.flatMap((rune, i) =>
+    rune === 0 && printed[i] !== 0 ? [i] : []);
+  if (headerForbidden.length) return {
+    plain, cipher, key: [], firstFailure: headerForbidden[0],
+    clockBefore: [], headerForbidden
+  };
+  assert.ok(!plain.includes(0), 'Nonempty F header needs state-derived key slots');
+  const key = plain.map((rune, i) => mod29(printed[i] - rune));
+  const shift = (clock) => key[clock % key.length];
+  assert.deepEqual(encrypt(plain, shift), printed);
+  const result = allClockPaths(cipher, shift, plain.length, plain.length);
+  assert.equal(result.passed, false);
+  return { plain, cipher, key, firstFailure: result.firstFailure,
+    clockBefore: result.before, headerForbidden };
+}
+
+const p15Found = testSigned2016Title(15, 9, 22, 'WILLBEFOUND');
+assert.deepEqual(p15Found.headerForbidden, [6]);
+assert.equal(p15Found.cipher[6], 17); // B, incompatible with plaintext F.
+assert.equal(p15Found.plain[6], 0);
+const p33Words = testSigned2016Title(33, 91, 39, 'ITSWORDS');
+assert.deepEqual(p33Words.key, [11, 15, 26, 3, 26, 1, 28, 26]);
+assert.equal(p33Words.cipher.length, 1589);
+assert.equal(p33Words.firstFailure, 10);
+assert.deepEqual(p33Words.clockBefore, [10]);
+assert.equal(p33Words.cipher[10], 26); // Y; key[10 mod8] also 26.
+const p40Words = testSigned2016Title(40, 0, 53, 'ITSWORDS');
+assert.deepEqual(p40Words.key, [19, 22, 4, 19, 3, 19, 2, 22]);
+assert.equal(p40Words.cipher.length, 3008);
+assert.equal(p40Words.firstFailure, 33);
+assert.deepEqual(p40Words.clockBefore, [33]);
+assert.equal(p40Words.cipher[33], 22); // OE; key[33 mod8] also 22.
 // Independent known-solved original p56 control: prime-totient running key,
 // the exact F skip at local56 and all original ciphertext symbols.
 function primeList(n) {
@@ -178,6 +227,17 @@ assert.ok(epiphanyPlantControl.after.includes(
   epiphanyPlantPlain.filter((rune) => rune !== 0).length
 ));
 
+
+for (const trial of [p33Words, p40Words]) {
+  const shift = (clock) => trial.key[clock % trial.key.length];
+  const plain = trial.plain.concat(Array.from({
+    length: trial.cipher.length - trial.plain.length
+  }, (_, i) => sourceNative[i % sourceNative.length]));
+  const cipher = encrypt(plain, shift);
+  const check = allClockPaths(cipher, shift, trial.plain.length, trial.plain.length);
+  assert.equal(check.passed, true);
+  assert.ok(check.after.includes(plain.filter((rune) => rune !== 0).length));
+}
 process.stdout.write(JSON.stringify({
   source: 'Original physical LP2 p0-p2, 2014 ENLIGHTENMENT crib, authentic p56/p57 controls',
   hypothesis: 'period-13 GP29 Vigenere with plaintext-F literal/bypass',
@@ -193,10 +253,16 @@ process.stdout.write(JSON.stringify({
   epiphany2016SourceKey: epiphanyKey,
   epiphany2016FirstImpossiblePosition: epiphanyContradiction.firstFailure,
   epiphany2016KeyClockBeforeFailure: epiphanyContradiction.before,
+  other2016Titles: {
+    p15_WILL_BE_FOUND: { headerFIndex: p15Found.firstFailure, actualGlyph: original.translit[p15Found.cipher[6]] },
+    p33_ITS_WORDS: { titleLocalRune: 91, failureLocalRune: 101, derivedKey: p33Words.key },
+    p40_ITS_WORDS: { titleLocalRune: 0, failureLocalRune: 33, derivedKey: p40Words.key }
+  },
   controls: {
     solvedP56: '85/85 strict forward replay; valid F clock through all 85',
     p0ShapePlant: '729/729 strict forward replay; full key-clock valid',
-    p0EpiphanyShapePlant: '729/729 strict forward replay; full key-clock valid'
+    p0EpiphanyShapePlant: '729/729 strict forward replay; full key-clock valid',
+    p33andP40ShapePlants: '1589/1589 and 3008/3008 valid inverse clocks with authentic p57 native prose'
   },
   claimLimit: 'Excludes only this derived 13-key GP29 F-transparent model. No unknown plaintext recovered.'
 }, null, 2) + '\n');
