@@ -165,7 +165,7 @@ console.log(JSON.stringify({
   originalCorpus: "LP2 p0-55 canonical original runes",
   hypothesis: "GP29 plaintext plus periodic pad, or predecessor chain with GP29 plaintext-plus-pad steps",
   periodScope: "one original continuous passage per listed case; resets within it are not tested",
-  sampleControl: "three independent native-GP references, 116 total matched-length windows",
+  sampleControl: "three independent native-GP references, 420 total matched-length windows",
   cases: results,
   conclusion: "All four source-clock forms lack the key-blind native-GP lag match invariant; no unknown plaintext/key recovered."
 }, null, 2));
