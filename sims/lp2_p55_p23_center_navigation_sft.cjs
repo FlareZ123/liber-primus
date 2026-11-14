@@ -155,6 +155,33 @@ for(const kind of ['index','prime','totient']) {
 assert.deepEqual(titleWordGates.map(x=>Number(x.ioc.toFixed(6))),
   [0.028829,0.032072,0.02955,0.033514,0.02955,0.033514]);
 
+// "Words as map; numbers as direction" candidate with no fitted offset:
+// GP-prime weights of the 23 peeled symbols exactly cover the 1020 steps
+// from the first to the last original rune of the selected p23–26 chapter.
+const primeStepTape = core.map(v => gp.prime[v]);
+assert.deepEqual(primeStepTape,
+  [17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]);
+assert.equal(weight(core),section.length-1);
+let pointer = 0;
+const pointerPositions = primeStepTape.map(step => (pointer += step));
+assert.equal(pointer,1020);
+assert.equal(pointerPositions.length,23);
+assert.deepEqual(pointerPositions,
+  [17,106,203,264,266,313,344,415,418,431,474,497,576,665,772,
+   803,820,867,908,913,918,949,1020]);
+const landingRunes = pointerPositions.map(i=>section[i]);
+assert.equal(landingRunes.at(-1),page(55)[0]); // terminal p26 NG = initial p55 carry NG
+const pointerReadout = landingRunes.map(i=>gp.translit[i]).join(' ');
+assert.equal(pointerReadout,
+  'G O G G W F D X Y TH Y Y M F P IA C J IA L B IA NG');
+const mapAsKeyMinus = core.map((v,i)=>mod(v-landingRunes[i]));
+const mapAsKeyPlus = core.map((v,i)=>mod(v+landingRunes[i]));
+assert.equal(mapAsKeyMinus[0],0); // G - G -> F, not plaintext
+assert.deepEqual(mapAsKeyMinus.slice(0,5).map(v=>gp.translit[v]),
+  ['F','L','E','J','OE']);
+assert.deepEqual(mapAsKeyPlus.slice(0,5).map(v=>gp.translit[v]),
+  ['EO','Y','U','D','W']);
+
 const cipher = page(55).slice(1);
 const subtract = cipher.map((c,i) => mod(c - section[i]));
 const add = cipher.map((c,i) => mod(c + section[i]));
@@ -233,6 +260,10 @@ console.log(JSON.stringify({
   originalRunningKey:{minusIoc:ioc(subtract),plusIoc:ioc(add),
     minusPrefix:label(subtract.slice(0,20)),
     plusPrefix:label(add.slice(0,20)),solvedP57Plant:'75/75'},
-  bitPacketDigests:digests,totientGates,titleWordGates,sourceWordNull:{trials,seed:'0x235557',hits},
+  bitPacketDigests:digests,totientGates,titleWordGates,
+  chapterPrimeStepMap:{steps:primeStepTape,landingOffsets:pointerPositions,
+    endingGP:gp.translit[landingRunes.at(-1)],landingReadout:pointerReadout,
+    keyMinus:mapAsKeyMinus.map(i=>gp.translit[i]).join(' '),
+    keyPlus:mapAsKeyPlus.map(i=>gp.translit[i]).join(' ')},sourceWordNull:{trials,seed:'0x235557',hits},
   conclusion:'exact source navigation equalities, two nonlinguistic direct inverses, six mismatched hashes'
 },null,2));
