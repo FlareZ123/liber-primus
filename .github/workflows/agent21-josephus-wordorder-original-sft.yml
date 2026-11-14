@@ -19,3 +19,7 @@ jobs:
         run: |
           node --check sims/lp2_josephus_wordorder_source_gate_sft.cjs
           node sims/lp2_josephus_wordorder_source_gate_sft.cjs
+      - name: Sentence-local Josephus independent grammar and null
+        run: |
+          node --check sims/lp2_sentence_josephus_original_sft.cjs
+          node sims/lp2_sentence_josephus_original_sft.cjs
