@@ -82,6 +82,22 @@ assert.deepEqual(chapters.map(c => c.maximum), [3, 4, 4, 6, 4, 6, 5, 9, 1]);
 const chapterMaximum = chapters.reduce((sum, c) => sum + c.maximum, 0);
 assert.equal(chapterMaximum, 42);
 
+// Independent author-native source register check: original first-release
+// *clear* GP text is a small, selected sample, not a direct LP2 plaintext source.
+const clearLP1Sections = read('resources/transcriptions/lp1_wulfic_canonical.txt').split('%');
+const clearIndices = [3, 8, 9, 10, 11, 14];
+const authorClear = clearIndices.map(i => {
+  const tokens = parseWords(clearLP1Sections[i].replace(/&/g, ''));
+  const short = tokens.filter(w => w.length === 2);
+  return {section: i, two: short.length,
+    ofif: short.filter(w => (w[0] === 3 || w[0] === 10) && w[1] === 0).length};
+});
+assert.deepEqual(authorClear.map(v => v.two), [4, 13, 17, 18, 6, 2]);
+assert.deepEqual(authorClear.map(v => v.ofif), [0, 2, 1, 1, 0, 0]);
+assert.ok(authorClear.reduce((s, v) => s + v.ofif, 0) /
+  authorClear.reduce((s, v) => s + v.two, 0) < chapterMaximum / two.length,
+  'First-party author F share does not independently exclude the original model');
+
 const gibran = nativeTwoLetterStats(read('resources/control/gibran_prophet_58585.txt'));
 const emerson = nativeTwoLetterStats(read('resources/control/emerson_essays_2944.txt'));
 assert.deepEqual(gibran, {count: 2607, ofif: 600, min448: 75, first448: 96});
@@ -115,5 +131,6 @@ console.log('Original maximum fixed F step, one global key:', Math.max(...global
 console.log('Original maximum fixed F steps, nine independent chapter keys:', chapterMaximum, '/448');
 console.log('Original chapter inventory:', JSON.stringify(chapters));
 console.log('Pinned native controls:', JSON.stringify({gibran, emerson}));
+console.log('Independent author-clear GP register:', JSON.stringify(authorClear));
 console.log('Source-positive chapter-mapping plant:', JSON.stringify(planted));
 console.log('PASS: finite source-text exclusion; no unknown plaintext or key recovered');
