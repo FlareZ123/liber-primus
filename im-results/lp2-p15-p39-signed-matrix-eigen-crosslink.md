@@ -99,16 +99,18 @@ R(M_signed)^(-1) = [20  2 25 18]
                    [26  2 19  7]
 ```
 
-This yields a distinct, completely reversible **direct Hill candidate** whose matrix coefficients are *not* the printed p15 coefficients. Test both `R(M_signed)` and its inverse without any fitted key, phase, initial state or source reordering on the 1,744 original pp16–22 runes and the separate 3,000 original pp40–53 black-body runes.
+This yields a distinct, completely reversible **direct Hill candidate** whose matrix coefficients are *not* the printed p15 coefficients. The red119 prime-ordinal hypothesis independently selects p33 as a destination; its original visual chapter p33–39 contains exactly **1,680 runes (420 four-rune blocks)**, allowing a no-padding, no-phase direct test. Test both R(M_signed) and its inverse on the 1,744 original pp16–22 runes, the complete p33–39 visual chapter, and the separate 3,000 original pp40–53 black-body runes. The p33 chapter selection is still an unverified navigation hypothesis; see the [red119 follow-up](lp2-red119-prime-ordinal-chapter-navigation.md).
 
 | Original target | Decryption operator | Decoded GP29 IoC |
 | --- | --- | ---: |
 | pp16–22 | `R(M_signed)` | 0.034552364109 |
 | pp16–22 | `R(M_signed)^(-1)` | 0.034735271361 |
+| **p33–39 visual chapter (new)** | **R(M_signed)** | **0.034474885845** |
+| **p33–39 visual chapter (new)** | **R(M_signed)^(-1)** | **0.034396182535** |
 | pp40–53 black | `R(M_signed)` | 0.034440146716 |
 | pp40–53 black | `R(M_signed)^(-1)` | 0.034346559964 |
 
-All four inverses recover **no apparent plaintext**. Each original 4-rune block re-encrypts identically under the source-derived matrix, while an independent planted 92-rune native-GP p57 control decrypts exactly in each direction. These tests retire the simplest full-rank p3-polynomial direct consumer. Both original p3 and p39 polynomials can still contain useful information about the signed matrix without specifying such a direct Hill cipher.
+All six inverses recover **no apparent plaintext**. The new p33–39 input is the full 1,680-rune visual chapter, concatenated continuously from its p33 start with no page resets or padding; both original transforms re-encrypt exactly. An independent source-native GP positive plant also round-trips through both directions. The p40–53 black-body and pp16–22 negatives were already established. These results retire the simplest full-rank p3-polynomial direct consumer on both red119-directed target chapters. Both original p3 and p39 polynomials can still contain useful information about the signed matrix without specifying such a direct Hill cipher.
 
 ## A source-defined field-to-dual-number bridge via the p50 table
 
