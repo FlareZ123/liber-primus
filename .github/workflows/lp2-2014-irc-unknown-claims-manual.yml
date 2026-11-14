@@ -24,3 +24,9 @@ jobs:
           $dest = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014-original.log'
           Invoke-WebRequest -Uri $url -OutFile $dest -MaximumRetryCount 3 -RetryIntervalSec 2
           node sims/lp2_2014_irc_unknown_claim_scan_sft.cjs $dest
+      - name: Preserve original-context windows for ten frozen original-page claims
+        shell: pwsh
+        run: |
+          node sims/lp2_2014_irc_claim_frozen10_sft.cjs --selftest
+          $dest = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014-original.log'
+          node sims/lp2_2014_irc_claim_frozen10_sft.cjs $dest
