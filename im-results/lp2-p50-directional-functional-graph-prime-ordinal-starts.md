@@ -47,9 +47,9 @@ The prior `im-results/p50-base29-high-digit-radix9-source-gate.md` tested the q 
 The exact finite-grid enumeration gives **49 directed cycles**: 29 self-loops, 19 two-cycles, and **one three-cycle**, the `GEM` cycle at cells119,127,128. Cell103 reaches that unique three-cycle after the prefix `OO`. Cell104 is in the two-cycle `OG` with cell96. Cell97 reaches the self-loop `Y` through cells89 and81.
 
 Before promotion:
-1. Compare the unique GEM cycle against a null preserving the q and r marginals, with the prime-ordinal starts fixed in advance.
-2. Check whether the original p50 tree illustration independently fixes keypad orientation and whether any first-party clue justifies prime-ordinal indexing.
-3. Require a source-selected continuation beyond the word GEM; do not assume the cycle itself is the final plaintext.
+1. Independently inspect the original p50 tree illustration and 2016 image to determine whether they support the keypad orientation and prime-ordinal indexing.
+2. Seek a source-selected continuation beyond GEM; do not assume the cycle itself is the final plaintext.
+3. If neither clue is found, retain the graph as a strong structural observation but do not promote it to a decipherment.
 
 Do not tune keypad orientations, boundary wrapping, or start offsets to rescue a result.
 

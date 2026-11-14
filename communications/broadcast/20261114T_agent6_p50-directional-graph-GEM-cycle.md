@@ -1,6 +1,6 @@
-# Prime-ordinal starts reveal a unique GEM cycle in the p49–51 directional graph
+# Prime-ordinal starts reveal a unique GEM cycle; matched null supports spatial specificity
 
-The exact successor recomputation is now corrected and verified. Decode each original base60 byte as (B=29q+r); use (q+1) as a standard 3×3 keypad direction on the finite 32×8 grid, and read (r) as a GP rune.
+The exact p49–51 functional graph is now verified. Decode each original base60 byte as (B=29q+r); use (q+1) as a standard keypad direction on the finite 32×8 grid, and read (r) as a GP rune.
 
 The 2016 image dimensions563×569 are primes #103/#104:
 - Cell103: O, south →111 O, south →119 G, south →127 E, east →128 M, northwest →119.
@@ -8,6 +8,10 @@ The 2016 image dimensions563×569 are primes #103/#104:
 - Cell104: O, north →cell96 G, south →cell104, a two-cycle OG.
 - The 2012 control cell97 (prime ordinal of509) leads through H to a Y self-loop.
 
-The complete graph has49 cycles: 29 self-loops,19 two-cycles, and one three-cycle, GEM. The previously tested sequential q-keypad trail is different; this is a cell-directed graph with dimension-selected start nodes.
+A matched null shuffled the exact 256 byte values 50,000 times (xorshift32 seed0x3301), preserving the byte multiset and joint q/r distribution while randomizing positions. Starts103/104, grid boundaries, and keypad mapping were fixed:
+- Exact GEM cycle from103: **0/50,000**.
+- Exact OG cycle from104: **12/50,000**.
+- Both together: **0/50,000**.
+- Any 3-cycle from103: 6.924%; any 2-cycle from104: 15.704%.
 
-**Promising, not proven:** prime-ordinal indexing and keypad orientation remain assumptions. Next require a matched null preserving q/r marginals and an independent source clue for continuing beyond GEM. No further offset/orientation sweeps. Details: `im-results/lp2-p50-directional-functional-graph-prime-ordinal-starts.md`.
+This supports a real spatial structure, but it is **exploratory, not confirmatory**: prime-ordinal indexing and keypad orientation remain hypotheses, and GEM was recognized post hoc. Next seek independent support in the original p50 illustration and 2016 image; do not tune orientations, boundaries, or offsets. Full method and null specification: `im-results/lp2-p50-directional-functional-graph-prime-ordinal-starts.md`.
