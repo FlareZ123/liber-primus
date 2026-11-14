@@ -89,7 +89,7 @@ function keyId(ordinal, mode) {
  *
  * @param {number[][]} words
  * @param {"position"|"value"} mode
- * @param {"direct"|"delta"} kind
+ * @param {"direct"|"delta"|"laterPlain"} kind
  * @returns {{matches:number,pairs:number,rate:number,classes:number}}
  */
 function collision(words, mode, kind) {
@@ -97,8 +97,8 @@ function collision(words, mode, kind) {
   for (let w = 0; w < words.length; w++) {
     const key = keyId(w, mode);
     const symbols = words[w];
-    for (let j = kind === "delta" ? 1 : 0; j < symbols.length; j++) {
-      const value = kind === "direct" ? symbols[j]
+    for (let j = kind === "direct" ? 0 : 1; j < symbols.length; j++) {
+      const value = kind === "direct" || kind === "laterPlain" ? symbols[j]
         : (symbols[j] - symbols[j - 1] + 29) % 29;
       const classId = key * 5 + (j % 5);
       const hist = classes.get(classId) || Array(29).fill(0);
@@ -120,7 +120,7 @@ function collision(words, mode, kind) {
  *
  * @param {number[][]} plain
  * @param {"position"|"value"} mode
- * @param {"direct"|"delta"} kind
+ * @param {"direct"|"delta"|"laterPlain"} kind
  * @returns {number[][]}
  */
 function plant(plain, mode, kind) {
@@ -198,7 +198,7 @@ for (const [name, file] of sourcePaths) {
     const plain=sampleNative(pools);
     for (let m=0;m<modes.length;m++) {
       const [mode,kind]=modes[m];
-      const rate=collision(plain,mode,kind).rate;
+      const rate=collision(plain,mode,kind === "delta" ? "laterPlain" : "direct").rate;
       const s=stats[m]; s.minimum=Math.min(s.minimum,rate);
       s.maximum=Math.max(s.maximum,rate);s.sum+=rate;
       if(rate<=observed[m].rate)s.below++;
@@ -208,8 +208,7 @@ for (const [name, file] of sourcePaths) {
         const [mode,kind]=modes[m];
         const planted=plant(plain,mode,kind);
         assert.equal(collision(planted,mode,kind).matches,
-          kind==="direct"?collision(plain,mode,"direct").matches
-            : collision(planted,mode,"delta").matches);
+          collision(plain,mode,kind==="direct"?"direct":"laterPlain").matches);
       }
     }
   }
