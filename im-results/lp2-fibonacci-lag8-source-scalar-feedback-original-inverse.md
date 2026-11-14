@@ -50,6 +50,25 @@ A genuinely different, higher-complexity scheme might use **eight independent sl
 
 The [updated standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_source_scalar_feedback_sft.cjs) computes the complete all-page-secret 29-slope histogram envelope exactly, asserts **177/316** and **419/685**, and preserves the 1,595 authentic original-cipher and 290 GP-native planted exact forward roundtrips. **Decision:** retire even per-page arbitrary scalar plus fixed alphabet decoding as native GP prose for these original source windows; a genuinely author-selected *changing state within pages* or a different register is needed.
 
+## Fixed eight-phase and original-source changing-key consumers
+
+The all-page-secret capacity failure above raises one source-motivated alternative: the printed numerical table has **eight columns**, and the independent p15 spiral contains **16 actual Fibonacci-indexed prime values**. Instead of using one scalar for a whole page, use source material as a changing key in the **same causal lossless inverse**, without selecting a scalar by decoded text:
+
+`R_i = D_i − K[(i−9) mod |K|] D_(i−8) (mod 29)`, for original page-local i≥9.
+
+Four keys are independently fixed and used unchanged on every Fibonacci source page and, separately, all 55 rune-bearing unknown pages: (1) the first printed eight table bytes (one row), (2) all 256 printed table bytes, (3) the 16 clockwise reconstructed p15 Fibonacci-indexed primes, and (4) those same primes' Euler totients, the operation used in solved p56. Original table bytes/prime values are reduced modulo29 only at multiplication. The key clock starts at the first post-IV position, with no searched phase, secret alphabet fitting, ciphertext edits or selected words. This is a more complicated **hypothesis** than source facts justify; it is included as an immediately executable plaintext-recovery attempt.
+
+| Source key | Original ten-page IoC | All-55-page IoC | Most one rune on 2,256 post-IV positions, even after independent pagewise secret permutation | Most two runes |
+| --- | ---: | ---: | ---: | ---: |
+| p50 table first printed 8 bytes | 0.03444276706 | 0.03449885312 | 139 | 262 |
+| p50 complete 256-byte table | 0.03442350333 | 0.03447553800 | 134 | 254 |
+| p15 source Fibonacci 16 primes | 0.03437436115 | 0.03447446885 | 124 | 244 |
+| p15 source Fibonacci 16 totients | 0.03439598371 | 0.03449900769 | 142 | 266 |
+
+Every original-language output is nearly uniform GP29 with no sustained readable plaintext. Even if the author secretly chose a **completely arbitrary rune permutation on each page**, each fixed-key model has one-rune/two-rune capacity much lower than the original-source register's independently published **195/386 minimum** over 594,160 matched English windows. This is a key-independent necessary obstruction for these exact keys and page-alphabet assumptions. It leaves changing *secret* alphabets and alternative transport outside scope.
+
+The new [standalone CommonJS SFT](../sims/lp2_fibonacci_lag8_authored_key_schedule_sft.cjs) verifies table first-row bytes, original source counts, all four GP29 IoCs and eight page-capacity values. It successfully reencrypts **all 55 complete original pages under all four keys** (220 original forward roundtrips), and decrypts exactly **40 independent source-native p57 planted controls** in source page shapes. All results were independently executed on unchanged repository source data. **Decision:** retire these four literal original-source changing-key schedules as direct native-GP decipherment for the Fibonacci pages; neither explains their lag-eight anomaly as plaintext, though the larger within-page changing-state family remains open.
+
 ## Decision
 
 **Retire the direct page-reset lag-eight *scalar difference* decoder under all 29 GF29 parameters** as an explanation of ordinary GP-native English in the ten Fibonacci pages. The earlier anomalous lag-eight equality result remains an interesting conditional observation, but supplies no authentic plaintext/key or specified non-linear state transition. Avoid scalar tuning, extra plaintext-dependent erasures or unmotivated page-specific slope fitting. A follow-up should offer an independently sourced key schedule, explicit cipher-state operation or source-selected outside message that predicts multiple untouched ciphertext runes before optimizing a new inverse.
