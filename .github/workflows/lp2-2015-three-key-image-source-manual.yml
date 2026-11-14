@@ -1,0 +1,20 @@
+name: LP2 Jan2015 exact three key image source audit
+on:
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image reader
+        run: python -m pip install -q pillow
+      - name: Verify three exact source files and print previews
+        run: python sims/lp2_2015_three_key_image_source_audit.py
+      - name: Preserve original source-page metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jan2015-three-key-image-metadata
+          path: source-key-upload-audit
+          if-no-files-found: ignore
