@@ -1,0 +1,16 @@
+name: Agent10 original 2012 Blake text LP2 source-native crib
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  crib:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-selected original Blake GP wordlength and near-crib test
+        run: node sims/lp2_blake_2012_heaven_hell_original_crib_sft.cjs
