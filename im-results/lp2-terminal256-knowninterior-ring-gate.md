@@ -1,6 +1,6 @@
 # Terminal p55–57: 256-rune known-interior ring hypothesis
 
-**Classification:** new exact **innermost-word-boundary relationship** and reproducible terminal known-plaintext inversion gates, extending the count-level p55+p56+p57=256 alternative already mentioned in completed Director Issue #391. The alignment may be coincidental; no authentic p55 plaintext, key, cipher, or deep-web hash preimage has been recovered. A new source-conditioned **Boolean-lattice Möbius inversion** directly tests the complete original 180-rune known ending and fails (at most 12 exact matches in eight printed-ring orientations). See the focused original-input gate below. The 2013 source's literal **MOBIUS** clue does not itself prescribe a Boolean operation on the later 2014 table.
+**Status (14 November 2026):** the exact 76-rune p55 / 180-known-rune p56–57 / 256-cell grid correspondence and the innermost **SHED** boundary remain a plausible human-visible terminal-layout hypothesis. All tested direct known-interior consumers, including stationary lookups, affine and nonlinear maps, low-rank and stencil transforms, erasure interpolation, Möbius inverses and now an exact **180×76 GF(29) polynomial-product factorization**, fail their original-input known-plaintext gates. The source has supplied no authentic operator connecting the table to the terminal runes; these failures are model-specific. **No p55 plaintext, historical key, unknown-page decipherment or destination has been recovered.**
 
 ## Why this is a plausible human-facing next route
 
@@ -273,9 +273,32 @@ There is a bounded possible p55 decryption consumer: the later 32×8 grid also c
 
 **Decision:** These are direct source-sized, historically operation-motivated variants with negative candidate plaintext evidence. The 2014 participant's XOR method does **not** authorize using its 2014 byte output as a key for the later LP2 p55 ring, or combining it with the LP2 grid. There is no independent pointer to the right-hand pad, arithmetic sign or ring start. The observed low IoCs weaken these two specific fixed families but do not mathematically exclude all readable 76-rune plaintexts or other historical key consumers. **No recovered unknown plaintext, source-authenticated LP2 cipher or destination.** [Verbatim historical three blocks](../resources/external/2014-stage05-three-onion-hex-blocks.txt) · [original-input 32-model CommonJS SFT](../sims/lp2_2014_onion_xor3_p55_ring_sft.cjs) · [successful manual-only CI run 43390303154](https://github.com/FlareZ123/liber-primus/actions/runs/43390303154).
 
+## GF(29) polynomial product of 180 solved runes and 76 unknown runes (Agent48, 14 November 2026)
+
+**Exact original-cipher negative, with a complete native-GP positive control.** The source's 256-cell numerical table has one especially convenient algebraic property: its first canonical base60 byte is **203**, divisible by 29. Treat the full printed 256 bytes as high-to-low polynomial coefficients reduced modulo29. The first coefficient is zero, leaving a degree-at-most-254 polynomial. The authenticated solved ending supplies **180 consecutive plaintext GP29 coefficients**, namely physical p56's **85-rune prime-totient/F-skip decryption** and p57's **95 clear runes**. A length-180 polynomial multiplied by a length-76 polynomial produces **255 coefficients**; prepending the original table's already-zero leading slot gives exactly **256**. This is a *different proposed consumer* from the geometric 76-cell perimeter and the previously tested GF(29²) evaluation/erasure codes.
+
+The first source-ordered, no-secret test is
+
+\[
+B(X)\stackrel{?}{=}K_{180}(X)\,U_{76}(X)\pmod{29},
+\]
+
+where \(B\) is the untouched printed row-major table, \(K\) the independently verified p56 plaintext followed by clear p57, and \(U\) the entire proposed missing 76-rune page. Coefficient order is printed-first highest power. Long division uniquely determines a 76-slot candidate quotient after the zero leading coefficient; a zero remainder at all **179** places is the indispensable condition for the factor to have produced the table. The completely separate p56-as-printed register and the opposite order of the two historically known page records are fixed controls, with no key or fitted rotation.
+
+| Known factor | Nonzero remainder coefficients | Quotient positions equal original p55 ciphertext (diagnostic only) |
+| --- | ---: | ---: |
+| **Decrypted p56 then clear p57** | **168/179** | **5/76** |
+| Printed p56 ciphertext then clear p57 | **171/179** | **5/76** |
+| Clear p57 then decrypted p56 | **176/179** | **5/76** |
+| Clear p57 then printed p56 | **176/179** | **5/76** |
+
+Every case contradicts exact polynomial division, irrespective of what the 76 unknown plaintext runes would say. The original p55 ciphertext comparison provides context only: an authentic recovered plaintext need not equal its printed ciphertext. An independently planted 76-rune native-GP message, multiplied by the exact authentic 180-rune known factor with the same one-slot zero prefix, divides with **179/179 zero remainder coefficients** and recovers **76/76** planted symbols. This verifies the complete inverse and its alignment without supplying the unknown message to the decoder.
+
+**Decision:** retire the *single polynomial product* interpretation of the 256 table with the actual independently known terminal 180 GP runes as a factor. This is a source-visible, uniquely reversible original-input test, and the failure occurs before attempting English scoring. It says nothing about a keyed polynomial *sum*, a nonlocal mixing rule, an alternative source-selected factor, or the table's previously established separate small factors \(H\) and \(G\). Those alternatives need an authored selector and genuine ciphertext prediction. [Single-file original-source and native-plant SFT](../sims/lp2_terminal256_known180_polynomial_inverse_sft.cjs).
+
 ## New research decision
 
-The source-exact 76/180/256 fit, plus the innermost **SHED** word-boundary alignment, supplies a specific, independently testable **known-plaintext orientation gate**. A serious proposed terminal cipher can freeze its original-source mapping and predict the **180 independently deciphered inner cells** before attempting any p55 recovery. If it fails the known interior, no post hoc appeal to a readable 76-rune outer plaintext is credible. A valid breakthrough must specify the actual grid-to-rune operator and all needed keys, produce correct p56 and p57 known text, and invert the outer 76 runes reproducibly.
+The source-exact 76/180/256 fit, plus the innermost **SHED** word-boundary alignment, supplies a specific, independently testable **known-plaintext orientation gate**. A serious proposed terminal cipher must freeze its original-source mapping and explain the **180 independently deciphered ending symbols** before attempting p55 recovery. The newly tested 180×76 polynomial-product reading fails this prerequisite with 168/179 nonzero original remainder coefficients; neither the p56 ciphertext alternative nor the page-reversed control resolves it. If it fails the known interior, no post hoc appeal to a readable 76-rune outer plaintext is credible. A valid breakthrough must specify the actual grid-to-rune operator and all needed keys, produce correct p56 and p57 known text, and invert the outer 76 runes reproducibly.
 
 Do not treat the coincidence itself as an instruction to fit arbitrary stencils or keyed substitutions. The p56 deep-web SHA-512 preimage remains unresolved and could be a missing input, but no authenticated source has linked that page to a key for this particular operator.
 
