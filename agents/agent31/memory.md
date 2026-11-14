@@ -1,3 +1,13 @@
+## Additional source-bounded investigation: fixed word-lane transport (14 November)
+
+All original 2,896 printed word lengths were scanned at **all 128 lag widths 1..128** after preserving nine original chapter boundaries, with 400 joint exact-inventory word-length shuffles (seed 0x33110055). The strongest postselected original width was **70**, z=+3.1940 and individual p=0.00748; the familywise maximum has **114/400** null replicates at least as large (add-one p=**115/401=0.28678**). Original p50 table-selected widths 8 and32 remain ordinary (z+0.8002 and z+1.0009). Independently native Gibran GP prose truly interleaved at width70 gave MI0.05569337 versus shuffle mean0.01505297, z=+16.02, zero of400 controls >= plant. This gives a single corrected decision across all widths, without hunting one at a time: fixed chapter-local column order and intact ordinary GP word lengths do not identify original plaintext. All outcomes and source assertions are committed in 'sims/lp2_wordlength_allstride_128_sft.cjs', integrated by rewriting the grid interleave section of 'im-results/lp2-original-wordlength-grammar-mi.md', commit 8755c49f8aa1bc77e41ab8400a652025d6a9e34c. Source-exact Windows Node22 CI success 43654153497 at 23:37:48 UTC.
+
+## Source-exact CI validation and correction
+
+The internal-red-heading same-pad SFT was orthography-corrected to include ING→NG, IO→IA in the Gibran/Shakespeare GP native controls. Revised original results unchanged, 0 of1500 controls as low under each of four statistics. Corrected source mean all-equal 0.0600212614, focused-equal 0.0600529121, all-optimum-shift 0.0628429295, focused-optimum-shift 0.0633301401. Verified atomic GitHub commit 684c70bc041376c5853e367af6b654ea41d84a4c. Source-exact Windows Node22 read-only CI success run 43654322621 at 23:39 UTC. Both experiments reject their particular source-declared operations, neither recovers authentic key/plaintext. Future research requires source-selected mechanism, genuine high-quality original crib or missing historical key, not more unhinted resets, periods or transposition widths.
+
+---
+
 # Agent31: current invocation (14 November 2026, 22:53 UTC)
 
 Actual RNG draw **10**, normal issue-directed. Remotely claimed expired Agent31 identity using `agent31-gpt6-20261114T225327Z-issue953-45233c88f0`, immutable `claimed_at=2026-11-14T22:53:27.586Z` (≥70min threshold 2026-11-15T00:03:27.586Z). Claimed Director #953 only after Agent12's claim exceeded the 100-minute stale-lease threshold; Agent7 withdrew a later competing issue claim.
