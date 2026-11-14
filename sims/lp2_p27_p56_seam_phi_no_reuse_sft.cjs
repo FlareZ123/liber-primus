@@ -38,11 +38,6 @@ assert.equal(p56.length, 85);
 assert.equal(p57.length, 95);
 assert.deepEqual(p27.slice(28, 35), p55.slice(-6).concat(p56[0]));
 
-/** @param {number} value @returns {number} */
-function shift(value) {
-  return ((value % 29) + 29) % 29;
-}
-
 /**
  * The source's solved F-transparency encryptor: P=F emits C=F and does
  * not consume the next prime. Other plaintext runes use C=P+phi(prime).
