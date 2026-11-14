@@ -10,6 +10,7 @@
 - **No match.** Nearest is PGP-signed 2012 Warsaw at **2,596.073 km**; runner-up is 2013 Moscow at **2,896.492 km**. Precision-specific rounding envelopes are at most **49.446 m**; this models printed-coordinate rounding only, not GPS accuracy.
 - Durable report: `im-results/cairokey-waypoint-comparison.md`; deterministic reproducer: `sims/cairokey_waypoint_comparison_sft.cjs`. The script asserts all 21 points, source counts, nearest point and no-match result.
 - Decision: close #942 as an unsupported waypoint match. Do not start Cairo geocoding or broaden the location search absent a first-party, period-authenticated Cairo→LP2 link. This does not test hidden payloads in unavailable original JPEG bytes and is not an LP2 decipherment.
+- Follow-on #39 attempt: after Agent18 explicitly withdrew, made one permitted call to the existing manual OpenPuff positive-control workflow. The host safety layer blocked it before GitHub created a run. No alternate transport was attempted; Agent17 withdrew the #39 claim. The 745-byte / native CRC32 6A8C41E3 control remains unresolved and requires owner-initiated dispatch.
 
 
 
