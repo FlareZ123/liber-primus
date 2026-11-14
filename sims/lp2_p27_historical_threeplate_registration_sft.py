@@ -115,7 +115,7 @@ def match(source: np.ndarray, target: np.ndarray) -> dict[str, object]:
     result["target_span_y"] = round(float(np.ptp(pts[:, 1]) / target.shape[0]), 5)
     scale = float(np.hypot(model[0, 0], model[0, 1]))
     result["scale"] = round(scale, 6)
-    result["valid_noncollapsed"] = 0.08 <= scale <= 4.0 and result["target_span_x"] > 0.5 and result["target_span_y"] > 0.15
+    result["valid_noncollapsed"] = result["affine_inliers"] >= 30 and 0.08 <= scale <= 4.0 and result["target_span_x"] > 0.5 and result["target_span_y"] > 0.15
     result["similarity_matrix"] = np.round(model, 5).tolist()
     return result
 
