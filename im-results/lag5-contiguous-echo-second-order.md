@@ -56,6 +56,14 @@ or **72.586** expected returns among 2,105 five-step windows. The uniform-i.i.d.
 
 The simpler stationary cumulative-substitution family is separately excluded by [the original zero-symbol / all-secret gate](lp2-cumulative-difference-zero-symbol-gate.md); the eight printed AES-column keys tested as a 28-state chain are negative in [the source-grid chain gate](grid-chain28-step-key.md). The remaining chain route therefore needs an independently selected, position-varying step generator. The p05 5×5 square is a possible clue to a five-step dependency, but no source instruction yet connects it to this stream; do not use it to justify arbitrary fitted recurrences.
 
+### Known-clear GP control and cross-corpus contrast
+
+The correct control is the **six pages actually printed in clear Gematria Primus**, not the larger editorial Latin translation file. The transcription guide identifies LP1 pages p3, p8, p9, p10, p11 and p14 as the original clear-GP pages; the updated script asserts their respective counts: 31/40/55/49/38/18 words and 157/187/207/192/169/89 runes, totaling **231 words and 1,001 runes**. Source: [transcription guide](../resources/transcriptions/README.md) and [Wulfic canonical transcription](../resources/transcriptions/lp1_wulfic_canonical.txt).
+
+This held-out clear-GP control has **7 lag-five matches in 156 opportunities**. Under the same per-word exact-multiset/length/adjacent-equality null (2,000 training / 5,000 test, seed 0x51a5c0de), its null mean is **9.4125**, SD **2.7134**, z **−0.889**; 4,326/5,000 nulls reach or exceed seven (add-one upper-tail p **4,327/5,001 = 0.8652**). It shows no positive lag-five excess.
+
+A joint contrast uses independent LP2 and clear-GP null draws and the preselected statistic \(Z_{\rm LP2}-Z_{\rm clear}\). The observed difference is **4.386**; the test-null mean is **0.037**, SD **1.409**, and **4/5,000** null pairs reach it (add-one one-sided **p = 5/5,001 = 0.0010**). This supports the view that LP2's lag-five residual is not a generic property of clear-GP word order. The clear control is much smaller (156 opportunities) and the texts differ, so this is a discriminating control rather than a complete natural-language model. The test uses the original printed-clear pages, avoiding the editor-normalized translation file, which contains translations of pages whose original runes are encrypted.
+
 This is a whole-alphabet lag-five signal, including the 11 S-to-S matches; the nine contiguous pair events below measure a separate second-order clustering. It does not establish a period-five cipher, a key, or plaintext. The lag family was chosen from prior research, so neither this nor the external p-value is a discovery-wide correction over all historical searches.
 
 ### Contiguous pair events, lags 2–7
