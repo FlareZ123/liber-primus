@@ -85,6 +85,8 @@ A single repeated-input mismatch excludes *every* arbitrary fixed 29-symbol tabl
 
 This **closes a stronger source-known clock**, distinct from the earlier p55 three-*conjectured*-F removals, without fitting skips, radix order, arbitrary secret relabelings or decrypted English. No unknown p55 plaintext, key, or destination was recovered. Updated [single-file CJS original-source SFT](../sims/lp2_terminal252_fnull_hg_sft.cjs) asserts the full 256 original-grid bytes, exact H×G quotient, every original F offset, four original lookup conflict witnesses, both forced erasure solutions, source re-encoding and native control.
 
+**Independent execution:** [Windows Node22 exact original-source SFT success, run 43652557355](https://github.com/FlareZ123/liber-primus/actions/runs/43652557355). A first attempt had a reversed syndrome display-basis assertion; the corrected source uses ascending polynomial remainder arrays internally and presents syndromes high-to-low in the explanatory table. The cipher conclusions were unchanged.
+
 ## Decision
 
 The four-F removal delivers an exact **conditional 252-symbol alignment** between the original terminal source and the GF29 quotient, but that alignment fails as a direct GP29 identity or a constant-shift message. Do not promote the alignment to an authorial instruction, and do not rescue it by choosing a secret per-rune permutation, a new F mask or an arbitrary byte decoder. This is separate from the previously closed [180-inner-cell tiny DSL test](lp2-terminal180-historical-tiny-dsl-gate.md) because the source input is the entire table's **H/G quotient**, and the candidate terminal clock explicitly removes four physical F glyphs.
