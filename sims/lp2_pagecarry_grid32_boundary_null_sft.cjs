@@ -34,10 +34,14 @@ function parse() {
   }
   if(start>=0) words.push([start,count]);
   const isInterior=new Uint8Array(count+1);
-  for(const [a,b] of words) for(let x=a+1;x<b;x++) isInterior[x]=1;
+  const remainder=new Int16Array(count+1);
+  for(const [a,b] of words) for(let x=a+1;x<b;x++) {
+    isInterior[x]=1;
+    remainder[x]=b-x;
+  }
   assert.equal(count,12956);
   assert.equal(words.length,2896);
-  return {count,words:words.length,isInterior,lines,ends};
+  return {count,words:words.length,isInterior,remainder,lines,ends};
 }
 
 /** @param {number} n @param {number} k @returns {number} */
@@ -56,7 +60,7 @@ function hg(n,k,draws) {
 }
 
 function main() {
-  const {count,words,isInterior,lines,ends}=parse();
+  const {count,words,isInterior,remainder,lines,ends}=parse();
   const carries=xs=>xs.reduce((n,x)=>n+isInterior[x],0);
   const pg=ends.slice(0,-1),wraps=lines.flat();
   assert.equal(pg.length,54);
@@ -74,7 +78,8 @@ function main() {
   assert.equal(low,28);
   assert.ok(Math.abs(total/count-41.929607903673975)<1e-10);
 
-  let pmf=[1],observed=0,expected=0,draws=0;
+  let pmf=[1],shortPmf=[1],observed=0,expected=0,draws=0;
+  let expectedLong=0, totalLong=0;
   const summary=[];
   for(const [first,last] of CHAPTERS) {
     const population=lines.slice(first,last+1).flat();
@@ -84,6 +89,20 @@ function main() {
     for(let a=0;a<pmf.length;a++)
       for(let b=0;b<local.length;b++) next[a+b]+=pmf[a]*local[b];
     pmf=next;
+
+    // Additional independent question: do all page-carried right fragments
+    // fit in the source table's eight columns without wrap or truncation?
+    const long=population.filter(gap=>remainder[gap]>7).length;
+    const short=k-long,none=n-k;
+    const filtered=Array.from({length:size+1},(_,x)=>
+      choose(short,x)*choose(none,size-x)/choose(n,size));
+    const nextFiltered=new Array(shortPmf.length+size).fill(0);
+    for(let a=0;a<shortPmf.length;a++)
+      for(let b=0;b<filtered.length;b++)
+        nextFiltered[a+b]+=shortPmf[a]*filtered[b];
+    shortPmf=nextFiltered;
+    totalLong+=long;
+    expectedLong+=size*long/n;
     observed+=hit;
     expected+=size*k/n;
     draws+=size;
@@ -98,6 +117,20 @@ function main() {
   assert.ok(Math.abs(expected-32.571549588130715)<1e-10);
   assert.ok(Math.abs(p-0.48243923723766613)<1e-9);
   assert.ok(Math.abs(pmf.reduce((s,v)=>s+v,0)-1)<1e-10);
+  const actualRemainders=pg.map(gap=>remainder[gap]).filter(n=>n>0);
+  assert.equal(actualRemainders.length,32);
+  assert.equal(Math.max(...actualRemainders),7);
+  assert.equal(totalLong,11);
+  assert.ok(Math.abs(expectedLong-0.7703382198428979)<1e-10);
+  const pGivenCarries=shortPmf[32]/pmf[32];
+  const pNoLong=shortPmf.reduce((sum,x)=>sum+x,0);
+  assert.ok(Math.abs(pNoLong-0.4447623556735556)<1e-9);
+  assert.ok(Math.abs(pGivenCarries-0.4505675510369972)<1e-9);
+
+  console.log("Right-fragment lengths at the 32 word-carry page breaks: "+actualRemainders.join(","));
+  console.log("Within-chapter line wraps with right-fragment length >7: "+totalLong);
+  console.log("Expected >7 page carries="+expectedLong.toFixed(6)+", P(none >7)="+pNoLong.toFixed(9));
+  console.log("P(none >7 | exactly 32 page-carries)="+pGivenCarries.toFixed(9));
 
   console.log("Original GP29 runes="+count+" words="+words+" pageBreaks=54 carries="+carries(pg));
   console.log("LineWraps="+wraps.length+" lineWrapCarries="+carries(wraps));
