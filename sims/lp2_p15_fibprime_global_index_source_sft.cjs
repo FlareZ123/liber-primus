@@ -170,6 +170,53 @@ assert.deepEqual(add91.map((r, i) => (r - phi91[i] + 29) % 29), quotation);
 const threeRuneWords=runicWords.filter(w=>w.length===3).length;
 assert.equal(threeRuneWords,720);
 
+/**
+ * Every valid original p56-style transparent-F interpretation, without any
+ * fitted skip mask or language score. States count primes already consumed.
+ * A literal unencrypted F never advances the prime clock; nonliteral runes
+ * must never decode to plaintext F.
+ * @param {number[]} cipher
+ * @param {number[]} key key prime-totient residues in source order
+ * @param {number} sign encryption sign, positive for authentic solved p56
+ * @returns {{firstFailure:number,maxStates:number,survivorClocks:number[]}}
+ */
+function allTransparentFStates(cipher, key, sign) {
+  let states = new Set([0]), maxStates = 1;
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const clock of states) {
+      const shift = ((sign * key[clock]) % 29 + 29) % 29;
+      if (cipher[i] === 0) {
+        next.add(clock); // Transparent literal F, no key tick.
+        if (shift !== 0) next.add(clock + 1); // Encrypted non-F.
+      } else if (cipher[i] !== shift) {
+        next.add(clock + 1); // Non-F plaintext, normal key tick.
+      }
+    }
+    states = next;
+    maxStates = Math.max(maxStates, states.size);
+    if (states.size === 0) return {
+      firstFailure: i, maxStates, survivorClocks: [],
+    };
+  }
+  return {firstFailure: -1, maxStates, survivorClocks: [...states]};
+}
+const sourceKnownP56 = corpus.pages.find(p => p.page === 56).indices;
+assert.equal(sourceKnownP56.length, 85);
+const historicalP56Key = Array.from({length:85}, (_,i) =>
+  (nthPrime(i+1)-1)%29);
+const knownP56Reach = allTransparentFStates(
+  sourceKnownP56, historicalP56Key, 1);
+assert.equal(knownP56Reach.firstFailure, -1);
+assert(knownP56Reach.survivorClocks.includes(84),
+  "Authentic p56 skips a literal F at rune56 and consumes 84 keys");
+const quoteKey91 = Array.from({length:228}, (_,i) =>
+  (nthPrime(91+i)-1)%29);
+const strict91Positive = allTransparentFStates(quotation, quoteKey91, 1);
+const strict91Negative = allTransparentFStates(quotation, quoteKey91, -1);
+assert.equal(strict91Positive.firstFailure, 220);
+assert.equal(strict91Negative.firstFailure, 199);
+
 // The p15 infinity mark also motivates a finite circular continuation.
 // This is a second, unproved address grammar: reduce every later numeric
 // value modulo the *entire* 12956-rune unknown book and use one-based positions.
@@ -232,6 +279,8 @@ console.log(JSON.stringify({
     [...w].map(r => corpus.translit[corpus.runes.indexOf(r)]).join("")),
   historical2014ThirdSquareCentre:historicalSquares[2][2][2],
   originalP42P43QuotationStartAndEnd:[quoteStart,quoteEnd],
+  p42P43AllLiteralFSchedules:{authenticP56:knownP56Reach,
+    p42Positive:strict91Positive,p42Negative:strict91Negative},
   p42P43PrimeOrdinal91OriginalInverse:{sourceIoC:ioc(quotation),
     minusIoC:ioc(dec91),plusIoC:ioc(add91),
     minusOpening:dec91.slice(0,30).map(r=>corpus.translit[r]).join(""),
