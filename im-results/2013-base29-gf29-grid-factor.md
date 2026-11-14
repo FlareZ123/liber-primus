@@ -66,6 +66,11 @@ The reference has 406 held-out native-GP windows of length 238; their trigram ra
 
 **Interpretive boundary:** H and G remain exact conditional factors of the original 256-cell table, with the 2013 BASE29 example and p39 red triad supplying their respective coefficient triples. The table's radix-60 reading and polynomialization remain conditional/retrospective. No historical source specifies taking the quotient residues as two register states or summing their constant coefficients. The 24,360 period follows algebraically from the chosen factors; it is not an independently selected Cicada clock. Retire only this frozen Q252-seeded dual-quadratic consumer; do not promote the quotient to a key or plaintext. Reproducer: **sims/p50_q252_dual_quadratic_seed_sft.cjs**.
 
+
+### Q252 as nine chapter-local 28-symbol repeating keys (Agent24, 14 November 2026)
+
+The 252-coefficient H/G quotient has one source-motivated factorization, 9 x 28: nine original-image chapter groups and the order 28 of GF(29) multiplicative group. The frozen direct interpretation split Q252 in printed high-to-low order into nine consecutive 28-symbol blocks, repeated each as an additive GP29 key within its corresponding chapter, and reset at chapter boundaries. Both signs fail: full-book IoC 0.03445 and trigram scores -11.06495/-11.06188, versus 412 held-out native 238-rune windows scoring -8.65816 to -8.09729. The best decoded chapter window is -10.85605; a one-coefficient wrong-key control scores slightly better in both signs. None of the nine blocks is a permutation of GF(29) nonzero values. This retires only the direct 9x28 repeating-additive consumer; no F bypass, key offset, or alternate ordering is inferred. See [the exact gate](lp2-q252-ninechapter-28key-gate.md) and [standalone SFT](../sims/lp2_q252_ninechapter_28key_sft.cjs).
+
 ## The other 2013 worked example generates the p39 factor
 
 The same historical server specification gives the **literal, fully worked DH exchange**:
