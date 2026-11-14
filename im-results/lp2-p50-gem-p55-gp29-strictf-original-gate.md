@@ -28,8 +28,28 @@ These failures are **exact consistency contradictions** with the transparent-F e
 
 **Important rival:** the **full transient path `OOGEM`**, rather than just its GEM cycle, is a different five-rune tape `[3,3,6,18,19]`. It leaves **one** legal original p55 inverse path, with **zero** literal-F skips, and a nonlinguistic sequence beginning `E OE P NG B EO X H U AE N O B P G Y...`. This is **not** a ciphertext-rule impossibility for that different key; coherent plaintext or a first-party instruction selecting a one-time prefix has not emerged. It would be invalid to describe the whole navigation hypothesis as excluded.
 
+## Independent p57 DIVINITY key-path consumer: IOGEM, original full-page exclusion
+
+A separate subsequently recovered, source-motivated entry reads the *solved p57* word **DIVINITY**, already a genuine LP1 Vigenère keyword, as GP-prime sum **376**. Under the **conditional**, investigator-defined `sum mod256` table address and existing `29q+r` keypad graph, it enters cell **120** and follows the exact original cells **120→111→119→127→128**, producing GP29 **I O G E M** indices `[10,3,6,18,19]`. This distinct five-symbol tape is neither the shorter `GEM` loop nor the earlier width-derived `OOGEM` prefix. [Source path and historical/authorial limits](lp2-p57-divinity-p50-primewalk-closed-loop.md).
+
+One independently frozen next decision is now available: does that exact *new* complete IOGEM path invert original p55 under the authentic p56 **plaintext-F-transparent** Vigenère rule? The original p55 has 76 runes and ciphertext Fs at local offsets 15, 25 and 41. All legal ciphertext-F literal and key-consuming interpretations are enumerated, and all five cyclic IOGEM starting phases are tested without guessing a plaintext word, skipping an incompatible state, tuning key bits or selecting a favorable offset. A second 75-rune variant excludes just the carried first rune at the physical p54→55 boundary.
+
+| Source IOGEM cyclic phase | Full p55 76-rune earliest impossible local offset | Page-local suffix75 earliest impossible offset |
+| ---: | ---: | ---: |
+| 0 | 55 | 66 |
+| 1 | 8 | 54 |
+| 2 | 2 | 7 |
+| 3 | 67 | 1 |
+| 4 | 67 | 66 |
+
+All **10 original inverse state spaces are empty**. This is a formal rule-level contradiction: an attempted encrypted plaintext F at any position is forbidden because the historical plaintext-F rule would have output literal F without consuming the key. No GP language model or guessed word is involved. All five source-native positive plants encode the untouched 95-rune clear original p57 with each IOGEM phase and recover the original 95/95 through the same fully branched inverse, including real transparent plaintext Fs.
+
+**Decision for IOGEM:** the new DIVINITY-led key is not a valid cyclic historical strict-F Vigenère decoder for the original terminal p55 under either of these source-visible start clocks. This adds one **new bounded direct inverse** to the distinct GEM and OOGEM tests above. It does not invalidate the provisional keypad navigation, a different source-selected downstream cipher, a non-periodic use of the path, or any missing external key. Most importantly, no original unknown plaintext is recovered by this operation.
+
+[Exact source-native Node22 CommonJS SFT](../sims/lp2_p57_divinity_iogem_p55_strictf_sft.cjs).
+
 ## Decision
 
-The **three-phase direct repeating GEM-cycle key** cannot invert original p55 under the historically solved strict-F Vigenère mechanism, irrespective of whether the p54 carry rune is included at the restart. Retire only that specific original-space consumer. It does not reject a different original LP2 cipher, the source's tentative graph/navigation scheme, an unknown-page cipher without F bypass, or a different originally selected key. The decisive missing upstream element remains a first-party instruction selecting the graph decomposition and the GP29 key consumer; no unknown original plaintext/key/destination is recovered.
+The **three-phase direct repeating GEM-cycle key**, and all **five cyclic phases of the newly source-derived IOGEM path key**, cannot invert original p55 under the historically solved strict-F Vigenère mechanism, irrespective of whether the p54 carry rune is included at the restart. Retire only that specific original-space consumer. It does not reject a different original LP2 cipher, the source's tentative graph/navigation scheme, an unknown-page cipher without F bypass, or a different originally selected key. The decisive missing upstream element remains a first-party instruction selecting the graph decomposition and the GP29 key consumer; no unknown original plaintext/key/destination is recovered.
 
 **Single-file reproducible test:** [`sims/lp2_p50_gem_p55_gp29_original_sft.cjs`](../sims/lp2_p50_gem_p55_gp29_original_sft.cjs) loads unchanged checked-in source JSON and executes the enumerator, source assertions, full/suffix comparison and native planted controls in Node.js 22. This result was calculated against the canonical GitHub original arrays; no GitHub Actions execution is claimed.
