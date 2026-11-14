@@ -18,3 +18,14 @@ The **same extractor** recovered the period-original **31,809-byte PGP-signed me
 Reproducer: [read-only original-source SFT](../sims/stage04_embedded_small_image_outguess_sft.py), [successful isolated manual Actions run 43545905453](https://github.com/FlareZ123/liber-primus/actions/runs/43545905453), existing workflow route `stage04-small`. Historical sources: [2014 Stage04 extracted-object register](../resources/external/derived/2014-stage04/README.md). Unlike an LP2 decryption attempt, this test asks whether the independently authored 2014 carrier supplies a second authentic clue before any unknown ciphertext is used.
 
 The follow-up page04 source-phrase gate ran successfully in [manual Actions run 43546406468](https://github.com/FlareZ123/liber-primus/actions/runs/43546406468), using the same reproducer and unchanged historic positive control.
+
+## Original 2014 nested JPEG as a full-length GP29 pad: bounded source-key test
+
+The same period-original 15,188 bytes exceed the complete **12,956-rune** unknown ciphertext length, making them an available historical file-derived running-key candidate. Importantly, **no 2014/2016 instruction identifies JPEG file bytes as an LP2 pad**. Two frozen direct source encodings are natural: (A) one key rune per original JPEG byte `byte mod 29` (15,188 available); (B) stream original file bits MSB-first, read consecutive five-bit integers, discard 29–31 (22,240 base29-compatible tokens). For each, apply `P[i]=(C[i]±K[i]) mod29` to every original unknown rune in source order from byte/bit position zero. No page reset, skip, shift, dictionary or key search:
+
+| Exact file-derived key | Subtract IoC | Add IoC |
+| --- | ---: | ---: |
+| Original JPEG bytes mod29 | **0.0344719991** | **0.0344815675** |
+| Five-bit blocks, reject 29–31 | **0.0344655408** | **0.0344888956** |
+
+The 29-rune uniform reference IoC is **0.0344827586**. All four 12,956-rune outputs have near-uniform symbol concentration and no readable GP-native starting passage. The source itself is real; its role as key was a cheap source-constrained *hypothesis*, not an instruction inherited from the historical signed message. This result excludes only these four literal full-length inverses, without claiming anything about arbitrary transforms, offsets or private keys.
