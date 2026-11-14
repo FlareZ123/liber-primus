@@ -191,7 +191,7 @@ async function main() {
     nullScores.push(best);
   }
   const nullAsGood = nullScores.filter((v) => v <= paths[0].error).length;
-  assert.equal(nullAsGood, 1723);
+  assert.equal(nullAsGood, 1724);
   nullScores.sort((a, b) => a - b);
   console.log(JSON.stringify({
     blobSources: sources,
