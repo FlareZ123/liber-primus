@@ -80,6 +80,7 @@ for (const mode of models) {
   const affine = new Map(), bijection = new Map();
   for (const item of dictionary) {
     const p = mode === "iv" ? item.gp.slice(1) : item.gp;
+    if (!p.length) continue; // A one-rune word has no predecessor step.
     for (const [map, signature] of [
       [affine, affineSignature], [bijection, bijectionSignature]
     ]) {
