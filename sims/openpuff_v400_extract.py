@@ -133,6 +133,20 @@ def toggle_tree_item(item, desired):
             print(f"Bit-selection item {item.text()!r} toggled via {area}")
             return
         failures.append(f"{area}: click did not change checked state")
+    # Standard Windows TreeView checkbox state can also be toggled with
+    # Space while the item owns keyboard focus. This is distinct from a
+    # label or icon click, which may only change the selection highlight.
+    item.select()
+    item.tree_ctrl.set_focus()
+    item.tree_ctrl.type_keys("{SPACE}")
+    time.sleep(0.3)
+    if bool(item.is_checked()) == desired:
+        print(f"Bit-selection item {item.text()!r} toggled via keyboard Space")
+        return
+    failures.append(
+        f"keyboard Space did not change checked state "
+        f"(TVITEM state={int(item.state()):#x}, selected={item.is_selected()})"
+    )
     raise RuntimeError(
         f"Bit-selection item {item.text()!r} could not reach checked={desired}: "
         + "; ".join(failures)
@@ -499,7 +513,13 @@ def main():
             raise RuntimeError("OpenPuff did not add the carrier")
         result["carrier_added"] = True
 
-        result["bit_tree"] = select_bit_level(window, args.bit_format, args.bit_level)
+        try:
+            result["bit_tree"] = select_bit_level(window, args.bit_format, args.bit_level)
+        except Exception:
+            tree = window.child_window(control_id=1049, class_name="SysTreeView32")
+            write_json_atomic(out_dir / "bit-selection-failure-state.json", tree_state(tree))
+            snapshot_desktop(out_dir, "bit-selection-failure")
+            raise
         result["bit_selection_verified"] = True
         snapshot(app, out_dir, "configured")
 
