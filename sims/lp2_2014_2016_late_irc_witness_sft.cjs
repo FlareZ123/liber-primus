@@ -48,6 +48,22 @@ function scan(entries,name){
   for(const e of a.slice(0,30))console.log(name+'-DIRECT-2016 '+JSON.stringify(e));
  }
 
+
+// Rare original-source continuation hostname witness register.
+ const onions=new Map();
+ for(const e of entries){
+  const urls=e.body.match(/\b[a-z2-7]{16}\.onion\b/ig)||[];
+  for(const url of new Set(urls.map(v=>v.toLowerCase()))){
+   const v=onions.get(url)||{url,total:0,first:e,contextual:[],years:{}};
+   v.total++;
+   const year=e.date.slice(0,4);v.years[year]=(v.years[year]||0)+1;
+   if(/\b(?:cicada|liber|runes?|page\s*5[0-7]|deep\s*web|hash|solv|3301|primus)\b/i.test(e.body)&&v.contextual.length<4)
+    v.contextual.push(e);
+   onions.set(url,v);
+  }
+ }
+ console.log(name+'-ONION-HOST-REGISTER '+JSON.stringify([...onions.values()]
+   .sort((a,b)=>b.contextual.length-a.contextual.length||b.total-a.total)));
  const hits=[];
  for(let i=0;i<entries.length;i++){
   const e=entries[i],same=pages.test(e.body)&&op.test(e.body);
