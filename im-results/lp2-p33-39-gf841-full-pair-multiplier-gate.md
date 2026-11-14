@@ -1,6 +1,6 @@
-# Full GF(29²) pair multiplier and first-order feedback on the 840 source pairs of pp33–39
+# Complete 840-pair GF(29²) inverse decisions on physical pp33–39
 
-**Agent 8, 13 November 2026. Executed original-cipher gate, negative.** This isolates a different use of the *whole two-coordinate field element* as a key on the exact seven-page, 840-pair chapter. No original LP2 plaintext, authenticated key, instruction or destination has been recovered.
+**Agents 8 and 31, 13–14 November 2026. Executed original-cipher gates, all negative.** The visually defined pp33–39 source chapter has 1,680 original GP29 runes, exactly 840 consecutive elements of the independently motivated quadratic field GF(29²). This consolidated report contrasts three mathematically different complete-field original-input reversals: a 840-period multiplicative pad, arbitrary first-order field feedback, and an exact 840-point finite-field Fourier transform. Every declared operation is reversible, with source-native solved-p57 plants; none identifies unknown LP2 plaintext, authentic key, instruction or destination. The Fourier transfer is a new experiment, not evidence that the creator used a number-theoretic transform.
 
 ## Source premise and exact reversible inverse
 
@@ -31,6 +31,34 @@ An exact phase-algebra reduction makes the negative decisive within this particu
 The [standalone CommonJS SFT](../sims/lp2_p33_39_fullfield_pair_multiplier_sft.cjs) asserts the source lengths, the exact order-840 field key and its g^30 scalar relation. It decodes and exactly reencrypts 1,680/1,680 source ciphertext runes. An independent positive control uses the **original solved p57 plaintext GP runes**, repeated to length 1,680, then encrypts with the same full-field operator at initial phase137. The original decoder recovers **all 1,680/1,680 GP plaintext symbols** and exactly reencrypts the ciphertext. The plant is repetitive by construction; its unusually high IoC is a detector control, not a whole-book English baseline.
 
 **Decision:** retire this exact single-cycle, pairwise full GF(29²) multiplicative pad as the complete direct native-GP-English decoding of pp33–39, including all constant field phases and fixed outer alphabet permutations. The source's 840-pair capacity equality is still intriguing but unproven as an authorial hint. A renewed field branch needs independent source evidence for a different reversible operation, packet grammar or keyed state update, plus a prospectively testable original plaintext. No further field multiplication phase search is justified by this negative result.
+
+
+
+## Source-group-order alternative: complete 840-point finite-field Fourier transform (14 November 2026)
+
+The same **original-source chapter with precisely 840 two-rune field elements** and the same **primitive order-840 element g=19+13u** have another natural all-coefficients interpretation: the finite-field discrete Fourier transform (number-theoretic transform, NTT). This operates on **all** source pairs jointly, unlike the preceding independent-position multiplier and first-order field feedback. An advanced cryptographic puzzle creator familiar with finite fields could use a number-theoretic Fourier inverse. The strongest objection is historical: neither the original page nor any signed instruction says "Fourier", specifies the 840-point transform convention, or distinguishes it from vastly simpler arithmetic.
+
+Represent printed two-rune pairs in source chapter order as (C_j=a_j+b_ju\) for (j=0,...,839\), over (F=\mathbb F_{29}[u]/(u^2-3u-8)\). Because the source g has order840, every (g^{jk}\) exists and the complete **invertible** transform is
+
+[
+\widehat C_k=\sum_{j=0}^{839}C_jg^{jk},\qquad
+C_j=840^{-1}\sum_{k=0}^{839}\widehat C_k g^{-jk}.
+]
+
+Here (840\equiv28\equiv-1\pmod {29}\), so the exact inverse scalar is **−1**, and g's full order prevents singularity. The native GP29 coefficient readout is one symbol per field coordinate, preserving all 1,680 rune positions. Source-visible ambiguity reasonably licenses only three binary choices: direct versus inverse transform, original versus reversed whole-pair order, and original versus swapped coordinate order. These are **eight** complete, zero-parameter original-cipher inversions. No key guessed; each choice is numerically reversible.
+
+| Original-field orientation | Forward 840-point NTT IoC29 | Inverse 840-point NTT IoC29 |
+| --- | ---: | ---: |
+| Original pair order, original coordinate order | **0.99835290** | **0.99835290** |
+| Original pair order, swapped GP coordinates | **1.00485053** | **1.00485053** |
+| Reversed whole-pair order, original coordinates | **1.00110823** | **1.00110823** |
+| Reversed whole-pair order, swapped coordinates | **1.01215009** | **1.01215009** |
+
+All **eight original decodes** retain near-uniform native-GP frequencies, versus normalized IoC **2.08269662** for a 1,680-rune control made from the 95 authentic solved p57 GP indices repeated in source length. The most favorable source is only **1.01215009**. Source original before transformation is **0.99644063**. The direct original-pair inverse begins transliterated `DAWTLGDGIOEAEAPGFILERHBLLXEGFAEOWENGMPIA`, which is not intelligible GP prose. There is no 40-symbol native-GP-English recovery and no cipher key.
+
+**Exact invertibility and original-runic positive:** the manual-only [Windows Node22 CI run 43561385177](https://github.com/FlareZ123/liber-primus/actions/runs/43561385177) passed all original and plant assertions. [One-file reproducible implementation](../sims/lp2_p33_39_gf841_ntt_exact_inverse_sft.cjs) constructs all 840 distinct g powers, proves computationally that (g^{30}=11\), (g^{420}=-1\) and (g^{840}=1\), verifies the original seven source page lengths `[214,261,271,238,228,228,240]`, then independently encrypts a 1,680-rune solved-p57 text plant and recovers **1,680/1,680 exactly** under inverse NTT. The NTT's inverse-forward direction is also checked exactly. No source rune, printed word or page is omitted.
+
+**Decision:** the mathematically natural zero-parameter full-840-pair NTT interpretation fails under both transform directions and all four source-visible orientation choices. A secret pointwise field multiplier, a distinct non-native plaintext encoding, a larger multilayer program or unprovided source key remain outside its scope. Revisit only if an authentic source specifically chooses a different operation or plaintext representation. The 840-count coincidence alone is insufficient to infer a Fourier cipher.
 
 
 ## Additional independent original inverse: every first-order field-pair feedback coefficient
