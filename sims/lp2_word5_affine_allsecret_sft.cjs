@@ -315,6 +315,57 @@ for (let len = 10; len <= 14; len++) {
 }
 assert.equal(fSkip.plantedLongWords, 5);
 
+/**
+ * More permissive competing model: every word may use FIVE independent
+ * invertible affine permutations, one for each modulo-five position class.
+ * No shared word slope is assumed. Each phase's within-phase affine shape
+ * is invariant, normalized by its first unequal symbol difference.
+ * @param {number[]} word @returns {string}
+ */
+function independentPhaseAffineSignature(word) {
+  const forms = [];
+  for (let phase = 0; phase < 5; phase++) {
+    const seq = [];
+    for (let i = phase; i < word.length; i += 5) seq.push(word[i]);
+    if (!seq.length) { forms.push(''); continue; }
+    const first = seq.findIndex(x => x !== seq[0]);
+    const scale = first < 0 ? 0 : inv[mod29(seq[first] - seq[0])];
+    forms.push(seq.map(x => mod29((x - seq[0]) * scale)).join('.'));
+  }
+  return word.length + ':' + forms.join('|');
+}
+const independentPhaseNative = new Set();
+for (let len = 10; len <= 14; len++) {
+  for (const word of native.get(len)) {
+    independentPhaseNative.add(independentPhaseAffineSignature(word));
+  }
+}
+const independentPhase = {byLength: {}, matched: 0, unrecognized: 0, planted: 0};
+for (let len = 10; len <= 14; len++) {
+  const words = original.filter(w => w.length === len);
+  const matched = words.filter(w =>
+    independentPhaseNative.has(independentPhaseAffineSignature(w))).length;
+  independentPhase.byLength[len] = {total: words.length, matched, unrecognized: words.length - matched};
+  independentPhase.matched += matched;
+  independentPhase.unrecognized += words.length - matched;
+}
+assert.deepEqual([10,11,12,13,14].map(len =>
+  independentPhase.byLength[len].matched), [52,31,13,0,0]);
+assert.equal(independentPhase.unrecognized, 13);
+// All secret phasewise slopes and offsets truly invert on native 10-14 rune
+// positive plants. This family is strictly larger than one shared slope.
+for (let len = 10; len <= 14; len++) {
+  const word = native.get(len)[0];
+  const slopes = [3,7,11,17,23], shifts = [5,9,13,19,2];
+  const cipher = word.map((x, j) => mod29(slopes[j%5]*x + shifts[j%5]));
+  const plain = cipher.map((x, j) => mod29(inv[slopes[j%5]] * (x - shifts[j%5])));
+  assert.deepEqual(plain, word);
+  assert.equal(independentPhaseAffineSignature(cipher),
+    independentPhaseAffineSignature(word));
+  independentPhase.planted++;
+}
+assert.equal(independentPhase.planted, 5);
+
 process.stdout.write(JSON.stringify({
   status: 'bounded exact original-input negative, no recovered plaintext',
   model: 'word-specific invertible slope and five arbitrary phase shifts in GP29',
@@ -324,6 +375,7 @@ process.stdout.write(JSON.stringify({
   byLength: expected.map(([len]) => buckets[len]),
   minimumChangedRuneIdentities: editBudget,
   strictPlaintextFBypassAndKeySkip: fSkip,
+  independentAffineSlopePerPhaseAndWord: independentPhase,
   availableAdjacentRepeatEvents: 86,
   sourceNativeClearLp1: {longWords: 25, additiveCompatible: 21, affineCompatible: 23},
   positiveControls: {wordSpecificSecrets: positives, allRuneRoundTrips: true}
