@@ -27,7 +27,7 @@ EXPECTED_SHA = "c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e
 SOURCES = (
     ("moulds2012", "pdf", "https://www.mapress.com/zootaxa/2012/f/zt03287p262.pdf"),
     ("moulds2005", "pdf", "https://media.australian.museum/media/Uploads/Journals/18025/1447_complete.pdf"),
-    ("song2004", "pdf", "https://hub.hku.hk/bitstream/10722/43070/1/98340.pdf?accept=1"),
+    ("greatlakes1972", "pdf", "https://orthsoc.org/sina/i00lap72.pdf"),
 )
 
 
