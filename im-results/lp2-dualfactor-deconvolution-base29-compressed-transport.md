@@ -27,6 +27,7 @@ The source gives three natural reset scopes: one complete 12,956-rune book, the 
 | Magic strings found at any interior byte offset | **6** |
 | Interior zlib candidates successfully inflated to a payload of at least 16 bytes | **0** |
 | Entire recovered byte object matching p56's exact 512-bit digest under SHA-512, SHA3-512 or BLAKE2b-512 | **0/1,170** |
+| Direct byte register ≥20 bytes containing ≥80% printable ASCII, `.onion` or `https://` | **0/390** |
 | Genuine gzip plaintext plants successfully encrypted, decoded and decompressed under all six source filters | **6/6** |
 
 The six interior matches are only two-byte zlib `78 01`, `78 9c` or `78 da` prefixes. They occur in packets including whole-book G at byte2495 and HG at byte3742, as well as shorter chapter/page outputs. Every such located prefix fails actual inflation, so they are **false short-header coincidences**, not decoded content. None of the longer gzip, bzip2, xz, ZIP, PNG or PDF signatures appears at any byte position.
@@ -35,8 +36,8 @@ For the independent positive plant, gzip a fixed 124-byte genuine English PARABL
 
 ## Decision and limits
 
-Retire **complete, conventional header-bearing compressed files obtained by this exact unkeyed H/G/HG GF29 deconvolution followed by canonical integer-base29 serialization**, under whole-book, chapter and printed-page reset scopes. The outcome is a new *binary-format* exclusion; low GP IoC was not used as evidence against a compressed register.
+Retire **direct printable ASCII or complete, conventional header-bearing compressed files obtained by this exact unkeyed H/G/HG GF29 deconvolution followed by canonical integer-base29 serialization**, under whole-book, chapter and printed-page reset scopes. The outcome is a new *binary-format* exclusion; low GP IoC was not used as evidence against a compressed register.
 
 This does not exclude raw/headerless DEFLATE, bytes preceded by unknown metadata, alternative endianness, padding or bit packing, a nonzero state, encryption before compression, mixed original word clocks, a different algorithm, or the p50 grid as a different operand. None of those further freedoms is selected by the currently authenticated sources. The original contains 2,896 visually printed words; no historical evidence says those separators should be ignored as the proposed whole-packet transport requires.
 
-**Reproduction:** [complete Node.js 22 CommonJS SFT](../sims/lp2_dualfactor_deconvolution_base29_compression_sft.cjs), input `resources/liber-primus/lp2-corpus.json`, native `node:zlib` and `node:crypto`, original comparisons and real gzip-positive controls. Confirmed [successful read-only Windows runner 43533314965](https://github.com/FlareZ123/liber-primus/actions/runs/43533314965). The SFT performs no persistent writes.
+**Reproduction:** [complete Node.js 22 CommonJS SFT](../sims/lp2_dualfactor_deconvolution_base29_compression_sft.cjs), input `resources/liber-primus/lp2-corpus.json`, native `node:zlib` and `node:crypto`, original comparisons and real gzip-positive controls. Confirmed [successful updated read-only Windows runner 43533740117](https://github.com/FlareZ123/liber-primus/actions/runs/43533740117). The SFT performs no persistent writes.
