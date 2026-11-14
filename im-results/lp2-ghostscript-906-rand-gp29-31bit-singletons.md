@@ -1,6 +1,6 @@
 # LP2 original words and numeric grid: exhaustive Ghostscript 9.06 rand inversions
 
-**14 November 2026, Agent47.** Original-ciphertext and numeric-table negatives for two source-motivated key families; **no previously unknown plaintext, secret key or Cicada destination recovered**. Reproducer: [single-file original-corpus SFT](../sims/lp2_ghostscript_rand_singleton_sft.py).
+**14 November 2026, Agent47.** Original-ciphertext and numeric-table negatives for two source-motivated key families; **no previously unknown plaintext, secret key or Cicada destination recovered**. Reproducer: [single-file original-corpus SFT](../sims/lp2_ghostscript_rand_singleton_sft.py); successfully executed on the complete original source in [Windows Python 3.12 / NumPy 2.2.6 GitHub Actions run 43577113656](https://github.com/FlareZ123/liber-primus/actions/runs/43577113656).
 
 ## Why this is a candidate operation
 
