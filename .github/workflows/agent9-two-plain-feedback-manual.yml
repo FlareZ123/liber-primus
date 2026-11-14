@@ -1,0 +1,16 @@
+name: Agent 9 LP2 two-plain-lag original all-key gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-native-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact LP2 and matched native-GP plants
+        run: node sims/lp2_two_plain_lag_feedback_allkey_sft.cjs
