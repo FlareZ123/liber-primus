@@ -36,6 +36,21 @@ The unchanged p55 body has IoC **0.038558558559**. Neither fixed output is a rea
 
 The 1024 relationship also admits a **strictly conditional binary-envelope probe**, because the solved next page p56 prints a 512-bit deep-web target. The source does **not** specify how to obtain one bit from each of 1021 GP29 runes. We tested one minimally stated interpretation: take each original chapter rune's GP index modulo2 in printed order, append the three-bit binary representation 011 of U's prime weight3, and interpret the result as 128 big-endian bytes. The inverted parity stream, with the same final 011, is its only polarity control. Both fixed 128-byte original packets miss p56's printed digest under SHA-512, SHA3-512 and BLAKE2b-512. Ordinary SHA512 output prefixes are **ef17451f080d69b4** (index parity) and **d33b6b3e983892db** (inverted parity), versus target **36367763ab73783c**. This rejects only the unselected parity+011 construction; no broader cryptographic primitive or page-derived key is excluded.
 
+### Center23-seeded transfer of the authentic solved-p56 cipher
+
+The five-dot p23↔solved-p56 artwork suggests a particularly economical original cipher consumer with better historical support than a free-running page key: use **the genuinely established p56 GP29 subtractive prime-totient operation**, but start at the source-selected p55 **H-prime23** instead of prime2. That maps p23's first ciphertext U to H, its center selector, because GP indices U=1 and H=8 satisfy (1−(23−1)) mod29=8. This one-glyph round trip is suggestive, but neither authorial intention nor a complete plaintext.
+
+I therefore tested the **full original p23–26 1,021-rune chapter** under two source-finite orientations, printed order and entire-rune reverse (the known p23→p56 five-dot emblem rotates 180 degrees). As a domain control, a second starting clock uses the **23rd prime=83** instead of the literal prime23. Every ciphertext F branches across the authentic known p56 possibilities: either plaintext F emitted literally with **no prime consumed**, or a non-F plaintext glyph encrypted to F while consuming a prime. A non-F ciphertext rune that would decode to F is impossible, so a dynamic state set checks **every potential skip mask** without guessing it. The exact source p56 known cipher successfully retains valid skip states under the same implementation.
+
+| Original chapter readout | First key prime | First unavoidable non-F→F contradiction |
+| --- | ---: | ---: |
+| Printed p23→p26 | 23 | **rune 11** |
+| Completely reversed p26→p23 | 23 | **rune 22** |
+| Printed p23→p26 | 83 (23rd prime) | **rune 8** |
+| Completely reversed p26→p23 | 83 (23rd prime) | **rune 88** |
+
+All four branches are impossible **before the end of the first 89 rune operations** under the authentic plaintext-F transparency rule, even allowing all legitimate F clock paths. This new exact start-prime gate rejects the obvious source-number transfer while preserving the physical navigation hypothesis. Different operands, an additional independently selected key, or a non-prime-totient cipher remain outside the scope.
+
 ## Structural coincidence calibration and decision
 
 Under **200,000** fixed-seed original-p55 controls that independently shuffle rune positions *inside each of its 16 actual printed words*, preserving all original word lengths, multiset inventories, nested peel depths and the 23-cell dot geometry, the exact conditions occurred with these counts:
