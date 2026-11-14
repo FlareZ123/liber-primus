@@ -21,3 +21,5 @@ jobs:
         run: node sims/lp2_two_rune_f_successor_step_sft.cjs
       - name: Source-fixed 2013 and p39 polynomial division on all chapters
         run: node sims/lp2_dualquadratic_allchapter_division_sft.cjs
+      - name: Original author clear GP first-release doublet comparator
+        run: node sims/lp2_original_author_clear_gp_doublet_control_sft.cjs
