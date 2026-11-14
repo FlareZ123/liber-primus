@@ -8,6 +8,10 @@ const crypto=require('node:crypto');
 const assert=require('node:assert/strict');
 const root='https://uncovering-cicada.fandom.com';
 const targets=[
+  {label:'p15 spiral comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title='+encodeURIComponent('Onion 7: numbers on page 15')+'&namespace=0&hideDeleted=false&page=0'},
+  {label:'LP article comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus&namespace=0&hideDeleted=false&page=0'},
+  {label:'LP ideas comment page zero',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus_Ideas_and_Suggestions&namespace=0&hideDeleted=false&page=0'},
+  {label:'LP 2015 article first edit',url:root+'/api.php?action=query&prop=revisions&titles='+encodeURIComponent('Liber Primus')+'&rvprop=ids%7Ctimestamp%7Ccomment&rvlimit=1&rvdir=newer&format=json'},
   {label:'LP article comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus&namespace=0&hideDeleted=false&page=1'},
   {label:'LP ideas comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title=Liber_Primus_Ideas_and_Suggestions&namespace=0&hideDeleted=false&page=1'},
   {label:'p15 spiral comment record',url:root+'/wikia.php?controller=ArticleCommentsController&method=getComments&title='+encodeURIComponent('Onion 7: numbers on page 15')+'&namespace=0&hideDeleted=false&page=1'},
@@ -25,7 +29,7 @@ const targets=[
 /** @param {string} t @param {number} n */
 function sha(t,n){return crypto.createHash('sha256').update(t.slice(0,n)).digest('hex');}
 async function main(){
- assert.equal(targets.length,13);
+ assert.equal(targets.length,17);
  const out=await Promise.all(targets.map(async t=>{
   try{
    const r=await fetch(t.url,{redirect:'follow',signal:AbortSignal.timeout(19000),
