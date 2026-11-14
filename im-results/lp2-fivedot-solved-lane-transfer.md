@@ -82,6 +82,29 @@ To account for choosing the *best of eight*, each of **500** deterministic indep
 
 Thus a five-lane shared-pad model with independently unknown static offsets fares poorly against source-native English even after giving the original cipher eight alternative alignments. The result is **conditional on the two English controls**, the original two section boundaries, and the stated exact five-lane architecture; hidden offsets that evolve *within* a lane, independent section keys, extra encryption layers or different native plaintext are beyond its proof. The original symbols and source-selected lane structures carry no recovered authentic key or plaintext.
 
+### Five independently secret stationary alphabets: an exact E-count capacity
+
+A different key-independent model treats the original p23 five-dot figure as identifying **five fixed substitution alphabets**, one independently unknown GP29 permutation per 201-rune lane. This is distinct from the additive shared-pad tests: the substitutions may be arbitrary bijections with all five keys completely secret, and no inter-section pad reuse is assumed. The source's p23 red heading has exactly 16 runes, making the subsequent pp23–26 length **(213−16)+270+273+265 = 1,005 = 5×201**. Two visually simple, source-unaltered lane assignments are possible: five contiguous 201-rune stripes and 201 consecutive quintets interleaved into five lanes. The stencil still does not instruct which assignment or where a text clock starts.
+
+If a fixed secret bijection maps each ciphertext symbol into exactly one plaintext symbol in lane j, the plaintext rune **E** must come from one ciphertext symbol there. Thus the exact maximum over *every possible secret alphabet* is
+
+`maximum_E = sum over five lanes of max over 29 rune values (count of that value in that lane)`.
+
+On the unchanged original 1,005 ciphertext runes the resulting maxima are **58 E** (contiguous stripes) and **64 E** (interleaved quintets). Any fixed lane alphabet combination trying to represent a native passage with more E occurrences is algebraically impossible, regardless of fitted alphabet keys or arbitrary output lane ordering. This is a necessary condition, not an attempt to infer E from individual ciphertext symbols.
+
+A pinned, source-native orthography normalizes V→U, Q/K→C, Z→S, QU→CW and uses greedy GP29 single runes including TH, ING, NG, IO and IA. Every overlapping **1,005-rune contiguous window** is tested from the committed texts, with no sampling or fit:
+
+| Frozen GP-normalized source | Original windows | Minimum E | Windows ≤64 E |
+| --- | ---: | ---: | ---: |
+| Shakespeare first300k | **216,102** | **74** | **0** |
+| Gibran, *The Prophet* | **61,488** | **90** | **0** |
+| Emerson essays | **320,323** | **86** | **0** |
+| Latin Vulgate | **202,209** | **54** | **513** |
+
+All **597,913** complete native-English windows exceed both possible five-lane E ceilings, even after granting all **29!^5** secret choices. Latin has explicit exceptions, so this is a finite reference-register exclusion rather than a theorem about every language or deliberately E-sparse English. Two separate positive plants encrypt the **first full 1,005-rune Shakespeare native passage** under five reproducible secret GP29 permutations, using each physical layout. Every rune recovers exactly by the inverse and the exact maximum E bound correctly admits the true planted E count. The test also pins the **original p23 JPEG SHA-256**, all original page counts and the red heading length; it does not rely on an unverified transcription-only 1,005 coincidence.
+
+**Decision:** This decisively excludes five *stationary monoalphabetic GP29 substitutions*, under either source-natural five-lane layout, for every intact native-English control window above, even if all keys are unknown. It cannot exclude arbitrary GP plaintext registers, within-lane changing alphabets, stateful encryption, extra symbol-changing layers, altered word/rune segmentation, or another physical reading geometry. Exact [CommonJS SFT](../sims/lp2_p23_fivedot_fivelane_allsecret_E_capacity_sft.cjs), [passing original-input Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/43581662391). No unknown-page plaintext or cipher key recovered.
+
 ### Physical-line and page-rotation geometry
 
 The source artwork's reflections act on individual *physical pages*, while the full-chapter reverse in the preceding table is an additional hypothesis. I therefore expanded the exact cancellation test to the **18 source-framed alignments** formed by:
