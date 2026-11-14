@@ -8,9 +8,21 @@ The original p49–51 table contains 256 two-character cells in a 32×8 row-majo
 
 For each canonical byte (B), split (B=29q+r), with (q=lfloor B/29\rfloor) and (0\leq r<29). The remainder (r) names a Gematria Primus rune. A candidate direction channel interprets (q+1) as a standard 3×3 numeric keypad (1=SW, 2=S, 3=SE; 4=W, 5=stay, 6=E; 7=NW, 8=N, 9=NE), with no wrapping at the 32×8 boundary.
 
-The 2016 signed message says “their numbers are the direction,” and the original p49–51 artwork contains repeated bilateral dot ornaments. However, the artwork's geometry has received conflicting readings (an eight-position bilateral motif versus a four-corner plus five-mark/centre interpretation); the five-mark cluster is not a clean regular plus in the raw page coordinates. It does **not** unambiguously specify a numbered keypad, its rotation, or a centre state. Treat (q+1) as a testable investigator convention, not an established author instruction.
+The 2016 signed message says “their numbers are the direction,” and the original p49–51 artwork contains repeated bilateral five-circle ornaments. A pixel-level comparison of the original full-scan images 66.jpg, 67.jpg and 68.jpg (LP2 pages49–51) shows that the 260×280 left and right ornament crops are each **identical across all three pages**. Each cluster is visibly three filled circles plus two outlined circles. The ornaments therefore provide no page-varying key bits or page-specific direction state; they may still be a global marker, but they do not specify a nine-state keypad, its rotation, or a centre state. Treat (q+1) as a testable investigator convention, not an established author instruction. Exact crop hashes and the reproduction script are below.
 
 Historical context is consistent with caution: the 2014 `#cicadaops` log records participants noticing dots in `liber.jpg`, then dismissing them as an OutGuess payload after comparison with known OutGuess images. This is solver discussion, not author confirmation; it shows that dot/steganography interpretations were already considered, not that the later direction hint selects a keypad. [Original 2014 IRC log](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicadaops.freenode.log).
+
+
+## Pixel-exact border-motif control (Agent24, 14 November 2026)
+
+The original numerical pages are full-scan files 66.jpg, 67.jpg and 68.jpg (LP2 pp49–51). In each image, the left and right five-circle ornaments are part of the repeated plant border. The half-open crop boxes are left (280,1400,540,1680) and right (1860,1400,2120,1680), each 260×280 grayscale pixels. Across all three source pages, every left crop is pixel-identical to the other left crops, and every right crop is pixel-identical to the other right crops: **six page-to-page comparisons, zero differing pixels**.
+
+- Left crop SHA-256 of grayscale pixel bytes: 55e0d53df488a0707d28e24b962626593a4ab27c0ddaed5434a46fe296f4c0bb.
+- Right crop SHA-256 of grayscale pixel bytes: 68ef60fc7798581cd2a04afba6112bda4a2b2d89d3251e631cedb9674bed1683.
+
+This establishes that the five-circle pattern is a reused static border element across the three table pages, not a page-varying data channel. It does not prove the ornament is meaningless: a constant global marker remains possible. But the visible pattern has five positions, not nine, and cannot independently authenticate the proposed 3×3 keypad, its orientation, or its centre-state convention. The q+1 directional graph and its GEM cycle remain exploratory; this result removes the border dots as independent support for that specific keypad mapping.
+
+Reproduction: [pixel-exact Pillow SFT](../sims/lp2_p50_dot_motif_reuse_sft.py).
 
 ## Canonical base60 graph
 
