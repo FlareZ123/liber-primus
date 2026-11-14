@@ -32,7 +32,7 @@ async function main(){
  assert.equal(unknown.length,2896);
  assert.equal(unknown.reduce((s,w)=>s+w.n,0),12956);
  const solved=original.filter(w=>w.page===57);
- const control=latinWords(fs.readFileSync(path.join(root,'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8').split('### 57\n')[1]);
+ const control=latinWords(fs.readFileSync(path.join(root,'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8').replace(/\r\n?/g,'\n').split('### 57\n')[1]);
  assert.deepEqual(solved.map(w=>w.n),control.map(w=>w.n));
  assert.equal(search(solved,control).longest,20);
  assert.deepEqual(keyFromCrib(solved,control,0,0,20),Array(95).fill(0));
