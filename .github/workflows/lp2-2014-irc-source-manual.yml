@@ -29,6 +29,11 @@ jobs:
         run: |
           node --check sims/lp2_2014_pagepower_p55_ftransparent_sft.cjs
           node sims/lp2_2014_pagepower_p55_ftransparent_sft.cjs
+      - name: Read original alleged partial-plaintext claim contexts
+        run: |
+          node --check sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs
+          node sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs --selftest
+          node sims/lp2_2014_irc_partial_plaintext_claim_windows_sft.cjs
       - name: Preserve finite source extracts
         uses: actions/upload-artifact@v4
         with:
