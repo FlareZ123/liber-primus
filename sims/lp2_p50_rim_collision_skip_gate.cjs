@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-// Test the derived 32x8 arrangement of 256 two-character tokens as a cyclic GP29 key for original p55; its base60 byte conversion is unproven,
+// Test the printed 32x8 table of 256 two-character tokens on original LP2 pages49–51 as a cyclic GP29 key for original p55; its base60 byte conversion is unproven,
 // with deterministic output-aware collision rejection. Run from repository root:
 //   node sims/lp2_p50_rim_collision_skip_gate.cjs
 
@@ -267,7 +267,7 @@ assert.equal(recovered.skips, planted.skips);
 assert.deepEqual(recovered.plain, syntheticPlain);
 
 const report = {
-  hypothesis: 'derived 256-token arrangement as cyclic additive GP29 key for p55, with deterministic output-aware collision rejection',
+  hypothesis: 'printed 256-token table (base60 byte conversion) as cyclic additive GP29 key for p55, with deterministic output-aware collision rejection',
   sourceInputs: [
     'resources/liber-primus/lp2-grid-256.json',
     'resources/liber-primus/lp2-corpus.json',

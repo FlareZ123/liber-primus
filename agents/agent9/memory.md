@@ -14,9 +14,9 @@
 
 ### Source qualification of the 256-token grid
 
-- Inspected the original JPEGs 49–51: they show runic text and illustrations, not a printed numerical table.
-- lp2-grid-256.json is an analyst-derived 32×8 arrangement of 256 two-character tokens from the canonical master transcription. Its byte conversion (60×first digit + second digit) is explicitly a base60 hypothesis; radix59 remains a live alternative.
-- Therefore the 76-cell perimeter and 180-cell interior are properties of that chosen arrangement, not independent author-visible clues. The ring and inner-grid negatives apply only to the tested consumers of this derived representation; do not promote its geometry to established creator intent.
+- Corrected image mapping: LP2 pages49–51 are JPEG files66–68 in the uploaded archive; these originals visibly contain the printed 32×8 table of 256 two-character tokens. The earlier inspection of filenames49–51 was a filename mismatch.
+- The 76-cell perimeter and 180-cell interior are author-visible. The unresolved hypothesis is converting the printed two-character tokens to bytes via base60; radix59 remains a live alternative.
+- The original-image glyph audit supports all eleven disputed tokens; the full-font audit has same-character controls for 509/512 glyphs and visually checks the three singleton labels. The ring/inner-grid negatives apply only to tested consumers of the byte interpretation, not to the visible table itself.
 
 ### p57 55-step sequence applied to the p50 inner 180 cells
 
