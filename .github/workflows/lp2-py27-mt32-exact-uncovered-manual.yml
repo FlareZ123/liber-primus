@@ -16,14 +16,14 @@ permissions:
   contents: read
 
 concurrency:
-  group: lp2-py27-mt32-exact-${{ github.ref }-${{ inputs.scope }
+  group: lp2-py27-mt32-exact-${{ github.ref }}-${{ inputs.scope }}
   cancel-in-progress: false
 
 jobs:
   prepare:
     runs-on: ubuntu-latest
     outputs:
-      shards: ${{ steps.setup.outputs.shards }
+      shards: ${{ steps.setup.outputs.shards }}
     steps:
       - uses: actions/checkout@v4
       - name: Verify complete exact partition and construct matrix
@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           node sims/lp2_py27_mt32_uncovered_shards_sft.cjs test
-          echo "shards=$(node sims/lp2_py27_mt32_uncovered_shards_sft.cjs matrix '${{ inputs.scope }')" >> "$GITHUB_OUTPUT"
+          echo "shards=$(node sims/lp2_py27_mt32_uncovered_shards_sft.cjs matrix '${{ inputs.scope }}')" >> "$GITHUB_OUTPUT"
 
   control:
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
     strategy:
       fail-fast: false
       max-parallel: 20
-      matrix: ${{ fromJSON(needs.prepare.outputs.shards) }
+      matrix: ${{ fromJSON(needs.prepare.outputs.shards) }}
     runs-on: ubuntu-latest
     timeout-minutes: 150
     steps:
@@ -102,7 +102,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node sims/lp2_py27_mt32_uncovered_shards_sft.cjs plan '${{ matrix.band }' '${{ matrix.shard }' '${{ inputs.scope }'
+          node sims/lp2_py27_mt32_uncovered_shards_sft.cjs plan '${{ matrix.band }}' '${{ matrix.shard }}' '${{ inputs.scope }}'
       - name: Exhaust assigned interval under the validated exact keyskip1 clock
         shell: bash
         working-directory: upstream/liber-primus/analysis/round27/P1-engine
@@ -110,7 +110,7 @@ jobs:
           GRIND27_S2_CONTROL_OK: '1'
         run: |
           set -euo pipefail
-          ./grind27 --plan "${{ github.workspace }/run/plan.json" --run-dir "${{ github.workspace }/run" --threads 2
+          ./grind27 --plan "${{ github.workspace }}/run/plan.json" --run-dir "${{ github.workspace }}/run" --threads 2
       - name: Verify 100 percent local coverage, capture all flags and durable receipt
         shell: bash
         run: |
@@ -120,7 +120,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: exact-${{ inputs.scope }-b${{ matrix.band }-s${{ matrix.shard }
+          name: exact-${{ inputs.scope }}-b${{ matrix.band }}-s${{ matrix.shard }}
           path: run/
           if-no-files-found: warn
           retention-days: 90
