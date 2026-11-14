@@ -75,13 +75,28 @@ const cdxUrl="https://web.archive.org/cdx/search/cdx?"+new URLSearchParams({
 const cdx=await get(cdxUrl);
 let captures=null;
 if(cdx.status===200){try{const v=JSON.parse(cdx.text);if(Array.isArray(v))captures=v.slice(0,20);}catch{}}
+const historical=[];
+for(const item of (captures||[]).slice(1,3)){
+  const stamp=item[1];
+  const archiveUrl="https://web.archive.org/web/"+stamp+"id_/"+PAGE;
+  const result=await get(archiveUrl);
+  const oldLinks=linked(result.text,result.url);
+  historical.push({timestamp:stamp,archiveUrl,
+    status:result.status,bytes:result.bytes,
+    contentType:result.contentType,transcriptMentionsDraft:
+      /pdfs? of the runes|37 pages before they were encrypted/i.test(result.text),
+    linkCount:oldLinks.length,
+    sourceCandidates:oldLinks.filter(draft).slice(0,30),
+    linkedPDF:oldLinks.filter(link=>/\.pdf(?:[?#]|$)/i.test(link)).slice(0,20)
+  });
+}
 console.log(JSON.stringify({
  source:"exact 2019 publisher and public attachment APIs only",
  page:{status:main.status,bytes:main.bytes,url:main.url,
   transcriptMentionsDraft:/pdfs? of the runes|37 pages before they were encrypted/i.test(main.text),
   linkCount:links.length,sourceCandidates,
   linkedPDF:links.filter(s=>/\.pdf(?:[?#]|$)/i.test(s))},
- wordpress:attempts,attachments,
+ wordpress:attempts,attachments,historical,
  archive:{url:cdxUrl,status:cdx.status,bytes:cdx.bytes,
   error:cdx.status===0?cdx.contentType:null,captures}
 },null,2));
