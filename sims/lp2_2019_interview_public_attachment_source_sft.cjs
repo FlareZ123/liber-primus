@@ -77,6 +77,29 @@ for(const site of ["therealsamizdat.com","ma91c1an.wordpress.com"]){
    bytes:resp.bytes,details});
  if(details?.ID)break;
 }
+// The original post is identified by its public WordPress.com site_ID/ID.
+// Request only its attached media, not any site's unrelated library files.
+const hostedMedia=[];
+for(const entry of hosted){
+ const o=entry.details;
+ if(!o?.ID||!o?.site_ID)continue;
+ const url="https://public-api.wordpress.com/rest/v1.1/sites/"
+  +o.site_ID+"/media/?post_ID="+o.ID+"&number=100";
+ const response=await get(url);
+ let media=null;
+ if(response.status===200){
+  try{
+    const v=JSON.parse(response.text);
+    if(Array.isArray(v.media)){
+      media=v.media.map(m=>({ID:m.ID,date:m.date,mime_type:m.mime_type,
+         file:m.file,URL:m.URL,post_ID:m.post_ID,title:m.title}));
+    }
+  }catch{}
+ }
+ hostedMedia.push({url,status:response.status,bytes:response.bytes,
+   contentType:response.contentType,found:media?.length||null,media});
+ break;
+}
 const attachments=[];
 if(post?.id){
  for(const url of [
@@ -121,7 +144,7 @@ console.log(JSON.stringify({
   transcriptMentionsDraft:/pdfs? of the runes|37 pages before they were encrypted/i.test(main.text),
   linkCount:links.length,sourceCandidates,
   linkedPDF:links.filter(s=>/\.pdf(?:[?#]|$)/i.test(s))},
- wordpress:attempts,attachments,hosted,historical,
+ wordpress:attempts,attachments,hosted,hostedMedia,historical,
  archive:{url:cdxUrl,status:cdx.status,bytes:cdx.bytes,
   error:cdx.status===0?cdx.contentType:null,captures}
 },null,2));
