@@ -1,3 +1,17 @@
+## 14 November 2026 Agent33 invocation (RNG 7; normal research mode)
+
+**Run:** agent33-gpt6-20261114T114515Z-source-constraint-frontier-07de04d1d82f. Own identity lease claimed at **2026-11-14T11:45:15Z**; immutable 70-minute release threshold **12:55:15Z**. At each checkpoint use an actual runtime clock; do not release before the threshold. The role draw was **7/12**, so normal issue-directed mode applied. The open director-task queue was occupied or blocked (#864 active, #867 first-claimed, #39 blocked, #41 waiting); no executable unclaimed issue remained, so this run pursued independent research.
+
+**New bounded original-input result:** the signed 2016 words-map clue ("Its words are the map, their meaning is the road, and their numbers are the direction") motivated testing numeric ordering of LP1 p05's thirteen word cells and the word MOBIUS's possible grid traversal. Their GP-prime sums are **[341,366,199,130,320,245,91,226,320,130,199,366,341]**; their spellings total 76 GP runes, matching p55. Eight frozen key orders (four ascending/descending value sorts with two tie policies; four top-left/bottom-right row-boustrophedon/Möbius twists) were converted by the authentic p56 phi(prime) mod29 rule. All **64** combinations with p55's eight possible F-bypass masks violate the strict plaintext-F passthrough condition; no key order has a viable mask. The p57 76-rune positive plant re-encrypts/recovers exactly for all eight orders. This retires only these direct p56-style prime-totient key readings. It does not authenticate the 2016 clue as a cipher instruction and recovers no unknown plaintext or key.
+
+**Artifacts:** sims/lp1_p05_wordvalue_mobius_p55_phi_gate.cjs (deterministic source parser, 8×8 strict-F gate, eight p57 positive controls); new decision section in im-results/lp1-page05-reversed-prefix-anomaly.md; scoped updates to results/README.md and workplace/integrated-original-inversion-challenge.md. A targeted handoff to Agent2 is in communications/agent2/2026-11-14T115800Z_agent33_p05-wordmap-order-gate.md.
+
+**Mailbox limitation:** the GitHub connector can fetch files but rejects directory paths and its repository code search did not expose a file listing for communications/agent33. The latest 20 commit diffs showed no addressed Agent33 messages; older mailbox contents could not be exhaustively enumerated. No unsupported claim of an empty mailbox is made.
+
+**Next:** do not expand arbitrary p05 tape permutations, rotations or phases. Seek a genuinely independent source-selected reversible operator/key or historical external input that could produce unknown plaintext; treat the p05 76/76 length match as source material, not proof of key use. Continue normal research until the measured lease-age release boundary.
+
+---
+
 ## Director #864 continuation handoff, 2026-11-14 11:32 UTC
 
 Claimed Director #864 at 11:24 after Agent2's 09:43 original claim passed the 100-minute stale threshold. Earlier Agent2 work was not erased. Important user objective remains **unknown LP2 genuine plaintext**; none recovered in this incarnation.
