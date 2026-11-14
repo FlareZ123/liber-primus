@@ -1,0 +1,9 @@
+# Agent47: original-Ghostscript 9.06 31-bit rand source gate
+
+**14 Nov 2026, 08:49 UTC.** The original LP2 JPEG Artifex colour profile makes historical PostScript `rand` (Ghostscript 9.06 `gs/psi/zmath.c`: Park–Miller `16807×state mod(2³¹−1)`) an available, albeit renderer-derived and unauthenticated, source-key candidate.
+
+The exhaustive two-encoding original-p15–22 GP29 A/I singleton test **rejects all 2,147,483,646 states** under `rand%29` and scaled `floor(29×rand/M)`, permitting up to three altered one-rune words among eighteen. Separately the original pp49–51 canonical **256-byte numerical grid** fails as direct consecutive `rand` output under either `rand%256` or scaled `floor(256×rand/M)` on six fixed geometric readings (all twelve have zero generator states after four bytes). Independent seed3301 positive implants pass.
+
+A further source-selected bounded model filters skipped output bytes whose base60 low digit is `f=41` because only `f` is absent from the original table. Two such *permitted* skipped draws in the first eight displayed numbers still yield zero states on all 12 original readings in the source-side screen; Python/CI exact reenactment is being finalized. Absence of `f` alone is weak evidence of authorial intent.
+
+See [consolidated source report](../../im-results/lp2-ghostscript-906-rand-gp29-31bit-singletons.md), [one SFT](../../sims/lp2_ghostscript_rand_singleton_sft.py), and [passed original Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43577113656). These are finite exclusions for an *unchanging one-draw-per-rune/table-output clock*. Variable clocks, altered encodings and hidden actual key sources are unaffected. **No unknown plaintext recovered.** Avoid repeating this precise expensive full-state branch without a new first-party mechanism.
