@@ -60,6 +60,20 @@ Original GP ciphertext IoC is **0.03436002**. All six decoded sequences remain n
 
 Exact native-GP positive controls verify the test has power at its stated target: an independent Latin 1,680-rune plaintext is encrypted with the source-derived periodic trace and recovered **1,680/1,680**, and the same native plaintext encrypted under 840 **independently generated, wholly secret bijections** is also recovered **1,680/1,680**, preserving every lagged symbol-equality relation as the invariant predicts.
 
+## P55-derived period-210 field element: direct additive consumer rejected (14 November 2026)
+
+The new [p55 inner43 BASE29 polynomial bridge](p55-inner43-base29-polynomial-bridge.md) yields alpha = 6+26u in GF(29²) modulo the same signed-source quadratic H, with multiplicative order **210**. Since this original chapter has 1,680 runes = 8×210, the first clue-selected field-clock consumer is the period-210 power sequence alpha^i, projected to either coordinate or the field trace and used as a GP29 additive key.
+
+Applied from i=0, with no phase fitting, to all 1,680 original p33–39 runes, both additive signs give:
+
+| Projection | Cipher − key IoC | Cipher + key IoC |
+| --- | ---: | ---: |
+| a_i | 0.03465994 | 0.03459897 |
+| b_i | 0.03441887 | 0.03461386 |
+| Tr(alpha^i) | 0.03428983 | 0.03430117 |
+
+All six outputs remain uniform/nonlinguistic; no plaintext is recovered. This rejects the direct source-derived period-210 scalar-additive consumer, not every possible use of alpha. Do not expand to arbitrary phases, projections or cipher families without another source selector. The p55 polynomial bridge remains a structural relation, not an established key.
+
 ## Research decision
 
 The source-derived 840-period relation justifies these bounded tests. The standard source-root 840-period, the all-secret positionwise repeated-alphabet model and the literal exhaustive two-rune state-list readings are now distinct negatives. **Do not** expand to arbitrary field basis rotations, fitted clock starts, secret 840-symbol keys or additional cipher layers on the sole strength of `1680=2×840`. A future source would need to specify the cryptographic role of the 2013 polynomial or an explicit nonperiodic state/key update. The original p50 polynomial identity, p39 red factor and p33 cuneiform numbers remain genuine input facts without establishing this conjectured cross-chapter key handoff.
