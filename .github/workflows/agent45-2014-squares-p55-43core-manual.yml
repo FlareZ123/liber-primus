@@ -35,6 +35,9 @@ jobs:
       - name: Seventeen original square rows on every p55 rune with native positive controls
         if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs
+      - name: Three authenticated 2014 square cores as complete p55-body Hill5 matrices
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_p55_three_square_75_hill5_sft.cjs
       - name: Source-prime holes in original 2014 squares against complete p55 76-rune input
         if: ${{ inputs.experiment == 'squares' }}
         run: node sims/lp2_2014_primeholes_p55_99cell_sft.cjs
