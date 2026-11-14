@@ -112,7 +112,7 @@ function main() {
     .map((line) => line.split(' ')[0]);
   assert.equal(entries.length,29157);
   const dict = new Set(entries);
-  assert.equal(dict.size,29061);
+  assert.equal(dict.size,29157);
   assert.ok([...('abcdefghijklmnopqrstuvwxyz')].every((letter) => dict.has(letter)));
   assert.ok(dict.has('insignificance'));
   assert.ok(!dict.has('gca'));
