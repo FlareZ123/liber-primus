@@ -1,6 +1,6 @@
 # P15 infinity and number square as a projective GP30 cipher: all-secret state bound
 
-**Agent34, 14 November 2026 · Director #867.** A distinct, fully reversible source-motivated non-affine alphabet construction was applied to the entire original unknown LP2 ciphertext and an independently solved genuine-GP positive. It has a **key-independent 1,133-word-break deficit**, even if a secret may select a different one of its four alphabets at every rune. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
+**Agent34, 14 November 2026 · Director #867.** A distinct, fully reversible source-motivated non-affine alphabet construction was applied to the entire original unknown LP2 ciphertext and an independently solved genuine-GP positive. It has a **key-independent 1,119-word-break deficit**, even if a secret may select a different one of its four alphabets at every rune. No new LP2 plaintext, authentic key, historical encryption instruction or destination was recovered. This is a bounded original-cipher rejection, not a claim against other stateful ciphers.
 
 ## Source-selected input, intended human route, and weakest inference
 
@@ -23,24 +23,24 @@ Reduce the printed square modulo29 and group its quadrants in row-major order. E
 
 | p15 printed quadrant | Matrix modulo29 | Determinant modulo29 | Ciphertext pole for the inverse |
 | --- | --- | ---: | ---: |
-| top left | [10,3,1,22] | 14 | 7 |
-| top right | [20,22,21,25] | 9 | 14 |
-| bottom left | [11,17,21,17] | 4 | 13 |
-| bottom right | [19,7,12,22] | 15 | 3 |
+| top left | [10,3,1,22] | 14 | 10 |
+| top right | [20,22,21,25] | 9 | 12 |
+| bottom left | [11,17,21,17] | 4 | 24 |
+| bottom right | [19,7,12,22] | 15 | 4 |
 
-For the forward map `C=M(P)=(aP+b)/(cP+d)` on the *projective* 30-symbol alphabet, its inverse sends a ciphertext finite rune `x` to plaintext **infinity exactly when** `cx+d=0 mod29`. Thus its only possible plaintext-word-break output is the original ciphertext rune at `x=-d/c mod29`. As each of these matrices has `c≠0`, the *ciphertext printed separator itself* always decrypts to a **finite** plaintext rune; it never yields a plaintext separator.
+For the forward map `C=M(P)=(aP+b)/(cP+d)` on the *projective* 30-symbol alphabet, its inverse sends a ciphertext finite rune `x` to plaintext **infinity exactly when** `a−cx=0 mod29`. Thus its only possible plaintext-word-break output is the original ciphertext rune at `x=a/c mod29`. As each of these matrices has `c≠0`, the *ciphertext printed separator itself* always decrypts to a **finite** plaintext rune; it never yields a plaintext separator.
 
-The four allowable ciphertext poles are `{7,14,13,3}`, fixed **before** reading any ciphertext. The full canonical original unknown LP2 source contains 12,956 runes and **2,896 complete words** (therefore **2,895** between-word separators after preserving the runes and removing only literal line/page wraps). The four pole glyph frequencies, in source order, are **401, 458, 445 and 458**, summing to **1,762**.
+The four allowable ciphertext poles are `{10,12,24,4}`, fixed **before** reading any ciphertext. The full canonical original unknown LP2 source contains 12,956 runes and **2,896 complete words** (therefore **2,895** between-word separators after preserving the runes and removing only literal line/page wraps). The four pole glyph frequencies, in source order, are **471, 399, 482 and 424**, summing to **1,776**.
 
 Therefore for **every** possible choice of the four projective alphabets, including an unknown secret choice at every single source position that depends on *all past or future plaintext and ciphertext*, the exact count bound is
 
 ```text
-plaintext word breaks <= count(C in {7,14,13,3}) = 1,762
+plaintext word breaks <= count(C in {7,14,13,3}) = 1,776
 original printed between-word breaks = 2,895
-necessary deficit = 2,895 - 1,762 = 1,133
+necessary deficit = 2,895 - 1,776 = 1,119
 ```
 
-This is an algebraic impossibility for the stated **word-count-preserving GP30** model. No choice of phase, secret key, state clock, page reset, independent alphabets, nonlinear feedback, or adversarial quadrant selection can repair the 1,133 missing separators under these four fixed maps. It is much stronger than testing one arbitrary source clock. Under a **different plaintext segmentation** with only 1,763 or fewer words, a different fifth map, a different interpretation of infinity, or an encoder that expands/deletes source symbols, the proof does not apply. An English source with about 1,763 words in 15,851 symbols would have unusually long words relative to the source, but the present test does not claim a language-independent exclusion of all such texts.
+This is an algebraic impossibility for the stated **word-count-preserving GP30** model. No choice of phase, secret key, state clock, page reset, independent alphabets, nonlinear feedback, or adversarial quadrant selection can repair the 1,119 missing separators under these four fixed maps. It is much stronger than testing one arbitrary source clock. Under a **different plaintext segmentation** with only 1,777 or fewer words, a different fifth map, a different interpretation of infinity, or an encoder that expands/deletes source symbols, the proof does not apply. An English source with about 1,777 words in 15,851 symbols would have unusually long words relative to the source, but the present test does not claim a language-independent exclusion of all such texts.
 
 ## A concrete reversible state clock, original inverse and positive
 
