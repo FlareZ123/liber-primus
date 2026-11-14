@@ -169,6 +169,97 @@ assert.equal(plantedPhase.pairs, 1205);
 assert.deepEqual(plantedCipher.map((v, i) => mod(v - plantedKey[i])),
   firstPlain);
 
+
+/** @param {number} cipherRune
+ * @param {"indices"|"prime"} register */
+function forcingValue(cipherRune, register) {
+  return register === "indices" ? cipherRune : corpus.prime[cipherRune] % 29;
+}
+
+/** Known particular solution with both starting states fixed at zero.
+ * @param {number[]} observedCipher
+ * @param {"indices"|"prime"} register */
+function particularPad(observedCipher, register) {
+  const k = new Array(observedCipher.length).fill(0);
+  for (let i = 0; i + 2 < k.length; i++) {
+    k[i + 2] = mod(19 * k[i + 1] + 4 * k[i] +
+      forcingValue(observedCipher[i], register));
+  }
+  return k;
+}
+
+/** Authentic plaintext-dependent output only through *published ciphertext*
+ * (standard known-ciphertext forcing); original ciphertext determines the pad
+ * recurrence and all unobserved key choices are solely two seed runes.
+ * @param {number[]} plain
+ * @param {"indices"|"prime"} register
+ * @param {number} sign +1 or -1
+ * @param {number} first
+ * @param {number} second */
+function feedbackEncrypt(plain, register, sign, first, second) {
+  const k = new Array(plain.length).fill(0);
+  k[0] = first;
+  k[1] = second;
+  const cipherOut = [];
+  for (let i = 0; i < plain.length; i++) {
+    cipherOut.push(mod(plain[i] + sign * k[i]));
+    if (i + 2 < plain.length) {
+      k[i + 2] = mod(19 * k[i + 1] + 4 * k[i] +
+        forcingValue(cipherOut[i], register));
+    }
+  }
+  return cipherOut;
+}
+
+/** @param {number[]} cipherIn
+ * @param {"indices"|"prime"} register
+ * @param {number} sign
+ * @param {number} first
+ * @param {number} second */
+function feedbackDecrypt(cipherIn, register, sign, first, second) {
+  const k = new Array(cipherIn.length).fill(0);
+  k[0] = first;
+  k[1] = second;
+  const plain = [];
+  for (let i = 0; i < cipherIn.length; i++) {
+    plain.push(mod(cipherIn[i] - sign * k[i]));
+    if (i + 2 < cipherIn.length) {
+      k[i + 2] = mod(19 * k[i + 1] + 4 * k[i] +
+        forcingValue(cipherIn[i], register));
+    }
+  }
+  return plain;
+}
+
+// An independently selected, finite stateful variant: inject the preceding
+// ciphertext's GP29 index or GP prime-value residue into the same red-Q
+// recurrence. Every forced stream = particularPad(observed) + 203-periodic
+// homogeneous state. Subtracting the known particular pad yields an exactly
+// key-independent same-phase collision count, even with aperiodic CFB forcing.
+const feedbackVariants = [];
+for (const register of ["indices", "prime"]) {
+  const particular = particularPad(cipher, register);
+  for (const sign of [1, -1]) {
+    const adjusted = cipher.map((v, i) => mod(v - sign * particular[i]));
+    const observed = phasePairs(adjusted);
+    const expected = register === "indices"
+      ? (sign === 1 ? 736 : 700)
+      : (sign === 1 ? 739 : 685);
+    assert.equal(observed.pairs, expected);
+    assert.equal(observed.total, 20685);
+    const nativeOriginal = feedbackEncrypt(firstPlain, register, sign, 9, 24);
+    assert.deepEqual(feedbackDecrypt(nativeOriginal, register, sign, 9, 24),
+      firstPlain);
+    const nativeParticular = particularPad(nativeOriginal, register);
+    const adjustedNative = nativeOriginal.map(
+      (v, i) => mod(v - sign * nativeParticular[i]));
+    assert.equal(phasePairs(adjustedNative).pairs, nativePhase.pairs);
+    feedbackVariants.push({forcing: register, cipherSign: sign,
+      keyIndependentOriginal: observed,
+      positiveNativePairs: phasePairs(adjustedNative).pairs});
+  }
+}
+
 console.log(JSON.stringify({
   source: {redPage: 39, redOffsets: [119, 120, 121],
     redCoefficients: triad, targetPages: "p40-p53 after first eight red runes",
@@ -176,6 +267,7 @@ console.log(JSON.stringify({
     polynomial: "15*(X-24)^2 in GF(29)", keyPeriod: period},
   allSecret: {initialStates: 29 * 29, signs: 2,
     testedInverses: 29 * 29 * 2, keyIndependentOriginal: original},
+  feedbackVariants,
   matchedNativeControls: {count: controls.length, min: controls[0],
     median: controls[149], max: controls[299]},
   positiveNativePlant: {initialKey: [9, 24],
