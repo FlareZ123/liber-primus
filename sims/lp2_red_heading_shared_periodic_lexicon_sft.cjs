@@ -139,6 +139,35 @@ function nativePlant(pool, period, reset) {
   });
 }
 
+/** Pattern equality is invariant under every one-to-one GP29 rune substitution. */
+function equalityPattern(values) {
+  const ids = new Map();
+  return values.map(value => {
+    if (!ids.has(value)) ids.set(value, ids.size);
+    return ids.get(value);
+  }).join(',');
+}
+const originalP27Pattern = equalityPattern(long12.cipher);
+assert.equal(originalP27Pattern, '0,1,2,3,4,5,0,6,7,8,9,0');
+for (const useIng of [false, true]) {
+  const pool = poolFor(useIng);
+  const samePattern = pool.get(12).filter(item =>
+    equalityPattern(item.values) === originalP27Pattern);
+  assert.equal(samePattern.length, 0,
+    'p27 source-long heading word has no English-lexicon monoalphabetic image');
+  const sourceWord = pool.get(12)[0].values;
+  const seededPermutation = Array.from({length:29}, (_, index) =>
+    (5 + 13*index) % 29);
+  assert.equal(new Set(seededPermutation).size, 29);
+  const implantedCipher = sourceWord.map(value => seededPermutation[value]);
+  assert.equal(equalityPattern(implantedCipher),
+    equalityPattern(sourceWord),
+    'arbitrary secret monoalphabetic mapping must preserve word pattern');
+  assert.ok(pool.get(12).some(item =>
+    equalityPattern(item.values) === equalityPattern(implantedCipher)),
+    'a planted native 12-rune word must survive pattern lookup');
+}
+
 const summary = [];
 for (const useIng of [false, true]) {
   const pool = poolFor(useIng);
@@ -177,6 +206,8 @@ console.log(JSON.stringify({
   lexiconWords: sourceWords.length,
   periods: '1..16', clocks: ['continuous-red-stream', 'heading-reset'],
   gpIngConventions: ['NG only', 'ING->NG'],
-  positiveControls: '12/12 native original-shape plants admitted their seeded keys',
+  positiveControls: '12/12 native plants admitted keys; 2/2 arbitrary secret monoalphabet plants found',
+  p27Pattern: originalP27Pattern,
+  p27MonoalphabeticEnglishLexiconMatches: 0,
   exactCertificates: summary,
 }, null, 2));
