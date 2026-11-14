@@ -10,7 +10,6 @@ import hashlib
 import io
 import json
 import zipfile
-import rpmfile
 from pathlib import Path
 from urllib.request import urlopen
 
@@ -195,26 +194,6 @@ def main() -> None:
     p55_masks, p55_labels = p55_original_masks()
     font_report("Archived BabelStone Beorhtnoth", candidate, original)
     p55_font_report("Archived BabelStone Beorhtnoth", candidate, p55_masks, p55_labels)
-
-    # OpenSUSE 20131112 stores period-original six 2013 family fonts.
-    # The RPM package is later rebuilt, while the font archive is version-pinned.
-    rpm_url = ("https://ftp.gwdg.de/pub/opensuse/distribution/"
-               "openSUSE-current/repo/oss/noarch/"
-               "babelstone-runic-fonts-20131112-bp161.1.2.noarch.rpm")
-    with urlopen(rpm_url, timeout=40) as response:
-        rpm_data = response.read()
-    print("2013 OPEN-SUSE ARCHIVE RPM", len(rpm_data), hashlib.sha256(rpm_data).hexdigest())
-    with rpmfile.open(fileobj=io.BytesIO(rpm_data)) as rpm:
-        font_members = sorted(
-            x.name for x in rpm.getmembers() if x.name.lower().endswith(".ttf")
-        )
-        assert len(font_members) == 6, font_members
-        for name in font_members:
-            member = rpm.extractfile(name)
-            assert member is not None
-            data = member.read()
-            font_report("2013 RPM " + name, data, original)
-            p55_font_report("2013 RPM " + name, data, p55_masks, p55_labels)
 
     # All six official fonts provide stronger within-family controls.
     # Their latest versions postdate LP2; use for shape discrimination only.
