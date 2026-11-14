@@ -1,47 +1,74 @@
-# Conditional p0 EPIPHANY SEEKS title: Fibonacci key-extension impossibility under authentic plaintext-F
+# Conditional EPIPHANY SEECS opening title: complete 5/8/13-lag GF29 key-family exclusion
 
-**14 November 2026, Agent44. Status: exact original-cipher exclusion of six explicit key extensions, conditional on two unproved premises; no unknown LP2 plaintext or authentic key recovered.**
+**14 November 2026, Agent44. Status: exhaustive original-cipher contradiction for every nonzero coefficient triple under two explicitly unproved source premises; no unknown LP2 plaintext, historical key, cipher or destination recovered.** The initial six familiar Fibonacci signs are retained below as a strict subset and source-facing historical motivation. This consolidated decision supersedes a narrower six-model exclusion.
 
-## Human-visible route and independent starting input
+## Source-selected human route and weakest assumptions
 
-The original physical LP2 p0 red heading consists of **8 and 5 GP runes** (13 symbols). The historical **2016 signed** Cicada message contains the exact English words **“epiphany seeks”**, whose canonical GP spelling is EPIPHANY SEECS, likewise 8+5 runes. A human might hypothesize that the later signed message supplies the opening title of the 2014 book. The creator did not explicitly confirm this; length equivalence does not establish plaintext. Its prior source audit and repeated-key failures are [here](lp2-p0-2016-epiphany-title-crib-gate.md).
+Physical LP2 p0 starts with a red rubric of **8+5 Gematria Primus runes**. The independently signed 2016 Cicada message contains **“epiphany seeks”**. Its established GP transliteration is **EPIPHANY SEECS**, also 8+5 runes. It is plausible that a later Cicada phrase hints at the book's opening title, but that connection is unconfirmed. Under the conjectured exact first 13 plaintext GP runes, ordinary modulo29 subtraction from the *unmodified first 13 p0 ciphertext runes* uniquely determines:
 
-The exact original p0 red ciphertext heading, assuming that title, determines a 13-symbol GP29 modular additive key:
+    presumed key K[0..12] = [26,24,8,19,27,24,18,3,0,8,0,16,19]
 
-    K[0..12] = [26,24,8,19,27,24,18,3,0,8,0,16,19]
+This is a **title-implied provisional key**, not externally authenticated password material. The three original **5,8,13** Fibonacci values independently occur in the genuine p15 spiral's generating sequence; they motivate one small register-extension family, though neither the manuscript nor 2016 text commands a recurrence. The simpler period13 and two exact autokey extensions were already screened in the earlier [title report](lp2-p0-2016-epiphany-title-crib-gate.md). This investigation keeps the source-derived 13 digits unchanged.
 
-This is an **implied key conditional on the title**, not an independently supplied password. The first 729 ciphertext runes are printed on the original source-visible pp0–2 (262+266+201). The 5,8,13 numbers are both the proposed title word-length structure and members of the original LP1/p15 Fibonacci material; this motivates a narrow test of the basic two-tap Fibonacci recurrence, although the author did not select that recurrence.
+The cipher rule is the authentic historical **plaintext-F-transparent GP29 additive encoder attested on solved p56**: plaintext F (GP index0) emits ciphertext F and consumes no key digit. For non-F plaintext, output its GP29 sum with the next key digit and consume that digit. A ciphertext F is therefore ambiguous and may have come either from literal F (skip) or from an enciphered non-F (consume). That p56 rule has **not** been established for p0–55; every conclusion below is conditional on transferring it to those pages. The rule is useful because any *non-F* original ciphertext matching the scheduled key forces an **impossible nontransparent plaintext F**.
 
-## Fully specified candidate inverse
+## Complete family and exact source-key state inverse
 
-For the source-presumed 13-symbol key prefix, extend each key from its first 13 digits without fitting ciphertext:
+Extend the 13 title-derived digits with *every GF29 coefficient triple* in the fixed 5/8/13-lag recurrence:
 
-    K[i] = (K[i-a] + s*K[i-b]) mod 29  for i >= 13,
-    (a,b) ∈ {(13,8),(13,5),(8,5)},  s ∈ {+1,-1}.
+    K[i] = a K[i−13] + b K[i−8] + c K[i−5]  (mod 29), i≥13
+    a,b,c ∈ {0,1,...,28}   [all 29³=24,389 triples]
 
-The cipher hypothesis is the original **plaintext-F-transparent additive GP29 cipher actually attested on solved p56**: if P[i] is F (GP index 0), emit ciphertext F and **do not** advance the key clock; otherwise emit (P[i]+K[clock]) mod29 and consume one key digit. Importantly, an observed ciphertext F is ambiguous, because some non-F plaintext can encrypt to F. The exact inverse therefore propagates *every* possible consumed-key clock at each F. For non-F ciphertext, a key equal to that ciphertext forces forbidden plaintext F and immediately invalidates that state.
+No coefficients or additional starts are fitted to original source output. At each ciphertext F the decoder retains **both legal clocks**, when possible. At each non-F ciphertext rune it rejects a state exactly when the key symbol would yield plaintext F. The state set is propagated through every original rune of **p0–2** (262+266+201=729), with the first 13 rune title/key premise fixed. Every triple surviving p0–2 is then propagated, without a new clock/reset, through **all 12,956 unchanged unknown-page ciphertext runes** pp0–55. The 55 rune-bearing pages are concatenated in their actual original order; p50 is runeless.
 
-The source assumption is deliberately stronger than an ordinary no-F additive key: it asks whether this precise historical ciphertext rule applies to the first unsolved chapter as well as to solved p56. A different keying rule, alternate title or altered state update is outside this test.
+| Exact exhaustive classification | Count of coefficient triples |
+| --- | ---: |
+| First impossible transition within source p0 (offsets 13–261) | **22,998** |
+| First impossible transition later in first chapter, p1–2 (offsets 262–728) | **1,381** |
+| Still legally invertible through original first 729 runes | **10** |
+| Nonzero-coefficient models surviving **all original 12,956 runes** | **0** |
+| Degenerate zero-coefficient model surviving whole book | **1** |
 
-## Exact source-level results
+Nine nonzero triples survive the first chapter. They then fail against *untouched p3–4 original ciphertext*, with their first impossible global rune offsets shown below. The **10th triple** is (0,0,0), which sets every later key digit to zero and thus trivially transmits the original uniformly random-looking ciphertext unchanged; it offers no decrypted text.
 
-All legal clocks were propagated from original rune offset 13 through up to rune728, with zero guessed skip masks. Every one of the six original-input candidates reaches an empty legal-state set on **p0 itself**. The table gives zero-based physical p0 rune offsets.
+| a | b | c | First impossible global rune offset | Physical page |
+| ---: | ---: | ---: | ---: | --- |
+| 1 | 6 | 25 | **879** | p3 |
+| 5 | 13 | 4 | **852** | p3 |
+| 5 | 25 | 9 | **734** | p3 |
+| 8 | 19 | 25 | **749** | p3 |
+| 9 | 14 | 10 | **737** | p3 |
+| 11 | 25 | 0 | **738** | p3 |
+| 16 | 1 | 13 | **799** | p3 |
+| 20 | 17 | 25 | **761** | p3 |
+| 25 | 21 | 5 | **1,082** | p4 |
+| 0 | 0 | 0 | **none** | zero suffix key |
 
-| Recurrence, modulo29 | First impossible p0 offset | Original ciphertext there | All remaining key clocks immediately before failure | Forced scheduled key |
-| --- | ---: | --- | --- | --- |
-| K[i−13] + K[i−8] | **60** | G | 58 | G |
-| K[i−13] − K[i−8] | **13** | TH | 13 | TH |
-| K[i−13] + K[i−5] | **109** | X | 107 | X |
-| K[i−13] − K[i−5] | **163** | O | 159 | O |
-| K[i−8] + K[i−5] | **172** | J | 168, 170 | J in both |
-| K[i−8] − K[i−5] | **143** | N | 141 | N |
+**This is an exact logical exclusion within the declared model**, independent of any language model or fitted English continuation. Allowing more than one F-mask path cannot rescue any nonzero triple, since every legal consumed-clock state was tracked. A different title, non-F-transparent cipher, key reset at a chapter/page boundary, nonlinear recurrence, another lag, or added transformations are different hypotheses not tested here.
 
-At each failure the non-F ciphertext equals the scheduled key under **every** possible historical bypass history; modular subtraction would produce plaintext F but the historical encoder would have had to emit literal ciphertext F and skip the key. These are exact logical contradictions under the two explicit hypotheses, independent of language scoring or plaintext guesses after the assumed title.
+## Six historically simple recurrences retained as source-conditioned subset
 
-The standalone CommonJS [source-original SFT](../sims/lp2_p0_epiphany_fibonacci_strictf_sft.cjs) derives the initial key from actual original rune values and the frozen 2016 phrase, enumerates all bypass clocks, asserts each failure, and verifies each case against a **729-rune planted original-layout positive control** whose remaining cleartext uses the independently solved p57 PARABLE runes. All six planted sources retain a complete valid inverse path. The original-cipher numeric computation and all six plants were independently executed against the live fetched original repository corpus in the tool runtime before commit. No new CI workflow is needed.
+Before broadening coefficients, the specific two-tap Fibonacci sum/difference rules were checked individually against the original source. Each already failed *on p0*, using the same exact ambiguous-F decoding:
 
-## Interpretation and next causal decision
+| Frozen recurrence, mod29 | First impossible p0 rune offset |
+| --- | ---: |
+| K[i−13] + K[i−8] | **60** |
+| K[i−13] − K[i−8] | **13** |
+| K[i−13] + K[i−5] | **109** |
+| K[i−13] − K[i−5] | **163** |
+| K[i−8] + K[i−5] | **172** |
+| K[i−8] − K[i−5] | **143** |
 
-This closes an economical *EPIPHANY SEEKS → 13-rune presumed key → elementary 5/8/13 Fibonacci extension → authentic plaintext-F GP29 additive cipher* family. It does **not** invalidate EPIPHANY SEEKS as a possible title independent of this proposed extension, nor imply that unknown pages use solved p56's F-bypass convention. Direct repeating period13 and two conventional autokey extensions were already independently excluded in the earlier title-crib report; this experiment tests a different recurrence.
+These are included in the 24,389 exhaustive family above. Do not treat the six outcomes as six independent pieces of evidence; they are fixed membership examples. The original ciphertext values at these failures match their forced scheduled keys under *every* remaining clock, so none corresponds to genuine plaintext F under this historical encoder.
 
-No unknown original plaintext, historical LP2 key or destination is obtained. Do not rescue this branch by fitting new Fibonacci tap pairs or changing the key after each contradiction. Further work needs **independent source-authored direction** selecting a title, an executable state recurrence, or key material that predicts held-out original ciphertext. This report is supporting evidence only, not an established solution.
+## Source-native controls and reproducibility
+
+The full **all-coefficient SFT** [sims/lp2_p0_epiphany_fibonacci_allcoeff_strictf_sft.cjs](../sims/lp2_p0_epiphany_fibonacci_allcoeff_strictf_sft.cjs) reads only the original LP2 GP29 corpus. It asserts exact source page lengths, the derived 13-key seed, all 24,389 coefficient outcomes, the ten first-chapter survivors in sorted coefficient order, every original follow-up contradiction, and the sole degenerate survivor. It verifies the very same exact F-state inverse on **three entire 12,956-rune positive plants** made from independent genuinely solved p57 plaintext (coefficient triples 25/21/5, 5/25/9 and 0/0/0), preserving the identical source first13 presumed-title ciphertext and using the correctly clocked key to encrypt all later runes. Each original-size plant is accepted as a legal true-key inverse, including all plaintext-F skips. This prevents a strict-F implementation bug from falsely excluding arbitrary keys.
+
+The earlier six specific source tests and 729-rune solved-page positive plants remain reproducible in [the simpler SFT](../sims/lp2_p0_epiphany_fibonacci_strictf_sft.cjs). The original corpus numerical enumeration, all nine holdout failure offsets, and three full-size positive plants were independently executed on the same live fetched original source data before document consolidation. The tests change no ciphertext characters, F markers, page order, or title positions.
+
+## Causal conclusion
+
+**The exact EPIPHANY SEECS title-key → GP29 linear recurrence at lags 5/8/13 → p56-style plaintext-F transparent additive cipher, under one continuous clock, does not decrypt the unknown manuscript under any nondegenerate GF29 coefficients.** At most a degenerate zero suffix survives, which preserves unsolved ciphertext. The title and the historical F rule are hypotheses, so this is a structural exclusion, not proof of the correct plaintext or author mechanism. It does not promote recovered plaintext to the authoritative results synthesis.
+
+Do not try arbitrary new coefficients of this same recurrence, arbitrary skip-mask fitting, or per-page resets solely to rescue its original failure. A credible successor must independently source a different key selection, nonce/rekey instruction or reversible operation and predict untouched original plaintext.
