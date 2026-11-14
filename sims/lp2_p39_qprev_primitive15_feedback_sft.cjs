@@ -203,7 +203,35 @@ for(const ch of transcript) {
   lastRune=runeMap.get(ch);lastPage=pagePos;gpSeen++;
  } else if(ch==='%')pagePos++;
  else if(ch==='/'||/\s/u.test(ch)) {}
- else {finishWord();if(ch==='
+ else {finishWord();if(ch.charCodeAt(0)===36)sectionPos++;}
+}
+finishWord();
+assert.equal(gpSeen,12956);assert.equal(wordSeen,2896);
+assert.equal(singletonRecords.length,82);
+/** @param {'book'|'section'|'page'} scope */
+function singletonCapacity(scope) {
+ const groups=new Map();
+ for(const item of singletonRecords) {
+  const key=(scope==='book'?'':scope==='section'?item.section+':':item.page+':')+item.prev;
+  if(!groups.has(key))groups.set(key,Array(29).fill(0));
+  groups.get(key)[item.c]++;
+ }
+ let forced=0,violations=0;
+ for(const h of groups.values()) {
+  const total=h.reduce((a,b)=>a+b,0);
+  const top=[...h].sort((a,b)=>b-a).slice(0,3).reduce((a,b)=>a+b,0);
+  forced+=total-top;
+  if(total>top)violations++;
+ }
+ return {rowStates:groups.size,forcedExceptions:forced,violatingRows:violations};
+}
+const completeBookRows=singletonCapacity('book'),
+ redChapterRows=singletonCapacity('section'),
+ physicalPageRows=singletonCapacity('page');
+assert.deepEqual(completeBookRows,{rowStates:28,forcedExceptions:15,violatingRows:9});
+assert.deepEqual(redChapterRows,{rowStates:67,forcedExceptions:0,violatingRows:0});
+assert.deepEqual(physicalPageRows,{rowStates:80,forcedExceptions:0,violatingRows:0});
+const preview=actualDecoded.slice(0,65).map(x=>corpus.translit[x]).join('-');
 const plant=page(57).concat(encodeWord('EACH'));
 assert.deepEqual(encodeWord('EACH'),[28,5,8]);
 const plantC=encrypt(plant,8);
