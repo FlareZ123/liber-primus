@@ -9,7 +9,7 @@ Python 3.11+, numpy. CI runner needs HTTPS access to public dictionary archives.
 """
 from __future__ import annotations
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 from hashlib import sha256
 from io import BytesIO
 import json
@@ -34,6 +34,7 @@ SCOWL_FILES = tuple(
     for language in ("english", "american") for level in LEVELS
 )
 REPLICATES = 1500
+DIGRAM_REPLICATES = 1200
 SEED = 3301810
 
 
@@ -42,6 +43,137 @@ def download(url: str) -> bytes:
     with urlopen(req, timeout=70) as response:
         return response.read()
 
+
+
+def uniform_digram_eulerian_page(sequence, rng):
+    """Uniform original-digram Euler trail, including repeated labeled edges.
+
+    Directed Wilson loop erasure chooses a uniform edge-labeled in-arborescence
+    rooted at the authentic last rune. Each other vertex reserves its tree
+    edge as its final departure; all earlier departures are shuffled. The
+    authentic last vertex shuffles all departures. Every edge-labeled Euler
+    trail has one last-exit tree and one set of departure orders, giving equal
+    probability to every labeled trail. Forgetting edge labels preserves
+    uniformity across rune trails: each rune trail has the same product of
+    parallel-edge factorial multiplicities.
+    """
+    if len(sequence) < 2:
+        return list(sequence)
+    outgoing = [[] for _ in range(29)]
+    for edge_id, (left, right) in enumerate(zip(sequence, sequence[1:])):
+        outgoing[left].append((edge_id, right))
+
+    terminal = sequence[-1]
+    in_tree = {terminal}
+    reserved_ids = {}
+    for start in range(29):
+        if not outgoing[start] or start in in_tree:
+            continue
+        walk = {}
+        node = start
+        while node not in in_tree:
+            edge = rng.choice(outgoing[node])
+            walk[node] = edge
+            node = edge[1]
+        node = start
+        while node not in in_tree:
+            in_tree.add(node)
+            edge = walk[node]
+            reserved_ids[node] = edge[0]
+            node = edge[1]
+
+    stacks = []
+    for vertex, edges in enumerate(outgoing):
+        if vertex == terminal:
+            ordered = list(edges)
+            rng.shuffle(ordered)
+        elif edges:
+            reserve = reserved_ids[vertex]
+            ordered = [edge for edge in edges if edge[0] != reserve]
+            rng.shuffle(ordered)
+            ordered.extend(edge for edge in edges if edge[0] == reserve)
+        else:
+            ordered = []
+        ordered.reverse()
+        stacks.append(ordered)
+
+    node = sequence[0]
+    trail = [node]
+    for _ in range(len(sequence) - 1):
+        node = stacks[node].pop()[1]
+        trail.append(node)
+    assert node == terminal and not any(stacks)
+    return trail
+
+
+def enumerate_toy_trails(sequence):
+    remaining = Counter(zip(sequence, sequence[1:]))
+    found = set()
+    def visit(path):
+        if len(path) == len(sequence):
+            if path[-1] == sequence[-1]:
+                found.add(tuple(path))
+            return
+        current = path[-1]
+        for (a, b), count in list(remaining.items()):
+            if a != current or count == 0:
+                continue
+            remaining[a, b] -= 1
+            visit(path + [b])
+            remaining[a, b] += 1
+    visit([sequence[0]])
+    return found
+
+
+def exact_digram_uniform_null(pages, words, pfx, actual):
+    # Finite uniformity diagnostic: six distinct vertex trails, with
+    # parallel edges and a nontrivial last-exit tree.
+    toy = [0, 1, 0, 2, 0, 1, 2, 0]
+    possible = enumerate_toy_trails(toy)
+    assert len(possible) == 6
+    rng = random.Random(SEED + 29)
+    toy_hist = Counter(tuple(uniform_digram_eulerian_page(toy, rng))
+                       for _ in range(6000))
+    assert set(toy_hist) == possible
+    assert all(abs(toy_hist[x] - 1000) < 220 for x in possible)
+
+    keys = sorted(actual)
+    counter = {key: 0 for key in keys}
+    sums = {key: 0 for key in keys}
+    extrema = {key: [100000, 0] for key in keys}
+    original_edges = [Counter(zip(page, page[1:])) for page in pages]
+    for rep in range(DIGRAM_REPLICATES):
+        trial_pages = [uniform_digram_eulerian_page(page, rng) for page in pages]
+        if rep < 2:
+            assert all(Counter(zip(pg, pg[1:])) == expected and
+                       pg[0] == src[0] and pg[-1] == src[-1]
+                       for pg, src, expected in zip(trial_pages, pages, original_edges))
+        scored = scores(trial_pages, words, pfx)
+        for key in keys:
+            val = scored[key]
+            counter[key] += (val >= actual[key])
+            sums[key] += val
+            extrema[key][0] = min(extrema[key][0], val)
+            extrema[key][1] = max(extrema[key][1], val)
+    result = {}
+    for key in keys:
+        p = (counter[key] + 1) / (DIGRAM_REPLICATES + 1)
+        result[f"{key[0]}:k{key[1]}"] = {
+            "source": actual[key], "mean": round(sums[key] / DIGRAM_REPLICATES, 5),
+            "min": extrema[key][0], "max": extrema[key][1],
+            "ge": counter[key], "tail_plus_one": round(p, 8)
+        }
+    emit("uniform_exact_directed_digram_null",
+         method="directed Wilson last-exit arborescence plus uniform departure permutations",
+         proof="Each edge-labeled Euler trail uniquely fixes its last-exit tree and outgoing-edge orders; Wilson samples trees uniformly and all order sets have identical cardinality",
+         toy_distinct_paths=len(possible), toy_hist=sorted(toy_hist.values()),
+         original_each_page_digram_matrix_preserved=True,
+         original_each_page_endpoints_preserved=True,
+         original_page_spanning_word_count=32,
+         seed=SEED + 29, replicates=DIGRAM_REPLICATES,
+         familywise_min_adjusted=min(1.0, 8 * min(
+             (counter[key] + 1) / (DIGRAM_REPLICATES + 1) for key in keys)),
+         results=result)
 
 def original_lexicons() -> dict[str, dict[str, object]]:
     cmu_bytes = download(CMU2007)
@@ -277,6 +409,7 @@ def main():
          familywise_min_adjusted=min(1.0, 8*min(
              v["tail_plus_one"] for v in random_result.values())),
          results=random_result)
+    exact_digram_uniform_null(pages, words, pfx, actual)
     emit("limit", caveat="Period lexicons alone do not select cipher operation or unknown plaintext; exact global phase changes source page-boundary alignment; page rotations alter source first/last rune. Familywise correction applies to the predeclared two lexicons times 4 widths only.",
          recovered_unknown_GP29_plaintext=0)
 
