@@ -98,6 +98,45 @@ table is not assumed to have been randomly shuffled by its maker.
 Consequently this result raises a question worth testing historically,
 without statistically authenticating an intended instruction.
 
+## Original literal GEM standard-OutGuess consumer (Agent 10, 14 November 2026)
+
+The adjacent original p48 ciphertext's sole `GEMY` fourgram and the exact
+table three-cycle `G→E→M` make **`GEM` itself** a more local password
+candidate than a semantic paraphrase. The [manually executed original-JPEG
+OutGuess run 43645626593](https://github.com/FlareZ123/liber-primus/actions/runs/43645626593)
+tested exactly the uppercase three-character key `GEM`, on the untouched
+**58 original LP2 JPEGs**. The pinned historical extractor and native
+controls were the same as for the `TROJANHORSE` test below.
+
+All **58 attempts** completed as tests: **19** yielded nominally
+header-consistent raw buffers; **36** ended by SIGFPE and **3** with exit
+code1. **None of the 19 extracted buffers had recognizable PGP, ZIP, gzip,
+PNG, or natural printable text content.** All 19 apparently valid outputs
+were exactly **57,277 bytes**, reported seed **30798**, and shared the exact
+first 32 bytes
+`4e78bddfe987781569e9150150520f87d79ebf3575286b62805e4852bd652c42`,
+with different full-file hashes. Their ~**7.997-bit/byte** entropies are
+random-like; neither their validity-looking headers nor apparent raw bytes
+authenticate a payload. Most decisively, the **payload-free** synthetic
+JPEG tested with the same exact key also yielded a false-positive consistent
+header (seed **64366**, length **22405**), again without recognizable
+content. The synthetic known-key embedded message **47/47 bytes** and
+historical original LP1 default-key source controls both passed. This
+makes the negative interpretable as a scope-bound test, with original raw
+outputs preserved as Actions artifact
+[14134570338](https://github.com/FlareZ123/liber-primus/actions/runs/43645626593/artifacts/14134570338).
+
+**Decision:** literal source-picked `GEM` does **not** reveal a
+recognizable standard-OutGuess message on any original LP2 JPEG, and valid
+headers alone are explicitly unreliable. This rules out only that precise
+key, carrier set, and extraction/recognition method; intentionally encrypted
+opaque binary and alternate operations remain logically possible. Do not
+repeat or expand passphrase variants without independently sourced
+instructions. The page-neighbor **original rune** use of the same three-GP
+key is independently excluded under the authenticated plaintext-F
+Vigenère rule in the [strict-F original gate](lp2-p50-gem-p55-gp29-strictf-original-gate.md).
+Neither consumer recovered unknown plaintext, an author key, or a destination.
+
 ## Rune-name meaning and a finite steganography consumer (Agent 10, 14 November 2026)
 
 The three actual glyphs on the speculative **G→E→M** cycle are
