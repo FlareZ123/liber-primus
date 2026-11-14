@@ -37,6 +37,35 @@ const stripped=text.replace(/^<html>\n<head><title>133<\/title><\/head>\n<body>\
   .replaceAll(/<img src="\d+\.jpg" \/><br \/>\n/g,"")
   .replace(/<\/div>\n<\/body>\n<\/html>\n$/,"");
 assert.equal(stripped,"","index contains no other elements, source keys or download link");
+/** @param {Buffer} bytes @returns {{tabs:number,whitespaceLines:number[],trailing:number[]}} */
+function tabSpaceInventory(bytes) {
+  const input = bytes.toString("utf8");
+  const lines = input.split(/\r?\n/u);
+  const whitespaceLines = [];
+  const trailing = [];
+  for (const line of lines) {
+    if (/^[ \t]+$/u.test(line)) whitespaceLines.push(line.length);
+    const match = /[ \t]+$/u.exec(line);
+    if (match) trailing.push(match[0].length);
+  }
+  return {tabs: (input.match(/\t/gu) || []).length, whitespaceLines, trailing};
+}
+const indexSpace = tabSpaceInventory(html);
+assert.deepEqual(indexSpace, {tabs: 0, whitespaceLines: [], trailing: []});
+const signed2014 = fs.readFileSync(path.join(ROOT,
+  "resources/cicada2014-may2-signed-message.asc"));
+assert.equal(signed2014.length, 1183);
+assert.equal(gitBlob(signed2014), "e2b7382ac2cfb0adfe028cc063fc6048e0ad718e");
+const signedSpace = tabSpaceInventory(signed2014);
+assert.deepEqual(signedSpace, {
+  tabs: 0,
+  whitespaceLines: [3,11,13,17,29,31,37],
+  trailing: [2,3,7,11,13,17,23,29,31,37]
+});
+// The original 2013 four-line source-positive is reproduced by
+// lp2_2013_whitespace_ascii_punctuation_selector_sft.cjs.
+// Both 2014 wrappers lack the literal two-symbol binary source carrier.
+
 let total=0;
 const verified=[];
 for(let i=0;i<58;i++){
@@ -57,5 +86,11 @@ console.log(JSON.stringify({
   indexGitBlobSHA1:gitBlob(html),
   pageCount:verified.length,allVerified:true,totalSourceImageBytes:total,
   first:verified[0],last:verified.at(-1),
+  original2013BinaryWhitespaceTransfer:{
+    positiveControl:"2013 Git blob 297c1dfee74ff79acc2d944952d06d1012928803",
+    rule:"complete all-tab/space lines; tab=1, space=0; eight-bit ASCII",
+    may2014Index:indexSpace,may2014UnsignedWhitespaceWitness:signedSpace,
+    directCarrier:"absent: no tabs and no whitespace-only HTML lines"
+  },
   note:"A separate original ZIP/tar or HTTP response header is not evidenced by this pinned participant snapshot"
 },null,2));
