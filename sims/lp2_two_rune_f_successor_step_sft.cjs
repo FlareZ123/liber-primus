@@ -90,10 +90,13 @@ const authorClear = clearIndices.map(i => {
   const tokens = parseWords(clearLP1Sections[i].replace(/&/g, ''));
   const short = tokens.filter(w => w.length === 2);
   return {section: i, two: short.length,
-    ofif: short.filter(w => (w[0] === 3 || w[0] === 10) && w[1] === 0).length};
+    ofif: short.filter(w => (w[0] === 3 || w[0] === 10) && w[1] === 0).length,
+    finalE: short.filter(w => w[1] === 18).length};
 });
 assert.deepEqual(authorClear.map(v => v.two), [4, 13, 17, 18, 6, 2]);
 assert.deepEqual(authorClear.map(v => v.ofif), [0, 2, 1, 1, 0, 0]);
+assert.deepEqual(authorClear.map(v => v.finalE), [3, 8, 12, 8, 2, 0]);
+assert.equal(authorClear.reduce((n, v) => n + v.finalE, 0), 33);
 assert.ok(authorClear.reduce((s, v) => s + v.ofif, 0) /
   authorClear.reduce((s, v) => s + v.two, 0) < chapterMaximum / two.length,
   'First-party author F share does not independently exclude the original model');
