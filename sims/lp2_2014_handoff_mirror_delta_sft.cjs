@@ -62,7 +62,9 @@ for(let n=0;n<58;n++){
 assert.deepEqual([strippedOnly,altered,colourOriginal,grayOriginal],[35,23,35,23]);
 assert.equal(delta.imageDifference.standardJfifApp0Only,35);
 assert.equal(delta.imageDifference.additionalUnexplainedModifications,23);
-const html=read("resources/historical/stage11-2014-index.html");
+// Git checkout expands tracked LF text to CRLF on Windows. Compare Git blob LF bytes.
+const canonicalText=(p)=>Buffer.from(read(p).toString("utf8").replace(/\r\n/g,"\n"),"utf8");
+const html=canonicalText("resources/historical/stage11-2014-index.html");
 assert.equal(html.length,1640);
 assert.equal(gitBlob(html),delta.periodSource.indexGitBlob);
 assert.equal(html.at(-1),10);
@@ -71,7 +73,7 @@ for(let i=0;i<58;i++){
  const source='<img src="'+i+'.jpg" />';
  assert.ok(html.toString("utf8").includes(source),"Original HTML missing "+source);
 }
-assert.equal(gitBlob(read("resources/historical/cicada2014-stage11-message.asc")),
+assert.equal(gitBlob(canonicalText("resources/historical/cicada2014-stage11-message.asc")),
  delta.signedHandoff.originalGitBlob);
 console.log(JSON.stringify({
  status:"verified 58 original Stage11 JPEG bytes vs modern archive inventory",
