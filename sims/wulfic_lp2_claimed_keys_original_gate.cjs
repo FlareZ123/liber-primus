@@ -67,6 +67,32 @@ function firstImpossibleTransparentF(cipher, config) {
   }
   return -1;
 }
+/**
+ * Construct a genuine solved-p56-style F-transparent ciphertext.
+ * Plaintext GP-F is passed through as zero and does not consume key.
+ * The non-F encryption may itself also emit ciphertext zero.
+ *
+ * @param {number[]} plain
+ * @param {{mode:"add"|"sub",key:number[]}} config
+ * @returns {{ciphertext:number[],literalF:number,encryptedF:number}}
+ */
+function encodeTransparentF(plain, config) {
+  let clock = 0;
+  let literalF = 0;
+  let encryptedF = 0;
+  const ciphertext = plain.map((p) => {
+    if (p === 0) {
+      literalF++;
+      return 0;
+    }
+    const k = config.key[clock % config.key.length];
+    clock++;
+    const c = (p + (config.mode === "add" ? 29 - k : k)) % 29;
+    if (c === 0) encryptedF++;
+    return c;
+  });
+  return { ciphertext, literalF, encryptedF };
+}
 for (const [pageName, config] of Object.entries(cases)) {
   const page = Number(pageName);
   const cipher = corpus.pages[page].indices;
@@ -88,6 +114,17 @@ for (const [pageName, config] of Object.entries(cases)) {
     return (p + (config.mode === "add" ? 29 - k : k)) % 29;
   });
   assert.deepEqual(decode(ciphertextPlant, config), nativeP57);
+  // Independent F-transparent positive: all 95 authentic source-native clear
+  // runes are now encoded under the ACTUAL skip rule. This has both kinds of
+  // ciphertext F, ensuring the all-clock DP does not falsely reject an
+  // authentic transparently encoded message or mis-handle ambiguous Fs.
+  const transparentPlant = encodeTransparentF(nativeP57, config);
+  assert.equal(transparentPlant.literalF, 3);
+  assert.ok(transparentPlant.encryptedF >= 2);
+  assert.equal(firstImpossibleTransparentF(transparentPlant.ciphertext, config), -1);
+  console.log("F-transparent positive: literalF=" + transparentPlant.literalF +
+    ", encryptedF=" + transparentPlant.encryptedF +
+    ", genuine source-native runes=" + nativeP57.length + "/95, all clocks feasible.");
   console.log("Exact all-F-mask p56 bypass gate first impossible at original offset " + deadAt + "; authentic p57 plant recovered " + nativeP57.length + "/95.");
   console.log("Physical p" + page + ", " + cipher.length + " runes; published " + config.mode + " key length " + n);
   console.log("First key cycle: " + config.prefix);
