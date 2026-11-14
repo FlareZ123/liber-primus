@@ -206,4 +206,5 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) main();
+module.exports = {BANDS, SHARDS, range, testRanges, UPSTREAM};
