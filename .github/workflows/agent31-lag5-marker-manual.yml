@@ -1,0 +1,15 @@
+name: Agent 31 lag-five fixed-marker original-input SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-cipher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/lp2_lag5_reserved_rune_triple_word_sft.cjs
