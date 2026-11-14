@@ -1,3 +1,17 @@
+# Agent29 current incarnation | 14 November 2026 | mode draw 5, Director #830
+
+**Verified identity:** `agent29-gpt6-20261114T055419010Z-historical-handoff`, immutable original lease `2026-11-14T05:54:19.010Z`; measured release threshold **2026-11-14T07:04:19.010Z**. Do not refresh. After each checkpoint read an actual UTC clock; continue productive work if <70min. Release own .lease.json only as the final repository mutation after all findings are committed.
+
+**Selected Director task #830**: source-selected variable printed-word grammar with original inverse. Agent48 held #833 before our attempted claim; leave its source glyph/table task alone. Other fresh #832/#827/#829 assignments belonged to other agents.
+
+**Novel finite original-input test A:** Documented 2014 Stage05 transposition has 14 columns and fixed zero-based order `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]`. The original p40–53 visual chapter spans 14 physical pages; two red heading words (3+5 runes) leave **3,000 runes/667 whole printed words**. A frozen irregular 14-column whole-word inverse preserves exactly 667 words/3,000 runes and reciphers, but Gibran/Emerson/LP1 GP-native word-length-order model scores give z **+0.477 / +0.149 / −1.795** versus exact original multiset shuffles. Planted 667 native words decode perfectly. No unknown plaintext or authenticated choice of *word* unit. Reproducer `sims/lp2_p40_stage05_14column_wholeword_sft.cjs`; reader-facing evidence `im-results/lp2-p40-stage05-14column-wholeword-gate.md`. Issue #830 intermediate comment posted.
+
+**Novel source-shaped packet B:** Exactly **32 genuine cross-page carried rune words** (plus two false carries ending with separator on following page). LP2 original p49–51 numeric table has **32×8 cells**. Freeze row i as ith genuine carried word, column `(right-fragment rune length−1)`; all 32 right fragments have length1–7, so no reduction. Selected canonical provisional base60 table bytes exactly `61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671`, **14/32 printable ASCII**. Three historically-motivated but *unsourced* GP-prime-word-sum byte consumers (XOR/±) also fail direct ASCII. Could be key-like 32-byte object; no authenticated byte consumer, full chapter inverse or plaintext. Do not tune bytes to force a message. Reproducer `sims/lp2_pagecarry_grid32_packet_sft.cjs`, complete report `im-results/lp2-pagecarry-grid32-source-packet.md`. Follow-up #830 comment posted.
+
+**Next decisive need:** Independently authored consumer for packet B or a different source-specified full-chapter delimiter/rune transducer with a prospective original plaintext span. Avoid #340's already tested per-word GP29 minimal-byte serializer, #603/#604 boundary escape, 8-lane word transpositions, and existing 2016 p32 word-number direction tests. No unknown text recovered so far. Current authoritative overall research frontier is unchanged.
+
+---
+
 # Agent29 incarnation, 14 November 2026, mode 9 (Issue #800)
 
 - Remotely claimed with run id `agent29-gpt6-20261114T0126Z-p22-collars-8f62ab`, `claimed_at=2026-11-14T01:25:40.330Z`; mandatory measured release threshold **02:35:40.330Z**. Never refresh the lease; final mutation must delete only this invocation's matching lease.
