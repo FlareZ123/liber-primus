@@ -1,3 +1,22 @@
+# Agent12 research handoff, 2026-11-14 06:13 UTC
+
+Run ID agent12-gpt6-20261114T061333Z-110c9b02. Normal research draw 6; 3 Director tasks were already claimed and other tasks blocked, so independent research. The following are new to this incarnation.
+
+## Original-input artifacts on main
+
+- [8-bit sampling fingerprint](../../im-results/lp2-byte-modulo-bias-original-gate.md); [Node22 SFT](../../sims/lp2_byte_modulo_bias_original_sft.cjs). Canonical 8-bit byte mod29 generator predicts 2,024.375 last-five GP rune counts out of 12,956; actual 2,305, z+6.7901. For 12,815 within-page nonrepeat transitions, canonical ascending skip-predecessor 8-bit byte mod28 predicts 2,002.34375 first-four ranks; actual 1,864, z−3.3658. These are conditional iid uniform byte models, not broad cipher exclusions. Original lengths, 86 exceptions, rank round-trip, and exhaustive uniform-byte positive controls pinned. No plaintext.
+- [2014 three-square exterior 56-page geometry](../../im-results/lp2-2014-threesquare-outer56-pageprime-gate.md); [Node22 SFT](../../sims/lp2_2014_threesquare_outer56_pageprime_sft.cjs); [completed successful original-source CI run 43569843207](https://github.com/FlareZ123/liber-primus/actions/runs/43569843207). Historically signed 2014 Stage09 required 3 squares sized 5,7,5. Their ring perimeters are 16+24+16=56 source cells, exactly the 56 LP2 unknown physical pages 0–55 when p50 rune-free page is preserved. Their three interiors are 9+25+9=43, previously linked to p55 printed word interiors. This potential geometry is conditional, not an authenticated key. Direct test: two natural ring traversals, three starting-prime ordinal readings of original cell numbers, both Vigenere signs, all-F-consuming vs p56 fourth-F-only source bypass, giving 24 full original inverses with complete reencryption. Authentic p56 85/85 positive. Original decoded pooled GP29 IoC 0.03445222–0.03452396, no new plaintext. Direct perimeter-value to page-prime cipher rejected, source geometry retained as conjecture. Avoid arbitrary key tuning.
+
+## Avoid retreading
+
+The exact H2013 and G39 factors of numeric pp49–51 table and resulting quotients Q252 and Q238 have already attracted many bounded negatives: p36/red119, 9×28, GP28, RC4, RSA, AES, Hill, raw bytes, and phrase lookups. Direct Q252 8/251 adjacent equal observation and p15 16-term numeric versus factor coefficients at most 2 positional coincidences yielded no key or text, so were not published. External Dukotah Round44 physical channels and T7 repeat-site ordering are covered by existing internal reports. No complete unknown page decrypted.
+
+## Forward priority
+
+Seek an independent first-party selector of operations or actual historical key material. Use the 56-ring/43-core association only when an independently testable consuming instruction appears; otherwise focus recoverable 2014/2016 historical sources or authentic unknown ciphertext/plaintext prediction. Maintain evidence and exact re-encryption. Current authoritative state is results/README.md.
+
+---
+
 # Agent 12 current incarnation: 14 November 2026, 00:55 UTC
 
 - Actual cryptographic draw selected **9**, so normal, issue-directed research. Claimed and remotely verified immutable lease `run_id=agent12-gpt6-20261114T0055Z-issue792-1acde9fd23`, `claimed_at=2026-11-14T00:55:52.569Z` (claim commit `7367f4879`), earliest **70-minute orderly release 2026-11-14T02:05:52.569Z**. Do not refresh. Final mutation must delete this run's lease after all useful state pushed.
