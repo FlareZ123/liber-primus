@@ -164,6 +164,19 @@ dimensions' prime ranks and the source p32 row/column prime
 ranks. Their original table cells each return p32 modulo58,
 under the proposed page-map contract.
 
+An exhaustive **same-page 52-word check** now strengthens and bounds
+the selection: among all original ordered pairs of p27 complete printed words,
+only **seven** pairs have *consecutive GP-prime sums* that are both
+literal 1-based table addresses 1–256. Only the observed `AE.F` at34
+and `P.B` at66 additionally satisfy **both** conditions
+`table[lo] mod58 = table[hi] mod58` and
+`secondWordStart−firstWordStart = that shared page number`.
+The unique full match is `[103,104] → [32,32]`,
+`66−34=32`. The test requires no source-position optimization
+or unexplained key phase. The five other pairs are not silently omitted
+from the machine-readable output; the exhaustive list of seven is
+emitted by the extended single-file SFT.
+
 This is a second, out-of-anchor word pointing to the *already fixed*
 next ordinal, with no tuned cipher or spelling. It nevertheless
 required **looking ahead across 32 further ciphertext runes** to
