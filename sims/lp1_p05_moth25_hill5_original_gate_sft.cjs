@@ -106,6 +106,45 @@ for (const skip of [15,41]) {
       readout:out.map(i=>corpus.translit[i]).join("")});
   }
 }
+/** First-difference and reintegration are exact mutual inverses.
+ * The LP2 ciphertext's independent five-lag excess motivates one frozen
+ * differential-Hill model using the historically witnessed 5x5 key.
+ * Block clock starts separately at each moth-matched complete passage.
+ */
+function difference(xs) {
+  return xs.map((x, i) => mod(x - (i ? xs[i - 1] : 0)));
+}
+function integrate(xs) {
+  let state = 0;
+  return xs.map(x => (state = mod(state + x)));
+}
+const inverseKey = new Map([
+  ["K", Ki], ["K^T", Kit], ["K^-1", K],
+  ["(K^-1)^T", Kt]
+]);
+const differentialCases = [];
+for (const [operator, key] of keys) {
+  const reverse = inverseKey.get(operator);
+  for (const [target, original] of [
+    ["p53_red51_F38", redSource], ["p55_all76_F25", p55Source]
+  ]) {
+    const transformed = integrate(apply(difference(original), key));
+    assert.deepEqual(
+      integrate(apply(difference(transformed), reverse)), original);
+    differentialCases.push({
+      target, operator, ioc: indexOfCoincidence(transformed),
+      readout: transformed.map(i => corpus.translit[i]).join("")
+    });
+  }
+  const planted = corpus.pages.find(p => p.page === 57).indices;
+  assert.equal(planted.length, 95);
+  const ciphertext = integrate(apply(difference(planted), reverse));
+  assert.deepEqual(integrate(apply(difference(ciphertext), key)), planted);
+}
+assert.equal(differentialCases.length, 8);
+assert(Math.abs(differentialCases[0].ioc - 0.03918367346938775) < 1e-13);
+assert(Math.abs(differentialCases[5].ioc - 0.03099099099099099) < 1e-13);
+
 const keyCase=cases.find(x=>x.target==="p53_red51_F38"&&x.operator==="K");
 const inverseCase=cases.find(x=>x.target==="p55_all76_F25"&&x.operator==="K^-1");
 assert(Math.abs(keyCase.ioc-0.037551020408163265)<1e-13);
@@ -117,5 +156,7 @@ console.log(JSON.stringify({
   exactPositiveControl:"95/95 original solved p57 runes recover under all 4 orientation pairs",
   numberOfOriginalCases:cases.length,
   cases,
+  differentialOriginalCases:differentialCases.length,
+  differentialCases,
   conclusion:"Neither historic third-square Hill5 orientation nor any of three source F skip positions yields recognizable source-native plaintext."
 },null,2));
