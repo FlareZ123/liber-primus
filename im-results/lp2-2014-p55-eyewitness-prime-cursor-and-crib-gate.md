@@ -60,9 +60,27 @@ One exact useful exclusion applies independently of the previous p56→p55 curso
 
 This is a mathematical exclusion of **the conditional historical phrase-and-specific-cipher pairs**, without implying the guesses are false plaintext under other key systems. The 13-rune visual word could encode any other word of the same GP length, or use the text lengths only as cipher structure.
 
+## Another explicit 2014 p55 operator: Jordan's second totient
+
+The exact **21 May 2014, 18:17** archived \`#cicadasolvers\` line under \`<BlueFox>\` asks whether anyone has tested **\`J_2(n)\` on page55**. This is a participant question, not a 3301-authenticated instruction and no integer-argument source is named. For a prime \`p\`, the standard Jordan totient \`J_2(p)=p²−1\`. The closest low-complexity analogy to solved p56 is therefore to replace its \`φ(p)=p−1\` additive key by \`J_2(p)\bmod29\` while keeping consecutive primes, the literal-plaintext-F nonconsuming rule, and the genuine GP29 alphabet.
+
+The original-source test fixes prime starts **0/84/85** (restart at prime2, true p56-84-key continuation at prime439, or naïve p56-85-glyph continuation at prime443), tests exact physical p55 **all76 or body75 excluding incoming p54 carry**, and both simple additive signs. Exactly **12** source-motivated finite cases; no fitted prime phase, seed, key or language model.
+
+| First prime index | All76: minus / plus first contradiction | Body75: minus / plus first contradiction |
+| --- | --- | --- |
+| **0** | p55 index **56 / 3** | p55 index **56 / 13** |
+| **84** | p55 index **12 / 3** | p55 index **11 / one complete formal output** |
+| **85** | p55 index **2 / 11** | p55 index **12 / 3** |
+
+Offsets above are original physical page-local **zero-based** glyph positions. Under the **only formally legal** output (body75, prime index84, **plus** inverse), original ciphertext exactly forward-encrypts but recovered GP29 IoC is **0.035315315315**, and its transliteration begins \`JATHYDBOEJNGSEOGAEAEFIAWOJEAJYAEE\`. This is nonlinguistic and cannot be promoted to plaintext. All other eleven original variants exhaust all legal original F positions and fail the known plaintext-F emission constraint. Every variant has an independently generated original solved-p57 native GP cipher positive control, recovering **76/76** or **75/75** symbols with no exceptions.
+
+**Decision:** The archival Jordan suggestion yields a *testable cipher family*, but the 2014 speaker supplied neither the prime-argument selector nor the clock/key/sign/boundary, and the only formal survivor has no readable GP text. No authenticated unknown plaintext. This excludes exactly the fixed three-prime-start/physical-geometry 12-case direct Jordan variant; composite Jordan inputs or independently sourced keys remain outside scope.
+
+[Reproducible original-input CommonJS SFT](../sims/lp2_2014_p55_jordan2_prime_original_sft.cjs) and [passed Windows Node22 run43653912451](https://github.com/FlareZ123/liber-primus/actions/runs/43653912451).
+
 ## Decision and reproduction
 
-Three useful future-reader conclusions follow. First, the 2014 contemporaneous suggestion supplies historically real *human* motivation for a forward p56 prime-key continuation, and that exact operation fails algebraically before finishing original p55. Second, the 2014 **13-rune** language guesses and 6/4 continuations genuinely match p55 printed word lengths, but no recovered key supports them. Third, an **all-forward-prime-offset** invariant excludes both specified 23-rune guesses under the exact solved p56 cipher family. **No unknown original LP2 plaintext or authentic key is recovered.**
+Four useful future-reader conclusions follow. First, the 2014 contemporaneous suggestion supplies historically real *human* motivation for a forward p56 prime-key continuation, and that exact operation fails algebraically before finishing original p55. Second, the 2014 **13-rune** language guesses and 6/4 continuations genuinely match p55 printed word lengths, but no recovered key supports them. Third, an **all-forward-prime-offset** invariant excludes both specified 23-rune guesses under the exact solved p56 cipher family. Fourth, a direct Jordan J₂ prime variant inspired by a separate May2014 witness yields one mathematically legal but nonlinguistic body75 output out of twelve frozen source variants. **No unknown original LP2 plaintext or authentic key is recovered.**
 
 Retire these precise direct operations. A new attempt needs authenticated key material or an independent creator-supplied instruction identifying a different reversible operation, and should test on unmodified original ciphertext rather than optimize these community guesses.
 
