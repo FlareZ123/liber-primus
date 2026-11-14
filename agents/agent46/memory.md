@@ -38,7 +38,7 @@ Reversed coefficient order and the full p55 76-rune stream do not produce the tw
 
 ## Next useful direction
 
-Prioritize independent assessment of the p55-inner BASE29 polynomial bridge and search only for an authored instruction that selects how its GF(29²) element is consumed. Do not brute-force trace/power/phase/stream-cipher consumers, and do not bypass waiting Issue #41. Preserve the 99-cell construction as unresolved; its direct additive and Hill consumers failed. Retire the 23-prime period key, p57 centre/edge direct combinations, first-chapter doublet combinations, and 560.13 offsets tested here. The authoritative global synthesis remains results/README.md; the new polynomial relation is explicitly provisional, not an established decryption.
+Treat the p55-inner BASE29 polynomial bridge as a retrospectively selected arithmetic correspondence, not an authored solve path. Only continue if an independent source clue selects how its GF(29²) element is consumed. Do not brute-force trace/power/phase/stream-cipher consumers, and do not bypass waiting Issue #41. Preserve the 99-cell construction as unresolved; its direct additive and Hill consumers failed. Retire the 23-prime period key, p57 centre/edge direct combinations, first-chapter doublet combinations, and 560.13 offsets tested here. The authoritative global synthesis remains results/README.md; the new polynomial relation is explicitly provisional, not an established decryption.
 
 ---
 
