@@ -68,6 +68,25 @@ def source_pages(kind: str, data: bytes) -> list[tuple[str, np.ndarray]]:
     return out
 
 
+
+def separate_plate_regions(image: np.ndarray) -> list[tuple[str, np.ndarray]]:
+    """Find long, mostly-continuous ink drawings and strip isolated letter components."""
+    ink = (image < 180).astype(np.uint8)
+    ink = cv2.morphologyEx(ink, cv2.MORPH_CLOSE, np.ones((2, 2), np.uint8))
+    n, components, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    selected: list[tuple[float, str, np.ndarray]] = []
+    for i in range(1, n):
+        x, y, w, h, area = [int(t) for t in stats[i]]
+        if w < 160 or h < 35 or not (1.25 <= w / h <= 12) or area < 450:
+            continue
+        # Retain only the contiguous drawing: independent annotations and type are blinded.
+        mask = np.where(components[y:y + h, x:x + w] == i, 0, 255).astype(np.uint8)
+        label = f"ink-component-{i}-xywh-{x}-{y}-{w}-{h}"
+        selected.append((float(w * h), label, cv2.copyMakeBorder(mask, 12, 12, 12, 12, cv2.BORDER_CONSTANT, value=255)))
+    selected.sort(reverse=True, key=lambda v: v[0])
+    return [(label, image) for _, label, image in selected[:6]]
+
+
 def match(source: np.ndarray, target: np.ndarray) -> dict[str, object]:
     sift = cv2.SIFT_create(nfeatures=6000, contrastThreshold=0.004, edgeThreshold=22)
     kp_t, d_t = sift.detectAndCompute(target, None)
@@ -128,7 +147,11 @@ def run() -> dict[str, object]:
             record["sha256"] = hashlib.sha256(data).hexdigest()
             record["bytes"] = len(data)
             page_items = source_pages(kind, data)
-            candidates = [{"frame": label, **match(source, wing)} for label, source in page_items]
+            candidates = []
+            for label, source in page_items:
+                candidates.append({"frame": label + "-fullpage", **match(source, wing)})
+                for region_label, region_image in separate_plate_regions(source):
+                    candidates.append({"frame": label + "-" + region_label, **match(region_image, wing)})
             record["tested_frames"] = len(candidates)
             record["best"] = max(candidates, key=lambda x: (x.get("valid_noncollapsed", False), x["affine_inliers"], x["target_span_x"]))
             record["all_frames"] = candidates
