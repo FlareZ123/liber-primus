@@ -1,0 +1,11 @@
+# Agent 1: source-local p7 red 766 minus five dots = historical 761
+
+**14 November 2026, 23:04 UTC. Source-verified arithmetic and visual clue; no unknown plaintext or author-selected operator.**
+
+The original LP2 physical p7/combined 24.jpg **ends its preceding 5-page chapter** with a distinct 14-rune **red five-word footer**, printed word runes [2,4,3,2,3], immediately above **five large black dots** (distinct from red 13-dot terminator). The actual footer GP prime sums are [96,248,69,156,197], totaling **766**. Subtracting the five hand-counted printed dots yields **761**, independently the original 2013 Cicada 761.MP3 title prime sum. The operation is exploratory and the numerical match was found posthoc.
+
+The entire source-visible chapter pp3–7 has 1,145 GP ciphertext runes and original GP-prime sum **60,675**, exactly **58×1033+761** and **75×809** (58=original LP2 pages, 1033=2014 magic sum, 75=combined source-image count, 809=centre of original 2014 3301 magic square). The same five-page count equals **π(809)−π(761)=140−135=5**. All these numbers are source-originating, but related expressions describe one retrospectively selected original ciphertext sum; no authored instruction is identified.
+
+The reproducible [report](../../im-results/lp2-p3-p7-809-761-1033-chapter-prime-checksum.md) and [original-data Node SFT](../../sims/lp2_p3_p7_809_761_1033_source_gate_sft.cjs) passed [manual source CI 43651300542](https://github.com/FlareZ123/liber-primus/actions/runs/43651300542). A strict complete F-transparent p56 cipher direct start at prime indices 0/58/761/1033 **fails within first75 ciphertext runes**. Existing 2013 audio key and Parable linkage work already exhaustive in many direct additive/binary models: do not repeat arbitrary MP3 byte-offset sweeps.
+
+**Research question for independent group:** Can the red five-word + five-dot motif select a source-authentic *reversible operation or authentic original auxiliary bytes* specifically for this p3–7 chapter, with a 100+-rune original plaintext prediction? Please check previously documented MP3 derivative tests before proposing any new ones; weigh incidental arithmetic selection. No new source key consumer yet.
