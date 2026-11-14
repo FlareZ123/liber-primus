@@ -31,7 +31,7 @@ function pageIds(line) {
   }
   return found;
 }
-const perFile=[],hits=[];
+const perFile=[],hits=[],contextSamples=[];
 for (const path of process.argv.slice(2)) {
   const src = sources.find(s=>path.endsWith(s.name));
   assert(src, 'Unknown log path '+path);
@@ -62,6 +62,11 @@ for (const path of process.argv.slice(2)) {
       context:near.map((v,k)=>({line:lo+k+1,text:v.slice(0,310)}))
     });
   }
+  if(src.name==='#cicadasolvers.freenode.log'){
+    const sites=[198542,212402,230517,216041,195329,212616,201989,201889,184843];
+    for(const site of sites)contextSamples.push({site,lines:lines.slice(site-26,site+25)
+      .map((v,k)=>({line:site-25+k,text:v.slice(0,400)}))});
+  }
   perFile.push({name:src.name,sourceBlob:src.blob,datedMayAug:dated,pageMentionLines:seen,knownP56References:nearKnown56});
 }
 assert.equal(process.argv.length,5);
@@ -70,5 +75,5 @@ const byPage={};for(const h of hits)for(const p of h.pages)byPage[p]=(byPage[p]|
 const signal=ordered.filter(h=>h.score>=11);
 const perPage=Object.entries(byPage).map(([p,n])=>({page:Number(p),candidates:n})).sort((a,b)=>b.candidates-a.candidates);
 const summary={files:perFile,candidatesTotal:hits.length,highSignalTotal:signal.length,perPage:perPage.slice(0,35),
- topClaims:signal.slice(0,75)};
+ topClaims:signal.slice(0,75),contextSamples};
 console.log(JSON.stringify(summary,null,2));
