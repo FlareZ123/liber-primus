@@ -95,7 +95,9 @@ for (const [scope, sourceText, expectedCount, expectedMaxima] of sources) {
     const planted = target.slice();
     for (let j = 0; j < 16; j++) planted[1000 + j] = sourceLength[500 + j];
     assert(longestCommonRuns(sourceLength, planted).some(m =>
-      m.cipherIndex === 1000 && m.sourceIndex === 500 && m.n >= 16),
+      m.cipherIndex <= 1000 && m.sourceIndex <= 500 &&
+      m.cipherIndex + m.n >= 1016 && m.sourceIndex + m.n >= 516 &&
+      1000 - m.cipherIndex === 500 - m.sourceIndex),
     "A planted verbatim 16-word quotation was not recovered");
     results.push({
       scope, mode, sourceWords: sourceWords.length,
