@@ -18,7 +18,7 @@ const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const sourceGrid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
-assert.match(signed, /Its words are the map, their[\r\n]+meaning is the road, and their numbers are the direction/u);
+assert.match(signed, /Its words are the map, their\s+meaning is the road, and their numbers are the direction/u);
 const grid = sourceGrid.byte_rows.flat();
 assert.equal(grid.length, 256);
 const dims = [563, 569];
