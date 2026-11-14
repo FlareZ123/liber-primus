@@ -97,6 +97,14 @@ function main() {
   const ordinary = b.slice(1).map(
     (x, i) => mod29(x - wingHop[i % wingHop.length]));
   assert.deepEqual(ordinary.slice(-6), [0,0,0,0,0,0]);
+  // Attractive but insufficient postselected substring: the aligned final
+  // fifteen runes decrypt as GDTRUTHEBX followed by six F symbols. The
+  // authentic source LP1 uses the word TRUTH, yet the complete decoded page
+  // is nonlinguistic and its historical F-transparent inverse is impossible.
+  const terminal15 = ordinary.slice(-15);
+  const truthGp = ["T", "R", "U", "TH"].map(label => corpus.translit.indexOf(label));
+  assert.deepEqual(terminal15.slice(2, 6), truthGp);
+
   assert.equal(ordinary.every(
     (x, i) => mod29(x + wingHop[i % wingHop.length]) === b[i + 1]), true);
 
@@ -126,6 +134,8 @@ function main() {
     plain_f_transparent_first_impossible_p55_offset: actual.firstImpossible,
     ordinary_vigenere_decrypted_ioc: ioc(ordinary),
     ordinary_vigenere_terminal_plaintext_f_count: 6,
+    ordinary_vigenere_terminal15: terminal15.map(x => corpus.translit[x]),
+    local_gp_truth_match: "p55 final15 - p27 15-symbol key, decoded positions 2..5: T R U TH; unselected four-rune substring only",
     independent_p57_known_plaintext_plant_passes: true,
     original_unknown_plaintext_recovered: false
   };
