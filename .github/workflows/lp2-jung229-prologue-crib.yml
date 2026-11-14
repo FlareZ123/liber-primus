@@ -1,0 +1,30 @@
+name: Jung Liber Primus 229 original-wordlength crib
+
+# Manual-only source screen. Do not create push or scheduled triggers.
+on:
+  workflow_dispatch:
+
+jobs:
+  source229:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out original ciphertext and scanner
+        uses: actions/checkout@v4
+      - name: Install PDF text extractor
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Fetch public Jung Liber Primus excerpt (temporary)
+        run: |
+          curl -fLsS --retry 3 --max-time 120 -o /tmp/jung229.pdf "https://www.jungiananalysts.org.uk/wp-content/uploads/2024/09/The-Way-of-What-is-to-Come-from-C.-G.-Jung-Liber-Novus-The-Red-Book-1-1.pdf"
+          pdfinfo /tmp/jung229.pdf | head -20
+          pdftotext /tmp/jung229.pdf /tmp/jung229-default.txt
+          pdftotext -raw /tmp/jung229.pdf /tmp/jung229-raw.txt
+          pdftotext -layout /tmp/jung229.pdf /tmp/jung229-layout.txt
+      - name: Run fixed GP29 and Latin26 source-crib screens
+        run: |
+          node --check sims/lp2_jung229_prologue_crib_sft.cjs
+          node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-default.txt
+          node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-raw.txt
+          node sims/lp2_jung229_prologue_crib_sft.cjs /tmp/jung229-layout.txt
