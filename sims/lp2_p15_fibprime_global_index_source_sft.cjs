@@ -100,7 +100,7 @@ console.log(JSON.stringify({
   originalGlyphCount:ciphertext.length,
   directReadouts:sourceReadouts.map(x=>({clock:x.clock,
     readout:x.originalRunes,
-    17thPosition:x.selected[16],sampledOriginalPositions:x.selected.map(y=>y.index)})),
+    seventeenthPosition:x.selected[16],sampledOriginalPositions:x.selected.map(y=>y.index)})),
   p42FirstQuotedRuneGlobalOffset:p42QuotationStart,
   p42QuoteDistanceFromExtrapolatedPointer:35,
   conclusion:"No readable original LP2 plaintext or key from the complete 17-symbol direct literal numeric-index extraction."
