@@ -81,27 +81,32 @@ function encode(a,kernel,placement,key,sign){
   return placement==='pre'?transformed.map((v,i)=>mod(v-sign*key[i])):transformed;
 }
 const results=[];
+for(const cipherDirection of ['forward','reversed']){
+  const orientedCipher=cipherDirection==='forward'?cipher:cipher.slice().reverse();
+  const orientedNative=cipherDirection==='forward'?native:native.slice().reverse();
 for(const kernel of ['mobius','zeta']){
   for(const placement of ['none','pre','post']){
     for(const direction of ['printed','reversed']){
       for(const sign of [-1,1]){
         if(placement==='none'&&(direction!=='printed'||sign===1))continue;
         const key=direction==='printed'?source:source.slice().reverse();
-        const recovered=decode(cipher,kernel,placement,key,sign);
-        assert.deepEqual(encode(recovered,kernel,placement,key,sign),cipher);
-        assert.deepEqual(decode(encode(native,kernel,placement,key,sign),kernel,placement,key,sign),native);
+        const recoveredOriented=decode(orientedCipher,kernel,placement,key,sign);
+        const recovered=cipherDirection==='forward'?recoveredOriented:recoveredOriented.slice().reverse();
+        assert.deepEqual(encode(recoveredOriented,kernel,placement,key,sign),orientedCipher);
+        assert.deepEqual(decode(encode(orientedNative,kernel,placement,key,sign),kernel,placement,key,sign),orientedNative);
         const outputIoC=ioc(recovered);
         assert.ok(outputIoC<=0.040351,'Unexpected original output; assess independently');
         const body=recovered.slice(1);
         const words=[];
         let offset=0;
         for(const len of wordLengths){words.push(body.slice(offset,offset+len).map(v=>book.translit[v]).join(''));offset+=len;}
-        results.push({kernel,placement,direction,sign,ioc:outputIoC,firstSevenWords:words.slice(0,7).join(' ')});
+        results.push({cipherDirection,kernel,placement,direction,sign,ioc:outputIoC,firstSevenWords:words.slice(0,7).join(' ')});
       }
     }
   }
 }
-assert.equal(results.length,18);
+}
+assert.equal(results.length,36);
 results.sort((a,b)=>b.ioc-a.ioc);
 assert.equal(results[0].kernel,'mobius');
 assert.equal(results[0].placement,'post');
