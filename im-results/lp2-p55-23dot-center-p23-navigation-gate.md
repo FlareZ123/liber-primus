@@ -40,10 +40,10 @@ Under **200,000** fixed-seed original-p55 controls that independently shuffle ru
 
 | Original-specific condition | Permutations satisfying / 200,000 |
 | --- | ---: |
-| Stencil center equals H (prime23) | 15,296 |
-| Longest word's innermost rune equals U (prime3) | 15,304 |
-| Source-defined 13-dot projection GP-prime sum equals512 | 467 |
-| Both center H and deepest U | 1,213 |
+| Stencil center equals H (prime23) | 15,276 |
+| Longest word's innermost rune equals U (prime3) | 15,435 |
+| Source-defined 13-dot projection GP-prime sum equals512 | 434 |
+| Both center H and deepest U | 1,289 |
 | All three | **3** |
 
 The center and deepest runes occupy two distinct sites in the same 13-rune printed word; conditional on the preserved inventory, their **exact joint probability** under that null is **1/(13×12)**. The triple coincidence is striking **only under this fixed conditional control**. The cells, page23 match, 1024 observation and arithmetic associations were noticed after inspecting the real manuscript, against a huge record of other searched structures. The 3/200,000 cannot be presented as a discovery-adjusted authorial-intent probability or as evidence of decrypted plaintext.
