@@ -41,9 +41,10 @@ const logP = Array.from(counts, count => Math.log(count / total));
  * @param {number} last
  * @param {boolean} allInitialStates
  * @param {number} initialState
+ * @param {number[]} [data]
  * @returns {{score:number,state:number,count:number}}
  */
-function viterbi(mode, sign, first, last, allInitialStates, initialState) {
+function viterbi(mode, sign, first, last, allInitialStates, initialState, data = cipher) {
   let states = new Uint32Array(M), other = new Uint32Array(M);
   let scores = new Float64Array(M), nextScores = new Float64Array(M);
   const seen = new Uint32Array(M);
@@ -53,7 +54,7 @@ function viterbi(mode, sign, first, last, allInitialStates, initialState) {
   for (let i = first; i < last; i++) {
     if (mode === 'delta' && i === 0) continue;
     const q = mode === 'delta'
-      ? (cipher[i] - cipher[i - 1] + 29) % 29 : cipher[i];
+      ? (data[i] - data[i - 1] + 29) % 29 : data[i];
     const stamp = i + 1;
     let following = 0;
     for (let j = 0; j < length; j++) {
@@ -104,6 +105,52 @@ for (const mode of ['delta', 'direct']) {
     outcomes.push({mode, sign, train, heldout});
   }
 }
+// A true native-GP 308-cell plant, unknown seed 3299: all four decoders
+// must independently recover its exact hidden p54->p55 state on training.
+const native = corpus.pages[57].indices;
+assert.equal(native.length, 95);
+/**
+ * @param {'delta'|'direct'} mode
+ * @param {1|-1} sign
+ * @returns {{cipher:number[],boundaryState:number}}
+ */
+function plantedCipher(mode, sign) {
+  const plain = Array.from({length:mode === 'delta' ? 307 : 308},
+    (_, i) => native[i % native.length]);
+  let x = 3299, preceding = cipher[0], boundaryState = -1;
+  const encoded = mode === 'delta' ? [preceding] : [];
+  for (let i = 0; i < plain.length; i++) {
+    if ((mode === 'delta' ? i + 1 : i) === 232) boundaryState = x;
+    const p = plain[i];
+    let delta = 0;
+    if (p !== 0) {
+      const r = x % 29;
+      const k = sign === 1 ? r : (29 - r) % 29;
+      delta = (p + k) % 29;
+      x = (x * x) % M;
+    }
+    const out = mode === 'delta' ? (preceding + delta) % 29 : delta;
+    encoded.push(out);
+    preceding = out;
+  }
+  assert.equal(encoded.length, 308);
+  assert(boundaryState > 0);
+  return {cipher: encoded, boundaryState};
+}
+const plantedControls = [];
+for (const mode of ['delta', 'direct']) {
+  for (const sign of [1, -1]) {
+    const plant = plantedCipher(mode, sign);
+    const fitted = viterbi(mode, sign, 0, 232, true, 0, plant.cipher);
+    assert.equal(fitted.state, plant.boundaryState);
+    assert.equal(plant.boundaryState, mode === 'delta' ? 2122059 : 749212);
+    const continuation = viterbi(mode, sign, 232, 308, false, fitted.state, plant.cipher);
+    assert(continuation.count > 0);
+    plantedControls.push({mode, sign, trueBoundaryState:plant.boundaryState,
+      independentlySelected: fitted.state, heldoutFeasible:true});
+  }
+}
+
 const expected = [
   ['delta', 1, 3116091, 105, -915.0312788656956, 0],
   ['delta', -1, 461832, 123, -893.1263142880789, 1],
@@ -132,5 +179,6 @@ console.log(JSON.stringify({
   selectedByP54Only: 'delta, sign -',
   p55HeldoutLogScorePerRune: candidate.heldout.score / 76,
   independentClearP57LogScorePerRune: clearScore,
-  cases: outcomes
+  cases: outcomes,
+  plantedNativeGpControls: plantedControls
 }, null, 2));
