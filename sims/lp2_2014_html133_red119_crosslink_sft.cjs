@@ -11,6 +11,18 @@ const root=path.resolve(__dirname,"..");
 /** @param {string} p @returns {string} */
 const get=p=>fs.readFileSync(path.join(root,p),"utf8");
 const html=get("resources/cicada2014-onion7-index.html");
+const historicalHtml=get("resources/historical/stage11-2014-index.html");
+const manifest=JSON.parse(get("resources/historical/stage11-2014-index-manifest.json"));
+const crypto=require("node:crypto");
+assert.equal(html,historicalHtml);
+assert.equal(Buffer.byteLength(html,"utf8"),1640);
+assert.equal(manifest.provenance.sourceCommit,
+  "6c3421a4d245596e403c88e037509d162a2afd17");
+const originalBlobSha=crypto.createHash("sha1")
+  .update("blob "+Buffer.byteLength(html,"utf8")+"\u0000")
+  .update(html,"utf8").digest("hex");
+assert.equal(originalBlobSha,manifest.provenance.indexGitBlobSHA1);
+assert.equal(originalBlobSha,"303db130705f0ef9be2a738f4336d5cfcebde80c");
 const squares=get("resources/cicada2014-openpuff-magic-squares.txt");
 const ink=JSON.parse(get("resources/liber-primus/lp2-ink-annotations.json"));
 const canon=JSON.parse(get("resources/liber-primus/lp2-corpus.json"));
