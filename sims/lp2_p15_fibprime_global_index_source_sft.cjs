@@ -170,6 +170,51 @@ assert.deepEqual(add91.map((r, i) => (r - phi91[i] + 29) % 29), quotation);
 const threeRuneWords=runicWords.filter(w=>w.length===3).length;
 assert.equal(threeRuneWords,720);
 
+// The p15 infinity mark also motivates a finite circular continuation.
+// This is a second, unproved address grammar: reduce every later numeric
+// value modulo the *entire* 12956-rune unknown book and use one-based positions.
+// It makes a frozen prediction after the initially interesting PNW hit.
+const laterFibonacci = fibonacci.slice();
+while (laterFibonacci.length < 27) {
+  laterFibonacci.push(laterFibonacci.at(-1) + laterFibonacci.at(-2));
+}
+const highLimit = 3000000;
+const isComposite = new Uint8Array(highLimit + 1);
+for (let p = 2; p * p <= highLimit; p++) {
+  if (isComposite[p]) continue;
+  for (let q = p * p; q <= highLimit; q += p) isComposite[q] = 1;
+}
+const primeTable = [];
+for (let p = 2; p <= highLimit; p++) {
+  if (!isComposite[p]) primeTable.push(p);
+}
+assert.equal(primeTable[196418], 2696669);
+const wordStarts = new Set();
+let nextWordStart = 0;
+for (const word of runicWords) {
+  wordStarts.add(nextWordStart);
+  nextWordStart += word.length;
+}
+assert.equal(nextWordStart, 12956);
+const continuedCircular = laterFibonacci.slice(16).map(F => {
+  const value = Math.abs(3301 - primeTable[F]);
+  const globalZeroBased = (value - 1) % ciphertext.length;
+  return {
+    F,
+    primeOrdinal: F + 1,
+    value,
+    globalZeroBased,
+    rune: at(globalZeroBased).rune,
+    wordStart: wordStarts.has(globalZeroBased),
+  };
+});
+assert.deepEqual(continuedCircular.map(item => item.value),
+  [10176,19866,36490,64632,112536,193398,329952,
+    560698,948270,1600192,2693368]);
+assert.deepEqual(continuedCircular.map(item => item.rune),
+  ["P","P","X","N","I","F","C","AE","Y","G","AE"]);
+assert.equal(continuedCircular.filter(item => item.wordStart).length, 3);
+
 console.log(JSON.stringify({
   originalGridVerifiedCells:16,
   firstUnprinted:{fibonacci:1597,primeOrdinal:1598,
@@ -191,6 +236,8 @@ console.log(JSON.stringify({
     minusIoC:ioc(dec91),plusIoC:ioc(add91),
     minusOpening:dec91.slice(0,30).map(r=>corpus.translit[r]).join(""),
     plusOpening:add91.slice(0,30).map(r=>corpus.translit[r]).join("")},
+  circularOneBasedFibonacciContinuation:continuedCircular,
+  circularOriginalWordStarts:continuedCircular.filter(item => item.wordStart).length,
   p42FirstQuotedRuneGlobalOffset:p42QuotationStart,
   p42QuoteDistanceFromExtrapolatedPointer:35,
   conclusion:"No readable original LP2 plaintext or key from the complete 17-symbol direct literal numeric-index extraction."
