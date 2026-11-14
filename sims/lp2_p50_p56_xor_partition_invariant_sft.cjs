@@ -27,6 +27,15 @@ const raw=Buffer.from(grid.byte_rows.flat());
 const expectedSourceSha='3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290';
 assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),expectedSourceSha);
 assert.equal(raw.length,256);
+const alphabet59=grid.alphabet.replace('f','');
+const raw59=Uint8Array.from(grid.rows.flat().map(token=>{
+  const high=alphabet59.indexOf(token[0]);
+  const low=alphabet59.indexOf(token[1]);
+  assert(high>=0&&low>=0);
+  return high*59+low;
+}));
+assert.equal(raw59.length,256);
+assert.equal(xorAll(raw59),0x21);
 const target=Buffer.from(
   '36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4',
   'hex');
@@ -37,6 +46,7 @@ const xorAll=bytes=>bytes.reduce((a,b)=>a^b,0);
 assert.equal(xorAll(raw),0x94);
 assert.equal(xorAll(target),0x0d);
 assert.notEqual(xorAll(raw),xorAll(target));
+assert.notEqual(xorAll(raw59),xorAll(target));
 
 /**
  * For any output-bin assignment, each input contributes exactly once
@@ -83,9 +93,10 @@ console.log(JSON.stringify({
   source:'Original LP2 pp49–51 32x8 numerical bytes',
   source_sha256:expectedSourceSha,
   original_input_bytes:raw.length,target_digest_bytes:target.length,
-  original_table_xor:'0x94',solved_p56_digest_xor:'0x0d',
+  base60_table_xor:'0x94',base59_table_xor:'0x21',
+  solved_p56_digest_xor:'0x0d',
   required_missing_xor:'0x99',
-  partition_independent_mismatch:true,
+  partition_independent_mismatch_under_both_radices:true,
   tested_original_folds:2,
   positive_original_shaped_256byte_plant:true,
   positive_permuted_256byte_plant:true,
