@@ -37,6 +37,10 @@ The positive control takes **75 genuine clear GP29 runes from solved physical p5
 
 Neither produces coherent source-native prose, recognizable instructions, or an independently selected key. Their almost chance-level rune IoCs are weak evidence of natural language; the positive control's considerably higher IoC is only a diagnostic, **not** a statistical impossibility theorem on arbitrary 75-rune text. Exact source re-encryption is demanded by invertibility and cannot alone authenticate a cipher.
 
+## Independent CI execution
+
+The manual 2014-square workflow now includes this source-75 direct inverse alongside its earlier independent 43-core/17-row tests. [GitHub Actions original-input run 43578451257](https://github.com/FlareZ123/liber-primus/actions/runs/43578451257) completed **successfully** with the new test on Node.js 22, including exact original reencryption and both complete positive recoveries. No CI workflow runs on repository pushes.
+
 ## Decision
 
 The historically sourced three-square-to-three-Hill5 mechanism is now **fully specified and executed on the entire original 75-rune p55 body**, including both standard vector conventions and an exact native-GP planted control. It does not recover plaintext. Retire the direct Hill5 candidate without adding fitted rotations, extra shifts, source order permutations, or newly selected alphabets. The possible deeper role of the 2014 number squares remains open only if **an independent source clue** specifies its consumer. All original p55 source runes are untouched.
