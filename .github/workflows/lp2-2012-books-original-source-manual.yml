@@ -1,0 +1,36 @@
+name: 2012 Cicada source books original LP2 inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch archived authentic Cicada 2012 book-code source files
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/neuroretransmit/cicada.git "$env:RUNNER_TEMP\cicada2012"
+          $books = Join-Path $env:RUNNER_TEMP 'cicada2012\2012\006-two-book-codes\books'
+          if (-not (Test-Path (Join-Path $books 'agrippa.txt'))) { throw 'Missing original Agrippa' }
+          if (-not (Test-Path (Join-Path $books '31447.txt'))) { throw 'Missing original Britannica' }
+
+      - name: Test original 2012 plaintext cribs and exact F-transparent original inverses
+        shell: pwsh
+        run: |
+          $books = Join-Path $env:RUNNER_TEMP 'cicada2012\2012\006-two-book-codes\books'
+          node sims/lp2_2012_agrippa_wordlength_crib_sft.cjs (Join-Path $books 'agrippa.txt')
+          if ($LASTEXITCODE -ne 0) { throw 'Agrippa crib gate failed' }
+          node sims/lp2_2012_britannica_wordlength_crib_sft.cjs (Join-Path $books '31447.txt')
+          if ($LASTEXITCODE -ne 0) { throw 'Britannica crib gate failed' }
+          node sims/lp2_2012_books_runningkey_sft.cjs (Join-Path $books 'agrippa.txt') (Join-Path $books '31447.txt')
+          if ($LASTEXITCODE -ne 0) { throw 'Source books running-key gate failed' }
