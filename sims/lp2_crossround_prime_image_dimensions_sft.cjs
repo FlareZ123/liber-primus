@@ -39,6 +39,21 @@ const tree = jpeg(jpegBytes, {useTArray: true, formatAsRGBA: false,
   maxResolutionInMP: 2});
 assert.deepEqual([tree.width, tree.height], sums);
 
+const squareText = fs.readFileSync(path.join(
+  root, "resources/cicada2014-openpuff-magic-squares.txt"
+), "utf8").trim();
+const squareBlocks = squareText.split(/\r?\n\s*\r?\n/);
+const squares = squareBlocks.map(block => block.trim().split(/\r?\n/).map(
+  line => line.trim().split(/\s+/).map(Number)
+));
+assert.deepEqual(squares.map(matrix => matrix.length), [5, 7, 5]);
+assert.ok(squares.every(matrix =>
+  matrix.every(row => row.length === matrix.length)
+));
+assert.ok(squares[1].every(row =>
+  row.reduce((a, b) => a + b, 0) === 1033
+));
+
 const firstImage = {width: 509, height: 503};
 const sourceFiles = [107, 167, 229];
 assert.equal(sourceFiles.reduce((a, b) => a + b, 0), firstImage.height);
@@ -93,6 +108,6 @@ console.log(JSON.stringify({
   stage10_sum: 503,
   source_prime_ranks: [96, 97, 103, 104],
   exact_rank_shift: 7,
-  historical_2014_square_side: 7,
+  historical_2014_square_side: squares[1].length,
   inference: "retrospective original-artifact correspondence; no LP2 decoder"
 }, null, 2));
