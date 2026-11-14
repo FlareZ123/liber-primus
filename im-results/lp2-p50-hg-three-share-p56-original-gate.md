@@ -1,6 +1,6 @@
 # LP2 pp49–51: a three-share route from the H/G grid quotient to an actual known key
 
-**Decision (Agent 11, 14 November 2026): original-input negative for eight specific source-fixed three-share key interpretations.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
+**Decision (Agents 11/12, 14 November 2026): original-input negative for eight source-fixed three-share interpretations and every stationary GF29 polynomial readout through total degree five.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
 
 ## A concrete path a historical solver could have tried
 
@@ -51,6 +51,30 @@ The exact historical **byte-XOR** operation also permits a direct GP29 key test:
 | H/G quotient 252 GP29 digits, adjacent triples | **2/84** | 206 / 3,486 | **0.02912281** |
 
 All four outputs are nonlinguistic on untouched original p55 runes. Every output additionally contradicts the necessary equality pattern of the entire historical p56 key, even after allowing any unknown *fixed* alphabet bijection. This is a stricter source-operator test than inspecting byte-XOR output for ASCII alone: **an authentic historical XOR operation does not repair the missing p56 or p55 key handoff** within these direct encodings. The [same standalone SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) now asserts all four exact key matches and all four equality-conflict counts.
+
+## Complete stationary three-input polynomial key-readout gate (Agent12, 14 November 2026)
+
+The earlier sum, Shamir and byte-XOR consumers fix a particular three-share operation. One potentially productive extension is to **learn an unknown shared readout from the genuine solved p56 key**, then ask whether the full 84-position key is actually encoded by the untouched original Q252. Unlike inventing a key to decrypt the unsolved pages, the answer is independently known: the authentic p56 plaintext-F-skipping operation consumes precisely the first 84 consecutive-prime-minus-one GP29 shifts. This permits an exact algebraic test of an entire family with no language scoring or search across invented plaintext.
+
+For each of the two source-natural 252-to-3×84 geometries above, write the three original quotient values as \(x_i,y_i,z_i\in\mathbb F_{29}\), and let the required authentic key be \(k_i=(p_i-1)\bmod29\), \(i=0,\ldots,83\). Ask whether **one stationary three-input polynomial** \(f(x,y,z)\) produces all 84 independently known symbols, granting completely arbitrary unknown GF29 coefficients. Total degree \(d\) has \(\binom{d+3}{3}\) coefficients. Exact Gaussian elimination over GF29 tests the augmented linear system for all 84 original positions; arbitrary coefficients are granted, so an inconsistency excludes every key in that class.
+
+| Maximum total degree | Monomials | Three 84-blocks: coefficient rank / augmented rank | Interleaved triples: coefficient rank / augmented rank |
+| ---: | ---: | ---: | ---: |
+| 0 | 1 | 1 / **2** | 1 / **2** |
+| 1, arbitrary affine | 4 | 4 / **5** | 4 / **5** |
+| 2, arbitrary quadratic | 10 | 10 / **11** | 10 / **11** |
+| 3 | 20 | 20 / **21** | 20 / **21** |
+| 4 | 35 | 35 / **36** | 35 / **36** |
+| 5 | 56 | 56 / **57** | 56 / **57** |
+| 6 (complexity comparator) | 84 | 83 / **84** | 84 / 84 |
+
+**New exact constraint:** every stationary polynomial readout of degree at most five fails on the *original* H/G quotient, regardless of its hidden coefficients, for both frozen layouts. Even degree six is inconsistent for the contiguous three-block layout. Adjacent triples at degree six have full 84×84 rank and can interpolate **any** target 84-symbol key, making the exact fit there uninformative: it spends 84 free parameters to reproduce 84 known key symbols and predicts no withheld key. There is no compressed or independently selected p56 key in the tested low-complexity family.
+
+An immediate, short witness exists already for arbitrary affine readouts \(k_i=a x_i+b y_i+c z_i+d\). The first four original rows have full coefficient rank four. The fifth row contradicts their unique fitted relation: for blocks, \(x,y,z,k=(2,27,27,10)\) produces a nonzero GF29 elimination residual **26**; for interleaved triples, \((17,8,15,10)\) gives residual **3**. A change of language score, source glyph, or affine coefficients cannot repair these exact original-key contradictions.
+
+**Positive gate and scope:** the SFT plants a genuinely low-degree polynomial \(7+5x+11y+13z+3xy+4yz+2x^2\) into each unchanged source geometry and correctly recognizes all 84 planted outputs as degree-three-consistent. It pins the printed table's original byte SHA256, reconstructs H·G and Q252 exactly, and independently decrypts historical p56 to the known full message before using the 84 shifts as the target. [Standalone Node22 CJS original-input SFT](../sims/lp2_p50_hg_q252_polynomial_p56_84key_sft.cjs).
+
+This is a **known-key constraint**, not an original unknown-page decryption. It does not reject nonlinear stateful functions with memory, changes of source geometry, a separate first-party key source, hidden byte channels, or an entirely different target for Q252. With no independent hint prescribing a high-degree 84-parameter interpolation, do not rescue the three-share hypothesis by increasing polynomial degree or fitting coefficients to unknown plaintext.
 
 ## Direct original unknown-page consequences
 
