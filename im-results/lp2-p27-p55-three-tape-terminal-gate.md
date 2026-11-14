@@ -1,6 +1,6 @@
 # P27 terminal-repeat three-tape gate for p55
 
-**Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the genuine historical three-share XOR primitive and one direct reversible GF(29) analog do not recover p55 plaintext. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
+**Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the historical three-share XOR primitive, a direct reversible GF(29) analog, and a fixed-coordinate Shamir fourth-share interpretation all fail their distinct original-input tests. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
 
 ## Source-selected setup and new finite hypothesis
 
@@ -38,6 +38,14 @@ The original GF29 additive output opens with the transliterated GP rune identiti
 **M.D.N.AE.Y.NG.Y.A.F.A.A.X.E.E.H.U.C.H.NG.EO.J.R.J.W.P.AE.IA.Y.L.NG.EO.A.S.I.R.A.H.U.NG.W.P.R.J.IA**
 
 No unknown plaintext is recovered. The earlier p27 **single-tape following-marker additive** and **source-difference pads** were already tested; this new bounded test uses all three 76-rune source shares, selected by the independent page-length relation, and does not repeat those direct 70-rune consumers.
+
+## Fixed GF(29) Shamir fourth-share gate
+
+The earlier Cicada 2013 route used Shamir sharing, making **a missing fourth share** a distinct explanation for the original p27/p55 three-tape geometry. This is an investigator-proposed analogy, not a surviving first-party LP2 instruction. Let the three p27 rune values at each of 76 positions be `A[i], B[i], C[i]` and the corresponding original p55 rune be `Y[i]`. For **any fixed share coordinates** and a per-position polynomial of degree at most two over the natural GP field GF(29), the value of a fourth share must obey a single combination `Y[i] = b0 + b1*A[i] + b2*B[i] + b3*C[i] (mod 29)` across all positions. The intercept is an extra freedom beyond ordinary Shamir interpolation.
+
+The [original-input SFT](../sims/lp2_p27_p55_three_tape_terminal_sft.cjs) gives this proposed mechanism both unfit source orders: three **contiguous** 76-rune strips beginning after the repeated six-rune marker, and **interleaved** triplets around the same 228-rune cyclic source. For **each** arrangement, the 76×4 design matrix has GF(29) rank **4** and its 76×5 augmented matrix has rank **5**. The **first four original rune positions** already give rank four; adding just **position 4 (zero-based)** makes the augmented rank five. Thus five source positions alone give an exact contradiction to every fixed affine mixer and every three-source quadratic Shamir fourth-share mapping on either layout, regardless of which fixed field coordinates are chosen. This is stronger than any language-score rejection and requires no free-key search.
+
+The result **does not exclude** a higher-degree scheme with hidden shares, changing coordinates, nonlinear field/byte transport, a different source alignment, or p55 as ciphertext rather than a fourth share. No p55 plaintext follows. The source and five-row contradiction are preserved in the existing three-tape test rather than creating another stand-alone cipher proposal.
 
 ## Evidential boundary and decision
 
