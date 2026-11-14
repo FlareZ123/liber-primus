@@ -16,6 +16,7 @@ on:
           - taylor
           - residual
           - reserved
+          - stage04-small
 permissions:
   contents: read
 jobs:
@@ -72,3 +73,6 @@ jobs:
       - name: All-secret fixed plaintext marker doublet source gate
         if: ${{ inputs.route == 'reserved' }}
         run: node sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs
+      - name: 2014 signed nested rune-image OutGuess original-source check
+        if: ${{ inputs.route == 'stage04-small' }}
+        run: python3 sims/stage04_embedded_small_image_outguess_sft.py
