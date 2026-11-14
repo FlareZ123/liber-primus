@@ -42,6 +42,22 @@ For a source-shape-preserving control, shuffle only the **20 complete word-inter
 
 The joint source-rearrangement frequency is **0.00035** in this deliberately bounded conditional ensemble. It is **not a probability of authorial intention or a discovery-adjusted p-value**: the overall research population has tested many interpretations and noticed p50 *after* calculating this one, and source word-order randomization may not model the author's choices. The duplicate direction result helps distinguish the exact source order from a random word reorder within this narrow construction; it does not establish encryption.
 
+## Direct consumer tested: assigning p56's authentic prime-totient stream by the Josephus path
+
+The forward Josephus elimination pairs **each of the 55 p57 interior runes with exactly one of the 55 rune-bearing unknown pages**. An obvious source-specified consumer is the **actual solved p56 encryption rule**, where consecutive ordinary prime totients form the additive GP29 key and plaintext F bypasses encryption. Try three literal ways to turn the source rune at each removal into the destination page's first ordinary prime **ordinal**: its GP index, its associated GP prime value, or the associated full totient. Each page's key begins at that index and the local cipher begins with its first runic symbol. These are distinct from the prior natural physical-page-ordered 55-source-seed test because the complete **Josephus page permutation is now fixed**.
+
+The plaintext-F bypass could otherwise introduce many unknown key-clock masks. However the entire *prefix before the first observed ciphertext F* on each page is **unambiguous** under the genuine p56 rule: there cannot have been a plaintext F before that point, because it would have appeared literally as ciphertext F. This allows a fixed-input original-cipher test without language-fitted skip positions. The complete 55-page set contributes **1,441 original ciphertext runes before their respective first F**.
+
+| Source-p57 interior key ordinal assigned to its Josephus-eliminated page | Unambiguous 1,441-rune decoded IoC |
+| --- | ---: |
+| GP rune index 0–28 | **0.0346875241** |
+| GP prime value | **0.0347019816** |
+| GP prime totient | **0.0345265633** |
+
+The native GP29 uniform-register benchmark is about 0.03448. The first unambiguous decoded p0 strings under these three schedules are respectively `CAETHXPLY`, `HYCSEOMAE`, and `XUWMEAEIA`. **The same implementation's true historical p56 positive** begins with a 35-rune F-free interval that decodes exactly to `ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETH` under the original start-prime2 state. The original unknown pages exhibit no corresponding English-like recovery across their 1,441 unambiguous GP runes, even before any F mask optimization.
+
+**Decision:** the source-ordered Josephus assignment itself is an exact possible map, but **direct p56 additive prime-totient clocks** seeded by the three straightforward per-page rune values have not recovered unknown plaintext. This is a bounded finite test of that historically authenticated consumer, independent of any choice of later literal-F bypass. It does not exclude a distinct table-selected clock, different alphabet/register, byte payload, encrypted state or source-selected downstream key.
+
 ## Cryptanalytic decision
 
 This is a stronger internally navigable clue than another unexplained numeric coincidence: the proposed source operation returns the **only** page with no rune text, and that selected page contains an independently nontrivial **256-cell numerical key candidate** already analyzed in [the complete GF29 factorization](lp2-grid-complete-gf29-factorization.md). It also gives an entire deterministic ordering of all other original pages, which may matter for a page-level reading or key schedule. The one known page-selection output is independent of the **12,956 still encrypted runes**. The new route does not by itself dictate how to decode the table, assign its bytes to words/pages, or break those ciphertexts.
