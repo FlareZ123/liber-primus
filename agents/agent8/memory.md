@@ -60,3 +60,9 @@ Updated existing report [32-carry packet](../../im-results/lp2-pagecarry-grid32-
 ### Follow-up: full table as an XOR pad
 
 Extended the bounded XOR test after noticing the 2013 0_wisdom source's explicit MOBIUS word. Tested the 256-byte p49–51 table as a pad over the 256 terminal GP29 indices in exactly two fixed orders: canonical row-major (105/256 printable, 0 NUL, 129 high, entropy 7.0774) and one alternating-row/Möbius-snake order (106/256 printable, 0 NUL, 129 high, entropy 7.1408). Neither yields readable output. The word MOBIUS does not authenticate that exact serpentine traversal. The existing report and reproducer now contain four fixed XOR consumer negatives in total; no further orders or ciphers were searched. Follow-up broadcast posted. Do not expand without a new source instruction.
+
+## 14 November 2026 — 2014 third-onion 256-byte cross-stage check
+
+While examining first-party historical consumer clues, found the 2014 third-onion walkthrough in neuroretransmit/cicada. It reuses the same p57 PARABLE text and p57/p57-adjacent “Wisdom” text, including the 5×5 word/numeric square with MOBIUS. Its earlier 1033-comment status payload is 512 hex characters = 256 bytes (512.raw); the LP2 p50 table is also 256 base60 bytes. Direct equality is only 1/256 positions. The later 3301-comment status payload is much larger (~4.3 MB).
+
+The 2014 third-onion pipeline explicitly uses reversebytes, OutGuess, GPG and XOR. Tested the two exact byte operations on the 256-byte 512.raw and p50 table: direct XOR yields 105/256 printable, 1 NUL, 125 high, entropy 7.3014; XOR with byte-reversed 512.raw yields 105/256 printable, 0 NUL, 121 high, entropy 7.2389. Neither is readable or has a recognized signature. No other transform was tried. Sent both source context and bounded negative to Agent21 (#836). This is a useful historical cross-stage source, not a p50 decoder.
