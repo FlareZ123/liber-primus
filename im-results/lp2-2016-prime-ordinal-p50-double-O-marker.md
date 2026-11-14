@@ -40,6 +40,96 @@ This joins an original signed **2013 numerical example**, original **2014 LP2 pr
 
 The original-input [standalone Node22 SFT](../sims/lp2_3qo_source_ordinal_two_cell_sft.cjs) asserts p32 dimensions, prime ordinals, exact original table bytes and SHA256, the unique adjacent-pair reconstruction, the signed BASE29 result and the 2012 control. It does not fit or decode any unsolved LP2 page.
 
+## New source-selected p32/table103–104 modulo58 self-address and p55 entry (Agent35, 14 November 2026)
+
+A distinct **page-navigation** reading appears in the *same independently selected
+two original printed cells*, and it supplies a concrete conditional discriminator
+of the base60-vs-base59 numeral ambiguity. The existing signed 2016 image dimensions
+563×569 and original p32 11×11 runic square's first-row/first-column GP-prime sums
+are independently **the same pair**. Because 563 and 569 are the consecutive
+**103rd and 104th primes**, both source clues freeze the **one-based original
+table cells 103–104**, without a chosen language score or rotating key.
+
+In the source conventional base60 byte register, these adjacent cells are
+literally **`0W` and `3Q`** and decode to **32 and 206**. Since LP2 has
+**58 physical pages p0–p57, including the entirely numerical p50 and the two
+solved terminal pages**, both source bytes point to the **same physical page
+p32** if one takes their values modulo the complete number of physical pages:
+
+[
+32\bmod 58=32,\qquad 206\bmod 58=32,\qquad
+206-32=174=3\times58.
+]
+
+This is a genuine *closed numerical circuit*: **p32 first-row/column prime
+sums → 2016 image dimensions → prime ordinals 103/104 → 2014 grid
+cells103/104 → GP/table values32 and206 → p32** under the stated source
+map. The original p32 square is exactly 121 GP runes; neither row nor column
+was fitted to this output. The two identical modulo29 residues **O** already
+documented above follow from the same `174=6×29` identity and must not be
+counted as independent events.
+
+There is also a second, original-cipher **entry** into the exact same
+cell103: the p55 final two complete printed ciphertext words
+`DJU BEI` uniquely reappear at p27 offsets28–33; the **next complete
+p27 printed word `AE.F`** (offset34–35) has source GP-prime sum
+**101+2=103**. Thus the conditional route is
+
+`p55 footer → p27 offset28 → first following word sum103 →
+table cell103 (value32) → p32 → its first row/column →
+table cells103 and104 (both p32 mod58)`.
+
+The first step's whole-word-pair uniqueness among 2,454 printed adjacent
+pairs is documented separately in
+[the p27/p55 original-source report](p27-p54-repeated-7gram-periodic-key-gate.md).
+This composition adds no unknown plaintext or secret key; it gives a
+specific possible *human clue path* to a previously identified table cell.
+The alternate **288 mod58=56** reading of the p55 footer's two-word
+prime-sum directs attention to the immediately following solved p56,
+whose first original ciphertext rune `AE` completes the independently
+established seven-rune p55/p56 seam into p27. That is a competing register
+interpretation, not a second proof of the same route.
+
+**New all-table and local-radix checks.** Under original base60 bytes,
+exactly **8 of 255** adjacent ordered source-cell pairs have equal values
+mod58, beginning at one-based cells **56,103,140,166,199,216,231,251**;
+**103 is the only pair whose two values both equal p32 modulo58**.
+Under the distinct local **base59 positional** reading of these same
+unchanged printed tokens, `0W=32` remains true but `3Q=203` and
+`203 mod58=29`, breaking the **double** p32 self-reference. This
+makes the physically selected pair a potential *base60-specific page-map
+checksum*, though a puzzle author would have to communicate the byte-to-page
+map. The earlier 2012 picture's different prime-ordinal cell pair does
+not reconstruct the source `3QO` numeral, as documented below.
+
+**Strongest objection:** no signed source tells a solver to treat two
+table values modulo **58** as page indices, to choose a zero-based
+physical page number, to take the *next* p27 word's prime sum as a
+one-based table address, or to treat an image dimension as its **prime
+ordinal**. The chain was assembled after the p55/p27 footer recurrence
+and the earlier 2013/2016 numeral observations were already known.
+Therefore uniqueness among source cells is a conditional within-corpus
+fact, **not an unbiased authorship probability**, and the loop is
+a map hypothesis rather than recovered ciphertext. In particular it
+does not uniquely prove base60 against base59 in the absence of an
+authenticated page-pointer instruction. The `3QO=3301` candidate is
+still the **already-public** 2013 signed numeral, not a newly discovered
+onion address or instruction.
+
+**Reproduction:** the [source-exact Windows Node22 SFT](../sims/lp2_terminal_103_104_p32_58cycle_sft.cjs)
+reads the actual locally archived 2016 source JPEG SOF frame,
+the original p32 121-rune square, p27/p55/p56 ciphertext, and all
+256 numeric cells. It asserts both physical geometry and mathematical
+maps, eight modulo58 equal-pair starts, the unique p32 double-match,
+the base59 local competitor, and the signed 2013 public 3301 numeral.
+The new dedicated step passed in
+[GitHub Actions run 43621165531](https://github.com/FlareZ123/liber-primus/actions/runs/43621165531).
+The [direct p55 70-rune grid103 and p27-difference additive consumers](p27-p54-repeated-7gram-periodic-key-gate.md#source-selected-following-word-difference-and-table-cell103-direct-key-gates-agent35-14-november-2026)
+have already failed, including every solved-page-style F-skip choice.
+A next result must identify an *authored action leaving the self-loop*
+that recovers an original key or unknown plaintext, not invent
+additional numerically convenient arcs.
+
 ## Negative control: the 2012 image
 
 The earlier 2012 image dimensions recorded in the same dimension study are **503 × 509**:
