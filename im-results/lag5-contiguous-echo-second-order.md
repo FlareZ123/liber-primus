@@ -1,6 +1,6 @@
-# LP2 lag-five contiguous echoes: a second-order constraint on copied-rune models
+# LP2 lag-five equality and contiguous echoes: a conditioned word-order constraint
 
-**Evidence:** reproducible ciphertext-side structural constraint and bounded forward-model discrimination. Agent 14, 10 November 2026. **No original unknown plaintext, key, method or destination recovered.** The five-apart and S-specific echoes were documented by external researchers in [the first-order report](lag5-rune-specific-echo.md). **Important concurrent-prior-art correction:** [Agent 6's earlier committed burst-copy code](../sims/lag5_burst_copy_probe.cjs), commit d69bbf4 at 06:07 UTC, *already identified the eight words with a repeated lag-five digraph*, enumerated an exact hit-position conditional, and implemented an M3 forward challenge. This Agent 14 analysis independently adds a stricter per-word rune-multiset plus doublet-preserving permutation null, explicit lag 2–7 family calibration, and independent model replications. The paired-digraph observation and M3 concept are **not original to this report**.
+**Evidence:** reproducible ciphertext-side structural constraint and bounded forward-model discrimination. Original report by Agent 14 (10 November 2026), extended by Agent 22 (14 November 2026). **No original unknown plaintext, key, method or destination recovered.** The five-apart and S-specific echoes were documented by external researchers in [the first-order report](lag5-rune-specific-echo.md); the extension below adds a family-calibrated all-rune single-hit result under the same stricter conditional null. **Important concurrent-prior-art correction:** [Agent 6's earlier committed burst-copy code](../sims/lag5_burst_copy_probe.cjs), commit d69bbf4 at 06:07 UTC, *already identified the eight words with a repeated lag-five digraph*, enumerated an exact hit-position conditional, and implemented an M3 forward challenge. This Agent 14 analysis independently adds a stricter per-word rune-multiset plus doublet-preserving permutation null, explicit lag 2–7 family calibration, and independent model replications. The paired-digraph observation and M3 concept are **not original to this report**.
 
 ## Original ciphertext and exact definition
 
@@ -18,18 +18,44 @@ Examples are original ciphertext, zero-based whole-word indices:
 
 The other contiguous-run words are 513, 519, 1405, 1500 and 1967. Word 1220 has two nonconsecutive lag-five matches at positions seven and nine. None of these strings is claimed as plaintext.
 
-## Controlled null and predeclared finite lag family
+## Conditional null: single-hit and contiguous-pair families
 
-The new deterministic [CommonJS challenge](../sims/lag5_contiguous_echo_challenge.cjs) independently permutes the letters of each original whole word, keeping that word's exact rune multiset, length and observed number of immediately repeated neighbours. There are **2,000 training** permutations to estimate means and standard deviations and **5,000 independent test** permutations to calibrate the maximum standardized score across **all lags 2 through 7**, seed 0x6aab5501.
+The deterministic [CommonJS challenge](../sims/lag5_contiguous_echo_challenge.cjs) independently permutes the letters of each original whole word, keeping that word's exact rune multiset, length and observed number of immediately repeated neighbours. The same 2,000 training / 5,000 independent test draws support two distinct families: single-hit equality counts across lags 2–12, calibrated by max-|z|, and contiguous pair events across lags 2–7, calibrated by the maximum positive z. Both families use seed 0x6aab5501 and the same source-conditioned null.
 
-| Lag | Original single hits | Original adjacent-hit pairs | Null mean pair count | z |
+### Single-hit equality family (lags 2–12)
+
+The same null also calibrates the **total number of single within-word equalities** at each distance, without requiring the two matches to be contiguous. The family statistic is the maximum absolute standardized score across all eleven lags 2–12. Under the 2,000 training / 5,000 independent test draws (seed 0x6aab5501), the observed lag-five count remains unusually high after preserving each word's exact rune multiset and adjacent-repeat count:
+
+| Lag | Observed hits / opportunities | Null mean | Null SD | z |
 | ---: | ---: | ---: | ---: | ---: |
-| 2 | 252 | 5 | 7.449 | −1.006 |
-| 3 | 181 | 7 | 4.363 | +1.294 |
-| 4 | 131 | 4 | 3.008 | +0.575 |
-| **5** | **104** | **9** | **1.729** | **+5.592** |
-| 6 | 32 | 0 | 1.031 | −1.010 |
-| 7 | 30 | 1 | 0.632 | +0.451 |
+| 2 | 252 / 7,247 | 277.0550 | 11.9298 | −2.100 |
+| 3 | 181 / 4,882 | 176.9405 | 11.4979 | +0.353 |
+| 4 | 131 / 3,237 | 118.1520 | 9.4557 | +1.359 |
+| **5** | **104 / 2,105** | **76.2970** | **7.9220** | **+3.497** |
+| 6 | 32 / 1,290 | 45.8995 | 6.3478 | −2.190 |
+| 7 | 30 / 731 | 26.7790 | 4.8748 | +0.661 |
+| 8 | 10 / 388 | 14.3355 | 3.7061 | −1.170 |
+| 9 | 5 / 201 | 7.6035 | 2.6152 | −0.996 |
+| 10 | 2 / 92 | 3.1995 | 1.7064 | −0.703 |
+| 11 | 1 / 35 | 1.3105 | 1.1136 | −0.279 |
+| 12 | 0 / 10 | 0.3375 | 0.5680 | −0.595 |
+
+The absolute maximum is lag five, **|z| = 3.49695**. **67/5,000** independent null books reach or exceed it, giving max-|z| empirical **p = 68/5,001 = 0.0135973** over the eleven tested lags. At fixed lag five, 2/5,000 nulls reach 104 (add-one p = 0.0005999), but the familywise value is the relevant summary. A second independent seed, 0x13b4c7a1, gives **z = 3.45307** and max-|z| **p = 63/5,001 = 0.0125975**; reproduce it by passing 2000, 5000 and 0x13b4c7a1 as the script's three CLI arguments. A seven-hit synthetic five-back word is counted exactly 7/7 by the positive-control assertion in the updated script.
+
+Independent corroboration: the public [ZzNible findings release](https://github.com/ZzNible/cicada3301-liber-primus-findings/blob/main/FINDINGS.md) reports the same 104/2,105 observation with z = 3.75190 and max-|z| p = 0.00860399 under a different null preserving global rune multiplicities, word lengths and total adjacent-equality count. Its public release is a sanitized summary without executable source; the result above is our own reproduction under the **stricter per-word** multiset and adjacent-count conditioning, not a reuse of its p-value.
+
+This is a whole-alphabet lag-five signal, including the 11 S-to-S matches; the nine contiguous pair events below measure a separate second-order clustering. It does not establish a period-five cipher, a key, or plaintext. The lag family was chosen from prior research, so neither this nor the external p-value is a discovery-wide correction over all historical searches.
+
+### Contiguous pair events, lags 2–7
+
+| Lag | Original adjacent-hit pairs | Null mean pair count | z |
+| ---: | ---: | ---: | ---: |
+| 2 | 5 | 7.449 | −1.006 |
+| 3 | 7 | 4.363 | +1.294 |
+| 4 | 4 | 3.008 | +0.575 |
+| **5** | **9** | **1.729** | **+5.592** |
+| 6 | 0 | 1.031 | −1.010 |
+| 7 | 1 | 0.632 | +0.451 |
 
 Four of 5,000 independent null manuscripts had a maximum over the six tested lags at least as strong as the original lag-five score: **finite-family empirical p = 5/5,001 = 0.0009998**. At the historically identified fixed lag five, 2/5,000 nulls reached nine contiguous pairs (**p = 3/5,001 = 0.0005999**), with test mean **1.7664 ± 1.3377**. The original **nine words** with at least two lag-five hits compare with null mean **3.4426**, 42/5,000 upper-tail exceedances (p = 43/5,001 ≈ 0.008598). The null mean of S-to-S hits is **2.051**, never reaching the original eleven in those 5,000 tests, corroborating prior analysis.
 
@@ -58,7 +84,7 @@ The first-order M3 five-lag hit mean is close to the original **104**, but its p
 ## Independent reproduction
 
 - Input: [original LP2 normalized transcription](../resources/lp2-transcription.txt), with the canonical whole-word parser from [the prior lag-six study](../sims/lag6_conditioned_echo.cjs).
-- Complementary to Agent 6's [previously committed digraph and exact conditional-hit-position challenge](../sims/lag5_burst_copy_probe.cjs); this report does not claim the pair or M3 finding as first discovery. The additional scripts are: [exact word-multiset-conditioned six-lag challenge](../sims/lag5_contiguous_echo_challenge.cjs) and [M1/M3 second-order forward test](../sims/lag5_block_echo_forward_challenge.cjs).
+- Complementary to Agent 6's [previously committed digraph and exact conditional-hit-position challenge](../sims/lag5_burst_copy_probe.cjs); this report does not claim the pair or M3 finding as first discovery. The updated [word-multiset-conditioned challenge](../sims/lag5_contiguous_echo_challenge.cjs) calibrates single-hit equality counts at lags 2–12 and contiguous pair events at lags 2–7, with a seven-hit synthetic positive control; the second seed is reproducible through the optional fourth CLI argument. The separate [M1/M3 second-order forward test](../sims/lag5_block_echo_forward_challenge.cjs) remains unchanged.
 - [Manual-only workflow](../.github/workflows/lag5-contiguous-echo-manual.yml); successful 2,000/5,000 and 8,000+8,000 original-input [GitHub Actions run 42769197879](https://github.com/FlareZ123/liber-primus/actions/runs/42769197879). Agent 6's earlier manual [lag-five burst-copy workflow](../.github/workflows/lag5-burst-copy.yml) also passed [run 42769980860](https://github.com/FlareZ123/liber-primus/actions/runs/42769980860).
 - Historical priors: [lag-five S-specific echo](lag5-rune-specific-echo.md), [lag-six echo](lag6-conditioned-echo.md), [collision repair](lag6-sparse-collision-repair-model.md).
 
