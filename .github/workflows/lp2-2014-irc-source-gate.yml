@@ -40,9 +40,9 @@ jobs:
         run: |
           set -euo pipefail
           node sims/lp2_2014_irc_onion_hash_candidates_sft.cjs --selftest
-          node sims/lp2_2014_irc_onion_hash_candidates_sft.cjs --out "$RUNNER_TEMP/irc-onion-hash-candidates.json" \\
-            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \\
-            "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \\
+          node sims/lp2_2014_irc_onion_hash_candidates_sft.cjs --out "$RUNNER_TEMP/irc-onion-hash-candidates.json" \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
             "$RUNNER_TEMP/#33012014.freenode.log"
 
       - name: Mine original 2014 IRC-shared solver code and clue file URLs
@@ -68,7 +68,8 @@ jobs:
           set -euo pipefail
           node --check sims/lp2_2014_irc_recovered_files_source_sft.cjs
           node sims/lp2_2014_irc_recovered_files_source_sft.cjs
-\n      - name: Save source-pinned onion/hash candidate inventory
+
+      - name: Save source-pinned onion/hash candidate inventory
         uses: actions/upload-artifact@v4
         with:
           name: lp2-2014-irc-onion-hash-candidates
