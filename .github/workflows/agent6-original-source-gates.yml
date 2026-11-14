@@ -13,6 +13,7 @@ on:
           - position
           - shape
           - predecessor
+          - chapter-delta
           - taylor
           - residual
           - reserved
@@ -64,6 +65,9 @@ jobs:
       - name: All-secret predecessor-and-word-position differential entropy gate
         if: ${{ inputs.route == 'predecessor' }}
         run: node sims/lp2_predecessor_wordposition_entropy_sft.cjs
+      - name: Exact nine-chapter all-secret difference alphabet ceiling
+        if: ${{ inputs.route == 'chapter-delta' }}
+        run: node sims/lp2_ninechapter_delta_allsecret_bound_sft.cjs
       - name: Original p39-root quotient Taylor reversible full-cipher gate
         if: ${{ inputs.route == 'taylor' }}
         run: node sims/lp2_p29_grid_root24_quotient_taylor_inverse_sft.cjs
