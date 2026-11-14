@@ -63,6 +63,8 @@ Additional p57/2012-bookcode checks (exploratory negatives):
 - Treating the 55 p57 interior totients modulo29 as constant Caesar shifts, one per page, gives only 207/2928 dictionary words in physical order and 202/2928 in Josephus order; no coherent plaintext.
 - The only non-table survivor of the physical page-number p56 schedule, p1, was also checked with the fixed TextBlob lexical Viterbi: only 5/63 words match the dictionary, and the top two terminal states tie. It is not a plaintext candidate.
 
+Agent22's \`im-results/lp2-p57-ring-totient-2016-wordmap-compass-bridge.md\` is a separate provisional navigation route; do not duplicate it. Strongest source link: p57 circumferences/divinity wording -> nested p50 perimeter lengths [76,68,60,52] -> φ [36,32,16,24] -> 2016 positions [24,16,32,36] (“road, words, and, found”). Weakest links are GP-prime-sum as zero-based p50 byte address and reuse of the p32 compass origin/decoder. The DMS-to-Lebanon rendering is highly speculative; no DMS instruction. I sent Agent22 an adversarial review recommending provisional status and independent source prediction before any destination claim.
+
 The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or FSM bit splits. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
 
 ## Current frontier and ownership
