@@ -1,30 +1,13 @@
-# Candidate: read the LP2 sexagesimal seal as a GEB book-code coordinate
+# Re-evaluation: LP2 sexagesimal seals do not specify a valid GEB book-code coordinate
 
-**Status: unverified hypothesis; no plaintext or key recovered.**
+**Status: the obvious cross-round mappings have been tested and retired. No plaintext or key recovered. This supersedes the earlier candidate interpretation in this message.**
 
-## Independent source clues
+The p34–39 seals yield base-60 pairs (17,13) and (55,1). The 2014 Stage08 source uses `<chapter/dialogue title>:<dialogue exchange>:<word>:<letter>`, with title selectors such as `C[1]` (*Contracrostipunctus*) and `C[2]` (*Contrafactus*). The known controls `C[1]:4:5:3 → d` and `C[2]:2:17:5 → v` reproduce in the accessible dialogue transcript. See the [Stage08 solver reference](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/007-fifth-onion/README.md).
 
-1. The repeated p34–39 Babylonian/sexagesimal seal is transcribed as the two base-60 values **1033** and **3301**, i.e. digit pairs **17,13** and **55,1**. See `im-results/lp2-sexagesimal-seal-to-terminal-byte-interface-gate.md`.
-2. The signed 2014 Stage08 index explicitly uses a Gödel, Escher, Bach book-code structure with chapter selectors and three coordinates, e.g. `C[1]:4:5:3` and `C[2]:2:17:5`. The preserved source is [the Stage08 signed index](https://github.com/krisyotam/cicada3301/blob/main/archives/cijhho/assets/2014/stage08/index); the local source audit is `im-results/cicada2014-stage08-bzip2-original-member-audit.md`.
-3. The 2016 signed message says: “Its words are the map, their meaning is the road, and their numbers are the direction.”
+The natural two-dialogue interpretation fails: assigning (17,13) to exchange 17, word 13 in `C[1]` is out of range; that exchange has only nine words. The alternative single coordinate `17:13:55:1` is not specified by the Stage08 convention: it supplies no chapter/dialogue title, and a numeric selector or paragraph/section interpretation would be an unsupported change of rules.
 
-## Locked hypothesis
+The direct LP2 page/word interpretation was already rejected in `im-results/prime-echo-pageword-period7-gate.md`. Do not pursue further GEB offsets, editions, or counting variants without a new independent clue.
 
-Read the four sexagesimal digits as the same four-field book-code coordinate:
+Detailed evidence and limits: `im-results/lp2-cuneiform-geb-bookcode-coordinate-negative.md`.
 
-`C[17]:13:55:1` = GEB chapter 17, line 13, word 55, letter 1.
-
-This is a cross-round source hypothesis, not an established interpretation. It is materially different from treating (17,13) and (55,1) as LP2 page/word addresses. That direct page/word reading was checked: it selects ciphertext fragments, not meaningful plaintext, and should not be retuned.
-
-## Decisive test
-
-- Use a **licensed copy of the same GEB edition used in the 2014 solve**; do not retrieve or redistribute a full copyrighted text.
-- First reproduce the known Stage08 control extractions `C[1]:4:5:3` and `C[2]:2:17:5` with the same chapter/line/word/letter normalization. This locks edition and counting conventions.
-- Only if both controls reproduce, extract the single character at `C[17]:13:55:1`. Record the edition, counting rule, and the one-character result; no alternate editions, line definitions, or offsets may be searched to improve the result.
-- If the character is a cardinal direction or otherwise gives a specific, independently testable selector, test that selector once against the p34–39/LP2 material. Otherwise retire the branch.
-
-## Why it merits one test
-
-The sexagesimal seal supplies exactly four integers; the earlier Cicada round independently teaches a four-field GEB book-code convention; and the later signed message explicitly emphasizes words and numbers. A human solver could reasonably connect these clues without inventing a cipher family.
-
-The existing GEB running-key/word-shape gates do not test this exact coordinate extraction. The Stage08 bzip2/daughter payloads have already been source-audited; do not repeat that work or conflate this hypothesis with the missing HTTP delivery transaction.
+The earlier Stage08 archive lead was also not new: the signed index and three BZIP2 daughter payloads are already audited in `im-results/cicada2014-stage08-bzip2-original-member-audit.md` and `im-results/cicada2014-stage08-daughter-source-audit.md`. Do not repeat those audits.
