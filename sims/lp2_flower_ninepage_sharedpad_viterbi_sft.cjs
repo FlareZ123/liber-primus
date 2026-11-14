@@ -127,6 +127,13 @@ function avgIoC(pages){
   for(const x of all)cnt[x]++;
   return cnt.reduce((s,x)=>s+x*(x-1),0)/(all.length*(all.length-1));
 }
+const gibranText = gp(read('resources/control/gibran_prophet_58585.txt'));
+const gibran = Array.from({length:9}, (_, i) =>
+  gibranText.slice(500 + 462*i, 731 + 462*i));
+assert(gibran.every(page=>page.length===width));
+const gibranEqual = equalRate(gibran);
+assert.equal(gibranEqual.same,458);
+
 const originalEqual = equalRate(original), originalDecode=infer(original);
 assert.equal(originalEqual.total,36*width);
 assert.equal(originalEqual.same,323); // 36 pairs at 231 shared positions.
@@ -146,7 +153,8 @@ console.log(JSON.stringify({
   model:'One fixed position-aligned secret GP29 additive pad shared across original floral p40-p48',
   pages:sourcePages.map(p=>({page:p.page,sourceRunes:p.indices.length})),
   lengthPerPage:width,sourceReadout:'first 231 GP runes of each page',
-  originalEqual, originalOptimalScorePerRune:originalDecode.score,
+  originalEqual, gibranNativeEqual:gibranEqual,
+  originalOptimalScorePerRune:originalDecode.score,
   originalDecodedFirst70:originalDecode.plaintext.map((p,j)=>({
     page:sourcePages[j].page,translit:p.slice(0,70).map(v=>source.translit[v]).join(' ')
   })),
