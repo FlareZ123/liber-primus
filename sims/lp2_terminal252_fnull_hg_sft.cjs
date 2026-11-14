@@ -122,6 +122,68 @@ for (const item of spans) {
   assert.deepEqual(firstPairConflict, item.pairWitness);
   item.matches = exact;
 }
+// A competing four-check reading keeps all 256 terminal glyph positions and
+// treats exactly the three original p55 F glyphs plus the authenticated
+// p56 literal F as four GF29 erasures in the source table's degree-4 code.
+// Solve their values *uniquely*, without tuning output words or ciphertext.
+const erasurePositions = [15, 25, 41, 76 + 56];
+const polyFAscending = F.slice().reverse();
+/** @param {number[]} descending */
+function modFactor(descending) {
+  const a = descending.slice().reverse().map(mod);
+  for (let k = a.length - 1; k >= 4; k -= 1) {
+    const q = a[k];
+    for (let j = 0; j < 5; j += 1) {
+      a[k - 4 + j] = mod(a[k - 4 + j] - q * polyFAscending[j]);
+    }
+  }
+  return a.slice(0, 4);
+}
+const syndromeColumns = erasurePositions.map((position) =>
+  modFactor(Array.from({length: 256}, (_, i) => +(i === position))));
+assert.deepEqual(syndromeColumns,
+  [[19,26,24,0],[8,18,12,12],[16,4,5,2],[20,24,0,0]]);
+/** @param {number} x */
+function inverse29(x) {
+  for (let i = 1; i < 29; i += 1) if (mod(i*x) === 1) return i;
+  throw Error('not invertible');
+}
+/** @param {number[][]} matrix @param {number[]} rhs */
+function solve4(matrix, rhs) {
+  const a = matrix.map((row, i) => [...row, rhs[i]]);
+  for (let c = 0; c < 4; c += 1) {
+    let row = c;
+    while (row < 4 && a[row][c] === 0) row += 1;
+    assert.ok(row < 4);
+    [a[c], a[row]] = [a[row], a[c]];
+    const scale = inverse29(a[c][c]);
+    for (let j = c; j <= 4; j += 1) a[c][j] = mod(a[c][j] * scale);
+    for (let i = 0; i < 4; i += 1) if (i !== c) {
+      const factor = a[i][c];
+      for (let j = c; j <= 4; j += 1) a[i][j] = mod(a[i][j] - factor*a[c][j]);
+    }
+  }
+  return a.map((row) => row[4]);
+}
+const erasureTests = [
+  {label:'p56 printed ciphertext', terminal:[...p55,...p56,...p57], expected:[15,20,9,27]},
+  {label:'p56 authenticated plaintext', terminal:[...p55,...p56Plain,...p57], expected:[6,19,28,20]},
+];
+for (const test of erasureTests) {
+  const erased = test.terminal.slice();
+  for (const position of erasurePositions) erased[position] = 0;
+  const syndrome = modFactor(erased);
+  const rhs = syndrome.map((value) => mod(-value));
+  const matrix = Array.from({length:4}, (_, i) =>
+    syndromeColumns.map((column) => column[i]));
+  const answer = solve4(matrix, rhs);
+  assert.deepEqual(answer, test.expected);
+  const corrected = test.terminal.slice();
+  erasurePositions.forEach((position, i) => {corrected[position] = answer[i];});
+  assert.deepEqual(modFactor(corrected), [0,0,0,0]);
+  assert.notEqual(answer[3], 0); // Known p56 literal F must remain rune0.
+}
+
 // A true 252-symbol source-native planted GP message would encode and recover
 // exactly, with the same fixed four coefficients and byte length.
 const plant = [...p55NoF, ...p56PlainNoSkip, ...p57];
@@ -135,4 +197,6 @@ console.log(JSON.stringify({
   observed: spans.map(({label, start, matches, bestShift, data, witness, pairWitness}) =>
     ({label, start, length: data.length, exactMatches: matches, bestCaesarMatches: bestShift, allSecretFunctionConflict: witness, allSecretPairConflict: pairWitness})),
   sourceCodewordReconstructed: true, positivePlantRecovered: true,
+  erasurePositions,
+  erasureTests: erasureTests.map(({label, expected}) => ({label, recoveredGP: expected})),
 }, null, 2));
