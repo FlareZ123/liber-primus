@@ -1,0 +1,42 @@
+name: Run one original-JPEG Python research SFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'Committed sims/*.py source-pixel test to run without editing workflow files'
+        required: true
+        default: sims/lp2_fivedot_original_jpeg_reflection_sft.py
+
+permissions:
+  contents: read
+
+jobs:
+  image-source-test:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out immutable source images and analysis
+        uses: actions/checkout@v7
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install pinned JPEG reader
+        shell: pwsh
+        run: |
+          & python -m pip install --disable-pip-version-check Pillow==11.3.0
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Validate and execute selected research SFT
+        shell: pwsh
+        env:
+          TEST_SCRIPT: ${{ inputs.script }}
+        run: |
+          if ($env:TEST_SCRIPT -notmatch '^sims/[A-Za-z0-9_.-]+[.]py$') {
+            throw 'Script must be a direct .py file in sims/'
+          }
+          if (-not (Test-Path -LiteralPath $env:TEST_SCRIPT -PathType Leaf)) {
+            throw 'Requested committed research script does not exist'
+          }
+          & python -- $env:TEST_SCRIPT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
