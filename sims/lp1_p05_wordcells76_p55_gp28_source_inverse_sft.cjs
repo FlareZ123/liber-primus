@@ -169,6 +169,33 @@ moving.sort((a,b)=>b.ioc-a.ioc);
 assert.equal(moving.length,24);
 assert.ok(Math.abs(moving[0].ioc-0.03824561403508772)<1e-12);
 assert.ok(Math.abs(moving.at(-1).ioc-0.031578947368421054)<1e-12);
+/** Third independently printed 76-unit operand: 32x8 numeric-table perimeter. */
+const sourceTable=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const bytes=sourceTable.bytes;
+assert.equal(bytes.length,256);
+const ring=[];
+for(let col=0;col<8;col++)ring.push(bytes[col]);
+for(let row=1;row<32;row++)ring.push(bytes[row*8+7]);
+for(let col=6;col>=0;col--)ring.push(bytes[31*8+col]);
+for(let row=30;row>=1;row--)ring.push(bytes[row*8]);
+assert.equal(ring.length,76);
+const dual=[];
+for(const orientation of ["printed","reversed"])
+for(const signWord of [-1,1])
+for(const signTable of [-1,1]){
+  const word=(orientation==="printed"?key:key.slice().reverse());
+  const pt=cipher.map((c,i)=>mod(c+signWord*word[i]+signTable*ring[i],29));
+  const encrypt=plain=>plain.map((p,i)=>mod(p-signWord*word[i]-signTable*ring[i],29));
+  assert.deepEqual(encrypt(pt),cipher);
+  const clear=native.slice(0,76);
+  assert.deepEqual(encrypt(clear).map((c,i)=>mod(c+signWord*word[i]+signTable*ring[i],29)),clear);
+  dual.push({orientation,signWord,signTable,ioc:ioc(pt),
+    first24:pt.slice(0,24).map(x=>corpus.translit[x]).join("")});
+}
+dual.sort((a,b)=>b.ioc-a.ioc);
+assert.equal(dual.length,8);
+assert.ok(Math.abs(dual[0].ioc-0.037894736842105266)<1e-12);
+assert.ok(Math.abs(dual.at(-1).ioc-0.02982456140350877)<1e-12);
 const control=Array.from({length:20},(_,i)=>ioc(native.slice(i,i+76)));
 assert.ok(Math.min(...control)>0.059);
 console.log(JSON.stringify({
@@ -186,6 +213,11 @@ console.log(JSON.stringify({
   moving29NativeFullPlants:moving.length,
   moving29IoCRange:[moving.at(-1).ioc,moving[0].ioc],
   bestFourMoving29:moving.slice(0,4),
+  gridPerimeterRunes:ring.length,
+  triple76CombinedVariants:dual.length,
+  triple76CombinedIocRange:[dual.at(-1).ioc,dual[0].ioc],
+  triple76CombinedNativePlants:dual.length,
+  triple76CombinedBest:dual.slice(0,2),
   moving29Interpretation:"Repetition now decodes to position-specific GP symbol from the complete source key, so prior fixed-repeat marker exclusion does not subsume this moving-sentinel family; no original plaintext.",
   limitation:"This is a bounded source-key GP28 feedback/register hypothesis, not an exclusion of every source-key cipher or every possible plaintext register."
 },null,2));
