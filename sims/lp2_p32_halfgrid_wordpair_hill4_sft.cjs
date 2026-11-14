@@ -293,4 +293,47 @@ console.log('original IoC:', ioc(target).toFixed(10),
   'solved p57 reference IoC:', ioc(known).toFixed(10));
 console.log('Hill4 original inverse candidates (ranked by IoC):');
 for (const result of ranked) console.log(JSON.stringify(result));
+
+// Second direct historical-consumer baseline: the sixteen source interior
+// symbols, read row-major or column-major, as a cyclic GP29 additive pad.
+// Both a book-continuous phase and physical-page resets are source-checkable.
+// This is a separate, fully specified candidate, not a tuned extra layer.
+const chapterPages = corpus.pages.filter((page) => page.page >= 33 && page.page <= 39);
+const additiveResults = [];
+for (const [keyName, matrix] of [
+  ['ordinal', ordinalMatrix],
+  ['prime', primeMatrix]
+]) {
+  for (const orientation of ['row-major', 'column-major']) {
+    const words = orientation === 'row-major' ? matrix : transpose(matrix);
+    const key = words.flat();
+    for (const sign of [-1, 1]) {
+      for (const phase of ['continuous', 'page-reset']) {
+        const output = [];
+        let streamPosition = 0;
+        for (const page of chapterPages) {
+          for (let i = 0; i < page.indices.length; i++) {
+            const k = key[(phase === 'continuous' ? streamPosition : i) % 16];
+            const original = page.indices[i];
+            const decoded = mod(original + sign * k);
+            assert.equal(mod(decoded - sign * k), original);
+            output.push(decoded);
+            streamPosition++;
+          }
+        }
+        additiveResults.push({keyName, orientation, sign, phase,
+          ioc: Number(ioc(output).toFixed(10)),
+          first: output.slice(0, 22).map((index) => alphabet[index]).join('')
+        });
+      }
+    }
+  }
+}
+assert.equal(additiveResults.length, 16);
+additiveResults.sort((a, b) => b.ioc - a.ioc);
+assert.ok(Math.abs(additiveResults[0].ioc - 0.0347301398) < 1e-9);
+assert.ok(Math.abs(additiveResults[15].ioc - 0.0342309765) < 1e-9);
+console.log('16 direct periodic source-matrix GP29 additive inverses:');
+for (const result of additiveResults) console.log(JSON.stringify(result));
+
 console.log('PASS: exact originals, shuffle controls and reversible GP29 plants');
