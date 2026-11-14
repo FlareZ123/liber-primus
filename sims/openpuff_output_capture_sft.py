@@ -138,7 +138,15 @@ def main():
         assert facts["size"] == len(payload)
         assert facts["sha256"] == hashlib.sha256(payload).hexdigest()
         assert facts["crc32"] == f"{zlib.crc32(payload) & 0xffffffff:08X}"
+        assert facts["openpuff_crc32"] == driver["openpuff_crc32"](payload)
         print(f"PASS: arbitrary embedded name retained, size={facts['size']}, crc32={facts['crc32']}")
+
+        historical = Path(__file__).resolve().parent.parent / "resources" / "cicada2014-openpuff-magic-squares.txt"
+        historical_facts = driver["file_facts"](historical)
+        assert historical_facts["size"] == 745
+        assert historical_facts["crc32"] == "5E547914"
+        assert historical_facts["openpuff_crc32"] == "6A8C41E3"
+        print("PASS: historically authentic OpenPuff 745-byte CRC32 6A8C41E3 verified")
 
         unverified = driver["classify_outputs"]([unknown])
         assert unverified["output_present"] is True
@@ -147,14 +155,14 @@ def main():
         print("PASS: unknown LP2 output remains an unauthenticated candidate")
 
         known = driver["classify_outputs"](
-            [unknown], expected_crc32=facts["crc32"], expected_size=len(payload)
+            [unknown], expected_crc32=facts["openpuff_crc32"], expected_size=len(payload)
         )
         assert known["expected_match"] is True
         mismatched = driver["classify_outputs"](
-            [unknown], expected_crc32=facts["crc32"], expected_size=len(payload) + 1
+            [unknown], expected_crc32=facts["openpuff_crc32"], expected_size=len(payload) + 1
         )
         assert mismatched["expected_match"] is False
-        print("PASS: CRC32 and byte length must both match a supplied control")
+        print("PASS: native OpenPuff CRC32 and byte length must both match a supplied control")
 
         assert not driver["wait_for_extraction"](FakeApp(), target, output_dir, 5)
         assert driver["extracted_files"](output_dir) == [unknown]
