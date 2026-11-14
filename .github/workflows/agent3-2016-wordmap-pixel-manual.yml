@@ -1,0 +1,17 @@
+name: Agent3 signed-2016 wordmap pixel gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-wordmap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original rune-word coordinate map and image-plane positive control
+        run: node sims/lp2_2016_wordmap_pixel_coordinates_sft.cjs
