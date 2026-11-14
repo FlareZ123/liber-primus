@@ -1,0 +1,13 @@
+name: LP2 floral3299 permuted feedback original gate
+on:
+  workflow_dispatch:
+jobs:
+  floral-inverse:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify source-selected 3299-rune inversion and native controls
+        run: node sims/lp2_floral3299_permuted_feedback_allsecret_sft.cjs
