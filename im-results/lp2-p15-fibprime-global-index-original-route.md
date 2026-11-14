@@ -27,8 +27,30 @@ The source exact sampled zero-based positions are `3299,3298,3296,3294,3288,3278
 
 **One bounded new-key consumer was tried after the word-level observation.** If `PNW` were intentionally placed as a key, the previously Cicada-used GP29 repeating Vigenère operation is one historically plausible consumer. Taking the authentic rune indices `P=13, N=9, W=7` as one complete three-rune key, reset at the beginning of each of p42's two original explicitly marked quotations `[10211,10279)` (68 runes) and `[10279,10439)` (160 runes), both GP29 subtraction and addition produce nonlinguistic runs. The subtraction IoC values are **0.03775** and **0.03357**; the addition values **0.04434** and **0.03357**. The first subtraction output begins `T AE A G TH F L S P M EO...`, and the second begins `OE A F EO H C X EA W R X X...`. No coherent plaintext, known opening or usable state is recovered. This is an exploratory posthoc key-reading test, not evidence the original author intended either the PNW acronym or this Vigenère transfer. No additional phase, key spelling, punctuation clock or page target has been optimized.
 
+## One finite continuation under the source-visible infinity mark
+
+The p15 illustration also has an **infinity** mark. Rather than stop when the 18th generated Fibonacci-prime value **19,866** exceeds the manuscript, make one deliberately frozen alternative: **circularly reduce each source-generated value, as a one-based rune ordinal, modulo the exact 12,956 unsolved source runes**. There is no original author instruction choosing this modulus over page count, 256-cell table length, or another circle; it is an exploratory attempt to make the first PNW event predict something **beyond the originally noticed hit**.
+
+Using the next **eleven** continuation values (starting with the initially noticed 10,176), and no deleted or shifted positions, the original source gives:
+
+| Fibonacci number | Generated value | One-based circular global offset, zero-based | Printed source rune | At word start? |
+| ---: | ---: | ---: | --- | --- |
+| 1,597 | 10,176 | 10,175 | P | yes, PNW |
+| 2,584 | 19,866 | 6,909 | P | no |
+| 4,181 | 36,490 | 10,577 | X | no |
+| 6,765 | 64,632 | 12,807 | N | yes |
+| 10,946 | 112,536 | 8,887 | I | no |
+| 17,711 | 193,398 | 12,013 | F | no |
+| 28,657 | 329,952 | 6,051 | C | no |
+| 46,368 | 560,698 | 3,589 | AE | no |
+| 75,025 | 948,270 | 2,481 | Y | yes |
+| 121,393 | 1,600,192 | 6,603 | G | no |
+| 196,418 | 2,693,368 | 11,475 | AE | no |
+
+The continuous source-rune readout **P P X N I F C AE Y G AE** is nonlinguistic, and only **3/11** positions are starts of original complete words, consistent with a random-looking indexing without any coherent word-by-word trail. Every value, offset and rune is exactly source-computed by an independent prime sieve. This **does not disprove a deliberately designed one-time pointer** to PNW, because a one-step clue need not predict a circular continuation. It rejects the most straightforward repeated navigation by manuscript-length modular wrap as an immediately legible instruction. In particular, PNW should no longer be elevated as a route just because the first unprinted term has an attractive gloss.
+
 ## Research decision
 
 This provides a concrete test of the appealing one-step continuation while preventing an uncontrolled index-offset/phase search. The continuation to position 10176, its one-based pointer to the complete printed **PNW** word on p42, and PNW's GP prime sum 91 equalling the 2014 third-square centre are exact original-source observations; the possible *Pacific Northwest* reading is speculative and currently lacks an independent first-party confirmation. Its relationship to p42's subsequent quotation is unestablished and there is **no recovered original plaintext**. The direct global-index reading and finite ordinal91 totient decoder produce no usable plaintext and should not be promoted to an LP2 route without an independently authored consumer specifying what to do at the indicated rune, word, page or quotation. Other uses of the mathematically established p15 grid remain outside this narrow test.
 
-[Read-only CommonJS source-gate SFT](../sims/lp2_p15_fibprime_global_index_source_sft.cjs) with [successful Windows/Node22 CI run 43580448962](https://github.com/FlareZ123/liber-primus/actions/runs/43580448962) uses the repository's original LP2 indices and printed 4×4 grid, recomputes primes with an independent primality function, verifies the complete source spiral, compares PNW against the preserved 2014 5×5 centre, and tests the unchanged 228-rune original quotation under one unfitted rank91 prime-totient clock. The script is Windows-CRLF safe, includes exact source-rune and cipher-reencryption assertions, and prints each sampled rune for both conventional index clocks. No external source fetch or file write is needed.
+[Read-only CommonJS source-gate SFT](../sims/lp2_p15_fibprime_global_index_source_sft.cjs) with [successful Windows/Node22 CI run 43581056417](https://github.com/FlareZ123/liber-primus/actions/runs/43581056417) uses the repository's original LP2 indices and printed 4×4 grid, recomputes primes with an independent primality function, verifies the complete source spiral, compares PNW against the preserved 2014 5×5 centre, and tests the unchanged 228-rune original quotation under one unfitted rank91 prime-totient clock, and evaluates eleven exact source-generated continuation values under a fully specified circular index. The script is Windows-CRLF safe, includes exact source-rune and cipher-reencryption assertions, and prints each sampled rune for both conventional index clocks. No external source fetch or file write is needed.
