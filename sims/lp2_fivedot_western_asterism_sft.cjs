@@ -172,7 +172,7 @@ async function main() {
   assert.deepEqual(paths[0].hips, [86742, 86032, 83000, 79882, 81377]);
   assert.ok(Math.abs(paths[0].error - 0.04899) < 0.0001);
 
-  // The exact 2015 wiki proposal lists Altair, Tarazed, Delta Aquilae,
+  // The previously published community wiki proposal lists Altair, Tarazed, Delta Aquilae,
   // Al Thalimain, Eta Aquilae. Al Thalimain can name iota or lambda Aql.
   const lambdaAquila = optimalSimilarity([97649, 97278, 95501, 93805, 97804], stars);
   const iotaAquila = optimalSimilarity([97649, 97278, 95501, 96468, 97804], stars);
