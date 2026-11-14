@@ -127,6 +127,18 @@ The integrated [original-source 48-model SFT](../sims/lp1_p05_wordcells76_p55_gp
 
 **Decision:** this source-matched, full-capacity changing-exception inverse is also a negative as a direct p55 cipher. It tests an independently instantiated moving-sentinel family left open by the universal fixed-sentinel exclusion; the short native reference and unselected historical operation limit the inference. Further rotations, alternative clocks, or new source key transformations require a separate original author-selected instruction.
 
+### Three original complete-length 76-unit operands: source tape, numeric-table rim, moth page
+
+One independent original artifact also has **76 source units**: the **outer perimeter** of the LP2 32×8 numeric table (physical pp49–51) contains **2×32+2×8−4=76** original printed cells. Its four-side clockwise walk begins at the upper-left source cell, reading top row right, right edge down, bottom row left and left edge up. Combined with the **76 original p05 verbal-cell GP runes** and **76 original p55 ciphertext runes**, this gives three *source-fixed* complete-length inputs. The p05 moth occurs on p55; the p50 table is also near the end of the original book. No Cicada instruction actually pairs the two putative key tapes.
+
+Freeze this one short composite hypothesis:
+\[
+P_i=(C_i+s_1 W_i+s_2 (B_i\bmod29))\bmod29,
+\]
+where original p55 rune \(C_i\), p05 word-cell rune GP ordinal \(W_i\) and perimeter byte \(B_i\) each use printed physical order, except a second p05 orientation that reverses its whole tape because that original LP1 JPEG contains a reversed envelope. Test both signs independently for \(s_1,s_2\), eight configurations total, **no fitted phase, changed table cell, selective F mask or hidden offset**. For every candidate, the direct additive encoder exactly reconstructs **76/76 original glyphs** and separately recovers an independently planted **76/76 solved-p57 GP passage**.
+
+All **eight original readouts remain nonprose**, with 76-rune IoCs **0.029824561404–0.037894736842**, versus genuine solved-p57 native 76-rune windows **0.059298245614–0.063859649123**. The eight-model result and exact table-perimeter extraction are integrated into the [read-only CommonJS SFT](../sims/lp1_p05_wordcells76_p55_gp28_source_inverse_sft.cjs). **Decision:** retire this direct two-key additive consumer. The three independently printed lengths provide an interpretable original-input geometry, **without an authenticated direction to combine them**; no unknown plaintext, unique source key or continuation was found. Do not widen the signs, walks, masks or transformations based on this negative.
+
 ## Original p55: source-motivated additive consumer and original plaintext decision
 
 The source LP1 p05 text explicitly calls **primes and Euler's totient sacred**. Its newly decoded hidden square contains **25 numbers**. Physical LP2 p55 contains **76 GP29 runes**; its original ciphertext has **three F runes at local positions 15, 25 and 41**. Treating **only position 25** as a transparent, non-key-consuming interrupt and processing the other two normally leaves **75 key-consuming runes**, three passes over 25 table values. The manuscript does not authenticate this one-of-three skip choice. The repeated moth illustration provides an independently authored LP1 p05→LP2 p53/p55 visual relationship, though the art also occurs on p53 and therefore **cannot uniquely select p55**. This specific geometry-and-operand combination was not covered by previous #495's negative using the *different* 5×5 **printed Wisdom 1033 square**.
