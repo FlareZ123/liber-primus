@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Test source-derived keys against original LP2 JPEGs under pinned OutGuess.
+ * Test source-derived keys against original LP1/LP2 JPEGs under pinned OutGuess.
  * A known-key embedded image and authentic Cicada controls must pass first.
  */
 const assert=require("node:assert/strict");
@@ -28,8 +28,8 @@ const PAGES=TARGET_IMAGE==="2016"
   ? [Number(TARGET_IMAGE)]
   : Array.from({length:58},(_,i)=>17+i);
 if(TARGET_IMAGE && TARGET_IMAGE!=="2016"){
-  assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=17 && PAGES[0]<=74,
-    "Single target must be an original LP2 JPEG index from 17 through 74, or 2016");
+  assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=0 && PAGES[0]<=74,
+    "Single target must be an original LP1/LP2 JPEG index from 0 through 74, or 2016");
 }
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
 /** @param {number | "2016"} n @returns {string} */

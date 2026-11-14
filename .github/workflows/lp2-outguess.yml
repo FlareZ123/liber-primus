@@ -30,7 +30,7 @@ on:
         required: false
         default: ''
       custom_image:
-        description: Optional LP2 JPEG index 17–74 or 2016 signed image; blank scans all 58
+        description: Optional original JPEG index 0–74 or 2016 signed image; blank scans all 58 LP2 pages
         type: string
         required: false
         default: ''
@@ -128,7 +128,7 @@ jobs:
         run: |
           node --check sims/outguess_lp2_share_xor.cjs
           node sims/outguess_lp2_share_xor.cjs
-      - name: Probe source-defined passwords for authentic hidden LP2 messages
+      - name: Probe source-defined passwords for authentic hidden original-image messages
         env:
           LP2_OUTGUESS_PASSWORD: ${{ inputs.custom_password != '' && inputs.custom_password || (inputs.historical2014_password && '33011103') || '' }}
           LP2_OUTGUESS_SOURCE_IMAGE: ${{ inputs.custom_image }}
