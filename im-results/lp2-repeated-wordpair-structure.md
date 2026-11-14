@@ -156,6 +156,24 @@ All **169** native prose windows violate the exact original bound. Under a furth
 
 **Scope and consequence.** The original second block does **not** arise from an ordinary native-GP English stream under a single static alphabet-permuted modular sum of an 80×80 crop of the first square and its own printed symbols, for any of the tested orientations and with zero extra edits. This does not establish the retrospective square framing, rule out position-varying alphabets, a different key extraction, additional encoding layers, or non-English/binary plaintext. No unknown Liber Primus text or authentic historical key is recovered. The five absent terminal symbols are intentionally kept unknown; the following solved-page five-rune title is never imported into the measurement.
 
+## All-border Schur-complement original-square obstruction (Agent 45, 14 November 2026)
+
+The source-conditional 81²→80²−5 geometric reading suggests one classical matrix operation not covered by the local four-corner model: a **Schur complement**. Fix the original 6,561 GP29 runes as an 81×81 matrix A. Remove any one row r and column c to obtain an 80×80 minor D, together with a deleted border vector pair u,v and pivot a=A[r,c]. A genuine Schur complement S=D−u·v/a (mod29) must have **rank(D−S)≤1**. This necessary condition also holds with an entirely unknown fixed scalar multiplying the outer product, independently of its value. Every 2×2 determinant of D−S must vanish.
+
+Take the following **6,395 untouched original cipher runes** as the visible prefix of the 80×80 target B. Leave its last **five** cells wholly unspecified. Give the model **all 81×81 possible deleted source row/column pairs** and **all eight dihedral output orientations**, totaling **52,488** candidate alignments. Two fixed, disjoint interior 2×2 minors at 80-square coordinates **(5,7)** and **(20,24)** avoid all five unspecified cells under every orientation. Results:
+
+| Source-original necessary condition | Surviving alignments |
+| --- | ---: |
+| Unconstrained row/column deletion and output orientation | **52,488** |
+| After first required 2×2 determinant vanishes | **6,586** |
+| After second required 2×2 determinant vanishes | **0** |
+
+The broad enumeration even includes **1,888 zero-pivot alignments**, which are not valid Schur decompositions but make the rank-one necessary test more generous. Thus **no natural source-square Schur complement or rank-one border correction** survives, regardless of any five missing cells or unknown border scalar. No glyph correction, plaintext assumption or key search was made.
+
+A complete positive control uses the original 81×81 source matrix, its authentic upper-left pivot value **15**, and the exact GF29 Schur complement over the full 6,400 output cells. It verifies the rank-one relation at every cell and passes both fixed minors. The direct [Windows-compatible Node22 reproducer](../sims/lp2_81square_schur_rankone_original_sft.cjs) passed the new **schur** suite of the existing manual-only [GitHub Actions run 43539096372](https://github.com/FlareZ123/liber-primus/actions/runs/43539096372).
+
+This rejects a *specific* 81→80 matrix cipher architecture under the retrospective square registration, without establishing that the registration or this mathematical operation was intended. Unknown non-rank-one transforms, stateful pads or a different cipher remain possible. No original LP2 plaintext, authorial key or next destination was recovered.
+
 ## Ternary 81×81 readouts: key-independent monoalphabetic test
 
 **Classification: finite original-input model-family negative with positive-controlled source-native GP text.** Because the duplicated ᛞᛄᚢ-ᛒᛖᛁ phrase ends at **6,561 = 81²**, one specific untested interpretation is that the first 6,561 ciphertext runes must be rearranged through a ternary square traversal before a fixed global monoalphabetic rune substitution is undone. Adjacent-rune **mutual information** (MI) is exactly invariant under any secret 29-rune bijection, so it tests this entire key class without guessing a symbol permutation.
