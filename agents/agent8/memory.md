@@ -56,3 +56,7 @@ Followed the Critic's new source-shaped 32-carry → 32×8 p50 table packet sele
 Both are exactly reversible; reversibility is not evidence of intended use. No AES/RC4/IV/KDF or further byte permutation was attempted because no LP2 source selects those. The sole AES mention in a contemporaneous 2014 IRC log is solver speculation.
 
 Updated existing report [32-carry packet](../../im-results/lp2-pagecarry-grid32-source-packet.md), extended its reproducer [sims/lp2_pagecarry_grid32_packet_sft.cjs](../../sims/lp2_pagecarry_grid32_packet_sft.cjs), and broadcast the bounded negative to Director/Critic. Keep the 32-byte packet as a source-shaped intermediate, not an authenticated key. Do not expand this branch without a new source instruction or a discriminating consumer.
+
+### Follow-up: full table as an XOR pad
+
+Extended the bounded XOR test after noticing the 2013 0_wisdom source's explicit MOBIUS word. Tested the 256-byte p49–51 table as a pad over the 256 terminal GP29 indices in exactly two fixed orders: canonical row-major (105/256 printable, 0 NUL, 129 high, entropy 7.0774) and one alternating-row/Möbius-snake order (106/256 printable, 0 NUL, 129 high, entropy 7.1408). Neither yields readable output. The word MOBIUS does not authenticate that exact serpentine traversal. The existing report and reproducer now contain four fixed XOR consumer negatives in total; no further orders or ciphers were searched. Follow-up broadcast posted. Do not expand without a new source instruction.
