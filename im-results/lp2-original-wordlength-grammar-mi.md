@@ -51,6 +51,24 @@ All four scores remain ordinary under the same-source-length permutations; none 
 
 **Decision:** The actual original ciphertext provides **no evidence for simple whole-word round-robin 8- or 32-lane interleaving of consecutive ordinary GP prose**, including any secret fixed permutation of those lanes per visual chapter. The grid's dimensions alone do not choose this encoding. Column-major word transpositions, variable lanes, changing within-row order, word-boundary-changing encodings, languages with atypical length dependencies, and subsequent cipher stages remain open. Do not optimize lane orders to rescue this failed invariant without a new authorial cue. [Source-exact standalone CJS SFT](../sims/lp2_wordlength_gridlane_allsecret_sft.cjs).
 
+## Exact source-prose crib search through preserved word lengths
+
+The preserved printed delimiters provide a direct plaintext-recovery opportunity independent of the rune cipher: if the unsolved text quotes a known original passage without changing the source word order or the GP rune length of each word, its **contiguous word-length string** survives even an arbitrary secret, position-dependent, length-preserving rune substitution. Agent15 tested this condition on the entire original 2,896-word LP2 stream, preserving all 32 source words continued across physical page breaks, against five independent, previously pinned literary corpora. English text is converted using the same native GP digraph/ING/IO encoder as the source controls above; the corrected Old English and native Latin sources retain their fixed word-level GP length inventories.
+
+| Intact-GP source text | Source words | Exact nine-word matches | Exact ten-word matches |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 55,407 | **4** | **0** |
+| Gibran, *The Prophet* | 15,733 | **3** | **0** |
+| Emerson | 77,932 | **1** | **0** |
+| Latin Vulgate | 39,835 | **1** | **0** |
+| Corrected Old English *Beowulf* | 10,885 | **0** | **0** |
+
+All nine observed nine-word matches are isolated, generic length-profile coincidences. None provides authenticated rune plaintext. The exact ten-word absence also gives a useful bounded exclusion of lightly edited quotations: any **20 consecutive aligned words with at most one changed word length**, or **30 with at most two**, must contain a ten-word intact run, so neither can appear in these five sources under that precise alignment model. Insertion/deletion of words, permutation, changed segmentation, an untested source, or a different original orthography are outside the test.
+
+A source-matched baseline prevents overinterpretation. In **600 seeded shuffles** of the original word lengths *within the nine unchanged visual chapters*, preserving every chapter's word-length inventory, the five-source combined number of nine-word hits averaged **18.8367**, with **15/600** shuffles having at most the original nine; exact ten-word hits averaged **2.9417**, with **48/600** shuffles also having zero. These are exploratory finite-source counts, not a discovery-corrected significance test. The scant matched source phrases agree with the independent missing-word-length-grammar result above, so the test **does not establish that the intended plaintext is absent** from any of these books; a transport that changes word order or delimiters would conceal quotations.
+
+The original full-length exact parser, native-text coding, all five source alignments, 600 within-chapter controls and a planted ten-word genuine Gibran phrase are checked by the [independent CommonJS SFT](../sims/lp2_wordlength_source_crib_sft.cjs). [Windows Node22 run 43579738262](https://github.com/FlareZ123/liber-primus/actions/runs/43579738262) passes the original and 600-shuffle checks, as does the later [combined original-source run 43580390413](https://github.com/FlareZ123/liber-primus/actions/runs/43580390413). This remains a **conditional source-crib route**, useful to rerun on a new historically indicated text, rather than a decryption.
+
 ## Cryptanalytic consequence and limitations
 
 The source-visible **printed spaces and dots cannot currently be assumed to preserve natural prose word order**. Their marginal resemblance to raw Latin English word lengths ([prior original unigram test](../sims/lp2_original_rawlatin_vs_gp_wordlength_register_sft.cjs)) does not establish natural-language word boundary preservation; the higher-order structural evidence is absent.
