@@ -70,8 +70,18 @@ async function main() {
     const raw = Buffer.from(await response.arrayBuffer());
     assert.equal(raw.length, source.bytes);
     assert.equal(blobSha(raw), source.sha);
-    const candidates = select(source.name, raw.toString("latin1"));
+    const bodyText = raw.toString("latin1");
+    const candidates = select(source.name, bodyText);
     items.push(...candidates);
+    if (source.name.endsWith(".2.log")) {
+      const lines = bodyText.split(/\r?\n/u);
+      for (const anchor of [273946, 307243, 312273, 333991, 334639]) {
+        console.log("PERIOD THREAD CONTEXT", anchor);
+        for (let n = Math.max(1, anchor - 7); n <= Math.min(lines.length, anchor + 7); n++) {
+          console.log("IRC L" + n + " " + lines[n - 1].slice(0, 650));
+        }
+      }
+    }
     console.log("SOURCE", source.name, "sha", source.sha, "candidateURLs", candidates.length);
   }
   const groups = new Map();
