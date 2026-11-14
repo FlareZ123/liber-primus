@@ -1,0 +1,19 @@
+name: LP2 2014 Common Crawl WARC source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Index positive controls then bounded Tor2web WARC checks
+        run: python sims/lp2_cc2014_tor2web_warc_probe.py
