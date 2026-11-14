@@ -1,0 +1,13 @@
+name: LP2 GP29 rare-escape arithmetic transport original chapters
+on:
+  workflow_dispatch:
+jobs:
+  original-unkeyed:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode original chapter streams and native historic gzip plant
+        run: node sims/lp2_gp29_nonrepeat_range_transport_sft.cjs
