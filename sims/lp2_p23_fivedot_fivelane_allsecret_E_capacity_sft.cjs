@@ -59,6 +59,79 @@ const ceilings = {
   quintets: allSecretECeiling(splitLanes(body, "quintets"))
 };
 assert.deepEqual(ceilings, {stripes:58,quintets:64});
+/** @param {number[][]} lanes Five exactly 201-rune lanes. @returns {number} */
+function fiveLanePairNumerator(lanes) {
+  return lanes.reduce((sum,lane)=>{
+    const counts=Array(29).fill(0);
+    for(const v of lane) counts[v]++;
+    return sum+counts.reduce((n,c)=>n+c*(c-1),0);
+  },0);
+}
+const originalPairNumerators={
+  stripes:fiveLanePairNumerator(splitLanes(body,"stripes")),
+  quintets:fiveLanePairNumerator(splitLanes(body,"quintets"))
+};
+assert.deepEqual(originalPairNumerators,{stripes:6618,quintets:6892});
+/**
+ * All native 1005-rune windows: count index-of-coincidence *within* each
+ * of five 201-rune stationary substitution lanes. This is keyless and exact:
+ * a bijection preserves counts and hence each lane's ordered equal pairs.
+ * Each five-lane mean IoC = integer pairNumerator / 201000.
+ *
+ * The two layouts are checked in O(n) with rolling lane histograms. Both
+ * are tested on original ciphertext, known native source registers, and
+ * fixed-key bijection plants.
+ * @param {number[]} values Native register, at least 1005 rune indices.
+ * @returns {{stripes:{min:number,at:number,atOrBelow:number},quintets:{min:number,at:number,atOrBelow:number}}}
+ */
+function everyWindowPairMinimum(values) {
+  const n=values.length,w=body.length,windows=n-w+1;
+  assert.ok(windows>0);
+  const result={
+    stripes:{min:Infinity,at:0,atOrBelow:0},
+    quintets:{min:Infinity,at:0,atOrBelow:0}
+  };
+  const check=(layout,score,start)=>{
+    const current=result[layout];
+    if(score<current.min){current.min=score;current.at=start;}
+    if(score<=originalPairNumerators[layout]) current.atOrBelow++;
+  };
+  // Five consecutive blocks of 201: rolling every native 201-rune pair sum.
+  const counts=new Int32Array(29),shortPairs=new Int32Array(n-200);
+  let pairs=0;
+  for(let i=0;i<201;i++){
+    const value=values[i];pairs+=2*counts[value];counts[value]++;
+  }
+  shortPairs[0]=pairs;
+  for(let start=1;start<shortPairs.length;start++){
+    const old=values[start-1],fresh=values[start+200];
+    pairs-=2*(counts[old]-1); counts[old]--;
+    pairs+=2*counts[fresh];counts[fresh]++;
+    shortPairs[start]=pairs;
+  }
+  for(let start=0;start<windows;start++){
+    let sum=0;
+    for(let lane=0;lane<5;lane++)sum+=shortPairs[start+lane*201];
+    check("stripes",sum,start);
+  }
+  // Five interleaved residue lanes. Window advancement replaces one rune in
+  // exactly one absolute residue lane since 1005 is divisible by five.
+  const quinCounts=Array.from({length:5},()=>new Int32Array(29));
+  let quinPairs=0;
+  for(let i=0;i<w;i++){
+    const counts=quinCounts[i%5],v=values[i];
+    quinPairs+=2*counts[v];counts[v]++;
+  }
+  for(let start=0;start<windows;start++){
+    check("quintets",quinPairs,start);
+    if(start===windows-1)break;
+    const counts=quinCounts[start%5],old=values[start],fresh=values[start+w];
+    quinPairs-=2*(counts[old]-1);counts[old]--;
+    quinPairs+=2*counts[fresh];counts[fresh]++;
+  }
+  return result;
+}
+
 
 const runeByName = new Map(corpus.translit.map((name,i)=>[name,i]));
 const multis = ["ING","TH","NG","EO","OE","AE","IO","IA","EA"];
@@ -110,8 +183,10 @@ const sources = [
   ["Latin Vulgate","resources/control/latin-vulgate-latin26-normalized.txt"]
 ];
 const stats = {};
+const pairStats = {};
 for (const [name,file] of sources) {
   const gp = toGP(read(file));
+  pairStats[name]=everyWindowPairMinimum(gp);
   stats[name] = {
     stripes:nativeWindows(gp,ceilings.stripes),
     quintets:nativeWindows(gp,ceilings.quintets)
@@ -130,6 +205,7 @@ assert.equal(beowulf.sourceGpBase29.length,48012);
 const nativeOE=[...beowulf.sourceGpBase29]
   .map((character)=>beowulf.positiveControlAlphabet.indexOf(character));
 assert.ok(nativeOE.every((i)=>i>=0&&i<29));
+pairStats["Beowulf (corrected Old English)"]=everyWindowPairMinimum(nativeOE);
 stats["Beowulf (corrected Old English)"]={
   stripes:nativeWindows(nativeOE,ceilings.stripes),
   quintets:nativeWindows(nativeOE,ceilings.quintets)
@@ -177,6 +253,7 @@ assert.deepEqual(
   [warningPlain,welcomePlain,oldSections[2],koanPlain,oldSections[4]]
     .map((section)=>section.slice(0,5).map((v)=>corpus.translit[v]).join("")),
   ["AWARN","WELCO","SOMEW","ACOAN","THELOS"]);
+pairStats["Authentic solved Cicada LP1 GP"]=everyWindowPairMinimum(solvedCicada);
 stats["Authentic solved Cicada LP1 GP"]={
   stripes:nativeWindows(solvedCicada,ceilings.stripes),
   quintets:nativeWindows(solvedCicada,ceilings.quintets)
@@ -219,9 +296,21 @@ for(const layout of ["stripes","quintets"]) {
   const knownPlantE=target.filter((v)=>v===runeByName.get("E")).length;
   assert.ok(plantCeiling>=knownPlantE,
     "All-secret maximum must admit true planted native E count");
+  assert.equal(fiveLanePairNumerator(cipherLanes),
+    fiveLanePairNumerator(originalLanes),
+    "Unknown stationary secret alphabets must preserve within-lane pair counts");
   console.log("POSITIVE PLANT",JSON.stringify({layout,trueE:knownPlantE,
     maxPossibleE:plantCeiling,recoveredRunes:1005}));
 }
+for(const [name,scan] of Object.entries(pairStats)){
+  for(const layout of ["stripes","quintets"]){
+    assert.ok(scan[layout].min>originalPairNumerators[layout],
+      "Native source matches or undercuts original five-lane coincidence: "+name+":"+layout);
+    assert.equal(scan[layout].atOrBelow,0);
+  }
+}
+console.log("ORIGINAL FIVE-LANE PAIR NUMERATORS",JSON.stringify(originalPairNumerators));
+console.log("ALL-WINDOW FIVE-LANE PAIR MINIMA",JSON.stringify(pairStats));
 console.log("ORIGINAL FIVE-LANE E CEILINGS",JSON.stringify(ceilings));
 console.log("FULL 1005-RUNE NATIVE WINDOWS",JSON.stringify(stats));
 console.log("DECISION: five independent stationary secret GP29 lane alphabets "
