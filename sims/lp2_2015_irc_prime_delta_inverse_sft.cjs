@@ -113,6 +113,47 @@ function circularAudit(source,prime) {
     max:Math.max(...tests)};
 }
 
+/**
+ * Restrict choice to two literal prime signs and two source-natural starts:
+ * first real rune paired with prime2 or prime3. Source F prepending selects
+ * prime3, while the other phase is the unprefixed control. Compare the
+ * four-way best score at original alignment with every intact rotation.
+ * @param {number[]} source
+ * @param {number[]} prime
+ */
+function fourWayRotationAudit(source,prime){
+  const len=source.length;
+  /** @param {number} rotation @param {number} sign @param {number} offset */
+  const score=(rotation,sign,offset)=>{
+    let prev=offset===1?mod29(sign*prime[0]):0;
+    let last=-1;
+    let events=0;
+    for(let i=0;i<len;i++){
+      const shifted=mod29(source[(i+rotation)%len]+sign*prime[i+offset]);
+      const delta=mod29(shifted-prev);
+      if(i>0&&delta===last)events++;
+      prev=shifted;
+      last=delta;
+    }
+    return events;
+  };
+  const all=[];
+  for(let r=0;r<len;r++){
+    const counts=[score(r,1,0),score(r,1,1),
+      score(r,-1,0),score(r,-1,1)];
+    all.push({rotation:r,counts,max:Math.max(...counts)});
+  }
+  const observed=all[0].max;
+  return {options:['plus/prime2','plus/prime3','minus/prime2',
+      'minus/prime3-after-fictitious-F'],
+    sourceScores:all[0].counts,observed,
+    upperTailOverCompleteCyclicPhases:
+      all.filter(x=>x.max>=observed).length+'/'+len,
+    exactTiedPhases:all.filter(x=>x.max>=observed)
+      .map(x=>({rotation:x.rotation,scores:x.counts})),
+    allPhasesMaximum:Math.max(...all.map(x=>x.max))};
+}
+
 function main(){
   assert.equal(corpus.runes.length,29);
   const original=corpus.pages.filter(p=>p.page<56).flatMap(p=>p.indices);
@@ -153,6 +194,9 @@ function main(){
   assert.deepEqual(chapters.map(c=>c.exactUpperTail),
     ['1/729','735/1145','580/1729','78/1903','327/1021',
       '919/1433','585/1680','2410/3008','101/308']);
+  const fourWays=fourWayRotationAudit(page0to2,ps);
+  assert.deepEqual(fourWays.sourceScores,[26,25,34,40]);
+  assert.equal(fourWays.upperTailOverCompleteCyclicPhases,'2/729');
   assert.equal(chapters.filter(c=>c.phaseZeroIsUniqueMaximum).length,1);
   assert(chapters[0].phaseZeroIsUniqueMaximum);
   const sha=crypto.createHash('sha256').update(Buffer.from(original)).digest('hex');
@@ -162,6 +206,7 @@ function main(){
     operation:'F=0 prepended; shift C_i by -prime(i+2), output consecutive modular difference',
     originalBytesSha256:sha,phaseZeroUniqueMaximumInFirstChapter:true,
     realP0to2:{cipherDoublets:4,primeDeltaDoublets:40,IoC:ioc(recovered)},
+    sourceConstrainedFourWayPhaseControl:fourWays,
     plantedP57:{length:plant.length,IoC:ioc(plant),exactRecovered:true},
     visualChapterHoldout:chapters,
     interpretation:'2015 participant count reproduced exactly; original first visual chapter phase singled out against its 729 rotations, but eight held-out chapters show no repeated global phase effect and none yields source-native plaintext.'},null,2));
