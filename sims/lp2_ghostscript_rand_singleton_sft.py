@@ -88,7 +88,7 @@ def projected(values, mode):
     return values % MOD if mode == "mod" else (values * MOD) // M
 
 
-def scan(entries, mode, max_errors=MAX_ERRORS):
+def scan(entries, mode, max_errors=MAX_ERRORS, sign=1):
     """Exhaust all nonzero generator states, allowing <=max_errors misses.
 
     Because at most max_errors of the FIRST max_errors+1 singleton readings
@@ -100,8 +100,9 @@ def scan(entries, mode, max_errors=MAX_ERRORS):
     assert len(entries) > max_errors
     offsets = [offset for offset, _ in entries]
     values = np.array([value for _, value in entries], dtype=np.int64)
-    key_a = (values - PLAINTEXT_A) % 29
-    key_i = (values - PLAINTEXT_I) % 29
+    assert sign in (-1, 1)
+    key_a = (sign * (values - PLAINTEXT_A)) % 29
+    key_i = (sign * (values - PLAINTEXT_I)) % 29
     originals = set()
     visited = 0
     anchor_survivors = []
@@ -146,7 +147,7 @@ def scan(entries, mode, max_errors=MAX_ERRORS):
                     anchor_count += 1
         anchor_survivors.append(anchor_count)
     return {
-        "mode": mode, "singleton_count": len(entries),
+        "mode": mode, "sign": sign, "singleton_count": len(entries),
         "allowed_bad_singletons": max_errors,
         "states_examined_with_anchor_overlap": visited,
         "unique_surviving_generator_states": len(originals),
@@ -156,14 +157,14 @@ def scan(entries, mode, max_errors=MAX_ERRORS):
     }
 
 
-def synthetic_control(entries, seed, mode):
+def synthetic_control(entries, seed, mode, sign=1):
     """Plant 18 known A/I singleton words under a known full-range seed."""
     planted = []
     for j, (offset, _) in enumerate(entries):
         state = seed * pow(A, offset + 1, M_INT) % M_INT
         key = state % 29 if mode == "mod" else state * 29 // M_INT
         plain = PLAINTEXT_A if j % 2 == 0 else PLAINTEXT_I
-        encrypted = (plain + key) % 29
+        encrypted = (plain + sign * key) % 29
         if j in (0, 4, 12):
             encrypted = (encrypted + 3) % 29
         planted.append((offset, encrypted))
@@ -320,16 +321,20 @@ def main():
         (M_INT-1)*16807 % M_INT
     )
     for mode in ("mod", "scaled"):
-        result = scan(data, mode)
-        print("ORIGINAL", result, flush=True)
-        assert result["unique_surviving_generator_states"] == 0
+        for sign in (1, -1):
+            result = scan(data, mode, sign=sign)
+            print("ORIGINAL", result, flush=True)
+            assert result["unique_surviving_generator_states"] == 0
 
     check_grid_full_output()
 
-    plant, expected = synthetic_control(data, seed=3301, mode="mod")
-    result = scan(plant, "mod")
-    print("PLANT: 3 altered words, seed=3301", result, flush=True)
-    assert expected in result["survivor_at_first_singleton"]
+    for sign in (1, -1):
+        plant, expected = synthetic_control(data, seed=3301, mode="mod",
+                                           sign=sign)
+        result = scan(plant, "mod", sign=sign)
+        print("PLANT: 3 altered words, seed=3301, sign", sign,
+              result, flush=True)
+        assert expected in result["survivor_at_first_singleton"]
     print("PASS: all 2^31-2 states exhausted with 3-edit allowance; planted seed recovered")
 
 
