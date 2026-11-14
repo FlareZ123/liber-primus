@@ -24,4 +24,6 @@ The p39 red glyphs select a concrete repeated-root polynomial; the p57 *shed cir
 
 A human-directed next test would require an *independent printed or historically archived operation* explaining how the p39 repeated root transports a constant offset or algebraic state between the table and p55 words. Without that consumer, the new relation does not select a reversible transformation and should not justify unconstrained pad, phase, sign or key sweeps.
 
+**Independent execution:** [manual Node22 Actions 43638031676](https://github.com/FlareZ123/liber-primus/actions/runs/43638031676) completed **success** after checking the original source files and all assertions.
+
 **Reproducer:** [single-file exact-original Node22 SFT](../sims/lp2_p55_inner43_q252_redroot_bridge_sft.cjs); inputs are the pinned `resources/liber-primus/lp2-corpus.json` and `lp2-grid-256.json`. The code asserts the original 76/43 rune segmentation, the quotient's exact zero division remainder, the p39 root, both remainders, derivative equality and the already known p55 value/orbit checks. Read alongside the [p55 bridge source limitations](p55-inner43-base29-polynomial-bridge.md) and the [historical H/G endianness caveat](2013-base29-gf29-grid-factor.md). **No unknown-page plaintext, complete key or final destination recovered.**
