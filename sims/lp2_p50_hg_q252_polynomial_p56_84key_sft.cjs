@@ -188,3 +188,70 @@ for(const geometry of ["blocks","triples"]) {
 console.table(rationalResults);
 console.log("PASS: no fixed three-input rational readout N/D through degree4");
 console.log("can reproduce all 84 historical p56 key runes in either Q252 layout.");
+
+
+/**
+ * Historical positional BASE29 + TOTIENT: every three Q252 symbols are one
+ * number, then φ(number) mod29 is a candidate GP key symbol. The two frozen
+ * 3x84 layouts and big/little digit readings are tested directly against the
+ * authentic historical 84-key p56 target and original unknown p55/p0 runes.
+ * This number-theoretic consumer is independent of the polynomial/rational
+ * readout tests above. No key values are fitted to plaintext.
+ * @param {number} n @returns {number}
+ */
+function totient(n) {
+  assert.ok(Number.isInteger(n) && n >= 1);
+  let value=n,remaining=n;
+  for(let p=2;p*p<=remaining;p++) {
+    if(remaining%p===0) {
+      while(remaining%p===0)remaining/=p;
+      value-=value/p;
+    }
+  }
+  if(remaining>1)value-=value/remaining;
+  return value;
+}
+/** @param {number[]} data @returns {number} */
+function coincidence(data) {
+  const cnt=Array(29).fill(0);
+  for(const v of data)cnt[v]++;
+  return cnt.reduce((acc,v)=>acc+v*(v-1),0)/(data.length*(data.length-1));
+}
+const totientResults=[];
+const expectedMatches=[0,3,5,4]; // blocks-big, blocks-little, triples-big, triples-little
+const expectedP55Ioc=[
+  0.041403508771929824,0.03859649122807018,
+  0.029473684210526315,0.03368421052631579
+];
+const expectedP0Ioc=[
+  0.03360533473721155,0.03340060249773332,
+  0.034658243397385276,0.0332251177210377
+];
+for(const geometry of ["blocks","triples"]) {
+  for(const endian of ["big","little"]) {
+    const key=Array.from({length:84},(_,i)=>{
+      const digits=dataTriple(geometry,i);
+      if(endian==="little")digits.reverse();
+      const n=digits[0]*29*29+digits[1]*29+digits[2];
+      assert.ok(n>0 && n<29*29*29);
+      return mod(totient(n));
+    });
+    const match=key.filter((v,i)=>v===historicalKey[i]).length;
+    const decrypt=values=>values.map((v,i)=>mod(v-key[i%84]));
+    const p55=gp.pages[55].indices, p0=gp.pages[0].indices;
+    const decoded55=decrypt(p55), decoded0=decrypt(p0);
+    const ref=gp.pages[57].indices.slice(0,76);
+    const planted=ref.map((v,i)=>mod(v+key[i%84]));
+    assert.deepEqual(decrypt(planted),ref);
+    const idx=totientResults.length;
+    assert.equal(match,expectedMatches[idx]);
+    assert.ok(Math.abs(coincidence(decoded55)-expectedP55Ioc[idx])<1e-12);
+    assert.ok(Math.abs(coincidence(decoded0)-expectedP0Ioc[idx])<1e-12);
+    totientResults.push({geometry,endian,matchHistoricalKey:match,
+      p55OriginalIoc:coincidence(decoded55),p0OriginalIoc:coincidence(decoded0),
+      first18P55:decoded55.slice(0,18).map(i=>gp.translit[i]).join(" ")});
+  }
+}
+console.table(totientResults);
+console.log("PASS: SOURCE BASE29+TOTIENT 3-digit key masks tested on original");
+console.log("p56 historical key, p55 and p0 unknown rune pages; native plant exact.");
