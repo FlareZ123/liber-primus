@@ -25,7 +25,7 @@ const expectedSingletonTypes = [5, 7, 9, 12, 5, 8, 9, 11, 2];
 const codewords = [...'abcdefghijklmnopqrstuvwxyz'].filter((x) => x !== 'q').concat(['qu', 'qa', 'qe', 'qi']);
 assert.equal(codewords.length, 29);
 assert.equal(new Set(codewords).size, 29);
-assert.ok(codewords.every((x, i) => codewords.every((y, j) => i === j || !y.startsWith(x)));
+assert.ok(codewords.every((x, i) => codewords.every((y, j) => i === j || !y.startsWith(x))));
 
 /**
  * @typedef {{w:string, start:number}} PositionedWord
@@ -183,7 +183,7 @@ function chop(lengths, words) {
   });
 }
 
-/** @returns {number} */
+/** @returns {() => number} */
 function nextRandomFactory() {
   // Separate deterministic seed per run, independent of LP2 ciphertext.
   let seed = 6112026;
