@@ -10,7 +10,7 @@ The [source-exact CommonJS single-file reproducer](../sims/lp2_visual_chapter_bo
 | --- | --- | ---: | ---: |
 | **p0–2** | Black cross/branch graphic, red p0 opening, p2 terminal red 13-dot | **729** | 0 |
 | **p3–7** | Repeated side scrollwork; p3 opening, p6 red subheading, p7 terminal rubric/mark | **1,145** | 729 |
-| **p8–14** | Repeated marginal saplings; p8 opening, p14 side-profile mayfly and terminal mark | **1,729** | 1,874 |
+| **p8–14** | Repeated marginal saplings; p8 opening, p14 feather and terminal mark | **1,729** | 1,874 |
 | **p15–22** | p15 nine-rune heading and 4×4 number spiral, infinity ornament, second eleven-rune red heading; p22 stave/root and terminal mark | **1,903** | 3,603 |
 | **p23–26** | p23 five-dot graphic/red heading, p24–26 repeated side illustration, p26 terminal mark | **1,021** | 5,506 |
 | **p27–32** | p27 red heading/leaf, unframed text pp28–31, p32 small dead tree and terminal mark | **1,433** | 6,527 |
@@ -84,14 +84,17 @@ For two segments encrypted as C_s[t] = P_s[t] + K[t] (mod 29) under the *same* r
 
 | Original-input measurement | Aligned positions | Original equal | Original equal rate | Native-GP English control mean | Minimum of 1,500 controls |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| All 66 twelve-segment pairs | 37,376 | 1,253 | **0.03352419** | **0.06051730** | 0.05626605 |
-| Only 51 pairs involving a subdivided original chapter | 25,262 | 844 | **0.03340986** | **0.06059372** | 0.05589423 |
-| All pairs, pairwise optimum fixed residue | 37,376 | 1,849 best | **0.04947025** | **0.06327035** | 0.05955693 |
-| Split-chapter pairs, pairwise optimum residue | 25,262 | 1,277 best | **0.05055023** | **0.06378416** | 0.05949648 |
+| All 66 twelve-segment pairs | 37,376 | 1,253 | **0.03352419** | **0.06002126** | 0.05565068 |
+| Only 51 pairs involving a subdivided original chapter | 25,262 | 844 | **0.03340986** | **0.06005291** | 0.05530045 |
+| All pairs, pairwise optimum fixed residue | 37,376 | 1,849 best | **0.04947025** | **0.06284293** | 0.05947667 |
+| Split-chapter pairs, pairwise optimum residue | 25,262 | 1,277 best | **0.05055023** | **0.06333014** | 0.05890270 |
 
-The **1,500 deterministic independent controls** use source-native Shakespeare and Gibran GP29 word encodings, sampling a word of **exactly each original printed word's rune length** in the same section; chapter membership, the dependence among all paired comparisons, and the 12 original split positions are preserved. All four measures have **0/1,500** controls at or below the original, yielding an add-one empirical lower-tail bound **1/1,501 ≈ 0.0006662** for that explicit natural-language reference model. This is a scoped model comparison, not a universal probability for arbitrary unknown languages or segmentation.
+The **1,500 deterministic independent controls** use source-native Shakespeare and Gibran GP29 word encodings, including attested `ING→NG` and `IO→IA` contractions, sampling a word of **exactly each original printed word's rune length** in the same section; chapter membership, the dependence among all paired comparisons, and the 12 original split positions are preserved. All four measures have **0/1,500** controls at or below the original, yielding an add-one empirical lower-tail bound **1/1,501 ≈ 0.0006662** for that explicit natural-language reference model. This is a scoped model comparison, not a universal probability for arbitrary unknown languages or segmentation.
 
 **Positive control:** An independent complete native-English plant uses the same original 12 segment/word shapes and a single **3,008-symbol** consecutive-prime-minus-one GP29 keystream restarted from position zero at every segment. The 3,008-rune synthetic longest segment recovers the complete key; all twelve sections decrypt and forward-reencrypt exactly. This rules out a nonfunctioning cancellation procedure as the explanation of the original's failure.
+
+
+**Control orthography refinement:** The initial sampler missed the attested `ING→NG` and `IO→IA` spellings. Rerunning the identical 1,500 seed-fixed draws with the corrected encoder changes the four control means and minima tabulated above. Original GP ciphertext statistics and all four 0/1,500 outcomes are unchanged.
 
 **Research decision:** Retire the **shared same-keystream reset at all twelve visual and internal headings** for intact printed-word source-native English, including a common invertible per-offset substitution on the equality invariant. This adds a genuine internal-rubric test to the existing nine-top-level-chapter negative above. It does **not** exclude separately keyed segments, unmarked state changes, independent phase shifts, word-boundary alterations, or a different plaintext register. No unknown page plaintext or historical key was recovered. The [single-file Node.js 22 CommonJS reproducer](../sims/lp2_internal_rubric_sharedpad_sft.cjs) asserts source positions, original statistics, all native controls and exact synthetic recovery. Do not repeat this model with fitted rubric offsets absent independent source evidence.
 

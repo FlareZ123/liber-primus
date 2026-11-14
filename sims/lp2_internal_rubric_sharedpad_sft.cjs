@@ -100,7 +100,8 @@ const alphabet = corpus.translit.map((symbol, i) => ({ symbol, i }))
   .sort((a, b) => b.symbol.length - a.symbol.length);
 /** @param {string} s @returns {number[]} */
 function gpWord(s) {
-  const value = s.toUpperCase().replace(/QU/g, 'CW').replace(/V/g, 'U')
+  const value = s.toUpperCase().replace(/ING/g, 'NG').replace(/IO/g, 'IA')
+    .replace(/QU/g, 'CW').replace(/V/g, 'U')
     .replace(/K/g, 'C').replace(/Z/g, 'S').replace(/Q/g, 'C');
   const output = [];
   for (let j = 0; j < value.length;) {
