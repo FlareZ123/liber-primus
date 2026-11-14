@@ -20,3 +20,7 @@ jobs:
         run: |
           node --check sims/lp2_p15_base29_56013_bridge_sft.cjs
           node sims/lp2_p15_base29_56013_bridge_sft.cjs
+      - name: Read first unprinted Fibonacci-prime term as frozen original LP2 rune index
+        run: |
+          node --check sims/lp2_p15_fibprime_global_index_source_sft.cjs
+          node sims/lp2_p15_fibprime_global_index_source_sft.cjs
