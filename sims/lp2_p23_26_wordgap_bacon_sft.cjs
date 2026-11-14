@@ -81,7 +81,7 @@ const plant = ("FOLLOWTHEPRIMES".repeat(14)).slice(0,201);
 const encoded = [...plant].flatMap(ch => [4,3,2,1,0].map(i => (ch.charCodeAt(0)-65) >> i & 1));
 let marked = "";
 for (const [index,bit] of encoded.entries()) marked += (bit ? "-" : "") + corpus.runes[index%29];
-const actual = startBits(marked);
+const actual = startBits(corpus.runes[0] + marked).slice(1); // Plant prefix is not part of the encoded message.
 assert.deepEqual(actual,encoded);
 assert.equal(decode(actual,false,false).letters,plant);
 console.log(JSON.stringify({
