@@ -197,7 +197,8 @@ for (const word of sevenWords) {
   if (!sevenByInterior.has(key)) sevenByInterior.set(key, []);
   sevenByInterior.get(key).push(word);
 }
-const exactWordPairMatches = [];
+let exactOrderedPairMatches = 0;
+const exactWordPairExamples = [];
 for (const word13 of thirteenWords) {
   const A = word13.interior;
   const required7Interior = [
@@ -205,11 +206,13 @@ for (const word13 of thirteenWords) {
     mod(A[2]), mod(A[1] - 23)
   ];
   const found = sevenByInterior.get(required7Interior.join(",")) || [];
-  if (found.length) exactWordPairMatches.push({
+  exactOrderedPairMatches += found.length;
+  if (found.length) exactWordPairExamples.push({
     word13, word7:found, required7Interior
   });
 }
-assert.equal(exactWordPairMatches.length, 0);
+assert.equal(thirteenWords.length * sevenWords.length, 4877145);
+assert.equal(exactOrderedPairMatches, 0);
 const wordPairSourceCounts = allSources.map(source => ({
   name:source.name,
   words13:source.words.filter(word => word.length === 13).length,
@@ -256,7 +259,7 @@ console.log(JSON.stringify({
     thirteenRuneWords: thirteenWords.length,
     sevenRuneWords: sevenWords.length,
     orderedPairs: thirteenWords.length * sevenWords.length,
-    matches: exactWordPairMatches.length,
+    matches: exactOrderedPairMatches,
     requiredSevenRuneInterior: "B=[A[5]-12,A[4]-9,A[3]-4,A[2],A[1]-23] mod 29"
   },
   aggregate: {
