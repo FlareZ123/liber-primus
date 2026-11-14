@@ -17,3 +17,5 @@ jobs:
         run: |
           node --check sims/lp2_five_dot_chapter_body_quintet_sft.cjs
           node sims/lp2_five_dot_chapter_body_quintet_sft.cjs
+          node --check sims/lp2_p40_fivedot_grid256_byte_sft.cjs
+          node sims/lp2_p40_fivedot_grid256_byte_sft.cjs
