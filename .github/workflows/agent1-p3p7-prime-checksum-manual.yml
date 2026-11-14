@@ -1,0 +1,18 @@
+name: Agent 1 p3-p7 original GP-prime checksum
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate original p3-p7 checksum and strict-F gate
+        run: node sims/lp2_p3_p7_809_761_1033_source_gate_sft.cjs
