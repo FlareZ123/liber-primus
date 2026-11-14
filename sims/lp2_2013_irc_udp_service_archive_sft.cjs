@@ -64,10 +64,15 @@ async function main() {
   const siteContext = lines.slice(21100, 22500).map((text, i) => ({
     line: i + 21101, text: text.slice(0, 340)
   })).filter(x => /\b(udp|port|knock|scan|linode|clearnet|target|qotd|106\\.187|whois|dns)\b/i.test(x.text));
+  const earlyDnsCandidate = lines.map((v, i) => ({line: i + 1, text: v.slice(0, 460)}))
+    .filter(x => /^2013 Jan (?:0[6-9]|1[0-6])\b/.test(x.text))
+    .filter(x => /\b(?:whois|dns|dig|txt record|txt query|port 53|port 17|daytime|qotd)\b/i.test(x.text));
   console.log(JSON.stringify({
     source: SOURCE, sha256: SHA256, size: bytes.length,
     lines: lines.length, counts, examples, jan14UdpContexts,
-    jan14ScanTargetContext: siteContext.slice(0, 125)
+    jan14ScanTargetContext: siteContext.slice(0, 125),
+    earlyDnsCandidate: earlyDnsCandidate.slice(0, 150),
+    earlyDnsTotal: earlyDnsCandidate.length
   }, null, 2));
 }
 main().catch(e => { console.error(e); process.exitCode = 1; });
