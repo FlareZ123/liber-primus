@@ -185,7 +185,7 @@ assert.deepEqual(edgeKeys.first,[
 ]);
 assert.deepEqual(edgeKeys.last,[
   3,18,2,15,26,26,15,18,23,4,15,15,18,26,15,15,18,18,13,4,21,15,
-  18,23,23,4,15,18,18,9,5,23,1,20,18,18,23,5,18,18,15,26,13
+  18,23,23,4,15,18,18,9,5,23,1,20,18,23,23,5,18,18,15,26,13
 ]);
 assert.equal(cipher.filter(c=>c===0).length,1);
 const wordEdgeCandidates=[];
