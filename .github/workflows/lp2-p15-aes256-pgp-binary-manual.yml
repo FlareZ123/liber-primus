@@ -1,0 +1,14 @@
+name: LP2 p15 16-bit AES256 grid OpenPGP/compression gate
+on:
+  workflow_dispatch:
+jobs:
+  original-binary:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test fixed original AES source and native message controls
+        run: node sims/lp2_p15_aes256_grid_pgp_binary_sft.cjs
