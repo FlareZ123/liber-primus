@@ -58,6 +58,13 @@ function inspect(path, max) {
     years:Object.fromEntries(yearCounts),months2014:Object.fromEntries(months2014),
     first2014,last2014,focusMatchesTotal:matches.length,focusSamples:sample,
     highSignalMayAugTotal:high.length,highSignalMayAugSamples:highSamples};
+  if (meta.name === '#cicadasolvers.freenode.log') {
+    const sites = [163814,168094,178827,205898,206244];
+    result.sourceContext = sites.map(site => ({
+      site, lines:lines.slice(site - 5, site + 4)
+        .map((line,j) => ({n:site - 4 + j,text:line.slice(0,500)}))
+    }));
+  }
   console.log(JSON.stringify(result,null,2));
 }
 assert.equal(process.argv.length, 5,'Pass three original local log paths');
