@@ -60,6 +60,19 @@ The strongest possible 15-domain secret partition still cannot represent even **
 
 A concrete maximizing 16-domain partition ends groups on physical pages **2, 7, 10, 14, 16, 22, 26, 28, 32, 34, 37, 39, 45, 48, 53, 55**. These are *optimization output*, not alleged authorial marks. The [single-file SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) asserts the entire 9–16 frontier, enumerates the three-page chapter brute force as an independent DP control, and passed on [Windows Node22, manual workflow 43571960532](https://github.com/FlareZ123/liber-primus/actions/runs/43571960532).
 
+## Independent Latin and Old English registers
+
+A ciphertext exclusion limited to modern English would miss two plausible authorial registers: the manuscript's Latin name and its historically Anglo-Saxon/Futhorc rune vocabulary. Two already independently pinned GP29-native source corpora therefore supply further *whole-tape* controls, with no new output alphabet or secret key selected from the ciphertext.
+
+| Independently GP29-encoded source | Nonoverlapping 12,956-rune windows | Minimum E runes | Minimum chapter-position equal-pair rate |
+| --- | ---: | ---: | ---: |
+| Latin Vulgate New Testament (39,835 source words, 204,802 GP29 runes) | **15** | **1,381** | **0.07400113** |
+| Corrected source-native Old English *Beowulf* (48,012 GP29 runes) | **3** | **1,480** | **0.05619992** |
+
+The Vulgate control reads the exact checked-in base29 encoded GP rune words using the documented `0123456789ABCDEFGHIJKLMNOPQRS` digits. The independent Old English control reads the corrected checked-in `sourceGpBase29` with its own explicitly declared 29-character `positiveControlAlphabet`; the fixed source count **5,630 E among 48,012 GP runes** is asserted. These formats differ, and substituting one alphabet for the other would produce false results. Both streams are overlaid on the **unchanged original nine chapter and 594 line lengths**.
+
+Thus **0 of 62 full-manuscript windows** across modern English, Old English and Latin falls below the original **1,177** E capacity. At most thirteen independent page-contiguous line-reset alphabet domains can represent only **1,368** E, so Latin controls require **at least fourteen** such domains (five extra unmarked resets). Old English controls require **at least sixteen**, as for the original 44 modern-English controls. These are finite comparisons with pinned literary corpora, not statements about every conceivable Latin or Old English manuscript. No authentic plaintext or ciphertext key emerges.
+
 ## Exact implementation and positive control
 
 [Source-exact CommonJS SFT](../sims/lp2_linepos_chapter_allsecret_capacity_sft.cjs) parses the original 55 rune-bearing physical-page transcriptions, preserves the 594 printed line breaks, confirms both the 12,956-rune original and the nine source-visible chapter sizes, recomputes every capacity and equality invariant, and runs both English spellings. Its second phase encrypts a complete 12,956-rune native-GP positive plant with **independent arbitrary 29! keys at every book-wide line position** and then with **independent arbitrary 29! keys at every chapter-specific line position**. It verifies 12,956/12,956 exact key-known decoding and unchanged original-family invariants. No special key, rune or phase is chosen from the original language score.
