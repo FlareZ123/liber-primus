@@ -46,6 +46,31 @@ The complete **1,000/1,000** source-native English and Latin length-matched cont
 
 **Reproduction:** [standalone CommonJS exact-input 275-key SFT](../sims/lp2_wordlocal_fivephase_secret_alphabet_source_sft.cjs); [successful expanded Node22 CI run 43619012160](https://github.com/FlareZ123/liber-primus/actions/runs/43619012160). Both original full-rune source corpora agree at 12,956 positions, **1,000** heldout source-native English/Latin controls pass, and every planted key and output is inverted.
 
+## Two predeclared five-back delimiter prediction rules, trained p0–2 and tested on independent chapters (Agent14, 14 November 2026)
+
+The source-conditioned enrichment above is a statistically interesting **relationship to printed word breaks**, but a solver would still need to recover the *locations of those breaks* from the ciphertext if they were supposed to carry a state clock. Issue #917 therefore tests **two local deterministic, paper-executable rules** on untouched GP29 source runes, with no fitted key, glyph substitution, phase or per-chapter parameter. They were frozen on the first physical chapter **p0–2** and evaluated unchanged on **p3–7** and the nonadjacent floral **p40–53**.
+
+Let a gap be between source glyphs C[g−1] and C[g] in a printed visual chapter. Let E[k] be the predicate C[k]=C[k−5] using only runes within the chapter. The two rules are:
+
+1. **A, no-cut through an echo:** a gap may be a word break only if none of E[g], E[g+1], …, E[g+4] is true. Candidate breaks are all permitted gaps; source-visible five-back copies never cross a permitted break. This is a proposed *necessary* constraint, rather than an independent bit telling a reader which permissible gap to cut.
+2. **B, break after the echo run:** mark a break at g precisely when E[g−1] is true and E[g] is false. This is the simplest termination reading of a five-back copied run and yields a unique, albeit sparse, boundary tape.
+
+The complete source parser joins all **32 page-crossing words**, asserts **2,896 words / 12,956 original runes**, and preserves the exact true word-length inventories. For controls, each chapter's original **entire rune tape remains unchanged** while its authentic word-length inventory is independently shuffled **3,000 times** at frozen xorshift32 seed 0x0140f917. Nulls are used strictly for assessment, **never to generate the predictions**. The randomization preserves chapter rune count, number of real word breaks, word-length multiset and every local five-step source event.
+
+| Original source chapter | Real internal breaks | A predicted gaps / true hits | A fixed-length-shuffle mean; upper tail | B predicted gaps / true hits | B fixed-length-shuffle mean; upper tail |
+| --- | ---: | ---: | --- | ---: | --- |
+| p0–2 (training) | 157 | **612 / 136** | 131.90; **0.118** | **23 / 5** | 5.02; **0.584** |
+| p3–7 (held out) | 254 | **993 / 217** | 220.45; **0.874** | **30 / 9** | 6.68; **0.205** |
+| p40–53 (held out) | 668 | **2,506 / 567** | 556.50; **0.049** | **104 / 31** | 23.03; **0.034** |
+
+These tails are **exploratory, uncorrected for two rules and two held-out chapters**. A predicts 82–87% of all gaps as potential breaks, so precision is only **21.85% on p3–7** against a 22.20% true-break baseline, and **22.63% on p40–53** against 22.22% baseline. This leaves hundreds of ambiguous potential break sites and cannot restore unique word delimiters. B's precision rises to 30.00% and 29.81% on the two heldouts, against 22.20% / 22.22% baseline, but B captures only **9/254** and **31/668** true breaks, with recalls 3.54% and 4.64%; 95% of needed delimiter state remains unspecified. The nominal B floral-region signal is a small localized observation, **not** an independent successful delimiter predictor across chapters.
+
+As a **source-native known-text comparison**, the original solved p57's 95 printed GP runes include its heading as a twentieth word, yielding 19 actual internal breaks. A allows 79 gaps and captures 17 of them; B predicts only two gaps, with **zero** genuine breaks. A synthetic seven-rune double-echo plant confirms the program detects two five-back returns without changing source indexing. The original p57 test shows that the proposed boundary rules are not generally dictated by GP-native English punctuation.
+
+**Decision:** Neither rule specifies the full original printed word breaks as an exact recoverable ciphertext-only channel. Rule A has extensive nonuniqueness, and B leaves almost all actual breaks unrecoverable. The apparent local B enrichment in the floral chapter remains below a complete source-selected cipher instruction. Retire **these two rules** without treating the earlier independently established five-back interior enrichment as falsified. A future attempt requires a *new original instruction selecting a deterministic boundary event and a lossless alphabet/key-state action*, plus independent heldout plaintext.
+
+**Reproducer:** [source-exact Windows Node22 CommonJS test](../sims/lp2_lag5_delimiter_prediction_sft.cjs), retaining complete original-rune and delimiter counts and fixed-seed source-shuffle controls. The matching 3,000-shuffle original-source computation was executed in the connected GitHub JS environment; the standalone Node command and a CI run are not separately claimed here.
+
 ## Next cryptanalytic decision and limits
 
 Under two length-inventory-constrained nulls, the **original printed word boundaries are unusually aligned** with the already observed five-apart ciphertext echoes. It is therefore premature to dismiss all printed separators as independently randomized decorative segmentation. A candidate decoder should predict where its five-step output coincidences fall relative to original word boundaries, along with the 86 source adjacent doublets and near-flat GP29 marginals. This could direct a source-selected word-local feedback, copying, or conditional delimiter scheme; **none is currently specified by an authentic Cicada operation**.
