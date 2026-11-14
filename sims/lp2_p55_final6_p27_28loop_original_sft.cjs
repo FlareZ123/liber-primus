@@ -63,6 +63,66 @@ const directedPrimeDifference =
 assert.equal(directedPrimeDifference, 28);
 assert.equal(directedPrimeDifference, p55.page-p27.page);
 
+const transcription = fs.readFileSync(path.resolve(__dirname,
+  "../resources/liber-primus/lp2-transcription.txt"), "utf8");
+const sourcePages = new Map();
+for (const [chapterIndex, body] of transcription.split("%").slice(0,55).entries()) {
+  const physicalPage = chapterIndex >= 50 ? chapterIndex + 1 : chapterIndex;
+  const words = [];
+  let start = 0, offset = 0, word = [];
+  function flush() {
+    if (word.length) {
+      words.push({start, runes: word.slice(),
+        primeSum: word.reduce((n, c) => n + gpPrime[c], 0)});
+      word = [];
+    }
+  }
+  for (const glyph of body) {
+    const rune = source.runes.indexOf(glyph);
+    if (rune >= 0) {
+      if (!word.length) start = offset;
+      word.push(rune);
+      offset++;
+    } else if ("-.assert.equal(directedPrimeDifference, p55.page-p27.page);§".includes(glyph)) flush();
+  }
+  flush();
+  const registered = source.pages.find(p => p.page === physicalPage);
+  assert(registered);
+  assert.equal(offset, registered.indices.length);
+  sourcePages.set(physicalPage, {words, runes: registered.indices});
+}
+// Predeclare the same arithmetic on ALL page-local adjacent printed-word
+// pairs of total length >=6. The source page index must differ from the
+// destination. No allowed reorientation, alternative modulus or word skip.
+let eligiblePairs = 0;
+const arithmeticHits = [];
+for (const [from, record] of sourcePages) {
+  const words = record.words;
+  for (let j = 0; j + 1 < words.length; j++) {
+    const [a, b] = [words[j], words[j + 1]];
+    const candidate = a.runes.concat(b.runes);
+    if (candidate.length < 6) continue;
+    eligiblePairs++;
+    const to = (a.primeSum + b.primeSum) % 29;
+    const offset = ((a.primeSum - b.primeSum) % 29 + 29) % 29;
+    if (to === from || !sourcePages.has(to)) continue;
+    const target = sourcePages.get(to).runes;
+    if (candidate.every((rune, i) => target[offset + i] === rune)) {
+      arithmeticHits.push({
+        from, sourceWordIndex: j, sourceRuneOffset: a.start,
+        to, targetRuneOffset: offset, length: candidate.length,
+        isTerminalPair: j === words.length - 2
+      });
+    }
+  }
+}
+assert.equal(eligiblePairs, 2454);
+assert.deepEqual(arithmeticHits, [{
+  from: 55, sourceWordIndex: 15, sourceRuneOffset: 70,
+  to: 27, targetRuneOffset: 28, length: 6, isTerminalPair: true
+}]);
+
+
 
 const afterAnchor = p27.indices.slice(34, 104);
 const front = p55.indices.slice(0, 70);
@@ -95,6 +155,7 @@ console.log(JSON.stringify({
   source: {runeBearingPages: ps.length,
     p55Len: p55.indices.length, p27Len: p27.indices.length},
   endpointLinksOfSixRunesAcrossAllPages: links,
+  sourceDirectedWordPairCoordinateTest: {eligiblePairs, arithmeticHits},
   repeatedGematria: tail.map(i => source.translit[i]).join("-"),
   sourceNumberDirectionCandidate: {
     wordPrimeSums, combinedPrimeSum,
