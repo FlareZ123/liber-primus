@@ -65,6 +65,18 @@ The alternative **84 adjacent triplets** have **84 distinct triples**, so no inp
 
 **Decision:** retire *all stationary, memoryless three-input key decoders* for the contiguous-block layout in one step. Reordering or adding a position/state input changes the hypothesis and requires independent source selection; it cannot be justified by the failed key reconstruction itself.
 
+### Every stationary adjacent-triple decoder requires all three coordinates
+
+The alternative 84 adjacent triplets have 84 distinct *full* inputs, but omitting **any one of the three input lanes** immediately creates a same-input/different-known-key contradiction:
+
+| Retained original input lanes | First repeated input and zero-based positions | Required authentic p56 keys |
+| --- | --- | --- |
+| First and second | (0,21) at positions **25, 40** | **13 versus 4** |
+| First and third | (15,18) at positions **7, 17** | **18 versus 2** |
+| Second and third | (2,20) at positions **8, 16** | **22 versus 0** |
+
+Consequently **no deterministic, position-independent function of one or two input lanes** can supply this historical key, regardless of its hidden complexity. Any stationary adjacent-triplet readout must depend on all three lane values in principle. Dependence on all three is merely a necessary condition; the full three-input polynomial and rational-function classes below remain independently ruled out through their indicated degrees. The exact witnesses are asserted against the unmodified original quotient in the same SFT. Do not inflate a three-lane necessary condition into evidence of an authored three-share cipher.
+
 ## Complete stationary three-input polynomial key-readout gate (Agent12, 14 November 2026)
 
 The earlier sum, Shamir and byte-XOR consumers fix a particular three-share operation. One potentially productive extension is to **learn an unknown shared readout from the genuine solved p56 key**, then ask whether the full 84-position key is actually encoded by the untouched original Q252. Unlike inventing a key to decrypt the unsolved pages, the answer is independently known: the authentic p56 plaintext-F-skipping operation consumes precisely the first 84 consecutive-prime-minus-one GP29 shifts. This permits an exact algebraic test of an entire family with no language scoring or search across invented plaintext.
