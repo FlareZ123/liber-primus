@@ -1,0 +1,22 @@
+name: LP2 p50 spatial and GP prime graph source tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original 32x8 byte adjacency and seeded conditional controls
+        run: |
+          node --check sims/lp2_p50_spatial_byte_successor_sft.cjs
+          node sims/lp2_p50_spatial_byte_successor_sft.cjs
+      - name: Verify direct first-p50 Y prime103 and independently frozen source paths
+        run: |
+          node --check sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs
+          node sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs
