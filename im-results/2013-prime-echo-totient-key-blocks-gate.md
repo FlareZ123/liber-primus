@@ -59,9 +59,30 @@ These are structural impossibilities under the specified encoder, not merely poo
 
 The fixed TextBlob GP lexicon recognizes 201 of the 2,896 raw ciphertext words. The three ordinary Vigenère outputs recognize 204/2,896 (full 464), 197/2,896 (first 174), and 213/2,896 (final 290). Their opening rune strings remain visibly nonlinguistic; index of coincidence remains near the 1/29 uniform baseline. All three arithmetic inverses re-encrypt exactly, which is a consistency check, not evidence of plaintext.
 
+## Additional original six-page prime rows (Agent14, 14 November 2026)
+
+A source-motivated distinct row assignment avoids the p50 obstacle to the proposed final 16-page tableau: the original **p27–p32 visual chapter spans six complete rune-bearing physical pages**, while the independently recovered 2013 ISO `prime_echo` first pauses after **174 = 6 × 29** printed primes, ending with 1033. The candidate splits exactly those first 174 primes into six consecutive GP29 rows and assigns one row to each source-ordered p27–p32 page, restarting the 29-position clock at the start of its page. Use only the authentic p56 known operation `P = C − (φ(prime)−1) mod 29`, and exhaust every permissible ciphertext-F branching (literal plaintext F with no key consumption, or ordinary key-consuming encryption of non-F). This is a *conditional original-cipher hypothesis*, since the original 2013 script does not command application to p27–p32 or per-page row reuse.
+
+Exact original dynamic-programming reachability produces **no legal decoding on any of the six unmodified pages**, regardless of word dictionaries, source plain cribs or language scoring. Every contradiction is a non-F ciphertext that necessarily decrypts to plaintext F, which the genuine source encoder cannot produce at a non-F ciphertext position:
+
+| Physical page | Original runes | First impossible local offset (0-based) | Original ciphertext GP rune | Prime at impossible position |
+| ---: | ---: | ---: | --- | ---: |
+| p27 | 234 | 33 | I | 11 |
+| p28 | 269 | 9 | NG | 167 |
+| p29 | 277 | 4 | T | 307 |
+| p30 | 263 | 38 | S | 509 |
+| p31 | 269 | 52 | P | 797 |
+| p32 | 121 | 9 | W | 907 |
+
+The same original ISO primes and source-native spellings exactly reconstruct the complete solved p56 ciphertext (**85/85 runes, 84 key entries consumed**). Ordinary no-skip additive inversion round-trips all **1,433 original p27–p32 runes**, but leaves a near-uniform **IoC 0.03452634820882081**, without meaningful plaintext. Complete [CommonJS original-input SFT](../sims/lp2_2013_prime_echo_sixpage_row_sft.cjs) freezes the page lengths, row selection, first contradiction on each page, and p56 known positive.
+
+**Decision:** retire this *specific* six-page, six-row prime-totient direct transfer without a 100-rune plaintext probe: it is structurally impossible by rune 52 on every page, and any alternative interpretation would require a new external clue selecting different row, clock or operation. Preserve the coincidence as source-conditioned, not an authenticated 2013→2014 instruction. This expands the finite exclusions below without establishing an original unknown LP2 key or plaintext.
+
 ## Decision
 
 Reject these three direct repeated prime-totient key readings: the full 464-prime stream, the 174-prime block ending at 1033, and the 290-prime block from 1039 through 3301. The p56 positive control confirms that the known prime-totient/F-bypass implementation is functioning.
+
+The six-page p27–p32 29-prime-page-row transfer is also impossible under the original p56 F bypass, as shown in the independent source-conditioned analysis immediately above. No authentic unknown plaintext has been recovered.
 
 This does **not** rule out other uses of the prime_echo material, a different source-authenticated transformation, a different key schedule, or a relationship between 1033/3301 and other visible objects. The prime counts being multiples of 29 are a source-linked structural observation, not an authored instruction to use these values as a repeating key. Do not expand into arbitrary phase, reverse-order, word-reset, page-reset, multiplier or alternate-radix variants without a new independent source selector.
 
