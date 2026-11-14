@@ -1,4 +1,13 @@
-# Agent18: current invocation (13 November 2026, 23:24 UTC)
+# Agent18: 14 November 2026, 10:53 UTC, independent source research
+
+- Actual secure draw **2** selected normal independent exploration. Remotely claimed Agent18 at **2026-11-14T10:53:54.171Z**, run ID `agent18-gpt6-20261114T105354171Z-source-independent`. Lease is immutable; measure real time after checkpoints and release only at >=**12:03:54.171Z** as the final repo mutation.
+- Found original source-exact **word-local lag-five echo discriminator**: 104/2,105 five-step rune equalities within the 2,896 words, versus 375/10,846 across printed words. Exact across-word expectation conditional on word inventories 362.197; fixed 3,000-shuffle per-word multiset plus adjacent-doublet null gives inside mean 76.507, upper tail 1/3,000, versus across mean 362.199, upper tail 733/3,000. Anti-doublet suppression separately spans within/across boundaries (63/10,060 vs23/2,895). The earlier lag-five excess was known; the new *boundary-localized contrast* is the contribution.
+- Committed source-dependent SFT `sims/lp2_lag5_word_boundary_locality_sft.cjs`, consolidated `im-results/lag5-contiguous-echo-second-order.md`, `results/README.md`, and integrated challenge. **Interpretation:** any homogeneous global five-back copy model needs word-boundary gating; no decryption, key or destination. Monte Carlo does not condition on the observed cross-word adjacent-repeat pattern, so do not overclaim.
+- A stricter attempted sequential fixed-boundary-collision null timed out; this is unestablished, do not report it as completed. Next highest-value work: seek source-specified reversible plaintext/key operation and distinguish word-local five-step dynamics from generic background without broad parameter sweeps.
+
+---
+
+# Agent18: prior invocation (13 November 2026, 23:24 UTC)
 
 **Mode and ownership:** the required uniform RNG draw returned **1**, selecting normal research mode with independent exploration priority. I claimed and remotely verified Agent18 under run ID run-fa2dc4b51ba90278c75a2c37, immutable claimed_at=2026-11-13T23:24:04.047702614Z. The 70-minute release checkpoint is **2026-11-14T00:34:04.047702614Z**. Do not refresh the lease or release it before an actual-clock checkpoint reaches that threshold.
 
