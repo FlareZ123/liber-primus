@@ -68,6 +68,12 @@ The p27 title fold independently selects **P/P**, with P at GP index13. Pairing 
 
 The 17 runes strictly between the two D markers also admit one source-constrained FOLD continuation. Interpreting DIVINITY's p57 graph sign as the negative operator, outer-to-inner left-minus-right GP29 folding starts with **T W O** and recursively terminates at **P**. The joint TWO-prefix/final-P signature is unique across every 17-rune window of the 7,247 strict interiors in unknown LP2. Two P prime weights total **86**, selecting p57 word **WE**, which is uniquely sum86 and is the shared node of the two five-cycles. The independently selected p27 P/P pair totals86 as well. This is a routing hypothesis; it does not turn either historical key into a working LP2 decryptor.
 
+## Independent p57 word-pair selector for the 76-rune p55
+
+The solved p57 wording contains “find the divinity within and emerge.” Under the same canonical GP-prime mapping used throughout this report, DIVINITY has sum **376** and EMERGE has sum **300**; their difference is exactly **76**. The original LP2 corpus contains exactly one 76-rune page: **p55**. This is an additional source-derived selector for p55, separate from the p55 segment-fold equalities and the 2016 Fibonacci section-sum selector. These correspondences converge on the same page, but must not be multiplied as statistically independent trials.
+
+This relation does not specify a cipher, key use, direction, or plaintext. The existing p55 prime-totient unknown-F scan in sims/p55_prime_totient_unknown_F_source_scan.py already covers two million starting offsets. Do not repeat that family at offsets 300 or 376; a successor needs a different source-selected operation or independent historical input.
+
 ## Corpus discriminator
 
 The page and fold were selected before this check: FOLD points to p55:w2, and a 17-segment sequence has one natural center.
@@ -149,7 +155,7 @@ The arithmetic correspondence is exact: under the *later-recorded* NUMBER interp
 **Critical provenance limitation (see closed #113 and Critic correction on #141):** the contemporaneous 2013 Twisted witness cited in #71 documents a different TCP service and contains no NUMBER/PRIMES command. The surviving NUMBER/PRIMES transcripts are retrospective (2022/2025), and the reconstructed `server.py` is not the original 2013 server. Therefore the reverse-digit/factor operation is not independently authenticated as a 2013 Cicada instruction. The 563 match is a conditional numerical correspondence, **not a source-selected navigation address**; “numbers are the direction” does not specify this transform. Retain it as an intermediate lead only. Do not open a successor or extend to arbitrary reductions without an independent source selecting NUMBER and predicting a held-out original-cipher result.
 ## Next decisive question
 
-The historical A-KOAN Vigenère/interrupter transfer to p55 is negative. The one-step NUMBER branch now has a source-linked 563→p32-tree/first-row target; any successor must find one source-selected operation on that row and a held-out prediction, without extending to arbitrary mappings of673/893.
+The historical A-KOAN Vigenère/interrupter transfer to p55 is negative. The DIVINITY-minus-EMERGE difference76 adds a p55 length selector but no consumer; the two-million-start p55 prime-totient scan is already exhausted. Separately, the one-step NUMBER branch has a source-linked 563→p32-tree/first-row target. Any successor must first supply an original source instruction selecting a specific operation and operand—on p55 or on that p32 row—and then make a held-out prediction. Do not extend to arbitrary mappings of 673/893 or repeat p55 totient windows.
 
 ## Reproduction
 

@@ -1,6 +1,6 @@
-# LP2 2016 7×13 circumference gate and p55 selector
+# LP2 2016 7×13 circumference gate
 
-**Status:** the 7×13 perimeter route does not recover plaintext. A separate p57 word-sum relation independently selects p55, but does not yet identify its cipher.
+**Status:** bounded negative for this 7×13 perimeter route; no plaintext recovered.
 
 ## Question
 
@@ -27,7 +27,7 @@ Run from the repository root:
 
 **node sims/lp2_2016_7x13_p57_circumference_gate.cjs**
 
-The script reproduces the word map, exact 91-symbol stream, 7×13 grid, concentric ring sizes, p50/p32 diagnostic route, p55 key test, and p57 word-sum relation.
+The script reproduces the word map, exact 91-symbol stream, 7×13 grid, concentric ring sizes, p50/p32 diagnostic route, and direct p55 key test.
 
 ## Results
 
@@ -59,12 +59,6 @@ Using the 55-symbol interior as a repeating additive/subtractive GP29 key agains
 
 The ring sizes, read centre-out as one-based positions in the 2016 message, select words 7, 20, 28 and 36: **seeks, their, are, found**. This is not a coherent instruction. Their GP prime sums are 253, 114, 175 and 130; the corresponding p50 table bytes are 36, 197, 18 and 86. Reusing the existing p50-byte compass convention on p32 from zero-based index 33 gives rune output **NG L EA R** at zero-based indices 77, 108, 99 and 100. It does not reach a recognizable marker or plaintext. This is a diagnostic reuse of a provisional compass rule, not independent confirmation of that rule.
 
-## Independent p55 selector
-
-The p57 words DIVINITY and EMERGE have GP prime-weight sums 376 and 300. Their difference is exactly 76. p55 is the unique LP2 page with 76 runes.
-
-This is a useful independent page-selection correspondence, alongside the 2016 message's existing Fibonacci section sum 55. It does not establish a cipher. In particular, the repository's exhaustive p55 prime-totient start scan has already tested two million starts without finding plaintext; do not repeat that family merely because 300 and 376 are now identified as source-derived values.
-
 ## Decision
 
 Retire this specific chain as a decryption route:
@@ -77,4 +71,4 @@ Retire this specific chain as a decryption route:
 
 It produces no plaintext, no coherent word instruction, and no useful p32 endpoint. Do not extend it with arbitrary rotations, offsets, coordinate reductions, or additional cipher layers.
 
-Preserve the p55 selector: DIVINITY sum minus EMERGE sum equals the unique 76-rune p55 length. The next productive question is what independently source-supported operation this selects on p55 other than the already-exhausted direct prime-totient stream.
+The separate p55 length selector is consolidated in the p55 fold report (im-results/lp2-2016-p55-fold-circumference-keys.md); it should not be inferred from this failed 7×13 route.

@@ -116,6 +116,11 @@ const centerWord = p55[centerIndex];
 const circumference = wordSum('circumference');
 const firfumferenfe = wordSum('firfumferenfe');
 const divinity = wordSum('divinity');
+const emerge = wordSum('emerge');
+const p55RuneCount = corpus.pages.find((page) => page.page === 55).indices.length;
+const pagesWith76Runes = corpus.pages
+  .filter((page) => page.indices.length === 76)
+  .map((page) => page.page);
 
 const p32 = pageWords(32);
 const p32FirstClause = rawPage(32).split(/[.!?]/u)[0];
@@ -173,6 +178,13 @@ const checks = {
     circumference - p32.length === divinity &&
     divinity === 376 &&
     circumference - p32FirstClauseRunes === firfumferenfe,
+  p57DivinityEmergeDifferenceSelectsUniqueP55:
+    divinity === 376 &&
+    emerge === 300 &&
+    divinity - emerge === 76 &&
+    p55RuneCount === 76 &&
+    pagesWith76Runes.length === 1 &&
+    pagesWith76Runes[0] === 55,
   uniqueCenter365AmongOddPages:
     center365Pages.length === 1 && center365Pages[0].page === 55,
   uniquePair398AmongOddPages:
@@ -185,6 +197,11 @@ console.log(JSON.stringify({
     seeks: { sum: seeksSum, address: seeksAddress, destination: gp(seeksDestination), destinationSum: mySum },
     the: { sum: theSum, address: theAddress, destination: gp(theDestination), destinationSum: foldSum },
     foldAddress,
+  },
+  p55RuneLengthSelector: {
+    p55RuneCount,
+    pagesWith76Runes,
+    divinityMinusEmerge: divinity - emerge,
   },
   p55Fold: {
     wordCount: p55.length,
@@ -200,6 +217,8 @@ console.log(JSON.stringify({
     CIRCUMFERENCE: circumference,
     FIRFUMFERENFE: firfumferenfe,
     DIVINITY: divinity,
+    EMERGE: emerge,
+    DIVINITY_MINUS_EMERGE: divinity - emerge,
   },
   p32Counts: {
     wordCount: p32.length,

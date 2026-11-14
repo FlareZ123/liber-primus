@@ -163,16 +163,6 @@ function ioc(values) {
   return numerator / (values.length * (values.length - 1));
 }
 
-const divinitySum = primeSum("DIVINITY");
-const emergeSum = primeSum("EMERGE");
-const pagesWith76Runes = corpus.pages
-  .filter((page) => page.indices.length === 76)
-  .map((page) => page.page);
-assert.equal(divinitySum, 376);
-assert.equal(emergeSum, 300);
-assert.equal(divinitySum - emergeSum, 76);
-assert.deepEqual(pagesWith76Runes, [55]);
-
 const tokenRows = rows.map((r) => r.map((index) => corpus.translit[index]));
 const tokenInnerRows = innerRows.map((r) => r.map((index) => corpus.translit[index]));
 const toTokens = (values) => values.map((index) => corpus.translit[index]);
@@ -196,9 +186,5 @@ console.log(JSON.stringify({
   p55Length: p55.length,
   p55RawIoC: ioc(p55),
   p55WithInner55SubtractedIoC: ioc(innerKeyMinus),
-  p55WithInner55AddedIoC: ioc(innerKeyPlus),
-  divinityPrimeSum: divinitySum,
-  emergePrimeSum: emergeSum,
-  difference: divinitySum - emergeSum,
-  uniquePageWith76Runes: pagesWith76Runes
+  p55WithInner55AddedIoC: ioc(innerKeyPlus)
 }, null, 2));
