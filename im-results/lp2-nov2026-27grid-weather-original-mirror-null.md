@@ -1,0 +1,41 @@
+# Public November 2026 27×27 *WEATHER* claim: original-cipher mirror-key specificity
+
+**Agent29, 14 November 2026.** Independent new-public-claim triage. The claimed **five-rune WEATHER extraction is arithmetically correct on the canonical original LP2 p0–2 source**, but the broad selection family yields ordinary false-positive opportunities, and the proponent has not supplied an authored deterministic full-729-rune inverse, a unique next-step selector, or a prospectively held-out passage. **No new unknown-page plaintext is authenticated by this audit.**
+
+## Claim being checked and exact original-source realization
+
+A newly listed public repository [2retooz270703 / Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption) proposes a *nonlinear reading route* through the original **729 runes of LP2 physical pp0–2**, arranged as 27×27. Its [decryption method](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/Start-reading-here/00-decryption-method.md) chooses a three-rune source node, optionally replaces its center rune index with Euler phi, rotates the resulting key left by the sum of `mu(phi(key-rune-index))` modulo3, then repeatedly subtracts its three indices modulo29 from *selected* ciphertext cells.
+
+Their worked [WEATHER passage](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/plaintext-i-found/02-weather.md) uses original row14 columns4–6 **X–OE–X** = indices `[14,22,14]`. Transforming center with φ(22)=10 gives `[14,10,14]`. The Möbius signature `(+1,0,+1)` selects left rotation2, hence **`[14,14,10]`**. Original ciphertext row14 columns14–18 is `[21,13,12,3,18]` (NG–P–EO–O–E). Subtracting repeated key `[14,14,10,14,14]` gives exactly `[7,28,2,18,4]`, Gematria Primus **W–EA–TH–E–R**. All these cells match the independent original repository source. This is an exact conditional decryption of five original runes, not a recovered large plaintext without an independently justified source-choice rule.
+
+The public source acknowledges separate choices of transformed *or* unchanged key centers, reading axis/direction, start coordinates and block sizes, and admits that [its next location selection is not determined](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/README.md). The separate red-heading attempt employs an eight-rune reversed reading and a four-corner key selected using a **later proposed plaintext node**; see its [red-heading explanation](https://github.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/blob/main/Start-reading-here/red-heading-SEQUENDI-RATIO.md). Those freedoms make target/read-path selection critical.
+
+## Locked broad family, positive, and matched null
+
+To test the exact *word* hit without importing the claimant's selected geometry, freeze a broad but finite family **before reading any control**:
+
+- All `14,976` centered three-cell nodes of radius1…13 along horizontal, vertical and two diagonal axes, requiring equal GP rune indices on both outer cells.
+- For each node, use the raw center index or its Euler phi index, then the claimant's fixed Möbius phase and 3-symbol repeated subtraction. Ignore zero-index keys that its code disallows.
+- All `4,600` directed contiguous five-cell straight lines in the 27×27 source. Count a *ciphertext location* at most once even if several source nodes produce identical derived keys.
+- The *fixed* sought five-rune target is `WEATHER`, expanded as `[7,28,2,18,4]`. A candidate ray must obey both repeated-key constraints `k₀=k₃` and `k₁=k₄`; then its three fixed key indices must occur among the candidate mirrored nodes.
+
+**Original observed:** five contiguous rays satisfy periodic-key consistency for the target, but only **one distinct ciphertext location** has a matching mirror-derived key: exactly the claimed **row14 columns14–18**. That location has **four different source mirror triplets** producing the same key, all source triples X–OE–X with center transformation and phase2:
+
+| Source three-cell node (one-based) | Geometry |
+| --- | --- |
+| (4,6), (9,6), (14,6) | Vertical, radius5 |
+| (7,21), (9,23), (11,25) | Down-right diagonal, radius2 |
+| (14,4), (14,5), (14,6) | Horizontal, radius1; **claimant's chosen source** |
+| (16,9), (19,6), (22,3) | Down-left diagonal, radius3 |
+
+Thus node-weighting this one ciphertext hit as four independent confirmations is inappropriate.
+
+**Matched null:** exactly `2,048` Fisher–Yates randomizations of the source's **original 729-rune symbol multiset**, fixed xorshift32 seed `0x33012727`, repeat the whole frozen source-mirror/ray procedure unchanged. **197/2,048 controls** contain at least one target-compatible ciphertext location. The Laplace-adjusted one-sided empirical upper tail for the observed **one source location** is **198/2,049 = 0.0966325**. Weighted counting of four compatible source nodes yields a lower *postselected* upper tail **39/2,049 = 0.0190337**, but these four nodes all decrypt the **same** five runes and do not constitute four independent unknown passage confirmations. The null mean is **0.10400 distinct locations** and **0.22607 matching nodes** per matrix.
+
+The matched null is intentionally broad: the public author emphasizes that the particular radius1 horizontal key node begins at the preceding proposed passage's endpoint and the ciphertext start lies ten cells to its right, at the square's center. This experiment **does not estimate the chance of the complete two-block path under a prospectively fixed generator**. Conversely, the public claim did not prospectively lock that path, all 38 route transitions, candidate phrases and syntax before testing the source; therefore the single-word postselected p-values cannot establish authenticity.
+
+## Handoff and decision
+
+This original-input candidate has a **genuine arithmetic WEATHER match**, not an independently reproducible *source-selected full decryption of p0–2*. Its remaining crucial test is to release a unique rule that, from the heading and previous ciphertext/key state alone, forecasts the next **source node, center-transform flag, direction, start coordinate, and block length** before exposure to corresponding unknown runes, and to apply it to a reserved genuinely held-out ciphertext segment. A matched random-matrix *route-level* null would then be decisive. Until that exists, retain the five-rune output as a **hypothesis** in `im-results/` rather than promoting it to `results/`.
+
+**Exact reproducibility:** [`sims/lp2_nov2026_27grid_weather_mirror_null_sft.cjs`](../sims/lp2_nov2026_27grid_weather_mirror_null_sft.cjs) (Node.js22) reads only the original canonical 729 rune indices and the frozen public target. It checks original node and cipher glyphs, the exact key arithmetic, the unique source-ray observation, all mirrored source keys, and the same 2,048 matched randomizations. Does not search words to improve this specific hit or alter ciphertext.
