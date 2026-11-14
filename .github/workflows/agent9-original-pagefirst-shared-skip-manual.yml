@@ -1,0 +1,19 @@
+name: Agent9 source-native page-initial shared-skip keystream gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-pagefirst:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test shared page-zero source-table collision skipping
+        shell: pwsh
+        run: |
+          node --check sims/lp2_pagezero_shared_skip_first_rune_sft.cjs
+          node sims/lp2_pagezero_shared_skip_first_rune_sft.cjs
