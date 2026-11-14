@@ -68,6 +68,44 @@ For the totient key, the best alignment is 5/30 in each block: full-stream phase
 **Decision:** reject direct contiguous or cyclically rotated prime-value and prime-totient windows from the original 2013 prime_echo list as the subtractive key for this *conditional p55 crib*. This does not disprove the seven-word plaintext hypothesis, nor exclude a different key generator, non-Vigenère operation or other use of the prime source. Do not tune offsets or transforms beyond this complete rotation search without a new source selector. The [standalone original-input gate](../sims/lp2_p55_moth_prime_echo_totient_key_gate.cjs) reproduces the result.
 
 
+## Whole p55 body: source-fixed 2013 prime_echo windows under the solved-p56 F-bypass cipher (Agent17, 14 November 2026)
+
+This is a separate question from the 30-rune prospective p5 crib gate above. It tests whether the **entire 75-rune p55 body** can be decrypted by the known p56 operation using prime material selected by original cross-round artifacts.
+
+**Human-visible path:** original p55 reuses the moth from LP1 p05 SOME WISDOM; that p05 source contains the explicit prime/totient instruction and its reconstructed square has row sums **1033** (the other 2014 square supplies **3301**). The original 2013 prime_echo script emits the 464 primes through **3301**, with pauses at **1033** and **3301**. The p55 body is exactly **75 runes** after preserving its inherited p54 carry. Separately, the signed 2016 image dimensions **563×569** are the **103rd and 104th primes**. These artifacts therefore supply a small, fixed set of candidate key-window positions rather than an unconstrained phase search.
+
+The tested operation is the solved-p56 subtractive prime-totient cipher, **P=(C−φ(p)) mod29**, with the historical transparent plaintext-F rule: plaintext F remains ciphertext F and consumes no key symbol. At a ciphertext F, the reproducer branches between a transparent F and an encrypted non-F; at a non-F ciphertext, any branch that would decode to plaintext F is invalid. The p55 page-local reset and transfer of the p56 operation to p55 are hypotheses, not established facts.
+
+The exact source-fixed 75-prime windows are:
+
+| Start ordinal | Source rationale | First prime | Last prime |
+|---:|---|---:|---:|
+| 1 | p56 start convention, baseline | 2 | 379 |
+| 100 | final 75 primes ending at the p05 1033 row-sum / 2013 pause | 541 | 1033 |
+| 103 | 2016 image width 563 is the 103rd prime | 563 | 1051 |
+| 104 | 2016 image height 569 is the 104th prime | 569 | 1061 |
+| 174 | 1033 itself is the 174th prime | 1033 | 1571 |
+| 175 | first prime after the 1033 pause | 1039 | 1583 |
+| 390 | final 75 primes ending at the p05 / 2013 endpoint 3301 | 2687 | 3301 |
+
+**Original-input results:**
+
+| Start ordinal | Valid F-bypass parses | Result |
+|---:|---:|---|
+| 1 | 0 | No valid parse; first dead position 61 |
+| 100 | 3 | All three outputs nonlinguistic; IoC 0.029910–0.032432 |
+| 103 | 0 | No valid parse; first dead position 60 |
+| 104 | 0 | No valid parse; first dead position 2 |
+| 174 | 1 | Output nonlinguistic; IoC 0.029550 |
+| 175 | 0 | No valid parse; first dead position 59 |
+| 390 | 1 | Output nonlinguistic; IoC 0.029910 |
+
+The surviving branches are BBE/BEB/EBB at start 100, BBB at 174, and EBB at 390 (B = transparent F, E = encrypted non-F). Their complete 16-word readouts are emitted by the [standalone original-input SFT](../sims/p55_prime_echo_boundary_window_sft.cjs). None resembles English. The maximum IoC, **0.032432**, is below the **0.046126** minimum among the repository's 151 source-native solved-LP1 75-rune control windows (see [the original p55 75-body comparison](p55-wisdom-5x5-original-75-gate.md)). Because a pure transposition preserves the rune histogram and IoC, no subsequent pure 5×5, route or wordwise transposition can turn any surviving output into ordinary English.
+
+**Decision:** reject these seven source-fixed page-local prime_echo/totient windows as a p55 plaintext decoder. The result does not exclude a different cipher, a different source-selected state/key schedule, non-English plaintext or a second non-permutation cipher layer. Do not expand to arbitrary phases or post-hoc transforms without a new original clue. No unknown plaintext or authentic p55 key was recovered.
+
+
+
 ## Authentic historical F-interrupter rule imposes a stronger crib condition (Agent23, 13 November 2026)
 
 The candidate phrase's **FUNCTION** begins at its own GP rune index **9** (within the hypothesized 30-rune p55 suffix); its first symbol is the genuine LP1 original **ᚠ = F**, GP index **0**. Original p55 at global page-local offset **46+9=55** instead has cipher rune GP index **18 = E**. More strongly, the **entire 30-rune original suffix contains zero F glyphs**, while the hypothesized plaintext contains exactly one F. Consequently **no permutation of the proposed words or any change of within-suffix F position** can rescue an F-preserving transformation of these two fixed 30-rune multisets. The candidate therefore fails the **literal-F transparent bypass** used in known solved Cicada pages, including original LP2 p56 `AN END`, regardless of the non-F key schedule: such a cipher necessarily preserves every plaintext F at the same position. The native-source check is pinned in the [30-rune SFT](../sims/lp2_p55_moth_8register_crib_sft.cjs).

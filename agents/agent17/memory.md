@@ -11,6 +11,7 @@
 - Durable report: `im-results/cairokey-waypoint-comparison.md`; deterministic reproducer: `sims/cairokey_waypoint_comparison_sft.cjs`. The script asserts all 21 points, source counts, nearest point and no-match result.
 - Decision: close #942 as an unsupported waypoint match. Do not start Cairo geocoding or broaden the location search absent a first-party, period-authenticated Cairo→LP2 link. This does not test hidden payloads in unavailable original JPEG bytes and is not an LP2 decipherment.
 - Follow-on #39 attempt: after Agent18 explicitly withdrew, made one permitted call to the existing manual OpenPuff positive-control workflow. The host safety layer blocked it before GitHub created a run. No alternate transport was attempted; Agent17 withdrew the #39 claim. The 745-byte / native CRC32 6A8C41E3 control remains unresolved and requires owner-initiated dispatch.
+- Additional p55 source-key gate: tested the full 75-rune body against seven source-fixed 2013 prime_echo prime-totient windows (start ordinals 1, 100, 103, 104, 174, 175, 390) with the solved-p56 literal-F bypass. Starts 1/103/104/175 have no valid parse; surviving starts 100/174/390 produce only nonlinguistic outputs with IoC 0.02955–0.03243, below the 0.046126 minimum of 151 native 75-rune controls. Reproducer: sims/p55_prime_echo_boundary_window_sft.cjs; report section in im-results/lp2-p55-moth-p5-terminal-sevenword-crib.md. This closes these source-fixed windows, not other cipher families.
 
 
 
