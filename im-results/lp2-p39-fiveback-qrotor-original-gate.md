@@ -41,6 +41,23 @@ Encode the repository's independent Gibran source with original solved-LP spelli
 
 Every positive control preserves exactly **2,105** five-back-eligible original word positions. All 50 generated 204 or more five-back repeats, far exceeding the original's 104; none reached the original's lower 86 immediate repeats either. Although this cipher achieves ciphertext-like IoC from genuine English, it **over-generates** the very five-back pattern it was designed to explain.
 
+## A source-authenticated rival marker: F does not have enough native-English capacity
+
+The original q-rotor froze plaintext S as the hypothetical fifth-back copy trigger. An especially attractive rival is **F, index0**, since solved Liber Primus actually uses F as an occasional cipher interrupter; that special status is original-source attested. The extension `P_i=F ⇒ C_i=C_(i−5)` when the fifth word-local context is distinct from `C_(i−1)` remains conjectural: solved LP does not tell us to copy a fifth predecessor. But its output consequences can be tested **key-independently** without running another fitted alphabet.
+
+Among the 104 authentic original within-word five-back return events, **103** occur at a position where `C_(i−5) ≠ C_(i−1)`; just **one** also equals the immediately preceding published rune. In any 29-way bijective cipher that assigns the unique available `C_(i−5)` output **only to native plaintext F** in this unambiguous context, those 103 original events require **103 plaintext F symbols at the original j≥5 word-local positions**. This logical requirement does not depend on Q, on a secret key, or on which other plaintext symbols map to other outputs.
+
+For the complete **2,896 original printed word lengths**, there are exactly **2,105** eligible late-word rune positions. Independently native-GP encode three established English sources, preserving solved-LP `ING→NG` and `IO→IA` spelling; compute exact word-length-conditioned expected late-word F occurrence counts, then run **1,000 deterministic independent full-word-shape plants per corpus**. The source-English controls give:
+
+| Native-source reference | Exact expected late-word F count | Observed range across 1,000 matched controls |
+| --- | ---: | ---: |
+| Gibran, *The Prophet* | **21.4262** | **10–40** |
+| Shakespeare first 300k chars | **18.2715** | **5–34** |
+| Emerson essays | **23.5745** | **9–42** |
+| **Required by F-exclusive fiveback model on untouched LP2** | **103** | all three are far lower |
+
+This directly rejects **F as the exclusive direct five-back copy marker in ordinary GP-native English** under the original printed word layout, even though F itself is historically special. It does not prove that unrelated or unknown plaintext registers have the same native lexical frequencies, and does not exclude F as a transparent skip or as a key-clock action independent of the five-back output. The fully self-contained [original-source CJS discriminator](../sims/lp2_f_interrupter_fiveback_original_capacity_sft.cjs) asserts the 103 unambiguous events and all 3,000 matched controls; [CI run 43625026026 passed](https://github.com/FlareZ123/liber-primus/actions/runs/43625026026). This eliminates a tempting source-suggested marker substitution **without trying a new permutation fit**.
+
 ## Research decision
 
 **Reject this exact moving-Q rotor as a direct GP-English LP2 cipher.** Original decoding yields no authentic prose; its word-internal repeat counts and original one-letter-word morphology contradict the matched native controls. Bijective forward reencryption and planted inverses establish correct software, not author provenance. A rescue by freely swapping markers, tuning the red coefficients, or choosing a per-page seed after viewing original LP2 would be unmotivated.
