@@ -1,0 +1,13 @@
+name: LP2 floral red root24 self-seeded LFSR original
+on:
+  workflow_dispatch:
+jobs:
+  inverse-original:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact manuscript and native positive plant
+        run: node sims/lp2_floral_red_root24_quotient_lfsr_sft.cjs
