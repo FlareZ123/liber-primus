@@ -1,0 +1,20 @@
+name: Two historical Liber Primus Titanpad identifiers - original archive gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-twoid-archive:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source syntax
+        shell: pwsh
+        run: node --check sims/lp2_2014_titanpad_twoid_history_gate_sft.cjs
+      - name: Query exact 2014 pad IDs and historical revision paths
+        shell: pwsh
+        run: node sims/lp2_2014_titanpad_twoid_history_gate_sft.cjs
