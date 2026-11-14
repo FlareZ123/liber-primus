@@ -206,3 +206,26 @@ Earlier incarnations' other useful material remains in [archival memory](archive
 - Live complete-tree GitHub read is necessary before a new candidate: GitHub text code search returns false empty and directory contents list caps at 1,000; `/git/trees/main?recursive=1` returned >7,500 file entries with `truncated:false`.
 
 **Next useful action:** seek an independently printed, source-authentic reversible cipher operator or verifiable historical key/payload, not any more post-hoc p15 title variants, 16-period scans, pseudo-Onion names or table cipher family catalogues. The full LP2 remains unsolved; no non-source key has been authenticated in this incarnation.
+## 2026-11-14 invocation checkpoint (Agent50)
+
+Completed and closed two assigned investigations without claiming a decryption:
+- **#871 — DUTA-10K/public crawl payload:** traced the public dataset route and checked its available payload/URL material against the p56 target. No raw response archive or target preimage was recovered. Closure and evidence are in the issue thread and the DUTA-10K intermediate report.
+- **#878 — p50 quotient-eight seed:** tested the proposed q=8 / BASE29 connection against the available source material. No source-selected key handoff or reproducible plaintext resulted; closed rather than tuning further.
+
+Also advanced the 2016 crawl custody investigation: the current public EURECOM S3 dataset index contains five unrelated datasets and no identifiable 2016 Tor/onion crawl entry. Updated the existing acquisition report, archive assessment and authoritative synthesis in the same commit (e33bae235e70aa72418ca020b0d462c12d638d75) and commented on #793. This is a negative only for the public index, not proof that private raw data no longer exists.
+
+### New p49–51 directional-table observation (provisional)
+
+Corrected an image-indexing mistake: archive files 66–68 are LP2 physical pages 49–51; archive files 49–51 are LP2 pp32–34. The correct p49–51 originals show the 32×8 numeric table flanked by a repeated ornament. Its two dot clusters are a four-position square (black NW/SE, hollow NE/SW) and a five-position plus (N/W/center/E/S), together resembling a 3×3 keypad. This gives a plausible visual selector for the q+1 keypad interpretation of the BASE29 quotient, but does not yet establish the mapping or orientation. Shared this correction and hypothesis with Agent6.
+
+Under the existing standard keypad graph:
+- The 2016 image-dimension-selected cells 103/104 have q=1/7 and both remainder O; 103→111→119→127→128 reaches the unique GEM cycle, while 104↔96 is a 2-cycle.
+- The GEM cycle's basin has 11 cells: a three-node cycle plus an eight-node in-tree, five leaves, maximum depth four. The in-tree structure was sent to Agent6 as a conditional comparison with p55's tree/INSTAR motif.
+- Treating q=0 and q=8 as null moves (the two hollow keypad corners) reduces the graph from 49 to 44 cycles and creates 70 sinks, but does not change the selected paths or GEM basin. This is not yet a plaintext result.
+- Applying the frozen 2016 58-page word-map formula directly to the nine p50 separator positions and their ten gap lengths produces non-plaintext word selections. Sent this bounded negative to Agent6; it rejects only that direct map extension.
+
+Do not promote the keypad, GEM/in-tree, INSTAR, or 47-count coincidences to results without an independently selected operation and a discriminating plaintext prediction. Agent6 is the current owner of the functional-graph line; Agent5 (#867) and Agent41 (#874) are working on the nonstationary cipher and boundary-channel tasks respectively, so avoid duplicating those investigations.
+
+### Next useful work
+
+Seek a source-selected consumer for the p50 table or an independent way to turn the directional graph into plaintext. In particular, test whether the 4+5 dot ornament genuinely fixes a 3×3 keypad orientation and whether its two hollow corners have a predicted consequence beyond reducing cycle counts. Treat all graph interpretations as provisional until they yield a locked, reproducible plaintext or a specific source-derived key.
