@@ -98,62 +98,27 @@ def snapshot_desktop(out_dir, stage):
 
 
 def tree_state(tree):
+    """Record both native TreeView selection and optional state-image telemetry."""
     state = []
     for root in tree.roots():
         for child in root.children():
-            try:
-                checked = bool(child.is_checked())
-                error = None
-            except Exception as exc:
-                checked = None
-                error = repr(exc)
             state.append({
                 "format": root.text(),
                 "level": child.text(),
-                "checked": checked,
-                "error": error,
+                "selected": bool(child.is_selected()),
+                "checked": bool(child.is_checked()),
+                "state": int(child.state()),
             })
     return state
 
 
-def toggle_tree_item(item, desired):
-    """Choose the actual checked state even if the native TreeView omits a checkbox hit rectangle."""
-    if bool(item.is_checked()) == desired:
-        return
-    failures = []
-    for area in ("check", "icon", "text"):
-        try:
-            item.ensure_visible()
-            item.click_input(where=area)
-        except RuntimeError as exc:
-            failures.append(f"{area}: {exc}")
-            continue
-        time.sleep(0.2)
-        if bool(item.is_checked()) == desired:
-            print(f"Bit-selection item {item.text()!r} toggled via {area}")
-            return
-        failures.append(f"{area}: click did not change checked state")
-    # Standard Windows TreeView checkbox state can also be toggled with
-    # Space while the item owns keyboard focus. This is distinct from a
-    # label or icon click, which may only change the selection highlight.
-    item.select()
-    item.tree_ctrl.set_focus()
-    item.tree_ctrl.type_keys("{SPACE}")
-    time.sleep(0.3)
-    if bool(item.is_checked()) == desired:
-        print(f"Bit-selection item {item.text()!r} toggled via keyboard Space")
-        return
-    failures.append(
-        f"keyboard Space did not change checked state "
-        f"(TVITEM state={int(item.state()):#x}, selected={item.is_selected()})"
-    )
-    raise RuntimeError(
-        f"Bit-selection item {item.text()!r} could not reach checked={desired}: "
-        + "; ".join(failures)
-    )
-
-
 def select_bit_level(window, format_name, level_name):
+    """Choose the real single-selected OpenPuff TreeView level.
+
+    OpenPuff's native options TreeView has no checkbox hit rectangle. The
+    menu's active format/level is the selected tree item (TVIS_SELECTED);
+    TVIS_STATEIMAGEMASK and pywinauto is_checked() are unrelated here.
+    """
     tree = window.child_window(control_id=1049, class_name="SysTreeView32")
     root = next((item for item in tree.roots() if item.text() == format_name), None)
     if root is None:
@@ -161,18 +126,23 @@ def select_bit_level(window, format_name, level_name):
     root.expand()
     target = root.get_child(level_name, exact=True)
     target.ensure_visible()
-
-    for item in root.children():
-        if item.text() != level_name:
-            toggle_tree_item(item, False)
-    toggle_tree_item(target, True)
+    target.select()
+    target.click_input(where="text")
     time.sleep(0.3)
 
-    selected = [item.text() for item in root.children() if item.is_checked()]
-    if selected != [level_name]:
+    selected = [
+        (item_root.text(), child.text())
+        for item_root in tree.roots()
+        for child in item_root.children()
+        if child.is_selected()
+    ]
+    expected = [(format_name, level_name)]
+    if selected != expected:
         raise RuntimeError(
-            f"Bit-selection verification failed for {format_name}: {selected!r}"
+            f"OpenPuff native TreeView selection mismatch: "
+            f"wanted {expected!r}, observed {selected!r}"
         )
+    print(f"Selected original OpenPuff bit level: {format_name} / {level_name}")
     return tree_state(tree)
 
 
