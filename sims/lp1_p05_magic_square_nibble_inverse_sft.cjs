@@ -145,6 +145,23 @@ p55HillPlain.forEach(r=>hillCounts[r]++);
 const hillIoC=hillCounts.reduce((sum,n)=>sum+n*(n-1),0)/(75*74);
 assert.ok(Math.abs(hillIoC-0.03855855855855856)<1e-15);
 
+
+// The printed first NG on p55 is an in-word carry from p54, so p55's true
+// physical body is also 75 symbols. This source-grounded framing retains F.
+/** @type {number[]} */
+const trueP55Body=originalP55.slice(1);
+assert.equal(originalP55[0],21);
+assert.equal(trueP55Body.length,75);
+const trueP55Decoded=transform5(hill5Inverse,trueP55Body);
+assert.deepEqual(transform5(fiveMatrix,trueP55Decoded),trueP55Body);
+const trueP55Text=trueP55Decoded.map(r=>corpus.translit[r]).join('');
+assert.equal(trueP55Text,
+ 'LIAAIFNGAESMEADNJOITIXAENSOETEOSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY');
+const trueP55Counts=Array(29).fill(0);
+trueP55Decoded.forEach(r=>trueP55Counts[r]++);
+const trueP55IoC=trueP55Counts.reduce((sum,n)=>sum+n*(n-1),0)/(75*74);
+assert.equal(trueP55IoC,hillIoC);
+
 const output=decoded.map(r=>r.join(' ')).join('\n');
 console.log(JSON.stringify({
  status:'PASS',source:'original LP1 05.jpg central 179-byte object',
@@ -154,5 +171,7 @@ console.log(JSON.stringify({
  exactSquare:true,magicSum1033:true,rotationallySymmetric:true,exactByteReencoding:true,
  matrix:output,provisionalP55PhiKey:gridKey,provisionalP55Decoded:p55runeglish,provisionalP55IoC:p55ioc,hill5Mod29Det:hill5Det,
  hill5Inverse,hill5Decoded:p55HillText,hill5PlaintextIoC:hillIoC,
- hill5ExactForwardReencryption:true,unknownLP2PlaintextRecovered:false
+ hill5ExactForwardReencryption:true,
+ hill5TrueP55BodyDecoded:trueP55Text,hill5TrueP55BodyIoC:trueP55IoC,
+ unknownLP2PlaintextRecovered:false
 },null,2));

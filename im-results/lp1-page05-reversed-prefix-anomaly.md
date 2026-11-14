@@ -79,7 +79,7 @@ The recovered output has **IoC 0.0333333333**, whereas the independently solved 
 
 ## Original p55: direct non-additive Hill5 inverse from the newly recovered square (bounded negative)
 
-The exact recovered 2014 numerical square offers a further historically plausible **non-additive** use, distinct from the failed totient pad above. Reduce its source-ordered entries modulo the authenticated GP29 modulus and use it as a classical five-rune Hill-cipher block matrix, with ciphertext vectors as columns. The original square is nonsingular: its determinant is **3 mod 29**; no matrix repair, trial permutations, key search or chosen plaintext is required. The original p55 has **76** runes, and the one original ciphertext F at local index **25** can be hypothesized as a literal key-clock interruption, leaving **75 = 15 × 5** runes. The skip is an explicit *hypothesis* transferred from solved Cicada ciphers, not a proven property of this unknown page.
+The exact recovered 2014 numerical square offers a further historically plausible **non-additive** use, distinct from the failed totient pad above. Reduce its source-ordered entries modulo the authenticated GP29 modulus and use it as a classical five-rune Hill-cipher block matrix, with ciphertext vectors as columns. The original square is nonsingular: its determinant is **3 mod 29**; no matrix repair, trial permutations, key search or chosen plaintext is required. The original p55 has **76** runes, but its first **NG** belongs to a word carried from p54, leaving a natural **75-rune page-local body**. A second conditional reading takes the ciphertext F at index25 as an interrupt, also leaving 75 key-consuming symbols. The latter F skip is a *hypothesis* transferred from solved Cicada ciphers, while the first NG carry is grounded in the printed word boundary. Both give 15 five-rune blocks without arbitrary phase selection.
 
 The exact row-major matrix and its inverse over GF(29) are:
 
@@ -98,9 +98,17 @@ Applying the fixed inverse \(P_j=M^{-1} C_j\pmod{29}\) independently to each con
 WUEARFRNGWNSOEOOEIALFYAEEAROEOEALWFSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY
 ~~~
 
+The stronger, source-attested **75-rune physical-body framing**, excluding the inherited NG and retaining F, gives:
+
+~~~text
+LIAAIFNGAESMEADNJOITIXAENSOETEOSUBYPMAEEAJNGAPREAAEDNGOEOEJOEASAITHDUBWNGTHORPTLSTHNJILJEJAAENY
+~~~
+
+This independent framing also has coincidence index **0.03855855855855856** and no coherent GP29 source-native prose or readable command. Exact forward multiplication reproduces all 75 original body runes without a skipped F.
+
 The 75 transformed non-F runes have coincidence index **0.03855855855855856**, without coherent source-native prose or a readable command. Exact forward Hill5 multiplication re-encrypts all **75/75** consumed original runes; F is restored unchanged at its original source position. That round-trip is guaranteed by the invertible matrix and **does not authenticate** the key. The historically given other 5×5 square yields another nonprose 75-rune output (IoC **0.02990990990990991**); the 7×7 square cannot consume 75 runes in complete seven-symbol blocks under this same fixed clock, so no further key phase was fitted.
 
-**Decision:** The source-derived 5×5 matrix is genuinely invertible, but the direct, block-aligned Hill5 transfer **does not decipher p55**. The source provides no instruction selecting Hill5 as a consumer or this skip clock. Retire this exact candidate without a fresh source-backed operator. The canonical source-coupled SFT tests the original 76 runes, exact matrix inverse and reencryption.
+**Decision:** The source-derived 5×5 matrix is genuinely invertible, but the direct, block-aligned Hill5 transfer **does not decipher p55 under either independently delimited 75-rune clock**. The source provides no instruction selecting Hill5 as a consumer or this skip clock. Retire this exact candidate without a fresh source-backed operator. The canonical source-coupled SFT tests the original 76 runes, exact matrix inverse and reencryption.
 
 ## p05 179-byte payload → p53 179-rune stream (bounded direct-key negative)
 
