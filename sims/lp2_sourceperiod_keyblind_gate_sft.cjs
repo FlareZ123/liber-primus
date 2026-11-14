@@ -79,15 +79,16 @@ const runes = (first, last) =>
 const cases = [
   {name: "p16-22, p15 full-matrix 812 steps/rune",
     first: 16, last: 22, lag: 812, source: "p15 signed matrix order"},
-  {name: "p40-53, p15 full-matrix 812 steps/rune",
-    first: 40, last: 53, lag: 812, source: "p15 signed matrix order"},
-  {name: "p40-53, p50 H-root 840 steps/rune",
-    first: 40, last: 53, lag: 840, source: "p50 H irreducible root order"},
+  {name: "p40-53 black body, p15 full-matrix 812 steps/rune",
+    first: 40, last: 53, offset: 8, lag: 812, source: "p15 signed matrix order"},
+  {name: "p40-53 black body, p50 H-root 840 steps/rune",
+    first: 40, last: 53, offset: 8, lag: 840, source: "p50 H irreducible root order"},
   {name: "p16-55 continuous, 812 four-rune blocks",
     first: 16, last: 55, lag: 3248, source: "812 matrix powers at four runes/block"}
 ];
-assert.deepEqual(cases.map(({first, last}) => runes(first, last).length),
-  [1744, 3008, 3008, 9194]);
+assert.deepEqual(cases.map(({first, last, offset}) =>
+  runes(first, last).slice(offset || 0).length),
+  [1744, 3000, 3000, 9194]);
 
 let randomState = 0x33012014;
 /** @returns {number} Reproducible GP29 pad symbol. */
@@ -115,7 +116,7 @@ function plantedCiphers(plaintext, lag) {
 
 const results = [];
 for (const c of cases) {
-  const original = runes(c.first, c.last);
+  const original = runes(c.first, c.last).slice(c.offset || 0);
   const raw = lagMatches(original, c.lag);
   const delta = lagMatches(original, c.lag, true);
   const control = [];
@@ -156,8 +157,8 @@ for (const c of cases) {
 assert.deepEqual(results.map((r) => [r.raw.matches, r.raw.pairs,
   r.delta.matches, r.delta.pairs]), [
   [31, 932, 27, 931],
-  [81, 2196, 76, 2195],
-  [84, 2168, 85, 2167],
+  [80, 2188, 76, 2187],
+  [83, 2160, 85, 2159],
   [215, 5946, 221, 5945]
 ]);
 
