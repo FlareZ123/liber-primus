@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_p15_p39_p50_matrix_function_sft.cjs
       - name: Full source CRT-completed invertible Hill4 original-text gate
         run: node sims/lp2_p15_p39_p50_crt_hill_original_sft.cjs
+      - name: Decode original LP1 p05 mirror-center against historical 2014 magic square
+        run: node sims/lp1_p05_magic_square_nibble_inverse_sft.cjs
