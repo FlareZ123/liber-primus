@@ -122,7 +122,7 @@ def p55_font_report(name: str, data: bytes, originals: list[np.ndarray], labels:
         d, overlap = match(target, templates[correct])
         aspect_target = target.shape[1] / target.shape[0]
         aspect_template = templates[correct].shape[1] / templates[correct].shape[0]
-        ratios.append(abs(np.log(aspect_target / aspect_template)))
+        ratios.append(float(np.log(aspect_target / aspect_template)))
         chamfers.append(d)
         ious.append(overlap)
         ranks.append(rank)
@@ -133,7 +133,9 @@ def p55_font_report(name: str, data: bytes, originals: list[np.ndarray], labels:
           f"top1={sum(r == 1 for r in ranks)}/{len(ranks)} "
           f"top3={sum(r <= 3 for r in ranks)}/{len(ranks)} "
           f"mean_true_rank={np.mean(ranks):.3f} "
-          f"mean_log_aspect_error={np.mean(ratios):.4f} "
+          f"mean_signed_log_aspect={np.mean(ratios):.4f} "
+          f"median_log_aspect={np.median(ratios):.4f} "
+          f"median_abs_scaled_residual={np.median(np.abs(np.asarray(ratios) - np.median(ratios))):.4f} "
           f"hard={','.join(hard[:12])}")
 
 
