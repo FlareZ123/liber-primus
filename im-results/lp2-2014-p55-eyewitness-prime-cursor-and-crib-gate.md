@@ -26,16 +26,18 @@ and branch exhaustively on all ciphertext-F interrupter possibilities. At any no
 
 The original p55 first eight GP glyph labels are \`NG AE M I W S B X\`. At zero-based position **7**, the next prime is **479**. Since \((479-1)\bmod29=14\), and the ciphertext glyph **X** has index14, the proposed inverse forces **plaintext F** at ciphertext **X**. Thus this **complete** prime-cursor model is algebraically impossible after just eight original glyphs, with no language score or unknown plaintext assumption.
 
-A permissive alternative starts at prime-index85 = the **86th prime443**, pretending all 85 p56 glyphs consumed keys (contrary to the actual known solved F bypass). Enumerating all valid p55 F branches likewise yields a contradiction at original p55 index **71**, ciphertext glyph **J**, when the demanded key is prime **911**. The full original p55 contains 76 glyphs and exactly three ciphertext-F sites at indices **15,25,41**; the decoder explores every branch permitted by the authentic emission semantics at these positions. Both start conventions yield **zero complete legal p55 plaintext strings**.
+A permissive alternative starts at prime-index85 = the **86th prime443**, pretending all 85 p56 glyphs consumed keys (contrary to the actual known solved F bypass). Enumerating all valid p55 F branches likewise yields a contradiction at original p55 index **71**, ciphertext glyph **J**, when the demanded key is prime **911**. The full original p55 contains 76 glyphs and exactly three ciphertext-F sites at indices **15,25,41**; the decoder explores every branch permitted by the authentic emission semantics at these positions. The same original has **75 glyphs in complete words**, with its first one-glyph segment finishing an incoming p54 word. We also tested starting the resumed prime stream at the first complete p55 word by excluding that one-glyph carry. All four source-fixed combinations have **zero complete legal p55 plaintext strings**.
 
 | Proposed prime start | P56 counting convention | First impossible p55 position (zero-based) | Observed ciphertext | Reason |
 | --- | --- | ---: | --- | --- |
 | **85th prime439** | True p56 84 consumed prime keys | **7** | **X** | prime479 demands plaintext F under a non-F ciphertext |
 | **86th prime443** | All85 p56 ciphertext symbols (incorrect bypass) | **71** | **J** | prime911 demands plaintext F under a non-F ciphertext |
+| **85th prime439** | True 84 p56 key consumptions; start after one-glyph carry | **19** (body offset18) | **C** | next prime demands plaintext F under a non-F ciphertext |
+| **86th prime443** | Counterfactual 85 p56 keys; start after carry | **7** (body offset6) | **X** | next prime demands plaintext F under a non-F ciphertext |
 
 **Positive control**: take 76 genuine solved p57 original GP29 runes, encrypt under the exact p56 prime-totient literal-F rule from either start and independently invert. Both recover **76/76** original p57 GP plaintext runes among the exhaustive legal paths. The authentic full p56 original regression also passes. The negative therefore applies to actual untouched p55 source input, rather than to a broken decoder.
 
-This retires **both exact chronological consecutive-prime p56→p55 interpretations**, and nothing broader: an entirely different 2014 prime scheme, an author-specified extra key reset or page-specific cipher architecture remains untested. The period witness was a suggestion, not a solved method.
+This retires **both chronological consecutive-prime p56→p55 starts under both actual page/body boundaries**, and nothing broader: an entirely different 2014 prime scheme, an author-specified extra key reset or page-specific cipher architecture remains untested. The period witness was a suggestion, not a solved method.
 
 ## Archived 13/6/4-word conjectures and an all-starting-prime exclusion
 
@@ -66,7 +68,7 @@ Retire these precise direct operations. A new attempt needs authenticated key ma
 
 **Reproducers (Windows Node22 and no dependencies):**
 - [Original-period 2014 exact-blob witness source scan](../sims/lp2_2014_irc_p55_original_keywitness_sft.cjs) with [successful run43652620838](https://github.com/FlareZ123/liber-primus/actions/runs/43652620838)
-- [Original p55 fully branched prime-continuation inverse](../sims/lp2_2014_p55_prime_cursor_continuation_sft.cjs) with [successful run43653243815](https://github.com/FlareZ123/liber-primus/actions/runs/43653243815)
+- [Original p55 fully branched prime-continuation inverse](../sims/lp2_2014_p55_prime_cursor_continuation_sft.cjs) with [successful complete four-geometry run43653679078](https://github.com/FlareZ123/liber-primus/actions/runs/43653679078) (the earlier 76-glyph-only positive was [run43653243815](https://github.com/FlareZ123/liber-primus/actions/runs/43653243815))
 - [Original23-rune May2014 conditional-crib all-phase arithmetic gate](../sims/lp2_2014_p55_13rune_eyewitness_crib_sft.cjs) with [successful run43653413248](https://github.com/FlareZ123/liber-primus/actions/runs/43653413248)
 
 Original source: \`resources/liber-primus/lp2-corpus.json\`, \`resources/liber-primus/lp2-transcription.txt\` and exact pinned archived 2014 Freenode source log identified above.
