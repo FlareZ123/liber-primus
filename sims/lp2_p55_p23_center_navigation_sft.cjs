@@ -174,6 +174,22 @@ const sevenWordLandings = sevenWordOffsets.map(i => section[i]);
 assert.deepEqual(sevenWordLandings.map(x=>gp.translit[x]),
   ['O','G','M','P','J','B','NG']);
 
+// Reversing the seven surviving word fragments ("emerge" from the core)
+// finds an intermediate original physical page boundary without padding:
+const reverseWordPrimeSteps = [...sevenWordPrimeSteps].reverse();
+let reversePointer = 0;
+const reverseWordOffsets =
+  reverseWordPrimeSteps.map(step => (reversePointer += step));
+assert.deepEqual(reverseWordOffsets,[102,153,248,444,756,914,1020]);
+assert.equal(reverseWordOffsets[4],page(23).length +
+  page(24).length + page(25).length); // p26's very first rune
+assert.equal(reverseWordOffsets.at(-1),section.length-1);
+const reverseWordLandings = reverseWordOffsets.map(i=>section[i]);
+assert.deepEqual(reverseWordLandings.map(x=>gp.translit[x]),
+  ['O','IA','F','B','IA','C','NG']);
+assert.deepEqual([section[756],section[1020]],
+  [page(26)[0],page(26).at(-1)]);
+
 const primeStepTape = core.map(v => gp.prime[v]);
 assert.deepEqual(primeStepTape,
   [17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]);
@@ -279,6 +295,8 @@ console.log(JSON.stringify({
   bitPacketDigests:digests,totientGates,titleWordGates,
   chapterPrimeStepMap:{wordSteps:sevenWordPrimeSteps,wordLandingOffsets:sevenWordOffsets,
     wordLandingReadout:sevenWordLandings.map(i=>gp.translit[i]).join(' '),
+    reversedWordLandingOffsets:reverseWordOffsets,
+    reversedWordLandingReadout:reverseWordLandings.map(i=>gp.translit[i]).join(' '),
     steps:primeStepTape,landingOffsets:pointerPositions,
     endingGP:gp.translit[landingRunes.at(-1)],landingReadout:pointerReadout,
     keyMinus:mapAsKeyMinus.map(i=>gp.translit[i]).join(' '),
