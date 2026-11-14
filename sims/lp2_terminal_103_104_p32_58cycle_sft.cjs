@@ -97,6 +97,60 @@ assert.deepEqual(tokens.slice(102,104).map(t=>digitValue(t,60)),[32,206]);
 assert.deepEqual(tokens.slice(102,104).map(t=>digitValue(t,59)),[32,203]);
 assert.deepEqual(tokens.slice(102,104).map(t=>digitValue(t,59)%58),[32,29]);
 
+// Next prime-bearing rows and columns jointly choose the separate p15 square.
+// The entire extraction policy is frozen: take EACH sum-prime row/column
+// of the original 11x11 p32 square in printed axis order, convert the
+// sum's prime ordinal to a one-based table cell, then byte mod58.
+// The first TWO row targets and first TWO column targets agree: p32,p15.
+// Remaining targets diverge; no other row/column matches are selected.
+function axisPrimeCells(axis) {
+  const matches=[];
+  for(let i=0;i<11;i++) {
+    let sum=0;
+    for(let j=0;j<11;j++) {
+      const rune=axis==="row"?p32[11*i+j]:p32[11*j+i];
+      sum+=gp.prime[rune];
+    }
+    if(!isPrime(sum))continue;
+    const cell=primeOrdinal(sum);
+    const token=tokens[cell-1];
+    const byte=bytes[cell-1];
+    matches.push({axis,at:i,sum,cell,token,byte,page:byte%58});
+  }
+  return matches;
+}
+const rows=axisPrimeCells("row"),columns=axisPrimeCells("column");
+assert.deepEqual(rows.map(x=>[x.at,x.sum,x.cell,x.byte,x.page]),[
+  [0,563,103,32,32],
+  [1,617,113,73,15],
+  [4,743,132,120,4],
+  [6,577,106,63,5]
+]);
+assert.deepEqual(columns.map(x=>[x.at,x.sum,x.cell,x.byte,x.page]),[
+  [0,569,104,206,32],
+  [2,641,116,247,15],
+  [6,463,90,220,46],
+  [10,499,95,56,56]
+]);
+assert.deepEqual(rows.slice(0,2).map(x=>x.page),[32,15]);
+assert.deepEqual(columns.slice(0,2).map(x=>x.page),[32,15]);
+assert.equal(columns[1].byte-rows[1].byte,174);
+assert.deepEqual(rows.slice(0,2).map(x=>digitValue(x.token,59)%58),[32,14]);
+assert.deepEqual(columns.slice(0,2).map(x=>digitValue(x.token,59)%58),[29,11]);
+
+// The selected p15 original numeric square is known independently to
+// encode 3301 via all sixteen absolute differences to Fibonacci-rank
+// primes. This is a public identifier/checkpoint, not unknown plaintext.
+const {readSquare,primeList,uniqueFibonacciPrimeRanks,clockwiseSpiral} =
+  require("./fibonacci_prime_spiral.cjs");
+const p15Grid=readSquare();
+const order=clockwiseSpiral();
+const ranks=uniqueFibonacciPrimeRanks();
+const primes=primeList(Math.max(...ranks));
+const spiral=order.map(([row,col])=>p15Grid[row][col]);
+assert.deepEqual(spiral,ranks.map(rank=>Math.abs(3301-primes[rank-1])));
+assert.equal(new Set(spiral).size,16);
+
 // Original adjacency census: 8/255 pairs agree modulo58 with base60,
 // precisely one is a *double* reference to p32. No broader search or
 // alternative offset was fitted. The source pair 103 is independently
@@ -132,6 +186,11 @@ console.log(JSON.stringify({
   base59LocalDecoded:tokens.slice(102,104).map(t=>digitValue(t,59)),
   allConsecutiveMod58EqualPairs:pairs,
   doubleP32Pairs:doubleP32,
+  originalP32AllPrimeRows:rows,
+  originalP32AllPrimeColumns:columns,
+  repeatedPrimeAxisPagePair:[32,15],
+  p15FibonacciPrimeSpiralRecoversKnown3301:spiral.every((v,i)=>
+    v===Math.abs(3301-primes[ranks[i]-1])),
   conjecturedMixedIdentifier:candidate,
   publicSigned2013Base29Example:base29,
   missingInstruction:"No original cipher/key or author-specified page-modulus/byte-to-page/mixed-token instruction"
