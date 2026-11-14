@@ -1,0 +1,23 @@
+name: LP2 original 2014 IRC solver-screen media gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dated-media:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify scanner positive and negative controls
+        run: node sims/lp2_2014_irc_media_capture_sft.cjs --selftest
+      - name: Download pinned 2014 source and enumerate period media
+        shell: pwsh
+        run: |
+          $source = 'https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23cicadasolvers.freenode.log'
+          $target = Join-Path $env:RUNNER_TEMP 'cicadasolvers-2014.log'
+          Invoke-WebRequest -Uri $source -OutFile $target -MaximumRetryCount 3 -RetryIntervalSec 3
+          node sims/lp2_2014_irc_media_capture_sft.cjs $target
