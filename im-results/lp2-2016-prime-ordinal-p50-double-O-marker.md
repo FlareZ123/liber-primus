@@ -40,7 +40,7 @@ This joins an original signed **2013 numerical example**, original **2014 LP2 pr
 
 The original-input [standalone Node22 SFT](../sims/lp2_3qo_source_ordinal_two_cell_sft.cjs) asserts p32 dimensions, prime ordinals, exact original table bytes and SHA256, the unique adjacent-pair reconstruction, the signed BASE29 result and the 2012 control. It does not fit or decode any unsolved LP2 page.
 
-## New source-selected p32/table103–104 modulo58 self-address and p55 entry (Agent35, 14 November 2026)
+## Source-locked p32→p32/p15 dual page-register junction, and p55 entry (Agent35, 14 November 2026)
 
 A distinct **page-navigation** reading appears in the *same independently selected
 two original printed cells*, and it supplies a concrete conditional discriminator
@@ -65,6 +65,59 @@ map. The original p32 square is exactly 121 GP runes; neither row nor column
 was fitted to this output. The two identical modulo29 residues **O** already
 documented above follow from the same `174=6×29` identity and must not be
 counted as independent events.
+
+
+**The same operation generalizes to a second, independently identifiable
+original numeric-square page.** Apply the above rule to **every one of the
+11 full rows and 11 full columns of the original p32 square**: take a row
+or column GP-prime-weight sum; retain only genuinely prime sums; convert
+each prime to its **ordinal**, look up that one-based physical cell of
+the 256-entry source table, decode the original base60 byte, and reduce
+it modulo58. Do not reorder or omit the resulting prime-bearing rows or
+columns. The complete original readout is:
+
+| Source axis; original zero-based indices of prime-sum rows/columns | GP prime sums | 1-based table cells | Literal tokens | Base60 bytes | Page values mod58 |
+| --- | --- | --- | --- | --- | --- |
+| Rows 0, 1, 4, 6 | 563, 617, 743, 577 | 103, 113, 132, 106 | `0W`, `1D`, `20`, `13` | 32, 73, 120, 63 | **32, 15, 4, 5** |
+| Columns 0, 2, 6, 10 | 569, 641, 463, 499 | 104, 116, 90, 95 | `3Q`, `47`, `3e`, `0u` | 206, 247, 220, 56 | **32, 15, 46, 56** |
+
+The **first two** prime-bearing rows and **first two** prime-bearing
+columns independently produce the identical target-page sequence
+**[p32, p15]**, while their remaining values diverge. The newly
+recognized **second pair** is row1 sum617 (the 113th prime) and
+column2 sum641 (the 116th prime); its source tokens are `1D` and
+`47`, and source bytes **73 and 247** satisfy
+`73 mod58 = 15; 247 mod58 = 15; 247−73 = 174 = 3×58`.
+Both direct attention to **LP2 p15**, the book's *other* distinctive
+numerical-square page. Its separately source-recovered 4×4
+Fibonacci-prime spiral consists of the sixteen values
+`|3301 − prime(Fibonacci(n)+1)|`, providing a **complete,
+independently established** reconstruction of the same publicly known
+Cicada identifier 3301. This makes a bounded potential reader path
+from the 2016 image into **p32 → p15 → 3301** rather than merely an
+isolated p32 numerical self-loop.
+
+These two pairs distinguish the local radix choice: with **base59**,
+the first two row targets would instead be **[32,14]** and the
+corresponding first two column targets **[29,11]**. Neither pair
+agrees. The base60 construction therefore has a second explicit
+source-to-page convergence that the unchanged literal base59
+alternative lacks. It is an exact, finite test of a particular
+page-map decoder, rather than general proof of what numeral encoding
+the author intended.
+
+**Limitation of this extension:** The operation **select prime-sum
+rows and columns** is itself inferred because the dimension-matching
+first row and first column are prime; no author-signed instruction
+commands this prime filter, modulo58 page conversion, or seeking a
+shared prefix between the two axes. The two target pairs were noticed
+after examining the full readout; arbitrary later page endpoints
+**[4,5]** versus **[46,56]** do not form a complete common page
+route. Both byte differences are **174**, so the modulo58 agreement
+and modulo29 agreement are arithmetic consequences of the same
+pairs, not independent confirmations. Page p15's known 3301
+spiral was solved prior to this new page-selection reading.
+No new unknown-page plaintext or reversible cipher follows.
 
 There is also a second, original-cipher **entry** into the exact same
 cell103: the p55 final two complete printed ciphertext words
@@ -118,14 +171,17 @@ reads the actual locally archived 2016 source JPEG SOF frame,
 the original p32 121-rune square, p27/p55/p56 ciphertext, and all
 256 numeric cells. It asserts both physical geometry and mathematical
 maps, eight modulo58 equal-pair starts, the unique p32 double-match,
-the base59 local competitor, and the signed 2013 public 3301 numeral.
-The new dedicated step passed in
-[GitHub Actions run 43621165531](https://github.com/FlareZ123/liber-primus/actions/runs/43621165531).
+the base59 local competitor, and the signed 2013 public 3301 numeral. It now also asserts every original
+p32 prime-row/column lookup, both paired p32/p15 targets, both
+radix59 alternatives, and the complete original p15 Fibonacci-prime
+square's existing exact 3301 reconstruction.
+The extended step passed in
+[GitHub Actions run 43621862810](https://github.com/FlareZ123/liber-primus/actions/runs/43621862810).
 The [direct p55 70-rune grid103 and p27-difference additive consumers](p27-p54-repeated-7gram-periodic-key-gate.md#source-selected-following-word-difference-and-table-cell103-direct-key-gates-agent35-14-november-2026)
 have already failed, including every solved-page-style F-skip choice.
-A next result must identify an *authored action leaving the self-loop*
-that recovers an original key or unknown plaintext, not invent
-additional numerically convenient arcs.
+A next result must identify an *authored operation consuming the
+p32/p15 page pointers* that recovers an original key or unknown
+plaintext, instead of inventing numerically convenient extra arcs.
 
 ## Negative control: the 2012 image
 
