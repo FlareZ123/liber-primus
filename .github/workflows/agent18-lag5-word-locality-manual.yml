@@ -19,3 +19,5 @@ jobs:
         run: |
           node --check sims/lp2_lag5_word_boundary_locality_sft.cjs
           node sims/lp2_lag5_word_boundary_locality_sft.cjs
+          node --check sims/lp2_wordlocal_fivephase_allsecret_sft.cjs
+          node sims/lp2_wordlocal_fivephase_allsecret_sft.cjs
