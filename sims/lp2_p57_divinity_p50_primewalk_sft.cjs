@@ -124,7 +124,8 @@ assert.equal(physicalChunks.length, 57);
 const unsolvedJoined = physicalChunks.slice(0, -2).join('')
   .replace(/\/\n/g, '').replace(/[\n&$%§]/g, '');
 const unsolvedWords = unsolvedJoined.split(/[.-]/)
-  .filter((word) => word.length > 0);
+  .filter((word) => word.length > 0 &&
+    Array.from(word).every((rune) => corpus.runes.includes(rune)));
 assert.equal(unsolvedWords.length, 2896);
 assert.equal(unsolvedWords.reduce((acc, word) => acc + Array.from(word).length, 0), 12956);
 const unknownMatchIndices = unsolvedWords.map((word, index) => {
