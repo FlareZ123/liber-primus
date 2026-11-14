@@ -82,6 +82,36 @@ The resulting **Y/O/O/G/E/M** route supplies an independent starting-cell ration
 
 The **critical missing source step is the rerouting rule**. No authenticated Cicada instruction says that keypad-centre/stay means jump to the GP-prime-indexed table cell; its introduction is retrospective, following the discovery of GEM. The numeral table starts physically at p49, not p50; choosing the rune-free middle page's first cell is a plausible separate layout cue, not an explicit start command. This equality reuses the original GEM event and is **not an independent statistical confirmation** of the keypad. A centre-jump extends the original graph by a new state transition and remains a short navigation hypothesis, with no plaintext/key material. The original source-locked [p10/2016 SFT](../sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs) now asserts the entire first-cell/prime-address route and tests all 29 centre cells.
 
+### Original p48 pretable `GEMY` pointer: new exact cross-page consumer (Agent19, 14 November 2026)
+
+**Status: independent original-cipher structural connection, with no recovered plaintext or author-authenticated decipherment rule.** The graph's `GEM` three-cycle and one-based GP-prime addressing above were already discovered; this section adds an independently visible **preceding-text selector** and a matched-original-table shuffle gate. It supplies a new causal clue candidate, not a second proof of the keypad design.
+
+Immediately **before** the 32×8 numeric table begins on physical p49, the canonical p48 text (source scan `65.jpg`) has the only contiguous four-rune **`G E M Y`** in all 12,956 original unknown GP29 ciphertext runes. At zero-based physical p48 rune offsets **139–142**, it occurs as the middle four runes of the printed eight-rune word `M-G-E-M-Y-IA-I-D`. Using the authentic published GP prime chart, the **fourth rune Y has prime weight 103**. Without tuning any table entry or decoding sign, select the **103rd** cell of the existing published base60 `B=29q+r` keypad map; the finite no-wrap path is
+
+```text
+p48 text:    M [G E M Y] IA I D          printed original rune offsets 139–142 = GEMY
+GP(Y):              103         27th prime = 103, 1-based cell address
+
+cell:               103 → 111 → 119 → 127 → 128 → 119 → ...
+read GP remainder:    O     O     G     E     M     G → E → M ...
+```
+
+The first encountered three-cycle at cells **119→127→128** spells precisely the preceding p48 runes **G E M** in *the actual entrance phase*, without rotating the cycle to fit. This potentially gives the reader a finite handwritten bridge from a source-visible word adjacent to the table into the table's unique `GEM` loop. It could also be accidental and does not specify how to escape that loop, decrypt more than three rune labels, or obtain the external page demanded by solved p56.
+
+**Complete original selector test:** The [source-exact, read-only Windows/Node22 SFT](../sims/lp2_p48_gemy_table_cycle_selector_sft.cjs) tries *every* GP-prime-indexed one-based table entry (29 rune symbols), calculates its first encountered directed cycle under the fixed historical-source-inspired map, and retains only three-cycles. For each such cycle, it checks every four-rune window on p48: does the window's fourth rune's GP prime point to a three-cycle whose **ordered** GP remainder labels exactly equal the first three original runes? The answer is **one**, `GEMY` at p48 offset139. The same complete screen across **all 55 unsolved rune-bearing pages**, rather than choosing p48, also finds precisely this one original `GEMY` occurrence and qualifying pointer. Among 29 rune-prime selectors only **Y=103** reaches *any* three-cycle in the original table.
+
+To distinguish a real spatial cross-artifact connection from trivial properties of a 256-byte inventory, the SFT runs **50,000 deterministic original-byte shuffles under each of three distinct, predeclared nulls**. It preserves the entire 256-value byte multiset under global shuffles; preserves each of the 32 exact eight-byte row inventories under row-internal shuffles; and preserves each of the eight exact 32-byte column inventories under column-internal shuffles. The direction decoding, physical table shape, no-wrap rule, prime selectors, original p48 glyphs, and triple-match criterion never vary.
+
+| Byte-position shuffle null | Trials with at least one p48 prime→cycle source-fourgram match | Trials with at least one match anywhere on all 55 rune-bearing unknown pages |
+| --- | ---: | ---: |
+| Global permutation | **39 / 50,000** | 1,715 / 50,000 |
+| Within original rows | **21 / 50,000** | 1,080 / 50,000 |
+| Within original columns | **34 / 50,000** | 1,922 / 50,000 |
+
+These are **conditional shuffle frequencies for the frozen graph and source-selector specification**, rather than discovery-adjusted probabilities. The graph/keypad interpretation, use of prime-address indexing, and the decision to seek `GEM` were all investigator-developed, with multiple previous directions and numerical patterns explored. The stronger any-page controls reflect the much larger opportunity for incidental spelling. The author never wrote an explicit GP-prime-to-table/keypad instruction, and `GEMY` is *ciphertext*, not an authenticated plaintext command. The fact that it sits one page before the table is a meaningful source-locality rationale worth testing against future original clues, while no unknown-page text, deciphering key or destination is yet established.
+
+**Decision:** preserve p48:`GEMY`→103→`OOGEM` as a tightly stated candidate handoff for next-stage decoding research; require an independent historical instruction or a nontrivial held-out *original* plaintext prediction to promote it. Do not retry the already failed `GEM` OutGuess passphrase, arbitrary keypad orientations or freely chosen table starts. For another independently testable hypothesis, inspect whether the full p48 enclosing word and table print context select any *new* reversible consumer or external source, rather than optimizing this observed three-letter loop.
+
 ### Direct historical-carrier attempt: frozen `GEM` as an OutGuess password
 
 **Original-input negative, 14 November 2026.** The source-table graph above spells **GEM** under the already declared canonical base60/GP29 reading. This supplies one specific possible password for the historical JPEG steganography tool OutGuess, previously used by Cicada. Without fitting the password to the ciphertext, Agent6 invoked the repository's pinned original-image OutGuess 0.4 extractor with the literal uppercase key **`GEM`** on **all 58 original LP2 JPEGs** (scans17–74). The [completed and successful original-input manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43610189239) preserves every nonempty candidate extraction and its metadata in artifact `outguess-lp2-keyed`.
