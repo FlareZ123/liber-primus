@@ -1,4 +1,4 @@
-# LP2 p0: exact 180-degree cross duplication and a source-fixed first-chapter reverse test
+# LP2 pp0–2: chapter-wide 180-degree cross duplication and a source-fixed reverse test
 
 **Agent 26, 14 November 2026.** Classification: a newly measured original-image geometry and one bounded original-cipher negative. **No unknown plaintext, creator-selected cipher key, or intended continuation recovered.**
 
@@ -13,7 +13,11 @@ These are effectively **the same artwork rotated by exactly 180 degrees about th
 
 They are 490×1276 pixel windows, geometrically related by \`(x,y) → (2399−x,3599−y)\` in zero-based original image pixels. Thus their copied placement also preserves the exact central inversion, rather than merely using two similar drawings at unrelated page locations.
 
-Grayscale Pearson correlation after applying the indicated transform is **0.996917457** over all pixels, and **0.945755487** over the union of pixels darker than 210. Mean absolute grayscale difference is **0.971934** over the full paired rectangles and **3.3005** over their ink union. Against the same bounding boxes, the original untransformed, horizontal-only and vertical-only comparison correlations are respectively **−0.061126, 0.386508, 0.188893**. The difference is consistent with reusing one illustration with 180-degree rotation and lossy JPEG compression. This finding selects an exact *visual reversal*; whether it instructs the reader to reverse the ciphertext is unproved.
+Grayscale Pearson correlation after applying the indicated transform is **0.996917457** over all pixels, and **0.945755487** over the union of pixels darker than 210. Mean absolute grayscale difference is **0.971934** over the full paired rectangles and **3.3005** over their ink union. Against the same bounding boxes, the original untransformed, horizontal-only and vertical-only comparison correlations are respectively **−0.061126, 0.386508, 0.188893**. The difference is consistent with reusing one illustration with 180-degree rotation and lossy JPEG compression.
+
+**Chapter-wide source confirmation.** The identical centrally rotated cross arrangement is printed on original **p1 (18.jpg)** and **p2 (19.jpg)**. For each page, the two fixed corresponding rectangles have source-original grayscale correlation **0.997324975** after 180-degree rotation. The lower-left rectangles on p1 and p2 are **pixel-for-pixel identical** to each other. The original p1 JPEG is 667,228 bytes (SHA-256 `f804fae06a68315eb6206158a2b34f55fe157c7d663fa961639fbe8dfc52a39f`); p2 is 595,338 bytes (SHA-256 `74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34`). Under the same two fixed center-symmetric windows across all 58 original LP2 page images, **pp0–2 are the only three exceeding 0.9 correlation**. The highest remaining page scores only **0.153776**. Thus the reversal illustration specifically marks all three pages of the first 729-rune chapter rather than a random page-wide general motif. The crop-specific cross-family test does not rule out other geometric motifs elsewhere in the book.
+
+This finding selects an exact *chapter-specific visual reversal*; whether it instructs the reader to reverse the ciphertext is unproved.
 
 ## First original-cipher decision using this reversal
 
@@ -42,4 +46,4 @@ The **centrosymmetric artwork placement** is an independently confirmed original
 
 Preserve the original artwork fact as a potential reading-direction cue only. **Retire this exact reversed-first-chapter prime/difference plus positional-BASE29 direct-file route**. Any additional rotation, sign, offset, secret alphabet or cipher layer requires a genuinely separate original selector.
 
-**Reproducer:** [read-only Windows-friendly original JPEG and corpus SFT](../sims/lp2_p0_central_inversion_source_sft.py), requiring Pillow and NumPy; it checks the original JPEG's SHA-256, all four image orientations, source ciphertext counts, both complete reversible transformations, derived-rune statistics, fixed BASE29 prefixes and a 729-rune positive plant from the independently solved p57 source. No existing source file or illustration is edited.
+**Reproducer:** [read-only Windows-friendly original JPEG and corpus SFT](../sims/lp2_p0_central_inversion_source_sft.py), requiring Pillow and NumPy; it checks the three original chapter JPEG SHA-256 values, the p1/p2 pixel-identical artwork, all four p0 image orientations, source ciphertext counts, both complete reversible transformations, derived-rune statistics, fixed BASE29 prefixes and a 729-rune positive plant from the independently solved p57 source. No existing source file or illustration is edited.
