@@ -146,102 +146,6 @@ assert.deepEqual(withinMatches, [4, 16]);
 // This check rules out the checksum as a universal ciphertext-word property.
 const physicalChunks = text.split(/\n%\n/);
 assert.equal(physicalChunks.length, 57);
-
-// Full 2016 signed-message word map, using the same source-native GP29
-// orthography as the independently solved LP1/p56 lexical control.
-// The 58-page quotient/remainder rule is a hypothesis; this census tests
-// its complete, untouched signed-message body rather than selecting words.
-const signedBody = signedMessage
-  .split(/\r?\n\r?\n/).slice(1).join('\n\n')
-  .split('-----BEGIN PGP SIGNATURE-----')[0];
-const signedMessageWords = (signedBody.match(/[A-Za-z]+/g) || [])
-  .map((word) => word.toUpperCase());
-const sourceTokens = corpus.translit.map((token, index) => ({ token, index }))
-  .sort((a, b) => b.token.length - a.token.length);
-function encodeSignedWord(word) {
-  const normalized = word.toUpperCase()
-    .replace(/QU/g, 'CW').replace(/V/g, 'U').replace(/K/g, 'C')
-    .replace(/Z/g, 'S').replace(/ING/g, 'NG').replace(/IO/g, 'IA');
-  const encoded = [];
-  for (let offset = 0; offset < normalized.length;) {
-    const match = sourceTokens.find(({ token }) => normalized.startsWith(token, offset));
-    assert.ok(match, 'Signed-message word is not source-GP29 encodable: ' + word);
-    encoded.push(match.index);
-    offset += match.token.length;
-  }
-  return encoded;
-}
-const signedMap = signedMessageWords.map((word, messageIndex) => {
-  const encoded = encodeSignedWord(word);
-  const primeSum = encoded.reduce((sum, index) => sum + corpus.prime[index], 0);
-  return {
-    messageIndex, word, primeSum,
-    page: primeSum % 58,
-    index: Math.floor(primeSum / 58),
-  };
-});
-assert.equal(signedMap.length, 45);
-assert.deepEqual(signedMap.filter((item) => item.page === 56)
-  .map(({ word, primeSum, index }) => [word, primeSum, index]), [
-  ['THEIR', 114, 1],
-  ['MEANING', 288, 4],
-  ['THEIR', 114, 1],
-]);
-assert.deepEqual(signedMap.filter((item) => item.page === 50)
-  .map(({ word, primeSum, index }) => [word, primeSum, index]), [
-  ['LIES', 224, 3],
-]);
-const adjacentSharedPagePairs = [];
-for (let i = 0; i + 1 < signedMap.length; i++) {
-  const left = signedMap[i];
-  const right = signedMap[i + 1];
-  if (left.page === right.page && left.index !== right.index) {
-    adjacentSharedPagePairs.push({
-      left: left.word, right: right.word, page: left.page,
-      leftIndex: left.index, rightIndex: right.index,
-      delta: right.primeSum - left.primeSum,
-    });
-  }
-}
-assert.deepEqual(adjacentSharedPagePairs, [{
-  left: 'THEIR', right: 'MEANING', page: 56,
-  leftIndex: 1, rightIndex: 4, delta: 174,
-}]);
-assert.equal(288 - 114, 3 * 58);
-
-// p50 is the only physical page without runes. The source message's LIES
-// address selects its fourth numeric token; the value points to cell193=00.
-assert.deepEqual(corpus.pages.filter((page) => page.runic_count === 0)
-  .map((page) => page.page), [50]);
-const p50Tokens = grid.pages.find((page) => page.page === 50).tokens;
-assert.equal(p50Tokens[3], '3D');
-const signedLiesByte = Array.from(p50Tokens[3]).reduce(
-  (value, digit) => value * 60 + grid.alphabet.indexOf(digit), 0);
-assert.equal(signedLiesByte, 193);
-assert.equal(literalTokens[193 - 1], '00');
-assert.equal(bytes[193 - 1], 0);
-
-// Independent p56 plaintext control: the known p56 lexical Viterbi SFT
-// recovers this exact 85-rune / 25-word plaintext from original ciphertext.
-const p56PlainWords =
-  'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE'
-    .split(' ');
-assert.equal(p56PlainWords.length, 25);
-assert.equal(p56PlainWords[1], 'END');
-assert.equal(p56PlainWords[4], 'DEEP');
-assert.equal(p56PlainWords.slice(1, 5).join(' '), 'END WITHIN THE DEEP');
-const runeBearingPages = corpus.pages.filter((page) => page.runic_count > 0);
-const p56ChunkIndex = runeBearingPages.findIndex((page) => page.page === 56);
-assert.equal(p56ChunkIndex, 55);
-const p56CipherWords = (physicalChunks[p56ChunkIndex]
-  .replace(/\/\s*/gu, '').match(/[\u16A0-\u16FF]+/gu) || []);
-assert.equal(p56CipherWords.length, 25);
-assert.equal(spell(p56CipherWords[1]), 'OESR');
-assert.equal(spell(p56CipherWords[4]), 'CTHGW');
-assert.equal(p56PlainWords[signedMap.find((item) =>
-  item.word === 'THEIR').index], 'END');
-assert.equal(p56PlainWords[signedMap.find((item) =>
-  item.word === 'MEANING').index], 'DEEP');
 const unsolvedJoined = physicalChunks.slice(0, -2).join('')
   .replace(/\/\n/g, '').replace(/[\n&$%§\/]/g, '');
 const unsolvedWords = unsolvedJoined.split(/[.-]/)
@@ -368,8 +272,6 @@ assert.deepEqual({ checksums, zeroJumps, joint, jointFiveCycles }, {
 console.log('LP2 p57 original complete words:', words.length);
 console.log('PARABLE: whole 449 mod256 -> table cell193 literal 00/F;');
 console.log('Signed 2016 LIES prime sum224 -> p50 token3 cell84=3D/193 -> cell193=00 (hypothetical two-step);');
-console.log('Signed 2016 full-message word map: 45/45 GP29-encodable; unique adjacent same-page pair THEIR(114)->p56/1 and MEANING(288)->p56/4; p56 span:', p56PlainWords.slice(1,5).join(' '));
-console.log('Signed 2016 p50 hit: LIES(224)->p50/3 token 3D=193; cell193 is 00.');
 console.log('TUNNELNG: whole 339 mod256 -> cell83 byte201 = interior prime sum201;');
 console.log('DIUINITY: whole 376 mod256 -> cell120 byte184 = interior prime sum184;');
 console.log('P57 interior-sum table fixed points at words', withinMatches, 'among 20; unknown 6/2896:', unknownMatchIndices);

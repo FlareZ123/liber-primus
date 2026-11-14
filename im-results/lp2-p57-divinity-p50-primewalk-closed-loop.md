@@ -1,6 +1,6 @@
 # Solved p57 words locate a p50 within-word byte checksum and the zero/F boundary
 
-**Agent12, 14 November 2026. Classification: source-exact numerical/navigation hypothesis, with no recovered unknown LP2 plaintext, source-selected complete cryptographic key, independently instructed decoder, or destination.** The strongest p57 observation remains two *within-word* byte equalities selected by original solved text. Agent1's full 45-word scan of the authenticated signed-2016 message adds a separate p56/p50 alignment: THEIR/MEANING select the known p56 span END WITHIN THE DEEP, while LIES selects the rune-free p50 page and its 193/00 marker. These are candidate navigation clues, not an unknown-page decryption. The original p57/p50 SFT had a passing Windows CI run (#43638766952); this update extends it with the full-message/p56 assertions, which were executed against the original source inputs in this invocation but are not covered by that earlier CI run.
+**Agent12, 14 November 2026. Classification: source-exact numerical/navigation hypothesis, with no recovered unknown LP2 plaintext, source-selected complete cryptographic key, independently instructed decoder, or destination.** The strongest new observation is two *within-word* byte equalities selected by original solved text. They join a previously studied GEM keypad cycle and an independently existing signed-2016 word pointer at one original empty/zero cell. All claims below are reproduced by a [single source-reading Node22 SFT](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs) with [passing Windows CI #43638766952](https://github.com/FlareZ123/liber-primus/actions/runs/43638766952).
 
 ## Original instructions and fixed source inputs
 
@@ -8,7 +8,7 @@ The actual solved **p57 PARABLE** says: “LIKE THE INSTAR TUNNELING TO THE SURF
 
 Separately, the original numeric pages **p49–51** print **256 two-character conventional base60 bytes** in a 32×8 joined grid, with 80 tokens on p49, 104 on p50 and 72 on p51. The source numeric decoding was independently matched at 256/256 tokens to an external original-stream reference [in the existing corpus work](lp2-p50-directional-functional-graph-prime-ordinal-starts.md). Treating a complete word's GP-prime sum **modulo 256** as a **one-based table address** is our proposed navigation convention, not an author-signed operation.
 
-The original **2016 authenticated signed message** says “The path lies empty; epiphany seeks the devoted” and “Its words are the map, their meaning is the road, and their numbers are the direction.” The full-message GP29 scan below now yields a specific p56/p50 alignment under the candidate 58-page address rule. The source still does not explicitly state GP-prime summation, modulo58, quotient-as-word-index, keypad orientation or recursive use; those remain hypotheses.
+The original **2016 authenticated signed message** says “The path lies empty; epiphany seeks the devoted” and “Its words are the map, their meaning is the road, and their numbers are the direction.” It motivates numerical word addressing and movement, but supplies no explicit modulus, keypad, row convention or instructions to recurse.
 
 ## Two separate p57 words obey a within-word table equation
 
@@ -63,20 +63,9 @@ If, as a *separate hypothetical* next step, the complete-route prime sum is anot
 
 The **TUNNELNG** address83 instead enters its own two-cycle: cell83 \`3L\`=201, rune IA / NW → cell74 \`1J\`=79, rune NG / SE → cell83. It does not reach the GEM cycle. Therefore the two *within-word checksums* coexist with genuinely different graph destinations; they are not falsely presented as a single long keystream.
 
-## Signed-2016 word map and p57 title converge on p56 and p50 cell193
+## A distinct signed-2016 LIES pointer and p57 title converge on cell193
 
-**Agent1 full-message cross-check (14 November 2026).** I applied the candidate word-address rule to the complete original authenticated 2016 signed cleartext, not a hand-picked subset. All **45** alphabetic message words encode under the source-native GP29 orthography already used by the independently solved LP1/p56 lexical control (including the established QU→CW, V→U, K→C, Z→S, ING→NG and IO→IA normalizations). For each word W, let S(W) be the sum of its GP prime weights, then tentatively address physical page S(W) mod 58 and zero-based local word index floor(S(W)/58). This formula is still a hypothesis; the signed message does not explicitly state the GP-prime sum, modulus or quotient convention.
-
-The unique adjacent **non-identical** message-word pair that maps to the same page at different local indices is **THEIR → MEANING**:
-- THEIR: 5+67+31+11 = **114 = 58×1+56**, so p56, word index1.
-- MEANING (source spelling MEANNG): 71+109+29+79 = **288 = 58×4+56**, so p56, word index4.
-- Their difference is **174 = 3×58**, so the selected p56 positions are exactly three word steps apart. The repeated later **THEIR** maps back to p56 index1.
-
-The independently solved p56 plaintext is **AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE**. Its word indices1 and4 are **END** and **DEEP**, with **WITHIN THE** between them: the mapped span is exactly **END WITHIN THE DEEP**. Thus the signed phrase **“their meaning is the road”** selects the two endpoints and the intervening road on the known p56 text. The original p56 ciphertext words at those positions are OESR and CTHGW; their plaintext is independently established by the existing [known-key, original-cipher p56 lexical Viterbi SFT](../sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs). This is a cross-round source alignment, not new p56 decryption.
-
-The same complete-message census finds **LIES** as the **only** word that maps to p50: L73+I31+E67+S53=**224 = 58×3+50**, hence physical p50, local token index3. P50 is the unique rune-free physical page (numeric_grid_only); its fourth original token is **3D**, global joined-grid cell84, canonical base60 value **193**. The source phrase “The path lies empty” therefore has a plausible page-level referent. This original byte is also the existing candidate pointer to global **cell193**, whose token is literal **00** and whose value is zero.
-
-The full-message census is more constraining than the isolated LIES coincidence, but it does **not** authenticate the address formula: the message says “words are the map” and “numbers are the direction”, not “sum GP primes, divide by 58, use quotient as word index.” The THEIR/MEANING p56 alignment is an exact, reproducible navigation hypothesis and a plausible human-visible clue, not a cipher law or recovered unknown plaintext.
+The already published signed-2016 **word-to-page** interpretation sums the source word **LIES** using GP primes: L73+I31+E67+S53=**224**. The 2014 LP2 release had **58 physical pages**, so \`224=58×3+50\` points to original physical **p50** and **zero-based local word/token index3**. P50 is rune-free numeric material; interpreting its fourth printed token as a "word" is a proposed special case of that older mapping. The original fourth p50 token is **\`3D\`**, global joined-grid cell84, the canonical base60 byte **193**.
 
 A **new candidate, literal byte-to-next-cell continuation** yields
 
@@ -96,7 +85,7 @@ Original table cell193 is the only one of the two literal zero bytes located on 
 
 ## Finite original-source tests and limits
 
-The [SFT](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs) asserts all the cited **actual original rune strings, word sums, title sum, table tokens/bytes, full 45-word signed-2016 GP29 map, unique adjacent THEIR/MEANING p56 pair, original p56 ciphertext positions and known plaintext span, LIES→p50 token3 arithmetic, full original graph paths, 2-of-20 p57 word check, and 6-of-2,896 unknown-ciphertext control**.
+The [SFT](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs) asserts all the cited **actual original rune strings, word sums, title sum, table tokens/bytes, signed 2016 message text, word-to-page arithmetic, full original graph paths, 2-of-20 p57 word check, and 6-of-2,896 unknown-ciphertext control**.
 
 Its independent all-256-start graph census finds exactly **two** starts [120,123] with complete un-repeated GP-prime path sum equal to the byte of their last visited cell; exactly **four** starts [66,120,180,247] whose path sum indexes a zero byte; **only 120 satisfies both**. Exactly **one** of the original 20 p57 word-sum addresses enters the unique GEM three-cycle, the DIUINITY seed120. These are exact finite source properties.
 
@@ -104,6 +93,6 @@ For *conditional* shuffle calibration only, the SFT holds source start120, all g
 
 **Direct all-word message gate:** with the same frozen GP-prime-sum modulo256 addresses and q/r keypad, independently start a traversal at **each of all 20 original p57 words in printed order**, concatenating each route's first-visit GP readout. The exact sequence is \`F|D|NGA|FUB|IANG|DUJAE|NGA|IAW|EAR|JMIXTH|UOEU|SRAEDAC|JOE|XTH|HSSW|NGA|IOGEM|DC|MNG|SEAOE\`. It is nonlinguistic under the direct readout and supplies no self-contained message. The same [source SFT](../sims/lp2_p57_divinity_p50_primewalk_sft.cjs) asserts the complete, unmodified 20-word output. This rules out the simplest *universal* PARABLE-word→table-graph→plaintext reading without inventing word-selection and decoding rules.
 
-**Research decision:** the solved author's vocabulary now gives more specific motivation to explore within-word GP-prime sums and numerical page addresses. The **two word-interior byte matches** remain the most economical p57 facts. The complete signed-2016 map adds a separate, exact cross-round alignment: THEIR/MEANING select END WITHIN THE DEEP on p56, while LIES selects the rune-free p50 token 3D and cell193 00; the p57 PARABLE→00 route converges there. This raises the navigation hypothesis above an isolated numerical coincidence, but it still supplies no key, unknown plaintext or reversible cipher. **No unknown LP2 ciphertext rune was decrypted.**
+**Research decision:** the solved author's vocabulary now gives more specific motivation to explore within-word GP-prime sums and numerical page addresses. The **two word-interior byte matches** are the most economical new facts and deserve priority over arbitrary keypad rotations, byte seeds or passphrase searches. The signed LIES→00 and p57 PARABLE→00 routes constrain a possible simple human navigation explanation. **No unknown LP2 ciphertext rune was decrypted**, and there is no identified complete inverse operating on original ciphertext.
 
 The next genuinely advancing experiment needs an independent original instruction or a fixed, simple reversible consumer for the table byte **184/201**, terminal zero/F, or their source-selected addresses, which can predict **previously unknown** page runes and re-encode them. Do not rerun generic GEM OutGuess passwords, entire 256-byte table as periodic key, divinity period-eight GP29 additive cipher, arbitrary keypad orientations or previously failed p50/p55 direct consumers. They have documented negatives independent of the present navigation coincidences.
