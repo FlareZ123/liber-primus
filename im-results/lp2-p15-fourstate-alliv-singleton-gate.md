@@ -55,7 +55,7 @@ Thirteen original one-rune words occur at p40-body-local positions **128, 298, 1
 | Signed transpose, forward | 6 | 0 |
 | Signed transpose, inverse | 4 | 0 |
 
-The [independent p40 reproducer](../sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs) imports the same exact all-secret search and tests an independent **3,000-rune** solved-p57 native-GP forward/encrypted plant. Its hidden planted state is recovered from its own A/I/O words, with exact decryption and re-encryption of all 3,000 GP runes. Hence the entire eight-member family fails for **two independently selected original locations** without choosing any original key.
+The [successful Windows p40 and p16 combined run](https://github.com/FlareZ123/liber-primus/actions/runs/43539850251) verifies the complete original two-section test. The [independent p40 reproducer](../sims/lp2_p40_fourstate_unknown_iv_singletons_sft.cjs) imports the same exact all-secret search and tests an independent **3,000-rune** solved-p57 native-GP forward/encrypted plant. Its hidden planted state is recovered from its own A/I/O words, with exact decryption and re-encryption of all 3,000 GP runes. Hence the entire eight-member family fails for **two independently selected original locations** without choosing any original key.
 
 ## Independent positive and reproducibility
 
