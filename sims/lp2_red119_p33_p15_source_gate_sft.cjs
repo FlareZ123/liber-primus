@@ -93,17 +93,25 @@ assert.equal(pageStart(40),9640);
 function addressedWord(pageNo,oneBasedRuneOffset) {
   const global=pageStart(pageNo)+oneBasedRuneOffset-1;
   const char=transcriptionChars[global];
-  assert.equal(transcription[char-1],'-','address is not a printed word start');
+  assert.notEqual(char,undefined,'addressed rune is missing');
+  let start=char;
+  while (start>0&&runeIndex.has(transcription[start-1])) start--;
   let end=char;
   while (end<transcription.length&&runeIndex.has(transcription[end])) end++;
-  const word=transcription.slice(char,end);
+  const word=transcription.slice(start,end);
   const indices=[...word].map(ch=>runeIndex.get(ch));
+  const wordRuneOffset=[...transcription.slice(start,char)].filter(ch=>runeIndex.has(ch)).length;
+  const addressRune=corpus.translit[runeIndex.get(transcription[char])];
+  const precedingRune=wordRuneOffset>0?corpus.translit[indices[wordRuneOffset-1]]:null;
   return {
     page:pageNo,
     oneBasedRuneOffset,
     word,
     indices,
-    transliteration:indices.map(i=>corpus.translit[i]).join('')
+    transliteration:indices.map(i=>corpus.translit[i]).join(''),
+    wordRuneOffset,
+    addressRune,
+    precedingRune
   };
 }
 const addressed=[
@@ -111,9 +119,14 @@ const addressed=[
   addressedWord(40,triad39.sum)
 ];
 assert.equal(addressed[0].transliteration,'TJ');
-assert.equal(addressed[1].transliteration,'DREAG');
+assert.equal(addressed[0].wordRuneOffset,0);
+assert.equal(addressed[0].precedingRune,null);
+assert.equal(addressed[1].transliteration,'FDREAG');
+assert.equal(addressed[1].wordRuneOffset,1);
+assert.equal(addressed[1].addressRune,'D');
+assert.equal(addressed[1].precedingRune,'F');
 assert.deepEqual(addressed[0].indices,[16,11]);
-assert.deepEqual(addressed[1].indices,[23,4,28,6]);
+assert.deepEqual(addressed[1].indices,[0,23,4,28,6]);
 
 const fibonacci=[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987];
 const starts=fibonacci.map(n=>n+1);
