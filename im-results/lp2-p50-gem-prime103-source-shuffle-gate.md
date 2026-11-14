@@ -98,6 +98,52 @@ table is not assumed to have been randomly shuffled by its maker.
 Consequently this result raises a question worth testing historically,
 without statistically authenticating an intended instruction.
 
+## Rune-name meaning and a finite steganography consumer (Agent 10, 14 November 2026)
+
+The three actual glyphs on the speculative **G→E→M** cycle are
+**ᚷ (Gyfu: gift), ᛖ (Eh: horse), and ᛗ (Mann: man)** in the
+[traditional Anglo-Saxon rune names](https://www.tha-engliscan-gesithas.org.uk/written-and-spoken-old-english/old-english-alphabet-2/the-anglo-saxon-rune-poem/).
+Thus the same three runes admit the distinct literal-name gloss **GIFT–HORSE–MAN**.
+A *Trojan horse* is one conceivable semantic association because the
+traditional story involves a gifted horse concealing people. This inference
+was noticed **after** GEM was found, has multiple semantic alternatives,
+and the original 2016 instruction about word *meanings* does not expressly
+tell a solver to apply rune-poem nomenclature to this graph. The simpler
+reading of `GEM` as Gematria remains available. No author-selected
+password follows from the gloss.
+
+To make the association falsifiable without opening a free password search,
+one exact candidate consumer was tested: **OutGuess extraction with the
+literal uppercase key `TROJANHORSE`** on all 58 unmodified original LP2
+JPEGs, using the project's pinned OutGuess extractor. A [successful,
+archived manual Actions run 43644148894](https://github.com/FlareZ123/liber-primus/actions/runs/43644148894)
+performed **58/58 extractions** and preserved their raw outputs in artifact
+`outguess-lp2-keyed` (artifact ID `14133033431`).
+
+**Result: zero recognizable extracted payloads.** All 58 source images
+produced nominally header-consistent outputs of **18,520 bytes**, identical
+reported seed **50932**, and the same initial 32 bytes
+`f4c65848359d3a3d664e1157b964bcfada517e36be2023b69b8f75afc3f43a12`;
+the output digests differ with the JPEG and have entropy around
+**7.99 bits/byte**, with roughly **38%** printable characters. Neither
+PGP, ZIP, gzip, PNG nor ordinary printable text was recognized.
+The original LP1 image 00.jpg/08.jpg default-key extraction controls passed;
+a synthetic **47-byte embedded message** was recovered exactly under key
+`79`. Crucially, an independent, deliberately **payload-free** synthetic
+JPEG probed under `TROJANHORSE` also yielded a false-looking valid
+seed/length header (**61134 / 30077 bytes**) with unrecognizable binary
+content. Header-consistency therefore offers no evidence that the 58
+high-entropy original outputs contain authentic hidden messages.
+
+**Decision:** the exact `GIFT–HORSE–MAN → TROJANHORSE → standard OutGuess`
+consumer fails to identify a valid LP2 payload. Preserve the raw
+outputs as potential reproducible negatives, without treating false
+headers as hidden material. This does not exclude a genuinely encrypted
+binary payload, a different original selected passphrase or a distinct
+steganographic operation. **Do not expand case, synonym or password
+variants** absent a new original instruction. No unknown LP2 plaintext,
+original key or destination was recovered.
+
 ## Causal decision and next test
 
 A human solver could see the signed instruction about numbers/direction
