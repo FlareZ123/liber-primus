@@ -101,6 +101,23 @@ for (let offset = 0; offset < totientSteps.length; offset++) {
 }
 assert.deepEqual(phases, [0]);
 
+// Negative shape control: no 55-rune unshorn contiguous window from the
+// 95-rune PARABLE lands on p50 in the original forward reading.
+const unshornWindows = [];
+for (let start = 0; start <= printed.length - 55; start++) {
+  const selected = printed.slice(start, start + 55)
+    .map(index => corpus.prime[index] - 1);
+  unshornWindows.push({
+    offset: start,
+    forward: josephus(selected, 56).survivor,
+    reversed: josephus(selected.slice().reverse(), 56).survivor
+  });
+}
+assert.equal(unshornWindows.length, 41);
+assert.deepEqual(unshornWindows.filter(w => w.forward === 50), []);
+assert.deepEqual(unshornWindows.filter(w => w.reversed === 50),
+  [{ offset: 36, forward: 42, reversed: 50 }]);
+
 // Direct cipher-consumer gate, without an unknown Fehu-bypass search.
 // The genuine p56 encryptor leaves plaintext F unchanged; therefore all
 // ciphertext positions BEFORE the first printed F have a unique key clock.
