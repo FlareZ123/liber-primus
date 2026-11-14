@@ -189,6 +189,97 @@ assert.deepEqual(originalResults.map(result =>
   [result.unrestrictedSegments, result.sourceWordCountSegments]),
 [[11, 0], [15, 1]]);
 
+/**
+ * Exact key-free obstruction for every GP29 affine inverse, allowing
+ * a distinct *secret* invertible affine symbol map for EVERY original
+ * punctuation-delimited segment, and any interior word boundaries.
+ *
+ * This is a genuine superset of a single Caesar or Atbash alphabet and of
+ * any fixed page/chapter alphabet. The finite English register remains a
+ * necessary assumption. A segmentation match (especially using rare
+ * dictionary one-letter types) is NOT a credible plaintext recovery.
+ *
+ * @param {number[]} runes
+ * @param {{next: Map<number,number>[],terminal:boolean[]}} trie
+ * @returns {boolean}
+ */
+function hasAnyWordSegmentation(runes, trie) {
+  const n = runes.length;
+  const reach = new Uint8Array(n + 1);
+  reach[0] = 1;
+  for (let i = 0; i < n; i++) {
+    if (!reach[i]) continue;
+    let node = 0;
+    for (let j = i; j < n; j++) {
+      node = trie.next[node].get(runes[j]);
+      if (node === undefined) break;
+      if (trie.terminal[node]) reach[j + 1] = 1;
+    }
+  }
+  return Boolean(reach[n]);
+}
+
+/**
+ * @param {number[]} src
+ * @param {{next: Map<number,number>[],terminal:boolean[]}} trie
+ * @returns {{count:number,first:{a:number,b:number}|null}}
+ */
+function allAffineEnglish(src, trie) {
+  let count = 0;
+  let first = null;
+  const transformed = new Array(src.length);
+  for (let a = 1; a < 29; a++) {
+    for (let b = 0; b < 29; b++) {
+      for (let i = 0; i < src.length; i++) {
+        transformed[i] = (a * src[i] + b) % 29;
+      }
+      if (hasAnyWordSegmentation(transformed, trie)) {
+        count++;
+        if (first === null) first = {a, b};
+      }
+    }
+  }
+  return {count, first};
+}
+
+const allSecretAffine = sentences.map((sentence, i) => {
+  const original = Array.from(sentence.join(''), rune => runeIndex.get(rune));
+  const {count, first} = allAffineEnglish(original, trie);
+  return {sentence:i, runes:original.length, printedWords:sentence.length,
+    possibleAffines:count, first};
+});
+const affineCoverage = {
+  testedAffinesPerSegment: 812,
+  independentlyKeyedSegments: 175,
+  atLeastOneLexicalSegmentation:
+    allSecretAffine.filter(result => result.possibleAffines > 0).length,
+  impossibleForEverySecretAffine:
+    allSecretAffine.filter(result => result.possibleAffines === 0).length,
+  impossibleExamples: allSecretAffine.filter(x => x.possibleAffines === 0)
+    .slice(0, 12).map(x => ({sentence:x.sentence, runes:x.runes,
+      printedWords:x.printedWords})),
+  maximumUncoveredSegmentRunes:
+    Math.max(...allSecretAffine.filter(x => x.possibleAffines === 0)
+      .map(x => x.runes))
+};
+assert.equal(affineCoverage.atLeastOneLexicalSegmentation, 102);
+assert.equal(affineCoverage.impossibleForEverySecretAffine, 73);
+
+// Positive 3: a changing hidden affine alphabet, independent for every one
+// of the 175 complete source-sized native planted punctuation segments,
+// must always have the correctly recovered GP-native lexical segmentation.
+for (let index = 0; index < plantedSentences.length; index++) {
+  const plain = plantedSentences[index].flat();
+  const a = 1 + (index % 28);
+  const b = (7 * index + 13) % 29;
+  let aInverse = 1;
+  while ((a * aInverse) % 29 !== 1) aInverse++;
+  const cipher = plain.map(p => (aInverse * ((p - b + 29) % 29)) % 29);
+  assert.deepEqual(cipher.map(c => (a * c + b) % 29), plain);
+  const result = allAffineEnglish(cipher, trie);
+  assert(result.count > 0, 'source-sized affine native-English positive');
+}
+
 // Positive 1: authentic 95-rune p57 GP plaintext, including three uncommon
 // words absent from the TextBlob+literature lexicon, must be recognized.
 const solvedP57 = read('resources/liber-primus/lp1-plaintext-reference.txt')
@@ -249,9 +340,10 @@ console.log(JSON.stringify({
   sourceNativeEnglishLexicon: dictionary.length,
   nativeTrieNodes: trie.next.length,
   original: originalResults,
+  allSecretSentenceAffine: affineCoverage,
   controls: {solvedP57NativeRunes:95, solvedP57Words:20,
     originalGeometryPlantedRunes:plantedRunes.length,
     plantedSentencesWithOriginalWordCount:175,
     exactFiveGapReflectionInverses:transformations},
-  scope: 'unchanged rune order and punctuation; identity or Atbash GP29; finite English lexicon'
+  scope: 'original punctuation and rune order; identity/Atbash or all 812 independent per-sentence affine GP29 inverses; finite English lexicon'
 }, null, 2));
