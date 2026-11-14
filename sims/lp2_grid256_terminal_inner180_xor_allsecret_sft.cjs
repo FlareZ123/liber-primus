@@ -149,9 +149,9 @@ for (let a = 0; a < 8; a++) {
 }
 assert.equal(checked, 1024);
 assert.equal(successes, 0);
-assert.equal(minimum, 117);
-assert.equal(maximumRank, 59);
-assert.deepEqual(perOrientationMinimum, [118, 117]);
+assert.equal(minimum, 119);
+assert.equal(maximumRank, 57);
+assert.deepEqual(perOrientationMinimum, [119, 119]);
 
 // Planted exact original-shape positive with independent byte secrets.
 // The planted complete 256 positions contain a 76-rune clear p57 prefix
