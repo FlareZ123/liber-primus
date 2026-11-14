@@ -1,4 +1,4 @@
-name: LP2 source-moth p55 GF29 recurrence (manual)
+name: Agent35 original GF29 research gates (manual)
 on:
   workflow_dispatch:
 permissions:
@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Exact p55 source-crib recurrence and affine certificate
         run: node sims/lp2_moth_grid16_crib_recurrence_sft.cjs
+      - name: Exact 256-cell six-check affine code and distance
+        run: node sims/lp2_grid_sixcheck_affine_code_sft.cjs
