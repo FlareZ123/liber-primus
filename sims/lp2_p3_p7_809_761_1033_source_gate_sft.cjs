@@ -78,6 +78,31 @@ assert.deepEqual(titleParts, [72, 280, 409]);
 const mp3TitleSum = titleParts.reduce((a, b) => a + b);
 assert.equal(mp3TitleSum, 761);
 
+assert.equal(mp3TitleSum, 761);
+
+// A separate original-image feature: the p7 red terminal is five intact
+// printed words (2+4+3+2+3=14 GP runes) above a hand-counted five-dot motif.
+// Original merged scan is resources/liber-primus/24.jpg.
+// Its red-rune sum 766 equals the independent 2013 MP3 label 761 plus five.
+// The operation "subtract dots" is provisional, not an author instruction.
+const masterText = source('resources/liber-primus/lp2-transcription.txt');
+const p7Printed = masterText.split('\n%\n')[7];
+const redFooterMatch = p7Printed.match(/\n&\n([^\n]+)\n&\n\$/);
+assert.ok(redFooterMatch, 'p7 original red footer must be preserved');
+const p7PrintedRedWords = redFooterMatch[1].split(/[-./]/).filter(Boolean);
+assert.deepEqual(p7PrintedRedWords.map(w => [...w].length), [2, 4, 3, 2, 3]);
+const p7PrintedRedIndices = p7PrintedRedWords.flatMap(word => [...word].map(rune => {
+  const index = corpus.runes.indexOf(rune);
+  assert.ok(index >= 0);
+  return index;
+}));
+const p7OriginalFinal14 = pages[7].indices.slice(-14);
+assert.deepEqual(p7PrintedRedIndices, p7OriginalFinal14);
+const p7OriginalRedSum = p7PrintedRedIndices.reduce((s, i) => s + prime[i], 0);
+assert.equal(p7OriginalRedSum, 766);
+const originalFiveDotCount = 5; // Hand-counted on unmodified combined original 24.jpg.
+assert.equal(p7OriginalRedSum - originalFiveDotCount, mp3TitleSum);
+
 const totalOriginalImageCount = 17 + pages.length;
 assert.equal(totalOriginalImageCount, 75);
 const interestingSum = selected.sum;
@@ -210,6 +235,7 @@ console.log(JSON.stringify({
   constituentPages, chapterPrimeSums: chapters.map(x => x.sum),
   originalRuneCount: selected.length,
   historicalTitlePrimeComponents: titleParts,
+  p7RedFooter: { originalWords: p7PrintedRedWords.map(w => [...w].length), originalPrimeSum: p7OriginalRedSum, handCountedBlackDots: originalFiveDotCount, difference: mp3TitleSum },
   identities: ['60675 = 58 * 1033 + 761', '60675 = 75 * 809'],
   countOfExactOriginalWholePageWindows: matchingWindows.length,
   matchingWindows, originalWindowsWithin50: windowsWithin50,
