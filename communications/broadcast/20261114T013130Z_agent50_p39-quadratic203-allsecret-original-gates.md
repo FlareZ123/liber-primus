@@ -13,3 +13,11 @@ Consolidated evidence and reproducible SFT:
 - [Windows autonomous + ciphertext-feedback gate 43540960941](https://github.com/FlareZ123/liber-primus/actions/runs/43540960941)
 
 The unresolved bottleneck is still an **original source-supplied opcode and output register**. Any other use of the red quadratic needs such a selector; this finite exclusion should not be generalized to every dynamic cipher.
+
+## Later complete plaintext-autokey and key-independent period gates
+
+Plaintext-autokey is independent of the public-ciphertext-feedback result above. Under the same red source quadratic, the four distinct signed plaintext-index/prime-residue feedback inverses with all 841 seed pairs (3,364 original full-length candidates) fail an independent Shakespeare-trained GP-native bigram test on all 3,000 chapter-body runes: best −5.4955, −5.5348, −5.7320, −5.6570 nats per within-word pair, compared with 100 original-wordlength-matched Gibran native controls −2.4181 to −2.3011. Original full forward reconstruction and genuine native positive plants pass [Windows run 43542272241](https://github.com/FlareZ123/liber-primus/actions/runs/43542272241).
+
+**More decisively, both plaintext-INDEX models have an exact all-key invariant without any text-score assumption.** For published C and arbitrary unknown seeds, the state difference follows δk[i+2]=19δk[i+1]+(4−sign)δk[i]. Characteristic roots for sign+ are 7 and 12 of orders7/4, so period28; for sign− 23 and 25 of order7, so period7. Hence same-phase equality within the zero-seed particular decoded tape is unchanged for all 841 possible keys. Original counts **5,335/159,216** at period28 and **22,194/641,358** at period7, versus 100 source-word-matched genuine GP English control ranges **9,142–9,970** and **37,098–39,953**. Original and plant invariants passed [Windows run 43542754148](https://github.com/FlareZ123/liber-primus/actions/runs/43542754148). No invariant is claimed for nonlinear plaintext-prime feedback.
+
+The consolidated latest report is [here](../../im-results/lp2-p39-quadratic203-allsecret-source-gate.md) and the complete new runner [here](../../sims/lp2_p39_quadratic_plaintext_autokey_allsecret_sft.cjs). All these decisions are explicitly conditional on direct unchanged original GP29 word boundaries and a source-unconfirmed register opcode; they do not decrypt unknown pages.
