@@ -174,6 +174,43 @@ assert.ok(originalResults.every(result =>
 assert.deepEqual([...new Set(originalResults.map(x =>
   x.firstImpossibleRune))].sort(), [13, 14]);
 
+/**
+ * A smaller independently checkable original-word certificate: physical p53
+ * third word (7 runes, local offsets 8..14) overlaps p55 fourth body word
+ * (6 runes, local body offsets 8..13) at six whole positions. The shared pad
+ * cancellation demands a fixed six-coordinate rank-difference vector.
+ * We hash every native six-rune word instead of trying 20+ million pairs.
+ */
+const originalWordDelta = Array.from({length: 6}, (_, j) =>
+  mod(diff(textA, j + 8) - diff(textB, j + 8), 28));
+assert.deepEqual(originalWordDelta, [5, 27, 25, 19, 15, 24]);
+function matchedOriginalWordPairs(reserved, firstRelativeIndex) {
+  const signatures = new Set();
+  const rank = x => x - +(x > reserved);
+  for (const word of lexicon.get(6).values()) {
+    const tail = word.slice(firstRelativeIndex, 6);
+    if (tail.includes(reserved)) continue;
+    signatures.add(tail.map(rank).join(","));
+  }
+  let matchingSevenRuneWords = 0;
+  for (const word of lexicon.get(7).values()) {
+    const tail = word.slice(firstRelativeIndex, 6);
+    if (tail.includes(reserved)) continue;
+    const required = tail.map((x, i) =>
+      mod(rank(x) - originalWordDelta[firstRelativeIndex + i], 28));
+    matchingSevenRuneWords += +signatures.has(required.join(","));
+  }
+  return matchingSevenRuneWords;
+}
+const sixStep = Array.from({length: 29},
+  (_, reserved) => matchedOriginalWordPairs(reserved, 0));
+const fiveStep = Array.from({length: 29},
+  (_, reserved) => matchedOriginalWordPairs(reserved, 1));
+assert.deepEqual(sixStep, Array(29).fill(0));
+assert.deepEqual(fiveStep.map((x, reserved) => x ? reserved : -1)
+  .filter(x => x >= 0), [19, 20, 21, 22]);
+
+
 /** @returns {() => number} */
 function prng(seed) {
   let state = seed >>> 0;
@@ -255,6 +292,12 @@ console.log(JSON.stringify({
     doubletPositionsP55Body75: doubletB},
   model: "GF29 ciphertext predecessor plus reversible 28-rank shared key",
   original: originalResults,
+  localSixStep: {
+    p53ThirdWordLength: 7, p55FourthBodyWordLength: 6,
+    originalRankDelta: originalWordDelta, allReservedMatchingSixStep: sixStep,
+    fiveStepSurvivors: fiveStep.map((matches, reserved) =>
+      ({reserved, matches})).filter(x => x.matches)
+  },
   positivePlants,
   decision: "All 29 possible reserved symbols fail source-native whole-word grammar before position 15; first repeat is at position 59. This closes this conditional same-key original-rune-order model, not other keys or cipher families."
 }, null, 2));
