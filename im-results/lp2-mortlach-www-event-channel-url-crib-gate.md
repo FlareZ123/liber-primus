@@ -29,6 +29,19 @@ For **HTTPSWWW** with L=7, events 74 and 81 share a key residue: X (index14) to 
 
 This test only excludes the **particular literal HTTP(S)WWW prefix under an event-clock periodic additive cipher**. A shorter key may decrypt a *different* event-stream message. A cipher clock running across **all original 12,956 ciphertext positions**, including the thousands omitted by event extraction, would be a different hypothesis. Arbitrary per-phase substitutions, nonadditive operations, key shifts, or a nonliteral WWW marker also remain open.
 
+## An authentic-style transparent-marker alternative
+
+Solved Cicada pages establish a distinct **plaintext-F passthrough and nonconsuming key clock**. That historical operation motivates one narrowly defined exception to the strict period-seven/eight inference: allow the literal W glyphs at the visible WWW junction to pass without consuming additive-key ticks. The physical original gives exactly three adjacent extracted-event Ws (positions79–81); a broader comparison treats **all six** W symbols in the 86-event sequence as transparent. Both readings retain every glyph and consume exactly one key tick for every other event. A hypothesized preceding `HTTP` (four symbol phases) or `HTTPS` (five) is fixed at event75 or74 respectively. Every additive shift is inferred solely from that crib; nothing is trained on the rest of the original stream.
+
+| Marker hypothesis | Literal prefix | Full 86-symbol inverse IoC |
+| --- | --- | ---: |
+| Pass through only events79–81, skip clock | HTTP | **0.032831737346** |
+| Pass through only events79–81, skip clock | HTTPS | **0.033652530780** |
+| Pass through every W event, skip clock | HTTP | **0.036388508892** |
+| Pass through every W event, skip clock | HTTPS | **0.034473324213** |
+
+The four source-independent, separately planted original-length native GP29 passages round-trip **86/86** including their marker masks. Every original inverse remains opaque. The same implementation explicitly excludes period≤6 or period≤7 *when the WWW letters advance the key*, so this is an actual cipher-family distinction, rather than a revision of that theorem. The real solved-pages exception is **F**, while transferring it to unknown-page **W** is conjectural and cannot be treated as authenticated. No source selects a separate event clock or the `HTTP` prelude in the first place.
+
 ## One finite control for the original WWW placement
 
 A count of three Ws is not a decoder. To test whether the motif is a generic consequence of observed repeated-glyph marginals, freeze the 86 original event locations, the nine original image-chapter assignments, the number of events per chapter and each chapter's exact repeated-rune glyph inventory. Uniformly shuffle only event identities **within each original chapter**. These nine original chapter event counts are:
