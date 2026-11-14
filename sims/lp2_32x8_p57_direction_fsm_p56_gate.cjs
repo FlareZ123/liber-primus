@@ -6,12 +6,12 @@
  * Node.js 22, CommonJS, no dependencies.
  * Run: node sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs
  *
- * Tests two fixed readings:
- * 1. 256-cell, 8-direction bitmask maze, starting at the black marker's
- *    local rune offset 194.
- * 2. 32-state / 8-direction transducer, starting at the black marker's
- *    chronological ordinal 8; each cell byte is a page's p56 prime-start
- *    ordinal and its low five bits are the next state.
+ * Readings tested:
+ * A. 256-cell, 8-direction bitmask maze, starting at black marker offset194.
+ * B. 32x8 grid walk driven by p57 totient directions, reading destination
+ *    bytes as per-page prime-start ordinals.
+ * C. 32-state / 8-direction transducer, with black marker ordinal8 as the
+ *    initial state and each cell byte's low five bits as the next state.
  *
  * The p56 known-answer vector is a positive control. Every possible
  * transparent-F branch is retained until a page becomes impossible.
@@ -77,7 +77,7 @@ function primes(count) {
     limit *= 2;
   }
 }
-const primeList = primes(700);
+const primeList = primes(800);
 const totients = primeList.map(p => p - 1);
 
 function josephus(stepValues) {
@@ -138,8 +138,8 @@ assert.ok(grid.byte_rows.every(row => row.length === 8));
 const table = grid.byte_rows.flat();
 assert.equal(table.length, 256);
 
-// 31 thirteen-dot events in original physical order. At the co-located p7
-// position, red sorts before black, matching the source event serialization.
+// 31 thirteen-dot events in physical order. At the co-located p7 position,
+// red sorts before black, matching the source event serialization.
 const markers = [];
 for (const page of ink.pages) {
   for (const mark of page.large_punctuation || []) {
@@ -198,9 +198,8 @@ const p56Reproduced = p56Plain.map(plain => {
 assert.deepEqual(p56Reproduced, corpus.pages[56].indices);
 assert.equal(p56Consumed, 84);
 
-// Reading A: each of the 256 table bytes is an 8-way exit mask. Start at the
-// black marker's original local rune offset 194. Directions use N, NE, E,
-// SE, S, SW, W, NW in that order. No wrap choice can affect the first moves.
+// Reading A: each byte is an eight-way exit mask. Start at local rune offset
+// 194. Direction order is N, NE, E, SE, S, SW, W, NW.
 const compass = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]];
 function mazeFirstFailure(openBit) {
   let cell = 194;
@@ -210,10 +209,8 @@ function mazeFirstFailure(openBit) {
     const mask = table[cell];
     const bit = (mask >> direction) & 1;
     if (bit !== openBit) {
-      return {
-        openBit, failAt: i, cell, row: Math.floor(cell / 8), col: cell % 8,
-        direction, mask, bit, trace
-      };
+      return {openBit, failAt: i, cell, row: Math.floor(cell / 8),
+        col: cell % 8, direction, mask, bit, trace};
     }
     const row = Math.floor(cell / 8) + compass[direction][0];
     const col = (cell % 8) + compass[direction][1];
@@ -239,9 +236,104 @@ assert.equal(mazeZeroIsOpen.direction, 0);
 assert.equal(mazeZeroIsOpen.mask, 159);
 assert.equal(mazeZeroIsOpen.bit, 1);
 
-// Reading B: 32-state / 8-direction transducer. A cell byte is both the
+// Reading B: the p57 directions walk through the 32x8 grid. Read the
+// destination cell's byte as the next page's p56 prime-start ordinal.
+// Two source-grounded starts are tested: flat local offset194 and the
+// page/offset coordinate (row7, column194 mod8) = flat cell58.
+function gridWalk(startCell, dirs, wrap) {
+  let cell = startCell;
+  const outputs = [];
+  const cells = [cell];
+  const trace = [];
+  for (let i = 0; i < dirs.length; i++) {
+    const direction = dirs[i];
+    let row = Math.floor(cell / 8) + compass[direction][0];
+    let col = (cell % 8) + compass[direction][1];
+    if (wrap) {
+      row = (row + 32) % 32;
+      col = (col + 8) % 8;
+    } else if (row < 0 || row >= 32 || col < 0 || col >= 8) {
+      return {startCell, wrap, failAt: i, edge: true, cell, row, col, trace};
+    }
+    const nextCell = row * 8 + col;
+    outputs.push(table[nextCell]);
+    trace.push({step: i, from: cell, to: nextCell, direction, byte: table[nextCell]});
+    cell = nextCell;
+    cells.push(cell);
+  }
+  return {startCell, wrap, outputs, cells,
+    uniqueCells: new Set(cells).size, finalCell: cell, trace};
+}
+function gridWalkCandidate(startCell, pageOrder) {
+  const f = gridWalk(startCell, directions, false);
+  const r = gridWalk(startCell, directions.slice().reverse(), false);
+  const fw = gridWalk(startCell, directions, true);
+  const rw = gridWalk(startCell, directions.slice().reverse(), true);
+  return {
+    startCell,
+    noWrap: {forward: f, reverseSteps: r},
+    wrap: {
+      forward: {
+        firstTenCells: fw.cells.slice(0, 10),
+        firstTenKeyStarts: fw.outputs.slice(0, 10),
+        uniqueCells: fw.uniqueCells,
+        finalCell: fw.finalCell,
+        firstPage: pageOrder.forward[0],
+        failure: firstImpossible(pageOrder.forward[0], fw.outputs[0])
+      },
+      reverseSteps: {
+        firstTenCells: rw.cells.slice(0, 10),
+        firstTenKeyStarts: rw.outputs.slice(0, 10),
+        uniqueCells: rw.uniqueCells,
+        finalCell: rw.finalCell,
+        firstPage: pageOrder.reverse[0],
+        failure: firstImpossible(pageOrder.reverse[0], rw.outputs[0])
+      }
+    }
+  };
+}
+const gridWalkFlatOffset = gridWalkCandidate(194, {
+  forward: forward.eliminated, reverse: reverseSteps.eliminated
+});
+const gridWalkPageCoordinate = gridWalkCandidate(58, {
+  forward: forward.eliminated, reverse: reverseSteps.eliminated
+});
+assert.equal(gridWalkFlatOffset.noWrap.forward.failAt, 18);
+assert.equal(gridWalkFlatOffset.noWrap.reverseSteps.failAt, 15);
+assert.equal(gridWalkPageCoordinate.noWrap.forward.failAt, 18);
+assert.equal(gridWalkPageCoordinate.noWrap.reverseSteps.failAt, 15);
+assert.equal(gridWalkFlatOffset.wrap.forward.firstTenKeyStarts[0], 19);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.failAt, 13);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.cipher, 20);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.cases[0].keyIndex, 32);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.cases[0].prime, 137);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.cases[0].keyTotient, 136);
+assert.equal(gridWalkFlatOffset.wrap.forward.failure.cases[0].keyMod29, 20);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.failAt, 4);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.cipher, 24);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.cases[0].keyIndex, 22);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.cases[0].prime, 83);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.cases[0].keyTotient, 82);
+assert.equal(gridWalkFlatOffset.wrap.reverseSteps.failure.cases[0].keyMod29, 24);
+assert.equal(gridWalkPageCoordinate.wrap.forward.firstTenKeyStarts[0], 47);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.failAt, 85);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.cipher, 17);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.cases[0].keyIndex, 131);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.cases[0].prime, 743);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.cases[0].keyTotient, 742);
+assert.equal(gridWalkPageCoordinate.wrap.forward.failure.cases[0].keyMod29, 17);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.failAt, 48);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.cipher, 5);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.cases[0].keyIndex, 94);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.cases[0].prime, 499);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.cases[0].keyTotient, 498);
+assert.equal(gridWalkPageCoordinate.wrap.reverseSteps.failure.cases[0].keyMod29, 5);
+assert.equal(gridWalkFlatOffset.wrap.forward.uniqueCells, 33);
+assert.equal(gridWalkPageCoordinate.wrap.forward.uniqueCells, 33);
+
+// Reading C: 32-state / 8-direction transducer. A cell byte is both the
 // page's zero-based prime-start ordinal and its low-five-bit next state.
-function walk(dirs, startState) {
+function stateWalk(dirs, startState) {
   let state = startState;
   const outputs = [];
   const states = [];
@@ -254,8 +346,8 @@ function walk(dirs, startState) {
   return {outputs, states, finalState: state};
 }
 function runStartState(startState) {
-  const fsmForward = walk(directions, startState);
-  const fsmReverse = walk(directions.slice().reverse(), startState);
+  const fsmForward = stateWalk(directions, startState);
+  const fsmReverse = stateWalk(directions.slice().reverse(), startState);
   return {
     startState,
     forward: {
@@ -317,7 +409,7 @@ const directPageResidues = blackOrdinalStart.outputs.map(value => value % 56);
 assert.equal(new Set(directPageResidues).size, 23);
 
 console.log(JSON.stringify({
-  decision: "REJECTED: two fixed 32x8 p57 direction readings",
+  decision: "REJECTED: fixed 32x8 p57 direction-map readings",
   source: {
     tableDimensions: [32, 8],
     thirteenDotEvents: markers.length,
@@ -335,14 +427,16 @@ console.log(JSON.stringify({
     exactOriginalCiphertextReproduced: true
   },
   bitmaskMaze: {oneMeansOpen: mazeOneIsOpen, zeroMeansOpen: mazeZeroIsOpen},
+  gridWalk: {flatOffset194: gridWalkFlatOffset, pageCoordinate58: gridWalkPageCoordinate},
   transducer: {blackOrdinalStart, blackPageStart},
   directPageOutputControl: {
     uniquePageResidues: new Set(directPageResidues).size,
     totalOutputs: directPageResidues.length
   },
   scope: [
-    "Rejects the direct 256-cell direction-mask maze from black marker offset 194 under both bit polarities.",
-    "Rejects the fixed 32-state / 8-direction transducer with black ordinal 8 and page-number 7 starts, when outputs are p56 prime-start ordinals.",
+    "Rejects the direct 256-cell direction-mask maze from black marker offset194 under both bit polarities.",
+    "Rejects the toroidal destination-byte grid walk as a p56 page-key source for both source-grounded start-cell mappings and both directions; nonwrapping walks leave the grid before 55 steps.",
+    "Rejects the fixed 32-state / 8-direction transducer with black ordinal8 and page-number7 starts when outputs are p56 prime-start ordinals.",
     "Does not reject the p50 table as a different kind of source-selected object or the p57 route as a navigation clue."
   ]
 }, null, 2));

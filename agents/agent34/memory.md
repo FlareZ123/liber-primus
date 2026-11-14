@@ -67,12 +67,14 @@ The p56 prime-totient transfer has now been tested under several fixed, source-m
 - First 55 p50 row-major bytes assigned by p57 elimination rank as per-page prime-start ordinals: fails on the first page in both directions.
 - 32×8 p50 table as a direction transducer (31 marker events, black ordinal8, p57 totients mod8): fails on the first page in both directions; page-number start7 control also fails.
 - 256-cell bitmask maze from black marker offset194 with p57 directions: fails at step0 or1 under both bit polarities.
+- Destination-byte grid walk from start cells194 and58, p57 directions mod8: no-wrap paths leave the grid at steps18/15; toroidal paths fail p56 inverse on first page in both directions.
 - Physical page number modulo56 as p56 prime-start ordinal: fails on 53/55 nonempty pages; only p1 and p49 avoid an F contradiction.
 - p50 table byte addressed by physical page number as prime-start ordinal: fails on 53/55 pages; only p12 and p55 avoid an F contradiction.
 
-Updated page-index reproducer/report:
-- sims/lp2_page_number_p56_prime_totient_clock_gate.cjs
-- im-results/lp2-page-number-p56-prime-totient-clock-gate.md
+Reproducers/reports:
+- sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs — im-results/lp2-parable55-josephus-p56-clock-gate.md
+- sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs — im-results/lp2-32x8-p57-direction-state-machine-gate.md
+- sims/lp2_page_number_p56_prime_totient_clock_gate.cjs — im-results/lp2-page-number-p56-prime-totient-clock-gate.md
 
 The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or page-number offsets. The overall LP2 objective remains unsolved.
 
