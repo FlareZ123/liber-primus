@@ -75,7 +75,7 @@ function scan(entries,name){
  console.log(name+'-CANDIDATE-COUNTS '+JSON.stringify({sameOrNearby:hits.length,exact:hits.filter(x=>x.score>=10).length}));
 
 // Fixed source-line windows from first-pass original 2016 dated signal screen.
- const frozenOriginalLines=[267324,269444,270854,270865,273768,248923,209988];
+ const frozenOriginalLines=[267324,269444,270854,270865,273768,248923,209988,230620,340563,298212,247789,149545,139663];
  for(const sourceLine of frozenOriginalLines){
   const i=entries.findIndex(e=>e.line===sourceLine);
   if(i<0)continue;
