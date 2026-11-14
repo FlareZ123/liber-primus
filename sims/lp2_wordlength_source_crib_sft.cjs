@@ -128,7 +128,6 @@ function windows(lengths, n) {
  */
 function matches(target, source, n) {
   const candidatePositions = windows(source, n);
-  const targetWindows = windows(target, n);
   const out = [];
   // Preserve multiple target windows even when their word-length strings repeat.
   const divisor = 32 ** (n - 1);
@@ -157,6 +156,66 @@ planted.splice(0, 10, ...sources[1].lengths.slice(4000, 4010));
 assert(matches(planted, sources[1].lengths, 10).some((m) =>
   m.target === 0 && m.source <= 4000));
 
+// Preserve the nine visual-chapter word-length inventories when calibrating
+// the lack of matches. This source-specific shuffle is a diagnostic only.
+const chapterStarts = [0, 3, 8, 15, 23, 27, 33, 40, 54, 56];
+const chapterWordIndices = Array.from({length: 9}, () => []);
+for (let i = 0; i < original.length; i++) {
+  const physicalPage = original[i].page >= 50
+    ? original[i].page + 1 : original[i].page;
+  const section = chapterStarts.findIndex((start, j) =>
+    j < 9 && physicalPage >= start && physicalPage < chapterStarts[j + 1]);
+  assert(section >= 0);
+  chapterWordIndices[section].push(i);
+}
+assert.deepEqual(chapterWordIndices.map((idx) => idx.length),
+  [158, 255, 383, 437, 224, 326, 378, 669, 66]);
+
+const referenceSignatures = new Map([9, 10].map((n) =>
+  [n, sources.map((source) => new Set(windows(source.lengths, n).keys()))]));
+
+/** @param {number[]} lengths @param {number} n */
+function sourceHitCount(lengths, n) {
+  const candidates = referenceSignatures.get(n);
+  let found = 0, signature = 0;
+  const divisor = 32 ** (n - 1);
+  for (let i = 0; i < lengths.length; i++) {
+    signature = i < n ? signature * 32 + lengths[i]
+      : (signature % divisor) * 32 + lengths[i];
+    if (i >= n - 1 && candidates.some((set) => set.has(signature))) found++;
+  }
+  return found;
+}
+
+let seed = 0x20143301;
+/** @returns {number} Uniform variate in [0,1). */
+function nextRandom() {
+  seed ^= seed << 13;
+  seed ^= seed >>> 17;
+  seed ^= seed << 5;
+  return (seed >>> 0) / 0x100000000;
+}
+const shuffleCount = 600;
+const nullNine = [], nullTen = [];
+for (let k = 0; k < shuffleCount; k++) {
+  const sample = sourceWindows.slice();
+  for (const group of chapterWordIndices) {
+    for (let i = group.length - 1; i > 0; i--) {
+      const j = Math.floor(nextRandom() * (i + 1));
+      [sample[group[i]], sample[group[j]]] =
+        [sample[group[j]], sample[group[i]]];
+    }
+  }
+  nullNine.push(sourceHitCount(sample, 9));
+  nullTen.push(sourceHitCount(sample, 10));
+}
+assert.equal(sourceHitCount(sourceWindows, 9), 9);
+assert.equal(sourceHitCount(sourceWindows, 10), 0);
+assert.equal(nullNine.reduce((a, b) => a + b, 0), 11302);
+assert.equal(nullTen.reduce((a, b) => a + b, 0), 1765);
+assert.equal(nullNine.filter((v) => v <= 9).length, 15);
+assert.equal(nullTen.filter((v) => v === 0).length, 48);
+
 console.log(JSON.stringify({
   original: {words: original.length, runes: 12956, pageCarriedWords: 32},
   sourceSizes: sources.map(({name, lengths}) => ({name, words: lengths.length})),
@@ -165,5 +224,12 @@ console.log(JSON.stringify({
   exact10: sources.map(({name, lengths}) =>
     ({name, matches: matches(sourceWindows, lengths, 10).length})),
   nativePositive: "planted 10-word Gibran phrase recovered at target offset 0",
+  chapterPreservingNull: {
+    runs: shuffleCount,
+    nineWordHitMean: 11302 / shuffleCount,
+    nineWordNullCountAtMostObserved: 15,
+    tenWordHitMean: 1765 / shuffleCount,
+    tenWordZeroHitNullRuns: 48
+  },
   decision: "No intact 10-or-more-word GP-native borrowing from these five sources."
 }, null, 2));
