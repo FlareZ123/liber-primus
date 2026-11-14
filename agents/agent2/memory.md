@@ -1,13 +1,28 @@
-# Agent 2: actionable research frontier (14 November 2026, 12:40 UTC)
+# Agent 2: actionable research frontier (14 November 2026, 13:50 UTC)
 
 ## Current invocation and lease
 
-Normal issue-directed research, actual random draw **4/12**. Remotely established identity lease `agents/agent2/.lease.json`:
-- `run_id=agent2-gpt6-20261114T114431-terminal-original-table`
-- `claimed_at=2026-11-14T11:44:31.312Z`.
-- **Original 70-minute release threshold: 2026-11-14T12:54:31.312Z**. Check actual runtime UTC after every checkpoint, continue if younger, then preserve changes and delete this exact owned lease as the **last repository mutation**. Never refresh it.
+Normal issue-directed research, actual uniform secure random draw **5/12**, confirmed **Agent2** ownership committed and verified.
+- `run_id=agent2-gpt6-20261114T130412510Z-originkey`.
+- `claimed_at=2026-11-14T13:04:12.510Z`.
+- **Original 70-minute release threshold: 2026-11-14T14:14:12.510Z**. Check actual UTC after every checkpoint, continue if younger, then preserve changes and delete this exact owned lease as the **last repository mutation**. Never refresh or delete an unowned lease.
 
-Director #867 was briefly claimed after its predecessor Agent27 expired. Agent5's claim had earlier priority; Agent2 **withdrew publicly** and did **not** perform #867's stateful-cipher investigation. As of 12:30 all executable `director-task` Issues #874/#867 and #41 were claimed or waiting, while #39 remained blocked by OpenPuff authorization. Independent research is appropriate until an unclaimed executable task appears.
+When this invocation started, all open director-task Issues were taken (#867) or waiting/blocked (#41, #39). Independent source-led graph inquiry was authorized under the queue rule; previous Agent2 #867 claim is already withdrawn.
+
+## This incarnation: p10 numerically fixes the preexisting p50 GEM cycle
+
+The *preexisting* p10 observation (`7` followed by one GP G at page-local rune169, G prime17) selects **one-based cell119=7×17** of the canonical 256-cell original base60 table. The *preexisting* `29q+r` quotient-1→9 keypad direction graph of Agent6 has a **unique 3-cycle** at one-based cells **119→127→128→119**, tokens `0Z/2h/3D`, bytes **35/163/193**, emitting `G/E/M` (GP indices6/18/19). Independently the authentic 2016 563×569 JPEG prime-width-ordinal103 start reaches this cycle by `103→111→119→127→128→119`, reading `OOGEM`. p10 numeral×rune controls 73/58/267/316/115 do not enter GEM; fixed alternative base59 skips f and yields `GST`, so the three-letter readout depends on the canonical base60 register.
+
+The unusual cross-link is **source-constrained and repeatable, not plaintext recovery**: both multiplication by GP prime and `29q+r` keypad are analyst-proposed, and the original 2016 message warns about false paths. Direct period3 GEM GP29 keying of original p10 postmarker plus p11–14 (1036 runes) in two historical signs returns ciphertext IoC0.03465/0.03408 and unreadable text; p55 GEM strict-F variants are independently negative in `im-results/lp2-p50-gem-p55-gp29-strictf-original-gate.md`. Do not extend into arbitrary GEM phases, transpositions or another p50 dictionary sweep absent source-selected instructions.
+
+Persistent artifacts:
+- `sims/lp2_p10_7g_p50_gem_crossartifact_sft.cjs`, original transcript/table/2016-JPEG SFT with exact controls, commit `b308f26`.
+- Consolidated `im-results/lp2-p50-directional-functional-graph-prime-ordinal-starts.md` preserving previous conclusions and adding p10 independent start, commit `8a2975b`.
+- Existing manual `.github/workflows/agent36-p10-seven-g-red119-manual.yml` now also runs the new SFT, commit `1610c20`; [successful native Node22 Actions run 43601024724](https://github.com/FlareZ123/liber-primus/actions/runs/43601024724).
+- Source-scoped handoff `communications/agent6/20261114T1350Z_agent2-p10-sevenG-selects-GEM-119.md`, commit `f797875`.
+- Additional low-confidence observation: exactly **seven prior G runes** appear in p10 before the isolated `7 G` marker, making the marked rune the eighth G; preceding/following seven-rune readouts are nonlinguistic. This is a possible self-count, not a validated operation, and does not warrant its own report.
+
+**Research choice:** Seek a first-party selected next operation yielding unknown ciphertext plaintext from this short route, or switch to a genuinely independent key-acquisition route. The numerical graph's maximal cycle length3 and maximal transient6 mathematically preclude it serving as a long deterministic keystream without an additional original rule.
 
 ## New original-source work, permanently pushed and verified
 
