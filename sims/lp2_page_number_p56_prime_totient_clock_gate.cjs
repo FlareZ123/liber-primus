@@ -1,16 +1,16 @@
 "use strict";
 
 /**
- * Test the fixed page-number phase hypothesis for the solved p56 cipher.
+ * Test two fixed page-indexed start schedules for the established p56 cipher.
  *
  * Node.js 22, CommonJS, no dependencies.
  * Run: node sims/lp2_page_number_p56_prime_totient_clock_gate.cjs
  *
- * Each physical page p in the unsolved p0-p55 set starts the established
- * p56 prime-totient key stream at zero-based prime ordinal p. This makes
- * known page p56 start at ordinal 56 mod 56 = 0, matching its known solution.
- * The test enforces transparent-F semantics and retains every valid skip
- * branch. No phase search or language scoring is used.
+ * A: startOrdinal = pageNumber mod 56. This makes known p56 start at 0.
+ * B: startOrdinal = p50TableBytes[pageNumber], with the table byte treated
+ *    as a zero-based prime ordinal.
+ *
+ * Both use the p56 transparent-F inverse and retain every valid skip branch.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -20,6 +20,7 @@ const root = path.resolve(__dirname, "..");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/lp2-transcription.txt");
+const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const segments = transcription.split(/^\s*%\s*$/m);
 assert.equal(segments.length, 57);
 
@@ -71,8 +72,12 @@ function primes(count) {
     limit *= 2;
   }
 }
-const primeList = primes(700);
+const primeList = primes(800);
 const totients = primeList.map(p => p - 1);
+const tableBytes = grid.byte_rows.flat();
+assert.equal(grid.byte_rows.length, 32);
+assert.ok(grid.byte_rows.every(row => row.length === 8));
+assert.equal(tableBytes.length, 256);
 
 function firstImpossible(page, startOrdinal) {
   const ciphertext = corpus.pages[page].indices;
@@ -82,7 +87,6 @@ function firstImpossible(page, startOrdinal) {
     const next = new Set();
     const cases = [];
     for (const used of states) {
-      // Literal plaintext F is copied unchanged and does not consume a key.
       if (c === 0) {
         next.add(used);
         cases.push({used, mode: "literal-F", nextUsed: used});
@@ -119,7 +123,7 @@ function firstImpossible(page, startOrdinal) {
 
 // Validate every original page/segment association. The transcription omits
 // the runeless p50 segment, so p51 begins at segment 50.
-const results = [];
+const pages = [];
 for (let page = 0; page < 56; page++) {
   if (page === 50) {
     assert.equal(corpus.pages[page].indices.length, 0);
@@ -127,44 +131,77 @@ for (let page = 0; page < 56; page++) {
   }
   const segmentIndex = page < 50 ? page : page - 1;
   assert.deepEqual(parseWords(segments[segmentIndex]).flat(), corpus.pages[page].indices);
-  results.push(firstImpossible(page, page % 56));
+  pages.push(page);
 }
-assert.equal(results.length, 55);
-const failures = results.filter(result => !result.valid);
-const passes = results.filter(result => result.valid).map(result => result.page);
-assert.equal(failures.length, 53);
-assert.deepEqual(passes, [1, 49]);
+assert.equal(pages.length, 55);
 
-const byPage = new Map(results.map(result => [result.page, result]));
-const p0 = byPage.get(0);
-assert.equal(p0.failAt, 235);
-assert.equal(p0.cipher, 8);
-assert.deepEqual(p0.statesBefore, [231]);
-assert.equal(p0.cases[0].keyIndex, 231);
-assert.equal(p0.cases[0].prime, 1459);
-assert.equal(p0.cases[0].keyTotient, 1458);
-assert.equal(p0.cases[0].keyMod29, 8);
-assert.equal(p0.cases[0].plaintext, 0);
+const pageNumberSchedule = pages.map(page => firstImpossible(page, page % 56));
+const tableIndexSchedule = pages.map(page => firstImpossible(page, tableBytes[page]));
 
-const p2 = byPage.get(2);
-assert.equal(p2.failAt, 4);
-assert.equal(p2.cipher, 16);
-assert.equal(p2.cases[0].keyIndex, 6);
-assert.equal(p2.cases[0].prime, 17);
-assert.equal(p2.cases[0].keyTotient, 16);
-assert.equal(p2.cases[0].keyMod29, 16);
-assert.equal(p2.cases[0].plaintext, 0);
+function summarize(results) {
+  const failures = results.filter(result => !result.valid);
+  const passes = results.filter(result => result.valid).map(result => result.page);
+  return {failures, passes};
+}
+const pageNumber = summarize(pageNumberSchedule);
+const tableIndex = summarize(tableIndexSchedule);
+assert.equal(pageNumber.failures.length, 53);
+assert.deepEqual(pageNumber.passes, [1, 49]);
+assert.equal(tableIndex.failures.length, 53);
+assert.deepEqual(tableIndex.passes, [12, 55]);
 
-const p3 = byPage.get(3);
-assert.equal(p3.failAt, 2);
-assert.equal(p3.cipher, 12);
-assert.equal(p3.cases[0].keyIndex, 5);
-assert.equal(p3.cases[0].prime, 13);
-assert.equal(p3.cases[0].keyTotient, 12);
-assert.equal(p3.cases[0].keyMod29, 12);
-assert.equal(p3.cases[0].plaintext, 0);
+const byPageNumber = new Map(pageNumberSchedule.map(result => [result.page, result]));
+const byTableIndex = new Map(tableIndexSchedule.map(result => [result.page, result]));
 
-// Positive control: the known p56 page is page 56, hence phase 56 mod 56 = 0.
+const p0Number = byPageNumber.get(0);
+assert.equal(p0Number.failAt, 235);
+assert.equal(p0Number.cipher, 8);
+assert.deepEqual(p0Number.statesBefore, [231]);
+assert.equal(p0Number.cases[0].keyIndex, 231);
+assert.equal(p0Number.cases[0].prime, 1459);
+assert.equal(p0Number.cases[0].keyTotient, 1458);
+assert.equal(p0Number.cases[0].keyMod29, 8);
+assert.equal(p0Number.cases[0].plaintext, 0);
+
+const p2Number = byPageNumber.get(2);
+assert.equal(p2Number.failAt, 4);
+assert.equal(p2Number.cipher, 16);
+assert.equal(p2Number.cases[0].keyIndex, 6);
+assert.equal(p2Number.cases[0].prime, 17);
+assert.equal(p2Number.cases[0].keyTotient, 16);
+assert.equal(p2Number.cases[0].keyMod29, 16);
+assert.equal(p2Number.cases[0].plaintext, 0);
+
+const p3Number = byPageNumber.get(3);
+assert.equal(p3Number.failAt, 2);
+assert.equal(p3Number.cipher, 12);
+assert.equal(p3Number.cases[0].keyIndex, 5);
+assert.equal(p3Number.cases[0].prime, 13);
+assert.equal(p3Number.cases[0].keyTotient, 12);
+assert.equal(p3Number.cases[0].keyMod29, 12);
+assert.equal(p3Number.cases[0].plaintext, 0);
+
+const p0Table = byTableIndex.get(0);
+assert.equal(p0Table.startOrdinal, 203);
+assert.equal(p0Table.failAt, 4);
+assert.equal(p0Table.cipher, 6);
+assert.equal(p0Table.cases[0].keyIndex, 207);
+assert.equal(p0Table.cases[0].prime, 1283);
+assert.equal(p0Table.cases[0].keyTotient, 1282);
+assert.equal(p0Table.cases[0].keyMod29, 6);
+assert.equal(p0Table.cases[0].plaintext, 0);
+
+const p39Table = byTableIndex.get(39);
+assert.equal(p39Table.startOrdinal, 5);
+assert.equal(p39Table.failAt, 24);
+assert.equal(p39Table.cipher, 25);
+assert.equal(p39Table.cases[0].keyIndex, 29);
+assert.equal(p39Table.cases[0].prime, 113);
+assert.equal(p39Table.cases[0].keyTotient, 112);
+assert.equal(p39Table.cases[0].keyMod29, 25);
+assert.equal(p39Table.cases[0].plaintext, 0);
+
+// Positive control: known p56 starts at 56 mod56 = 0.
 const p56Plaintext =
   "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT " +
   "IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE";
@@ -183,28 +220,35 @@ assert.deepEqual(p56Cipher, corpus.pages[56].indices);
 assert.equal(consumed, 84);
 
 console.log(JSON.stringify({
-  decision: "REJECTED: physical page number as p56 prime-totient start ordinal",
-  schedule: "startOrdinal = pageNumber mod 56; p56 therefore starts at ordinal 0",
-  testedNonemptyPages: results.length,
-  pagesWithNoTransparent-FContradiction: passes,
-  pagesWithNoValidTransparent-FPath: failures.length,
+  decision: "REJECTED: two fixed page-indexed p56 prime-totient start schedules",
   p56PositiveControl: {
     plaintextRunes: p56Plain.length,
     literalFPositions: literalF,
     keySymbolsConsumed: consumed,
     exactOriginalCiphertextReproduced: true
   },
-  representativeFailures: {
-    p0, p2, p3,
-    p7: byPage.get(7),
-    p10: byPage.get(10)
+  pageNumberSchedule: {
+    definition: "startOrdinal = pageNumber mod 56",
+    tested: pages.length,
+    failed: pageNumber.failures.length,
+    passPages: pageNumber.passes,
+    examples: {p0: p0Number, p2: p2Number, p3: p3Number},
+    failures: pageNumber.failures.map(({page, failAt, cipher, cipherRune, cases}) =>
+      ({page, failAt, cipher, cipherRune, cases}))
   },
-  allPageFailures: failures.map(({page, failAt, cipher, cipherRune, statesBefore, cases}) => ({
-    page, failAt, cipher, cipherRune, statesBefore, cases
-  })),
+  tableIndexSchedule: {
+    definition: "startOrdinal = p50TableBytes[pageNumber]",
+    first56Bytes: tableBytes.slice(0, 56),
+    tested: pages.length,
+    failed: tableIndex.failures.length,
+    passPages: tableIndex.passes,
+    examples: {p0: p0Table, p39: p39Table},
+    failures: tableIndex.failures.map(({page, failAt, cipher, cipherRune, cases}) =>
+      ({page, failAt, cipher, cipherRune, cases}))
+  },
   scope: [
-    "The per-page physical-page-number start schedule fails on 53 of 55 nonempty unknown pages.",
-    "A continuous stream beginning at p0 also fails within p0 at rune 235.",
-    "Pages 1 and 49 merely avoid this necessary-condition contradiction; no plaintext is thereby established."
+    "Both per-page schedules fail on 53 of 55 nonempty unknown pages.",
+    "A continuous physical-order p56 stream starting at p0 also fails within p0 under the page-number schedule.",
+    "Surviving pages merely avoid the necessary-condition contradiction; no plaintext is established."
   ]
 }, null, 2));
