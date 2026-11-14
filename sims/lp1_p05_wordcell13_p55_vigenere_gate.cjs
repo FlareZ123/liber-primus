@@ -112,16 +112,18 @@ function keyStream(key, length) {
   return Array.from({ length }, (_, i) => key[i % key.length]);
 }
 
-function forward(cipherPlain, key, sign, mask, carryLiteral) {
+function forward(cipherPlain, key, sign, mask, carryLiteral, literalPositions = []) {
   const target = carryLiteral ? cipherPlain.slice(1) : cipherPlain;
-  const positions = target.flatMap((symbol, i) => symbol === 0 ? [i] : []);
+  // Literal positions must come from the ciphertext being replayed, not from
+  // the recovered plaintext (decryption can create additional F symbols).
+  const positions = literalPositions;
   const stream = keyStream(key, target.length);
   const encrypted = [];
   let consumed = 0;
   for (let i = 0; i < target.length; i++) {
     const fBit = positions.indexOf(i);
     if (fBit >= 0 && ((mask >>> fBit) & 1)) {
-      assert.equal(target[i], 0, "literal-F plant position");
+      assert.equal(target[i], 0, "literal-F replay position");
       encrypted.push(0);
     } else {
       encrypted.push(mod(target[i] - sign * stream[consumed++]));
@@ -138,7 +140,7 @@ function decode(cipher, key, sign, mask, carryLiteral) {
   const inverseStream = sign < 0 ? stream : stream.map((value) => mod(-value));
   const result = decodeFMask(target, positions, mask, inverseStream);
   const plaintext = carryLiteral ? [cipher[0], ...result.plaintext] : result.plaintext;
-  const reencryption = forward(plaintext, key, sign, mask, carryLiteral);
+  const reencryption = forward(plaintext, key, sign, mask, carryLiteral, positions);
   assert.deepEqual(reencryption, cipher, "every candidate must replay original p55 exactly");
   return { plaintext, consumed: result.consumed };
 }
