@@ -146,9 +146,9 @@ def stream_specs(raw: bytes) -> list[tuple[str, bytes, str]]:
         ("raw/python-mt19937", raw, "mt19937"),
         ("sha256/sha256-counter", sha256, "sha256-counter"),
         ("sha256/hmac-sha256", sha256, "hmac256"),
-        ("sha256/aes-256-ctr", raw, "aes256-ctr"),
-        ("sha256/chacha20", raw, "chacha20"),
-        ("sha256/rc4", raw, "rc4"),
+        ("file-key/aes-256-ctr", raw, "aes256-ctr"),
+        ("file-key/chacha20", raw, "chacha20"),
+        ("file-key/rc4", raw, "rc4"),
         ("sha512/sha512-counter", sha512, "sha512-counter"),
         ("sha512/hmac-sha512", sha512, "hmac512"),
         ("sha512/shake256", sha512, "shake256"),
@@ -347,37 +347,55 @@ def main() -> None:
             "holdout_previews": previews,
         })
 
+    # Preserve both key cursor and previous ciphertext state across page boundaries.
+    # A single concatenated decode is the exact continuous-stream hypothesis.
+    all_cipher = np.concatenate([cipher for _, cipher in pages])
+    page_slices = {}
+    stream_offset = 0
+    for page_id, cipher in pages:
+        page_slices[page_id] = (stream_offset, stream_offset + len(cipher))
+        stream_offset += len(cipher)
+
     global_results = []
-    for candidate in top[:8]:
-        cursor = 0
+    for candidate in top[:4]:
+        transformed = ((28 - all_cipher) % 29) if candidate["atbash"] else all_cipher
+        plain = sweep.beam(
+            transformed, candidate["key"], 0, candidate["sign"], int(sweep.FULL_BEAM)
+        )
+        if plain is None:
+            global_results.append({
+                "name": candidate["name"], "sign": candidate["sign"],
+                "atbash": candidate["atbash"], "screen_score": candidate["screen_score"],
+                "full_stream_decoded": False,
+            })
+            continue
+        verified = verify_reencipher(
+            all_cipher, list(map(int, plain)), candidate["key"], 0,
+            candidate["sign"], candidate["atbash"], sweep.MAXSKIP
+        )
+        full_score, full_text = score_plain(sweep, skipdecode, plain)
         page_scores = {}
         page_previews = {}
-        total_skips = 0
-        decoded_pages = 0
-        for page_id, cipher in pages:
-            result = decode_one(
-                sweep, skipdecode, cipher, candidate["key"],
-                candidate["sign"], candidate["atbash"], cursor, int(sweep.FULL_BEAM)
-            )
-            if result is None:
-                break
-            cursor = result["end_ptr"]
-            total_skips += result["skip_count"]
-            decoded_pages += 1
-            if page_id in holdout_ids:
-                page_scores[str(page_id)] = result["score"]
-                page_previews[str(page_id)] = result["text"][:80]
+        for page_id in holdout_ids:
+            if page_id not in page_slices:
+                continue
+            start, end = page_slices[page_id]
+            page_score, page_text = score_plain(sweep, skipdecode, plain[start:end])
+            page_scores[str(page_id)] = page_score
+            page_previews[str(page_id)] = page_text[:80]
         global_results.append({
             "name": candidate["name"],
             "sign": candidate["sign"],
             "atbash": candidate["atbash"],
             "screen_score": candidate["screen_score"],
-            "decoded_pages_before_failure": decoded_pages,
-            "final_key_cursor": cursor,
-            "total_skips": total_skips,
+            "full_stream_decoded": True,
+            "full_stream_score": full_score,
+            "full_stream_reencipher_verified": verified is not None,
+            "end_key_cursor": int(verified[0]) if verified is not None else None,
+            "total_skips": int(sum(verified[1])) if verified is not None else None,
             "holdout_scores": page_scores,
-            "holdout_mean": (sum(page_scores.values()) / len(page_scores)) if page_scores else None,
             "holdout_previews": page_previews,
+            "full_text_preview": full_text[:240],
         })
 
     report = {
@@ -413,7 +431,7 @@ def main() -> None:
             "directions": ["forward", "reverse"],
             "key_signs": [-1, 1],
             "alphabet_reflections": [False, True],
-            "page_clocks": ["page-reset holdouts", "continuous sequential clock"],
+            "page_clocks": ["page-reset holdouts", "one concatenated continuous stream preserving collision state across page boundaries"],
             "offsets": "fixed at zero; no arbitrary offset or salt search",
             "candidate_count": len(candidates),
             "screened_count": len(screened),
