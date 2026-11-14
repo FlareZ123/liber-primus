@@ -1,0 +1,23 @@
+name: Agent8 2014 source-file attachment discovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-original-irc-file-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and synthetic controls
+        run: |
+          node --check sims/lp2_2014_irc_nonpaste_attachment_sft.cjs
+          node sims/lp2_2014_irc_nonpaste_attachment_sft.cjs --selftest
+      - name: Source-pinned 2014 original attachment inventory
+        run: node sims/lp2_2014_irc_nonpaste_attachment_sft.cjs --network
