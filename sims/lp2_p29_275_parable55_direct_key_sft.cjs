@@ -95,6 +95,78 @@ assert.deepEqual(multiply(Q, G), p29);
 const preview = values => values.map(v => corpus.translit[v]).join('');
 const decrypt = (cipher, sign) =>
   cipher.map((v, i) => mod(v + sign * key[i % key.length]));
+/**
+ * Test whether all five 55-rune quotient channels generate the 55 known
+ * p57 strict interiors under ANY fixed secret affine GF29 combination.
+ *
+ * Every coefficient including the additive constant is unconstrained.
+ * @param {number[]} quotient
+ * @param {number[]} target
+ * @returns {{rank:number,augmentedRank:number,contradictions:number,
+ *   coefficients:number[],matches:number,matchingIndices:number[]}}
+ */
+function testFiveShareLinearConsumer(quotient, target) {
+  const width = 6;
+  assert.equal(quotient.length, 5 * target.length);
+  const matrix = target.map((v, j) => [
+    1,
+    ...Array.from({length:5}, (_, r) => quotient[r * target.length + j]),
+    v
+  ]);
+  let rank = 0;
+  const pivots = [];
+  for (let col=0; col<width; col++) {
+    let pivot = rank;
+    while (pivot < matrix.length && matrix[pivot][col]===0) pivot++;
+    if (pivot===matrix.length) continue;
+    [matrix[rank],matrix[pivot]]=[matrix[pivot],matrix[rank]];
+    const factor=inv(matrix[rank][col]);
+    for (let j=col;j<=width;j++) {
+      matrix[rank][j]=mod(matrix[rank][j]*factor);
+    }
+    for (let row=0;row<matrix.length;row++) {
+      if (row===rank) continue;
+      const scalar=matrix[row][col];
+      for (let j=col;j<=width;j++) {
+        matrix[row][j]=mod(matrix[row][j]-scalar*matrix[rank][j]);
+      }
+    }
+    pivots.push(col);
+    rank++;
+  }
+  const contradictions=matrix.filter(row =>
+    row.slice(0,width).every(v=>v===0)&&row[width]!==0).length;
+  const coefficients=Array(width).fill(0);
+  for (let row=0;row<pivots.length;row++) {
+    coefficients[pivots[row]]=matrix[row][width];
+  }
+  const predicted=target.map((_,j)=>mod(
+    coefficients[0]+Array.from({length:5},(_,r)=>
+      coefficients[r+1]*quotient[r*target.length+j]
+    ).reduce((a,b)=>a+b,0)
+  ));
+  const matchingIndices=predicted.flatMap((v,i)=>v===target[i]?[i]:[]);
+  return {rank,augmentedRank:rank+Number(contradictions>0),
+    contradictions,coefficients,
+    matches:matchingIndices.length,matchingIndices};
+}
+
+const sourceAffine=testFiveShareLinearConsumer(Q,key);
+assert.equal(sourceAffine.rank,6);
+assert.equal(sourceAffine.augmentedRank,7);
+assert.equal(sourceAffine.contradictions,48);
+assert.equal(sourceAffine.matches,7);
+const plantCoefficients=[2,3,5,7,11,13];
+const plantedTarget=key.map((_,j)=>mod(
+  plantCoefficients[0]+Array.from({length:5},(_,r)=>
+    plantCoefficients[r+1]*Q[r*55+j]
+  ).reduce((a,b)=>a+b,0)
+));
+const affinePlant=testFiveShareLinearConsumer(Q,plantedTarget);
+assert.equal(affinePlant.matches,55);
+assert.equal(affinePlant.contradictions,0);
+assert.deepEqual(affinePlant.coefficients,plantCoefficients);
+
 const output = [-1, 1].map(sign => {
   const decoded = decrypt(Q, sign);
   const sourceNativePlant = Array.from(
@@ -125,6 +197,8 @@ console.log(JSON.stringify({
   remainder,
   p57: {words: 20, runes: 95, literalWordInteriors: key.length},
   keyPasses: 5,
+  anySecretFiveShareAffine: sourceAffine,
+  affinePositivePlant: {known:55,recovered:affinePlant.matches},
   rawQuotientIoC: ioc(Q),
   results: output,
   authenticUnknownPlaintextRecovered: false
