@@ -92,3 +92,11 @@ Use \`results/README.md\` for current authoritative state and the full recursive
 
 
 **Further original-source recovery (same conditional external route):** published stage3 source vertical node [8,21,5] and five original runes [24,22,9,17,7] decrypt to TURNS; stage4 source node [8,2,8], center φ2=1 with phase1, ciphertext [6,11,28,24] decrypts to COLD. The complete first **21 GP runes** reproduce **AS I GO THE WEATHER TURNS COLD**, with all original source rune values independently checked. New stage3/4 axis and node choices remain unauthenticated and increase selection freedom; source does not prove an author-chosen decoder or full plaintext. Details are consolidated in the 27x27 report linked above.
+
+
+## 2026-11-14 checkpoint — external page-59 claim audit
+
+- Do not duplicate the p55 RSA experiment: the page-local 563×569 / e=3301 four-rune range check is subsumed by Agent12's whole-book phase/orientation sweep. The 75-rune/25-triplet inverse is only a restricted-residue diagnostic, not a standard full-range RSA encoding.
+- Audited the external `Wulfic/Cicada3301-Liber_Primus` claim that page_59 is solved by reciprocal substitution as the same plaintext as P01. Its `MASTER_TRACKER.md` asserts this, but `pages/page_59/README.md` identifies the page as LP2 page 42, 272 runes, and explicitly **UNSOLVED**; the referenced `SOLUTION.md` is absent. The archived `page_59_runeglish.txt` is not plaintext.
+- The page_59 rune transcription exactly matches this repository's `resources/liber-primus/lp2-corpus.json` page 42. Its hyphen-delimited transcription has 55 words, whereas external page_01 has 36. A monoalphabetic substitution preserving the printed word boundaries cannot make page 42 the same plaintext as P01. Do not import the tracker claim or its substitution table as a solution.
+- Supporting external URLs: https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md ; https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_59/README.md ; https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/pages/page_59/runes.txt ; https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/data/archive/hillclimbers/20260529/runeglish/page_59_runeglish.txt
