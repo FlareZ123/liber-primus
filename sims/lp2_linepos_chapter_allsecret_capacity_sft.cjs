@@ -75,6 +75,51 @@ assert.deepEqual([observed.global.same, observed.global.possible,
 assert.deepEqual(observed.chapters.byGroup,
   [88, 114, 152, 158, 108, 130, 146, 226, 55]);
 
+
+// Source-visible red thirteen-dot punctuation can reset the positional
+// alphabet inside a printed line. Grant that stronger, human-motivated
+// reset rule exactly: each red-13 interior mark starts a new line-column
+// clock, in addition to every ordinary line/chapter start. No mark site
+// is fitted to language or inferred from ciphertext.
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const red13Chapters = Array.from({length: 9}, () => []);
+let insideRed13 = 0;
+let allRed13 = 0;
+for (let p = 0; p < pageTexts.length; p++) {
+  const physical = p < 50 ? p : p + 1;
+  const chapter = starts.findIndex((start, g) =>
+    g < 9 && physical >= start && physical < starts[g + 1]);
+  const sourcePage = ink.pages.find(page => page.page === physical);
+  assert.ok(sourcePage);
+  const marked = sourcePage.large_punctuation.filter(
+    entry => entry[1] === 13 && entry[2] === "red");
+  allRed13 += marked.length;
+  const lines = pageTexts[p].split("/").map(line =>
+    [...line].filter(glyph => rune.has(glyph)).map(glyph => rune.get(glyph)))
+    .filter(line => line.length);
+  let offset = 0;
+  for (const line of lines) {
+    const breaks = marked.filter(mark => mark[0] > offset &&
+      mark[0] < offset + line.length)
+      .map(mark => mark[0] - offset).sort((a, b) => a - b);
+    insideRed13 += breaks.length;
+    let start = 0;
+    for (const end of [...breaks, line.length]) {
+      if (end > start) red13Chapters[chapter].push(line.slice(start, end));
+      start = end;
+    }
+    offset += line.length;
+  }
+}
+assert.equal(allRed13, 30);
+assert.equal(insideRed13, 11);
+assert.equal(red13Chapters.flat().length, 605);
+assert.deepEqual(red13Chapters.flat().flat(), allLines.flat());
+const markedObserved = profile(red13Chapters);
+assert.deepEqual([
+  markedObserved.same, markedObserved.possible, markedObserved.capacity
+], [17647, 503465, 1177]);
+
 const tokens = gp.translit.map((value, i) => ({value, i}))
   .sort((a, b) => b.value.length - a.value.length);
 /**
@@ -410,7 +455,7 @@ const linePositionResetLowerBound = {
 console.log(JSON.stringify({
   classification: "source-native conditional all-key exclusion, no decrypt",
   original: {runes: total, lines: allLines.length, observed},
-  controls, alternateRegisters, shapeMatchedControls, positive, linePositionResetLowerBound,
+  controls, alternateRegisters, shapeMatchedControls, markedSourceReset: {allRed13, insideRed13, segmentCount: red13Chapters.flat().length, markedObserved}, positive, linePositionResetLowerBound,
   exclusions: "repeated unknown GP29 position-specific key per printed line, one global key or nine independently keyed source-visible chapters",
   exceptions: "independently keyed lines/pages, changing state, nonnative prose, altered original text and intermediary transport",
 }, null, 2));
