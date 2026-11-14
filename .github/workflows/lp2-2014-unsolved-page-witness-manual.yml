@@ -1,0 +1,21 @@
+name: LP2 2014 unknown-page original IRC witness scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unknown-page-plaintext-witnesses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source-pinned original IRC witness scanner
+        run: node --check sims/lp2_2014_unsolved_page_witness_scan_sft.cjs
+      - name: Extract page-identified 2014 original plaintext claims
+        run: node sims/lp2_2014_unsolved_page_witness_scan_sft.cjs
