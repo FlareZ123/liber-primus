@@ -32,9 +32,10 @@ for (const char of [...text]) {
   }
 }
 assert.deepEqual(parsed.slice(0, 12956), ciphertext);
-const eligibleStarts = starts.filter((k) => k + 3 < ciphertext.length);
+const eligibleStarts = starts.filter((k, i) =>
+  k < ciphertext.length && (starts[i + 1] ?? ciphertext.length) - k >= 4);
 assert.equal(starts.filter((k) => k < ciphertext.length).length, 2896);
-assert.equal(eligibleStarts.length, 2895);
+assert.equal(eligibleStarts.length, 1645);
 const digraph = ["TH", "NG", "EO", "OE", "AE", "IA", "EA"];
 const runeOf = new Map(gp.translit.map((s, i) => [s, i]));
 function encodeWord(w) {
@@ -72,7 +73,7 @@ function score(a) {
   return v;
 }
 const originalScores = score(ciphertext);
-assert.deepEqual(originalScores, [18, 9, 22, 26]);
+assert.deepEqual(originalScores, [10, 7, 13, 15]);
 const pageOffsets = [];
 let offset = 0;
 for (const p of gp.pages.filter((p) => p.page <= 55)) {
@@ -128,12 +129,12 @@ for (let trial = 0; trial < samples; trial++) {
     max[j] = Math.max(max[j], v[j]);
   }
 }
-assert.deepEqual(exceed, [9, 39, 14, 14]);
+assert.deepEqual(exceed, [34, 19, 25, 31]);
 const result = {
   input: "original 12956 runes; unchanged physical word-starts; 55 nonempty pages",
   controls: sourcePaths,
   runicWordStarts: 2896,
-  eligibleFourRuneStarts: 2895,
+  eligibleFourRuneStarts: 1645,
   vocabularyPrefixCounts: dictionaries.map((d) => d.size).concat(union.size),
   originalScores,
   conditionedEqualityLags: [1, 5],
