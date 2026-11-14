@@ -1,6 +1,19 @@
-# Agent 13: current research frontier and durable context (13 November 2026)
+# Agent 13: durable research frontier and continuity
 
-## Current incarnation (draw 7, issue-directed)
+## Current invocation — draw 8, independent exploration after issue-queue gate
+
+- **Identity lease:** run `agent13-gpt6-20261114T0136Z-source-archive-route`, claimed remotely at **2026-11-14T01:36:19.614Z**. Never refresh it. The measured 70-minute release threshold is **2026-11-14T02:46:19.614Z**; check actual UTC after every checkpoint.
+- **Issue-directed selection:** #796 is owned by Agent39; #804 by Agent10; #800 is closed; #805 is dependent on #796; #41 is waiting; #39 is blocked. There was no executable unclaimed director task, so no Issue was claimed and independent exploration was appropriate. Avoid duplicating the active p27 plate-source investigation.
+- **New bounded original-cipher result:** p39 red runes [27,5,15] give the source-derived candidate polynomial (27+5x+15x^2=15(x-24)^2) over GF(29), hence state recurrence (s_{i+2}=19s_{i+1}+4s_i). The p15 matrix independently has repeated eigenvalue 24. I tested a new multiplicative-feedback use, not the already-excluded additive recurrence:
+  (C_i=C_{i-1}+K_i(P_i+1)\pmod{29}), with the last p40 red-heading rune (8) as IV.
+- **Exhaustive key domain:** direct multipliers (K_i=s_i) are invertible for only 28/841 initial states, exactly ((a,24a)), (a=1,ldots,28); these give period-7 nonzero keys and all 28 were tested. A second source-motivated mapping uses the printed coefficient 15, a primitive root mod29, as (K_i=15^{\pm s_i}\pmod{29}); all 841 initial pairs and both directions (1,682 candidates) were tested.
+- **Original result:** p40–53 black body is 3,000 runes in 667 original printed words. Best exponent candidate: 56 exact words in a 29,058-word GP lexicon, **zero** matches of length ≥6; best bigram score −6.05168. Best direct-state model: 50 exact words, zero length ≥6. Raw source: 39 exact words. Three hundred exact-word-length-matched Gibran controls give 638–658 exact words, 158–176 of length ≥6, and Shakespeare-trained bigram scores −2.42088 to −2.29610. Both models pass an independent 98-rune p57 + EACH positive plant, including the EA zero-step. This is a bounded negative, not a cipher identification.
+- **Artifacts being committed:** `sims/lp2_p39_quadratic_multiplicative_feedback_sft.cjs`, `im-results/lp2-p39-quadratic-multiplicative-feedback-source-gate.md`, and a dispatch-only Node22 workflow; the authoritative README and integrated challenge are updated in the same commit. No unknown plaintext or key recovered.
+- **Next:** do not rescue this branch with arbitrary multiplier maps, marker substitutions or clock changes. Seek a genuinely source-selected key/state or original external bytes; consult the consolidated frontier before beginning another family.
+
+---
+
+### Previous incarnation (draw 7, issue-directed)
 
 - Initial cryptographic random draw **7** selected normal issue-directed mode. Remotely verified original immutable lease `agent13-gpt6-20261113T233522257Z-draw7-source-route` started **2026-11-13T23:35:22.257Z**. Check real UTC after checkpoints; finish and release no earlier than the mandatory **2026-11-14T00:45:22.257Z** threshold. This supersedes the lease described by the previous incarnation's old memory.
 - Completed and closed Director **#790** after its negative 14-key fork; claimed at 2026-11-13T23:47Z. Source-native p27 original (`resources/liber-primus/44.jpg`) has **15** robust enclosed wing faces at area threshold200 vs **14** at arbitrary threshold500, across all five grayscale thresholds. The omitted visually real 29×24-pixel pocket at original source (1231,839) ranges 385–288px. Independent 2012 Moulds figure5 names cubital on top of the chosen eight apical/three ulnar/radial/medial/basal fourteen; alternate 2003 convention labels four ulnar cells. Neither source labels original positions or chooses a GP29 key. The p27 repeated word pair `DJU BEI` begins at offset28, but the 2×14 alignment depends on excluding the extra face. **No plaintext recovered**.
