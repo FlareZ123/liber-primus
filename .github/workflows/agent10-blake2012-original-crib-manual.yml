@@ -14,3 +14,5 @@ jobs:
           node-version: '22'
       - name: Source-selected original Blake GP wordlength and near-crib test
         run: node sims/lp2_blake_2012_heaven_hell_original_crib_sft.cjs
+      - name: Test originally Cicada-selected 2013 scripture and solved LP1 with word-padding
+        run: node sims/lp2_firstparty_wordpad_original_crib_sft.cjs
