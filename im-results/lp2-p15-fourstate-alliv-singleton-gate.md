@@ -39,7 +39,7 @@ Thus even the best-fitting unknown initial state fails at least **seven of the 1
 
 ## Independent positive and reproducibility
 
-The [CommonJS single-file reproducer](../sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs) parses the exact 2,896 original LP2 words, asserts all 1,744 ciphertext runes and 17 singleton offsets, generates the original GF29 matrix powers, performs exact Gaussian elimination and exhausts each set of 81 compatible four-state keys. It reports all eight original results above.
+The [successful Windows Node22 execution](https://github.com/FlareZ123/liber-primus/actions/runs/43539292133) confirms syntax, every original assertion, the full key search and the positive plant. The [CommonJS single-file reproducer](../sims/lp2_p15_fourstate_unknown_iv_singletons_sft.cjs) parses the exact 2,896 original LP2 words, asserts all 1,744 ciphertext runes and 17 singleton offsets, generates the original GF29 matrix powers, performs exact Gaussian elimination and exhausts each set of 81 compatible four-state keys. It reports all eight original results above.
 
 A separate positive control constructs an entirely hidden state (9,2,15,20), uses the independently solved LP2 p57 GP plaintext as a 1,744-rune cyclic native-language register, and explicitly sets the 17 original one-rune positions to A/I/O. After forward encryption with the signed p15 matrix, the **same blind key-recovery function** recovers the unknown planted state. Its full inverse restores every one of the **1,744 plaintext runes**, and forward re-encryption reproduces the encrypted control exactly. This validates the key solve and the stateful four-rune arithmetic.
 
