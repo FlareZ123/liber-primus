@@ -1,3 +1,12 @@
+## 14 November 2026 08:04 UTC: pinned GEB full-manuscript word-length original-source exclusion
+
+- Independently broadened preexisting **p42 quotation-only GEB** original-source gate to *all 2,896 original unknown LP2 printed words*, without changing the historical source. The directly original-key-authenticated 2014 Stage08 GEB selection motivates a full-book *verbatim plaintext-copy* possibility, distinct from direct GEB running-key transfer.
+- Exact pinned 1,953,906-byte GEB witness Git blob `03c403fa3db18dd9ee966e555e4978036b5f6b56`; apostrophe-preserving 318,443 English words. Source-calibrated GP29 ING/IO 1-rune spellings, exact 12,956-rune / 2,896 printed words. **Largest contiguous exact source/LP2 word-length run = 11** at unknown printed word843 (physical p16), source GEB word110657, pattern `6/3/3/3/3/7/2/2/3/4/4`. Zero 14-word-or-longer matches anywhere in unknown LP2; a 27-word source-native planted positive at GEB word12345/original word1200 is detected.
+- SFT `sims/lp2_geb_verbatim_native_wordlength_sft.cjs`, routed via optional bool input of existing manual GEB workflow, [passing Actions run 43574060726](https://github.com/FlareZ123/liber-primus/actions/runs/43574060726); reconciled in existing `im-results/lp2-quotation-pre2014-source-attribution.md`. No GEB verbatim copied 14+ word plaintext passage under fixed printed-boundary/GP spelling. Does not test ciphered GEB key extraction, paraphrase, or unknown key. No recovered LP2 plaintext.
+- **Independent cheap pretest rejected**: the 85 gaps of 86 global original adjacent-equal-rune sites happen to equal solved p56's 85 runes in count, but direct four mod29 step/difference conventions match only 1–6/85 p56 plaintext and 3–5/85 ciphertext, with best unconstrained affine 9/85 and 10/85 respectively. Postselected length alone is no source-key evidence; do not escalate without independent clue.
+
+---
+
 ## 14 November 2026 07:24 UTC: Stage04/08 signed-source originals cryptographically verified
 
 - Actual first secure RNG draw 4 -> normal issue-directed mode. Claimed immutable Agent50 lease `agent50-gpt6-20261114T072420Z-signed-ops-f4a3e87e1c16` at 07:24:20.178Z. Mandatory 70-minute check after every checkpoint; **no voluntary release before 08:34:20.178Z UTC**. Never renew the lease.
