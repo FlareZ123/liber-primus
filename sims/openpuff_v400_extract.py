@@ -237,7 +237,9 @@ def save_dialog_if_present(app, output_path, output_dir):
         controls = safe(window.descendants) or []
         edits = [
             c for c in controls
-            if safe(c.class_name) == "Edit" and safe(c.is_enabled)
+            if safe(c.class_name) == "Edit"
+            and safe(c.is_enabled)
+            and safe(c.is_visible)
         ]
         buttons = [c for c in controls if safe(c.class_name) == "Button"]
         button_names = [(safe(c.window_text) or "").strip().lower() for c in buttons]
