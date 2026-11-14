@@ -1,6 +1,6 @@
 # 2014 IRC p56 continuation witness and page-prime-power original-cipher gate
 
-**Decision, 14 November 2026 (Agent9).** No authenticated unknown LP2 plaintext, original key or p56 continuation URL was recovered. Two independent source-bounded questions were answered: (1) whether one **period May–August 2014** IRC speaker left a contemporaneous `.onion` host near discussion of the p56 hash, and (2) whether a **15 June 2014 participant's executable page-number prime-power hypothesis**, which fits both solved p56 and clear p57, can directly invert untouched p55. The host findings are unverified attempts or unrelated links; the exact cipher proposal fails an authenticated 29-symbol encoder rule on **all eight** F-bypass assignments.
+**Decision, 14 November 2026 (Agent9).** No authenticated unknown LP2 plaintext, original key or p56 continuation URL was recovered. Two independent source-bounded questions were answered: (1) whether one **period May–August 2014** IRC speaker left a contemporaneous `.onion` host near discussion of the p56 hash, and (2) whether a **15 June 2014 participant's executable page-number prime-power hypothesis**, which fits both solved p56 and clear p57, can directly invert untouched p55. The host findings are unverified attempts or unrelated links; the **additional global F-transparency hypothesis** fails on all eight p55 F-bypass assignments. The original solved p56 establishes only **one** plaintext-F bypass, so this is a conditional model exclusion rather than an unconditional rejection of a page-power cipher.
 
 ## Immutable original evidence and method
 
@@ -29,14 +29,14 @@ The same 2014 original channel at **L200880 / L200887**, nick `nikkler`, describ
 ```
 K(page,i) = (prime[i] ** (57 - page) - 1) mod 29
 C = (P + K) mod 29   for non-F plaintext
-F -> F              without consuming a prime key position
+F -> F              without consuming a prime key position (ADDITIONAL HYPOTHESIS)
 ```
 
 The page number and exponent are **author-independent historical solver conjecture**. The exponent sign is fixed by the IRC author's explicitly stated p56/p57 values, not fitted to p55. The exact solved p56 key is `prime[i]-1`; for p57, `prime[i]^0-1 = 0` leaves every clear rune invariant.
 
-The new [source-original page-power SFT](../sims/lp2_2014_pagepower_p55_ftransparent_sft.cjs) verified the real source data before testing: **p56 decrypts all 85/85 original ciphertext runes** to authenticated `AN END...` plaintext under bypass mask8, and its strict source-native encoder reproduces the exact 85 ciphertext runes. Clear p57 gives **95/95** identical original runes in both directions. These are meaningful controls for the historically motivated extension, though p56 was already known.
+The new [source-original page-power SFT](../sims/lp2_2014_pagepower_p55_ftransparent_sft.cjs) verified the real source data before testing: **p56 decrypts all 85/85 original ciphertext runes** to authenticated `AN END...` plaintext under bypass mask8, and reencryption with that same observed one-position bypass reproduces all 85 ciphertext runes. This solved control does not establish a universal F-escape rule. Clear p57 gives **95/95** identical original runes in both directions. These are meaningful controls for the historically motivated extension, though p56 was already known.
 
-Original p55 has exactly **76 ciphertext runes**, with three ciphertext F glyphs at 0-based positions **15, 25, 41**. Because an F in ciphertext can also represent encrypted non-F plaintext, all **2³ = 8** possible literal-F bypass masks were tested. The original p56 cipher's authenticated property is **plaintext-F implies ciphertext-F**. Therefore any non-F ciphertext position forced to plaintext F is an exact impossibility, irrespective of English scoring.
+Original p55 has exactly **76 ciphertext runes**, with three ciphertext F glyphs at 0-based positions **15, 25, 41**. Because an F in ciphertext can also represent encrypted non-F plaintext, all **2³ = 8** possible literal-F bypass masks were tested. For the **frozen proposed all-transparent-F extension**, every plaintext F would have to emit ciphertext F. This extra global implication is **not established**: solved p56 contains exactly one plaintext F, at local index 56, and it is bypassed. On other pages a plaintext F might instead be encrypted. The following positions therefore disprove the *all-transparent-F extension*, independently of English scoring, but do not disprove every possible page-specific positional bypass schedule.
 
 | p55 literal-F mask | Positions of forbidden decrypted F in original p55 |
 | ---: | --- |
@@ -49,13 +49,13 @@ Original p55 has exactly **76 ciphertext runes**, with three ciphertext F glyphs
 | 6 | 56 |
 | 7 | 33, 46 |
 
-**All eight produce at least one impossible F.** Accordingly all eight fail strict forward reconstruction of original p55; the best 76-rune output has index of coincidence only **0.03543860**, independently demonstrating no coherent original-language passage. The second [Windows/Node22 manually dispatched run 43600830105](https://github.com/FlareZ123/liber-primus/actions/runs/43600830105) passed source controls, mask enumeration and rejection asserts.
+**All eight violate the tested universal transparent-F rule.** Each still has a positional-mask Vigenère inverse if plaintext F is permitted to undergo normal encryption at other locations. The best 76-rune output has index of coincidence **0.03543860**, offering no convincing plaintext under this simple extension. This is a bounded negative for the specific rule, without a cryptographic impossibility claim for unconstrained F handling. The second [Windows/Node22 manually dispatched run 43600830105](https://github.com/FlareZ123/liber-primus/actions/runs/43600830105) passed source controls, mask enumeration and rejection asserts.
 
 ## Independent July 28 layered-prime necessary-condition test
 
 The same original IRC archive also records a **28 July 2014** participant discussion at L228577–L228617. `Hydroperoxy` proposes additional encryption layers on successive earlier pages in response to solved p57's prose about shedding layers; `Nem0` suggests p55 `prime*2`, and `lvkm` explicitly suggests `page 57 = prime seq^0, 56 prime seq^1, 55 = prime seq^2`. These are historically contemporary solver proposals, not signed Cicada instructions, and they supply an independent reason to test a stacked p56-style outer layer without inventing its underlying cipher.
 
-A **necessary condition** for *any* model that applies the actual p56 transparent-F prime-totient Vigenère operation as its **outermost encryption layer**, with the original 0-based page-reset prime clock on p55, is that at least one choice of p55 ciphertext-F bypasses admits a strict forward inverse. The same source-code SFT separately tested all eight masks with exponent **1** (the real p56 key), independently of the exponent2 page-power test above. All eight inverse intermediate streams contain a forbidden plaintext/intermediate F at a position where original ciphertext is non-F:
+A necessary condition **only for a model assuming the additional all-transparent-F rule** and reusing the p56 prime-totient operation as a page-reset outer layer is that at least one bypass mask admits a strict forward inverse under that rule. The same source-code SFT separately tested all eight masks with exponent **1** (the real p56 key), independently of the exponent2 page-power test above. All eight intermediate streams contain F at positions where original ciphertext is non-F, contradicting *this hypothesized all-transparent-F convention*:
 
 | p55 outer phi(prime) literal-F mask | Forbidden intermediate-F positions |
 | ---: | --- |
@@ -68,10 +68,10 @@ A **necessary condition** for *any* model that applies the actual p56 transparen
 | 6 | 28, 53, 55, 74 |
 | 7 | 34, 61 |
 
-**No intermediate input alphabet stream exists for this exact outer operation**, no matter what inner cipher is hypothesized; adding more secret inner layers cannot repair the forbidden output of the outermost layer. Earlier [p55 moth/phi(prime) 25-seam test](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md) verified round-trip algebra by forcing the same hand-selected positional skip at both directions, but its mapped backward output does **not** satisfy the authentic plaintext-F implication everywhere. Thus the earlier reported algebraic `apply(apply(...))` identity must not be read as a strict p56-native cipher re-encoding of original p55. The current eight-mask result is a stronger, independent categorical exclusion under the explicitly frozen original p55 alignment.
+**No input stream is compatible with the proposed globally transparent-F outer layer**, irrespective of the hypothetical inner cipher. However, a position-specific skip rule could encrypt plaintext F on p55, which this test does not exclude. Earlier [p55 moth/phi(prime) 25-seam test](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md) verified round-trip algebra by forcing the same positional skip in both directions. Its forward reconstruction is mathematically correct under such a positional convention. The current eight-mask test adds a conditional constraint for the stricter convention and does not supersede that algebraic statement.
 
 ## Fork and scope
 
-The **exact** page-reset, GP29 additive, prime-power family selected by the original June 2014 page-number hypothesis is rejected for p55. This establishes that extending p56 by the simplest source-era exponent cannot directly solve the preceding encrypted page. A different clock, signed operation, register, variable-rate symbol transport, or source-selected independent key is outside this finite model, but requires new original evidence before spending additional search resources.
+The **simple page-reset additive prime-power model combined with global F transparency** is excluded for p55. Under ordinary positional skips it produces nonlinguistic outputs, without yet yielding a formal contradiction. The same qualification applies to a strict all-transparent-F p56 outer layer. We still need an independently selected p55 skip rule, clock, key, or register before asserting that an altered version of either idea can actually recover plaintext.
 
 The IRC source-host screen finds no **verified** target within its finite source-context windows; some links are unrelated or explicitly speculative. The known LP2 distributor must not be confused with the p56 hash preimage. There is no basis here to claim that one of the found hostnames is the actual continuation, or that any unseen 2014 participant had deciphered the manuscript.
