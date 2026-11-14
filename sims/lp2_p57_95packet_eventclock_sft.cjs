@@ -277,17 +277,13 @@ const arbitraryOriginalPlain = applySecretPacketPermutation(
   chapterCipher, "decrypt");
 assert.deepEqual(applySecretPacketPermutation(
   arbitraryOriginalPlain, "encrypt"), chapterCipher);
-assert.equal(collisionPairs(splitAtOutputDoublets(
-  arbitraryOriginalPlain)), sourcePacketPairs);
-// The original's packet boundaries (not the decoded stream's own
-// repeat boundaries) must be retained when comparing arbitrary plaintext.
+// The original ciphertext event boundaries must be retained, because
+// a new permutation can change equality across an event boundary.
 assert.equal(fixedSourcePacketScore(arbitraryOriginalPlain.flat()),
   sourcePacketPairs);
 const arbitraryKnownCipher = applySecretPacketPermutation([known], "encrypt");
 assert.deepEqual(applySecretPacketPermutation(
   arbitraryKnownCipher, "decrypt"), [known]);
-assert.equal(collisionPairs(splitAtOutputDoublets(arbitraryKnownCipher)),
-  collisionPairs(splitAtOutputDoublets([known])));
 
 const summary = {
   finding: "source 95-key coincidence, both frozen direct online consumers nonprose",
