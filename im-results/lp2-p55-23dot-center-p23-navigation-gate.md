@@ -33,6 +33,8 @@ The 23 source-exact GP-prime strides are:
 
 `[17,89,97,61,2,47,31,71,3,13,43,23,79,89,107,31,17,47,41,5,5,31,71]`
 
+**A smaller and more literally word-based version** follows the independently signed 2016 wording that **the book's words are the map and their numbers the direction**: after two peels there are exactly **seven surviving original printed-word fragments** of lengths **[2,2,9,2,3,3,2]**. Their whole-word GP-prime sums are **[106,158,312,196,95,51,102]**. Treat these seven whole fragments as seven forward strides from chapter rune offset0. The resulting original p23–26 offsets are exactly **[106,264,576,772,867,918,1020]**; again they land on the final **NG** without any fitted operation. Their sampled GP labels are **O G M P J B NG**, an exact and nonprose result. The seven-word procedure is arguably a simpler human operation and preserves the same chapter endpoint, but no printed instruction establishes which rune at each visited word/offset to read or how to decrypt it. This adds a constrained reading of the authored words/numbers clue, with a falsified direct-plaintext consumer, rather than proof of an unknown solution.
+
 Start at the original **p23 initial U** (chapter-local offset0), then move forward by every stride. The unique pointer positions are:
 
 `[17,106,203,264,266,313,344,415,418,431,474,497,576,665,772,803,820,867,908,913,918,949,1020]`
