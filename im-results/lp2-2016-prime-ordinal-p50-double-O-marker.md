@@ -164,18 +164,13 @@ dimensions' prime ranks and the source p32 row/column prime
 ranks. Their original table cells each return p32 modulo58,
 under the proposed page-map contract.
 
-An exhaustive **same-page 52-word check** now strengthens and bounds
-the selection: among all original ordered pairs of p27 complete printed words,
-only **seven** pairs have *consecutive GP-prime sums* that are both
-literal 1-based table addresses 1–256. Only the observed `AE.F` at34
-and `P.B` at66 additionally satisfy **both** conditions
-`table[lo] mod58 = table[hi] mod58` and
-`secondWordStart−firstWordStart = that shared page number`.
-The unique full match is `[103,104] → [32,32]`,
-`66−34=32`. The test requires no source-position optimization
-or unexplained key phase. The five other pairs are not silently omitted
-from the machine-readable output; the exhaustive list of seven is
-emitted by the extended single-file SFT.
+The original p27 **52-word** check found **seven** source-ordered word pairs whose two GP-prime sums are consecutive one-based addresses in the 256-cell table. A new **complete unsolved-book census** has now independently extended that exact predicate, without changing it or picking any new source target: parse every physical p0–55 rune-bearing page, retain all original word separators and 32 across-page carry fragments, and consider **every ordered pair of page-local printed words** (earlier word before later word, with no chosen gap). The original source provides **2,928 page-local word fragments** across 55 pages and **81,159 within-page word pairs**. Of these, **289** pairs have consecutive sums within grid cells 1–256. Require the same two exact conditions, with no fitted offset or key:
+
+`grid[lower_sum] mod58 = grid[higher_sum] mod58 = secondWordStart − firstWordStart`.
+
+**Only one of all 289 candidate pairs on all 55 unknown pages passes**: p27 `AE.F` at original rune34 (sum103) and `P.B` at rune66 (sum104), whose table cells are `0W=32` and `3Q=206`; both reduce to p32 mod58 and the physical rune-start separation is exactly32. The six other p27 consecutive-sum pairs and **282** corresponding pairs across the remaining unsolved pages all fail the full condition. This is a more demanding within-source uniqueness result than the earlier same-p27 check. The read-only [complete original-book SFT](../sims/lp2_allpages_primeconsecutive_gap58_sft.cjs) asserts the unchanged 12,956-rune source, each page's exact rune indices, all counts and the unique hit; [Windows Node22 run 43636094426](https://github.com/FlareZ123/liber-primus/actions/runs/43636094426) passes. No source word or grid cell was edited or rotated.
+
+**Interpretive limit:** these three conditions were assembled after the p55→p27 copied footer and the cell103/104 candidate were independently noticed. All-page uniqueness is therefore a discriminator within the **already chosen** page-pointer rule, not a discovery-adjusted probability of creator intent. The source does not instruct solvers to search all pairs or to use word-start gaps as page addresses. The match recovers no unknown plaintext, key or decoding method.
 
 This is a second, out-of-anchor word pointing to the *already fixed*
 next ordinal, with no tuned cipher or spelling. It nevertheless
