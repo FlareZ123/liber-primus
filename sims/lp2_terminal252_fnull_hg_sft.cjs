@@ -74,7 +74,7 @@ const p56PlainNoSkip = p56Plain.filter((_, index) => index !== 56);
 const spans = [
   {label: 'p55 ciphertext excluding all three F', data: p55NoF, start: 0, matches: 0, bestShift: 6, witness: [3, 9, 17, 10, 15], pairWitness: [8, 18, 20, 13, 19, 5]},
   {label: 'p56 ciphertext excluding authenticated F', data: p56NoSkip, start: 73, matches: 4, bestShift: 6, witness: [8, 9, 13, 3, 8], pairWitness: [34, 35, 5, 5, 5, 0]},
-  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7, witness: [8, 9, 13, 10, 9], pairWitness: [34, 35, 5, 5, 12, 0]},
+  {label: 'p56 authentic plaintext excluding F', data: p56PlainNoSkip, start: 73, matches: 1, bestShift: 7, witness: [8, 9, 13, 10, 9], pairWitness: [34, 35, 5, 5, 2, 24]},
   {label: 'p57 clear original', data: p57, start: 157, matches: 1, bestShift: 8, witness: [3, 9, 12, 24, 5], pairWitness: [5, 37, 10, 26, 20, 7]},
 ];
 for (const item of spans) {
