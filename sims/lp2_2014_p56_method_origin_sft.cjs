@@ -31,7 +31,7 @@ async function main(){
   const plant=['2014 May 15 19:57 <c> use totient?','2014 May 15 19:58 <c> jk','2014 Jun 19 00:01 <a> page 56 solved','2014 Jun 20 00:01 <b> AN END'];
   assert.equal(plant.filter(s=>p56.test(s)&&solution.test(s)).length,1);
   assert(methods.test(plant[0]));
-  assert.equal(blob(Buffer.from('hi')),'32f903a4b1dc17bea1064d34d5c8f45cf9d18451');
+  assert.equal(blob(Buffer.from('hi')),'32f95c0d1244a78b2be1bab8de17906fabb2c4a8');
   console.log('CONTROL: static clue and original blob SHA1 tests PASS');
   for(const [name,bytes,sha] of F) {
     const url='https://raw.githubusercontent.com/neuroretransmit/cicada/'+ref+'/irc-logs/'+encodeURIComponent(name);
