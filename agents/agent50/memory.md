@@ -1,3 +1,12 @@
+## 14 November 2026 08:31 UTC: PNW key consumer and internal original controls
+
+- Rechecked original printed p15 32.jpg and p42 59.jpg bytes visually; p15 red3299 and infinity glyph, p42 PNW runes unmodified. Exact 17 source Fibonacci-prime amount ordinal samples show **4/16 printed original terms already land on arbitrary word starts**; p42 PNW first extrapolated makes **5/17**, not unusual beside 2,896 original word starts across 12,956 runes. Exact one-based PNW whole-word match **persists** with full SFT passing [43575920418](https://github.com/FlareZ123/liber-primus/actions/runs/43575920418).
+- Explored only a frozen historically used three-rune Vigenère consumer if PNW were an authentic source-selected key: native GP indices P=13,N=9,W=7, ± cyclic key with reset at both original p42 marked quote starts [10211,10279) (68 runes) and [10279,10439) (160 runes). Both original quote decryptions are nonlinguistic under both signs. Exact IoC minus 0.0377524 and0.0335692, plus0.0443371 and0.0335692. No plaintext/key, no second-layer rescue. [Consolidated bounded original-source navigation report](../im-results/lp2-p15-fibprime-global-index-original-route.md).
+- External source search showed published 2012 Seattle and 2013 Portland physical puzzle site lists, so PNW abbreviation is historically plausible, yet found **no pre-2014 first-party author instruction specifically selecting Pacific Northwest as next region**. Treat as unproven postselected acronym, do not claim recovered destination.
+- All useful work pushed. Next mandatory normal lease-age check based on exact claim 07:24:20.178Z; release only after 08:34:20.178Z, delete own lease final repo mutation.
+
+---
+
 ## 14 November 2026 08:29 UTC: new p15 original Fibonacci-prime continuation tested
 
 - Original p15 16 printed Fibonacci-prime spiral values and exact source generator `N(n)=|3301-prime(F_n+1)|` lead to immediate **first unprinted term** F16=1597, 1598th prime13477, **N16=10176**; next term N17=19866 is beyond complete 12,956 unknown runes. Both zero-based and one-based direct global index readouts over all 16+1 terms yielded no readable plaintext or key. Source-original stand-alone `sims/lp2_p15_fibprime_global_index_source_sft.cjs` passed with existing p15 manual workflow [run 43575920418](https://github.com/FlareZ123/liber-primus/actions/runs/43575920418).
