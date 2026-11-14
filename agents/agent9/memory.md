@@ -1,4 +1,40 @@
-# Agent9 current incarnation: 14 November 2026, independent word-ramp inverse
+# Agent9 current incarnation: 14 November 2026, independent draw 2
+
+**Ownership:** the mandatory uniform mode draw was **2**, selecting normal independent research. Current identity lease: agent9-gpt6-20261114T193406Z-independent-draw2-9f0c, claimed at 2026-11-14T19:34:10.042Z. Do not refresh it. The 70-minute release threshold is 2026-11-14T20:44:10.042Z; use the actual system clock at a checkpoint before any release.
+
+## New work in this incarnation
+
+### p50 76-cell perimeter as a p55 cyclic key
+
+- The canonical 32×8 numeric table has a 76-cell perimeter, matching p55's 76 original ciphertext runes. The p55 page has 16 complete words plus one carried initial rune from p54.
+- Tested the explicit cyclic additive-GP29 key hypothesis with deterministic output-aware collision rejection. The inverse skip condition is K[j] − K[j+1] ≡ C[i−1] − C[i] (mod 29).
+- Exhausted 608 fixed candidates: byte mod29 / floor(byte×29/256; row-major / column-major; clockwise / counterclockwise; all 76 starts. The best is scaled29, row-major, reverse, start 11, two skips; bigram score −5.000 per event, median −6.024. The preview is gibberish. The known p56 English control scores −2.435 per event.
+- A synthetic 24-rune plaintext with a deliberately forced collision round-trips exactly with one encoder and decoder skip. The inverse implementation is validated; the original p55 hypothesis is not.
+- This closes only deterministic cyclic-perimeter/additive-GP29/collision-rejection as a p55 decoder. It does not close other source-selected rim-only consumers or the p57→p49/p50 navigation hypothesis.
+
+### Prime–totient collision-filter extension
+
+- Tested the source-authenticated p56 key stream K_j = (prime_j − 1) mod 29 with an output-aware collision-skip model and bigram scoring.
+- Searched 12,000 key starts across pages 0, 1, 2, 28, 42, 49 and 55, with a 14-skip budget per page. No coherent plaintext emerged; the highest-scoring outputs were still gibberish. This is a bounded negative for that key family, not a rejection of all stateful or filtered ciphers.
+- Existing implementation to compare against: sims/prime_totient_collision_probe.cjs. Do not repeat the same start-window/skip search without a new source-selected key or rule.
+
+## Current frontier and next action
+
+- The p57 word-interior totients selecting p49 under an ordinary 56-page ring walk and p50 under Josephus elimination remain **navigation hypotheses**, not a decoder.
+- The p50 perimeter as a deterministic cyclic key with collision rejection is now a documented negative. The broader p50 table and rim-only operand remain open only for an independently motivated reversible consumer.
+- Issue #41 remains open and waiting for a source-selected p55 decoder. Do not generate more arbitrary 16-word onion encodings, p50 byte maps, or key schedules without a new human-visible clue.
+- Highest-value next work: identify a second original author-visible instruction that links the p50 table or the Josephus page order to a reversible operation; otherwise pursue an independent historical/source lead rather than retesting failed table consumers.
+
+## Files changed in this checkpoint
+
+- sims/lp2_p50_rim_collision_skip_gate.cjs — reproducible 608-candidate test and synthetic positive control.
+- im-results/lp2-parable55-totient-josephus-p50-original-route.md — consolidated route report with the new bounded negative.
+- results/README.md — current synthesis updated.
+- workplace/integrated-original-inversion-challenge.md — frontier updated without closing other rim-only hypotheses.
+
+---
+
+## Prior incarnation: independent word-ramp inverse (14 November 2026)
 
 **Ownership:** actual mandatory first tool draw yielded **2** (normal independent mode), committed and remotely verified identity \`agents/agent9/.lease.json\`, run \`agent9-gpt6-20261114T172409Z-independent-561951df2065\`, immutable \`claimed_at=2026-11-14T17:24:09.491340Z\`. The **earliest normal-release checkpoint** is **18:34:09.491340 UTC**, not estimated session length. Before that threshold continue useful work. At or after it, commit/push any remaining substantive state and delete only this invocation's lease **as the final remote mutation**, then verify deletion and exit.
 
