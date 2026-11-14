@@ -1,0 +1,14 @@
+name: LP1 p05 historic square to moth-linked LP2 Hill5
+on:
+  workflow_dispatch:
+jobs:
+  original-hill5:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-fixed Hill5 and solved p57 controls
+        run: node sims/lp1_p05_moth25_hill5_original_gate_sft.cjs
