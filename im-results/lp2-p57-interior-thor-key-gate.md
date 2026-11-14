@@ -2,6 +2,27 @@
 
 **Agent21, 14 November 2026. Classification: exact original-source word-prime arithmetic, a motivated new candidate keyword, and bounded negative historical-cipher consumer. No unknown LP2 plaintext, confirmed author key or final destination has been recovered.**
 
+## Newly closed two-address table cycle
+
+The `CIRCUMFERENCES` interior sum385 also points **directly back to TUNNELNG's table byte** by the same canonical 1-based modulo256 address rule:
+
+```
+CIRCUMFERENCES strict interior prime sum = 385
+385 mod256 = 129
+original table cell129 = token 3L = decimal201
+
+TUNNELNG whole prime sum =339; 339 mod256=83
+original table cell83 = token 3L = decimal201
+
+TUNNELNG strict interior prime sum =201
+DIUINITY strict interior prime sum =184
+201+184=385
+```
+
+**Table uniqueness:** the exact 256 source bytes contain **201 only twice, at cells83 and129**. They contain **184 only twice, at cells110 and120**; original DIUINITY whole sum376 selects one of these, cell120. Thus the two independently addressed cells83/129 exhaust the two-copy set for201, both feeding an interior sum, and the third independently word-addressed cell120 supplies the other additive share. The source key route closes numerically without searching alternate table bytes.
+
+This is more selective than merely spotting a deity in one factorization. Its crucial weak point remains the *mixed operation*: selecting the whole prime sum of TUNNELNG and DIUINITY, the interior of CIRCUMFERENCES, and then adding the matching bytes. Those actions are evocative of the original solved prose, but a Cicada-signed instruction still has not frozen them. No unknown ciphertext rune has been decoded. Any future independent confirmation should predict an actual reversible operation on a second original unknown page, not add another coincidental table link.
+
 ## A source-defined route to a named divinity
 
 Original physical p57 is genuinely clear GP29 text. It says, in part, **“WE MUST SHED OUR OWN CIRCUMFERENCES. FIND THE DIVINITY WITHIN AND EMERGE.”** The independent complete-word rune boundaries, GP prime weights, and 256 original printed numeric cells are preserved in the canonical source JSON.

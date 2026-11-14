@@ -31,6 +31,11 @@ assert.deepEqual(matches,[4,16]);
 assert.deepEqual([full[4]%256,full[16]%256,grid.bytes[82],grid.bytes[119]],
   [83,120,201,184]);
 assert.equal(inside[4]+inside[16],inside[13]);
+// Both and only the two source-table copies of byte201 are reached by
+// TUNNELNG whole339 -> address83 and CIRCUMFERENCES interior385 -> address129.
+assert.equal(grid.bytes[(inside[13]%256||256)-1],inside[4]);
+assert.deepEqual(grid.bytes.flatMap((v,i)=>v===inside[4]?[i+1]:[]),[83,129]);
+assert.deepEqual(grid.bytes.flatMap((v,i)=>v===inside[16]?[i+1]:[]),[110,120]);
 assert.equal(inside[0],full[4]);
 /** @param {number} n */
 function factors(n){const f=[];for(let p=2;p*p<=n;p++)while(n%p===0){f.push(p);n/=p;}if(n>1)f.push(n);return f;}
