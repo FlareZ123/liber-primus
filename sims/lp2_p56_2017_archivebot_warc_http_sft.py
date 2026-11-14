@@ -52,7 +52,7 @@ class LinkParser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attrs_map = dict(attrs)
-        attr = "href" if tag in {"a", "link"} else "src" if tag in {"script", "img"} else None
+        attr = "href" if tag in {"a", "link"} else "src" if tag in {"script", "img", "source", "audio", "video", "iframe"} else None
         if attr and attrs_map.get(attr):
             self.links.append(urljoin(self.base_url, str(attrs_map[attr])))
 
@@ -188,6 +188,11 @@ def probe_exact_wayback() -> None:
                  replay_bytes=len(body), sha256=sha256(body).hexdigest(),
                  sha512=sha512(body).hexdigest(), p56_sha512_match=sha512(body).hexdigest() == TARGET,
                  links=parser.links[:40],
+                 signed_pgp_start_count=text.count("-----BEGIN PGP"),
+                 onion_literal_count=len(re.findall(r"[a-z2-7]{16,56}\\.onion", text, re.I)),
+                 contains_uRkNsGsa="uRkNsGsa" in text,
+                 contains_3301="3301" in text,
+                 contains_deepweb_hash=TARGET in text,
                  contains_pgp="BEGIN PGP" in text,
                  contains_cicada=bool(re.search("cicada", text, re.I)),
                  text_excerpt=" ".join(text[:800].split()),
