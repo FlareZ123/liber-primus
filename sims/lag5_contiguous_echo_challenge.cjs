@@ -6,7 +6,7 @@
  * length and within-word adjacent-doublet count.
  *
  * Historical selection caveat: lag five and rune S were previously noticed.
- * This test only corrects its own predeclared lags 2..7.
+ * The single-hit family covers lags 2..12; the pair family covers 2..7.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -18,24 +18,46 @@ const {
 const ALPHABET = [...'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ'];
 const RUNE_INDEX = new Map(ALPHABET.map((rune, index) => [rune, index]));
 
-/** Parse source-selected LP1 pages with exact page-level word/rune contracts. */
+/**
+ * Decode GP29 LP1 words without treating printed line/page layout as a word
+ * separator. The canonical '%' page marks can occur inside a semantic word.
+ * @param {string} text
+ * @returns {number[][]}
+ */
+function decodeLp1Words(text) {
+  return text.replace(/[\r\n\t\/% ]/g, '').split(/[-.&$§0-9]+/).filter(Boolean).map(word =>
+    [...word].map(rune => {
+      const value = RUNE_INDEX.get(rune);
+      if (value === undefined) throw new Error('Unknown rune in LP1 source');
+      return value;
+    }));
+}
+
+/**
+ * @param {string} source
+ * @param {number[]} selected Original LP1 physical-page indices, ascending.
+ * @param {number[]} expectedWords Per-page fragmented word counts.
+ * @param {number[]} expectedRunes Per-page rune counts.
+ */
 function parseLp1Pages(source, selected, expectedWords, expectedRunes) {
   const pageRecords = source.split('%');
   const pages = selected.map((pageIndex, j) => {
-    const normalized = pageRecords[pageIndex].replace(/[\r\n\t\/ ]/g, '');
-    const words = normalized.split(/[-.&$§0-9]+/).filter(Boolean).map(word =>
-      [...word].map(rune => {
-        const value = RUNE_INDEX.get(rune);
-        if (value === undefined) throw new Error('Unknown rune in LP1 page ' + pageIndex);
-        return value;
-      }));
+    const words = decodeLp1Words(pageRecords[pageIndex]);
     const runes = words.reduce((sum, word) => sum + word.length, 0);
     if (words.length !== expectedWords[j] || runes !== expectedRunes[j]) {
       throw new Error('LP1 page contract changed at p' + pageIndex);
     }
     return { page: pageIndex, words, runes };
   });
-  return { pages, words: pages.flatMap(page => page.words) };
+  const contiguousGroups = [];
+  for (const pageIndex of selected) {
+    const lastGroup = contiguousGroups.at(-1);
+    if (lastGroup && pageIndex === lastGroup.at(-1) + 1) lastGroup.push(pageIndex);
+    else contiguousGroups.push([pageIndex]);
+  }
+  const words = contiguousGroups.flatMap(group =>
+    decodeLp1Words(group.map(index => pageRecords[index]).join('%')));
+  return { pages, words };
 }
 function parseClearLp1(source) {
   return parseLp1Pages(source, [3, 8, 9, 10, 11, 14],
@@ -161,8 +183,9 @@ function run(source, train = 2000, test = 5000, seed = 0x6aab5501) {
   const encryptedWords = encryptedControl.words;
   const clearObserved = tally(clearWords);
   const encryptedObserved = tally(encryptedWords);
-  if (clearObserved.singles[3] !== 7 || clearObserved.exposures[3] !== 156 ||
-      encryptedObserved.singles[3] !== 11 || encryptedObserved.exposures[3] !== 201) {
+  if (clearWords.length !== 230 || encryptedWords.length !== 419 ||
+      clearObserved.singles[3] !== 8 || clearObserved.exposures[3] !== 158 ||
+      encryptedObserved.singles[3] !== 11 || encryptedObserved.exposures[3] !== 203) {
     throw new Error('LP1 control invariants changed');
   }
   const clearAdjacent = clearWords.map(adjacentEqualCount);
