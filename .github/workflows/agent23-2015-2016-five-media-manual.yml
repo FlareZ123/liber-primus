@@ -15,6 +15,7 @@ jobs:
       - name: Acquire five original period-linked images
         env:
           LP2_MEDIA_OUT: ${{ runner.temp }}/lp2_frozen_five_images
+          LP2_EMIT_BASE64: '1'
         run: |
           node --check sims/lp2_2015_2016_frozen_five_media_sft.cjs
           node sims/lp2_2015_2016_frozen_five_media_sft.cjs
