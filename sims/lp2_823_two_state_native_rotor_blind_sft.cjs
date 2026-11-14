@@ -41,9 +41,9 @@ const letterIndex = {
   N:9,O:3,P:13,Q:5,R:4,S:15,T:16,U:1,V:1,W:7,X:14,Y:26,Z:15
 };
 const digraph = {TH:2,NG:21,EO:12,OE:22,AE:25,IA:27,EA:28};
-/** @param {string} text */
-function encodeEnglish(text) {
-  const chars=text.toUpperCase().replace(/[^A-Z]/g,'');
+/** @param {string} word */
+function encodeEnglishWord(word) {
+  const chars=word.toUpperCase();
   const out=[];
   for(let i=0;i<chars.length;i++){
     const pair=digraph[chars.slice(i,i+2)];
@@ -52,8 +52,20 @@ function encodeEnglish(text) {
   }
   return out;
 }
-const english = encodeEnglish(read('resources/control/shakespeare_first300k.txt'));
-assert.equal(english.length,216874);
+// Preserve every native English word boundary before GP digraph conversion.
+// This prevents illicit TH, EA or IA glyphs from straddling two source words.
+const sourceWords=read('resources/control/shakespeare_first300k.txt')
+  .toUpperCase().match(/[A-Z]+/g);
+assert.ok(sourceWords.length>30000);
+const sourceWordSpans=[];
+const english=[];
+for(const word of sourceWords) {
+  const runes=encodeEnglishWord(word);
+  const start=english.length;
+  english.push(...runes);
+  sourceWordSpans.push({start,end:english.length});
+}
+assert.ok(english.length>205000);
 const model=buildTrigram(english.slice(0,140000));
 const units = Array.from({length:28},(_,i)=>i).filter(a=>a%2!==0&&a%7!==0);
 assert.equal(units.length,12);
@@ -150,6 +162,9 @@ for(const key of [{a:5,b:17,s:1},{a:11,b:3,s:0},{a:9,b:25,s:1}]){
 }
 const plantStarts=[146000,169000,191000];
 const plantKeys=[{a:5,b:17,s:1},{a:11,b:3,s:0},{a:9,b:25,s:1}];
+const nativeCompleteWordCounts=plantStarts.map(start=>
+  sourceWordSpans.filter(w=>w.start>=start&&w.end<=start+12956).length);
+assert.ok(nativeCompleteWordCounts.every(n=>n>=100));
 const plantCases=[];
 for(let k=0;k<plantStarts.length;k++){
   const native=english.slice(plantStarts[k],plantStarts[k]+12956);
@@ -163,7 +178,7 @@ for(let k=0;k<plantStarts.length;k++){
   const wrong=decodePages(cipher,chosen,true);
   const wrongMatch=wrong.reduce((count,x,i)=>count+(x===native[i]),0);
   const controlScore=score(unrolled.slice(9640,9640+3008),model);
-  plantCases.push({sourceStart:plantStarts[k],hidden:plantKeys[k],selected:chosen,
+  plantCases.push({sourceStart:plantStarts[k],fullRecoveredWords:nativeCompleteWordCounts[k],hidden:plantKeys[k],selected:chosen,
     score:pick[0].rating,runnerUp:pick[1].rating,correct:match,
     full:12956,wrongStateCorrect:wrongMatch,controlHeldoutScore:controlScore,
     sentinelEACount:native.slice(1).filter(x=>x===28).length,
