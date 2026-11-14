@@ -344,3 +344,74 @@ for(const geometry of ["blocks","triples"]) {
 }
 console.table(primeSumResults);
 console.log("PASS: SOURCE GP prime-sum -> Euler totient original p55,p0,p56 gates.");
+
+
+/**
+ * Finite source-directed stateful Möbius candidate: for each GP29 key position,
+ * use three consecutive Q252 digits as the three unfixed entries of a 2x2
+ * projective matrix (the fourth matrix entry is unity), acting on previous
+ * independently authenticated p56 key symbol. The layout, insertion slot,
+ * stream directions and forward/inverse maps are frozen finite alternatives.
+ * Invertibility requires nonzero determinant and every denominator nonzero.
+ * Reproducing all 83 successive historical key transitions would be required.
+ *
+ * @param {number[]} triple
+ * @param {number} fixedSlot
+ * @param {number} x
+ * @param {boolean} inverseDirection
+ * @returns {number|null}
+ */
+function projectiveStep(triple,fixedSlot,x,inverseDirection) {
+  const coeff=triple.slice();
+  coeff.splice(fixedSlot,0,1);
+  const [a,b,c,d]=coeff;
+  if(mod(a*d-b*c)===0)return null;
+  const numerator=inverseDirection?mod(d*x-b):mod(a*x+b);
+  const denominator=inverseDirection?mod(-c*x+a):mod(c*x+d);
+  if(denominator===0)return null;
+  return mod(numerator*inverse(denominator));
+}
+const projectiveResults=[];
+for(const geometry of ["blocks","triples"])
+  for(let fixedSlot=0;fixedSlot<4;fixedSlot++)
+    for(const sourceOrder of ["forward","reverse"])
+      for(const keyOrder of ["forward","reverse"])
+        for(const mapDirection of ["forward","inverse"]) {
+          let valid=0,correct=0,invalid=0;
+          for(let i=0;i<83;i++) {
+            const sourceIndex=sourceOrder==="forward"?i:83-i;
+            const triple=dataTriple(geometry,sourceIndex);
+            const keyIndex=keyOrder==="forward"?i:83-i;
+            const old=historicalKey[keyIndex];
+            const next=historicalKey[keyOrder==="forward"?i+1:82-i];
+            const result=projectiveStep(triple,fixedSlot,old,mapDirection==="inverse");
+            if(result===null){invalid++;continue;}
+            valid++;
+            if(result===next)correct++;
+          }
+          projectiveResults.push({geometry,fixedSlot,sourceOrder,keyOrder,mapDirection,
+            valid,correct,invalid});
+        }
+assert.equal(projectiveResults.length,64);
+assert.equal(projectiveResults.filter(x=>x.valid===83).length,0);
+assert.equal(Math.max(...projectiveResults.map(x=>x.correct)),6);
+assert.equal(projectiveResults.reduce((sum,x)=>sum+x.correct,0),168);
+const bestProjective=projectiveResults.filter(x=>x.correct===6);
+assert.equal(bestProjective.length,2);
+console.table(bestProjective);
+console.log("All 64 source-fixed 3x84 Möbius generator conventions fail historical p56.");
+
+// Plant a genuine 84-symbol state tape through 83 invertible three-source-input
+// matrices, each with d=1 and a=1,b=(next-current),c=0 in GF29. This also
+// checks the source triple encoder and every transition without fitting output.
+const sourcePlant=[];
+for(let i=0;i<84;i++)sourcePlant.push([1,
+  i===83?0:mod(historicalKey[i+1]-historicalKey[i]),0]);
+const keyPlant=[historicalKey[0]];
+for(let i=0;i<83;i++) {
+  const out=projectiveStep(sourcePlant[i],3,keyPlant[i],false);
+  assert.notEqual(out,null);
+  keyPlant.push(out);
+}
+assert.deepEqual(keyPlant,historicalKey);
+console.log("PASS: 83/83 positive projective transitions with a valid original-shape source.");
