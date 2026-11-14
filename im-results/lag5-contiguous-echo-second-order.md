@@ -44,6 +44,18 @@ The absolute maximum is lag five, **|z| = 3.49695**. **67/5,000** independent nu
 
 Independent corroboration: the public [ZzNible findings release](https://github.com/ZzNible/cicada3301-liber-primus-findings/blob/main/FINDINGS.md) reports the same 104/2,105 observation with z = 3.75190 and max-|z| p = 0.00860399 under a different null preserving global rune multiplicities, word lengths and total adjacent-equality count. Its public release is a sanitized summary without executable source; the result above is our own reproduction under the **stricter per-word** multiset and adjacent-count conditioning, not a reuse of its p-value.
 
+### Implication for chain-step models
+
+A public independent analysis proposes a chain-step representation in which each ciphertext rune is the previous rune plus a step from a flat, aperiodic 28-symbol stream ([Leo-Y-Zhang report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md)). The lag-five result constrains that family: the original within-word difference stream contains **10,060 steps**; its zero bin has 63 occurrences and the 28 nonzero bins range from 313 to 397. If five successive within-word steps were independent draws from this exact empirical 29-bin distribution, cyclic convolution gives
+
+\[
+\Pr(S_5=0\bmod29)=0.03448273614900442,
+\]
+
+or **72.586** expected returns among 2,105 five-step windows. The uniform-i.i.d.-nonzero-step chain gives essentially the same baseline, \(21195/614656=0.03448270252\). The observed 104 returns therefore cannot be explained by a flat marginal step histogram alone: a chain-step explanation needs dependence in five-step sums (or a different mechanism). This does **not** reject an aperiodic but dependent key stream, and it does not imply a period-five cipher.
+
+The simpler stationary cumulative-substitution family is separately excluded by [the original zero-symbol / all-secret gate](lp2-cumulative-difference-zero-symbol-gate.md); the eight printed AES-column keys tested as a 28-state chain are negative in [the source-grid chain gate](grid-chain28-step-key.md). The remaining chain route therefore needs an independently selected, position-varying step generator. The p05 5×5 square is a possible clue to a five-step dependency, but no source instruction yet connects it to this stream; do not use it to justify arbitrary fitted recurrences.
+
 This is a whole-alphabet lag-five signal, including the 11 S-to-S matches; the nine contiguous pair events below measure a separate second-order clustering. It does not establish a period-five cipher, a key, or plaintext. The lag family was chosen from prior research, so neither this nor the external p-value is a discovery-wide correction over all historical searches.
 
 ### Contiguous pair events, lags 2–7
@@ -85,7 +97,7 @@ The first-order M3 five-lag hit mean is close to the original **104**, but its p
 
 - Input: [original LP2 normalized transcription](../resources/lp2-transcription.txt), with the canonical whole-word parser from [the prior lag-six study](../sims/lag6_conditioned_echo.cjs).
 - Complementary to Agent 6's [previously committed digraph and exact conditional-hit-position challenge](../sims/lag5_burst_copy_probe.cjs); this report does not claim the pair or M3 finding as first discovery. The updated [word-multiset-conditioned challenge](../sims/lag5_contiguous_echo_challenge.cjs) calibrates single-hit equality counts at lags 2–12 and contiguous pair events at lags 2–7, with a seven-hit synthetic positive control; the second seed is reproducible through the optional fourth CLI argument. The separate [M1/M3 second-order forward test](../sims/lag5_block_echo_forward_challenge.cjs) remains unchanged.
-- [Manual-only workflow](../.github/workflows/lag5-contiguous-echo-manual.yml); successful 2,000/5,000 and 8,000+8,000 original-input [GitHub Actions run 42769197879](https://github.com/FlareZ123/liber-primus/actions/runs/42769197879). Agent 6's earlier manual [lag-five burst-copy workflow](../.github/workflows/lag5-burst-copy.yml) also passed [run 42769980860](https://github.com/FlareZ123/liber-primus/actions/runs/42769980860).
+- [Manual-only workflow](../.github/workflows/lag5-contiguous-echo-manual.yml); updated 2,000/5,000 original-input single-hit and pair-family challenge, including the seven-hit positive control, passed [GitHub Actions run 43584152154](https://github.com/FlareZ123/liber-primus/actions/runs/43584152154). Agent 6's earlier manual [lag-five burst-copy workflow](../.github/workflows/lag5-burst-copy.yml) also passed [run 42769980860](https://github.com/FlareZ123/liber-primus/actions/runs/42769980860).
 - Historical priors: [lag-five S-specific echo](lag5-rune-specific-echo.md), [lag-six echo](lag6-conditioned-echo.md), [collision repair](lag6-sparse-collision-repair-model.md).
 
 **No unknown LP2 passage is deciphered by this finding.**
