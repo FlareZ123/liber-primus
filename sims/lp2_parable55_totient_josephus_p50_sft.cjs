@@ -101,6 +101,71 @@ for (let offset = 0; offset < totientSteps.length; offset++) {
 }
 assert.deepEqual(phases, [0]);
 
+// Direct cipher-consumer gate, without an unknown Fehu-bypass search.
+// The genuine p56 encryptor leaves plaintext F unchanged; therefore all
+// ciphertext positions BEFORE the first printed F have a unique key clock.
+// Test whether the new Josephus assignment of 55 source runes to 55 pages
+// selects ordinary p56 consecutive-prime φ() starting states.
+const primeSieve = new Uint8Array(5001);
+const ordinaryPrimes = [];
+for (let n = 2; n < primeSieve.length; n++) {
+  if (primeSieve[n]) continue;
+  ordinaryPrimes.push(n);
+  for (let k = n * n; k < primeSieve.length; k += n) primeSieve[k] = 1;
+}
+
+/**
+ * Decode the exact unambiguous pre-first-F prefix of the published p56 cipher.
+ * @param {number[]} cipher - Original observed GP rune indexes.
+ * @param {number} startPrimeOrdinal - Zero-based starting ordinary prime index.
+ * @returns {number[]} Decoded unambiguous prefix.
+ */
+function beforeFirstFehu(cipher, startPrimeOrdinal) {
+  const firstF = cipher.indexOf(0);
+  const limit = firstF === -1 ? cipher.length : firstF;
+  return cipher.slice(0, limit).map((rune, i) => {
+    assert.ok(ordinaryPrimes[startPrimeOrdinal + i]);
+    return (rune - ((ordinaryPrimes[startPrimeOrdinal + i] - 1) % 29) + 29) % 29;
+  });
+}
+const knownP56Prefix = beforeFirstFehu(corpus.pages[56].indices, 0);
+assert.equal(
+  knownP56Prefix.map(i => corpus.translit[i]).join(''),
+  'ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETH'
+);
+
+/**
+ * @param {number[]} runes - Numeric GP runes.
+ * @returns {number} Unsmoothed global GP index of coincidence.
+ */
+function coincidence(runes) {
+  const counts = new Uint32Array(29);
+  for (const rune of runes) counts[rune]++;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0)
+    / (runes.length * (runes.length - 1));
+}
+function assignedPagePrimeClock(seedFn) {
+  const decoded = forward.eliminated.map((page, index) =>
+    beforeFirstFehu(corpus.pages[page].indices, seedFn(interiors[index], index))
+  );
+  const raw = decoded.flat();
+  return {
+    prefix_runes: raw.length,
+    ioc: coincidence(raw),
+    first_p0_prefix: decoded[forward.eliminated.indexOf(0)]
+      .map(i => corpus.translit[i]).join('')
+  };
+}
+const sourcePageClock = {
+  gp_ordinal: assignedPagePrimeClock(index => index),
+  prime_value_as_ordinal: assignedPagePrimeClock(index => corpus.prime[index]),
+  totient_value_as_ordinal: assignedPagePrimeClock(index => corpus.prime[index] - 1)
+};
+assert.equal(sourcePageClock.gp_ordinal.prefix_runes, 1441);
+assert.ok(Math.abs(sourcePageClock.gp_ordinal.ioc - 0.03468752409592104) < 1e-12);
+assert.ok(Math.abs(sourcePageClock.prime_value_as_ordinal.ioc - 0.034701981648546536) < 1e-12);
+assert.ok(Math.abs(sourcePageClock.totient_value_as_ordinal.ioc - 0.034526563343357235) < 1e-12);
+
 // Conditioning null: rearrange only the 20 complete interior word blocks,
 // holding the original page count, word interiors and step values fixed.
 // A planted model is not assumed; these are descriptive randomization
@@ -151,6 +216,7 @@ console.log(JSON.stringify({
     gp_ordinal_plus_one_survivor: ordinal.survivor,
     totient_reduced_mod29_survivor: reducedTotient.survivor,
     skipped_plaintext_F_survivors: fTransparent.remaining,
+    direct_known_p56_cipher_consumer: sourcePageClock,
     joint_p50_phase_shifts: phases
   },
   shuffled_whole_word_blocks: {
