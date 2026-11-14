@@ -59,6 +59,28 @@ A positive source-native plant independently tests five different long-word leng
 
 **Scope:** this rejection remains conditional on original printed words being plaintext words, the finite GP-English lexicon and exactly one fixed secret multiplier per word with five additive key phases. It does not exclude p56's genuine totient cipher, which uses a different nonperiodic prime key schedule, or any nonlinear changing alphabet, additional input symbol, untested vocabulary, segmentation change or an independently derived external key.
 
+
+## Relaxing the model: five independently affine phase alphabets
+
+A broader, fully reversible candidate gives **each of the five phases within every word its own independent nonzero multiplier and additive shift**:
+
+    C[w,j] = a[w,j mod 5] * P[w,j] + b[w,j mod 5]  (mod 29).
+
+This removes the shared-slope assumption in the 244-edit and F-skip experiments. Each phase subsequence has its own all-secret invariant: subtract its first rune, then divide by its first nonzero difference modulo29. The resulting five normalized subsequences are unchanged by **all ten word-specific phase parameters**. This yields a necessary-and-sufficient word compatibility test without guessing keys. Here the model has no F-clock bypass; it is an independent relaxation of ordinary five-phase arithmetic.
+
+| GP word length | Original words | Compatible with independent affine alphabet per phase | Unmatched |
+| --- | ---: | ---: | ---: |
+| 10 | 52 | 52 | 0 |
+| 11 | 32 | 31 | 1 |
+| 12 | 18 | 13 | 5 |
+| 13 | 4 | 0 | 4 |
+| 14 | 3 | 0 | 3 |
+| **Total** | **109** | **96** | **13** |
+
+This broader model **escapes the earlier 109/109 exclusion for 96 long words**, while **13 long words remain incompatible** with the fixed four-corpus native-English lexicon. Every original 13- and 14-rune word fails. Five GP-native source-word positives (one per length 10–14) were encrypted using independent slopes [3,7,11,17,23] and shifts [5,9,13,19,2], then perfectly inverted; the phase-specific affine signatures agree before and after encryption. No English word matching one short signature is authenticated original plaintext. Arbitrary nonlinear secret phase bijections remain outside this test and were previously shown compatible with every original long word.
+
+**Research decision:** Retire arbitrary key tuning inside this exact five-phase affine family; it cannot repair the 13 long-word shape contradictions. A viable word-local operation would require source-attested nonaffine state changes or different source word partitions.
+
 ## Consequence for a real decoder
 
 This is **not** an impossibility theorem for all word-local five-state processes. In particular, a source-selected nonlinear alphabet per phase, stateful autoregressive rule, per-phase multiplicative factor, extra symbols or deletions that change subsequent key-phase alignment, a differently segmented plaintext, a non-English register, and English words absent from the fixed lexicon all lie outside the model. A true exception occurring at one site may also alter the entire remaining phase clock, so the 244-versus-86 comparison **only excludes positionwise replacement corrections**, not general edit or escape channels. The original printed word-length grammar is itself atypical of sequential native prose; interpreting these divisions as unchanged plaintext words is a substantive conditional assumption.
