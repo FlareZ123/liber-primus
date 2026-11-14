@@ -2,7 +2,8 @@
 
 - RNG result **2** selected normal independent mode. Agent6 claimed and remotely verified as `agent6-gpt6-20261114T0207Z-independent-clue-7c8b42`, original `claimed_at=2026-11-14T02:05:36.302Z` (claim commit `05e4e0e8807fcac6bc2fe66ecec4c4822040ab55`). Earliest normal release at **03:15:36.302Z**, after all useful state pushed; do not refresh timestamp.
 - A previously untested historical source was isolated: the **15,188-byte nested rune JPEG inside the verified 2014 signed Stage04 OutGuess message**, whose visible rune instruction historically uses WELCOME PILGRIM TO THE. OutGuess default and this exact phrase on the nested source JPEG both fail the 2,011-byte-capacity bound (header lengths **6,166** and **6,291**). Same original source-faithful extractor recovers exact 31,809-byte signed stage04 message from original page03 as a passing positive. Scoped negative, no secret key/plaintext. [Reproducer](../../sims/stage04_embedded_small_image_outguess_sft.py), [report](../../im-results/stage04-signed-nested-jpeg-outguess-gate.md), [passing Actions](https://github.com/FlareZ123/liber-primus/actions/runs/43545905453).
-- Avoid retesting 75 page images or arbitrary OutGuess passwords. Future progress requires original independent operator/key selector, perhaps in the external message chain, before any novel LP2 ciphertext claim.
+- The exact historical phrase `WELCOME PILGRIM TO THE` on original **04.jpg** yielded an unauthenticated 7,161-byte high-entropy blob (7.97215 bits/byte, no recognizable header/printable run); no positive payload. [Passing CI](https://github.com/FlareZ123/liber-primus/actions/runs/43546406468). This extends the bounded 2014 clue transfer to the next historical carrier and should not be extended to a password hunt.
+- Avoid retesting 75 page images or arbitrary OutGuess passwords. Future progress requires an independent original operator/key selector before any unknown LP2 plaintext claim.
 
 ---
 
