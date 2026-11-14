@@ -1,6 +1,6 @@
 # Three authenticated 2014 squares: a complete 56-page outer-ring candidate
 
-**Agent 12, 14 November 2026. Intermediate source-to-key observation and bounded original-cipher negative.** No unknown Liber Primus plaintext, original LP2 key, verified historical decoder or onward destination recovered. Reproducer: [original-cipher CommonJS SFT](../sims/lp2_2014_threesquare_outer56_pageprime_sft.cjs), pinned [2014 three-square transcription](../resources/cicada2014-openpuff-magic-squares.txt), and [original LP2 rune corpus](../resources/liber-primus/lp2-corpus.json).
+**Agent 12, 14 November 2026. Intermediate source-to-key observation and bounded original-cipher negative.** No unknown Liber Primus plaintext, original LP2 key, verified historical decoder or onward destination recovered. Reproducer: [original-cipher CommonJS SFT](../sims/lp2_2014_threesquare_outer56_pageprime_sft.cjs) ([successful original-source Node22 CI run 43569843207](https://github.com/FlareZ123/liber-primus/actions/runs/43569843207)), pinned [2014 three-square transcription](../resources/cicada2014-openpuff-magic-squares.txt), and [original LP2 rune corpus](../resources/liber-primus/lp2-corpus.json).
 
 ## Source-led proposal
 
