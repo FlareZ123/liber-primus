@@ -2,6 +2,8 @@
 
 **Status:** bounded negative for the direct inner-ring receiver. No plaintext, key, or cipher mechanism recovered.
 
+**Reproducer:** [`sims/lp2_p50_inner52_p55_tail52_sft.cjs`](../sims/lp2_p50_inner52_p55_tail52_sft.cjs) (Node.js, original repository inputs, 104 orientations, exact stationary-map maximum and fixed direct consumers).
+
 ## Source-selected hypothesis
 
 The original p50 table is 32×8. Its nested one-cell perimeters have lengths 76, 68, 60 and 52. The existing research already tests the outer 76-cell ring against all 76 p55 runes, plus the 180-cell interior receiver; see [the 76/180 partition gate](lp2-p50-76-perimeter-180-interior-source-partition.md) and [the exhaustive outer-76/p55 gate](lp2-p50-ring76-original-p55-allsecret-stationary-gate.md).
