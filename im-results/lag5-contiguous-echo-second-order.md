@@ -66,6 +66,22 @@ Using the fixed **29,157-entry source-native English GP29 dictionary**, includin
 
 **Decision:** the lag-five echo excess is insufficient justification for a classical word-rekeyed five-period Vigenere or affine decryption. That family contradicts original long-word sequences for this precise finite English register; more flexible phase alphabets or altered word boundaries constitute different ciphers requiring independent source selection. The result is a finite dictionary obstruction, not proof about all languages or a recovered cipher. [Original-source and positive-plant SFT](../sims/lp2_wordlocal_fivephase_allsecret_sft.cjs).
 
+### English word morphology as a five-phase echo rival (14 November 2026)
+
+An important independent rival to **literal five-back copy insertion** is a word-local secret alphabet that returns to the same permutation at every fifth character. Even if each printed word receives five completely unrelated secret GP29 bijections, the same-phase equality (C_i=C_{i-5}) holds **if and only if** the original plaintext (P_i=P_{i-5}). A contiguous lag-five two-hit event is also exactly preserved. This is a *mathematical implication of a proposed cipher*, with no authorial cue yet selecting that cipher.
+
+Use the exact original 2,896 printed word lengths and encode entire independent Shakespeare, Gibran and Emerson source texts into the independently solved-LP1 GP orthography, including native ING/IO. For each original word-length slot, draw a corresponding real English word independently with replacement. The [source-exact CJS SFT](../sims/lp2_wordlocal_fivephase_english_controls_sft.cjs) calculates the complete probability-model first two moments **without simulation**:
+
+| Source-native English reference | Expected single five-back matches (observed 104) | Single SD | Expected adjacent-hit pairs (observed 9) | Pair SD |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare first 300k | 122.8082 | 10.7927 | 2.5879 | 1.6034 |
+| Gibran The Prophet | 121.7696 | 10.2791 | 4.8028 | 2.1310 |
+| Emerson Essays | 130.0974 | 11.5425 | 8.3315 | 3.2776 |
+
+Original singles lie **1.73 to 2.26 SD below** these native-source independent-word means. The pair rate is **register-sensitive**, ranging from a Shakespeare-based 4.00 SD excess to a close Emerson-based 0.20 SD difference. The manuscript's nine adjacent-hit pairs therefore do not compel an inserted copy or echo operator. A fixed-seed plant builds 2,896 length-matched source-native English words, encrypts each under five **different arbitrary, secret, invertible GP29 permutations** chosen freshly for that word, and asserts exact preservation of both lag-five measures at every original word.
+
+That source-native five-phase plant **does not** itself suppress adjacent identical ciphertext runes to the original **86/12,955** whole-stream level: independent phase permutations typically leave ordinary ~1/29 collisions. A complete cipher therefore needs an **independently source-selected reversible state-dependent rule** for the anti-doublets and the key/phase schedule. The artificial positive plant demonstrates mechanism possibility, **not** that the manuscript uses five-phase alphabets. It also does not rescue the separately excluded five-phase *affine* subfamily above. Proposed five-phase maps must explain both constraints and yield authentic original plaintext before promoting the branch.
+
 ### Implication for chain-step models
 
 A public independent analysis proposes a chain-step representation in which each ciphertext rune is the previous rune plus a step from a flat, aperiodic 28-symbol stream ([Leo-Y-Zhang report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md)). The lag-five result constrains that family: the original within-word difference stream contains **10,060 steps**; its zero bin has 63 occurrences and the 28 nonzero bins range from 313 to 397. If five successive within-word steps were independent draws from this exact empirical 29-bin distribution, cyclic convolution gives

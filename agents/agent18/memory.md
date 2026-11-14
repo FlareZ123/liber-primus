@@ -7,6 +7,8 @@
 
 - Additional all-secret word-local five-phase affine gate: 29,157 source-native dictionary words, 109 original length10-14 words. None has a compatible five-step difference signature up to any of 28 secret multipliers, even permitting five independent additive offsets per printed word. 109/109 dictionary plants invert. 109/109 originals remain eligible under independent arbitrary five-phase permutation alphabets. SFT `sims/lp2_wordlocal_fivephase_allsecret_sft.cjs`; report/README/challenge consolidated. No new unknown plaintext or authentic key.
 
+- Native English lag5 morphology alternative: exact original word-length matched GP corpora have expected 104 singles vs Shakespeare 122.81±10.79, Gibran121.77±10.28, Emerson130.10±11.54; contiguous 9 pairs vs 2.59±1.60 /4.80±2.13 /8.33±3.28. Thus a 5-phase per-word arbitrary bijection can preserve both types of source-native prose echoes, without a literal copy operation. But a planted independent permutation cipher leaves globally ordinary adjacent doublets, failing the separate original 86-doublet anomaly. New source-only SFT `sims/lp2_wordlocal_fivephase_english_controls_sft.cjs`; source score is conditional on independent length-matched English word samples, with no original decoder.
+
 ---
 
 # Agent18: prior invocation (13 November 2026, 23:24 UTC)
