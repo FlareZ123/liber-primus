@@ -54,6 +54,36 @@ function requiredRestorations(equal, opportunities, targetRate) {
   return Math.max(0, Math.ceil(needed - 1e-12));
 }
 
+/**
+ * Exact log2 number of restored books under the stronger rule: each
+ * original printed word may receive at most ONE missing adjacent copy.
+ * A word with r maximal same-rune runs has r distinct one-copy outcomes.
+ * Therefore the coefficient of x^k in product_w(1+r_w*x) counts all
+ * distinct exactly-k restored, word-delimited books.
+ *
+ * @param {number[]} wordRunCounts
+ * @param {number} maximumCopies
+ * @returns {number[]} Log2 coefficients, indexed by inserted copies.
+ */
+function log2OneCopyPerWord(wordRunCounts, maximumCopies) {
+  const dp = Array(maximumCopies + 1).fill(-Infinity);
+  dp[0] = 0;
+  let processed = 0;
+  for (const runs of wordRunCounts) {
+    assert(Number.isSafeInteger(runs) && runs > 0);
+    const weight = Math.log2(runs);
+    for (let k = Math.min(maximumCopies, processed + 1); k >= 1; k--) {
+      const a = dp[k], b = dp[k - 1] + weight;
+      if (a === -Infinity) dp[k] = b;
+      else if (b !== -Infinity) {
+        const higher = Math.max(a, b);
+        dp[k] = higher + Math.log2(1 + 2 ** (Math.min(a, b) - higher));
+      }
+    }
+    processed++;
+  }
+  return dp;
+}
 /** Original-corpus self-test and finite source-specific result. */
 function run() {
   const corpus = /** @type {{pages:Array<{page:number,indices:number[]}>}} */ (
@@ -94,6 +124,29 @@ function run() {
   // [2,0,0],[1,1,0],[1,0,1],[0,2,0],[0,1,1],[0,0,2].
   assert.equal(2 ** log2Restorations(3, 2), 6);
 
+  // Independently parse the exact 2,896 original printed words, including
+  // the 32 words carried across image/page line wraps.
+  const canonical = fs.readFileSync(
+    path.join(ROOT, 'resources/lp2-transcription.txt'), 'utf8');
+  const runes = new Map(corpus.runes.map((r, i) => [r, i]));
+  const runeRegex = new RegExp('[' + corpus.runes.join('') + ']+', 'gu');
+  const words = (canonical.split('%').slice(0, 55).join('%')
+    .replace(/\/\r?\n/g, '').replace(/[\r\n%]/g, '')
+    .match(runeRegex) || []).map(s => Array.from(s, x => runes.get(x)));
+  const wordRuns = words.map(w => w.length - w.reduce(
+    (n, v, i) => n + Number(i > 0 && v === w[i - 1]), 0));
+  assert.deepEqual([words.length, words.flat().length,
+    wordRuns.reduce((a, b) => a + b, 0)], [2896, 12956, 12893]);
+  const singleWordBits = log2OneCopyPerWord(wordRuns, uniformNeeded);
+  let wordCapacity = 0;
+  while (singleWordBits[wordCapacity + 1] <= sidecarBits) wordCapacity++;
+  assert.equal(wordCapacity, 304);
+  assert(Math.abs(singleWordBits[304] - 2046.7585129304) < 1e-7);
+  assert(Math.abs(singleWordBits[305] - 2051.9599111292) < 1e-7);
+  assert(Math.abs(singleWordBits[372] - 2388.8181902847) < 1e-7);
+  const toy = log2OneCopyPerWord([2, 3], 2);
+  assert.equal(2 ** toy[1], 5);
+  assert.equal(2 ** toy[2], 6);
   const result = {
     kind: "Necessary capacity bound; no original plaintext or key",
     hypothesis: "Delete adjacent equal symbols; p50 bytes are the sole arbitrary restoration sidecar",
@@ -108,6 +161,15 @@ function run() {
     bitsAtMaximum: log2Restorations(sameRuneRuns, maxArbitraryRestorations),
     bitsForOneAdditional: log2Restorations(sameRuneRuns, maxArbitraryRestorations + 1),
     highestUniversalRestoredEqualityRate: maxRate,
+    oneOmittedCopyPerPrintedWord: {
+      originalWordCount: words.length,
+      originalWordRuns: wordRuns.reduce((a, b) => a + b, 0),
+      maxArbitraryCopyRestorations: wordCapacity,
+      bitsAtMaximum: singleWordBits[wordCapacity],
+      bitsForOneAdditional: singleWordBits[wordCapacity + 1],
+      bitsForUniformGP29Copies: singleWordBits[uniformNeeded],
+      deficitBits: singleWordBits[uniformNeeded] - sidecarBits
+    },
     uniformGP29: {
       expectedEqualityRate: uniformRate,
       copiesNeeded: uniformNeeded,
@@ -121,4 +183,4 @@ function run() {
 }
 
 if (require.main === module) run();
-module.exports = {log2Restorations, requiredRestorations, run};
+module.exports = {log2Restorations, log2OneCopyPerWord, requiredRestorations, run};

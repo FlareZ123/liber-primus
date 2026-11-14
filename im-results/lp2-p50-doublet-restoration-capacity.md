@@ -32,8 +32,25 @@ The required 372 follows exactly from \((86+k)/(12901+k)\ge1/29\), because each 
 
 The 1/29 comparison is a **reference model**, not an assumption that the unknown plaintext must be uniform. The data do not fix how many copies, if any, are truly absent. If the true restored stream has an equality rate below about 2.9%, or if the missing positions are determined by a compact algorithm/key, the same 256 bytes may suffice. A byte value could also be part of a different alphabet or coding interpretation. No cryptographic claim follows from the numeric alignment of p50 and the anti-repeat anomaly.
 
+## Stronger source-word restriction: at most one removed copy per word
+
+A natural rescue is to retain the original 2,896 complete printed word boundaries and permit **at most one** suppressed repeated-rune copy in each word. This is much more restrictive than allocating copies arbitrarily among all 12,870 page-local runs. The original word transcript has **12,956 symbols**, **63 within-word adjacent equalities**, and **12,893 maximal same-symbol runs** across all words. A word with `r` original maximal runs has exactly `r` distinct results from inserting one identical copy, plus one unchanged result. Therefore the exact count of books with **k selected words, one extra copy per selected word**, is the coefficient of x^k in
+
+\[\prod_{w=1}^{2896}(1+r_w x).\]
+
+The logarithmic coefficient is evaluated by a stable dynamic program on the **original 2,896 run counts**, with no Monte Carlo or assumed language frequencies. This restriction also fails the standalone 256-byte capacity bound:
+
+| One-copy-per-word original-input calculation | Value |
+| --- | ---: |
+| Maximum restorations whose **every** placement fits in 2,048 bits | **304** |
+| Bits at k=304 | **2,046.75851** |
+| Bits at k=305 | **2,051.95991** |
+| Bits at k=372, the same page-local uniform-GP29 reference target | **2,388.81819** |
+| Shortfall at k=372 | **340.81819 bits** |
+
+This rules out a complete *arbitrary* sidecar for the target even with **one** deleted copy per source word and all printed word breaks retained. It does not exclude a source-keyed deterministic choice of which words and runs lose copies, or a narrower plaintext distribution. A word-restricted sidecar can potentially cover 304 arbitrary copies, compared with 297 in the run-unrestricted model; that capacity increase is too small to reach the 372-copy target. The test uses the original word inventory, including cross-page word joins, and measures the restoration count in the same page-local reference convention as above.
 ## Research consequence
 
 The route **“p50 bytes explicitly encode an unrestricted list of the withheld duplicate sites”** is capacity-inadequate under a uniform-GP29 restoration target. Pursue it further only if an original-source instruction specifies a **predictable removal rule**, a much sparser underlying repeated-symbol rate, or another independently accessible sidecar. Guessing positions from the 256 values without such a rule leaves the actual inverse unconstrained. A key-supplied stateful encoder remains possible and could be more useful than either a raw deletion map or an additional fitted cipher layer.
 
-**Reproducer:** [standalone Node22 CJS source gate](../sims/lp2_p50_duplicate_restoration_capacity_sft.cjs) reads the exact existing LP2 indices and 256-byte table, asserts all original counts, checks the exact composition bound and a toy positive, and prints the complete capacity decision.
+**Reproducer:** [standalone Node22 CJS source gate](../sims/lp2_p50_duplicate_restoration_capacity_sft.cjs) reads the exact existing LP2 indices and 256-byte table, asserts all original counts, checks the exact composition and word-polynomial bounds and two toy positives, and prints the complete capacity decision.
