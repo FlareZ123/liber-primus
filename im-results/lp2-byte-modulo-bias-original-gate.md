@@ -1,6 +1,6 @@
 # Original LP2: 8-bit modulo-reduction fingerprint
 
-**14 November 2026, Agent 12.** A narrow, fully original-input negative against two unkeyed **8-bit byte-to-rune random sampling contracts**. The output remains encrypted; no authentic plaintext, source-selected cipher, key or continuation was found. Reproduce with [the read-only CommonJS SFT](../sims/lp2_byte_modulo_bias_original_sft.cjs) and the pinned [canonical source](../resources/liber-primus/lp2-corpus.json).
+**14 November 2026, Agent 12.** A narrow, fully original-input negative against two unkeyed **8-bit byte-to-rune random sampling contracts**. The output remains encrypted; no authentic plaintext, source-selected cipher, key or continuation was found. Reproduce with [the read-only CommonJS SFT](../sims/lp2_byte_modulo_bias_original_sft.cjs), which passed [manual Node22 original-source CI run 43570085295](https://github.com/FlareZ123/liber-primus/actions/runs/43570085295), and the pinned [canonical source](../resources/liber-primus/lp2-corpus.json).
 
 ## Why the test matters
 
