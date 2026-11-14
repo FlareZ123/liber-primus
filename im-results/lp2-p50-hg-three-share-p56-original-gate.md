@@ -1,6 +1,6 @@
 # LP2 pp49–51: a three-share route from the H/G grid quotient to an actual known key
 
-**Decision (Agent 11, 14 November 2026): original-input negative for two specific three-share interpretations.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
+**Decision (Agent 11, 14 November 2026): original-input negative for six specific three-share key interpretations.** No unknown LP2 plaintext, historical key, complete decoder or continuation URL was recovered. This is a new **three-to-one consumer** of the existing H/G quotient, distinct from the previously excluded one-of-three quotient-lane alphabet correspondences in [the direct 84-key test](lp2-q252-p56-authentic84-allsecret-key-gate.md). The complete read-only [Node.js 22 SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) pins the original source SHA, authentic p56 decoder and exact original target runes.
 
 ## A concrete path a historical solver could have tried
 
@@ -27,6 +27,18 @@ The ten matching symbols in the second row are scattered (indices 2,15,21,29,31,
 
 For a distinct exact historical-operation comparator, treat the first **252 original byte values** as a systematic 252-byte data component and the final four as candidate GF29 parity slots, combine three 84-byte shares by actual XOR, and inspect all output bytes. The original printed-order data produce only **39/84** printable ASCII characters for contiguous blocks and **29/84** for interleaved triples, without any readable passage. The four-slot systematic framing is a hypothesis about the original polynomial, not author-authenticated file structure. No byte-stream payload was recovered.
 
+
+The exact historical **byte-XOR** operation also permits a direct GP29 key test: XOR each source triple as ordinary bytes, reduce its value modulo29, and compare all 84 positions with the genuine p56 key before attempting the complete p55 inverse. Do this for both the 252 *original systematic byte cells* and the 252 *H/G GF29 quotient digits*. These are four additional, completely frozen source-layout mappings, with zero fitted phases or alphabet permutations:
+
+| Historical XOR source / geometry | Matches to complete p56 key | Equality contradictions vs every fixed secret alphabet | Decoded original p55 GP29 IoC |
+| --- | ---: | ---: | ---: |
+| Original systematic 252 bytes, three blocks | **4/84** | 199 / 3,486 | **0.03228070** |
+| Original systematic 252 bytes, adjacent triples | **6/84** | 195 / 3,486 | **0.03368421** |
+| H/G quotient 252 GP29 digits, three blocks | **2/84** | 205 / 3,486 | **0.03859649** |
+| H/G quotient 252 GP29 digits, adjacent triples | **2/84** | 206 / 3,486 | **0.02912281** |
+
+All four outputs are nonlinguistic on untouched original p55 runes. Every output additionally contradicts the necessary equality pattern of the entire historical p56 key, even after allowing any unknown *fixed* alphabet bijection. This is a stricter source-operator test than inspecting byte-XOR output for ASCII alone: **an authentic historical XOR operation does not repair the missing p56 or p55 key handoff** within these direct encodings. The [same standalone SFT](../sims/lp2_p50_three_share_p56_source_gate_sft.cjs) now asserts all four exact key matches and all four equality-conflict counts.
+
 ## Direct original unknown-page consequences
 
 Use the same two complete, source-derived 84-rune GF29 sum tapes with no phase or skip and the historically familiar `P=(C−K) mod29` inverse. Decode the untouched **76** original p55 runes and, independently, repeat the same tape continuously over the actual final **308** unknown p54–55 runes. These are direct low-cost attempts at real plaintext; no correct word or rune was chosen to tune the key.
@@ -38,6 +50,6 @@ Use the same two complete, source-derived 84-rune GF29 sum tapes with no phase o
 
 The slightly raised short-p55 triplet IoC is unsupported by continuous readable text; its first twenty decoded GP symbols are `F EA S TH AE A M F X W EA P G I TH G N EO M J`. On the longer original receiver, both candidates remain at near-uniform GP29 coincidence and start with nonsensical rune sequences. As an implementation positive, a genuine native p57-derived 76-rune GP plaintext plant is exactly encrypted and recovered under both derived full key tapes. Exact round-trip alone is automatic for these additive keys and does not authenticate them.
 
-This test **retires only these two source-order three-share GF29 consumers and the two specified direct additive transfers**, plus the two actual-byte XOR systematic interpretations. It neither rules out all 2014 XOR uses nor assigns an original meaning to the H/G quotient. The p56 historical key remains independently authenticated by its complete 85-rune original decryption, and all 56 unknown pages remain unsolved.
+This test **retires the two source-order three-share GF29 sum consumers, four byte-XOR-derived modulo29 key consumers, and their specified original p55 additive transfers**, plus two actual-byte XOR-to-ASCII systematic interpretations. It neither rules out all 2014 XOR uses nor assigns an original meaning to the H/G quotient. The p56 historical key remains independently authenticated by its complete 85-rune original decryption, and all 56 unknown pages remain unsolved.
 
 **Research choice:** do not repeat three-way quotient splits with fitted phases, additional codebooks or invented corrective clocks. Further work on this source should require a new player-visible operation that determines where the 252 field symbols go and predicts untouched plaintext before fitting.
