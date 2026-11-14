@@ -1,0 +1,16 @@
+name: Original LP2 GEM adjacency strict-F gate
+on:
+  workflow_dispatch:
+jobs:
+  original-source-test:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-locked p49/p51 strict plaintext-F GEM inverse
+        run: |
+          node --check sims/lp2_p49_p51_gem_original_strictf_sft.cjs
+          node sims/lp2_p49_p51_gem_original_strictf_sft.cjs
