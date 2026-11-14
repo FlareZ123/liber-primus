@@ -78,6 +78,31 @@ function main() {
   assert.deepEqual(edge.slice(0, 15),
     [21, 25, 7, 15, 17, 14, 19, 15, 25, 0, 1, 7, 4, 17, 12]);
 
+  // The original source has a single word *continued across* the p54/p55
+  // physical page turn. Its ten earlier runes are on p54. A genuine
+  // whole-word circumference extraction must retain the prior first rune.
+  const previous = corpus.pages.find(p => p.page === 54).indices;
+  assert.deepEqual(previous.slice(-10), [6, 3, 16, 2, 14, 18, 28, 4, 6, 26]);
+  assert.equal(page.indices[0], 21);
+  const completeWordEdges = [previous.at(-10), ...edge];
+  const completeWordInterior = [...previous.slice(-9), ...inner];
+  const page55CompleteOnlyEdges = edge.slice(1);
+  assert.equal(completeWordEdges.length, 34);
+  assert.equal(completeWordInterior.length, 52);
+  assert.equal(page55CompleteOnlyEdges.length, 32);
+  assert.deepEqual([
+    evaluateAscending(completeWordEdges, 24),
+    evaluateAscending(completeWordEdges, 18)
+  ], [26, 21]);
+  assert.deepEqual([
+    evaluateAscending(completeWordInterior, 24),
+    evaluateAscending(completeWordInterior, 18)
+  ], [24, 10]);
+  assert.deepEqual([
+    evaluateAscending(page55CompleteOnlyEdges, 24),
+    evaluateAscending(page55CompleteOnlyEdges, 18)
+  ], [5, 26]);
+
   // Values from the two historically preserved 3301/1033 magic-square sums.
   const first = 3301 % 29; // 24
   const second = 1033 % 29; // 18
@@ -117,9 +142,35 @@ function main() {
   for (const row of squareRows) assert.equal(row.reduce((a, b) => a + b, 0), 1033);
   assert.equal(squareRows.flat().length, 25);
 
+  // A direct, source-positioned cipher consumer: evaluate the exterior
+  // polynomial at zero-based successive interior positions and subtract it
+  // as a GP29 additive keystream. No fitted shift, key, phase or dictionary.
+  const evaluations = inner.map((_, i) => evaluateAscending(edge, i));
+  const decode = inner.map((value, i) => mod29(value - evaluations[i]));
+  const frequencies = Array(29).fill(0);
+  for (const value of decode) frequencies[value]++;
+  const decodedIoc = frequencies.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (inner.length * (inner.length - 1));
+  assert.ok(Math.abs(decodedIoc - 0.03322259136212625) < 1e-14);
+  const nativePlain = corpus.pages.find(p => p.page === 57).indices.slice(0, 43);
+  const nativeEncrypted = nativePlain.map((value, i) => mod29(value + evaluations[i]));
+  assert.deepEqual(
+    nativeEncrypted.map((value, i) => mod29(value - evaluations[i])),
+    nativePlain,
+    'Source-native solved GP29 positive plant must round-trip',
+  );
+  const decodedRuneTokens = decode.map(index => corpus.translit[index]);
+  assert.deepEqual(decodedRuneTokens.slice(0, 10),
+    ['IA', 'C', 'S', 'S', 'EA', 'TH', 'T', 'O', 'B', 'G']);
+
   console.log(JSON.stringify({
     source: 'p55 source GP29, 2014 magic squares, solved p57 instruction',
     edgeRunes: edge.length,
+    correctFullWordEdgeRunes: completeWordEdges.length,
+    correctFullWordInteriorRunes: completeWordInterior.length,
+    completeWordEdgeOutputs: [evaluateAscending(completeWordEdges, first), evaluateAscending(completeWordEdges, second)],
+    completeWordInteriorOutputs: [evaluateAscending(completeWordInterior, first), evaluateAscending(completeWordInterior, second)],
+    page55CompleteOnlyEdgeOutputs: [evaluateAscending(page55CompleteOnlyEdges, first), evaluateAscending(page55CompleteOnlyEdges, second)],
     innerRunes: inner.length,
     historicalInputs: [first, second],
     edgeOutputs: [evaluateAscending(edge, first), evaluateAscending(edge, second)],
@@ -130,7 +181,10 @@ function main() {
     exactFactor: divisor,
     quotientLength: division.quotient.length,
     quotientFirst12: division.quotient.slice(0, 12),
-    warning: 'Retrospective polynomialization; no source-authenticated inverse or plaintext',
+    directExteriorKeyInteriorOriginalIoC: decodedIoc,
+    directExteriorKeyDecodedFirst10: decodedRuneTokens.slice(0, 10),
+    sourceNativeSolvedPositivePlant: 43,
+    warning: 'Equal-25 relation depends on physical-page split; complete words break it. No source-authenticated plaintext.',
   }, null, 2));
 }
 
