@@ -6,7 +6,7 @@
 
 The historical 2013 third-onion XOR step takes `DATA/560.13` from the original 2013 CicadaOS ISO at **absolute byte offset 12,821** and XORs the 23 original bytes there with the published source hex `28c07e1b102d4d5c4c1a376e064477e1416fcc94928765`. The resulting 23 bytes are exactly `gbyh7znm6c7ezsmr.onion\n`. This is a genuine period-authentic creator-used dataset and precise offset, before the 2014 book existed. The independently signed 2013 participant-server protocol specifies `BASE29` as a numeral operation.
 
-Those two original instructions suggest a single bounded transfer: read the author’s source at the already-used offset, and XOR original LP2 ciphertext represented as either single GP rune indices in bytes or a whole-section base-29 integer serialized to big-endian bytes. Preserve the printed GP29 indexing. Preserve one continuous byte clock across the first two logical LP2 sections. Do not search offsets, tweak the signs, post-select a text, or suppose a new password.
+Those two original instructions motivate a bounded transfer from the historically used offset using three source-shaped representations of the original GP29 ciphertext: individual rune-index bytes, a whole-section base-29 integer, and five-bit MSB-first packed indices. The printed GP29 indexing and a continuous byte clock over two successive source sections are fixed in advance. The original 2014 256-byte table is a separate natural byte operand. No offset search, fitted key, extra decipherment layer or new password is permitted.
 
 **Strongest unsupported premise:** the 2013 XOR offset and operation are authenticated for the 2013 onion handoff, and `BASE29` was documented, but no creator-authenticated 2014 instruction requires either for LP2. The transport itself is an extrapolation and therefore must be rejected if it fails the first two original sections.
 
@@ -17,7 +17,8 @@ Those two original instructions suggest a single bounded transfer: read the auth
 - Untouched original ciphertext: physical LP2 p0–p2 (729 runes), followed by p3–p7 (1,145 runes), canonical `resources/liber-primus/lp2-corpus.json` indices.
 - Transport A: one source byte per GP index. Apply XOR and advance the absolute source clock by 729, then 1,145 bytes.
 - Transport B: interpret a whole original section as a most-significant-first base-29 integer; serialize minimally to 443, then 696 bytes. XOR with the source, advancing the clock by those byte counts. A matching inverse serializes the original rune sequence exactly.
-- Controls: all four transports independently recover source-XOR-planted English ASCII bytes with 100% fidelity; adjacent incorrect source offset does not recover planted text; original GP/base29 input round-trips exactly. The output is examined for English, lengthy printable alphabetic segments, and byte-level text evidence.
+- Transport C: pack each original GP29 index into five bits, MSB first with a terminal zero pad, producing 456 then 716 bytes. A strict original-rune inverse verifies exact reversible unpacking before XOR.
+- Controls: all six rune/section cases independently recover source-XOR-planted ASCII bytes with 100% fidelity; adjacent incorrect source offset does not recover planted text; original rune bytes, BASE29 integers and five-bit bitstreams round-trip exactly. The output is examined for English, lengthy printable alphabetic segments and byte-level text evidence.
 
 ## Original result
 
@@ -27,6 +28,8 @@ Those two original instructions suggest a single bounded transfer: read the auth
 | p3–p7 | GP-index bytes | 13550 | 1145 | 426 (37.21%) | 246 | 4 | 0 |
 | p0–p2 | whole-section BASE29 | 12821 | 443 | 181 (40.86%) | 98 | 3 | 0 |
 | p3–p7 | whole-section BASE29 | 13264 | 696 | 257 (36.93%) | 145 | 2 | 0 |
+| p0–p2 | MSB-first five-bit packed GP29 | 12821 | 456 | 181 (39.69%) | 99 | 1 | 0 |
+| p3–p7 | MSB-first five-bit packed GP29 | 13277 | 716 | 265 (37.01%) | 140 | 2 | 0 |
 
 Expected printable-ASCII proportion for uniformly random byte output is 95/256 = 37.11%. Observed values approximate that null, and none of four output streams contains even eight consecutive ASCII letters/spaces. The source-authentic XOR, source hash, GP29 round-trip, and planted ASCII controls all passed. **This exact transfer is not a plaintext recovery.** It is a bounded negative for the two input representations and the exact offset; it does not exclude other archive-derived operations or other source instructions.
 
@@ -46,17 +49,6 @@ The independent dated archive has ten known transcription differences from the o
 ## Reproduction and decision
 
 - [Self-contained source-specific Node22 CommonJS SFT](../sims/lp2_2013_historic12821_base29_xor_sft.cjs)
-- [Executed Windows GitHub Actions run 43644449895](https://github.com/FlareZ123/liber-primus/actions/runs/43644449895), complete, success; includes original actual-case output and all positive controls. JSON artifact: `iso56013-historic12821-mod` (artifact ID 14133133697). The existing [ISO workflow](../.github/workflows/iso56013-full-offset-manual.yml) now has the optional `historic12821` mode; its normal offset-scan behavior is preserved.
-
-### Last source-typed binary transport: packed five-bit GP29
-
-The signed 2013 BASE29 numeral representation and the canonical 29-rune original alphabet also permit the *standard* **five-bit MSB-first, contiguous rune-index packing** (29 fits in 2⁵). Unlike the byte-per-rune and whole-integer cases above, this preserves each rune as five source bits and zero-pads only the terminal partial byte. A complete original-corpus packed/unpacked inverse is asserted before XOR, with unchanged source offset, p0–p2/p3–p7 section separation and positive XOR plants. The [third native source execution 43645642404](https://github.com/FlareZ123/liber-primus/actions/runs/43645642404) passed every original 2013 SHA256 / onion-address / reversible-pack / planted-control assertion and produced:
-
-| Original page group | Absolute 2013 key offset | Five-bit packed output bytes | Printable ASCII | Latin letters | ASCII spaces | Consecutive ASCII letter/space runs 8+ |
-|---|---:|---:|---:|---:|---:|---:|
-| p0–p2, 729 original runes | 12821 | 456 | 181 (39.69%) | 99 | 1 | 0 |
-| p3–p7, 1,145 original runes | 13277 | 716 | 265 (37.01%) | 140 | 2 | 0 |
-
-These are likewise random-looking with no literal plaintext. The three direct historically motivated rune-to-byte encodings plus both original 256-byte table representations now have actual source-run evidence. None recovers a source-selected unknown page decryption.
+- [Complete Windows original-input execution 43645642404](https://github.com/FlareZ123/liber-primus/actions/runs/43645642404), success; covers all six native GP-to-byte cases, both 256-byte table operands, and source-authentic and planted positives. The earlier [baseline run 43644449895](https://github.com/FlareZ123/liber-primus/actions/runs/43644449895) independently passed the initial four rune-section cases. The existing [ISO workflow](../.github/workflows/iso56013-full-offset-manual.yml) was extended with the optional `historic12821` mode; its normal offset-scan behavior is preserved.
 
 **Decision:** retire the direct historical 12,821 XOR bridge under the **three registered rune encodings** (GP-index bytes, full-section BASE29 integer, packed five-bit GP29), and both 256-byte table operands, as an unrewarding simple transfer. Do not recursively try tuned encodings or neighboring offsets based on these random-looking outputs. Reopen only if a new original clue independently specifies a different representation or source clock, or if an authentic LP2 crib materializes.
