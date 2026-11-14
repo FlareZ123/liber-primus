@@ -2,12 +2,22 @@ name: Agent8 original 2014 IRC attachment archive locator
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Original-source archive collection
+        type: choice
+        required: true
+        default: commoncrawl-sheet
+        options:
+          - commoncrawl-sheet
+          - wayback-arquivo-six
 
 permissions:
   contents: read
 
 jobs:
   bounded-archive-probe:
+    if: ${{ inputs.mode == 'wayback-arquivo-six' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -21,3 +31,26 @@ jobs:
           node sims/lp2_2014_irc_sixfiles_archive_gate.cjs --selftest
       - name: Six exact original-date file archive queries
         run: node sims/lp2_2014_irc_sixfiles_archive_gate.cjs --network
+
+  commoncrawl-original-spreadsheet:
+    if: ${{ inputs.mode == 'commoncrawl-sheet' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Positive-control and original IRC source pin
+        run: |
+          node --check sims/lp2_2014_irc_sheet_commoncrawl_source_sft.cjs
+          node sims/lp2_2014_irc_sheet_commoncrawl_source_sft.cjs --selftest
+      - name: Query original 2014 source file in nine independently controlled indexes
+        run: node sims/lp2_2014_irc_sheet_commoncrawl_source_sft.cjs --network > sheet-commoncrawl.jsonl
+      - name: Preserve exact index evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent28-2014-original-sheet-commoncrawl
+          path: sheet-commoncrawl.jsonl
+          if-no-files-found: ignore
