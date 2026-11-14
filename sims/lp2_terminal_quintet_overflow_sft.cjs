@@ -73,6 +73,13 @@ assert.equal(d.flags.length,15);
 assert.equal(d.flags.join(""),"100100000000000");
 assert.deepEqual(encode(d.bytes,d.flags),body);
 assert.equal(d.values.filter(v=>v>=LIMIT).length,2);
+// Two possible independent byte-packet framing hints; not yet authenticated.
+assert.equal(original[0],21); // NG: carried p54 word, p55 local rune zero
+assert.equal(d.bytes[0],original[0]); // first byte 0x15 = GP index21
+assert.equal(d.bytes.at(-1),d.bytes.length); // final 0x2d = 45 total bytes
+assert.equal(d.bytes.slice(1,-1).length,43);
+assert.deepEqual(body.slice(-5),corpus.pages[27].indices.slice(29,34));
+
 const hex=d.bytes.map(x=>x.toString(16).padStart(2,"0")).join("");
 assert.equal(hex,
   "15023cbcedd14959802c8aee4d43d09b0ead8f8e12d2f139066f3e"+
@@ -109,6 +116,65 @@ const nEligible=corpus.pages.slice(0,56).reduce((sum,p)=>
   sum+Array.from({length:5},(_,phase)=>Number(p.indices.length>=phase+75))
     .reduce((a,b)=>a+b,0),0);
 assert.equal(nEligible,267);
+/** @type {{page:number,phase:number}[]} */
+const headerMatches=[], footerMatches=[], bothMatches=[];
+for(const p of corpus.pages.slice(0,56)){
+  for(let phase=0;phase<5;phase++){
+    if(p.indices.length<phase+75)continue;
+    const packet=decode(p.indices.slice(phase,phase+75)).bytes;
+    const header=phase>0&&packet[0]===p.indices[phase-1];
+    const footer=packet.at(-1)===packet.length;
+    if(header)headerMatches.push({page:p.page,phase});
+    if(footer)footerMatches.push({page:p.page,phase});
+    if(header&&footer)bothMatches.push({page:p.page,phase});
+  }
+}
+assert.deepEqual(headerMatches,[{page:53,phase:4},{page:55,phase:1}]);
+assert.deepEqual(footerMatches,[
+  {page:11,phase:2},{page:14,phase:1},
+  {page:29,phase:0},{page:55,phase:1}
+]);
+assert.deepEqual(bothMatches,[{page:55,phase:1}]);
+
+// A bounded direct "SHED OUR OWN CIRCUMFERENCES" consumer:
+// 43 p55 word interiors against exactly 43 candidate middle packet bytes.
+const originalText=fs.readFileSync(path.join(root,"lp2-transcription.txt"),
+  "utf8").split("%")[54];
+const sourceWords=[...originalText].filter(x=>runes.has(x)||"-.".includes(x))
+  .join("").split(/[.\-]/).filter(Boolean);
+const carriedWord=sourceWords.shift();
+assert.equal(carriedWord,"ᛝ");
+assert.equal(sourceWords.length,16);
+const inner=sourceWords.flatMap(word=>[...word.slice(1,-1)]
+  .map(x=>corpus.runes.indexOf(x)));
+assert.equal(inner.length,43);
+const table=JSON.parse(fs.readFileSync(path.join(root,"lp2-grid-256.json"),
+  "utf8")).bytes;
+assert.equal(table.length,256);
+const middle=d.bytes.slice(1,-1);
+const keys=[
+  inner,
+  inner.map(index=>corpus.prime[index]),
+  table.slice(0,43),
+  table.slice(84,127)
+];
+/** @param {number[]} values @returns {number} */
+const printable=values=>values.filter(v=>v>=32&&v<127).length;
+const scores=keys.map(key=>{
+  assert.equal(key.length,43);
+  return [
+    printable(middle.map((v,i)=>v^key[i])),
+    printable(middle.map((v,i)=>(v-key[i]+256)%256)),
+    printable(middle.map((v,i)=>(v+key[i])%256))
+  ];
+});
+assert.deepEqual(scores,[
+  [17,18,19],
+  [20,19,20],
+  [16,20,18],
+  [13,25,18]
+]);
+
 const randomOverflowProbability=(MAX-LIMIT)/MAX;
 const exactIidPatternProbability=randomOverflowProbability**2*
   (1-randomOverflowProbability)**13;
@@ -120,6 +186,13 @@ console.log(JSON.stringify({
   originalOverflowBits:d.flags.join(""),
   matchesPreviouslyDocumentedFiveDotLeftOrnament:mask,
   firstTenBitsMatchFiveHollowFiveFilled:"1001000000",
+  carriedRuneIndex:original[0],
+  firstByteMatchesCarriedRune:d.bytes[0]===original[0],
+  footerByteEqualsPacketLength:d.bytes.at(-1)===d.bytes.length,
+  middle43DirectConsumersPrintableScores:scores,
+  headerMatches,
+  footerMatches,
+  bothMatches,
   originalLow24BytesHex:hex,
   no24BitFixedThreeByteFormat:d.flags.includes(1),
   exactReconstruction:encode(d.bytes,d.flags).every((v,i)=>v===body[i]),
