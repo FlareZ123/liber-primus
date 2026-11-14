@@ -60,6 +60,25 @@ The original manuscript contains **83 complete single-rune printed words**. In s
 
 In the global carried-predecessor model, the 83 original singleton sites occupy **28 predecessor groups**. **Nine** groups contain more than three distinct published singleton glyphs (maximum **six**), with an aggregate **15 surplus distinct glyphs** beyond the maximum of three. Consequently this *entire* global all-secret cipher family is already excluded by a local word-grammar contradiction, independently of the global top-12 frequency theorem.
 
+### A complete eight-rune impossibility certificate for every one-rekey position
+
+The one-rekey exclusion does **not** depend on visual chapter boundaries. These eight independently printed, unmodified singleton words suffice to reject *every possible single rekey at any of the 12,956 original rune positions* under the same A/I/O model.
+
+| Shared preceding ciphertext rune | Absolute source position, zero-based | Singleton ciphertext GP rune |
+| --- | ---: | --- |
+| L | 176 | EA |
+| L | 3,275 | W |
+| L | 3,738 | Y |
+| L | 4,006 | I |
+| EA | 5,319 | AE |
+| EA | 5,336 | N |
+| EA | 6,994 | M |
+| EA | 7,683 | J |
+
+Each four-item group fixes the same substitution state (j=0, preceding C) within an epoch, but contains **four distinct** published ciphertext glyphs. A bijective GP29 substitution can decode that state to at most three permissible plaintext one-letter words A/I/O. To keep the earlier **L** group from residing wholly in epoch 0, any one-time key replacement at original rune offset e must satisfy **e ≤ 4,006**. To keep the later **EA** group from residing wholly in epoch 1, it must satisfy **e > 5,319**. These inequalities contradict each other. No English frequency model, dictionary inference, search, or assumptions about creator-selected chapter transitions enter this proof.
+
+The exact original-source SFT independently locates all eight witnesses and verifies the pairwise distinct output glyphs. As a second finite check, it partitions the **83 singleton sites** into all possible consecutive singleton-event gaps and finds **zero valid one-cut positions** and **172 valid two-cut gap pairs**. The latter are *opportunities to satisfy only the singleton necessary condition*; they do not provide valid plaintext or select keys. Therefore **at least three stationary-key epochs are required even when rekey locations are freely chosen**, under the stated model. The existing visible-chapter screen below is a narrower possible-placement inventory.
+
 Rekeying at **one** original visual-chapter boundary still leaves contradictory singleton groups, regardless of which of the eight chapter cuts is chosen:
 
 | Number of authorized rekeys | Chapter-cut combinations | Combinations admitting all 83 singleton words as A/I/O |
