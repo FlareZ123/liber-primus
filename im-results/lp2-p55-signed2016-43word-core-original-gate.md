@@ -24,4 +24,4 @@ The rune transliterations are literal GP token concatenations; an apparent Engli
 
 This exact clue-composed direct prime-sum key **does not decode any authenticated unknown p55 passage** and is unsuitable as the complete p55 decoder prerequisite for Director #41. The authentic 43-word 2016 message and physically real 43 interiors remain independently interesting; a separately authored key operation or receiver selection would be needed to pursue them further. Avoid proliferating more keys solely on the 43=43 coincidence.
 
-[Source-exact single-file original and positive-control test](../sims/lp2_p55_signed2016_43_wordprime_sft.cjs).
+[Source-exact single-file original and positive-control test](../sims/lp2_p55_signed2016_43_wordprime_sft.cjs), [passing Windows Node22 CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43637155028).
