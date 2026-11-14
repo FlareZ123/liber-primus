@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_2016_beginning_crib_source_native_sft.cjs
       - name: Test original manuscript grammar under doubled-plaintext-rune insertion
         run: node sims/lp2_doubled_plaintext_escape_wordgrammar_sft.cjs
+      - name: Test p55 terminal cross-page loopback and source-directed cipher inverse
+        run: node sims/lp2_p55_final6_p27_28loop_original_sft.cjs
