@@ -39,7 +39,7 @@ def fetch_bytes(url: str) -> bytes:
     return response.content
 
 
-def source_pages(kind: str, data: bytes) -> list[tuple[str, np.ndarray]]:
+def source_pages(name: str, kind: str, data: bytes) -> list[tuple[str, np.ndarray]]:
     if kind == "png":
         img = cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_GRAYSCALE)
         if img is None:
@@ -53,7 +53,10 @@ def source_pages(kind: str, data: bytes) -> list[tuple[str, np.ndarray]]:
         txt = pdf[i].get_text().lower()
         if "5–6" in txt or "5-6" in txt or "fig. 5" in txt or "figures 5" in txt:
             candidates.update((j for j in (i - 1, i, i + 1) if 0 <= j < len(pdf)))
-    if not candidates:
+    if name == "greatlakes1972":
+        # The only relevant venation plate is printed page 60, PDF index 27.
+        candidates = {i for i in (26, 27, 28) if i < len(pdf)}
+    elif not candidates:
         candidates.update(range(min(12, len(pdf))))
     # Reduce artifacts to finite, pre-selected pages (the caption and adjacent spread).
     out: list[tuple[str, np.ndarray]] = []
@@ -147,7 +150,7 @@ def run() -> dict[str, object]:
             data = fetch_bytes(url)
             record["sha256"] = hashlib.sha256(data).hexdigest()
             record["bytes"] = len(data)
-            page_items = source_pages(kind, data)
+            page_items = source_pages(name, kind, data)
             candidates = []
             for label, source in page_items:
                 candidates.append({"frame": label + "-fullpage", **match(source, wing)})
