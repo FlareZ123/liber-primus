@@ -75,12 +75,21 @@ def p05_components(data):
     assert len(jpeg) == len(reverse_jpeg) == 336353 and len(center) == 360
     assert reverse_jpeg == jpeg[::-1]
     assert center[:2] == bytes([10, 10])
-    reverse_hex = center[2:].decode("ascii")
-    assert re.fullmatch(r"[0-9a-f]{358}", reverse_hex)
-    square_text = bytes.fromhex(reverse_hex[::-1])
-    assert len(square_text) == 179
+    hex_text = center[2:].decode("ascii")
+    assert re.fullmatch(r"[0-9a-f]{358}", hex_text)
+    payload = bytes.fromhex(hex_text)
+    assert len(payload) == 179
+    assert hashlib.sha256(payload).hexdigest() == "82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa"
+    swap = lambda value: ((value & 15) << 4) | (value >> 4)
+    intermediate = bytes(swap(value) for value in payload)
+    assert hashlib.sha256(intermediate).hexdigest() == "a0af4d3ce0c360da421d2868b04c3c0e771eeeed9799742c6841a0ceed67885c"
+    readable = intermediate.decode("ascii")
+    assert readable.startswith("\n") and len(readable) == 179
+    final_text = re.sub(r"\d+", lambda match: match.group(0)[::-1], readable).encode("ascii")
+    assert len(final_text) == 179
+    assert hashlib.sha256(final_text).hexdigest() == "71344b0cee96421c1df9a338c08380be5307d790535b502d3f8451c8dd17441b"
     rows = [list(map(int, re.split(r"\s+", line.strip())))
-            for line in square_text.decode("ascii").strip().splitlines()]
+            for line in final_text.decode("ascii").strip().splitlines()]
     expected = [
         [272, 138, 341, 131, 151],
         [366, 199, 130, 320, 18],
@@ -97,10 +106,13 @@ def p05_components(data):
         "jpeg_segment336353": jpeg,
         "reversed_jpeg_tail336353": reverse_jpeg,
         "center360": center,
-        "reversed_hex358": reverse_hex.encode("ascii"),
-        "decoded_square_text179": square_text,
+        "hex_text358": hex_text.encode("ascii"),
+        "decoded_payload179": payload,
+        "nibble_swapped_intermediate179": intermediate,
+        "final_square_text179": final_text,
     }, {"jpeg_bytes": len(jpeg), "center_bytes": len(center),
-        "reversed_hex_chars": len(reverse_hex), "square_text_bytes": len(square_text),
+        "hex_text_chars": len(hex_text), "payload_bytes": len(payload),
+        "nibble_swapped_bytes": len(intermediate), "final_square_text_bytes": len(final_text),
         "magic_constant": 1033}
 
 
@@ -150,7 +162,7 @@ def main():
         component_rows.append({"candidate": name, "bytes": len(data), "matches": hit})
 
     comparisons = (len(page_rows) + len(component_rows)) * len(funcs)
-    assert comparisons == (120 if args.whirlpool else 96)
+    assert comparisons == (130 if args.whirlpool else 104)
     assert not matches
     print(json.dumps({
         "target": TARGET, "source": str(args.source),
