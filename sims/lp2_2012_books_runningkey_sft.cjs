@@ -6,7 +6,7 @@
  * pinned historical sources; neither is copied into this research repository.
  *
  * Node.js 22:
- * node sims/lp2_2012_books_runningkey_sft.cjs path\to\book-code.py path\to\31447.txt
+ * node sims/lp2_2012_books_runningkey_sft.cjs path\to\agrippa.txt path\to\31447.txt
  */
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
@@ -23,11 +23,12 @@ function pinnedBlob(file, expected) {
 }
 
 assert(process.argv[2] && process.argv[3],
-  "Pass original archived 2012 Agrippa book-code.py and Britannica 31447.txt");
-const agrippaText = pinnedBlob(process.argv[2],
-  "a4e13bdcbfa64be9c087e092b51f028126f51cb3")
-  .match(/^book\s*=\s*"""([\s\S]*?)"""/mu)?.[1];
-assert(agrippaText, "Missing original Agrippa poem assignment");
+  "Pass original archived 2012 Agrippa agrippa.txt and Britannica 31447.txt");
+const agrippaLines = pinnedBlob(process.argv[2],
+  "673ba225d1277945f2d2e5056bf025db8e89bb92").split(/\r?\n/u);
+assert.equal(agrippaLines[0], "AGRIPPA");
+assert.equal(agrippaLines[5], "I hesitated");
+const agrippaText = agrippaLines.slice(5).join("\n");
 const britannicaLines = pinnedBlob(process.argv[3],
   "8cba4356812ff852e3fe9c88e80ab1e9b5b8670c").split(/\r?\n/u);
 const cicadaIndex = britannicaLines.findIndex(
