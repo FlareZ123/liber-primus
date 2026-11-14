@@ -70,6 +70,32 @@ A complete source-shaped positive control encrypts all **12,956** native-GP plai
 
 **Decision:** retire the *same start-aligned additive GP29 keystream shared across all nine original visual chapters* as a route to direct native-GP English plaintext. The test cannot exclude independently keyed chapters, unknown unequal offsets, stateful cipher/key clocks, altered printed word boundaries or other language registers. The previously published [natural-section pad-reuse gate](lp2-natural-section-pad-reuse-gate.md) concerns distinct legacy text-section boundaries and one specific pair; its existing negative still stands. No authentic unknown-page plaintext/key is recovered.
 
+
+## Three internal red headings: source-frozen twelve-segment restart test (Director #953)
+
+**Decision, 14 November 2026:** The original-image source inventory independently marks red headings at physical **p6 local71 (scan23.jpg), p15 local9 (scan32.jpg) and p33 local91 (scan50.jpg)**. Splitting the nine top-level chapters at those positions produces **twelve source-visible segments**. A tempting player-facing hypothesis is that the same unknown GP29 additive key restarts at each red heading. This is an exact, source-frozen candidate clock, **not** an authenticated cipher instruction. The competing explanation is a literary subdivision without shared cipher state.
+
+The printed-order segment starts in global zero-based GP29 rune offsets are
+**0, 729, 1541, 1874, 3603, 3612, 5506, 6527, 7960, 8051, 9640, 12648**, with segment lengths
+**729, 812, 333, 1729, 9, 1894, 1021, 1433, 91, 1589, 3008, 308**.
+The unchanged original transcription supplies respectively **158, 176, 79, 383, 2, 435, 224, 326, 23, 355, 669, 66** complete printed words. No frozen cut crosses a printed word, and the 12 lengths reconstruct all **12,956** unknown ciphertext runes and **2,896** words. The local offsets and all three red spans are asserted directly against the [original-ink annotation](../resources/liber-primus/lp2-ink-annotations.json).
+
+For two segments encrypted as C_s[t] = P_s[t] + K[t] (mod 29) under the *same* restarted pad, the exact rune-equality indicator **C_a[t] = C_b[t] iff P_a[t] = P_b[t]** cancels the secret key. This equality invariant also holds for any **identical, invertible positionwise monoalphabetic map** restarted across all segments. Permitting each pair its most favorable constant relative residue is a further generous diagnostic for additive keys with segmentwise Caesar offsets; that relaxed diagnostic does not automatically apply to arbitrary permutations.
+
+| Original-input measurement | Aligned positions | Original equal | Original equal rate | Native-GP English control mean | Minimum of 1,500 controls |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| All 66 twelve-segment pairs | 37,376 | 1,253 | **0.03352419** | **0.06051730** | 0.05626605 |
+| Only 51 pairs involving a subdivided original chapter | 25,262 | 844 | **0.03340986** | **0.06059372** | 0.05589423 |
+| All pairs, pairwise optimum fixed residue | 37,376 | 1,849 best | **0.04947025** | **0.06327035** | 0.05955693 |
+| Split-chapter pairs, pairwise optimum residue | 25,262 | 1,277 best | **0.05055023** | **0.06378416** | 0.05949648 |
+
+The **1,500 deterministic independent controls** use source-native Shakespeare and Gibran GP29 word encodings, sampling a word of **exactly each original printed word's rune length** in the same section; chapter membership, the dependence among all paired comparisons, and the 12 original split positions are preserved. All four measures have **0/1,500** controls at or below the original, yielding an add-one empirical lower-tail bound **1/1,501 ≈ 0.0006662** for that explicit natural-language reference model. This is a scoped model comparison, not a universal probability for arbitrary unknown languages or segmentation.
+
+**Positive control:** An independent complete native-English plant uses the same original 12 segment/word shapes and a single **3,008-symbol** consecutive-prime-minus-one GP29 keystream restarted from position zero at every segment. The 3,008-rune synthetic longest segment recovers the complete key; all twelve sections decrypt and forward-reencrypt exactly. This rules out a nonfunctioning cancellation procedure as the explanation of the original's failure.
+
+**Research decision:** Retire the **shared same-keystream reset at all twelve visual and internal headings** for intact printed-word source-native English, including a common invertible per-offset substitution on the equality invariant. This adds a genuine internal-rubric test to the existing nine-top-level-chapter negative above. It does **not** exclude separately keyed segments, unmarked state changes, independent phase shifts, word-boundary alterations, or a different plaintext register. No unknown page plaintext or historical key was recovered. The [single-file Node.js 22 CommonJS reproducer](../sims/lp2_internal_rubric_sharedpad_sft.cjs) asserts source positions, original statistics, all native controls and exact synthetic recovery. Do not repeat this model with fitted rubric offsets absent independent source evidence.
+
+
 ## Consequence for research decisions
 
 A contemporary human reader could locate nine physical-page chapter groups and two solved terminal units without decrypting the text. The original Stage11 link sequence fixes the 0–57 page order, and the visibly different chapter punctuation singles out **p54–55 as its own final unknown section**, with 308 GP runes, before solved p56. If a genuine historical cipher operation or key appears, this is a source-constrained candidate for where to reset it. It does **not** justify a free sweep of section-varying keys, since no chapter marker currently specifies an inverse.
