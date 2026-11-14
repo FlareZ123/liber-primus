@@ -130,6 +130,31 @@ assert.deepEqual(Object.fromEntries(Object.entries(totientGates)
   printedPrimeOrdinal23:8,reversedPrimeOrdinal23:88
 });
 
+// Direct words-as-map candidate: p23 has sixteen red heading runes and
+// source p55 has sixteen complete words. Apply one source title key per word.
+const title16 = page(23).slice(0,16);
+assert.equal(title16.length,words.length);
+assert.deepEqual(title16,[1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26]);
+/** @param {number} v @param {string} kind @returns {number} */
+function keyNum(v,kind) {
+  if (kind==='index') return v;
+  return kind==='prime' ? gp.prime[v] : gp.prime[v]-1;
+}
+const titleWordGates = [];
+for(const kind of ['index','prime','totient']) {
+  for(const sign of [-1,1]) {
+    const clear = words.flatMap((word,i) =>
+      word.map(c => mod(c+sign*keyNum(title16[i],kind))));
+    assert.equal(clear.length,75);
+    const concentration = ioc(clear);
+    assert(concentration < 0.04);
+    titleWordGates.push({kind,sign,ioc:concentration,
+      opening:clear.slice(0,20).map(x=>gp.translit[x]).join(' ')});
+  }
+}
+assert.deepEqual(titleWordGates.map(x=>Number(x.ioc.toFixed(6))),
+  [0.028829,0.032072,0.02955,0.033514,0.02955,0.033514]);
+
 const cipher = page(55).slice(1);
 const subtract = cipher.map((c,i) => mod(c - section[i]));
 const add = cipher.map((c,i) => mod(c + section[i]));
@@ -208,6 +233,6 @@ console.log(JSON.stringify({
   originalRunningKey:{minusIoc:ioc(subtract),plusIoc:ioc(add),
     minusPrefix:label(subtract.slice(0,20)),
     plusPrefix:label(add.slice(0,20)),solvedP57Plant:'75/75'},
-  bitPacketDigests:digests,totientGates,sourceWordNull:{trials,seed:'0x235557',hits},
+  bitPacketDigests:digests,totientGates,titleWordGates,sourceWordNull:{trials,seed:'0x235557',hits},
   conclusion:'exact source navigation equalities, two nonlinguistic direct inverses, six mismatched hashes'
 },null,2));
