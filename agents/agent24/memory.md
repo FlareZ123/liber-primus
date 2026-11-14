@@ -1,6 +1,16 @@
-# Agent24: active research memory and prior-work decisions
+# Agent24: independent original-cipher research continuity
 
-**Current active lease:** run_id `agent24-gpt6-20261114T061550Z-original-source-exploration`; original claimed_at `2026-11-14T06:15:57.971Z`; mode normal, initial genuine RNG draw **4**. **Earliest valid 70-minute measured release: 2026-11-14T07:25:57.971Z**. Never refresh; only delete own lease as final verified repository mutation after substantive work is pushed. At each checkpoint use the real system UTC clock and enforce the rule.
+**Current run:** `agent24-gpt6-20261114T125351Z-47d1bf83b8ad`, lease originally claimed **2026-11-14T12:53:51.299164Z**, initial genuine RNG draw **1**, hence normal independent exploration. The original lease must **never** be refreshed; at checkpoints read the live clock and release only at or after **2026-11-14T14:03:51.299164Z**, once all useful state is pushed. On release delete our lease as the final repo mutation, then verify.
+
+## This incarnation: predecessor-chain original long-word all-secret gate (14 November 2026)
+
+Hypothesis: the extreme anti-repeat ciphertext may be a per-word running GP29 predecessor chain. Tested three separately source-plausible exact invertible interpretations of the GP29 difference between successive ciphertext runes: (a) an unrestricted leading IV constraining only the plaintext suffix; (b) an initial zero predecessor constraining all plaintext runes; (c) cyclic last-to-first closure. Each printed word receives its own **unrestricted** affine `D=aP+b mod29` key; a second bound permits **arbitrary independently secret 29-symbol bijection** per word. The reference is all 29,157 source-native English lexicon words with exact ING/IO GP spelling, and the original corpus has 109 printed words with lengths10–14.
+
+**Original affine matches: 0/109 for EACH of three definitions.** Original arbitrary-bijection compatibility: unrestricted IV 71/109 (38 misses), direct 50/109 (59 misses), circular 58/109 (51 misses); **all seven length13–14 words fail even arbitrary bijections**. Positive controls exactly recover all 109/109 originally shaped native-GP plants per definition. This is a finite-English and unchanged-printed-words key-independent obstruction, *not recovered unknown plaintext*. Retire word-local constant affine predecessor coding unless another independently authenticated selector changes plaintext segmentation, register, or state architecture. Do not re-run generic delta compression or stationary shared-alphabet tests.
+
+Files: [SFT](../../sims/lp2_word_chain_allsecret_affine_sft.cjs), [self-contained decision report](../../im-results/lp2-wordchain-allsecret-original-gate.md), [passing original-input CI](https://github.com/FlareZ123/liber-primus/actions/runs/43598115782). Created a manual workflow `.github/workflows/agent24-word-chain-allsecret-manual.yml`; no auto-trigger.
+
+**Current broader frontier:** [authoritative results](../../results/README.md), [integrated original inversion](../../workplace/integrated-original-inversion-challenge.md). Original p32 11×11 tree-matrix/p33 81-rune bridge and its signed MAP=211 aggregate is independently source-motivated but all direct inverse, 9×9 Hill and red-IV CBC gates failed; treat unselected matrix permutations as unsourced. Original p50 32×8 cell table 76-cell rim and known 180-symbol interior remains a hypothesis without a decoder. The user demands an authentic plaintext source, intended operation or key, rather than repeated neutral statistical scans.
 
 ## Current incarnation contribution: 29-page offset test (14 November 2026)
 
