@@ -42,11 +42,29 @@ A plausible human attempt is to treat the 16 recovered primes around 3301 as the
 
 This rejects only the exact 30-digit repeating-key/additive consumer and its two signs/F-skip variants. It does not establish that the primes are an LP2 key, and it does not exclude another source-selected use of the p15 sequence. Reproducer: [`sims/p15_fibonacci_prime_base29_key_sft.cjs`](../sims/p15_fibonacci_prime_base29_key_sft.cjs).
 
+## Exact historical OutGuess probe from the infinity continuation
+
+**Original-JPEG, positive-controlled decision (14 November 2026, Agent39):** a three-case, source-bounded application of the p15 infinity continuation produced **no recognizable payload**. The two original-language spellings of the *same* next prime are decimal `13477` and the signed-2013 TCP BASE29 representation `G0L`. Earlier Cicada stages demonstrably used OutGuess, so the native keyed JPEG decoder offers a concrete consumer of these strings. No first-party source instructs applying a continued p15 prime as a JPEG password; this is an investigator-proposed cross-round transfer.
+
+Freeze the original carrier to the physical p15 JPEG `32.jpg`; for the historically represented `G0L` key, grant the immediately following original page p16 `33.jpg` as a second natural target. Do not enumerate alternate primes, punctuation, phases or JPEGs. Run the existing manual `.github/workflows/lp2-outguess.yml` with `custom_password` / `custom_image`, pinned OutGuess 0.4, its keyed source-image embed/recover positive, actual earlier Cicada default-key payload controls, and a genuine payload-free generated JPEG with the *same proposed key*.
+
+| Exact key | Original JPEG | Extracted bytes | SHA-256 of extracted bytes | Empirical entropy (bits/byte) | Authentic readable payload |
+| --- | --- | ---: | --- | ---: | --- |
+| `G0L` | `32.jpg` (p15) | 24,000 | `6a264052676b59e36528363f53467695fe8b43f83a2831feece0790e3c2d0d4a` | 7.992823 | **No** |
+| `G0L` | `33.jpg` (p16) | 24,000 | `0a859fb85147b991b507956699292cf178edf105277ac2a6fab67ab3ee345e47` | 7.991577 | **No** |
+| `13477` | `32.jpg` (p15) | 13,496 | `dff0fac83cb3a88391386b39b48fc691aa6052d47bd64ba33863e36e84fb45e3` | 7.988626 | **No** |
+
+**False-header control is essential.** The extractor reported formally internally consistent seed/length headers for all three source attempts, but the freshly manufactured *payload-free* JPEG reported the same kind of consistent header under `G0L` (**47,065** pseudo-bytes) and under `13477` (**46,193** pseudo-bytes). The existing [original-source all-key header theorem](lp2-outguess-universal-header-artifact.md) independently establishes that every physical LP2 original has an initial eligible-bit prefix forcing encrypted OutGuess header `ffffffff` for *every* password. Thus even the identical `G0L` 24,000-byte lengths and same first/last 32 bytes on two adjacent originals cannot authenticate a shared embedded message. The three middle bodies are high-entropy and yield no recognizable clear text, file format, PGP armor or source-specified binary signature.
+
+**Reproduce exact original input and controls:** [`G0L` on p15](https://github.com/FlareZ123/liber-primus/actions/runs/43648037315), [`G0L` on p16](https://github.com/FlareZ123/liber-primus/actions/runs/43648144842), [`13477` on p15](https://github.com/FlareZ123/liber-primus/actions/runs/43648148704). Each successful run prints an `OUTGUESS_KEYED_RAW` record, the same-key synthetic-no-payload control and exact payload SHA-256. Raw candidate artifacts are retained with those runs. Positive calibrated OutGuess embed/recover and two authentic Cicada default-key source controls pass in all three cases.
+
+**Decision:** retire the p15 infinity-prime → literal `G0L` / `13477` → ordinary OutGuess extraction on those directly associated original pages as a plaintext-recovery route. The original 16-cell equation and the one-term continuation remain mathematical clues; an alternative carrier, tool, password format, or plaintext-independent hidden binary mechanism needs a new independent selector. No new LP2 key, unknown plaintext or destination follows.
+
 ## What follows
 
 - The original p15 grid itself remains the only verified source for the 16-term construction and its visible spiral order. The one bounded signed-BASE29-derived 30-digit repeating GP29-shift key test is negative; do not repeat that exact consumer.
 - The complete external-source avenue remains negative at this scope. The 2013 prime_echo extraction is only a partial antecedent; do not turn it, the nearby PIP paper, or the later 2016 message into an LP2 key/source without an exact primary instruction.
-- The original infinity mark is a source-visible cue for considering one continuation term, not an open-ended search. The one-term p1598=13477 candidate was tested once at base+13477 and produced zero R40-B3 prefilter survivors in both predeclared clocks. Retire that exact DATA/560.13 consumer; retain the arithmetic association only as an unverified cross-round relation.
+- The original infinity mark supports one tentative next-prime continuation `p1598=13477`, encoded as `G0L` by the signed 2013 BASE29 convention. Both the prior DATA/560.13 offset consumer and the now-tested literal `G0L` / `13477` keyed OutGuess consumers on source-linked JPEGs fail to recover plaintext. Retire these exact transfers and preserve the continuation only as an unverified cross-round arithmetic relation.
 - The already documented p32 direction/navigation interpretation remains provisional and is not strengthened by this search. No unknown LP2 plaintext, authentic key, reversible cipher, or destination was recovered.
 
 ## Reopening criterion
