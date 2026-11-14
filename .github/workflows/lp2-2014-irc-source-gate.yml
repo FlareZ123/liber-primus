@@ -1,0 +1,28 @@
+name: LP2 original 2014 Freenode log corpus source gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-irc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download pinned original public IRC artifacts and inspect 2014 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in '#cicadasolvers.freenode.log' '#cicadasolvers.freenode.2.log' '#33012014.freenode.log'; do
+            encoded="%23${name:1}"
+            curl --fail --location --silent --show-error --retry 3 \
+              "https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/$encoded" \
+              --output "$RUNNER_TEMP/$name"
+          done
+          node sims/lp2_2014_original_irc_log_source_gate_sft.cjs \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
+            "$RUNNER_TEMP/#33012014.freenode.log"
