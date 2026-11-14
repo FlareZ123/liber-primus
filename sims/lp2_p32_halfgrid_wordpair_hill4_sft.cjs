@@ -1,0 +1,296 @@
+'use strict';
+
+/**
+ * Original-input SFT for the p32 HOME / BUDS diagonal-half-grid pair.
+ * No fitted plaintext, key, ciphertext edits, network access or file writes.
+ *
+ * Requires only Node.js (CommonJS) and files already checked into the repo.
+ */
+
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.resolve(__dirname, '..');
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'
+));
+const spelling = fs.readFileSync(
+  path.join(root, 'resources', 'control', 'english_wordfreq_textblob.txt'), 'utf8'
+);
+
+const alphabet = corpus.translit;
+const page32 = corpus.pages.find((page) => page.page === 32).indices;
+const target = corpus.pages
+  .filter((page) => page.page >= 33 && page.page <= 39)
+  .flatMap((page) => page.indices);
+const known = corpus.pages.find((page) => page.page === 57).indices.slice(0, 84);
+const single = new Set(alphabet.filter((name) => name.length === 1));
+const thresholds = [1, 2, 5, 10];
+const dictionary = new Map(thresholds.map((threshold) => [threshold, new Set()]));
+const frequencies = new Map();
+
+assert.equal(page32.length, 121);
+assert.equal(target.length, 1680);
+assert.equal(known.length, 84);
+
+for (const line of spelling.split(/\r?\n/)) {
+  const match = /^([a-z]+) (\d+)$/.exec(line);
+  if (!match) continue;
+  const word = match[1].toUpperCase();
+  const frequency = Number(match[2]);
+  if (word.length !== 4 || ![...word].every((letter) => single.has(letter))) continue;
+  frequencies.set(word, frequency);
+  for (const threshold of thresholds) {
+    if (frequency >= threshold) dictionary.get(threshold).add(word);
+  }
+}
+
+assert.equal(frequencies.get('HOME'), 295);
+assert.equal(frequencies.get('BUDS'), 6);
+assert.deepEqual(thresholds.map((t) => dictionary.get(t).size), [1532, 1229, 864, 659]);
+
+/**
+ * Return one horizontally read four-rune spelling.
+ * @param {number[]} runes GP index sequence
+ * @param {number} first first sequence index
+ * @returns {string}
+ */
+function wordAt(runes, first) {
+  return alphabet[runes[first]] +
+    alphabet[runes[first + 1]] +
+    alphabet[runes[first + 2]] +
+    alphabet[runes[first + 3]];
+}
+
+/**
+ * Enumerate horizontal four-rune words with a paired word shifted
+ * five rows and five columns in an 11x11 grid.
+ * @param {number[]} runes a 121-or-longer GP sequence
+ * @param {number} start window start offset
+ * @param {number} threshold minimum frequency in frozen TextBlob lexicon
+ * @returns {{row:number,col:number,first:string,second:string}[]}
+ */
+function wordPairs(runes, start, threshold) {
+  const found = [];
+  const accepted = dictionary.get(threshold);
+  for (let row = 0; row <= 5; row++) {
+    for (let col = 0; col <= 2; col++) {
+      const first = wordAt(runes, start + row * 11 + col);
+      if (!accepted.has(first)) continue;
+      const second = wordAt(runes, start + (row + 5) * 11 + col + 5);
+      if (accepted.has(second)) found.push({row, col, first, second});
+    }
+  }
+  return found;
+}
+
+const sourcePairs = wordPairs(page32, 0, 5);
+assert.deepEqual(sourcePairs, [{
+  row: 3, col: 0, first: 'HOME', second: 'BUDS'
+}]);
+assert.equal(wordAt(page32, 33), 'HOME');
+assert.equal(wordAt(page32, 93), 'BUDS');
+console.log('p32 source anchor pairs:', JSON.stringify(sourcePairs));
+console.log('p32 11x11 shift: row +5, column +5, stream +60');
+
+/** @returns {() => number} deterministic, fully specified xorshift32 stream */
+function rngFactory() {
+  let state = 0x33015635;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+}
+
+const next = rngFactory();
+const shuffle = page32.slice();
+const nullExceed = Object.fromEntries(thresholds.map((t) => [t, 0]));
+const nullSource = Object.fromEntries(
+  thresholds.map((t) => [t, wordPairs(page32, 0, t).length])
+);
+const samples = 200000;
+
+for (let trial = 0; trial < samples; trial++) {
+  for (let i = shuffle.length - 1; i > 0; i--) {
+    const other = next() % (i + 1);
+    [shuffle[i], shuffle[other]] = [shuffle[other], shuffle[i]];
+  }
+  for (const threshold of thresholds) {
+    if (nullSource[threshold] > 0 &&
+      wordPairs(shuffle, 0, threshold).length >= nullSource[threshold]) {
+      nullExceed[threshold]++;
+    }
+  }
+}
+
+assert.deepEqual(nullExceed, {1: 15, 2: 9, 5: 2, 10: 0});
+console.log('200000 exact-marginal shuffles, xorshift32 seed 0x33015635:');
+for (const threshold of thresholds) {
+  console.log('  min count=' + threshold +
+    ' candidates=' + dictionary.get(threshold).size +
+    ' original hits=' + nullSource[threshold] +
+    ' shuffled exceedances=' + nullExceed[threshold] +
+    ' plus-one tail=' + (nullSource[threshold] > 0
+      ? ((nullExceed[threshold] + 1) / (samples + 1)).toFixed(9)
+      : 'n/a'));
+}
+
+// Independent source original windows, including their authentic anti-repeat
+// properties and spelling distributions. Windows overlap; no p-value follows.
+let totalWindows = 0;
+const exactWindows = [];
+for (const page of corpus.pages) {
+  if (page.page > 55 || page.indices.length < 121) continue;
+  for (let offset = 0; offset + 121 <= page.indices.length; offset++) {
+    totalWindows++;
+    const pairs = wordPairs(page.indices, offset, 5);
+    if (pairs.length) exactWindows.push({page: page.page, offset, pairs});
+  }
+}
+assert.equal(totalWindows, 6482);
+assert.deepEqual(exactWindows, [{
+  page: 32, offset: 0, pairs: sourcePairs
+}]);
+console.log('source-native 121-rune windows checked:', totalWindows);
+console.log('windows with +5,+5 common-word pair:', JSON.stringify(exactWindows));
+
+/** @param {number} value @returns {number} canonical element of GF(29) */
+const mod = (value) => ((value % 29) + 29) % 29;
+
+/** @param {number} value @returns {number} multiplicative inverse in GF(29) */
+function modularInverse(value) {
+  for (let candidate = 1; candidate < 29; candidate++) {
+    if (mod(candidate * value) === 1) return candidate;
+  }
+  throw new Error('non-invertible field element: ' + value);
+}
+
+/** @param {number[][]} matrix @returns {number[][]} */
+function transpose(matrix) {
+  return matrix[0].map((unused, col) => matrix.map((row) => row[col]));
+}
+
+/** @param {number[][]} matrix @returns {number[][]} */
+function matrixInverse(matrix) {
+  const rows = matrix.map((row, i) =>
+    row.map(mod).concat([0, 1, 2, 3].map((j) => Number(i === j)))
+  );
+  for (let col = 0; col < 4; col++) {
+    let pivot = col;
+    while (pivot < 4 && rows[pivot][col] === 0) pivot++;
+    if (pivot === 4) throw new Error('matrix singular in GF(29)');
+    [rows[col], rows[pivot]] = [rows[pivot], rows[col]];
+    const unit = modularInverse(rows[col][col]);
+    for (let j = 0; j < 8; j++) rows[col][j] = mod(unit * rows[col][j]);
+    for (let i = 0; i < 4; i++) {
+      if (i === col) continue;
+      const factor = rows[i][col];
+      for (let j = 0; j < 8; j++) {
+        rows[i][j] = mod(rows[i][j] - factor * rows[col][j]);
+      }
+    }
+  }
+  return rows.map((row) => row.slice(4));
+}
+
+/** @param {number[][]} matrix @returns {number} */
+function determinant(matrix) {
+  if (matrix.length === 1) return mod(matrix[0][0]);
+  let result = 0;
+  for (let col = 0; col < matrix.length; col++) {
+    const minor = matrix.slice(1).map((row) =>
+      row.filter((unused, j) => j !== col));
+    result += (col % 2 ? -1 : 1) * matrix[0][col] * determinant(minor);
+  }
+  return mod(result);
+}
+
+/** @param {number[][]} matrix @param {number[]} vector @returns {number[]} */
+function multiply(matrix, vector) {
+  return matrix.map((row) => mod(
+    row.reduce((acc, value, i) => acc + value * vector[i], 0)
+  ));
+}
+
+/**
+ * Whole-body invertible GF29 Hill transform with a fixed four-wide clock.
+ * @param {number[]} input
+ * @param {number[][]} matrix
+ * @param {boolean} strands If true, apply to four equal-length strands
+ * @returns {number[]}
+ */
+function transform(input, matrix, strands) {
+  assert.equal(input.length % 4, 0);
+  const length = input.length / 4;
+  const output = input.slice();
+  for (let i = 0; i < length; i++) {
+    const positions = strands
+      ? [i, i + length, i + length * 2, i + length * 3]
+      : [i * 4, i * 4 + 1, i * 4 + 2, i * 4 + 3];
+    const result = multiply(matrix, positions.map((index) => input[index]));
+    positions.forEach((index, k) => { output[index] = result[k]; });
+  }
+  return output;
+}
+
+/** @param {number[]} indices @returns {number} */
+function ioc(indices) {
+  const frequency = Array(29).fill(0);
+  for (const index of indices) frequency[index]++;
+  return frequency.reduce((total, n) => total + n * (n - 1), 0) /
+    (indices.length * (indices.length - 1));
+}
+
+// Four parallel six-cell HOME -> BUDS diagonals. Shed both endpoints of
+// each track, leaving the sixteen original interior rune values.
+const ordinalMatrix = Array.from({length: 4}, (unused, col) =>
+  Array.from({length: 4}, (other, offset) =>
+    page32[(4 + offset) * 11 + col + offset + 1]
+  )
+);
+const primeMatrix = ordinalMatrix.map((row) =>
+  row.map((index) => mod(corpus.prime[index]))
+);
+assert.equal(determinant(ordinalMatrix), 22);
+assert.equal(determinant(primeMatrix), 7);
+console.log('interior ordinal matrix:', JSON.stringify(ordinalMatrix));
+console.log('GF29 determinants:', determinant(ordinalMatrix), determinant(primeMatrix));
+
+const results = [];
+for (const [keyName, matrix] of [
+  ['ordinal', ordinalMatrix],
+  ['prime', primeMatrix]
+]) {
+  for (const orientation of ['matrix', 'transpose']) {
+    const sourceMatrix = orientation === 'matrix' ? matrix : transpose(matrix);
+    const inverse = matrixInverse(sourceMatrix);
+    for (const operation of ['multiply', 'inverse']) {
+      const decoder = operation === 'multiply' ? sourceMatrix : inverse;
+      const encoder = operation === 'multiply' ? inverse : sourceMatrix;
+      for (const strands of [false, true]) {
+        const result = transform(target, decoder, strands);
+        assert.deepEqual(transform(result, encoder, strands), target);
+        const encryptedPlant = transform(known, encoder, false);
+        assert.deepEqual(transform(encryptedPlant, decoder, false), known);
+        results.push({
+          keyName, orientation, operation, strands,
+          ioc: Number(ioc(result).toFixed(10)),
+          first: result.slice(0, 30).map((index) => alphabet[index]).join('')
+        });
+      }
+    }
+  }
+}
+assert.equal(results.length, 16);
+const ranked = results.sort((a, b) => b.ioc - a.ioc);
+assert.ok(Math.abs(ranked[0].ioc - 0.0347095777) < 1e-9);
+assert.ok(Math.abs(ranked[15].ioc - 0.0342125415) < 1e-9);
+console.log('next chapter original pp33-39 count:', target.length);
+console.log('original IoC:', ioc(target).toFixed(10),
+  'solved p57 reference IoC:', ioc(known).toFixed(10));
+console.log('Hill4 original inverse candidates (ranked by IoC):');
+for (const result of ranked) console.log(JSON.stringify(result));
+console.log('PASS: exact originals, shuffle controls and reversible GP29 plants');
