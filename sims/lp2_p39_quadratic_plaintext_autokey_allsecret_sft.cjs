@@ -167,6 +167,7 @@ function random32() {
   return rng >>> 0;
 }
 const nativeScores = [];
+const nativeTapes = [];
 let nativeFirst = [];
 for (let trial = 0; trial < 100; trial++) {
   const P = [];
@@ -176,12 +177,71 @@ for (let trial = 0; trial < 100; trial++) {
   }
   assert.equal(P.length, cipher.length);
   if (trial === 0) nativeFirst = P;
+  nativeTapes.push(P);
   nativeScores.push(score(P));
 }
 nativeScores.sort((a, b) => a - b);
 assert(Math.abs(nativeScores[0] - (-2.41812382389001)) < 1e-10);
 assert(Math.abs(nativeScores[49] - (-2.363513179239373)) < 1e-10);
 assert(Math.abs(nativeScores[99] - (-2.301110948660443)) < 1e-10);
+
+/** Exact GP symbol equality count at positions with the same phase.
+ * @param {number[]} symbols
+ * @param {number} period
+ * @returns {{equal:number,pairs:number,rate:number}} */
+function samePhasePairs(symbols, period) {
+  const bins = Array.from({length: period}, () => new Int32Array(29));
+  let equal = 0;
+  let pairs = 0;
+  for (let i = 0; i < symbols.length; i++) {
+    const row = bins[i % period];
+    equal += row[symbols[i]];
+    pairs += Math.floor(i / period);
+    row[symbols[i]]++;
+  }
+  return {equal, pairs, rate: equal / pairs};
+}
+
+// With plaintext-index forcing, the unknown-seed difference is homogeneous:
+// δk[i+2] = 19 δk[i+1] + (4-sign) δk[i] mod 29.
+// sign +: roots 7 and 12 (orders 7 and 4), period 28.
+// sign -: roots 23 and 25 (both order 7), period 7.
+// The original ciphertext determines a zero-seed particular solution;
+// every other unknown seed differs by a fixed periodic pad. Same-phase
+// equality is thus EXACTLY invariant under all 841 secret key pairs.
+const indexAutokeyPeriodInvariant = [];
+for (const sign of [1, -1]) {
+  const period = sign === 1 ? 28 : 7;
+  const p0 = decrypt(cipher, sign, "index", 0, 0);
+  const originalCount = samePhasePairs(p0, period);
+  const expected = sign === 1
+    ? {equal: 5335, pairs: 159216}
+    : {equal: 22194, pairs: 641358};
+  assert.equal(originalCount.equal, expected.equal);
+  assert.equal(originalCount.pairs, expected.pairs);
+  for (const [a, b] of [[1, 0], [0, 1]]) {
+    const other = decrypt(cipher, sign, "index", a, b);
+    const difference = other.map((v, i) => mod(v - p0[i]));
+    assert(difference.every((v, i) =>
+      i < period || v === difference[i - period]));
+    assert.equal(samePhasePairs(other, period).equal, originalCount.equal);
+  }
+  const controls = nativeTapes
+    .map(P => samePhasePairs(P, period).equal).sort((a, b) => a - b);
+  assert(controls[0] > originalCount.equal);
+  const encryptedPlant = encrypt(nativeFirst, sign, "index", 9, 24);
+  const zeroSeedDecipheredPlant = decrypt(encryptedPlant, sign, "index", 0, 0);
+  assert.equal(samePhasePairs(zeroSeedDecipheredPlant, period).equal,
+    samePhasePairs(nativeFirst, period).equal);
+  indexAutokeyPeriodInvariant.push({
+    sign, period, original: originalCount,
+    nativeWordMatchedControls: {
+      count: controls.length, min: controls[0],
+      median: controls[49], max: controls[99]
+    },
+    plantedNativeEqualityPreserved: true
+  });
+}
 
 const original = [];
 const positive = [];
@@ -223,6 +283,7 @@ console.log(JSON.stringify({
     cipherSignOptions: 2, feedbackTypes: 2, secretSeedsPerModel: 841},
   model: "C[i]=P[i]+sign*K[i]; K[i+2]=19*K[i+1]+4*K[i]+GP(P[i]) mod29",
   original,
+  indexAutokeyPeriodInvariant,
   nativeControls: {count: 100, min: nativeScores[0],
     median: nativeScores[49], max: nativeScores[99]},
   nativePositivePlants: positive,
