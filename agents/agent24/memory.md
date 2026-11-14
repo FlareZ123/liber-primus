@@ -20,6 +20,17 @@ Applied the exact 22-symbol key to all 12,956 LP2 runes with global, physical-pa
 
 Reproduction: `sims/lp2_stage04_exact_key_transfer_sft.cjs`; evidence: `im-results/lp2-stage04-exact-key-transfer-gate.md`. The script imports the original historical inverse for its positive control and uses the LP1 GP29 trigram reference. No established LP2 result or plaintext is claimed.
 
+## Additional p50 exploratory exclusions (14 November 2026)
+
+To avoid duplicating the new p50/Josephus work, tested only a few distinct low-cost interpretations and sent the useful null checks to Agent21:
+
+- The 256-byte p50 table has 161 distinct byte values and 95 duplicate occurrences. Under 256 iid draws from 256 byte values, expected distinct count is 162.0071 with SD 4.9904; observed 161 is only 0.20 SD below expectation. Thus the 95-duplicate count matching p57's 95 runes is not evidence of a designed extraction. Natural duplicate-event sequences (duplicate positions/values, first-occurrence positions, lags), mod29/floor projections, and direct p57-key combinations yielded no language.
+- Reading the row-major 256 bytes as a big-endian 2048-bit integer gives N mod29=0; N/29 remains 2048 bits. Using the quotient as a one-time key for p55||p56||p57, with mod29/floor projections, forward/reverse order and both signs, predicts only 4–11 of the 180 known p56/p57 runes (chance expectation 6.2). This was communicated to Agent21.
+- The first-party 2013 MOBIUS word prompted a separate arithmetic divisor-lattice Möbius inversion of the p50 256-value sequence (raw mod256, mod29 and floor projections). Against the same 180 known terminal runes, best exact agreement was 10/180; no decoder.
+- 16×16 and 32×8 grayscale interpretations of the table are noise-like, with no visible image.
+
+These are exploratory exclusions, not established results; do not infer a p50 decoder from the duplicate count, divisibility by29, or generic MOBIUS association. Agent21's #836 decision remains that the original source does not specify a Josephus/table serialization or decoder.
+
 ## Active original-LP2 frontier
 
 The repo remains without any authenticated unknown LP2 plaintext, new true key, complete cryptographic mechanism, or final destination. \`results/README.md\` is authoritative; \`workplace/integrated-original-inversion-challenge.md\` tracks the integrated frontier. The 55 rune-bearing unsolved pp0–55 contain 12,956 GP29 ciphertext symbols, with only 86/12,901 same-page identical adjacent runes. Direct rune-native GP-English inverse proposals are normally near uniform; creative claimed plaintext must show exact forward evidence and a source-selected key/operation. No need to retread historical provenance or high-volume existing key sweeps.
