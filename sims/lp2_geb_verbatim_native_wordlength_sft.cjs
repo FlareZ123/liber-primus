@@ -47,7 +47,7 @@ function retrieve(url) {
  * @returns {number}
  */
 function gpLength(sourceWord, tokenNames) {
-  const word = sourceWord.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U")
+  const word = sourceWord.toUpperCase().replace(/['’]/g,"").replace(/QU/g,"CW").replace(/V/g,"U")
     .replace(/[KQ]/g,"C").replace(/Z/g,"S");
   let length = 0;
   for (let i = 0; i < word.length; length++) {
@@ -134,7 +134,8 @@ async function main() {
     .update(Buffer.concat([Buffer.from("blob "+originalBytes.length+"\0"),originalBytes]))
     .digest("hex");
   assert.equal(hash,EXPECTED_GIT_BLOB);
-  const gebWords=originalBytes.toString("utf8").match(/[a-z]+/gi)||[];
+  const gebWords=originalBytes.toString("utf8").match(/[a-z]+(?:[\'’][a-z]+)*/gi)||[];
+  assert.equal(gebWords.length,318443,"Source book word segmentation with internal apostrophes");
   const gebLengths=gebWords.map(word=>gpLength(word,tokens));
   assert(gebLengths.length>150000);
   const one=longest(lengths,gebLengths);
