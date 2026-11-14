@@ -132,10 +132,76 @@ function test(groups, count, seed) {
   };
 }
 
+/**
+ * The first printed sexagesimal character is also visible as a source
+ * high digit. Digit 4 is the rare top band (values 240..255, 17 cells).
+ * Scan all 31x6 contiguous 2x3 windows, with the fixed top-band predicate.
+ * Exploratory: band and window were identified after seeing the 4A/4B hotspot.
+ *
+ * @param {number[]} bytes
+ */
+function rareHighDigitWindow(bytes) {
+  let max = 0;
+  const locations = [];
+  for (let r = 0; r < 31; r++) for (let c = 0; c < 6; c++) {
+    let count = 0;
+    for (let dr = 0; dr < 2; dr++)
+      for (let dc = 0; dc < 3; dc++)
+        count += Number(bytes[8 * (r + dr) + c + dc] >= 240);
+    if (count > max) {
+      max = count;
+      locations.length = 0;
+    }
+    if (count === max) locations.push([r + 1, c + 1]);
+  }
+  return {max, locations};
+}
+
+/** A joint exploratory source-row null for top-band concentration and +1 walks. */
+function highDigitRowControl(count, seed) {
+  const random = rng(seed);
+  const rows = partition((v, i) => Math.floor(i / 8));
+  const observed = metrics(source);
+  const rare = rareHighDigitWindow(source).max;
+  let high = 0, triples = 0, four = 0, jointHighTriples = 0, jointHighFour = 0;
+  for (let trial = 0; trial < count; trial++) {
+    const a = source.slice();
+    for (const indices of rows) for (let j = indices.length - 1; j > 0; j--) {
+      const k = random() % (j + 1);
+      const x = indices[j], y = indices[k];
+      [a[x], a[y]] = [a[y], a[x]];
+    }
+    const h = rareHighDigitWindow(a).max;
+    const m = metrics(a);
+    high += Number(h >= rare);
+    triples += Number(m.triplets >= observed.triplets);
+    four += Number(m.paths4.length >= observed.paths4.length);
+    jointHighTriples += Number(h >= rare && m.triplets >= observed.triplets);
+    jointHighFour += Number(h >= rare && m.paths4.length >= observed.paths4.length);
+  }
+  return {
+    samples: count, seed,
+    upper_tail_add_one: Object.fromEntries([
+      ["max_top_band_2x3", high], ["successor_triplets", triples],
+      ["successor_four_cell_walks", four],
+      ["joint_top_band_and_triplets", jointHighTriples],
+      ["joint_top_band_and_four_cell_walks", jointHighFour]
+    ].map(([name, hits]) => [name, (hits + 1) / (count + 1)])),
+    counts: {high, triples, four, jointHighTriples, jointHighFour}
+  };
+}
+
 const actual = metrics(source);
 assert.deepEqual([actual.edges, actual.triplets, actual.longest], [14, 4, 4]);
 assert.deepEqual(actual.paths4, [[160,159,167,158], [168,159,167,158]]);
 assert.ok(actual.paths3.some(p => p.join(",") === "49,57,66"));
+const rareBand = rareHighDigitWindow(source);
+assert.deepEqual(rareBand, {max: 5, locations: [[20, 6]]});
+assert.equal(source.filter(v => v >= 240).length, 17);
+const syntheticHighBand = source.slice();
+for (let r = 19; r <= 20; r++) for (let c = 5; c <= 7; c++)
+  syntheticHighBand[r * 8 + c] = 255;
+assert.equal(rareHighDigitWindow(syntheticHighBand).max, 6);
 const plant = source.slice();
 for (let k = 0; k < 6; k++) {
   const sourceIndex = plant.indexOf(245 + k);
@@ -165,6 +231,8 @@ console.log(JSON.stringify({
   source: "LP2 original JPEG scans 66-68 / resource base60-grid.json",
   byte_sha256: "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290",
   observation: actual,
+  top_band_2x3: rareBand,
+  rare_high_digit_row_preserving_null: highDigitRowControl(30000, 0x54484b31),
   native_positive: {planted_path_at_least_six: metrics(plant).longest},
   nulls: controls,
   interpretation: "exploratory spatial ordering, no cipher or unknown plaintext"
