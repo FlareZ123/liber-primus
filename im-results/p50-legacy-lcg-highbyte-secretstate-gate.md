@@ -1,6 +1,6 @@
-# LP2 numeric table: complete hidden-state inversion of legacy 32-bit LCG upper-byte streams
+# LP2 numeric table: fixed-multiplier all-increment exclusion and historical LCG hidden-state inversion
 
-**Agent 17, 14 November 2026. Classification: bounded, source-original cryptanalytic exclusion.** The table yields no state, unknown-page plaintext, key, or Cicada destination under these fully specified generator contracts.
+**Agent 17, 14 November 2026. Classification: bounded, source-original cryptanalytic exclusion.** The table yields no state, unknown-page plaintext, key, or Cicada destination under these fixed-multiplier generator contracts, even with arbitrary hidden increments.
 
 ## Causal path and competing interpretation
 
@@ -8,7 +8,23 @@ The original LP2 pp49–51 print a 32-row by eight-column numerical table. Inter
 
 [Prior state tests](grid-truncated-xorshift32-original-state-gate.md) already exclude Marsaglia xorshift32 and the **low byte** of arbitrary affine LCG32 output, plus small GF(2)-linear-state hypotheses. This experiment addresses an independently distinct and previously identified gap: **middle/high byte lanes of carry-bearing 32-bit LCGs, with completely unknown original seed**. An upper byte depends on hidden lower-state carries; failure of the low-byte test does not cover it.
 
-## Exhaustive original-cipher test
+## Stronger all-increment theorem: no additive key search
+
+Fix a 32-bit LCG multiplier **a**, but grant **every possible secret 32-bit additive increment c and every hidden initial state**. Define adjacent hidden-state differences `D[i] = s[i+1]-s[i] (mod 2^32)`. For an affine generator the additive constant cancels:
+
+`D[i+1] = a*D[i] (mod 2^32)`.
+
+If a printed byte consists of state bits `t...t+7`, the high byte of the hidden state difference modulo `2^(t+8)` must equal the modulo-256 difference between two printed bytes, up to a possible carry or borrow of **one**. This necessary condition holds for every unseen lower `t` bits and every secret increment.
+
+For the three historical multipliers listed below, the three source-native grid traversals and byte shifts **t=16,23,24**, enumerate **every** first state difference compatible with the first visible pair. There are `3×2^t` candidate initial differences per model. Propagate each candidate under the fixed multiplier, imposing the exact necessary carry bound for the next **14 original adjacent-byte differences**. Every actual original LCG with that multiplier, regardless of increment or seed, must leave at least one candidate.
+
+**Original table result: zero compatible first differences under all 27 combinations.** The observation deterministically excludes **all 2^32 additive increments and all hidden initial seeds** for those three multipliers, contiguous byte clocks, tested physical orderings and upper-byte lanes. It strengthens the original fixed-increment inversion below and is an algebraic source-byte contradiction rather than a heuristic ciphertext score.
+
+**Powered positive:** generate an independent actual 256-byte LCG stream using MSVC multiplier 214013, increment 2531011 and hidden seed `0x3301`, and observe only its top state byte. The same exact difference sieve retains **one genuine first difference** after the first 16 bytes. This establishes recovery capability for a complete unseen state recurrence under the stated family.
+
+Reproduction: [all-increment source-original CJS SFT](../sims/p50_lcg_all_increment_difference_sft.cjs). An independent compiled C++17 implementation reported the same 27 original zero-survivor results and one planted difference. The test does not exhaust other possible LCG multipliers, irregular output clocks or encrypted grid bytes.
+
+## Earlier fixed-increment, full-state inversion
 
 The three historically familiar, entirely specified 32-bit recurrences are
 
@@ -34,6 +50,6 @@ Independently generate 256 artificial visible bytes from the MSVC recurrence usi
 
 ## Decision and next dependency
 
-Do not interpret the 256 bytes as the direct contiguous native output of these three legacy 32-bit LCGs under the nine printed orientation/byte-lane contracts. No plausible independent source instruction selects a particular alternative PRNG or skip schedule today. This result leaves encrypted table content, an unknown keyed generator, noncontiguous output clocks, different byte representations, nonlinear state evolution, and an external plaintext/key source entirely open.
+The original bytes cannot be direct contiguous native output from any affine 32-bit generator with one of these three historically familiar multipliers, **under any possible additive constant or seed**, in the three source-native traversals and three byte lanes. No plausible independent source instruction selects a particular alternative PRNG or skip schedule today. This result leaves encrypted table content, an unknown multiplier, a changing increment, noncontiguous output clocks, different byte representations, nonlinear state evolution, and an external plaintext/key source entirely open.
 
 To advance this route, recover a **source-authenticated generator or key derivation** and verify it *first against untouched original table bytes*, then against actual unknown LP2 ciphertext. Extending the catalog of arbitrary PRNG constants or trying unfixed offsets without that selector would not recover a historical key. The authoritative [research state](../results/README.md) therefore remains unchanged.

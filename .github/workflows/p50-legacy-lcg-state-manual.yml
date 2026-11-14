@@ -16,3 +16,5 @@ jobs:
         run: |
           node --check sims/p50_2014_lcg_highbyte_state_sft.cjs
           node sims/p50_2014_lcg_highbyte_state_sft.cjs
+          node --check sims/p50_lcg_all_increment_difference_sft.cjs
+          node sims/p50_lcg_all_increment_difference_sft.cjs
