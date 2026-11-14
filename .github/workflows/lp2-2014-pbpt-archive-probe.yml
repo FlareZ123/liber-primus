@@ -17,6 +17,8 @@ jobs:
           node-version: '22'
       - name: Check archive probe source
         run: node --check sims/lp2_2014_original_http_archive_lane_sft.cjs
+      - name: Verify PBPT query retains same-provider positive controls
+        run: node sims/lp2_2014_original_http_archive_lane_sft.cjs --selftest
       - name: Query Arquivo.pt and Archive-It for the original 2014 PBPT URL
         run: node sims/lp2_2014_original_http_archive_lane_sft.cjs --pbpt-only
       - name: Preserve any recovered original paste body
