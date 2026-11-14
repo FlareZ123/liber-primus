@@ -121,6 +121,10 @@ const reread = order.map(pos => ciphertext[pos]);
 assert.deepEqual(reread, generated);
 const recovered = feedback(reread, alpha).map(v => inverse[v]);
 assert.deepEqual(recovered, native);
+const reencrypted = [base];
+for (const p of recovered)
+  reencrypted.push(mod29(alpha * reencrypted.at(-1) + h[p]));
+assert.deepEqual(reencrypted, reread);
 assert(ioc(recovered) > 0.05);
 assert(results.every(r => r.best.ioc < 0.04));
 console.log(JSON.stringify({
