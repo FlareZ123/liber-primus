@@ -136,6 +136,31 @@ for (const page of unsolved) {
   }
 }
 assert.deepEqual(sourceOffsets, [{page: 48, offset: 139}]);
+/*
+ * Longer source-context consequence, evaluated after discovering GEMY:
+ * at p48:138 the preceding rune is M, the last rune in the GEM cycle,
+ * yielding MGEMY. This is a source fact, not an independent null p-value.
+ */
+assert.deepEqual(physical48.slice(138, 143), [19, 6, 18, 19, 26]);
+
+/*
+ * Radix59 removes the unused lowercase f from the original 60-character
+ * conventional alphabet. It is a real lossless competitor for the printed
+ * tokens, but changes the original 103→GEM label to 103→GST under the
+ * very same q/keypad rule. This is a conditional codec discriminator.
+ */
+const printed = readJSON("resources/liber-primus/base60-grid.json");
+const alphabet59 = printed.alphabet.replace("f", "");
+assert.equal(alphabet59.length, 59);
+const radix59 = printed.rows.flat().map((token) =>
+  59 * alphabet59.indexOf(token[0]) + alphabet59.indexOf(token[1]));
+assert.equal(radix59.length, 256);
+assert.equal(radix59.filter((n, i) => n !== bytes[i]).length, 220);
+assert.deepEqual(matchingPointers(radix59, p48Grams),
+  {matches: 0, primeSelectorsReachingThreeCycle: 1, matched: []});
+assert.deepEqual(firstThreeCycle(radix59, steps(radix59), 103)
+  .map((index) => corpus.translit[index]), ["G", "S", "T"]);
+
 
 const nextOriginal = steps(bytes);
 const start103 = [103];
