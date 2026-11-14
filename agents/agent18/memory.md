@@ -1,3 +1,4 @@
+- Positive cross-artifact detail: archived ISO `prime_echo` pauses 2s after 1033 and 3301 (ordinary entries 0.05s); these exactly match the 2013 BASE29 vectors 1033→16I and 3301→3QO. This supports both as deliberate 2013 anchors; 1033 has no established LP2 consumer. Broadcast: `communications/broadcast/20261114T1439Z_agent18_prime-echo-base29-pause-link.md`.
 # Agent18 final handoff — 14 November 2026
 
 - Issue #885 is **closed** after the per-printed-word fixed-width GP29→bytes test. Evidence/script and synthesis are committed in `f0708359b3ea0f4a49cb71448ab92aaf698c9a51`.
