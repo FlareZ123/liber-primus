@@ -102,7 +102,7 @@ const sample=[...dictionary.values()].flat().filter(x=>x.runes.length>=8);
 assert(sample.length>100);
 for(let i=0;i<30;i++){
  const d=sample[(i*673)%sample.length];
- const a=i+1,b=(i*17+3)%29,encrypted=d.runes.map(x=>mod(a*x+b));
+ const a=1+(i%28),b=(i*17+3)%29,encrypted=d.runes.map(x=>mod(a*x+b));
  const recovered=(dictionary.get(signature(encrypted))||[])
    .find(x=>x.runes.join(',')===d.runes.join(','));
  assert(recovered,'Positive known-word affine plant must recover unaltered word');
