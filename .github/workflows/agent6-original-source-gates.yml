@@ -15,6 +15,7 @@ on:
           - predecessor
           - taylor
           - residual
+          - reserved
 permissions:
   contents: read
 jobs:
@@ -68,3 +69,6 @@ jobs:
       - name: Original signed DH2 polynomial residual six-page convolution inverse
         if: ${{ inputs.route == 'residual' }}
         run: node sims/lp2_p29_dh2_residual_convolution_sft.cjs
+      - name: All-secret fixed plaintext marker doublet source gate
+        if: ${{ inputs.route == 'reserved' }}
+        run: node sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs
