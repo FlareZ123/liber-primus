@@ -1,0 +1,192 @@
+"""Exact 31-bit Ghostscript 9.06 rand-key test on original LP2 singleton words.
+
+Run: python sims/lp2_ghostscript_rand_singleton_sft.py
+Dependency: numpy.
+
+The 2012 Ghostscript 9.06 source (ArtifexSoftware/ghostpdl tag
+ghostscript-9.06, gs/psi/zmath.c) specifies a Park-Miller generator:
+state[n+1] = 16807 * state[n] modulo (2^31-1).
+This read-only SFT tests two conventional GP29 projections, raw remainder
+and 29-bin scaling, as an additive changing-state key. It allows three
+arbitrary corrupted singleton words among 18 on physical LP2 pp15-22.
+No literal-F key-skip, variable-rate key clock, unknown plaintext register,
+or changed word boundaries are included in the tested architecture.
+"""
+import json
+from pathlib import Path
+from time import monotonic
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+M_INT = (1 << 31) - 1
+M = np.uint64(M_INT)
+A = 16807
+MOD = np.uint64(29)
+PLAINTEXT_A = 24
+PLAINTEXT_I = 10
+MAX_ERRORS = 3
+CHAPTER_START = 15
+CHAPTER_END_EXCLUSIVE = 23
+EXPECTED_SINGLETONS = (
+    (3738,26),(3783,23),(3881,9),(4006,10),(4142,17),(4148,28),
+    (4176,10),(4217,16),(4233,4),(4358,16),(4474,13),(4633,7),
+    (4699,4),(4751,2),(4794,17),(5253,28),(5319,25),(5336,9),
+)
+
+
+def extract_singletons():
+    """Derive offsets from original-ordered plaintext segmentation and GP rune data."""
+    corpus = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+    text = (ROOT / "resources/liber-primus/lp2-transcription.txt").read_text(encoding="utf-8")
+    original = "%".join(text.split("%")[:55])
+    alphabet = {char: i for i, char in enumerate(corpus["runes"])}
+    all_words = []
+    word = []
+    pos = 0
+    page = 0
+    start = 0
+    start_page = 0
+
+    def flush():
+        nonlocal word
+        if word:
+            all_words.append((start, start_page, tuple(word)))
+        word = []
+
+    for char in original:
+        if char in alphabet:
+            if not word:
+                start, start_page = pos, page
+            word.append(alphabet[char])
+            pos += 1
+        elif char == "%":
+            page += 1
+        elif char in "-.$&§0123456789":
+            flush()
+    flush()
+
+    assert pos == 12956, pos
+    assert len(all_words) == 2896, len(all_words)
+    singles = [(start, page, vals[0]) for start, page, vals in all_words if len(vals) == 1]
+    assert len(singles) == 83, len(singles)
+    selected = tuple((start, value) for start, page, value in singles
+                     if CHAPTER_START <= (page if page < 50 else page + 1)
+                     < CHAPTER_END_EXCLUSIVE)
+    assert selected == EXPECTED_SINGLETONS
+    return selected
+
+
+def times_constant(values, constant):
+    """Exact Mersenne reduction for uint64 products below (2^31)^2."""
+    prod = values * np.uint64(constant)
+    red = (prod & M) + (prod >> np.uint64(31))
+    return (red & M) + (red >> np.uint64(31))
+
+
+def projected(values, mode):
+    return values % MOD if mode == "mod" else (values * MOD) // M
+
+
+def scan(entries, mode, max_errors=MAX_ERRORS):
+    """Exhaust all nonzero generator states, allowing <=max_errors misses.
+
+    Because at most max_errors of the FIRST max_errors+1 singleton readings
+    can be bad, each valid candidate satisfies one tested anchor. Enumerate
+    every possible generator state at those anchors, then use modular powers
+    to jump directly to all other singleton positions. No seed guess list,
+    heuristic score, key phase or interpolation is involved.
+    """
+    assert len(entries) > max_errors
+    offsets = [offset for offset, _ in entries]
+    values = np.array([value for _, value in entries], dtype=np.int64)
+    key_a = (values - PLAINTEXT_A) % 29
+    key_i = (values - PLAINTEXT_I) % 29
+    originals = set()
+    visited = 0
+    anchor_survivors = []
+    start_time = monotonic()
+    for anchor in range(max_errors + 1):
+        powers = [
+            pow(A, (offset - offsets[anchor]) % (M_INT - 1), M_INT)
+            for offset in offsets
+        ]
+        choices = {int(key_a[anchor]), int(key_i[anchor])}
+        regions = []
+        for key in sorted(choices):
+            if mode == "mod":
+                regions.append((key or 29, M_INT, 29))
+            else:
+                low = max(1, (key * M_INT + 28) // 29)
+                high = min(M_INT, ((key + 1) * M_INT + 28) // 29)
+                regions.append((low, high, 1))
+        anchor_count = 0
+        for start, end, step in regions:
+            for base in range(start, end, step * 350_000):
+                states = np.arange(
+                    base, min(base + step * 350_000, end),
+                    step, dtype=np.uint64
+                )
+                visited += len(states)
+                errors = np.zeros(len(states), dtype=np.uint8)
+                for j in range(len(entries)):
+                    if j == anchor:
+                        continue
+                    key = projected(times_constant(states, powers[j]), mode)
+                    errors += ((key != key_a[j]) & (key != key_i[j])).astype(np.uint8)
+                    keep = errors <= max_errors
+                    states, errors = states[keep], errors[keep]
+                    if not len(states):
+                        break
+                for state in states:
+                    x0 = int(times_constant(
+                        np.array([state], dtype=np.uint64), powers[0]
+                    )[0])
+                    originals.add(x0)
+                    anchor_count += 1
+        anchor_survivors.append(anchor_count)
+    return {
+        "mode": mode, "singleton_count": len(entries),
+        "allowed_bad_singletons": max_errors,
+        "states_examined_with_anchor_overlap": visited,
+        "unique_surviving_generator_states": len(originals),
+        "survivor_at_first_singleton": sorted(originals)[:10],
+        "anchor_survivors": anchor_survivors,
+        "elapsed_seconds": round(monotonic() - start_time, 3),
+    }
+
+
+def synthetic_control(entries, seed, mode):
+    """Plant 18 known A/I singleton words under a known full-range seed."""
+    planted = []
+    for j, (offset, _) in enumerate(entries):
+        state = seed * pow(A, offset + 1, M_INT) % M_INT
+        key = state % 29 if mode == "mod" else state * 29 // M_INT
+        plain = PLAINTEXT_A if j % 2 == 0 else PLAINTEXT_I
+        encrypted = (plain + key) % 29
+        if j in (0, 4, 12):
+            encrypted = (encrypted + 3) % 29
+        planted.append((offset, encrypted))
+    first_state = seed * pow(A, entries[0][0] + 1, M_INT) % M_INT
+    return tuple(planted), first_state
+
+
+def main():
+    data = extract_singletons()
+    assert int(times_constant(np.array([M-1], np.uint64), 16807)[0]) == (
+        (M_INT-1)*16807 % M_INT
+    )
+    for mode in ("mod", "scaled"):
+        result = scan(data, mode)
+        print("ORIGINAL", result, flush=True)
+        assert result["unique_surviving_generator_states"] == 0
+
+    plant, expected = synthetic_control(data, seed=3301, mode="mod")
+    result = scan(plant, "mod")
+    print("PLANT: 3 altered words, seed=3301", result, flush=True)
+    assert expected in result["survivor_at_first_singleton"]
+    print("PASS: all 2^31-2 states exhausted with 3-edit allowance; planted seed recovered")
+
+
+if __name__ == "__main__":
+    main()
