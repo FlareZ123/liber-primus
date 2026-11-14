@@ -12,7 +12,8 @@
  *   advance event after an output repeat, and once at a chapter start.
  * K is, without fitted phase, p57 GP rune ordinals or phi(GP prime weights).
  *
- * This model is a narrow conditional original-input rejection.
+ * This model is a narrow conditional original-input rejection. A separate
+ * exact pair-collision invariant covers all 95 independent hidden alphabets.
  *
  * Run from repository root under Node 22:
  *   node sims/lp2_p57_95packet_eventclock_sft.cjs
@@ -124,6 +125,170 @@ const known = page(57);
 const planted = encrypt([known], sourceKey);
 assert.deepEqual(decrypt(planted, sourceKey).plain, [known]);
 
+/**
+ * Fixed-event key-invariant theorem.
+ * Each of the 95 source-observed packets owns one unknown 29-symbol
+ * permutation. Two symbols inside a packet are equal before encryption
+ * exactly when they are equal after encryption. Pair collisions are thus
+ * preserved under every possible set of 95 independent secret alphabets.
+ *
+ * @param {number[][]} chapters
+ * @returns {number[][]}
+ */
+function splitAtOutputDoublets(chapters) {
+  const packets = [];
+  for (const chapter of chapters) {
+    let begin = 0;
+    for (let i = 1; i < chapter.length; i++) {
+      if (chapter[i] === chapter[i - 1]) {
+        packets.push(chapter.slice(begin, i + 1));
+        begin = i + 1;
+      }
+    }
+    packets.push(chapter.slice(begin));
+  }
+  return packets;
+}
+
+/** @param {number[][]} packets */
+function collisionPairs(packets) {
+  let pairs = 0;
+  for (const packet of packets) {
+    const hist = Array(29).fill(0);
+    for (const rune of packet) hist[rune]++;
+    pairs += hist.reduce((sum, n) => sum + n * (n - 1) / 2, 0);
+  }
+  return pairs;
+}
+const sourcePackets = splitAtOutputDoublets(chapterCipher);
+const packetLengths = sourcePackets.map(packet => packet.length);
+assert.equal(packetLengths.length, 95);
+assert.equal(packetLengths.reduce((a, b) => a + b, 0), 12956);
+assert.equal(Math.min(...packetLengths), 6);
+assert.equal(Math.max(...packetLengths), 662);
+const packetOpportunities = packetLengths.reduce(
+  (sum, n) => sum + n * (n - 1) / 2, 0);
+const sourcePacketPairs = collisionPairs(sourcePackets);
+assert.equal(packetOpportunities, 1653451);
+assert.equal(sourcePacketPairs, 56482);
+
+/** @param {number[]} flat */
+function fixedSourcePacketScore(flat) {
+  let offset = 0;
+  const parts = packetLengths.map(length => {
+    const part = flat.slice(offset, offset + length);
+    offset += length;
+    return part;
+  });
+  assert.equal(offset, flat.length);
+  return collisionPairs(parts);
+}
+
+// Native GP control encoder copied from the project's established
+// previous-ciphertext-feedback entropy positive/reference calibration.
+const nativeTokens = corpus.translit.map((text, index) => ({text, index}))
+  .sort((a, b) => b.text.length - a.text.length);
+/** @param {string} source */
+function encodeNativeGP(source) {
+  const result = [];
+  const normalized = source.toUpperCase()
+    .replace(/QU/g, "CW").replace(/V/g, "U")
+    .replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  for (const word of normalized.match(/[A-Z]+/g) || []) {
+    for (let i = 0; i < word.length;) {
+      const token = nativeTokens.find(t => word.startsWith(t.text, i));
+      assert(token, "unmapped GP letter/digraph");
+      result.push(token.index);
+      i += token.text.length;
+    }
+  }
+  return result;
+}
+
+const controlSources = [
+  ["Shakespeare", "resources/control/shakespeare_first300k.txt"],
+  ["Gibran", "resources/control/gibran_prophet_58585.txt"],
+  ["Emerson", "resources/control/emerson_essays_2944.txt"]
+];
+const controlSummary = controlSources.map(([name, relative]) => {
+  const source = fs.readFileSync(path.join(root, relative), "utf8");
+  const native = encodeNativeGP(source);
+  const scored = [];
+  for (let start = 0; start + 12956 <= native.length; start += 6478) {
+    scored.push(fixedSourcePacketScore(native.slice(start, start + 12956)));
+  }
+  scored.sort((a, b) => a - b);
+  assert(scored.length > 0);
+  assert(scored[0] > sourcePacketPairs);
+  return {name, windows: scored.length, min: scored[0],
+    median: scored[Math.floor(scored.length / 2)], max: scored.at(-1)};
+});
+assert.deepEqual(controlSummary.map(x => x.windows), [32, 8, 49]);
+assert.deepEqual(controlSummary.map(x => x.min), [97001, 99357, 100937]);
+
+// Secret-permutation positives on the authentic original chapter clock:
+// every event slot has its own fully unrelated 29-symbol bijection,
+// constructed without observing the plaintext or ciphertext.
+let randomState = 0x3301761;
+const rand = () => {
+  randomState = (Math.imul(randomState, 1664525) + 1013904223) >>> 0;
+  return randomState;
+};
+function permutation() {
+  const table = Array.from({length: 29}, (_, i) => i);
+  for (let i = table.length - 1; i > 0; i--) {
+    const j = rand() % (i + 1);
+    [table[i], table[j]] = [table[j], table[i]];
+  }
+  return table;
+}
+const tables = Array.from({length: 95}, permutation);
+const inverseTables = tables.map(table => {
+  const inverse = Array(29).fill(-1);
+  table.forEach((v, i) => { inverse[v] = i; });
+  return inverse;
+});
+
+/**
+ * @param {number[][]} chapters
+ * @param {"encrypt"|"decrypt"} operation
+ */
+function applySecretPacketPermutation(chapters, operation) {
+  let event = -1;
+  const output = [];
+  for (const chapter of chapters) {
+    event++;
+    let previous = -1;
+    const out = [];
+    for (const rune of chapter) {
+      assert(event >= 0 && event < 95);
+      const transformed = operation === "encrypt"
+        ? tables[event][rune] : inverseTables[event][rune];
+      out.push(transformed);
+      const currentCipher = operation === "encrypt" ? transformed : rune;
+      if (currentCipher === previous) event++;
+      previous = currentCipher;
+    }
+    output.push(out);
+  }
+  return output;
+}
+const arbitraryOriginalPlain = applySecretPacketPermutation(
+  chapterCipher, "decrypt");
+assert.deepEqual(applySecretPacketPermutation(
+  arbitraryOriginalPlain, "encrypt"), chapterCipher);
+assert.equal(collisionPairs(splitAtOutputDoublets(
+  arbitraryOriginalPlain)), sourcePacketPairs);
+// The original's packet boundaries (not the decoded stream's own
+// repeat boundaries) must be retained when comparing arbitrary plaintext.
+assert.equal(fixedSourcePacketScore(arbitraryOriginalPlain.flat()),
+  sourcePacketPairs);
+const arbitraryKnownCipher = applySecretPacketPermutation([known], "encrypt");
+assert.deepEqual(applySecretPacketPermutation(
+  arbitraryKnownCipher, "decrypt"), [known]);
+assert.equal(collisionPairs(splitAtOutputDoublets(arbitraryKnownCipher)),
+  collisionPairs(splitAtOutputDoublets([known])));
+
 const summary = {
   finding: "source 95-key coincidence, both frozen direct online consumers nonprose",
   chapterRuneCounts: chapterCipher.map(c => c.length),
@@ -134,6 +299,14 @@ const summary = {
   p57KnownRuneCount: sourceKey.length,
   sourceP57: stats(sourceKey),
   originalDirectKeyTests: results,
+  allSecretPacketPermutationInvariant: {
+    observedSameSymbolPairs: sourcePacketPairs,
+    allWithinPacketPositionPairs: packetOpportunities,
+    observedSameSymbolPairRate: sourcePacketPairs / packetOpportunities,
+    independentNativeEnglishControlWindows: controlSummary,
+    arbitrary95SecretAlphabetOriginalRoundtrip: true,
+    genuineP57PlaintextPlantRoundtrip: true
+  },
   originalForwardReconstruction: true,
   knownSourcePositiveRunes: known.length,
   positiveControlExact: true,
