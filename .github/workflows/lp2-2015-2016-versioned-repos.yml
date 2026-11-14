@@ -1,0 +1,19 @@
+name: LP2 Original 2015-16 Versioned Repository Handles
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-irc-locator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original source Git blobs and list dated repository handles
+        run: node sims/lp2_2015_2016_versioned_repo_locator_sft.cjs
