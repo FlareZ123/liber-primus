@@ -38,7 +38,7 @@ for(const x of selected){
   eightWordSeedHits:result.eightWordSeedHits,longest:result.longest,
   atLeast24:result.atLeast24,topFive:result.best.slice(0,5)});
 }
-assert.equal(out[0].sourceWords,744);
+assert.equal(out[0].sourceWords,751);
 assert.deepEqual(out.slice(1).map(x=>x.sourceWords),[1897,1968,2002]);
 const qualifying=out.filter(x=>x.atLeast24>0);
 console.log(JSON.stringify({
