@@ -1,0 +1,35 @@
+# Original LP2 source-rune font comparison: p57 controls and p55 held-out glyphs
+
+**Standing (14 November 2026):** The independently archived **BabelStone Runic Beorhtnoth v1.06 (1 April 2014)** is the closest face of those compared against authentic LP2 glyph silhouettes in this gate. It is **a candidate source face**, not a proven identification, key, or decrypted ciphertext. An original PDF/PostScript font declaration remains necessary for strong historical attribution. No new LP2 plaintext is recovered.
+
+## Original evidence and reproducible discriminator
+
+- Original LP2 p57 is `resources/liber-primus/74.jpg`, SHA256 `1dabc100ddbf1fc49715219636984eb6ad96a2bd8035e196c12e66db77a1077b`. Its **oversized illuminated P is excluded** from small-runic font comparisons. Six red ARABLE glyphs plus black LI in LIKE are independently sampled. The repeated red A pair has tight-box-normalized symmetric Chamfer **0.0727** at 96² px and IoU **0.9039**; a red L and black L have Chamfer **0.0148**, IoU **0.9716**. These document highly consistent raster lettering across ink colors, without establishing the precise TTF.
+- Original unsolved p55 is `resources/liber-primus/72.jpg`, SHA256 `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`. The independent `resources/liber-primus/lp2-p55-source-glyph-coordinates.json` supplies all **76** exact original glyph rectangles/GP29 identities. Every canonical rune is retained; there are 25 different rune types in this short page. This is genuinely held out from p57 shape comparison.
+- The 55,556-byte archive TTF is `krisyotam/cicada3301/tools/solvers/iddqd/ttf/BabelStoneRunicBeorhtnoth.ttf`, immutable Git blob SHA1 `414f3b5852438dd8450411e204aeff75adab0d42`, SHA256 `348b8af1a5907d8c347563c473595b85ebe05bdb62f3d29c743cbd61449c9497`, internal name **BabelStone Runic Beorhtnoth, Version 1.06 April 1, 2014**. It supports all 29 GP rune Unicode codepoints.
+- The [single-file Python discriminator](../sims/lp2_beorhtnoth_original_font_sft.py) downloads the TTF in memory and checks its Git blob SHA1, checks both original JPEG SHA256 values, renders each font at fixed size, thresholds original black/red ink, crops to ink, normalizes masks to a common 96×96 raster, and measures symmetric Euclidean Chamfer and IoU. It ranks each known source rune against **all 29 font-rune templates**, reporting the ground-truth rank without choosing the nearest wrong rune as a correction. The [manual CI workflow](../.github/workflows/agent42-lp2-original-font-match-manual.yml) passed [held-out p55 run 43598461362](https://github.com/FlareZ123/liber-primus/actions/runs/43598461362) and [global aspect control run 43598830994](https://github.com/FlareZ123/liber-primus/actions/runs/43598830994).
+
+## Measured original-image results
+
+| Source font face | p57 8-rune mean Chamfer | p57 mean IoU | p55 76-rune mean Chamfer | p55 mean IoU | p55 rank-1 | p55 rank≤3 |
+|---|---:|---:|---:|---:|---:|---:|
+| **Archived 2014 Beorhtnoth v1.06** | **0.6586** | **0.7052** | **1.14658** | **0.66371** | **56/76** | **69/76** |
+| 2023 Beorhtnoth 7.004 | 0.6982 | 0.6922 | 1.16206 | 0.65413 | 56/76 | 69/76 |
+| 2023 Beagnoth | 0.7597 | 0.6820 | 2.49173 | 0.57456 | 45/76 | 59/76 |
+| 2023 Beorhtric | 0.7458 | 0.6780 | 2.83823 | 0.56999 | 53/76 | 60/76 |
+| 2023 Beowulf | 1.2278 | 0.6065 | 1.44883 | 0.56323 | 53/76 | 71/76 |
+| 2023 Berhtwald | 1.5690 | 0.5149 | 1.74178 | 0.52661 | 51/76 | 63/76 |
+| 2023 Byrhtferth | 1.0160 | 0.6558 | 1.66712 | 0.57373 | 49/76 | 65/76 |
+| Noto Sans Runic 2.000 | 1.2270 | 0.6327 | 1.19550 | 0.61806 | 54/76 | 63/76 |
+
+The archive Beorhtnoth v1.06 source p55 **median signed log-ratio** `ln((source width/source height)/(font width/font height))` is **−0.4890** and median absolute residual after fitting one global width-scale is **0.0829 log units**. Thus the source faces are consistently narrower than this unmodified rendered template; an approximate horizontal condensation is necessary before claiming exact origin. The independent 2023 Beorhtnoth median is −0.4799 (residual 0.0881). These close ratios are geometry estimates only, **not evidence that a golden ratio or Fibonacci instruction selected the width**.
+
+The three original p55 U/ᚢ glyphs at ordinal positions **21, 30 and 73** rank **15, 15 and 16** respectively under the archived Beorhtnoth shape template, each closest to M/ᛗ in this stretch-normalized metric. There is a reproducible font mismatch at those original positions; the source rune transcription was independently checked in the existing coordinate audit. Do not silently relabel the source; the renderer or shape model may differ.
+
+**Chronological control trap:** A published OpenSUSE RPM whose package version is `20131112` actually contains internally dated **2022 version 7.003** fonts when downloaded from the 2026 repository. Its complete font-family output duplicates the modern shapes. These packaged faces are *not* authentic 2013 font snapshots; the test driver discarded that misdated control rather than counting its misleading package label as source-era evidence. The successful [diagnostic run](https://github.com/FlareZ123/liber-primus/actions/runs/43598951945) documents internal font versions.
+
+## Relationship to existing research and next decision
+
+[Dukotah/cicada3301 Round18 L4](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round18/L4-forcing/RESULTS.md) had already independently associated its fitted ciphertext line-width model with **BabelStone Beorhtnoth advance widths** at correlation **+0.879**. The present gate provides original-pixel shape comparisons and a withheld unknown-page test. It must not be represented as the first discovery of this font association. The prior external study also found exact repeatable same-rune pixel templates and no usable glyph-variation channel; there is no new steganographic payload established here.
+
+**Decision:** This source face is a credible font *search term* for locating the missing 2014 source PDF/PostScript, which could expose authentic text objects, glyph IDs, advance arrays or typesetting metadata. Font resemblance gives no source-selected rune key or decoding operation. Do **not** launch font-width Vigenère, Fibonacci ratio, or glyph-order key sweeps without an independent first-party instruction choosing such a consumer. The original 56 unknown LP2 pages remain unsolved.
