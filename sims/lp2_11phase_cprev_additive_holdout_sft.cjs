@@ -181,9 +181,55 @@ for (const pageClock of [true, false]) {
   assert.ok(original.decodedLog < -3.8);
   models.push({phase: pageClock ? 'page-reset' : 'global', original, positiveControl: plant, originalFolds, controlFolds});
 }
+// Separate source-byte direct consumer: the original table's exact
+// row-major zero-address orbit supplies the key, without fitted secrets.
+// Source-key variants: 11 addresses / 11 successor bytes, direct/feedback,
+// both signs, local/global 11-phase clocks (16 frozen inverse models).
+const grid = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-grid-256.json', 'utf8'))
+  .pages.flatMap(p => p.bytes);
+assert.equal(grid.length, 256);
+const orbit = [0];
+while (!orbit.includes(grid[orbit.at(-1)])) orbit.push(grid[orbit.at(-1)]);
+assert.deepEqual(orbit, [0,203,68,199,47,76,114,197,115,247,192]);
+assert.equal(grid[orbit.at(-1)], 0);
+const directVariants = [];
+for (const keyType of ['address','value']) {
+  for (const previous of [false,true]) {
+    for (const sign of [1,-1]) {
+      for (const pageClock of [true,false]) {
+        const decoded = [];
+        let plantCorrect = 0;
+        for (const p of pages) {
+          let oldPlant = plantedPlain[p.offset];
+          for (let j = 1; j < p.c.length; j++) {
+            const phase = (pageClock ? j : p.offset + j) % 11;
+            const sourceKey = (keyType === 'address' ? orbit[phase] : grid[orbit[phase]]) % 29;
+            const correction = (previous ? p.c[j - 1] : 0) + sign * sourceKey;
+            decoded.push((p.c[j] - correction + 87) % 29);
+            // Native-plaintext source-keys can be encrypted and recovered.
+            const plantKey = (previous ? oldPlant : 0) + sign * sourceKey;
+            const encrypted = (plantedPlain[p.offset + j] + plantKey + 87) % 29;
+            const recovered = (encrypted - plantKey + 87) % 29;
+            if (recovered === plantedPlain[p.offset + j]) plantCorrect++;
+            oldPlant = encrypted;
+          }
+        }
+        const score = ioc(decoded);
+        assert.equal(plantCorrect, 12901);
+        assert.ok(score < 0.04);
+        directVariants.push({keyType,feedback:previous,sign,pageClock,decodedIoC:score});
+      }
+    }
+  }
+}
+assert.equal(directVariants.length, 16);
+const maximumDirectIoC = Math.max(...directVariants.map(x => x.decodedIoC));
+assert.ok(Math.abs(maximumDirectIoC - 0.03467984273798858) < 1e-12);
+
 console.log(JSON.stringify({
   source: {originalRunes: 12956, eligibleTransitions: 12901, pageCount:55, period:11, secretStates:319},
   language: {prior: 'Gibran Prophet native GP; independent planted plaintext Emerson essays',
     gibranRunes:gibran.length, emersonRunes:emerson.length},
-  models
+  models,
+  directSource11: {maximumIoC: maximumDirectIoC, variants: directVariants}
 }, null, 2));
