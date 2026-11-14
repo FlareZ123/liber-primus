@@ -1,6 +1,6 @@
 # Solved-p57 95-rune key and the original 95 doublet-separated packets
 
-**Decision (14 November 2026, Agent13).** One source-grounded event clock uses the 86 rare repeated ciphertext rune events and the nine original visual-chapter starts to select exactly **95** successive key slots, equal to the length of genuine clear LP2 p57. Two frozen, source-motivated additive consumers are fully reversible but yield near-uniform, visibly nonprose GP29 outputs on the complete **12,956-rune original unknown corpus**. Neither original plaintext nor an author-supplied key-operation instruction is recovered. This retires these two precise direct consumers, while preserving the bounded 95-slot source observation.
+**Decision (14 November 2026, Agent13).** One source-grounded event clock uses the 86 rare repeated ciphertext rune events and the nine original visual-chapter starts to select exactly **95** successive key slots, equal to the length of genuine clear LP2 p57. Two frozen, source-motivated additive consumers yield near-uniform, visibly nonprose GP29 outputs on the complete **12,956-rune original unknown corpus**. A stronger original-input invariant rules out **every fixed, independently secret bijective 29-symbol alphabet per event packet** for all **89** matched Shakespeare, Gibran, and Emerson native-GP English control windows. No original plaintext or author-supplied event/key-operation instruction was recovered. The 95-slot correspondence remains a source-observed hypothesis cue.
 
 ## Original source-selected numbers and strongest competing explanation
 
@@ -27,8 +27,29 @@ Two finite, predeclared key interpretations have original Cicada precedents: **(
 
 The original clear p57 itself has GP29 IoC **0.06270996640537514** and **15/95 E runes**. Both original candidate streams are essentially uniform and not a contiguous readable runic-English message. The standalone [original-input SFT](../sims/lp2_p57_95packet_eventclock_sft.cjs) checks every exact chapter length, every repeat count, the 95-key consumption, the original 12,956-rune encrypt/decrypt identity, and a **95/95-rune authentic-clear-p57 planted plaintext** under the same online clock. The plant is an implementation control and not a recovered ciphertext decipherment.
 
-For any proposed **unchanging bijection within each same-event packet**, including a separately secret alphabet per packet, equality of two adjacent runes within a fixed packet is invariant under that map. The exceptionally small number of original doubles therefore would transfer to its putative plaintext under the declared event-after-repeat clock. A source-selected changing-state rule, distinct transport or different delimiter semantics could evade that restriction; it is outside the tested direct model.
+## A key-independent exclusion of all 95 hidden packet alphabets
+
+This strengthens the initial direct-key negative without guessing any more keys. Suppose **each of the 95 original ciphertext-defined packets has its own completely arbitrary and secret permutation** of the 29 Gematria Primus rune identities. The permutation can differ between every packet, with no algebraic relation to p57 or any other known key. The bijection preserves **every** same-symbol pair inside its packet, not merely adjacent doublets:
+
+`C[i] = C[j] ⇔ P[i] = P[j]` for any i and j in the same event packet.
+
+The original packet boundaries are fixed **before** the proposed decryption by the red chapter starts and repeat-after-output clock. For an arbitrary secret substitution, the hypothetical plaintext's own equal-adjacent positions need not independently mark the same boundaries: crossing into the next alphabet can create or remove a coincidence. The invariant deliberately compares **all within-original-packet pairs** only.
+
+Across 95 packet lengths (minimum **6**, maximum **662**), there are exactly **1,653,451** within-packet unordered position pairs. The complete unchanged original corpus has only **56,482** same-rune pairs, rate **0.034160068849938705**. Every secret packetwise symbol bijection has exactly that same pair count.
+
+| Native-GP original-language register (frozen 12,956-rune windows, stride 6,478) | Windows | Fewest same-rune pairs | Median | Most |
+| --- | ---: | ---: | ---: | ---: |
+| **Original unknown LP2** | 1 | **56,482** | 56,482 | 56,482 |
+| Shakespeare | **32** | **97,001** | 100,457 | 102,881 |
+| Gibran | **8** | **99,357** | 101,213 | 101,898 |
+| Emerson | **49** | **100,937** | 103,618 | 107,066 |
+
+The **same 95 original packet lengths** are applied to every unmodified, separately sourced reference window after the repository's established greedy native-GP transliteration (with standard `QU→CW`, `K/Q→C`, `V→U`, `Z→S` normalization). For all **89 independently indexed windows**, none has a packet collision count as low as the original ciphertext. This is a finite comparison to three genuine English registers, **not an impossibility theorem for arbitrary messages, engineered low-repeat prose, unrelated languages or data**. The formula itself is an exact, key-independent obstruction for any hypothesized target text with a different within-packet pair count.
+
+The same [single-file original-source CJS test](../sims/lp2_p57_95packet_eventclock_sft.cjs) asserts every original packet count and every reference minimum, then constructs 95 independent secret GP29 permutations, decrypts the entire authentic ciphertext under them, and forward-reconstructs **all 12,956 original runes exactly**. It also encrypts and decrypts **all 95 genuine clear p57 runes** under those same hidden permutations as an implementation-positive plant. Both roundtrips pass, while the original's fixed-packet pair count remains **56,482** for the arbitrary-secret decode. This test **passed on original files in Windows Node.js 22 GitHub Actions [run 43647957890](https://github.com/FlareZ123/liber-primus/actions/runs/43647957890)**.
+
+The exclusion covers a broad, previously unfitted per-event Caesar, Vigenère, monoalphabetic or fully secret alphabet family, conditional on the exact source-observed event clock and a fixed bijection within each packet. A **within-packet evolving cipher state**, multi-rune encoding, length-changing transduction, sidecar exception register, independent unknown target language, or a different clock remains outside the proof.
 
 ## Next cryptanalytic decision
 
-The equality of 95 event slots with p57's 95 source runes is a compact potentially human-observable **hypothesis cue**, yet it lacks an original instruction selecting a reversible consumer. The most economical historically attested additive source-tape readings both fail on every unknown original rune. **Do not scan more free phases, alternative alphabet mappings or source keys to rescue this count match.** Reopen only if an independent first-party source selects the repeated-rune event clock and a new output map that makes a held-out coherent original plaintext prediction. The broader manuscript remains unresolved.
+The equality of 95 event slots with p57's 95 source runes is a compact potentially human-observable **hypothesis cue**, yet it lacks an original instruction selecting a reversible consumer. The two historically attested additive source-tape readings fail directly, and **even independently secret alphabets for each entire packet are constrained by the keyless original 56,482-pair invariant**. There is no evidence for the further **within-packet changing-state or non-bijective** mechanism needed to evade that native-English obstruction. **Do not scan free phases or arbitrary per-packet substitutions to rescue the count match.** Reopen only if a first-party source selects a changing cipher operation/key and an exact held-out original plaintext prediction. The broader manuscript remains unresolved.
