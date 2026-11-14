@@ -1,6 +1,6 @@
 # LP2 p55: source-locked three historical 5×5 Hill matrices on the complete 75-rune body
 
-**Agent 35, 14 November 2026. Provisional cryptanalytic gate, not plaintext recovery.** The original 75-rune p55 body remains unreadable after the complete deterministic inverse. The source matrix orientation improves a word-local English bigram diagnostic relative to shuffled source key orders, but that is exploratory and does not provide an authenticated key, instruction or recovered LP2 sentence.
+**Agent 35, 14 November 2026. Complete source-locked original-input inverse gate, without plaintext recovery.** The three historical 2014 squares give valid 75-rune GF29 Hill inverses. The best raw language-score lift does **not** survive selection over the eight natural whole-5×5 matrix products (conditional familywise null p≈0.0794). There is no authenticated cipher mechanism, recovered LP2 sentence or key.
 
 ## A physically motivated full-page operator
 
@@ -32,10 +32,25 @@ The candidate contains conspicuous repeated runes and lacks continuous GP-native
 
 The [standalone source-input SFT](../sims/lp2_p55_three_squares_full75_hill_sft.cjs) draws 2,000 samples of complete native-GP English words of every **exact original 16-word length** independently from each of Shakespeare, Gibran and Emerson. No such sample scores as poorly as either original-source Hill output. Thus the row-vector −5.071 score does **not** approach the registered native English register.
 
-An additional key-order control preserves each square's exact multiset of entries, its centre value and its **twelve opposite-equal 180° positional pairs**, while randomly redistributing those twelve partner pairs within the 5×5 area. This holds the source's centrosymmetry rather than replacing its 25 numbers with random numbers. Across 5,000 deterministic generated triple-key layouts, **4,058** are fully invertible; **38** yield an equal or better row-vector bigram score than the preserved historical source order. Conditional add-one fraction: **39/4059 ≈ 0.00961**. The registered historical order is unusually less nonlinguistic under this selected diagnostic, but 0.00961 **is not a discovery-wide significance level**: both the score and source-to-target Hill interpretation arise within a very large history of attempts on p55. The best source row score is still much worse than actual English.
+An additional key-order control preserves each square's exact multiset of entries, its centre value and its **twelve opposite-equal 180° positional pairs**, while randomly redistributing those twelve partner pairs within the 5×5 area. This holds the source's centrosymmetry rather than replacing its 25 numbers with random numbers. Across 5,000 deterministic triple-key layouts, **4,058** are fully invertible; **38** yield an equal or better *preselected row-vector* bigram score than the source order, conditional add-one fraction **39/4059 ≈ 0.00961**.
+
+Crucially, one-dimensional row-Hill vectors are not the only natural matrix reading. Each 25-rune block also has a **full 5×5 2D-grid interpretation**, allowing left versus right multiplication, their transposed versions, and all four one- or two-sided standard products. The eight source-pinned modes and scores are:
+
+| Whole-square 5×5 inverse | Word-local GP bigram log score |
+| --- | ---: |
+| Right `C K⁻¹` (original row-vector best) | **−5.071015** |
+| Both transposed `K⁻ᵀ C K⁻ᵀ` | −5.470768 |
+| Mixed `K⁻¹ C K⁻ᵀ` | −5.552375 |
+| Left `K⁻¹ C` | −5.570818 |
+| Both `K⁻¹ C K⁻¹` | −5.699377 |
+| Right transposed `C K⁻ᵀ` | −5.848157 |
+| Left transposed `K⁻ᵀ C` | −6.038037 |
+| Reverse mixed `K⁻ᵀ C K⁻¹` | −6.161811 |
+
+All eight **exactly re-encrypt 75/75** original source runes and recover the 75-rune solved-p57 plant. The original orientation remains the best of this family. In a separate **2,000-trial symmetry-preserving key-order null**, the 1,623 invertible triple-matrix layouts are each allowed their **best of all eight** inverse operations. **128** reach or exceed the original source's best score, conditional add-one fraction **129/1624 ≈ 0.07943**. The apparent 0.00961 row-only improvement is therefore insufficient as an operation-selection signal even within this small prespecified source matrix family. These are conditional diagnostics, without any project-wide significance calibration.
 
 This is a **different, complete 75-body test** from the previously recorded 43-inner-rune [3×3/5×5/3×3 Hill test](lp2-p55-2014-magic-squares-three-core-hill-original-inverse.md), and from the 17 historical **row-wise repeating Vigenère** test covering the original 76-rune layout. Here the central square alone is peeled, all three entire 5×5 matrices are used, and 75 runes are mixed in three adjacent 25-position groups.
 
-**Decision:** the complete deterministic 3×5×5 Hill construction cannot be advanced as a p55 solution. Its relative score lift is a narrowly defined observation worthy of a source-disjoint clue check, not permission to tune square rotations, outer-key shifts or additional cipher layers against the same short ciphertext. A successor would need an independently visible instruction selecting matrix orientation and an additional reversible operation, followed by coherent untouched original plaintext.
+**Decision:** all eight canonical full-grid 3×5×5 Hill constructions remain unreadable, and the best-score improvement is unexceptional under the within-family matrix-order null. Neither the fixed 75-rune inverse nor plausible left/right matrix-product extensions recover p55 plaintext. This is a source-qualified negative and provides no evidence to add a further tuned cipher layer, key rotation, or outer-key shift. A successor would need an independently visible instruction selecting matrix orientation and an additional reversible operation, followed by coherent untouched original plaintext.
 
-**Reproduction:** `node sims/lp2_p55_three_squares_full75_hill_sft.cjs`, Node.js 22, original canonical LP2 JSON, preserved original 2014 magic squares, and three frozen independent English controls. Read-only, deterministic, source-native positive controls and exact forward replay.
+**Reproduction:** `node sims/lp2_p55_three_squares_full75_hill_sft.cjs`, Node.js 22, original canonical LP2 JSON, preserved original 2014 magic squares, and three frozen independent English controls. Read-only, deterministic, source-native positive controls, full eight-mode 2D inverse/forward replay and both key-order nulls. [Passing manual Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43578186148) predates the 2D-family extension, which should be rerun.

@@ -241,6 +241,94 @@ const greaterOrEqual=randomScores.filter(s=>s>=decodedScores.row).length;
 const empiricalP=(greaterOrEqual+1)/(randomScores.length+1);
 assert(randomScores.length>3500 && randomScores.length<4500);
 assert(empiricalP>0.001 && empiricalP<0.03);
+
+// Complete 5x5-matrix reading of each 25-rune block. A source square can
+// act from either side, in transposed or untransposed form. Test eight
+// mathematically standard, source-locked one-/two-sided matrix products.
+const gridModes=[
+  "left","leftTranspose","right","rightTranspose",
+  "both","bothTranspose","mixed","mixedTranspose"
+];
+/** @param {number[][]} A @returns {number[][]} */
+const transpose=A=>A[0].map((_,j)=>A.map(row=>row[j]));
+/** @param {number[][]} A @param {number[][]} B @returns {number[][]} */
+function multiplySquare(A,B) {
+  return A.map(row=>B[0].map((_,j)=>mod(row.reduce(
+    (sum,v,k)=>sum+v*B[k][j],0))));
+}
+/**
+ * @param {number[]} data
+ * @param {number[][][]} keys
+ * @param {string} mode
+ * @returns {number[]}
+ */
+function gridTransform(data,keys,mode) {
+  assert.equal(data.length,75);
+  const out=[];
+  for(let s=0;s<3;s++) {
+    const Cblock=Array.from({length:5},(_,i)=>
+      data.slice(25*s+5*i,25*s+5*i+5));
+    const A=keys[s],AT=transpose(A);
+    let result;
+    if(mode==="left") result=multiplySquare(A,Cblock);
+    else if(mode==="leftTranspose") result=multiplySquare(AT,Cblock);
+    else if(mode==="right") result=multiplySquare(Cblock,A);
+    else if(mode==="rightTranspose") result=multiplySquare(Cblock,AT);
+    else if(mode==="both") result=multiplySquare(multiplySquare(A,Cblock),A);
+    else if(mode==="bothTranspose") result=multiplySquare(multiplySquare(AT,Cblock),AT);
+    else if(mode==="mixed") result=multiplySquare(multiplySquare(A,Cblock),AT);
+    else if(mode==="mixedTranspose") result=multiplySquare(multiplySquare(AT,Cblock),A);
+    else throw new Error("Unknown 2D key mode "+mode);
+    out.push(...result.flat());
+  }
+  return out;
+}
+const originalGridScores=gridModes.map(mode=>{
+  const decoded2D=gridTransform(C,inverses,mode);
+  assert.deepEqual(gridTransform(decoded2D,matrices,mode),C);
+  const known=corpus.pages[57].indices.slice(0,75);
+  assert.deepEqual(gridTransform(gridTransform(known,matrices,mode),
+    inverses,mode),known);
+  return {mode,score:wordBigramScore(decoded2D),ioc:ioc(decoded2D)};
+});
+assert(Math.abs(originalGridScores[2].score-decodedScores.row)<1e-12);
+assert(Math.abs(originalGridScores[3].score-decodedScores.column)<1e-12);
+const bestOriginalGridScore=Math.max(...originalGridScores.map(x=>x.score));
+assert(Math.abs(bestOriginalGridScore-decodedScores.row)<1e-12);
+
+// Selection-aware null: each randomized triple can use its best of all
+// eight natural 2D inverse products. Condition on invertible keys only.
+seed=0x35a0ab14;
+const familyNullScores=[];
+for(let trial=0;trial<2000;trial++) {
+  const randomized=[];
+  for(const sourceMatrix of matrices) {
+    const order=indices.slice();
+    for(let k=11;k>0;k--) {
+      const j=random32()%(k+1);
+      [order[k],order[j]]=[order[j],order[k]];
+    }
+    const valuesSource=sourceMatrix.flat();
+    const entries=Array(25).fill(valuesSource[12]);
+    for(let j=0;j<12;j++) {
+      entries[j]=valuesSource[order[j]];
+      entries[24-j]=valuesSource[order[j]];
+    }
+    const candidate=Array.from({length:5},(_,i)=>entries.slice(5*i,5*i+5));
+    const info=inverse(candidate);
+    randomized.push(info ? info.matrix : null);
+  }
+  if(randomized.some(m=>m===null))continue;
+  const best=Math.max(...gridModes.map(mode=>
+    wordBigramScore(gridTransform(C,randomized,mode))));
+  familyNullScores.push(best);
+}
+const familyExceedances=familyNullScores.filter(
+  value=>value>=bestOriginalGridScore).length;
+const familyP=(familyExceedances+1)/(familyNullScores.length+1);
+assert.equal(familyNullScores.length,1623);
+assert.equal(familyExceedances,128);
+assert(Math.abs(familyP-129/1624)<1e-12);
 const spell=data=>data.map(i=>corpus.translit[i]).join(".");
 console.log(JSON.stringify({
   status:"bounded original-input full75 three-square Hill test; no plaintext",
@@ -257,6 +345,13 @@ console.log(JSON.stringify({
   centrosymmetricNull:{
     trials:5000,invertible:randomScores.length,atOrAboveOriginal:greaterOrEqual,
     conditionalEmpiricalP:empiricalP
+  },
+  complete2DMatrixFamily:originalGridScores,
+  familywiseCentrosymmetricNull:{
+    trials:2000,invertible:familyNullScores.length,
+    atOrAboveOriginal:familyExceedances,
+    selectedBestScore:bestOriginalGridScore,
+    conditionalEmpiricalP:familyP
   },
   limitation:"Row bigram lift is diagnostic and post-selected, not plaintext;"
     +" no authorial cipher opcode established."
