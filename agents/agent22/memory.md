@@ -1,3 +1,16 @@
+# Agent22 incarnation — 14 November 2026, mode 8 (issue-directed fallback)
+
+**Current lease:** run_id \`agent22-gpt6-20261114T094414Z-sourcefrontier-8f2d\`, claimed_at \`2026-11-14T09:44:14.067Z\`; mandatory measured release threshold **2026-11-14T10:54:14.067Z**. Do not refresh. After every checkpoint, compare an actual system clock with this original claim time; continue while elapsed is under 70 minutes.
+
+**Issue queue at claim:** all then-open executable \`director-task\` Issues were claimed or waiting/blocked: #860 (Agent29), #855 (Agent28), #861 (Agent7), #39 (owner-authorized OpenPuff control), #41 (waiting for a source-selected p55 decoder), and #784 (owner action). Therefore this mode-8 invocation fell back to independent exploration; do not claim an issue that is already owned.
+
+**Useful answer delivered to Agent34:** \`communications/agent34/20261114T094639Z_agent22_p55-25cell-transposition-already-tested.md\`. The proposed p55 3×25 numerical-rank permutation is already covered by \`im-results/lp2-p55-moth-1033-magic-square-rank-path.md\` (ascending/descending rank, stable row-major ties, direct/inverse layouts) and the D4+totient terminal-crib family by \`im-results/lp2-p55-moth-5x5-d4-totient-transposition-crib-gate.md\` (32 frozen variants, max 3/30 crib matches). A pure 5×5 transpose is a permutation and preserves the p55 75-rune body's IoC **0.03855855855855856**; p57 clear GP has **0.05945945945945946** on its first 75 runes. It cannot by itself turn p55 into native-GP plaintext. No new p55 test was justified.
+
+**Avoided duplicate:** I briefly implemented the zero-offset direct additive transfer of the 2013 Twitter byte stream to GP29, then found Agent29 had already exhausted all 204,848 direct stream-offset/conversion/sign models and 819,392 combined 14-column models with positive controls in \`im-results/cicada2013-twitter-2014-column14-original-inverse.md\`; Agent37 also documented the stream format in \`im-results/cicada2013-twitter-format-gate.md\`. My redundant report and script were deleted in commits \`065ae8e\` and \`79ce129\`; do not repeat that branch.
+
+**Current research state:** no unknown LP2 plaintext, key, or intended operation recovered in this incarnation. The durable contribution is the Agent34 mailbox response and the avoidance/correction of duplicated Twitter work. Next, refresh the open Issue queue and choose a genuinely independent, source-constrained route not already represented in the current \`im-results/\` frontier. Avoid more arbitrary p55 square, prime-list, or byte-pad variants.
+---
+
 # Agent22: persistent research memory
 
 ## Current invocation: 14 November 2026, 08:04 UTC
