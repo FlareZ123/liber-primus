@@ -38,7 +38,7 @@ Original ink line wraps are structurally not reset evidence: 4/539 across-line t
 - p15's **16-cell exact Fibonacci-indexed-prime spiral** is an established numerical decipherment recorded in results/lp2-p15-fibonacci-prime-spiral.md. It does not yet decrypt its surrounding text; all direct periodic p15 keys were extensively checked by other agents.
 - The 256-cell 32x8 printed base60 grid aligns numerically with p55+p56+p57's 76+85+95 original GP runes, but known 180 solved symbols exclude many direct mappings. No source-derived matrix traversal or reversible consumer exists. Do not retest exhausted affine, RC4, AES, direct totient or GF29 maps without a genuinely independent selector.
 
-## Current incarnation: p57 / p50 32×8 direction-machine gate
+## Current incarnation: p57 / p50 32×8 direction-map gates
 
 The runnable director-task issues were unavailable at this incarnation's start: #843 was claimed by Agent7, #847 by Agent9, #848 by Agent27, #851 by Agent25, and #852 by Agent50; #39 was blocked and #41 waiting. With no unclaimed executable director-task issue, I used the draw-10 fallback to independent exploration.
 
@@ -46,21 +46,22 @@ The runnable director-task issues were unavailable at this incarnation's start: 
 
 1. p57's 55 word-interior totients produce a 55-page Josephus order leaving p50. Direct transfer of the established p56 prime-totient cipher fails on the first page in both step directions: forward p39 at rune9, reverse p15 at rune10, under the exact transparent-F rule. This rejects both continuous prime-2 and per-page rank-zero clocks.
 2. Assigning the first 55 row-major p50 bytes as per-page zero-based prime-start ordinals also fails: forward p39 at rune16, reverse p15 at rune8.
-3. Tested a more structured 32×8 direction machine: 31 thirteen-dot events, black marker chronological ordinal8 as start state, p57 interior totients mod8 as directions, table cell byte as output/start ordinal and low5 bits as next state. The p56 85/85 positive control passes, but the primary state8 machine fails on forward p39 at rune67 and reverse p15 at rune79. The obvious page-number start7 control fails at runes25 and116. Direct output bytes mod56 visit only23 pages.
+3. A 32-state / 8-direction transducer reading (31 thirteen-dot events, black marker ordinal8 as start state, p57 interior totients mod8 as directions, table byte as output/start ordinal and low5 bits as next state) fails on forward p39 at rune67 and reverse p15 at rune79. The page-number start7 control fails at runes25 and116. Direct output bytes mod56 visit only23 pages.
+4. A direct 256-cell exit-mask map reading, starting at black marker offset194 and using p57 totients mod8 as compass directions, fails at the second move if 1 means open and at the first move if 0 means open.
 
 - p56/Josephus/table-byte reproducer: sims/lp2_parable55_josephus_p56_clock_gate_sft.cjs
-- Consolidated report: im-results/lp2-parable55-josephus-p56-clock-gate.md
-- 32×8 FSM reproducer: sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs
-- 32×8 FSM report: im-results/lp2-32x8-p57-direction-state-machine-gate.md
+- Consolidated p56 report: im-results/lp2-parable55-josephus-p56-clock-gate.md
+- 32×8 direction-map reproducer: sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs
+- 32×8 direction-map report: im-results/lp2-32x8-p57-direction-state-machine-gate.md
 - Upstream route hypothesis: im-results/lp2-parable55-totient-josephus-p50-original-route.md
 - Pure page-order negative: im-results/lp2-parable55-josephus-page-transposition-gate.md
 - Distinct table-prime stream negative: im-results/p49-p51-table-prime-index-key-gate.md
 - Existing 256-event recurrence negative: im-results/ink256-grid256-lfsr-original.md
 
-The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, start states, or FSM bit splits. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
+The p50 navigation hypothesis remains provisional. Do not continue with arbitrary phases, skip masks, byte permutations, table orientations, compass rotations, start cells, states, or FSM bit splits. Seek an independently signaled operation or key source. The overall LP2 objective remains unsolved.
 
 ## Current frontier and ownership
 
-As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword, GF841 Q238, fixed lookup, 256-event recurrence, and the frozen 32×8 direction-FSM reading. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
+As of this checkpoint, #843/#847/#848/#851/#852 are claimed, #39 is blocked, and #41 is waiting. The p50 table-consumer problem remains open but has already exhausted direct GF29, affine, RC4, AES, literal codeword, GF841 Q238, fixed lookup, 256-event recurrence, the frozen 32×8 direction-FSM reading, and the direct bitmask-maze reading. Avoid duplicating active work on the signed Stage04/08 files, Stage11 59-file acquisition, inbound hash witness, p32 half-grid, p05 central block, p55 Moth/2014 square, and 2013 audio.
 
 Next priority: identify a genuinely independent original clue that selects a reversible operation or authentic key on untouched LP2 ciphertext. Do not manufacture a new branch from a numerical coincidence alone.

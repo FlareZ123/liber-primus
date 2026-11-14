@@ -1,20 +1,17 @@
 "use strict";
 
 /**
- * Bounded source-motivated test of a 32-state / 8-direction table walker.
+ * Bounded source-motivated tests of p57 directions against the p50 32x8 table.
  *
  * Node.js 22, CommonJS, no dependencies.
  * Run: node sims/lp2_32x8_p57_direction_fsm_p56_gate.cjs
  *
- * Hypothesis:
- * - the 31 original thirteen-dot events define state labels;
- * - the black event's chronological ordinal is the initial state;
- * - the 32x8 p50 table is a state x direction transition table;
- * - p57 interior totients modulo 8 are the 55 direction inputs;
- * - each cell byte is the next page's prime-totient start ordinal;
- * - its low five bits select the next state;
- * - outputs are assigned to pages in p57's Josephus order and used with
- *   the established p56 transparent-F prime-totient cipher.
+ * Tests two fixed readings:
+ * 1. 256-cell, 8-direction bitmask maze, starting at the black marker's
+ *    local rune offset 194.
+ * 2. 32-state / 8-direction transducer, starting at the black marker's
+ *    chronological ordinal 8; each cell byte is a page's p56 prime-start
+ *    ordinal and its low five bits are the next state.
  *
  * The p56 known-answer vector is a positive control. Every possible
  * transparent-F branch is retained until a page becomes impossible.
@@ -136,15 +133,13 @@ function firstImpossible(page, startOrdinal) {
   return {page, startOrdinal, valid: true, finalStates: [...states]};
 }
 
-// Validate the canonical 32x8 table.
 assert.equal(grid.byte_rows.length, 32);
 assert.ok(grid.byte_rows.every(row => row.length === 8));
 const table = grid.byte_rows.flat();
 assert.equal(table.length, 256);
 
-// Extract the 31 thirteen-dot events in physical order. At the co-located
-// p7 mark, the red event sorts before the black event, matching the original
-// annotation/event serialization used by the source audit.
+// 31 thirteen-dot events in original physical order. At the co-located p7
+// position, red sorts before black, matching the source event serialization.
 const markers = [];
 for (const page of ink.pages) {
   for (const mark of page.large_punctuation || []) {
@@ -158,7 +153,7 @@ const blackOrdinal = markers.findIndex(mark => mark.color === "black");
 assert.equal(blackOrdinal, 8);
 assert.deepEqual(markers[blackOrdinal], {page: 7, offset: 194, color: "black"});
 
-// Validate all original page/segment mappings; the transcription omits p50.
+// Validate original page/segment associations; the transcription omits p50.
 const pageIds = [];
 for (let page = 0; page < 56; page++) {
   if (page === 50) {
@@ -170,7 +165,7 @@ for (let page = 0; page < 56; page++) {
   pageIds.push(page);
 }
 
-// The 55 p57 word interiors supply both the Josephus steps and 8-way inputs.
+// The 55 p57 word interiors supply both Josephus steps and 8-way directions.
 const p57Words = parseWords(segments[56]);
 assert.equal(p57Words.length, 20);
 assert.deepEqual(p57Words.flat(), corpus.pages[57].indices);
@@ -203,9 +198,49 @@ const p56Reproduced = p56Plain.map(plain => {
 assert.deepEqual(p56Reproduced, corpus.pages[56].indices);
 assert.equal(p56Consumed, 84);
 
-// Table walker: each input direction selects one cell in the current row.
-// The cell byte is the page's prime-start ordinal and its low five bits are
-// the next 0..31 state.
+// Reading A: each of the 256 table bytes is an 8-way exit mask. Start at the
+// black marker's original local rune offset 194. Directions use N, NE, E,
+// SE, S, SW, W, NW in that order. No wrap choice can affect the first moves.
+const compass = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]];
+function mazeFirstFailure(openBit) {
+  let cell = 194;
+  const trace = [];
+  for (let i = 0; i < directions.length; i++) {
+    const direction = directions[i];
+    const mask = table[cell];
+    const bit = (mask >> direction) & 1;
+    if (bit !== openBit) {
+      return {
+        openBit, failAt: i, cell, row: Math.floor(cell / 8), col: cell % 8,
+        direction, mask, bit, trace
+      };
+    }
+    const row = Math.floor(cell / 8) + compass[direction][0];
+    const col = (cell % 8) + compass[direction][1];
+    if (row < 0 || row >= 32 || col < 0 || col >= 8) {
+      return {openBit, failAt: i + 1, edge: true, lastCell: cell, trace};
+    }
+    const nextCell = row * 8 + col;
+    trace.push({step: i, from: cell, to: nextCell, direction, mask, bit});
+    cell = nextCell;
+  }
+  return {openBit, valid: true, finalCell: cell, trace};
+}
+const mazeOneIsOpen = mazeFirstFailure(1);
+const mazeZeroIsOpen = mazeFirstFailure(0);
+assert.equal(mazeOneIsOpen.failAt, 1);
+assert.equal(mazeOneIsOpen.cell, 186);
+assert.equal(mazeOneIsOpen.direction, 2);
+assert.equal(mazeOneIsOpen.mask, 19);
+assert.equal(mazeOneIsOpen.bit, 0);
+assert.equal(mazeZeroIsOpen.failAt, 0);
+assert.equal(mazeZeroIsOpen.cell, 194);
+assert.equal(mazeZeroIsOpen.direction, 0);
+assert.equal(mazeZeroIsOpen.mask, 159);
+assert.equal(mazeZeroIsOpen.bit, 1);
+
+// Reading B: 32-state / 8-direction transducer. A cell byte is both the
+// page's zero-based prime-start ordinal and its low-five-bit next state.
 function walk(dirs, startState) {
   let state = startState;
   const outputs = [];
@@ -218,31 +253,28 @@ function walk(dirs, startState) {
   }
   return {outputs, states, finalState: state};
 }
-
 function runStartState(startState) {
   const fsmForward = walk(directions, startState);
   const fsmReverse = walk(directions.slice().reverse(), startState);
-  const firstForwardPage = forward.eliminated[0];
-  const firstReversePage = reverseSteps.eliminated[0];
   return {
     startState,
     forward: {
-      firstPage: firstForwardPage,
+      firstPage: forward.eliminated[0],
       firstPageKeyStart: fsmForward.outputs[0],
       firstTenKeyStarts: fsmForward.outputs.slice(0, 10),
       firstTenStates: fsmForward.states.slice(0, 10),
-      failure: firstImpossible(firstForwardPage, fsmForward.outputs[0])
+      failure: firstImpossible(forward.eliminated[0], fsmForward.outputs[0])
     },
     reverseSteps: {
-      firstPage: firstReversePage,
+      firstPage: reverseSteps.eliminated[0],
       firstPageKeyStart: fsmReverse.outputs[0],
       firstTenKeyStarts: fsmReverse.outputs.slice(0, 10),
       firstTenStates: fsmReverse.states.slice(0, 10),
-      failure: firstImpossible(firstReversePage, fsmReverse.outputs[0])
-    }
+      failure: firstImpossible(reverseSteps.eliminated[0], fsmReverse.outputs[0])
+    },
+    outputs: fsmForward.outputs
   };
 }
-
 const blackOrdinalStart = runStartState(blackOrdinal);
 const blackPageStart = runStartState(7);
 assert.equal(blackOrdinalStart.forward.firstPage, 39);
@@ -281,25 +313,20 @@ assert.equal(blackPageStart.reverseSteps.failure.cases[0].keyIndex, 367);
 assert.equal(blackPageStart.reverseSteps.failure.cases[0].keyMod29, 8);
 assert.equal(blackPageStart.reverseSteps.failure.cases[0].plaintext, 0);
 
-// A simpler direct-page interpretation of the same outputs is not a
-// 55-page permutation: only 23 distinct page residues occur.
-const directPages = blackOrdinalStart.forward.firstTenKeyStarts; // prefix diagnostic only
-const allForward = walk(directions, blackOrdinal).outputs;
-const directPageResidues = allForward.map(value => value % 56);
+const directPageResidues = blackOrdinalStart.outputs.map(value => value % 56);
 assert.equal(new Set(directPageResidues).size, 23);
 
 console.log(JSON.stringify({
-  decision: "REJECTED: fixed 32x8 direction-FSM to p56 page-key schedule",
+  decision: "REJECTED: two fixed 32x8 p57 direction readings",
   source: {
     tableDimensions: [32, 8],
     thirteenDotEvents: markers.length,
     blackMarker: markers[blackOrdinal],
     blackMarkerChronologicalOrdinal: blackOrdinal,
     p57InteriorCount: interiors.length,
-    directionModulus: 8,
-    forwardFirstPages: forward.eliminated.slice(0, 10),
-    reverseStepFirstPages: reverseSteps.eliminated.slice(0, 10),
-    survivors: {forward: forward.survivors, reverseSteps: reverseSteps.survivors}
+    firstDirections: directions.slice(0, 12),
+    forwardSurvivor: forward.survivors,
+    reverseStepSurvivor: reverseSteps.survivors
   },
   p56PositiveControl: {
     plaintextRunes: p56Plain.length,
@@ -307,16 +334,15 @@ console.log(JSON.stringify({
     keySymbolsConsumed: p56Consumed,
     exactOriginalCiphertextReproduced: true
   },
-  blackOrdinalStart,
-  blackPageStart,
+  bitmaskMaze: {oneMeansOpen: mazeOneIsOpen, zeroMeansOpen: mazeZeroIsOpen},
+  transducer: {blackOrdinalStart, blackPageStart},
   directPageOutputControl: {
     uniquePageResidues: new Set(directPageResidues).size,
     totalOutputs: directPageResidues.length
   },
   scope: [
-    "Tests the fixed mapping cell = table[state*8 + totientDirectionMod8], nextState = cellByte mod32, page key start = full cell byte.",
-    "Tests black marker chronological ordinal 8 and the obvious page-number state 7.",
-    "Rejects this table-walker plus p56 transparent-F prime-totient page decoder in both Josephus directions.",
+    "Rejects the direct 256-cell direction-mask maze from black marker offset 194 under both bit polarities.",
+    "Rejects the fixed 32-state / 8-direction transducer with black ordinal 8 and page-number 7 starts, when outputs are p56 prime-start ordinals.",
     "Does not reject the p50 table as a different kind of source-selected object or the p57 route as a navigation clue."
   ]
 }, null, 2));
