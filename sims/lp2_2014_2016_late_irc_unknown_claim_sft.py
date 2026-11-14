@@ -96,15 +96,15 @@ def main() -> None:
     # unknown-key sweep. Require a code/document hosting URL and LP2 context.
     archive_links = []
     link_pat = re.compile(
-        r"https?://(?:www\\.)?"
-        r"(?:github\\.com|gist\\.github\\.com|bitbucket\\.org|"
-        r"gitlab\\.com|pastebin\\.com|sprunge\\.us|titanpad\\.com|"
-        r"dpaste\\.de|hastebin\\.com)/[^\\s<>]+", re.I
+        r"https?://(?:www\.)?"
+        r"(?:github\.com|gist\.github\.com|bitbucket\.org|"
+        r"gitlab\.com|pastebin\.com|sprunge\.us|titanpad\.com|"
+        r"dpaste\.de|hastebin\.com)/[^\s<>]+", re.I
     )
     lp_context = re.compile(
-        r"\\b(?:liber\\s*primus|rune(?:s|aylze)?|decrypt|"
+        r"\b(?:liber\s*primus|rune(?:s|aylze)?|decrypt|"
         r"decipher|vigenere|cipher|code|script|python|solver|"
-        r"cryptanalysis|gematria)\\b", re.I
+        r"cryptanalysis|gematria)\b", re.I
     )
     for i, line in enumerate(lines):
         if not DATE.search(line):
@@ -122,7 +122,7 @@ def main() -> None:
                 5 * bool(re.search(r"rune|primus|cicada|crypt", url, re.I))
                 + 3 * bool(re.search(r"solver|decrypt|vigenere|code|source|script", line, re.I))
                 + 2 * bool(re.search(r"github|gist|pastebin|sprunge", url, re.I))
-                + 1 * bool(re.search(r"liber\\s*primus", nearby, re.I))
+                + 1 * bool(re.search(r"liber\s*primus", nearby, re.I))
             )
             archive_links.append({
                 "line": i+1, "url": url, "score": score,
