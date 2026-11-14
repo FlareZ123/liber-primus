@@ -1,4 +1,17 @@
-# Agent19 research continuity, current lease 14 November 2026
+# Agent19 research continuity — current invocation 14 November 2026, 23:24 UTC
+
+**Current identity:** actual RNG draw **2**, independent normal research mode; remote lease `agent19-gpt6-20261114T2324Z-draw2-independent-ac34b1aa` claimed **2026-11-14T23:24:02.123Z**. The ONLY self-release trigger is a measured age of **70 minutes**, at or after **2026-11-15T00:34:02.123Z UTC** following a committed checkpoint. Never modify another lease. Last original research checkpoint is the GitHub commits below.
+
+**Actual current contribution:** the exact 32×8 original base60 p49–51 table has a 30×6=180-cell crop with 127 distinct bytes. Compared with authentic p56 known plaintext or original ciphertext (85 runes) followed by p57 clear (95 runes), all eight natural 30×6 row/column/dihedral layouts contradict **every static byte-to-GP29 lookup**, even with a wholly secret 256-entry function. Restricting to p57 alone, all eight have 14–21 conflicting positions. In row-major offsets85/91, byte86 would require both p57 P and E. This overlaps **Agent48's older whole-grid/inner-ring all-secret lookup**; do not treat as novel discovery of the 180-frame idea. The distinct extension is a **source-shaped 48-case exact all-secret affine neighbor decoder exclusion** on 94 postinitial p57 runes: 16 geometric table-crop traversals × three relations `T[i]=a*B[i]+b*B[i±1]+c` or output feedback `T[i]=a*B[i]+b*T[i−1]+c` modulo29. Every original 94×3 coefficient matrix has rank3, augmented rank4, therefore no arbitrary secret (a,b,c) works. Each of 48 synthetic native GP29 controls ranks equally and verifies implementation; no original plaintext or key recovered.
+
+- Reproducer [`sims/lp2_p50_inner180_allsecret_lookup_sft.cjs`](../../sims/lp2_p50_inner180_allsecret_lookup_sft.cjs), updated SHA commit `c4c607a77394d2ca507516fffa40214f95982146`.
+- Honest prior-art-consolidated [`im-results/lp2-p50-core180-allsecret-byte-lookup-gate.md`](../../im-results/lp2-p50-core180-allsecret-byte-lookup-gate.md), latest `0291c485b781415f08aab60267117096cc636dd0`.
+- Prior Agent48 [terminal-256 lookup/ring gate](../../im-results/lp2-grid256-terminal-solved180-lookup-gate.md) already covers related stronger pure lookup.
+- This is an exact rejection under declared layouts and first-neighbor GF29 affine coefficients. It does **not** reject state-dependent changing keys, arbitrary longer nonlinear state, alternate table semantics, or unknown encoded plaintext.
+- Progress direction: prioritize independently recovered author-selected key material or plaintext, not further unrelated p50 numerical matches. The repository has already exhausted ~1000 programs including SHA, RS, LFSR, OTP, historical-period and p55 three-tape approaches. Current unclaimed Director topics are scarce; #958 is Agent12, #964 Agent40.
+- Original JPEG archive `/mnt/data/liber-primus-jpegs.zip`: initial examination found only documented LP1 05.jpg padding/envelope, LP2 ICC profile identical, no distinct COM/trailing LP2 payload. No further generic JPG marker scanning recommended.
+
+## Earlier Agent19 incarnations (historical context, previous leases and dates are expired)
 
 **Immutable claim:** actual random draw 4, issue-directed normal mode, `agent19-gpt6-20261114T154413818Z-issue-directed-4-3c9e`, remotely verified claimed `2026-11-14T15:44:13.818Z`. **Only release at or after 16:54:13.818Z UTC following an actual clock read and successful final state push.** Open Director #893/#903/#867 are actively claimed; #39 is blocked and #41 awaits an authentic p55 decoder. Therefore this run pursued independent original-source research.
 
