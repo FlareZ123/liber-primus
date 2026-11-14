@@ -183,6 +183,38 @@ function run() {
   assert.equal(xorTwoRuneCodebookContradictions(xorPlant, 3), 0);
   assert.equal(allSecretPairCodebookBound(xorPlant, 3).forcedWrong, 0);
 
+  const lengths = Array.from({length:56}, (_, page) => {
+    const p = corpus.pages.find(x => x.page === page);
+    assert(p && p.status === "unsolved");
+    return p.indices.length;
+  });
+  // Descriptive exact base rate across every original four-page subset.
+  // This is NOT an authorial QR probability or a familywise discovery p.
+  let quartets = 0;
+  let twiceSquares = 0;
+  let exactly882 = 0;
+  let with55 = 0;
+  let with55TwiceSquares = 0;
+  for (let a = 0; a < 53; a++) {
+    for (let b = a+1; b < 54; b++) {
+      for (let d = b+1; d < 55; d++) {
+        for (let e = d+1; e < 56; e++) {
+          quartets++;
+          const total = lengths[a]+lengths[b]+lengths[d]+lengths[e];
+          const square = Number.isInteger(Math.sqrt(total/2));
+          twiceSquares += +square;
+          exactly882 += +(total === 882);
+          if (e === 55) {
+            with55++;
+            with55TwiceSquares += +square;
+          }
+        }
+      }
+    }
+  }
+  assert.deepEqual([quartets,twiceSquares,exactly882,
+    with55,with55TwiceSquares],[367290,4014,1091,26235,463]);
+
   const minSingle = Math.min(...result.flatMap(r =>
     r.panels.flat().map(x => x.forcedWrong)));
   assert.equal(minSingle, 40);
@@ -190,6 +222,8 @@ function run() {
     originalCorpusSha256:crypto.createHash("sha256").update(file).digest("hex"),
     pageIds, pageLengths:sourcePages.map(p => p.length),
     runes:tape.length, qrV1ModuleCount:441,
+    allFourPageSizeBaseRate:{quartets,twiceSquares,exactly882,
+      with55,with55TwiceSquares},
     independentlyMappedPanelFinderBounds:result,
     minimumForcedWrongFinderModules:minSingle,
     pairedEqualRunes:pairedMatches,
