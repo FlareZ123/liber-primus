@@ -47,6 +47,18 @@ for (const from of ps) {
 }
 assert.deepEqual(links, [{from: 55, to: 27, offset: 28, gap: 28}]);
 assert.equal(tail.map(i => source.translit[i]).join("."), "D.J.U.B.E.I");
+const gpPrime = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,
+  61,67,71,73,79,83,89,97,101,103,107,109];
+const wordPrimeSums = [
+  tail.slice(0,3).reduce((n,i)=>n+gpPrime[i],0),
+  tail.slice(3).reduce((n,i)=>n+gpPrime[i],0)
+];
+const combinedPrimeSum = wordPrimeSums[0] + wordPrimeSums[1];
+assert.deepEqual(wordPrimeSums, [129,159]);
+assert.equal(combinedPrimeSum, 288);
+assert.equal(combinedPrimeSum % 29, p27.page);
+assert.equal(combinedPrimeSum % 58, 56);
+
 const afterAnchor = p27.indices.slice(34, 104);
 const front = p55.indices.slice(0, 70);
 assert.equal(afterAnchor.length, front.length);
@@ -79,6 +91,12 @@ console.log(JSON.stringify({
     p55Len: p55.indices.length, p27Len: p27.indices.length},
   endpointLinksOfSixRunesAcrossAllPages: links,
   repeatedGematria: tail.map(i => source.translit[i]).join("-"),
+  sourceNumberDirectionCandidate: {
+    wordPrimeSums, combinedPrimeSum,
+    modAlphabet29: combinedPrimeSum % 29,
+    destinationPhysicalPage: p27.page,
+    modTotalPages58: combinedPrimeSum % 58
+  },
   conditionalRotationalPlacements: conditionalRotations,
   fixedHypothesis: "p27 following six-rune marker at offset34 supplies 70 GP29 key runes for p55 preceding 70 cipher runes",
   directAdditiveResults: {
