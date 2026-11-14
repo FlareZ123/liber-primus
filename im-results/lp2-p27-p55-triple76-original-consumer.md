@@ -23,6 +23,19 @@ On the phrase-excision layouts, Shamir interpolation at x0 and extrapolation at 
 
 If instead the three-tape readout is a 76-position additive **decryption key**, all 24 original full-p55 inverses (four arrangements × three operations × two signs) remain nonlinguistic, with decoded GP29 IoCs **0.02947–0.04281**, and no recognizable opening under the source's GP runes. A genuine planted 76-rune native GP passage from the separately solved p57, hidden under a nontrivial 76-rune Shamir-secret key generated from genuine x1,x2,x3 polynomial shares, is recovered **76/76** exactly and forward-encrypts **76/76**, verifying the inverse. These observations do not mathematically preclude unrelated natural sentences or an additional layer; they close the direct source-aligned version.
 
+## Historical three-share XOR rival
+
+Cicada's actual 2014 challenge combined three external byte shares using **bitwise XOR**. Thus a period-authentic rival uses the three p27-derived **GP29 indices** as literal five-bit inputs, computes `K_i=a_i XOR b_i XOR c_i`, and tests (a) `K_i=C55_i` or (b) `P_i=C55_i XOR K_i`. Both are unkeyed and exactly reversible in five bits. A decoded original LP2 rune can only be an integer **0–28**; any decoded value 29, 30, or 31 is a hard incompatible symbol under this exact GP29 plaintext model.
+
+| Fixed original three-share layout | Literal XOR matches / 76 | XOR key symbols outside GP29 | Decoded plaintext symbols outside GP29 |
+| --- | ---: | ---: | ---: |
+| Phrase excision, three consecutive tapes | 0 | 4 | **10** |
+| Phrase excision, interleaved tapes | 3 | 3 | **6** |
+| Three 78-rune rows, drop row endpoints | 2 | 9 | **6** |
+| Seventy-eight triples, drop outer triples | 4 | 3 | **8** |
+
+Every original layout therefore fails **strict source-register feasibility**, with 6–10 non-GP29 decoded values. A separate positive encodes and completely recovers **all 76 authentic solved-p57 GP29 runes** under three genuine nonzero GP29-valued XOR shares whose output stays inside the same source alphabet. The exact inverse and forward recovery pass. This exclusion is specific to a direct 2014-style XOR on original rune indices. Packed bytes, variable length or separate 5-bit escape symbols would require an author-selected additional transport, absent here.
+
 **Decision:** both exact **p27 six-rune excision** and independently prompted **p57-style three-row circumference trim** yield three complete p55-length arrays, supplying two clue-constrained ways to explore the original p27/p55 link. The direct Shamir fourth-share/checksum interpretation is definitively contradicted by source positions, and the GF29 sum/Shamir additive-key interpretations do not recover English-like original plaintext. Do not rescue the branch through new unknown interleavers, free abscissas, rotations or added keys without independent original instructions. It remains possible that the duplicated source phrase is a navigation marker; this test does not adjudicate that.
 
 **Reproduction:** [read-only standalone CommonJS SFT](../sims/lp2_p27_p55_threeby76_original_sft.cjs), [original 58-page GP29 source corpus](../resources/liber-primus/lp2-corpus.json), [complete Windows CI run43630101165](https://github.com/FlareZ123/liber-primus/actions/runs/43630101165).
