@@ -288,12 +288,11 @@ def check_grid_full_output():
             print("GRID", name, mode, "survivors-after-2/3/4", counts,
                   flush=True)
             assert len(states) == 0, (name, mode, states)
-            if mode == "mod256":
-                filtered, fs_counts = filtered_prefix_states(
-                    view[:8], mode, max_skips=2)
-                print("GRID F-SKIP", name, mode,
-                      "survivors-after-2/3/4", fs_counts, flush=True)
-                assert len(filtered) == 0, (name, filtered)
+            filtered, fs_counts = filtered_prefix_states(
+                view[:8], mode, max_skips=2)
+            print("GRID F-SKIP", name, mode,
+                  "survivors-after-2/3/4", fs_counts, flush=True)
+            assert len(filtered) == 0, (name, mode, filtered)
     planted_fskip = [2, 84, 32, 116, 250, 210, 195, 0]
     filtered, filtered_counts = filtered_prefix_states(
         planted_fskip, "mod256", max_skips=2)
