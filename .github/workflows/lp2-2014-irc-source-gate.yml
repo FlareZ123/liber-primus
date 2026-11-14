@@ -34,3 +34,13 @@ jobs:
             "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
             "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
             "$RUNNER_TEMP/#33012014.freenode.log"
+
+      - name: Mine original 2014 IRC-shared solver code and clue file URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/lp2_2014_irc_filelink_source_miner_sft.cjs --selftest
+          node sims/lp2_2014_irc_filelink_source_miner_sft.cjs \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
+            "$RUNNER_TEMP/#33012014.freenode.log"
