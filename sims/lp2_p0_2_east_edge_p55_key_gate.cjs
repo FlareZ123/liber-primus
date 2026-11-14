@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-// Extend the existing p0-p2 east-edge -> p3 test to original p55 only.
-// Borrow the authentic solved-p56 transparent-plaintext-F clock; the key
-// mappings below are explicit hypotheses, not an authenticated p56 key.
+// Test only original p55. The p0-p2 and p32 east-edge -> p3 cases already
+// exist in sims/lp2_27x27_eastmap_p32_to_p3_sft.cjs. This script adds p55
+// with the authentic transparent-plaintext-F clock and fixed source phases.
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
@@ -34,35 +34,57 @@ const page = n => {
 };
 const p55 = page(55);
 const p55Body = p55.slice(1); // first rune is the incoming p54 word carry
-const p57Control = page(57).slice(0, 75);
+const p57Plant = page(57).slice(0, 76);
+const p57Control = p57Plant.slice(0, 75);
 assert.equal(p55.length, 76);
 assert.equal(p55Body.length, 75);
-assert.equal(p57Control.length, 75);
+assert.equal(p57Plant.length, 76);
 
-const map = [...page(0), ...page(1), ...page(2)];
-assert.equal(map.length, 729);
-assert.equal(map.length, 27 * 27);
-const east = Array.from({ length: 27 }, (_, row) => map[row * 27 + 26]);
-assert.deepEqual(east, [
+const map0to2 = [...page(0), ...page(1), ...page(2)];
+assert.equal(map0to2.length, 729);
+assert.equal(map0to2.length, 27 * 27);
+const east0to2 = Array.from({ length: 27 }, (_, row) => map0to2[row * 27 + 26]);
+assert.deepEqual(east0to2, [
   17,17,21,25,7,11,25,28,1,4,16,6,9,24,28,5,1,8,6,19,8,16,18,20,7,21,7
 ]);
 
-const keyVariants = [
-  { name: "rune-index-east-down", key: east },
-  { name: "rune-index-east-up", key: [...east].reverse() },
-  { name: "gp-prime-mod29-east-down", key: east.map(x => corpus.prime[x] % 29) },
-  { name: "gp-prime-mod29-east-up", key: east.map(x => corpus.prime[x] % 29).reverse() },
-  { name: "phi-gp-prime-east-down", key: east.map(x => (corpus.prime[x] - 1) % 29) },
-  { name: "phi-gp-prime-east-up", key: east.map(x => (corpus.prime[x] - 1) % 29).reverse() },
-];
+const p32 = page(32);
+assert.equal(p32.length, 121);
+assert.equal(p32.length, 11 * 11);
+const east32 = Array.from({ length: 11 }, (_, row) => p32[row * 11 + 10]);
+assert.deepEqual(east32, [21,7,2,23,14,17,7,2,11,24,12]);
 
-const fPositions = p55.map((x, i) => x === 0 ? i : -1).filter(i => i >= 0);
-assert.deepEqual(fPositions, [15,25,41]);
 const prefixTo55 = corpus.pages.filter(p => p.page < 55)
   .reduce((sum, p) => sum + p.indices.length, 0);
 assert.equal(prefixTo55, 12880);
-const continuousNoPriorSkipPhase = prefixTo55 % 27;
-assert.equal(continuousNoPriorSkipPhase, 1);
+const afterP32To55 = corpus.pages.filter(p => p.page > 32 && p.page < 55)
+  .reduce((sum, p) => sum + p.indices.length, 0);
+assert.equal(afterP32To55, 4920);
+
+const sourceMaps = [
+  {
+    name: "p0-p2-27x27",
+    east: east0to2,
+    phases: [
+      { label: "page-reset", phase: 0 },
+      { label: "continuous-no-prior-F-skip", phase: prefixTo55 % 27 },
+    ],
+  },
+  {
+    name: "p32-11x11",
+    east: east32,
+    phases: [
+      { label: "page-reset", phase: 0 },
+      { label: "continuous-from-p32-no-prior-F-skip", phase: afterP32To55 % 11 },
+      { label: "continuous-from-p0-no-prior-F-skip", phase: prefixTo55 % 11 },
+    ],
+  },
+];
+assert.deepEqual(sourceMaps.map(x => x.phases.map(p => p.phase)), [[0,1],[0,3,10]]);
+
+const fPositions = p55.map((x, i) => x === 0 ? i : -1).filter(i => i >= 0);
+assert.deepEqual(fPositions, [15,25,41]);
+const fBit = new Map(fPositions.map((p, bit) => [p, bit]));
 
 const mod = x => (x % 29 + 29) % 29;
 const ioc = values => {
@@ -83,8 +105,8 @@ function languageScore(values) {
 }
 
 // A selected ciphertext F is literal plaintext F and consumes no key.
-// An unselected ciphertext F may be encrypted non-F. If any key-consuming
-// position decrypts to plaintext F, reject that path: plaintext F must bypass.
+// An unselected ciphertext F may decrypt to a non-F rune. If any key-consuming
+// position decrypts to plaintext F, reject that path under the known p56 rule.
 function decodeWithTransparentF(cipher, key, phase, literalFPositions) {
   const literal = new Set(literalFPositions);
   let j = phase;
@@ -102,7 +124,6 @@ function decodeWithTransparentF(cipher, key, phase, literalFPositions) {
   }
   return out;
 }
-
 function encryptWithTransparentF(plain, key, phase) {
   let j = phase;
   const cipher = [];
@@ -119,87 +140,101 @@ function encryptWithTransparentF(plain, key, phase) {
   return { cipher, literalFPositions };
 }
 
-// Positive control: every key representation and both tested clocks must
-// invert a 76-rune known p57 plant with the exact F-bypass rule.
-const plant = page(57).slice(0, 76);
-assert.equal(plant.length, 76);
+const allCandidates = [];
+const perSource = [];
 const plantChecks = [];
-for (const variant of keyVariants) {
-  for (const phase of [0, 1]) {
-    const enc = encryptWithTransparentF(plant, variant.key, phase);
-    const recovered = decodeWithTransparentF(enc.cipher, variant.key, phase, enc.literalFPositions);
-    assert.deepEqual(recovered, plant);
-    plantChecks.push({ key: variant.name, phase, exactRoundTrip: true,
-      literalFPositions: enc.literalFPositions });
-  }
-}
+for (const source of sourceMaps) {
+  const keyVariants = [
+    { name: "rune-index-east-down", key: source.east },
+    { name: "rune-index-east-up", key: [...source.east].reverse() },
+    { name: "gp-prime-mod29-east-down", key: source.east.map(x => corpus.prime[x] % 29) },
+    { name: "gp-prime-mod29-east-up", key: source.east.map(x => corpus.prime[x] % 29).reverse() },
+    { name: "phi-gp-prime-east-down", key: source.east.map(x => (corpus.prime[x] - 1) % 29) },
+    { name: "phi-gp-prime-east-up", key: source.east.map(x => (corpus.prime[x] - 1) % 29).reverse() },
+  ];
 
-const candidates = [];
-let invalidCount = 0;
-for (const variant of keyVariants) {
-  for (const phaseSpec of [
-    { label: "page-reset", phase: 0 },
-    { label: "continuous-no-prior-F-skip", phase: continuousNoPriorSkipPhase },
-  ]) {
-    for (let mask = 0; mask < 8; mask++) {
-      const literalFPositions = fPositions.filter((_, bit) => mask & (1 << bit));
-      const decoded = decodeWithTransparentF(p55, variant.key, phaseSpec.phase, literalFPositions);
-      if (!decoded) {
-        invalidCount++;
-        continue;
-      }
-      const body = decoded.slice(1);
-      candidates.push({
-        key: variant.name,
-        clock: phaseSpec.label,
-        phase: phaseSpec.phase,
-        mask,
-        literalFPositions,
-        ioc: ioc(body),
-        ...languageScore(body),
+  // Positive control: every key representation and every tested phase must
+  // invert a 76-rune p57 plant, including its actual transparent-F positions.
+  for (const variant of keyVariants) {
+    for (const phaseSpec of source.phases) {
+      const enc = encryptWithTransparentF(p57Plant, variant.key, phaseSpec.phase);
+      const recovered = decodeWithTransparentF(enc.cipher, variant.key, phaseSpec.phase, enc.literalFPositions);
+      assert.deepEqual(recovered, p57Plant);
+      plantChecks.push({
+        source: source.name, key: variant.name, clock: phaseSpec.label,
+        phase: phaseSpec.phase, exactRoundTrip: true,
+        literalFPositions: enc.literalFPositions,
       });
     }
   }
+
+  const sourceCandidates = [];
+  let invalidCount = 0;
+  for (const variant of keyVariants) {
+    for (const phaseSpec of source.phases) {
+      for (let mask = 0; mask < 8; mask++) {
+        const literalFPositions = fPositions.filter((_, bit) => mask & (1 << bit));
+        const decoded = decodeWithTransparentF(p55, variant.key, phaseSpec.phase, literalFPositions);
+        if (!decoded) {
+          invalidCount++;
+          continue;
+        }
+        const body = decoded.slice(1);
+        const candidate = {
+          source: source.name,
+          key: variant.name,
+          clock: phaseSpec.label,
+          phase: phaseSpec.phase,
+          mask,
+          literalFPositions,
+          ioc: ioc(body),
+          ...languageScore(body),
+        };
+        sourceCandidates.push(candidate);
+        allCandidates.push(candidate);
+      }
+    }
+  }
+  sourceCandidates.sort((a, b) => b.meanNatsPerQuadgram - a.meanNatsPerQuadgram);
+  perSource.push({
+    source: source.name,
+    keyLength: source.east.length,
+    phases: source.phases,
+    totalCandidates: keyVariants.length * source.phases.length * 8,
+    validCandidates: sourceCandidates.length,
+    rejectedByTransparentFConsistency: invalidCount,
+    best: sourceCandidates[0],
+    allValid: sourceCandidates,
+  });
 }
-candidates.sort((a, b) => b.meanNatsPerQuadgram - a.meanNatsPerQuadgram);
-assert.equal(keyVariants.length * 2 * 8, 96);
-assert.equal(candidates.length, 8);
-assert.equal(invalidCount, 88);
-const expected = [
-  ["phi-gp-prime-east-down",0,4],
-  ["phi-gp-prime-east-up",0,3],
-  ["rune-index-east-down",1,3],
-  ["rune-index-east-down",1,5],
-  ["rune-index-east-down",1,6],
-  ["rune-index-east-up",0,1],
-  ["rune-index-east-up",0,2],
-  ["rune-index-east-up",0,4],
-].map(x => x.join("|")).sort();
-assert.deepEqual(candidates.map(x => [x.key,x.phase,x.mask].join("|")).sort(), expected);
+
+allCandidates.sort((a, b) => b.meanNatsPerQuadgram - a.meanNatsPerQuadgram);
+assert.deepEqual(perSource.map(x => [x.source,x.totalCandidates,x.validCandidates,x.rejectedByTransparentFConsistency]), [
+  ["p0-p2-27x27",96,8,88],
+  ["p32-11x11",144,5,139],
+]);
+assert.equal(allCandidates.length, 13);
+assert.equal(plantChecks.length, 30);
 
 const original = languageScore(p55Body);
 const control = languageScore(p57Control);
 assert.ok(Math.abs(original.meanNatsPerQuadgram - (-15.58578427847444)) < 1e-12);
 assert.ok(Math.abs(control.meanNatsPerQuadgram - (-9.958844623872421)) < 1e-12);
-assert.ok(Math.abs(candidates[0].meanNatsPerQuadgram - (-15.064288444269039)) < 1e-12);
+assert.ok(Math.abs(perSource[0].best.meanNatsPerQuadgram - (-15.064288444269039)) < 1e-12);
+assert.ok(Math.abs(perSource[1].best.meanNatsPerQuadgram - (-15.767651993467785)) < 1e-12);
 
 console.log(JSON.stringify({
-  scope: "p55 only; p3 east-edge direct and p56-totient tests already exist in sims/lp2_27x27_eastmap_p32_to_p3_sft.cjs",
-  eastEdgeRuneIndices: east,
-  eastEdgeTransliteration: render(east),
+  scope: "p55 only; p3 direct east-edge tests already exist in sims/lp2_27x27_eastmap_p32_to_p3_sft.cjs",
+  maps: sourceMaps.map(s => ({
+    name: s.name, keyLength: s.east.length, eastEdgeRuneIndices: s.east,
+    phases: s.phases,
+  })),
   p55: { pageRunes: p55.length, bodyRunes: p55Body.length, ciphertextFPositions: fPositions },
-  keyCandidates: keyVariants.map(x => x.name),
-  clocks: [
-    { name: "page-reset", phase: 0 },
-    { name: "continuous-no-prior-F-skip", phase: continuousNoPriorSkipPhase,
-      caveat: "assumes no earlier plaintext-F bypasses before p55" }
-  ],
-  totalCandidates: 96,
-  validCandidates: candidates.length,
-  rejectedByTransparentFConsistency: invalidCount,
+  totalCandidates: 240,
+  validCandidates: allCandidates.length,
+  rejectedByTransparentFConsistency: 227,
   originalBody: { ioc: ioc(p55Body), ...original },
   clearP57Control75: { ioc: ioc(p57Control), ...control },
-  bestCandidate: candidates[0],
-  allValidCandidates: candidates,
+  perSource,
   syntheticPositiveControls: plantChecks,
 }, null, 2));
