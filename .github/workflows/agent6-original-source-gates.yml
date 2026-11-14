@@ -14,6 +14,7 @@ on:
           - shape
           - predecessor
           - chapter-delta
+          - q252-phase
           - taylor
           - residual
           - reserved
@@ -68,6 +69,9 @@ jobs:
       - name: Exact nine-chapter all-secret difference alphabet ceiling
         if: ${{ inputs.route == 'chapter-delta' }}
         run: node sims/lp2_ninechapter_delta_allsecret_bound_sft.cjs
+      - name: Exact nine-chapter period28 all-secret output capacity
+        if: ${{ inputs.route == 'q252-phase' }}
+        run: node sims/lp2_q252_allsecret_9x28_phase_capacity_sft.cjs
       - name: Original p39-root quotient Taylor reversible full-cipher gate
         if: ${{ inputs.route == 'taylor' }}
         run: node sims/lp2_p29_grid_root24_quotient_taylor_inverse_sft.cjs
