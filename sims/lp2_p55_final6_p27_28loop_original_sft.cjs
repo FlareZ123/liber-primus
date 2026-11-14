@@ -116,6 +116,18 @@ for (const [from, record] of sourcePages) {
     }
   }
 }
+const targetP27Words = sourcePages.get(27).words;
+assert.deepEqual(targetP27Words[5].runes, tail.slice(0,3));
+assert.deepEqual(targetP27Words[6].runes, tail.slice(3));
+assert.deepEqual(targetP27Words[7].runes, [25,0]);  // AE F
+assert.equal(targetP27Words[7].start, 34);
+assert.equal(targetP27Words[7].primeSum, 103);
+const originalTable = JSON.parse(fs.readFileSync(path.resolve(__dirname,
+  "../resources/liber-primus/base60-grid.json"), "utf8"));
+const cells = originalTable.rows.flat();
+assert.equal(cells.length, 256);
+assert.equal(cells[102], "0W");  // 103rd cell
+assert.equal(cells[103], "3Q");  // 104th cell
 assert.equal(eligiblePairs, 2454);
 assert.deepEqual(arithmeticHits, [{
   from: 55, sourceWordIndex: 15, sourceRuneOffset: 70,
@@ -162,6 +174,8 @@ console.log(JSON.stringify({
     modAlphabet29: combinedPrimeSum % 29,
     firstMinusSecondMod29: directedPrimeDifference,
     targetPageRuneOffset: 28,
+    immediateNextP27WordPrimeSum: 103,
+    tableCell103: cells[102], tableCell104: cells[103],
     destinationPhysicalPage: p27.page,
     modTotalPages58: combinedPrimeSum % 58
   },
