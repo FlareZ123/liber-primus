@@ -53,6 +53,25 @@ function scan(entries,name){
  for(const x of dedup)console.log(name+'-CANDIDATE '+JSON.stringify({
   sourceLine:x.e.line,seed:x.e,context:entries.slice(Math.max(0,x.i-3),x.i+4)
  }));
+ // Separate 2016 original evidence from abundant early 2014 hypotheses.
+ const late=hits.filter(x=>x.e.date.startsWith('2016 ')).sort((a,b)=>b.score-a.score||a.e.line-b.e.line);
+ const mid=hits.filter(x=>x.e.date.startsWith('2015 ')).sort((a,b)=>b.score-a.score||a.e.line-b.e.line);
+ for(const [bucket,arr,cap] of [['2015',mid,32],['2016',late,90]]){
+  const chosen=[],used=new Map();
+  for(const x of arr){
+   const day=x.e.date.slice(0,11);
+   if((used.get(day)||0)>=4)continue;
+   if(chosen.some(y=>Math.abs(x.e.line-y.e.line)<=5))continue;
+   chosen.push(x);used.set(day,(used.get(day)||0)+1);
+   if(chosen.length>=cap)break;
+  }
+  console.log(name+'-YEAR-COUNTS '+JSON.stringify({year:bucket,total:arr.length,printed:chosen.length}));
+  for(const x of chosen)console.log(name+'-'+bucket+'-WITNESS '+JSON.stringify({
+   sourceLine:x.e.line,seed:x.e,
+   context:entries.slice(Math.max(0,x.i-2),x.i+3)
+  }));
+ }
+
 }
 function main(){
  assert.equal(gitsha(Buffer.from('test')),'30d74d258442c7c65512eafab474568dd706c430');
