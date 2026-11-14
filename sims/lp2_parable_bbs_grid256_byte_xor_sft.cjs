@@ -2,7 +2,7 @@
 
 /**
  * Source-selected 2013 PARABLE Blum-Blum-Shub prime triple -> original LP2 p50
- * 32x8 base60-byte grid, sixteen bit-extraction conventions. No fitted keys/clocks.
+ * 32x8 base60-byte grid, 24 frozen bit-extraction conventions. No fitted keys/clocks.
  * This SFT is separate from the full-corpus GP29 decoder and tests a native
  * *byte* transport: direct BBS parity-byte XOR against the original grid order.
  * Windows 11 / Node22 CommonJS; no external dependencies.
@@ -80,6 +80,52 @@ function bbsParityKey(size, timing, order, bitsPerStep, direction) {
   return bytes;
 }
 
+
+/**
+ * Terminal-state Blum-Goldwasser chronology: the first QR square root of the
+ * hypothetical published x_(t+1) is x_t, which belongs at the LAST ciphertext
+ * fragment. Recover the full sequence backwards, then reverse the fragments
+ * before packing bytes in original printed left-to-right order.
+ * x0/x1 mark emission from terminal itself or after its first root. Only x1 is
+ * the textbook x_(t+1) interpretation.
+ * @param {number} size
+ * @param {'x0'|'x1'} timing
+ * @param {'msb'|'lsb'} order
+ * @param {1|4} bitsPerStep
+ * @returns {Buffer}
+ */
+function bbsTerminalChronologicalKey(size, timing, order, bitsPerStep) {
+  const fragments = [];
+  const count = size * 8 / bitsPerStep;
+  const mask = (1 << bitsPerStep) - 1;
+  let x = SEED;
+  for (let i = 0; i < count; i++) {
+    if (i !== 0 || timing === 'x1') x = modpow(x, QR_SQRT_EXP, N);
+    fragments.push(x & mask);
+  }
+  fragments.reverse();
+  const out = Buffer.alloc(size);
+  const perByte = 8 / bitsPerStep;
+  for (let i = 0; i < size; i++) {
+    let v = 0;
+    for (let j = 0; j < perByte; j++) {
+      const frag = fragments[i * perByte + j];
+      if (order === 'msb') v = v * (mask + 1) + frag;
+      else v |= frag << (bitsPerStep * j);
+    }
+    out[i] = v;
+  }
+  return out;
+}
+
+for (const bitsPerStep of [1, 4]) {
+  const steps = original.length * 8 / bitsPerStep;
+  let state = SEED;
+  for (let i = 0; i <= steps; i++) state = modpow(state, QR_SQRT_EXP, N);
+  for (let i = 0; i <= steps; i++) state = (state * state) % N;
+  assert.equal(state, SEED, 'chronological terminal-state round trip');
+}
+
 /** @param {Buffer} data @param {Buffer} key */
 function xor(data, key) {
   assert.equal(data.length, key.length);
@@ -151,6 +197,27 @@ assert.deepEqual(cases.map((c) => c.printable), [
   96, 97, 92, 101, 105, 97, 98, 95,
   117, 115, 99, 98, 93, 93, 92, 86
 ]);
+for (const bitsPerStep of [1, 4])
+  for (const timing of ['x0', 'x1'])
+    for (const order of ['msb', 'lsb']) {
+      const key = bbsTerminalChronologicalKey(256, timing, order, bitsPerStep);
+      const cipherPlant = xor(plant, key);
+      assert.deepEqual(
+        xor(cipherPlant, bbsTerminalChronologicalKey(256, timing, order, bitsPerStep)),
+        plant
+      );
+      const candidate = xor(original, key);
+      cases.push({
+        direction: 'terminal-chronological', bitsPerStep, timing, order,
+        ...stats(candidate),
+        first32Hex: candidate.subarray(0, 32).toString('hex'),
+        recognizedHeaders: recognizedHeaders(candidate)
+      });
+    }
+assert.equal(cases.length, 24);
+assert.deepEqual(cases.slice(16).map((c) => c.printable), [
+  100, 103, 97, 104, 95, 95, 99, 95
+]);
 assert.ok(cases.every((c) => c.recognizedHeaders.length === 0));
 assert.ok(cases.every((c) => c.printableOrWhitespace <= 119));
 
@@ -164,7 +231,7 @@ const summary = {
   originalSha256: createHash('sha256').update(original).digest('hex'),
   firstOutput: 'forward seed-square or hypothetical reversed terminal-factor, ' +
     '1 BBS parity bit or 4 Blum-Goldwasser bits per squaring, ' +
-    'x0/x1 timing, MSB/LSB packing',
+    'x0/x1 timing, MSB/LSB packing, plus 8 terminal-chronological cases',
   cases, plantRecovered: true, recoveredPlaintext: false
 };
 console.log(JSON.stringify(summary, null, 2));
