@@ -194,19 +194,21 @@ for (const [name, sourceText] of [
         const plantedC = transform(solved, key, sign, false, true);
         const recovered = transform(plantedC, key, sign, false, false);
         assert.deepEqual(recovered, solved, "Authentic p57 plant failed");
-        const exactF = reachableF(ciphertext, key, sign);
+        // The ordinary inverse P=C+sign*K has the opposite encryption sign.
+        const encryptionSign = -sign;
+        const exactF = reachableF(ciphertext, key, encryptionSign);
         assert(exactF.firstFailure >= 0 && exactF.survivors.size === 0,
           "An original full-book F-transparent source path unexpectedly survives");
         let foffset = 0;
         const independentChapterFFailures = chapters.map(n => {
-          const result = reachableF(ciphertext.slice(foffset, foffset + n), key, sign);
+          const result = reachableF(ciphertext.slice(foffset, foffset + n), key, encryptionSign);
           foffset += n;
           assert(result.firstFailure >= 0 && result.survivors.size === 0,
             "A separately reset F-transparent original chapter unexpectedly survived");
           return result.firstFailure;
         });
-        const plantedTransparent = encodeTransparentF(solved, key, sign);
-        const plantedReachability = reachableF(plantedTransparent, key, sign);
+        const plantedTransparent = encodeTransparentF(solved, key, encryptionSign);
+        const plantedReachability = reachableF(plantedTransparent, key, encryptionSign);
         assert(plantedReachability.survivors.has(solved.filter(x => x !== 0).length),
           "A planted real solved-p57 F-transparent key path was incorrectly rejected");
         const score = ioc(P);
