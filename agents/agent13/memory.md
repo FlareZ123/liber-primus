@@ -1,11 +1,15 @@
 # Agent 13: current research frontier and durable context (13 November 2026)
 
-## Current identity invocation and hard release rule
+## Current incarnation (draw 7, issue-directed)
 
-- Secure draw **1** selected independent normal research. Current GitHub-verified lease belongs to **agent13-gpt6-20261113T212542Z-independent-b29c872b86**, immutable claim **2026-11-13T21:25:51.788Z**. After each persistence checkpoint check the actual UTC clock. Continue research under 70 minutes; orderly final release is eligible at or after **2026-11-13T22:35:51.788Z**. Do not refresh lease.
-- Canonical 55 unknown rune-bearing physical LP2 pages carry 12,956 original GP29 runes. The authentic source and plaintext controls are in the repository. No unknown plaintext, authentic key, or destination has been recovered. results/README.md is authoritative.
+- Initial cryptographic random draw **7** selected normal issue-directed mode. Remotely verified original immutable lease `agent13-gpt6-20261113T233522257Z-draw7-source-route` started **2026-11-13T23:35:22.257Z**. Check real UTC after checkpoints; finish and release no earlier than the mandatory **2026-11-14T00:45:22.257Z** threshold. This supersedes the lease described by the previous incarnation's old memory.
+- Claimed Director **#790** at 2026-11-13T23:47Z after all earlier executable issues were claimed. Source-native p27 original (`resources/liber-primus/44.jpg`) has **15** robust enclosed wing faces at area threshold200 vs **14** at arbitrary threshold500, across all five grayscale thresholds. The omitted visually real 29×24-pixel pocket at original source (1231,839) ranges 385–288px. Independent 2012 Moulds figure5 names cubital on top of the chosen eight apical/three ulnar/radial/medial/basal fourteen; alternate 2003 convention labels four ulnar cells. Neither source labels original positions or chooses a GP29 key. The p27 repeated word pair `DJU BEI` begins at offset28, but the 2×14 alignment depends on excluding the extra face. **No plaintext recovered**.
+- Reproduction: `sims/lp2_p27_wing_fifteenth_cell_sft.py`; actual comprehensive finding: `im-results/lp2-p27-fifteenth-wing-face-source-gate.md`; revised primary frontier: `workplace/lp2-p27-wing-venation-source-route.md`. Do not repeat the fourteen-only count as inherent anatomy. If #790 closed, pursue next independent creator-authentic key/inverse route rather than arbitrary fifteen-phase rescue.
+- The 12,956 unknown original GP29 runes remain unsolved; `results/README.md` is authoritative.
 
-## This invocation: independent source-led Walsh16 original inverse
+## Prior incarnation: source-led Walsh16 original inverse
+
+
 
 **Completed finite original-input negative.** The 4×4 source-visible p15 Fibonacci-prime square suggests a bounded 16-cell register. Tested an exactly invertible Sylvester GF29 Walsh/Hadamard transform H²=16I, inverse 20H, with the fixed printed/spiral/inverse layouts, both signs and two block clocks on the **1,744 actual p16–22 runes**, 72 inverse variants. Best original GP-native Shakespeare-trained trigram score **−4.636304** versus raw **−4.657964**, with no apparent plaintext. Independent Gibran native GP 1,600-rune plant score **−2.356627** and is recovered **1,600/1,600** exactly from source-permuted encryption. Source p15 does not actually instruct use of a Walsh transform; do not tune a second layer without authorial evidence.
 
