@@ -19,6 +19,7 @@ on:
           - residual
           - reserved
           - stage04-small
+          - q-rotor
 permissions:
   contents: read
 jobs:
@@ -81,6 +82,9 @@ jobs:
       - name: All-secret fixed plaintext marker doublet source gate
         if: ${{ inputs.route == 'reserved' }}
         run: node sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs
+      - name: Original p39 quadratic fiveback nonlinear GP29 rotor SFT
+        if: ${{ inputs.route == 'q-rotor' }}
+        run: node sims/lp2_p39_fiveback_nonlinear_rotor_original_sft.cjs
       - name: Install JPEG coefficient inspection dependency
         if: ${{ inputs.route == 'stage04-small' }}
         run: sudo apt-get update -qq && sudo apt-get install -y libjpeg-dev
