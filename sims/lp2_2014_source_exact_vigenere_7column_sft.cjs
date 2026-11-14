@@ -331,6 +331,82 @@ for (const row of output) {
   assert(Math.abs(row.transposeThenKeySourceNativeScore - expected[0]) < 1e-10);
   assert(Math.abs(row.keyThenTransposeSourceNativeScore - expected[1]) < 1e-10);
 }
+
+// Weak page-3 selector gate: the literal "3" occurs in the recovered Stage04
+// onion address, but is not an authenticated instruction to select LP2 page 3.
+// Page 3 has 217=31*7 runes, so test the exact historical Stage05 permutation
+// and the corrected Stage04 GP18 key without tuning phase or operation.
+const p3 = corpus.pages.find(p => p.page === 3).indices;
+assert.equal(p3.length, 217);
+assert.equal(p3.length / 7, 31);
+assert.equal(fixedKey.length, 18);
+const p3Stage05Exact = permuteSeven(p3, permuteSource);
+const p3Stage05Opposite = permuteSeven(p3, permuteInverse);
+const p3Stage04 = historicalInverse(p3, fixedKey);
+const p3Stage05ThenStage04 = historicalInverse(p3Stage05Exact, fixedKey);
+const p3Stage04ThenStage05 = permuteSeven(p3Stage04, permuteSource);
+const p3Stage05OppositeThenStage04 = historicalInverse(p3Stage05Opposite, fixedKey);
+const p3Stage04ThenStage05Opposite = permuteSeven(p3Stage04, permuteInverse);
+assert.deepEqual(permuteSeven(p3Stage05Exact, permuteInverse), p3);
+assert.deepEqual(permuteSeven(p3Stage05Opposite, permuteSource), p3);
+assert.deepEqual(historicalForward(p3Stage04, fixedKey), p3);
+assert.deepEqual(permuteSeven(
+  historicalForward(p3Stage05ThenStage04, fixedKey), permuteInverse), p3);
+assert.deepEqual(historicalForward(
+  permuteSeven(p3Stage04ThenStage05, permuteInverse), fixedKey), p3);
+assert.deepEqual(permuteSeven(
+  historicalForward(p3Stage05OppositeThenStage04, fixedKey), permuteSource), p3);
+assert.deepEqual(historicalForward(
+  permuteSeven(p3Stage04ThenStage05Opposite, permuteSource), fixedKey), p3);
+const p3VariantInputs = [
+  ["raw", p3],
+  ["Stage05 exact inverse", p3Stage05Exact],
+  ["Stage05 opposite", p3Stage05Opposite],
+  ["Stage04 corrected GP18 only", p3Stage04],
+  ["Stage05 exact then Stage04 GP18", p3Stage05ThenStage04],
+  ["Stage04 GP18 then Stage05 exact", p3Stage04ThenStage05],
+  ["Stage05 opposite then Stage04 GP18", p3Stage05OppositeThenStage04],
+  ["Stage04 GP18 then Stage05 opposite", p3Stage04ThenStage05Opposite]
+];
+const p3Gate = {
+  page: 3,
+  runeCount: p3.length,
+  blocksOfSeven: p3.length / 7,
+  correctedStage04KeySymbols: fixedKey.length,
+  stage05ExactInverse: permuteSource,
+  stage05Opposite: permuteInverse,
+  pageSelectorStatus: "weak inference from literal 3 inside Stage04 onion address; not source-authenticated",
+  variants: p3VariantInputs.map(([name, text]) => ({
+    name,
+    canonicalScore: score(text),
+    sourceNativeScore: sourceNativeModel.scoreStream(text).mean,
+    canonicalPrefix: text.slice(0, 48).map(i => corpus.translit[i]).join(""),
+    sourceNativePrefix: sourceNativeModel.spell(text.slice(0, 48))
+  }))
+};
+const expectedP3 = {
+  "raw": [-3.4103949988193447, -3.4073238945315034],
+  "Stage05 exact inverse": [-3.4366627512171917, -3.430279595579736],
+  "Stage05 opposite": [-3.4246518173733014, -3.427520500599825],
+  "Stage04 corrected GP18 only": [-3.427451996351751, -3.4345956619260205],
+  "Stage05 exact then Stage04 GP18": [-3.4435380639299757, -3.4340714900365055],
+  "Stage04 GP18 then Stage05 exact": [-3.405862118910687, -3.3995323087493747],
+  "Stage05 opposite then Stage04 GP18": [-3.44749564705272, -3.4447885326518435],
+  "Stage04 GP18 then Stage05 opposite": [-3.462249731577561, -3.460885136800885]
+};
+for (const row of p3Gate.variants) {
+  const expected = expectedP3[row.name];
+  assert(expected);
+  assert(Math.abs(row.canonicalScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.sourceNativeScore - expected[1]) < 1e-10);
+}
+assert.equal(p3Gate.variants.length, 8);
+assert.ok(p3Gate.variants.every(row =>
+  row.canonicalScore < -3.4 && row.sourceNativeScore < -3.39));
+assert.equal(p3Gate.variants.find(row =>
+  row.name === "Stage04 GP18 then Stage05 exact").sourceNativeScore,
+  -3.3995323087493747);
+
 console.log(JSON.stringify({
   status:"PASS",
   sourceNativeModel:{trainingLength:sourceNativeModel.trainingLength,trainingScore:sourceNativeModel.trainingScore,p57Score:sourceNativeModel.p57Score},
@@ -339,5 +415,5 @@ console.log(JSON.stringify({
   historicalSourceBug:buggyKey.length,
   correctedGpKeySymbols:fixedKey.length,
   testedOriginalSpanDecryptions:12,
-  recoveredUnknownPlaintext:false, output, finalChapterGate
+  recoveredUnknownPlaintext:false, output, p3Gate, finalChapterGate
 },null,2));

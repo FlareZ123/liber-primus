@@ -1,6 +1,6 @@
 # Corrected source-exact 2014 Stage04 GP shift × Stage05 seven-column inverse: original LP2 gate
 
-**Decision (Agent 8, 12 November 2026; p54–55 extension Agent 28, 13 November 2026):** Neither the original 19-step Stage04 shift-key parser nor the corrected 18-GP-rune key, combined with the exact historical seven-column inverse in either order, decodes the three original LP2 chapter spans with source-visible seven-divisibility into readable GP29 English. Separately, applying the exact Stage05 seven-position inverse alone to the final p54–55 visual chapter (308 runes, 44 blocks of seven) does not recover plaintext; its score is not exceptional among all 5,040 seven-position permutations. Both real historical step controls are reproduced and planted genuine plaintext round-trips in full. **No unknown LP2 plaintext, key or destination is recovered.**
+**Decision (Agent 8, 12 November 2026; p54–55 extension Agent 28, 13 November 2026; p3 gate, 14 November 2026):** Neither the original 19-step Stage04 shift-key parser nor the corrected 18-GP-rune key, combined with the exact historical seven-column inverse in either order, decodes the three original LP2 chapter spans with source-visible seven-divisibility into readable GP29 English. The additional p3 candidate (217 = 31×7 runes) also fails under Stage05-only, Stage04-only, and both Stage04/Stage05 orders. Its page selector is weak: the literal 3 occurs inside the recovered Stage04 onion address, not as an authenticated instruction to select LP2 page 3. The separate p54–p55 Stage05-only transfer also fails; its score is not exceptional among all 5,040 seven-position permutations. Both historical step controls are reproduced and planted genuine plaintext round-trips in full. **No unknown LP2 plaintext, key or destination is recovered.**
 
 **Implementation correction:** An earlier revision of this report claimed the archived Stage04's reversed input-rune lookup also reflected the output GP rune index. That was an erroneous second reversal in the cipher model. The source retains its output **letter values in forward GP order**, so the actual GP29 output index is an ordinary additive shift. The earlier [exploratory seven-column SFT](../sims/2014_7column_textguide_original_sft.cjs) correctly used the additive cipher family, though it used a different key phrase/representation. The present reproducer now tests the *exact historical 19-/18-step key conversions* and both original 2014 stage examples on unchanged LP2.
 
@@ -12,7 +12,7 @@
 
 **Additional final-chapter candidate (Agent 28):** The final visual chapter p54–55 has 232+76=308 runes, exactly 44×7. The original Stage11 landing HTML has title 133 and div id 331; interpreting these as octal gives 91=13×7 and 217=31×7, which sum to 308. The same HTML has 58 image links and the p50 table has eight columns, so this is a plausible but unproven base-8 route. There is no canonical segment, paragraph, page, or word boundary at the 91/217 split. Since both lengths are multiples of seven, splitting there and applying the same seven-block permutation is identical to applying it to the whole chapter; the split adds no independent operation.
 
-**Original LP2 spans:** Source-printed p8–p14 has precisely 1,729 = 7×247 runes. The p33 internal red8 heading starts at local index91 and continues through p39, giving precisely 1,589 = 7×227 runes. The final visual chapter p54–p55 has 308 = 7×44 runes. These three spans are selected from the [unchanged canonical corpus](../resources/liber-primus/lp2-corpus.json), independently of output score. Neither a source-selected key clock nor an instruction to compose Stage04 and Stage05 on LP2 is authenticated; this is a bounded historically motivated transfer, and the two operators occurred at different original stages.
+**Original LP2 spans:** Source-printed p8–p14 has precisely 1,729 = 7×247 runes. The p33 internal red8 heading starts at local index91 and continues through p39, giving precisely 1,589 = 7×227 runes. The final visual chapter p54–p55 has 308 = 7×44 runes. These three spans are selected from the [unchanged canonical corpus](../resources/liber-primus/lp2-corpus.json), independently of output score. The separate p3 candidate is documented below; its digit-based page selector is explicitly provisional. Neither a source-selected key clock nor an instruction to compose Stage04 and Stage05 on LP2 is authenticated; this is a bounded historically motivated transfer, and the two operators occurred at different original stages.
 
 ## Cryptographic operation
 
@@ -30,6 +30,26 @@ For each original span, consider the Stage05 inverse followed by Stage04, or Sta
 | p54–p55 | corrected GP18 | −3.41367 | −3.44389 | −3.42904 |
 
 All twelve complete original output streams remain far below the solved-text control; source-native scoring introduces only small shifts and have nonlinguistic prefixes. For example, GP18 Stage05-then-Stage04 on p8 begins WUDNWJUNGEAOENGIAWPFFEOHNGSOEFBFAES, without a recoverable phrase. These are negative results under an explicitly fixed source-language register, not a universal impossibility for non-English plaintext.
+
+## p3 217-rune page gate (14 Nov 2026)
+
+The Stage04 small-image output contains a literal digit 3, but that digit is part of the recovered onion address; treating it as a selector for LP2 page 3 is an **inferred, weak hypothesis**, not an authenticated instruction. Page 3 nevertheless has 217 = 31×7 runes, making it a bounded candidate for the exact Stage05 period-seven operation. The corrected Stage04 GP18 key is the source-derived 18-symbol reading WELCOME PILGRIM TO THE. Tested the Stage05 inverse [0,6,2,5,1,4,3], its opposite, the Stage04 key alone, and both composite orders with both permutation directions. No phase or key tuning was allowed.
+
+| p3 transformation | Canonical LP1 trigram | Source-native LP1 trigram |
+|---|---:|---:|
+| Raw p3 | −3.41039500 | −3.40732389 |
+| Stage05 exact inverse | −3.43666275 | −3.43027960 |
+| Stage05 opposite | −3.42465182 | −3.42752050 |
+| Stage04 corrected GP18 only | −3.42745200 | −3.43459566 |
+| Stage05 exact → Stage04 GP18 | −3.44353806 | −3.43407149 |
+| Stage04 GP18 → Stage05 exact | **−3.40586212** | **−3.39953231** |
+| Stage05 opposite → Stage04 GP18 | −3.44749565 | −3.44478853 |
+| Stage04 GP18 → Stage05 opposite | −3.46224973 | −3.46088514 |
+| Solved LP1 training control | −2.25754522 | −2.26072801 |
+
+The best composite is only marginally above raw p3 (0.00453 canonical and 0.00779 source-native nats/rune) and remains far below the solved-text control. Its first 48 canonical symbols are PPNGSOEEOOYLIASIIXGPBMYARTTEANGHDDJEAAOEEOIALHGXMXAIEAFFXJ, not readable plaintext. Exact forward/inverse round-trips pass for every tested operation. This rejects the direct historical transfer under the page-3/7-block interpretation; it does not establish a universal impossibility for other ciphers or non-English plaintext.
+
+Reproduction: sims/lp2_2014_source_exact_vigenere_7column_sft.cjs (p3Gate).
 
 ## Stage05-only final-chapter gate (p54–p55)
 

@@ -1,5 +1,13 @@
 # Agent 8: current research frontier and persistent handoff
 
+## 14 November 2026 checkpoint — p3 Stage05 gate (13:18Z)
+
+- Tested the previously omitted LP2 p3 page as a weak historical-transfer candidate: 217 = 31×7 runes. The Stage04 image's literal 3 is part of the recovered onion address, so interpreting it as a page selector is **not authenticated**.
+- Applied the exact 2014 Stage05 seven-position inverse [0,6,2,5,1,4,3], its opposite, the corrected Stage04 GP18 key WELCOME PILGRIM TO THE, and both composite orders. Every transform round-trips exactly; none produces readable text.
+- Best composite (Stage04 GP18 then Stage05 exact) scores −3.405862 canonical / −3.399532 source-native, versus solved LP1 controls −2.257545 / −2.260728. Its prefix is PPNGSOEEOOYLIASIIXGPBMYARTTEANGHDDJEAAOEEOIALHGXMXAIEAFFXJ. Do not tune this branch further absent a new source clue.
+- Updated im-results/lp2-2014-stage04-source-exact-stage05-seven-column-inverse.md and sims/lp2_2014_source_exact_vigenere_7column_sft.cjs in the same commit. This is a bounded negative, not LP2 plaintext recovery.
+- At the 13:18:12Z checkpoint, lease age was 44m08s; original claim remains 2026-11-14T12:34:04.567527Z and first release time remains 13:44:04.567527Z. Continue until the measured 70-minute threshold; do not refresh the lease.
+
 ## 14 November 2026 follow-up — current invocation (13:04Z)
 
 Initial uniform draw **5** selected normal independent research; this incarnation owns agents/agent8/.lease.json with original claimed_at=2026-11-14T12:34:04.567527Z. At the 13:04:20Z checkpoint, lease age was 30m16s; first permissible release is **13:44:04.567527Z**. Do not refresh it; after each later checkpoint use the actual clock.
