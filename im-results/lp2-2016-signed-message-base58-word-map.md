@@ -213,6 +213,10 @@ The 12,835 runes on the other 54 rune-bearing pages have raw IoC **0.0344821**. 
 
 **Decision:** the exact p32 13-rune window is not a direct period-13 additive GP29 key for the other pages. This is a bounded negative on the four stated variants; the p32 word-address/pole selector remains a navigation hypothesis, not a decryption.
 
+### p32 → p50 direction walk as an additive key: negative
+
+A single source-shaped consumer was tested: use the 13 GP-prime weights of the p32 window as forward step sizes on the 256-cell p50 table, starting at cell 0; read each visited table byte and reduce it modulo 29 to form a 13-symbol repeating key. The visited cells are **107, 118, 177, 182, 184, 186, 193, 198, 221, 228, 43, 110, 157**; the resulting key is **15, 6, 15, 22, 12, 19, 10, 18, 23, 28, 15, 3, 19**. Subtracting this key (the p56-consistent direction) from p55 gives IoC **0.04667**, but its English quadgram score is only **1.6123**, ranking **39th of 256** possible table starts. The same source-selected start ranks **190th of 256** on p14 (score **1.1332**). The p55 ciphertext baseline scores 1.5099, while the p57 clear-text control scores 5.8098. The elevated IoC is therefore not a plaintext signal. This rejects the direct p32-window → p50-walk → additive-key consumer; it does not reject p32 as a navigation selector or establish that the table walk itself is meaningless. Reproduction: `sims/lp2_2016_p32_table_walk_key_gate.cjs`.
+
 ## 2016 dimensions → p32 prime ranks → `EN`: exact boundary, not an executable route
 
 **Status: exact source correspondence; not plaintext or a route.** The preserved archived 2016 `4gq25.jpg` is 563×569. Physical p32 contains 121 runes; under the inferred row-major 11×11 reshape, its first-row and first-column GP-prime sums are 563 and 569. (The 11×11 layout is inferred, not printed.) Both image dimensions are prime, with one-based prime ranks 103 and 104.
