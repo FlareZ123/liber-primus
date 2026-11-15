@@ -397,6 +397,14 @@ jobs:
           if ($result.native_probe_outcome -eq "inconclusive-timeout") {
             throw "OpenPuff did not finish within the original native observation window"
           }
+          if (-not $result.output_present) {
+            $complete = @($result.completion_dialogs | Where-Object {
+              $_.message -match "58\s*/\s*58\s+carriers?\s+processed"
+            }).Count -gt 0
+            if (-not $complete) {
+              throw "OpenPuff reported no extracted file without a verified native 58/58 completion"
+            }
+          }
           Write-Host "Source-order 58-JPEG chain outcome: $($result.native_probe_outcome)"
           if ($result.output_present) {
             Write-Host "Original extracted payload candidate: $($result.output.sha256) size=$($result.output.size)"
