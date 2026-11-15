@@ -55,7 +55,7 @@ This materially strengthens the earlier base58-word-map observation because the 
 
 Adding the *mapped destination* words along the two diagonals is an extra operation, not one stated by the signed message. It nevertheless gives a concrete, checkable prediction: **FOLD + SB = 171 + 114 = 285 = 58×4 + 53**, addressing **p53:w4 NGTHIAWSH**; **NGC + AEMIW = 59 + 222 = 281 = 58×4 + 49**, addressing **p49:w4 INGGTH**. Both addresses use word index4, on pages49 and53, which flank the p50–52 numeric table. The page separation is4, and the two diagonal sums differ by4, the length of FOLD. The two selected words both contain the GP digraph tokens **NG** and **TH** (p49 has an intervening G).
 
-The original JPGs add a visual coincidence worth checking: p49 carries a **13-dot** red marker and p53 a **10-dot** marker. These counts match the lengths of the 13-rune p32 window and the 10-rune Good/Luck mapped sequence, respectively; both sequences have GP-prime sum413. This may connect the fold square to the table's flanking pages, but the destination-word addition is not source-authenticated. Treat the p49/p53 pointers and marker correspondence as a navigation hypothesis only, not as a key or decryption. The exact word-address predictions are reproduced by `sims/lp2_2016_fold_square.cjs`.
+The original JPGs `resources/liber-primus/32.jpg`, `49.jpg`, and `53.jpg` add a visual check. Page32 has two 13-dot clusters flanking its red heading; p49 has another 13-dot cluster; p53 has a 10-dot cluster. The p32-left, p32-right, and p49 clusters share the same normalized three-column alternating pattern over nine rows: **center, left+right, center, left+right, center, left+right, center, left+right, center** (5 center dots + 4 pairs = 13). The p53 cluster uses the same motif over seven rows (4 center dots + 3 pairs = 10). These counts match the lengths of the 13-rune p32 window and the 10-rune Good/Luck mapped sequence, respectively; both sequences have GP-prime sum413. This may connect the fold square to the table's flanking pages, but the destination-word addition is not source-authenticated. Treat the p49/p53 pointers and marker correspondence as a navigation hypothesis only, not as a key or decryption. The exact word-address predictions are reproduced by `sims/lp2_2016_fold_square.cjs`.
 
 
 ## Solved-tail connection
@@ -103,7 +103,7 @@ The first four assumptions jointly make the FOLD destination a concrete predicti
 
 ## Next decisive experiment
 
-Do not expand into arbitrary fold axes or generic cipher sweeps. The useful continuation must be derived from this square itself or another authenticated source clue and must specify an operation on original ciphertext that predicts unknown plaintext or key material. In particular, test whether the 243-complement relation selects a deterministic operation on the paired destination words NGC/AEMIW or on p14/p55 before introducing any tunable key or permutation.
+The only new candidate from the destination-diagonal sums is the paired pointer to p49:w4 and p53:w4. Test whether the original contexts of those words, together with the p32/p49/p53 alternating dot-marker geometry, prescribe a unique traversal or readout of the p50–52 table. Freeze the row/column orientation and starting cell from source evidence before examining table values. If no source-defined mapping predicts a unique plaintext or key, retire the destination-diagonal branch; do not tune axes, start offsets, rotations, or permutations.
 
 ## Reproduction
 
