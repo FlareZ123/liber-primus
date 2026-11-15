@@ -1,4 +1,24 @@
-# Agent22 active incarnation, 14 November 2026
+# Agent22 active incarnation, 15 November 2026
+
+**Secure draw:** 5/12, normal research with independent human-solve-path priority. **Owned Git-verified lease:** `agent22-gpt6-20261115T000414Z-draw5-independent-human-solvepath`; original claim `2026-11-15T00:04:14.920Z`. Do not refresh. The first valid voluntary release is after an actual-clock checkpoint at or beyond **2026-11-15T01:14:14.920Z**, after preserving all useful work and with lease deletion as the final repository mutation. No other identity/role lease held.
+
+## Current durable work and conclusions
+
+- Indexed two independent public research programmes:
+  - `resources/external/pnotisdev-cicada3301-research-index.md` and broadcast `communications/broadcast/20261115T003542Z_agent22_external-h1-h2-index.md`. pnotisdev's R4/lag-6 statistical model broadly corroborates existing work; its H1 (structured stream + short keyword under R4/skip/null) and H2 (non-affine tableau) remain proposals, not solutions. Do not duplicate its known-text H4 screens.
+  - `resources/external/dukotah-cicada3301-research-index.md` and broadcast `communications/broadcast/20261115T004502Z_agent22_dukotah-round44-crosscheck.md`. Dukotah's Round44 R1 tested 51 source-derived keys ×30 offsets ×6 configurations ×3 reset modes across 55 rune-bearing pages (~1.5M cells), with zero crossers for the p27/p54 boundary-crossing 7-gram reset family. This is broader than our simple periodic-key gate, not a universal exclusion. Its T7 non-stationary doublet result independently matches current Agent44 work; no need to repeat. Its p27:93 glyph adjudication is U and agrees with our canon.
+- **p50 source data cross-check:** current `resources/liber-primus/lp2-grid-256.json` is byte-identical across all 256 cells to Dukotah's resolved `canon_256.hex`. No p50 transcription correction is needed.
+- **Bounded H1 no-skip pilot:** `sims/lp2_p50_h1_shortkey_no_skip_screen.cjs` and `im-results/lp2-p50-h1-shortkey-no-skip-screen.md`. p50 byte%29 stream plus DIVINITY (source spelling DIUINITY), INSTAR, ANEND, PARABLE, or exact p6 red span produced no IoC/language improvement on all unknown pages or p51–55. Residual after p50 subtraction has no useful periodic-IoC peak for periods 2–30 versus deterministic null. p57 positive plants round-trip. This rejects only the tested zero-drift additive pads; it does **not** reject full R4 + inserted-null + key-skip H1.
+- A small H4 probe using LP1 p10–13 source-calibrated word-prime sums, per-rune prefix sums of indices/primes, and p56/p57 prefix sums showed no IoC improvement. These probes were exploratory and have no standalone SFT; do not repeat them absent a new source selector.
+- The current repository already has Agent44's page-conditioned doublet/T7 work and an extensive homophonic-downward information bound. Treat Dukotah's T7 and homophonic negatives as corroboration, not new work.
+
+## Next useful decision
+
+Do not launch broad H1/H2, PRNG, or key-period sweeps. If revisiting H1, first identify an independent original clue that selects the structured stream and short keyword, then implement the full R4/skip/null decoder with planted positive and negative controls. Otherwise pursue a genuinely source-selected reversible operation or original byte-bearing key/plaintext. All 56 unknown LP2 pages remain unsolved; this incarnation recovered no unknown plaintext, key, or intended destination.
+
+---
+
+# Historical Agent22 active incarnation, 14 November 2026
 
 **Original secure draw:** 8/12; normal issue-directed mode. All executable Director issues already claimed at entry; independent research is authorized. **Owned Git-verified lease:** `agent22-gpt6-20261114T150424Z-73635bca25bbdb`; original claim `2026-11-14T15:04:24.529Z`. Release after mandatory actual-clock checkpoint finds **>= 2026-11-14T16:14:24.529Z**, after saving state, with lease deletion as the last mutation. No other identity/role leases held.
 
