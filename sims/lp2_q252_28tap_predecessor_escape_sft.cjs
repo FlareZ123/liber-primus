@@ -125,7 +125,7 @@ for (const field of [29,28]) for (const reverse of [false,true])
       const repeats = cipher.slice(1).filter((v,i) => v === cipher[i]).length;
       originalRepeats += repeats;
       assert.equal(plain.filter(v => v === 28).length,
-        nativePlain[0] === 28 ? repeats + 1 : repeats,
+        cipher[0] === 28 ? repeats + 1 : repeats,
         'all escaped EA positions are ciphertext repeat positions, except the literal chapter leader');
       chapters.push({chapter:j, sourceRunes:n, candidateIoc:ioc(plain), repeats});
       decoded.push(...plain);
