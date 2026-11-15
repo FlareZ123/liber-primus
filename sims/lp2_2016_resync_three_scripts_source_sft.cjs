@@ -120,7 +120,9 @@ async function probe(target) {
     const r=await get(point.url);
     const item=inspect(r,point.name,target.id);
     if(point.name==='wayback'||point.name==='arquivo') {
-      const rows=parseRows(r.body.toString('utf8'),point.name);
+      let rows=[];
+      try {rows=parseRows(r.body.toString('utf8'),point.name);}
+      catch(error) {item.archiveParseError=String(error);}
       item.rows=rows.length;
       item.captures=rows.slice(0,4).map(row=>({
         date:row.timestamp,url:row.original||row.url,
