@@ -170,18 +170,34 @@ function random() {
   seed ^= seed << 5;
   return seed >>> 0;
 }
-/** @param {Map<number, number[]>} pool @param {number} expectation @param {number} sigma @returns {number} */
-function plantedZ(pool, expectation, sigma) {
-  let sum = 0;
-  for (const w of originals) {
-    const values = pool.get(w.length);
-    sum += values[random() % values.length];
+/**
+ * Permute actual native source words by reversal, preserving every exact
+ * word sum. Sample original printed lengths, preserving all 2,896 slots.
+ * @param {number[][]} native
+ * @param {number} expectation
+ * @param {number} sigma
+ * @returns {number}
+ */
+function plantedZ(native, expectation, sigma) {
+  /** @type {Map<number, number[][]>} */
+  const pool = new Map();
+  for (const word of native) {
+    if (!pool.has(word.length)) pool.set(word.length, []);
+    pool.get(word.length).push(word);
   }
-  return (sum - expectation) / sigma;
+  let total = 0;
+  for (const original of originals) {
+    const choices = pool.get(original.length);
+    const nativeWord = choices[random() % choices.length];
+    const transposed = nativeWord.slice().reverse();
+    assert.equal(primeSum(transposed), primeSum(nativeWord));
+    total += primeSum(transposed);
+  }
+  return (total - expectation) / sigma;
 }
-const plantAuthored = plantedZ(authored.pool,
+const plantAuthored = plantedZ(solved,
   authored.expectedTotal, authored.sigma);
-const plantLatin = plantedZ(vulgate.pool,
+const plantLatin = plantedZ(latin,
   vulgate.expectedTotal, vulgate.sigma);
 assert(Math.abs(plantAuthored) < 5);
 assert(Math.abs(plantLatin) < 5);
