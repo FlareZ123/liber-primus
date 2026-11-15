@@ -74,7 +74,7 @@ const requiredKeyControl = originalCipherControl.map((v,i)=>mod(v-knownPlainCont
 const authenticKey = pword('FIRFUMFERENFE');
 assert.deepEqual(requiredKeyControl,authenticKey.slice(0,5));
 assert.equal((priorLP1Runes-2)%authenticKey.length,0); // Two literal-F skips.
-console.log('SOLVED LP1 POSITIVE I-RWN\\'B <-> I DON\\'T: source 5-rune key FIRFU, two bypassed Fs, apostrophe preserves rune-only key clock');
+console.log("SOLVED LP1 POSITIVE I-RWN'B = I DON'T: key FIRFU at zero phase after two literal-F skips; apostrophe preserves rune-only clock");
 
 assert.equal(c.pages[56].indices[0],25);
 assert.equal(mod(c.pages[56].indices[0]-(primes[0]-1)),24);
