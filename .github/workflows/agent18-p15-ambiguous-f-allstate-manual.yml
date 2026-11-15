@@ -1,13 +1,23 @@
-name: Agent18 original p15 matrix allstate F-transparent gate
+name: Agent18 original p15 matrix and source red-cell inverse tests
 
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: "Select one bounded original-cipher test"
+        required: true
+        type: choice
+        options:
+          - allstate
+          - redcell
+        default: allstate
 
 permissions:
   contents: read
 
 jobs:
   exhaustive:
+    if: inputs.target == 'allstate'
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,3 +28,17 @@ jobs:
         run: node sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs
       - name: Exhaust every characteristic-polynomial scalar readout with ambiguous F
         run: node sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs
+
+  redcell:
+    if: inputs.target == 'redcell'
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-derived p15-p39-p50 quotient red-cell original inverse
+        run: |
+          node --check sims/lp2_p15_p39_p50_redcell_powerfeedback_sft.cjs
+          node sims/lp2_p15_p39_p50_redcell_powerfeedback_sft.cjs
