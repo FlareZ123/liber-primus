@@ -13,6 +13,15 @@ Original source and independent context:
 - [Original 2014 stage report with the corrected string](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_(2014))
 - Original `resources/transcriptions/liber_primus_master.txt` and `resources/liber-primus/lp2-corpus.json`
 
+## Full original LP1 second-koan positive: 319/319 and one continuous key clock
+
+The historical FIRFUMFERENFE control now extends from the first 36 glyphs to **all 319 original encrypted GP29 runes** on LP1 physical pp14–15, containing **88 printed words**. The original independent master and second LP1 transcription agree on every glyph. Source-calibrated GP29 encoding of the pre-existing independently solved English reference also produces exactly **319** plaintext runes.
+
+Under the original plaintext-F nonconsuming bypass, the only true plaintext F positions are **49 and 58** (zero-based). The authenticated 13-symbol key [0,10,4,0,1,19,0,18,4,18,9,0,18] consumes **317** positions with one uninterrupted running clock. Source-native forward encryption reproduces **319/319** original ciphertext runes. No physical-page or quotation reset is needed on this solved source.
+
+More significantly, the [unchanged original GP29 lexical Viterbi](../sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs) selects **both original bypass positions** from the full ciphertext and historical key without receiving either the known plaintext or bypass mask, recovering **319/319** correct runes and **86/88** dictionary-supported words. All three original solved-cipher controls now total **919/919**, including all **14** authentic bypasses. [Complete method and evidence](lp2-ftransparent-word-lexical-viterbi.md) · [successful manual Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/43734906770).
+
+This is a stronger authentic decoder positive and fixes the historical cipher clock across this second koan. It supplies **no LP2 p0–55 key or plaintext**; the separate original 25-page impossibility of directly reusing this key with its literal-F protocol remains intact.
 ## Two original LP2 inverses, source-corrected
 
 The externally supplied LP2 cue remains the solved p57 admonition to shed one's circumferences. That gives a motivated historical key to test, although it does **not** specify applying it to unknown LP2 or resetting its clock.
