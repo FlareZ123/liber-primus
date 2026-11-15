@@ -211,6 +211,15 @@ assert.equal(wordBands.length, 10);
 assert.deepEqual(wordBands[8], {start:399,end:421});
 assert.deepEqual(wordBands[9], {start:430,end:503});
 assert.equal(signedPixelWordBand, 8); // the printed word THE immediately before DIRECTION
+const selectedWordGlyphColumnSpans = [];
+for (let x = wordBands[8].start; x <= wordBands[8].end; x++) {
+  if (!foregroundColumns[x]) continue;
+  const last = selectedWordGlyphColumnSpans.at(-1);
+  if (!last || x > last.end + 1) selectedWordGlyphColumnSpans.push({start:x,end:x});
+  else last.end = x;
+}
+const sourceSelectedGlyphColumnSpan = selectedWordGlyphColumnSpans.find(b =>
+  b.start <= checks.signed_short_keyid.x && checks.signed_short_keyid.x <= b.end);
 const pointedWord = "THE";
 let sourceWordBrightPixels = 0;
 for (let x=wordBands[8].start; x<=wordBands[8].end; x++) {
@@ -259,6 +268,8 @@ console.log(JSON.stringify({
   sourceImageMeanBrightness,
   signedPixelWordBand,
   pointedWord,
+  selectedWordGlyphColumnSpans,
+  sourceSelectedGlyphColumnSpan,
   sourceWordBrightPixels,
   wordTargetInkFractionOfImage,
   foldGPPrimeSum,
