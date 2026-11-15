@@ -90,6 +90,14 @@ async function main(){
   const expected=entry.indices;
   const dist=edit(fromSource.tokens,expected);
   const diff=dist!==0||fromSource.unknown.length;
+  if([0,7,15,36,49,50,51,55,56,57].includes(page)) {
+   const sameLength=fromSource.tokens.length===expected.length;
+   console.log('FOCUSED '+JSON.stringify({page,
+    sourceLines:found?.lines.slice(0,12).map(s=>s.slice(0,160))||[],
+    sourceLastLines:found?.lines.slice(-4).map(s=>s.slice(0,160))||[],
+    mismatches:sameLength?fromSource.tokens.flatMap((v,i)=>v===expected[i]?[]:[{offset:i,source:v,canonical:expected[i]}]).slice(0,24):[],
+    unknown:fromSource.unknown.slice(0,25)}));
+  }
   if(!diff)exact++;
   totalOriginal+=expected.length;totalObserved+=fromSource.tokens.length;
   edits+=dist;unknown+=fromSource.unknown.length;
