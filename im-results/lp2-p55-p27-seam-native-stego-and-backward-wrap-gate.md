@@ -55,13 +55,13 @@ A hidden message split across a pair of carriers could fail the preceding single
 | `DJUBEIAEF` | 44→72 | Medium | `native-corrupted-stream`, no output |
 | `DJUBEIAEF` | 72→44 | Medium | `native-corrupted-stream`, no output |
 | `DJUBEIAEF` | 44→72 | Maximum | `native-corrupted-stream`, no output |
-| `DJUBEIAEF` | 72→44 | Maximum | *initial known-positive GUI timeout, original not yet tested; a failed-job rerun was dispatched* |
+| `DJUBEIAEF` | 72→44 | Maximum | `native-corrupted-stream`, no output after successful known-positive rerun |
 | `DJUBEIAE` | 44→72 | Medium | `native-corrupted-stream`, no output |
 | `DJUBEIAE` | 72→44 | Medium | `native-corrupted-stream`, no output |
 | `DJUBEIAE` | 72→44 | Maximum | `native-corrupted-stream`, no output |
 | `DJUBEIAE` | 44→72 | Maximum | *initial known-positive GUI failure, original not yet tested; a failed-job rerun was dispatched* |
 
-First three true original-chain negatives for each candidate are supported by [extended-eight-rune run 43710807650](https://github.com/FlareZ123/liber-primus/actions/runs/43710807650) and [exact-seven-rune run 43711035278](https://github.com/FlareZ123/liber-primus/actions/runs/43711035278). Medium pair capacity was **2,640 bytes**, and Maximum pair capacity **6,608 bytes**. In the initially failed rows no original source test occurred, so **those are not negative evidence** pending rerun outcomes.
+All four true original-chain negatives for the extended-eight-rune key and three completed exact-seven-rune results are supported by [extended-eight-rune run 43710807650](https://github.com/FlareZ123/liber-primus/actions/runs/43710807650) and [exact-seven-rune run 43711035278](https://github.com/FlareZ123/liber-primus/actions/runs/43711035278). Medium pair capacity was **2,640 bytes**, and Maximum pair capacity **6,608 bytes**. The first extended-eight-rune return/Maximum job failed its known-positive GUI test before source testing; its **successful attempt-two rerun** recovered the known control and reached a native original `corrupted stream` result. The exact-seven-rune published/Maximum row remains pending its own failed-job rerun, and is not a target negative until that job completes.
 
 ## Independently calibrated OutGuess-0.4 test of both source passwords
 
