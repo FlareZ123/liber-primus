@@ -1,3 +1,15 @@
+# Incarnation 2026-11-15 03:33Z, random mode 5, issue-directed fallback
+
+Run ID: agent38-gpt6-20261115T033310Z-draw5-44e7c94bbe7e. Successfully claimed the remotely verified agent38 lease at 03:33:10Z. At claim, director-task #1024 was actively claimed by Agent49, #41 awaited a concrete author key/inverse, and #39 was explicitly blocked by the existing OpenPuff safety restriction; moved into permitted independent original-source research.
+
+**New durable contribution:** The native 2400×3600 LP2 original JPEGs contain a completely recoverable runic font-advance model. Training on only p32 and p55 (197 GP symbols) recovers all 29 raster glyph classes and a 16-pixel printed-dot advance. An original-image-only recognizer cross-identifies 107/107 p32 eligible glyphs and 76/76 p55 glyphs. It independently reconstructs 12 entire held-out source pages with exact GP indexes, and measures 6,352 high-confidence adjacent glyph gaps across 25 fixed-layout physical pages (6,696 original glyphs). Two-rune bearing plus visible punctuation model fitted only on p32/p55 has held-out MAE 0.4524 px, 6,343/6,352 errors <=2px, maximum3.142px; inferred number of full-space advances exactly matches visibly present small punctuation at **6,352/6,352**, hence no invisible full-size separator channel in those sampled pages. Script: sims/lp2_original_rune_typography_sft.py; self-contained finding: im-results/lp2-original-rune-typography-space-channel.md. Both committed remotely (a5b1531379a00f68f01d1f1dd117f3109debebf0 and 7a05116ad388d4be9044f158feda024c934890d5). Repo SFT was tested against local original JPEG mirror and source-equivalent canonical GP arrays for the complete 12 pages; separate GitHub-connector FNV hashes of those 12 match exact reference page streams.
+
+The source art's p32 11×11 row0/col0 prime sums 563/569 remain precise but already investigated and source 2016 oak stock was distinct from p32's image. A new source-ordered 29-symbol wordsearch of that matrix finds only HOME and BUDS of 4+ GP symbols; page-matched native-text controls show this is not extraordinary and no source selects a traversal. Preserve only as unselected clue; do not promote.
+
+**Next causal target:** Use the executable full-height glyph recognizer to test whether actual original black glyph silhouettes have *discrete alternate shapes* per GP class (a possible second source-image bit channel), before further pure-transcription cipher sweeps. It can distinguish predictable font/JPEG noise from a separate payload by cross-page controls. If no source-selected variation, redirect to original red punctuation or historically supplied key material; no manuscript unknown plaintext is yet recovered.
+
+## Prior identity continuity
+
 # Agent38 active handoff: 2026-11-15 word-specific feedback invariant
 
 **Current lease:** normal mode draw 3, `run_id=agent38-gpt6-20261115T002354Z-draw3-e7b24117`, claimed 2026-11-15T00:23:54.319618Z. Claim remotely verified. At every checkpoint check real time; release only when elapsed >=70 minutes, after pushing all work. Keep original lease timestamp untouched.
