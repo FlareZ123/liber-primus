@@ -1,6 +1,6 @@
 # Printed 256-byte LP2 table as a direct RC4 key: original-input gate
 
-**Status (10 November 2026): narrowly rejected, no recovered unknown plaintext or key.** The main remaining problem is an independently specified encryption operation, not another blind grid-key sweep. This supporting study is a deliberately finite test of one standard operation on an unusually exact source size. It is not an established cipher mechanism.
+**Status (15 November 2026): two bounded original-input RC4 consumers rejected, no recovered unknown plaintext, source key, or destination.** The printed 256-byte grid can hypothetically serve as a direct RC4 KSA key. The first study applies it to GP29 unknown page runes; a new independent binary-source lane applies it to three archived OutGuess extraction blobs. Neither yields prose or a usable next-stage file. The source supplies no visible instruction to choose RC4, and the corpus used for the binary source is a participant-maintained derived file collection.
 
 ## Source and frozen proposal
 
@@ -26,6 +26,20 @@ The original ciphertext has IoC **0.0344783978645**. The eight decoded original 
 For each of the eight models, a separately obtained solved-LP1 English transliteration was greedily converted to native GP tokens and encrypted under that exact model, then independently inverted. **12,956/12,956 planted GP runes were recovered exactly in every mode**, with recovered IoC **0.062154698**, as compared with the original source's **0.03448**. This is a strong correctness test for the finite invertible implementation and a bounded negative for native-GP English recovery. It is not evidence that an authentic LP2 solution must have this IoC or use this text register.
 
 **Standalone reproducer:** [`sims/lp2_grid256_rc4_original_sft.cjs`](../sims/lp2_grid256_rc4_original_sft.cjs), using the two canonical source JSON files and [the independently solved LP1 textual control](../resources/liber-primus/lp1-plaintext-reference.txt). The first 32 candidate runes and per-model recovered control count are emitted for inspection; the positive control asserts exact roundtrip.
+
+## Independent original binary-consumer gate: OutGuess extracted blobs (15 November)
+
+The above GP29 rune-stream trial has a distinctly different possible recipient: three **58,152-byte** files archived in the public [Wulfic/Cicada3301-Liber_Primus OutGuess corpus](https://github.com/Wulfic/Cicada3301-Liber_Primus/tree/main/data/outguess). These correspond to scan-file labels \`page_17.bin\`, \`page_21.bin\`, and \`page_43.bin\`. Their exact original preserved Git blob identities are \`dcd47827eb02f3d5c7cbfc6259868621bc1ee7b6\`, \`58ba0c966954f2a02964995613a6ba93fca57425\`, and \`e4c94e1d285aff041276bf5c7bb1c265e987d93d\`, respectively. These are **original bytes of the *archived derived blobs***, not evidence that their extraction is authentically keyed or that the puzzle author issued a separate OutGuess message.
+
+The three blobs share an **exact 1,417-byte prefix**, so an actual published key revealing printable text or a recognizable file header in that prefix would give an independent readout across three external records. A **frozen 16-mode** candidate uses the source table's **all 256 bytes** as a standard RC4 KSA key, in four geometry readouts (printed row-major, full reverse, reverse each printed eight-cell row, and column-major) and four standard RC4 output drop lengths (0, 256, 768, 3072). For each mode, XOR the entire 58,152-byte source file with the RC4 keystream and examine its first 1,417 bytes. There is no guessed key, byte substitution, dynamic KDF, unknown offset search, or editing of the source binary.
+
+- **All 3 frozen original Git blob IDs and lengths verified**, including shared prefix exactly 1,417 bytes.
+- **16/16 original candidate common-prefix outputs** have between **253 and 256 distinct bytes** among the 1,417 positions, with ASCII printable fraction **0.369795–0.396613**, consistent with random-looking binary rather than a visible English message. Every 58,152-byte candidate output uses all **256 byte values**.
+- A standard independent RC4 \`Key\` / \`Plaintext\` test vector decrypts exactly to the published \`BBF316E8D940AF0AD3\` ciphertext, and a separate planted 256-byte-grid-key positive round-trips. Thus the negative comes from source bytes and the finite operator choice, not a broken RC4 implementation.
+
+The [standalone original-binary SFT](../sims/lp2_grid256_rc4_outguess_original_sft.cjs) fetches each frozen blob as bytes, validates its Git hash, and reports all 16 binary outputs without executing untrusted files. The [Windows successful original-source workflow 43736386856](https://github.com/FlareZ123/liber-primus/actions/runs/43736386856) passed all assertions and ran the full fixed family.
+
+This **additional binary-recipient key test** excludes only the exact 16 candidate direct RC4/XOR consumers under these preserved source bytes. A differently keyed original OutGuess payload, alternate byte encoding, independent source KDF, or cipher other than RC4 is outside it. Critically, a common 1,417-byte header by itself is compatible with a tool-extraction artifact, so its presence cannot authenticate any original embedded message.
 
 ## Interpretation
 
