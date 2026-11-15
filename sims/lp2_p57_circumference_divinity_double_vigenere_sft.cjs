@@ -10,7 +10,8 @@ const path = require("node:path");
 const read = p => fs.readFileSync(path.join(__dirname, "..", p), "utf8");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const circ = [..."FIRFUMFERENFE"].map(c => gp.translit.indexOf(c));
-const div = [..."DIVINITY"].map(c => gp.translit.indexOf(c));
+// GP29 uses U for Latin V; the original DIVINITY key is DIUINITY in GP labels.
+const div = [..."DIUINITY"].map(c => gp.translit.indexOf(c));
 assert.deepEqual(circ, [0,10,4,0,1,19,0,18,4,18,9,0,18]);
 assert.deepEqual(div, [23,10,1,10,9,10,16,26]);
 
