@@ -93,3 +93,56 @@ for (const sign of [-1, 1]) {
     'head=' + part.slice(0, 38).map((v) => corpus.translit[v]).join('')
   ));
 }
+
+
+/**
+ * A second, independently natural consumer of the entire printed 7x7 square:
+ * flatten all 49 source integers in fixed row-major order and cycle them
+ * either across the seven-page chapter or from each physical-page start.
+ * No position, sign, or key element is fitted to original ciphertext.
+ */
+const all49 = square.flat();
+for (const clock of ['chapter', 'page']) {
+  for (const sign of [-1, 1]) {
+    let offset = 0;
+    const fullKeyAt = (pageOffset, i) =>
+      all49[((clock === 'chapter' ? pageOffset : 0) + i) % 49];
+    const decoded = pages.map((p) => {
+      const start = offset;
+      offset += p.indices.length;
+      return p.indices.map((v, i) => transform(v, fullKeyAt(start, i), sign));
+    });
+    offset = 0;
+    const restored = decoded.map((part) => {
+      const start = offset;
+      offset += part.length;
+      return part.map((v, i) => transform(v, fullKeyAt(start, i), -sign));
+    });
+    assert.deepEqual(restored, pages.map((p) => p.indices));
+
+    offset = 0;
+    const planted = pages.map((p) => p.indices.map((_, i) =>
+      clear.indices[i % clear.indices.length]));
+    const encoded = planted.map((part) => {
+      const start = offset;
+      offset += part.length;
+      return part.map((v, i) => transform(v, fullKeyAt(start, i), -sign));
+    });
+    offset = 0;
+    const recovered = encoded.map((part) => {
+      const start = offset;
+      offset += part.length;
+      return part.map((v, i) => transform(v, fullKeyAt(start, i), sign));
+    });
+    assert.deepEqual(recovered, planted);
+
+    const observed = indexOfCoincidence(decoded.flat());
+    const expected49 = {
+      chapter: { '-1': 0.03474928387078476, '1': 0.03436994809835787 },
+      page: { '-1': 0.03443943390340055, '1': 0.034385546952551124 },
+    };
+    assert.ok(Math.abs(observed - expected49[clock][sign]) < 1e-14);
+    console.log('Full49', clock, 'sign', sign, 'GP29 IoC', observed.toFixed(12),
+      'original reencryption 1680/1680 native positive 1680/1680');
+  }
+}
