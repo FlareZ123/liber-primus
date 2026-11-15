@@ -58,6 +58,25 @@ The square's embedded original sum **1033 is the 174th prime**. The *same page's
 
 **Reproduction:** [standalone Node.js 22 CommonJS SFT](../sims/lp1_wisdom_three_sacred_prime_ranks_sft.cjs) reads the authoritative original LP1 runes, the exact 05.jpg JPEG (including its binary reversed-hex payload), all original LP2 cipher runes and solved p57 native positive. It checks source GP sums, prime ordinals, entire 87-clause census, complete 1033 square, source-generated 12,956-position inverse, and a true-text planted control. This finding strengthens a possible *intended route selector* but does not establish a cryptographic solution.
 
+### Rank28 source clock under the genuine F exception: exact original p0 obstruction (Agent49, 15 November 2026)
+
+The source-derived 2014 LP1 prime-rank arithmetic above gives a concrete candidate clock beginning at ordinal **147** and advancing by **28** per consumed key symbol: `prime(147+28k)`, `prime(147+28k)−1` (the prime's totient), or `147+28k` itself. The six direct whole-book signs/registers in the preceding study all had ciphertext-like outputs, but had not allowed the authenticated original p56 **plaintext-F exception**: a printed ciphertext F can represent literal plaintext F without advancing the key. The true original p56 has exactly one such exception, at its fourth ciphertext-F occurrence; its other runes use `P=C−(prime(k)−1) mod29`. Therefore there is one legitimate, source-derived way a whole-book fixed phase could *appear* wrong even after a correct inverse: a mixture of F bypass choices that alters the cumulative prime index.
+
+The [exact single-file original-source SFT](../sims/lp1_28prime_staircase_lp2_fskip_dp_sft.cjs) enumerates **every possible** F bypass/shift path on the **first unsolved original physical p0** (262 runes, 14 ciphertext F). It uses dynamic programming on the number of key elements consumed; two paths with the same consumed-key count have identical future permitted moves. For every non-bypassed rune, `P=C±K(k) mod29` must be **non-F**, since plaintext F is the explicitly unshifted literal. Every printed C=F may instead bypass and keep `k` fixed. This is an *exhaustive* finite feasibility check across all `2^14` nominal bypass masks, including the ambiguity when C=F might also be an encrypted non-F. The first prime rank and step are fixed from the newly discovered source triad, the key clock starts at the first printed rune, and there are no freely chosen page IVs, offset searches, remappings or word resets.
+
+| Source register, P=C±K | Earliest original p0 rune index (zero-based) where **all** F paths become impossible |
+| --- | ---: |
+| prime(147+28k), minus | **3** |
+| prime(147+28k), plus | **172** |
+| prime(147+28k)−1, minus | **2** |
+| prime(147+28k)−1, plus | **55** |
+| 147+28k, minus | **35** |
+| 147+28k, plus | **39** |
+
+All **six** source-fixed modes reject the authentic complete original p0 under every possible F mask: the problem is a **mandatory shifted output F from some non-F ciphertext**, which contradicts the actual solved-page bypass protocol regardless of how English is scored. Two independent positives protect against a false obstruction. First, the actual original p56 with its published fourth-F bypass decodes and re-encodes **85/85** runes, recovers the complete known text and remains a valid path in the same exhaustive dynamic program (consumes 84 key elements). Second, under all six proposed source-derived clocks, the intact native GP29 p57 solved text is encrypted with literal-F bypass and its true key-consumption path is retained by the exact same dynamic program.
+
+**Decision:** this completes and more decisively closes the simple *zero-phase 28-prime-ordinal full-book* additive clocks under the only independently authenticated F exception, for every way of interpreting p0's 14 F ciphertext glyphs. This does **not** disprove the real arithmetic correspondence in the 2014 LP1 clauses; a different receiver, page initial offset, word clock, new author-selected cipher operation or different plaintext alphabet remains untested. No unknown plaintext, key or destination recovered. The result removes the specific temptation to rescue the prior whole-book no-skip failure with an unexamined F-branch beam search.
+
 ## Direct 179-byte LP1 to 179-rune LP2 p53 bridge
 
 The JPEG's original reversed-hex middle decodes to **179 ASCII bytes**, including padding spaces and newlines. The separately sourced LP2 physical page 53 contains **179 GP runes**, and its 256-byte numerical table has repeated factor **179²**. This triplet was assembled retrospectively and the hidden ASCII text's length depends on arbitrary layout spacing; its intended use is unknown.
