@@ -1,0 +1,57 @@
+name: Agent 24 original 2013 XOR against LP2 256-cell table
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent24-authored-2013-xor-grid
+  cancel-in-progress: false
+
+jobs:
+  exact-source-xor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Get period-original byte sources at a pinned commit
+        uses: actions/checkout@v4
+        with:
+          repository: neuroretransmit/cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: source-2013
+          fetch-depth: 1
+          sparse-checkout: |
+            2013/002-3301/3301-contents/data
+          sparse-checkout-cone-mode: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Pin dependencies and stage original pads
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install "numpy==2.2.6" "filelock==3.20.0"
+          test "$(git -C source-2013 rev-parse HEAD)" = "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3"
+          mkdir -p original-pads run-artifacts/authored-xor
+          cp source-2013/2013/002-3301/3301-contents/data/_560.00 original-pads/_560.00
+          cp source-2013/2013/002-3301/3301-contents/data/560.17 original-pads/560.17
+
+      - name: Exact 4-source-offset XOR and reversible positive check
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -u sims/lp2_2013_authored_offsets_p50_xor_sft.py --pad-dir original-pads --output run-artifacts/authored-xor/report.json 2>&1 | tee run-artifacts/authored-xor/run.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent24-2013-authored-xor-grid
+          path: run-artifacts/authored-xor/
