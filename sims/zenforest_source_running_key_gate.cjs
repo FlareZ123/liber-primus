@@ -128,9 +128,15 @@ const wrong2013 = tokenize(clearSignedBody(
 const forestControl = tokenize(clearSignedBody(
   "resources/historical/cicada2013-forest-clue.asc"
 ));
+const cicada2013Candidate = tokenize(clearSignedBody(
+  "resources/historical/cicada2013-second-onion-everything-you-need.asc"
+));
+const cicada2016Candidate = selected2016;
 assert.equal(selected2016.length,184);
 assert.equal(wrong2013.length,1680);
 assert.equal(forestControl.length,56);
+assert.equal(cicada2013Candidate.length,98);
+assert.equal(cicada2016Candidate.length,184);
 
 const prefaceTests = [];
 for (const [name,key] of [
@@ -164,11 +170,19 @@ for (const [name,key] of [
   for (const sign of [-1,1]) {
     const plain = decode(p40p41,key,sign);
     const predicted = bookCrib.map((p,i) => mod(p+sign*key[i]));
+    const p13Predicted = cicada2013Candidate.map((p,i) => mod(p+sign*key[i]));
+    const p16Predicted = cicada2016Candidate.map((p,i) => mod(p+sign*key[i]));
     bookTests.push({
       key:name,sign,keyLength:key.length,decodedLength:plain.length,
       decodedIoC:ioc(plain),
       candidateLength:bookCrib.length,
       candidateMismatches:mismatchCount(p40.slice(0,bookCrib.length),predicted),
+      cicada2013CandidateLength:cicada2013Candidate.length,
+      cicada2013CandidateMismatches:mismatchCount(p40.slice(0,cicada2013Candidate.length),p13Predicted),
+      cicada2013FixedClockHits:fixedClockHits(p40,key,cicada2013Candidate,sign),
+      cicada2016CandidateLength:cicada2016Candidate.length,
+      cicada2016CandidateMismatches:mismatchCount(p40.slice(0,cicada2016Candidate.length),p16Predicted),
+      cicada2016FixedClockHits:fixedClockHits(p40,key,cicada2016Candidate,sign),
       p40Prefix:render(plain.slice(0,100)),
       p41Prefix:render(plain.slice(p40.length,p40.length+100)),
       roundTrip:true
@@ -191,7 +205,9 @@ console.log(JSON.stringify({
     zenForestItems614to616Candidate:bookCrib.length,
     wrongZenForestItems612to626:wrongBookKey.length,
     wrong2013SignedMessage:wrong2013.length,
-    wrong2013ForestClue:forestControl.length
+    wrong2013ForestClue:forestControl.length,
+    cicada2013PlaintextCandidate:cicada2013Candidate.length,
+    cicada2016PlaintextCandidate:cicada2016Candidate.length
   },
   target:{
     p40:p40.length,p41:p41.length,p40p41:p40p41.length,
