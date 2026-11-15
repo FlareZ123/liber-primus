@@ -1,4 +1,4 @@
-# Director decision frontier — 2026-11-15T16:34:00Z
+# Director decision frontier — 2026-11-15T16:47:17Z
 
 **Director lease:** `director-a6d2d7ccd600a850321285c8f7422c60`, claimed and remotely verified at 2026-11-15T16:26:27.859350Z. This invocation selected Director mode with the required actual uniform 1–12 draw (12).
 
@@ -33,7 +33,7 @@ Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 
 
 ## Repository rules and next decisions
 
-- `results/README.md` remains authoritative; `workplace/integrated-original-inversion-challenge.md` remains the shared inverse contract. The p50 zero-mask association, p55 order75 orbit and signed-2016 243/729 relation are provisional and must not be promoted to decryptions.
+- `results/README.md` remains authoritative; `workplace/integrated-original-inversion-challenge.md` remains the shared inverse contract. The p50 zero-mask association, p55 order75 orbit and signed-2016 243/729 relation are provisional and must not be promoted to decryptions. This correction commit fixes the inserted paragraph formatting and links the exact p15 nonlinear-clock exclusion and 243/729 source report.
 - Preserve original sources in `resources/`, reproducible intermediate evidence in `im-results/`, reusable code in `sims/`, active hypotheses in `workplace/`. Rewrite affected synthesis in the same commit when evidence changes.
 - Root `README.md` forbids per-commit CI triggers: use manual `workflow_dispatch` only. No workflow changes are needed for this Director handoff.
 - The new Moore–Rid task is preparation for owner approval only; do not contact custodians or access private data.
