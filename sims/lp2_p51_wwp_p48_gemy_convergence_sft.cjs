@@ -54,6 +54,16 @@ assert.deepEqual(c.pages[49].indices.slice(-6).map(i => c.translit[i]), ['OE','E
 function primeSum(word) {
   return word.reduce((sum, k) => sum + c.prime[k], 0);
 }
+const lastBeforeTable = c.pages[49].indices.slice(-6);
+const lastBeforeTablePrimeSum = primeSum(lastBeforeTable);
+assert.equal(lastBeforeTablePrimeSum, 312); // 3 numeric pages × 104 cells on p50
+assert.deepEqual(tableSource.pages.map(p => p.tokens.length), [80,104,72]);
+assert.equal(tableSource.pages[1].tokens.length * 3, lastBeforeTablePrimeSum);
+const originalSixRuneWords = words.filter(w => w.length === 6);
+assert.equal(originalSixRuneWords.length, 256);
+const beforeSumMatches = originalSixRuneWords.filter(w => primeSum(w) === 312);
+assert.equal(beforeSumMatches.length, 1);
+assert.deepEqual(beforeSumMatches[0], lastBeforeTable);
 const firstAfterTable = primeSum(after);
 assert.equal(firstAfterTable, 81);
 assert.equal(table[firstAfterTable - 1], 142);
@@ -129,6 +139,7 @@ console.log(JSON.stringify({
   title: 'Conditional p48 GEMY and p51 WWP convergence into p50 GEM',
   firstPostGridWord: after.map(i => c.translit[i]),
   primeSum: firstAfterTable,
+  preTable: {word:lastBeforeTable.map(i => c.translit[i]), sum:lastBeforeTablePrimeSum, centerPageCells:104, numericPageCount:3, originalSixRuneWords:originalSixRuneWords.length, uniqueSum312Words:beforeSumMatches.length},
   tableCell81: {byte: table[80], q:4, rune:'Y', prime:103, stationary:true},
   routeFrom103: yRoute.path.map(i => ({cell:i, rune:c.translit[table[i - 1] % 29]})),
   gemCycle: [119,127,128],
