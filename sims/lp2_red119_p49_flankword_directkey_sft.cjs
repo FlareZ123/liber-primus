@@ -159,7 +159,7 @@ function fEncode(plain, key, sign) {
   let phase = 0;
   return plain.map(value => {
     if (value === 0) return 0;
-    const encrypted = (value + sign * key[phase % key.length]) % 29;
+    const encrypted = (value + 29 + sign * key[phase % key.length]) % 29;
     phase += 1;
     return encrypted;
   });
