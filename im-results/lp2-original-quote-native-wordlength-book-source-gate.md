@@ -4,11 +4,11 @@
 
 ## Exact original input and comparator
 
-The canonical [LP2 rune transcription](../resources/liber-primus/lp2-transcription.txt) uses \`/\n\` as a visual line wrap and \`%\` as a physical page marker. Neither must end a word. Only \`-\`, \`.\`, \`$\`, \`&\` and \`§\` terminate words. The seven image-annotated [quotation spans](../resources/liber-primus/lp2-quote-punctuation-spans.json) have **4,5,2,14,13,34,14** words and **18,19,12,58,68,160,70** original runes. The longest p42→43 quote is 34 whole words, including a carried word across the physical page break. Source orthography treats the graphemes ING, TH, NG, EO, OE, AE, EA, IA as single GP runes. The longest quote's fixed target sequence is
+The canonical [LP2 rune transcription](../resources/liber-primus/lp2-transcription.txt) uses `/\n` as a visual line wrap and `%` as a physical page marker. Neither must end a word. Only `-`, `.`, `$`, `&` and `§` terminate words. The seven image-annotated [quotation spans](../resources/liber-primus/lp2-quote-punctuation-spans.json) have **4,5,2,14,13,34,14** words and **18,19,12,58,68,160,70** original runes. The longest p42→43 quote is 34 whole words, including a carried word across the physical page break. Source orthography treats the graphemes ING, TH, NG, EO, OE, AE, EA, IA as single GP runes. The longest quote's fixed target sequence is
 
-\`4 2 4 6 6 8 8 3 5 5 9 2 2 4 3 3 2 8 4 7 4 4 3 2 5 3 3 6 3 11 4 4 8 5\`.
+`4 2 4 6 6 8 8 3 5 5 9 2 2 4 3 3 2 8 4 7 4 4 3 2 5 3 3 6 3 11 4 4 8 5`.
 
-An independently known complete original-p57 English passage beginning \`PARABLE LIKE THE INSTAR TUNNELING\` matches all 20/20 GP-projected word lengths. This is a positive for this precise original English spelling, not a universal runic spelling theorem.
+An independently known complete original-p57 English passage beginning `PARABLE LIKE THE INSTAR TUNNELING` matches all 20/20 GP-projected word lengths. This is a positive for this precise original English spelling, not a universal runic spelling theorem.
 
 The test compares each complete quoted word-length sequence against every uninterrupted equal-number-of-words window in each source, with an absolute-difference sum and **zero as the only exact-match criterion**. It does not insert or delete words, edit plaintext, fit a substitution alphabet, or choose a different target window after seeing a source result.
 
@@ -31,6 +31,6 @@ All distances are positive. The Crowley text files provide more complete previou
 
 ## Reusable procedure and next decision
 
-The [corrected Node22 CommonJS SFT](../sims/lp2_quoted_source_wordlength_sft.cjs) preserves the original 20-word positive and three pinned external-source tests. It now tests all the additional local source texts without network access, while the original three pinned external fetches remain network-dependent. A malformed parser condition in the earlier SFT was corrected to use exactly \`-.$&§\`, restoring its ability to run.
+The [corrected Node22 CommonJS SFT](../sims/lp2_quoted_source_wordlength_sft.cjs) preserves the original 20-word positive and three pinned external-source tests. It now tests all the additional local source texts without network access, while the original three pinned external fetches remain network-dependent. A malformed parser condition in the earlier SFT was corrected to use exactly `-.$&§`, restoring its ability to run.
 
 A direct plaintext-recovery continuation requires **independent historical identification of a new candidate quote/source**. The scorer can then test its entire fixed original word-length pattern and pass any exact matching candidate as a frozen crib to a reversible original-cipher attack. Unconstrained broad text crawling or relaxed similarity searches are not supported by the present evidence.
