@@ -44,7 +44,14 @@ The source is the first participant-archive commit `3b15257c5a9efada85b8ccfdb876
 | `stage10/index.html` | 1,943 | `9d7c35bc8fff24c8079668c9d070d98277502f7c` | `1c207650a175a0fb5b78e65674a902978e3f9e811f4fabfd7b74642d731049a078dfdf1aa154b14d46340818035ba03c9d5843cd809b6d92ebadc9278ce1f306` |
 | `stage10/squares` | 152 | `d71303af76016c8e88ed5dcc8a18b08e6276a437` | `e391f31b3060ea4ff9dbca844e99f45947b74e6d18f4c90482b219d5ca694bf0f454a7642cfcfe0e4f4f0a56ec3a2159c53faf6ddfa4d814285d9cddc11fe3a3` |
 
-Both Git blob hashes were independently reproduced from the exact byte strings before hashing. The embedded PGP signed block and its cleartext were also separately hashed as secondary text objects; neither matches the p56 target. The two full-page SHA-512 values above are not equal to the original target. This is a **two-page, SHA-512-only supplement**, not an expansion of the four-algorithm 65-object count; it does not claim the two pages were tested under Skein, pre-FIPS Keccak, Streebog or Whirlpool.
+Both Git blob hashes were independently reproduced from the exact byte strings before hashing. The embedded PGP signed block and its cleartext were also separately hashed as secondary text objects; neither matches the p56 target:
+
+| Embedded source object | Extraction | Bytes | SHA-512 |
+|---|---|---:|---|
+| Complete PGP signed block | From `-----BEGIN PGP SIGNED MESSAGE-----` through `-----END PGP SIGNATURE-----`, inclusive | 1,350 | `56ef91d27531aaf3d44e2033546a39c332fab2b176472bbb0b5736e6ad84eaaf0939644c9d932bd08ba7265e13d897c83b41e055387af18d18bcd745506d71a9` |
+| Signed cleartext only | After `Hash: SHA1` and its blank lines, through the last cleartext line before the signature armor | 464 | `a4ab57224ceec277a847f6051ee244ccadf68391e19f66cd6552299b018867a1cb56c2fb817c22e09b811cdd54ce2d60f4af1f085e6a8f94b4be8720107105fe` |
+
+The two full-page SHA-512 values above are not equal to the original target. This is a **two-page, SHA-512-only supplement**, not an expansion of the four-algorithm 65-object count; it does not claim the two pages were tested under Skein, pre-FIPS Keccak, Streebog or Whirlpool.
 
 ## Decision and limit
 
