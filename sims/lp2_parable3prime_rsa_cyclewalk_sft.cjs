@@ -128,5 +128,5 @@ console.log(JSON.stringify({
   originalModes: tested.length * 2,
   positiveControls: tested.length,
   results: tested,
-  conclusion: 'No 150-rune contiguous native-GP plaintext in tested fixed direct RSA cyclewalk readings'
+  conclusion: 'No whole-stream or page-reset native-GP IoC recovery; short local intervals remain unexcluded'
 }, null, 2));
