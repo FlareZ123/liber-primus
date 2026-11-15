@@ -19,7 +19,7 @@ For a 3-of-3 quadratic Shamir sharing over GF(256) at known evaluation points x=
 | Three consecutive 243-digit tapes | 148 | 56/148 | \`08db7ed2fd4dedbc5a38fe50ad34e53f\` |
 | Three interleaved 243-digit tapes | 148 | 54/148 | \`03948b8bb1e3c1fc008b3f98e3229cc7\` |
 
-Neither result begins with GZIP, bzip2, PNG, ZIP or PDF magic, nor with a valid high-bit-set OpenPGP packet header. Neither output is clear ASCII prose, and neither provides a source-labelled file or identifiable key. The byte counts and exact 32-byte prefixes are asserted directly from unchanged original runes in the [Windows Node 22 standalone reproducer](../sims/lp2_2016_243_base29_gf256_three_share_sft.cjs).
+Neither result begins with GZIP, bzip2, PNG, ZIP or PDF magic, nor with a valid high-bit-set OpenPGP packet header. Neither output is clear ASCII prose, and neither provides a source-labelled file or identifiable key. The byte counts and exact 32-byte prefixes are asserted directly from unchanged original runes in the [Windows Node 22 standalone reproducer](../sims/lp2_2016_243_base29_gf256_three_share_sft.cjs). Its [original-input manual Windows CI run succeeded](https://github.com/FlareZ123/liber-primus/actions/runs/43749307756).
 
 ## Decision
 
