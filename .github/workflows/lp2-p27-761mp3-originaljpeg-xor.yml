@@ -25,3 +25,6 @@ jobs:
         run: |
           node --check sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs
           node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3
+
+      - name: Test the source-motivated original p2 cicada-nymph JPEG
+        run: node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3 2
