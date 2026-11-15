@@ -30,3 +30,8 @@ jobs:
         run: |
           node sims/lp2_2013_telnet_180gap_p50_interior_source_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Telnet and p50 interior source test failed' }
+      - name: Test authentic p56-prime F word-clock across 32 original page seams
+        shell: pwsh
+        run: |
+          node sims/lp2_pagecarry_wordprime_Fclock_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw '32-seam GP prime/F word-clock SFT failed' }
