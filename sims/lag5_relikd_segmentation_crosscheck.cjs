@@ -96,7 +96,13 @@ function average(values) {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
+const currentObserved = tally(currentWords);
 const observed = tally(relikdWords);
+assert.equal(relikdWords.length, 2900);
+assert.deepEqual(relikdWords.flat(), currentWords.flat());
+assert.deepEqual(currentObserved.singles[3], observed.singles[3]);
+assert.deepEqual(currentObserved.exposures[3], observed.exposures[3]);
+assert.deepEqual(currentObserved.pairs[3], observed.pairs[3]);
 const planted = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1];
 const plantedHits = tally([planted]).singles[3];
 assert.equal(relikdWords.length, 2900);
@@ -169,6 +175,7 @@ console.log(JSON.stringify({
     extraBoundaries: cuts,
     extraBoundaryGlyph: "apostrophe U+0027",
   },
+  currentSegmentationLag5: { hits: currentObserved.singles[3], opportunities: currentObserved.exposures[3], contiguousPairs: currentObserved.pairs[3] },
   observed,
   positiveControl: { plantedLag5Hits: plantedHits, expected: 7 },
   parameters: { train, test, seed: '0x' + (seed >>> 0).toString(16),
