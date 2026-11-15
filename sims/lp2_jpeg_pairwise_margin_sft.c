@@ -94,6 +94,25 @@ static unsigned exact_pair(int p,int q) {
     }
     close_original(&a);close_original(&b);return count;
 }
+/* Identical zero-AC blocks are included in this stricter byte-for-byte gate.
+ * This does not presume either source page is an unembedded cover. */
+static unsigned full_pair(int p, int q) {
+    Original a,b; open_original(&a,p); open_original(&b,q);
+    unsigned equal=0;
+    for(int y=64;y<400;y++) {
+        JBLOCKARRAY aa=(*a.info.mem->access_virt_barray)(
+            (j_common_ptr)&a.info,a.coefs[0],(JDIMENSION)y,1,FALSE);
+        JBLOCKARRAY bb=(*b.info.mem->access_virt_barray)(
+            (j_common_ptr)&b.info,b.coefs[0],(JDIMENSION)y,1,FALSE);
+        for(int ix=0;ix<STENCIL_W;ix++) {
+            int x=ix<64?ix:ix+172;
+            if(memcmp(aa[0][x],bb[0][x],sizeof(JBLOCK))==0) equal++;
+        }
+    }
+    close_original(&a); close_original(&b);
+    return equal;
+}
+
 int main(void) {
     for(int p=0;p<LP2_PAGES;p++)census_page(p);
     const int checks[][3]={{1,2,3877},{3,4,1674},{8,10,276},{24,25,348},{24,26,10805},{25,26,348},{40,41,7741}};
@@ -105,6 +124,20 @@ int main(void) {
         printf("p%02d/p%02d nonzero-AC identical: hash %u, byte-exact %u (expected %d)\n",
                p,q,fast,exact,expect);
         if (fast != exact || fast != (unsigned)expect) return EXIT_FAILURE;
+    }
+    /* Two-reference source-copy decision: all 43,008 blocks, including
+     * zero-AC and DC-only blocks, must be identical in the copied pairs.
+     * Different-art pairs are negative controls, not F5 positives. */
+    const int full_checks[][3] = {
+        {24,26,43008},{1,2,43008},{40,41,43008},{53,55,43008},
+        {3,4,37552},{24,25,32294}
+    };
+    for(size_t i=0;i<sizeof(full_checks)/sizeof(full_checks[0]);i++) {
+        int p=full_checks[i][0],q=full_checks[i][1],expected=full_checks[i][2];
+        unsigned observed=full_pair(p,q);
+        printf("FULL-COEFFICIENT-STENCIL p%02d/p%02d %u/%d original blocks identical\n",
+               p,q,observed,STENCIL_N);
+        if(observed!=(unsigned)expected) return EXIT_FAILURE;
     }
     unsigned new_pairs=0, all_pairs=0;
     for(int p=0;p<LP2_PAGES;p++) for(int q=p+1;q<LP2_PAGES;q++) {
