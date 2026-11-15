@@ -56,6 +56,22 @@ Repository: https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/tree/0b907164e95e
 - Its source/key hunt includes OutGuess on all 75 images with no key and 96 candidate keys (4,521 nonempty outputs; unsolved-page outputs are 58,152-byte high-entropy noise), 692,438 archived candidates plus OutGuess payloads against the p56 target, and raw JPEG / growing-string running-key scans. These are useful prior-art negatives; overlap with other repositories and this project's later tests is not fully independent.
 - Start with [REPORT.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/REPORT.md), [FINDINGS.md](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/docs/FINDINGS.md), and [OutGuess / hash-source results](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/0b907164e95e3a44ee74c1d28efbf4688b770865/outguess/RESULTS.md). The repository declares an "Other" source-available license; inspect it before reusing code.
 
+## micheloosterhof/aldegonde (independent LP2 transcription and word-clock hypothesis)
+
+Repository: https://github.com/micheloosterhof/aldegonde
+
+An independent LP2 transcription and experimental cryptanalysis repository. Its master transcription cross-checks the 15,933-rune manuscript total and 12,956-rune unsolved body. Its `data/page0-56.txt` retains punctuation/structural marks that are not all preserved by the normalized transcription here; use it as a secondary transcription, not as an authority. The repository's tokenizer yields a different word segmentation from this project's 2,896-word convention, so never silently mix word indices or word-clock results between them.
+
+Relevant material:
+
+- [Corpus conventions](https://github.com/micheloosterhof/aldegonde/blob/main/data/README.rst) and [marked LP2 transcription](https://github.com/micheloosterhof/aldegonde/blob/main/data/page0-56.txt).
+- [Length-clocked walk hypothesis](https://github.com/micheloosterhof/aldegonde/blob/main/hypotheses/length-clocked-walk.md): proposes a within-word order-five permutation, a word-dependent base permutation updated using word lengths, and an adjacent-repeat suppressor. This is a candidate forward model, not a recovered cipher or plaintext.
+- [Per-word shift investigation](https://github.com/micheloosterhof/aldegonde/blob/main/hypotheses/walk-with-per-word-shift.md) and [bounded sweep](https://github.com/micheloosterhof/aldegonde/blob/main/experiments/walk_shift_sweep.py): explore source-keyed alphabets and word-clock updates; no authentic key or verified plaintext is reported.
+- [Magic-square grid sweep](https://github.com/micheloosterhof/aldegonde/blob/main/experiments/magic_square_sweep.py): tests order-five permutations derived from the LP1 5×5 / 3301 square. Treat its outputs as model searches, not evidence that the square selects a unique permutation.
+- The repository's within-word lag-five position analysis is a useful objection to a single global order-five map; it constrains candidate models but does not itself decrypt the text.
+
+This is valuable independent prior art for punctuation, word-boundary, and order-five hypotheses. Do not repeat its broad grid/key sweeps without a new source-visible selector. Check the repository's license before reusing code or datasets.
+ 
 ## Cicada Notebook (104-session independent research notebook; updated 30 October 2026)
 
 Guide: https://cicadanotebook.com/guide.html
