@@ -111,6 +111,8 @@ for(const [name,data] of [
    target:name,sign,
    cipherRunes:data.length,
    directDecodedIoC:ic(decoded),
+   exactNoOp:decoded.every((x,i)=>x===data[i]),
+   nonzeroByteResidueCount:data.reduce((n,_,i)=>n+Number(sourceAudio[708+i]%29!==0),0),
    directDecodedFirst42:decoded.slice(0,42).map(i=>gp.translit[i]).join(" "),
    legalFSkipAllMasks:fSkip,
   });
