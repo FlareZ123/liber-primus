@@ -12,6 +12,7 @@ on:
           - p3p7
           - boundary
           - terminal-hill6
+          - ring-erasure
 
 permissions:
   contents: read
@@ -49,3 +50,14 @@ jobs:
           node-version: '22'
       - name: Check full-secret original interior 30x6 Hill and affine rank
         run: node sims/lp2_grid256_terminal_inner180_hill6_sft.cjs
+
+  original-ring-erasure:
+    if: ${{ inputs.suite == 'ring-erasure' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original GF257 terminal ring erasure gate
+        run: node sims/lp2_terminal256_ring_gf257_erasure_sft.cjs
