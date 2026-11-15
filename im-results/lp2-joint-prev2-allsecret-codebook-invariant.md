@@ -1,42 +1,53 @@
-# Two-previous-ciphertext GP29 all-secret row-codebook obstruction
+# Exact two-ciphertext-history GP29 codebook obstruction: book and page secret keys
 
-**15 November 2026, Agent15.** This is a source-exact, all-secret necessary-condition discriminator. The original manuscript yields no recovered plaintext or authentic key. The result concerns a particular stable nonlinear-codebook mechanism and native-language reference registers.
+**15 November 2026, Agent15; original-source Windows Node.js 22 test.** The manuscript yields no recovered plaintext, author key or next location. This is an exact all-key invariant tested against genuine native GP prose for two different, deliberately generous, state-dependent cipher architectures.
 
-## Hypothesized complete decoder and exact invariant
+## Source-motivated models and a key-independent observable
 
-A natural extension of the 29-row predecessor rotor is a single fixed substitution alphabet for **each ordered pair of immediately preceding ciphertext runes**. At positions i≥2 within each original physical page, posit C[i] = π_(C[i−2], C[i−1])(P[i]), where all **841** functions π are *independently unknown, arbitrary bijections of the complete 29-rune GP alphabet*. Grant the first two positions of every page arbitrary initialization. This generously includes 841 × 29! independently secret output alphabets. It also covers a ciphertext-first-difference output representation: subtracting C[i−1] is itself a bijection once the two-rune state is fixed.
+The original published pages contain 29 Gematria Primus symbols and ordinary page boundaries. A reversible codebook cipher may choose its output alphabet using the **previous two printed ciphertext runes**. The hypothesized page-internal encryption equation is **C[i] = π_(C[i−2], C[i−1])(P[i])**, where each π is an arbitrary secret bijection of all 29 GP runes, and the first two symbols on each physical page are free initial values. No source claims that this is Cicada's actual cipher.
 
-The original input completely specifies counts n(s,c) for each ordered two-rune predecessor state s and current ciphertext output c. Every secret inverse π_s merely *relabels the 29 columns inside that row*. The following normalized conditional collision measure is therefore exactly unchanged **for every possible secret key**, including wholly nonlinear and unstructured permutation tables:
+Two distinct key lifetimes are allowed:
 
-**I₂ = 29 × [Σ_(s,c) n(s,c)(n(s,c)−1)] / [Σ_s n(s)(n(s)−1)].**
+1. **Book-stationary:** one unknown 29-symbol permutation for each of **841 ordered two-rune predecessor states**, reused throughout the manuscript. The key family has (29!)^841 possible tables.
+2. **Page-rekeyed:** every printed physical page gets **841 fresh, independently secret permutations**, and the two-symbol history resets there. The family is even larger, up to (29!)^(55×841) possible tables. This allows any previously fixed table to change at every page.
 
-The code uses original ink GP29 rune positions and resets the two-symbol history at physical page starts, matching the proposed model. No word delimiters are changed or cipher symbols deleted. All first two page symbols are free initial conditions.
+An arbitrary GP29 permutation of an output within a particular state merely relabels that state's frequency columns. Consequently the exact conditional equality measure
 
-## Original unchanged LP2 measurement
+**I₂ = 29 × [Σ_(s,c) n(s,c)(n(s,c)−1)] / [Σ_s n(s)(n(s)−1)]**
 
-The 55 rune-bearing unknown pages contain **12,956** rune symbols and **12,846** eligible two-back positions. Across all 29²=841 possible predecessor pairs, **840 states occur**, 836 at least twice. The original has **100,584 unordered pairs of sites sharing a two-symbol predecessor**, of which only **3,511** emit the same current symbol. The exact invariant is **I₂=1.0122782947586098**, extremely near the uniform-GP29 baseline **1**.
+is unchanged under **every possible secret row table**, including nonlinear random permutations. For the page-rekeyed model, the state s includes the physical page number. The result also covers replacing current output C[i] by its first difference C[i]−C[i−1], since the known previous output defines a bijective relabeling inside each state. The invariant uses actual original text and preserves every rune and physical page boundary.
 
-This statistic is stronger than an absolute ciphertext IoC: a source-secret codebook permutation *cannot* increase it. For comparison, the model's unconstrained single-output concentration cap is **2,010/12,846 = 15.6469%**, so marginal E frequency alone cannot reject this two-rune context model. The conditional-collision invariant resolves that ambiguity. Its scope is distinct from the earlier [one-rune predecessor frequency bound](lp2-previouscipher-rowperm-allsecret-frequency-gate.md) and [two-back *single rune* C[i−2] test](lp2-two-back-fixed-row-conditional-language-gate.md).
+## Exact original-cipher results
 
-## Source-native original-length controls with secret keys
+| All-secret state lifetime | Eligible original positions | Occupied source states | Same-state unordered position pairs | Matching next-rune pairs | Normalized I₂ |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **One codebook for whole book** | **12,846** | **840** | **100,584** | **3,511** | **1.01227829** |
+| **Fresh codebook on every one of 55 pages** | **12,846** | **11,117 page-states** | **1,902** | **55** | **0.83859096** |
 
-The reproducible [CommonJS SFT](../sims/lp2_joint_prev2_allsecret_codebook_sft.cjs) loads three independently selected reference registers before looking at source ciphertext: (1) nine published clear-GP29 Cicada passages, **2,979** runes, (2) first 12,956 GP29 runes of frozen Shakespeare text using the repository's historical QU→CW, V→U, K/Q→C, Z→S and greedy rune combinations, and (3) first 12,956 runes of an independently pinned already-GP29-encoded Latin Vulgate reference. The two long registers are split into the **exact 55 original page sizes**. The solved passages retain their nine independent source boundaries.
+The uniform-GP29 baseline is **I₂=1**. Even the more permissive per-page model leaves observable equalities at reused within-page states, but only 55 of 1,902 eligible pairs match. No secret row permutation can change either count.
 
-For each reference, the identical 841-row full-bijection encoder runs under **20 independent preseeded hidden permutations per row**, with 29-symbol Fisher–Yates shuffles for every state. The inverse reconstructs **every planted rune exactly**, including the two free page-initial runes. No key is optimized against the original manuscript. All control values below are the same normalized invariant measured on the *encrypted* native text, with its ciphertext-derived pair states.
+A separate necessary marginal bound for the book-wide two-history model permits an output/plaintext class as frequent as **2,010/12,846 = 15.6469%**. This admits the usual English E frequency, unlike the previously eliminated one-rune-state codebook. The within-state collision comparison supplies the stronger discriminator.
 
-| Encrypted source register | Native GP runes | Minimum of 20 secret keys | Median | Maximum |
-| --- | ---: | ---: | ---: | ---: |
-| Original unknown LP2 (unchanged) | 12,956 | **1.01227829** | same | same |
-| Published solved Cicada | 2,979 | **1.72080639** | **1.90284575** | **2.25625680** |
-| Shakespeare | 12,956 | **1.83798170** | **1.85931668** | **1.92688455** |
-| Latin Vulgate | 12,956 | **2.23433980** | **2.27608391** | **2.33318027** |
+## Original-length native-language planted controls
 
-Source-native language has frequent GP rune repetition, and the stationary pair-state codebook cannot hide that repetition *within a reused state*. The original output is dramatically flatter. The exact 841-secret-table family therefore has the wrong same-context structure for these realistic native-English and Latin prose registers, even though the original marginal-frequency 15.65% cap alone admits common English-letter frequencies.
+The [standalone full-source CommonJS test](../sims/lp2_joint_prev2_allsecret_codebook_sft.cjs) derives controls from three independently pinned registers: **nine solved Cicada clear-GP passages totaling 2,979 runes**, **12,956 GP runes encoded from frozen Shakespeare source text**, and **12,956 runes from an independently GP-encoded Latin Vulgate**. The long controls are split into the exact **55 original physical page sizes**. The English normalization is historical QU→CW, V→U, K/Q→C, Z→S plus the greedy native digraph inventory.
 
-## Decision boundary
+The control cipher really encrypts plaintext under unknown-to-the-scoring **full 29! secret bijections**, independently shuffled for all 841 predecessor states. Each planted ciphertext is decrypted under its correct hidden key to reproduce **every input rune exactly**. Model one uses **20 independent keyed plants** per source. Model two uses **30 unrelated per-page key configurations** for each full-length control. The resulting invariant is evaluated on the encrypted text only, without inspecting plaintext or optimizing keys against LP2.
 
-**Reject the straightforward globally stationary two-ciphertext-predecessor reversible GP29 alphabet decoder as a plausible direct source-native prose solution.** No assumption about a particular secret row's values is made; the invariant is an exact all-key fact. The finite language controls support a strong *conditional* exclusion, not a theorem covering every contrived human-language plaintext.
+| Key lifetime / GP-native source | Source rune count | Independent plants | Minimum I₂ | Median I₂ | Maximum I₂ |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **Book-static: solved Cicada** | 2,979 | 20 | **1.72080639** | **1.90284575** | **2.25625680** |
+| **Book-static: Shakespeare** | 12,956 | 20 | **1.83798170** | **1.85931668** | **1.92688455** |
+| **Book-static: Latin Vulgate** | 12,956 | 20 | **2.23433980** | **2.27608391** | **2.33318027** |
+| **Per-page: Shakespeare** | 12,956 | 30 | **1.60693941** | **1.93528817** | **2.27422577** |
+| **Per-page: Latin Vulgate** | 12,956 | 30 | **2.09675704** | **2.59856631** | **3.17789374** |
 
-Remaining mechanisms include tables rekeyed across original pages, words or locations, more than two ciphertext symbols of state, position-varying substitutions, plaintext-dependent key clocks, non-GP plaintext registers, or changed printed segmentation. The original pages do **not** specify this 841-row model as Cicada-authored in the first place. More unconstrained secret-row search under the same model cannot recover a native-language plaintext signal, and is lower priority than obtaining a first-party key/state opcode.
+All source-native, correctly encrypted controls have *substantially more same-state repeated emissions* than the complete untouched original pages. The narrower book-static result is not rescued merely by giving a different unknown 841-row secret codebook to **every source-visible page**. The original page-keyed normalized collision statistic is below uniform, although its difference from baseline alone is a smaller observation than the large positive-control separation.
 
-**Reproduction:** Run the [standalone Node.js 22 SFT](../sims/lp2_joint_prev2_allsecret_codebook_sft.cjs) on the repository's original frozen LP2 corpus. It asserts every original count above and all native positive roundtrips, plus the 20-seed ranges.
+## What has and has not been decided
+
+These observations are exact **for all secret keys** within the two declared cipher models; the language comparison is a finite, original-length *empirical discriminator*. It disfavors a simple stationary within-page GP29-to-GP29 output substitution selected by exactly the preceding two published ciphertext symbols for ordinary native-English or Latin text. It does not prove impossibility for contrived low-collision prose, other plaintext encodings, additional secret state, a key changing inside each page or word, altered segmentation, or a non-bijective transformation with separate framing.
+
+The manuscript does not itself select a 841-row cipher, and there is **no authentic unknown LP2 plaintext, source-derived key or destination** from these tests. The next causally useful clue would independently specify state registers, a rekey trigger or a reversible operator. No further all-secret search over the same stable row tables can alter their necessary collision invariant.
+
+**Original-source executable:** [sims/lp2_joint_prev2_allsecret_codebook_sft.cjs](../sims/lp2_joint_prev2_allsecret_codebook_sft.cjs). **Windows Node22 workflow:** [agent15-joint-prev2-original-source-sft.yml](../.github/workflows/agent15-joint-prev2-original-source-sft.yml).

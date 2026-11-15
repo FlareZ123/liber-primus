@@ -163,6 +163,86 @@ function encryptAndVerify(groups, key) {
   });
 }
 
+
+/**
+ * Same invariant when all 841 alphabet rows may be wholly rekeyed on every
+ * printed physical page. This adds the original page index to the row state.
+ * @param {number[][]} groups
+ * @returns {{runes:number,occupiedPageStates:number,
+ *   unorderedPairs:number,matchingPairs:number,normalizedIoC:number}}
+ */
+function pageStateCollision(groups) {
+  let runes = 0, occupiedPageStates = 0;
+  let allPairsTwice = 0, equalPairsTwice = 0;
+  for (const group of groups) {
+    const rows = new Map();
+    for (let i = 2; i < group.length; i++) {
+      const state = group[i - 2] * 29 + group[i - 1];
+      let counts = rows.get(state);
+      if (!counts) { counts = new Uint16Array(29); rows.set(state, counts); }
+      counts[group[i]]++; runes++;
+    }
+    occupiedPageStates += rows.size;
+    for (const counts of rows.values()) {
+      let n = 0;
+      for (const count of counts) {
+        n += count;
+        equalPairsTwice += count * (count - 1);
+      }
+      allPairsTwice += n * (n - 1);
+    }
+  }
+  assert.ok(allPairsTwice > 0);
+  return {runes, occupiedPageStates,
+    unorderedPairs: allPairsTwice / 2,
+    matchingPairs: equalPairsTwice / 2,
+    normalizedIoC: 29 * equalPairsTwice / allPairsTwice};
+}
+
+/**
+ * Key derivation is only a deterministic *planted control generator*.
+ * It is not a candidate for a Cicada key. Every generated row is bijective.
+ * @param {number} seed
+ * @param {number} page
+ * @param {number} state
+ * @returns {number[]}
+ */
+function secretPageRow(seed, page, state) {
+  const next = seededRng(seed ^ Math.imul(page, 0x9e3779b9)
+    ^ Math.imul(state, 0x85ebca6b));
+  const row = Array.from({length: 29}, (_, i) => i);
+  for (let i = 28; i > 0; i--) {
+    const j = next() % (i + 1);
+    [row[i], row[j]] = [row[j], row[i]];
+  }
+  assert.equal(new Set(row).size, 29);
+  return row;
+}
+
+/**
+ * Complete independent secret-codebook plant per physical page.
+ * @param {number[][]} groups
+ * @param {number} seed
+ * @returns {number[][]}
+ */
+function encryptPageRekeysAndVerify(groups, seed) {
+  return groups.map((p, page) => {
+    const table = new Map(), c = p.slice(0, 2);
+    for (let i = 2; i < p.length; i++) {
+      const state = c[i - 2] * 29 + c[i - 1];
+      if (!table.has(state)) table.set(state, secretPageRow(seed, page, state));
+      c.push(table.get(state)[p[i]]);
+    }
+    const recovered = c.slice(0, 2);
+    for (let i = 2; i < c.length; i++) {
+      const state = c[i - 2] * 29 + c[i - 1];
+      recovered.push(table.get(state).indexOf(c[i]));
+    }
+    assert.deepEqual(recovered, p);
+    return c;
+  });
+}
+
 const original = stateCollision(unknown);
 assert.equal(original.runes, 12846);
 assert.equal(original.states, 840);
@@ -196,8 +276,31 @@ assert.ok(observedControls.Shakespeare.minimum > 1.8);
 assert.ok(observedControls.LatinVulgate.minimum > 2.2);
 assert.ok(observedControls.solvedCicada.minimum > 1.7);
 
+const pageRekeyOriginal = pageStateCollision(unknown);
+assert.equal(pageRekeyOriginal.runes, 12846);
+assert.equal(pageRekeyOriginal.occupiedPageStates, 11117);
+assert.equal(pageRekeyOriginal.unorderedPairs, 1902);
+assert.equal(pageRekeyOriginal.matchingPairs, 55);
+
+const pageRekeyControls = {};
+for (const name of ['Shakespeare', 'LatinVulgate']) {
+  const groups = controls[name], values = [];
+  for (let seed = 0; seed < 30; seed++) {
+    const cipher = encryptPageRekeysAndVerify(groups, 0x33012200 + seed);
+    values.push(pageStateCollision(cipher).normalizedIoC);
+  }
+  values.sort((a, b) => a - b);
+  assert.ok(values[0] > pageRekeyOriginal.normalizedIoC);
+  pageRekeyControls[name] = {originalShapeRunes: groups.flat().length,
+    testedIndependentPageSecretKeys: values.length,
+    minimum: values[0], median: values[15], maximum: values.at(-1)};
+}
+assert.ok(pageRekeyControls.Shakespeare.minimum > 1.6);
+assert.ok(pageRekeyControls.LatinVulgate.minimum > 2);
+
 console.log(JSON.stringify({
   model: '841 arbitrary but stationary GP29 bijection rows indexed by both previous ciphertext runes',
-  original, nativePositiveControls: observedControls,
-  conclusion: 'Original fixed-row conditional frequency is uniform-like, unlike native English/Latin planted text; no plaintext, key or page decoder is claimed.',
+  original, bookStationaryNativeControls: observedControls,
+  pageRekeyOriginal, pageRekeyControls,
+  conclusion: 'Original both book-wide and separately page-keyed conditional frequency are uniform-like, unlike native English/Latin planted text; no plaintext, key or page decoder is claimed.',
 }, null, 2));
