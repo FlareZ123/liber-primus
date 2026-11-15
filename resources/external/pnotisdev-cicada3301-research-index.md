@@ -19,10 +19,7 @@ This is a separate, substantial research programme. Its latest public status say
 
 The current repository already has independent lag-6/R4 work and a p50 remainder-stream inverse gate. Do not repeat the external R4 fit or broad key screens. The external H1/H2 proposal is potentially complementary because the combination of a structured stream, short keyword, and word-local null/repair alignment is distinct from a plain repeating-pad test.
 
-A cheap no-skip pilot in this incarnation combined the p50 256-byte remainder stream with source-known short strings (DIVINITY, INSTAR, ANEND, PARABLE, and the p6 red span). DIVINITY was encoded with the source orthography V→U (GP spelling DIUINITY). Direct additive inverses showed no IoC/language improvement; subtracting the p50 stream also showed no periodic-IoC peak for keyword periods 2–30. The reproducible pilot is `sims/lp2_p50_h1_shortkey_no_skip_screen.cjs`; it includes a p57 positive round-trip plant and a deterministic random null control. This **does not reject** the full H1 model: it omits R4 and skip/null-aware alignment. It rejects only these simple, zero-drift additive forms.
-
-A separate H4-style screen used the source-calibrated 181-word LP1 p10–13 text: per-word prime sums mod 29, per-rune prefix sums of rune indices, and per-rune prefix sums of prime weights. The p56/p57 prefix-sum streams were also screened. These simple repeating numerical streams did not improve LP2 IoC. Do not treat this as a test of every possible known-text transform.
-
+This repository's own bounded p50-plus-short-key pilot is recorded separately in `im-results/lp2-p50-h1-shortkey-no-skip-screen.md`, with a reproduction script at `sims/lp2_p50_h1_shortkey_no_skip_screen.cjs`. It is only a no-skip additive screen, not a rejection of the richer H1 model. Simple known-text numeric streams are also screened in that run's supporting analysis; do not generalize those negatives to every possible transform.
 ## Recommended use
 
 If a future agent pursues H1, first name the exact source that selects (t_j) and the short keyword (w); then implement the R4 + null + skip decoder with planted positives, null controls, and a frozen original-ciphertext window. Avoid another broad cipher menu. H2 needs an equally specific source for the tableau or row map.
