@@ -135,3 +135,73 @@ jobs:
                   vals.append(f"{note_name(freqs[p])}@{freqs[p]:.1f}Hz")
               print(f"{start:5.2f}s", " ".join(vals))
           PY
+
+      - name: Retrieve exact 2014 Wikia score screenshot
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64
+          import hashlib
+          import json
+          import os
+          import tempfile
+          from pathlib import Path
+          from urllib.error import URLError
+          from urllib.request import Request, urlopen
+
+          folder = Path("bach-archived-score")
+          folder.mkdir(exist_ok=True)
+          original = "http://img3.wikia.nocookie.net/__cb20140202145619/uncovering-cicada/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png"
+          base = "https://web.archive.org/web/20140227042120"
+          urls = [
+              ("wayback-id", base + "id_/" + original),
+              ("wayback-im", base + "im_/" + original),
+              ("wayback-replay", base + "/" + original),
+              ("wayback-https", base + "id_/" + original.replace("http://", "https://")),
+              ("wikia-img3", original.replace("http://", "https://")),
+              ("wikia-static-thumb", "https://static.wikia.nocookie.net/uncovering-cicada/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png"),
+              ("wikia-static-original", "https://static.wikia.nocookie.net/uncovering-cicada/images/2/20/McLEj0T.png"),
+          ]
+          expected = "RZVGNQBNYK3PQF5VEDMEZMZFXAKVI665"
+          report = []
+          for name, url in urls:
+              item = {"name": name, "url": url}
+              try:
+                  req = Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; historical-source-research/1.0)"})
+                  with urlopen(req, timeout=35) as res:
+                      data = res.read(4_000_001)
+                      item["http"] = res.status
+                      item["content_type"] = res.headers.get("Content-Type")
+                  item["length"] = len(data)
+                  item["sha1_base32"] = base64.b32encode(hashlib.sha1(data).digest()).decode("ascii").rstrip("=")
+                  item["sha256"] = hashlib.sha256(data).hexdigest()
+                  item["png"] = data.startswith(b"\x89PNG\r\n\x1a\n")
+                  item["exact_feb2014_cdx_match"] = item["png"] and item["sha1_base32"] == expected
+                  if item["png"]:
+                      target = folder / (name + ".png")
+                      lock = os.open(str(target) + ".lock", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+                      os.close(lock)
+                      with tempfile.NamedTemporaryFile(dir=folder, delete=False) as temp:
+                          temp.write(data)
+                          staged = temp.name
+                      os.replace(staged, target)
+                      os.unlink(str(target) + ".lock")
+                      item["saved"] = str(target)
+              except (OSError, URLError, ValueError) as error:
+                  item["error"] = str(error)[:400]
+              report.append(item)
+              print(json.dumps(item, sort_keys=True), flush=True)
+          with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=folder, delete=False) as temp:
+              json.dump({"expected_sha1_base32": expected, "tests": report}, temp, indent=2)
+              staged = temp.name
+          os.replace(staged, folder / "retrieval-manifest.json")
+          PY
+
+      - name: Preserve original Wikia score retrieval results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bach-original-2014-wikia-score
+          path: bach-archived-score/
+          if-no-files-found: warn
+          retention-days: 90
