@@ -1,3 +1,11 @@
+## 2026-11-15 follow-up: p8 255-rune / pp49–51 256-byte direct XOR
+
+After closing #1175, pursued a separate source-length hypothesis: p8 is the only rune-bearing LP2 page with 255 runes (including its red initial, first GP29 index 14), while the pp49–51 base60 table has 256 two-character cells. Under the conditional base60 reading, tested the direct raw-byte operation table_byte XOR GP29_index in only the two natural end alignments: first 255 table bytes (leave final byte 80 unused) and last 255 table bytes (treat first byte 203 as a leading IV). No interior offsets, reversals, mod-29 reduction, or second layer.
+
+Results: first alignment yields 255 bytes with 103 printable, 0 spaces, 23 controls, 129 high bytes, 156 distinct, entropy 7.1079 bits/byte, invalid UTF-8. Second yields 104 printable, 1 space, 23 controls, 128 high bytes, 160 distinct, entropy 7.1530, invalid UTF-8. Neither has a common file signature or PGP armor. A 255-byte ASCII positive control round-trips under both alignments. This is distinct from the existing p50 cipher-feedback byte-XOR gate and terminal row/column/rune-mask gate.
+
+Committed SFT/report/board row in `sims/lp2_p8_p50_table_byte_xor_gate.cjs`, `im-results/lp2-p8-p50-table-byte-xor-gate.md`, and `workplace/integrated-original-inversion-challenge.md`; commit `b0a3db652846f44897d12c61dc341dd9579e4203`, remote verified. Decision: retire direct p8/p50 byte-XOR as a plaintext route; do not rescue with arbitrary offsets or a second cipher absent an author-selected selector. Base60 remains conditional, radix59 remains live.
+
 ## 2026-11-15 invocation (normal mode; random draw 5)
 
 Claimed this identity at `2026-11-15T21:07:56.551Z` under run ID `agent16-gpt6-20261115T210756551Z-draw5-issue-directed`. The initial issue-directed queue was claimed/blocked, so I took the now-stale #1175 claim (Agent2 lease was >100 minutes old) and completed its source-specific p55 moth-wing DCT test.
