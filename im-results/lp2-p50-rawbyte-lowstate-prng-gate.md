@@ -1,6 +1,6 @@
 # LP2 32×8 printed bytes: exact low-state generator inversion gate
 
-**15 November 2026, Agent1; source-conditioned negative.** The original p49–51 32×8 table contains 256 printed two-character base60 tokens. If these tokens were consecutive raw outputs of a small-state pseudorandom generator, the first few outputs would constrain or recover the hidden state and permit generation of a longer original-derived stream as a possible ciphertext key. That would supply an executable operation independently of any LP2 language fit. **The exact generator families tested here all fail their original-input necessary conditions. No LP2 plaintext, creator-supplied key, actual random generator or historical cipher has been identified.**
+**15 November 2026, Agent1; source-conditioned negative.** The original p49–51 32×8 table contains 256 printed two-character base60 tokens. If these tokens were consecutive raw outputs of a small-state pseudorandom generator, the first few outputs would constrain or recover the hidden state and permit generation of a longer original-derived stream as a possible ciphertext key. That would supply an executable operation independently of any LP2 language fit. **The exact generator families tested here all fail their original-input necessary conditions under the declared base60 reading; three also fail the independent original-token radix59 reading. No LP2 plaintext, creator-supplied key, actual random generator or historical cipher has been identified.**
 
 ## Input, scope and falsifiable prediction
 
@@ -20,6 +20,19 @@ A positive would be an exact generator and initial-state witness that reproduces
 For the 32-bit LCG enumeration, a 16-bit or 8-bit state is *not* assumed: for any fixed output window `s`, all 32-bit states whose bits `s..s+7` match the first byte are enumerated exactly. This tests conventional 8-bit windows, including the usual MSVC high-byte register, without fitting a seed. Numeric arithmetic uses unsigned wraparound. The C++ program asserts that every declared byte window's state enumeration contains an independently planted arbitrary 32-bit state.
 
 **Do not generalize the glibc invariant** to glibc's higher-byte outputs or to other state generators. It applies exactly to `random()&255`, including any 31-word warmup and seed: recurrence propagates after its state ring is initialized. The 31/3 condition does not hold for a truncated *higher* byte with just one carry; other projections would require a different gate.
+
+## Independent radix59 numeral interpretation
+
+The conventional radix60-to-byte interpretation is historically **unconfirmed**. To prevent a negative that depends entirely on one contested encoding, a separate [original-token radix59 SFT](../sims/lp2_p50_radix59_weakstate_prng_sft.cjs) reads all **256 original paired numeral tokens** from `resources/liber-primus/lp2-grid-256.json`, removes lowercase `f` from the printed 60-character alphabet, and interprets each token as `59×index(first)+index(second)`. No token uses `f`; **all 256** alternative values are again valid bytes, with 161 distinct values. The first eight are `C8 E3 A4 B7 60 E9 7C B4` hex (200,227,164,183,96,233,124,180), versus the conventional radix60 opening `CB E7 A7 BA 61 ED 7E B7`.
+
+With the same two original, clue-visible reading orders, the independent radix59 input produces:
+
+| Original alternative source reading | Xorshift 32-bit models passing first eight bytes /119,164 | glibc31/3 sum-or-carry pairs /225 | Arbitrary 8-bit full-length LCG pairs |
+|---|---:|---:|---:|
+| Radix59, printed rows | **0** | **3** | **0** |
+| Radix59, vertical columns | **0** | **2** | **0** |
+
+The additional **238,328** exact xorshift model checks therefore do not rescue the straightforward *consecutive 32-bit xorshift byte stream* even if the historical alphabet omits lowercase f. The alternative generator tests are source-conditional, with the same exact output-register assumptions and positive controls as the primary source SFT. The **1,006,632,960-state five-generator LCG32 exhaustion above is specifically radix60 only**; this supplementary radix59 gate does not extend that high-window LCG claim, only the first three generator families in the table. No original LP2 ciphertext/plaintext was consulted in choosing the alphabet.
 
 ## Executed reproducibility
 
