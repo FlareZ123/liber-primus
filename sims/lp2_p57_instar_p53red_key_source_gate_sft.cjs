@@ -76,10 +76,14 @@ const keys = [
 /** @param {number[]} cipher @param {number[]} key
  * @param {number} sign @param {boolean} bypass
  * @returns {number[]} */
-function decode(cipher, key, sign, bypass) {
+function decode(cipher, key, sign, bypassPositions) {
+  const excluded = new Set(bypassPositions);
   let clock = 0;
-  return cipher.map(value => {
-    if (bypass && value === 0) return 0;
+  return cipher.map((value, position) => {
+    if (excluded.has(position)) {
+      assert.equal(value, 0);
+      return 0;
+    }
     return mod(value + sign * key[clock++ % key.length]);
   });
 }
@@ -87,10 +91,14 @@ function decode(cipher, key, sign, bypass) {
 /** @param {number[]} plain @param {number[]} key
  * @param {number} sign @param {boolean} bypass
  * @returns {number[]} */
-function encode(plain, key, sign, bypass) {
+function encode(plain, key, sign, bypassPositions) {
+  const excluded = new Set(bypassPositions);
   let clock = 0;
-  return plain.map(value => {
-    if (bypass && value === 0) return 0;
+  return plain.map((value, position) => {
+    if (excluded.has(position)) {
+      assert.equal(value, 0);
+      return 0;
+    }
     return mod(value - sign * key[clock++ % key.length]);
   });
 }
@@ -101,13 +109,15 @@ for (const {name, symbols} of keys) {
   assert.equal(symbols.length, 50);
   for (const sign of [-1, 1]) {
     for (const bypass of [false, true]) {
-      const decoded = decode(red51, symbols, sign, bypass);
-      assert.deepEqual(encode(decoded, symbols, sign, bypass), red51);
+      const redSkip = bypass ? [38] : [];
+      const p55Skip = bypass ? [15, 25, 41] : [];
+      const decoded = decode(red51, symbols, sign, redSkip);
+      assert.deepEqual(encode(decoded, symbols, sign, redSkip), red51);
       const known = nativePositive.slice();
       if (bypass) known[38] = 0;
-      const plant = encode(known, symbols, sign, bypass);
-      assert.deepEqual(decode(plant, symbols, sign, bypass), known);
-      const heldout = decode(p55, symbols, sign, bypass);
+      const plant = encode(known, symbols, sign, redSkip);
+      assert.deepEqual(decode(plant, symbols, sign, redSkip), known);
+      const heldout = decode(p55, symbols, sign, p55Skip);
       table.push({
         key: name, sign, ciphertextFBypass: bypass,
         redGP29IoC: ioc(decoded),
