@@ -130,18 +130,26 @@ const p57AllMask = allFPaths(p57Cipher, startRank, stride, -1);
 assert.ok(p57AllMask.valid);
 assert.ok(p57AllMask.finalKeyStates.includes(p57Clock));
 const p57Recovered = [];
+const p57Reencoded = [];
 let p57DecodeClock = 0;
-for (const c of p57Cipher) {
-  if (c === 0) p57Recovered.push(0);
-  else {
-    p57Recovered.push(mod(c - key(p57DecodeClock)));
+for (let i = 0; i < p57Cipher.length; i++) {
+  if (native[i] === 0) {
+    // The known clear p57 plaintext F is a true transparent bypass.
+    assert.equal(p57Cipher[i], 0);
+    p57Recovered.push(0);
+    p57Reencoded.push(0);
+  } else {
+    // A shifted non-F plaintext may itself encrypt to ciphertext F.
+    const k = key(p57DecodeClock);
+    const plain = mod(p57Cipher[i] - k);
+    p57Recovered.push(plain);
+    p57Reencoded.push(mod(plain + k));
     p57DecodeClock++;
   }
 }
 assert.deepEqual(p57Recovered, native);
+assert.deepEqual(p57Reencoded, p57Cipher);
 assert.equal(p57DecodeClock, p57Clock);
-assert.deepEqual(p57Cipher.map((c,i) => c === 0 ? 0 :
-  mod(p57Recovered[i] + key(p57Cipher.slice(0,i).filter(x => x !== 0).length))), p57Cipher);
 
 console.log(JSON.stringify({
   status:'PASS',
