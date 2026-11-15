@@ -16,3 +16,5 @@ jobs:
         run: node sims/lp2_two_plain_lag_feedback_allkey_sft.cjs
       - name: Test original p50 quotient Hill4 terminal pages
         run: node sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs
+      - name: Exhaust all original cross-page three-tap GP29 inverses
+        run: node sims/lp2_crosspage_three_tap_allsecret_sft.cjs
