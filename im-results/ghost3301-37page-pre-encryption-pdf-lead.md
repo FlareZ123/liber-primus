@@ -31,10 +31,31 @@ The two claims could refer to the same latter 37 pages of the 75-page book, but 
 
 ## What has and has not surfaced
 
-- Targeted exact-phrase and variant searches return the Samizdat interview and its carbon-copy repost; no public copy of the alleged PDF, filename, URL, hash, or independent account surfaced.
-- The public `cicada-solvers/The-Complete-Cicada3301-Archive` tree (1,455 paths) contains the standard 75-page image set, a post-2014 history document, and community-made English/remake overlays. Its visible file tree does not expose a distinct 37-page pre-encryption rune PDF: https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/tree/main/2014/Liber%20Primus.
-- The separate 37-page "The Mayfly" community report (2020–21) is unrelated: it postdates the 2019 interview and studies the mayfly illustration on the solved Parable page. It must not be mistaken for the alleged pre-encryption PDFs.
-- The speaker's claimed proximity is contested in the same 2019 Samizdat series: Z 3301 calls gHOST "a joke" in a quoted private email. That is also interested testimony, not a dispositive refutation. See https://therealsamizdat.com/2019/09/12/cicada-files-schoenberger-1/ (quoted 7 October 2019 email).
+The 2019 public interview is a report of a file that an interviewee says he once saw, not the file itself. Earlier exact-phrase searches and the community archive census are preserved below; no such 37-page source file has been recovered.
+
+### Publication-side media audit, 15 November 2026
+
+The exact contemporaneous post is [the Samizdat 30 August 2019 permalink](https://therealsamizdat.com/2019/08/30/cicada-files-ghost3301-interview/). It identifies the 19 August interview, states that its 17,466-word transcript was revised 1 September and published with the interviewee's collaboration 2 September, and contains the original spoken PDF claim only at 24:37. **The public article exposes no link ending in PDF and no named pre-encryption rune file, download, transfer code or attachment to that claim.** Its media pointers are specific and distinguishable:
+
+| Original-post object | Exact public target or embedded identifier | Relation to alleged precursor |
+| --- | --- | --- |
+| Interview audio | WordPress SoundCloud embed of `https://api.soundcloud.com/tracks/674256992` | Interview recording; the post explicitly offers audio, not source-page PDFs |
+| Interviewee's earlier video | `https://youtu.be/LNx5CM6aQQM`, dated 27 May 2019 | YouTube discussion, not a linked PDF set; external video details were inaccessible |
+| Earlier book-cover illustration | `https://therealsamizdat.com/wp-content/uploads/2019/07/cicada-liber-primus-lestat-book-cover-july-4-2019.jpeg` | A book-cover JPEG with July 2019 filename, not the claimed 37-page PDF |
+| Solved-page illustration | `https://therealsamizdat.com/wp-content/uploads/2019/07/cicada-wiki-p.-56-decrypted-may-2014.jpg` | Explicitly a known solved-p56 image, not pre-encryption unknown plaintext |
+| Separate copyright document illustration | `https://therealsamizdat.com/wp-content/uploads/2019/08/cicada-3301-copyright-research-report-sony-levine-lech-compumark-p.4.png` | A PNG labelled copyright report page 4, not a Liber Primus precursor |
+| Separate music-puzzle video image | `https://videos.files.wordpress.com/iWLTHkx4/gh0st3301-the-message_std.original.jpg` | Named illustration for a distinct “The Message” audio/video |
+ 
+The Samizdat article explicitly states that the interviewer provides **audio and transcript** rather than a video interview, and never says the alleged LP precursor was sent to him. Existing and newly inspected post links are consistent with that limited publication claim. They do not prove no private or subsequently removed PDF existed.
+
+The following potential independent retrieval surfaces were **not successfully accessible** through available tools and must not be counted as completed negative archival searches: WordPress `/wp-json/wp/v2/posts?slug=...`, WordPress.com public posts API, 2019 Wayback snapshot, and Wayback CDX. External SoundCloud, YouTube, WordPress image URLs also produced cache-miss fetches; their documented target identifiers came from the article's actual linked HTML. No original media bytes or revision history were obtained, and no file SHA-256 can be asserted. A working 2019 revision capture or WordPress media-attachment API response is still an unresolved retrievability question.
+
+### Existing prior-art census
+
+- Earlier targeted exact-phrase and variant searches returned the Samizdat interview and its carbon-copy repost, with no independent file witness or original filename.
+- The public `cicada-solvers/The-Complete-Cicada3301-Archive` tree (1,455 paths) contains the standard 75-page image set, a history document, and community-made overlays; it does not expose a distinct pre-encryption 37-page PDF: https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/tree/main/2014/Liber%20Primus.
+- The 2020–21 37-page “The Mayfly” community analysis is a later, unrelated illustration report.
+- The interviewee's asserted proximity to Cicada is contested, including a contrary quote on [Samizdat, 12 September 2019](https://therealsamizdat.com/2019/09/12/cicada-files-schoenberger-1/); that dispute neither validates nor refutes possession of the PDF.
 
 ## Solve-path hypothesis and decisive test
 
