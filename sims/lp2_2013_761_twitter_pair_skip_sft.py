@@ -12,6 +12,7 @@ import importlib.util
 import json
 import os
 import sys
+import tempfile
 from pathlib import Path
 
 from filelock import FileLock
@@ -40,6 +41,77 @@ if spec is None or spec.loader is None:
     raise RuntimeError("cannot load shared authored-offset skip-aware gate")
 base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)
+
+
+def _git_blob_sha(data: bytes) -> str:
+    header = b"blob " + str(len(data)).encode("ascii") + b"\\0"
+    return hashlib.sha1(header + data).hexdigest()
+
+
+def load_external_decoder_with_independent_wrong_key(external_root: Path):
+    """Load the pinned Campaign XVIII decoder and run its gate with a real wrong key.
+
+    The pinned upstream skipdecode.gate() expects data/keys/mabinogion.txt,
+    but that file is absent from the pinned repository tree. Do not silently
+    skip the gate or edit upstream code: supply the repository's pinned,
+    independent Gibran control at that exact runtime path for the gate only.
+    The positive Self-Reliance key remains the exact pinned upstream file.
+    """
+    sweep_dir = external_root / "analysis/campaign18_skip"
+    sys.path[:0] = [str(external_root / "src"),
+                    str(external_root / "analysis"), str(sweep_dir)]
+    sweep_path = sweep_dir / "sweep.py"
+    sweep_spec = importlib.util.spec_from_file_location(
+        "lp2_2013_761_pair_campaign18_sweep", sweep_path
+    )
+    if sweep_spec is None or sweep_spec.loader is None:
+        raise RuntimeError(f"cannot import pinned Campaign XVIII sweep at {sweep_path}")
+    sweep = importlib.util.module_from_spec(sweep_spec)
+    sweep_spec.loader.exec_module(sweep)
+    import skipdecode
+
+    self_path = external_root / "data/keys/self_reliance.txt"
+    wrong_path = ROOT / "resources/control/gibran_prophet_58585.txt"
+    self_bytes = self_path.read_bytes()
+    wrong_bytes = wrong_path.read_bytes()
+    if _git_blob_sha(self_bytes) != "abcf7b62f13a451b907147893ba215e383864c47":
+        raise RuntimeError("pinned Self-Reliance key Git blob changed")
+    if _git_blob_sha(wrong_bytes) != "df260a07d56bf5998d40a6360b6132c35c252d10":
+        raise RuntimeError("independent Gibran negative-control Git blob changed")
+
+    original_root = skipdecode.ROOT
+    try:
+        with tempfile.TemporaryDirectory(prefix="lp2-761-skip-gate-") as temp_dir:
+            key_dir = Path(temp_dir) / "data/keys"
+            key_dir.mkdir(parents=True)
+            (key_dir / "self_reliance.txt").write_bytes(self_bytes)
+            (key_dir / "mabinogion.txt").write_bytes(wrong_bytes)
+            skipdecode.ROOT = temp_dir
+            positive_runes = len(skipdecode.eng_to_idx(self_bytes.decode("utf-8", errors="ignore")))
+            negative_runes = len(skipdecode.eng_to_idx(wrong_bytes.decode("utf-8", errors="ignore")))
+            if positive_runes < 2082 or negative_runes < 2082:
+                raise RuntimeError(
+                    f"skip-gate controls too short: positive={positive_runes}, negative={negative_runes}"
+                )
+            print(json.dumps({
+                "decoder_gate_wrong_key_substitution": "pinned external mabinogion.txt is absent; use repository Gibran control",
+                "wrong_key_control_path": "resources/control/gibran_prophet_58585.txt",
+                "wrong_key_control_git_blob": _git_blob_sha(wrong_bytes),
+                "wrong_key_control_runes": negative_runes,
+                "positive_key_git_blob": _git_blob_sha(self_bytes),
+                "positive_key_runes": positive_runes,
+            }))
+            if not skipdecode.gate():
+                raise RuntimeError("pinned Campaign XVIII positive/negative decoder gate failed")
+    finally:
+        skipdecode.ROOT = original_root
+    return sweep, skipdecode
+
+
+# The upstream gate's algorithm and thresholds remain unchanged. Its absent
+# Mabinogion negative-control file is replaced only at runtime by a pinned,
+# independent Gibran text; this is recorded in the result metadata.
+base.load_external_decoder = load_external_decoder_with_independent_wrong_key
 
 # Keep the established source-native decoder, projections, signs, Atbash,
 # beam widths, thresholds, and positive-control implementation unchanged.
@@ -91,6 +163,16 @@ def main() -> None:
         "Source-pinned 2013 761.MP3, twitter.bin, and XOR-derived gematria.jpg "
         "screened as GP29 keys under the Campaign XVIII skip-aware decoder"
     )
+    report["decoder_validation_control"] = {
+        "upstream_decoder_commit": "f63501d8f2d835b80c30230eb89a1110fb9197d2",
+        "upstream_gate": "unchanged Campaign XVIII skipdecode.gate positive and wrong-key tests",
+        "upstream_missing_input": "data/keys/mabinogion.txt is referenced by skipdecode.gate but absent from the pinned upstream tree",
+        "replacement_wrong_key_control": "resources/control/gibran_prophet_58585.txt",
+        "replacement_wrong_key_git_blob": "df260a07d56bf5998d40a6360b6132c35c252d10",
+        "positive_key": "pinned upstream data/keys/self_reliance.txt",
+        "positive_key_git_blob": "abcf7b62f13a451b907147893ba215e383864c47",
+        "scope": "the independent Gibran text is used only as the gate's negative-control key, never as a candidate LP2 key"
+    }
     report["source_offset_reference"] = (
         "neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3 "
         "2013/003-twitter/README.md and xor.py; "
