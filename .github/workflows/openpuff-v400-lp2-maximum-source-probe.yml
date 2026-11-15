@@ -1,6 +1,14 @@
 name: OpenPuff v4.00 LP2 source-selected JPEG maximum probe
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        required: true
+        default: single
+        options:
+          - single
+          - seven-chain
 permissions:
   contents: read
 jobs:
@@ -49,6 +57,7 @@ jobs:
           python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file(); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_MAXIMUM_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
           if ($LASTEXITCODE -ne 0) { throw 'Known plaintext JPEG positive not recovered' }
       - name: Test the clue-selected original LP2 JPEGs at JPEG Maximum 1/2
+        if: ${{ inputs.mode == 'single' }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -79,6 +88,36 @@ jobs:
           Write-Host "ORIGINAL_MAXIMUM_SUMMARY $($cases | ConvertTo-Json -Compress)"
           $nonEmpty = @($cases | Where-Object { $_.extracted_count -gt 0 })
           if ($nonEmpty.Count -gt 0) { Write-Host "EXTRACTION_CANDIDATE_FOUND $($nonEmpty.Count)"; }
+      - name: Test the source-marked seven-image original cuneiform chain at Maximum
+        if: ${{ inputs.mode == 'seven-chain' }}
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $out = 'probe-output/original-cuneiform-seven-maximum'
+          $arguments = @(
+            '--exe', "$env:OPENPUFF_EXE",
+            '--password', '33011033',
+            '--bit-format', 'Jpeg (Image)',
+            '--bit-level', '1/2 (50%) - Maximum',
+            '--out', "$out",
+            '--wait-seconds', '1100'
+          )
+          foreach ($idx in 50..56) {
+            $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
+            if (-not (Test-Path -LiteralPath "$carrier")) { throw "Original source image missing: $idx" }
+            $arguments += @('--carrier', "$carrier")
+          }
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Native original seven-image Maximum chain execution failed' }
+          $result = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 7 -or -not $result.carrier_chain_verified) {
+            throw 'Original seven-file source order was not verified inside native OpenPuff'
+          }
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
+            throw 'Seven-image original chain reached timeout without a native outcome'
+          }
+          Write-Host "SOURCE_SEVEN_MAXIMUM_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          if ($result.output_present) { Write-Host 'POTENTIAL_LP2_STEGO_PAYLOAD_DETECTED' }
       - name: Preserve original-tool evidence including hidden outputs
         if: always()
         uses: actions/upload-artifact@v4
