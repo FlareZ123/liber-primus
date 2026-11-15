@@ -77,6 +77,23 @@ assert.equal(runeOffset, 12956);
 assert.equal(heldout.length, 28);
 const heldoutCandidateBits = heldout.reduce((sum, n) => sum + Math.log2(n), 0);
 assert.ok(Math.abs(heldoutCandidateBits - 245.0867073857201) < 1e-9);
+// The independently normalized Vulgate corpus supplies a non-English register.
+// Its 0-9/A-S characters denote 0..28 in *native GP29* order, not ASCII.
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latin = read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).filter(line => /^[0-9A-S]+$/.test(line))
+  .map(line => Array.from(line, char => latinAlphabet.indexOf(char)));
+assert.equal(latin.length, 39835);
+const latinSignatures = new Map();
+for (const word of latin) {
+  const sig = signature(word);
+  latinSignatures.set(sig, (latinSignatures.get(sig) || 0) + 1);
+}
+const latinMatchCounts = long.map(word => latinSignatures.get(signature(word)) || 0);
+assert.equal(latinMatchCounts.filter(n => n > 0).length, 107);
+assert.equal(latinMatchCounts.filter(n => n === 0).length, 2);
+assert.deepEqual(long.map((word, i) => word.length === 14 ? latinMatchCounts[i] : null)
+  .filter(n => n !== null), [4, 9, 41]);
 const sourceScore = long.reduce((s, word) => s + logMass(word), 0);
 assert.ok(Math.abs(sourceScore + 165.1231311587109) < 1e-8);
 const sparse = long.map((word, i) => ({word, i, names:candidates.get(signature(word))}))
@@ -137,6 +154,10 @@ assert.equal(signature(cipher), signature(plant));
 console.log(JSON.stringify({
   originalLongWords: long.length, originalLongRuneCounts:[52,32,18,4,3],
   dictionaryEntries:dictionary.length, sourceSumLogMass:sourceScore,
+  latinNativeCorpusWords:latin.length,
+  originalLongWordsWithLatinFivePhaseSignature:latinMatchCounts.filter(n=>n>0).length,
+  latinSameSignatureLength14:long.map((word,i)=>word.length===14?latinMatchCounts[i]:null)
+    .filter(n=>n!==null),
   sourceMissingSignatures:counts.filter(x=>x===0).length,
   sourceAtMost25Candidates:counts.filter(x=>x<=25).length,
   fullIndependentWordCandidateBits:fullCandidateBits,
