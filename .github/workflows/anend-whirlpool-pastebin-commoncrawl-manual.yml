@@ -1,0 +1,31 @@
+name: AN-END Whirlpool Pastebin clue Common Crawl retrieval
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and offline source/parser controls
+        run: |
+          node --check sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs
+          node sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs --selftest
+      - name: Query 2014-2018 Common Crawl indexes and recover exact WARC responses
+        run: node sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs
+      - name: Preserve index metadata, WARC ranges and response bodies
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p56-whirlpool-pastebin-commoncrawl
+          path: p56-whirlpool-pastebin-commoncrawl/
+          if-no-files-found: warn
+          retention-days: 90
