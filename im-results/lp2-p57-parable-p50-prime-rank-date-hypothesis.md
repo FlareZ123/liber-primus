@@ -54,6 +54,8 @@ The same source-selected quantities give two further checks against the authenti
 
 This makes the 2015 date/time correspondence more constrained than the simple ASCII/GP29 date match, but it does **not** yet specify one uniform extraction rule for all clock fields. The hour fields 05/00 and the 2016 minute 01 are not independently derived by the same arithmetic; do not treat this as a complete timestamp decoder.
 
+A bounded comparison against all **56 distinct signatures** in Dukotah's source-derived PGP timeline confirms specificity: the minute/second pair **12:39** occurs once, the full time **05:12:39** occurs once, and the weekday/month/day tuple **Tue 28 July** occurs once—each is the 2015 Planned Parenthood denial signed by key 181F01E57A35090F. The 2016 full time **00:01:07** also occurs once; second 07 by itself occurs twice, so the title-residue match alone is weaker. This rules out a common-timestamp explanation within the recovered signature corpus, while leaving the missing extraction rule unresolved.
+
 A single exploratory coordinate test used the title-derived left arrow to reverse each PGP time and read the result as page:line:rune-offset (page zero-based, line one-based, rune offset zero-based): 05:12:39 → p39,line12,offset5 = J; 00:01:07 → p07,line1,offset0 = H. Both coordinates are in bounds, but the output **JH** is not a plaintext continuation, and no source explicitly says that signature times are page coordinates. Preserve this as an unconfirmed lead only; do not tune indexing conventions or try alternate coordinate orders.
 
 ## 2015 message follow-through
