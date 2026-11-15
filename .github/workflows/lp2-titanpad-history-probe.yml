@@ -1,0 +1,19 @@
+name: Titanpad historical revision archive probe
+on:
+  push:
+    paths:
+      - '.github/workflows/lp2-titanpad-history-probe.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archive-probe:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect archived original revision/export endpoints
+        run: node sims/lp2_2014_titanpad_history_archive_sft.cjs
