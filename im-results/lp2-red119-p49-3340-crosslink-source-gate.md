@@ -27,10 +27,23 @@ The first complete source-era GP29 operation to try is additive Vigenère, known
 
 All eight full original outputs are nonlinguistic GP29 transliteration, with IoCs **0.03258–0.03662**, far from the genuinely clear p57 original **0.0627099664**. Every inverse perfectly reencrypts the original ciphertext and recovers an independent solved-p57 GP29 text planted with the *same key and sign*, confirming arithmetic correctness without mistaking reversible wrong-key reciphering for key identification.
 
-The [single-file CommonJS reproducer](../sims/lp2_red119_p49_flankword_directkey_sft.cjs) reads the unmodified original rune corpus and exact printed transcription, validates every rune-bearing physical page, recomputes both red GP triads and prime ordinals, asserts 33/40 authentic word counts and 138/170 rune counts, and runs the eight complete candidate decoders and source-native synthetic positives. The original outputs were independently computed by the connected JavaScript runtime; no external CI completion is claimed.
+## Follow the same source-ordinal addresses to actual red titles
+
+The [independently existing red119 study](lp2-red119-prime-ordinal-chapter-navigation.md) also maps prime ordinals 33/40 to **physical pages p33 and p40**, which begin with conspicuous red ten- and eight-rune headings. This supplies another concrete, limited source-selected operation that an original solver could attempt: use each addressed page's **entire visible red title** as the repeating additive GP29 key for its corresponding full sentence. A companion control takes the first 138/170 original runes from the addressed page as a nonrepeating pad. Both signs are granted, for **eight additional original inverses**.
+
+| Source page / key | GP29 signs | Original before/after sentence IoC range over signs |
+| --- | ---: | ---: |
+| p33 red title → 138-rune before | 10 | 0.032582249021–0.034697979477 |
+| p33 full-page prefix → 138-rune before | 138 | 0.033005395113–0.033534327727 |
+| p40 red title → 170-rune after | 8 | 0.035294117647–0.035990254090 |
+| p40 full-page prefix → 170-rune after | 170 | 0.033553776540–0.035015663070 |
+
+The exact inverse is again `P_i=(C_i ± K_{i mod |K|}) mod29`, and its independent solved-p57 synthetic plants recover perfectly. The tested table-flank original outputs contain no contiguous GP-native message; all eight source-addressed outputs have IoCs 0.03258–0.03599. These attempts test **visible source triad/page/title handoffs** and *one complete simple additive cipher consumer*. A p33/p40 red heading may still be an instruction or navigation cue rather than a literal keystream. The paired 33/40 word counts do not certify a fixed operation.
+
+The [single-file CommonJS reproducer](../sims/lp2_red119_p49_flankword_directkey_sft.cjs) reads the unmodified original rune corpus and exact printed transcription, validates every rune-bearing physical page, recomputes both red GP triads and prime ordinals, asserts 33/40 authentic word counts and 138/170 rune counts, and runs all sixteen original-input direct candidate decoders and source-native synthetic positives. The original outputs were independently computed by the connected JavaScript runtime; no external CI completion is claimed.
 
 ## Decision
 
-The ordered 33/40 cross-artifact match is an **unverified, testable lead** that places two independently conspicuous red inscriptions near a possible table-sentence decoding assignment. **The direct periodic three-rune additive interpretation fails on both source-fixed receivers**, without recovering a recognizable original instruction or plaintext. Do not rescue it with fitted phases, alternate key-word transcriptions, resets or extra layers absent an original authorial rule.
+The ordered 33/40 cross-artifact match is an **unverified, testable lead** that places two independently conspicuous red inscriptions near a possible table-sentence decoding assignment. **The direct periodic three-rune and addressed-red-title/whole-page additive interpretations fail on both source-fixed receivers**, without recovering a recognizable original instruction or plaintext. Do not rescue it with fitted phases, alternate key-word transcriptions, resets or extra layers absent an original authorial rule.
 
 The missing causal input remains a **source-selected operation interpreting the selected numbers or triads**, and an inverse yielding contiguous plaintext across the original 138-rune antecedent with the following 170-rune sentence as a true holdout. An unrelated additional numerical fit to the 33/40 pair would not satisfy that requirement.
