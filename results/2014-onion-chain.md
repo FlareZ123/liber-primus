@@ -6,7 +6,7 @@
 
 The 2014 Onion 5 artifact is a PGP-clearsigned message whose hex payload is 12,007 bytes. A byte-level parse yields a 1,084-byte JPEG containing a Gödel-related equation, a 1,635-byte JPEG depicting Escher's *Eye*, and a 9,288-byte audio segment. The audio begins with an MPEG frame sync; the historical walkthrough identifies it as a segment of Bach's Trio Sonata in G major, BWV 1039. The signed cleartext then supplies a list of book-code records and the word `ONION`.
 
-The records use the format `chapter:line:word:letter` with Douglas Hofstadter's *Gödel, Escher, Bach: An Eternal Golden Braid* as the key. The extracted letters and the literal digits 3 and 7 yield:
+The pinned primary 2014 archive specifies the format `chapter-title abbreviation : dialogue-exchange number : word number : letter number` with Douglas Hofstadter's *Gödel, Escher, Bach: An Eternal Golden Braid* as the key. The second field is a dialogue-exchange index, **not a line number**. Fourteen coordinate records, two literal digits (3 and 7), and the terminal `ONION` marker form 17 items; the extracted letters and literal digits yield the address below. See the [primary Fifth Onion archive and its coordinate/output table](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/007-fifth-onion/README.md). A secondary reconstruction describes the second field as a line; the pinned primary archive's dialogue-exchange convention is retained here.
 
 ```
 ut3qtzbrvs7dtvzp.onion
