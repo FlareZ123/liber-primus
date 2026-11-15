@@ -48,4 +48,6 @@ Source GP29 ciphertext IoC is **0.03434982**; the output barely changes it. The 
 
 The repeated p34–39 upper header ink and quantized DCT blocks are already proved exact copies in [historical header report](issue344-cuneiform-historical-template-gate.md), so their repetition alone cannot provide per-page hidden IV differences. Historical 2014 Stage05 seven-wide p33 prologue, 2×2 digit Hill, base60 60-phase secret substitution and 2013 DH-numbered passages have their own published exact negative tests. None should be rerun to rescue this power model.
 
+**Windows Node22 passing original-source run:** [43747418516](https://github.com/FlareZ123/liber-primus/actions/runs/43747418516).
+
 **Reproducer:** [Node 22 CommonJS read-only original-corpus test](../sims/lp2_cuneiform1033_powerfeedback_original_sft.cjs), asserting original printed boundaries, all singleton outputs and the 95-rune clear-p57 plant. On Windows 11, run it with Node.js from the repository root.
