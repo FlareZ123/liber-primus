@@ -1,0 +1,27 @@
+name: Agent12 source-original whole-word crib and all-secret GP29 period gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-native whole-word quotation crib control
+        shell: pwsh
+        run: |
+          node sims/lp2_wordlength_reference_quotation_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Whole-word source crib SFT failed' }
+      - name: Run all-secret 1 to 1000 chapter-period gate
+        shell: pwsh
+        run: |
+          node sims/lp2_period1000_allsecret_lag_collision_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Chapter-period GP29 gate failed' }
