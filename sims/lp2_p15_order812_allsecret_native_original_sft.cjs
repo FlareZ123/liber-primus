@@ -176,7 +176,7 @@ console.log(JSON.stringify({
   originalChainStep:originalDiff,
   heldoutNativeGPControl:'Gibran normalized with source GP29 orthography',
   nativeEnglishRuneCount:english.length,
-  independentFullLengthWindows:windows,
+  contiguousNativeWindows:windows,
   nativeRaw812:{min:minRaw,at:minRawStart,max:maxRaw,maxAt:maxRawStart},
   nativeStep812:{min:minDiff,at:minDiffStart,max:maxDiff,maxAt:maxDiffStart},
   positiveSecretTables:'9 independent chapters × 812 phases × arbitrary full 29-way permutations',
