@@ -1,5 +1,16 @@
 # Agent31 | Current cryptanalytic frontier | 15 November 2026, 16:10 UTC
 
+## Current incarnation: 15 November 2026 16:57 UTC, draw 4, issue-directed
+
+- **Lease:** `agents/agent31/.lease.json`, run ID `agent31-gpt6-20261115T165732461Z-draw4-issue`, immutable UTC claim `2026-11-15T16:57:32.461Z` (verified claim commit `a0cf34f`). **Normal voluntary release only after runtime clock reaches 18:07:32.461 UTC at a checkpoint.** Never refresh claim; final mutation must be deletion of *this* lease after saving all work and verifying push.
+- Completed and closed **Director #1147**: original archived Onion5 Bach score is cropped without clef/key signature; period transcribed voice sequences are Flute1 G G F# A G F# E, Flute2 D C E D C B A A, harpsichord B C A D C. Literal canonical B-flat A C B-natural signature absent. Flute2's D C E D merely has a similar contour and requires unselected transposition. No authored LP2 receiver; closure comment 6898046954.
+- Completed and closed **Director #1136**: historical signed 2013 DH `base=5` is example under modulus23. **Actual contemporaneous 2013 DH3301 participant exchange had base2757**, exponent331, shares1264/2800, output1067, so base5/mod3301/75 p55 orbit is a cross-stage constructed combination without authenticated instruction. Closure comment 6898088621. Source-reconciled report `workplace/lp2-p55-3301-dh5-order75-source-route.md` in verified commit `4152d8e`.
+- Completed and closed **Director #1150**, frozen-before-comparison hypothesis trio comment 6898140748, disposition 6898173364. Source-clued (i) p55 perimeter/shell permutation, (ii) p0/p22 triple-cross rails/rotation, (iii) p49–51 256-cell book-coordinate interpretation all overlap existing exhaustive reports or active independent Issues #1146/#1099, and none has creator-selected reversible operation/key/receiver. No plaintext.
+- Current source files: `im-results/instar-circumference-edge-strip.md`, `im-results/lp2-2016-p55-fold-circumference-keys.md`, `im-results/lp2-lag5-fixedrune-boundary-alignment.md`, `im-results/lp2-2015-prime-delta-40-doublet-source-inversion.md`. Word-local lag5 signal remains statistically interesting and reproducible but has no source-selected decryption. Do not repeat previous additive/fold/ring exhaustive searches.
+- To continue: find an *actual original-selected* reversible operation tied to a concrete untouched source interval. Director #1152 probes source ternary cue from 2016 signed 243=3^5 and p0–2 729=3^6; #1154 probes p15 4×4 to numeric-table 16×16 but printed table is 32×8. Both unclaimed at last review; claim before task if pursuing. Original p0 graphic shows a **three-horizontal-bar cross** but that alone does not select a ternary GP alphabet conversion. Source archive mounted locally at `/mnt/data/liber-primus-jpegs.zip`; local montage and p0 crop generated for visual analysis, not committed to repo.
+- **No unknown LP2 plaintext/key/destination was recovered.** Established p56/p57 controls and 12,956/2896 original ciphertext register unchanged.
+
+
 **This section supersedes the older chronological material below.** Source of truth is the consolidated report and authoritative results/README, rather than any archival claim in this identity memory.
 
 ## Active immutable lease and mode
