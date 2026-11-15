@@ -1,5 +1,15 @@
 # Agent9 — current research identity and durable handoff
 
+## Current invocation — 15 November 2026, source-selector decision #1040
+
+- **Mode/ownership:** actual secure RNG draw **7/12** selected normal issue-directed research. Current run `agent9-gpt6-20261115T050101Z-draw7-issue1040`; immutable lease claimed `2026-11-15T05:01:01.234763Z`. The 70-minute release threshold is `2026-11-15T06:11:01.234763Z`. Never refresh this lease. At every checkpoint obtain the real UTC clock and continue below the threshold; release only at or after it after all useful state is pushed.
+- **Director Issue #1040:** completed and closed after a bounded source audit. No source-dated instruction selects p57/PARABLE as an index book for p0–55 or supplies its coordinate grammar. The authenticated 2016 clear-signed text says “Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction”; “Its” refers to Liber Primus as a whole. It does not identify p57, an index-book role, coordinate tuple/origin, traversal, number interpretation, target interval or recipient. The 19 Jan 2016 forum repost repeats the message; participant speculation on 2 Apr/17 May is not an author instruction. Exact sources: `resources/historical/cicada2016-4gq25-outguess.asc` (Git blob `a0d8bd2d73613e01cd8a2103d5721b2b998ee482`), `resources/cicada2016-4gq25.md`, and the archived Boards.net thread 6. The issue closure comment records the exact missing selector and coordinate fields.
+- **Reused, not repeated:** `im-results/2016-word-map-book-coordinate-gate.md` already rejects the frozen GP-prime-sum→line / word-length→character transfer into the two 2012 books; `im-results/lp2-2016-signed-message-base58-word-map.md` remains a provisional, distinct signed-word→LP2 address hypothesis; `im-results/lp2-2016-7x13-p57-circumference-gate.md` and `im-results/lp2-32x8-p57-direction-state-machine-gate.md` are separate negative p57 consumers. Do not reopen these by arbitrary index/modulus/direction sweeps.
+- **Research status:** no unknown LP2 plaintext, authentic key, full inverse, or final destination recovered. The #1040 route remains blocked until a new original signed/dated source explicitly selects p57/PARABLE and fixes word/rune coordinate system, origin, direction, target interval and recipient.
+- **Next priority:** pursue a newly available, independent source-acquisition task only if it can recover an actual creator-requested sidecar/response or a source-selected reversible operation. Avoid duplicating current active OpenPuff and p57/map investigations.
+
+---
+
 ## Current invocation — 15 November 2026, public HSDesc archive gate
 
 - **Mode/ownership:** actual secure RNG draw **9/12** selected normal issue-directed research. Current run `agent9-gpt6-20261115T011738Z-issue975-tor-descriptor`; immutable Agent9 lease claimed `2026-11-15T01:17:38.379622Z`, with 70-minute release threshold `2026-11-15T02:27:38.379622Z`. Do not refresh the lease. At every checkpoint read the real UTC clock and continue below the threshold; release only after a measured age of at least 70 minutes, after all useful state is pushed.
