@@ -41,8 +41,9 @@ for (let col = WIDTH-1; col >= 0; col--) ring.push((HEIGHT-1)*WIDTH+col);
 for (let row = HEIGHT-2; row > 0; row--) ring.push(row*WIDTH);
 assert.equal(ring.length, 76);
 assert.equal(new Set(ring).size, 76);
+const shellSet = new Set(ring);
 const inner = Array.from({length: 256}, (_, i) => i)
-  .filter(index => !new Set(ring).has(index));
+  .filter(index => !shellSet.has(index));
 assert.equal(inner.length, 180);
 assert.equal(new Set(inner).size, 180);
 const corners = [0, 7, 38, 45];
@@ -95,6 +96,49 @@ assert.equal(results[0].startPerimeterOffset, 38);
 assert.equal(results[0].anticlockwise, false);
 assert.equal(results[0].sign, -1);
 assert.ok(Math.abs(results[0].ioc-0.042105263157894736)<1e-13);
+
+// A second, genuinely byte-producing inverse: the printed table retains
+// raw bytes 0..255, while each original p55 GP rune has both an ordinal
+// 0..28 and an original GP prime weight. Historically used XOR/subtraction
+// on the aligned original 76 byte/rune pairs would reveal printable ASCII.
+const byteOptions = [];
+const byteMod = value => ((value%256)+256)%256;
+for (const keyRegister of ["index", "prime"]) {
+  const weights = p55.map(value =>
+    keyRegister === "index" ? value : corpus.prime[value]);
+  for (const operation of ["xor", "byte-minus-rune",
+    "byte-plus-rune", "rune-minus-byte"]) {
+    for (const start of corners) for (const anticlockwise of [false, true]) {
+      const ordered = ringOrder(start, anticlockwise);
+      const output = ordered.map((source, index) => {
+        const b = bytes[source], k = weights[index];
+        switch(operation) {
+          case "xor": return b^k;
+          case "byte-minus-rune": return byteMod(b-k);
+          case "byte-plus-rune": return byteMod(b+k);
+          case "rune-minus-byte": return byteMod(k-b);
+        }
+        throw Error("Unreachable operation");
+      });
+      const printable = value => value>=32 && value<=126;
+      let run=0, longestRun=0;
+      for (const value of output) {
+        run = printable(value) ? run+1 : 0;
+        longestRun=Math.max(longestRun, run);
+      }
+      byteOptions.push({keyRegister, operation, startPerimeterOffset:start,
+        anticlockwise, printableAscii:output.filter(printable).length,
+        longestPrintableAsciiRun:longestRun,
+        first24:output.slice(0,24).map(value =>
+          printable(value) ? String.fromCharCode(value):".").join("")});
+    }
+  }
+}
+assert.equal(byteOptions.length,64);
+byteOptions.sort((a,b) => b.printableAscii-a.printableAscii
+  || b.longestPrintableAsciiRun-a.longestPrintableAsciiRun);
+assert.equal(byteOptions[0].printableAscii,37);
+assert.equal(byteOptions[0].longestPrintableAsciiRun,5);
 
 // Historically established source-native wording of the original p56
 // ciphertext, replicated by sims/authentic_lp2_p56_totient_regression.cjs.
@@ -156,6 +200,10 @@ console.log(JSON.stringify({
   directOriginalP55: {sourceIoC: ioc(p55), modelCount: results.length,
     best: results[0], worst: results.at(-1), all: results},
   solvedP56P57InnerMapping: innerMaps,
+  originalP55ByteASCII: {modelCount:byteOptions.length,
+    best:byteOptions[0], worst:byteOptions.at(-1),
+    minPrintableAscii:byteOptions.at(-1).printableAscii,
+    maxPrintableAscii:byteOptions[0].printableAscii},
   positive: {ringInverseExact: true, ringPlantRecoveredRunes: 76,
     plantedByteToGPMappingConflicts: 0},
   interpretation: "Source geometric correspondence; no native-GP plaintext from direct shell pad and no deterministic byte->GP explanation of the inner known plaintext."
