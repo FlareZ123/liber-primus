@@ -50,7 +50,7 @@ assert.equal(
 );
 
 const isoPrimes = Array.from(
-  isoShell.matchAll(/echo\s+(?:-n\s+)?"(\d+)\\t"/g),
+  isoShell.matchAll(/echo\s+(?:-n\s+)?"(\d+)\t"/g),
   (match) => Number(match[1])
 );
 assert.equal(isoPrimes.length, 464);
