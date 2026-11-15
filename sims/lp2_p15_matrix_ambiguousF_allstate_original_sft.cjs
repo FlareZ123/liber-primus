@@ -27,6 +27,10 @@ const MATRIX = [
   [11, 17, 19, 7],
   [8, 12, 12, 22],
 ];
+const UNSIGNED_MATRIX = [
+  [10, 3, 20, 22], [1, 22, 21, 25],
+  [11, 17, 19, 7], [21, 17, 12, 22],
+];
 const original = corpus.pages
   .filter(p => p.page >= 40 && p.page <= 53)
   .flatMap(p => p.indices)
@@ -46,16 +50,17 @@ function multiply(a, b) {
 }
 
 /** @param {number} length @returns {number[][]} */
-function makeRows(length) {
+function makeRows(length, source = MATRIX) {
   const rows = [];
   let matrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]];
   for (let i = 0; i <= Math.ceil((length + 3) / 4); i++) {
     for (const row of matrix) rows.push(row);
-    matrix = multiply(MATRIX, matrix);
+    matrix = multiply(source, matrix);
   }
   return rows;
 }
 const rows = makeRows(original.length);
+const unsignedRows = makeRows(original.length, UNSIGNED_MATRIX);
 
 /** @param {number} seed @returns {number[]} */
 function unpack(seed) {
@@ -68,8 +73,8 @@ function unpack(seed) {
 }
 
 /** @param {number[]} v @param {number} k @param {number} phase @returns {number} */
-function key(v, k, phase) {
-  const r = rows[k + phase];
+function key(v, k, phase, emissions = rows) {
+  const r = emissions[k + phase];
   return (r[0] * v[0] + r[1] * v[1] + r[2] * v[2] + r[3] * v[3]) % MOD;
 }
 
@@ -82,14 +87,14 @@ function key(v, k, phase) {
  * @param {number} phase 0,1,2,3: every possible within-block clock origin.
  * @returns {number} Maximal feasible complete ciphertext prefix.
  */
-function reachablePrefix(cipher, v, phase) {
+function reachablePrefix(cipher, v, phase, emissions = rows) {
   let states = [0];
   for (let pos = 0; pos < cipher.length; pos++) {
     const c = cipher[pos];
     const next = [];
     let last = -1;
     for (const k of states) {
-      const a = key(v, k, phase);
+      const a = key(v, k, phase, emissions);
       if (c === 0) {
         // Literal plaintext F. Does not consume any key.
         if (last !== k) {
@@ -117,23 +122,23 @@ function reachablePrefix(cipher, v, phase) {
  * state merging. It checks that the exact F-branching implementation
  * never silently discards a reachable path.
  */
-function bruteReach(cipher, v, phase, i = 0, clock = 0) {
+function bruteReach(cipher, v, phase, i = 0, clock = 0, emissions = rows) {
   if (i === cipher.length) return true;
   const c = cipher[i];
-  if (c === 0 && bruteReach(cipher, v, phase, i + 1, clock)) return true;
-  return key(v, clock, phase) !== c &&
-    bruteReach(cipher, v, phase, i + 1, clock + 1);
+  if (c === 0 && bruteReach(cipher, v, phase, i + 1, clock, emissions)) return true;
+  return key(v, clock, phase, emissions) !== c &&
+    bruteReach(cipher, v, phase, i + 1, clock + 1, emissions);
 }
 
 /** @param {number[]} plain @param {number[]} v @param {number} phase */
-function encryptFTransparent(plain, v, phase) {
+function encryptFTransparent(plain, v, phase, emissions = rows) {
   let consumed = 0, transparent = 0, encryptedToF = 0;
   const cipher = plain.map(p => {
     if (p === 0) {
       transparent++;
       return 0;
     }
-    const c = (p + key(v, consumed++, phase)) % MOD;
+    const c = (p + key(v, consumed++, phase, emissions)) % MOD;
     if (c === 0) encryptedToF++;
     return c;
   });
@@ -210,3 +215,61 @@ for (let phase = 0; phase < 4; phase++) {
   }));
 }
 console.log('DECISION: 4 x 707281 original source states exhausted; only identity-zero survives.');
+
+
+// Literal original p15 numbers are magnitudes, not the restored-sign source
+// matrix. A human may directly reduce those original magnitudes modulo29,
+// with the final two source cells becoming 21 and17 instead of 8 and12.
+// Test the entirely separate literal-positive model without fitting states.
+const unsignedExpected = [
+  {counts: [274124, 72464, 8629, 379, 3, 1, 1, 1], longest: 1153, seed: 86740},
+  {counts: [274231, 70647, 8547, 379, 3, 1, 1, 1], longest: 1067, seed: 112711},
+  {counts: [274157, 71412, 8588, 372, 4, 1, 1, 1], longest: 1053, seed: 555604},
+  {counts: [274022, 71533, 8576, 374, 7, 1, 1, 1], longest: 1276, seed: 396812},
+];
+for (let phase = 0; phase < 4; phase++) {
+  const planted = encryptFTransparent(plant, plantedSeed, phase, unsignedRows);
+  assert.ok(planted.transparent > 0 && planted.encryptedToF > 0);
+  assert.equal(reachablePrefix(planted.cipher, plantedSeed, phase, unsignedRows),
+    plant.length);
+  for (const seed of [0, 1, 3301, 123456, 345678, 707280]) {
+    const v = unpack(seed);
+    for (const input of [
+      original.slice(0, 16),
+      encryptFTransparent(plant.slice(0, 20), v, phase, unsignedRows).cipher,
+    ]) {
+      assert.equal(
+        reachablePrefix(input, v, phase, unsignedRows) === input.length,
+        bruteReach(input, v, phase, 0, 0, unsignedRows)
+      );
+    }
+  }
+  const t0 = Date.now();
+  const counts = thresholds.map(() => 0);
+  let longest = 0, bestSeed = -1, fullNonzero = 0;
+  for (let seed = 0; seed < BASE; seed++) {
+    const prefix = reachablePrefix(original, unpack(seed), phase, unsignedRows);
+    for (let i = 0; i < thresholds.length; i++) {
+      if (prefix >= thresholds[i]) counts[i]++;
+    }
+    if (seed !== 0) {
+      if (prefix > longest) {
+        longest = prefix;
+        bestSeed = seed;
+      }
+      if (prefix === original.length) fullNonzero++;
+    }
+  }
+  assert.deepEqual(counts, unsignedExpected[phase].counts);
+  assert.equal(longest, unsignedExpected[phase].longest);
+  assert.equal(bestSeed, unsignedExpected[phase].seed);
+  assert.equal(fullNonzero, 0);
+  console.log('LITERAL_UNSIGNED_ORIGINAL', JSON.stringify({
+    phase, statesTried: BASE, thresholdPrefixes: thresholds,
+    survivorCounts: counts, longestNonzeroPrefix: longest,
+    bestNonzeroSeed: bestSeed, nonzeroComplete: fullNonzero,
+    sourceNativePlantPassed: true, recursiveOraclePassed: true,
+    elapsedMs: Date.now() - t0
+  }));
+}
+console.log('DECISION: source-p15 original positive magnitudes also have no nonzero feasible matrix vector key.');
