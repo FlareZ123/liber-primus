@@ -52,7 +52,7 @@ Every output remains random-like and substantially below the native-English cont
 
 ### B. Orbit-derived 29-symbol key, reset per printed word
 
-A second natural reading uses the orbit from seed 18 as the key schedule. Remove the single infinity point, leaving the 29 finite residues in orbit order; this is a permutation of all GP29 symbols. Apply it as a repeating additive key within each word, resetting at every printed boundary. Test both signs and both M and M^T.
+A second natural reading uses the orbit from seed 18 as the key schedule. Remove the single infinity point, leaving the 29 finite residues in orbit order; this is a permutation of all GP29 symbols. Apply it as a repeating additive key within each word, resetting at every printed boundary; this is a bounded word-oriented reading, not a claim that the signed 2016 wording specifies this key. Here sign + means plaintext = ciphertext + key (mod 29), and sign − means plaintext = ciphertext − key (mod 29). Test both signs and both M and M^T.
 
 | Matrix | Sign | Output IoC | All-rune trigram | Within-word trigram |
 |---|---:|---:|---:|---:|
