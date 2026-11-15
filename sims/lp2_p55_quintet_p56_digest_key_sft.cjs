@@ -89,10 +89,51 @@ for(const [key,iv] of keys){
  const incorrect=Buffer.from(key);incorrect[0]^=1;
  assert.notDeepEqual(aesDecrypt(incorrect,iv,c),planted);
 }
+
+/** @param {Buffer} key @param {Buffer} nonce @param {Buffer} bytes @param {Buffer} tag @returns {Buffer} */
+function gcmDecrypt(key,nonce,bytes,tag) {
+ const d=crypto.createDecipheriv('aes-256-gcm',key,nonce,{authTagLength:16});
+ d.setAuthTag(tag);
+ return Buffer.concat([d.update(bytes),d.final()]);
+}
+/** @param {Buffer} key @param {Buffer} nonce @param {Buffer} data */
+function gcmEncrypt(key,nonce,data) {
+ const c=crypto.createCipheriv('aes-256-gcm',key,nonce,{authTagLength:16});
+ const bytes=Buffer.concat([c.update(data),c.final()]);
+ return {bytes,tag:c.getAuthTag()};
+}
+const gcm=[];
+for(const [size,frame] of [[45,packet],[43,middle]]){
+ assert.equal(size,frame.length);
+ for(const [keyName,key] of [['front32',digest.subarray(0,32)],['back32',digest.subarray(32,64)]]){
+  for(const order of ['nonce-first','tag-first']){
+   const nf=order==='nonce-first';
+   const nonce=nf?frame.subarray(0,12):frame.subarray(-12);
+   const tag=nf?frame.subarray(-16):frame.subarray(0,16);
+   const body=nf?frame.subarray(12,-16):frame.subarray(16,-12);
+   assert.equal(body.length,size-28);
+   assert.throws(()=>gcmDecrypt(key,nonce,body,tag),'original must fail GCM authentication');
+   const known=planted.subarray(0,body.length);
+   const plant=gcmEncrypt(key,nonce,known);
+   const positive=nf?Buffer.concat([nonce,plant.bytes,plant.tag]):Buffer.concat([plant.tag,plant.bytes,nonce]);
+   assert.equal(positive.length,size);
+   const n2=nf?positive.subarray(0,12):positive.subarray(-12);
+   const t2=nf?positive.subarray(-16):positive.subarray(0,16);
+   const b2=nf?positive.subarray(12,-16):positive.subarray(16,-12);
+   assert.deepEqual(gcmDecrypt(key,n2,b2,t2),known);
+   const wrong=Buffer.from(key);wrong[0]^=1;
+   assert.throws(()=>gcmDecrypt(wrong,n2,b2,t2));
+   gcm.push({size,key:keyName,order,authenticated:false,positiveBytes:known.length});
+  }
+ }
+}
+assert.equal(gcm.length,8);
+
 console.log(JSON.stringify({
  source:{p55:76,flags,frame:packet.toString('hex'),p56digest:sha512[0]},
  results:candidate.map(r=>({name:r.name,output:r.data.toString('hex'),
   printable:r.n,bytes:r.data.length})),
+ gcm,
  positives:'XOR and three AES-256-CTR 43/43, wrong-key discrimination',
  decision:'No plaintext, directly readable file header, or authentic author key; hypothesis only'
 },null,2));
