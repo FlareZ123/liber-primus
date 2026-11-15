@@ -6,6 +6,15 @@
 
 The first 55 rune-bearing LP2 transcription records, containing 12,956 runes in 2,896 complete rune words, are the input. Printed lines and physical pages sometimes split words; the parser joins rune fragments across '/' and '%' layout marks before recognizing semantic word boundaries. The 32 original LP2 cross-page word carries are retained; the rune-free p50 and solved closing pages are excluded.
 
+### Independent relikd transcription and word-boundary check (15 November 2026)
+
+A direct parse of the nine LP2 section files in [relikd/LiberPrayground](https://github.com/relikd/LiberPrayground/tree/main/pages) reproduces the **entire 12,956-rune stream exactly** against the current canonical corpus. Its direct parse yields 2,900 word segments rather than 2,896: the only four boundary differences are apostrophes (U+0027) at absolute rune offsets **1110, 5138, 8515 and 10089**. No current word boundary is removed. The independently observed lag-five tally is unchanged under both segmentations: **104/2,105** single hits and **nine** overlapping contiguous pair events.
+
+The published [Leo-Y-Zhang report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md) states 2,921 words; that count is not reproduced by this direct parse of the nine relikd LP2 files and its aggregation/tokenization remains unclear. The rune-stream agreement is exact, so the count discrepancy is not a ciphertext transcription discrepancy. Do not use the report's unconditioned lag tests as a refutation of this word-conditioned result.
+
+Reproduction of the alternate four-boundary tally: [`lag5_relikd_segmentation_crosscheck.cjs`](../sims/lag5_relikd_segmentation_crosscheck.cjs). It verifies the observed statistic under both segmentations; it does **not** rerun the 5,000-draw conditional null under the alternate segmentation. Thus the observed signal is segmentation-robust, while the reported familywise p-value remains attached to the canonical 2,896-word segmentation.
+
+
 For a complete word, a lag L hit at word-local index i ≥ L means C[i] = C[i−L]. A **contiguous pair of hits** requires the same equality at i−1, equivalent to the two adjacent target runes matching the two runes exactly L positions earlier. Three consecutive matches contribute two overlapping pair events.
 
 At lag five, the original has **104 single hits among 2,105 eligible comparisons**, **nine overlapping contiguous two-hit events** and one three-hit run. Eight distinct words contain at least one two-hit run; a ninth word contains two separated hits, giving **nine words with multiple lag-five matches**. The highlighted 11 S-to-S hits are a previously established independent first-order constraint.
