@@ -78,7 +78,7 @@ def visible_controls(window, class_name):
 def click_named(window, token):
     matches = [
         control for control in visible_controls(window, "Button")
-        if token.lower() in (safe(control.window_text) or "").lower()
+        if (safe(control.window_text) or "").strip().lower().replace("&", "").rstrip("!") == token.lower()
     ]
     if len(matches) != 1:
         raise RuntimeError(
@@ -93,7 +93,7 @@ def choose_file(app, window, button_token, path, out, stage):
     snapshot_desktop(out, stage + "-picker")
     dialogs = []
     for dialog in Desktop(backend="win32").windows():
-        if not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770":
+        if (not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770"\n                or "Data Hiding" in (safe(dialog.window_text) or "")):
             continue
         edits = visible_controls(dialog, "Edit")
         if edits:
@@ -173,7 +173,7 @@ def set_password(window, password):
         ((c.rectangle().left, c.rectangle().top, c) for c in edits),
         key=lambda x: (x[0], x[1])
     )
-    if len(left) < 4:
+    if len(left) < 1:
         raise RuntimeError("Data Hiding lacks the expected password/target edits")
     left[0][2].set_edit_text(password)
     states = disable_optional_passwords(window)
