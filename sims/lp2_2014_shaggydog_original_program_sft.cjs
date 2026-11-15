@@ -95,8 +95,8 @@ async function main(){
     const result=new Map(),rows=raw.replace(/\r\n/g,'\n').split('\n');
     const starts=[];
     for(let i=0;i<rows.length;i++){
-      const m=/^( *)(def|class)\s+([A-Za-z_][A-Za-z_0-9]*)/.exec(rows[i]);
-      if(m)starts.push({i,indent:m[1].length,type:m[2],name:m[3]});
+      const m=/^([ \t]*)(def|class)\s+([A-Za-z_][A-Za-z_0-9]*)/.exec(rows[i]);
+      if(m)starts.push({i,indent:m[1].replaceAll('\t','    ').length,type:m[2],name:m[3]});
     }
     for(const a of starts){
       const after=starts.find(x=>x.i>a.i&&x.indent<=a.indent);
