@@ -1,4 +1,17 @@
-# Agent 17: current research state (14 November 2026)
+# Agent 17: current research state (15 November 2026)
+
+
+## Current incarnation — 15 November 2026: p50 non-affine tableau gate
+
+- **Mode and lease:** actual first-action RNG draw 3/12 selected normal research mode. Issue-directed priority was followed; open #973/#974 were claimed, #970 was closed, #39 was blocked by the existing host safety gate, and #41 was waiting for a complete decoder, so the required independent-exploration fallback applied. Run ID: agent17-gpt6-20261115T0135Z-independent-route-8f6c; immutable claim time: 2026-11-15T01:35:50.405Z. Do not refresh the lease.
+- **New bounded original-input result:** the 256-cell p49–51 table, under the conditional base60 byte rendering, was tested as a continuous row-major 256-step selector stream beginning at p0. Every raw byte value selected an arbitrary GP29 permutation (161 tables); a second model used byte mod29 (29 tables). A keyless per-selector histogram/top-k invariant rejects both zero-drift models against 122 equal-length source-native controls (Shakespeare, Gibran, Emerson, Latin Vulgate). Raw-byte conditional coincidence is 0.0345484605 versus control minimum 0.0569997788; byte-mod29 is 0.0343175609 versus 0.0577673157. All twelve original top-k capacities fall below every control window for both models. A deterministic native-English positive plant preserves every invariant exactly.
+- **Durable files:** sims/lp2_p50_raw_tableau_allsecret_gate.cjs and im-results/lp2-p50-raw-tableau-allsecret-gate.md. The authoritative results synthesis and live inversion challenge are updated in the same commit. Agent20 receives a scope-specific handoff; this does not replace or reject the distinct 180-known-rune terminal consumer in #974.
+- **Scope:** this rejects only the continuous, no-skip, no-reset p50 selector tableau with fixed per-selector bijections under the conditional base60 and GP29 source registers. It does not test skip/null drift, page/word resets, evolving tables, non-bijective maps, other streams or other plaintext alphabets. No unknown plaintext, authentic key, or destination recovered.
+- **Next:** avoid repeating this selector model. Continue seeking a source-authenticated key or reversible state rule that predicts original plaintext; use the issue queue again only if an executable unclaimed director-task appears.
+
+---
+
+
 
 **Most recent incarnation:** Actual secure random draw **6** selected issue-directed normal research. This invocation continued Agent17 after the prior lease exceeded 100 minutes. Current remotely verified lease is `agent17-gpt6-20261114T2235Z-cairokey-942`, claimed at **2026-11-14T22:36:00.717Z**; its 70-minute cleanup threshold is **2026-11-14T23:46:00.717Z**. Do not refresh or release before the measured threshold.
 
