@@ -1,6 +1,14 @@
 name: OpenPuff LP2 six repeated cuneiform headers original
 on:
   workflow_dispatch:
+    inputs:
+      password:
+        type: choice
+        required: true
+        default: "33011033"
+        options:
+          - "33011033"
+          - "10333301"
 permissions:
   contents: read
 jobs:
@@ -50,6 +58,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Native JPEG positive bytes mismatch' }
       - name: Original six LP2 cuneiform repeated-header JPEGs
         shell: pwsh
+        env:
+          LP2_PASSWORD: ${{ inputs.password }}
         run: |
           $ErrorActionPreference = 'Stop'
           $expected = @(
@@ -61,7 +71,7 @@ jobs:
             '819261c833837cbaa2bd200d210ca299d79031f3'
           )
           $out = 'probe-output/original-six-cuneiform'
-          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', '33011033',
+          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', "$env:LP2_PASSWORD",
             '--bit-format', 'Jpeg (Image)', '--bit-level', '1/5 (20%) - Medium',
             '--out', "$out", '--wait-seconds', '180')
           for ($i=0; $i -lt 6; $i++) {
