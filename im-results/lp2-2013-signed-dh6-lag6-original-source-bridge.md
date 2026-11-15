@@ -88,6 +88,22 @@ As a direct unkeyed GP inverse check, the 1,290 defined `D_i=C_i+g+K C_{i-6} mod
 
 **Execution:** the [expanded single-file SFT](../sims/lp2_2013_dh6_lag6_signed_source_bridge_sft.cjs) now proves the 29-value polynomial identities, tests and plants both sign branches and checks 1,800 independent source-conditioned nulls, in addition to the earlier 24-choice full-original test. The amended [Windows Node22 GitHub Actions run **43656986364** passed](https://github.com/FlareZ123/liber-primus/actions/runs/43656986364).
 
+## The recurrence is spread beyond the first legal position of a long word
+
+A narrower plausible interpretation of the signed source's exponent **6** is a *single fixed mark at local rune offset six* (zero-based), possibly revealing the sixth-step delay once per long word rather than a recurrent state. That interpretation predicts any surplus of `T−(C[i−6])` agreement should occur at **only the first legal offset j=6**. Test this direct choice against the original source without selecting a new cipher parameter or constructing a plaintext candidate. There are **559** complete printed words of length at least seven, with **1,290** total eligible comparisons.
+
+| Printed within-word rune offset | Eligible positions | Exact T− matches in original | Exact-word 1,900-null expectation (SD) |
+| --- | ---: | ---: | ---: |
+| First eligible **j=6** | 559 | **33** | **20.0953 (4.4187)** |
+| **j=7** | 343 | **19** | **12.0732 (3.3951)** |
+| **j=8** | 187 | **12** | **6.6053 (2.5421)** |
+| Later **j≥9** | 201 | **16** | **6.9326 (2.5735)** |
+| **Every later site j≥7** | **731** | **47** | **25.6111 (4.9618)** |
+
+With seed `0x6acc2013`, every one of **1,900** independent surrogates preserves every original word's complete GP29 multiset, length, and exact adjacent-repeat count. **8/1,900** surrogates reach/exceed the original first-legal count33 (add-one upper tail **9/1,901≈0.00473**). **0/1,900** reach/exceed the original **later-site count47** (add-one upper tail **1/1,901≈0.000526**). These are *conditioned comparisons of the already-selected source operator*, not discovery-wide p-values. Their late-site result remains large enough to reject a very narrow source interpretation in which **the first six-back comparison in each word alone is altered** and all subsequent runes have the conditional-null relation. The pattern is compatible with repeated/ongoing opportunities for an echo. It neither identifies their trigger nor tells whether the extra matches result from real encryption, higher-order dependencies, or post-selection.
+
+Reproducer: the same [source-native single-file SFT](../sims/lp2_2013_dh6_lag6_signed_source_bridge_sft.cjs) now asserts all four original offset counts, their denominators and the first/later conditional null exceedances, with a planted exact six-back stream elsewhere in the test.
+
 ## Independently executable source-constrained 24-choice check
 
 To constrain the retrospective construction, test a small, explicit family whose elements are public numbers from the signed 2013 example. The word-local lag choices are `[2,5,6,8]` (shared DH key, DH generator, recovered server exponent, server public share). The base29 output digit choices are `[3,26,24]`. The linear coefficient is `±2` (both signs of the DH shared key). Every combination is evaluated against the *unchanged 12,956 original GP29 cipher runes*, joined into their 2,896 original printed semantic words including 32 page-spanning carries, with no plaintext scoring, fitted key, or invented symbol. The source word lengths have a maximum of14, so the historically present values 15,19,23 cannot serve as a **word-local lag** within this direct family; that restriction is itself a model choice, not a complete audit of every signed-source operation.
