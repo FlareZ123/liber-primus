@@ -26,3 +26,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
           node sims/lp2_terminal256_known180_lfsr_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Terminal SFT' }
+
+      - name: Check source-printed SHA512 digest against preceding LP2 p55
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p56_digest_into_p55_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
+          node sims/lp2_p56_digest_into_p55_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Digest SFT' }
