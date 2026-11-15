@@ -127,6 +127,42 @@ def choose_file(app, window, button_token, path, out, stage):
     return app.window(title_re=".*Data Hiding.*")
 
 
+class DesktopDialogs:
+    def windows(self):
+        return Desktop(backend="win32").windows()
+
+
+def native_modal_inventory():
+    inventory = []
+    for window in Desktop(backend="win32").windows():
+        if not safe(window.is_visible):
+            continue
+        title = (safe(window.window_text) or "").strip()
+        classname = safe(window.class_name) or ""
+        if classname != "#32770" and not any(
+            word in title.lower() for word in ("hide", "task", "folder", "save")
+        ):
+            continue
+        descendants = safe(window.descendants) or []
+        inventory.append({
+            "title": title,
+            "class": classname,
+            "buttons": [
+                safe(child.window_text) for child in descendants
+                if safe(child.class_name) == "Button"
+            ],
+            "edits": [
+                safe(child.window_text) for child in descendants
+                if safe(child.class_name) == "Edit"
+            ],
+            "static": [
+                safe(child.window_text) for child in descendants
+                if safe(child.class_name) == "Static"
+            ][:15],
+        })
+    return inventory
+
+
 def native_carrier_names(window):
     carrier_list = window.child_window(control_id=1018, class_name="SysListView32")
     return [
@@ -327,13 +363,23 @@ def main():
         window = choose_file(app, window, "Browse", payload, out, "secret")
         snapshot(app, out, "configured")
         click_named(window, "Hide Data")
-        deadline = time.monotonic() + 240
+        time.sleep(1)
+        snapshot_desktop(out, "hide-post-click-desktop")
+        print("Original native Hide after click:", json.dumps(native_modal_inventory()),
+              flush=True)
+        deadline = time.monotonic() + 120
+        next_report = time.monotonic()
         completion = []
         previous = None
         stable = 0
+        all_native_windows = DesktopDialogs()
         while time.monotonic() < deadline:
-            save_dialog_if_present(app, stego / "unused.bin", stego)
-            acknowledge_completed_task(app, completion)
+            save_dialog_if_present(all_native_windows, stego / "unused.bin", stego)
+            acknowledge_completed_task(all_native_windows, completion)
+            if time.monotonic() >= next_report:
+                print("Native Hide active dialogs:",
+                      json.dumps(native_modal_inventory()), flush=True)
+                next_report = time.monotonic() + 20
             actual = tuple(
                 sorted(
                     (p.name, p.stat().st_size)
