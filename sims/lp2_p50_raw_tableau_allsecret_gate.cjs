@@ -33,7 +33,7 @@ function plantWords(words,key,seed){const rnd=rng(seed),p=new Map();for(const v 
 function sampleWords(pool,seed){const rnd=rng(seed);return lengths.map(L=>{const a=pool.pools.get(L);return a[rnd()%a.length];});}
 function summarizeContinuous(key){const orig=measureRunes(C,key),all=[],bySource=[];let minRate=Infinity;const minTop=Array(12).fill(Infinity);for(const s of flatSources){const ms=windows(s.runes).map(w=>measureRunes(w,key));all.push(...ms);const st=Array(12).fill(Infinity);for(const m of ms){minRate=Math.min(minRate,m.rate);for(let k=0;k<12;k++){minTop[k]=Math.min(minTop[k],m.top[k]);st[k]=Math.min(st[k],m.top[k]);}}bySource.push({name:s.name,windows:ms.length,minTop:st});}const plain=flatSources[0].runes.slice(0,N),a=measureRunes(plain,key),b=measureRunes(plantRunes(plain,key,0x17c0ffee),key);return {original:orig,controlWindows:all.length,minControlRate:minRate,minControlTop:minTop,all12TopBelowControls:minTop.every((x,k)=>orig.top[k]<x),bySource,positivePlantExact:a.pairs===b.pairs&&a.hits===b.hits&&a.rate===b.rate&&JSON.stringify(a.top)===JSON.stringify(b.top)};}
 function summarizeWord(key){const orig=measureWords(originalWords,key),all=[],bySource=[];let minRate=Infinity;const minTop=Array(12).fill(Infinity);for(const p of pools){const samples=[];for(let s=1;s<=500;s++)samples.push(measureWords(sampleWords(p,0x33010000+s*7919),key));all.push(...samples);const st=Array(12).fill(Infinity);for(const m of samples){minRate=Math.min(minRate,m.rate);for(let k=0;k<12;k++){minTop[k]=Math.min(minTop[k],m.top[k]);st[k]=Math.min(st[k],m.top[k]);}}bySource.push({name:p.name,samples:samples.length,minRate:Math.min(...samples.map(m=>m.rate)),minTop:st});}const plain=sampleWords(pools[0],0x17c0ffee),a=measureWords(plain,key),b=measureWords(plantWords(plain,key,0x1badb002),key);return {original:orig,controlSamples:all.length,minControlRate:minRate,minControlTop:minTop,all12TopBelowControls:minTop.every((x,k)=>orig.top[k]<x),bySource,positivePlantExact:a.pairs===b.pairs&&a.hits===b.hits&&a.rate===b.rate&&JSON.stringify(a.top)===JSON.stringify(b.top)&&a.minGroup===b.minGroup&&a.maxGroup===b.maxGroup};}
-const result={originalRunes:N,originalWords:NWORDS,wordLengthClasses:uniqueLengths.length,wordLengthRange:[Math.min(...lengths),Math.max(...lengths)],p50Bytes:B.length,p50DistinctBytes:new Set(B).size,controls:sources.map(s=>({name:s.name,words:s.words.length,runes:s.words.flat().length})),continuous:{raw:summarizeContinuous(B),mod29:summarizeContinuous(B.map(x=>x%29))},wordIndexed:{raw:summarizeWord(B),mod29:summarizeWord(B.map(x=>x%29))}};
+const result={originalRunes:N,originalWords:NWORDS,wordLengthClasses:uniqueLengths.length,wordLengthRange:[Math.min(...lengths),Math.max(...lengths)],p50Bytes:B.length,p50DistinctBytes:new Set(B).size,controls:sources.map(s=>({name:s.name,words:s.words.length,runes:s.words.flat().length})),continuous:{raw:summarizeContinuous(B),mod29:summarizeContinuous(B.map(x=>x%29))},wordIndexed:{raw:summarizeWord(B),mod29:summarizeWord(B.map(x=>x%29))},highDigitSelector:summarizeContinuous(B.map(x=>Math.floor(x/60)))};
 const cr=result.continuous.raw,cm=result.continuous.mod29,wr=result.wordIndexed.raw,wm=result.wordIndexed.mod29;
 assert.equal(cr.original.pairs,646599);assert.equal(cr.original.hits,22339);assert(Math.abs(cr.original.rate-0.034548460483236135)<1e-15);
 assert.deepEqual(cr.original.top,[1039,1944,2773,3537,4248,4927,5570,6176,6737,7260,7769,8269]);
@@ -54,7 +54,15 @@ assert.equal(wm.original.groups,29);assert.equal(wm.original.pairs,3433607);asse
 assert.deepEqual(wm.original.top,[692,1335,1947,2532,3098,3641,4169,4686,5189,5680,6166,6641]);
 assert.equal(wm.controlSamples,2000);assert(Math.abs(wm.minControlRate-0.05805207177175489)<1e-15);
 assert.deepEqual(wm.minControlTop,[1428,2551,3532,4453,5325,6154,6931,7662,8319,8937,9493,9979]);
+
 assert(wm.all12TopBelowControls&&wm.positivePlantExact);
+const hd=result.highDigitSelector;
+assert.equal(hd.original.groups,5);assert.equal(hd.original.pairs,18712993);assert.equal(hd.original.hits,645914);
+assert(Math.abs(hd.original.rate-0.034516872848720674)<1e-15);
+assert.deepEqual(hd.original.top,[532,1054,1570,2077,2576,3073,3562,4039,4512,4980,5443,5902]);
+assert.equal(hd.controlWindows,122);
+assert.deepEqual(hd.minControlTop,[1428,2510,3431,4321,5164,5923,6641,7328,7996,8626,9197,9713]);
+assert(hd.all12TopBelowControls&&hd.positivePlantExact);
 
 const tableTokens=grid.pages.flatMap(p=>p.tokens);
 const alpha60='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
