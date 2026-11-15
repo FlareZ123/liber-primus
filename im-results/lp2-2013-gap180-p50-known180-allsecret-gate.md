@@ -32,8 +32,27 @@ The candidate plaintext consumer is allowed a *single completely unknown fixed f
 
 Every frozen candidate fails at **at least 130** of the 180 authenticated GP29 plaintext symbols even with the entire secret function chosen *after inspecting those plaintext symbols*. The first contradiction for `b mod29` occurs at known positions **3 and 7**: both table operands are GP29 index **15**, while the corresponding authentic plaintext indices are **9 and 2**. This is an exact finite rejection of all six *source-ordered, fixed single-alphabet* mechanisms. It cannot rule out a changing-state cipher, different word/row clock, hidden index permutation, distinct 2013 stream, or binary non-GP payload. Adding those mechanisms requires an independently authored selector.
 
+## Recovering a missing affine GP29 key from the 180 known symbols
+
+The original 2013 ISO `prime_echo` script prints a newline after every ten primes. The telnet-reported omitted ranks **21–200 are 18 complete ten-prime lines**, a natural human-visible second organization of the otherwise fixed 180 prime values. We therefore also test both row-major and column-major readings of that **18×10 array** against both row-major and column-major readings of the LP2 **30×6 interior**. These are original-document rectangular orderings, with no key-selected shifts.
+
+Since the solved p56 genuinely uses a changing modulo29 prime-totient offset and earlier LP1 uses simple Vigenère arithmetic, we try to **recover rather than guess** every three-parameter affine shared decoder
+
+`P[i] = (a * B[i] + z * Q[i] + c) mod29`.
+
+The complete known 180 plaintext GP indices determine three simultaneous constraints on `a,z,c`; every candidate is verified against all 180 known positions. The finite field has **29³ = 24,389** parameter triples, so the exact search is complete and cheap. The best constant candidate `a=z=0,c=18` reaches **31/180**, merely reproducing the most common target rune. For models that actually use at least one of the two source tapes, the four best complete-key candidates score:
+
+| Table interior reading | Missing-prime 18×10 reading | Best nonconstant affine key / 180 |
+| --- | --- | ---: |
+| Row-major | Row-major | **19** |
+| Row-major | Column-major | **19** |
+| Column-major | Row-major | **20** |
+| Column-major | Column-major | **18** |
+
+There are **zero** affine keys giving even a close approximation to the complete 180-symbol authentic plaintext, and no independently selected original ciphertext prediction survives. The row/column transpose similarly yields no exact secret single-symbol lookup: across six direct table/prime operands, four source readings and both arithmetic signs, the greatest possible match count for any deterministic shared GP29 lookup is **55/180**. The source does not claim these 2013 and 2014 layouts were designed to be combined.
+
 ## Positive controls and decision
 
-The source-input SFT includes a secret planted invertible alphabet `f(x)=7x+5 mod29`, a 180-symbol artificial source tape encrypted against the authentic p56+p57 GP registers, and an exact 180/180 recovery check. The six original ceilings and direct identity counts above were independently executed with original source arrays in the research runtime. The full original-input SFT **passed on Windows with Node.js 22** in [manual CI run 43772227951](https://github.com/FlareZ123/liber-primus/actions/runs/43772227951). The complete Node22 CommonJS source is [`sims/lp2_telnet180_known180_allsecret_sft.cjs`](../sims/lp2_telnet180_known180_allsecret_sft.cjs). It asserts the prime ranks, table dimensions, authenticated p56 84-prime clock/F-skip, all six ceilings, contradictory same-input pairs and positive 180/180 inverse.
+The source-input SFT includes a secret planted invertible alphabet `f(x)=7x+5 mod29`, a 180-symbol artificial source tape encrypted against the authentic p56+p57 GP registers, and an exact 180/180 recovery check. The six original ceilings and direct identity counts above were independently executed with original source arrays in the research runtime. The full original-input SFT **passed on Windows with Node.js 22** in [manual CI runs 43772227951 and 43773458503](https://github.com/FlareZ123/liber-primus/actions/runs/43773458503). The complete Node22 CommonJS source is [`sims/lp2_telnet180_known180_allsecret_sft.cjs`](../sims/lp2_telnet180_known180_allsecret_sft.cjs). It asserts the prime ranks, table dimensions, authenticated p56 84-prime clock/F-skip, all six ceilings, contradictory same-input pairs and positive 180/180 inverse.
 
-**Decision:** Retire a direct original-table/2013-gap-to-terminal known plaintext **single secret GP29 codebook** for these six fixed operators. The three-way count alignment remains a possible source clue but provides no plaintext, key or selected reversible mechanism. Do not generalize this finite codebook failure into a claim that the numeric table, the missing 180 primes or the p55 circumference cannot participate in a more complex original cipher.
+**Decision:** Retire the six direct original-table/2013-gap-to-terminal known plaintext **single secret GP29 codebooks** and the complete two-source affine-key family under the original row/column orientations. The three-way count alignment remains a possible source clue but provides no plaintext, key or selected reversible mechanism. Do not generalize this finite codebook failure into a claim that the numeric table, the missing 180 primes or the p55 circumference cannot participate in a more complex original cipher.
