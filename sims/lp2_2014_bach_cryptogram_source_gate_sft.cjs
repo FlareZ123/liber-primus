@@ -25,7 +25,7 @@ assert.deepEqual(voices, [
   ['D', 'C', 'E', 'D', 'C', 'B', 'A', 'A'],
   ['B', 'C', 'A', 'D', 'C'],
 ]);
-const pitch = { C: 0, D: 2, E: 4, 'F#': 6, G: 7, A: 9, B: 11, Bb: 10 };
+const pitch = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, 'F#': 6, G: 7, A: 9, B: 11, Bb: 10 };
 const canonical = ['Bb', 'A', 'C', 'B'];
 const signature = [11, 3, 11]; // Semitone steps of B-flat -> A -> C -> B-natural modulo 12.
 
