@@ -82,6 +82,38 @@ async function main(){
  const pages=linesByPage(original.toString('utf8'));
  console.log('SOURCE '+JSON.stringify({url:URL,bytes:original.length,sha256:HASH,
   pageHeaders:[...pages.keys()],sourcePageCount:pages.size}));
+ const grid=JSON.parse(fs.readFileSync('resources/liber-primus/lp2-grid-256.json','utf8'));
+ const observedRows=[];
+ for(const p of [49,50,51]){
+  const lines=pages.get(p)?.lines||[];
+  let count=0;
+  for(const line of lines){
+   const cells=line.trim().split(/\s+/);
+   if(cells.length===8&&cells.every(t=>/^[0-4][0-9A-Za-z]$/.test(t))){
+    observedRows.push(cells);count++;
+   }
+  }
+  console.log('NUMERALS_PAGE '+JSON.stringify({page:p,rows:count}));
+ }
+ const canonicalRows=grid.pages.flatMap(p=>{
+  const z=[];
+  for(let i=0;i<p.tokens.length;i+=8)z.push(p.tokens.slice(i,i+8));
+  return z;
+ });
+ assert.equal(canonicalRows.length,32);
+ assert.equal(observedRows.length,32,'historical original has exactly 32 grid rows');
+ const cases=[];
+ for(let r=0;r<32;r++)for(let c=0;c<8;c++){
+  const seen=observedRows[r][c],expected=canonicalRows[r][c];
+  if(seen!==expected)cases.push({cell:r*8+c,
+   printedPage:r<10?49:r<23?50:51,source:seen,canonical:expected,
+   printedRow:r+1,col:c+1});
+ }
+ console.log('NUMERALS_COMPARE '+JSON.stringify({
+  sourceRows:observedRows.length,sourceCells:observedRows.flat().length,
+  canonicalCells:canonicalRows.flat().length,mismatches:cases,
+  source49FontNote:pages.get(49).lines.find(s=>/Font is futura/i.test(s))?.trim()
+ }));
  let totalOriginal=0,totalObserved=0,edits=0,exact=0,unknown=0;
  for(const entry of canonical.pages){
   const page=entry.page;
