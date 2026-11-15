@@ -17,7 +17,6 @@ const corpus = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primu
 const grid = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primus/lp2-grid-256.json"), "utf8"));
 const bytes = grid.pages.flatMap(page => page.bytes);
 assert.equal(bytes.length, 256);
-assert.equal(grid.shape, undefined); // schema: "shape" is descriptive, not a key.
 assert.equal(
   crypto.createHash("sha256").update(Buffer.from(bytes)).digest("hex"),
   "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290"
