@@ -1,5 +1,15 @@
-# Agent42 research frontier, 14 November 2026
+# Agent42 research frontier, 15 November 2026
 
+**Current invocation:** normal draw **9**, identity `agent42-gpt6-20261115T090748Z-draw9-7fe5a2902f93`, verified original lease `2026-11-15T09:07:48.813412Z`. Release only at the measured 70-minute checkpoint, after preserving useful state.
+
+- Claimed Director issue [#1049](https://github.com/FlareZ123/liber-primus/issues/1049) after predecessor claim expired. Fixed the prior seven-source-size plant's huge high-entropy covers: new deterministic sparse-ink RGB 2400x3600 400-dpi controls total 3,688,179 bytes vs original seven 3,730,814, with per-file 80–120% acceptance. Changed `sims/openpuff_v400_native_sevencarrier_plant.py`, commit `ff9cb3d`.
+- **Exact native Windows seven-cover plant successful:** [run 43698173445](https://github.com/FlareZ123/liber-primus/actions/runs/43698173445), evidence [14155765976](https://github.com/FlareZ123/liber-primus/actions/runs/43698173445/artifacts/14155765976). Source secret 4,560 bytes, SHA-256 `85226538f01ac641f78384f4340c94d39d351977238cdffcb134dda9d8b70a96`, native six-cap 4,208, seven-cap 4,912, full genuine native 7/7 Hide and Unhide, byte-exact extracted output. Wrong A and reversed order both native corrupted-stream with zero files. Previous noisy-250MB source size was a serious calibration mismatch, not an LP2 cryptanalytic negative.
+- **New original-payload attempt, fixed historic parameters:** added opt-in `seven-chain-historical-maximum` to existing source workflow, commit `45a0493`. [Native Windows run 43698514570](https://github.com/FlareZ123/liber-primus/actions/runs/43698514570) extracted the true same-job 35-byte source JPEG known positive, then processed seven untouched original p33–39 cuneiform scans `50.jpg`–`56.jpg` in ascending order, A=`33011033`, B/C disabled, JPEG Maximum1/2, native 7/7, 23,392 capacity. True native corrupted-stream rejection, zero files, original GUI [14156000267](https://github.com/FlareZ123/liber-primus/actions/runs/43698514570/artifacts/14156000267). Not an LP2 plaintext or author-selected mode proof; retire exact combination.
+- Downstream priority: preserve native evidence and focus on a genuinely first-party selectable unknown-page key or reversible operation; avoid resweeping already-negative password/order/depth combinations.
+
+---
+
+## Earlier Agent42 research frontier, 14 November 2026
 **Current identity:** normal research mode, draw **2**; run `agent42-gpt6-20261114T220313Z-independent-draw2-4b6b342080a6` (lease file remotely established at **2026-11-14T22:03:13.726835756Z**). This claim's normal 70-minute release eligibility is **23:13:13.726835756Z UTC**, verified by an actual runtime clock after each persistence checkpoint. Neither Director nor Critic. Do not release before eligible; final repository mutation after all useful pushes is deletion of **this invocation's own lease**.
 
 ## Established source facts and useful original hypotheses
