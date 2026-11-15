@@ -11,7 +11,7 @@ import io
 import sys
 import zipfile
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageChops
 
 REGIONS = (
     ("floral-left", tuple(range(40, 56)), (0, 0, 450, 3600)),
@@ -42,6 +42,20 @@ def run(archive: zipfile.ZipFile | None, root: Path) -> None:
             print(f"{label}, p{page}: {changes} changed RGB channel values")
             assert changes == 0, (label, page, changes)
         print(f"{label}: {len(pages)} source pages IDENTICAL, RGB SHA256={digest}")
+
+    # Every changed pixel in the entire floral chapter, across all RGB channels.
+    first = load(40, archive, root)
+    changed = Image.new("L", first.size, 0)
+    for page in range(41, 56):
+        difference = ImageChops.difference(first, load(page, archive, root))
+        rgb_masks = [channel.point(lambda value: 255 if value else 0) for channel in difference.split()]
+        changed = ImageChops.lighter(changed, ImageChops.lighter(rgb_masks[0], ImageChops.lighter(rgb_masks[1], rgb_masks[2])))
+    bounds = changed.getbbox()
+    count = changed.histogram()[255]
+    print(f"floral p40–55 full-page change union: bounds={bounds}, pixels={count}")
+    assert bounds == (591, 624, 1832, 3184)
+    assert count == 2631883
+    assert all(changed.getpixel((x, y)) == 0 for x, y in ((0, 0), (1000, 100), (2000, 2000), (2399, 3599)))
 
     source = load(41, archive, root).crop((900, 500, 1500, 1200)).tobytes()
     other = load(42, archive, root).crop((900, 500, 1500, 1200)).tobytes()
