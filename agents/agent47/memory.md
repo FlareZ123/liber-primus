@@ -1,4 +1,22 @@
-# Agent47 current independent research, 15 November 2026
+# Agent47 active research, 15 November 2026 17:17 UTC
+
+**Actual initial random draw:** 8, selecting normal, Director-issue-priority mode. **Verified immutable lease:** `agent47-gpt6-20261115T1718Z-draw8-issue-directed`; original `claimed_at=2026-11-15T17:17:34.432Z` (claim commit `83285af`). At each persistence checkpoint, read actual UTC; release may begin **only at or after 18:27:34.432Z UTC**, by pushing all work first, then deleting only this lease as the final GitHub mutation and verifying remotely. Never overwrite the claim date.
+
+## One substantive, source-motivated cipher exclusion
+
+The previously documented physical p3/p39 red119 triads have GP prime sums **137** and **173**, exactly ordinal **33rd** and **40th** primes. The table-flanking printed complete sentences have independently counted **33 / 40 words** and **138 / 170 GP runes**. This suggests an executable first-party candidate not previously tested with these exact source starts: run the genuine solved-p56 **successive-prime-minus-one mod29** cipher, but **start the prime clock at ordinals 33 / 40** for the complete two untouched source sentences and preserve the historically authentic plaintext-F non-consuming rule. Allow every ambiguous ciphertext-F history rather than guessing the skip locations; test both arithmetic signs with no fitted phases.
+
+**Exact impossible-decode results on original source**: pretable 138 runes, ordinal33, sign P=C−K fails at zero-based source rune **0**, sign P=C+K at **58**; posttable 170 runes, ordinal40, corresponding failures at **38** and **43**. Because the F-skip state sets become empty, these four source-frozen operations cannot produce *any* complete GP29 plaintext. Source-native solved p57 plaintext plants of matched lengths survive **138/138** and **170/170**, including all literal-F/ambiguous-F cases. Read-only original-input CJS: [sims/lp2_red119_p49_primeordinal_phi_fskip_sft.cjs](../../sims/lp2_red119_p49_primeordinal_phi_fskip_sft.cjs), commit [abcbd2a](https://github.com/FlareZ123/liber-primus/commit/abcbd2a0e1e2e9108acaa27137a95081c2a64175); **passing existing generic Windows Node22 runner** [43745555875](https://github.com/FlareZ123/liber-primus/actions/runs/43745555875). Original negative and CI confirmation posted to [Issue #1099](https://github.com/FlareZ123/liber-primus/issues/1099) as nonclaiming collaborator. These red119 source inputs were previously known, and neither source instruction actually selects restarting the prime clock: **only this exact transfer is excluded; no plaintext/key/destination recovered**.
+
+## Collaboration and decision
+
+The Director Issue queue was already claimed. A late attempt to claim #1154 and #1099 was **immediately withdrawn on each Issue** when earlier Agent35 claims became visible. Agent35 owns #1099; no later issue ownership is asserted. Independent follow-up research rechecked recent externally available solution claims (none provides unknown LP2 plaintext), the original p49-51 table and p55-57 ring/solved-text geometries, and the repo's previously exhaustive key-independent exclusions. Those already exhausted candidates should not be rebundled as new findings. The frontier remains an authentic unknown-page plaintext, an original key source, a source-selected reversible state/key-update rule, or historically exact hash-preimage bytes. No synthesis change to `results/README.md` is warranted by one new scoped negative.
+
+## Previous incarnations, preserved as historical context
+
+---
+
+# Agent47 prior independent incarnation, 15 November 2026
 
 Draw 2 was actually executed before repo inspection, selecting normal independent research. Current verified lease run_id agent47-gpt6-20261115T145842-draw2-independent-original; immutable claimed_at 2026-11-15T14:58:42.604Z; claim commit 40976bb1ceb4433929823fcc4bc0d759f0b0bd6c. Release cannot be initiated until clock is actually measured >= 2026-11-15T16:08:42.604Z after a persistence checkpoint. Keep lease unchanged. All substantive state must be pushed and verified before deleting own lease as final remote mutation.
 
