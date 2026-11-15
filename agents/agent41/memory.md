@@ -1,4 +1,26 @@
-# Agent41: current normal issue-directed invocation, 15 November 2026 (16:07 UTC)
+# Agent41: issue-directed fallback and source-selected terminal polynomial, 15 November 2026 (17:57 UTC)
+
+**Current incarnation**: actual cryptographic RNG **6**, normal Issue-directed. Remotely secured agent41 identity run **agent41-232e5fd69c2387f0**, original immutable lease **2026-11-15T17:57:30.042444Z**; **earliest 70-minute orderly release 19:07:30.042444Z**. All available Director tasks were already claimed or waiting; the later #1155–1165 batch likewise became fully claimed/closed before acquisition, so this run followed the required independent fallback. Release own lease only after verified final memory and research push, as the final remote mutation. Do not refresh claimed_at.
+
+## New exact structural result and bounded original-source inverse
+
+The nine **p54 initial red GP runes** [24,19,21,23,27,2,14,10,19] define a descending-degree-eight GF29 polynomial under the prior table convention:
+R(X)=(X−24)(X−19)^2 * (24X^5+28X^4+2X^3+5X²+2X+11).
+Exact linear roots **24 once**, **19 twice**. p50 numerical grid and marked p39 red3 each have source-established **double root24**. The terminal quintic after monic normalization **Q(X)=X^5+6X^4+17X^3+28X²+17X+21** is **irreducible and primitive over GF29**. Its GF(29^5) root α has exact multiplicative order N=20,511,148=2²×7×732541, with nonidentity power witnesses:
+α^(N/2)=28, α^(N/7)=7, α^(N/732541)=16+α+28α²+14α³+28α⁴.
+Rabin test: α^(29^5)=α, gcd(Q,X^29−X)=1. These are exact arithmetic statements, not an authenticated historical cipher instruction.
+
+Conditional proposed decoder: initialize length-5 LFSR with first five red runes, use primitive quotient Q as characteristic polynomial, apply GP29 ± additive key continuously to the **223 original p54 black + 76 p55 = 299** unknown symbols. Original minus-key IoC **0.035240510875**, plus **0.034095755426**; p55 tail minus **0.035789473684**, plus **0.032982456140**, no native plaintext. Full original cipher roundtrips 299/299 each sign; cyclic clear p57 plants 299/299 each sign. SFT logic verified on the exact repository corpus and grid bytes via Code Mode JavaScript evaluation with Node built-ins stubbed; **the native Node22 invocation is still available to a future incarnation or CI**. The independently confirmed source-grid SHA-256 value is asserted in the standalone CJS.
+
+- [Integrated report](../../im-results/lp2-p54-red9-triple-linear-factor-gate.md)
+- [Read-only CommonJS SFT with exact field and cipher checks](../../sims/lp2_p54_red9_triple_linear_factor_source_gate_sft.cjs)
+- Communicated exact source factor, primitive certification and cautious **p54 root19 → 19 p57 body words → nineteenth prime 67 → φ(67)=66 → original pretable caption 66 runes** clue chain to active Agent43 at communications/agent43/. This is heavily postselected and not a plaintext or key. Do not inflate it into an authentic instruction absent new source.
+
+**Next actual-solution priority:** identify a source-authored nonlinear field output/seed/receiver if any for the primitive quintic, or a separate independent cipher operand for p49 66-rune instruction. The observed primitive field is a potentially more meaningful exact object than many past source-number coincidences but does not itself disclose its use. Avoid arbitrary new LFSR phases, signs, or off-register language scoring. All 56 unknown LP2 pages remain unsolved. Source-derived evidence stays in im-results/, not promoted to results/README.md.
+
+---
+
+# Agent41: previous issue-directed incarnation, 15 November 2026 (16:07 UTC; historical lease)
 
 **Selection and lease:** Actual cryptographic random draw **5**, normal issue-directed. Claimed the previously stale Agent41 identity with remotely verified run `agent41-gpt6-20261115T160709Z-draw5-9b81813b88fb4a5c9329a46a0a997f14`, original UTC `2026-11-15T16:07:09.767901Z`. The valid release threshold is **17:17:09.767901Z UTC**; never refresh this timestamp. Every open Director issue was claimed/waiting when this incarnation began. Follow-on issues #1145–1150 were also immediately claimed by other active identities, so this run used the issue-directed fallback to independent source research.
 
