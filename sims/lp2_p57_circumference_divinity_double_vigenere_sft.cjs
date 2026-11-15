@@ -68,6 +68,23 @@ assert(Math.abs(ioc(original)-0.037894736842105266)<1e-12);
 assert(Math.abs(ioc(plain)-0.035789473684210524)<1e-12);
 assert(Math.abs(ioc(fInner.plain)-0.03508771929824561)<1e-12);
 assert(Math.abs(ioc(reverseLayer)-0.031578947368421054)<1e-12);
+
+// A distinct source-fixed clock: original p54's nine-rune red heading opens
+// the complete final 308-rune cipher chapter, carried across physical p55.
+// This tests the authentic historical practice of starting a new key at a
+// visible section heading, instead of resetting at p55's arbitrary page turn.
+const chapter = gp.pages[54].indices.concat(gp.pages[55].indices);
+assert.equal(chapter.length, 308);
+assert.deepEqual(chapter.slice(232), original);
+const chapterOuter = decrypt(chapter, circumference);
+const chapterPlain = decrypt(chapterOuter, divinity);
+assert.deepEqual(encrypt(encrypt(chapterPlain, divinity), circumference), chapter);
+const chapterFInner = decryptLiteralF(chapterOuter, divinity);
+const chapterFOuter = decryptLiteralF(chapter, divinity);
+assert.deepEqual(chapterFInner.invalid, [36,72,168,184,241,256,267,283,301,303]);
+assert.deepEqual(chapterFOuter.invalid, [38,43,89,90,95,126,144,214,302,304,307]);
+assert(Math.abs(ioc(chapterPlain)-0.03449807521468759)<1e-12);
+assert(Math.abs(ioc(chapterPlain.slice(232))-0.04175438596491228)<1e-12);
 const answer = {
   interpretation:"p57 CIRCUMFERENCES then DIVINITY as two authentic direct GP29 Vigenere keys on adjacent unknown p55",
   originalRunes:original.length,sourceExactKeys:{circumference,divinity},
@@ -75,6 +92,12 @@ const answer = {
     decodedTranslit:plain.map(x=>gp.translit[x]).join(" "),
     syntheticSolvedP57RunesRecovered:native.length,
     exactOriginalReconstruction:true},
+  originalFinalChapterClockFromP54Heading:{sourceRunes:chapter.length,
+    decodedIoC:ioc(chapterPlain),p55TailIoC:ioc(chapterPlain.slice(232)),
+    decodedFirstNine:chapterPlain.slice(0,9).map(x=>gp.translit[x]).join(" "),
+    reconstructedOriginalRunes:chapter.length,
+    invalidLiteralFInner:chapterFInner.invalid,
+    invalidLiteralFOuter:chapterFOuter.invalid},
   authenticLiteralFVariants:{
     circumferenceOuterDivinityInner:{intermediateFOffsets:outer.flatMap((x,i)=>x===0?[i]:[]),
       illegalEncryptedFOffsets:fInner.invalid,decodedIoC:ioc(fInner.plain)},
