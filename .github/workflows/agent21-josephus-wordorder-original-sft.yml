@@ -1,7 +1,16 @@
-name: Agent21 original word-order Josephus source gate
+name: Agent21 original-source cryptanalytic gates
 
 on:
   workflow_dispatch:
+    inputs:
+      test:
+        description: Choose bounded source gate
+        required: true
+        type: choice
+        default: josephus
+        options:
+          - josephus
+          - p22-circumference
 
 permissions:
   contents: read
@@ -15,11 +24,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Compile and run original-input SFT
+      - name: Compile and run original-input Josephus SFT
+        if: ${{ inputs.test == 'josephus' }}
         run: |
           node --check sims/lp2_josephus_wordorder_source_gate_sft.cjs
           node sims/lp2_josephus_wordorder_source_gate_sft.cjs
       - name: Sentence-local Josephus independent grammar and null
+        if: ${{ inputs.test == 'josephus' }}
         run: |
           node --check sims/lp2_sentence_josephus_original_sft.cjs
           node sims/lp2_sentence_josephus_original_sft.cjs
+      - name: Original LP1 circumference-to-p22 fixed-key SFT
+        if: ${{ inputs.test == 'p22-circumference' }}
+        run: |
+          node --check sims/lp2_p22_lp1_circumference_spiral_sft.cjs
+          node sims/lp2_p22_lp1_circumference_spiral_sft.cjs
