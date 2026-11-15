@@ -82,6 +82,27 @@ for (const page of [49, 51, 52]) {
       prefix:plain.slice(0, 35).map((x) => corpus.translit[x]).join("")});
   }
 }
+const combinedFeedbackModels = [];
+for (const page of [49, 51, 52]) {
+  const cipher = corpus.pages[page].indices;
+  for (const a of [-1, 1]) for (const b of [-1, 1]) {
+    const plain = cipher.map((x, i) => mod29(x -
+      (i ? cipher[i - 1] : 0) +
+      a * key[i % 11] + b * flankKey[i % 2]));
+    const rebuilt = [];
+    let previous = 0;
+    for (let i = 0; i < plain.length; i++) {
+      const next = mod29(previous + plain[i] -
+        a * key[i % 11] - b * flankKey[i % 2]);
+      rebuilt.push(next);
+      previous = next;
+    }
+    assert.deepEqual(rebuilt, cipher);
+    combinedFeedbackModels.push({page, signEleven:a, signTwo:b,
+      ioc:Number(coincidence(plain).toFixed(12)),
+      prefix: plain.slice(0, 35).map((x) => corpus.translit[x]).join("")});
+  }
+}
 const rows = [];
 for (const page of [49, 51, 52]) {
   const original = corpus.pages[page].indices;
@@ -155,5 +176,5 @@ console.log(JSON.stringify({source:"original 256 printed p49–51 table",
   firstCellCycle:route.walk, cycleGP29Key:key, prologueRunes:66,
   sourceFirstPage:49, flankRuneCount, flankTwoCycle:[158,249],
   encodedKeyModels:rows, combinedKeyPeriod:22, combinedKeyModels:combinedResults,
-  shuffleNulls:nulls}, null, 2));
+  combinedFeedbackModels, shuffleNulls:nulls}, null, 2));
 console.log("PASS original pointer route/6-turn prologue and negative direct GP29 additive inverses. No unknown plaintext.");
