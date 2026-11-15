@@ -109,7 +109,7 @@ function coincidence(input, key, bins, sizes) {
 
 /** @param {Uint8Array} input */
 function sweep(input) {
-  const key = new Uint8Array(N);
+  const key = new Uint8Array(input.length);
   const bins = new Uint16Array(290);
   const sizes = new Uint16Array(10);
   let min = { primer: -1, rate: Infinity };
@@ -126,6 +126,69 @@ function sweep(input) {
 }
 const original = sweep(ciphertext);
 const control = sweep(latin);
+
+// The illustrated manuscript defines nine independent sections. Allow a separate
+// unknown five-digit seed at each original section boundary, which is a strictly
+// larger set of possible ciphers than one primer shared across the whole book.
+// For each chapter enumerate all 100,000 primers independently by the same
+// exact orbit reduction; no exhaustive 100000^9 joint search is needed because
+// the necessary collision invariant factors by independently reset chapter.
+const chapterPageRanges = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+let referenceOffset = 0;
+const chapters = chapterPageRanges.map(([firstPage, lastPage]) => {
+  const originalSegment = Uint8Array.from(
+    source.pages.filter((p) => p.page >= firstPage && p.page <= lastPage)
+      .flatMap((p) => p.indices)
+  );
+  const nativeSegment = latin.subarray(referenceOffset, referenceOffset + originalSegment.length);
+  assert.equal(nativeSegment.length, originalSegment.length);
+  referenceOffset += originalSegment.length;
+  const originalResult = sweep(originalSegment);
+  const nativeResult = sweep(nativeSegment);
+  return {
+    pages: [firstPage, lastPage],
+    runes: originalSegment.length,
+    originalMaximum: originalResult.max,
+    nativeMinimum: nativeResult.min,
+    originalBelowEveryNativePrimer: originalResult.max.rate < nativeResult.min.rate
+  };
+});
+assert.equal(referenceOffset, N);
+assert.deepEqual(chapters.map((p) => p.runes), [
+  729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308
+]);
+assert(chapters.every((p) => p.originalBelowEveryNativePrimer));
+const expectedChapterMax = [
+  [11662, 0.03978899773926149],
+  [26374, 0.0374366445112143],
+  [14500, 0.03645945857474876],
+  [10153, 0.036424768842813114],
+  [26502, 0.03751031293770026],
+  [2201, 0.03622645912127016],
+  [1711, 0.03638693780446358],
+  [51909, 0.03556660005363647],
+  [22659, 0.04638297872340426]
+];
+const expectedChapterNativeMin = [
+  [11403, 0.07033766627505969],
+  [21494, 0.07016260534296469],
+  [11465, 0.07306519684200716],
+  [21565, 0.07464096280131038],
+  [22450, 0.07048204340311119],
+  [14620, 0.07314019507934197],
+  [52352, 0.0748516775777414],
+  [27003, 0.07324887613954474],
+  [16180, 0.06425110596165999]
+];
+for (let i = 0; i < chapters.length; i++) {
+  assert.equal(chapters[i].originalMaximum.primer, expectedChapterMax[i][0]);
+  assert(Math.abs(chapters[i].originalMaximum.rate - expectedChapterMax[i][1]) < 1e-14);
+  assert.equal(chapters[i].nativeMinimum.primer, expectedChapterNativeMin[i][0]);
+  assert(Math.abs(chapters[i].nativeMinimum.rate - expectedChapterNativeMin[i][1]) < 1e-14);
+}
 
 // These are independently repeatable original-input values, not fitted keys.
 assert.equal(original.max.primer, 16019);
@@ -175,6 +238,7 @@ console.log(JSON.stringify({
   testFamily: 'global GP29 Fibonacci five-digit primer; arbitrary fixed or per-digit-class secret alphabets',
   original,
   nativeLatinControl: control,
+  independentlyResetChapters: chapters,
   positiveNativePlant: { primer, recovered: recovered.length, exactReencryption: true },
   conclusion: 'No stationary five-digit Fibonacci/Gromark family candidate makes the original ciphertext GP29-English/Latin-like under this exact all-secret invariant.'
 }, null, 2));
