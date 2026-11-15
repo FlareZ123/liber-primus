@@ -35,3 +35,8 @@ jobs:
         run: |
           node sims/lp2_pagecarry_wordprime_Fclock_original_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw '32-seam GP prime/F word-clock SFT failed' }
+      - name: Test all-secret 6x6 Hill affine table interior against solved terminal pages
+        shell: pwsh
+        run: |
+          node sims/lp2_terminal_inner180_hill6_allsecret_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original inner180 Hill key-recovery SFT failed' }
