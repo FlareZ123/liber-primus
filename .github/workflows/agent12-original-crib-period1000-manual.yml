@@ -25,3 +25,8 @@ jobs:
         run: |
           node sims/lp2_period1000_allsecret_lag_collision_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Chapter-period GP29 gate failed' }
+      - name: Validate source-linked 180 missing 2013 primes and 2014 LP2 interior
+        shell: pwsh
+        run: |
+          node sims/lp2_2013_telnet_180gap_p50_interior_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Telnet and p50 interior source test failed' }
