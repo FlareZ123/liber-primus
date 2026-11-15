@@ -45,6 +45,19 @@ Thus the original server public value **8** is the previously documented disting
 
 The same authenticated 2013 material *already* supplies the independent original LP2 numerical table factors [H2013 and Gp39](2013-base29-gf29-grid-factor.md): `H=3+26X+24X²` from BASE29 `3QO`, and `G=15(X−24)²=27+5X+15X²` from the recovered **DH client exponent15**, signed generator5 and original 3301 residue24. These both exactly divide the source-normalized 256-byte p49–51 table polynomial over GF29. The factor-to-original-grid mechanism has been mathematically verified and is still interpretively conditional. The new *third* destination for the same historical worked-example values is the **independently observed** six-back ciphertext echo. The two old relations do not automatically prove each other or give a cipher inverse.
 
+## Both original red triads can reconstruct the same signed DH example, conditionally
+
+The manuscript has **exactly two original red three-rune inscriptions**, at the identical local rune offset **119** on physical p3 and p39. Their authentic GP29 indices are **p3 `[13,23,2]`**, **p39 `[27,5,15]`** ([source-locked witness](lag6-conditioned-echo.md#source-marked-36-page-affine-transport-and-limited-original-cipher-prediction)). The independent signed 2013 worked DH example yields `p=23`, `g=5`, `A=8`, `B=19`, `K=2`, client secret exponent `y=15`. A compact retrospective six-field mapping reproduces **both complete original red triples**:
+
+```text
+p3  red [g+A, p, K] = [5+8, 23, 2] = [13,23,2]
+p39 red [-K mod29, g, y] = [27, 5, 15].
+```
+
+**This is algebraically exact on original marked glyphs**, with no fitted key string. It also reconstructs the signed original DH response: `A=p3[0]−p39[1]=8`, `B=5^15 mod23=19`, `A^15 mod23=2` equals p3[2], and `p39[0]=−p3[2] mod29`. The server exponent `log_5 8=6` then gives the six-back lag, while the same source supplies the affine fixed point8 and slope−2.
+
+**Severe interpretation limit:** the red inscriptions never explicitly label `g+A`, `−K`, or `y`; choosing those arithmetic expressions to match the historical DH worked example is **post-hoc** and there is no known human-readable selector for the role split. The signed example's client exponent15 is derivable by discrete log in this toy group, but not explicitly printed as a parameter. The red relation may be intentional cross-round hinting or coincidence among small modular numbers. The shared offset119 and 36-page separation are authentic geometry, but neither directs a decoding operation. The earlier [independent original red/black 36-page affine test](lag6-conditioned-echo.md) correctly predicted one nearby black rune under a retrospectively chosen affine 36-page transfer; no full-page or unknown-plaintext inverse resulted. Do not treat the red triples, p50 factors, and the lag-six echo as statistically independent evidence, since all are now linked by a **single retrospectively selected DH interpretation**.
+
 ## Independently executable source-constrained 24-choice check
 
 To constrain the retrospective construction, test a small, explicit family whose elements are public numbers from the signed 2013 example. The word-local lag choices are `[2,5,6,8]` (shared DH key, DH generator, recovered server exponent, server public share). The base29 output digit choices are `[3,26,24]`. The linear coefficient is `±2` (both signs of the DH shared key). Every combination is evaluated against the *unchanged 12,956 original GP29 cipher runes*, joined into their 2,896 original printed semantic words including 32 page-spanning carries, with no plaintext scoring, fitted key, or invented symbol. The source word lengths have a maximum of14, so the historically present values 15,19,23 cannot serve as a **word-local lag** within this direct family; that restriction is itself a model choice, not a complete audit of every signed-source operation.
