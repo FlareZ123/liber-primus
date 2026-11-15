@@ -158,6 +158,10 @@ jobs:
               ("wayback-im", base + "im_/" + original),
               ("wayback-replay", base + "/" + original),
               ("wayback-https", base + "id_/" + original.replace("http://", "https://")),
+              ("wayback-original-2014", base + "id_/" + original.replace("/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png", "/images/2/20/McLEj0T.png")),
+              ("wayback-original-2015", "https://web.archive.org/web/20150101000000id_/" + original.replace("/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png", "/images/2/20/McLEj0T.png")),
+              ("wayback-thumb360-2014", base + "id_/" + original.replace("180px-McLEj0T.png", "360px-McLEj0T.png")),
+              ("wayback-thumb500-2014", base + "id_/" + original.replace("180px-McLEj0T.png", "500px-McLEj0T.png")),
               ("wikia-img3", original.replace("http://", "https://")),
               ("wikia-static-thumb", "https://static.wikia.nocookie.net/uncovering-cicada/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png"),
               ("wikia-static-original", "https://static.wikia.nocookie.net/uncovering-cicada/images/2/20/McLEj0T.png"),
@@ -167,7 +171,7 @@ jobs:
           for name, url in urls:
               item = {"name": name, "url": url}
               try:
-                  req = Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; historical-source-research/1.0)"})
+                  req = Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; historical-source-research/1.0)", "Accept": "image/png,image/webp,image/*;q=0.8"})
                   with urlopen(req, timeout=35) as res:
                       data = res.read(4_000_001)
                       item["http"] = res.status
@@ -177,8 +181,9 @@ jobs:
                   item["sha256"] = hashlib.sha256(data).hexdigest()
                   item["png"] = data.startswith(b"\x89PNG\r\n\x1a\n")
                   item["exact_feb2014_cdx_match"] = item["png"] and item["sha1_base32"] == expected
-                  if item["png"]:
-                      target = folder / (name + ".png")
+                  item["webp"] = data.startswith(b"RIFF") and data[8:12] == b"WEBP"
+                  if item["png"] or item["webp"]:
+                      target = folder / (name + (".png" if item["png"] else ".webp"))
                       lock = os.open(str(target) + ".lock", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
                       os.close(lock)
                       with tempfile.NamedTemporaryFile(dir=folder, delete=False) as temp:
