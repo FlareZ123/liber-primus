@@ -1,6 +1,6 @@
-# Original p27 Fibonacci16 rune-key as native 2013 761.MP3 OpenPuff password
+# Original p27 Fibonacci16 rune-key as native 2013 MP3/JPEG steganography password
 
-**Agent12, 15 November 2026. Classification: source-derived single-password original-carrier experiment, negative at one historically calibrated native setting. No previously undeciphered LP2 plaintext, original hidden payload, authentic creator key, or final destination recovered.**
+**Agent12, 15 November 2026. Classification: source-derived single-password original-carrier tests. Native OpenPuff rejects one original MP3 setting, while OutGuess's original JPEG extractions terminate without files and share a false-looking header on an unrelated carrier. No previously undeciphered LP2 plaintext, original hidden payload, authentic creator key, or final destination recovered.**
 
 ## Human-visible selector and one frozen candidate
 
@@ -30,6 +30,24 @@ The candidate test then loads the unmodified, separately SHA-256-verified 2013 `
 
 Original-experiment evidence: [successful Windows Action run **43689580924**](https://github.com/FlareZ123/liber-primus/actions/runs/43689580924), target native log `SOURCE GATE: native-corrupted-stream`, `CAPACITY BYTES: 976`; [complete 40-file GUI result artifact **14152310252**](https://github.com/FlareZ123/liber-primus/actions/runs/43689580924/artifacts/14152310252). The exact [one-password original-rune SFT](../sims/lp2_fib761_openpuff_password_sft.cjs) asserts both Fibonacci selections, source prime sums and exact candidate password. The [manual Windows native extraction workflow](../.github/workflows/agent12-fib761-original-openpuff-manual.yml) includes authenticated tool/carrier downloads, genuine 2014 positive, original target inverse and evidence upload.
 
+## Separate original JPEG source test using historically demonstrated OutGuess
+
+The signed 2016 Cicada steganography carrier uses ordinary historical **OutGuess 0.4** JPEG extraction. A distinct source-fixed reading of the **same** p27 Fibonacci16 ASCII password tests three unmodified original LP2 JPEGs, without fitting a second password or scan phase: physical p27 `44.jpg` (wing/instar image), physical p55 `72.jpg` (its uniquely repeated terminal `DJU-BEI` marker), and an unrelated original p0 `17.jpg` as the false-positive carrier control. All retain their original pixels and file bytes.
+
+The manual Actions job checks out and builds pinned OutGuess source at Git commit `24810e14327c2bbeedeaadd3e24491f2a4425c02`. Its genuine **2016 signed image** original positive extracts the exact **1,136-byte** OpenPGP text with SHA-256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`. A separate **47-byte** planted payload is embedded into a copy of original `44.jpg` under **the very same password** `NHGUHFERMRNGYOEBIAM`, then recovered bit-for-bit. Thus both authentic historical extraction and the candidate-key native embed/recover are validated before the unknown images are inspected.
+
+Every unmodified candidate reported the exact same misleading, key-dependent retrieval header **`seed: 39007, len: 64016`** despite visibly different images and lengths:
+
+| Original JPEG | Actual source role | OutGuess exit/result | Apparent header | Extracted file |
+| --- | --- | --- | --- | --- |
+| p27 `44.jpg` | wing/2013 Instar thematic selector | Process timed out at 120 seconds; no complete extraction | seed39007/64016 | **0 bytes** |
+| p55 `72.jpg` | repeated final p27 phrase | Process timed out at 120 seconds; no complete extraction | seed39007/64016 | **0 bytes** |
+| p0 `17.jpg` | independent unrelated original-image negative carrier | Process timed out at 120 seconds; no complete extraction | seed39007/64016 | **0 bytes** |
+
+The repeated seed and length across an unrelated original p0 image are **not independent evidence for a shared hidden file**. No genuine complete payload, signature, file header or plaintext could be checked. These runs are properly **inconclusive timeouts as an absence-of-payload test**, while the false-positive behavior defeats the weaker claim that OutGuess's apparent header alone is positive evidence. The terminal process exit is null after the tool's 120-second timeout, explicitly distinguished from a native cryptographic reject. There is no reason to brute-force additional image/key variants from this candidate.
+
+[Source-pinned OutGuess test](../sims/lp2_fib761_source_outguess_original_sft.cjs) · [manual native workflow](../.github/workflows/agent12-fib761-outguess-original-manual.yml) · [successfully completed job **43690141100**](https://github.com/FlareZ123/liber-primus/actions/runs/43690141100) with the exact successful controls and three bounded original timeouts · [original JSON run artifact **14152021831**](https://github.com/FlareZ123/liber-primus/actions/runs/43690141100/artifacts/14152021831).
+
 ## Research decision
 
-Retire **the one p27 Fibonacci-rune-name password under native OpenPuff 4.00 MP3 Maximum1/2 on original 761.MP3**. The negative says nothing about a different author-issued password or tool, and there is no original manuscript instruction selecting a larger search around this key. Preserve the independent 708/761 source arithmetic as speculative rather than spending resources on password variants. A breakthrough still requires authenticated unknown-page plaintext, a recovered key, a selected decoding operation or a different original payload which independently validates its intended route.
+Retire **the one p27 Fibonacci-rune-name password under native OpenPuff 4.00 MP3 Maximum1/2 on original 761.MP3**. The corresponding pinned OutGuess p27/p55/p0 JPEG tests provide no recovered bytes and exhibit identical apparent retrieval headers across selected and unrelated originals; leave the absence of a hidden original-JPEG file **unproven** after those 120-second terminations. The negative says nothing about a different author-issued password or tool, and there is no original manuscript instruction selecting a larger search around this key. Preserve the independent 708/761 source arithmetic as speculative rather than spending resources on password variants. A breakthrough still requires authenticated unknown-page plaintext, a recovered key, a selected decoding operation or a different original payload which independently validates its intended route.
