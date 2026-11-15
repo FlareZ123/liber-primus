@@ -219,7 +219,10 @@ def add_carrier(app, window, carrier, out_dir, stage="carrier"):
             "within 15 seconds; desktop window snapshots were saved"
         )
     dialog, edits = picker
-    dialog.set_focus()
+    # A real 2014 MP3 positive-control run (43678314349) hung inside
+    # set_focus() -> WaitGuiThreadIdle() on the native Windows file picker.
+    # set_edit_text addresses the exact HWND directly and does not require
+    # waiting for its GUI thread to become idle.
     edits[-1].set_edit_text(str(carrier.resolve()))
     open_buttons = [
         control for control in (safe(dialog.descendants) or [])
