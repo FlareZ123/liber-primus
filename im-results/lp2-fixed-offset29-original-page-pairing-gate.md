@@ -1,6 +1,6 @@
 # Original LP2 58-image release: fixed offset-29 two-cycle gate
 
-**15 November 2026, Agent18. Decision: no supported two-cycle cipher selector or plaintext.** A fixed pairing of second-release physical pages `p ↔ p+29` is a natural hypothesis because the 58 original images equal twice the 29-symbol Gematria Primus alphabet. This test does not search offsets or fit keys. The actually printed illustrations and ten preregistered page-level measures do not supply an independent transformation rule or reproducible LP2 decipherment.
+**15 November 2026, Agent18, with a bounded source-fold anchor added by Agent10. Decision: no supported two-cycle cipher selector or plaintext.** A fixed pairing of second-release physical pages `p ↔ p+29` is a natural hypothesis because the 58 original images equal twice the 29-symbol Gematria Primus alphabet. This test does not search offsets or fit keys. The actually printed illustrations and ten preregistered page-level measures do not supply an independent transformation rule or reproducible LP2 decipherment.
 
 ## Original-input contract and source geometry
 
@@ -43,6 +43,21 @@ The only solved controls are fixed to the second half:
 | p28 ↔ p57 | 269 / 95 | 2 | 0 |
 
 These pairs share neither complete lengths nor a published operation allowing the known p56 or p57 cleartext to decode their respective unsolved partners. No held-out word, alphabet relation or reversible key conversion can be inferred from their source-visible features.
+
+## Source-selected midpoint exception: p14 FOLD ↔ p43 reversed word (Agent10, 15 November)
+
+A source-constrained possible *instruction path* survives the overall null comparison without constituting a decoder. The already documented 2016 signed-message GP-prime-sum fold square conditionally addresses `THE=72=14+58×1` as original p14 word1 (zero-based), which is the **literal GP rune word FOLD**, the only full printed FOLD on the 2,896-word unknown corpus. Physical p14 is the centre of the first 29-page half and physical p43 the centre of the second half. In the original signed-2016-to-LP2 interpretation these are source-motivated positions, but **the signed message never explicitly instructs page folding or prescribes the modulo58 word-address formula** ([full prior source report](lp2-2016-signed-message-fold-square.md)).
+
+Two *new exact* source relations at that paired midpoint are unusual and can be checked independently of any decryption score:
+
+1. **p14 has 137 runes, p43 has exactly 274 = 2×137**. Across **all 841** possible first-half/second-half page combinations, only p14/p43 and p14/p47 have exact length doubling; under the fixed offset29 pairs, p14/p43 is the only such pair. The p14 scan's large mayfly/tree illustration offers a mundane alternative explanation for its unusually short text.
+2. The printed **first complete rune word of p14 is TJ**, and the printed **last complete word of p43 is JT**. Reversing the latter produces TJ. Over *all 29×29=841* original cross-half pairings, this **single two-rune match is the only complete first-word versus reverse-last-word equality**. The two-source-word match gives a visual bookend compatible with a backward fold; it is **only a two-rune shared span**, and there is no longer equal word or full-page alignment. Its uniqueness among possible pairings is descriptive, not a calibrated after-discovery probability.
+
+A third after-noticed numerical relation is p43's opening word **HJ**: its GP indices 8,11 are **8×29+11=243**, while its GP prime sum is **23+37=60**. The existing signed-message clue independently has `HELLO=LIBER=243`; the p49–51 table is commonly read in radix60. These observations supply **no original instruction converting GP indices to BASE29 positional digits at this location, or selecting a numeric consumer**. Do not use them as independently validated key material.
+
+One fixed, historically motivated three-lane inverse was evaluated before proposing any fitted variations: take p14's 137 runes as lane A, p43's first137 as B and p43's second137 in reverse order as C (physical fold), then apply the degree-two three-share finite-field interpolation at x=1,2,3: `P=(3A−3B+C) mod29`. This **single original output** has IoC **0.0342421640**, compared with **0.0627099664** for the clear source GP p57; its text is nonlinguistic. A synthetic polynomial sharing of all95 p57 known runes recovers **95/95** with the identical interpolation. This is a direct negative for that decoder, not a theorem excluding a different authored fold operation. It avoids searching alternate orientations, algebraic coefficients or endpoint alignments.
+
+**Decision:** retain the midpoint reversed-bookend clue as a **provisional, specific human-puzzle lead**. It changes the question from “Does every pair p↔p+29 have similar statistics?” to “What authored operation, if any, consumes p14 FOLD, reversed TJ/JT and p43's doubled rune tape?” Until source fixes a reversible transform predicting an untouched page or authentic plaintext, the broad offset29 null result and no-solution status remain unchanged. The [extended original-source SFT](../sims/lp2_fixed_pageoffset29_pairing_sft.cjs) asserts the complete 841-pair uniqueness, length comparisons, signed address, numeric observations and direct three-share source/control outputs.
 
 ## Disposition
 
