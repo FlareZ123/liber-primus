@@ -34,6 +34,15 @@ Two distinct positive controls pass:
 | Physical pp54–55 concatenated, one fresh prime-2 clock at p54 | 308 | Only **two** surviving final cursor states, **314 and 316**, and **at most 10 plaintext E runes** across the entire 308-rune register. |
 | Authentically solved p56, fresh prime-2 clock | 85 | Fully reachable, with five final cursor states; a correctly permissive positive. |
 
+### Local impossibility certificates (independent of a language model)
+
+The complete DP collapses to **one single possible key clock** before each decisive impossible rune:
+
+- **p0 offset 235:** the previous ciphertext rune is **T** (GP16), and the next original ciphertext is **H** (GP8). The only preceding prime cursor is **j=231**. Its next totient residues are **K231=8** and **K232=20**. A direct decode gives `(8−8) mod29=F`, which is **forbidden** because authentic plaintext F would have produced ciphertext F. A one-key retry would produce plaintext **B** (GP17), but its rejected candidate would have been `17+8=25` (**AE**), which is **not** the actual preceding ciphertext T (GP16). H cannot be a literal-F bypass. Thus there is no transition.
+- **p55 offset 63:** previous ciphertext **TH** (GP2), next ciphertext **OE** (GP22), sole preceding cursor **j=64**, with `K64=22` and `K65=26`. Direct decode again produces forbidden plaintext F. One retry would decode **AE** (GP25), but the preceding rejected candidate would have been **E** (GP18), different from the actual preceding TH (GP2). OE cannot bypass. Thus the state space is empty.
+
+These are explicit local contradictions on the **original source indices**. Every earlier possible key clock and F-bypass choice has already been considered, and none survives either site. The SFT asserts both complete machine-readable certificates as exact expected outputs.
+
 The direct p0 and p55 impossibilities are stronger than the language comparison: **even arbitrary non-English original plaintext cannot be produced** by this exact family on those pages with those frozen source clocks, because no state path reaches their end.
 
 ## Decision and limitations
