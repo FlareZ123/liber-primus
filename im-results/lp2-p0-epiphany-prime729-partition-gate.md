@@ -52,6 +52,22 @@ Under the same frozen 13 block lengths, the three pre-existing ordinary-English 
 
 The test includes an arbitrary nontrivial, block-specific affine GP29 permutation applied to a planted solved-p57 729-rune stream and asserts exact preservation of the pooled collision statistic. The same single-file SFT computes the full 4,761-window control census on the checked-in English sources.
 
+## Entire thirteen-prime-block partition family: exact key-independent bound
+
+**Stronger source-only test (Agent 20, 15 November 2026).** The fixed-heading interpretation is optional: what if **any** sequence of thirteen Gematria Primus prime weights summing to the original first-chapter 729 runes were valid, with a wholly independent and secret GP29 substitution alphabet inside every resulting block? This grants all possible title-derived GP-prime block lengths and all 29-symbol bijections per block without guessing or authenticating any heading. The original chapter is kept in its physical source order, including the thirteen printed red runes.
+
+For each block, let E be the number of unordered position pairs with identical GP symbols, and D = L(L−1)/2 the number of possible pairs in a block of length L. Every arbitrary, fixed within-block bijection preserves E. A position transposition within any block or an interchange of whole blocks preserves the totals as well. Optimize the pooled collision statistic **ΣE/ΣD over every admissible thirteen-prime partition**, with no fixed key or fixed boundaries.
+
+An exact integer dynamic program over thirteen blocks, source positions 0–729 and all 29 available prime lengths maximizes **24890 × ΣE − 1005 × ΣD**. Its global maximum on the untouched 2014 LP2 p0–2 ciphertext is exactly **zero**. One maximizing complete partition, in prime-length runes, is
+
+**[31, 107, 83, 67, 61, 43, 79, 29, 31, 41, 67, 83, 7]** (sum729).
+
+Those blocks have exactly **1,005 same-rune pairs among 24,890 possible pairs**, proving the strict key-independent bound that every such original partition has pooled index of coincidence **at most 1005/24890 = 0.04037766171153073**. This is an exact finite-combinatorial result independent of any guessed title, period, secret substitution key, English scorer or 13-block phase.
+
+For a robust *matched-family* control, independently sample all 4,761 GP29 native-English 729-rune reference windows (Shakespeare 1,718; Gibran 492; Emerson 2,551, window stride127) used in the preceding fixed-partition study. Give **each native reference window its own completely free thirteen-prime partition**, and globally minimize its own pooled collision ratio by the same exact integer DP. The criterion is the maximal integer score **1005 × ΣD − 24890 × ΣE**. A negative score means every partition of that reference passage has index **greater** than the original universal ceiling. Thus this controls for choosing source partitions differently, not merely applying the title-derived lengths to all controls.
+
+The [single-file complete DP certifier](../sims/lp2_p0_13prime_allsecret_complete_sft.cjs) uses the original 729 runes and existing three GP29 control texts; it asserts exact optimum, witness, original counts and 4,761 matched native windows. The committed CI execution determines the final number of reference violations. The test is a necessary-condition exclusion only for this complete fixed-monoalphabetic-per-prime-block cipher architecture and the finite reference prose; it cannot exclude every possible English sentence or changing-state, nonstationary and non-substitution ciphers.
+
 ## Decision and remaining route
 
 Reject **the frozen 13-prime-length block schedule followed by one Caesar shift per block**, under the original GP-native prose and authentic F-bypass expectations. This is distinct from the older period-13, autokey, 27×27 spatial-path and title-key-sum tests; none of those used the derived prime weights directly as the 13 contiguous full-chapter block lengths.
