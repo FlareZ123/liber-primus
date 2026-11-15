@@ -73,6 +73,14 @@ async function main() {
     console.log('SOURCE '+JSON.stringify({name:source.name,sha:source.sha,lines:lines.length,hits:hits.length}));
     all.push(...hits);
   }
+  const matchedPauses=all.filter(x=>/prime[_ -]?echo|prime\\s+countdown|\\bpaus(?:e|ed|es|ing)\\b/i.test(x.body));
+  const oldMay=all.filter(x=>x.date.startsWith('2014 May')&&/1033|cunei|babylon|sexagesimal/i.test(x.body));
+  const strictBridge=all.filter(x=>/1033/.test(x.context.join(' ')) &&
+    /prime[_ -]?echo|prime\\s+countdown|\\bpaus(?:e|ed|es|ing)\\b/i.test(x.context.join(' ')) &&
+    /p(?:age)?\\s*3[3-9]|cuneiform|babylon|sexagesimal/i.test(x.context.join(' ')));
+  console.log('PAUSE_REFERENCES '+JSON.stringify(matchedPauses.map(x=>({source:x.source,line:x.line,date:x.date,body:x.body}))));
+  console.log('MAY2014_CUNEI '+JSON.stringify(oldMay.map(x=>({source:x.source,line:x.line,date:x.date,body:x.body}))));
+  console.log('STRICT_CUNEIFORM_PRIMEECHO_BRIDGES '+JSON.stringify(strictBridge.map(x=>({source:x.source,line:x.line,date:x.date,body:x.body}))));
   const ranked=all.sort((a,b)=>b.score-a.score||a.source.localeCompare(b.source)||a.line-b.line);
   console.log('BRIDGE_CANDIDATES '+ranked.length);
   const distinctive=ranked.filter(x=>/cuneiform|babylon|sexagesimal|prime[_ -]?echo|prime\s+countdown/i.test(x.body));
