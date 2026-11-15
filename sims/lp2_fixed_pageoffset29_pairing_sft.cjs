@@ -225,6 +225,27 @@ const p43folded = p43.slice(n).reverse();
 // One exploratory, not author-selected three-lane Shamir interpolation.
 // The original failed decoder is retained only as a finite exclusion.
 const recovered = p14.map((x, i) => (3 * x - 3 * p43first[i] + p43folded[i] + 29 * 3) % 29);
+/**
+ * Count source/target equality-pattern disagreements. A fixed secret
+ * 29-symbol alphabet bijection MUST preserve every equal/unequal pair.
+ * @param {number[]} src @param {number[]} dst
+ * @returns {number}
+ */
+function equalityPatternConflicts(src, dst) {
+  let conflicts = 0;
+  for (let i = 0; i < src.length; i++)
+    for (let k = i + 1; k < src.length; k++)
+      conflicts += Number((src[i] === src[k]) !== (dst[i] === dst[k]));
+  return conflicts;
+}
+const allSecretNoFit = {
+  p14ToP43FirstHalf: equalityPatternConflicts(p14, p43first),
+  p14ToP43FoldedSecondHalf: equalityPatternConflicts(p14, p43folded),
+  p43FirstToFoldedSecond: equalityPatternConflicts(p43first, p43folded)
+};
+assert.deepEqual(Object.values(allSecretNoFit), [604, 622, 634]);
+const secretAffinePositive = p14.map(x => (7 * x + 3) % 29);
+assert.equal(equalityPatternConflicts(p14, secretAffinePositive), 0);
 const known = corpus.pages[57].indices;
 const planted = known.map((p, i) => {
   const u = (7 * i + 3) % 29, v = (5 * i + 1) % 29;
@@ -251,6 +272,7 @@ const foldAnchor = {
   all841CrossHalfDoubleLengthPairs: crossHalfDoubleLengths,
   p43OpeningFragmentNumericCoincidence: {translit: 'HJ',
     ordinalBase29: p43FirstOrdinal29, interpretation: 'part of a carried word, no original transport'},
+  allSecretFixedRuneAlphabetGate: allSecretNoFit,
   singleFrozenGF29ThreeShare: {sourceShamirCoefficientOrder: [3, -3, 1],
     realOutputIoC: ioc(recovered), knownEnglishP57IoC: ioc(known),
     positiveRecoveredRunes: control.length}
