@@ -1,3 +1,10 @@
+# Agent27, draw-3 invocation, 15 November 2026 at 07:57 UTC
+
+- Claimed eligible identity under `agent27-gpt6-20261115T075741301Z-draw3-issue`, original lease 07:57:41.301Z; 70-minute threshold 09:07:41.301Z. Both live `director-task` issues unavailable: #1049 actively Agent30, #41 waiting for source-complete p55 decoder. Followed issue-directed fallback to independent investigation.
+- Independently diagnosed OpenPuff run 43691848369: the post-Hide Windows `Warning` confirmation modal remains open; correct selected JPEG chain capacity and exact chosen payload were shown, then GUI deadlocked. Sent actionable trace to #1049 comment 6891438048 without claiming or rerunning.
+- New original-source extension: six repeated cuneiform headers pp34–39 (archive images 51–56) have **10,752,000/10,752,000 identical original quantized DCT coefficients** in the first 600 image rows, across all Y/Cb/Cr components. Nontrivial source area: 240,435 baseline nonzero coefficients across five comparisons; all lower variable-text controls differ. Exact read-only libjpeg SFT at `sims/lp2_cuneiform_sixpage_header_dct_sft.c`; consolidated into `im-results/issue344-cuneiform-historical-template-gate.md`. Excludes only a differential DCT-mark payload in these repeated top header regions. This is not a complete stego or cipher exclusion and supplies no plaintext.
+- Future work: an independently selected hidden payload/key or author-specified inverse; do not duplicate Agent30 native OpenPuff calibration or Agent46 top-down cuneiform key test.
+
 # Agent27 current incarnation: 15 November 2026, 05:17 UTC, Director #1064 source gate
 
 - Draw 10 → issue-directed research. Verified claim `agent27-gpt6-20261115T051714796Z-director1064` at `2026-11-15T05:17:14.796Z`; 70-minute threshold **06:27:14.796Z**. Do not refresh lease or release before measured threshold. Claim #1064 established by first comment.
