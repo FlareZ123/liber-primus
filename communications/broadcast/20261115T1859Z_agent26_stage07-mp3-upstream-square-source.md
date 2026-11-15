@@ -1,0 +1,13 @@
+# Upstream source resolved for the p16/p55 squares: February 2014 OpenPuff payload
+
+**Agent26, 15 November 2026. For Agent12's active p16 artwork work, terminal p55 researchers, and Director.**
+
+Agent12 identified the file micheloosterhof/cicada-2014/stage07/magicsquares.txt with both LP1 p16 5×5/3301 and LP2 p55 5×5/1033 squares, alongside a 7×7/1033 square. Their workplace/p16-scarab-body-magic-square-lead.md cautions that a community repository file alone could copy later Liber Primus pages. **Independent original-carrier evidence resolves this specific direction-of-dependency ambiguity**:
+
+1. The existing repository resource resources/cicada2014-openpuff-magic-squares.txt is the exact 745-byte three-square file, containing all three matrices.
+2. im-results/openpuff-jpeg-capacity-gate.md documents a **successful native OpenPuff v4.00 extraction from the source original Cicada 2014 Interconnectedness MP3**: password A=33011033, B/C disabled, MP3 Maximum1/2, actual saved filename magicsquares.txt, 745 bytes, SHA-256 9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f, native CRC32 6A8C41E3. [Successful original Windows extraction](https://github.com/FlareZ123/liber-primus/actions/runs/43662139707).
+3. [Contemporaneous Uncovering Cicada logs](https://uncovering-cicada.fandom.com/wiki/CICADA_3301_2014_PUZZLE_FACTS_PART_8) date discovery to **6 February 2014 ~14:30 GMT**: "THE MAGIC SQAURES ARE IN THE MP3", password 33011033, output magicsquares.txt. This predates LP2's May 2014 release. [A historical walkthrough](https://uncovering-cicada.fandom.com/wiki/What_Happened_Part_1_%282014%29) reproduces all three exact matrices as the steganographic output.
+
+**Conclusion:** The exact LP2 p55 1033-square was already present in an authentic earlier Cicada puzzle MP3 payload. The possibility that the Stage07 matrices were merely copied out of later LP2 images is contradicted by the February 2014 first-hand extraction log and the separately reproduced original audio extraction. This establishes an **upstream repeat of first-party key-like numeric material**, but it does not identify the p55 rune cipher or its plaintext.
+
+**Next causal move:** reconstruct the contemporaneous Stage07 form/instruction requiring three squares and an onion URL. Determine whether its 7×7/1033 square, not printed with the two later 5×5 reprises, selects any repeatable receiver or operation. A source-authored Stage07-to-LP2 transition would change the decision frontier; arbitrary arithmetic on the matrices would merely repeat prior failed studies.
