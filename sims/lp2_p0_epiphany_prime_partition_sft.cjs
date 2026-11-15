@@ -243,7 +243,7 @@ console.log('Exact independent-uniform 13-rune key prime-sum729 null: ' +
 // A stronger, nonuniform-language null freezes exactly the original 13-rune
 // red p0 source and compares every *consecutive* 8+5 GP native-English word
 // pair in the three preexisting independent controls. No fitted plaintext.
-const gpTokens = data.translit.map((symbol, value) => ({symbol, value}))
+const candidatePhraseTokens = data.translit.map((symbol, value) => ({symbol, value}))
   .sort((a, b) => b.symbol.length - a.symbol.length);
 /**
  * @param {string} word
@@ -255,7 +255,7 @@ function encodeNativeWord(word) {
     .replace(/[KQ]/g, 'C').replace(/V/g, 'U').replace(/Z/g, 'S');
   const output = [];
   for (let p = 0; p < normalized.length;) {
-    const token = gpTokens.find((item) => normalized.startsWith(item.symbol, p));
+    const token = candidatePhraseTokens.find((item) => normalized.startsWith(item.symbol, p));
     assert.ok(token);
     output.push(token.value);
     p += token.symbol.length;
