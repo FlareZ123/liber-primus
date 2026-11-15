@@ -1,0 +1,22 @@
+name: Agent22 2015 prime-difference authentic F bypass original-inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-prime-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact SFT and exercise original with solved-native plant
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_twicedelta_totient_fbranch_sft.cjs
+          node sims/lp2_2015_twicedelta_totient_fbranch_sft.cjs
