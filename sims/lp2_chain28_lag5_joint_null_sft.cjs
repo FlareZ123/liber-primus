@@ -18,7 +18,7 @@ const pages = corpus.pages.filter((p) => p.page < 56 && p.indices.length)
   .map((p) => p.indices);
 const original = pages.flat();
 const wordLengths = text.split('%').slice(0, -2).join('')
-  .replace(/\/\r?\n/g, '').replace(/[.\-&$\r\n]/g, '-')
+  .replace(/\/\s*/g, '').replace(/[.\-&$\r\n]/g, '-')
   .split('-').filter((w) => /[\u16A0-\u16FF]/u.test(w))
   .map((w) => [...w].filter((ch) => /[\u16A0-\u16FF]/u.test(ch)).length);
 assert.equal(original.length, 12956);
