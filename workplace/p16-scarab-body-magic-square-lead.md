@@ -14,6 +14,12 @@ A solver seeing **KNOW THIS**, a beetle, a human body, and a 3301 magic square m
 
 A numerical coincidence worth noticing, but not promoting: 3301 is the 464th prime, and a recovered 2013 CicadaOS `prime_echo` script contains 464 primes through 3301. That script is a historical/reconstructed 2013 artifact, not an authenticated instruction to use p16's square as a prime-index key. The relationship may be coincidental.
 
+## Newly identified 2014 Stage07 cross-reference
+
+The exact 3301 square from LP1 p16 appears verbatim as the **first** matrix in the contemporaneous community reconstruction `micheloosterhof/cicada-2014/stage07/magicsquares.txt` ([file](https://github.com/micheloosterhof/cicada-2014/blob/master/stage07/magicsquares.txt)). The same file also contains a 7×7 square with magic constant 1033 and, as its third matrix, the exact 5×5 1033 square used on LP2 p55. The GitHub file's recorded commit is `48893f174cb35c534ab23220b58845a78e72edac`, dated 2014-06-02. The repository README describes Stage07 as the large MP3 and marks it unsolved.
+
+This is a strong **archival cross-reference**, but not proof of an upstream Cicada instruction: the repository is a community reconstruction, and the matrix file may have been populated by copying the Liber Primus pages into a Stage07 candidate list. Direction of dependency is unresolved. The next discriminating task is to inspect the 2014 Stage07 MP3, the history/origin of `magicsquares.txt`, and reliable LP1 release chronology to determine whether these squares were candidate solutions to Stage07 or were derived from LP1. Do not yet treat the 2014 file as an independent key source.
+
 ## Quick source check
 
 A repository code search for `scarab`, `Khepri`, `Osiris`, `heart scarab`, and `Mars magic square` found no existing project treatment. A public search combining Cicada 3301 with those terms found no relevant first-party Cicada reference. Thus there is currently no external source bridge from the illustration to a cipher instruction.
