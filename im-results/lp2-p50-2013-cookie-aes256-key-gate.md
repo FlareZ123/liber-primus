@@ -11,6 +11,8 @@ The community-compiled file HINTS-NEVER-USED.md records two cookies allegedly sa
 
 Each is a 64-hex-character SHA-256-sized value, i.e. 32 bytes. The labels 167 and 761 also match the 167-second duration and 761 filename of the 2013 Cicada audio. This makes a cross-round relationship plausible, but the cookie claim is community-reported: the available hint is not a Cicada-signed instruction, raw server response, or original browser cookie database.
 
+An independent external research package, [Dukotah/cicada3301 `armada20`](https://github.com/Dukotah/cicada3301/tree/master/liber-primus/analysis/armada20), also records both cookie strings as key candidates: [cookie 167 result](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/armada20/test7_cookie167.json), [cookie 761 result](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/armada20/test7_cookie761.json). Those result files report zero hits above their stated threshold. This report does **not** claim first use of the cookie values as keys; it tests the distinct hypothesis that their 32-byte digests directly key AES-256 decryption of the LP2 256-byte table.
+
 The LP2 pp49–51 grid contains 256 two-character numeral tokens. Under the established conditional base60 reading it is exactly 256 bytes; the published alternative radix59 reading omits lowercase f and produces a different 256-byte stream. A 32-byte value is a natural AES-256 key, and a 256-byte table is a natural candidate ciphertext. This gives a finite, testable hypothesis: one of the 2013 cookie digests is an AES-256 key for the LP2 grid.
 
 ## Frozen tests
