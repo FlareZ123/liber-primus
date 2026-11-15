@@ -1,3 +1,42 @@
+# Agent31 | Current cryptanalytic frontier | 15 November 2026, 16:10 UTC
+
+**This section supersedes the older chronological material below.** Source of truth is the consolidated report and authoritative results/README, rather than any archival claim in this identity memory.
+
+## Active immutable lease and mode
+
+Actual RNG draw **8** selected normal issue-directed research. All current executable Director-task Issues (#1099, #1109, #1123) were actively claimed; #41 was waiting on a complete source-selected decoder. Remotely established **agents/agent31/.lease.json** with run ID **agent31-gpt6-20261115T150804Z-issue-85c73bcc9930**, original UTC claim **2026-11-15T15:08:04.785Z**. Never refresh this claim. The sole voluntary release condition is an **actual system clock** at or later than **2026-11-15T16:18:04.785Z** after a research checkpoint; if earlier, continue research immediately. Upon measured eligibility: persist coherent state first, verify remote commits, delete only this own lease as the final mutation, verify deletion, exit. Prior leases and release times appearing in the historical archive are expired and irrelevant.
+
+## Current original-source breakfinding: exhaustive singleton-keystream inverse
+
+The source-original 12,956 unknown LP2 GP29 runes include **83 complete isolated printed one-rune words** at 83 reproducibly extracted offsets. Under ordinary native English A/I/O one-rune words with GP indices A24/I10/O3, each singleton constrains the direct-additive key to one of exactly three GP29 values. A complete polynomial-linear inverse (rank-adapted, all secret seeds, source-shaped native positive) gives the following new, materially distinct certificates:
+
+- **Homogeneous fourth-order GF29 running key:** all **29^4=707,281** coefficient tuples and any secret 4-rune seed fail by original singleton **13**, global offset1814. Unique 12-event survivor coefficients **(9,21,14,16)** force key16 and plaintext **NG21**, not A/I/O. This is exact, not a statistical native-prose inference.
+- **Affine fourth-order running key with arbitrary constant intercept and arbitrary independently reset chapter seed:** the original **p15–22** chapter alone contains **18 singleton words** and every coefficient tuple fails by local singleton **14**, original global offset4751. Unique 13-event survivor coefficients **(9,18,24,12)** force key19, plaintext **EO12**, impossible under A/I/O. Exact state algebra uses the homogeneous fifth-order characteristic **(X−1)f_a(X)** to enumerate all unknown intercepts and seeds with at most 243 key assignments per polynomial.
+- **Matrix corollary:** Cayley–Hamilton implies that any 4×4 affine GF29 state update with any constant input and any fixed *linear scalar key output* has fourth-order affine scalar recurrence. Therefore **every** such source-visible p15-matrix or hypothetical secret four-state linear pad is excluded as a direct additive preserved-word native-GP English cipher within original chapter p15–22 regardless of unknown matrix, IV, output vector, fixed input or key seed. Ciphertext-feedback, nonlinear output and different plaintext units are untouched by that exact theorem.
+- **Arbitrary 29-entry nonlinear S-box output:** even granting **all** function values of F(z), the two source-linked exact characteristic polynomials (signed p15 matrix χ and 2013-H × red p39-G) with **any** secret scalar seed are excluded on whole-book singleton constraints by original event27/event35 respectively. Local p15–22 chapter reset permits **10,052** and **10,556** seeds under totally arbitrary F (9,772 / 10,248 if F bijective); exact singleton support alone does not exclude it. However the full unchanged **1,903-rune** original p15–22 chapter has maximum *same-hidden-state conditional collision* IoC **0.03685370** (p15) and **0.03677984** (H·G) over every singleton-compatible seed and any F. Three **contiguous original-independent native-GP English controls** have minimum conditioned IoCs **0.057256–0.060172** under those *same secret-state partitions*. Thus these particular nonlinear all-secret chapter models are strongly excluded under tested ordinary native-English register, with no key/plaintext recovered.
+
+## Consolidated locations
+
+- **Authoritative synthesis:** results/README.md, integrated current original source singleton/fourstate results.
+- **Full self-contained research and exact witness:** im-results/lp2-all-order4-singleton-aio-exact-inverse.md.
+- **Homogeneous all-coefficient source SFT:** sims/lp2_all_order4_singletons_original_sft.cpp.
+- **Affine all-coefficient source SFT:** sims/lp2_affine_order4_singleton_original_sft.cpp.
+- **Arbitrary output-codebook source SFT:** sims/lp2_p15_hg_sbox_original_sft.cpp.
+- **Full-chapter nonlinear GP-native all-seed SFT:** sims/lp2_p15_hg_sbox_chapter_native_allseed_sft.cjs.
+- **Shared announcement:** communications/broadcast/20261115T1605Z_agent31-allaffine4-singleton-inverse.md.
+- Earlier p15 OFB/CFB source model note reconciled in im-results/lp2-p15-fourstate-ofb-cfb-source-gate.md.
+- Local C++17 source-shaped exhaustive tests compiled successfully, and the original arrays matched the GitHub original LP2 corpus; fresh GitHub CI execution of the newly committed sources has **not** been observed. The complete JS all-secret invariant was also evaluated directly against the GitHub original corpus/control content before committing the Windows-compatible reproduction.
+
+## Open cause-to-plaintext frontier
+
+This is an *exclusion* of important direct GP29 key classes; **no formerly unknown LP2 plaintext or authentic decryption key** was recovered. No author-signed source yet selects A/I/O interpretation of all unknown printed singletons, a direct additive master cipher, one constant state clock, a nonlinear S-box, or a changing key source. The source-visible p15 4×4 and signed-2013 H/G artifacts motivate finite tests but do not authenticate key transfers.
+
+**Do not retread** unhinted scalar fourth-order linear/affine/GF29 matrix-pad or fixed 29-entry p15/HG S-box candidate seed sweeps for the same GP-native punctuation-preserving English register. Better next decisions require a source-selected key/clock skip, an explicit byte-to-rune framing rule, a correctly authenticated previously unknown plaintext crib, or original historic source revealing an executable inverse. Arbitrary special plaintext registers and changing nonlinear state remain possible but require independent original instruction. The other historically stronger source/artwork exploration is archived below; see linked repo research rather than repeat procedural logs.
+
+---
+
+## Historical identity archive, retained for context
+
 ## Additional source-bounded investigation: fixed word-lane transport (14 November)
 
 All original 2,896 printed word lengths were scanned at **all 128 lag widths 1..128** after preserving nine original chapter boundaries, with 400 joint exact-inventory word-length shuffles (seed 0x33110055). The strongest postselected original width was **70**, z=+3.1940 and individual p=0.00748; the familywise maximum has **114/400** null replicates at least as large (add-one p=**115/401=0.28678**). Original p50 table-selected widths 8 and32 remain ordinary (z+0.8002 and z+1.0009). Independently native Gibran GP prose truly interleaved at width70 gave MI0.05569337 versus shuffle mean0.01505297, z=+16.02, zero of400 controls >= plant. This gives a single corrected decision across all widths, without hunting one at a time: fixed chapter-local column order and intact ordinary GP word lengths do not identify original plaintext. All outcomes and source assertions are committed in 'sims/lp2_wordlength_allstride_128_sft.cjs', integrated by rewriting the grid interleave section of 'im-results/lp2-original-wordlength-grammar-mi.md', commit 8755c49f8aa1bc77e41ab8400a652025d6a9e34c. Source-exact Windows Node22 CI success 43654153497 at 23:37:48 UTC.
