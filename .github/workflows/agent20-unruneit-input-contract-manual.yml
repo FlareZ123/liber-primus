@@ -28,6 +28,9 @@ jobs:
         run: node sims/lp2_2014_irc_nonpaste_live_recovery_sft.cjs --network --jars-only > unrune-2014-source-acquisition.jsonl
       - name: Inspect original class metadata without executing any untrusted Java
         run: node sims/lp2_2014_unruneit_input_contract_sft.cjs > unrune-2014-static-input-contract.json
+      - name: Show original immutable user prompts and key handling bytecode
+        run: |
+          node -e 'const j=require("./unrune-2014-static-input-contract.json"); console.log("PROMPTS "+JSON.stringify(j.userFacingMessages)); for(const x of j.relevantMethodBytecode){if(/decipher|unShift|getRunePrime|run\(|main\(/.test(x.signature)){console.log("\nMETHOD "+x.signature);console.log(x.lines.join("\n"));}}'
       - name: Preserve source and static interface evidence
         if: always()
         uses: actions/upload-artifact@v4
