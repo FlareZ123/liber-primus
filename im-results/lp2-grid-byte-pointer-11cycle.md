@@ -1,6 +1,6 @@
 # The original 256-byte grid as a self-indexing 11-cycle
 
-**Classification:** original-source deterministic traversal plus a source-fixed negative for the proposed 32-fragment × 8-direction state interpretation. **No original LP2 ciphertext has been decrypted**, and the authors' intended traversal is unproved.
+**Classification:** original-source deterministic traversal plus scoped source-fixed negatives for the 32-fragment × 8-direction interpretation and the direct whole-terminal 180-known-rune additive consumer. **No original LP2 ciphertext has been decrypted**, and the authors' intended traversal is unproved.
 
 ## A minimal human-executable interpretation
 
@@ -51,6 +51,23 @@ Those are **the only two zero-valued tokens in the entire 256-cell original tabl
 The two zero locations have conditional exact probability **`1/C(256,2) = 1/32640`** under an exchangeable multiset permutation of table-byte positions. This probability treats the two cell addresses as fixed independently of the observed byte values. In reality the choice of combining mod29 with a row start and mod256 with a direct cell address was recognized after other table regularities, so this should **not** be interpreted as a discovery-wide p-value. Importantly, the printed `00` tokens retain their zero interpretation under both the published base60 and alternative f-omitting base59 codebooks. The zero pair selects original forward row-major order, while the separate jet and 11-cycle constraints distinguish the base60 reading among eight documented natural alternatives.
 
 A related cross-source equality, previously raised on [Director Issue #18](https://github.com/FlareZ123/liber-primus/issues/18), is that `(563×569) mod29=13` and `3301 mod29=24`. These exactly give both original grid-polynomial derivative roots, **13 and 24**. The dimension factors come from p32's 11×11 GP-prime coordinate sums and the signed 2016 tree image. All of these numerical connections are *hypotheses of an intended solve path*. They require an independently indicated decoding operation and actual original plaintext before being promoted to established cryptographic results.
+
+## A further historical 1033 seed and direct 180-symbol terminal holdout (Agent20, 15 November 2026)
+
+The original **11-cycle and 2-cycle, their 252/4 basins, the historical 3301→zero link and the Ac24 polynomial double root were already established above**. An additional independently printed first-party number is the **1033** sum in LP1's 2014 Wisdom square and preserved 2014 OpenPuff magic-squares file. Under exactly the same zero-based byte-pointer interpretation, **1033 mod256=9**, and the original table gives **9→249→158→249**. The tiny existing second basin contains positions **9,158,227,249**. This source-number alignment does not supply an author-selected instruction to use modulo256 or the pointer graph, and no new plaintext follows.
+
+An exploratory 100,000-shuffle Fisher–Yates null that preserves every original byte value found **772** shuffles satisfying `B[3301 mod256=229]=0`, **385** in which the 1033 seed 9 enters a nontrivial 2-cycle in exactly one jump, and **3** with both. These outcomes were connected to the historical anchors after viewing the real graph. Thus **3/100,000 is descriptive post-selection frequency, not an author-intent p-value**, and it cannot be combined as independent with the earlier 11-cycle/Ac24 shuffle test.
+
+The decisive original-input *consumer* question is whether pointer states themselves could act as a **continuous reversible GP29 additive key** over the terminal 256-rune register: `s[0]=3301 mod256` or `1033 mod256`, `s[i+1]=B[s[i]]`, `P[i]=C[i]±(s[i] mod29)`, no hidden phase or page reset. Reserve unknown original p55 (76 runes) and test positions76–255 first, using the authenticated p56 prime-totient/F-skip plaintext (85 symbols) plus p57's 95 original clear runes. The original known-target matches are:
+
+| Original source seed | Shift sign | p56 solved /85 | p57 unchanged /95 | Combined /180 |
+| --- | --- | ---: | ---: | ---: |
+| 3301 | − | 4 | 18 | **22** |
+| 3301 | + | 4 | 18 | **22** |
+| 1033 | − | 1 | 0 | **1** |
+| 1033 | + | 5 | 0 | **5** |
+
+The p57 requirement alone is exact: all 95 key states would have to be zero modulo29 to preserve its clear text, whereas the original 3301 orbit has **77 nonzero** states there and the 1033 orbit **95**. The same arithmetic and source lengths exactly reconstruct a planted 180-symbol native GP29 control. **This direct all-terminal additive consumer is ruled out without reading or fitting p55**. A specifically source-selected p55-only rim operation could evade the 180-position condition but is a different, currently unspecified model. Reproducer: [supplemental source-exact CJS SFT](../sims/lp2_p50_byte_lookup_graph_sft.cjs). There is no new solved unknown text or authenticated key. Future work needs an independently source-written pointer-to-plaintext operation, rather than more 3301/1033 cycle scoring.
 
 ## Conditional rare-event experiment
 
