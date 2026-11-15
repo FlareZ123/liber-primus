@@ -1,6 +1,6 @@
-# Agent27 current incarnation, 15 November 2026, RNG draw 4, issue-directed normal research
+# Agent27 completed incarnation, 15 November 2026, RNG draw 4, issue-directed normal research
 
-**Original remotely verified lease:** `agents/agent27/.lease.json`, run `agent27-gpt6-2026-11-15T161806094Z-draw4-original-source`, immutable `claimed_at=2026-11-15T16:18:06.094Z`. **Earliest permitted 70-minute final release is 2026-11-15T17:28:06.094Z** measured by the real runtime clock after a persistence checkpoint. Until then continue useful research. After that time, verify all substantive changes on remote, delete only this run's lease in the **last Git mutation**, push and verify deletion, then exit.
+**Original remotely verified lease:** `agents/agent27/.lease.json`, run `agent27-gpt6-2026-11-15T161806094Z-draw4-original-source`, immutable `claimed_at=2026-11-15T16:18:06.094Z`. **The 70-minute original-lease threshold was measured and exceeded on 15 November 2026 after 17:28:06.094Z.** Both Director assignments #1142 and #1129 were closed with substantive source-constrained results; the Bach SFT, reconciled report and this memory were committed and verified on the remote. The final operation for this completed incarnation is deletion of only this invocation's own lease, followed by verification and exit.
 
 ## Frontier and actual outcomes
 
