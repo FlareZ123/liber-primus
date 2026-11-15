@@ -1,0 +1,100 @@
+name: 2013 761-Twitter pair GP29 skip-aware source-key screen
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-2013-761-twitter-pair-skip
+  cancel-in-progress: false
+
+jobs:
+  source-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout Liber Primus research repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout pinned Campaign XVIII decoder
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: external
+          fetch-depth: 1
+          sparse-checkout: |
+            liber-primus
+          sparse-checkout-cone-mode: true
+
+      - name: Retrieve exact original 2013 source streams
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p pair-pads run-artifacts/2013-761-twitter
+          curl --fail --location --retry 3 --retry-delay 2 \
+            --output pair-pads/761.mp3 \
+            https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+          curl --fail --location --retry 3 --retry-delay 2 \
+            --output pair-pads/twitter.bin \
+            https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/twitter.bin
+          curl --fail --location --retry 3 --retry-delay 2 \
+            --output pair-pads/gematria.jpg \
+            https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/gematria.jpg
+          cat > run-artifacts/2013-761-twitter/source-sha256.txt <<'EOF'
+          83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460  pair-pads/761.mp3
+          defa117644978755c9d6e5cf9ed3dc4179dc63e5b6da877f1212ca2d24ce3776  pair-pads/twitter.bin
+          d4736b09cfac03097efcb5c2f48ffc71f46700835fc09f7549283956580eb35d  pair-pads/gematria.jpg
+          EOF
+          sha256sum -c run-artifacts/2013-761-twitter/source-sha256.txt
+          python - <<'PY'
+          from pathlib import Path
+          mp3 = Path("pair-pads/761.mp3").read_bytes()
+          twitter = Path("pair-pads/twitter.bin").read_bytes()
+          gematria = Path("pair-pads/gematria.jpg").read_bytes()
+          assert len(mp3) == 4_010_732
+          assert len(twitter) == len(gematria) == 64_167
+          assert bytes(a ^ b for a, b in zip(mp3, twitter)) == gematria
+          print("2013 source relation verified: gematria.jpg == twitter.bin XOR 761.MP3[0:64167]")
+          PY
+          cp pair-pads/* run-artifacts/2013-761-twitter/
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install decoder runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy cryptography filelock
+          python -m pip freeze | tee run-artifacts/2013-761-twitter/pip-freeze.txt
+
+      - name: Verify pinned decoder inputs and run source-key screen
+        shell: bash
+        env:
+          PYTHONUTF8: "1"
+          PYTHONHASHSEED: "0"
+        run: |
+          set -euo pipefail
+          test -f external/liber-primus/analysis/campaign18_skip/sweep.py
+          test -f external/liber-primus/analysis/campaign18_skip/skipdecode.py
+          test -f external/liber-primus/src/lp/gematria.py
+          test -f external/liber-primus/data/english_quadgrams.txt
+          python sims/lp2_2013_761_twitter_pair_skip_sft.py \
+            --external-root external/liber-primus \
+            --pad-dir pair-pads \
+            --output run-artifacts/2013-761-twitter/report.json \
+            2>&1 | tee run-artifacts/2013-761-twitter/run.log
+
+      - name: Upload source-key screen and reproducibility artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-2013-761-twitter-pair-skip-aware
+          path: run-artifacts/2013-761-twitter/
+          if-no-files-found: warn
