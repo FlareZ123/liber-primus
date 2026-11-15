@@ -93,9 +93,19 @@ function classify(offsets, pageReset, scope, labels) {
     observed.set(group, counts);
   }
   let errors = 0, incompatibleGroups = 0;
+  let truePositives = 0, falsePositives = 0;
+  let falseNegatives = 0, trueNegatives = 0;
   for (const [breaks, continues] of observed.values()) {
     errors += Math.min(breaks, continues);
     incompatibleGroups += Number(breaks > 0 && continues > 0);
+    // Oracle chooses the majority label; ties resolve to CONTINUE.
+    if (breaks > continues) {
+      truePositives += breaks;
+      falsePositives += continues;
+    } else {
+      falseNegatives += breaks;
+      trueNegatives += continues;
+    }
   }
   const empty = observed.get('0') || [0, 0];
   return {
@@ -103,7 +113,8 @@ function classify(offsets, pageReset, scope, labels) {
     errors,
     zeroBreaks: scope === 'global' ? empty[0] : 0,
     zeroContinues: scope === 'global' ? empty[1] : 0,
-    incompatibleGroups
+    incompatibleGroups,
+    truePositives, falsePositives, falseNegatives, trueNegatives
   };
 }
 
@@ -136,6 +147,13 @@ for (const [mode, pageReset] of [['continuous', false], ['page-reset', true]]) {
       global.groups, global.errors, previous.errors, next.errors,
       global.zeroBreaks, global.zeroContinues
     ], expected[mode][name]);
+
+    if (mode === 'continuous' && name === 'ten-around') {
+      assert.deepEqual([
+        next.truePositives, next.falsePositives,
+        next.falseNegatives, next.trueNegatives
+      ], [224, 46, 2671, 10014]);
+    }
 
     // A deliberately artificial source-dependent delimiter rule:
     // "break if the current five-back echo bit is set".
