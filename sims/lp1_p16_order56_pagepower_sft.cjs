@@ -103,7 +103,34 @@ function pagePowerTest(def) {
   }
   return results;
 }
-const results = matrices.flatMap(pagePowerTest);
+
+function blockPowerTest(def) {
+  const M = def.matrix, order = def.order, C = pages.flatMap(p => p.indices), results = [];
+  for (const [orientation, base] of [["M", M], ["M^T", transpose(M)]]) {
+    for (const sign of [-1, +1]) {
+      const out = [];
+      for (let start = 0; start < C.length; start += 5) {
+        let e = ((sign * (start / 5)) % order + order) % order;
+        let R = identity(5), X = base.map(row => row.slice());
+        while (e) { if (e & 1) R = mul(R, X); X = mul(X, X); e >>= 1; }
+        const block = C.slice(start, start + 5);
+        while (block.length < 5) block.push(0); // F=0 final-block padding
+        const transformed = mv(R, block);
+        out.push(...transformed.slice(0, Math.min(5, C.length - start)));
+      }
+      results.push({
+        matrix: def.name, matrix_order: order, orientation, exponent_sign: sign,
+        period_blocks: order, blocks: Math.ceil(C.length / 5),
+        pooled_ioc: ioc(out), runes: out.length,
+        prefix: out.slice(0, 80).map(x => corpus.translit[x]).join("")
+      });
+    }
+  }
+  return results;
+}
+
+const pagePowerResults = matrices.flatMap(pagePowerTest);
+const blockPowerResults = matrices.flatMap(blockPowerTest);
 const clear = corpus.pages.find(p => p.page === 57);
 const output = {
   source_square: squarePath,
@@ -114,7 +141,7 @@ const output = {
   lp2_page_count: pages.length, lp2_rune_count: runeTotal,
   identity_anchor_page: 50, anchor_rune_count: anchor.indices.length,
   page_blocking: "page-local 5-rune blocks; append rune index 0 (F) to a multiple of 5, then truncate to original page length",
-  clear_page_57_ioc: ioc(clear.indices), results
+  clear_page_57_ioc: ioc(clear.indices), page_power_results: pagePowerResults, block_power_results: blockPowerResults
 };
 console.log(JSON.stringify(output, null, 2));
 if (process.argv[2] === "--write" && process.argv[3]) fs.writeFileSync(process.argv[3], JSON.stringify(output, null, 2) + "\n");
