@@ -1,0 +1,16 @@
+name: Agent2 C13 word-boundary radix28 invertible original gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 source and native positive
+        run: node sims/lp2_c13_wordlength_28radix_enumerative_sft.cjs
