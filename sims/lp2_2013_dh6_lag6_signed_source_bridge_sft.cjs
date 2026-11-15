@@ -155,3 +155,105 @@ console.log(JSON.stringify({
   })),
   interpretation: 'source-specific signal; NOT plaintext, key selection, encryption proof, or decryption'
 }, null, 2));
+
+
+/**
+ * The *other* p39 original red quadratic is exactly
+ * G(y) = 15*(y+5)^2 = (y+g)^2/K over GP29.
+ * The previously chosen signed-source Tminus(x)=-(g+K*x) has
+ * G(Tminus(x)) = K*x^2. This equality also has a second, distinct
+ * source-conditioned branch Tplus(x)= -g+K*x (unless x=0).
+ *
+ * An exact original-rune sign discriminator decides whether the
+ * quadratic collision suggestion supports both natural branches or
+ * only the independently known lag6 affine branch.
+ */
+function mod29(x) {
+  return (x % 29 + 29) % 29;
+}
+
+/** @param {number} y @returns {number} */
+function p39Quadratic(y) {
+  return mod29(27 + 5 * y + 15 * y * y);
+}
+for (let x = 0; x < 29; x++) {
+  assert.equal(mod29(15 * (x + 5) ** 2), p39Quadratic(x));
+  assert.equal(p39Quadratic(mod29(-5 - 2 * x)), mod29(2 * x * x));
+  assert.equal(p39Quadratic(mod29(-5 + 2 * x)), mod29(2 * x * x));
+}
+assert.equal(mod29(-5 - 2 * 8), 8);
+assert.equal(mod29(-5), 24);
+
+/** @param {number[][]} wholeWords */
+function quadraticBranches(wholeWords) {
+  let negative = 0, positive = 0, union = 0, overlap = 0, sites = 0;
+  for (const word of wholeWords) for (let i = 6; i < word.length; i++) {
+    const x = word[i - 6], y = word[i];
+    const minus = y === mod29(-5 - 2 * x);
+    const plus = y === mod29(-5 + 2 * x);
+    negative += Number(minus);
+    positive += Number(plus);
+    union += Number(minus || plus);
+    overlap += Number(minus && plus);
+    sites++;
+  }
+  return {negative, positive, union, overlap, sites, asymmetry:negative-positive};
+}
+const quadraticObserved = quadraticBranches(allWords);
+assert.deepEqual(quadraticObserved, {
+  negative:80, positive:34, union:113, overlap:1, sites:1290, asymmetry:46
+});
+const quadraticFirstHalf = quadraticBranches(allWords.slice(0, 1448));
+const quadraticLastHalf = quadraticBranches(allWords.slice(1448));
+assert.deepEqual([quadraticFirstHalf.negative, quadraticFirstHalf.positive,
+  quadraticLastHalf.negative, quadraticLastHalf.positive], [40,19,40,15]);
+
+// For the explicit ± branches, construct independent positive examples
+// with generated output satisfying each branch at all 20 eligible sites.
+for (const sign of [-1, 1]) {
+  const planted = Array.from({length:26}, (_, i) => mod29(i * 13 + 7));
+  for (let i = 6; i < planted.length; i++)
+    planted[i] = mod29(-5 + sign * 2 * planted[i - 6]);
+  const observedPlant = quadraticBranches([planted]);
+  assert.equal(sign === -1 ? observedPlant.negative : observedPlant.positive, 20);
+  assert.equal(observedPlant.union, 20);
+}
+
+const quadraticSeed = 0x29ac0320;
+const quadraticRng = random32(quadraticSeed);
+const quadraticReplicates = 1800;
+const quadraticOutcomes = [];
+for (let sample = 0; sample < quadraticReplicates; sample++) {
+  const surrogate = allWords.map((w) => {
+    let s;
+    const want = adjacentEqualCount(w);
+    do s = shuffledCopy(w, quadraticRng);
+    while (adjacentEqualCount(s) !== want);
+    return s;
+  });
+  quadraticOutcomes.push(quadraticBranches(surrogate));
+}
+const quadraticSummaries = ['negative','positive','union','asymmetry'].map(key => {
+  const vals = quadraticOutcomes.map(o => o[key]);
+  const mean = vals.reduce((a,b) => a+b,0) / vals.length;
+  const variance = vals.reduce((a,b)=>a+(b-mean)**2,0) / vals.length;
+  const exceed = vals.filter(v=>v>=quadraticObserved[key]).length;
+  return {branch:key,original:quadraticObserved[key],nullMean:mean,
+    nullSD:Math.sqrt(variance),upperExceed:exceed,
+    upperTailFiniteP:(exceed+1)/(vals.length+1)};
+});
+assert.equal(quadraticSummaries[0].upperExceed,0);
+assert.equal(quadraticSummaries[2].upperExceed,0);
+assert.equal(quadraticSummaries[3].upperExceed,0);
+console.log(JSON.stringify({
+  status:'PASS: p39 original square factor bridges two signed-DH affine branches',
+  originalRedFactor:'G(X)=27+5X+15X^2=(X+5)^2/2 over GF29',
+  sourceAffine:'Tminus(X)=-(5+2X)=24-2X over GF29',
+  exactIdentity:'G(Tminus(X))=2X^2=G(Tplus(X)) for every GP29 X',
+  original:quadraticObserved,
+  originalHalves:{first:quadraticFirstHalf,last:quadraticLastHalf},
+  null:{conditioning:'original whole-word multiset, length, adjacent-repeat count',
+    samples:quadraticReplicates,seed:'0x'+quadraticSeed.toString(16),
+    summaries:quadraticSummaries},
+  implication:'Signed minus branch enriched, opposite quadratic root is not; no inverse or plaintext recovered'
+},null,2));
