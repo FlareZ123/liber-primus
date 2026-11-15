@@ -6,7 +6,9 @@
 
 The nine **p54 initial red GP runes** [24,19,21,23,27,2,14,10,19] define a descending-degree-eight GF29 polynomial under the prior table convention:
 R(X)=(X−24)(X−19)^2 * (24X^5+28X^4+2X^3+5X²+2X+11).
-Exact linear roots **24 once**, **19 twice**. p50 numerical grid and marked p39 red3 each have source-established **double root24**. The terminal quintic after monic normalization **Q(X)=X^5+6X^4+17X^3+28X²+17X+21** is **irreducible and primitive over GF29**. Its GF(29^5) root α has exact multiplicative order N=20,511,148=2²×7×732541, with nonidentity power witnesses:
+Exact linear roots **24 once**, **19 twice**. p50 numerical grid and marked p39 red3 each have source-established **double root24**. **Further source link identified before release:** the previously certified irreducible **degree-nine factor** of the original p50 GF29 grid polynomial, ascending monic [11,15,0,9,1,5,10,20,12,1], is also **primitive**. Its root has exact order 29^9−1=14,507,145,975,868=2²×7×13×67×41203×14437; independent modular power checks at N/p for every listed prime factor are all nonidentity. This is distinct from and consistent with the established primitive p3 red quadratic and new primitive p54 quintic. No cipher output selected. Comparative paragraph recorded in the p54 intermediate result. Degree-nine primitive result was computed independently with Python modular-field multiplication; a future SFT may incorporate the six witnesses if an authored receiver appears.
+
+The terminal quintic after monic normalization **Q(X)=X^5+6X^4+17X^3+28X²+17X+21** is **irreducible and primitive over GF29**. Its GF(29^5) root α has exact multiplicative order N=20,511,148=2²×7×732541, with nonidentity power witnesses:
 α^(N/2)=28, α^(N/7)=7, α^(N/732541)=16+α+28α²+14α³+28α⁴.
 Rabin test: α^(29^5)=α, gcd(Q,X^29−X)=1. These are exact arithmetic statements, not an authenticated historical cipher instruction.
 
