@@ -29,4 +29,20 @@ For each layout, grant **one completely independent, wholly secret byte→GP29 s
 
 The two tests differ in geometry and codebook freedom. The ring test checks the one source-geometrically salient way to separate unknown p55 from known pp56–57. The standard-layout test covers natural linear readouts. Both reject direct *fixed-symbol* decoding under their stated 16/64 traversals. The added inner30×6 rank test independently excludes an unknown single global Hill-6 or affine Hill-6 key under the natural inner-row and known-terminal alignment. A stateful cipher, running key, position-aware operation, source-defined permutation or other interpretation of the grid remains possible. Counting 256 alone supplies no such operator.
 
+## Inner30×6 original-terminal all-secret Hill6 gate (Agent 1, 15 November 2026)
+
+The exact 32×8 original table has a **30×6 interior** after removing its 76-element perimeter. The final physical p56+p57 have **180 independently known GP29 plaintext runes**, forming 30 rows of six without padding. If one unknown global 6×6 Hill matrix over GF29 maps those rows to the printed interior table reduced modulo29, the row space of the table must be contained in the six-dimensional row space of the known source. Even allowing a single extra unknown additive six-rune offset imposes an augmented-rank bound.
+
+On either (a) **actual decoded p56 + clear p57** or (b) **printed p56 ciphertext + clear p57**, with source-original row-major interior table Y and terminal known 30×6 matrix X:
+
+| Exact original GF29 rank | Both source-register cases |
+| --- | ---: |
+| rank(X) | **6** |
+| rank(Y) | **6** |
+| rank([X,Y]) | **12** |
+| rank([X,1]) | **7** |
+| rank([X,1,Y]) | **13** |
+
+Thus there is **no choice of an arbitrary secret shared 6×6 matrix A** satisfying Y=XA and **no shared affine map A,b** satisfying Y=XA+1b: necessary joint ranks would have been at most 6 and 7, respectively. This conclusion is independent of unknown key values and excludes even noninvertible matrices under this fixed original-source alignment. The test reconstructs p56 plaintext from the authenticated prime-totient rule including its literal-F bypass, then plants an independently invertible affine Hill6 transform on all **180** native solved GP29 runes and recovers **180/180** correctly. The original-image table geometry is a hypothesis, with no Cicada-signed instruction selecting this operation. A changing secret, different geometry, or nonlinear rule remains possible. [Reproducible source-native SFT](../sims/lp2_grid256_terminal_inner180_hill6_sft.cjs) · [passing Windows Node22 run 43680299436](https://github.com/FlareZ123/liber-primus/actions/runs/43680299436).
+
 **Research decision:** retire deterministic fixed byte↔GP29 lookup on the p55–57 terminal 256-frame, including an arbitrary separate static lookup for each of the three exact inner rings. Do not create variable alphabets, phases or extra keys to rescue these negatives without a new original clue. The grid and solved ending still offer promising source-constrained controls for any genuinely new reversible operation. There is no newly authenticated plaintext, destination or key.
