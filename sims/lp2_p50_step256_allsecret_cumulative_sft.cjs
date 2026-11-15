@@ -94,14 +94,37 @@ function invariant(values, selector) {
   return { groups: groups.size, pairs, hits, rate: hits / pairs };
 }
 
+// Grant a wholly new, arbitrary 256-alphabet dictionary at EACH original
+// image-defined chapter, as well as independently resetting its phase.
+// An additive phase shift within a chapter merely renames 256 alphabets,
+// so global and chapter-local phase clocks have the same exact invariant.
+const chapterBounds = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const chapterPhase = [];
+let chGlobal = 0;
+for (const page of pages) {
+  const chapter = chapterBounds.findIndex(([lo, hi]) =>
+    page.page >= lo && page.page <= hi);
+  assert.ok(chapter >= 0);
+  for (let i = 1; i < page.indices.length; i++) {
+    chapterPhase.push(chapter * 256 + ((chGlobal + i - 1) % 256));
+  }
+  chGlobal += page.indices.length;
+}
+assert.equal(chapterPhase.length, 12901);
+
 const selectors = {
   phase256: phase.slice(),
+  chapterPhase2303: chapterPhase,
   rawByte161: phase.map((j) => B[j]),
   residue29: phase.map((j) => B[j] % 29),
   firstDigit5: phase.map((j) => Number(grid.pages.flatMap((p) => p.tokens)[j][0]))
 };
 const expected = {
   phase256: [256, 318683, 11355],
+  chapterPhase2303: [2303, 39331, 1423],
   rawByte161: [161, 641510, 22944],
   residue29: [29, 3399829, 120638],
   firstDigit5: [5, 18551875, 654964]
