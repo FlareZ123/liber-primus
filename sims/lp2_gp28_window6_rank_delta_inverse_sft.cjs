@@ -8,8 +8,10 @@
  *
  * Hypothesis: each nonrepeat ciphertext step encodes one of 28 ranks
  * R_t = (P_t + P_(t-1) + ... + P_(t-5)) mod 28.
- * Equal steps represent an explicit EA/GP-index28 interruption and do not
- * advance the 28-symbol sum register. At each chapter start the first five
+ * Equal steps represent a proposed literal interrupt, either EA/index28
+ * (free-form control) or F/index0 (motivated by the solved LP1/p56 F rule),
+ * and do not advance the 28-symbol sum register. Normal ranks retain the
+ * other 28 rune symbols in their canonical GP order. At each chapter start the first five
  * rank outputs are unrestricted visible IVs.
  *
  * Subtract consecutive ranks: P_t - P_(t-6) = R_t - R_(t-1) (mod 28).
@@ -33,6 +35,7 @@ const W = 6;
 
 /**
  * @param {string} raw
+ * @param {number} sentinel - excluded GP29 index, either 0 or 28
  * @returns {number[] | null}
  */
 function encodeWord(raw, sentinel) {
@@ -51,6 +54,7 @@ function encodeWord(raw, sentinel) {
 }
 
 /** Pseudocount 0.1 per symbol, training independent of the LP cipher.
+ * @param {number} sentinel - excluded GP29 plaintext index
  * @returns {Float64Array}
  */
 function trainingLogMarginal(sentinel) {
@@ -161,6 +165,7 @@ function reemit(firstCipher, rankPlaintext, firstIV, originalEscapes, outputLeng
 /** Generate an independently solvable complete GP-native example.
  * @param {number[]} plain - native GP indices including EA escapes
  * @param {number} initialCipher - arbitrary cipher IV rune
+ * @param {number} sentinel - literal nonclocking plaintext index
  * @returns {number[]}
  */
 function forwardPlant(plain, initialCipher, sentinel) {
