@@ -239,6 +239,71 @@ console.log('Exact independent-uniform 13-rune key prime-sum729 null: ' +
   randomKeyCount729 + '/' + randomKeyTotal + ' = ' +
   (Number(randomKeyCount729) / Number(randomKeyTotal)).toFixed(12));
 
+
+// A stronger, nonuniform-language null freezes exactly the original 13-rune
+// red p0 source and compares every *consecutive* 8+5 GP native-English word
+// pair in the three preexisting independent controls. No fitted plaintext.
+const gpTokens = data.translit.map((symbol, value) => ({symbol, value}))
+  .sort((a, b) => b.symbol.length - a.symbol.length);
+/**
+ * @param {string} word
+ * @returns {number[]}
+ */
+function encodeNativeWord(word) {
+  const normalized = word.toUpperCase()
+    .replace(/QU/g, 'CW').replace(/ING/g, 'NG').replace(/IO/g, 'IA')
+    .replace(/[KQ]/g, 'C').replace(/V/g, 'U').replace(/Z/g, 'S');
+  const output = [];
+  for (let p = 0; p < normalized.length;) {
+    const token = gpTokens.find((item) => normalized.startsWith(item.symbol, p));
+    assert.ok(token);
+    output.push(token.value);
+    p += token.symbol.length;
+  }
+  return output;
+}
+let eligibleLanguagePairs = 0;
+let titleLikePrimeSums = 0;
+const genuinePhraseAlternatives = [];
+for (const [filename, expectedEligible, expectedHit] of [
+  ['shakespeare_first300k.txt', 187, 3],
+  ['gibran_prophet_58585.txt', 30, 1],
+  ['emerson_essays_2944.txt', 232, 0]
+]) {
+  const prose = fs.readFileSync(
+    path.join(__dirname, '..', 'resources', 'control', filename), 'utf8');
+  const words = prose.match(/[A-Za-z]+/g) || [];
+  let eligible = 0;
+  let hits = 0;
+  for (let i = 0; i + 1 < words.length; i += 1) {
+    const first = encodeNativeWord(words[i]);
+    if (first.length !== 8) continue;
+    const second = encodeNativeWord(words[i + 1]);
+    if (second.length !== 5) continue;
+    eligible += 1;
+    const phrase = first.concat(second);
+    const sum = phrase.reduce((total, rune, k) =>
+      total + data.prime[(actualRedTitle[k] - rune + 29) % 29], 0);
+    if (sum === 729) {
+      hits += 1;
+      genuinePhraseAlternatives.push(words[i] + ' ' + words[i + 1]);
+    }
+  }
+  assert.equal(eligible, expectedEligible);
+  assert.equal(hits, expectedHit);
+  eligibleLanguagePairs += eligible;
+  titleLikePrimeSums += hits;
+}
+assert.equal(eligibleLanguagePairs, 449);
+assert.equal(titleLikePrimeSums, 4);
+assert.deepStrictEqual(genuinePhraseAlternatives,
+  ['constant Titus', 'SICINIUS Where', 'SICINIUS Where',
+   'laughter rises']);
+console.log('Actual native-English 8+5 contiguous source phrases with sum729: ' +
+  titleLikePrimeSums + '/' + eligibleLanguagePairs);
+console.log('Distinct alternative phrases: ' +
+  [...new Set(genuinePhraseAlternatives)].join('; '));
+
 console.log('PASS: source p0-p2 262+266+201 = 729 original runes');
 console.log('PASS: proposed title gives 13 fixed key symbols, prime total 729');
 console.log('PASS: positive solved-p57 native GP plant, exact 729/729 recovery');
