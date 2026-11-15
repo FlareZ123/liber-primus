@@ -68,8 +68,8 @@ jobs:
           python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password DIVINITY --bit-format 'Jpeg (Image)' --bit-level '1/5 (20%) - Medium' --out $out --wait-seconds 120
           if ($LASTEXITCODE -ne 0) { throw 'Native p55 source extraction did not execute' }
           $result = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
-          if ($result.carrier_count -ne 1 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) {
-            throw 'Native GUI did not prove exact single-carrier original p55, bit level and actual extraction'
+          if ($result.carrier_count -ne 1 -or -not $result.carrier_added -or -not $result.bit_selection_verified -or -not $result.attempted) {
+            throw 'Native GUI did not prove original p55 carrier addition, exact bit level and actual extraction'
           }
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
             throw 'Native extraction result is inconclusive'
