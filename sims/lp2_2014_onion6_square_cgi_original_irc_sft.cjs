@@ -58,7 +58,7 @@ async function one(info){
      const line=lines[i],dt=day(line);
      if(dt!==null && dt>=206 && dt<=216
        && /(wrong|bad|invalid|empty|random|any|arbitrary|different|submitted|submission|accepted|reject|even|unrelated|check|verify|script)/i.test(line)
-       && /(squares?|cgi-bin\\/squares|thank you for you submission|submission|input validation)/i.test(line)) {
+        && /(squares?|cgi.bin.squares|thank you for you submission|submission|input validation)/i.test(line)) {
        console.log('BEHAV L'+(i+1)+' '+normalize(line));
      }
    }
