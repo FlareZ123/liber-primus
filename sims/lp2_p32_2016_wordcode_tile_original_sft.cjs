@@ -137,7 +137,7 @@ function nativeTrigramScore(seq) {
 const directScore = nativeTrigramScore(directPositional);
 const controlScore = nativeTrigramScore(native.slice(180000, 180000 + directPositional.length));
 
-/** @returns {number} */
+/** @returns {() => number} */
 function makeRandom() {
   let state = 0x33012016;
   return function next() {
