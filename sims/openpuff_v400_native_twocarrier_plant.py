@@ -282,9 +282,10 @@ def set_password(window, password):
     # meter on the stale B/C-required branch.
     native_a = window.child_window(control_id=1009, class_name="Edit")
     native_a.set_edit_text("")
-    native_a.click_input()
-    send_keys(password)
-    time.sleep(0.5)
+    native_a.set_edit_text(password)
+    native_a.set_focus()
+    send_keys("{TAB}")
+    time.sleep(0.8)
     validation = (
         window.child_window(control_id=1014, class_name="Static")
         .window_text()
