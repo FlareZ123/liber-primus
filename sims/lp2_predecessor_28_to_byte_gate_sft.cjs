@@ -239,7 +239,15 @@ function main() {
   assert.deepEqual(gateRepeatFramed(framedPlant, false), {
     blocks: 2573, invalid: 0, discarded: 0, repeats: 86
   });
-  assert.deepEqual(gateRepeatFramed(framedPlant, true), {
+  // A 24-bit value valid in big-endian base28 is not necessarily valid
+  // after reversing its five digits. Build an independent little-endian
+  // positive from exactly the same original byte values.
+  const plantedLittle = [];
+  for (let start = 0; start < planted.length; start += 5) {
+    plantedLittle.push(...planted.slice(start, start + 5).reverse());
+  }
+  const framedLittlePlant = plantRepeatFramedSymbols(plantedLittle);
+  assert.deepEqual(gateRepeatFramed(framedLittlePlant, true), {
     blocks: 2573, invalid: 0, discarded: 0, repeats: 86
   });
 

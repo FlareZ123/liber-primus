@@ -16,5 +16,7 @@ jobs:
           node-version: "22"
       - name: Original source and native binary plant
         run: node sims/lp2_rank28_five_to_three_byte_sft.cjs
+      - name: Repeat-delimited five-rank to three-byte original gate and both native plants
+        run: node sims/lp2_predecessor_28_to_byte_gate_sft.cjs
       - name: Canonical 8-bit byte modulo 29 and skip-predecessor 28 original fingerprint
         run: node sims/lp2_byte_modulo_bias_original_sft.cjs
