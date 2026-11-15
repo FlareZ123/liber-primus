@@ -94,6 +94,34 @@ for (let j = 0; j < 2; j++) {
   }
 }
 assert.ok(result.every(v => v.output_ioc < 0.038));
+// The red triads' separately proposed page addresses are p33 and p40.
+// As a second frozen original-cipher consumer, use each addressed page's
+// visible red title (10/8 signs) or its first receiver-length full-page signs.
+const addressedPagePads = [];
+for (let j = 0; j < 2; j++) {
+  const page = j === 0 ? 33 : 40;
+  const cipher = receivers[j];
+  for (const kind of ["red-title", "whole-page-prefix"]) {
+    const length = kind === "red-title" ? (page === 33 ? 10 : 8) : cipher.length;
+    const key = c.pages[page].indices.slice(0, length);
+    assert.equal(key.length, length);
+    for (const sign of [-1, 1]) {
+      // For this variable-length source pad, use each key rune in printed order.
+      const out = cipher.map((x, i) => (x + 29 + sign * key[i % key.length]) % 29);
+      const sourcePlant = Array.from({ length: cipher.length }, (_, i) => solved[i % solved.length]);
+      const encryptedPlant = sourcePlant.map((x, i) => (x + 29 - sign * key[i % key.length]) % 29);
+      assert.deepEqual(encryptedPlant.map((x, i) => (x + 29 + sign * key[i % key.length]) % 29), sourcePlant);
+      assert.deepEqual(out.map((x, i) => (x + 29 - sign * key[i % key.length]) % 29), cipher);
+      addressedPagePads.push({
+        sentence: j, source_page: page, kind, key_runes: length, sign,
+        output_ioc: Number(ioc(out).toFixed(12)),
+        original_first64: translit(out.slice(0, 64))
+      });
+    }
+  }
+}
+assert.ok(addressedPagePads.every(v => v.output_ioc < 0.038));
+
 const knownIoc = ioc(solved);
 assert.ok(knownIoc > 0.06);
 console.log(JSON.stringify({
@@ -104,5 +132,6 @@ console.log(JSON.stringify({
   sentence_wordcounts: lengths,
   authentic_p57_clear_ioc: knownIoc,
   source_results: result,
-  verdict: "Clue-aligned 33/40 word count, no plaintext by these eight direct period-3 additive consumers"
+  addressed_page_key_results: addressedPagePads,
+  verdict: "Clue-aligned 33/40 word count, no plaintext by the 16 direct period-3 and page-addressed additive consumers"
 }, null, 2));
