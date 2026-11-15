@@ -58,18 +58,19 @@ Two sharing scopes cover the apparent source-based consumer:
 
 The equal-pair counts are mathematically invariant under every secret key in the declared models. The all-original SFT also checks the invariance on an independently GP-English planted passage, under actual source-number shifts with and without a fresh secret per-block rotation.
 
-For an original-word-length-exact positive-control comparison, draw one authentic GP-transcribed English word independently for each of the **735 original length slots**, with source-native historical ligatures (`ING` as `NG`, and `IO` as `IA`). Perform **400 source-length-matched draws each** from three pinned English literary corpora, using one frozen PRNG seed, and measure the same source-indexed 24-value groups. No native words are chosen to fit the manuscript's glyphs. Results from 1,200 complete matched-register controls:
+For an original-word-length-exact positive-control comparison, draw one authentic GP-transcribed reference word independently for each of the **735 original length slots**, with source-native historical ligatures (`ING` as `NG`, and `IO` as `IA`). Perform **400 source-length-matched draws each** from three pinned English literary corpora, plus an independently sourced GP-native Latin Vulgate complete-word corpus, using frozen PRNG seeds and measuring the same source-indexed 24-value groups. No native words are chosen to fit the manuscript's glyphs. Results from **1,600** complete matched-register controls:
 
 | GP-native source | Book-shared class collision rate, lowest / mean | Per-49-block fresh-key class collision rate, lowest / mean | Trials at or below original, either scope |
 | --- | ---: | ---: | ---: |
 | Gibran, 400 | 0.056157 / 0.059140 | 0.046784 / 0.051053 | **0/400** |
 | Emerson, 400 | 0.057383 / 0.060214 | 0.047091 / 0.052308 | **0/400** |
 | Shakespeare, 400 | 0.057095 / 0.059397 | 0.046845 / 0.052106 | **0/400** |
+| **Latin Vulgate, 400** | **0.071446 / 0.074079** | **0.058356 / 0.062566** | **0/400** |
 | **Unchanged LP2 floral ciphertext** | **0.033987** | **0.029486** | |
 
 This is a **key-independent original-cipher incompatibility** for the specified native-English, preserved-word-boundary family. Granting separate completely secret bijections **every block**, while preserving only the source square's repeated-value equality constraints, still cannot reconcile the original coincidence deficit with any of the 1,200 matched controls. It does not prove English impossible under a changing-within-word alphabet, a changed plaintext register, ciphertext-dependent word breaks, or an arbitrary one-time pad. The source never explicitly instructs using the 2014 numbers as 2014 LP2 word-wise substitution classes.
 
-The exact finite equality counts, independent class-wise arbitrary-substitution positive, all three control minima, and the earlier word-spiral results passed together in [successful Node22 original-input workflow **43727409503**](https://github.com/FlareZ123/liber-primus/actions/runs/43727409503).
+The exact finite equality counts, independent class-wise arbitrary-substitution positive, all four reference control minima, and the earlier word-spiral results passed together in [successful Node22 original-input workflow **43728036974**](https://github.com/FlareZ123/liber-primus/actions/runs/43728036974).
 
 ## Decision and reuse
 
@@ -77,4 +78,4 @@ The exact finite equality counts, independent class-wise arbitrary-substitution 
 
 A materially useful reopening requires a dated Cicada-author instruction naming the **7×7 square** as an LP2 *word*-register tool, or an independently authenticated plaintext/known-key prediction that a frozen 49-word consumer reproduces on untouched original ciphertext. This report is a scoped bounded negative; [`results/README.md`](../results/README.md) continues to correctly record **all 56 unknown pages unsolved**.
 
-**Reproduce:** `sims/lp2_floral49_magic_square_word_spiral_sft.cjs` runs as a read-only Node.js 22 program with no third-party dependencies; all original source assertions, deterministic shuffles and independent corpus scores passed in [GitHub Actions original-source run **43727409503**](https://github.com/FlareZ123/liber-primus/actions/runs/43727409503). The finite previously sampled first7/last8 sensitivity results were evaluated separately under the same clipping and original parser and do not change the decision.
+**Reproduce:** `sims/lp2_floral49_magic_square_word_spiral_sft.cjs` runs as a read-only Node.js 22 program with no third-party dependencies; all original source assertions, deterministic shuffles and independent corpus scores passed in [GitHub Actions original-source run **43728036974**](https://github.com/FlareZ123/liber-primus/actions/runs/43728036974). The finite previously sampled first7/last8 sensitivity results were evaluated separately under the same clipping and original parser and do not change the decision.
