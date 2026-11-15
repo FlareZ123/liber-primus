@@ -17,3 +17,13 @@ jobs:
         run: |
           node --check sims/lp2_2015_irc_prime_delta_inverse_sft.cjs
           node sims/lp2_2015_irc_prime_delta_inverse_sft.cjs
+      - name: Agent41 five-lane inverse original word gate
+        shell: pwsh
+        run: |
+          node --check sims/lp2_wordfive_lane_original_sft.cjs
+          node sims/lp2_wordfive_lane_original_sft.cjs
+      - name: Agent41 source-selected original p15 Hill4 stage after prime-delta
+        shell: pwsh
+        run: |
+          node --check sims/lp2_prime_delta_p15_literal_hill_sft.cjs
+          node sims/lp2_prime_delta_p15_literal_hill_sft.cjs
