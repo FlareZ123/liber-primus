@@ -156,6 +156,45 @@ function recoverTwo(target,idx) {
   return [...found.values()];
 }
 
+/**
+ * Recover SIX consecutive completely erased coefficient residues using
+ * the four H/G checks and two p15 eigenvalue targets. Every X^k is
+ * invertible mod H*G*(X-8)*(X-17), so every 6×6 consecutive-lane
+ * syndrome matrix has full rank.
+ *
+ * @param {number[]} values - original length-256 input with six unknowns
+ * @param {number} first - first erased index
+ * @param {{map:Map<number,{e:number,delta:number,values:number[]}>,all:Array<{e:number,delta:number,values:number[]}>}} idx
+ * @returns {number[]} - recovered six residues mod29
+ */
+function recoverSixErasures(values,first,idx) {
+  assert.equal(values.length,256);
+  assert(first>=0&&first<=250);
+  const rhs=[0,0,0,0,27,15];
+  const basisAt=i=>idx.all[(255-i)*28].values;
+  for(let i=0;i<256;i++) {
+    if(i>=first&&i<first+6)continue;
+    const row=basisAt(i);
+    for(let k=0;k<6;k++)rhs[k]=mod(rhs[k]-values[i]*row[k]);
+  }
+  const matrix=Array.from({length:6},(_,k)=>
+    Array.from({length:7},(_,col)=>col===6?rhs[k]:basisAt(first+col)[k]));
+  for(let col=0;col<6;col++) {
+    let pivot=col;
+    while(pivot<6&&matrix[pivot][col]===0)pivot++;
+    assert(pivot<6,'six-consecutive-erasure matrix must be invertible');
+    [matrix[col],matrix[pivot]]=[matrix[pivot],matrix[col]];
+    const scale=inverse(matrix[col][col]);
+    for(let j=col;j<7;j++)matrix[col][j]=mod(matrix[col][j]*scale);
+    for(let row=0;row<6;row++)if(row!==col) {
+      const factor=matrix[row][col];
+      for(let j=col;j<7;j++)
+        matrix[row][j]=mod(matrix[row][j]-factor*matrix[col][j]);
+    }
+  }
+  return matrix.map(row=>row[6]);
+}
+
 const tokens = source.pages.flatMap((page) => page.tokens);
 const bytes = source.bytes;
 assert.equal(tokens.length, 256);
@@ -240,6 +279,32 @@ for(let t=0;t<128;t++) {
 }
 assert.equal(doubleUnique,122);assert.equal(doubleAmbiguous,6);
 
+// Withhold six contiguous printed cells *entirely*: rederive each GF29
+// residue solely from the other 250 original cells and six source checks.
+let erasedBlocksRecovered=0;
+for(let start=0;start<=250;start++) {
+  const masked=bytes.slice();
+  masked.fill(0,start,start+6);
+  const recoveredSix=recoverSixErasures(masked,start,one);
+  assert.deepEqual(recoveredSix,bytes.slice(start,start+6).map(mod));
+  erasedBlocksRecovered++;
+}
+assert.equal(erasedBlocksRecovered,251);
+const lastSixResidues=recoverSixErasures(
+  bytes.slice(0,250).concat(Array(6).fill(0)),250,one);
+assert.deepEqual(lastSixResidues,[27,27,6,7,15,22]);
+
+// Distinct full 256-position native codeword plant: erase its last six,
+// derive them from the six target checks, then erase an interior six.
+const synthetic=Array.from({length:256},(_,i)=>mod(i*i+3*i+1));
+synthetic.splice(250,6,...recoverSixErasures(synthetic,250,one));
+assert.deepEqual(syndromeSix(synthetic),[0,0,0,0,0,0]);
+const plantedMasked=synthetic.slice();
+plantedMasked.fill(0,120,126);
+assert.deepEqual(recoverSixErasures(plantedMasked,120,one),
+  synthetic.slice(120,126));
+
+
 const alt59Bytes = tokens.map((s) => parseToken(s, ALT59));
 const alt59Syndrome = syndrome(alt59Bytes);
 assert.notDeepEqual(alt59Syndrome, syndrome(bytes));
@@ -248,6 +313,8 @@ console.log(JSON.stringify({
   status: 'PASS', checkedOriginalTokens: tokens.length,
   code: 'H × G over GF29, four parity conditions',
   singleResidueCorrections: recovered, rootOrder,
+  sixConsecutiveResidueErasuresRecovered: erasedBlocksRecovered,
+  lastSixTableResiduesRecovered: lastSixResidues,
   historicalTwoErrorSolutions: historicPairSolutions,
   sampledTwoErrors: { unique: doubleUnique, ambiguous: doubleAmbiguous, total: 128 },
   base60Syndrome: syndrome(bytes), alt59Syndrome,
