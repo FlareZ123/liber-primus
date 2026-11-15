@@ -1,6 +1,6 @@
 # The source p29/page50 link: the sole shared repeated GF29 root and a direct inverse
 
-**Original-source finding, 15 November 2026, Agent19.** Among all 1,540 unordered pairs of original ciphertext-bearing LP2 pages and the 256-cell numeric table, physical **p29 and p50 are the only pair sharing a repeated linear root** in their high-first GP29 coefficient polynomials. An original-source, reversible direct quotient-as-key test failed to recover unknown plaintext. This supports focusing on the specific p29/p39/p50 relationship, but it is **not** a recovered authorial cipher, key or puzzle destination.
+**Original-source finding, 15 November 2026, Agent19.** Among all 1,540 unordered pairs of original ciphertext-bearing LP2 pages and the 256-cell numeric table, physical **p29 and p50 are the only pair sharing a repeated linear root** in their high-first GP29 coefficient polynomials. Two source-fixed uses of the quotient, one as a direct shared pad and another as nine 28-symbol chapter keys, fail to recover unknown plaintext. This supports focusing on the specific p29/p39/p50 relationship, but it is **not** a recovered authorial cipher, key or puzzle destination.
 
 ## Source-constrained hypothesis
 
@@ -51,10 +51,34 @@ These are all near the GP29 uniform-cipher baseline **1/29 ≈ 0.03448276**. The
 
 A further fixed signed-2013 BASE29 byte-transport reading of both original source quotients gives unframed, nontextual opening bytes (e.g. original p29/G begins **2403a3a29e2ad42b**, p50/(H·G) begins **04598e588f3e70d4**); neither is recognizable plaintext or a standard file signature at offset zero. No adjusted byte phase or additional secret is licensed by the source.
 
+
+## Nine 28-symbol chapter keys after removing both source factors
+
+The signed-2013 \(H\) factor and p39's \(G\) factor have combined degree four, leaving the **252-coefficient** original table quotient. A separate, economical human reading is
+
+\[
+252=9\times28.
+\]
+
+The manuscript has exactly **nine visibly delimited chapters**, while the GF29 Gematria Primus field has **28 nonzero elements**. With no key fitting, slice this quotient into **nine consecutive, printed-order 28-rune rows** and use row \(j\) as that chapter's period-28 GP29 additive key. Chapter rune totals are fixed independently as **[729,1145,1729,1903,1021,1433,1680,3008,308]**. This is a motivated exploratory interpretation, since the artifact itself does not state that the quotient is a key or that the 28 field elements are a key clock.
+
+A quick stronger structural possibility, that each row is a 28-element alphabet permutation, fails immediately: the nine rows have only **[16,19,21,16,19,16,18,17,22]** distinct GP symbols. The direct cipher candidate treats the original quotient residues as keys instead and decodes all **12,956 untouched original rune positions**. Four finite tests combine both signs with ordinary key consumption or optional plaintext-F-transparent behavior copied from solved p56. The latter gives literal ciphertext F=0 positions a key-free pass, using those original positions as its exact reversible mask; it is a diagnostic extension and does not prove the p56 skip rule transfers to these pages.
+
+| Nine-chapter key transfer | Original all-rune IoC |
+| --- | ---: |
+| Subtract rows, ordinary clock | **0.03449320** |
+| Add rows, ordinary clock | **0.03444822** |
+| Subtract rows, F-transparent mask | **0.03579393** |
+| Add rows, F-transparent mask | **0.03585953** |
+
+The no-skip outputs are nearly exactly uniform GP29, and neither skip output approaches a native-language GP29 reading. No original chapter begins with sustained grammatical text. Both ordinary-clock cases recover independently solved-p57 text on **all 12,956 rune positions** when encrypting the planted plaintext under the same row keys, and all four source-masked original transforms reencrypt the complete original exactly. These controls check the mechanics and scope, without supplying a creator-authenticated cipher.
+
+This is a second decisive failure of the direct source-derived quotient-as-key interpretation. The attractive \(9\times28\) length identity, like the unique shared-root census, is subject to retrospective clue selection; it does not establish that the original table quotient contains nine chapter keys.
+
 ## Research decision
 
-The p29/p50 shared repeated root is now established as **unique among all page/table pairs** in this representation. This meaningfully localizes the mathematical clue: a global page-to-page common polynomial decoder is unsupported, and the one obvious quotient-pad route **does not** produce original plaintext. The second degree-two pair's root0 is attributable to a visible terminal F in both images and should not be promoted alongside the repeated root24.
+The p29/p50 shared repeated root is now established as **unique among all page/table pairs** in this representation. This meaningfully localizes the mathematical clue: a global page-to-page common polynomial decoder is unsupported, and **neither direct quotient-pad nor nine-chapter period-28 quotient key** produces original plaintext. The second degree-two pair's root0 is attributable to a visible terminal F in both images and should not be promoted alongside the repeated root24.
 
-The most promising remaining interpretation is that p29 and the p50 table carry **related GF29 checks or framing** rather than directly sharing a readable keyed stream. That remains a hypothesis. A substantive next step needs an independent original clue supplying an opcode, framing or key that consumes this exact shared factor and makes a falsifiable prediction on unmodified ciphertext. Exhaustively trying arbitrary quotient shifts or fitted substitution alphabets would repeat the streetlight problem.
+The most promising remaining interpretation is that p29 and the p50 table carry **related GF29 checks or framing** rather than directly sharing a readable keyed stream. That remains a hypothesis. A substantive next step needs an independent original clue supplying an opcode, framing or key that consumes this exact shared factor and makes a falsifiable prediction on unmodified ciphertext. An independently published instruction specifying how to consume this factor would justify a new experiment; extending the failed quotient interpretations with arbitrary shifts or fitted substitutions would repeat the same conjectural search.
 
 **Single-file reproducer:** [Windows Node.js 22 CommonJS SFT](../sims/lp2_p29_grid_pairwise_factor_key_sft.cjs) asserts all 1,540 gcd degrees, the two exact exceptional gcd polynomials, the original p39 red triad, both original quotient lengths, all eight native-language original inverse statistics, reencryption, and the full solved-p57 planted positives.
