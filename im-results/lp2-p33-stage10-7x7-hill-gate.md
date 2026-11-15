@@ -62,7 +62,7 @@ The best source-selected Hill-7 score is at the **88.45th percentile** of random
 
 ## Decision
 
-Reject the direct Hill-7 transfer from the Stage10 7×7/1033 square to p33 [0,91), for both raw and totient-derived matrices and both standard vector conventions. This does not rule out every possible role for the 7×7 square; it rules out this natural, clue-motivated direct Hill interpretation.
+Reject the direct Hill-7 transfer from the Stage10 7×7/1033 square to p33 [0,91), for both raw and totient-derived matrices and both standard vector conventions. Subsequent full-book analysis establishes that this raw 7×7 matrix has exact order 280 = 5×56 over GF(29) (determinant 2); fixed, page-indexed, block-indexed, and matrix-orbit consumers over all 12,956 LP2 runes are also negative. See [the Stage 10 matrix-order/key-schedule report](lp1-p16-order56-pagepower-gate.md). This does not alter the bounded p33 decision. This does not rule out every possible role for the 7×7 square; it rules out this natural, clue-motivated direct Hill interpretation.
 
 Do not rescue the branch by composing it with the already-tested Stage05 seven-column permutation. That would add a cipher layer without an independent source instruction.
 
