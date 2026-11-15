@@ -11,6 +11,7 @@ on:
           - chapter-quintet
           - local-delimiter
           - red9-hill3-terminal
+          - cofactor16-hill4-terminal
 permissions:
   contents: read
 jobs:
@@ -50,3 +51,9 @@ jobs:
         run: |
           node --check sims/lp2_p54_red9_hill3_terminal_sft.cjs
           node sims/lp2_p54_red9_hill3_terminal_sft.cjs
+      - name: Test original p50 cofactor16 Hill4 terminal inverse
+        if: ${{ inputs.gate == 'cofactor16-hill4-terminal' }}
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p50_cofactor16_hill4_terminal_sft.cjs
+          node sims/lp2_p50_cofactor16_hill4_terminal_sft.cjs
