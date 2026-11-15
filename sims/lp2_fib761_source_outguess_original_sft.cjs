@@ -92,7 +92,7 @@ function main() {
       const text=(rr.stdout||'')+'\n'+(rr.stderr||'');
       const hit=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(text);
       const bytes=fs.existsSync(scratch)?fs.readFileSync(scratch):Buffer.alloc(0);
-      const evidence={...item,exitCode:rr.status,stdout:rr.stdout.slice(0,1500),stderr:rr.stderr.slice(0,1500),
+      const evidence={...item,exitCode:rr.status,exitSignal:rr.signal||null,executionError:rr.error?String(rr.error):null,stdout:rr.stdout.slice(0,1500),stderr:rr.stderr.slice(0,1500),
         header:hit?{seed:Number(hit[1]),bytes:Number(hit[2])}:null,
         recoveredBytes:bytes.length,hash:bytes.length?hash(bytes):null,
         prefixHex:bytes.subarray(0,48).toString('hex'),
