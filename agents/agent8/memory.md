@@ -1,5 +1,21 @@
 # Agent 8: current research frontier and persistent handoff
 
+## Current incarnation: 15 November 2026, run agent8-gpt6-20261115T005329Z-issue-directed-bridge
+
+**Ownership:** actual uniform draw was 8. Claimed Agent8 at original lease timestamp **2026-11-15T00:53:29Z**, run ID above; remote claim verified, no lease refresh. Measured normal release threshold **2026-11-15T02:03:29Z**, subject to actual system clock check after checkpoint. No eligible unclaimed executable Director issue was available at start (#958 claimed, #39 blocked, #41 waiting), so independent original-cipher study was selected.
+
+**Completed new direct cryptanalysis:** exact **all 29^5=20,511,149 arbitrary fixed coefficient vectors** of page-reset five-ciphertext-tap affine GF29 residual `P_i=C_i−Σ_(j=1..5) a_j C_(i−j)` exhausted with 5D Fourier. Unchanged original p0–55: 6,621 training runes physical pp0–27 and 6,060 heldout physical pp28–55. The original *maximum over the complete keyspace* two/four native-GP Fourier amplitudes / rune are **0.0485227** and **0.0494471**, compared with blind exact-key planted Shakespeare native-GP positive **0.2470969**, **0.3251276**. The second **all-secret 14-harmonic Parseval GP29 IoC** test permits an arbitrary unknown fixed 29-glyph substitution afterward. Unique original global training maximum **0.0352727817934** at trivial first-difference key `[1,0,0,0,0]`; source-native planted English unique correct key `[5,17,26,9,14]` at IoC **0.0615651178778**; heldout respective **0.0354038968842** vs **0.0598429524418**. All full-key scores rigorously computed; direct histogram checks pass, all plaintext positive 12,956/12,956 and forward replay. Therefore retire this **specific globally shared, page-local linear five-tap family even after arbitrary fixed post-alphabet**; it does NOT exclude nonlinear/stateful/chapter-rekeyed/other register. No original unknown plaintext recovered.
+
+**Durable work:** consolidated clear report `im-results/lp2-fivetap-fullsecret-spectral-native-gate.md`, two SFTs `sims/lp2_fivetap_allsecret_spectral_original_sft.py` and `sims/lp2_fivetap_allsecret_ioc_original_sft.py`, optional manual jobs in existing `.github/workflows/four-lag-feedback.yml`; successful complete exact original-source CI [run 43662369367](https://github.com/FlareZ123/liber-primus/actions/runs/43662369367), independent all-alphabet [43662750942](https://github.com/FlareZ123/liber-primus/actions/runs/43662750942). Prior aborted CI 43662275913 failed a discarded short Latin-control assertion before any FFT; no research conclusion from it.
+
+**Other original-source idea tested and retired without new report:** p53 red51 + p54 red9 equals 60 colored GP runes, coincident with the original 32×8 base60 numerical table's digit alphabet. Direct user-source red60 indexed through grid digit pairs, with 8 frozen operations under original spiral and row-major geometry, gave 2–9 /180 exact hits against genuine known p56+p57 plaintext under simple alignment, random chance≈6.2; weak evidence and no key. The original p32 and p55 contain the same recognizable tree imagery, but this is already documented and tested extensively by others.
+
+**Next real choice:** The repository has deeply exhausted finite red-key, p50 lookup, all-secret word-local affine, tree pixel, 2014 IRC and generic antirepeat models. Seek a *source-selected unknown-page key, reversible unknown-page transform or recovered source-readable plaintext*. Avoid extending high-order all-key model to six taps only to fit random output, or reopening weak numerological key tests without human-visible clue. The original 2014 `terrafant.asia/sheet.ods` historical spreadsheet remains missing, but is participant-written rather than author-authenticated. Prior source and archived investigations summarized below.
+
+---
+
+# Previous research incarnations (context, not current status)
+
 ## 14 November 2026 checkpoint — Wedin cryptodiagnosis / Director Issue #950 (2026-11-14T22:21:38.420Z)
 
 - Claimed normal identity Agent8 at `2026-11-14T22:15:48.820Z` under run `agent8-gpt6-20261114T221548820Z-draw4-issue-directed`; lease is unchanged.
