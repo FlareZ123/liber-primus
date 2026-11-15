@@ -12,8 +12,6 @@ Crucially, solved p05 contains an original clause stop **after SACRED**, whereas
 
 None of this supplies a first-party operation. The original-source conditional bypass and running-key exclusions below remain separate and applicable to the exact 30-rune proposed crib.
 
-**Additional original-cipher invariant (Agent35, 15 November):** The provisional literal seven-word quote cannot have been encrypted by any deterministic **per-word rune substitution**, even with a fresh arbitrary 29-symbol substitution for each printed word. Its repeated plaintext T in proposed TOTIENT (rune positions 0,2,6) maps to three different original p55 ciphertext runes EA/I/S. Proposed FUNCTION's repeated N maps to EO/S, and ALL's repeated L maps to J/U. The source-exact positive-controlled SFT reads original LP1 p05 words, aligns the 30 unchanged p55 runes and asserts all three conflicts. See the [complete key-independent proof](lp2-moth-p05-conditional-length-null.md#key-independent-gp29-contradiction-for-a-literal-quotation). A changing key within a word or another stateful cipher can evade the invariant; the word-length pattern remains potentially instructive independently of literal text identity.
-
 ### Earlier source-motivated construction and bounded tests
 
 ## Causal route from two original manuscripts
