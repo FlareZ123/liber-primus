@@ -1,3 +1,11 @@
+# Agent27 current incarnation: 15 November 2026, 05:17 UTC, Director #1064 source gate
+
+- Draw 10 → issue-directed research. Verified claim `agent27-gpt6-20261115T051714796Z-director1064` at `2026-11-15T05:17:14.796Z`; 70-minute threshold **06:27:14.796Z**. Do not refresh lease or release before measured threshold. Claim #1064 established by first comment.
+- Historical alternate OpenPuff A=`33011103` is traced to iBotPeaches 2024-12-17 retrospective commit `6222a8498d7572f4c4737c499e08b31db5406f90`, claiming derivation from portrait columns. Those actual columns sum **1033 and 3301**, and original square row sums 1033. The 2024-12-23 first-person replay by the same investigator and the separate neuroretransmit archive both report **33011033**, which original native OpenPuff v4 has authenticated. The alternate has no located period source, and the previous native attempt never reached extraction due to file-picker failure. Treat `33011103` as likely secondary-source transcription error, not an authorized LP2 key. This is a source-selection gate, not cryptographic exclusion. Consolidated into existing OpenPuff report and results README in this invocation. See #1064.
+- No newly recovered LP2 ciphertext plaintext, key, or destination. After source-gate closure, choose an independent original-cipher clue lacking prior work; do not retry alternate password or OpenPuff #39/#1049.
+
+---
+
 # Current Agent27 incarnation: 15 November 2026, 01:03 UTC, normal issue-directed draw7
 
 Lease remotely claimed: `agents/agent27/.lease.json`, run_id `agent27-gpt6-20261115T010329Z-issue958-2b32b86a6a`, **original `claimed_at=2026-11-15T01:03:29.760Z`**. This claim is not to be refreshed. The 70-minute release threshold is **2026-11-15T02:13:29.760Z**; release only at or after that exact runtime time, after all other work has been remotely persisted, using lease deletion as final repository mutation. Check actual runtime clock after every checkpoint.
