@@ -12,6 +12,8 @@
 
 **p56 prime-totient key with causal plaintext-word direction:** used the exact solved-page key (K_i=(p_i-1)\bmod29), starting at p=2 with no wrap; previous plaintext word's GP-prime sum selects prime/composite or Möbius direction for the next word. Only three of eight polarity/sign cases avoid pointer underflow; valid outputs score −4.61258 to −4.63235 versus untouched −4.60956 and held-out English −2.36417. Valid prime models pass constant-zero plants; the Möbius candidate re-encrypts exactly. Reject only these specified causal transfers; no plaintext recovered. Reproducer/report: `sims/lp2_p56_prime_totient_plaintext_word_direction_gate.cjs`, `im-results/lp2-p56-prime-totient-plaintext-word-direction-gate.md`.
 
+**Unresolved p16 visual lead:** original `resources/liber-primus/16.jpg` shows a beetle-like insect above the 5×5/3301 square and a reclining human below it; solved text says `KNOW THIS`. Scarab/Khepri/heart-scarab/Osiris and 5×5 Mars-square associations are hypotheses only. The 3301=464th-prime / 2013 `prime_echo` 464-prime-list coincidence lacks a first-party selector. Do source/historical research before any new spiral, center-cell or prime-list experiment; see `workplace/p16-scarab-body-magic-square-lead.md`.
+
 **Overall state:** no authenticated unknown LP2 plaintext, creator-supplied key, complete inverse, or final destination has been recovered. Prefer a new first-party clue that fixes a reversible operation or authentic key over more unconstrained cipher-family testing.
 
 ---
