@@ -23,5 +23,5 @@ jobs:
         with:
           name: agent3-2014-original-irc-file-objects
           path: irc2014-link-acquired/
-          retention-days: 7
+          retention-days: 90
           if-no-files-found: warn
