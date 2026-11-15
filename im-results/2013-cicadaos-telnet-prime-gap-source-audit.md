@@ -12,7 +12,7 @@ The distinct [wiki page “The Telnet Prompt”](https://github.com/Dukotah/cica
 
 ## Separate primary-source constraints
 
-The [CicadaOS rootfs `prime_echo`](https://github.com/neuroretransmit/cicada/blob/main/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo) emits all **465** primes 2–3301, including 73–1223, 1033 and 3301. The archived script's two-second pauses at **1033** and **3301** coincide with the 2013 BASE29 examples **1033→16I** and **3301→3QO**. Those correspondences concern the ISO animation, **a different service** from the onion telnet interface. Its complete list cannot refute a gap in the telnet service.
+The [CicadaOS rootfs `prime_echo`](https://github.com/neuroretransmit/cicada/blob/main/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo) emits all **464** primes 2–3301, including 73–1223, 1033 and 3301. The archived script's two-second pauses at **1033** and **3301** coincide with the 2013 BASE29 examples **1033→16I** and **3301→3QO**. Those correspondences concern the ISO animation, **a different service** from the onion telnet interface. Its complete list cannot refute a gap in the telnet service.
 
 The separate [cryptographically verified 2013 signed TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) specifies BASE29, DH and NEXT and has no NUMBER/PRIMES/COUNT command; it does not authenticate the first-onion terminal's behavior.
 
