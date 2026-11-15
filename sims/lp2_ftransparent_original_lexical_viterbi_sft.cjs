@@ -2,8 +2,8 @@
 
 /**
  * Original-source lexical inverse for authentic Cicada plaintext-F transparency.
- * Recovers the entire 515-rune LP1 WELCOME/DIVINITY passage and the complete
- * 85-rune LP2 p56 from the known key and ciphertext, WITHOUT a skip mask.
+ * Recovers the entire 515-rune LP1 WELCOME/DIVINITY passage, the complete
+ * 85-rune LP2 p56 and 319-rune LP1 second koan, WITHOUT a skip mask.
  *
  * The word lexicon is the pre-existing 2026-11-10 TextBlob frequency fixture.
  * Dictionary, word segmentation and scoring are source-fixed and never trained
@@ -242,28 +242,51 @@ assert.equal(welcomeSolve.states.length, 8);
 assert.ok(welcomeBest.score > welcomeSolve.states[1].score);
 
 /*
- * LP1 independent koan, original first 110 runes/30 printed words.
- * Separate genuine 13-rune key and two previously solved literal Fs.
- * This is NOT used for choosing the dictionary score or p56/welcome masks.
+ * LP1 second koan: entire 319 original GP29 runes across its 88 printed
+ * words and physical pages 14–15. The key is a different historical
+ * 13-symbol GP key, and the independent known English prose is read from
+ * the pre-existing source reference only AFTER the lexical decoder runs.
+ * The scorer sees neither the F skip positions nor that prose.
  */
-const koanWords = printedWords(printedLP1.split('$')[5]).slice(0, 30);
+const koanWords = printedWords(printedLP1.split('$')[5]);
 const koanCipher = concat(koanWords);
-assert.equal(koanCipher.length, 110);
+assert.equal(koanCipher.length, 319);
+assert.equal(koanWords.length, 88);
+const masterLP1 = read('resources/transcriptions/liber_primus_master.txt');
+const masterKoan = masterLP1.split('%').slice(13, 15).join('');
+const masterKoanCipher = [...masterKoan].flatMap((rune) =>
+  runeMap.has(rune) ? [runeMap.get(rune)] : []);
+assert.deepEqual(koanCipher, masterKoanCipher,
+  'complete second koan agrees with the separate master rune transcription');
+
 const koanKey = [0, 10, 4, 0, 1, 19, 0, 18, 4, 18, 9, 0, 18];
 const koanShift = (k) => koanKey[k % koanKey.length];
-const knownKoanF = [49, 58];
-const koanSet = new Set(knownKoanF);
-let koanClock = 0;
-const independentlySolvedKoan = koanCipher.map((c, i) =>
-  koanSet.has(i) ? 0 : mod29(c - koanShift(koanClock++)));
-assert.deepEqual(encrypt(independentlySolvedKoan, koanShift), koanCipher);
 const koanSolve = decode(koanWords, koanShift);
 const koanBest = koanSolve.states[0];
-// Independently solved third-control plaintext and its two exact true bypasses
-// are now required assertions as well, never merely descriptive metrics.
+const sourceReference = read('resources/liber-primus/lp1-plaintext-reference.txt');
+const koanPlainSection = sourceReference.split('### 14\n')[1].split('### 15\n')[0];
+const koanEnglishWords = koanPlainSection.match(/[A-Z]+/g) || [];
+assert.equal(koanEnglishWords.length, 88);
+const independentlySolvedKoan = koanEnglishWords.flatMap((word) => {
+  const encoded = encodeWord(word);
+  assert.ok(encoded, 'unknown source GP spelling in historical koan: ' + word);
+  return encoded;
+});
+assert.equal(independentlySolvedKoan.length, 319);
+const knownKoanF = [49, 58];
+assert.deepEqual(fPositions(independentlySolvedKoan), knownKoanF,
+  'original solved second-koan plaintext has two literal Fs');
+assert.deepEqual(encrypt(independentlySolvedKoan, koanShift), koanCipher,
+  'historical transparent-F forward encryption reproduces all 319 glyphs');
 assert.deepEqual(koanBest.literals, knownKoanF);
-assert.deepEqual(koanBest.plain, independentlySolvedKoan);
+assert.deepEqual(koanBest.plain, independentlySolvedKoan,
+  'full-koan blind lexical winner must match independent known plaintext');
 assert.deepEqual(encrypt(koanBest.plain, koanShift), koanCipher);
+assert.equal(koanBest.consumed, 317);
+assert.equal(koanBest.lexicalWords, 86);
+assert.equal(welcomeCipher.length + p56Cipher.length + koanCipher.length, 919);
+assert.deepEqual([welcomeBest.literals.length, p56Best.literals.length,
+  koanBest.literals.length], [11, 1, 2]);
 
 /*
  * All three real solved controls must pass exactly and reversibly.
@@ -297,6 +320,10 @@ const report = {
   },
   independentLP1Koan: {
     originalRunes: koanCipher.length, printedWords: koanWords.length,
+    blindRecoveredSymbols: koanBest.plain.length,
+    sourceReferencePlaintextMatched: true,
+    dictionaryMatchedWords: koanBest.lexicalWords,
+    keySymbolsConsumed: koanBest.consumed,
     expectedLiteralF: knownKoanF, selectedLiteralF: koanBest.literals,
     matchedOriginalRuneCount: koanBest.plain.reduce((n, x, i) =>
       n + Number(x === independentlySolvedKoan[i]), 0),
@@ -307,6 +334,8 @@ const report = {
       ? koanBest.score - koanSolve.states[1].score : null,
     peakStateCount: Math.max(...koanSolve.stateCounts)
   },
+  totalOriginalSolvedRunes: 919,
+  totalOriginalLiteralF: 14,
   claimLimit: 'Recovers known solved plaintext given the authentic key. No independent key for unsolved LP2 pages.'
 };
 assert.equal(report.independentLP1Koan.forwardCipherIdentity, true);
