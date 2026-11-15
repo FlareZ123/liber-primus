@@ -104,8 +104,12 @@ for (const reversed of [false, true]) {
   }
 }
 assert.deepEqual(variants.map((v) => v.ioc),
-  [0.035666856, 0.03256814, 0.035160944, 0.03399102]);
+  [0.035666856, 0.035666856, 0.035160944, 0.035160944]);
 assert(variants.every((v) => v.ioc < 0.04));
+// A 28-point inverse NTT is output reversal times a field scalar; consequently
+// each coefficient orientation has the same equality-collision count either way.
+assert.equal(variants[0].ioc, variants[1].ioc);
+assert.equal(variants[2].ioc, variants[3].ioc);
 
 console.log(JSON.stringify({
   sourceDigitCount: quotient.length,
