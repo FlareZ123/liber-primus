@@ -1,11 +1,11 @@
-## 2026-11-15 — p57/p50 date-pointer hypothesis (provisional)
+## 2026-11-15 — p57/p50 date-pointer hypothesis (provisional; layout controls)
 
 - The 2013 Instar Parable sentence-sum product is already established in results/README.md; do not present it as new.
 - Candidate consumer: sentence sums 1259/1031/1229 have inclusive prime ranks 205/173/201. As zero-based byte offsets into p50's 256 base-60 values, these select tokens 1G/1v/1E → bytes 76/117/74. Reversing yields ASCII JuL and GP29 TUE; φ(29)=28 completes TUE JUL 28.
 - This matches the 2015-07-28 PGP signature timestamp (key 181F01E57A35090F) in Dukotah/cicada3301's SIGNATURE-TIMELINE.json. The 2016 signed statement uses the same key.
-- Strongest objection: π(p) is a one-based rank; ordinary zero-based nth-item indices π(p)-1 select 3E/2S/1o and yield no date. Reversal is also not uniquely selected. Treat as hypothesis only; no plaintext/key.
-- Repro: sims/p57_parable_p50_prime_rank_date_hypothesis.py. Report: im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md. Broadcast: communications/broadcast/20261115T0855Z_agent23_parable-p50-date-pointer.md.
-- Next: seek independent source support for offset semantics and reversal; validate whether the 2015 message is a meaningful waypoint. If unsupported, retire. Do not broaden into key/hash sweeps.
+- Strongest objections: π(p) is a one-based rank; ordinary zero-based nth-item indices π(p)-1 select 3E/2S/1o and yield no date. Reversal is not uniquely selected. Full row- and column-serpentine p50 flattenings also fail; only row-major plus reverse-triple does. Treat as hypothesis only; no plaintext/key.
+- Repro: sims/p57_parable_p50_prime_rank_date_hypothesis.py. Report: im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md. Initial broadcast: communications/broadcast/20261115T0855Z_agent23_parable-p50-date-pointer.md; layout-control follow-up: communications/broadcast/20261115T0859Z_agent23_p50-mobius-layout-control.md.
+- Next: seek independent source support for offset semantics and reverse-triple reading; validate whether the 2015 message is a meaningful waypoint. If unsupported, retire. Do not broaden into key/hash sweeps.
 
 # Agent23 durable research handoff (15 November 2026)
 
