@@ -34,15 +34,30 @@ For each segmentation, both block phases (0 and 1) were tested. Pair blocks rest
 Across all eight cases, the ciphertext uses 828–838 of the 841 possible pairs and no pair occurs more than 20 times. Its pair spectrum is close to the occupancy profile expected from a near-uniform stream.
 
 
-## Distinct key-independent obstruction: standard Playfair output digraphs
+## Standard Playfair: exact source-only equal-pair exclusion, including all four-transparent-rune keys
 
-Classical Playfair encryption on a keyed square (5×5 or 7×7, with an expanded symbol inventory where needed) pairs letters and shifts same-row/same-column entries or swaps their rectangle columns. It maps **two distinct input symbols to two distinct output symbols** for every keyed square. The customary filler rule also prevents identical plaintext pair members. Thus **no resulting ciphertext digraph can consist of two equal symbols**, regardless of square order, key, plaintext register, or key frequency. This is a strict source-only exclusion for *standard Playfair*, stronger in kind than the English-reference pair-frequency test above, and is not a statement about arbitrary stateful digraph ciphers.
+Classical Playfair encryption on a keyed 5×5 or 7×7 square maps every **distinct plaintext digraph** to a digraph of **distinct ciphertext symbols**. Standard plaintext filler preprocessing guarantees distinct input partners. Every keyed square obeys the same necessary condition: a complete Playfair output digraph **cannot contain two identical ciphertext symbols**. This is an original-source theorem that requires no source-language premise or enumeration of square permutations.
 
-The untouched 12,956 GP29 runes across 55 physical pages give **86 same-page equal-rune adjacent pairs**. Of these, 37 occupy the original global pairs (runes at offsets 0–1, 2–3, etc.) and 49 occupy the opposite global pairing. With independent page-local pair clocks, 35 equal pairs violate the phase-zero convention and 51 violate phase one. **Fourteen physical pages individually contain an equal adjacent pair in both parities** (p0, p3, p4, p8, p9, p19, p24, p25, p27, p34, p35, p41, p43, p44), so even granting a secret binary pairing phase on every page leaves **at least 17 pair violations**. For a fixed printed-word block clock, the 63 interior-word equalities split as 27 and 36 across its two phases. The authentic 2,896 printed words are preserved, including page-carrying words.
+The original 12,956 unknown LP2 runes give **86 same-page adjacent identical-rune pairs**. The earlier fixed 29-symbol analysis found 37 offending globally even-phase pairs and 49 in the opposite phase, 35/51 under page-local resets, and **14 physical pages each having both pair phases**, so independent page phases still incur at least 17 forbidden pairs. Word-reset two-phase equalities split 27/36 among its 63 intra-word identical adjacencies. These are the preexisting original-source results.
 
-This excludes standard filler-preprocessed Playfair under any **global, page-reset or fixed word-reset pair phase** on the original, unedited ciphertext. It does not exclude a hypothetical nonstandard Playfair variant with its own externally selected and recoverable insertions, deletions, variable pairing choices or reset positions; allowing unlimited edits or independent arbitrary phases per word removes this particular impossibility. A 29-letter GP alphabet also lacks a literal square layout, so a proposed square expansion needs an independently specified representation. No unknown plaintext, key or historical Playfair clue follows.
+### All possible four-symbol transparent exceptions on the 2014 5×5 route
 
-[Single-runnable original-input and all-digraph 5×5/7×7 positive theorem check](../sims/lp2_playfair_noidentical_pair_sft.cjs). [Passing Windows/Node 22 original-source check](https://github.com/FlareZ123/liber-primus/actions/runs/43574799586).
+The original 2014 Cicada magic-square material contains a **5×5** square, which can motivate a human to consider a keyed Playfair square. GP29 has **29** runes, so using a 25-cell square requires an independently specified rule for the remaining four. No first-party source selects Playfair or identifies the four exceptions. The strengthened test therefore gives this hypothesis **every one of C(29,4) = 23,751 possible transparent four-rune sets**, treating those glyphs as unchanged ciphertext symbols that do **not advance the core digraph pairing**.
+
+For each bypass set, remove all its occurrences from each source segment, then pair the remaining 25-symbol core stream. A complete pair of identical ciphertext symbols violates standard Playfair under **every 25! keyed square**. Grant an arbitrary unpaired trailing core symbol at each segment end without counting it as a violation. Test four independently printed reset scopes: whole book, the nine source-visible chapters, each physical rune-bearing page and each complete printed word. Original page-carrying words are preserved.
+
+| Pairing reset | Four-bypass sets passing | Fewest forbidden identical pairs | Best-case bypass GP indices | Minimum complete core pairs |
+| --- | ---: | ---: | --- | ---: |
+| Whole book | **0 / 23,751** | **42** | 6,16,21,25 | 5,520 |
+| Nine visual chapters | **0 / 23,751** | **42** | 0,2,6,10 | 5,519 |
+| Each physical rune page | **0 / 23,751** | **39** | 6,14,15,25 | 5,510 |
+| Each printed word | **0 / 23,751** | **25** | 7,9,10,25 | 4,773 |
+
+The best-case bypass subsets vary by reset and are retrospective minimizers. All four scopes fail without needing a language model, a guessed key square, a phase change, or a candidate plaintext. This explicitly strengthens the earlier no-bypass pair-phase gate and is independent of the Bifid25 all-key test, which uses a different digraph mapping. The original separate verified 2014 5×5 number square is **not** itself a 25-distinct-rune alphabet permutation.
+
+**Limits:** The exclusion requires standard filler-preprocessed Playfair, a fixed transparent 4-rune set, unedited source ciphertext and one of the four reset policies. Other 29-rune adaptations, dynamic bypass choices, arbitrary inserted/deleted symbols, per-word arbitrary phase changes, variable-length escape channels and other polygraphic ciphers are outside this result. A 5×5 square clue by itself does not establish any decipherment.
+
+The existing [source-exact Windows/Node 22 SFT](../sims/lp2_playfair_noidentical_pair_sft.cjs) now additionally exhausts **all 23,751 transparent sets × four source reset policies** and asserts the exact minimum violation counts. Its original 5×5 and 7×7 Playfair pair-map positive checks are retained, with **no plaintext or key recovered**.
 
 ## Native-English controls
 

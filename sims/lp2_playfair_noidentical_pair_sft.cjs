@@ -78,6 +78,82 @@ for (const side of [5, 7]) {
     }
   }
 }
+
+/**
+ * Stronger source-fixed 5x5 Playfair test: grant ANY four GP29 symbols
+ * transparent passthrough, so only the remaining 25 runes enter the square.
+ * Test every choice of 4 among 29, with free odd unpaired tails on reset.
+ * These are ciphertext-side bypass symbols. Standard filler preprocessing
+ * requires distinct members in every complete Playfair core digraph.
+ *
+ * @param {number[][]} segments
+ * @param {number} bypassMask
+ * @returns {{violations:number,pairs:number}}
+ */
+function playfair25Violations(segments, bypassMask) {
+  let violations = 0, pairs = 0;
+  for (const segment of segments) {
+    let first = -1;
+    for (const rune of segment) {
+      if (bypassMask & (1 << rune)) continue;
+      if (first === -1) {
+        first = rune;
+      } else {
+        pairs++;
+        if (first === rune) violations++;
+        first = -1;
+      }
+    }
+  }
+  return {violations, pairs};
+}
+
+const chapterLengths = [729,1145,1729,1903,1021,1433,1680,3008,308];
+const visualChapters = [];
+let chapterStart = 0;
+for (const n of chapterLengths) {
+  visualChapters.push(flat.slice(chapterStart, chapterStart + n));
+  chapterStart += n;
+}
+assert.equal(chapterStart, flat.length);
+const playfairScopes = {
+  book: [flat],
+  chapter: visualChapters,
+  page: pages.map(p => p.indices),
+  word: words
+};
+const fourBypass = Object.fromEntries(Object.keys(playfairScopes)
+  .map(scope => [scope, {minViolations: Infinity, maxViolations: 0,
+    minPairs: Infinity, bestFour: [], passing: 0}]));
+let bypassSetsTested = 0;
+for (let a = 0; a < 26; a++)
+  for (let b = a + 1; b < 27; b++)
+    for (let c = b + 1; c < 28; c++)
+      for (let d = c + 1; d < 29; d++) {
+        const mask = (1 << a) | (1 << b) | (1 << c) | (1 << d);
+        bypassSetsTested++;
+        for (const [scope, segments] of Object.entries(playfairScopes)) {
+          const {violations, pairs} = playfair25Violations(segments, mask);
+          const state = fourBypass[scope];
+          if (violations === 0) state.passing++;
+          if (violations < state.minViolations) {
+            state.minViolations = violations;
+            state.bestFour = [a,b,c,d];
+          }
+          state.maxViolations = Math.max(state.maxViolations, violations);
+          state.minPairs = Math.min(state.minPairs, pairs);
+        }
+      }
+assert.equal(bypassSetsTested, 23751);
+assert.deepEqual(Object.fromEntries(Object.entries(fourBypass)
+  .map(([scope, item]) => [scope, item.minViolations])),
+  {book:42,chapter:42,page:39,word:25});
+assert.deepEqual(Object.fromEntries(Object.entries(fourBypass)
+  .map(([scope, item]) => [scope, item.bestFour])),
+  {book:[6,16,21,25],chapter:[0,2,6,10],
+   page:[6,14,15,25],word:[7,9,10,25]});
+assert(Object.values(fourBypass).every(x => x.passing === 0));
+
 console.log(JSON.stringify({
   source: 'original LP2 physical p0..p55; p50 is runeless',
   runes: flat.length,
@@ -88,5 +164,6 @@ console.log(JSON.stringify({
   pagesImpossibleEvenWithIndividualUnknownPairPhase: impossiblePages.map(x => x.page),
   forcedViolationsAllowingIndependentPagePhases: compulsoryPageViolations,
   violationsIfEveryPrintedWordResetEvenOrOdd: [wordReset[1], wordReset[0]],
+  fourTransparentBypass: {tested: bypassSetsTested, scopes: fourBypass},
   control: 'all distinct input digraphs on 5x5 and 7x7 standard Playfair maps pass'
 }, null, 2));
