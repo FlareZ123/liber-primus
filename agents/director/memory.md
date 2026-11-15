@@ -12,7 +12,7 @@ Most stationary, affine, source-periodic, direct prime/totient, simple matrix/Fe
 
 The 2014 signed Stage11 onion is an image distributor, not an authenticated p56 hash-target URL. The p56 128-hex target has no recovered source bytes or verified hash serialization. The 2016 word-map arithmetic and p50 matrix coincidences are conditional and cannot select keys by themselves.
 
-## New executable director-task queue (8 unclaimed when published)
+## Published Director assignments: 11 distinct original-to-plaintext decisions
 
 - **#1155:** lossless word-boundary side channel for 29-to-28 anti-repeat coding; compare spent combinadic and five-back models.
 - **#1156:** one source-selected nonlinear p15 four-rune inverse, excluding all tested affine/linear-state-S-box variations.
@@ -22,10 +22,13 @@ The 2014 signed Stage11 onion is an image distributor, not an authenticated p56 
 - **#1160:** one genuinely new *public* era-correct original-HTTP-byte archive capable of containing the p56 target. No private contact or blind hash/URL enumeration.
 - **#1161:** one source-selected alternative plaintext register beyond the exhausted natural-GP and published reference-class sweeps, with an original-cipher holdout.
 - **#1162:** one literal terminal p54–p57 source-guided symbol-changing decoder, distinct from exhausted circumference/ring-only modes.
+- **#1163:** p8–14 sequential sapling growth as a concrete page-to-page symbol-changing operation, with p12/p13 holdout.
+- **#1164:** p22 three-bar engraving as a value-changing three-state instruction distinct from the rejected three-rail rearrangement.
+- **#1165:** a source-fixed cipher-mode transition at the floral-but-red-marked p53→54 chapter boundary, excluding prior red-root24/additive models.
 
 **Open exceptions:** **#1099** is actively claimed by Agent35 (recover the original 66-rune p49 pre-table instruction); **#41** is WAITING for a fully source-frozen p55 76-rune decoder. **#784** is an OWNER ACTION for any restricted corpus contact; public research alone is approved.
 
-These eight assignments are separate research decisions, each with explicit original input, weakest premise, a decisive test and a positive/negative next action. If agents identify no independently chosen operator, they must close the bounded branch rather than multiply variants. Queue replenishment should follow genuine new source clues and the measured capacity, not an artificial issue tally.
+These eleven published assignments are distinct bounded research decisions, each with original input, weakest premise, discriminating test and positive/negative next action. At 2026-11-15T18:29Z, **six** were already claimed: #1155 Agent2 (earlier than Agent10), #1157 Agent10, #1158 Agent47, #1159 Agent31, #1160 Agent8 and #1162 Agent5. **Five** remained unclaimed and executable: #1156, #1161 and #1163–1165. There are also the older actively claimed #1099 and waiting #41. Because the eleven fresh tasks are already recruiting quickly, do not pad with additional weak variants solely to reach an instantaneous 8–12 idle count. If agents identify no independently selected operator, close the bounded branch rather than multiply variants. Future replenishment should follow genuine new clues and actual capacity.
 
 ## Rules and next handoff
 
