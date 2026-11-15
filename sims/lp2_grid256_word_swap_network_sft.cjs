@@ -27,6 +27,19 @@ for (let i = 0; i < 256; i++) {
   [perm[i], perm[j]] = [perm[j], perm[i]];
 }
 assert.equal(new Set(perm).size, 256);
+
+// Canonical source-byte-driven Durstenfeld/Fisher-Yates shuffle: descending i,
+// reduce each printed byte to a legal uniformly indexed swap destination 0..i.
+// The byte-to-position remainder is explicit; no unknown seed or key.
+const fisher = Array.from({ length: 256 }, (_, i) => i);
+for (let i = 255; i >= 1; i--) {
+  const j = table[i] % (i + 1);
+  [fisher[i], fisher[j]] = [fisher[j], fisher[i]];
+}
+assert.equal(new Set(fisher).size, 256);
+const fisherInverse = Array(256);
+for (let i = 0; i < 256; i++) fisherInverse[fisher[i]] = i;
+
 const inverse = Array(256);
 for (let i = 0; i < 256; i++) inverse[perm[i]] = i;
 
@@ -126,6 +139,10 @@ function nativeGPWordLength(word) {
 
 const forward = reorder(original, perm);
 const reverse = reorder(original, inverse);
+const fisherRead = reorder(original, fisher);
+const fisherUndoRead = reorder(original, fisherInverse);
+assert.deepEqual(reorder(fisherRead, fisherInverse), original);
+assert.deepEqual(reorder(fisherUndoRead, fisher), original);
 assert.deepEqual(reorder(forward, inverse), original);
 assert.deepEqual(reorder(reverse, perm), original);
 
@@ -135,6 +152,10 @@ const reverseMI = adjacencyMI(reverse);
 assert.ok(Math.abs(originalMI - 0.012156100972939) < 1e-12);
 assert.ok(Math.abs(forwardMI - 0.011853468279357) < 1e-12);
 assert.ok(Math.abs(reverseMI - 0.008299716550225) < 1e-12);
+const fisherMI = adjacencyMI(fisherRead);
+const fisherUndoMI = adjacencyMI(fisherUndoRead);
+assert.ok(Math.abs(fisherMI - 0.012168164675891) < 1e-12);
+assert.ok(Math.abs(fisherUndoMI - 0.011553985341045) < 1e-12);
 
 // A source-independent natural-prose positive control of identical word count.
 // The fixed table swap destroys its order association; inverse restores it.
@@ -147,6 +168,14 @@ assert.deepEqual(controlRecovered, controlWords);
 const controlOriginalMI = adjacencyMI(controlWords);
 const controlCipherMI = adjacencyMI(controlCipher);
 const controlRecoveredMI = adjacencyMI(controlRecovered);
+const controlFisher = reorder(controlWords, fisher);
+const controlFisherInverse = reorder(controlWords, fisherInverse);
+assert.deepEqual(reorder(controlFisher, fisherInverse), controlWords);
+assert.deepEqual(reorder(controlFisherInverse, fisher), controlWords);
+const controlFisherMI = adjacencyMI(controlFisher);
+const controlFisherInverseMI = adjacencyMI(controlFisherInverse);
+assert.ok(Math.abs(controlFisherMI - 0.012092958424428) < 1e-12);
+assert.ok(Math.abs(controlFisherInverseMI - 0.019150927879123) < 1e-12);
 assert.ok(Math.abs(controlOriginalMI - 0.051149291018946) < 1e-12);
 assert.ok(Math.abs(controlCipherMI - 0.010483805085703) < 1e-12);
 assert.equal(controlOriginalMI, controlRecoveredMI);
@@ -157,13 +186,17 @@ console.log(JSON.stringify({
   output: {
     printedMI: originalMI,
     tableSwapReadMI: forwardMI,
-    tableInverseReadMI: reverseMI
+    tableInverseReadMI: reverseMI,
+    fisherYatesForwardMI: fisherMI,
+    fisherYatesInverseMI: fisherUndoMI
   },
   control: {
     naturalMI: controlOriginalMI,
     tableScrambledMI: controlCipherMI,
     exactSourceRecovery: true,
-    recoveredMI: controlRecoveredMI
+    recoveredMI: controlRecoveredMI,
+    fisherYatesForwardMI: controlFisherMI,
+    fisherYatesInverseMI: controlFisherInverseMI
   },
-  interpretation: 'Both table-derived direct-swap orders fail to recover printed-word natural-language length syntax'
+  interpretation: 'Both direct-pointer swap and canonical Fisher-Yates source-table word inverses fail to recover native-language length syntax'
 }, null, 2));
