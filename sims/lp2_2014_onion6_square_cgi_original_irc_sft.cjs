@@ -46,6 +46,23 @@ async function one(info){
  console.log('\nSOURCE '+name+' valid Git blob '+sha+' lines '+lines.length+
    ' Feb5-16 dated '+count+' term hits '+hits.length+' narrow '+rawHits.length);
  for(const e of rawHits.slice(0,190))console.log('HIT L'+e.n+' '+e.text);
+
+ if(name==='#cicadasolvers.freenode.log'){
+   console.log('## Actual Feb 10 live CGI index observation L114785–115005');
+   for(let i=114785;i<=115005;i++) {
+     const line=lines[i-1];
+     if(/^2014 Feb 10 /.test(line))console.log('RAW L'+i+' '+normalize(line));
+   }
+   console.log('## Original dated submitted-squares behavioral claims');
+   for(let i=0;i<lines.length;i++){
+     const line=lines[i],dt=day(line);
+     if(dt!==null && dt>=206 && dt<=216
+       && /(wrong|bad|invalid|empty|random|any|arbitrary|different|submitted|submission|accepted|reject|even|unrelated|check|verify|script)/i.test(line)
+       && /(squares?|cgi-bin\\/squares|thank you for you submission|submission|input validation)/i.test(line)) {
+       console.log('BEHAV L'+(i+1)+' '+normalize(line));
+     }
+   }
+ }
  console.log('NEAR HANDLER/REJECTION CRITERION '+rawHits.filter(x=>veryHigh.test(x.text)).length);
  for(const x of rawHits.filter(x=>veryHigh.test(x.text)).slice(0,90)){
    console.log('HIGH L'+x.n+' '+x.text);
