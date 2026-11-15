@@ -215,6 +215,30 @@ for (const summary of referenceSummaries) {
     ', max ' + summary.high.toFixed(9));
 }
 
+
+// Exact combinatorial background rate for the retrospectively noted
+// 729 match: under an explicit uniform independent GP29 title-rune model,
+// the inferred additive key is uniform independently at thirteen sites.
+// This is a null for arithmetic coincidence, not authorial probability.
+let counts = new Map([[0, 1n]]);
+for (let i = 0; i < 13; i += 1) {
+  const next = new Map();
+  for (const [sum, count] of counts) {
+    for (const prime of data.prime) {
+      const target = sum + prime;
+      next.set(target, (next.get(target) || 0n) + count);
+    }
+  }
+  counts = next;
+}
+const randomKeyCount729 = counts.get(729);
+const randomKeyTotal = 29n ** 13n;
+assert.equal(randomKeyCount729, 41422038766646980n);
+assert.equal(randomKeyTotal, 10260628712958602189n);
+console.log('Exact independent-uniform 13-rune key prime-sum729 null: ' +
+  randomKeyCount729 + '/' + randomKeyTotal + ' = ' +
+  (Number(randomKeyCount729) / Number(randomKeyTotal)).toFixed(12));
+
 console.log('PASS: source p0-p2 262+266+201 = 729 original runes');
 console.log('PASS: proposed title gives 13 fixed key symbols, prime total 729');
 console.log('PASS: positive solved-p57 native GP plant, exact 729/729 recovery');
