@@ -28,4 +28,19 @@ Each of **14 independent synthetic positive controls** repeats an authentic solv
 
 **Decision:** no way to select the literal-F interruptions rescues the 2014 source **7×7 row-per-page modulo29 additive cipher** on the exact original cuneiform body, under either sign and natural source clock. This is a stronger source-key algebraic exclusion than the existing original IoC scores, with no recovered unknown-page prose. The original manuscript does not explicitly command this key transfer; source numbers, seven pages and historical F bypass make it a motivated *test*, not proof of the intended cipher.
 
+## The separate Euler-totient row-key variant
+
+The same historical square permits a **distinct, narrower** row key selected by the publicly solved *totient* instruction: replace each original numeric cell `n mod29` with `φ(n) mod29`. Keeping all seven original physical page boundaries, both signs and the same exhaustive plaintext-F interruption, the first impossible zero-based indices are:
+
+| Source page | p33 | p34 | p35 | p36 | p37 | p38 | p39 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `C=P+φ(K)` | 25 | 94 | 17 | **survives entire 238** | 23 | 98 | 34 |
+| `C=P−φ(K)` | 51 | 27 | 83 | 36 | 30 | 3 | 19 |
+
+The sole survivor is the **central physical p36**, under addition of the totients from the **central 7×7 square row** `[8,19,14,11,14,19,8]`. The exhaustive F histories yield **three** legal full-length rune sequences. They share the same early output but have GP29 coincidence indices **0.034323, 0.035528, 0.035989**; none resembles native plaintext, while the solved-p57 GP-English positive has elevated coincidence around 0.06. The first 40 GP transliterated symbols on all three legal branches are `EMTAEWEIAEXEEAGMGUPEAEXGBAAARHGEOUGBMXWBCLIAMM` (transliteration expands some rune glyphs). The other 13 authentic source-page/sign channels become algebraically impossible, so this is **not** a full seven-page decipherment.
+
+A fixed 20,000-replicate **in-page original-glyph-multiset shuffle**, preserving all eight exact p36 ciphertext-F locations, yields **91** random surrogate strings with a legal full φ-row/F-bypass inverse (empirical rate **0.00455**). That narrow fixed-test rarity is real under this null, but the operation was examined after many historical-key families and includes 14 page/sign alternatives, so the number is **not** a discovery-wide probability. P36's apparent legality is a possible source-selected special case with no recovered legible text; an extra hypothetical layer would require its own historical clue and held-out original proof. Do not promote it as an operative key.
+
+Reproduction: [totient seven-square survivor SFT](../sims/lp2_cuneiform_seven_square_phi_survivor_sft.cjs), which asserts all 14 original pass/fail offsets, the three central legal histories, authentic GP-native controls, and the 20,000 source-conditioned shuffles.
+
 [Read-only complete original SFT with 14/14 matched GP-native positives](../sims/lp2_cuneiform_seven_square_ftransparent_sft.cjs).
