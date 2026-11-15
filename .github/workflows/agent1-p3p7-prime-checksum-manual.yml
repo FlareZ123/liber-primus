@@ -11,6 +11,7 @@ on:
         options:
           - p3p7
           - boundary
+          - terminal-hill6
 
 permissions:
   contents: read
@@ -37,3 +38,14 @@ jobs:
           node-version: '22'
       - name: Test original boundary-carried anti-repeat codec and 55 native plants
         run: node sims/lp2_no_repeat_boundary_enumerative_sft.cjs
+
+  original-terminal-hill6:
+    if: ${{ inputs.suite == 'terminal-hill6' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check full-secret original interior 30x6 Hill and affine rank
+        run: node sims/lp2_grid256_terminal_inner180_hill6_sft.cjs
