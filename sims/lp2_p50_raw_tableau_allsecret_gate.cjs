@@ -81,6 +81,7 @@ const doubletSites=[];
 for(let i=1;i<N;i++)if(C[i]===C[i-1])doubletSites.push(i);
 assert.equal(doubletSites.length,86);
 function chiSquareP4(observed,expected){
+  if(expected.some(x=>x===0))return null;
   const x=observed.reduce((s,o,i)=>s+(o-expected[i])**2/expected[i],0)/2;
   return Math.exp(-x)*(1+x); // chi-square survival, df=4
 }
