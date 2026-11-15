@@ -6,7 +6,10 @@
 // Correct image mapping: only logical p32 (original JPEG49) supplies the 13-dot
 // marker used here; the earlier p49/p53 marker corroboration was erroneous.
 // The 2016 signed-message map supplies Good/Luck target runes.
-// No fitted start, phase, rotation, or permutation is used.
+// The 13-rune window at offset25 is not source-selected and matches sum413
+// only after searching among the page's 109 consecutive 13-rune windows.
+// A 256-start enumeration is an internal consistency check, not a null model
+// correcting for the selected window, polarity or traversal rules.
 
 const fs = require("node:fs");
 const assert = require("node:assert/strict");
@@ -81,7 +84,8 @@ assert.equal(goodLuckSteps.length, 10);
 assert.equal(goodLuckSteps.reduce((a, b) => a + b, 0), 413);
 assert.deepEqual(goodLuckSteps, [73, 17, 2, 29, 107, 13, 47, 17, 5, 103]);
 
-// p32's selected 13-rune window: printed word start at local rune offset 25.
+// Exploratory p32 13-rune window: word start at offset25, but the span
+// ends five runes into an eleven-rune printed word; no ink marks this span.
 const p32Window = corpus.pages.find(page => page.page === 32).indices.slice(25, 38);
 const p32WindowText = p32Window.map(index => corpus.translit[index]);
 const p32Steps = p32Window.map(index => corpus.prime[index]);
