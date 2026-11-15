@@ -128,6 +128,9 @@ const base60GlobalCurrent=repeatMask.find(x=>x.radix==='base60'&&x.clock==='glob
 assert.deepEqual(base60GlobalCurrent.highDigit.events,[15,25,24,18,4]);
 assert.deepEqual(base60GlobalCurrent.lowDigitMod5.events,[20,14,23,15,14]);
 assert.equal(base60GlobalCurrent.bottom20.eventCount,11);
+const base60GlobalPrevious=repeatMask.find(x=>x.radix==='base60'&&x.clock==='global'&&x.which==='previous');
+assert.deepEqual(base60GlobalPrevious.highDigit.all,[3036,2936,3288,2837,858]);
+assert.deepEqual(base60GlobalPrevious.highDigit.events,[33,12,17,19,5]);
 
 result.repeatMask={doubletSites:doubletSites.length,opportunities:N-1,tests:repeatMask};
 const rankedTable=tableCells60.slice().sort((a,b)=>a.byte-b.byte||a.index-b.index);
