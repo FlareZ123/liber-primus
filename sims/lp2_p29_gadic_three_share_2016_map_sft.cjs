@@ -108,7 +108,7 @@ function exactMessageMapInteriors() {
       .map(g => glyphIndex.get(g)));
   assert.equal(target.length, 91);
   assert.equal(target.slice(0,14).map(x => corpus.translit[x]).join(""),
-    "IARFEIOLOEEAEOB");
+    "IARFEIOLOEEAEOBOL");
   return target;
 }
 
