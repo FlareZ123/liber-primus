@@ -14,7 +14,7 @@ const ROOT = path.resolve(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const original = read('resources/liber-primus/lp2-transcription.txt')
   .split('%').slice(0, -2).join('')
-  .replace(/\/\r?\n/g, '')
+  .replace(/\/\s*/g, '')
   .replace(/[.\-&$\r\n]/g, '-')
   .split('-').filter((w) => /[\u16A0-\u16FF]/u.test(w))
   .map((w) => [...w].filter((ch) => /[\u16A0-\u16FF]/u.test(ch)).length);
