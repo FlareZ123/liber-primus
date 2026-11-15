@@ -73,5 +73,29 @@ for (const [index, voice] of voices.entries()) {
   }));
 }
 assert.equal(count, 20);
+
+// The preserved 2014 monospaced note alignment supplies a separate,
+// fully predetermined time-order reading: left to right by text column,
+// breaking simultaneous-event ties in printed top-to-bottom staff order.
+const timed = lines.flatMap((s, voice) => {
+  const score = s.slice(s.indexOf(':') + 1);
+  return Array.from(score.matchAll(/\S+/g), m => ({
+    voice, column: m.index, note: m[0],
+  }));
+});
+timed.sort((a, b) => a.column - b.column || a.voice - b.voice);
+assert.equal(timed.length, 20);
+assert.equal(new Set(timed.map(e => e.column)).size, 13);
+const timeOrdered = timed.map(e => e.note);
+assert.deepEqual(transposedMotifs(timeOrdered), [], 'Source-aligned timeline BACH');
+assert.deepEqual(transposedMotifs([...timeOrdered].reverse()), [], 'Source-aligned retrograde BACH');
+console.log(JSON.stringify({
+  source_order: 'printed-onset-column / upper-to-lower-staff',
+  source_events: timed.length,
+  unique_onset_columns: 13,
+  adjacent_windows: timed.length - 3,
+  transposed_BACH: transposedMotifs(timeOrdered).length,
+  retrograde_transposed_BACH: transposedMotifs([...timeOrdered].reverse()).length,
+}));
 assert.equal(voices.flat().filter(n => n === 'Bb').length, 0);
 console.log('PASS: original 20 notes across three voices; zero literal, transposed or retrograde BACH motifs. No LP2 key or plaintext.');
