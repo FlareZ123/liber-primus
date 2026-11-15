@@ -32,6 +32,17 @@ assert.equal(corpus.translit[p56[0]], "AE");
 assert.equal(p27[35], 0);
 assert.equal(corpus.translit[p27[35]], "F");
 
+// The exact cross-page seven-rune match itself is already eight ASCII characters
+// because GP AE transliterates to the two-character sequence "AE".
+// This is the shortest source-selected historical OpenPuff password.
+const seven = p27.slice(28, 35);
+assert.equal(seven.length, 7);
+assert.deepEqual(seven.slice(0,6), six);
+assert.equal(seven[6], p56[0]);
+assert.equal(spell(seven), "DJUBEIAE");
+assert.equal(spell(seven).length, 8);
+console.log("SOURCE_P55_P56_P27_EXACT_7RUNE_8ASCII_PASSWORD_VERIFIED");
+
 const eight = p27.slice(28, 36);
 assert.equal(eight.length, 8);
 assert.equal(spell(eight), "DJUBEIAEF");
@@ -42,6 +53,7 @@ console.log("SOURCE_P55_P27_8RUNE_PASSWORD_VERIFIED");
 console.log(JSON.stringify({
   source: "original p55 last6 + original p56 first AE = p27 offsets28..34; p27 following F",
   source_glyphs: eight.length,
+  exact_cross_page_seven_rune_eight_ascii: spell(seven),
   source_ascii_characters: spell(eight).length,
   password: spell(eight),
   original_scans: [44, 72],
