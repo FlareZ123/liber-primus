@@ -73,7 +73,61 @@ function analyze(html, corpus) {
     Array.from({length: 38}, (_, i) => i + 1));
   assert.deepEqual(stageEntries.map(([, n]) => n),
     [7,5,5,4,4,3,4,2,1,1,3,2,3,3,1,3,3,2,3,2,2,2,2,2,3,2,2,6,2,2,2,3,1,2,2,2,2,3]);
+  // The one uniquely documented first seven-rune subtraction is exact, but
+  // test its same-key contiguous continuation before following a new hand-picked path.
+  const openingOffset = 12 * 27 + 24; // original source (row13,col25)
+  const openingKey = [25, 10, 28]; // AE-I-EA
+  const continued = p0p2.slice(openingOffset).map(
+    (cipher, index) => (cipher - openingKey[index % 3] + 29) % 29
+  );
+  assert.deepEqual(continued.slice(0, 7), [24, 15, 10, 6, 3, 2, 18],
+    'the externally reported seven-rune AS I GO THE inverse is exact');
+  const frequencies = Array(29).fill(0);
+  continued.forEach(index => frequencies[index]++);
+  const continuedIoC = frequencies.reduce(
+    (acc, count) => acc + count * (count - 1), 0
+  ) / (continued.length * (continued.length - 1));
+  assert.ok(Math.abs(continuedIoC - 0.03413454897085233) < 1e-13);
+
+  // Under an otherwise unconstrained period-3 GP29 key, WEATHER is
+  // compatible with multiple straight five-rune paths in the same source.
+  const weather = [7, 28, 2, 18, 4]; // W EA TH E R
+  const directions = [
+    [0, 1], [0, -1], [1, 0], [-1, 0],
+    [1, 1], [-1, -1], [1, -1], [-1, 1],
+  ];
+  const weatherMatches = [];
+  for (let row = 0; row < 27; row++) for (let column = 0; column < 27; column++) {
+    for (const [dr, dc] of directions) {
+      const endRow = row + 4 * dr, endColumn = column + 4 * dc;
+      if (endRow < 0 || endRow >= 27 || endColumn < 0 || endColumn >= 27) continue;
+      const localKey = weather.map((plaintext, index) =>
+        (p0p2[(row + dr * index) * 27 + column + dc * index] - plaintext + 29) % 29
+      );
+      if (localKey.every((value, index) => value === localKey[index % 3])) {
+        weatherMatches.push({
+          row: row + 1, column: column + 1,
+          direction: [dr, dc],
+          key: localKey.slice(0, 3).map(index => corpus.translit[index]).join('-'),
+        });
+      }
+    }
+  }
+  assert.equal(weatherMatches.length, 5);
+  assert.ok(weatherMatches.some(match => match.row === 14 &&
+    match.column === 14 && match.direction[0] === 0 &&
+    match.direction[1] === 1 && match.key === 'X-X-I'));
+
   return {
+    initialSevenRuneInversion: {
+      row: 13, column: 25, ciphertextKey: 'AE-I-EA',
+      plaintext: 'A S I G O TH E',
+      contiguousRuneCount: continued.length,
+      immediate38RuneContinuationAfterSeven: continued.slice(7, 45)
+        .map(index => corpus.translit[index]).join(' '),
+      contiguousIoC: continuedIoC,
+    },
+    weatherPeriod3GeometryMatches: weatherMatches,
     originalChapterRunes: position,
     independentlyVerifiedSourceCells: position,
     candidateBlocks: stageEntries.length,
