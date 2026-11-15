@@ -1,6 +1,6 @@
 # All-secret row/column key obstruction on the terminal 180 known runes
 
-**Status:** eight exact original-source architectural negatives, with all unknown mask coefficients eliminated. These reject a direct two-way separable mask interpretation of the LP2 numerical grid. No new unknown plaintext, key or destination.
+**Status:** eight exact original-source mask negatives and a four-cell all-secret hybrid token-lookup-plus-row/column contradiction. These reject specific direct decoders of the LP2 numerical grid. No new unknown plaintext, key or destination.
 
 ## Human-solvable clue path
 
@@ -32,8 +32,28 @@ In either field, the **first row and first column determine every possible secre
 
 Every candidate fails at least **136 of its 145 independent required predictions**. The 29-symbol residue models have random-input match expectation 5/145; the 256-byte models only ~0.57/145. These original results are typical of unrelated registers, while an exact row+column mask would have **145/145** matches. The positive-control implementation constructs nonconstant, genuinely unknown row and column masks over both fields and recovers **145/145** equations with no supplied key coefficients.
 
+
+## Stronger four-cell certificate: arbitrary token lookup **plus** arbitrary row and column masks
+
+A distinct key-independent test eliminates an apparent loophole in the simpler masks: allow **every source-printed two-character token** an independent completely secret GP29 value, *and simultaneously* allow every physical table row and column independently secret additive masks. The proposed alignment's necessary equation is
+
+`P[r,c] = S(token[r,c]) + R[r] + C[c] (mod 29)`.
+
+The first 85 interior cells are independently known plaintext from the *authenticated p56 prime-totient inverse*, so this obstruction does not rely on the p57 register, a guessed p55 rune, or the base59-versus-base60 numeric interpretation. Under the published 30×6 inner-table row-major alignment, four original source cells already contradict **every possible** secret choice:
+
+| Original full-grid row, column (1-based) | Table cell (1-based) | Original printed token | Verified p56 clear GP index |
+|---|---:|---|---:|
+| 5, 3 | 35 | `3H` | 2 |
+| 5, 5 | 37 | `0s` | 4 |
+| 15, 3 | 115 | `3H` | 10 |
+| 15, 5 | 117 | `0s` | 13 |
+
+In each row the row mask `R[r]` cancels when subtracting columns 3 and 5; between the rows both printed tokens are **identical in corresponding columns**, so the unknown lookup and the two unknown column masks would force identical column differences. Instead the two authenticated target differences are `2−4=27 (mod29)` and `10−13=26 (mod29)`. Since 27≠26 modulo29, the hybrid model is impossible even with unrestricted key material. A distinct planted hybrid with different secret token, row and column masks satisfies the necessary equality; the same CommonJS reproducer asserts all four source cells and the positive control.
+
+This result strictly extends the earlier all-secret 30-row/6-column affine and direct byte-lookup exclusions, **conditional on the unproven 76-perimeter/180-interior mapping**. It excludes only a *stationary* token lookup combined with *separable* row and column masks. It cannot reject state-changing token functions, nonlinear mixing, a differently oriented table, or the possibility that the 32×8 object serves another purpose. No original unknown plaintext or creator key has been recovered.
+
 ## Decision
 
-A direct **row+column additive/XOR mask** on the p50 table interior is ruled out under either historical radix and either visible p56 register. The clue-anchored 76/180 terminal alignment remains real, but it does not authorize an invertible cipher, an outer-perimeter decryption, or a table-byte interpretation. Because the necessary inner-180 test fails with *every* possible secret row/column key, fitting one cannot rescue the architecture. More elaborate nonlinear clocks or alternative traversal remain open pending an independently visible operation.
+Direct **row+column additive/XOR masks** on the p50 table interior are ruled out under either historical radix and either visible p56 register. The additional token-lookup-plus-row/column hybrid is exactly impossible under the four-cell verified p56 certificate, independent of those radices. The clue-anchored 76/180 terminal alignment remains real, but it does not authorize an invertible cipher, an outer-perimeter decryption, or a table-byte interpretation. Because the necessary inner-180 test fails with *every* possible secret row/column key, fitting one cannot rescue the architecture. More elaborate nonlinear clocks or alternative traversal remain open pending an independently visible operation.
 
 Reproduction: [self-contained exact original-input CommonJS test](../sims/terminal_inner180_allsecret_rowcol_sft.cjs) with Node.js 22; unchanged `resources/liber-primus/base60-grid.json` and `lp2-corpus.json`. The 85-rune p56 known plaintext is encoded **word by word** with canonical GP digraphs, preventing spurious cross-word ligatures.

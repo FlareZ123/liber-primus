@@ -89,6 +89,51 @@ for(const [radix,bytes] of sourceModes)
     }
 assert.deepEqual(results.map(r=>r.matches),[2,1,9,1,8,1,1,2]);
 
+
+/**
+ * A four-cell key-independent obstruction to the strictly larger hybrid
+ * P[row,col] = secretLookup[printedToken] + secretRow[row] + secretCol[col]
+ * (mod 29). This grants an arbitrary 29-way/non-injective secret mapping for
+ * each original two-character token and arbitrary separate row/column masks.
+ *
+ * The chosen cells are all within the first 85 known p56 plaintext positions:
+ * no unknown p55 guess and no p57 text is needed. Table coordinates are
+ * one-based in the original complete 32x8 printed object.
+ * @param {number} row One-based table row.
+ * @param {number} col One-based table column.
+ */
+function hybridKnownCell(row,col) {
+  assert(row>=2 && row<=31 && col>=2 && col<=7);
+  return {
+    row,col,token:grid.rows[row-1][col-1],
+    target:known[(row-2)*6+(col-2)]
+  };
+}
+const hybridCells=[
+  hybridKnownCell(5,3),hybridKnownCell(5,5),
+  hybridKnownCell(15,3),hybridKnownCell(15,5)
+];
+assert.deepEqual(hybridCells.map(x=>[x.token,x.target]),[
+  ['3H',2],['0s',4],['3H',10],['0s',13]
+]);
+const topHybridDifference=mod(hybridCells[0].target-hybridCells[1].target,29);
+const bottomHybridDifference=mod(hybridCells[2].target-hybridCells[3].target,29);
+assert.deepEqual([topHybridDifference,bottomHybridDifference],[27,26]);
+assert.notEqual(topHybridDifference,bottomHybridDifference);
+// A genuine (independently planted) hybrid with unknown lookup and masks
+// satisfies the necessary equality for both rows, regardless of those keys.
+const secretToken=new Map([['3H',7],['0s',22]]);
+const secretRow=new Map([[5,3],[15,17]]);
+const secretCol=new Map([[3,4],[5,11]]);
+/** @param {number} r @param {number} c @param {string} token */
+function plantedHybrid(r,c,token){
+  return mod(secretToken.get(token)+secretRow.get(r)+secretCol.get(c),29);
+}
+assert.equal(
+  mod(plantedHybrid(5,3,'3H')-plantedHybrid(5,5,'0s'),29),
+  mod(plantedHybrid(15,3,'3H')-plantedHybrid(15,5,'0s'),29)
+);
+
 // Positive controls: source-independent native register and completely
 // unknown, deliberately nonconstant row/column masks. Exact all-secret
 // interpolation must predict every withheld interior key equation.
@@ -110,6 +155,7 @@ console.log(JSON.stringify({
   gaugeDegreesOfFreedom:1,
   unconstrainedTests:145,
   results,
+  hybridAllSecretTokenLookupAndRowColumn:{cells:hybridCells,topDifference:topHybridDifference,bottomDifference:bottomHybridDifference,contradiction:true,positivePlantedHybrid:'PASS'},
   positivePlantedAllSecretMasks:'PASS: 145/145 each',
   classification:'No compatible source-original row+column key or recovered unknown plaintext'
 },null,2));
