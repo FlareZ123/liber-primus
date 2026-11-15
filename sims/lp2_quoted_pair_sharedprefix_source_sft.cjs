@@ -79,6 +79,33 @@ function affineCandidates(a, b, subset) {
  * @param {number[]} phases
  * @param {number} period
  */
+/**
+ * Necessary bijection test for identical plaintext under arbitrary,
+ * independently chosen page-substitution alphabets keyed only by phase.
+ * Unlike affineCandidates, this permits all 29! possible permutations;
+ * it fails only if equalities disagree in either direction.
+ * @param {number[]} source
+ * @param {number[]} destination
+ * @param {number[]} phases
+ * @param {number} period
+ * @returns {{ period: number, possible: boolean, violationCount: number }}
+ */
+function permutationGate(source, destination, phases, period) {
+  const forward = Array.from({ length: period }, () => new Map());
+  const reverse = Array.from({ length: period }, () => new Map());
+  let violations = 0;
+  for (let i = 0; i < source.length; i += 1) {
+    const phase = phases[i] % period;
+    const a = forward[phase];
+    const b = reverse[phase];
+    if (a.has(source[i]) && a.get(source[i]) !== destination[i]) violations += 1;
+    if (b.has(destination[i]) && b.get(destination[i]) !== source[i]) violations += 1;
+    a.set(source[i], destination[i]);
+    b.set(destination[i], source[i]);
+  }
+  return { period, possible: violations === 0, violationCount: violations };
+}
+
 function periodGate(source, destination, phases, period) {
   const slots = Array.from({ length: period }, () => []);
   for (let i = 0; i < source.length; i += 1) {
@@ -217,6 +244,20 @@ function main() {
     assert.equal(gate.allowsPerPhaseAdditive, false);
     assert.equal(gate.allowsPerPhaseAffine, false);
   }
+  // Source-only test broader than affine: arbitrary page/phase permutations.
+  // Word-reset 5-phase (or any longer period with the same word-local phase)
+  // fails because p53's equal symbols at word-local offset 1 in word 4 and
+  // word 5 correspond to unequal p40 symbols.
+  const globalPermutations = Array.from({ length: 5 },
+    (_, i) => permutationGate(a, b, globalPhases, i + 1));
+  const wordPermutations = Array.from({ length: 5 },
+    (_, i) => permutationGate(a, b, wordPhases, i + 1));
+  assert.deepEqual(globalPermutations.map((g) => g.possible),
+    [false, false, false, false, true]);
+  assert(wordPermutations.every((g) => g.possible === false));
+  assert.equal(b[15], b[18]);
+  assert.notEqual(a[15], a[18]);
+
   // Original same-phrase hypothesis under a static page alphabet cannot map
   // p40's repeated ciphertext F to p53's three different symbols.
   assert.deepEqual([a[0], a[16], a[18]], [0, 0, 0]);
@@ -238,6 +279,8 @@ function main() {
     staticPagePermutationContradiction: true,
     globalPhase1To5: globalGates,
     wordResetPhase1To5: wordGates,
+    globalArbitraryPhase1To5: globalPermutations,
+    wordResetArbitraryPhase1To5: wordPermutations,
     fixedGrid256PageRowAdditiveMatches: matchingP50,
     unchangedCiphertextA: a,
     unchangedCiphertextB: b
