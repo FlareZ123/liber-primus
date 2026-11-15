@@ -1,6 +1,6 @@
 # OutGuess keyed-image extraction: 22 corpus-wide source clues, original 2014 OpenPuff password, and isolated candidates
 
-**Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls, plus a local extractor parity check against the pinned OutGuess workflow. Agent 40, 2026-11-10; Agent 8, 2026-11-11; Agent 38, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
+**Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls, plus a local extractor parity check against the pinned OutGuess workflow. Agent 40, 2026-11-10 and 2026-11-15; Agent 8, 2026-11-11; Agent 38, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
 
 ## Purpose
 
@@ -112,6 +112,14 @@ Reproduction:
 - `python3 sims/outguess_extract.py resources/liber-primus/17.jpg 18 --output /tmp/p0-dh18-outguess.bin`
 - The helper follows the pinned [OutGuess `jpg.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/jpg.c), [`iterator.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/iterator.c), and [`arc.c`](https://github.com/resurrecting-open-source-projects/outguess/blob/24810e14327c2bbeedeaadd3e24491f2a4425c02/src/arc.c); it requires a C compiler and libjpeg development headers.
 
+## Signed 2014 distributor hostname as the original-p0 OutGuess key (Agent40, 15 November 2026)
+
+A different literal password derives from the [authentic 2014 signed Stage11 handoff](../resources/historical/cicada2014-stage11-message.asc): `ky2khlqdf7qdznac.onion`. This exact source-visible URL is absent from the 22 earlier corpus-wide passwords. Its *role as an OutGuess password* remains conjectural because the signed message presents it as the **distributor URL**. The first LP2 scan `17.jpg` was the one frozen carrier, with original bytes and no other derived keys.
+
+The existing pinned OutGuess extractor and real/clean controls completed on [Actions run 43751523610](https://github.com/FlareZ123/liber-primus/actions/runs/43751523610). Original `17.jpg` yielded a header-consistent **55,644-byte** payload at `seed=38191`, SHA-256 `98320a58b7081790e4d6242da73e5150b1b936bb72042404b3e0a1f0a2440337`, first 32 bytes `2f955cd93304a603d2c1c9f74cc38634247ca1eb32fdc29833a0437241bec066`, empirical byte entropy **7.996477 bits/byte**, printable proportion **0.381694**, and **no recognizable PGP, ZIP, gzip, PNG, or readable text**. The same *exact key* on a **genuinely payload-free synthetic image** produced a likewise header-consistent **53,260-byte false extraction** (`seed=42828`, SHA-256 `b2bd2f52c61a3dbb39ee56f52c79fcaa11370aadde9b9530e7df06d00f4c5ab9`). A newly embedded password79 genuine 47-byte message recovered **47/47**; original LP1 default controls `00.jpg` and `08.jpg` passed. The [run artifact](https://github.com/FlareZ123/liber-primus/actions/runs/43751523610/artifacts/14176079411) preserves both the exact extracted original bytes and JSON audit.
+
+**Decision:** signed-hostname-as-OutGuess-password on the first original LP2 page produced **no authenticated payload or key**. Apparent header consistency on its own is invalidated by the clean-control false positive. The result does not test other carriers or prove no hidden message can exist under a different key. No next-stage byte or text decipherment is justified on this output.
+
 ## LP1 circumference-key source-spelling gate (Director Issue #395, 11 November 2026)
 
 **Original-source correction and bounded result:** the solved LP1 Vigenère word is `FIRFUMFERENFE`, with **F at character 12 (1-based)**, not the Issue's `FIRFUMFERENCE`, which has C at that position. The same original 13-rune key is explicitly identified in the [external LP1 solver's validated-key table](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md#7-all-known-keys--keywords) and in the [independent five-solved-page decryptor](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/handoff/FOR-FUTURE-SOLVERS.md). The repository's earlier [22-password gate](https://github.com/FlareZ123/liber-primus/actions/runs/42780745513) **already tested both** the real uppercase `FIRFUMFERENFE` and its lowercase spelling against all 58 LP2 originals: the 58 uppercase extractions and 24 lowercase extractions with internally consistent headers produced **zero recognizable messages**. Thus no rerun of the real key is necessary.
@@ -134,7 +142,7 @@ For the missing false-positive calibration, the shared [single-password scanner]
 
 No original LP2 hidden PGP-signed message or readable nonempty content was recovered under the 22 corpus-wide source passwords, the independently documented 2014 `33011033` OpenPuff password transferred to OutGuess, the separate INSTAR p55 test, or the isolated p0 DH18 / image17 OutGuess candidate. Their consistent extraction headers are not cryptographic authentication. A hidden payload using other password derivation, key material, image encoding, nested encryption or unrelated DCT steganography remains untested. The source-derived finite password search therefore gives a **bounded negative with a useful detection discriminator**, rather than a proof of no source-image steganography.
 
-Potential next source-image attack should demand exact recovered material and a distinguishing planted control, preferably a signed message or a demonstrated LP2 key with genuine decipherment. Further unrestricted passphrase guesses against these header artifacts have weak expected value without a new independent key clue; the p0 DH18 → OutGuess password18 path is now closed.
+Potential next source-image attack should demand exact recovered material and a distinguishing planted control, preferably a signed message or a demonstrated LP2 key with genuine decipherment. Further unrestricted passphrase guesses against these header artifacts have weak expected value without a new independently usable key clue. The signed distributor hostname on p0 also lacks an authenticated payload, and the p0 DH18 → OutGuess password18 route remains closed.
 
 ## Reproduction
 
