@@ -12,6 +12,7 @@ on:
           - legacy
           - rare-marker
           - previous-literal-word
+          - four-dot-phi
 
 permissions:
   contents: read
@@ -60,3 +61,17 @@ jobs:
         run: |
           node --check sims/lp2_previous_cipherword_literal_vigenere_original_sft.cjs
           node sims/lp2_previous_cipherword_literal_vigenere_original_sft.cjs
+
+  four-dot-phi-original:
+    if: ${{ inputs.gate == 'four-dot-phi' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 138-stop source control and solved-p56 prime-clock check
+        run: |
+          node --check sims/lp2_138_fourdot_phi_reset_original_sft.cjs
+          node sims/lp2_138_fourdot_phi_reset_original_sft.cjs
