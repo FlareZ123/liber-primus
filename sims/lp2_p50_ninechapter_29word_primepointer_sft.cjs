@@ -94,6 +94,68 @@ assert.equal(wisdom.repeated, 255);
 assert.deepEqual(identifier.path, [229, 91, 210, 183, 156, 171, 148, 167, 101, 187]);
 assert.equal(identifier.repeated, 156);
 
+/* The first direct proposed cipher consumer uses the newly selected
+ * five-rune source word as the ordinary repeating GP29 Vigenere key for
+ * original p55. A source-selected key candidate is not yet an authored
+ * instruction to use Vigenere; this bound tests the simplest inverse. */
+const key = [...last.word.runes].map(rune => runeIndex.get(rune));
+assert.deepEqual(key, [26, 15, 8, 1, 20]);
+const p55 = corpus.pages[55].indices;
+assert.equal(p55.length, 76);
+const mod29 = value => (value % 29 + 29) % 29;
+/** @param {number[]} values */
+function coincidence(values) {
+  const count = Array(29).fill(0);
+  for (const symbol of values) count[symbol]++;
+  return count.reduce((n, f) => n + f * (f - 1), 0) /
+    (values.length * (values.length - 1));
+}
+/**
+ * Enumerate every legal literal-F bypass history in the authentic p56
+ * skip architecture. All non-F ciphertext must consume key and decode
+ * to a non-F plaintext rune. Cipher F may be bypassed or consumed.
+ * @param {-1|1} sign
+ */
+function skipAware(sign) {
+  let states = new Map([[0, {plain: [], bypass: []}]]);
+  let firstImpossible = null;
+  for (let i = 0; i < p55.length; i++) {
+    const next = new Map();
+    for (const [used, item] of states) {
+      if (p55[i] === 0) {
+        next.set(used, {
+          plain: [...item.plain, 0],
+          bypass: [...item.bypass, i]
+        });
+      }
+      const decoded = mod29(p55[i] + sign * key[used % key.length]);
+      if (decoded !== 0) {
+        next.set(used + 1, {
+          plain: [...item.plain, decoded],
+          bypass: item.bypass
+        });
+      }
+    }
+    states = next;
+    if (states.size === 0 && firstImpossible === null) firstImpossible = i;
+  }
+  return {states: [...states].map(([used, item]) => ({
+    used, bypass: item.bypass, ioc: coincidence(item.plain),
+    first32: item.plain.slice(0, 32).map(x => corpus.translit[x]).join(" ")
+  })), firstImpossible};
+}
+const directMinus = p55.map((c, i) => mod29(c - key[i % key.length]));
+const directPlus = p55.map((c, i) => mod29(c + key[i % key.length]));
+const fMinus = skipAware(-1);
+const fPlus = skipAware(1);
+assert.equal(coincidence(directMinus), 0.030175438596491227);
+assert.equal(coincidence(directPlus), 0.03754385964912281);
+assert.equal(fMinus.states.length, 1);
+assert.deepEqual(fMinus.states[0].bypass, [15, 25]);
+assert.equal(fMinus.states[0].ioc, 0.03614035087719298);
+assert.equal(fPlus.states.length, 0);
+assert.equal(fPlus.firstImpossible, 33);
+
 /* This is a conditional, retrospectively selected diagnostic null. The
  * source word map and complete byte multiset are frozen; only their
  * assignments to the 256 physical cells are shuffled. It is not a
@@ -149,6 +211,11 @@ console.log(JSON.stringify({
   conditionalNull: {
     trials, finalFixed, seed9ReachesFinal, conjunction,
     conjunctionWithinFive, anyFixed
+  },
+  directSelectedWordKey: {
+    minusIoC: coincidence(directMinus), plusIoC: coincidence(directPlus),
+    skipAwareMinus: fMinus, skipAwarePlus: fPlus,
+    conclusion: "No native GP29 plaintext under source-word repeating additive key"
   },
   plaintextRecovered: 0
 }, null, 2));
