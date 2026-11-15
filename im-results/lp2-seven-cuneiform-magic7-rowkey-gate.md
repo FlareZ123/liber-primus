@@ -26,7 +26,7 @@ All seven direct-key original-page outputs remain uniform-like and contain no co
 
 ## Full 49-number key: two independently natural clocks
 
-The printed seven-by-seven square supplies **49 key numbers** in source row-major order. A distinct fixed consumer flattens all 49 values into a single periodic GP29 additive key and applies it to the same 1,680 authentic rune indices without fitting any key value. The two clock conventions have direct physical meaning: one continuous across all seven cuneiform pages (chapter clock), or one starting at the beginning of each original physical page (page clock). Only the two opposite original-compatible arithmetic signs are tested.
+The printed seven-by-seven square supplies **49 key numbers** in source row-major order. Flattening those numbers into a single periodic GP29 additive key is **already within the broader whole-book additive family** evaluated in [the earlier OpenPuff magic-square gate](openpuff-magic-square-remaining-gate.md). The following p33–39-specific readouts compare that previously bounded direct key with the distinct one-row-per-physical-page assignment above. They must not be counted as a new mechanism or independent discovery. The two clock conventions have direct physical meaning: one continuous across all seven cuneiform pages (chapter clock), or one starting at the beginning of each original physical page (page clock). Only the two opposite original-compatible arithmetic signs are tested.
 
 | 49-number cycle | GP29 subtraction IoC | GP29 addition IoC |
 | --- | ---: | ---: |
