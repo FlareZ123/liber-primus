@@ -96,16 +96,24 @@ function bigramScore(input){
   }
   return sum/(input.length-1);
 }
-function controlWindows(length){
+function controlWindowScores(length){
   const scores=[];
   for(let i=0;i+length<=control.length;i++)scores.push(bigramScore(control.slice(i,i+length)));
-  scores.sort((a,b)=>a-b);
+  return scores.sort((a,b)=>a-b);
+}
+function controlWindows(length){
+  const scores=controlWindowScores(length);
   return {count:scores.length,min:scores[0],p01:scores[Math.floor(scores.length*0.01)],
     median:scores[Math.floor(scores.length*0.5)],max:scores[scores.length-1]};
 }
 function evaluate(scope,input){
-  const zigzag=railEncrypt(input,3),inverse=railDecrypt(input,3),windows=controlWindows(input.length);
+  const zigzag=railEncrypt(input,3),inverse=railDecrypt(input,3),scores=controlWindowScores(input.length);
+  const windows=controlWindows(input.length);
   const zigzagScore=bigramScore(zigzag),inverseScore=bigramScore(inverse);
+  const zigzagPercentile=scores.filter(x=>x<=zigzagScore).length/scores.length;
+  const inversePercentile=scores.filter(x=>x<=inverseScore).length/scores.length;
+  const bothBelowMinimumControlWindow=zigzagScore<windows.min&&inverseScore<windows.min;
+  assert(bothBelowMinimumControlWindow,'three-rail output no longer falls below all source-native control windows');
   return {
     scope,inputRunes:input,inputTranslit:translit(input),
     zigzagThenRowwiseRunes:zigzag,zigzagThenRowwiseTranslit:translit(zigzag),
@@ -117,8 +125,8 @@ function evaluate(scope,input){
     unigramStats:{input:stats(input),zigzagThenRowwise:stats(zigzag),inverseConvention:stats(inverse)},
     sourceNativeBigramScore:{
       controlWindowDistribution:windows,zigzagThenRowwise:zigzagScore,
-      inverseConvention:inverseScore,zigzagPercentile:0,inversePercentile:0,
-      bothBelowMinimumControlWindow:zigzagScore<windows.min&&inverseScore<windows.min
+      inverseConvention:inverseScore,zigzagPercentile,inversePercentile,
+      bothBelowMinimumControlWindow
     }
   };
 }
