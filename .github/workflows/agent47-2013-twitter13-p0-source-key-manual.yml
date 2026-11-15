@@ -1,0 +1,16 @@
+name: Agent47 original 2013 Twitter13 p0 key gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-test:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Four frozen historical key consumer tests
+        run: node sims/lp2_2013_twitter13_p0_key_sft.cjs
