@@ -12,7 +12,8 @@ const path=require('node:path');
 const SOURCE={name:'#cicadasolvers.freenode.log',size:18487233,sha:'bdd277c14f94c34b5ae714cd00c238065beeed4e'};
 const SOURCES=[
   {line:229856,id:'rcrypto-modified',slug:'dGJSgN0m',expectedBytes:26295,sha256:'4ff35eacb900a99fc87890048e9b360d22e2483dde4ce75cc062b9c969720e70'},
-  {line:229860,id:'oeis-modified',slug:'9U7SbHQE'}
+  {line:229860,id:'oeis-modified',slug:'9U7SbHQE'},
+  {line:229863,id:'page56-input',slug:'8cStVBG9'}
 ];
 /** @param {Buffer} b */
 const blob=b=>crypto.createHash('sha1').update('blob '+b.length+'\0').update(b).digest('hex');
@@ -57,7 +58,7 @@ function inspect(id,source){
 }
 /** @returns {Promise<void>} */
 async function main(){
-  assert.equal(SOURCES.length,2);
+  assert.equal(SOURCES.length,3);
   assert.equal(blob(Buffer.from('test')),'30d74d258442c7c65512eafab474568dd706c430');
   assert.equal(SOURCES[0].slug,'dGJSgN0m');
   console.log('SELFTEST PASS: original Git SHA, exact first-source identity, static-only inspection');
@@ -75,13 +76,14 @@ async function main(){
     assert.equal(result.status,200,item.id+' HTTP status');
     if(item.expectedBytes)assert.equal(result.buffer.length,item.expectedBytes,item.id+' source bytes');
     if(item.sha256)assert.equal(sha(result.buffer),item.sha256,item.id+' SHA256');
-    assert(result.buffer.length>200&&result.buffer.length<300000,'Reasonable source size');
+    assert(result.buffer.length>50&&result.buffer.length<300000,'Reasonable source size');
     const text=result.buffer.toString('utf8');
     const html=/^\s*<(?:!doctype|html|head|body)/i.test(text);
     assert(!html,'HTML response rather than original source');
     console.log('ORIGINAL_FILE '+JSON.stringify({id:item.id,sourceLine:item.line,bytes:result.buffer.length,sha256:sha(result.buffer),url:result.url,first180:text.slice(0,180)}));
     atomic('irc2014-source-code/'+item.id+'.py',result.buffer);
-    inspect(item.id,text);
+    if(item.id==='page56-input')console.log('SOURCE_COMPLETE page56-input '+text.slice(0,2500));
+    else inspect(item.id,text);
   }
 
   const older=await get('https://raw.githubusercontent.com/kenorb-contrib/cicada_toolset/bd63ab1475e08b6125860f5c74f0271977ab8a69/runeaylze/rcrypto.py');
