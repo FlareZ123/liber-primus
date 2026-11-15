@@ -66,6 +66,22 @@ The exact key-order null is equally unpersuasive: **469/1,000** shuffled-key tri
 
 Both signs pass the constructive native-GP control at **12,843/12,843** runes. This validates the arithmetic and scoring pipeline; it is not evidence for the original cipher.
 
+## Source-locked prime-totient red-heading key transfer (Agent12, 15 November 2026)
+
+The original raw-heading test above leaves a genuinely different, historically demonstrated operation: **authentic solved LP2 p56 computes the totient of each published GP prime, phi(prime)=prime−1** as its additive shift. Freeze the same nine source-visible red headings and 12,843 following body runes. Apply **one** transformed-key interpretation: for heading rune r, take the original GP prime of r minus one modulo29, repeat the heading from its first body rune, and subtract these shifts from the unchanged ciphertext GP29 indices. No key-phase fitting, F clock-skips, title renaming or reverse key searches. Transparent plaintext-F bypass in the real p56 machine is a distinct mechanism, outside this direct repeating-title-key hypothesis.
+
+The [original-sourced single runnable CJS](../sims/lp2_red_heading_prime_totient_fixedkey_sft.cjs) and [successful Windows Node22 run 43726869332](https://github.com/FlareZ123/liber-primus/actions/runs/43726869332) assert original rune/color-title identities, the full nine-body partition, exact reverse reencryption on all 12,843 original runes, and complete 12,843-rune recovery of an independent native-GP Shakespeare plaintext artificially encrypted with these same transformed source keys.
+
+| Measurement over 12,843 GP runes | Untouched body ciphertext | Transformed red-title key | Independent native English control |
+|---|---:|---:|---:|
+| GP29 index of coincidence | 0.034481190 | **0.034508426** | not evaluated |
+| GP-English conditional trigram score, nats/rune | −3.888324903 | **−3.886309984** | **−2.218620573** |
+| Exact encoder/decoder roundtrip | source | **12,843/12,843** | **12,843/12,843** |
+
+Every original decoded titled unit remains nonlinguistic, including the 3,308-rune terminal body. The original score change is only **+0.002015 nats/rune**, with a remaining native-control gap of **1.66769 nats/rune**. Perfect reencryption is inevitable for a chosen additive pad and does not authenticate a decipherment. The initial red-title prime-totient transformation has historical cipher precedent, but the author did not instruct applying it as these nine body keys.
+
+**Decision:** this one source-locked red-heading-to-GPprime-totient direct key is also negative as a native-English LP2 decoder. Neither this nor the prior raw-red-title test excludes a differently authored title operation, non-English intermediate, genuine F bypass, or additional keyed layer. Further tuning of these parameters without new first-party evidence is unsupported.
+
 ## Decision and limits
 
 Retire the direct, untransformed repeating-key GP29 Vigenère interpretation on the nine source-titled units. Neither sign yields language, and the exact heading order performs like shuffled key material. Do not expand this branch with arbitrary phases, reversed keys, transformed headings, fitted resets, or additional cipher layers absent a new independent clue.
