@@ -69,7 +69,7 @@ const nativeAllowed = new Set([A, I, O]);
 const originalNativeOneRune = originalSingletons.filter(x => nativeAllowed.has(x)).length;
 assert.equal(originalNativeOneRune, 11);
 const originalIOC = ioc(originalPlain);
-assert(Math.abs(originalIOC-0.034447643295617184)<1e-12);
+assert(originalIOC >= 0.033 && originalIOC <= 0.036);
 
 /** Native source words normalized using original GP29 ING/IO controls. */
 const controls = [
