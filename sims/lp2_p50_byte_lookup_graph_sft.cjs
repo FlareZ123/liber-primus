@@ -211,6 +211,31 @@ assert.deepEqual(
   [[2, 0, 2], [6, 0, 6]]
 );
 
+// Original solved p56 literal-F passthrough permits an optional key-clock
+// bypass only at each ciphertext F. Exhaust 2^3 p55 branch assignments.
+const originalFPositions = p55.map((v, i) => v === 0 ? i : -1).filter((i) => i >= 0);
+assert.deepEqual(originalFPositions, [15, 25, 41]);
+const originalFContradictions = [];
+for (const sign of [-1, 1]) for (let mask = 0; mask < 8; mask += 1) {
+  let clock = 0;
+  let conflict = -1;
+  for (let i = 0; i < p55.length; i += 1) {
+    const fIndex = originalFPositions.indexOf(i);
+    if (fIndex >= 0 && (mask & (1 << fIndex))) continue;
+    if ((p55[i] + 29 + sign * stage10ThreeXorKey[clock]) % 29 === 0) {
+      conflict = i;
+      break;
+    }
+    clock += 1;
+  }
+  originalFContradictions.push({ sign, mask, firstIllegalConsumedF: conflict });
+}
+assert.equal(originalFContradictions.length, 16);
+assert.ok(originalFContradictions.every((v) => v.firstIllegalConsumedF >= 0));
+assert.deepEqual(originalFContradictions.filter((v) => v.mask === 0).map(
+  (v) => v.firstIllegalConsumedF
+), [36, 27]);
+
 const trials = [];
 
 for (const sourceSeed of [3301, 1033]) {
@@ -279,7 +304,8 @@ console.log(JSON.stringify({
     primeOrdinals: stage10Ordinals, pointerPaths: stage10Orbits,
     p55OriginalRunners: stage10P55Trials },
   stage10ThreeWayXor: { originalSeeds: stage10Names, keyFirst20: stage10ThreeXorKey.slice(0,20),
-    p55CandidateControls: stage10ThreeXorP55, known180Checks: stage10ThreeXorHoldout },
+    p55CandidateControls: stage10ThreeXorP55, known180Checks: stage10ThreeXorHoldout,
+    transparentFImpossibility: originalFContradictions },
   sourceSeeds: {
     3301: orbit(B, 3301 % 256),
     1033: orbit(B, 1033 % 256),
