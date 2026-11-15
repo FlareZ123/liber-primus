@@ -20,6 +20,12 @@ assert.equal(bytes[0], 203);
 assert.equal(corpus.pages[49].indices.length, 66);
 assert.equal(corpus.pages[50].indices.length, 0);
 assert.equal(corpus.pages[51].indices.length, 92);
+const flankRuneCount = corpus.pages[49].indices.length +
+  corpus.pages[51].indices.length;
+assert.equal(flankRuneCount, 158);
+assert.equal(bytes[flankRuneCount], 249);
+assert.equal(bytes[249], flankRuneCount);
+assert.deepEqual(table.pages.flatMap((p) => p.tokens).filter((s) => s === "49").length, 3);
 
 /** Follow zero-based source byte as the next zero-based table-cell address.
  * @param {number[]} values
@@ -95,6 +101,8 @@ const nulls = [];
 for (const [family, groups] of Object.entries(families)) {
   const n = 50000;
   let rootCycle = 0, lengthEleven = 0, divisor66 = 0;
+  let flankTwoCycle = 0, jointExactElevenAndFlankTwo = 0,
+    jointDividing66AndFlankTwo = 0;
   for (let trial = 0; trial < n; trial++) {
     const copy = bytes.slice();
     for (const addresses of groups) {
@@ -106,16 +114,26 @@ for (const [family, groups] of Object.entries(families)) {
       addresses.forEach((index, j) => { copy[index] = shuffled[j]; });
     }
     const candidate = walk(copy, 0);
+    const isFlankTwo = copy[158] === 249 && copy[249] === 158;
+    if (isFlankTwo) flankTwoCycle++;
+    if (isFlankTwo && candidate.cycleStart === 0 &&
+        candidate.walk.length === 11) jointExactElevenAndFlankTwo++;
+    if (isFlankTwo && candidate.cycleStart === 0 &&
+        66 % candidate.walk.length === 0) jointDividing66AndFlankTwo++;
     if (candidate.cycleStart !== 0) continue;
     rootCycle++;
     if (candidate.walk.length === 11) lengthEleven++;
     if (66 % candidate.walk.length === 0) divisor66++;
   }
   nulls.push({family, trials:n, firstOnCycle:rootCycle,
-    exact11: lengthEleven, cycleLengthDivides66: divisor66});
+    exact11: lengthEleven, cycleLengthDivides66: divisor66,
+    flankIndex158InTwoCycle: flankTwoCycle,
+    jointExact11AndFlankTwo: jointExactElevenAndFlankTwo,
+    jointDivisor66AndFlankTwo: jointDividing66AndFlankTwo});
 }
 console.log(JSON.stringify({source:"original 256 printed p49–51 table",
   hypothesis:"zero-based byte as zero-based index of next table cell",
   firstCellCycle:route.walk, cycleGP29Key:key, prologueRunes:66,
-  sourceFirstPage:49, encodedKeyModels:rows, shuffleNulls:nulls}, null, 2));
+  sourceFirstPage:49, flankRuneCount, flankTwoCycle:[158,249],
+  encodedKeyModels:rows, shuffleNulls:nulls}, null, 2));
 console.log("PASS original pointer route/6-turn prologue and negative direct GP29 additive inverses. No unknown plaintext.");
