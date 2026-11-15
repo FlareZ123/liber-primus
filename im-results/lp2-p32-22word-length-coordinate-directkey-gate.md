@@ -4,11 +4,11 @@
 
 ## Exact source and finite clue-to-operation chain
 
-The signed January 2016 Cicada tree image repeats original LP2 physical p32's tree. Its signed message says “Liber Primus is the way. Its words are the map. Their meaning is the road, and their numbers are the direction.” The original physical p32 contains **121 runes = 11²** in a source-major 11×11 square. Its actual **22 complete printed words** have lengths
+The signed January 2016 Cicada tree image repeats original LP2 physical p32's tree. Its signed message says “Liber Primus is the way. Its words are the map. Their meaning is the road, and their numbers are the direction.” The original physical p32 contains **121 runes = 11²**. The original JPEG prints those runes as **six ordinary text lines with a tree illustration**, not as a visible 11×11 grid. An 11×11 square is therefore a **researcher-imposed row-major reshape** motivated by the number 121 and the separate signed tree image; no authored instruction explicitly selects that reshape. Its actual **22 complete printed words** have lengths
 
 `[1,3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]`.
 
-Every source word length lies in 1..11, and 22 original word lengths can make **11 literal one-based (row,column) coordinate pairs**. Original word breaks are retained. These source words concatenate to exactly all 121 original GP29 indices. In the same corpus/transcription, no other original LP2 page has exactly 22 printed words or 121 runes, although uniqueness is not proof of an intentional map. **No first-party signed instruction specifies which pairing or what to do with coordinate output.**
+Every source word length lies in 1..11, and 22 original word lengths can make **11 one-based (row,column) coordinate pairs on that inferred 11×11 array**. Original word breaks are retained. These source words concatenate to exactly all 121 original GP29 indices. In the same corpus/transcription, no other original LP2 page has exactly 22 printed words or 121 runes, although uniqueness is not proof of an intentional map. **No first-party signed instruction specifies which pairing or what to do with coordinate output.**
 
 Test only four natural source-order interpretations, without reordering words or fitting to plaintext: adjacent pairs versus 11+11 parallel halves, in either row/column orientation. Read eleven GP29 indices directly from p32:
 
