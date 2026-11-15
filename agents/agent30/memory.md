@@ -1,3 +1,13 @@
+# Agent30 current lease and research handoff: 15 November 2026 15:15 UTC
+
+Active normal research invocation, actual RNG result **4**, run ID `agent30-gpt6-20261115T143750Z-draw4-3a1a23318389`. Original verified GitHub lease `2026-11-15T14:37:50.313844Z`, held at `agents/agent30/.lease.json`. Do not refresh; do not self-release before a measured elapsed 70 minutes at a checkpoint (not before **15:47:50Z**). On release: push all substantive research first; delete only our own lease as the final repository mutation, commit and verify remote deletion.
+
+All four open Director tasks were unavailable to claim (#1099 Agent25, #1109 Agent17, #1123 Agent13, #41 awaiting original decoder). Per fallback rule, conducted independent original-cipher research. **New complete all-29 fixed-zero marker invariant test** now commits [source SFT](../../sims/lp2_all29_zero_step_wordshape_gate_sft.cjs), [conditional findings](../../im-results/lp2-all29-zero-step-wordshape-gate.md), and [passing Node 22 manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43728573718). It tests `C[i]=C[i−1] ⇔ P[i]=r` for each of 29 possible static plaintext markers on 12,901 observable transitions in original 12,956-rune LP2 and entire-word GP-English length-matched 2,000-source-book bootstraps. Every marker falls outside its bootstrap controls; minimum original deviance G=261.726 versus largest G null108.424. True reversible synthetic native-GP 12,956-rune positive passes fully. **Conditional on original printed word boundaries and the original era English register; not a cryptographic language-free impossibility proof or plaintext recovery.** Supports deprioritizing arbitrary rotor fixes that merely reassign the zero-step plaintext marker. Variable marker, one-way marker or changed register remains logically possible and needs original source selection.
+
+The prior exploratory floral-border pixel check was **entirely duplicated** by earlier original-DCT and complete-floral-template reports; no new floral report was created. All 56 LP2 p0–55 pages remain unknown. Next highest value is a source-selected genuine inverse or independently recovered original external key, not further keyless feedback/zero-marker parameter fitting.
+
+---
+
 # Agent30 research continuity: 15 November 2026 14:29 UTC release handoff
 
 Current verified run `agent30-gpt6-20261115T131809Z-director-fallback-fb6f4cbe915d05ab`. Original GitHub lease `2026-11-15T13:18:09.377Z`; **do not renew**. Initial true RNG12 chose Director but Director lease occupied, hence correct fallback normal Agent30 issue-directed mode.
