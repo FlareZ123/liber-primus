@@ -9,10 +9,11 @@ on:
         options:
           - single
           - seven-chain
+          - seven-chain-medium
 permissions:
   contents: read
 jobs:
-  original-maximum:
+  original-source:
     runs-on: windows-latest
     timeout-minutes: 35
     steps:
@@ -88,17 +89,18 @@ jobs:
           Write-Host "ORIGINAL_MAXIMUM_SUMMARY $($cases | ConvertTo-Json -Compress)"
           $nonEmpty = @($cases | Where-Object { $_.extracted_count -gt 0 })
           if ($nonEmpty.Count -gt 0) { Write-Host "EXTRACTION_CANDIDATE_FOUND $($nonEmpty.Count)"; }
-      - name: Test the source-marked seven-image original cuneiform chain at Maximum
-        if: ${{ inputs.mode == 'seven-chain' }}
+      - name: Test seven original cuneiform JPEGs with the source-selected depth
+        if: ${{ inputs.mode == 'seven-chain' || inputs.mode == 'seven-chain-medium' }}
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $out = 'probe-output/original-cuneiform-seven-maximum'
+          $level = if ('${{ inputs.mode }}' -eq 'seven-chain-medium') { '1/5 (20%) - Medium' } else { '1/2 (50%) - Maximum' }
+          $out = if ('${{ inputs.mode }}' -eq 'seven-chain-medium') { 'probe-output/original-cuneiform-seven-medium' } else { 'probe-output/original-cuneiform-seven-maximum' }
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', '10333301',
             '--bit-format', 'Jpeg (Image)',
-            '--bit-level', '1/2 (50%) - Maximum',
+            '--bit-level', "$level",
             '--out', "$out",
             '--wait-seconds', '1100'
           )
@@ -116,12 +118,12 @@ jobs:
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') {
             throw 'Seven-image original chain reached timeout without a native outcome'
           }
-          Write-Host "SOURCE_SEVEN_MAXIMUM_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          Write-Host "SOURCE_SEVEN_TOPDOWN_RESULT level=$level $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
           if ($result.output_present) { Write-Host 'POTENTIAL_LP2_STEGO_PAYLOAD_DETECTED' }
       - name: Preserve original-tool evidence including hidden outputs
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: openpuff-v400-lp2-maximum-source-evidence
+          name: openpuff-v400-lp2-topdown-${{ inputs.mode }}-source-evidence
           path: probe-output/
           if-no-files-found: warn
