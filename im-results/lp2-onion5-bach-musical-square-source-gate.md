@@ -6,7 +6,19 @@
 
 Cicada's original [19 January 2014 signed message](https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2014-01-onion5-liber-primus.asc) contains hex for three contiguous media components (1,084-byte Gödel JPEG, 1,635-byte Escher Eye JPEG, and a 9,288-byte Bach MP3), followed by book-code coordinates. The media identify Douglas Hofstadter's *Gödel, Escher, Bach* and the coordinates yield the known Sixth Onion `ut3qtzbrvs7dtvzp.onion`. This known, complete source-selected path is documented in [the authoritative Onion-chain synthesis](../results/2014-onion-chain.md).
 
-The [original 2014 website copy](https://github.com/micheloosterhof/cicada-2014/blob/master/stage08/index.3.mp3) has the same 9,288 bytes as the signed audio block. We independently reconstructed all three signed blocks and compared the audio **byte for byte** in the source-frozen [CommonJS SFT](../sims/lp2_2014_onion5_bach_source_sft.cjs). The complete audio consists of **129 consecutive 72-byte MPEG-2 Layer III frames** (24 kb/s, 24 kHz, mono, 576 samples/frame, 3.096 s). Original source first eight bytes `fff334640002fc29`, final eight bytes `aaaaaaaaaaaaaaaa`. No bytes remain outside the measured MP3 frames. **Scope:** an absence of trailers does not rule out note-based encoding, nonstandard MPEG side data, or steganography in the audio.
+The [original 2014 website copy](https://github.com/micheloosterhof/cicada-2014/blob/master/stage08/index.3.mp3) has the same 9,288 bytes as the signed audio block. We independently reconstructed all three signed blocks and compared the audio **byte for byte** in the source-frozen [CommonJS SFT](../sims/lp2_2014_onion5_bach_source_sft.cjs). The complete audio consists of **129 consecutive 72-byte MPEG-2 Layer III frames** (24 kb/s, 24 kHz, **joint stereo**, 576 samples per channel per frame, 3.096 s). Every frame has `channel_mode=01` (joint stereo); the mode-extension field takes values 0 and 2. Original source first eight bytes `fff334640002fc29`, final eight bytes `aaaaaaaaaaaaaaaa`. No bytes remain outside the measured MP3 frames.
+
+### Standard MP3 private/ancillary bit audit
+
+The source-frozen SFT now parses the **17-byte stereo side-information block** and **51-byte main-data region** of every frame. Across all 129 frames:
+
+- All **258 private bits** (two per frame) are zero.
+- The two channel `part2_3_length` fields account for **49,765 audio-data bits**.
+- The **443 inter-frame unused/ancillary bits** are exactly alternating `0101…` (55 bytes of `0x55`, followed by the final three bits `010`).
+- The remaining **303-byte terminal region** contains `LAME3.98.2` at offsets 0 and 48 and `0xAA` at every other byte.
+- The accounting is exact: `49,765 + 443 + 303×8 = 52,632` bits, the complete 129×51-byte main-data area.
+
+Thus the standard MPEG private-bit and ancillary-data channels contain no hidden payload or magic square. **Scope:** this bitstream audit does not test steganography in spectral coefficient choices or the participant's proposed musical-note encoding; those remain distinct, unverified hypotheses.
 
 ## Exact participant claim and what survives
 
