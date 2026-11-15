@@ -35,7 +35,7 @@ const W = 6;
  * @param {string} raw
  * @returns {number[] | null}
  */
-function encodeWord(raw) {
+function encodeWord(raw, sentinel) {
   const text = raw.toUpperCase().replace(/QU/g, 'CW').replace(/[KQ]/g, 'C')
     .replace(/V/g, 'U').replace(/Z/g, 'S');
   const out = [];
@@ -43,8 +43,8 @@ function encodeWord(raw) {
     const token = GP.find((x) => text.startsWith(x, i));
     if (!token) return null;
     const symbol = runeToIndex.get(token);
-    if (symbol === 28) return null;
-    out.push(symbol);
+    if (symbol === sentinel) return null;
+    out.push(symbol < sentinel ? symbol : symbol - 1);
     i += token.length;
   }
   return out;
@@ -53,12 +53,12 @@ function encodeWord(raw) {
 /** Pseudocount 0.1 per symbol, training independent of the LP cipher.
  * @returns {Float64Array}
  */
-function trainingLogMarginal() {
+function trainingLogMarginal(sentinel) {
   const counts = new Float64Array(28).fill(0.1);
   for (const ln of wordfreq.split(/\r?\n/)) {
     const match = /^([a-z]+) (\d+)$/.exec(ln.trim());
     if (!match) continue;
-    const ix = encodeWord(match[1]);
+    const ix = encodeWord(match[1], sentinel);
     if (!ix) continue;
     const weight = Math.min(100000, Number(match[2]));
     for (const x of ix) counts[x] += weight;
@@ -163,12 +163,12 @@ function reemit(firstCipher, rankPlaintext, firstIV, originalEscapes, outputLeng
  * @param {number} initialCipher - arbitrary cipher IV rune
  * @returns {number[]}
  */
-function forwardPlant(plain, initialCipher) {
+function forwardPlant(plain, initialCipher, sentinel) {
   const out = [initialCipher];
   const last = [];
   for (const x of plain) {
-    if (x === 28) { out.push(out.at(-1)); continue; }
-    last.push(x);
+    if (x === sentinel) { out.push(out.at(-1)); continue; }
+    last.push(x < sentinel ? x : x - 1);
     if (last.length > W) last.shift();
     const rank = mod(28, last.reduce((a, v) => a + v, 0));
     out.push(mod(29, out.at(-1) + 1 + rank));
@@ -176,53 +176,75 @@ function forwardPlant(plain, initialCipher) {
   return out;
 }
 
-const logProb = trainingLogMarginal();
-const original = [];
-const positives = [];
-let runeTotal = 0, escapedTotal = 0, rankTotal = 0;
 const solved = corpus.pages.find((p) => p.page === 57).indices;
+const modes = [
+  { sentinel: 28, label: 'EA sentinel (no authorial operation selected)' },
+  { sentinel: 0, label: 'F sentinel (LP1/p56 historical interrupt candidate)' }
+];
+const results = [];
+for (const { sentinel, label } of modes) {
+  const logProb = trainingLogMarginal(sentinel);
+  const original = [], positives = [];
+  let runeTotal = 0, escapedTotal = 0, rankTotal = 0;
 
-for (let chapter = 0; chapter < chapters.length; chapter++) {
-  const [start, end] = chapters[chapter];
-  const ciphertext = corpus.pages.filter((p) => p.page >= start && p.page <= end).flatMap((p) => p.indices);
-  const { ranks, escapes } = extractRanks(ciphertext);
-  const decoded = inverseRanks(ranks, logProb);
-  assert.deepEqual(reemit(ciphertext[0], decoded.plaintext, ranks.slice(0, W - 1),
-    escapes, ciphertext.length), ciphertext);
-  runeTotal += ciphertext.length;
-  escapedTotal += escapes.length;
-  rankTotal += ranks.length;
-  original.push({ pages: [start, end], runes: ciphertext.length,
-    escapes: escapes.length, decodedRankIoC: decoded.ioc, scorePerRune: decoded.score,
-    initialRecovered: decoded.plaintext.slice(0, 18).map((x) => corpus.translit[x]).join('-') });
+  for (let chapter = 0; chapter < chapters.length; chapter++) {
+    const [start, end] = chapters[chapter];
+    const ciphertext = corpus.pages.filter((p) => p.page >= start && p.page <= end)
+      .flatMap((p) => p.indices);
+    const { ranks, escapes } = extractRanks(ciphertext);
+    const decoded = inverseRanks(ranks, logProb);
+    assert.deepEqual(reemit(ciphertext[0], decoded.plaintext, ranks.slice(0, W - 1),
+      escapes, ciphertext.length), ciphertext);
+    runeTotal += ciphertext.length;
+    escapedTotal += escapes.length;
+    rankTotal += ranks.length;
+    original.push({ pages: [start, end], runes: ciphertext.length,
+      escapes: escapes.length, decodedRankIoC: decoded.ioc, scorePerRune: decoded.score,
+      initialRecovered: decoded.plaintext.slice(0, 18)
+        .map((x) => corpus.translit[x < sentinel ? x : x + 1]).join('-') });
 
-  // Genuine known p57 prose is distinct from these nine original unknown pages.
-  // Repeat it only to match source chapter lengths and keep any EA interrupts.
-  const native = Array.from({ length: ciphertext.length - 1 }, (_, i) =>
-    i % 97 === 63 ? 28 : solved[(i + chapter * 7) % solved.length]);
-  const plant = forwardPlant(native, ciphertext[0]);
-  assert.equal(plant.length, ciphertext.length);
-  const extracted = extractRanks(plant);
-  assert.equal(extracted.escapes.length, native.filter((x) => x === 28).length);
-  const solvedPlant = inverseRanks(extracted.ranks, logProb);
-  assert.deepEqual(reemit(plant[0], solvedPlant.plaintext, extracted.ranks.slice(0, W - 1),
-    extracted.escapes, plant.length), plant);
-  let i = 0, correct = 0;
-  for (const x of native) if (x !== 28) { if (solvedPlant.plaintext[i] === x) correct++; i++; }
-  positives.push({ pages: [start, end], nativeRankCount: i, literalEscapes: extracted.escapes.length,
-    recovered: correct, fraction: correct / i, rankIoC: solvedPlant.ioc, scorePerRune: solvedPlant.score });
+    // Actual solved p57 rune prose, with deterministic explicit escape
+    // insertions; for the F control, occasional EA tests rank 27 recovery.
+    const native = Array.from({ length: ciphertext.length - 1 }, (_, i) => {
+      if (i % 97 === 63) return sentinel;
+      if (sentinel === 0 && i % 101 === 7) return 28;
+      return solved[(i + chapter * 7) % solved.length];
+    });
+    const plant = forwardPlant(native, ciphertext[0], sentinel);
+    assert.equal(plant.length, ciphertext.length);
+    const extracted = extractRanks(plant);
+    assert.equal(extracted.escapes.length, native.filter((x) => x === sentinel).length);
+    const solvedPlant = inverseRanks(extracted.ranks, logProb);
+    assert.deepEqual(reemit(plant[0], solvedPlant.plaintext, extracted.ranks.slice(0, W - 1),
+      extracted.escapes, plant.length), plant);
+    let i = 0, correct = 0;
+    for (const x of native) if (x !== sentinel) {
+      const rank = x < sentinel ? x : x - 1;
+      if (solvedPlant.plaintext[i] === rank) correct++;
+      i++;
+    }
+    positives.push({ pages: [start, end], nativeRankCount: i,
+      literalEscapes: extracted.escapes.length, recovered: correct, fraction: correct / i,
+      rankIoC: solvedPlant.ioc, scorePerRune: solvedPlant.score });
+  }
+  assert.equal(runeTotal, 12956);
+  assert.equal(escapedTotal, 86);
+  assert.equal(rankTotal, 12861);
+  const origWeighted = original.reduce((sum, x) =>
+    sum + x.scorePerRune * (x.runes - x.escapes - 1), 0) / rankTotal;
+  const positiveWeighted = positives.reduce((sum, x) =>
+    sum + x.scorePerRune * x.nativeRankCount, 0) /
+    positives.reduce((sum, x) => sum + x.nativeRankCount, 0);
+  assert.ok(positives.every((p) => p.fraction > 0.99),
+    'Heldout genuine solved-prose key recovery must work');
+  assert.ok(origWeighted < positiveWeighted - 0.4);
+  results.push({
+    label, literalPlaintextSentinel: corpus.translit[sentinel], original,
+    originalWeightedLogPrior: origWeighted, nativeSolvedPagePlants: positives,
+    positiveWeightedLogPrior: positiveWeighted
+  });
 }
-assert.equal(runeTotal, 12956);
-assert.equal(escapedTotal, 86);
-assert.equal(rankTotal, 12861);
-const origWeighted = original.reduce((sum, x) => sum + x.scorePerRune * (x.runes - x.escapes - 1), 0) / rankTotal;
-const positiveWeighted = positives.reduce((sum, x) => sum + x.scorePerRune * x.nativeRankCount, 0) /
-  positives.reduce((sum, x) => sum + x.nativeRankCount, 0);
-assert.ok(positives.every((p) => p.fraction > 0.9), 'The heldout genuine solved-prose key recovery must work');
-assert.ok(origWeighted < positiveWeighted - 0.4);
 console.log(JSON.stringify({
-  hypothesis: 'six-position moving GP28 plaintext sum, exact 28-state predecessor-rank with EA doublet escape',
-  original, originalWeightedLogPrior: origWeighted, nativeSolvedPagePlants: positives,
-  positiveWeightedLogPrior: positiveWeighted,
-  conclusion: 'No original unknown-page plaintext: native register likelihood remains poor under all nine source-resets.'
+  hypothesis: 'exact six-position GP28 rolling plaintext sum with original 29-way successor rank and one literal escape',
+  models: results, conclusion: 'Neither historically motivated F nor EA sentinel recovers original unknown plaintext.'
 }, null, 2));
