@@ -1,0 +1,19 @@
+name: Agent15 joint previous-two-ciphertext secret codebook original gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  joint-prev2:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all-secret 841-row source-native GP29 model and roundtrips
+        shell: pwsh
+        run: |
+          node --check sims/lp2_joint_prev2_allsecret_codebook_sft.cjs
+          node sims/lp2_joint_prev2_allsecret_codebook_sft.cjs
