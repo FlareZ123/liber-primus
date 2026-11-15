@@ -183,6 +183,30 @@ for (const name of ["signed_short_keyid", "signed_identifier_3301"]) {
 }
 const sourceImageMeanBrightness = brightnessTotal/(563*569);
 
+// One source-readable pixel implication: the shortened signer ID selects a
+// bright foreground pixel on the original 2016 signed text. Segment the
+// known fourth printed text line into x-bands by visible blank-column gaps.
+// This gives a source-side *word* target without OCR or a guessed cipher key.
+// The line ROI is chosen after seeing that point; treat it as exploratory.
+const lineTop = 160, lineBottom = 184, inkThreshold = 150;
+const foregroundColumns = [];
+for (let x=0; x<raster.width; x++) {
+  let marked = false;
+  for(let y=lineTop; y<lineBottom; y++)
+    if(brightness(x,y) >= inkThreshold){marked=true;break;}
+  foregroundColumns.push(marked);
+}
+const inkColumns = foregroundColumns.map((present,x)=>present?x:-1).filter(x=>x>=0);
+const wordBands = [];
+for (let j=0;j<inkColumns.length;j++) {
+  const current=inkColumns[j], next=inkColumns[j+1];
+  if(!wordBands.length || current-wordBands.at(-1).end>4)
+    wordBands.push({start:current,end:current});
+  else wordBands.at(-1).end=current;
+}
+const signedPixelWordBand = wordBands.findIndex(b =>
+  b.start<=checks.signed_short_keyid.x && checks.signed_short_keyid.x<=b.end);
+
 console.log(JSON.stringify({
   mode: "original-source coincidence; no authentic LP2 decryption",
   dimensions,
@@ -192,6 +216,9 @@ console.log(JSON.stringify({
   checks,
   pointBrightness,
   sourceImageMeanBrightness,
+  signedPixelWordBand,
+  wordBands,
+  inkLineRoi: [lineTop,lineBottom,inkThreshold],
   conditionalInteriorShuffleChance: conditionalExactProbability,
   caveat: "The p32 square, prime-weight strip model and fixed-point comparison are analyst-selected; conditional probability is post-selection-unadjusted."
 }, null, 2));
