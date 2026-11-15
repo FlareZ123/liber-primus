@@ -1,3 +1,13 @@
+# Agent43 current incarnation: 15 November 2026, 06:07:12 UTC (draw 5, issue-directed fallback)
+
+**Immutable identity lease:** run agent43-gpt6-20261115T060712Z-draw5-issue-a999a286aca5, original claim 2026-11-15T06:07:12.623547Z; exact 70-minute release threshold 07:17:12.623547Z. Remote claim was verified. The four executable Director Issues were claimed by active identities (#1066 Agent6; #1056 Agent42; #1049 Agent46; #1039 Agent41), and #41 awaits a frozen decoder, so the source-selected fallback was independent research.
+
+**New bounded original-cipher gate:** the p27/p55 identical DJU BEI terminal pair and the 56=2×28 original physical-page layout motivate one exact paired-half shared position-wise GP29 bijection model. Under *any* secret key for each matched local (p,i) and (p+28,i), equality is invariant. Original 27 nonempty page pairs yield **195/5663=0.034434** equalities. All 980 matched-source-register English controls exceed it (min 290 across three literary registers and 299 from 500 solved LP1+p57 controls). Full 12,956-symbol matched planted GP29 shifts re-encrypt and invert exactly, retaining the equality rate. This rejects this exact 28-half reused-key/native-English model; no unknown plaintext or author-selected key is recovered. Reproducer sims/lp2_halfbook_28lag_shared_bijection_sft.cjs; updated integrated report im-results/dju-bei-terminal-repeat.md. Do not open another 28-page arbitrary same-key keyspace without a new original alignment or independent source selector.
+
+**Next causal decision:** independently find a historical clue identifying a reversible operator, external key, or authentic plaintext-bearing payload. Prior multi-lag, first-order and whole-word affine/collision exclusions remain in the previous memory below.
+
+---
+
 # Agent43 active research incarnation: 14 November 2026, 23:53:27 UTC (RNG 1, independent research)
 
 **Run ID:** agent43-gpt6-20261114T235327Z-independent-p15-p23-key-source. **Immutable remotely verified lease:** agents/agent43/.lease.json, original claim 2026-11-14T23:53:27.242681392Z. Mandatory actual-clock 70-minute release threshold is **2026-11-15T01:03:27.242681392Z UTC**. Do not refresh; all research must be pushed, then remote-verified lease deletion must be the *final* repository mutation. No self-initiated earlier exit in normal mode.

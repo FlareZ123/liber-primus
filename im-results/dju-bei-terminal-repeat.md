@@ -117,6 +117,26 @@ Every one of these **300 finite word-length-matched native-English samples** has
 
 **Reproducer:** [standalone canonical-source and seeded-three-author SFT](../sims/dju_bei_affine_wordpair_sft.cjs), which asserts every original GP index, both unique six-rune collision classes, and native synthetic transformation invariance.
 
+## All-secret paired-half key reuse: original 28-page alignment gate (Agent43, 15 November 2026)
+
+**Decision:** the terminal repeated DJU-BEI phrase occurs on original physical p27 and p55, exactly 28 pages apart, and the 56 unsolved physical pages divide into two 28-page halves. This motivates one *frozen* reused-key hypothesis: for every first-half physical page p in 0–27 and local rune offset i, use the **same unknown GP29 bijection** to encrypt position (p,i) and (p+28,i). Give **every individual page-pair position its own arbitrary secret bijection**, an unusually permissive version of a 28-page repeated key. The unrelated position keys may differ with i and p. Literal page p50 has zero runes, so p22↔p50 contributes no comparison. This hypothesis requires no secret-key guessing: equal ciphertext symbols at paired positions must correspond to equal plaintext symbols, and unequal ones to unequal plaintext symbols, for *every possible* such bijection.
+
+The original unchanged 12,956-rune LP2 corpus supplies **5,663** eligible page-local matched positions across **27** nonempty page pairs, of which **195** are equal: **0.03443404555889105**. Under the hypothesized key reuse, the cleartext would also have exactly 195 equalities. That is effectively uniform GP29 coincidence, despite the much more concentrated English rune distribution. To calibrate this necessary invariant against source-native English rather than merely relying on theoretical uniformity, the exact original **2,896 printed word-length slots** were filled with random whole GP29 words of matching length from three independently existing native-English reference pools (160 seeded samples per pool). With original absolute rune positions and page comparisons kept fixed, the 5,663 equality counts were:
+
+| Source register | Samples | Minimum | Mean | Maximum |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran, The Prophet | 160 | **292** | 340.35625 | 390 |
+| Shakespeare | 160 | **290** | 342.03125 | 384 |
+| Emerson | 160 | **306** | 349.45 | 396 |
+| Native GP29 solved LP1 + literal solved p57 | 500 | **299** | 349.838 | 404 |
+| **Original unsolved LP2** | — | **195** | 195 | 195 |
+
+The solved-Cicada control has 715 available source GP29 words under the repository's already-calibrated ING/IO spelling; 500 independently seeded source-length-preserving samples were generated. **All 980/980 control counts exceed 195**, including every source-native solved-page sample. The original source gives roughly 3.44% equality while the most favorable of these 980 controls gives at least 5.12%. The controls deliberately resample independently at the word level; the result is a **finite-register exclusion**, not a universal logical impossibility for a human author deliberately composing two anti-aligned plaintext halves.
+
+A full-length **12,956/12,956 planted-source positive** encrypts a native-English tape under secret per-position, page-pair-reused additive GP29 shifts; it exactly decrypts and retains every aligned equality, while producing more than 195 equalities. The unchanged original equalities are checked for every individual page pair and total. Any arbitrary independently secret permutation at each shared pair-position preserves the same invariant mathematically. The complete source-exact read-only [Node22 CommonJS SFT](../sims/lp2_halfbook_28lag_shared_bijection_sft.cjs) fixes the model, GP29 encoder, physical page map, original input, source pools, seeds and positives.
+
+**Interpretation:** a single page-local position key reused across LP2's two 28-page halves, even if it contains a different arbitrary GP29 permutation at every position of every pair, cannot plausibly recover ordinary source-native English with the manuscript's original pairing/word geometry. This materially restricts the terminal six-rune repetition's possible role: it is a valid exact echoed marker, but **does not support general two-half key reuse**. Different keys between halves, previous-cipher/plaintext state, changed page alignment, compressed/non-English payloads and radically altered plaintext segmentation are outside this decision. No unknown-page plaintext or authentic creator key was recovered.
+
 ## Next source-to-plaintext decision
 
 The two occurrences delimit the existing bookend hypothesis but cannot select a shift, affine key or readout direction. An independently source-selected key/state law could use their unchanged equality as a strict terminal prediction, while also yielding coherent withheld plaintext. Absent such an operator, retire further unconstrained use of the six-rune repetition, synthetic 81²/80² geometry, or phrase guesses. The 2016 wording and 13-dot punctuation remain clues to inspect only when they specify an executable rule.
