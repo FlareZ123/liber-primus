@@ -151,6 +151,59 @@ for (const [source, key] of [["grid-over-G", Q50G], ["grid-over-HG", Q50HG]])
         source, align, sign, originalRunes: input.length, ioc29: ioc(decoded)
       });
     }
+
+// The p50 quotient has 252=9*28 GP29 coefficients. Nine physical visual
+// chapters and 28 nonzero field elements suggest a direct 28-period key
+// register per chapter. The source supplies all 252 symbols unmodified.
+const chapterCuts = [0, 3, 8, 15, 23, 27, 33, 40, 54, 56];
+const chapters = chapterCuts.slice(0, -1).map((first, i) =>
+  pages.filter(p => p.page >= first && p.page < chapterCuts[i + 1])
+    .flatMap(p => p.indices));
+const rowKeys = Array.from({length: 9}, (_, i) =>
+  Q50HG.slice(28 * i, 28 * (i + 1)));
+assert.deepEqual(chapters.map(x => x.length),
+  [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+assert.deepEqual(rowKeys.map(r => new Set(r).size),
+  [16, 19, 21, 16, 19, 16, 18, 17, 22]);
+const chapterKeyTests = [];
+for (const sign of [-1, 1]) for (const transparentF of [false, true]) {
+  const decrypted = [];
+  for (let chapter = 0; chapter < chapters.length; chapter++) {
+    let step = 0;
+    const input = chapters[chapter], key = rowKeys[chapter];
+    const decoded = input.map(x => {
+      if (transparentF && x === 0) return 0;
+      return mod(x + sign * key[step++ % 28]);
+    });
+    let rekey = 0;
+    const roundtrip = decoded.map((x, i) => {
+      if (transparentF && input[i] === 0) return 0;
+      return mod(x - sign * key[rekey++ % 28]);
+    });
+    assert.deepEqual(roundtrip, input);
+    if (!transparentF) {
+      const plant = Array.from({length: input.length},
+        (_, i) => known[i % known.length]);
+      const ciphertext = plant.map((x, i) =>
+        mod(x - sign * key[i % 28]));
+      const recovered = ciphertext.map((x, i) =>
+        mod(x + sign * key[i % 28]));
+      assert.deepEqual(recovered, plant);
+    }
+    decrypted.push(...decoded);
+  }
+  chapterKeyTests.push({sign, transparentF, keyLength: 28,
+    totalRunes: decrypted.length, ioc29: ioc(decrypted)});
+}
+assert.deepEqual(chapterKeyTests.map(x => x.totalRunes),
+  [12956, 12956, 12956, 12956]);
+const expectedChapterIoC = [
+  .034493197234734096, .0357939331876354,
+  .03444821525195451, .035859529430072916
+];
+for (let i = 0; i < chapterKeyTests.length; i++)
+  assert.ok(Math.abs(chapterKeyTests[i].ioc29 - expectedChapterIoC[i]) < 1e-14);
+
 const expected = [
   .03317668295415642, .03650680028632784,
   .03597771622420715, .03345678628116149,
@@ -165,6 +218,6 @@ console.log(JSON.stringify({
   pairwise: {objects: all.length, unorderedPairs: 1540, degreeCounts, higher},
   exactSource: {p39LowFirst: [27, 5, 15], signed2013HighFirst: H,
     commonMonic: [1, 10, 25], quotientRunes: [275, 254, 252]},
-  candidateInverses: inverses, positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
+  candidateInverses: inverses, chapterKeyTests, rowDistinct: rowKeys.map(r => new Set(r).size), positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
   plaintextStatus: "No previously unknown original GP29 plaintext"
 }, null, 2));
