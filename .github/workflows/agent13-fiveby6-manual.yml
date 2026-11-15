@@ -13,3 +13,4 @@ jobs:
         with:
           node-version: "22"
       - run: node sims/lp2_fivedot_5x6_cyclewalk_bifid_original_sft.cjs
+      - run: node sims/lp2_fivedot_space30_wordshift_original_sft.cjs
