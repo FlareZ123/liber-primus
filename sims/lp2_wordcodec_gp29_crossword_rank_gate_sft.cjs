@@ -200,6 +200,32 @@ assert.deepEqual(encode(originalDecoded,models.gibran),original);
 assert.equal(doublets(original),86);
 assert.equal(withinFive(original).echoes,104);
 assert.equal(withinFive(original).opportunities,2105);
+// Source word-length matched, never tuned to source output: 256 independent
+// native GP plants under the same frozen public rank table.
+let calibrationSeed=0x33011660;
+const simulatedFive=[],simulatedRepeats=[];
+for(let trial=0;trial<256;trial++){
+  const nativeWords=original.map(w=>{
+    const pool=choices[w.length];
+    calibrationSeed=(Math.imul(1664525,calibrationSeed)+1013904223)>>>0;
+    return pool[calibrationSeed%pool.length];
+  });
+  const ciphertext=encode(nativeWords,models.gibran);
+  simulatedFive.push(withinFive(ciphertext).echoes);
+  simulatedRepeats.push(doublets(ciphertext));
+}
+const observedFive=withinFive(original).echoes;
+const meanFive=simulatedFive.reduce((x,y)=>x+y,0)/simulatedFive.length;
+const sdFive=Math.sqrt(simulatedFive.reduce((s,v)=>s+(v-meanFive)**2,0)/simulatedFive.length);
+const nativeRateControl={
+  plantCount:simulatedFive.length,originalLag5:observedFive,
+  simulatedLag5Mean:meanFive,simulatedLag5SD:sdFive,
+  simulatedLag5Min:Math.min(...simulatedFive),
+  simulatedLag5Max:Math.max(...simulatedFive),
+  simulatedLag5AtLeastOriginal:simulatedFive.filter(x=>x>=observedFive).length,
+  simulatedRepeatsMin:Math.min(...simulatedRepeats),
+  simulatedRepeatsMax:Math.max(...simulatedRepeats)
+};
 const scope=(first,last)=>{
   const indices=source.words.map((w,i)=>({w,i}))
     .filter(x=>x.w.startPage>=first&&x.w.startPage<=last).map(x=>x.i);
@@ -226,7 +252,7 @@ console.log(JSON.stringify({
     decodedOriginal:{normIoC:normIoC(originalDecoded),
       gibranLexiconHits:lexiconHits(originalDecoded),wordCount:originalDecoded.length,
       chapterP0to2:scope(0,2),blindP3to7:scope(3,7)},
-    wrongModelControl:{normIoC:normIoC(wrongModel),
+    nativeRateControl,wrongModelControl:{normIoC:normIoC(wrongModel),
       gibranLexiconHits:lexiconHits(wrongModel)},
     arbitraryGP29Positive:true,nativeGP29Positive:true,originalRecipherInvariant:true
   }
