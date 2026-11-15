@@ -4,9 +4,11 @@
 
 ## Source path
 
-The authenticated 2013 second-onion message contains the short instruction to “knock on the sky and listen to the sound.” That wording is saying **613** in Sōiku Shigematsu's *A Zen Forest: Sayings of the Masters* (1981). The digitized edition places item 613 at the page-77/78 boundary; the item number is the reliable selector.
+The authenticated 2013 second-onion message contains the instruction to “knock on the sky and listen to the sound.” That wording is saying **613** in Sōiku Shigematsu's *A Zen Forest: Sayings of the Masters* (1981). The digitized edition places item 613 at the page-77/78 boundary; the item number is the reliable selector.
 
-A second authenticated Cicada source is suggestive: the January 2016 message says Liber Primus's words are a map and their meaning is the road. Shigematsu's own introduction opens with the idea that a word points beyond itself. The 2013 forest clue, the 2013 quote, and the 2016 signed wording make a plausible human solve-path lead. The 2016 tree carrier is not counted as independent evidence: the archival note says the raster does not establish species or location, and the signed text warns against false paths. A community-wiki attribution to generic oak-tree clipart remains unverified. The semantic echo is not proof of cipher use.
+Crucially, this quotation already has a historically established role in the **2013** puzzle chain: it directed solvers to ping the hidden service with ICMP echo, whose payload returned the next onion. The repository preserves the signed 2013 message and the recovered ICMP-echo payload. Thus *A Zen Forest* is an authentic literary clue source for a solved 2013 stage, not a new LP2 key source by itself.
+
+The January 2016 signed message's words/map/meaning wording resembles Shigematsu's introduction, but no independent clue selects that introduction for LP2. The 2016 tree carrier is not independent evidence: its archival note says the raster does not establish species or location, and the signed text warns against false paths. A community-wiki attribution to generic oak-tree clipart remains unverified. Treat the semantic resemblance as a weak hypothesis, not a source selection.
 
 Sources:
 - [A Zen Forest PDF](https://terebess.hu/zen/ZenForest.pdf): title/copyright/catalog pages identify Shigematsu and the 1981 edition; the introduction is printed p. 3; item 613 is in the numbered sayings section.
@@ -51,7 +53,7 @@ The 2016-message key decrypts the first 184 symbols of p40; its decoded IoC is 0
 
 **Reject the tested A Zen Forest running-key route.** The source connection is real and useful historical context, but none of the source-selected plaintext candidates matches original LP2 under the frozen reversible operations. No plaintext, key, or new cipher mechanism was recovered.
 
-The strongest objection to the book-running-key hypothesis is that the anthology's entries are arranged as a reference collection, not a continuous narrative. The item-613 anchor and the 2016 “numbers are direction” wording make the test worth running, but do not justify further phase tuning or arbitrary extraction variants.
+The strongest objection to the book-running-key hypothesis is that the anthology's entries are arranged as a reference collection, not a continuous narrative. More importantly, the quote's already-established 2013 ICMP-echo role is the simpler historical explanation; it does not imply that the book is an LP2 keystream. The 2016 “numbers are direction” wording is not enough to promote that semantic resemblance into an LP2 source selection.
 
 Do not rescue this branch with page resets, shifted key starts, or alternate tokenization. The remaining useful question is whether a *different* original author-linked source, source-caption, or independently archived plaintext claim supplies an independently fixed 80–200-rune island. The 2013/2016 forest clue family can remain a page-selector hypothesis; A Zen Forest is not presently a demonstrated LP2 plaintext source.
 
