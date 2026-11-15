@@ -66,10 +66,13 @@ jobs:
           # Exact historical phrase and its 17-rune GP transliteration.
           decode patience_source_phrase 761.MP3 'Patience is a virtue'
           decode patience_gp_transliteration 761.MP3 'PATIENCEISAUIRTUE'
+          # p56's red-heading 280 signature selects INSTAR; the carrier title is The Instar Emergence.
+          decode instar_word 761.MP3 'INSTAR'
+          decode instar_title 761.MP3 'The Instar Emergence'
 
           {
             echo 'label exit_code output_bytes output_sha256'
-            for label in control_abcd patience_source_phrase patience_gp_transliteration; do
+            for label in control_abcd patience_source_phrase patience_gp_transliteration instar_word instar_title; do
               exit_code=$(cat "probe/results/$label.exit")
               if [ -f "probe/results/$label.txt" ]; then
                 bytes=$(wc -c < "probe/results/$label.txt" | tr -d ' ')
