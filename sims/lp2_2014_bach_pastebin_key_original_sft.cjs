@@ -35,6 +35,14 @@ const primeIndices = primeNums.map(value => {
   assert(index >= 0);
   return index;
 });
+// The first source lists a final repeated A in Flute 2. The participant's
+// GP-prime row accidentally omits that A, while their tonal and pitch-class
+// rows retain it. Insert the independently transcribed A prime (97) at the
+// flute2/harpsichord seam to test both the literal 19 and complete 20 notes.
+const prime20 = [...primeNums.slice(0, 14), 97, ...primeNums.slice(14)];
+assert.equal(prime20.length, 20);
+assert.equal(prime20[13], prime20[14]);
+
 const keysets = [
   ['tonal-scale', after('Tonal-(Scale):', 20)],
   ['tonal-octaves', after('Tonal-(Scale w/octaves):', 20)],
@@ -43,6 +51,8 @@ const keysets = [
   ['alpha-0', after('Alphanumeric-(A=0)', 19)],
   ['GP-prime-residue', primeNums.map(n => n % 29)],
   ['GP-prime-index', primeIndices],
+  ['GP-prime20-repaired-residue', prime20.map(n => n % 29)],
+  ['GP-prime20-repaired-index', prime20.map(n => corpus.prime.indexOf(n))],
 ];
 for (const [name, key] of keysets) {
   assert(key.length === 19 || key.length === 20, name + ' has unexpected key length');
@@ -116,6 +126,7 @@ const maxIoC = tests[0].fullIoC;
 console.log(JSON.stringify({
   source: 'Exact archived 3T089HUW and live 17h9MhyK participant text',
   primeNotes: primeNums,
+  repaired20FromOtherPublishedRows: prime20,
   primeAsGP: translit(primeIndices),
   inputRunes: 12956,
   originalP55Length: 76,
