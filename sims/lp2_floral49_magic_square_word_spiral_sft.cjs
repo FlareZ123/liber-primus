@@ -288,6 +288,124 @@ for (let offset=0; offset+735 < shakespeare.length; offset+=735) {
 }
 assert.equal(nativeWindows,75);
 
+
+/**
+ * Exact all-secret equality invariant for equal square-cell values.
+ * @param {number[][]} wordRunes Full GP29 words in original 49-word blocks
+ * @param {boolean} resetEachBlock Whether each block may have independent 29! keys
+ * @returns {{equalPairs:number,eligiblePairs:number,rate:number}}
+ */
+function squareClassEquality(wordRunes, resetEachBlock) {
+  const inventories = new Map();
+  for (let i = 0; i < wordRunes.length; i++) {
+    const key = (resetEachBlock ? String(Math.floor(i / 49)) + ":" : "") +
+      String(square[i % 49]);
+    if (!inventories.has(key)) inventories.set(key, []);
+    inventories.get(key).push(...wordRunes[i]);
+  }
+  let equalPairs = 0;
+  let eligiblePairs = 0;
+  for (const glyphs of inventories.values()) {
+    const frequency = new Uint32Array(29);
+    for (const value of glyphs) frequency[value]++;
+    for (const count of frequency) equalPairs += count * (count - 1);
+    eligiblePairs += glyphs.length * (glyphs.length - 1);
+  }
+  return {equalPairs, eligiblePairs, rate:equalPairs / eligiblePairs};
+}
+
+/**
+ * Source-normalized GP29 word, including historic ING and IO ligatures.
+ * @param {string} word
+ * @param {Map<string,number>} lookup
+ * @returns {number[]}
+ */
+function gpWord(word, lookup) {
+  const normalized = word.toUpperCase().replace(/[KQ]/g, "C")
+    .replace(/V/g, "U").replace(/Z/g, "S");
+  const glyphs = [...normalized.matchAll(/ING|TH|NG|EO|OE|AE|IA|EA|IO|[A-Z]/g)]
+    .map((part) => lookup.get(part[0] === "IO" ? "IA" : part[0]));
+  assert.ok(glyphs.length > 0 && glyphs.every(Number.isInteger));
+  return glyphs;
+}
+
+const originalWordRunes = floral.map((word) => [...word.runes].map((rune) => indices.get(rune)));
+const originalShared = squareClassEquality(originalWordRunes, false);
+const originalBlockReset = squareClassEquality(originalWordRunes, true);
+assert.deepEqual([originalShared.equalPairs, originalShared.eligiblePairs],
+  [16308, 479830]);
+assert.deepEqual([originalBlockReset.equalPairs, originalBlockReset.eligiblePairs],
+  [958, 32490]);
+
+const alphaByLabel = new Map(
+  JSON.parse(read("resources/liber-primus/lp2-corpus.json"))
+    .translit.map((label, i) => [label.toUpperCase(), i]));
+const sourceCorpora = [
+  ["Gibran", read("resources/control/gibran_prophet_58585.txt")],
+  ["Emerson", read("resources/control/emerson_essays_2944.txt")],
+  ["Shakespeare", read("resources/control/shakespeare_first300k.txt")]
+];
+const sourcePools = sourceCorpora.map(([, source]) => {
+  const pools = Array.from({length:20}, () => []);
+  for (const entry of source.matchAll(/[A-Za-z]+/g)) {
+    const runes = gpWord(entry[0], alphaByLabel);
+    if (runes.length < pools.length) pools[runes.length].push(runes);
+  }
+  return pools;
+});
+for (const pool of sourcePools) for (const {length} of floral) {
+  assert.ok(pool[length].length > 0, "Source missing native-GP word length " + length);
+}
+const plant = floral.map((entry) => sourcePools[0][entry.length][0]);
+const fullSharedPlant = plant.map((word, i) =>
+  word.map((value) => (value + square[i % 49]) % 29));
+const freshBlockPlant = plant.map((word, i) =>
+  word.map((value) => (value + square[i % 49] + 7 * Math.floor(i / 49)) % 29));
+assert.deepEqual(squareClassEquality(plant, false),
+  squareClassEquality(fullSharedPlant, false));
+assert.deepEqual(squareClassEquality(plant, true),
+  squareClassEquality(freshBlockPlant, true));
+
+let equalitySeed = 0x494e5637;
+function nextEqualityRandom() {
+  equalitySeed ^= equalitySeed << 13;
+  equalitySeed ^= equalitySeed >>> 17;
+  equalitySeed ^= equalitySeed << 5;
+  return equalitySeed >>> 0;
+}
+const equalityControls = sourceCorpora.map(([name], sourceIndex) => {
+  const pool = sourcePools[sourceIndex];
+  const trials = 400;
+  let smallestShared = 1;
+  let smallestBlockReset = 1;
+  let sumShared = 0;
+  let sumBlockReset = 0;
+  let atOrBelowShared = 0;
+  let atOrBelowBlockReset = 0;
+  for (let trial = 0; trial < trials; trial++) {
+    const sourceWords = floral.map(({length}) => {
+      const options = pool[length];
+      return options[nextEqualityRandom() % options.length];
+    });
+    const shared = squareClassEquality(sourceWords, false).rate;
+    const block = squareClassEquality(sourceWords, true).rate;
+    if (shared < smallestShared) smallestShared = shared;
+    if (block < smallestBlockReset) smallestBlockReset = block;
+    sumShared += shared;
+    sumBlockReset += block;
+    if (shared <= originalShared.rate) atOrBelowShared++;
+    if (block <= originalBlockReset.rate) atOrBelowBlockReset++;
+  }
+  assert.equal(atOrBelowShared, 0);
+  assert.equal(atOrBelowBlockReset, 0);
+  return {
+    name, trials,
+    shared:{minimum:smallestShared, mean:sumShared / trials, atOrBelowOriginal:atOrBelowShared},
+    blockReset:{minimum:smallestBlockReset, mean:sumBlockReset / trials,
+      atOrBelowOriginal:atOrBelowBlockReset}
+  };
+});
+
 console.log(JSON.stringify({
   originalCount:{words:words.length,runes:12956,floralWords:floral.length,floralRunes:3316},
   historicSquare:{cells:49,rowSum:1033,center:331,blocks:15},
@@ -306,5 +424,6 @@ console.log(JSON.stringify({
       meanInverse:heldAfter/nativeWindows
     }
   },
+  allSecretMagicSquare:{originalShared,originalBlockReset,controls:equalityControls},
   claim:"No unknown LP2 plaintext or key recovered."
 },null,2));
