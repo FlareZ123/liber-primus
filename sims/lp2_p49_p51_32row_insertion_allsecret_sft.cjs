@@ -52,8 +52,6 @@ function isSubsequence(required, container) {
  */
 function pairSupports(source, target, x, y) {
   const restricted = source.filter(v => v === x || v === y);
-  const targets = Array.from({length:29}, () => []);
-  for (const value of target) targets[value].push(value);
   let supports = 0;
   for (let u = 0; u < 29; u++) {
     for (let v = 0; v < 29; v++) {
