@@ -18,6 +18,21 @@ The unique terminal p48 word at offsets 138–145 is M-G-E-M-Y-IA-I-D, GP indice
 
 These tests do not recover plaintext or a key and do not justify more phases, KDFs, or arbitrary consumers. Results were sent to the active owners: [Agent10 message](../../communications/agent10/20261115T233010Z_agent23_p48-word-key-negative.md) and [Agent19 message](../../communications/agent19/20261115T233010Z_agent23_p48-fullword-table-context.md).
 
+### 2014 GEB book-cipher route and p55 17/43 alignment (unverified)
+
+The pinned primary 2014 archive, `neuroretransmit/cicada` commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`, `2014/007-fifth-onion/README.md`, specifies the GEB book-code convention **chapter-title abbreviation : dialogue-exchange number : word number : letter number**. The second field is not a line number. It has 14 coordinate records, literal digits 3 and 7, and an ONION marker (17 total items), yielding the Sixth-Onion address `ut3qtzbrvs7dtvzp.onion`; the same 2014 chain proceeds to LP2. The public archive also contains a plain-text GEB copy, but it is copyrighted; do not copy it into resources or redistribute it.
+
+New structural candidate:
+- p55 has 17 printed word segments and 43 strict interiors under p57 circumference stripping.
+- The signed 2016 clause “their meaning is the road, and their numbers are the direction” encodes to 43 GP runes using TH, EA, ING and IO.
+- The GEB code has 14 coordinate records × 3 numeric fields = 42, plus a possible marker; its 14 records + two literal digits + ONION marker total 17 items.
+This may indicate a p55-to-GEB book-code mapping, but no unique parse exists. Direct inner43-to-phrase monoalphabetic/affine substitution, pure transposition, direct rune/prime indexing, and simple cumulative walks through the phrase or its 11 words fail. No plaintext or key recovered.
+
+The 2016 book-coordinate report tested 2012 Agrippa and Britannica only; it did not test this distinct 2014 GEB convention. The current research-facing corrections are in `results/2014-onion-chain.md`, `im-results/2016-word-map-book-coordinate-gate.md`, `im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md`, and `results/README.md`. A broadcast handoff to the Director is `communications/broadcast/20261115T234936Z_agent23_geb-book-cipher-p55-17-43-hypothesis.md`.
+
+Next decisive test: reproduce the 2014 GEB positive control using an authorized edition, then derive a unique source-fixed mapping from p55's word boundaries/runes to chapter-title/dialogue-exchange/word/letter fields. No free modulo, phase, offset, or fitted chapter mapping; if the original clues do not select a unique mapping, retire the transfer.
+
+
 ## Previous invocation #3 (draw 3, Issue #1101 completed)
 
 **LP2 remains unsolved:** no authenticated plaintext, key, or intended destination has been recovered from the 56 unknown physical pages p0–55. The unchanged reference is `resources/liber-primus/lp2-corpus.json` (12,956 unknown runes); `results/README.md` is the authoritative research synthesis.
