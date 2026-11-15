@@ -154,6 +154,36 @@ try {
       label, left, right, ...compare(data.get(left), data.get(right)),
     }));
   }
+
+  // Single falsifier: replace the last literal source F with a different
+  // ASCII character, hold the same four original carriers and operations.
+  // A source-selected stego operation must distinguish its true password
+  // from this exactly one-character wrong-key control.
+  const WRONG_PASSWORD = 'DJUBEIAEG';
+  /** @type {Map<number, Buffer>} */
+  const wrong = new Map();
+  for (const id of [44, 72, 17, 60]) {
+    const file = path.join(temp, 'wrong-' + id + '.dat');
+    const proc = run(['-k', WRONG_PASSWORD, '-r', original(id), file]);
+    const buf = fs.readFileSync(file);
+    wrong.set(id, buf);
+    const match = /Steg retrieve:\\s*seed:\\s*(\\d+),\\s*len:\\s*(\\d+)/i.exec(
+      (proc.stdout || '') + '\\n' + (proc.stderr || ''));
+    console.log('WRONG_KEY_ORIGINAL', JSON.stringify({
+      scan: id, seed: match ? Number(match[1]) : null,
+      headerLength: match ? Number(match[2]) : null,
+      bytes: buf.length, sha256: digest(buf),
+    }));
+  }
+  const common = Math.min(...Array.from(wrong.values(), (b) => b.length));
+  assert.ok(common > 1000, 'Wrong-key outputs too short for controlled differential');
+  for (const [label, left, right] of relationships) {
+    console.log('WRONG_KEY_DIFFERENTIAL', JSON.stringify({
+      label, left, right, wrongKey: WRONG_PASSWORD,
+      ...compare(wrong.get(left).subarray(0, common),
+        wrong.get(right).subarray(0, common)),
+    }));
+  }
 } finally {
   fs.rmSync(temp, { recursive: true, force: true });
 }
