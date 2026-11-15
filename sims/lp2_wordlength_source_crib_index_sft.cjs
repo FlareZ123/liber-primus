@@ -103,14 +103,25 @@ assert(latinWords.every((s) =>
   [...s].every((glyph) => latinAlphabet.includes(glyph))
 ));
 
+/** Return only the source-literary text, excluding licensing metadata. */
+function sourceText(raw) {
+  return raw.split('BEGIN SOURCE TEXT')[1].split('END SOURCE TEXT')[0];
+}
+
 const references = [
   ['Shakespeare', nativeEnglish(read('resources/control/shakespeare_first300k.txt'))],
   ['Gibran The Prophet', nativeEnglish(read('resources/control/gibran_prophet_58585.txt'))],
   ['Emerson Essays', nativeEnglish(read('resources/control/emerson_essays_2944.txt'))],
-  ['Latin Vulgate', { words: latinWords, lengths: latinWords.map((w) => w.length) }]
+  ['Latin Vulgate', { words: latinWords, lengths: latinWords.map((w) => w.length) }],
+  ['Blake Song of Liberty', nativeEnglish(sourceText(
+    read('resources/control/blake_song_of_liberty_train.txt')
+  ))],
+  ['2012 Cicada-signed Blake chorus', nativeEnglish(sourceText(
+    read('resources/control/cicada2012_blake_chorus.txt')
+  ))]
 ];
 assert.deepEqual(references.map(([, r]) => r.words.length), [
-  55407, 15733, 77932, 39835
+  55407, 15733, 77932, 39835, 353, 56
 ]);
 
 /**
@@ -181,7 +192,7 @@ const scans = references.map(([name, ref]) => ({
   source: name, sourceWords: ref.words.length,
   ...searchLengthMatches(ref, chapters)
 }));
-assert.deepEqual(scans.map((x) => x.longestMatch), [9, 9, 9, 9]);
+assert.deepEqual(scans.map((x) => x.longestMatch), [9, 9, 9, 9, 0, 0]);
 assert.equal(scans[1].tiedBest[0].chapter, 3);
 assert.equal(scans[1].tiedBest[0].originalWordOffset, 225);
 assert.equal(scans[1].tiedBest[0].sourceWordOffset, 4957);
@@ -216,5 +227,5 @@ console.log(JSON.stringify({
     recoveredAtSourceWordOffset: 4886,
     recoveredAtLeast: positive.longestMatch
   },
-  interpretation: 'No ten-or-longer exact GP29 word-length source passage found in these four literal source editions. Nine-word length matches alone are not recovered plaintext.'
+  interpretation: 'No ten-or-longer exact GP29 word-length source passage found in four prose registers, and not even a seven-word match in two historical first-party Blake registers. Nine-word length matches alone are not recovered plaintext.'
 }, null, 2));
