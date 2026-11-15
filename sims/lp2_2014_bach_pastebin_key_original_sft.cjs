@@ -35,20 +35,28 @@ const primeIndices = primeNums.map(value => {
   assert(index >= 0);
   return index;
 });
-// The first source lists a final repeated A in Flute 2. The participant's
-// GP-prime row accidentally omits that A, while their tonal and pitch-class
-// rows retain it. Insert the independently transcribed A prime (97) at the
-// flute2/harpsichord seam to test both the literal 19 and complete 20 notes.
+// Both source notes and the tonal/pitch-class numeric rows contain 20 events.
+// GP primes omit the second Flute 2 A; both alphanumeric rows omit the
+// second adjacent first-Flute G. The cause of these omissions is unproven.
+// Source-constrained complete mappings are tested *alongside* literal 19s.
 const prime20 = [...primeNums.slice(0, 14), 97, ...primeNums.slice(14)];
+const alpha1 = after('Alphanumeric:', 19);
+const alpha0 = after('Alphanumeric-(A=0)', 19);
+const alpha1Full20 = [alpha1[0], ...alpha1];
+const alpha0Full20 = [alpha0[0], ...alpha0];
 assert.equal(prime20.length, 20);
 assert.equal(prime20[13], prime20[14]);
+assert.equal(alpha1Full20[0], 7);
+assert.equal(alpha0Full20[0], 6);
 
 const keysets = [
   ['tonal-scale', after('Tonal-(Scale):', 20)],
   ['tonal-octaves', after('Tonal-(Scale w/octaves):', 20)],
   ['pitch-class', after('Pitch Class:', 20)],
-  ['alpha-1', after('Alphanumeric:', 19)],
-  ['alpha-0', after('Alphanumeric-(A=0)', 19)],
+  ['alpha-1', alpha1],
+  ['alpha-0', alpha0],
+  ['alpha-1-full20-source-repaired', alpha1Full20],
+  ['alpha-0-full20-source-repaired', alpha0Full20],
   ['GP-prime-residue', primeNums.map(n => n % 29)],
   ['GP-prime-index', primeIndices],
   ['GP-prime20-repaired-residue', prime20.map(n => n % 29)],
@@ -127,6 +135,7 @@ console.log(JSON.stringify({
   source: 'Exact archived 3T089HUW and live 17h9MhyK participant text',
   primeNotes: primeNums,
   repaired20FromOtherPublishedRows: prime20,
+  repairedAlpha20FromNoteText: { alpha1Full20, alpha0Full20 },
   primeAsGP: translit(primeIndices),
   inputRunes: 12956,
   originalP55Length: 76,
