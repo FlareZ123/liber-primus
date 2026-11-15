@@ -1,6 +1,6 @@
-# All fourth-order homogeneous GP29 running keys excluded by the first 13 original singleton words
+# Original singleton inverse excludes homogeneous and affine fourth-order GF29 running keys
 
-**Agent 31, 15 November 2026. Classification:** exhaustive, exact original-cipher key-recovery search with source-verified 83-word input, arbitrary secret recurrence and starting state, and a source-shaped planted positive. **No unknown LP2 plaintext, authentic key, or continuation recovered.** The result is conditional on ordinary one-rune English words and the specified direct additive architecture.
+**Agent 31, 15 November 2026. Classification:** exhaustive, exact original-cipher key-recovery tests with source-verified 83-word input, arbitrary homogeneous or affine fourth-order recurrence, unrestricted starting state, and source-shaped planted positives. **No unknown LP2 plaintext, authentic key, or continuation recovered.** The result is conditional on ordinary one-rune English words and the specified direct additive architecture.
 
 ## Why this is a plaintext-directed attack
 
@@ -81,6 +81,38 @@ P_{1814}=8-16\equiv21\pmod {29},
 
 the single GP rune **NG**, not A, I or O. The three admissible key values there are precisely **[13,27,5]**, all different from the forced 16. This is a concrete 13-event contradiction, beyond a likelihood-based English heuristic.
 
+## The stronger affine and chapter-reset extension
+
+The preceding homogeneous exclusion assumed that the key obeys an order-four recurrence with **no constant intercept** and continues across the complete 12,956-rune book. Neither restriction is necessary to refute a much larger family on a *single independently visible chapter*. Grant all four coefficients and a wholly free constant **b**, and permit the cipher to reinitialize the key at every visually marked chapter:
+
+\[
+K_{n+4}=a_0K_n+a_1K_{n+1}+a_2K_{n+2}+a_3K_{n+3}+b\pmod {29}.
+\]
+
+In polynomial form, **every** such sequence has the homogeneous degree-five characteristic \((X-1)f_a(X)\). Conversely, every five-state sequence of that characteristic corresponds to an order-four affine recurrence with a fixed **b**, since the original four-state defect is constant. This gives an exact all-key search for **all 29 choices of b and every four-element secret starting state** at each coefficient tuple, without iterating 29^9 combinations. The five unknown degrees of freedom can be represented by arbitrary values of five successive key terms. Each observed singleton supplies a three-element allowable key set, and the earlier GF29 basis enumeration applies with rank at most five and **at most 3^5=243** basis assignments.
+
+The source-original **p15–22 visual chapter** contains **1,903 runes** and **18 complete single-rune words** in printed source order. It is bounded by original red section/art transitions and is distinct from the entire-book key clock. Even with independent, arbitrary chapter-start seed and the intercept b, every one of the **707,281** possible coefficient tuples is contradicted by only the first **14** of its 18 singleton words. The exact elimination histogram is:
+
+| First incompatible singleton of p15–22 | Coefficient tuples eliminated |
+| ---: | ---: |
+| 2–5 | 818 |
+| 6 | 1,924 |
+| 7 | 85,359 |
+| 8 | 453,063 |
+| 9 | 145,928 |
+| 10 | 18,178 |
+| 11 | 1,794 |
+| 12 | 200 |
+| 13 | 16 |
+| **14** | **1** |
+| All 18 compatible | **0** |
+
+The first 13 chapter singletons leave one recurrence and secret state, with coefficients **(9,18,24,12)**. Its forced key at the fourteenth singleton, global original rune offset **4,751**, is **19**. The unchanged original ciphertext there has GP29 index **2 (TH)**, so the proposed plaintext would be \(2-19\equiv12\pmod {29}\), **EO**, which is neither A, I nor O. This is an explicit chapter-contained inverse failure independent of any original chapter-start seed. The full-book affine search also finds **zero/707,281** compatible coefficient tuples after its fourteenth singleton; its earlier elimination histogram differs because source positions and initial state scope differ.
+
+This stronger p15–22 certificate subsumes the homogeneous result under a per-chapter restart, yet it does **not** exclude arbitrary new secret coefficients on *each individual printed page*, different plaintext word boundaries, inhomogeneous intercepts changing during a chapter, a GP plaintext register permitting the one-rune EO word, nonadditive operations, or source-driven F interruptions.
+
+**Reproducer:** [Original-source C++17 affine fourth-order all-key SFT](../sims/lp2_affine_order4_singleton_original_sft.cpp) checks 83 complete original singleton positions, the 1,903-rune chapter boundaries, all 707,281 candidate coefficients in both whole-book and isolated-chapter modes, a positive native-GP A/I/O plant under a genuine five-degree affine key, and the exact fourteenth-event exception. The independent local execution of the full search completed in approximately 17 seconds with **0 survivors** under either scope; the committed SFT is source-exact and has not been separately exercised in GitHub CI. The algebraic 5-state inverse is exhaustive, with every hidden b admitted.
+
 ## Positive control and reproduction
 
 [Standalone original-input C++17 SFT](../sims/lp2_all_order4_singletons_original_sft.cpp) is read-only. It parses the repository's exact UTF-8 \`resources/lp2-transcription.txt\` rune/word stream, verifies all **83** ciphertext singleton positions and source symbols, computes the complete coefficient census, and checks the last-polynomial witness. A synthetic positive uses the independently chosen nondegenerate recurrence **[9,4,10,6]**, initial four-key state at the first singleton **[7,1,12,23]**, and a cycling A/I/O plaintext at every one of the **same 83 original word positions**. The true planted coefficient and key survive all 83 tests, confirming that the inverse is capable of recognizing a genuine source-shaped cipher. The implementation uses only standard C++17 containers, no third-party dependencies, and no file writes.
@@ -89,6 +121,6 @@ A matching local C++17 implementation completed the full **707,281**-polynomial 
 
 ## Decision and limits
 
-**Reject every continuous, direct-additive, homogeneous GF29 key recurrence of order at most four**, irrespective of its secret coefficients and original four-term state, **if the 83 printed one-rune words belong to ordinary A/I/O English**. No retuning of p15 matrix entries, p39/G, 2013/H or another fourth-order recurrence can evade this necessary condition under that architecture.
+**Reject direct-additive, homogeneous or affine GF29 running keys of order at most four for ordinary A/I/O plaintext singleton words.** The homogeneous proof excludes the continuous book clock using the first 13 singleton events. The affine proof excludes even an independent chapter-initialized key and free constant intercept using 14 singletons inside original p15–22. No retuning of p15 matrix entries, p39/G, 2013/H or another fourth-order recurrence can evade this necessary condition under that architecture.
 
-The exact obstruction does **not** cover a separate fresh key per page/chapter, inhomogeneous or nonlinear state, plaintext-F-skipping clocks, ciphertext feedback, inserted/deleted rune symbols, a non-GP plaintext layer, or source words that are not one-rune English. It cannot authenticate a different mechanism or extract genuine unknown plaintext on its own. The next plaintext-directed branch should identify a source-selected evolving/affine register or historical key rather than launch another homogeneous order-four coefficient sweep.
+The exact obstruction does **not** cover a separately coefficient-keyed individual printed page, within-chapter changing intercept, or nonlinear state, plaintext-F-skipping clocks, ciphertext feedback, inserted/deleted rune symbols, a non-GP plaintext layer, or source words that are not one-rune English. It cannot authenticate a different mechanism or extract genuine unknown plaintext on its own. The next plaintext-directed branch should identify a source-selected evolving, nonlinear, or deliberately interrupted register or historical key rather than launch another homogeneous order-four coefficient sweep.
