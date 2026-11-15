@@ -247,10 +247,29 @@ def main() -> None:
         window = shared.choose_file(
             app, window, "Browse", payload, out, "seven-carrier-secret"
         )
+        # Original OpenPuff can restore Enable(C) during native Browse/Add.
+        # The first seven-carrier attempt (run 43687940512) showed C visibly
+        # checked after the initial 0/0 toggle, and a native Invalid passwords
+        # warning. Reapply A-only *after* all native carrier/target UI actions.
+        record["password_control_before_hide"] = set_synthetic_a_only_password(
+            window, args.password
+        )
         snapshot(app, out, "configured")
         shared.click_named(window, "Hide Data")
         time.sleep(1)
         snapshot_desktop(out, "hide-post-click-desktop")
+        warnings = [
+            modal for modal in shared.native_modal_inventory()
+            if "invalid passwords" in "\n".join(
+                str(label) for label in modal.get("static", [])
+            ).lower()
+        ]
+        if warnings:
+            record["native_invalid_password_warnings"] = warnings
+            raise RuntimeError(
+                "Original OpenPuff Hide raised Step (1): Invalid passwords! "
+                "after final A-only password revalidation"
+            )
 
         completion = []
         dialogs = shared.DesktopDialogs()
