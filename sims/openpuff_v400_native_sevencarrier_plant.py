@@ -79,9 +79,12 @@ def set_synthetic_a_only_password(window, password: str) -> dict:
         if control.get_check_state():
             control.uncheck_by_click_input()
             time.sleep(0.3)
+            shared.acknowledge_password_disable_warning()
         if control.get_check_state():
             control.uncheck()
             time.sleep(0.3)
+            shared.acknowledge_password_disable_warning()
+    shared.acknowledge_password_disable_warning()
     states = {str(k): int(v.get_check_state()) for k, v in controls.items()}
     if states != {"1012": 0, "1013": 0}:
         raise RuntimeError(f"Native Hide B/C checkboxes did not remain off: {states}")
