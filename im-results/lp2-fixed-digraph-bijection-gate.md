@@ -40,6 +40,18 @@ Classical Playfair encryption on a keyed 5×5 or 7×7 square maps every **distin
 
 The original 12,956 unknown LP2 runes give **86 same-page adjacent identical-rune pairs**. The earlier fixed 29-symbol analysis found 37 offending globally even-phase pairs and 49 in the opposite phase, 35/51 under page-local resets, and **14 physical pages each having both pair phases**, so independent page phases still incur at least 17 forbidden pairs. Word-reset two-phase equalities split 27/36 among its 63 intra-word identical adjacencies. These are the preexisting original-source results.
 
+### Original printed-line phase witness (Agent14, 15 November 2026)
+
+The earlier page-phase contradiction already rules out a 29-rune/no-bypass standard Playfair clock at the book or page scale. A stronger **source-only**, independent observation rejects even a separately restarted Playfair pair phase on **every physical printed line**. Of the original 86 adjacent-equal runic events, 82 are fully within one originally printed line; they occupy 79 lines. Exactly one line has two equal-rune events at **opposite line-relative destination-column parities**. This single original line defeats either possible Playfair phase without a guessed table or language model:
+
+- **Original LP2 physical p24**, archive `41.jpg`, third printed line (zero-based line2): `ᛡ-ᛈᚣᚢ-ᛉᚷᚷ-ᚹᛞᛁᛋ-ᚦᛡᛡᛈᚳᚪᚩ-ᚢᛗᚢ/`.
+- The equal black-glyph pairs `ᚷᚷ` and `ᛡᛡ` have their second runes at **zero-based printed columns6 and13**, respectively; their first-rune offsets on p24 are51 and58 (second-rune offsets52 and59). Both are inside otherwise ordinary original printed words.
+- Any fixed pairing of the entire line puts exactly one of these source pairs inside a complete ciphertext digraph, violating the standard Playfair invariant `ciphertextPair[0] != ciphertextPair[1]`. Original-JPEG registrations report each of these two same-form pairs with black/black ink and same-class Jaccard about0.940.
+
+The [source-exact line-phase SFT](../sims/lp2_playfair_digraph_parity_original_sft.cjs) asserts all 86 original site indices, the 82 same-line pairs/79 lines, the unique original p24 two-parity witness and literal Unicode transcription. It also **actually encrypts and decrypts** a padded 96-cell GP29 sequence derived from 95 authentic solved p57 runes under a positive 5×6 Playfair board, proving the basic pair exclusion is checked against a valid cipher. [Original-source Node22 run43680523362](https://github.com/FlareZ123/liber-primus/actions/runs/43680523362) passed all tests. This source-only extension does **not** include the separately examined four-transparent-symbol 5×5 model below; a changing escape clock inside that same p24 line or a newly authored intra-line reset instruction remains outside the fixed-pair test.
+
+
+
 ### All possible four-symbol transparent exceptions on the 2014 5×5 route
 
 The original 2014 Cicada magic-square material contains a **5×5** square, which can motivate a human to consider a keyed Playfair square. GP29 has **29** runes, so using a 25-cell square requires an independently specified rule for the remaining four. No first-party source selects Playfair or identifies the four exceptions. The strengthened test therefore gives this hypothesis **every one of C(29,4) = 23,751 possible transparent four-rune sets**, treating those glyphs as unchanged ciphertext symbols that do **not advance the core digraph pairing**.
