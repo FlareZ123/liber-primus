@@ -44,14 +44,40 @@ The reference unigram model is trained on the first 240,000 characters of the pi
 
 All eight outputs remain at the near-uniform original ciphertext baseline (source IoC **0.03447840**). The best full score is **−4.25155**, substantially worse than the uniform baseline and the native-English reference. No output exhibits a plaintext-like register. The causal GP_prev implementation passes four exact synthetic round-trip controls, each recovering **12,956/12,956** runes with the original word-length structure. GP_now is reported only as a decoder-side literal reading because its current-ciphertext direction is not a causal encryption rule.
 
+## Möbius word-number direction
+
+The p05 inscription names **MOBIUS** and emphasizes primes/totients; the signed 2016 message says word numbers supply direction. A direct arithmetic reading is to take the **previous ciphertext word's GP-prime-value sum** (S), compute the Möbius function μ(S), and use it as the key-pointer direction for the next word:
+
+- μ(S)=+1: advance one key symbol per rune;
+- μ(S)=−1: move backward one key symbol per rune;
+- μ(S)=0: hold the key pointer fixed throughout the next word.
+
+The key is the exact 2013 Book of the Law GP29 transcription (21,630 runes), read cyclically from its first rune. The first word starts forward. Both μ sign polarities and both additive signs were tested; no other word-number function, key offset, page reset or period was fitted. The μ=0 hold interpretation is the main unresolved semantic assumption, but it is the direct three-valued direction reading.
+
+Across the 2,895 previous-word sums, the Möbius counts are **945 −1, 1,115 zero, 835 +1**. Results:
+
+| μ(+1) direction | Operation | Trigram log-likelihood | IoC | Key wraps | Final pointer |
+|---|---|---:|---:|---:|---:|
+| Forward | (C=P+K) | −4.61883 | 0.03454198 | 11 | 21,216 |
+| Forward | (C=P-K) | −4.64930 | 0.03449016 | 11 | 21,216 |
+| Backward | (C=P+K) | −4.62870 | 0.03447430 | 0 | 430 |
+| Backward | (C=P-K) | −4.61119 | 0.03449937 | 0 | 430 |
+
+The untouched ciphertext scores **−4.60956**; the same Shakespeare GP29 trigram model gives **−2.21915** on training and **−2.36417** on held-out English, versus the uniform mean **−3.36730**. The best Möbius output is **−4.61119**, effectively unchanged from the ciphertext and far below native English. All four synthetic 12,956-rune plants recover exactly.
+
+**Decision:** reject the specified Book-of-the-Law + μ(previous-word GP-prime-sum) direction mechanism. This is a more literal MOBIUS interpretation than the prime/composite gate above, but its output contains no plaintext. It does not exclude another author-specified use of μ or another key source; do not expand into arbitrary word statistics or zero-handling conventions without a new clue.
+
+Reproduce with `node sims/book_of_law_mobius_word_direction_gate.cjs`.
+
 ## Decision and limits
 
-Reject the **2013 Book of the Law + cyclic GP-prime-sum pointer-direction** mechanism under these explicit conventions. This is stronger than the earlier direct continuous running-key rejection, but it does not rule out a book code, a different author-specified number, or a different key source. Do not expand this into an unconstrained sweep over word statistics, direction maps, key offsets, or pointer conventions without a new first-party selector.
+Reject the **2013 Book of the Law + cyclic GP-prime-sum and Möbius word-direction** mechanisms under these explicit conventions. This is stronger than the earlier direct continuous running-key rejection, but it does not rule out a book code, a different author-specified number, or a different key source. Do not expand this into an unconstrained sweep over word statistics, direction maps, key offsets, or pointer conventions without a new first-party selector.
 
 Reproduce from the repository root:
 
 ```sh
 node sims/book_of_law_prime_direction_running_key_gate.cjs
+node sims/book_of_law_mobius_word_direction_gate.cjs
 ```
 
-Inputs: canonical `resources/liber-primus/lp2-corpus.json`, original `resources/liber-primus/lp2-transcription.txt`, exact 2013 chapter sources, and `resources/control/shakespeare_first300k.txt`. The script asserts the original word/rune alignment, exact key length, all eight original statistics, and the four causal synthetic round trips.
+Inputs: canonical `resources/liber-primus/lp2-corpus.json`, original `resources/liber-primus/lp2-transcription.txt`, exact 2013 chapter sources, and `resources/control/shakespeare_first300k.txt`. The script asserts the original word/rune alignment, exact key length, all eight prime/composite statistics, the four Möbius statistics, and all eight causal synthetic round trips.
