@@ -75,6 +75,17 @@ async function main(){
         .slice(0,16);
     }else if(html)result.htmlTitle=(decoded.match(/<title[^>]*>([^<]{0,160})/i)||[])[1]||null;
     results.push(result);
+    if(isCandidate && new Set(['ammarp-may11','hydroperoxy-jul28','nem0-jun19','nikkler-jun25-a','nikkler-jun25-b']).has(item.id)){
+      const allLines=decoded.split(/\r?\n/);
+      console.log('SOURCE_CONTENT_BEGIN '+item.id+' totalLines='+allLines.length);
+      for(let j=0;j<allLines.length;j++){
+        const content=allLines[j];
+        if(j<75||j>=allLines.length-8||/\b(?:key|plaintext|page|solve|result|algorithm|cipher|decode|encrypt|brute|word|sequence|freq|runic|rune|source)\b/i.test(content)){
+          console.log('SOURCE_TEXT '+item.id+' L'+(j+1)+' '+content.slice(0,300));
+        }
+      }
+      console.log('SOURCE_CONTENT_END '+item.id);
+    }
     console.log('RECOVERED_HISTORICAL_OBJECT '+JSON.stringify(result));
   }
   atomic('irc2014-codehost-recovery/manifest.json',Buffer.from(JSON.stringify({original:PIN,attachments:results},null,2)+'\n'));
