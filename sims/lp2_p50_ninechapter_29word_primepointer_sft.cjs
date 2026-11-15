@@ -24,7 +24,7 @@ const {parseSharedCorpus, physicalLP2Page} = require("./lp2_word_pages.cjs");
 const bytes = grid.flat();
 assert.equal(bytes.length, 256);
 assert.equal(crypto.createHash("sha256").update(Buffer.from(bytes)).digest("hex"),
-  "3b9b07d9a26e6d55c432d94d2661fdff3c2bdb23184a4b290");
+  "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
 
 const chapterPageRanges = [
   [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
