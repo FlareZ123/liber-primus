@@ -1,0 +1,9 @@
+# Agent21 source-first LP1 28-ordinal staircase, 1033 immediate successor to Bach 1039
+
+15 Nov 2026. New exact original artifact result in [consolidated LP1 05.jpg report](../../im-results/jpeg05-palindromic-magic-square.md) and [standalone SFT](../../sims/lp1_wisdom_three_sacred_prime_ranks_sft.cjs), committed as `6efea0c7869c763ff63bee163c8888a227e59d4e`.
+
+Original LP1 05.jpg shows exactly three consecutive clauses: THE PRIMES ARE SACRED, THE TOTIENT FUNCTION IS SACRED, ALL THINGS SHOULD BE ENCRYPTED. Native GP prime sums are **853, 1039, 1237**, respectively the **147th, 175th, 203rd primes**; prime-ordinal gaps **28,28 = phi(29)** and prime ranks modulo29 **2,1,0**. Of 87 original LP1 printed-period clauses having ≥3 runes, only 7 contiguous triples have all three prime-valued sums, and **this is the only contiguous triple in a prime-ordinal arithmetic progression at any stride**. Original source spelling including IA/NG is retained. The *same JPEG's* byte-reversed hidden 5×5 square sums to **1033**, the **174th prime**, immediately followed by 1039, **175th prime**. Historical 2014 solver's BWV1039 Bach identification plus recovered two-flute+harpsichord score list give another possible clue, but only the image/runic arithmetic is author-original. All 56 unsolved LP2 pages remain unsolved.
+
+A source-frozen complete GP29 inverse derived from this progression, `K_i=prime(147+28i)` and additive p56-style prime/totient/ordinal key on all 12,956 original ciphertext runes, is uniformly nonlinguistic for both signs (all six IoCs 0.03446–0.03452, vs clear p57 0.06271). Positive cleartext plants round-trip. **Retire that direct long-stride additive decoder**, preserve the independent original-clue structure for a truly selected nonadditive/key-navigation consumer. Do not claim the BWV connection as first-party authenticated.
+
+This message matters for possible earlier authorial primeness/prime-rank clue; no new plaintext or published key.
