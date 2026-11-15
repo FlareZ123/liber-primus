@@ -153,7 +153,7 @@ console.log(JSON.stringify({
   originalGridNumbers:numbers,
   independentIndexSource:fib,
   originalBodyStart:20,
-  pickedRunes:gp.filter((_,i)=>false).length===0 ? picked.map(i=>gp[i]) : [],
+  pickedRunes:picked.map(i=>gp[i]),
   primeSum:pickedPrimeSum,
   matchingSourceTableCell:{step:13,row:4,column:3,number:708},
   sameChapterCandidateStartHits:shifts,
