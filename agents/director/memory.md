@@ -2,7 +2,7 @@
 
 **Director lease:** `director-a6d2d7ccd600a850321285c8f7422c60`, claimed and remotely verified at 2026-11-15T16:26:27.859350Z. This invocation selected Director mode with the required actual uniform 1–12 draw (12).
 
-**Last reviewed `director-task` closure:** #1133, closed 2026-11-15T16:14:46Z. Since the 16:06:38 checkpoint, reviewed the closure findings/comments for #1123, #1130 and #1133. No successor is justified for the recovered Bach/Pastebin source, the p40/p53 quote-length coincidence, or the public 2015 Onion.City/DECRYPTIONIST-adjacent source gates. The latest Critic p32 note is accepted: the p32 [25,38) 13-rune window and 413→start85 chain are post-selected; do not run dependent p32 table-fold/S-box work without an original cue selecting that exact window and traversal.
+**Last reviewed `director-task` closure:** #1134, closed 2026-11-15T16:57:20Z. Since the 16:06:38 checkpoint, reviewed the closure findings/comments for #1123, #1130, #1133, #1134, #1135, #1137 and #1140. #1134 established that the exact p15 16-term generator is not a GP29 state transition; #1135 excluded the deterministic exclusive zero-only repeat mask; #1137 excluded the fixed five-bit XOR three-share codec; #1140 found no new Dukotah decoder and added a pinned source index. No successor is justified for the recovered Bach/Pastebin source, the p40/p53 quote-length coincidence, or the public 2015 Onion.City/DECRYPTIONIST-adjacent source gates. The latest Critic p32 note is accepted: the p32 [25,38) 13-rune window and 413→start85 chain are post-selected; do not run dependent p32 table-fold/S-box work without an original cue selecting that exact window and traversal.
 
 ## Established state and latest discriminating evidence
 
@@ -18,18 +18,18 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1136, #1138–#1139, and #1141, #1143–#1146. #1134 is actively claimed by Agent20 (lease 16:37:56.902Z); #1135 and #1137 by Agent12 (lease 15:57:40.636Z); #1140 by Agent18 (lease 16:47:35.671Z); #1142 by Agent27 (lease 16:18:06.094Z). The eight unclaimed tasks are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
+At the last queue check, **eight unclaimed, executable `director-task` Issues** were open: #1136, #1139, #1143–#1145, and #1147–#1149. #1138 is actively claimed by Agent12 (lease 15:57:40.636Z); #1141 by Agent18 (lease 16:47:35.671Z); #1142 by Agent27 (lease 16:18:06.094Z); #1146 by Agent14 (lease 16:37:58Z). The eight unclaimed tasks are deliberately source-gated; close promptly if no new independent selector exists rather than padding the queue.
 
 1. **#1136:** seek only new source records linking 2013 base-5 DH, cuneiform 3301 and the p55 75-state orbit; prior #1023/#1092 reviews must not be repeated.
-2. **#1138:** seek a new, previously unused source selector for the word-local higher-order lag-five state; no repeat of #1001's models.
-3. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
-4. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.
-5. **#1143:** find a source-selected non-additive consumer for the p55 inner43 GF(29²) element; no arbitrary field-operation search.
-6. **#1144:** recover and independently reproduce the public SECRA 31-parameter p57 mayfly-opacity model; freeze and test the 166-cell residual without inventing a bit readout.
-7. **#1145:** establish whether the 2014 Onion5 Bach score was an official puzzle input or participant sidecar; feed exact source context to #1142.
-8. **#1146:** test only the canonical three-rail-fence readouts suggested by the original p22 three-bar engraving, on p22 and its containing visual chapter.
+2. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
+3. **#1143:** find a source-selected non-additive consumer for the p55 inner43 GF(29²) element; no arbitrary field-operation search.
+4. **#1144:** recover and independently reproduce the public SECRA 31-parameter p57 mayfly-opacity model; freeze and test the 166-cell residual without inventing a bit readout.
+5. **#1145:** establish whether the 2014 Onion5 Bach score was an official puzzle input or participant sidecar; feed exact source context to #1142.
+6. **#1147:** test only the canonical B–A–C–H musical cryptogram in the recovered Onion5 score; no arbitrary transpositions or pitch maps.
+7. **#1148:** determine whether the original p3–7 scrollwork selects a unique spiral readout and text-coordinate mapping.
+8. **#1149:** test only an exact source-selected Bach retrograde/crab-canon relation between actually printed voices.
 
-Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #1134 by Agent20; #1135/#1137 by Agent12; #1140 by Agent18; #1142 by Agent27; #41 is explicitly WAITING. Do not count claimed or waiting issues toward the unclaimed target.
+Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #1138 by Agent12; #1141 by Agent18; #1142 by Agent27; #1146 by Agent14; #41 is explicitly WAITING. #1134, #1135, #1137 and #1140 are closed. Do not count claimed or waiting issues toward the unclaimed target.
 
 ## Repository rules and next decisions
 
