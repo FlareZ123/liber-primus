@@ -118,6 +118,64 @@ std::vector<int> planted(std::uint32_t originalSeed, int order, int projection) 
     }
     return c;
 }
+
+int output29(std::uint32_t state, int projection, int reverse) {
+    const int rank = projection == 0 ? static_cast<int>(state % 29U)
+                                     : static_cast<int>((29ULL * state) / M);
+    return reverse ? 28 - rank : rank;
+}
+
+SearchResult allStatesReject29(const std::vector<int>& ciphertext, int projection, int reverse) {
+    if (ciphertext.size() != LENGTH + 1) throw std::runtime_error("expected 32 source runes");
+    const int firstRank = reverse ? 28 - ciphertext[1] : ciphertext[1];
+    std::uint64_t first, last, stride;
+    if (projection == 0) {
+        first = firstRank == 0 ? 29 : static_cast<std::uint64_t>(firstRank);
+        last = M - 1;
+        stride = 29;
+    } else {
+        first = std::max<std::uint64_t>(1, (static_cast<std::uint64_t>(firstRank) * M + 28) / 29);
+        last = std::min<std::uint64_t>(M - 1, (static_cast<std::uint64_t>(firstRank + 1) * M + 28) / 29 - 1);
+        stride = 1;
+    }
+    SearchResult found;
+    for (std::uint64_t candidate = first; candidate <= last; candidate += stride) {
+        std::uint32_t state = static_cast<std::uint32_t>(candidate);
+        int count = 1;
+        for (; count < LENGTH; count++) {
+            int glyph;
+            do { state = next(state); glyph = output29(state, projection, reverse); }
+            while (glyph == ciphertext[count]);
+            if (glyph != ciphertext[count + 1]) break;
+        }
+        if (count > found.longest) {
+            found.longest = count;
+            found.bestState = static_cast<std::uint32_t>(candidate);
+        }
+        if (count == LENGTH) found.fullState = static_cast<std::uint32_t>(candidate);
+        for (int k = 1; k <= count; k++) found.surviving[k]++;
+    }
+    return found;
+}
+
+std::vector<int> plantedReject29(std::uint32_t seed, int projection, int reverse) {
+    std::vector<int> c = {15};
+    std::uint32_t state = seed;
+    for (int i = 0; i < LENGTH; i++) {
+        int glyph;
+        do { state = next(state); glyph = output29(state, projection, reverse); }
+        while (glyph == c.back());
+        c.push_back(glyph);
+    }
+    return c;
+}
+
+std::uint32_t plantedFirstAcceptedState(std::uint32_t seed, int projection, int reverse) {
+    std::uint32_t state = seed;
+    do { state = next(state); } while (output29(state, projection, reverse) == 15);
+    return state;
+}
+
 } // namespace
 
 int main() {
@@ -139,10 +197,27 @@ int main() {
             }
         }
     }
+    for (int projection = 0; projection < 2; projection++) {
+        for (int reverse = 0; reverse < 2; reverse++) {
+            const auto r = allStatesReject29(actual, projection, reverse);
+            if (r.surviving[7] != 0 || r.longest != 6)
+                throw std::runtime_error("unexpected rejection-source original prefix result");
+            std::cout << "original reject29 proj=" << projection << " reverse=" << reverse
+                      << " 6-matches=" << r.surviving[6] << " 7-matches=" << r.surviving[7] << '\n';
+            const auto synthetic = plantedReject29(3301U + static_cast<unsigned>(projection * 31 + reverse), projection, reverse);
+            for (int i = 1; i < LENGTH + 1; i++)
+                if (synthetic[i] == synthetic[i - 1]) throw std::runtime_error("reject29 positive emitted repeat");
+        }
+    }
+    const std::uint32_t rejectionSeed = 3360U;
+    const auto rejectPositive = allStatesReject29(plantedReject29(rejectionSeed, 0, 0), 0, 0);
+    if (rejectPositive.surviving[LENGTH] != 1 ||
+        rejectPositive.fullState != plantedFirstAcceptedState(rejectionSeed, 0, 0))
+        throw std::runtime_error("positive rejection29 seed recovery failed");
     const auto knownSeed = 3301U + 2U * 29U;
     const auto positive = allStates(planted(knownSeed, 2, 0), 2, 0);
     if (positive.surviving[LENGTH] != 1 || positive.fullState != next(knownSeed))
         throw std::runtime_error("positive seed recovery failed");
     std::cout << "PASS: eight original no-repeat GP29 transports excluded at seven transitions; "
-              << "eight forward roundtrips and one exact all-state planted-seed inverse passed.\n";
+              << "twelve forward plants and two exact all-state planted-seed inverses passed.\n";
 }
