@@ -162,6 +162,41 @@ function replay(plain, trace) {
   return { ciphertext, clock };
 }
 
+/**
+ * Inspect every live clock immediately before the first impossible rune.
+ * @param {number[]} cipher
+ * @param {number} failAt
+ */
+function deadEndCertificate(cipher, failAt) {
+  let states = new Set([0]);
+  for (let i = 0; i < failAt; i++) {
+    const next = new Set();
+    for (const j of states) {
+      if (cipher[i] === 0) next.add(j);
+      const p = mod(cipher[i] - KEY[j]);
+      if (p !== 0) next.add(j + 1);
+      if (i > 0) {
+        const q = mod(cipher[i] - KEY[j + 1]);
+        if (q !== 0 && mod(q + KEY[j]) === cipher[i - 1]) next.add(j + 2);
+      }
+    }
+    states = next;
+    assert.ok(states.size > 0);
+  }
+  const at = cipher[failAt], previous = cipher[failAt - 1];
+  return [...states].map(j => {
+    const direct = mod(at - KEY[j]), retry = mod(at - KEY[j + 1]);
+    return {
+      previousClock: j, ciphertext: at, previousCiphertext: previous,
+      currentKey: KEY[j], nextKey: KEY[j + 1],
+      directPlain: direct, directIsForbiddenF: direct === 0,
+      retryPlain: retry, retryRejectedOutput: mod(retry + KEY[j]),
+      retryCollisionCondition: retry !== 0 &&
+        mod(retry + KEY[j]) === previous
+    };
+  });
+}
+
 function main() {
   assert.equal(corpus.translit.length, MOD);
   assert.equal(corpus.pages.filter(p => p.page <= 55)
@@ -209,6 +244,20 @@ function main() {
   assert.equal(terminal.firstImpossibleRune, 63);
   assert.equal(noCollisionOpening.firstImpossibleRune, 235);
   assert.equal(noCollisionTerminal.firstImpossibleRune, 39);
+  const p0Certificate = deadEndCertificate(corpus.pages[0].indices, 235);
+  const p55Certificate = deadEndCertificate(corpus.pages[55].indices, 63);
+  assert.deepEqual(p0Certificate, [{
+    previousClock: 231, ciphertext: 8, previousCiphertext: 16,
+    currentKey: 8, nextKey: 20, directPlain: 0, directIsForbiddenF: true,
+    retryPlain: 17, retryRejectedOutput: 25,
+    retryCollisionCondition: false
+  }]);
+  assert.deepEqual(p55Certificate, [{
+    previousClock: 64, ciphertext: 22, previousCiphertext: 2,
+    currentKey: 22, nextKey: 26, directPlain: 0,
+    directIsForbiddenF: true, retryPlain: 25,
+    retryRejectedOutput: 18, retryCollisionCondition: false
+  }]);
   assert.equal(terminalChapter.firstImpossibleRune, null);
   assert.equal(terminalChapter.stateCount, 2);
   assert.equal(terminalChapter.maxE, 10);
@@ -222,6 +271,8 @@ function main() {
       authenticGPPlaintextE: actualE,
       trueClockReachable: recovered.clockIndices.includes(positive.clock)
     },
+    p0ImpossibleRuneCertificate: p0Certificate,
+    p55ImpossibleRuneCertificate: p55Certificate,
     originalP0: opening,
     originalP55: terminal,
     originalP54And55Continuous: terminalChapter,
@@ -234,4 +285,4 @@ function main() {
   console.log(JSON.stringify(answer, null, 2));
 }
 if (require.main === module) main();
-module.exports = { primeTotients, scan, plant, replay };
+module.exports = { primeTotients, scan, plant, replay, deadEndCertificate };
