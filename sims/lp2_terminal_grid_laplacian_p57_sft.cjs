@@ -73,6 +73,72 @@ assert.equal(sites.filter((index) =>
   plantedCipher[index] === laplacianAt(complete, index)
 ).length, 56);
 
+/** Exact Gaussian elimination over GF29, with optional augmented output column. */
+function rref(rows) {
+  const matrix = rows.map((row) => row.map(mod));
+  let rank = 0;
+  const columns = matrix[0].length;
+  for (let col = 0; col < columns && rank < matrix.length; col++) {
+    let pivot = rank;
+    while (pivot < matrix.length && matrix[pivot][col] === 0) pivot++;
+    if (pivot === matrix.length) continue;
+    [matrix[rank], matrix[pivot]] = [matrix[pivot], matrix[rank]];
+    const value = matrix[rank][col];
+    let reciprocal = 1;
+    while (mod(value * reciprocal) !== 1) reciprocal++;
+    matrix[rank] = matrix[rank].map((x) => mod(x * reciprocal));
+    for (let row = 0; row < matrix.length; row++) {
+      if (row === rank) continue;
+      const factor = matrix[row][col];
+      matrix[row] = matrix[row].map((x, j) => mod(x - factor * matrix[rank][j]));
+    }
+    rank++;
+  }
+  return { matrix, rank };
+}
+
+// Even allowing every stationary five-neighbor coefficient and a free affine
+// intercept, the 56 known original p57 sites overdetermine six unknowns.
+const design = sites.map((i) => [
+  complete[i], complete[i - W], complete[i + W],
+  complete[i - 1], complete[i + 1], 1
+]);
+const observed = sites.map((i) => cells[i] % 29);
+assert.equal(rref(design).rank, 6);
+assert.equal(rref(design.map((row, i) => [...row, observed[i]])).rank, 7);
+
+// Recover the uniquely fitted secret six-coefficient stencil from only six
+// independent source equations, then test the other 50 without refitting.
+const fitIndices = [];
+for (let i = 0; i < sites.length && fitIndices.length < 6; i++) {
+  if (rref([...fitIndices, i].map((k) => design[k])).rank > fitIndices.length) {
+    fitIndices.push(i);
+  }
+}
+assert.deepEqual(fitIndices.map((i) => sites[i]), [130, 131, 132, 133, 138, 139]);
+const extractCoefficients = (values) =>
+  rref(fitIndices.map((i) => [...design[i], values[i]])).matrix
+    .slice(0, 6).map((row) => row[6]);
+const fitted = extractCoefficients(observed);
+assert.deepEqual(fitted, [6, 10, 26, 24, 18, 19]);
+const predict = (row, coefficients) =>
+  mod(row.reduce((s, x, i) => s + x * coefficients[i], 0));
+const heldout = sites.map((_, i) => i).filter((i) => !fitIndices.includes(i));
+assert.equal(heldout.filter((i) => predict(design[i], fitted) === observed[i]).length, 2);
+assert.equal(predict(design[heldout[0]], fitted), 27);
+assert.equal(observed[heldout[0]], 17);
+
+// Secret-coefficient positive: a distinct six-unknown affine stencil recovers
+// all six hidden coefficients from those same six p57 original-source inputs
+// and predicts the untouched 50/50 sites perfectly.
+const plantedCoefficients = [7, 9, 11, 13, 17, 19];
+const plantedAffine = design.map((row) => predict(row, plantedCoefficients));
+const recovered = extractCoefficients(plantedAffine);
+assert.deepEqual(recovered, plantedCoefficients);
+assert.equal(heldout.filter((i) =>
+  predict(design[i], recovered) === plantedAffine[i]
+).length, 50);
+
 // A deterministic source-record lock for all 56 direct equations, rather
 // than a language score on the best looking subset.
 console.log(JSON.stringify({
@@ -84,5 +150,13 @@ console.log(JSON.stringify({
   originalDisagreements: mismatches.length,
   firstDisagreements: mismatches.slice(0, 6),
   plantedKnownEquationsRecovered: 56,
+  allSecretFiveNeighborRank: 6,
+  allSecretFiveNeighborAugmentedRank: 7,
+  fittedFirstSixOriginalSlots: fitIndices.map((i) => sites[i]),
+  fittedUnknownCoefficients: fitted,
+  originalAffineHeldoutAgreements: 2,
+  originalAffineHeldoutSites: 50,
+  plantedAffineRecoveredCoefficients: recovered,
+  plantedAffineHeldoutAgreements: 50,
   conclusion: 'The direct terminal code is inconsistent before using any unknown p55 rune.'
 }, null, 2));

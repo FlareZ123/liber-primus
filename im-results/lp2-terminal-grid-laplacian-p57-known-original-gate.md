@@ -1,6 +1,6 @@
 # Original terminal 32×8 circumference: p57-known five-point Laplacian gate
 
-**Agent 48, 15 November 2026. Decision: one full, direct source-shaped two-dimensional decoder is incompatible with the original printed table and the independently clear p57 text. No unknown Liber Primus rune, authentic key, intended operation, or destination was recovered.** This decision specifically concerns a zero-salt, five-point finite-difference GF(29) code. It does not rule out other 2D transforms, secret keys, table radices, or alignments.
+**Agent 48, 15 November 2026. Decision: the direct five-point Laplacian and the entire stationary affine five-neighbor family are incompatible with the original printed table and the independently clear p57 text. No unknown Liber Primus rune, authentic key, intended operation, or destination was recovered.** This decision specifically concerns a zero-salt, five-point finite-difference GF(29) code. It does not rule out other 2D transforms, secret keys, table radices, or alignments.
 
 ## Original clue and falsifiable interpretation
 
@@ -33,6 +33,18 @@ The first testable center is original table slot **130**, row16/column2 under ze
 The positive fills a complete synthetic 256-GP-symbol grid with deterministic native GP values, **overwrites all 95 p57 interior slots with the genuine original clear p57 source**, then applies precisely the asserted five-point Laplacian to obtain a synthetic 256-cell code. Without using any other synthetic plaintext positions, the same extractor agrees at **56/56** p57-only sites. This demonstrates that the original failure cannot be attributed to a p57 offset error or wrong operator evaluation; the plant does not claim to reconstruct the original encrypted table.
 
 The [single-file Node22/CommonJS SFT](../sims/lp2_terminal_grid_laplacian_p57_sft.cjs) independently checks the source table hash and all three original terminal page lengths, specifies the 56 fully determined original equations, asserts the exact 2/56 match count and first mismatch, and verifies 56/56 planted controls. The original congruence counts were also independently evaluated against the same locked 256-byte table and original p57 GP indices in a separate Python implementation. The exact committed CommonJS reproducer passed [manual read-only Windows/Node22 GitHub Actions run 43766314071](https://github.com/FlareZ123/liber-primus/actions/runs/43766314071), printing 2/56 original agreements, all first six contradictory coordinates, and 56/56 planted agreements.
+
+## Stronger exact all-secret affine-neighborhood exclusion
+
+The source does not actually name the coefficients of a five-neighbor operation. Instead of optimizing an arbitrary kernel against the unknown p55, grant an author **six completely unknown GF29 parameters** in a shared affine stencil over the original 32×8 cell grid:
+
+`T[r,c] = a P[r,c] + b P[r-1,c] + d P[r+1,c] + e P[r,c-1] + f P[r,c+1] + g (mod29)`.
+
+The same 56 completely known p57-only sites give 56 linear equations in `(a,b,d,e,f,g)`. Their **56×6 coefficient matrix has exact rank 6 over GF29, while its 56×7 augmented matrix has rank 7**. This is an exact algebraic impossibility for **every one of the 29⁶ stationary affine five-neighbor filters**, including the standard Laplacian, additive masks, linear color channels and any nonzero intercept. No search, English-language scorer or p55 glyph is used.
+
+The earliest six linearly independent original equations occur at source table slots **130, 131, 132, 133, 138, 139**. These six uniquely fit the unknown source-specific coefficient vector **[6,10,26,24,18,19]**. On the other **50 untouched, fully known p57 sites**, that fitted rule matches only **2/50**; the first held-out site, slot141, predicts **27** versus original residue **17**. Consequently the contradiction is not an unfortunate choice of 4/−1 Laplacian coefficients. A source-native blind positive plants a different **[7,9,11,13,17,19]** hidden GF29 stencil against the exact same genuine 95 p57 source symbols; the six original-shaped training equations uniquely recover all six concealed parameters and predict **50/50** other sites exactly. This verifies full-family identifiability and withheld-symbol prediction on a valid model.
+
+**Updated decision:** the original table is inconsistent with *any single stationary affine five-neighbor GF29 encoding of the p57-known interior* under this fixed row-major mapping. This exact-family negative is more useful than a sweep over individual neighborhood weights. Spatially varying coefficients, nonlinear cell operations, secret reordering, non-GP intermediate bytes, and other independently selected 2D interpretations remain outside scope; no cryptographic key or p55 plaintext follows.
 
 ## Decision for the research frontier
 
