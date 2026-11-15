@@ -275,6 +275,14 @@ for (let n = 1; n <= 14; n++) {
 }
 assert(markedRandom > 0);
 
+const first61 = original.slice(0, 61).map(decrypt).flat();
+assert.equal(first61.length, 282);
+const first61Histogram = Array(29).fill(0);
+for (const x of first61) first61Histogram[x]++;
+const first61NormalizedIoC = 29 * first61Histogram.reduce((a, n) => a + n * (n - 1), 0) /
+  (first61.length * (first61.length - 1));
+assert(Math.abs(first61NormalizedIoC - 0.9990913909290529) < 1e-12);
+
 console.log(JSON.stringify({
   status:"PASS",
   source:{originalWords:2896,originalRunes:12956,
@@ -284,6 +292,8 @@ console.log(JSON.stringify({
     fixedDecoderAcceptedMarked:acceptedMarked,
     fixedDecoderRejectedMarked:rejectedMarked,
     originalTotalWordsDecoderAccepts:decoded.length,
+    originalFirst61Runes:282,
+    originalFirst61NormalizedIoC:first61NormalizedIoC,
     firstRejectedExamples:rejectedExamples},
   encoder:{alphabet:29,successors:28,sourceWordLengthRange:"1..14",
     shortMode:"first ciphertext rune != C, no extra rune",
