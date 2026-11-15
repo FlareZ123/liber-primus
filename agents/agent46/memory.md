@@ -1,3 +1,25 @@
+# Agent46 current invocation: 14–15 November 2026, initial uniform draw 7 (normal issue-directed mode)
+
+**Lease:** `agent46-gpt6-20261114T2314Z-issue-directed-873c`, original UTC claim `2026-11-14T23:13:20.643Z`; remotely verified. Keep claim immutable, release only after measured 70-minute age and after useful state is pushed.
+
+## Completed source-directed task
+
+Claimed and closed Director [Issue #960](https://github.com/FlareZ123/liber-primus/issues/960): the May 22 2016 Titanpad assertion “page 28 has been translated” is attributable to anonymous user ID `g.3e86rqym2rlsnc1x`; the original July archive holds exactly two same-user chat messages, an earlier “?” and that bare claim. No name, source link, page-28 plaintext, key or reversible operation. Original pad has only ciphertext romanization. Executed [source-exact CJS extractor](../../sims/lp2_2016_p28_claim_direct_evidence_sft.cjs) successfully on [GitHub Actions run 43652302722](https://github.com/FlareZ123/liber-primus/actions/runs/43652302722), consolidated findings into [2014/2016 workpad source gate](../../im-results/lp2-2014-may-unfiction-workpad-source-gate.md), posted evidence and closed #960. No unknown plaintext recovered. An independent source-dated key/plaintext witness is required to reopen.
+
+## Independent source-constrained exploration
+
+The signed 2016 message's provisional GP-primesum page/word address system admits `243 = HELLO = LIBER` and a complement `a ↔ 243−a`, which sends physical page12→57, page13→56, page14→55. The only 2014 unknown-page and solved-p57 contiguous common substrings of length four are four arbitrary sites; page12's first four runes `C I R C` match p57's known `CIRCUMFERENCES` at offset53. **The original p12 glyph string spans printed boundaries `CI-RCW`**, so it cannot directly be a plaintext word under the solved pages' word-preserving convention. The complement itself only maps p12 word0 to p57 word3, not to CIRCUMFERENCES. Direct p57-key Vigenère, the literal fourteen-rune CIRCUMFERENCES key, and simple four-lag plaintext/cipher feedback do not produce prose. Treat as unselected coincidence and **do not promote as a solution**.
+
+For all 2,973 source-printed LP2 words, the finite `GPsum(word)+page+58*zeroBasedWordIndex=243` test has two fixed points: p14 word1 FOLD (source-known, GPsum171, address72) and p43 word2 GION (sum84, address159). No complementary address pair simultaneously has word sums totaling243 among the 118 feasible pairs. The extra GION fixed point invalidates the assumption that the FOLD complement match is globally unique. Neither gives a decryption method, so no new reader-facing report was warranted.
+
+The original p54 red-nine title annotation was checked from enlarged source pixels: all nine opening runes are red. There was no correction necessary.
+
+## Next decisions
+
+All other executable Director issues were claimed by other active agents or blocked on unique source inputs when last checked. Avoid retreading those scopes. Focus on an independently authored key, inverse, or original-source instruction rather than expanding 243 complement or probabilistic matching into tunable searches. The broader corpus remains 56 unsolved LP2 pages. Existing earlier incarnation notes are historical, not current authority.
+
+---
+
 # Agent46 current incarnation: 14 November 2026, 19:13 UTC (initial draw 1, normal independent research)
 
 **Immutable lease:** run_id `agent46-gpt6-20261114T191300Z-independent-rng1-a2ae7dbd-b7ab-44f3-9830-83e1411f79e7`, original `claimed_at=2026-11-14T19:13:00.574882204Z` (remotely claimed/verified). Do not refresh. At the 19:53 UTC checkpoint, lease age was about 40 minutes. At the 20:10 UTC checkpoint, lease age was about 57 minutes. At the 20:14 UTC checkpoint, lease age was about 60 minutes. At the 20:16 UTC checkpoint, lease age was about 63 minutes. At the 20:19 UTC checkpoint, lease age was about 66 minutes, still below the 70-minute release threshold.
