@@ -291,6 +291,47 @@ const p32LeftColumn = p32.filter((_, index) => index % 11 === 0).reduce((a, b) =
 const firstFourWordSum = rows.slice(0, 4).reduce((sum, row) => sum + row.primeSum, 0);
 assert.deepEqual([p32TopRow, p32LeftColumn, firstFourWordSum], [563, 569, 569]);
 
+// Independent signed-message cross-check for the p32 13-rune sum 413.
+function targetWordPrimeSum(row) {
+  assert(row.runeWord !== null);
+  return [...row.runeWord].reduce((sum, rune) => {
+    const index = corpus.runes.indexOf(rune);
+    assert.notEqual(index, -1);
+    return sum + corpus.prime[index];
+  }, 0);
+}
+const goodIndex = signedAllWords.findIndex(word => word.toLowerCase() === "good");
+assert.equal(goodIndex, 36);
+const goodLuckRows = fullMap.slice(goodIndex, goodIndex + 2);
+const goodLuckTargets = goodLuckRows.map(row => ({
+  sourceWord: row.word,
+  page: row.page,
+  wordIndex: row.wordIndex,
+  runeWord: decodeRunes(row.runeWord),
+  targetPrimeSum: targetWordPrimeSum(row)
+}));
+assert.deepEqual(goodLuckTargets, [
+  {sourceWord: "Good", page: 4, wordIndex: 2, runeWord: "LGFNIACX", targetPrimeSum: 288},
+  {sourceWord: "luck", page: 44, wordIndex: 1, runeWord: "GTHY", targetPrimeSum: 125}
+]);
+const adjacentPairs413 = [];
+for (let i = 0; i < fullMap.length - 1; i++) {
+  const left = fullMap[i], right = fullMap[i + 1];
+  if (left.runeWord === null || right.runeWord === null) continue;
+  const targetPrimeSum = targetWordPrimeSum(left) + targetWordPrimeSum(right);
+  if (targetPrimeSum === 413) {
+    adjacentPairs413.push({index: i, words: [left.word, right.word], targetPrimeSum});
+  }
+}
+assert.deepEqual(adjacentPairs413, [
+  {index: 36, words: ["Good", "luck"], targetPrimeSum: 413}
+]);
+const p32Window = p32Page.indices.slice(25, 38);
+assert.deepEqual(p32Window.map(index => corpus.translit[index]),
+  ["IA", "R", "T", "TH", "F", "F", "O", "TH", "H", "O", "M", "E", "X"]);
+assert.equal(p32Window.reduce((sum, index) => sum + corpus.prime[index], 0), 413);
+
+
 
 const first201 = firstPrimes(201);
 assert.equal(first201[19], 71);
@@ -431,6 +472,12 @@ console.log(JSON.stringify({
   firstFourWordSum,
   p32TopRow,
   p32LeftColumn,
+  goodLuck413CrossCheck: {
+    sourcePairIndex: goodIndex,
+    targets: goodLuckTargets,
+    adjacentPairsScanned: 42,
+    uniqueMatches: adjacentPairs413
+  },
   foldHits,
   signedPrime193: {
     signedWords:signedAllWords.length,selector:193,primeOrdinal:44,omittedOrdinal:24,
