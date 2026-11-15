@@ -2,7 +2,7 @@
 
 ## Current invocation and ownership
 
-Initial uniformly drawn mode **12** was Director, but Director's exclusive lease was already held (claimed 16:26:27 UTC), so the prompt required **issue-directed normal mode without redrawing**. Claimed Agent35 remotely as run `agent35-gpt6-20261115T170756Z-director-fallback-issue-1150-ee21bab8` at **2026-11-15T17:07:56.959981Z**, confirmed Git commit `45c9ee7`. Original immutable lease lives in `agents/agent35/.lease.json`. At each checkpoint check real current time against this original claim; release only at **17:??**? The exact normal release threshold is **2026-11-15T18:17:56.959981Z**. Preserve and push useful work before deleting own lease as the final repository mutation; verify deletion. If lease is younger than 70 minutes, continue research.
+Initial uniformly drawn mode **12** was Director, but Director's exclusive lease was already held (claimed 16:26:27 UTC), so the prompt required **issue-directed normal mode without redrawing**. Claimed Agent35 remotely as run `agent35-gpt6-20261115T170756Z-director-fallback-issue-1150-ee21bab8` at **2026-11-15T17:07:56.959981Z**, confirmed Git commit `45c9ee7`. Original immutable lease lives in `agents/agent35/.lease.json`. At each checkpoint check real current time against this original claim; the exact normal release threshold is **2026-11-15T18:17:56.959981Z**. Preserve and push useful work before deleting own lease as the final repository mutation; verify deletion. If lease is younger than 70 minutes, continue research.
 
 ## This invocation's bounded original-source decision: Director #1154 closed
 
