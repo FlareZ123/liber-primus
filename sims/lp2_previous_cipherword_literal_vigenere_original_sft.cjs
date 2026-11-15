@@ -86,6 +86,9 @@ for (const source of controls) {
   }
 }
 assert(buckets.slice(1).every(group => group.length > 0));
+const lexicon = buckets.map(group => new Set(group.map(w => w.join(","))));
+const originalDictionaryHits = originalPlain.filter(w =>
+  lexicon[w.length].has(w.join(","))).length;
 const nativeOneRuneSource = [...new Set(buckets[1].map(w => w[0]))]
   .sort((a,b) => a-b).map(i => gp.translit[i]);
 
@@ -114,12 +117,14 @@ console.log(JSON.stringify({
   original:{
     decryptedIOC:originalIOC,
     decodedOneRuneAIO:originalNativeOneRune,
+    dictionaryWordHits:originalDictionaryHits,
     decodedOneRuneAIOFraction:inverseNativeRate,
     allOriginalRunesForwardExactlyReconstructed:encrypt(originalPlain).flat().length===12956
   },
   positive:{
     nativeGPRecovered:plantRecovered.flat().length,
     matchedPlaintextWords:plantRecovered.length,
+    dictionaryWordHits:plantRecovered.filter(w => lexicon[w.length].has(w.join(","))).length,
     decodedOneRuneAIO:plantNativeOneRune,
     plaintextIOC:ioc(plant)
   },
