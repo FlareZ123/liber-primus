@@ -1,6 +1,6 @@
-# Cuneiform-bounded prime_echo interval: direct GP29 key gate
+# Cuneiform-bounded 2013 `prime_echo` 290-prime interval: GP29 and GP28 original-cipher inverses
 
-**Agent3 — 13 November 2026. Intermediate negative result; no plaintext recovered.**
+**Agent3, 13–15 November 2026.** Two bounded and distinct original-input decoder families are negative. The first uses direct GP29 arithmetic; the second uses a ciphertext-motivated, reversible GP28 predecessor-exclusion register. No unknown-page plaintext, key or authenticated cipher mechanism has been recovered.
 
 ## Why this was worth one bounded test
 
@@ -44,9 +44,21 @@ For scale, the same trigram model scores the known solved p57 control at **−2.
 
 A φ(p)-as-multiplier variant is not a valid full-stream bijection: φ(p) mod 29 is zero at 10 of the 290 key positions. The tested affine orientation avoids that defect by using p as multiplier and φ(p) as addend.
 
-## Decision
+## Independent GP28 successor-register test, 15 November 2026
 
-**Reject the direct 290-period additive, multiplicative and p/φ affine consumers on this marked interval.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not by itself establish how the prime stream should be consumed. Do not extend this branch into prime gaps, fitted phases, marker/page resets, or arbitrary transpositions without a new independent clue.
+The original 1,589-rune source interval contains **12 adjacent-equal rune events**, despite the book's severe suppression of doublets. This supplies an independent original-cipher reason to test a fundamentally different consumer of the same 290-prime key: a **lossless predecessor-exclusion GP28 alphabet**. The motivating source constraints are (1) two independently visible 2013 prime pauses selecting ordinals 175–464, (2) the manuscript's repeated cuneiform bounds selecting p33-local91→p39-end, and (3) the ciphertext's unusually rare neighboring equality events. They do not authenticate this candidate as Cicada's intended encoder.
+
+Fix the preceding ciphertext rune as the unaltered p33-local90 GP **L** (index20). For every plaintext rune `p` other than **EA** (index28), the forward cipher is `c=(c_prev+1+((p+(prime_k-1)) mod28)) mod29`, advancing the 290-prime periodic clock. For plaintext EA emit `c=c_prev` and **do not consume a key entry**. Every step maps 28 ordinary plaintext symbols bijectively onto the 28 successor runes unequal to the preceding ciphertext. The inverse is exact: repeated ciphertext means EA, otherwise `p=((c-c_prev-1) mod29-(prime_k-1)) mod28`. There are no free offsets, keyword, fitted shifts, reset choices or source corrections. The EA-sentinel idea is an explicit hypothesis; the original GP English frequency of the rare EA token makes its low rate plausible, but does not select it.
+
+**Original output:** the 1,589 original ciphertext symbols have precisely **12** repeated-rune events, so the inverse emits **12 EAs** and consumes **1,577** source-prime key entries. It reconstructs the original **1,589/1,589** cipher symbols exactly. The decoded GP29 index of coincidence is **0.035281920889**, still near the random 1/29 baseline **0.034482758621**, with no recognizable native GP-English beginning. The original ciphertext's IoC is **0.034349820000**. These outcomes do not recover plaintext.
+
+**Independent original-length positive:** repeat the **solved p57 native GP plaintext** to 1,589 runes, insert twelve EA markers at fixed offsets 40,177,...,1547, and encrypt with this exact source key. The inverse recovers all **1,589/1,589** original native symbols, consumes 1,577 key entries and preserves its **0.070573353011** plaintext IoC; the encrypted control has IoC **0.034427495074**. This directly demonstrates the decoder can separate correctly keyed source-native English from flat ciphertext on the same 1,589-rune length, while correctly handling the 12 nonconsuming markers.
+
+The model's full algorithm is reproduced by [one-file CommonJS original-input regression](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs); no extra key variants were fitted. **Decision:** reject the **specific GP28 predecessor-exclusion / prime-phi-290 source-key composition** as the direct English decryptor of the marked p33–39 passage. The model is one bounded nonlinear consumer of the 2013 source; other authentic mechanisms remain unselected. This result remains intermediate evidence and does not change the overall manuscript solution state.
+
+## Consolidated decision
+
+**Reject the tested direct 290-period GP29 additive, multiplicative and p/φ affine consumers, together with the GP28 predecessor-excluding source-key composition, on this marked interval.** The cuneiform-to-prime_echo endpoint connection remains an interesting source-selection hypothesis, but it does not by itself establish how the prime stream should be consumed. Do not extend this branch into prime gaps, fitted phases, marker/page resets, or arbitrary transpositions without a new independent clue.
 
 This result does not exclude a different use of the 2013 artifact, a different cipher family, or another source-supplied key. It recovers no unknown plaintext and does not alter the established overall solution status.
 
@@ -57,5 +69,7 @@ Run from the repository root:
     python3 sims/lp2_cuneiform_prime_echo_290_key_sft.py
 
 The script reads the original LP2 corpus and pinned Shakespeare control, asserts the page/block counts and prime endpoints, tests all six inverses, and prints the full deterministic summaries and decoded samples. It also checks exact roundtrips against repeated solved-p57 text.
+
+Nonlinear independent test: [GP28 successor source-key SFT](../sims/lp2_cuneiform_290prime_gp28_successor_sft.cjs).
 
 Related existing test: [full 464-prime periodic-key gate](../sims/prime_echo_464_periodic_key_sft.cjs). This experiment is distinct: it uses the cuneiform-selected 290-prime continuation and the marked p33–p39 interval rather than the phase-zero 464-prime stream over the full book.
