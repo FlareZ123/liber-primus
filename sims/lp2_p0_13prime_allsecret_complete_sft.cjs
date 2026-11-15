@@ -138,14 +138,19 @@ const translitTokens = corpus.translit
   .map((symbol, index) => ({symbol, index}))
   .sort((a, b) => b.symbol.length - a.symbol.length);
 /**
- * Use preexisting project native GP source convention, not a cipher key.
+ * GP reference encodings. sourceCalibrated adds authentic Cicada-era
+ * ING→NG, IO→IA and QU→CW source spellings.
  * @param {string} prose
+ * @param {boolean} sourceCalibrated
  * @returns {number[]}
  */
-function encodeGP(prose) {
+function encodeGP(prose, sourceCalibrated = false) {
   const output = [];
   for (const word of prose.toUpperCase().match(/[A-Z]+/g) || []) {
-    const normalized = word.replace(/[KQ]/g, 'C')
+    const native = sourceCalibrated
+      ? word.replace(/QU/g, 'CW').replace(/ING/g, 'NG').replace(/IO/g, 'IA')
+      : word;
+    const normalized = native.replace(/[KQ]/g, 'C')
       .replace(/V/g, 'U').replace(/Z/g, 'S');
     for (let p = 0; p < normalized.length;) {
       const found = translitTokens.find((item) =>
@@ -197,4 +202,43 @@ assert.ok(nearest.score < 0);
 console.log('PASS: all 4761 GP-native reference windows violate original necessary bound');
 console.log('Closest passage: ' + nearest.file + '@' + nearest.offset +
   ', integer margin=' + nearest.score);
+
+// Independent orthodox Cicada spelling census. The original fixed control
+// above deliberately retains the exact historical experiment register;
+// this second census prevents transferring its statistical conclusion
+// uncritically to the authenticated solved-page ING and IO conventions.
+let calibratedWindows = 0;
+let calibratedPossible = 0;
+let nearestCalibrated = {score: -Infinity, filename: '', offset: -1};
+for (const [filename] of referenceSpecs) {
+  const prose = fs.readFileSync(
+    path.join(root, 'resources', 'control', filename), 'utf8');
+  const encoded = encodeGP(prose, true);
+  const cache = pairCaches(encoded);
+  let windowsHere = 0;
+  let possibleHere = 0;
+  for (let offset = 0; offset + length <= encoded.length; offset += 127) {
+    const {score} = optimize(cache, offset, -1);
+    if (score >= 0) {
+      possibleHere += 1;
+      calibratedPossible += 1;
+    }
+    if (score > nearestCalibrated.score) {
+      nearestCalibrated = {score, filename, offset};
+    }
+    windowsHere += 1;
+  }
+  calibratedWindows += windowsHere;
+  console.log('AUTHENTIC GP spelling ' + filename + ': runes=' + encoded.length +
+    ', windows=' + windowsHere + ', source-bound overlaps=' + possibleHere);
+}
+assert.ok(calibratedWindows > 4400);
+assert.equal(calibratedPossible, 0);
+assert.ok(nearestCalibrated.score < 0);
+console.log('PASS: all ' + calibratedWindows +
+  ' source-calibrated GP reference windows also violate source bound');
+console.log('Nearest authentic-spelling window: ' +
+  nearestCalibrated.filename + '@' + nearestCalibrated.offset +
+  ', integer margin=' + nearestCalibrated.score);
+
 console.log('No unknown-page plaintext or original cipher key recovered.');
