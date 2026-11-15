@@ -186,5 +186,50 @@ for (let i = 0; i < keys.length; i++) {
     minOverAll28: observed.all, plus: observed.plus, minus: observed.minus,
     plantsAtMostOriginal: 0}));
 }
+
+/**
+ * Independent natural-prose passage control: both P and K are exact
+ * contiguous GP-native English streams. This preserves each source's
+ * intrinsic cross-word n-gram correlations, unlike the matched-word plant.
+ * The source page lengths still define which pairs are counted.
+ * @param {number[]} pSource @param {number[]} kSource
+ * @returns {number}
+ */
+function sampledContiguousMinimum(pSource, kSource) {
+  const pStart = next() % (pSource.length - 12956 - 1);
+  const kStart = next() % (kSource.length - 12956 - 1);
+  const matrix = new Uint32Array(29 * 29);
+  let offset = 0;
+  for (const page of pages) {
+    for (let i = 1; i < page.original.length; i++) {
+      const dp = (pSource[pStart + offset + i]
+        - pSource[pStart + offset + i - 1] + 29) % 29;
+      const dk = (kSource[kStart + offset + i]
+        - kSource[kStart + offset + i - 1] + 29) % 29;
+      matrix[29 * dp + dk]++;
+    }
+    offset += page.original.length;
+  }
+  let minimum = Infinity;
+  for (let t = 1; t < 29; t++) {
+    let collisions = 0;
+    for (let dk = 0; dk < 29; dk++)
+      collisions += matrix[29 * ((29 - t * dk % 29) % 29) + dk];
+    minimum = Math.min(minimum, collisions);
+  }
+  return minimum;
+}
+for (let pi = 0; pi < keys.length; pi++) {
+  for (let ki = 0; ki < keys.length; ki++) {
+    if (pi === ki) continue;
+    const trials = Array.from({length: 500}, () =>
+      sampledContiguousMinimum(keys[pi], keys[ki]));
+    assert(trials.every(n => n > originalDoubles));
+    console.log(JSON.stringify({plainsource: sources[pi], keysource: sources[ki],
+      contiguousPairs: 500, minOverAll28: quantiles(trials),
+      plantsAtMostOriginal: 0}));
+  }
+}
+
 console.log("Decision: no source-native independent-English affine running-key plant approaches 86 doublets.");
 console.log("This is a calibrated conditional exclusion, not a recovered plaintext or universal key bound.");
