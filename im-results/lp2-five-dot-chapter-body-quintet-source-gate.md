@@ -41,6 +41,23 @@ Every transform is explicitly inverted to recover all 1,800 packed bytes. Three 
 
 **Decision:** The simplest unphased, unpermuted cyclic-table bytewise inverse does not reveal a direct unencrypted file or ASCII text. This does not exclude a *ciphertext* byte stream requiring another explicitly sourced operation. The grid's presence alone cannot justify searching arbitrary column orders, table starts, rounds, offsets, byte endianness and independent cryptosystem layers.
 
+## Complete fixed all-secret rune→bit Bacon test on the p40 floral chapter
+
+An independent five-site interpretation is a source-ordered **Bacon code**: assign each of the **29 GP29 rune identities one arbitrary secret bit**, pack each consecutive five ciphertext runes into a fixed five-bit letter under pre-2014 alphabetical **A=0,…,Z=25**, and interpret 600 resulting letters. The explicit visual five-site clue does not specify this operation, but **the original 600-quintext phase is locked** by p40's eight-rune red heading, avoiding offset selection. The prior p23 all-secret Bacon attack and algorithm are [already established](lp2-p23-26-original-art-source-gate.md#five-dot-baconian-hypothesis-exhaustive-all-secret-key-search); this new original p40 case uses the same finite approach on a distinct 3,000-rune source interval.
+
+Code words 26–31 are forbidden. Their original five-bit shape forces two no-all-ones three-rune hyperedges for every quintet: positions 0–1–2 and 0–1–3 (if most-significant bit is first). An exact recursive search through all **2²⁹** possible secret rune-bit assignments with sound conflict pruning retains every valid mask. Score all surviving fixed-bit keys in original or reversed group order, with both printed and visually mirrored within-quintet reading. Language models are constructed on **Gibran, Emerson and Shakespeare** using natural 26-letter English and withholding 600 consecutive letters from each source before fitting any quadgram probability.
+
+| Exact original p40–53 output | Printed within-quintet bit order | Mirrored bit order |
+| --- | ---: | ---: |
+| Unique forbidden three-rune hyperedges | **1,027** | **1,046** |
+| All-secret admissible 29-bit maps | **5,455** | **6,344** |
+| Maximum number of rune classes mapped to bit one among admissible maps | **6** | **7** |
+| Best full-600-letter English mean log-quadgram | **−15.41417** | **−15.44808** |
+
+The three untouched genuine English holdout passages score **−9.28372**, **−9.43226** and **−9.49597** under the *same fixed model*, far above both complete original keyspace maxima. The best original passages begin `BACAIDFAKEAIAAQEJAAACCYAEDAAAAECQFAKICBAC...` and `IAQDBADIEJEQAAIAAIQQABATAAQADACAYAM...`, unlike language. A planted 600-character Gibran passage, encoded with an independently chosen fixed 29-symbol bit map and varied source rune identities per bit class, exactly decodes its withheld plaintext; the global enumeration finds that authentic planted passage at the highest score **−9.28372**. Therefore the program genuinely recovers a 600-character plaintext through the claimed architecture when one is present. [Source-fixed standalone CJS SFT](../sims/lp2_p40_flower_bacon_allsecret_sft.cjs) and [passing Windows run 43656205212](https://github.com/FlareZ123/liber-primus/actions/runs/43656205212).
+
+**Decision:** all **11,799 admissible secret bit-map/orientation candidates** are nonlinguistic against these three native English controls, despite enough flexibility to choose any one-bit class for all 29 GP symbols. This is a complete no-direct-English result for **one stationary rune-bit Bacon channel over the p40–53 original body**. It does not refute other codebooks (e.g. ITA2), different character registers, source-selected per-page bit changes, changing state, or an added cipher layer. No actual unknown plaintext was recovered.
+
 ## Next actionable condition
 
 The source itself still lacks an explicit rule saying to convert five runes to base29 byte triplets or how to use the 256-cell table. The five-site pictures could cue a genuinely different operation. Preserve the exact chapter-body clock as a conditional candidate, but require an **independent color/position-to-operand mapping, a recognized data header, an external known plaintext, or a held-out original-rune prediction** before trying more packing variants or treating these high-entropy bytes as meaningful ciphertext. Original unknown-page plaintext remains unrecovered.
