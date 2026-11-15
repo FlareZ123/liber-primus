@@ -231,5 +231,76 @@ for (let pi = 0; pi < keys.length; pi++) {
   }
 }
 
+
+/**
+ * Source-visible coefficient-rekey clock: one secret affine coefficient
+ * per physical page versus one per printed line. To compare the same
+ * opportunities, count only within-line adjacencies in both variants.
+ * There are 12,362 such positions, 82 equal in the real ciphertext.
+ */
+const linesByPage = pages.map(page => {
+  const source = page.page < 50 ? physical[page.page] : physical[page.page - 1];
+  const lines = source.split("/").map(s =>
+    [...s].filter(x => runeMap.has(x)).map(x => runeMap.get(x)))
+    .filter(x => x.length);
+  assert.deepEqual(lines.flat(), page.original, "printed line parser " + page.page);
+  return lines;
+});
+assert.equal(linesByPage.flat().length, 594);
+const realLineDoubles = linesByPage.flat().reduce((sum, row) =>
+  sum + row.slice(1).reduce((n, x, i) => n + (x === row[i]), 0), 0);
+assert.equal(realLineDoubles, 82);
+assert.equal(linesByPage.flat().reduce((n, row) => n + row.length - 1, 0), 12362);
+
+/** @param {Uint32Array} matrix @returns {number} */
+function minAffineEvents(matrix) {
+  let minimum = Infinity;
+  for (let t = 1; t < 29; t++) {
+    let collisions = 0;
+    for (let dk = 0; dk < 29; dk++)
+      collisions += matrix[29 * ((29 - t * dk % 29) % 29) + dk];
+    minimum = Math.min(minimum, collisions);
+  }
+  return minimum;
+}
+/** @param {number[]} textP @param {number[]} textK */
+function sourceClockGate(textP, textK) {
+  const pStart = next() % (textP.length - 12956 - 1);
+  const kStart = next() % (textK.length - 12956 - 1);
+  let at = 0, pageTotal = 0, lineTotal = 0;
+  for (const page of linesByPage) {
+    const pageHist = new Uint32Array(841);
+    for (const line of page) {
+      const lineHist = new Uint32Array(841);
+      for (let i = 1; i < line.length; i++) {
+        const dp = (textP[pStart + at + i] - textP[pStart + at + i - 1] + 29) % 29;
+        const dk = (textK[kStart + at + i] - textK[kStart + at + i - 1] + 29) % 29;
+        const offset = 29 * dp + dk;
+        lineHist[offset]++;
+        pageHist[offset]++;
+      }
+      lineTotal += minAffineEvents(lineHist);
+      at += line.length;
+    }
+    pageTotal += minAffineEvents(pageHist);
+  }
+  assert.equal(at, 12956);
+  return {pageTotal, lineTotal};
+}
+console.log("Same within-line source contract: 594 physical lines, 12362 edges, 82 original equal.");
+for (let plain = 0; plain < keys.length; plain++) {
+  for (let key = 0; key < keys.length; key++) {
+    if (plain === key) continue;
+    const measures = Array.from({length: 250}, () => sourceClockGate(keys[plain], keys[key]));
+    const pageQuant = quantiles(measures.map(x => x.pageTotal));
+    const lineQuant = quantiles(measures.map(x => x.lineTotal));
+    assert(pageQuant[0] > realLineDoubles, "page-only coefficient cannot approach original");
+    assert(lineQuant[4] < realLineDoubles, "unrestricted line-rekeyed coefficient can suppress repeats");
+    console.log(JSON.stringify({plainsource: sources[plain], keysource: sources[key],
+      rekeyTrials: 250, pageFreeT: pageQuant, lineFreeT: lineQuant,
+      originalWithinLineDoublets: realLineDoubles}));
+  }
+}
+
 console.log("Decision: no source-native independent-English affine running-key plant approaches 86 doublets.");
 console.log("This is a calibrated conditional exclusion, not a recovered plaintext or universal key bound.");
