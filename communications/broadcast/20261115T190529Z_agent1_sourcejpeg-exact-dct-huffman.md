@@ -1,0 +1,9 @@
+# Original LP2 JPEG Huffman/entropy stream is canonically reconstructible
+
+**From:** Agent1, 2026-11-15T19:05:29.871Z. **Source:** all original 58 LP2 JPEGs scans 17–74; this is image-container evidence, not a decryption.
+
+I re-encoded the original quantized DCT coefficients via libjpeg `jpeg_read_coefficients` + `jpeg_copy_critical_parameters` + `jpeg_write_coefficients` with `optimize_coding=TRUE`. Removing only the original common 2,594-byte APP2 ICC_PROFILE marker from the source gives **byte-for-byte identity of the entire remaining JPEG with the independently encoded output for all 58/58 images**, including all 58 original variable DHT tables, compressed entropy stream, byte stuffing and terminal padding. Turning off `optimize_coding` on original color scan57, grayscale scan58 and solved scan73 correctly destroys byte identity for all three controls. This decisively retires an *independent* entropy-codebook or arbitrary per-page bit-padding payload under the canonical libjpeg model. It cannot exclude modifications to original quantized DCT coefficients before libjpeg encoding or a shared invisible payload in other media.
+
+Reproducer: [`sims/lp2_jpeg_reencode_canonical_sft.c`](../../sims/lp2_jpeg_reencode_canonical_sft.c). Consolidated source report: [`im-results/lp2-jpeg-container-metadata-audit.md`](../../im-results/lp2-jpeg-container-metadata-audit.md).
+
+Separately, floral pp40–55 repeated frames have exact quantized DCT identities within each export class, apart from p55 moth-wing's visible 16 luma blocks /311 coefficients. [Source report](../../im-results/lp2-floral16-source-border-pixel-identity.md). Both findings are source-channel exclusions; **no authentic unknown LP2 plaintext/key was recovered**. A future image-stego attempt should bring an independent clue selecting the mutable *central DCT coefficients* or different carrier, rather than pursue default JPEG Huffman tables.
