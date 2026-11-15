@@ -65,6 +65,23 @@ The original terminal clear page p56 visibly prints **five black dots**, and the
 
 All 36 complete original chapter forward re-encryptions match original ciphertext exactly, and all 36 native plants recover their hidden GP28 plaintext exactly, including 132 EA-sentinel or 534 F-sentinel escapes per nine-plant family. Both **W=5** original decodes remain uniform-like and nonlinguistic despite the clue-constrained five-dot choice. **No original plaintext or key appears under any of the four complete settings.** The widths are a bounded comparison based on distinct visible clues, not a search over fitted key lengths.
 
+### Five-dot bookended pp8–22: one continuous original-state clock
+
+The original five-dot emblem is a documented **pixel-matched reused drawing** at the **end of p7** and **beginning of p23** (plus solved p56's lower margin), with a vertical reflection of the first motif onto the second; see the independent [exact original-image stencil census](lp2-p23-p56-halfturn-five-dot-handoff.md). This creates a more meaningful start/stop hypothesis than resetting the proposed register at p15: run one continuous cipher on **all 3,632 original runes of pp8–22** between the two actual boundary dots. The 3,632 runes contain **19 equal transitions and 3,612 nonzero successor ranks**. Reflecting the page art gives the two fixed natural reading orders: entire stream forward or entire stream reversed, without fitting cut positions, byte orders, or seeds.
+
+All **eight exact secret-state inversions** below use the same trained GP28 register priors and exhaustive checksum-constrained dynamic program as the chapter analyses; all recover the original 3,632-rune ciphertext exactly on re-emission. Each has a separate source-disjoint genuine-p57 plaintext plant at the same original length and the selected F/EA escape semantics, whose hidden plaintext is recovered without seed disclosure.
+
+| Register width | Literal escape | Forward source log score | Reversed source log score | Original decoded IoC, forward/reverse | Held-out native log score |
+| --- | --- | ---: | ---: | --- | ---: |
+| **5** | EA | −4.03221026 | −4.03817965 | 0.03589 / 0.03585 | −2.89877946 |
+| **5** | F | −4.05278692 | −4.05839826 | 0.03582 / 0.03582 | −2.87411992 |
+| **6** | EA | −4.02268351 | −4.01917621 | 0.03585 / 0.03592 | −2.89877946 |
+| **6** | F | −4.03698979 | −4.03476730 | 0.03589 / 0.03596 | −2.87411992 |
+
+The planted original-length native controls correctly recover **3,594/3,594** ordinary GP28 symbols for the EA model (with 37 planted escapes), or **3,482/3,482** for the F model (with 149 planted interrupts), in either reading direction and either window size. None of the eight original inversions contains a contiguous GP-English plaintext passage. This also rejects the simpler source-selected **p7→p23 continuous window** route for this particular arithmetic transition. It does not rule out a different reversal on glyph shapes or an independent author-authenticated cipher.
+
+[Passing fully bounded original-image-motivated CI run **43659130438**](https://github.com/FlareZ123/liber-primus/actions/runs/43659130438), covering the eight additional exact-state original inversions and eight planted native controls, alongside the full 36 chapter-source cases.
+
 ### Historical-F sentinel variant: original negative and 534 genuine interruptions
 
 To avoid selecting the rare EA rune as a special symbol without a source clue, the same **complete original 12,956-rune inverse** is now executed with **F** as the literal nonclocking symbol. This is a substantially stronger historical candidate because F is an actually authenticated interrupter on other Liber Primus pages, even though the proposed duplicate-ciphertext emission and either rolling-sum length remain unlicensed hypotheses.
@@ -75,7 +92,7 @@ With this alternate alphabet, the unchanged original rank stream has weighted En
 
 The observed escape share of the unknown original is **86/12,947=0.664%**, whereas the deliberately F-rich planted reference has **534/12,947=4.124%**; the contrast is a register-dependent clue, since different original plaintext could use fewer F symbols. Regardless, **the optimized F-sentinel original output is not English**, so both exact source-motivated five-/six-window interpretations is rejected alongside EA. The manuscript's actual F bypass in known sections remains an established *different* encoding behavior; this experiment does not disprove its existence elsewhere.
 
-[Full four-model passing CI run **43658737935**](https://github.com/FlareZ123/liber-primus/actions/runs/43658737935); all 36 complete original chapter inverse/re-emission checks and 36 key-blind native solved-prose controls passed.
+[Full four-model passing CI run **43659130438**](https://github.com/FlareZ123/liber-primus/actions/runs/43659130438); all 36 complete original chapter inverse/re-emission checks and 36 key-blind native solved-prose controls passed.
 
 ## Decision and limits
 
