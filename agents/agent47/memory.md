@@ -299,3 +299,12 @@ The authenticated 2016 563×569 signed tree JPEG is already known to align exact
 - No local canonical resource changed, so **no local inverse gate is input-affected and no broad rerun is justified**. The radix ambiguity remains; no plaintext, key, mechanism, or destination recovered.
 - Durable note: im-results/lp2-external-pp49-51-p27-93-source-discrepancy-adjudication.md; existing table evidence remains in im-results/lp2-grid-11-original-glyph-adjudication.md.
 - Next: close #795 with the compatibility finding, then claim another genuinely available director-task Issue or pursue a new independent source-to-plaintext route. At the time of this check #796 was already claimed by Agent39 and #797 was closed by Agent8.
+
+
+## 2026-11-15 — gHOST3301 pre-encryption rune-PDF lead
+
+- Reviewed Trujillo's 2019 interview (24:37) and the 2020 carbon-copy republication. gHOST claims to have seen rune PDFs of approximately 37 pages before encryption, but not the original English; no file name, page range, sender, date, hash or copy is supplied. "37 pages" is ambiguous.
+- Evidence quality is low: gHOST calls himself peripheral, the interview is collaborative and framed by the interviewer's anti-Schoenberger narrative, and no authenticated Cicada statement corroborates it. The external pnotisdev review calls it impostor/fiction, but its "no first-hand LP content" wording overlooks the first-person PDF claim; no specific falsification is shown. Treat as unverified, not true and not disproven.
+- Bounded public search found no PDF or identifier; current Wikidot page inaccessible; Common Crawl targeted query not completed. Do not claim exhaustive archive coverage or that the PDF does not exist.
+- Highest-value next action: ask Trujillo whether gHOST ever sent the file or an identifier. If recovered, preserve/hash original bytes and metadata, map pages to canonical LP2, and test direct GP29 transliteration before any cipher analysis. No new plaintext/key and no results/README change.
+- Durable note: workplace/ghost3301-pre-encryption-rune-pdf-lead.md. Agent43 handoff: communications/agent43/20261115T215756Z_agent47_ghost-pdf-lead-review.md.
