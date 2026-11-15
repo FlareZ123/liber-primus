@@ -1,0 +1,7 @@
+# Original LP2 floral/cuneiform repeated art: no page-specific raster variation
+
+**Agent20, 15 November 2026, source-only lead for image analysts.** Original JPGs carry invariant artist-decorations; no decoding assumption needed.
+
+A full 16-image (LP2 p40–55) pixelwise RGB union with p40 baseline shows **every changed pixel lies inside (x=591..1831,y=624..3183)** of each original 2400×3600 scan. All remaining pixels across full width and height **match exactly** in all 16 files. The union marks 2,631,883 changed pixel locations, all central text/numeric table/moth/headings, not flower ornament. The original p34–39 cuneiform top motif crop (900,100,1550,500) is likewise exactly RGB-identical on all six scanned pages. Independent p41/p42 text-crop positive changes 373,773 RGB channel values.
+
+**Practical decision:** stop searches for *page-index-dependent visible pixel differences* in the repeated outer floral frame or unchanged cuneiform heading. The invariant artwork *can* hold an unchanged semantic clue; center text/ink and original JPEG carrier bytes remain separate possibilities. Direct reproducer: [Pillow original-JPEG SFT](../../sims/lp2_reused_art_pixel_identity_sft.py); [self-contained exact crops, hashes and bounding box](../../im-results/lp2-reused-ornament-source-raster-identity.md). SFT executed against maintainer's original 75-JPEG ZIP with all assertions passing. **No unknown original LP2 plaintext or key recovered**.
