@@ -1,10 +1,11 @@
 {
   "schema": 1,
   "source": {
-    "description": "Quote offsets and four historically alleged apostrophe offsets recorded in Dukotah/cicada3301, liber-primus/analysis/round43/F2-inventory/token-channels.md, from the richer relikd/scream314 runic transcription. The quote spans remain derived annotations. A 2026-11-11 audit of the correct original LP2 scans falsified the four alleged apostrophes as source-visible glyphs.",
-    "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md"
+    "description": "Quote offsets remain derived annotations. Four single-tick apostrophes are original ink in correct LP2 archive scans 21.jpg, 38.jpg, 52.jpg, 58.jpg. The older assertion of absence arose from checking the wrong scan IDs by equating LP2 page numbers with archive image basenames (actual filename = physical page + 17). Their 17 October 2026 independent original-image gap census is archived in pnotisdev/cicada3301.",
+    "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md",
+    "apostrophe_audit_url": "https://github.com/pnotisdev/cicada3301/blob/main/work/ref/tick_marks.tsv"
   },
-  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators.",
+  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators. The four raised single apostrophe marks occur immediately before the recorded rune inside a complete printed word; they consume no rune and do not count as additional word separators.",
   "quote_rune_total": 405,
   "quotes": [
     {
@@ -108,9 +109,14 @@
     8515,
     10089
   ],
-  "source_visible_internal_separators_before_rune": [],
+  "source_visible_internal_separators_before_rune": [
+    1110,
+    5138,
+    8515,
+    10089
+  ],
   "legacy_apostrophe_hypothesis": {
-    "status": "retired: prior morphology audit used archive files 04/21/35/41 instead of LP2 physical pp4/21/35/41 at scans 21/38/52/58",
+    "status": "The historical image-negative claim is superseded by a correct LP2-page-to-JPEG scan mapping and confirmed source-visible single ticks. The proposed splitting into extra whole words remains disallowed; apostrophes mark internal morphology only.",
     "before_rune": [
       1110,
       5138,
@@ -120,5 +126,43 @@
     "selected_visual_token_count": 2896,
     "synthetic_split_token_count": 2900
   },
-  "apostrophes_before_rune_status": "deprecated compatibility field; identical to legacy_apostrophe_hypothesis.before_rune and must not be treated as source evidence"
+  "apostrophes_before_rune_status": "Four confirmed original-image single-tick apostrophes. They are punctuation within existing printed words, while plaintext letters and decryption remain unknown.",
+  "source_visible_apostrophes": [
+    {
+      "page": 4,
+      "scan": "21.jpg",
+      "local_before_rune": 164,
+      "global_before_rune": 1110,
+      "stem_runes": 3,
+      "tail_runes": 1,
+      "cipher_word": "MXI'W"
+    },
+    {
+      "page": 21,
+      "scan": "38.jpg",
+      "local_before_rune": 36,
+      "global_before_rune": 5138,
+      "stem_runes": 2,
+      "tail_runes": 1,
+      "cipher_word": "AEO'Y"
+    },
+    {
+      "page": 35,
+      "scan": "52.jpg",
+      "local_before_rune": 80,
+      "global_before_rune": 8515,
+      "stem_runes": 2,
+      "tail_runes": 1,
+      "cipher_word": "PE'T"
+    },
+    {
+      "page": 41,
+      "scan": "58.jpg",
+      "local_before_rune": 218,
+      "global_before_rune": 10089,
+      "stem_runes": 3,
+      "tail_runes": 1,
+      "cipher_word": "XLJ'C"
+    }
+  ]
 }
