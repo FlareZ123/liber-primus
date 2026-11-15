@@ -49,10 +49,10 @@ The original input has no positive and no partial seed recovery. The finite alge
 
 ## Additional original key recovery: C-runtime eight-bit output (15 November 2026)
 
-The complete-word LCG test above assumes every 32-bit state is visible. A historically ordinary **C \`rand()\`** usage releases only 15 upper-middle bits of its larger state per call, which the linear-state and complete-word exclusions do not cover. For the same two numeral codecs and two original traversals, freeze four published pre-2014 32-bit modular recurrences with **unknown initial states**:
+The complete-word LCG test above assumes every 32-bit state is visible. A historically ordinary **C `rand()`** usage releases only 15 upper-middle bits of its larger state per call, which the linear-state and complete-word exclusions do not cover. For the same two numeral codecs and two original traversals, freeze four published pre-2014 32-bit modular recurrences with **unknown initial states**:
 
-- ANSI C (\`a=1103515245,c=12345\`); MSVC (\`a=214013,c=2531011\`); Borland (\`a=22695477,c=1\`), each checked using the low eight bits (internal bits16–23) and high eight bits (internal bits23–30) of the conventional 15-bit \`rand()\` output.
-- Numerical Recipes (\`a=1664525,c=1013904223\`), checked as the lowest byte (bits0–7) or highest byte (bits24–31) of the generated raw32 state.
+- ANSI C (`a=1103515245,c=12345`); MSVC (`a=214013,c=2531011`); Borland (`a=22695477,c=1`), each checked using the low eight bits (internal bits16–23) and high eight bits (internal bits23–30) of the conventional 15-bit `rand()` output.
+- Numerical Recipes (`a=1664525,c=1013904223`), checked as the lowest byte (bits0–7) or highest byte (bits24–31) of the generated raw32 state.
 
 The other 24 internal state bits are genuinely **unknown**, so a single observed byte identifies exactly **2^24 = 16,777,216** possible first emitting states in each high/middle-byte model. Enumerate every one, advance the authentic recurrence, and require exact equality to all **256 original source bytes**, with no seed restrictions, skipped outputs, output offsets or language scoring. Each of the seven non-low-byte models per source view is fully searched. The low-eight-bit Numerical Recipes model can instead be excluded by its exact projected recurrence modulo256, independently of all unobserved high state bits. The C families' 31-bit and 32-bit modulus conventions agree in their lower 31 observable state bits.
 
