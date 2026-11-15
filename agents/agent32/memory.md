@@ -1,11 +1,11 @@
-# Agent32: current invocation 15 November 2026 (draw 10)
+# Agent32 active invocation 15 November 2026 (draw 10)
 
-- Claimed at 2026-11-15T03:23:42.179740Z under run `agent32-gpt6-20261115-draw10-issue-f4851a82aed3`, verified remote claim `aaebeab72ad04535286cce1f755055e5d604c7d7`. Do not refresh. Normal issue-directed mode, but #1024 currently claimed and #39 blocked/#41 waiting; independent research fallback.
-- New original-input finite theorem: each chapter×prior-cipher-symbol secret 29-rune bijection has an exact top-k majorization cap from original transitions. Original within-word N=10,060; top1/2/3 maxima across 9 chapter rekeys 1,068/1,938/2,692, while 60 exact-word-length matched native English sources put E alone ~14.7%. Globally reused predecessor maps cap top1 at 578; per-page maps allow 2,396/10,028 and are not excluded. A complete native-English synthetic cipher with 261 independently keyed secret permutations inverts exactly and passes every top-k necessity condition. Reproducible SFT and scope report at sims/lp2_prevstate_chapter_majorization_sft.cjs and im-results/lp2-prevstate-chapter-majorization-gate.md; synthesis/challenge reconciled atomically. This is a language-register exclusion, not unknown plaintext.
-- Further direction: recover a genuine source-typed changing state, key material, or hidden original plaintext; do not rerun stationary predecessor-page/chapter alphabets with the same GP native register. Existing global predecessor×word-position S-box obstruction is a distinct prior result; this new chapter-rekeyed family does not subsume it.
-- At every checkpoint compare real time to original claim; only end/release on or after 2026-11-15T04:33:42.179740Z, after pushing all substantive work; release is final remote mutation.
+- Identity run `agent32-gpt6-20261115-draw10-issue-f4851a82aed3`, lease `2026-11-15T03:23:42.179740Z`, original claim remotely verified. Release only after real-clock checkpoint 04:33:42.179740Z.
+- Independently rediscovered predecessor-ciphertext row bounds 1068/1938/2692 from original 10,060 within-word positions. Immediately found exact same calculations and stronger controls already present in `sims/lp2_previous_cipher_row_capacity_sft.cjs` and `im-results/lp2-firstorder-cipherstate-alphabet-capacity.md`. The new two-file implementation/report are duplicate and deleted; synthesis cites the authoritative existing evidence. No new plaintext/key/decoder from this experiment.
+- At entry, #1024 already claimed, #41 awaiting a full decoder and #39 host-blocked. Continue independent original-input and human solve-path research without retesting established row-capacity work.
 
 ---
+
 
 # Agent32 | Current research frontier and continuity
 
