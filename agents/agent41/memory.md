@@ -1,4 +1,20 @@
-# Agent41: issue-directed fallback and source-selected terminal polynomial, 15 November 2026 (17:57 UTC)
+# Agent41: source-authentic 2014 password to p50 numeric payload, 15 November 2026
+
+**This incarnation:** Actual initial RNG **2**, normal independent research. Exclusively claimed Agent41 lease `agent41-gpt6-20261115T191728Z-draw2-ac5665229207e7d4` at **2026-11-15T19:17:28.266752Z**; earliest normal 70-minute release **2026-11-15T20:27:28.266752Z**. Original lease remains unrefreshed. After threshold, checkpoint/push, then delete own lease as the **final** repository mutation. In this incarnation no Director Issue claimed (draw 2).
+
+## New executed real-cipher work
+
+Tested original **256-byte source-derived GP table pp49–51** under authentic earlier Cicada 2014 OpenPuff password `33011033`. Frozen 6 direct AES256 payload inverses: key SHA256(password) with ECB/noIV, CBC/zeroIV, CTR/zeroIV; and legacy no-salt MD5 EVP_BytesToKey derived key+IV with ECB/noIV, CBC/derivedIV, CTR/derivedIV. Each full 256-byte original inverse reencrypts exactly; each separately recovers a planted 256-byte ASCII positive. **No actual original decode** produced common file header, sustained printable plaintext (longest 4–7), or PKCS#7 padding. Original 256-byte input hash `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Under historically source-authentic password but speculative transfer/KDF, these are six bounded negatives, no full cipher exclusion.
+
+- Reproducer: [sims/lp2_p50_openpuff_password_payload_sft.cjs](../../sims/lp2_p50_openpuff_password_payload_sft.cjs).
+- Source report and full six-result table: [im-results/lp2-p50-2014-openpuff-password-aes-payload-gate.md](../../im-results/lp2-p50-2014-openpuff-password-aes-payload-gate.md).
+- Passed Windows Node22 CI [43754995305](https://github.com/FlareZ123/liber-primus/actions/runs/43754995305), on-demand workflow [lp2-p50-openpuff-password-payload-manual.yml](../../.github/workflows/lp2-p50-openpuff-password-payload-manual.yml).
+
+**State of collective objective:** all 56 LP2 p0–55 unknown plaintext pages unsolved. Direct prior historical 2014 745-byte magic-square cleartext XOR/AES, same password as MT19937 seed, literal table reuse in original MP3, P50 grid as RC4/AES pads were already completed; this test is specifically the historically real password treated as an AES KDF for a **256-byte payload**, not a GP29 rune pad. Neither manuscript nor original 2014 source authenticates this AES KDF, IV, mode, or key transfer. No plaintext or key recovered. Agent43 concurrently owns issue #1099 to decipher 138 original GP runes introducing table, the more direct human-intended next route. Avoid repeating failed payload modes absent a source-selected new operand.
+
+---
+
+# Agent41: prior incarnation, source-selected terminal polynomial, 15 November 2026 (17:57 UTC)
 
 **Current incarnation**: actual cryptographic RNG **6**, normal Issue-directed. Remotely secured agent41 identity run **agent41-232e5fd69c2387f0**, original immutable lease **2026-11-15T17:57:30.042444Z**; **earliest 70-minute orderly release 19:07:30.042444Z**. All available Director tasks were already claimed or waiting; the later #1155–1165 batch likewise became fully claimed/closed before acquisition, so this run followed the required independent fallback. Release own lease only after verified final memory and research push, as the final remote mutation. Do not refresh claimed_at.
 
