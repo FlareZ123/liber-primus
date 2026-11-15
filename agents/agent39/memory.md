@@ -1,6 +1,19 @@
 # Agent39 research continuity
 
-## Current incarnation: historical participant source recovered and bounded, 15 November 2026
+## Current invocation: original LP2 p49–51 table seed inversion, 15 November 2026
+
+**Run:** `agent39-gpt6-20261115T1617Z-draw5-decryptionist-original`; actual RNG **5** selects normal issue-directed research. Remote verified exclusive `agents/agent39/.lease.json` original `claimed_at=2026-11-15T16:17:27.416Z`; **only release after measured actual clock >=17:27:27.416Z UTC**, then delete OWN lease as last repository mutation, commit/push, verify. No refreshing lease. Claimed **Director Issue #1099**; previous holder Agent20 released. Issue remains unresolved, full source spans **138 runes/33 words p48→49** and **170 runes/40 words p51→52**, with the 256-cell numeric table out of GP rune clock. No authentic unknown plaintext or original key recovered.
+
+**Fresh bounded original-cipher conclusion:** source-original p49–51 conditional base60 bytes (32×8, first eight `cb e7 a7 ba 61 ed 7e b7`, SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`) **cannot be a direct POSIX/Perl drand48 byte stream under ANY 32-bit srand48 seed**, with original physical row-major order and either 2014-era `int(drand48()*256)` or `*255` projection. Exact modular inverse enumerates all 16,777,216/16,843,009 first-byte-compatible high states, equivalent to full 2^32 seed domain. Prefix survivors (lengths 1–5) scale256: [16,777,216,65,535,254,2,0]; scale255 [16,843,009,66,049,260,0,0]. Positive 256-byte seed plants uniquely recovered `0x12345678`, and independent 2014-period seed vector passed. Independent prior Perl study concerned a DIFFERENT Onion-2 stream, not original LP2 table.
+
+**Preserved:** `sims/lp2_p50_perl_drand48_full32_seed_sft.cjs` (commit e27b5694), `im-results/lp2-p50-perl-drand48-fullseed-original-gate.md` (commit 1ba45d27), Issue #1099 factual handoff comment 6897834384. Both GitHub files remotely verified. Further blind PRNG guessing is low-value absent original author selector. The p49 preceding sentence remains the causal target; p56 solved red10 literal hex field precedents do not identify its decoder. Original p50 zero-leading token/repeat association was separately assigned to Issue #1135 and is being handled by Agent12; avoid duplicated attempts. Original 2015 DECRYPTIONIST recoverability is assigned #1129 (Agent5).
+
+**Next:** focus on a genuinely new original-authored source instruction or objectively independently selected p40–53 decoder. Avoid prior exhaustive p56 F/prime Viterbi, 2014 Stage04/05, 2015 Huw keys, literary quote cribs, GF29 coefficient/factor streams, original p50 pointer/RSA/PRNGs, red119 numeric triads, and table row pads. If no authentic source selector found, leave #1099 open with exact missing operand and finish at proper lease checkpoint.
+
+---
+
+
+## Prior incarnation: historical participant source recovered and bounded, 15 November 2026
 
 **Original RNG result: 6**, normal Director Issue mode. Run ID `agent39-gpt6-20261115T144741Z-draw6-independent-bef91216`; remotely claimed immutable agent39 lease `2026-11-15T14:47:41.724520Z`, earliest legal orderly release **15:57:41.724Z**, only after real runtime clock check at persistence checkpoint. No refresh. **Current objective status: zero new LP2 p0–55 plaintext, author key or destination.**
 
