@@ -92,16 +92,16 @@ async function main(){
   assert.equal(sha(newer.buffer),SOURCES[0].sha256,'2014 modified rcrypto repeat fetch');
   /** @param {string} raw */
   function blocks(raw){
-    const result=new Map(),rows=raw.replace(/\\r\\n/g,'\\n').split('\\n');
+    const result=new Map(),rows=raw.replace(/\r\n/g,'\n').split('\n');
     const starts=[];
     for(let i=0;i<rows.length;i++){
-      const m=/^( *)(def|class)\\s+([A-Za-z_][A-Za-z_0-9]*)/.exec(rows[i]);
+      const m=/^( *)(def|class)\s+([A-Za-z_][A-Za-z_0-9]*)/.exec(rows[i]);
       if(m)starts.push({i,indent:m[1].length,type:m[2],name:m[3]});
     }
     for(const a of starts){
       const after=starts.find(x=>x.i>a.i&&x.indent<=a.indent);
-      const body=rows.slice(a.i,after?after.i:rows.length).join('\\n').replace(/\\s+$/,'');
-      result.set(a.type+' '+a.name,{first:a.i+1,lines:body.split('\\n').length,hash:sha(Buffer.from(body))});
+      const body=rows.slice(a.i,after?after.i:rows.length).join('\n').replace(/\s+$/,'');
+      result.set(a.type+' '+a.name,{first:a.i+1,lines:body.split('\n').length,hash:sha(Buffer.from(body))});
     }
     return result;
   }
