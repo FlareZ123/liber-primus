@@ -170,7 +170,7 @@ assert.deepEqual(encrypt(solvedP56), gp.pages[56].indices,
   "Original solved LP2 p56 must decrypt with a continuous prime key");
 assert.ok(countPaths(paths(gp.pages[56].indices)) > 0);
 const solvedP57 = nativeGP(
-  "LIKE THE INSTAR TUNNELING TO THE SURFACE " +
+  "PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE " +
   "WE MUST SHED OUR OWN CIRCUMFERENCES " +
   "FIND THE DIVINITY WITHIN AND EMERGE");
 assert.equal(solvedP57.length, 95);
