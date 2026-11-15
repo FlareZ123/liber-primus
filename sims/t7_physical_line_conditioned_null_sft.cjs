@@ -178,6 +178,106 @@ const modes = [
 ];
 const results = modes.map(([name, groupBy], index) =>
   conditionalNull(name, groupBy, iterations, (0x3301f001 + 101 * index) >>> 0));
+
+/** @typedef {{len:number,hits:number[],page?:number,chapter?:number,lines?:object[]}} Block */
+const lineOfRune = new Array(ciphertext.length);
+lineOfRune[0] = 0;
+for (const event of transitions) lineOfRune[event.pos] = event.line;
+/** @type {Block[]} */
+const lineBlocks = [];
+for (let i = 0; i < ciphertext.length; i++) {
+  const lineId = lineOfRune[i];
+  if (i === 0 || lineId !== lineOfRune[i - 1]) {
+    lineBlocks.push({start: i, id: lineId, len: 0, hits: []});
+  }
+  const block = lineBlocks[lineBlocks.length - 1];
+  if (i > 0 && ciphertext[i] === ciphertext[i - 1]) block.hits.push(block.len);
+  block.len++;
+}
+assert.equal(lineBlocks.length, 594);
+const pageBlocks = [];
+for (let i = 0; i < 56; i++) {
+  const start = pages[i];
+  const end = pages[i + 1];
+  if (start === end) continue;
+  const hits = sites.filter(p => p >= start && p < end).map(p => p - start);
+  const componentLines = lineBlocks.filter(block => block.start >= start && block.start + block.len <= end);
+  assert.equal(componentLines.reduce((n, b) => n + b.len, 0), end - start);
+  const chapter = chapters.findIndex((a, j) => j < 8 && start >= a && start < chapters[j + 1]);
+  assert.ok(chapter >= 0 && chapter < 8);
+  pageBlocks.push({start, len: end - start, hits, chapter, lines: componentLines});
+}
+assert.equal(pageBlocks.length, 55);
+
+/** @param {Block[]} blocks @returns {number} */
+function blockOrderCorrelation(blocks) {
+  let offset = 0;
+  const positions = [];
+  for (const block of blocks) {
+    for (const index of block.hits) positions.push(offset + index);
+    offset += block.len;
+  }
+  assert.equal(offset, ciphertext.length);
+  assert.equal(positions.length, sites.length);
+  return gapCorrelation(positions);
+}
+assert.equal(blockOrderCorrelation(pageBlocks), observed);
+assert.equal(blockOrderCorrelation(lineBlocks), observed);
+
+/** @template T @param {T[]} original @param {() => number} rand @returns {T[]} */
+function shuffle(original, rand) {
+  const output = original.slice();
+  for (let i = output.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [output[i], output[j]] = [output[j], output[i]];
+  }
+  return output;
+}
+
+/**
+ * Preserve original source page/line blocks (including all event offsets)
+ * and destroy only a specified source order. These permutations operate
+ * on site indicators, not newly reencoded original ciphertext glyphs.
+ * @param {string} name
+ * @param {string} kind
+ * @param {number} trials
+ * @param {number} seed
+ * @returns {object}
+ */
+function blockOrderNull(name, kind, trials, seed) {
+  const rand = random32(seed);
+  const byChapter = Array.from({length: 8}, () => []);
+  for (const block of pageBlocks) byChapter[block.chapter].push(block);
+  let exceedances = 0;
+  let sum = 0;
+  const values = [];
+  for (let trial = 0; trial < trials; trial++) {
+    let blocks;
+    if (kind === 'pages-global') blocks = shuffle(pageBlocks, rand);
+    else if (kind === 'pages-within-chapter') blocks = byChapter.flatMap(group => shuffle(group, rand));
+    else if (kind === 'lines-global') blocks = shuffle(lineBlocks, rand);
+    else if (kind === 'lines-within-page') blocks = pageBlocks.flatMap(page => shuffle(page.lines, rand));
+    else throw new Error('Unknown block permutation mode');
+    const value = blockOrderCorrelation(blocks);
+    if (value >= observed) exceedances++;
+    sum += value;
+    values.push(value);
+  }
+  values.sort((a, b) => a - b);
+  return {
+    name, trials, exceedances, p_upper_one_sided: (exceedances + 1) / (trials + 1),
+    null_mean: sum / trials, null_q95: values[Math.floor(0.95 * trials)],
+    null_q99: values[Math.floor(0.99 * trials)]
+  };
+}
+const blockOrders = [
+  ['whole-pages', 'pages-global'],
+  ['pages-within-illustrated-chapter', 'pages-within-chapter'],
+  ['whole-lines', 'lines-global'],
+  ['lines-within-physical-page', 'lines-within-page']
+].map(([name, kind], index) =>
+  blockOrderNull(name, kind, iterations, (0x3301ab00 + 67 * index) >>> 0));
+
 console.log(JSON.stringify({
   source: 'physical LP2 pages p0..p55, no p56/p57, original printed separators',
   runes: ciphertext.length,
@@ -186,5 +286,6 @@ console.log(JSON.stringify({
   gap_lag1_pearson: observed,
   boundary,
   exact_count_conditioned_nulls: results,
+  block_order_conditional_nulls: blockOrders,
   interpretation: 'Line-conditioned nulls probe within-line placement given observed line occupancies. They are not generative tests of line occupancies or decipherments.'
 }, null, 2));

@@ -54,7 +54,19 @@ Run separate conditional random-site controls which preserve the **observed numb
 
 The included [read-only original-source CJS SFT](../sims/t7_physical_line_conditioned_null_sft.cjs) independently resamples the six conditional families with 20,000 draws each, publishes its fixed seeds and add-one p-values, and asserts source agreement, the 86-site census, the original +0.380 correlation, and all five boundary counts. Minor numerical Monte Carlo differences from the preliminary table are expected because its seeds/draw counts are distinct.
 
-**Interpretation and caveat.** The unusual gap ordering persists when only chapter or page site totals are held fixed, and it is largely captured by *which printed lines already contain a site*. This narrows the unexplained structure to **line occupancy** rather than precise within-line rune positions. Conditioning on the observed line counts is deliberately postselected; the resulting p≈0.09 does **not** establish a 2014 authorial line-reset cipher, identify a key, or independently explain why particular lines contain doublets. The physical-page × separator-class null still gives p≈0.006, while direct line-break doublets are just 3/388, so the data do not themselves imply a line-edge copying mechanism. This also tempers the earlier inference that a short-memory event process is uniquely favored over a source-layout-linked process.
+**Order-destroying original-block controls.** To separate source order from source-site placement, a second fixed-seed experiment permutes the **intact site-indicator blocks** at the original physical-page or printed-line level. Every block retains its original length and its exact observed repeated-rune offsets; only the order of complete blocks changes. On independent preliminary 16,000-draw runs:
+
+| Original-order feature destroyed | Exceedances | Add-one one-sided p | Null mean gap-ac1 |
+| --- | ---: | ---: | ---: |
+| Entire physical-page order | 43 / 16,000 | 0.00275 | +0.0771 |
+| Physical-page order *within each illustrated chapter* | 2 / 16,000 | 0.000187 | +0.0652 |
+| Entire printed-line order | 5 / 16,000 | 0.000375 | −0.0116 |
+| Printed-line order *within each original physical page* | 161 / 16,000 | 0.0101 | +0.2482 |
+
+The original ordering of **which lines and pages carry the sites** is therefore consequential to the gap-ac1 statistic, even when local doublet sites themselves are frozen. This block permutation is intentionally a *site-indicator null*: shuffled page/line joins are **not** cryptographically re-encrypted and do not represent a generative model of the text. No one ordering result proves an intended cipher or can be used to select a key. The same read-only CJS SFT runs four additional reproducible 20,000-draw block permutations, with original block reconstruction assertions. Its [Windows Node22 source-runner](https://github.com/FlareZ123/liber-primus/actions/workflows/manual-readonly-commonjs-sft.yml) runs directly on the committed corpus.
+
+**Interpretation and caveat.** The unusual gap ordering persists when only chapter or page site totals are held fixed, and is largely captured by *which printed lines already contain a site*. This narrows the unexplained structure to **ordered line occupancy** rather than precise within-line rune positions. Conditioning on observed line occupancies is deliberately postselected; the resulting p≈0.09 does **not** establish a 2014 authorial line-reset cipher, identify a key, or independently explain why particular lines contain doublets. The physical-page × separator-class null still gives p≈0.006, while direct line-break doublets are just 3/388, so the data do not themselves imply a line-edge copying mechanism. This tempers the earlier inference that a short-memory event process is uniquely favored over a source-layout-linked process.
+
 
 ## Next discriminating question
 
