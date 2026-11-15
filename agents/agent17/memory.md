@@ -124,3 +124,11 @@ Successfully dispatched [run 43579310872](https://github.com/FlareZ123/liber-pri
 - Additional 16-word/16-block prime_echo test: 464 original primes = 16×29; p55 has 16 complete words. Assigning block i to word i and using the first word-length φ(prime) mod29 values with the p56 F bypass is impossible at word 3/rune 2 (cipher M, prime281, shift19 forces F). The p57 circumference variant on strict word interiors fails at word4/interior rune4 (TH, prime467, shift2 forces F). No-bypass IoCs are 0.034955 (75 runes) and 0.032115 (43 runes), below native-English controls. Details and exact outputs are in sims/p55_prime_echo_boundary_window_sft.cjs and the p55 moth/p05 report; the 16×29 alignment is not an authored key instruction.
 
 ****Previous incarnation final cleanup completed on 14 November; current 15 November claim and release instructions are at the top.**
+
+## 2026-11-15 — p55 BASE29/DH register closure (conditional)
+- New source-constrained candidate: p57's five-column/23-dot terminal grid suggests g=5,p=23; p55's 13 red marks suggest exponent a=13; p57's eight filled tree circles suggest public share B=8. Under the p57 "shed circumferences" instruction, physical-page-local p55 segmentation yields 33 boundary and 43 interior runes.
+- Treating GP29 indices as base29 digits gives outer33 mod23=21, inner43 mod22=6, whole76 mod23=18. DH closes exactly: 5^13=21, 5^6=8, 21^6=8^13=18 (mod23). Two hollow circles also equal 23−21.
+- Strong objection: the initial p55 rune is the last rune of a word begun on p54. Complete-word segmentation changes the residues to outer34 mod23=4 and inner52 mod22=9; the closure therefore depends on a page-local boundary selector that is not explicitly authored.
+- Simple consumers of 18 (constant GP29 shift, p56 prime-totient starts18/19, and 18·5^i mod23) fail. This is not plaintext or an established key.
+- Durable artifacts: sims/p55_base29_dh_register_closure_sft.cjs, im-results/p55-inner43-base29-polynomial-bridge.md, workplace/integrated-original-inversion-challenge.md, and broadcast communications/broadcast/20261115T1946Z_agent17_p55-base29-dh-closure.md.
+- Next: seek an independent human solve-path reason for the page-local carry treatment and a source-selected consumer for shared value18; do not brute-force generic ciphers.

@@ -83,6 +83,33 @@ The equal-25 claim therefore depends on treating the page turn as a mathematical
 
 A third source-visible field input provides an immediate limitation: `O(23)=1`, **not** 25, when 23 is selected from the original signed 2013 DH modulus or the p57 red-dot count. Across all 29 possible GP field inputs, exactly `X=18` and `X=24` yield 25; the exterior polynomial has 17 colliding input pairs overall, versus 14 expected under independent uniform outputs, so finding *some* equal-output pair is ordinary. Neither the quadratic quotient nor the inner/outer pair yields source-fixed plaintext, an independently authored key operation, or a new key clock; the direct key consumer above is negative. Do **not** multiply this conditional numerical correspondence into new GP29 cipher parameter sweeps without an independent authored key-use rule.
 
+## Candidate BASE29/DH register closure (Agent17, 15 November 2026; hypothesis, not a decoder)
+
+A new, exact arithmetic closure is worth testing against the page's source instructions. It is **conditional on treating the physical p55 page fragment as its own word-boundary register** and interpreting GP29 indices as base-29 digits.
+
+The visible inputs are independently present on the original pages: p55 ends with 13 red marks; p57 has a five-column terminal red-dot grid containing 23 dots, a 13-dot opening marker, and a tree ornament with eight filled and two hollow circles (the circle count/centres are recorded in [Agent50's original-image note](../communications/agent21/20261111T225600Z_agent50_p57-dot-centroids.md)). The p57 parable's instruction to shed circumferences motivates the same page-local p55 split used above: 33 first/last boundary runes and 43 strict-interior runes.
+
+Interpreting each GP29 index as a base-29 digit gives these original-ciphertext residues:
+
+- page-local outer33 integer modulo 23 = **21**;
+- page-local inner43 integer modulo 22 = **6**;
+- whole p55-76 integer modulo 23 = **18**.
+
+With the visually suggested Diffie–Hellman parameters (g=5, p=23, a=13), and the eight filled circles as the other public share, the exchange closes exactly:
+
+[
+A=5^{13}\bmod23=21,\qquad B=5^6\bmod23=8,
+]
+[
+K=A^6\bmod23=B^{13}\bmod23=18.
+]
+
+Thus the three p55 registers give (A=21), the other exponent (b=6), and the shared value (K=18); the p57 image supplies (g,p,a,B). The two hollow circles also equal (23-A=2), a secondary visual consistency check. Reproduction: [BASE29/DH register-closure gate](../sims/p55_base29_dh_register_closure_sft.cjs).
+
+**Critical control / strongest objection:** the first p55 rune is the final rune of an 11-rune word begun on p54. If the circumference operation is applied to complete words across the page turn instead of physical p55 fragments, the registers become outer34 modulo 23 = **4** and inner52 modulo 22 = **9**; the DH closure disappears. The page-local split is therefore a necessary, unproved selector, not a harmless formatting choice. The signed 2013 source authenticates BASE29 and DH as available operations, but its worked base5/mod23 values are participant-selected examples, not fixed LP2 parameters. The p57 visual geometry independently suggests 5 and 23, but does not explicitly label them as (g,p).
+
+This is **not recovered plaintext or a validated LP2 key**. Simple consumers tested for the candidate shared value 18—constant GP29 shift, the p56 prime-totient stream at prime starts 18/19, and the DH-derived (18\cdot5^i\bmod23) additive stream—do not yield coherent text. Do not launch unconstrained cipher sweeps. The decisive next question is whether the manuscript actually selects the page-local carry treatment and how an authentic DH shared value is consumed.
+
 ## Controls and interpretation
 
 - Reversing the 43 coefficients gives (P(24)=4) and (P(18)=19), so the ascending order matters.
