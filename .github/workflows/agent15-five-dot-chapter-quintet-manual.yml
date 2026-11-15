@@ -10,6 +10,7 @@ on:
         options:
           - chapter-quintet
           - local-delimiter
+          - red9-hill3-terminal
 permissions:
   contents: read
 jobs:
@@ -43,3 +44,9 @@ jobs:
         run: |
           node --check sims/lp2_lag5_local_delimiter_allsecret_sft.cjs
           node sims/lp2_lag5_local_delimiter_allsecret_sft.cjs
+      - name: Test original terminal red-nine 3x3 Hill inverse
+        if: ${{ inputs.gate == 'red9-hill3-terminal' }}
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p54_red9_hill3_terminal_sft.cjs
+          node sims/lp2_p54_red9_hill3_terminal_sft.cjs
