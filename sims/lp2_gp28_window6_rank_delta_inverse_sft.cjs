@@ -245,8 +245,44 @@ for (const { sentinel, label } of modes) {
   assert.ok(positives.every((p) => p.fraction > 0.99),
     'Heldout genuine solved-prose key recovery must work');
   assert.ok(origWeighted < positiveWeighted - 0.4);
+  // The original five-dot stencil at the END of p7 and START of p23
+  // independently delimits physical pp8..22. Unlike the nine visual chapter
+  // clocks, this is a single unbroken 3,632-rune source-selected interval.
+  const dotCipher = corpus.pages.filter((p) => p.page >= 8 && p.page <= 22)
+    .flatMap((p) => p.indices);
+  assert.equal(dotCipher.length, 3632);
+  const dotRanks = extractRanks(dotCipher);
+  const dotInverse = inverseRanks(dotRanks.ranks, logProb);
+  assert.deepEqual(reemit(dotCipher[0], dotInverse.plaintext,
+    dotRanks.ranks.slice(0, W - 1), dotRanks.escapes, dotCipher.length), dotCipher);
+  const dotNative = Array.from({ length: dotCipher.length - 1 }, (_, i) => {
+    if (i % 97 === 63) return sentinel;
+    if (sentinel === 0 && i % 101 === 7) return 28;
+    return solved[(i + 23) % solved.length];
+  });
+  const dotPlant = forwardPlant(dotNative, dotCipher[0], sentinel);
+  const dotExtract = extractRanks(dotPlant);
+  const dotRecovered = inverseRanks(dotExtract.ranks, logProb);
+  assert.deepEqual(reemit(dotPlant[0], dotRecovered.plaintext,
+    dotExtract.ranks.slice(0, W - 1), dotExtract.escapes, dotPlant.length), dotPlant);
+  let dotIdx = 0, dotCorrect = 0;
+  for (const x of dotNative) if (x !== sentinel) {
+    const rank = x < sentinel ? x : x - 1;
+    if (dotRecovered.plaintext[dotIdx] === rank) dotCorrect++;
+    dotIdx++;
+  }
+  assert.equal(dotCorrect, dotIdx);
+  const dottedRegion = {
+    pages: [8, 22], runes: dotCipher.length,
+    originalNonrepeatRankCount: dotRanks.ranks.length, originalEscapes: dotRanks.escapes.length,
+    originalIoC: dotInverse.ioc, originalScorePerRune: dotInverse.score,
+    recoveredNative: dotCorrect, nativeRankCount: dotIdx,
+    nativeEscapes: dotExtract.escapes.length, nativeScorePerRune: dotRecovered.score,
+    initialOriginal: dotInverse.plaintext.slice(0, 18)
+      .map((x) => corpus.translit[x < sentinel ? x : x + 1]).join('-')
+  };
   results.push({
-    width, label, literalPlaintextSentinel: corpus.translit[sentinel], original,
+    width, label, literalPlaintextSentinel: corpus.translit[sentinel], dottedRegion, original,
     originalWeightedLogPrior: origWeighted, nativeSolvedPagePlants: positives,
     positiveWeightedLogPrior: positiveWeighted
   });
