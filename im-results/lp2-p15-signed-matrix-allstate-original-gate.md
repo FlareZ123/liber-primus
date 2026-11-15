@@ -1,6 +1,6 @@
-# Original LP2 p40–53: all 707,281 hidden signed-p15-matrix states and source-native inverse
+# Original LP2 p40–53: exhaustive signed-p15-matrix states, including every legal F bypass
 
-**Agent17, 15 November 2026.** Exact original-cipher computation, source-derived reversible operator, *no newly authenticated LP2 plaintext or key*. The direct four-rune additive signed-matrix cipher is incompatible with standard GP29-native English on the full original p40–53 black body, even granting every possible secret four-component initial state. This is a finite, source-scoped negative that retires a distinct matrix **state** use rather than another guessed public seed.
+**Agent17 and Agent18, 15 November 2026.** Exact original-cipher computation, source-derived reversible operator, *no newly authenticated LP2 plaintext or key*. The original direct four-rune matrix model first failed an all-secret native-GP English search. A stronger independent **all-state, all-four-phases, exact plaintext-F branch test** now rejects every nonzero source-matrix secret state on unchanged original ciphertext **without any language model**. The sole feasible secret is the zero state, equivalent to identity/no encryption. This is a specific and fully exhausted matrix **state** hypothesis, contingent on its unauthenticated source-selection and a continuous clock.
 
 ## Historical clue and weakest assumption
 
@@ -31,7 +31,37 @@ A distinct exact-length native-English positive plant was built using the same *
 
 ## Independently motivated F-interrupter variant
 
-The actual solved p56 cipher treats certain plaintext F runes as transparent and does not advance its known prime schedule. A finite additional check forces **all 124 ciphertext F positions** in the 3,000 original runes to be transparent plaintext F, removing them from the matrix-power key clock. Search all 7,612 same source-native four-rune prefix states again. This deterministic, fully specified all-F-skipped variant still yields at most **four dictionary words of length ≥4**, with maximal IoC **0.03732866511059242**, and no coherent run of prose. This test does **not** cover p56's *ambiguous* rule where only some ciphertext Fs are bypassed; an independently selected bypass mask would be needed to test that family without overfitting.
+The actual solved p56 cipher treats certain plaintext F runes as transparent and does not advance its known prime schedule. A finite additional check forces **all 124 ciphertext F positions** in the 3,000 original runes to be transparent plaintext F, removing them from the matrix-power key clock. Search all 7,612 same source-native four-rune prefix states again. This deterministic, fully specified all-F-skipped variant still yields at most **four dictionary words of length ≥4**, with maximal IoC **0.03732866511059242**, and no coherent run of prose. That initial fixed-mask experiment was weaker than the now-completed exact all-secret branching experiment below. Its lexical scores remain prior independent context.
+
+## Exact all-secret inversion with every legal F skip and four unknown component phases (Agent18)
+
+This is a **new source-cipher obstruction** replacing the earlier gap for *ambiguous ciphertext F*. It tests the same signed p15 matrix and the exact same **3,000 original black-body runes** across physical pp40–53. The source's preceding red p40 heading has eight GP runes and is excluded from the frozen input, as in the prior study. All **124 ciphertext Fs** remain in place. The p49–51 numerical field has no rune symbols; its bytes do not consume the runic key clock, consistent with p56's authenticated typed-field separation. The nine printed chapter boundaries are not invented as reset events.
+
+Define secret v∈GF(29)^4 and an unknown intra-block component phase h∈{0,1,2,3}. For consumed key count k≥0, the emitted additive pad is
+
+    K(k;v,h) = row_((k+h) mod4)(M^floor((k+h)/4)) · v (mod29).
+
+A complete four-component phase change can be absorbed into v because the signed M is invertible, so these **four h choices are exhaustive** for arbitrary initial phase. Subtracting or adding a pad sign is also exhaustive under v→−v, because the state update is linear. This covers **4×29^4=2,829,124** state/phase options without guessing a key. For *each* ciphertext rune C, the inverse retains **every attainable consumed-clock count**:
+
+1. If C≠F/index0, a consuming inverse P=(C−K) mod29 is allowed exactly when P≠F; k advances.
+2. If C=F/index0, authentic plaintext-F passthrough permits P=F and k unchanged. An additional consuming interpretation P=(−K) mod29 is allowed when K≠0, and k then advances.
+
+Dynamic-programming state sets are deduplicated only at identical clock counts. **No F mask, language model, lexical score, beam, initial four-rune crib or score threshold** influences which paths survive. One seed producing one feasible complete prefix suffices to keep it. The method is exact for the defined additive generator and original source stream.
+
+| Unknown within-block phase h | All-key candidates surviving 50 runes | 200 runes | 500 runes | 1,000 runes | 1,500 runes | 3,000 runes | Longest *nonzero* seed prefix |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 274,216 | 8,768 | 419 | 11 | **1** | **1** | 1,269 |
+| 1 | 273,838 | 8,711 | 399 | 6 | **1** | **1** | 1,221 |
+| 2 | 274,102 | 8,721 | 411 | 7 | **1** | **1** | 1,440 |
+| 3 | 274,172 | 8,703 | 414 | 7 | **1** | **1** | 1,269 |
+
+The single survivor at 1,500 symbols in **every** phase is **v=[0,0,0,0]**, giving K(k)=0 forever. This decodes P=C with F passthrough, and therefore satisfies the mechanics vacuously while explaining none of the manuscript's ciphertext structure. The best nonzero seed at phase2 has packed integer102029 and dies at zero-based original black-body rune1440. The other best packed seeds are 665553, 507277, and 695576 for phases0,1,3 respectively. **All 2,829,120 nonzero secret-vector/phase combinations fail before rune1500**. Every feasible F branch history was included, even histories that would not form natural English text.
+
+**Independent exact-function controls:** 95 genuine solved p57 GP runes are tiled to an exact 3,000-rune source-native plaintext. The forward rule uses a nonzero seed v=[3,5,7,11], transparently passes 94 plaintext Fs and consumes 2,906 other runes. Across h=0..3, it creates **99,105,117,99 ciphertext Fs from encrypted non-F plaintext** in addition to those 94 transparent symbols, demonstrating the inverse must retain both F interpretations. All four positive ciphers are feasible for the entire 3,000 symbols under the correct unmodified secret. A separately implemented exhaustive *recursive* F-branch oracle agrees with the DP on original and planted short prefixes at six frozen seeds in each phase.
+
+**Reproduction:** [single-file Node22 CommonJS source-exact test](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs), successfully executed with original tracked JSON and positive controls on **Windows/Node22** in [run 43731862339](https://github.com/FlareZ123/liber-primus/actions/runs/43731862339). Its assertions fix every phase's threshold counts, maximal nonzero prefix and positive recovery. These direct ciphertext-only feasibility counts supersede the prior report's language-dependent all-F-skipped result as the decision on this exact matrix generator.
+
+**Result and boundaries:** The continuously consuming four-output-per-matrix-power additive architecture is now exactly rejected for **all hidden seeds, signs, within-block phases and authentic F masks**, apart from the no-encryption identity. Nothing in the source commands using the restored-sign matrix as this cipher, and the signed form itself is a mathematical inference from the original Fibonacci-prime construction. Changing the state update to every *single* rune, independently resetting at each page/word, using a nonlinear matrix consumer, selecting an alternate plaintext code or adding external key material are different untested models. This result supplies no unknown LP2 plaintext, historical key or destination.
 
 ## Distinct keyless, block-mixing dynamic Hill gate
 
@@ -45,6 +75,6 @@ The **all-phase dynamic Hill decoder** is consequently a second, distinct scoped
 
 ## Decision and exact reproduction
 
-The simple, fully unknown 4-vector matrix-power additive key is now exhausted on this original black-body clock. It does not provide a decoder, plaintext or hidden address. Do not re-run arbitrary matrix seeds or tune a dictionary objective within this same key/state model. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
+The original 4-vector matrix-power additive pad is exhausted on this full continuous black-body clock, **including the complete authentic F-skip ambiguity and all four component phases**. It yields no author-selected decoder, plaintext or hidden address. Do not restart matrix-vector seed searches, F-mask fitting, or dictionary phase tuning within this model. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
 
-[**Single-file source-exact Windows Node22 test**](../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs) reads only repository source files, asserts original ciphertext/transcription equality and all results, runs the exhaustive hidden-state loop, the full native dictionary scan, the planted-English positive control, the all-ciphertext-F-skip variant and the 1,624 reversible dynamic Hill clocks. Execute from the repository root with `node sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs`. It uses no third-party packages, network or file writes. All published numerical results were also obtained directly in the tool runtime from the exact repository files. The committed SFT has not yet been separately executed by GitHub Actions; it should be run before claims beyond this bounded computation are promoted.
+Earlier dictionary and dynamic-Hill experiments remain independently reproducible in [their original CJS](../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs); those are separate, weaker operator-level results. The newly completed exact F-branch source gate is [here](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs), with a [verified Windows/Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/43731862339). Both scripts read tracked original source and write no files.
