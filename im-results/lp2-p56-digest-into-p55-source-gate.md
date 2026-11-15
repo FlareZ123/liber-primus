@@ -11,3 +11,5 @@ Each of eight inverses exact-forward-reencrypts the untouched original p55 ciphe
 **Decision:** the p56 printed digest does **not** directly decode p55 into native English GP29 under these four no-tuning representations and both additive signs. The digest remains an original, explicit *target fingerprint*; a historical original key-derivation instruction is missing. This finite exclusion does not cover hash preimage recovery, extra cryptographic layers, unknown salt, or a differently keyed cipher.
 
 **Reproduce:** [source-exact Windows Node22 CommonJS SFT](../sims/lp2_p56_digest_into_p55_source_sft.cjs). All inputs are existing repo resources; no source artifacts modified.
+
+**Execution audit:** The eight original keyed candidates and 76/76 rune native plants passed [Windows Node22 CI 43772269709](https://github.com/FlareZ123/liber-primus/actions/runs/43772269709).
