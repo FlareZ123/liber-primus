@@ -27,3 +27,7 @@ jobs:
         run: node --check sims/lp2_prime_chapter_full_polynomial_source_sft.cjs
       - name: Run source-selected first four chapter full polynomial inversion
         run: node sims/lp2_prime_chapter_full_polynomial_source_sft.cjs
+      - name: Check all-secret Shamir weight test syntax
+        run: node --check sims/lp2_prime_chapter_allsecret_shamir_weights_sft.cjs
+      - name: Exhaust every Shamir weight for original 3- and 5-share chapters
+        run: node sims/lp2_prime_chapter_allsecret_shamir_weights_sft.cjs
