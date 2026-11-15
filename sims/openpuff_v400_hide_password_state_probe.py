@@ -15,6 +15,7 @@ import traceback
 from pathlib import Path
 
 from filelock import FileLock
+from pywinauto import Desktop
 from pywinauto.application import Application
 from pywinauto.keyboard import send_keys
 
@@ -49,12 +50,33 @@ def _disable_optional(window) -> None:
         control = window.child_window(control_id=control_id, class_name="Button")
         if control.get_check_state():
             control.uncheck_by_click_input()
-            time.sleep(0.2)
+            time.sleep(0.5)
+            warnings = [
+                w for w in Desktop(backend="win32").windows()
+                if w.is_visible() and w.window_text().strip() == "Warning"
+            ]
+            if warnings:
+                if len(warnings) != 1:
+                    raise RuntimeError(f"Expected one native Warning, got {len(warnings)}")
+                dialog = warnings[0]
+                static_text = " ".join(
+                    child.window_text() for child in dialog.descendants()
+                    if child.class_name() == "Static"
+                )
+                if "Are you sure you want to disable it?" not in static_text:
+                    raise RuntimeError(f"Unexpected native password warning: {static_text!r}")
+                yes = [
+                    child for child in dialog.descendants()
+                    if child.class_name() == "Button"
+                    and child.window_text().strip().replace("&", "").lower() == "yes"
+                ]
+                if len(yes) != 1:
+                    raise RuntimeError("Native password warning has no unique Yes button")
+                print("CONFIRMED_NATIVE_PASSWORD_DISABLE", control_id, static_text, flush=True)
+                yes[0].click_input()
+                time.sleep(0.6)
         if control.get_check_state():
-            control.uncheck()
-            time.sleep(0.2)
-        if control.get_check_state():
-            raise RuntimeError(f"Native optional checkbox {control_id} remained checked")
+            raise RuntimeError(f"Native optional checkbox {control_id} remained checked after Yes")
 
 
 def _enter_a(window, method: str) -> None:
