@@ -15,7 +15,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
 /** @param {string} p @returns {string} */
-const read = p => fs.readFileSync(path.join(root, p), 'utf8');
+const read = p => fs.readFileSync(path.join(root, p), 'utf8').replace(/\r\n/g,'\n');
 const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const signed = read('resources/historical/cicada2014-stage11-message.asc');
 const part = signed.split('Hash: SHA1\n\n')[1].split('-----BEGIN PGP SIGNATURE-----')[0];
