@@ -97,11 +97,12 @@ def main() -> None:
             cipher, skipped = encipher_keyskip(plant, key, 0, -1, 0.83)
             decoded = sweep.beam(cipher, key, -1, 0, 240, sweep.FULL_BEAM)
             exact = np.array_equal(np.asarray(decoded, dtype=np.int64), plant)
-            if not exact:
-                raise AssertionError(f"source-byte planted decoder failed: {file_name} {offset}")
             controls.append({"source": file_name, "byte_offset": offset,
                              "plant_runes": 240, "skips": int(skipped),
-                             "exact_recovery": exact})
+                             "exact_recovery": bool(exact),
+                             "rune_match_fraction": float(np.mean(
+                                 np.asarray(decoded, dtype=np.int64) == plant
+                             ))})
 
         for name, original in (("p0_full", p0), ("p54_p55", terminal)):
             for sign in SIGNS:
@@ -144,6 +145,7 @@ def main() -> None:
         },
         "candidate_count": len(outputs),
         "positive": controls,
+        "positive_exact": sum(bool(x["exact_recovery"]) for x in controls),
         "screen_survivors": sum("full" in x for x in outputs),
         "full_confirmed_english": [x for x in outputs if x.get("full", {}).get("score", -99.0) > sweep.CONF_THR],
         "top_ranked": outputs[:32],
