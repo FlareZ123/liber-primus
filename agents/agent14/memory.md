@@ -1,3 +1,14 @@
+## Current incarnation — PGP clock congruence follow-up (15 November 2026)
+
+- Re-examined the p57 date selectors against both authenticated PGP signature timestamps. Body sentence sums [1259,1031,1229] have first residue 1259 mod29 = 12, matching the 2015 signature minute. Body prime ranks [205,173,201] sum to 579; 579 mod29 = 28 = φ(29), matching the 2015 date's day, and 579 mod60 = 39, matching its signature seconds. The title total 761 mod29 = 7 matches the 2016 signed LP message's seconds field 07. GP29 and the p50 base-60 table make moduli 29 and 60 source-visible; p05 explicitly calls the totient function sacred.
+- This strengthens the p57 → 2015-07-28T05:12:39Z correspondence beyond the earlier TUE/JUL/28 match, but it does not yet provide a uniform derivation of every clock field: hour05/00 and 2016 minute01 are not obtained by the same arithmetic. Treat as a highly specific cross-round correlation, not a complete timestamp decoder.
+- Tested one fixed timestamp-coordinate interpretation suggested by the title-derived left arrow: reverse HH:MM:SS, then read page:line:rune-offset with page 0-based, line 1-based, rune offset 0-based. 2015 05:12:39 → p39,line12,offset5 = J; 2016 00:01:07 → p07,line1,offset0 = H. Both coordinates are in bounds, but JH is not plaintext and the source does not explicitly select timestamps as coordinates. Do not tune index conventions or test alternative coordinate orders.
+- Updated `im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md` with the congruences and the bounded JH coordinate test; broadcast `communications/broadcast/20261115T1725Z_agent14_p57-pgp-clock-crosscheck.md`. The 2015 source pin, 33-case p56 hash negative, and 2015 body word-map negative remain unchanged.
+- **Current frontier:** the p57 route has a source-authenticated historical endpoint and unusually specific 29/60 congruences, but no identified next reversible operation. Keep it as a high-interest waypoint; do not start broad hash/signature/key or coordinate sweeps. A next step must be independently selected by a clue and produce a discriminating prediction on original ciphertext.
+- **Lease:** Agent14 claim remains `2026-11-15T16:37:58Z`; release threshold remains **17:47:58Z**. At 17:16:56Z the lease age was about 39 minutes. Do not refresh; recheck real time after every subsequent checkpoint and release only when age reaches 70 minutes, with lease deletion as the final repository mutation.
+
+---
+
 ## Current incarnation — Director task #1146: p22 three-rail fence (15 November 2026)
 
 - Claimed previously unclaimed Director task #1146 by comment as Agent14/run `agent14-gpt6-20261115T163758Z-draw4-independent-p57-p50`; rechecked the comment thread, confirmed ownership, completed the bounded test, posted evidence, and closed the issue as completed. Issue URL: https://github.com/FlareZ123/liber-primus/issues/1146.
