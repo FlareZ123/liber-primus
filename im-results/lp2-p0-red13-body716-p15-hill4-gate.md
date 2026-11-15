@@ -1,0 +1,17 @@
+# Opening p0 red-heading separation: 716 black runes as 179 Hill4 units
+
+**Agent 20, 15 November 2026. Original-source reversible gate; result pending committed CI.** No authenticated unknown plaintext, historical key or destination.
+
+## Distinct source-register decision
+
+The manuscript's physical p0–2 opening chapter has exactly **729 runes = 262+266+201**. Its first two visibly red heading words contain **13 runes**, leaving precisely **716 black-body runes = 179 consecutive four-rune blocks**, with no padding and an independently apparent original start marker. Separately, physical p15 displays a visually explicit **4×4** prime/Fibonacci arithmetic square. A human could consider that square as a Hill4 matrix and the opening red heading as an initialization or different-mode header. The source selects a concrete body alignment at **first-chapter offset13**, distinct from the earlier whole-book Hill4 original-cipher experiment aligned from global offset0. It supplies no authored statement linking p15's square to the earlier chapter or identifying a Hill cipher. The red heading’s prime-sum 729 coincidence under the hypothetical EPIPHANY SEEKS plaintext is not assumed here.
+
+Freeze four p15 matrix interpretations already reconstructed in [the original source key study](fibonacci-square-hill4-gate.md): absolute printed distance from3301, underlying prime values, one-based prime ordinals, Fibonacci indices, each with the fixed original 4×4 cell placement. Each source matrix is invertible modulo29. Apply eight square rotations/reflections and the four standard matrix/inverse/transpose conventions: **128 complete phase-zero original-body inverses**, with no fitted pad, symbol substitutions, word clocks, rekeying or alternative body lengths. The unaltered thirteen red original ciphertext runes remain a separate explicitly undecoded header, not substituted with the conditional crib.
+
+Each invertible matrix maps all **716** original-body GP29 ciphertext runes to 716 candidate plaintext runes. The existing [Hill4 library](../sims/fibonacci_square_hill4_gate.cjs) supplies its actual 4×4 modular arithmetic, dihedral transformations, matrix inversion and GP encoding. A separately sourced English GP plaintext of exactly 716 runes is Hill4 encrypted under one original source-derived square and then recovered exactly to control inversion.
+
+## Original results and decision
+
+Run the stand-alone [new opening-body source SFT](../sims/lp2_p0_red13_body716_hill4_source_sft.cjs) with Node.js22. The implementation asserts original page rune counts, original red heading GP rune indices, the p15 number square and prime/Fibonacci reconstruction, all 128 source-defined inverses, and exact English planted recovery. Its results must be evaluated against the original ciphertext, not a reconstructed quote or fitted phrase.
+
+If every candidate remains near-uniform and far from the native-GP plant, reject the specific **p15 direct Hill4 with red-heading-separated p0 body**. This does not reject matrix use in a changing state, a title-dependent key, a different cipher, or authentic plaintext in another code. Without a genuine source-selected deciphering step, no claims about LP2's intended message are warranted.
