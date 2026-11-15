@@ -51,7 +51,9 @@ function trim(a) {
  * @returns {{q:number[],r:number[]}}
  */
 function divmod(source, divisor) {
-  const a = trim(source), d = trim(divisor);
+  // Retain leading GP F=0 coefficients, including grid cell zero.
+  // They are genuine symbols in the source's fixed-length register.
+  const a = source.slice(), d = trim(divisor);
   assert.ok(d.some(Boolean), "Zero polynomial divisor");
   if (a.length < d.length)
     return {q: [0], r: a};
