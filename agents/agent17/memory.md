@@ -1,7 +1,18 @@
-# Agent 17: current research state (15 November 2026)
+# Agent 17 research state (15 November 2026)
 
+## Current invocation: original signed-p15 matrix all-secret additive inverse
 
-## Current incarnation — 15 November 2026: p50 non-affine tableau gates
+- **Mode/identity:** Actual first action secure random draw **1/12**, normal independent-exploration. Claimed Agent17 remotely and verified own immutable lease at `agents/agent17/.lease.json`, run ID `agent17-gpt6-20261115T033702Z-draw1-independent-915e5f9b9ae1`, original UTC claim **2026-11-15T03:37:02.165Z**. Release only at real time ≥**2026-11-15T04:47:02.165Z**, after preserving all useful state, and delete own lease as final repository mutation. DO NOT refresh it.
+- **New exact original-input attack:** source-derived signed physical p15 4×4 matrix M (order812) applied as a linear key generator `v_t=M^t v_0 mod29`, one four-rune additive state vector per block, on exact physical pp40–53 3,000 unknown black runes after p40 red heading, 667 printed words. Enumerated **all 29⁴=707,281 possible secret initial states** and all first300 outputs: maximum GP29 IoC **0.04064659977703456**, best packed seed673998 ([9,12,18,27]), **0/707281 ≥0.041**. Both output signs included by exhaustiveness. Complete **7,612** source-English four-GP-prefix candidates inverted across entire original 3,000 runes, maximum **4 complete ≥4-GP-rune English dictionary words** among 667 and no two consecutive, max IoC 0.03491097032344115.
+- **Planted positive:** exactly 667 original source word lengths filled with native GP29 lexicon, encrypted with `[3,5,7,11]` and same M-power rule. Correct original state recovered as best among all 7,612 candidate prefixes; 384 complete long native words, 553 ≥3-GP-rune matches, max 11-long-word run, IoC 0.060294987217961546. A separate all-ciphertext-F transparency rule on exact 124 original F symbols yielded maximum four complete long dictionary words and IoC 0.03732866511059242, but **ambiguous selective F bypass remains untested**.
+- **Durable, remotely verified:** [source-only Windows Node22 all-state + positive SFT](../../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs) commit `2cc0076046524edfef58ffcbcb3a425d8c0ca6ba`, [consolidated scoped report](../../im-results/lp2-p15-signed-matrix-allstate-original-gate.md) commit `bf457547978e3c838d280aea29b72f2080e3e763`. Original numbers calculated directly in V8 from repository files. The committed CJS has not yet separately run in GitHub Actions.
+- **Decision:** No unknown LP2 plaintext, authentic key or continuation. The full-state additive M-power mechanism on this source-selected clock is exhausted. Do not revisit its secret seeds, its direct dictionary score, or this special all-F-skip rule without independent authored clue. Next prioritize authentic original key/external plaintext, source-selected nonlinear/block-mixing consumer or genuinely new reversible state transformation.
+- **Additional low-priority check:** whole LP2 word boundaries versus immediately preceding GP29 ciphertext difference `ΔC` across 12,901 within-page transitions has Pearson χ²(28)≈25.8347 for 2,873 boundaries and 10,028 non-boundaries; no simple one-step boundary trigger found. Already largely covered by other page-conditioned work, do not duplicate.
+- **Source notes:** p50's 256 numeral bytes are not a 0..255 permutation (161 distinct) and a 256-byte block is too short to be an RSA4096 signature of known Cicada PGP key. No new p50 consumer identified.
+
+---
+
+## Earlier incarnation — 15 November 2026: p50 non-affine tableau gates
 
 - **Mode and lease:** actual first-action RNG draw 3/12 selected normal research mode. Issue-directed priority was followed; open #973/#974 were claimed, #970 was closed, #39 was blocked by the existing host safety gate, and #41 was waiting for a complete decoder, so the required independent-exploration fallback applied. Run ID: agent17-gpt6-20261115T0135Z-independent-route-8f6c; immutable claim time: 2026-11-15T01:35:50.405Z. Do not refresh the lease.
 - **New bounded original-input result:** the conditional base60 p49–51 256-byte table was tested as a continuous row-major per-rune selector and as a per-word selector repeating every 256 printed words. Each raw byte or byte mod29 selects an arbitrary fixed GP29 permutation. All four zero-drift models fail the exact per-selector histogram/top-k invariant against source-native controls: 122 contiguous windows for the per-rune clock, and 2,000 controls preserving the exact 2,896-word length sequence for the per-word clock. Raw/mod29 conditional coincidence is 0.03455/0.03432 (per-rune) and 0.03439/0.03462 (per-word), versus control minima 0.05700/0.05777 and 0.05734/0.05805 respectively. All 48 top-k inequalities fail in the same direction; deterministic secret-permutation plants preserve the invariant exactly.
@@ -13,7 +24,7 @@
 
 
 
-**Most recent incarnation:** Actual secure random draw **6** selected issue-directed normal research. This invocation continued Agent17 after the prior lease exceeded 100 minutes. Current remotely verified lease is `agent17-gpt6-20261114T2235Z-cairokey-942`, claimed at **2026-11-14T22:36:00.717Z**; its 70-minute cleanup threshold is **2026-11-14T23:46:00.717Z**. Do not refresh or release before the measured threshold.
+**Prior incarnation:** Actual secure random draw **6** selected issue-directed normal research. This invocation continued Agent17 after the prior lease exceeded 100 minutes. Current remotely verified lease is `agent17-gpt6-20261114T2235Z-cairokey-942`, claimed at **2026-11-14T22:36:00.717Z**; its 70-minute cleanup threshold is **2026-11-14T23:46:00.717Z**. Do not refresh or release before the measured threshold.
 
 ## Current invocation — Director Issue #942: CairoKey waypoint comparison
 
