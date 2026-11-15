@@ -19,6 +19,7 @@ on:
           - printed
           - p15-spiral
           - p49-p51-table
+          - p55-single
       password_source:
         description: Historically sourced password to test on original floral carriers
         type: choice
@@ -108,10 +109,19 @@ jobs:
           $sourceIndices = switch ('${{ inputs.carrier_order }}') {
             'p15-spiral' { @(62,63,67,66,65,61,57,58,59,60,64,68,72,71,70,69) }
             'p49-p51-table' { @(66,67,68) }
+            'p55-single' { @(72) }
             default { @(57..72) }
           }
-          $expected = if ('${{ inputs.carrier_order }}' -eq 'p49-p51-table') { 3 } else { 16 }
-          $allowed = if ($expected -eq 3) { @(66..68) } else { @(57..72) }
+          $expected = switch ('${{ inputs.carrier_order }}') {
+            'p49-p51-table' { 3 }
+            'p55-single' { 1 }
+            default { 16 }
+          }
+          $allowed = switch ($expected) {
+            3 { @(66..68) }
+            1 { @(72) }
+            default { @(57..72) }
+          }
           foreach ($idx in $sourceIndices) {
             $source = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
             if (-not (Test-Path -LiteralPath $source)) { throw "Missing fixed source image $source" }
@@ -128,7 +138,7 @@ jobs:
           python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Native floral16 chain extraction script failed' }
           $result = Get-Content -LiteralPath (Join-Path $out 'result.json') -Raw | ConvertFrom-Json
-          if (-not $result.carrier_chain_verified -or $result.carrier_count -ne $expected -or -not $result.bit_selection_verified -or -not $result.attempted) {
+          if (($expected -gt 1 -and -not $result.carrier_chain_verified) -or $result.carrier_count -ne $expected -or -not $result.bit_selection_verified -or -not $result.attempted) {
             throw 'Native source-selected chain/bit-level execution not established'
           }
           Write-Host "ORIGINAL_SOURCE_CHAIN_NATIVE_RESULT source=${{ inputs.carrier_order }} $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
