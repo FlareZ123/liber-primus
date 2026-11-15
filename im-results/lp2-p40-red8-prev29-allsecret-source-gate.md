@@ -28,7 +28,7 @@ For every pair of positions `i<j` with identical observed state `s_i=s_j`, bijec
 
 `C_i=C_j ⇔ P_i=P_j`.
 
-Thus the total within-state same-symbol pair count is exactly fixed **for all keys**. An output score or successful wrong-key reencryption cannot rescue a mismatch with source-native plaintext collision structure. This invariant is insensitive to which 29-byte row-to-symbol key is chosen, additive versus nonadditive substitution, or any permutation of the eight complete columns.
+Thus the total within-state same-symbol pair count is exactly fixed **for all keys**. An output score or successful wrong-key reencryption cannot rescue a mismatch with source-native plaintext collision structure. This invariant is insensitive to which 29-byte row-to-symbol key is chosen, additive versus nonadditive substitution, while the source-determined red-eight column order remains fixed. Permuting columns changes the predecessor-state tape and is outside this theorem.
 
 ## Unmodified original and separately generated native-GP controls
 
