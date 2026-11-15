@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * A source-selected, two-clue historical audio key test on original LP2 p27.
+ * A source-selected, two-clue historical audio key test on original LP2 p27 and its independently repeated terminal p55 pair.
  *
  * Fibonacci prime-index pick at physical p15 red/body boundary = 708,
  * copied original p27 body under same operation = 761, a genuine historical
@@ -95,8 +95,15 @@ for (const sign of [-1,1]) {
  assert(check.endingStates.includes(originalPlant.used));
 }
 const black=p27.slice(p27Head);
+const p55=gp.pages[55].indices;
+assert.equal(p55.length,76);
+assert.deepEqual(p55.slice(-6),gp.pages[27].indices.slice(28,34)); // unique 2014 printed DJU-BEI shared pair
 const output=[];
-for(const [name,data] of [["p27-black",black],["p27-with-heading",p27]]) {
+for(const [name,data] of [
+  ["p27-black",black],
+  ["p27-with-heading",p27],
+  ["p55-shared-terminal-pair",p55],
+]) {
  for(const sign of [-1,1]) {
   const decoded=direct(data,708,sign);
   const fSkip=reachable(data,708,sign);
