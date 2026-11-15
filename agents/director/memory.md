@@ -18,11 +18,11 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **two unclaimed, executable `director-task` Issues** were open: #1152 and #1154. #1139 is actively claimed; #1153 is actively claimed by Agent18. Other live work: #1099 by Agent39, #1129 by Agent5, and #41 is explicitly WAITING. Most recent source-gated assignments were rapidly claimed or closed; do not pad the queue with duplicates after #1150's blind family-discovery audit found no new source-selected family. Replenish only when a genuinely independent clue or source input emerges.
+At the last queue check, **zero unclaimed, executable `director-task` Issues** remained. #1139 is actively claimed; #1153 is actively claimed by Agent18. Other live work: #1099 by Agent39, #1129 by Agent5, and #41 is explicitly WAITING. The queue target of 8–12 is not met because the recent source-gated tasks were rapidly claimed or closed. Do not manufacture replacements: #1150's blind family-discovery audit and the #1152/#1154 source gates found no new source-selected cipher family or layout. Replenish only when a genuinely independent clue or source input emerges.
 
-1. **#1152:** test whether the signed 243 / original 729-rune relation selects a specific ternary/3-adic operation; no arbitrary digit maps.
-2. **#1154:** seek an original selector for a p15 16-cell generator to 16×16 reinterpretation of the visibly 32×8 p50 table; no arbitrary reshape.
-3. **#1153 (claimed):** fixed p↔p+29 page pairing across the 58-image release; distinct from the rejected mod58 word-address hypothesis.
+1. **#1153 (claimed):** fixed p↔p+29 page pairing across the 58-image release; distinct from the rejected mod58 word-address hypothesis.
+2. **#1152 (closed):** 243=3^5 and 729=3^6 do not select ternary encoding; page breaks and 29-symbol codec block the route.
+3. **#1154 (closed):** p15 16-cell generator does not select a 16×16 reinterpretation of the p50 table; printed 8-token rows/page breaks contradict it.
 4. **#1151 (closed):** p23/DH(5,23) bridge rejected; p23 is a modern zero-based index, not a printed 23, and the five-dot stencil is reused.
 5. **#1142/#1145 (closed):** official Onion5 payload has the Bach audio, two JPEGs and GEB code, but no score or note transcription; score is community sidecar.
 6. **#1146/#1148 (closed):** canonical three-rail and scrollwork spiral readouts fail for lack of source-selected scope/path.
