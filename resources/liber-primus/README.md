@@ -2,7 +2,7 @@
 
 This folder contains 75 JPEG files, 00.jpg through 74.jpg.
 
-The files were downloaded from the public rtkd/iddqd liber-primus__images--full archive and verified byte-for-byte against the 75-image ZIP supplied by the repository owner.
+The files were downloaded from the public rtkd/iddqd liber-primus__images--full archive and verified byte-for-byte against the 75-image ZIP supplied by the repository owner. **All 58 LP2 source JPEGs are additionally identical by Git blob object ID and file size** to the 58 images in a genuinely dated **11 May 2014** participant [Stage11 onion archive](https://github.com/micheloosterhof/cicada-2014/tree/6c3421a4d245596e403c88e037509d162a2afd17/stage11/ky2khlqdf7qdznac.onion): archived `N.jpg` maps directly to this folder's `(N+17).jpg` for **every N=0…57**, without one mismatch. The archived source directory contains exactly 58 original JPEGs and a 1,640-byte static `index.html`; there is no separately archived sibling key file. The original index has numeric title 133 and `div id=331` without embedded scripts. This pins the exact bytes of every original LP2 image to a dated 2014 distribution source rather than only a modern community mirror. The [bounded original-carrier analysis](../../im-results/lp2-2014-original-distribution-carrier-gate.md) describes what this observation establishes and leaves unknown.
 
 Combined SHA-256 of JPEG contents concatenated in filename order: cdda41395a52761be5d00c52ec4a2c1c769f9a9f756974a7ec62d4bbf4156dc1.
 
