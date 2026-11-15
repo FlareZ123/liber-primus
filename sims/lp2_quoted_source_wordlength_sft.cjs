@@ -28,7 +28,7 @@ const runes = new Set(corpus.runes);
  * The slash+newline in the reference is a physical line wrap, not a word
  * boundary. Preserve genuine hyphens, periods, and percent page boundaries.
  * @param {string} raw
- * @returns {{ start: number, end: number, len: number }[]}
+ * @returns {{ start: number, end: number, len: number, runes: string }[]}
  */
 function wordRanges(raw) {
   const text = raw.replace(/\/\r?\n/g, '').replace(/\r?\n/g, '');
@@ -36,17 +36,20 @@ function wordRanges(raw) {
   let start = 0;
   let count = 0;
   let inWord = false;
+  let value = '';
   for (const glyph of text) {
     if (runes.has(glyph)) {
       if (!inWord) start = count;
       inWord = true;
       count += 1;
+      value += glyph;
     } else if (inWord) {
-      words.push({ start, end: count, len: count - start });
+      words.push({ start, end: count, len: count - start, runes: value });
       inWord = false;
+      value = '';
     }
   }
-  if (inWord) words.push({ start, end: count, len: count - start });
+  if (inWord) words.push({ start, end: count, len: count - start, runes: value });
   return words;
 }
 
@@ -66,10 +69,11 @@ function gpLength(word) {
  * Best frozen contiguous source window, exact token count, no gap or phase.
  * @param {number[]} target
  * @param {string[]} sourceTokens
+ * @param {(word: string) => number} projector
  * @returns {{ cost: number, offset: number, exact: number, plaintext: string }}
  */
-function bestMatch(target, sourceTokens) {
-  const lengths = sourceTokens.map(gpLength);
+function bestMatch(target, sourceTokens, projector = gpLength) {
+  const lengths = sourceTokens.map(projector);
   let winner = { cost: Infinity, offset: -1, exact: 0, plaintext: '' };
   for (let start = 0; start + target.length <= lengths.length; start += 1) {
     let cost = 0;
@@ -136,6 +140,38 @@ async function main() {
         closestSource: answer.plaintext
       }));
     }
+  }
+
+  // Earlier LP1 is a first-party author source already in GP runes. It has
+  // no transliteration uncertainty, and can expose a repeated quoted passage
+  // even if LP2 ciphertext uses an entirely different underlying key.
+  const priorURL = 'https://raw.githubusercontent.com/rtkd/iddqd/' +
+    'f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/' +
+    'liber-primus__transcription--master/liber-primus__transcription--master.txt';
+  const priorResponse = await fetch(priorURL);
+  assert.equal(priorResponse.ok, true, 'Original LP1 rune source unavailable');
+  const priorText = await priorResponse.text();
+  const allRunes = Array.from(priorText).filter((c) => runes.has(c)).join('');
+  const lp2Start = Array.from(original).filter((c) => runes.has(c)).slice(0, 32).join('');
+  const lp1RuneCount = allRunes.indexOf(lp2Start);
+  assert.equal(lp1RuneCount, 2797, 'Original LP1/LP2 boundary changed');
+  const lp1Words = wordRanges(priorText).filter((w) => w.end <= lp1RuneCount);
+  assert.equal(lp1Words.length, 698);
+  const sourceTokens = lp1Words.map((w) => w.runes);
+  for (const quote of quotes.filter((q) => q.lengths.length >= 13)) {
+    const answer = bestMatch(quote.lengths, sourceTokens, (w) => w.length);
+    assert(answer.cost > 0, 'Possible original LP1 quote, inspect page context');
+    console.log('ORIGINAL_QUOTE', JSON.stringify({
+      source: 'Original LP1 rune book',
+      startRune: quote.start,
+      endRune: quote.end,
+      tokenCount: quote.lengths.length,
+      sumRuneLengths: quote.lengths.reduce((a, b) => a + b, 0),
+      minAbsoluteWordLengthError: answer.cost,
+      exactWordLengthPositions: answer.exact,
+      sourceTokenOffset: answer.offset,
+      closestSource: answer.plaintext
+    }));
   }
 }
 
