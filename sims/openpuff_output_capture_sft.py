@@ -232,6 +232,50 @@ def main():
         assert not any(row["checked"] for row in states)
         print("PASS: native single-selected TreeView bit level needs no checkbox state")
 
+        # The new source-selected LP2 complete-carrier-chain candidate
+        # requires GUI proof of both count and exact published order.
+        class ChainItem:
+            def __init__(self, name):
+                self.name = name
+
+            def text(self):
+                return self.name
+
+        class ChainList:
+            def __init__(self, names):
+                self.names = names
+
+            def class_name(self):
+                return "SysListView32"
+
+            def item_count(self):
+                return len(self.names)
+
+            def get_item(self, index):
+                return ChainItem(self.names[index])
+
+        class ChainWindow:
+            def __init__(self, names):
+                self.listview = ChainList(names)
+
+            def descendants(self):
+                return [self.listview]
+
+        originals = [Path(f"{n:02d}.jpg") for n in range(17, 75)]
+        assert driver["verify_carrier_chain"](
+            ChainWindow([x.name for x in originals]), originals
+        ) == [x.name for x in originals]
+        for names in (
+            [x.name for x in originals[:-1]],
+            [x.name for x in reversed(originals)],
+        ):
+            try:
+                driver["verify_carrier_chain"](ChainWindow(names), originals)
+                raise AssertionError("Invalid OpenPuff chain accepted")
+            except RuntimeError as error:
+                assert "did not verify" in str(error)
+        print("PASS: ordered 58-original-carrier native list accepts exact chain only")
+
         unsupported = FakeDialog("Browse for Folder", "OK")
         unsupported.edit = None
         try:
