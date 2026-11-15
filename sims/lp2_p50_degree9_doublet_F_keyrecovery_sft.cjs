@@ -198,6 +198,70 @@ assert.deepEqual(chapterResults.map(c => c.repeatSites),
 assert.equal(chapterResults.reduce((sum, c) => sum + c.withheldSites, 0), 19);
 assert.equal(chapterResults.reduce((sum, c) => sum + c.withheldMatches, 0), 0);
 
+// A stronger key-independent exclusion: allow the degree-nine scalar LFSR
+// output to pass through ANY one fixed secret bijection of all 29 symbols.
+// The same printed marker value at two repeat sites must then have the same
+// hidden scalar; each repeated marker value contributes homogeneous equations
+// on the nine free initial-state entries, independent of the bijection.
+/**
+ * @param {{at:number,value:number}[]} sites
+ * @param {number[][]} scalarRows
+ * @returns {{markerTypes:number,equalityEquations:number,homogeneousRank:number}}
+ */
+function allSecretOutputBijectionGate(sites, scalarRows) {
+  const groups = new Map();
+  for (const e of sites) {
+    let group = groups.get(e.value);
+    if (!group) { group=[]; groups.set(e.value, group); }
+    group.push(e.at);
+  }
+  const equations = [];
+  for (const offsets of groups.values()) {
+    for (let j = 1; j < offsets.length; j++) {
+      equations.push(scalarRows[offsets[j]].map((value, k) =>
+        mod(value - scalarRows[offsets[0]][k])));
+    }
+  }
+  const matrix = equations.map(x => x.slice());
+  let rank = 0;
+  for (let col = 0; col < degree && rank < matrix.length; col++) {
+    let next = rank;
+    while (next < matrix.length && matrix[next][col] === 0) next++;
+    if (next === matrix.length) continue;
+    [matrix[rank], matrix[next]] = [matrix[next], matrix[rank]];
+    const scale = inverse(matrix[rank][col]);
+    for (let j = col; j < degree; j++)
+      matrix[rank][j] = mod(matrix[rank][j] * scale);
+    for (let j = rank + 1; j < matrix.length; j++) {
+      const factor = matrix[j][col];
+      for (let k = col; k < degree; k++)
+        matrix[j][k] = mod(matrix[j][k] - factor * matrix[rank][k]);
+    }
+    rank++;
+  }
+  return {markerTypes: groups.size,
+    equalityEquations: equations.length, homogeneousRank: rank};
+}
+const secretOutputGlobal=allSecretOutputBijectionGate(events, rows);
+assert.deepEqual(secretOutputGlobal,
+  {markerTypes: 28, equalityEquations: 58, homogeneousRank: 9});
+// Rank nine forces every initial state entry to zero. A fixed output
+// bijection of that constant LFSR state can print only ONE marker value;
+// the original source contains 28 distinct values. This rejects *all*
+// bijective secret output alphabets on the same global scalar recurrence.
+const secretOutputChapters=chapterRanges.map(([from, to]) => {
+  const symbols=pages.filter(p => p.page >= from && p.page <= to)
+    .flatMap(p => p.indices);
+  const sites=[];
+  for (let i=1; i<symbols.length; i++)
+    if (symbols[i]===symbols[i-1])
+      sites.push({at:i,value:symbols[i]});
+  return {pages:[from,to],
+    ...allSecretOutputBijectionGate(sites,basis(symbols.length))};
+});
+assert.deepEqual(secretOutputChapters.map(x=>x.homogeneousRank),
+  [0,1,0,0,1,2,1,7,0]);
+
 console.log(JSON.stringify({
   source: "Original 12956 LP2 GP29 runes and p50 degree9 factor",
   model: "one continuous degree9 GF29 pad; every adjacent repeat means plaintext F",
@@ -211,6 +275,8 @@ console.log(JSON.stringify({
   reencryptsExactly: true,
   plantedKnownStateRecovered: true,
   nineIllustratedChapterResets: chapterResults,
+  arbitrarySecretBijectionGlobal: secretOutputGlobal,
+  arbitrarySecretBijectionPerChapter: secretOutputChapters,
   unknownPlaintextRecovered: false,
   decision: "Fixed original source polynomial and global repeat=F additive mode rejected by independent heldout repeat site"
 }, null, 2));
