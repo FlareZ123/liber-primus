@@ -62,6 +62,11 @@ const at56 = corpus.pages[56];
 assert.equal(at56.indices.length, 85);
 assert.deepEqual(at56.indices.slice(12, 16), [5, 2, 6, 7]); // C,TH,G,W
 const meaningIndices = [19, 28, 9, 21]; // M, EA, N, ING (source-attested ᛝ)
+// Four plaintext GP runes cannot be encoded as six original cipher runes
+// under the known length-preserving/F-only-interrupter Cicada rules.
+assert.equal(meaningIndices.length, 4);
+assert.equal(pairIndices.length, 6);
+assert(!pairIndices.includes(0)); // no ciphertext F/null in DJU BEI
 const meaningSum = primeSum(meaningIndices);
 assert.equal(meaningSum, 288);
 assert.equal(meaningSum, terminalTwo);
