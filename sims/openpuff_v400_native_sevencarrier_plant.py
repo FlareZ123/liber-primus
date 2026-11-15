@@ -98,11 +98,7 @@ def set_synthetic_a_only_password(window, password: str) -> dict:
         control_id=1014, class_name="Static"
     ).window_text()
     entered = safe(a.window_text)
-    entered_value = safe(a.get_value)
-    entered_length = (
-        len(entered_value) if isinstance(entered_value, str)
-        else len(entered) if isinstance(entered, str) else None
-    )
+    entered_length = len(entered) if isinstance(entered, str) else None
     static_labels = [
         {
             "id": safe(control.control_id),

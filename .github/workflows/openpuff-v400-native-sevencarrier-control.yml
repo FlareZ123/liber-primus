@@ -86,7 +86,7 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $args = @(
+          $pyArgs = @(
             "--exe", "$env:OPENPUFF_EXE",
             "--password", "$env:PLANT_PASSWORD",
             "--bit-format", "Jpeg (Image)",
@@ -100,7 +100,7 @@ jobs:
             if (-not $carrier) { throw "Missing ordered carrier $i" }
             $args += @("--carrier", $carrier)
           }
-          python sims/openpuff_v400_extract.py @args
+          python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Ordered native seven-carrier Unhide failed" }
           $result = Get-Content probe-output/ordered-recovery/result.json -Raw | ConvertFrom-Json
           if (-not $result.carrier_chain_verified -or $result.carrier_count -ne 7 -or -not $result.bit_selection_verified) {
@@ -116,7 +116,7 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $args = @(
+          $pyArgs = @(
             "--exe", "$env:OPENPUFF_EXE",
             "--password", "$env:WRONG_PASSWORD",
             "--bit-format", "Jpeg (Image)",
@@ -128,7 +128,7 @@ jobs:
           for ($i = 1; $i -le 7; $i++) {
             $args += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
           }
-          python sims/openpuff_v400_extract.py @args
+          python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Wrong-password native control could not execute" }
           $result = Get-Content probe-output/wrong-password/result.json -Raw | ConvertFrom-Json
           if (-not $result.carrier_chain_verified -or $result.carrier_count -ne 7) { throw "Wrong-password chain order not verified" }
@@ -144,7 +144,7 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          $args = @(
+          $pyArgs = @(
             "--exe", "$env:OPENPUFF_EXE",
             "--password", "$env:PLANT_PASSWORD",
             "--bit-format", "Jpeg (Image)",
@@ -156,7 +156,7 @@ jobs:
           for ($i = 7; $i -ge 1; $i--) {
             $args += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
           }
-          python sims/openpuff_v400_extract.py @args
+          python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Reversed-order native control could not execute" }
           $result = Get-Content probe-output/reversed-order/result.json -Raw | ConvertFrom-Json
           if (-not $result.carrier_chain_verified -or $result.carrier_count -ne 7) { throw "Reversed native chain order not verified" }
