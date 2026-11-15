@@ -1,4 +1,4 @@
-name: OpenPuff v4.00 LP2 original floral 16-JPEG carrier test
+name: OpenPuff v4.00 LP2 clue-selected JPEG carrier-chain tests
 on:
   workflow_dispatch:
     inputs:
@@ -18,6 +18,7 @@ on:
         options:
           - printed
           - p15-spiral
+          - p49-p51-table
       password_source:
         description: Historically sourced password to test on original floral carriers
         type: choice
@@ -33,7 +34,7 @@ concurrency:
   group: openpuff-v400-lp2-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}-${{ inputs.password_source }}
   cancel-in-progress: false
 jobs:
-  source-selected-floral16:
+  source-selected-chain:
     runs-on: windows-latest
     timeout-minutes: 60
     steps:
@@ -80,7 +81,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Known original-v4.00 JPEG calibration failed to run' }
           python -c "from pathlib import Path; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file() and p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('NATIVE_PUBLIC_JPEG_POSITIVE_35_BYTE_EXACT_PASS')"
           if ($LASTEXITCODE -ne 0) { throw 'Known original-v4.00 JPEG positive did not recover the exact 35 bytes' }
-      - name: Test the sixteen floral-border originals at the selected native JPEG depth
+      - name: Test original source-selected JPEG carrier chain at selected native depth
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
@@ -102,20 +103,24 @@ jobs:
             '--wait-seconds', '1300'
           )
           $manifest = @()
-          # The spiral coordinates are fixed by the original p15 4x4 Fibonacci square.
           # Source p15 center-out clockwise flat positions: 5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12.
-          $sourceIndices = if ('${{ inputs.carrier_order }}' -eq 'p15-spiral') {
-            @(62,63,67,66,65,61,57,58,59,60,64,68,72,71,70,69)
-          } else { @(57..72) }
+          # The numeric-table set is exact printed order on physical pp49-51.
+          $sourceIndices = switch ('${{ inputs.carrier_order }}') {
+            'p15-spiral' { @(62,63,67,66,65,61,57,58,59,60,64,68,72,71,70,69) }
+            'p49-p51-table' { @(66,67,68) }
+            default { @(57..72) }
+          }
+          $expected = if ('${{ inputs.carrier_order }}' -eq 'p49-p51-table') { 3 } else { 16 }
+          $allowed = if ($expected -eq 3) { @(66..68) } else { @(57..72) }
           foreach ($idx in $sourceIndices) {
             $source = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
             if (-not (Test-Path -LiteralPath $source)) { throw "Missing fixed source image $source" }
             $manifest += [pscustomobject]@{scan=$idx; lp2_physical_page=($idx-17); name=[System.IO.Path]::GetFileName($source)}
             $arguments += @('--carrier', "$source")
           }
-          if (@($manifest).Count -ne 16 -or @($manifest | Select-Object -ExpandProperty scan | Sort-Object -Unique).Count -ne 16 -or
-            @($manifest | Where-Object { $_.scan -lt 57 -or $_.scan -gt 72 }).Count -ne 0) {
-            throw 'Expected a permutation of precisely the sixteen original floral-border scans 57..72'
+          if (@($manifest).Count -ne $expected -or @($manifest | Select-Object -ExpandProperty scan | Sort-Object -Unique).Count -ne $expected -or
+            @($manifest | Where-Object { $_.scan -notin $allowed }).Count -ne 0) {
+            throw 'Source-selected carrier chain differs from its locked original JPEG inventory'
           }
           New-Item -ItemType Directory -Force -Path probe-output | Out-Null
           $manifest | ConvertTo-Json -Depth 3 | Set-Content -LiteralPath probe-output/floral16-original-manifest.json -Encoding utf8
@@ -123,10 +128,10 @@ jobs:
           python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Native floral16 chain extraction script failed' }
           $result = Get-Content -LiteralPath (Join-Path $out 'result.json') -Raw | ConvertFrom-Json
-          if (-not $result.carrier_chain_verified -or $result.carrier_count -ne 16 -or -not $result.bit_selection_verified -or -not $result.attempted) {
-            throw 'Native floral16 chain/bit-level execution not established'
+          if (-not $result.carrier_chain_verified -or $result.carrier_count -ne $expected -or -not $result.bit_selection_verified -or -not $result.attempted) {
+            throw 'Native source-selected chain/bit-level execution not established'
           }
-          Write-Host "ORIGINAL_FLORAL16_NATIVE_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          Write-Host "ORIGINAL_SOURCE_CHAIN_NATIVE_RESULT source=${{ inputs.carrier_order }} $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native outcome inconclusive' }
           if ($result.output_present) { Write-Host 'POTENTIAL_LP2_FLORAL16_PAYLOAD_FOUND' }
       - name: Preserve native GUI screenshots, extraction result and files
