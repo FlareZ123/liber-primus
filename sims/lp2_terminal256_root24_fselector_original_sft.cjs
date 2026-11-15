@@ -133,6 +133,69 @@ assert.equal(predicted55.consumed, 75);
 assert.deepEqual(predicted55.nonSkippedF, [28, 62]);
 assert(Math.abs(coincidence(predicted55.plaintext) - 0.03859649122807018) < 1e-12);
 
+
+/*
+ * Hard lexical holdout for the proposed p55 F25 bypass. The actual p55
+ * source word is a single 12-rune printed token, with F at offset one.
+ * A candidate native-English, word-preserving decipherment must retain
+ * that very uncommon second-position F under the proposed transparent
+ * exception rule. These control texts are descriptive language priors,
+ * never fitted keys or authenticated plaintext.
+ */
+const transcript = fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const p55Source = transcript.split('%')[54];
+const nativeRunes = new Set(corpus.runes);
+const p55PrintedWords = p55Source.split(/[-.\/\s]+/u)
+  .map((word) => [...word].filter((rune) => nativeRunes.has(rune)))
+  .filter((word) => word.length);
+let offset = 0;
+let predictedFWord = null;
+for (const w of p55PrintedWords) {
+  if (offset <= 25 && 25 < offset + w.length) {
+    predictedFWord = { start: offset, end: offset + w.length - 1,
+      length: w.length, positionOfF: 25 - offset, runes: w.join('') };
+  }
+  offset += w.length;
+}
+assert.equal(offset, 76);
+assert.deepEqual([predictedFWord.start, predictedFWord.end,
+  predictedFWord.length, predictedFWord.positionOfF], [24, 35, 12, 1]);
+
+/** @param {string} source @returns {{native12:number,secondF:number,examples:string[]}} */
+function longWordSecondFCensus(source) {
+  const words = source.toUpperCase().match(/\b[A-Z]{2,}\b/g) || [];
+  let native12 = 0;
+  let secondF = 0;
+  const examples = new Set();
+  for (const word of words) {
+    const gpLatin = word.replace(/[KVZQ]/g, (letter) =>
+      ({ K: 'C', V: 'U', Z: 'S', Q: 'CW' })[letter]);
+    const gp = gpLatin.match(/TH|NG|EO|OE|AE|IA|EA|[A-Z]/g);
+    if (gp?.length === 12) {
+      native12++;
+      if (gp[1] === 'F') {
+        secondF++;
+        examples.add(word);
+      }
+    }
+  }
+  return { native12, secondF, examples: [...examples].slice(0, 5) };
+}
+const lexicalFiles = [
+  ['shakespeare_first300k.txt', 79, 0],
+  ['gibran_prophet_58585.txt', 57, 0],
+  ['emerson_essays_2944.txt', 470, 2],
+  ['english_wordfreq_textblob.txt', 884, 1]
+];
+const lexicalControls = lexicalFiles.map(([name, n, hits]) => {
+  const source = fs.readFileSync(path.join(root, 'resources', 'control', name), 'utf8');
+  const result = longWordSecondFCensus(source);
+  assert.equal(result.native12, n, 'source control native12: ' + name);
+  assert.equal(result.secondF, hits, 'source control F count: ' + name);
+  return { source: name, ...result };
+});
+
 console.log(JSON.stringify({
   model: 'row-major terminal256: p55(76), p56(85), p57(95)',
   originalPrintedGridRoot24Cells: rootCells,
@@ -146,6 +209,8 @@ console.log(JSON.stringify({
   knownP56: { base60ExactRunes: equalCount(from60.plaintext, knownPlain.plaintext),
     base59ExactRunes: equalCount(from59.plaintext, knownPlain.plaintext),
     total: 85, keySteps: from60.consumed },
+  predictedP55PlainWord: predictedFWord,
+  nativeEnglishSecondFControls: lexicalControls,
   proposedP55: { literalF: marked55, simpleTotientIoC: coincidence(predicted55.plaintext),
     forbiddenUnmarkedPlainFs: predicted55.nonSkippedF, decoded: toLatin(predicted55.plaintext) },
   conclusion: 'Source-aligned F-mask hypothesis, not recovered unknown p55 plaintext'
