@@ -146,7 +146,7 @@ assert(ioc(known) > 0.05);
 
 // Held-out original test window is fixed by absolute original rune offsets,
 // never by candidate output. The first 120 runes are contiguous; 480..519
-// are independent and contain original page-1/page-2 source material.
+// are disjoint from the contiguous test and lie within original page 1.
 const first120 = tokens(candidate.slice(0,120));
 const withheld40 = tokens(candidate.slice(480,520));
 console.log(JSON.stringify({
