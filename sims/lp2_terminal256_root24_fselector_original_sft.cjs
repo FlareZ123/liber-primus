@@ -177,38 +177,46 @@ assert.equal(offset, 76);
 assert.deepEqual([predictedFWord.start, predictedFWord.end,
   predictedFWord.length, predictedFWord.positionOfF], [24, 35, 12, 1]);
 
-/** @param {string} source @returns {{native12:number,secondF:number,examples:string[]}} */
-function longWordSecondFCensus(source) {
+/** @param {string} source @param {boolean} sourceNative @returns {{native12:number,secondF:number,soleF:number,examples:string[]}} */
+function longWordSecondFCensus(source, sourceNative = false) {
   const words = source.toUpperCase().match(/\b[A-Z]{2,}\b/g) || [];
   let native12 = 0;
   let secondF = 0;
+  let soleF = 0;
   const examples = new Set();
   for (const word of words) {
     const gpLatin = word.replace(/[KVZQ]/g, (letter) =>
       ({ K: 'C', V: 'U', Z: 'S', Q: 'CW' })[letter]);
-    const gp = gpLatin.match(/TH|NG|EO|OE|AE|IA|EA|[A-Z]/g);
+    // LP1 p10–p13 and clear LP2 p57 attest single-rune ING and IO.
+    const gp = gpLatin.match(sourceNative
+      ? /ING|TH|NG|EO|OE|AE|IA|EA|IO|[A-Z]/g
+      : /TH|NG|EO|OE|AE|IA|EA|[A-Z]/g);
     if (gp?.length === 12) {
       native12++;
       if (gp[1] === 'F') {
         secondF++;
+        if (gp.filter((token) => token === 'F').length === 1) soleF++;
         examples.add(word);
       }
     }
   }
-  return { native12, secondF, examples: [...examples].slice(0, 5) };
+  return { native12, secondF, soleF, examples: [...examples].slice(0, 5) };
 }
 const lexicalFiles = [
-  ['shakespeare_first300k.txt', 79, 0],
-  ['gibran_prophet_58585.txt', 57, 0],
-  ['emerson_essays_2944.txt', 470, 2],
-  ['english_wordfreq_textblob.txt', 884, 1]
+  ['shakespeare_first300k.txt', 79, 0, 65, 0],
+  ['gibran_prophet_58585.txt', 57, 0, 28, 0],
+  ['emerson_essays_2944.txt', 470, 2, 355, 0],
+  ['english_wordfreq_textblob.txt', 884, 1, 776, 0]
 ];
-const lexicalControls = lexicalFiles.map(([name, n, hits]) => {
+const lexicalControls = lexicalFiles.map(([name, legacyN, legacyHits, nativeN, nativeHits]) => {
   const source = fs.readFileSync(path.join(root, 'resources', 'control', name), 'utf8');
-  const result = longWordSecondFCensus(source);
-  assert.equal(result.native12, n, 'source control native12: ' + name);
-  assert.equal(result.secondF, hits, 'source control F count: ' + name);
-  return { source: name, ...result };
+  const legacy = longWordSecondFCensus(source);
+  const sourceNative = longWordSecondFCensus(source, true);
+  assert.deepEqual([legacy.native12, legacy.secondF],
+    [legacyN, legacyHits], 'legacy GP control: ' + name);
+  assert.deepEqual([sourceNative.native12, sourceNative.secondF, sourceNative.soleF],
+    [nativeN, nativeHits, 0], 'source-native GP control: ' + name);
+  return { source: name, legacy, sourceNative };
 });
 
 console.log(JSON.stringify({
