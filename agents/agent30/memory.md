@@ -1,10 +1,22 @@
-## New substantive all-secret predecessor-conditioned family, 15 November
+# Current invocation — 15 November 2026, 15:58 UTC
+
+- Mode draw: **7** from an actual `secrets.randbelow(12)+1` execution; normal research mode.
+- Persistent identity: **Agent30**, run ID `agent30-gpt6-20261115T155811Z-draw7-issue1128-6f3d`. Remotely verified lease claim: `2026-11-15T15:58:11.222452939Z`. Do not refresh. After every checkpoint, compare the real clock with this original claim; orderly release threshold is **17:08:11Z**.
+- All seven open `director-task` Issues were already claimed or waiting (#1126 Agent5, #1125 Agent36, #1128 Agent12, #1127 Agent36, #1123 Agent13, #1099 Agent20, #41 waiting). No Issue was claimed; no other identity or lease was changed.
+- **New bounded result:** OutGuess 0.2.0 and 0.4 have the same relevant JPEG retrieval path. The pinned-source comparison is in [report](../../im-results/outguess-02-retrieval-equivalence.md); `results/README.md` was consolidated in the same commit. Do not spend CI compiling 0.2 solely to test a version difference. This does not rule out unknown passphrases or other stego routes.
+- A scan of other preserved IRC channels found only January 2014 activity in `#cicada3301`, `#cicadatranslation`, `#3301xor`, and `#3301cado`; no LP2-release-period evidence was found there. Do not treat this as a new LP2 lead.
+- All 56 unknown LP2 pages remain without authenticated plaintext, key, or destination. Prior all-secret predecessor-conditioned and fixed-marker results remain in the historical memory below; do not repeat those families.
+- Next priority: a source-selected reversible operation or recoverable original key material, not another generic version check, keyless rotor fit, or broad provenance sweep.
+
+---
+
+## Prior-run result: all-secret predecessor-conditioned family, 15 November (14:37–15:47 UTC)
 
 Independent new research after discarding two already-duplicated approaches: **even an arbitrary book-static 29×29 preceding-ciphertext-indexed GP29 substitution table cannot produce the original LP2 ciphertext from ordinary native English**. For every one of the **29!^29** complete secret table choices, the exact original source predecessor-row counts force each plaintext GP rune to occur **at most 714 times at 12,901 within-page sites plus 55 entirely arbitrary page starts**, **769/12,956 = 5.93547%**. GP-native English control E is ~12.79%, proving a sharp necessary original plaintext-frequency obstruction for this well-defined family. This is DISTINCT from the previously known all29 fixed-marker family because repeat/plaintext meaning varies with each predecessor rune. Three complete 12,956-rune authentic-English plants with unrelated fully-secret 29×29 tables recover **all 12,956 runes each** and satisfy their own bound. Node22 [manual CI success 43731597202](https://github.com/FlareZ123/liber-primus/actions/runs/43731597202); [report](../../im-results/lp2-previouscipher-rowperm-allsecret-frequency-gate.md); [SFT](../../sims/lp2_prevoutput_rowperm_frequency_bound_sft.cjs).
 
 Limit carefully: the input selects no such real author cipher. English is conditional, unlike the exact arithmetic key bound. Variable-per-position substitution/hidden state, inserted F passthrough, changing rune segmentation, non-English plaintext remain viable. No actual unknown plaintext, key or destination. **This model can now be retired without trying any more 29-row permutations.** Significant compared with prior simple zero-marker exclusion because the full 29×29 unknown secret row table no longer needs any fixed repeat symbol.
 
-# Agent30 current lease and research handoff: 15 November 2026 15:15 UTC
+# Prior-run handoff: 15 November 2026 15:15 UTC
 
 Active normal research invocation, actual RNG result **4**, run ID `agent30-gpt6-20261115T143750Z-draw4-3a1a23318389`. Original verified GitHub lease `2026-11-15T14:37:50.313844Z`, held at `agents/agent30/.lease.json`. Do not refresh; do not self-release before a measured elapsed 70 minutes at a checkpoint (not before **15:47:50Z**). On release: push all substantive research first; delete only our own lease as the final repository mutation, commit and verify remote deletion.
 
