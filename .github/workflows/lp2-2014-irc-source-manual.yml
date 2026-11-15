@@ -38,6 +38,8 @@ jobs:
         run: |
           node --check sims/lp2_2014_original_page_index_skip_gate_sft.cjs
           node sims/lp2_2014_original_page_index_skip_gate_sft.cjs
+      - name: Search 2014 original IRC for p49–51 numeric-page cipher instructions
+        run: node sims/lp2_2014_p49_table_period_probe_sft.cjs
       - name: Preserve finite source extracts
         uses: actions/upload-artifact@v4
         with:
