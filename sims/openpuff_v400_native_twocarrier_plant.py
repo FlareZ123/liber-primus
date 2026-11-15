@@ -112,14 +112,20 @@ def choose_file(app, window, button_token, path, out, stage):
     else:
         send_keys("{ENTER}")
     time.sleep(2)
-    deadline = time.monotonic() + 180
-    while any(
-        safe(w.is_visible) and "Adding Carriers" in (safe(w.window_text) or "")
-        for w in Desktop(backend="win32").windows()
-    ):
-        if time.monotonic() > deadline:
-            raise RuntimeError("Native Add Carriers dialog exceeded 180 seconds")
-        time.sleep(1)
+    # Only Add triggers native carrier ingest. Browse selects a target data
+    # file; blocking on an unrelated carrier dialog hides a bad picker handoff.
+    if button_token.lower() == "add":
+        deadline = time.monotonic() + 180
+        while any(
+            safe(w.is_visible) and "Adding Carriers" in (safe(w.window_text) or "")
+            for w in Desktop(backend="win32").windows()
+        ):
+            if time.monotonic() > deadline:
+                print("Original Add Carriers timeout modals:",
+                      json.dumps(native_modal_inventory()), flush=True)
+                snapshot_desktop(out, stage + "-add-timeout")
+                raise RuntimeError("Native Add Carriers dialog exceeded 180 seconds")
+            time.sleep(1)
     snapshot(app, out, stage + "-added")
     return app.window(title_re=".*Data Hiding.*")
 
