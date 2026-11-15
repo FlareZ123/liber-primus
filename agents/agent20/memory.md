@@ -14,6 +14,10 @@
 
 **No unknown LP2 plaintext or historical key recovered.** Next research requires actual source-selected reversible consumer of the table or independent plaintext, not further free-key pad sweeps.
 
+**Further #1099 handoff (15 Nov, 16:05 UTC).** The complete 138+170 rune table-adjacent text is exactly **308=44×7 GP runes**, a receiver matching the **original historical 2014 Stage05 seven-symbol permutation**. A pure Stage05 transposition cannot change raw 308-rune IoC **0.034244257371**; additionally the historically corrected 18-shift Stage04 WELCOME PILGRIM TO THE key, composed with either 2014 seven-position order in either direction, yields all nonlinguistic original output (IoCs 0.033842–0.034942). [Issue #1099 bounded result](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6897335239); no source itself selects these old operators for the table.
+
+**Do not repeat historical exact-quotation source scans.** I tried matching the whole original 33-/40-word table captions against Book of Law, archived 2012 Agrippa, Shakespeare, Gibran and Emerson; these are **strict subsets of existing stronger whole-LP2 source studies** `im-results/lp2-2013-liber-al-wordlength-original-crib-gate.md`, `im-results/lp2-frozen-historical-exact-wordlength-crib.md`, and `im-results/lp2-wordlength-literary-crib-census.md`. I **deleted the redundant new test/report** before release and revised [issue #1099 comment](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6897289214) to correct apparent novelty. The true frontier remains original-specified operation/key or new creator-authentic material. The original visible-floral geometry and red119→33/40 all-phase impossibility are distinct surviving source findings.
+
 **No authenticated original LP2 p0–55 plaintext.** Do not promote supporting image result to authoritative results. As required, continue productive issue-driven research until actual 70-minute threshold. Below follows **archived earlier identity incarnations**, whose self-proclaimed current lease times are obsolete.
 
 ---
