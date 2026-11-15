@@ -24,6 +24,11 @@ function mod29(x) {
   return ((x % 29) + 29) % 29;
 }
 
+/** @param {number} x @returns {number} */
+function mod28(x) {
+  return ((x % 28) + 28) % 28;
+}
+
 /** @param {number[]} values @returns {number} */
 function ioc(values) {
   const counts = new Array(29).fill(0);
@@ -80,7 +85,7 @@ assert.equal(new Set(rootPowers).size, 28);
  */
 function decode(symbol, key, operation, sign) {
   if (operation === 'add') return mod29(symbol + sign * key);
-  return (symbol * rootPowers[mod29(sign * key) % 28]) % 29;
+  return (symbol * rootPowers[mod28(sign * key)]) % 29;
 }
 
 /**
@@ -92,7 +97,7 @@ function decode(symbol, key, operation, sign) {
  */
 function encode(symbol, key, operation, sign) {
   if (operation === 'add') return mod29(symbol - sign * key);
-  return (symbol * rootPowers[mod29(-sign * key) % 28]) % 29;
+  return (symbol * rootPowers[mod28(-sign * key)]) % 29;
 }
 
 const distinctPerRow = [];
