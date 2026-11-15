@@ -14,7 +14,7 @@ P_{55}(3301\bmod29)=P_{55}(24)=18=1033\bmod29
 P_{55}(1033\bmod29)=P_{55}(18)=23.
 \]
 
-The output 23 numerically matches the 23 terminal red dots on p57 and the modulus 23 of the signed 2013 Diffie–Hellman challenge. These are reproducible **retrospectively chosen arithmetic correspondences**. Nothing in the authenticated p56, p57 or signed 2013 source instructs the solver to evaluate this proposed p55 polynomial at the two magic-square residues; no unknown plaintext, cipher inverse, or key-use rule follows.
+The output 23 numerically matches the 23 terminal red dots on p57 and the modulus 23 in the signed 2013 Diffie–Hellman worked example. The protocol itself does not fix that modulus. These are reproducible **retrospectively chosen arithmetic correspondences**. Nothing in the authenticated p56, p57 or signed 2013 source instructs the solver to evaluate this proposed p55 polynomial at the two magic-square residues; no unknown plaintext, cipher inverse, or key-use rule follows.
 
 ## Human-visible route
 
@@ -23,7 +23,7 @@ The output 23 numerically matches the 23 terminal red dots on p57 and the modulu
 3. Physical p55 has 17 printed rune segments with lengths `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. The first is a one-rune page carry; the remaining complete words contribute exactly 43 interior runes.
 4. The signed 2013 source demonstrates **ordinary base-29 positional conversion** `3301 → 3QO`: `3×29²+26×29+24=3301`. It does **not** specify using the printed `[3,26,24]` digits as *ascending* polynomial coefficients `3+26X+24X²`. That polynomialization and its order are conditional analytical choices. The conventional descending polynomial `3X²+26X+24` fails the original table divisibility check, as already documented in the base29-grid factor report.
 5. The original 2014 three-square source has magic sums 3301, 1033 and 1033. Reducing these constants modulo 29 gives 24 and 18.
-6. The original p57 page has a terminal cluster of 23 red dots; the signed 2013 DH source independently uses modulus 23.
+6. The original p57 page has a terminal cluster of 23 red dots; the signed 2013 DH worked example uses modulus 23, while the protocol leaves parameters participant-selected.
 
 ## Exact polynomial and field check
 
@@ -116,7 +116,7 @@ This is **not recovered plaintext or a validated LP2 key**. Simple consumers tes
 - Using all 76 p55 runes instead of the strict interior gives (P(24)=24) and (P(18)=26); the literal interior extraction matters.
 - The 2013 signed source, 2014 square constants, p57 dot count and p55 word interiors are independent artifacts, but both the inner and outer polynomial constructions and the chosen evaluation points were proposed after inspecting them. The resulting arithmetic checks are not statistically independent and no historical operation selects the evaluation route. No p-value is claimed.
 - A first source-selected consumer was tested on the 1,680-rune p33–39 chapter: the powers of alpha have period 210, and the chapter is 8×210. The six phase-zero additive GP29 readouts using the two coordinates and trace, under both signs, all remain uniform (IoCs 0.03429–0.03466); no plaintext. See [the p33–39 report](lp2-p33-39-gf841-period840-original-gate.md). This rejects the direct scalar-additive consumer, not every possible use of the polynomial.
-- **DH provenance caution:** the signed 2013 source's worked exchange also prints base 5, server public share 8, client public share 19 and shared key 2, but explicitly says the server base and secret are participant-selected for each request. Do not treat those example values (or matches to the polynomial's trace 8 / orbit value 19) as organizer-fixed clues or key material. The cross-round bridge uses only the protocol's fixed modulus 23.
+- **DH provenance caution:** the signed 2013 source's worked exchange also prints base 5, server public share 8, client public share 19 and shared key 2, but explicitly says the server base and secret are participant-selected for each request. Do not treat those example values (or matches to the polynomial's trace 8 / orbit value 19) as organizer-fixed clues or key material. The candidate DH register closure above uses p57's 5-column/23-dot geometry as an independent but inferred selector; it remains conditional on that visual assignment and the page-local p55 split.
 - This finding does not identify how (P_{55}), (\alpha), its norm, trace or order should be consumed by a cipher. The exterior equal-25 relation has the additional decisive full-word page-carry failure documented above. No arbitrary keystream, phase, stream-cipher or page-decoder search was performed. Waiting decoder challenge [#41](https://github.com/FlareZ123/liber-primus/issues/41) remains waiting; this report is a structural lead, not an attempt to bypass its acceptance gate.
 
 ## Reproduction
