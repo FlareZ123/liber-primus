@@ -1,6 +1,6 @@
 # Signed-2016 58-page fold square
 
-**Status:** source-constrained intermediate mechanism. It does **not** recover unknown LP2 plaintext or an unknown key.
+**Status:** the signed-message 243/58 numerical fold square remains a provisional address clue. A separately motivated three-share reading of the original 729-rune opening chapter is now excluded as a direct stationary linear GF29 cipher, including all hidden linear coefficients and every fixed bijective output alphabet, against all 602,697 windows of three native GP-English controls. Neither route recovers LP2 plaintext or an authenticated key.
 
 ## Result
 
@@ -56,6 +56,29 @@ This materially strengthens the earlier base58-word-map observation because the 
 FOLD has sum 171, so the same address rule selects p55:w2 `SB`. `SB` has sum 114, which selects p56:w1 `OESR`. The established p56 mechanism decrypts that ciphertext word to **END**.
 
 This connection is useful as a consistency check, yet it is weak evidence by itself. Under the same pointer graph, 154 of 2,928 physical-word starts reach p56:w1, and 15 starts do so in exactly two steps. The source-internal 58/243 algebra carries more evidential weight than generic convergence to the solved tail.
+
+## The signed 243 value as a complete first-chapter three-share consumer
+
+**New original-input all-secret gate, 15 November 2026.** The signed message's two independent words **HELLO** and **LIBER** both have GP-prime sum **243**. The first source-visible LP2 chapter, physical pp0–2, has **729 exact GP29 runes = 3×243**. These values suggest testing the *separate* historical Cicada three-share construction: take three aligned 243-rune source tapes and use each position as a GF29 element. Two simple exhaustive layouts require no guessed starting rune: (a) three consecutive 243-rune tapes and (b) three interleaved tapes. The 2014 puzzle did demonstrate combining three byte shares, and GF29 prime arithmetic is part of Liber Primus. **The missing premise is substantial:** neither the signed 2016 sentence nor an original LP2 instruction says to treat the 729 runes as three Shamir shares; 243 was noticed after comparing two source artifacts.
+
+Under standard degree-two Shamir shares at x1, x2 and x3, recover the x0 symbol by `P=3A−3B+C (mod29)` or predict the fourth share by `A−3B+3C`. Both registers remain nonlinguistic at the complete, unchanged source-chapter alignment. The decisive **stronger key-independent exclusion** permits *every possible stationary nonzero GF29 linear projection*, `P_i=aA_i+bB_i+cC_i`, with **all 29³−1=24,388 coefficient triples**. Any additional **unknown fixed 29-symbol bijective substitution** is allowed for free: a bijection preserves the output GP29 rune histogram and its exact index of coincidence (IoC). The all-zero projection is excluded because it would encode a constant symbol, which cannot be ordinary prose.
+
+| Source-frozen 243-rune tape layout | Highest equal-symbol ordered pairs after any linear projection | Highest projection IoC | Coefficient triples achieving maximum |
+| --- | ---: | ---: | ---: |
+| Three consecutive 243-rune tapes | **2,278/58,806** | **0.0387375437880** | 28 scalar-equivalent |
+| Three interleaved 243-rune tapes | **2,268/58,806** | **0.0385674931129** | 28 scalar-equivalent |
+
+The all-secret maxima are *below every contiguous original source-native 243-rune English reference window* in the three independently retained control corpora. The test transliterates source English using the established GP29 digraph spelling (including ING→NG and K/Q→C, V→U, Z→S) and enumerates **all 602,697** possible windows; no language model is trained or fitted on LP2:
+
+| Native reference | GP runes | Full 243-rune windows | Lowest within-window ordered equal-symbol pairs | Lowest IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare first 300k characters | 217,644 | **217,402** | 2,822 | **0.0479883005136** |
+| Gibran, *The Prophet* | 62,696 | **62,454** | 3,046 | **0.0517974356358** |
+| Emerson essays | 323,083 | **322,841** | 2,916 | **0.0495867768595** |
+
+This rules out **all direct stationary three-lane linear plus per-target fixed substitution ciphers** that would yield any of those complete native-GP windows, despite unknown coefficient values and 29! outer keys. It does **not** prove incompatibility with every English passage, dynamic keys, nonlinear transformations, different source register, or other 243-rune layouts. Synthetic positive controls create genuine 243-symbol Shakespeare GP plaintext and three quadratic field shares at fixed coordinates1–3; Shamir inversion recovers **243/243**, predicts a fourth share **243/243**, and yields a collision index above the same original all-key bound. No unknown p0–2 words, author-selected key or deep-web destination were recovered.
+
+**Reproducer:** [one-file read-only Node22 CommonJS original-sources and all-secret SFT](../sims/lp2_2016_signed243_firstchapter_three_share_sft.cjs), consuming the canonical GP29 manuscript, authenticated signed 2016 text and three existing English reference corpora. The finite original and reference calculations were independently evaluated over exact repository source content. The new committed SFT has not been separately run in CI. This is one rejected, clue-constrained mechanism, not a cipher-identification result.
 
 ## What did not survive discrimination
 
