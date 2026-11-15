@@ -13,6 +13,7 @@ The January 2016 signed message's words/map/meaning wording resembles Shigematsu
 Sources:
 - [A Zen Forest PDF](https://terebess.hu/zen/ZenForest.pdf): title/copyright/catalog pages identify Shigematsu and the 1981 edition; the introduction is printed p. 3; item 613 is in the numbered sayings section.
 - [2013 second-onion signed message](../resources/historical/cicada2013-second-onion-everything-you-need.asc).
+- [2013 ICMP-echo response message](../resources/historical/cicada2013-second-onion-icmp-echo.asc) and [compressed response bytes](../resources/historical/cicada2013-second-onion-icmp-echo.hex.txt): the signed response names the next onion.
 - [2013 signed forest clue](../resources/historical/cicada2013-forest-clue.asc).
 - [2016 signed payload](../resources/historical/cicada2016-4gq25-outguess.asc) and [its archival source record](../resources/cicada2016-4gq25.md).
 - [Existing forest/tree page-selection analysis](2013-forest-2016-tree-border-aggregate-gate.md).
