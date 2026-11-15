@@ -116,6 +116,32 @@ const primeColumns = Array.from({ length: 10 }, (_, j) =>
   Array.from({ length: 18 }, (_, i) => gapPrimes[i * 10 + j])
 ).flat();
 
+const rectangleReadings = [
+  [interior, gapPrimes],
+  [interior, primeColumns],
+  [gridColumns, gapPrimes],
+  [gridColumns, primeColumns]
+];
+const originalTransforms = {
+  table: (b, q) => mod(b),
+  table_minus_prime: (b, q) => mod(b - q),
+  table_plus_prime: (b, q) => mod(b + q),
+  table_minus_phi: (b, q) => mod(b - q + 1),
+  table_plus_phi: (b, q) => mod(b + q - 1),
+  table_xor_prime: (b, q) => mod(b ^ (q & 255))
+};
+const allSecretRectangleCaps = [];
+for (const [orientation, [bytes, primes]] of rectangleReadings.entries()) {
+  for (const [op, f] of Object.entries(originalTransforms)) {
+    const operands = bytes.map((b, i) => f(b, primes[i]));
+    const result = arbitraryMapUpperBound(operands, known);
+    assert.ok(result.upper <= 55, 'unexpected new 180-rune codebook survivor');
+    allSecretRectangleCaps.push(result.upper);
+    console.log('arbitrary codebook reading ' + orientation + ':' + op, result.upper + '/180');
+  }
+}
+assert.equal(Math.max(...allSecretRectangleCaps), 55);
+
 /** @param {number[]} bytes @param {number[]} primeTape */
 function affineKeyRecovery(bytes, primeTape) {
   const B = bytes.map(mod);
