@@ -147,6 +147,29 @@ assert.equal(wingChapter.length,1414);
 const parableSeven=p[57].indices.slice(0,7);
 const parableAll=p[57].indices;
 assert.equal(fib.reduce((sum,i)=>sum+primeRune[wingChapter[i]],0),761);
+// Independent fixed p27 body-start selection relative to all 427 in-bounds
+// 16-position Fibonacci windows, and an exact 100,000-draw random16 control.
+const wingStarts761=[];
+for(let start=0;start+987<wingChapter.length;start++){
+  if(fib.reduce((sum,i)=>sum+primeRune[wingChapter[start+i]],0)===761)
+    wingStarts761.push(start);
+}
+assert.deepEqual(wingStarts761,[0,168]);
+let wingState=0x33012761;
+function wingRng(){wingState ^= wingState<<13;wingState ^= wingState>>>17;wingState ^= wingState<<5;return wingState>>>0;}
+let wingRandomHits761=0;
+for(let trial=0;trial<100000;trial++){
+  const seen=new Set();
+  let sum=0;
+  while(seen.size<16){
+    const i=wingRng()%wingChapter.length;
+    if(seen.has(i))continue;
+    seen.add(i);
+    sum+=primeRune[wingChapter[i]];
+  }
+  if(sum===761)wingRandomHits761++;
+}
+assert.equal(wingRandomHits761,216);
 assert.deepEqual(strictTransparentF(wingChapter,parableSeven),{reachable:0,firstImpossible:13});
 assert.deepEqual(strictTransparentF(wingChapter,parableAll),{reachable:0,firstImpossible:68});
 assert(strictTransparentF(encryptStrictTransparentF(p[57].indices,parableSeven),parableSeven).reachable>0);
@@ -198,7 +221,7 @@ console.log(JSON.stringify({
   sameChapterCandidateStartHits:shifts,
   nextSelfAddressedWindow:{start:continuationStart,sum:continuationSum,hit:numbers.includes(continuationSum)},
   otherChapterInitialControls:controls,
-  wingP27Parable:{matchedOriginalFilename:761,sourceBodyRunes:wingChapter.length,strictF7:strictTransparentF(wingChapter,parableSeven),strictF95:strictTransparentF(wingChapter,parableAll)},
+  wingP27Parable:{matchedOriginalFilename:761,sourceBodyRunes:wingChapter.length,allInBoundsFibonacciStartsMatching761:wingStarts761,random16Distinct100kHits761:wingRandomHits761,strictF7:strictTransparentF(wingChapter,parableSeven),strictF95:strictTransparentF(wingChapter,parableAll)},
   shiftedKeyCandidate:{
     nextChapterRemainderIoc:ioc(direct),
     transparentFNextChapter:strictTransparentF(adjacent,picked),
