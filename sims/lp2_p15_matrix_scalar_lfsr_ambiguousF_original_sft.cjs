@@ -22,6 +22,10 @@ const M = [
   [11, 17, 19, 7],
   [8, 12, 12, 22],
 ];
+const LITERAL_M = [
+  [10, 3, 20, 22], [1, 22, 21, 25],
+  [11, 17, 19, 7], [21, 17, 12, 22],
+];
 const ID = [
   [1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1],
 ];
@@ -104,13 +108,13 @@ function unpack(state) {
  * @param {number[]} firstFour
  * @returns {(i:number)=>number}
  */
-function recurrence(firstFour) {
+function recurrence(firstFour, coeff = [22, 19, 2, 15]) {
   const a = firstFour.slice();
   return k => {
     while (a.length <= k) {
       const n = a.length;
-      a.push((15 * a[n - 1] + 2 * a[n - 2] +
-        19 * a[n - 3] + 22 * a[n - 4]) % N);
+      a.push((coeff[3] * a[n - 1] + coeff[2] * a[n - 2] +
+        coeff[1] * a[n - 3] + coeff[0] * a[n - 4]) % N);
     }
     return a[k];
   };
@@ -248,3 +252,87 @@ console.log('ORIGINAL', JSON.stringify({
   nonzeroFull, elapsedMs: Date.now() - t0
 }));
 console.log('DECISION: all GF29 fourth-order scalar M-observation pads except zero exactly excluded.');
+
+
+// Direct literal source has two large *positive* last-row magnitudes;
+// restoring their implied Fibonacci subtraction signs is an additional
+// author-unspecified operation. Test the visibly printed alternative too.
+const literalPowers = [ID];
+for (let i = 1; i <= 4; i++) {
+  literalPowers.push(multiply(LITERAL_M, literalPowers[i - 1]));
+}
+const literalCharpoly = [17, 5, 22, 14, 1];
+for (let r = 0; r < 4; r++) {
+  for (let c = 0; c < 4; c++) {
+    assert.equal(literalPowers.reduce((sum, a, i) =>
+      sum + literalCharpoly[i] * a[r][c], 0) % N, 0);
+  }
+}
+const literalObservations = [0, 1, 2, 3].map(r =>
+  [0, 1, 2, 3].map(t => literalPowers[t][r].slice())
+);
+assert.equal(det(literalObservations[0]), 27);
+const literalCoeff = [12, 24, 7, 15];
+for (const state of [1, 3301, 77586, 123456, 345678, 707280]) {
+  const v = unpack(state);
+  const initial = literalObservations[0].map(row =>
+    row.reduce((sum, a, i) => sum + a * v[i], 0) % N
+  );
+  const k = recurrence(initial, literalCoeff);
+  let vec = v.slice();
+  for (let t = 0; t < 80; t++) {
+    assert.equal(k(t), vec[0]);
+    vec = LITERAL_M.map(row =>
+      row.reduce((sum, a, i) => sum + a * vec[i], 0) % N
+    );
+  }
+}
+const literalPlant = encrypt(plain, recurrence(positiveInitial, literalCoeff));
+assert.ok(literalPlant.skipped > 0 && literalPlant.encryptedAsF > 0);
+assert.equal(validPrefix(literalPlant.cipher,
+  recurrence(positiveInitial, literalCoeff)), 3000);
+for (const state of [0, 1, 3301, 123456, 345678, 707280]) {
+  const v = unpack(state);
+  for (const input of [
+    original.slice(0, 24),
+    literalPlant.cipher.slice(0, 24),
+  ]) {
+    assert.equal(
+      validPrefix(input, recurrence(v, literalCoeff)) === input.length,
+      brute(input, recurrence(v, literalCoeff))
+    );
+  }
+}
+const literalCounts = thresholds.map(() => 0);
+let longestLiteral = 0;
+const bestLiteral = [];
+let literalFull = 0;
+const startLiteral = Date.now();
+for (let state = 0; state < STATE_COUNT; state++) {
+  const prefix = validPrefix(original, recurrence(unpack(state), literalCoeff));
+  for (let i = 0; i < thresholds.length; i++) {
+    if (prefix >= thresholds[i]) literalCounts[i]++;
+  }
+  if (state !== 0) {
+    if (prefix > longestLiteral) {
+      longestLiteral = prefix;
+      bestLiteral.length = 0;
+      bestLiteral.push(state);
+    } else if (prefix === longestLiteral) bestLiteral.push(state);
+    if (prefix === original.length) literalFull++;
+  }
+}
+assert.deepEqual(literalCounts, [274832, 71945, 8813, 463, 5, 1, 1, 1]);
+assert.equal(longestLiteral, 1312);
+assert.deepEqual(bestLiteral, [271675, 507446, 570315]);
+assert.equal(literalFull, 0);
+console.log('LITERAL_UNSIGNED_MATRIX', JSON.stringify({
+  charpolyAscending: literalCharpoly, observabilityDeterminant: 27,
+  linearScalarRecurrence: literalCoeff,
+  statesTried: STATE_COUNT, thresholds, survivorCounts: literalCounts,
+  longestNonzeroPrefix: longestLiteral, bestNonzeroStates: bestLiteral,
+  nonzeroFull: literalFull,
+  sourceNativePlantPassed: true, recursiveOraclePassed: true,
+  elapsedMs: Date.now() - startLiteral
+}));
+console.log('DECISION: original printed positive magnitudes likewise admit no nonzero continuous linear matrix scalar pad.');
