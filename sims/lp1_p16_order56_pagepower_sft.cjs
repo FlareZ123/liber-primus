@@ -43,7 +43,7 @@ const matrices = defs.map(d => {
   if (d.raw.some(r => r.length !== n)) throw new Error("Bad square shape: " + d.name);
   const rowSums = d.raw.map(row => row.reduce((a, b) => a + b, 0));
   const colSums = Array.from({length: n}, (_, j) => d.raw.reduce((a, row) => a + row[j], 0));
-  if (rowSums.some(x => x !== d.expectedSum) || colSums.some(x => x !== d.expectedSum)) throw new Error(d.name + " magic sums mismatch");
+  if (rowSums.some(x => x !== d.expectedSum) || colSums.some(x => x !== d.expectedSum)) throw new Error(d.name + " magic sums mismatch: row=" + rowSums.join(",") + " col=" + colSums.join(",") + " expected=" + d.expectedSum + " raw=" + JSON.stringify(d.raw));
   const M = d.raw.map(row => row.map(mod)), det = detMod(M), order = matrixOrder(M);
   if (!det || order !== d.expectedOrder) throw new Error(d.name + " determinant/order mismatch: det=" + det + " order=" + order);
   return {...d, matrix: M, rowSums, colSums, determinant_mod29: det, order};
