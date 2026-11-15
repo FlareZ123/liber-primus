@@ -1,17 +1,15 @@
 /*
- * LP2 original JPEG keyless sequential DCT-AC LSB receiver.
+ * LP2 original JPEG keyless sequential DCT-AC LSB source test.
+ * Read-only, libjpeg-compatible; supply the 58 Stage11 JPEG paths in order.
  *
- * Self-contained read-only experiment, libjpeg 6b/8/9 compatible.
- * Inputs: exact Stage11 JPEG scans 17.jpg through 74.jpg (arguments).
- * Modes: (0) zigzag skip |v|<=1; (1) zigzag include |v|=1;
- *        (2) native coefficient order skip |v|<=1;
- *        (3) native coefficient order include |v|=1.
- * All modes omit DC and zero AC, traverse the luminance block raster
- * top-to-bottom, then read 512 bytes of MSB-packed abs(coefficient)&1.
+ * Four source-fixed receivers: luminance blocks in raster order; AC
+ * coefficients in zigzag or native storage order, excluding either zero
+ * alone or zero and both signs of one. 512 MSB-packed bytes per receiver.
+ * Eight bit alignments are inspected for 15 exact binary/text file headers
+ * and long contiguous ASCII. This is not keyed OutGuess/OpenPuff.
  *
- * This is not a claim about keyed OutGuess or OpenPuff extraction.
- * Usage: compile with libjpeg and pass the 58 original JPEG paths.
- * Each output row: source path, mode, eligible bits, 512-byte hex.
+ * Each stdout row: source path, mode 0..3, bits, 512-byte hex.
+ * Final stderr: image/readout counts and all-mode source test summary.
  */
 #include <stddef.h>
 #include <stdio.h>
@@ -27,7 +25,10 @@ static const int zigzag[64] = {
   45,38,31,39,46,53,60,61,54,47,55,62,63
 };
 
-/** Read first 512 output bytes from an original JPEG's luma coefficients. */
+/**
+ * Read the first 512 bytes. Mode 0 zigzag |v|>=2; mode 1 zigzag |v|>=1;
+ * mode 2 native |v|>=2; mode 3 native |v|>=1. DC and zeros never carry.
+ */
 static int receive(const char *filename, int mode, unsigned char out[512]) {
   FILE *file = fopen(filename, "rb");
   if (file == NULL) {
@@ -55,8 +56,8 @@ static int receive(const char *filename, int mode, unsigned char out[512]) {
       for (int k = 1; k < 64 && bits < 4096; k++) {
         const int v = (int)block[native_order ? k : zigzag[k]];
         if (v == 0 || (!allow_one && abs(v) == 1)) continue;
-        const unsigned int bit = (unsigned int)abs(v) & 1u;
-        out[bits / 8] |= (unsigned char)(bit << (7 - (bits & 7)));
+        out[bits / 8] |= (unsigned char)(((unsigned int)abs(v) & 1u)
+                                          << (7 - (bits & 7)));
         bits++;
       }
     }
@@ -67,20 +68,76 @@ static int receive(const char *filename, int mode, unsigned char out[512]) {
   return bits;
 }
 
+struct magic { const unsigned char *bytes; size_t size; };
+static const struct magic signatures[] = {
+  {(const unsigned char *)"PK\x03\x04",4},
+  {(const unsigned char *)"\x1f\x8b\x08",3},
+  {(const unsigned char *)"BZh",3},
+  {(const unsigned char *)"%PDF",4},
+  {(const unsigned char *)"\x89PNG",4},
+  {(const unsigned char *)"GIF87a",6},
+  {(const unsigned char *)"GIF89a",6},
+  {(const unsigned char *)"Rar!\x1a\x07",6},
+  {(const unsigned char *)"7z\xbc\xaf\x27\x1c",6},
+  {(const unsigned char *)"\xfd" "7zXZ" "\x00",6},
+  {(const unsigned char *)"\x7f" "ELF",4},
+  {(const unsigned char *)"-----BEGIN",10},
+  {(const unsigned char *)"ID3",3},
+  {(const unsigned char *)"<!DOCTYPE",9},
+  {(const unsigned char *)"<html",5}
+};
+
+/** Check every bit phase for a known header or contiguous plain ASCII. */
+static void inspect(const unsigned char src[512], int *hits, int *longest) {
+  unsigned char shifted[512];
+  for (int phase = 0; phase < 8; phase++) {
+    const int length = phase == 0 ? 512 : 511;
+    for (int i = 0; i < length; i++) {
+      shifted[i] = phase == 0 ? src[i]
+        : (unsigned char)((src[i] << phase) | (src[i + 1] >> (8 - phase)));
+    }
+    int run = 0;
+    for (int i = 0; i < length; i++) {
+      if (shifted[i] >= 32 && shifted[i] <= 126) {
+        run++;
+        if (run > *longest) *longest = run;
+      } else {
+        run = 0;
+      }
+    }
+    for (size_t j = 0; j < sizeof signatures / sizeof signatures[0]; j++) {
+      const struct magic *sig = &signatures[j];
+      for (int i = 0; i <= length - (int)sig->size; i++) {
+        if (memcmp(shifted + i, sig->bytes, sig->size) == 0) (*hits)++;
+      }
+    }
+  }
+}
+
 int main(int argc, char **argv) {
   if (argc < 2) {
     fprintf(stderr, "Expected original JPEG paths as arguments.\n");
     return 2;
   }
   unsigned char out[512];
+  int headers = 0, longest = 0, streams = 0;
   for (int source = 1; source < argc; source++) {
     for (int mode = 0; mode < 4; mode++) {
       const int bits = receive(argv[source], mode, out);
       if (bits < 0) return 2;
+      if (bits != 4096) {
+        fprintf(stderr, "Insufficient AC capacity: %s\n", argv[source]);
+        return 3;
+      }
+      inspect(out, &headers, &longest);
+      streams++;
       printf("%s\t%d\t%d\t", argv[source], mode, bits);
       for (int byte = 0; byte < 512; byte++) printf("%02x", out[byte]);
       putchar('\n');
     }
   }
+  fprintf(stderr,
+          "images=%d streams=%d phases=%d known_magic_hits=%d longest_ascii=%d\n",
+          argc - 1, streams, streams * 8, headers, longest);
   return 0;
 }
