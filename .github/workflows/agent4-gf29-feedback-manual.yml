@@ -26,3 +26,6 @@ jobs:
 
       - name: Run original terminal-ring known-interior linear-key prediction SFT
         run: node sims/lp2_terminal_ring_linear_predictor_sft.cjs
+
+      - name: Run original five-back feedback all-secret English/Latin gate
+        run: node sims/lp2_lagfive_feedback_allsecret_original_sft.cjs
