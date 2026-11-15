@@ -65,6 +65,21 @@ Across **562,060** complete native-GP windows, even the smallest comparison has 
 
 **Decision from the complete necessary condition:** This direct plaintext-difference multiplier architecture is an implausible native-English LP2 inverse, even when every multiplier is an independently unknown nonzero field element or every position has an independent, unknown zero-preserving 28-symbol permutation. The local AMBASSADRESS witness only proves that an isolated word does not make the architecture formally impossible. A future claimed key must produce *all* original-page text plus intelligible, independently verifiable plaintext and explain the enormous whole-book equality deficit. Further source-grid phase scans are unjustified.
 
+### Word-local reset and segmentation robustness
+
+One source-plausible exception is to start an independent feedback register *at every unchanged printed word*, rather than at each physical page. The across-word comparisons would then be free, although each word's internal consecutive pair must still conserve equality. The original 2,896 complete printed words, joined across physical page/line carries in source order, have exactly **63 adjacent equal-runic pairs inside words** (the other 23 of the 86 physical-page pairs straddle printed word boundaries).
+
+Freeze every original word length and resample a genuine GP29-normalized English word **of precisely that GP length** from the three independent control files, 1,000 whole-book replicates each. Use the fixed reproducible \`xorshift32\` seeds \`3301+127*t\` (source order Shakespeare, Gibran, Emerson) and sample with replacement. This is deliberately favorable to a word-reset cipher because it grants the model every printed word as a fresh secret key/register start and preserves the original manuscript's length distribution exactly.
+
+| Exact original word-length profile | Original internal equal pairs | Minimum in 1,000 source-control replicates | Mean control repeats | Maximum control repeats | Replicates ≤63 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Original LP2, 2,896 printed words | **63** | | | | |
+| Shakespeare same-length native-GP word draws | | **272** | **331.369** | 392 | 0 |
+| Gibran same-length native-GP word draws | | **255** | **316.646** | 366 | 0 |
+| Emerson same-length native-GP word draws | | **238** | **301.554** | 352 | 0 |
+
+Even the most favorable **one-word-new-secret** version of the proposed exact zero-preserving alphabet architecture cannot reproduce any sampled source register's unchanged word-internal equality profile. This is conditional on the finite English sources and unchanged words, not an absolute impossibility for carefully crafted English. An extra secret reset *inside* the printed word would avoid the theorem only by adding an entirely new unobserved boundary or hidden state, requiring independent source support.
+
 ### Stronger exact secret-codebook implication
 
 The conservation argument does **not** depend on multiplication's arithmetic form. It applies to every lossless, time-varying, keyed *difference* encoder
@@ -81,4 +96,4 @@ The exact boundary is important: if \(f_i\) can move the zero symbol, depend on 
 
 The original p27 word's two repeat pairs impose a sharp local invariant but still admit at least one uncommon English word, which is a diagnostic rather than plaintext. The **complete 12,956-rune original ciphertext** decisively fails the key-independent same-letter count of all 562,060 fixed English control windows under all possible secret nonzero multiplier schedules. A 2014-table literal key has 0–1 of the nine independently required local steps. **No unknown LP2 plaintext can be asserted, and no source-derived key is recovered.** Do not widen this branch into arbitrary word suggestions or adjustable table rotations. Reopen it only if an independent author-selected key stream predicts the original key steps *before* examining the p27 word and yields independently checkable plaintext across the rest of the manuscript, or if an original instruction selects a distinct intermediate register.
 
-**Exact reproducer:** [single runnable Node22 CommonJS source-original test](../sims/lp2_plain_difference_multiplier_p27_original_sft.cjs), requiring only the checked-in original rune corpus, 256-byte table and already-pinned TextBlob wordlist. It asserts the p27 original indices and offsets, all dictionary masks, the complete hypothetical forward-key witness, all four source-table comparisons, the 95/95 genuine solved-source positive, and all 562,060 exact matched-length English windows with their source-specific minima.
+**Exact reproducer:** [single runnable Node22 CommonJS source-original test](../sims/lp2_plain_difference_multiplier_p27_original_sft.cjs), requiring only the checked-in original rune corpus, 256-byte table and already-pinned TextBlob wordlist. It asserts the p27 original indices and offsets, all dictionary masks, the complete hypothetical forward-key witness, all four source-table comparisons, the 95/95 genuine solved-source positive, all 562,060 exact matched-length English windows with their source-specific minima, and 3,000 fixed-seed resampled same-length source word profiles with arbitrary word-register resets.
