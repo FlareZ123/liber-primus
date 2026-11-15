@@ -155,7 +155,7 @@ for (const [name,key] of [
       candidateMismatches:mismatchCount(
         p40.slice(0,compared),predicted.slice(0,compared)
       ),
-      candidateExactHitsUnderFixedClock:fixedClockHits(p40,key,preface,sign),
+      candidateExactHitsUnderFixedClock:fixedClockHits(p40p41,key,preface,sign),
       p40Prefix:render(plain.slice(0,100)),
       roundTrip:true
     });
@@ -177,12 +177,15 @@ for (const [name,key] of [
       decodedIoC:ioc(plain),
       candidateLength:bookCrib.length,
       candidateMismatches:mismatchCount(p40.slice(0,bookCrib.length),predicted),
+      prefaceCandidateMismatches:mismatchCount(p40.slice(0,preface.length),preface.map((p,i)=>mod(p+sign*key[i]))),
+      prefaceCandidateFixedClockHits:fixedClockHits(p40p41,key,preface,sign),
+      bookCribFixedClockHits:fixedClockHits(p40p41,key,bookCrib,sign),
       cicada2013CandidateLength:cicada2013Candidate.length,
       cicada2013CandidateMismatches:mismatchCount(p40.slice(0,cicada2013Candidate.length),p13Predicted),
-      cicada2013FixedClockHits:fixedClockHits(p40,key,cicada2013Candidate,sign),
+      cicada2013FixedClockHits:fixedClockHits(p40p41,key,cicada2013Candidate,sign),
       cicada2016CandidateLength:cicada2016Candidate.length,
       cicada2016CandidateMismatches:mismatchCount(p40.slice(0,cicada2016Candidate.length),p16Predicted),
-      cicada2016FixedClockHits:fixedClockHits(p40,key,cicada2016Candidate,sign),
+      cicada2016FixedClockHits:fixedClockHits(p40p41,key,cicada2016Candidate,sign),
       p40Prefix:render(plain.slice(0,100)),
       p41Prefix:render(plain.slice(p40.length,p40.length+100)),
       roundTrip:true
