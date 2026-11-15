@@ -23,3 +23,5 @@ jobs:
         run: node sims/lp2_terminal_quintet_hash_preimage_sft.cjs
       - name: Verify source-case 256-bit AES consumer
         run: node sims/lp2_p50_case_bitplane_aes256_original_sft.cjs
+      - name: Test source pages 28 and 42 shared XOR key inversion
+        run: node sims/lp2_p28_p42_xor_twotimepad_original_sft.cjs
