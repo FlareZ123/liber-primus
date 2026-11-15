@@ -18,3 +18,9 @@ jobs:
           node sims/lp2_2014_original_unknownpage_linkhunt_sft.cjs
       - name: Mine three exact historical Git blobs
         run: node sims/lp2_2014_original_unknownpage_linkhunt_sft.cjs --network
+      - name: Seek source-era unknown-key and program receipts without page labels
+        run: |
+          node --check sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs
+          node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs --selftest
+          node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs
+
