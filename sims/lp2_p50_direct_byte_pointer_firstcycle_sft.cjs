@@ -63,6 +63,25 @@ function coincidence(values) {
 function applyKey(values, sign) {
   return values.map((n, index) => mod29(n + sign * key[index % key.length]));
 }
+const flankCycle = [158, 249];
+const flankKey = flankCycle.map((cell) => bytes[cell] % 29);
+assert.deepEqual(flankKey, [17, 13]);
+assert.equal(corpus.pages[49].indices.length % 22, 0);
+const combinedResults = [];
+for (const page of [49, 51, 52]) {
+  const cipher = corpus.pages[page].indices;
+  for (const a of [-1, 1]) for (const b of [-1, 1]) {
+    // Two naturally sourced cycles together repeat at lcm(11,2)=22.
+    const plain = cipher.map((x, i) => mod29(x +
+      a * key[i % 11] + b * flankKey[i % 2]));
+    const rebuilt = plain.map((x, i) => mod29(x -
+      a * key[i % 11] - b * flankKey[i % 2]));
+    assert.deepEqual(rebuilt, cipher);
+    combinedResults.push({page, signEleven:a, signTwo:b,
+      ioc: Number(coincidence(plain).toFixed(12)),
+      prefix:plain.slice(0, 35).map((x) => corpus.translit[x]).join("")});
+  }
+}
 const rows = [];
 for (const page of [49, 51, 52]) {
   const original = corpus.pages[page].indices;
@@ -135,5 +154,6 @@ console.log(JSON.stringify({source:"original 256 printed p49–51 table",
   hypothesis:"zero-based byte as zero-based index of next table cell",
   firstCellCycle:route.walk, cycleGP29Key:key, prologueRunes:66,
   sourceFirstPage:49, flankRuneCount, flankTwoCycle:[158,249],
-  encodedKeyModels:rows, shuffleNulls:nulls}, null, 2));
+  encodedKeyModels:rows, combinedKeyPeriod:22, combinedKeyModels:combinedResults,
+  shuffleNulls:nulls}, null, 2));
 console.log("PASS original pointer route/6-turn prologue and negative direct GP29 additive inverses. No unknown plaintext.");
