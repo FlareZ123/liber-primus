@@ -38,6 +38,20 @@ with \`Q\` a 2,013-bit composite. Hence \`gcd(N,T_P)=3024\` draws a precise nont
 
 The **important restriction** is the deliberately hybrid terminal register: the 76 positions of p55 remain **ciphertext**, p56 alone is true **plaintext**, and p57 is clear. There is no first-party evidence prescribing such a hybrid 256-digit base29 integer. This result therefore establishes a mathematical relation, not an authenticated checksum protocol or plaintext.
 
+## The exact conditional p55 residue certificate
+
+The GCD result supplies a particularly compact, original-source **candidate** for a future p55 checksum:
+
+- The table-selected divisor is \`m=3,024\`.
+- The GP29 radix has exact multiplicative order **36** modulo m: \`29^36 ≡ 1 (mod 3024)\`.
+- The independently known p56+p57 suffix contains **180 = 5×36** runes. Thus \`29^180 ≡ 1 (mod 3024)\`, and the terminal base29 integer \`T_P = A×29^180 + B\` obeys \`T_P ≡ A+B (mod3024)\`.
+- The 76-rune **p55 ciphertext** integer \`A\` has exact residue **64** modulo3024.
+- The 180-rune **authentic p56 plaintext + p57 clear** integer \`B\` has exact residue **2,960** modulo3024, equal to \`−64\`.
+
+Hence \`(64+2960) mod3024 = 0\` gives the full 256-rune congruence independently of the two giant terminal-integer magnitudes. This is an executable **12-bit-class necessary condition** *if* a first-party source eventually selects such a modular check. It can score a proposed p55 decoder by computing its plaintext integer \`A'\` and asking whether \`A' mod3024=64\`.
+
+**Limit:** the printed unsolved p55 *ciphertext already satisfies the residue*, before any decryption. The condition therefore cannot identify even one p55 plaintext rune on its own, and using it to filter unrelated cipher candidates assumes the very checksum rule we are trying to establish. Neither \`m=3024\`, its order36, nor the special residue64 is an authenticated Cicada instruction.
+
 ## Can this relationship independently select the genuine p56 key?
 
 The exact same source procedure was applied to **2,032 frozen alternative p56 prime-totient decoders**, using first-prime indices **0–1,015** (1,016 shifts) and either additive sign, always keeping the authentic visible F bypass at local56 and leaving the p55 ciphertext and p57 clear material unchanged.
