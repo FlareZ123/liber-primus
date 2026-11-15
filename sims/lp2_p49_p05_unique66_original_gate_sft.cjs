@@ -186,6 +186,56 @@ for (const [sourceName, key] of [
 }
 assert.equal(longSentence.length, 8);
 assert(longSentence.every(v => v.continuous308IoC < 0.05));
+
+// Separate, source-led transposition: 11 unique p05 word cells are 11
+// columns; p49 has exactly six runes per proposed column. The p05
+// magic-square GP-prime word totals are the sorting numbers. The two
+// orientations follow the 5x5 square's printed mirror. Ties remain in
+// original first-occurrence order. This is a frozen, fully reversible
+// human-solvable hypothesis; it is not an author-selected instruction.
+const primeWordSums = distinct.map(word => [...word].reduce(
+  (sum, rune) => sum + book.prime[runeIndex.get(rune)], 0));
+assert.deepEqual(primeWordSums,
+  [341, 366, 199, 130, 320, 245, 91, 226, 320, 199, 341]);
+/** @param {boolean} descending @returns {number[]} */
+function sortedColumns(descending) {
+  return primeWordSums.map((_, i) => i).sort((a, b) =>
+    (descending ? primeWordSums[b] - primeWordSums[a] :
+      primeWordSums[a] - primeWordSums[b]) || a - b);
+}
+/** @param {number[]} data @param {number[]} columns @returns {number[]} */
+function columnarRead(data, columns) {
+  assert.equal(data.length, 66);
+  return columns.flatMap(column => Array.from({length: 6},
+    (_, row) => data[11 * row + column]));
+}
+/** @param {number[]} source @param {number[]} columns @returns {number[]} */
+function columnarRestore(source, columns) {
+  assert.equal(source.length, 66);
+  const restoredColumns = Array(11);
+  let offset = 0;
+  for (const column of columns) {
+    restoredColumns[column] = source.slice(offset, offset + 6);
+    offset += 6;
+  }
+  return Array.from({length: 66},
+    (_, i) => restoredColumns[i % 11][Math.floor(i / 11)]);
+}
+const columnar = [false, true].map(descending => {
+  const order = sortedColumns(descending);
+  const output = columnarRestore(page49, order);
+  assert.deepEqual(columnarRead(output, order), page49);
+  const sourcePlant = page57.slice(0, 66);
+  assert.deepEqual(columnarRestore(columnarRead(sourcePlant, order), order),
+    sourcePlant);
+  assert.equal(ioc(output), ioc(page49), "permutation preserves IoC exactly");
+  return {
+    descending, sourceWordValuesInColumnOrder: order.map(i => primeWordSums[i]),
+    originalIoC: ioc(output), decryptedTransliteration: translit(output)
+  };
+});
+assert.equal(ioc(page49), 0.02843822843822844);
+assert.equal(columnar.length, 2);
 console.log(JSON.stringify({
   classification: "Original-source key candidate; bounded negative direct inverses; no plaintext",
   exactInput: {
@@ -197,6 +247,6 @@ console.log(JSON.stringify({
     intactPostTableRunes: sentenceAfter.length,
     physicalP55Runes: page55.length, p49CipherF
   },
-  direct, strictP56TotientEmitter: fModes, intactSentenceInversions: longSentence,
-  interpretation: "The exact 76/66/10 numerical fit is real but does not select a cipher. Direct ordinal and source-authentic totient transfer do not recover readable text. One p49 strict-F variant remains algebraically possible yet has no identified plaintext."
+  direct, strictP56TotientEmitter: fModes, intactSentenceInversions: longSentence, columnar,
+  interpretation: "The exact 76/66/10 numerical fit is real but does not select a cipher. Direct ordinal, source-authentic totient and source-ordered columnar transport do not recover readable text. One p49 strict-F variant remains algebraically possible yet has no identified plaintext."
 }, null, 2));
