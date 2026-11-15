@@ -158,7 +158,7 @@ for(const model of ["xor8","add8","gp29add8"]) {
     model+" planted original-length source excerpt was not found");
 }
 const maskModels=["xor8","add8","gp29add8"];
-/** @type {{source:string,bytes:number,verifiedHash:string,hits:{motif:string,length:number,positions:number[]}[]}[]} */
+/** @type {{source:string,bytes:number,verifiedHash:string,hits:{motif:string,length:number,positions:number[]}[],eightPositionMaskHits:{orientation:string,model:string,positions:number[]}[]}[]} */
 const report = [];
 for (let i=0;i<sources.length;i++) {
   const source = sources[i];
