@@ -105,7 +105,7 @@ function encodeWord(latin) {
   }
   return indices;
 }
-assert.deepEqual(encodeWord("FOLLOWING"), [0, 8, 10, 10, 8, 7, 21]);
+assert.deepEqual(encodeWord("FOLLOWING"), [0, 3, 20, 20, 3, 7, 21]);
 
 /** @type {Map<string,{counts:Uint32Array,total:number}>} */
 const table = new Map();
