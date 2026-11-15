@@ -1,0 +1,14 @@
+name: Agent 36 original 2014 magic square text AES key gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/lp2_2014_magic_text_aes256_source_sft.cjs
