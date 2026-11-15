@@ -11,6 +11,7 @@ on:
           - rank28-shared
           - rank28-markov
           - route39
+          - p55-shed-magic
 jobs:
   research:
     runs-on: ubuntu-latest
@@ -23,6 +24,9 @@ jobs:
       - name: Full source-frozen 27x27 continuation enumeration
         if: ${{ inputs.experiment == 'route39' }}
         run: node sims/route39_frozen_constraints.cjs
+      - name: Original 2014 OpenPuff shed-ring terminal inverse
+        if: ${{ inputs.experiment == 'p55-shed-magic' }}
+        run: node sims/lp2_p55_openpuff_shed_ring_sft.cjs
       - name: Rank28 shared-pad invertible source test and nulls
         if: ${{ inputs.experiment == 'rank28-shared' }}
         run: node sims/agent5_rank28_sharedpad.cjs 120 24
