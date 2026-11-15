@@ -15,7 +15,7 @@ const source={
   bytes:209,
   sha256:'b54b043583fcf3c7e3c7d55e103af99b8b346bd35eb3b1fa23d5b490cdd81435'
 };
-const aliases=new Map([['C/K','C'],['IA/IO','IO'],['(I)NG','NG']]);
+const aliases=new Map([['C/K','C'],['IA/IO','IA'],['(I)NG','NG']]);
 const mod=n=>(n%29+29)%29;
 /** @param {number} needed */
 function primes(needed){
