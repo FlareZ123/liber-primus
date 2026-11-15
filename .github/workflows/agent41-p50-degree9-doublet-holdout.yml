@@ -1,0 +1,21 @@
+name: LP2 p50 degree nine original doublet holdout
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout canonical source corpus
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Nine-register global and illustrated-chapter source-heldout tests
+        run: node sims/lp2_p50_degree9_doublet_F_keyrecovery_sft.cjs
