@@ -72,6 +72,25 @@ assert.deepEqual(actual, {
   classes: 69
 });
 
+// Equally source-visible 32-by-8 column-major traversal is a frozen rival.
+const columnMajorTokens = Array.from({ length: 8 }, (_, column) =>
+  Array.from({ length: 32 }, (_, row) => tokens[row * 8 + column])).flat();
+const seenColumn = new Set();
+const columnRepeated = [];
+for (const token of columnMajorTokens) {
+  if (seenColumn.has(token)) columnRepeated.push(token);
+  else seenColumn.add(token);
+}
+assert.equal(seenColumn.size, 161);
+assert.equal(columnRepeated.length, 95);
+const columnActual = minimumCorrections(columnRepeated, knownP57);
+assert.deepEqual(columnActual, {
+  minimumChanges: 22,
+  conflictingClasses: 18,
+  classSizes: { '1': 49, '2': 14, '3': 6 },
+  classes: 69
+});
+
 // Known-source-shaped positive plant: each source token emits the same GP rune.
 const mapping = new Map([...new Set(repeatedTokens)].map((token, i) =>
   [token, corpus.runes[(i * 7) % corpus.runes.length]]));
@@ -101,6 +120,7 @@ console.log(JSON.stringify({
   repeatedOccurrences: repeatedTokens.length,
   knownP57: knownP57.length,
   originalStaticCodebookGate: actual,
+  columnMajorStaticCodebookGate: columnActual,
   plantedMinimumChanges: minimumCorrections(repeatedTokens, planted).minimumChanges,
   iidByteProbabilityOfExactly161Unique: massAt161,
   finding: 'No fixed printed-token-to-GP-rune map can generate the original PARABLE register at repeat positions'
