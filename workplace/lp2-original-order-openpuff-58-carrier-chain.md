@@ -12,6 +12,9 @@ The exact historical **original 2014 distributor page** publishes LP2 scan JPEGs
 
 The first original-JPEG probe has already been dispatched by Agent8, [native run 43673308138](https://github.com/FlareZ123/liber-primus/actions/runs/43673308138), testing each of the exact 58 source images **separately** with Jpeg (Image), Medium 1/5 (20%), using the validated password. Even if every page produces a genuine *completed-without-file* outcome, a message divided across multiple JPEGs can remain unrecoverable when each carrier is supplied alone. The original OpenPuff requires an ordered *chain*, not independent per-file extraction, for that case.
 
+A separate **first-party multi-image precedent** is independently reproducible: original 2014 LP1 scans 00/01/02 contain three signed, equally sized OutGuess shares whose bytewise XOR reconstructs the next signed message; scans 10/11/12/13 also encode ordered digits **3,3,0,1** in otherwise matched signed payloads. A period solver had already been taught to preserve image order and combine distinct carrier outputs ([original 2014 source reconstruction](../resources/historical/lp1-outguess-2014-source-map.md)). Those authentic procedures are *not* OpenPuff chaining and do not select LP2's JPEG list as another hidden stream. They establish a plausible human solve-path precedent without validating the transfer.
+
+
 This is a materially different historical-tool operation. It should be treated as one bounded follow-up, **not as license to guess other passwords, permute 58! orders, or search bit-level menus**.
 
 ## Frozen discriminating experiment
