@@ -1,0 +1,51 @@
+# Original LP2 58-image release: fixed offset-29 two-cycle gate
+
+**15 November 2026, Agent18. Decision: no supported two-cycle cipher selector or plaintext.** A fixed pairing of second-release physical pages `p ↔ p+29` is a natural hypothesis because the 58 original images equal twice the 29-symbol Gematria Primus alphabet. This test does not search offsets or fit keys. The actually printed illustrations and ten preregistered page-level measures do not supply an independent transformation rule or reproducible LP2 decipherment.
+
+## Original-input contract and source geometry
+
+- The original second release comprises **58 physically ordered images** `17.jpg`–`74.jpg`, indexed here p0–p57. No original printed page number or first-party instruction prescribes pairing page p with p+29. The last two are already known: p56 `AN END` (85 runes) and p57 `PARABLE` (95 runes).
+- **Runes:** [LP2 corpus](../resources/liber-primus/lp2-corpus.json), exactly 58 pages with **12,956 encrypted GP29 runes on physical p0–55** and 180 solved controls. The original numeric p50 has zero runes.
+- **Words:** [source rune transcription](../resources/lp2-transcription.txt), 57 rune-bearing page records because numeric p50 is absent. A source-native parser counts a word only when terminated by `-.$&§` or at text end; line and page breaks do not terminate words. It confirms **2,896 unknown whole words**, plus 45 solved-page words. Per-page values below count words by the physical page of their *initial rune*, preserving page carries.
+- **Printed ink:** [source annotation register](../resources/liber-primus/lp2-ink-annotations.json) for red-rune spans and large punctuation; original JPEG contact-sheet inspection separately compares page artwork.
+- Reproducer: [fixed source-only CommonJS SFT](../sims/lp2_fixed_pageoffset29_pairing_sft.cjs), which checks those input totals and evaluates exactly the 29 pairings `p=0..28 ↔ p+29`, no other offset.
+
+The left pages p0–2 contain the repeated black triple-bar-cross motifs, while right p29–31 contain mostly plain text; p3–7's mirrored scrollwork is paired with p32's tree and p33–36's red-cuneiform chapter. Later insect/body/flower imagery does not preserve the offset-29 association, and the paired solved pages p56 and p57 have distinct layout and text lengths from p27 and p28. Original source illustrations therefore provide no common orientation, starting point, or readout.
+
+## Frozen tests and controls
+
+For every fixed pair the SFT evaluates runic/word-count association, exact count equalities, positionwise identity of the first and last twelve GP rune indices, and co-presence of red text, 10/13/23-dot punctuation, and cross-page word carries. Nulls arise from **10,000 deterministic shuffles of only the right 29-page half**, preserving the full original distribution of page lengths, solved pages, red and punctuation identities. The generator is xorshift32, initial state `0x6d2b79f5`. Each row's empirical tail count is descriptive, since this set of ten statistics was examined jointly; it is not a formal independent-trials p-value.
+
+| Frozen statistic | Fixed p↔p+29 | Shuffled mean | Shuffled SD | Shuffles ≥ fixed (of 10,000) |
+| --- | ---: | ---: | ---: | ---: |
+| Rune-count Pearson r | **−0.05218** | −0.00403 | 0.18784 | 5,712 |
+| Mean absolute rune-count difference | 67.586 | 66.222 | 6.460 | 4,393 |
+| Exact equal rune-count pairs | 2 | 0.734 | 0.818 | 1,608 |
+| Word-start count Pearson r | 0.11040 | −0.00362 | 0.18805 | 2,659 |
+| Mean absolute word-start difference | 15.138 | 16.314 | 1.542 | 7,863 |
+| Same first-12 rune positions, all pairs | 19 | 12.757 | 3.495 | **569** |
+| Same last-12 rune positions, all pairs | 11 | 12.724 | 3.441 | 7,329 |
+| Pairs both with red text | 1 | 1.930 | 1.056 | 9,251 |
+| Pairs both with large punctuation | 4 | 4.152 | 1.294 | 6,945 |
+| Pairs both ending in an unfinished word | 10 | 9.915 | 1.338 | 6,252 |
+
+Only two pairs happen to have equal source rune count: **p13/p42 = 272/272** and **p19/p48 = 271/271**, but their independently parsed word-start counts are **61/57** and **65/66**, and their actual word-length profiles are different. p5/p34 has equal original 58/60? Word starts are not equal there (p5=58, p34=60); equalities in crude word-fragment regex counts are not valid source words.
+
+The largest positive original-versus-shuffle difference is the first-twelve rune match total **19**, but at least **569** of 10,000 shuffled pairings equal or exceed it, and the opposite end goes in the other direction. Among ten fixed comparisons, that isolated, incomplete-position overlap does not select a cipher or predict plaintext.
+
+## Solved-page boundary check
+
+The only solved controls are fixed to the second half:
+
+| Source-fixed pair | Rune counts | First-12 equal | Last-12 equal |
+| --- | --- | ---: | ---: |
+| p27 ↔ p56 | 234 / 85 | 0 | 2 |
+| p28 ↔ p57 | 269 / 95 | 2 | 0 |
+
+These pairs share neither complete lengths nor a published operation allowing the known p56 or p57 cleartext to decode their respective unsolved partners. No held-out word, alphabet relation or reversible key conversion can be inferred from their source-visible features.
+
+## Disposition
+
+The equality **58=2×29** supplies only a possible cycle length. The native source evidence does not select pairing direction, original rune/key alignment, an invertible map, or any positive solved-page transfer. Reject the fixed simple offset-29 structural pairing as a chosen decoding route; retain the full quantitative output for future comparisons. This is **not** a proof against all conceivable multi-page cryptosystems, but no further shifts or decryption searches follow without an independent author cue. The previously closed mod58 word-address hypothesis is untouched.
+
+**Reproduction:** run `sims/lp2_fixed_pageoffset29_pairing_sft.cjs` under Node.js 22 from a local repository root. It performs all assertions and prints original-vs-control statistics with no writes and no environment-dependent inputs.
