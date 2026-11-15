@@ -145,6 +145,49 @@ assert.equal(differentialCases.length, 8);
 assert(Math.abs(differentialCases[0].ioc - 0.03918367346938775) < 1e-13);
 assert(Math.abs(differentialCases[5].ioc - 0.03099099099099099) < 1e-13);
 
+
+// Alternative clue-shaped 125-symbol register with no conjectural F skips.
+// The first p53 red T is the visibly isolated upward-arrow-shaped glyph.
+// P55's first NG is the incoming last rune of its p54-to-p55 carried word.
+// Neither omission is established as a cryptographic author instruction.
+assert.equal(red53[0],16); // GP T
+assert.equal(p55[0],21); // GP NG
+const newRed50=red53.slice(1);
+const newP55_75=p55.slice(1);
+assert.deepEqual([newRed50.length,newP55_75.length],[50,75]);
+const newMoth125=newRed50.concat(newP55_75);
+const phiKey=[12,15,10,14,5,4,24,19,12,6,25,23,14,23,25,6,12,19,24,4,5,14,10,15,12];
+// All twenty-five values above are the already source-verified row-major
+// Euler-totient residues of the third 2014 5x5 square.
+const planted125=Array.from({length:125},(_,i)=>p57[i%95]);
+const arrowCarry125=[];
+for(const sign of [-1,1]){
+  const dec=xs=>xs.map((x,i)=>mod(x+sign*phiKey[i%25]));
+  const enc=xs=>xs.map((x,i)=>mod(x-sign*phiKey[i%25]));
+  const result=dec(newMoth125);
+  assert.deepEqual(enc(result),newMoth125);
+  assert.deepEqual(dec(enc(planted125)),planted125);
+  arrowCarry125.push({operator:"Euler totient periodic25",sign,
+    fullIoC:indexOfCoincidence(result),
+    red50IoC:indexOfCoincidence(result.slice(0,50)),
+    p55new75IoC:indexOfCoincidence(result.slice(50)),
+    readout:result.map(i=>corpus.translit[i]).join("")});
+}
+for(const [operator,m] of keys){
+  const result=apply(newMoth125,m);
+  const reverse=inverseKey.get(operator);
+  assert.deepEqual(apply(result,reverse),newMoth125);
+  assert.deepEqual(apply(apply(planted125,reverse),m),planted125);
+  arrowCarry125.push({operator:"Hill5 "+operator,
+    fullIoC:indexOfCoincidence(result),
+    red50IoC:indexOfCoincidence(result.slice(0,50)),
+    p55new75IoC:indexOfCoincidence(result.slice(50)),
+    readout:result.map(i=>corpus.translit[i]).join("")});
+}
+assert(Math.abs(arrowCarry125[0].fullIoC-0.03496774193548387)<1e-13);
+assert(Math.abs(arrowCarry125[1].fullIoC-0.034451612903225806)<1e-13);
+assert(Math.abs(arrowCarry125[4].fullIoC-0.036)<1e-13);
+
 const keyCase=cases.find(x=>x.target==="p53_red51_F38"&&x.operator==="K");
 const inverseCase=cases.find(x=>x.target==="p55_all76_F25"&&x.operator==="K^-1");
 assert(Math.abs(keyCase.ioc-0.037551020408163265)<1e-13);
@@ -158,5 +201,6 @@ console.log(JSON.stringify({
   cases,
   differentialOriginalCases:differentialCases.length,
   differentialCases,
+  arrowCarry125,
   conclusion:"Neither historic third-square Hill5 orientation nor any of three source F skip positions yields recognizable source-native plaintext."
 },null,2));
