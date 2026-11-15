@@ -12,7 +12,7 @@ The unknown-page hypothesis retains **the actual p56 prime source and prime-2 in
 
 ## Exhaustive decoder and forward control
 
-The [single-file Node 22 original-corpus SFT](../sims/lp2_p56_prime_collision_skip_reachability_sft.cjs) reads canonical `resources/liber-primus/lp2-corpus.json` GP29 indices. Its dynamic program begins with **key cursor zero** for each independently tested page or selected contiguous chapter. At ciphertext offset `i` and next-prime cursor `j`, it retains every reachable cursor and the minimum/maximum number of possible plaintext E runes, with exactly three state transitions:
+The [single-file Node 22 original-corpus SFT](../sims/lp2_p56_prime_collision_skip_reachability_sft.cjs), [passing Windows Node 22 CI (including both exact local certificates)](https://github.com/FlareZ123/liber-primus/actions/runs/43656894740) reads canonical `resources/liber-primus/lp2-corpus.json` GP29 indices. Its dynamic program begins with **key cursor zero** for each independently tested page or selected contiguous chapter. At ciphertext offset `i` and next-prime cursor `j`, it retains every reachable cursor and the minimum/maximum number of possible plaintext E runes, with exactly three state transitions:
 
 1. When `C_i=F`, emit literal plaintext F and leave the prime cursor unchanged.
 2. Emit a non-F `P_i=(C_i−K_j) mod29` with `K_j=(prime_j−1) mod29`, consuming one prime.
