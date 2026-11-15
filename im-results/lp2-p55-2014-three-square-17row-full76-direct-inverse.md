@@ -40,6 +40,23 @@ The language test scores **only the 59 original within-word adjacent rune pairs*
 
 The two source-fixed decoders score below **all 60,000** matched native word samples by more than 2.56 log units per within-word pair. The source-native 76-symbol positive plant with the same row cycling exactly recovers all words; this tests the full operation at the correct lengths. These source controls are finite English-like prose samples and cannot rule out an intermediate non-English encoding.
 
+## Completed literal-F-bypass extension
+
+An independently observed Cicada cipher feature was absent from the direct row inverse above: solved LP1 and p56 allow **plaintext F** to pass as ciphertext F without advancing the key clock. To test the strongest literal p55 source-row model fairly, the original 76 runes and 17 printed fragment boundaries remain fixed; for each fragment, *every possible* plaintext-F and ordinary encrypted-non-F history is enumerated without language-fitting. Four finite variants use the authentic historical 17 source rows, either their actual numeric entries mod29 or **Euler φ(entries) mod29**, and the two conventional signs.
+
+| Complete 17-word source-key model | Original fragments with no legal full inverse (1-based original visible word, 0-based rune within that word) |
+| --- | --- |
+| Raw numeric rows, `C=P+K` | **#4 at rune1** |
+| Raw numeric rows, `C=P−K` | **#5 rune1, #11 rune1, #13 rune0** |
+| Totient row cells, `C=P+φ(K)` | **#13 rune1, #17 rune2** |
+| Totient row cells, `C=P−φ(K)` | **#16 rune0** |
+
+Here `C=P+K` uses decoder `P=C−K`; the signs are the **cipher directions**, not arbitrary page-key alignment. Any failed word makes the complete 76-position row-to-word cipher **algebraically impossible under that model**, regardless of language or any choice of F masks. Identically source-row-keyed, solved-p57 native-GP positive plants of all original word lengths retain a valid complete inverse for **all 68 word/sign/key cells**. Thus the original negatives are not due to an implementation that always fails. The source-model family remains a *hypothesis*, never authenticated by the authors.
+
+**Decision:** the exact **17 source rows → 17 original visible p55 word fragments** key model cannot be rescued by the actual solved-Cicada F-interrupter or by choosing totients of the original source entries. Unlike the earlier English-score failure, this is a complete finite algebraic contradiction for these four frozen row-clock models. No unknown plaintext or real p55 key was found; alternate key schedules still need independent original instructions.
+
+[Reproduction from canonical original p55 and the exact historical 745-byte numeric source](../sims/lp2_p55_2014_three_squares_17row_ftransparent_sft.cjs).
+
 **Decision:** Reject the simplest **seventeen historical square rows as repeating per-p55-word Vigenère pads** in both signs, on the unmodified original 76-rune page. The result does not qualify as a waiting Director #41 complete source-selected decoder, because the 2014 source does not prescribe the key schedule and outputs are nonlinguistic. The separate 43-interior pure-permutation and GF29 Hill inverses are [recorded here](lp2-p55-2014-magic-squares-three-core-hill-original-inverse.md). Retain the physically real square geometry for a new original instruction. No phase/row/offset permutations are justified by this direct negative.
 
 [Complete original-input CommonJS script, exact forward replay, and native controls](../sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs).
