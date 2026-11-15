@@ -6,7 +6,7 @@
 
 The authenticated 2013 second-onion message contains the short instruction to “knock on the sky and listen to the sound.” That wording is saying **613** in Sōiku Shigematsu's *A Zen Forest: Sayings of the Masters* (1981). The digitized edition places item 613 at the page-77/78 boundary; the item number is the reliable selector.
 
-A second authenticated Cicada source is suggestive: the January 2016 message says Liber Primus's words are a map and their meaning is the road. Shigematsu's own introduction opens with the idea that a word points beyond itself. The 2013 forest clue, the 2013 quote, the 2016 signed wording, and the tree-bearing 2016 carrier make this a plausible human solve-path lead. The semantic echo is not proof of cipher use.
+A second authenticated Cicada source is suggestive: the January 2016 message says Liber Primus's words are a map and their meaning is the road. Shigematsu's own introduction opens with the idea that a word points beyond itself. The 2013 forest clue, the 2013 quote, and the 2016 signed wording make a plausible human solve-path lead. The 2016 tree carrier is not counted as independent evidence: the archival note says the raster does not establish species or location, and the signed text warns against false paths. A community-wiki attribution to generic oak-tree clipart remains unverified. The semantic echo is not proof of cipher use.
 
 Sources:
 - [A Zen Forest PDF](https://terebess.hu/zen/ZenForest.pdf): title/copyright/catalog pages identify Shigematsu and the 1981 edition; the introduction is printed p. 3; item 613 is in the numbered sayings section.
