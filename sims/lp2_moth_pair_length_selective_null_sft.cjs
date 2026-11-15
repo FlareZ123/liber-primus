@@ -132,6 +132,50 @@ assert.equal(exact.positives,1222200n);
 // different 40-word inventory; use a deterministic 2m-permutation null.
 // The source GP word tape and page boundaries stay fixed throughout.
 const MATCHES=new Set(patterns.map(p=>p.reduce((s,x)=>s*16+x,0)));
+// Exact competing null: preserve not only word-length multiplicities, but
+// EVERY observed adjacent word-length pair on the original p55 passage.
+// Enumerate unlabeled directed Euler trails of the empirical bigram
+// multigraph, starting at the original first word length. Duplicated
+// directed edges are indistinguishable; do not overcount their labelings.
+const edgeCounts=new Map();
+for(let i=0;i<page55.length-1;i++) {
+  const pair=page55[i]+','+page55[i+1];
+  edgeCounts.set(pair,(edgeCounts.get(pair)??0)+1);
+}
+const directedEdges=[...edgeCounts].map(([pair,count])=>{
+  const [from,to]=pair.split(',').map(Number);
+  return {from,to,count};
+});
+let bigramTrails=0,bigramMatchingTrails=0,bigramFixedTerminalMatches=0;
+const trail=[page55[0]];
+function visitEulerTrails(remaining) {
+  if(remaining===0) {
+    bigramTrails++;
+    let found=false;
+    for(let i=0;i<=trail.length-7;i++) {
+      let code=0;
+      for(let j=0;j<7;j++) code=code*16+trail[i+j];
+      if(MATCHES.has(code)){found=true;break;}
+    }
+    if(found)bigramMatchingTrails++;
+    if(trail.slice(-7).every((x,j)=>x===wisdom[6+j]))
+      bigramFixedTerminalMatches++;
+    return;
+  }
+  const from=trail[trail.length-1];
+  for(const edge of directedEdges) {
+    if(edge.from!==from || edge.count===0)continue;
+    edge.count--;
+    trail.push(edge.to);
+    visitEulerTrails(remaining-1);
+    trail.pop();
+    edge.count++;
+  }
+}
+visitEulerTrails(page55.length-1);
+assert.equal(bigramTrails,216);
+assert.equal(bigramMatchingTrails,24);
+assert.equal(bigramFixedTerminalMatches,24);
 let seed=20261115;
 function randomUint32() {
   seed|=0;
@@ -214,6 +258,10 @@ console.log(JSON.stringify({
   motifSource:"LP1 p05 exact 18-word/81-rune Wisdom passage",
   searchedTargets:["LP2 p53 (40 words)","LP2 p55 (16 body words after carry)"],
   originalObserved:{p53:longest(wisdom,page53),p55:longest(wisdom,page55)},
+  p55ExactAdjacentLengthPairNull:{distinctEulerTrails:bigramTrails,
+    trailsWithAnySevenWordMatch:bigramMatchingTrails,
+    trailsWithExactTerminalSourcePhraseLengths:bigramFixedTerminalMatches,
+    probability:bigramMatchingTrails/bigramTrails},
   p55Exact:{positivePermutations:exact.positives.toString(),
     distinctPermutations:exact.total.toString(),probability:exact.probability,
     memoStates:exact.states},
