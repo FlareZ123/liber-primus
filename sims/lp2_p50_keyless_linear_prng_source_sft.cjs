@@ -221,6 +221,63 @@ function readTable(radix, order, sourceRows, completeAlphabet) {
   return bytes;
 }
 
+
+/**
+ * Recover every 32-bit LCG state compatible with one observed 8-bit lane.
+ * Lanes 16,23,24 expose 8 bits and leave exactly 2^24 state candidates.
+ * The low-eight lane obeys a projected recurrence and cannot uniquely
+ * identify the original full state.
+ * @param {number[]} bytes
+ * @param {number} a
+ * @param {number} c
+ * @param {number} shift
+ * @param {number} [expectedFirstState]
+ * @returns {{fits:boolean,candidates:number|null,containsExpected?:boolean,firstMismatch?:number}}
+ */
+function recoverTruncatedLCG(bytes, a, c, shift, expectedFirstState) {
+  assert.ok([0, 16, 23, 24].includes(shift));
+  if (shift === 0) {
+    for (let i = 1; i < bytes.length; i++) {
+      if (((Math.imul(bytes[i - 1], a) + c) & 255) !== bytes[i])
+        return { fits: false, candidates: 0, firstMismatch: i };
+    }
+    return { fits: true, candidates: null };
+  }
+  let candidates = 0;
+  let containsExpected = false;
+  const highCount = 2 ** (24 - shift), lowCount = 2 ** shift;
+  for (let high = 0; high < highCount; high++) {
+    const prefix = ((high << (shift + 8)) | (bytes[0] << shift)) >>> 0;
+    for (let low = 0; low < lowCount; low++) {
+      const first = (prefix | low) >>> 0;
+      let state = first, index = 1;
+      for (; index < bytes.length; index++) {
+        state = (Math.imul(state, a) + c) >>> 0;
+        if (((state >>> shift) & 255) !== bytes[index]) break;
+      }
+      if (index === bytes.length) {
+        candidates++;
+        if (first === expectedFirstState) containsExpected = true;
+      }
+    }
+  }
+  const result = { fits: candidates > 0, candidates };
+  if (expectedFirstState !== undefined) result.containsExpected = containsExpected;
+  return result;
+}
+
+/**
+ * Published before 2014. C's emitted fifteen-bit rand() contains state
+ * bits16..30, allowing either low byte16..23 or high byte23..30.
+ * Mod-2^31 implementations have identical visible lower31-bit evolution.
+ */
+const BYTE_LCG_FAMILIES = [
+  { name: 'ANSI-C', a: 1103515245, c: 12345, shifts: [16, 23] },
+  { name: 'MSVC', a: 214013, c: 2531011, shifts: [16, 23] },
+  { name: 'Borland', a: 22695477, c: 1, shifts: [16, 23] },
+  { name: 'Numerical-Recipes', a: 1664525, c: 1013904223, shifts: [0, 24] }
+];
+
 function main() {
   const file = path.join(__dirname, '..', 'resources', 'liber-primus', 'base60-grid.json');
   const original = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -265,6 +322,52 @@ function main() {
     });
   }
 
+
+  // Four 256-byte controls recover the correct first emitting state within
+  // the complete candidate class. Middle-byte C rand() states need not be
+  // unique even with all 256 output bytes.
+  const truncatedPlants = [
+    { a: 214013, c: 2531011, shift: 16 },
+    { a: 214013, c: 2531011, shift: 23 },
+    { a: 1664525, c: 1013904223, shift: 24 },
+    { a: 1664525, c: 1013904223, shift: 0 }
+  ];
+  for (const plant of truncatedPlants) {
+    let state = 3301, firstState;
+    const bytes = [];
+    for (let i = 0; i < 256; i++) {
+      state = (Math.imul(state, plant.a) + plant.c) >>> 0;
+      if (i === 0) firstState = state;
+      bytes.push((state >>> plant.shift) & 255);
+    }
+    const recovered = recoverTruncatedLCG(bytes, plant.a, plant.c, plant.shift, firstState);
+    assert.equal(recovered.fits, true);
+    if (plant.shift === 0) assert.equal(recovered.candidates, null);
+    else {
+      assert.ok(recovered.candidates >= 1);
+      assert.equal(recovered.containsExpected, true);
+      if (plant.shift === 24) assert.equal(recovered.candidates, 1);
+    }
+  }
+
+  // Full state enumeration: 28 tests x 2^24 candidates, plus four exact
+  // low-eight recurrence checks. No fitted start, byte gaps or phase.
+  const truncatedOriginal = [];
+  for (const radix of [59, 60]) {
+    for (const order of ['row', 'column']) {
+      const bytes = readTable(radix, order, original.rows, original.alphabet);
+      for (const family of BYTE_LCG_FAMILIES) {
+        for (const shift of family.shifts) {
+          const recovered = recoverTruncatedLCG(bytes, family.a, family.c, shift);
+          assert.equal(recovered.fits, false);
+          assert.equal(recovered.candidates, 0);
+          truncatedOriginal.push({ radix, order, family: family.name, shift });
+        }
+      }
+    }
+  }
+  assert.equal(truncatedOriginal.length, 32);
+
   const result = [];
   for (const sourceCase of CASES) {
     const { radix, order, endian } = sourceCase;
@@ -296,9 +399,16 @@ function main() {
     positiveControls: {
       directXorshift32Bitplanes: 8,
       fullyObservedLinearPlant: 64,
-      fullyObservedLCGPlant: 64
+      fullyObservedLCGPlant: 64,
+      truncatedLCGFullLengthPlants: 4
     },
-    originalCases: result
+    originalCases: result,
+    truncatedOriginal: {
+      cases: truncatedOriginal.length,
+      exhaustiveCandidateInitialStates: 469762048,
+      sourceViableStates: 0,
+      families: BYTE_LCG_FAMILIES.map((family) => family.name)
+    }
   }, null, 2));
 }
 
