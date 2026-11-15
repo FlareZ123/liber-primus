@@ -13,6 +13,7 @@
 
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
+const fs = require('node:fs');
 const grid = require('../resources/liber-primus/lp2-grid-256.json');
 const gp = require('../resources/liber-primus/lp2-corpus.json');
 const B = grid.bytes;
@@ -90,6 +91,24 @@ function matchCount(actual, expected) {
   return actual.reduce((hits, value, index) => hits + Number(value === expected[index]), 0);
 }
 
+// February 2014 Stage10 filenames are an independent historical number set.
+// Their use as later LP2 table addresses remains hypothetical.
+const stage10Html = fs.readFileSync(
+  require.resolve('../resources/external/2014-stage10-post-square-response.html'), 'utf8'
+);
+const stage10Blob = crypto.createHash('sha1').update(
+  'blob ' + Buffer.byteLength(stage10Html) + '\0' + stage10Html
+).digest('hex');
+assert.equal(stage10Blob, 'd71303af76016c8e88ed5dcc8a18b08e6276a437');
+const stage10Names = [...stage10Html.matchAll(/src="\/(\d+)\.jpg"/g)]
+  .map((match) => Number(match[1]));
+assert.deepEqual(stage10Names, [107, 167, 229]);
+const historicalPrimeList = firstPrimes(50);
+const stage10Ordinals = stage10Names.map((n) => historicalPrimeList.indexOf(n) + 1);
+assert.deepEqual(stage10Ordinals, [28, 39, 50]);
+assert.deepEqual(stage10Ordinals.slice(1).map((v, i) => v - stage10Ordinals[i]), [11, 11]);
+assert.equal(B[229], 0);
+
 const mainCycle = [0, 203, 68, 199, 47, 76, 114, 197, 115, 247, 192];
 const minorCycle = [249, 158];
 assert.deepEqual(orbit(B, 3301 % 256), { transient: [229], cycle: mainCycle });
@@ -118,6 +137,23 @@ const p55 = gp.pages.find((page) => page.page === 55).indices;
 const p56Cipher = gp.pages.find((page) => page.page === 56).indices;
 const p57 = gp.pages.find((page) => page.page === 57).indices;
 assert.deepEqual([p55.length, p56Cipher.length, p57.length], [76, 85, 95]);
+
+const stage10Orbits = stage10Names.map((n) => ({ start: n, ...orbit(B, n) }));
+assert.deepEqual(stage10Orbits.map((x) => x.transient.length), [16, 18, 1]);
+assert.ok(stage10Orbits.every((x) => x.cycle.length === 11));
+/** @param {number[]} xs @returns {number} */
+function ioc(xs) {
+  const counts = Array.from({ length: 29 }, (_, n) => xs.filter((v) => v === n).length);
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (xs.length * (xs.length - 1));
+}
+const source229States = keyStates(B, 229, 76);
+const stage10P55Trials = [-1, 1].map((sign) => {
+  const candidate = applyKey(p55, source229States, sign);
+  assert.deepEqual(applyKey(candidate, source229States, -sign), p55);
+  return { sign, ioc: ioc(candidate), translit: gpText(candidate) };
+});
+assert.ok(Math.abs(stage10P55Trials[0].ioc - 0.031228070175438598) < 1e-14);
+assert.ok(Math.abs(stage10P55Trials[1].ioc - 0.03894736842105263) < 1e-14);
 
 const primes = firstPrimes(85);
 let clock = 0;
@@ -195,6 +231,9 @@ console.log(JSON.stringify({
   lookup: 'f(i) = original row-major base60 byte B[i], indexed 0..255',
   cycles: [mainCycle, minorCycle],
   basinCounts,
+  stage10Source: { historicGitBlob: stage10Blob, filenames: stage10Names,
+    primeOrdinals: stage10Ordinals, pointerPaths: stage10Orbits,
+    p55OriginalRunners: stage10P55Trials },
   sourceSeeds: {
     3301: orbit(B, 3301 % 256),
     1033: orbit(B, 1033 % 256),
