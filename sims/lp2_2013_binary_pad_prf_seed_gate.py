@@ -211,7 +211,8 @@ def score_plain(sweep, skipdecode, plain) -> tuple[float, str]:
 def decode_one(sweep, skipdecode, cipher: np.ndarray, key: np.ndarray,
                sign: int, atbash: int, offset: int, beam_width: int):
     transformed = ((28 - cipher) % 29) if atbash else cipher
-    plain = sweep.beam(transformed, key, offset, sign, beam_width)
+    # Campaign XVIII's pinned API is beam(cipher, key, sign, offset, length, width).
+    plain = sweep.beam(transformed, key, sign, offset, len(transformed), beam_width)
     if plain is None:
         return None
     score, text = score_plain(sweep, skipdecode, plain)
@@ -251,7 +252,7 @@ def positive_control(sweep, skipdecode, translit) -> dict:
     plain = encode_source_native(source * 3, translit)[:240]
     key = np.asarray([(i * 7 + 11) % 29 for i in range(8000)], dtype=np.int64)
     cipher, planted_skips = encipher_keyskip(plain, key, 3, 1, 0.83)
-    decoded = sweep.beam(cipher, key, 3, 1, sweep.FULL_BEAM)
+    decoded = sweep.beam(cipher, key, 1, 3, len(cipher), sweep.FULL_BEAM)
     exact = np.array_equal(np.asarray(decoded, dtype=np.int64), plain)
     verified = verify_reencipher(cipher, list(map(int, decoded)), key, 3, 1, 0, sweep.MAXSKIP)
     if not exact or verified is None:
@@ -360,7 +361,8 @@ def main() -> None:
     for candidate in top[:4]:
         transformed = ((28 - all_cipher) % 29) if candidate["atbash"] else all_cipher
         plain = sweep.beam(
-            transformed, candidate["key"], 0, candidate["sign"], int(sweep.FULL_BEAM)
+            transformed, candidate["key"], candidate["sign"], 0,
+            len(transformed), int(sweep.FULL_BEAM)
         )
         if plain is None:
             global_results.append({
