@@ -125,8 +125,12 @@ const predict = (row, coefficients) =>
   mod(row.reduce((s, x, i) => s + x * coefficients[i], 0));
 const heldout = sites.map((_, i) => i).filter((i) => !fitIndices.includes(i));
 assert.equal(heldout.filter((i) => predict(design[i], fitted) === observed[i]).length, 2);
-assert.equal(predict(design[heldout[0]], fitted), 27);
-assert.equal(observed[heldout[0]], 17);
+const firstHeldoutMismatch = heldout.find((i) =>
+  predict(design[i], fitted) !== observed[i]
+);
+assert.equal(sites[firstHeldoutMismatch], 141);
+assert.equal(predict(design[firstHeldoutMismatch], fitted), 27);
+assert.equal(observed[firstHeldoutMismatch], 17);
 
 // Secret-coefficient positive: a distinct six-unknown affine stencil recovers
 // all six hidden coefficients from those same six p57 original-source inputs
