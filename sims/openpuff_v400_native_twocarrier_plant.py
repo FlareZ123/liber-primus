@@ -242,6 +242,36 @@ def choose_hiding_target(app, window, path, out, stage):
         f"expected data({size}) bytes; observed {observed}"
     )
 
+def acknowledge_password_disable_warning():
+    """Confirm the original application's explicit optional-password dialog."""
+    events = []
+    for dialog in Desktop(backend="win32").windows():
+        if not safe(dialog.is_visible):
+            continue
+        if (safe(dialog.window_text) or "").strip().lower() != "warning":
+            continue
+        message = " ".join(
+            (safe(child.window_text) or "").strip()
+            for child in (safe(dialog.descendants) or [])
+            if safe(child.class_name) == "Static"
+        )
+        if "password (" not in message.lower() or "disable it" not in message.lower():
+            continue
+        yes = next(
+            (child for child in dialog.descendants()
+             if safe(child.class_name) == "Button"
+             and (safe(child.window_text) or "").replace("&", "").strip().lower() == "yes"),
+            None,
+        )
+        if yes is None:
+            raise RuntimeError(f"Native password-disable warning lacks Yes: {message!r}")
+        yes.click_input()
+        events.append(message)
+        print(f"Confirmed original optional-password disable dialog: {message!r}", flush=True)
+        time.sleep(0.4)
+    return events
+
+
 def set_password(window, password):
     edits = visible_controls(window, "Edit")
     left = sorted(
@@ -285,12 +315,15 @@ def set_password(window, password):
         if checkbox.get_check_state():
             checkbox.uncheck_by_click_input()
             time.sleep(0.3)
+            acknowledge_password_disable_warning()
         if checkbox.get_check_state():
             # Native button wrappers support direct WM_BM_SETCHECK.
             checkbox.uncheck()
             time.sleep(0.3)
+            acknowledge_password_disable_warning()
         print("Disable optional password checkbox:",
               safe(checkbox.control_id), checkbox.get_check_state(), flush=True)
+    acknowledge_password_disable_warning()
     states = [checkbox.get_check_state() for checkbox in checkboxes]
     if states != [0, 0]:
         raise RuntimeError(f"Optional passwords remain enabled: {states}")
