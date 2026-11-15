@@ -180,4 +180,66 @@ console.log('Word-local 5-back / two-hit Markov null:', {
   pairMean: pairSum / 4000,
   lag5GreaterOrEqual, pairGreaterOrEqual, jointGreaterOrEqual
 });
-console.log('PASS: uniform 28-successor first-order model fits the non-diagonal matrix but misses both word-local lag-five effects.');
+
+// More generous in-sample maximum-likelihood stationary first-order chain:
+// preserve the exact authentic 29x29 successor frequencies, including every
+// observed rare self-loop, rather than enforcing a flat 28-choice successor.
+// This conditions on all original first-order evidence in the entire book.
+const fitted = transitions(original);
+const cumulative = Array.from({ length: 29 }, () => Array(29).fill(0));
+for (let i = 0; i < 29; i++) {
+  let total = 0;
+  for (let j = 0; j < 29; j++) {
+    total += fitted.table[i][j];
+    cumulative[i][j] = total;
+  }
+  assert.equal(total, fitted.rowTotals[i]);
+}
+const mLE = makeRng(20261115);
+function fittedSimulation() {
+  const generated = [];
+  for (const page of pages) {
+    let predecessor = page[0];
+    generated.push(predecessor);
+    for (let i = 1; i < page.length; i++) {
+      const draw = Math.floor(mLE() * fitted.rowTotals[predecessor]);
+      let successor = 0;
+      while (cumulative[predecessor][successor] <= draw) successor++;
+      generated.push(successor);
+      predecessor = successor;
+    }
+  }
+  return generated;
+}
+let fittedFiveSum = 0;
+let fittedPairSum = 0;
+let fittedFiveGE = 0;
+let fittedPairGE = 0;
+let fittedJointGE = 0;
+let fittedMaximumFive = 0;
+for (let replicate = 0; replicate < 4000; replicate++) {
+  const [five, pair] = lag5(fittedSimulation());
+  fittedFiveSum += five;
+  fittedPairSum += pair;
+  fittedMaximumFive = Math.max(fittedMaximumFive, five);
+  fittedFiveGE += Number(five >= originalLag5[0]);
+  fittedPairGE += Number(pair >= originalLag5[1]);
+  fittedJointGE += Number(
+    five >= originalLag5[0] && pair >= originalLag5[1]);
+}
+assert.equal(fittedFiveSum / 4000, 72.69425);
+assert.equal(fittedPairSum / 4000, 1.6785);
+assert.equal(fittedMaximumFive, 102);
+assert.equal(fittedFiveGE, 0);
+assert.equal(fittedPairGE, 0);
+assert.equal(fittedJointGE, 0);
+console.log('Maximum-likelihood 29x29 in-sample fitted Markov null:', {
+  replicates: 4000,
+  lag5Mean: fittedFiveSum / 4000,
+  pairMean: fittedPairSum / 4000,
+  lag5GE: fittedFiveGE,
+  pairGE: fittedPairGE,
+  jointGE: fittedJointGE,
+  maximumLag5: fittedMaximumFive
+});
+console.log('PASS: neither a uniform 28-other-symbol walk nor the fitted full 29x29 stationary Markov chain explains the word-local fifth-apart repeats.');
