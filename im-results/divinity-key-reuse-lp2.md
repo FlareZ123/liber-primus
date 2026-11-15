@@ -108,9 +108,32 @@ As a direction/control only, ordinary all-consuming Vigenère (ignoring the auth
 
 **Reproduction:** node sims/lp2_inner_divinity_edge_key_sft.cjs
 
+## Corrected original two-key final-chapter gate (15 November 2026)
+
+The first-party solved p57 text invites examining "circumferences" and "divinity"; earlier original LP1 pages independently establish the two Vigenère keys. The existing source-key composition script used obsolete **FIRFUMFERENCE**, already disproved by the first 36 solved LP1 p14 runes: it misses positions 11 and 24. Correct source key **FIRFUMFERENFE** passes all 36. This correction supersedes the earlier two-key script's numerical output, and uses the authentic key independently established in [the earlier LP1 correction](lp2-2014-firfumference-vigenere-gate.md).
+
+The exact finite target is original LP2 p55's 76 runes, or the p54–55 final source-illustrated chapter's 308 runes, both with key phase zero at that proposed beginning. Source-native **DIVINITY** has 8 GP29 symbols, and **FIRFUMFERENFE** has 13. For ordinary all-consuming Vigenère, the double inverse is *P[i] = C[i] − K13[i mod 13] − K8[i mod 8] (mod 29)*; the two layer orders commute. The corrected p55 output has GP29 IoC **0.037192982456**, and the complete p54–55 output **0.034561529676** (its p55 tail **0.039649122807**). The full 76/308 original rune streams reencrypt exactly, but the output is nonlinguistic. Correct p55 output prefix: **IA C X F Y S U EA NG T TH AE AE NG EA EA R P Y A O OE EA J C U P M G L**.
+
+To give the historic *plaintext-F bypass* its full legal inverse, a ciphertext F must admit two alternatives: unconsumed literal F, or an encrypted non-F that consumes its layer's key. The corrected original-input reproducer tracks all such branches with an exact two-clock state map. It crosses two layer orders with four independently set bypass conventions, giving eight source-frozen models per original target. For each model, the first impossible zero-based rune offset is:
+
+| Outer → inner key | Plaintext-F bypass | p55 (76) | p54–55 (308) |
+| --- | --- | ---: | ---: |
+| Circumference → divinity | neither | valid but unreadable | valid but unreadable |
+| Circumference → divinity | divinity only | 3 | 36 |
+| Circumference → divinity | circumference only | 74 | 49 |
+| Circumference → divinity | both | 3 | 36 |
+| Divinity → circumference | neither | valid but unreadable | valid but unreadable |
+| Divinity → circumference | circumference only | 16 | 36 |
+| Divinity → circumference | divinity only | 3 | 38 |
+| Divinity → circumference | both | 3 | 36 |
+
+All bypass variants are impossible before the target ends. All eight independently seeded source-native p57 95-rune encryptions, with their own exact bypass settings and order, pass the exact same inverse at 95/95. Ordinary all-consuming variants are bijective but do not reveal any recognizable plaintext. This is a precise rejection of these *zero-phase two-key direct uses*, not evidence that the historical author prescribed both bypass layers or that the p55 receiver was intended. No extra phase, word break schedule or unknown external key was fitted after failure.
+
+[Corrected read-only Node22 CommonJS SFT](../sims/lp2_p57_circumference_divinity_double_vigenere_sft.cjs).
+
 ## Conclusion
 
-Direct reuse of the authentic LP1 DIVINITY Vigenère key, its inner six-symbol IVINIT derivative under the edge-preserving circumference reading, and the p55 own-circumference repeating-key construction are unsupported by original plaintext evidence. The inner-key route has a deterministic plaintext-F contradiction under both natural clocks, and its all-consuming control yields no language gain. These bounded negatives do not exclude a different source-dependent cipher layer or exterior operation; any such route requires an independently selected reversible mechanism.
+Direct reuse of the authentic LP1 DIVINITY Vigenère key, its corrected two-key composition with FIRFUMFERENFE on the final chapter, its inner six-symbol IVINIT derivative under the edge-preserving circumference reading, and the p55 own-circumference repeating-key construction are unsupported by original plaintext evidence. The inner-key route has a deterministic plaintext-F contradiction under both natural clocks, and its all-consuming control yields no language gain. These bounded negatives do not exclude a different source-dependent cipher layer or exterior operation; any such route requires an independently selected reversible mechanism.
 
 ## Reproduction
 

@@ -1,109 +1,141 @@
 "use strict";
 /**
- * P57's historically meaningful CIRCUMFERENCES/DIVINITY pair:
- * frozen, two-authentic-key Vigenere decoding of original LP2 p55.
- *
- * The creator-era sources already establish the two GP29 keys independently:
- * FIRFUMFERENCE (2014 LP1 pp107/167) and DIVINITY (2014 LP1 pp03/04).
- * This gate tests their direct sequential composition with zero fitted phases.
- *
- * Node.js 22, CommonJS, read-only SFT. No inferred plaintext is asserted.
+ * Correct 2014 FIRFUMFERENFE + DIVINITY keys on the original p55/final chapter.
+ * Exhaust all legal ciphertext-F branches for independent per-layer bypass rules.
+ * Node.js 22 CommonJS, read-only original-input SFT.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const root = path.join(__dirname, "..");
-const gp = JSON.parse(fs.readFileSync(path.join(root, "resources/liber-primus/lp2-corpus.json"), "utf8"));
-const circumference = [0,10,4,0,1,19,0,18,4,18,9,5,18];
-const divinity = [23,10,1,10,9,10,16,26];
-const original = gp.pages[55].indices;
-assert.equal(original.length, 76);
-assert.equal(gp.pages[57].indices.length, 95);
-/** @param {number[]} data @param {number[]} key @returns {number[]} */
-function decrypt(data, key) {
-  return data.map((v, i) => (v - key[i % key.length] + 29) % 29);
+const read = p => fs.readFileSync(path.join(__dirname, "..", p), "utf8");
+const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const circ = [..."FIRFUMFERENFE"].map(c => gp.translit.indexOf(c));
+const div = [..."DIVINITY"].map(c => gp.translit.indexOf(c));
+assert.deepEqual(circ, [0,10,4,0,1,19,0,18,4,18,9,0,18]);
+assert.deepEqual(div, [23,10,1,10,9,10,16,26]);
+
+/** @param {number} x @returns {number} */
+function mod(x) { return (x % 29 + 29) % 29; }
+/** @param {number[]} a @returns {number} */
+function ioc(a) {
+  const n = Array(29).fill(0);
+  for (const x of a) n[x]++;
+  return n.reduce((s,x) => s + x*(x-1), 0) / (a.length * (a.length-1));
 }
-/** @param {number[]} data @param {number[]} key @returns {number[]} */
-function encrypt(data, key) {
-  return data.map((v, i) => (v + key[i % key.length]) % 29);
+/** @param {number[]} a @param {number[]} k @returns {number[]} */
+function dec(a,k) { return a.map((x,i) => mod(x-k[i%k.length])); }
+/**
+ * All valid predecessors of one ciphertext rune, preserving key-clock phase.
+ * A ciphertext F may be an unconsumed literal F or an encrypted non-F.
+ * @param {number} c @param {number[]} k @param {number} phase
+ * @param {boolean} skip @returns {[number,number][]}
+ */
+function options(c,k,phase,skip) {
+  const p = mod(c-k[phase]);
+  if (!skip) return [[p,(phase+1)%k.length]];
+  const a = [];
+  if (c === 0) a.push([0,phase]);
+  if (p !== 0) a.push([p,(phase+1)%k.length]);
+  return a;
 }
 /**
- * The authentic LP1 DIVINITY exception treats a literal ciphertext F (index 0)
- * as an unconsumed F. An encrypted non-F mapping to F would be ambiguous and
- * contradict this exact automatic-decoder convention.
- * @param {number[]} data @param {number[]} key
- * @returns {{plain:number[],invalid:number[],consumed:number}}
+ * @param {number[]} a @param {number[]} k @param {boolean} skip
+ * @returns {number[]}
  */
-function decryptLiteralF(data, key) {
-  const plain = [], invalid = [];
-  let clock = 0;
-  for (let i = 0; i < data.length; i++) {
-    if (data[i] === 0) { plain.push(0); continue; }
-    const p = (data[i] - key[clock % key.length] + 29) % 29;
-    if (p === 0) invalid.push(i);
-    plain.push(p);
-    clock++;
+function enc(a,k,skip) {
+  let phase = 0;
+  return a.map(p => {
+    if (skip && p === 0) return 0;
+    const c = mod(p+k[phase]);
+    phase = (phase+1)%k.length;
+    return c;
+  });
+}
+/**
+ * @param {number[]} cipher @param {number[]} outer @param {number[]} inner
+ * @param {boolean} skipOuter @param {boolean} skipInner
+ * @param {number[]|null} expected
+ * @returns {{failure:number|null,states:number,maxStates:number}}
+ */
+function inverse(cipher,outer,inner,skipOuter,skipInner,expected=null) {
+  let states = new Map([["0:0",[0,0]]]);
+  let maxStates = 1;
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Map();
+    for (const [a,b] of states.values()) {
+      for (const [mid,aa] of options(cipher[i],outer,a,skipOuter)) {
+        for (const [plain,bb] of options(mid,inner,b,skipInner)) {
+          if (expected && expected[i] !== plain) continue;
+          next.set(aa+":"+bb,[aa,bb]);
+        }
+      }
+    }
+    if (!next.size) return {failure:i,states:0,maxStates};
+    states = next;
+    maxStates = Math.max(maxStates,states.size);
   }
-  return {plain,invalid,consumed:clock};
+  return {failure:null,states:states.size,maxStates};
 }
-/** @param {number[]} arr @returns {number} */
-function ioc(arr) {
-  const f = Array(29).fill(0);
-  for (const v of arr) f[v]++;
-  return f.reduce((sum,n) => sum + n*(n-1), 0)/(arr.length*(arr.length-1));
-}
-const outer = decrypt(original, circumference);
-const plain = decrypt(outer, divinity);
-assert.deepEqual(encrypt(encrypt(plain, divinity), circumference), original);
-const native = gp.pages[57].indices.slice(0, 76);
-assert.deepEqual(decrypt(decrypt(encrypt(encrypt(native, divinity), circumference), circumference), divinity), native);
-const fInner = decryptLiteralF(outer, divinity);
-const fOuter = decryptLiteralF(original, divinity);
-const reverseLayer = decrypt(fOuter.plain, circumference);
-assert.deepEqual(fInner.invalid, [3,24,36]);
-assert.deepEqual(fOuter.invalid, [3,27]);
-assert.equal(fInner.consumed, 73);
-assert.equal(fOuter.consumed, 73);
-assert(Math.abs(ioc(original)-0.037894736842105266)<1e-12);
-assert(Math.abs(ioc(plain)-0.035789473684210524)<1e-12);
-assert(Math.abs(ioc(fInner.plain)-0.03508771929824561)<1e-12);
-assert(Math.abs(ioc(reverseLayer)-0.031578947368421054)<1e-12);
 
-// A distinct source-fixed clock: original p54's nine-rune red heading opens
-// the complete final 308-rune cipher chapter, carried across physical p55.
-// This tests the authentic historical practice of starting a new key at a
-// visible section heading, instead of resetting at p55's arbitrary page turn.
-const chapter = gp.pages[54].indices.concat(gp.pages[55].indices);
-assert.equal(chapter.length, 308);
-assert.deepEqual(chapter.slice(232), original);
-const chapterOuter = decrypt(chapter, circumference);
-const chapterPlain = decrypt(chapterOuter, divinity);
-assert.deepEqual(encrypt(encrypt(chapterPlain, divinity), circumference), chapter);
-const chapterFInner = decryptLiteralF(chapterOuter, divinity);
-const chapterFOuter = decryptLiteralF(chapter, divinity);
-assert.deepEqual(chapterFInner.invalid, [36,72,168,184,241,256,267,283,301,303]);
-assert.deepEqual(chapterFOuter.invalid, [38,43,89,90,95,126,144,214,302,304,307]);
-assert(Math.abs(ioc(chapterPlain)-0.03449807521468759)<1e-12);
-assert(Math.abs(ioc(chapterPlain.slice(232))-0.04175438596491228)<1e-12);
-const answer = {
-  interpretation:"p57 CIRCUMFERENCES then DIVINITY as two authentic direct GP29 Vigenere keys on adjacent unknown p55",
-  originalRunes:original.length,sourceExactKeys:{circumference,divinity},
-  fullConsume:{originalIoC:ioc(original),decodedIoC:ioc(plain),
-    decodedTranslit:plain.map(x=>gp.translit[x]).join(" "),
-    syntheticSolvedP57RunesRecovered:native.length,
-    exactOriginalReconstruction:true},
-  originalFinalChapterClockFromP54Heading:{sourceRunes:chapter.length,
-    decodedIoC:ioc(chapterPlain),p55TailIoC:ioc(chapterPlain.slice(232)),
-    decodedFirstNine:chapterPlain.slice(0,9).map(x=>gp.translit[x]).join(" "),
-    reconstructedOriginalRunes:chapter.length,
-    invalidLiteralFInner:chapterFInner.invalid,
-    invalidLiteralFOuter:chapterFOuter.invalid},
-  authenticLiteralFVariants:{
-    circumferenceOuterDivinityInner:{intermediateFOffsets:outer.flatMap((x,i)=>x===0?[i]:[]),
-      illegalEncryptedFOffsets:fInner.invalid,decodedIoC:ioc(fInner.plain)},
-    divinityOuterCircumferenceInner:{sourceFOffsets:original.flatMap((x,i)=>x===0?[i]:[]),
-      illegalEncryptedFOffsets:fOuter.invalid,decodedIoC:ioc(reverseLayer)}
-  },
-  verdict:"No original LP2 plaintext. The exact two-key zero-phase composition is nonlinguistic; both literal-F layer orders violate the automatic-F convention."
+// Independent positive on authentic solved original 2014 LP1 p14–15.
+const rune = new Map(gp.runes.map((r,i) => [r,i]));
+const parts = read("resources/transcriptions/liber_primus_master.txt").split("%");
+const lp1 = [...parts[13]+parts[14]].filter(r => rune.has(r)).map(r => rune.get(r));
+assert.equal(lp1.length,319);
+const known36 = "A C O A N D U R NG A L E S S O N TH E M A S T E R E X P L A I N E D TH E I"
+  .split(" ").map(s => gp.translit.indexOf(s));
+assert.deepEqual(dec(lp1.slice(0,36),circ),known36);
+const obsolete = [..."FIRFUMFERENCE"].map(s => gp.translit.indexOf(s));
+assert.deepEqual(dec(lp1.slice(0,36),obsolete).flatMap((x,i)=>x===known36[i]?[]:[i]),[11,24]);
+
+const known95 = gp.pages[57].indices;
+assert.equal(known95.length,95);
+const originals = [
+  ["p55",gp.pages[55].indices],
+  ["p54+55",gp.pages[54].indices.concat(gp.pages[55].indices)]
+];
+assert.equal(originals[0][1].length,76);
+assert.equal(originals[1][1].length,308);
+assert.deepEqual(originals[1][1].slice(232),originals[0][1]);
+const orders = [["circ>div",circ,div],["div>circ",div,circ]];
+const output = {}, expectations = {
+  "p55":[null,3,74,3,null,16,3,3],
+  "p54+55":[null,36,49,36,null,36,38,36]
 };
-console.log(JSON.stringify(answer, null, 2));
+for (const [name,cipher] of originals) {
+  const cases = [], failures = [];
+  for (const [order,outer,inner] of orders) {
+    for (const skipOuter of [false,true]) {
+      for (const skipInner of [false,true]) {
+        const planted = enc(enc(known95,inner,skipInner),outer,skipOuter);
+        assert.equal(inverse(planted,outer,inner,skipOuter,skipInner,known95).failure,null);
+        const actual = inverse(cipher,outer,inner,skipOuter,skipInner);
+        cases.push({order,skipOuter,skipInner,...actual});
+        failures.push(actual.failure);
+      }
+    }
+  }
+  assert.deepEqual(failures,expectations[name]);
+  const plain = dec(dec(cipher,circ),div);
+  assert.deepEqual(plain.map((v,i)=>mod(v+circ[i%13]+div[i%8])),cipher);
+  output[name] = {
+    sourceRunes:cipher.length,
+    sourceIoC:ioc(cipher),
+    allConsumingIoC:ioc(plain),
+    decodedTailIoC:name==="p54+55"?ioc(plain.slice(232)):null,
+    decodedPrefix:plain.slice(0,60).map(i=>gp.translit[i]).join(" "),
+    cases
+  };
+}
+assert(Math.abs(output.p55.allConsumingIoC - 0.037192982456140354)<1e-12);
+assert(Math.abs(output["p54+55"].allConsumingIoC - 0.03456152967553619)<1e-12);
+assert(Math.abs(output["p54+55"].decodedTailIoC - 0.039649122807017545)<1e-12);
+console.log(JSON.stringify({
+  source:"original LP1 key-positive, original LP2 unknown final chapter",
+  circKey:"FIRFUMFERENFE",
+  divKey:"DIVINITY",
+  solvedLP1PositiveRunes:36,
+  solvedP57EncryptedPositiveRunesPerCase:95,
+  output,
+  verdict:"No unknown plaintext; every F-bypass composition fails on the original zero-phase ciphertext"
+},null,2));
