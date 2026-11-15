@@ -55,6 +55,15 @@ async function main(){
     for(let url of matches)urls.push({...row,url:url.replace(/[.,;!?]+$/g,'')});
   }
   summarize('Outward links from source speakers OR within 75 raw lines of relevant prime/delta conversation',urls,150);
+  // Freeze original whole-conversation neighborhoods for the historical
+  // author's own result, its February 5 continuation, and later method fork.
+  for (const [anchor,before,after] of [
+    [88095,22,15], [89526,28,60], [90119,32,32], [93044,20,26], [93740,14,22]
+  ]) {
+    const neighboring=rows.filter(x=>x.n>=anchor-before&&x.n<=anchor+after);
+    summarize('Full contemporaneous conversation at original L'+anchor,
+      neighboring.filter(x=>!/(?:Bot$|Bot\d$)/i.test(x.nick)),110);
+  }
   const allMonths=rows.filter(x=>x.date>='2015 Jan 01'&&x.date<='2015 Mar 31');
   const later=allMonths.filter(x=>focus.test(x.body)&&!dates.includes(x));
   summarize('Same concrete mechanism elsewhere Jan-Mar 2015',later,100);
