@@ -1,9 +1,10 @@
 {
   "schema": 1,
   "source": {
-    "description": "Quote offsets remain derived annotations. Four single-tick apostrophes are original ink in correct LP2 archive scans 21.jpg, 38.jpg, 52.jpg, 58.jpg. The older assertion of absence arose from checking the wrong scan IDs by equating LP2 page numbers with archive image basenames (actual filename = physical page + 17). Their 17 October 2026 independent original-image gap census is archived in pnotisdev/cicada3301.",
+    "description": "Seven quote spans remain derived annotations. Four single raised apostrophe strokes are source ink in the correct 2400×3600 LP2 image scans 21,38,52,58.jpg. The old negative report examined misnumbered scan basenames then counted only ordinary square dots; the source image has four distinct 12×40 pixel high strokes at the listed positions. The independent October 2026 pnotisdev image-gap audit also recorded those four source single ticks. Their plaintext meaning and whether they indicate an additional word boundary remain unknown.",
     "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md",
-    "apostrophe_audit_url": "https://github.com/pnotisdev/cicada3301/blob/main/work/ref/tick_marks.tsv"
+    "apostrophe_audit_url": "https://github.com/pnotisdev/cicada3301/blob/main/work/ref/tick_marks.tsv",
+    "image_pixel_sft": "sims/lp2_apostrophe_original_pixel_geometry_sft.py"
   },
   "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators. The four raised single apostrophe marks occur immediately before the recorded rune inside a complete printed word; they consume no rune and do not count as additional word separators.",
   "quote_rune_total": 405,
@@ -135,7 +136,19 @@
       "global_before_rune": 1110,
       "stem_runes": 3,
       "tail_runes": 1,
-      "cipher_word": "MXI'W"
+      "cipher_word": "MXI'W",
+      "original_jpeg_ink_bbox": [
+        1400,
+        2014,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        755,
+        2043,
+        9,
+        9
+      ]
     },
     {
       "page": 21,
@@ -144,7 +157,19 @@
       "global_before_rune": 5138,
       "stem_runes": 2,
       "tail_runes": 1,
-      "cipher_word": "AEO'Y"
+      "cipher_word": "AEO'Y",
+      "original_jpeg_ink_bbox": [
+        1258,
+        884,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1154,
+        913,
+        9,
+        10
+      ]
     },
     {
       "page": 35,
@@ -153,7 +178,19 @@
       "global_before_rune": 8515,
       "stem_runes": 2,
       "tail_runes": 1,
-      "cipher_word": "PE'T"
+      "cipher_word": "PE'T",
+      "original_jpeg_ink_bbox": [
+        1195,
+        1261,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1274,
+        1290,
+        9,
+        10
+      ]
     },
     {
       "page": 41,
@@ -162,7 +199,19 @@
       "global_before_rune": 10089,
       "stem_runes": 3,
       "tail_runes": 1,
-      "cipher_word": "XLJ'C"
+      "cipher_word": "XLJ'C",
+      "original_jpeg_ink_bbox": [
+        1304,
+        2390,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1381,
+        2420,
+        9,
+        9
+      ]
     }
   ]
 }

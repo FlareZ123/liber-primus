@@ -1,8 +1,8 @@
-# Retired four-gap split and 29-based quote accounting
+# Four original apostrophe marks and conditional 29-based quote accounting
 
-**Status:** the four-gap source premise is **retired** after a correct original-image audit; no plaintext recovered. The quote-span arithmetic remains reproducible as a separate derived-channel study. The four offsets 1110, 5138, 8515 and 10089 are retained only to reproduce historical synthetic-split experiments.
+**Status (corrected 15 November 2026):** four **real, source-visible, word-internal raised 12×40-pixel strokes** occur at the four fixed rune offsets 1110, 5138, 8515 and 10089 in the original LP2 JPEGs. The earlier source-negative report confused the image filenames, then counted only baseline dots, missing the high strokes. These are genuine punctuation anchors; interpreting them as additional whole-word breaks remains a separate, unproven operation. No unknown plaintext recovered. The quote-span arithmetic remains independently reproducible.
 
-## Parse and retired four-gap annotation
+## Correct source ink, printed-word contract, and conditional four-gap split
 
 Using the 55 rune-bearing LP2 page segments, preserving words across line wraps (`/`) and page wraps (`%`), and treating the ordinary punctuation marks as lexical separators gives:
 
@@ -12,11 +12,11 @@ Using the 55 rune-bearing LP2 page segments, preserving words across line wraps 
 - 83 one-rune words, covering 28 of the 29 GP symbols
 - 86 adjacent equal-rune pairs in the flattened rune stream
 
-A derived Round-43 annotation historically placed four apostrophe-like gaps before rune offsets **1110, 5138, 8515, 10089**. The source-image premise is now falsified. LP2 physical page N maps to archive scan N+17, while the earlier morphology audit inspected archive files with the same numbers as the physical pages. The correct pp4, 21, 35 and 41 images are scans **21, 38, 52 and 58**. Their target lines contain exactly the detached square components already required by canonical punctuation, with counts **6, 4, 7 and 5**. No additional separator-sized component occurs at any disputed cut. The 2017 KrisoYotam transcription likewise has no non-rune character at any of the four cuts.
+The derived Round-43 internal-mark coordinates are in fact **genuine original image punctuation**, confirmed directly at rune offsets **1110, 5138, 8515, 10089**. LP2 physical page N maps to archive scan N+17. The correct pp4, 21, 35 and 41 scans are **21, 38, 52 and 58.jpg**, each containing one distinctive **12×40-pixel raised vertical stroke** at the exact claimed internal gap; compare immediately neighboring conventional separator dots only **9×9 or 9×10 pixels**. The source pixel coordinates are respectively **(1400,2014), (1258,884), (1195,1261), (1304,2390)** in the original 2400×3600 JPEGs. The earlier audit checked the wrong image basenames, and the subsequent dot-only count found all expected square separators but missed these visibly different tall glyphs. The 2017 rune transcription omits the strokes because it indexes ordinary GP symbols and punctuation only. The [source ROI geometry SFT](../sims/lp2_apostrophe_original_pixel_geometry_sft.py) provides executable exact-pixel tests. A raised stroke is compatible with an apostrophe (and the contemporary independent gap audit calls it one), but alone does not prove a specific plaintext contraction, possessive or word-break function.
 
-The retired offsets fall inside these canonical words:
+The **source-visible** raised marks fall inside these canonical printed words:
 
-| Physical page | Canonical word | Historical synthetic split |
+| Physical page | Canonical word | Actual internal apostrophe placement (hypothetical word split) |
 |---:|---|---|
 | 4 | `ᛗᛉᛁᚹ` | `ᛗᛉᛁ` + `ᚹ` |
 | 21 | `ᚫᚩᚣ` | `ᚫᚩ` + `ᚣ` |
@@ -27,7 +27,7 @@ The split remains computationally reversible and useful for reproducing prior ex
 
 ## Retired synthetic 29-symbol accounting
 
-Artificially splitting the four retired offsets produces:
+If every confirmed internal punctuation mark is *additionally* treated as a new full-word separator, the hypothetical expanded corpus contains:
 
 - **2,900 tokens = 100 × 29**
 - **87 singleton tokens = 3 × 29**
@@ -35,7 +35,7 @@ Artificially splitting the four retired offsets produces:
 
 Before the fourth split, the first three marks give 2,899 tokens and 86 singletons; both are one short of a multiple of 29. The fourth mark supplies the final increment in both counts. Its suffix, `ᚳ`, is also the only GP symbol absent from the original 83 singleton words. The first three suffixes (`ᚹ`, `ᚣ`, `ᛏ`) already occur among the original singleton symbols.
 
-These 29-multiple totals are post hoc properties of four chosen internal offsets. Since the source images do not contain the alleged marks, the counts cannot authenticate a word boundary, key clock or singleton alphabet. The fourth suffix's symbol occurs as the final rune of 43 of the 1,233 canonical 3- or 4-rune words (3.49%), which further limits the alphabet-completion observation.
+These 29-multiple totals are post hoc consequences of four **real marked positions** under an **extra, optional segmentation rule**. The visible apostrophes do not tell a reader to treat an English contraction as two full words, so the counts alone cannot authenticate a word boundary, key clock or singleton alphabet. The fourth suffix's symbol occurs as the final rune of 43 of the 1,233 canonical 3- or 4-rune words (3.49%), further limiting the alphabet-completion observation.
 
 ## Quote channel
 
@@ -58,7 +58,7 @@ These equalities suggest that quotes may identify a distinct channel, but no one
 
 Two exact length identities invite key hypotheses:
 
-- 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the retired synthetic-gap count).
+- 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the now-confirmed apostrophe stroke count).
 - 12,956 = 149 × 87 − 7 (87 is the proposed singleton-key length; 7 is the quote-span count).
 
 ## Quote GP-prime sums as 133-based page/word addresses (11 November 2026)
@@ -106,7 +106,7 @@ A controlled null reselects seven source spans with the **same printed word and 
 
 The reproduction script tests the obvious additive mod-29 interpretations:
 
-1. Concatenate the 405 quoted runes as a repeating key and skip one key symbol at each retired synthetic gap.
+1. Concatenate the 405 quoted runes as a repeating key and skip one key symbol at each of the four genuine apostrophe locations (a speculative key-clock rule).
 2. Use the 87 singleton tokens as a repeating key and skip one key symbol at each quote-span start or end.
 3. Use one singleton or doublet rune as a Caesar shift for each of the 86 quoted words.
 4. Use first differences of the singleton sequence as the 86 per-word shifts.
@@ -123,8 +123,8 @@ The script asserts the counts and prints the exact language-model scores and can
 
 ## Assessment and next decision
 
-The four-gap branch is retired as a source-selected mechanism. Its 2,900-token, 87-singleton and 32×405-minus-four identities remain reproducible arithmetic under an artificial split, so the historical negative key tests are preserved. They should not seed new cryptanalytic work unless an independent authenticated clue selects the same four rune offsets.
+The four original punctuation positions are genuine source-selected locations. The **extra word-boundary and key-skip interpretations remain unverified**; the 2,900-token, 87-singleton and 32×405-minus-four identities are reproducible only under the stated artificial split. Preserve the historical negative key tests. A future author-selected cipher should use the four marks as independent holdout constraints and avoid assuming that apostrophes mean separate full tokens.
 
 The quote-only observations in this report remain separate derived hypotheses. In particular, the seven quote spans still total 405 runes and the quote GP-prime arithmetic is unchanged by the tokenization correction. Those numerical relations have not supplied an authentic cipher operation or unknown plaintext.
 
-The selected source-visible word contract is the existing **2,896 canonical words**. Future word-address proposals can use that contract directly. No 2,900-token sensitivity branch is required. Reproduce the source decision with [`lp2_visual_token_contract_sft.py`](../sims/lp2_visual_token_contract_sft.py), and reproduce the preserved historical four-gap arithmetic with [`apostrophe_quote_29_accounting.cjs`](../sims/apostrophe_quote_29_accounting.cjs).
+The canonical printed-word contract stays **2,896 words**, now with four genuine internal raised punctuation strokes. Future word-address proposals can use that canonical count and explicitly test the optional 2,900-token interpretation when an independent cipher clue supports it. Reproduce the ink geometry with [`lp2_apostrophe_original_pixel_geometry_sft.py`](../sims/lp2_apostrophe_original_pixel_geometry_sft.py), the printed-word contract with [`lp2_visual_token_contract_sft.py`](../sims/lp2_visual_token_contract_sft.py), and the conditional four-gap arithmetic with [`apostrophe_quote_29_accounting.cjs`](../sims/apostrophe_quote_29_accounting.cjs).

@@ -13,6 +13,8 @@ The true original-JPEG filename is **LP2 physical page + 17**. An earlier reposi
 | 35 | [52.jpg](../resources/liber-primus/52.jpg) | **PE'T** (2+1) | 80 / 8515 | [13,18,16] |
 | 41 | [58.jpg](../resources/liber-primus/58.jpg) | **XLJ'C** (3+1) | 218 / 10089 | [14,20,11,5] |
 
+An independent **original-JPEG pixel check** resolves the previous negative review's central mistake: the marks are **vertical 12×40-pixel ink components** in all four original scans at absolute raster coordinates **(1400,2014), (1258,884), (1195,1261), (1304,2390)**, while same-line ordinary separator dots measure **9×9 or 9×10 pixels**. The old audit enumerated baseline square dots, missing the raised 40-pixel strokes. The [Python Pillow/NumPy original-pixel SFT](../sims/lp2_apostrophe_original_pixel_geometry_sft.py) locks each ROI and its same-line dot as a positive size control; no visual inference from another document is needed.
+
 The existing normal rune transcription omits these punctuation marks. They consume **zero** GP rune positions and preserve all **2,896 original printed words**. The four source positions and word lengths are directly checked against the original corpus by [the standalone source SFT](../sims/lp2_apostrophe_fourcrib_original_sft.cjs).
 
 ## Small original-location lexical candidates
