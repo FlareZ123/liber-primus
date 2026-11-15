@@ -143,6 +143,7 @@ for (const [family, groups] of Object.entries(families)) {
   let rootCycle = 0, lengthEleven = 0, divisor66 = 0;
   let flankTwoCycle = 0, jointExactElevenAndFlankTwo = 0,
     jointDividing66AndFlankTwo = 0;
+  let flankAnyTwoCycle = 0, jointDivisorAndAnyTwo = 0;
   for (let trial = 0; trial < n; trial++) {
     const copy = bytes.slice();
     for (const addresses of groups) {
@@ -155,6 +156,11 @@ for (const [family, groups] of Object.entries(families)) {
     }
     const candidate = walk(copy, 0);
     const isFlankTwo = copy[158] === 249 && copy[249] === 158;
+    const other = copy[158];
+    const anyTwo = other !== 158 && copy[other] === 158;
+    if (anyTwo) flankAnyTwoCycle++;
+    if (anyTwo && candidate.cycleStart === 0 &&
+        66 % candidate.walk.length === 0) jointDivisorAndAnyTwo++;
     if (isFlankTwo) flankTwoCycle++;
     if (isFlankTwo && candidate.cycleStart === 0 &&
         candidate.walk.length === 11) jointExactElevenAndFlankTwo++;
@@ -169,7 +175,9 @@ for (const [family, groups] of Object.entries(families)) {
     exact11: lengthEleven, cycleLengthDivides66: divisor66,
     flankIndex158InTwoCycle: flankTwoCycle,
     jointExact11AndFlankTwo: jointExactElevenAndFlankTwo,
-    jointDivisor66AndFlankTwo: jointDividing66AndFlankTwo});
+    jointDivisor66AndFlankTwo: jointDividing66AndFlankTwo,
+    flankIndex158AnyTwoCycle: flankAnyTwoCycle,
+    jointDivisor66AndAnyTwo: jointDivisorAndAnyTwo});
 }
 console.log(JSON.stringify({source:"original 256 printed p49–51 table",
   hypothesis:"zero-based byte as zero-based index of next table cell",
