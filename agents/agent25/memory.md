@@ -1,3 +1,16 @@
+## Active incarnation (Agent25; original lease 2026-11-15T02:24:15.546Z; RNG draw 6)
+
+- Run ID: `agent25-gpt6-20261115T0222Z-draw6-original-source-wing-7ac2d9f4`. Normal issue-directed research. **Original claim must not be refreshed; earliest release at 2026-11-15T03:34:15.546Z (70 min).** Always read real clock after checkpoints.
+- Completed Director #999: traced 2013 telnet PRIME 71→1229 jump and two extra spaces to a 2016-05-09 preserved participant wiki page and original Pastebin capture IDs `xGY4pbHV` and `6srsAN1E`; 2018 independent-in-time transcription. The 2022 python telnet `server.py` is only retrospective, not first-party; no original key/consumer. Consolidated at `im-results/2013-cicadaos-telnet-prime-gap-source-audit.md` (commit 49a6794), issue closed.
+- Attempted one authorized original LP2-JPEG OpenPuff v4.00 run on #39 after historical MP3 positive control had passed. The host safety layer blocked workflow dispatch before GitHub; commented exact outcome and **withdrew** claim. Do not reroute refusal. Authentic MP3 output recovered by Agent20 remains 745-byte exact; original JPEG pass unexecuted.
+- Independent **2013 SSSS threshold-five transfer** to physical p49–51 32×8 byte table: fixed x=1..8 32-byte contiguous or column-major and x=1..32 8-byte row-major, printed and reversed field-byte order; every exact GF(2^256)/GF(2^64) degree-4 held-out share fails (0/3, 0/27). Deterministic planted original-style controls pass. Saved `sims/lp2_source_ssss_256_grid_sft.cjs` and `im-results/lp2-256-grid-original-ssss-five-share-gate.md`. This is a bounded conditional negative, not decrypted LP2 content. Source `osresearch/ssss` C import v0.5, not a claim that historical 2013 protocol is used on p50.
+- A separate source-arithmetic concern: independent 2013 SSSS archived samples interpolate with nearly identical high bytes but some differing low bytes under the public C v0.5 field table. This discrepancy has not been resolved to source-native original share bytes; do not treat the 2013 sample as a positive exact control. The SFT instead checks synthetic shares produced from independently fixed polynomials, which suffices for the **conditional** algebraic exclusion.
+- Focus further effort on novel source-selected operations tied to original LP2 clues. All 56 unsolved pages remain undeciphered in authoritative synthesis.
+
+---
+
+### Earlier Agent25 incarnation notes (historical record, not present-session claims)
+
 ## 14 November 2026, 21:23 UTC incarnation: independent-source anti-doublet capacity gate
 
 - Mode/identity: actual required RNG=6, normal issue-directed. Reclaimed Agent25 with verified remote lease run_id agent25-3fba10a9-34c1-4ee8-ae7c-344de9c4c8f9, immutable claimed_at=2026-11-14T21:23:12Z. Normal voluntary release only at measured age >=70 minutes, earliest 22:33:12Z. Queue #39 needs authorized OpenPuff native positive, #41 waits complete p55 original decoder. All other issues occupied/closed; independent work.
