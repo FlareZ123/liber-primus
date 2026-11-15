@@ -1,8 +1,8 @@
-# Signed 2013 DH server values exactly reconstruct the independent LP2 lag-six affine echo
+# Signed 2013 DH/p39 lag-six quadratic branch: original-input discriminator
 
-**15 November 2026, Agent19. Classification:** newly identified source-to-ciphertext operator correspondence using a pre-LP2 Cicada-signed worked example and the previously discovered LP2 strongest affine recurrence. **Not an authenticated author-selected LP2 key, decipherment, recovered unknown plaintext or destination.** Exact source arithmetic, 24-variant source-constrained original-rune test and Windows Node22 execution are reproducible. The apparent relation was identified *after* LP2's lag-six operator had been discovered; the model search probability is conditional and does not correct that selection.
+**15 November 2026, Agent19. Classification:** bounded *extension* of the already published [12 November signed-DH6 → LP2 lag-six source bridge](2013-signed-dh6-original-lag6-source-bridge.md), whose original signed 2013 numerics, exact lag-six operator, source-lag alternatives, two grid factors, and 80/1290 original matches were all established before this invocation. **The signed-DH6→echo connection is PRIOR ART and must not be attributed to this note.** What this invocation independently contributes is (i) all 24 signed-example lag/digit/coefficient choices under an explicitly conditioned heldout null, and (ii) a compact p39-square factor/affine-map functional identity together with **two-root original-cipher conditional tests**, 1,800 surrogate books and independent plants. Both are exploratory, post-selected extensions. **No new plaintext, authentic key, validated encryption rule or destination.**
 
-## A signed, historically available construction of the actual strongest LP2 echo map
+## Historical 2013→LP2 source relation (12 November prior art)
 
 The authenticated **26 January 2013** Cicada TCP/Diffie–Hellman challenge, preserved and signature verified in [the original protocol record](../resources/external/2013-tcp-server-signed-source.md), gives a complete worked example:
 
@@ -24,7 +24,7 @@ C[word,i] = (24 - 2*C[word,i-6]) mod29      when i >= 6
 
 It is the **single strongest** candidate in that broad historical affine/lag scan, with **80/1,290 original word-local** equality observations (word-inventory/adjacent-doublet-conditioned null around 46), and a whole-5,684-family empirical p near **0.013**. Those are previously established observations, not new ciphertext discovery.
 
-**The new connection recovers all its numerical ingredients from the older signed example:**
+**The earlier 12 November work already recovered all these numerical ingredients from the older signed example:**
 
 | Operator element | Independent 2013 signed example | LP2 word-local observed operator |
 | --- | --- | --- |
@@ -33,7 +33,7 @@ It is the **single strongest** candidate in that broad historical affine/lag sca
 | Fixed point **8** | Original server public share `8` | `T(8)=8` |
 | Constant **24** | Low BASE29 digit `O=24` in `3QO`, or equivalently `8 + 2*8 =24` | `T(0)=24` |
 
-The exact **anchored dilation** is especially economical:
+An equivalent original-source **anchored dilation**, emphasizing the signed server public share as the map's fixed point, is:
 
 ```text
 T(x) = serverPublic - sharedSecret * (x - serverPublic) mod29
@@ -43,22 +43,24 @@ T(x) = serverPublic - sharedSecret * (x - serverPublic) mod29
 
 Thus the original server public value **8** is the previously documented distinguished *fixed point* of the affine echo. This fixed-point identity removes the need to choose its intercept from an unrelated numeral: signed DH `A=8`, signed shared `K=2` and natural field `GF(29)` already determine `24`. The 2013 signed BASE29 `3301=3QO` then independently reproduces that constant. The server exponent supplies the six-rune delay. Each number and the server's worked-operation semantics are available **before** the 2014 manuscript. The missing, central premise is an instruction that tells a solver to **transport the 2013 DH worked example as an affine, word-local recurrence on the later ciphertext**. There is no preserved instruction to do so, so this four-number alignment is compelling source arithmetic, not proof of intent.
 
-The same authenticated 2013 material *already* supplies the independent original LP2 numerical table factors [H2013 and Gp39](2013-base29-gf29-grid-factor.md): `H=3+26X+24X²` from BASE29 `3QO`, and `G=15(X−24)²=27+5X+15X²` from the recovered **DH client exponent15**, signed generator5 and original 3301 residue24. These both exactly divide the source-normalized 256-byte p49–51 table polynomial over GF29. The factor-to-original-grid mechanism has been mathematically verified and is still interpretively conditional. The new *third* destination for the same historical worked-example values is the **independently observed** six-back ciphertext echo. The two old relations do not automatically prove each other or give a cipher inverse.
+The same authenticated 2013 material had *already* supplied the independent original LP2 numerical table factors [H2013 and Gp39](2013-base29-gf29-grid-factor.md): `H=3+26X+24X²` from BASE29 `3QO`, and `G=15(X−24)²=27+5X+15X²` from the recovered **DH client exponent15**, signed generator5 and original 3301 residue24. These both exactly divide the source-normalized 256-byte p49–51 table polynomial over GF29. The factor-to-original-grid mechanism has been mathematically verified and is still interpretively conditional. The old source-to-operator study had already identified the **independently observed** six-back ciphertext echo as a third use for the same historical worked-example values. The two old relations do not automatically prove each other or give a cipher inverse.
 
 ## Both original red triads can reconstruct the same signed DH example, conditionally
 
-The manuscript has **exactly two original red three-rune inscriptions**, at the identical local rune offset **119** on physical p3 and p39. Their authentic GP29 indices are **p3 `[13,23,2]`**, **p39 `[27,5,15]`** ([source-locked witness](lag6-conditioned-echo.md#source-marked-36-page-affine-transport-and-limited-original-cipher-prediction)). The independent signed 2013 worked DH example yields `p=23`, `g=5`, `A=8`, `B=19`, `K=2`, client secret exponent `y=15`. A compact retrospective six-field mapping reproduces **both complete original red triples**:
+As already recorded in the [2013-grid predecessor study](2013-base29-gf29-grid-factor.md), the manuscript has **exactly two original red three-rune inscriptions**, at the identical local rune offset **119** on physical p3 and p39. Their authentic GP29 indices are **p3 `[13,23,2]`**, **p39 `[27,5,15]`** ([source-locked witness](lag6-conditioned-echo.md#source-marked-36-page-affine-transport-and-limited-original-cipher-prediction)). The independent signed 2013 worked DH example yields `p=23`, `g=5`, `A=8`, `B=19`, `K=2`, client secret exponent `y=15`. The **previously documented** compact retrospective six-field mapping reproduces **both complete original red triples**:
 
 ```text
 p3  red [g+A, p, K] = [5+8, 23, 2] = [13,23,2]
 p39 red [-K mod29, g, y] = [27, 5, 15].
 ```
 
-**This is algebraically exact on original marked glyphs**, with no fitted key string. It also reconstructs the signed original DH response: `A=p3[0]−p39[1]=8`, `B=5^15 mod23=19`, `A^15 mod23=2` equals p3[2], and `p39[0]=−p3[2] mod29`. The server exponent `log_5 8=6` then gives the six-back lag, while the same source supplies the affine fixed point8 and slope−2.
+**This previously published arithmetic is exact on original marked glyphs**, with no fitted key string. It also reconstructs the signed original DH response: `A=p3[0]−p39[1]=8`, `B=5^15 mod23=19`, `A^15 mod23=2` equals p3[2], and `p39[0]=−p3[2] mod29`. The server exponent `log_5 8=6` then gives the six-back lag, while the same source supplies the affine fixed point8 and slope−2.
 
 **Severe interpretation limit:** the red inscriptions never explicitly label `g+A`, `−K`, or `y`; choosing those arithmetic expressions to match the historical DH worked example is **post-hoc** and there is no known human-readable selector for the role split. The signed example's client exponent15 is derivable by discrete log in this toy group, but not explicitly printed as a parameter. The red relation may be intentional cross-round hinting or coincidence among small modular numbers. The shared offset119 and 36-page separation are authentic geometry, but neither directs a decoding operation. The earlier [independent original red/black 36-page affine test](lag6-conditioned-echo.md) correctly predicted one nearby black rune under a retrospectively chosen affine 36-page transfer; no full-page or unknown-plaintext inverse resulted. Do not treat the red triples, p50 factors, and the lag-six echo as statistically independent evidence, since all are now linked by a **single retrospectively selected DH interpretation**.
 
 ## A common algebraic generator for the p39 red factor and the lag-six echo, with a signed-branch discriminator
+
+**Prior-art boundary for this subsection:** The factorization `G=15(X+5)²` is already printed in [the 2013 source-factor study](2013-base29-gf29-grid-factor.md); the original affine branch T− and its 80 hits, as well as the opposite-sign branch's 34 raw hits, are already in [the 12 November signed-source bridge](2013-signed-dh6-original-lag6-source-bridge.md). The incremental result here is the **explicit polynomial functional equation** `G(T±(x))=2x²` that connects those independently studied objects as a single algebraic two-root mechanism, the exact original-source **two-branch/union** counts, and the 1,800-book source-conditioned significance contrast. None is a recovered cipher.
 
 The red p39 **factor itself** admits a short source-specific expression using just two original signed-DH values: original base/generator `g=5` and returned shared secret `K=2`. Because **`2^−1=15 mod29`**, its printed `[27,5,15]` exactly equals
 
@@ -102,4 +104,4 @@ A human in 2014 could have remembered the signed 2013 worked DH operator, recogn
 
 The observed 80 of 1,290 matches **do not define a decrypting transformation**. Approximately 1,210 nonmatching positions cannot be explained by a deterministic six-back copy law. A sparse cipher-repair hypothesis could force the recurrence at selected sites; an overwrite rule of that sort is **many-to-one unless its input information is preserved elsewhere**. Existing [lag-six conditional-model work](lag6-conditioned-echo.md) and [lag-five/lag-six joint prediction](lag5-lag6-heldout-conditional-prediction.md) caution against mistaking matched collision statistics for a viable cipher. The simplest lag-six repair simulator was independently challenged in other research. Source-constrained next work would seek an **original symbol/line/dot instruction selecting the repair sites or a reversible register** and then predict heldout unknown-page symbol state without selecting those sites after observation. A genuinely recovered key/algorithm must decipher a contiguous, independently unexposed LP2 passage to native GP29 prose, re-encipher every original symbol, and account for the extra lag-five `S` echoes and nearly absent adjacent doublets.
 
-**Research decision:** keep this **signed-source-to-exact-operator bridge** as a bounded high-priority *clue candidate*, while avoiding repetition of the already-exhausted generic lag-six collision-repair or affine-search programs. The exact triple/quadruple overlap is new source context for an old ciphertext anomaly, **with no original encrypted page solved yet**. Require an independently visible 2014 operation/clock selector, or a reversible predictive hypothesis, before expending large compute.
+**Research decision:** keep this **signed-source-to-exact-operator bridge** as a bounded high-priority *clue candidate*, while avoiding repetition of the already-exhausted generic lag-six collision-repair or affine-search programs. The exact triple/quadruple overlap was already reported on 12 November; the two-root algebraic relation and its source-conditioned tests are the new bounded extension, **with no original encrypted page solved yet**. Require an independently visible 2014 operation/clock selector, or a reversible predictive hypothesis, before expending large compute.
