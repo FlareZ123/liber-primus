@@ -320,6 +320,41 @@ def main():
         assert len(events) == 1
         print("PASS: noncompletion modal is preserved without spurious clicks")
 
+        interrupted = FakeDialog("Task interrupted - Error", "OK")
+        interrupted.edit = None
+        interrupted.static = FakeControl(
+            "Static",
+            "Task stopped: corrupted stream\\r\\nStep (1): wrong password?"
+        )
+        errors = []
+        assert driver["acknowledge_corrupted_stream_task"](
+            FakeApp(interrupted), errors
+        )
+        assert interrupted.button.clicked
+        assert errors == [{
+            "title": "Task interrupted - Error",
+            "message": "Task stopped: corrupted stream\\r\\nStep (1): wrong password?"
+        }]
+        assert not driver["acknowledge_corrupted_stream_task"](
+            FakeApp(failed), errors
+        )
+        assert len(errors) == 1
+        print("PASS: native corrupted-stream modal acknowledged as distinct terminal event")
+
+        second_error = FakeDialog("Task interrupted - Error", "OK")
+        second_error.edit = None
+        second_error.static = FakeControl(
+            "Static", "Task stopped: corrupted stream"
+        )
+        waiting_errors = []
+        assert not driver["wait_for_extraction"](
+            FakeApp(second_error), target, output_dir, 2,
+            error_events=waiting_errors
+        )
+        assert second_error.button.clicked
+        assert len(waiting_errors) == 1
+        print("PASS: native rejection exits the wait loop before a timeout")
+
         unknown = output_dir / "historical-embedded-name.txt"
         payload = b"Source-native payload name must survive extraction.\n"
         unknown.write_bytes(payload)

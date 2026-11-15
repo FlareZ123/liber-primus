@@ -362,21 +362,55 @@ def acknowledge_completed_task(app, events):
     return events
 
 
+def acknowledge_corrupted_stream_task(app, error_events):
+    """Record and acknowledge the exact native OpenPuff corrupted-stream error."""
+    for window in app.windows():
+        if not safe(window.is_visible):
+            continue
+        title = (safe(window.window_text) or "").strip()
+        if "task interrupted - error" not in title.lower():
+            continue
+        controls = safe(window.descendants) or []
+        message = " ".join(
+            (safe(c.window_text) or "").strip()
+            for c in controls if safe(c.class_name) == "Static"
+        )
+        if "task stopped: corrupted stream" not in message.lower():
+            continue
+        confirm = next(
+            (c for c in controls
+             if safe(c.class_name) == "Button"
+             and (safe(c.window_text) or "").strip().lower() == "ok"),
+            None,
+        )
+        if confirm is None:
+            raise RuntimeError("OpenPuff corrupted-stream dialog lacks an OK button")
+        error_events.append({"title": title, "message": message})
+        confirm.click_input()
+        time.sleep(0.2)
+        return True
+    return False
+
+
 def extracted_files(output_dir):
     return sorted(p for p in output_dir.iterdir() if p.is_file())
 
 
-def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30, completion_events=None):
+def wait_for_extraction(app, output_path, output_dir, timeout_seconds=30, completion_events=None, error_events=None):
     deadline = time.time() + timeout_seconds
     save_dialog_seen = False
     last_sizes = None
     stable_polls = 0
     if completion_events is None:
         completion_events = []
+    if error_events is None:
+        error_events = []
     while time.time() < deadline:
         if save_dialog_if_present(app, output_path, output_dir):
             save_dialog_seen = True
         acknowledge_completed_task(app, completion_events)
+        if acknowledge_corrupted_stream_task(app, error_events):
+            break
         # The embedded record determines the filename. Only accept an output
         # after file sizes have stopped changing across several polls.
         sizes = tuple((p.name, p.stat().st_size) for p in extracted_files(output_dir))
@@ -509,6 +543,7 @@ def main():
         "bit_selection_verified": False,
         "save_dialog_seen": False,
         "completion_dialogs": [],
+        "error_dialogs": [],
         "output": None,
         "outputs": [],
         "output_present": False,
@@ -589,7 +624,7 @@ def main():
         result["attempted"] = True
         result["save_dialog_seen"] = wait_for_extraction(
             app, output_path, output_dir, args.wait_seconds,
-            result["completion_dialogs"]
+            result["completion_dialogs"], result["error_dialogs"]
         )
         result.update(classify_outputs(
             extracted_files(output_dir), args.expected_crc32, args.expected_size
@@ -598,6 +633,8 @@ def main():
         # negative when the application has never displayed completion.
         if result["output_present"]:
             result["native_probe_outcome"] = "output-file"
+        elif result["error_dialogs"]:
+            result["native_probe_outcome"] = "native-corrupted-stream"
         elif result["completion_dialogs"]:
             result["native_probe_outcome"] = "completed-without-file"
         else:
