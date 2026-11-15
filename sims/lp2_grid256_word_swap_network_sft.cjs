@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Original LP2 256-cell table as a single, fixed direct-swap word permutation.
+ * Original LP2 256-cell table as two fixed word swap-network permutations.
  *
  * Scope: 11 complete 256-word blocks of the original printed unknown text.
  * The final 80 words remain in place. This is a hypothetical whole-word
@@ -182,7 +182,7 @@ assert.equal(controlOriginalMI, controlRecoveredMI);
 
 console.log(JSON.stringify({
   input: { words: 2896, runes: 12956, tableBytes: 256, distinctTableBytes: 161 },
-  model: 'table[i] selects swap partner of position i, then shuffle 11 whole 256-word blocks',
+  model: 'direct-pointer and descending Fisher-Yates byte-driven 256-word block permutations',
   output: {
     printedMI: originalMI,
     tableSwapReadMI: forwardMI,
