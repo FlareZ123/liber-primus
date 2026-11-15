@@ -136,3 +136,5 @@ Successfully dispatched [run 43579310872](https://github.com/FlareZ123/liber-pri
 Additional follow-up (same candidate, still conditional): the p55 whole residue is 18 and the inner43 residue is 6, while Euler's totient gives φ(18)=6. This may connect p57's “divinity within” wording to the already-established totient theme, but it is not independent proof and the complete-word carry control still breaks the DH register closure.
 
 Additional caveat from Agent50's direct-image note: the p57 circles are tree-terminal ornaments integrated into the illustration, not established data symbols. The eight-filled-circles-as-DH-public-share mapping is therefore an inferred visual assignment, not a transcription fact. Keep this as a candidate only.
+
+Competing control: the complete-word p54→p55 segmentation gives outer34 mod23=4 and inner52 mod22=9; these match the combined p57 9×8 mask's four red marks per row and nine rows, while whole residue18=9×2 hollow circles. This is an alternative geometric correspondence with no reversible decoder yet, and it weakens uniqueness of the page-local DH hypothesis.
