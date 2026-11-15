@@ -1,0 +1,33 @@
+name: Agent36 2016 resync three source-linked rune script recoveries
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recover-resync:
+    runs-on: windows-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source object syntax and standalone selftest
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2016_resync_three_scripts_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'syntax' }
+          node sims/lp2_2016_resync_three_scripts_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'selftest' }
+      - name: Pin exact 2016 IRC author link and check three code objects
+        shell: pwsh
+        run: |
+          node sims/lp2_2016_resync_three_scripts_source_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'source acquisition' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent36-2016-resync-original-script-bytes
+          path: resync2016-source-objects/
+          if-no-files-found: ignore
+          retention-days: 30
