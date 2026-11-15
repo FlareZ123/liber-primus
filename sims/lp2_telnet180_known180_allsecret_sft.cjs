@@ -102,6 +102,58 @@ for (const [name, transform] of Object.entries(schemes)) {
   console.log(name, JSON.stringify(result));
 }
 
+
+// Original 2013 ISO prime_echo prints ten primes per line. The reported
+// telnet gap occupies 18 whole ten-prime rows; grant natural row/column
+// readings of its 18×10 array and of the LP2 30×6 numeric interior.
+// Attempt exact key recovery P[i] = a*B[i] + z*Q[i] + c (mod29)
+// for every one of 29^3 unknown affine parameter triples. An exact key
+// must recover all 180 externally known original symbols.
+const gridColumns = Array.from({ length: 6 }, (_, j) =>
+  Array.from({ length: 30 }, (_, i) => grid.byte_rows[i + 1][j + 1])
+).flat();
+const primeColumns = Array.from({ length: 10 }, (_, j) =>
+  Array.from({ length: 18 }, (_, i) => gapPrimes[i * 10 + j])
+).flat();
+
+/** @param {number[]} bytes @param {number[]} primeTape */
+function affineKeyRecovery(bytes, primeTape) {
+  const B = bytes.map(mod);
+  const Q = primeTape.map(mod);
+  let bestNonconstant = { hits: -1 };
+  let bestConstant = { hits: -1 };
+  for (let a = 0; a < 29; a++) {
+    for (let z = 0; z < 29; z++) {
+      const offsets = Array(29).fill(0);
+      for (let i = 0; i < known.length; i++) {
+        offsets[mod(known[i] - a * B[i] - z * Q[i])]++;
+      }
+      for (let c = 0; c < 29; c++) {
+        const candidate = { a, z, c, hits: offsets[c] };
+        if (a === 0 && z === 0) {
+          if (candidate.hits > bestConstant.hits) bestConstant = candidate;
+        } else if (candidate.hits > bestNonconstant.hits) {
+          bestNonconstant = candidate;
+        }
+      }
+    }
+  }
+  return { bestConstant, bestNonconstant };
+}
+const expectedAffine = [
+  { grid: interior, primes: gapPrimes, max: 19 },
+  { grid: interior, primes: primeColumns, max: 19 },
+  { grid: gridColumns, primes: gapPrimes, max: 20 },
+  { grid: gridColumns, primes: primeColumns, max: 18 }
+];
+for (const [orientation, item] of expectedAffine.entries()) {
+  const result = affineKeyRecovery(item.grid, item.primes);
+  assert.equal(result.bestConstant.hits, 31);
+  assert.equal(result.bestNonconstant.hits, item.max);
+  assert.ok(result.bestNonconstant.hits < known.length);
+  console.log('affine orientation ' + orientation, JSON.stringify(result));
+}
+
 // Independently planted GP29 cipher with a shared invertible secret alphabet.
 // π(x)=(7x+5) mod29, inverse 7^-1=25 mod29.
 const syntheticBytes = known.map((p, i) => mod(25 * (p - 5) + gapPrimes[i]));
