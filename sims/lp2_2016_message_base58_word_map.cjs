@@ -366,6 +366,42 @@ assert.deepEqual(twoRuneDirections, [
 assert.deepEqual(twoRuneDirections.filter(row => row.difference === 32), [
   {sourceWord: "seeks", runeWord: "MY", primeValues: [71, 103], difference: 32}
 ]);
+const phaseSelectorSweep = Array.from({length: 58}, (_, shift) => {
+  const phaseMap = fullMap.map(row => {
+    const shiftedSum = row.sum + shift;
+    const page = shiftedSum % 58;
+    const wordIndex = Math.floor(shiftedSum / 58);
+    return {...row, page, wordIndex, runeWord: lp2Pages[page]?.[wordIndex] ?? null};
+  });
+  const get = word => phaseMap.find(row => row.word.toLowerCase() === word.toLowerCase());
+  const good = get("Good"), luck = get("luck"), seeks = get("seeks"), beware = get("Beware");
+  const goodLuckSum = good.runeWord && luck.runeWord
+    ? targetWordPrimeSum(good) + targetWordPrimeSum(luck) : null;
+  const seeksValues = seeks.runeWord ? targetWordPrimeValues(seeks) : [];
+  const seeksDifference = seeksValues.length === 2
+    ? Math.abs(seeksValues[0] - seeksValues[1]) : null;
+  return {
+    shift,
+    goodLuckSum,
+    seeksDifference,
+    bewareAddress: [beware.page, beware.wordIndex]
+  };
+});
+const goodLuck413Phases = phaseSelectorSweep.filter(row => row.goodLuckSum === 413).map(row => row.shift);
+const seeks32Phases = phaseSelectorSweep.filter(row => row.seeksDifference === 32).map(row => row.shift);
+const bewareP32W5Phases = phaseSelectorSweep
+  .filter(row => row.bewareAddress[0] === 32 && row.bewareAddress[1] === 5)
+  .map(row => row.shift);
+const allThreeSelectorPhases = phaseSelectorSweep
+  .filter(row => row.goodLuckSum === 413 && row.seeksDifference === 32
+    && row.bewareAddress[0] === 32 && row.bewareAddress[1] === 5)
+  .map(row => row.shift);
+assert.equal(phaseSelectorSweep.length, 58);
+assert.deepEqual(goodLuck413Phases, [0]);
+assert.deepEqual(seeks32Phases, [0]);
+assert.deepEqual(bewareP32W5Phases, [0]);
+assert.deepEqual(allThreeSelectorPhases, [0]);
+
 
 const p32Window = p32Page.indices.slice(25, 38);
 assert.deepEqual(p32Window.map(index => corpus.translit[index]),
@@ -525,6 +561,13 @@ console.log(JSON.stringify({
     primeValues: seeksPrimeValues,
     difference: Math.abs(seeksPrimeValues[0] - seeksPrimeValues[1]),
     twoRuneDestinations: twoRuneDirections
+  },
+  phaseSelectorSweep: {
+    phasesTested: phaseSelectorSweep.length,
+    goodLuck413Phases,
+    seeks32Phases,
+    bewareP32W5Phases,
+    allThreeSelectorPhases
   },
   foldHits,
   signedPrime193: {
