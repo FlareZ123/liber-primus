@@ -1,0 +1,21 @@
+name: Agent23 full-state MT19937 original inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-state:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and execute exact all-state inverse
+        run: node sims/lp2_mt19937_fullstate_original_sft.cjs
