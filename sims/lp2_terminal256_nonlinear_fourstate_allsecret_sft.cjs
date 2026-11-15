@@ -170,6 +170,26 @@ function main() {
   assert.deepEqual(V.map((r) => r[0].length), [76, 68, 60, 52]);
   const regs = [['plaintext', p56Plain.concat(page57.indices)],
     ['printed', page56.indices.concat(page57.indices)]];
+  // A fully free nonlinear lookup keyed by consecutive table bytes is
+  // unfalsifiable on p55: no outer-ring byte-pair appears in known inner rings.
+  /** @param {number[]} order @returns {{knownStates: number, outerPairs: number, supportedOuter: number}} */
+  function contextCoverage(order) {
+    const b = order.map((index) => B[index]);
+    const trained = new Set();
+    for (let i = 76; i < 256; i++) trained.add(b[i-1] + ':' + b[i]);
+    let supportedOuter = 0;
+    for (let i = 1; i < 76; i++) {
+      supportedOuter += trained.has(b[i-1] + ':' + b[i]) ? 1 : 0;
+    }
+    return {knownStates: trained.size, outerPairs: 75, supportedOuter};
+  }
+  const pairCoverage = [contextCoverage(Array.from({length: 256}, (_, i) => i))];
+  for (let a = 0; a < 8; a++) {
+    pairCoverage.push(contextCoverage([V[0][a], V[1][a], V[2][a], V[3][a]].flat()));
+  }
+  assert.deepEqual(pairCoverage.map((x) => x.knownStates),
+    [180, 179, 179, 179, 179, 179, 179, 180, 179]);
+  assert.ok(pairCoverage.every((x) => x.outerPairs === 75 && x.supportedOuter === 0));
   const answer = [];
   for (const [degree, expectedTermCount] of [[2, 15], [3, 35]]) {
     const terms = monomials(degree);
@@ -214,7 +234,7 @@ function main() {
   console.log(JSON.stringify({status: 'PASS', sourceGrid: '32x8 original bytes',
     knownTerminal: 'p56 85 authenticated plus p57 95 clear', outerUnknown: 76,
     rings: [76, 68, 60, 52], positiveControls: ['quadratic', 'cubic'],
-    allSecretOriginalResults: answer}, null, 2));
+    allSecretOriginalResults: answer, pairCoverage}, null, 2));
 }
 
 main();
