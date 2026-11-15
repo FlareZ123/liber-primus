@@ -274,12 +274,12 @@ def main() -> None:
 
     sweep, skipdecode = load_external_decoder(args.external_root)
     shakespeare = (ROOT / "resources/control/shakespeare_first300k.txt").read_text()
-    replace_prefilter_lm(sweep, shakespeare, skipdecode.TRANSLIT)
+    replace_prefilter_lm(sweep, shakespeare, sweep.gp.TRANSLIT)
     pages = load_unknown_pages()
     page_map = dict(pages)
     pads = load_pads(args.pad_dir)
 
-    positive = positive_control(sweep, skipdecode, skipdecode.TRANSLIT)
+    positive = positive_control(sweep, skipdecode, sweep.gp.TRANSLIT)
     print("POSITIVE_CONTROL " + json.dumps(positive))
 
     key_symbols = 70_000
