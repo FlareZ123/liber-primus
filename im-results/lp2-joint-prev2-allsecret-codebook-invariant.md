@@ -50,4 +50,6 @@ These observations are exact **for all secret keys** within the two declared cip
 
 The manuscript does not itself select a 841-row cipher, and there is **no authentic unknown LP2 plaintext, source-derived key or destination** from these tests. The next causally useful clue would independently specify state registers, a rekey trigger or a reversible operator. No further all-secret search over the same stable row tables can alter their necessary collision invariant.
 
+**Verified original-source Windows Node22 run:** [43752040974](https://github.com/FlareZ123/liber-primus/actions/runs/43752040974) passed every original invariant and all 20+30 secret-key positive controls.
+
 **Original-source executable:** [sims/lp2_joint_prev2_allsecret_codebook_sft.cjs](../sims/lp2_joint_prev2_allsecret_codebook_sft.cjs). **Windows Node22 workflow:** [agent15-joint-prev2-original-source-sft.yml](../.github/workflows/agent15-joint-prev2-original-source-sft.yml).
