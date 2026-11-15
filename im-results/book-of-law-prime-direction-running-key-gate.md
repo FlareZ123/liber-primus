@@ -69,6 +69,34 @@ The untouched ciphertext scores **−4.60956**; the same Shakespeare GP29 trigra
 
 Reproduce with `node sims/book_of_law_mobius_word_direction_gate.cjs`.
 
+## Causal previous-plaintext-word direction
+
+The signed 2016 instruction is most naturally read as the **plaintext word's** number selecting the next direction: after decoding a word, compute its number and use that to traverse the key during the following word. This avoids the acausal current-ciphertext reading and is a distinct model from using the previous ciphertext word.
+
+For each decoded word, take the sum (S) of its GP prime values. Two source-motivated selectors were tested:
+
+- **Prime/composite:** (S) prime selects forward (or backward under the opposite polarity); composite selects the other direction.
+- **Möbius:** μ(S)=+1/-1 selects forward/backward (or the opposite polarity); μ(S)=0 holds the pointer fixed throughout the next word.
+
+The key remains the exact 21,630-rune 2013 Book of the Law GP29 stream, cyclic from its first rune. The first word starts forward. Both arithmetic signs were tested. This is a causal encoder/decoder pair: direction for word (n+1) is determined only after word (n)'s plaintext has been recovered.
+
+| Selector | Positive means forward | Operation | Trigram log-likelihood | IoC |
+|---|---:|---|---:|---:|
+| Prime/composite | Yes | (C=P+K) | −4.62503 | 0.03449316 |
+| Prime/composite | Yes | (C=P-K) | −4.61310 | 0.03446371 |
+| Prime/composite | No | (C=P+K) | −4.64183 | 0.03448691 |
+| Prime/composite | No | (C=P-K) | −4.63700 | 0.03450624 |
+| Möbius | Yes | (C=P+K) | −4.62579 | 0.03447652 |
+| Möbius | Yes | (C=P-K) | −4.63071 | 0.03446342 |
+| Möbius | No | (C=P+K) | −4.62216 | 0.03446481 |
+| Möbius | No | (C=P-K) | −4.64941 | 0.03446948 |
+
+All eight causal synthetic controls recover exactly 12,956/12,956 runes. The best output is **−4.61310**, versus untouched ciphertext **−4.60956**, uniform **−3.36730**, and held-out Shakespeare **−2.36417**. None has plaintext-like language signal. This is the most human-plausible direction semantics tested so far, and it is still negative for the Book of the Law key.
+
+**Decision:** reject the tested previous-plaintext-word prime/Möbius direction rules with the 2013 Book of the Law as cyclic key. Do not infer that the signed 2016 direction instruction is exhausted; its word-number source may be something other than GP-prime sum.
+
+Reproduce with `node sims/book_of_law_plaintext_word_direction_gate.cjs`.
+
 ## Decision and limits
 
 Reject the **2013 Book of the Law + cyclic GP-prime-sum and Möbius word-direction** mechanisms under these explicit conventions. This is stronger than the earlier direct continuous running-key rejection, but it does not rule out a book code, a different author-specified number, or a different key source. Do not expand this into an unconstrained sweep over word statistics, direction maps, key offsets, or pointer conventions without a new first-party selector.
@@ -78,6 +106,7 @@ Reproduce from the repository root:
 ```sh
 node sims/book_of_law_prime_direction_running_key_gate.cjs
 node sims/book_of_law_mobius_word_direction_gate.cjs
+node sims/book_of_law_plaintext_word_direction_gate.cjs
 ```
 
-Inputs: canonical `resources/liber-primus/lp2-corpus.json`, original `resources/liber-primus/lp2-transcription.txt`, exact 2013 chapter sources, and `resources/control/shakespeare_first300k.txt`. The script asserts the original word/rune alignment, exact key length, all eight prime/composite statistics, the four Möbius statistics, and all eight causal synthetic round trips.
+Inputs: canonical `resources/liber-primus/lp2-corpus.json`, original `resources/liber-primus/lp2-transcription.txt`, exact 2013 chapter sources, and `resources/control/shakespeare_first300k.txt`. The script asserts the original word/rune alignment, exact key length, all eight prime/composite statistics, the four Möbius statistics, and all sixteen causal synthetic round trips.
