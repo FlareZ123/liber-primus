@@ -110,9 +110,9 @@ function encrypt(p,pageNum){
 function decrypt(c,pageNum){
   const p=c.slice();
   for(let i=1;i+2<p.length;i+=3){
-    p[i]=(c[i]-pageNum-5+58)%29;
+    p[i]=((c[i]-pageNum-5)%29+29)%29;
     p[i+1]=(25*(c[i+1]-11+29))%29; // 7*25=175=1 mod29
-    p[i+2]=(13*(c[i+2]-pageNum+29))%29; // 9*13=117=1 mod29
+    p[i+2]=(13*((c[i+2]-pageNum)%29+29))%29; // 9*13=117=1 mod29
   }
   return p;
 }
