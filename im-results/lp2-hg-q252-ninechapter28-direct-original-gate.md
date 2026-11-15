@@ -1,6 +1,6 @@
 # Nine-chapter 28-symbol reading of the original 252-residue table quotient
 
-**15 November 2026, Agent9. Classification:** a newly evaluated source-constrained direct-key hypothesis, rejected in four fully reversible original-input models. **No unknown LP2 plaintext, authentic key, or continuation recovered.**
+**15 November 2026, Agent9. Classification:** a newly evaluated source-constrained direct-key hypothesis, rejected in four fully reversible original-input models and an exact historical-F dynamic-pointer extension. **No unknown LP2 plaintext, authentic key, or continuation recovered.**
 
 ## Candidate human path and its independent inputs
 
@@ -31,8 +31,25 @@ All nine chapter output streams remain GP29 near-uniform under each of the four 
 
 A second direct-codebook reading fails at the source algebra level. The numbers of distinct residues in the nine 28-item rows are **[16,19,21,16,19,16,18,17,22]**. None is a permutation of 28 distinct symbols. Any interpretation requiring the raw quotient rows to be nine literal 28-symbol permutation alphabets is therefore impossible without another transformation.
 
+## Authenticated F-bypass extension: complete key-phase impossibility
+
+The earlier no-skip GP29 IoCs do not cover the **historically verified solved-p56 plaintext F rule**. Add it now without choosing any plaintext words. A literal plaintext F (GP index0) is emitted as ciphertext F without advancing the key. A ciphertext F can also arise from normal encryption of a non-F plaintext and then consumes the key. For each source chapter, keep a full set of possible next key phases as the original glyphs arrive. If a rune is non-F, its normal decrypted GP29 value must be nonzero. At a ciphertext F, retain both the literal nonconsuming branch and any legal ordinary consuming branch. **This exact set-valued recursion enumerates every possible F history**, rather than guessing or greedily assigning skip positions.
+
+Test the same two source quotient additive keys with either the fixed source phase0 or a completely unrestricted unknown starting phase among **all 28** possible offsets for each chapter. The following are zero-based indices of the **first impossible original rune** in each visual chapter:
+
+| Source quotient inverse | Phase start | Ch1 | Ch2 | Ch3 | Ch4 | Ch5 | Ch6 | Ch7 | Ch8 | Ch9 |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Subtract | fixed 0 | 40 | 142 | 0 | 60 | 37 | 8 | 43 | 18 | 0 |
+| Subtract | **any 0–27** | **171** | **142** | **130** | **205** | **130** | **298** | **72** | **134** | **91** |
+| Add | fixed 0 | 39 | 19 | 13 | 113 | 24 | 2 | 67 | 40 | 36 |
+| Add | **any 0–27** | **388** | **157** | **107** | **123** | **256** | **198** | **225** | **211** | **185** |
+
+**Every chapter loses every legal phase well before the chapter ends in both directions.** The source quotient additive decoder is therefore **algebraically impossible under the exact solved-p56 plaintext-F bypass model**, even granting independent 28-way starting phases at each of the nine original chapters. This conclusion does not rely on a language dictionary, English IoC threshold, or assumed plaintext contraction. Separately, a 729-rune original-length plant constructed from the independently solved p57 GP text is valid under the same F policy and exactly survives the phase-state recursion for both signs.
+
+For the multiplicative primitive-root model, zero is fixed by the map, so F can simply remain literal and leave the key clock unchanged. This source-policy variant is invertible for every input rune, with a 729-rune native solved-p57 positive plant. Its two full-original IoCs are **0.0344699258** (power −) and **0.0344682456** (power +), again uniform-like with no plaintext. It remains an empirical language-register negative rather than the additive model's algebraic impossibility.
+
 ## Decision
 
-The simple source-derived **nine chapter × 28 quotient-stream additive and power ciphers** give no recovered unknown plaintext. No independent original clue authorizes further phase, key, root, source-register or F-skip variants. The quotient polynomial and its GF29 integrity consequences remain valid mathematical facts; the present result only bounds this direct consumer. A next attempt should first recover an independently sourced quotient-use instruction or another specific key recipient, then freeze one original-page prediction.
+The simple source-derived **nine chapter × 28 quotient-stream ciphers** give no recovered unknown plaintext. The historically authentic F-bypass extension additionally excludes **every possible phase and literal-F history** for both fixed additive directions on each of the nine original chapters. No independent original clue authorizes further phase, key, root, source-register or F-skip variants. The quotient polynomial and its GF29 integrity consequences remain valid mathematical facts; the present result only bounds this direct consumer. A next attempt should first recover an independently sourced quotient-use instruction or another specific key recipient, then freeze one original-page prediction.
 
-**Reproduction:** [single-file Node22 CommonJS SFT](../sims/lp2_hg_q252_ninechapter28_direct_sft.cjs) reads both original-derived 256-table fixtures and canonical GP29 corpus, checks exact divisibility, primitive-root order, row collisions, four complete-original inverses and solved-native positive plants. [Passing Windows Actions run 43768594248](https://github.com/FlareZ123/liber-primus/actions/runs/43768594248). The original source inputs remain unchanged.
+**Reproduction:** [single-file Node22 CommonJS SFT](../sims/lp2_hg_q252_ninechapter28_direct_sft.cjs) reads both original-derived 256-table fixtures and canonical GP29 corpus, checks exact divisibility, primitive-root order, row collisions, four complete-original inverses, complete additive F-state elimination, multiplicative F-skip inverses and solved-native positive plants. [Passing Windows Actions run 43768594248](https://github.com/FlareZ123/liber-primus/actions/runs/43768594248). The original source inputs remain unchanged.

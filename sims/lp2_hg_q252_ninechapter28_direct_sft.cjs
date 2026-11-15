@@ -142,6 +142,118 @@ for (const operation of ['add', 'mul']) {
       chapters: chapterIoC.map(x => Number(x.toFixed(6)))});
   }
 }
+
+/**
+ * Exact source-native plaintext-F bypass viability on a GP29 additive key.
+ * A literal output F leaves the key pointer unchanged. A normal ciphertext
+ * F can alternatively decode from non-F plaintext and consume the pointer.
+ * All possible histories are retained without choosing English words.
+ *
+ * @param {number[]} cipher Original or planted GP29 ciphertext
+ * @param {number[]} row One 28-residue source key
+ * @param {-1|1} sign Original inverse sign
+ * @param {boolean} freeStart Grant all 28 unknown initial phases
+ * @returns {{failureAt:number, phases:number[]}}
+ */
+function additiveFStates(cipher, row, sign, freeStart) {
+  let phases = new Set(freeStart
+    ? Array.from({length: 28}, (_, i) => i)
+    : [0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const token = cipher[i];
+    const next = new Set();
+    for (const phase of phases) {
+      if (token === 0) next.add(phase);
+      if (decode(token, row[phase], 'add', sign) !== 0) {
+        next.add((phase + 1) % 28);
+      }
+    }
+    if (next.size === 0) return {failureAt: i, phases: []};
+    phases = next;
+  }
+  return {failureAt: -1, phases: [...phases]};
+}
+
+const expectedFBypassCollapses = {
+  '-1': {
+    fixed: [40, 142, 0, 60, 37, 8, 43, 18, 0],
+    free: [171, 142, 130, 205, 130, 298, 72, 134, 91]
+  },
+  '1': {
+    fixed: [39, 19, 13, 113, 24, 2, 67, 40, 36],
+    free: [388, 157, 107, 123, 256, 198, 225, 211, 185]
+  }
+};
+const strictFResults = [];
+const plantedNative = Array.from({length: chapters[0]}, (_, i) => clear[i % clear.length]);
+
+for (const sign of [-1, 1]) {
+  const firstRow = quotient.slice(0, 28);
+  const plantedCipher = [];
+  let nativePhase = 0;
+  for (const plaintext of plantedNative) {
+    if (plaintext === 0) {
+      plantedCipher.push(0);
+    } else {
+      plantedCipher.push(encode(plaintext, firstRow[nativePhase], 'add', sign));
+      nativePhase = (nativePhase + 1) % 28;
+    }
+  }
+  const positive = additiveFStates(plantedCipher, firstRow, sign, false);
+  assert.equal(positive.failureAt, -1);
+  assert.ok(positive.phases.includes(nativePhase));
+
+  for (const policy of ['fixed', 'free']) {
+    let offset = 0;
+    const firstFailures = [];
+    for (let chapter = 0; chapter < chapters.length; chapter++) {
+      const row = quotient.slice(chapter * 28, (chapter + 1) * 28);
+      const cipher = unknown.slice(offset, offset + chapters[chapter]);
+      const observed = additiveFStates(cipher, row, sign, policy === 'free');
+      assert.ok(observed.failureAt >= 0);
+      firstFailures.push(observed.failureAt);
+      offset += chapters[chapter];
+    }
+    assert.deepEqual(firstFailures, expectedFBypassCollapses[String(sign)][policy]);
+    strictFResults.push({sign, initialPhase: policy, firstImpossibleRune: firstFailures});
+  }
+}
+
+// Multiplication has 0 -> 0 automatically. Under the documented
+// nonconsuming plaintext-F policy, advance the periodic key only on nonzero
+// GP29 ciphertext symbols. This variant is still an exact GP29 bijection.
+const powerFSkipResults = [];
+for (const sign of [-1, 1]) {
+  let offset = 0;
+  const fullPlaintext = [];
+  const perChapter = [];
+  for (let chapter = 0; chapter < chapters.length; chapter++) {
+    let phase = 0;
+    const row = quotient.slice(chapter * 28, (chapter + 1) * 28);
+    const plaintext = [];
+    for (let i = 0; i < chapters[chapter]; i++) {
+      const cipher = unknown[offset + i];
+      const symbol = cipher === 0 ? 0 : decode(cipher, row[phase], 'mul', sign);
+      assert.equal(encode(symbol, row[phase], 'mul', sign), cipher);
+      plaintext.push(symbol);
+      if (cipher !== 0) phase = (phase + 1) % 28;
+    }
+    offset += chapters[chapter];
+    perChapter.push(Number(ioc(plaintext).toFixed(6)));
+    fullPlaintext.push(...plaintext);
+  }
+  // Same authentic solved-p57 repeated plant, but with nonconsuming F.
+  let phase = 0;
+  const row = quotient.slice(0, 28);
+  for (const symbol of plantedNative) {
+    const cipher = symbol === 0 ? 0 : encode(symbol, row[phase], 'mul', sign);
+    assert.equal(cipher === 0 ? 0 : decode(cipher, row[phase], 'mul', sign), symbol);
+    if (symbol !== 0) phase = (phase + 1) % 28;
+  }
+  powerFSkipResults.push({sign, ioc: ioc(fullPlaintext), chapters: perChapter});
+}
+console.log(JSON.stringify({strictFResults, powerFSkipResults}, null, 2));
+
 console.log(JSON.stringify({
   originalRunes: unknown.length,
   printedTableBytes: tableBytes.length,
