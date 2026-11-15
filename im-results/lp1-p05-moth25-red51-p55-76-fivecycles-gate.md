@@ -83,12 +83,12 @@ The original 25 GP29 runes per lane fit directly into a **128-bit whole-field sh
 
 | Whole-field encoding | Row order | Historical 16-byte recovered value (hex) | Printable ASCII |
 | --- | --- | --- | ---: |
-| GP base29 | Printed | cc97f721e56f56436e9ab203ba872b09 | 6/16 |
-| GP base29 | Upward | 41a68322d2de958442f35a30b24d2673 | 8/16 |
-| GP five-bit | Printed | cd2a61dfd30e58dfe9c00314f4ef8dbb | 3/16 |
-| GP five-bit | Upward | 5adf4311a2378db889e59df7d11daf1b | 3/16 |
+| GP base29 | Printed | pending source-implementation CI readout | pending |
+| GP base29 | Upward | pending source-implementation CI readout | pending |
+| GP five-bit | Printed | pending source-implementation CI readout | pending |
+| GP five-bit | Upward | pending source-implementation CI readout | pending |
 
-The four output values lack a recognizable literal message, original-era file header or plain GP29 text. They could be arbitrary binary, so absence of a text header is a conditional negative rather than proof of impossibility. The shared source SSSS arithmetic and diffusion code is reused from the historically controlled 2013 reproducer; a fresh independent 128-bit secret plant reconstructs exactly.
+The exact historical XTEA inverse is being re-run against the original source implementation. The provisional byte readouts from an independent implementation were found inconsistent with it, so only the verified GF128 pre-diffusion field secrets are retained until the full SFT completes. They could be arbitrary binary, so absence of a text header is a conditional negative rather than proof of impossibility. The shared source SSSS arithmetic and diffusion code is reused from the historically controlled 2013 reproducer; a fresh independent 128-bit secret plant reconstructs exactly.
 
 A distinct GP-native **Shamir GF29** interpretation interpolates each of 25 source columns independently, using the same historically documented share IDs, with no unknown polynomial coefficients. The two original outputs are GP transliterations **PCMTYATHROIALOHOEDOSCLHEFTMTH** (IoC 0.0300) and **INGFXHNPLIAAPPHNMJRNGCEANCGNGP** (IoC 0.04667). Neither forms coherent text. A five-share polynomial plant reconstructs all **25/25 genuine solved-p57 rune symbols**. The faithful whole-field SSSS and GP29-adapted small-field variants are now bounded and retired, pending independent authored evidence for the two original source-letter exclusions.
 
