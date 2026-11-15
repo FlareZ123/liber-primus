@@ -119,7 +119,7 @@ function strictFInverse(sourceKey, mask) {
       continue;
     }
     const value = mod29(page49[i] - (book.prime[sourceKey[consumed++]] - 1));
-    if (value === 0 && page49[i] !== 0) illegal.push(i);
+    if (value === 0) illegal.push(i);
     output.push(value);
   }
   return {output, illegal, consumed};
