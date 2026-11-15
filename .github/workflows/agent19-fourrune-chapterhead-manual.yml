@@ -1,0 +1,16 @@
+name: Agent19 source-literal four-rune chapter-head gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-LP2 exact source and null tests
+        run: node sims/lp2_literal_fourrune_chapter_head_sft.cjs
