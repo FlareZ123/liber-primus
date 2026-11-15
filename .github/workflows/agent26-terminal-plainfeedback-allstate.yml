@@ -1,0 +1,17 @@
+name: Agent26 terminal nonlinear all-state known-p56 inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: All 256 original p56 entry states, authentic p57 and known-GP plant
+        shell: pwsh
+        run: node sims/lp2_terminal256_plainfeedback_lookup_allstate_sft.cjs
