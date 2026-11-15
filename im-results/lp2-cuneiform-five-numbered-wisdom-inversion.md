@@ -1,6 +1,6 @@
 # Five numbered cuneiform passages: source-square row masks and five-way matrix mixing
 
-**Status (updated 13 November 2026):** the exact printed 553-rune, five-numbered passage enclosure was independently image-readback verified. Three source-led operation families have been tested: direct numbered-row totient masks, a five-passage column interleave followed by the known p56 totient cipher, and a five-way 5×5 matrix mix whose key comes literally from the original LP1 Wisdom square. These finite inverses produce **no unknown plaintext, authenticated cipher, key or continuation**. Their results are documented and reproducible below. They do not establish an impossibility result for any unknown two-layer or externally keyed encryption.
+**Status (updated 13 November 2026):** the exact printed 553-rune, five-numbered passage enclosure was independently image-readback verified. Four source-led operation families have been tested: direct numbered-row totient masks (including an exact all-legal-F-bypass extension), a five-passage column interleave followed by the known p56 totient cipher, and a five-way 5×5 matrix mix whose key comes literally from the original LP1 Wisdom square. These finite inverses produce **no unknown plaintext, authenticated cipher, key or continuation**. Their results are documented and reproducible below. They do not establish an impossibility result for any unknown two-layer or externally keyed encryption.
 
 ## Human-visible selection and scope
 
@@ -50,6 +50,23 @@ For passage k, the source-selected row k starts at phase zero at the beginning o
 | Add `φ(cell) mod29`, row reset | **0.03441701** | **20** | `O B OE W F H X F EA P B F C U W ...` |
 
 Decoded per-passage IoCs stay near 1/29: subtraction [0.03159,0.03150,0.03598,0.03640,0.03331]; addition [0.03347,0.03468,0.03450,0.03443,0.03331]. Neither direction yields recognizable source-native English text. The reencryption invariant verifies code correctness, while independent language evidence remains negative. As expected for a varying-position additive operation, it restores ordinary random-like numbers of adjacent duplicates rather than solving the text.
+
+## Source-keyed F-transparent row mask: complete original algebraic obstruction
+
+**Agent49, 15 November 2026.** A historically faithful successor to the direct row-mask negative above has now been executed on all **553 actual original runes**, with no plaintext-language scoring. The authentic solved LP1/p56 cipher rule means plaintext **F** is emitted as ciphertext F and **does not consume the current key symbol**. The direct row mask above advanced on every glyph; this exact extension instead keeps *every legal advancing/nonadvancing F history* at every position, using the same five independently printed Wisdom-square totient rows, modulo29, starting at the five original red passage numerals. The original source still does **not** prescribe this transfer; the test asks only whether it is algebraically possible.
+
+At every original GP29 ciphertext rune `C` and current row phase `j`, there are at most two branches: (1) `C=0` can stand for literal plaintext-F and leave phase unchanged; (2) `P=(C−sign·K[j]) mod29` **must be nonzero** and advances phase. This fully includes any accidental ciphertext F produced by encryption of non-F. All possible phase histories are tracked exactly, without choosing bypass locations, English text or a key-clock alignment by score.
+
+| Cipher sign | Passage 1 (139 runes) | Passage 2 (91) | Passage 3 (98) | Passage 4 (96) | Passage 5 (129) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `C=P+K` | **8** | **29** | **12** | **88** | **28** |
+| `C=P−K` | **4** | **7** | **61** | **38** | **4** |
+
+Each entry is the **zero-based first original-rune position at which no legal F-interruption history remains**. None of the ten passages reaches its genuine original end. This stronger incompatibility requires neither a presumed plaintext word nor a language IoC threshold. A complete GP-native positive plant, using authentic solved p57 runes and the identical key/sign/length for each of the ten models, retains a legal forward-produced path through all source positions. Thus the negative is specific to the original ciphertext, not a coding impossibility for this cipher family.
+
+**Decision:** the historical **Wisdom-square row-totient Vigenère mask plus the actual plaintext-F nonadvancing rule** cannot be the complete GP29 encoder of any of these five numbered passages at the printed source phase. No alternate secret phase or extra pad is inferred. Do not repeat the same key transfer under newly guessed bypass locations; all legal bypass locations are already exhausted. The larger unknown cuneiform cipher remains unresolved.
+
+[Exact original-input CJS SFT with all-branch inverse and 10 complete GP-native positives](../sims/lp2_cuneiform_ftransparent_2014_wisdom_row_sft.cjs).
 
 ## Five-passage column mixing under the solved prime-totient key
 
