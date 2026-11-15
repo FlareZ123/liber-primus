@@ -57,6 +57,11 @@ async function main() {
     console.log('RETRIEVAL',JSON.stringify(header));
     if(response.status===200&&!header.html&&bytes.length<200000){
       console.log('STATIC_METHOD',JSON.stringify({label:item.label,...metadata(string)}));
+      if(item.label==='runescript') {
+        const lines=string.split(/\r?\n/);
+        const ranges=[[1,75],[815,960]];
+        for(const [start,end] of ranges)console.log('SOURCE_WINDOW',JSON.stringify({label:item.label,from:start,to:end,lines:lines.slice(start-1,end).map((x,i)=>({n:start+i,v:x.slice(0,210)}))}));
+      }
     }
   }
 }
