@@ -1,6 +1,6 @@
-# A global hidden GP29 alphabet cannot make the nine original chapters H/G codewords
+# Neither a shared hidden GP29 alphabet nor free chapter shifts make the original chapters H/G codewords
 
-**Agent14, 15 November 2026. Classification: exact all-secret-alphabet necessary-condition exclusion of one source-shaped cyclic-code interpretation. No new LP2 plaintext, author-selected key or cipher is recovered.**
+**Agent14, 15 November 2026. Classification: exact all-secret-alphabet plus all-nine-secret-chapter-shift necessary-condition exclusion of one source-shaped cyclic-code interpretation. No new LP2 plaintext, author-selected key or cipher is recovered.**
 
 ## Causal solve-path hypothesis
 
@@ -53,6 +53,20 @@ There is an earlier, tighter bijection obstruction. The first **seven** chapters
 
 It contains only **20 distinct GF29 values**. Multiplying it by any nonzero field scalar preserves these collisions, so **even the first seven original chapters have no admissible common secret permutation** under this model. The eighth chapter closes the larger linear space before requiring bijectivity.
 
+## Stronger all-secret extension: an independent additive shift per chapter
+
+A fixed secret decoding alphabet may be followed by an *unknown, independent GP29 additive offset for each chapter*. This is a more generous, ordinary source-era substitution mechanism than the single shared unknown alphabet, because no chapter shift is assumed, guessed, or fitted to English. Let the nine secret offsets be `b[0]…b[8]`; the proposed chapter coefficient values become `g(C[j,i])+b[j]`. Each chapter's F remainder is therefore
+
+`Σ_s A[j,k,s]·g(s) + R_j[k]·b[j] = 0`,
+
+where `R_j` is the *exact four-symbol remainder of an all-one coefficient sequence of that chapter's unchanged length*. This yields a **36×38** GF29 matrix: **29 completely unknown common alphabet values plus 9 completely unknown chapter offsets**. No field elements, shift signs, or plaintext strings are searched.
+
+The untouched original corpus gives augmented matrix **rank 36**, with exactly two free coordinates (columns 36 and 37) and a two-dimensional solution space. Exhaustively enumerate all `29²−1 = 840` nonzero field-linear combinations of the two kernel vectors, projecting each onto the first 29 unknown alphabet values. The maximum number of *distinct* decoded values is **20**. No combination is a bijection; the remaining combinations collapse alphabet values even further. Thus **zero of the 840 projective-and-scaling candidates** is a valid global rune-label permutation, regardless of which nine additive chapter keys are chosen.
+
+A source-native positive plant confirms that this enlarged test can succeed. Starting with the exact p57-derived nine F-codewords already used in the independent calibration below, add *nine different* offsets `7+3j mod29` to the decoded codeword, and obscure every rune using the planted affine alphabet `g(c)=7c+3 mod29`. Re-run the same 36×38 test without revealing the secret to its solver: it has rank36, and its two-dimensional decoder subspace contains **812** alphabet bijections. The actual planted decoder together with the negative of all nine shifts satisfies every original-length F remainder exactly.
+
+**Decision:** even an arbitrary shared nonlinear secret alphabet followed by completely free, independently chosen *additive chapter keys* cannot make the original nine unknown LP2 chapters zero-remainder codewords under the historical-source F. Allowing chapter-wise nonzero affine scaling of that alphabet also does not help: the scale factors can be divided away and absorbed into these chapter shifts before the F test. A chapter-specific *nonlinear* alphabet or a key stream changing inside a chapter is outside this stronger exclusion. All results remain conditional on the unproven chapter-codeword premise.
+
 ## Native plaintext-positive calibration
 
 To check that the method can genuinely recover a secret alphabet when the proposed cipher is present, take the **95 authenticated clear GP rune indices of original p57**, repeat their order into each of the nine source-matched lengths minus four, and multiply each resulting high-to-low polynomial by exactly F. This constructs nine genuine F-codewords of the original lengths, with complete reversible plaintext and four check coefficients each.
@@ -61,7 +75,7 @@ Apply an independently fixed hidden 29-symbol output permutation: the decoder is
 
 ## Decision and boundaries
 
-**Reject the precise hypothesis:** the unknown LP2 printed rune sequence, read as nine complete source-visible chapters, is a set of zero-remainder H/G cyclic codewords after any *single common secret permutation* of its 29 rune labels. Source-original algebra excludes the whole 29! family; supplying a guessed alphabet, wordlist, cipher key or more compute cannot rescue it.
+**Reject the enlarged hypothesis:** the unknown LP2 printed rune sequence, read as nine complete source-visible chapters, is a set of zero-remainder H/G cyclic codewords after any *single common secret permutation* of its 29 rune labels and even after nine independently unknown additive GP29 chapter shifts. Source-original algebra excludes the whole 29! family; supplying a guessed alphabet, wordlist, cipher key or more compute cannot rescue it.
 
 This finding does **not** reject the established original table factors, which have independent arithmetic provenance. It does not cover chapter-specific relabeling, nonzero syndrome fields, different coding boundaries, a key-stream transformation before the code, the quotient as separate binary data, or a code used only for the table. No source instruction currently selects those alternatives. The most productive new work remains recovery of an independently selected table consumer or a reversible original-cipher key. In particular, do not open an unconstrained phase/offset sweep to preserve an unsupported chapter-code reading.
 

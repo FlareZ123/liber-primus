@@ -66,35 +66,78 @@ function syndromeRows(streams) {
 /**
  * Full finite-field RREF, rank and a basis of the nullspace.
  * @param {number[][]} rows
+ * @param {number} [width]
  * @returns {{rank:number,free:number[],basis:number[][]}}
  */
-function nullspace(rows) {
+function nullspace(rows, width = 29) {
   const a = rows.map((row) => row.slice());
   const pivots = [];
   let h = 0;
-  for (let col = 0; col < 29 && h < a.length; col++) {
+  for (let col = 0; col < width && h < a.length; col++) {
     let k = h;
     while (k < a.length && a[k][col] === 0) k++;
     if (k === a.length) continue;
     [a[h], a[k]] = [a[k], a[h]];
     const scale = inverse(a[h][col]);
-    for (let j = col; j < 29; j++) a[h][j] = mod(a[h][j] * scale);
+    for (let j = col; j < width; j++) a[h][j] = mod(a[h][j] * scale);
     for (let i = 0; i < a.length; i++) {
       if (i === h || a[i][col] === 0) continue;
       const factor = a[i][col];
-      for (let j = col; j < 29; j++) a[i][j] = mod(a[i][j] - factor * a[h][j]);
+      for (let j = col; j < width; j++) a[i][j] = mod(a[i][j] - factor * a[h][j]);
     }
     pivots.push(col);
     h++;
   }
-  const free = Array.from({ length: 29 }, (_, i) => i).filter((i) => !pivots.includes(i));
+  const free = Array.from({ length: width }, (_, i) => i).filter((i) => !pivots.includes(i));
   const basis = free.map((f) => {
-    const v = Array(29).fill(0);
+    const v = Array(width).fill(0);
     v[f] = 1;
     for (let i = 0; i < pivots.length; i++) v[pivots[i]] = mod(-a[i][f]);
     return v;
   });
   return { rank: h, free, basis };
+}
+
+/**
+ * Same codeword equations after allowing an independently unknown additive
+ * post-alphabet shift for each of the nine visual chapters. The 29 secret
+ * rune values and nine chapter shifts remain unconstrained.
+ * @param {number[][]} streams
+ * @returns {number[][]}
+ */
+function chapterShiftRows(streams) {
+  return streams.flatMap((stream, chapter) => {
+    const source = syndromeRows([stream]);
+    const shiftSyndrome = remainder(Array(stream.length).fill(1));
+    return source.map((row, k) => [
+      ...row,
+      ...Array.from({ length: streams.length }, (_, j) =>
+        j === chapter ? shiftSyndrome[k] : 0)
+    ]);
+  });
+}
+
+/**
+ * Exhaustively classify the two-dimensional projected nullspace, without
+ * enumerating alphabet keys directly. All 29^2 linear combinations are cheap.
+ * @param {number[][]} basis
+ * @returns {{maxDistinct:number,permutations:number}}
+ */
+function classifyDecoderPlane(basis) {
+  assert.equal(basis.length, 2);
+  let maxDistinct = 0;
+  let permutations = 0;
+  for (let a = 0; a < MOD; a++) {
+    for (let b = 0; b < MOD; b++) {
+      if (a === 0 && b === 0) continue;
+      const decoder = Array.from({ length: 29 }, (_, i) =>
+        mod(a * basis[0][i] + b * basis[1][i]));
+      const distinct = new Set(decoder).size;
+      maxDistinct = Math.max(maxDistinct, distinct);
+      if (distinct === 29) permutations++;
+    }
+  }
+  return { maxDistinct, permutations };
 }
 
 /** @param {number[]} sequence @returns {number[]} */
@@ -137,6 +180,16 @@ assert.equal(entire.basis.length, 0);
 const reverseRank = nullspace(syndromeRows(original.map((a) => a.slice().reverse()))).rank;
 assert.equal(reverseRank, 29);
 
+const originalWithChapterShifts = nullspace(chapterShiftRows(original), 38);
+assert.equal(originalWithChapterShifts.rank, 36);
+assert.deepEqual(originalWithChapterShifts.free, [36, 37]);
+const secretChapterAlphabetPlane = classifyDecoderPlane(
+  originalWithChapterShifts.basis.map((vector) => vector.slice(0, 29)));
+assert.deepEqual(secretChapterAlphabetPlane, { maxDistinct: 20, permutations: 0 });
+
+// Even nine unrestricted chapter-specific postalphabet Caesar shifts cannot
+// make the authentic source a family of F-codewords under a shared bijection.
+
 // Authentic clear p57 as the known-plaintext source, not a claim about LP2.
 // Encode a synthetically valid H/G chapter code, hide all 29 output glyph
 // values through an unknown affine permutation, and recover its decoder.
@@ -160,6 +213,24 @@ assert(plantRows.every((row) =>
 const normalization = inverse(trueDecoder[28]);
 assert.deepEqual(plant.basis[0], trueDecoder.map((x) => mod(x * normalization)));
 
+// Positive with *independently different* hidden chapter offsets: the
+// same secret affine decoder is identifiable up to affine equivalence.
+const offsetEncoded = synthetic.map((stream, chapter) => {
+  const shift = mod(3 * chapter + 7);
+  return stream.map((symbol) => mod(symbol + 25 * shift));
+});
+const shiftPlantRows = chapterShiftRows(offsetEncoded);
+const shiftedPlantKernel = nullspace(shiftPlantRows, 38);
+assert.equal(shiftedPlantKernel.rank, 36);
+assert.deepEqual(shiftedPlantKernel.free, [36, 37]);
+const plantedOffsetPlane = classifyDecoderPlane(
+  shiftedPlantKernel.basis.map((v) => v.slice(0, 29)));
+assert.deepEqual(plantedOffsetPlane, { maxDistinct: 29, permutations: 812 });
+const sourceDecoderAndShifts = trueDecoder.concat(
+  Array.from({ length: 9 }, (_, j) => mod(-3 * j - 7)));
+assert(shiftPlantRows.every((row) =>
+  mod(row.reduce((sum, val, i) => sum + val * sourceDecoderAndShifts[i], 0)) === 0));
+
 console.log(JSON.stringify({
   source: 'original LP2 p0-p55, unchanged GP29 indices; H*G factor checked against table',
   spans: CHAPTERS,
@@ -171,6 +242,10 @@ console.log(JSON.stringify({
   all_nine_rank: entire.rank,
   all_nine_reversed_rank: reverseRank,
   admissible_global_bijections: 0,
+  chapter_specific_shift_36x38_rank: originalWithChapterShifts.rank,
+  chapter_shifted_global_decoder_max_distinct: secretChapterAlphabetPlane.maxDistinct,
+  chapter_shifted_admissible_bijections: secretChapterAlphabetPlane.permutations,
+  chapter_shifted_native_p57_plant_bijections: plantedOffsetPlane.permutations,
   known_plaintext_plant_rank: plant.rank,
   known_plaintext_plant_decoder_recovered_up_to_scalar: true,
   authentic_unknown_plaintext_recovered: false
