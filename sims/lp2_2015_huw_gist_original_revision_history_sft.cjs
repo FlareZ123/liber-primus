@@ -32,7 +32,7 @@ function staticKeys(body) {
   return {lineCount:lines.length,selected};
 }
 async function main(){
-  assert.equal(GIST.length,32);
+  assert.equal(GIST,'8a564d1e8027294df15d');
   assert(staticKeys('offsets = forge_offsets([2,3],1,-3301)').selected.length===1);
   console.log('SELFTEST revision code-only scanner PASS');
   if(!process.argv.includes('--network'))return;
