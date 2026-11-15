@@ -113,9 +113,17 @@ function main(){
  assert.equal(d.filter(x=>x===0).length,21);
  assert.equal(new Set(d).size,32);
  for(let i=0;i<269;i++)assert.equal(original.p[i]^original.q[i],d[i]);
- const refs=[0,1,5,14,29,68,136,201,271].map(shift=>({
-  shift,score:solve(a,b,lm,shift).score
- }));
+ const rankAll=(ca,cb)=>{
+  const all=Array.from({length:cb.xs.length},(_,shift)=>({
+   shift,score:solve(ca,cb,lm,shift).score
+  })).sort((u,v)=>v.score-u.score);
+  return {zeroRank:all.findIndex(x=>x.shift===0)+1,
+   best:all[0],second:all[1],
+   middle:all[Math.floor(all.length/2)],
+   unshifted:all.find(x=>x.shift===0),
+   nShifts:all.length};
+ };
+ const refs=rankAll(a,b);
  const p=base.stream(remaining.slice(0,400),269);
  const q=base.stream(remaining.slice(500,900),269);
  assert.deepEqual([p.xs.length,q.xs.length],[269,269]);
@@ -136,6 +144,46 @@ function main(){
  for(let i=0;i<269;i++)assert.equal(plant.p[i]^plant.q[i],p.xs[i]^q.xs[i]);
  // A trained native-GP control must recover far better than chance.
  assert(accuracy>0.15&&accuracyB>0.15);
+ // Reuse 515 exact source GP runes of independently solved 2014 LP1 prose.
+ const solved=require('./authentic_lp1_p03_p04_vigenere_recovery.cjs');
+ const raw=fs.readFileSync(path.join(ROOT,'resources/transcriptions/lp1_wulfic_canonical.txt'),'utf8')
+  .split('%').slice(1,3).join('%');
+ const runes=new Map(corpus.runes.map((r,i)=>[r,i]));
+ const known={xs:[],start:[],end:[]};
+ let inWord=false;
+ for(const r of raw){
+  if(runes.has(r)){
+   known.xs.push(solved.plaintext[known.xs.length]);
+   known.start.push(!inWord);known.end.push(false);
+   inWord=true;
+  }else if('-. const positiveShifts=[0,1,5,14,29,68,136,201,268].map(shift=>({
+  shift,score:solve(ca,cb,lm,shift).score
+ }));
+ console.log(JSON.stringify({§%'.includes(r)){
+   if(known.end.length)known.end[known.end.length-1]=true;
+   inWord=false;
+  }
+ }
+ assert.equal(known.xs.length,515);
+ assert.deepEqual(known.xs,solved.plaintext);
+ const slice=(i,j)=>({xs:known.xs.slice(i,j),start:known.start.slice(i,j),
+  end:known.end.slice(i,j)});
+ const lp1A=slice(0,251),lp1B=slice(251,515);
+ const randLp1=rng(0x3301a17),gpKey=[];
+ for(let i=0;i<264;i++){
+  const choices=[];
+  for(let k=0;k<32;k++)if((lp1B.xs[i]^k)<29&&
+    (i>=251||(lp1A.xs[i]^k)<29))choices.push(k);
+  assert(choices.length>0);
+  gpKey.push(choices[Math.floor(randLp1()*choices.length)]);
+ }
+ const lp1Ca={...lp1A,xs:lp1A.xs.map((v,i)=>v^gpKey[i])};
+ const lp1Cb={...lp1B,xs:lp1B.xs.map((v,i)=>v^gpKey[i])};
+ const lp1Solved=solve(lp1Ca,lp1Cb,lm,0);
+ const lp1Accuracy=lp1Solved.p.filter((v,i)=>v===lp1A.xs[i]).length/251;
+ const lp1AccuracyB=lp1Solved.q.filter((v,i)=>v===lp1B.xs[i]).length/251;
+ assert(lp1Accuracy>0.15&&lp1AccuracyB>0.15);
+ const lp1Ranks=rankAll(lp1Ca,lp1Cb);
  const positiveShifts=[0,1,5,14,29,68,136,201,268].map(shift=>({
   shift,score:solve(ca,cb,lm,shift).score
  }));
@@ -147,6 +195,9 @@ function main(){
   target:{score:original.score,p28:original.pText,p42:original.qText,shiftScreen:refs},
   nativeGpHeldoutPlant:{score:plant.score,recoveredP28Fraction:accuracy,
    recoveredP42Fraction:accuracyB,shiftScreen:positiveShifts},
+  authenticCicadaGpPlant:{source:'solved LP1 pages03-04, 251+264 genuine GP runes',
+   recoveredFirstFraction:lp1Accuracy,recoveredSecondFraction:lp1AccuracyB,
+   zeroAlignedScore:lp1Solved.score,alignment:lp1Ranks},
   disclaimer:'No source selects the XOR operator or shared key; target is a fixed ciphertext-only test, not authenticated plaintext.'
  },null,2));
 }
