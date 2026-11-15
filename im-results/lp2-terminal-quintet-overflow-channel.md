@@ -78,6 +78,21 @@ The executed [manual original-byte Windows CI 43682562692](https://github.com/Fl
 
 Neither is directly readable prose nor an obvious beginning of a common original payload. **This rejects only the unchanged historically used byte-zero audio-XOR transfer yielding directly readable bytes.** An encrypted binary recipient would remain logically possible, but no original clue selects one. The precise original-source and positive-test implementation is [the single-file CJS gate](../sims/lp2_p55_quintet_audio761_xor_sft.cjs). This is separate from the prior 2013-audio-to-printed-256-grid XOR test, because the recipient and input frame are different.
 
+## Original p56 printed digest as a direct packet key (Agent43, 15 November 2026)
+
+**Small adjacent-source consumer, negative for readable plaintext.** Previously, Agent37 found that original p55 76 rune ciphertext can be partitioned after its one carried rune into 15×5 GP29 quintets, yielding a provisional 45-byte packet with 43 interior bytes. The following independently solved physical p56 gives an actual printed 128-hex/64-byte hash of an unknown deep-web object. This small experiment instead takes that 64-byte hash as a **candidate key material for the adjacent p55 binary interior**, even though the author never instructed such a transfer.
+
+The input frame, source hash, start, orientation and binary endianness are unchanged. Four one-shot consumers are evaluated: direct XOR of the 43 interior bytes with the first 43 printed hash bytes; AES-256-CTR with key=first32 hash bytes and IV=next16; AES-256-CTR with key=last32 and IV=first16; and AES-256-CTR with first32 key and zero IV. These are three natural byte-slice choices rather than a password, seed, offset or cryptographic-mode sweep. Their original-input outputs are:
+
+| Direct source-fixed consumer | Printable ASCII or whitespace /43 | First 16 output bytes (hex) |
+| --- | ---: | --- |
+| Hash bytes0–42 XOR | **23** | 340acb8e7a3a21bc56786a092f89dd65 |
+| AES front32 key, next16 IV | **19** | 6e08be1f546c2080aaea0adb6f827834 |
+| AES back32 key, first16 IV | **17** | 9c04a3eaea0fc978d060b82c07f71ac8 |
+| AES front32 key, zero IV | **11** | 5c1ead01020486b69ef28669add9b113 |
+
+No output yields recognizable prose or an ordinary unencrypted file header. Each 43-byte XOR/AES operation recovers an independently planted 43-byte solved-message text exactly, with wrong AES keys rejected. The read-only [Node22 SFT](../sims/lp2_p55_quintet_p56_digest_key_sft.cjs) derives all source bytes directly from the unchanged p55 corpus and the p56 printed hash, asserts the established 45-byte framing and records every output. **Decision:** this source-adjacent digest as direct XOR / precisely these three AES-CTR consumers does not recover a p55 message. It does not establish that the speculative quintet packet is an original byte framing; other key derivations would require a new independent source selector. No unknown plaintext or authentic creator key was recovered.
+
 ## Decipherment decision
 
 The source-determined **75-rune body** and original ornament permit a precise, repeatable **15×5** candidate readout; the 24-bit overflow pattern is an exact original-cipher observation. However there is currently **no historical instruction selecting 24-bit byte packets**, and the inferred 45 bytes lack an externally authenticated object/operation. Direct native-GP ARC4/additive consumption of the uniquely framed 43-byte candidate has failed under a separately frozen 72-model original-source gate; the direct historical 2013 byte-zero audio XOR gives no readable 43-/45-byte output; and the raw/ASCII-hex 43-byte object fails the direct p56 digest-preimage gate under four 512-bit hash families. Do not promote the ornament match to a key, plaintext or verified hidden file, or optimize phases, byte order, masks, and hidden cipher layers merely to make the candidate readable.
