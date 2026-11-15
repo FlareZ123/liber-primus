@@ -1,6 +1,6 @@
-# Two original-artifact source-to-key gates: 2013 pad identity and 2016 tree pixel strips
+# Original-artifact source-to-key gates: 2013 binary provenance and 2016 tree pixel strips
 
-**13 November 2026, Agent 7. Classification: bounded original-input negatives.** The LP2 ciphertext remains unsolved. Neither test recovers a key, plaintext, historical endpoint or source-authenticated operation.
+**13–15 November 2026, Agents 7 and 27. Classification: bounded original-input negatives.** The LP2 ciphertext remains unsolved. Neither test recovers a key, plaintext, historical endpoint or source-authenticated operation.
 
 ## 2013 source data reused verbatim in the p49–51 numerical grid?
 
@@ -11,6 +11,23 @@ A direct literal reuse hypothesis is unusually cheap to test and needs no specul
 The original file downloaded in CI has exactly **118,818,811 bytes** and SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. **Zero of 84** candidates occur in it. Synthetic eight- and 32-byte planted copies at known offsets both succeed, demonstrating the test's exact-match power. [Self-contained CommonJS reproducer](../sims/lp2_grid_2013_pad_literal_overlap_sft.cjs), [source-downloading Windows workflow](../.github/workflows/lp2-grid-2013-pad-literal-overlap.yml), [successful CI log/run 43370674533](https://github.com/FlareZ123/liber-primus/actions/runs/43370674533).
 
 **Decision:** the table cannot be an unchanged whole-block, physical row or physical column copied from this specific 2013 data source under the pinned base60 parse and source reading orders. This does **not** exclude table encryption, separated byte positions, a transformed copy, GP29 projection of the data file, other 2013 files, or the numeric table being a stand-alone cipher rather than a key.
+
+## Exact printed motifs against three other original 2013 files (Agent 27, 15 November)
+
+The previous whole-`DATA/560.13` test does not establish absence from the *other* surviving historical 2013 binaries. The first-onion and telephone challenge source records independently identify **`_560.00`** and **`560.17`** as actual 2013 pad files; the same year's independently archived **`761.MP3`** has a genuine Cicada title and Parable tag. All three are distinct exact source byte streams, rather than variants of the larger `560.13` pad. This gives a finite historical source-of-key retrieval gate: was **any unchanged original physical row, column, or entire 256-cell table** copied verbatim into any of these three known files?
+
+Freeze the exact same **84 candidates** already defined for `560.13`: original 32×8 row-major and column-major complete 256 bytes and their reversals; all 32 original 8-byte rows and eight 32-byte columns in forward and reverse directions. Search each full original 2013 source for *every exact contiguous byte offset*, with no XOR, free phase, adjusted radix, inferred new transposition or language score. Each source object's archived SHA-256 and byte length are required to match before the test.
+
+| Independently pinned 2013 original | Source bytes | Original SHA-256 prefix | Complete exact motif matches |
+| --- | ---: | --- | ---: |
+| CicadaOS `_560.00` | 3,992,970 | `a24051a87f0eb25c` | **0/84** |
+| CicadaOS `560.17` | 1,183,811 | `d5676b1e01fd371c` | **0/84** |
+| Original `761.MP3` | 4,010,732 | `83008217439110c3` | **0/84** |
+| **Total** | **9,187,513** | three individually verified complete file hashes | **0/252** |
+
+The actual original-file checks and source-motif comparisons ran on **Windows/Node.js 22**, with exact complete length and SHA-256 assertions, as successful [manual original-source run 43746441439](https://github.com/FlareZ123/liber-primus/actions/runs/43746441439). The program also plants and locates the full 256-byte table, a printed 8-byte row and a 32-byte column in a separate source-shaped buffer to establish exact-match sensitivity. The [single-file CommonJS reproducer](../sims/lp2_2013_smallpads_p50_literal_rows_sft.cjs) and [manual-only workflow](../.github/workflows/lp2-2013-smallpad-p50-motifs-manual.yml) are committed; the workflow downloads all three immutable archive revisions and does not persist large original binaries.
+
+**Decision:** retire *unchanged contiguous physical-motif copying* from this finite set of **four** distinct 2013 binary sources, including the earlier `DATA/560.13` negative, under the conditional original table's conventional base60 byte reading. No full-table, row or column literal source identification was obtained, so no original LP2 deciphering key or new plaintext is supported. This does **not** exclude a transformed source key, other independently preserved source files, separately serialized numeral characters, a different table radix, or other uses of these earlier data. A new source motif test should name an independent authored selector rather than enlarge the historical-file census without a causal route to decipherment.
 
 ## A different direct source use for the 2016 signed tree image
 
