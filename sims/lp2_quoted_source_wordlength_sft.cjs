@@ -1,7 +1,7 @@
 'use strict';
 
-// SFT for four long *original* LP2 quoted spans against two historic Cicada
-// book sources. Read-only; Node 22; run on a GitHub-networked machine.
+// SFT for four original LP2 quotation windows against historically used
+// Cicada literary sources. Read-only, Windows Node 22, CommonJS.
 const assert = require('node:assert/strict');
 const { readFileSync } = require('node:fs');
 
@@ -44,7 +44,7 @@ function wordRanges(raw) {
       inWord = true;
       count += 1;
       value += glyph;
-    } else if ('-.    } else if (inWord) {§'.includes(glyph) && inWord) {
+    } else if ('-.$&§'.includes(glyph) && inWord) {
       words.push({ start, end: count, len: count - start, runes: value });
       inWord = false;
       value = '';
@@ -143,6 +143,73 @@ async function main() {
         closestSource: answer.plaintext
       }));
     }
+  }
+
+
+  // Previous-round book sources, already pinned under resources/external.
+  // This extra screen is offline and keeps original quote boundaries fixed.
+  const localTexts = [
+    ['Blake, Marriage of Heaven and Hell (1906)', 'blake-marriage-1906-gutenberg45315.txt'],
+    ['Book of the Law I (2013 source)', '2013-book-of-law-I.txt'],
+    ['Book of the Law II (2013 source)', '2013-book-of-law-II.txt'],
+    ['Book of the Law III (2013 source)', '2013-book-of-law-III.txt'],
+    ['KJV Passion and Gospels', 'kjv-passion-gospels-2014.txt'],
+    ['Tennyson Lady of Shalott 1832', 'tennyson-lady-of-shalott-1832-mptc.txt'],
+    ['Tennyson Lady of Shalott 1842', 'tennyson-lady-of-shalott-1842-gutenberg8601.txt']
+  ];
+  const longOriginalQuotes = quotes.filter((q) => q.lengths.length >= 13);
+  for (const [name, filename] of localTexts) {
+    const sourceText = readFileSync('resources/external/' + filename, 'utf8');
+    const tokens = Array.from(sourceText.matchAll(/[A-Za-z]+(?:'[A-Za-z]+)*/g),
+      (m) => m[0].toUpperCase());
+    for (const quote of longOriginalQuotes) {
+      const answer = bestMatch(quote.lengths, tokens);
+      assert(answer.cost > 0,
+        'Potential verbatim quote in ' + name + ' at ' + quote.start);
+      console.log('ORIGINAL_QUOTE_LOCAL', JSON.stringify({
+        source: name, startRune: quote.start,
+        tokenCount: quote.lengths.length,
+        minAbsoluteWordLengthError: answer.cost,
+        exactWordLengthPositions: answer.exact,
+        sourceTokenOffset: answer.offset,
+        closestSource: answer.plaintext
+      }));
+    }
+  }
+  const mabinogion = JSON.parse(readFileSync(
+    'resources/external/cicada2012-mabinogion-gutenberg5160-gp-wordlengths.json',
+    'utf8'));
+  const allMabinogion = mabinogion.mabinogion_story_word_lengths;
+  assert(allMabinogion.length > 100000);
+  for (const quote of longOriginalQuotes) {
+    const answer = bestMatch(quote.lengths, allMabinogion, (value) => value);
+    assert(answer.cost > 0,
+      'Potential original Mabinogion quote at ' + quote.start);
+    console.log('ORIGINAL_QUOTE_LOCAL', JSON.stringify({
+      source: 'Mabinogion (2012 Cicada bookcode source)',
+      startRune: quote.start, tokenCount: quote.lengths.length,
+      minAbsoluteWordLengthError: answer.cost,
+      exactWordLengthPositions: answer.exact,
+      sourceTokenOffset: answer.offset
+    }));
+  }
+  const yetzirah = JSON.parse(readFileSync(
+    'resources/external/sefer-yetzirah-westcott-archive.json', 'utf8'));
+  const tokensY = Array.from(
+    yetzirah.map((p) => p.pageContent).join(' ').matchAll(/[A-Za-z]+(?:'[A-Za-z]+)*/g),
+    (m) => m[0].toUpperCase());
+  for (const quote of longOriginalQuotes) {
+    const answer = bestMatch(quote.lengths, tokensY);
+    assert(answer.cost > 0,
+      'Potential original Sefer Yetzirah quote at ' + quote.start);
+    console.log('ORIGINAL_QUOTE_LOCAL', JSON.stringify({
+      source: 'Sefer Yetzirah, Westcott archive',
+      startRune: quote.start, tokenCount: quote.lengths.length,
+      minAbsoluteWordLengthError: answer.cost,
+      exactWordLengthPositions: answer.exact,
+      sourceTokenOffset: answer.offset,
+      closestSource: answer.plaintext
+    }));
   }
 
   // Earlier LP1 is a first-party author source already in GP runes. It has
