@@ -61,6 +61,23 @@ function details(url,bytes,kind) {
   return {url,kind,size:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),
     html:isHtml(bytes),preview:bytes.subarray(0,700).toString('utf8')};
 }
+/** @param {string} label @param {Buffer} bytes */
+function preserve(label,bytes) {
+  const dir='irc2014-archived-outputs';
+  fs.mkdirSync(dir,{recursive:true});
+  const dest=dir+'/'+label+'.bin';
+  const lock=dest+'.lock';
+  const fd=fs.openSync(lock,'wx');
+  try{
+    const tmp=dest+'.'+process.pid+'.tmp';
+    fs.writeFileSync(tmp,bytes,{flag:'wx'});
+    fs.renameSync(tmp,dest);
+  }finally{
+    fs.closeSync(fd);
+    fs.unlinkSync(lock);
+  }
+  return dest;
+}
 /** @param {{line:number,url:string,label:string}} target */
 async function probe(target) {
   const findings=[];
@@ -95,6 +112,10 @@ async function probe(target) {
         const got=await get(playback);
         const md=details(playback,got.body,'replayed historical file');
         x.replay={...md,status:got.status,error:got.error};
+        if(got.status===200&&!md.html&&got.body.length>0&&got.body.length<=500000){
+          const safe=target.label+'-'+endpoint.provider+'-'+(/https:/.test(url)?'https':'http');
+          x.replay.retained=preserve(safe,got.body);
+        }
       }
     }
   }
