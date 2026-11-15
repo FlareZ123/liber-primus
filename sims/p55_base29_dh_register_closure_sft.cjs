@@ -60,6 +60,7 @@ assert.equal(base29([3, 26, 24]), 3301n);
 // Visual counts are manually transcribed from the original images:
 // p57 terminal red grid = 5 columns, 9 rows, 23 red dots;
 // p55/p57 red marker = 13; tree ornaments = 8 filled + 2 hollow.
+// The ornament-to-public-share interpretation is hypothetical (Agent50 cautions they may be decorative).
 const visual = { generatorColumns: 5, modulusDots: 23, exponentMarks: 13, filledCircles: 8, hollowCircles: 2 };
 const g = visual.generatorColumns, p = visual.modulusDots, a = visual.exponentMarks;
 const A = Number(modPow(g, a, p));

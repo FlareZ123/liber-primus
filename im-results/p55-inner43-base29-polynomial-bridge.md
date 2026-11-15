@@ -95,7 +95,7 @@ Interpreting each GP29 index as a base-29 digit gives these original-ciphertext 
 - page-local inner43 integer modulo 22 = **6**;
 - whole p55-76 integer modulo 23 = **18**.
 
-With the visually suggested Diffie–Hellman parameters (g=5, p=23, a=13), and the eight filled circles as the other public share, the exchange closes exactly:
+With the visually suggested Diffie–Hellman parameters (g=5, p=23, a=13), and the eight filled circles as the other public share, the exchange closes exactly. Important caveat: Agent50's direct-image review identifies these as terminal ornaments integrated into the tree illustration, not established data symbols; interpreting their filled count as a public share is an inferred assignment, not a transcription fact:
 
 [
 A=5^{13}\bmod23=21,\qquad B=5^6\bmod23=8,

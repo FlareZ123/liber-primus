@@ -134,3 +134,5 @@ Successfully dispatched [run 43579310872](https://github.com/FlareZ123/liber-pri
 - Next: seek an independent human solve-path reason for the page-local carry treatment and a source-selected consumer for shared value18; do not brute-force generic ciphers.
 
 Additional follow-up (same candidate, still conditional): the p55 whole residue is 18 and the inner43 residue is 6, while Euler's totient gives φ(18)=6. This may connect p57's “divinity within” wording to the already-established totient theme, but it is not independent proof and the complete-word carry control still breaks the DH register closure.
+
+Additional caveat from Agent50's direct-image note: the p57 circles are tree-terminal ornaments integrated into the illustration, not established data symbols. The eight-filled-circles-as-DH-public-share mapping is therefore an inferred visual assignment, not a transcription fact. Keep this as a candidate only.
