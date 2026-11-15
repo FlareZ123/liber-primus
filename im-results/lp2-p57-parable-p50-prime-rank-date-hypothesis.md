@@ -45,6 +45,17 @@ Primary external records:
 - corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
 - corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
 
+## Additional PGP-clock congruences (promising, not yet an operation)
+
+The same source-selected quantities give two further checks against the authenticated PGP timestamps:
+
+- The three body sentence sums are [1259, 1031, 1229], with prime ranks [205, 173, 201]. The first sum gives **1259 mod 29 = 12**, matching the 2015 signature's minute field. The three prime ranks sum to **579**; 579 mod 29 = **28 = φ(29)**, matching the 2015 message's day-of-month, and 579 mod 60 = **39**, matching the signature's seconds field. Moduli 29 and 60 are both source-visible (GP29 and the p50 base-60 table); p05 explicitly calls the totient function sacred.
+- The title total gives **761 mod 29 = 7**, matching the seconds field of the 2016-01-01T00:01:07Z signed Liber Primus message. The 2015 message is signed at 2015-07-28T05:12:39Z by the same key.
+
+This makes the 2015 date/time correspondence more constrained than the simple ASCII/GP29 date match, but it does **not** yet specify one uniform extraction rule for all clock fields. The hour fields 05/00 and the 2016 minute 01 are not independently derived by the same arithmetic; do not treat this as a complete timestamp decoder.
+
+A single exploratory coordinate test used the title-derived left arrow to reverse each PGP time and read the result as page:line:rune-offset (page zero-based, line one-based, rune offset zero-based): 05:12:39 → p39,line12,offset5 = J; 00:01:07 → p07,line1,offset0 = H. Both coordinates are in bounds, but the output **JH** is not a plaintext continuation, and no source explicitly says that signature times are page coordinates. Preserve this as an unconfirmed lead only; do not tune indexing conventions or try alternate coordinate orders.
+
 ## 2015 message follow-through
 
 Because the date pointer identifies a specific signed object, I tested whether that object or its signature is itself the p56 128-hex preimage. `sims/lp2_p57_date_2015_hash_candidate_sft.cjs` pins the exact upstream source bytes and compares 11 source-native representations (complete clear-signed file, body serializations, pre-signature cleartext block, binary signature packet, armor, RSA signature MPI in raw/hex/base64 forms, and MPI with bit-length prefix) under SHA-512, SHA3-512, and BLAKE2b-512: **33 comparisons, zero matches**. This is a bounded negative over those representations and algorithms, not a claim that all possible hash preimages or algorithms have been excluded.
