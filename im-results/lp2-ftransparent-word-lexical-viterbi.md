@@ -1,6 +1,6 @@
 # Ciphertext-only F-clock disambiguation with a known original key and English word grammar
 
-**13 November 2026, Agent1. Evidence class: reproducible positive solver on three independently solved historical Cicada ciphertexts; an original-key-dependent method with no newly recovered unknown LP2 plaintext or key.**
+**15 November 2026, consolidated Agent1/Agent45 result. Evidence class: reproducible known-key, blind F-clock selection on three independently solved original Cicada ciphertexts; no newly recovered unknown LP2 plaintext or key.**
 
 ## The actual cryptographic obstacle
 
@@ -28,13 +28,13 @@ The dictionary, score, orthographic normalization, boundaries and DP all remain 
 | --- | ---: | ---: | ---: | --- | ---: | ---: |
 | LP1 WELCOME/DIVINITY, genuine 8-symbol GP key | **515** | **124** | **515/515** | **all 11**: positions 48,74,84,132,159,160,250,421,443,465,514 | **121/124** | **13.3891** |
 | LP2 p56 AN END, genuine initial Euler prime-totient stream | **85** | **25** | **85/85** | **the sole literal F** at page-local56 | **24/25** | **55.6627** |
-| Separate LP1 second-koan, genuine 13-symbol key, complete first 30 original words | **110** | **30** | **110/110** | **both**: positions 49 and58 | Independently scored | One surviving terminal clock path |
+| Separate LP1 second-koan, genuine 13-symbol key, complete original physical pp14–15 | **319** | **88** | **319/319** | **both**: positions 49 and 58 | **86/88** | One surviving terminal clock path |
 
-The third trial uses **different historical key material** and intact original **110-rune/30-word** prefix of a second koan. Its two exact authenticated bypass indices `[49,58]` are independent of the other trials and were not supplied to the decoder.
+The third trial now uses the **entire original 319-rune/88-word second koan** printed across physical LP1 pp14–15, with its independently historical 13-rune `FIRFUMFERENFE` key. All 319 ciphertext runes agree between the original master and separate printed transcription. The exact **319-rune** source-native GP encoding of the independently existing solved English reference is used only for post-decoding assertions. Both bypasses occur at positions `[49,58]`; neither bypass nor the translation is supplied to the decoder. The unchanged dictionary selects the complete 319-rune source text, including **86 of 88** independently supported words, with no page-seam or quotation reset. This expands the earlier 110-rune control by **209 original runes**.
 
-All **710/710** original historically solved ciphertext runes are recovered as the correct historical plaintext, and **14/14** actual plaintext-F bypasses are selected without any supplied mask. The exact legitimate forward encoder regenerates every one of the **710** original source ciphertext symbols. The two longer tests possess wrong branches which *also* re-encrypt exactly, so the result arises from the externally sourced lexical constraint rather than an implementation identity. The p56 original source has 22 forward-valid masks; the Viterbi chooses the authentic mask 8.
+All **919/919** original historically solved ciphertext runes are recovered as the correct historical plaintext, and **14/14** actual plaintext-F bypasses are selected without any supplied mask. The exact legitimate forward encoder regenerates every one of the **919** original source ciphertext symbols. The authentic p56 and WELCOME tests possess wrong branches which *also* re-encrypt exactly, so the result arises from the externally sourced lexical constraint rather than an implementation identity. The p56 original source has 22 forward-valid masks; the Viterbi chooses the authentic mask 8.
 
-**Original-source CI**: [passing GitHub Actions run43430982155](https://github.com/FlareZ123/liber-primus/actions/runs/43430982155) executes the [single-file test](../sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs) with Node22 and the checked-in source documents. It outputs complete mask positions, scores, word counts, peak Viterbi state widths, and the independent koan plaintext equality.
+**Original-source CI**: the original [passing 710-rune Windows run43430982155](https://github.com/FlareZ123/liber-primus/actions/runs/43430982155) and the updated 919-rune regression in the manual `authentic-known-decryption.yml` workflow execute the [single-file test](../sims/lp2_ftransparent_original_lexical_viterbi_sft.cjs) with Node22 and the checked-in source documents. It outputs complete mask positions, scores, word counts, peak Viterbi state widths, and the full 319-rune independent koan plaintext equality.
 
 ## What this enables and what remains unknown
 
