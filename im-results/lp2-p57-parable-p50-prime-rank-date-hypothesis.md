@@ -27,6 +27,15 @@ The p05 red instruction identifies the totient function as significant. Since th
 
 The reproducible implementation is sims/p57_parable_p50_prime_rank_date_hypothesis.py.
 
+
+## Title-derived direction byte
+
+The existing synthesis also records that the three-word parable title sums to 761, the original 761.mp3 basename. 761 is prime and π(761) = 135. Treating 135 as another zero-based p50 byte offset selects token 2p, value 171 (0xAB). In ISO-8859-1/Windows-1252 this is the left-pointing double angle quotation mark «.
+
+Appending this title/basename selector after the three sentence selectors gives p50 values [76,117,74,171]. Reversing the combined sequence yields **«JuL**: the title-derived byte is now an explicit left-pointing marker, followed by the reversed sentence-derived month. The same reversed values modulo 29 give Y-T-U-E. This is a better source-grounded reason for reversing the three sentence outputs than MOBIUS alone, and is consistent with the 2016 message's statement that numbers provide direction.
+
+The ordinary nth-item index for π(761) is 134, which selects token 1C / byte 72 (ASCII H), not a direction marker. The offset interpretation is therefore supported by a discriminating output, though still not proven: it assumes the title/basename sum is appended to the sentence-sum sequence and that the p50 values should be interpreted as Latin-1 bytes.
+
 ## Historical match
 
 Dukotah/cicada3301's PGP signature timeline records a 2015 signed message at 2015-07-28T05:12:39Z under key ID 181F01E57A35090F. 28 July 2015 was a Tuesday. The same timeline records the next relevant signed message on 2016-01-01T00:01:07Z under the same key. The 2015 signed message is the public statement denying association with illegal activity; it is an authentic historical waypoint, not evidence by itself of a new puzzle instruction.
@@ -51,7 +60,7 @@ This is a potentially useful p55 ciphertext sample, not recovered plaintext. It 
 
 ## Strongest objections
 
-1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200. Those select tokens 3E, 2S, 1o and bytes 194, 148, 110, which do not produce the date fragment. The attractive date output and the p55 36–72–36 sample therefore depend on interpreting π(p) as a byte offset (skip π(p) bytes), not as the position of the nth item. This is possible but not yet selected by a first-party instruction.
+1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200 for the sentence sums and 134 for 761. These select tokens 3E, 2S, 1o and 1C, bytes 194, 148, 110 and 72; they do not produce the date or the left-direction marker. Using π(p) as a byte offset instead yields the marker «. This discriminates in favor of offset semantics, but the source does not literally say “skip π(p) bytes,” and the title/basename ordering is still an interpretation.
 2. **Reverse-order choice.** The date fragment requires reversing the three selected values. The p05 MOBIUS word, its mirrored byte shell, and the parable's circumference language are possible hints, but do not uniquely prescribe this reversal. Explicit row- and column-serpentine flattenings of the 32×8 p50 table (natural full-grid Möbius/boustrophedon controls) do not reproduce the date fragment; only plain row-major followed by reversing the selected triple does. This weakens any claim that a full Möbius traversal is source-selected.
 3. **Encoding choice.** ASCII and reduction modulo 29 are both natural for byte values in a GP29 puzzle, but the dual reading is not independent plaintext verification.
 4. **p55 sample layout sensitivity.** The 36/72/36 sample is DID only in plain row-major payload order; a natural 2×36 Möbius traversal gives DIAD. This is another reason not to promote DID as plaintext.

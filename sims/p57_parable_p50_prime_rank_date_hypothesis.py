@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Reproduce provisional LP2 p57 -> p50 selectors.
 
-This is not a decoder and establishes no LP2 plaintext/key. It exposes the
-prime-rank indexing ambiguity, p50 serpentine controls, and p55 layout sensitivity.
+This is not a decoder and establishes no LP2 plaintext/key. It exposes
+prime-rank offset semantics, title-derived direction, layout controls,
+and the p55 totient sample.
 """
 import json, re
 from datetime import date
@@ -18,6 +19,7 @@ SENTENCES = [
     "WE MUST SHED OUR OWN CIRCUMFERENCES",
     "FIND THE DIVINITY WITHIN AND EMERGE",
 ]
+TITLE_BASENAME_SUM = 761
 
 def tokenize_gp(text):
     text = re.sub(r"ING", "NG", text.upper().replace("K", "C").replace("V", "U"))
@@ -52,10 +54,11 @@ def phi(n):
     return result
 
 sums = [sum(PRIMES[i] for i in tokenize_gp(s)) for s in SENTENCES]
-product = sums[0] * sums[1] * sums[2]
-assert sums == [1259, 1031, 1229] and product == 1595277641
+assert sums == [1259, 1031, 1229]
+assert sums[0]*sums[1]*sums[2] == 1595277641
 ranks = [prime_rank(n) for n in sums]
-assert ranks == [205, 173, 201]
+title_rank = prime_rank(TITLE_BASENAME_SUM)
+assert ranks == [205,173,201] and is_prime(TITLE_BASENAME_SUM) and title_rank == 135
 
 byte_rows, token_rows = GRID["byte_rows"], GRID["rows"]
 row_major = [v for row in byte_rows for v in row]
@@ -69,45 +72,43 @@ for c in range(8):
     if c%2: vals.reverse(); toks.reverse()
     col_serp.extend(vals); col_serp_tokens.extend(toks)
 
-def extract(name, values, tokens):
-    picked = [values[i] for i in ranks]
+def extract(name, values, tokens, offsets):
+    picked = [values[i] for i in offsets]
     rev = list(reversed(picked))
     return {
-        "layout": name, "offset_tokens": [tokens[i] for i in ranks],
-        "offset_values": picked,
-        "reverse_ascii": bytes(rev).decode("ascii", errors="replace"),
+        "layout": name, "offsets": offsets,
+        "tokens": [tokens[i] for i in offsets], "values": picked,
+        "reverse_latin1": bytes(rev).decode("latin-1"),
         "reverse_gp29": "".join(TRANSLIT[v%29] for v in rev),
     }
 
-offset_values = [row_major[i] for i in ranks]
-phi_values = [phi(v) for v in offset_values]
+offsets = ranks + [title_rank]  # sentences, then title/basename checksum
+selected_values = [row_major[i] for i in offsets]
+phi_values = [phi(v) for v in selected_values[:3]]
 p55 = next(p["indices"] for p in CORPUS["pages"] if p["page"] == 55)
 p55_payload = [v for i,v in enumerate(p55) if i != 0 and v != 0]
 assert len(p55) == 76 and len(p55_payload) == 72
 p55_first, p55_second = p55_payload[:36], p55_payload[36:]
-p55_row_major = p55_payload
-p55_row_mobius = p55_first + list(reversed(p55_second))
-sample_positions = phi_values
-p55_sample = [p55_row_major[n-1] for n in sample_positions]
-p55_mobius_sample = [p55_row_mobius[n-1] for n in sample_positions]
-rank_indices = [r-1 for r in ranks]
-rank_values = [row_major[i] for i in rank_indices]
+p55_mobius = p55_first + list(reversed(p55_second))
+p55_sample = [p55_payload[n-1] for n in phi_values]
+p55_mobius_sample = [p55_mobius[n-1] for n in phi_values]
 
+rank_indices = [r-1 for r in offsets]
+rank_values = [row_major[i] for i in rank_indices]
 print(json.dumps({
-    "sentence_prime_sums": sums, "product": product, "inclusive_prime_ranks": ranks,
-    "row_major_offset_hypothesis": extract("row-major", row_major, row_major_tokens),
-    "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens),
-    "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens),
+    "sentence_sums": sums, "title_basename_sum": TITLE_BASENAME_SUM,
+    "sentence_prime_ranks": ranks, "title_prime_rank": title_rank,
+    "row_major_offset_extraction": extract("row-major", row_major, row_major_tokens, offsets),
+    "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens, offsets),
+    "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens, offsets),
     "ordinary_nth_item_control": {
         "indices": rank_indices, "tokens": [row_major_tokens[i] for i in rank_indices],
-        "values": rank_values, "phi_values": [phi(v) for v in rank_values],
+        "values": rank_values,
     },
-    "phi_of_selected_p50_bytes": phi_values,
+    "phi_of_sentence_selected_bytes": phi_values,
     "p55_cipher_consuming_length": len(p55_payload),
-    "p55_sample_positions_1_based": sample_positions,
     "p55_row_major_sample": "".join(TRANSLIT[v] for v in p55_sample),
     "p55_2x36_mobius_sample": "".join(TRANSLIT[v] for v in p55_mobius_sample),
-    "phi_29": phi(29),
-    "weekday_of_2015_07_28": date(2015, 7, 28).strftime("%A"),
-    "classification": "provisional selectors only; no LP2 plaintext/key",
+    "phi_29": phi(29), "weekday_of_2015_07_28": date(2015,7,28).strftime("%A"),
+    "classification": "provisional source-linked selectors; no LP2 plaintext/key",
 }, indent=2))
