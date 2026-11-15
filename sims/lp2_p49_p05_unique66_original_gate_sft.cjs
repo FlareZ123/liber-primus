@@ -272,6 +272,21 @@ for (const sign of [-1, 1]) for (let mask = 0; mask < 4; mask++) {
 }
 assert.equal(byteLookupDirect.length, 8);
 assert(byteLookupDirect.every(x => x.impossibleStrictF.length >= 1));
+// A bounded, exact possible ASCII-then-Base64 interpretation of the
+// previously frozen byte lookup. Source has no explicit Base64 instruction.
+const sourceASCII = String.fromCharCode(...p05ByteKey);
+assert.equal(sourceASCII, "\x1c /Vz81Iz/\x1c");
+const base64Core = sourceASCII.slice(2, -1);
+assert.equal(base64Core, "/Vz81Iz/");
+const sixKeyBytes = [...Buffer.from(base64Core, "base64")];
+assert.deepEqual(sixKeyBytes, [253, 92, 252, 212, 140, 255]);
+const sixByteRows = [-1, 1].map(sign => {
+  const recovered = page49.map((c, i) =>
+    mod29(c + sign * sixKeyBytes[Math.floor(i / 11)]));
+  assert.deepEqual(recovered.map((p, i) =>
+    mod29(p - sign * sixKeyBytes[Math.floor(i / 11)])), page49);
+  return {sign, ioC: ioc(recovered), transliteration: translit(recovered)};
+});
 console.log(JSON.stringify({
   classification: "Original-source key candidate; bounded negative direct inverses; no plaintext",
   exactInput: {
@@ -284,6 +299,6 @@ console.log(JSON.stringify({
     physicalP55Runes: page55.length, p49CipherF
   },
   direct, strictP56TotientEmitter: fModes, intactSentenceInversions: longSentence, columnar,
-  sourceByteLookup: { addresses: p05ByteAddresses, bytes: p05ByteKey, encodedHex: p05ByteKey.map(b => b.toString(16).padStart(2, '0')).join(''), originalInverseTests: byteLookupDirect },
+  sourceByteLookup: { addresses: p05ByteAddresses, bytes: p05ByteKey, encodedHex: p05ByteKey.map(b => b.toString(16).padStart(2, '0')).join(''), originalInverseTests: byteLookupDirect, base64Core, sixKeyBytes, sixByteRows },
   interpretation: "The exact 76/66/10 numerical fit is real but does not select a cipher. Direct ordinal, source-authentic totient and source-ordered columnar transport do not recover readable text. One p49 strict-F variant remains algebraically possible yet has no identified plaintext."
 }, null, 2));
