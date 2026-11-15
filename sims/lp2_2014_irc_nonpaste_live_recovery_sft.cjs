@@ -117,13 +117,14 @@ function selftest(){
 async function main(){
   if(process.argv.includes("--selftest")){selftest();return;}
   assert.ok(process.argv.includes("--network"));
+  const selected=process.argv.includes('--jars-only') ? urls.filter(x=>x.id.startsWith('unrune')) : urls;
   const out=[];
-  for(let i=0;i<urls.length;i+=2){
-    const pair=await Promise.all(urls.slice(i,i+2).map(inspect));
+  for(let i=0;i<selected.length;i+=2){
+    const pair=await Promise.all(selected.slice(i,i+2).map(inspect));
     for(const x of pair){out.push(x);console.log("OBJECT "+JSON.stringify(x));}
   }
   console.log("SUMMARY "+JSON.stringify({
-    sourceUrls:urls.length,liveDownloaded:out.flatMap(x=>x.answers).flatMap(x=>x.sourceDownloads || [])
+    sourceUrls:selected.length,liveDownloaded:out.flatMap(x=>x.answers).flatMap(x=>x.sourceDownloads || [])
       .filter(x=>x.recovered).map(x=>({file:x.recovered,sha256:x.sha256,bytes:x.bytes})),
     caution:"Original URL host response does not alone prove 2014 byte authenticity; inspect ZIP statically, never execute JAR"
   }));
