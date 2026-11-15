@@ -22,7 +22,7 @@ The original LP1 physical p05 (original `05.jpg`) says **THE PRIMES ARE SACRED**
 | AETHEREAL (repeated) | 6 |
 | CABAL | 5 |
 
-The **13 printed cells encode 76 GP runes**, as already established and tested for original p55 in [the previous p05→p55 analysis](../im-results/lp1-p05-wordcells76-p55-exact-sourcekey.md). Keeping only the **first occurrence of each exact rune-word** (a reproducible normalization independent of the unknown LP2 text) produces **11 distinct words and 66 GP runes**. The two removed, later occurrences are UOID (four runes) and AETHEREAL (six), **10 GP runes** total.
+The **13 printed cells encode 76 GP runes**, as already established and tested for original p55 in [the previous p05→p55 analysis](../sims/lp1_p05_wordcells76_p55_exact_sourcekey_sft.cjs). Keeping only the **first occurrence of each exact rune-word** (a reproducible normalization independent of the unknown LP2 text) produces **11 distinct words and 66 GP runes**. The two removed, later occurrences are UOID (four runes) and AETHEREAL (six), **10 GP runes** total.
 
 Original LP2 p49 (`66.jpg`) has **66 runes** above the 32×8 numerical table and an immediately following **red ten-dot terminator**. Original p55 (`72.jpg`) has **76 runes** and a **red thirteen-dot terminator**. Both marks are recorded by source-image audit in [the original punctuation identity data](../resources/liber-primus/lp2-punctuation-identity.json). These original counts give one possible puzzle-designer route: the thirteen visible source word cells read into a 76-rune operand, while deduplicating repeated rune-words leaves a 66-rune operand, with ten removed runes matching the p49 stop's dot count.
 
