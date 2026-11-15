@@ -72,3 +72,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Original-input runner syntax failed' }
           node sims/lp2_2015_runescript_original_default_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Original-input known positive failed' }
+          node --check sims/lp2_2015_huw_runes_source_keys_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Gist source code syntax failed' }
+          node sims/lp2_2015_huw_runes_source_keys_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source-locked Gist original-input gate failed' }
