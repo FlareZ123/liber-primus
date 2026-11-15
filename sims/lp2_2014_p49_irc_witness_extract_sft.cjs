@@ -64,7 +64,6 @@ async function main() {
         text: text.slice(0, 700)
       }))
     });
-    if (selected.length === 40) break;
   }
 
   const output = {
