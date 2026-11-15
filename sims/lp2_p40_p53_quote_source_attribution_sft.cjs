@@ -153,6 +153,13 @@ const literatureOut = literature.map(([name, p, count]) => {
   const words = tokenize(read('resources/' + p));
   const hits = exactWindows(words);
   assert.equal(hits.length, count, 'New original literary source candidate: ' + p);
+  for (const hit of hits) {
+    assert.ok(hit.offset + 5 < words.length);
+    const sixth = gpLength(words[hit.offset + 5]);
+    assert.ok(sixth !== 6 && sixth !== 10,
+      'Potential source-specific p40/p53 sixth-word match: ' + p);
+    hit.sixthWordLength = sixth;
+  }
   allHits.push(...hits.map(h => ({...h, source: name})));
   return {name, tokens: words.length, hits};
 });
@@ -172,6 +179,7 @@ console.log('LITERARY', JSON.stringify({
     name: x.name, totalWords: x.tokens, exactFiveWordShape: x.hits.length
   })),
   allDistinctPhrases: true,
+  originalSixthWordLengthSourceMatches: 0,
   clusteredEmersonCounterexamples: emerson.hits.filter(
     x => [30398, 30476, 30488].includes(x.offset)
   )
@@ -188,6 +196,7 @@ for (let i = 0; i + 5 <= mabinogion.length; i++) {
 }
 assert.equal(mabinogion.length, 105582);
 assert.deepEqual(mabinogionOffsets, [36637, 58285, 81317, 93005, 96900]);
+assert.deepEqual(mabinogionOffsets.map(i => mabinogion[i + 5]), [3, 2, 3, 5, 3]);
 const yetzirah = JSON.parse(read('resources/external/sefer-yetzirah-westcott-archive.json'));
 const seferHits = exactWindows(tokenize(yetzirah.map(p => p.pageContent).join(' ')));
 assert.equal(seferHits.length, 0);
