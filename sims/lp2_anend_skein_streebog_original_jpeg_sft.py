@@ -2,7 +2,8 @@
 Conditional original-asset preimage gate for two untested 512-bit hash families.
 
 AN END (LP2 p56) prints a 512-bit digest without specifying the algorithm.
-Check the 75 original first/second-release JPEG entity bytes as candidates under
+Check the 75 original first/second-release JPEG entity bytes and three exact
+first-party 2014 source files as candidates under
 the Skein-512-512 and Streebog-512 algorithms. This is a narrow exact-byte check,
 not a general preimage search or an assumption about the missing onion's origin.
 
@@ -44,7 +45,7 @@ def streebog512(data: bytes) -> str:
 
 
 def run() -> dict:
-    """Compare two KAT-validated hash families with every original JPEG."""
+    """Compare two KAT-validated hash families with bounded original assets."""
     assert len(TARGET) == 128
     assert skein.skein512(b"", digest_bits=512).hexdigest() == SKEIN_EMPTY
     assert streebog512(b"") == STREEBOG_EMPTY
@@ -54,7 +55,13 @@ def run() -> dict:
     matches = []
     scanned_bytes = 0
     samples = []
-    for image in images:
+    primary_sources = [
+        ROOT / "resources" / "cicada2014-onion7-index.html",
+        ROOT / "resources" / "cicada2014-may2-signed-message.asc",
+        ROOT / "resources" / "cicada2014-openpuff-magic-squares.txt",
+    ]
+    sources = images + primary_sources
+    for image in sources:
         original = image.read_bytes()
         scanned_bytes += len(original)
         methods = {
@@ -67,21 +74,22 @@ def run() -> dict:
                 matches.append({"file": image.name, "algorithm": name,
                                 "sha256": hashlib.sha256(original).hexdigest(),
                                 "digest": digest})
-        if image.name in {"00.jpg", "17.jpg", "56.jpg", "73.jpg", "74.jpg"}:
+        if image.name in {"00.jpg", "17.jpg", "56.jpg", "73.jpg", "74.jpg", "cicada2014-onion7-index.html", "cicada2014-may2-signed-message.asc"}:
             samples.append({"file": image.name,
                             "bytes": len(original),
                             "sha256": hashlib.sha256(original).hexdigest(),
                             **methods})
     report = {
         "originalAssets": len(images),
+        "historicalFirstPartySources": [p.name for p in primary_sources],
         "exactEntityBytes": scanned_bytes,
         "digestFamilies": ["Skein-512-512", "Streebog-512"],
         "knownAnswerTests": 2,
-        "preimageChecks": len(images) * 2,
+        "preimageChecks": len(sources) * 2,
         "matchedTarget": bool(matches),
         "matches": matches,
         "sampleChecksums": samples,
-        "scope": "Exact JPEG entity bytes only; original-page URL/headers, unknown historical host, alternative serializations and other digest functions remain open",
+        "scope": "Original JPEG bytes plus three first-party 2014 source files in repository; unknown target page, URL, headers and alternative serializations remain open",
     }
     print(json.dumps(report, indent=2))
     return report
