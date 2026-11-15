@@ -8,6 +8,12 @@
 
 **Source frontier:** Original 256 two-character tokens across p49–51 have a conditional base60 32×8 byte read; existing RSA, AES, BCH, RS, PGP, OTP and grid/known-p55 bridges have extensive bounded negatives. Original source gives no authenticated radix or cipher consumer. Avoid raw sweep. A novel method must explain 86 anti-doublets in 12,956 runes and 104 within-word five-lag echoes along with intact printed sentence breaks.
 
+**Source-linked table-caption result (15 Nov):** The original p3/p39 red119 triad sums137/173 have prime ordinals33/40, matching the complete printed source pp48–49 and51–52 table-flank word counts33/40 (138/170 rune lengths). This new ordered link is retrospective and lacks an authorial operation. [Report](../../im-results/lp2-red119-p49-3340-crosslink-source-gate.md) and [CJS SFT](../../sims/lp2_red119_p49_flankword_directkey_sft.cjs) preserve 16 distinct original additive short/long source-key inverses and solved p57 controls. All full original decodes remain nonlinguistic (IoC0.03258–0.03662). Under the genuine p56 plaintext-F bypass, the post-grid 170 rune sentence is **mathematically impossible under all 28 phase starts** for each of the p39 short triad index/prime and p40 red8 variants, both signs, after exact DP over all ciphertext F branches. Latest possible failure at local rune157, synthetic positive plants pass. This retires the natural red119→flanking-sentence GP29 additive bridge while leaving the historical unknown cipher open. [Issue #1099 handoff comment](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6897051039).
+
+**Expanded source-art bound:** Across original p40–55, full-image 16-way RGB variability is confined precisely to bbox (591,624,1832,3184) and 2,631,883 changing pixel positions. Entire outside artwork and all margins identical. This is asserted in updated [Pillow SFT](../../sims/lp2_reused_art_pixel_identity_sft.py) and [report](../../im-results/lp2-reused-ornament-source-raster-identity.md).
+
+**No unknown LP2 plaintext or historical key recovered.** Next research requires actual source-selected reversible consumer of the table or independent plaintext, not further free-key pad sweeps.
+
 **No authenticated original LP2 p0–55 plaintext.** Do not promote supporting image result to authoritative results. As required, continue productive issue-driven research until actual 70-minute threshold. Below follows **archived earlier identity incarnations**, whose self-proclaimed current lease times are obsolete.
 
 ---
