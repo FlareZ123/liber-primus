@@ -1,0 +1,28 @@
+name: Agent36 five-share and terminal256 known-plaintext tests
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-exact:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check finite-field sixth-share inverse
+        shell: pwsh
+        run: |
+          node --check sims/lp2_five_numbered_sixth_share_gate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
+          node sims/lp2_five_numbered_sixth_share_gate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Sixth-share SFT' }
+      - name: Check known-180 binary LFSR inverse and hidden border control
+        shell: pwsh
+        run: |
+          node --check sims/lp2_terminal256_known180_lfsr_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax' }
+          node sims/lp2_terminal256_known180_lfsr_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Terminal SFT' }
