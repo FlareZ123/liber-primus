@@ -69,4 +69,6 @@ The authentic solved-page transform gives a **new exact, checkable terminal-numb
 
 The next useful decision is an **independent author-source selection of the actual operation** and whether the terminal numeral should include p55 plaintext rather than ciphertext. Repeating 2,032 phases, changing the radix, fitting a new divisor, or asserting “GCD = 3,024 proves the puzzle” would mistake an intermediate result for decryption.
 
+**Executed on the unchanged original-source GitHub repository:** the dedicated manual Node.js 22 job [run 43766874567](https://github.com/FlareZ123/liber-primus/actions/runs/43766874567) completed **successfully**, including every listed assertion. This executes the actual checked-in reproducer rather than only repeating an independent in-tool calculation.
+
 The complete reproducible CJS script asserts original table SHA-256 and all three exact page lengths; recomputes p56 from the historical prime-totient rule; checks \`gcd(N,T_C)=4\`, \`gcd(N,T_P)=3024\`, both remainders, all 2,032 alternatives, exact two 3,024-divisible candidates, and the authentic eighth-place rank. It does not write a file, consult an external language model, or require a secret key.
