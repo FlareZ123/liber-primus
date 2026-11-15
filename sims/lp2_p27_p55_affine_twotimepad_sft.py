@@ -117,6 +117,9 @@ assert len(suffix6) == 9189
 
 def domains():
     a = [list(lexicon[n]) for n in a_lengths]
+    # P55 begins mid-word from p54; its first one-rune fragment has no
+    # independent word constraint. Grant all 29 symbols conservatively.
+    a[0] = [bytes((v,)) for v in range(MOD)]
     b = [list(lexicon[n]) for n in b_lengths]
     b[0] = list(suffix6)  # Six observed suffix runes of a nine-rune word.
     return a, b
