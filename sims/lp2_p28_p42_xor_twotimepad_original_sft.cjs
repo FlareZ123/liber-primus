@@ -156,10 +156,7 @@ function main(){
    known.xs.push(solved.plaintext[known.xs.length]);
    known.start.push(!inWord);known.end.push(false);
    inWord=true;
-  }else if('-. const positiveShifts=[0,1,5,14,29,68,136,201,268].map(shift=>({
-  shift,score:solve(ca,cb,lm,shift).score
- }));
- console.log(JSON.stringify({§%'.includes(r)){
+  }else if('-.$&§%'.includes(r)){
    if(known.end.length)known.end[known.end.length-1]=true;
    inWord=false;
   }
