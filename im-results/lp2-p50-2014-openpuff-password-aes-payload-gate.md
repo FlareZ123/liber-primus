@@ -4,7 +4,7 @@
 
 ## Original source and key premise
 
-The original Cicada 2014 \`Interconnectedness\` MP3 stage was opened under OpenPuff v4.00 A-password **\`33011033\`**. Its successful extraction and the recovered 745-byte magic-square file are independently documented in [the original byte-level stage report](lp2-2014-upstream-openpuff-magic-squares-grid-direct-xor.md). The next-source LP2 physical pp49–51 contain **256 two-character numeric cells**, read in printed page-major row-major order. Under the conventional, explicitly conditional base60 alphabet, these yield 256 bytes with SHA-256 \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`.
+The original Cicada 2014 `Interconnectedness` MP3 stage was opened under OpenPuff v4.00 A-password **`33011033`**. Its successful extraction and the recovered 745-byte magic-square file are independently documented in [the original byte-level stage report](lp2-2014-upstream-openpuff-magic-squares-grid-direct-xor.md). The next-source LP2 physical pp49–51 contain **256 two-character numeric cells**, read in printed page-major row-major order. Under the conventional, explicitly conditional base60 alphabet, these yield 256 bytes with SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
 
 The source-motivated question is whether the **actual recovered historical password**, used as a password rather than an MT seed or as a key indirectly derived from the upstream square text, directly decrypts the 256-byte printed field into a text/file payload. The upstream original square plaintext was previously tested as a XOR operand and SHA256-based AES key in the [related independent study](lp2-2014-upstream-openpuff-magic-squares-grid-direct-xor.md). The current work uses the **eight original password characters themselves** and does not retest the square plaintext.
 
@@ -12,10 +12,10 @@ The source-motivated question is whether the **actual recovered historical passw
 
 ## Predefined exact inverses
 
-One known source string \`33011033\`, one pinned table byte stream and two explicit period-compatible password-to-key conventions:
+One known source string `33011033`, one pinned table byte stream and two explicit period-compatible password-to-key conventions:
 
-1. **SHA256:** AES-256 key \`SHA256(ASCII("33011033"))\`; 16 zero IV bytes for modes needing them.
-2. **OpenSSL legacy EVP_BytesToKey:** MD5 digest chain, one iteration, no salt, first 32 bytes used as AES-256 key and next 16 as an IV. This convention is independently specified in [Node.js's documented historical \`createDecipher\` behavior](https://nodejs.org/download/release/latest-v17.x/docs/api/crypto.html#cryptocreatedecipheralgorithm-password-options). Its use by the Cicada author is unverified.
+1. **SHA256:** AES-256 key `SHA256(ASCII("33011033"))`; 16 zero IV bytes for modes needing them.
+2. **OpenSSL legacy EVP_BytesToKey:** MD5 digest chain, one iteration, no salt, first 32 bytes used as AES-256 key and next 16 as an IV. This convention is independently specified in [Node.js's documented historical `createDecipher` behavior](https://nodejs.org/download/release/latest-v17.x/docs/api/crypto.html#cryptocreatedecipheralgorithm-password-options). Its use by the Cicada author is unverified.
 
 For each convention test AES-256-ECB, AES-256-CBC, AES-256-CTR, all across the **unmodified 256 bytes**, with no secret plaintext selection or offset tuning. ECB/CBC are decoded without assumed padding and separately examined for *valid PKCS#7 padding*. The fixed diagnostics are ASCII-printable counts, longest contiguous printable run, common file magic at offset zero, and original ciphertext re-encryption.
 
@@ -32,8 +32,8 @@ The original table encrypts back to **256/256 identical bytes under every candid
 
 ## Result and next meaningful decision
 
-**Reject the direct original-password \`33011033\` AES-256 payload interpretation under these two KDFs and six fixed mode/IV cases.** This completes an original-input decrypt attempt with a real first-party password, but gives no unknown sentence, source key, page decoder or table type.
+**Reject the direct original-password `33011033` AES-256 payload interpretation under these two KDFs and six fixed mode/IV cases.** This completes an original-input decrypt attempt with a real first-party password, but gives no unknown sentence, source key, page decoder or table type.
 
 The **p48–49 complete 138-rune sentence before the ten-dot mark** and **p51–52 complete 170-rune sentence afterward** remain source-defined targets in [the current table instruction work](lp2-p49-table-complete-flanking-sentences.md). Decrypting the preceding sentence or finding an original instruction that specifies table serialization and AES parameters is a more discriminating next step than adding arbitrary password rotations, KDF salts, IVs or cryptographic modes here.
 
-**Reproducer:** [one-file CommonJS Node22 original-grid SFT](../sims/lp2_p50_openpuff_password_payload_sft.cjs) and [successful Windows 11 Actions run 43754995305](https://github.com/FlareZ123/liber-primus/actions/runs/43754995305) using [manual-only workflow](../.github/workflows/lp2-p50-openpuff-password-payload-manual.yml). Source hashes and source geometry are asserted in code. Classification: completed narrow original-input negative, retained as intermediate evidence; no promotion into the established results synthesis.
+**Reproducer:** [one-file CommonJS Node22 original-grid SFT](../sims/lp2_p50_openpuff_password_payload_sft.cjs) and [successful Windows GitHub Actions run 43754995305](https://github.com/FlareZ123/liber-primus/actions/runs/43754995305) using [manual-only workflow](../.github/workflows/lp2-p50-openpuff-password-payload-manual.yml). Source hashes and source geometry are asserted in code. Classification: completed narrow original-input negative, retained as intermediate evidence; no promotion into the established results synthesis.
