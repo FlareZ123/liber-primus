@@ -1,10 +1,19 @@
 name: OpenPuff v4.00 LP2 original floral 16-JPEG carrier test
 on:
   workflow_dispatch:
+    inputs:
+      bit_level:
+        description: Original native JPEG extraction depth
+        type: choice
+        required: true
+        default: medium
+        options:
+          - medium
+          - maximum
 permissions:
   contents: read
 concurrency:
-  group: openpuff-v400-lp2-floral16
+  group: openpuff-v400-lp2-floral16-${{ inputs.bit_level }}
   cancel-in-progress: false
 jobs:
   source-selected-floral16:
@@ -54,16 +63,18 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Known original-v4.00 JPEG calibration failed to run' }
           python -c "from pathlib import Path; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file() and p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('NATIVE_PUBLIC_JPEG_POSITIVE_35_BYTE_EXACT_PASS')"
           if ($LASTEXITCODE -ne 0) { throw 'Known original-v4.00 JPEG positive did not recover the exact 35 bytes' }
-      - name: Test all sixteen original floral-border pages in printed order
+      - name: Test the sixteen floral-border originals at the selected native JPEG depth
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
+          $level = if ('${{ inputs.bit_level }}' -eq 'maximum') { '1/2 (50%) - Maximum' } else { '1/5 (20%) - Medium' }
+          $out = 'probe-output/original-floral16-' + '${{ inputs.bit_level }}'
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', '33011033',
             '--bit-format', 'Jpeg (Image)',
-            '--bit-level', '1/5 (20%) - Medium',
-            '--out', 'probe-output/original-floral16-medium',
+            '--bit-level', $level,
+            '--out', $out,
             '--wait-seconds', '1300'
           )
           $manifest = @()
@@ -81,7 +92,7 @@ jobs:
           Write-Host "ORIGINAL_FLORAL16_SOURCE_MANIFEST $($manifest | ConvertTo-Json -Compress)"
           python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Native floral16 chain extraction script failed' }
-          $result = Get-Content -LiteralPath probe-output/original-floral16-medium/result.json -Raw | ConvertFrom-Json
+          $result = Get-Content -LiteralPath (Join-Path $out 'result.json') -Raw | ConvertFrom-Json
           if (-not $result.carrier_chain_verified -or $result.carrier_count -ne 16 -or -not $result.bit_selection_verified -or -not $result.attempted) {
             throw 'Native floral16 chain/bit-level execution not established'
           }
@@ -92,6 +103,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: original-v400-floral16-evidence
+          name: original-v400-floral16-${{ inputs.bit_level }}-evidence
           path: probe-output/
           if-no-files-found: warn
