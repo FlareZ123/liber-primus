@@ -65,6 +65,32 @@ The exact same source procedure was applied to **2,032 frozen alternative p56 pr
 
 The authentic decoder's numerical rank, **8/2,032**, is a useful discrimination within that *particular fixed family*. The family, selection of GCD, the 3,024 threshold, the mixed source register and the numeric serialization were all chosen in a long-running exploratory project. **The empirical rank is not a discovery-adjusted p-value and does not establish an intentional relation.** In particular, 3,024 was inspected after the source factorization and after knowing the genuine p56 result, while the arbitrary decoder family includes many implausible prime clocks.
 
+## A three-location source-factor synthesis
+
+The new terminal GCD completes a more informative **factor-coverage identity** when combined with two already established, differently located source readings:
+
+| Visually selected original material | Numeral interpretation | Exact GCD with N |
+| --- | --- | ---: |
+| **Physical p48**, entire 271-rune page, immediately before the table | GP29 positional numeral | **81,432** = 2³ × 3³ × 13 × 29 |
+| **Physical p53**, its final 51 red runes after 128 black | GP29 positional numeral | **358** = 2 × 179 |
+| **Physical pp55–57**, 256 runes with authentic p56 decryption alone | GP29 positional hybrid numeral | **3,024** = 2⁴ × 3³ × 7 |
+
+Their exact least common multiple is
+
+\[
+\operatorname{lcm}(81432,358,3024)=204068592.
+\]
+
+Multiplying by the independently printed **complete p53 page rune count 179** gives
+
+\[
+179\times204068592=\boxed{36528277968},
+\]
+
+**exactly the full prime-power part of N on primes ≤179**, established independently by factoring the original 256-byte table. The terminal hybrid is what supplies factor **7** and the fourth power of **2**, absent from the previous pair's least common multiple. This ties three otherwise separate book locations to one complete, concrete source integer using source-visible page selection and normal GP29 arithmetic.
+
+**Do not mistake factor coverage for authorship.** The p48/p53 relationships, selection of 179, table base60 interpretation and candidate hybrid terminal numeral were discovered in an exploratory sequence. Their exact LCM can be calculated reproducibly, but no original instruction says to take three GCDs or multiply by the page length, and it still reveals no p55 plaintext or consuming cipher. A future source-selected number-theoretic decoder could use this entire factor as a fixed known parameter without guessing an integer.
+
 ## Cryptanalytic consequence
 
 The authentic solved-page transform gives a **new exact, checkable terminal-number congruence** potentially useful if an independently visible instruction ever specifies a table-to-terminal **GCD/modular-checksum consumer**. It could then constrain a p55 decoder without introducing new secret numeric parameters. At present it imposes only a 3,024-residue condition on a 76-rune unknown page, and the printed p55 ciphertext *already* satisfies that condition in the hybrid sequence. **It does not recover a single previously unknown p55 rune.**
