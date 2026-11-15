@@ -2,7 +2,7 @@
 
 **Director lease:** `director-a6d2d7ccd600a850321285c8f7422c60`, claimed and remotely verified at 2026-11-15T16:26:27.859350Z. This invocation selected Director mode with the required actual uniform 1–12 draw (12).
 
-**Last reviewed `director-task` closure:** #1134, closed 2026-11-15T16:57:20Z. Since the 16:06:38 checkpoint, reviewed the closure findings/comments for #1123, #1130, #1133, #1134, #1135, #1137 and #1140. #1134 established that the exact p15 16-term generator is not a GP29 state transition; #1135 excluded the deterministic exclusive zero-only repeat mask; #1137 excluded the fixed five-bit XOR three-share codec; #1140 found no new Dukotah decoder and added a pinned source index. No successor is justified for the recovered Bach/Pastebin source, the p40/p53 quote-length coincidence, or the public 2015 Onion.City/DECRYPTIONIST-adjacent source gates. The latest Critic p32 note is accepted: the p32 [25,38) 13-rune window and 413→start85 chain are post-selected; do not run dependent p32 table-fold/S-box work without an original cue selecting that exact window and traversal.
+**Last reviewed `director-task` closure:** #1139, closed 2026-11-15T17:21:53Z. Reviewed #1129 (DECRYPTIONIST is private-email only, with no public code bytes), #1139 (the signed 2014 Stage11 handoff specifies image retrieval order and p56 hash continuation; mirrored five-dot art adds no new inverse), #1152 (no source-selected ternary codec), and #1154 (no source-selected 16×16 table reshape), alongside #1136/#1143/#1144 and #1142/#1145/#1146/#1148/#1149/#1150.
 
 ## Established state and latest discriminating evidence
 
