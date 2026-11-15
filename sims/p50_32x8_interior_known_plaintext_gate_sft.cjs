@@ -147,6 +147,59 @@ const fiftyNine = parseGrid(grid.alphabet.replace('f', ''));
 assert.equal(grid.alphabet.length, 60);
 assert.equal(grid.alphabet.replace('f', '').length, 59);
 
+// Separate source-visible eight-column key from the p40 red opening title.
+// This tests an original 8-wide table consumer rather than inventing a 16-wide
+// reshape. Apply the source order to every printed row before cropping 30x6.
+// The original p40 8-rune heading is outside this 256-cell numeric table.
+const red8 = page(40).indices.slice(0, 8);
+assert.deepEqual(red8, [0, 9, 19, 26, 6, 23, 25, 8]);
+const red8Order = [...Array(8).keys()].sort((a, b) => red8[a] - red8[b]);
+assert.deepEqual(red8Order, [0, 4, 7, 1, 2, 5, 6, 3]);
+const red8InverseOrder = Array(8);
+red8Order.forEach((value, index) => { red8InverseOrder[value] = index; });
+assert.deepEqual(red8InverseOrder, [0, 3, 4, 7, 1, 5, 6, 2]);
+/** @param {number[][]} rows @param {number[]} order @returns {number[][]} */
+function columnsBySourceOrder(rows, order) {
+  return rows.map((row) => order.map((col) => row[col]));
+}
+/** @param {number[][]} rows @returns {number[][]} */
+function inner30x6(rows) {
+  return rows.slice(1, 31).map((row) => row.slice(1, 7));
+}
+/** @param {number[][]} rows @param {number} at @returns {number[]} */
+function polynomialValueAndDerivative(rows, at) {
+  let value = 0, derivative = 0;
+  for (const row of rows) for (const byte of row) {
+    derivative = mod(derivative * at + value);
+    value = mod(value * at + byte);
+  }
+  return [value, derivative];
+}
+const sourceRed8Rows = columnsBySourceOrder(grid.byte_rows, red8Order);
+const inverseRed8Rows = columnsBySourceOrder(grid.byte_rows, red8InverseOrder);
+const originalRed8Rows = grid.byte_rows;
+const sourceRed8ColumnCheck = {
+  order: red8Order,
+  inverseOrder: red8InverseOrder,
+  originalMinTokenMismatches: assess(inner30x6(originalRed8Rows), known).minInconsistentPositions,
+  sortedMinTokenMismatches: assess(inner30x6(sourceRed8Rows), known).minInconsistentPositions,
+  inverseMinTokenMismatches: assess(inner30x6(inverseRed8Rows), known).minInconsistentPositions,
+  originalRoot24: polynomialValueAndDerivative(originalRed8Rows, 24),
+  sortedRoot24: polynomialValueAndDerivative(sourceRed8Rows, 24),
+  inverseRoot24: polynomialValueAndDerivative(inverseRed8Rows, 24),
+  originalRoot13: polynomialValueAndDerivative(originalRed8Rows, 13),
+  sortedRoot13: polynomialValueAndDerivative(sourceRed8Rows, 13),
+  inverseRoot13: polynomialValueAndDerivative(inverseRed8Rows, 13)
+};
+assert.deepEqual(sourceRed8ColumnCheck, {
+  order: [0,4,7,1,2,5,6,3], inverseOrder: [0,3,4,7,1,5,6,2],
+  originalMinTokenMismatches:47, sortedMinTokenMismatches:51,
+  inverseMinTokenMismatches:51,
+  originalRoot24:[0,0], sortedRoot24:[15,16], inverseRoot24:[19,10],
+  originalRoot13:[8,0], sortedRoot13:[9,25], inverseRoot13:[28,16]
+});
+assert.deepEqual(columnsBySourceOrder(sourceRed8Rows, red8InverseOrder), grid.byte_rows);
+
 const r60 = assess(sixty, known);
 const r59 = assess(fiftyNine, known);
 const raw60 = assess(sixty, printed);
@@ -298,6 +351,7 @@ console.log(JSON.stringify({
     token:x.token, recoveredPlaintextRune:corpus.translit[known[x.i]]
   })),
   base60Solved: r60, base59Solved:r59, base60Printed:raw60,
+  sourceRed8ColumnCheck,
   hGeneratorParity: parityResults,
   terminalUnknownParityRank: parityRank, terminalUnknownNullity: 72,
   positiveControls: {lookup:lookupFit.minInconsistentPositions,
