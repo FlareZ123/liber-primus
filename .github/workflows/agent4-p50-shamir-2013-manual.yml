@@ -1,0 +1,13 @@
+name: Agent4 original 2013 Shamir five-of-eight LP2 grid source gate
+on:
+  workflow_dispatch:
+jobs:
+  grid-shares:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Original 256-byte table and positive Shamir plant
+        run: node sims/lp2_p50_2013_shamir_5of8_source_sft.cjs
