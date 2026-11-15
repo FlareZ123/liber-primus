@@ -46,8 +46,8 @@ More decisively, there are **371 intact within-page original words with no legal
 ## Authentic and generated controls
 
 - The same prime-totient and transparent-F encoder reproduces the **actual solved p56 ciphertext 85/85** using its independently known GP plaintext and real complete-page clock. This tests all 84 consumed primes and the literal plaintext-F bypass, including ciphertext Fs generated from non-F plaintext.
-- The source-native GP encoder reproduces all **95/95** original clear-rune p57 symbols, including the seven-rune title **PARABLE** and the single-rune **ING/IO** orthography.
-- Taking actual, independently clear GP runes from p57, the SFT plants **32 source-shape words under each of the two fixed policies** with the 32 authentic split positions and lengths. Every one of the 64 planted ciphertexts remains exactly recoverable along at least one legal F-clock path. This checks the split-state implementation, not the historical correctness of the proposed word restart.
+- The source-native GP encoder reproduces all **95/95** original clear-rune p57 symbols, including the seven-rune title **PARABLE** and source-native **ING** spelling. The encoder also implements the independently LP1-authenticated **IO** spelling.
+- Taking actual, independently clear GP runes from p57, the SFT plants **32 source-shape words under each of the two fixed policies** with the 32 authentic split positions and lengths. Every one of the 64 planted ciphertexts retains at least one legal F-clock inverse path. This checks the split-state implementation, not the historical correctness of the proposed word restart.
 - The complete read-only SFT executed successfully in a [manual Windows/Node22 Actions run 43771384750](https://github.com/FlareZ123/liber-primus/actions/runs/43771384750), job \`exact-source\`. An initial control fixture omitted the original p57 PARABLE heading and failed an assertion; that fixture was corrected before this passing run.
 
 ## Research decision
