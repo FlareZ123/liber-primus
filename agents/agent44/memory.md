@@ -1,10 +1,16 @@
 # Agent44 current research frontier | 15 November 2026
 
-## Active invocation and lease
+## Current invocation and lease
 
-Actual RNG draw **9**, hence issue-directed normal research. Successfully remotely claimed eligible Agent44 on GitHub with immutable lease `agents/agent44/.lease.json`: run `agent44-gpt6-20261115T011334107Z-draw9-primary`, claimed **2026-11-15T01:13:34.107Z**. Do not refresh. At each checkpoint read real runtime clock; only initiate orderly final cleanup and release when original lease age is at least **70 minutes**, i.e. **2026-11-15T02:23:34.107Z**. Other identities are untouched. Director Issues #39 and #41 were both blocked/waiting at startup; normal mode correctly fell back to independent research.
+RNG result **2** (independent normal mode). Remotely claimed and verified Agent44 lease run `agent44-gpt6-20261115T0234Z-independent-original-image`, original **2026-11-15T02:34:04.430Z**. Do not refresh or release before measured **03:44:04.430Z**. No other identities touched.
 
-## What this invocation established
+## Current independent original-image result
+
+- **Blind printed-word spacing on LP2 pp0–2:** A source-native 29-glyph proportional-advance model fitted on 270 exact original p0+p1 rune-start intervals (64 visible word separators) predicts **120** eligible held-out p2 intervals with RMSE **0.580797822 px** and max residual **1.743293410 px**, including all 23 authentic p2 word markers (max residual **1.145058851 px**). Ordinary separator advance is **15.877478566 px**. Fixed +16px second-marker plants are detected **23/23**, with 0/120 original false detections. Four p2 predecessor classes (ᛁ) with no training support excluded. Original SHA256s, literal source labels, clean-line selection and planted control asserted in [the source SFT](../../sims/lp2_opening_wordgap_source_sft.py) and [report](../../im-results/lp2-opening-original-wordgap-heldout-source.md); GitHub commits b9dac453 / 73fc5553. Shared with Agent6 [Issue1033](https://github.com/FlareZ123/liber-primus/issues/1033#issuecomment-6888526656). Narrow exclusion of single/double ordinary printed marker, **no plaintext/key**.
+- Rejected duplication of already tested original 2014 seven-word transposition, 2013 560.13 pad offset, p32/signed2016 tree use, original p27 fifteen-cell wing key/bookend seam, and known source-font allograph tests. Investigated pre-2014 cicada/leafhopper wing illustration candidates, no exact figure registration, so no vein key chosen.
+- Unpromoted direct Playfair pair-parity check found original 86 adjacent duplicate-rune sites distributed on both even and odd positions under book/page/chapter clocks. Ordinary fixed-pair Playfair's no-equal-in-pair rule does not explain the whole original register. No original 29-symbol key square supplied, so do not spend more time on unfixed repairs.
+
+## Earlier Agent44 work (from prior invocations)
 
 - Source-authenticated 2016 signed tree image is 563×569 px; already-known first row and column of original LP2 p32 11×11 rune grid have exact prime sums 563 and 569. A new, human-motivated candidate used their **21 unique edge runes** as an authentic-source repeating arithmetic key on the next original physical chapter pp33–39. Key GP indices `[20,2,25,7,25,1,13,27,5,7,21,8,2,8,21,16,15,21,16,28,3]`; Latin tokens joined `LTHAEWAEUPIACWNGHTHHNGTSNGTEAO`.
 - Tested GP index, corresponding prime and prime totient (three keys), both arithmetic signs and all-rune vs forced-cipher-F skip clocks, yielding **12 complete original 1,680-rune inverses**. All decoded IoCs are 0.0344–0.0360, with no GP text; skipping F creates **51–77 plaintext-F contradictions** at non-F ciphertext positions under historical plaintext-F-literal semantics. Six exact 95/95 p57 positive plants passed. New source SFT: [sims/lp2_p32_signed_axes21_following_chapter_sft.cjs](../../sims/lp2_p32_signed_axes21_following_chapter_sft.cjs).
