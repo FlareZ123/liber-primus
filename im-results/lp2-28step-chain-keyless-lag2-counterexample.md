@@ -19,7 +19,7 @@ The exact independent control consists of the nine publicly solved native GP29 t
 | Adjacent identical emitted runes | 20 | 86 |
 | Doublet rate | 0.6734% | 0.6666% |
 | Cipher GP29 normalized IoC | 0.995716 | 0.999874 |
-| Nonzero-step GP29 normalized IoC | 1.036994 | 1.024426 |
+| Nonzero-step GP29 normalized IoC | 1.036994 | 1.036931 |
 | Nonzero-step 29×28 conditional χ² given previous cipher rune | 797.886 | 813.922 |
 | Nominal conditional degrees of freedom | 783 | 783 |
 
