@@ -207,23 +207,40 @@ def set_medium(window):
 
 
 def native_total_capacity(window):
-    candidates = []
-    for control in window.descendants():
-        if safe(control.class_name) != "Static":
-            continue
-        label = (safe(control.window_text) or "").strip()
-        if "bytes" not in label.lower():
-            continue
-        numbers = re.findall(r"\d{1,3}(?:[.,]\d{3})+|\d+", label)
-        values = [int(n.replace(".", "").replace(",", "")) for n in numbers]
-        if values:
-            candidates.append((label, max(values)))
-    if not candidates:
-        raise RuntimeError("OpenPuff hiding capacity labels not found")
-    # Carrier capacity is the largest native byte count; target size is zero
-    # until the payload is selected.
-    return max(value for label, value in candidates)
+    # Native ID1022 is "Selected / Total": selected carrier capacity is
+    # the number BEFORE the slash; the following number is target file bytes.
+    label = window.child_window(
+        control_id=1022, class_name="Static"
+    ).window_text()
+    match = re.fullmatch(r"\s*([\d.,]+)\s*/\s*([\d.,]+)\s*bytes\s*", label)
+    if match is None:
+        raise RuntimeError(f"Unrecognized native Selected / Total label: {label!r}")
+    return int(re.sub(r"[.,]", "", match.group(1)))
 
+
+def native_target_data_size(window):
+    """Return source bytes in the original Hide target-size control ID1016."""
+    label = window.child_window(
+        control_id=1016, class_name="Static"
+    ).window_text()
+    match = re.search(r"data\(([\d.,]+)\)\s*bytes", label)
+    return int(re.sub(r"[.,]", "", match.group(1))) if match else None
+
+
+def choose_hiding_target(app, window, path, out, stage):
+    size = path.stat().st_size
+    for attempt in range(1, 4):
+        window = choose_file(app, window, "Browse", path, out,
+                             f"{stage}-{attempt}")
+        observed = native_target_data_size(window)
+        print(f"Original Hide target after Browse attempt {attempt}: "
+              f"expected={size}; observed={observed}", flush=True)
+        if observed == size:
+            return window
+    raise RuntimeError(
+        f"Original Hide target file not verified after Browse: "
+        f"expected data({size}) bytes; observed {observed}"
+    )
 
 def set_password(window, password):
     edits = visible_controls(window, "Edit")
@@ -387,7 +404,7 @@ def main():
         payload = out / "two-carrier-secret.bin"
         record["payload_sha256"] = atomic_payload(payload, payload_size)
         record["payload_size"] = payload_size
-        window = choose_file(app, window, "Browse", payload, out, "secret")
+        window = choose_hiding_target(app, window, payload, out, "secret")
         # Browse/Add actions can re-enable C after earlier A-only setup. Reapply
         # the native A/B/C control state after all file and carrier changes.
         record["password_BC_states_before_hide"] = set_password(window, args.password)
