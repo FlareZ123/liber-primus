@@ -12,6 +12,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { trainNativeGP, languageScore } = require('./historical_solve_path_transfer.cjs');
 const root = path.join(__dirname, '..');
 /** @param {string} relative */
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
@@ -135,6 +136,58 @@ for (const orientation of ['printed', 'reversed']) {
 }
 assert.equal(rows.length, 8);
 assert.deepEqual(rows.map(x => x.minForbidden), [2, 4, 1, 1, 1, 5, 2, 2]);
+
+// The original first p55 rune is NG, joined to the last word on p54.
+// Treat it as an untouched cross-page carry and independently decode only
+// the 75 complete-word body. The 76-rune p05 tape can provide 75 symbols
+// by dropping one physical endpoint; both orientations are fixed by source.
+assert.equal(sourceCipher[0], 21, 'First p55 rune is NG carried from p54');
+const body = sourceCipher.slice(1);
+const bodyFs = body.flatMap((v, index) => v === 0 ? [index] : []);
+assert.deepEqual(bodyFs, [14, 24, 40]);
+const bodyRows = [], bodySurvivors = [];
+const model = trainNativeGP(read('resources/control/emerson_essays_2944.txt'));
+const p57Score = languageScore(book.pages[57].indices, model);
+for (const orientation of ['printed', 'reversed']) {
+  const oriented = orientation === 'printed' ? forward : forward.slice().reverse();
+  for (const end of ['first75', 'last75']) {
+    const key75 = end === 'first75' ? oriented.slice(0, 75) : oriented.slice(1);
+    for (const shift of ['prime', 'totient']) {
+      for (const sign of [-1, 1]) {
+        const plant75 = book.pages[57].indices.slice(0, 75);
+        const enc = encrypt(plant75, key75, shift, sign);
+        assert.deepEqual(decode(enc.ciphertext, key75, shift, sign, enc.skipped).plaintext, plant75);
+        let viableMasks = 0, minForbidden = Infinity;
+        for (let mask = 0; mask < 8; mask++) {
+          const skip = bodyFs.filter((_, index) => (mask & (1 << index)) !== 0);
+          const candidate = decode(body, key75, shift, sign, skip);
+          minForbidden = Math.min(minForbidden, candidate.forbidden.length);
+          if (candidate.forbidden.length === 0) {
+            viableMasks++;
+            const nativeScore = languageScore(candidate.plaintext, model);
+            bodySurvivors.push({
+              orientation, end, shift, sign, mask, skipped: skip, ioc: ioc(candidate.plaintext),
+              nativeScore, first30: candidate.plaintext.slice(0, 30).map(i => book.translit[i]).join(' '),
+              complete: candidate.plaintext.map(i => book.translit[i]).join(' ')
+            });
+          }
+        }
+        bodyRows.push({ orientation, end, shift, sign, viableMasks, minForbidden });
+      }
+    }
+  }
+}
+assert.equal(bodyRows.length, 16);
+assert.equal(bodySurvivors.length, 1, 'Source-literal 75-rune body has one F-valid but nonprose reading');
+assert.deepEqual(
+  { orientation: bodySurvivors[0].orientation, end: bodySurvivors[0].end,
+    shift: bodySurvivors[0].shift, sign: bodySurvivors[0].sign, mask: bodySurvivors[0].mask },
+  { orientation: 'reversed', end: 'first75', shift: 'prime', sign: 1, mask: 7 }
+);
+assert.ok(Math.abs(bodySurvivors[0].ioc - 0.033873873873873875) < 1e-12);
+assert.ok(bodySurvivors[0].nativeScore < p57Score - 2,
+  'The sole authentic-F-consistent body candidate must be clearly inferior to solved GP text');
+
 console.log(JSON.stringify({
   source: 'Original LP1 p05 written magic-square cells and original LP2 p55',
   originalSourceTapeRunes: forward.length,
@@ -145,5 +198,10 @@ console.log(JSON.stringify({
   originalCandidateCount: rows.length * 8,
   originalViableCompleteCandidates: rows.reduce((s, row) => s + row.viable, 0),
   rows,
-  decision: 'This bounded affine source-key family is impossible on original p55 under authentic p56 F-bypass. No unknown plaintext or key recovered.'
+  originalBody75CandidateCount: bodyRows.length * 8,
+  originalBody75FViable: bodySurvivors.length,
+  originalBody75Rows: bodyRows,
+  originalBody75Survivors: bodySurvivors,
+  p57NativeControlScore: p57Score,
+  decision: 'All 64 whole-page decodings structurally contradict the p56 F rule. Exactly one of 128 natural 75-body alignment cases survives that necessary rule, but fails the source-native prose test. No unknown plaintext or key recovered.'
 }, null, 2));
