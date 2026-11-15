@@ -125,6 +125,23 @@ and **every such scalar key is in the exact affine fourth-order class just exclu
 
 This directly covers the source-visible original [p15 signed 4×4 Fibonacci-prime square](../results/lp2-p15-fibonacci-prime-spiral.md) as an arbitrary matrix-running-key generator, even if its authentic sign orientation, nonzero seed and output row are all secret. It is stronger than prior finite tests of just the literal signed matrix, certain seed choices, and its order-812 period. It **does not** cover a nonlinear state update, a nonlinear output lookup or S-box, a nonadditive GP encryption layer, a secret matrix changing within p15–22, key-clock skips, or a different native plaintext register. The theorem is exact under its algebraic assumptions; the English A/I/O interpretation remains the only linguistic premise.
 
+### Arbitrary 29-entry nonlinear output: global clock excluded, chapter-local clock survives
+
+The all-matrix corollary assumes the output is a linear function of state. One natural escape is a **secret, nonlinear 29-entry S-box** \(F:\mathrm{GF}(29)\to\mathrm{GF}(29)\), producing \(K_n=F(z_n)\), where scalar \(z_n\) follows a fourth-order recurrence fixed by a source-linked characteristic polynomial. The p15 signed 4×4 matrix selects \((a_0,a_1,a_2,a_3)=(19,2,15,28)\) from \((X-8)(X-17)(X-24)^2\). The independent signed-2013 H and original p39 G product selects \((15,20,16,1)\). Neither historical source actually prescribes an arbitrary nonlinear output function.
+
+An exact finite inversion grants **all 29⁴=707,281 scalar recurrence initial states** per source polynomial, including sequences that might not arise from an actual matrix/readout pairing, and gives every S-box entry an entirely free 29-way value. If two singleton observations have the same hidden scalar state \(z\), both must admit a common \(F(z)\) in the intersection of their three admissible A/I/O key values. Checking these intersections is necessary and sufficient for some *arbitrary function* F. Requiring F to be a **permutation** imposes only the additional exact distinct-value matching condition. The complete original-data results are:
+
+| Recurrence source; reset scope | Original singletons | Hidden scalar seeds permitting arbitrary F | Seeds permitting bijective F | Earliest complete contradiction |
+| --- | ---: | ---: | ---: | ---: |
+| p15 matrix; continuous whole book | 83 | **0/707,281** | **0** | By singleton **27** |
+| H·G; continuous whole book | 83 | **0/707,281** | **0** | By singleton **35** |
+| p15 matrix; separately initialized p15–22 | 18 | **10,052/707,281** | **9,772** | None |
+| H·G; separately initialized p15–22 | 18 | **10,556/707,281** | **10,248** | None |
+
+The source shapes are frozen, and the reproducer plants A/I/O words under a genuinely nonlinear function \(F(z)=z^2+7z+11\), confirming acceptance of the true planted state in each scope. The exact original-input [C++17 nonlinear-output SFT](../sims/lp2_p15_hg_sbox_original_sft.cpp) reuses the previously source-verified 83-word singleton inventory and checks all stated counts, matching constraints and plants.
+
+**Decision:** A single, entire-book additive key drawn from either source-selected fourth-order scalar recurrence and an **arbitrary fixed 29-entry nonlinear output table** cannot explain ordinary preserved A/I/O singleton words, even if the hidden scalar seed and the S-box are unconstrained. The **chapter-local** model with its own scalar state survives in many ways; no authentic decoder or plaintext follows. This is distinct from the all-affine chapter-local obstruction above: allowing a nonlinear codebook substantially changes which models remain possible.
+
 ## Positive control and reproduction
 
 [Standalone original-input C++17 SFT](../sims/lp2_all_order4_singletons_original_sft.cpp) is read-only. It parses the repository's exact UTF-8 \`resources/lp2-transcription.txt\` rune/word stream, verifies all **83** ciphertext singleton positions and source symbols, computes the complete coefficient census, and checks the last-polynomial witness. A synthetic positive uses the independently chosen nondegenerate recurrence **[9,4,10,6]**, initial four-key state at the first singleton **[7,1,12,23]**, and a cycling A/I/O plaintext at every one of the **same 83 original word positions**. The true planted coefficient and key survive all 83 tests, confirming that the inverse is capable of recognizing a genuine source-shaped cipher. The implementation uses only standard C++17 containers, no third-party dependencies, and no file writes.
