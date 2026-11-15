@@ -60,6 +60,21 @@ The other additive and multiplicative outputs are similarly non-linguistic. The 
 node sims/lp2_p49_a194954_key_gate.cjs
 ~~~
 
+## Exact-length p50 table XOR consumer
+
+The p49–51 numeral field has 256 cells and a documented byte export under the base60 codec (with a second lossless base59-no-lowercase-f interpretation). Extending A194954 to 256 terms therefore gives a source-motivated 256-byte XOR stream. This also addresses the independent observation that the p50 byte table contains 129 high-bit bytes: unlike the small GP29 prime/totient operands, A194954 terms can exceed 127 and could in principle change those high bits.
+
+Tested the direct one-byte interpretations only: key byte = a(n) mod 256 or (a(n)-1) mod 256, XORed positionally against both table codecs. All four outputs are binary-looking, with no recognized file signature or coherent text:
+
+| Table codec | Key | Printable bytes / 256 | Unique bytes | First 8 output bytes |
+|---|---|---:|---:|---|
+| base60 | A194954 | 91 (35.55%) | 162 | `c9e4a2bd6ae06fa0` |
+| base60 | A194954−1 | 91 (35.55%) | 161 | `cae5a3bc6be16ea1` |
+| base59 | A194954 | 90 (35.16%) | 158 | `cae0a1b06be46da3` |
+| base59 | A194954−1 | 91 (35.55%) | 158 | `c9e1a0b16ae56ca2` |
+
+The reproducer now includes this exact-length test and prints all outputs. This is a bounded negative for the direct positional XOR consumer, not an exclusion of a distinct source-selected table traversal or stateful decoder.
+
 ## Decision
 
 Retire the direct A194954 additive/multiplicative key interpretation for the p49 caption. Do not scan offsets, repeat periods, or arbitrary KDFs. The whitespace/A194954 match remains an interesting but incompletely authenticated source clue. A future investigation should reopen it only with a distinct, independently motivated use of its popcount/gap structure—potentially as a direction or table-index rule—not by repeating direct key-stream tests.
