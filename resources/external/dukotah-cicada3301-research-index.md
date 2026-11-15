@@ -37,3 +37,6 @@ The external `MEASURED-CEILING.md` explicitly limits its claims to tested key sp
 - p27:93 adjudication: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round33/B2-lp1-audit/p27_93.md
 - DQT mechanism clarification: https://github.com/Dukotah/cicada3301/blob/master/archive/branches-2026/research_round-11-dqt-matrix-disambiguation/research/experiments/r11-01-dqt-matrix-disambiguation/EXECUTION-NOTE.md
 - Resolved p50 payload: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round34/P1-payload-promotion/inputs/resolved/canon_256.hex
+- Primary PGP signature timeline (including the 2015-07-28 and 2016-01-01 signed statements): https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/SIGNATURE-TIMELINE.json
+- Original 2015 signed statement: https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
+- Original 2016 Liber Primus statement: https://github.com/Dukotah/cicada3301/blob/master/corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
