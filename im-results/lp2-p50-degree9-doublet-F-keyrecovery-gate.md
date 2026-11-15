@@ -30,8 +30,16 @@ The resulting recurrence predicts **25** at held-out offset1591, agreeing with i
 
 Independently, decrypting all 12,956 original ciphertext runes with the fitted pad produces GP29 index of coincidence **0.03450004879502503**, 446 plaintext-F candidate runes distributed throughout the book, and no intelligible prose; full forward additive reencryption restores **12,956/12,956** source ciphertext runes exactly. Forward restoration merely proves arithmetic consistency. The SFT plants a separate nine-symbol GF29 state into the same exact original repeat-site coordinates, recovers **all nine seed symbols**, and predicts **all 86/86** planted site values as a positive control.
 
+## Independent nine-chapter reset, fixed by original illustrations
+
+The source manuscript itself visibly divides p0–55 into nine illustrated chapters: p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55. As a single independent source-selected clock alternative, restart the **same** monic degree-nine recurrence at the first rune of each of those chapters, using only that chapter's first nine adjacent-repeat events to infer its nine independent key values.
+
+There are respectively **4, 6, 9, 10, 11, 13, 12, 18, 3** original adjacent repeats in the nine chapters, summing to all 86. Four chapters contain fewer than 10 repeats and cannot supply an independent held-out test. Each of the other **five** chapters has a full-rank first-nine marker fit. Their untouched marker predictions are uniformly contradictory: **0 of 19** held-out original chapter-local repeat values are recovered, with at least one contradiction in every testable chapter. No chapter was moved, relabeled, phase-scanned or reinitialized from its held-out marks.
+
+The visible original chapter boundaries and the degree-nine grid factor are two separately observable source properties. Their numerical agreement is therefore a legitimate additional conditional test, although no original page authenticates their use together. Its negative result excludes a **nine-chapter reset of this same repeated-F additive recurrence**, in addition to the global continuous stream. It does not exclude unrelated stateful ciphers or changing the marker premise.
+
 ## Decision
 
-Reject the **single continuous degree-nine source-factor additive stream with every original adjacent repeat representing plaintext F**. The first apparently correct withheld event is a one-symbol coincidence; the next independently held-out original event contradicts the key. Do not optimize a replacement seed or resynchronization phase to rescue this fixed hypothesis.
+Reject the **continuous and the nine illustrated chapter-reset degree-nine source-factor additive streams with every original adjacent repeat representing plaintext F**. The first apparently correct withheld event is a one-symbol coincidence; the next independently held-out original event contradicts the key. Do not optimize a replacement seed or resynchronization phase to rescue this fixed hypothesis.
 
-This leaves open all historically unselected operations, different page or chapter state clocks, ciphertext feedback, escape handling, and any alternative use of the table's exact field factor. No unknown LP2 plaintext, authenticated creator key, or final destination follows. Further effort on this branch needs a distinct original clue selecting one of those modifications.
+This leaves open historically unselected operations, other source-selected clocks, ciphertext feedback, escape handling, and alternative uses of the table's exact field factor. No unknown LP2 plaintext, authenticated creator key, or final destination follows. Further effort on this branch needs a distinct original clue selecting one of those modifications.
