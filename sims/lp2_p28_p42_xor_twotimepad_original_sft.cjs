@@ -101,6 +101,42 @@ function solve(a,b,lm,shift=0){
 function rng(seed){let state=seed>>>0;return()=>{
  state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;
 };}
+
+/** Freeze transparent F skip on each page; words remain source-aligned.
+ * @param {{xs:number[],start:boolean[],end:boolean[]}} page */
+function stripF(page){
+ const out={xs:[],start:[],end:[]};let word=-1,last=-1;
+ for(let i=0;i<page.xs.length;i++){
+  if(page.start[i])word++;
+  if(page.xs[i]===0)continue;
+  if(out.end.length&&word!==last)out.end[out.end.length-1]=true;
+  out.xs.push(page.xs[i]);out.start.push(word!==last);out.end.push(page.end[i]);
+  last=word;
+ }
+ if(out.end.length)out.end[out.end.length-1]=true;
+ return out;
+}
+/** Plant same 5-bit stream at successive non-F GP runes, all F transparent.
+ * @param {{xs:number[]}} a @param {{xs:number[]}} b */
+function plantF(a,b){
+ const ia=a.xs.flatMap((v,i)=>v===0?[]:[i]),ib=b.xs.flatMap((v,i)=>v===0?[]:[i]);
+ const aa=a.xs.slice(),bb=b.xs.slice(),roll=rng(0x3301f00);
+ for(let t=0;t<Math.max(ia.length,ib.length);t++){
+  const av=t<ia.length?a.xs[ia[t]]:null,bv=t<ib.length?b.xs[ib[t]]:null;
+  const keys=[];
+  for(let k=0;k<32;k++)if(
+   (av===null||((av^k)>0&&(av^k)<29))&&
+   (bv===null||((bv^k)>0&&(bv^k)<29)))keys.push(k);
+  assert(keys.length);
+  const k=keys[Math.floor(roll()*keys.length)];
+  if(av!==null)aa[ia[t]]=av^k;
+  if(bv!==null)bb[ib[t]]=bv^k;
+ }
+ assert(aa.every(v=>v>=0&&v<29)&&bb.every(v=>v>=0&&v<29));
+ assert.deepEqual(aa.map(v=>v===0),a.xs.map(v=>v===0));
+ assert.deepEqual(bb.map(v=>v===0),b.xs.map(v=>v===0));
+ return [{...a,xs:aa},{...b,xs:bb}];
+}
 function main(){
  const source=fs.readFileSync(path.join(ROOT,'resources/control/shakespeare_first300k.txt'),'utf8');
  const lm=trigram.trainTrigram(base.corpusWords(source.slice(0,240000)));
@@ -124,6 +160,10 @@ function main(){
    nShifts:all.length};
  };
  const refs=rankAll(a,b);
+ const aSkip=stripF(a),bSkip=stripF(b);
+ assert.deepEqual([aSkip.xs.length,bSkip.xs.length],[257,258]);
+ const originalSkip=solve(aSkip,bSkip,lm,0);
+ const originalSkipRanks=rankAll(aSkip,bSkip);
  const p=base.stream(remaining.slice(0,400),269);
  const q=base.stream(remaining.slice(500,900),269);
  assert.deepEqual([p.xs.length,q.xs.length],[269,269]);
@@ -181,6 +221,14 @@ function main(){
  const lp1AccuracyB=lp1Solved.q.filter((v,i)=>v===lp1B.xs[i]).length/251;
  assert(lp1Accuracy>0.15&&lp1AccuracyB>0.15);
  const lp1Ranks=rankAll(lp1Ca,lp1Cb);
+ const [cpF,cqF]=plantF(lp1A,lp1B);
+ const originalPA=stripF(lp1A),originalQB=stripF(lp1B);
+ const cipherPA=stripF(cpF),cipherQB=stripF(cqF);
+ const truthF=solve(cipherPA,cipherQB,lm,0);
+ const controlFRanks=rankAll(cipherPA,cipherQB);
+ const truthFAcc=truthF.p.filter((v,i)=>v===originalPA.xs[i]).length/truthF.n;
+ const truthFAccQ=truthF.q.filter((v,i)=>v===originalQB.xs[i]).length/truthF.n;
+ assert(truthFAcc>0.15&&truthFAccQ>0.15);
  const positiveShifts=[0,1,5,14,29,68,136,201,268].map(shift=>({
   shift,score:solve(ca,cb,lm,shift).score
  }));
@@ -190,11 +238,18 @@ function main(){
   rawXorZeroCount:21,
   rawXorDistribution:Array.from({length:32},(_,r)=>d.filter(x=>x===r).length),
   target:{score:original.score,p28:original.pText,p42:original.qText,shiftScreen:refs},
+  targetAllCiphertextFBypass:{n:[aSkip.xs.length,bSkip.xs.length],
+   score:originalSkip.score,p28:originalSkip.pText,p42:originalSkip.qText,
+   alignment:originalSkipRanks},
   nativeGpHeldoutPlant:{score:plant.score,recoveredP28Fraction:accuracy,
    recoveredP42Fraction:accuracyB,shiftScreen:positiveShifts},
   authenticCicadaGpPlant:{source:'solved LP1 pages03-04, 251+264 genuine GP runes',
    recoveredFirstFraction:lp1Accuracy,recoveredSecondFraction:lp1AccuracyB,
    zeroAlignedScore:lp1Solved.score,alignment:lp1Ranks},
+  authenticCicadaFBypassPlant:{source:'authentic LP1 p03-04 plaintext F skips',
+   n:[originalPA.xs.length,originalQB.xs.length],
+   score:truthF.score,accuracyP03:truthFAcc,accuracyP04:truthFAccQ,
+   alignment:controlFRanks},
   disclaimer:'No source selects the XOR operator or shared key; target is a fixed ciphertext-only test, not authenticated plaintext.'
  },null,2));
 }
