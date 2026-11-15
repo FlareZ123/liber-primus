@@ -11,6 +11,7 @@ on:
           - archive-2014
           - wiki-2015
           - source-tool-2015
+          - gist-revisions-2015
 permissions:
   contents: read
 jobs:
@@ -76,3 +77,19 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Gist source code syntax failed' }
           node sims/lp2_2015_huw_runes_source_keys_original_sft.cjs
           if ($LASTEXITCODE -ne 0) { throw 'Source-locked Gist original-input gate failed' }
+  exact-gist-history:
+    if: ${{ inputs.mode == 'gist-revisions-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read original dated Gist revision code keys without execution
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_huw_gist_original_revision_history_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original revision tool syntax failed' }
+          node sims/lp2_2015_huw_gist_original_revision_history_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'Original revision code lookup failed' }
