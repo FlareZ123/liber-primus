@@ -37,6 +37,7 @@ assert.equal(interior.length, 43);
 function base29(digits) {
   return digits.reduce((n, d) => n * 29n + BigInt(d), 0n);
 }
+function eulerPhi(n) { let count = 0; for (let k = 1; k <= n; k++) { let a = k, b = n; while (b) [a, b] = [b, a % b]; if (a === 1) count++; } return count; }
 function modPow(base, exponent, modulus) {
   let b = BigInt(base), e = BigInt(exponent), m = BigInt(modulus), out = 1n;
   while (e > 0n) {
@@ -71,6 +72,7 @@ assert.equal(edge23, A);
 assert.equal(B, visual.filledCircles);
 assert.equal(KfromA, whole23);
 assert.equal(KfromB, whole23);
+assert.equal(eulerPhi(whole23), inner22);
 assert.equal(p - edge23, visual.hollowCircles);
 
 // Control: include the ten preceding p54 runes of the word carried into p55.
@@ -90,7 +92,7 @@ console.log(JSON.stringify({
   visual,
   pageLocalRegisters: { whole76Mod23: whole23, outer33Mod23: edge23, inner43Mod22: inner22 },
   dh: { g, p, a, A, b, B, sharedFromA: KfromA, sharedFromB: KfromB },
-  secondaryCheck: { pMinusA: p - A, hollowCircles: visual.hollowCircles },
+  secondaryCheck: { pMinusA: p - A, hollowCircles: visual.hollowCircles, phiShared: eulerPhi(whole23), inner22: inner22 },
   completeWordCarryControl: carryControl,
   warning: "The closure depends on treating the p55 page-carry rune as a page-local singleton. Complete-word segmentation breaks it; the 2013 signed protocol authenticates BASE29/DH but does not select these LP2 parameters or a key consumer."
 }, null, 2));

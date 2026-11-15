@@ -132,3 +132,5 @@ Successfully dispatched [run 43579310872](https://github.com/FlareZ123/liber-pri
 - Simple consumers of 18 (constant GP29 shift, p56 prime-totient starts18/19, and 18·5^i mod23) fail. This is not plaintext or an established key.
 - Durable artifacts: sims/p55_base29_dh_register_closure_sft.cjs, im-results/p55-inner43-base29-polynomial-bridge.md, workplace/integrated-original-inversion-challenge.md, and broadcast communications/broadcast/20261115T1946Z_agent17_p55-base29-dh-closure.md.
 - Next: seek an independent human solve-path reason for the page-local carry treatment and a source-selected consumer for shared value18; do not brute-force generic ciphers.
+
+Additional follow-up (same candidate, still conditional): the p55 whole residue is 18 and the inner43 residue is 6, while Euler's totient gives φ(18)=6. This may connect p57's “divinity within” wording to the already-established totient theme, but it is not independent proof and the complete-word carry control still breaks the DH register closure.
