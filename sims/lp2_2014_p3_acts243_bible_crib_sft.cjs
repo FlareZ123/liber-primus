@@ -49,6 +49,62 @@ assert.deepEqual(observed, [4,7,7,7,4]);
 // IN EVERY WAY AND EVERYWHERE. No optional GP digraph affects "IN".
 const bibleNext = [2,5,3,3,10];
 assert.notEqual(observed[0],bibleNext[0]);
+/**
+ * One bounded 16-symbol periodic-key continuation of the historical p3 crib.
+ * This hypothetical key is forced by the first 16 ciphertext runes; it is not
+ * a Cicada-authenticated source key or independently recovered plaintext.
+ */
+const chapter = corpus.pages
+  .filter(p => p.page >= 3 && p.page <= 7)
+  .flatMap(p => p.indices);
+assert.equal(chapter.length, 1145);
+assert.deepEqual(chapter.slice(0, 16), cipher);
+const period16 = fixedCribShifts;
+const decoded = chapter.map((value, i) => (value - period16[i % 16] + 29) % 29);
+assert.deepEqual(decoded.slice(0, 16), candidate);
+assert.deepEqual(
+  decoded.map((value, i) => (value + period16[i % 16]) % 29),
+  chapter
+);
+// The first five full printed words following the conjectured rubric are an
+// original 29-rune holdout. Their source lengths are independently asserted.
+const holdoutLengths = [4, 7, 7, 7, 4];
+let cursor = 16;
+const observedHoldout = holdoutLengths.map(length => {
+  const word = decoded.slice(cursor, cursor + length).map(v => corpus.translit[v]);
+  cursor += length;
+  return word;
+});
+assert.deepEqual(observedHoldout, [
+  ['TH', 'L', 'T', 'O'],
+  ['I', 'P', 'AE', 'Y', 'W', 'EA', 'T'],
+  ['EA', 'I', 'EO', 'E', 'I', 'S', 'C'],
+  ['AE', 'G', 'I', 'EA', 'T', 'I', 'EO'],
+  ['C', 'G', 'M', 'L']
+]);
+const histogram = Array(29).fill(0);
+for (const rune of decoded) histogram[rune] += 1;
+const ioc = histogram.reduce((sum, count) => sum + count * (count - 1), 0)
+  / (decoded.length * (decoded.length - 1));
+assert(Math.abs(ioc - 0.03434971142394723) < 1e-12);
+// An independently clear solved-p57 control is source-native and genuinely
+// reversible across the complete 1145-symbol scope, including clock cycles.
+const knownPlain = corpus.pages.find(p => p.page === 57).indices;
+assert.equal(knownPlain.length, 95);
+const plantedPlain = Array.from({length: chapter.length},
+  (_, i) => knownPlain[i % knownPlain.length]);
+const plantedCipher = plantedPlain.map((v, i) => (v + period16[i % 16]) % 29);
+const recovered = plantedCipher.map((v, i) => (v - period16[i % 16] + 29) % 29);
+assert.deepEqual(recovered, plantedPlain);
+console.log('CONJECTURED_TITLE_PERIOD16 source p3-7', chapter.length,
+  'raw-first16-crib', candidate.map(v => corpus.translit[v]).join(','),
+  'fixed-period16-key', period16.join(','));
+console.log('CONJECTURED_TITLE_PERIOD16 first-five-unseen-words',
+  observedHoldout.map(word => word.join('-')).join(' / '));
+console.log('CONJECTURED_TITLE_PERIOD16 whole-chapter IoC', ioc,
+  'known-p57-synthetic-plant', recovered.length, 'of', plantedPlain.length,
+  'exact; no unknown plaintext');
+
 console.log('SOURCE ORTHOGRAPHY p3 title',title.join(' / '),'GP lengths',lengths.join('-'));
 console.log('SOURCE CIPHER first16', cipher.join(','));
 console.log('SOURCE GUESS conditioned key residues', fixedCribShifts.join(','));
