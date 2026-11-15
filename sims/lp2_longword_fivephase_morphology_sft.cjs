@@ -63,6 +63,20 @@ function logMass(word) {
 const counts = long.map(word => (candidates.get(signature(word)) || []).length);
 assert.equal(counts.filter(x => x === 0).length, 0);
 assert.equal(counts.filter(x => x <= 25).length, 12);
+const fullCandidateBits = counts.reduce((sum, n) => sum + Math.log2(n), 0);
+assert.ok(Math.abs(fullCandidateBits - 920.3010035120542) < 1e-9);
+// Source word positions are printed-word-continuous across original page wraps.
+let runeOffset = 0;
+const heldout = [];
+for (const word of original) {
+  if (runeOffset >= 9640 && word.length >= 10 && word.length <= 14)
+    heldout.push((candidates.get(signature(word)) || []).length);
+  runeOffset += word.length;
+}
+assert.equal(runeOffset, 12956);
+assert.equal(heldout.length, 28);
+const heldoutCandidateBits = heldout.reduce((sum, n) => sum + Math.log2(n), 0);
+assert.ok(Math.abs(heldoutCandidateBits - 245.0867073857201) < 1e-9);
 const sourceScore = long.reduce((s, word) => s + logMass(word), 0);
 assert.ok(Math.abs(sourceScore + 165.1231311587109) < 1e-8);
 const sparse = long.map((word, i) => ({word, i, names:candidates.get(signature(word))}))
@@ -125,6 +139,9 @@ console.log(JSON.stringify({
   dictionaryEntries:dictionary.length, sourceSumLogMass:sourceScore,
   sourceMissingSignatures:counts.filter(x=>x===0).length,
   sourceAtMost25Candidates:counts.filter(x=>x<=25).length,
+  fullIndependentWordCandidateBits:fullCandidateBits,
+  originalP40to55LongWords:heldout.length,
+  heldoutIndependentWordCandidateBits:heldoutCandidateBits,
   sourceLen14Constrained:sparse.map(item=>item.names),
   nativeControls:controls, exactPositivePatternPreserved:true,
   recoveredUnknownPlaintext:0,
