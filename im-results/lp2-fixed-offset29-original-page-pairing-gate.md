@@ -29,7 +29,7 @@ For every fixed pair the SFT evaluates runic/word-count association, exact count
 | Pairs both with large punctuation | 4 | 4.152 | 1.294 | 6,945 |
 | Pairs both ending in an unfinished word | 10 | 9.915 | 1.338 | 6,252 |
 
-Only two pairs happen to have equal source rune count: **p13/p42 = 272/272** and **p19/p48 = 271/271**, but their independently parsed word-start counts are **61/57** and **65/66**, and their actual word-length profiles are different. p5/p34 has equal original 58/60? Word starts are not equal there (p5=58, p34=60); equalities in crude word-fragment regex counts are not valid source words.
+Only two pairs happen to have equal source rune count: **p13/p42 = 272/272** and **p19/p48 = 271/271**, but their independently parsed word-start counts are **61/57** and **65/66**, and their actual word-length profiles are different. A superficial regex that treats punctuation and line wraps as interchangeable can misleadingly equate unrelated word fragments; source-native whole-word starts for p5/p34 are 58 versus 60, so that pair supplies no exact word-count control.
 
 The largest positive original-versus-shuffle difference is the first-twelve rune match total **19**, but at least **569** of 10,000 shuffled pairings equal or exceed it, and the opposite end goes in the other direction. Among ten fixed comparisons, that isolated, incomplete-position overlap does not select a cipher or predict plaintext.
 
