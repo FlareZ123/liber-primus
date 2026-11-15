@@ -15,7 +15,7 @@ permissions:
   contents: read
 jobs:
   recover:
-    if: ${{ inputs.mode != 'wiki-2015' }}
+    if: ${{ inputs.mode == 'archive-2014' }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
