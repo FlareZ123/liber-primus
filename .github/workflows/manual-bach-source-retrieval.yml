@@ -161,7 +161,7 @@ jobs:
           folder = Path("bach-period-pastebins")
           folder.mkdir(exist_ok=True)
           records = []
-          for paste_id in ("3T089HUW", "17h9MhyK"):
+          for paste_id in ("17h9MhyK", "3T089HUW"):
               original = "http://pastebin.com/" + paste_id
               urls = [
                   ("cdx", "https://web.archive.org/cdx/search/cdx?url=" + quote(original, safe="") + "&output=json&filter=statuscode%3A200"),
