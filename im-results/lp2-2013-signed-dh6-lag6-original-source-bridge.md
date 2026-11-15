@@ -58,6 +58,34 @@ p39 red [-K mod29, g, y] = [27, 5, 15].
 
 **Severe interpretation limit:** the red inscriptions never explicitly label `g+A`, `−K`, or `y`; choosing those arithmetic expressions to match the historical DH worked example is **post-hoc** and there is no known human-readable selector for the role split. The signed example's client exponent15 is derivable by discrete log in this toy group, but not explicitly printed as a parameter. The red relation may be intentional cross-round hinting or coincidence among small modular numbers. The shared offset119 and 36-page separation are authentic geometry, but neither directs a decoding operation. The earlier [independent original red/black 36-page affine test](lag6-conditioned-echo.md) correctly predicted one nearby black rune under a retrospectively chosen affine 36-page transfer; no full-page or unknown-plaintext inverse resulted. Do not treat the red triples, p50 factors, and the lag-six echo as statistically independent evidence, since all are now linked by a **single retrospectively selected DH interpretation**.
 
+## A common algebraic generator for the p39 red factor and the lag-six echo, with a signed-branch discriminator
+
+The red p39 **factor itself** admits a short source-specific expression using just two original signed-DH values: original base/generator `g=5` and returned shared secret `K=2`. Because **`2^−1=15 mod29`**, its printed `[27,5,15]` exactly equals
+
+```text
+G(Y) = 27 + 5Y + 15Y²
+     = (Y+g)² / K             (mod29)
+     = (Y+5)² / 2             (mod29).
+T−(X) = −g − K*X = −5−2X = 24−2X (mod29).
+G(T−(X)) = K*X² = 2*X²       (mod29).
+```
+
+The first equality is verified against **all 29 possible GF29 symbols** in the SFT. This links the **entire p39 polynomial** and the independent LP2 six-back cipher-echo operator through the same signed 2013 `(g,K)=(5,2)`. No need to select exponent15 retrospectively from the toy DH client: the polynomial's coefficient15 is **already the multiplicative inverse of its signed shared2**. The original 3301 BASE29 final digit24 agrees independently with `−g mod29`. This is an exact algebraic relation between authentic original/source objects; the mapping of their roles remains a hypothesis.
+
+The square identity predicts a **second** signed-DH branch `T+(X)=−g+KX =24+2X`, since `G(T+(X))=2X²` as well. The two branches only coincide at GP input `X=0`. That gives an inexpensive, falsifiable consumer of the proposed common square mechanism: compare **both** natural roots against the **same** untouched word-internal six-back ciphertext sites, without choosing an alignment or fitting any key.
+
+| Original LP2 lag-six test, 1,290 sites | Exact matches | 1,800 original-word multiset/adjacent-repeat-preserving nulls |
+| --- | ---: | --- |
+| **T−(X)=24−2X** (signed-source negative branch) | **80** | mean **45.7022**, SD **6.5741**, 0/1,800 at/above original |
+| **T+(X)=24+2X** (opposite quadratic root) | **34** | mean **42.1439**, SD **6.1621**, 1,657/1,800 at/above original |
+| Either root, deduplicating coincidence at input0 | **113**, with just one overlapping match | mean **86.5544**, SD **8.7561**, 0/1,800 at/above original |
+
+The original halves independently contain **40/19** negative/positive matches and **40/15**. A pair of independently generated 26-rune positive plants exercises each exact root on all 20 eligible positions. The source-selected **negative branch is unusually represented and the companion branch is not** under this narrow word-conditioned control. Thus the whole-square relationship does *not* by itself justify a symmetric hidden-sign/±-branch code; a source-selected rule to prefer the negative root or a biased sign state would be required. The negative statistical finding is a meaningful restriction on attempts to turn `G` into a reversible two-root LP2 message, **not** a decryption.
+
+As a direct unkeyed GP inverse check, the 1,290 defined `D_i=C_i+g+K C_{i-6} mod29` values have index of coincidence **0.035468875**, near uniform GP29 and well below the native original GP-English register; its most frequent rune is F at **80/1,290** precisely because `D=0` encodes the T− hits. The first six positions of each word are undefined by this relation. This fails as an ordinary direct-GP-English decoder and supplies neither the missing key nor a readable sentence. A sparse overwrite/rejection process could generate the same zero surplus, but must preserve information to be cryptographically reversible.
+
+**Execution:** the [expanded single-file SFT](../sims/lp2_2013_dh6_lag6_signed_source_bridge_sft.cjs) now proves the 29-value polynomial identities, tests and plants both sign branches and checks 1,800 independent source-conditioned nulls, in addition to the earlier 24-choice full-original test. The amended [Windows Node22 GitHub Actions run **43656986364** passed](https://github.com/FlareZ123/liber-primus/actions/runs/43656986364).
+
 ## Independently executable source-constrained 24-choice check
 
 To constrain the retrospective construction, test a small, explicit family whose elements are public numbers from the signed 2013 example. The word-local lag choices are `[2,5,6,8]` (shared DH key, DH generator, recovered server exponent, server public share). The base29 output digit choices are `[3,26,24]`. The linear coefficient is `±2` (both signs of the DH shared key). Every combination is evaluated against the *unchanged 12,956 original GP29 cipher runes*, joined into their 2,896 original printed semantic words including 32 page-spanning carries, with no plaintext scoring, fitted key, or invented symbol. The source word lengths have a maximum of14, so the historically present values 15,19,23 cannot serve as a **word-local lag** within this direct family; that restriction is itself a model choice, not a complete audit of every signed-source operation.
