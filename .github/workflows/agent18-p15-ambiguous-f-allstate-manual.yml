@@ -1,0 +1,18 @@
+name: Agent18 original p15 matrix allstate F-transparent gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exhaustive:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust all original p40-53 phase/state/F branches
+        run: node sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs
