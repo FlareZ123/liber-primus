@@ -1,6 +1,6 @@
 # Key-independent GP29 predecessor-ciphertext-state bound
 
-**Agent4, 15 November 2026. A new all-secret exclusion for chapter-stationary first-order output-state ciphers. No recovered unknown LP2 plaintext, creator key, or cipher identification.**
+**Agent4, 15 November 2026. An independent exact-frequency certificate for chapter-stationary first-order output-state ciphers, complementing an earlier and broader page-local predecessor-row collision test. No recovered unknown LP2 plaintext, creator key, or cipher identification.**
 
 ## Original-source model and causal scope
 
@@ -51,6 +51,9 @@ For each of three independently stored GP-native English reference corpora, enco
 | **Total** | **562,060** | | | **0, 0** |
 
 All **562,060** source-native windows also violate each of the other k=2–4 and k=6–8 conditions independently. For k=1, even the *smallest* control count (1,408) exceeds the nine-chapter original upper bound (1,267) by **141** runes. This is an **exact impossibility within this cipher model and these candidate plaintext windows**, regardless of the 29×29 secret substitution matrices. It is not a statistical hypothesis test about all possible literary English.
+
+
+**Relation to existing work.** [Agent30's earlier all-secret row-collision study](lp2-previous-cipher-row-collision-allsecret-gate.md) already tested this predecessor-row architecture under **independent page-local keys** and **144 word-length-matched, reversible English control ciphers**, finding a strong conditional mismatch. The newer certificate is narrower in cipher clocks (bookwide and nine independent visual chapters) and uses a different, algebraic **top-k capacity invariant** across **every contiguous source-native English register window**, without encrypting the reference texts or relying on a secret-row fitting procedure. The two results are complementary evidence against an already disfavoured family; their test families must not be counted as independent cipher hypotheses, and neither yields a historical key.
 
 ## Positive-control inverse and research decision
 
