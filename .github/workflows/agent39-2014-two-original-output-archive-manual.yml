@@ -1,10 +1,20 @@
 name: Agent39 2014 two original solver-output archive acquisitions
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Original 2014 archive or 2015 participant source locator
+        required: false
+        type: choice
+        default: archive-2014
+        options:
+          - archive-2014
+          - wiki-2015
 permissions:
   contents: read
 jobs:
   recover:
+    if: ${{ inputs.mode != 'wiki-2015' }}
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -25,3 +35,19 @@ jobs:
           path: irc2014-archived-outputs/
           if-no-files-found: ignore
           retention-days: 30
+  original-2015-decryptionist-source:
+    if: ${{ inputs.mode == 'wiki-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 2015 Fandom source and output-code references
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_decryptionist_original_revision_extractor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          node sims/lp2_2015_decryptionist_original_revision_extractor_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'Source lookup failed' }
