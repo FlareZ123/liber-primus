@@ -18,10 +18,18 @@ on:
         options:
           - printed
           - p15-spiral
+      password_source:
+        description: Historically sourced password to test on original floral carriers
+        type: choice
+        required: true
+        default: historic-mp3
+        options:
+          - historic-mp3
+          - lp1-divinity
 permissions:
   contents: read
 concurrency:
-  group: openpuff-v400-lp2-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}
+  group: openpuff-v400-lp2-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}-${{ inputs.password_source }}
   cancel-in-progress: false
 jobs:
   source-selected-floral16:
@@ -76,10 +84,11 @@ jobs:
         run: |
           $ErrorActionPreference = 'Stop'
           $level = if ('${{ inputs.bit_level }}' -eq 'maximum') { '1/2 (50%) - Maximum' } else { '1/5 (20%) - Medium' }
-          $out = 'probe-output/original-floral16-' + '${{ inputs.carrier_order }}' + '-' + '${{ inputs.bit_level }}'
+          $out = 'probe-output/original-floral16-' + '${{ inputs.carrier_order }}' + '-' + '${{ inputs.bit_level }}' + '-' + '${{ inputs.password_source }}'
+          $password = if ('${{ inputs.password_source }}' -eq 'lp1-divinity') { 'DIVINITY' } else { '33011033' }
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
-            '--password', '33011033',
+            '--password', $password,
             '--bit-format', 'Jpeg (Image)',
             '--bit-level', $level,
             '--out', $out,
@@ -103,7 +112,7 @@ jobs:
           }
           New-Item -ItemType Directory -Force -Path probe-output | Out-Null
           $manifest | ConvertTo-Json -Depth 3 | Set-Content -LiteralPath probe-output/floral16-original-manifest.json -Encoding utf8
-          Write-Host "ORIGINAL_FLORAL16_SOURCE_MANIFEST $($manifest | ConvertTo-Json -Compress)"
+          Write-Host "ORIGINAL_FLORAL16_SOURCE_MANIFEST key_source=${{ inputs.password_source }} $($manifest | ConvertTo-Json -Compress)"
           python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Native floral16 chain extraction script failed' }
           $result = Get-Content -LiteralPath (Join-Path $out 'result.json') -Raw | ConvertFrom-Json
@@ -117,6 +126,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: original-v400-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}-evidence
+          name: original-v400-floral16-${{ inputs.carrier_order }}-${{ inputs.bit_level }}-${{ inputs.password_source }}-evidence
           path: probe-output/
           if-no-files-found: warn
