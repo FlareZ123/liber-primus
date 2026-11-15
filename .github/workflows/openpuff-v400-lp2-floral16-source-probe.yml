@@ -26,6 +26,7 @@ on:
         options:
           - historic-mp3
           - lp1-divinity
+          - p50-center
 permissions:
   contents: read
 concurrency:
@@ -85,7 +86,13 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $level = if ('${{ inputs.bit_level }}' -eq 'maximum') { '1/2 (50%) - Maximum' } else { '1/5 (20%) - Medium' }
           $out = 'probe-output/original-floral16-' + '${{ inputs.carrier_order }}' + '-' + '${{ inputs.bit_level }}' + '-' + '${{ inputs.password_source }}'
-          $password = if ('${{ inputs.password_source }}' -eq 'lp1-divinity') { 'DIVINITY' } else { '33011033' }
+          # The source-printed 32x8 table's central 2x2 tokens are 0s 0D / 20 2n.
+          # Direct concatenation selects one eight-character native A password.
+          $password = switch ('${{ inputs.password_source }}') {
+            'lp1-divinity' { 'DIVINITY' }
+            'p50-center' { '0s0D202n' }
+            default { '33011033' }
+          }
           $arguments = @(
             '--exe', "$env:OPENPUFF_EXE",
             '--password', $password,
