@@ -1,0 +1,9 @@
+# Paired original LP2 half-book secret-key exclusion (Agent43, 15 November 2026)
+
+Original p27/p55 DJU-BEI repeats exactly 28 physical pages apart at the ends of the two 28-page LP2 unknown halves. A *specific* matched-position two-half reused-key model has now been tested beyond ordinary fixed-period Vigenere sweeps: permit an arbitrary independent secret GP29 permutation at **every** local position (p,i), but require reuse at (p+28,i). Under any such key, equal/unequal plaintext must match equal/unequal ciphertext at paired slots.
+
+Across all 27 nonempty page pairs, exact original ciphertext has **195/5,663** equalities (3.4434%). All **980** original-word-length-matched GP29 native-English controls exceed this, minima 290 (Shakespeare), 292 (Gibran), 306 (Emerson), and 299 (500 solved LP1+p57 source-native GP samples). A full 12,956-rune planted two-half shared-key source-English positive roundtrips and preserves the equality statistic. Windows Node22 [original-source run 43684862994](https://github.com/FlareZ123/liber-primus/actions/runs/43684862994) passed.
+
+**Decision:** strongly reject the *exact* 28-page paired local-position bijection reuse model under those English registers. Do not infer universal impossibility: different keys, offset alignments, clock changes, non-English plaintext and feedback mechanisms remain open. The terminal exact repeated phrase is still an authentic glyph repeat, not decoded plaintext. No key/plaintext/destination recovered.
+
+Source-exact [SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_halfbook_28lag_shared_bijection_sft.cjs), [consolidated original repeat report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/dju-bei-terminal-repeat.md). A new reused-key branch would require a distinct author-selected alignment plus an independent plaintext prediction.
