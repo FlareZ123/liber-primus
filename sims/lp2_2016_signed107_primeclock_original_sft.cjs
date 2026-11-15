@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Use the independently authenticated 2016 GPG signature's exact
- * seconds-after-midnight (107) as a literal prime ordinal start for the
+ * six-digit UTC HHMMSS timestamp string (000107) as a literal prime ordinal start for the
  * historical, p56-proven phi(prime)-1 GP29 cipher with transparent F.
  *
  * Test original first 729-rune chapter and p55 76-rune body.
@@ -30,7 +30,7 @@ const timestamp=body.readUInt32BE(8);
 assert.equal(timestamp,1451606467);
 const time=new Date(timestamp*1000);
 assert.equal(time.toISOString(),"2016-01-01T00:01:07.000Z");
-const ordinal=time.getUTCHours()*3600+time.getUTCMinutes()*60+time.getUTCSeconds();
+const ordinal=time.getUTCHours()*10000+time.getUTCMinutes()*100+time.getUTCSeconds();
 assert.equal(ordinal,107);
 const mod=x=>(x%29+29)%29;
 
@@ -110,8 +110,8 @@ const test={
   p55:allTransparentFStates(p55,ordinal)
 };
 console.log(JSON.stringify({
-  premise:"The 2016 genuine signed message was signed 107 seconds after UTC midnight on 1 January, a source-native possible prime ordinal. Trial transfers the established p56 prime-totient/F-transparent cipher with start rank 107, no other fitted key.",
-  weakestAssumption:"The signature timestamp is historically authentic but no original Cicada instruction transfers its seconds-of-day into a GP29 prime start for encrypted LP2 pages.",
+  premise:"The 2016 genuine signed message was signed at 00:01:07 UTC on 1 January; the decimal HHMMSS string is 000107, a source-native possible prime ordinal. Trial transfers the established p56 prime-totient/F-transparent cipher with start rank 107, no other fitted key.",
+  weakestAssumption:"The signature timestamp is historically authentic but no original Cicada instruction transfers its HHMMSS decimal digits into a GP29 prime start for encrypted LP2 pages.",
   source:test,
   result:"A legal F-mask is an algebraic feasibility gate, not a recovered plaintext; require actual readable original text and full forward inversion for success."
 },null,2));
