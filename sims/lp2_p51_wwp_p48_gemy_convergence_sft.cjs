@@ -64,6 +64,14 @@ assert.equal(originalSixRuneWords.length, 256);
 const beforeSumMatches = originalSixRuneWords.filter(w => primeSum(w) === 312);
 assert.equal(beforeSumMatches.length, 1);
 assert.deepEqual(beforeSumMatches[0], lastBeforeTable);
+const pageInitialDoublets = c.pages.filter(p => p.page <= 55 && p.indices.length >= 2 && p.indices[0] === p.indices[1]).map(p => p.page);
+assert.deepEqual(pageInitialDoublets, [51]);
+const wordStartDoublets = words.filter(w => w.length >= 2 && w[0] === w[1]);
+const threeRuneStartDoublets = words.filter(w => w.length === 3 && w[0] === w[1]);
+assert.equal(wordStartDoublets.length, 12);
+assert.equal(threeRuneStartDoublets.length, 3);
+assert.deepEqual(threeRuneStartDoublets.map(w => w.map(i => c.translit[i])),
+  [['S','S','EA'],['E','E','W'],['W','W','P']]);
 const firstAfterTable = primeSum(after);
 assert.equal(firstAfterTable, 81);
 assert.equal(table[firstAfterTable - 1], 142);
@@ -139,6 +147,7 @@ console.log(JSON.stringify({
   title: 'Conditional p48 GEMY and p51 WWP convergence into p50 GEM',
   firstPostGridWord: after.map(i => c.translit[i]),
   primeSum: firstAfterTable,
+  rareBoundary: {onlyPageInitialDoublet: pageInitialDoublets, wordStartDoublets:wordStartDoublets.length, threeRuneDoublets:threeRuneStartDoublets.map(w => w.map(i => c.translit[i]))},
   preTable: {word:lastBeforeTable.map(i => c.translit[i]), sum:lastBeforeTablePrimeSum, centerPageCells:104, numericPageCount:3, originalSixRuneWords:originalSixRuneWords.length, uniqueSum312Words:beforeSumMatches.length},
   tableCell81: {byte: table[80], q:4, rune:'Y', prime:103, stationary:true},
   routeFrom103: yRoute.path.map(i => ({cell:i, rune:c.translit[table[i - 1] % 29]})),
