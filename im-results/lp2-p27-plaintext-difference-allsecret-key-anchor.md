@@ -63,7 +63,19 @@ For a source-controlled necessary-condition test, normalize the three independen
 
 Across **562,060** complete native-GP windows, even the smallest comparison has **309** repeats, more than **3.59 times** the actual 86. Unlike an optimized key search, every \(k_i\in\{1,\dots,28\}\) yields the **same exact repeat count**; the real ciphertext cannot decrypt to *any of these windows* under the proposed multiplicative plaintext-difference equation. The independent first-party clear-LP1 baseline likewise has 28 same-page repeats per 991 comparisons, while the original unknown has only 86 per 12,901 (see [the original-author control](lp2-first-party-clear-gp-doublet-baseline.md)). We do not assume every possible English composition has exactly a control corpus's equality rate: unusual writing, another source language, word-break changes, nulls/skips, plaintext before a second cipher layer, or an alternative cipher model remain open.
 
-**Decision from the complete necessary condition:** This direct plaintext-difference multiplier architecture is an implausible native-English LP2 inverse, even when every multiplier is an independently unknown nonzero field element. The local AMBASSADRESS witness only proves that an isolated word does not make the architecture formally impossible. A future claimed key must produce *all* original-page text plus intelligible, independently verifiable plaintext and explain the enormous whole-book equality deficit. Further source-grid phase scans are unjustified.
+**Decision from the complete necessary condition:** This direct plaintext-difference multiplier architecture is an implausible native-English LP2 inverse, even when every multiplier is an independently unknown nonzero field element or every position has an independent, unknown zero-preserving 28-symbol permutation. The local AMBASSADRESS witness only proves that an isolated word does not make the architecture formally impossible. A future claimed key must produce *all* original-page text plus intelligible, independently verifiable plaintext and explain the enormous whole-book equality deficit. Further source-grid phase scans are unjustified.
+
+### Stronger exact secret-codebook implication
+
+The conservation argument does **not** depend on multiplication's arithmetic form. It applies to every lossless, time-varying, keyed *difference* encoder
+
+\[
+C_i=C_{i-1}+f_i(P_i-P_{i-1})\pmod{29},
+\]
+
+where \(f_i(0)=0\) and \(f_i\) bijects all 28 nonzero residues onto themselves. Each \(f_i\) may be a completely independent, arbitrarily secret permutation of those 28 values, giving up to \((28!)^{12,901}\) independent page-internal codebook schedules. Because \(f_i(x)=0\iff x=0\), **all of these maps exactly conserve adjacent equality** and inherit the same original-ink contradiction against the three finite native-GP English registers. This family includes the displayed \(k_i x\) multipliers as a small subset. The all-codebook exclusion is a mathematical necessary condition, so no enumeration of these secret maps is appropriate.
+
+The exact boundary is important: if \(f_i\) can move the zero symbol, depend on additional hidden state with an unobservable external marker, change original segmentation, or insert/delete positions, the invariant disappears. Those different proposals need their *own* author-selected mechanism before investing in keys.
 
 ## Decision
 
