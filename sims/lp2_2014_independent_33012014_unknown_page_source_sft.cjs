@@ -28,6 +28,13 @@ async function main(){
  assert.equal(bytes.length,size);
  assert.equal(crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),sha);
  const lines=bytes.toString('latin1').split(/\r?\n/);
+ const rawDateLines=lines.map((line,i)=>({n:i+1,line})).filter(x=>
+   /^2014 (May|Jun|Jul|Aug) [0-9]{2} /.test(x.line));
+ const nonSpeaker=rawDateLines.filter(x=>!/^2014 (?:May|Jun|Jul|Aug) [0-9]{2} [0-9]{2}:[0-9]{2} <[^>]+> /.test(x.line));
+ const nonSpeakerHigh=nonSpeaker.filter(x=>/(?:liber|primus|gematria|rune|decryp|deciph|plaintext|key|hash|p[0-5][0-9]|page.{0,7}[0-9]|https?:\\/\\/|pastebin|github|gist)/i.test(x.line));
+ console.log('ORIGINAL RAW MayAug DATE ROWS '+rawDateLines.length+
+   ' non-speaker rows '+nonSpeaker.length+' content-bearing non-speaker candidate '+nonSpeakerHigh.length);
+ for(const x of nonSpeakerHigh.slice(0,75))console.log('METADATA L'+x.n+' '+x.line.slice(0,600));
  const all=lines.map(parse).filter(x=>x&&x.month>=5&&x.month<=8);
  const candidates=all.filter(x=>important.test(x.msg));
  const focused=candidates.filter(x=>selective.test(x.msg));
