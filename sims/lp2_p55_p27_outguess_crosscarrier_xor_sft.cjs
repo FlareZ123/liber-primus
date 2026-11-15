@@ -167,8 +167,8 @@ try {
     const proc = run(['-k', WRONG_PASSWORD, '-r', original(id), file]);
     const buf = fs.readFileSync(file);
     wrong.set(id, buf);
-    const match = /Steg retrieve:\\s*seed:\\s*(\\d+),\\s*len:\\s*(\\d+)/i.exec(
-      (proc.stdout || '') + '\\n' + (proc.stderr || ''));
+    const match = /Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(
+      (proc.stdout || '') + '\n' + (proc.stderr || ''));
     console.log('WRONG_KEY_ORIGINAL', JSON.stringify({
       scan: id, seed: match ? Number(match[1]) : null,
       headerLength: match ? Number(match[2]) : null,
