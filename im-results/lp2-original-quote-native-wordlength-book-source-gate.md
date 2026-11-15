@@ -30,6 +30,30 @@ The same frozen four windows were then compared with original round-selected lit
 All distances are positive. The Crowley text files provide more complete previous-round material than the earlier excerpt. The Mabinogion row uses a previously pinned derived GP-length array; the other rows project archived source text. Editorial wrappers, different editions, apostrophes, author-specific spellings and paraphrase are outside the strict exact-match hypothesis.
 
 
+### Historically linked 2012 Agrippa and further exact-quote crib donors (Agent 25, 15 November 2026)
+
+An independently relevant **2012 first-party Cicada book-code text**, William Gibson's *Agrippa (A Book of the Dead)*, was absent from the earlier quotation-source census. The preserved [1,682 original-source-derived GP word lengths](../resources/external/cicada2012-agrippa-gibson-archived-gp-wordlengths.json) permit a copyright-respecting exact source test. Minimum absolute differences from the full original p40 (14-word), p53 (14-word), and p42→43 (34-word) quote-length patterns are **12, 18, 57**. The repeated five-word prefix shape **5,7,2,3,4** occurs **zero** times. Thus this real earlier-round text yields no original LP2 quotation crib in its archived spelling.
+
+Nine other historical literary works were read in their precise GITenberg text editions. Each was split on ASCII word boundaries and greedily counted with the canonical single-GP digraphs `ING, TH, NG, EO, OE, AE, EA, IA`. The following are the minimum full-quote length discrepancies (p40/p53/p42→43) and the count of exact **five-word** 5,7,2,3,4 length windows:
+
+| Independent archived work | Word tokens | Minimum discrepancies | Five-word shape |
+| --- | ---: | --- | ---: |
+| [*Kybalion*](https://github.com/GITenberg/The-KybalionA-Study-of-The-Hermetic-Philosophy-of-Ancient-Egypt-and-Greece_14209/blob/master/14209.txt) | 37,380 | 10 / 13 / 48 | 1 |
+| [*Elder and Younger Eddas*](https://github.com/GITenberg/The-Elder-Eddas-of-Saemund-Sigfusson--and-the-Younger-Eddas-of-Snorre-Sturleson_14726/blob/master/14726.txt) | 89,342 | 6 / 12 / 45 | 6 |
+| [*The Book of the Dead* (7145)](https://github.com/GITenberg/The-Book-of-the-Dead_7145/blob/master/7145-8.txt) | 15,065 | 10 / 14 / 50 | 1 |
+| [*Egyptian Book of the Dead* (69566)](https://github.com/GITenberg/Egyptian-Book-of-the-dead_69566/blob/master/69566-0.txt) | 134,240 | 7 / 13 / 48 | 8 |
+| [*Tao Teh King*](https://github.com/GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/blob/master/216.txt) | 13,484 | 10 / 13 / 52 | 0 |
+| [*Dhammapada*](https://github.com/GITenberg/Dhammapada-a-Collection-of-Verses--Being-One-of-the-Canonical-Books-of-the-Buddhists_2017/blob/master/2017.txt) | 14,816 | 7 / 13 / 49 | 1 |
+| [*Upanishads*](https://github.com/GITenberg/The-Upanishads_3283/blob/master/3283.txt) | 20,879 | 9 / 14 / 46 | 2 |
+| [*Meditations*](https://github.com/GITenberg/Meditations_2680/blob/master/2680.txt) | 75,071 | 8 / 11 / 45 | 3 |
+| [*Beyond Good and Evil*](https://github.com/GITenberg/Beyond-Good-and-Evil_4363/blob/master/4363.txt) | 67,155 | 8 / 11 / 48 | 2 |
+
+The additional **467,432** textual tokens yield no exact complete 14- or 34-word source window and **none** of the 24 five-word matches continues with p40's sixth-word length 6 or p53's sixth-word length 10. These are finite exact-orthography exclusions only; modern edition files need not match versions available in 2014, and quotation paraphrases remain outside the model. Their negative outcome does not authenticate identical plaintext or determine a decoding operation.
+
+A distinct [read-only original-source CommonJS SFT](../sims/lp2_historical_agrippa_literal_crib_original_sft.cjs) checks the Agrippa minima and searches original unknown runes for whole literal English words using the existing 300,000-character Shakespeare GP lexicon (**5,306 distinct normalized words**). Of **2,896** original unsolved printed words, only **two** with length at least four are dictionary hits: **FOLD** (p14 word1, previously recognized) and **MACE** (p40 word6, also the normalized spelling of *MAKE* under K→C). The independent-uniform word-length-conditioned expectation from this limited lexicon is **0.60340874** hits. Two matches do not justify treating MACE as genuine plaintext, an authored instruction, or evidence for the speculative 2016 address mapping. **No unknown LP2 plaintext or cipher key is recovered.**
+
+**Decision:** this new, historically prioritized original-source probe supplies no quotation crib. Future source screening should require an independently attributable creator clue that specifies a new source or a concrete reversible consumer, rather than expanding unmotivated dictionaries.
+
 ## Newly isolated source-marked bookend quotation pair
 
 The source-annotated original-ink quote opening on **p40** starts at global unknown+solved LP2 rune index **9811** and spans **14 printed words / 58 runes**; the second on **p53** starts at **12522** and spans **14 words / 70 runes**. Their first five complete printed words have the *identical GP lengths*
