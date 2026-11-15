@@ -112,6 +112,40 @@ function trial(key, route, sign) {
   };
 }
 
+
+/**
+ * Exact historic plaintext-F transparent key reachability. At ciphertext F,
+ * retain both literal F/no-key and consuming non-F possibilities; at any
+ * non-F ciphertext, consumption is mandatory and P=F is forbidden.
+ *
+ * @param {number[]} cipher Already in the frozen original word visit order
+ * @param {number[]} key Fixed GP29-key labels
+ * @returns {{firstImpossible:number|null,priorClocks:number[]}}
+ */
+function nativeFehuReach(cipher, key) {
+  let clocks = new Set([0]);
+  for (let i = 0; i < cipher.length; i += 1) {
+    const next = new Set();
+    for (const consumed of clocks) {
+      const c = cipher[i];
+      if (c === 0) next.add(consumed);
+      if (((c - key[consumed % key.length] + 29) % 29) !== 0) {
+        next.add(consumed + 1);
+      }
+    }
+    if (!next.size) {
+      return { firstImpossible: i, priorClocks: [...clocks].sort((a,b) => a-b) };
+    }
+    clocks = next;
+  }
+  return { firstImpossible: null, priorClocks: [...clocks].sort((a,b) => a-b) };
+}
+
+const historicalFFailures = {
+  'DIVINITY': { 'page': 1, 'outside-in': 75, 'inside-out': 10 },
+  'INSTAR': { 'page': 13 }
+};
+
 const baseline = indexOfCoincidence(original);
 const clearP57 = indexOfCoincidence(data.pages[57].indices);
 const configs = [
@@ -124,6 +158,15 @@ console.log(JSON.stringify({
 }));
 for (const config of configs) {
   for (const route of config.routes) {
+    const cipherInVisitOrder = words.flatMap(word =>
+      visitOrder(word.runes.length, route).map(i => word.runes[i]));
+    const exactNativeF = nativeFehuReach(cipherInVisitOrder, config.key);
+    assert.equal(exactNativeF.firstImpossible, historicalFFailures[config.name][route]);
+    console.log(JSON.stringify({
+      key: config.name, route, actualHistoricalPlaintextFSkip: true,
+      firstImpossibleRune: exactNativeF.firstImpossible,
+      priorConsumedKeyClocks: exactNativeF.priorClocks
+    }));
     for (const sign of [-1, 1]) {
       const result = trial(config.key, route, sign);
       assert.ok(result.valid, 'failed exact original-cipher reconstruction');
@@ -140,4 +183,4 @@ for (const config of configs) {
     }
   }
 }
-console.log('Decision: no 120-rune source-native plaintext; these eight finite variants fail the required positive.');
+console.log('Decision: no 120-rune original plaintext; all four native F-transparent hypotheses are exact algebraic negatives.');
