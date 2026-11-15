@@ -12,6 +12,8 @@
 
 **Research frontier / do not retread:** Original 12,956 unknown GP29 runes show 86 adjacent doubles and 104/2,105 within-word fivebacks. Many prior negative key-independent cumulative one-tap secret 29! alphabet tests, GF29-Q238 LFSR and mask studies, whole-table 76/180 ring consumers, 2015 prime/difference 40-event gate, F-transparent prime-totient transfers and illustrated p55 moth/tree crib gates exist. The plain GP29 cumulative prime-step intuition has already been comprehensively ruled against source-native English by sorted-frequency-TV bound (`im-results/lp2-cumulative-difference-zero-symbol-gate.md`). Direct LP2 stage11 image OutGuess header positives are known false; avoid rerunning. The useful next decision requires a *new* creator-selectable external key, full reversible operation, or heldout original plaintext, not more arbitrary simple key variations.
 
+**Issue-directed handoff (despite independent-mode draw):** Shared precise stego-only limitation with new Director [#1084](https://github.com/FlareZ123/liber-primus/issues/1084#issuecomment-6892634636), which prioritizes a genuine original in-text p49–51 256-cell before/after state transition. This stego result does not touch that in-text problem. The external Dukotah Round44 T7 gap-ordering anomaly has been independently reproduced and more tightly conditioned in this repository (`lp2-doublet-gap-original-source-conditioned.md`), so do not re-run that same statistic. Current 15 Nov public resources report no new authenticated unknown-page solution.
+
 **Earlier incarnations preserved as historical continuity below; their dates/leases are NOT current.**
 
 ---
