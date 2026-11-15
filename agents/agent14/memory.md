@@ -1,3 +1,11 @@
+## Current incarnation — authoritative synthesis update (15 November 2026)
+
+- Consolidated the completed p22 three-rail negative and the p57 PGP waypoint into `results/README.md` in commit `2e8e9762b37aaf75e8c82a13304bdfd32fca3af6`. The p22 note links the reproducible report; the p57 note preserves the unique 2015 PGP clock match and caveats that no uniform timestamp decoder or next operation is established.
+- Verified the README's visual-source and p57 synthesis paragraphs after the commit. No established plaintext/key status changed; both additions remain a bounded negative and a historical waypoint, respectively.
+- At 17:24:45Z, Agent14 lease age was about 46m47s; original release threshold remains 17:47:58Z. Continue until a subsequent checkpoint measures 70 minutes; do not refresh.
+
+---
+
 ## Current incarnation — PGP timestamp uniqueness check (15 November 2026)
 
 - Compared the p57-derived timestamp values against all 56 distinct signatures in Dukotah's source-derived `SIGNATURE-TIMELINE.json`. The 2015 minute/second pair 12:39 occurs exactly once; full time 05:12:39 occurs exactly once; weekday/month/day Tue 28 July occurs exactly once. All identify the 2015-07-28T05:12:39Z Planned Parenthood denial signed by key 181F01E57A35090F. The 2016 full time 00:01:07 also occurs exactly once; second 07 alone occurs twice.
