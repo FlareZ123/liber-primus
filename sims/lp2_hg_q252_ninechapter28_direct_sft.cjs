@@ -219,6 +219,22 @@ for (const sign of [-1, 1]) {
   }
 }
 
+// Stronger source-native necessary condition: zero-preserving GP29 maps
+// cannot map the unique source printed standalone ciphertext F to A/I/O.
+// Original physical p2 has an intact one-rune 'F' at local rune116.
+const p2Runes = corpus.pages.find(page => page.page === 2).indices;
+assert.equal(p2Runes[116], 0);
+const originalP2 = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8'
+).split('%')[2].replace(/\\/\\s*/gu, '');
+const p2Words = [...originalP2.matchAll(/[\\u16a0-\\u16ff]+/gu)].map(match => match[0]);
+assert.equal(p2Words.length, 38);
+assert.deepEqual(p2Words.filter(word => [...word].length === 1), ['ᚢ','ᚠ']);
+assert.equal(p2Words[23], 'ᚠ');
+assert.equal([...p2Words.slice(0,23).join('')].length, 116);
+const sourceNamedNativeOneRuneWords = new Set([3, 10, 24]); // O,I,A
+assert.ok(!sourceNamedNativeOneRuneWords.has(0));
+
 // Multiplication has 0 -> 0 automatically. Under the documented
 // nonconsuming plaintext-F policy, advance the periodic key only on nonzero
 // GP29 ciphertext symbols. This variant is still an exact GP29 bijection.
