@@ -14,7 +14,7 @@ jobs:
       - name: Install lightweight audio and MIDI tools
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg poppler-utils unzip
+          sudo apt-get install -y -qq ffmpeg poppler-utils unzip abcmidi
           python -m pip install --quiet numpy scipy mido
 
       - name: Retrieve the historically linked Dropbox transcription
@@ -46,6 +46,44 @@ jobs:
             head -c 1200 bach-dropbox-download 2>/dev/null || true
           fi
 
+      - name: Retrieve the two historical Pastebins and a public BWV1039 score
+        shell: bash
+        run: |
+          set +e
+          mkdir -p bach-source
+          for id in 3T089HUW 17h9MhyK; do
+            url="https://pastebin.com/raw/$id"
+            code=$(curl -L --retry 1 --max-time 45 -sS -w '%{http_code}' "$url" -o "bach-source/pastebin-$id.txt" 2>"bach-source/pastebin-$id.err")
+            status=$?
+            echo "PASTEBIN $id status=$status HTTP=$code"
+            cat "bach-source/pastebin-$id.err" || true
+            file "bach-source/pastebin-$id.txt" || true
+            head -c 5000 "bach-source/pastebin-$id.txt" 2>/dev/null || true
+            echo
+          done
+          ABC_URL='https://trillian.mit.edu/~jc/music/abc/classical/Bach_J_S/BWV1039_G.abc'
+          code=$(curl -L --retry 1 --max-time 60 -sS -w '%{http_code}' "$ABC_URL" -o bach-source/BWV1039_G.abc 2>bach-source/abc.err)
+          status=$?
+          echo "ABC_SCORE status=$status HTTP=$code"
+          cat bach-source/abc.err || true
+          file bach-source/BWV1039_G.abc || true
+          if [ "$status" -eq 0 ] && grep -qE '^(X:|T:|M:|K:|V:)' bach-source/BWV1039_G.abc; then
+            echo 'ABC_SCORE_HEADER_AND_FIRST_VOICES:'
+            sed -n '1,240p' bach-source/BWV1039_G.abc
+            if command -v abc2midi >/dev/null 2>&1; then
+              abc2midi bach-source/BWV1039_G.abc -o bach-source/BWV1039_G.mid
+              ls -lh bach-source/BWV1039_G.mid
+            fi
+          else
+            echo 'ABC score unavailable; response prefix:'
+            head -c 1200 bach-source/BWV1039_G.abc 2>/dev/null || true
+          fi
+          curl -L --max-time 60 -sS -w '\n8NOTES_HTTP=%{http_code}\n' \
+            'https://www.8notes.com/f/25_243617.asp' -o bach-source/8notes-forum.html || true
+          echo '8NOTES_PROFILE_AND_DOWNLOAD_LINKS:'
+          grep -Eoi 'href="[^"]+"' bach-source/8notes-forum.html | grep -Ei 'profile|jose|midi|mp3|file|user' | head -60 || true
+          grep -in -C 2 'jose_luis\|profile page\|MIDI' bach-source/8notes-forum.html | head -80 || true
+
       - name: Retrieve and inspect the original three-second Bach clip
         shell: bash
         run: |
@@ -61,7 +99,8 @@ jobs:
           from scipy.signal import find_peaks
           import mido
           print("MIDI_FILES:")
-          for path in glob.glob("bach-dropbox/**/*.mid", recursive=True)+glob.glob("bach-dropbox/**/*.midi", recursive=True):
+          print("NOTE: BWV1039 is 12/8; if the ABC conversion is correct, bar 18 second half is near 17.5 bars from the start. Inspect full track timing before assigning the clip.");
+          for path in (glob.glob("bach-dropbox/**/*.mid", recursive=True)+glob.glob("bach-dropbox/**/*.midi", recursive=True)+glob.glob("bach-source/**/*.mid", recursive=True)+glob.glob("bach-source/**/*.midi", recursive=True)):
               mid=mido.MidiFile(path)
               print(f"FILE {path} ticks_per_beat={mid.ticks_per_beat} tracks={len(mid.tracks)}")
               for ti,track in enumerate(mid.tracks):
