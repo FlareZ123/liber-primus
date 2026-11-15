@@ -1,0 +1,27 @@
+name: Agent3 original 1033 prime-echo 2014 IRC bridge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check read-only original-source gate syntax
+        run: node --check sims/lp2_1033_prime_echo_contemporary_bridge_sft.cjs
+      - name: Verify historical IRC Git blobs and extract source-era contexts
+        run: node sims/lp2_1033_prime_echo_contemporary_bridge_sft.cjs | tee historical-1033-prime-echo-irc.txt
+      - name: Preserve bounded original-source excerpts
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-era-1033-prime-echo-bridge
+          path: historical-1033-prime-echo-irc.txt
+          retention-days: 90
