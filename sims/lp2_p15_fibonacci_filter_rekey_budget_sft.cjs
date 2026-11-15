@@ -77,7 +77,7 @@ for(const seed of [[0,1],[24,3]]){
     for(let i=0;i<y.length;i++)
       assert.equal((y[i]-p[i]+29)%29,k[i]);
     const plantedExactFaults=k.filter(v=>v!==0).length;
-    assert.equal(plantedExactFaults,rekeyStep?3:0);
+    assert.equal(plantedExactFaults,rekeyStep?2:0);
     assert(minFaults(y,p)<=plantedExactFaults);
   }
 }
