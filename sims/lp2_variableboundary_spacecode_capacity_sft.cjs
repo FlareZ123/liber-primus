@@ -1,0 +1,191 @@
+'use strict';
+/**
+ * Issue #973: source-native SPACE token and static variable-boundary codec gate.
+ * Node.js 22 CommonJS, no external packages, no file writes.
+ *
+ * Printed LP2 hyphen/spaces are ignored in the unknown ciphertext decoder:
+ * this deliberately allows plaintext word boundaries to move arbitrarily.
+ * A hypothetical stationary decoder maps a plaintext token (29 GP runes plus
+ * SPACE) to a fixed, nonempty GP29 output word of length at most two.
+ * The source-visible cumulative-GP29 layer is tested separately.
+ *
+ * Necessity theorem (regardless of codeword assignment, prefix length,
+ * codeword injectivity, and any fixed GP29 alphabet permutation):
+ * every plaintext SPACE consumes the first digit of its codeword. If a
+ * scope's largest symbol frequency is M, the scope has S<=M true spaces.
+ * For N source output digits and codeword lengths <=2, the number of plain
+ * tokens T>=N/2, so S/T<=2M/N. Page-specific codebooks may change the
+ * first SPACE digit, in which case M is summed over physical page scopes.
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname, '..');
+const corpus = JSON.parse(fs.readFileSync(path.join(root,
+  'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
+const source = fs.readFileSync(path.join(root,
+  'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const gpIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const SPACE = 29;
+assert.equal(corpus.runes.length, 29);
+const pages = corpus.pages.filter(p => p.page <= 55 && p.indices.length);
+assert.equal(pages.length, 55);
+const book = pages.flatMap(p => p.indices);
+assert.equal(book.length, 12956);
+
+/** @param {number[]} symbols */
+function histogram(symbols) {
+  const counts = Array(29).fill(0);
+  for (const value of symbols) {
+    assert(Number.isInteger(value) && value >= 0 && value < 29);
+    counts[value]++;
+  }
+  return counts;
+}
+/** @param {number[]} symbols */
+function maxFrequency(symbols) {
+  return Math.max(...histogram(symbols));
+}
+/** Decode an additive GP29 running sum with initial state F/index 0. 
+ * @param {number[]} ciphertext */
+function differences(ciphertext) {
+  let previous = 0;
+  return ciphertext.map(current => {
+    const step = (current - previous + 29) % 29;
+    previous = current;
+    return step;
+  });
+}
+/** @param {number} lo @param {number} hi */
+function chapter(lo, hi) {
+  return pages.filter(p => p.page >= lo && p.page <= hi).flatMap(p => p.indices);
+}
+const p57 = source.slice(source.lastIndexOf('ᛈᚪᚱᚪᛒᛚᛖ.'), source.indexOf('§', source.lastIndexOf('ᛈᚪᚱᚪᛒᛚᛖ.')));
+assert(p57.startsWith('ᛈᚪᚱᚪᛒᛚᛖ.'));
+const chars = [...p57];
+const plaintext = [];
+for (let i = 0; i < chars.length; i++) {
+  const c = chars[i];
+  if (gpIndex.has(c)) {
+    plaintext.push(gpIndex.get(c));
+  } else if (c === '-' || (c === '.' && chars.slice(i + 1).some(x => gpIndex.has(x)))) {
+    plaintext.push(SPACE);
+  }
+}
+assert.deepEqual(plaintext.filter(x => x !== SPACE), corpus.pages[57].indices);
+assert.equal(plaintext.length, 114);
+assert.equal(plaintext.filter(x => x === SPACE).length, 19);
+
+/**
+ * A fully specified, prefix-free source encoder with a continuous GP29
+ * feedback step. The source alphabet is 29 GP tokens plus SPACE:
+ * 0..26 -> steps 1..27, 27 -> step 0,
+ * 28 -> escape [28,1], SPACE -> escape [28,2].
+ * There are exactly 30 source tokens, and every codeword has length 1/2.
+ * Unchosen escape suffixes are invalid, never fitted to ciphertext.
+ * @param {number[]} tokens
+ */
+function encodeTokens(tokens) {
+  const steps = [];
+  for (const token of tokens) {
+    assert(Number.isInteger(token) && token >= 0 && token <= SPACE);
+    if (token <= 26) steps.push(token + 1);
+    else if (token === 27) steps.push(0);
+    else steps.push(28, token === 28 ? 1 : 2);
+  }
+  const cipher = [];
+  let previous = 0;
+  for (const step of steps) {
+    previous = (previous + step) % 29;
+    cipher.push(previous);
+  }
+  return cipher;
+}
+/**
+ * @param {number[]} ciphertext
+ * @returns {number[]}
+ */
+function decodeTokens(ciphertext) {
+  const steps = differences(ciphertext);
+  const out = [];
+  for (let i = 0; i < steps.length; i++) {
+    const d = steps[i];
+    if (d === 28) {
+      assert(i + 1 < steps.length, 'truncated escape');
+      const next = steps[++i];
+      assert(next === 1 || next === 2, 'invalid escape suffix');
+      out.push(next === 1 ? 28 : SPACE);
+    } else {
+      out.push(d === 0 ? 27 : d - 1);
+    }
+  }
+  return out;
+}
+const planted = encodeTokens(plaintext);
+assert.deepEqual(decodeTokens(planted), plaintext);
+assert.equal(differences(planted).length, planted.length);
+assert.equal(planted.length, 133); // 95 runes + two-digit codes for 19 spaces
+const p57Bound = 2 * maxFrequency(differences(planted)) / planted.length;
+assert(p57Bound >= 1 / 6, 'planted source must pass the necessary bound');
+
+/** Count source-forbidden escape continuations without resynchronizing by guess.
+ * @param {number[]} original */
+function frozenOriginalCheck(original) {
+  const steps = differences(original);
+  let validEscapes = 0;
+  let invalidEscapes = 0;
+  let firstInvalid = -1;
+  for (let i = 0; i < steps.length; i++) {
+    if (steps[i] !== 28) continue;
+    const next = steps[i + 1];
+    if (next === 1 || next === 2) {
+      validEscapes++;
+      i++;
+    } else {
+      invalidEscapes++;
+      if (firstInvalid < 0) firstInvalid = i;
+      if (i + 1 < steps.length) i++;
+    }
+  }
+  return {n: original.length, maxDirect: maxFrequency(original),
+    maxDifference: maxFrequency(steps),
+    countEscapeSymbol: histogram(steps)[28],
+    validEscapes, invalidEscapes, firstInvalid,
+    maxSpaceShareAtCodeLength2: 2 * maxFrequency(steps) / original.length};
+}
+const directBook = maxFrequency(book);
+const diffBook = maxFrequency(differences(book));
+const directPageMaxSum = pages.reduce((sum, p) => sum + maxFrequency(p.indices), 0);
+const diffPageMaxSum = pages.reduce((sum, p) => sum + maxFrequency(differences(p.indices)), 0);
+const spanA = frozenOriginalCheck(chapter(54, 55));
+const spanB = frozenOriginalCheck(chapter(3, 7));
+const spanC = frozenOriginalCheck(chapter(0, 2));
+assert.deepEqual([directBook, diffBook, directPageMaxSum, diffPageMaxSum],
+  [492, 510, 767, 801]);
+assert.deepEqual([spanA.n, spanB.n, spanC.n], [308, 1145, 729]);
+assert.deepEqual([spanA.maxDifference, spanB.maxDifference, spanC.maxDifference],
+  [20, 55, 38]);
+assert(spanA.invalidEscapes > 0 && spanB.invalidEscapes > 0);
+const output = {
+  originalBookRunes: book.length,
+  printedWords: 2896,
+  p57Source: {runes: 95, wordBreaks: 19, tokens: 114,
+    spaceTokenFraction: 19 / 114, plantedCipherRunes: planted.length,
+    decodedAll114Tokens: true},
+  globalStaticCodewordBound: {
+    directMaxSymbol: directBook, deltaMaxSymbol: diffBook,
+    maxSpaceTokensDirect: directBook,
+    maxSpaceTokensDelta: diffBook,
+    maxSpaceFractionIfAtMost2Digits: 2 * diffBook / book.length,
+    minExpansionIfAtLeastOneSixthSpaces: book.length / (6 * diffBook)
+  },
+  separatePhysicalPageCodebooks: {
+    directMaxTotal: directPageMaxSum, deltaMaxTotal: diffPageMaxSum,
+    maxSpaceTokensDelta: diffPageMaxSum,
+    maxSpaceFractionIfAtMost2Digits: 2 * diffPageMaxSum / book.length,
+    minExpansionIfAtLeastOneSixthSpaces: book.length / (6 * diffPageMaxSum)
+  },
+  sourceCipherGate: {pp54_55: spanA, pp3_7: spanB, pp0_2: spanC},
+  decision: 'frozen additive-prefix codec structurally fails; every fixed token-codeword family of max length 2 has insufficient space capacity at p57-native 1/6 density'
+};
+console.log(JSON.stringify(output, null, 2));
