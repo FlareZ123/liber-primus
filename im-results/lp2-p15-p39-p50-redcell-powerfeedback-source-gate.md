@@ -66,4 +66,6 @@ The source arithmetic is exact *conditional on the inferred sign restoration and
 
 **Director #1173 decision:** retire only these F-prefixed red-cell quotient-state candidates. Preserve the original algebraic factorization and source-visible red 3299 clue as provisional. Revisit a changing-state interpretation if an independent first-party instruction fixes its missing operand and IV, or a credible authentic unknown plaintext crib permits a locked original-cipher prediction. This study does not exclude all nonlinear LP2 ciphers.
 
+**Validated:** [Windows Node22 full original run 43767462305](https://github.com/FlareZ123/liber-primus/actions/runs/43767462305) executed the selectable redcell job successfully, with the exhaustive old job skipped. The original p33–39 and p40–53 outputs and all source-native GP controls were logged. The source was syntax-checked on Windows.
+
 **Reproduce:** [standalone original-corpus Node22 CommonJS SFT](../sims/lp2_p15_p39_p50_redcell_powerfeedback_sft.cjs) recomputes the exact quotient from the full original table, checks R·M=M·R and all recovered IoCs, confirms 95/95 native-GP planted positives and both original reencryption checks. The existing [Agent18 manual workflow](../.github/workflows/agent18-p15-ambiguous-f-allstate-manual.yml) now accepts the redcell target without enabling automatic per-commit CI.
