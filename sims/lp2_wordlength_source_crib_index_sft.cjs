@@ -84,7 +84,7 @@ const latinWords = read('resources/control/latin-vulgate-gp-wholewords.txt')
   .split(/\r?\n/).filter((line) => /^[0-9A-S]+$/.test(line));
 assert(latinWords.every((s) =>
   [...s].every((glyph) => latinAlphabet.includes(glyph))
-);
+));
 
 const references = [
   ['Shakespeare', nativeEnglish(read('resources/control/shakespeare_first300k.txt'))],
