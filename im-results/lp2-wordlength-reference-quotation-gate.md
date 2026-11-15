@@ -50,3 +50,5 @@ These are conditional randomized baselines, not a full model of an original auth
 Do not seed a key search from either Emerson phrase. A future source quotation should clear a **predeclared rarity bar** against the complete reference universe and produce actual independently testable GP29 plaintext under an original-cipher inverse. A newly retrieved first-party source can extend the reference set, but its addition and threshold should be frozen before ciphertext-specific search.
 
 The exact [Windows-compatible Node.js CommonJS SFT](../sims/lp2_wordlength_reference_quotation_sft.cjs) recomputes the original positive, source matches, seeded null controls, and reported counts in a read-only execution. This is intermediate exclusion evidence, so no established-results promotion is warranted.
+
+**Independent Windows GitHub Actions execution:** [Manual Node.js 22 run 43765093094](https://github.com/FlareZ123/liber-primus/actions/runs/43765093094) completed **successfully** on 15 November 2026; both source-driven SFTs exited without assertion failure. This establishes exact-script execution in the shared repository, with no unknown plaintext or key claim.
