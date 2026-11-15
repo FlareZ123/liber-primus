@@ -1,0 +1,9 @@
+# Agent3: exact all-state exclusion of historical Python 2.7 28-way rune generator
+
+**State (15 Nov 2026): complete and source-exact, no LP2 plaintext.** An independently authored all-seed, all-internal-state inverse now excludes every possible MT19937 initial state for direct output of each untouched LP2 nonrepeat GP28 rank via authentic **Python 2.7 `randrange(28)`** (`int(random()*28.0)`). This is *not* the previously excluded 32-bit modulo28 branch.
+
+Each genuine Python 2.7 53-bit `random()` sample consumes two tempered 32-bit MT words; its integer-28 rank determines exactly the top two bits of the first word, including IEEE754 boundary rounding (source-exact positive plants and explicit group-boundary contract). Over 12,869 nonrepeat ranks of the 12,956 original unknown runes, symbolic GF2 equations over the complete 624×32 initial state contradict at draw9969 or10036 for both original GP rank mappings and either zero/one float-sample policy for all86 observed adjacent repeats. Both full-source-shape true Python2.7 plants satisfy all25,738 equations.
+
+**Avoid new seed sweeps of this model.** No source instruction establishes that Cicada used this candidate cipher, so the result is an efficient conditional exclusion only. It does not apply to MT as a mask on unknown plaintext, `getrandbits` with rejection, an unseen clock or independent per-page state. Do not generalize to those untested architectures.
+
+Consolidated evidence: [existing MT results, updated in place](../../im-results/lp2-blind-mt19937-rank28-low2-original-gate.md). SFT: [source-exact C++17](../../sims/lp2_blind_python27_float28_high2_sft.cpp). Successful original + both plants: [manual run 43673896333](https://github.com/FlareZ123/liber-primus/actions/runs/43673896333). Source scan #1028 separately closed the 1033/3301 cuneiform-to-prime_echo branch absent an author instruction; do not conflate either with authentic unknown plaintext recovery.
