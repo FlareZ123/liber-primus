@@ -91,6 +91,26 @@ Original singles lie **1.73 to 2.26 SD below** these native-source independent-w
 
 That source-native five-phase plant **does not** itself suppress adjacent identical ciphertext runes to the original **86/12,955** whole-stream level: independent phase permutations typically leave ordinary ~1/29 collisions. A complete cipher therefore needs an **independently source-selected reversible state-dependent rule** for the anti-doublets and the key/phase schedule. The artificial positive plant demonstrates mechanism possibility, **not** that the manuscript uses five-phase alphabets. It also does not rescue the separately excluded five-phase *affine* subfamily above. Proposed five-phase maps must explain both constraints and yield authentic original plaintext before promoting the branch.
 
+### Full long-word GP-native signature likelihood: an all-secret ambiguity gate (Agent3, 15 November 2026)
+
+The preceding 109/109 exact-match result answers only a Boolean question: does **some** English dictionary word preserve the original within-five-phase equality mask under independently arbitrary secret bijections per phase and word? The follow-up tests the **complete distribution** of candidate patterns, because a handful of rare words can otherwise be mistaken for recovered plaintext. The same original 2,896 words and independently LP1-calibrated GP29 English spelling are used, with no fitted key or source alteration.
+
+Among the 109 original words of lengths 10–14, the exact length counts are **[52,32,18,4,3]**. Every original word has at least one matching GP-native dictionary word from the fixed 29,157-item frequency lexicon; **12** have at most 25 candidates. Two of the three length-14 original words match only `sequestrectomy` (one candidate) or `inframaxillary` / `metempsychosis` (two candidates). These are examples of **what a particular hypothetical five-phase substitution would force**, not recovered LP2 plaintext. Their source-era semantic relevance is unsubstantiated.
+
+For each within-five-phase fingerprint `s` of a width-`L` word, compute the GP-native dictionary-frequency mass `f(s)`, and the total width-conditioned frequency `F(L)`. The frozen score is the sum over original long words of `log((f(s)+0.1)/(F(L)+0.1))`; the 0.1 smoothing is applied identically to originals and controls. The source score is **−165.123131159** (mean **−1.514891112** per word). This score combines all 109 words and prevents spotlighting a surgical-looking singleton after examining the original. It is a *lexical-pattern likelihood*, not evidence that a five-state cipher exists.
+
+Draw **6,000** source-native word sets per control, with replacement and the exact original 52/32/18/4/3 GP-width counts, from three independently pinned GP-native English references. The deterministic xorshift32 seed is `0x33011090`, carried continuously through the three controls:
+
+| GP-native control | Matched native score mean | SD | Original z-score | Empirical lower tail |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | **−167.541915** | **18.648626** | **+0.130** | **0.5406** |
+| Gibran | **−190.266076** | **17.737146** | **+1.418** | **0.9220** |
+| Emerson | **−162.890108** | **18.176013** | **−0.123** | **0.4314** |
+
+Each control retains its original published text and GP-native spelling; its long words are resampled only to match original GP-rune widths, and its sample distribution is conditional on its finite source vocabulary. Shakespeare has only one genuine source word of GP width14, so that width's reference variation is understated. The manuscript's **aggregate fingerprint frequency is unexceptional** under these three conditioned native-English sources. The previously noticed rare-looking exact dictionary matches are therefore weak evidence against or for a period-five plaintext preservation mechanism. Any such decoder still requires a source-authenticated and independently selected nonstationary alphabet/key update; word-shape matching alone does not determine 150 contiguous plaintext runes.
+
+A positive construct encodes the authentic GP-native word `METEMPSYCHOSIS`, encrypts it under five secret phase-specific GF29 bijections, and asserts exact equality of the fingerprint on both sides. No unknown LP2 symbols are presented as plaintext. [Reproducible original-source CJS](../sims/lp2_longword_fivephase_morphology_sft.cjs).
+
 ### Implication for chain-step models
 
 A public independent analysis proposes a chain-step representation in which each ciphertext rune is the previous rune plus a step from a flat, aperiodic 28-symbol stream ([Leo-Y-Zhang report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md)). The lag-five result constrains that family: the original within-word difference stream contains **10,060 steps**; its zero bin has 63 occurrences and the 28 nonzero bins range from 313 to 397. If five successive within-word steps were independent draws from this exact empirical 29-bin distribution, cyclic convolution gives
