@@ -1,10 +1,10 @@
 # Original 2015 second-difference register under the authentic p56 F-transparent prime inverse
 
-**Scope and decision, 15 November 2026, Agent22.** A narrowly defined composition of two documented Cicada-era operations is algebraically **incompatible** with original LP2 physical pp0–2, under either of its two source-natural prime-clock origins. No previously unknown plaintext, new key or continuation address follows. This eliminates a specific proposed third stage, leaving the historical participant's first two operations as an unproved intermediate register.
+**Scope and decision, 15 November 2026, Agent22.** A narrowly defined composition of the historical 2015 prime-shift-plus-difference and Cicada's genuinely used p56 prime cipher is algebraically **incompatible** with original LP2 physical pp0–2 on **both** 2015-documented registers, under either of the two source-natural prime-clock origins. No previously unknown plaintext, new key or continuation address follows. This eliminates a specific proposed third stage, leaving the historical participant's first two operations as an unproved intermediate register.
 
 ## Human-observable path and competing explanation
 
-A February 2015 participant proposed subtracting successive primes from original pp0–2 with an imagined preceding F, then taking a modular difference. Their recorded result has **40 adjacent equal transformed runes** across 729 original runes. A second difference renders these repeats as **40 literal F=0 symbols**, independently reconstructed in the [source-exact 2015 report](lp2-2015-prime-delta-40-doublet-source-inversion.md). Cicada's actually solved physical p56 uses a **consecutive-prime-totient additive cipher whose plaintext F bypasses the key clock**. This raises one cheap, deterministic next operation: treat the 2015 second-difference tape as p56-style ciphertext, accounting for every possible F interpretation.
+A February 2015 participant proposed subtracting successive primes from original pp0–2 with an imagined preceding F, then taking a modular difference. Their recorded result has **40 adjacent equal transformed runes** across 729 original runes. A second difference renders these repeats as **40 literal F=0 symbols**, while the first-difference register contains 21 literal Fs. Both registers are independently reconstructed in the [source-exact 2015 report](lp2-2015-prime-delta-40-doublet-source-inversion.md). Cicada's actually solved physical p56 uses a **consecutive-prime-totient additive cipher whose plaintext F bypasses the key clock**. This raises one cheap, deterministic next operation: treat each of the two historical 2015 registers as p56-style ciphertext, accounting for every possible F interpretation.
 
 The 2015 operations originated with *solvers*, not an independently verified Cicada instruction. Nothing on pp0–2 says to transfer p56's rule here. A wholly different second-stage system or a non-language intermediate remains a rival.
 
@@ -24,12 +24,14 @@ The original `D` has exactly 40 equal adjacent pairs, and `E` contains exactly 4
 
 ## Distinguishing outcome
 
-| Source-natural key start | Entire 729-rune original passage | Max simultaneous legal clocks | First impossible original index |
+| Source-natural prime-clock start | Register | Max simultaneous legal clocks | First impossible original index |
 | --- | --- | ---: | ---: |
-| prime index **0** (solved p56's actual starting prime 2) | **no legal full-string inverse** | 2 | **48** |
-| prime index **1** (prime 2 spent on 2015's imagined F, then prime 3) | **no legal full-string inverse** | 2 | **48** |
+| index **0** (solved p56 starts at prime 2) | **first difference D** | 1 | **12** |
+| index **1** (imagined F spends prime 2, start prime 3) | **first difference D** | 1 | **3** |
+| index **0** | **second difference E** | 2 | **48** |
+| index **1** | **second difference E** | 2 | **48** |
 
-At zero-based original index48, *all* retained F-skip interpretations have encountered an impossible transition. This is a stronger structural obstruction than an unfavorable language score. A positive control uses **729 genuine solved-p57 GP runes**, repeated in their authentic order, encrypted with the same prime sequence and plaintext-F skip. Its complete 729-rune ciphertext has a surviving exact source plaintext clock at both starts.
+For either historical register and either prime origin, *all* retained F-skip interpretations encounter an impossible transition on original p0 before index49. This is a stronger structural obstruction than an unfavorable language score. A positive control uses **729 genuine solved-p57 GP runes**, repeated in their authentic order, encrypted with the same prime sequence and plaintext-F skip. Its complete 729-rune ciphertext has a surviving exact source plaintext clock at both starts.
 
 The alternative explanation that the 2015 transform is merely a solver's diagnostic remains completely viable. **Do not** reintroduce this same layer by tuning prime starts, F masks, arbitrary offsets or phase resets without an original clue. A productive next candidate needs a genuine independent third-stage operator/key and a held-out original prose prediction.
 
