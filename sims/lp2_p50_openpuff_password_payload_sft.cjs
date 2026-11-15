@@ -14,8 +14,6 @@
  */
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
-const fs = require('node:fs');
-const path = require('node:path');
 
 const grid = require('../resources/liber-primus/base60-grid.json');
 const input = Buffer.from(grid.byte_rows.flat());
