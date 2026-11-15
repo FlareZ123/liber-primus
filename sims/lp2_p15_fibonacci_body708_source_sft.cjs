@@ -102,6 +102,14 @@ for (let start=0;start+987<section.length;start++) {
   if (numbers.includes(sum)) shifts.push([start,sum]);
 }
 assert.deepEqual(shifts, [[20,708],[128,708],[492,708],[527,708]]);
+// A predeclared self-addressing continuation from the source-selected body
+// start uses the recovered sum as an absolute forward rune displacement.
+// The second picked window remains in bounds but does not match any grid cell.
+const continuationStart=20+pickedPrimeSum;
+assert.equal(continuationStart,728);
+const continuationSum=fib.reduce((s,i)=>s+primeRune[section[continuationStart+i]],0);
+assert.equal(continuationSum,1074);
+assert.equal(numbers.includes(continuationSum),false);
 
 // Independent chapter-initial controls. The listed heading counts come from
 // original red span boundaries, not from output-fitting.
@@ -157,6 +165,7 @@ console.log(JSON.stringify({
   primeSum:pickedPrimeSum,
   matchingSourceTableCell:{step:13,row:4,column:3,number:708},
   sameChapterCandidateStartHits:shifts,
+  nextSelfAddressedWindow:{start:continuationStart,sum:continuationSum,hit:numbers.includes(continuationSum)},
   otherChapterInitialControls:controls,
   shiftedKeyCandidate:{
     nextChapterRemainderIoc:ioc(direct),
