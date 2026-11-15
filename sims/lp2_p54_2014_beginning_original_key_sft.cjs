@@ -20,7 +20,7 @@ const alphabet=new Map(gp.runes.map((r,i)=>[r,i]));
 const sourcePage=read('resources/lp2-transcription.txt').split('%')[53];
 const sourceIndices=Array.from(sourcePage).filter(x=>alphabet.has(x)).map(x=>alphabet.get(x));
 assert.deepEqual(sourceIndices,c,'source-printed p54 must equal canonical original');
-const firstWords=sourcePage.match(/[ᚠ-ᛟ]+/gu);
+const firstWords=sourcePage.match(/[ᚠ-ᛡ]+/gu);
 assert(firstWords&&firstWords.length>2);
 assert.deepEqual(firstWords.slice(0,3).map(x=>Array.from(x).map(r=>alphabet.get(r))),
   [c.slice(0,1),c.slice(1,9),c.slice(9,17)]);
