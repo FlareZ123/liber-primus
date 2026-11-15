@@ -40,6 +40,7 @@ async function main(){
   assert(Array.isArray(versions)&&versions.length>0,'No revision history');
   assert(versions.length<=100);
   const output=[];
+  let earliestProgram='';
   for(const item of versions){
     const sha=item.version;
     assert(/^[0-9a-f]{40}$/.test(sha),'Git history hash');
@@ -49,6 +50,7 @@ async function main(){
     const body=file.content;
     assert(typeof body==='string'&&body.length>1000,'Truncated or absent source');
     const meta=staticKeys(body);
+    if(item===versions.at(-1))earliestProgram=body;
     output.push({version:sha,committedAt:item.committed_at,
       historicalUpdatedAt:g.updated_at,rawFile:file.raw_url,
       byteLength:Buffer.byteLength(body),sha256:sha256(body),
@@ -59,6 +61,10 @@ async function main(){
     console.log('KEY_MECHANISM',JSON.stringify({revision:version.version,date:version.committedAt,
       methods:version.selected.filter(x=>/forge_offsets|offsets\s*=|output|find_position|off_num/.test(x.code))}));
   }
+  const oldLines=earliestProgram.split(/\r?\n/);
+  console.log('EARLIEST_EXECUTABLE_WINDOW',JSON.stringify({version:output.at(-1).version,
+    lines:oldLines.map((x,i)=>({line:i+1,code:x.length>260?x.slice(0,105)+' ... '+x.slice(-105):x}))
+      .filter(x=>x.line>=108&&x.line<=oldLines.length)}));
   const distinct=[...new Set(output.map(x=>x.sha256))];
   console.log('DECISION',JSON.stringify({revisions:versions.length,
     distinctCodeBodies:distinct.length,
