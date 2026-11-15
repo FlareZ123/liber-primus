@@ -1,0 +1,55 @@
+{
+  "status": "authentic-positive-control-pass",
+  "date": "2026-11-15",
+  "repository": "FlareZ123/liber-primus",
+  "run_id": 43662139707,
+  "workflow": ".github/workflows/openpuff-v400-ui-probe.yml",
+  "run_url": "https://github.com/FlareZ123/liber-primus/actions/runs/43662139707",
+  "original_carrier": {
+    "name": "interconnected.mp3",
+    "size_bytes": 6651873,
+    "git_blob_sha1": "09fe068192b76a3697c47ec1d604b527703db798",
+    "md5": "7638414d35f416084b7ddcc94aa53685",
+    "sha256": "1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6"
+  },
+  "binary": {
+    "version": "OpenPuff v4.00",
+    "exe_git_blob_sha1": "466e03c792075313ce533a5dc7a789e8a41209f9"
+  },
+  "successful": {
+    "password_A": "33011033",
+    "password_B_enabled": false,
+    "password_C_enabled": false,
+    "carrier_format": "Mp3 (Audio)",
+    "level": "1/2 (50%) - Maximum",
+    "capacity_before_bytes": 432,
+    "capacity_after_bytes": 1088,
+    "native_completed_dialog": "1/1 carrier processed",
+    "output_name": "magicsquares.txt",
+    "output_bytes": 745,
+    "output_sha256": "9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f",
+    "reference_path": "resources/cicada2014-openpuff-magic-squares.txt",
+    "exact_reference_sha256_match": true,
+    "output_md5": "2865cc543063e4ef2bee1386aa9d9a10",
+    "ordinary_crc32": "5E547914",
+    "openpuff_crc32": "6A8C41E3",
+    "driver_expected_match": true,
+    "driver_native_probe_outcome": "output-file",
+    "job_id": 132653575899,
+    "artifact_id": 14141021011,
+    "artifact_sha256": "6f03f2bfb12507b02b3ab0142b532e12ab6d5d96081353a0e27e80d7fd405aa3"
+  },
+  "alternate": {
+    "password_A": "33011103",
+    "job_id": 132653575699,
+    "artifact_id": 14140223220,
+    "status": "gui-file-picker-error-before-extraction",
+    "password_evaluated": false
+  },
+  "lp2": {
+    "jpeg_stage_executed": false,
+    "separate_dispatch_attempt": "host-safety-block-before-GitHub-run",
+    "pages_original_jpegs": 58,
+    "interpretation": "Original positive control passed, but this supplies no evidence of an LP2 image payload or decryption."
+  }
+}

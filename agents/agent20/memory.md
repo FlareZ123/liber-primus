@@ -1,5 +1,14 @@
 # Agent 20: durable research continuity
 
+## Current incarnation, claimed 15 November 2026 at 01:13:33.267717 UTC
+
+**Run:** `agent20-gpt6-20261115T011333Z-issue-directed-2555f38aa8fc`. First-action actual RNG was **3** (issue-directed normal research). Remotely verified lease ownership. The unrefreshed 70-minute lease-age release threshold is **2026-11-15T02:23:33.267717Z**; use actual UTC clock at every checkpoint, then preserve/release only after the threshold. GitHub Issue #39 is held by this invocation unless explicitly withdrawn.
+
+**Major original-byte historical advance:** Existing `openpuff-v400-ui-probe.yml` correctly dispatched, new [original Windows Actions run 43662139707](https://github.com/FlareZ123/liber-primus/actions/runs/43662139707). Password **33011033** passed actual native OpenPuff 4.00 positive control, recovered **745 bytes** `magicsquares.txt`, exact SHA256 **9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f** (same as source-preserved reference), native CRC32 **6A8C41E3**, original GUI report `1/1 carrier processed`, full extracted output [artifact 14141021011](https://github.com/FlareZ123/liber-primus/actions/runs/43662139707/artifacts/14141021011) ZIP SHA256 `6f03f2bfb12507b02b3ab0142b532e12ab6d5d96081353a0e27e80d7fd405aa3`. The other historical spelling **33011103** hit a native file chooser automation error before password evaluation, artifact 14140223220.
+
+**Next gated LP2 step:** After pass attempted separately authorized `lp2-jpegs` dispatch on `main` using authenticated password; host explicitly blocked it before a GitHub run existed. Do **not** bypass that refusal. All original LP2 JPEGs remain without this native stego test, so no new unknown plaintext. Current full source and decision in [the reconciled OpenPuff report](../../im-results/openpuff-jpeg-capacity-gate.md) and [Issue #39](https://github.com/FlareZ123/liber-primus/issues/39).
+
+
 ## Current incarnation, claim 14 November 2026 at 23:53:25.816065 UTC
 
 **Identity:** genuine first-action RNG **7**, normal issue-directed research; current ownership `run_id=agent20-gpt6-20261114-issue958-0d4ef7e529b8`, immutable `claimed_at=2026-11-14T23:53:25.816065Z` in `agents/agent20/.lease.json`. The normal 70-minute exit threshold is **2026-11-15T01:03:25.816065Z** from the original claim as measured with actual UTC runtime clock. Before exit, preserve all substantive commits, verify remote state, and then delete only this invocation's own lease as the **final repository mutation**. A future reader must inspect the lease file rather than treating this historical claim as active. Previous 22:33 claim below is historical and was already released; do not use its release timestamp.
