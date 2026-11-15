@@ -19,3 +19,5 @@ jobs:
           node-version: "22"
       - name: Nine-register global and illustrated-chapter source-heldout tests
         run: node sims/lp2_p50_degree9_doublet_F_keyrecovery_sft.cjs
+      - name: Decode every chapter p40 partial key projection and compare to native GP English
+        run: node sims/lp2_p40_degree9_unknown_output_partial_inverse_sft.cjs
