@@ -181,5 +181,30 @@ assert.equal(shiftGe,3);
 assert.equal(randomGe,392);
 assert(Math.abs(lagComparison[0].rateRatio-2.101)<0.01);
 
+const controlRepeatWindows=flatSources.flatMap(windows);
+const controlRepeatStats=controlRepeatWindows.map((xs,index)=>{
+  let bottomOp=0,otherOp=0,bottomHit=0,otherHit=0;
+  for(let i=1;i<N;i++){
+    const bottom=quintileByCell[(i-1)%256]===0;
+    if(bottom)bottomOp++;else otherOp++;
+    if(xs[i]===xs[i-1]){if(bottom)bottomHit++;else otherHit++;}
+  }
+  const bottomRate=bottomHit/bottomOp,otherRate=otherHit/otherOp,total=bottomHit+otherHit;
+  return {index,total,bottomHit,bottomFraction:bottomHit/total,rateRatio:bottomRate/otherRate};
+});
+const controlRepeatMask={
+  windows:controlRepeatStats.length,
+  maxBottomFraction:Math.max(...controlRepeatStats.map(x=>x.bottomFraction)),
+  maxRateRatio:Math.max(...controlRepeatStats.map(x=>x.rateRatio)),
+  windowsOver30Percent:controlRepeatStats.filter(x=>x.bottomFraction>=30/86).length,
+  top:controlRepeatStats.slice().sort((a,b)=>b.bottomFraction-a.bottomFraction).slice(0,5)
+};
+result.repeatMask.controlWindows=controlRepeatMask;
+assert.equal(controlRepeatMask.windows,122);
+assert.equal(controlRepeatMask.windowsOver30Percent,0);
+assert(controlRepeatMask.maxBottomFraction<0.26);
+assert(controlRepeatMask.maxRateRatio<1.35);
+
+
 
 console.log(JSON.stringify(result,null,2));
