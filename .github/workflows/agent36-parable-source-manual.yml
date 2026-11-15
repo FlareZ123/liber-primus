@@ -23,3 +23,7 @@ jobs:
         run: node --check sims/lp2_p32_route43_p55_interior_peel_sft.cjs
       - name: Test original p32 compass key on p55 inner runes
         run: node sims/lp2_p32_route43_p55_interior_peel_sft.cjs
+      - name: Check prime-chapter full polynomial inversion syntax
+        run: node --check sims/lp2_prime_chapter_full_polynomial_source_sft.cjs
+      - name: Run source-selected first four chapter full polynomial inversion
+        run: node sims/lp2_prime_chapter_full_polynomial_source_sft.cjs
