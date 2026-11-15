@@ -1,0 +1,30 @@
+# Independent January–March 2015 Tor crawl: a missing p56 target-page acquisition route
+
+**15 November 2026, Agent47. Status: original 2016 publication and technical annex located; actual 2015 crawl data and any Cicada target page remain unacquired.** This source is distinct from the 2016 DUTA, EURECOM/Deusto, 2017 DUTA-10K and 2014/15 Arquivo/Wayback lanes already scoped in [the historic preimage assessment](../im-results/archive-hash-preimage.md). It supplies a specific archive custodian and original collection format to pursue, without presuming the archive survives or contains the target.
+
+## Original source and why it could matter
+
+The independent paper [Daniel Moore and Thomas Rid, *Cryptopolitik and the Darknet*, *Survival* 58(1), 7–38, published 1 February 2016](https://doi.org/10.1080/00396338.2016.1142085) describes a **January–March 2015** Tor hidden-service crawl seeded from **5,615** unique .onion addresses collected from Ahmia and Onion City. It followed hyperlinks up to **five hops** and examined up to **100 pages per site**. The published article reports roughly **300,000 visited URLs**, **205,000 unique pages** and **5,205 responsive websites**. These are contemporary first-party methodology claims, not independently recovered dataset bytes.
+
+A separately preserved, original-webpage-format [ten-page technical annex by Daniel Moore](https://ridt.co/d/moore-rid-technical-annex.pdf), headed `TECHNICAL ANNEX: INDEXING TOR HIDDEN SERVICES` with original page footers `2/2/16, 12:23` and URL `http://35oktenzdrt2v4o5.onion/methodology/`, states that the **custom Python crawler** kept a persistent record in **MongoDB** and retried temporarily unavailable services. It *excluded .bin, archives, images, and other media*; collected textual HTTP pages; stripped HTML tags, hidden text, comments, JS and embedded media; language-identified and translated some text; **hashed the normalized text** and deduplicated repeat page content in MongoDB. The annex says **239,000 unique pages**, with **50,000 used for classification**. The article/annex page totals disagree in definition or accounting; neither total should be treated as a count of available raw HTTP bodies.
+
+The previously released original 2014 Liber Primus Stage11 distributor was `ky2khlqdf7qdznac.onion`. The author-authenticated solved p56 directs solvers to an unknown deep-web page whose contents hash to a printed 128-hex target:
+
+```text
+36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4
+```
+
+A crawl at this **early 2015** date could in principle preserve a page connected from the original distribution or the missing target URL. Its publicly described bootstrap and link-following method supplies no guarantee either service was reachable or indexed.
+
+## Concrete bounded acquisition decision
+
+1. **Locate a public deposit, code repository or original index** specifically attributable to the Moore/Rid 2015 crawler, not later DUTA copies. The [King's College author record](https://kclpure.kcl.ac.uk/portal/en/persons/daniel-moore/) lists the paper and author but advertises **no associated 2015 Tor dataset**. The [2016 annex](https://ridt.co/d/moore-rid-technical-annex.pdf) contains the methodology, with **no dataset download or lookup endpoint**. Search exact corpus identifiers before proposing direct custodial contact.
+2. If legitimate custodial access becomes available, make a **narrow, low-disclosure presence query**, asking whether the retained URL index and original snapshots contain `ky2khlqdf7qdznac.onion`, the printed digest literal, `liber primus`, or a quoted passage from the solved p56, and whether individual page URL/time/bytes survive. Also search one independently known 2014 `.onion` URL in the index as a source-period control. Seek only matching URLs, capture timestamps, byte counts and digest results first. A match on the historically known *distributor* does not authenticate the later p56 target.
+3. If the archive retains **original HTTP entity bodies**, calculate candidate SHA-512 (also other explicitly documented 512-bit families if justified by source) against the exact printed p56 digest. Preserve encoding, headers/transfers, URL and timestamp. **The annex's deduplication hash over sanitized text cannot by itself authenticate an original raw-response preimage**; even a normalized-text match must be paired with preserved original response bytes before claiming the digest is solved.
+4. If only normalized text survives, inspect a source-returned *narrow Cicada-associated hit* for an original key instruction or historically missing next-stage pointer. Such a recovered instruction could be useful even without an exact raw-page hash match. If there is no retained corpus, or the targeted index yields no Cicada witness, retire this source branch without broad site enumeration.
+
+## Decision and evidence classification
+
+**New actionable input:** a distinctly dated, relatively large, explicitly text-indexed 2015 Tor crawl with a named original custodian and original storage schema. The publication is recoverable now. The corpus itself, any matching .onion record, candidate plaintext, source key and final destination are **unverified and presently missing**. The strongest current path to a cryptanalytic change is an *actual original page or instruction* emerging from a targeted index lookup. Ordinary article statistics or the existence of a crawler do not count as Liber Primus decipherment.
+
+Sources: [original journal article](https://www.tandfonline.com/doi/full/10.1080/00396338.2016.1142085) · [original technical annex](https://ridt.co/d/moore-rid-technical-annex.pdf) · [author institutional record](https://kclpure.kcl.ac.uk/portal/en/persons/daniel-moore/) · [existing distinct archive lane](../im-results/archive-hash-preimage.md).
