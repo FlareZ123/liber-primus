@@ -98,7 +98,7 @@ jobs:
           for ($i = 1; $i -le 7; $i++) {
             $carrier = [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i")
             if (-not $carrier) { throw "Missing ordered carrier $i" }
-            $args += @("--carrier", $carrier)
+            $pyArgs += @("--carrier", $carrier)
           }
           python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Ordered native seven-carrier Unhide failed" }
@@ -126,7 +126,7 @@ jobs:
             "--expected-size", "$env:EXPECTED_SIZE"
           )
           for ($i = 1; $i -le 7; $i++) {
-            $args += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
+            $pyArgs += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
           }
           python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Wrong-password native control could not execute" }
@@ -154,7 +154,7 @@ jobs:
             "--expected-size", "$env:EXPECTED_SIZE"
           )
           for ($i = 7; $i -ge 1; $i--) {
-            $args += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
+            $pyArgs += @("--carrier", [Environment]::GetEnvironmentVariable("STEGO_CARRIER_$i"))
           }
           python sims/openpuff_v400_extract.py @pyArgs
           if ($LASTEXITCODE -ne 0) { throw "Reversed-order native control could not execute" }
