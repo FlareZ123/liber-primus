@@ -248,9 +248,12 @@ for (const { sentinel, label } of modes) {
   // The original five-dot stencil at the END of p7 and START of p23
   // independently delimits physical pp8..22. Unlike the nine visual chapter
   // clocks, this is a single unbroken 3,632-rune source-selected interval.
-  const dotCipher = corpus.pages.filter((p) => p.page >= 8 && p.page <= 22)
+  const dotSource = corpus.pages.filter((p) => p.page >= 8 && p.page <= 22)
     .flatMap((p) => p.indices);
-  assert.equal(dotCipher.length, 3632);
+  assert.equal(dotSource.length, 3632);
+  const dottedRegions = [];
+  for (const direction of ['forward', 'reverse']) {
+    const dotCipher = direction === 'forward' ? dotSource : [...dotSource].reverse();
   const dotRanks = extractRanks(dotCipher);
   const dotInverse = inverseRanks(dotRanks.ranks, logProb);
   assert.deepEqual(reemit(dotCipher[0], dotInverse.plaintext,
@@ -272,7 +275,8 @@ for (const { sentinel, label } of modes) {
     dotIdx++;
   }
   assert.equal(dotCorrect, dotIdx);
-  const dottedRegion = {
+  dottedRegions.push({
+    direction,
     pages: [8, 22], runes: dotCipher.length,
     originalNonrepeatRankCount: dotRanks.ranks.length, originalEscapes: dotRanks.escapes.length,
     originalIoC: dotInverse.ioc, originalScorePerRune: dotInverse.score,
@@ -280,9 +284,10 @@ for (const { sentinel, label } of modes) {
     nativeEscapes: dotExtract.escapes.length, nativeScorePerRune: dotRecovered.score,
     initialOriginal: dotInverse.plaintext.slice(0, 18)
       .map((x) => corpus.translit[x < sentinel ? x : x + 1]).join('-')
-  };
+  });
+  }
   results.push({
-    width, label, literalPlaintextSentinel: corpus.translit[sentinel], dottedRegion, original,
+    width, label, literalPlaintextSentinel: corpus.translit[sentinel], dottedRegions, original,
     originalWeightedLogPrior: origWeighted, nativeSolvedPagePlants: positives,
     positiveWeightedLogPrior: positiveWeighted
   });
