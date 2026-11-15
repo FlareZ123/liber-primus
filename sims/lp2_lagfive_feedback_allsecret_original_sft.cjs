@@ -2,7 +2,7 @@
 /**
  * LP2 source-motivated five-back additive ciphertext-feedback all-secret gate.
  * Hypothesis for all printed words:
- * C[w,0] = sigma[page,0](P[w,0]);
+ * C[w,j] = sigma[page,j mod 5](P[w,j]), j<5;
  * C[w,j] = C[w,j-5] + sigma[page,j mod 5](P[w,j]) mod29, j>=5,
  * with an arbitrary hidden permutation sigma separately at each of 275
  * page/word-position classes. Word beginnings reset feedback and phase.
