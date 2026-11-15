@@ -107,18 +107,23 @@ const tableTokens = grid.pages.flatMap(page => page.tokens);
 assert.equal(tableBytes.length, 256);
 assert.equal(tableTokens.length, 256);
 
-function walk(steps, startCell) {
+function tableFor(order) {
+  if (order === "row-major") return tableBytes;
+  // The source table is 32 rows × 8 columns; transpose the flattened order.
+  return Array.from({length: 256}, (_, index) =>
+    tableBytes[(index % 32) * 8 + Math.floor(index / 32)]
+  );
+}
+function walk(steps, startCell, table = tableBytes, sign = 1) {
   let position = startCell;
   const positions = [];
   const values = [];
-  const tokens = [];
   for (const step of steps) {
-    position = mod(position + step, 256);
+    position = mod(position + sign * step, 256);
     positions.push(position);
-    values.push(tableBytes[position]);
-    tokens.push(tableTokens[position]);
+    values.push(table[position]);
   }
-  return {positions, values, tokens, end: position};
+  return {positions, values, end: position};
 }
 
 const p32Path = walk(p32Steps, start);
@@ -140,29 +145,40 @@ assert.deepEqual(goodLuckPath.values.slice(6, 8), [171, 72]);
 assert.deepEqual(goodLuckValueWords.slice(6, 8).map(row =>
   [row.page, row.wordIndex, row.gp]), [[55, 2, "SB"], [14, 1, "FOLD"]]);
 
-// Exhaust all 256 starts, with no tuning. The two paths always share their
-// common partial-sum checkpoint and common endpoint; only table values vary.
-const startRows = Array.from({length: 256}, (_, candidateStart) => {
-  const a = walk(p32Steps, candidateStart);
-  const b = walk(goodLuckSteps, candidateStart);
-  const shared = [...new Set(a.positions.filter(position => b.positions.includes(position)))];
-  const values = shared.map(position => tableBytes[position]);
-  const difference = values.length === 2 ? Math.abs(values[0] - values[1]) : null;
-  const mappedGoodLuck = b.values.map(wordAtValue);
-  const sbThenFold = mappedGoodLuck.some((row, i) =>
-    row.page === 55 && row.wordIndex === 2 &&
-    mappedGoodLuck[i + 1]?.page === 14 && mappedGoodLuck[i + 1]?.wordIndex === 1
-  );
-  return {start: candidateStart, shared, sharedValues: values, difference, sbThenFold};
-});
-const startsWithSbThenFold = startRows.filter(row => row.sbThenFold).map(row => row.start);
-const startsWithDifference76 = startRows.filter(row => row.difference === 76).map(row => row.start);
-const startsWithBoth = startRows
-  .filter(row => row.sbThenFold && row.difference === 76)
-  .map(row => row.start);
-assert.deepEqual(startsWithSbThenFold, [44, 85]);
-assert.deepEqual(startsWithDifference76, [85, 223]);
-assert.deepEqual(startsWithBoth, [85]);
+// Sweep every start under row/column-major and positive/negative traversal.
+function sweep(order, sign) {
+  const table = tableFor(order);
+  const rows = Array.from({length: 256}, (_, candidateStart) => {
+    const a = walk(p32Steps, candidateStart, table, sign);
+    const b = walk(goodLuckSteps, candidateStart, table, sign);
+    const shared = [...new Set(a.positions.filter(position => b.positions.includes(position)))];
+    const values = shared.map(position => table[position]);
+    const difference = values.length === 2 ? Math.abs(values[0] - values[1]) : null;
+    const mappedGoodLuck = b.values.map(wordAtValue);
+    const sbThenFold = mappedGoodLuck.some((row, i) =>
+      row.page === 55 && row.wordIndex === 2 &&
+      mappedGoodLuck[i + 1]?.page === 14 && mappedGoodLuck[i + 1]?.wordIndex === 1
+    );
+    return {start: candidateStart, shared, sharedValues: values, difference, sbThenFold};
+  });
+  return {
+    order, sign,
+    startsWithSbThenFold: rows.filter(row => row.sbThenFold).map(row => row.start),
+    startsWithDifference76: rows.filter(row => row.difference === 76).map(row => row.start),
+    startsWithBoth: rows.filter(row => row.sbThenFold && row.difference === 76).map(row => row.start)
+  };
+}
+const orientationSweep = [
+  sweep("row-major", 1),
+  sweep("row-major", -1),
+  sweep("column-major", 1),
+  sweep("column-major", -1)
+];
+assert.deepEqual(orientationSweep[0].startsWithSbThenFold, [44, 85]);
+assert.deepEqual(orientationSweep[0].startsWithDifference76, [85, 223]);
+assert.deepEqual(orientationSweep[0].startsWithBoth, [85]);
+assert.deepEqual(orientationSweep.slice(1).map(row => row.startsWithBoth), [[], [], []]);
+assert(!orientationSweep.some(row => row.startsWithBoth.includes(oppositePolarityCode)));
 
 console.log(JSON.stringify({
   markerEncoding: {
@@ -178,5 +194,5 @@ console.log(JSON.stringify({
   p32Path, goodLuckPath,
   sharedCheckpoints: {positions: sharedPositions, values: sharedValues, difference: 76, p55Length: 76},
   goodLuckFoldPointer: goodLuckValueWords.slice(6, 8),
-  startNull256: {startsWithSbThenFold, startsWithDifference76, startsWithBoth}
+  orientationSweep
 }, null, 2));
