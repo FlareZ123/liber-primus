@@ -19,9 +19,9 @@ The positive control plants a four-by-four-pixel dot outside the ordinary contou
 | Measure | OE | A |
 | --- | ---: | ---: |
 | High-confidence training glyphs, all shapes/phases | 312 | 324 |
-| Frozen phase/size groups with ≥3 instances | 39 | 47 |
-| Training glyphs in those groups | 146 | 206 |
-| Training majority-mask differing pixels | 4,255 | 7,404 |
+| Frozen phase/size groups with ≥3 instances | 47 | 57 |
+| Training glyphs in those groups | 195 | 260 |
+| Training majority-mask differing pixels | 5,813 | 8,817 |
 | Training differences outside two-pixel contour | **0** | **0** |
 | High-confidence unseen early-page glyphs | 44 | 28 |
 | Held-out glyphs with frozen matching group | 18 | 16 |
@@ -29,7 +29,7 @@ The positive control plants a four-by-four-pixel dot outside the ordinary contou
 | Held-out differences outside two-pixel contour | **0** | **0** |
 | Noncontour differences after planted four-by-four dot | **≥16** | **≥16** |
 
-Across 352 matching training and 34 matching withheld glyphs, there are 13,198 changing contour pixels and **zero** changes outside the ordinary two-pixel border. The remaining 38 held-out glyphs lack a ≥3-member training phase/size group and are explicitly unclassified in this gate. Near-boundary variability is compatible with font hinting, fractional raster origin, and JPEG compression, without providing an independently reliable second alphabet or a printed bit-reading instruction.
+Across 455 matching training and 34 matching withheld glyphs, there are 16,169 changing contour pixels and **zero** changes outside the ordinary two-pixel border. The remaining 38 held-out glyphs lack a ≥3-member training phase/size group and are explicitly unclassified in this gate. Near-boundary variability is compatible with font hinting, fractional raster origin, and JPEG compression, without providing an independently reliable second alphabet or a printed bit-reading instruction.
 
 ## Causal decision
 

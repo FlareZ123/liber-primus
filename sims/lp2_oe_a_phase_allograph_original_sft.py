@@ -136,8 +136,9 @@ for s in held:
         planted[y:y+4, x:x+4] = True
         plants[rune] = int(((planted != majority) & ~edge).sum())
 
-assert {k:v["groups"] for k,v in training_totals.items()} == {22:39, 24:47}
-assert {k:v["matched"] for k,v in training_totals.items()} == {22:146,24:206}
+assert {k:v["groups"] for k,v in training_totals.items()} == {22:47, 24:57}
+assert {k:v["matched"] for k,v in training_totals.items()} == {22:195,24:260}
+assert {k:v["different_pixels"] for k,v in training_totals.items()} == {22:5813,24:8817}
 assert {k:v["far_pixels"] for k,v in training_totals.items()} == {22:0,24:0}
 assert {k:v["matched"] for k,v in hold_totals.items()} == {22:18,24:16}
 assert {k:v["far_pixels"] for k,v in hold_totals.items()} == {22:0,24:0}
