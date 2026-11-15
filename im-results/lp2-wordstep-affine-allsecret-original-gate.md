@@ -2,6 +2,8 @@
 
 **Decision, 15 November 2026:** A direct source-native English cipher in which each printed word is converted into additive steps of the preceding ciphertext rune, with an independently secret nonzero GP29 affine slope and offset for each word, fails on all **559 original seven-rune-or-longer words**. All 2,896 synthetic source-native words survive a correct-key plant. This sharply limits this specific wordwise chain-cipher explanation for LP2's low adjacent-repeat rate. The result supplies no unknown-page plaintext or historical key.
 
+**Prior-art correction:** This word-local affine step model is a strict subfamily of the already established arbitrary-per-word **29! permutation** ciphertext-feedback model in [the earlier word-rekey equality gate](lp2-wordrekey-cipherfeedback-equality-gate.md), which already excludes the broader model on finite native-language controls. Thus the exact long-word lexical nonmatches below serve as an additional implementation-level cross-check, **not an independent breakthrough or a reason to revisit this family**. The prior all-secret gate takes priority for research decisions.
+
 ## Why this route is worth testing
 
 Original LP2 p0–55 contains 12,956 ciphertext runes, 2,896 complete printed words, and just 86 adjacent identical runes among 12,901 within-page neighboring pairs. A cumulative cipher C_i=C_(i-1)+step_i modulo 29 could make ciphertext nearly uniform despite an English plaintext if a hidden word-specific transform affects the *step* register. Unknown per-word shifts would flatten aggregate GP29 frequencies and could suppress a zero step. The 2016 authenticated phrase about the book's words gives a limited human-facing reason to inspect whole words; it does **not** select this cipher.
