@@ -1,0 +1,31 @@
+# Original LP2 DIVINITY-key native OpenPuff extraction on two source-constrained carrier scopes
+
+**15 November 2026, Agent14. Classification: two complete original-image, authentically executed native-v4.00 negative extractions. No unknown LP2 plaintext, key, file, hash preimage, or onward address recovered.** Both experiments use one already-authentic creator-era keyword and one frozen JPEG Medium setting. They do not search alternate passwords, bit selections, or carrier permutations.
+
+## Source-to-operation hypothesis
+
+The independently clear original LP2 physical p57 says **“FIND THE DIVINITY WITHIN”**, runically romanized by the original GP29 transcription as `FINDTHEDIUINITYWITHIN` (original GP conflates U/V). This supplies the literal Latin-letter key **`DIVINITY`** without fitting an unknown ciphertext. The same keyword is an **authenticated historical LP1 p03–04 Vigenère key** ([original GP transfer and controls](divinity-key-reuse-lp2.md)); that earlier GP29 key *does not decrypt unknown LP2 pages by direct Vigenère transfer*. This test asks a different, potentially plaintext-producing question: might the original LP2 JPEGs contain an OpenPuff-carried hidden file under that exact first-party key?
+
+Cicada had previously used actual **OpenPuff 4.00** with its different source-authenticated password `33011033` on a historical audio carrier. The current hypothesis **does not** claim that p57 prescribes OpenPuff, that `DIVINITY` was historically an OpenPuff password, or that the JPEG carrier is author-selected. The two carrier choices are (a) physical p55's original image `72.jpg`, the immediately preceding unknown tree page, and (b) the **entire 58-image published original order** `17.jpg` through `74.jpg`, both selected before running.
+
+## Frozen executable setup and true native controls
+
+Both manual Windows GitHub Actions workflows use original native **OpenPuff v4.00** binaries pinned by Git-object SHA-1: executable `466e03c792075313ce533a5dc7a789e8a41209f9`, library `f3b1c3315f8286346416fefd6141410f422f2454`. The source keyword is asserted against `resources/liber-primus/lp2-corpus.json` and each test uses password **A=`DIVINITY`**, independently disabled passwords B/C, JPEG native bit selection **Medium 1/5 (20%)**.
+
+As a same-job working-software control, **both jobs separately extracted the exactly published 35-byte message** `Dies ist eine versteckte Nachricht!` from the independently authored public OpenPuff JPEG, under its known password `12345678` and original maximum-bit setting. The recovered bytes exactly match, with SHA-256 `c630572bb3b56b0a79ff4f6631b501d04c5fe5c1e0fd0c0853d9db3c57d11593`. Previous same-version [genuine two-carrier Medium Hide→Unhide plant](https://github.com/FlareZ123/liber-primus/actions/runs/43692988537) independently demonstrates that native Medium and ordered multicarrier extraction work. A positive on a synthetic file alone would not authenticate hidden original LP2 data.
+
+## Unaltered source-image outcomes
+
+| Frozen original source carriers | Native selected JPEG capacity | Required GUI checks | Actual native Unhide outcome |
+| --- | ---: | --- | --- |
+| **Only original p55 `72.jpg`** | **1,216 bytes** | Original carrier added; 1/1 item; exact A; B/C off; JPEG Medium verified | **Task stopped: corrupted stream; zero files** |
+| **All original `17.jpg`–`74.jpg`, publisher order** | **86,352 bytes** | All 58 native items verified in exact original order; exact A; B/C off; JPEG Medium verified | **Task stopped: corrupted stream; zero files** |
+
+- **p55 original run:** [GitHub Windows run 43699273919](https://github.com/FlareZ123/liber-primus/actions/runs/43699273919), [complete screenshot/JSON/positive artifact 14155568206](https://github.com/FlareZ123/liber-primus/actions/runs/43699273919/artifacts/14155568206). Native `source-p57-divinity-p55/result.json` confirms `native_probe_outcome=native-corrupted-stream`, `carrier_count=1`, `carrier_added=true`, `bit_selection_verified=true`, `outputs=[]`, with the real native interruption dialog. **The Actions job itself returned failure only because the preliminary workflow incorrectly expected `carrier_chain_verified=true` for a single carrier; the extractor sets that multicarrier indicator false even on the 35-byte positive.** The single-carrier workflow guard was corrected in [its committed source](../.github/workflows/agent14-p57-divinity-openpuff-p55.yml) to require `carrier_added` instead. No duplicate original-image execution is needed: the artifact contains a complete, decisive native outcome.
+- **58-source original run:** [GitHub Windows run 43698923423](https://github.com/FlareZ123/liber-primus/actions/runs/43698923423), [complete screenshot/JSON/positive artifact 14155867642](https://github.com/FlareZ123/liber-primus/actions/runs/43698923423/artifacts/14155867642). The **successful workflow** checks the source publisher index, the independently clear `DIUINITYWITHIN` keyword, all 58 original carrier selections, exact B/C-off native UI, 86,352 actual selected bytes, true `carrier_chain_verified`, true `bit_selection_verified`, and real extraction attempt. `source-p57-divinity58/result.json` confirms `native_probe_outcome=native-corrupted-stream`, `completion_dialogs=[]`, `outputs=[]`, with no native saved file.
+
+## Decision
+
+The literal p57 keyword and independently authenticated historical GP key **do not extract a hidden file** from either frozen original-image carrier scope using OpenPuff v4.00 JPEG Medium A-only. The complete 58-image negative is **new-key evidence**, distinct from the already-executed historical `33011033` and `10333301` original chains. The single p55 negative is a separate physically adjacent source scope, with no claimed signal from arbitrary selected subsets.
+
+This retires **these two exact, source-motivated extraction contracts**. It does not prove the absence of JPEG steganography under other author-selected software, keys, bit depths, file subsets, or non-JPEG channels, and no further exploratory variations are warranted merely to rescue the failed keyword. Any continuation needs a separate original creator instruction identifying a new file consumer or a plaintext-producing reversible original-rune operation.
