@@ -25,6 +25,19 @@ One deliberately small candidate operation takes those three fixed GP29 reductio
 
 No decoded passage resembles native-GP prose; the independently readable p57 original has IoC **0.062710**. More decisively, imposing the historically authenticated p56 **plaintext-F output bypass** (plaintext F emits ciphertext F and does not consume the key) makes **all four** original paths logically impossible well before the first 223 black runes finish. The exact F-skip decoder tracks **every possible** hidden F bypass history without fitting their positions. As a control, all four source-native p57 plaintext plants encrypted under these same four keys/signs survive the exact decoder through their original 95-rune lengths. Thus the failure is a true original-cipher incompatibility for the specified three-value key clock, and a language-statistic rejection for the non-skipping direct masks.
 
+## The prime-rank-directed recipient pages: stronger source target
+
+The same original filename prime ranks can independently nominate physical **p28 and p39**, with rank50 pointing to the p50 table. Reuse the **same already-frozen** two source-index conventions, two cipher signs and original rune inputs, now restarting the three-key clock at the first ciphertext rune of each of p28 and p39 (no new fitted parameter). All **eight** F-transparent original-cipher inverses become impossible well within their respective pages:
+
+| Physical page | Runes | 0-based cell key `C=P−K` / `C=P+K` | 1-based cell key `C=P−K` / `C=P+K` |
+| --- | ---: | --- | --- |
+| **p28** | 269 | first impossible **21 / 19** | first impossible **94 / 3** |
+| **p39** | 240 | first impossible **37 / 0** | first impossible **17 / 18** |
+
+This source-rank receiver exclusion is stronger than arbitrarily choosing p54 as a target. It is restricted to the same exact three-value repeated GP29/F-skip operation; the 2014 authors gave no instruction validating the prior *filename→prime-rank→page→grid-cell* chain.
+
+As an independent check of indexing ambiguity, a one-based page interpretation selects **p27, p38 and p49**. The p27 and p38 direct F-transparent decoders fail before their page ends under all four key/sign settings. The short **66-rune p49** packet has **one** surviving original-F bypass history for the zero-based key with `C=P−K`, but its entire unambiguous output starts `PCJSWOEAENGIWOETHCTHAENGJEA...` and is not coherent prose. That short arithmetic survivor is an instructive example of why a mere legal key clock is insufficient to establish plaintext.
+
 ## Decision and remaining open route
 
 The **direct three-table-cell repeated additive GP29 decipherment of p54–55 is rejected**; it cannot produce genuine plaintext in either historical F-skip setting or plain additive mode. The equal prime-rank spacing among the 2014 filenames is an exact structural observation, and a potential navigational clue because their ordinal 50 lands on the actual number-only p50; however **no authenticated creator instruction selects the index convention, p50 lookup, modulo29 reduction, three-letter repetition, target recipient, or clock reset**. It is currently weaker than a real source-provided key. The rival explanation is that the image numbers are ordinary prime-themed URLs or references to external pages; a post-hoc relationship to the later LP2 grid is possible.
