@@ -55,4 +55,70 @@ assert.deepEqual(wm.original.top,[692,1335,1947,2532,3098,3641,4169,4686,5189,56
 assert.equal(wm.controlSamples,2000);assert(Math.abs(wm.minControlRate-0.05805207177175489)<1e-15);
 assert.deepEqual(wm.minControlTop,[1428,2551,3532,4453,5325,6154,6931,7662,8319,8937,9493,9979]);
 assert(wm.all12TopBelowControls&&wm.positivePlantExact);
+
+const tableTokens=grid.pages.flatMap(p=>p.tokens);
+const alpha60='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
+const alpha59='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx';
+function tokenCells(alpha){
+  const d=new Map([...alpha].map((c,i)=>[c,i]));
+  return tableTokens.map(t=>({byte:d.get(t[0])*alpha.length+d.get(t[1]),hi:d.get(t[0]),lo:d.get(t[1])}));
+}
+const pageLocal=new Uint16Array(N);
+let pageBase=0;
+for(const p of gp.pages.filter(p=>p.page<=55)){
+  for(let i=0;i<p.indices.length;i++)pageLocal[pageBase+i]=i;
+  pageBase+=p.indices.length;
+}
+assert.equal(pageBase,N);
+const wordLocal=new Uint8Array(N);
+let wordBase=0;
+for(const w of originalWords){
+  for(let i=0;i<w.length;i++)wordLocal[wordBase+i]=i;
+  wordBase+=w.length;
+}
+assert.equal(wordBase,N);
+const doubletSites=[];
+for(let i=1;i<N;i++)if(C[i]===C[i-1])doubletSites.push(i);
+assert.equal(doubletSites.length,86);
+function chiSquareP4(observed,expected){
+  const x=observed.reduce((s,o,i)=>s+(o-expected[i])**2/expected[i],0)/2;
+  return Math.exp(-x)*(1+x); // chi-square survival, df=4
+}
+function maskStats(cells,clock,which){
+  const at=i=>{
+    const q=which==='current'?i:i-1;
+    const ptr=clock==='global'?q:clock==='pageLocal'?pageLocal[q]:wordLocal[q];
+    return cells[((ptr%256)+256)%256];
+  };
+  const all=[],events=[];
+  for(let i=1;i<N;i++){const x=at(i);all.push(x);if(C[i]===C[i-1])events.push(x);}
+  const counts=(xs,key,n)=>Array.from({length:n},(_,i)=>xs.filter(x=>key(x)===i).length);
+  const allHigh=counts(all,x=>x.hi,5),eventHigh=counts(events,x=>x.hi,5);
+  const allLow5=counts(all,x=>x.lo%5,5),eventLow5=counts(events,x=>x.lo%5,5);
+  const expectedHigh=allHigh.map(x=>events.length*x/all.length);
+  const expectedLow5=allLow5.map(x=>events.length*x/all.length);
+  const allBottom20=all.filter(x=>x.byte<51).length;
+  const eventBottom20=events.filter(x=>x.byte<51).length;
+  return {
+    radix:cells===tableCells59?'base59':'base60',clock,which,
+    allByteMean:all.reduce((s,x)=>s+x.byte,0)/all.length,
+    doubletByteMean:events.reduce((s,x)=>s+x.byte,0)/events.length,
+    bottom20:{allCount:allBottom20,eventCount:eventBottom20,expectedEvents:events.length*allBottom20/all.length},
+    highDigit:{all:allHigh,events:eventHigh,expected:expectedHigh,chiSquareP:chiSquareP4(eventHigh,expectedHigh)},
+    lowDigitMod5:{all:allLow5,events:eventLow5,expected:expectedLow5,chiSquareP:chiSquareP4(eventLow5,expectedLow5)}
+  };
+}
+const tableCells60=tokenCells(alpha60),tableCells59=tokenCells(alpha59);
+assert.equal(tableCells60.length,256);assert.equal(tableCells59.length,256);
+const repeatMask=[];
+for(const [cells] of [[tableCells60],[tableCells59]]){
+  for(const clock of ['global','pageLocal','wordLocal'])
+    for(const which of ['current','previous'])repeatMask.push(maskStats(cells,clock,which));
+}
+const base60GlobalCurrent=repeatMask.find(x=>x.radix==='base60'&&x.clock==='global'&&x.which==='current');
+assert.deepEqual(base60GlobalCurrent.highDigit.events,[15,25,24,18,4]);
+assert.deepEqual(base60GlobalCurrent.lowDigitMod5.events,[20,14,23,15,14]);
+assert.equal(base60GlobalCurrent.bottom20.eventCount,11);
+result.repeatMask={doubletSites:doubletSites.length,opportunities:N-1,tests:repeatMask};
+
 console.log(JSON.stringify(result,null,2));
