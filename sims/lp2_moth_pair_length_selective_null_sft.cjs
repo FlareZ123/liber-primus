@@ -152,8 +152,64 @@ for(let repeat=0;repeat<trials;repeat++) {
   }
 }
 assert.equal(hits,164);
+
+// Cross-family source-art selection control: the other independently
+// registered art reuses are LP1 p9/p13/p16 → LP2 p2 (insect), and LP1
+// p14/p15/p16 → LP2 p22 (reclining figure). Preserve original lengths and
+// grant every seven-word source position on each original illustrated page.
+const lp1Pages=fs.readFileSync(path.join(__dirname,'..','resources','transcriptions',
+  'lp1_wulfic_canonical.txt'),'utf8').trim().split(/\n%\n/);
+assert.equal(lp1Pages.length,15); // Physical LP1 p2–p16 inclusive.
+/** @param {number} physicalPage */
+function solvedWordLengths(physicalPage) {
+  const page=lp1Pages[physicalPage-2].replace(/\/\r?\n/g,'')
+    .replace(/[\r\n]/g,'').replace(/[&$§]/g,'.');
+  return page.split(/[-.]+/).filter(word=>/^[ᚠ-ᛪ]+$/.test(word))
+    .map(word=>Array.from(word).length);
+}
+const otherArtFamilies=[
+  {label:'LP1 p9/p13/p16 insect → LP2 p2',source:[9,13,16],
+    target:2,seed:3301202,hits:559},
+  {label:'LP1 p14/p15/p16 reclining figure → LP2 p22',source:[14,15,16],
+    target:22,seed:3301222,hits:2703}
+];
+const otherFamilyStats=[];
+for(const family of otherArtFamilies) {
+  const originalTarget=unknownWordLengths(family.target);
+  assert.equal(originalTarget.length,family.target===2 ? 38 : 28);
+  const sourcePatternCodes=new Set(family.source.flatMap(page=>{
+    const widths=solvedWordLengths(page);
+    return widths.slice(0,-6).map((_,i)=>
+      widths.slice(i,i+7).reduce((n,x)=>n*16+x,0));
+  }));
+  let randomSeed=family.seed;
+  function nextRandom() {
+    randomSeed|=0;randomSeed^=randomSeed<<13;
+    randomSeed^=randomSeed>>>17;randomSeed^=randomSeed<<5;
+    return randomSeed>>>0;
+  }
+  const samples=1000000,perm=originalTarget.slice();
+  let successes=0;
+  for(let r=0;r<samples;r++) {
+    for(let j=perm.length-1;j>0;j--) {
+      const k=nextRandom()%(j+1);
+      [perm[j],perm[k]]=[perm[k],perm[j]];
+    }
+    for(let i=0;i<=perm.length-7;i++) {
+      let signature=0;
+      for(let k=0;k<7;k++)signature=signature*16+perm[i+k];
+      if(sourcePatternCodes.has(signature)){successes++;break;}
+    }
+  }
+  assert.equal(successes,family.hits);
+  otherFamilyStats.push({label:family.label,
+    targetWords:originalTarget.length,sourceSevenPatterns:sourcePatternCodes.size,
+    trials:samples,seed:family.seed,hits:successes,
+    empiricalAddOne:(successes+1)/(samples+1)});
+}
 const pOther=hits/trials;
 const pairwise=1-(1-exact.probability)*(1-pOther);
+const acrossArtFamilies=1-(1-pairwise)*otherFamilyStats.reduce((p,stat)=>p*(1-stat.hits/stat.trials),1);
 console.log(JSON.stringify({
   motifSource:"LP1 p05 exact 18-word/81-rune Wisdom passage",
   searchedTargets:["LP2 p53 (40 words)","LP2 p55 (16 body words after carry)"],
@@ -164,5 +220,7 @@ console.log(JSON.stringify({
   p53PermutationEstimate:{seed:20261115,trials,hits,
     empiricalAddOne:(hits+1)/(trials+1)},
   familyMotifConditionedEstimate:pairwise,
+  otherIndependentArtworkFamilyControls:otherFamilyStats,
+  acrossThreeKnownArtworkFamilies:acrossArtFamilies,
   caveat:"A separately authored operation, F policy, key and original unknown plaintext remain absent."
 },null,2));
