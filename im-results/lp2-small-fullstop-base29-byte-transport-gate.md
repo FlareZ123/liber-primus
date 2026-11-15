@@ -6,7 +6,7 @@
 
 The strict source-audited small-full-stop frame does **not** decode to a recognizable file or text stream under the frozen operation. The 138 confirmed four-dot diamond stops partition the 12,956 unknown GP29 runes into 139 fields when the final tail is terminated by end-of-input. Converting each field to its minimum-width big-endian byte representation produces 7,942 bytes, with no tested file signature at offset zero, invalid UTF-8, NUL bytes and only 38.0131% printable ASCII/whitespace.
 
-This rejects the exact direct transport tested here. It does not identify a different cipher, key, nonlinear layer, moved-punctuation rule or unknown plaintext.
+This rejects the exact direct transport tested here. The same strict 139-field length vector also has no four-consecutive match in the checked-in historical source/register corpus; see [the strict source-crib gate](lp2-small-fullstop-source-crib.md). This does not identify a different cipher, key, nonlinear layer, moved-punctuation rule or unknown plaintext.
 
 ## Source-selected boundaries
 
