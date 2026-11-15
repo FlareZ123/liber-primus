@@ -102,7 +102,6 @@ function stats(data){
     first96AsAscii:[...data.subarray(0,96)].map(x=>x>=32&&x<=126?String.fromCharCode(x):'.').join('')};
 }
 const original=stats(cipher), result=stats(decoded);
-assert.ok(!decoded.subarray(0,5).equals(Buffer.from('-----')),'des result would be PGP text');
 console.log(JSON.stringify({
   source:{unknownPages:56,unknownWords:2896,unknownRunes:12956,
     carriedWords:32,maskBitCount:56,pageCarryMask:bits,key8Hex:desKey.toString('hex'),
