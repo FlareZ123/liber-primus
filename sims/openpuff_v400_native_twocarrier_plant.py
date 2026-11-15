@@ -257,7 +257,9 @@ def set_password(window, password):
     ]
     # The hiding panel has exactly two Enable(B)/Enable(C) checkboxes;
     # Unhide uses different IDs (1042/1043), so do not reuse their IDs.
-    checkboxes.sort(key=lambda button: button.rectangle().top)
+    # C depends on B: disable C first, then B, to trigger the native
+    # final B-toggle validation event after the dependency is gone.
+    checkboxes.sort(key=lambda button: button.control_id(), reverse=True)
     if len(checkboxes) != 2:
         raise RuntimeError(
             f"Expected exactly two native Enable B/C checkboxes: {layout!r}"
@@ -278,15 +280,21 @@ def set_password(window, password):
     # Original Hide validates password fields as they change. Set A *after*
     # disabling B/C, so the final text event cannot leave the live password
     # meter on the stale B/C-required branch.
-    left[0][2].set_edit_text(password)
+    native_a = window.child_window(control_id=1009, class_name="Edit")
+    native_a.set_edit_text("")
+    native_a.click_input()
+    send_keys(password)
     time.sleep(0.5)
-    status = [
-        safe(control.window_text) for control in window.descendants()
-        if safe(control.class_name) == "Static"
-        and "password" in (safe(control.window_text) or "").lower()
-    ]
-    print("OpenPuff Hiding password validation:", json.dumps(status),
-          flush=True)
+    validation = (
+        window.child_window(control_id=1014, class_name="Static")
+        .window_text()
+    )
+    print("OpenPuff original password check status:",
+          repr(validation), flush=True)
+    if "too short" in validation.lower() or "invalid" in validation.lower():
+        raise RuntimeError(
+            f"Native Hide password validation did not pass: {validation!r}"
+        )
     return states
 
 
