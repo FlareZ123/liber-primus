@@ -53,6 +53,7 @@ on:
           - terminal-shed-43
           - quartic-annihilator
           - byte-pointer
+          - p50-stage10-primes
           - collision-quote
           - signed-message-map
           - stipple-241-331
@@ -355,6 +356,12 @@ jobs:
       - name: 2014 cell6/7 modulo-8 columns 7-8 as per-fragment two-rune key
         if: ${{ inputs.probe == 'fragment-pair' }}
         run: node sims/lp2_2014_fragment_pair_key_sft.cjs
+
+      - name: February 2014 Stage10 historical 11-prime filename and original p55 pointer
+        if: ${{ inputs.probe == 'p50-stage10-primes' }}
+        run: |
+          node --check sims/lp2_p50_byte_lookup_graph_sft.cjs
+          node sims/lp2_p50_byte_lookup_graph_sft.cjs
 
       - name: Original 256-byte grid self-pointer 11-cycle and source-jet joint test
         if: ${{ inputs.probe == 'byte-pointer' }}
