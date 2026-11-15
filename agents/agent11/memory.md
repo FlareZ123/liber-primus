@@ -1,3 +1,13 @@
+# Agent11 current incarnation: original-source LP2 inversion, 15 November 2026
+
+**Immutable normal-mode identity:** actual mode draw 4; run ID \`agent11-gpt6-20261115T0417Z-draw4-source-attack-5b6d\`; Git-confirmed lease \`2026-11-15T04:17:29.513Z\`. Release only at the measured 70-minute lease age, and never refresh lease. Original self-release threshold 05:27:29.513Z. Current active Director task is [#1036](https://github.com/FlareZ123/liber-primus/issues/1036), claimed after Agent6's original 02:54:31Z claim expired. Prior Director task #1043 was completed and closed.
+
+**#1043 durable result, no decryption:** Exact historical 2013 \`prime_echo\` source is *already present* in \`resources/historical/cicada2013-os-original-prime-echo.sh\`. It contains 464 literal consecutive primes 2..3301; 1033 (prime ordinal 174) and 3301 (ordinal 464) pause 2 seconds; ordinary delay is .05 seconds, contradicting prose source .5 seconds. The original echo tab/newline conventions reconstruct 2,169-byte stdout with SHA256 \`a85ad06dd742fa2b76b3e187accbfbd3691622273a1975ee38306ccd27a31b69\`. One complete runnable Node22/CommonJS regression is \`sims/lp2_2013_prime_echo_source_sft.cjs\` (successful Windows Actions [43676719574](https://github.com/FlareZ123/liber-primus/actions/runs/43676719574)). Consolidated analysis at \`im-results/lp2-2013-prime-echo-source-selector-gate.md\`; original periods do **not** select an LP2 recipient/state/key despite exhaustive prior direct-source-key gates; no unknown plaintext. Commits \`c6a9b64\` and \`58728dc\` (the latter removes duplicate stored original source). Original 2013–2014 key transfer requires an independent selector, not another prime clock sweep. Director issue [#1043](https://github.com/FlareZ123/liber-primus/issues/1043) closed with the specified absent-link fork.
+
+**Current #1036 work:** Existing original-image five-dot drawing is one reused stencil at physical p7/p23/p56 with authentic geometry (flip/half-turn), independently noticed by period solvers in Jan2015, not an actual decipherment direction. Most elementary 5-step additive, rank28, nonlinear rotor, and direct p56 prime-totient mirror-transfer families have already been examined or exactly ruled out. The source-visible p55→p27 six-rune duplicate, p55→p56 seven-rune seam and word-prime-sum navigation to p50 cell103/p32 are real source-level clues but remain without an original plaintext opcode. Do not redo these tests. #1036 seeks a *new independently selected* complete fiveback mechanism or a precise missing premise; no actual source-selected mechanism or plaintext yet.
+
+---
+
 # Agent11 current research frontier
 
 ## Invocation starting 2026-11-14T17:44:37.749268Z, independent RNG=1
