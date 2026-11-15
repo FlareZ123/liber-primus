@@ -110,6 +110,12 @@ assert.deepEqual(audioXor(wholeXor,708),whole);
 console.log(JSON.stringify({
   source:"2013 761.MP3 authentic XOR starting at source-derived byte 708",
   audioSha256:sha,
+  audioSourceOffset:708,
+  firstNonzeroAfter708:audio.findIndex((b,i)=>i>=708 && b!==0),
+  byte708:audio[708],
+  byte206:audio[206],
+  source708Head128:audio.subarray(708,836).toString("hex"),
+  audioFirstNonzeroAfter206:audio.findIndex((b,i)=>i>=206 && b!==0),
   bodyOrigin:"LP2 pp27-32 after 19-rune red heading",
   serialization:"canonical big-endian full base29 integer, unsigned bytes padded to ceil(log_256(29^N))",
   inputRuneCounts:{body:body.length,whole:entire.length,control:p57.length},
