@@ -55,6 +55,27 @@ for(const s of sites){
  s.words=candidate[s.stem].map(w=>({w,plain:pword(w)}));
  console.log('SOURCE',JSON.stringify({page:s.page,originalScan:(17+s.page)+'.jpg',beforeRune:s.global,word:s.label,options:s.words.length}));
 }
+// Fully recovered first-release contraction positive control. Original LP1 p14
+// prints I-RWN'B, and the independently decrypted line reads I DON'T HAVE.
+// Its genuine 13-rune FIRFUMFERENFE Vigenere with two preceding literal-F
+// bypasses supplies five consecutive key symbols FIRFU; the original apostrophe
+// consumes no GP rune or key position.
+const originalLP1 = fs.readFileSync(path.join(root,'..','transcriptions','lp1_wulfic_canonical.txt'),'utf8').split('%')[12];
+const solvedLP1 = fs.readFileSync(path.join(root,'lp1-plaintext-reference.txt'),'utf8');
+const lp1At = originalLP1.indexOf('ᛁ-ᚱᚹᚾᛒ');
+assert.ok(lp1At >= 0);
+assert.ok(solvedLP1.split('### 14\n')[1].split('### 15\n')[0].includes("I DON'T HAVE"));
+const priorLP1Runes = [...originalLP1.slice(0,lp1At)].filter(x=>rune.has(x)).length;
+assert.equal(priorLP1Runes,145);
+const originalCipherControl = [...'ᛁᚱᚹᚾᛒ'].map(r=>rune.get(r));
+const knownPlainControl = pword('IDONT');
+assert.deepEqual(originalCipherControl,[10,4,7,9,17]);
+const requiredKeyControl = originalCipherControl.map((v,i)=>mod(v-knownPlainControl[i]));
+const authenticKey = pword('FIRFUMFERENFE');
+assert.deepEqual(requiredKeyControl,authenticKey.slice(0,5));
+assert.equal((priorLP1Runes-2)%authenticKey.length,0); // Two literal-F skips.
+console.log('SOLVED LP1 POSITIVE I-RWN\\'B <-> I DON\\'T: source 5-rune key FIRFU, two bypassed Fs, apostrophe preserves rune-only key clock');
+
 assert.equal(c.pages[56].indices[0],25);
 assert.equal(mod(c.pages[56].indices[0]-(primes[0]-1)),24);
 console.log('CONTROL authentic solved p56 begins AE ciphertext -> A plaintext');
