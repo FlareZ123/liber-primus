@@ -122,9 +122,10 @@ function random32(initial) {
  * @param {number} seed
  * @returns {object}
  */
-function conditionalNull(name, groupBy, iterations, seed) {
+function conditionalNull(name, groupBy, iterations, seed, isEligible = () => true) {
   const groups = new Map();
   for (const transition of transitions) {
+    if (!isEligible(transition)) continue;
     const key = groupBy(transition);
     let group = groups.get(key);
     if (!group) {
@@ -195,6 +196,18 @@ for (let i = 0; i < ciphertext.length; i++) {
   block.len++;
 }
 assert.equal(lineBlocks.length, 594);
+
+// Agent31's earlier first-rune convention differs from the second-rune
+// convention used in the other line-conditioned nulls.
+const pageOfRune = new Array(ciphertext.length);
+for (let i = 0; i < 56; i++) {
+  for (let p = pages[i]; p < pages[i + 1]; p++) pageOfRune[p] = i;
+}
+const firstRuneLineNull = conditionalNull(
+  'printed-line-first-rune-existing-Agent31-convention',
+  event => lineOfRune[event.pos - 1], iterations, 0x3301d001,
+  event => pageOfRune[event.pos] === pageOfRune[event.pos - 1]
+);
 const pageBlocks = [];
 for (let i = 0; i < 56; i++) {
   const start = pages[i];
@@ -287,5 +300,6 @@ console.log(JSON.stringify({
   boundary,
   exact_count_conditioned_nulls: results,
   block_order_conditional_nulls: blockOrders,
+  first_rune_event_line_conditioned_null: firstRuneLineNull,
   interpretation: 'Line-conditioned nulls probe within-line placement given observed line occupancies. They are not generative tests of line occupancies or decipherments.'
 }, null, 2));
