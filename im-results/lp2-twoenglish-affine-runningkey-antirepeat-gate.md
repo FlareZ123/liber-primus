@@ -44,6 +44,24 @@ For the first three controls, each native-English word is sampled from the union
 
 Even the most favorable of **4,500** trials has over four times the observed doublets. Within each of the nine stated control regimes, the one-sided plus-one empirical tail is **1/501**; this is a *model-calibrated* finite Monte Carlo tail, not a universal p-value for all possible English plaintext/key pairs, creator intent or the historical cipher. The source-control registers and postselection over 28 coefficients are disclosed so the result cannot be mistaken for an exact mathematical bound on all English strings. An arbitrary **fixed bijection on the resulting GP29 ciphertext symbols** cannot rescue this mechanism: equality versus inequality of adjacent outputs is invariant under a one-to-one remapping. A changing-state mapping is a different operation.
 
+## Source-visible reset-scope fork: page keying cannot hide the within-line deficit
+
+The original physical lines provide a more discriminating finite alternative than simply allowing every chapter to reuse a fixed key. Their exact transcription gives **594 printed lines, 12,362 within-line neighbor pairs and 82 within-line equal-rune pairs**. The other four of the 86 original equals cross a printed line boundary. A line's first rune may be inherited from the prior line, so changing coefficients at a line boundary is a distinct cipher architecture.
+
+For each of six source-native contiguous English plaintext/key author pairings, we generated 250 full original-length independent passage pairs. We held the **same 12,362 within-line opportunities** fixed in both of these retrospective, generously all-secret alternatives:
+
+1. A different relative affine coefficient \`t\` for every physical *page*, chosen from all 28 possibilities after observing the full plant, while counting only within-line pairs. All **1,500** synthetic outcomes still exceed the original 82 events. Across the six source-pair registers, the per-control minimum ranges **129–138**, and the medians **158–160**.
+2. A different \`t\` for **every printed line**, also chosen after observing each plant's plaintext and key. Here the six control minima are **1–4** and medians **10–12**; even their six 95th-percentile counts are only **16–19**. This new *highly adjustable* family can readily suppress within-line doublets to below the original count. It is **not** a recovered historical operation: no original clue selects 594 independent t values, any required additive intercepts, or the plaintext/key texts. The four cross-line original doublets are a separate clock/transition problem.
+
+| Source-natural-language scope, same 12,362 within-line edges | Minima over the six 250-plant controls | Median range | Compare with 82 actual |
+|---|---:|---:|---|
+| Best coefficient chosen separately for each physical page | 129–138 | 158–160 | Remains above |
+| Best coefficient chosen separately for every printed line | 1–4 | 10–12 | Can suppress below |
+
+**Fork:** the fixed/global or per-page independent-English affine hypothesis is disfavored under both languages/registers even with coefficient selection optimized after seeing the data. A free per-line coefficient can change the count, but needs a genuine source-selected generator and an exact inverse with identifiable plaintext; otherwise it is merely an explanation with one adjustable secret per line. It cannot by itself account for the manuscript's fiveback correlations or the line-boundary equalities.
+
+This added 1,500-plant experiment and both original line checks are included in the same CommonJS SFT; [successful Windows/Node22 CI run 43701346028](https://github.com/FlareZ123/liber-primus/actions/runs/43701346028).
+
 ## Limits and the next route
 
 This excludes neither a **carefully correlated** plaintext/key pair specially chosen to avoid repeats nor an alphabet changing with prior ciphertext, page, word or state. It also leaves mixed letters and binary files, a variable-length or lossless anti-repeat serializer, literal F bypasses, key/payload material not rendered in GP-native English, unknown byte-level ciphertext, and externally sourced high-entropy keys. Such families require their own independently selected original-source operation and side-state, especially when they also seek to explain the manuscript's within-word lag-five echo excess. No original unknown plaintext, original author key or final destination has been recovered in this experiment.
