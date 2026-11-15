@@ -3,7 +3,8 @@
 
 // Frozen test of the marker-derived p50 navigation hypothesis.
 // Visual transcription: centre-only rows are bit 1; left+right rows are bit 0.
-// p32/p49 markers read 101010101; p53 reads 1010101.
+// Correct image mapping: only logical p32 (original JPEG49) supplies the 13-dot
+// marker used here; the earlier p49/p53 marker corroboration was erroneous.
 // The 2016 signed-message map supplies Good/Luck target runes.
 // No fitted start, phase, rotation, or permutation is used.
 
@@ -140,7 +141,21 @@ assert.deepEqual(sharedValues, [118, 42]);
 assert.equal(Math.abs(sharedValues[0] - sharedValues[1]), 76);
 assert.equal(corpus.pages.find(page => page.page === 55).indices.length, 76);
 
+// Directly interpret each route value as a base-58 page/word address.
+// This is a source-motivated book-cipher candidate, but its full readout is
+// nonlinguistic; retain the exact output as a negative control.
+const p32ValueWords = p32Path.values.map(wordAtValue);
 const goodLuckValueWords = goodLuckPath.values.map(wordAtValue);
+assert.deepEqual(p32ValueWords.map(row => [row.page, row.wordIndex, row.gp]), [
+  [0, 0, "SHEOGMIAF"], [10, 1, "XU"], [10, 2, "PTSUE"], [48, 3, "IATI"],
+  [4, 0, "LIA"], [38, 3, "SRUTH"], [1, 1, "SOERUWSLIA"], [25, 0, "HN"],
+  [47, 0, "EAITH"], [2, 2, "HT"], [27, 3, "NHGUIAHU"], [31, 1, "SIA"], [42, 0, "D"]
+]);
+assert.deepEqual(goodLuckValueWords.map(row => [row.page, row.wordIndex, row.gp]), [
+  [17, 4, "NM"], [18, 0, "EAAJEOEAL"], [15, 2, "LUNGN"], [11, 2, "NLNG"],
+  [2, 2, "HT"], [53, 2, "XIUNOOEN"], [55, 2, "SB"], [14, 1, "FOLD"],
+  [13, 0, "GTHFJGC"], [42, 0, "D"]
+]);
 assert.deepEqual(goodLuckPath.values.slice(6, 8), [171, 72]);
 assert.deepEqual(goodLuckValueWords.slice(6, 8).map(row =>
   [row.page, row.wordIndex, row.gp]), [[55, 2, "SB"], [14, 1, "FOLD"]]);
@@ -192,6 +207,8 @@ console.log(JSON.stringify({
     steps: goodLuckSteps, sum: 413
   },
   p32Path, goodLuckPath,
+  p32ValueAddressReadout: p32ValueWords,
+  goodLuckValueAddressReadout: goodLuckValueWords,
   sharedCheckpoints: {positions: sharedPositions, values: sharedValues, difference: 76, p55Length: 76},
   goodLuckFoldPointer: goodLuckValueWords.slice(6, 8),
   orientationSweep

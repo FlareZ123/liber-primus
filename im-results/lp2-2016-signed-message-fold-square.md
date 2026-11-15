@@ -77,6 +77,15 @@ For the row-major, positive-step model, the frozen null over all256 starts is di
 
 
 
+### Direct base-58 address readout of the route values (negative)
+
+A natural next reading is to treat each byte encountered on either route as another 58-page page/word address, using the same quotient/remainder rule. This is a deterministic, source-motivated test; it requires no new key or fitted offset.
+
+- p32 route values `[0,68,126,222,4,212,59,25,47,118,201,89,42]` select `SHEOGMIAF, XU, PTSUE, IATI, LIA, SRUTH, SOERUWSLIA, HN, EAITH, HT, NHGUIAHU, SIA, D`.
+- Good/Luck route values `[249,18,131,127,118,169,171,72,13,42]` select `NM, EAAJEOEAL, LUNGN, NLNG, HT, XIUNOOEN, SB, FOLD, GTHFJGC, D`.
+
+The complete readout is not coherent plaintext. The already-noted `SB → FOLD` pair is the only locally interpretable fragment; it is not enough to validate the other addresses. Reject the *full route-value-as-book-cipher* interpretation as a standalone decipherment. Keep “SB FOLD” only as a possible instruction whose meaning needs independent support from the original p49 prologue or another primary clue; “SB” = “S-box” is not established.
+
 ## Solved-tail connection
 
 FOLD has sum 171, so the same address rule selects p55:w2 `SB`. `SB` has sum 114, which selects p56:w1 `OESR`. The established p56 mechanism decrypts that ciphertext word to **END**.
@@ -110,6 +119,8 @@ This rules out **all direct stationary three-lane linear plus per-target fixed s
 
 A literal center fold of the original p14 scan, tested vertically, horizontally, and in both axes, does not produce a clean registration of the page art or text. The p14 13-red-dot marker also recurs on several other LP2 pages, so its incidental match to one pointer-walk length is not a useful selector.
 
+A recursive extension from the signed-message word `lies` reaches p50:w3 (table cell `3D` = 193), then follows the same word-sum address rule and reads further p50 cells when it returns to the numeric page. It enters a four-word cycle at p8:w2 that is reached by **2,017 of 2,973** physical-word starts. This is a large graph attractor, not a distinctive route from `lies`; do not treat the recursive walk as plaintext evidence.
+
 ## Weakest assumptions
 
 1. GP-prime sum is the intended “number” of an English source word.
@@ -122,7 +133,7 @@ The first four assumptions jointly make the FOLD destination a concrete predicti
 
 ## Next decisive experiment
 
-The corrected candidate start85 comes from a binary reading of the p32 13-dot marker alone; the earlier p49/p53 marker corroboration was erroneous. Test whether any independent original clue supports the binary polarity and the proposed positive-step convention, then determine whether the p50 values along the two routes have a source-prescribed readout. Do not tune the start, direction, rotations, or permutations. The simple repeating-additive consumer has been tested and does not produce plaintext; if no source-fixed table readout survives an independent language test, retain this as navigation only and do not promote it to a decryption.
+The corrected candidate start85 comes from a binary reading of the p32 13-dot marker alone; the earlier p49/p53 marker corroboration was erroneous. The direct base-58 readout of every value on both routes has now been tested and is nonlinguistic. Do not continue arbitrary table readouts, rune extraction, or fold-orientation searches. The only live interpretation is that the local `SB → FOLD` fragment may be an instruction; require the original p49 66-rune prologue or another independent primary clue to identify what “SB” means and prescribe the fold. If that source support is absent, retire the instruction hypothesis and retain the two-route result as navigation only, not plaintext.
 
 ## Reproduction
 
