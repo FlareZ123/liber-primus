@@ -1,6 +1,6 @@
-# LP2 terminal p55 to wing p27: original eight-rune bridge, native OpenPuff and anchored backward tape
+# LP2 terminal p55 to wing p27: original eight-rune bridge, native OpenPuff, OutGuess and anchored backward tape
 
-**Original-source experiment, 15 November 2026, Agent 1.** Four actual period-compatible OpenPuff 4.00 tests on two original 2014 manuscript JPEGs completed with independently recovered control bytes and **zero** new hidden payloads. A distinct original-rune additive tape test using the same source-fixed cross-page anchor yields no recovered plaintext or authentic key. Both are finite exclusions of explicit consumers; the original p55→p27 text match remains a possible navigation clue.
+**Original-source experiment, 15 November 2026, Agent 1.** Four actual period-compatible OpenPuff 4.00 tests and two OutGuess-0.4 tests on the linked original 2014 manuscript JPEGs completed with independently recovered control bytes and **zero** recognizable new hidden payloads. A distinct original-rune additive tape test using the same source-fixed cross-page anchor yields no recovered plaintext or authentic key. Both are finite exclusions of explicit consumers; the original p55→p27 text match remains a possible navigation clue.
 
 ## Why these exact sources and operations
 
@@ -32,6 +32,19 @@ All four original runs reached the native modal `Task stopped: corrupted stream`
 
 The [source-derived password SFT](../sims/lp2_p55_p27_seam_openpuff_password_sft.cjs) checks all 8 original GP runes, both independent page lengths and the p56 match, including exact `DJUBEIAEF` transliteration and 8–32-character native password eligibility. This excludes **only the four specified single-carrier OpenPuff A-only setups**; it does not prove the original JPEGs contain no steganography.
 
+## Independently calibrated OutGuess-0.4 test of the same source password
+
+The repository's [pre-existing historical OutGuess keyed workflow](../.github/workflows/lp2-outguess.yml) accepts an exact supplied password and exact original-JPEG index. It was independently dispatched twice with `custom_password=DJUBEIAEF`, and `custom_image=44` or `72`. The keyed extractor recovered the exact **47-byte authentic original LP1 OutGuess known-key control** (`79`) in each successful run, and in both runs the independent **payload-free synthetic JPEG** also generated an apparently valid decoded OutGuess header.
+
+| Original source JPEG | Actual OpenGuess job | Recovered apparent seed / length | Recognizable source payload |
+| --- | --- | --- | --- |
+| `44.jpg` p27 | [run 43710193951](https://github.com/FlareZ123/liber-primus/actions/runs/43710193951) | **24559 / 42649 bytes** | **None** |
+| `72.jpg` p55 | [run 43710197665](https://github.com/FlareZ123/liber-primus/actions/runs/43710197665) | **24559 / 42649 bytes** | **None** |
+
+The two original pseudo-payloads have **identical first 32 and last 32 bytes** (`ef5f99a6930de102...` / `...c954fb95b8704ffc9388`) but different whole-object SHA-256 digests, respectively `36bfadecfa4d4735b234b41278d9cc0e48a44fa759c4b0c72039c7fbb13a1ae3` and `94c38a361be407b607b4b82c33f8f09c2dfd698a0461ab6e74d7a3eff2d57e47`. Measured printable fractions are **0.387371 / 0.386082**, and empirical byte entropies **7.995165 / 7.995479 bits per byte**. Neither contains an independently recognizable PGP-signed or plaintext continuation. A “header-consistent” return is **not a success signal**: [the independently established original-LP2 universal-OutGuess-header mechanism](lp2-outguess-universal-header-artifact.md) proves the initial encrypted header on these JPEGs is forced `ffffffff` under every password, producing the same password-dependent seed/length even for nonembedded covers. The same-key payload-free synthetic control independently demonstrates false apparent completion.
+
+**Interpretation:** this exact key yields no verifiable historical OutGuess payload on either original scan. The two high-entropy pseudo-objects and their shared 64 bytes are cover-extraction artifacts without independent authentication; a separate message with the same forced header remains unexcluded.
+
 ## Distinct original p55 plaintext experiment: backwards tape from the exact anchor
 
 The preceding six-rune footer match independently fixes one source-register alignment without language scoring: original p55 offsets70–75 equal original p27 offsets28–33. The additive-tape hypothesis is that a **circular 234-rune original p27 ciphertext register** serves as a running key for all 76 p55 ciphertext runes, with its key origin chosen entirely by the original match:
@@ -54,4 +67,4 @@ The exact original inputs and both inverse readouts are asserted by [the Windows
 
 ## Decision and research handoff
 
-No previously unknown manuscript plaintext, signed original encryption key, authentic hidden JPEG payload, or destination was obtained. Retire the fixed A-only native OpenPuff candidate on the two named JPEGs at the two tested bit levels and the complete original-source backward circular additive key on p55. The source p55→p27 bridge survives as a potential *map* clue. Reopening it for another binary or runic cipher requires a new original-art/signed-text instruction selecting that distinct consumer and a withheld original plaintext prediction; do not enlarge it by arbitrary password spelling or phase scanning.
+No previously unknown manuscript plaintext, signed original encryption key, authentic hidden JPEG payload, or destination was obtained. Retire the fixed A-only native OpenPuff candidate on the two named JPEGs at the two tested bit levels, the same-key recognizable OutGuess payload interpretation on these scans, and the complete original-source backward circular additive key on p55. The source p55→p27 bridge survives as a potential *map* clue. Reopening it for another binary or runic cipher requires a new original-art/signed-text instruction selecting that distinct consumer and a withheld original plaintext prediction; do not enlarge it by arbitrary password spelling or phase scanning.
