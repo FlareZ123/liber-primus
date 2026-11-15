@@ -167,12 +167,37 @@ for(let cell=0;cell<nBytes;cell++){
   const ys=planted.slice(0,5).map(s=>s[cell+1]);
   assert.equal(interpolate(xs,ys,0,field),secret[cell]);
 }
+// Exact coordinate-free bound on the NEW source hypothesis after removing
+// the top printed row as eight possible column-share x-coordinate bytes.
+// Any same-coordinate degree<=6 sharing design, even with independent fixed
+// affine scaling and shifting per share, has centered Y-matrix rank<=7.
+// Reuse the established field arithmetic, elimination and positive plants.
+const sourceRank=require('./grid_coordinate_free_share_rank.cjs');
+const rankChecks=sourceRank.fields.map(field=>{
+  const stripped=rows.slice(1);
+  const centered=sourceRank.differences(stripped,field);
+  const originalRank=sourceRank.elimination(stripped,field).rank;
+  const affineInvariantRank=sourceRank.elimination(centered,field).rank;
+  assert.equal(originalRank,8);
+  assert.equal(affineInvariantRank,8);
+  const planted=sourceRank.control(field,0x3301a6d1).slice(1);
+  const plantedRaw=sourceRank.elimination(planted,field).rank;
+  const plantedCentered=sourceRank.elimination(
+    sourceRank.differences(planted,field),field).rank;
+  assert.equal(plantedRaw,8);
+  assert.equal(plantedCentered,7);
+  return {field:field.name,headerStrippedOriginalRank:originalRank,
+    headerStrippedAffineInvariantRank:affineInvariantRank,
+    trueUnknownXDegree6MaskedPlantRawRank:plantedRaw,
+    trueUnknownXDegree6MaskedPlantCenteredRank:plantedCentered};
+});
 console.log(JSON.stringify({
   status:'PASS; original p50 byte columns fail 2013-style Shamir share consistency; no plaintext',
   sourceCellCount:values.length,sourceShape:'32 rows x 8 columns',
   naturalColumnXs:rows[0],
   firstColumnDistinctX:new Set(rows.map(r=>r[0])).size,
   tests:outcomes,
+  sourceHeaderXCoordinateFreeRank:rankChecks,
   syntheticPositive:{threshold:5,shareCount:8,secretBytes:31,all93Constraints:positive.matching},
   limitation:'No original 2014 instruction equates the grid to Shamir shares. A threshold of eight is untestable by redundancy; the source-derived 2013 five-of-ten scheme is what is rejected.'
 },null,2));

@@ -29,9 +29,23 @@ All other fixed candidate thresholds **k=2 through 7** also fail for the **top-b
 
 **Positive control:** a full, 31-byte source-native secret, eight 32-byte share columns with x headers, and independent degree-four GF(256) polynomials are created under exactly the same 0x11b arithmetic. The intended five-of-eight scheme reproduces all **93/93 untouched validation bytes**, and exact interpolation at x=0 recovers **31/31** original secret bytes.
 
+## Stronger coordinate-independent certificate for the new x-header layout
+
+The direct first-five-shares test could, in principle, be defeated by hidden x-coordinate ordering. Treat the top printed row solely as **eight encoded x headers** and remove it completely. The resulting **31×8 original payload matrix** is available without guessing those x values. If every payload row is eight evaluations of any polynomial of degree≤6 at any **common eight unknown x coordinates** (even with arbitrary column permutation and fixed nonzero per-column scaling and additive offsets), subtracting the first payload row removes the offsets. The remaining **30×8** difference matrix factors as a 30×7 coefficient matrix times a 7×8 scaled Vandermonde matrix. Its rank must be at most **seven** in the candidate field.
+
+Actual original-data exact ranks after dropping the x-header row:
+
+| Field | 31×8 original raw rank | 30×8 offset-invariant difference rank | Genuine unknown-coordinate degree-six masked positive plant |
+|---|---:|---:|---|
+| GF(256), 0x11b | **8** | **8** | raw 8, centered **7** |
+| GF(256), 0x11d | **8** | **8** | raw 8, centered **7** |
+| GF(257) | **8** | **8** | raw 8, centered **7** |
+
+This is an exact all-coordinate, all-fixed-affine-mask contradiction after interpreting the top row as x metadata. Earlier [full-table coordinate-free rank](grid-polynomial-share-key-inversion.md) already proved rank8 using **all32 printed rows as y-data**. The present test checks the **distinct 31-row payload** created by interpreting the original first printed row as metadata instead, and it independently plants genuine degree-six evaluations with unknown coordinates and per-share affine transformations. The extension rules out rescuing the specific 8-column, 31-byte header-encoded share hypothesis with fitted common x coordinates or simple affine per-column transforms.
+
 ## Inference
 
-**The previously unexamined top-byte-as-x interpretation of eight printed 32-byte column-shares is rejected** by its own original-data polynomial redundancy, with positive plants passing. In conjunction with the cited broader existing polynomial-share gates, no tested natural Shamir layout remains viable under the stated finite fields. This closes one share-serialization variant of a materially motivated cross-round route, without claiming a distinct rediscovery of the already excluded Shamir-family mechanism.
+**The previously unexamined top-byte-as-x interpretation of eight printed 32-byte column-shares is rejected** by original-data polynomial redundancy **and a separate coordinate-free rank contradiction**, with both types of positive plants passing. In conjunction with the cited broader existing polynomial-share gates, no tested natural Shamir layout remains viable under the stated finite fields. This closes one share-serialization variant of a materially motivated cross-round route, without claiming a distinct rediscovery of the already excluded Shamir-family mechanism.
 
 This does not exclude encrypted/compressed shares, different original radix or cell order, a secret threshold eight with no built-in redundancy, or a separate 2014 operation inspired by Shamir. None of these alternatives has a source-selected exact implementation. No decryption has resulted.
 
