@@ -73,6 +73,29 @@ function collisions(input,asCipher,perPage=true){
   }
   return {classes:rows.size,n,pairs,hits,rate:hits/pairs};
 }
+/**
+ * Full per-word change of secret alphabet. One arbitrary 29! map is reused
+ * at the fiveback positions of only that word, independently of every other
+ * source word. This is a different, more permissive family than page-phase.
+ * @param {number[][]} input
+ * @param {boolean} asCipher
+ * @returns {{classes:number,n:number,pairs:number,hits:number,rate:number}}
+ */
+function perWordCollisions(input,asCipher){
+  let classes=0,n=0,pairs=0,hits=0;
+  for(const word of input){
+    const counts=new Uint32Array(29);
+    let k=0;
+    for(let j=5;j<word.length;j++){
+      const sym=asCipher?(word[j]-word[j-5]+29)%29:word[j];
+      counts[sym]++;k++;n++;
+    }
+    if(k>0) classes++;
+    pairs+=k*(k-1)/2;
+    for(const count of counts) hits+=count*(count-1)/2;
+  }
+  return {classes,n,pairs,hits,rate:hits/pairs};
+}
 /** @param {number} seed @returns {()=>number} */
 function random(seed){
   let state=seed>>>0;
@@ -98,6 +121,8 @@ function sample(buckets,rng){
 }
 const actual=collisions(words,true);
 const global=collisions(words,true,false);
+const wordOriginal=perWordCollisions(words,true);
+assert.deepEqual([wordOriginal.classes,wordOriginal.n,wordOriginal.pairs,wordOriginal.hits],[815,2105,2750,105]);
 assert.deepEqual([actual.classes,actual.n,actual.pairs,actual.hits],
   [261,2105,11664,388]);
 assert.deepEqual([global.classes,global.n,global.pairs,global.hits],
@@ -113,19 +138,23 @@ const controls=[];
 let plantPlain=null;
 for(const item of sources){
   const pool=nativeBuckets(item.path),rng=random(item.seed);
-  const pageScores=[],globalScores=[];
+  const pageScores=[],globalScores=[],wordScores=[];
   for(let trial=0;trial<250;trial++){
     const trialWords=sample(pool,rng);
     if(!plantPlain)plantPlain=trialWords;
     pageScores.push(collisions(trialWords,false).rate);
     globalScores.push(collisions(trialWords,false,false).rate);
+    wordScores.push(perWordCollisions(trialWords,false).rate);
   }
   assert(pageScores.every(x=>x>actual.rate));
   assert(globalScores.every(x=>x>global.rate));
+  wordScores.sort((a,b)=>a-b);
   pageScores.sort((a,b)=>a-b);globalScores.sort((a,b)=>a-b);
   controls.push({name:item.name,draws:250,seed:item.seed,
     minPage:pageScores[0],medianPage:pageScores[125],
-    maxPage:pageScores.at(-1),minGlobal:globalScores[0],
+    maxPage:pageScores.at(-1),minWord:wordScores[0],medianWord:wordScores[125],
+    atOrBelowWord:wordScores.filter(x=>x<=wordOriginal.rate).length,
+    minGlobal:globalScores[0],
     maxGlobal:globalScores.at(-1),atOrBelowOriginal:0});
 }
 assert(plantPlain);
@@ -161,16 +190,47 @@ const after=collisions(encrypted,true);
 assert.deepEqual([before.n,before.pairs,before.hits],
   [after.n,after.pairs,after.hits],
   'all 275 independent feedback alphabets preserve source groups');
+/*
+ * Independent planted key-per-WORD feedback. A newly shuffled map for every
+ * original printed word, reused at all word-local fifth-back positions.
+ */
+const wordRng=random(0x530129);
+const wordMaps=words.map(()=> {
+  const permutation=Array.from({length:29},(_,i)=>i);
+  for(let i=28;i>0;i--){
+    const j=Math.floor(wordRng()*(i+1));
+    [permutation[i],permutation[j]]=[permutation[j],permutation[i]];
+  }
+  return permutation;
+});
+const wordCipher=[],wordPlain=[];
+for(let w=0;w<plantPlain.length;w++){
+  const key=wordMaps[w],ct=[],pt=[];
+  for(let j=0;j<plantPlain[w].length;j++){
+    const label=key[plantPlain[w][j]];
+    const output=j<5?label:(ct[j-5]+label)%29;
+    ct.push(output);
+    pt.push(key.indexOf(j<5?output:(output-ct[j-5]+29)%29));
+  }
+  wordCipher.push(ct);wordPlain.push(pt);
+}
+assert.deepEqual(wordPlain,plantPlain);
+const wordPlantBefore=perWordCollisions(plantPlain,false);
+const wordPlantAfter=perWordCollisions(wordCipher,true);
+assert.deepEqual(wordPlantBefore,wordPlantAfter);
 console.log(JSON.stringify({
   cipherFamily:'each printed word resets; j>=5 C_j=C_(j-5)+sigma_(page,j mod5)(P_j) modulo29, with unrestricted separate page-phase secret bijections',
   original:{words:2896,runes:12956,deltaPositions:2105,
     sameWordLag5Equal:104,eligibleLag5Pairs:2105,
-    differentialPerPage:actual,differentialGlobal:global},
+    differentialPerPage:actual,differentialGlobal:global,
+    differentialPerWordOneAlphabet:wordOriginal},
   matchedNativeControls:controls,
   positiveControl:{independentSecretAlphabets:275,
     GPPlainRunesExactlyRecovered:12956,
     differencePositions:before.n,pairs:before.pairs,
     equalPairsBefore:before.hits,equalPairsAfter:after.hits},
+  independentWordKeyPositive:{maps:wordMaps.length,plaintextRecovered:wordPlain.flat().length,
+    before:wordPlantBefore,after:wordPlantAfter},
   conclusion:'Excludes this fixed five-back page-phase secret-permutation additive feedback family for the four tested source-native GP English/Latin registers; no unknown plaintext or key recovered',
-  scope:'Does not test word-specific secret permutations, nonlinear five-back state, changed segmentation, or non-GP plaintext.'
+  scope:'Per-word one-alphabet model is separately measured; fresh per-word five-phase maps, nonlinear feedback, changed segmentation, and non-GP registers remain untested.'
 },null,2));
