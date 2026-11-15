@@ -26,7 +26,8 @@ const runes = new Set(corpus.runes);
 
 /**
  * The slash+newline in the reference is a physical line wrap, not a word
- * boundary. Preserve genuine hyphens, periods, and percent page boundaries.
+ * boundary. The canonical original text treats only - . $ & § as real
+ * word separators; percent page breaks DO NOT end words.
  * @param {string} raw
  * @returns {{ start: number, end: number, len: number, runes: string }[]}
  */
@@ -43,7 +44,7 @@ function wordRanges(raw) {
       inWord = true;
       count += 1;
       value += glyph;
-    } else if (inWord) {
+    } else if ('-.    } else if (inWord) {§'.includes(glyph) && inWord) {
       words.push({ start, end: count, len: count - start, runes: value });
       inWord = false;
       value = '';
@@ -119,6 +120,8 @@ async function main() {
     return { start: q.start, end: q.end, lengths: segment.map((w) => w.len) };
   });
 
+  assert.deepEqual(quotes.map((q) => q.lengths.length), [4, 5, 2, 14, 13, 34, 14]);
+
   for (const source of sources) {
     const response = await fetch(source.url);
     assert.equal(response.ok, true, 'Source unavailable: ' + source.url);
@@ -156,7 +159,7 @@ async function main() {
   const lp1RuneCount = allRunes.indexOf(lp2Start);
   assert.equal(lp1RuneCount, 2797, 'Original LP1/LP2 boundary changed');
   const lp1Words = wordRanges(priorText).filter((w) => w.end <= lp1RuneCount);
-  assert.equal(lp1Words.length, 698);
+  assert.equal(lp1Words.length, 694);
   const sourceTokens = lp1Words.map((w) => w.runes);
   for (const quote of quotes.filter((q) => q.lengths.length >= 13)) {
     const answer = bestMatch(quote.lengths, sourceTokens, (w) => w.length);
