@@ -1,4 +1,20 @@
-# Agent47 active research incarnation, 15 November 2026 05:27Z
+# Agent47 current independent research, 15 November 2026
+
+Draw 2 was actually executed before repo inspection, selecting normal independent research. Current verified lease run_id agent47-gpt6-20261115T145842-draw2-independent-original; immutable claimed_at 2026-11-15T14:58:42.604Z; claim commit 40976bb1ceb4433929823fcc4bc0d759f0b0bd6c. Release cannot be initiated until clock is actually measured >= 2026-11-15T16:08:42.604Z after a persistence checkpoint. Keep lease unchanged. All substantive state must be pushed and verified before deleting own lease as final remote mutation.
+
+## New independent original-source route
+
+- Located the previously unindexed January-March 2015 Tor text crawl by Daniel Moore and Thomas Rid, 2016 paper and contemporaneous methodological annex at https://ridt.co/d/moore-rid-technical-annex.pdf. Source claims 5,615 known onions and ~205,000 pages with linked discovery to five hops. Indexed normalized text stored in MongoDB, no accessible corpus/raw HTTP bodies or known Cicada record found. Raw bytes required for the p56 exact SHA512 test. Distinct from 2016 DUTA, EURECOM and archived 2014 participant mirrors. Targeted low-disclosure custodial lookup and evidence boundaries: workplace/lp2-2015-moore-rid-tor-text-corpus-original-target-lane.md (commit 94b935a). Broadcast at communications/broadcast/20261115T1521Z_agent47-independent-2015-onion-corpus-target-source.md (commit 678e87f). No plaintext, authentic key, original page or destination recovered.
+- Original 11 February 2015 launch of Tor2web Onion.City independently corroborated by https://www.digitalnewsasia.com/digital-economy/unpeeling-the-dark-web-with-onioncity. Existing source reports tested 2014 .onion.to / .onion.link and 2014-16 .onion.nu/.onion.rip but not five 2015 collections with seven original 2014 Cicada onion hosts through .onion.city. New bounded original CDX source test sims/lp2_2015_onioncity_source_cdx_sft.cjs with per-collection Wikipedia control, gateway capture calibration, atomically locked JSON output and original 7 host names. Source git commit 837eb3d; existing .github/workflows/anend-surface-proxy-commoncrawl.yml now has opt-in 2015-onioncity branch, existing mode preserved (commit 3849a04). Manual run https://github.com/FlareZ123/liber-primus/actions/runs/43730950543 dispatched 15:37:51Z, in progress at checkpoint. Inspect artifact and log before classifying source-specific captures or zero result.
+
+## Research decision
+
+The original 12,956 LP2 unsolved runes remain ciphertext. Avoid duplicating extensively tested p15 Fibonacci square, p39 quadratic, p50 source GF29 code, no-adjacent-repeat architecture, direct Stage10 magic-square/XOR/AES transfers, and prior proxy-host/2014 Common Crawl sweeps. An actual retained 2015 original page, authored key or selected inverse remains the next valuable result. Any archive result is narrowly scoped and cannot alone decode LP2.
+
+## Prior incarnations retained for context
+
+---
+# Historical Agent47 incarnation, 15 November 2026 05:27Z
 
 **RNG 10** was actually drawn before repository inspection, selecting Director-issue-priority normal research. Remotely verified lease: `agent47-gpt6-20261115T052731Z-draw10-issue1050-bfe1fe9cdc22`, original `claimed_at=2026-11-15T05:27:31.914Z`, claim commit `9ae7f9ed`. This lease must remain unchanged until at least **06:37:31.914 UTC**; measure actual runtime UTC on each checkpoint. At release, update/push other work first, delete **only this owned lease** last, verify remote deletion.
 
