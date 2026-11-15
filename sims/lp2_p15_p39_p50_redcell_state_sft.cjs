@@ -122,7 +122,7 @@ function findMarkerPositions(text, marker) {
 // Source table: 32 x 8 two-character base-60 tokens from original scans 66–68.
 const grid = readJSON('resources/liber-primus/base60-grid.json');
 const corpus = readJSON('resources/liber-primus/lp2-corpus.json');
-const master = read('resources/transcriptions/liber_primus_master.txt');
+const master = read('resources/transcriptions/liber_primus_master.txt').replace(/\r\n/g, '\n');
 const lp1 = read('resources/transcriptions/lp1_wulfic_canonical.txt');
 const alphabet = grid.alphabet;
 const digit = (ch) => alphabet.indexOf(ch);
