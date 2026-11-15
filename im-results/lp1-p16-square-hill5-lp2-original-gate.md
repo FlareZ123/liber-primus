@@ -1,4 +1,4 @@
-# LP1 p16 5×5 magic square: direct Hill-5 and rank-transposition tests on LP2
+# LP1 p16 5×5 magic square: Hill-5, additive-key and rank-transposition tests on LP2
 
 **Status:** bounded original-cipher negative; no unknown plaintext, authentic LP2 key, or complete mechanism recovered.
 
@@ -94,15 +94,47 @@ All eight outputs remain ciphertext-like and are no better than the untouched so
 
 Reproduce with `node sims/lp1_p16_square_rank_transposition_gate.cjs`. Inputs: canonical LP2 corpus and the pinned Shakespeare control.
 
+## Repeating 25-symbol additive-key interpretation
+
+A second simple use of the visible 5×5 table is to flatten its 25 numbers into a short additive key and repeat it across the rune stream. This is distinct from the Hill-5 matrix and rank-order transposition above. The p05 totient clue motivates exactly two key-value transforms: direct table entry modulo 29, and Euler φ(entry) modulo 29. For each, row-major and column-major readout are tested, with both arithmetic signs and the two natural clocks (one book-global pointer or a reset at each physical page). The pointer starts at key position zero; no phase/offset search is made. Reverse traversal is redundant because the original square is 180-degree symmetric.
+
+The source stream is 12,956 runes, and a p57 95-rune synthetic control is recovered exactly for all 16 key/clock/sign combinations.
+
+| Key transform | Fill | Clock | Operation | IoC | Trigram log-likelihood |
+|---|---|---|---|---:|---:|
+| Direct mod 29 | Row-major | Book-global | (C=P+K) | 0.03450941 | −4.64124 |
+| Direct mod 29 | Row-major | Book-global | (C=P-K) | 0.03446481 | −4.66025 |
+| Direct mod 29 | Row-major | Page reset | (C=P+K) | 0.03446765 | −4.63941 |
+| Direct mod 29 | Row-major | Page reset | (C=P-K) | 0.03447167 | −4.61394 |
+| Direct mod 29 | Column-major | Book-global | (C=P+K) | 0.03450273 | −4.65888 |
+| Direct mod 29 | Column-major | Book-global | (C=P-K) | 0.03445707 | −4.60747 |
+| Direct mod 29 | Column-major | Page reset | (C=P+K) | 0.03448872 | −4.64106 |
+| Direct mod 29 | Column-major | Page reset | (C=P-K) | 0.03446499 | −4.61205 |
+| Euler φ mod 29 | Row-major | Book-global | (C=P+K) | 0.03446746 | −4.61191 |
+| Euler φ mod 29 | Row-major | Book-global | (C=P-K) | 0.03445179 | −4.65220 |
+| Euler φ mod 29 | Row-major | Page reset | (C=P+K) | 0.03446145 | −4.61693 |
+| Euler φ mod 29 | Row-major | Page reset | (C=P-K) | 0.03448158 | −4.60326 |
+| Euler φ mod 29 | Column-major | Book-global | (C=P+K) | 0.03450446 | −4.63136 |
+| Euler φ mod 29 | Column-major | Book-global | (C=P-K) | 0.03450087 | −4.63601 |
+| Euler φ mod 29 | Column-major | Page reset | (C=P+K) | 0.03448954 | −4.62276 |
+| Euler φ mod 29 | Column-major | Page reset | (C=P-K) | 0.03449072 | −4.61224 |
+
+The untouched source scores **−4.60956**; Shakespeare GP29 trigram scores **−2.21915** on training and **−2.36417** on held-out text, while solved p57 scores **−2.50031**. The best additive-key output is **−4.60326**, an immaterial 0.00630 improvement over the ciphertext baseline and still more than 2.2 nats/rune below native English. All outputs remain ciphertext-like.
+
+**Decision:** retire the direct-mod-29 and entrywise-φ-mod-29 repeating 25-symbol additive keys under these two readouts, two clocks and signs. Do not add key offsets, alternative number transforms or fitted periods without a new first-party selector.
+
+Reproduce with `node sims/lp1_p16_square_additive_key_gate.cjs`. Inputs: canonical LP2 corpus and pinned Shakespeare control.
+
 ## Decision and limits
 
-Retire the **direct stationary p16-square Hill-5 transfer**, the **entrywise-φ-derived stationary Hill-5 transfer**, and the **fixed 25-cell rank-order block transposition** under the orientations, clocks, and operations enumerated above. The result does not exclude a changing matrix, a nonlinear use of the square, another encoding, or an independently supplied key. The p16 square may simply be a solved earlier-stage answer rather than LP2 key material. Do not expand this result into arbitrary matrix permutations, offsets, or block-phase searches without a new first-party selector.
+Retire the **direct stationary p16-square Hill-5 transfer**, the **entrywise-φ-derived stationary Hill-5 transfer**, the **fixed 25-cell rank-order block transposition**, and the **direct/entrywise-φ repeating 25-symbol additive keys** under the orientations, clocks, and operations enumerated above. The result does not exclude a changing matrix, a nonlinear use of the square, another encoding, or an independently supplied key. The p16 square may simply be a solved earlier-stage answer rather than LP2 key material. Do not expand this result into arbitrary matrix permutations, offsets, or block-phase searches without a new first-party selector.
 
 Reproduce from the repository root with:
 
 ```sh
 node sims/lp1_p16_square_hill5_lp2_gate.cjs
 node sims/lp1_p16_square_rank_transposition_gate.cjs
+node sims/lp1_p16_square_additive_key_gate.cjs
 ```
 
 Inputs: original p16 image `resources/liber-primus/16.jpg`; normalized LP1 reference `resources/liber-primus/lp1-plaintext-reference.txt`; canonical original LP2 corpus `resources/liber-primus/lp2-corpus.json`; and pinned Shakespeare control `resources/control/shakespeare_first300k.txt`. The Hill reproducer asserts the original magic-square sums, both determinants, exact original input size, all sixteen output statistics, and 95/95 synthetic recovery for every convention. The rank reproducer asserts both exact rank routes, all eight original trigram scores, source IoC preservation, and 95/95 p57 round trips.
