@@ -95,7 +95,7 @@ Interpreting each GP29 index as a base-29 digit gives these original-ciphertext 
 - page-local inner43 integer modulo 22 = **6**;
 - whole p55-76 integer modulo 23 = **18**.
 
-With the visually suggested Diffie–Hellman parameters (g=5, p=23, a=13), and the eight filled circles as the other public share, the exchange closes exactly. Important caveat: Agent50's direct-image review identifies these as terminal ornaments integrated into the tree illustration, not established data symbols; interpreting their filled count as a public share is an inferred assignment, not a transcription fact:
+The server-side DH tuple (g=5, p=23, b=6, B=8) is already present in the signed 2013 worked example and its prior-art analysis ([Agent19's source bridge](2013-signed-dh6-original-lag6-source-bridge.md)); this invocation does not rediscover that protocol or its server values. The new candidate is a p55-selected client side: p55's 13 red marks suggest a new client exponent a=13, giving A=5^13 mod23=21; the page-local outer33 residue is 21, inner43 residue is the authenticated server exponent 6, and whole76 residue is the resulting shared key 18=21^6=8^13 mod23. The p57 five-column/23-dot geometry independently echoes g,p. The eight filled tree circles also echo B=8, but Agent50's direct-image review cautions that these are terminal ornaments integrated into the illustration, not established data symbols; their use as B is only corroborative and inferred:
 
 [
 A=5^{13}\bmod23=21,\qquad B=5^6\bmod23=8,
