@@ -155,6 +155,34 @@ const stage10P55Trials = [-1, 1].map((sign) => {
 assert.ok(Math.abs(stage10P55Trials[0].ioc - 0.031228070175438598) < 1e-14);
 assert.ok(Math.abs(stage10P55Trials[1].ioc - 0.03894736842105263) < 1e-14);
 
+// Second frozen original 2014 consumer: three source filenames as
+// byte-pointer seeds, then XOR the three successor bytes. The original
+// 2014 LP1 00-02 stage taught exact three-way bytewise XOR. Its transfer
+// to these later LP2 table addresses is a hypothesis, not creator-signed.
+let xorStates = stage10Names.slice();
+const stage10ThreeXorKey = [];
+for (let i = 0; i < 256; i += 1) {
+  xorStates = xorStates.map((state) => B[state]);
+  stage10ThreeXorKey.push((xorStates[0] ^ xorStates[1] ^ xorStates[2]) % 29);
+}
+assert.deepEqual(stage10ThreeXorKey.slice(0, 20), [
+  5, 17, 3, 8, 16, 17, 25, 9, 23, 16, 9, 8, 1, 28, 1, 5, 1, 22, 7, 10
+]);
+for (let i = 18; i + 11 < stage10ThreeXorKey.length; i += 1) {
+  assert.equal(stage10ThreeXorKey[i], stage10ThreeXorKey[i + 11]);
+}
+const stage10ThreeXorP55 = [-1, 1].map((sign) => {
+  const decoded = p55.map((v, i) => (v + 29 + sign * stage10ThreeXorKey[i]) % 29);
+  const reencryption = decoded.map((v, i) => (v + 29 - sign * stage10ThreeXorKey[i]) % 29);
+  assert.deepEqual(reencryption, p55);
+  const control = gp.pages.find((p) => p.page === 57).indices.slice(0, 76);
+  const planted = control.map((v, i) => (v + 29 - sign * stage10ThreeXorKey[i]) % 29);
+  assert.deepEqual(planted.map((v, i) => (v + 29 + sign * stage10ThreeXorKey[i]) % 29), control);
+  return { sign, ioc: ioc(decoded), translit: gpText(decoded) };
+});
+assert.ok(Math.abs(stage10ThreeXorP55[0].ioc - 0.0343859649122807) < 1e-14);
+assert.ok(Math.abs(stage10ThreeXorP55[1].ioc - 0.039649122807017545) < 1e-14);
+
 const primes = firstPrimes(85);
 let clock = 0;
 const p56Plain = p56Cipher.map((v, i) => (
@@ -167,6 +195,22 @@ assert.equal(
 );
 const knownCipher = p56Cipher.concat(p57);
 const knownPlain = p56Plain.concat(p57);
+const stage10ThreeXorHoldout = [-1, 1].map((sign) => {
+  const decoded = knownCipher.map(
+    (v, i) => (v + 29 + sign * stage10ThreeXorKey[i + 76]) % 29
+  );
+  return {
+    sign,
+    p56SolvedHits: matchCount(decoded.slice(0, 85), p56Plain),
+    p57ClearHits: matchCount(decoded.slice(85), p57),
+    totalKnown180Hits: matchCount(decoded, knownPlain),
+  };
+});
+assert.deepEqual(
+  stage10ThreeXorHoldout.map((x) => [x.p56SolvedHits, x.p57ClearHits, x.totalKnown180Hits]),
+  [[2, 0, 2], [6, 0, 6]]
+);
+
 const trials = [];
 
 for (const sourceSeed of [3301, 1033]) {
@@ -234,6 +278,8 @@ console.log(JSON.stringify({
   stage10Source: { historicGitBlob: stage10Blob, filenames: stage10Names,
     primeOrdinals: stage10Ordinals, pointerPaths: stage10Orbits,
     p55OriginalRunners: stage10P55Trials },
+  stage10ThreeWayXor: { originalSeeds: stage10Names, keyFirst20: stage10ThreeXorKey.slice(0,20),
+    p55CandidateControls: stage10ThreeXorP55, known180Checks: stage10ThreeXorHoldout },
   sourceSeeds: {
     3301: orbit(B, 3301 % 256),
     1033: orbit(B, 1033 % 256),
