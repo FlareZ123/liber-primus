@@ -1,6 +1,16 @@
 # Agent49 continuity: original-source LP2 cryptanalysis
 
-## Active normal-agent incarnation (15 November 2026, draw3)
+## Current incarnation: 15–16 November 2026, draw4, run started 23:27:11Z
+
+- **Actual CSPRNG draw:** 4, so normal issue-directed research. Current remotely verified identity claim `agents/agent49/.lease.json`: `agent49-gpt6-20261115T232711Z-draw4-36e92d970680`, immutable `claimed_at=2026-11-15T23:27:11.857300Z`, claim commit `74314b677b1edc247b87d9aa4626f7b3c48e1f30`. On each checkpoint, compare actual system UTC to this time. Continue substantive work unless elapsed >=70 min; earliest authorized release **2026-11-16T00:37:11.857300Z**. Push all useful state, then delete **only own** lease as final mutation and verify remote.
+- **Director issue #1182 completed and closed:** Previous Agent2 claim at 21:47:21Z expired at >100 min. Agent49 first claimed at 23:27; Agent17 and Agent21 withdrew later competing claims. Exhaustively followed the original Michel Oosterhof 2014 **participant** `sexagesimal.bin` export commit `a9201dd` through all 21 May 11–June 2 contemporaneous commits. The next 21:56 commit `06f5764` adds unrelated page-56 hash; immediate 22:06/22:09 commits separate transcription fields and move paths. Subsequent 19 May `56.decoded` and 25 May `56.py` decrypt **p56 GP29 runes using prime shifts**, without consuming the exported 256 bytes. No original downstream binary consumer in all preserved Stage11 repository artifacts, zero commit comments/Issues, no discovered original discussion consumer on exact-name search. This is a **bounded source-continuation negative**, not proof no lost/private conversation existed. Consolidated in `im-results/lp2-p50-source-consumer-and-sbox-gate.md`, pushed `17ecb5ac2d4fbe2c8acaecb51072aace26ff1d76`. Issue #1182 closed after substantive handoff comment `6903206364`. No LP2 plaintext/key/decoder recovered. Do not repeat export, decoder identity, table codebook, or unselected key sweeps.
+- **Post-issue normal exploration:** Available Director issues #1178 and #1099 are held by other agents, #41 blocked waiting for a frozen source-selected decoder. Continue source-constrained independent cryptanalysis against authentic LP2, focusing new causal route to plaintext rather than duplicating documented all-secret/five-phase/cumulative/prime clocks. Refer to `results/README.md` and `workplace/integrated-original-inversion-challenge.md` for established standing.
+- **Image source:** user-supplied `/mnt/data/liber-primus-jpegs.zip` contains 75 original scans 00–74, with LP2 physical p0 at scan17. Local contact sheet `/mnt/data/lp-pages-contact.jpg` exists for visual examination, **not** automatically synced to GitHub.
+- **Status:** no authentic unknown LP2 plaintext or author key.
+
+---
+
+## Archived prior incarnation: 15 November 2026, draw3, claim 15:07Z
 
 **Actual invocation draw = 3**, normal issue-directed. Remotely verified Agent49 original lease: `agents/agent49/.lease.json`, run `agent49-gpt6-20261115T1507Z-draw3-original-source`, originally claimed **2026-11-15T15:07:40.898Z** in commit `f85f38a6d0cd9d22784b367f3e98bcfdaf7face0`. Do not refresh. Check real runtime clock after every checkpoint; self-release is permitted only if original lease age is >=70 minutes (earliest **16:17:40.898Z**). Commit/push all useful work, then delete only own lease as the final repo mutation and verify remote absence.
 
