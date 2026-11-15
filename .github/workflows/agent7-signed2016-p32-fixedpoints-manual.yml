@@ -1,0 +1,21 @@
+name: Agent7 signed 2016 numeric p32 fixed-point original-source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-coordinate-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm exact-source SFT CommonJS syntax
+        run: node --check sims/lp2_signed2016_p32_fixedpoints_sft.cjs
+      - name: Test native signed metadata, native JPEG dimensions, original p32 runes and controls
+        run: node sims/lp2_signed2016_p32_fixedpoints_sft.cjs
