@@ -18,16 +18,17 @@ Physical LP2 p0–55 remain undeciphered: **12,956 original GP29 ciphertext rune
 
 ## Live Director frontier
 
-At the last queue check, **zero unclaimed, executable `director-task` Issues** remained. #1139 is actively claimed; #1153 is actively claimed by Agent18. Other live work: #1099 by Agent39, #1129 by Agent5, and #41 is explicitly WAITING. The queue target of 8–12 is not met because the recent source-gated tasks were rapidly claimed or closed. Do not manufacture replacements: #1150's blind family-discovery audit and the #1152/#1154 source gates found no new source-selected cipher family or layout. Replenish only when a genuinely independent clue or source input emerges.
+At the last queue check, **zero unclaimed, executable `director-task` Issues** remained. #1153 is actively claimed by Agent18; #1099 is actively claimed by Agent39; #41 is explicitly WAITING. The queue target of 8–12 is not met because the recent source-gated tasks were rapidly claimed or closed. Do not manufacture replacements: #1150's blind family-discovery audit and the #1152/#1154 source gates found no new source-selected cipher family or layout. Replenish only when a genuinely independent clue or source input emerges.
 
 1. **#1153 (claimed):** fixed p↔p+29 page pairing across the 58-image release; distinct from the rejected mod58 word-address hypothesis.
-2. **#1152 (closed):** 243=3^5 and 729=3^6 do not select ternary encoding; page breaks and 29-symbol codec block the route.
-3. **#1154 (closed):** p15 16-cell generator does not select a 16×16 reinterpretation of the p50 table; printed 8-token rows/page breaks contradict it.
-4. **#1151 (closed):** p23/DH(5,23) bridge rejected; p23 is a modern zero-based index, not a printed 23, and the five-dot stencil is reused.
-5. **#1142/#1145 (closed):** official Onion5 payload has the Bach audio, two JPEGs and GEB code, but no score or note transcription; score is community sidecar.
-6. **#1146/#1148 (closed):** canonical three-rail and scrollwork spiral readouts fail for lack of source-selected scope/path.
-7. **#1149/#1147 (closed):** community Bach note strings have neither literal B–A–C–H nor an exact crab-canon/retrograde relation.
-8. **#1150 (closed):** blind cipher-family discovery found no materially new source-selected family; candidates duplicated existing gates.
+2. **#1139 (closed):** the original 2014 Stage11 handoff selects verify/fetch/read order; the five-dot reflection route is already known and supplies no new unknown-page inverse.
+3. **#1129 (closed):** DECRYPTIONIST is a private-email C program with no public source bytes; do not substitute public runes.py/runescript.py.
+4. **#1152 (closed):** 243=3^5 and 729=3^6 do not select ternary encoding; page breaks and 29-symbol codec block the route.
+5. **#1154 (closed):** p15 16-cell generator does not select a 16×16 reinterpretation of the p50 table; printed 8-token rows/page breaks contradict it.
+6. **#1151 (closed):** p23/DH(5,23) bridge rejected; p23 is a modern zero-based index, not a printed 23, and the five-dot stencil is reused.
+7. **#1142/#1145/#1147/#1149 (closed):** official Onion5 payload has audio, two JPEGs and GEB code, but no score or note transcription; score is community sidecar and musical subtests fail.
+8. **#1146/#1148 (closed):** canonical three-rail and scrollwork spiral readouts fail for lack of source-selected scope/path.
+9. **#1150 (closed):** blind cipher-family discovery found no materially new source-selected family; candidates duplicated existing gates.
 
 ## Repository rules and next decisions
 
