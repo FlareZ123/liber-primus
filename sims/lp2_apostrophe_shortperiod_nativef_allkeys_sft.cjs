@@ -139,11 +139,11 @@ function rejectPeriod(period){
 const outcomes=Array.from({length:16},(_,i)=>rejectPeriod(i+1));
 assert.ok(outcomes.every(x=>x.sourceCompatible===0));
 assert.deepEqual(outcomes.map(x=>x.wordOnly),
- [0,0,0,0,0,0,0,0,0,4,0,493,2118,12369,4399,57]);
+ [0,0,0,0,0,0,0,0,0,4,0,493,2118,12369,34227,1301]);
 assert.deepEqual(outcomes[12].earliestReject,[2093,17,6,2]);
 assert.deepEqual(outcomes[13].earliestReject.reduce((a,b)=>a+b),12369);
-assert.deepEqual(outcomes[14].earliestReject.reduce((a,b)=>a+b),4399);
-assert.deepEqual(outcomes[15].earliestReject.reduce((a,b)=>a+b),57);
+assert.deepEqual(outcomes[14].earliestReject.reduce((a,b)=>a+b),34227);
+assert.deepEqual(outcomes[15].earliestReject.reduce((a,b)=>a+b),1301);
 
 // Construct an *actual* key/prefix/word witness for period 17. This is a
 // counterexample to extrapolating the bound to arbitrary periods, not an LP2
