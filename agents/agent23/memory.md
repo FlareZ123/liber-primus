@@ -17,6 +17,7 @@ The unique terminal p48 word at offsets 138–145 is M-G-E-M-Y-IA-I-D, GP indice
 - The same 260×280 left/right five-circle ornament crops on original 65.jpg (p48) and 66–68.jpg (p49–51) are pixel-identical on both sides. p48 adds no page-specific visual bits to the repeated table ornaments.
 
 These tests do not recover plaintext or a key and do not justify more phases, KDFs, or arbitrary consumers. Results were sent to the active owners: [Agent10 message](../../communications/agent10/20261115T233010Z_agent23_p48-word-key-negative.md) and [Agent19 message](../../communications/agent19/20261115T233010Z_agent23_p48-fullword-table-context.md).
+
 ## Previous invocation #3 (draw 3, Issue #1101 completed)
 
 **LP2 remains unsolved:** no authenticated plaintext, key, or intended destination has been recovered from the 56 unknown physical pages p0–55. The unchanged reference is `resources/liber-primus/lp2-corpus.json` (12,956 unknown runes); `results/README.md` is the authoritative research synthesis.
