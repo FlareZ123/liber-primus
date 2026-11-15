@@ -1,0 +1,28 @@
+# Original-order OpenPuff carrier-chain decision for LP2 scans 17–74
+
+**Agent13, 15 November 2026. Classification: unexecuted, source-constrained extraction hypothesis; no plaintext or hidden file recovered.**
+
+## Distinct causal mechanism
+
+OpenPuff **4.00** supports hiding one file across multiple *ordered carriers*. That feature was documented contemporaneously in February 2013, before Liber Primus: [Softpedia, 27 Feb 2013](https://www.softpedia.com/reviews/windows/OpenPuff-Review-331886.shtml) ("Split data among multiple carriers") and [dotTech, 2013](https://dottech.org/104672/windows-best-free-steganography-software-review/) ("Can hide one file split across multiple carriers"). The original OpenPuff 4.00 *Data Unhiding* interface explicitly labels its carrier list **Order sensitive**, with movable chain-order positions; an [academic screenshot of OpenPuff v4.00](https://cppj.info/2023-2/n2/CPPJv2n2.pdf) shows the control. The later software [author's 2018 manual](https://embeddedsw.net/doc/OpenPuff_Help_EN.pdf), pp7–10/24, explains that decoding a spread payload requires the correct carrier sequence. This manual is later contextual confirmation, not a claim of 2014 provenance.
+
+The exact historical **original 2014 distributor page** publishes LP2 scan JPEGs 17.jpg through 74.jpg in source order. That gives one natural, author-visible **58-carrier chain**, without phase, passphrase, file-order search, or plaintext fitting. The original signed round previously used OpenPuff. The repository has now independently recovered the authentic 745-byte `magicsquares.txt` from the actual 2014 Interconnectedness MP3 using original OpenPuff 4.00 and **password A `33011033`**, B/C off and MP3 Maximum 1/2; see [successful native run 43662139707](https://github.com/FlareZ123/liber-primus/actions/runs/43662139707).
+
+## Why the current 58 single-carrier test cannot settle it
+
+The first original-JPEG probe has already been dispatched by Agent8, [native run 43673308138](https://github.com/FlareZ123/liber-primus/actions/runs/43673308138), testing each of the exact 58 source images **separately** with Jpeg (Image), Medium 1/5 (20%), using the validated password. Even if every page produces a genuine *completed-without-file* outcome, a message divided across multiple JPEGs can remain unrecoverable when each carrier is supplied alone. The original OpenPuff requires an ordered *chain*, not independent per-file extraction, for that case.
+
+This is a materially different historical-tool operation. It should be treated as one bounded follow-up, **not as license to guess other passwords, permute 58! orders, or search bit-level menus**.
+
+## Frozen discriminating experiment
+
+1. Keep the original OpenPuff 4.00 executable/DLL, source checks, validated password A `33011033`, B/C disabled, and **Jpeg (Image), Medium 1/5 (20%)**. The last JPEG bit selector transfers from the original singles experiment as a *hypothesis*; the authentic original 2014 positive was MP3 Maximum 1/2 and does not select JPEG Medium. Do not infer success from capacity.
+2. Load **all 58 unmodified original JPEG carriers in ascending published 17.jpg→74.jpg order in one OpenPuff Unhide session**. Verify the GUI contains 58 entries in precisely that chain order and records native selected capacity, rather than 58 separate Unhide clicks. Avoid sorting the list by Name/Bytes after addition, since chain order is material.
+3. Execute **one** Unhide operation with a sufficient native completion window. Save original completion dialogues, any output file bytes and SHA-256/OpenPuff CRC, exact per-carrier source hashes, order, bit selector, and screenshots. A byte-identical original-file output or a source-verifiable instruction/key is the substantive success criterion. A completed **58/58** native attempt without output excludes only this complete chain, chosen password, and JPEG Medium setting; a timeout or partial carrier count is inconclusive.
+4. Validate the multi-carrier driver on a *true two-carrier OpenPuff-generated plant* with a known plaintext file and correct versus reversed order before interpreting a native empty 58-image result; the historic MP3 single-carrier positive alone does not calibrate the multi-file UI. This is a technical control, not independent Cicada plaintext evidence.
+
+## Decision
+
+**Run only after the currently executing single-carrier job is understood**, to avoid consuming the same original-source investigation twice. If a native 58-carrier chain recovers an output, archive exact bytes and try a source-fixed decoding or key application to original p0–55 with meaningful independent plaintext evidence. If it ends genuinely empty, retire the one complete published-order carrier-chain hypothesis while preserving the possibility of different carrier subsets, bit levels or keys *only when independently selected by original clues*.
+
+The source visibly supplies the JPEG order and a historically used tool/password. The unsupported additional premise is that the LP2 release *also used OpenPuff to distribute one payload across those files*. No creator instruction currently establishes that premise.
