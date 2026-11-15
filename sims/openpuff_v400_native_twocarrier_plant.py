@@ -197,7 +197,14 @@ def set_password(window, password):
         )
     for checkbox in checkboxes:
         if checkbox.get_check_state():
-            checkbox.click_input()
+            checkbox.uncheck_by_click_input()
+            time.sleep(0.3)
+        if checkbox.get_check_state():
+            # Native button wrappers support direct WM_BM_SETCHECK.
+            checkbox.uncheck()
+            time.sleep(0.3)
+        print("Disable optional password checkbox:",
+              safe(checkbox.control_id), checkbox.get_check_state(), flush=True)
     states = [checkbox.get_check_state() for checkbox in checkboxes]
     if states != [0, 0]:
         raise RuntimeError(f"Optional passwords remain enabled: {states}")
