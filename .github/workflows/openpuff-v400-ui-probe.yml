@@ -418,7 +418,7 @@ jobs:
               throw "No extracted file and no verified native $target/$target completion"
             }
           }
-          Write-Host "Original chain mode $env:LP2_CHAIN_MODE: $($result.native_probe_outcome)"
+          Write-Host "Original chain mode $($env:LP2_CHAIN_MODE): $($result.native_probe_outcome)"
           if ($result.output_present) {
             Write-Host "Original extracted candidate SHA256=$($result.output.sha256) size=$($result.output.size)"
           }
