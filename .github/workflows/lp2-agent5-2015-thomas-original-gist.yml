@@ -1,0 +1,25 @@
+name: LP2 2015 Thomas original Gist exact-ID source gate
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/lp2-agent5-2015-thomas-original-gist.yml"
+jobs:
+  original-gist:
+    runs-on: windows-2022
+    timeout-minutes: 8
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Recover exact historical Gist or record bounded exact-ID failure
+        run: node sims/lp2_2015_thomas_original_gist_source_sft.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: thomas-original-2015-gist-if-recovered
+          path: thomas-2015-gist-source.json
+          if-no-files-found: ignore
