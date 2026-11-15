@@ -1,6 +1,6 @@
 # Original LP2: all twenty-nine fixed zero-step plaintext markers fail a word-shape English control
 
-**Classification (15 November 2026, Agent30): conditional cryptanalytic exclusion, not a plaintext recovery or historical cipher identification.** The source language assumption is explicit. This generalizes the earlier [EA-only terminal-word obstruction](lp2-ea-zero-terminal-word-invariant.md) without assuming that EA is the special marker.
+**Classification (15 November 2026, Agent30): independent length-conditioned calibration of an already-excluded cipher family, not a new cipher-family exclusion, plaintext recovery or historical cipher identification.** [Agent10's prior 12 November all-secret gate](lp2-fixedmarker-original-wordshape-allsecret-gate.md) already tested all 29 markers with 32,082 lexical word types and 567,679 native-GP windows, and [Agent6's independent 14 November matched-corpus gate](lp2-fixed-reserved-rune-doublet-source-gate.md) also rejected all 29. This further experiment differs by using 14,385 actual solved/Cicada-literary word occurrences, their exact GP lengths and positions, and 2,000 complete-word resamples. It corroborates those earlier conclusions and does not broaden the excluded cipher family. The separate [EA-only terminal-word obstruction](lp2-ea-zero-terminal-word-invariant.md) provides a stronger one-way implication test for EA specifically.
 
 ## The exact cipher decision
 
@@ -37,7 +37,7 @@ The reproducer separately draws an authentic-source GP word for each of the **2,
 
 ## Cryptanalytic consequence and next decoder choice
 
-A hypothetical **fixed, uniquely designated 29th rune as zero feedback step**, sometimes proposed to explain the original scarcity of repeated ciphertext glyphs, now faces a whole-book, exact-word-shape obstruction **regardless of which of the 29 GP runes is designated**. Selecting a more convenient rune does not rescue the model within the original Cicada-like English register. Merely changing the secret nonzero-step key cannot change this conclusion. The original anomalous repeat distribution should instead motivate a source-selected **stateful or changing escape rule**, a cipher whose zero-step meaning is not fixed, or an independent reason to use different plaintext segmentation/register. No specific one of those broader mechanisms is established by this negative.
+A hypothetical **fixed, uniquely designated 29th rune as zero feedback step** faces an independently replicated whole-book, exact-word-shape obstruction **regardless of which of the 29 GP runes is designated**. Selecting a more convenient rune does not rescue the model within the original Cicada-like English register. Merely changing the secret nonzero-step key cannot change this conclusion. A genuinely new attack would need a source-selected **stateful or changing escape rule**, a cipher whose zero-step meaning is not fixed, or an independent reason to use different plaintext segmentation/register. No specific one of those broader mechanisms is established by this negative.
 
 **Successful original-source CI:** [GitHub Actions run 43728573718](https://github.com/FlareZ123/liber-primus/actions/runs/43728573718). All original assertions, the 29×2,000 bootstrap, and full reversible native-word positive passed on Node.js 22.
 
