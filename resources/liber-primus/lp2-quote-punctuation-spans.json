@@ -4,7 +4,27 @@
     "description": "Seven quote spans remain derived annotations. Four single raised apostrophe strokes are source ink in the correct 2400×3600 LP2 image scans 21,38,52,58.jpg. The old negative report examined misnumbered scan basenames then counted only ordinary square dots; the source image has four distinct 12×40 pixel high strokes at the listed positions. The independent October 2026 pnotisdev image-gap audit also recorded those four source single ticks. Their plaintext meaning and whether they indicate an additional word boundary remain unknown.",
     "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md",
     "apostrophe_audit_url": "https://github.com/pnotisdev/cicada3301/blob/main/work/ref/tick_marks.tsv",
-    "image_pixel_sft": "sims/lp2_apostrophe_original_pixel_geometry_sft.py"
+    "image_pixel_sft": "sims/lp2_apostrophe_original_pixel_geometry_sft.py",
+    "solved_lp1_apostrophe_control": "The original first-release LP1 p14 Koan (14.jpg) visibly prints a 12x40 tall ink apostrophe at x1051,y2122 inside ciphertext RWN'B, paired with independently known plaintext DON'T. Its same-line square word dot x1114,y2151 is 10x9. SFT sims/lp2_apostrophe_original_pixel_geometry_sft.py confirms this source positive control and four LP2 marks.",
+    "known_plaintext_positive_control": {
+      "original_scan": "14.jpg",
+      "source": "LP1 p14 solved Koan",
+      "cipher_word": "RWN'B",
+      "cipher_runes": "ᚱᚹᚾᛒ",
+      "known_plaintext": "DON'T",
+      "ink_bbox": [
+        1051,
+        2122,
+        12,
+        40
+      ],
+      "same_line_dot_bbox": [
+        1114,
+        2151,
+        10,
+        9
+      ]
+    }
   },
   "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators. The four raised single apostrophe marks occur immediately before the recorded rune inside a complete printed word; they consume no rune and do not count as additional word separators.",
   "quote_rune_total": 405,
