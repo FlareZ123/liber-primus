@@ -12,6 +12,7 @@ on:
           - positive-control
           - lp2-jpegs
           - lp2-chain
+          - lp2-cuneiform-chain
       password:
         description: Password for the LP2 JPEG pass, after the positive-control run identifies the working spelling.
         type: choice
@@ -274,7 +275,7 @@ jobs:
           if-no-files-found: warn
 
   lp2-chain:
-    if: ${{ inputs.mode == 'lp2-chain' }}
+    if: ${{ inputs.mode == 'lp2-chain' || inputs.mode == 'lp2-cuneiform-chain' }}
     runs-on: windows-latest
     timeout-minutes: 90
     steps:
@@ -366,54 +367,66 @@ jobs:
           }
           Write-Host "Authenticated historical password $env:LP2_PASSWORD; proceeding to source-selected LP2 JPEGs"
 
-      - name: Test original published 58-carrier JPEG chain in one OpenPuff session
+      - name: Test source-marked seven or full-58 original JPEG chain in one OpenPuff session
         shell: pwsh
         env:
-          LP2_PASSWORD: ${{ inputs.password }}
+          LP2_PASSWORD: \${{ inputs.password }}
+          LP2_CHAIN_MODE: \${{ inputs.mode }}
         run: |
           $ErrorActionPreference = "Stop"
+          if ($env:LP2_CHAIN_MODE -eq "lp2-cuneiform-chain") {
+            $pages = 50..56
+            $target = 7
+            $out = "probe-output/cuneiform-original-order-chain"
+          } elseif ($env:LP2_CHAIN_MODE -eq "lp2-chain") {
+            $pages = 17..74
+            $target = 58
+            $out = "probe-output/full-original-order-chain"
+          } else {
+            throw "Unsupported original chain selection"
+          }
           $arguments = @(
             "--exe", "$env:OPENPUFF_EXE",
             "--password", "$env:LP2_PASSWORD",
             "--bit-format", "Jpeg (Image)",
             "--bit-level", "1/5 (20%) - Medium",
-            "--out", "probe-output/full-original-order-chain",
+            "--out", "$out",
             "--wait-seconds", "900"
           )
-          foreach ($page in 17..74) {
+          foreach ($page in $pages) {
             $name = $page.ToString("00")
             $carrier = Join-Path $env:GITHUB_WORKSPACE "resources/liber-primus/$name.jpg"
             if (-not (Test-Path -LiteralPath $carrier)) {
-              throw "Missing source original LP2 carrier $name.jpg"
+              throw "Missing original LP2 carrier $name.jpg"
             }
             $arguments += @("--carrier", "$carrier")
           }
           python sims/openpuff_v400_extract.py @arguments
-          if ($LASTEXITCODE -ne 0) { throw "Native 58-carrier OpenPuff chain did not execute" }
-          $result = Get-Content "probe-output/full-original-order-chain/result.json" -Raw | ConvertFrom-Json
-          if ($result.carrier_count -ne 58 -or -not $result.carrier_chain_verified) {
-            throw "OpenPuff native GUI did not verify the exact 58-file chain"
+          if ($LASTEXITCODE -ne 0) { throw "Native $target-carrier OpenPuff chain did not execute" }
+          $result = Get-Content "$out/result.json" -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne $target -or -not $result.carrier_chain_verified) {
+            throw "OpenPuff GUI failed exact $target-file native source order"
           }
           if ($result.native_probe_outcome -eq "inconclusive-timeout") {
-            throw "OpenPuff did not finish within the original native observation window"
+            throw "OpenPuff timed out before complete chain processing"
           }
           if (-not $result.output_present) {
-            $complete = @($result.completion_dialogs | Where-Object {
-              $_.message -match "58\s*/\s*58\s+carriers?\s+processed"
+            $completed = @($result.completion_dialogs | Where-Object {
+              $_.message -match "$target\s*/\s*$target\s+carriers?\s+processed"
             }).Count -gt 0
-            if (-not $complete) {
-              throw "OpenPuff reported no extracted file without a verified native 58/58 completion"
+            if (-not $completed) {
+              throw "No extracted file and no verified native $target/$target completion"
             }
           }
-          Write-Host "Source-order 58-JPEG chain outcome: $($result.native_probe_outcome)"
+          Write-Host "Original chain mode $env:LP2_CHAIN_MODE: $($result.native_probe_outcome)"
           if ($result.output_present) {
-            Write-Host "Original extracted payload candidate: $($result.output.sha256) size=$($result.output.size)"
+            Write-Host "Original extracted candidate SHA256=$($result.output.sha256) size=$($result.output.size)"
           }
 
-      - name: Upload published-order LP2 JPEG carrier-chain evidence
+      - name: Upload source-selected LP2 JPEG carrier-chain evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: openpuff-v400-lp2-jpeg-chain-${{ inputs.password }}
+          name: openpuff-v400-lp2-jpeg-chain-${{ inputs.mode }}-${{ inputs.password }}
           path: probe-output/
           if-no-files-found: warn
