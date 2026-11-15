@@ -160,6 +160,117 @@ for (const [scope, parts] of [
   }
 }
 
+
+/*
+ * Additional source-motivated extension: the solved p56 decoder treats F
+ * (GP index 0) as a literal bypass that does not consume its prime key.
+ * Test that exact exception on the same 9x28 quotient schedule. A non-F
+ * ciphertext that decodes to plaintext F is impossible under a literal-F
+ * bypass encoder: plaintext F would have emitted ciphertext F instead.
+ */
+const p56LiteralFBypass = [];
+function decodeLiteralFBypass(cipher, key, sign) {
+  const plain = [];
+  let pointer = 0, impossibleF = 0, zeroCipher = 0;
+  for (const value of cipher) {
+    if (value === 0) {
+      plain.push(0);
+      zeroCipher++;
+      continue;
+    }
+    const decoded = mod29(value + sign * key[pointer % key.length]);
+    pointer++;
+    if (decoded === 0) impossibleF++;
+    plain.push(decoded);
+  }
+  return { plain, pointer, impossibleF, zeroCipher };
+}
+function encodeLiteralFBypass(plain, key, sign) {
+  const cipher = [];
+  let pointer = 0;
+  for (const value of plain) {
+    if (value === 0) {
+      cipher.push(0);
+      continue;
+    }
+    cipher.push(mod29(value - sign * key[pointer % key.length]));
+    pointer++;
+  }
+  return cipher;
+}
+function testLiteralFBypass(label, keys, sign) {
+  const decodedBook = [];
+  let impossibleF = 0, reencodeMismatches = 0;
+  const chapterStats = [];
+  for (let chapter = 0; chapter < chapters.length; chapter++) {
+    const key = keys.slice(chapter * 28, chapter * 28 + 28);
+    const result = decodeLiteralFBypass(chapters[chapter], key, sign);
+    const replay = encodeLiteralFBypass(result.plain, key, sign);
+    const mismatches = replay.reduce((n, value, i) =>
+      n + (value === chapters[chapter][i] ? 0 : 1), 0);
+    impossibleF += result.impossibleF;
+    reencodeMismatches += mismatches;
+    decodedBook.push(...result.plain);
+    chapterStats.push({
+      chapter: chapter + 1,
+      zeroCipher: result.zeroCipher,
+      keyPositionsConsumed: result.pointer,
+      nonzeroCipherDecodedAsF: result.impossibleF,
+      reencodeMismatches: mismatches
+    });
+  }
+  p56LiteralFBypass.push({
+    label,
+    sign,
+    nonzeroCipherDecodedAsF: impossibleF,
+    reencodeMismatches,
+    decodedIoc: coincidence(decodedBook),
+    chapterStats,
+    prefix: decodedBook.slice(0, 36).map(v => corpus.translit[v]).join(" ")
+  });
+  // A true literal-F bypass cannot re-encode a non-F ciphertext as F.
+  assert.equal(reencodeMismatches, impossibleF);
+}
+
+/* The quotient orientation and both additive signs are fixed, not searched. */
+for (const [orientation, keys] of [
+  ["printed-coefficient-order", quotient],
+  ["reversed-coefficient-order", quotient.slice().reverse()]
+]) {
+  for (const sign of [-1, 1])
+    testLiteralFBypass(orientation, keys, sign);
+}
+assert.deepEqual(p56LiteralFBypass.map(x => x.nonzeroCipherDecodedAsF),
+  [438, 405, 405, 471]);
+
+/* Deterministic positive plant: avoid the single non-F plaintext value that
+ * would map to ciphertext F at each consumed key position. Literal F still
+ * bypasses and consumes no key. This proves the collision test and clocks. */
+let plantState = 0x330129;
+const literalFPlant = [];
+for (let chapter = 0; chapter < chapters.length; chapter++) {
+  const key = quotient.slice(chapter * 28, chapter * 28 + 28);
+  const plain = [];
+  let pointer = 0;
+  for (let i = 0; i < chapters[chapter].length; i++) {
+    plantState = (Math.imul(plantState, 1664525) + 1013904223) >>> 0;
+    if (i % 97 === 0) {
+      plain.push(0);
+      continue;
+    }
+    let value = 1 + (plantState % 28);
+    while (mod29(value - (-1) * key[pointer % key.length]) === 0)
+      value = value % 28 + 1;
+    plain.push(value);
+    pointer++;
+  }
+  const cipher = encodeLiteralFBypass(plain, key, -1);
+  const recovered = decodeLiteralFBypass(cipher, key, -1).plain;
+  assert.deepEqual(recovered, plain);
+  literalFPlant.push(...recovered);
+}
+assert.equal(literalFPlant.length, 12956);
+
 const max = Math.max(...experiments.map(x => x.ioc));
 assert.equal(experiments.length, 14);
 assert(max < 0.045);
@@ -173,5 +284,7 @@ console.log(JSON.stringify({
   solvedP57ControlIoC:coincidence(solvedControl),
   maxDecodedIoC:max,
   models:experiments,
+  p56LiteralFBypassModels:p56LiteralFBypass,
+  p56LiteralFBypassPositivePlant:{runes:literalFPlant.length,exact:true},
   conclusion:"no unknown original GP-native plaintext or authentic key recovered"
 }, null, 2));
