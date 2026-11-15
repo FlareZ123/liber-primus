@@ -1,6 +1,6 @@
-# Five-phase ciphertext-feedback with arbitrary page-secret alphabets: complete source-native exclusion
+# One-back and five-back source-motif feedback with arbitrary page-secret alphabets
 
-**Agent28, 14 November 2026. Evidence class: original-input key-independent necessary-condition failure under a source-native-English and Vulgate Latin plaintext registers, plus source-shaped positive plant.** This yields no unknown LP2 plaintext, creator key, intended decipherment mechanism or destination.
+**Original-input key-independent source-native-English/Latin exclusions with independently inverted positive controls.** Agent28 (14 November 2026) resolved the one-back page-phase feedback family; Agent4 (15 November 2026) independently resolved the source-shaped **five-back** feedback variant. Both use arbitrary 275-map secret page/phase permutations. Neither recovered unknown LP2 plaintext, creator key, intended decipherment mechanism or destination.
 
 ## Motivating clue and fixed cipher family
 
@@ -38,7 +38,27 @@ Thus **0/1,000** matched source-native English and Latin controls give the origi
 
 **Constructive positive:** On exactly the same original word/page length geometry, choose independent hidden random bijections at each of 275 page×phase slots, encrypt 12,956 GP runes of a length-matched English control under the declared evolving feedback mechanism, and invert directly. The decoder recovers **12,956/12,956** original control plaintext runes. Its **20,059** observed within-class differential equalities are preserved exactly from source-native plaintext before encryption to ciphertext difference outputs. The authentic real-cipher rejection is therefore discriminating within this wide family.
 
-## Cryptanalytic decision
+
+## Distinct five-back feedback source-motif gate (Agent4, 15 November 2026)
+
+The same original illustrated **five-circle stencil** and **104/2,105** observed fifth-position echoes suggest an even more direct *five-back* ciphertext-feedback interpretation, distinct from the previously tested one-back recurrence. For each **exact original printed word** and index `j`, propose `C[w,j]=π[page,j mod5](P[w,j])` for its first five rune positions and `C[w,j]=(C[w,j−5]+π[page,j mod5](P[w,j])) mod29` for later positions. Each of the **55 original rune-bearing pages** has five independent arbitrary **29!** secret bijections, with the original 32 carried words assigned according to their physical rune locations. The model is exactly invertible word by word. No source instruction authenticates this model or its unprovided permutations.
+
+The observable five-back residual `D[w,j]=(C[w,j]−C[w,j−5]) mod29` for `j≥5` equals a **secret-permuted plaintext rune** under any key in this family. Within each physical-page×word-phase group, a bijection **cannot change the number of identical-symbol pairs**. Source-original **2,105** eligible fifth-back positions occupy **261 nonempty page×phase groups** out of the possible 275; there are exactly **388 equal-symbol pairs among 11,664 comparisons**, a **0.03326475** collision rate. The same five global phases produce **21,817/634,908 = 0.03436246**. These are key-independent properties of original ciphertext, without choosing a key, guessed word, page offset, or stage after inspecting the values.
+
+The [dedicated original-input SFT](../sims/lp2_lagfive_feedback_allsecret_original_sft.cjs) samples **250 original-word-length-matched complete native GP books per reference**, from each of the four archived original reference registers. Every sampled book preserves the actual **2,896 original printed word lengths, 12,956 rune positions, page assignment and five-step classes**. The minimum source-native **261-class** collision rates were:
+
+| Source-native reference | 250 sampled books | Lowest collision rate | Median rate | Controls ≤ original 0.03326475 |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare | 250 | **0.07784636** | 0.08753429 | 0 |
+| Gibran | 250 | **0.08058985** | 0.09147805 | 0 |
+| Emerson | 250 | **0.07253086** | 0.08384774 | 0 |
+| Latin Vulgate | 250 | **0.08221879** | 0.09190672 | 0 |
+
+An independently constructed **full 12,956-rune positive plant** encrypts and decrypts a source-native English control with **275 independently shuffled secret alphabets**, word-reset five-back feedback, and **12,956/12,956 exactly recovered plaintext symbols**. It preserves the plaintext's original **1,001/11,664** equal-symbol pairs in the ciphertext-derived residual **exactly**. Therefore the original's **388** equal pairs are not caused by a failure to implement or invert the proposed feedback.
+
+**Decision:** Reject this entire **page-reused five-phase bijective five-back modular feedback family** under intact original GP word boundaries and the four tested source-native English/Latin plaintext registers, even granting arbitrary unknown maps on every page/phase. It does **not** exclude fresh secret maps every word or position, non-bijective transforms, nonlinear feedback, different plaintext registers, hidden segmentation, or other source-selected recurrence. The fifth-back echoes remain a genuine original-cipher phenomenon whose actual reversible explanation is unestablished. No original unknown plaintext or key was recovered. [Successful original-input Node22 manual CI run 43739340329](https://github.com/FlareZ123/liber-primus/actions/runs/43739340329).
+
+## One-back cryptanalytic decision
 
 **Reject this complete page-reused five-phase modular ciphertext-feedback family for the tested source-native GP English and Latin Vulgate registers under the original printed segmentation.** The cipher may change raw letter marginals and still cannot conceal the strong phase-conditioned *plaintext equality frequencies* in its observable one-step differences. This is distinct from the earlier direct five-phase substitution all-secret test and from per-word affine/Vigenère exclusions.
 
