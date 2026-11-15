@@ -65,7 +65,7 @@ for(const c of cases){
  const r=decode(unknown,c.rule,c.polarity,c.sign);
  assert.strictEqual(r.valid,c.valid);
  if(!c.valid){assert.deepStrictEqual({word:r.word,offset:r.runeOffset,pointer:r.pointer},{word:c.word,offset:c.offset,pointer:c.pointer});results.push({...c,valid:false,underflow:{word:r.word,runeOffset:r.runeOffset,pointer:r.pointer}});continue;}
- const logL=score(r.out);assert(Math.abs(logL-c.score)<1e-12);assert.strictEqual(r.max,c.max);assert.strictEqual(r.pointer,c.final);
+ const logL=score(r.out);assert(Math.abs(logL-c.score)<1e-12);assert.strictEqual(r.max,c.max);assert.strictEqual(r.pointer,c.final);const reencrypted=encrypt(r.out,c.rule,c.polarity,c.sign);assert(reencrypted.valid&&reencrypted.out.every((x,i)=>x===unknown[i]));
  const re=encrypt(r.out,c.rule,c.polarity,c.sign);
  assert(re.valid&&re.out.every((x,i)=>x===unknown[i]));
  results.push({...c,valid:true,trigramLogLikelihood:logL,minPointer:r.min,maxPointer:r.max,finalPointer:r.pointer,reencryptsOriginal:true});
