@@ -67,7 +67,7 @@ jobs:
       - name: Build pinned mid-word likelihood engine
         run: |
           mkdir -p external/pnotisdev/work/chanscreen/v2/build
-          rustc --edition=2024 --crate-type cdylib -C opt-level=3 external/pnotisdev/work/chanscreen/v2/backward_mid.rs -o external/pnotisdev/work/chanscreen/v2/build/libbackward_mid.so
+          rustc --edition=2021 --crate-type cdylib -C opt-level=3 external/pnotisdev/work/chanscreen/v2/backward_mid.rs -o external/pnotisdev/work/chanscreen/v2/build/libbackward_mid.so
       - name: Execute source-fixed composite-key test
         env:
           PNOTISDEV_ROOT: ${{ github.workspace }}/external/pnotisdev
