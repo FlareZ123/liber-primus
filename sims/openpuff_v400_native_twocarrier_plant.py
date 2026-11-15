@@ -87,12 +87,14 @@ def click_named(window, token):
 
 
 def choose_file(app, window, button_token, path, out, stage):
+    prior_windows = {w.handle for w in Desktop(backend="win32").windows()}
     click_named(window, button_token)
     time.sleep(1)
     snapshot_desktop(out, stage + "-picker")
     dialogs = []
     for dialog in Desktop(backend="win32").windows():
         if (not safe(dialog.is_visible) or safe(dialog.class_name) != "#32770"
+                or dialog.handle in prior_windows
                 or "Data Hiding" in (safe(dialog.window_text) or "")):
             continue
         edits = visible_controls(dialog, "Edit")
@@ -123,6 +125,29 @@ def choose_file(app, window, button_token, path, out, stage):
         time.sleep(1)
     snapshot(app, out, stage + "-added")
     return app.window(title_re=".*Data Hiding.*")
+
+
+def native_carrier_names(window):
+    carrier_list = window.child_window(control_id=1018, class_name="SysListView32")
+    return [
+        Path(carrier_list.get_item(index).text().strip()).name.lower()
+        for index in range(carrier_list.item_count())
+    ]
+
+
+def add_hiding_carrier(app, window, path, expected, out, stage):
+    for attempt in range(1, 4):
+        window = choose_file(app, window, "Add", path, out, f"{stage}-{attempt}")
+        names = native_carrier_names(window)
+        print("OpenPuff Hide appended carrier", path.name,
+              "attempt", attempt, "native list", names, flush=True)
+        if names == expected:
+            return window
+        if names != expected[:-1]:
+            raise RuntimeError(
+                f"Native carrier list is not a prefix of expected {expected}: {names}"
+            )
+    raise RuntimeError(f"Original Hide did not append source carrier {path.name}")
 
 
 def set_medium(window):
@@ -250,9 +275,15 @@ def main():
         snapshot(app, out, "hiding-initial")
         record["password_BC_states"] = set_password(window, args.password)
         record["bit_tree"] = set_medium(window)
-        window = choose_file(app, window, "Add", carriers[0], out, "carrier-a")
+        window = add_hiding_carrier(
+            app, window, carriers[0], [carriers[0].name.lower()],
+            out, "carrier-a"
+        )
         first_capacity = native_total_capacity(window)
-        window = choose_file(app, window, "Add", carriers[1], out, "carrier-b")
+        window = add_hiding_carrier(
+            app, window, carriers[1],
+            [carrier.name.lower() for carrier in carriers], out, "carrier-b"
+        )
         total_capacity = native_total_capacity(window)
         record["first_capacity"] = first_capacity
         record["total_capacity"] = total_capacity
