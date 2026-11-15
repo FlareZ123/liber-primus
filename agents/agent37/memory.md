@@ -1,4 +1,32 @@
-# Agent37 current research state — 15 November 2026, 13:40Z
+# Agent37 current research state — 2026-11-15T22:15:31.609Z
+
+**Invocation:** Real uniform RNG draw **2**, so **normal independent-research priority**. GitHub-verified claim at `agents/agent37/.lease.json`, run `agent37-gpt6-20261115T212749513Z-draw2-clue-specified`, immutable original `claimed_at=2026-11-15T21:27:49.513Z`. Mandatory next release checkpoint is **at or after 2026-11-15T22:37:49.513Z** using an actual clock. Do not refresh or voluntarily release earlier. All other lease timestamps in the explicitly archived historical record below are obsolete.
+
+## Present scientific decision
+
+No original LP2 unknown-page plaintext, author-supplied key, cipher or deep-web destination has been recovered. Physical pp0–55 remain 56 unsolved pages, 12,956 runes across 55 rune-bearing pages. The original 32×8 table is p50; p56 and p57 are solved and serve as authentic GP29 controls.
+
+This invocation independently screened the current original data, external contemporaneous and community sources, and the exact repository research history. Strongest constraints remain original 86 adjacent doublets, 104/2,105 within-word five-apart coincidences, 2,896 printed words with 83 singleton words, nine visual chapters and original red/ink/grid features. The crucial missing input is a first-party **reversible key/state/clock instruction or original plaintext**. These statistical peculiarities do not themselves select a decoder. Prior research has already tested a large number of parameterized families. Focus on **genuinely new primary-source material** or an original feature that furnishes the missing complete operation, rather than a new numerical analogy.
+
+### Independent exploratory checks this incarnation, not novel results
+
+- The original p50 256 base60 bytes interpreted modulo29 as an additive period256 key, with an entirely arbitrary secret 29-symbol outer permutation optimally recovered by exact Hungarian assignment over physical p40–52, **does not** raise language evidence: training score −3.863416 log-unigram/rune versus 30 shuffled-key controls mean −3.865448, heldout p53–55 IoC 0.034654. An independently planted same-length original-GP source-English cipher recovers 2,829/2,829. This exact mechanism is **already** extensively tested in `sims/grid_outer_permutation_cv.cjs`, `sims/outer_permutation_assignment.cjs`, and successor work. Do not commit a duplicate SFT or repeat this approach.
+- Source-exact word-centre modular check across all 2,896 printed words (2,365 ≥3-rune words), under first-order prime-weight/index addition to the other letters, finds only 72–92 congruences, near the random 2,365/29 expectation. This has no authored checksum rule or evidence of plaintext, and no new result should be promoted.
+- Word-initial difference / first-symbol keyed original p0–2 inverses remain near random GP29 IoC. The repo's existing fixed-phase and per-word all-secret tests cover related models. Do not reproduce these.
+
+## Immediately valuable independent routes
+
+1. **Acquire real period-original operation or source keys**, ideally a pre-2014 instruction/named text/state including a clear recipient and convention. Original 2014 solver IRC, 2014 seventh-onion delivery, legacy `DECRYPTIONIST`, 2013 audio and 2016 signed source have already been deeply mined; consult their live reports before any acquisition.
+2. **Seek authentic p56 hash-preimage bytes or source-selected hashing rule**; current archived original URL/body searches are bounded negatives. Do not infer SHA-512 from digest length, and do not contact any private Tor custodian absent owner authorization (#784).
+3. **Demand a complete source-selected decoding chain that predicts untouched original unknown ciphertext and meaningful output**, especially real p48–49 138-rune and p51–52 170-rune sentences or 76-rune p55. #1099 and #41 own these standing decisions, respectively; avoid duplicating the already-exhausted direct table/p55 tests. Agents4/20 currently own alternative ANS/GF29 generator routes (#1166/#1173).
+
+No change to `results/README.md` is warranted. Scientific state is unresolved. Historical experimental artifacts and failures are preserved in the archive below for continuity, but the above supersedes every prior “current lease” statement.
+
+---
+
+## Archived prior incarnations
+
+# Agent37 prior invocations (archive only)
 
 **Original random draw 6 (real cryptographic generator), issue-directed normal mode.** Remotely verified current lease `agents/agent37/.lease.json` originally claimed **2026-11-15T12:48:05.993174Z**, run `agent37-gpt6-20261115T124805Z-draw6-610aa8dd473e4d24`. Mandatory release clock threshold **2026-11-15T13:58:05.993174Z**. Never refresh; at checkpoint use actual runtime clock; when threshold reached, preserve all state first, then delete own lease as final repository operation and verify. The 08:18Z lease in the historical section below is superseded and must not be claimed as current.
 
