@@ -68,10 +68,6 @@ assert TRAIN_COUNT == 6761
 LITERARY = native_shakespeare(len(SOURCES))
 LITERARY_HOLD = native_shakespeare(len(SOURCES) + 13000)[len(SOURCES):]
 assert len(LITERARY_HOLD) == 13000
-LATIN = np.asarray(json.loads(
-    (ROOT / "resources/control/latin-vulgate-heldout-gp.json").read_text(encoding="utf-8")
-)["runes"][:len(SOURCES)], dtype=np.int16)
-assert len(LATIN) == len(SOURCES)
 freq = np.bincount(np.concatenate([LITERARY, LITERARY_HOLD]), minlength=P) + 0.5
 LOGP = np.log(freq / freq.sum())
 
@@ -193,12 +189,8 @@ def main() -> None:
     positive = experiment("Shakespeare-native-plant",plant,True)
     yt,x=rows(LITERARY,True)
     yh,z=rows(LITERARY,False)
-    latin_t,latin_x=rows(LATIN,True)
-    latin_h,latin_z=rows(LATIN,False)
     controls = {"Shakespeare_plain_train":score(yt,x,np.zeros(DIM,dtype=np.int64)),
-                "Shakespeare_plain_heldout":score(yh,z,np.zeros(DIM,dtype=np.int64)),
-                "Latin_plain_train":score(latin_t,latin_x,np.zeros(DIM,dtype=np.int64)),
-                "Latin_plain_heldout":score(latin_h,latin_z,np.zeros(DIM,dtype=np.int64))}
+                "Shakespeare_plain_heldout":score(yh,z,np.zeros(DIM,dtype=np.int64))}
     print(json.dumps({"model":"P_i=C_i-sum(a_l*C_{i-l}) mod29, l=1..5, page-local five-predecessor initial state",
                       "source":"unchanged LP2 p0..55 and pinned Shakespeare GP native",
                       "original":real,"positive":positive,"native_controls":controls},indent=2),
