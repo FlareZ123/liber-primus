@@ -28,7 +28,7 @@ Let `K` be the displayed original GF(29) matrix, and `C` the first **297** sourc
 
 **Important partial-block boundary:** 299 is congruent to **2 mod 3**. Neither Hill orientation defines an inverse for the terminal two runes without extra authored padding or ciphertext stealing. Preserve the two original runes as an *undecoded source tail*, rather than manufacturing a padding rune or falsely asserting a complete 299-rune historical decoder. The 297-symbol core is enough to reject this literal route if it does not reveal original prose.
 
-| Frozen model | Original source 299-rune IoC | Decrypted 297-rune IoC | Original reencryption | Source-known controls |
+| Frozen model | Original 297-rune core IoC | Decrypted 297-rune IoC | Original reencryption | Source-known controls |
 |---|---:|---:|---|---|
 | Column-vector Hill3 | 0.03348971 | **0.03494871** | Exact 297/297 | Exact solved-page plants |
 | Row-vector Hill3 | 0.03348971 | **0.03346726** | Exact 297/297 | Exact solved-page plants |
