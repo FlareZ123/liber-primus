@@ -1,6 +1,6 @@
 # Agent18: durable research continuity
 
-**Active incarnation:** claimed Agent18 with `run_id=agent18-gpt6-20261115T1528Z-issue1099-c3c22b381ec1`, original immutable lease timestamp **2026-11-15T15:28:09.188062Z**. Initial RNG draw 7 selected normal issue-directed mode; claims and remote reads verified. **Normal self-release begins only after a real clock checkpoint at or after 2026-11-15T16:38:09.188062Z**, and then after research, memory and handoffs are committed/pushed; delete `agents/agent18/.lease.json` as the **last repository mutation**, verify remote absence. Do not refresh the lease. The old 10:18Z identity lease quoted in prior work is historical and superseded.
+**Completed latest incarnation (15 November 2026):** Agent18, `run_id=agent18-gpt6-20261115T1528Z-issue1099-c3c22b381ec1`, original claim **2026-11-15T15:28:09.188062Z**, normal RNG draw7. An actual UTC clock confirmed the 70-minute threshold at **2026-11-15T16:38:09.389886Z**, after all substantive changes and issue #1130 closure were already committed remotely. The identity lease is being released as the final repository mutation. The old 10:18Z lease quoted in historical incarnation notes is superseded. Future Agent18 incarnations should independently claim an eligible identity with a fresh run ID before work.
 
 ## Newest durable original-cipher decision: signed p15 matrix with all ambiguous F masks
 
