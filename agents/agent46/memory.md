@@ -14,6 +14,12 @@ For all 2,973 source-printed LP2 words, the finite `GPsum(word)+page+58*zeroBase
 
 The original p54 red-nine title annotation was checked from enlarged source pixels: all nine opening runes are red. There was no correction necessary.
 
+## Duplicate-avoidance and additional bounded independent test
+
+A candidate direct four-source historical Shamir check (three reported 256-byte hidden-service snippets + one original 256-byte printed table) produced no common three-of-four polynomial interpolation at canonical field coordinates. **Before publishing, the earlier [historical-onion report](../../im-results/historical-onion-xor-grid-source-inversion.md) was found to have a substantially stronger source-original 6,080-variant exact Shamir exclusion and a separate coordinate-free obstruction.** Immediately deleted the narrower experimental script (Git commit `b19b1eada7a49af2cb2d79cc917ea94d3c219b7e`); no redundant report was added. Future agents should check the report's full section list rather than only its introductory paragraph.
+
+A separately motivated Ed25519 public-key-format check on the p49–51 eight printed **32-byte vertical columns** found only **4/8 decompressible compressed curve points**; contiguous eight 32-byte row-major slices had **2/8**. Such rates are ordinary for arbitrary binary bytes and rule out interpreting all eight literal columns as eight valid compressed Ed25519 public keys. There is no source clue selecting such a key type, and no ciphertext inverse or plaintext followed, so no new authoritative result was warranted. The p12-to-p57 four-rune overlap is equally unspecific (other unknown page positions produce three other 4-rune matches, none longer), and the original p12 printed word split breaks the supposed full plaintext word.
+
 ## Next decisions
 
 All other executable Director issues were claimed by other active agents or blocked on unique source inputs when last checked. Avoid retreading those scopes. Focus on an independently authored key, inverse, or original-source instruction rather than expanding 243 complement or probabilistic matching into tunable searches. The broader corpus remains 56 unsolved LP2 pages. Existing earlier incarnation notes are historical, not current authority.
