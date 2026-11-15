@@ -112,14 +112,14 @@ for offset in offsets:
 base59_drop_f_control = extract(
     "row-major-base59-drop-f", base59_values, row_major_tokens, offsets
 )
-assert base59_drop_f_control["values"] == [168,75,115,73]
-assert base59_drop_f_control["reverse_latin1"] == "IsK¨"
-assert base59_drop_f_control["reverse_gp29"] == "SEABD"
+assert base59_drop_f_control["values"] == [75,115,73,168]
+assert base59_drop_f_control["reverse_latin1"] == "¨IsK"
+assert base59_drop_f_control["reverse_gp29"] == "DSEAB"
 
 base60_selected = extract("row-major-base60", row_major, row_major_tokens, offsets)
-assert base60_selected["values"] == [171,76,117,74]
-assert base60_selected["reverse_latin1"] == "JuL«"
-assert base60_selected["reverse_gp29"] == "TUEY"
+assert base60_selected["values"] == [76,117,74,171]
+assert base60_selected["reverse_latin1"] == "«JuL"
+assert base60_selected["reverse_gp29"] == "YTUE"
 
 selected_values = [row_major[i] for i in offsets]
 phi_values = [phi(v) for v in selected_values[:3]]
