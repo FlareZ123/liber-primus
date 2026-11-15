@@ -63,6 +63,15 @@ The sixteen extracted symbols would be a concrete GP29 key **if** an original in
 
 A positive control reconstructs original solved p56's **85/85** rune message with its one F skip at offset56 and 84 consumed prime-totient values. A second planted GP-native p57 plaintext round-trip with the sixteen-rune key passes the tested decoder's bypass state model. **The key is not established; these finite originals reject only the direct historical p56-style reuse.**
 
+## Competing 2016 signed *words*-as-map interpretation
+
+The authenticated 2016 language says “words are the map,” so an independently motivated alternative to sampling isolated rune offsets is to index **whole original printed ciphertext words** by the same sixteen zero-based Fibonacci values. Parsing the original \`lp2-transcription.txt\` across the complete 55 unknown rune-bearing pages, with literal hyphen/full-stop word boundaries and preserved physical line/page continuations, yields exactly **2,896 printed words** and **12,956 runes**. The indexed source words at F=(0,1,2,3,5,…,987) are:
+
+\`SHEOGMIAF | SYENGC | THJGAE | FJOE | NEWBASOEEOINGU | PBN | SPTFPUNGYNGXIA | HEO | XGTH | FOEWEAOELFAE | GWY | PALUEANLJ | TH | CLEAP | NEOOX | FH\`
+
+Their initial GP labels read \`S-S-TH-F-N-P-S-H-X-F-G-P-TH-C-N-F\`; terminal labels \`F-C-AE-OE-U-N-IA-EO-TH-AE-Y-J-TH-P-X-H\`. The selected word lengths are [8,5,4,3,11,3,11,2,3,9,3,8,1,4,4,2]. The sum of all 16 words' rune prime weights is **3,849**; first-runic sum **419**, last-runic sum **743**. This source-specific direct word extraction contains no recognizable native GP instruction or original numeric 708/761 anchor. It tests a concrete alternative word-scale consumer without fitting a word permutation or hidden key. It does **not** rule out a different independently authored meaning of the signed 2016 map instruction.
+
+
 ## Decision and reproducibility
 
 Retain the exact natural-start **708** match as a *provisional input-selected clue* for further independently authored instructions. It is potentially more restrictive than free numerology because the red start, full 16 Fibonacci list, following body start, and original GP-prime weights come from visible solved material. Its reading is nevertheless unselected at two crucial steps, and the plausible direct repeated-key consumer is negative. Do not rescore arbitrary body starts, swap prime-weight functions, tune phase/sign, or call 708 a decipherment. An actionable continuation needs a first-party **708 cell/checksum acknowledgment or recipient/transport operation** and original unknown plaintext on a separately fixed holdout.
