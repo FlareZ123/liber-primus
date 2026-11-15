@@ -164,6 +164,25 @@ assert.deepEqual([...new Set(wordSubstitutionContradictions.map(x=>x.wordIndex))
 const planted=sourceSeven.map((word,j)=>Array.from(word).map(rune=>
   (7*gp.runes.indexOf(rune)+j)%29));
 assert.equal(samePlainDifferentCipher(planted).length,0);
+// Even arbitrary rune reorderings after any bijective per-word substitution
+// preserve each word's multiset of character multiplicities.
+/** @param {number[]} symbols */
+function sortedMultiplicity(symbols) {
+  const counts=new Map();
+  for(const x of symbols)counts.set(x,(counts.get(x)??0)+1);
+  return [...counts.values()].sort((a,b)=>b-a);
+}
+const permutationInvariantFailures=[];
+for(let i=0;i<sourceSeven.length;i++) {
+  const sourceIndices=Array.from(sourceSeven[i]).map(x=>gp.runes.indexOf(x));
+  const input=sortedMultiplicity(sourceIndices);
+  const output=sortedMultiplicity(originalCipherSegments[i]);
+  if(input.join(',')!==output.join(','))
+    permutationInvariantFailures.push({wordIndex:i,sourceMultiplicity:input,
+      ciphertextMultiplicity:output});
+  assert.deepEqual(input,sortedMultiplicity(planted[i]));
+}
+assert.deepEqual(permutationInvariantFailures.map(x=>x.wordIndex),[1,2,4,5]);
 
 const exact=exactSevenProbability(page55,patterns);
 assert.equal(exact.total,908107200n);
@@ -200,7 +219,8 @@ console.log(JSON.stringify({
   motifSource:"LP1 p05 exact 18-word/81-rune Wisdom passage",
   searchedTargets:["LP2 p53 (40 words)","LP2 p55 (16 body words after carry)"],
   originalObserved:{p53:longest(wisdom,page53),p55:longest(wisdom,page55)},
-  keylessWordSubstitutionExclusion:{contradictions:wordSubstitutionContradictions},
+  keylessWordSubstitutionExclusion:{contradictions:wordSubstitutionContradictions,
+    substitutionPlusArbitraryTranspositionFailures:permutationInvariantFailures},
   p55Exact:{positivePermutations:exact.positives.toString(),
     distinctPermutations:exact.total.toString(),probability:exact.probability,
     memoStates:exact.states},
