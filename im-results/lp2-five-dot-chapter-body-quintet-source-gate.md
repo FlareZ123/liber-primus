@@ -75,6 +75,29 @@ As one direct, source-contained *consumer*, feed those **1,875 bytes** into the 
 
 The entire source, all four exact outputs and three inverse controls passed [Windows Node22 CI 43656701196](https://github.com/FlareZ123/liber-primus/actions/runs/43656701196) via [CJS SFT](../sims/lp2_p40_eight_rune_five_byte_transport_sft.cjs). **Decision:** the 8-rune/5-byte scheme is structurally economical and lossless but no unencrypted byte payload or directly table-masked byte payload is recovered at its source-selected starting position. A second cipher could exist, but the source supplies no next operation or key to justify unrestricted format/phase search. No authentic unknown-page plaintext.
 
+## Exact red-eight heading indexes the eight printed numerical-table columns
+
+This is a different, directly human-followable **key-extraction hypothesis** that supplies a *concrete eight-byte candidate*, rather than a freely searched password. The original p40 red heading contains exactly **eight GP29 rune values**, **[0,9,19,26,6,23,25,8]**, and the in-chapter printed table has exactly **eight columns, 32 rows**. Every GP index is a valid zero-based row address because 0–28 is within 0–31. Traverse the source red heading left-to-right: at heading position `j=0..7`, select **the cell in printed column j and row GPindex(heading[j])**. This uses no guessed key, byte offset, table permutation, out-of-book phrase, or language-scored selector, and another solver can reproduce the exact one-cell-per-column address list.
+
+| Heading position (column) | Original GP row index | Original base60 table byte (hex) |
+| ---: | ---: | ---: |
+| 0 | 0 | CB |
+| 1 | 9 | 4F |
+| 2 | 19 | 0E |
+| 3 | 26 | 3D |
+| 4 | 6 | 56 |
+| 5 | 23 | C0 |
+| 6 | 25 | 7F |
+| 7 | 8 | 6C |
+
+The eight-byte candidate is therefore **`CB4F0E3D56C07F6C`**, reducing to GP29 digits **[0,21,14,3,28,18,11,21]**. This is **source-derived material conditional on the addressing hypothesis**, not an authenticated authorial encryption key. The rival explanations are that the red heading is ordinary cipher text and that all GP indices can index some table row, making the selection compatible without proving it was intended. The manuscript gives no instruction equating header positions with table columns or naming a cipher.
+
+To seek a decisive decrypting use with minimum extra assumptions, repeat those exact eight GP values over **every one of 3,000 original p40–53 body runes** as a source-started standard GP29 Vigenère additive key, both historical signs, with unchanged punctuation and word layout. Both operations exactly reencrypt all 3,000 original symbols and decode separately planted 3,000-native-GP-rune controls. The original rune IoC under subtraction is **0.0344357008** (GP E count 111), under addition **0.0346179838** (GP E count 114), against standard uniform **0.0344827586** and a native-English GP text regime above approximately **0.05**. The resulting first 90 GP tokens are nonlinguistic under either sign. No 100-rune unknown original plaintext or 40-rune heldout prediction emerges.
+
+The independent bit-exact **8-rune→5-byte p40 body serialization (1,875 bytes)** permits using the same eight exact table-selected bytes as a cyclic XOR, addition or subtraction byte key. Fixed phase zero in all cases, exact independent inverse/positive controls. None produces valid UTF-8 or a PNG, GZIP, ZIP, PDF, BZIP2, XZ or RIFF header or valid zlib header. The respective initial sixteen bytes are `0812aa0ed55454a6e14d0acd0f9ccf49`, `f80e96f62dd4ac5e5fb3f6b3039c31b9`, `8eacb270d954aa36f551122daf1c2f91`. Printable ASCII byte counts **697**, **684**, **633** out of 1,875. All five original-input candidate decoders and plants passed [Windows Node22 run 43657065496](https://github.com/FlareZ123/liber-primus/actions/runs/43657065496), in the [exact source-input CJS reproducer](../sims/lp2_p40_red8_grid256_rowselector_sft.cjs).
+
+**Decision:** the red-eight/table-eight address is a specific internally grounded eight-byte key proposal with an explicit source grammar and complete reproduced value. The **two obvious GP29 additive** and **three obvious packed-byte** consumers do **not** recover an original unknown passage or file. No unique next value-changing operation is selected; without one, asserting that `CB4F0E3D56C07F6C` is the intended Cicada key would be unsupported. Preserve this exact addressing rule as a conditional, falsifiable candidate for a future genuinely independent historical clue, and do not run an unconstrained family of key offsets or ciphers against it.
+
 ## Next actionable condition
 
 The source itself still lacks an explicit rule saying to convert five runes to base29 byte triplets or how to use the 256-cell table. The five-site pictures could cue a genuinely different operation. Preserve the exact chapter-body clock as a conditional candidate, but require an **independent color/position-to-operand mapping, a recognized data header, an external known plaintext, or a held-out original-rune prediction** before trying more packing variants or treating these high-entropy bytes as meaningful ciphertext. Original unknown-page plaintext remains unrecovered.
