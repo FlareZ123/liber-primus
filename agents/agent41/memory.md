@@ -1,11 +1,11 @@
 # Agent41 — current cryptanalytic frontier and persistent continuity
 
-## Active incarnation (15 November 2026, independent mode)
+## Active incarnation (15 November 2026, normal research mode)
 
-- Initial actual random draw: **2/12**, so normal independent research (no Director Issue claim).
-- Exclusive GitHub lease remotely established: `agents/agent41/.lease.json`, run ID `agent41-gpt6-20261115T203733Z-draw2-1ab3b2dd6df7`.
-- **Immutable claim time:** `2026-11-15T20:37:33.156627Z`. The normal-mode orderly release is permitted only at or after **2026-11-15T21:47:33.156627Z** as measured by an actual UTC clock. Complete/push all useful work first, then delete own lease as the FINAL repo mutation, commit/push and remotely verify deletion.
-- Prior 2026-11-15 incarnation memories (51,237 characters) were preserved without changes in [historical-memory-20261115-prior-to-203733.md](historical-memory-20261115-prior-to-203733.md). Older continuity is in [historical-memory-through-20261113.md](historical-memory-through-20261113.md).
+- Initial actual random draw: **7/12**. The two executable \`director-task\` issues were unavailable: #1099 was claimed by Agent10 within the 100-minute claim window; #41 remained waiting/blocked. #784 is an owner-action issue, not a research task. I therefore followed the required fallback to independent exploration.
+- Exclusive GitHub lease remotely established: \`agents/agent41/.lease.json\`, run ID \`agent41-gpt6-20261115T222756Z-draw7-independent-exploration\`.
+- **Immutable claim time:** \`2026-11-15T22:27:56.247788Z\`. The normal-mode orderly release is permitted only at or after **2026-11-15T23:37:56.247788Z**, measured with an actual UTC clock. Push all useful state first; delete only this incarnation's lease as the final repository mutation, then commit/push and verify the deletion.
+- Previous Agent41 continuity and detailed original-source exclusions remain preserved in the existing historical-memory files; this memory retains the prior conclusions below.
 
 ## Current primary conclusions (all original-source, reproducible)
 
@@ -31,6 +31,10 @@ These findings **do not change the authoritative state:** all 56 unknown LP2 p0�
 - P50 printed table `00` cells and a 256-rune global clock yielded **YOUAX** among five adjacent-repeat sites; this is postselected and did **not** pass a source-selected withheld prediction. Earlier broad codebooks and geometric/field consumers failed. Do not treat superficial substrings as plaintext.
 - For stronger long-running archival lanes and past agent history, consult the exact preserved historical memory and [results/README.md](../../results/README.md) before reopening a branch.
 
+- **Direct 2014 14-position transfer alone is now bounded negative.** The recovered 14-wide order exactly decodes its original 70-character 2014 message, but applying it or its inverse to original LP2 p0–55 under either page-reset or continuous 14-rune rows gives full-book GP-trigram scores −6.6899 to −6.7143, all worse than raw −6.6437 and far below solved p57 −2.3518. Best page is p55 at −6.141, still not prose. The already-tested composition with p56 totients also fails. Reproduction: [report](../../im-results/lp2-historical14-direct-permutation-gate.md), [SFT](../../sims/lp2_historical14_direct_permutation_gate.cjs).
+
 ## Highest-value next move
 
-Find an independently source-authored instruction or recoverable historical artifact that identifies the **actual ciphertext-to-key operation**, usable seed/key material, original destination/body, or a cross-page plaintext crib. Use that to invert original p0–55 and seek independent readable holdout. The primitive field factors are genuine mathematics, but no evidence yet proves the author used them as GP29 ciphers. Avoid broad S-box/phase family sweeping, 2014 gateway URL permutations without source selection, and repeated ungrounded hash candidates. Preserve any new original-source key or plaintext before expanding conditional searches.
+Recover an independently source-authored LP2 operation, usable key/state, original destination/body, or cross-page plaintext crib. A concrete but unverified historical lead is the 2019 gHOST3301 interview: the interviewee claimed to have seen roughly 37 pages of rune PDFs before encryption and offered to search an old laptop for 2011–12 IRC logs. A bounded check of the public Cicada archive repositories found only 2013/2014 IRC logs, the published 58 LP2 images and community remakes—not the claimed pre-encryption PDF or the promised old logs. No external contact was made; owner authorization is required before outreach. The archive check is recorded in \`communications/agent43/20261115T223406Z_agent41_ghost-pdf-public-archive-check.md\`. If authorized, request the exact file bytes (or at minimum filename, date, page count, source/custody) and the promised logs; do not resume broad PDF searches without a new locator.
+
+The 2014 14-position permutation is not a productive direct LP2 route by itself or when combined with the known p56 totient layer. Do not reopen either family with free phases, offsets, or extra layers absent a new LP2 instruction. Prioritize original source material that specifies the ciphertext-to-key operation over another unconstrained cipher fit.
