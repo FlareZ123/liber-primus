@@ -1,0 +1,47 @@
+# The 2013 CicadaOS authored byte coordinates against unchanged LP2
+
+**Decision, 15 November 2026, Agent 24:** Two exact source-directed original-manuscript tests are now executed. Neither the historical fixed-offset 2013 binary-key reading of original LP2 runes nor the historically used bitwise-XOR transfer to the printed 256-byte table recovered an unknown plaintext, recognizable file, original cryptographic key or continuation address. These are bounded negatives for the precisely declared operators; the 2013 authors did not direct either operation toward the 2014 LP2 artifact.
+
+## Why these four file addresses were selected before inspecting outputs
+
+The preserved [2013 original-ISO source](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/3301-contents/data) supplies two binary tapes. In the historically reconstructed [first-onion CLUE](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), solvers XORed the decoded clue with **`_560.00` at byte offset 0** and recovered the PGP-signed “forest ... trees” message. In the separately preserved [third-onion telephone challenges](https://github.com/neuroretransmit/cicada/blob/main/2013/006-third-onion/README.md), original messages explicitly specified **dataset 17 = `560.17`** at offsets **617, 33461 and 77977** as operands for bitwise XOR, producing distinct onion addresses. Their meaning belongs to the 2013 challenge; transferring them to LP2 is a hypothesis.
+
+Source byte integrity was checked on the runner against pinned source Git commit `ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`:
+
+| Historical input | Full length | Source Git blob | SHA-256 |
+| --- | ---: | --- | --- |
+| `_560.00` | 3,992,970 bytes | `81371f4440d850a059f91289179ca34afb8fcb3e` | `a24051a87f0eb25ca21accbd3158fdf7b4911243e5ee1b9778b81182f0d36573` |
+| `560.17` | 1,183,811 bytes | `49df8e57f8e6052eb2d5c2b483282461e53ef5ff` | `d5676b1e01fd371cb13415b59b2eca4336e96f7bb05e789198b8d6baab580c19` |
+
+The substantially larger `DATA/560.13` is **a different historical file**, previously exhaustively tested at its raw direct offsets under another model ([existing 560.13 test](lp2-2013-56013-dense-direct-offset-gate.md)). Its negative is not attributed to either new test.
+
+## Experiment A: exact original rune inputs with source-selected binary coordinates
+
+**Fixed before decoding:** at each of the four source addresses above, obtain the next 8,192 original bytes; project them into a 4,096-symbol GP29 running key by (i) `byte%29`, (ii) `floor(29*byte/256)`, or (iii) MSB-first 5-bit values with 29–31 discarded. Read unchanged physical LP2 p0 (**262 ciphertext runes**) and continuous p54–p55 (**308 runes**) as two independent starts. For both additive signs and optional GP29 Atbash, decode each target with the independently source-pinned [Campaign XVIII collision-key-skip decoder](https://github.com/Dukotah/cicada3301/tree/f63501d8f2d835b80c30230eb89a1110fb9197d2/liber-primus/analysis/campaign18_skip), bounded at `MAXSKIP=3` between output runes. Fixed screen is the first 90 original runes, beam width 400, and source decoder's threshold **−6.0** normalized quadgram score. A surviving screen would receive a full-passage beam and independent exact reencipherment.
+
+The source-specific screen covers **4 addresses × 3 reductions × 2 target intervals × 2 arithmetic signs × 2 Atbash modes = 96 configurations**. The decoder gate recovered a known 212-GP-rune planted English source under a real six-skip stream before running the original test. Four additional source-specific 240-rune Shakespeare plants recovered **240, 240, 240, 237** exact runes respectively; the fourth's 98.75% power limits the breadth of any negative inference. Every original screen output had a legal forward-reencipherment trace.
+
+**Original result:** **0/96 screens** cleared −6.0; **no full-passage candidate was promoted**. The highest screen score was **−6.7164428372302565** from `560.17` offset 617, five-bit rejection, p54–p55, subtractive sign, Atbash on, with nonprose prefix `IGOESANISMOEIANIARGEAEOOENIURNFIAIASGHFHR...`. The best-scoring text was itself selected from the experiment's alternatives, so it is evidence of the search ceiling and not a partial decryption.
+
+[Runnable source](../sims/lp2_2013_cicadaos_authored_offset_skip_sft.py) · [pinned manual workflow](../.github/workflows/agent24-2013-authored-offset-keyskip-manual.yml) · [successful original-input CI run and complete JSON report](https://github.com/FlareZ123/liber-primus/actions/runs/43711758403).
+
+## Experiment B: actual 2013 bitwise-XOR operator on the 2014 256-byte table
+
+The complete printed p49–51 table has **32 rows × eight cells** and its canonical base60, row-major working transcription is stored in [`lp2-grid-256.json`](../resources/liber-primus/lp2-grid-256.json), with SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The historic 2013 operation was **bytewise XOR**, so take exactly 256 original pad bytes starting at each of the same four author-selected addresses and compute `output[i] = table[i] XOR source[offset+i]`. The identical operation restores the entire unmodified table from every result. No phase, offset, mask, page rearrangement or post-selected key is fitted.
+
+| Original source at byte address | Output SHA-256 prefix | Byte entropy (bits/byte) | Printable ASCII bytes / 256 | Valid UTF-8? | Known file signature / zlib stream? |
+| --- | --- | ---: | ---: | --- | --- |
+| `_560.00:0` | `0b615a287588d30a` | 7.243797 | 109 | No | No |
+| `560.17:617` | `82cc6826ab957fc7` | 7.200905 | 94 | No | No |
+| `560.17:33461` | `a132b065161393b3` | 7.067702 | 105 | No | No |
+| `560.17:77977` | `590f61525b107c3a` | 7.175399 | 101 | No | No |
+
+None of the four extracted 256-byte results begins with the standard PDF, PNG, GIF, ZIP, gzip, bzip2, xz or ELF signatures, and none forms a zlib-compressed stream. Their first 32 bytes, complete hashes and exact source checksums are preserved in the CI JSON report. The *OpenPGP high bit* at one arbitrary first byte does **not** by itself recognize a valid OpenPGP packet. The historical XOR transfer produces no independently recognizable artifact here; it could in principle yield nonfile binary key material under some other authored framing.
+
+[Runnable source](../sims/lp2_2013_authored_offsets_p50_xor_sft.py) · [manual pinned workflow](../.github/workflows/agent24-2013-authored-xor-grid-manual.yml) · [successful original-input CI run and JSON report](https://github.com/FlareZ123/liber-primus/actions/runs/43711908644).
+
+## Cryptanalytic boundary and next decision
+
+The **historical source** establishes 2013 source file names, exact original binary operands, byte offsets and a *bytewise XOR* operation for its own earlier challenges. Experiment A separately hypothesizes a transfer from byte material into a GP29 additive, collision-skip cipher; that GP29 interpretation has no 2013 instruction. Experiment B preserves the earlier historical byte operation but the recipient LP2 table is unlicensed by that stage. The two studies therefore provide genuine original-input exclusions with no author-selected LP2 key.
+
+**Stop these four specific raw-offset copies.** Their demonstrated failures call for a missing historical selector for an LP2 recipient, binary transformation or key schedule. Do not broaden a failed transfer by fitting arbitrary million-byte phases or redeclaring random-looking outputs as plaintext. The manuscript's **56 unknown physical LP2 pages remain undeciphered** under these tests.
