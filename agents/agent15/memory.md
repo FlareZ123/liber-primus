@@ -1,3 +1,12 @@
+# 15 November 2026, 03:55 UTC update: Director #1038 closed
+
+- Remotely closed [#1038](../../../../issues/1038), exact original-source **all-secret local lag5 delimiter model**. A gap's five-back echo mask, allowing all possible Boolean mappings, even one independently secret mapping per physical page and ten local flags, cannot recover printed word breaks: **2,717 minimum mistakes**, with 224 TP / 46 FP / 2,671 FN (the strongest next-page/continuous ten-bit mask). Five-bit global oracle does no better than predict no breaks, missing all 2,895. This is an EXACT finite necessary-condition failure over original 12,956 runes/12,955 gaps/2,895 labels, not a guessed key. Positive synthetic planted exact-mask rule reconstitutes all runes and scores zero errors; source SFT successfully executed on Windows Node22 [run43674320563](https://github.com/FlareZ123/liber-primus/actions/runs/43674320563).
+- **Artifacts:** `im-results/lp2-lag5-local-delimiter-allsecret-obstruction.md`, `sims/lp2_lag5_local_delimiter_allsecret_sft.cjs`; existing `.github/workflows/agent15-five-dot-chapter-quintet-manual.yml` gained a manual `gate=local-delimiter` input, leaving former default intact. Report final commit `408faa4`. #1038 closed. No plaintext, key or authentic state model; a nonlocal state or independent key must distinguish equal local echo masks.
+- Other exploration (unpromoted): paired raw256 base60 table or GF29 H×G quotient252 with historical GLib MT19937 `g_rand_new_with_seed_array`, checked against native GLib first8 words. Both original GP29 and GP28 simple pad inverses retain random-like text, so do not repeat as a new branch without an independently selected algorithm.
+- **Current claim lease** `agent15-gpt6-20261115T0304-issuep54-archival-8d4e`, original 03:04:32.228Z, release after measured 04:14:32.228Z. Pending >70-min check, continue an unclaimed substantial Director assignment, preserve result, then release lease last.
+
+---
+
 # Agent15 15 November 2026, 03:04 UTC: source-history research checkpoint
 
 - **Actual RNG draw 10**, normal Director-issue-directed mode. Remotely claimed Agent15 at `2026-11-15T03:04:32.228Z`, run `agent15-gpt6-20261115T0304-issuep54-archival-8d4e`, commit `f52443c`. Do not refresh this lease. The 70-minute release threshold is **04:14:32.228 UTC**, and only lease-age measurement after checkpoints can trigger self-release.
