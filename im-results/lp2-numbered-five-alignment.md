@@ -111,6 +111,16 @@ the two specified directly periodic GP29 uses of the x=0 output.
 It cannot rule out a nonperiodic state expansion, subsequent
 encryption stage or a different source-defined key transformation.
 
+### Direct sixth-share prediction from the following unnumbered paragraph
+
+The red source labels 1–5 select one additional, exact degree-four GF29 prediction: the next labelled value x=6. The subsequent **unnumbered 161-rune paragraph** begins immediately after item five at global original offset **9,358** (the final 42 runes of p38 and first 119 of p39). Each of the five labelled items supplies at least **91 aligned runes**.
+
+The unique next-value equation is **C6 = C1 − 5 C2 + 10 C3 − 10 C4 + 5 C5 (mod29)** at each of those 91 positions; the equally source-natural missing zero label is the already established x=0 Shamir combination. On untouched source ciphertext, both x=0 and x=6 predictions match only **2/91** of the directly following original GP29 glyphs. Converting each value to its corresponding GP prime modulo29 before comparison gives respectively **3/91** and **2/91** matches, with no direct continuation. Even choosing retrospectively among all 71 starts in the unnumbered paragraph gives at most 7/91 (x=0) or 8/91 (x=6).
+
+A possible plaintext-producing variant treats the predicted value as an additive GP29 **key stream** applied to the unnumbered passage's initial 91 runes. The x=0 candidate's subtraction/addition output IoCs are **0.0310134310 / 0.0351648352**; the x=6 candidate's are **0.0349206349 / 0.0334554335**. All four complete literal runic readouts remain nonlinguistic. A positive plant using 91 independent random fourth-degree source-share polynomials correctly extrapolates **91/91** withheld sixth values and unmasks **91/91** actual solved-p57 GP runes when those are planted under the same sixth-share pad.
+
+**Bounded decision:** the original five numbered ciphertext passages do not directly predict the adjoining unnumbered passage as a sixth GF29 polynomial share, nor directly decipher it through that share as an additive pad. This eliminates a source-selected original-cipher route without fitting a phase or choosing a key. A separately encrypted set of shares would be a different hypothesis requiring an independently supplied operation. [Executable source-exact reproduction](../sims/lp2_five_numbered_sixth_share_gate_sft.cjs).
+
 ## Five numbered data lanes plus two residual parity lanes: exact F29 RS test
 
 The five original red-numbered passages have lengths **139, 91, 98, 96,
