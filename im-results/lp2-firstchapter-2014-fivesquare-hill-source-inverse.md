@@ -28,7 +28,7 @@ Every case is exactly invertible: multiplying each decoded block by its correspo
 | Best partial 725-only candidate IoC | **0.03521813678795961** |
 | Independently clear p57 source IoC, 95 runes | **0.06270996640537514** |
 
-Every full output is still essentially uniform over GP29, without contiguous legible original-language text. The best partial output also fails to show source-native structure and does not cover the full ciphertext. Exact roundtrip validates only the matrices, since any invertible wrong matrix also reenrypts its own output.
+Every full output is still essentially uniform over GP29, without contiguous legible original-language text. The best partial output also fails to show source-native structure and does not cover the full ciphertext. Exact roundtrip validates only the matrices, since any invertible wrong matrix also reencrypts its own output.
 
 The first-page source data and square values were read directly from the repository's original-derived corpus and 2014 square text; the result was also calculated independently in the connected JavaScript runtime. The standalone CJS SFT reads those same files and asserts all source lengths, matrix inverses, original forward replay and p57 native control.
 
