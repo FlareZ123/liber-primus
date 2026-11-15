@@ -18,10 +18,10 @@ One deliberately small candidate operation takes those three fixed GP29 reductio
 
 | Cell addresses | GP29 key | Cipher sign | p54 body IoC | p55 heldout IoC | Authentic F-skip first impossible target offset |
 | --- | --- | --- | ---: | ---: | ---: |
-| 0-based | 15,16,0 | `C=P−K` | 0.034582 | 0.030526 | **130** |
-| 0-based | 15,16,0 | `C=P+K` | 0.034420 | 0.032632 | **15** |
-| 1-based | 2,18,28 | `C=P−K` | 0.034743 | 0.035088 | **0** |
-| 1-based | 2,18,28 | `C=P+K` | 0.032723 | 0.035088 | **12** |
+| 0-based | 15,16,0 | `C=P−K` | 0.034420 | 0.032632 | **130** |
+| 0-based | 15,16,0 | `C=P+K` | 0.034582 | 0.030526 | **15** |
+| 1-based | 2,18,28 | `C=P−K` | 0.032723 | 0.035088 | **0** |
+| 1-based | 2,18,28 | `C=P+K` | 0.034743 | 0.035088 | **12** |
 
 No decoded passage resembles native-GP prose; the independently readable p57 original has IoC **0.062710**. More decisively, imposing the historically authenticated p56 **plaintext-F output bypass** (plaintext F emits ciphertext F and does not consume the key) makes **all four** original paths logically impossible well before the first 223 black runes finish. The exact F-skip decoder tracks **every possible** hidden F bypass history without fitting their positions. As a control, all four source-native p57 plaintext plants encrypted under these same four keys/signs survive the exact decoder through their original 95-rune lengths. Thus the failure is a true original-cipher incompatibility for the specified three-value key clock, and a language-statistic rejection for the non-skipping direct masks.
 
