@@ -101,7 +101,88 @@ assert.notEqual(evaluate(reducedTable, 24), 0);
 
 const invLeading = inverse29(quintic[0]);
 const monicQuintic = quintic.map((x) => mod29(x * invLeading));
+
 assert.deepEqual(monicQuintic, [1, 6, 17, 28, 17, 21]);
+
+// The quotient is a primitive degree-five polynomial over GF(29).
+// Its root generates every nonzero element of GF(29^5).
+const quotientAscending = monicQuintic.slice().reverse();
+/** @param {number[]} left @param {number[]} right */
+function fieldMultiply(left, right) {
+  const product = Array(9).fill(0);
+  for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
+      product[i + j] = mod29(product[i + j] + left[i] * right[j]);
+    }
+  }
+  for (let i = 8; i >= 5; i--) {
+    for (let j = 0; j < 5; j++) {
+      product[i - 5 + j] = mod29(
+        product[i - 5 + j] - product[i] * quotientAscending[j]);
+    }
+  }
+  return product.slice(0, 5);
+}
+/** @param {number[]} base @param {number} exponent */
+function fieldPower(base, exponent) {
+  let result = [1, 0, 0, 0, 0];
+  let current = base.slice();
+  while (exponent > 0) {
+    if (exponent % 2 === 1) result = fieldMultiply(result, current);
+    current = fieldMultiply(current, current);
+    exponent = Math.floor(exponent / 2);
+  }
+  return result;
+}
+/** @param {number[]} values */
+function stripZeros(values) {
+  const result = values.slice();
+  while (result.length > 0 && result.at(-1) === 0) result.pop();
+  return result;
+}
+/** @param {number[]} a @param {number[]} b */
+function remainder(a, b) {
+  let result = stripZeros(a);
+  const divisor = stripZeros(b);
+  assert(divisor.length > 0);
+  while (result.length >= divisor.length) {
+    const factor = mod29(result.at(-1) * inverse29(divisor.at(-1)));
+    const offset = result.length - divisor.length;
+    for (let i = 0; i < divisor.length; i++) {
+      result[offset + i] = mod29(result[offset + i] - factor * divisor[i]);
+    }
+    result = stripZeros(result);
+  }
+  return result;
+}
+/** @param {number[]} a @param {number[]} b */
+function polynomialGcd(a, b) {
+  let left = stripZeros(a);
+  let right = stripZeros(b);
+  while (right.length > 0) {
+    const next = remainder(left, right);
+    left = right;
+    right = next;
+  }
+  return left.map((v) => mod29(v * inverse29(left.at(-1))));
+}
+const fieldX = [0, 1, 0, 0, 0];
+const x29 = fieldPower(fieldX, 29);
+const x29minusX = x29.map((v, i) => mod29(v - fieldX[i]));
+const groupOrder = 29 ** 5 - 1;
+assert.equal(groupOrder, 20511148);
+assert.deepEqual(fieldPower(fieldX, 29 ** 5), fieldX);
+assert.deepEqual(polynomialGcd(quotientAscending, x29minusX), [1]);
+assert.deepEqual(fieldPower(fieldX, groupOrder), [1, 0, 0, 0, 0]);
+const properPowers = [
+  [2, [28, 0, 0, 0, 0]],
+  [7, [7, 0, 0, 0, 0]],
+  [732541, [16, 1, 28, 14, 28]],
+];
+for (const [primeFactor, witness] of properPowers) {
+  assert.deepEqual(fieldPower(fieldX, groupOrder / primeFactor), witness);
+  assert.notEqual(witness.join(','), '1,0,0,0,0');
+}
 
 const body = [...page54.slice(9), ...page55];
 assert.equal(body.length, 299);
