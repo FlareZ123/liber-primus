@@ -16,19 +16,19 @@ The `prime_echo` script lists **464 primes**, from 2 through 3301 inclusive: `pi
 
 ## Frozen inverse family
 
-Use the canonical 2,896 printed ciphertext words and 12,956 unsolved GP29 runes. For word (W_i), compute the preceding original ciphertext word's state
+Use the canonical 2,896 printed ciphertext words and 12,956 unsolved GP29 runes. For word index i, compute the preceding original ciphertext word's state:
 
-[
-S_i = \sum_{r\in W_{i-1}} \operatorname{GPprime}(r).
-]
+```
+S_i = sum(GPprime(r) for r in W_(i-1))
+pointer_i = (S_i - delta) mod 464
+```
 
-Start the key pointer at ((S_i-\delta)\bmod 464), with only the two natural address conventions (delta\in\{0,1\}). For each rune of (W_i), consume the next prime (q_j) from the 464-element `prime_echo` list and test the two source-relevant key maps:
+Use only the two natural address conventions `delta = 0` or `delta = 1`. For each rune of `W_i`, consume the next prime `q_j` from the 464-element `prime_echo` list and test the two source-relevant key maps:
 
-- (K_j=q_j\bmod 29);
-- (K_j=(q_j-1)\bmod 29=\varphi(q_j)\bmod29), the p56 prime-minus-one map.
+- `K_j = q_j mod 29`;
+- `K_j = (q_j - 1) mod 29 = phi(q_j) mod 29`, the p56 prime-minus-one map.
 
 Test both additive directions and, independently, p56-inspired transparent consumption of a key symbol when the *decoded plaintext* rune is F/index 0. The pointer resets to the word-state address at each word. The first word is left unchanged because no preceding word exists. This is **16 frozen models**, not an open offset/phase search. Every candidate is re-encrypted against the original ciphertext for an exact round-trip assertion.
-
 ## Result
 
 **Test completed.**
