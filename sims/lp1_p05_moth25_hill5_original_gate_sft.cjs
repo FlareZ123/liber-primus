@@ -188,6 +188,34 @@ assert(Math.abs(arrowCarry125[0].fullIoC-0.03496774193548387)<1e-13);
 assert(Math.abs(arrowCarry125[1].fullIoC-0.034451612903225806)<1e-13);
 assert(Math.abs(arrowCarry125[4].fullIoC-0.036)<1e-13);
 
+
+/**
+ * Arrow-up variant: the selected two-plus-three rows make a 5x25 grid.
+ * Transform each upward-read five-rune column, unlike blockwise Hill5.
+ */
+function verticalUpHill(source, matrix) {
+  assert.equal(source.length,125);
+  const result=Array(125);
+  for(let col=0; col<25; col++) {
+    const up=Array.from({length:5},(_,r)=>source[(4-r)*25+col]);
+    for(let row=0;row<5;row++)
+      result[(4-row)*25+col]=mod(
+        matrix[row].reduce((sum,k,j)=>sum+k*up[j],0));
+  }
+  return result;
+}
+const verticalArrowHill=[];
+for(const [operator,matrix] of keys){
+  const reverse=inverseKey.get(operator);
+  const output=verticalUpHill(newMoth125,matrix);
+  assert.deepEqual(verticalUpHill(output,reverse),newMoth125);
+  assert.deepEqual(verticalUpHill(verticalUpHill(planted125,reverse),matrix),planted125);
+  verticalArrowHill.push({operator,fullIoC:indexOfCoincidence(output),
+    red50:output.slice(0,50).map(i=>corpus.translit[i]).join(""),
+    p55new75:output.slice(50).map(i=>corpus.translit[i]).join("")});
+}
+assert(Math.abs(verticalArrowHill[0].fullIoC-0.03367741935483871)<1e-13);
+
 const keyCase=cases.find(x=>x.target==="p53_red51_F38"&&x.operator==="K");
 const inverseCase=cases.find(x=>x.target==="p55_all76_F25"&&x.operator==="K^-1");
 assert(Math.abs(keyCase.ioc-0.037551020408163265)<1e-13);
@@ -202,5 +230,6 @@ console.log(JSON.stringify({
   differentialOriginalCases:differentialCases.length,
   differentialCases,
   arrowCarry125,
+  verticalArrowHill,
   conclusion:"Neither historic third-square Hill5 orientation nor any of three source F skip positions yields recognizable source-native plaintext."
 },null,2));
