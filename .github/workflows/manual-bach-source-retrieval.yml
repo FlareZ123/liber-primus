@@ -136,6 +136,68 @@ jobs:
               print(f"{start:5.2f}s", " ".join(vals))
           PY
 
+      - name: Retrieve exact 2014 musical-mapping Pastebin archive snapshots
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import tempfile
+          from pathlib import Path
+          from urllib.error import HTTPError, URLError
+          from urllib.parse import quote
+          from urllib.request import Request, urlopen
+
+          folder = Path("bach-period-pastebins")
+          folder.mkdir(exist_ok=True)
+          records = []
+          for paste_id in ("3T089HUW", "17h9MhyK"):
+              original = "http://pastebin.com/" + paste_id
+              urls = [
+                  ("cdx", "https://web.archive.org/cdx/search/cdx?url=" + quote(original, safe="") + "&output=json&filter=statuscode%3A200"),
+                  ("wayback-2014", "https://web.archive.org/web/20141231000000id_/" + original),
+                  ("wayback-2015", "https://web.archive.org/web/20151231000000id_/" + original),
+                  ("wayback-2014-raw", "https://web.archive.org/web/20141231000000id_/http://pastebin.com/raw/" + paste_id),
+                  ("wayback-2015-raw", "https://web.archive.org/web/20151231000000id_/http://pastebin.com/raw/" + paste_id),
+                  ("archiveph", "https://archive.ph/" + original),
+                  ("live", "https://pastebin.com/raw/" + paste_id),
+              ]
+              for label, url in urls:
+                  record = {"paste_id": paste_id, "variant": label, "url": url}
+                  try:
+                      req = Request(url, headers={"User-Agent": "Mozilla/5.0 (historical 2014 source acquisition)"})
+                      with urlopen(req, timeout=25) as response:
+                          data = response.read(500_001)
+                          record.update({"http": response.status, "final_url": response.url, "content_type": response.headers.get("Content-Type"), "memento_datetime": response.headers.get("Memento-Datetime"), "size": len(data), "sha256": hashlib.sha256(data).hexdigest(), "prefix": data[:220].decode("utf-8", errors="replace")})
+                      if label != "cdx" and record["size"] < 500_001:
+                          dst = folder / (paste_id + "-" + label + ".txt")
+                          with tempfile.NamedTemporaryFile(dir=folder, delete=False) as temp:
+                              temp.write(data)
+                              staged = temp.name
+                          os.replace(staged, dst)
+                          record["saved"] = str(dst)
+                      if label == "cdx":
+                          record["cdx_json"] = record["prefix"][:200]
+                  except (OSError, HTTPError, URLError, ValueError) as err:
+                      record["error"] = str(err)[:260]
+                  print(json.dumps(record, sort_keys=True), flush=True)
+                  records.append(record)
+          with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=folder, delete=False) as temp:
+              json.dump(records, temp, indent=2)
+              staged = temp.name
+          os.replace(staged, folder / "retrieval-manifest.json")
+          PY
+
+      - name: Preserve exact 2014 musical mapping Pastebin probe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bach-historical-pastebin-mappings
+          path: bach-period-pastebins/
+          if-no-files-found: warn
+          retention-days: 90
+
       - name: Retrieve exact 2014 Wikia score screenshot
         shell: bash
         run: |
