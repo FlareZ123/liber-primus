@@ -497,14 +497,22 @@ def main():
     parser.add_argument("--carrier", required=True, action="append",
                         help="Repeat once per carrier in exact chain order")
     parser.add_argument("--password", required=True)
+    parser.add_argument("--password-b", default=None, help="Optional source-published password B")
+    parser.add_argument("--password-c", default=None, help="Optional source-published password C")
     parser.add_argument("--bit-format", required=True)
     parser.add_argument("--bit-level", required=True)
+    parser.add_argument("--extra-bit-selection", nargs=2, action="append",
+                        metavar=("FORMAT", "LEVEL"), default=[],
+                        help="Additional source-specified format and level for mixed carrier chains")
     parser.add_argument("--out", required=True, help="Directory for evidence and extracted output")
     parser.add_argument("--output-name", default="openpuff-extracted.bin")
     parser.add_argument("--wait-seconds", type=int, default=30)
     parser.add_argument("--expected-crc32", default=None)
     parser.add_argument("--expected-size", type=int, default=None)
     args = parser.parse_args()
+    if (args.password_b is None) != (args.password_c is None):
+        parser.error("The native optional password controls require B and C together")
+    extra_levels = [tuple(pair) for pair in args.extra_bit_selection]
 
     exe = Path(args.exe).resolve()
     carriers = [Path(value).resolve() for value in args.carrier]
@@ -534,10 +542,13 @@ def main():
         "carrier_facts": file_facts(carrier),
         "carrier_chain": [file_facts(item) for item in carriers],
         "password_A": args.password,
-        "password_B_enabled": False,
-        "password_C_enabled": False,
+        "password_B_enabled": args.password_b is not None,
+        "password_C_enabled": args.password_c is not None,
+        "password_B": args.password_b,
+        "password_C": args.password_c,
         "bit_format": args.bit_format,
         "bit_level": args.bit_level,
+        "extra_bit_selection": extra_levels,
         "expected_crc32": args.expected_crc32,
         "expected_size": args.expected_size,
     })
@@ -553,6 +564,7 @@ def main():
         "carrier_added": False,
         "password_A": args.password,
         "password_BC_states": None,
+        "additional_bit_selections": extra_levels,
         "bit_format": args.bit_format,
         "bit_level": args.bit_level,
         "bit_selection_verified": False,
@@ -585,7 +597,20 @@ def main():
         snapshot(app, out_dir, "unhide-before-settings")
 
         window.child_window(control_id=1039, class_name="Edit").set_edit_text(args.password)
-        result["password_BC_states"] = disable_optional_passwords(window)
+        if args.password_b is None:
+            result["password_BC_states"] = disable_optional_passwords(window)
+        else:
+            # Both optional passwords are source-fixed for this multicarrier
+            # control. Keep native checkboxes enabled and address HWNDs exactly.
+            for control_id, value in ((1040, args.password_b), (1041, args.password_c)):
+                window.child_window(control_id=control_id, class_name="Edit").set_edit_text(value)
+            result["password_BC_states"] = {
+                str(control_id): int(window.child_window(
+                    control_id=control_id, class_name="Button").get_check_state())
+                for control_id in (1042, 1043)
+            }
+            if result["password_BC_states"] != {"1042": 1, "1043": 1}:
+                raise RuntimeError("Published three-password control was not enabled in native GUI")
         password_status = window.child_window(
             control_id=1044, class_name="Static"
         ).window_text()
@@ -612,6 +637,8 @@ def main():
 
         try:
             result["bit_tree"] = select_bit_level(window, args.bit_format, args.bit_level)
+            for format_name, level_name in extra_levels:
+                result["bit_tree"] = select_bit_level(window, format_name, level_name)
         except Exception:
             tree = window.child_window(control_id=1049, class_name="SysTreeView32")
             write_json_atomic(out_dir / "bit-selection-failure-state.json", tree_state(tree))
