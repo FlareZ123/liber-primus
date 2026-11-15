@@ -1,6 +1,6 @@
-# Signed 2016 number-to-p32-rune fixed points: 3301 and the short OpenPGP key ID
+# Signed 2016 short PGP ID selects THE before DIRECTION and original p32 GP23
 
-**Agent 7, 15 November 2026. Original-source arithmetic with a checked native-JPEG reproducer. No decrypted unknown LP2 plaintext, authentic key, executable decoder or destination.** [Standalone SFT](../sims/lp2_signed2016_p32_fixedpoints_sft.cjs) · [successful original Windows/Node22 Actions run 43774340360](https://github.com/FlareZ123/liber-primus/actions/runs/43774340360).
+**Agent 7, 15 November 2026. Native signed-image and p32 direct-source selector: the printed short OpenPGP ID selects a visible instance of THE immediately before DIRECTION and independently selects GP23 in the hypothesized p32 tile map. This suggests a historically readable path to the already known FOLD→SB→END word-map orbit. No unknown LP2 plaintext, authenticated cipher opcode or destination.** [Standalone SFT](../sims/lp2_signed2016_p32_fixedpoints_sft.cjs) · [successful expanded original-image Windows/Node22 Actions run 43776068036](https://github.com/FlareZ123/liber-primus/actions/runs/43776068036).
 
 ## Original clue and finite operation
 
@@ -20,6 +20,28 @@ The two reader-visible signed numbers both satisfy the proposed self-indexing eq
 
 The GP primes of the selected A and D are 97 and89, respectively, though the tested match is specifically **GP indices**, not prime weights. The two selected tiles lie among the 100 interior cells, outside the 21 row/column calibration symbols.
 
+## New independent source-visible pixel: the printed word THE before DIRECTION
+
+The coordinate from the **short, visibly printed verification key ID** does more than pick the conditional page32 symbol D. It directly lands on an extraordinarily bright original pixel **of the signed image's own visible text**: at signed image coordinate (400,171) the original RGB is **(253,253,253)**, while the whole 563×569 signed JPEG has mean brightness **8.26**. That pixel is at approximately the **99.095th percentile** of the image's actual pixel-brightness distribution. The other printed signed number, **3301**, maps to (486,456), original RGB **(1,1,1)** on the ordinary dark background, so it does **not** form a second bright word pointer. An identical image-pixel interpretation of the technically natural *full* OpenPGP issuer ID selects another dark/off-text location, and does not satisfy the p32 GP-index fixed point.
+
+The original signed image visibly prints, on its fourth prose line:
+
+> meaning is the road, and their numbers are the direction.
+
+A native decoded-JPEG projection over its original line y=160–183, threshold RGB mean≥150, segments that printed line into **ten foreground word bands**. In source word order their x spans are **37–102, 111–120, 129–151, 160–202, 212–240, 249–282, 291–356, 365–390, 399–421, 430–503**. Their direct printed reading is *meaning | is | the | road | and | their | numbers | are | the | direction*. The short-key pixel x=400,y=171 falls precisely into the **ninth word, THE, x=399–421**, immediately adjacent to the final **DIRECTION, x=430–503**. Both the word read and pixel's brightness are source-observable; this does not require finding a ciphertext key or choosing a plaintext phrase. The raw line masks, 10-group assertion and **word-band index8** are now pinned in [the original JPEG reproducer](../sims/lp2_signed2016_p32_fixedpoints_sft.cjs).
+
+The chosen source word THE has **126 actual bright pixels** in that word's native 23×24-pixel measured rectangle. This is **126 / (563×569) = 0.00039332349**, as a *descriptive* raw whole-image pixel fraction. Its inverse should not be called the chance of discovery: the exact interpretation of a 32-bit key suffix as a two-axis pixel, the chosen line/window, thresholds, page32 reshaping and the targets found by earlier research all have substantial multiple-testing history. The result nevertheless supplies a **new independently visible source-word selector**, rather than merely another equation matching unrelated numbers.
+
+Crucially, the **same already-frozen provisional GP-prime-sum/base58 original book-word graph** had previously found the following original-source navigation from that exact word, without any new tuning of page or word origin:
+
+| Selected signed-source word or source original rune word | GP prime sum | Original target |
+| --- | ---: | --- |
+| **THE**, now independently singled out by the printed key-ID pixel | 72 | Physical LP2 **p14 word1, FOLD** |
+| Original p14 **FOLD** | 171 | Physical LP2 **p55 word2, SB** (last unsolved page) |
+| Original p55 **SB** | 114 | Physical LP2 **p56 word1**, ciphertext OSR, known prime-totient plaintext **END** |
+
+This *three-hop FOLD→SB→END orbit is prior art* from [the 2016 base58 word-map study](lp2-2016-signed-message-base58-word-map.md#word-by-word-addresses). What this run adds is the **literal image-pixel input selector that picks this particular THE** directly in the printed clue, immediately before its word DIRECTION. The destination END is independently authentic p56 plaintext, but no intermediate FOLD or SB plaintext has been recovered. The base58 address opcode, the 11×11 prime map and numeric-to-pixel interpretation are still conjectural; a simultaneous fit to several original artifacts is evidence for further investigation, not proof of intent.
+
 ## Controls and calibrated limitations
 
 The same fixed operation fails on independent alternative source numbers. The **full signer OpenPGP issuer ID**, 0x181F01E57A35090F, lands at p32 tile (7,2), where the original rune is **H/GP8** while the integer modulo29 is **23**. The signed-2016 creation-time packet integer 0x5685C1C3 lands at original **J/GP11**, expected mod29 **12**. Reading the 2016 signature clock as 107 lands at original **M/GP19**, expected **20**. These negative control outcomes are checked in the reproducible SFT; they were not used to adjust the successful short-ID rule.
@@ -36,6 +58,6 @@ As one fixed direct-consumer probe, the straight line from the short-ID pixel (4
 
 ## Research decision
 
-The result is a **new, exactly reproducible two-number original-source selector** and a conditional dual fixed point. It has not supplied a decipherment operation, authentic key or plaintext. Before transferring it to any unsolved ciphertext, one needs an independently grounded instruction establishing the short key-ID representation, an operation that consumes the two selected GP runes, and a predictable held-out plaintext consequence. Do not extend with arbitrary orientations, salts, extra number candidates or language-optimized paths without that missing instruction. The authoritative overall decryption status is unchanged.
+The strongest new result is a **new exact source-image pixel pointer to the printed THE before DIRECTION**; its preexisting provisional book-word sequence leads to authentic solved END through still-opaque FOLD/SB. The same short PGP ID and 3301 also yield two p32 mod29 fixed points. None supplies an authenticated decipherment operation, unknown plaintext or authentic key. Before transferring it to any unsolved ciphertext, one needs an independently grounded instruction establishing the short key-ID representation, an operation that consumes the two selected GP runes, and a predictable held-out plaintext consequence. Do not extend with arbitrary orientations, salts, extra number candidates or language-optimized paths without that missing instruction. The authoritative overall decryption status is unchanged.
 
-**Reproduce:** run Node22 on [the CommonJS SFT](../sims/lp2_signed2016_p32_fixedpoints_sft.cjs); it reads the exact three checked-in original files, parses the source JPEG's SOF dimensions, reconstructs both GP-prime axes, tests all five frozen integers, checks interior symbol counts and verifies two deliberately altered shadow-cell negatives. Its [manual-only workflow](../.github/workflows/agent7-signed2016-p32-fixedpoints-manual.yml) completed successfully on the original repository assets.
+**Reproduce:** run Node22 on [the CommonJS SFT](../sims/lp2_signed2016_p32_fixedpoints_sft.cjs); it reads the exact three checked-in original files, decodes the source JPEG pixels, isolates the actual visible THE word band, parses the JPEG's SOF dimensions, reconstructs both GP-prime axes, tests all five frozen integers, checks interior symbol counts and verifies two deliberately altered shadow-cell negatives. Its [manual-only workflow](../.github/workflows/agent7-signed2016-p32-fixedpoints-manual.yml) completed successfully on the original repository assets.
