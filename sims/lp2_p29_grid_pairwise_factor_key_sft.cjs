@@ -204,6 +204,43 @@ const expectedChapterIoC = [
 for (let i = 0; i < chapterKeyTests.length; i++)
   assert.ok(Math.abs(chapterKeyTests[i].ioc29 - expectedChapterIoC[i]) < 1e-14);
 
+
+// Stronger than the natural row order: any of the 9! row assignments and
+// either sign for each chapter must choose one of these 9*2*2 direct inverses.
+// Their per-chapter maximum IoC is a key-independent necessary upper bound
+// for the entire family, without searching actual row permutations.
+const independentRowBounds = chapters.map(source => {
+  const candidates = [];
+  for (let j = 0; j < rowKeys.length; j++)
+    for (const sign of [-1, 1])
+      for (const transparentF of [false, true]) {
+        let cursor = 0;
+        const output = source.map(x => {
+          if (transparentF && x === 0) return 0;
+          return mod(x + sign * rowKeys[j][cursor++ % 28]);
+        });
+        candidates.push({row: j + 1, sign, transparentF,
+          ioc29: ioc(output)});
+      }
+  const best = candidates.reduce((a, b) => a.ioc29 >= b.ioc29 ? a : b);
+  const bestOrdinary = candidates.filter(x => !x.transparentF)
+    .reduce((a, b) => a.ioc29 >= b.ioc29 ? a : b);
+  return {runes: source.length, maxIOC29: best.ioc29,
+    bestRow: best.row, bestSign: best.sign,
+    maxOrdinaryIOC29: bestOrdinary.ioc29};
+});
+const expectedBounds = [
+  .039271770753252236, .03554676764283751,
+  .036709696249169935, .036655830933834614,
+  .03633500412897774, .036423957240932996,
+  .035598003346663264, .03652979041810244,
+  .035767164431659546
+];
+for (let i = 0; i < independentRowBounds.length; i++)
+  assert.ok(Math.abs(independentRowBounds[i].maxIOC29 - expectedBounds[i]) <
+    1e-14);
+assert.ok(independentRowBounds.every(x => x.maxIOC29 < .04));
+
 const expected = [
   .03317668295415642, .03650680028632784,
   .03597771622420715, .03345678628116149,
@@ -218,6 +255,6 @@ console.log(JSON.stringify({
   pairwise: {objects: all.length, unorderedPairs: 1540, degreeCounts, higher},
   exactSource: {p39LowFirst: [27, 5, 15], signed2013HighFirst: H,
     commonMonic: [1, 10, 25], quotientRunes: [275, 254, 252]},
-  candidateInverses: inverses, chapterKeyTests, rowDistinct: rowKeys.map(r => new Set(r).size), positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
+  candidateInverses: inverses, chapterKeyTests, rowDistinct: rowKeys.map(r => new Set(r).size), independentRowBounds, positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
   plaintextStatus: "No previously unknown original GP29 plaintext"
 }, null, 2));
