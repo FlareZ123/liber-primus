@@ -43,6 +43,14 @@ An exact deterministic **100,000-shuffle** control holds all original nine-chapt
 
 The observed conjunction is relatively uncommon in **this conditional shuffle model**, but the nine×29 mapping, chart-sum update and short-path stopping condition were recognized after viewing the data. The 78/100,000 fraction is therefore **not a discovery-wide p-value or proof of deliberate construction**. Unconditioned random source words, alternative original book segmentation, word ordinal conventions, or independent ciphertext not selected by the model may change the comparison. The conditional null also does not justify treating the p50 polynomial factorization, byte-pointer 11-cycle, or other same-table patterns as independent events.
 
+## First non-fitted inverse of the source-selected terminal word
+
+The only source word selected by the unique fixed point is **Y.S.H.U.L**, with original GP index key **[26,15,8,1,20]** and original prime weights **[103,53,23,3,73]**. As a minimal conditional cipher hypothesis, use those five fixed indices as a repeating additive GP29 Vigenère key, restarted at original physical p55 rune0, with no fitted phase. This is a bounded test rather than an inference that the original author instructed Vigenère.
+
+On all **76 original p55 ciphertext runes**, simple `P=C−key` gives IoC **0.0301754386** and the opposite sign `P=C+key` gives **0.0375438596**; neither recovers recognizable native-GP text. Under the separately authenticated **p56 literal-F key-bypass rule**, allowing every possible F bypass rather than assuming a fixed clock, the subtraction form leaves exactly **one** legal 76-symbol inverse (bypasses original p55 positions **15,25**, IoC **0.0361403509**) with no coherent text. The addition form is mathematically impossible after original p55 index **33**, because every key clock would force a disallowed plaintext F. This is a negative for **this exact source-selected five-rune repeating additive consumer**, not for the broader proposed navigation graph or an independently specified different cipher.
+
+The exact 29-rune arithmetic and finite skip-clock enumeration are included in the same source-input SFT; no plaintext is claimed from a synthetic plant or from cipher resemblance.
+
 ## Decision relevant to actual solving
 
 This reveals a **specific potential numerical navigation route** that a human could execute using the original 256-byte table, all nine original chapters, the published rune-prime alphabet, and a historical author-chosen seed. The exact terminal source rune word `ᚣᛋᚻᚢᛚ` remains **ciphertext**, with no translated meaning or decipherment operation. No original LP2 unknown plaintext, authenticated key, off-book address, or final destination is recovered.
