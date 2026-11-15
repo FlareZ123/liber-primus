@@ -132,15 +132,11 @@ assert.ok(original.every(r=>!r.consistent));
  * rune values inside, and the first 76 known p57 runes on the rim.
  */
 const tapped=[0,2,7,20,31],length=32;
-let randomState=0x33012014;
-function randomBit(){
-  randomState^=randomState<<13;
-  randomState^=randomState>>>17;
-  randomState^=randomState<<5;
-  return randomState&1;
-}
+// A known maximal-linear-complexity plant starts with a unit impulse.
+// A random seed can accidentally live in a proper invariant subspace,
+// making an otherwise 32-stage generator identifiable only to order 31.
 const allBits=Array.from({length:2048},()=>0);
-for(let i=0;i<length;i++)allBits[i]=randomBit();
+allBits[0]=1;
 for(let i=0;i+length<2048;i++)
   allBits[i+length]=tapped.reduce((v,j)=>v^allBits[i+j],0);
 const plain=Array(256).fill(-1);
