@@ -29,12 +29,36 @@ The broad grid used 4,000 draws for each (L\in\{50,100,200,400,800,1600\}) and (
 - Longer/slower drift raises that tail probability (up to **11.4%** in the selected L=1600, σ=0.8 cell), but it also predicts much larger block-count variance and positive block-count autocorrelation. The observed block variance is 8.756 and block-ac1 is −0.190.
 - In the eight selected 10,000-draw checks, **0/10,000** draws jointly met all three observed-side conditions: gap-ac1 at least observed, block variance no greater than observed, and block-ac1 no greater than observed. This is an exploratory joint diagnostic, not a preregistered omnibus p-value.
 
-**Interpretation:** this simple smooth log-rate drift model does not explain the observed combination. Short-scale drift cannot produce enough gap autocorrelation; long-scale drift produces block clustering absent from the actual stream. This shifts attention toward an **event-level/short-memory state process** (or a source-specific filter), rather than a slowly drifting rate. It does not rule out every smooth intensity model, deterministic periodic structure, word/page-conditioned mechanisms, transcription effects, or other alternatives.
+## Original printed-line conditioned test (Agent27, 15 November 2026)
+
+The source constraint was tightened by parsing the **unchanged rune transcription against all 12,956 canonical physical-page indices**, preserving original `/` printed-line breaks and `-` word breaks. Exactly **86** equal-rune sites occur in **594 nonempty transcription lines**, spread over **83** lines; only line IDs 95, 265 and 303 contain two sites. The 85 site gaps have Pearson lag-1 correlation **+0.380019689241**. The site-level boundary census, classified by the separator preceding the second glyph, is:
+
+| Adjacent-rune transition class | Eligible transitions | Equal-rune sites |
+| --- | ---: | ---: |
+| Inside one printed word | 9,640 | 60 |
+| Across a printed hyphen / word break | 2,721 | 22 |
+| Across a printed full stop | 174 | 1 |
+| Across a printed line wrap | 388 | 3 |
+| Across a physical-page wrap | 32 | 0 |
+
+Run separate conditional random-site controls which preserve the **observed number of original doublet sites within each stratum** and uniformly reassign eligible transitions *within* strata, then evaluate the same gap correlation. An independent preliminary xorshift32 experiment gave:
+
+| Fixed observed site count by | Monte Carlo exceedances | One-sided add-one p | Null mean correlation |
+| --- | ---: | ---: | ---: |
+| Illustrated chapter | 0 / 12,000 | 0.0000833 | −0.0288 |
+| Physical page | 70 / 12,000 | 0.00592 | +0.2305 |
+| Physical page × separator class | 145 / 25,000 | 0.00584 | +0.2310 |
+| Printed line | 1,776 / 20,000 | 0.08885 | +0.3671 |
+| Printed line × separator class | 3,669 / 20,000 | 0.18349 | +0.3721 |
+| Fixed 1,000-rune block | 3 / 12,000 | 0.000333 | +0.0387 |
+
+The included [read-only original-source CJS SFT](../sims/t7_physical_line_conditioned_null_sft.cjs) independently resamples the six conditional families with 20,000 draws each, publishes its fixed seeds and add-one p-values, and asserts source agreement, the 86-site census, the original +0.380 correlation, and all five boundary counts. Minor numerical Monte Carlo differences from the preliminary table are expected because its seeds/draw counts are distinct.
+
+**Interpretation and caveat.** The unusual gap ordering persists when only chapter or page site totals are held fixed, and it is largely captured by *which printed lines already contain a site*. This narrows the unexplained structure to **line occupancy** rather than precise within-line rune positions. Conditioning on the observed line counts is deliberately postselected; the resulting p≈0.09 does **not** establish a 2014 authorial line-reset cipher, identify a key, or independently explain why particular lines contain doublets. The physical-page × separator-class null still gives p≈0.006, while direct line-break doublets are just 3/388, so the data do not themselves imply a line-edge copying mechanism. This also tempers the earlier inference that a short-memory event process is uniquely favored over a source-layout-linked process.
 
 ## Next discriminating question
 
-Can a short-memory hidden-state or renewal process produce the observed gap-ac1 while preserving the near-Poisson 1,000-rune block profile and the other LP2 source constraints? Any such model still needs an independently selected, reversible operation and state clock; fitting the gap statistic alone is not a decryption.
-
+Find a creator-era *source clue* that selects a line-sensitive, **reversible** GP29 operation before evaluating this same anomaly. It must predict which untouched original lines will carry doublets and yield contiguous coherent plaintext with independently sourced state and exact forward re-encryption. A line-conditioned synthetic fit to the existing 86 sites alone would be circular; the alternative short-memory state mechanism and unencoded editorial/source heterogeneity remain viable.
 ## Reproducer and sources
 
 - Reproducer: [`sims/t7_smooth_heterogeneity_plant.py`](../sims/t7_smooth_heterogeneity_plant.py). Run from repository root with `python sims/t7_smooth_heterogeneity_plant.py`; `--quick` reduces draws.
