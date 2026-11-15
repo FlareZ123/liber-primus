@@ -97,7 +97,27 @@ def score(actual: np.ndarray, predicted: np.ndarray, use: np.ndarray) -> dict:
 
 
 def main() -> None:
-    native = native_raster(gray_jpeg(74))
+    original_p57 = gray_jpeg(74)
+    native = native_raster(original_p57)
+
+    # The low-res insect and high-res printed runes were composited as
+    # distinct layers: the same 25:6 reconstruction fits only the insect.
+    xb = np.array([(25 * k + 2) // 6 for k in range(577)])
+    yb = np.array([(25 * k + 3) // 6 for k in range(865)])
+
+    def reprojection_errors(x0: int, x1: int, y0: int, y1: int) -> int:
+        ix = np.searchsorted(xb, np.arange(x0, x1), side="right") - 1
+        iy = np.searchsorted(yb, np.arange(y0, y1), side="right") - 1
+        return int(np.count_nonzero(
+            native[iy[:, None], ix[None, :]] !=
+            (original_p57[y0:y1, x0:x1] < 128)
+        ))
+
+    image_error = reprojection_errors(530, 1890, 1900, 3180)
+    text_error = reprojection_errors(350, 1880, 900, 1300)
+    assert image_error == 1474
+    assert text_error == 17842
+
     actual = native[487:749, 178:408]
     assert actual.shape == (262, 230)
     assert np.count_nonzero(actual) == 2033
@@ -135,6 +155,8 @@ def main() -> None:
         "original_jpegs": ["41.jpg", "74.jpg"],
         "source_dimensions": [576, 864],
         "p57_black_source_cells": 2033,
+        "insect_pixel_reprojection": [image_error, 1740800],
+        "printed_text_pixel_reprojection": [text_error, 612000],
         "historical_gimp_seed": GIMP_SEED,
         "training": training,
         "spatial_holdout": holdout,
