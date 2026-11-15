@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Reproduce a provisional LP2 p57 -> p50 historical date-pointer hypothesis.
+"""Reproduce provisional LP2 p57 -> p50 selectors.
 
-This is not a decoder and does not establish LP2 plaintext or key. It makes
-the prime-rank indexing ambiguity and two full-grid serpentine controls explicit.
+This is not a decoder and establishes no LP2 plaintext/key. It exposes the
+prime-rank indexing ambiguity, full-grid serpentine controls, and p55 sample.
 """
 import json, re
 from datetime import date
@@ -41,7 +41,7 @@ def is_prime(n):
     return True
 
 def prime_rank(n):
-    return sum(is_prime(k) for k in range(2, n+1))  # inclusive pi(n), one-based rank
+    return sum(is_prime(k) for k in range(2, n+1))  # inclusive pi(n)
 
 def phi(n):
     result, x, p = n, n, 2
@@ -56,52 +56,56 @@ def phi(n):
 sums = [sum(PRIMES[i] for i in tokenize_gp(s)) for s in SENTENCES]
 product = sums[0] * sums[1] * sums[2]
 assert sums == [1259, 1031, 1229] and product == 1595277641
-assert all(is_prime(n) for n in sums)
 ranks = [prime_rank(n) for n in sums]
 assert ranks == [205, 173, 201]
 
 byte_rows, token_rows = GRID["byte_rows"], GRID["rows"]
-assert len(byte_rows) == len(token_rows) == 32
-assert all(len(r) == 8 for r in byte_rows + token_rows)
-
 row_major = [v for row in byte_rows for v in row]
 row_major_tokens = [v for row in token_rows for v in row]
-row_serp = [v for i, row in enumerate(byte_rows) for v in (row if i % 2 == 0 else reversed(row))]
-row_serp_tokens = [v for i, row in enumerate(token_rows) for v in (row if i % 2 == 0 else reversed(row))]
+row_serp = [v for i,row in enumerate(byte_rows) for v in (row if i%2==0 else reversed(row))]
+row_serp_tokens = [v for i,row in enumerate(token_rows) for v in (row if i%2==0 else reversed(row))]
 col_serp, col_serp_tokens = [], []
 for c in range(8):
     vals = [byte_rows[r][c] for r in range(32)]
     toks = [token_rows[r][c] for r in range(32)]
-    if c % 2:
-        vals.reverse()
-        toks.reverse()
-    col_serp.extend(vals)
-    col_serp_tokens.extend(toks)
+    if c%2: vals.reverse(); toks.reverse()
+    col_serp.extend(vals); col_serp_tokens.extend(toks)
 
 def extract(name, values, tokens):
     picked = [values[i] for i in ranks]  # hypothesis: pi(p) is a zero-based byte offset
-    picked_tokens = [tokens[i] for i in ranks]
     rev = list(reversed(picked))
     return {
-        "layout": name, "offset_tokens": picked_tokens, "offset_values": picked,
+        "layout": name, "offset_tokens": [tokens[i] for i in ranks],
+        "offset_values": picked,
         "reverse_ascii": bytes(rev).decode("ascii", errors="replace"),
-        "reverse_gp29_indices": [v % 29 for v in rev],
-        "reverse_gp29": "".join(TRANSLIT[v % 29] for v in rev),
+        "reverse_gp29": "".join(TRANSLIT[v%29] for v in rev),
     }
 
-rank_indices = [r-1 for r in ranks]  # ordinary zero-based index of nth prime
+offset_values = [row_major[i] for i in ranks]
+phi_values = [phi(v) for v in offset_values]
+p55 = next(p["indices"] for p in CORPUS["pages"] if p["page"] == 55)
+# Page-local index 0 is the incoming NG carry; rune value 0 is F bypass.
+p55_payload = [v for i,v in enumerate(p55) if i != 0 and v != 0]
+assert len(p55) == 76 and len(p55_payload) == 72
+p55_sample = [p55_payload[n-1] for n in phi_values]
+rank_indices = [r-1 for r in ranks]
 rank_values = [row_major[i] for i in rank_indices]
-rank_tokens = [row_major_tokens[i] for i in rank_indices]
+
 print(json.dumps({
     "sentence_prime_sums": sums, "product": product, "inclusive_prime_ranks": ranks,
     "row_major_offset_hypothesis": extract("row-major", row_major, row_major_tokens),
     "row_serpentine_control": extract("row-serpentine", row_serp, row_serp_tokens),
     "column_serpentine_control": extract("column-serpentine", col_serp, col_serp_tokens),
     "ordinary_nth_item_control": {
-        "indices": rank_indices, "tokens": rank_tokens, "values": rank_values,
-        "gp29_forward": "".join(TRANSLIT[v % 29] for v in rank_values),
+        "indices": rank_indices, "tokens": [row_major_tokens[i] for i in rank_indices],
+        "values": rank_values, "phi_values": [phi(v) for v in rank_values],
     },
+    "phi_of_selected_p50_bytes": phi_values,
+    "p55_cipher_consuming_length": len(p55_payload),
+    "p55_sample_positions_1_based": phi_values,
+    "p55_sample_values": p55_sample,
+    "p55_sample_gp": "".join(TRANSLIT[v] for v in p55_sample),
     "phi_29": phi(29),
     "weekday_of_2015_07_28": date(2015, 7, 28).strftime("%A"),
-    "classification": "provisional date-pointer hypothesis; no LP2 plaintext/key",
+    "classification": "provisional selectors only; no LP2 plaintext/key",
 }, indent=2))

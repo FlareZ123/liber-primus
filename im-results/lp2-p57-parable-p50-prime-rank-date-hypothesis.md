@@ -1,4 +1,4 @@
-# p57 parable → p50 prime-rank date pointer
+# p57 parable → p50 prime-rank selectors: date pointer and p55 sample
 
 **Status:** provisional historical-navigation hypothesis. Not an LP2 decryption, key recovery, or established intended route.
 
@@ -36,9 +36,22 @@ Primary external records:
 - corpus/A-primary-artifacts/pgp/messages/2015-07-planned-parenthood-denial.asc
 - corpus/A-primary-artifacts/pgp/messages/2016-01-liber-primus.asc
 
+
+## Secondary totient sample on p55
+
+The same row-major p50 offsets select byte values 76, 117, 74. Their Euler totients are:
+
+- φ(76) = 36
+- φ(117) = 72
+- φ(74) = 36
+
+This produces a symmetric 36–72–36 selector. The p55 corpus has 76 page-local runes: one incoming NG carry at index 0 and three F-bypass runes at indices 15, 25, and 41. Excluding those four positions leaves the 72 cipher-consuming symbols. Sampling that payload at 1-based positions 36, 72, 36 yields GP runes D, I, D: **DID**.
+
+This is a potentially useful p55 ciphertext crib, not recovered plaintext. It is source-constrained by the p05 totient instruction and the independently established p55 72-symbol cipher-consuming payload; the central 72 also matches φ(91)=72 for the p05 center word FORM. But the sample still depends on the disputed π(p)-as-zero-based-offset convention, and DID is a short common word. The selected positions do not yet have a unique textual interpretation. Do not treat DID as plaintext or use it to tune a cipher without an independent selector.
+
 ## Strongest objections
 
-1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200. Those select tokens 3E, 2S, 1o and bytes 194, 148, 110, which do not produce the date fragment. The attractive output therefore depends on interpreting π(p) as a byte offset (skip π(p) bytes), not as the position of the nth item. This is possible but not yet selected by a first-party instruction.
+1. **Index-origin sensitivity.** π(p) is a one-based prime rank. The ordinary zero-based index of the nth prime is π(p)−1, giving indices 204, 172, 200. Those select tokens 3E, 2S, 1o and bytes 194, 148, 110, which do not produce the date fragment. The attractive date output and the p55 36–72–36 sample therefore depend on interpreting π(p) as a byte offset (skip π(p) bytes), not as the position of the nth item. This is possible but not yet selected by a first-party instruction.
 2. **Reverse-order choice.** The date fragment requires reversing the three selected values. The p05 MOBIUS word, its mirrored byte shell, and the parable's circumference language are possible hints, but do not uniquely prescribe this reversal. Explicit row- and column-serpentine flattenings of the 32×8 p50 table (natural full-grid Möbius/boustrophedon controls) do not reproduce the date fragment; only plain row-major followed by reversing the selected triple does. This weakens any claim that a full Möbius traversal is source-selected.
 3. **Encoding choice.** ASCII and reduction modulo 29 are both natural for byte values in a GP29 puzzle, but the dual reading is not independent plaintext verification.
 4. **Historical match is not proof of intent.** The 2015 message date is exact, but no direct statement says the p50 table should be indexed by the parable's prime ranks. The year 2015 comes from external chronology, not this extraction.
