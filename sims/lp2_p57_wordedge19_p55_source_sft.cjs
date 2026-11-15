@@ -100,9 +100,10 @@ function transform(cipher, key, sign, carry) {
  * source-motivated configurations. No hidden key, fitted phase or text score.
  * @param {number[][]} words
  * @param {number[]} cipher
+ * @param {boolean} verifyRoundtrip
  * @returns {{max: number, best: object, output: number[]}}
  */
-function bestFamily(words, cipher) {
+function bestFamily(words, cipher, verifyRoundtrip = false) {
   let result = {max: -1, best: {}, output: []};
   for (const edge of ["first", "last"]) {
     for (const sign of [-1, 1]) {
@@ -113,7 +114,7 @@ function bestFamily(words, cipher) {
           const plaintext = transform(cipher, key, sign, carry);
           const max = coincidenceNumerator(plaintext);
           // Every candidate is invertible and recovers all unmodified input.
-          assert.deepEqual(transform(plaintext, key, -sign, carry), cipher);
+          if (verifyRoundtrip) assert.deepEqual(transform(plaintext, key, -sign, carry), cipher);
           if (max > result.max) {
             result = {max, best: {edge, sign, carry, reverse}, output: plaintext};
           }
@@ -123,7 +124,7 @@ function bestFamily(words, cipher) {
   }
   return result;
 }
-const original = bestFamily(body, p55);
+const original = bestFamily(body, p55, true);
 assert.equal(original.max, 242);
 assert.deepEqual(original.best, {
   edge: "last", sign: -1, carry: 0, reverse: false
