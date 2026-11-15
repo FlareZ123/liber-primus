@@ -406,6 +406,53 @@ const equalityControls = sourceCorpora.map(([name], sourceIndex) => {
   };
 });
 
+
+/**
+ * Independent Latin Vulgate reference uses the repository's canonical
+ * 29-position printable alphabet, one complete GP-word per line.
+ */
+const latinSymbols = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinPools = Array.from({length:20}, () => []);
+for (const line of read("resources/control/latin-vulgate-gp-wholewords.txt").split(/\r?\n/u)) {
+  if (!/^[0-9A-S]+$/u.test(line) || line.length >= latinPools.length) continue;
+  latinPools[line.length].push([...line].map((symbol) => latinSymbols.indexOf(symbol)));
+}
+assert.ok(floral.every(({length}) => latinPools[length].length > 0));
+const latinRandom = shuffler(0x4c415449);
+let latinState = 0x4c415449;
+function drawLatin() {
+  latinState ^= latinState << 13;
+  latinState ^= latinState >>> 17;
+  latinState ^= latinState << 5;
+  return latinState >>> 0;
+}
+const latinTrials = 400;
+const latinSummary = {
+  samples:latinTrials,
+  shared:{min:1,sum:0,atOrBelowOriginal:0},
+  freshBlock:{min:1,sum:0,atOrBelowOriginal:0}
+};
+for (let i = 0; i < latinTrials; i++) {
+  const sample = floral.map(({length}) => {
+    const options = latinPools[length];
+    return options[drawLatin() % options.length];
+  });
+  const shared = squareClassEquality(sample, false).rate;
+  const block = squareClassEquality(sample, true).rate;
+  latinSummary.shared.min = Math.min(latinSummary.shared.min, shared);
+  latinSummary.shared.sum += shared;
+  latinSummary.freshBlock.min = Math.min(latinSummary.freshBlock.min, block);
+  latinSummary.freshBlock.sum += block;
+  if (shared <= originalShared.rate) latinSummary.shared.atOrBelowOriginal++;
+  if (block <= originalBlockReset.rate) latinSummary.freshBlock.atOrBelowOriginal++;
+}
+assert.equal(latinSummary.shared.atOrBelowOriginal, 0);
+assert.equal(latinSummary.freshBlock.atOrBelowOriginal, 0);
+latinSummary.shared.mean = latinSummary.shared.sum / latinTrials;
+latinSummary.freshBlock.mean = latinSummary.freshBlock.sum / latinTrials;
+delete latinSummary.shared.sum;
+delete latinSummary.freshBlock.sum;
+
 console.log(JSON.stringify({
   originalCount:{words:words.length,runes:12956,floralWords:floral.length,floralRunes:3316},
   historicSquare:{cells:49,rowSum:1033,center:331,blocks:15},
@@ -424,6 +471,6 @@ console.log(JSON.stringify({
       meanInverse:heldAfter/nativeWindows
     }
   },
-  allSecretMagicSquare:{originalShared,originalBlockReset,controls:equalityControls},
+  allSecretMagicSquare:{originalShared,originalBlockReset,controls:equalityControls,latin:latinSummary},
   claim:"No unknown LP2 plaintext or key recovered."
 },null,2));
