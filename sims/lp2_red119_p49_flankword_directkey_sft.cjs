@@ -122,6 +122,78 @@ for (let j = 0; j < 2; j++) {
 }
 assert.ok(addressedPagePads.every(v => v.output_ioc < 0.038));
 
+/**
+ * Exhaustively decide whether a printed ciphertext is legal under the genuine
+ * p56 plaintext-F passthrough, with all ambiguous ciphertext-F histories.
+ * Input sign is the sign in C=P+sign*K; a candidate F plaintext emits literal F
+ * and consumes no key. Returns first impossible original rune index, or length.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} sign
+ * @param {number} start
+ * @returns {number}
+ */
+function firstInfeasible(cipher, key, sign, start) {
+  let phases = new Set([start]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const phase of phases) {
+      const candidate = (cipher[i] - sign * key[phase % key.length] + 29) % 29;
+      if (candidate !== 0) next.add(phase + 1);
+      if (cipher[i] === 0) next.add(phase);
+    }
+    phases = next;
+    if (phases.size === 0) return i;
+  }
+  return cipher.length;
+}
+
+/**
+ * Source-native positive control for the exact p56 plaintext-F mechanism.
+ * @param {number[]} plain
+ * @param {number[]} key
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function fEncode(plain, key, sign) {
+  let phase = 0;
+  return plain.map(value => {
+    if (value === 0) return 0;
+    const encrypted = (value + sign * key[phase % key.length]) % 29;
+    phase += 1;
+    return encrypted;
+  });
+}
+
+// Source triads and their prime weights, plus the addressed visible red title.
+// Grant EVERY cyclic start phase (3, 3 and 8) in each sign. Exhaust ALL legal
+// ciphertext-F branches using the state set instead of heuristically picking.
+const fTransparentGates = [];
+for (let j = 0; j < 2; j++) {
+  const sourcePage = j === 0 ? 33 : 40;
+  const shortKeys = [
+    ["red3-index", red[j]],
+    ["red3-prime-mod29", red[j].map(i => c.prime[i] % 29)],
+    ["addressed-red-title", c.pages[sourcePage].indices.slice(0, j === 0 ? 10 : 8)]
+  ];
+  for (const [family, key] of shortKeys) {
+    for (const sign of [-1, 1]) {
+      const originalFailureIndices = Array.from({ length: key.length }, (_, phase) =>
+        firstInfeasible(receivers[j], key, sign, phase));
+      const positive = Array.from({ length: receivers[j].length },
+        (_, i) => solved[i % solved.length]);
+      const positiveCipher = fEncode(positive, key, sign);
+      assert.equal(firstInfeasible(positiveCipher, key, sign, 0), positive.length);
+      fTransparentGates.push({
+        sentence: j, key_family: family, key_length: key.length, sign,
+        original_first_impossible_indices: originalFailureIndices,
+        legal_phase_starts: originalFailureIndices.filter(i => i === receivers[j].length).length
+      });
+    }
+  }
+}
+assert.ok(fTransparentGates.filter(v => v.sentence === 1).every(v => v.legal_phase_starts === 0));
+
 const knownIoc = ioc(solved);
 assert.ok(knownIoc > 0.06);
 console.log(JSON.stringify({
@@ -133,5 +205,6 @@ console.log(JSON.stringify({
   authentic_p57_clear_ioc: knownIoc,
   source_results: result,
   addressed_page_key_results: addressedPagePads,
+  authentic_f_bypass_allphase_gates: fTransparentGates,
   verdict: "Clue-aligned 33/40 word count, no plaintext by the 16 direct period-3 and page-addressed additive consumers"
 }, null, 2));
