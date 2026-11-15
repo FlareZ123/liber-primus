@@ -257,3 +257,73 @@ console.log(JSON.stringify({
     summaries:quadraticSummaries},
   implication:'Signed minus branch enriched, opposite quadratic root is not; no inverse or plaintext recovered'
 },null,2));
+
+
+/**
+ * Source-selected lag-six *clock* discriminator.
+ * Under a one-shot-per-long-word first-eligible-site mechanism, the exact
+ * Tminus agreement surplus could only occur at local offset j=6. Evaluate
+ * original within-word positions 6 versus 7+, with unchanged complete
+ * words, original doublet counts and unchanged genuine ciphertext.
+ * This distinguishes a narrow one-shot hook from a continuing state rule.
+ *
+ * A per-word randomization is the conditional comparator, not a generative
+ * model for a cipher. The split is mechanism-selected (first legal j=6 vs
+ * later legal sites), not an unbounded scan over threshold positions.
+ */
+/** @param {number[][]} runicWords */
+function echoByLocalOffset(runicWords) {
+  const counts = [0,0,0,0], sites = [0,0,0,0];
+  for (const word of runicWords) {
+    for (let j = 6; j < word.length; j++) {
+      const group = j === 6 ? 0 : j === 7 ? 1 : j === 8 ? 2 : 3;
+      sites[group]++;
+      counts[group] += Number(word[j] === mod29(24 - 2*word[j-6]));
+    }
+  }
+  return {counts, sites, late:counts[1]+counts[2]+counts[3],
+    total:counts.reduce((a,b)=>a+b,0)};
+}
+const offsetsReal = echoByLocalOffset(allWords);
+assert.deepEqual(offsetsReal, {
+  counts:[33,19,12,16],sites:[559,343,187,201],late:47,total:80
+});
+const positionTrials = 1900, positionSeed = 0x6acc2013;
+const positionRng = random32(positionSeed);
+const firstDraws = [], lateDraws = [];
+for (let trial = 0; trial < positionTrials; trial++) {
+  const shuffledWords = allWords.map(w => {
+    let result;
+    const targetDoublets = adjacentEqualCount(w);
+    do result = shuffledCopy(w, positionRng);
+    while (adjacentEqualCount(result) !== targetDoublets);
+    return result;
+  });
+  const sample = echoByLocalOffset(shuffledWords);
+  firstDraws.push(sample.counts[0]);
+  lateDraws.push(sample.late);
+}
+/**
+ * @param {number[]} values
+ * @param {number} target
+ */
+function boundedNull(values, target) {
+  const mean = values.reduce((a,b) => a+b,0)/values.length;
+  const sd = Math.sqrt(values.reduce((a,b)=>a+(b-mean)**2,0)/values.length);
+  const exceed = values.filter(n=>n>=target).length;
+  return {observed:target,mean,sd,z:(target-mean)/sd,
+    upperExceed:exceed,upperAddOne:(exceed+1)/(values.length+1)};
+}
+const firstSummary = boundedNull(firstDraws, offsetsReal.counts[0]);
+const lateSummary = boundedNull(lateDraws, offsetsReal.late);
+assert.equal(firstSummary.upperExceed,8);
+assert.equal(lateSummary.upperExceed,0);
+console.log(JSON.stringify({
+  result:'PASS: signed T6 echo surplus persists after the first legal rune in each complete word',
+  source: '2,896 canonical LP2 complete ciphertext words, 12,956 GP29 symbols',
+  original: offsetsReal,
+  null: {trials:positionTrials,seed:'0x'+positionSeed.toString(16),
+    conditioning:'each original word preserves exact multiset, length and adjacent-doublet count',
+    firstLegalRune: firstSummary, subsequentLegalRunes:lateSummary},
+  decision:'Reject first-legal-rune-only T6 insertion in isolation; an echo generator must permit later sites. Still no decryption or site selector.'
+},null,2));
