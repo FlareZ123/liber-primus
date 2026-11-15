@@ -40,10 +40,29 @@ The [independently existing red119 study](lp2-red119-prime-ordinal-chapter-navig
 
 The exact inverse is again `P_i=(C_i ± K_{i mod |K|}) mod29`, and its independent solved-p57 synthetic plants recover perfectly. The tested table-flank original outputs contain no contiguous GP-native message; all eight source-addressed outputs have IoCs 0.03258–0.03599. These attempts test **visible source triad/page/title handoffs** and *one complete simple additive cipher consumer*. A p33/p40 red heading may still be an instruction or navigation cue rather than a literal keystream. The paired 33/40 word counts do not certify a fixed operation.
 
-The [single-file CommonJS reproducer](../sims/lp2_red119_p49_flankword_directkey_sft.cjs) reads the unmodified original rune corpus and exact printed transcription, validates every rune-bearing physical page, recomputes both red GP triads and prime ordinals, asserts 33/40 authentic word counts and 138/170 rune counts, and runs all sixteen original-input direct candidate decoders and source-native synthetic positives. The original outputs were independently computed by the connected JavaScript runtime; no external CI completion is claimed.
+The [single-file CommonJS reproducer](../sims/lp2_red119_p49_flankword_directkey_sft.cjs) reads the unmodified original rune corpus and exact printed transcription, validates every rune-bearing physical page, recomputes both red GP triads and prime ordinals, asserts 33/40 authentic word counts and 138/170 rune counts, and runs all sixteen original-input direct candidate decoders, 28 independent all-phase F-transparent gates on the after-table receiver, and source-native synthetic positives. The original outputs were independently computed by the connected JavaScript runtime; no external CI completion is claimed.
+
+## Stronger gate under the authentic p56 plaintext-F interruption
+
+The solved p56 cipher has a real, nontrivial convention: **plaintext F (GP index zero) is emitted as ciphertext F without consuming any key symbol**, while ciphertext F can also arise as an encrypted non-F symbol. It is unsound to treat every printed F as a delimiter or to use a naive fixed key position. The reproducer therefore uses an **exact reachable-state set** of all possible consumed-key counts at each original source rune. On a ciphertext F, it preserves both possible branches whenever legal; on a non-F, it advances only if the inverse yields a non-F. There is no English scoring and no pruning of legal histories.
+
+For the **170 untouched post-table original runes**, grant *every* possible phase start for the p39 red triad's three-letter index key, its three-letter prime-mod29 key, and the p40 eight-rune addressed red heading, each with both signs. These are **(3+3+8)×2=28 complete source-relative starts**. All 28 reach an impossible key state **before the 170th original rune**, with the latest failure indices (zero-based) as follows:
+
+| Source selected short key for 170-rune sentence | Sign in C=P±K | Latest failure over all starts |
+| --- | --- | ---: |
+| p39 red index `[27,5,15]` | − | 39 |
+| Same | + | 157 |
+| p39 red GP-prime mod29 `[20,13,24]` | − | 40 |
+| Same | + | 29 |
+| p40 visible red title (8 indices) | − | 90 |
+| Same | + | 142 |
+
+An independently generated **source-native solved-p57 F-transparent plant succeeds through every rune** for each key/sign family with the same exact DP. The complete original failure-index vectors for every phase are printed by the SFT. This is a **key-independent impossibility across all legal F placements** within each frozen short repeating-key family, much stronger than the near-uniform IoC of the non-skipping decoder.
+
+The first **138-rune pre-table** source sentence does admit a small number of legal histories under selected variants, which cannot rescue the joint two-sentence operation: the post-table source receiver fails for **all 28 independent start phases**, even granting it a free phase reset. These results retire the red119→table-sentence **direct repeating GP29 additive transfer using the authentic solved-p56 F rule** in the tested source-defined mappings. They say nothing about a different cipher mode or a genuinely new source-supplied schedule.
 
 ## Decision
 
-The ordered 33/40 cross-artifact match is an **unverified, testable lead** that places two independently conspicuous red inscriptions near a possible table-sentence decoding assignment. **The direct periodic three-rune and addressed-red-title/whole-page additive interpretations fail on both source-fixed receivers**, without recovering a recognizable original instruction or plaintext. Do not rescue it with fitted phases, alternate key-word transcriptions, resets or extra layers absent an original authorial rule.
+The ordered 33/40 cross-artifact match is an **unverified, testable lead** that places two independently conspicuous red inscriptions near a possible table-sentence decoding assignment. **The direct periodic three-rune and addressed-red-title/whole-page additive interpretations fail on both source-fixed receivers; the three short-key families are **mathematically impossible on the post-table sentence** when the authentic p56 F-interruption rule and every possible short-key phase are admitted**, without recovering a recognizable original instruction or plaintext. Do not rescue it with fitted phases, alternate key-word transcriptions, resets or extra layers absent an original authorial rule.
 
 The missing causal input remains a **source-selected operation interpreting the selected numbers or triads**, and an inverse yielding contiguous plaintext across the original 138-rune antecedent with the following 170-rune sentence as a true holdout. An unrelated additional numerical fit to the 33/40 pair would not satisfy that requirement.
