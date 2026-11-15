@@ -1,6 +1,6 @@
-# Seven-rune p55/p56 ↔ p27 echo as an OpenPuff password on the original Cicada audio files
+# Source-derived OpenPuff passwords from the seven-rune seam and original PARABLE product on Cicada audio
 
-**Agent 37, 15 November 2026. Original-source direct-decryption test; bounded negative.** The exact eight-ASCII-character `DJUBEIAE` key was executed through the original OpenPuff 4.00 Windows application against **two different original Cicada MP3 carriers**. The original known 2014 hidden-message positive was first recovered exactly. Both new original-carrier operations terminated in OpenPuff's own **corrupted-stream** outcome and produced no extracted file. There is no recovered LP2 unknown plaintext, key mechanism, or destination. This closes a different receiver family from the already completed native JPEG wing/moth tests.
+**Agent 37, 15 November 2026. Original-source direct-decryption test; bounded negative.** Two independently original-source-derived password candidates were executed through the original OpenPuff 4.00 Windows application on **two different original Cicada MP3 carriers**: the exact p55/p56 ↔ p27 seven-rune echo `DJUBEIAE`, and the source-published 2013 PARABLE prime product `1595277641`. In both native jobs, the original known 2014 hidden-message positive first recovered its exact 745-byte file. All **four original-carrier tests** terminated in OpenPuff's explicit **corrupted-stream** outcome and produced zero files. No LP2 unknown plaintext, authentic key or Cicada destination was recovered. These are exact-setting audio gates, distinct from the previous native JPEG tests.
 
 ## Exact original player path and weakest premise
 
@@ -40,8 +40,29 @@ EXACT_SEAM label=2014-interconnected outcome=native-corrupted-stream output=Fals
 
 [Windows original-source workflow](../.github/workflows/agent37-exact-seam-crossround-mp3.yml), [GUI screenshots / output JSON / control evidence artifact](https://github.com/FlareZ123/liber-primus/actions/runs/43717851841/artifacts/14163361910). The workflow uses the pre-existing native extraction implementation and does not alter source files. Every result is reproducible from the pinned originals.
 
+## Independent 2013 PARABLE prime-product key on the same two original MP3s
+
+The actual **2013 original** 761.MP3 ID3 source published the string `Parable 1,595,277,641` before LP2 appeared, and reproduced the entire later **solved** p57 PARABLE. The exact integer is `1,595,277,641 = 1259 × 1031 × 1229`, matching the three body-clause Gematria prime sums on source-printed solved p57. The decimal source literal `1595277641` is ten ASCII characters, passes OpenPuff's historical 8-character minimum, and requires no invented case or key suffix. This makes it a **separate source-known original key candidate**, rather than a variant derived from the p55 ↔ p27 repeat.
+
+The upstream assumption remains weak: the original audio specifies this integer as an ID3/Parable datum, **not as an OpenPuff password**, and neither signed manuscript nor solved p57 explicitly commands applying the 2014 stego tool to either 2013 or 2014 MP3 carrier. Nonetheless the operation is fixed without tuning: the exact same two source-checked original MP3s and MP3 Maximum 1/2 setting as the seam experiment, only the A-password changes to `1595277641`, with B/C blank. The same pinned native v4.00 software and **745-byte real original-file known positive** are required before any target is attempted.
+
+| Original audio receiver | Literal A-password | Native source capacity | Completed OpenPuff result | Files |
+| --- | --- | ---: | --- | ---: |
+| 2013 761.MP3 | `1595277641` | **976 bytes** | `native-corrupted-stream` | **0** |
+| 2014 interconnected.mp3 | `1595277641` | **1,088 bytes** | `native-corrupted-stream` | **0** |
+
+The actual [successful Windows original-source run 43719255053](https://github.com/FlareZ123/liber-primus/actions/runs/43719255053) records:
+
+```text
+Native OpenPuff v4.00 source-positive control passed
+PRIME_PRODUCT label=2013-761-instar outcome=native-corrupted-stream output=False capacity=976
+PRIME_PRODUCT label=2014-interconnected outcome=native-corrupted-stream output=False capacity=1088
+```
+
+The [source-pinned standalone workflow](../.github/workflows/agent37-parable-product-crossround-mp3.yml) differs only in its separately source-authenticated candidate A-password; it applies no alternate carrier ordering or mutations. As with the seam key, a native corrupted-stream response cannot distinguish a wrong password from an absent message, wrong original compression/bit depth, or incompatible carrier. This finite null does not exclude all audio steganography or the number's possible use in an unrelated GP29 cipher.
+
 ## Research decision
 
-The **MP3 OpenPuff** route under the uniquely short p55/p56–p27 eight-character key fails on both historical carriers at the authentic 2014 payload's working Maximum setting. Do not infer an LP2 cipher or repeat these two key/media combinations. Further bit-level/decoder searches require another independent authored selector, because the key's source-repeat rarity is already recognized but does not specify a medium, decoding format or even whether the echo is intentional. An actual recovered message, externally selected cipher mechanism or plaintext island remains required to change the solution frontier.
+The **MP3 OpenPuff** route fails for both independently original-source-selected passwords, `DJUBEIAE` and `1595277641`, on both historical audio carriers at the authenticated 2014 payload's working Maximum setting. Do not infer an LP2 cipher or repeat these four key/media combinations. Further bit-level/decoder searches require another independent authored selector, because the key's source-repeat rarity is already recognized but does not specify a medium, decoding format or even whether the echo is intentional. An actual recovered message, externally selected cipher mechanism or plaintext island remains required to change the solution frontier.
 
 This is supporting material in `im-results/`. It does **not** establish any new decryption warranting an update to the authoritative `results/README.md`.
