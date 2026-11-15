@@ -32,48 +32,48 @@ const STAGE11 = {
   }
 };
 const EXTENSIONS = 'pdf|ps|eps|svg|tex|lyx|dvi|ai|indd|xcf|psd|odt|docx?|pptx?|rtf|pages|idml|sla|pub|qxd';
-const EXT_RE = new RegExp('(?:[A-Za-z0-9_./%~:+-]+)\\\\.(?:' + EXTENSIONS + ')(?:[?#][^\\\\s<>\"\\\\x27]*)?', 'ig');
-const URL_RE = /https?:\\/\\/[^\\s<>\"'()]+/ig;
-const PUZZLE_RE = /\\b(?:liber[ -]?primus|lp2|cicada|3301|stage\\s*11|onion7|onion|runes?|runic|gematria|page\\s*(?:[0-5]?\\d))\\b/i;
+const EXT_RE = new RegExp('(?:[A-Za-z0-9_./%~:+-]+)\\.(?:' + EXTENSIONS + ')(?:[?#][^\\s<>"\\x27]*)?', 'ig');
+const URL_RE = /https?:\/\/[^\s<>"'()]+/ig;
+const PUZZLE_RE = /\b(?:liber[ -]?primus|lp2|cicada|3301|stage\s*11|onion7|onion|runes?|runic|gematria|page\s*(?:[0-5]?\d))\b/i;
 const TERMS = [
-  ['pdf', /\\bpdf\\b/i, 'specific'],
-  ['postscript', /\\bpostscript\\b/i, 'specific'],
-  ['ghostscript', /\\bghostscript\\b/i, 'specific'],
-  ['latex', /\\blatex\\b/i, 'specific'],
-  ['tex', /\\btex\\b/i, 'specific'],
-  ['fontforge', /\\bfontforge\\b/i, 'specific'],
-  ['typeface', /\\btypeface\\b/i, 'specific'],
-  ['basefont', /\\/basefont\\b/i, 'specific'],
-  ['font-subset', /\\bfont\\s+subset\\b/i, 'specific'],
-  ['inkscape', /\\binkscape\\b/i, 'specific'],
-  ['illustrator', /\\billustrator\\b/i, 'specific'],
-  ['indesign', /\\bindesign\\b/i, 'specific'],
-  ['acrobat', /\\bacrobat\\b/i, 'specific'],
-  ['imagemagick', /\\bimagemagick\\b/i, 'specific'],
-  ['font', /\\bfonts?\\b/i, 'contextual'],
-  ['vector', /\\bvector(?:s|ial)?\\b/i, 'contextual'],
-  ['raster', /\\braster(?:s|ized|ised)?\\b/i, 'contextual'],
-  ['render', /\\brender(?:ed|ing)?\\b/i, 'contextual'],
-  ['typeset', /\\btypeset(?:ting)?\\b/i, 'contextual'],
-  ['export', /\\bexport(?:ed|ing)?\\b/i, 'contextual'],
-  ['layout', /\\blayout\\b/i, 'contextual'],
-  ['master', /\\bmaster\\b/i, 'contextual'],
-  ['dpi', /\\b\\d{2,4}\\s*dpi\\b/i, 'contextual']
+  ['pdf', /\bpdf\b/i, 'specific'],
+  ['postscript', /\bpostscript\b/i, 'specific'],
+  ['ghostscript', /\bghostscript\b/i, 'specific'],
+  ['latex', /\blatex\b/i, 'specific'],
+  ['tex', /\btex\b/i, 'specific'],
+  ['fontforge', /\bfontforge\b/i, 'specific'],
+  ['typeface', /\btypeface\b/i, 'specific'],
+  ['basefont', /\/basefont\b/i, 'specific'],
+  ['font-subset', /\bfont\s+subset\b/i, 'specific'],
+  ['inkscape', /\binkscape\b/i, 'specific'],
+  ['illustrator', /\billustrator\b/i, 'specific'],
+  ['indesign', /\bindesign\b/i, 'specific'],
+  ['acrobat', /\bacrobat\b/i, 'specific'],
+  ['imagemagick', /\bimagemagick\b/i, 'specific'],
+  ['font', /\bfonts?\b/i, 'contextual'],
+  ['vector', /\bvector(?:s|ial)?\b/i, 'contextual'],
+  ['raster', /\braster(?:s|ized|ised)?\b/i, 'contextual'],
+  ['render', /\brender(?:ed|ing)?\b/i, 'contextual'],
+  ['typeset', /\btypeset(?:ting)?\b/i, 'contextual'],
+  ['export', /\bexport(?:ed|ing)?\b/i, 'contextual'],
+  ['layout', /\blayout\b/i, 'contextual'],
+  ['master', /\bmaster\b/i, 'contextual'],
+  ['dpi', /\b\d{2,4}\s*dpi\b/i, 'contextual']
 ];
 
 function gitBlobSha1(bytes) {
   return crypto.createHash('sha1')
-    .update('blob ' + bytes.length + '\\0', 'ascii')
+    .update('blob ' + bytes.length + '\0', 'ascii')
     .update(bytes)
     .digest('hex');
 }
 function parse2014Line(raw, lineNo) {
-  const m = raw.match(/^(2014 [A-Z][a-z]{2} \\d{2} \\d{2}:\\d{2})\\s+(?:<([^>]{1,80})>\\s*)?(.*)$/);
+  const m = raw.match(/^(2014 [A-Z][a-z]{2} \d{2} \d{2}:\d{2})\s+(?:<([^>]{1,80})>\s*)?(.*)$/);
   if (!m) return null;
   return {lineNo, date:m[1], day:m[1].slice(0,11), nick:m[2] || null, body:m[3] || '', raw};
 }
 function extractUrls(text) {
-  return (text.match(URL_RE) || []).map(x=>x.replace(/[\\],;:.!?}]+$/g,''));
+  return (text.match(URL_RE) || []).map(x=>x.replace(/[\],;:.!?}]+$/g,''));
 }
 function analyzeLines(lines, source) {
   const parsed = new Array(lines.length);
@@ -147,7 +147,7 @@ async function runNetwork() {
   for(const meta of SOURCES) {
     const url='https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23'+meta.name.slice(1);
     const bytes=await download(url,meta);
-    const report=analyzeLines(bytes.toString('latin1').split(/\\r?\\n/),meta.name);
+    const report=analyzeLines(bytes.toString('latin1').split(/\r?\n/),meta.name);
     reports.push({...report,bytes:meta.bytes,gitBlobSha1:meta.sha1});
     console.log('IRC_SOURCE '+JSON.stringify({
       source:meta.name,bytes:meta.bytes,gitBlobSha1:meta.sha1,
@@ -160,24 +160,24 @@ async function runNetwork() {
   }
   const indexBytes=await download(STAGE11.index.url,STAGE11.index);
   const index=indexBytes.toString('utf8');
-  const images=[...index.matchAll(/<img\\s+src=\"(\\d+\\.jpg)\"\\s*\\/?\\s*>/gi)].map(x=>x[1]);
+  const images=[...index.matchAll(/<img\s+src="(\d+\.jpg)"\s*\/?\s*>/gi)].map(x=>x[1]);
   assert.equal(images.length,58,'Stage11 index image count');
   assert.deepEqual(images,Array.from({length:58},(_,i)=>i+'.jpg'),'Stage11 image order');
-  const hrefCount=[...index.matchAll(/\\bhref\\s*=/gi)].length;
+  const hrefCount=[...index.matchAll(/\bhref\s*=/gi)].length;
   assert.equal(hrefCount,0,'Stage11 index unexpectedly has an href');
   const messageBytes=await download(STAGE11.message.url,STAGE11.message);
   const message=messageBytes.toString('utf8');
-  const onions=[...message.matchAll(/[a-z2-7]{16}\\.onion/gi)].map(x=>x[0]);
+  const onions=[...message.matchAll(/[a-z2-7]{16}\.onion/gi)].map(x=>x[0]);
   assert.deepEqual(onions,['ky2khlqdf7qdznac.onion'],'Stage11 signed-message onion target');
   const stage11={
     index:{url:STAGE11.index.url,bytes:STAGE11.index.bytes,gitBlobSha1:STAGE11.index.sha1,
-      title:(index.match(/<title>([^<]+)<\\/title>/i)||[])[1]||null,
-      containerId:(index.match(/<div\\s+id=\"([^\"]+)\"/i)||[])[1]||null,
+      title:(index.match(/<title>([^<]+)<\/title>/i)||[])[1]||null,
+      containerId:(index.match(/<div\s+id="([^"]+)"/i)||[])[1]||null,
       imageCount:images.length,firstImage:images[0],lastImage:images[images.length-1],
-      hrefCount,nonJpegAssetReferences:[...index.matchAll(/(?:src|href)=\"([^\"]+)\"/gi)].map(x=>x[1]).filter(x=>!/^\\d+\\.jpg$/i.test(x))},
+      hrefCount,nonJpegAssetReferences:[...index.matchAll(/(?:src|href)="([^"]+)"/gi)].map(x=>x[1]).filter(x=>! /^\d+\.jpg$/i.test(x))},
     signedMessage:{url:STAGE11.message.url,bytes:STAGE11.message.bytes,gitBlobSha1:STAGE11.message.sha1,
-      onionReferences:onions,hasPdfOrPostscript:/\\b(?:pdf|postscript|ghostscript|latex|fontforge)\\b/i.test(message),
-      documentFileReferences:[...message.matchAll(new RegExp('\\\\b[^\\\\s]+\\\\.(?:'+EXTENSIONS+')\\\\b','ig'))].map(x=>x[0])}
+      onionReferences:onions,hasPdfOrPostscript:/\b(?:pdf|postscript|ghostscript|latex|fontforge)\b/i.test(message),
+      documentFileReferences:[...message.matchAll(new RegExp('\\b[^\\s]+\\.(?:'+EXTENSIONS+')\\b','ig'))].map(x=>x[0])}
   };
   assert.equal(stage11.index.nonJpegAssetReferences.length,0,'Unexpected Stage11 non-JPEG asset reference');
   assert.equal(stage11.signedMessage.hasPdfOrPostscript,false,'Unexpected PDF/PostScript reference in signed message');
@@ -194,7 +194,7 @@ async function runNetwork() {
     totalHits:allHits.length,
     hits:allHits
   };
-  fs.writeFileSync('lp2-2014-period-master-pointer-report.json',JSON.stringify(report,null,2)+'\\n');
+  fs.writeFileSync('lp2-2014-period-master-pointer-report.json',JSON.stringify(report,null,2)+'\n');
   console.log('MASTER_POINTER_SUMMARY '+JSON.stringify({
     totalDated2014Lines:report.totalDated2014Lines,
     totalExplicitFormatLines:report.totalExplicitFormatLines,
@@ -217,9 +217,9 @@ function selftest() {
   const result=analyzeLines(sample,'synthetic');
   assert.equal(result.dated2014Lines,5);
   assert.equal(result.explicitFormatLines,2);
-  assert.equal(result.specificTermLines,2);
-  assert.equal(result.hitCount,4);
-  assert(result.hits.some(x=>x.line===2&&x.explicitFileFormats.some(y=>/\\.pdf/i.test(y))));
+  assert.equal(result.specificTermLines,3);
+  assert.equal(result.hitCount,3);
+  assert(result.hits.some(x=>x.line===2&&x.explicitFileFormats.some(y=>/\.pdf/i.test(y))));
   assert(result.hits.some(x=>x.line===3&&x.documentTerms.includes('ghostscript')&&x.puzzleContext));
   assert(!result.hits.some(x=>x.line===6));
   assert.equal(gitBlobSha1(Buffer.from('test')),'30d74d258442c7c65512eafab474568dd706c430');
