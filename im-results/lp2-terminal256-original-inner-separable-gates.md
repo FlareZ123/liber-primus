@@ -111,9 +111,32 @@ An original-shape source-native positive plant chooses the independently conceal
 
 **Decision:** The motivating degree-four factor remains exact original arithmetic, and an arbitrary secret five-tap convolution is independently capable of recovering 72 unknown runes from 180 authentic known suffix runes. **That complete source-conditional inverse fails on the real manuscript even when every kernel coefficient is free.** Different table serializations, nonconvolutional stateful maps and an independently justified 256/252 alignment remain open. No p55 plaintext or key is recovered.
 
+## Gate F: center-out key-plus-PARABLE register and the p56 F-skip marker
+
+**A distinct known-register hypothesis.** Gates D and E test 180-cell consumers against the solved p56 plaintext or its literal ciphertext, followed by clear p57. A different register is suggested by the authentic p56 cipher clock: its 85 printed runes contain one literal plaintext F at local index **56**, which consumes no key symbol. The page therefore uses **84** prime-totient key symbols. Clear p57 contributes **95** runes, so the composite register \`K56[84] || P57[95]\` has **179** symbols. The 180-cell interior has exactly one additional cell that could mark the p56 F bypass.
+
+The original p57 parable says to “shed our own circumferences” and “find the divinity within and emerge.” Removing the 76-cell outer perimeter leaves a 30×6 interior with three concentric rings of **52, 60 and 68** cells. Read from the center outward. The sole \`00\` token inside this 180-cell region is at zero-based table coordinate **(28,5)**, on the 28×4 middle ring. Starting the 52-cell core first, the middle-ring zero falls at global offset 56 **only** when that ring starts at its bottom-left corner and runs counterclockwise. The other seven corner/direction choices place it at offsets **81, 83, 78, 86, 111, 53 and 108**. This one-of-eight alignment independently matches p56's sole transparent plaintext-F position. It is a conditional selector clue, not an authenticated instruction: the original table has no marked ring outline, start corner or direction.
+
+**Frozen test.** Remove that \`00\` marker and compare the remaining 179 table values with the exact 84-symbol p56 prime-totient key stream followed by p57's 95 original clear GP29 runes. Keep the middle-ring orientation fixed by the zero/F alignment; allow the inner and outer rings each their eight corner/winding choices (64 geometry readings). Test both documented token radices (base60 and drop-\`f\` base59) and three direct GP29 conversions: byte mod29, floor(29×byte/256), and Euler \`φ(byte) mod29\` as a literal but unverified “divinity” reading. This gives **384** fixed source/register models. The p56 known-answer decoder is asserted first: 85/85 original runes, exactly 84 consumed key values, and the single F skip at index56.
+
+| Direct conversion | Best positional matches to the 179-symbol register |
+| --- | ---: |
+| base60 byte mod29 | 7/179 |
+| base60 floor(29×byte/256) | **14/179** |
+| base60 φ(byte) mod29 | 11/179 |
+| base59 byte mod29 | 11/179 |
+| base59 floor(29×byte/256) | 11/179 |
+| base59 φ(byte) mod29 | 11/179 |
+
+No exact readout exists. The single uniform bottom-left/counterclockwise path on all three rings reaches only **12/179** under base60 scaled29; the best 14/179 model independently rotates the inner and outer rings, which the source does not select. The maximum is a positional equality count, not a language score. More generally, a stationary lookup from raw byte to target symbol incurs **46–52 repeated-input contradictions** across the 64 ring readings; a stationary base60-residue lookup incurs **140–149**. Neither an arbitrary raw-byte codebook nor an arbitrary mod29 codebook can implement this register.
+
+**Decision.** The p56 F-skip alignment is worth retaining as a possible structural clue, but the direct key-plus-PARABLE consumer is negative under every tested radix, ring orientation, and conversion. This does not reject a stateful/nonlinear table operation or another source-selected serialization; it does not recover p55 plaintext, an LP2 key or the final destination. Do not tune arbitrary mappings around the 14/179 maximum. The next useful step is an independent author-visible rule for transforming the remaining 179 cells, not another unconstrained conversion menu.
+
+**Reproduction:** [read-only Node22/CommonJS SFT](../sims/lp2_terminal256_inner_p56key_parable_gate_sft.cjs).
+
 ## Reproduction and decision
 
-All five original-source SFTs, including the independently added full-secret five-tap convolution, consume repository source JSON and use only Node 22 built-ins. The three historical tests are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing original-source run 43260125837](https://github.com/FlareZ123/liber-primus/actions/runs/43260125837); the new four-rune all-secret test passed in the separate [manual-only combined source gates run 43582175267](https://github.com/FlareZ123/liber-primus/actions/runs/43582175267). There are no automatic push or PR triggers.
+All six original-source SFTs, including the independently added full-secret five-tap convolution and the new Gate F key-plus-PARABLE register test, consume repository source JSON and use only Node 22 built-ins. The new Gate F script is read-only and has been exercised against the current canonical source JSON in the tool runtime; it has not yet had a separate GitHub Actions run. The three historical tests are exercised together by the **manual-only** [terminal inner-ring CI workflow](../.github/workflows/lp2-terminal256-inner-rank.yml), [passing original-source run 43260125837](https://github.com/FlareZ123/liber-primus/actions/runs/43260125837); the new four-rune all-secret test passed in the separate [manual-only combined source gates run 43582175267](https://github.com/FlareZ123/liber-primus/actions/runs/43582175267). There are no automatic push or PR triggers.
 
 The tests eliminate several meaningful, source-visible paths that would have promoted **180 independently known plaintext symbols** into a full original p55 decoder under a source-plausible 2D tabular transform. They leave open all unselected layout correspondences, different alphabets/byte serializations, hidden nonlinear maps, stateful transforms, source-independent keys, and other forms of intermediate text. In particular, they do **not** show that the table is unrelated to the final pages.
 

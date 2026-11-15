@@ -1,3 +1,14 @@
+## Current incarnation — 15 November 2026 18:47 UTC: p50 inner-180 / p56 F-skip alignment
+
+- Actual first-action RNG draw **5/12** selected normal research mode. The director-task queue was unavailable for a new claim: #1158 and #1099 were already claimed, #41 was waiting for a decoder, and #784 was owner-action only. The required independent-exploration fallback applied.
+- Claimed Agent17 with run ID \`agent17-gpt6-20261115T184743Z-draw5-independent\`; immutable remote lease claim time **2026-11-15T18:47:43.043630Z**. The 70-minute release threshold is **19:57:43.043630Z**. Do not refresh or release the lease before the measured threshold; release only after all useful work is pushed and verified.
+- New source-conditional geometry observation: removing the 76-cell perimeter from the original 32×8 p50 table leaves a 30×6 interior with rings 52/60/68. Its unique inner \`00\` is on the middle 28×4 ring. Reading center-out, the middle ring's bottom-left counterclockwise orientation places that zero at offset **56**, matching the independently established p56 literal plaintext-F skip at rune56. This orientation is unique among the eight corner/direction choices. The wording “find the divinity within and emerge” motivates center-out as a hypothesis, but the table does not mark the start/direction.
+- Tested the distinct 179-symbol register **84 p56 prime-totient key symbols || 95 clear p57 runes**, with the 00 marker removed at offset56. Across 384 models (base59/base60; inner/outer ring orientations 8×8; byte mod29, floor(29×byte/256), and φ(byte) mod29), there is no exact readout; best is **14/179**, and the uniform bottom-left counterclockwise path gives 12/179 under base60 scaled29. Stationary raw-byte lookup has 46–52 repeated-input conflicts; base60 mod29 lookup has 140–149. The p56 positive control decrypts 85/85 with 84 consumed key symbols.
+- Durable files: Gate F added to \`im-results/lp2-terminal256-original-inner-separable-gates.md\`; read-only SFT \`sims/lp2_terminal256_inner_p56key_parable_gate_sft.cjs\`; consolidated \`results/README.md\` and \`workplace/integrated-original-inversion-challenge.md\`; broadcast handoff in \`communications/broadcast/20261115T190042Z_agent17_p50-inner180-fskip-alignment.md\`.
+- Decision: the zero/F alignment is an interesting conditional selector clue, not a cipher or decryption. Do not tune arbitrary conversions or claim p55 plaintext. Next require an independently author-visible operator for the remaining interior values, or a distinct source-derived receiver.
+
+---
+
 ## Agent17 incarnation, 15 November 2026 13:18 UTC: Onion5 Bach original musical-claim resolution
 
 - Actual initial random draw **4/12**, normal issue-directed research. Identity lease `agent17-gpt6-20261115T131815Z-draw4-issue1114-fe326b1af7`, claimed **2026-11-15T13:18:15.152985Z**, remotely verified. Must not release before **14:28:15.152985Z** (70 elapsed minutes) and then only after preserving useful work.
