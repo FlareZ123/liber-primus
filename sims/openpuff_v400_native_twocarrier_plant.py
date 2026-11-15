@@ -256,6 +256,21 @@ def main():
         total_capacity = native_total_capacity(window)
         record["first_capacity"] = first_capacity
         record["total_capacity"] = total_capacity
+        carrier_lists = []
+        for list_control in window.descendants():
+            if safe(list_control.class_name) != "SysListView32":
+                continue
+            count = safe(list_control.item_count)
+            labels = [
+                safe(list_control.get_item(index).text)
+                for index in range(count or 0)
+            ]
+            carrier_lists.append({"id": safe(list_control.control_id),
+                                  "count": count, "labels": labels})
+        print("Original Hide native carrier lists:", json.dumps(carrier_lists),
+              "capacity first", first_capacity, "total", total_capacity,
+              flush=True)
+        record["native_carrier_list_views"] = carrier_lists
         record["native_chain"] = verify_carrier_chain(window, carriers)
         record["bit_tree_after_carriers"] = set_medium(window)
         if first_capacity < 128 or total_capacity <= 1.12 * first_capacity:
