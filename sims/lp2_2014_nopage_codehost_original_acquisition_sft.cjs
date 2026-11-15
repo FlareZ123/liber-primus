@@ -80,7 +80,7 @@ async function main(){
       console.log('SOURCE_CONTENT_BEGIN '+item.id+' totalLines='+allLines.length);
       for(let j=0;j<allLines.length;j++){
         const content=allLines[j];
-        if(j<75||j>=allLines.length-8||/\b(?:key|plaintext|page|solve|result|algorithm|cipher|decode|encrypt|brute|word|sequence|freq|runic|rune|source)\b/i.test(content)){
+        if(j<75||j>=allLines.length-8||item.id==='hydroperoxy-jul28'||/\b(?:key|plaintext|page|solve|result|algorithm|cipher|decode|encrypt|brute|word|sequence|freq|runic|rune|source)\b/i.test(content)){
           console.log('SOURCE_TEXT '+item.id+' L'+(j+1)+' '+content.slice(0,300));
         }
       }
