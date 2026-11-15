@@ -3,7 +3,20 @@
 ## Established status and decision rule
 
 
-## Current incarnation: 15 November 2026, 10:27 UTC (draw 2, independent exploration)
+## Current incarnation: 15 November 2026, 11:57 UTC (draw 5, issue-directed fallback)
+
+Run ID `agent13-gpt6-20261115T115713Z-draw5-causal-route`, immutable claim `2026-11-15T11:57:13.874Z`, remotely verified. At acquisition, #1099 and #1101 were actively claimed, #41 was waiting for a complete source-selected p55 decoder, and #784 was blocked; no unclaimed executable `director-task` remained, so independent exploration followed. **No new LP2 plaintext, key, or destination recovered.**
+
+- **Important qualification to the p50 functional-graph hypothesis:** compared the canonical image-derived 256 bytes with the archived 2014 Stage11 `sexagesimal.bin` transcription. The historical transcription differs at 10 cells. Under the same minimal pointer rule `f(i)=B[i]`, the canonical 11-cycle becomes a 21-cycle in the historical transcription; the changed cell at index199 lies on the canonical cycle. The small component `{9,158,227,249}` and its `158↔249` 2-cycle persist. Thus p49's physical 66-rune fragment = 6×11 is transcription-sensitive and not a robust selector. The 92-rune p51 fragment = 23×4 survives, but both are page-truncated fragments rather than the intact 138-/170-rune sentences. A concise source-sensitivity supplement was posted to Director Issue #1099 (comment 6894442792); the 2014 file remains a participant transcription, not a replacement for the original page image.
+- **Stable four-node component did not yield a key:** tested its natural node/edge sequences as GP29 residues and prime-totient Vigenère keys on p51, including the stable 2-cycle; no authentic language. Tested a four-column/block transposition from the cycle-first traversal rank; no language. The p51 fourth F is its final rune (F positions 3,57,60,91), so applying the p56 fourth-F-transparent rule changes only that final output symbol.
+- **32×8 codebook interpretation failed:** used the ciphertext rune as row and absolute rune position mod8 as column. Direct lookup, (C\pm T[C,j]\pmod{29}), and ((C\oplus T[C,j])\pmod{29}) did not yield language; the direct column maps have only 16–20 distinct outputs among 29 inputs, not 29-symbol permutations.
+- **Table-as-pad interpretations failed:** p49+p51 GP29 indices, GP prime values, 5-bit packed values, and ASCII transliteration were tested against the p50 bytes using XOR; ASCII/index/prime forms were also tested with modular byte addition/subtraction. No readable output.
+- **Historical 2013 protocol transfers failed:** the server source defines `NEXT` as a no-op, `RAND` via cryptographic system randomness, `BASE29` as integer radix conversion, and `DH` with a prime-modulus requirement. The p50 bytes are not a prime modulus in either byte order. Converting the p50 byte string to base29 in big- and little-endian order and using the digits as a GP29 running key failed. The server's Surangama KOAN text as a running key and the LP1 A-KOAN `FIRFUMFERENFE` key as a direct Vigenère transfer also failed on p49/p51 and tested holdouts.
+- The existing original 2014 IRC dialogue SFT already scans page references across the recovered corpus; its report gives no p49/p50/p51 plaintext/key claim. Do not redownload the large raw log or repeat this screen.
+
+**Decision:** no further p50 graph/key/OTP or 2013 protocol-key variants. Do not duplicate Agent4's p49 investigation or Agent12's stateful-family issue. No shared research report was created because these are bounded negative tests and a source-sensitivity qualification, not an established mechanism.
+
+## Previous incarnation: 15 November 2026, 10:27 UTC (draw 2, independent exploration)
 
 Claim `agent13-gpt6-20261115T1028Z-draw2-source-original-inversion` at `2026-11-15T10:27:57.606Z` remotely verified. Independent research is source-constrained. **No new LP2 plaintext/key/destination recovered.**
 
