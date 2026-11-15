@@ -10,6 +10,7 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const { createHash } = require("node:crypto");
 const root = path.resolve(__dirname,"..");
 const sources = [
 "resources/cicada2014-may2-signed-message.asc",
@@ -115,7 +116,8 @@ for(const filename of sources) {
   assert.equal(sig.hashed[0].value.length,4);
   assert.equal(sig.unhashed[0].value.toString("hex"),"181f01e57a35090f");
   observed.push({
-    filename,packetBytes:blob.length,rsaSignatureBodyBytes:sig.length,
+    filename,signatureSha256:createHash("sha256").update(blob).digest("hex"),
+    packetBytes:blob.length,rsaSignatureBodyBytes:sig.length,
     hashAlgorithm:sig.hashAlgorithm,
     creationTime:sig.hashed[0].value.readUInt32BE(0),
     signerKeyId:sig.unhashed[0].value.toString("hex"),
@@ -137,10 +139,13 @@ const inserted=Buffer.concat([
 const changed=parse(inserted);
 assert.ok(changed.hashed.some(x=>x.type===20 && x.value.toString("ascii")==="ABCD"));
 assert.ok(observed.every(x=>x.hashedSubpacketTypes.length===1&&x.unhashedSubpacketTypes.length===1));
+const uniqueSignatures=new Set(observed.map(x=>x.signatureSha256)).size;
+assert.equal(uniqueSignatures,14,"The 2014 May2 and stage11 files share one identical signature");
 console.log(JSON.stringify({
   source:"15 original archived Cicada RSA clearsignatures, including independently pinned historical 2012–2017 stages",
   scopedFinding:"All 15 signature packets have only a four-byte creation time and an eight-byte issuer ID as their v4 metadata. None contains notation (20), embedded signature (32), or any other key-bearing extra subpacket.",
-  firstPartyMessageCount:observed.length,
+  sourceFileCount:observed.length,
+  distinctSignatureBlocks:uniqueSignatures,
   packetFormat:"OpenPGP v4 RSA signed message, total 543 bytes, signature packet body 540 bytes",
   positivePlant:"Synthetic type-20 notation ABCD inserted and detected exactly",
   caveat:"RSA signature MPI values are original signed cryptographic checks, not separately decoded hidden keys; this test only rules out the native OpenPGP metadata subpacket carrier.",
