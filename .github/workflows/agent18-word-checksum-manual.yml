@@ -14,6 +14,7 @@ on:
           - previous-literal-word
           - four-dot-phi
           - p7-red-scy
+          - table-sentence-pair
 
 permissions:
   contents: read
@@ -90,3 +91,17 @@ jobs:
         run: |
           node --check sims/lp2_p7_unique_redstop_scy_keyhandoff_sft.cjs
           node sims/lp2_p7_unique_redstop_scy_keyhandoff_sft.cjs
+
+  table-sentence-pair-original:
+    if: ${{ inputs.gate == 'table-sentence-pair' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test full original punctuation windows flanking the numeric table
+        run: |
+          node --check sims/lp2_p49_table_sentence_pair_sft.cjs
+          node sims/lp2_p49_table_sentence_pair_sft.cjs
