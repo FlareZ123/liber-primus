@@ -27,7 +27,7 @@ assert.equal(inputPaths.length, 3, "Pass default, -raw, and -layout pdftotext ou
 
 function wordsFrom(file) {
   const text = fs.readFileSync(file, "utf8").normalize("NFC");
-  return text.match(/\\p{L}+(?:['’]\\p{L}+)*/gu) || [];
+  return text.match(/\p{L}+(?:['’]\p{L}+)*/gu) || [];
 }
 function select(words) {
   return values.map(n => words[n - 1] ?? null);
