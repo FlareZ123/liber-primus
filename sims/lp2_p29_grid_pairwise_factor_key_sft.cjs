@@ -241,6 +241,29 @@ for (let i = 0; i < independentRowBounds.length; i++)
     1e-14);
 assert.ok(independentRowBounds.every(x => x.maxIOC29 < .04));
 
+
+// If the GF29 quotient rows are actually multiplication keys, the original
+// chapter must be *exactly divisible* by its chosen 28-rune polynomial.
+// Check all nine rows, both printed orientations and all nine chapters.
+// This is key-independent even when the row assignment is fully secret.
+const rowPolynomialGates = [];
+for (let c = 0; c < chapters.length; c++)
+  for (let j = 0; j < rowKeys.length; j++)
+    for (const orientation of ["printed", "reversed"]) {
+      const divisor = orientation === "printed" ?
+        rowKeys[j] : rowKeys[j].slice().reverse();
+      const remainder = divmod(chapters[c], divisor).r;
+      rowPolynomialGates.push({
+        chapter: c + 1, row: j + 1, orientation,
+        zeros: remainder.filter(x => x === 0).length,
+        coefficients: remainder.length,
+        exact: remainder.every(x => x === 0)
+      });
+    }
+assert.equal(rowPolynomialGates.length, 162);
+assert.equal(rowPolynomialGates.filter(x => x.exact).length, 0);
+assert.equal(Math.max(...rowPolynomialGates.map(x => x.zeros)), 4);
+
 const expected = [
   .03317668295415642, .03650680028632784,
   .03597771622420715, .03345678628116149,
@@ -255,6 +278,6 @@ console.log(JSON.stringify({
   pairwise: {objects: all.length, unorderedPairs: 1540, degreeCounts, higher},
   exactSource: {p39LowFirst: [27, 5, 15], signed2013HighFirst: H,
     commonMonic: [1, 10, 25], quotientRunes: [275, 254, 252]},
-  candidateInverses: inverses, chapterKeyTests, rowDistinct: rowKeys.map(r => new Set(r).size), independentRowBounds, positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
+  candidateInverses: inverses, chapterKeyTests, rowDistinct: rowKeys.map(r => new Set(r).size), independentRowBounds, polynomialRowGates: {tested: rowPolynomialGates.length, exact: 0, maxZeroResidues: 4}, positiveControl: "95 original solved GP p57 glyphs, repeated and recovered at each full key length",
   plaintextStatus: "No previously unknown original GP29 plaintext"
 }, null, 2));
