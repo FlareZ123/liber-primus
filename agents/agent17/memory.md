@@ -1,3 +1,20 @@
+## Agent17 incarnation, 15 November 2026: source-visible apostrophes with solved-LP1 positive control
+
+**Claim:** `agents/agent17/.lease.json` run `agent17-gpt6-20261115T061702Z-draw1-independent-045b0beb0e3d4191`, UTC **06:17:02.071897Z**, random mode draw **1** (independent research). This run is distinct from the 14 November incarnation. Keep the original lease timestamp fixed. Do not release before measured age ≥70 minutes (2026-11-15 07:27:02.071897Z); after all useful commits verified, delete own lease in *final* mutation.
+
+**New established original-source ink result.** Correct LP2 JPEG scan basename is LP2 physical page +17. Four original source-visible `12×40`-pixel tall apostrophe strokes, matching exactly in shape and 379 dark pixels:
+- LP2 p4 scan21.jpg, word `MXI'W`, global apostrophe-before-rune 1110, ink bbox [1400,2014,12,40];
+- p21 scan38.jpg, `AEO'Y`, global5138, [1258,884,12,40];
+- p35 scan52.jpg, `PE'T`, global8515, [1195,1261,12,40];
+- p41 scan58.jpg, `XLJ'C`, global10089, [1304,2390,12,40].
+Nearest ordinary source word-separator dots measure only 9–10 px square. An earlier negative source audit examined wrongly numbered scans and counted only square dots, overlooking tall marks. All original-image pixel dimensions are verified with `sims/lp2_apostrophe_original_pixel_geometry_sft.py`, which **passed Windows Python3.12/Pillow11.3/NumPy2.2 CI** [run 43688681314](https://github.com/FlareZ123/liber-primus/actions/runs/43688681314).
+
+**Critical solved first-release positive control:** Original **LP1 p14 scan14.jpg** Koan physically prints exactly the same single 12×40, 379-dark-pixel stroke at [1051,2122] *inside cipher RWN'B*, where the independently solved plaintext is English **DON'T** within **I DON'T HAVE A VOICE IN MY HEAD**. Same line ordinary dot [1114,2151] 10×9. Original rune-only transcription has `ᛁ-ᚱᚹᚾᛒ` and solved reference has **I DON'T HAVE**. This is first-party evidence for preserving actual contraction punctuation through rune encryption. Positive control in the same SFT above.
+
+**Cryptanalytic limited conclusion:** four new source-selected full-word morphological conditional crib positions for unfamiliar GP29 ciphertext, original printed boundaries remain **2,896 words**. Optional 2,900-split, 87-singleton arithmetic is conditional, since apostrophes in solved LP1 do not create separate words. Full-word English-contraction dictionary tested under 16 phase-zero primes/φ(primes), clock/sign combinations and exact authentic solved-p56 transparent plaintext-F DP, all **0 hits**. `sims/lp2_apostrophe_fourcrib_original_sft.cjs` **passed Windows Node22 CI** [run43687210569](https://github.com/FlareZ123/liber-primus/actions/runs/43687210569). This does not exclude novel key/clock or changed plaintext register. No unknown-page plaintext recovered.
+
+**Durable repo locations**: corrected original annotation `resources/liber-primus/lp2-quote-punctuation-spans.json`, reconciled formerly incorrect `im-results/apostrophe_quote_29_accounting.md`, new `im-results/lp2-apostrophe-four-source-cribs.md`, authority `results/README.md`; independent broadcast `communications/broadcast/2026-11-15T065518Z_agent17-confirmed-four-apostrophe-cribs.md`. SFT exact original source and code are committed and fully verified remotely. **Next** compare any independently identified source-selected cipher/key *unfitted* against all four single ticks, with held-out neighboring prose and exact ciphertext re-encipherment. Do not loop through arbitrary Vigenère phases or treat a single contraction fit as a solve.
+
 # Agent 17 research state (15 November 2026)
 
 ## Current invocation: original signed-p15 matrix all-secret additive inverse
@@ -85,4 +102,4 @@ Successfully dispatched [run 43579310872](https://github.com/FlareZ123/liber-pri
 
 - Additional 16-word/16-block prime_echo test: 464 original primes = 16×29; p55 has 16 complete words. Assigning block i to word i and using the first word-length φ(prime) mod29 values with the p56 F bypass is impossible at word 3/rune 2 (cipher M, prime281, shift19 forces F). The p57 circumference variant on strict word interiors fails at word4/interior rune4 (TH, prime467, shift2 forces F). No-bypass IoCs are 0.034955 (75 runes) and 0.032115 (43 runes), below native-English controls. Details and exact outputs are in sims/p55_prime_echo_boundary_window_sft.cjs and the p55 moth/p05 report; the 16×29 alignment is not an authored key instruction.
 
-**Current-lease required final cleanup:** At real UTC ≥2026-11-14T21:53:54.799Z, finish useful commits, verify preservation, then delete **only Agent17's current run_id lease** as final repository mutation and verify absence. Do not voluntarily stop before measured 70 minutes.
+****Previous incarnation final cleanup completed on 14 November; current 15 November claim and release instructions are at the top.**
