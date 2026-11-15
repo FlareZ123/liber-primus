@@ -13,4 +13,5 @@ jobs:
         with:
           node-version: '22'
       - run: node sims/lp1_04_outguess_archive_classifier_sft.cjs
+      - run: sudo apt-get update -qq && sudo apt-get install -y libjpeg-dev
       - run: python sims/lp1_04_outguess_native_header_sft.py
