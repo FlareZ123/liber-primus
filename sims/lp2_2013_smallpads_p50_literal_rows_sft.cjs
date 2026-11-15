@@ -7,8 +7,10 @@
  * and complete pp49-51 256-cell table against three independent period-era
  * binary source objects: 2013 CicadaOS _560.00 / 560.17 and 2013 761.MP3.
  *
- * This tests unchanged literal byte reuse at ANY source offset, with no
- * invented XOR, KDF, phase, alphabet or byte rearrangement.
+ * Test direct literal motifs and source-era bytewise XOR or additive
+ * masks repeating across eight physically printed columns. All masks are
+ * unknown and recovered from each hypothetical source location. No KDF,
+ * arbitrary permutation, phase fit, or language-model search.
  *
  * Node.js 22 CommonJS:
  * node sims/lp2_2013_smallpads_p50_literal_rows_sft.cjs <_560.00> <560.17> <761.MP3>
@@ -82,6 +84,80 @@ assert.deepEqual(findAll(positives,motifs[0].bytes),[11]);
 assert.deepEqual(findAll(positives,motifs.find(x=>x.name==="printed row 0").bytes),[11,333]);
 assert.deepEqual(findAll(positives,motifs.find(x=>x.name==="printed column 0").bytes),[777]);
 
+/** Full-table physical 32×8 readouts, without arbitrary cell permutations. */
+const orientations = [];
+for (const major of ["row","column"])
+for (const reflectRows of [false,true])
+for (const reflectColumns of [false,true]) {
+  const oriented = Buffer.from(Array.from({length:256}, (_,i) => {
+    const row = major==="row" ? Math.floor(i/8) : i%32;
+    const col = major==="row" ? i%8 : Math.floor(i/32);
+    const rr = reflectRows ? 31-row : row;
+    const cc = reflectColumns ? 7-col : col;
+    return table[rr*8+cc];
+  }));
+  orientations.push({
+    name:`${major}-major${reflectRows?"-flip-rows":""}${reflectColumns?"-flip-columns":""}`,
+    bytes:oriented
+  });
+}
+assert.equal(orientations.length,8);
+
+/**
+ * Find source offsets yielding exactly the 256 printed table values under
+ * an arbitrary unknown, repeating 8-element mask, recovered from first row.
+ * Every source offset is examined. No known key or clock is fitted.
+ *
+ * @param {Buffer} source
+ * @param {Buffer} target
+ * @param {"xor8"|"add8"|"gp29add8"} model
+ * @returns {number[]}
+ */
+function findPeriod8(source, target, model) {
+  assert.equal(target.length,256);
+  /** @type {number[]} */
+  const hits=[];
+  const modulus=model==="gp29add8"?29:256;
+  const transform=(b)=>model==="gp29add8"?b%29:b;
+  for(let at=0;at<=source.length-256;at++) {
+    const t0=transform(target[0]),s0=transform(source[at]);
+    const t8=transform(target[8]),s8=transform(source[at+8]);
+    if(model==="xor8" ? (t0^s0)!==(t8^s8) :
+      ((t0-s0+modulus)%modulus)!==((t8-s8+modulus)%modulus))continue;
+    const t1=transform(target[1]),s1=transform(source[at+1]);
+    const t9=transform(target[9]),s9=transform(source[at+9]);
+    if(model==="xor8" ? (t1^s1)!==(t9^s9) :
+      ((t1-s1+modulus)%modulus)!==((t9-s9+modulus)%modulus))continue;
+    let success=true;
+    for(let i=8;i<256;i++) {
+      const t=transform(target[i]),s=transform(source[at+i]);
+      const baseT=transform(target[i%8]),baseS=transform(source[at+(i%8)]);
+      if(model==="xor8" ? (t^s)!==(baseT^baseS) :
+        ((t-s+modulus)%modulus)!==((baseT-baseS+modulus)%modulus)) {
+        success=false;break;
+      }
+    }
+    if(success)hits.push(at);
+  }
+  return hits;
+}
+
+// Secret masks are recovered from each artificial source excerpt, not given
+// to the scanner. Both full 256-byte source and receiver are asserted.
+for(const model of ["xor8","add8","gp29add8"]) {
+  const target=orientations[0].bytes;
+  const fake=Buffer.alloc(270,247);
+  const salt=[7,19,53,88,111,161,212,233];
+  for(let i=0;i<256;i++) {
+    const t=model==="gp29add8"?target[i]%29:target[i];
+    fake[6+i]=model==="xor8"?(t^salt[i%8]):
+      model==="add8"?(t-salt[i%8]+256)%256:
+      (t-(salt[i%8]%29)+29)%29;
+  }
+  assert.ok(findPeriod8(fake,target,model).includes(6),
+    model+" planted original-length source excerpt was not found");
+}
+const maskModels=["xor8","add8","gp29add8"];
 /** @type {{source:string,bytes:number,verifiedHash:string,hits:{motif:string,length:number,positions:number[]}[]}[]} */
 const report = [];
 for (let i=0;i<sources.length;i++) {
@@ -92,16 +168,26 @@ for (let i=0;i<sources.length;i++) {
   const hits = motifs.map(m=>({
     motif:m.name,length:m.bytes.length,positions:findAll(data,m.bytes)
   })).filter(m=>m.positions.length>0);
+  /** Exact 256-cell source excerpts under all eight physical grid reads. */
+  const maskHits=[];
+  for(const orientation of orientations) {
+    for(const model of maskModels) {
+      const offsets=findPeriod8(data,orientation.bytes,model);
+      if(offsets.length)maskHits.push({orientation:orientation.name,model,positions:offsets});
+    }
+  }
   report.push({
-    source:source.name,bytes:data.length,verifiedHash:source.hash,hits
+    source:source.name,bytes:data.length,verifiedHash:source.hash,hits,
+    eightPositionMaskHits:maskHits
   });
 }
 console.log("LP2_SOURCE_MOTIF_RESULT "+JSON.stringify({
   target:"LP2 pp49-51 original 256 cells, conventional base60 bytes",
   originalGridSHA256:sha256(table),
   candidatesPerSource:motifs.length,
+  fullTableMaskModelsPerSource:orientations.length*maskModels.length,
   checkedBytes:sources.reduce((a,b)=>a+b.size,0),
   perSource:report,
-  anyHit:report.some(s=>s.hits.length>0),
-  note:"If no hits, only unchanged contiguous 8/32/256-byte source copies under the exact listed physical orientations are excluded; not unknown keys or transformations."
+  anyHit:report.some(s=>s.hits.length>0 || s.eightPositionMaskHits.length>0),
+  note:"If no hits, exact source copies and complete 256-cell period8 unknown XOR/additive masks on these three archived originals are excluded. Other transforms, keys and non-GP encodings remain possible."
 }));
