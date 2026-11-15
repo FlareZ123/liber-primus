@@ -21,6 +21,23 @@ A stronger source-authenticated **conditional failure** tests the *actual p56 ci
 
 The stated failures concern only the historically supported **subtractive** p56-style transparent-F transfer. A plain-source-key per-rune additive cipher without the bypass has no contradiction, though it produces no English. A distinct p55 cipher could behave differently. The full original 85-rune solved p56 retains its authentic 84-key bypass path in the exact same state sieve; all four source keys independently recover a 75-rune source-native planted p57 plaintext using that rule.
 
+## Distinct nested-ring consumer using solved p56 as a key witness
+
+The **same PARABLE "shed" premise** also produces a useful independent known-plaintext falsification. The already solved **p56 AN END** has **85 plaintext GP runes in 25 printed words**. Removing *one end rune from each* produces **85−25=60** genuine known-plaintext GP values. Independently, the third concentric ring of the original pp49–51 **32×8** numerical table, depth two, has **60 original byte cells**, among ring lengths **76/68/60/52**. The decoded original p56 text and printed word lengths are exact; the source does not itself instruct this cross-page/graphic alignment, making it a distinct conditional route.
+
+If those 60 table values represent these 60 original clear GP positions through *any fixed byte-to-rune codebook*, the known p56 passage identifies the symbol mapping without English fitting. This is a powerful necessary-condition gate for an all-secret family, since an actual stationary map would also be usable on the 76-cell outer ring to attempt withheld p55. With no key input imposed, test all four rectangle corners × clockwise/counterclockwise ring traversals, both p56 first/last word-end trims, and either **literal byte values 0–255** or **byte mod29** as the codebook input. For each source-byte/input value, every corresponding p56 target must be exactly the same rune; computing the majority label in each input class gives the **optimal possible all-secret** fit.
+
+| Completely unrestricted codebook source register | Fixed original geometries | At least this many unavoidable known-p56 disagreements | Best possible known positions |
+| --- | ---: | ---: | ---: |
+| Literal source byte 0–255 (53 distinct values among 60 cells) | 16 | **5/60** | **55/60** |
+| Source byte modulo29 (24 distinct values among 60 cells) | 16 | **29/60** | **31/60** |
+
+In **every one** of the 32 no-key-fitted configurations, at least one pair of *identical* source byte/residue inputs would have to decode to **different authentic clear p56 runes**. This exact two-site contradiction rejects **all unrestricted stationary codebooks** for this specific 60-cell ring interpretation. It is stronger than a GP29 Caesar or fixed-key failure. A complete original p56 positive reproduces the authentic prime-totient and plaintext-F bypass rule; independent synthetic stationary maps planted into the actual 60 table input values are recovered **32/32**, with zero false contradictions.
+
+The count 60 is a potentially human-visible alignment and justifies this finite test, while the original text names neither the 32×8 table nor a stationary decoding function. It does **not** exclude nonlinear changing-state mappings, a different recipient or one-to-many extraction; it reveals no p55 plaintext. **Do not fit new ring phases or keys after these all-secret original-known-plaintext conflicts.**
+
+[Read-only original-source Windows Node22 SFT](../sims/lp2_p56_shaved_words_grid60_allsecret_sft.cjs), reporting all best geometry pairs and exact source-byte/known-rune conflicting witnesses.
+
 **Decision:** Retire direct p57 shaved-word → p55 additive key transfer and especially the strict original p56-rule transfer. The striking source lengths alone provide no selected mechanism, original plaintext or key. An independently authored alternative operator or verified unexamined p55 text would be required to reopen.
 
 **Reproducer:** sims/lp2_p57_shaved_words_p55_direct_key_sft.cjs, a read-only, dependency-free Node.js22 CommonJS test using the repository's original LP2 transcription and canonical rune corpus. It prints all eight unmodified original-cipher outcomes and complete source-positive checks. **Executed successfully on real original repository data, Windows-latest / Node.js 22**, in [manual SFT run 43688915678](https://github.com/FlareZ123/liber-primus/actions/runs/43688915678), job [132735183198](https://github.com/FlareZ123/liber-primus/actions/runs/43688915678/job/132735183198). All asserted original strict-F contradiction positions and synthetic F-skip plants passed.
