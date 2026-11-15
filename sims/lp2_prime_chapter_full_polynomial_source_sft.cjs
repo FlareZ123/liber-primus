@@ -4,7 +4,8 @@
  * Source-locked original LP2 polynomial-share inversion.
  * Expands the established first-four 3/5/7/11 equal-strand chapter test
  * from Shamir f(0) to every polynomial coefficient and source-selected
- * finite-field points 8, 17, and 24. No guessed plaintext or secret key.
+ * all 29 finite-field evaluation points (including 8, 17, 24).
+ * No guessed plaintext or secret key.
  * Run: node sims/lp2_prime_chapter_full_polynomial_source_sft.cjs
  */
 const assert = require('node:assert/strict');
@@ -124,7 +125,8 @@ for (const {first,last,k,n} of chapters) {
   for (const layout of ['contiguous','interleaved']) {
     const control = Array.from({length:n}, (_, i) => english[i % english.length]);
     const coeffRows = inverseMatrix.map(weights => read(input, k, layout, weights));
-    const evaluated = [0, 8, 17, 24].map(x => read(input,k,layout,evalWeights(k,x)));
+    const evaluated = Array.from({length:29}, (_, x) =>
+      read(input, k, layout, evalWeights(k,x)));
     const coeffIoCs = coeffRows.map(ioc);
     const evalIoCs = evaluated.map(ioc);
     coefficients += coeffRows.length;
@@ -149,13 +151,20 @@ for (const {first,last,k,n} of chapters) {
     results.push({
       chapter:'p'+first+'-p'+last, shareCount:k, strandLength:n, layout,
       coefficientIoCs:coeffIoCs.map(v => +v.toFixed(6)),
-      evaluations:Object.fromEntries([0,8,17,24].map((x,i) =>
-        [String(x), +evalIoCs[i].toFixed(6)]))
+      evaluations:{
+        sourceRoot24:+evalIoCs[24].toFixed(6),
+        matrixRoot8:+evalIoCs[8].toFixed(6),
+        matrixRoot17:+evalIoCs[17].toFixed(6),
+        secretAtZero:+evalIoCs[0].toFixed(6),
+        highestValue:+Math.max(...evalIoCs).toFixed(6),
+        highestAt:evalIoCs.indexOf(Math.max(...evalIoCs)),
+        lowestValue:+Math.min(...evalIoCs).toFixed(6)
+      }
     });
   }
 }
 assert.equal(coefficients,52);
-assert.equal(evaluations,32);
+assert.equal(evaluations,232);
 assert.ok(maxCoefficient < 0.038);
 assert.ok(maxEvaluation < 0.038);
 console.log(JSON.stringify({
