@@ -8,7 +8,7 @@ The 2013 Cicada telnet command `primes` is preserved as a participant-era transc
 
 The 2014 Liber Primus source contains a **32×8 two-character numerical table** spanning LP2 pages 49,50,51 (original JPEGs 66–68). Under the existing source-derived byte interpretation in [the preserved grid resource](../resources/liber-primus/lp2-grid-256.json), the 256 table cells partition into **76 one-cell-thick outside-rim cells** and precisely **30×6 = 180 interior cells**. The source artifact fixes this printed geometry; using its 180 interior cells requires a selected one-cell boundary but no ciphertext-derived tuning.
 
-The independent 2013 omission count equals the 2014 inner-table count **exactly**. This is a potentially useful human-visible way to select a *specific 180-entry prime tape* for the non-rim part of the 2014 table, distinct from unconstrained keyword hunting. The first prime of the gap, 73, was in the original 29 GP29 prime-weight alphabet (GP rune L, twentieth zero-based symbol), and 1229 also appears as an independently verified sum of a 2013 Instar Parable clause. Those further correspondences are contextual only; they do not specify a decoder. The omission could be historical output truncation or an unrelated 2013 staging choice.
+The independent 2013 omission count equals the 2014 inner-table count **exactly**. This is a potentially useful human-visible way to select a *specific 180-entry prime tape* for the non-rim part of the 2014 table, distinct from unconstrained keyword hunting. The first prime of the gap, 73, was in the original 29 GP29 prime-weight alphabet (GP rune L, zero-based rune index 20), and 1229 also appears as an independently verified sum of a 2013 Instar Parable clause. Those further correspondences are contextual only; they do not specify a decoder. The omission could be historical output truncation or an unrelated 2013 staging choice.
 
 ## Frozen affordable direct consumer
 
@@ -21,7 +21,7 @@ To avoid creating a new unlimited prime-key search, the first trial uses the two
 
 | Candidate 180-byte interpretation | ASCII-readable characters (printable or tab/LF/CR) | Verdict |
 | --- | ---: | --- |
-| Original 2014 table interior, untransformed | **73/180 = 40.56%** | not plaintext |
+| Original 2014 table interior, untransformed | **73/180 = 40.56%** | not direct ASCII plaintext |
 | Subtract omitted prime low byte | **70/180 = 38.89%** | not plaintext |
 | XOR omitted prime low byte | **56/180 = 31.11%** | not plaintext |
 | Add omitted prime low byte | **70/180 = 38.89%** | not plaintext |
@@ -31,5 +31,7 @@ The GP29 residue coincidences are likewise close to the uniform-rune regime, wit
 ## Decision
 
 Retain the count alignment as a **conditional, separately sourced key-tape hypothesis**, not as an established cryptographic relationship. The direct row-major additive and XOR consumers fail to reveal plaintext; they do not rule out a selected transposition, higher-radix prime mapping, non-ASCII payload, or an operation involving the **76-cell rim**. A successor investigation is worthwhile only if an original image mark, authentic 2013 instruction, or dated contemporaneous solver account independently selects the prime-to-grid permutation or an explicit operator; this is the missing ingredient. This route is stronger than arbitrary number play in that **all 180 input primes are chosen by a concrete original-era omission and the 180 table positions by 2014 artifact geometry**, before any ciphertext scoring.
+
+**Independent execution:** [Windows Node22 source SFT run 43767129552](https://github.com/FlareZ123/liber-primus/actions/runs/43767129552) completed successfully with the entire original-source program and both companion SFTs passing their assertions.
 
 **Reproduce:** [read-only Windows Node22 CommonJS SFT](../sims/lp2_2013_telnet_180gap_p50_interior_source_sft.cjs), run from the repository root. The original 2014 table transcription carries existing source-audited token caveats; none affect the count identity. No page ciphertext was decrypted by this experiment.
