@@ -2,7 +2,8 @@
 
 /**
  * SFT: an original 2015 two-difference observation followed by the *actual*
- * p56 prime-totient, transparent-F inverse. No fitted key or English score.
+ * p56 prime-totient, transparent-F inverse on both historical registers.
+ * No fitted key or English score.
  * Run with Node.js 22 from any working directory.
  */
 const assert = require('node:assert/strict');
@@ -110,6 +111,12 @@ console.log('2015 729-rune double difference: 40 neighboring first-pass equals, 
 // Real source-shaped starts: p56 key begins prime2 (index0); the 2015
 // imagined opening F has just used prime2, so prime3 (index1) is the rival.
 for (const start of [0, 1]) {
+  const firstGot = fBypassStates(first, primes, start);
+  assert.equal(firstGot.failure, start === 0 ? 12 : 3);
+  assert.equal(firstGot.maxStates, 1);
+  console.log('Original first delta: prime start', start,
+    'all legal F-bypass paths impossible at original rune', firstGot.failure);
+
   const got = fBypassStates(second, primes, start);
   assert.equal(got.failure, 48);
   assert.equal(got.maxStates, 2);
@@ -125,4 +132,4 @@ for (const start of [0, 1]) {
   console.log('Solved-p57 native-GP 729-rune plant survives with clock', plant.clock);
 }
 
-console.log('PASS: both complete frozen original-source routes rejected; native control accepted.');
+console.log('PASS: both original historical registers and both frozen clock origins rejected; native control accepted.');
