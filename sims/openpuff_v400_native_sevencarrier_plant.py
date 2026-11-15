@@ -18,7 +18,7 @@ import traceback
 from pathlib import Path
 
 from filelock import FileLock
-from PIL import Image
+from PIL import Image, ImageDraw
 from pywinauto.application import Application
 from pywinauto.keyboard import send_keys
 
@@ -40,11 +40,28 @@ HEIGHT = 3600
 CARRIER_COUNT = 7
 
 
+# Original seven source JPEGs (50.jpg through 56.jpg) are all 2400x3600 RGB,
+# 400 dpi, with file sizes in the 500-575 kB range. Those source bytes are
+# immutable; synthetic art is generated rather than editing original pages.
+ORIGINAL_SEVEN_SIZES = (525652, 555050, 574580, 511099, 503830, 519224, 541379)
+
+
 def atomic_source_size_cover(path: Path, seed: int) -> None:
-    """Create a deterministic 2400x3600, 400-dpi RGB JPEG control."""
+    """Generate a benign 2400x3600 RGB scan-profile JPEG near the LP2 byte size.
+
+    Prior random full-frame RGB covers consumed ~250 MB across seven images,
+    while the original seven files total only ~3.7 MB. This deterministic
+    sparse-ink control retains dimensions/DPI/encoding and avoids the huge
+    high-entropy mismatch that may have caused the native Unhide timeout.
+    """
     rng = random.Random(seed)
-    raw = rng.randbytes(WIDTH * HEIGHT * 3)
-    image = Image.frombytes("RGB", (WIDTH, HEIGHT), raw)
+    image = Image.new("RGB", (WIDTH, HEIGHT), (250, 250, 248))
+    drawing = ImageDraw.Draw(image)
+    for _ in range(1800):
+        x = rng.randrange(120, WIDTH - 120)
+        y = rng.randrange(100, HEIGHT - 100)
+        length = rng.randrange(3, 30)
+        drawing.line((x, y, x + length, y + 3), fill=(30, 30, 30), width=2)
     path.parent.mkdir(parents=True, exist_ok=True)
     with FileLock(str(path) + ".lock"):
         with tempfile.NamedTemporaryFile(
@@ -153,11 +170,20 @@ def main() -> None:
     ]
     for index, path in enumerate(carriers, start=1):
         atomic_source_size_cover(path, 0x33010000 + index)
+    for reference_size, carrier in zip(ORIGINAL_SEVEN_SIZES, carriers):
+        observed_size = carrier.stat().st_size
+        if not 0.8 * reference_size <= observed_size <= 1.2 * reference_size:
+            raise RuntimeError(
+                f"Synthetic source-size profile mismatch for {carrier.name}: "
+                f"{observed_size} bytes versus original {reference_size}"
+            )
 
     record = {
         "source_executable": file_facts(exe),
         "cover_inputs": [file_facts(path) for path in carriers],
         "cover_dimensions": [WIDTH, HEIGHT],
+        "cover_generator": "deterministic sparse-ink, non-original",
+        "source_seven_original_sizes": list(ORIGINAL_SEVEN_SIZES),
         "cover_dpi": [400, 400],
         "jpeg_quality": 92,
         "jpeg_subsampling": 0,
