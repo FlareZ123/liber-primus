@@ -33,8 +33,37 @@ Every direct candidate exactly re-encrypts, and a separately solved 75-rune p57 
 
 There is a second simple size match: removing only the *global* two ends of the 97 concatenated marked runes leaves **95**, the length of original solved p57. But aligning these 95 selected cipher runes to the 95 known clear p57 runes violates any stationary single-valued monoalphabetic substitution at **67** repeated-input positions. No p57 plaintext is thereby recovered.
 
+## Two-ciphertext shared-pad inverse with independent word boundaries
+
+The direct key failure leaves one materially different, recoverable possibility: the 75 S5 interiors and the 75 p55 body runes are **both ciphertext** encrypted with the same running GP29 pad. This model could recover two unknown plaintexts and the pad simultaneously from original visible word breaks. It requires the same 75 positional key elements in both streams and source-native English words in their printed segmentations.
+
+Let original p55 body be A[0..74] and the eleven marked interiors be B[0..74]. A shared GP29 addition with unseen K would force:
+
+    D[i] = (A[i] − B[i]) mod29 = (PlainA[i] − PlainB[i]) mod29.
+
+No K values, phase, crib or bypass mask are selected. The 16 p55 complete-word lengths are [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]; the 11 independently printed S5 interior lengths are [6,8,10,6,10,8,4,8,6,4,5]. The two partitions overlap on 24 pairs of word intervals. For each pair, compute every source-native GP29 dictionary candidate of the two exact lengths and count candidate pairs satisfying the observed D at every shared rune position. The lexicon has **29,058 unique native-GP encodings** from the pinned TextBlob source, with historical QU→CW, V→U, K→C, Z→S, ING→NG, IO→IA spellings. Its dictionary was fixed before examining original candidate results, using the same convention as the validated historical F-key lexical decoder.
+
+The original two streams have **six decisive edges with zero compatible dictionary word pairs**:
+
+| p55 word zero-based | S5-interior word zero-based | Shared rune positions | Native dictionary pairs |
+| ---: | ---: | ---: | ---: |
+| 3 | 1 | 6 | 0 |
+| 4 | 2 | 6 | 0 |
+| 6 | 3 | 6 | 0 |
+| 6 | 4 | 5 | 0 |
+| 7 | 4 | 5 | 0 |
+| 11 | 7 | 6 | 0 |
+
+Thus no pair of complete dictionary English plaintexts can satisfy this fixed two-time-pad model. The first zero edge alone suffices for dictionary-only recovery under source-preserved segmentation. All 18 other edges are also reported by the SFT; four-symbol overlaps (p55 word0, S5 word0) and (p55 word8, S5 word5) have 45 and 27 admissible pairs, confirming that the matcher detects ordinary incidental compatibility.
+
+**Positive solver control:** Choose sixteen and eleven authentic dictionary English words of exactly the source printed lengths, encrypt both 75-rune passages with a single deterministic unknown 75-rune additive pad, cancel the pad and run the identical overlap matcher. All 24/24 planted edges retain at least one dictionary pair, and the key-known test decoder round-trips both whole 75-rune original-layout tapes. This distinguishes actual source model rejection from a broken lexical parser.
+
+The test is **conditional on synchronized positional pad reuse** and *both* plaintext passages using words present in this 29,058-type dictionary. An F-transparent skipped key clock, non-English prose, names absent from the source lexicon, altered segmentations, and another S5 extraction are outside it, requiring independent original instructions rather than arbitrary rescue operations.
+
+[Complete CommonJS original-cipher and paired-English-planted SFT](../sims/lp2_s5_terminal_twotimepad_lexical_sft.cjs) ran on exact repository ciphertext and pinned lexicon bytes in the connected JavaScript runtime, with all original and positive overlap assertions passing (SFT PASS).
+
 ## Research decision
 
-The specific eleven-word S5/p57 circumferences construction provides a reproducible new 75-rune candidate key, but **the complete direct additive and historically established F-bypass inverses fail**. Because the 11 source words are all at least six symbols long, the length equality alone cannot authenticate this candidate. Do not rescue the failed result with rotations, freely chosen masks, new arithmetic operations or semantic post-fitting without an independent author clue choosing them.
+The specific eleven-word S5/p57 circumferences construction provides a reproducible new 75-rune candidate key, but **the complete direct additive and historically established F-bypass inverses fail, and the separate simultaneous two-ciphertext English shared-pad inverse fails at six exact word-overlap sites**. Because the 11 source words are all at least six symbols long, the length equality alone cannot authenticate this candidate. Do not rescue either failed original inverse with rotations, arbitrary key clocks, newly introduced alphabet mappings or semantic post-fitting without an independent author clue.
 
 **Complete source-native test:** [single CommonJS SFT](../sims/lp2_s5_shed75_terminal_pad_sft.cjs), which parses the original 2,896 words / 12,956 GP runes, asserts all selected words/pages/counts, both direct inverses, all sixteen F branches, the solved p57 key-plant and the 67 known-text contradictions. The exact repository script ran successfully on the exact source bytes through the connected JS runtime and reported **SFT PASS**.
