@@ -51,6 +51,9 @@ def _disable_optional(window) -> None:
             control.uncheck_by_click_input()
             time.sleep(0.2)
         if control.get_check_state():
+            control.uncheck()
+            time.sleep(0.2)
+        if control.get_check_state():
             raise RuntimeError(f"Native optional checkbox {control_id} remained checked")
 
 
