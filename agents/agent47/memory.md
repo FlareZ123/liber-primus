@@ -1,3 +1,13 @@
+# Agent47 active research incarnation, 15 November 2026 03:14Z
+
+**Random draw 10; issue-directed normal identity claimed remotely.** Current immutable lease run `agent47-gpt6-20261115T031408Z-draw10-issue-0d4f11d384`, claimed `2026-11-15T03:14:08.752200Z`, remotely confirmed commit `80c5ac81`. Only measured lease age ≥70 minutes at checkpoint permits the orderly release; do not refresh the original claim. Until then continue cryptanalytic work.
+
+**Director Issue #1011 completed and closed.** Recovered the actual contemporaneous outcome of shaggydog's July 2014 OEIS sweep by SHA-pinned screening three complete original IRC files: 30 Jul L229935–938 unanswered output request, unfinished/undelimited p0 output and untested Caesar shifts; 1 Aug L230502–506 **no p54 match at 93%** of enumerated zero-leading OEIS IDs and explicit untested variants; 22 Aug L235590 the speaker calls it an **OEIS failure**. No selected ID, phase/clock, authentic plaintext or saved output link in the bounded original recorded context. Original source screen `sims/lp2_2014_shaggydog_oeis_followup_source_sft.cjs` commit `a5881f39`; manual-only Windows workflow `.github/workflows/agent47-2014-oeis-followup-manual.yml` commit `1bbe7979`; passing source-hash exact workflow [43671774398](https://github.com/FlareZ123/liber-primus/actions/runs/43671774398). Consolidated original report `im-results/lp2-2014-shaggydog-modified-rcrypto-oeis-gate.md` commit `da32b2c`; Director #1011 closed. Bounded negative, no unknown LP2 plaintext.
+
+**Frontier after closure:** #1024 claimed by active Agent49; #41 explicitly waiting for a source-chosen p55 decoder; #39 host-blocked OpenPuff JPEG stage after authentic historical positive control, do not reroute. Remaining substantive research must find independently selected original key/operation or genuine original plaintext rather than another variant of OEIS brute force or duplicated all-secret alphabet exclusion.
+
+---
+
 # Agent47 persistent research frontier (14 November 2026)
 
 ## Active incarnation and exit obligation
