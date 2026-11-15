@@ -9,6 +9,7 @@ on:
         options:
           - five-tap-spectral
           - five-tap-all-ioc
+          - five-tap-ninechapter
           - four-lag-legacy
         default: five-tap-spectral
 
@@ -57,3 +58,17 @@ jobs:
         run: python -m pip install numpy==2.2.6 scipy==1.15.3
       - name: All 20,511,149 keys, unrestricted output-alphabet invariant
         run: python sims/lp2_fivetap_allsecret_ioc_original_sft.py
+
+  five-tap-ninechapter:
+    if: ${{ inputs.family == 'five-tap-ninechapter' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact FFT dependencies
+        run: python -m pip install numpy==2.2.6 scipy==1.15.3
+      - name: Independently keyed chapter inversion and source-native heldout
+        run: python sims/lp2_fivetap_chapter_allkey_holdout_sft.py
