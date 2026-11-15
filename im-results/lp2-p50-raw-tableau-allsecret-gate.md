@@ -1,6 +1,6 @@
 # p50 table as stationary GP29 tableau selector: exact all-secret gates
 
-**Decision (15 November 2026):** two natural ways of using the conditional base60 p49–51 table as a repeating selector for non-affine GP29 alphabets fail exact, key-independent histogram tests against source-native English and Latin controls. This is a bounded negative, not a decipherment.
+**Decision (15 November 2026; nine-chapter stress test):** five stationary GP29 alphabet-selection models from the p49–51 numeric table fail exact key-independent language-histogram gates. A separate leading-zero-table-cell and adjacent-doublet association persists within all nine illustrated chapters under one global 256-rune clock, but supplies no authentic cipher inverse or plaintext.
 
 ## Candidate and frozen models
 
@@ -89,21 +89,36 @@ The first base60 digit of each table cell is in {0,1,2,3,4}. Using that digit as
 
 All twelve original values are below every applicable control minimum. Therefore **no five fixed monoalphabetic permutations selected by the leading base60 digit can recover native English** under this global clock. The five-state selector is rejected; it does not explain the repeat-site correlation below.
 
-### New cross-channel result: repeat sites align with low p50 table values
+### Printed leading-zero cells and rare doublets: nine-chapter stress test
 
-The independent [Round44 doublet-site analysis](https://github.com/Dukotah/cicada3301/tree/main/liber-primus/analysis/round44/W2-B3-doublet-sites) reports 86 adjacent repeated-rune sites and a nonstationary gap sequence. Recomputing from the local canonical LP2 corpus reproduces exactly **86** sites in 12,955 adjacent-pair opportunities. The external list records the first rune of each pair; the local script uses the corresponding pair-start index `i-1`.
+**Classification: retrospective clock association, without a recovered plaintext or cipher.** This is a different observation from the stationary GP29 selector models excluded above. The 256 printed numeric tokens have physically visible first characters. Exactly **60/256 tokens begin with digit 0**, a mask independent of any disputed base59/base60 byte interpretation. Apply that 256-cell sequence repeatedly to the **12,956-rune unknown manuscript**, beginning at the first physical p0 rune. Assign each adjacent within-page pair to the table cell at its **first rune's global zero-based position**. The source has **12,901** such pairs and **86** equal-rune pairs. Printed page turns remain in the global key clock, even though cross-page pairs are excluded from event counts.
 
-For each pair start, read the p50 table continuously at `pairStart mod 256` (row-major, zero offset). Sort the 256 table cells by their base60 numeric value and partition them into five equal-rank groups. The lowest group is exactly **52 cells** (20.3% of the table; base60 values at or below 54). At the natural global/first-rune alignment:
+At the physically natural zero shift, the first-digit-zero mask covers **3,025/12,901 eligible pairs** and **33/86 doublets**. Its repeat rate is **33/3,025 = 1.091%**, compared with **53/9,876 = 0.537%** for all other first digits, a **2.0328×** rate ratio (approximate 95% log-rate interval **1.32–3.13**). A one-sided fixed-mask hypergeometric comparison gives **0.001349**. This is an **unadjusted diagnostic**, since the table/clock/doublet hypothesis emerged after a large history of exploratory LP2 tests.
 
-- **30/86** doublets (34.9%) occur at the lowest-quintile cells, versus **2,632/12,955** opportunities (20.3%). The event rate is 1.140% in this group and 0.543% elsewhere: **2.10× enrichment**.
-- Across all 256 circular table offsets and all five quintiles (1,280 combinations), the observed count 30 is the maximum, tied at three combinations: empirical familywise `p = 3/1280 = 0.00234`.
-- A separate 100,000-trial random-subset test, preserving the 86 event counts per table residue but choosing 52 of 256 residues uniformly, gives `p = 0.00393` (fixed seed in the reproducer).
-- Applying the same fixed mask and global clock to **122 source-native English control windows** gives a maximum bottom-quintile share of 25.19% of their doublets and a maximum rate ratio of 1.32×; none reaches the LP2 share of 34.88% or its 2.10× rate ratio. This makes a generic English double-letter pattern an inadequate explanation.
-- The same cell-rank partition is obtained under the radix59 alternative. The effect is specific to the global first-rune alignment: the second-rune, page-local and word-local clocks do not reproduce it. Lag-2 through lag-10 same-rune controls show no comparable 2.10× enrichment (their largest bottom-quintile rate ratio is about 1.25×).
-- The leading base60 digit 0 class (60 cells; 23.4% of the table) contains **33/86** doublets (38.4%): 1.087% repeat rate versus 0.534% in the other four classes, or **2.03×**. Its count is the maximum across 256 phases for digit 0; after scanning all five leading digits ×256 phases, 7/1,280 counts are at least 33 (empirical p=0.00547). This is a repeat-state association, not evidence for the five-alphabet selector rejected above.
+The new calculation partitions the *same original observations* by the nine chapters visible in the source manuscript. The first ratio is doublets occurring at leading-zero table cells over all chapter doublets; the second ratio is the chapter's eligible leading-zero positions over all within-page pairs.
 
-This is a **soft association, not a deterministic mask**: 56 of the 86 repeats occur outside the lowest quintile. It suggests the p50 table may modulate adjacent-repeat suppression or a stateful key clock, but it does not specify how. The external gap autocorrelation is not fully explained by this effect. The five-dot artwork and five base60 leading-digit classes make a five-way partition a plausible human test, not proof of author intent.
+| Original visual chapter | Leading-zero events / all events | Leading-zero eligible / all eligible | Rate ratio |
+| --- | ---: | ---: | ---: |
+| p0–2 | 1/4 | 169/726 | 1.099 |
+| p3–7 | 3/6 | 266/1,140 | 3.286 |
+| p8–14 | 3/9 | 403/1,722 | 1.636 |
+| p15–22 | 5/10 | 447/1,895 | 3.239 |
+| p23–26 | 4/11 | 240/1,017 | 1.850 |
+| p27–32 | 5/13 | 333/1,427 | 2.053 |
+| p33–39 | 5/12 | 392/1,673 | 2.334 |
+| p40–53 | 6/18 | 701/2,995 | 1.636 |
+| p54–55 | 1/3 | 74/306 | 1.568 |
+| **All nine** | **33/86** | **3,025/12,901** | **2.033** |
 
+All **nine chapters** individually have more leading-zero doublets than their local eligible-pair exposure predicts. An additional **retrospective** division into the first four chapters and last five gives **12/29** events from **1,285/5,483** eligible positions (fixed-mask upper tail **0.02399**) and **21/57** from **1,740/7,418** (upper tail **0.01565**) respectively. The second part was not prospectively withheld before discovery, so these are sensitivity checks, not an independent replication.
+
+A fully specified phase/category comparison evaluates **all five physically printed leading numeral classes × all 256 cyclic table shifts = 1,280** alternatives on the same original pair positions and chapter definitions. Exactly **four** give a positive effect in every chapter: (digit, shift) = **(0,0), (3,71), (1,60), (0,207)**. The source's literal leading zero with natural shift zero has the greatest chapter-summed excess among those four: **12.824** repeat events above chapter-specific exposure expectation. It ranks **first of 1,280** by the combined all-chapter-positive / excess criterion. This is a descriptive search rank, **not a calibrated discovery-wide probability**. For digit zero alone, shift zero is the unique highest event count among 256 shifts (**33**, versus **32** at the next-best shift16). Among all five categories and shifts, **seven** alternatives reach at least 33 events, including a digit2/shift195 combination with **40** events but only **eight** positive chapters.
+
+As original-input negative controls, the same digit-zero/shift-zero association for rune-equality **lags 2–12** has pooled relative rates **0.903–1.187**, with only **2–7** positive chapters; none matches lag1's **9/9**. The original broader report had also observed failure of the association under page-local and word-local reset clocks and second-rune global timing, and no matching effect in 122 source-native English control windows. The earlier lowest-numeral-quintile finding remains: the **52/256 cells at or below 54** have **30/86** adjacent-equal events, versus **2,632/12,955** global opportunity starts. The exploratory maximum was tied in three of 1,280 quintile/shift options, with a separate source-event subset randomization tail of **0.00393**. These two masks overlap heavily, so their enrichments must not be treated as independent confirmations.
+
+**Causal frontier:** the physically printed leading-zero class and the globally continuous original 256-cell clock are associated with the book's unusually rare adjacent doublets in a way that survives nine-chapter stratification and lag controls. This makes a **source-selected, stateful table-controlled collision or escape operation** worth prioritizing if an authentic instruction specifies it. The relationship is far from deterministic: **53 of the 86 doublets are outside the class**, and **2,992 of the 3,025 eligible class-zero positions do not repeat**. The grid appears only late in the book, and no authorial instruction tells a player to run its values over all earlier ciphertext. Without a key and explicit inverse, the association recovers no GP29 plaintext, destination, or authenticated original cipher.
+
+[Source-original standalone CJS replication](../sims/lp2_p50_digit0_chapter_repeat_sft.cjs) reconstructs the exact nine-chapter counts, all 1,280 category/phase controls, both retrospective halves and lags 2–12 using the canonical rune indices and **literal printed token characters**. Its [manual Windows Node22 CI workflow](../.github/workflows/lp2-p50-digit0-chapter-gate.yml) does not fit a key or a language model.
 
 ## Positive controls
 
