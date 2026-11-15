@@ -23,7 +23,6 @@ from pywinauto.keyboard import send_keys
 
 from openpuff_v400_extract import (
     acknowledge_completed_task,
-    disable_optional_passwords,
     file_facts,
     safe,
     save_dialog_if_present,
@@ -177,8 +176,30 @@ def set_password(window, password):
     if len(left) < 1:
         raise RuntimeError("Data Hiding lacks the expected password/target edits")
     left[0][2].set_edit_text(password)
-    states = disable_optional_passwords(window)
-    if states != {"1042": 0, "1043": 0}:
+    buttons = visible_controls(window, "Button")
+    layout = [
+        {"id": safe(button.control_id), "text": safe(button.window_text),
+         "style": safe(button.style), "checked": safe(button.get_check_state)}
+        for button in buttons
+    ]
+    print("Original OpenPuff Hiding buttons:", json.dumps(layout), flush=True)
+    checkboxes = [
+        button for button in buttons
+        if safe(button.style) is not None
+        and (button.style() & 15) in (2, 3, 5, 6)
+    ]
+    # The hiding panel has exactly two Enable(B)/Enable(C) checkboxes;
+    # Unhide uses different IDs (1042/1043), so do not reuse their IDs.
+    checkboxes.sort(key=lambda button: button.rectangle().top)
+    if len(checkboxes) != 2:
+        raise RuntimeError(
+            f"Expected exactly two native Enable B/C checkboxes: {layout!r}"
+        )
+    for checkbox in checkboxes:
+        if checkbox.get_check_state():
+            checkbox.click_input()
+    states = [checkbox.get_check_state() for checkbox in checkboxes]
+    if states != [0, 0]:
         raise RuntimeError(f"Optional passwords remain enabled: {states}")
     return states
 
