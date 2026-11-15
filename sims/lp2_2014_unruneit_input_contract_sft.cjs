@@ -50,7 +50,7 @@ else{
  });
  const blocks=methodBlocks(output);
  assert.equal(blocks.length,30);
- const needles=["decipher","unShift","getRunePrime","run","main","getWord",
+ const needles=["choiceManager","decipher","unShift","getRunePrime","run","main","getWord",
   "getPhrase","getIndex","checkWord","start","compile"];
  const selected=blocks.filter(b=>needles.some(n=>b.signature.includes(n+"(")));
  const prompts=[...new Set([...output.matchAll(/\/\/ String ([^\n]+)/g)].map(m=>m[1]))]
