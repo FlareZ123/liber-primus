@@ -10,7 +10,8 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const ROOT = path.resolve(__dirname, "..");
-const read = (name) => fs.readFileSync(path.join(ROOT, name), "utf8");
+const read = (name) => fs.readFileSync(path.join(ROOT, name), "utf8")
+  .replace(/\r\n/g, "\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/lp2-transcription.txt");
 const lexicon = read("resources/control/english_wordfreq_textblob.txt");
