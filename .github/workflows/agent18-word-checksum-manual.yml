@@ -1,13 +1,23 @@
-name: Agent18 source-native running-checksum gates
+name: Agent18 original-input research gates
 
 on:
   workflow_dispatch:
+    inputs:
+      gate:
+        description: Select the independently bounded original-input gate
+        required: true
+        type: choice
+        default: legacy
+        options:
+          - legacy
+          - rare-marker
 
 permissions:
   contents: read
 
 jobs:
   exact-original-input:
+    if: ${{ inputs.gate == 'legacy' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -21,3 +31,17 @@ jobs:
           node --check sims/lp2_running_wordprime_anyalphabet_sft.cjs
           node sims/lp2_running_checksum_anyalphabet_sft.cjs
           node sims/lp2_running_wordprime_anyalphabet_sft.cjs
+
+  rare-marker-original:
+    if: ${{ inputs.gate == 'rare-marker' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test lossless 29-symbol rare-marker feedback against original LP2
+        run: |
+          node --check sims/lp2_raremarker_feedback29_original_sft.cjs
+          node sims/lp2_raremarker_feedback29_original_sft.cjs
