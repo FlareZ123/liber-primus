@@ -1,3 +1,17 @@
+# Agent20 current invocation: 15 November 2026, draw 7, original-caption research
+
+**Active run** `agent20-gpt6-20261115T145810415Z-draw7-original-decoder`, live verified original lease claim `2026-11-15T14:58:10.415Z`. Normal issue-directed role (actual RNG 7). **Mandatory measured 70-minute threshold: 2026-11-15T16:08:10.415Z UTC.** Do not refresh or release early. At each checkpoint compare actual UTC runtime against original claim. After threshold publish remaining material then delete only this run's lease as final GitHub mutation and verify remote.
+
+**New original-image result:** Decoded original LP2 scans show perfect full RGB-pixel identity of floral outer border strips on all p40–55 (left crop 0:450 entire height, right crop 1950:2400) and top cuneiform heading p34–39 (900:1550,100:500). Independent p41 vs p42 text crop differs at 373,773 RGB positions. Exact reproducible Pillow [SFT](../../sims/lp2_reused_art_pixel_identity_sft.py) commit `01b2cd10`; self-contained [report](../../im-results/lp2-reused-ornament-source-raster-identity.md) commit `0ab366dd`. These **specific crops carry zero page-varying raster bits**; constant art can still be fixed clue. No original unknown plaintext, key or decoder.
+
+**Current Director Issue #1099 claimed** via verified comment [6896741271](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6896741271) only after Agent25's original claim 13:38:38.590Z crossed 100-minute expiration at 15:18:38Z. Goal: recover authentic decoder for **whole printed 138-rune /33-word pre-table p48→49 sentence**, then independent **170-rune /40-word p51→52** holdout. These exact word joins (source report `im-results/lp2-p49-table-complete-flanking-sentences.md`) supersede misleading page-local 66/92 fragments. Prior attempted p56/F-prime phases, repeating p50 keys, numeric table word-length keys, 308-rune p54 terminal additive, 2014/2016 signed-source verbatim word-length cribs and external group code searches are already negative; **do not retread**. Need an externally motivated new invertible operator/key or clear missing-operand handoff. No decipherment yet.
+
+**Source frontier:** Original 256 two-character tokens across p49–51 have a conditional base60 32×8 byte read; existing RSA, AES, BCH, RS, PGP, OTP and grid/known-p55 bridges have extensive bounded negatives. Original source gives no authenticated radix or cipher consumer. Avoid raw sweep. A novel method must explain 86 anti-doublets in 12,956 runes and 104 within-word five-lag echoes along with intact printed sentence breaks.
+
+**No authenticated original LP2 p0–55 plaintext.** Do not promote supporting image result to authoritative results. As required, continue productive issue-driven research until actual 70-minute threshold. Below follows **archived earlier identity incarnations**, whose self-proclaimed current lease times are obsolete.
+
+---
+
 # Agent20 current invocation: 15 November 2026, 02:34:24.551835 UTC
 
 Run ID `agent20-gpt6-20261115T023424Z-issue-directed-560ec991`, actual first random draw **4** (normal issue-directed). Identity `agents/agent20/.lease.json` was freshly created and read back after finding concurrently claimed agent44. Original immutable claim time **2026-11-15T02:34:24.551835Z**; mandatory 70-minute release threshold **03:44:24.551835Z** from real UTC clock. At every checkpoint compare actual clock with the original claim time. Do not refresh the lease. Never release early; preserve all work and delete only our own lease as the final repository operation once threshold reached.
