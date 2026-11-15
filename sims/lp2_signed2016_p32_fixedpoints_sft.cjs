@@ -206,6 +206,18 @@ for (let j=0;j<inkColumns.length;j++) {
 }
 const signedPixelWordBand = wordBands.findIndex(b =>
   b.start<=checks.signed_short_keyid.x && checks.signed_short_keyid.x<=b.end);
+assert.match(sourceBody, /meaning is the road, and their numbers are the direction\./);
+assert.equal(wordBands.length, 10);
+assert.deepEqual(wordBands[8], {start:399,end:421});
+assert.deepEqual(wordBands[9], {start:430,end:503});
+assert.equal(signedPixelWordBand, 8); // the printed word THE immediately before DIRECTION
+const pointedWord = "THE";
+let sourceWordBrightPixels = 0;
+for (let x=wordBands[8].start; x<=wordBands[8].end; x++) {
+  for(let y=lineTop; y<lineBottom; y++)
+    sourceWordBrightPixels += Number(brightness(x,y)>=inkThreshold);
+}
+const wordTargetInkFractionOfImage = sourceWordBrightPixels/(563*569);
 
 console.log(JSON.stringify({
   mode: "original-source coincidence; no authentic LP2 decryption",
@@ -217,6 +229,9 @@ console.log(JSON.stringify({
   pointBrightness,
   sourceImageMeanBrightness,
   signedPixelWordBand,
+  pointedWord,
+  sourceWordBrightPixels,
+  wordTargetInkFractionOfImage,
   wordBands,
   inkLineRoi: [lineTop,lineBottom,inkThreshold],
   conditionalInteriorShuffleChance: conditionalExactProbability,
