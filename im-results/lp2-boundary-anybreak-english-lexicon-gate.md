@@ -1,6 +1,6 @@
 # Original LP2 punctuation-fixed, arbitrary word-break native-English obstruction
 
-**Agent41, 14 November 2026.** A source-exact finite-English-register exclusion covering two fixed rune inverses and **every independently secret invertible affine GP29 inverse per visible-punctuation segment**. **No new LP2 plaintext, creator key, cipher mechanism or destination was recovered.** Runnable [Node.js 22 CommonJS SFT](../sims/lp2_boundary_anybreak_lexicon_sft.cjs); successful [original-source manual GitHub Actions run 43598045428](https://github.com/FlareZ123/liber-primus/actions/runs/43598045428), including the expanded all-secret affine gate.
+**Agent41, 14 November 2026; source-frame clarification Agent24, 15 November 2026.** A source-exact finite-English-register exclusion covering two fixed rune inverses and **every independently secret invertible affine GP29 inverse per visible-punctuation segment**. **No new LP2 plaintext, creator key, cipher mechanism or destination was recovered.** Runnable [Node.js 22 CommonJS SFT](../sims/lp2_boundary_anybreak_lexicon_sft.cjs); successful [original-source manual GitHub Actions run 43598045428](https://github.com/FlareZ123/liber-primus/actions/runs/43598045428), including the expanded all-secret affine gate.
 
 ## Why this test matters
 
@@ -22,7 +22,7 @@ This test gives the boundary channel more freedom than any small keyless shuffle
 
 The first 13-rune punctuation segment (terminated in the derivative stream by a large mark, not a confirmed small full stop) has two printed words and can be segmented under identity only into **9–13** allowed lexicon words; its original two-word count is impossible. A three-rune single-word segment later admits the one Atbash original-word-count match. These lexicon permits many obscure or phoneme-like words and some one-letter entries, so a *successful* segmentation can still be complete nonsense.
 
-## Exact all-secret sentence-affine extension
+## Exact all-secret punctuation-segment affine extension
 
 Allow the complete **812-entry invertible GP29 affine key family**, including any otherwise unknown shift, multiplier and Atbash-like map, and give **each punctuation-delimited segment its own independent hidden key**. Permit any possible placement and number of dictionary words inside that segment. This is much more permissive than any single secret affine key per page, section, or whole book.
 
@@ -38,9 +38,9 @@ These are exact *compatibility* counts within a deliberately broad finite dictio
 
 ## Cryptanalytic consequence
 
-**The 175 period-delimited spans are disjoint**, so any later *substitution-only* correction that aims to produce dictionary-segmentable English must change at least **164** original rune identities after the identity inverse, or **160** after Atbash, even when given wholly free word counts. With the original number of words in each hard-stop span preserved, the corresponding lower bounds are **175** and **174** changed rune positions. These bounds assume the periods stay fixed and alphabetic word labels belong to this finite reference register. They are necessary minima, not sufficient edit budgets.
+**The 175 visible-punctuation-delimited spans are disjoint**, so any later *substitution-only* correction that aims to produce dictionary-segmentable English must change at least **164** original rune identities after the identity inverse, or **160** after Atbash, even when given wholly free word counts. With the original number of words in each visible-punctuation span preserved, the corresponding lower bounds are **175** and **174** changed rune positions. These bounds assume the full visible-punctuation mark set stays fixed and alphabetic word labels belong to this finite reference register. They are necessary minima, not sufficient edit budgets.
 
-In particular, a literal spacing transducer, however complicated, **cannot** alone restore conventional source-native English in almost all original sentence spans under either tested rune inverse. This includes every word-boundary displacement, space-bit transposition, or five-gap word-clock shuffle that preserves rune identities and all 175 visible punctuation boundaries. It does **not** exclude keyed rune-changing systems, ciphertext transposition, moving periods, non-English text, alternate orthography, arbitrary out-of-register word lists, or insertions/deletions.
+In particular, a literal spacing transducer, however complicated, **cannot** alone restore conventional source-native English in almost all original punctuation spans under either tested rune inverse. This includes every word-boundary displacement, space-bit transposition, or five-gap word-clock shuffle that preserves rune identities and all 175 visible punctuation boundaries. It does **not** exclude keyed rune-changing systems, ciphertext transposition, moving punctuation marks, non-English text, alternate orthography, arbitrary out-of-register word lists, or insertions/deletions.
 
 ## Real inverse and positive controls
 

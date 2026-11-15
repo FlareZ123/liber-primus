@@ -4,7 +4,7 @@
  * Original-cipher universal word-break gate for GP29 identity and Atbash.
  *
  * All 29 rune identities, the 175 source-visible punctuation marks (138 definite full-stop diamonds plus ambiguous/comma/large marks), all original page lengths,
- * the 32 carried words and every original rune remain fixed. For each hard-stop
+ * the 32 carried words and every original rune remain fixed. For each visible-punctuation
  * segment, a trie/BigInt dynamic program allows EVERY possible interior
  * placement and count of word breaks, with no hand-chosen plaintext boundaries.
  *
@@ -31,14 +31,14 @@ const source = read('resources/lp2-transcription.txt');
 const originalText = source.split('%').slice(0, 55).join('').replace(/[\/\s]/gu, '');
 const wordRE = new RegExp('[' + gp.runes.join('') + ']+', 'gu');
 const runeIndex = new Map(gp.runes.map((glyph, i) => [glyph, i]));
-const sentences = originalText.split(/[.&$§]+/u)
+const segments = originalText.split(/[.&$§]+/u)
   .map(piece => piece.match(wordRE) || []).filter(words => words.length > 0);
-const words = sentences.flat();
+const words = segments.flat();
 const letters = words.join('');
 const original = Array.from(letters, rune => runeIndex.get(rune));
 const sourceIndices = gp.pages.filter(page => page.page < 56).flatMap(page => page.indices);
 assert.deepEqual(original, sourceIndices, 'transcription must match canonical source indices');
-assert.equal(sentences.length, 175);
+assert.equal(segments.length, 175);
 assert.equal((originalText.match(/\./gu) || []).length, 175);
 assert.equal(words.length, 2896);
 assert.equal(original.length, 12956);
@@ -171,7 +171,7 @@ const inverseFamilies = [
   { name: 'GP29 Atbash', inverse: x => 28 - x }
 ];
 const originalResults = inverseFamilies.map(family => {
-  const outcomes = sentences.map(sentence => {
+  const outcomes = segments.map(sentence => {
     const indexes = Array.from(sentence.join(''), rune => family.inverse(runeIndex.get(rune)));
     return wordBreakReachability(indexes, sentence.length, trie);
   });
@@ -242,7 +242,7 @@ function allAffineEnglish(src, trie) {
   return {count, first};
 }
 
-const allSecretAffine = sentences.map((sentence, i) => {
+const allSecretAffine = segments.map((sentence, i) => {
   const original = Array.from(sentence.join(''), rune => runeIndex.get(rune));
   const {count, first} = allAffineEnglish(original, trie);
   return {sentence:i, runes:original.length, printedWords:sentence.length,
@@ -280,7 +280,7 @@ assert.deepEqual(wordBreakReachability(p57Runes, p57Words.length, trie), {
 // Positive 2: an original-size source-native dictionary-word plant keeps
 // exactly every original printed word length, all hard stops, physical page
 // rune lengths and the 32 original page-spanning words.
-const plantedSentences = sentences.map(sentence => sentence.map(word => {
+const plantedSentences = segments.map(sentence => sentence.map(word => {
   const gpWord = trie.sampleByLength.get(word.length);
   assert(gpWord, 'positive dictionary control lacks native rune length ' + word.length);
   return gpWord;
@@ -309,7 +309,7 @@ for (let index = 0; index < plantedSentences.length; index++) {
 
 // Demonstrate exact reversibility on the genuine original and native control.
 let transformations = 0;
-for (const sequence of [sentences.map(s => s.map(w => Array.from(w).length)),
+for (const sequence of [segments.map(s => s.map(w => Array.from(w).length)),
   plantedSentences.map(s => s.map(w => w.length))]) {
   for (const sentence of sequence) {
     const n = sentence.reduce((a, b) => a + b, 0);
@@ -336,7 +336,7 @@ assert.equal(across, 32);
 console.log(JSON.stringify({
   status: 'finite original-language exclusion; no unknown plaintext',
   corpus: {runicPages:55, runes:original.length, printedWords:words.length,
-    punctuationSegments:sentences.length, carriedWords:across},
+    punctuationSegments:segments.length, carriedWords:across},
   sourceNativeEnglishLexicon: dictionary.length,
   nativeTrieNodes: trie.next.length,
   original: originalResults,

@@ -222,6 +222,7 @@ assert.equal(sensitivityCheck.validUtf8, false);
 assert.equal(sensitivityCheck.hasNul, true);
 assert.equal(sensitivityCheck.magicAt0.length, 0);
 assert.ok(Math.abs(sensitivityCheck.printableRatio - 0.38159385622560743) < 1e-12);
+assert.ok(Math.abs(sensitivityCheck.printableRatio - 0.38159385622560743) < 1e-12);
 
 console.log(JSON.stringify({
   source: {
