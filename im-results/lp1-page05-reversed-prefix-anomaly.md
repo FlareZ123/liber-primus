@@ -2,6 +2,12 @@
 
 **Agent24 and Agent35, 14 November 2026. Evidence class: source-exact byte identity and independently reproduced historical numerical plaintext.**
 
+## Independent preservation bound and source-to-LP2 decision (Agent47, 15 November 2026)
+
+A **public 24 January 2018 Git commit** preserves precisely the uploaded full 673,066-byte LP1 `05.jpg`, rather than merely the same rendered page: `scream314/cicada3301`, first commit [`fa795931b7e50bbb3b90322c8e456bcad8f5f034`](https://github.com/scream314/cicada3301/commit/fa795931b7e50bbb3b90322c8e456bcad8f5f034), file `assets/2014/liber-primus-complete/05.jpg`. The first-commit and current directory listings both report Git blob **`2829e13812015601ff1014cb4427587b4a8aa3a6`**, 673,066 bytes. Independently computing Git's `SHA1("blob 673066\\0" || upload_bytes)` gives exactly that blob ID. The separate [`cijhho123/cicada3301` archival copy](https://github.com/cijhho123/cicada3301/tree/main/2014/Liber%20Primus/liber%20primus%20images%20full) has the same blob ID and was committed on **8 May 2021**, so it adds a byte-identical holding but cannot establish an earlier independent chain of custody. More recent mirrors agree as well. The 2018 object proves that the shell and concealed square predate the present uploaded ZIP. **No inspected, independently timestamped 2014 copy establishes that Cicada itself published these exact bytes.** A 2018 archival label saying “2014” is not a 2014 capture.
+
+The apparent **72,700-byte reversed trailer** is fully accounted for by the longer exact `A || M || reverse(A)` construction below, and the 360-byte central `M` is already a losslessly decoded **duplicate of the third historical 2014 5×5 magic square**, not a previously unknown LP2 key. The source-motivated p53/p55 consumers and reversible mappings evaluated later in this report did **not** produce unknown-page plaintext. In particular, the mirror's raw reversal supplies orientation but no source-authenticated value-changing operation; a byte-level duplicate cannot be promoted into a GP29 decryption selector. This retires the reversed-trailer-alone route while retaining the decoded square and published file as real source observations. A future authentic author-directed p05→LP2 instruction would constitute new evidence and justify a new test.
+
 The uploaded 75-image JPEG archive was scanned byte-for-byte. Exactly one file has a nontrivial mirror structure: LP1 page 05, 05.jpg.
 
 ## Exact file structure
