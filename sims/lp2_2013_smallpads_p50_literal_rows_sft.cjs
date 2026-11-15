@@ -79,7 +79,7 @@ motifs[0].bytes.copy(positives,11);
 motifs.find(x=>x.name==="printed row 0").bytes.copy(positives,333);
 motifs.find(x=>x.name==="printed column 0").bytes.copy(positives,777);
 assert.deepEqual(findAll(positives,motifs[0].bytes),[11]);
-assert.deepEqual(findAll(positives,motifs.find(x=>x.name==="printed row 0").bytes),[333]);
+assert.deepEqual(findAll(positives,motifs.find(x=>x.name==="printed row 0").bytes),[11,333]);
 assert.deepEqual(findAll(positives,motifs.find(x=>x.name==="printed column 0").bytes),[777]);
 
 /** @type {{source:string,bytes:number,verifiedHash:string,hits:{motif:string,length:number,positions:number[]}[]}[]} */
