@@ -38,8 +38,28 @@ A full native positive uses primer 16019 and secret mixed alphabet M(x) = (7x+3)
 
 The fixed [Windows Node22 manual CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43761570542) completed **successfully** on the repository's exact inputs, asserting the orbit census, all four extremal scores, and the authentic GP positive plant. No new per-commit workflow was created; the preexisting manual Agent3 SFT workflow received a choice of test.
 
+## Stronger independent nine-chapter primer-reset gate
+
+The visually established chapter boundaries make independent resetting a much more plausible competing key schedule than a single full-book seed. Permit the attacker to choose an **entirely independent unknown five-digit primer in each of the nine original chapters**, for a nominal joint key space of 100,000^9. The collision obstruction factors by chapter: if **any one chapter** cannot be the purported direct source register under **any** of its 100,000 primers, no joint nine-primer assignment can work. The same exact 25,024-orbit exhaustive search was independently performed for every original chapter against its matching-position source-native Latin segment.
+
+| Original illustrated chapter | GP29 runes | Maximum original collision over all primers | Minimum source-native Latin over all primers |
+| --- | ---: | ---: | ---: |
+| p0–2 | 729 | **0.03978900** (11662) | 0.07033767 (11403) |
+| p3–7 | 1,145 | **0.03743664** (26374) | 0.07016261 (21494) |
+| p8–14 | 1,729 | **0.03645946** (14500) | 0.07306520 (11465) |
+| p15–22 | 1,903 | **0.03642477** (10153) | 0.07464096 (21565) |
+| p23–26 | 1,021 | **0.03751031** (26502) | 0.07048204 (22450) |
+| p27–32 | 1,433 | **0.03622646** (02201) | 0.07314020 (14620) |
+| p33–39 | 1,680 | **0.03638694** (01711) | 0.07485168 (52352) |
+| p40–53 | 3,008 | **0.03556660** (51909) | 0.07324888 (27003) |
+| p54–55 | 308 | **0.04638298** (22659) | 0.06425111 (16180) |
+
+The shorter final chapter naturally has the largest original max-over-primer fluctuation. Even there, no possible primer closes the gap to the native source minimum. Every chapter individually excludes the direct-Gromark/native-register hypothesis; allowing nine different secret mixed alphabets, **one per chapter**, still leaves the invariant unchanged. This removes the most obvious source-visible reset escape for the tested family.
+
+The extended [same source-native Windows Node22 test](../sims/lp2_gromark_fib5_allsecret_original_sft.cjs) asserts every chapter's original maximum and independent source minimum, in addition to the bookwide exhaustive invariant and a fully inverted authentic native plant. [Updated successful original-source run 43762940381](https://github.com/FlareZ123/liber-primus/actions/runs/43762940381) executes the exact updated file on the repository inputs.
+
 ## Decipherment consequence and strictly bounded scope
 
-If original LP2 contains ordinary GP29 prose encrypted by a **single unreset** five-digit Fibonacci/Gromark running key and an arbitrary fixed mixed alphabet, its digit classes must retain the source-language concentration that is absent in the actual ciphertext. This survives a much larger allowance of one arbitrary secret alphabet per digit and all 100,000 primers, so *another guessed primer, alphabet keyword or alphabet permutation in that family cannot rescue it*. Retire this exact stationary family.
+If original LP2 contains ordinary GP29 prose encrypted by a five-digit Fibonacci/Gromark running key, either continuous or independently reset at its nine original visual chapter boundaries, its digit classes must retain the source-language concentration that is absent in the actual ciphertext. This survives a much larger allowance of one arbitrary secret alphabet per digit and all 100,000 primers, so *another guessed primer, alphabet keyword or alphabet permutation in that family cannot rescue it*. Retire this direct family for both continuous and nine-chapter-reset clocks.
 
-The result is an empirical source-native-English/Latin contradiction rather than a language-free mathematical impossibility for adversarially chosen, unusually uniform plaintext. It does not exclude nondecimal primer bases, a different recurrence, page/chapter-specific key resets, a changing alphabet or symbol state, optional/null runes, altered segmentation, non-GP intermediates, or modern encryption. No author-supplied key, original plaintext, table opcode or continuation has emerged. Further work on this branch requires an independent first-party clue specifying a materially different state transition or external key.
+The result is an empirical source-native-English/Latin contradiction rather than a language-free mathematical impossibility for adversarially chosen, unusually uniform plaintext. It does not exclude nondecimal primer bases, a different recurrence, physical-page or word-specific key resets, a changing alphabet or symbol state, optional/null runes, altered segmentation, non-GP intermediates, or modern encryption. No author-supplied key, original plaintext, table opcode or continuation has emerged. Further work on this branch requires an independent first-party clue specifying a materially different state transition or external key.
