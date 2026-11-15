@@ -53,6 +53,7 @@ function makePrimes() {
 const primes = makePrimes();
 assert.deepEqual(primes.slice(0,12), expected);
 const shift = primes.map(p => (p-1) % 29);
+const shiftWithout19 = primes.filter(p => p !== 19).map(p => (p-1) % 29);
 const mod = n => (n % 29 + 29) % 29;
 
 /**
@@ -62,12 +63,12 @@ const mod = n => (n % 29 + 29) % 29;
  * @param {number} marker
  * @returns {{cipher:number[], consumed:number}}
  */
-function encrypt(plain, marker) {
+function encrypt(plain, marker, schedule=shift) {
   const cipher = [];
   let consumed = 0;
   for (const p of plain) {
     if (p === marker) cipher.push(marker);
-    else cipher.push((p + shift[consumed++]) % 29);
+    else cipher.push((p + schedule[consumed++]) % 29);
   }
   return {cipher,consumed};
 }
@@ -81,13 +82,13 @@ function encrypt(plain, marker) {
  * @param {number} marker
  * @returns {{firstFailure:number,reachableCount:number,reachableConsumed:number[],maxStates:number}}
  */
-function legalStates(cipher, marker) {
+function legalStates(cipher, marker, schedule=shift) {
   let reachable = new Set([0]), maxStates = 1;
   for (let i=0;i<cipher.length;i++) {
     const next = new Set();
     for (const used of reachable) {
       if (cipher[i] === marker) next.add(used);
-      if (mod(cipher[i] - shift[used]) !== marker) next.add(used + 1);
+      if (mod(cipher[i] - schedule[used]) !== marker) next.add(used + 1);
     }
     reachable = next;
     maxStates = Math.max(maxStates, next.size);
@@ -156,10 +157,25 @@ const decodePlant=legalStates(planted.cipher,7);
 assert.equal(decodePlant.firstFailure,null);
 assert(decodePlant.reachableConsumed.includes(planted.consumed));
 assert.deepEqual(encrypt(plantP,7).cipher,planted.cipher);
+// Second, even simpler missing-prime reading: keep the actual p56
+// transparent F, delete only prime19 from its otherwise unchanged clock.
+const omittedPrime19Direct = [0,19,55,56].map(page => ({
+  page, GP:gp.pages[page].indices.length,
+  cipherFtransparent:legalStates(gp.pages[page].indices,0,shiftWithout19)
+}));
+assert.deepEqual(omittedPrime19Direct.map(x=>x.cipherFtransparent.firstFailure),
+  [235,82,39,19]);
+const omittedPlaintext = plantP.map((v,i)=>v); // same length and native corpus
+const omittedCipher = encrypt(omittedPlaintext,0,shiftWithout19);
+const omittedPlantCheck = legalStates(omittedCipher.cipher,0,shiftWithout19);
+assert.equal(omittedPlantCheck.firstFailure,null);
+assert(omittedPlantCheck.reachableConsumed.includes(omittedCipher.consumed));
 console.log(JSON.stringify({
   authorArtifact:'2014 original signed Stage11 redirect; literal margins not PGP authenticated',
   primeMargins:whitespace,absentPrime:19,sourceGPsymbol:'W (index7)',
   original,
+  omittedPrime19FromPhiClock:{original:omittedPrime19Direct,
+    planted262RuneForwardInverse:true},
   positive:{authenticKnownP56Runes:85,authenticPrimeSteps:84,
     authenticFtransparentExact:true,
     plantedWRunes:262,plantedWConsumed:planted.consumed,
