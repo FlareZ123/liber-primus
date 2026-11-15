@@ -1,0 +1,21 @@
+name: LP2 terminal root24 F-selector original-source SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover p56 and test source-locked p55 F mask
+        run: node sims/lp2_terminal256_root24_fselector_original_sft.cjs
