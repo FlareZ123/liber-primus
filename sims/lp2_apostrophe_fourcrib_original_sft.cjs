@@ -61,7 +61,7 @@ for(const s of sites){
 // bypasses supplies five consecutive key symbols FIRFU; the original apostrophe
 // consumes no GP rune or key position.
 const originalLP1 = fs.readFileSync(path.join(root,'..','transcriptions','lp1_wulfic_canonical.txt'),'utf8').split('%')[12];
-const solvedLP1 = fs.readFileSync(path.join(root,'lp1-plaintext-reference.txt'),'utf8');
+const solvedLP1 = fs.readFileSync(path.join(root,'lp1-plaintext-reference.txt'),'utf8').replace(/\r\n/g,'\n');
 const lp1At = originalLP1.indexOf('ᛁ-ᚱᚹᚾᛒ');
 assert.ok(lp1At >= 0);
 assert.ok(solvedLP1.split('### 14\n')[1].split('### 15\n')[0].includes("I DON'T HAVE"));
