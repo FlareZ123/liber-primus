@@ -23,3 +23,5 @@ jobs:
           node sims/lp2_p40_flower_bacon_allsecret_sft.cjs
           node --check sims/lp2_p40_eight_rune_five_byte_transport_sft.cjs
           node sims/lp2_p40_eight_rune_five_byte_transport_sft.cjs
+          node --check sims/lp2_p40_red8_grid256_rowselector_sft.cjs
+          node sims/lp2_p40_red8_grid256_rowselector_sft.cjs
