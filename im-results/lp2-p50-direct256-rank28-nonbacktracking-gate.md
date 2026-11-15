@@ -25,7 +25,7 @@ The [source-input CommonJS SFT](../sims/lp2_p50_nonbacktracking_28ary_sft.cjs) a
 | Physical page reset | Printed | 0.035247301 | 0.035282861 |
 | Physical page reset | Reversed | 0.035291465 | 0.035257600 |
 
-Each is effectively uniform-like: no original decoded 12,901-rune stream exhibits GP prose. All eight **12901/12901** original ciphertext successor symbols reencrypt exactly as the algebra requires. Independently, all eight **95/95** p57 native-clear GP glyphs recover from a planted encoding (including three zero marker events). This is implementation validation; every wrong bijective key also reencrpyts perfectly.
+Each is effectively uniform-like: no original decoded 12,901-rune stream exhibits GP prose. All eight **12901/12901** original ciphertext successor symbols reencrypt exactly as the algebra requires. Independently, all eight **95/95** p57 native-clear GP glyphs recover from a planted encoding (including three zero marker events). This is implementation validation; every wrong bijective key also reencrypts perfectly.
 
 ### Interpretation and scope
 
