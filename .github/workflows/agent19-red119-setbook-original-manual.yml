@@ -1,0 +1,16 @@
+name: Agent19 original red119 SET BOOK two-anchor test
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source selected red119 GP29 SET control
+        run: node sims/lp2_red119_pairwise_set_readout_sft.cjs
+      - name: Two anchor BOOK and exhaustive 24389-key lexical control
+        run: node sims/lp2_red119_iacs_two_anchor_book_sft.cjs
