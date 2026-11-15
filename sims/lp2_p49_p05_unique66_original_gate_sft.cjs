@@ -236,6 +236,42 @@ const columnar = [false, true].map(descending => {
 });
 assert.equal(ioc(page49), 0.02843822843822844);
 assert.equal(columnar.length, 2);
+
+// Direct original cross-artifact lookup: the p05 source word-value sums
+// modulo the exact 256-cell p49-p51 byte table size are candidate addresses.
+// Byte ASCII is a discovered observation, not a first-party instruction.
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const B = grid.bytes;
+assert.equal(B.length, 256);
+const p05ByteAddresses = primeWordSums.map(value => value % 256);
+const p05ByteKey = p05ByteAddresses.map(address => B[address]);
+assert.deepEqual(p05ByteAddresses, [85, 110, 199, 130, 64, 245, 91, 226, 64, 199, 85]);
+assert.deepEqual(p05ByteKey, [28, 32, 47, 86, 122, 56, 49, 73, 122, 47, 28]);
+const printableUnique = new Set(p05ByteAddresses).size;
+assert.equal(printableUnique, 8);
+assert.equal([...new Set(p05ByteKey)].filter(v => v >= 32 && v <= 126).length, 7);
+const byteKey29 = p05ByteKey.map(n => n % 29);
+const byteLookupDirect = [];
+for (const sign of [-1, 1]) for (let mask = 0; mask < 4; mask++) {
+  let clock = 0;
+  const original = [], forbidden = [];
+  for (let i = 0; i < page49.length; i++) {
+    const zeroEvent = p49CipherF.indexOf(i);
+    if (zeroEvent >= 0 && (mask & (1 << zeroEvent))) {
+      original.push(0);
+      continue;
+    }
+    const p = mod29(page49[i] + sign * byteKey29[clock++ % 11]);
+    if (p === 0) forbidden.push(i);
+    original.push(p);
+  }
+  byteLookupDirect.push({
+    sign, mask, consumed: clock, impossibleStrictF: forbidden,
+    ioC: ioc(original), transliteration: translit(original)
+  });
+}
+assert.equal(byteLookupDirect.length, 8);
+assert(byteLookupDirect.every(x => x.impossibleStrictF.length >= 1));
 console.log(JSON.stringify({
   classification: "Original-source key candidate; bounded negative direct inverses; no plaintext",
   exactInput: {
@@ -248,5 +284,6 @@ console.log(JSON.stringify({
     physicalP55Runes: page55.length, p49CipherF
   },
   direct, strictP56TotientEmitter: fModes, intactSentenceInversions: longSentence, columnar,
+  sourceByteLookup: { addresses: p05ByteAddresses, bytes: p05ByteKey, encodedHex: p05ByteKey.map(b => b.toString(16).padStart(2, '0')).join(''), originalInverseTests: byteLookupDirect },
   interpretation: "The exact 76/66/10 numerical fit is real but does not select a cipher. Direct ordinal, source-authentic totient and source-ordered columnar transport do not recover readable text. One p49 strict-F variant remains algebraically possible yet has no identified plaintext."
 }, null, 2));
