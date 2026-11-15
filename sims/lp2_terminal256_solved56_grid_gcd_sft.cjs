@@ -90,6 +90,21 @@ assert.equal(solvedTerminal % 3024n, 0n);
 assert.notEqual(originalTerminal % 3024n, 0n);
 assert.equal(gcd(3024n, G), 3024n);
 
+const modulus = 3024n;
+const p55Integer = integer(prefix, 29);
+const knownSuffixInteger = integer([...solved56, ...suffix], 29);
+assert.equal(29n ** 180n % modulus, 1n);
+assert.equal(p55Integer % modulus, 64n);
+assert.equal(knownSuffixInteger % modulus, 2960n);
+let residue = 1n;
+let multiplicativeOrder = 0;
+do {
+  residue = residue * 29n % modulus;
+  multiplicativeOrder += 1;
+} while (residue !== 1n);
+assert.equal(multiplicativeOrder, 36);
+assert.equal((p55Integer + knownSuffixInteger) % modulus, 0n);
+
 /** @type {{ startIndex: number; sign: number; gcd: bigint; mod3024: bigint; opening: string }[]} */
 const trials = [];
 for (let startIndex = 0; startIndex < 1016; startIndex += 1) {
@@ -124,6 +139,7 @@ console.log('Table integer bits:', N.toString(2).length);
 console.log('Original p55(cipher)+p56(cipher)+p57(clear) gcd:', gcd(N, originalTerminal).toString());
 console.log('Authentic p56 decoded, other pages unchanged gcd:', gcd(N, solvedTerminal).toString());
 console.log('Authentic prime phase/sign rank among 2032 candidates:', rank);
+console.log('Conditional p55 integer residue mod 3024: 64; solved p56+p57 residue: 2960; order of base29: 36');
 console.log('Candidate phases exactly divisible by 3024:', congruent.map(t => [t.startIndex, t.sign]));
 console.log('Best arbitrary phase:', { startIndex: best.startIndex, sign: best.sign, gcd: best.gcd.toString() });
 console.log('DECISION: exact cross-artifact conditional congruence; no recovered p55 plaintext or authentic new decoding rule.');
