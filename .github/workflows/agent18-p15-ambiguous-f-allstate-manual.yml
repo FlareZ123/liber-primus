@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Exhaust all original p40-53 phase/state/F branches
         run: node sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs
+      - name: Exhaust every characteristic-polynomial scalar readout with ambiguous F
+        run: node sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs
