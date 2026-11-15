@@ -39,6 +39,6 @@ For all four variants the exact forward encoder restores **1,680/1,680 original 
 
 ## Reproduction
 
-Read-only Node22 CommonJS [SFT](../sims/lp2_seven_cuneiform_magic7_rowkey_gate_sft.cjs) pins the historical 49 integers, their seven 1033 row totals, original seven physical page lengths, source IoC, both complete inverses, original re-encryptions, and 1,680-rune source-native positive plants. It reads the original shared corpus rather than storing a duplicated transcription.
+Read-only Node22 CommonJS [SFT](../sims/lp2_seven_cuneiform_magic7_rowkey_gate_sft.cjs), **passing original-input Windows Node22 CI [run43712870859](https://github.com/FlareZ123/liber-primus/actions/runs/43712870859)**, pins the historical 49 integers, their seven 1033 row totals, original seven physical page lengths, source IoC, both complete inverses, original re-encryptions, and 1,680-rune source-native positive plants. It reads the original shared corpus rather than storing a duplicated transcription.
 
 Source image scans: [physical p33–39, originals 50.jpg–56.jpg](../resources/liber-primus/). This report is intermediate evidence; `results/README.md` remains unchanged because no new key, plaintext, or author-prescribed method was identified.
