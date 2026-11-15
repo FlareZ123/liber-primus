@@ -50,12 +50,18 @@ assert.deepEqual(encodeSourceNativeGP("THINGS FUNCTION"), [2, 21, 15, 0, 1, 9, 5
 const full = corpus.pages.filter(p => p.page <= 55 && p.indices.length)
   .flatMap(p => p.indices);
 assert.equal(full.length, 12956);
-const original = corpus.pages.filter(p => p.page >= 15 && p.page <= 22)
+const physical = corpus.pages.filter(p => p.page >= 15 && p.page <= 22)
   .flatMap(p => p.indices);
-assert.equal(original.length, 1903);
-const pageStart = corpus.pages.filter(p => p.page < 15)
+assert.equal(physical.length, 1903);
+const pageBoundary = corpus.pages.filter(p => p.page < 15)
   .reduce((n, p) => n + p.indices.length, 0);
-assert.equal(pageStart, 3603);
+assert.equal(pageBoundary, 3603);
+// Original source-visible internal red rubric: p15 local rune offset9.
+// Those first nine page runes belong before the chapter's marked reset.
+const pageStart = pageBoundary + 9;
+const original = physical.slice(9);
+assert.equal(pageStart, 3612);
+assert.equal(original.length, 1894);
 assert.deepEqual(full.slice(pageStart, pageStart + original.length), original);
 
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
@@ -96,11 +102,11 @@ const controls = native.map(([, path, start]) =>
 assert(controls.every(x => x.length === original.length));
 const MODEL = [
   {label:"p15 signed 4x4", a:[19,2,15,28], count:10052,
-    maxOriginal:0.03685370197096375,
-    minControls:[0.06000788332676389,0.057380047392611204,0.058150287264844544]},
+    maxOriginal:0.03667697086450727,
+    minControls:[0.05998136501281155,0.05736027625015987,0.05813227795113783]},
   {label:"2013 H × p39 G", a:[15,20,16,1], count:10556,
-    maxOriginal:0.0367798353909465,
-    minControls:[0.06017215026948757,0.057256308441142566,0.05810309542082374]}
+    maxOriginal:0.03674872693068665,
+    minControls:[0.06081135575449633,0.05749951175053707,0.058156719447827854]}
 ];
 const masks = chapter.map(e => ({
   offset:e.pos-pageStart,
@@ -176,7 +182,7 @@ for (const model of MODEL) {
   }
   console.log(JSON.stringify({
     label:model.label,
-    chapter:"original physical pp15–22", originalSymbols:original.length,
+    chapter:"original red p15:9 through physical p22", originalSymbols:original.length,
     allSecretSeeds:totalSeeds, AIOCompatibleSeeds:accepted,
     maximumOriginalConditionalIoC:maxOriginal,
     minimumNativeControlIoCs:Object.fromEntries(native.map(([name],j)=>[name,minControls[j]])),
