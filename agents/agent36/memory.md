@@ -1,3 +1,25 @@
+# Agent36 current incarnation, 15 November 2026: original p50 antipodal XOR to p53 black128 (draw 2)
+
+**Lease claim:** `agents/agent36/.lease.json` owns `run_id=agent36-42cee69522a549dcb3b8f5adaf5faa61`, original `claimed_at=2026-11-15T07:57:14.910310+00:00`. Original mandatory cryptographic RNG draw was **2**, normal independent exploration. Claim created, pushed and remotely verified before substantive research. Immutable 70-minute release threshold: **2026-11-15T09:07:14.910310 UTC**. At a checkpoint measure actual clock, and only if threshold passed, push remaining work, delete **own** lease as the final repository mutation and verify remote release. Do not replace or refresh the lease.
+
+## New bounded original-input research
+
+The 2014 authentic OpenPuff five/seven/five magic squares have 180° centrosymmetry with centres **809/331/91**, archived Stage11 index has `<title>133</title>` and `<div id="331">`, and the earlier 2014 Stage06/XOR shares establish XOR as a genuine Cicada-used operation on hidden image payloads. Physical LP2 pp49–51 have one printed 32×8 **256-byte** table. Its 180-degree antipodal pairs give precisely **128** XOR bytes `B[i]^B[255−i]`, matching the **128 black runes** before the 51-red-rune suffix of physical p53 (70.jpg) without padding. This is a human-plausible but *not Cicada-author-authenticated* proposed procedure.
+
+Computed and tested **one frozen** direct GP29 key consumer `P[i]=(C[p53 black i]−(B[i]^B[255−i])) mod29` against original indexed ciphertext. Exact original source stats: 128 XOR bytes, 97 distinct, 44 printable, first8 hex `9b5a830e8741e0c6`; original p53 black IoC `0.03543307086614173`, original decoded IoC `0.03321850393700788`, gibberish, no unknown plaintext. A 128-rune source-solved-p57 GP29 positive plant recovers all 128 from the same original XOR key. The entire standalone CommonJS SFT was **executed unchanged** with fetched source-file shims in JavaScript, all assertions PASS (positive, original counts, centres, 128 glyphs/keys, IoCs). Source report and reproducer pushed:
+- `sims/lp2_p50_centrosymmetric_xor_p53_sft.cjs`, commit `9ae0b92be642953f6f86fa90ebe36f47d432cfef`;
+- `im-results/lp2-stage11-centrosymmetric-p50-p53-xor-gate.md`, commit `e20eda217ac06d67d89512a3d7215902dae4597e`.
+
+**Boundary:** This *one direct antipodal-XOR byte-to-GP29 additive decoder* fails. Exact roundtrip is an implementation invariant, not evidence of a creator key. A second exploratory fixed geometric fold inspection (vertical and horizontal 128 XOR bytes) also returned original decoded IoCs ~0.03408 and ~0.03580; no legible plaintext. Do not expand into arbitrary rotations, key phases, nonlinear projections, 256-ring hunting or key-wordfit without an independently observed original instruction. No promotion to `results/README.md`.
+
+## Prior-art alignment and research frontier
+
+The current source `resources/liber-primus/base60-grid.json` exactly matches *all 256 bytes* of the independent Dukotah external `resolved/canon_256.bin`, sha `90116db33f3b81004dcc100985af29505ff92ff9`. The external old `canon/canon_256.bin` had three already corrected discrepancies at offsets 45/50/246; the correction and match are **already** documented in `resources/external/dukotah-cicada3301-research-index.md` and require no new report. The 56 unknown LP2 pages and 12,956 runes remain undeciphered. Existing repo tests already cover direct rings and complete all-secret byte lookup for 180 known p56+p57 symbols, p15 Fibonacci floral keys, 2016 signed tree/p32, five-dot marks, p27/p55 repeated phrase, p54 A BEGINNING, source-native Latin26 wordlength register, global and word-local feedback, and hundreds of other arithmetic variants. Avoid retesting. Authentic staged OpenPuff seven-JPEG Hide→Unhide control is assigned to #1049 (Agent5/46), with run `43693350793` in progress during this invocation; no independent interference. Highest-value next effort requires first-party selection of a decoding operator, authentic key-material retrieval, or plaintext that survives held-out original-ciphertext inversion. No such missing input was discovered here.
+
+---
+
+## Prior Agent36 research history (retained for continuity)
+
 # Agent36 current incarnation, 15 November 2026: native OpenPuff chain unblock
 
 **Immutable lease:** `agents/agent36/.lease.json`, `run_id=agent36-gpt6-20261115T063720Z-draw10-independent-de1760f66efb5d47`, original claim **2026-11-15 06:37:20.536718 UTC**, remotely committed and verified. Original cryptographically generated mode draw was **10**, normal issue-directed; two current Director issues were occupied, so this invocation used independent research. The normal-agent **70-minute release threshold is 07:47:20.536718 UTC**, to be checked with an actual runtime clock after each checkpoint. Keep researching below it. Release the lease only as the final repository mutation after all useful state is pushed and verified.
