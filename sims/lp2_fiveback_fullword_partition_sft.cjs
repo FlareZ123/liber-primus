@@ -94,14 +94,18 @@ const sources = [
   ['Shakespeare', 'resources/control/shakespeare_first300k.txt'],
   ['Gibran', 'resources/control/gibran_prophet_58585.txt'],
   ['Emerson', 'resources/control/emerson_essays_2944.txt'],
-  ['Latin Vulgate', 'resources/control/latin-vulgate-latin26-wholewords.txt']
+  ['Latin Vulgate', 'resources/control/latin-vulgate-latin26-wholewords.txt'],
+  ['TextBlob', 'resources/control/english_wordfreq_textblob.txt']
 ];
 const refs = sources.map(([name, file]) => {
   const pools = Array.from({length: 15}, () => []);
   const signatures = new Set();
-  const content = read(file).split(/\r?\n/)
-    .filter(line => !line.startsWith('#')).join(' ');
-  for (const token of content.match(/[a-zA-Z]+/g) || []) {
+  const tokens = name === 'TextBlob'
+    ? read(file).split(/\r?\n/).map(line => line.trim().split(/\s+/)[0])
+    : (read(file).split(/\r?\n/).filter(line => !line.startsWith('#'))
+      .join(' ').match(/[a-zA-Z]+/g) || []);
+  for (const token of tokens) {
+    if (!/^[A-Za-z]+$/.test(token)) continue;
     const w = encodeSourceNativeGP(token);
     if (w.length > 14) continue;
     pools[w.length].push(w);
@@ -114,16 +118,16 @@ const originalDifferences = words.map(differences);
 const transformed = compare(originalDifferences, union);
 const raw = compare(words, union);
 assert.equal(transformed.total, 2896);
-assert.equal(transformed.unmatched, 78);
+assert.equal(transformed.unmatched, 57);
 assert.equal(transformed.longTotal, 109);
-assert.equal(transformed.longUnmatched, 59);
+assert.equal(transformed.longUnmatched, 47);
 assert.deepEqual([10, 11, 12, 13, 14].map(n => transformed.byLength[n]),
-  [22, 16, 14, 4, 3]);
-assert.equal(raw.unmatched, 62);
-assert.equal(raw.longUnmatched, 52);
+  [17, 12, 11, 4, 3]);
+assert.equal(raw.unmatched, 44);
+assert.equal(raw.longUnmatched, 40);
 
 // Native source controls: match EVERY authentic word length, but compare
-// against three reference registers not containing that sampled source.
+// against every other reference register not containing that sampled source.
 // They probe the finite-dictionary miss rate rather than fitting ciphertext.
 const rng = random(0x019d3e11);
 const controls = [];
@@ -148,6 +152,9 @@ for (let i = 0; i < refs.length; i++) {
     allMissing: [totals[0], totals[25], totals[250], totals[475], totals[499]],
     longMissing: [longs[0], longs[25], longs[250], longs[475], longs[499]]});
 }
+
+assert.deepEqual(controls.map(c => c.allMissing[2]), [21, 10, 15, 94, 82]);
+assert.deepEqual(controls.map(c => c.longMissing[2]), [19, 8, 13, 66, 54]);
 
 /**
  * Exact 2,896-secret-map native-control plaintext plant, recovering all
@@ -181,9 +188,9 @@ console.log(JSON.stringify({
     fullWordFiveback: transformed, rawCipherWordShape: raw},
   sourceNativeControl: {
     metric: '[minimum, p05, median, p95, maximum] unmatched native full words',
-    holdOutOtherThreeCorpora: controls
+    holdOutOtherRegisters: controls
   },
   plantedPositive: {independentWordPermutations: words.length,
     originalShapeGPPlainRunesRecovered: recovered},
-  decision: 'Full-word partition is key-independent for this particular one-per-word map; 78/2896 and 59/109 long native vocabulary misses are NOT a general exclusion without an independently supplied plaintext register and word-key schedule. No LP2 plaintext recovered.'
+  decision: 'Full-word partition is exact and key-independent for the one-per-word model. Five source registers leave 57/2896 words unmatched, including 47/109 long words; this is exceptionally unlike three English source controls but compatible with some rare-vocabulary or Latin controls. No independent historical word-key schedule or actual LP2 plaintext recovered.'
 }, null, 2));
