@@ -44,9 +44,28 @@ The **distinct-word** byte sequence contains the ASCII substring `/Vz81Iz/` of e
 
 For every proposed additive pair, `E_k(D_k(C))=C` is a mere algebraic guarantee; only real source-selection and independently meaningful decoded prose would identify the correct key. The test therefore reports the six actual output tapes and surviving strict-F mask, rather than claiming any of them is authentic plaintext.
 
+## Duplicate-only ten-rune operand: exact known-F-encoder exclusion (Agent41, 15 November)
+
+The two **later repeated source cells** in the original LP1 p05 square are `UOID` (four GP runes) followed by `AETHEREAL` (six GP runes). Unlike the full 76-rune printed tape and 66-rune deduplicated tape tested above, these ten discarded runes are a third, exact source-defined operand. Their original printed GP ordinals are **[1,3,10,23,25,2,18,4,28,20]**. The table's pre-grid ten-dot mark gives a plausible but unverified human cue for using this tape. Neither square nor LP2 source authorizes such a cipher directly.
+
+The [separate original-source SFT](../sims/lp2_p05_duplicate10_p49_strictf_original_sft.cjs) takes only these ten original rune indices, the canonical complete **138-rune pre-table sentence** (72 p48 + 66 p49), and the complete **170-rune post-table sentence** (92 p51 + 78 p52). Without fitting any key digit or phase, it computes 12 fixed source-key interpretations: original/reversed ten-rune tape, GP ordinal/prime/prime-totient numerical representation, and both additive signs. Each direct decode exactly reencrypts its original ciphertext. Source-native p57 plants recover their correct **308/308** rune paths for all 12 settings.
+
+The stronger discriminant transfers the independently **verified solved-p56 plaintext-F rule**, allowing *every possible* original ciphertext-F decision: a plaintext F must transmit literally as ciphertext F and consume no key position; ciphertext F may instead be a keyed non-F output. The SFT maintains all ten possible clock states and exhaustively advances or bypasses each ciphertext F without choosing a mask by language score. Results:
+
+| Frozen input and strict-F clock condition | Survivors of 12 fixed key interpretations |
+| --- | ---: |
+| Full pre-table sentence, fresh key at its real p48 punctuation start | **1/12**: reversed prime-totient, sign −1; possible ending clock phases 4 or 6 |
+| Full post-table sentence, key restarted at actual p51 opening | **0/12** |
+| Both complete sentences concatenated (308 runes), with no key reset across numeric field | **0/12** |
+| Isolated 66-rune p49 fragment (incorrect complete-sentence start) | Some survive, confirming the importance of source punctuation |
+
+The sole 138-rune surviving model dies at original joined offset **285**, within the 170-rune sequel. Every other joined model fails at or before original offset 135. Unconstrained direct additive candidates have uniformly scattered rune output rather than meaningful continuous GP29 prose. The negative is specifically conditioned on importing **p56's known literal-F behavior into unknown p48–52**; the source does not prove that unknown LP2 uses that behavior. Thus it excludes the entire **12-setting ten-duplicate-rune direct repeating-key family only under this historically motivated emitter model**, while leaving unknown non-additive encoders and table state changes open.
+
+The exact Windows Node22 original source execution is [Actions run 43756556389](https://github.com/FlareZ123/liber-primus/actions/runs/43756556389), using the manual-only [workflow](../.github/workflows/lp2-p05-duplicate10-strictf-manual.yml). This reuses no guessed plaintext and demonstrates strict-F inverse detection with source-native planted controls.
+
 ## Decision for #1099
 
-**Keep the count relationship as an unconfirmed original-image clue, and retire both the direct GP29 p05-word-tape shifts and source-ordered 6×11 columnar transpositions as current p49 solutions.** The source-to-plaintext bridge is still missing. A useful successor would identify an independently original instruction for treating the **ten duplicate-word runes** as positions, padding, omissions or an operation, and supply a decoder that correctly predicts an untested contiguous original span. Alternatively, an original-era authentic key/material may choose an unrelated route.
+**Keep the count relationship as an unconfirmed original-image clue, and retire the direct GP29 p05-word-tape shifts, the duplicate-only ten-rune repeating source key under the known solved-p56 literal-F emitter, and the source-ordered 6×11 columnar transpositions as current p49 solutions.** The source-to-plaintext bridge is still missing. A useful successor would identify an independently original instruction for treating the **ten duplicate-word runes** as positions, padding, omissions or an operation, and supply a decoder that correctly predicts an untested contiguous original span. Alternatively, an original-era authentic key/material may choose an unrelated route.
 
 Do not extend this observation into a fitted long-key search or another round of arbitrary cipher-family permutations. There is no established plaintext, no source-selected full inverse, and nothing to promote to `results/README.md`.
 
