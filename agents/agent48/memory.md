@@ -1,4 +1,29 @@
-# Agent48 research identity | 15 November 2026
+# Agent48 | current research state
+
+**Invocation** `agent48-gpt6-20261115T205743Z-draw3-dct-0d8b245cd7614da6` drew cryptographic RNG **3** and is in normal issue-directed research mode. Exact established lease: `agents/agent48/.lease.json`, claimed **2026-11-15T20:57:43.149302Z**. It was a stale identity reclaimed and verified remotely; do not refresh. The only self-initiated research-release threshold is **2026-11-15T22:07:43.149302Z**. At a checkpoint read the real runtime clock; if age <70min, continue. At/after70min finish state persistence, then remove only this lease in a separate **final** commit, verify remote absence, exit.
+
+## Highest-value completed result in this invocation
+
+Source p50's `32×8=256` table, its `76` perimeter and `180` inner slots, and original p55/p56/p57 lengths `76+85+95` suggest one directly falsifiable 2D source-key interpretation. Tested a **fixed four-neighbor GF29 Laplacian** as direct table ciphertext for original terminal GP plaintext, row-major interior beginning p56(85) then *printed clear* p57(95). Across the **56 original p57 sites whose five source plaintext values are entirely known**, only **2/56** original table residues agree; **54/56 contradiction**, first at zero-based slot130 predicted1 versus actual28. The 76 unknown p55 border runes and all p56 plaintext are excluded from this test. The exact same operator on a planted 256-rune grid containing *all genuine p57 interior runes* reproduces **56/56**; both an independent Python original-table computation and a [Windows/Node22 CI success 43766314071](https://github.com/FlareZ123/liber-primus/actions/runs/43766314071) agree. Committed [source-exact CommonJS SFT](../../sims/lp2_terminal_grid_laplacian_p57_sft.cjs) and [self-contained finding](../../im-results/lp2-terminal-grid-laplacian-p57-known-original-gate.md). **Decision:** the particular one-step Laplacian mapping fails; geometry/other 2D ciphers remain open. No unknown plaintext or key recovered. This is a different candidate from earlier row+column, Berlekamp–Massey, finite-field Reed–Solomon terminal tests.
+
+## Independent source-led explorations without valid output
+
+- The original ink atlas has exactly **16 red spans on pp0–55**, whose first rune GP indices in chronological order are `[15,20,13,24,23,14,0,20,1,19,23,21,27,0,16,24]`. Their 16-character direct GP ordinal-to-RFC4648 Base32 read is **`punyxoaubtxv3aqy`**, direct single-integer 16-digit positional BASE29→80-bit Base32 is **`dszsrnmfuokgpjse`**, and GP-prime residue mod32 read is **`vjlbzpcjdhzplc3b`**. These are **trivially syntactically valid Tor-v2 shapes for arbitrary inputs**, with **zero independent 2014-host authentication**. None of the seven documented 2014 Cicada 16-character Tor hosts has the same complete equality pattern as these red16 indices, excluding a direct fixed one-to-one 29-rune→Base32-letter substitution into one of those seven. The 16-red first symbols as an AES-128 key under standard zero-IV CTR/CBC or ECB, on the source 256-byte table, give no readable payload/file signature (also tried their 16 GP-prime weights as key); don't present any endpoint as recovered.
+- Direct inverse of original unknown LP2 under the keyless **second finite difference** hypothesis `C_i=P_i−2P_{i−1}+P_{i−2} mod29` gives GP29 IoC only **0.0345153** best among all29 global slopes and **0.0345335** with independently best page slopes pooled; original ciphertext IoC0.0344784. These direct recovered 12,956-rune outputs remain near-uniform/nonlinguistic. Distinct from the previous *2015 ciphertext second-difference followed by prime* report, but the source does not select the operation or plaintext register.
+- Keyless dynamic move-to-front/back inverse-ranked GP29 transformations on the 55 original pages yield pooled IoC only **0.03524–0.03527**, no coherent prose. No new key or cipher instruction; do not expand without a clue.
+- Applying printed p15's standard 4×4 GF29 square and its inverse/transposes to the 16 original red initial runes produces incoherent fixed outputs; the earlier separate source report [16 red span *prime sums* as 4×4 square](../../im-results/red16-fibonacci-spiral-inverse.md) already exhausts related state-matrix approaches. No new matrix-key claim.
+
+## Research decision and dependencies
+
+Director's issues #1173, #1166, #1099 had active other-agent claims; #41 was explicitly WAITING for a source-selected p55 decoder, #1175 moth DCT exception was closed by Agent16 using a matched source-copy null, #1176 addressed by Agent29. I did **not** claim another agent's active Issue. The original 56 unknown LP2 physical pages remain undeciphered; the bottleneck is an **independently author-selected key, operator, or captured original recipient**, not another unselected bounded cipher menu. User specifically requests no repeated research and genuine decipherment, so preserve these finite negatives compactly and do not resurrect as new Issue or plaintext.
+
+---
+
+## Historical Agent48 research state (older incarnations, preserved)
+
+The older claim timestamp and mandatory release-time instructions in the historical sections below apply **only to those completed invocations**. This current invocation follows the 20:57:43Z lease above.
+
+# Previous state, historical record
 
 ## Current incarnation and compulsory lease rule
 
