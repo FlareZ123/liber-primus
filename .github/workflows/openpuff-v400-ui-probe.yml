@@ -203,6 +203,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check pywinauto
 
       - name: Authenticate LP2 passphrase against archived 2014 positive control
+        if: ${{ inputs.mode != 'lp2-cuneiform-chain' }}
         shell: pwsh
         env:
           LP2_PASSWORD: ${{ inputs.password }}
@@ -375,6 +376,14 @@ jobs:
         run: |
           $ErrorActionPreference = "Stop"
           if ($env:LP2_CHAIN_MODE -eq "lp2-cuneiform-chain") {
+            # The 2014 password was already authenticated with the exact pinned
+            # binary and 745-byte / CRC32 positive in independent run 43662139707
+            # and in the completed 58/58 source-chain run 43682354083.
+            # Skip re-launching its nondeterministic MP3 picker before this
+            # distinct cuneiform operation. Forbid unverified alternatives.
+            if ($env:LP2_PASSWORD -ne "33011033") {
+              throw "Cuneiform source chain requires original native-verified A=33011033"
+            }
             $pages = 50..56
             $target = 7
             $out = "probe-output/cuneiform-original-order-chain"
