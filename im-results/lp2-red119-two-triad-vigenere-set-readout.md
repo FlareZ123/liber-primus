@@ -1,6 +1,6 @@
-# Two isolated red119 triads: a source-selected GP29 subtraction reads SET
+# Two isolated red119 triads: SET and opening BOOK from one marked three-rune key
 
-**15 November 2026, Agent19. Classification: concrete source-selected exploratory readout, not authenticated LP2 plaintext or a solved cipher.** The manuscript's only two isolated three-rune red groups have the same page-local rune offset, **119**. Reading the earlier group's GP29 indices minus the later group's indices modulo 29 spells the ordinary English imperative **SET**. A fully specified, unadjusted operation reproduces this exact three-rune result on the original ciphertext. It is currently unknown whether the creator intended this subtraction, whether either colored group represents a Vigenère key, or what a putative SET instruction should modify.
+**15 November 2026, Agent19. Classification: original-source, two-anchor candidate readout, not authenticated unknown LP2 plaintext.** The manuscript's only two isolated red three-rune groups have the same page-local rune offset, **119**. Taking the later group as a repeated GP29 additive key yields **SET** from the earlier red group and **BOOC** (ordinary BOOK in GP spelling) from the first four red runes of the manuscript. Both outputs use exactly the same printed three-rune key and the same zero-phase operation. The continuation does not decode as coherent prose, and the four-rune opening prefix was selected after inspection. These are provisional clues, not identified plaintext or a validated cipher.
 
 ## The original visual selector and operation
 
@@ -15,7 +15,36 @@ The original LP2 scans are 20.jpg (physical page3) and 56.jpg (physical page39),
 
 The direct calculation is \`(13−27,23−5,2−15) mod29=(15,18,16)\`. Using the manuscript's fixed 29-symbol Gematria Primus order, those indices are **S E T**. GP29 additive/Vigenère difference is a historically used type of operation in the *already solved first release*. Applying it to these two unknown red passages is **our hypothesis**, because the red ink and matching index do not explicitly designate a key and ciphertext or a subtraction direction.
 
-This is distinct from the earlier unsuccessful proposal to use one shared 119-symbol additive pad on both **black prefixes**. That full-prefix proposal is excluded under broad source-native English lexical assumptions in [the exact word-grammar gate](lp2-p3-p39-red119-sharedpad-wordgrammar.md). The present subtraction concerns **only the two complete red triads**. Their separate prime-weight sums 137/173 and the possible 2014 title133 page-index relation are already recorded in [the original-source crosslink](lp2-2014-html133-red119-crosslink.md); the present English readout is a different, original-input observation and does not validate that numerical route.
+This is distinct from the earlier unsuccessful proposal to use one shared 119-symbol additive pad on both **black prefixes**. That full-prefix proposal is excluded under broad source-native English lexical assumptions in [the exact word-grammar gate](lp2-p3-p39-red119-sharedpad-wordgrammar.md). The first readout concerns **only the two complete red triads**; a second target uses the opening red phrase on p0. Their separate prime-weight sums 137/173 and the possible 2014 title133 page-index relation are already recorded in [the original-source crosslink](lp2-2014-html133-red119-crosslink.md); the present English readout is a different, original-input observation and does not validate that numerical route.
+
+## A second visibly red target: opening BOOC (BOOK)
+
+The **later** isolated triad p39:119–121, `IA C S` = **[27,5,15]**, is the sole source-derived key for the following fixed additive inverse. Use it from the beginning of each visibly marked target:
+
+| Original target | Original GP29 runes | Decrypted with repeating `IA C S` |
+| --- | --- | --- |
+| Earlier isolated red p3:119–121 | `P D TH` = [13,23,2] | **S E T** = SET |
+| Opening four red p0:0–3 | `S H E O` = [15,8,18,3] | **B O O C** = BOOK (GP K→C) |
+
+The p0 prefix identity is exact: index subtraction yields `[17,3,3,5]`. No new key, sign, phase, direction or alphabet adjustment is needed between the two source targets. The original p0 opening *red span* is **13 runes long**, and its first *printed word* is **eight** runes long. Therefore the use of precisely **four** opening symbols is **analyst-selected**, discovered after seeing BOOK. The same key on all 13 opening red runes gives **`BOOCURFAFEAPGW`**, which is not coherent source-native plaintext. At rune6 it produces plaintext F from a non-F ciphertext rune, incompatible with the literal F-bypass convention in the solved LP1 and p56 Vigenère-style methods. Consequently neither SET nor BOOK is authenticated unknown manuscript plaintext under the verified solved-page encryption rules.
+
+The original red triads are both adjacent to conspicuous thirteen-dot motifs and p0 begins with a thirteen-rune red heading. These are plausible visual reasons to compare those source positions, but neither the dots nor an authenticated historical instruction isolates the *four-rune* prefix or declares p39's group to be a key. The exact two-anchor correspondence is a promising candidate in need of a longer author-selected inverse.
+
+### Exhaustive three-rune-key control and unselected red highlights
+
+With the independently pinned TextBlob/Norvig English word-frequency source, the historical native-GP spelling conventions yield **721 unique three-rune words** and **2,065 unique four-rune words**. Over **every one of 29³=24,389** possible three-rune keys, exactly **five** decode the *specified p3 red3 and p0 opening4* simultaneously to dictionary words:
+
+| Candidate key | p3 red3 | p0 opening4 | Source word-frequency product |
+| --- | --- | --- | ---: |
+| **IA C S**, original p39 marked red group | **SET** | **BOOC** | **40,625** |
+| IA P IA | SIR | BALC | 531 |
+| F C IA | PER | SOLO | 86 |
+| G P P | WIE | NACY | 38 |
+| A M P | ERE | LECH | 2 |
+
+BOOC is the GP spelling of BOOK and has printed word frequency **125** in that source; SET has frequency **325**. The observed marked key is the highest-scoring among the five by this *exploratory* product. Its raw simultaneous dictionary-match frequency is **5/24,389 (approximately 0.000205)**, which is **not** a calibrated discovery p-value: the second source target, the four-character cutoff and the word-frequency ranking were investigated after the isolated SET observation. Other source-visible alignments and operations have been considered throughout the collaborative project.
+
+The fixed same key was also applied from the beginning of **all 16 original unsolved-page red spans**. Only the **already discussed p0 prefix4 and p3 triad3** produce any three- or four-rune prefix that is an exact member of this dictionary. The other 14 spans provide no additional same-key lexical cross-confirmation. This sharply bounds the present observation: a short double hit with no general red-caption decryption.
 
 ## Source-registered control and a literal next operation
 
@@ -32,6 +61,6 @@ The visually printed thirteen-dot groups might suggest a number or key length, a
 
 ## Reproducibility and decision
 
-[Original-source, Windows-compatible Node.js CommonJS SFT](../sims/lp2_red119_pairwise_set_readout_sft.cjs) asserts the complete unknown-rune count, the exact two red spans, both source-triad indices and prime sums, the printed three-rune dictionary control, the SET/XJP directionality, and the two phase-anchored direct-key IoCs. Its only inputs are existing pinned repo resources. No original transcriptions, images, or findings were replaced.
+[Two-anchor and exhaustive all-key original-source SFT](../sims/lp2_red119_iacs_two_anchor_book_sft.cjs) reconstructs both SET and BOOK and the 24,389-key native lexicon control. The [original isolated-triad and direct-key SFT](../sims/lp2_red119_pairwise_set_readout_sft.cjs) asserts the complete unknown-rune count, the exact two red spans, both source-triad indices and prime sums, the printed three-rune dictionary control, the SET/XJP directionality, and the two phase-anchored direct-key IoCs. Its only inputs are existing pinned repo resources. No original transcriptions, images, or findings were replaced.
 
-**Decision:** Preserve this source-directed three-rune candidate readout as **intermediate evidence only**. It offers a small, exact English token from two visually selected ciphertext operands. Its most immediate whole-page cipher continuation has failed. A material breakthrough would require an **independent first-party instruction** establishing that the later red group is a key, identifying the parameter to set, or predicting a source-selected unknown-page cipher input that becomes unambiguous plaintext. No authenticated new LP2 plaintext, usable unknown-page key, global cipher mechanism, or destination has been recovered.
+**Decision:** Preserve the two source-directed short words **SET** and **BOOK** as intermediate evidence only. They share one original highlighted key and one simple GP29 operation, with an exhaustive finite-key dictionary control. The full red-heading and whole-page continuations fail to give coherent plaintext. A material breakthrough would require an **independent first-party instruction** establishing that the later red group is a key, identifying the parameter to set, or predicting a source-selected unknown-page cipher input that becomes unambiguous plaintext. No authenticated new LP2 plaintext, usable unknown-page key, global cipher mechanism, or destination has been recovered.
