@@ -262,6 +262,15 @@ function blockOrderNull(name, kind, trials, seed) {
   const rand = random32(seed);
   const byChapter = Array.from({length: 8}, () => []);
   for (const block of pageBlocks) byChapter[block.chapter].push(block);
+  // Authentic image-visible 9 chapter cuts, distinct from the 8 '$' groups.
+  const visualCuts = [0,729,1874,3603,5506,6527,7960,9640,12648,12956];
+  const byOriginalVisualChapter = Array.from({length:9}, () => []);
+  for (const block of pageBlocks) {
+    const j = visualCuts.findIndex((start, i) =>
+      i < 9 && block.start >= start && block.start < visualCuts[i + 1]);
+    assert.ok(j >= 0);
+    byOriginalVisualChapter[j].push(block);
+  }
   let exceedances = 0;
   let sum = 0;
   const values = [];
@@ -269,6 +278,8 @@ function blockOrderNull(name, kind, trials, seed) {
     let blocks;
     if (kind === 'pages-global') blocks = shuffle(pageBlocks, rand);
     else if (kind === 'pages-within-chapter') blocks = byChapter.flatMap(group => shuffle(group, rand));
+    else if (kind === 'pages-within-original-visual-chapter')
+      blocks = byOriginalVisualChapter.flatMap(group => shuffle(group, rand));
     else if (kind === 'lines-global') blocks = shuffle(lineBlocks, rand);
     else if (kind === 'lines-within-page') blocks = pageBlocks.flatMap(page => shuffle(page.lines, rand));
     else throw new Error('Unknown block permutation mode');
@@ -287,6 +298,7 @@ function blockOrderNull(name, kind, trials, seed) {
 const blockOrders = [
   ['whole-pages', 'pages-global'],
   ['pages-within-eight-dollar-transcription-groups', 'pages-within-chapter'],
+  ['pages-within-nine-original-visual-chapters', 'pages-within-original-visual-chapter'],
   ['whole-lines', 'lines-global'],
   ['lines-within-physical-page', 'lines-within-page']
 ].map(([name, kind], index) =>
