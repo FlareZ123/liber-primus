@@ -53,6 +53,28 @@ The unique best original key is simply **first ciphertext differencing**, a prev
 
 **Reproduce second independent calculation:** [full-key Parseval IoC Python SFT](../sims/lp2_fivetap_allsecret_ioc_original_sft.py), with the same pinned Python dependencies and original corpus. [Successful original-input and blind full-key plant GitHub Actions run 43662750942](https://github.com/FlareZ123/liber-primus/actions/runs/43662750942), job 132655431799. The existing manual `four-lag-feedback.yml` workflow now offers an independent `five-tap-all-ioc` choice. It runs without the other two modes.
 
+## Nine independently secret keys at original illustrated chapter boundaries
+
+The 2014 source has **nine visually segmented chapters**. A globally shared feedback key could fail even if each section had its own five-part key. A separate **fully exhaustive, chapter-specific** experiment grants every chapter its own unrestricted `29^5` parameter vector, never requiring any key to recur. It uses the same original page-local predecessor rule but splits **each chapter's chronological eligible runes 60% training / 40% untouched holdout**, using source-visible page/illustration boundaries `p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53, p54–55`. The all-key 14-harmonic Parseval statistic remains invariant to a fixed secret rune substitution within each individual chapter. The native-English positive control is separately enciphered under the same original page geometry and recovered blindly.
+
+| Original visual chapter | Eligible training runes | Eligible holdout runes | Largest training IoC over **all** 20,511,149 keys | Held-out IoC of selected original key | Blind source-native planted held-out IoC |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| p0–2 | 428 | 286 | 0.039397 | 0.033910 | 0.064581 |
+| p3–7 | 672 | 448 | 0.038260 | 0.035075 | 0.062071 |
+| p8–14 | 1,016 | 678 | 0.036591 | 0.035259 | 0.062117 |
+| p15–22 | 1,117 | 746 | 0.036267 | 0.034316 | 0.058924 |
+| p23–26 | 600 | 401 | 0.038492 | **0.035923** | 0.062170 |
+| p27–32 | 841 | 562 | 0.036997 | 0.035670 | 0.062300 |
+| p33–39 | 987 | 658 | 0.036507 | 0.034628 | 0.061725 |
+| p40–53 | 1,765 | 1,178 | 0.035650 | 0.034282 | 0.057030 |
+| p54–55 | 178 | 120 | 0.046848 | 0.034034 | 0.059524 |
+
+In **all nine cases**, the exhaustive original-cipher best training key fails to generalize with native-English-like repeated-rune frequencies on the untouched portion. The independent Shakespeare-GP29 positive control **recovers the exact original unknown-to-search five-part planted key `[5,17,26,9,14]` as the global maximum in every one of the nine independent 20,511,149-key spaces**, including the short p54–55 chapter. All held-out controls retain authentic GP native-English IoC 0.0570–0.0646.
+
+This is a finite and strongly controlled exclusion of **one unrestricted set of five feedback coefficients per original chapter**, even after independently secret chapter-local alphabet permutations, provided the underlying plaintext has an English-like GP29 index of coincidence. It does not imply a lack of chapter-specific encryption, different per-word state, nonlinear feedback or historically source-selected alternate operations. In particular, the shorter chapter's original training IoC reaches 0.04685 merely through selecting among millions of keys, but its independent held-out IoC collapses to 0.03403; do not mistake a trained peak for a key.
+
+**Reproduce:** [single Python chapter-by-chapter all-secret SFT](../sims/lp2_fivetap_chapter_allkey_holdout_sft.py), identical dependencies and original canonical source. [Successful 18 independently blind full-secret calibration/holdout fits on GitHub Actions, run 43664005263](https://github.com/FlareZ123/liber-primus/actions/runs/43664005263), job 132659276940. The existing manual workflow selects `five-tap-ninechapter` explicitly; this report replaces any implied dependence on one whole-book key.
+
 ## Decision
 
-Retire **five-tap, globally shared, page-local linear ciphertext feedback as a direct native-English encoder, including any following fixed secret rune permutation**, under the explicitly frozen model. The expensive 20.5-million-key space now has an exact spectral certificate and a planted recovery for both training and withheld pages. Do not add a sixth coefficient, insert a free state or change reset scopes to rescue the model without a separate, independently observable clue. Pursue source-derived actual keystreams, reversible output-state operations and genuine unknown-page plaintext instead.
+Retire **five-tap, page-local linear ciphertext feedback as a direct native-English encoder with either a whole-book shared coefficient key or nine separately unknown illustrated-chapter coefficient keys**, including any following *chapter-stationary* secret rune permutation, under the explicitly frozen model. The expensive 20.5-million-key space now has an exact spectral certificate and a planted recovery for both training and withheld pages. Do not add a sixth coefficient, insert a free state or change reset scopes to rescue the model without a separate, independently observable clue. Pursue source-derived actual keystreams, reversible output-state operations and genuine unknown-page plaintext instead.
