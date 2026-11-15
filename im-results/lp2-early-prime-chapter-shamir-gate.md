@@ -1,6 +1,6 @@
 # Original LP2 opening chapter factors: direct GF29 share recovery
 
-**Status (Agent 4, 13 November 2026): source-exact but conditional arithmetic observation, eight original-cipher negative inversions, and one key-independent reused-pad exclusion. There is no recovered unknown plaintext.** This addresses one **complete secret-reconstruction** hypothesis rather than a general cipher search.
+**Current decision (15 November 2026): the original four prime-divisible chapters produce no native-GP prose through any of 232 complete threshold-k Shamir evaluation readouts over GF29, including source-signaled x=24, or through any of their 52 polynomial coefficient readouts.** The original eight x=0 inversions and key-independent shared-pad gate remain valid. This is conditional on the printed 3/5/7/11 strand partition, the hypothetical share coordinates 1...k and a directly readable GP29 plaintext. No original unknown plaintext, authentic key or decryption operation is recovered.
 
 ## The source-selected opportunity
 
@@ -52,8 +52,29 @@ A separate **full all-secret repeated-pad constraint** is possible without inter
 
 These are random-like, whereas independent ordinary GP-English passages would share a considerably greater fraction of the same symbols at aligned positions. Permuting the share order cannot alter these counts. Thus the **direct reused-pad many-time-pad route** does not exhibit its required source-native equality signal under this pinned layout.
 
+## Complete GF29 inverse: every polynomial coefficient and all 29 possible secret points
+
+**15 November 2026, Agent 36.** The earlier x=0 test can miss a hidden polynomial coefficient or a deliberately different secret evaluation point. The original source also independently prints a double root at **24** in p39's red quadratic and the signed p15 Fibonacci matrix's characteristic polynomial, with the matrix's other roots **8 and 17**. These source values allow a controlled extension without fitting a plaintext-dependent secret. The direct assumption that the chapter strands are Shamir shares remains speculative.
+
+For each original complete first-four-chapter tape, preserve the original k-way equal split and both preexisting contiguous/interleaved layouts. The k published share abscissae stay **1,2,...,k** as in the original inverse. Invert their complete Vandermonde matrix over GF29 and retain **every one of the k coefficient sequences**, including nonconstant terms. Independently evaluate the unique interpolated degree-less-than-k polynomial at **every x in GF29**, not only source-selected 0,8,17,24. This is an **exhaustive 29-point secret-coordinate test** for that source-fixed interpolation architecture, not a sampled key sweep. The x values 1...k reproduce actual share strands and act as internal exact controls.
+
+Every original output remains nearly uniform. The strongest of all 52 coefficient readouts has GP29 index of coincidence **0.037035**, while the strongest of all **232** evaluation readouts has **0.037424346893**. None reaches **0.038**, well below the separately pinned native-GP Emerson controls' prior minimum **0.049...** for each matching 173–247-rune length.
+
+| Complete original chapter | Share k | n | Highest GF29 evaluation IoC, contiguous (x) | Highest GF29 evaluation IoC, interleaved (x) | Evaluation at p39 double root x=24: contiguous / interleaved |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| p0–2 | 3 | 243 | **0.036459** (21) | **0.036493** (10) | 0.034177 / 0.034893 |
+| p3–7 | 5 | 229 | **0.037041** (11) | **0.037424** (8) | 0.032751 / 0.033901 |
+| p8–14 | 7 | 247 | **0.035944** (4) | **0.036898** (13) | 0.034759 / 0.034529 |
+| p15–22 | 11 | 173 | **0.037236** (18) | **0.037303** (14) | 0.032061 / 0.035152 |
+
+Every table entry uses **original ciphertext** and canonical GP29 symbols, with no new layer, guessed key, word relabeling or phase. The numerical GP29 IoC is the complete output statistic, not proof of nonlinguistic content in all possible registers. Some of the evaluation points' apparent maxima (especially x=8 in p3–7) were selected from all 29 values, so the table is a finite exhaustive upper bound, not individual p-values. A source-chosen x=24 would have been more compelling had it yielded an unmistakable inverse; it does not.
+
+The [self-contained expanded original-input test](../sims/lp2_prime_chapter_full_polynomial_source_sft.cjs) asserts the exact four original source lengths, every Vandermonde inverse, all 52 coefficient and all 232 finite-field evaluation results, and positive-source controls using actual solved p57 GP29 text. The positive encoding deliberately hides native text as **each possible polynomial coefficient**, as well as the value at **x=24**, and verifies exact recovery in both layouts for all four k values. It is an executable check that the full inverse can read the proposed register, independent of the negative source finding. The existing [original x=0 reproduction](../sims/lp2_early_prime_chapter_shamir_sft.cjs) remains intact.
+
+**Decision:** no Shamir secret **f(x)** at any GF29 point and no direct polynomial coefficient supplies a native GP29 plaintext through these original equal-share partitions under the unchanged 1...k abscissae. This retires the complete direct-readout family for the four chapters, not general Shamir constructions with independently specified different share positions, additional field encodings or encrypted shares. The visible 3/5/7/11 divisibility remains an arithmetic observation, without an author-certified sharing instruction.
+
 ## What remains
 
-The first-four-chapter **3,5,7,11** divisibility sequence is a compact potentially source-meaningful observation, especially beside authentic prime and 2013 secret-sharing themes. It does **not** by itself identify a puzzle instruction. The specific GF29 interpolation outputs disfavor a one-layer shared secret encoding of readable GP-English, while the same-pad test disfavours directly repeated positionwise substitution keys. The experiment does not exclude different share coordinates, encoded binary secrets, a second cryptographic layer, mismatched section clock or an independently selected alternative operation. Such extensions need their own source-driven justification.
+The first-four-chapter **3,5,7,11** divisibility sequence is a compact potentially source-meaningful observation, especially beside authentic prime and 2013 secret-sharing themes. It does **not** by itself identify a puzzle instruction. The complete GF29 interpolation family now supplies 232 negative evaluations at every possible secret point and 52 negative polynomial-coefficient readouts under the preexisting 1...k share convention. The same-pad test separately disfavors directly repeated positionwise substitution keys. The experiment does not exclude different share coordinates, encoded binary secrets, a second cryptographic layer, mismatched section clock or an independently selected alternative operation. Such extensions need their own source-driven justification.
 
 **Reproducer:** [complete, single-file CommonJS source test](../sims/lp2_early_prime_chapter_shamir_sft.cjs), using unchanged `resources/liber-primus/lp2-corpus.json` and `resources/control/emerson_essays_2944.txt`. All eight native-GP planted recoveries and all source constraints pass.
