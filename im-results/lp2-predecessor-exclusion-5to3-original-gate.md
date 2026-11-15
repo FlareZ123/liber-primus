@@ -27,6 +27,16 @@ A deterministic positive control generates 2,573 three-byte values using a fixed
 
 **Reproduce:** [`sims/lp2_predecessor_28_to_byte_gate_sft.cjs`](../sims/lp2_predecessor_28_to_byte_gate_sft.cjs) using [canonical original-cipher page arrays](../resources/liber-primus/lp2-corpus.json). The independent original-input numeric counts were computed against the exact same source arrays; the new SFT itself is committed, without claiming a remote workflow run.
 
+## New direct repeat-marker resynchronization gate (Agent 11, 15 November 2026)
+
+A stronger human-solvable variation treats each of the **86 original same-rune adjacencies as a no-data *packet delimiter***, instead of merely deleting these runes from the continuous rank stream. This is a distinct, source-visible clock: when the published GP29 symbol repeats its immediate predecessor, discard any unfinished five-rank packet and restart the next packet at the next nonrepeat rune. A physical page starts with its first rune as a predecessor IV. No phase, offset, key, or exception site is fitted. Both natural positional digit orders are checked.
+
+The original 55 rune-bearing pages then provide **2,509 complete packets** and **270 discarded partial digits**, with **86 identical-rune delimiters**. **Both high-to-low and low-to-high digit order have 62 five-rank integers ≥ 2²⁴**, each individually impossible as an unsigned three-byte value. For the high-to-low interpretation, the first original impossible block terminates at physical p1 offset170; for reversed digit significance, the first is p2 offset30. The existing continuous deletion model had 79 invalid packets in original per-page high-to-low reading and 66 reversed. Thus source-observed repeat boundaries reduce some misalignments but **cannot repair this exact three-byte serializer**.
+
+A *genuine* three-byte/5-base28 positive plant generates **2,573 valid 24-bit values**, maps each to five ranks and the same predecessor-exclusion GP29 symbols, then emits 86 exact repeat delimiters *only after completed packets*. The unchanged decoder recovers **2,573/2,573 valid blocks with zero impossible values** in both digit directions, preserving every delimiter. The extended [single-file CJS SFT](../sims/lp2_predecessor_28_to_byte_gate_sft.cjs) asserts all original and positive results.
+
+**Decision:** this closes the direct repeat-resynchronizing version of the 5-rank/3-byte idea, without assuming plaintext language or searching a key. It does **not** refute other variable-length grammars, a genuinely instructed overflow-escape conversion, or an external key. In particular, treating a repeat as permission to *change* the excess five-rank integer would be a different, presently unauthenticated coding rule. **No original unknown plaintext or key was recovered.**
+
 ## Decision and remaining possibility
 
 Retire the direct keyless predecessor-rank `5×base28 → 3-byte` interpretation under the tested original-source word/frame conventions, even if all 86 visible repeats are granted optimistic no-data-escape status. This is distinct from the previously tested **78-phase fixed lookup/ASCII** models: no phase78 state, guessed 28-way secret permutation, or language detector enters this gate.

@@ -68,6 +68,68 @@ function gate(digits, phase, littleEndDigitOrder) {
 }
 
 /**
+ * Decode a direct three-byte codeword only when all five nonrepeat ranks exist.
+ * Each adjacent-equal published rune is an explicit no-data resynchronization
+ * marker: discard the pending partial word and begin a fresh five-rank packet.
+ * The first rune on this source physical page is the predecessor IV.
+ * @param {number[]} symbols Unmodified source page GP29 indices.
+ * @param {boolean} little Reverse the significance of five rank digits.
+ * @returns {{blocks:number,invalid:number,discarded:number,repeats:number}}
+ */
+function gateRepeatFramed(symbols, little) {
+  let blocks = 0;
+  let invalid = 0;
+  let discarded = 0;
+  let repeats = 0;
+  /** @type {number[]} */
+  let pending = [];
+  for (let i = 1; i < symbols.length; i++) {
+    const previous = symbols[i - 1];
+    const current = symbols[i];
+    if (current === previous) {
+      repeats++;
+      discarded += pending.length;
+      pending = [];
+      continue;
+    }
+    pending.push(current < previous ? current : current - 1);
+    if (pending.length === 5) {
+      let value = 0;
+      for (let k = 0; k < 5; k++) {
+        value = 28 * value + pending[little ? 4 - k : k];
+      }
+      blocks++;
+      if (value >= N) invalid++;
+      pending = [];
+    }
+  }
+  discarded += pending.length;
+  return { blocks, invalid, discarded, repeats };
+}
+
+/**
+ * Positive source-style plant: 86 true adjacent-equal rune markers after
+ * completed valid five-rank codewords, so no packet is split or discarded.
+ * @param {number[]} digits Five-rank packets generated from 24-bit integers.
+ * @returns {number[]}
+ */
+function plantRepeatFramedSymbols(digits) {
+  const symbols = [13];
+  let marks = 0;
+  for (let i = 0; i < digits.length; i++) {
+    const previous = symbols[symbols.length - 1];
+    const current = digits[i] < previous ? digits[i] : digits[i] + 1;
+    symbols.push(current);
+    if (marks < 86 && (i + 1) % 145 === 0) {
+      symbols.push(current);
+      marks++;
+    }
+  }
+  assert.equal(marks, 86);
+  return symbols;
+}
+
+/**
  * Test all five possible fixed book origins and the page-local origin.
  * @param {boolean} little
  * @param {number[]} globalDigits
@@ -146,12 +208,40 @@ function main() {
   assert.deepEqual(big.perPage, { blocks: 2539, invalid: 79 });
   assert.deepEqual(little.perPage, { blocks: 2539, invalid: 66 });
 
+  // New original-source variant: repeat symbols terminate/reregister the
+  // five-digit packet rather than being silently deleted from one tape.
+  // This is the only additional source clock; there is no fitted phase.
+  const framedOriginal = { big: { blocks: 0, invalid: 0, discarded: 0, repeats: 0 },
+    little: { blocks: 0, invalid: 0, discarded: 0, repeats: 0 } };
+  for (const page of pages) {
+    for (const [name, little] of [["big", false], ["little", true]]) {
+      const observed = gateRepeatFramed(page.indices, little);
+      for (const key of ["blocks", "invalid", "discarded", "repeats"]) {
+        framedOriginal[name][key] += observed[key];
+      }
+    }
+  }
+  assert.deepEqual(framedOriginal.big, {
+    blocks: 2509, invalid: 62, discarded: 270, repeats: 86
+  });
+  assert.deepEqual(framedOriginal.little, {
+    blocks: 2509, invalid: 62, discarded: 270, repeats: 86
+  });
+
   const planted = plantDigits(plantedBytes(2573));
   const emitted = plantSymbolsWithEscapes(planted);
   const recovered = ranks(emitted);
   assert.equal(recovered.repeats, 86);
   assert.deepEqual(recovered.digits, planted);
   assert.deepEqual(gate(recovered.digits, 0, false), { blocks: 2573, invalid: 0 });
+
+  const framedPlant = plantRepeatFramedSymbols(planted);
+  assert.deepEqual(gateRepeatFramed(framedPlant, false), {
+    blocks: 2573, invalid: 0, discarded: 0, repeats: 86
+  });
+  assert.deepEqual(gateRepeatFramed(framedPlant, true), {
+    blocks: 2573, invalid: 0, discarded: 0, repeats: 86
+  });
 
   console.log(JSON.stringify({
     originalRunes: original.length,
@@ -161,8 +251,10 @@ function main() {
     byteCapacity: 2 ** 24,
     bigEndianOriginal: big,
     littleEndianOriginal: little,
+    repeatDelimitedPerPage: framedOriginal,
     plantedValidBlocks: 2573,
-    plantedInvalidBlocks: 0
+    plantedInvalidBlocks: 0,
+    framedPlantValidBlocks: 2573
   }, null, 2));
   console.log("PASS: source-indexed direct 5×base28→3-byte transport is rejected.");
 }
