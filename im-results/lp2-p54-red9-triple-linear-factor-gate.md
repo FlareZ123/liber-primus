@@ -14,6 +14,9 @@ R(X) = (X−24)(X−19)² (24X⁵+28X⁴+2X³+5X²+2X+11) over GF(29).
 
 The complete linear-root inventory is **19 of multiplicity two, and 24 of multiplicity one**. Neither root divides the remaining quintic. The visibly enlarged first p54 rune Ac has GP index **24**, matching the previously established **double root 24 of the original p49–51 numeric-table polynomial**; the independently marked p39 red three-rune polynomial is 15(X−24)². Thus three original, visually distinct objects share the root 24. The new p54 root 19 repeats the GP index of its second and ninth rubric runes. The p54 polynomial does **not** divide the p50 polynomial: their confirmed common factor here is only X−24.
 
+**Additional exact algebraic property:** the displayed quintic, normalized by inverse 24 modulo 29, is the **primitive irreducible** polynomial Q(X)=X⁵+6X⁴+17X³+28X²+17X+21 over GF(29). Its root α=X mod Q generates the entire nonzero multiplicative group of GF(29⁵), whose order is 29⁵−1 = **20,511,148 = 2²·7·732541**. The Rabin irreducibility conditions hold: X^(29⁵)≡X mod Q and gcd(Q, X^29−X)=1. The three prime-factor order witnesses are α^(N/2)=28, α^(N/7)=7, and α^(N/732541)=16+α+28α²+14α³+28α⁴, none equal to 1. Since these are all distinct prime divisors of N, α has **exact order N**, certifying primitivity; the original fixed nonzero five-register seed yields a maximal-period **20,511,148-symbol** LFSR. This is a mathematically stronger property than merely having the same linear root 24 as the table. The conditional creator-intent objection remains unchanged: ordinary random degree-five polynomials can also be primitive, and the source does not specify a finite-field cipher.
+
+
 This is retrospectively noticed algebra, with **no first-party instruction** to treat rubric text as polynomial coefficients, and no claim of creator intent or corrected statistical significance.
 
 ## One fully frozen value-changing inverse
