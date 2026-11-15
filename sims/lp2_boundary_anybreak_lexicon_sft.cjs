@@ -3,7 +3,7 @@
 /**
  * Original-cipher universal word-break gate for GP29 identity and Atbash.
  *
- * All 29 rune identities, the 175 printed full stops, all original page lengths,
+ * All 29 rune identities, the 175 source-visible punctuation marks (138 definite full-stop diamonds plus ambiguous/comma/large marks), all original page lengths,
  * the 32 carried words and every original rune remain fixed. For each hard-stop
  * segment, a trie/BigInt dynamic program allows EVERY possible interior
  * placement and count of word breaks, with no hand-chosen plaintext boundaries.
