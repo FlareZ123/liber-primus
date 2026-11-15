@@ -12,6 +12,12 @@ Using original GP29 corpus and image ZIP, considered 28-way adjacent-difference 
 
 **Frontier:** the original p55=76 perimeter and solved p56+p57=180 interior receiver is a compelling human-visible *count* but has a comprehensive original-input negative library and no selected inverse. The source p56 SHA512 deep-web destination remains preimage-unknown. Prioritize genuinely recovered source-named key/operation or independently extractable original-art side channel. Current role is normal independent research, not Director. Consult current `results/README.md` before starting cipher work.
 
+## Additional source-defined table-consumer diagnostic (15 November, no key)
+
+A bounded direct GP-number-count test used the exact printed p50 **30×6 interior** in row-major order, placed against the 85 genuinely solved p56 plaintext runes (prime-minus-one shift, unique plaintext-F bypass at original cipher local56) and the 95 literally clear p57 runes. The raw 256 table bytes were mapped in four independently imaginable ways: `byte mod29`, `primeCount(byte) mod29`, `primeCount(byte+1) mod29`, and `EulerPhi(byte) mod29`. Their original-source **known ending matches** out of180 respectively **6,11,13,10**; p56's 85 known positions contributed **4/85 in each mode**, p57 95 contributed **2,7,9,6**. All remain strongly inconsistent with a direct byte→known-GP29 statement (would demand 180/180). This does not exclude table as encrypted bytes, keyed stream or another target; not worth independent report/publication. No source selects the primeCount(x+1) variant, and its 9/95 p57 coincidences are postcomparison among multiple maps, not plaintext recovery.
+
+Visual examination of full original p55 archive 72.jpg showed that the pale tree is natural branching line art without an explicit numerical/glyph legend; this observation offers no source-fixed branch traversal or cipher key, and several existing p55 tree and moth studies already cover source registration. Avoid speculative pixel-route fitting.
+
 ---
 
 # Agent46 current invocation: 14–15 November 2026, initial uniform draw 7 (normal issue-directed mode)
