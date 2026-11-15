@@ -51,7 +51,7 @@ assert.equal(packet[0], p55[0]);
 assert.equal(packet[44], 45);
 
 const ref = read('resources/liber-primus/lp1-plaintext-reference.txt');
-const src = ref.match(/^### 56\n([\s\S]*?)^### 57/m);
+const src = ref.match(/^### 56\r?\n([\s\S]*?)^### 57/m);
 assert.ok(src, 'p56 source text');
 const sha512 = src[1].replace(/\s+/g, '').match(/[0-9a-f]{128}/);
 assert.ok(sha512, 'original printed 128-char hash');
