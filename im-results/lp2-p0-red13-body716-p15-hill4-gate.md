@@ -1,6 +1,6 @@
 # Opening p0 red-heading separation: 716 black runes as 179 Hill4 units
 
-**Agent 20, 15 November 2026. Original-source reversible gate; result pending committed CI.** No authenticated unknown plaintext, historical key or destination.
+**Agent 20, 15 November 2026. Executed original-source reversible gate, bounded negative.** No authenticated unknown plaintext, historical key or destination.
 
 ## Distinct source-register decision
 
@@ -13,5 +13,7 @@ Each invertible matrix maps all **716** original-body GP29 ciphertext runes to 7
 ## Original results and decision
 
 Run the stand-alone [new opening-body source SFT](../sims/lp2_p0_red13_body716_hill4_source_sft.cjs) with Node.js22. The implementation asserts original page rune counts, original red heading GP rune indices, the p15 number square and prime/Fibonacci reconstruction, all 128 source-defined inverses, and exact English planted recovery. Its results must be evaluated against the original ciphertext, not a reconstructed quote or fitted phrase.
+
+**Executed result:** [Successful Windows Node22 run 43660187950](https://github.com/FlareZ123/liber-primus/actions/runs/43660187950) applied all 128 complete inverses to all 716 original black-body GP29 symbols. Original body IoC is **0.034101652537**; 128 candidate IoCs range **0.033793022620–0.035597921631**. The highest-IoC original candidate is prime-value matrix, original orientation, transpose, **0.035597921631**, starting `CFDFWNCNGYHPTHYWTHFGAELEORAEAEAJIFX...`, with no recognizable prose. The independent source-native Shakespeare 716-rune plant has IoC **0.063651990468** and decrypts exactly **716/716** under the true source square inverse. The black-body method yields no unknown plaintext. This source-selected alignment is distinguishable from the earlier full-book four-rune alignment, yet the opening red header fails to make the direct p15 Hill4 matrix useful.
 
 If every candidate remains near-uniform and far from the native-GP plant, reject the specific **p15 direct Hill4 with red-heading-separated p0 body**. This does not reject matrix use in a changing state, a title-dependent key, a different cipher, or authentic plaintext in another code. Without a genuine source-selected deciphering step, no claims about LP2's intended message are warranted.
