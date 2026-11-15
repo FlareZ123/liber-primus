@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * Exact all-secret test of one five-dot GP29 plaintext-autokey consumer:
- * C[t] = P[t] + P[t-5] (mod29) for t >= 5, with arbitrary independent
+ * Exact all-secret test of the two literal five-dot GP29 plaintext-autokeys:
+ * C[t] = P[t] ± P[t-5] (mod29) for t >= 5, with arbitrary independent
  * five-rune initial key at t = 0..4.
  *
  * Original LP2 p23–26, excluding the 16-rune opening rubric, has 1005 runes.
@@ -60,14 +60,14 @@ const mod29 = (x) => ((x % 29) + 29) % 29;
 /**
  * @param {number[]} C Original or planted ciphertext
  * @param {number} lane A class in 0..4
- * @param {number} seed The arbitrary first plaintext rune P[lane]
+ * @param {1|-1} feedbackSign Sign on the previous plaintext symbol
  * @returns {number[]} Sparse recovered plaintext, populated in this lane
  */
-function inverseLane(C, lane, seed) {
+function inverseLane(C, lane, seed, feedbackSign = 1) {
   const output = [];
   let previous = seed;
   for (let i = lane; i < C.length; i += 5) {
-    previous = i === lane ? seed : mod29(C[i] - previous);
+    previous = i === lane ? seed : mod29(C[i] - feedbackSign * previous);
     output[i] = previous;
   }
   return output;
@@ -79,14 +79,15 @@ function inverseLane(C, lane, seed) {
  * Independent lanes therefore need only 5 * 29 evaluations, not 29**5.
  * @param {number[]} C Ciphertext to invert
  * @param {number[]} accepted Permitted genuine one-rune plaintext types
+ * @param {1|-1} feedbackSign Signed feedback rule
  * @returns {number[][]} Surviving first-plaintext seed per residue lane
  */
-function seedSets(C, accepted) {
+function seedSets(C, accepted, feedbackSign = 1) {
   const allowed = new Set(accepted);
   return Array.from({length: 5}, (_, lane) => {
     const positions = singleton.filter((i) => i % 5 === lane);
     return Array.from({length: 29}, (_, i) => i).filter((seed) => {
-      const P = inverseLane(C, lane, seed);
+      const P = inverseLane(C, lane, seed, feedbackSign);
       return positions.every((i) => allowed.has(P[i]));
     });
   });
@@ -95,23 +96,25 @@ function seedSets(C, accepted) {
 /**
  * @param {number[]} P Plaintext GP29 sequence
  * @param {number[]} initialKey Exactly five GP29 integers
+ * @param {1|-1} feedbackSign Signed feedback rule
  * @returns {number[]} Ciphertext under the frozen plaintext-autokey rule
  */
-function forward(P, initialKey) {
+function forward(P, initialKey, feedbackSign = 1) {
   assert.equal(initialKey.length, 5);
   return P.map((value, i) =>
-    mod29(value + (i < 5 ? initialKey[i] : P[i - 5])));
+    mod29(value + (i < 5 ? initialKey[i] : feedbackSign * P[i - 5])));
 }
 
 /**
  * @param {number[]} C Ciphertext
  * @param {number[]} firstPlain Five plaintext seeds
+ * @param {1|-1} feedbackSign Signed feedback rule
  * @returns {number[]} Complete plaintext
  */
-function inverse(C, firstPlain) {
+function inverse(C, firstPlain, feedbackSign = 1) {
   const P = new Array(C.length);
   for (let lane = 0; lane < 5; lane++) {
-    const part = inverseLane(C, lane, firstPlain[lane]);
+    const part = inverseLane(C, lane, firstPlain[lane], feedbackSign);
     for (let i = lane; i < C.length; i += 5) P[i] = part[i];
   }
   return P;
@@ -122,6 +125,10 @@ const originalCandidates = seedSets(cipher, nativeSingle);
 assert.deepEqual(originalCandidates.map((s) => s.length), [29, 29, 3, 3, 0]);
 const extended = seedSets(cipher, [0, ...nativeSingle]); // grants F too
 assert.deepEqual(extended.map((s) => s.length), [29, 29, 4, 4, 0]);
+const negativeCandidates = seedSets(cipher, nativeSingle, -1);
+assert.deepEqual(negativeCandidates.map((seeds) => seeds.length), [29, 29, 3, 3, 0]);
+const negativeExtended = seedSets(cipher, [0, ...nativeSingle], -1);
+assert.deepEqual(negativeExtended.map((seeds) => seeds.length), [29, 29, 4, 4, 0]);
 
 // The contradiction needs just two words, without fitting any initial key.
 // At p24:257 (body offset454) and p25:267 (offset734), the plaintext
@@ -133,6 +140,14 @@ assert.deepEqual([one[454], one[734]], [4, 20]);
 const allowedDifferences = new Set([0, ...nativeSingle]
   .flatMap((a) => [0, ...nativeSingle].map((b) => mod29(b - a))));
 assert.equal(allowedDifferences.has(16), false);
+// Reversing the feedback sign creates a DIFFERENT direct five-back cipher.
+// The exact same source words force difference 17, also outside A/I/O/F.
+const negativeZero = inverseLane(cipher, 4, 0, -1);
+const negativeOne = inverseLane(cipher, 4, 1, -1);
+assert.deepEqual([negativeZero[454], negativeZero[734]], [13, 1]);
+assert.deepEqual([negativeOne[454], negativeOne[734]], [14, 2]);
+assert.equal(mod29(negativeZero[734] - negativeZero[454]), 17);
+assert.equal(allowedDifferences.has(17), false);
 
 // Positive control: original 95 GP29 plaintext runes from solved p57,
 // repeated to the original 1005-rune geometry, with printed singleton
@@ -154,6 +169,14 @@ for (let lane = 0; lane < 5; lane++) {
 }
 assert.deepEqual(inverse(planted, firstPlain), plaintext);
 assert.deepEqual(forward(inverse(planted, firstPlain), initialKey), planted);
+const negativePlant = forward(plaintext, initialKey, -1);
+const negativePlantSeeds = seedSets(negativePlant, nativeSingle, -1);
+assert.deepEqual(negativePlantSeeds.map((seeds) => seeds.length), [29, 29, 3, 3, 1]);
+for (let lane = 0; lane < 5; lane++) {
+  assert.ok(negativePlantSeeds[lane].includes(firstPlain[lane]));
+}
+assert.deepEqual(inverse(negativePlant, firstPlain, -1), plaintext);
+assert.deepEqual(forward(inverse(negativePlant, firstPlain, -1), initialKey, -1), negativePlant);
 
 console.log(JSON.stringify({
   source: 'original LP2 p23-26, red rubric excluded',
@@ -161,12 +184,17 @@ console.log(JSON.stringify({
   singletons: singleton,
   originalSeedSetSizes: originalCandidates.map((s) => s.length),
   grantingLiteralFSeedSetSizes: extended.map((s) => s.length),
+  reversedFeedbackSeedSetSizes: negativeCandidates.map((s) => s.length),
+  reversedFeedbackGrantingFSeedSetSizes: negativeExtended.map((s) => s.length),
   sourceSingletonContradiction: {
     page24Local257: 'seed + 3', page25Local267: 'seed + 19',
     requiredMod29Difference: 16,
-    allowedMod29Difference: false
+    allowedMod29Difference: false,
+    reversedFeedbackMod29Difference: 17,
+    reversedFeedbackAllowed: false
   },
   plantedSeedSetSizes: plantedSeeds.map((s) => s.length),
+  reversedFeedbackPlantedSeedSetSizes: negativePlantSeeds.map((s) => s.length),
   positiveNativeGpReconstruction: true,
-  result: 'No inverse with unchanged printed A/I/O words and fixed five-rune plaintext-autokey clock'
+  result: 'No inverse for either sign with unchanged printed A/I/O words and fixed five-rune plaintext-autokey clock'
 }, null, 2));
