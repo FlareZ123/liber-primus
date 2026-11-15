@@ -103,6 +103,39 @@ The sole survivor from rune1,500 onward is the scalar key [0,0,0,0], generating 
 
 **Cryptanalytic decision:** Both natural direct p15 signed-matrix additive generator clocks have now been exhaustively rejected against the unchanged original source **with every p56-style F bypass**. The four-output clock is excluded for every hidden vector/phase; the scalar matrix-power clock is excluded even with any secret linear output row. The original displayed matrix is nonnegative; restoring its two mathematically implied signs remains a source hypothesis, and no Cicada message explicitly commands either generator. Page-local rekeys, nonlinear readouts, transformations before the matrix, alternate state transitions, and intermediate non-native registers remain outside these results. The real plaintext, historical cipher and intended destination remain unknown.
 
+## More direct literal-print alternative: both unsigned p15 matrix clocks also fail
+
+The original p15 source **actually prints positive magnitudes**; its final-row two original values **4516 and 1206** were converted into negative Fibonacci–3301 differences to construct the signed matrix above. A human could instead take the **printed sixteen positive values modulo29** as a matrix without reconstructing hidden signs. This is a materially different and arguably simpler literal-original operator:
+
+    M_print = [10  3 20 22]
+              [ 1 22 21 25]
+              [11 17 19  7]
+              [21 17 12 22].
+
+The final-row first two entries differ from the signed model, and the exact printed-magnitude characteristic polynomial is
+
+    χ_print(X) = X⁴ +14X³ +22X² +5X +17.
+
+With no new fitted cipher, apply the **same exhaustive exact ambiguous-plaintext-F search** to this independent source readout.
+
+| Original printed-positive matrix operation | Hidden state coverage | Longest nonzero feasible original prefix | Complete nonzero secrets |
+| --- | --- | ---: | ---: |
+| Four successive matrix-vector components per state update, unknown intra-block component h=0 | all 29⁴ initial vectors | 1,153 | **0** |
+| Four components, h=1 | all 29⁴ initial vectors | 1,067 | **0** |
+| Four components, h=2 | all 29⁴ initial vectors | 1,053 | **0** |
+| Four components, h=3 | all 29⁴ initial vectors | 1,276 | **0** |
+| One unknown linear scalar output per matrix multiplication, every possible linear functional | all 29⁴ scalar pad quartets | 1,312 | **0** |
+
+In all five tests the zero key remains the sole mechanically feasible state after 1,500 original source runes. The printed-positive scalar matrix has a first-coordinate four-term observability determinant **27 mod29**, so the full 29⁴ initial scalar stream census covers any unknown linear functional and starting state, rather than merely one guessed coordinate. Cayley–Hamilton fixes its all-secret scalar recurrence exactly:
+
+    K_(k+4) = 15K_(k+3)+7K_(k+2)+24K_(k+1)+12K_k (mod29).
+
+The exhaustive original checks have **no dictionary, F-mask selection, plaintext crib or adjustable source key**. They independently retain every legal F passthrough at each original ciphertext-F. Genuine solved-p57 plaintext was artificially encrypted under the printed-positive model with hidden nonzero state, then the inverse accepted the complete 3,000-symbol output with **both ciphertext-F meanings**; short-prefix brute-recursive path oracles agree. The scalar implementation checks the displayed original 4×4 matrix's complete characteristic identity and direct 80-step matrix/recurrence agreement at independent states.
+
+The literal-input tests are integrated into the **same two one-file SFTs** as the signed-input tests: [full-vector source-exact SFT](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs) and [full-scalar all-linear-readout SFT](../sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs). They are tested with tracked original source, independent plants and a manually triggered Windows/Node22 GitHub Actions workflow. These new literal-print exclusions remove the unsupported-sign-restoration objection for **these two direct additive generator architectures**.
+
+**Boundary:** This does not prove the signed-vs-unsigned mathematics is author-intended, nor exclude source-p39 polynomial projections, Hill block mixing, nonlinear states, a changed byte/rune register, or source-selected per-page key derivations. It supplies no unknown text. Neither of the two direct matrix clocks can explain the manuscript under *either* natural signed or positive matrix input and the historical F rule, except the identity cipher.
+
 ## Distinct keyless, block-mixing dynamic Hill gate
 
 The same source matrix gives a different fully reversible model that mixes all four GP29 symbols in each block. Instead of using its vector as a key, decrypt the original ciphertext block by applying **M^(phase + direction × block)** over GF29. Because M has exact order **812**, all original phase choices and both independently meaningful exponent directions comprise **2 × 812 = 1,624** complete reversible clocks. There is no additional secret matrix, additive key or language-fitted phase. The inverse of one direction is available because M is invertible.
@@ -115,6 +148,6 @@ The **all-phase dynamic Hill decoder** is consequently a second, distinct scoped
 
 ## Decision and exact reproduction
 
-The p15 signed-matrix **four-output vector** and **one-output scalar per-multiplication** additive generators are both exhausted on this continuous original black-body clock, **including every historical F-skip branch and all possible secret states**. They yield no author-selected decoder, plaintext or hidden address. Do not restart matrix-vector or matrix-scalar seed searches, output-row fitting, F-mask fitting, or dictionary phase tuning within these two models. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
+Both source interpretations, **mathematically reconstructed signed p15** and **literal positive printed p15**, have now failed **both continuous additive generator clocks** (four-vector-outputs per matrix step and arbitrary one-scalar-output per step), exhausting every hidden seed, sign, phase and historically possible F-bypass branch. They yield no author-selected decoder, plaintext or hidden address. Do not restart these matrix-vector or scalar secret searches, output-row fitting, F-mask fitting, or dictionary phase tuning without a genuinely different cipher consumer. A new line would require a manuscript-authenticated different consumer, e.g. a block-mixing or nonlinear output function, a source-selected state reset, or an independent key source.
 
 Earlier dictionary and dynamic-Hill experiments remain independently reproducible in [their original CJS](../sims/lp2_p15_signed_matrix_allstate_dictionary_sft.cjs); those are separate, weaker operator-level results. The newly completed exact four-output F-branch source gate is [here](../sims/lp2_p15_matrix_ambiguousF_allstate_original_sft.cjs), and the distinct scalar recurrence full-key gate is [here](../sims/lp2_p15_matrix_scalar_lfsr_ambiguousF_original_sft.cjs). Both pass together in the [verified Windows/Node22 run43732686502](https://github.com/FlareZ123/liber-primus/actions/runs/43732686502). All scripts read tracked original source and write no files.
