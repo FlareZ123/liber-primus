@@ -14,6 +14,8 @@ const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources', 'liber-pr
 const table = JSON.parse(fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp2-grid-256.json'), 'utf8'));
 const dictionary = fs.readFileSync(path.join(root, 'resources', 'control', 'english_wordfreq_textblob.txt'), 'utf8');
 const M = 29;
+const TOKENS = [...corpus.translit].sort((a, b) => b.length - a.length);
+const GP_VALUE = new Map(corpus.translit.map((s, i) => [s, i]));
 
 /** @param {number} x @returns {number} */
 function mod(x) { return ((x % M) + M) % M; }
@@ -32,16 +34,14 @@ function inverse(x) {
  * @returns {number[] | null}
  */
 function encode(input) {
-  const tokens = [...corpus.translit].sort((a, b) => b.length - a.length);
-  const value = new Map(corpus.translit.map((s, i) => [s, i]));
   const s = input.toUpperCase()
     .replace(/QU/g, 'CW').replace(/[KQ]/g, 'C').replace(/V/g, 'U')
     .replace(/Z/g, 'S').replace(/ING/g, 'NG').replace(/IO/g, 'IA');
   const out = [];
   for (let i = 0; i < s.length;) {
-    const token = tokens.find((t) => s.startsWith(t, i));
+    const token = TOKENS.find((t) => s.startsWith(t, i));
     if (!token) return null;
-    out.push(value.get(token));
+    out.push(GP_VALUE.get(token));
     i += token.length;
   }
   return out;
@@ -151,4 +151,70 @@ for (let i = 1; i < encrypted.length; i++) {
 }
 assert.deepEqual(restored, p57);
 console.log('Authentic solved-p57 constructive plant restored:', restored.length, '/', p57.length);
-console.log('Decision: no original LP2 plaintext or source-matched key recovered.');
+// Complete 55-original-page equality-spectrum invariant. For any secret
+// nonzero multiplier tape, within-page adjacent-equal counts are identical
+// for the plaintext and the ciphertext. The source-native English control
+// windows are exhaustive, length-matched and independent of any key fit.
+const physicalPages = corpus.pages.filter((p) => p.page <= 55 && p.runic_count > 0);
+assert.equal(physicalPages.length, 55);
+const lengths = physicalPages.map((p) => p.runic_count);
+const edges = [];
+let fullLength = 0;
+for (let i = 0; i < lengths.length; i++) {
+  fullLength += lengths[i];
+  if (i + 1 < lengths.length) edges.push(fullLength);
+}
+assert.equal(fullLength, 12956);
+assert.equal(edges.length, 54);
+const originalWithin = physicalPages.reduce((sum, p) =>
+  sum + p.indices.slice(1).filter((v, i) => v === p.indices[i]).length, 0);
+assert.equal(originalWithin, 86);
+
+/** @param {string} raw @returns {number[]} */
+function sourceTape(raw) {
+  const out = [];
+  for (const word of raw.match(/[a-z]+/gi) || []) {
+    const x = encode(word);
+    if (x !== null) out.push(...x);
+  }
+  return out;
+}
+
+/** @param {number[]} tape @returns {{minimum:number, bestOffset:number, atMostOriginal:number, windows:number}} */
+function allWindows(tape) {
+  const prefix = new Uint32Array(tape.length);
+  for (let i = 1; i < tape.length; i++)
+    prefix[i] = prefix[i - 1] + Number(tape[i] === tape[i - 1]);
+  let minimum = Infinity, bestOffset = -1, atMostOriginal = 0, windows = 0;
+  for (let offset = 0; offset + fullLength <= tape.length; offset++) {
+    let count = prefix[offset + fullLength - 1] - prefix[offset];
+    for (const x of edges) count -= Number(tape[offset + x - 1] === tape[offset + x]);
+    if (count < minimum) {
+      minimum = count;
+      bestOffset = offset;
+    }
+    if (count <= originalWithin) atMostOriginal++;
+    windows++;
+  }
+  return { minimum, bestOffset, atMostOriginal, windows };
+}
+const controlSpecs = [
+  ['shakespeare_first300k.txt', 217106, 323, 45148, 204151],
+  ['gibran_prophet_58585.txt', 62492, 344, 17188, 49537],
+  ['emerson_essays_2944.txt', 321327, 309, 225748, 308372]
+];
+for (const [name, expectedLength, expectedMin, expectedOffset, expectedWindows] of controlSpecs) {
+  const source = fs.readFileSync(path.join(root, 'resources', 'control', name), 'utf8');
+  const tape = sourceTape(source);
+  assert.equal(tape.length, expectedLength, name + ' source rune length');
+  const x = allWindows(tape);
+  assert.deepEqual(x, {
+    minimum: expectedMin, bestOffset: expectedOffset,
+    atMostOriginal: 0, windows: expectedWindows
+  });
+  console.log('All matched native-GP English windows,', name, x);
+}
+console.log('Original eligible pairs:', fullLength - physicalPages.length,
+  'original equal pairs:', originalWithin);
+console.log('Decision: this zero-added-noise difference cipher cannot decode any of the three fixed English control windows.');
+
