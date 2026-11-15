@@ -15,3 +15,6 @@ jobs:
       - name: Test original ciphertext with historical-source affine family
         shell: pwsh
         run: node sims/lp2_2013_dh6_lag6_signed_source_bridge_sft.cjs
+      - name: Test original p39 red lag-5 S selector
+        shell: pwsh
+        run: node sims/lp2_p39_red515_s5_source_selector_sft.cjs
