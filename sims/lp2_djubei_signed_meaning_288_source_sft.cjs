@@ -19,7 +19,8 @@ const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
-const signedClear = signed.replace(/\r\n?/g, "\n")\n  .split("\n\n").slice(1).join("\n\n")
+const signedClear = signed.replace(/\r\n?/g, "\n")
+  .split("\n\n").slice(1).join("\n\n")
   .split("-----BEGIN PGP SIGNATURE-----")[0];
 assert.match(signedClear, /their\s+meaning is the road, and their numbers are the direction/i);
 
