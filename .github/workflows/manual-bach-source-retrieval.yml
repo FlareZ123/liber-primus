@@ -171,6 +171,7 @@ jobs:
                   ("wayback-2015-raw", "https://web.archive.org/web/20151231000000id_/http://pastebin.com/raw/" + paste_id),
                   ("archiveph", "https://archive.ph/" + original),
                   ("live", "https://pastebin.com/raw/" + paste_id),
+                  ("live-page", "https://pastebin.com/" + paste_id),
               ]
               for label, url in urls:
                   record = {"paste_id": paste_id, "variant": label, "url": url}
