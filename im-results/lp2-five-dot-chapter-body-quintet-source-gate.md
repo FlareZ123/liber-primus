@@ -58,6 +58,23 @@ The three untouched genuine English holdout passages score **−9.28372**, **−
 
 **Decision:** all **11,799 admissible secret bit-map/orientation candidates** are nonlinguistic against these three native English controls, despite enough flexibility to choose any one-bit class for all 29 GP symbols. This is a complete no-direct-English result for **one stationary rune-bit Bacon channel over the p40–53 original body**. It does not refute other codebooks (e.g. ITA2), different character registers, source-selected per-page bit changes, changing state, or an added cipher layer. No actual unknown plaintext was recovered.
 
+## Stronger clue-aligned lossless binary packing: eight GP runes give five bytes
+
+A separate, **more economical bit-exact codec** uses **five original bits per GP29 rune** (indices 0–28 each fit in 0–31) and **eight consecutive runes per five-byte output group**. This is independently suggestive because the flora frame contains five-dot sites and the same p40–53 chapter contains a printed **eight-column table**. The 3,000 GP runes after the p40 red8 heading are exactly **375 groups of eight = 1,875 bytes**. In this reading, the eight-rune red heading itself becomes a source-isolated **five-byte prefix**; the entire 3,008-rune p40–53 chapter makes **1,880 bytes** without any padding bits or discarded rune information. Unlike base29 quintet→24bit, no overflow side-band is needed. Neither the original drawing nor the numeric table **states** this 5-bit codec, so the cross-clue alignment is a hypothesis, not an author's proven instruction. Full-book continuous five-bit packing was **already evaluated in [the earlier global source gate](lp2-fivebit-source-serialization-gate.md)**; the **p40 red-heading/8-column section framing** and fixed table consumer here are the different original scope.
+
+The source-locked 8×5→5-byte MSB-first packer and exact 5-byte→8-rune unpacker reconstruct **all 3,008 original GP29 runes**. The source-native original five-byte red heading is `0267a35f28`. The p40 body begins `c35da43383942bca2a0204f0595cb025`, ends `9bc2d04136eba8cc064ca8b8e05091a9`; its 1,875 bytes have SHA-256 `51423ee9229638c2141d3dff29722b5b216d97fc3e78ce66e287fb8864d1f915`, **769/1875** are printable ASCII, and it is invalid UTF-8 without recognized file magic or valid zlib header. Keeping the five-byte red prefix also yields invalid UTF-8 and no standard header.
+
+As one direct, source-contained *consumer*, feed those **1,875 bytes** into the same independently printed **256-byte p49–51 base60 table** at table index zero, cyclically, using reversible bytewise XOR, subtraction or addition. There are no fitted offsets, per-row permutations or secret keys. All three invert every transformed byte and recover a separate planted 26-byte readable-English control exactly.
+
+| Eight-rune packed original body | First 16 resulting bytes | ASCII-printable / 1,875 | UTF-8 or standard recognized file magic |
+| --- | --- | ---: | --- |
+| Literal five-bit GP stream | `c35da43383942bca2a0204f0595cb025` | **769** | None |
+| Plus cyclic original 256-byte XOR | `08ba0389e279557d76fb982eae5807f1` | **699** | None |
+| Plus cyclic original 256-byte subtraction | `f876fd7922a7ad13ce0968126258f951` | **695** | None |
+| Plus cyclic original 256-byte addition | `8e444bede481a98186fba0ce506067f9` | **708** | None |
+
+The entire source, all four exact outputs and three inverse controls passed [Windows Node22 CI 43656701196](https://github.com/FlareZ123/liber-primus/actions/runs/43656701196) via [CJS SFT](../sims/lp2_p40_eight_rune_five_byte_transport_sft.cjs). **Decision:** the 8-rune/5-byte scheme is structurally economical and lossless but no unencrypted byte payload or directly table-masked byte payload is recovered at its source-selected starting position. A second cipher could exist, but the source supplies no next operation or key to justify unrestricted format/phase search. No authentic unknown-page plaintext.
+
 ## Next actionable condition
 
 The source itself still lacks an explicit rule saying to convert five runes to base29 byte triplets or how to use the 256-cell table. The five-site pictures could cue a genuinely different operation. Preserve the exact chapter-body clock as a conditional candidate, but require an **independent color/position-to-operand mapping, a recognized data header, an external known plaintext, or a held-out original-rune prediction** before trying more packing variants or treating these high-entropy bytes as meaningful ciphertext. Original unknown-page plaintext remains unrecovered.
