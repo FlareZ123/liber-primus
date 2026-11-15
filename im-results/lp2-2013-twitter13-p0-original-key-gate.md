@@ -24,7 +24,7 @@ No new symbol order, hidden resets, altered alphabet, guessed word spacing, skip
 | Chain, `C−previous−K` | **0.034429815994** |
 | Chain, `C−previous+K` | **0.034789233113** |
 
-All four complete outputs remain essentially uniform and fail to produce source-native English GP text. The verified source-p57 clear positive itself has IoC **0.062709966405**. IoC is a diagnostic, not an exact cipher impossibility proof; the full outputs and exact loop are available in the compact [Node.js 22 original-input SFT](../sims/lp2_2013_twitter13_p0_key_sft.cjs).
+All four complete outputs remain essentially uniform and fail to produce source-native English GP text. The verified source-p57 clear positive itself has IoC **0.062709966405**. IoC is a diagnostic, not an exact cipher impossibility proof; the full outputs and exact loop are available in the compact [Node.js 22 original-input SFT](../sims/lp2_2013_twitter13_p0_key_sft.cjs), [successfully executed on original data in Windows GitHub Actions run 43763556048](https://github.com/FlareZ123/liber-primus/actions/runs/43763556048). The four native-positive calibrations and original 716-rune re-encryptions all passed.
 
 ## Meaning for the solve path
 
