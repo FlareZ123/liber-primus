@@ -78,8 +78,8 @@ for(const construction of constructions) {
   assert.equal(sourceKey.length, 76);
   assert.equal(leftovers.length, 28);
   for(const sign of [-1,1]) {
-    for(const addWordTape of [false,true]) {
-      const key = sourceKey.map((byte,i) => mod29(byte+(addWordTape?W[i]:0)));
+    for(const wordSign of [0,1,-1]) {
+      const key = sourceKey.map((byte,i) => mod29(byte+wordSign*W[i]));
       const result = ciphertext.map((cipher,i) => mod29(cipher+sign*key[i]));
       assert.deepEqual(result.map((clear,i)=>mod29(clear-sign*key[i])), ciphertext);
       const plantedCipher = genuine.map((clear,i)=>mod29(clear-sign*key[i]));
@@ -88,13 +88,13 @@ for(const construction of constructions) {
       const stat = ioc(result);
       assert(stat > 0.02 && stat < 0.05);
       outputs.push({selection:construction.name, sign,
-        keyKind:addWordTape?'grid-plus-word-runes':'grid-only',
+        keyKind:wordSign===0?'grid-only':wordSign>0?'grid-plus-word-runes':'grid-minus-word-runes',
         nativeIOC:stat,
         originalGP:result.map(r=>book.translit[r]).join(' ')});
     }
   }
 }
-assert.equal(outputs.length, 8);
+assert.equal(outputs.length, 12);
 assert.equal(ioc(ciphertext), 0.037894736842105266);
 console.log(JSON.stringify({
   premise:'13 Wisdom GP words aligned with p50 exactly 13 rows of 8 grid cells, key length 76 = original p55',
