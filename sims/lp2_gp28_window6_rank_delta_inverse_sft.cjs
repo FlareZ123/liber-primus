@@ -1,21 +1,21 @@
 'use strict';
 
 /**
- * Original-LP2 GP28 no-repeat window-six inverse. This is a finite
+ * Original-LP2 GP28 no-repeat window-five/six inverse. This is a finite
  * source-motivated candidate, not an identified Cicada cipher.
  *
  * Run: node sims/lp2_gp28_window6_rank_delta_inverse_sft.cjs
  *
- * Hypothesis: each nonrepeat ciphertext step encodes one of 28 ranks
- * R_t = (P_t + P_(t-1) + ... + P_(t-5)) mod 28.
+ * Hypothesis: each nonrepeat ciphertext step encodes one of 28 ranks,
+ * R_t = sum of the last W plaintext GP28 ranks mod28, W=5 or W=6.
  * Equal steps represent a proposed literal interrupt, either EA/index28
  * (free-form control) or F/index0 (motivated by the solved LP1/p56 F rule),
  * and do not advance the 28-symbol sum register. Normal ranks retain the
  * other 28 rune symbols in their canonical GP order. At each chapter start the first five
  * rank outputs are unrestricted visible IVs.
  *
- * Subtract consecutive ranks: P_t - P_(t-6) = R_t - R_(t-1) (mod 28).
- * Therefore the 28^5 unknown equivalent states reduce to six independent
+ * Subtract consecutive ranks: P_t - P_(t-W) = R_t - R_(t-1) (mod 28).
+ * Therefore the 28^(W-1) unknown equivalent states reduce to W independent
  * Caesar shifts and a single modular checksum. Solve the shifts exactly
  * by dynamic programming with one fixed independently sourced English
  * unigram likelihood. Native GP positive plant tests actual key recovery.
@@ -31,7 +31,7 @@ const runeToIndex = new Map(corpus.translit.map((name, i) => [name, i]));
 const GP = [...corpus.translit].sort((a, b) => b.length - a.length);
 const mod = (n, x) => ((x % n) + n) % n;
 const chapters = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26], [27, 32], [33, 39], [40, 53], [54, 55]];
-const W = 6;
+let W = 6;
 
 /**
  * @param {string} raw
@@ -187,6 +187,8 @@ const modes = [
   { sentinel: 0, label: 'F sentinel (LP1/p56 historical interrupt candidate)' }
 ];
 const results = [];
+for (const width of [5, 6]) {
+W = width;
 for (const { sentinel, label } of modes) {
   const logProb = trainingLogMarginal(sentinel);
   const original = [], positives = [];
@@ -244,12 +246,13 @@ for (const { sentinel, label } of modes) {
     'Heldout genuine solved-prose key recovery must work');
   assert.ok(origWeighted < positiveWeighted - 0.4);
   results.push({
-    label, literalPlaintextSentinel: corpus.translit[sentinel], original,
+    width, label, literalPlaintextSentinel: corpus.translit[sentinel], original,
     originalWeightedLogPrior: origWeighted, nativeSolvedPagePlants: positives,
     positiveWeightedLogPrior: positiveWeighted
   });
 }
+}
 console.log(JSON.stringify({
-  hypothesis: 'exact six-position GP28 rolling plaintext sum with original 29-way successor rank and one literal escape',
-  models: results, conclusion: 'Neither historically motivated F nor EA sentinel recovers original unknown plaintext.'
+  hypothesis: 'exact five-/six-position GP28 rolling plaintext sum with original 29-way successor rank and one literal escape',
+  models: results, conclusion: 'Neither 5 nor 6 positions and neither historically motivated F nor EA sentinel recovers original unknown plaintext.'
 }, null, 2));
