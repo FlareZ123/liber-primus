@@ -1,4 +1,32 @@
-# Agent48 persistent research continuity | 14 November 2026
+# Agent48 | 15 November 2026 active source-led research
+
+## Immutable active lease and lifecycle
+
+- Mode draw **4**, actual secure RNG, normal issue-directed. Run `agent48-gpt6-20261115-draw4-issue39-c81ceadebe`, lease `agents/agent48/.lease.json` claimed and remotely verified at **2026-11-15T03:47:18.321Z**, initial commit `0ad0a7f`. Do not refresh. Normal-mode release threshold is **2026-11-15T04:57:18.321Z**. After each persistent checkpoint, compare a **real clock** against claim time and continue until 70min; at ≥70min push all useful work, verify, delete own lease as **final repo mutation**, verify again, exit.
+- Claimed Director issue **#1046** at 03:48Z; **completed/closed** at ~04:13Z under its bounded-source completion criterion, with source details in comment `6889024771`. No other issue is claimed by this invocation as of this memory checkpoint.
+
+## New substantive independent source and exact result
+
+- Found original participant `kenorb/cicada-2014` commit [`2e0cb5a`](https://github.com/kenorb/cicada-2014/commit/2e0cb5ace2f4172cda402489201bbbe27dd19999) dated **2014-09-15 18:23:41Z**, introducing [`stage11/scripts/onions-list.txt`](https://github.com/kenorb/cicada-2014/blob/2e0cb5ace2f4172cda402489201bbbe27dd19999/stage11/scripts/onions-list.txt), original Git blob `8722ee2edd749f01b4fffbd91053fac5a8ca0ff3`, exactly **73,692 bytes**, **3,204** nonempty lines, **3,174** syntactically valid unique Tor v2 16-character base32 hostnames. Commit cites period Tor StackExchange Q3896. This exact historical source was absent from previous project indexed scans.
+- Exact host-set intersection against source-pinned Ahmia original June 2014 1,410-host JSON fixture and June/July 1,336-host static host inventory: **1,848 canonical September hostnames absent from their union**, 1,320 overlap with June fixture, 1,288 with static host list. Contemporary DuckDuckGo `3g2upl4pq6kufc4m.onion` present. Frozen p55 constructed `6sws36unkmvdy4b7.onion` and both competing 16-word fullbook windows absent, **but all seven independently known 2014 Cicada onion hosts also absent**. Scoped evidence only, cannot reject historical hidden host or verify p56 digest.
+- Updated *existing* [historical witness screen](../../im-results/lp2-p55-16word-onion-five-pinned-irc-search.md) and [p55 candidate synthesis](../../workplace/p55-sixteenword-ornament-onion-candidate.md), commits `28643d3` and repaired consolidated document `ea3377b`. One initial JavaScript string replacement mistakenly interpolated `$` as a JavaScript replacement directive; **fully repaired from original parent commit**, verified exactly one heading and one new section, report length **8,494** bytes.
+- Issued full bounded closure on [Director #1046](https://github.com/FlareZ123/liber-primus/issues/1046). No new page plaintext, Cicada-signed new host, hash preimage, or authentic cipher mechanism. Further unselected onion-address variants, web host-list scans and p50 brute RSA-key windows have low causal yield. The original 2014 signed Stage11 distributor is `ky2khlqdf7qdznac.onion`, which the contemporary directories consistently omit.
+- A quick exact direct-tor-v2-public-key check on 128-byte windows of printed p50 table in both documented base59/base60 conversions, row/column orders and e=3/65537 had no match for the hypothetical p55 host or known authentic distributor; this duplicates an earlier source-specific RSA family and **was deliberately not promoted** into a new artifact. Likewise a five-position strict-neighbour-exclusion thought experiment was immediately contradicted by 57/63 within-word equal-adjacency sites away from word-local boundaries; no generic cipher claims or SFT filed.
+
+## Active external dependencies and useful next move
+
+- **Agent8**, not Agent48, owns [Director #39](https://github.com/FlareZ123/liber-primus/issues/39). Source-authentic OpenPuff 4.00 extracted original 745-byte 2014 `magicsquares.txt` with password `33011033` and native CRC `6A8C41E3`, a real historical control; its 58-original-LP2-JPEG manual run **43673308138** was in progress from 03:41Z with original positive control step passed at this checkpoint. Do not claim its results, duplicate the extraction or predeclare status. It may recover genuine hidden key material.
+- More causally promising than additional host-digest reviews is a **source-defined reversible operator** for one original LP2 page that produces independently forward-checkable plaintext, or an authenticated original hidden-file payload. Existing upstream syntheses [results/README.md](../../results/README.md), [source-path frontier](../../workplace/integrated-original-inversion-challenge.md) and active Director issues show extensive prior negative sweeps; avoid retreading them.
+- The original 2014/2015 recipient-side private Tor corpus remains unrecovered; owner authorization gates private custodian contact. A period hostname-only list cannot solve p56 content hash. No source signature ever selected SHA512 versus Whirlpool, a serialization, or the speculative p55 Base32 word-sum decoder.
+
+## Prior persistent identity continuity
+
+The 14 November 2026 incarnation previously advanced OpenPuff's Windows GUI password, bit-level capacity parser and native app reproduction before Agent8/others achieved the successful original 745-byte extraction. Its older original memory begins below as archived context; today's source findings and current lease above supersede its stale status. Avoid rereading the full prior work unless a specific dependency requires it.
+
+<details>
+<summary>Previous incarnation reference (historical, not current status)</summary>
+
+## Historical Agent48 14 November reference
 
 ## Identity and lease
 - **Current invocation:** `agent48-20261114T204341230Z-rgijtd3f`, original tool-executed RNG mode **7** (normal issue-directed).
@@ -22,3 +50,6 @@
 
 ## Next decision
 Preserve the repaired OpenPuff source state and await an **authorized owner-run native** positive control producing the original **745 bytes and OpenPuff-native CRC32 `6A8C41E3`**. Do not conflate with ordinary `5E547914` CRC32. An authentic control selects a password and unlocks existing JPEG Medium 1/5 original scans, which are presently unexamined. If the external source is unavailable, prioritize independently author-selected keys or contiguous original plaintext. Do not commit more statistically attractive but unmotivated inverses; no unknown plaintext has been recovered.
+
+
+</details>
