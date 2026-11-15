@@ -387,12 +387,18 @@ def main():
         record["payload_sha256"] = atomic_payload(payload, payload_size)
         record["payload_size"] = payload_size
         window = choose_file(app, window, "Browse", payload, out, "secret")
+        # Browse/Add actions can re-enable C after earlier A-only setup. Reapply
+        # the native A/B/C control state after all file and carrier changes.
+        record["password_BC_states_before_hide"] = set_password(window, args.password)
         snapshot(app, out, "configured")
         click_named(window, "Hide Data")
         time.sleep(1)
         snapshot_desktop(out, "hide-post-click-desktop")
-        print("Original native Hide after click:", json.dumps(native_modal_inventory()),
-              flush=True)
+        modals_after_click = native_modal_inventory()
+        print("Original native Hide after click:", json.dumps(modals_after_click), flush=True)
+        if any("invalid passwords" in "\n".join(str(v) for v in modal.get("static", [])).lower() for modal in modals_after_click):
+            record["native_password_rejection"] = modals_after_click
+            raise RuntimeError("Original OpenPuff Hide rejected A-only passwords after final-state revalidation")
         deadline = time.monotonic() + 120
         next_report = time.monotonic()
         completion = []
