@@ -11,21 +11,21 @@ const crypto = require('node:crypto');
 
 /** @param {Buffer} b */
 function gitHash(b) {
-  return crypto.createHash('sha1').update('blob ' + b.length + '\\0').update(b).digest('hex');
+  return crypto.createHash('sha1').update('blob ' + b.length + '\0').update(b).digest('hex');
 }
 const source = {
   name: '#cicadasolvers.freenode.log',
   bytes: 18487233,
   sha: 'bdd277c14f94c34b5ae714cd00c238065beeed4e'
 };
-const direct = /\\b(?:p(?:age)?\\s*[-#:.]?\\s*(?:49|50|51|66|67|68)\\b|(?:66|67|68)\\s*\\.jpg|3N\\s+3p|base[- ]?60|base[- ]?62|number(?:s|ed)?[- ]?(?:table|grid)|numerical[- ]?(?:table|grid)|256.{0,24}(?:byte|number|char)|(?:byte|number|char).{0,24}256)/i;
-const meaning = /\\b(?:decipher|decrypt|cipher|plaintext|decoded|solved|meaning|key|vigenere|caesar|translate|rune|base29|base60|bytes|hex|values?|transpos|xor|numerical|ciphertext|numbers)\\b/i;
+const direct = /\b(?:p(?:age)?\s*[-#:.]?\s*(?:49|50|51|66|67|68)\b|(?:66|67|68)\s*\.jpg|3N\s+3p|base[- ]?60|base[- ]?62|number(?:s|ed)?[- ]?(?:table|grid)|numerical[- ]?(?:table|grid)|256.{0,24}(?:byte|number|char)|(?:byte|number|char).{0,24}256)/i;
+const meaning = /\b(?:decipher|decrypt|cipher|plaintext|decoded|solved|meaning|key|vigenere|caesar|translate|rune|base29|base60|bytes|hex|values?|transpos|xor|numerical|ciphertext|numbers)\b/i;
 
 function score(line) {
   let n = 0;
   if (direct.test(line)) n += 5;
   if (meaning.test(line)) n += 3;
-  if (/\\b(?:key is|it says|we found|i got|these numbers|the table|the grid|the digits)\\b/i.test(line)) n += 3;
+  if (/\b(?:key is|it says|we found|i got|these numbers|the table|the grid|the digits)\b/i.test(line)) n += 3;
   return n;
 }
 async function main() {
@@ -36,7 +36,7 @@ async function main() {
   const bytes = Buffer.from(await reply.arrayBuffer());
   assert.equal(bytes.length,source.bytes);
   assert.equal(gitHash(bytes),source.sha);
-  const lines = bytes.toString('latin1').split(/\\r?\\n/);
+  const lines = bytes.toString('latin1').split(/\r?\n/);
   const hit = [];
   for (let i=0; i<lines.length; i++) {
     const s=lines[i];
