@@ -188,4 +188,85 @@ const output = {
   sourceCipherGate: {pp54_55: spanA, pp3_7: spanB, pp0_2: spanC},
   decision: 'frozen additive-prefix codec structurally fails; every fixed token-codeword family of max length 2 has insufficient space capacity at p57-native 1/6 density'
 };
+
+/**
+ * Allow each hidden symbol/SPACE codeword to change with a public period
+ * of output-rune positions, independently per visible source scope. Drop
+ * each scope's first source C as an unconstrained IV (conservative).
+ * Every SPACE still begins with one fixed step at its output phase.
+ * @param {number[][]} scopes
+ * @param {number} period
+ */
+function phaseCapacity(scopes, period) {
+  let maxFirst = 0, symbolCount = 0;
+  for (const scope of scopes) {
+    const buckets = Array.from({length:period}, () => new Uint16Array(29));
+    let previous = scope[0];
+    for (let i = 1; i < scope.length; i++) {
+      const step = (scope[i] - previous + 29) % 29;
+      previous = scope[i];
+      buckets[(i-1) % period][step]++;
+      symbolCount++;
+    }
+    for (const bin of buckets) maxFirst += Math.max(...bin);
+  }
+  return {period, maxFirst, symbolCount,
+    maxSpaceFractionL2: 2 * maxFirst / symbolCount};
+}
+const chapterEnds = [729,1874,3603,5506,6527,7960,9640,12648,12956];
+const chapters = [];
+let begin = 0;
+for (const end of chapterEnds) {
+  chapters.push(book.slice(begin,end));
+  begin=end;
+}
+assert.equal(begin,book.length);
+assert.equal(chapters.length,9);
+/** @param {number[][]} scopes */
+function firstFeasiblePeriod(scopes) {
+  for (let k=1; k<=300; k++) {
+    const b=phaseCapacity(scopes,k);
+    if (b.maxSpaceFractionL2>=1/6) return b;
+  }
+  throw new Error('No phase period <=300 can fit native p57 density');
+}
+const models={
+  oneBookCodebook:[book],
+  nineVisibleChapterCodebooks:chapters,
+  fiftyFivePageCodebooks:pages.map(p=>p.indices),
+  originalTerminalChapter:[chapters[8]],
+  independentSecondChapter:[chapters[1]]
+};
+const phaseSourceGate={};
+for (const [name,scopes] of Object.entries(models)) {
+  phaseSourceGate[name]={
+    one:phaseCapacity(scopes,1),
+    five:phaseCapacity(scopes,5),
+    seven:phaseCapacity(scopes,7),
+    sixteen:phaseCapacity(scopes,16),
+    firstPermittedAtP57Density:firstFeasiblePeriod(scopes)
+  };
+}
+assert.deepEqual([
+  phaseSourceGate.oneBookCodebook.firstPermittedAtP57Density.period,
+  phaseSourceGate.nineVisibleChapterCodebooks.firstPermittedAtP57Density.period,
+  phaseSourceGate.fiftyFivePageCodebooks.firstPermittedAtP57Density.period,
+  phaseSourceGate.originalTerminalChapter.firstPermittedAtP57Density.period,
+  phaseSourceGate.independentSecondChapter.firstPermittedAtP57Density.period
+], [152,18,3,3,12]);
+assert.deepEqual([
+  phaseSourceGate.oneBookCodebook.five.maxFirst,
+  phaseSourceGate.nineVisibleChapterCodebooks.five.maxFirst,
+  phaseSourceGate.fiftyFivePageCodebooks.five.maxFirst,
+  phaseSourceGate.nineVisibleChapterCodebooks.sixteen.maxFirst
+], [552,762,1325,1036]);
+assert(phaseCapacity([planted],1).maxSpaceFractionL2>=1/6);
+assert(phaseCapacity([planted],5).maxSpaceFractionL2>=1/6);
+output.phaseChangingCodebookGate={
+  sourceSPACEReference:'p57 19/114=1/6 is conditional, not proven for p0-55',
+  clock:'output-rune phase k with first C in each scope as arbitrary IV',
+  models:phaseSourceGate,
+  caveat:'Only fixed codeword per state and at most 2 output runes per token. Dynamic hidden key, token-index phase, blocks and altered plaintext register remain open.'
+};
+
 console.log(JSON.stringify(output, null, 2));
