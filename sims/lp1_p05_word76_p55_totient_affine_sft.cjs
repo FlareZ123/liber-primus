@@ -197,7 +197,7 @@ assert.ok(bodySurvivors[0].nativeScore < p57Score - 2,
 // multipliers on this exact source. The 13 values repeat for later words.
 const rawTranscription = read('resources/lp2-transcription.txt');
 const p55RunicPage = rawTranscription.split('%')[54]
-  .replace(/[\/\n&$]/g, '');
+  .replace(/[\/\r\n&$]/g, '');
 const originalWordGlyphs = p55RunicPage.split(/[-.]/)
   .filter(token => /[ᚠ-ᛩ]/u.test(token));
 const segmentedWords = originalWordGlyphs
