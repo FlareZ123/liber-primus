@@ -12,6 +12,7 @@ on:
           - commoncrawl
           - commoncrawl-raw
           - wayback-arquivo
+          - terrafant-exact
 
 permissions:
   contents: read
@@ -83,3 +84,24 @@ jobs:
           name: original-2014-commoncrawl-raw-index
           path: mirror-2014-original-recovery/commoncrawl-raw-index.json
           if-no-files-found: error
+
+  original-terrafant-workpad:
+    if: ${{ inputs.source == 'terrafant-exact' }}
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check finite original-source archive probe
+        run: node --check sims/lp2_2014_terrafant_archive_probe.cjs
+      - name: Acquire exact 2014–2015 participant workpad URL
+        run: node sims/lp2_2014_terrafant_archive_probe.cjs
+      - name: Preserve actual archive-index responses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-2014-terrafant-workpad
+          path: terrafant-2014-original-recovery/archive-index.json
+          if-no-files-found: warn
