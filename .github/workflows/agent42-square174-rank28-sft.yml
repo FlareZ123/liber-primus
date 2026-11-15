@@ -1,0 +1,20 @@
+name: Agent42 square-174 rank-28 prime-totient source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-sft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run original-input source SFT
+        run: node sims/lp1_square174_rank28_lp2_fskip_sft.cjs
