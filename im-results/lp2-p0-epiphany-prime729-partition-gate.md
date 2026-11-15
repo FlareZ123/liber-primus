@@ -33,6 +33,25 @@ The blockwise decrypted output begins with GP transliterations **E J NG G N OE U
 
 The historically attested solved-p56 plaintext-F transparency also yields a stronger exact obstruction for this one schedule. The original first chapter has **21 non-F ciphertext positions where the scheduled nonzero key equals the ciphertext value**; 20 are after the assumed 13-rune header. Ordinary subtraction would force plaintext F there, although that historical mode prints F literally, as ciphertext F, without advancing the key. Consequently the stipulated constant-block shifts cannot be made into the historical literal-F-bypass cipher simply by deciding which printed F runes skip the clock. The first conflicting position is original p0 local offset 9, still within the candidate heading; the following conflicts survive even if the heading is assigned a different encryption mode.
 
+## Stronger all-secret block substitution exclusion
+
+The direct Caesar test above leaves an important possibility: perhaps each of the thirteen key-prime-length blocks has its own **arbitrary secret substitution alphabet** rather than its inferred single Caesar shift. This much larger secret family has a key-independent necessary condition that can be applied without guessing any alphabet.
+
+For every source-frozen block, count unordered pairs of positions whose GP rune labels are identical. Any bijection of the 29 runes merely renames the labels, so the count remains **exactly identical** for every possible hidden substitution in that block. Position permutations **within** the block and permutations of whole blocks also preserve the pooled count. The 13 original blocks contain exactly **1,070** same-label pairs among **29,657** eligible within-block position pairs, giving pooled IoC **0.036079171865**.
+
+Under the same frozen 13 block lengths, the three pre-existing ordinary-English source controls are encoded under the repository's established GP29 spelling mapping (TH/NG/EO/OE/AE/IA/EA; K/Q→C, V→U, Z→S). Their complete 729-rune windows are sampled every 127 runes, with no selection from the original ciphertext:
+
+| Independently sourced native-English reference | 729-rune windows | Lowest pooled block IoC | Highest pooled block IoC | Windows at or below original |
+| --- | ---: | ---: | ---: | ---: |
+| Shakespeare, first 300k characters | **1,718** | **0.051522406** | 0.071618842 | **0** |
+| Gibran, *The Prophet* | **492** | **0.054995448** | 0.070202650 | **0** |
+| Emerson essays | **2,551** | **0.053275786** | 0.072900158 | **0** |
+| **Original source, 13 derived blocks** | **1** | **0.036079172** | same | — |
+
+**Decision:** under this particular thirteen-block registration, **no independent secret monoalphabetic substitution per block can yield any of the 4,761 actual GP29 native-English 729-rune windows**, regardless of all thirteen hidden keys. This follows from the exact pair-count invariant and does not assume additive keys. Even rearranging source symbols or block order cannot change this necessary frequency statistic. It remains an empirical comparison with the three stated reference registers, **not a mathematical exclusion of every possible English or other-language plaintext**. A genuinely changing within-block key state, different boundaries or another non-bijective intermediate code lies outside this negative.
+
+The test includes an arbitrary nontrivial, block-specific affine GP29 permutation applied to a planted solved-p57 729-rune stream and asserts exact preservation of the pooled collision statistic. The same single-file SFT computes the full 4,761-window control census on the checked-in English sources.
+
 ## Decision and remaining route
 
 Reject **the frozen 13-prime-length block schedule followed by one Caesar shift per block**, under the original GP-native prose and authentic F-bypass expectations. This is distinct from the older period-13, autokey, 27×27 spatial-path and title-key-sum tests; none of those used the derived prime weights directly as the 13 contiguous full-chapter block lengths.

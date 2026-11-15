@@ -103,6 +103,118 @@ const nativePlant = Array.from({ length: 729 },
   (_, i) => solved.indices[i % solved.indices.length]);
 assert.deepStrictEqual(blocks(blocks(nativePlant, 1), -1), nativePlant);
 
+
+/**
+ * Collision pairs within the thirteen independently fixed variable-sized
+ * blocks are unchanged under every secret 29-symbol permutation per block.
+ * This also holds after arbitrary position permutation within the blocks.
+ *
+ * @param {number[]} xs - Exactly 729 native GP rune indices.
+ * @returns {number} Key-independent pooled within-block collision index.
+ */
+function blockCollisionIndex(xs) {
+  assert.equal(xs.length, 729);
+  let offset = 0;
+  let equalPairs = 0;
+  let possiblePairs = 0;
+  for (const size of blockLengths) {
+    const freq = new Array(29).fill(0);
+    for (let i = offset; i < offset + size; i += 1) freq[xs[i]] += 1;
+    equalPairs += freq.reduce((sum, n) => sum + n * (n - 1) / 2, 0);
+    possiblePairs += size * (size - 1) / 2;
+    offset += size;
+  }
+  assert.equal(offset, 729);
+  return {equalPairs, possiblePairs, value: equalPairs / possiblePairs};
+}
+
+const originalBlockPairs = blockCollisionIndex(cipher);
+assert.equal(originalBlockPairs.equalPairs, 1070);
+assert.equal(originalBlockPairs.possiblePairs, 29657);
+assert.ok(Math.abs(originalBlockPairs.value - 0.03607917186498972) < 1e-13);
+
+// Match the repository's independently developed, ordinary GP29 source
+// spelling convention; this is a *language reference*, never a fitted key.
+const gpTokens = data.translit.map((symbol, value) => ({symbol, value}))
+  .sort((a, b) => b.symbol.length - a.symbol.length);
+
+/**
+ * @param {string} prose - Ordinary Latin English source text.
+ * @returns {number[]} GP29 runes from whole source words, concatenated.
+ */
+function encodeGPReference(prose) {
+  const stream = [];
+  const words = prose.toUpperCase().match(/[A-Z]+/g) || [];
+  for (const word of words) {
+    const normalized = word.replace(/[KQ]/g, 'C')
+      .replace(/V/g, 'U').replace(/Z/g, 'S');
+    for (let i = 0; i < normalized.length;) {
+      const token = gpTokens.find((candidate) =>
+        normalized.startsWith(candidate.symbol, i));
+      assert.ok(token, 'Unmapped GP rune in reference');
+      stream.push(token.value);
+      i += token.symbol.length;
+    }
+  }
+  return stream;
+}
+
+const comparisonTexts = [
+  ['shakespeare_first300k.txt', 218800, 1718],
+  ['gibran_prophet_58585.txt', 63114, 492],
+  ['emerson_essays_2944.txt', 324630, 2551]
+];
+let comparisons = 0;
+let passingReferenceWindows = 0;
+const referenceSummaries = [];
+for (const [filename, expectedLength, expectedWindows] of comparisonTexts) {
+  const text = fs.readFileSync(
+    path.join(__dirname, '..', 'resources', 'control', filename), 'utf8');
+  const encoded = encodeGPReference(text);
+  assert.equal(encoded.length, expectedLength);
+  let count = 0;
+  let low = Infinity;
+  let high = -Infinity;
+  for (let offset = 0; offset + 729 <= encoded.length; offset += 127) {
+    const value = blockCollisionIndex(encoded.slice(offset, offset + 729)).value;
+    low = Math.min(low, value);
+    high = Math.max(high, value);
+    if (value <= originalBlockPairs.value) passingReferenceWindows += 1;
+    count += 1;
+  }
+  assert.equal(count, expectedWindows);
+  assert.ok(low > 0.05);
+  comparisons += count;
+  referenceSummaries.push({filename, count, low, high});
+}
+assert.equal(comparisons, 4761);
+assert.equal(passingReferenceWindows, 0);
+
+// Positive controls for the exact all-secret theorem: arbitrary per-block
+// bijections must preserve the pooled coincidence statistic.
+let position = 0;
+const permuted = nativePlant.slice();
+for (let block = 0; block < blockLengths.length; block += 1) {
+  const size = blockLengths[block];
+  const multiplier = [1, 2, 3, 4, 5, 6, 7][block % 7];
+  for (let i = position; i < position + size; i += 1) {
+    permuted[i] = (nativePlant[i] * multiplier + block + 1) % 29;
+  }
+  position += size;
+}
+assert.deepStrictEqual(blockCollisionIndex(nativePlant),
+  blockCollisionIndex(permuted));
+console.log('PASS: arbitrary secret block alphabets preserve collision pairs');
+console.log('Original pooled within-block pairs: 1070/29657 (' +
+  originalBlockPairs.value.toFixed(12) + ')');
+console.log('Native GP reference windows: ' + comparisons +
+  '; at or below original: ' + passingReferenceWindows);
+for (const summary of referenceSummaries) {
+  console.log(summary.filename + ': ' + summary.count +
+    ' windows, min ' + summary.low.toFixed(9) +
+    ', max ' + summary.high.toFixed(9));
+}
+
 console.log('PASS: source p0-p2 262+266+201 = 729 original runes');
 console.log('PASS: proposed title gives 13 fixed key symbols, prime total 729');
 console.log('PASS: positive solved-p57 native GP plant, exact 729/729 recovery');
