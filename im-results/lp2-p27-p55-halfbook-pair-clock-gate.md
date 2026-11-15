@@ -21,6 +21,20 @@ To calibrate the necessary plaintext equality rate without fitting keys or guess
 
 **All 5,822 finite English windows are above the original.** This is a genuine discrimination under the explicitly declared source-native-English model. A separate positive plant uses independently generated secret 29-way permutations for *every page pair and offset*, encrypts a native original-length English stream and recovers **12,956/12,956 runes** with the retained true inverse while preserving equality counts.
 
+## Independent word-length-matched and solved-Cicada control extension (15 November 2026, Agent43)
+
+The **same exact hypothesis and 195/5,663 original paired-position statistic were already tested and rejected above by Agent1 on 13 November 2026** with 5,822 contiguous native-English windows. The following is an additional control-design check, not a new cipher exclusion or new source interpretation. It retains the original **2,896 typographic word-length slots** rather than splitting continuous GP29 literary windows into physical pages, and supplements the literary controls with already-solved Cicada LP1 and p57 orthography. Every original rune position and page-pair comparison remains fixed. An implementation-positive synthetic English tape under position-specific shared per-pair GP29 shifts inverses and reencrypts all 12,956 runes, preserving 5,663 aligned equality opportunities.
+
+| Original-length conditioned GP29 register | Replicates | Equalities min / mean / max |
+| --- | ---: | --- |
+| Gibran | 160 | 292 / 340.35625 / 390 |
+| Shakespeare | 160 | 290 / 342.03125 / 384 |
+| Emerson | 160 | 306 / 349.45 / 396 |
+| Independently solved LP1 plus clear p57, 715 source GP29 word pool | 500 | 299 / 349.838 / 404 |
+| **Original ciphertext** | 1 | **195 / 195 / 195** |
+
+All **980/980** matched-original-word-length controls exceed the previously established 195 original matches. The 500 Cicada controls use the already-calibrated 2013 GP29 ING/IO source spelling. The result increases confidence that the earlier negative was not an artifact of destroying printed-word length structure or choosing unrelated literary authors; it does not change the model's excluded scope or recover any original unknown plaintext. [Read-only original-source SFT](../sims/lp2_halfbook_28lag_shared_bijection_sft.cjs) and [successful Windows Node22 run 43684862994](https://github.com/FlareZ123/liber-primus/actions/runs/43684862994). No successor key search is justified by this independent control.
+
 ## What the repeated pair does and does not imply
 
 The existing [two-word report](lp2-repeated-wordpair-structure.md) already discovered the pair and tested an `OUR OWN` crib with period-six direct additive keys; those tests failed. The independent [shared seven-phase p27/p55 gate](lp2-p27-p55-shared-sevenphase-keyless-gate.md) disfavored a shared page-reset seven-phase substitution, but only for p27 and p55. The present gate allows an arbitrary and independently secret glyph permutation for **each** paired local rune offset and applies the proposal to *all 28 opposite-half page pairs*; it therefore tests a different, more permissive partner-clock condition without a key search.
