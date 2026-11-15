@@ -243,6 +243,51 @@ assert.deepEqual([projectiveHistorical.total, projectiveHistorical.matches], [38
 for (const [len, counts] of Object.entries(projectiveRaw.byLength))
   if (Number(len) >= 9) assert.equal(counts.matches, 0);
 
+
+/**
+ * Independent original source-native Latin register. Its GP29 symbols
+ * are already encoded as 0..9A..S, with original word boundaries.
+ * @returns {number[][]}
+ */
+function latinWords() {
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+  assert.equal(alphabet.length, 29);
+  return read('resources/control/latin-vulgate-gp-wholewords.txt')
+    .split(/\r?\n/).filter(s => /^[0-9A-S]+$/.test(s))
+    .map(s => [...s].map(ch => alphabet.indexOf(ch)));
+}
+const latin = latinWords();
+assert.equal(latin.length, 39835);
+const latinLong = latin.filter(seq => seq.length >= 7);
+assert.equal(latinLong.length, 11093);
+const latinAffine = new Set(latinLong.map(seq => signature(seq.slice(1))));
+const latinPGL = new Set(latinLong.map(seq =>
+  projectiveSignature(seq.slice(1))));
+/**
+ * @param {number[]} tape
+ * @param {(start:number,len:number)=>boolean} accept
+ * @returns {{total:number,affine:number,projective:number}}
+ */
+function evaluateLatin(tape, accept) {
+  let total = 0, affine = 0, projective = 0;
+  for (let i = 0; i < words.length; i++) {
+    const start = offsets[i], len = words[i].length;
+    if (len < 7 || !accept(start, len)) continue;
+    total++;
+    const delta = [];
+    for (let j = 1; j < len; j++)
+      delta.push(mod(tape[start + j] - tape[start + j - 1]));
+    if (latinAffine.has(signature(delta))) affine++;
+    if (latinPGL.has(projectiveSignature(delta))) projective++;
+  }
+  return {total, affine, projective};
+}
+const latinRaw = evaluateLatin(cipher, () => true);
+const latinHistorical = evaluateLatin(primeShifted,
+  (start, len) => start + len <= 729);
+assert.deepEqual(latinRaw, {total: 559, affine: 0, projective: 12});
+assert.equal(latinHistorical.total, 38);
+
 // Independent non-affine PGL(2,29) native plants with a genuine c != 0
 // fractional linear transform, excluding only its one actual pole x=27.
 const projectivePlants = lexicon.filter(row => row.gp.length >= 7 &&
@@ -269,6 +314,9 @@ console.log(JSON.stringify({
   plantedPositive: plants.length,
   projectiveRaw,
   projectiveHistoricalPrimeDifferenceFirstChapter: projectiveHistorical,
-  plantedNonAffineProjectivePositive: projectivePlants.length
+  plantedNonAffineProjectivePositive: projectivePlants.length,
+  nativeLatinControlWords: latin.length,
+  latinRaw,
+  latinHistorical
 }, null, 2));
 console.log('PASS: source-fixed word-local affine/projective differential-English register gates');
