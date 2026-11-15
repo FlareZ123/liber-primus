@@ -1,0 +1,14 @@
+name: LP2 moth 2013 five-share original gate
+on:
+  workflow_dispatch:
+jobs:
+  source-moth-shares:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p53/p55 finite-field secret and native GP plant
+        run: node sims/lp2_moth125_ssss128_original_sft.cjs
