@@ -162,6 +162,128 @@ for (const period of [13, 331, 1000]) {
   assert.notDeepEqual(planted, reference);
 }
 
+
+/**
+ * Stateful sibling: an arbitrary *periodic permutation of the plaintext
+ * step*, accumulated into the previous ciphertext rune:
+ *
+ * C(c,i) = C(c,i-1) + pi(c,i mod m)(P(c,i)) (mod29)
+ *
+ * Original difference D(c,i) = C(c,i)-C(c,i-1) (mod29), for i>=1,
+ * is thus a periodic secret alphabet substitution of P(c,i).
+ * The first rune is excluded per chapter. The pi key may change at each
+ * illustrated chapter boundary; no true key is specified or fitted.
+ * @param {number[]} seq @returns {number[]}
+ */
+function sourceDifferences(seq) {
+  const result = Array(seq.length).fill(0);
+  let offset = 0;
+  for (const length of lengths) {
+    for (let i = 1; i < length; i++) {
+      result[offset + i] =
+        (seq[offset + i] - seq[offset + i - 1] + 29) % 29;
+    }
+    offset += length;
+  }
+  return result;
+}
+/**
+ * Two positions i and i+m must both have real within-chapter
+ * ciphertext predecessors. i begins at 1 in every chapter.
+ * @param {number[]} seq @param {number} m
+ */
+function stepLag(seq, m) {
+  let hits = 0;
+  let n = 0;
+  let offset = 0;
+  for (const length of lengths) {
+    for (let i = 1; i + m < length; i++) {
+      if (seq[offset + i] === seq[offset + i + m]) hits++;
+      n++;
+    }
+    offset += length;
+  }
+  return { n, hits, rate: hits / n };
+}
+const differenceOriginal = sourceDifferences(original);
+const unresolvedStepPeriods = [];
+const stepSamples = [];
+for (let m = 1; m <= 1000; m++) {
+  const observed = stepLag(differenceOriginal, m);
+  const controlsAtPeriod = controls.map(w => stepLag(w.values, m));
+  assert.ok(controlsAtPeriod.every(x => x.n === observed.n));
+  const minimum = Math.min(...controlsAtPeriod.map(x => x.rate));
+  if (observed.rate >= minimum) unresolvedStepPeriods.push(m);
+  if (selected.has(m)) stepSamples.push({
+    period: m,
+    comparisons: observed.n,
+    sourceHits: observed.hits,
+    sourceRate: Number(observed.rate.toFixed(9)),
+    minimumNativeGP: Number(minimum.toFixed(9))
+  });
+}
+// Every period >=2 is excluded by its exact difference-at-lag invariant,
+// while m=1 needs a different *still key-independent* sufficient statistic.
+assert.deepEqual(unresolvedStepPeriods, [1]);
+assert.equal(stepSamples.find(x => x.period === 1).sourceHits, 436);
+/**
+ * A fixed arbitrary 29-rune permutation cannot change a frequency
+ * histogram's sorted entries or the coincidence rate within a chapter.
+ * The secret may differ between the nine chapters.
+ * @param {number[]} seq
+ * @returns {{matches:number,pairs:number,rate:number}}
+ */
+function withinChapterHistogram(seq) {
+  let matches = 0;
+  let pairs = 0;
+  let offset = 0;
+  for (const length of lengths) {
+    const counts = Array(29).fill(0);
+    for (let i = 1; i < length; i++) counts[seq[offset + i]]++;
+    const n = length - 1;
+    pairs += n * (n - 1) / 2;
+    matches += counts.reduce((sum, count) =>
+      sum + count * (count - 1) / 2, 0);
+    offset += length;
+  }
+  return { matches, pairs, rate: matches / pairs };
+}
+const originalStepHistogram = withinChapterHistogram(differenceOriginal);
+const referenceStepHistograms = controls.map(w => withinChapterHistogram(w.values));
+const minimumStepHistogram = Math.min(...referenceStepHistograms.map(x => x.rate));
+assert.equal(originalStepHistogram.matches, 415744);
+assert.equal(originalStepHistogram.pairs, 11737862);
+assert.ok(Math.abs(originalStepHistogram.rate - 0.035419056724299534) < 1e-12);
+assert.ok(Math.abs(minimumStepHistogram - 0.059148846697976175) < 1e-12);
+assert.ok(originalStepHistogram.rate < minimumStepHistogram);
+
+/**
+ * Check a fully reversible planted ciphertext-feedback chain using
+ * independently phase-indexed chapter keys at lengths 1, 13, 331, 1000.
+ * @param {number[]} plain @param {number} m @returns {number[]}
+ */
+function encryptFeedbackPlant(plain, m) {
+  const output = [];
+  let offset = 0;
+  for (let ch = 0; ch < lengths.length; ch++) {
+    let predecessor = 0;
+    for (let i = 0; i < lengths[ch]; i++) {
+      const shift = (7 * ch + 13 + 19 * (i % m)) % 29;
+      predecessor = (predecessor + plain[offset + i] + shift) % 29;
+      output.push(predecessor);
+    }
+    offset += lengths[ch];
+  }
+  return output;
+}
+for (const m of [1, 13, 331, 1000]) {
+  const plain = controls[0].values;
+  const cipher = encryptFeedbackPlant(plain, m);
+  assert.equal(stepLag(sourceDifferences(cipher), m).hits,
+    stepLag(plain, m).hits);
+  assert.notDeepEqual(cipher, plain);
+}
+
 console.log(JSON.stringify({
   originalRunes: original.length,
   nineChapterLengths: lengths,
@@ -175,5 +297,16 @@ console.log(JSON.stringify({
   periodSamples: examples,
   authenticCleartextPositive: { page: 57, recoveredRunes: 95 },
   chapterSpecificSecretPlantPeriods: [13, 331, 1000],
-  inference: 'No simple periodic fixed-phase GP29 bijection of period 1..1000 can reproduce any of these nine matched English controls under the exact original nine-chapter geometry; no unknown plaintext has been recovered.'
+  ciphertextFeedback: {
+    equalLagRejectedPeriods: 999,
+    remainingLagOnlyPeriod: unresolvedStepPeriods,
+    periodSamples: stepSamples,
+    periodOneHistogram: {
+      source: originalStepHistogram,
+      smallestNativeGP: minimumStepHistogram
+    },
+    fullSecretFeedbackPlantPeriods: [1, 13, 331, 1000],
+    fullyExcludedPeriods: 1000
+  },
+  inference: 'Neither stationary phase-substitution nor ciphertext-feedback phase-substitution of period 1..1000 matches any of nine native GP English controls under the original chapter geometry; no unknown plaintext has been recovered.'
 }, null, 2));
