@@ -57,6 +57,25 @@ Adding the *mapped destination* words along the two diagonals is an extra operat
 
 The original JPGs `resources/liber-primus/32.jpg`, `49.jpg`, and `53.jpg` add a visual check. Page32 has two 13-dot clusters flanking its red heading; p49 has another 13-dot cluster; p53 has a 10-dot cluster. The p32-left, p32-right, and p49 clusters share the same normalized three-column alternating pattern over nine rows: **center, left+right, center, left+right, center, left+right, center, left+right, center** (5 center dots + 4 pairs = 13). The p53 cluster uses the same motif over seven rows (4 center dots + 3 pairs = 10). These counts match the lengths of the 13-rune p32 window and the 10-rune Good/Luck mapped sequence, respectively; both sequences have GP-prime sum413. This may connect the fold square to the table's flanking pages, but the destination-word addition is not source-authenticated. Treat the p49/p53 pointers and marker correspondence as a navigation hypothesis only, not as a key or decryption. The exact word-address predictions are reproduced by `sims/lp2_2016_fold_square.cjs`.
 
+### Marker-derived start 85 and two routes through p50
+
+The alternating three-column markers admit a binary reading if a **single centre dot is 1** and a **left+right pair is 0**. The p32/p49 nine-row pattern is `101010101` = **341**; the p53 seven-row pattern is `1010101` = **85**. These are congruent modulo the 256-cell p50 table: **341 mod 256 = 85**. The opposite polarity gives 170 and42, which do not agree modulo256. This makes cell **85** a constrained candidate start, not a fitted table offset.
+
+Two source-selected step sequences have the same total displacement:
+
+- The 13 GP-prime weights of the p32 window: **107, 11, 59, 5, 2, 2, 7, 5, 23, 7, 71, 67, 47** (sum **413**).
+- The 10 GP-prime weights of the mapped **Good luck** destination words p4:w2 LGFNIACX and p44:w1 GTHY: **73, 17, 2, 29, 107, 13, 47, 17, 5, 103** (sum **413**).
+
+Walking these as positive steps through the row-major 256-cell p50 table from cell85 gives:
+
+- p32 route positions: **192, 203, 6, 11, 13, 15, 22, 27, 50, 57, 128, 195, 242**.
+- Good/Luck route positions: **158, 175, 177, 206, 57, 70, 117, 134, 139, 242**.
+
+The routes share cells **57** and **242**. Their table values are **118** and **42**, whose difference is **76**, exactly the rune count of p55. The Good/Luck route also reads table values **171, 72** consecutively; under the same 58-page word-address rule these point to **p55:w2 SB** and **p14:w1 FOLD**, in that order.
+
+A frozen null over all 256 possible starts is discriminating: the SB→FOLD consecutive pointer occurs at starts **44 and85**; the shared-checkpoint value difference76 occurs at **85 and223**; their conjunction occurs at **85 only**. Thus the marker-derived start is the unique start satisfying both checks. This is a strong candidate navigation mechanism connecting the 2016 message, the p32 window, p49/p53 markers, p50 table, and p14/p55 fold. It is **not yet plaintext**. The binary interpretation and prime-weight step rule remain hypotheses, even though their conjunction is sharply selected; no table readout or final decipherment has been established. Reproduction: `sims/lp2_2016_p32_p50_two_route_navigation_gate.cjs`.
+
+
 
 ## Solved-tail connection
 
@@ -103,7 +122,7 @@ The first four assumptions jointly make the FOLD destination a concrete predicti
 
 ## Next decisive experiment
 
-The only new candidate from the destination-diagonal sums is the paired pointer to p49:w4 and p53:w4. Test whether the original contexts of those words, together with the p32/p49/p53 alternating dot-marker geometry, prescribe a unique traversal or readout of the p50–52 table. Freeze the row/column orientation and starting cell from source evidence before examining table values. If no source-defined mapping predicts a unique plaintext or key, retire the destination-diagonal branch; do not tune axes, start offsets, rotations, or permutations.
+The navigation hypothesis now fixes a single candidate start (85), two step sequences, and their shared table checkpoints. The next task is to determine whether the original p49/p53 contexts, red-marker geometry, or p50 table notation prescribes how to read the visited values as plaintext or key material. Do not tune the start, direction, rotations, or permutations. The simple repeating-additive consumer has been tested and does not produce plaintext; if no source-fixed table readout survives an independent language test, retain this as navigation only and do not promote it to a decryption.
 
 ## Reproduction
 
