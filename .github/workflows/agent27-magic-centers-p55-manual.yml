@@ -17,3 +17,6 @@ jobs:
 
       - name: Source-original 2014 Jordan J3 p54 contradiction and native controls
         run: node sims/lp2_2014_p54_jordan3_prime_source_sft.cjs
+
+      - name: Source-original GP28 six-window rank inverse and native recovered-key controls
+        run: node sims/lp2_gp28_window6_rank_delta_inverse_sft.cjs
