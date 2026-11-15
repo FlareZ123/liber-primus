@@ -310,6 +310,32 @@ jobs:
               print("PERSISTED_ORIGINAL=" + path + " commit=" + result["commit"]["sha"] + " sha256=" + hashlib.sha256(data).hexdigest())
           PY
 
+
+      - name: Hash and preserve recovered Bach source inputs
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bach-source
+          {
+            echo "retrieved_at_utc=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            for f in bach-source/pastebin-*.txt bach-source/BWV1039_G.abc bach-source/BWV1039_G.mid bach-source/8notes-forum.html bach-dropbox-download c.mp3; do
+              [ -f "$f" ] && sha256sum "$f"
+            done
+          } | tee bach-source/source-sha256-manifest.txt
+
+      - name: Archive retrieved Pastebin, score and audio inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bach-source-retrieval-2026-11-15
+          path: |
+            bach-source/
+            bach-dropbox-download
+            c.mp3
+          if-no-files-found: warn
+          retention-days: 90
+
       - name: Preserve original Wikia score retrieval results
         if: always()
         uses: actions/upload-artifact@v4
