@@ -38,6 +38,7 @@ const englishGP = (w) => w.toUpperCase().replace(/ING|TH|NG|EO|OE|AE|EA|IA/g, '*
 
 /** @param {string} armor @returns {string} */
 function clearSigned(armor) {
+  armor = armor.replace(/\r\n/g, '\n');
   const from = armor.indexOf('-----BEGIN PGP SIGNED MESSAGE-----');
   const header = armor.indexOf('\n\n', from);
   const to = armor.indexOf('-----BEGIN PGP SIGNATURE-----', header);
