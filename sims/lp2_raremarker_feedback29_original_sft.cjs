@@ -121,6 +121,47 @@ assert.equal(summary.find(s => s.index === 28).uncovered, 15);
 assert.equal(summary.find(s => s.index === 21).uncovered, 17);
 
 /**
+ * Independently pinned Vulgate Latin GP29 whole-word corpus. Its GP indices
+ * are 0-9A-S in base29 and intentionally retain original Latin word breaks.
+ * This tests whether a Latin (rather than English) plaintext register saves
+ * the original source-equality masks. No English calibration is substituted.
+ */
+const latinReferenceFile = "resources/control/latin-vulgate-gp-wholewords.txt";
+const latinWords = read(latinReferenceFile).split(/\r?\n/)
+  .filter(line => line.length > 0 && !line.trimStart().startsWith("#"))
+  .map(line => Array.from(line, ch => parseInt(ch, 29)))
+  .filter(word => word.length > 0 && word.length <= 14);
+assert.equal(latinWords.length, 39785);
+const latinBuckets = Array.from({length:15}, () => []);
+for (const word of latinWords) {
+  assert(word.every(x => Number.isInteger(x) && x >= 0 && x < 29));
+  latinBuckets[word.length].push(word);
+}
+const latinSummary = [];
+for (let marker = 0; marker < 29; marker++) {
+  const masks = latinBuckets.map(group =>
+    new Set(group.map(w => mask(w, marker))));
+  let uncovered = 0, expected = 0;
+  for (const p of pattern) {
+    const group = latinBuckets[p.length];
+    if (![...masks[p.length]].some(m => (m & p.known) === p.need))
+      uncovered++;
+    let n = 0;
+    for (const word of group) {
+      for (let i = 0; i < word.length; i++)
+        if ((p.known & (1 << i)) && word[i] === marker) n++;
+    }
+    expected += n / group.length;
+  }
+  latinSummary.push({index:marker,marker:gp.translit[marker],uncovered,
+    expected:+expected.toFixed(2)});
+}
+latinSummary.sort((a,b) => a.uncovered-b.uncovered || a.index-b.index);
+assert.deepEqual(latinSummary.filter(s=>s.uncovered===0).map(s=>s.marker).sort(),
+  ["M","O","S","T"]);
+assert.equal(latinSummary.find(s=>s.marker==="AE").uncovered,20);
+assert.equal(latinSummary.find(s=>s.marker==="EA").uncovered,36);
+/**
  * Complete 29-to-29 bijection, independently reversible at every position.
  * Marker transmits 0 mod-29; 28 remaining GP runes transmit 1..28, with
  * a known arbitrary 28-phase key. Output depends on previous cipher rune.
@@ -173,9 +214,11 @@ const result = {
     wordsWithEqualities:repeatedWords,
     twoEventWord:pattern.filter(p => bitCount(p.need) > 1)},
   controls:{files:controlFiles,sourceTokens,rankedMarkerSignatures:summary},
+  latinControl:{file:latinReferenceFile,sourceTokens:latinWords.length,
+    rankedMarkerSignatures:latinSummary},
   reversiblePositive:{sourceNativeRunesRecovered:plantDecode.length,
     exactCipherReconstruction:plantCipher.length===plant.length,
     predictedEqualities:plantedMarkerPositions,observedEqualities:plantedDoublets},
-  conclusion:"Within this exact source-native English vocabulary and unchanged printed word boundaries, 26 markers lack word-mask coverage; the only 3 fully covered marker values E/N/S predict far more than 86 repeated positions under matched-length English sampling. No first-party key schedule or authentic unknown-page plaintext has been found."
+  conclusion:"Under unchanged original word boundaries, both English and Latin GP-native reference registers exclude all low-frequency fixed-marker candidates by exact word-mask failures; the English complete markers E/N/S and the Latin complete markers M/O/S/T have expected marker counts hundreds to thousands above original 86. No first-party key schedule or authentic unknown-page plaintext has been found."
 };
 console.log(JSON.stringify(result, null, 2));
