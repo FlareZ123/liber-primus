@@ -128,6 +128,16 @@ As original-input negative controls, the same digit-zero/shift-zero association 
 
 For each of the four model variants, the reproducer applies independently shuffled 29-symbol permutations per selector to a native-English control (a contiguous Shakespeare window for the per-rune model; a word-length-matched Shakespeare sample for the per-word model), using fixed seeds. Selector-group sizes, equal-pair counts, conditional coincidence and all twelve U(k) values are preserved exactly. The script asserts the plants and original/control bounds.
 
+
+### Exact zero-only escape obstruction and word-local lag-five comparator
+
+A proposed **lossless** decoder in which a table token whose first printed character is `0` exclusively permits an adjacent-ciphertext-repeat exception has a key-independent necessity: all genuine repeat events must coincide with that table class. The original 56 unknown pages contain **86** identical-adjacent pairs. The 256 printed table tokens have **60** leading-zero entries. Even scanning **all 256 global cyclic offsets** under the one original rune clock, the largest count covered by the zero class is **33** (at the source-natural offset zero); **at least 53** observed adjacent equalities lie outside *every* such zero-only exception rule. Conversely, the fixed natural alignment gives 3,025 leading-zero eligible starts but only 33 repeats, so zero cannot be a deterministic “emit the previous rune” command either.
+
+The independently printed words contain **104** fifth-back rune equalities among **2,105** strictly within-word positions. Under the **same frozen unshifted table clock**, leading-zero cells contain **27/482**, with **77/1,623** in the other cells, for rate ratio **1.1807134774**. The direct adjacent-repeat effect under the same clock is **2.0327958834×**. The narrow zero-class association therefore does not explain the two observed repeat phenomena through an exclusive, common deterministic escape state. The lag-five contrast is descriptive and does not establish a second independent null p-value.
+
+The table itself prints numeric tokens with no original instruction interpreting a leading zero as a null, no rule governing how a 256-cell clock advances over pages and words, and no invertible mapping from any suppressed step to a lost plaintext rune. A probability-modulated or nonlocal generator remains possible, but cannot be asserted without that missing original decoder. This strictly bounded gate uses the same [canonical-source reproducer](../sims/lp2_p50_digit0_chapter_repeat_sft.cjs), extended to assert all 2,896 original printed words, the exact 104/2,105 word-local lag-five count, the 27/482 mask count, and the phase-256 exclusion. It supplies no authentic LP2 plaintext.
+
+
 ## Decision and limits
 
 Reject these four specific stationary tableau models:

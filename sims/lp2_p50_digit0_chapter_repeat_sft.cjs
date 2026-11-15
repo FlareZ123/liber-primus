@@ -264,6 +264,50 @@ assert.deepEqual(lagControls.map((x) => x.positiveChapters),
   [6, 5, 6, 4, 2, 4, 6, 7, 4, 5, 4]);
 assert.ok(lagControls.every((x) => x.ratio < 1.2));
 
+
+/**
+ * Director #1135: strict zero-only escape capacity and word-local lag five.
+ * All original word seams remain; "/" and "%" are line/page carries.
+ */
+const fs = require('node:fs');
+const transcription = fs.readFileSync(
+  require('node:path').join(__dirname, '../resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const runeIndex = new Map(corpus.runes.map((r,i)=>[r,i]));
+const parsedWords=[];
+let current=[];
+for(const ch of transcription){
+  if(runeIndex.has(ch))current.push(runeIndex.get(ch));
+  else if("-.'".includes(ch)&&current.length){parsedWords.push(current);current=[];}
+}
+if(current.length)parsedWords.push(current);
+const words=parsedWords.slice(0,2896);
+assert.equal(words.length,2896);
+assert.deepEqual(words.flat(),PAGES.flatMap(x=>x.indices));
+let wordPos=0,events=0,eligible=0,zeroEvents=0,zeroEligible=0;
+for(const w of words){
+  for(let j=5;j<w.length;j++){
+    const z=TOKENS[(wordPos+j-5)%256][0]==='0';
+    const hit=w[j]===w[j-5];
+    eligible++;events+=Number(hit);
+    zeroEligible+=Number(z);zeroEvents+=Number(z&&hit);
+  }
+  wordPos+=w.length;
+}
+assert.equal(wordPos,12956);
+assert.deepEqual([events,eligible,zeroEvents,zeroEligible],[104,2105,27,482]);
+const maxZeroRepeats=Math.max(...rivalClocks
+  .filter(x=>x.digit===0).map(x=>x.selectedRepeats));
+assert.equal(maxZeroRepeats,33);
+const wordLocalZeroLag5={
+  lag5Events:events,lag5Eligible:eligible,
+  leadingZeroLag5Events:zeroEvents,leadingZeroLag5Eligible:zeroEligible,
+  leadingZeroLag5RateRatio:(zeroEvents/zeroEligible)/((events-zeroEvents)/(eligible-zeroEligible)),
+  maxAdjacentRepeatsSelectedByAnyGlobalLeadingZeroPhase:maxZeroRepeats,
+  minimumAdjacentRepeatsOutsideLeadingZeroGate:original.repeats-maxZeroRepeats
+};
+assert.equal(wordLocalZeroLag5.minimumAdjacentRepeatsOutsideLeadingZeroGate,53);
+assert.ok(Math.abs(wordLocalZeroLag5.leadingZeroLag5RateRatio-1.1807134773939754)<1e-12);
+
 console.log(JSON.stringify({
   original: {
     opportunities: original.opportunities,
@@ -287,5 +331,6 @@ console.log(JSON.stringify({
     sourceLeadingZeroShiftZeroIsUniqueNineChapterMaxExcess: true
   },
   lagControls,
-  fullStepContingency
+  fullStepContingency,
+  wordLocalZeroLag5
 }, null, 2));
