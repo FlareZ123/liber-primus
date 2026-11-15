@@ -68,7 +68,7 @@ The source-pinned [Latin Vulgate GP29 whole-word reference](../resources/control
 | NG | **56** | approximately **11** |
 | Other markers | At least one original word unmatched | Varies |
 
-This is a second linguistic register rather than retuning the English controls. In both pinned languages, the only fixed markers meeting **all** original word-position constraints are too frequent in ordinary original-length-matched source prose to explain the **86** ciphertext equalities. Realistically rare markers fail exact source word masks. The result strengthens the **source-conditional exclusion for ordinary English and Latin**, while an atypical prose vocabulary, changed segmentation or different cipher family remains possible. Full 29-marker Latin rows are emitted by the executable test.
+This is a second linguistic register rather than retuning the English controls. In both pinned languages, the only fixed markers meeting **all** original word-position constraints are too frequent in ordinary original-length-matched source prose to explain the **86** ciphertext equalities. Realistically rare markers fail exact source word masks. The result strengthens the **source-conditional exclusion for ordinary English and Latin**, while an atypical prose vocabulary, changed segmentation or different cipher family remains possible. Full 29-marker Latin rows are emitted by the executable test, [successful Windows Node22 run 43666355498](https://github.com/FlareZ123/liber-primus/actions/runs/43666355498).
 
 ## Positive control, conclusions and next decision
 
