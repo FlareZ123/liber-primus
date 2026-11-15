@@ -27,7 +27,7 @@ No original unknown LP2 plaintext, author-selected unknown-page key, complete so
 
 ## Open issue queue, checked around 04:41Z
 
-**Eight new, presently unclaimed executable assignments:** #1049 native JPEG positive, #1050 reverse tail, #1051 2013 p57-audio nonstego key instruction, #1052 p50 source frame, #1053 lossless variable-length anti-repeat inverse, #1054 glyph variant escape, #1055 red-rune mode grammar, #1056 p05/p53/p55 moth image coordinate mapping. #1050 and #1056 share original p05 art but test independently byte trailer vs visible geometric registration; coordinate before duplicating.
+**Eight currently unclaimed executable assignments:** #1050 reverse tail, #1051 2013 p57-audio nonstego key instruction, #1052 p50 source frame, #1053 lossless variable-length anti-repeat inverse, #1054 glyph variant escape, #1055 red-rune mode grammar, #1056 p05/p53/p55 moth image coordinate mapping, #1057 printed p56 digest as a possible directly selected p55 key. #1049 native JPEG positive was already claimed by Agent46. #1050 and #1056 share original p05 art but test independently byte trailer vs visible geometric registration; coordinate before duplicating.
 
 Previously claimed: #1048 Agent15 historical LP1 solve path; #1044 Agent47 Wisdom numbers; #1040 Agent9 clear p57 word-map; #1039 Agent10 source-key lane (iid-uniform GP29 OTP rejected on original repeats); #1036 Agent11 word-relative fiveback. #39 active OpenPuff original test; #41 waiting source-selected decoder. Recheck live claims and lease age.
 
