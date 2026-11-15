@@ -39,8 +39,27 @@ On the first `DIVINITY` Medium attempt, the Windows GUI froze during the **publi
 
 For each source probe, the genuine original OpenPuff GUI reported `Task stopped: corrupted stream` with its own explanation: wrong password, wrong or corrupted carrier/order, or wrong bit level. This dialog is **nondiscriminating** across these failure causes. The exact test coverage is therefore eight combinations, not eight universal disproofs of JPEG steganography.
 
+## Distinct original OutGuess 0.4 consumer of the same source-center password
+
+**Additional experiment (15 November 2026, Agent 35):** OutGuess, used in earlier Cicada rounds, is an independent historical decoder from native OpenPuff v4.00. The repository's existing source-pinned [manual keyed OutGuess workflow](../.github/workflows/lp2-outguess.yml) was dispatched with the **single fixed exact password** `0s0D202n` to the three source JPEGs actually printing the grid (`66.jpg`, `67.jpg`, `68.jpg`) and the separate plausible target p55 (`72.jpg`). No key variants or alternative image indexing were fitted.
+
+Each job successfully embedded/recovered a 47-byte synthetic message with an unrelated key, **and** successfully extracted existing original Cicada OutGuess controls (`00.jpg`, `08.jpg`) with their historically authentic default password. Every custom-key job also ran an independently payload-free libjpeg synthetic image. This is a separate, original-version-calibrated receiver test.
+
+| Original JPEG | Source role | Native pseudo-header seed, length | Observed output | Exact CI run |
+| --- | --- | --- | --- | --- |
+| `66.jpg` | Original table start, p49 | 25438, 23653 | 23,653 random-like bytes, no recognized format/text | [43700378316](https://github.com/FlareZ123/liber-primus/actions/runs/43700378316) |
+| `67.jpg` | Original table center, p50 | 25438, 23653 | 23,653 random-like bytes, no recognized format/text | [43700324186](https://github.com/FlareZ123/liber-primus/actions/runs/43700324186) |
+| `68.jpg` | Original table end, p51 | 25438, 23653 | 23,653 random-like bytes, no recognized format/text | [43700365028](https://github.com/FlareZ123/liber-primus/actions/runs/43700365028) |
+| `72.jpg` | Original last encrypted page, p55 | 25438, 23653 | 23,653 random-like bytes, no recognized format/text | [43700368589](https://github.com/FlareZ123/liber-primus/actions/runs/43700368589) |
+
+The first 32 and last 32 extracted bytes are **exactly identical across all four original JPEGs**, while the middle and their complete SHA-256 hashes differ. The first 32 bytes are `5e63655c5ed5427f505b2c66d0d9f2a5da5d625c9390ef500218d807545e113a`. Their printable byte fractions are 0.3806–0.3871, and byte entropies about 7.992 bits/byte. An **explicitly payload-free synthetic JPEG** under this exact password likewise passes OutGuess's native seed/length check and produces a bogus 28,065-byte stream (pseudo-seed 27408). This last control is decisive for interpretation: **an OutGuess `status:0` plus consistent 16-bit pseudo-length is not authenticated hidden data**.
+
+The known exact [universal-header mechanism](lp2-outguess-universal-header-artifact.md) proves that **every original LP2 image** has its initial eligible DCT bits fixed to `ffffffff` across all OutGuess key-dependent header reads. Thus the four equal extracted pseudo-headers follow mechanically from the same A-key and original JPEG source; the apparent length/seed matches cannot validate a payload. Without an independently recognizable, cross-validated message, all four 23,653-byte outputs remain **false-positive pseudo-extractions**, not hidden LP2 plaintext. The synthetic controls and full raw candidate bytes are preserved as GitHub Actions artifacts.
+
+**OutGuess decision:** the original fixed center-eight password produces no authenticated source message on its four most direct image receivers, despite genuine LP1 controls. The universal-header observation excludes using this scanner's seed, length and common payload prefix as evidence. A different original-image receiver or unrelated nonstandard steganographic algorithm remains untested; selecting one now would require a new authored instruction.
+
 ## Decision and next useful route
 
-**Retire the exact eight source-key and carrier/depth combinations above.** The raw center-eight candidate is concrete source-derived password material with an authentic original 2×2 location, and it was tested as such. The absence of output supplies **no evidence** for a generalized p50 key or hidden payload. Do not continue expanding arbitrary OpenPuff permutations/password case variations without another original instruction.
+**Retire the exact eight OpenPuff source-key/carrier/depth combinations and the four original OutGuess center-eight image probes above.** The raw center-eight candidate is concrete source-derived password material with an authentic original 2×2 location, and it was tested as such. The absence of output supplies **no evidence** for a generalized p50 key or hidden payload. Do not continue expanding arbitrary OpenPuff permutations/password case variations without another original instruction.
 
 A future source-authored indication of a different carrier or an independent consumer of the center string would reopen this key. The productive unresolved objective remains an authenticated unknown-page plaintext, original cipher inverse, or independently recoverable key. The present bounded negatives should remain in `im-results/`; they do not modify the authoritative solved-page inventory in `results/README.md`.
