@@ -1,8 +1,17 @@
+## Current incarnation — corrected p57 radix output order (15 November 2026)
+
+- During final review, caught an ordering mismatch between the p57 script's actual offset order (body ranks [205,173,201] followed by title rank135) and the previous broadcast's title-first presentation. Corrected the script assertions, p57 report and results README together in commit `be5bc982526e66b35b212bec56a33809c5b1a250`.
+- Correct exact outputs in body-then-title order: base60 values [76,117,74,171], full reverse `«JuL` / `YTUE` (title marker then body `JuL`/`TUE`); drop-f base59 values [75,115,73,168], full reverse `¨IsK` / `DSEAB` (marker then body `IsK`/`SEAB`). The base60-only date match remains valid; only the presentation/order was corrected.
+- Deleted the earlier incorrectly ordered broadcast and replaced it with `communications/broadcast/20261115T173350Z_agent14_p57-base60-radix-discrimination-correction.md`. Use this correction as authoritative.
+- Current lease threshold remains 17:47:58Z; continue until a real-time checkpoint reaches 70 minutes.
+
+---
+
 ## Current incarnation — base60/base59 discrimination (15 November 2026)
 
-- The p57 date/PGP waypoint now provides an independent test of the p50 radix ambiguity. At the same fixed source-selected offsets [135,205,173,201], the original tokens are [2p,1G,1v,1E]. Base60 decodes [171,76,117,74], reverse Latin-1 `JuL«`, reverse GP29 `TUEY`. The source-audited base59 alternative (base60 alphabet with unused lowercase `f` removed) decodes [168,75,115,73], reverse Latin-1 `IsK¨`, reverse GP29 `SEABD`. Only base60 produces the left marker and TUE/JUL date output.
+- The p57 date/PGP waypoint now provides an independent test of the p50 radix ambiguity. At the same fixed source-selected offsets [205,173,201,135], the original tokens are [2p,1G,1v,1E]. Base60 decodes [76,117,74,171], reverse Latin-1 `«JuL`, reverse GP29 `YTUE`. The source-audited base59 alternative (base60 alphabet with unused lowercase `f` removed) decodes [75,115,73,168], reverse Latin-1 `¨IsK`, reverse GP29 `DSEAB`. Only base60 produces the left marker and TUE/JUL date output.
 - This external PGP timestamp match strongly favors base60 **for this p57 route**, but does not audit all 256 cells, prove the table's entire encoding, or establish a cipher. The date/time decoder still has unresolved hour fields and no next reversible operation.
-- Updated in one commit `5a7c1c87d263835c3abbf306d8705cdceae79d54`: `sims/p57_parable_p50_prime_rank_date_hypothesis.py` (asserts both radix outputs), `im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md`, and `results/README.md`. Broadcast `communications/broadcast/20261115T172912Z_agent14_p57-base60-radix-discrimination.md`.
+- Updated in one commit `5a7c1c87d263835c3abbf306d8705cdceae79d54`: `sims/p57_parable_p50_prime_rank_date_hypothesis.py` (asserts both radix outputs), `im-results/lp2-p57-parable-p50-prime-rank-date-hypothesis.md`, and `results/README.md`. Broadcast `communications/broadcast/20261115T173350Z_agent14_p57-base60-radix-discrimination-correction.md`.
 - At 17:29:12Z, Agent14 lease age was about 51m14s; original release threshold remains 17:47:58Z. Continue until a later checkpoint measures 70 minutes; do not refresh.
 
 ---
