@@ -154,6 +154,12 @@ const nativeIndices = [3,8,9,10,11,14];
 const lp1Parts = nativeIndices.flatMap(i => lp1[i].split('&').map(s => [...s].filter(c=>runeSet.has(c))).filter(x=>x.length));
 const nativeClear = lp1Parts.reduce((a,part)=>{const c=withinPage(part);a.eligible+=c.eligible;a.equal+=c.equal;return a},{eligible:0,equal:0});
 assert.deepEqual(nativeClear,{eligible:991,equal:28});
+const encryptedIndices = [0,1,2,4,5,6,7,12,13]; // solved LP1 cipher pages, source-authenticated
+const encryptedParts = encryptedIndices.flatMap(i => lp1[i].split('&').map(s => [...s].filter(c=>runeSet.has(c))).filter(x=>x.length));
+const nativeEncrypted = encryptedParts.reduce((a,part)=>{
+  const c=withinPage(part);a.eligible+=c.eligible;a.equal+=c.equal;return a;
+},{eligible:0,equal:0});
+assert.deepEqual(nativeEncrypted,{eligible:1785,equal:44});
 
 // Positive controls on source-identical 29-rune page/line layout. Each
 // Bernoulli event is realized by repeating the actual prior rune or by
@@ -163,13 +169,13 @@ assert.deepEqual(nativeClear,{eligible:991,equal:28});
 let randState = 0x33011221;
 /** @returns {number} */
 function random() { randState ^= randState << 13; randState ^= randState >>> 17; randState ^= randState << 5; return (randState >>> 0) / 4294967296; }
-/** @param {'flat'|'continuous'|'restart'} truth @returns {Row[]} */
-function synthetic(truth) {
+/** @param {'flat'|'continuous'|'restart'} truth @param {number} strength @returns {Row[]} */
+function synthetic(truth,strength=2) {
   let prev = -1, lastPage = -1;
   return rows.map(r => {
     if (r.p !== lastPage) {prev = Math.floor(random() * 29);lastPage = r.p;}
     const phase = truth === 'restart' ? r.chapterPhase - 0.5 : truth === 'continuous' ? r.continuousPhase - 0.5 : 0;
-    const slope = truth === 'restart' ? -2 : truth === 'continuous' ? 2 : 0;
+    const slope = truth === 'restart' ? -strength : truth === 'continuous' ? strength : 0;
     const prob = sigmoid(-5.1 + 0.2*r.word - 0.4*r.wrap + 0.4*(r.linePos-0.5) + slope*phase);
     const y = Number(random() < prob);
     const nextRune = y ? prev : (prev + 1 + Math.floor(random() * 28)) % 29;
@@ -198,6 +204,19 @@ for (const truth of modes) {
     meanContinuousMinusFlat:totalContinuousGain/nPlants};
 }
 
+// At the weaker source-fitted chapter slope, test whether an unchanged
+// held-out split can reliably distinguish a real synthetic restart.
+let moderateWins = 0, moderateGain = 0;
+for (let k = 0; k < nPlants; k++) {
+  const plant = synthetic('restart', 0.8426);
+  const plTrain = plant.filter(r=>r.p<40), plHold = plant.filter(r=>r.p>=40);
+  const fitReset = fit(plTrain,'restart'), fitFlat = fit(plTrain,'flat');
+  const gain = score(plHold,'restart',fitReset).logScore-score(plHold,'flat',fitFlat).logScore;
+  moderateWins += Number(gain > 0);moderateGain += gain;
+}
+syntheticControls.restartTrainingScale = {plants:nPlants,trueSlope:-0.8426,
+  resetBeatsFlat:moderateWins,meanRestartMinusFlat:moderateGain/nPlants};
+
 console.log(JSON.stringify({
   source:{unknownRunes:12956,eligible:12901,doublets:86,originalPages:56,
     chapterEnds:ends,trainPages:'p0–39',holdPages:'p40–55',
@@ -205,7 +224,7 @@ console.log(JSON.stringify({
     prior:'ridge slopes 1.0, intercept 0.001',positiveSeed:'0x33011221'},
   scoreUnits:'natural-log probability per eligible adjacent pair, sum over entire split',
   estimate:estimated,holdoutRestartMinusFlat:gapReset,holdoutContinuousMinusFlat:gapDrift,
-  authenticControls:{lp1Clear:nativeClear,solvedP56Encrypted:p56,solvedP57Clear:p57},
+  authenticControls:{lp1Clear:nativeClear,lp1SolvedEncrypted:nativeEncrypted,solvedP56Encrypted:p56,solvedP57Clear:p57},
   syntheticControls,
   conclusion:gapReset<=0?'No prospective original advantage for source-visible chapter resets':'prospective chapter-reset advantage; requires original key and lossless inverse',
   limitation:'Rate-only model and 32-plant calibration, not an encryption inverse; any source-selected hidden state/key remains untested',
