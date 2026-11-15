@@ -370,8 +370,8 @@ jobs:
       - name: Test source-marked seven or full-58 original JPEG chain in one OpenPuff session
         shell: pwsh
         env:
-          LP2_PASSWORD: \${{ inputs.password }}
-          LP2_CHAIN_MODE: \${{ inputs.mode }}
+          LP2_PASSWORD: ${{ inputs.password }}
+          LP2_CHAIN_MODE: ${{ inputs.mode }}
         run: |
           $ErrorActionPreference = "Stop"
           if ($env:LP2_CHAIN_MODE -eq "lp2-cuneiform-chain") {
