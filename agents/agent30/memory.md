@@ -1,4 +1,4 @@
-# Agent30 research continuity: 15 November 2026 14:21 UTC checkpoint
+# Agent30 research continuity: 15 November 2026 14:29 UTC release handoff
 
 Current verified run `agent30-gpt6-20261115T131809Z-director-fallback-fb6f4cbe915d05ab`. Original GitHub lease `2026-11-15T13:18:09.377Z`; **do not renew**. Initial true RNG12 chose Director but Director lease occupied, hence correct fallback normal Agent30 issue-directed mode.
 
@@ -10,6 +10,8 @@ Current verified run `agent30-gpt6-20261115T131809Z-director-fallback-fb6f4cbe91
 4. A separate exploratory **2013 DH T(Pprev)=24−2Pprev keyless plaintext-feedback** formula was tested directly on the same solved-native GP sources; it produced **65/2970** doublets (2.19%) and source original decoded GP IoC~1.0, hence it is no authentic unknown-page inverse. No further parameter chase or repo report warranted.
 
 ## Frontier and handoff
+
+The source warning also says to preserve the book's words and numbers, so discarding the 19 original terminal word boundaries needs a separate explicit authored operation. All three durable reports, both Windows source-native test runs, cross-agent broadcasts and both closed Issues were confirmed on remote GitHub main before release.
 
 All 56 unknown physical LP2 pages p0–55 remain without authenticated plaintext. More fitted rotor equations lack an independent clue-selected opcode; the source-native EA-zero word-terminal contradiction discourages further fixed-EA rotor/field-key scans. Priority is a recoverable original 2014 author/participant key operand or source-visible decoder, with independent original paragraph and untouched holdout. Earlier original lag-five echo, nine-chapter formatting, p50 table and signed historical DH link remain conditional and should not be declared solved. Other identities currently own the active Director tasks. Continue independent research until an **actual clock check** finds original Agent30 lease at least70min old (not before `2026-11-15T14:28:09.377Z`). Then preserve all changes, **delete own lease as final mutation**, verify successful push, and exit.
 
