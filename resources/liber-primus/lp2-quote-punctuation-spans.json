@@ -23,7 +23,32 @@
         2151,
         10,
         9
-      ]
+      ],
+      "gp29_cipher_indices": [
+        4,
+        7,
+        9,
+        17
+      ],
+      "gp29_plain_indices": [
+        23,
+        3,
+        9,
+        16
+      ],
+      "authenticated_key_name": "FIRFUMFERENFE",
+      "source_cipher_prefix": "I-RWNB",
+      "gp29_5rune_keystream": [
+        0,
+        10,
+        4,
+        0,
+        1
+      ],
+      "original_rune_prefix_local_index": 145,
+      "transparent_plaintext_F_skips_before_prefix": 2,
+      "key_phase_index": 0,
+      "cipher_test": "Exact 5-rune GP29 differences spell FIRFU, the first five consecutive symbols of the authentic LP1 Koan's 13-rune key, so the punctuation mark does not advance the runic key clock."
     }
   },
   "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators. The four raised single apostrophe marks occur immediately before the recorded rune inside a complete printed word; they consume no rune and do not count as additional word separators.",
