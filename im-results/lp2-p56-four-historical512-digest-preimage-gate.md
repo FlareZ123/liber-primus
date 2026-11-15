@@ -33,6 +33,19 @@ The independent [Python source-original reproducer](../sims/lp2_p56_alternate512
 
 **Total: 260 full 512-bit original-object comparisons, zero matches.** The original calculation and controls completed successfully in the [manual-only GitHub Actions run 43473020706](https://github.com/FlareZ123/liber-primus/actions/runs/43473020706), job 132049568308, in approximately four minutes. An independently performed local OpenSSL Whirlpool check of the same 58 original JPEG ZIP members also obtained **0/58** full matches. The earlier initial CI run was cancelled when the fourth, pre-FIPS Keccak algorithm was added; only run 43473020706 is the complete four-algorithm evidence.
 
+## Supplementary exact SHA-512 check of the original 2014 Stage10 pages
+
+The 65-object, four-algorithm population above did not include the earlier Stage10 form and response pages. Because p56 explicitly directs the solver to a page matching a 512-bit digest, and these are unusually relevant contemporaneous pages containing the 3301/1033 magic-square instructions and onion-address field, I checked their **exact original 2014 Git-blob bytes** under standard NIST SHA-512.
+
+The source is the first participant-archive commit `3b15257c5a9efada85b8ccfdb876e2ec934d5b90` in [micheloosterhof/cicada-2014](https://github.com/micheloosterhof/cicada-2014/tree/3b15257c5a9efada85b8ccfdb876e2ec934d5b90/stage10):
+ 
+| Original 2014 object | Bytes | Verified Git blob SHA-1 | SHA-512 |
+|---|---:|---|---|
+| `stage10/index.html` | 1,943 | `9d7c35bc8fff24c8079668c9d070d98277502f7c` | `1c207650a175a0fb5b78e65674a902978e3f9e811f4fabfd7b74642d731049a078dfdf1aa154b14d46340818035ba03c9d5843cd809b6d92ebadc9278ce1f306` |
+| `stage10/squares` | 152 | `d71303af76016c8e88ed5dcc8a18b08e6276a437` | `e391f31b3060ea4ff9dbca844e99f45947b74e6d18f4c90482b219d5ca694bf0f454a7642cfcfe0e4f4f0a56ec3a2159c53faf6ddfa4d814285d9cddc11fe3a3` |
+
+Both Git blob hashes were independently reproduced from the exact byte strings before hashing. The embedded PGP signed block and its cleartext were also separately hashed as secondary text objects; neither matches the p56 target. The two full-page SHA-512 values above are not equal to the original target. This is a **two-page, SHA-512-only supplement**, not an expansion of the four-algorithm 65-object count; it does not claim the two pages were tested under Skein, pre-FIPS Keccak, Streebog or Whirlpool.
+
 ## Decision and limit
 
 These original 65 whole-file byte strings are **not the p56 preimage under any of the four frozen algorithms**. Because the source says “a page” and does not actually name the algorithm, this result cannot select or reject one 512-bit hash family in general. A missing historical web page could hash to the target under any algorithm tested here, including SHA-512 and these alternatives. Variations of the original source files, HTTP serialization, a URL string, fragments, salt, or unknown keyed constructions were outside this finite test.
