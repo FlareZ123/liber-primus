@@ -23,6 +23,20 @@ All seven direct-key original-page outputs remain uniform-like and contain no co
 
 **Decision:** This exact source-fixed **per-page row-repeating GP29 additive transfer** fails. No need to add a key-phase, page-order, polynomial, or F branch without a separate source instruction. The historical 7×7 square and seven cuneiform pages could conceivably interact through another, independently specified operation; this test does not exclude that. In particular, it does not adjudicate a distinct 7×7 route or numeric-table receiver.
 
+
+## Full 49-number key: two independently natural clocks
+
+The printed seven-by-seven square supplies **49 key numbers** in source row-major order. A distinct fixed consumer flattens all 49 values into a single periodic GP29 additive key and applies it to the same 1,680 authentic rune indices without fitting any key value. The two clock conventions have direct physical meaning: one continuous across all seven cuneiform pages (chapter clock), or one starting at the beginning of each original physical page (page clock). Only the two opposite original-compatible arithmetic signs are tested.
+
+| 49-number cycle | GP29 subtraction IoC | GP29 addition IoC |
+| --- | ---: | ---: |
+| Chapter-continuous from p33 | **0.03474928387078476** | **0.03436994809835787** |
+| Reset from each p33–39 page | **0.03443943390340055** | **0.034385546952551124** |
+
+For all four variants the exact forward encoder restores **1,680/1,680 original ciphertext runes**, and an independent 1,680-symbol native-GP planted text decodes exactly under the true test key. No original output is recognizable running prose; all four global IoC values stay close to the uniform GP29 benchmark. The chapter-continuous subtractive opening is `TXIETHOEBRBNGDMENYOEDYPNGLINGFMTYTEOAEOETXYTHICUEOYBOESID` in GP token transliteration.
+
+**Scope:** Together with the previous direct one-row-per-page test, this rejects **six explicitly frozen direct additive readings** of the historical square on seven original cuneiform pages. It does not reject a separately source-selected hidden channel, nonadditive consumer or changed plaintext register; none is independently specified by the square's mere existence.
+
 ## Reproduction
 
 Read-only Node22 CommonJS [SFT](../sims/lp2_seven_cuneiform_magic7_rowkey_gate_sft.cjs) pins the historical 49 integers, their seven 1033 row totals, original seven physical page lengths, source IoC, both complete inverses, original re-encryptions, and 1,680-rune source-native positive plants. It reads the original shared corpus rather than storing a duplicated transcription.
