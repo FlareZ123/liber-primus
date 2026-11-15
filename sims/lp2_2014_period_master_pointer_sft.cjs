@@ -194,7 +194,46 @@ async function runNetwork() {
     totalHits:allHits.length,
     hits:allHits
   };
-  fs.writeFileSync('lp2-2014-period-master-pointer-report.json',JSON.stringify(report,null,2)+'\n');
+  fs.mkdirSync('im-results',{recursive:true});
+  fs.writeFileSync('im-results/lp2-2014-period-master-pointer-report.json',JSON.stringify(report,null,2)+'\n');
+  const md=[
+    '# 2014 period-original LP2 PDF/PostScript master-pointer search',
+    '',
+    '**Scope:** the three SHA-pinned 2014 IRC transcripts plus the preserved Stage11 HTML and signed message. This is a bounded text/source-pointer search, not a general archive crawl. No third-party attachment was executed and no replacement document was rendered.',
+    '',
+    '## Verified IRC inputs',
+    '',
+    ...reports.map(x=>'- '+x.source+': '+x.bytes+' bytes; Git blob SHA-1 '+x.gitBlobSha1+'; '+x.dated2014Lines+' dated 2014 lines; '+x.explicitFormatLines+' explicit document-format lines; '+x.specificTermLines+' specific document/toolchain lines; '+x.contextualTermLines+' contextual layout/rendering lines; '+x.hitCount+' retained hits.'),
+    '',
+    '## Stage11 distribution source',
+    '',
+    '- Preserved index: '+stage11.index.url+'; '+stage11.index.bytes+' bytes; Git blob SHA-1 '+stage11.index.gitBlobSha1+'; title '+stage11.index.title+'; container '+stage11.index.containerId+'.',
+    '- The index contains exactly '+stage11.index.imageCount+' ordered image references ('+stage11.index.firstImage+' through '+stage11.index.lastImage+'), '+stage11.index.hrefCount+' href attributes, and '+stage11.index.nonJpegAssetReferences.length+' non-JPEG asset references.',
+    '- Signed message: '+stage11.signedMessage.bytes+' bytes; Git blob SHA-1 '+stage11.signedMessage.gitBlobSha1+'; onion reference(s): '+stage11.signedMessage.onionReferences.join(', ')+'. PDF/PostScript/toolchain terms present: '+stage11.signedMessage.hasPdfOrPostscript+'.',
+    '',
+    '## Candidate transcript lines',
+    ''
+  ];
+  if(!allHits.length) md.push('No lines matched the bounded document-format/toolchain selectors.');
+  for(const hit of allHits.slice(0,15)){
+    md.push('### '+hit.source+' L'+hit.line+' — '+hit.date+' ('+(hit.nick||'system')+')');
+    md.push('Formats: '+(hit.explicitFileFormats.join(', ')||'none')+'; terms: '+(hit.documentTerms.join(', ')||'none')+'; LP2 context: '+hit.puzzleContext+'.');
+    md.push('~~~text');
+    for(const c of hit.context.slice(0,7)) md.push('L'+c.line+' '+(c.nick?'<'+c.nick+'> ':'')+c.text.slice(0,360));
+    md.push('~~~','');
+  }
+  if(allHits.length>15) md.push('The full '+allHits.length+'-hit inventory is preserved in the accompanying JSON artifact.');
+  md.push(
+    '## Related prior work (complementary scope)',
+    '',
+    '- The repository research note im-results/lp2-2014-irc-nonpaste-file-source-gate.md records the six historically selected non-Git/non-paste downloadable attachments (two UnRuneIt JARs, one ODS sheet, and three text transcriptions); the two JARs were statically inspected and do not provide an LP2 key tape or unknown-page plaintext.',
+    '- The independent Dukotah/cicada3301 Round-20 N1 hunt searched 195 distinct local PDFs plus four named mirrors and found no surviving LP PDF/PostScript with a runic text layer or embedded runic font subset: https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round20/N1/RESULTS.md . That corpus/mirror search is not a substitute for this period-transcript search.',
+    '',
+    '## Interpretation boundary',
+    '',
+    'A negative result excludes only an explicit filename, URL, or document/toolchain pointer in these authenticated public 2014 transcript and Stage11 text sources. It cannot exclude a privately held source master, an unindexed host, or an undocumented euphemistic reference. The JSON file preserves every matched line and its source context.'
+  );
+  fs.writeFileSync('im-results/lp2-2014-period-master-pointer-report.md',md.join('\n')+'\n');
   console.log('MASTER_POINTER_SUMMARY '+JSON.stringify({
     totalDated2014Lines:report.totalDated2014Lines,
     totalExplicitFormatLines:report.totalExplicitFormatLines,
