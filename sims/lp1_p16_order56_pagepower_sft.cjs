@@ -129,8 +129,40 @@ function blockPowerTest(def) {
   return results;
 }
 
+
+function orbitKeystreamTest(def) {
+  const M = def.matrix, order = def.order, C = pages.flatMap(p => p.indices), results = [];
+  for (const [orientation, base] of [["M", M], ["M^T", transpose(M)]]) {
+    for (const [seedName, seed] of [["first_row", M[0]], ["first_column", M.map(row => row[0])]]) {
+      let state = seed.slice();
+      const states = [], seen = new Set();
+      for (let k = 0; k < order; k++) {
+        const key = state.join(",");
+        if (seen.has(key)) break;
+        seen.add(key); states.push(state);
+        state = mv(base, state);
+      }
+      if (states.length !== order || state.some((x, i) => x !== seed[i])) {
+        throw new Error(def.name + " " + orientation + " " + seedName + " did not traverse its full matrix order");
+      }
+      const keyStream = states.flat();
+      for (const sign of [-1, +1]) {
+        const out = C.map((x, i) => mod(x + sign * keyStream[i % keyStream.length]));
+        results.push({
+          matrix: def.name, matrix_order: order, orientation, seed: seedName,
+          orbit_states: states.length, key_period_symbols: keyStream.length, sign,
+          pooled_ioc: ioc(out), runes: out.length,
+          prefix: out.slice(0, 80).map(x => corpus.translit[x]).join("")
+        });
+      }
+    }
+  }
+  return results;
+}
+
 const pagePowerResults = matrices.flatMap(pagePowerTest);
 const blockPowerResults = matrices.flatMap(blockPowerTest);
+const orbitKeystreamResults = matrices.flatMap(orbitKeystreamTest);
 const clear = corpus.pages.find(p => p.page === 57);
 const output = {
   source_square: squarePath,
@@ -141,7 +173,7 @@ const output = {
   lp2_page_count: pages.length, lp2_rune_count: runeTotal,
   identity_anchor_page: 50, anchor_rune_count: anchor.indices.length,
   page_blocking: "page-local 5-rune blocks; append rune index 0 (F) to a multiple of 5, then truncate to original page length",
-  clear_page_57_ioc: ioc(clear.indices), page_power_results: pagePowerResults, block_power_results: blockPowerResults
+  clear_page_57_ioc: ioc(clear.indices), page_power_results: pagePowerResults, block_power_results: blockPowerResults, orbit_keystream_results: orbitKeystreamResults
 };
 console.log(JSON.stringify(output, null, 2));
 if (process.argv[2] === "--write" && process.argv[3]) fs.writeFileSync(process.argv[3], JSON.stringify(output, null, 2) + "\n");
