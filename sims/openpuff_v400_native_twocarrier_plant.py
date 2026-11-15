@@ -275,6 +275,14 @@ def main():
         snapshot(app, out, "hiding-initial")
         record["password_BC_states"] = set_password(window, args.password)
         record["bit_tree"] = set_medium(window)
+        # Original OpenPuff Hide UI documents data-file selection before
+        # adding carriers. Supply a real temporary small target first; the
+        # final split target is selected only after both capacities are known.
+        preliminary = out / "temporary-positive-target.bin"
+        record["preliminary_sha256"] = atomic_payload(preliminary, 256)
+        window = choose_file(
+            app, window, "Browse", preliminary, out, "preliminary-target"
+        )
         window = add_hiding_carrier(
             app, window, carriers[0], [carriers[0].name.lower()],
             out, "carrier-a"
