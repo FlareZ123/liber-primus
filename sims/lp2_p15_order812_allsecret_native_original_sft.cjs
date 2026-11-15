@@ -159,7 +159,15 @@ const recoveredChain=encryptedChain.map((x,chapter) => {
   return out;
 });
 assert.deepEqual(recoveredChain,plantPlain);
-assert.deepEqual(pool(encryptedChain,true),pool(plantPlain,true));
+// Chain-step equality at lag812 equals the original plaintext SYMBOL
+// equality at lag812, omitting each chapter's first predecessor seed. It
+// need not equal the plaintext's *own difference* coincidence statistic.
+const nativeChainPairCounts = plantPlain.map((p) => {
+  let count=0;
+  for (let i=1;i+size<p.length;i++) count+=Number(p[i]===p[i+size]);
+  return count;
+});
+assert.deepEqual(pool(encryptedChain,true).perChapter,nativeChainPairCounts);
 
 console.log(JSON.stringify({
   source:'Original LP2 physical p0..p55, authentic chapter segmentation',
