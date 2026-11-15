@@ -218,3 +218,76 @@ console.log('Original eligible pairs:', fullLength - physicalPages.length,
   'original equal pairs:', originalWithin);
 console.log('Decision: this zero-added-noise difference cipher cannot decode any of the three fixed English control windows.');
 
+
+// Robustness to a secret reset at every printed word: only comparisons
+// strictly *inside* unchanged source words remain invariant. Use all 2896
+// original complete words, joining printed lines and physical page carries.
+const glyphValue = new Map(corpus.runes.map((v, i) => [v, i]));
+const printed = fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const allPrintedWords = [];
+let word = [];
+for (const glyph of printed) {
+  if (glyphValue.has(glyph)) {
+    word.push(glyphValue.get(glyph));
+  } else if (glyph === '-' || glyph === '.') {
+    if (word.length) {
+      allPrintedWords.push(word);
+      word = [];
+    }
+  }
+}
+if (word.length) allPrintedWords.push(word);
+const unknownWords = [], lengthsWord = [];
+let consumed = 0;
+for (const w of allPrintedWords) {
+  if (consumed >= fullLength) break;
+  consumed += w.length;
+  unknownWords.push(w);
+  lengthsWord.push(w.length);
+}
+assert.equal(consumed, fullLength);
+assert.equal(unknownWords.length, 2896);
+const withinWordRepeats = unknownWords.reduce((sum, w) =>
+  sum + w.slice(1).filter((v, i) => v === w[i]).length, 0);
+assert.equal(withinWordRepeats, 63);
+const expectedWordControls = [
+  [55407, 272, 392, 331.369],
+  [15733, 255, 366, 316.646],
+  [77932, 238, 352, 301.554]
+];
+for (let t = 0; t < controlSpecs.length; t++) {
+  const source = fs.readFileSync(path.join(root, 'resources', 'control', controlSpecs[t][0]), 'utf8');
+  const words = (source.match(/[a-z]+/gi) || []).map(encode).filter((v) => v !== null);
+  assert.equal(words.length, expectedWordControls[t][0]);
+  const byLength = Array.from({ length: 15 }, () => []);
+  for (const w of words) if (w.length <= 14) {
+    byLength[w.length].push(w.slice(1).filter((v, i) => v === w[i]).length);
+  }
+  let state = (3301 + 127 * t) >>> 0;
+  /** @returns {number} */
+  function random32() {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  }
+  let minimum = Infinity, maximum = 0, total = 0, noGreater = 0;
+  for (let rep = 0; rep < 1000; rep++) {
+    let count = 0;
+    for (const len of lengthsWord) {
+      const candidates = byLength[len];
+      assert.ok(candidates.length);
+      count += candidates[random32() % candidates.length];
+    }
+    minimum = Math.min(minimum, count);
+    maximum = Math.max(maximum, count);
+    total += count;
+    noGreater += Number(count <= withinWordRepeats);
+  }
+  const observed = [minimum, maximum, total / 1000];
+  assert.deepEqual(observed, expectedWordControls[t].slice(1));
+  assert.equal(noGreater, 0);
+  console.log('Preserved-word original 63-repeat gate:', controlSpecs[t][0],
+    'source words', '1000 length-matched repeats', observed);
+}
+console.log('Even independent author/source word resets cannot repair the control-word equality deficit.');
