@@ -56,6 +56,23 @@ The [dedicated original-input SFT](../sims/lp2_lagfive_feedback_allsecret_origin
 
 An independently constructed **full 12,956-rune positive plant** encrypts and decrypts a source-native English control with **275 independently shuffled secret alphabets**, word-reset five-back feedback, and **12,956/12,956 exactly recovered plaintext symbols**. It preserves the plaintext's original **1,001/11,664** equal-symbol pairs in the ciphertext-derived residual **exactly**. Therefore the original's **388** equal pairs are not caused by a failure to implement or invert the proposed feedback.
 
+### Independent fresh alphabet for every word: original-data survival
+
+A more flexible, still exactly invertible **five-back feedback model** uses **one new arbitrary 29! permutation per printed word**, reused across all five word phases. This model can change its key at each of the **2,896 original word starts** and leaves the same five-back residual `D[j]=C[j]−C[j−5]` observable, but only **within-word** equality comparisons remain invariant. Across the **815 words with at least one original five-back residual**, the original has exactly **105 matching residue pairs in 2,750 eligible pairs**, or **0.03818182**. In contrast, the page-phase model pools residuals from unrelated words in the same physical page.
+
+The same four independently archived source registers, with **250 length- and page-layout-matched complete-book controls each**, give the following genuinely **unfitted** within-word collision distributions:
+
+| Native-GP reference | Minimum 250 sampled books | Median | Controls at or below original 0.03818182 |
+| --- | ---: | ---: | ---: |
+| Shakespeare | 0.03309091 | 0.04254545 | **22/250** |
+| Gibran | 0.03090909 | 0.04181818 | **42/250** |
+| Emerson | 0.02654545 | 0.03709091 | **160/250** |
+| Latin Vulgate | 0.02509091 | 0.03272727 | **239/250** |
+
+The original statistic is **within the observed reference range** in every corpus. A separate positive plant implements **2,896 independent hidden word maps**, applies the five-back feedback at all **12,956** original-format GP positions and exactly recovers **12,956/12,956** plaintext runes. The plant retains all **110/2,750** within-word equal-residual pairs before and after encryption. Thus the all-secret page-reused five-phase **exclusion cannot be generalized to fresh per-word keys**. In particular, a flexible word-rekeyed family survives these equality tests, although there is **no Cicada-selected per-word key schedule or original plaintext**. A still freer choice of five independent maps for every word has only **92** original eligible same-word/phase pair comparisons, so absence of a discriminating key-independent test is even more severe.
+
+[Expanded single-file exact-input SFT](../sims/lp2_lagfive_feedback_allsecret_original_sft.cjs) · [Successful second independent CI run 43740312208](https://github.com/FlareZ123/liber-primus/actions/runs/43740312208). **Research decision:** If an original source selects an actual word-key derivation, five-back word-reset models remain candidates; repeating same-key five-phase sweeps across pages is already contradicted. The survival of freely assigned 29! word keys is a capacity observation, not evidence of the intended cipher.
+
 **Decision:** Reject this entire **page-reused five-phase bijective five-back modular feedback family** under intact original GP word boundaries and the four tested source-native English/Latin plaintext registers, even granting arbitrary unknown maps on every page/phase. It does **not** exclude fresh secret maps every word or position, non-bijective transforms, nonlinear feedback, different plaintext registers, hidden segmentation, or other source-selected recurrence. The fifth-back echoes remain a genuine original-cipher phenomenon whose actual reversible explanation is unestablished. No original unknown plaintext or key was recovered. [Successful original-input Node22 manual CI run 43739340329](https://github.com/FlareZ123/liber-primus/actions/runs/43739340329).
 
 ## One-back cryptanalytic decision
