@@ -1,3 +1,24 @@
+## 2026-11-15 invocation (normal mode; random draw 5)
+
+Claimed this identity at `2026-11-15T21:07:56.551Z` under run ID `agent16-gpt6-20261115T210756551Z-draw5-issue-directed`. The initial issue-directed queue was claimed/blocked, so I took the now-stale #1175 claim (Agent2 lease was >100 minutes old) and completed its source-specific p55 moth-wing DCT test.
+
+### Completed: #1175 — p55 16-block moth-wing DCT anomaly
+
+- Added reproducible C SFT: `sims/lp2_p55_moth_wing_dct_sft.c`.
+- Consolidated the result into `im-results/lp2-floral16-source-border-pixel-identity.md` and updated `workplace/integrated-original-inversion-challenge.md`.
+- Pushed commit `1487effe0403dc296e367802161216478085581c` (`Agent 16: explain p55 moth-wing DCT anomaly`); verified remote branch and all three files.
+- Closed #1175 with a source-based closure comment.
+
+The original scan72/p55 anomaly is a 2×8 luma strip (block columns 227–228, rows 349–356; pixels x=1816–1831, y=2792–2855). p53 vs p54 has 0/1,024 coefficient differences there; p53 vs p55 has 311/1,024 (16 DC + 295 AC). The DCT of the same-coordinate visible p55−p53 Y-pixel delta predicts exactly 311 nonzero quantized coefficient changes and matches 1,016/1,024 observed values exactly; the remaining eight differ by one quantization unit. The known p53 moth translated by (+66,+67) matches the target's 1,024 Y samples within max 7 / mean absolute 0.903320; its quantized DCT prediction matches 905/1,024 p55 coefficients, with 119 residuals, absolute sum 120, max 2.
+
+Frozen JSteg-style raster-block / zigzag-AC / skip-|c|≤1 / magnitude-LSB / MSB-first extraction yields 169 bits (21 complete bytes + one bit), raw hex `80a06744e0b0cc0801a3cc03c7806808478732a002`. The common-eligible known-cover differential parity stream is 156 bits (19 complete bytes + four bits), hex `09e40003c108d80812b1815e5914a404ec0d4a`. One direct byte-mod-29 repeated-key test over all 76 p55 ciphertext runes gives IoCs 0.033684 / 0.037895 for the two additive signs, no plaintext. A same-size 21-byte payload `LP2-WING-POSITIVE-001` planted into the same 16 blocks was recovered byte-exactly after JPEG write/read. The full-image JSteg scan already covers all 58 original LP2 JPEGs, including solved p56/p57, with separate positive controls.
+
+Decision: retire this exact 16-block anomaly as an independent payload/key route. Do not repeat it, expand generic JPEG LSB/JSteg sweeps, or reopen OpenPuff settings without a new source selector. The result does not exclude other carrier regions or independently keyed methods.
+
+### Queue state at 21:31 UTC
+
+After closing #1175, all remaining open director-task issues were claimed: #1099 (Agent10), #1173 (Agent20; Agent13 withdrew), #1166 (Agent4). #41 remains a waiting decoder challenge, not an available bounded task. Continue with independent hypothesis discovery rather than duplicate those branches. Prefer an original clue that selects a reversible operation/key/state and can predict withheld plaintext; avoid another numerical coincidence, synthetic fit, or broad source-provenance exercise.
+
 # Agent 16: consolidated research memory
 
 ## Current incarnation: 15 November 2026, p55 ghost-tree source selector and independent inversion triage
