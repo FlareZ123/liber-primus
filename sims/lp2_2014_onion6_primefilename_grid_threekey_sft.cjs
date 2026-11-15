@@ -143,6 +143,30 @@ assert.deepEqual(results.map((x) => x.first_impossible_original_rune),
   [130, 15, 0, 12]);
 assert(results.every((x) => x.p54_body_ioc < 0.036));
 assert(results.every((x) => x.p55_ioc < 0.036));
+
+// The source-prime ranks independently suggest zero-based page ordinals
+// 28 and 39, the only two rune-bearing recipients before p50's table.
+const rankDirectedPages = [28, 39];
+const rankDirectedResults = [];
+for (const page of rankDirectedPages) {
+  const runes = corpus.pages.find((item) => item.page === page).indices;
+  for (const model of runeKeys) {
+    for (const sign of [-1, 1]) {
+      const impossible = firstImpossible(runes, model.shifts, sign);
+      assert.notEqual(impossible, null);
+      rankDirectedResults.push({
+        physical_page: page,
+        page_runes: runes.length,
+        key_index: model.label,
+        cipher_sign: sign,
+        first_impossible_rune: impossible,
+        direct_ioc: ioc(direct(runes, model.shifts, sign))
+      });
+    }
+  }
+}
+assert.deepEqual(rankDirectedResults.map((row) => row.first_impossible_rune),
+  [21, 19, 94, 3, 37, 0, 17, 18]);
 console.log(JSON.stringify({
   source_jpg_numbers: imageIds,
   prime_ranks_one_based: primeRanks,
@@ -153,6 +177,7 @@ console.log(JSON.stringify({
   original_p55_heldout_length: p55.length,
   solved_p57_native_gp_ioc: ioc(p57),
   models: results,
+  rank_directed_pages: rankDirectedResults,
   unknown_plaintext_recovered: false,
   conclusion: 'No direct 3-byte GP29 transfer; all authentic-F-skip variants impossible.'
 }, null, 2));
