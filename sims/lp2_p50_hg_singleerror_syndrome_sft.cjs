@@ -305,6 +305,41 @@ assert.deepEqual(recoverSixErasures(plantedMasked,120,one),
   synthetic.slice(120,126));
 
 
+
+// Historic source-only correction of seven glyph-case ambiguities.
+// Three separately annotated 2014 corrections are fixed *from the
+// original participant transcription annotations*; the seven remaining
+// case alternatives were identified against the original source scans.
+// This bounded 2^7 test is conditional, not a blind independent proof.
+const historical = require('../resources/external/cicada2014-stage11-original-transcriptions.json');
+const historicTokens = historical.files.flatMap((file) =>
+  file.raw_text.split(/\n\s*\n/)[0].trim().split(/\s+/));
+assert.equal(historicTokens.length, 256);
+const historicBytes = historicTokens.map((s) => parseToken(s, ALPHABET));
+const historicCasePositions = [25, 45, 50, 175, 182, 199, 246];
+const knownSourceCorrections = [[165, 18], [170, 254], [172, 148]];
+for (const [position, corrected] of knownSourceCorrections)
+  historicBytes[position] = corrected;
+for (const pos of historicCasePositions) {
+  assert.equal(historicTokens[pos][0], tokens[pos][0]);
+  assert.equal(historicTokens[pos][1].toLowerCase(),
+    tokens[pos][1].toLowerCase());
+}
+const doubleRootSyndrome = (data) => {
+  const s = syndrome(data);
+  return [s.value, s.derivative];
+};
+const validCaseMasks = [];
+for (let bits = 0; bits < (1 << historicCasePositions.length); bits++) {
+  const candidate = historicBytes.slice();
+  historicCasePositions.forEach((i, bit) => {
+    if (bits & (1 << bit)) candidate[i] = bytes[i];
+  });
+  if (doubleRootSyndrome(candidate).every((x) => x === 0))
+    validCaseMasks.push(bits);
+}
+assert.deepEqual(validCaseMasks, [127]);
+
 const alt59Bytes = tokens.map((s) => parseToken(s, ALT59));
 const alt59Syndrome = syndrome(alt59Bytes);
 assert.notDeepEqual(alt59Syndrome, syndrome(bytes));
@@ -317,6 +352,7 @@ console.log(JSON.stringify({
   lastSixTableResiduesRecovered: lastSixResidues,
   historicalTwoErrorSolutions: historicPairSolutions,
   sampledTwoErrors: { unique: doubleUnique, ambiguous: doubleAmbiguous, total: 128 },
+  historicSourceOriginalSevenCaseAmbiguitiesResolvedByDoubleRoot: validCaseMasks,
   base60Syndrome: syndrome(bytes), alt59Syndrome,
   alt59RepairableByOneResidueChange: false,
   period2014IsolatedError: { index: 170, fromByte: 194, toByte: 254,
