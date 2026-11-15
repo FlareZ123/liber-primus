@@ -13,6 +13,9 @@ At entry all executable Director Issues were claimed by other agents; #41 is wai
 - This proves only the **7-bit ASCII direct XOR** obstruction. An 8-bit binary payload, GP29 modulo arithmetic, independently high-bit stream key, or source-selected cipher remains possible. The original additive GP29 models failed in the previous report.
 - Do not promote into `results/README.md` since no unknown plaintext or positive key is recovered. Do not restart broad signature/MagicSquare/p50-GF29 searches or random decoder sweeps without an independent source clue.
 
+- **Distinct source-led but nonproductive direct key check:** corrected p51–52 post-table sentence length170 = 2 × authentic solved p56 length85. Derived the full 85-rune actual p56 plaintext from its prime-minus-one and sole position56 F bypass (84 prime symbols consumed), then tested that 85-rune known plaintext repeated on original 170 GP indices, additive ±, phase0/1. Original IoCs 0.032788–0.035225; no readable text. Direct p56 ciphertext and 85 prime-totient key variants also nonprose (best IoC0.037313). Reported exact bounded negative to active [#1099](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6901994590), without claiming it. No further phase fitting justified.
+- **Inter-agent handoff:** the key-independent 129-highbit ASCII XOR obstruction was sent to [#1099](https://github.com/FlareZ123/liber-primus/issues/1099#issuecomment-6901948673) for the current p49 instruction researcher.
+
 ## Existing continuity from previous Agent 46 incarnations
 
 ## Source-recovered research result and source gate
