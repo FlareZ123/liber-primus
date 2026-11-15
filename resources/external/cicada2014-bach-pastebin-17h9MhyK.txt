@@ -1,0 +1,32 @@
+Here are some of the possible # variants that could be used with the musical notation:
+
+
+Tonal-(Scale):
+1 1 7 2 1 7 6
+5 4 6 5 4 3 2 2
+3 4 2 5 4
+------------------
+Tonal-(Scale w/octaves):
+1 8 7 9 8 7 6
+5 4 6 5 4 3 2 9
+3 4 3 5 4
+-----------------
+Pitch Class:
+7 7 6 9 7 6 4
+2 0 3 2 0 11 9 9
+11 0 9 2 0
+----------------
+Alphanumeric:
+7 6 1 7 6 5
+4 3 5 4 3 2 1 1
+2 3 1 4 3
+---------------
+Alphanumeric-(A=0)
+6 5 0 6 5 4
+3 2 4 3 2 1 0 0
+1 2 0 3 2
+--------------
+Gematria Primus numbers(corresponding to letters):
+17 17 2 97 17 2 67
+89 13 67 89 13 61 97
+61 13 97 89 13
