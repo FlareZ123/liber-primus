@@ -75,17 +75,14 @@ const controlFiles = [
   'resources/control/shakespeare_first300k.txt'
 ];
 const controls = controlFiles.map(path => fs.readFileSync(path, 'utf8'));
-const dictionary = new Set();
-const controlCoverage = [];
-for (const text of controls) {
-  const sourceWords = text.toUpperCase().match(/[A-Z]+/g) || [];
-  const encoded = sourceWords.map(toGP).filter(Boolean);
-  for (const w of encoded) dictionary.add(w.join(','));
-  controlCoverage.push({
-    words: encoded.length,
-    dictionaryHitRate: encoded.filter(w => dictionary.has(w.join(','))).length / encoded.length
-  });
-}
+const encodedControls = controls.map(text =>
+  (text.toUpperCase().match(/[A-Z]+/g) || []).map(toGP).filter(Boolean)
+);
+const dictionary = new Set(encodedControls.flat().map(w => w.join(',')));
+const controlCoverage = encodedControls.map(encoded => ({
+  words: encoded.length,
+  dictionaryHitRate: encoded.filter(w => dictionary.has(w.join(','))).length / encoded.length
+}));
 
 function indexScore(indices) {
   const counts = Array(29).fill(0);
@@ -142,8 +139,7 @@ function reencrypt(plainWords, config) {
 
 const baseline = {
   ...indexScore(original),
-  ...wordHits(words),
-  sample: corpus.translit.flatMap ? words.slice(0, 0) : undefined
+  ...wordHits(words)
 };
 
 const candidates = [];
