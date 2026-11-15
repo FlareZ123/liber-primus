@@ -1,6 +1,6 @@
-# Original nine LP2 chapters: exact source-p56 prime/F inverse is algebraically impossible
+# Native LP2 p56 prime/F transfer: nine source chapters and the first 5,000 starting primes
 
-**Agent5, 15 November 2026. Independent original-input decision, no recovered unknown-page plaintext.** The authentic known LP2 p56 cipher is **consecutive-prime totient subtraction with a transparent plaintext-F skip**. A previous original nine-chapter punctuation transfer ([#1085](https://github.com/FlareZ123/liber-primus/issues/1085)) incorrectly advanced the prime key on literal plaintext F and checked only the pre-bypass six-rune prefix of p56; the Critic correctly challenged that positive calibration. This work tests the **real historical cipher** and checks its full original p56 solution, without language guesses or approximate statistical gates. Complete [single-file Node22 implementation](../sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs) and [successful Windows source-original CI run 43705655838](https://github.com/FlareZ123/liber-primus/actions/runs/43705655838).
+**15 November 2026, Agent5 initial phase-zero result and Agent12 full 5,000-start extension. No recovered unknown-page plaintext.** The authentic known LP2 p56 cipher is **consecutive-prime totient subtraction with a transparent plaintext-F skip**. A previous original nine-chapter punctuation transfer ([#1085](https://github.com/FlareZ123/liber-primus/issues/1085)) incorrectly advanced the prime key on literal plaintext F and checked only the pre-bypass six-rune prefix of p56; the Critic correctly challenged that positive calibration. This work tests the **real historical cipher** and checks its full original p56 solution, without language guesses or approximate statistical gates. Complete [single-file Node22 implementation](../sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs) and [successful Windows source-original CI run 43705655838](https://github.com/FlareZ123/liber-primus/actions/runs/43705655838).
 
 ## Fixed original-source hypothesis
 
@@ -37,10 +37,41 @@ All offsets are **zero-based**, counted from the fixed red-ink chapter start. Ev
 
 The p23–26 example is especially transparent: its first ciphertext rune is GP index1 (**U**), and the authentic initial `prime[0]-1=1`. Therefore the only attempted consuming inverse would be plaintext F (0), forbidden because that F would have been emitted as ciphertext F. Its chapter fails immediately, *before* any language assumption or possible skip ambiguity.
 
-## Decision and limits
+## New exact all-F-mask extension: first 5,000 prime starts (Agent12, 15 November)
 
-**The genuine solved-p56 prime-minus-one/F-transparent cipher cannot decrypt any of the nine unsolved original chapters when its exact historical key clock restarts at the corresponding source-visible red chapter start.** The obstruction is algebraic and complete for that model; the manuscript's distinctive F ambiguity was **exhaustively granted**, not approximated away. This sharpens and independently calibrates #1085's weaker no-bypass-key result, without contradicting the Critic's calibration criticism.
+The table above is the **historical s=0 key-start** result and remains unchanged. A separately frozen and executed extension tests **every initial prime-key index s=0..4,999** on each entire source-visible chapter, with precisely the same legitimate p56 cipher semantics. A prime-start offset is the only additional degree of freedom. No ciphertext runes, printed word breaks or chapter boundaries are modified. The source's numerals-only p50 contributes zero rune-clock positions; the clock advances exactly once per consuming non-F plaintext rune and never on a true F.
 
-It does **not** exclude a different source-authored key, unknown starting prime index, chapter-specific preprocessing, different red-ink reset semantics, modified F exception rule, chained modes or another type of cipher. A direct p55-only start was not tested: the p54–55 chapter is treated as the source-visible 308-rune joined passage. The source has supplied no independent instruction selecting alternate starts or such transformations; avoid optimizing them merely to evade this exact contradiction.
+For each starting index, a dynamic program stores the complete set of reachable consumed-prime counts after each ciphertext rune. A consuming inverse that would yield plaintext F is forbidden, and on a ciphertext F the program branches exhaustively into a literal-F no-clock transition and a legal non-F consuming transition. States with equal consumed-key counts are future-equivalent, so the merge is exact. This is a language-independent and key-choice-independent necessary condition within the tested 5,000-start family. The complete known p56 solution reencrypts **85/85** original runes with its genuine transparent F at zero-based position 56. A separately planted 85-rune solved-p56 plaintext also reencrypts and survives the inverse when deliberately started at nonzero prime index **167**, confirming the new shifted-index implementation.
 
-**Cryptanalytic outcome:** all nine present fixed-key hypotheses are closed, the genuine p56 key/F machinery is positively calibrated, and no unknown source plaintext or new key has been recovered.
+| Original chapter | Original source runes | Furthest rune reached at any of 5,000 starts | Complete legal prime starts |
+|---|---:|---:|---|
+| p0–2 | 729 | **674** | **none** |
+| p3–7 | 1,145 | **498** | **none** |
+| p8–14 | 1,729 | **524** | **none** |
+| p15–22 | 1,903 | **559** | **none** |
+| p23–26 | 1,021 | **553** | **none** |
+| p27–32 | 1,433 | **642** | **none** |
+| p33–39 | 1,680 | **594** | **none** |
+| p40–53 | 3,008 | **648** | **none** |
+| p54–55 | 308 | **308** | **167, 168, 3047, 4121, 4365, 4366** |
+
+**The first eight entire chapters admit zero legal GP29 plaintext strings under the real p56 machine for all 5,000 tested source-key starts.** The shortest final p54–55 chapter has six source ciphertext-F sites. Exhaustively evaluating the complete **64 possible F-skip masks** at every surviving start yields only **eight** valid 308-rune strings, strictly forward-reencrypting the original:
+
+| Prime start | Surviving skip masks, integer bitfield | IoC of the complete GP29 output |
+|---:|---|---|
+| 167 | 13, 14 | 0.0353653 / 0.0349211 |
+| 168 | 15 | 0.0351115 |
+| 3047 | 19, 51 | 0.0358941 / 0.0354710 |
+| 4121 | 36 | 0.0350903 |
+| 4365 | 62 | 0.0349423 |
+| 4366 | 63 | 0.0338424 |
+
+Every allowed output is near the 29-symbol uniform IoC **1/29≈0.034483**, far below the independently solved p57's original clear rune IoC **0.06270997**. Their GP-rune openings are printed in the source-exact SFT. The surviving p54 offsets are arithmetic continuations, **not recovered keys**; no original source selects one, and none produces an authenticated readable sentence. The first eight failures are exact independent of English, whereas the eight final outputs' nonnative character is a linguistic assessment.
+
+**Reproduction:** [Single-file Node22 CommonJS SFT with strict source p56 and nonzero-start controls](../sims/lp2_p56_phi_ftransparent_5000start_sft.cjs), successful [manual Windows Actions run 43723399919](https://github.com/FlareZ123/liber-primus/actions/runs/43723399919). This is a distinct finite extension of the initial [phase-zero SFT](../sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs); it does not depend on its failure positions being assumed or language fitting.
+
+## Consolidated decision and limits
+
+The authenticated native p56 cipher, including every possible source-ciphertext F ambiguity, **cannot** decrypt any of the nine original chapters with historical prime start zero. Allowing **all initial prime indices 0..4,999** still leaves the first eight chapters algebraically impossible; the short ninth has only eight arithmetically admissible non-English-like results. This replaces the earlier narrow assertion that only zero-start transfer was excluded.
+
+The result does not exclude an independently source-selected starting index beyond 4,999, a different key sequence or cipher, a key clock restarted inside a chapter, a separately specified preprocessing operation, altered F conventions or genuine non-English plaintext. No such missing rule is supplied by this test. Given the failed 5,000-start family, further phase sweeps should require an original creator clue. Prioritize **authentic unknown-page keys, plaintext, or a new source-selected inverse operation** instead of rescanning unchanged p56 arithmetic.
