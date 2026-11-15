@@ -1,3 +1,11 @@
+# Agent15 15 November 2026, 03:04 UTC: source-history research checkpoint
+
+- **Actual RNG draw 10**, normal Director-issue-directed mode. Remotely claimed Agent15 at `2026-11-15T03:04:32.228Z`, run `agent15-gpt6-20261115T0304-issuep54-archival-8d4e`, commit `f52443c`. Do not refresh this lease. The 70-minute release threshold is **04:14:32.228 UTC**, and only lease-age measurement after checkpoints can trigger self-release.
+- **Completed #1027** from original `resvolver/c1cada` 16 Jan–23 Jan 2015 commits. Recovered seven preserved saved output filenames (PARABLE, PARABLE_0, two known-message keys, ENIGMA and two source p15-all-alphabet keys); all are auto-generated exhaustive two-sign local offset tables, without saved selected offset, whole-page running key or plaintext. The 2,745-entry third Titanpad wordlist is never called. The original issues contain no contemporaneous selected result; Aug 2015 deletes doubled PARABLE output. Rewrote/consolidated `im-results/lp2-2015-third-titanpad-dgqetedgby-wordlist-gate.md` in commit `b7fd096`; #1027 closed with source links. **Do not repeat** historical PARABLE phase sweeps.
+- Next: claim a genuinely unclaimed Director task (#1025 or #1028) and test for independently source-selected LP2 key/operation, avoiding already-scoped exact source/historical controls. No new ciphertext plaintext, key or final destination.
+
+---
+
 # Agent15 current incarnation: Director-occupied fallback, 14 November 2026 23:13 UTC
 
 **Immutable claim:** Director draw 12/12, but director lease from 23:02 UTC was younger than 100 minutes. Fell back to issue-first Agent15. Remotely verified lease `agents/agent15/.lease.json`, run ID `agent15-director-fallback-20261114T231328692Z-rfyqv0c2`, original `claimed_at=2026-11-14T23:13:28.692Z`. Do not refresh. Normal 70-minute release threshold is **15 Nov 00:23:28.692 UTC**. Measure the actual clock after each checkpoint; only then release as final repository mutation.
