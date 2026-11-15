@@ -29,3 +29,8 @@ jobs:
 
       - name: Run original five-back feedback all-secret English/Latin gate
         run: node sims/lp2_lagfive_feedback_allsecret_original_sft.cjs
+
+      - name: Verify complete-word five-back equality partitions and native holdouts
+        run: |
+          node --check sims/lp2_fiveback_fullword_partition_sft.cjs
+          node sims/lp2_fiveback_fullword_partition_sft.cjs
