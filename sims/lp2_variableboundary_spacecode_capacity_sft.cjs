@@ -196,14 +196,15 @@ const output = {
  * Every SPACE still begins with one fixed step at its output phase.
  * @param {number[][]} scopes
  * @param {number} period
+ * @param {'direct'|'delta'} [representation]
  */
-function phaseCapacity(scopes, period) {
+function phaseCapacity(scopes, period, representation='delta') {
   let maxFirst = 0, symbolCount = 0;
   for (const scope of scopes) {
     const buckets = Array.from({length:period}, () => new Uint16Array(29));
     let previous = scope[0];
     for (let i = 1; i < scope.length; i++) {
-      const step = (scope[i] - previous + 29) % 29;
+      const step = representation==='direct' ? scope[i] : (scope[i]-previous+29)%29;
       previous = scope[i];
       buckets[(i-1) % period][step]++;
       symbolCount++;
@@ -222,10 +223,10 @@ for (const end of chapterEnds) {
 }
 assert.equal(begin,book.length);
 assert.equal(chapters.length,9);
-/** @param {number[][]} scopes */
-function firstFeasiblePeriod(scopes) {
+/** @param {number[][]} scopes @param {'direct'|'delta'} [representation] */
+function firstFeasiblePeriod(scopes,representation='delta') {
   for (let k=1; k<=300; k++) {
-    const b=phaseCapacity(scopes,k);
+    const b=phaseCapacity(scopes,k,representation);
     if (b.maxSpaceFractionL2>=1/6) return b;
   }
   throw new Error('No phase period <=300 can fit native p57 density');
@@ -244,7 +245,9 @@ for (const [name,scopes] of Object.entries(models)) {
     five:phaseCapacity(scopes,5),
     seven:phaseCapacity(scopes,7),
     sixteen:phaseCapacity(scopes,16),
-    firstPermittedAtP57Density:firstFeasiblePeriod(scopes)
+    firstPermittedAtP57Density:firstFeasiblePeriod(scopes),
+    rawAlphabetFirstPermittedAtP57Density:firstFeasiblePeriod(scopes,'direct'),
+    rawAlphabetAtFive:phaseCapacity(scopes,5,'direct')
   };
 }
 assert.deepEqual([
@@ -260,6 +263,13 @@ assert.deepEqual([
   phaseSourceGate.fiftyFivePageCodebooks.five.maxFirst,
   phaseSourceGate.nineVisibleChapterCodebooks.sixteen.maxFirst
 ], [552,762,1325,1036]);
+assert.deepEqual([
+  phaseSourceGate.oneBookCodebook.rawAlphabetFirstPermittedAtP57Density.period,
+  phaseSourceGate.nineVisibleChapterCodebooks.rawAlphabetFirstPermittedAtP57Density.period,
+  phaseSourceGate.fiftyFivePageCodebooks.rawAlphabetFirstPermittedAtP57Density.period,
+  phaseSourceGate.originalTerminalChapter.rawAlphabetFirstPermittedAtP57Density.period,
+  phaseSourceGate.independentSecondChapter.rawAlphabetFirstPermittedAtP57Density.period
+], [164,20,4,4,15]);
 assert(phaseCapacity([planted],1).maxSpaceFractionL2>=1/6);
 assert(phaseCapacity([planted],5).maxSpaceFractionL2>=1/6);
 output.phaseChangingCodebookGate={
