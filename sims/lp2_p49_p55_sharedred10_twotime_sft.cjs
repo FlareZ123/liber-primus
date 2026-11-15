@@ -57,7 +57,7 @@ function score(a, b) {
 const p48 = gp.pages[48].indices;
 const p49 = gp.pages[49].indices;
 const p55 = gp.pages[55].indices;
-const preTable = p48.concat(p49);
+const preTable = p48.slice(-72).concat(p49);
 assert.equal(preTable.length, 138);
 assert.equal(p49.length, 66);
 assert.equal(p55.length, 76);
@@ -65,7 +65,7 @@ const frozenPairs = [
   {name: 'p49-start → p55-start', left: p49, right: p55.slice(0, 66), value: -1.9340878917658881, zeros: 3, rank: 44},
   {name: 'p49-red-end → p55-red-end', left: p49, right: p55.slice(-66), value: -1.3043043033105899, zeros: 1, rank: 33},
   {name: 'pretable138 last76 → p55 entire', left: preTable.slice(-76), right: p55, value: -1.6255074244330026, zeros: 1, rank: 35},
-  {name: 'pretable138 first76 → p55 entire', left: preTable.slice(0, 76), right: p55, value: -1.4311281043696278, zeros: 1, rank: 37}
+  {name: 'pretable138 first76 → p55 entire', left: preTable.slice(0, 76), right: p55, value: -2.071443350958962, zeros: 2, rank: 47}
 ];
 for (const pair of frozenPairs) {
   const actual = score(pair.left, pair.right);
