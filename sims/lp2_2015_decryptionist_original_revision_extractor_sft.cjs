@@ -40,7 +40,10 @@ async function fetchRevision(id) {
   return {revision:id,date:revision.timestamp,pageid:PAGE_ID,bodyLength:body.length,sha256,
     decryptHits:hits.filter(h=>/(?:decryptionist|elbarto|decrypt\.c)/i.test(h.term)),
     sourceAround:hits.filter(h=>/(?:source|\.zip|\.rar|\.exe)/i.test(h.term)).slice(0,12),
-    urls:urls.slice(0,150)};
+    urls:urls.slice(0,150),
+    linkedContext:urls.filter(u=>/(?:pastebin|titanpad|raw\.githubusercontent|ghostscript|onion7)/i.test(u))
+      .map(u=>({url:u, excerpt:body.slice(Math.max(0,body.indexOf(u)-300),
+        Math.min(body.length,body.indexOf(u)+500))}))};
 }
 async function main() {
   assert.equal(revisions.length,2);
