@@ -627,8 +627,7 @@ function runControl(name, words, pages) {
     result.code_repeat_count = rankGlobal(encoded.codePages, K).repeats;
     result.decoded_lexicon = lexicalStats(encoded.decoded.decodedWords, dictionary);
     result.preview = encoded.decoded.decodedWords.slice(0, 12).map(toText);
-    result.codePages = encoded.codePages;
-    result.rank = encoded.rank;
+    result.rank_bits = log2BigInt(encoded.rank + 1n);
   }
   return {result, encoded};
 }
