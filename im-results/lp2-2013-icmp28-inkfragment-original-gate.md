@@ -1,6 +1,6 @@
 # Original 2013 ICMP packet bytes against the 2014 LP2 13-dot fragments
 
-**Classification:** independent cross-round decoder hypothesis, directly tested and rejected in its two cheapest reversible GP29 consumers. The test produced no recovered unknown plaintext, key, or continuation. The observed numerical correspondence is **not** an established authorial clue.
+**Classification:** independent cross-round decoder hypothesis, directly tested in the two original packet-byte consumers and in a separate fixed historical packet-identifier address readout. The test produced no recovered unknown plaintext, key, or continuation. The observed numerical correspondence is **not** an established authorial clue.
 
 ## What would lead a contemporary player here?
 
@@ -34,6 +34,22 @@ The standalone script completed on the actual GitHub Node.js 22 runner in **[CI 
 The test preserves both empty ink slots and the original 28 fragment boundaries, with no ciphertext deletion. Every original candidate re-encodes exactly to the 12,956 original runes, and an independently generated GP-English positive plant is encrypted and decrypted across the same fragment lengths under each of the four algorithms. Those round trips validate the implementation and cannot by themselves identify a historical method.
 
 Reproducer: [the source-exact Node.js 22 CommonJS SFT](../sims/lp2_2013_icmp28_fragment_inverse_sft.cjs). Sources are \`resources/historical/cicada2013-second-onion-icmp-echo.hex.txt\` (Git blob \`4007ca0792f8084a53b4b4f289571ae35e2b4b22\`), \`resources/liber-primus/lp2-corpus.json\` (Git blob \`054f2a0f780b7d46901acbe3d9bf4f0ac1801165\`) and \`resources/liber-primus/lp2-ink-annotations.json\` (Git blob \`3c52f209ce6bd7b138eaa2d4a9323526952ba9f9\`). The SFT also computes a smoothed native-GP trigram score for independent adjudication.
+
+## Independent 2013 ICMP identifier → LP2 fragment-address decision (15 November 2026, Agent 29)
+
+A different source-authentic **piece of the 2013 ICMP transport** is the numerical identifier field, rather than the packet payload. Three preserved actual reply identifiers are **3457, 3461, 3463** for packet lines 19–21. As documented in [the original packet reconstruction](2013-icmp-echo-packet-reconstruction.md), they fit the consecutive-prime schedule after 3301: **28 predicted identifiers from 3307 through 3527**. **Only those three are actually observed.** The other 25 identifier values and any cross-round use are hypotheses.
+
+Map the first 28 original 2014 thirteen-dot slots, in physical order, one-to-one to those 28 packet ordinals. Take the GP rune at zero-based position `identifier mod slot_length` within its own slot. This is an explicit, cheap readout of the integer packet identifiers: no historical key, invented byte offset, plaintext crib, cipher or free rotation. The two original empty slots **8 and 11** consume packet indices but contribute no rune. The 28th slot ends exactly at the p55/p56 boundary, so **26 GP runes** are extracted from the 12,956 unknown runes.
+
+The resulting complete canonical GP transliteration is:
+
+`MWTIATHNGEOWOIAEANTXWEEOEOYIESNJIF`
+
+The 26 selected runes contain **17 distinct GP symbols**. A direct GP Atbash, the simplest authenticated LP1 operation that can be transferred without a new key, also fails to give recognizable plaintext. A native known-text 26-GP-rune plant, inserted at the same 26 exact original addresses while leaving all other source positions fixed, is extracted **26/26**; the address readout therefore functions but lacks meaningful actual text.
+
+**Decision:** this exact *historically predicted ICMP prime ID → original 13-dot slot → one direct rune* navigation fails to recover an original LP2 instruction. Neither this short source-conditional readout nor its Atbash image is a cryptographic disproof of all possible key material hidden at the same positions. The first missing original instruction is why a 2013 **ICMP header counter** should index a 2014 manuscript fragment, especially when 25 packet IDs are reconstructed by hypothesis rather than directly preserved. Do not reintroduce arbitrary selector offsets or a second unchosen cipher to force English.
+
+[Standalone Node22 original-JSON SFT](../sims/lp2_2013_icmp_primeid_28fragment_selector_sft.cjs) asserts all 31 authentic thirteen-dot marks, the p55 boundary, the three actually witnessed ICMP prime IDs, the two empty slots, the exact original extraction, and 26/26 planted recoverability. It is a bounded human-solvable source-selector test, separate from the 778-byte repeating payload decoder reported above; **no unknown original LP2 plaintext, key or historical continuation is recovered**.
 
 ## Research decision
 
