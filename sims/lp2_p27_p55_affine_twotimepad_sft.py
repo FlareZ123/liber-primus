@@ -57,6 +57,10 @@ def native_word(word):
         if s.startswith("ING", i):
             result.append(token["NG"])
             i += 3
+        elif s.startswith("IO", i):
+            # Source-calibrated: IO is the IA rune (LP1 and LP2 p57).
+            result.append(token["IA"])
+            i += 2
         else:
             item = next((v for v in greedy if s.startswith(v, i)), None)
             if item is None:
@@ -109,10 +113,10 @@ for entry in cmudict.words():
         candidate = native_word(entry)
         if candidate:
             lexicon[len(candidate)].setdefault(candidate, entry.upper())
-assert sum(map(len, lexicon.values())) == 115760
-assert len(lexicon[13]) == 1267 and len(lexicon[8]) == 17115
+assert sum(map(len, lexicon.values())) == 115662
+assert len(lexicon[13]) == 1133 and len(lexicon[8]) == 17175
 suffix6 = set(w[-6:] for w in lexicon[9])
-assert len(suffix6) == 9189
+assert len(suffix6) == 9280
 
 
 def domains():
@@ -240,7 +244,7 @@ def run():
         "p55_words": len(page55_words),
         "p27_fragments": len(fragments),
         "word_overlaps": len(edges),
-        "dictionary": "cmudict==1.1.3; 115760 unique GP29 word encodings",
+        "dictionary": "cmudict==1.1.3, source-native ING and IO; 115662 unique GP29 encodings",
         "hypothesis": "shared 76-rune unknown pad, separately unknown invertible affine GP29 maps",
         "direct_shared_pad": direct,
         "affine_parameters_exhaustive": "28*28 scales, all 29 relative intercepts",
