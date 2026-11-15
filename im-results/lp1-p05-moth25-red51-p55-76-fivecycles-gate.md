@@ -75,6 +75,25 @@ The visibly upward-pointing p53 first red T suggests a column-up read. Arrange t
 
 Original complete-125 GP29 IoCs for M, M-transpose, M-inverse and its transpose are **0.03367742, 0.03419355, 0.03419355, 0.03354839**. No output forms coherent native plaintext. Each version exactly re-encrypts every original position and recovers a full independent 125-rune GP p57 plant. The source still supplies no authorial instruction removing the original T/NG, and no additional row or key permutation is warranted.
 
+### Original Poettering 2013 five-share inverse on the five moth-linked rows
+
+The original source-shaped 125-rune register offers one previously untested **historical operation**, as distinct from the Hill5 and direct totient consumers above. Cicada genuinely used Poettering's **ssss v0.5 five-of-ten Shamir sharing** in 2013. Arrange the two p53 red25 lanes followed by three p55 new25 lanes as five candidate shares and use 2013's authenticated share IDs **02,03,05,07,08** in the actual source finite field. This tests a real original-era algorithm with no new guessed secret; crucially, the source still does not authorize excluding p53's authentic T, excluding p55's authentic carried NG, or interpreting the selected 5×25 field as five shares.
+
+The original 25 GP29 runes per lane fit directly into a **128-bit whole-field share** in their printed order, either by positional base29 (122-bit maximum) or five-bit GP indices (125 bits). Test both faithful source representations, preserving the source's original top-to-bottom row ordering or honoring the visually upward arrow by reading bottom-to-top. For all four source-frozen tests, apply the precise original ssss irreducible polynomial **x^128+x^7+x^2+x+1**, the genuine **monic x^5 five-share interpolation** and the historical source **XTEA reverse diffusion** to recover a complete 16-byte secret.
+
+| Whole-field encoding | Row order | Historical 16-byte recovered value (hex) | Printable ASCII |
+| --- | --- | --- | ---: |
+| GP base29 | Printed | cc97f721e56f56436e9ab203ba872b09 | 6/16 |
+| GP base29 | Upward | 41a68322d2de958442f35a30b24d2673 | 8/16 |
+| GP five-bit | Printed | cd2a61dfd30e58dfe9c00314f4ef8dbb | 3/16 |
+| GP five-bit | Upward | 5adf4311a2378db889e59df7d11daf1b | 3/16 |
+
+The four output values lack a recognizable literal message, original-era file header or plain GP29 text. They could be arbitrary binary, so absence of a text header is a conditional negative rather than proof of impossibility. The shared source SSSS arithmetic and diffusion code is reused from the historically controlled 2013 reproducer; a fresh independent 128-bit secret plant reconstructs exactly.
+
+A distinct GP-native **Shamir GF29** interpretation interpolates each of 25 source columns independently, using the same historically documented share IDs, with no unknown polynomial coefficients. The two original outputs are GP transliterations **PCMTYATHROIALOHOEDOSCLHEFTMTH** (IoC 0.0300) and **INGFXHNPLIAAPPHNMJRNGCEANCGNGP** (IoC 0.04667). Neither forms coherent text. A five-share polynomial plant reconstructs all **25/25 genuine solved-p57 rune symbols**. The faithful whole-field SSSS and GP29-adapted small-field variants are now bounded and retired, pending independent authored evidence for the two original source-letter exclusions.
+
+**Reproducer:** [original moth 2013 SSSS 128-bit CJS test](../sims/lp2_moth125_ssss128_original_sft.cjs), importing the already verified [historical 2013 SSSS code](../sims/lp2_p23_201_122byte_ssss_codec_sft.cjs).
+
 ## Research consequence
 
 The five-cycle arithmetic and duplicated moth provide **concrete clue-constrained attack targets**. Both the F-bypass and independently source-shaped arrow/carry-excluding registers fail their direct historically motivated totient-key inverses; the latter also fails all four natural Hill5 orientations. This does not rule out an alternative source-selected use of the **five-by-five square, original decimal-token reversals, 179 binary bytes, or visible p53 red typography**, and it does not validate the two plaintext-F assumptions. Further computational work should require a new original clue that fixes a reversible key rule and produces an exact, held-out plaintext prediction, rather than fitting arbitrary transformations to the five-cycle coincidence.
