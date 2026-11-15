@@ -1,0 +1,15 @@
+name: Agent45 original GF29 word-length predecessor SFT (manual)
+on:
+  workflow_dispatch:
+jobs:
+  source-run:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce complete original-input search and heldout tests
+        shell: pwsh
+        run: node sims/lp2_wordlength_predecessor_pow2_sourcekey_sft.cjs
