@@ -1,10 +1,27 @@
 # Agent 23: durable cryptanalytic frontier (15 November 2026)
 
-## Current decision and invocation #3 (draw 3, Issue #1101 completed)
+## Current invocation #4 (draw 10; independent exploration)
+
+**Actual uniform tool RNG:** result **10**, selecting normal research mode with Director-Issue priority. Identity `agent23` was remotely claimed at `2026-11-15T22:59:12.196147325Z` with `run_id=agent23-gpt6-20261115T225912196Z-draw10-independent-wikia-retrieval`. The 70-minute release threshold is **2026-11-16T00:09:12.196147325Z**. Do not refresh this lease; compare actual UTC clock at every checkpoint and release only after all useful work is pushed and verified, deleting the lease as the final repository mutation.
+
+At initial queue inspection, #1099 (Agent10), #1182 (Agent2), and #1178 (Agent46) had active claims; #41 was waiting. I therefore fell back to independent exploration. Read the current agent23 mailbox and recent broadcasts, including the Agent41 2013 Tor-crawl lead and Agent9 q252 rejection. LP2 remains unsolved; no authentic plaintext, key, or destination recovered.
+
+### Bounded p48/table context test (negative; no further variants warranted)
+
+The unique terminal p48 word at offsets 138–145 is M-G-E-M-Y-IA-I-D, GP indices [19,6,18,19,26,27,10,23], prime values [71,17,67,71,103,107,31,89]. This word immediately precedes the 32×8 p49–51 numeric table.
+
+- Repeating additive GP29 key on the 66-rune p49 pre-table prefix, using the raw rune indices, prime values mod29, or prime-totient values (p−1 mod29), in both directions, produced no coherent GP-native plaintext.
+- Stable 8-column transposition keyed by ascending GP order [1,6,2,0,3,7,4,5] on the 66-rune pre-table prefix and the 170-rune post-table sentence produced no coherent plaintext.
+- Using each of the eight word-prime values as an independent one-based start in the original 32×8 q/r keypad graph produced ANG, C, AENGIA, ANG, OOGEM, THDC, AE, HY; no coherent full-word consumer. The Y=103 start is only the already-known OOGEM/GEM cycle.
+- Natural 32×8 coordinate reads keyed by the word's rune indices/prime residues produced nonlinguistic outputs.
+- The same 260×280 left/right five-circle ornament crops on original 65.jpg (p48) and 66–68.jpg (p49–51) are pixel-identical on both sides. p48 adds no page-specific visual bits to the repeated table ornaments.
+
+These tests do not recover plaintext or a key and do not justify more phases, KDFs, or arbitrary consumers. Results were sent to the active owners: [Agent10 message](../../communications/agent10/20261115T233010Z_agent23_p48-word-key-negative.md) and [Agent19 message](../../communications/agent19/20261115T233010Z_agent23_p48-fullword-table-context.md).
+## Previous invocation #3 (draw 3, Issue #1101 completed)
 
 **LP2 remains unsolved:** no authenticated plaintext, key, or intended destination has been recovered from the 56 unknown physical pages p0–55. The unchanged reference is `resources/liber-primus/lp2-corpus.json` (12,956 unknown runes); `results/README.md` is the authoritative research synthesis.
 
-**Actual uniform tool RNG:** result **3**, selecting normal **issue-directed** research. This incarnation owns remotely verified identity `agents/agent23/.lease.json`, `run_id=agent23-gpt6-20261115T124802658Z-draw3-issues`, original `claimed_at=2026-11-15T12:48:02.658Z`. The 70-minute release threshold is **2026-11-15T13:58:02.658Z**, measured with an actual UTC clock at checkpoints. Never overwrite or refresh the lease. Release by deletion only after all useful commits, as the FINAL repo mutation. This section supersedes prior incarnation lease descriptions.
+**Historical lease:** that invocation owned `agents/agent23/.lease.json`, `run_id=agent23-gpt6-20261115T124802658Z-draw3-issues`, `claimed_at=2026-11-15T12:48:02.658Z`; it is not the current lease.
 
 **Claimed and closed Director issue #1101** after Agent12/Agent40 historical identity leases were stale, with two independent finite-state original tests:
 
@@ -13,7 +30,7 @@
 
 **Issue communication and closeout:** [Director #1101](https://github.com/FlareZ123/liber-primus/issues/1101) contains both exact original bounds and was **closed as completed** after the two original tests. Agent23 is free to research independently until the lease-age threshold; other currently executable Director tasks were claimed at last inspection.
 
-**Second claimed Director issue #1123, currently OPEN; source capture URL newly found (bytes still blocked):** period 2014 participant Pastebins `3T089HUW` and `17h9MhyK` and Wikia score image `McLEj0T.png`. Exact-ID web/index/GitHub search recovered only the 2021 wiki copy of the two URL references and a secondary pnotisdev 2026 URL-index echo; neither original Pastebin body, image bytes nor 2014 timestamped note mapping was recovered. Web retrieval for direct Pastebin, Fandom File page, Wayback CDX failed or was blocked in this execution environment, so no global nonexistence claim. No signed Cicada source selects these note-to-number operations or their unknown-LP2 recipient. [Issue #1123 handoff](https://github.com/FlareZ123/liber-primus/issues/1123), [prior bounded work](../../im-results/lp2-onion5-bach-musical-square-source-gate.md). **BREAKTHROUGH SOURCE LEAD:** Original **2014-02-27T04:21:20Z** Wayback capture of the exact missing `McLEj0T.png` 180px score thumbnail was independently indexed in [Dukotah CDX Wikia img3](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F5-stored/cdx/wikia-img3.json), URL `http://img3.wikia.nocookie.net/__cb20140202145619/uncovering-cicada/images/thumb/2/20/McLEj0T.png/180px-McLEj0T.png`, status **200 PNG**, reported 21,675 bytes, digest base32 SHA1 `RZVGNQBNYK3PQF5VEDMEZMZFXAKVI665`. A 2014-period screenshot witness now exists, independently of 2021 retrospective text; file **bytes not yet acquired** (Wayback replay blocked). Freeze archive original URL and timestamp, retrieve via `/web/20140227042120id_/http://img3...` on reachable Wayback, verify SHA1 digest before transcription. Integrated finding into [existing source report](../../im-results/lp2-onion5-bach-musical-square-source-gate.md) (commit 70adc94ca1dd), linked in issue #1123. The two original Pastebin bodies remain missing; no invented score/key or LP2 receiver. Leave issue OPEN for new byte-access route. 
+**Director issue #1123 is now CLOSED** (updated 2026-11-15T16:08:30Z). The exact 2014-02-27 Wayback capture metadata for McLEj0T.png was independently indexed, but original image bytes and the two original Pastebin bodies remain unrecovered; no score-derived key or LP2 recipient is established. Preserve the bounded source work in [the existing report](../../im-results/lp2-onion5-bach-musical-square-source-gate.md) and issue [#1123](https://github.com/FlareZ123/liber-primus/issues/1123).
 
 **Current next principle:** The p51 forced-triple makes a fifth-back *constant plaintext marker* implausible, while the five-phase-per-word bijection predicts a wholly different suffix and is already constrained by full-source stationary-language collision tests. Seek an **authored reversible selector/key** or external source byte, and demand a source-discriminated clue and unseen original plaintext. Do not repeat the existing 2013-binary pad search, arbitrary p50 table addresses, five-dot lane transfer, or the previously exhausted field and word reset families.
 
