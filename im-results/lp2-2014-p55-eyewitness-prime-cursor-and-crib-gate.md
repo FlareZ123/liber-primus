@@ -84,6 +84,24 @@ Offsets above are original physical page-local **zero-based** glyph positions. U
 
 [Reproducible original-input CommonJS SFT](../sims/lp2_2014_p55_jordan2_prime_original_sft.cjs) and [passed Windows Node22 run43653912451](https://github.com/FlareZ123/liber-primus/actions/runs/43653912451).
 
+## Historical Jordan sequence reaches physical p54: a pre-F contradiction
+
+**Original-input extension (15 November 2026, Agent27).** The original 20 May 2014 Freenode participant specifically described the page-number degree rule `J_(57−page)(prime)`: p56 has the successfully established Euler totient `J1(p)=p−1`, p55 would use `J2(p)=p²−1`, and the directly preceding **physical p54** therefore predicts `J3(p)=p³−1`. This is a documented contemporary *solver hypothesis*, not a signed Cicada instruction. The p55 `J2` original tests above did not independently assess p54. The fixed adjacent-page extension is a useful way to decide whether the historical conjecture can explain both unknown final pages before adding cipher layers.
+
+Original p54 has **232 GP29 runes**. Its first ciphertext `F` (index0) occurs at **zero-based offset41**. Apply the exact authentic p56 plaintext-F convention: an F passes unchanged and does not advance the key; ordinary plaintext symbols consume consecutive prime keys. On every original non-F ciphertext position before offset41, a demanded plaintext F is **impossible under this encoder**, even before deciding how any later F could be interpreted. For start prime ordinals **0**, **84** (the 85th prime439, continuing the actual 84 p56 consumptions) and **85** (prime443, naïve p56 full-length continuation), grant either ordinary additive sign. The result below uses the actual source GP indices, without language scores, fitting, or candidate skips.
+
+| Starting prime index | Inverse `C−J3`: first impossible local offset, original rune, prime | Inverse `C+J3`: first impossible local offset, original rune, prime |
+| --- | --- | --- |
+| **0** | **3**, D(index23), prime7; `J3=23` | **2**, NG(index21), prime5; `J3=8` |
+| **84** | **7**, I(index10), prime479; `J3=10` | **0**, A(index24), prime439; `J3=5` |
+| **85** | **4**, IA(index27), prime463; `J3=27` | **33**, M(index19), prime653; `J3=10` |
+
+Each named shift makes `P=(C ± J3(p)) mod29=0` while the actual original ciphertext is **non-F**. All contradictions fall strictly before the first p54 ciphertext F at41, so exhaustive later F-bypass combinations cannot rescue any of these six predeclared hypotheses. In particular, the + direction with start84 already fails at the giant red opening rune of p54. The same failure applies if reading only p54's black body in these *fixed full-page clock phases*; a fresh key restart at body offset9 is a distinct unsourced proposal.
+
+The [standalone source-exact CommonJS SFT](../sims/lp2_2014_p54_jordan3_prime_source_sft.cjs) asserts the original p54 index and F position, all six exact prime/rune collision certificates, three 232-rune synthetic full-length Jordan-J3 F-interrupted native-GP roundtrips, and authentic solved-p56 first-heading `ANEND` under `J1`. The positive checks establish operational semantics without fitting original ciphertext. [Passing Windows-compatible Node22 Actions run 43656794935](https://github.com/FlareZ123/liber-primus/actions/runs/43656794935).
+
+**Decision:** the actual period-era `J_(57−page)` consecutive-prime continuation cannot directly recover physical p54 under these source-motivated phase starts and either sign. Together with the p55 J2 results above, the historical multi-page Jordan ladder has no usable original-final-chapter decoder. This rejects its literal per-page instance; it does not rule out unseen historical parameters, different number inputs, or a separately authenticated cipher. No new unknown plaintext, key or destination is recovered.
+
 ## Decision and reproduction
 
 Four useful future-reader conclusions follow. First, the 2014 contemporaneous suggestion supplies historically real *human* motivation for a forward p56 prime-key continuation, and that exact operation fails algebraically before finishing original p55. Second, the 2014 **13-rune** language guesses and 6/4 continuations genuinely match p55 printed word lengths, but no recovered key supports them. Third, an **all-forward-prime-offset** invariant excludes both specified 23-rune guesses under the exact solved p56 cipher family. Fourth, a direct Jordan J₂ prime variant inspired by a separate May2014 witness yields one mathematically legal but nonlinguistic body75 output out of twelve frozen source variants. **No unknown original LP2 plaintext or authentic key is recovered.**
