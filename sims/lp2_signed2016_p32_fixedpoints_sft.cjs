@@ -218,6 +218,35 @@ for (let x=wordBands[8].start; x<=wordBands[8].end; x++) {
     sourceWordBrightPixels += Number(brightness(x,y)>=inkThreshold);
 }
 const wordTargetInkFractionOfImage = sourceWordBrightPixels/(563*569);
+// Extra original numerical closure: the original p14 word FOLD has GP
+// prime-sum 171, *identical* to the signed short-ID selected y coordinate.
+// Source word THE (GP sum72) maps to that FOLD under the older, still
+// provisional base58 page/word rule; no parameter adjusted in this test.
+const foldGP = [0,3,20,23]; // F O L D, original physical p14 word1
+assert.ok(corpus.pages[14].indices.join(",").includes(foldGP.join(",")));
+const foldGPPrimeSum = foldGP.reduce((s,v)=>s+corpus.prime[v],0);
+assert.equal(foldGPPrimeSum, 171);
+assert.equal(foldGPPrimeSum, checks.signed_short_keyid.y);
+
+// Retain every white-text row band, scanning *all* original 563 columns.
+// A potential horizontal fold at y=171 becomes an image-observable,
+// objective source-text line-alignment question.
+const foregroundRows = [];
+for(let y=0;y<raster.height;y++) {
+  let marked=false;
+  for(let x=0;x<raster.width;x++)
+    if(brightness(x,y)>=inkThreshold){marked=true;break;}
+  if(marked)foregroundRows.push(y);
+}
+const textRowBands = [];
+for(const y of foregroundRows) {
+  if(!textRowBands.length || y-textRowBands.at(-1).end>4)
+    textRowBands.push({start:y,end:y});
+  else textRowBands.at(-1).end=y;
+}
+const visibleGreetingFoldMidline = textRowBands.length>=6
+  ? (textRowBands[0].start+textRowBands[0].end+
+     textRowBands[5].start+textRowBands[5].end)/4 : null;
 
 console.log(JSON.stringify({
   mode: "original-source coincidence; no authentic LP2 decryption",
@@ -232,6 +261,9 @@ console.log(JSON.stringify({
   pointedWord,
   sourceWordBrightPixels,
   wordTargetInkFractionOfImage,
+  foldGPPrimeSum,
+  textRowBands,
+  visibleGreetingFoldMidline,
   wordBands,
   inkLineRoi: [lineTop,lineBottom,inkThreshold],
   conditionalInteriorShuffleChance: conditionalExactProbability,
