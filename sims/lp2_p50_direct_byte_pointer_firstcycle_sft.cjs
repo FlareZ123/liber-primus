@@ -103,6 +103,32 @@ for (const page of [49, 51, 52]) {
       prefix: plain.slice(0, 35).map((x) => corpus.translit[x]).join("")});
   }
 }
+// Semantic, not just printed-page, boundaries established by Agent18 #1099.
+const before = corpus.pages[48].indices.slice(-72).concat(corpus.pages[49].indices);
+const after = corpus.pages[51].indices.concat(corpus.pages[52].indices.slice(0, 78));
+const intact = before.concat(after);
+const terminal = corpus.pages[54].indices.concat(corpus.pages[55].indices);
+assert.equal(before.length, 138);
+assert.equal(after.length, 170);
+assert.equal(intact.length, 308);
+assert.equal(terminal.length, 308);
+assert.equal(intact.length % 22, 0);
+const intactSentenceModels = [];
+for (const [name, cipher] of [["flankingIntactSentences", intact],
+                             ["terminalOriginal", terminal]]) {
+  for (const resetAt138 of [false, true])
+    for (const a of [-1, 1]) for (const b of [-1, 1]) {
+      const clock = (i) => resetAt138 && i >= 138 ? i - 138 : i;
+      const plain = cipher.map((x, i) => mod29(x +
+        a * key[clock(i) % 11] + b * flankKey[clock(i) % 2]));
+      const rebuilt = plain.map((x, i) => mod29(x -
+        a * key[clock(i) % 11] - b * flankKey[clock(i) % 2]));
+      assert.deepEqual(rebuilt, cipher);
+      intactSentenceModels.push({name, resetAt138,
+        signEleven:a, signTwo:b, ioc:Number(coincidence(plain).toFixed(12)),
+        prefix:plain.slice(0, 45).map((x) => corpus.translit[x]).join("")});
+    }
+}
 const rows = [];
 for (const page of [49, 51, 52]) {
   const original = corpus.pages[page].indices;
@@ -184,5 +210,5 @@ console.log(JSON.stringify({source:"original 256 printed p49–51 table",
   firstCellCycle:route.walk, cycleGP29Key:key, prologueRunes:66,
   sourceFirstPage:49, flankRuneCount, flankTwoCycle:[158,249],
   encodedKeyModels:rows, combinedKeyPeriod:22, combinedKeyModels:combinedResults,
-  combinedFeedbackModels, shuffleNulls:nulls}, null, 2));
+  combinedFeedbackModels, intactSentenceModels, shuffleNulls:nulls}, null, 2));
 console.log("PASS original pointer route/6-turn prologue and negative direct GP29 additive inverses. No unknown plaintext.");
