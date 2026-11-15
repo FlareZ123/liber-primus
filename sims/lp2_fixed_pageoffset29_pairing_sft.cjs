@@ -161,8 +161,7 @@ function wordTokens(p) {
   let token = '';
   for (const ch of texts[p]) {
     if (alphabet.has(ch)) token += ch;
-    else if ('-.console.log(JSON.stringify({
-  scope:§'.includes(ch) && token.length) {
+    else if ('-.$&§'.includes(ch) && token.length) {
       words.push(token);
       token = '';
     }
