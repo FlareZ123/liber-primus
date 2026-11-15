@@ -186,7 +186,7 @@ for(const w of gibran)choices[w.length].push(w);
 assert(choices.slice(1).every(x=>x.length));
 const nativePlant=original.map(w=>{
   seed=(Math.imul(1664525,seed)+1013904223)>>>0;
-  return choices[w.length][seed%choices[w.length]];
+  return choices[w.length][seed%choices[w.length].length];
 });
 const plantedCipher=encode(nativePlant,models.gibran);
 assert.deepEqual(decode(plantedCipher,models.gibran),nativePlant);
