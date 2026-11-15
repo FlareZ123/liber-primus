@@ -38,17 +38,18 @@ function ioc(nums){
 function preview(nums,len=88){return nums.slice(0,len).map(x=>corpus.translit[x]).join("-");}
 /** @param {number[]} cipher @param {Uint8Array} mp3 @param {number} base @param {number} sign @param {"restarting"|"continuous"} clock @param { "mod29"|"scaled" } projection */
 function gpTransform(cipher,mp3,base,sign,clock,projection){
- let result=[],cursor=0;
+ let result=[],cursor=0,absolute=0;
  const toK=b=>projection==="mod29"?b%29:Math.floor(29*b/256);
  for(const p of pages){
   if(clock==="restarting")cursor=0;
-  for(const c of p.indices){
+  for(let j=0;j<p.indices.length;j++){
    const k=toK(mp3[base+cursor]);
-   result.push(((c+sign*k)%29+29)%29);
+   result.push(((cipher[absolute++]+sign*k)%29+29)%29);
    cursor++;
   }
  }
  assert.equal(cursor>0,true);
+ assert.equal(absolute,cipher.length);
  assert.equal(result.length,cipher.length);
  return result;
 }
