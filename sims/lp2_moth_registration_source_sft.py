@@ -91,6 +91,30 @@ def main():
     print("left vine identical bytes:", True, "right vine mean abs pixel delta:",
           round(float(right_delta.mean()), 8))
     assert right_delta.mean() < 0.02
+    # High-contrast moth drawing is the same reusable bitmap translated by
+    # 66px right and 67px down. Difference pixels are edge/JPEG-scale only.
+    a = images["70"][2740:3150, 600:1710] < 120
+    b = images["72"][2807:3217, 666:1776] < 120
+    xor_count = int(np.count_nonzero(a ^ b))
+    dist_a = cv2.distanceTransform((~a).astype(np.uint8), cv2.DIST_L2, 3)
+    dist_b = cv2.distanceTransform((~b).astype(np.uint8), cv2.DIST_L2, 3)
+    remote_ink = int(np.count_nonzero(a & (dist_b > 3))
+                     + np.count_nonzero(b & (dist_a > 3)))
+    print("moth ink A/B", int(a.sum()), int(b.sum()),
+          "XOR", xor_count, "nonregistered ink >3px", remote_ink)
+    assert xor_count < 700 and remote_ink == 0
+
+    # All 16 source floral pages use the same unchanged border pixels; the
+    # p55 right-side crop includes a tiny contribution from adjacent new text.
+    left_reference = images["70"][450:3250, 0:560]
+    right_reference = images["70"][450:3250, 1820:2400]
+    for scan in range(57, 73):
+        other = cv2.imread(str(ROOT / f"{scan:02d}.jpg"), cv2.IMREAD_GRAYSCALE)
+        assert other.shape == (3600, 2400)
+        assert np.array_equal(left_reference, other[450:3250, 0:560])
+        if scan != 72:
+            assert np.array_equal(right_reference, other[450:3250, 1820:2400])
+    print("all 16 floral left margins and 15/16 right margins pixel-identical")
     print("source rune height under art-fit scale", round(s1 * 114, 2))
     print("PASS: fixed artwork reuse yields no font-coherent or in-page 5x5 overlay")
 
