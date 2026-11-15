@@ -1,8 +1,9 @@
 "use strict";
 /**
- * Frozen source-selected 2013 MP3 XOR on original p27 44.jpg, with p53/55 controls.
+ * Frozen source-selected 2013 MP3 XOR on original LP2 JPEGs; optional page argument supports p2 Instar test.
  * The authenticated 2013 operation is first reproduced on saved Twitter hex bytes.
- * Run: node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3
+ * Run default p27/p53/p55: node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3
+ * Run p2 only: node sims/lp2_p27_761mp3_originaljpeg_xor_sft.cjs /tmp/761.MP3 2
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
