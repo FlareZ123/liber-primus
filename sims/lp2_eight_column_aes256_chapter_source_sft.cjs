@@ -3,7 +3,7 @@
 /**
  * Bounded original-key decryption candidate: the eight vertical 32-byte
  * columns of LP2's original 32x8 base60 table seed one AES-256-CTR
- * 28-symbol chain key per illustrated chapter.
+ * 28-symbol chain key per transcript dollar-delimited group (not the nine visually marked chapters).
  *
  * Explicit unsupported premise: the 2014 author chose AES-256-CTR with
  * an all-zero IV and this table-column ordering. This script tries only
@@ -20,6 +20,7 @@ const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primu
 const grid = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/base60-grid.json'), 'utf8'));
 const transcript = fs.readFileSync(path.join(root, 'resources/lp2-transcription.txt'), 'utf8');
 const alphabet = new Set(corpus.runes);
+// The eight transcript '$' groups differ from nine image-atlas visual sections.
 const chapterLengths = transcript.split('$').slice(0, 8).map(block => [...block].filter(r => alphabet.has(r)).length);
 assert.deepEqual(chapterLengths, [729, 1145, 1738, 1894, 1021, 1433, 1680, 3316]);
 assert.equal(grid.byte_rows.length, 32);

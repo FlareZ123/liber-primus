@@ -25,6 +25,7 @@ function offsets(lengths) {
 }
 
 const pages = offsets(corpus.pages.slice(0, 56).map(page => page.indices.length));
+// Eight '$' transcript groups differ from the nine visually marked image sections.
 const chapters = offsets(transcription.split('$').slice(0, 8).map(text =>
   [...text].filter(char => alphabet.has(char)).length));
 assert.deepEqual(chapters.slice(1), [729, 1874, 3612, 5506, 6527, 7960, 9640, 12956]);
@@ -170,7 +171,7 @@ function conditionalNull(name, groupBy, iterations, seed, isEligible = () => tru
 
 const iterations = process.argv.includes('--quick') ? 2000 : 20000;
 const modes = [
-  ['illustrated-chapter', t => t.chapter],
+  ['eight-dollar-transcription-groups', t => t.chapter],
   ['physical-page', t => t.page],
   ['physical-page-and-boundary', t => t.page + ':' + t.kind],
   ['printed-line', t => t.line],
@@ -285,7 +286,7 @@ function blockOrderNull(name, kind, trials, seed) {
 }
 const blockOrders = [
   ['whole-pages', 'pages-global'],
-  ['pages-within-illustrated-chapter', 'pages-within-chapter'],
+  ['pages-within-eight-dollar-transcription-groups', 'pages-within-chapter'],
   ['whole-lines', 'lines-global'],
   ['lines-within-physical-page', 'lines-within-page']
 ].map(([name, kind], index) =>

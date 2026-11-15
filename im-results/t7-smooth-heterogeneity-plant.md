@@ -33,7 +33,7 @@ The broad grid used 4,000 draws for each (L\in\{50,100,200,400,800,1600\}) and (
 
 **Prior-art correction.** [Agent31's original-source line-conditioned study](lp2-doublet-gap-original-source-conditioned.md) completed this localization on **14 November 2026** and already reported p=**0.23194420** under its 40,000-draw null. It assigns each repeated pair to the printed line containing its **first rune**, and excludes physical-page joins from eligible positions. The second-rune-assigned test below is a distinct *alignment choice*, **not a new discovery of line occupancy**. A newly added original-source SFT comparison preserves Agent31's first-rune convention and independently reproduces p≈0.234 with 20,000 draws. Both definitions find the observed within-line positioning unsurprising after conditioning on the observed line-event counts. The incremental experiment here is the **whole-line/whole-page order permutation** below, which preserves each block's existing source repeat events.
 
-The source constraint was tightened by parsing the **unchanged rune transcription against all 12,956 canonical physical-page indices**, preserving original `/` printed-line breaks and `-` word breaks. Exactly **86** equal-rune sites occur in **594 nonempty transcription lines**, spread over **83** lines; only line IDs 95, 265 and 303 contain two sites. The 85 site gaps have Pearson lag-1 correlation **+0.380019689241**. The site-level boundary census, classified by the separator preceding the second glyph, is:
+The eight dollar-delimited transcription groups used below differ from the **nine visually marked source sections** of lengths [729,1145,1729,1903,1021,1433,1680,3008,308], see [original visual atlas](lp2-global-original-visual-section-map.md). The eight groups here are analysis strata rather than author-verified cipher resets. The source constraint was tightened by parsing the **unchanged rune transcription against all 12,956 canonical physical-page indices**, preserving original `/` printed-line breaks and `-` word breaks. Exactly **86** equal-rune sites occur in **594 nonempty transcription lines**, spread over **83** lines; only line IDs 95, 265 and 303 contain two sites. The 85 site gaps have Pearson lag-1 correlation **+0.380019689241**. The site-level boundary census, classified by the separator preceding the second glyph, is:
 
 | Adjacent-rune transition class | Eligible transitions | Equal-rune sites |
 | --- | ---: | ---: |
@@ -47,7 +47,7 @@ Run separate conditional random-site controls which preserve the **observed numb
 
 | Fixed observed site count by | Monte Carlo exceedances | One-sided add-one p | Null mean correlation |
 | --- | ---: | ---: | ---: |
-| Illustrated chapter | 0 / 12,000 | 0.0000833 | −0.0288 |
+| Eight dollar-delimited transcription groups | 0 / 12,000 | 0.0000833 | −0.0288 |
 | Physical page | 70 / 12,000 | 0.00592 | +0.2305 |
 | Physical page × separator class | 145 / 25,000 | 0.00584 | +0.2310 |
 | Printed line | 1,776 / 20,000 | 0.08885 | +0.3671 |
@@ -61,7 +61,7 @@ The included [read-only original-source CJS SFT](../sims/t7_physical_line_condit
 | Original-order feature destroyed | Exceedances | Add-one one-sided p | Null mean gap-ac1 |
 | --- | ---: | ---: | ---: |
 | Entire physical-page order | 43 / 16,000 | 0.00275 | +0.0771 |
-| Physical-page order *within each illustrated chapter* | 2 / 16,000 | 0.000187 | +0.0652 |
+| Physical-page order *within each of eight transcribed dollar groups* | 2 / 16,000 | 0.000187 | +0.0652 |
 | Entire printed-line order | 5 / 16,000 | 0.000375 | −0.0116 |
 | Printed-line order *within each original physical page* | 161 / 16,000 | 0.0101 | +0.2482 |
 
