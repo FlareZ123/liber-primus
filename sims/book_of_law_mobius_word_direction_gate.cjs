@@ -12,7 +12,7 @@ for(const ch of Array.from(transcription)){
  else if(ch==="-"||ch==="."||ch==="&"){if(current.length){words.push(current);current=[];}}
 }
 if(current.length)words.push(current);
-const unknown=words.flat();assert.strictEqual(words.length,2896);assert.strictEqual(unknown.length,12956);
+const unknown=words.flat(),canonical=corpus.pages.slice(0,56).flatMap(p=>p.indices||[]);assert.deepStrictEqual(unknown,canonical);assert.strictEqual(words.length,2896);assert.strictEqual(unknown.length,12956);
 const tokens=corpus.translit.slice().sort((a,b)=>b.length-a.length),tokenIndex=new Map(corpus.translit.map((t,i)=>[t,i]));
 function encodeLatin(text){const s=text.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/K/g,"C").replace(/Z/g,"S"),out=[];for(let i=0;i<s.length;){if(s[i]<"A"||s[i]>"Z"){i++;continue;}let found=false;for(const t of tokens)if(s.startsWith(t,i)){out.push(tokenIndex.get(t));i+=t.length;found=true;break;}if(!found)throw Error("unmapped source at "+i);}return out;}
 const bookText=["I","II","III"].map(p=>fs.readFileSync(path.join(ROOT,`resources/external/2013-book-of-law-${p}.txt`),"utf8")).join("\n");
