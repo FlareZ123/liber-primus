@@ -49,7 +49,7 @@ Enforcing the authenticated literal-F DIVINITY semantics yields strict contradic
 - FIRFUMFERENCE outer then F-transparent DIVINITY inner: illegal encrypted-F outcomes at **chapter-relative indices [36,72,168,184,241,256,267,283,301,303]**.
 - F-transparent DIVINITY outer then FIRFUMFERENCE inner: illegal encrypted-F outcomes at **[38,43,89,90,95,126,144,214,302,304,307]**.
 
-The decisive p55-tail original positions are **[9,24,35,51,69,71]** and **[70,72,75]** respectively after subtracting p54's 232 preceding runes. This excludes the particular **historically natural chapter-reset** interpretation as well as the page-reset interpretation in the prior section. Those are separate, source-explained clocks, not an exhaustive eight-by-thirteen phase search. Nothing authorizes inventing further shift phases or page-dependent exceptions to rescue them.
+The decisive p55-tail original positions are **[9,24,35,51,69,71]** and **[70,72,75]** respectively after subtracting p54's 232 preceding runes. The complete 308-rune tests passed the [source-exact Windows Node.js 22 run 43667061839](https://github.com/FlareZ123/liber-primus/actions/runs/43667061839); its temporary workflow was removed after verification. This excludes the particular **historically natural chapter-reset** interpretation as well as the page-reset interpretation in the prior section. Those are separate, source-explained clocks, not an exhaustive eight-by-thirteen phase search. Nothing authorizes inventing further shift phases or page-dependent exceptions to rescue them.
 
 ## F-transparent layer variants
 
