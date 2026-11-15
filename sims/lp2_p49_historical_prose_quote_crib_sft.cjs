@@ -101,6 +101,38 @@ for (let i = 0; i < proseSources.length; i++) {
   results.push({ source: proseSources[i], availableWords: indices.length, before, after });
 }
 
+// Creator-era book-code sources, stored as exact GP29 word lengths because
+// some original source texts are copyright-protected or differ by edition.
+const agrippa = JSON.parse(read(
+  "resources/external/cicada2012-agrippa-gibson-archived-gp-wordlengths.json"));
+const lawArchive = JSON.parse(read(
+  "resources/external/cicada2013-crowley-book-of-law-2013-gp-wordlengths.json"));
+const archived = [
+  { source: "2012 Gibson Agrippa historically used book-code poem",
+    word_lengths: agrippa.word_lengths },
+  ...lawArchive.chapters.map((chapter, index) => ({
+    source: `2013 historical Book of Law chapter ${index + 1}`,
+    word_lengths: chapter.word_lengths
+  }))
+];
+const archiveExpected = [
+  [1682, 44, 312, 64, 1383],
+  [1897, 41, 1217, 63, 429],
+  [1968, 42, 822, 63, 213],
+  [2002, 40, 300, 63, 1199]
+];
+const historicResults = archived.map((source, index) => {
+  const lengths = source.word_lengths;
+  const before = nearest(targets[0], lengths);
+  const after = nearest(targets[1], lengths);
+  assert.deepEqual([
+    lengths.length, before.distance, before.wordOffset,
+    after.distance, after.wordOffset
+  ], archiveExpected[index]);
+  assert(before.distance > 0 && after.distance > 0);
+  return { source: source.source, availableWords: lengths.length, before, after };
+});
+
 // Planted contiguous quote from the source register is necessarily recovered;
 // the detector is capable of detecting the real quotation pattern if present.
 const plant = englishWords(read(proseSources[0])).map(gpLength);
@@ -112,5 +144,6 @@ console.log(JSON.stringify({
   gpEncoding: "source-native greedy ING,TH,NG,EO,OE,AE,EA,IA,IO single-runes",
   result: "NO EXACT HISTORICAL PROSE QUOTE IN SIX FIXED CORPORA",
   nearest: results,
+  archivalSourceQuoteGate: historicResults,
   plantedPositive: { recoveredAt: 400, matched: 40 }
 }, null, 2));
