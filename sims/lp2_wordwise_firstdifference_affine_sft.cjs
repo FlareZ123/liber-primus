@@ -179,6 +179,86 @@ for (const word of plants) {
   const steps = result.slice(1).map((v, i) => mod(v - result[i]));
   assert((reference.get(signature(steps)) || []).includes(word.name));
 }
+
+/**
+ * More permissive word-local PGL(2,29) action, also source-compatible with
+ * the printed LP1 MOBIUS clue. Its cross-ratio is independent of the three
+ * projective key degrees of freedom. We test only actually printed positions;
+ * a full 29-rune inverse would still need an explicit pole convention.
+ * @param {number[]} seq
+ * @returns {string}
+ */
+function projectiveSignature(seq) {
+  assert(seq.length >= 3);
+  const distinct = [];
+  for (const value of seq) {
+    if (!distinct.includes(value)) distinct.push(value);
+    if (distinct.length === 3) break;
+  }
+  if (distinct.length < 3) {
+    const labels = new Map();
+    return seq.length + ':FEW:' + seq.map(v => {
+      if (!labels.has(v)) labels.set(v, labels.size);
+      return labels.get(v);
+    }).join(',');
+  }
+  const [a, b, c] = distinct;
+  const scale = mod((b - c) * inverses[mod(b - a)]);
+  return seq.length + ':' + seq.map(v =>
+    v === c ? 29 : mod(mod(v - a) * scale * inverses[mod(v - c)])
+  ).join(',');
+}
+const projectiveReference = new Set(lexicon
+  .filter(row => row.gp.length >= 7)
+  .map(row => projectiveSignature(row.gp.slice(1))));
+/**
+ * @param {number[]} tape
+ * @param {(start:number,len:number)=>boolean} accept
+ * @returns {{total:number,matches:number,byLength:Record<string,{total:number,matches:number}>}}
+ */
+function evaluateProjective(tape, accept) {
+  let total = 0, matches = 0;
+  const byLength = {};
+  for (let wi = 0; wi < words.length; wi++) {
+    const start = offsets[wi], len = words[wi].length;
+    if (len < 7 || !accept(start, len)) continue;
+    total++;
+    if (!byLength[len]) byLength[len] = {total: 0, matches: 0};
+    byLength[len].total++;
+    const steps = [];
+    for (let j = 1; j < len; j++)
+      steps.push(mod(tape[start + j] - tape[start + j - 1]));
+    if (projectiveReference.has(projectiveSignature(steps))) {
+      matches++;
+      byLength[len].matches++;
+    }
+  }
+  return {total, matches, byLength};
+}
+const projectiveRaw = evaluateProjective(cipher, () => true);
+const projectiveHistorical = evaluateProjective(primeShifted,
+  (start, len) => start + len <= 729);
+assert.deepEqual([projectiveRaw.total, projectiveRaw.matches], [559, 30]);
+assert.deepEqual([projectiveHistorical.total, projectiveHistorical.matches], [38, 2]);
+for (const [len, counts] of Object.entries(projectiveRaw.byLength))
+  if (Number(len) >= 9) assert.equal(counts.matches, 0);
+
+// Independent non-affine PGL(2,29) native plants with a genuine c != 0
+// fractional linear transform, excluding only its one actual pole x=27.
+const projectivePlants = lexicon.filter(row => row.gp.length >= 7 &&
+  row.gp.every(v => v !== 27)).slice(0, 200);
+assert.equal(projectivePlants.length, 200);
+for (const word of projectivePlants) {
+  const result = [11];
+  for (let i = 1; i < word.gp.length; i++) {
+    const x = word.gp[i];
+    const step = mod((7 * x + 9) * inverses[mod(x + 2)]);
+    result.push(mod(result[i - 1] + step));
+  }
+  const steps = result.slice(1).map((v, i) => mod(v - result[i]));
+  assert(projectiveReference.has(projectiveSignature(steps)));
+}
+
 console.log(JSON.stringify({
   originalRunes: cipher.length,
   originalWords: words.length,
@@ -186,6 +266,9 @@ console.log(JSON.stringify({
   sourceLongWords: lexicon.filter(x => x.gp.length >= 7).length,
   raw,
   original2015PrimeDifferenceFirstChapter: historical,
-  plantedPositive: plants.length
+  plantedPositive: plants.length,
+  projectiveRaw,
+  projectiveHistoricalPrimeDifferenceFirstChapter: projectiveHistorical,
+  plantedNonAffineProjectivePositive: projectivePlants.length
 }, null, 2));
-console.log('PASS: source-fixed original-input differential-affine English-register exclusion');
+console.log('PASS: source-fixed word-local affine/projective differential-English register gates');
