@@ -212,8 +212,10 @@ Result assess(const std::vector<int>& observed, const std::string& title) {
 int python27intRandomTimes28(std::mt19937& gen) {
   const std::uint64_t a = static_cast<std::uint64_t>(gen() >> 5);
   const std::uint64_t b = static_cast<std::uint64_t>(gen() >> 6);
-  const std::uint64_t numerator = (a << 26) | b;
-  return static_cast<int>((28ULL * numerator) >> 53);
+  const double u = (static_cast<double>(a) * 67108864.0 +
+                    static_cast<double>(b)) *
+                   (1.0 / 9007199254740992.0);
+  return static_cast<int>(u * 28.0);
 }
 
 void checkExactHighBitContract() {
@@ -224,6 +226,23 @@ void checkExactHighBitContract() {
     assert(lo <= hi);
     assert((lo >> 51) == static_cast<unsigned>(d / 7));
     assert((hi >> 51) == static_cast<unsigned>(d / 7));
+  }
+  // IEEE-754 rounding of 28*U/2^53 may move a 28-bin endpoint,
+  // but cannot cross the only grouping boundaries 7, 14, 21:
+  // their nearest other numerator is 28/2^53 away, exceeding
+  // half the maximum 2^-48 ULP (16/2^53) below 28.
+  static_assert(28 > 16, "group-bit rounding margin");
+  for (int group = 1; group <= 3; ++group) {
+    const std::uint64_t boundary = std::uint64_t(group) * (DEN / 4);
+    for (int delta = -512; delta <= 512; ++delta) {
+      const std::uint64_t numerator =
+        static_cast<std::uint64_t>(static_cast<std::int64_t>(boundary) + delta);
+      const double u = static_cast<double>(numerator) /
+                       static_cast<double>(DEN);
+      const int d = static_cast<int>(u * 28.0);
+      assert(d >= 0 && d < 28);
+      assert(d / 7 == static_cast<int>(numerator >> 51));
+    }
   }
 }
 int main() {
@@ -239,7 +258,7 @@ int main() {
             << " exact repeats, " << sorted.size()
             << " rank28 outputs\n";
 
-  // Positive: encode actual uint32 MT%28 outputs in the same 29-rune
+  // Positive: encode exact historical Python2 double-scaled ranks in the same 29-rune
   // predecessor-exclusion alphabet, retaining the original 86 repeat sites.
   std::mt19937 gen(3301);
   std::vector<int> planted{original.front()};
