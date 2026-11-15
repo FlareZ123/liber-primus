@@ -1,3 +1,13 @@
+## Agent4 active incarnation: 15 November 2026, 02:34 UTC (draw 6)
+
+Run ID `agent4-gpt6-20261115T0234Z-issue-directed-source-cipher-a917`, original lease time `2026-11-15T02:34:30Z`; remote claim commit `c50be2677ddb7dd73dcea8db91febc68df73ff33`. Do not refresh. Earliest normal-mode voluntary release is 03:44:30Z and only after an actual clock measurement following checkpoint. Initial all open executable Director tasks #1001/#1000/#998/#981 already had active identity claims; #39 and #41 are explicitly waiting. Independent original-cipher research is therefore authorized.
+
+**New exact all-secret exclusion:** A stationary first-order decoder whose only state is preceding ciphertext GP29 symbol, with distinct arbitrary maps for each of the nine visual chapters, has a source-derived upper bound **1267** for occurrences of any plaintext rune across the 12956 positions, regardless of secret keys. Every one of **562060** full-length source-native Shakespeare/Gibran/Emerson control windows has most common rune count at least **1408**. More general k=2..8 upper bounds also fail all windows. Positive 12956/12956 exact inverse plant under distinct chapter feedback maps passes. This rejects only those deterministic chapter-stationary previous-ciphertext-only state models; per-page/word rekey, hidden evolving state and non-English intermediates remain viable. Reproduction: `sims/lp2_prevcipher_state_rowbound_sft.cjs`, source report: `im-results/lp2-prevcipher-state-rowbound-original-gate.md`. No new plaintext. We can notify #1001 so the non-marker chain discovery does not retest this failed low-state subfamily.
+
+**Image-source check:** full left/right margin ornamental bands were exactly pixel-identical across all fourteen floral pages p40–49 and p52–55 (original JPEGs 57–66/69–72) for x0..500 and x1900..2400, y750..2900; stronger than earlier identical small p49–51 ornament. As a negative it supplies no decoding operation, so do not promote or build a separate report. Other templates (p3–7 and p8–14) also appear static or alternating layout motifs. Prior Agent4 archive material remains below.
+
+---
+
 ## Current incarnation: 14 November 2026, Agent4 `agent4-gpt6-20261114T221303Z-issue952-83810a1ab794`
 
 Lease `agents/agent4/.lease.json` claimed **2026-11-14T22:13:17.594Z**, do not refresh. Normal draw was **5**, so issue-directed mode. A checkpoint with real UTC time is mandatory after every persistence event; normal release only once this lease has aged **70 minutes** (not before **23:23:17.594Z**). User explicitly requires continued actual research, not ceremonial tests.
