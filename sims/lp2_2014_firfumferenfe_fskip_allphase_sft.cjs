@@ -103,6 +103,30 @@ assert.deepEqual(p1Plus.map(r=>r.firstImpossible),
 assert.deepEqual(combinedPlus.map(r=>r.firstImpossible),
   [35,47,47,349,349,349,16,35,35,5,148,148,14]);
 
+// The first-two-page contradiction requires one consistent arithmetic sign.
+// More generously, give every original physical page its OWN phase and OWN
+// independent sign, yet retain the exact historical key/F-bypass operation.
+// A page with no legal sign/phase proves that even this rekeying cannot work.
+const pageTrials = corpus.pages.filter(p => p.page <= 55 && p.indices.length > 0)
+  .map(page => {
+    const validMinus = [], validPlus = [];
+    for(let phase=0;phase<13;phase++){
+      if(exactFPaths(page.indices,key,-1,phase).valid)validMinus.push(phase);
+      if(exactFPaths(page.indices,key,+1,phase).valid)validPlus.push(phase);
+    }
+    return {page:page.page,runes:page.indices.length,validMinus,validPlus};
+  });
+assert.equal(pageTrials.length,55);
+const impossibleUnderAnyPageSign = pageTrials
+  .filter(p=>p.validMinus.length===0 && p.validPlus.length===0)
+  .map(p=>p.page);
+assert.deepEqual(impossibleUnderAnyPageSign,
+  [3,4,8,10,16,19,20,25,26,27,29,30,31,34,35,37,38,40,41,43,44,45,46,48,54]);
+assert.equal(impossibleUnderAnyPageSign.length,25);
+assert.deepEqual(pageTrials.find(p=>p.page===2).validPlus,[]);
+assert.deepEqual(pageTrials.find(p=>p.page===3).validMinus,[]);
+assert.deepEqual(pageTrials.find(p=>p.page===3).validPlus,[]);
+
 // Full original p56 authentic prime-totient/F skip positive.
 // The native fourth ciphertext F must be taken literally.
 const prime=[];
@@ -156,10 +180,11 @@ console.log(JSON.stringify({
   minusFirstImpossible:p0Minus.map(r=>r.firstImpossible)},
  originalCipherP1:{runes:sourceP1.length,cipherF:13,minusSurvivors:survivors(p1Minus),plusSurvivors:survivors(p1Plus),
   plusFirstImpossible:p1Plus.map(r=>r.firstImpossible)},
+ wholeBookIndependentPageRekeys:{runeBearingUnknownPages:pageTrials.length,impossibleEvenWithAnyPhaseAndSign:impossibleUnderAnyPageSign},
  continuousP0P1:{runes:combined.length,
   minusSurvivors:survivors(combinedMinus),plusSurvivors:survivors(combinedPlus),
   plusEarliestFail:combinedPlus.map(r=>r.firstImpossible)},
  genuineP56PrimeTotient:{runes:sourceP56.length,primeConsumed:primeClock,exactRecovered:true},
  nativeP57Plant:{runs:nativePlants.length,eachExactAccepted:true,runes:nativeP57.length},
- decision:'No fixed arithmetic direction and historical-key phase can decode BOTH original p0 and p1 with the p56 F-bypass rule, even allowing separate secret phase per page. No unknown plaintext recovered.'
+ decision:'Any consistent sign is incompatible with original p0 and p1; even independent sign and initial phase on every page cannot decrypt 25 original source pages including p3. No unknown plaintext recovered.'
 },null,2));
