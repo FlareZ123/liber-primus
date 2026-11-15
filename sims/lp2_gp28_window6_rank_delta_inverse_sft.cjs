@@ -199,16 +199,17 @@ for (let chapter = 0; chapter < chapters.length; chapter++) {
   // Genuine known p57 prose is distinct from these nine original unknown pages.
   // Repeat it only to match source chapter lengths and keep any EA interrupts.
   const native = Array.from({ length: ciphertext.length - 1 }, (_, i) =>
-    solved[(i + chapter * 7) % solved.length]);
+    i % 97 === 63 ? 28 : solved[(i + chapter * 7) % solved.length]);
   const plant = forwardPlant(native, ciphertext[0]);
   assert.equal(plant.length, ciphertext.length);
   const extracted = extractRanks(plant);
+  assert.equal(extracted.escapes.length, native.filter((x) => x === 28).length);
   const solvedPlant = inverseRanks(extracted.ranks, logProb);
   assert.deepEqual(reemit(plant[0], solvedPlant.plaintext, extracted.ranks.slice(0, W - 1),
     extracted.escapes, plant.length), plant);
   let i = 0, correct = 0;
   for (const x of native) if (x !== 28) { if (solvedPlant.plaintext[i] === x) correct++; i++; }
-  positives.push({ pages: [start, end], nativeRankCount: i,
+  positives.push({ pages: [start, end], nativeRankCount: i, literalEscapes: extracted.escapes.length,
     recovered: correct, fraction: correct / i, rankIoC: solvedPlant.ioc, scorePerRune: solvedPlant.score });
 }
 assert.equal(runeTotal, 12956);
