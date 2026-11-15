@@ -1,6 +1,6 @@
 # 2014–2016 public Tor-corpus gate for the LP2 p56 continuation
 
-**Decision (14 November 2026; Agent 8, issue #828): NO QUALIFYING PUBLIC CORPUS FOUND.** A new, historically distinct Australian 2016 Tor crawl was identified, but the public record exposes no downloadable raw HTTP/WARC archive or independent content/URL lookup interface. It is a possible private-custody lead, not a public corpus. No p56 candidate body, digest preimage, key, unknown LP2 plaintext, or destination was recovered.
+**Decision (15 November 2026; Agent 8, issue #1160, building on #828): NO QUALIFYING PUBLIC CORPUS FOUND.** The additional 2014 Owenson–Savage HSDir study and 2015 CARONTE response corpus were examined alongside the 2016 TorCrawl lead. The 2014 study has no located public per-service dump or URL/body index; CARONTE's ethics approval prohibited third-party disclosure and required deletion at publication. Public Tor Metrics exposes only aggregate counts. No candidate satisfies the combined original-byte, searchable-index, and positive-control requirements. No p56 candidate body, digest preimage, key, unknown LP2 plaintext, or destination was recovered.
 
 ## Acceptance test
 
@@ -23,6 +23,14 @@ The dataset is referred to as **TorCrawl** in later dataset literature, includin
 
 **Disposition:** genuine, distinct historical crawl; **fails public-access and byte-fidelity gates**. Do not count it as a qualifying source.
 
+## 2014 Owenson–Savage HSDir study: historical descriptor capture, no public index
+
+The 2015 CIGI report says the authors operated **40 relays for six months**, recording published hidden-service descriptors and request counts at each relay. A separate crawler fetched **textual page content for one month near the end** and stored parsed data in a database. The study reported approximately **80,000 unique services**. Gareth Owen presented the completed study at 31C3 on **30 December 2014**; the accessible sources do not pin exact collection start/end dates. This is a genuinely distinct historical source, but the public publication and University of Portsmouth research surfaces expose no per-service descriptor dump, URL-level index, raw HTTP/WARC archive, or body lookup interface. The Portsmouth record for the 2016 journal article notes that the post-print is unavailable. Tor Project's public metrics specification only documents the `hidserv-dir-onions-seen` **count** reported in relay extra-info descriptors and its aggregation; it does not expose the onion identities or page bodies behind those counts. The report does not establish byte-exact response-body retention. This lead therefore fails the public-access, index, and byte-fidelity gates.
+
+## 2015 CARONTE study: response corpus was not a public research archive
+
+The CARONTE paper documents storing both requests and responses from its exploration of 1,974 live HTTP/HTTPS hidden services, restricted to textual and HTML responses. Its ethics section states that the institution's review board required the sensitive data to be protected, **not disclosed to third parties**, and **deleted when the paper was accepted for publication**. The paper does not identify a public dataset or query endpoint. This is not an available public archive and must not be pursued as one.
+
 ## Other dated candidates screened
 
 | Candidate | What is publicly established | Why it does not qualify |
@@ -31,14 +39,17 @@ The dataset is referred to as **TorCrawl** in later dataset literature, includin
 | **Silkkitie / Valhalla (2014–15)** | [Public Zenodo dataset](https://zenodo.org/records/8385260) contains daily JSON seller/product information and a few screenshots. | A single marketplace's structured product-page data, not a crawl of original HTTP response bodies or WARC. |
 | **Dark Net Operation (2014–16)** | [Public Zenodo record](https://zenodo.org/records/12538602) describes structured posts from one investigated Tor forum. | Structured forum records, not a general Tor crawl or raw HTTP/WARC; no qualifying response-byte lookup. No dataset contents were downloaded or inspected. |
 | **EURECOM / Deusto May–June 2016** | *The Onions Have Eyes* documents three 2016 crawls and a PhantomJS-based collection mode that saved HTML, headers, scripts, redirects and links. | Public paper/dissertation material only; no qualifying public raw-response deposit was located. Delayed browser HTML and JSBeautifier processing do not prove original response-entity fidelity. See [the existing source-specific review](2016-onions-have-eyes-crawl-p56-raw-body-acquisition.md). |
-| **TNO 2013 / Portsmouth 2014 / Moore–Rid 2015** | Their separate custody and public-availability decisions are already documented in [the 2013–2015 custody report](lp2-2013-2015-tor-custody-scope.md). | No public per-host raw-response archive and searchable original-byte interface was established there. Do not repeat those searches. |
+| **Owenson–Savage 2014 HSDir study / 2015 report** | Forty relays recorded published descriptors and request counts over six months; a one-month text-only crawl stored page data; approximately 80,000 unique services were observed. The completed study was presented at 31C3 on 30 December 2014. | No public per-service dump, URL/body index, or raw-response archive was located; exact collection dates and original body-byte fidelity are not established. Public Tor Metrics exposes only aggregate counts. |
+| **CARONTE 2015** | The paper reports 1,974 live HTTP/HTTPS services and an internal database of textual/HTML requests and responses. | The ethics board required that the sensitive data not be disclosed to third parties and be deleted at paper acceptance; no public dataset or index is identified. |
+| **Tor Metrics / CollecTor** | Public relay extra-info records include the `hidserv-dir-onions-seen` statistic, documented by the Tor Project. | This is an aggregate count of onion addresses observed by a relay, not the underlying identities, URLs, or page bodies; it cannot serve as a target index. |
+| **TNO 2013 / Moore–Rid 2015** | Their separate custody and public-availability decisions are already documented in [the 2013–2015 custody report](lp2-2013-2015-tor-custody-scope.md). | No public per-host raw-response archive and searchable original-byte interface was established there. Do not repeat those searches. |
 | **Common Crawl / Arquivo.pt / Archive Team** | Existing reports document their public archive formats, source-specific controls and target queries. | These are already audited general-web/archive lanes, not a newly discovered Tor-specific 2014–16 corpus. Do not rerun the same scans. |
 
 ## Decision and next action
 
-The bounded review found **zero** candidates satisfying the complete conjunction of period, Tor/onion crawl, public raw HTTP/WARC access, independent content lookup, and a byte-valid positive control. The 2016 Australian TorCrawl is a new source pointer but does not change that decision. DUTA, Silkkitie and the Dark Net Operation dataset are public or request-accessible in narrower derived forms, not qualifying original-response corpora.
+The bounded review found **zero** candidates satisfying the complete conjunction of period, Tor/onion crawl, public raw HTTP/WARC access, independent content lookup, and a byte-valid positive control. The 2014 Owenson–Savage capture is historically relevant but has no located public per-service index; CARONTE's data were subject to a no-disclosure/deletion requirement; Tor Metrics is aggregate-only; and the 2016 Australian TorCrawl still has no public raw-response/index surface. DUTA, Silkkitie and the Dark Net Operation dataset are public or request-accessible in narrower derived forms, not qualifying original-response corpora.
 
-No digest sweep was run: without a source-selected target response and byte framing, testing more digest families or guessed serializations would have no causal path to the p56 preimage. No onion host enumeration, recrawl, dataset download, or external custodian contact was performed.
+No digest sweep was run: without a source-selected target response and byte framing, testing more digest families or guessed serializations would have no causal path to the p56 preimage. No onion host enumeration, recrawl, dataset download, or external custodian contact was performed. In particular, no CARONTE data were requested or accessed, and no private Owenson–Savage records were sought.
 
 Reopen this public-source lane only if a genuinely new 2014–2016 Tor/onion raw-response or WARC deposit appears with a usable content/URL index and an independently dated byte-level positive control. A private custodian route is a separate, owner-authorised decision and must not be misreported as public availability.
 
@@ -50,3 +61,6 @@ Reopen this public-source lane only if a genuinely new 2014–2016 Tor/onion raw
 - [Silkkitie / Valhalla 2014–2015 Zenodo record](https://zenodo.org/records/8385260).
 - [Dark Net Operation Dataset Zenodo record](https://zenodo.org/records/12538602).
 - Sánchez-Rola, Balzarotti & Santos, [*The Onions Have Eyes*](https://doi.org/10.1145/3038912.3052657), 2017; see the existing EURECOM public-deposit review linked above.
+- Owenson & Savage, [*The Tor Dark Net*](https://researchportal.port.ac.uk/files/19636608/The_tor_dark_net.pdf), 2015, pp. 3–5; [31C3 presentation](https://media.ccc.de/v/31c3_-_6112_-_en_-_saal_2_-_201412301715_-_tor_hidden_services_and_deanonymisation_-_dr_gareth_owen); [University of Portsmouth publication record](https://researchportal.port.ac.uk/en/publications/empirical-analysis-of-tor-hidden-services/).
+- Tor Project, [reproducible metrics specification](https://metrics.torproject.org/reproducible-metrics.html), § Onion Services.
+- Matic, Kotzias & Caballero, [*CARONTE: Detecting Location Leaks for Deanonymizing Tor Hidden Services*](https://software.imdea.org/~juanca/papers/caronte_ccs15.pdf), §§3.2 and 6 (response storage and ethics requirements).
