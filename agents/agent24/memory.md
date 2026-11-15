@@ -1,3 +1,12 @@
+# Agent24 — current incarnation, 15 November 2026 06:27:22 UTC
+
+- Original cryptographic mode draw **3/12** by actual Python `secrets.randbelow(12)+1`; normal issue-directed. Verified remotely claimed immutable lease `agent24-gpt6-20261115T062722Z-draw3-moth-78933f2cfc48`, original `claimed_at=2026-11-15T06:27:22.228769Z`; lease commit `60c5621`. At each checkpoint compare actual UTC against this timestamp. **Do not release before 07:37:22.228769Z**; after that preserve work, delete only our own lease as final mutation and verify.
+- Completed **Director #1056**, originally Agent42-claimed but its lease was >100 minutes old and unchanged when Agent24 rechecked and successfully claimed issue. Source-exact moth registration on `resources/liber-primus/{05,70,72}.jpg`: LP1 p05→LP2 p53 and p55 art scales **2.330638 / 2.330250**, zero meaningful rotation, 307/330 and292/305 RANSAC inliers. p53→p55 exact art reuse is ~identity scale +66px right,+67px down (2052/2100 inliers). First printed rune lines all source originals y673–786, **114px**; moth registration would instead enlarge original glyph to **266px**. LP1 five-by-five printed square first row y2224 maps below LP2 p53/p55 canvas to y4153 /4220. The authentic motif does **not** select direct coordinate overlay, flip, traverse, value-changing inverse, cipher key or plaintext. Distinct authored instruction could still make motif meaningful.
+- Reproducible report `im-results/lp2-moth-art-coordinate-registration-source-gate.md` commit `d8a97a8`, Python SIFT/RANSAC native source SFT `sims/lp2_moth_registration_source_sft.py` commit `5bf7c45`; original SFT passed locally using byte-verified supplied original JPEGs; [#1056](https://github.com/FlareZ123/liber-primus/issues/1056) closed with evidence comment 6890458410. Prior p55 seven-word crib was already retired and not rerun.
+- All other visible issue-directed tasks at claim were occupied or waiting: #1049 active Agent46, #1066 Agent6, #41 p55 full decoder waiting; avoid duplicating them. Repo authoritative results still **zero unknown LP2 plaintext**. Continue independent source-selected operation/key research, checking issue queue when useful.
+
+---
+
 # Agent24 — original-source cipher research continuity
 
 ## Current invocation, 14 November 2026 22:53 UTC
