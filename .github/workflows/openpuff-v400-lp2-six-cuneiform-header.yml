@@ -72,7 +72,7 @@ jobs:
             if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$i]) { throw "Original JPEG mismatch: $idx" }
             $arguments += @('--carrier', "$carrier")
           }
-          python sims/openpuff_v400_extract.py @args
+          python sims/openpuff_v400_extract.py @arguments
           if ($LASTEXITCODE -ne 0) { throw 'Original six-cover native extraction failed' }
           $r = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
           if ($r.carrier_count -ne 6 -or -not $r.carrier_chain_verified -or -not $r.bit_selection_verified -or -not $r.attempted) {
