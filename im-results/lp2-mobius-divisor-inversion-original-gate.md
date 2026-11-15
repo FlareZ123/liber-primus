@@ -1,27 +1,26 @@
-# GP29 Möbius divisor inversion: source-motivated original-cipher gate
+# Complementary Möbius source test: opposite divisor direction and chapter resets
 
-**Decision (15 November 2026).** Literal **MOBIUS** appears among the GP-rune-word cells on the original 2014 LP1 p05 Wisdom magic square, on a page expressly naming prime numbers and Euler's totient. Möbius inversion is one mathematically natural consequence of that word, distinct from applying the pointwise function μ to square values. It has not supplied a decoding operation for LP2. Exact original-source whole-book, chapter and page inversions leave the distribution near uniform and yield no coherent opening text. Preserve the clue; retire these six direct original-GP29 inverses unless an independent clue selects a different input register or transform.
+**Decision (15 November 2026).** Original LP1 p05 says **MOBIUS** and explicitly foregrounds primes and Euler's totient. The direct GP29 **divisor-sum** inverse with *continuous-book and physical-page clocks* was **already tested** in [Agent29's source-exact Dirichlet report](lp2-mobius-dirichlet-original-inverse.md), with identical IoC values **0.034479208136** and **0.034489133962**. [Agent10's arithmetic report](lp2-arithmetic-mobius-totient-inverse.md) separately confirms the whole-book divisor inverse. Those two outcomes are replicated in the new SFT as regression controls, and **are not newly discovered**.
 
-## Source-selected premise and controlled assumptions
+This complementary study tests exactly **four distinct, previously unreported reset/direction combinations**: (i) the mathematically different *sum-over-multiples* zeta inverse on the book, each page, and each of the nine visually delimited chapters; and (ii) the standard sum-over-divisors inverse with **nine-chapter resets**, absent from the prior book/page audit. No one-step native-GP plaintext emerges.
 
-- The literal printed word **MOBIUS** is in LP1 p05's center row, fifth column. The page's mixed numerical/rune table is reconstructible by GP-prime sums as the 5×5/1033 historical square ([original source reconstruction](2014-magic-square-direction-map.md)). That same original page explicitly says that the totient function is sacred.
-- The source **does not** say to perform a divisor-sum transform on LP2, identify a plaintext direction, or select reset boundaries. This is a finite exploratory inverse, not an authenticated creator instruction.
-- Two standard Dirichlet incidence directions are tested, with **no fitted keys or phases**: (a) divisor convolution C[n] = sum(P[d] for d dividing n) mod 29, inverted progressively; (b) multiple convolution C[n] = sum(P[m] for m multiple of n) mod 29, inverted from the largest position.
-- The GP29 rune indexes are the unchanged canonical original ciphertext values from resources/liber-primus/lp2-corpus.json. Its physical p50 has no runes. Printed rune order is unchanged. No extra literal-F rule is applied because this test defines a distinct complete reversible linear family.
-- Three clock choices are fixed before evaluation: one continuous 12,956-rune tape; the nine image-visible chapter lengths [729,1145,1729,1903,1021,1433,1680,3008,308]; and each of the 55 rune-bearing original physical pages. No feedback parameters, key material or arithmetic moduli are tuned.
+## Frozen original assumptions
 
-## Original outcomes
+- Original LP1 p05's mixed numerical/rune-cell matrix spells MOBIUS at row 3, col 5 and names the totient; source operation remains **hypothetical**. Nothing Cicada-authenticated selects divisor arithmetic, its operand register or a reset.
+- Standard divisor-zeta encoding: C[n] = sum(P[d] for d dividing n) mod29. Standard opposite *multiple-zeta* encoding: C[n] = sum(P[m] for m a positive multiple of n) mod29. The two are **different matrices** on the same 1-based length-N finite stream. The divisor inverse proceeds upward, the multiple inverse downward.
+- Input is unchanged `resources/liber-primus/lp2-corpus.json`: GP29 indexed original p0–55 in printed order, 12,956 runes, page50 empty. The frozen chapter lengths are 729,1145,1729,1903,1021,1433,1680,3008,308. No ciphertext-selected key, phase, modulus, printed-word remapping, or F exception.
+- The existing book/page divisor models are retained only to show exact reproduction of the older published baselines.
 
-| Frozen reset clock | Divisor-sum inverse GP29 IoC | Multiple-sum inverse GP29 IoC |
-| --- | ---: | ---: |
-| Whole manuscript | 0.034479208136 | 0.034485869044 |
-| Nine visual chapters | 0.034495675712 | 0.034440910893 |
-| 55 rune-bearing pages | 0.034489133962 | 0.034470104498 |
+## Exact original-cipher outcomes
 
-Original ciphertext GP29 IoC is **0.034478397865**. The separately clear original p57 PARABLE has **0.062709966405**, confirming what a conventional, nonhomophonic native-GP English register looks like in a short solved control. Every tested inverse retains nearly the original-uniform histogram. Example whole-book divisor inverse starts `S OE O A L H EO Y Y IA O W M J TH G I P AE U TH IA T L EO N TH IA F EO Y` (original GP rune labels). The converse whole-book multiple inverse begins `NG M T F M W X E H C W S F A U X P T I R D NG E EA H L F TH P`. Neither yields a readable GP-native passage in preserved source word order.
+| Clock | Divisor inverse IoC | Multiple inverse IoC | Research standing |
+| --- | ---: | ---: | --- |
+| Whole book | 0.034479208136 | **0.034485869044** | divisor prior; multiple new |
+| Nine visual chapters | **0.034495675712** | **0.034440910893** | both new |
+| 55 original rune-bearing pages | 0.034489133962 | **0.034470104498** | divisor prior; multiple new |
 
-The [Windows Node.js 22 single-file CommonJS reproducer](../sims/lp2_mobius_divisor_inversion_original_sft.cjs) computes both exact inverses on the source integer corpus, verifies forward reconstruction of **all 12,956** original symbols for each variant, and **plants and recovers all 95** solved original clear p57 runes through both forward incidence operators. These round trips check implementation and do not independently identify an intended decryption.
+The original ciphertext GP29 IoC is **0.034478397865**. The original solved clear p57 has **0.062709966405**. All **four new** inverse outputs remain indistinguishable from the roughly uniform source register under this single whole-book statistic, and their continuous opening is nonlinguistic. Whole-book multiple inversion begins `NG M T F M W X E H C W S F A U X P T I R D NG E EA H L F TH P`. Chapter-multiple inversion starts `I X X F EO NG S R OE O B R E S A G TH L T J M TH NG D F L N N N`.
 
-## Decision boundary
+## Reproducer and decision
 
-This excludes a direct unkeyed GP29 Dirichlet divisor or multiple zeta transform **with the three declared reset clocks and source rune order** as a transparent one-step English recovery, to the extent native-GP English frequencies are diagnostic. The result leaves non-English intermediate text, altered numeration, symbolic Möbius-strip walks, other nonlinear uses of the 2014 square, and external keys unresolved. No plaintext, source-selected unknown-page key or historical downstream action emerged. A new original clue that **types index n** or selects a specific second transform would change this decision more than an arbitrary reset/shift sweep.
+[One-file Windows Node22 CommonJS original-cipher SFT](../sims/lp2_mobius_divisor_inversion_original_sft.cjs) independently checks both directions, forward/reverse exact 12,956/12,956 reconstruction, and all-95 original p57 GP-native positive plants. The duplicated divisor book/page baselines agree numerically with the earlier report. The four new models are narrow finite exclusions for **direct one-layer GP-native English recovery**; they cannot rule out an external key, non-English intermediate, altered segmentation or geometric Möbius operation. A new historical selector for the direction and operand is needed before any further inversion family is warranted. No original p0–55 plaintext or author-derived key was recovered.
