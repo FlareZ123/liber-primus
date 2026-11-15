@@ -77,6 +77,39 @@ for (let mask = 0; mask < 32; mask += 1) {
   assert(masked.some((v) => v >= 29));
 }
 
+// The actual 2014 stage XOR recovered raw signed-message BYTES, not GP29
+// runes. Reinterpret this literal 5-bit XOR output as standard, most-
+// significant-bit-first packed base32 symbols, with no guessed key or phase.
+/** @param {number[]} symbols @returns {{bytes:Buffer,remainder:string}} */
+function packFiveBit(symbols) {
+  const bits = symbols.map((n) => n.toString(2).padStart(5, '0')).join('');
+  const byteCount = Math.floor(bits.length / 8);
+  const bytes = Buffer.from(Array.from({length:byteCount}, (_, i) =>
+    parseInt(bits.slice(8 * i, 8 * i + 8), 2)));
+  return {bytes, remainder: bits.slice(byteCount * 8)};
+}
+const binary = packFiveBit(combined);
+assert.equal(binary.bytes.length, 125);
+assert.equal(binary.remainder, '11011');
+assert.equal(binary.bytes.subarray(0, 8).toString('hex'), '0c404fb430cd5921');
+const printable = [...binary.bytes].filter((v) =>
+  v === 9 || v === 10 || v === 13 || (v >= 32 && v <= 126)).length;
+const ascii = [...binary.bytes].map((v) =>
+  v >= 32 && v <= 126 ? String.fromCharCode(v) : '\0').join('');
+const longestPrintableRun = Math.max(...ascii.split('\0').map((part) => part.length));
+assert.equal(printable, 52);
+assert.equal(longestPrintableRun, 6);
+// A planted real PGP signed-message prefix must survive the same MSB packing
+// without any tuning, regardless of the rune-share/XOR implementation.
+const originalHeader = Buffer.from('-----BEGIN PGP SIGNED MESSAGE-----', 'ascii');
+const headerBits = [...originalHeader].map((v) => v.toString(2).padStart(8,'0')).join('');
+const headerDigits = Array.from({length:Math.ceil(headerBits.length / 5)}, (_, i) =>
+  parseInt(headerBits.slice(i*5, i*5+5).padEnd(5,'0'), 2));
+assert.deepEqual(packFiveBit(headerDigits).bytes.subarray(0,originalHeader.length), originalHeader);
+assert(!binary.bytes.includes(originalHeader));
+assert(!binary.bytes.subarray(0,4).equals(Buffer.from('%PDF')));
+assert(!binary.bytes.subarray(0,4).equals(Buffer.from('PK\x03\x04', 'binary')));
+
 // Source-native positive: a deliberately planted 95-rune genuine GP29
 // text is exactly recoverable from three VALID GP29 share streams.
 const clear = corpus.pages.find((entry) => entry.page === 57);
@@ -93,5 +126,10 @@ console.log(JSON.stringify({
   invalidGP29Outcomes: escapes.length,
   invalidOriginalOffsets: actualEscapeSites,
   nativeGP29PositiveRecovered: recovered.length,
+  directBase32PackedBytes: binary.bytes.length,
+  directBase32ResidualBits: binary.remainder,
+  directBase32PrintableBytes: printable,
+  directBase32LongestPrintableRun: longestPrintableRun,
+  plantedPGPHeaderPackedRecovered: originalHeader.length,
   decision: 'NO direct GP29 full-window XOR with fixed five-bit relabeling; no unknown plaintext',
 }, null, 2));
