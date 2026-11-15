@@ -50,8 +50,27 @@ In all variants 1,225 original source units round-trip exactly. Original printed
 
 The original printed source could in principle encode a non-English, compressed, or already encrypted intermediate; the test excludes only this precise canonical full30 direct transformation. Since the four direct inverses give no coherent original plaintext, **a new original key selector or different typed operation is still required**. Preserving spaces as a literal thirtieth cell introduces a distinct, more realistic hypothesis than discarding a forbidden cell, so future work should not conflate these two exclusions.
 
+## The original 2013 poster as a candidate 30-cell board (Agent20, 15 November)
+
+The actual 2013 Gematria Primus reference drawing, recovered during the historical 2013 Twitter/audio XOR stage, lists **15 GP symbols in its left table and 14 in its right**, leaving a visible empty position opposite the fifteenth left row. Each table has three *attribute* columns (rune, transliteration, prime); those are not three additional symbol positions. The original illustration is therefore naturally a **15×2 symbol arrangement with one blank**. A historically documented 2014 *solver-devised* rearrangement stacked the left and right alphabet columns into a 29-long list and reversed position for the known LP1 WARNING; it is evidence of a valid contemporary table manipulation, **not an authenticated instruction from the creator to fold a 5×6 board**. Historical illustration and distinction: [2014 participant walkthrough](https://embeddedsw.net/doc/Openpuff_for_experts_Cicada_3301_recruitment_puzzle_2014.pdf), [2013 image as circulated](https://uncovering-cicada.wikia.com/wiki/ONION_2_with_3_JPGs,_3_outguesses,_RUNES_and_PGP_signed_CIPHERTEXT_IN_5_GRAMS).
+
+A single affordable original-input conditional test uses the most literal **row-preserving** fold: take each consecutive three source table rows, read left-to-right, and place the six cells in one row of a 5×6 rectangle. In GP index order the resulting board is
+
+`0 15 1 16 2 17 / 3 18 4 19 5 20 / 6 21 7 22 8 23 / 9 24 10 25 11 26 / 12 27 13 28 14 SPACE`.
+
+No symbol mapping, cell position or row order is scored against the original manuscript. This board is structurally different from the two canonical 5×6 orders tested above. Preserve p23's original 16-rune red heading and the subsequent 1,005 GP runes. Insert one explicit 30th-symbol SPACE after each of the 220 printed body words (including the terminal stop), giving 1,225 source symbols, exactly 245 five-symbol groups. Apply precisely the existing full-30 **mixed-radix Bifid fold** under each of its two inverse directions, keeping that chart order fixed.
+
+| Source-chart 5×6 original-input read | Decoded SPACE symbols | Max decoded GP-only word | Words ≥40 runes | GP-only IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Bifid inverse | **49** | **91** | **12** | **0.0346446664** |
+| Bifid forward | **51** | **104** | **9** | **0.0353074790** |
+
+The *actual printed input* has 220 words with maximum 14 runes. Each full 1,225-symbol candidate round-trips exactly under the opposite transform. Independently constructed source-native GP English controls with **ING/IO** spellings and the same authentic word-length geometry round-trip losslessly through both directions. The outputs retain nearly uniform symbol frequencies and long space-free runs; neither yields direct ordinary GP English. [Source-fixed CommonJS SFT](../sims/lp2_2013_gp_visual_fiveby6_source_sft.cjs) · [successful original-input manual CI 43668829655](https://github.com/FlareZ123/liber-primus/actions/runs/43668829655).
+
+**Source-selector result:** the illustration itself selects 29 rune identities, their prime values, the 15+14 split and a bottom-right vacant table slot. It **does not select** grouping every three visible rows, a 5×6 coordinate board, the SPACE interpretation, a Bifid operation, one transform direction or the p23 recipient. Even a different visually plausible grouping of the same 15 rows would give a different keyed board. Thus the 2013 visual is a concrete *candidate key source* but cannot, by itself, supply the unique complete decoder required by Director #981. This conditional direct-original negative does not prohibit another source-chosen grid or a multi-layer register.
+
 ## Decision and next causal input
 
-Retire the **four source-fixed, lossless 29-of-30 cycle-walked variants** and the **four full 29-plus-SPACE variants** as direct native-English inverses as direct English inverses. Preserve the source-visible five-dot artwork and the 1005/3000 divisibility; neither selects a keyed 5×6 grid or explains how a 2014 player would apply cycle-walking. Other secret squares, different plaintext registers, altered segmentation, position-varying keys and layered mechanisms are outside the test.
+Retire the **four source-fixed, lossless 29-of-30 cycle-walked variants** and the **four full 29-plus-SPACE variants** as direct native-English inverses. Preserve the source-visible five-dot artwork and the 1005/3000 divisibility; neither selects a unique keyed 5×6 grid or explains how a 2014 player would apply cycle-walking. The one additional original-2013 source-row board fold also fails as a direct GP-English inverse, and the original chart does not specify its Bifid consumer. Other secret squares, different plaintext registers, altered segmentation, position-varying keys and layered mechanisms are outside the test.
 
 An authentic source-supplied coordinate square, key or cross-page receiver is needed before another phase/key search is warranted. This finding provides a narrow exclusion rather than additional unknown plaintext.
