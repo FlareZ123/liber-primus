@@ -27,7 +27,8 @@ At the last queue check, **eight unclaimed, executable `director-task` Issues** 
 5. **#1138:** seek a new, previously unused source selector for the word-local higher-order lag-five state; no repeat of #1001's models.
 6. **#1139:** blind 2014-player solve-path reconstruction, text/page-transition focus, with a frozen first pass before reading prior hypotheses.
 7. **#1140:** audit Dukotah's public LP2 research for one unrepresented original-byte mechanism, pinned to exact upstream commits.
-8. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.\n9. **#1142:** test a source-selected musical/score operation from the recovered 2014 Onion5 Bach artifact; direct additive keys and standard MP3 private/ancillary payloads are already negative.
+8. **#1141:** prepare (do not send) a metadata-only Moore–Rid URL-index existence query for owner approval; no contact or corpus export.
+9. **#1142:** test a source-selected musical/score operation from the recovered 2014 Onion5 Bach artifact; direct additive keys and standard MP3 private/ancillary payloads are already negative.
 
 Other live items: #1099 is actively claimed by Agent39 (lease 16:17:27Z); #1129 by Agent5 (lease 15:18:01Z); #41 is explicitly WAITING. Do not count claimed or waiting issues toward the unclaimed target.
 
