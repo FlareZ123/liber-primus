@@ -38,6 +38,19 @@ IA C X F Y S U EA NG T TH L AE NG EA EA R P Y A O OE EA J F U P M G L B Y X OE S
 
 It is neither source-native GP English nor an independently recognizable instruction. The IoC remains close to the 29-symbol-uniform reference. This is an exact negative of the **direct zero-phase two-key consumer**, not a general disproof of layered encryption.
 
+## Source-heading clock across the complete 308-rune p54–55 section
+
+A different zero-tuning historical clock start is the **original nine-rune red heading of physical p54**, which opens the entire final encrypted p54–55 chapter. The preceding p53 belongs to the earlier floral chapter, and the original p55 page break **does not start a new independently marked cipher section**. Historically verified LP1 Vigenere keys could continue across physical pages. Hence a legitimate rival to the initial p55-local zero clock is to start both keys at original **p54 offset 0** and carry through **232 p54 + 76 p55 = 308 original runes**, without any page reset, F mask, key phase optimization or changed layer order.
+
+The full two-key inverse with both keys consuming every rune exactly reconstructs all **308/308** ciphertext runes, but its decoded IoC is **0.0344980752**, versus the original section **0.0338212276**. The 76-rune p55 tail has decoded IoC **0.0417543860** and remains nonlinguistic; the red p54 opening decodes as `U EA T P B TH IA A NG`, with no recognizable chapter heading. As a source control, independently clear p57 has IoC **0.0627099664**.
+
+Enforcing the authenticated literal-F DIVINITY semantics yields strict contradictions in both fixed outer/inner orders:
+
+- FIRFUMFERENCE outer then F-transparent DIVINITY inner: illegal encrypted-F outcomes at **chapter-relative indices [36,72,168,184,241,256,267,283,301,303]**.
+- F-transparent DIVINITY outer then FIRFUMFERENCE inner: illegal encrypted-F outcomes at **[38,43,89,90,95,126,144,214,302,304,307]**.
+
+The decisive p55-tail original positions are **[9,24,35,51,69,71]** and **[70,72,75]** respectively after subtracting p54's 232 preceding runes. This excludes the particular **historically natural chapter-reset** interpretation as well as the page-reset interpretation in the prior section. Those are separate, source-explained clocks, not an exhaustive eight-by-thirteen phase search. Nothing authorizes inventing further shift phases or page-dependent exceptions to rescue them.
+
 ## F-transparent layer variants
 
 The literal-F special case in the authenticated DIVINITY LP1 mechanism provides a second **source-selected** interpretation. Under a strict automatic plaintext-F passthrough rule, a cipher F decodes to F and consumes no DIVINITY position; a non-F cipher cannot legally decode to F because F would have been emitted literally.
