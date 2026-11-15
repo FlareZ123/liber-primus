@@ -373,6 +373,111 @@ assert.equal(affineOffset, plaintext.length);
 assert.equal(affineValidNativeWords, 32);
 assert.equal(affineValidRelativeKeys, 25);
 
+
+/**
+ * Latin/Old-English published native GP29 direct index tapes, without
+ * English respelling or ciphertext-selected dictionary additions.
+ * @returns {Array<{label:string,words:Map<number,DictionaryWord[]>,expected:number}>}
+ */
+function otherLanguageLexica() {
+  const latin = fs.readFileSync(path.join(root,
+    "resources/control/latin-vulgate-gp-wholewords.txt"), "utf8");
+  const latinAlpha = "0123456789ABCDEFGHIJKLMNOPQRS";
+  const latinWords = latin.split(/\r?\n/u).filter((line) => /^[0-9A-S]+$/u.test(line))
+    .map((line) => [...line].map((ch) => latinAlpha.indexOf(ch)));
+  assert.equal(latinWords.length, 39835);
+
+  const oe = JSON.parse(fs.readFileSync(path.join(root,
+    "resources/control/beowulf_oe_gp_profile_corrected.json"), "utf8"));
+  assert.equal(oe.positiveControlAlphabet, "ABCDEFGHIJKLMNOPQRSTUVWXYZabc");
+  const oldWords = [];
+  let offset = 0;
+  for (const length of oe.allSourceGpWordLengths) {
+    const sourceWord = oe.sourceGpBase29.slice(offset, offset + length);
+    assert.equal(sourceWord.length, length);
+    oldWords.push([...sourceWord].map((ch) => oe.positiveControlAlphabet.indexOf(ch)));
+    offset += length;
+  }
+  assert.equal(offset, 48012);
+  assert.equal(oldWords.length, 10885);
+
+  /**
+   * @param {number[][]} wordTape
+   * @param {number} unique
+   * @returns {Map<number,DictionaryWord[]>}
+   */
+  function makeLexicon(wordTape, unique) {
+    const bins = new Map();
+    for (const indices of wordTape) {
+      assert.ok(indices.every((n) => n >= 0 && n < 29));
+      if (!bins.has(indices.length)) bins.set(indices.length, new Map());
+      bins.get(indices.length).set(indices.join(","), {word: indices.join(","),indices});
+    }
+    assert.equal(Array.from(bins.values()).reduce((sum, items) => sum + items.size, 0), unique);
+    return new Map(Array.from(bins, ([n,items]) => [n, Array.from(items.values())]));
+  }
+  return [
+    {label:"Latin Vulgate",words:makeLexicon(latinWords,7305),expected:17},
+    {label:"Old English Beowulf",words:makeLexicon(oldWords,3372),expected:17}
+  ];
+}
+
+/**
+ * Exercise the identical invariant under all 29 possible feedback slopes,
+ * then recover independently planted native-language words and seam keys.
+ * @param {string} label
+ * @param {Map<number,DictionaryWord[]>} lexicon
+ * @param {number} expectedZero
+ */
+function crossLanguageGate(label, lexicon, expectedZero) {
+  const keys = Array.from({length:58},(_,physical)=>(11*physical+7)%29);
+  const zero = [],zeroLong=[];
+  let nativePositives=0,relativeKeys=0;
+  for (let i=0;i<crossPage.length;i++) {
+    const printed=crossPage[i].word;
+    const candidates=lexicon.get(printed.c.length)||[];
+    assert.ok(candidates.length);
+    const cut=printed.pages.findIndex((pg)=>pg!==printed.pages[0]);
+    let exists=false;
+    for (let a=0;a<29;a++) {
+      if (candidates.some((v)=>affineCompatible(printed.c,printed,v.indices,a))) {
+        exists=true;
+        break;
+      }
+    }
+    if (!exists) {
+      const boundary=printed.pages[0]+"->"+printed.pages[printed.pages.length-1];
+      zero.push(boundary);
+      if (printed.c.length>=7) zeroLong.push(boundary);
+    }
+
+    const sourceWord=candidates[(i*17+5)%candidates.length].indices;
+    const encrypted=affineTransform(sourceWord,printed.pages,keys,17,false);
+    assert.deepEqual(affineTransform(encrypted,printed.pages,keys,17,true),sourceWord);
+    assert.ok(affineCompatible(encrypted,printed,sourceWord,17));
+    nativePositives++;
+    if (cut>=2) {
+      assert.equal(affineRelativePageKey(encrypted,sourceWord,cut,17),
+        mod29(keys[printed.pages[cut]]-keys[printed.pages[cut-1]]));
+      relativeKeys++;
+    }
+  }
+  assert.equal(zero.length,expectedZero);
+  assert.equal(zeroLong.length,13);
+  assert.equal(nativePositives,32);
+  assert.equal(relativeKeys,25);
+  return {label,zeroAll29:zero.length,zeroLong:zeroLong.length,
+    zeroBoundaries:zero,nativePositives,relativeKeys};
+}
+const historicalLanguageGates=otherLanguageLexica().map(({label,words,expected})=>
+  crossLanguageGate(label,words,expected));
+const englishZeroLong=affineRows.filter((row)=>row.compatibleSlopes===0&&row.length>=7)
+  .map((row)=>row.boundary);
+assert.equal(englishZeroLong.length,13);
+for (const result of historicalLanguageGates) {
+  for (const boundary of englishZeroLong) assert.ok(result.zeroBoundaries.includes(boundary));
+}
+
 console.log(JSON.stringify({
   model: "GP29 plaintext-one-back with independent per-physical-page additive keys",
   source: {runes: sourceRunes.length, words: words.length,
@@ -381,6 +486,7 @@ console.log(JSON.stringify({
   original: {zeroDictionaryCompatibleSeams: 19, ambiguousOrViableSeams: 13,
     seamsWithObservableKeyDifference: 25,
     zeroCompatibleObservableKeyDifferences: 15, rows},
+  historicalLanguageGates,
   affineAll29: {zeroWordsAnySlope: 16, zeroWordsLengthAtLeast7: 13, sharedSurvivingSlopes: 0, rows: affineRows},
   nativePlant: {affineKnownSlope: 17, affineCompleteRecovered: plaintext.length,
     affineSeamWordsRecovered: affineValidNativeWords, affineTrueRelativeKeys: affineValidRelativeKeys,
