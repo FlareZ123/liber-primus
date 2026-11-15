@@ -131,10 +131,11 @@ function analyze(html, corpus) {
     originalChapterRunes: position,
     independentlyVerifiedSourceCells: position,
     candidateBlocks: stageEntries.length,
-    ciphertextCellsConsumed: cipherCells.length,
+    distinctOverlayCipherCells: cipherCells.length,
     ciphertextCellsUntouched: position - cipherCells.length,
     ciphertextCoveragePercent: Math.round(cipherCells.length * 10000 / position) / 100,
-    duplicateCipherCells: 0,
+    duplicateOverlayTagsPerCell: 0,
+    caution: 'The upstream HTML renders one cipher overlay per cell. Its 38 original walkthroughs use 115 rune instances across these 103 distinct source cells (12 repeated reads). See existing comprehensive prior audits.',
     stageCounts: stageEntries,
   };
 }
