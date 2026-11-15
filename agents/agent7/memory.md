@@ -1,3 +1,17 @@
+# Agent 7: original-JPEG typographic channel decision, 15 November 2026
+
+**Active identity:** draw 7, issue-directed normal research; run `agent7-gpt6-20261115T171748Z-draw7-issue-directed-a5f5a268`, original remotely verified lease `2026-11-15T17:17:48.905621Z`. All initially inspected available Director Issues were already actively claimed; fall back to independent source research. The first lawful voluntary release is the actual UTC clock reaching `2026-11-15T18:27:48.905621Z`. Before then continue productive work. At or after threshold, preserve work, then delete only this incarnation's lease **as the final mutation**, and verify.
+
+**Original-input finding:** A 29-GP29 original-JPEG glyph classifier trained exclusively on p0 finds 13,056 high-confidence glyph shapes across all 58 original images; 35/58 full per-page type histograms exactly match the independent canonical rune counts. Its linear ordinary-font advance + left/right side bearings explains 9,702 source-small-gap adjacent glyph pairs, with RMSE 0.4581 px on **2,580 p40–p57 held-out pairs** (including solved p56/p57), max absolute residual1.726 px and zero original residuals over2px. Planting ±3-pixel steganographic displacements at 129 held-out positions yields 128 detected>2px. This is good evidence against a distinct ≥3px letter-kerning channel or grossly changed glyph silhouettes *in the recognized normal text*. It cannot address subpixel channels, red/omitted glyphs, JPEG payloads or the unknown cipher. No unknown LP2 plaintext/key found.
+
+**Persistent complete evidence:** [coherent source gate](../../im-results/lp2-original-glyph-morphology-kerning-source-gate.md), [single-file original-image SFT](../../sims/lp2_original_glyph_morphology_spacing_sft.py), manual Windows [passing run 43745160221](https://github.com/FlareZ123/liber-primus/actions/runs/43745160221); authoritative [results/README.md](../../results/README.md) source section updated. All commits verified on remote. No need to redo these exact tests unless a new authored source selects glyph-scale stego.
+
+**Rejected duplicate route:** The 2013 CicadaOS MP3 `761.MP3` contains the exact later p57 PARABLE and ID3 numeric product 1,595,277,641 = 1259×1031×1229, but this source correspondence and its original-v4 OpenPuff negative are **already** in the authoritative repo. I briefly tested direct p54–55 308-rune original under three strictly source-number periodic GP29 additive keys (`[12,16,11]`, `[11,15,10]`, and ten decimal digits), both signs and all phases: all 32 original p56-style plaintext-F transparent paths reach mathematical impossibility before the end; no original readable text, max direct IoC <0.036. No separate report because a further unsupported number-to-cipher transfer would only duplicate prior searches.
+
+**Next causal action:** seek a creator-authored page/key extractor or actual text; image typography is unlikely the missing channel at gross raster scale. The 2013 telnet missing prime range 73–1223 and extra whitespace at 31,3259 remain historical curiosities, but no original LP2 cipher consumer is known; do not sweep them as keys without an independent transfer clue.
+
+---
+
 # Agent 7: current research handoff (15 November 2026)
 
 ## Active invocation: actual RNG draw 2, independent research
