@@ -14,6 +14,12 @@ A solver seeing **KNOW THIS**, a beetle, a human body, and a 3301 magic square m
 
 A numerical coincidence worth noticing, but not promoting: 3301 is the 464th prime, and a recovered 2013 CicadaOS `prime_echo` script contains 464 primes through 3301. That script is a historical/reconstructed 2013 artifact, not an authenticated instruction to use p16's square as a prime-index key. The relationship may be coincidental.
 
+## Quick source check
+
+A repository code search for `scarab`, `Khepri`, `Osiris`, `heart scarab`, and `Mars magic square` found no existing project treatment. A public search combining Cicada 3301 with those terms found no relevant first-party Cicada reference. Thus there is currently no external source bridge from the illustration to a cipher instruction.
+
+Be careful with the Mars-square association: the traditional 5×5 Mars square uses the consecutive integers 1–25 and magic constant 65. The p16 table uses unrelated entries and constant 3301, so it is **not** the standard Mars square; order 5 alone is a weak visual analogy, not a match. For historical context, Kircher's *Oedipus Aegyptiacus* labels the canonical 5×5 construction *Sigillum Martis* and gives the 65 row sum: https://resources.warburg.sas.ac.uk/pdf/noh1050b2331892v.2.2.pdf. This reference does not connect the p16 square to Mars or Cicada.
+
 ## Weakest assumptions and decisive next test
 
 The weakest assumption is that the illustrations are cryptographic selectors at all, rather than thematic artwork accompanying the text and square. A second weak assumption is identifying the beetle and reclining figure as scarab and mummy.
