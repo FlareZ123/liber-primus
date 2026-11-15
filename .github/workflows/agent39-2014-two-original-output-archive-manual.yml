@@ -1,0 +1,27 @@
+name: Agent39 2014 two original solver-output archive acquisitions
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source IDs and local syntax
+        run: |
+          node --check sims/lp2_2014_two_original-output_archive_probe_sft.cjs
+          node sims/lp2_2014_two_original-output_archive_probe_sft.cjs --selftest
+      - name: Exact original Git-blob source and archival output acquisition
+        run: node sims/lp2_2014_two_original-output_archive_probe_sft.cjs --network
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent39-source-dateable-2014-original-output-candidates
+          path: irc2014-archived-outputs/
+          if-no-files-found: ignore
+          retention-days: 30
