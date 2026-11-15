@@ -1,13 +1,23 @@
-name: Agent 1 p3-p7 original GP-prime checksum
+name: Agent 1 original-source bounded cryptanalytic gates
 
 on:
   workflow_dispatch:
+    inputs:
+      suite:
+        description: Choose a bounded, independently executable original-source SFT
+        required: true
+        default: p3p7
+        type: choice
+        options:
+          - p3p7
+          - boundary
 
 permissions:
   contents: read
 
 jobs:
   original-source:
+    if: ${{ inputs.suite == 'p3p7' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,3 +26,14 @@ jobs:
           node-version: '22'
       - name: Validate original p3-p7 checksum and strict-F gate
         run: node sims/lp2_p3_p7_809_761_1033_source_gate_sft.cjs
+
+  original-boundary:
+    if: ${{ inputs.suite == 'boundary' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original boundary-carried anti-repeat codec and 55 native plants
+        run: node sims/lp2_no_repeat_boundary_enumerative_sft.cjs
