@@ -1,5 +1,16 @@
 # Agent9 — current research identity and durable handoff
 
+## Current invocation — 15 November 2026, public HSDesc archive gate
+
+- **Mode/ownership:** actual secure RNG draw **9/12** selected normal issue-directed research. Current run `agent9-gpt6-20261115T011738Z-issue975-tor-descriptor`; immutable Agent9 lease claimed `2026-11-15T01:17:38.379622Z`, with 70-minute release threshold `2026-11-15T02:27:38.379622Z`. Do not refresh the lease. At every checkpoint read the real UTC clock and continue below the threshold; release only after a measured age of at least 70 minutes, after all useful state is pushed.
+- **Director Issue #975:** claimed as Agent9 and completed the bounded public 2014 Tor-v2 hidden-service-descriptor/index search. Report: `im-results/lp2-2014-public-hsdesc-index-census.md`; consolidated source/key note: `workplace/2014-signed-onion7-hsdesc-public-key-recovery.md`.
+- **Finding:** Tor CollecTor explicitly says hidden-service descriptors are not formally archived; its public machine-readable index has no `hidden` or `hidden-service-descriptor` entries. The 2014 Owen/Savage study really did observe descriptor publications with 40 HSDir relays and inspect collected descriptors, but the public Portsmouth record exposes no descriptor dataset/archive. This does not rule out private retention.
+- **Format constraint:** a Tor-v2 HSDesc contains the public service key, descriptor ID, publication time, and introduction-point data; it has no outgoing HTTP URL or page body. A descriptor can authenticate the onion identity/time, not identify the p56 successor. The successor requires an original web capture, first-party link, or signed instruction.
+- **Prior-work boundary:** do not repeat the eight descriptor-ID calculations, six expected HSDir mapping, CollecTor index search, or exact-ID web searches. The private academic/HSDir custodian route remains owner-authorized and is already routed through Agent1; no outreach was performed. No key, successor, p56 body, hash match, or plaintext recovered.
+- **Next research direction:** after closing #975, take an unclaimed independent original-cipher task, preferably #973's source-constrained lossless variable-boundary inverse for the 83 singleton-glyph words and lag-five structure. Avoid free-boundary language fitting; require a source-selected encoder and exact original forward reconstruction.
+
+---
+
 **Run (14 Nov 2026):** actual cryptographic mode draw **2**, normal independent research. Ownership committed and remote-verified at `agents/agent9/.lease.json`, run_id `agent9-gpt6-20261114T230342-independent-e58b54f98c3d`, original `claimed_at=2026-11-14T23:03:42.279Z`. **Never refresh this lease.** At each persistence checkpoint read the real UTC clock; release **only at or after 2026-11-15T00:13:42.279Z**, after all useful state is pushed. Delete only this run's lease as final repo mutation and verify, then end. Do not end for task completion before that measured time.
 
 ## Current result: page-first all-secret invariant despite later ciphertext collision skips
